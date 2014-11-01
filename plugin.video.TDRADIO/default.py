@@ -1,4 +1,4 @@
-﻿#!/usr/bin/python
+#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 # *      Copyright (C) 2011 TDW
@@ -26,7 +26,7 @@ def xt(x):return xbmc.translatePath(x)
 	
 handle = int(sys.argv[1])
 
-PLUGIN_NAME   = 'TDBRADIO'
+PLUGIN_NAME   = 'TDB RADIO'
 
 addon = xbmcaddon.Addon(id='plugin.video.TDBRADIO')
 
