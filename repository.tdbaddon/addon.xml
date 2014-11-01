@@ -6,8 +6,8 @@
 <datadir zip="true">http://github.com/tdbaddon/tdbaddon/raw/master/zips</datadir>
 </extension>
 <extension point="xbmc.addon.metadata">
-<summary>Install MY Addons</summary>
-<description>Download and install Addons</description>
+<summary>Wisely choose you Must!</summary>
+<description>Download and Install Addons</description>
 <platform>all</platform>
 </extension>
 </addon>
