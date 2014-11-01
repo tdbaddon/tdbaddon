@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<addons>
+<addon id="plugin.video.myfirstplugin"
+       name="TDB REPO"
+       version="1.0"
+       provider-name="TDB">
+  <requires>
+    <import addon="xbmc.python" version="2.0"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource"
+            library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">My First Plugin</summary>
+    <description lang="en">my first plugin description</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="repository.tdbaddon" name="TDB REPO" version="1.0" provider-name="TDB Your Name">
+	<extension point="xbmc.addon.repository" name="HELLO Addon Repository">
+		<info compressed="false">http://github.com/tdbaddon/My-Repo/raw/master/addons.xml</info>
+		<checksum>http://github.com/tdbaddonMy-Repo/raw/master/addons.xml.md5</checksum>
+		<datadir zip="true">http://github.com/tdbaddon/My-Repo/raw/master/zips</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Install MY Addons</summary>
+		<description>Download and install addons from TDB REPO....</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+</addons>
