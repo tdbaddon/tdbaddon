@@ -58,7 +58,7 @@
 </addon>
 
 <addon id="plugin.video.TDBRADIO"
-       name="IPTV"
+       name="TDB RADIO"
        version="1.02"
        provider-name="TDB">
   <requires>
