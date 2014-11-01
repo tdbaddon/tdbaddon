@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="repository.tdbaddon" name="TDB REPO" version="1.00" provider-name="tdbaddon">
-	<extension point="xbmc.addon.repository" name="TDB Addon Repository">
-		<info compressed="false">https://github.com/tdbaddon/tdbaddon/blob/master/addons.xml</info>
-		<checksum>https://github.com/tdbaddon/tdbaddon/blob/master/addons.xml.md5</checksum>
-		<datadir zip="true">https://github.com/tdbaddon/tdbaddon/tree/master/zips</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary></summary>
-		<description>Download and install addons from TDB</description>
-		<platform>all</platform>
-	</extension>
+<extension point="xbmc.addon.repository" name="TDB Addon Repository">
+<info compressed="false">http://github.com/tdbaddon/tdbaddon/raw/master/addons.xml</info>
+<checksum>http://github.com/tdbaddon/tdbaddon/raw/master/addons.xml.md5</checksum>
+<datadir zip="true">http://github.com/tdbaddon/tdbaddon/raw/master/zips</datadir>
+</extension>
+<extension point="xbmc.addon.metadata">
+<summary>Install MY Addons</summary>
+<description>Download and install Addons</description>
+<platform>all</platform>
+</extension>
 </addon>
-
