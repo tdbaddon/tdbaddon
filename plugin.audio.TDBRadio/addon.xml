@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.TDBRADIO"
+<addon id="plugin.audio.TDBRadio"
        name="TDB RADIO"
        version="1.00"
        provider-name="TDB">

@@ -1,5 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addons>
+<addon id="plugin.audio.TDBRadio"
+       name="TDB RADIO"
+       version="1.00"
+       provider-name="TDB">
+<requires>
+<import addon="xbmc.python" version="2.1.0"/>
+</requires>
+<extension point="xbmc.python.pluginsource"
+            library="default.py">
+<provides>audio</provides>
+</extension>
+<extension point="xbmc.addon.metadata">
+<summary>TDB RADIO</summary>
+<description>Live streaming Audio</description>
+<disclaimer>The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.audio.TOMDABOMB"
+       name="TOMDABOMB"
+       version="1.00"
+       provider-name="TOMDABOMB">
+<requires>
+<import addon="xbmc.python" version="2.1.0"/>
+</requires>
+<extension point="xbmc.python.pluginsource"
+            library="default.py">
+<provides>audio</provides>
+</extension>
+<extension point="xbmc.addon.metadata">
+<summary>TOMDABOMB</summary>
+<description>Live streaming Audio from www.tomdabomb.ca</description>
+<platform>all</platform>
+</extension>
+</addon>
+
 <addon id="plugin.video.TDBEUROTV"
        name="TDB EURO TV"
        version="1.00"
@@ -55,43 +92,6 @@
 <disclaimer>The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
     <platform>all</platform>
   </extension>
-</addon>
-
-<addon id="plugin.video.TDBRADIO"
-       name="TDB RADIO"
-       version="1.00"
-       provider-name="TDB">
-<requires>
-<import addon="xbmc.python" version="2.1.0"/>
-</requires>
-<extension point="xbmc.python.pluginsource"
-            library="default.py">
-<provides>audio</provides>
-</extension>
-<extension point="xbmc.addon.metadata">
-<summary>TDB RADIO</summary>
-<description>Live streaming Audio</description>
-<disclaimer>The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
-    <platform>all</platform>
-  </extension>
-</addon>
-
-<addon id="plugin.video.TOMDABOMB"
-       name="TOMDABOMB"
-       version="1.00"
-       provider-name="TOMDABOMB">
-<requires>
-<import addon="xbmc.python" version="2.1.0"/>
-</requires>
-<extension point="xbmc.python.pluginsource"
-            library="default.py">
-<provides>audio</provides>
-</extension>
-<extension point="xbmc.addon.metadata">
-<summary>TOMDABOMB</summary>
-<description>Live streaming Audio from www.tomdabomb.ca</description>
-<platform>all</platform>
-</extension>
 </addon>
 
 <addon id="repository.tdbaddon" name="TDB REPO" version="1.00" provider-name="tdbaddon">
