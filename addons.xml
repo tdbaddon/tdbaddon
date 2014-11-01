@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addons>
 <addon id="plugin.video.TDBEUROTV" name="TDB Euro TV="1.0.0" provider-name="tdbaddon">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>audio</provides>
+        <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
     <summary lang="en"></summary>
@@ -20,7 +20,7 @@
     <import addon="xbmc.python" version="2.1.0"/>
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>audio</provides>
+        <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
     <summary lang="en"></summary>
@@ -35,7 +35,7 @@
     <import addon="xbmc.python" version="2.1.0"/>
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>audio</provides>
+        <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
     <summary lang="en"></summary>
@@ -50,7 +50,7 @@
     <import addon="xbmc.python" version="2.1.0"/>
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>audio</provides>
+        <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
     <summary lang="en"></summary>
@@ -65,7 +65,7 @@
     <import addon="xbmc.python" version="2.1.0"/>
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>audio</provides>
+        <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
     <summary lang="en"></summary>
@@ -74,15 +74,15 @@
   </extension>
 </addon>
 
-<addon id="repository.metalkettle" name="TDB Addon Repo" version="1.0.0" provider-name="tdbaddon">
-	<extension point="xbmc.addon.repository" name="MetalKettles Addon Repository">
+<addon id="repository.tdbaddon" name="TDB Addon Repo" version="1.0.0" provider-name="tdbaddon">
+	<extension point="xbmc.addon.repository" name="TDB Addon Repository">
 		<info compressed="false">https://github.com/tdbaddon/tdbaddon/blob/master/addons.xml</info>
 		<checksum>https://github.com/tdbaddon/tdbaddon/blob/master/addons.xml.md5</checksum>
 		<datadir zip="true">https://github.com/tdbaddon/tdbaddon/tree/master/zips</datadir>
 	</extension>
 	<extension point="xbmc.addon.metadata">
-		<summary>Install my Addons</summary>
-		<description>Download and install addons from tdbaddon</description>
+		<summary>Live Tv Streams</summary>
+		<description>You are Lucky if you can Read this!</description>
 		<platform>all</platform>
 	</extension>
 </addon>
