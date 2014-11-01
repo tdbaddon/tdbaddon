@@ -8,7 +8,7 @@
 </requires>
 <extension point="xbmc.python.pluginsource"
             library="default.py">
-<provides>video</provides>
+<provides>audio</provides>
 </extension>
 <extension point="xbmc.addon.metadata">
 <summary>TDB RADIO</summary>
