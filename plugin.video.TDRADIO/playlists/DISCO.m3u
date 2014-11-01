@@ -1,0 +1,30 @@
+﻿#EXTM3U
+#EXTINF:0,
+
+
+#EXTINF:0,1.FM Disco Ball (Switzerland)
+http://sc2b-sjc.1.fm:8100/
+
+#EXTINF:0,1000 Disco Hits (Germany)
+http://stream2.laut.fm/1000discohits
+
+#EXTINF:0,Disco Studio 54 (US)
+http://50.7.77.179:7000/stream1
+
+#EXTINF:0,GotRadio Disco (US)
+http://cdn.gotradio.com/itunes/disco.pls
+
+#EXTINF:0,I-Love-Disco (Italy)
+http://curiosity.shoutca.st:9553/id128MP3
+
+#EXTINF:0,Radio10 Disco Classics (Netherlands)
+http://stream.radiocorp.nl/r10_Disco_mp3
+
+#EXTINF:0,RadioTunes Disco Party (US)
+http://pub4.radiotunes.com/radiotunes_discoparty
+
+#EXTINF:0,The Disco Palace
+http://s4.viastreaming.net:9040/
+
+#EXTINF:0,The Groovy Mixx (US)
+http://162.251.160.2/groovymixxhigh

@@ -1,0 +1,186 @@
+﻿#EXTM3U
+#EXTINF:0, 
+
+
+#EXTINF:0,A&E 720 HD
+rtmpe://46.246.124.88/live playpath=aeusa_usa swfUrl=http://ukcast.co/player//player.swf live=1 pageUrl=http://www.ukcast.co/ token=%ZZri(nKa@#Z
+
+#EXTINF:0,Abc SD
+rtmpe://46.246.124.92/live playpath=abcusa_usa swfUrl=http://ukcast.co/player//player.swf live=1 pageUrl=http://www.ukcast.co/ token=%ZZri(nKa@#Z
+
+#EXTINF:0,AMC SD
+rtmpe://46.246.124.92/live playpath=amcusa_usa swfUrl=http://ukcast.co/player//player.swf live=1 pageUrl=http://www.ukcast.co/ token=%ZZri(nKa@#Z
+
+#EXTINF:0,AXTN TV 6 SD
+rtmp://oflash.dfw.swagit.com/live/austintx/live-1
+
+#EXTINF:0,BBC One SD
+http://nimlive1.giniko.com/bbcone/bbcone.stream/playlist.m3u8
+
+#EXTINF:0,BBC Two SD
+http://nimlive1.giniko.com/bbctwo/bbctwo.stream/playlist.m3u8
+
+#EXTINF:0,BBC Four SD
+http://82.135.224.134:80/udp/239.100.3.5:1234
+
+#EXTINF:0,BIO 1080 HD
+http://ilg.club/streamlink.m3u8?channel_id=169a149fd1ef40edba0bbfc8e0f1bdd1&bitrate=800
+
+#EXTINF:0,Biography 1 SD
+http://202.75.23.36:1400/live/ch46/03.m3u8
+
+#EXTINF:0,Biography 2 SD
+http://202.75.23.36/live/ch46/01.m3u8
+
+#EXTINF:0,Boston City TV US 720 HD
+rtmp://streaming.cityofboston.gov/live/cable
+
+#EXTINF:0,Bravo SD
+rtmpe://46.246.124.88/live playpath=bravousa_usa swfUrl=http://ukcast.co/player//player.swf live=1 pageUrl=http://www.ukcast.co/ token=%ZZri(nKa@#Z
+
+#EXTINF:0,Cbc TV 8
+rtmp://184.154.57.230/cbcvideo playpath=cbcstream
+
+#EXTINF:0,Cbc News Canada 720 HD
+rtmp://d.cdn.newschat.tv/edge playpath=canadas_live swfUrl=http://msnbclive.eu/player.swf live=1 pageUrl=http://www.livenewschat.eu/canada/
+
+#EXTINF:0,Cbs USA SD
+rtmpe://46.246.124.92/live playpath=cbsusa_usa swfUrl=http://ukcast.co/player//player.swf live=1 pageUrl=http://www.ukcast.co/ token=%ZZri(nKa@#Z
+
+#EXTINF:0,Cbs UK  SD
+rtmpe://46.246.124.92:1935/live swfUrl=http://ukcast.co/player//player.swf pageUrl=http://www.ukcast.co/embedUSA.php?u=cbsusa_usa&vw=658&vh=430 playpath=cbsusa_usa live=true
+
+#EXTINF:0,Cbs Reality 720 HD
+http://hls01-05.az.myvideo.az/hls-live/livepkgr/cbsreality/cbsreality/cbsreality.m3u8&rRb545vJBB5tYzB7vVP
+
+#EXTINF:0,Channel 4 720 HD
+http://cdn.live.simplestream.com/VKWY6U2RIGO3J8KQ0Q7B/5/playlist-limelight.m3u8
+
+#EXTINF:0,Channel 5 720 HD
+http://cdn.live.simplestream.com/Z41HSAHP2SD4XFSXTT3B/5/playlist-limelight.m3u8
+
+#EXTINF:0,CNBC SD
+http://livestation_hls-lh.akamaihd.net/i/cnbc_en@106428/master.m3u8
+
+#EXTINF:0,Comedy Central 720 HD
+http://ilg.club/streamlink.m3u8?channel_id=2f18d4ba25224edaa8bb9aac94b00d4f
+
+#EXTINF:0,Crime Investigation 1 SD
+http://ilg.club/streamlink.m3u8?channel_id=9961a963920f45f4bc0d81c3e478b334&bitrate=800
+
+#EXTINF:0,Crime Investigation 2 SD
+http://202.75.23.36/live/ch47/01.m3u8
+
+#EXTINF:0,Crime Investigation 720 HD
+http://109.72.63.89:4022/udp/238.0.0.100:9018
+
+#EXTINF:0,CW SD
+rtmp://rtmp.zerocast.tv:1935/live/ playpath=IWSyIjvWgHRCMM7MEJoZ swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=3a439185c0f4b61f swfVfy=1 pageUrl=http://zerocast.tv
+
+#EXTINF:0,Denver 8 TV SD
+mms://207.7.154.96/G0080_002?wmcache=0
+
+#EXTINF:0, English Club TV 1 SD
+http://85.187.154.9:2001/
+
+#EXTINF:0,E! Entertainment 720 HD
+http://176.51.84.186:1234/udp/233.7.70.72:5000
+
+#EXTINF:0,Escapes 720 HD
+rtmp://204.107.26.252:8086/live/341.high.stream
+
+#EXTINF:0,Fashion TV 720 HD
+http://edgeb.streaming.sk/fashiontv/fashiontv.stream/playlist_b125000_w304569164.m3u8
+
+#EXTINF:0,Fashion TV SD
+http://83.139.104.123/Content/HLS/Live/Channel(fashion_tv)/Stream(03)/index.m3u8
+
+#EXTINF:0, Fish Tank
+rtmp://80.93.53.88:1935/live/channel_3
+
+#EXTINF:0,Flight Level TV US 720 HD
+rtmp://streaming.krautzer-lynn.com:1935/live/Stream4
+
+#EXTINF:0,Food Network SD
+http://83.139.104.123/Content/HLS/Live/Channel(food_network)/Stream(03)/index.m3u8
+
+#EXTINF:0,Fox 45 720 HD
+rtmpe://46.246.124.92/live playpath=foxusa_usa swfUrl=http://ukcast.co/player//player.swf live=1 pageUrl=http://www.ukcast.co/ token=%ZZri(nKa@#Z
+
+#EXTINF:0,Fox Life 720 HD
+http://goo.gl/U4RMkH
+
+#EXTINF:0,Fox Life SD
+http://ago1drug:03mart2014@streamer.in.rs:8080/str61
+
+#EXTINF:0,FX SD
+rtmp://rtmp.zerocast.tv:1935/live/ playpath=VCV8SViFVBv2nX5RQwKI swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=3a439185c0f4b61f swfVfy=1 pageUrl=http://zerocast.tv
+
+#EXTINF:0,Game Rush TV SD
+rtsp://46.249.213.93/broadcast/gamerushtv-tablet.3gp
+
+#EXTINF:0,Ginx Game TV 720 HD
+rtmp://204.107.26.252:8086/live/796.high.stream
+
+#EXTINF:0,Hbo SD
+rtmpe://46.246.124.88/live playpath=hbousa_usa swfUrl=http://ukcast.co/player//player.swf live=1 pageUrl=http://www.ukcast.co/ token=%ZZri(nKa@#Z
+
+#EXTINF:-1,HSN TV SD
+rtsp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:420p500kB31
+
+#EXTINF:0,ITV Choice SD
+http://ilg.club/streamlink.m3u8?channel_id=e36b99bcd26648af9db2261785c77b7a&bitrate=800
+
+#EXTINF:0,Kino TV SD
+http://83.139.104.123/Content/HLS/Live/Channel(kino_tv)/Stream(03)/index.m3u8
+
+#EXTINF:0,Landscape Channel SD
+http://130.88.20.233:1237/test.flv
+
+#EXTINF:0,Legislative Assembly of Ontario SD
+rtmp://cdn1.canadacast.ca/live/ontla/house-en
+
+#EXTINF:0,Lifetime TV SD
+http://202.75.23.36:1400/live/ch48/03.m3u8
+
+#EXTINF:0,PBS 720 HD
+http://upmv09-level3-upmv.ustream.tv/0/1/54/54266/54266597/1_4424524_54266597.flv?e=1416473252&h=be521fd910092d55b20363668199e1b8&tracking=e5767d_0_1_0_0
+
+#EXTINF:0,Star World 720 HD
+http://ilg.club/streamlink.m3u8?channel_id=65f7358b813048a0898f5677e1793cf9
+
+#EXTINF:0,Spike Tv 720 HD
+rtmpe://46.246.124.88/live playpath=spikeusa_usa swfUrl=http://ukcast.co/player//player.swf live=1 pageUrl=http://www.ukcast.co/ token=%ZZri(nKa@#Z
+
+#EXTINF:0,Syfy US SD
+rtmpe://46.246.124.88/live playpath=syfyusa_usa swfUrl=http://ukcast.co/player//player.swf live=1 pageUrl=http://www.ukcast.co/ token=%ZZri(nKa@#Z
+
+#EXTINF:0,The Shopping Channel SD
+http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/index_6_av-p.m3u8?sd=10&rebase=on
+
+#EXTINF:0,Universal Channel 720 HD
+http://secure.ilikehd.com/livetv/player/totlink.m3u8?channel_id=a7105ed1bb0a44bba1f4f71f2352b892
+
+#EXTINF:0,USA TV SD
+rtmpe://46.246.124.88/live playpath=usausa_usa swfUrl=http://ukcast.co/player//player.swf live=1 pageUrl=http://www.ukcast.co/ token=%ZZri(nKa@#Z
+
+#EXTINF:0,Vernnissage TV SD
+http://149.11.34.6:1935/live/vernissagetv.stream/hasbahca.m3u8
+
+#EXTINF:0,WGN 9 Chicago 720 SD
+http://wgntribune-lh.akamaihd.net/i/WGNTribune_1@109089/master.m3u8
+
+#EXTINF:0,Wine Oh TV 720 HD
+http://live58.la3.edge.filmon.com/live/3002.low.stream/playlist.m3u8?id=0ad5aac39bb13fbe9926869ee3c8ea50380c9663565655c8d2fa1a7274f27eb4ee29c4cd9770ecd9238411629488428fef576967e00b83032f10abe544618387f70d5d60e7919703bfc867a8dbe86841f2a20a7aa43d34850967837507003ed661629022fa4fdf560e0dcc6600df85fbbda2d700dd2a9eab26a30f60555b1b7608429bd925e9c51c6d5988197ceef6394ec5276b73d95741
+
+#EXTINF:0,Wine TV 720 HD
+rtmp://mi2.gv.filmon.com:8086/live/263.high.stream
+
+#EXTINF:0,Wineram TV 720 HD
+http://live58.la3.edge.filmon.com/live/3107.low.stream/playlist.m3u8?id=0ad5aac39bb13fbe8f43724c84e89e4ef8c11729f2dd7c76bc99ed765c34185172e2b397673f31fd4e458420dabcdc105b595bc2ce831f23cb76efb2bb19ecc6c969c990e810fe4f5e4a9698c0bb7bebdd0c6548e981c6e51d62bd4946e88c75eeba103c9309fe4d3eda14052d64de319bed0b41c0178f5cdcc3d4d23fbe258a6e9cb6a0974bf60875e51eebb4ce158533a0ab701a26b5c8
+
+#EXTINF:0,World Fashion TV 1080 HD
+http://btv-net.mediacdn.ru/TVB2/ngrp:wfhdeu.stream_all/chunklist_b3128000.m3u8
+
+#EXTINF:0,World of Wine 720 HD
+http://live58.la3.edge.filmon.com/live/3164.low.stream/playlist.m3u8?id=0ad5aac39bb13fbe32b69908f6d1ba77a5f8fafd75d9df6d1088873297885e6bdb14002e6895e2288448892167ba4e39b953a577ca54f5ad161b4d531eb6482e5e4cdd7cf63f4718dcb3e76f2e92ffce4b4e5856f2ec7b49041506e896b43df3f75c3e24a89a53e93c40ee87ff3bab2c175d249713930b8793fb72d9dde884a59fb5ef36f951e13eb456e7aefb2ca1fd123a87f5dfc12fdd

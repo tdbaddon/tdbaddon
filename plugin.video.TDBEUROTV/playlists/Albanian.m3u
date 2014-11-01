@@ -1,0 +1,54 @@
+﻿#EXTM3U
+#EXTINF:0,
+
+
+#EXTINF:0,A1 Report SD
+rtmp://66.55.93.204/livepkgr/a1stream?adbe-live-event=a1report
+
+#EXTINF:0,Arta SD
+rtmp://82.114.65.202/live/rrokumtv.flv swfUrl=http://tv24.al/shqiptv/css/player.swf live=1
+
+#EXTINF:0,Apollon SD
+rtmp://95.107.200.140:554/live/rtmp.stream
+
+#EXTINF:0,Balkan TV SD
+rtmp://yayin.tvdunyasi.tv/live/balkanrtv
+
+#EXTINF:0,Jug TV  SD
+rtmp://84.20.77.50/live/livestream1
+
+#EXTINF:0,Koha 1 SD
+rtmp://live.tvkoha.tv:0/live/koha/livestream
+
+#EXTINF:0,Koha 2 SD
+rtmp://live.tvkoha.tv/live/koha/livestream
+
+#EXTINF:0,News 1 24 SD
+rtmp://66.55.93.203/livepkgr/n24stream
+
+#EXTINF:0,News 2 24 SD
+rtmp://209.212.145.164/live/livestream1
+
+#EXTINF:0,Ora News SD
+rtmp://209.212.145.164/live playpath=livestream1 swfUrl=http://shqiptv.org/playerplus.swf live=1 pageUrl=http://www.shqiptv.us/tv/oranews.html
+
+#EXTINF:0,Rokum TV 1 SD
+rtmp://82.114.65.202/live/rrokumtv
+
+#EXTINF:0,Rokum TV 2
+rtmp://82.114.65.202/live playpath=rrokumtv swfUrl=http://shqiptv.org/playerplus.swf live=1 pageUrl=http://www.shqiptv.us/tv/tvrrokum.html
+
+#EXTINF:0,Sot7 SD
+mms://84.20.73.66:8001
+
+#EXTINF:0,Superfolk SD
+rtmp://str103.setplex.net:1935/228/stv_folk
+
+#EXTINF:0,Supersonic SD
+rtmp://str103.setplex.net:1935/228/stv_online
+
+#EXTINF:0,Teuta TV SD
+rtmp://str103.setplex.net:1935/228/teuta
+
+#EXTINF:0,Vision Plus 1 SD
+rtmp://live.vizionplus.tv:1935/live/livestream2

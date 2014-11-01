@@ -1,0 +1,60 @@
+﻿#EXTM3U
+#EXTINF:0,
+
+
+#EXTINF:0,BigPond Movies Extra SD
+mms://ken-cdn220-is-3.se.bptvlive.ngcdn.telstra.com/bp_online_movieextra_high
+
+#EXTINF:0,FX-D 720 HD
+http://ilg.club/streamlink.m3u8?channel_id=2e0e4b05aa6e428593f3b45b710045b7&bitrate=800
+
+#EXTINF:0,HD Movies 24/7 1080 HD
+rtmp://62.210.76.216/live2/moviehd playpath=moviehd swfUrl=http://releases.flowplayer.org/5.4.6/flowplayer.swf live=1 pageUrl=http://www.stream4free.eu/movies-hd
+
+#EXTINF:0,Lotus Macau SD
+rtmp://58.97.57.152/live playpath=ch33 swfUrl=http://www.one2hd.com/swfs/mediaPlayer/mediaPlayer.swf pageUrl=http://www.one2hd.com
+
+#EXTINF:0,Pink 2 720 HD
+http://on108.setplex.net/fastv_2psh/Pink2global_rly_greece_109/hasbahca.m3u8
+
+#EXTINF:0,Pink Action 1 720 HD
+http://on108.setplex.net/fastv_2psh/PinkActionglobal_rly_greece_109/playlist.m3u8
+
+#EXTINF:0,Pink Action 2 720 HD
+http://on108.setplex.net/fastv_2psh/PinkAction2global_rly_greece_103/hasbahca.m3u8
+
+#EXTINF:0,Pink Comedy 720 HD
+http://on108.setplex.net/fastv_2psh/PinkComedyglobal_rly_greece_103/playlist.m3u8
+
+#EXTINF:0,Pink Horror 720 HD
+http://on108.setplex.net/fastv_2psh/PinkHorrorglobal_rly_greece_103/playlist.m3u8
+
+#EXTINF:0,Pink Movies SD
+http://on108.setplex.net/fastv_2psh/PinkMovies3global_rly_greece_109/playlist.m3u8
+
+#EXTINF:0,Pink Premium SD
+http://on108.setplex.net/fastv_2psh/PinkPremiumglobal_rly_greece_103/playlist.m3u8
+
+#EXTINF:0,Showtime IQ 720 HD
+mmsh://mediafilmcenter.ro:10
+
+#EXTINF:0,Showtime SD
+rtmpe://46.246.124.92/live playpath=showusa_usa swfUrl=http://ukcast.co/player//player.swf live=1 pageUrl=http://www.ukcast.co/ token=%ZZri(nKa@#Z
+
+#EXTINF:0,Sky Action SD
+rtmpe://46.246.29.160:1935/live/ playpath=action swfUrl=http://player.hdcast.org/player.swf pageUrl=http://www.hdcast.org/Vd?u#bt!25 live=1 token=#yw%tt#w@kku timeout=15
+
+#EXTINF:0,Sky Comedy SD
+rtmpe://46.246.29.160:1935/live/ playpath=greats swfUrl=http://player.hdcast.org/player.swf pageUrl=http://www.hdcast.org/embedlive2.php?u=sskys3&vw=854&vh=480&domain=streamking.org live=1 token=#yw%tt#w@kku timeout=15
+
+#EXTINF:0,Sky Movies Modern SD
+rtmpe://209.95.34.58:1935/live/greats pageUrl=http://www.hdcast.org/hpg_disco token=#yw%tt#w@kku
+
+#EXTINF:0,Sky Premiere SD
+rtmpe://46.246.29.160:1935/live/ playpath=premierx swfUrl=http://player.hdcast.org/player.swf pageUrl=http://www.hdcast.org/Vd?u#bt!25 live=1 token=#yw%tt#w@kku timeout=15
+
+#EXTINF:0,SYFY Movie Channel SD
+rtmpe://46.246.29.160:1935/live/ playpath=scifi swfUrl=http://player.hdcast.org/player.swf pageUrl=http://www.hdcast.org/Vd?u#bt!25 live=1 token=#yw%tt#w@kku timeout=15
+
+#EXTINF:0,Universal Channel 720 HD
+http://secure.ilikehd.com/livetv/player/totlink.m3u8?channel_id=a7105ed1bb0a44bba1f4f71f2352b892

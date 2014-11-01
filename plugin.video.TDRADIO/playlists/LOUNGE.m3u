@@ -1,0 +1,30 @@
+﻿#EXTM3U
+#EXTINF:0,
+
+
+#EXTINF:0,Antenna Vorariberg (Austria)
+http://webradio.antennevorarlberg.at/lounge
+
+#EXTINF:0,Delux Lounge (Germany)
+http://am.audio1.fr.ipercast.net/deluxemusic.tv/lounge_web/mp3
+
+#EXTINF:0,Lounge Motion FM (Canada)
+http://ice.motionfm.com/motionthree_free
+
+#EXTINF:0,Motion FM
+http://ice.motionfm.com/motionone_free
+
+#EXTINF:0,RadioTunes DaTempo (US)
+http://pub6.radiotunes.com/radiotunes_datempolounge
+
+#EXTINF:0,RadioTunes Smooth (US)
+http://pub7.radiotunes.com/radiotunes_smoothlounge
+
+#EXTINF:0,SmoothLOunge Global (US)
+http://sl256.hnux.com/
+
+#EXTINF:0,SomaFM Lush (US)
+http://xstream1.somafm.com:8800/
+
+#EXTINF:0,The Green Room (US)
+http://s4.total-streaming.com:9140/

@@ -1,0 +1,165 @@
+﻿#EXTM3U
+#EXTINF:0, 
+
+
+#EXTINF:0,Autosport TV 720 HD
+mms://100automoto.tv/100livesport
+
+#EXTINF:0,Big Ten Network 720 HD
+http://bigten247.cdnak.bigtenhd.neulion.com/nlds/btn2go/btnnetwork/as/live/btnnetwork_hd_3000.m3u8
+
+#EXTINF:0,Box Nation SD
+rtmpe://46.246.124.28:1935/live/sboxn token=#yw%tt#w@kku pageUrl=http://www.hdcast.org/ HarrysStreams
+
+#EXTINF:0,BT Sport 1 720 HD
+rtmpe://31.220.0.198/live playpath=bt1 pageUrl=http://www.pvtserverz.com/Vd?u#bt!25 timeout=15
+
+#EXTINF:0,ESPN 2 720 HD
+rtmp://31.220.0.103:1935/live playpath=espn2 swfUrl=http://www.flashtv.co/ePlayerr.swf live=1 pageUrl=http://www.flashtv.co/Vd?u#bt!25 token=%ZZri(nKa@#Z timeout=10
+
+#EXTINF:0,ESPN SD
+rtmp://46.246.29.156:1935/stream/ playpath=565rgrh.stream swfUrl=http://thecdn.04stream.com/p/ooolo1.swf live=1 timeout=13 pageUrl=http://www.04stream.com/ AnisotropicTV
+
+#EXTINF:0,ESPN Two 1 SD
+mms://a3.v20473a.c20473.g.vc.akamaistream.net/7/3/20473/v0001/espn.download.akamai.com/20473/t_assets/20070217/4657511c3b57e3dc733def3701a3d94f38e6f132.wmv
+
+#EXTINF:0,ESPN Two 2 SD
+rtmp://31.220.0.196:1935/live playpath=espn2 token=%ZZri(nKa@#Z swfUrl=http://www.flashtv.co/ePlayerr.swf live=1 timeout=13 pageUrl=http://www.flashtv.co/ AnisotropicTV
+
+#EXTINF:0,ESPN USA 1 SD
+rtmp://46.246.29.141:1935/stream/ playpath=42q5retrgh.stream swfUrl=http://thecdn.04stream.com/p/boopo.swf live=schuster92 pageUrl=http://04stream.com/
+
+#EXTINF:0,ESPN USA 2 SD
+rtmp://46.246.29.132:1935/stream/ playpath=46terg.stream swfUrl=http://thecdn.04stream.com/p/ooolo1.swf live=1 pageUrl=http://www.04stream.com/ebb.php?adsp=&width=600&height=460&st=x284n4j5v594z38433s2v2u274u2s2p20314u2v2z2&adx=&stream=64b4x2f524r2i5743384v2t2k5y264l2y294o4a4o4k5m2a4v2s2q2642444y2t20344z284a4t2y233p4j5l4u3m574v314w4r2q2m23443w2x2949413y20314q2c4t2v2p264f5m5x254a4c4x2c4a4d4b453a4b4444414n2z314u2r2q2m234t244o4&sooor=MjE=&str=is&idom=www.thefirstrow.eu
+
+#EXTINF:0,Eurosport 1 SD
+http://83.139.104.123/Content/HLS/Live/Channel(eurosport)/Stream(03)/index.m3u8
+
+#EXTINF:0,Eurosports Live 720 HD
+http://109.72.63.89:4022/udp/238.0.0.101:9001
+
+#EXTINF:0,Fight Sports 720 HD
+http://202.75.23.37/live/ch20/03.m3u8
+
+#EXTINF:0,Fox Sports 2 720 HD
+http://27.131.144.176:8081/web/star/playlist.m3u8?sd=10&rebase=on
+
+#EXTINF:0,Golf Channel SD
+rtmp://88.86.125.177:1935/live playpath=kinggolf swfUrl=http://www.flashtv.co/ePlayerr.swf token=%ZZri(nKa@#Z timeout=10 pageUrl=http://www.flashtv.co/embed.php?live=kinggolf&vw=620&vh=490
+
+#EXTINF:0,Motors TV 720 HD
+http://live305.edge.filmon.com/live/262.low.stream/playlist.m3u8?id=0ad5aac39bb13fbe93aece4fa0ff5d64224c2f54a4174b7a7c998748e4df84e744c150583198c43ebb87e781bd8f56c456cd89261907c6bb8325f0e334576d3eeae6ddede69b311d9d86eca63147f38486cfa1695cf833e681b6a672aff58ab5214fca35e7bc276c3c5ee2b57705622e0b2b07f5662184d4feae686313c978875c87860560efd40b72aba360df463dc64df0ea88e574b364
+
+#EXTINF:0,NBA 24/7 720 HD
+http://nba247.cdnak.nbahd.neulion.com/mobile/nba/nba247/as/live/ipad_1840.m3u8
+
+#EXTINF:-1,NBA TV SD
+rtmp://46.246.29.141:1935/stream/K8l9h6j8.stream swfUrl=http://thecdn.04stream.com/p/boopo.swf pageUrl=http://04stream.com/ live=true
+
+#EXTINF:0,NBCSN SD
+rtmpe://46.246.124.88/live playpath=nbcsnusa_usa swfUrl=http://ukcast.co/player//player.swf live=1 pageUrl=http://www.ukcast.co/ token=%ZZri(nKa@#Z
+
+#EXTINF:0,NFL Network 1 SD
+rtmp://46.246.29.157:1935/stream/ playpath=y8m0NU0.stream swfUrl=http://thecdn.04stream.com/p/ooolo1.swf live=1 timeout=13 pageUrl=http://www.04stream.com/ AnisotropicTV
+
+#EXTINF:-1,NFL Network 2 SD
+rtmpe://46.246.124.88/live playpath=nflusa_usa swfUrl=http://ukcast.co/player//player.swf live=1 pageUrl=http://www.ukcast.co/ token=%ZZri(nKa@#
+
+#EXTINF:-1,Outdoor Channel SD
+rtmp://lm02.everyon.tv:1935/ptv2/pld613
+
+#EXTINF:0,PAC 12 Arizona 1080 HD
+http://www.xrxs.net/video/live-p12ariz-4728.m3u8
+
+#EXTINF:0,PAC 12 Bay Area 1080 HD
+http://www.xrxs.net/video/live-p12baya-4728.m3u8
+ 
+#EXTINF:0,PAC 12 Los Angeles 1080 HD
+http://xrxs.net/video/live-p12losa-4728.m3u8
+
+#EXTINF:0,PAC 12 National 1080 HD
+http://www.xrxs.net/video/live-p12netw-4728.m3u8
+ 
+#EXTINF:0,PAC 12 Mountain 1080 HD
+http://xrxs.net/video/live-p12moun-4728.m3u8
+ 
+#EXTINF:0,PAC-12 Oregon 1080 HD
+http://xrxs.net/video/live-p12oreg-4728.m3u8
+ 
+#EXTINF:0,PAC-12 Washington 1080 HD
+http://xrxs.net/video/live-p12wash-4728.m3u8
+
+#EXTINF:0,Rogers Sportsnet 1 720 HD
+http://rogerslive-i.akamaihd.net/hls/live/202799/event/index.m3u8
+
+#EXTINF:0,Rogers Sportsnet East 1 720 HD
+http://rogerslive-i.akamaihd.net/hls/live/202800/event/index.m3u8?
+
+#EXTINF:0,Rogers Sportsnet Ontario SD
+rtmp://62.210.78.125:443/liverepeater/ playpath=168688 token=#atd%#$ZH swfUrl=http://static.surk.tv/atdedead.swf live=1 timeout=13 pageUrl=http://biggestplayer.me/ AnisotropicTV
+
+#EXTINF:0,Rogers Sportsnet Pacific 720 HD
+http://rogerslive-i.akamaihd.net/hls/live/202802/event/index.m3u8?
+
+#EXTINF:0,Rogers Sportsnet West 720 HD
+http://rogerslive-i.akamaihd.net/hls/live/202801/event/index.m3u8
+
+#EXTINF:0,SBS One 720 HD
+http://motorsport.hopto.org:8080
+
+#EXTINF:0,Setanta Sports 720 HD
+rtmpe://46.246.124.24:1935/live playpath=ssetanta swfUrl=http://prvservers.com/j/jwplayer.flash.swf pageUrl=http://prvservers.com/ live=1 token=#yw%tt#w@kku
+
+#EXTINF:0,Setana Sports 1 SD
+http://202.75.23.36/live/ch44/02.m3u8
+
+#EXTINF:0,Setanta Sports 2 SD
+http://202.75.23.36/live/ch44/01.m3u8
+
+#EXTINF:0,Sky Sports 1 720 HD
+rtmpe://31.220.0.198/live playpath=sky1 pageUrl=http://www.pvtserverz.com/
+
+#EXTINF:0,Sky Sports 2 SD
+rtmpe://31.220.0.12/live/skyspoo2 pageUrl=http://www.dcast.tv/loboi
+
+#EXTINF:0,Sky Sports 3 720 HD
+rtmpe://31.220.0.198/live playpath=sky3 pageUrl=http://www.pvtserverz.com/Vd?u#bt!25 timeout=15
+
+#EXTINF:0,Sky Sports 4 720 HD
+rtmpe://31.220.0.12/live/skio4 pageUrl=http://www.dcast.tv/loboi
+
+#EXTINF:0,Sky Sports 5 720 HD
+rtmpe://31.220.0.198/live playpath=sky5 pageUrl=http://www.pvtserverz.com/Vd?u#bt!25 timeout=15
+
+#EXTINF:0,Sky Sports F1 1 SD
+rtmp://31.220.0.103:1935/live playpath=ssf1 swfUrl=http://www.flashtv.co/ePlayerr.swf pageUrl=http://www.flashtv.co/embed.php?live=ssf1&vw=620&vh=490 token=%ZZri(nKa@#Z
+
+#EXTINF:0,Sky Sports F1 2 SD
+rtmpe://46.246.124.26:1935/live/ playpath=sskysf1 swfUrl=http://www.hdcast.org/j2/jwplayer.flash.swf pageUrl=http://www.hdcast.org/Vd?u#bt!25 live=1 token=#yw%tt#w@kku timeout=15
+
+#EXTINF:0,Sky Sports News 720 HD
+rtmpe://46.246.124.65:1935/live/sskysn pageUrl=http://www.hdcast.org/ token=#yw%tt#w@kku
+
+#EXTINF:0,Sports Night 720 HD
+rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9-HD
+
+#EXTINF:0,SportsTime 1 TV 720 HD
+rtmp://streamer.a1.net:1935/rtmplive/redundant/channels/Sporttime/SporttimeTV/mp4:channel1_1200
+
+#EXTINF:0,SportsTime 3 TV 720 HD
+rtmp://streamer.a1.net:1935/rtmplive/redundant/channels/Sporttime/SporttimeTV/mp4:channel3_1200
+
+#EXTINF:0,SportsTime 7 TV 720 HD
+rtmp://streamer.a1.net:1935/rtmplive/redundant/channels/Sporttime/SporttimeTV/mp4:channel7_1200
+
+#EXTINF:0,TEN Cricket SD
+http://ilg.club/streamlink.m3u8?channel_id=07febaf06cea4afeba557b3836d959d6&bitrate=800
+
+#EXTINF:0,TSN One 720 HD
+rtmp://31.220.0.104:1935/live/tsn1x live=1 pageUrl=http://www.flashtv.co/ token=%ZZri(nKa@#Z
+
+#EXTINF:0,TSN Two SD
+rtmp://31.220.0.104:1935/live/tsn2x live=1 pageUrl=http://www.flashtv.co/ token=%ZZri(nKa@#Z
+
+#EXTINF:0,Willow Cricket SD
+rtmp://80.82.78.22:443/liverepeater playpath=24 token=#atd%#$ZH swfUrl=http://popeoftheplayers.pw/atdedead.swf live=1 timeout=13 pageUrl=http://popeoftheplayers.pw/ AnisotropicTV

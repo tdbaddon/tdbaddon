@@ -1,0 +1,24 @@
+﻿#EXTM3U
+#EXTINF:0,
+
+
+#EXTINF:0,BlackMartini Radio (US)
+http://s2.viastreaming.net:6285/
+
+#EXTINF:0,Chic Radio (France)
+http://dancefloor.chicradio.fr/
+
+#EXTINF:0,Global House Movement (US)
+http://206.190.131.100:9928/
+
+#EXTINF:0,Minimalradio (Germany)
+http://11mediaserver.de:8000/
+
+#EXTINF:0,TheBlueUnderground (US)
+http://tbu.tunein.audio:4247/
+
+#EXTINF:0,Traxx FM Tech Minimal (Switzerland)
+http://traxx020.ice.infomaniak.ch/traxx020-low.mp3
+
+#EXTINF:0,SyZ Radio (Chile)
+http://190.114.255.93:8142/

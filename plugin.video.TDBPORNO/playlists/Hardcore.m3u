@@ -1,0 +1,24 @@
+﻿#EXTM3U
+#EXTINF:0,
+
+
+#EXTINF:0,Brasileirinhas 1 SD
+rtmp://edge-05.livestreamcast.org/Brasileirinhas/Brasileirinhas playpath=Brasileirinhas swfUrl=http://livestreamcast.org/StrobeMediaPlayback.swf live=1 pageUrl=http://livestreamcast.org/embeds.php
+
+#EXTINF:0,Brasileirinhas 2 SD
+rtmp://$OPT:rtmp-raw=rtmp://edge-05.livestreamcast.org:1935/Brasileirinhas/Brasileirinhas/Brasileirinhas swfUrl=http://livestreamcast.org/StrobeMediaPlayback.swf pageUrl=http://livestreamcast.org/embeds.php?c=Brasileirinhas&vw=468&vh=380
+
+#EXTINF:0,CS Sex SD
+mmsh://tv.webmisto.cz:7000
+
+#EXTINF:0,Dorcel TV SD
+http://dt3zwsgl95oj4.cloudfront.net/live2/dorceltv.smil/manifest.m3u8
+
+#EXTINF:0,Filthon 1 720 HD
+rtmp://live190.la3.origin.filmon.com:8086/live/247.high.stream
+
+#EXTINF:0,Filthon 2 720 HD
+rtmp://live190.la3.origin.filmon.com:8086/live/245.high.stream
+
+#EXTINF:0,Filthon 3 720 HD
+rtmp://live190.la3.origin.filmon.com:8086/live/246.high.stream
