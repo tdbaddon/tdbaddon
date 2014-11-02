@@ -1,0 +1,43 @@
+﻿#EXTM3U
+#EXTINF:0,
+
+
+#EXTINF:0,1FM Chillout Lounge (Switzerland)
+http://sc1c-sjc.1.fm:8010/
+
+#EXTINF:0,2000FM Chill Out (US)
+http://107.155.126.58:8090/
+
+#EXTINF:0,Antenne Bayern Chillout (Germany)
+http://mp3channels.webradio.antenne.de/chillout
+
+#EXTINF:0,Chill Trax (US)
+http://server1.chilltrax.com:9000/
+
+#EXTINF:0,Chill One (France)
+http://streaming.radionomy.com/CHILL-ONE
+
+#EXTINF:0,Chromanova
+http://85.25.86.69:8100
+
+#EXTINF:0,Costa Del Mar (Canary Islands)
+http://sc-costadelmar.1.fm:10156/
+
+#EXTINF:0,Groove Salad
+http://uwstream1.somafm.com:80
+
+#EXTINF:0,Lounge FM Chill Out (Ukraine)
+http://cast.loungefm.com.ua/chillout128
+
+#EXTINF:0,Lounge Radio
+http://de1.streamhosting.ch:8050
+
+#EXTINF:0,Radio Bhudda Bar (US)
+http://streaming.radionomy.com/buddha-bar
+
+#EXTINF:0,Radio Sar
+http://radio.sar.by:8000/mp3128
+
+
+
+

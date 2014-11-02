@@ -8,8 +8,20 @@ http://sc2b-sjc.1.fm:8100/
 #EXTINF:0,1000 Disco Hits (Germany)
 http://stream2.laut.fm/1000discohits
 
+#EXTINF:0,Italopower! (France)
+http://streaming.radionomy.com/ITALOPOWER
+
+#EXTINF:0,70s Disco Nights (Mexico)
+http://streaming.radionomy.com/70s-Disco-Nights
+
+#EXTINF:0,70'S Music Machine
+http://208.110.69.125:8012
+
 #EXTINF:0,Disco Studio 54 (US)
 http://50.7.77.179:7000/stream1
+
+#EXTINF:0,Goldies Time (France)
+http://streaming.radionomy.com/goldies-time
 
 #EXTINF:0,GotRadio Disco (US)
 http://cdn.gotradio.com/itunes/disco.pls
@@ -23,7 +35,7 @@ http://stream.radiocorp.nl/r10_Disco_mp3
 #EXTINF:0,RadioTunes Disco Party (US)
 http://pub4.radiotunes.com/radiotunes_discoparty
 
-#EXTINF:0,The Disco Palace
+#EXTINF:0,The Disco Palace (US)
 http://s4.viastreaming.net:9040/
 
 #EXTINF:0,The Groovy Mixx (US)

@@ -2,6 +2,9 @@
 #EXTINF:0,
 
 
+#EXTINF:0,1.FM
+http://205.164.62.13:8097
+
 #EXTINF:0,181.FM Jammin
 http://uplink.duplexfx.com:8042
 
@@ -11,11 +14,17 @@ http://relay4.181.fm:14068/
 #EXTINF:0,181.FM Studio Classics
 http://relay.181.fm:8072/
 
+#EXTINF:0,Amsterdam Funk
+http://server-11.stream-server.nl:8504
+
 #EXTINF:0,ClassicFreaks (Netherlands
 http://classicfreaks.live-streams.nl:8010/live
 
-#EXTINF:0,Dancegroove
-http://www.digital-webstream.de/stream/12160.m3u
+#EXTINF:0,Dancegroove Radio (Netherlands)
+http://server3.digital-webstream.de:12160/
+
+#EXTINF:0,Deep FM
+http://195.66.134.41:80
 
 #EXTINF:0,DejaVu Club Classiques
 http://88.198.3.15:30100

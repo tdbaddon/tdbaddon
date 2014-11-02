@@ -5,8 +5,14 @@
 #EXTINF:0,Antenna Vorariberg (Austria)
 http://webradio.antennevorarlberg.at/lounge
 
+#EXTINF:0,Deep House Lounge
+http://198.15.94.34:8030/stream
+
 #EXTINF:0,Delux Lounge (Germany)
 http://am.audio1.fr.ipercast.net/deluxemusic.tv/lounge_web/mp3
+
+#EXTINF:0,Dogglounge Deep House Radio
+http://67.205.20.227:9128/
 
 #EXTINF:0,Lounge Motion FM (Canada)
 http://ice.motionfm.com/motionthree_free

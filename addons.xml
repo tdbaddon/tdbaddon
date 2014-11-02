@@ -40,7 +40,7 @@
 
 <addon id="plugin.video.TDBRADIO"
        name="TDB RADIO"
-       version="1.03"
+       version="1.04"
        provider-name="TDB">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>

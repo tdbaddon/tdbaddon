@@ -2,11 +2,20 @@
 #EXTINF:0,
 
 
+#EXTINF:0,All Freestyle Classics (US)
+http://streaming.radionomy.com/WBMXCOM-FreestyleClassics
+
 #EXTINF:0,Freestyle4Ever (US)
 http://70.38.12.44:8054/
 
+#EXTINF:0,Freestyle FM
+http://streaming.radionomy.com/FreestyleFM
+
 #EXTINF:0,Freestyle Express- AddictedToRadio.com (US)
 http://wms-13.streamsrus.com:14710/
+
+#EXTINF:0,Miami's Rhythm 98 (US)
+http://64.34.179.181:8027/stream
 
 #EXTINF:0,The Freestyle Radio (US)
 http://s7.streammonster.com:8219/
