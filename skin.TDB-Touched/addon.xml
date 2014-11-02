@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <addon
-  id="skin.TDB-Touched"
+  id="skin.TDBTouched"
   version="1.02"
-  name="TDB-Touched"
+  name="TDB Touched"
   provider-name="TDB">
   <requires>
     <import addon="xbmc.gui" version="5.0.0"/>
