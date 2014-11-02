@@ -25,6 +25,9 @@ http://us2.ah.fm/
 #EXTINF:0,BN-Radio (Germany)
 http://188.138.100.101:8000/
 
+#EXTINF:0,Dancetime FM
+http://87.230.53.17:9000
+
 #EXTINF:0,Electro Radio (Switzerland)
 http://www.electroradio.ch/stream.m3u
 

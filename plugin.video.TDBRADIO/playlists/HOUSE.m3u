@@ -2,11 +2,20 @@
 #EXTINF:0,
 
 
+#EXTINF:0,Afterhours Djs
+http://72.13.86.3:8000
+
 #EXTINF:0,BlackMartini Radio (US)
 http://s2.viastreaming.net:6285/
 
 #EXTINF:0,Chic Radio (France)
 http://dancefloor.chicradio.fr/
+
+#EXTINF:0,DI Disco House
+http://pub5.di.fm/di_discohouse_aacplus
+
+#EXTINF:0,DI House Modern
+http://pub5.di.fm/di_house_aacplus
 
 #EXTINF:0,Global House Movement (US)
 http://206.190.131.100:9928/
