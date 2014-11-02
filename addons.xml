@@ -108,7 +108,7 @@
 
 <addon
   id="skin.TDBFlow"
-  version="1.00"
+  version="1.01"
   name="TDB Flow"
   provider-name="TDB">
   <requires>
@@ -244,7 +244,7 @@
 
 <addon
   id="skin.TDBTouched"
-  version="1.00"
+  version="1.01"
   name="TDB Touched"
   provider-name="TDB">
   <requires>
