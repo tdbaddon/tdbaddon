@@ -2,86 +2,86 @@
 #EXTINF:0,
 
 
-#EXTINF:0,88.1 INDIE 88
+#EXTINF:0,88.1 INDIE 88 HQ
 http://indie.streamon.fm/hls/stream/indie-48k.aac.m3u8?
 
-#EXTINF:0,88.5 THE JEWEL
+#EXTINF:0,88.5 THE JEWEL LQ
 http://ice2.securenetsystems.net/CKDX
 
-#EXTINF:0,91.1 JAZZ FM
+#EXTINF:0,91.1 JAZZ FM LQ
 http://streamerepsilon.jazz.fm:8000
 
-#EXTINF:0,92.5 KISS
+#EXTINF:0,92.5 KISS LQ
 http://tor925.akacast.akamaistream.net/7/288/80873/v1/rogers.akacast.akamaistream.net/tor925
 
-#EXTINF:0,93.5 THE FLOW
+#EXTINF:0,93.5 THE FLOW HQ
 http://3313.live.streamtheworld.com/CFXJFMAAC?
 
-#EXTINF:0,94.1 CBC RADIO
+#EXTINF:0,94.1 CBC RADIO HQ
 http://8653.live.streamtheworld.com/CBC_R2_IET_H_SC
 
-#EXTINF:0,95.3 FRESH FM
+#EXTINF:0,95.3 FRESH FM LQ
 http://live.leanstream.co/CINGFM-MP3
 
-#EXTINF:0,96.6 JACK FM
+#EXTINF:0,96.6 JACK FM LQ
 http://cal969.akacast.akamaistream.net/7/338/80899/v1/rogers.akacast.akamaistream.net/cal969
 
-#EXTINF:0,98.1 CHFI
+#EXTINF:0,98.1 CHFI LQ
 http://tor981.akacast.akamaistream.net/7/550/80872/v1/rogers.akacast.akamaistream.net/tor981
 
-#EXTINF:0,98.7 G98
+#EXTINF:0,98.7 G98 HQ
 http://50.22.253.45:8000/ckfg-fm
 
-#EXTINF:0,97.3 BOOM 97
+#EXTINF:0,97.3 BOOM 97 HQ
 http://2893.live.streamtheworld.com/CHBMFMAAC_SC
 
-#EXTINF:0,97.7 HTZ FM
+#EXTINF:0,97.7 HTZ FM LQ
 http://chtz-mp3.akacast.akamaistream.net/7/428/102120/v1/astral.akacast.akamaistream.net/chtz-mp3
 
-#EXTINF:0,99.9 VIRGIN RADIO
+#EXTINF:0,99.9 VIRGIN RADIO LQ
 http://ckfm-mp3.akacast.akamaistream.net/7/318/102120/v1/astral.akacast.akamaistream.net/ckfm-mp3
 
-#EXTINF:0,102.1 THE EDGE
+#EXTINF:0,102.1 THE EDGE LQ
 http://serv.leanstream-hd.com/CFNYFM-MP3
 
-#EXTINF:0,102.7 WHISTLE RADIO
+#EXTINF:0,102.7 WHISTLE RADIO LQ
 http://sc10.spacialnet.com:23932/
 
-#EXTINF:0,102.9 K-LITE FM
+#EXTINF:0,102.9 K-LITE FM LQ
 http://cklh-mp3.akacast.akamaistream.net/7/286/102120/v1/astral.akacast.akamaistream.net/cklh-mp3
 
-#EXTINF:0,103.5 Z1035 FM
+#EXTINF:0,103.5 Z1035 FM HQ+
 http://ice8.securenetsystems.net/CIDC
 
-#EXTINF:0,103.7 COLLEGE RADIO
+#EXTINF:0,103.7 COLLEGE RADIO LQ
 http://s2.stationplaylist.com:8110/
 
-#EXTINF:0,103.9 PROUD FM
+#EXTINF:0,103.9 PROUD FM HQ+
 http://ice7.securenetsystems.net/CIRR
 
-#EXTINF:0,104.5 CHUM FM
+#EXTINF:0,104.5 CHUM FM LQ
 http://chumfm-p3.akacast.akamaistream.net/7/441/102120/v1/astral.akacast.akamaistream.net/chumfm-mp3
 
-#EXTINF:0,105.7 EZ ROCK
+#EXTINF:0,105.7 EZ ROCK LQ
 http://chre-mp3.akacast.akamaistream.net/7/369/102120/v1/astral.akacast.akamaistream.net/chre-mp3
 
-#EXTINF:0,107.1 Q107 CLASSIC ROCK
+#EXTINF:0,107.1 Q107 CLASSIC ROCK LQ
 http://live.leanstream.co/CILQFM-MP3
 
-#EXTINF:0,107.9 Y108 ROCK
+#EXTINF:0,107.9 Y108 ROCK LQ
 http://live.leanstream.co/CJXYFM-MP3
 
-#EXTINF:0,590 THE FAN
+#EXTINF:0,590 THE FAN LQ
 http://tor590.akacast.akamaistream.net/7/850/80874/v1/rogers.akacast.akamaistream.net/tor590
 
-#EXTINF:0,640 TALK RADIO
+#EXTINF:0,640 TALK RADIO LQ
 http://live.leanstream.co/CFMJAM-MP3
 
-#EXTINF:0,680 NEWS
+#EXTINF:0,680 NEWS LQ
 http://tor680.akacast.akamaistream.net/7/941/86884/v1/rogers.akacast.akamaistream.net/tor680
 
-#EXTINF:0,FUNNY 820
+#EXTINF:0,820 FUNNY LQ
 http://cham-mp3.akacast.akamaistream.net/7/809/102120/v1/astral.akacast.akamaistream.net/cham-mp3
 
-#EXTINF:0,1010 NEWSTALK
+#EXTINF:0,1010 NEWSTALK LQ
 http://icecastsource2.amri.ca/cfrb-mp3

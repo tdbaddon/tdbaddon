@@ -1,53 +1,50 @@
 ﻿#EXTM3U
 #EXTINF:0,
 
-#EXTINF:0,181.FM
+#EXTINF:0,181.FM HQ
 http://mp3uplink.duplexfx.com:8014
 
-#EXTINF:0,4U Classic Rock (France)
+#EXTINF:0,4U Classic Rock (France) HQ
 http://str4uice.streamakaci.com/4uclassicrock.mp3
 
-#EXTINF:0,Arrow Rock
+#EXTINF:0,Arrow Rock HQ+
 http://www.garnierstreamingmedia.com/asx/streamerswitch.asp?stream=205
 
-#EXTINF:0,Big Feat Radio
+#EXTINF:0,Big Feat Radio HQ
 http://184.154.90.186:8235/
 
-#EXTINF:0,Big R Radio Grunge (US)
-http://107.155.111.170:8250/
-
-#EXTINF:0,Big R Radio 80s (US)
+#EXTINF:0,Big R Radio 80s (US) HQ
 http://107.155.111.234:8310/
 
-#EXTINF:0,Classic Rock Stop (US)
+#EXTINF:0,Big R Radio Grunge (US) HQ
+http://107.155.111.170:8250/
+
+#EXTINF:0,Classic Rock Stop (US) HQ
 http://los.abovecast.com/crs128k
 
-#EXTINF:0,Famas Radio (US)
+#EXTINF:0,Famas Radio (US) HQ
 http://162.251.160.2/famasradiohigh
 
-#EXTINF:0,GotRadio Classic Rock (US)
+#EXTINF:0,GotRadio Classic Rock (US) HQ
 http://173.244.215.163:8400/
 
-#EXTINF:0,HDR Big 80s (US)
+#EXTINF:0,HDR Big 80s (US) HQ
 http://djc.kicks-ass.net/big80smetalhigh
 
-#EXTINF:0,Nova Classic Rock (Netherlands)
+#EXTINF:0,Nova Classic Rock (Netherlands) HQ
 http://208.43.9.96:8288/
 
-#EXTINF:0,Paradise Classic Rock
+#EXTINF:0,Paradise Classic Rock HQ
 http://stream-uk1.radioparadise.com:80/mp3-128
 
-#EXTINF:0,Radio Tunes 80s Rock Hits (US)
+#EXTINF:0,Radio Tunes 80s Rock Hits (US) HQ
 http://pub6.radiotunes.com/radiotunes_80srock
 
-#EXTINF:0,Rock Arsenal (Russia)
-http://online.rockarsenal.ru:8000/rockarsenal
-
-#EXTINF:0,Rockin 80's
+#EXTINF:0,Rockin 80's HQ
 http://173.244.215.163:8420
 
-#EXTINF:0,Stellar Attraction (UK)
+#EXTINF:0,Stellar Attraction (UK) HQ
 http://77.68.36.137:8000/stream
 
-#EXTINF:0,Zenith Classic Rock (Ireland)
+#EXTINF:0,Zenith Classic Rock (Ireland) HQ
 http://184.105.134.25:8006/

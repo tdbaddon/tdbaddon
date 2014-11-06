@@ -2,30 +2,27 @@
 #EXTINF:0,
 
 
-#EXTINF:0,Allectro Radio (Belgium)
+#EXTINF:0,Allectro Radio (Belgium) HQ
 http://streaming.radionomy.com/Allectro-Radio
 
-#EXTINF:0,DNB FM (Russia)
-http://go.dnbfm.ru:8000/play
-
-#EXTINF:0,Dubase FM (Austria)
+#EXTINF:0,Dubase FM (Austria) HQ
 http://stream.dubbase.fm:7004/
 
-#EXTINF:0,Dubstep FM (US)
+#EXTINF:0,Dubstep FM (US) HD
 http://stream.dubstep.fm/;stream/DUBSTEP.FM
 
-#EXTINF:0,Dubstep Light Radio (Russia)
+#EXTINF:0,Dubstep Light Radio (Russia) HQ
 http://dubstep-light.info:8000/dubsteplight.mp3
 
-#EXTINF:0,Energy Dubstep (Germany)
+#EXTINF:0,Energy Dubstep (Germany) HQ
 http://95.81.155.24/8760/nrj_169531.mp3
 
-#EXTINF:0,Noise FM (Russia)
+#EXTINF:0,Noise FM (Russia) HD
 http://noisefm.ru:8000/play_256
 
-#EXTINF:0,Radio Record (Russia)
+#EXTINF:0,Radio Record (Russia) HQ
 http://air.radiorecord.ru:8102/dub_128
 
-#EXTINF:0,Spynet Station (Russia)
+#EXTINF:0,Spynet Station (Russia) HD+
 http://s3.spynetstation.com/
 

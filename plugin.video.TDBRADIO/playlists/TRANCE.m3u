@@ -2,44 +2,41 @@
 #EXTINF:0,
 
 
-#EXTINF:0,1.FM Amsterdam Trance Radio
+#EXTINF:0,1.FM Amsterdam Trance Radio HQ
 http://205.164.62.21:7700/
 
-#EXTINF:0,Discover Trance (UK)
+#EXTINF:0,Discover Trance (UK) HQ
 http://chicago.discovertrance.com:9214/
 
-#EXTINF:0,Discover Trance Radio
+#EXTINF:0,Discover Trance Radio HQ
 http://195.12.29.146/
 
-#EXTINF:0,Goa Trance Alternate (Germany)
+#EXTINF:0,Goa Trance Alternate (Germany) HQ
 http://komplex2.psyradio.org:8040/
 
-#EXTINF:0,HardBase FM (Germany)
+#EXTINF:0,HardBase FM (Germany) HQ+
 http://mp3.stream.tb-group.fm/hb.mp3?
 
-#EXTINF:0,AH FM Leading Trance Radio
+#EXTINF:0,AH FM Leading Trance Radio HQ+
 http://37.59.60.156:443/
 
-#EXTINF:0,RauteMusik FM
+#EXTINF:0,RauteMusik FM HQ+
 http://95.141.24.118/
 
-#EXTINF:0,SomaFM The Trip (US)
+#EXTINF:0,SomaFM The Trip (US) HQ
 http://xstream1.somafm.com:2504/
 
-#EXTINF:0,Trance-Energy Radio (US)
-http://listen.trance-energy.org:8989/trance96
-
-#EXTINF:0,Trance FM (Netherlands)
-http://ch01a.320.trance.fm/
-
-#EXTINF:0,Techno 4 Ever (Germany)
+#EXTINF:0,Techno 4 Ever (Germany) HQ+
 http://out03.t4e.dj/main_high.mp3
 
-#EXTINF:0,TechnoBase FM (Germany)
+#EXTINF:0,TechnoBase FM (Germany) HQ+
 http://mp3.stream.tb-group.fm/tb.mp3?
 
-#EXTINF:0,TranceRadio (Switzerland)
+#EXTINF:0,Trance FM (Netherlands) HD+
+http://ch01a.320.trance.fm/
+
+#EXTINF:0,TranceRadio (Switzerland) HQ
 http://tranceradioch.ice.infomaniak.ch/128.mp3
 
-#EXTINF:0,Vocal Trance
+#EXTINF:0,Vocal Trance HQ
 http://174.123.174.52:8100/
