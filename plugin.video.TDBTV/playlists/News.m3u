@@ -7,8 +7,8 @@ http://abclive.abcnews.com/i/abc_live4@136330/index_1200_av-b.m3u8
 #EXTINF:0,AlJazeera SD
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/aljazeera_en/ls_satlink/b_528.m3u8%20#
 
-#EXTINF:0,BBC News 720 HD
-http://nimlive1.giniko.com/bbcnews/bbcnews.stream/playlist.m3u8
+#EXTINF:0,BBC News SD
+http://81.23.58.184:8080/udp/0.0.0.0:20003 
 
 #EXTINF:0,BBC World News SD
 http://93.184.221.133/hls-live/20C1A9/bbc_world/ls_satlink/b_828.m3u8
@@ -25,7 +25,7 @@ http://hd4.lsops.net/live/bloomber_en_hls.smil/chunklist_w976476961_b453000.m3u8
 #EXTINF:0,C TV
 http://cnmg.live.cdn.bitgravity.com/cnmg/live/ctv
 
-#EXTINF:0,CCTV News SD
+#EXTINF:0,CCTV News
 http://77.36.61.45:8010/CCTVNews.m3u8
 
 #EXTINF:0,CNN 1 SD
@@ -43,11 +43,11 @@ http://hls.novotelecom.ru/streaming/cnn/tvrec/playlist.m3u8
 #EXTINF:0,DW 1 720 HD
 http://www.metafilegenerator.de/DWelle/tv-asia/ios/master.m3u8
 
-#EXTINF:0,DW 2 720 HD
+#EXTINF:0,DW 2 720 HD 
 rtsp://46.249.213.87/broadcast/deutschewelle-tablet.3gp
 
-#EXTINF:0,Euro News SD
-http://livestation_hls-lh.akamaihd.net/i/euronews_en@107240/master.m3u8
+#EXTINF:0,Euro News SD THISCHANNELISDOWN----------
+
 
 #EXTINF:0,HLN 1 SD
 rtmp://c.cdn.newschat.tv/edge playpath=hln_live live=1 timeout=10 swfUrl=http://msnbclive.eu/player.swf pageUrl=http://www.livenewschat.eu/twoons/</link>
@@ -55,8 +55,8 @@ rtmp://c.cdn.newschat.tv/edge playpath=hln_live live=1 timeout=10 swfUrl=http://
 #EXTINF:0,i24 News SD
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/i24/ls_satlink/b_828.m3u8
 
-#EXTINF:0,KTLA 5 US 720 HD
-rtmpe://46.246.124.88/live playpath=ktlausa_usa swfUrl=http://ukcast.co/player//player.swf live=1 pageUrl=http://www.ukcast.co/ token=%ZZri(nKa@#Z
+#EXTINF:0,KTLA 5 US 720 HD THISCHANNELISDOWN----------
+
 
 #EXTINF:0,MSNBC SD
 rtmp://c.cdn.livenewschat.eu/edge playpath=msnbc_live swfUrl=http://msnbclive.eu/player.swf swfVfy=1 live=1 pageUrl=http://weplaylive.tv timeout=15
@@ -70,8 +70,8 @@ rtmp://204.107.26.252:8086/live/905.high.stream
 #EXTINF:0,Press News SD
 rtmp://mtv.fms-01.visionip.tv/live/mtv-ptv-live-25f-16x9-SDh
 
-#EXTINF:0,Reuters Live SD
-http://37.58.85.156/rlo001/ngrp:rlo001.stream_all/playlist.m3u8
+#EXTINF:0,Reuters Live SD THISCHANNELISDOWN----------
+
 
 #EXTINF:0,RT News 720 HD
 http://odna.octoshape.net/f3f5m2v4/cds/ch4_720p/playlist.m3u8
