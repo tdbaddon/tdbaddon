@@ -5,7 +5,7 @@
 #EXTINF:0,Aporn 499 720 HD
 rtmp://lm07.everyon.tv/ptv7/phd499
 
-#EXTINF:0,Bella Club SD
+#EXTINF:0,Bella Club SD 
 rtsp://46.249.213.87/broadcast/bellaluz-tablet.3gp
 
 #EXTINF:0,Bella Club UK SD
@@ -17,10 +17,6 @@ http://46.249.213.93/iPhone/broadcast/bikinihotties-tablet.3gp/bikinihotties-tab
 #EXTINF:0,But Go SD
 rtmp://lm07.everyon.tv/ptv7/phd772
 
-#EXTINF:-1,Hallo TV SD
-http://83.169.58.38:1935/live/HalloTV1/playlist.m3u8
-rtmp://83.169.58.40:1935/live/HalloTV1
-
 #EXTINF:0,Hot 100 SD
 http://46.249.213.93/iPhone/broadcast/hot100-tablet.3gp/hot100-tablet.3gp-mr647k.m3u8?trackingid=4541740000&os=desktop
 
@@ -28,7 +24,11 @@ http://46.249.213.93/iPhone/broadcast/hot100-tablet.3gp/hot100-tablet.3gp-mr647k
 http://46.249.213.93/iPhone/broadcast/hotshotsbeachbabes-tablet.3gp/hotshotsbeachbabes-tablet.3gp-mr647k.m3u8?trackingid=4591590000&os=desktop
 
 #EXTINF:0,Hotshots SD
-http://46.249.213.93/iPhone/broadcast/hotshots-tablet.3gp/hotshots-tablet.3gp-mr646k.m3u8?trackingid=3641590000&os=desktop
+http://46.249.213.93/iPhone/broadcast/hotshots-tablet.3gp/hotshots-tablet.3gp-mr646k.m3u8?
+trackingid=3641590000&os=desktop
+
+#EXTINF:0,Honey 720 HD
+rtmp://lm07.everyon.tv:1935/ptv7/phd10928
 
 #EXTINF:0,Korea 18+ 720 HD
 rtmp://lm07.everyon.tv/ptv7/phd1005
@@ -38,9 +38,6 @@ rtmp://lm07.everyon.tv/ptv7/phd63
 
 #EXTINF:0,Korea Girl TV 720 HD
 rtmp://lm07.everyon.tv/ptv7/phd501
-
-#EXTINF:0,Korea Honey 720 HD
-rtmp://lm07.everyon.tv:1935/ptv7/phd10928
 
 #EXTINF:0,Korea Hot Girl 720 HD
 rtmp://lm07.everyon.tv/ptv7/phd59
@@ -54,8 +51,8 @@ rtmp://lm07.everyon.tv/ptv7/phd64
 #EXTINF:0,Korea Paradise 720 HD
 rtmp://lm07.everyon.tv/ptv7/phd1008
 
-#EXTINF:0,Korea Pink 720 HD
-rtmp://lm07.everyon.tv:1935/ptv7/phd62
+#EXTINF:0,Korea Pink 720 HD THISCHANNELISDOWN----------
+
 
 #EXTINF:0,Korea Playy 720 HD
 rtmp://lm07.everyon.tv/ptv7/phd769
@@ -63,17 +60,17 @@ rtmp://lm07.everyon.tv/ptv7/phd769
 #EXTINF:0,Korea Red On 720 HD
 rtmp://lm07.everyon.tv/ptv7/phd60
 
-#EXTINF:0,Korea Viki 720 HD
-rtmp://lm07.everyon.tv/ptv7/phd10765
-
 #EXTINF:0,Korea The O 720 HD
 rtmp://lm07.everyon.tv/ptv7/phd771
+
+#EXTINF:0,Miami TV HD
+rtmp://67.212.178.250:1935/sav_tvmiami/ playpath=myStream140 swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 pageUrl=http://www.miamitvchannel.com/
 
 #EXTINF:-1,Midnight 720 HD
 rtmp://lm07.everyon.tv/ptv7/phd10766
 
-#EXTINF:0,O La La SD
-http://188.138.9.234:8118/
+#EXTINF:0,O La La SD THISCHANNELISDOWN----------
+
 
 #EXTINF:0,Okdai 720 HD
 rtmp://lm07.everyon.tv/ptv7/phd61
@@ -84,20 +81,23 @@ rtmp://lm07.everyon.tv/ptv7/phd10927
 #EXTINF:0,Playboy Korea 720 HD
 rtmp://lm07.everyon.tv/ptv7/phd10497
 
-#EXTINF:0,Playboy US 1 720 HD
+#EXTINF:0,Playboy US 720 HD
 rtmp://lm07.everyon.tv/ptv7/phd499
 
-#EXTINF:0,Playboy US 2 720 HD
-http://109.95.47.225:5050/udp/239.0.0.200:4000 
+#EXTINF:0,Playboy Tv SD THISCHANNELISDOWN----------
 
-#EXTINF:0,Playboy Tv SD
-rtmp://$OPT:rtmp-raw=rtmp://195.154.176.66:8082/pboytv/pboytv/ playpath=pboytv swfUrl=http://livestreamcast.org/jwplayer/jwplayer.flash.swf live=3 pageUrl=http://livestreamcast.org/embeds.php?c=pboytv&vw=650&vh=470
 
 #EXTINF:0,Sex Ed 720 HD
 rtmp://lm07.everyon.tv/ptv7/phd511
 
-#EXTINF:0,XXL SD
-http://dt3zwsgl95oj4.cloudfront.net/live2/xxl.smil/manifest.m3u8 
+#EXTINF:0,Viki 720 HD
+rtmp://lm07.everyon.tv/ptv7/phd10765
+
+#EXTINF:0,Visit-X TV SD
+rtmp://194.116.150.47/live/visitx.stream1
+
+#EXTINF:0,XXL SD THISCHANNELISDOWN----------
+
 
 #EXTINF:0,You Diva SD
 http://46.249.213.93/iPhone/broadcast/youdivalite-tablet.3gp/youdivalite-tablet.3gp-mr647k.m3u8?trackingid=3341430000&os=desktop
