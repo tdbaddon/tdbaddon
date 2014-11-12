@@ -2,28 +2,27 @@
 #EXTINF:0,
 
 
-
 #EXTINF:0,Acores SD
 http://www.rtp.pt/play/stream/video/rtp_acores?key=iphoneapp
 
 #EXTINF:0,Basta Crer SD
 rtmp://streamspub.manasat.com/live/bastacrer
 
-#EXTINF:0,Economico TV 2 SD
+#EXTINF:0,Economico TV HD
 http://213.13.26.12:1935/live/_definst_/etv_direto/hasbahca.m3u8
 
-#EXTINF:0,RTP 1 SD
+#EXTINF:-1,Euronews HD
+rtmp://hd4.lsops.net/live/ playpath=bloomber_en_453
+
+#EXTINF:0,RTP 1 HD
 http://www.rtp.pt/play/stream/video/rtp1?key=iphoneapp
 
 
-#EXTINF:0,RTP 2 SD
+#EXTINF:0,RTP 2 HD
 http://www.rtp.pt/play/stream/video/rtp2?key=iphoneapp
 
 
-#EXTINF:0,RTP Informacao SD
-http://www.rtp.pt/play/stream/video/rtp_informacao?key=iphoneapp
-
-#EXTINF:0,RTP Internacional SD
+#EXTINF:0,RTP Internacional HD
 http://www.rtp.pt/play/stream/video/rtp_internacional?key=iphoneapp
 
 #EXTINF:0,RTP Madeira SD
@@ -32,13 +31,3 @@ http://www.rtp.pt/play/stream/video/rtp_madeira?key=iphoneapp
 
 #EXTINF:0,TV Ciencia SD
 mms://video-wm.tvciencia.pt/video/tvcnews_256.wmv
-
-
-
-
-
-
-
-
-
-

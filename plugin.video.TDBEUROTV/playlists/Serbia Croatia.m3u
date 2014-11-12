@@ -1,14 +1,9 @@
 ﻿#EXTM3U
 #EXTINF:0,
 
+
 #EXTINF:0,24 Sata SD
 http://83.139.104.123/Content/HLS/Live/Channel(24_sata)/Stream(03)/index.m3u8
-
-#EXTINF:0,A1 Report SD
-rtmp://$OPT:rtmp-raw=rtmp://66.55.93.204/livepkgr playpath=a1stream?adbe-live-event=a1report swfUrl=http://on.net.mk/player/player5.swf live=1 pageUrl=http://01.gen.tr/index.php?dir=HasBahCa_IPTV/live/a1report.php
-
-#EXTINF:0,Al Jazeera Balkan
-rtmp://$OPT:rtmp-raw=rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
 
 #EXTINF:0,Alfa Omega SD
 rtmp://s5.alfaomega.tv/alfaomega/alfaomega2.sdp
@@ -16,267 +11,173 @@ rtmp://s5.alfaomega.tv/alfaomega/alfaomega2.sdp
 #EXTINF:0,Alfa TV Makedon
 rtsp://streamer1.streamhost.org:1935/salive/GMIalfah
 
-#EXTINF:0,ATV SD
-http://95.211.191.29:9006/atv
-
-#EXTINF:0,B92 SD
-http://95.211.191.20:9006/b92
-
 #EXTINF:0,Ballkan TV SD
 rtmp://yayin.tvdunyasi.tv/live/balkanrtv
 
 #EXTINF:0,CMC SD
 http://83.139.104.123/Content/HLS/Live/Channel(cmc)/Stream(03)/index.m3u8
 
-#EXTINF:0,DMC SD
+#EXTINF:0,DMC HD
 http://83.139.104.123/Content/HLS/Live/Channel(DMC)/Stream(03)/index.m3u8
 
-#EXTINF:0,FTV SD
-http://95.211.191.29:9006/ftv
-
-#EXTINF:0,Full TV SD
+#EXTINF:0,Full TV HD
 http://83.139.104.123/Content/HLS/Live/Channel(fullTV)/Stream(03)/index.m3u8
 
-#EXTINF:0,Hema TV SD
+#EXTINF:0,Hema SD
 mms://77.238.209.50:1234
 
-#EXTINF:-1,HRT 1 SD
+#EXTINF:0,HRT 1 HD
 http://83.139.104.123/Content/HLS/Live/Channel(HTV1)/Stream(03)/index.m3u8
 
-#EXTINF:-1,HRT1 720 HD
-http://95.211.191.20:9006/hrt1
-
-#EXTINF:-1,HRT 2 SD
+#EXTINF:0,HRT 2 HD
 http://83.139.104.123/Content/HLS/Live/Channel(HTV2)/Stream(03)/index.m3u8
 
-#EXTINF:-1,HRT2 720 HD
-http://95.211.191.20:9006/hrt2
-
-#EXTINF:-1,HRT 3 SD
+#EXTINF:0,HRT 3 HD
 http://83.139.104.123/Content/HLS/Live/Channel(HTV3)/Stream(03)/index.m3u8
 
-#EXTINF:-1,HRT 4 SD
+#EXTINF:0,HRT 4 HD
 http://83.139.104.123/Content/HLS/Live/Channel(HTV4)/Stream(03)/index.m3u8
 
-#EXTINF:-1,Jadran TV SD
+#EXTINF:0,Jadran TV HD
 http://83.139.104.123/Content/HLS/Live/Channel(tv_jadran)/Stream(03)/index.m3u8
 
-#EXTINF:-1,Joj SD
+#EXTINF:0,Joj SD
 http://88.212.10.27:81/streams/joj.m3u8
 
-#EXTINF:-1,Joj Plus SD
+#EXTINF:0,Joj Plus SD
 http://88.212.10.27:81/streams/jojplus.m3u8
 
-#EXTINF:-1,Jugoton SD
+#EXTINF:0,Jugoton HD
 http://83.139.104.123/Content/HLS/Live/Channel(jugoton)/Stream(03)/index.m3u8
 
-#EXTINF:-1,Kanal 5 SD
+#EXTINF:0,Kanal 5 SD
 http://83.139.104.123/Content/HLS/Live/Channel(kanal_5)/Stream(03)/index.m3u8
 
-#EXTINF:-1,Kanal RI SD
+#EXTINF:0,Kanal RI SD
 http://83.139.104.123/Content/HLS/Live/Channel(KanalRI)/Stream(03)/index.m3u8
 
-#EXTINF:-1,Kino TV SD
+#EXTINF:0,Kino TV HD
 http://83.139.104.123/Content/HLS/Live/Channel(kino_tv)/Stream(03)/index.m3u8
 
-#EXTINF:-1,Klasik TV SD
+#EXTINF:0,Klasik TV SD
 http://83.139.104.123/Content/HLS/Live/Channel(klasik_tv)/Stream(03)/index.m3u8
 
-#EXTINF:-1,Mreza SD
+#EXTINF:0,Mreza SD
 http://83.139.104.123/Content/HLS/Live/Channel(mrezaST)/Stream(03)/index.m3u8
 
-#EXTINF:-1,Nardona TV SD
+#EXTINF:0,Nardona TV HD
 http://83.139.104.123/Content/HLS/Live/Channel(narodna_tv)/Stream(03)/index.m3u8
 
-#EXTINF:-1,ND TV SD
-http://bglive-a.bitgravity.com/ndtv/247hi/live/native
-
-#EXTINF:-1,Net TV Info SD
-http://5.153.25.7:8082/stream/?channel=nettvinfo&stream=1mb
-
-#EXTINF:-1,Nova SD
-http://95.211.191.21:9006/nova
-
-#EXTINF:-1,Nova TV Pula SD
+#EXTINF:0,Nova TV Pula SD
 http://83.139.104.123/Content/HLS/Live/Channel(tv_nova)/Stream(03)/index.m3u8
 
-#EXTINF:-1,OBN SD
-http://95.211.191.21:9006/obn
-
-#EXTINF:-1,OK Bambino SD
+#EXTINF:0,OK Bambino SD
 http://83.139.104.123/Content/HLS/Live/Channel(ok_bambino)/Stream(03)/index.m3u8
 
-#EXTINF:-1,Ora News SD
-rtmp://209.212.145.164/live/livestream1
-
-#EXTINF:-1,Orlando Kids SD
+#EXTINF:0,Orlando Kids HD
 http://83.139.104.123/Content/HLS/Live/Channel(orlando_kids)/Stream(03)/index.m3u8
 
-#EXTINF:-1,Osjecka SD
+#EXTINF:0,Osjecka SD
 http://83.139.104.123/Content/HLS/Live/Channel(osjecka_tv)/Stream(03)/index.m3u8
 
-#EXTINF:-1,Pink 720 HD
+#EXTINF:0,Pink HD
 http://on108.setplex.net/fastv_2psh/Pinkglobal_rly_greece_109/hasbahca.m3u8
 
-#EXTINF:-1,Pink 2 1 720 HD
+#EXTINF:0,Pink 2 HD
 http://on108.setplex.net/fastv_2psh/Pink2global_rly_greece_109/hasbahca.m3u8
 
-#EXTINF:-1,Pink 2 2 720 HD
-http://95.211.191.21:9006/pink2
-
-#EXTINF:-1,Pink 3 720 HD
-http://on108.setplex.net/fastv_2psh/Pink3global_rly_greece_109/hasbahca.m3u8
-
-#EXTINF:-1,Pink Action 720 HD
+#EXTINF:0,Pink Action HD
 http://on108.setplex.net/fastv_2psh/PinkActionglobal_rly_greece_109/hasbahca.m3u8
 
-#EXTINF:-1,Pink Action 2 720 HD
+#EXTINF:0,Pink Action 2 HD
 http://on108.setplex.net/fastv_2psh/PinkAction2global_rly_greece_103/hasbahca.m3u8
 
-#EXTINF:-1,Pink BH 720 HD
-http://95.211.191.21:9006/pinkbih
-
-#EXTINF:-1,Pink Extra 720 HD
-http://95.211.191.20:9006/pinkextra
-
-#EXTINF:-1,Pink Folk 1 SD
+#EXTINF:0,Pink Folk SD
 http://on108.setplex.net/fastv_2psh/PinkFolk1global_rly_greece_103/hasbahca.m3u8
 
-#EXTINF:-1,Pink Horror 720 HD
+#EXTINF:0,Pink Horror HD
 http://on108.setplex.net/fastv_2psh/PinkHorrorglobal_rly_greece_103/hasbahca.m3u8
 
-#EXTINF:-1,Pink Kids 720 HD
+#EXTINF:0,Pink Kids HD
 http://on108.setplex.net/fastv_2psh/PinkKidsglobal_rly_greece_103/hasbahca.m3u8
 
-#EXTINF:-1,Pink Live 720 HD
+#EXTINF:0,Pink Live HD
 http://on108.setplex.net/fastv_2psh/PinkLiveglobal_rly_greece_103/hasbahca.m3u8
 
-#EXTINF:-1,Pink M 720 HD
+#EXTINF:0,Pink M HD
 http://on108.setplex.net/fastv_2psh/PinkMglobal_rly_greece_109/hasbahca.m3u8
 
-#EXTINF:-1,Pink Movies 3 SD
+#EXTINF:0,Pink Movies 3 SD
 http://on108.setplex.net/fastv_2psh/PinkMovies3global_rly_greece_109/hasbahca.m3u8
 
-#EXTINF:-1,Pink Music 1 720 HD
+#EXTINF:0,Pink Music 1 HD
 http://on108.setplex.net/fastv_2psh/PinkMusicglobal_rly_greece_103/hasbahca.m3u8
 
-#EXTINF:-1,Pink Music 2 SD
+#EXTINF:0,Pink Music 2 SD
 http://on108.setplex.net/fastv_2psh/PinkMusic2global_rly_greece_103/hasbahca.m3u8
 
-#EXTINF:-1,Pink Music 4 720 HD
+#EXTINF:0,Pink Music 4 HD
 http://on108.setplex.net/fastv_2psh/PinkMusic4global_rly_greece_103/hasbahca.m3u8
 
-#EXTINF:-1,Pink Music 5 720 HD
+#EXTINF:0,Pink Music 5 HD
 http://on108.setplex.net/fastv_2psh/PinkMusic5global_rly_greece_103/hasbahca.m3u8
 
-#EXTINF:-1,Pink Pedia SD
+#EXTINF:0,Pink Pedia SD
 http://on108.setplex.net/fastv_2psh/PinkPediaglobal_rly_greece_103/hasbahca.m3u8
 
-#EXTINF:-1,Pink Plus 720 HD
-http://95.211.191.20:9006/pinkplus
-
-#EXTINF:-1,Pink Premium SD
+#EXTINF:0,Pink Premium SD
 http://on108.setplex.net/fastv_2psh/PinkPremiumglobal_rly_greece_103/hasbahca.m3u8
 
-#EXTINF:-1,Pink Reality SD
+#EXTINF:0,Pink Reality SD
 http://on108.setplex.net/fastv_2psh/PinkRealityglobal_rly_greece_103/hasbahca.m3u8
 
-#EXTINF:-1,Pink Soap SD
+#EXTINF:0,Pink Soap HD
 http://on108.setplex.net/fastv_2psh/PinkSoapglobal_rly_greece_103/hasbahca.m3u8
 
-#EXTINF:-1,Pink World 720 HD
+#EXTINF:0,Pink World HD
 http://on108.setplex.net/fastv_2psh/PinkWorldglobal_rly_greece_109/hasbahca.m3u8
 
-#EXTINF:-1,Pink Zabava SD
+#EXTINF:0,Pink Zabava HD
 http://on108.setplex.net/fastv_2psh/PinkZabavaglobal_rly_greece_103/hasbahca.m3u8
 
-#EXTINF:-1,Planet TV SD
-rtsp://origin.biokoda.tv/live/mbit-planet?k=planettv-public
-
-#EXTINF:-1,Prva 720 HD
-http://95.211.191.21:9006/prva
-
-#EXTINF:-1,PTC SD
-rtsp://195.252.113.40/rts
-
-#EXTINF:-1,Rokum TV 720 HD
+#EXTINF:0,Rokum TV SD
 rtmp://82.114.65.202/live/rrokumtv
 
-#EXTINF:-1,RTB TV SD
+#EXTINF:0,RTB TV SD
 http://83.139.104.123/Content/HLS/Live/Channel(rtb_tv)/Stream(03)/index.m3u8
 
-#EXTINF:-1,RTK 1 SD
-rtmp://$OPT:rtmp-raw=rtmp://209.212.145.164/live playpath=livestream1 swfUrl=http://shqip1.altervista.org/tvlive/player.swf live=1 pageUrl=http://shqip1.altervista.org/tvlive/ora.html
-
-#EXTINF:-1,RTL 720 HD
-http://95.211.191.21:9006/rtl
-
-#EXTINF:-1,RTL Kockica SD
+#EXTINF:0,RTL Kockica SD
 http://83.139.104.123/Content/HLS/Live/Channel(rtl_kockica)/Stream(03)/index.m3u8
 
-#EXTINF:-1,RTL Plus SD
+#EXTINF:0,RTL Plus HD
 http://83.139.104.123/Content/HLS/Live/Channel(rtlplus)/Stream(03)/index.m3u8
 
-#EXTINF:-1,RTS Sat SD
-mmsh://rts.videostreaming.rs/rts
-
-#EXTINF:-1,RTRS 720 HD
-http://95.211.191.29:9006/rtrs
-
-#EXTINF:-1,RTS1 720 HD
-http://95.211.191.20:9006/rts1
-
-#EXTINF:-1,RTS2 720 HD
-http://95.211.191.29:9006/rts2
-
-#EXTINF:-1,SBTV SD
+#EXTINF:0,SBTV HD
 http://83.139.104.123/Content/HLS/Live/Channel(sbtv)/Stream(03)/index.m3u8
 
-#EXTINF:-1,Sprotska TV SD
+#EXTINF:0,Sprotska TV HD
 http://83.139.104.123/Content/HLS/Live/Channel(sportska_tv)/Stream(03)/index.m3u8
 
-#EXTINF:-1,SRCE TV SD
+#EXTINF:0,SRCE TV HD
 http://83.139.104.123/Content/HLS/Live/Channel(srce_tv)/Stream(03)/index.m3u8
 
-#EXTINF:-1,STV Folk 720 HD
-rtmp://$OPT:rtmp-raw=rtmp://str103.setplex.net:1935/228 playpath=stv_folk swfUrl=http://shqip1.altervista.org/tvlive/player.swf live=1 pageUrl=http://shqip1.altervista.org/tvlive/superfolk.html
-
-#EXTINF:-1,STV1 SD
+#EXTINF:0,STV1 SD
 http://88.212.10.27:81/streams/stv1.m3u8
 
-#EXTINF:-1,STV2 SD
+#EXTINF:0,STV2 SD
 http://88.212.10.27:81/streams/stv2.m3u8
 
-#EXTINF:-1,Supersonic TV SD
+#EXTINF:0,Supersonic TV HD
 rtmp://str103.setplex.net:1935/228/stv_online
 
-#EXTINF:-1,TA3 SD
+#EXTINF:0,TA3 SD
 http://88.212.10.27:81/streams/ta3.m3u8
 
-#EXTINF:-1,TV Istra SD
+#EXTINF:0,TV Istra SD
 http://83.139.104.123/Content/HLS/Live/Channel(tv_istra)/Stream(03)/index.m3u8
 
-#EXTINF:-1,TV Jug SD
-rtmp://$OPT:rtmp-raw=rtmp://84.20.77.50/live playpath=livestream1 swfUrl=http://shqip1.altervista.org/tvlive/player.swf live=1 pageUrl=http://shqip1.altervista.org/tvlive/jug.html
-
-#EXTINF:-1,TV1 720 HD
-http://95.211.191.29:9006/tv1
-
-#EXTINF:-1,Varazdiska TV SD
+#EXTINF:0,Varazdiska TV SD
 http://83.139.104.123/Content/HLS/Live/Channel(VTV_varazdin)/Stream(03)/index.m3u8
 
-#EXTINF:-1,Zdrava TV SD
+#EXTINF:0,Zdrava TV HD
 http://83.139.104.123/Content/HLS/Live/Channel(ZDRAVA_TV-7)/Stream(03)/index.m3u8
-
-
-
-
-
-
-
-
-
-
-
-
-

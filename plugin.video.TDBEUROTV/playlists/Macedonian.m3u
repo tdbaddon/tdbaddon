@@ -2,17 +2,14 @@
 #EXTINF:0,
 
 
-#EXTINF:0,Alast 2 SD
-rtsp://fms.zulu.mk/zulu/alsat_1
-
-#EXTINF:0,Alfa 1 SD
+#EXTINF:0,Alfa SD
 rtsp://fms.zulu.mk/zulu/alfa_1
 
-#EXTINF:0,Alfa 2 SD
-http://fms.zulu.mk:1935/zulu/alfa_1/playlist.m3u8
-
-#EXTINF:0,Alsat 1 SD
+#EXTINF:0,Alsat M 1 SD
 http://fms.zulu.mk:554/zulu/alsat_1/playlist_b125000_w1132785237.m3u8
+
+#EXTINF:0,Alsat M 2 SD
+rtsp://fms.zulu.mk/zulu/alsat_1
 
 #EXTINF:0,B92 SD
 http://stream.b92.net:7999/tv-b92.ogg
@@ -20,23 +17,11 @@ http://stream.b92.net:7999/tv-b92.ogg
 #EXTINF:0,Bela TV SD
 mms://62.162.58.55/TVbela
 
-#EXTINF:0,BTR 1 SD
+#EXTINF:0,BTR A SD
 http://fms.zulu.mk:554/zulu/btr_1/playlist_b125000_w1132785237.m3u8
 
-#EXTINF:0,BTR 2 SD
+#EXTINF:0,BTR B SD
 rtsp://fms.zulu.mk/zulu/btr_1
-
-#EXTINF:0,HighOne HD
-http://5.35.240.130:30015/
-
-#EXTINF:0,Hutel SD
-http://fms.zulu.mk:1935/zulu/shutel_1/playlist.m3u8
-
-#EXTINF:0,Iris 1 TV SD
-mms://62.162.58.55/TViris
-
-#EXTINF:0,Iris 2 TV SD
-mms://62.162.58.54:8080
 
 #EXTINF:0,K15 Music SD
 rtmp://27.50.94.92:1935/transrate_sd/k15channel.stream
@@ -44,16 +29,16 @@ rtmp://27.50.94.92:1935/transrate_sd/k15channel.stream
 #EXTINF:0,Kanal 21 SD
 mms://62.162.58.55/TVkanal21
 
-#EXTINF:0,Kanal 5 1 SD
+#EXTINF:0,Kanal 5 A SD
 mms://live.kanal5.com.mk/kanal5
 
-#EXTINF:0,Kanal 5 2 SD
+#EXTINF:0,Kanal 5 B SD
 http://fms.zulu.mk:1935/zulu/kanal5_1/playlist.m3u8
 
-#EXTINF:0,Kanal 5 Plus 1 SD
+#EXTINF:0,Kanal 5 Plus A SD
 http://fms.zulu.mk:1935/zulu/kanal5plus_1/playlist.m3u8
 
-#EXTINF:0,Kanal 5 Plus 2 SD
+#EXTINF:0,Kanal 5 Plus B SD
 http://fms.zulu.mk:554/zulu/kanal5plus_1/playlist_b125000_w1132785237.m3u8
 
 #EXTINF:0,Kanal 8 SD
@@ -62,20 +47,17 @@ mms://62.162.58.55/TVkanal8
 #EXTINF:0,МPT 1 SD
 mms://62.162.58.55/TVMTV1
 
-#EXTINF:0,MPT 2 SD
-http://fms.zulu.mk:554/zulu/mtv1_1/playlist_b125000_w1132785237.m3u8
-
 #EXTINF:0,Nasha TV SD
 http://fms.zulu.mk:1935/zulu/nashatv_1/playlist.m3u8
 
 #EXTINF:0,Pink Kids SD
 http://on108.setplex.net/fastv_2psh/PinkKidsglobal_rly_greece_103/hasbahca.m3u8
 
+#EXTINF:0,Sitel 1 SD
+http://fms.zulu.mk:554/zulu/sitel_1/playlist_b125000_w1132785237.m3u8
+
 #EXTINF:0,Sitel 3 SD
 http://fms.zulu.mk:554/zulu/sitel3_1/playlist_b125000_w1132785237.m3u8
-
-#EXTINF:0,Sitel SD
-http://fms.zulu.mk:554/zulu/sitel_1/playlist_b125000_w1132785237.m3u8
 
 #EXTINF:0,Sonce TV SD
 http://92.53.27.201:10000

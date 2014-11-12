@@ -8,17 +8,23 @@ http://mail.tv4e.gr:1935/live/myStream.sdp/playlist.m3u8
 #EXTINF:0,Achaia Channel SD
 rtmp://78.129.184.15:11056/streaming/stream pageUrl=http://achaianews.listen2myradio.com/ live=1 timeout=10
 
+#EXTINF:-1,Airqio SD
+http://4.31.30.145:9081
+
 #EXTINF:0,Alpha Ga TV SD
 http://player.stream.hostworks.com.au/alpha_dyn.m3u8
 
 #EXTINF:0,Alpha SD
 http://alfakanali-lh.akamaihd.net/i/live_1@90368/master.m3u8
 
-#EXTINF:0,Ant1 Cyprus SD
-http://videos.ant1.com.cy/hls-live/livepkgr/_definst_/liveevent/livestream.m3u8
-
 #EXTINF:0,Ant1 SD
 http://wow.ant1.gr:1935/live/smil:mavani.smil/playlist.m3u8
+
+#EXTINF:-1,Ant1 Cyprus SD
+http://videos.ant1.com.cy/hls-live/livepkgr/_definst_/liveevent/livestream.m3u8
+
+#EXTINF:-1,ANeo
+http://alfakanali-lh.akamaihd.net/i/live_1@90368/master.m3u8
 
 #EXTINF:0,Astra TV SD
 http://www.astratv.gr:8090/hls/livestream/index.m3u8
@@ -29,28 +35,22 @@ http://smooth.istoikona.net/besttv.isml/manifest(format=m3u8-aapl).m3u8
 #EXTINF:0,Boyah SD
 http://streamer-cache.grnet.gr/parliament/parltv.sdp/master.m3u8
 
-#EXTINF:0,Blue Sky SD
-mmsh://78.47.26.149:8081/blueskytv
-
-#EXTINF:0,Creta TV SD
-rtmp://srv1.viiideo.gr/hellasonmedia playpath=tvcreta swfUrl=http://hellasonmedia.viiideo.gr/flowplayer/flowplayer.commercial-3.2.15.swf live=1 pageUrl=http://hellasonmedia.viiideo.gr/tvcreta1.html
-
-#EXTINF:0,Delta TV SD
-mmsh://ams01.egihosting.com/989630
+#EXTINF:-1,Delta TV SD
+mms://ams01.egihosting.com/989630
 
 #EXTINF:0,E TV SD
 rtmp://213.16.167.187:1935/live/mpegts_256.stream live=1 timeout=10
 
-#EXTINF:0,Ena TV 1 SD
+#EXTINF:0,Ena TV A SD
 rtmp://srv1.viiideo.gr/videon playpath=enatv swfUrl=http://enatv.viiideo.gr/flowplayer/flowplayer.commercial-3.2.15.swf live=1 pageUrl=http://enatv.viiideo.gr/?cid=7
 
-#EXTINF:0,Ena TV 2 SD
+#EXTINF:0,Ena TV B SD
 rtmp://fml.68FC.edgecastcdn.net/2068FC/ena-rtmp swfUrl=http://www.ellastv.gr/jw/player.swf swfVfy=1 live=1 timeout=10
 
 #EXTINF:0,Epsilon TV SD
 rtmp://213.16.167.187:1935/live playpath=mpegts_256.stream swfUrl=http://www.epsilontv.gr/wp-content/plugins/fv-wordpress-flowplayer/flowplayer/flowplayer.swf?ver=2.2.7 live=1 pageUrl=http://www.epsilontv.gr/live/
 
-#EXTINF:0,Et3 SD
+#EXTINF:0,ERT 3 SD
 http://live2.ertopen.com/live2/e600/playlist.m3u8
 
 #EXTINF:0, Euronews SD
@@ -68,29 +68,29 @@ mmsh://wpso.com:200/music
 #EXTINF:0,Greek Voice TV
 http://wpso.com:200/tv48
 
-#EXTINF:0,Kontra Channel SD
+#EXTINF:0,Kontra Channel HD
 rtmp://flashcloud.mediacdn.com:1935/live/kontratv
 
-#EXTINF:0,Kontra TV SD
+#EXTINF:0,Kontra TV HD
 rtmp://flashcloud.mediacdn.com/live/kontratv live=1
 
 #EXTINF:0,Kriti TV SD
 http://live.cretetv.gr:1935/cretetv/myStream/playlist.m3u8
 
-#EXTINF:0,Mad TV SD
+#EXTINF:0,Mad TV HD
 rtmp://144.76.2.213:1935/live/livestream
 
-#EXTINF:0,Makedonia TV SD
+#EXTINF:0,Makedonia TV HD
 rtmp://213.16.167.55:1935/livepkgr/livestream swfUrl=http://static.ant1.gr/maktvlive.ashx pageUrl=http://www.maktv.gr/Live swfVfy=1 live=1 timeout=10
 
-#EXTINF:0,Mega 1 SD
-rtmp://37.48.66.244:80/megaweb/megaweb.sdp pageUrl=http://www.kanalia.eu/ live=1 timeout=10
-
-#EXTINF:0,Mega 2 SD
+#EXTINF:0,Mega SD
 http://megahdlive1-f.akamaihd.net/i/live_1@105260/master.m3u8
 
 #EXTINF:0,Mega Cyprus SD
 http://mlivenews.istoikona.net/livenews.isml/manifest(format=m3u8-aapl).m3u8
+
+#EXTINF:-1,MNEIPOE TV 1 SD
+http://4.31.30.145:9095
 
 #EXTINF:0,Mitilini TV SD
 rtmp://cp77174.live.edgefcs.net/live/ playpath=123456@19937 swfUrl=http://www.filothea.com/tvmitilini/player.swf live=1 pageUrl=http://www.filothea.com/tvmitilini/live.html
@@ -104,20 +104,23 @@ http://hprt.flashcloud.mediacdn.com/hprt/nerit-2/playlist.m3u8
 #EXTINF:0,Oikologoi Elladas SD
 rtmp://nowradio.isol-servers.net/live/ playpath=oikologoi swfUrl=http://rtmp.isol.gr/player/player.swf live=1 pageUrl=http://rtmp.isol.gr/index.html
 
+#EXTINF:-1,RikSat SD
+http://cdn.webvideocore.net/livenl/out_dqgyqc45pzk8c4gw40o4/index.m3u8
+
 #EXTINF:0,Samiaki TV SD
 rtmp://91.121.107.131/samiaki playpath=samiaki swfUrl=http://www.samiaki.tv/players/live/player.swf live=1 pageUrl=http://www.samiaki.tv/players/live/
 
-#EXTINF:0,Skai SD
+#EXTINF:0,Skai A SD
 mmsh://magictvbox.us:200/skai
 
-#EXTINF:0,Star 3 TV Drama SD
-mmsh://radiofeeds1.mediabox.gr/startv
+#EXTINF:0,Skai B SD
+http://iphone.skai.gr.edgesuite.net/iphone_iphone.m3u8
 
-#EXTINF:0,Star TV 1 SD
+#EXTINF:0,Star TV A SD
 http://starhdlive2-lh.akamaihd.net/i/live_1@181243/master.m3u8
 
-#EXTINF:0,Star TV 2 SD
-rtmp://37.48.66.244:80/alterweb/alterweb.sdp pageUrl=http://www.kanalia.eu/ live=1 timeout=10
+#EXTINF:0, Star TV B SD
+http://4.31.30.145:9080
 
 #EXTINF:0,Syros TV1 SD
 rtmp://159.253.143.17:1935/webcams/msg116s live=1 timeout=10
@@ -127,6 +130,9 @@ rtmp://78.47.151.114/tilesport playpath=movie1 swfUrl=http://www.tilesport.tv/jw
 
 #EXTINF:0,TV 100 SD
 rtmp://188.226.161.133:1935/TV100/TV100 live=1 timeout=10
+
+#EXTINF:-1,TV Creta HD
+http://srv1.viiideo.gr:1935/hellasonmedia/mp4:tvcreta/hasbahca.m3u8
 
 #EXTINF:0,TVM SD
 rtmp://cp77174.live.edgefcs.net:443/live/123456@19937 live=1 timeout=10
