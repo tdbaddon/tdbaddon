@@ -56,6 +56,25 @@
   </extension>
 </addon>
 
+<addon id="plugin.video.TDBTV"
+       name="TDB TV"
+       version="1.12"
+       provider-name="TDB">
+<requires>
+<import addon="xbmc.python" version="2.1.0"/>
+</requires>
+<extension point="xbmc.python.pluginsource"
+            library="default.py">
+<provides>video</provides>
+</extension>
+<extension point="xbmc.addon.metadata">
+<summary>TDB TV</summary>
+<description>Live Streaming TV</description>
+<disclaimer>The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
+    <platform>all</platform>
+  </extension>
+</addon>
+
 <addon id="plugin.video.TOMDABOMB"
        name="TOMDABOMB"
        version="1.02"
