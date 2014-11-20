@@ -7,14 +7,25 @@
 
 #EXTINF:0,Brasileirinhas 2 SD THISCHANNELISDOWN----------
 
+#EXTINF: 0,Brazzers TV Europe HD 1
+http://178.236.140.43:4023/udp/239.195.2.4:1234
+
+#EXTINF: 0,Brazzers TV Europe HD 2
+http://iptv.multi-net.ru:80/udp/239.255.4.7:1234
 
 #EXTINF:0,Amateri SD
 mmsh://tv.webmisto.cz:7000
 
 #EXTINF:0,Dorcel TV SD THISCHANNELISDOWN----------
 
-#EXTINF:0,Frenchlover 720 HD
+#EXTINF:0,Frenchlover HD 1
 http://iptv.multi-net.ru:80/udp/239.255.4.4:1234?by_HasBahCa
+
+#EXTINF:0,Frenchlover HD 2
+http://95.170.186.178:7781/udp/239.255.4.4:1234
+
+#EXTINF:0,Frenchlover HD 3
+http://iptv.multi-net.ru:80/udp/239.255.4.4:1234
 
 #EXTINF:0,Filthon 1 720 HD THISCHANNELISDOWN----------
 
@@ -24,3 +35,9 @@ http://iptv.multi-net.ru:80/udp/239.255.4.4:1234?by_HasBahCa
 
 #EXTINF:0,Filthon 3 720 HD THISCHANNELISDOWN----------
 
+
+#EXTINF:0,Redlight HD
+rtmp://195.154.176.66:8082/private/private/ playpath=private swfUrl=http://livestreamcast.org/jwplayer/jwplayer.flash.swf live=1 pageUrl=http://ero-tv.org/redlight_online/
+
+#EXTINF:0,Sexysat SD
+rtmp://81.89.48.215/xyz999wkz/ playpath=sexysat.stream swfUrl=http://ero-tv.org/jwplayer/jwplayer.flash.swf live=1pageUrl=http://ero-tv.org/sexysat-tv_online/

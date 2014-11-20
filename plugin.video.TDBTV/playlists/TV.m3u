@@ -85,8 +85,11 @@ http://178.236.140.43:4023/udp/239.195.1.7:1234
 #EXTINF:0,Escapes HD
 rtmp://204.107.26.252:8086/live/341.high.stream
 
-#EXTINF:0,Fashion TV HD
+#EXTINF:0,Fashion TV HD 1
 http://edgeb.streaming.sk/fashiontv/fashiontv.stream/playlist_b125000_w304569164.m3u8
+
+#EXTINF:0,Fashion TV HD 2
+http://hls.novotelecom.ru/streaming/fashion/tvrec/playlist.m3u8 
 
 #EXTINF:0,Fashion TV SD
 http://83.139.104.123/Content/HLS/Live/Channel(fashion_tv)/Stream(03)/index.m3u8

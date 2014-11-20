@@ -5,6 +5,9 @@
 #EXTINF:0,Aporn 499 720 HD
 rtmp://lm07.everyon.tv/ptv7/phd499
 
+#EXTINF:0,Babe Station 24 HD
+http://sdn-global-live-http-cache.3qsdn.com/2346/_definst_///mp4:Ct6zG7Nrj3v2JxD/manifest.m3u8
+
 #EXTINF:0,Bella Club SD 
 rtsp://46.249.213.87/broadcast/bellaluz-tablet.3gp
 
@@ -17,6 +20,9 @@ http://46.249.213.93/iPhone/broadcast/bikinihotties-tablet.3gp/bikinihotties-tab
 #EXTINF:0,But Go SD
 rtmp://lm07.everyon.tv/ptv7/phd772
 
+#EXTINF:0,Fuego TV HD
+rtmp://vs2.streamcaster.net/fuego_live/fuego
+
 #EXTINF:0,Hot 100 SD
 http://46.249.213.93/iPhone/broadcast/hot100-tablet.3gp/hot100-tablet.3gp-mr647k.m3u8?trackingid=4541740000&os=desktop
 
@@ -27,70 +33,85 @@ http://46.249.213.93/iPhone/broadcast/hotshotsbeachbabes-tablet.3gp/hotshotsbeac
 http://46.249.213.93/iPhone/broadcast/hotshots-tablet.3gp/hotshots-tablet.3gp-mr646k.m3u8?
 trackingid=3641590000&os=desktop
 
-#EXTINF:0,Honey 720 HD
+#EXTINF:0,Honey HD
 rtmp://lm07.everyon.tv:1935/ptv7/phd10928
 
-#EXTINF:0,Korea 18+ 720 HD
+#EXTINF:0,Hustler HD
+http://cdn-edge01.livestreamcast.org:8081/erotic/phd499/chunklist_w875156738.m3u8
+
+#EXTINF:0,Korea 18+ HD
 rtmp://lm07.everyon.tv/ptv7/phd1005
 
 #EXTINF:0,Korea Deilght Empire SD
 rtmp://lm07.everyon.tv/ptv7/phd63
 
-#EXTINF:0,Korea Girl TV 720 HD
+#EXTINF:0,Korea Girl TV HD
 rtmp://lm07.everyon.tv/ptv7/phd501
 
-#EXTINF:0,Korea Hot Girl 720 HD
+#EXTINF:0,Korea Hot Girl HD
 rtmp://lm07.everyon.tv/ptv7/phd59
 
-#EXTINF:0,Korea Jav TV 720 HD
+#EXTINF:0,Korea Jav TV HD
 rtmp://lm07.everyon.tv:1935/ptv7/phd1003
 
-#EXTINF:0,Korea Live Tring 720 HD
+#EXTINF:0,Korea Live Tring HD
 rtmp://lm07.everyon.tv/ptv7/phd64
 
-#EXTINF:0,Korea Paradise 720 HD
+#EXTINF:0,Korea Paradise HD
 rtmp://lm07.everyon.tv/ptv7/phd1008
 
-#EXTINF:0,Korea Pink 720 HD THISCHANNELISDOWN----------
+#EXTINF:0,Korea Pink HD THISCHANNELISDOWN----------
 
 
-#EXTINF:0,Korea Playy 720 HD
+#EXTINF:0,Korea Playy HD
 rtmp://lm07.everyon.tv/ptv7/phd769
 
-#EXTINF:0,Korea Red On 720 HD
+#EXTINF:0,Korea Red On HD
 rtmp://lm07.everyon.tv/ptv7/phd60
 
-#EXTINF:0,Korea The O 720 HD
+#EXTINF:0,Korea The O HD
 rtmp://lm07.everyon.tv/ptv7/phd771
 
 #EXTINF:0,Miami TV HD
 rtmp://67.212.178.250:1935/sav_tvmiami/ playpath=myStream140 swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 pageUrl=http://www.miamitvchannel.com/
 
-#EXTINF:-1,Midnight 720 HD
+#EXTINF:0,Midnight HD
 rtmp://lm07.everyon.tv/ptv7/phd10766
 
-#EXTINF:0,O La La SD THISCHANNELISDOWN----------
+#EXTINF:0,O La La SD
+http://iptv.multi-net.ru:80/udp/239.255.4.6:1234
 
-
-#EXTINF:0,Okdai 720 HD
+#EXTINF:0,Okdai HD
 rtmp://lm07.everyon.tv/ptv7/phd61
 
 #EXTINF:0,Penthouse Korea SD
 rtmp://lm07.everyon.tv/ptv7/phd10927
 
-#EXTINF:0,Playboy Korea 720 HD
+#EXTINF:0,Playboy Korea HD
 rtmp://lm07.everyon.tv/ptv7/phd10497
 
-#EXTINF:0,Playboy US 720 HD
+#EXTINF:0,Playboy US HD
 rtmp://lm07.everyon.tv/ptv7/phd499
 
-#EXTINF:0,Playboy Tv SD THISCHANNELISDOWN----------
+#EXTINF:0,Playboy TV HD 1
+http://178.236.140.43:4023/udp/239.195.2.5:1234
 
+#EXTINF:0,Playboy TV HD 2
+rtmp://88.150.210.146/iptv/527
 
-#EXTINF:0,Sex Ed 720 HD
+#EXTINF:0 Russian Night HD 1
+http://178.236.140.43:4023/udp/239.195.2.3:1234
+
+#EXTINF:0 Russian Night HD 2
+http://iptv.multi-net.ru:80/udp/239.255.4.2:1234
+
+#EXTINF:0,Sex Ed HD
 rtmp://lm07.everyon.tv/ptv7/phd511
 
-#EXTINF:0,Viki 720 HD
+#EXTINF:0,Sex Privé HD
+http://cdn-edge01.livestreamcast.org:8081/erotic/phd61/chunklist_w1372963382.m3u8
+
+#EXTINF:0,Viki HD
 rtmp://lm07.everyon.tv/ptv7/phd10765
 
 #EXTINF:0,Visit-X TV SD

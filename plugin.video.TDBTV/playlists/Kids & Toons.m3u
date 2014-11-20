@@ -19,13 +19,10 @@ http://ilg.club/streamlink.m3u8?channel_id=dff1502eb25c4912aea009df5d0fde9b&bitr
 #EXTINF:0,Cartoon Network HD
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_CN/variant.m3u8
 
-#EXTINF:0,Cartoon Network A SD THISCHANNELISDOWN----------
-
-
-#EXTINF:0, Cartoon Network SD
+#EXTINF:0,Cartoon Network SD
 http://80.77.52.6:4444/udp/230.0.3.15:12345
 
-#EXTINF:0, Disney Channel HD  THISCHANNELISDOWN----------
+#EXTINF:0,Disney Channel HD  THISCHANNELISDOWN----------
 
 
 #EXTINF:0,Disney Junior HD THISCHANNELISDOWN----------
@@ -33,13 +30,13 @@ http://80.77.52.6:4444/udp/230.0.3.15:12345
 
 #EXTINF:0,Disney XD HD THISCHANNELISDOWN----------
 
-#EXTINF:0,Jim Jam SD
+#EXTINF:0,Jim Jam SD (change audio)
 http://178.236.140.43:4023/udp/239.195.1.8:1234
 
 #EXTINF:0,Nickelodeon US SD
 http://80.77.52.6:4444/udp/230.0.3.45:12345
 
-#EXTINF:0,Nick Jr HD(change audio)
+#EXTINF:0,Nick Jr HD (change audio)
 http://178.236.140.43:4023/udp/239.195.1.62:1234
 
 #EXTINF:-1,NickNight SD

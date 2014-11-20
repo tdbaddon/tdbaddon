@@ -68,11 +68,12 @@ rtmp://mi2.gv.filmon.com:8086/live/262.high.stream
 #EXTINF:0,Motor Sport SD
 http://motorsport.hopto.org:8080/
 
-#EXTINF:-1,NBA TV SD THISCHANNELISDOWN----------
+#EXTINF:0, NBA US HD
+http://nba247.cdnak.nbahd.neulion.com/mobile/nba/nba247/as/live/ipad_1240.m3u8
 
 
-#EXTINF:0, NBC Golf HD THISCHANNELISDOWN----------
-
+#EXTINF:0, NBC Golf SD
+rtmp://31.204.154.194:443/liverepeater playpath=168689 pageUrl=http://biggestplayer.me/loboi token=#atd%#$ZH
 
 #EXTINF:0,NBCSN SD THISCHANNELISDOWN----------
 
@@ -103,6 +104,9 @@ http://xrxs.net/video/live-p12oreg-4728.m3u8
  
 #EXTINF:0,PAC-12 Washington HQ
 http://xrxs.net/video/live-p12wash-4728.m3u8
+
+#EXTINF:-1, Poker Channel HD
+http://195.154.188.161/hls/pokerhd.m3u8
 
 #EXTINF:0,Racing UK SD THISCHANNELISDOWN----------
 
@@ -175,6 +179,9 @@ rtmp://31.220.0.104:1935/live/tsn1x live=1 pageUrl=http://www.flashtv.co/ token=
 
 #EXTINF:0,TSN 2 SD THISCHANNELISDOWN----------
 
+
+#EXTINF:0,Viasat Sports HD
+http://80.77.52.6:4444www.tvonlinestreams.com/udp/230.0.3.58:12345
 
 #EXTINF:0,Willow Cricket SD
 rtmp://80.82.78.15:443/liverepeater playpath=38 swfUrl=http://popeoftheplayers.pw/atdedead.swf live=1 pageUrl=http://popeoftheplayers.pw/player3.php?id=24&width=600&height=450 token=#atd%#$ZH

@@ -20,11 +20,11 @@ rtmp://cdn-sov-2.musicradio.com:80/LiveVideo/Capital
 #EXTINF:0,CineStream TV HD
 http://68.71.42.179/live/livestream1/playlist.m3u8
 
-#EXTINF:0,Club TV 720 HD THISCHANNELISDOWN----------
+#EXTINF:0,Club TV HD THISCHANNELISDOWN----------
 
 
-#EXTINF:0,Clubland TV SD THISCHANNELISDOWN----------
-
+#EXTINF:0,Clubland TV SD
+http://wos.cr1.streamzilla.xlcdn.com/chunker/_definst_/sz%3DAATW%3Dclublandtv/playlist.m3u8?token=4e3360d0a14e3856345d19b59542d3e0&time=546dbf62
 
 #EXTINF:0,Djing TV HD
 http://www.djing.com/tv/05.m3u8
@@ -70,8 +70,6 @@ http://83.139.104.123/Content/HLS/Live/Channel(mtv_music)/Stream(03)/index.m3u8
 
 #EXTINF:0,MTV Rocks HD
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVROCKS/variant.m3u8
-
-#EXTINF:0,MTV US SD THISCHANNELISDOWN----------
 
 #EXTINF:0,Music SD
 http://csm-e.cds1.yospace.com/csm/live/86550614.m3u8
