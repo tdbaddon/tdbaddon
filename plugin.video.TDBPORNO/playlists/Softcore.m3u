@@ -99,10 +99,10 @@ http://178.236.140.43:4023/udp/239.195.2.5:1234
 #EXTINF:0,Playboy TV HD 2
 rtmp://88.150.210.146/iptv/527
 
-#EXTINF:0 Russian Night HD 1
+#EXTINF:0, Russian Night HD 1
 http://178.236.140.43:4023/udp/239.195.2.3:1234
 
-#EXTINF:0 Russian Night HD 2
+#EXTINF:0, Russian Night HD 2
 http://iptv.multi-net.ru:80/udp/239.255.4.2:1234
 
 #EXTINF:0,Sex Ed HD
