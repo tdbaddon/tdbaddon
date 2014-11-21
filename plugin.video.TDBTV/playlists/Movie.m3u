@@ -43,8 +43,8 @@ http://on108.setplex.net/fastv_2psh/PinkPremiumglobal_rly_greece_103/playlist.m3
 #EXTINF:0,Showtime IQ HD
 mmsh://mediafilmcenter.ro:10
 
-#EXTINF:0,Showtime SD THISCHANNELISDOWN----------
-
+#EXTINF:0,Showtime HD
+rtmp://rtmp.zerocast.tv:1935/live/ playpath=VCV8SViFVBv2nX5RQwKI swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
 
 #EXTINF:0,Sky Action SD THISCHANNELISDOWN----------
 

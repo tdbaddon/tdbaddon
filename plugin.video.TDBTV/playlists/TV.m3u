@@ -8,8 +8,8 @@
 #EXTINF:0,ABC SD THISCHANNELISDOWN----------
 
 
-#EXTINF:0,AMC HD THISCHANNELISDOWN----------
-
+#EXTINF:0,AMC HD 
+rtmp://rtmp.zerocast.tv:1935/live/ playpath=TfRQx7deUAuncJwM047m swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
 
 #EXTINF:0,AXTN TV 6 SD
 rtmp://oflash.dfw.swagit.com/live/austintx/live-1
@@ -159,6 +159,9 @@ http://ilg.club/streamlink.m3u8?channel_id=71f197de056e499a85265c03b44bdab1&bitr
 
 #EXTINF:0,TLC HD
 http://202.75.23.34/live/ch35/01.m3u8
+
+#EXTINF:0,TNT HD
+rtmp://rtmp.zerocast.tv:1935/live/ playpath=Waz0WqvbqNHmt0gdzrsm swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
 
 #EXTINF:0,Tropical Reef SD
 http://edge04.hdontap.com/hdstreams/tropicalreef_ea_hdontap/chunklist_w1191484316.m3u8
