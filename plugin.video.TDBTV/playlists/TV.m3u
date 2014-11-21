@@ -38,9 +38,6 @@ rtmp://streaming.cityofboston.gov/live/cable
 #EXTINF:0,Bravo SD THISCHANNELISDOWN----------
 
 
-#EXTINF:0,CBC News Canada HD
-rtmp://d.cdn.newschat.tv/edge playpath=canadas_live swfUrl=http://msnbclive.eu/player.swf live=1 pageUrl=http://www.livenewschat.eu/canada/
-
 #EXTINF:0,Cbs USA SD THISCHANNELISDOWN----------
 
 

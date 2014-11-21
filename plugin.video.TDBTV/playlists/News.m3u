@@ -22,6 +22,9 @@ http://btv-i.akamaihd.net/hls/live/202760-b/btvusa_ios/P1/M12K.m3u8
 #EXTINF:0,Bloomberg C SD
 http://hd4.lsops.net/live/bloomber_en_hls.smil/chunklist_w976476961_b453000.m3u8
 
+#EXTINF:0,CBC News Canada HD
+rtmp://d.cdn.newschat.tv/edge playpath=canadas_live swfUrl=http://msnbclive.eu/player.swf live=1 pageUrl=http://www.livenewschat.eu/canada/
+
 #EXTINF:0,CCTV News SD
 http://77.36.61.45:8010/CCTVNews.m3u8
 
