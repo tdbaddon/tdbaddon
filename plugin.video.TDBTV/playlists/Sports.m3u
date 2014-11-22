@@ -26,8 +26,8 @@ rtsp://46.249.213.93/broadcast/classicgoals-tablet.3gp
 #EXTINF:0,Drift 4 Ever
 rtsp://46.249.213.93/broadcast/drift4ever-tablet.3gp
 
-#EXTINF:0,ESPN SD THISCHANNELISDOWN----------
-
+#EXTINF:0,ESPN SD
+rtmp://95.168.199.243:1935/live playpath=espnux live=1 pageUrl=http://www.flashtv.co/Vd?u#bt!25 token=%ZZri(nKa@#Z timeout=10
 
 #EXTINF:0,ESPN UK SD THISCHANNELISDOWN----------
 
@@ -111,7 +111,7 @@ http://195.154.188.161/hls/pokerhd.m3u8
 #EXTINF:0,Racing UK SD THISCHANNELISDOWN----------
 
 
-#EXTINF:0,Rogers Sportsnet 1 HD
+#EXTINF:0,Rogers Sportsnet One HD
 http://rogerslive-i.akamaihd.net/hls/live/202799/event/index.m3u8
 
 #EXTINF:0,Rogers Sportsnet East 1 HD
@@ -121,6 +121,15 @@ http://rogerslive-i.akamaihd.net/hls/live/202800/event/index.m3u8?
 http://rogerslive-i.akamaihd.net/hls/live/202802/event/index.m3u8?
 
 #EXTINF:0,Rogers Sportsnet West HD
+http://rogerslive-i.akamaihd.net/hls/live/202801/event/index.m3u8
+
+#EXTINF:0,Rogers Sportsnet Extra 1 HD
+http://rogerslive-i.akamaihd.net/hls/live/202803/event/index.m3u8
+
+#EXTINF:0,Rogers Sportsnet Ontario HD
+http://rogerslive-i.akamaihd.net/hls/live/202827/event/index.m3u8
+
+#EXTINF:0,Rogers Sportsnet World HD
 http://rogerslive-i.akamaihd.net/hls/live/202801/event/index.m3u8
 
 #EXTINF:0,SBS One HD
@@ -138,8 +147,8 @@ rtmpe://46.246.124.26:1935/live/ playpath=sskys1  swfUrl=http://www.hdcast.org/j
 #EXTINF:0,Sky Sports 2 SD
 rtmp://80.82.78.22:443/liverepeater playpath=14 swfUrl=http://popeoftheplayers.pw/atdedead.swf live=1 pageUrl=http://popeoftheplayers.pw/player3.php?id=14&width=600&height=450 token=#atd%#$ZH
 
-#EXTINF:0,Sky Sports 3 HD  THISCHANNELISDOWN----------
-
+#EXTINF:0,Sky Sports 3 HD
+rtmp://world.gameso.tv/fasts playpath=myss3 swfUrl=http://www.gameso.tv/player/player_embed.swf live=1 pageUrl=http://www.gameso.tv/Vd?u#bt!25 token=#ed%h0#w18723jdsahjkDHF timeout=14
 
 #EXTINF:0,Sky Sports 4 HD THISCHANNELISDOWN----------
 
@@ -152,14 +161,6 @@ rtmpe://46.246.124.26:1935/live/ playpath=sskysf1 swfUrl=http://www.hdcast.org/j
 
 #EXTINF:0,Sky Sports News HD
 rtmpe://46.246.124.65:1935/live/sskysn pageUrl=http://www.hdcast.org/ token=#yw%tt#w@kku
-
-#EXTINF:0,Sportsnet Extra 1 HD
-http://rogerslive-i.akamaihd.net/hls/live/202803/event/index.m3u8
-
-#EXTINF:0,Sportsnet Ontario SD THISCHANNELISDOWN----------
-
-
-#EXTINF:0,Sportsnet World SD THISCHANNELISDOWN----------
 
 
 #EXTINF:0,Sports Night HD
