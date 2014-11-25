@@ -5,110 +5,113 @@
 #EXTINF:0,Agon Channel SD
 http://str105mb.setplex.net:1935/str2iosmd5/7ios_agontv_34536544/HasBahCa.m3u8
 
-#EXTINF:0,Albanian Culture NY SD
-http://str105mb.setplex.net:1935/str2iosmd5/7ios_albanianScreen_32992956/HasBahCa.m3u8
+#EXTINF:0,Albanian Culture NY SD THISCHANNELISDOWN----------
+
 
 #EXTINF:0,Albanian Screen SD
 rtmp://95.110.242.231:11935/live/albanianscreentv
 
-#EXTINF:0,Alb Info SD
-http://str105mb.setplex.net:1935/str2iosmd5/stralbinfo_2654_dfs/HasBahCa.m3u8
+#EXTINF:0,Alb Info SD THISCHANNELISDOWN----------
 
-#EXTINF:0,Alb Popullore SD
-http://str105mb.setplex.net:1935/str2iosmd5/13ios_albpop_23165498/HasBahCa.m3u8
 
-#EXTINF:0,Al Jazeera Balkans HD
-http://176.9.3.136:21228/api/gateway.php?t=1329%2Cd44d5aac17fc1667e46a5d1e7fb70d01%2C2571%2C34892
+#EXTINF:0,Alb Popullore SD THISCHANNELISDOWN----------
+
+
+#EXTINF:0,Al Jazeera Balkans HD THISCHANNELISDOWN----------
+
 
 #EXTINF:0,Alsat M SD
-http://fms.zulu.mk:554/zulu/alsat_2/playlist.m3u8
+http://edgetiboeu.tibo.tv:8081/europe/dveo2/m3u8/alsatchannel.m3u8 
 
-#EXTINF:0,Apollon A SD
-rtmp://95.107.200.140:554/live/rtmp.stream
+#EXTINF:0,Apollon A SD THISCHANNELISDOWN----------
 
-#EXTINF:0,Apollon B SD
-http://str105mb.setplex.net:1935/str2iosmd5/7ios_apollom_348957345/HasBahCa.m3u8
 
-#EXTINF:0,Arta SD
-rtmp://82.114.65.202/live/rrokumtv.flv swfUrl=http://tv24.al/shqiptv/css/player.swf live=1
+#EXTINF:0,Apollon B SD THISCHANNELISDOWN----------
 
-#EXTINF:0,Art Kanal SD
-http://str105mb.setplex.net:1935/str2iosmd5/19ios_artkanal_31469877/HasBahCa.m3u8
 
-#EXTINF:0,ATV HD
-http://176.9.3.136:21228/api/gateway.php?t=1331%2Cd44d5aac17fc1667e46a5d1e7fb70d01%2C2571%2C34892
+#EXTINF:0,Arta SD THISCHANNELISDOWN----------
 
-#EXTINF:0,B92 HD
-http://109.72.63.89:4025/udp/238.0.0.100:9000
+
+#EXTINF:0,Art Kanal SD THISCHANNELISDOWN----------
+
+
+#EXTINF:0,ATV HD THISCHANNELISDOWN----------
+
+
+#EXTINF:0,B92 HD 
+http://109.122.121.21/live/b92.stream/playlist.m3u8?hash=2f171f9e0f1866c53df3ca163c9717b7b895b8b8
 
 #EXTINF:0,Balkan TV SD
 rtmp://yayin.tvdunyasi.tv/live/balkanrtv
 
-#EXTINF:0,BBF TV
-http://str105mb.setplex.net:1935/str2iosmd5/7ios_bbf_45908339/HasBahCa.m3u8
+#EXTINF:0,BBF TV THISCHANNELISDOWN----------
 
-#EXTINF:0,BHT 1 HD
-http://176.9.3.136:21228/api/gateway.php?t=1321%2Cd44d5aac17fc1667e46a5d1e7fb70d01%2C2571%2C34892 
 
-#EXTINF:0,BN HD
-http://176.9.3.136:21228/api/gateway.php?t=1323%2Cd44d5aac17fc1667e46a5d1e7fb70d01%2C2571%2C34892 
+#EXTINF:0,BHT 1 HD THISCHANNELISDOWN----------
 
-#EXTINF:0,Dukagjini SD
-http://str105mb.setplex.net:1935/str2iosmd5/20ios_tvdukagjini_2233555/HasBahCa.m3u8
 
-#EXTINF:0,Face TV HD
-http://176.9.3.136:21228/api/gateway.php?t=1325%2Cd44d5aac17fc1667e46a5d1e7fb70d01%2C2571%2C34892
+#EXTINF:0,BN HD THISCHANNELISDOWN----------
 
-#EXTINF:0,Federalna TV SD
-http://176.9.3.136:21228/api/gateway.php?t=1318%2Cd44d5aac17fc1667e46a5d1e7fb70d01%2C2571%2C34892 
 
-#EXTINF:0,Folk Plus SD
-http://str105mb.setplex.net:1935/str2iosmd5/7ios_folkplus_34564765/HasBahCa.m3u8
+#EXTINF:0,Dukagjini SD THISCHANNELISDOWN----------
 
-#EXTINF:0,Globi SD
-http://str105mb.setplex.net:1935/str2iosmd5/22ios_tvglobe_236549153/HasBahCa.m3u8
 
-#EXTINF:0,HRT 1 HD
-http://109.72.63.89:4025/udp/238.0.0.101:9007
+#EXTINF:0,Face TV HD THISCHANNELISDOWN----------
 
-#EXTINF:0,HTV 1 HD
-http://109.122.121.21/live/hrt_1.stream/playlist.m3u8?hash=1b3ba04413d9f5506938e0b944290c6765c20e7a
 
-#EXTINF:0,HTV 2 HD
-http://109.122.121.21/live/hrt_2.stream/playlist.m3u8?hash=1b3ba04413d9f5506938e0b944290c6765c20e7a
+#EXTINF:0,Federalna TV SD THISCHANNELISDOWN----------
 
-#EXTINF:0,Iliret SD
-http://str105mb.setplex.net:1935/str2iosmd5/16ios_tviliret_26658914/HasBahCa.m3u8
+
+#EXTINF:0,Folk Plus SD THISCHANNELISDOWN----------
+
+
+#EXTINF:0,Globi SD THISCHANNELISDOWN----------
+
+#EXTINF:-1,Happy HD
+http://109.122.121.21/live/happy.stream/playlist.m3u8?hash=2f171f9e0f1866c53df3ca163c9717b7b895b8b8
+
+
+#EXTINF:0,HRT 1 HD 
+http://109.122.121.21/live/hrt_1.stream/playlist.m3u8?hash=2f171f9e0f1866c53df3ca163c9717b7b895b8b8
+
+#EXTINF:0,HTV 2 HD 
+http://109.122.121.21/live/hrt_2.stream/playlist.m3u8?hash=2f171f9e0f1866c53df3ca163c9717b7b895b8b8
+
+#EXTINF:0,Iliret SD THISCHANNELISDOWN----------
+
 
 #EXTINF:0,Jug TV  SD
 rtmp://84.20.77.50/live/livestream1
 
 #EXTINF:0,Kanal 3 SD
-http://109.122.121.21/live/kanal_3.stream/playlist.m3u8?hash=1b3ba04413d9f5506938e0b944290c6765c20e7a
+http://109.122.121.21/live/kanal_3.stream/playlist.m3u8?hash=2f171f9e0f1866c53df3ca163c9717b7b895b8b8
 
-#EXTINF:0,Koha SD
-http://str105mb.setplex.net:1935/str2iosmd5/tv_koha_ams228/HasBahCa.m3u8
+#EXTINF:-1,KLAN KS 
+http://edgetiboeu.tibo.tv:8081/europe/wowza2/live/klankosova.stream_720p/playlist.m3u8 
 
-#EXTINF:0,Kopliku SD
-http://str105mb.setplex.net:1935/str2iosmd5/tvkop3542121/HasBahCa.m3u8
+#EXTINF:0,Koha SD THISCHANNELISDOWN----------
 
-#EXTINF:0, MPT 2 HD
-http://str105mb.setplex.net:1935/str2iosmd5/7ios_MKTV2_32289956/HasBahCa.m3u8
 
-#EXTINF:0,NTV IC Kakanj SD
-http://176.9.3.136:21228/api/gateway.php?t=1333%2Cbbc25ce1c97ff908a8a83e7a78ee79fc%2C2571%2C34891
+#EXTINF:0,Kopliku SD THISCHANNELISDOWN----------
 
-#EXTINF:0,OBN A HD
-http://176.9.3.136:21228/api/gateway.php?t=1324%2Cd44d5aac17fc1667e46a5d1e7fb70d01%2C2571%2C34892 
 
-#EXTINF:0,OBN B HD
-http://176.9.3.136:21228/api/gateway.php?t=1324%2Cbbc25ce1c97ff908a8a83e7a78ee79fc%2C2571%2C34891
+#EXTINF:0, MPT 2 HD THISCHANNELISDOWN----------
 
-#EXTINF:0,OTV Valentino SD
-http://176.9.3.136:21228/api/gateway.php?t=1316%2Cd44d5aac17fc1667e46a5d1e7fb70d01%2C2571%2C34892
 
-#EXTINF:0,Palma SD
-http://109.122.121.21/live/palma.stream/playlist.m3u8?hash=1b3ba04413d9f5506938e0b944290c6765c20e7a
+#EXTINF:0,NTV IC Kakanj SD THISCHANNELISDOWN----------
+
+
+#EXTINF:0,OBN A HD THISCHANNELISDOWN----------
+
+
+#EXTINF:0,OBN B HD THISCHANNELISDOWN----------
+
+
+#EXTINF:0,OTV Valentino SD THISCHANNELISDOWN----------
+
+
+#EXTINF:0,Palma SD 
+http://109.122.121.21/live/palma.stream/playlist.m3u8?hash=2f171f9e0f1866c53df3ca163c9717b7b895b8b8
 
 #EXTINF:0,Pannon TV Subotica HD
 http://212.200.235.242:8080/
@@ -117,43 +120,45 @@ http://212.200.235.242:8080/
 rtmp://149.11.34.6/live/partytv.stream
 
 #EXTINF:0,Pink Film HD
-http://109.72.63.89:4025/udp/238.0.0.100:9007
+http://109.122.121.21/live/pink.stream/playlist.m3u8?hash=2f171f9e0f1866c53df3ca163c9717b7b895b8b8
 
 #EXTINF:0,PRVA HD
-http://109.122.121.21/live/prva.stream/playlist.m3u8?hash=1b3ba04413d9f5506938e0b944290c6765c20e7a
+http://109.122.121.21/live/prva.stream/playlist.m3u8?hash=2f171f9e0f1866c53df3ca163c9717b7b895b8b8
 
-#EXTINF:0,Rokum TV 1 SD
-rtmp://82.114.65.202/live/rrokumtv
+#EXTINF:0,Rokum TV 1 SD THISCHANNELISDOWN----------
 
-#EXTINF:0,RTCG SAT HD
-http://109.122.121.21/live/rtcg.stream/playlist.m3u8?hash=1b3ba04413d9f5506938e0b944290c6765c20e7a
 
-#EXTINF:0,RTRS HD
-http://109.122.121.21/live/rtrs.stream/playlist.m3u8?hash=1b3ba04413d9f5506938e0b944290c6765c20e7a
+#EXTINF:0,RTCG SAT HD 
+http://109.122.121.21/live/rtcg.stream/playlist.m3u8?hash=2f171f9e0f1866c53df3ca163c9717b7b895b8b8
+
+#EXTINF:0,RTRS HD 
+http://109.122.121.21/live/rtrs.stream/playlist.m3u8?hash=2f171f9e0f1866c53df3ca163c9717b7b895b8b8
 
 #EXTINF:0,RTS 1 HD
-http://109.72.63.89:4025/udp/238.0.0.100:9014
+http://109.122.121.21/live/rts_1.stream/playlist.m3u8?hash=2f171f9e0f1866c53df3ca163c9717b7b895b8b8
 
-#EXTINF:0,RTS 2 A HD
-http://109.72.63.89:4025/udp/238.0.0.100:9010
+#EXTINF:0,RTS 2 HD
+http://109.122.121.21/live/rts_2.stream/playlist.m3u8?hash=2f171f9e0f1866c53df3ca163c9717b7b895b8b8
 
-#EXTINF:0,RTS 2 B HD
-http://109.72.63.89:4025/udp/238.0.0.100:9011
+#EXTINF:-1,RTV 1 HD
+http://109.122.121.21/live/rtv_1.stream/playlist.m3u8?hash=2f171f9e0f1866c53df3ca163c9717b7b895b8b8
 
-#EXTINF:0,Rozafa SD
-http://str105mb.setplex.net:1935/str2iosmd5/7ios_rozafa_65226289/HasBahCa.m3u8
+#EXTINF:0,Rozafa SD THISCHANNELISDOWN----------
 
-#EXTINF:0,Sos HD
-http://109.72.63.89:4025/udp/238.0.0.101:9000
+#EXTINF:-1,SKY Plus HD
+http://109.122.121.21/live/sky_plus.stream/playlist.m3u8?hash=2f171f9e0f1866c53df3ca163c9717b7b895b8b8
 
-#EXTINF:0,Sot7 SD
-mms://84.20.73.66:8001
+#EXTINF:0,Sos HD 
+http://109.122.121.21/live/sos.stream/playlist.m3u8?hash=2f171f9e0f1866c53df3ca163c9717b7b895b8b8
 
-#EXTINF:0,Sot News SD
-http://str105mb.setplex.net:1935/str2iosmd5/spali_6252_gsdf/HasBahCa.m3u8
+#EXTINF:0,Sot7 SD THISCHANNELISDOWN----------
 
-#EXTINF:0,Studio B HD
-http://109.72.63.89:4025/udp/238.0.0.100:9013
+
+#EXTINF:0,Sot News SD THISCHANNELISDOWN----------
+
+
+#EXTINF:0,Studio B HD 
+http://109.122.121.21/live/studio_b.stream/playlist.m3u8?hash=2f171f9e0f1866c53df3ca163c9717b7b895b8b8
 
 #EXTINF:0,Superfolk SD
 rtmp://str103.setplex.net:1935/228/stv_folk
@@ -164,11 +169,9 @@ rtmp://str103.setplex.net:1935/228/stv_online
 #EXTINF:0,Teuta TV SD
 rtmp://str103.setplex.net:1935/228/teuta
 
-#EXTINF:0,TK HD
-http://176.9.3.136:21228/api/gateway.php?t=1326%2Cd44d5aac17fc1667e46a5d1e7fb70d01%2C2571%2C34892
+#EXTINF:0,TK HD THISCHANNELISDOWN----------
 
-#EXTINF:0,TV1 HD
-http://176.9.3.136:21228/api/gateway.php?t=1330%2Cd44d5aac17fc1667e46a5d1e7fb70d01%2C2571%2C34892
+#EXTINF:0,TV1 HD THISCHANNELISDOWN----------
 
 #EXTINF:0,Vision Plus 1 SD
 rtmp://live.vizionplus.tv:1935/live/livestream2
