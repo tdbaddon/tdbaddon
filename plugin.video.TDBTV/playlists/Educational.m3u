@@ -14,6 +14,9 @@ http://202.75.23.34/live/ch29/03.m3u8
 #EXTINF:0,Discovery Home SD
 http://202.75.23.34:1400/live/ch34/01.m3u8
 
+#EXTINF:0,Discovery Max HD
+http://202.75.23.34/live/ch32/03.m3u8?b?b*t$
+
 #EXTINF:0,Discovery Max SD
 http://202.75.23.34/live/ch32/01.m3u8
 
@@ -29,8 +32,8 @@ http://202.75.23.34:1400/live/ch30/03.m3u8
 #EXTINF:0, FYI HD
 http://ilg.club/streamlink.m3u8?channel_id=8c49d827190b4b29a9d5e3be92e5054c&bitrate=800 
 
-#EXTINF:0,History SD THISCHANNELISDOWN----------
-
+#EXTINF:0,History SD
+http://176.51.83.56:1234/udp/233.7.70.185:5000
 
 #EXTINF:0,NASA Media HD
 http://media.infozen.cshls.lldns.net/infozen/media/media/media_1000.m3u8

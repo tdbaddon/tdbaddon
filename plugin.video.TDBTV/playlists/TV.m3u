@@ -5,8 +5,11 @@
 #EXTINF:0,A&E HD THISCHANNELISDOWN----------
 
 
-#EXTINF:0,ABC SD 
+#EXTINF:0,ABC SD 1
 http://spsknxv-i.akamaihd.net/hls/live/203386/anvato/350k/prog.m3u8?Vd?u#bt!25
+
+#EXTINF:0,ABC SD 2
+rtmp://rtmp.zerocast.tv:1935/live/ playpath=rGCi7bg0Qxvs8q7Sl13l swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
 
 #EXTINF:0,AMC HD 
 rtmp://rtmp.zerocast.tv:1935/live/ playpath=TfRQx7deUAuncJwM047m swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
@@ -37,17 +40,17 @@ rtmp://streaming.cityofboston.gov/live/cable
 
 #EXTINF:0,Bravo SD THISCHANNELISDOWN----------
 
-
-#EXTINF:0,Cbs USA SD THISCHANNELISDOWN----------
-
-
-#EXTINF:0,Cbs UK  SD THISCHANNELISDOWN----------
+#EXTINF:0,CBS HD
+rtmp://rtmp.zerocast.tv:1935/live/ playpath=Ger61uLQ4fedzvjRjrB7   swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
 
 #EXTINF:0,CBS CBS Drama SD
 http://178.236.140.43:4023/udp/239.195.1.13:1234
 
 #EXTINF:0,CBS Reality HD
 http://hls01-05.az.myvideo.az/hls-live/livepkgr/cbsreality/cbsreality/cbsreality.m3u8&rRb545vJBB5tYzB7vVP
+
+#EXTINF:0,CBS Reality SD
+http://83.139.104.123/Content/HLS/Live/Channel(cbs_reality)/Stream(03)/index.m3u8?b?b*t$
 
 #EXTINF:0,Channel 4 HD
 http://cdn.live.simplestream.com/VKWY6U2RIGO3J8KQ0Q7B/5/playlist-limelight.m3u8
@@ -76,8 +79,8 @@ http://stream1.zoovision.com//livespi/docubox/playlist.m3u8
 #EXTINF:0, English Club TV 1 SD
 http://85.187.154.9:2001/
 
-#EXTINF:0,E! Entertainment HD 
-http://178.236.140.43:4023/udp/239.195.1.7:1234
+#EXTINF:0,E! Entertainment HD
+http://176.51.83.56:1234/udp/233.7.70.72:5000
 
 #EXTINF:0,Escapes HD
 rtmp://204.107.26.252:8086/live/341.high.stream
@@ -155,11 +158,14 @@ http://ilg.club/streamlink.m3u8?channel_id=65f7358b813048a0898f5677e1793cf9
 #EXTINF:0,Syfy US SD
 http://ilg.club/streamlink.m3u8?channel_id=71f197de056e499a85265c03b44bdab1&bitrate=800 
 
-#EXTINF:0,The Shopping Channel SD THISCHANNELISDOWN----------
+#EXTINF:0,The Shopping Channel HD
+http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/master.m3u8?b?b*t$
 
-
-#EXTINF:0,TLC HD
+#EXTINF:0,TLC HD 1
 http://202.75.23.34/live/ch35/01.m3u8
+
+#EXTINF:0,TLC HD 2
+http://83.139.104.123/Content/HLS/Live/Channel(TLC)/Stream(03)/index.m3u8?b?b*t$
 
 #EXTINF:0,TNT HD
 rtmp://rtmp.zerocast.tv:1935/live/ playpath=Waz0WqvbqNHmt0gdzrsm swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv

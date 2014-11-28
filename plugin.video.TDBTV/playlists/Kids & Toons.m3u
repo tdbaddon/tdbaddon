@@ -22,6 +22,9 @@ http://hlsstr02.svc.iptv.rt.ru/hls/CH_CN/variant.m3u8
 #EXTINF:0,Cartoon Network SD
 http://80.77.52.6:4444/udp/230.0.3.15:12345
 
+#EXTINF:0,Cartoons & Comedy SD
+rtmp://mi2.gv.filmon.com:1935/live/_definst_/2734.low.stream?b?b*t$
+
 #EXTINF:0,Disney Channel HD  THISCHANNELISDOWN----------
 
 
@@ -32,6 +35,9 @@ http://80.77.52.6:4444/udp/230.0.3.15:12345
 
 #EXTINF:0,Jim Jam SD (change audio)
 http://178.236.140.43:4023/udp/239.195.1.8:1234
+
+#EXTINF:0,Looney Tunes SD
+rtmp://104.130.79.136:1935/live/lt
 
 #EXTINF:0,Nickelodeon US SD
 http://80.77.52.6:4444/udp/230.0.3.45:12345
