@@ -60,8 +60,8 @@ rtmp://lm07.everyon.tv/ptv7/phd64
 #EXTINF:0,Korea Paradise HD
 rtmp://lm07.everyon.tv/ptv7/phd1008
 
-#EXTINF:0,Korea Pink HD THISCHANNELISDOWN----------
-
+#EXTINF:0,Korea Pink HD
+rtmp://lm07.everyon.tv:1935/ptv7/phd62
 
 #EXTINF:0,Korea Playy HD
 rtmp://lm07.everyon.tv/ptv7/phd769

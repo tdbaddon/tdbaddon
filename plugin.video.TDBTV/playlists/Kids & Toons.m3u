@@ -16,8 +16,11 @@ rtmp://mi2.gv.filmon.com:1935/live/_definst_/2734.low.stream
 #EXTINF:0,Cartoonito SD
 http://ilg.club/streamlink.m3u8?channel_id=dff1502eb25c4912aea009df5d0fde9b&bitrate=800
 
-#EXTINF:0,Cartoon Network HD
+#EXTINF:0,Cartoon Network HD 1
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_CN/variant.m3u8
+
+#EXTINF:0,Cartoon Network HD 2
+rtmp://rtmp.zerocast.tv:1935/live playpath=08pydvp1b7ZwZb3a5TW1 swfUrl=http://cdn.zerocast.tv/player.swf  flashVer=WIN/16,0,0,219 pageUrl=http://zerocast.tv/embed3.php?a=6&id=&width=580&height=400&autostart=true&strech= token=8964316ec8772dfa
 
 #EXTINF:0,Cartoon Network SD
 http://80.77.52.6:4444/udp/230.0.3.15:12345

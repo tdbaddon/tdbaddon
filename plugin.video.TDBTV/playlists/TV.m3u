@@ -38,7 +38,9 @@ http://ilg.club/streamlink.m3u8?channel_id=169a149fd1ef40edba0bbfc8e0f1bdd1&bitr
 #EXTINF:0,Boston City TV US HD
 rtmp://streaming.cityofboston.gov/live/cable
 
-#EXTINF:0,Bravo SD THISCHANNELISDOWN----------
+#EXTINF:0,Bravo SD 
+rtmpe://46.246.124.22:1935/live/bravobraco playpath=bravobraco swfUrl=http://p.jwpcdn.com/6/8/jwplayer.flash.swf pageUrl=http://prvservers.com/embed2.php?u=bravobraco&vw=620&vh=470&domain=usachannels.tv token=#yw%tt#w@kku
+
 
 #EXTINF:0,CBS HD
 rtmp://rtmp.zerocast.tv:1935/live/ playpath=Ger61uLQ4fedzvjRjrB7   swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
@@ -67,8 +69,8 @@ http://ilg.club/streamlink.m3u8?channel_id=2f18d4ba25224edaa8bb9aac94b00d4f
 #EXTINF:0,Crime Investigation 1 SD
 http://ilg.club/streamlink.m3u8?channel_id=9961a963920f45f4bc0d81c3e478b334&bitrate=800
 
-#EXTINF:0,CW SD THISCHANNELISDOWN----------
-
+#EXTINF:0,CW SD 
+rtmp://rtmp.zerocast.tv:1935/live playpath=IWSyIjvWgHRCMM7MEJoZ  swfUrl=http://cdn.zerocast.tv/player.swf flashVer=WIN/16,0,0,219 pageUrl=http://zerocast.tv/embed3.php?a=8&id=&width=580&height=400&autostart=true&strech= token=8964316ec8772dfa
 
 #EXTINF:0,Denver 8 TV SD
 mms://207.7.154.96/G0080_002?wmcache=0
@@ -103,8 +105,8 @@ rtmp://streaming.krautzer-lynn.com:1935/live/Stream4
 #EXTINF:0,Food Network SD
 http://83.139.104.123/Content/HLS/Live/Channel(food_network)/Stream(03)/index.m3u8
 
-#EXTINF:0,FOX 45 HD THISCHANNELISDOWN----------
-
+#EXTINF:0,FOX 45 HD
+rtmpe://46.246.124.23:1935/live/foxx playpath=foxx swfUrl=http://p.jwpcdn.com/6/8/jwplayer.flash.swf pageUrl=http://prvservers.com/embed2.php?u=foxx&vw=620&vh=470&domain=usachannels.tv token=#yw%tt#w@kku
 
 #EXTINF:0,FOX Life HD (change audio)
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_FOXLIFE/variant.m3u8
@@ -118,8 +120,8 @@ rtsp://46.249.213.93/broadcast/gamerushtv-tablet.3gp
 #EXTINF:0,Ginx Game TV HD
 rtmp://204.107.26.252:8086/live/796.high.stream
 
-#EXTINF:0,HBO HQ THISCHANNELISDOWN----------
-
+#EXTINF:0,HBO SD
+rtmpe://46.246.124.23:1935/live/hbo3 playpath=hbo3 swfUrl=http://p.jwpcdn.com/6/8/jwplayer.flash.swf pageUrl=http://prvservers.com/embed2.php?u=hbo3&vw=620&vh=470&domain=usachannels.tv token=#yw%tt#w@kku
 
 #EXTINF:-1,HSN TV SD
 rtsp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:420p500kB31
@@ -137,8 +139,8 @@ http://83.139.104.123/Content/HLS/Live/Channel(kino_tv)/Stream(03)/index.m3u8
 #EXTINF:0,Landscape Channel SD
 http://130.88.20.233:1237/test.flv
 
-#EXTINF:0,Lifetime TV SD THISCHANNELISDOWN----------
-
+#EXTINF:0,Lifetime TV HD
+http://202.75.23.36/live/ch48/03.m3u8?b?b*t$
 
 #EXTINF:0,Niagra Falls TV 1 SD
 mms://webcams.niagarafallshotels.com/CNH-Stream2
@@ -176,8 +178,8 @@ http://edge04.hdontap.com/hdstreams/tropicalreef_ea_hdontap/chunklist_w119148431
 #EXTINF:0,Universal Channel HD
 http://secure.ilikehd.com/livetv/player/totlink.m3u8?channel_id=a7105ed1bb0a44bba1f4f71f2352b892
 
-#EXTINF:0,USA TV SD THISCHANNELISDOWN----------
-
+#EXTINF:0,USA Network SD
+rtmpe://46.246.124.3:1935/live/usao0 playpath=usao0 swfUrl=http://p.jwpcdn.com/6/8/jwplayer.flash.swf pageUrl=http://prvservers.com/embed2.php?u=usao0&vw=620&vh=470&domain=usachannels.tv token=#yw%tt#w@kku
 
 #EXTINF:0,Vernnissage TV SD
 http://149.11.34.6:1935/live/vernissagetv.stream/hasbahca.m3u8

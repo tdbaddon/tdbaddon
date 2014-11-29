@@ -145,6 +145,9 @@ rtmp://198.27.75.99/app playpath=seinfeld02 swfUrl=http://www.tgun.tv/lock/playe
 
 #EXTINF:0,South Park
 rtmp://192.99.38.122/app/ playpath=southp02 swfUrl=http://www.tgun.tv/lock/player.swf pageUrl=http://tgun.tv/shows/ch1 playpath=southp02
+
+#EXTINF:0,Sons of Anarchy
+http://62.210.76.216:8080/hls/soaxhd.m3u8?b?b*t$
  
 #EXTINF:0,That 70s Show 
 rtmp://198.27.75.99/app playpath=that70sshow swfUrl=http://www.tgun.tv/lock/player.swf pageUrl=http://www.tgun.tv/menus/players/playerindex6.php?that70sshow live=true
@@ -188,7 +191,7 @@ rtmp://198.27.75.99/app/ playpath=3scom01 swfUrl=http://www.tgun.tv/lock/player.
 #EXTINF:0,Two and a Half Men 
 rtmp://192.99.38.122/app playpath=men02 swfUrl=http://www.tgun.tv/locked/player.swf live=1 pageUrl=http://www.tgun.tv/embeds/index.php?men02&widthid=600&heightid=450
  
-#EXTINF:0,Vikings 720 
+#EXTINF:0,Vikings
 rtmp://198.27.75.99/app/ playpath=vikings02 swfUrl=http://www.tgun.tv/lock/player.swf pageUrl=http://tgun.tv/shows/ch1 playpath=vikings02
  
 #EXTINF:0,Will & Grace 

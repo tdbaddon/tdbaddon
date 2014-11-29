@@ -89,8 +89,8 @@ http://109.122.121.21/live/kanal_3.stream/playlist.m3u8?hash=2f171f9e0f1866c53df
 #EXTINF:-1,KLAN KS 
 http://edgetiboeu.tibo.tv:8081/europe/wowza2/live/klankosova.stream_720p/playlist.m3u8 
 
-#EXTINF:0,Koha SD THISCHANNELISDOWN----------
-
+#EXTINF:0,Koha TV HD
+rtmp://live.tvkoha.tv/live/koha app=live/koha swfUrl=http://live.tvkoha.tv/playerplus.swf pageUrl=http://www.tvkoha.tv/live/tv playpath=livestream swfVfy=true live=true timeout=15
 
 #EXTINF:0,Kopliku SD THISCHANNELISDOWN----------
 
@@ -125,11 +125,14 @@ http://109.122.121.21/live/pink.stream/playlist.m3u8?hash=2f171f9e0f1866c53df3ca
 #EXTINF:0,PRVA HD
 http://109.122.121.21/live/prva.stream/playlist.m3u8?hash=2f171f9e0f1866c53df3ca163c9717b7b895b8b8
 
-#EXTINF:0,Rokum TV 1 SD THISCHANNELISDOWN----------
-
+#EXTINF:0,Rokum TV HD
+rtmp://82.114.65.202/live/rrokumtv
 
 #EXTINF:0,RTCG SAT HD 
 http://109.122.121.21/live/rtcg.stream/playlist.m3u8?hash=2f171f9e0f1866c53df3ca163c9717b7b895b8b8
+
+#EXTINF:0,RTK 1 HD
+rtmp://wowza.rtkit.com/live/livestream
 
 #EXTINF:0,RTRS HD 
 http://109.122.121.21/live/rtrs.stream/playlist.m3u8?hash=2f171f9e0f1866c53df3ca163c9717b7b895b8b8
