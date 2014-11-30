@@ -28,15 +28,17 @@ http://80.77.52.6:4444/udp/230.0.3.15:12345
 #EXTINF:0,Cartoons & Comedy SD
 rtmp://mi2.gv.filmon.com:1935/live/_definst_/2734.low.stream?b?b*t$
 
-#EXTINF:0,Disney Channel HD  THISCHANNELISDOWN----------
-
+#EXTINF:0,Disney Channel HD  (change audio)
+http://83.255.136.115:8001/1:0:1:514:2F:A027:FFFF0000:0:0:0:
 
 #EXTINF:0,Disney Junior HD THISCHANNELISDOWN----------
 
 
-#EXTINF:0,Disney XD HD THISCHANNELISDOWN----------
+#EXTINF:0,Disney XD HD (change audio)
+http://83.255.136.115:8001/1:0:1:521:1E:A027:FFFF0000:0:0:0:
 
-#EXTINF:0,Jim Jam SD THISCHANNELISDOWN----------
+#EXTINF:0,Jim Jam HD
+http://202.75.23.37/live/ch17/03.m3u8
 
 #EXTINF:0,Looney Tunes SD
 rtmp://104.130.79.136:1935/live/lt

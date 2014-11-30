@@ -5,7 +5,7 @@
 #EXTINF:0,Animal Planet HD
 http://202.75.23.34/live/ch31/03.m3u8
 
-#EXTINF:0,Discovery Channel HQ (change audio)
+#EXTINF:0,[COLOR red] Discovery Channel HQ (change audio) [/COLOR]
 http://hls.cn.ru/streaming/discovery_hd/16/fullhd/playlist.m3u8
 
 #EXTINF:0,Discovery Channel SD

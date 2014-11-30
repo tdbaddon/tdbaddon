@@ -166,8 +166,11 @@ rtmp://rtmp.zerocast.tv:1935/live/ playpath=Waz0WqvbqNHmt0gdzrsm swfUrl=http://p
 #EXTINF:0,Universal Channel HD
 http://secure.ilikehd.com/livetv/player/totlink.m3u8?channel_id=a7105ed1bb0a44bba1f4f71f2352b892
 
-#EXTINF:0,USA Network SD
+#EXTINF:0,USA Network SD A
 rtmpe://46.246.124.3:1935/live/usao0 playpath=usao0 swfUrl=http://p.jwpcdn.com/6/8/jwplayer.flash.swf pageUrl=http://prvservers.com/embed2.php?u=usao0&vw=620&vh=470&domain=usachannels.tv token=#yw%tt#w@kku
+
+#EXTINF:0,USA Network SD B
+rtmp://rtmp.zerocast.tv:1935/live playpath=jvZXQUYQmlsPirfiVK1G swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
 
 #EXTINF:0,Vernnissage TV SD
 http://149.11.34.6:1935/live/vernissagetv.stream/hasbahca.m3u8
@@ -184,7 +187,7 @@ rtmp://mi2.gv.filmon.com:8086/live/263.high.stream
 #EXTINF:0,Wineram TV 720 HD THISCHANNELISDOWN----------
 
 
-#EXTINF:0,World Fashion TV HQ
+#EXTINF:0,[COLOR red] World Fashion TV HQ [/COLOR]
 http://btv-net.mediacdn.ru/TVB2/ngrp:wfhdeu.stream_all/chunklist_b3128000.m3u8
 
 #EXTINF:0,World of Wine HD THISCHANNELISDOWN----------

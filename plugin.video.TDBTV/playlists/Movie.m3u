@@ -1,9 +1,41 @@
 ﻿#EXTM3U
-#EXTINF:0,
 
+
+#EXTINF:0,24/7 Movies HD 
+rtmp://62.210.76.216/live2 playpath=stopstealingmyshitmotherfuckers swfUrl=http://releases.flowplayer.org/5.4.6/flowplayer.swf live=1 pageUrl=http://www.stream4free.eu/movies-hd/?b?b*t$
 
 #EXTINF:0,BigPond Movies Extra SD
 mms://ken-cdn220-is-3.se.bptvlive.ngcdn.telstra.com/bp_online_movieextra_high
+
+#EXTINF:0,C More Action HD
+http://83.255.136.115:8001/1:0:1:47A:30:A027:FFFF0000:0:0:0:
+ 
+#EXTINF:0,C More Emotion HD
+http://83.255.136.115:8001/1:0:1:43E:20:A027:FFFF0000:0:0:0:
+ 
+#EXTINF:0,C More First HD
+http://83.255.136.115:8001/1:0:1:478:20:A027:FFFF0000:0:0:0:
+ 
+#EXTINF:0,C More Hits HD
+http://83.255.136.115:8001/1:0:1:47B:20:A027:FFFF0000:0:0:0:
+
+#EXTINF:0,Cinestar Action & Thriller HD
+http://83.139.104.109/Content/HLS/Live/Channel(cinestar_action_and_thriller)/Stream(03)/index.m3u8
+
+#EXTINF:0,Cinestar Premiere 1 HD
+http://83.139.104.109/Content/HLS/Live/Channel(cinestar_premiere_1)/Stream(03)/index.m3u8
+
+#EXTINF:0,Cinestar Premiere 2 HD
+http://83.139.104.109/Content/HLS/Live/Channel(cinestar_premiere_2)/Stream(03)/index.m3u8
+
+#EXTINF:0,Cinestar TV HD
+http://83.139.104.109/Content/HLS/Live/Channel(cinestar_tv)/Stream(03)/index.m3u8
+
+#EXTINF:0,Fox Family Movies SD
+rtmp://nonamehdfree.dyndns.org:443/limelight app=limelight?t=guest playpath=02_foxfamilyhd_360p swfUrl=https://nonamehd.com/playerv3.swf flashver=WIN\2013,0,0,214 pageUrl=https://nonamehd.com/?b?b*t$ live=1 timeout=15
+
+#EXTINF:0,Fox Movies Premium SD
+rtmp://nonamehdfree.dyndns.org:443/limelight app=limelight?t=guest playpath=02_foxmovies_360p swfUrl=https://nonamehd.com/playerv3.swf flashver=WIN\2013,0,0,214 pageUrl=https://nonamehd.com/?b?b*t$ live=1 timeout=15
 
 #EXTINF:0,FX-D HD   THISCHANNELISDOWN----------
 
@@ -43,8 +75,8 @@ http://on108.setplex.net/fastv_2psh/PinkPremiumglobal_rly_greece_103/playlist.m3
 #EXTINF:0,Showtime IQ HD
 mmsh://mediafilmcenter.ro:10
 
-#EXTINF:0,Showtime HD THISCHANNELISDOWN----------
-
+#EXTINF:0,Showtime SD
+rtmp://rtmp.zerocast.tv:1935/live playpath=kbMD64czDshAmjDd4kxQ swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
 
 #EXTINF:0,Sky Action HD THISCHANNELISDOWN----------
 

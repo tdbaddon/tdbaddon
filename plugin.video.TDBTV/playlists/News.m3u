@@ -25,7 +25,7 @@ rtmp://d.cdn.newschat.tv/edge playpath=canadas_live swfUrl=http://msnbclive.eu/p
 #EXTINF:0,CCTV News SD
 http://77.36.61.45:8010/CCTVNews.m3u8
 
-#EXTINF:0,CNN HQ
+#EXTINF:0,[COLOR red] CNN HQ [/COLOR]
 http://hls.novotelecom.ru/streaming/cnn/tvrec/playlist.m3u8
 
 #EXTINF:0,CNN HD A
