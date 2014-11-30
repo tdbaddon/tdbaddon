@@ -38,8 +38,8 @@ http://edgetiboeu.tibo.tv:8081/europe/dveo2/m3u8/alsatchannel.m3u8
 #EXTINF:0,ATV HD THISCHANNELISDOWN----------
 
 
-#EXTINF:0,B92 HD 
-http://109.122.121.21/live/b92.stream/playlist.m3u8?hash=2f171f9e0f1866c53df3ca163c9717b7b895b8b8
+#EXTINF:0,B92 HD  THISCHANNELISDOWN----------
+
 
 #EXTINF:0,Balkan TV SD
 rtmp://yayin.tvdunyasi.tv/live/balkanrtv
@@ -67,15 +67,15 @@ rtmp://yayin.tvdunyasi.tv/live/balkanrtv
 
 #EXTINF:0,Globi SD THISCHANNELISDOWN----------
 
-#EXTINF:-1,Happy HD
-http://109.122.121.21/live/happy.stream/playlist.m3u8?hash=2f171f9e0f1866c53df3ca163c9717b7b895b8b8
+
+#EXTINF:-1,Happy HD THISCHANNELISDOWN----------
 
 
-#EXTINF:0,HRT 1 HD 
-http://109.122.121.21/live/hrt_1.stream/playlist.m3u8?hash=2f171f9e0f1866c53df3ca163c9717b7b895b8b8
+#EXTINF:0,HRT 1 HD  THISCHANNELISDOWN----------
 
-#EXTINF:0,HTV 2 HD 
-http://109.122.121.21/live/hrt_2.stream/playlist.m3u8?hash=2f171f9e0f1866c53df3ca163c9717b7b895b8b8
+
+#EXTINF:0,HTV 2 HD  THISCHANNELISDOWN----------
+
 
 #EXTINF:0,Iliret SD THISCHANNELISDOWN----------
 
@@ -83,11 +83,11 @@ http://109.122.121.21/live/hrt_2.stream/playlist.m3u8?hash=2f171f9e0f1866c53df3c
 #EXTINF:0,Jug TV  SD
 rtmp://84.20.77.50/live/livestream1
 
-#EXTINF:0,Kanal 3 SD
-http://109.122.121.21/live/kanal_3.stream/playlist.m3u8?hash=2f171f9e0f1866c53df3ca163c9717b7b895b8b8
+#EXTINF:0,Kanal 3 SD THISCHANNELISDOWN----------
 
-#EXTINF:-1,KLAN KS 
-http://edgetiboeu.tibo.tv:8081/europe/wowza2/live/klankosova.stream_720p/playlist.m3u8 
+
+#EXTINF:-1,KLAN KS  THISCHANNELISDOWN----------
+
 
 #EXTINF:0,Koha TV HD
 rtmp://live.tvkoha.tv/live/koha app=live/koha swfUrl=http://live.tvkoha.tv/playerplus.swf pageUrl=http://www.tvkoha.tv/live/tv playpath=livestream swfVfy=true live=true timeout=15
@@ -110,8 +110,8 @@ rtmp://live.tvkoha.tv/live/koha app=live/koha swfUrl=http://live.tvkoha.tv/playe
 #EXTINF:0,OTV Valentino SD THISCHANNELISDOWN----------
 
 
-#EXTINF:0,Palma SD 
-http://109.122.121.21/live/palma.stream/playlist.m3u8?hash=2f171f9e0f1866c53df3ca163c9717b7b895b8b8
+#EXTINF:0,Palma SD  THISCHANNELISDOWN----------
+
 
 #EXTINF:0,Pannon TV Subotica HD
 http://212.200.235.242:8080/
@@ -119,40 +119,41 @@ http://212.200.235.242:8080/
 #EXTINF:0,Party HD
 rtmp://149.11.34.6/live/partytv.stream
 
-#EXTINF:0,Pink Film HD
-http://109.122.121.21/live/pink.stream/playlist.m3u8?hash=2f171f9e0f1866c53df3ca163c9717b7b895b8b8
+#EXTINF:0,Pink Film HD THISCHANNELISDOWN----------
 
-#EXTINF:0,PRVA HD
-http://109.122.121.21/live/prva.stream/playlist.m3u8?hash=2f171f9e0f1866c53df3ca163c9717b7b895b8b8
+
+#EXTINF:0,PRVA HD THISCHANNELISDOWN----------
+
 
 #EXTINF:0,Rokum TV HD
 rtmp://82.114.65.202/live/rrokumtv
 
-#EXTINF:0,RTCG SAT HD 
-http://109.122.121.21/live/rtcg.stream/playlist.m3u8?hash=2f171f9e0f1866c53df3ca163c9717b7b895b8b8
+#EXTINF:0,RTCG SAT HD  THISCHANNELISDOWN----------
+
 
 #EXTINF:0,RTK 1 HD
 rtmp://wowza.rtkit.com/live/livestream
 
-#EXTINF:0,RTRS HD 
-http://109.122.121.21/live/rtrs.stream/playlist.m3u8?hash=2f171f9e0f1866c53df3ca163c9717b7b895b8b8
+#EXTINF:0,RTRS HD  THISCHANNELISDOWN----------
 
-#EXTINF:0,RTS 1 HD
-http://109.122.121.21/live/rts_1.stream/playlist.m3u8?hash=2f171f9e0f1866c53df3ca163c9717b7b895b8b8
 
-#EXTINF:0,RTS 2 HD
-http://109.122.121.21/live/rts_2.stream/playlist.m3u8?hash=2f171f9e0f1866c53df3ca163c9717b7b895b8b8
+#EXTINF:0,RTS 1 HD THISCHANNELISDOWN----------
 
-#EXTINF:-1,RTV 1 HD
-http://109.122.121.21/live/rtv_1.stream/playlist.m3u8?hash=2f171f9e0f1866c53df3ca163c9717b7b895b8b8
+
+#EXTINF:0,RTS 2 HD THISCHANNELISDOWN----------
+
+
+#EXTINF:-1,RTV 1 HD THISCHANNELISDOWN----------
+
 
 #EXTINF:0,Rozafa SD THISCHANNELISDOWN----------
 
-#EXTINF:-1,SKY Plus HD
-http://109.122.121.21/live/sky_plus.stream/playlist.m3u8?hash=2f171f9e0f1866c53df3ca163c9717b7b895b8b8
 
-#EXTINF:0,Sos HD 
-http://109.122.121.21/live/sos.stream/playlist.m3u8?hash=2f171f9e0f1866c53df3ca163c9717b7b895b8b8
+#EXTINF:-1,SKY Plus HD THISCHANNELISDOWN----------
+
+
+#EXTINF:0,Sos HD  THISCHANNELISDOWN----------
+
 
 #EXTINF:0,Sot7 SD THISCHANNELISDOWN----------
 
@@ -160,8 +161,8 @@ http://109.122.121.21/live/sos.stream/playlist.m3u8?hash=2f171f9e0f1866c53df3ca1
 #EXTINF:0,Sot News SD THISCHANNELISDOWN----------
 
 
-#EXTINF:0,Studio B HD 
-http://109.122.121.21/live/studio_b.stream/playlist.m3u8?hash=2f171f9e0f1866c53df3ca163c9717b7b895b8b8
+#EXTINF:0,Studio B HD  THISCHANNELISDOWN----------
+
 
 #EXTINF:0,Superfolk SD
 rtmp://str103.setplex.net:1935/228/stv_folk
@@ -169,8 +170,8 @@ rtmp://str103.setplex.net:1935/228/stv_folk
 #EXTINF:0,Supersonic SD
 rtmp://str103.setplex.net:1935/228/stv_online
 
-#EXTINF:0,Teuta TV SD
-rtmp://str103.setplex.net:1935/228/teuta
+#EXTINF:0,Teuta TV SD THISCHANNELISDOWN----------
+
 
 #EXTINF:0,TK HD THISCHANNELISDOWN----------
 

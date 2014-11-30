@@ -24,16 +24,13 @@ http://202.75.23.34/live/ch32/01.m3u8
 http://202.75.23.34/live/ch33/03.m3u8
 
 #EXTINF:0,Discovery World HD
-http://202.75.23.35:1400/live/ch38/03.m3u8
-
-#EXTINF:0,Discovery World SD
 http://202.75.23.34:1400/live/ch30/03.m3u8
 
-#EXTINF:0, FYI HD
-http://ilg.club/streamlink.m3u8?channel_id=8c49d827190b4b29a9d5e3be92e5054c&bitrate=800 
+#EXTINF:0, FYI HD  THISCHANNELISDOWN----------
 
-#EXTINF:0,History SD
-http://176.51.83.56:1234/udp/233.7.70.185:5000
+
+#EXTINF:0,History SD  THISCHANNELISDOWN----------
+
 
 #EXTINF:0,NASA Media HD
 http://media.infozen.cshls.lldns.net/infozen/media/media/media_1000.m3u8
@@ -44,8 +41,8 @@ http://public.infozen.cshls.lldns.net/infozen/public/public.m3u8
 #EXTINF:0,Nat Geo HD
 http://202.75.23.34/live/ch31/03.m3u8
 
-#EXTINF:0,Nat Geo People SD
-http://ilg.club/streamlink.m3u8?channel_id=7ad09373f65c48d5bb6aa6c3b2ca519a&bitrate=800
+#EXTINF:0,Nat Geo People SD  THISCHANNELISDOWN----------
+
 
 #EXTINF:0,Nat Geo Wild HD
 http://202.75.23.35/live/ch39/03.m3u8
@@ -53,22 +50,22 @@ http://202.75.23.35/live/ch39/03.m3u8
 #EXTINF:0,National Geographic HD
 http://202.75.23.35/live/ch38/03.m3u8
 
-#EXTINF:0,Travel Channel SD
+#EXTINF:0,Travel Channel SD A
 http://91.191.249.51:81/udp/239.255.2.240:1234
 
-#EXTINF:0,Travel Channel 2 SD
+#EXTINF:0,Travel Channel SD B
 http://83.139.104.123/Content/HLS/Live/Channel(travel_channel)/Stream(03)/index.m3u8
 
-#EXTINF:0,Viasat Explorer HD (change audio)
+#EXTINF:0,Viasat Explorer HD A (change audio)
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_VIASATEXPLORER/variant.m3u8
 
-#EXTINF:0,Viasat Explorer HD (change audio)
+#EXTINF:0,Viasat Explorer HD B (change audio)
 http://80.77.52.6:4444/udp/230.0.3.55:12345
 
 #EXTINF:0,Viasat History A HD (change audio)
 http://80.77.52.6:4444/udp/230.0.3.56:12345
 
-#EXTINF:0,Viasat History B HD
+#EXTINF:0,Viasat History B HD (change audio)
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_VIASATHISTORY/variant.m3u8
 
 #EXTINF:0,Viasat History C SD (change audio)

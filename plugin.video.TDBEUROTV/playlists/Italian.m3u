@@ -11,14 +11,14 @@ rtsp://77.72.196.214:8554/live/mp4:AltoAdigeTV
 #EXTINF:0,Brescia Live TV SD
 http://wms.shared.streamshow.it/brescialivetv/brescialivetv/chunklist_w957914602.m3u8
 
-#EXTINF:0,Calabria Channel SD
-rtmp://fl1.mediastreaming.it/calabriachannel playpath=livestream swfUrl=http://www.mediastreaming.it/c3/swf/player.swf live=1 pageUrl=http://www.mediastreaming.it/c3/player.htm
+#EXTINF:0,Calabria Channel SD THISCHANNELISDOWN----------
+
 
 #EXTINF:0,Canale 2 SD
 http://wms.iptv.4wardstream.net/canale2iptv/canale2iptv/chunklist_w585511673.m3u8
 
-#EXTINF:0,Canale 21 Napoli SD
-rtmp://live.streamcaster.net:1935/canale21_live playpath=canale21 swfUrl=http://canale21.kronopress.com/script/Flowplayer/flowplayer-3.2.16.swf pageUrl=http://canale21.kronopress.com/player.aspx live=1 timeout=10
+#EXTINF:0,Canale 21 Napoli SD THISCHANNELISDOWN----------
+
 
 #EXTINF:0,Canale 7 SD
 http://fms.shared.streamshow.it/canale7/canale7/sansar.m3u8
@@ -97,9 +97,6 @@ rtmp://213.205.30.50/sardegna1 playpath=live1.stream
 
 #EXTINF:0,SkyTG24 SD
 rtmp://cp49989.live.edgefcs.net:1935/live playpath=streamRM1@2564 swfUrl=http://videoplatform.sky.it/player/swf/player_v2.swf pageUrl=http://video.sky.it/news/diretta live=1 timeout=10
-
-#EXTINF:0,Studio 1 720 HD
-rtmp://94.23.226.227/studiouno playpath=studiouno.sdp
 
 #EXTINF:0,Studio 100 SD
 http://wms2.shared.streamshow.it/studio100ta/studio100ta/playlist.m3u8

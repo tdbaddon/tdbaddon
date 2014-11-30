@@ -1,26 +1,23 @@
 ﻿#EXTM3U
 #EXTINF:0,
 
-#EXTINF:0,24/7 Movies HD THISCHANNELISDOWN----------
-
 
 #EXTINF:0,BigPond Movies Extra SD
 mms://ken-cdn220-is-3.se.bptvlive.ngcdn.telstra.com/bp_online_movieextra_high
 
-#EXTINF:0,FX-D HD 1
-http://ilg.club/streamlink.m3u8?channel_id=2e0e4b05aa6e428593f3b45b710045b7&bitrate=800
+#EXTINF:0,FX-D HD   THISCHANNELISDOWN----------
 
-#EXTINF:0,FX-D HD 2
-http://86.146.65.101:8881/get-file3.php?id=28
+#EXTINF:0,Kino TV SD 
+http://83.139.104.123/Content/HLS/Live/Channel(kino_tv)/Stream(03)/index.m3u8
 
 #EXTINF:0,Lotus Macau SD
 rtmp://58.97.57.152/live playpath=ch33 swfUrl=http://www.one2hd.com/swfs/mediaPlayer/mediaPlayer.swf pageUrl=http://www.one2hd.com
 
-#EXTINF:0,MGM SD
-http://202.75.23.35/live/ch40/01.m3u8
-
 #EXTINF:0,MGM HD
 http://202.75.23.35:1400/live/ch40/03.m3u8
+
+#EXTINF:0,MGM SD
+http://202.75.23.35/live/ch40/01.m3u8
 
 #EXTINF:0,Paramount Channel (change audio) HD
 http://80.77.52.6:4444/udp/230.0.3.20:12345
@@ -46,26 +43,25 @@ http://on108.setplex.net/fastv_2psh/PinkPremiumglobal_rly_greece_103/playlist.m3
 #EXTINF:0,Showtime IQ HD
 mmsh://mediafilmcenter.ro:10
 
-#EXTINF:0,Showtime HD
-rtmp://rtmp.zerocast.tv:1935/live/ playpath=VCV8SViFVBv2nX5RQwKI swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
+#EXTINF:0,Showtime HD THISCHANNELISDOWN----------
 
-#EXTINF:0,Sky Action HD
-http://86.146.65.101:8881/get-file3.php?id=2
 
-#EXTINF:0,Sky Cinema HD
-http://86.146.65.101:8881/get-file3.php?id=8
+#EXTINF:0,Sky Action HD THISCHANNELISDOWN----------
 
-#EXTINF:0,Sky Cinema+1 HD
-http://86.146.65.101:8881/get-file3.php?id=10
 
-#EXTINF:0,Sky Cinema+24 HD
-http://86.146.65.101:8881/get-file3.php?id=12
+#EXTINF:0,Sky Cinema HD THISCHANNELISDOWN----------
 
-#EXTINF:0,Sky Comedy HD
-http://86.146.65.101:8881/get-file3.php?id=4
 
-#EXTINF:0,Sky Emotion HD
-http://86.146.65.101:8881/get-file3.php?id=6
+#EXTINF:0,Sky Cinema+1 HD THISCHANNELISDOWN----------
+
+
+#EXTINF:0,Sky Cinema+24 HD THISCHANNELISDOWN----------
+
+
+#EXTINF:0,Sky Comedy HD THISCHANNELISDOWN----------
+
+
+#EXTINF:0,Sky Emotion HD THISCHANNELISDOWN----------
 
 
 #EXTINF:0,Sky Modern Greats SD THISCHANNELISDOWN----------
@@ -74,8 +70,8 @@ http://86.146.65.101:8881/get-file3.php?id=6
 #EXTINF:0,Sky Premiere SD THISCHANNELISDOWN----------
 
 
-#EXTINF:0,SYFY Movie Channel HD
-http://86.146.65.101:8881/get-file3.php?id=26
+#EXTINF:0,SYFY Movie Channel HD THISCHANNELISDOWN----------
+
 
 #EXTINF:0,TV 1000 (change audio) HD
 http://80.77.52.6:4444/udp/230.0.3.54:12345

@@ -11,8 +11,8 @@ rtmp://s5.alfaomega.tv/alfaomega/alfaomega2.sdp
 #EXTINF:0,Alfa TV Makedon
 rtsp://streamer1.streamhost.org:1935/salive/GMIalfah
 
-#EXTINF:0,Ballkan TV SD
-rtmp://yayin.tvdunyasi.tv/live/balkanrtv
+#EXTINF:0,Ballkan TV SD THISCHANNELISDOWN----------
+
 
 #EXTINF:0,CMC SD
 http://83.139.104.123/Content/HLS/Live/Channel(cmc)/Stream(03)/index.m3u8
@@ -139,9 +139,6 @@ http://on108.setplex.net/fastv_2psh/PinkWorldglobal_rly_greece_109/hasbahca.m3u8
 
 #EXTINF:0,Pink Zabava HD
 http://on108.setplex.net/fastv_2psh/PinkZabavaglobal_rly_greece_103/hasbahca.m3u8
-
-#EXTINF:0,Rokum TV SD
-rtmp://82.114.65.202/live/rrokumtv
 
 #EXTINF:0,RTB TV SD
 http://83.139.104.123/Content/HLS/Live/Channel(rtb_tv)/Stream(03)/index.m3u8
