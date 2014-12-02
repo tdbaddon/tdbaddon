@@ -5,13 +5,13 @@
 #EXTINF:0,Animal Planet HD
 http://202.75.23.34/live/ch31/03.m3u8
 
-#EXTINF:0,[COLOR red] Discovery Channel HQ (change audio) [/COLOR]
+#EXTINF:0,Discovery Channel HQ
 http://hls.cn.ru/streaming/discovery_hd/16/fullhd/playlist.m3u8
 
 #EXTINF:0,Discovery Channel SD
 http://202.75.23.34/live/ch29/03.m3u8
 
-#EXTINF:0,Discovery Home SD
+#EXTINF:0,Discovery Travel & Living SD
 http://202.75.23.34:1400/live/ch34/01.m3u8
 
 #EXTINF:0,Discovery Max HD
@@ -50,25 +50,25 @@ http://202.75.23.35/live/ch39/03.m3u8
 #EXTINF:0,National Geographic HD
 http://202.75.23.35/live/ch38/03.m3u8
 
-#EXTINF:0,Travel Channel SD A
+#EXTINF:0,Travel Channel SD
 http://91.191.249.51:81/udp/239.255.2.240:1234
 
-#EXTINF:0,Travel Channel SD B
+#EXTINF:0,Travel Channel SD
 http://83.139.104.123/Content/HLS/Live/Channel(travel_channel)/Stream(03)/index.m3u8
 
-#EXTINF:0,Viasat Explorer HD A (change audio)
+#EXTINF:0,Viasat Explorer HD
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_VIASATEXPLORER/variant.m3u8
 
-#EXTINF:0,Viasat Explorer HD B (change audio)
+#EXTINF:0,Viasat Explorer HD
 http://80.77.52.6:4444/udp/230.0.3.55:12345
 
-#EXTINF:0,Viasat History A HD (change audio)
+#EXTINF:0,Viasat History HD
 http://80.77.52.6:4444/udp/230.0.3.56:12345
 
-#EXTINF:0,Viasat History B HD (change audio)
+#EXTINF:0,Viasat History HD
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_VIASATHISTORY/variant.m3u8
 
-#EXTINF:0,Viasat History C SD (change audio)
+#EXTINF:0,Viasat History SD
 http://83.139.104.123/Content/HLS/Live/Channel(viasat_history)/Stream(03)/index.m3u8
 
 #EXTINF:0,Viasat Nature HD

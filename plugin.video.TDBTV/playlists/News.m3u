@@ -25,13 +25,13 @@ rtmp://d.cdn.newschat.tv/edge playpath=canadas_live swfUrl=http://msnbclive.eu/p
 #EXTINF:0,CCTV News SD
 http://77.36.61.45:8010/CCTVNews.m3u8
 
-#EXTINF:0,[COLOR red] CNN HQ [/COLOR]
+#EXTINF:0,CNN HQ
 http://hls.novotelecom.ru/streaming/cnn/tvrec/playlist.m3u8
 
-#EXTINF:0,CNN HD A
+#EXTINF:0,CNN HD
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/cnn/ls_satlink/b_828.m3u8
 
-#EXTINF:0,CNN HD B
+#EXTINF:0,CNN HD
 http://hls.novotelecom.ru/streaming/cnn/tvrec/playlist.m3u8
 
 #EXTINF:0,CNN SD
@@ -58,10 +58,10 @@ rtmp://c.cdn.livenewschat.eu/edge playpath=msnbc_live swfUrl=http://msnbclive.eu
 #EXTINF:0,Pentagon Channel SD
 http://149.11.34.6:1935/live/pentagon.stream/playlist.m3u8?wowzasessionid=750145898
 
-#EXTINF:0,Press News HD
+#EXTINF:0,Press TV HD
 rtmp://204.107.26.252:8086/live/905.high.stream
 
-#EXTINF:0,Press News SD
+#EXTINF:0,Press TV SD
 rtmp://mtv.fms-01.visionip.tv/live/mtv-ptv-live-25f-16x9-SDh
 
 #EXTINF:0,Reuters Live SD THISCHANNELISDOWN----------

@@ -19,7 +19,7 @@ rtmp://live61.la3.edge.filmon.com:1935/ app=live/?id=1ad5aac39bb13fbe2ec2cb9f303
 #EXTINF:0,Everything '80s
 rtmp://live61.la3.edge.filmon.com:1935/ app=live/?id=1ad5aac39bb13fbeb74863ba9c14825e8e082acb4db9ce51f3d36b627143e6ec580a27bd16a18c6cd88de1c34121c79cd85e2a94eab13fa4b90e2ffe929319d65d25622ef72f7acd37f72c3b7b974fa998af9d72ea9853768fc37b49436162e48f8817bc3d666ce14511b882566f6e9b016fdf539e81d2bb997311fa1ed59792e41c91e1f82489e8cfcdbf917648705ded74c26139bda1ae pageUrl=https://www.filmon.com/ swfUrl=https://www.filmon.com/tv/modules/FilmOnTV/files/flashapp/filmon/FilmonPlayer.swf?v=28 conn=O:1 conn=O:0 playpath=584.high.stream buffer=96000000
 
-#EXTINF:0,Groove (Disco and Funk)
+#EXTINF:0,Groove
 rtmp://live61.la3.edge.filmon.com:1935/ app=live/?id=1ad5aac39bb13fbeb74863ba9c14825eb26cda251f98babedd26b78d96f8ce051f38abe6f98c42dd4852a7c0899ad155883c297f79421a79e435fbab78b821c830d91221d8fe774088153a8de81237ef773515b54c7b015f78e0b29875f37667444008fd52e32417b18aae3dc765690424a61867c0ec123edd9e8d0b8a219a74ec7c6b17d92f3674652c11c72c50563df83f9da07ce50e2a pageUrl=https://www.filmon.com/ swfUrl=https://www.filmon.com/tv/modules/FilmOnTV/files/flashapp/filmon/FilmonPlayer.swf?v=28 conn=O:1 conn=O:0 playpath=653.high.stream buffer=96000000
 
 #EXTINF:0,Soul Storm
@@ -70,7 +70,7 @@ rtmp://live61.la3.edge.filmon.com:1935/ app=live/?id=1ad5aac39bb13fbe2ec2cb9f303
 #EXTINF:0,Hip Hop
 rtmp://live61.la3.edge.filmon.com:1935/ app=live/?id=1ad5aac39bb13fbe4deb292979e1ce678463cee060828d8f225d271a8050497ca1639f41a4a97e6eb64617374d130bb3b8785e30e2bc19d918f6e88a3184914548262d4cde002d7d192c0fcda82e1a39c11cf02b9f387166ee9c7bc100470e8478fc4a01270e0fa69def95698dec660603a70dba4cb4268cab7b98f695ded265af15a822900add4d902ba68418c251debf57c3016d309662 pageUrl=https://www.filmon.com/ swfUrl=https://www.filmon.com/tv/modules/FilmOnTV/files/flashapp/filmon/FilmonPlayer.swf?v=28 conn=O:1 conn=O:0 playpath=623.high.stream buffer=96000000
 
-#EXTINF:0,Alt Country - Americana
+#EXTINF:0,Alt Country
 rtmp://live61.la3.edge.filmon.com:1935/ app=live/?id=1ad5aac39bb13fbe0b0446db5bb59e90181b9d33d7e3e3f01cf5e903a936e553a4b7fc7fac849d190ed59e4ccf5dc332f5c07f7c15b931bdab9628a13b7f1e99d78d2ca15885cbd6c3a8ab6b60ed76cd5a60f2201258395cca8ea7261f0ad72ce8d96b9de7de696e6b13dae7f71a8bf0c9bcfa6787110dc7e961363576dda35bbe7dfee1c397262a416d2868a970fa3abd00dc4fac925bf5 pageUrl=https://www.filmon.com/ swfUrl=https://www.filmon.com/tv/modules/FilmOnTV/files/flashapp/filmon/FilmonPlayer.swf?v=28 conn=O:1 conn=O:0 playpath=665.high.stream buffer=96000000
 
 #EXTINF:0,The Light
@@ -91,7 +91,7 @@ rtmp://live61.la3.edge.filmon.com:1935/ app=live/?id=1ad5aac39bb13fbe4deb292979e
 #EXTINF:0,Smooth Jazz
 rtmp://live61.la3.edge.filmon.com:1935/ app=live/?id=1ad5aac39bb13fbe0b0446db5bb59e903d8a3e57c53a13171941385da316159eb9bd57f9785f8109f6254972b410de53fa743b6040c81c0e057d16a4d9faceb4467ca808340ea495c9c744bec955eea123a67872885207fedf7425c23f7c1b2dddc4984aaba1b1233fd2d92cbe9349bad41f3e85564a4cd6644962c965d5f6ffe4421a442edabea1d98a5912de905cf24ae92486bcac0e41 pageUrl=https://www.filmon.com/ swfUrl=https://www.filmon.com/tv/modules/FilmOnTV/files/flashapp/filmon/FilmonPlayer.swf?v=28 conn=O:1 conn=O:0 playpath=593.high.stream buffer=96000000
 
-#EXTINF:0,Swinging Standards
+#EXTINF:0,Swinging
 rtmp://live61.la3.edge.filmon.com:1935/ app=live/?id=1ad5aac39bb13fbe0b0446db5bb59e909c85a8089a6edddc0c9eaf9472d88214235d11120371e01a3726820286cf6239d298d77aef32b8c6f14ef34806a5cd62d1d215ecab7c4799fe97f337d03a7cd10ec2f29854c07e46be4a11fccea981cadd9722e5599b23ce46b046de91786faf4e07521b61dbffcbcbe9e8cb942e5d1d3f161ec833a95ea243288c6309956d7bafe7c9364d161bf8 pageUrl=https://www.filmon.com/ swfUrl=https://www.filmon.com/tv/modules/FilmOnTV/files/flashapp/filmon/FilmonPlayer.swf?v=28 conn=O:1 conn=O:0 playpath=599.high.stream buffer=96000000
 
 #EXTINF:0,The Blues

@@ -5,16 +5,16 @@
 #EXTINF:0,A&E HD THISCHANNELISDOWN----------
 
 
-#EXTINF:0,ABC SD A
+#EXTINF:0,ABC SD
 rtmp://rtmp.zerocast.tv:1935/live/ playpath=rGCi7bg0Qxvs8q7Sl13l swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
 
-#EXTINF:0,ABC SD B
+#EXTINF:0,ABC SD
 http://spsknxv-i.akamaihd.net/hls/live/203386/anvato/350k/prog.m3u8?Vd?u#bt!25
 
 #EXTINF:0,AMC HD 
 rtmp://rtmp.zerocast.tv:1935/live/ playpath=TfRQx7deUAuncJwM047m swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
 
-#EXTINF:0,AXTN TV 6 SD
+#EXTINF:0,AXN TV 6 SD
 rtmp://oflash.dfw.swagit.com/live/austintx/live-1
 
 #EXTINF:0,BBC 1 SD
@@ -32,9 +32,6 @@ http://81.23.58.184:8080/udp/0.0.0.0:20015
 #EXTINF:0,BIO HQ THISCHANNELISDOWN----------
 
 
-#EXTINF:0,Boston City TV US HD
-rtmp://streaming.cityofboston.gov/live/cable
-
 #EXTINF:0,Bravo SD 
 rtmpe://46.246.124.22:1935/live/bravobraco playpath=bravobraco swfUrl=http://p.jwpcdn.com/6/8/jwplayer.flash.swf pageUrl=http://prvservers.com/embed2.php?u=bravobraco&vw=620&vh=470&domain=usachannels.tv token=#yw%tt#w@kku
 
@@ -44,10 +41,10 @@ rtmp://rtmp.zerocast.tv:1935/live/ playpath=Ger61uLQ4fedzvjRjrB7   swfUrl=http:/
 #EXTINF:0,CBS Drama SD
 http://178.236.140.43:4023/udp/239.195.1.13:1234
 
-#EXTINF:0,CBS Reality HD A
+#EXTINF:0,CBS Reality HD
 http://hls01-05.az.myvideo.az/hls-live/livepkgr/cbsreality/cbsreality/cbsreality.m3u8&rRb545vJBB5tYzB7vVP
 
-#EXTINF:0,CBS Reality HD B
+#EXTINF:0,CBS Reality HD
 http://83.139.104.123/Content/HLS/Live/Channel(cbs_reality)/Stream(03)/index.m3u8?b?b*t$
 
 #EXTINF:0,Channel 4 HD  THISCHANNELISDOWN----------
@@ -71,7 +68,7 @@ rtmp://rtmp.zerocast.tv:1935/live playpath=IWSyIjvWgHRCMM7MEJoZ  swfUrl=http://c
 #EXTINF:0,Denver 8 TV SD THISCHANNELISDOWN----------
 
 
-#EXTINF:0,Docu-Box HD
+#EXTINF:0,Docu Box HD
 http://stream1.zoovision.com//livespi/docubox/playlist.m3u8
 
 #EXTINF:0,English Club TV SD
@@ -83,16 +80,16 @@ http://85.187.154.9:2001/
 #EXTINF:0,Escapes HD
 rtmp://204.107.26.252:8086/live/341.high.stream
 
-#EXTINF:0,Fashion TV HD A
+#EXTINF:0,Fashion TV HD
 http://edgeb.streaming.sk/fashiontv/fashiontv.stream/playlist_b125000_w304569164.m3u8
 
-#EXTINF:0,Fashion TV HD B
+#EXTINF:0,Fashion TV HD
 http://hls.novotelecom.ru/streaming/fashion/tvrec/playlist.m3u8 
 
-#EXTINF:0,Fashion TV SD C
+#EXTINF:0,Fashion TV SD
 http://83.139.104.123/Content/HLS/Live/Channel(fashion_tv)/Stream(03)/index.m3u8
 
-#EXTINF:0,Flight Level TV US HD
+#EXTINF:0,FliteLevel TV HD
 rtmp://streaming.krautzer-lynn.com:1935/live/Stream4
 
 #EXTINF:0,Food Network HD
@@ -101,22 +98,22 @@ http://83.139.104.123/Content/HLS/Live/Channel(food_network)/Stream(03)/index.m3
 #EXTINF:0,FOX 45 HD
 rtmpe://46.246.124.23:1935/live/foxx playpath=foxx swfUrl=http://p.jwpcdn.com/6/8/jwplayer.flash.swf pageUrl=http://prvservers.com/embed2.php?u=foxx&vw=620&vh=470&domain=usachannels.tv token=#yw%tt#w@kku
 
-#EXTINF:0,FOX Life HD (change audio)
+#EXTINF:0,FOX Life HD
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_FOXLIFE/variant.m3u8
 
 #EXTINF:0,FX SD THISCHANNELISDOWN----------
 
 
-#EXTINF:0,Game Rush TV SD
+#EXTINF:0,Game Rush SD
 rtsp://46.249.213.93/broadcast/gamerushtv-tablet.3gp
 
-#EXTINF:0,Ginx Game TV HD
+#EXTINF:0,Ginx HD
 rtmp://204.107.26.252:8086/live/796.high.stream
 
 #EXTINF:0,HBO SD
 rtmpe://46.246.124.23:1935/live/hbo3 playpath=hbo3 swfUrl=http://p.jwpcdn.com/6/8/jwplayer.flash.swf pageUrl=http://prvservers.com/embed2.php?u=hbo3&vw=620&vh=470&domain=usachannels.tv token=#yw%tt#w@kku
 
-#EXTINF:0,Home Shopping Network TV SD
+#EXTINF:0,Home Shopping Network SD
 rtsp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:420p500kB31
 
 #EXTINF:0,ITV Choice HD THISCHANNELISDOWN----------
@@ -124,16 +121,16 @@ rtsp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:420p500kB31
 #EXTINF:0,Lifetime Network HD
 http://202.75.23.36/live/ch48/03.m3u8?b?b*t$
 
-#EXTINF:0,Live Landscape Channel SD
+#EXTINF:0,Live Landscape SD
 http://130.88.20.233:1237/test.flv
 
 #EXTINF:0,Live Fish Tank SD
 rtmp://80.93.53.88:1935/live/channel_3
 
-#EXTINF:0,Live Niagra Falls TV SD A
+#EXTINF:0,Live Niagra Falls 1 SD
 mms://webcams.niagarafallshotels.com/CNH-Stream2
 
-#EXTINF:0,Live Niagra Falls TV SD B
+#EXTINF:0,Live Niagra Falls 2 SD
 rtsp://video2.earthcam.com/fecnetwork/4559.flv
 
 #EXTINF:0,Live Tropical Reef SD
@@ -154,10 +151,10 @@ http://edge04.hdontap.com/hdstreams/tropicalreef_ea_hdontap/chunklist_w119148431
 #EXTINF:0,The Shopping Channel HD
 http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/master.m3u8?b?b*t$
 
-#EXTINF:0,TLC HD A
+#EXTINF:0,TLC HD
 http://202.75.23.34/live/ch35/01.m3u8
 
-#EXTINF:0,TLC HD B
+#EXTINF:0,TLC HD
 http://83.139.104.123/Content/HLS/Live/Channel(TLC)/Stream(03)/index.m3u8?b?b*t$
 
 #EXTINF:0,TNT HD
@@ -166,10 +163,10 @@ rtmp://rtmp.zerocast.tv:1935/live/ playpath=Waz0WqvbqNHmt0gdzrsm swfUrl=http://p
 #EXTINF:0,Universal Channel HD
 http://secure.ilikehd.com/livetv/player/totlink.m3u8?channel_id=a7105ed1bb0a44bba1f4f71f2352b892
 
-#EXTINF:0,USA Network SD A
+#EXTINF:0,USA Network SD
 rtmpe://46.246.124.3:1935/live/usao0 playpath=usao0 swfUrl=http://p.jwpcdn.com/6/8/jwplayer.flash.swf pageUrl=http://prvservers.com/embed2.php?u=usao0&vw=620&vh=470&domain=usachannels.tv token=#yw%tt#w@kku
 
-#EXTINF:0,USA Network SD B
+#EXTINF:0,USA Network SD
 rtmp://rtmp.zerocast.tv:1935/live playpath=jvZXQUYQmlsPirfiVK1G swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
 
 #EXTINF:0,Vernnissage TV SD
@@ -181,13 +178,13 @@ http://wgntribune-lh.akamaihd.net/i/WGNTribune_1@109089/master.m3u8
 #EXTINF:0,Wine Oh TV 720 HD THISCHANNELISDOWN----------
 
 
-#EXTINF:0,Wine TV HD
+#EXTINF:0,Wine Channel TV HD
 rtmp://mi2.gv.filmon.com:8086/live/263.high.stream
 
 #EXTINF:0,Wineram TV 720 HD THISCHANNELISDOWN----------
 
 
-#EXTINF:0,[COLOR red] World Fashion TV HQ [/COLOR]
+#EXTINF:0,World Fashion TV HQ
 http://btv-net.mediacdn.ru/TVB2/ngrp:wfhdeu.stream_all/chunklist_b3128000.m3u8
 
 #EXTINF:0,World of Wine HD THISCHANNELISDOWN----------

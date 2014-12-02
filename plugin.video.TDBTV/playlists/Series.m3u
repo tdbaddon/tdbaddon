@@ -37,7 +37,7 @@ rtmp://198.27.75.99/app playpath=cheers01 swfUrl=http://www.tgun.tv/lock/player.
 #EXTINF:0,Community 
 rtmp://198.27.75.99/app playpath=community01 swfUrl=http://www.tgun.tv/lock/player.swf live=1 pageUrl=http://www.tgun.tv/menus/players/playerindex5.php?2bg01/
 
-#EXTINF:0,Cops Tv Series 
+#EXTINF:0,Cops 
 rtmp://198.27.75.99/app playpath=cops01 swfUrl=http://www.tgun.tv/lock/player.swf live=1 pageUrl=http://www.tgun.tv/menus/players/playerindex5.php?2bg01/
  
 #EXTINF:0,Curb Your Enthusiasm 
@@ -95,7 +95,7 @@ rtmp://198.27.75.99/app playpath=shootme swfUrl=http://www.tgun.tv/lock/player.s
 #EXTINF:0,King of the Hill
 rtmp://192.99.38.122/app/ playpath=koth02 swfUrl=http://www.tgun.tv/lock/player.swf pageUrl=http://tgun.tv/shows/ch1 playpath=koth02
 
-#EXTINF:0,Law and Order - Special Victims Unit
+#EXTINF:0,Law and Order
 rtmp://198.27.75.99/app playpath=lawsuv02 swfUrl=http://www.tgun.tv/lock/player.swf live=1  pageUrl=http://www.tgun.tv/menus/players/playerindex5.php?lawsuv02
 
 #EXTINF:0,Mad Men 
@@ -116,7 +116,7 @@ rtmp://198.27.75.99/app/ playpath=mfamily02 swfUrl=http://www.tgun.tv/lock/playe
 #EXTINF:0,New Girl 
 rtmp://198.27.75.99/app playpath=ng swfUrl=http://www.tgun.tv/lock/player.swf pageUrl=http://www.tgun.tv/menus/players/playerindex6.php?ng live=true
  
-#EXTINF:0,News Radio 
+#EXTINF:0,NewsRadio 
 rtmp://198.27.75.99/app playpath=nradio swfUrl=http://www.tgun.tv/lock/player.swf pageUrl=http://www.tgun.tv/menus/players/playerindex6.php?nradio live=true
 
 #EXTINF:0,Night Court
@@ -161,7 +161,7 @@ rtmp://198.27.75.99/app/ playpath=cosby swfUrl=http://www.tgun.tv/lock/player.sw
 #EXTINF:0,The Drew Carey Show 
 rtmp://198.27.75.99/app playpath=drewcarey swfUrl=http://www.tgun.tv/lock/player.swf pageUrl=http://www.tgun.tv/menus/players/playerindex6.php?drewcarey live=true
 
-#EXTINF:0,The Fresh Prince Of Bel-AIr
+#EXTINF:0,The Fresh Prince Of Bel Air
 rtmp://192.99.38.122/app/ playpath=freshprince02 swfUrl=http://www.tgun.tv/lock/player.swf pageUrl=http://tgun.tv/shows/ch1 playpath=freshprince02
  
 #EXTINF:0,The King of Queens 

@@ -4,7 +4,7 @@
 #EXTINF:0,24/7 Movies HD 
 rtmp://62.210.76.216/live2 playpath=stopstealingmyshitmotherfuckers swfUrl=http://releases.flowplayer.org/5.4.6/flowplayer.swf live=1 pageUrl=http://www.stream4free.eu/movies-hd/?b?b*t$
 
-#EXTINF:0,BigPond Movies Extra SD
+#EXTINF:0,BigPond Movies SD
 mms://ken-cdn220-is-3.se.bptvlive.ngcdn.telstra.com/bp_online_movieextra_high
 
 #EXTINF:0,C More Action HD
@@ -22,10 +22,10 @@ http://83.255.136.115:8001/1:0:1:47B:20:A027:FFFF0000:0:0:0:
 #EXTINF:0,Cinestar Action & Thriller HD
 http://83.139.104.109/Content/HLS/Live/Channel(cinestar_action_and_thriller)/Stream(03)/index.m3u8
 
-#EXTINF:0,Cinestar Premiere 1 HD
+#EXTINF:0,Cinestar Premiere HD
 http://83.139.104.109/Content/HLS/Live/Channel(cinestar_premiere_1)/Stream(03)/index.m3u8
 
-#EXTINF:0,Cinestar Premiere 2 HD
+#EXTINF:0,Cinestar Premiere HD
 http://83.139.104.109/Content/HLS/Live/Channel(cinestar_premiere_2)/Stream(03)/index.m3u8
 
 #EXTINF:0,Cinestar TV HD
@@ -51,7 +51,7 @@ http://202.75.23.35:1400/live/ch40/03.m3u8
 #EXTINF:0,MGM SD
 http://202.75.23.35/live/ch40/01.m3u8
 
-#EXTINF:0,Paramount Channel (change audio) HD
+#EXTINF:0,Paramount Channel HD
 http://80.77.52.6:4444/udp/230.0.3.20:12345
 
 #EXTINF:0,Pink Action 1 HD
@@ -105,8 +105,8 @@ rtmp://rtmp.zerocast.tv:1935/live playpath=kbMD64czDshAmjDd4kxQ swfUrl=http://p.
 #EXTINF:0,SYFY Movie Channel HD THISCHANNELISDOWN----------
 
 
-#EXTINF:0,TV 1000 (change audio) HD
+#EXTINF:0,TV 1000 HD
 http://80.77.52.6:4444/udp/230.0.3.54:12345
 
-#EXTINF:0,TV 1000 Action (change audio) HD
+#EXTINF:0,TV 1000 Action HD
 http://80.77.52.6:4444/udp/230.0.3.52:12345

@@ -8,9 +8,6 @@ http://csm-e.cds1.yospace.com/csm/live/86550614.m3u8
 #EXTINF:0,AKA SD
 http://rrr.sz.xlcdn.com/?account=AATW&file=akanew&type=live&service=wowza&protocol=http&output=playlist.m3u8
 
-#EXTINF:0,Box SD
-http://csm-e.cds1.yospace.com/csm/live/86561631.m3u8
-
 #EXTINF:0,BPM TV HD THISCHANNELISDOWN----------
 
 
@@ -29,14 +26,11 @@ http://68.71.42.179/live/livestream1/playlist.m3u8
 #EXTINF:0,Djing TV HD
 http://www.djing.com/tv/05.m3u8
 
-#EXTINF:0,Gotic Rock TV SD
+#EXTINF:0,Gothic Rock TV SD
 rtmp://149.11.34.6/live/gotica.stream
 
 #EXTINF:0,Heart TV SD
 rtmp://cdn-sov-2.musicradio.com:80/LiveVideo/Heart
-
-#EXTINF:0,Heat TV SD
-http://csm-e.cds1.yospace.com/csm/live/86561584.m3u8
 
 #EXTINF:0,Ibiza on TV SD
 http://46.249.213.87/iPhone/broadcast/ibizaontv-tablet.3gp/ibizaontv-tablet.3gp-mr648k.m3u8?trackingid=3391380000&os=desktop
@@ -74,13 +68,13 @@ http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVROCKS/variant.m3u8
 #EXTINF:0,Music SD
 http://csm-e.cds1.yospace.com/csm/live/86550614.m3u8
 
-#EXTINF:0,Musiq SD
+#EXTINF:0,Musiq1 SD
 http://88.212.10.27:81/streams/musiq1.m3u8
 
-#EXTINF:0,MusicVoxTV eska HD
+#EXTINF:0,MusicVoxTV HD
 rtmp://stream.smcloud.net/live2/vox/vox_720p
 
-#EXTINF:0,MusicVoxTV eska SD
+#EXTINF:0,MusicVoxTV SD
 rtmp://stream.smcloud.net/live2/vox/vox_360p
 
 #EXTINF:-1,Nat Geo Music SD  THISCHANNELISDOWN----------
@@ -106,7 +100,7 @@ rtmp://fms.105.net:1935/live/rmc1
 #EXTINF:0,Reggae Entertainment SD
 http://rjr_flash-lh.akamaihd.net/i/retv_1@177154/master.m3u8
 
-#EXTINF:0,Rock One 66 HD
+#EXTINF:0,Rock 66 HD
 http://mediatv2.topix.it/24RockOne66
 
 #EXTINF:0,Smash Hits SD
@@ -118,7 +112,7 @@ http://csm-e.cds1.yospace.com/csm/live/86561631.m3u8
 #EXTINF:0,The Heat SD
 http://csm-e.cds1.yospace.com/csm/live/86561584.m3u8
 
-#EXTINF:0,Vevo TV 1 HD
+#EXTINF:0,Vevo Hits HD
 http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch2/06/prog_index.m3u8
 
 #EXTINF:0,Vevo Country HD

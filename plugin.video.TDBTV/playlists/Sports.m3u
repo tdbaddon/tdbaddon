@@ -2,8 +2,8 @@
 #EXTINF:0,
 
 
-#EXTINF:0,1 On 1 Boxing HD
-rtmp://204.107.26.145:1935/live/1988.low.stream
+#EXTINF:0,1 On 1 Boxing HD THISCHANNELISDOWN----------
+
 
 #EXTINF:0,At The Races SD THISCHANNELISDOWN----------
 
@@ -17,7 +17,7 @@ http://bigten247.cdnak.bigtenhd.neulion.com/nlds/btn2go/btnnetwork/as/live/btnne
 #EXTINF:0,Box Nation SD
 rtmpe://46.246.124.28:1935/live/sboxn token=#yw%tt#w@kku pageUrl=http://www.hdcast.org/ HarrysStreams
 
-#EXTINF:0,BT Sport 1 SD
+#EXTINF:0,BT Sport SD
 rtmp://80.82.78.22:443/liverepeater playpath=13 swfUrl=http://popeoftheplayers.pw/atdedead.swf live=1 pageUrl=http://popeoftheplayers.pw/player3.php?id=13&width=600&height=450 token=#atd%#$ZH
 
 #EXTINF:0,Classic Goals SD
@@ -64,7 +64,7 @@ rtmp://mi2.gv.filmon.com:8086/live/262.high.stream
 #EXTINF:0,Motor Sport SD
 http://motorsport.hopto.org:8080/
 
-#EXTINF:0, NBA US HD
+#EXTINF:0, NBA TV HD
 http://nba247.cdnak.nbahd.neulion.com/mobile/nba/nba247/as/live/ipad_1240.m3u8
 
 #EXTINF:0,NBC Golf SD THISCHANNELISDOWN----------
@@ -79,85 +79,85 @@ rtmpe://46.246.124.31:1935/live/nbcsn0 playpath=nbcsn0 swfUrl=swfUrl=http://p.jw
 #EXTINF:-1,Outdoor Channel SD
 rtmp://lm02.everyon.tv:1935/ptv2/pld613
 
-#EXTINF:0,[COLOR red] PAC 12 Arizona HQ [/COLOR]
+#EXTINF:0,PAC Sports Arizona HQ
 http://www.xrxs.net/video/live-p12ariz-4728.m3u8
 
-#EXTINF:0,[COLOR red] PAC 12 Bay Area HQ [/COLOR]
+#EXTINF:0,PAC Sports Bay Area HQ
 http://www.xrxs.net/video/live-p12baya-4728.m3u8
  
-#EXTINF:0,[COLOR red] PAC 12 Los Angeles HQ [/COLOR]
+#EXTINF:0,PAC Sports LA HQ
 http://xrxs.net/video/live-p12losa-4728.m3u8
 
-#EXTINF:0,[COLOR red] PAC 12 National HQ [/COLOR]
+#EXTINF:0,PAC Sports National HQ 
 http://www.xrxs.net/video/live-p12netw-4728.m3u8
  
-#EXTINF:0,[COLOR red] PAC 12 Mountain HQ [/COLOR]
+#EXTINF:0,PAC Sports Mountain HQ 
 http://xrxs.net/video/live-p12moun-4728.m3u8
  
-#EXTINF:0,[COLOR red] PAC-12 Oregon HQ [/COLOR]
+#EXTINF:0,PAC Sports Oregon HQ 
 http://xrxs.net/video/live-p12oreg-4728.m3u8
  
-#EXTINF:0,[COLOR red] PAC-12 Washington HQ [/COLOR]
+#EXTINF:0,PAC Sports Washington HQ 
 http://xrxs.net/video/live-p12wash-4728.m3u8
 
-#EXTINF:-1, Poker Channel HD
+#EXTINF:-1, Poker TV HD
 http://195.154.188.161/hls/pokerhd.m3u8
 
 #EXTINF:0,Racing UK SD THISCHANNELISDOWN----------
 
 
-#EXTINF:0,[COLOR red] Rogers Sportsnet One HQ [/COLOR]
+#EXTINF:0,Rogers Sportsnet One HQ
 http://rogerslive-i.akamaihd.net/hls/live/202799/event/index.m3u8
 
-#EXTINF:0,[COLOR red] Rogers Sportsnet East 1 HQ [/COLOR]
+#EXTINF:0,Rogers Sportsnet East HQ
 http://rogerslive-i.akamaihd.net/hls/live/202800/event/index.m3u8?
 
-#EXTINF:0,[COLOR red] Rogers Sportsnet Pacific HQ [/COLOR]
+#EXTINF:0,Rogers Sportsnet Pacific HQ
 http://rogerslive-i.akamaihd.net/hls/live/202802/event/index.m3u8?
 
-#EXTINF:0,[COLOR red] Rogers Sportsnet West HQ [/COLOR]
+#EXTINF:0,Rogers Sportsnet West HQ
 http://rogerslive-i.akamaihd.net/hls/live/202801/event/index.m3u8
 
-#EXTINF:0,[COLOR red] Rogers Sportsnet Extra 1 HQ [/COLOR]
+#EXTINF:0,Rogers Sportsnet Extra HQ
 http://rogerslive-i.akamaihd.net/hls/live/202803/event/index.m3u8
 
-#EXTINF:0,[COLOR red] Rogers Sportsnet Ontario HQ [/COLOR]
+#EXTINF:0,Rogers Sportsnet Ontario HQ
 http://rogerslive-i.akamaihd.net/hls/live/202827/event/index.m3u8
 
-#EXTINF:0,[COLOR red] Rogers Sportsnet World HQ [/COLOR]
+#EXTINF:0,Rogers Sportsnet World HQ 
 http://rogerslive-i.akamaihd.net/hls/live/202801/event/index.m3u8
 
 #EXTINF:0,SBS One HD
 http://motorsport.hopto.org:8080
 
-#EXTINF:0,Setanta Sports HD (change audio)
+#EXTINF:0,Setanta Sports HD
 http://80.77.52.6:4444/udp/230.0.4.1:12345?Vd?u#bt!25
 
 #EXTINF:0,Sky Poker HD
 rtmp://rtmp.playback.cdn1.showcaster.com/orcadigital-live06/_definst_/ playpath=stream1352471543352014903_hi swfUrl=https://c177371.ssl.cf3.rackcdn.com/jwplayer.commercial-5.9.swf pageUrl=https://play.showcaster.com/moduleVideoPlayer.jsp?SEID=135247&isMainCanvas=FALSE live=true timeout=10
 
-#EXTINF:0,Sky Sports 1 SD
+#EXTINF:0,Sky Sport 1 SD
 rtmpe://46.246.29.160:1935/live/ playpath=sskys1 pageUrl=http://www.hdcast.org/ token=#yw%tt#w@kku
 
-#EXTINF:0,Sky Sports 2 SD A
+#EXTINF:0,Sky Sport 2 SD
 rtmp://80.82.78.22:443/liverepeater playpath=14 swfUrl=http://popeoftheplayers.pw/atdedead.swf live=1 pageUrl=http://popeoftheplayers.pw/player3.php?id=14&width=600&height=450 token=#atd%#$ZH
 
-#EXTINF:0,Sky Sports 2 SD B
+#EXTINF:0,Sky Sport 2 SD
 rtmpe://46.246.29.160:1935/live/ playpath=sskys2 pageUrl=http://www.hdcast.org/ token=#yw%tt#w@kku
 
-#EXTINF:0,Sky Sports 3 SD
+#EXTINF:0,Sky Sport 3 SD
 rtmpe://46.246.29.160:1935/live/ playpath=sskys3 pageUrl=http://www.hdcast.org/ token=#yw%tt#w@kku
 
-#EXTINF:0,Sky Sports 4 SD
+#EXTINF:0,Sky Sport 4 SD
 rtmpe://46.246.29.160:1935/live/ playpath=sskys4 pageUrl=http://www.hdcast.org/ token=#yw%tt#w@kku
 
-#EXTINF:0,Sky Sports 5 SD
+#EXTINF:0,Sky Sport 5 SD
 rtmp://31.220.0.196:1935/live playpath=sx55 live=1 pageUrl=http://www.flashtv.co/Vd?u#bt!25 token=%ZZri(nKa@#Z timeout=14
 
-#EXTINF:0,Sky Sports F1 HD
+#EXTINF:0,Sky Sport F1 HD
 http://151.228.75.60:8001/1:0:1:51A:7E5:2:11A0000:0:0:0:
 
-#EXTINF:0,Sky Sports News HD
+#EXTINF:0,Sky Sport News HD
 rtmpe://46.246.124.65:1935/live/sskysn pageUrl=http://www.hdcast.org/ token=#yw%tt#w@kku
 
 #EXTINF:0,Sports Night HD
@@ -172,7 +172,7 @@ rtmp://31.220.0.104:1935/live/tsn1x live=1 pageUrl=http://www.flashtv.co/ token=
 #EXTINF:0,TSN 2 SD THISCHANNELISDOWN----------
 
 
-#EXTINF:0,Viasat Sports HD
+#EXTINF:0,Viasat Sport HD
 http://80.77.52.6:4444www.tvonlinestreams.com/udp/230.0.3.58:12345
 
 #EXTINF:0,Willow Cricket SD
