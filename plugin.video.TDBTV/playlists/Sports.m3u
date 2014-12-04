@@ -2,6 +2,12 @@
 #EXTINF:0,
 
 
+#EXTINF:0,1 On 1 Boxing
+rtmp://204.107.26.145:1935/live/1988.low.stream
+
+#EXTINF:0,At The Races
+http://acabsw.doiptv.com/sky_at_the_races/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
+
 #EXTINF:0,Autosport TV
 mms://100automoto.tv/100livesport
 
@@ -10,6 +16,9 @@ http://bigten247.cdnak.bigtenhd.neulion.com/nlds/btn2go/btnnetwork/as/live/btnne
 
 #EXTINF:0,Box Nation
 rtmpe://46.246.124.28:1935/live/sboxn token=#yw%tt#w@kku pageUrl=http://www.hdcast.org/ HarrysStreams
+
+#EXTINF:0,Box Nation
+http://acabsw.doiptv.com/sky_boxnation/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
 
 #EXTINF:0,BT Sport
 rtmp://80.82.78.22:443/liverepeater playpath=13 swfUrl=http://popeoftheplayers.pw/atdedead.swf live=1 pageUrl=http://popeoftheplayers.pw/player3.php?id=13&width=600&height=450 token=#atd%#$ZH
@@ -44,8 +53,8 @@ http://83.139.104.123/Content/HLS/Live/Channel(extreme_sports)/Stream(03)/index.
 #EXTINF:0,Fight Sports THISCHANNELISDOWN----------
 
 
-#EXTINF:0,Golf Channel THISCHANNELISDOWN----------
-
+#EXTINF:0,Golf Channel
+rtmp://109.123.70.15:80/live playpath=golfx swfUrl=http://www.flashtv.co/ePlayerr.swf pageUrl=http://www.flashtv.co/embed.php?live=golfx&vw=620&vh=490 token=%ZZri(nKa@#Z
 
 #EXTINF:0,MLB
 rtmp://31.204.150.230:443/liverepeater playpath=176096 swfUrl=http://bernardotv.club/atdedead.swf pageUrl=http://biggestplayer.me/streamcr.php?id=176096&width=620&height=490 token=#atd%#$ZH
@@ -68,8 +77,8 @@ http://nba247.cdnak.nbahd.neulion.com/mobile/nba/nba247/as/live/ipad_1240.m3u8
 #EXTINF:0,NBCSN
 rtmpe://46.246.124.31:1935/live/nbcsn0 playpath=nbcsn0 swfUrl=swfUrl=http://p.jwpcdn.com/6/8/jwplayer.flash.swf pageUrl=http://prvservers.com/embed2.php?u=nbcsn0&vw=620&vh=470&domain=usachannels.tv token=#yw%tt#w@kku
 
-#EXTINF:0,NFL Network THISCHANNELISDOWN----------
-
+#EXTINF:0,NFL Network
+rtmp://31.204.150.238:443/liverepeater playpath=177781 swfUrl=http://bernardotv.club/atdedead.swf pageUrl=http://biggestplayer.me/streamcr.php?id=177781&width=620&height=490 token=#atd%#$ZH
 
 #EXTINF:-1,Outdoor Channel
 rtmp://lm02.everyon.tv:1935/ptv2/pld613

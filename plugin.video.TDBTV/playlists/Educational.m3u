@@ -9,13 +9,25 @@ http://202.75.23.34/live/ch31/03.m3u8
 http://hls.cn.ru/streaming/discovery_hd/16/fullhd/playlist.m3u8
 
 #EXTINF:0,Discovery Channel
+http://acabsw.doiptv.com/sky_discovery_investigation/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
+
+#EXTINF:0,Discovery Channel
 http://202.75.23.34/live/ch29/03.m3u8
 
 #EXTINF:0,Discovery Home And Health
 http://202.75.23.34/live/ch34/01.m3u8
 
+#EXTINF:0,Discovery Home And Health
+http://acabsw.doiptv.com/sky_discovery_home/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
+
+#EXTINF:0,Discovery Investigation
+http://acabsw.doiptv.com/sky_discovery_investigation/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
+
 #EXTINF:0,Discovery Travel & Living
 http://202.75.23.34:1400/live/ch34/01.m3u8
+
+#EXTINF:0,Discovery Turbo
+http://acabsw.doiptv.com/sky_discovery_turbo/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
 
 #EXTINF:0,Discovery Max
 http://202.75.23.34/live/ch32/03.m3u8?b?b*t$
@@ -35,8 +47,11 @@ http://202.75.23.34:1400/live/ch30/03.m3u8
 #EXTINF:0, FYI THISCHANNELISDOWN----------
 
 
-#EXTINF:0,History THISCHANNELISDOWN----------
+#EXTINF:0,History Channel
+http://acabsw.doiptv.com/sky_history/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
 
+#EXTINF:0,History Channel
+http://acabsw.doiptv.com/sky_history_2/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
 
 #EXTINF:0,NASA Media
 http://media.infozen.cshls.lldns.net/infozen/media/media/media_1000.m3u8
@@ -52,6 +67,9 @@ http://202.75.23.34/live/ch31/03.m3u8
 
 #EXTINF:0,Nat Geo Wild
 http://202.75.23.35/live/ch39/03.m3u8
+
+#EXTINF:0,Nat Geo Wild
+http://acabsw.doiptv.com/sky_natgeowild/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
 
 #EXTINF:0,National Geographic
 http://202.75.23.35/live/ch38/03.m3u8

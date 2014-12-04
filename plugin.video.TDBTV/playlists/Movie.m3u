@@ -78,8 +78,8 @@ mmsh://mediafilmcenter.ro:10
 #EXTINF:0,Showtime
 rtmp://rtmp.zerocast.tv:1935/live playpath=kbMD64czDshAmjDd4kxQ swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
 
-#EXTINF:0,Sky Movies Action THISCHANNELISDOWN----------
-
+#EXTINF:0,Sky Movies Action Adventure
+http://acabsw.doiptv.com/sky_action/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
 
 #EXTINF:0,Sky Movies Cinema THISCHANNELISDOWN----------
 
@@ -90,23 +90,43 @@ rtmp://rtmp.zerocast.tv:1935/live playpath=kbMD64czDshAmjDd4kxQ swfUrl=http://p.
 #EXTINF:0,Sky Movies Cinema+24 THISCHANNELISDOWN----------
 
 
-#EXTINF:0,Sky Movies Comedy THISCHANNELISDOWN----------
-
+#EXTINF:0,Sky Movies Comedy
+http://acabsw.doiptv.com/sky_comedy/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
 
 #EXTINF:0,Sky Movies Crime & Thriller
 rtmp://109.123.70.15:80/live playpath=mov3 swfUrl=http://www.flashtv.co/ePlayerr.swf live=1 pageUrl=http://www.flashtv.co/embed.php?live=mov3&vw=620&vh=490 token=%ZZri(nKa@#Z
 
+#EXTINF:0,Sky Movies Crime & Thriller
+http://acabsw.doiptv.com/sky_thriller/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
+
+#EXTINF:0,Sky Movies Disney
+http://acabsw.doiptv.com/sky_mov_disney/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
+
 #EXTINF:0,Sky Movies Emotion THISCHANNELISDOWN----------
 
+#EXTINF:0,Sky Movies Family
+http://acabsw.doiptv.com/sky_family/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
+
+#EXTINF:0,Sky Movies Greats
+http://acabsw.doiptv.com/sky_greats/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
 
 #EXTINF:0,Sky Movies Modern Greats THISCHANNELISDOWN----------
 
 
-#EXTINF:0,Sky Movies Premiere THISCHANNELISDOWN----------
-
+#EXTINF:0,Sky Movies Premiere
+http://acabsw.doiptv.com/sky_movies_premiere/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
 
 #EXTINF:0,Sky Movies SciFi & Horror
 rtmp://109.123.70.15:80/live playpath=mov2 swfUrl=http://www.flashtv.co/ePlayerr.swf live=1 pageUrl=http://www.flashtv.co/embed.php?live=mov2&vw=620&vh=490 token=%ZZri(nKa@#Z
+
+#EXTINF:0,Sky Movies SciFi & Horror
+http://acabsw.doiptv.com/sky_horror/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
+
+#EXTINF:0,Sky Movies Select
+http://acabsw.doiptv.com/sky_select/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
+
+#EXTINF:0,Sky Movies Showcase
+http://acabsw.doiptv.com/sky_showcase/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
 
 #EXTINF:0,SYFY Movie Channel THISCHANNELISDOWN----------
 
