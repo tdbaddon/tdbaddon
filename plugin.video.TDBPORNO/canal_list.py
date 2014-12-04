@@ -42,4 +42,6 @@ dc={
 "okdai" : "040",
 "xxx" : "041",
 "pure mature" : "042",
+"redlight premium" : "043",
+"sct" : "044",
 }
