@@ -1,52 +1,52 @@
 ﻿#EXTM3U
 #EXTINF:0,
 
-#EXTINF:0,Aniplus HD  THISCHANNELISDOWN----------
+#EXTINF:0,Aniplus THISCHANNELISDOWN----------
 
 
-#EXTINF:0,Baby First SD
+#EXTINF:0,Baby First
 http://202.75.23.33/live/ch27/03.m3u8
 
-#EXTINF:0,BabyTV HD  THISCHANNELISDOWN----------
+#EXTINF:0,BabyTV THISCHANNELISDOWN----------
 
 
-#EXTINF:0,Boomerang SD
+#EXTINF:0,Boomerang
 rtmp://mi2.gv.filmon.com:1935/live/_definst_/2734.low.stream
 
-#EXTINF:0,Cartoonito SD  THISCHANNELISDOWN----------
+#EXTINF:0,Cartoonito THISCHANNELISDOWN----------
 
 
-#EXTINF:0,Cartoon Network HD
+#EXTINF:0,Cartoon Network
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_CN/variant.m3u8
 
-#EXTINF:0,Cartoon Network SD
+#EXTINF:0,Cartoon Network
 rtmp://rtmp.zerocast.tv:1935/live playpath=08pydvp1b7ZwZb3a5TW1 swfUrl=http://cdn.zerocast.tv/player.swf  flashVer=WIN/16,0,0,219 pageUrl=http://zerocast.tv/embed3.php?a=6&id=&width=580&height=400&autostart=true&strech= token=8964316ec8772dfa
 
-#EXTINF:0,Cartoon Network SD
+#EXTINF:0,Cartoon Network
 http://80.77.52.6:4444/udp/230.0.3.15:12345
 
-#EXTINF:0,Disney Channel HD
+#EXTINF:0,Disney Channel
 http://83.255.136.115:8001/1:0:1:514:2F:A027:FFFF0000:0:0:0:
 
-#EXTINF:0,Disney Junior HD THISCHANNELISDOWN----------
+#EXTINF:0,Disney Junior THISCHANNELISDOWN----------
 
 
-#EXTINF:0,Disney XD HD
+#EXTINF:0,Disney XD
 http://83.255.136.115:8001/1:0:1:521:1E:A027:FFFF0000:0:0:0:
 
-#EXTINF:0,Jim Jam HD
+#EXTINF:0,Jim Jam
 http://202.75.23.37/live/ch17/03.m3u8
 
-#EXTINF:0,Kids Comedy SD
+#EXTINF:0,Kids Comedy
 rtmp://mi2.gv.filmon.com:1935/live/_definst_/2734.low.stream?b?b*t$
 
-#EXTINF:0,Looney Tunes SD
+#EXTINF:0,Looney Tunes
 rtmp://104.130.79.136:1935/live/lt
 
-#EXTINF:0,Nickelodeon SD
+#EXTINF:0,Nickelodeon
 http://80.77.52.6:4444/udp/230.0.3.45:12345
 
-#EXTINF:0,Nick Jr HD THISCHANNELISDOWN----------
+#EXTINF:0,Nick Jr THISCHANNELISDOWN----------
 
 
 #EXTINF:-1,NickNight SD  THISCHANNELISDOWN----------

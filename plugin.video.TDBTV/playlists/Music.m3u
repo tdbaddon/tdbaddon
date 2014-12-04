@@ -2,133 +2,133 @@
 #EXTINF:0,
 
 
-#EXTINF:0,4Music SD
+#EXTINF:0,4Music
 http://csm-e.cds1.yospace.com/csm/live/86550614.m3u8
 
-#EXTINF:0,AKA SD
+#EXTINF:0,AKA
 http://rrr.sz.xlcdn.com/?account=AATW&file=akanew&type=live&service=wowza&protocol=http&output=playlist.m3u8
 
-#EXTINF:0,BPM TV HD THISCHANNELISDOWN----------
+#EXTINF:0,BPM TV THISCHANNELISDOWN----------
 
 
-#EXTINF:0,Capital Music SD
+#EXTINF:0,Capital Music
 rtmp://cdn-sov-2.musicradio.com:80/LiveVideo/Capital
 
-#EXTINF:0,CineStream TV HD
+#EXTINF:0,CineStream TV
 http://68.71.42.179/live/livestream1/playlist.m3u8
 
-#EXTINF:0,Club TV HD THISCHANNELISDOWN----------
+#EXTINF:0,Club TV THISCHANNELISDOWN----------
 
 
-#EXTINF:0,Clubland TV SD THISCHANNELISDOWN----------
+#EXTINF:0,Clubland TV THISCHANNELISDOWN----------
 
 
-#EXTINF:0,Djing TV HD
+#EXTINF:0,Djing TV
 http://www.djing.com/tv/05.m3u8
 
-#EXTINF:0,Gothic Rock TV SD
+#EXTINF:0,Gothic Rock TV
 rtmp://149.11.34.6/live/gotica.stream
 
-#EXTINF:0,Heart TV SD
+#EXTINF:0,Heart TV
 rtmp://cdn-sov-2.musicradio.com:80/LiveVideo/Heart
 
-#EXTINF:0,Ibiza on TV SD
+#EXTINF:0,Ibiza on TV
 http://46.249.213.87/iPhone/broadcast/ibizaontv-tablet.3gp/ibizaontv-tablet.3gp-mr648k.m3u8?trackingid=3391380000&os=desktop
 
-#EXTINF:0,Jazz SD THISCHANNELISDOWN----------
+#EXTINF:0,Jazz THISCHANNELISDOWN----------
 
 
-#EXTINF:0,King TV HD
+#EXTINF:0,King TV
 rtmp://91.82.85.16/brdcaster/_definst_/nettv03_channel_1
 
-#EXTINF:0,Kiss TV HD
+#EXTINF:0,Kiss TV
 http://csm-e.cds1.yospace.com/csm/live/86561716.m3u8
 
-#EXTINF:0,M6 Music Club SD
+#EXTINF:0,M6 Music Club
 http://sslhls.m6tv.cdn.sfr.net/hls-live/livepkgr/_definst_/m6_music_club_hls_aes/m6_music_club_hls_aes_856.m3u8
 
-#EXTINF:0,Magic SD
+#EXTINF:0,Magic
 http://csm-e.cds1.yospace.com/csm/live/86561776.m3u8
 
-#EXTINF:0,MTV Dance HD
+#EXTINF:0,MTV Dance
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVDANCE/variant.m3u8
 
-#EXTINF:0,MTV Hits SD
+#EXTINF:0,MTV Hits
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVHITS/variant.m3u8
 
-#EXTINF:0,MTV Live SD THISCHANNELISDOWN----------
+#EXTINF:0,MTV Live THISCHANNELISDOWN----------
 
 
-#EXTINF:0,MTV Music SD
+#EXTINF:0,MTV Music
 http://83.139.104.123/Content/HLS/Live/Channel(mtv_music)/Stream(03)/index.m3u8
 
-#EXTINF:0,MTV Rocks HD
+#EXTINF:0,MTV Rocks
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVROCKS/variant.m3u8
 
-#EXTINF:0,Music SD
+#EXTINF:0,Music
 http://csm-e.cds1.yospace.com/csm/live/86550614.m3u8
 
-#EXTINF:0,Musiq1 SD
+#EXTINF:0,Musiq1
 http://88.212.10.27:81/streams/musiq1.m3u8
 
-#EXTINF:0,MusicVoxTV HD
+#EXTINF:0,MusicVoxTV
 rtmp://stream.smcloud.net/live2/vox/vox_720p
 
-#EXTINF:0,MusicVoxTV SD
+#EXTINF:0,MusicVoxTV
 rtmp://stream.smcloud.net/live2/vox/vox_360p
 
-#EXTINF:-1,Nat Geo Music SD  THISCHANNELISDOWN----------
+#EXTINF:-1,Nat Geo Music THISCHANNELISDOWN----------
 
 
-#EXTINF:0,Now Thats What I Call Music SD
+#EXTINF:0,Now Thats What I Call Music
 http://rrr.sz.xlcdn.com/?account=AATW&file=nowmusic&type=live&service=wowza&protocol=http&output=playlist.m3u8
 
-#EXTINF:0,PartyTV SD
+#EXTINF:0,PartyTV
 rtmp://149.11.34.6/live/partytv.stream
 
-#EXTINF:0,Pink Music 3 SD
+#EXTINF:0,Pink Music 3
 http://on108.setplex.net/fastv_2psh/PinkMusic3global_rly_greece_103/playlist.m3u8
 
-#EXTINF:0,Pink Music 4 HD  THISCHANNELISDOWN----------
+#EXTINF:0,Pink Music 4 THISCHANNELISDOWN----------
 
-#EXTINF:0,Planet Pop SD  THISCHANNELISDOWN----------
+#EXTINF:0,Planet Pop THISCHANNELISDOWN----------
 
 
-#EXTINF:0,Radio Monte Carlo SD
+#EXTINF:0,Radio Monte Carlo
 rtmp://fms.105.net:1935/live/rmc1
 
-#EXTINF:0,Reggae Entertainment SD
+#EXTINF:0,Reggae Entertainment
 http://rjr_flash-lh.akamaihd.net/i/retv_1@177154/master.m3u8
 
-#EXTINF:0,Rock 66 HD
+#EXTINF:0,Rock 66
 http://mediatv2.topix.it/24RockOne66
 
-#EXTINF:0,Smash Hits SD
+#EXTINF:0,Smash Hits
 http://csm-e.cds1.yospace.com/csm/live/86561609.m3u8
 
-#EXTINF:0,The Box SD
+#EXTINF:0,The Box
 http://csm-e.cds1.yospace.com/csm/live/86561631.m3u8
 
-#EXTINF:0,The Heat SD
+#EXTINF:0,The Heat
 http://csm-e.cds1.yospace.com/csm/live/86561584.m3u8
 
-#EXTINF:0,Vevo Hits HD
+#EXTINF:0,Vevo Hits
 http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch2/06/prog_index.m3u8
 
-#EXTINF:0,Vevo Country HD
+#EXTINF:0,Vevo Country
 http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch3/06/prog_index.m3u8
 
-#EXTINF:0,Vevo Pop HD
+#EXTINF:0,Vevo Pop
 http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/appleman.m3u8
 
-#EXTINF:0,VH1 Classics HD
+#EXTINF:0,VH1 Classics
 http://gogo.jksw.cz:8024
 
-#EXTINF:0,VH1 Classics SD
+#EXTINF:0,VH1 Classics
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_VH1CLASSIC/variant.m3u8
 
-#EXTINF:0,VH1 Shuffle SD
+#EXTINF:0,VH1 Shuffle
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_VH1EUROPEAN/variant.m3u8
 
-#EXTINF:0,Virgin TV SD
+#EXTINF:0,Virgin TV
 rtmp://fms.105.net:1935/live/virgin1

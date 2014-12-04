@@ -1,112 +1,118 @@
 ﻿#EXTM3U
 
 
-#EXTINF:0,24/7 Movies HD 
+#EXTINF:0,24/7 Movies
 rtmp://62.210.76.216/live2 playpath=stopstealingmyshitmotherfuckers swfUrl=http://releases.flowplayer.org/5.4.6/flowplayer.swf live=1 pageUrl=http://www.stream4free.eu/movies-hd/?b?b*t$
 
-#EXTINF:0,BigPond Movies SD
+#EXTINF:0,BigPond Movies
 mms://ken-cdn220-is-3.se.bptvlive.ngcdn.telstra.com/bp_online_movieextra_high
 
-#EXTINF:0,C More Action HD
+#EXTINF:0,C More Action
 http://83.255.136.115:8001/1:0:1:47A:30:A027:FFFF0000:0:0:0:
  
-#EXTINF:0,C More Emotion HD
+#EXTINF:0,C More Emotion
 http://83.255.136.115:8001/1:0:1:43E:20:A027:FFFF0000:0:0:0:
  
-#EXTINF:0,C More First HD
+#EXTINF:0,C More First
 http://83.255.136.115:8001/1:0:1:478:20:A027:FFFF0000:0:0:0:
  
-#EXTINF:0,C More Hits HD
+#EXTINF:0,C More Hits
 http://83.255.136.115:8001/1:0:1:47B:20:A027:FFFF0000:0:0:0:
 
-#EXTINF:0,Cinestar Action & Thriller HD
+#EXTINF:0,Cinestar Action & Thriller
 http://83.139.104.109/Content/HLS/Live/Channel(cinestar_action_and_thriller)/Stream(03)/index.m3u8
 
-#EXTINF:0,Cinestar Premiere HD
+#EXTINF:0,Cinestar Premiere
 http://83.139.104.109/Content/HLS/Live/Channel(cinestar_premiere_1)/Stream(03)/index.m3u8
 
-#EXTINF:0,Cinestar Premiere HD
+#EXTINF:0,Cinestar Premiere
 http://83.139.104.109/Content/HLS/Live/Channel(cinestar_premiere_2)/Stream(03)/index.m3u8
 
-#EXTINF:0,Cinestar TV HD
+#EXTINF:0,Cinestar TV
 http://83.139.104.109/Content/HLS/Live/Channel(cinestar_tv)/Stream(03)/index.m3u8
 
-#EXTINF:0,Fox Family Movies SD
+#EXTINF:0,Fox Family Movies
 rtmp://nonamehdfree.dyndns.org:443/limelight app=limelight?t=guest playpath=02_foxfamilyhd_360p swfUrl=https://nonamehd.com/playerv3.swf flashver=WIN\2013,0,0,214 pageUrl=https://nonamehd.com/?b?b*t$ live=1 timeout=15
 
-#EXTINF:0,Fox Movies Premium SD
+#EXTINF:0,Fox Movies Premium
 rtmp://nonamehdfree.dyndns.org:443/limelight app=limelight?t=guest playpath=02_foxmovies_360p swfUrl=https://nonamehd.com/playerv3.swf flashver=WIN\2013,0,0,214 pageUrl=https://nonamehd.com/?b?b*t$ live=1 timeout=15
 
-#EXTINF:0,FX-D HD   THISCHANNELISDOWN----------
+#EXTINF:0,FX-D THISCHANNELISDOWN----------
 
-#EXTINF:0,Kino TV SD 
+#EXTINF:0,Kino TV
 http://83.139.104.123/Content/HLS/Live/Channel(kino_tv)/Stream(03)/index.m3u8
 
-#EXTINF:0,Lotus Macau SD
+#EXTINF:0,Lotus Macau
 rtmp://58.97.57.152/live playpath=ch33 swfUrl=http://www.one2hd.com/swfs/mediaPlayer/mediaPlayer.swf pageUrl=http://www.one2hd.com
 
-#EXTINF:0,MGM HD
+#EXTINF:0,MGM
 http://202.75.23.35:1400/live/ch40/03.m3u8
 
-#EXTINF:0,MGM SD
+#EXTINF:0,MGM
 http://202.75.23.35/live/ch40/01.m3u8
 
-#EXTINF:0,Paramount Channel HD
+#EXTINF:0,Paramount Channel
 http://80.77.52.6:4444/udp/230.0.3.20:12345
 
-#EXTINF:0,Pink Action 1 HD
+#EXTINF:0,Pink Action 1
 http://on108.setplex.net/fastv_2psh/PinkActionglobal_rly_greece_109/playlist.m3u8
 
-#EXTINF:0,Pink Action 2 HD
+#EXTINF:0,Pink Action 2
 http://on108.setplex.net/fastv_2psh/PinkAction2global_rly_greece_103/hasbahca.m3u8
 
-#EXTINF:0,Pink Comedy HD
+#EXTINF:0,Pink Comedy
 http://on108.setplex.net/fastv_2psh/PinkComedyglobal_rly_greece_103/playlist.m3u8
 
-#EXTINF:0,Pink Horror HD
+#EXTINF:0,Pink Horror
 http://on108.setplex.net/fastv_2psh/PinkHorrorglobal_rly_greece_103/playlist.m3u8
 
-#EXTINF:0,Pink Movies 3 SD
+#EXTINF:0,Pink Movies 3
 http://on108.setplex.net/fastv_2psh/PinkMovies3global_rly_greece_109/playlist.m3u8
 
-#EXTINF:0,Pink Premium SD
+#EXTINF:0,Pink Premium
 http://on108.setplex.net/fastv_2psh/PinkPremiumglobal_rly_greece_103/playlist.m3u8
 
-#EXTINF:0,Showtime IQ HD
+#EXTINF:0,Showtime IQ
 mmsh://mediafilmcenter.ro:10
 
-#EXTINF:0,Showtime SD
+#EXTINF:0,Showtime
 rtmp://rtmp.zerocast.tv:1935/live playpath=kbMD64czDshAmjDd4kxQ swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
 
-#EXTINF:0,Sky Action HD THISCHANNELISDOWN----------
+#EXTINF:0,Sky Movies Action THISCHANNELISDOWN----------
 
 
-#EXTINF:0,Sky Cinema HD THISCHANNELISDOWN----------
+#EXTINF:0,Sky Movies Cinema THISCHANNELISDOWN----------
 
 
-#EXTINF:0,Sky Cinema+1 HD THISCHANNELISDOWN----------
+#EXTINF:0,Sky Movies Cinema+1 THISCHANNELISDOWN----------
 
 
-#EXTINF:0,Sky Cinema+24 HD THISCHANNELISDOWN----------
+#EXTINF:0,Sky Movies Cinema+24 THISCHANNELISDOWN----------
 
 
-#EXTINF:0,Sky Comedy HD THISCHANNELISDOWN----------
+#EXTINF:0,Sky Movies Comedy THISCHANNELISDOWN----------
 
 
-#EXTINF:0,Sky Emotion HD THISCHANNELISDOWN----------
+#EXTINF:0,Sky Movies Crime & Thriller
+rtmp://109.123.70.15:80/live playpath=mov3 swfUrl=http://www.flashtv.co/ePlayerr.swf live=1 pageUrl=http://www.flashtv.co/embed.php?live=mov3&vw=620&vh=490 token=%ZZri(nKa@#Z
+
+#EXTINF:0,Sky Movies Emotion THISCHANNELISDOWN----------
 
 
-#EXTINF:0,Sky Modern Greats SD THISCHANNELISDOWN----------
+#EXTINF:0,Sky Movies Modern Greats THISCHANNELISDOWN----------
 
 
-#EXTINF:0,Sky Premiere SD THISCHANNELISDOWN----------
+#EXTINF:0,Sky Movies Premiere THISCHANNELISDOWN----------
 
 
-#EXTINF:0,SYFY Movie Channel HD THISCHANNELISDOWN----------
+#EXTINF:0,Sky Movies SciFi & Horror
+rtmp://109.123.70.15:80/live playpath=mov2 swfUrl=http://www.flashtv.co/ePlayerr.swf live=1 pageUrl=http://www.flashtv.co/embed.php?live=mov2&vw=620&vh=490 token=%ZZri(nKa@#Z
+
+#EXTINF:0,SYFY Movie Channel THISCHANNELISDOWN----------
 
 
-#EXTINF:0,TV 1000 HD
+#EXTINF:0,TV 1000
 http://80.77.52.6:4444/udp/230.0.3.54:12345
 
-#EXTINF:0,TV 1000 Action HD
+#EXTINF:0,TV 1000 Action
 http://80.77.52.6:4444/udp/230.0.3.52:12345

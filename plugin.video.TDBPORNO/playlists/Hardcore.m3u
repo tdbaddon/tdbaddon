@@ -2,38 +2,44 @@
 #EXTINF:0,
 
 
-#EXTINF:0,Brasileirinhas SD THISCHANNELISDOWN----------
+#EXTINF:0,Brasileirinhas THISCHANNELISDOWN----------
 
-#EXTINF: 0,Brazzers TV Europe HD
+#EXTINF: 0,Brazzers TV Europe
 http://iptv.multi-net.ru:80/udp/239.255.4.7:1234
 
-#EXTINF:0,Amateri SD
+#EXTINF:0,Amateri
 mmsh://tv.webmisto.cz:7000
 
-#EXTINF:0,Dorcel TV SD THISCHANNELISDOWN----------
+#EXTINF:0,Dorcel TV THISCHANNELISDOWN----------
 
-#EXTINF:0,Frenchlover HD A
+#EXTINF:0,Frenchlover
 http://95.170.186.178:7781/udp/239.255.4.4:1234
 
-#EXTINF:0,Frenchlover HD B
+#EXTINF:0,Frenchlover
 http://iptv.multi-net.ru:80/udp/239.255.4.4:1234?by_HasBahCa
 
-#EXTINF:0,Filthon 1 720 HD THISCHANNELISDOWN----------
+#EXTINF:0,Filthon 1 THISCHANNELISDOWN----------
 
 
-#EXTINF:0,Filthon 2 720 HD THISCHANNELISDOWN----------
+#EXTINF:0,Filthon 2 THISCHANNELISDOWN----------
 
 
-#EXTINF:0,Filthon 3 720 HD THISCHANNELISDOWN----------
+#EXTINF:0,Filthon 3 THISCHANNELISDOWN----------
 
-#EXTINF:0,Redlight HD
+#EXTINF:0,Pure Mature
+http://188.165.220.116:8081/str/ner/playlist.m3u8
+
+#EXTINF:0,Redlight Central
 rtmp://195.154.176.66:8082/private/private/ playpath=private swfUrl=http://livestreamcast.org/jwplayer/jwplayer.flash.swf live=1 pageUrl=http://ero-tv.org/redlight_online/
 
-#EXTINF:0,SexyHot SD
+#EXTINF:0,SexyHot
 rtsp://85.12.5.8:1935/aovivo/sexprive
 
-#EXTINF:0,Sexysat SD
+#EXTINF:0,SexySat
 rtmp://81.89.48.215/xyz999wkz/ playpath=sexysat.stream swfUrl=http://ero-tv.org/jwplayer/jwplayer.flash.swf live=1pageUrl=http://ero-tv.org/sexysat-tv_online/
 
-#EXTINF:0,X Desire HD
+#EXTINF:0,X Desire
 http://artm:artm@84.22.33.3:8060/
+
+#EXTINF:0,XXX
+http://188.165.220.116:8081/str/ru/playlist.m3u8

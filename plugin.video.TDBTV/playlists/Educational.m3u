@@ -2,74 +2,80 @@
 #EXTINF:0,
 
 
-#EXTINF:0,Animal Planet HD
+#EXTINF:0,Animal Planet
 http://202.75.23.34/live/ch31/03.m3u8
 
-#EXTINF:0,Discovery Channel HQ
+#EXTINF:0,Discovery Channel
 http://hls.cn.ru/streaming/discovery_hd/16/fullhd/playlist.m3u8
 
-#EXTINF:0,Discovery Channel SD
+#EXTINF:0,Discovery Channel
 http://202.75.23.34/live/ch29/03.m3u8
 
-#EXTINF:0,Discovery Travel & Living SD
+#EXTINF:0,Discovery Home And Health
+http://202.75.23.34/live/ch34/01.m3u8
+
+#EXTINF:0,Discovery Travel & Living
 http://202.75.23.34:1400/live/ch34/01.m3u8
 
-#EXTINF:0,Discovery Max HD
+#EXTINF:0,Discovery Max
 http://202.75.23.34/live/ch32/03.m3u8?b?b*t$
 
-#EXTINF:0,Discovery Max SD
+#EXTINF:0,Discovery Max
 http://202.75.23.34/live/ch32/01.m3u8
 
-#EXTINF:0,Discovery Science SD
+#EXTINF:0,Discovery Max
+http://202.75.23.34/live/ch32/03.m3u8
+
+#EXTINF:0,Discovery Science
 http://202.75.23.34/live/ch33/03.m3u8
 
-#EXTINF:0,Discovery World HD
+#EXTINF:0,Discovery World
 http://202.75.23.34:1400/live/ch30/03.m3u8
 
-#EXTINF:0, FYI HD  THISCHANNELISDOWN----------
+#EXTINF:0, FYI THISCHANNELISDOWN----------
 
 
-#EXTINF:0,History SD  THISCHANNELISDOWN----------
+#EXTINF:0,History THISCHANNELISDOWN----------
 
 
-#EXTINF:0,NASA Media HD
+#EXTINF:0,NASA Media
 http://media.infozen.cshls.lldns.net/infozen/media/media/media_1000.m3u8
 
-#EXTINF:0,NASA TV HD
+#EXTINF:0,NASA TV
 http://public.infozen.cshls.lldns.net/infozen/public/public.m3u8
 
-#EXTINF:0,Nat Geo HD
+#EXTINF:0,Nat Geo
 http://202.75.23.34/live/ch31/03.m3u8
 
-#EXTINF:0,Nat Geo People SD  THISCHANNELISDOWN----------
+#EXTINF:0,Nat Geo People THISCHANNELISDOWN----------
 
 
-#EXTINF:0,Nat Geo Wild HD
+#EXTINF:0,Nat Geo Wild
 http://202.75.23.35/live/ch39/03.m3u8
 
-#EXTINF:0,National Geographic HD
+#EXTINF:0,National Geographic
 http://202.75.23.35/live/ch38/03.m3u8
 
-#EXTINF:0,Travel Channel SD
+#EXTINF:0,Travel Channel
 http://91.191.249.51:81/udp/239.255.2.240:1234
 
-#EXTINF:0,Travel Channel SD
+#EXTINF:0,Travel Channel
 http://83.139.104.123/Content/HLS/Live/Channel(travel_channel)/Stream(03)/index.m3u8
 
-#EXTINF:0,Viasat Explorer HD
+#EXTINF:0,Viasat Explorer
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_VIASATEXPLORER/variant.m3u8
 
-#EXTINF:0,Viasat Explorer HD
+#EXTINF:0,Viasat Explorer
 http://80.77.52.6:4444/udp/230.0.3.55:12345
 
-#EXTINF:0,Viasat History HD
+#EXTINF:0,Viasat History
 http://80.77.52.6:4444/udp/230.0.3.56:12345
 
-#EXTINF:0,Viasat History HD
+#EXTINF:0,Viasat History
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_VIASATHISTORY/variant.m3u8
 
-#EXTINF:0,Viasat History SD
+#EXTINF:0,Viasat History
 http://83.139.104.123/Content/HLS/Live/Channel(viasat_history)/Stream(03)/index.m3u8
 
-#EXTINF:0,Viasat Nature HD
+#EXTINF:0,Viasat Nature
 http://80.77.52.6:4444/udp/230.0.3.53:12345
