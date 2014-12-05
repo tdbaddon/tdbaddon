@@ -107,7 +107,7 @@
 </addon>
 
 <addon id="script.xbmcbackup"
-    name="TDB BACKUP" version="1.00" provider-name="TDB">
+    name="TDB BACKUP" version="10.00" provider-name="TDB">
   <requires>
     <import addon="xbmc.python" version="2.14.0"/>
   </requires>
