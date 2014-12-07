@@ -7,17 +7,17 @@ rtmp://62.210.76.216/live2 playpath=stopstealingmyshitmotherfuckers swfUrl=http:
 #EXTINF:0,BigPond Movies
 mms://ken-cdn220-is-3.se.bptvlive.ngcdn.telstra.com/bp_online_movieextra_high
 
-#EXTINF:0,C More Action
-http://83.255.136.115:8001/1:0:1:47A:30:A027:FFFF0000:0:0:0:
+#EXTINF:0,C More Action 
+
  
-#EXTINF:0,C More Emotion
-http://83.255.136.115:8001/1:0:1:43E:20:A027:FFFF0000:0:0:0:
+#EXTINF:0,C More Emotion 
+
  
-#EXTINF:0,C More First
-http://83.255.136.115:8001/1:0:1:478:20:A027:FFFF0000:0:0:0:
+#EXTINF:0,C More First 
+
  
-#EXTINF:0,C More Hits
-http://83.255.136.115:8001/1:0:1:47B:20:A027:FFFF0000:0:0:0:
+#EXTINF:0,C More Hits 
+
 
 #EXTINF:0,Cinestar Action & Thriller
 http://83.139.104.109/Content/HLS/Live/Channel(cinestar_action_and_thriller)/Stream(03)/index.m3u8
@@ -37,7 +37,20 @@ rtmp://nonamehdfree.dyndns.org:443/limelight app=limelight?t=guest playpath=02_f
 #EXTINF:0,Fox Movies Premium
 rtmp://nonamehdfree.dyndns.org:443/limelight app=limelight?t=guest playpath=02_foxmovies_360p swfUrl=https://nonamehd.com/playerv3.swf flashver=WIN\2013,0,0,214 pageUrl=https://nonamehd.com/?b?b*t$ live=1 timeout=15
 
-#EXTINF:0,FX-D THISCHANNELISDOWN----------
+#EXTINF:0,FX-D 
+
+
+#EXTINF:0, HBO
+rtmp://rtmp.zerocast.tv:1935/live playpath=qKmzUdRhBM73njBBDFyL swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
+
+#EXTINF:0,HBO
+rtmpe://46.246.124.23:1935/live/hbo3 playpath=hbo3 swfUrl=http://p.jwpcdn.com/6/8/jwplayer.flash.swf pageUrl=http://prvservers.com/embed2.php?u=hbo3&vw=620&vh=470&domain=usachannels.tv token=#yw%tt#w@kku
+
+#EXTINF:0,HBO
+rtmp://nonamehdfree.dyndns.org:443/limelight?t=guest49.213.28.72 playpath=02_hbohd_360p?t=guest49.213.28.72 swfUrl=https://nonamehd.com/playerv3.swf live=1 pageUrl=https://nonamehd.com/users/get_your_stream_free/3/188/360p
+
+#EXTINF:0,HBO Plus
+rtmp://109.200.202.124/live playpath=hboplus swfUrl=http://www.tv-msn.com/player/player.swf pageUrl=http://tv-msn.com/hboplus.html
 
 #EXTINF:0,Kino TV
 http://83.139.104.123/Content/HLS/Live/Channel(kino_tv)/Stream(03)/index.m3u8
@@ -51,8 +64,8 @@ http://202.75.23.35:1400/live/ch40/03.m3u8
 #EXTINF:0,MGM
 http://202.75.23.35/live/ch40/01.m3u8
 
-#EXTINF:0,Paramount Channel
-http://80.77.52.6:4444/udp/230.0.3.20:12345
+#EXTINF:0,Paramount Channel 
+
 
 #EXTINF:0,Pink Action 1
 http://on108.setplex.net/fastv_2psh/PinkActionglobal_rly_greece_109/playlist.m3u8
@@ -72,37 +85,31 @@ http://on108.setplex.net/fastv_2psh/PinkMovies3global_rly_greece_109/playlist.m3
 #EXTINF:0,Pink Premium
 http://on108.setplex.net/fastv_2psh/PinkPremiumglobal_rly_greece_103/playlist.m3u8
 
-#EXTINF:0,Showtime IQ
-mmsh://mediafilmcenter.ro:10
+#EXTINF:0,Showtime IQ 
 
-#EXTINF:0,Showtime
-rtmp://rtmp.zerocast.tv:1935/live playpath=kbMD64czDshAmjDd4kxQ swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
+
+#EXTINF:0,Showtime 
+rtmpe://46.246.124.87:1935/live/show99 playpath=show99 swfUrl=http://p.jwpcdn.com/6/8/jwplayer.flash.swf pageUrl=http://prvservers.com/embed2.php?u=show99&vw=620&vh=470&domain=usachannels.tv token=#yw%tt#w@kku
 
 #EXTINF:0,Sky Movies Action Adventure
 http://acabsw.doiptv.com/sky_action/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
 
-#EXTINF:0,Sky Movies Cinema THISCHANNELISDOWN----------
+#EXTINF:0,Sky Movies Cinema 
 
 
-#EXTINF:0,Sky Movies Cinema+1 THISCHANNELISDOWN----------
+#EXTINF:0,Sky Movies Cinema+1 
 
 
-#EXTINF:0,Sky Movies Cinema+24 THISCHANNELISDOWN----------
-
+#EXTINF:0,Sky Movies Cinema+24
+http://acabsw.doiptv.com/sky_movies_24_plus/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
 
 #EXTINF:0,Sky Movies Comedy
 http://acabsw.doiptv.com/sky_comedy/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
 
 #EXTINF:0,Sky Movies Crime & Thriller
-rtmp://109.123.70.15:80/live playpath=mov3 swfUrl=http://www.flashtv.co/ePlayerr.swf live=1 pageUrl=http://www.flashtv.co/embed.php?live=mov3&vw=620&vh=490 token=%ZZri(nKa@#Z
-
-#EXTINF:0,Sky Movies Crime & Thriller
 http://acabsw.doiptv.com/sky_thriller/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
 
-#EXTINF:0,Sky Movies Disney
-http://acabsw.doiptv.com/sky_mov_disney/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
-
-#EXTINF:0,Sky Movies Emotion THISCHANNELISDOWN----------
+#EXTINF:0,Sky Movies Emotion 
 
 #EXTINF:0,Sky Movies Family
 http://acabsw.doiptv.com/sky_family/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
@@ -110,7 +117,7 @@ http://acabsw.doiptv.com/sky_family/playlist.m3u8|User-Agent="Lavf53.32.100":net
 #EXTINF:0,Sky Movies Greats
 http://acabsw.doiptv.com/sky_greats/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
 
-#EXTINF:0,Sky Movies Modern Greats THISCHANNELISDOWN----------
+#EXTINF:0,Sky Movies Modern Greats 
 
 
 #EXTINF:0,Sky Movies Premiere
@@ -128,7 +135,7 @@ http://acabsw.doiptv.com/sky_select/playlist.m3u8|User-Agent="Lavf53.32.100":net
 #EXTINF:0,Sky Movies Showcase
 http://acabsw.doiptv.com/sky_showcase/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
 
-#EXTINF:0,SYFY Movie Channel THISCHANNELISDOWN----------
+#EXTINF:0,SYFY Movie Channel 
 
 
 #EXTINF:0,TV 1000
@@ -136,3 +143,18 @@ http://80.77.52.6:4444/udp/230.0.3.54:12345
 
 #EXTINF:0,TV 1000 Action
 http://80.77.52.6:4444/udp/230.0.3.52:12345
+
+#EXTINF:0,TV 1000 Action
+http://176.51.80.38:1234/udp/233.7.70.59:5000
+
+
+
+
+
+
+
+
+
+
+
+

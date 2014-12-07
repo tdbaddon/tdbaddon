@@ -17,6 +17,9 @@ rtmp://cdn-sov-2.musicradio.com:80/LiveVideo/Capital
 #EXTINF:0,CineStream TV
 http://68.71.42.179/live/livestream1/playlist.m3u8
 
+#EXTINF:0,Clubbing TV
+rtmp://204.107.26.252:8086/live/691.high.stream
+
 #EXTINF:0,Club TV THISCHANNELISDOWN----------
 
 
@@ -53,11 +56,20 @@ http://csm-e.cds1.yospace.com/csm/live/86561776.m3u8
 #EXTINF:0,MTV Dance
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVDANCE/variant.m3u8
 
+#EXTINF:0,MTV Dance
+http://176.51.80.38:1234/udp/233.7.70.207:5000
+
 #EXTINF:0,MTV Hits
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVHITS/variant.m3u8
 
-#EXTINF:0,MTV Live THISCHANNELISDOWN----------
+#EXTINF:0,MTV Hits
+http://176.51.80.38:1234/udp/233.7.70.208:5000
 
+#EXTINF:0,MTV Live
+http://176.51.80.38:1234/udp/233.7.70.208:5000
+
+#EXTINF:0,MTV Live
+http://176.51.80.38:1234/udp/233.7.70.161:5000
 
 #EXTINF:0,MTV Music
 http://83.139.104.123/Content/HLS/Live/Channel(mtv_music)/Stream(03)/index.m3u8
@@ -65,8 +77,8 @@ http://83.139.104.123/Content/HLS/Live/Channel(mtv_music)/Stream(03)/index.m3u8
 #EXTINF:0,MTV Rocks
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVROCKS/variant.m3u8
 
-#EXTINF:0,Music
-http://csm-e.cds1.yospace.com/csm/live/86550614.m3u8
+#EXTINF:0,MTV Rocks
+http://176.51.80.38:1234/udp/233.7.70.209:5000
 
 #EXTINF:0,Musiq1
 http://88.212.10.27:81/streams/musiq1.m3u8
@@ -121,11 +133,14 @@ http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch3/06/prog_index.m3u8
 #EXTINF:0,Vevo Pop
 http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/appleman.m3u8
 
-#EXTINF:0,VH1 Classics
-http://gogo.jksw.cz:8024
+#EXTINF:0,VH1
+http://176.51.80.38:1234/udp/233.7.70.152:5000
 
 #EXTINF:0,VH1 Classics
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_VH1CLASSIC/variant.m3u8
+
+#EXTINF:0,VH1 Classics
+http://gogo.jksw.cz:8024
 
 #EXTINF:0,VH1 Shuffle
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_VH1EUROPEAN/variant.m3u8

@@ -9,10 +9,10 @@ rtmp://lm07.everyon.tv/ptv7/phd499
 http://sdn-global-live-http-cache.3qsdn.com/2346/_definst_///mp4:Ct6zG7Nrj3v2JxD/manifest.m3u8
 
 #EXTINF:0,Bella Club
-rtsp://46.249.213.87/broadcast/bellaluz-tablet.3gp
+http://46.249.213.93/iPhone/broadcast/bellaclub-tablet.3gp/bellaclub-tablet.3gp-mr648k.m3u8?trackingid=3391380000&os=desktop
 
 #EXTINF:0,Bella Club
-http://46.249.213.93/iPhone/broadcast/bellaclub-tablet.3gp/bellaclub-tablet.3gp-mr648k.m3u8?trackingid=3391380000&os=desktop
+rtsp://46.249.213.87/broadcast/bellaluz-tablet.3gp
 
 #EXTINF:0,Bikini Hotties
 http://46.249.213.93/iPhone/broadcast/bikinihotties-tablet.3gp/bikinihotties-tablet.3gp-mr647k.m3u8?trackingid=5091600000&os=desktop
@@ -33,8 +33,8 @@ http://46.249.213.93/iPhone/broadcast/hotshotsbeachbabes-tablet.3gp/hotshotsbeac
 http://46.249.213.93/iPhone/broadcast/hotshots-tablet.3gp/hotshots-tablet.3gp-mr646k.m3u8?
 trackingid=3641590000&os=desktop
 
-#EXTINF:0,Honey THISCHANNELISDOWN----------
-
+#EXTINF:0,Honey
+rtmp://lm07.everyon.tv:1935/ptv7/phd63
 
 #EXTINF:0,Hustler
 http://cdn-edge01.livestreamcast.org:8081/erotic/phd499/chunklist_w875156738.m3u8

@@ -1,19 +1,28 @@
 ﻿#EXTM3U
 #EXTINF:0,
 
-#EXTINF:0,Aniplus THISCHANNELISDOWN----------
+#EXTINF:0,Aniplus 
 
 
 #EXTINF:0,Baby First
 http://202.75.23.33/live/ch27/03.m3u8
 
-#EXTINF:0,BabyTV THISCHANNELISDOWN----------
-
+#EXTINF:0,BabyTV 
+http://176.51.80.38:1234/udp/233.7.70.188:5000
 
 #EXTINF:0,Boomerang
 rtmp://mi2.gv.filmon.com:1935/live/_definst_/2734.low.stream
 
-#EXTINF:0,Cartoonito THISCHANNELISDOWN----------
+#EXTINF:0,Boomerang
+http://hlsstr02.svc.iptv.rt.ru/hls/CH_BOOMERANG/variant.m3u8
+
+#EXTINF:0,Boomerang
+http://176.51.80.38:1234/udp/233.7.70.187:5000
+
+#EXTINF:0,C ITV
+http://acabsw.doiptv.com/am-1_itv_london/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
+
+#EXTINF:0,Cartoonito
 
 
 #EXTINF:0,Cartoon Network
@@ -23,30 +32,49 @@ http://hlsstr02.svc.iptv.rt.ru/hls/CH_CN/variant.m3u8
 rtmp://rtmp.zerocast.tv:1935/live playpath=08pydvp1b7ZwZb3a5TW1 swfUrl=http://cdn.zerocast.tv/player.swf  flashVer=WIN/16,0,0,219 pageUrl=http://zerocast.tv/embed3.php?a=6&id=&width=580&height=400&autostart=true&strech= token=8964316ec8772dfa
 
 #EXTINF:0,Cartoon Network
-http://80.77.52.6:4444/udp/230.0.3.15:12345
+http://176.51.80.38:1234/udp/233.7.70.102:5000
 
-#EXTINF:0,Disney Channel
-http://83.255.136.115:8001/1:0:1:514:2F:A027:FFFF0000:0:0:0:
-
-#EXTINF:0,Disney Junior THISCHANNELISDOWN----------
+#EXTINF:0,Disney Channel 
 
 
-#EXTINF:0,Disney XD
-http://83.255.136.115:8001/1:0:1:521:1E:A027:FFFF0000:0:0:0:
+#EXTINF:0,Disney Junior 
+
+
+#EXTINF:0,Disney XD 
+
+
+#EXTINF:0,Jim Jam 
+http://202.75.23.37/live/ch17/03.m3u8
 
 #EXTINF:0,Jim Jam
-http://202.75.23.37/live/ch17/03.m3u8
+http://176.51.80.38:1234/udp/233.7.70.148:5000
 
 #EXTINF:0,Kids Comedy
 rtmp://mi2.gv.filmon.com:1935/live/_definst_/2734.low.stream?b?b*t$
 
-#EXTINF:0,Looney Tunes
-rtmp://104.130.79.136:1935/live/lt
+#EXTINF:0,Looney Tunes 
+
+
+#EXTINF:0,Nickelodeon 
+rtmp://rtmp.zerocast.tv:1935/live/ playpath=fCqfhb14WwwFbAsDbV3Z  swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
 
 #EXTINF:0,Nickelodeon
-http://80.77.52.6:4444/udp/230.0.3.45:12345
+http://hlsstr02.svc.iptv.rt.ru/hls/CH_NICKELODEON/variant.m3u8
 
-#EXTINF:0,Nick Jr THISCHANNELISDOWN----------
+#EXTINF:0,Nickelodeon
+http://176.51.80.38:1234/udp/233.7.70.164:5000
+
+#EXTINF:0,Nick Jr
+http://95.188.126.233:1234/udp/233.7.70.169:5000
+
+#EXTINF:0,Nick Jr
+http://176.51.80.38:1234/udp/233.7.70.169:5000
+
+#EXTINF:0,NickNight SD  
 
 
-#EXTINF:-1,NickNight SD  THISCHANNELISDOWN----------
+#EXTINF:0,Sky Movies Disney
+http://acabsw.doiptv.com/sky_mov_disney/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
+
+#EXTINF:0,U TV
+http://acabsw.doiptv.com/am-1_ulster_tv/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000

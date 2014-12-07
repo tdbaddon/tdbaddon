@@ -7,22 +7,17 @@
 #EXTINF: 0,Brazzers TV Europe
 http://iptv.multi-net.ru:80/udp/239.255.4.7:1234
 
-#EXTINF: 0,Brazzers TV Europe
-http://46.181.237.75:1234/udp/239.255.42.220:1234
-
 #EXTINF:0,Amateri
 mmsh://tv.webmisto.cz:7000
 
 #EXTINF:0,Dorcel TV THISCHANNELISDOWN----------
 
-#EXTINF:0,Frenchlover
-http://95.170.186.178:7781/udp/239.255.4.4:1234
-
-#EXTINF:0,Frenchlover
-http://iptv.multi-net.ru:80/udp/239.255.4.4:1234?by_HasBahCa
 
 #EXTINF:0,Frenchlover
 http://185.8.127.165:4022/udp/230.3.4.150:5678
+
+#EXTINF:0,Frenchlover
+http://iptv.multi-net.ru:80/udp/239.255.4.4:1234?by_HasBahCa
 
 #EXTINF:0,Filthon 1 THISCHANNELISDOWN----------
 
@@ -38,11 +33,11 @@ http://188.165.220.116:8081/str/ner/playlist.m3u8
 #EXTINF:0,Redlight Central
 rtmp://195.154.176.66:8082/private/private/ playpath=private swfUrl=http://livestreamcast.org/jwplayer/jwplayer.flash.swf live=1 pageUrl=http://ero-tv.org/redlight_online/
 
-#EXTINF:0,Redlight Premium
-http://88.203.214.12:4022/udp/239.10.1.196:30000
+#EXTINF:0,Redlight Premium THISCHANNELISDOWN----------
 
-#EXTINF:0,SCT
-http://88.203.214.12:4022/udp/239.10.1.197:30000
+
+#EXTINF:0,SCT THISCHANNELISDOWN----------
+
 
 #EXTINF:0,SexyHot
 rtsp://85.12.5.8:1935/aovivo/sexprive
@@ -58,6 +53,3 @@ http://188.165.220.116:8081/str/ru/playlist.m3u8
 
 #EXTINF:0,XXX
 http://188.165.220.116:8081/str/ner/playlist.m3u8
-
-#EXTINF:0,XXX
-http://188.165.220.116:8081/str/ru/playlist.m3u8

@@ -5,6 +5,12 @@
 #EXTINF:0,Animal Planet
 http://202.75.23.34/live/ch31/03.m3u8
 
+#EXTINF:0,Crime Investigation
+http://acabsw.doiptv.com/sky_discovery_investigation/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
+
+#EXTINF:0,Crime Investigation
+http://202.75.23.36/live/ch47/01.m3u8
+
 #EXTINF:0,Discovery Channel
 http://hls.cn.ru/streaming/discovery_hd/16/fullhd/playlist.m3u8
 
@@ -13,6 +19,9 @@ http://acabsw.doiptv.com/sky_discovery_investigation/playlist.m3u8|User-Agent="L
 
 #EXTINF:0,Discovery Channel
 http://202.75.23.34/live/ch29/03.m3u8
+
+#EXTINF:0,Discovery History
+http://acabsw.doiptv.com/sky_discovery_history/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
 
 #EXTINF:0,Discovery Home And Health
 http://202.75.23.34/live/ch34/01.m3u8
@@ -44,7 +53,10 @@ http://202.75.23.34/live/ch33/03.m3u8
 #EXTINF:0,Discovery World
 http://202.75.23.34:1400/live/ch30/03.m3u8
 
-#EXTINF:0, FYI THISCHANNELISDOWN----------
+#EXTINF:0,Docu Box
+http://stream1.zoovision.com//livespi/docubox/playlist.m3u8
+
+#EXTINF:0, FYI 
 
 
 #EXTINF:0,History Channel
@@ -52,6 +64,12 @@ http://acabsw.doiptv.com/sky_history/playlist.m3u8|User-Agent="Lavf53.32.100":ne
 
 #EXTINF:0,History Channel
 http://acabsw.doiptv.com/sky_history_2/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
+
+#EXTINF:0,History Channel
+http://176.51.80.38:1234/udp/233.7.70.185:5000
+
+#EXTINF:0,History Channel
+http://176.51.80.38:1234/udp/233.7.70.230:5000
 
 #EXTINF:0,NASA Media
 http://media.infozen.cshls.lldns.net/infozen/media/media/media_1000.m3u8
@@ -62,7 +80,7 @@ http://public.infozen.cshls.lldns.net/infozen/public/public.m3u8
 #EXTINF:0,Nat Geo
 http://202.75.23.34/live/ch31/03.m3u8
 
-#EXTINF:0,Nat Geo People THISCHANNELISDOWN----------
+#EXTINF:0,Nat Geo People 
 
 
 #EXTINF:0,Nat Geo Wild
@@ -73,9 +91,6 @@ http://acabsw.doiptv.com/sky_natgeowild/playlist.m3u8|User-Agent="Lavf53.32.100"
 
 #EXTINF:0,National Geographic
 http://202.75.23.35/live/ch38/03.m3u8
-
-#EXTINF:0,Travel Channel
-http://91.191.249.51:81/udp/239.255.2.240:1234
 
 #EXTINF:0,Travel Channel
 http://83.139.104.123/Content/HLS/Live/Channel(travel_channel)/Stream(03)/index.m3u8

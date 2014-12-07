@@ -1,0 +1,24 @@
+﻿#EXTM3U
+#EXTINF:0,
+
+
+#EXTINF:0,Live Landscape
+http://130.88.20.233:1237/test.flv
+
+#EXTINF:0,Live Fish Tank
+rtmp://80.93.53.88:1935/live/channel_3
+
+#EXTINF:0,Live Niagra Falls 1
+mms://webcams.niagarafallshotels.com/CNH-Stream2
+
+#EXTINF:0,Live Niagra Falls 2
+rtsp://video2.earthcam.com/fecnetwork/4559.flv
+
+#EXTINF:0,Live Tropical Reef
+http://edge04.hdontap.com/hdstreams/tropicalreef_ea_hdontap/chunklist_w1191484316.m3u8
+
+#EXTINF:0,NY Times Square Crossroads
+http://video2.earthcam.com/fecnetwork/4717.flv/medien.m3u8
+
+#EXTINF:0,NY Times Square South View
+http://video2.earthcam.com/fecnetwork/4017timessquare.flv/medien.m3u8
