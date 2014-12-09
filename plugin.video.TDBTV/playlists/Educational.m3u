@@ -95,6 +95,9 @@ http://202.75.23.35/live/ch38/03.m3u8
 #EXTINF:0,Travel Channel
 http://83.139.104.123/Content/HLS/Live/Channel(travel_channel)/Stream(03)/index.m3u8
 
+#EXTINF:0,Travel Channel
+http://93.174.95.125:1935/edge/_definst_/1fvuok2ny4jtmgq/playlist.m3u8?xs=_we_MWZ2dW9rMm55NGp0bWdxfDE0MTgxNjMyNzB8MTc0LjExMy4zMC4xODd8NTQ4NzY2MzY0ZTEzY3wyZGYzYjY0MGZlYmI5Mjg4ZmY3ZDZmMDIwM2JhMjYxNjVhYWZjNDA4
+
 #EXTINF:0,Viasat Explorer
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_VIASATEXPLORER/variant.m3u8
 

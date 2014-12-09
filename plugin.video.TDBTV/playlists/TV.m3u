@@ -3,10 +3,16 @@
 
 
 #EXTINF:0,A&E 
+http://93.174.95.125:1935/edge/_definst_/tuc280rbycwnsvs/playlist.m3u8?xs=_we_dHVjMjgwcmJ5Y3duc3ZzfDE0MTgxNjI0MDZ8MTc0LjExMy4zMC4xODd8NTQ4NzYyZDY4MWVkYnw5YzMyMTdmYzY4YzViNDE5Nzg2MWQ3ODAwOWJlMTI1NDhmYzVmYjgx
 
+#EXTINF:0,A&E 
+http://93.174.95.125:1935/edge/_definst_/tuc280rbycwnsvs/playlist.m3u8?xs=_we_dHVjMjgwcmJ5Y3duc3ZzfDE0MTgxNjMyMzF8MTc0LjExMy4zMC4xODd8NTQ4NzY2MGY3N2Y3N3w0MjUzODliOGQzYmUzMmM4YWYxN2Y4NWI1ZTIwODY0NjEyYjU3Mzc3
 
 #EXTINF:0,ABC
 rtmp://rtmp.zerocast.tv:1935/live/ playpath=rGCi7bg0Qxvs8q7Sl13l swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
+
+#EXTINF:0,ABC
+http://93.174.95.125:1935/edge/_definst_/371jluirljcsjen/playlist.m3u8?xs=_we_Mzcxamx1aXJsamNzamVufDE0MTgxNjI0OTd8MTc0LjExMy4zMC4xODd8NTQ4NzYzMzEzMjJkNXw4N2EwMTQ0YjAyMzczN2UzZDg1ZjJlYmRiMWM0YmE1ZGFjNDE2YmMw
 
 #EXTINF:0,AMC
 rtmp://rtmp.zerocast.tv:1935/live/ playpath=TfRQx7deUAuncJwM047m swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
@@ -25,6 +31,8 @@ http://live306.edge.filmon.com/live/113.low.stream/playlist.m3u8?id=0ad5aac39bb1
 
 #EXTINF:0,BBC 4 
 
+#EXTINF:0,BET
+http://93.174.95.125:1935/edge/_definst_/kexkxje3nqi6dtl/playlist.m3u8?xs=_we_a2V4a3hqZTNucWk2ZHRsfDE0MTgxNjcxMjZ8MTc0LjExMy4zMC4xODd8NTQ4Nzc1NDYyNjIzNnxlZmUyYzZhY2M0OGE5MDVhZjhjZWZkNmRjZmY1NjY4YWIyMmFkYWY5
 
 #EXTINF:0,BIO 
 
@@ -34,6 +42,9 @@ rtmpe://46.246.124.22:1935/live/bravobraco playpath=bravobraco swfUrl=http://p.j
 
 #EXTINF:0,CBS
 rtmp://rtmp.zerocast.tv:1935/live/ playpath=Ger61uLQ4fedzvjRjrB7   swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
+
+#EXTINF:0,CBS
+http://93.174.95.125:1935/edge/_definst_/dt0qvk6nmdhk8u6/playlist.m3u8?xs=_we_ZHQwcXZrNm5tZGhrOHU2fDE0MTgxNjMyODh8MTc0LjExMy4zMC4xODd8NTQ4NzY2NDg3YWQzZnw0Mzc1MzJiZmVjMGEyOTM1OGYxZGY4MzY3Y2M1YzI3YmRmMzA5ZDJl
 
 #EXTINF:0,CBS Drama
 http://204.107.27.248/live/_definst_/1805.low.stream/chunklist_w1799623304.m3u8?id=0ad5aac39bb13fbe0e4de5c78c8c17bb02999b74d4102e7c48141629b8b2a8ee6879b6f1922d6d8e158b53362e7bbd5c7e338189dc574314c25bcbb72b455dd31394bf06a0e37221d9264aad1b952ad7d46d8ec7c6bcb81cbca6d20dd694366f7d93c73a13a98e88806868eed7eedc6777b807506dbddd451a18ec2236de0d6c6e98e9f4d72a97bb5cfd34047562ead0db796aa4311b81ab
@@ -55,6 +66,12 @@ http://livestation_hls-lh.akamaihd.net/i/cnbc_en@106428/master.m3u8
 
 #EXTINF:0,CW
 rtmp://rtmp.zerocast.tv:1935/live playpath=IWSyIjvWgHRCMM7MEJoZ  swfUrl=http://cdn.zerocast.tv/player.swf flashVer=WIN/16,0,0,219 pageUrl=http://zerocast.tv/embed3.php?a=8&id=&width=580&height=400&autostart=true&strech= token=8964316ec8772dfa
+
+#EXTINF:0,CW
+http://93.174.95.125:1935/edge/_definst_/qvvkvojlano9hnj/playlist.m3u8?xs=_we_cXZ2a3Zvamxhbm85aG5qfDE0MTgxNjI0NjV8MTc0LjExMy4zMC4xODd8NTQ4NzYzMTE0ODA2MHwxMjljMjBlYzhhNmMyNjRhZmZmYzk5NGYyNjAwNjkyMmEyZWUyMDdl
+
+#EXTINF:0,CW
+http://93.174.95.125:1935/edge/_definst_/qvvkvojlano9hnj/playlist.m3u8?xs=_we_cXZ2a3Zvamxhbm85aG5qfDE0MTgxNjMzMDB8MTc0LjExMy4zMC4xODd8NTQ4NzY2NTQ5N2UzZHw5ZWVlN2NhNjI2M2E3NjI2NjZiMGUzOWFkZmM4ODIzYjhhZTc4NWQx
 
 #EXTINF:0,Denver 8 TV 
 
@@ -97,8 +114,11 @@ rtmpe://46.246.124.23:1935/live/foxx playpath=foxx swfUrl=http://p.jwpcdn.com/6/
 #EXTINF:0,FOX Life
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_FOXLIFE/variant.m3u8
 
-#EXTINF:0,FX 
+#EXTINF:0,FX
+http://93.174.95.125:1935/edge/_definst_/hrjtbc6cg6tbtgz/playlist.m3u8?xs=_we_aHJqdGJjNmNnNnRidGd6fDE0MTgxNjM2MDV8MTc0LjExMy4zMC4xODd8NTQ4NzY3ODVhNmIwOXw1MWUyODU2ZjMwYjExM2IxYTQzNDViZWU0NWZkMTY5ZjA3NGIxNTI3
 
+#EXTINF:0,FX
+rtsp://93.174.95.125:1935/edge/_definst_/hrjtbc6cg6tbtgz?xs=_we_aHJqdGJjNmNnNnRidGd6fDE0MTgxNjM2NTJ8MTc0LjExMy4zMC4xODd8NTQ4NzY3YjQ1YWViOXw1M2UwZWUwNDc3MGQ1YjEwYzZlZmQ3MmE5OTVjY2Y5MDljNTc1M2Zm
 
 #EXTINF:0,Home Shopping Network
 rtsp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:420p500kB31
@@ -116,12 +136,16 @@ http://acabsw.doiptv.com/am-1_itv4/playlist.m3u8|User-Agent="Lavf53.32.100":netw
 http://acabsw.doiptv.com/sky_encore/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
 
 #EXTINF:0,Lifetime Network
+http://93.174.95.125:1935/edge/_definst_/7b2gr554gyyth8e/playlist.m3u8?xs=_we_N2IyZ3I1NTRneXl0aDhlfDE0MTgxNjI1Nzd8MTc0LjExMy4zMC4xODd8NTQ4NzYzODE3NGJiZXxjZDc0ZmQ5Y2ViMWU4MjhlZTAzM2Q1ODg4NWVhMzU3NTI1NDYyMzQ1
 
 
 #EXTINF:0,NBC
 rtmp://rtmp.zerocast.tv:1935/live playpath=3GdoAHRAxgZNzmQZL29l swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
 
-#EXTINF:0,PBS 
+#EXTINF:0,OWN Network
+http://93.174.95.125:1935/edge/_definst_/uehgy5htiasffj3/playlist.m3u8?xs=_we_dWVoZ3k1aHRpYXNmZmozfDE0MTgxNjI5ODN8MTc0LjExMy4zMC4xODd8NTQ4NzY1MTdkMTI3NHw5MjMyMDFmNDIzMGU0NmQ4YzdkY2UxZTE5Yjc1NDI2ZjU1MzQwOTg4
+
+#EXTINF:0,PBS
 
 
 #EXTINF:0,Pick TV
@@ -131,10 +155,16 @@ http://acabsw.doiptv.com/sky_pick/playlist.m3u8|User-Agent="Lavf53.32.100":netwo
 
 
 #EXTINF:0,Spike Tv 
-
+http://93.174.95.125:1935/edge/_definst_/sax2mq2alpirnww/playlist.m3u8?xs=_we_c2F4Mm1xMmFscGlybnd3fDE0MTgxNjM0NjB8MTc0LjExMy4zMC4xODd8NTQ4NzY2ZjRhNjVmNHxiMWVlM2VkMTRjYzQ5ZGU3MDJjMDBmMjM0N2NlMWVhYWMwZjBjMTUw
 
 #EXTINF:0,Syfy
 rtmpe://46.246.124.29:1935/live/syfi9 playpath=syfi9 swfUrl=http://p.jwpcdn.com/6/8/jwplayer.flash.swf pageUrl=http://prvservers.com/embed2.php?u=syfi9&vw=620&vh=470&domain=usachannels.tv token=#yw%tt#w@kku
+
+#EXTINF:0,Syfy
+http://93.174.95.125:1935/edge/_definst_/oepz9q5oivflbcw/playlist.m3u8?xs=_we_b2VwejlxNW9pdmZsYmN3fDE0MTgxNjI4ODV8MTc0LjExMy4zMC4xODd8NTQ4NzY0YjU3YjBiMXw4N2ExMzk2MGJmNGE4Yzk5MDRkNWRiMDkxMTJjMTAzNzdkMmM4MzA0
+
+#EXTINF:0,TBS
+http://93.174.95.125:1935/edge/_definst_/jh8nj062bqbsxdh/playlist.m3u8?xs=_we_amg4bmowNjJicWJzeGRofDE0MTgxNjI3NjV8MTc0LjExMy4zMC4xODd8NTQ4NzY0M2QwNDFlNXxjMDRhNzVmYWQzZjU3MjczMDMwYWRjYmI1MDIxNDE3YWU4ZDg2Yzdi
 
 #EXTINF:0,The Shopping Channel
 http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/master.m3u8?b?b*t$
@@ -148,6 +178,15 @@ http://83.139.104.123/Content/HLS/Live/Channel(TLC)/Stream(03)/index.m3u8?b?b*t$
 #EXTINF:0,TNT
 rtmp://rtmp.zerocast.tv:1935/live/ playpath=Waz0WqvbqNHmt0gdzrsm swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
 
+#EXTINF:0,TNT
+http://93.174.95.125:1935/edge/_definst_/6q4jlbqwvxuingo/playlist.m3u8?xs=_we_NnE0amxicXd2eHVpbmdvfDE0MTgxNjIyMDZ8MTc0LjExMy4zMC4xODd8NTQ4NzYyMGUxY2NlMHxhNDYyNGJjNDEwNjA3Njc0YmNkM2YzMWIyZWYzN2YyODNhZDcwNWY5
+
+#EXTINF:0,TNT
+http://93.174.95.125:1935/edge/_definst_/6q4jlbqwvxuingo/playlist.m3u8?xs=_we_NnE0amxicXd2eHVpbmdvfDE0MTgxNjMxMDZ8MTc0LjExMy4zMC4xODd8NTQ4NzY1OTI3NGJlOXw3Yzg0MjgyMTU4YzExZDE0YjNiNGE0NWRiZDljNjY4OTkyZWY1NzEz
+
+#EXTINF:0,Tru TV
+http://93.174.95.125:1935/edge/_definst_/uhnr4161ybioa5w/playlist.m3u8?xs=_we_dWhucjQxNjF5YmlvYTV3fDE0MTgxNjY4ODN8MTc0LjExMy4zMC4xODd8NTQ4Nzc0NTNjMDU2MXxmNDdjYTU2Y2VjNmQzMWYxMWM1MGMyNmQzMmU0MmM2MzI4MjRiZTgw
+
 #EXTINF:0,Universal Channel
 
 
@@ -156,6 +195,12 @@ rtmpe://46.246.124.3:1935/live/usao0 playpath=usao0 swfUrl=http://p.jwpcdn.com/6
 
 #EXTINF:0,USA Network
 rtmp://rtmp.zerocast.tv:1935/live playpath=jvZXQUYQmlsPirfiVK1G swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
+
+#EXTINF:0,USA Network
+http://93.174.95.125:1935/edge/_definst_/h5eovaj1jeegluq/playlist.m3u8?xs=_we_aDVlb3ZhajFqZWVnbHVxfDE0MTgxNjIzNjV8MTc0LjExMy4zMC4xODd8NTQ4NzYyYWQ3YzNmNHw3NjI4NmIyZmFkMmI1MWUwNGMzYTZmMmY2Y2U3NzYxNTA0ZDY3MmUw
+
+#EXTINF:0,USA Network
+http://93.174.95.125:1935/edge/_definst_/h5eovaj1jeegluq/playlist.m3u8?xs=_we_aDVlb3ZhajFqZWVnbHVxfDE0MTgxNjM0MTV8MTc0LjExMy4zMC4xODd8NTQ4NzY2YzcwODM5ZXw3ZTZiYTNkNDA1M2UzYTJjMmU1YWE3OTdiMDBmYjZiNzlhZGM1ODYy
 
 #EXTINF:0,U TV
 http://acabsw.doiptv.com/am-1_ulster_tv/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
@@ -180,12 +225,3 @@ http://btv-net.mediacdn.ru/TVB2/ngrp:wfhdeu.stream_all/chunklist_b3128000.m3u8
 
 #EXTINF:0,World of Wine 
 http://live58.la3.edge.filmon.com/live/3164.low.stream/playlist.m3u8?id=0ad5aac39bb13fbe233cabd015b9678ae4f2c497952ac93f40695cd149eb08006a5e9bdb12c7e97bad4f249f424e1da14ed1cf8d35924705dc749e2fe3e593ddb1b09bcd7246375865e925d7d535a3361783fb83047ea048a94bac562192fa90a6857d60f4190d353db73e9a8051244b46d372b2681787f59935c8ac2d4a564d3d933fb15d35ad0756653a9a896780bf00d7714a4d973f16
-
-
-
-
-
-
-
-
-

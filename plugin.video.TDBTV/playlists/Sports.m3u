@@ -34,7 +34,16 @@ http://acabsw.doiptv.com/sky_bt_sport_2/playlist.m3u8|User-Agent="Lavf53.32.100"
 rtsp://46.249.213.93/broadcast/drift4ever-tablet.3gp
 
 #EXTINF:0,ESPN
+http://acabsw.doiptv.com/sky_espn/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
 
+#EXTINF:0,ESPN
+rtmp://31.220.0.196:80/live playpath=ex1 swfUrl=http://www.flashtv.co/ePlayerr.swf pageUrl=http://www.flashtv.co/embed.php?live=ex1&vw=620&vh=490 token=%ZZri(nKa@#Z
+
+#EXTINF:0,ESPN
+http://93.174.95.125:1935/edge/_definst_/dp2g1w4ip6v0zoc/playlist.m3u8?xs=_we_ZHAyZzF3NGlwNnYwem9jfDE0MTgxNjIyNjd8MTc0LjExMy4zMC4xODd8NTQ4NzYyNGI0ZmQzOHxkMTZmMzBjMWFmZmVlMGQxYTIxNjVlNGE0NWQ4MGM4NzEzNWYyNGE1
+
+#EXTINF:0,ESPN
+http://93.174.95.125:1935/edge/_definst_/dp2g1w4ip6v0zoc/playlist.m3u8?xs=_we_ZHAyZzF3NGlwNnYwem9jfDE0MTgxNjI1NTB8MTc0LjExMy4zMC4xODd8NTQ4NzYzNjY3YTZlNHxkZGI5NzAyM2I2YzhlZDNkMjI2YjY5NGNjYTBiNWZjM2U1MmU2M2E5
 
 #EXTINF:0,ESPN 2 
 rtmp://31.220.0.194:1935/live playpath=espn2 swfUrl=http://www.flashtv.co/ePlayerr.swf pageUrl=http://www.flashtv.co/embed.php?live=espn2&vw=620&vh=490 token=%ZZri(nKa@#Z
@@ -47,6 +56,9 @@ http://83.139.104.123/Content/HLS/Live/Channel(eurosport)/Stream(03)/index.m3u8
 
 #EXTINF:0,Eurosport 2
 http://83.139.104.123/Content/HLS/Live/Channel(eurosport_2)/Stream(03)/index.m3u8
+
+#EXTINF:0,Eurosport 2
+http://ys-live.cdns.yousee.tv/Content/HLS/Live/Channel(eusp2)/Stream(05)/index.m3u8
 
 #EXTINF:0,Eurosport Live
 http://83.139.104.123/Content/HLS/Live/Channel(eurosport)/Stream(03)/index.m3u8
@@ -64,7 +76,7 @@ http://83.139.104.123/Content/HLS/Live/Channel(extreme_sports)/Stream(03)/index.
 
 
 #EXTINF:0,Golf Channel 
-
+http://93.174.95.125:1935/edge/_definst_/lw1kufim1kmit1h/playlist.m3u8?xs=_we_bHcxa3VmaW0xa21pdDFofDE0MTgxNjMwNzh8MTc0LjExMy4zMC4xODd8NTQ4NzY1NzYzZDllMnwwMDFiMmU0ZjQ0Yzk3ZDNhNzZlNGY0Nzc4OGE5NWIxM2RlNTI4YjQ1
 
 #EXTINF:0,MLB 
 
@@ -79,7 +91,7 @@ rtmp://mi2.gv.filmon.com:8086/live/262.high.stream
 http://motorsport.hopto.org:8080/
 
 #EXTINF:0, NBA TV 
-
+http://93.174.95.125:1935/edge/_definst_/fzasab6vz02yuf7/playlist.m3u8?xs=_we_Znphc2FiNnZ6MDJ5dWY3fDE0MTgxNjI0ODB8MTc0LjExMy4zMC4xODd8NTQ4NzYzMjAwYzNmNnxjNTVhOTIyNTAyN2JjYTJmNzM4Yjg3NGM5ZmJjMjM2MGQwMDhmN2U0
 
 #EXTINF:0,NBC Golf 
 
@@ -88,6 +100,7 @@ http://motorsport.hopto.org:8080/
 rtmpe://46.246.124.31:1935/live/nbcsn0 playpath=nbcsn0 swfUrl=swfUrl=http://p.jwpcdn.com/6/8/jwplayer.flash.swf pageUrl=http://prvservers.com/embed2.php?u=nbcsn0&vw=620&vh=470&domain=usachannels.tv token=#yw%tt#w@kku
 
 #EXTINF:0,NFL Network
+http://93.174.95.125:1935/edge/_definst_/dy3mu76453ipxyu/playlist.m3u8?xs=_we_ZHkzbXU3NjQ1M2lweHl1fDE0MTgxNjMzMTd8MTc0LjExMy4zMC4xODd8NTQ4NzY2NjUzNTY1MnxmY2Y3Yzg0ZDQ2YTNiMmU1ZGEyZDM0ZjJiYzljN2ZjZjhkZTY4MzQz
 
 #EXTINF:0,NWA Wrestling
 http://live77.la3.edge.filmon.com/live/373.low.stream/playlist.m3u8?id=0ad5aac39bb13fbef32ab794a90f99bb8c13c1b7be2fe437ab5fd075eb81173cd0880c5eb7e341788633c799d2c41794a721b757d942e836bd997cb86d1e822fdf123c7bc45459448ceef790fb4756f5f13ae72d8632c6f43966c7feb8234cde52a051911c4b1bb87464721f01216845d7fc1d4330ccdd69cd6b3f4146b80471cf5644821b075d23c2b7395dcf08fc86ca1042936388baff

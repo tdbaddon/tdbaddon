@@ -9,6 +9,8 @@ http://202.75.23.33/live/ch27/03.m3u8
 
 #EXTINF:0,BabyTV 
 
+#EXTINF:0,Boomerang
+http://93.174.95.125:1935/edge/_definst_/qan96nasemu9xfn/playlist.m3u8?xs=_we_cWFuOTZuYXNlbXU5eGZufDE0MTgxNjg5MTV8MTc0LjExMy4zMC4xODd8NTQ4NzdjNDM0ODU2YnwxMDYwOGY2ZTI4NTEyZTlmY2M1YTlmZjJmZmFkOGM0NDAzMDg2Y2Vi
 
 #EXTINF:0,Boomerang
 rtmp://mi2.gv.filmon.com:1935/live/_definst_/2734.low.stream
@@ -25,11 +27,17 @@ http://acabsw.doiptv.com/am-1_itv_london/playlist.m3u8|User-Agent="Lavf53.32.100
 #EXTINF:0,Cartoon Network
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_CN/variant.m3u8
 
-#EXTINF:0,Disney Channel 
+#EXTINF:0,Cartoon Network
+http://93.174.95.125:1935/edge/_definst_/p78zj79dhlxx3ws/playlist.m3u8?xs=_we_cDc4emo3OWRobHh4M3dzfDE0MTgxNjMxMjJ8MTc0LjExMy4zMC4xODd8NTQ4NzY1YTIzOWNiNnwwM2ViNWRkNmRjMWQ0ODJkZWU4ZThlYzYxMDY0YWZhYjkwNmE3MDU4
 
+#EXTINF:0,Disney Channel 
+http://93.174.95.125:1935/edge/_definst_/2tag4dzgwof5ma2/playlist.m3u8?xs=_we_MnRhZzRkemd3b2Y1bWEyfDE0MTgxNjIzMDZ8MTc0LjExMy4zMC4xODd8NTQ4NzYyNzJkM2RiMXxiNmM1YjU0MjI4MTVmOTIyNzM2ZmQxZDUwOTZlZjEyY2FmYzM4MzVi
+
+#EXTINF:0,Disney Channel 
+http://93.174.95.125:1935/edge/_definst_/2tag4dzgwof5ma2/playlist.m3u8?xs=_we_MnRhZzRkemd3b2Y1bWEyfDE0MTgxNjI5MjR8MTc0LjExMy4zMC4xODd8NTQ4NzY0ZGNkODg5ZXxkOTI5ZDg3MDJiYmU0ZGY3ZTFjOGZjZjY1YTQ5MTMwMDNmMDViYjM3
 
 #EXTINF:0,Disney Junior 
-
+http://93.174.95.125:1935/edge/_definst_/mp4ffvlqs2rpfz7/playlist.m3u8?xs=_we_bXA0ZmZ2bHFzMnJwZno3fDE0MTgxNjMzNjJ8MTc0LjExMy4zMC4xODd8NTQ4NzY2OTIwYjQyN3xjNmIwMGY1MjQ1ODU5ZTM5OTQ0MTJiMTVlNDdhM2QyYzlhNDgxNmFk
 
 #EXTINF:0,Disney XD 
 
@@ -49,6 +57,9 @@ rtmp://rtmp.zerocast.tv:1935/live/ playpath=fCqfhb14WwwFbAsDbV3Z  swfUrl=http://
 #EXTINF:0,Nickelodeon
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_NICKELODEON/variant.m3u8
 
+#EXTINF:0,Nickelodeon 
+http://93.174.95.125:1935/edge/_definst_/q2hs5fqm8b039y0/playlist.m3u8?xs=_we_cTJoczVmcW04YjAzOXkwfDE0MTgxNjM0NDJ8MTc0LjExMy4zMC4xODd8NTQ4NzY2ZTIwMjhkYnxiNTc2ZGY1NjZjMjU5MGM0NzE3NDQyZDgxM2JiM2Y2Zjc5ODllNDU3
+
 #EXTINF:0,Nick Jr
 http://95.188.126.233:1234/udp/233.7.70.169:5000
 
@@ -57,3 +68,6 @@ http://95.188.126.233:1234/udp/233.7.70.169:5000
 
 #EXTINF:0,Sky Movies Disney
 http://acabsw.doiptv.com/sky_mov_disney/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
+
+#EXTINF:0,Tom & Jerry TV
+http://93.174.95.125:1935/edge/_definst_/b6s52t2k1amebsl/playlist.m3u8?xs=_we_YjZzNTJ0MmsxYW1lYnNsfDE0MTgxNjg3Nzl8MTc0LjExMy4zMC4xODd8NTQ4NzdiYmIyNGZjYXwyZTk2Y2YyNjc4OGExZGYyYTk1YTBjNmMwZmIyZDU2MTg3ZTJlZDYy
