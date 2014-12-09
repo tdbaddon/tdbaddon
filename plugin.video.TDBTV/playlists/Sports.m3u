@@ -15,9 +15,6 @@ mms://100automoto.tv/100livesport
 http://bigten247.cdnak.bigtenhd.neulion.com/nlds/btn2go/btnnetwork/as/live/btnnetwork_hd_3000.m3u8
 
 #EXTINF:0,Box Nation
-rtmpe://46.246.124.28:1935/live/sboxn token=#yw%tt#w@kku pageUrl=http://www.hdcast.org/ HarrysStreams
-
-#EXTINF:0,Box Nation
 http://acabsw.doiptv.com/sky_boxnation/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
 
 #EXTINF:0,BT Sport
@@ -37,16 +34,13 @@ http://acabsw.doiptv.com/sky_bt_sport_2/playlist.m3u8|User-Agent="Lavf53.32.100"
 rtsp://46.249.213.93/broadcast/drift4ever-tablet.3gp
 
 #EXTINF:0,ESPN
-rtmp://rtmp.zerocast.tv:1935/live playpath=YEZib0gVfqaDdaFn9MQ9 swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
+
 
 #EXTINF:0,ESPN 2 
 rtmp://31.220.0.194:1935/live playpath=espn2 swfUrl=http://www.flashtv.co/ePlayerr.swf pageUrl=http://www.flashtv.co/embed.php?live=espn2&vw=620&vh=490 token=%ZZri(nKa@#Z
 
 #EXTINF:0,Eurosport
 http://83.139.104.123/Content/HLS/Live/Channel(eurosport)/Stream(03)/index.m3u8
-
-#EXTINF:0,Eurosport
-http://176.51.80.38:1234/udp/233.7.70.132:5000
 
 #EXTINF:0,Eurosport 1
 
@@ -61,7 +55,7 @@ http://83.139.104.123/Content/HLS/Live/Channel(eurosport)/Stream(03)/index.m3u8
 rtmp://109.123.70.34:80/live playpath=euro1xx swfUrl=http://www.flashtv.co/ePlayerr.swf pageUrl=http://www.flashtv.co/embed.php?live=euro1xx&vw=620&vh=490 token=%ZZri(nKa@#Z
 
 #EXTINF:0,Eurosport News
-http://176.51.80.38:1234/udp/233.7.70.197:5000
+
 
 #EXTINF:0,Extreme Sports
 http://83.139.104.123/Content/HLS/Live/Channel(extreme_sports)/Stream(03)/index.m3u8
@@ -81,9 +75,6 @@ rtmp://extondemand.livestream.com:80/ondemand/trans/dv10/mogulus-user-files/chmm
 #EXTINF:0,Motors TV
 rtmp://mi2.gv.filmon.com:8086/live/262.high.stream
 
-#EXTINF:0,Motors TV
-http://176.51.80.38:1234/udp/233.7.70.206:5000
-
 #EXTINF:0,Motor Sport
 http://motorsport.hopto.org:8080/
 
@@ -97,6 +88,9 @@ http://motorsport.hopto.org:8080/
 rtmpe://46.246.124.31:1935/live/nbcsn0 playpath=nbcsn0 swfUrl=swfUrl=http://p.jwpcdn.com/6/8/jwplayer.flash.swf pageUrl=http://prvservers.com/embed2.php?u=nbcsn0&vw=620&vh=470&domain=usachannels.tv token=#yw%tt#w@kku
 
 #EXTINF:0,NFL Network
+
+#EXTINF:0,NWA Wrestling
+http://live77.la3.edge.filmon.com/live/373.low.stream/playlist.m3u8?id=0ad5aac39bb13fbef32ab794a90f99bb8c13c1b7be2fe437ab5fd075eb81173cd0880c5eb7e341788633c799d2c41794a721b757d942e836bd997cb86d1e822fdf123c7bc45459448ceef790fb4756f5f13ae72d8632c6f43966c7feb8234cde52a051911c4b1bb87464721f01216845d7fc1d4330ccdd69cd6b3f4146b80471cf5644821b075d23c2b7395dcf08fc86ca1042936388baff
 
 
 #EXTINF:-1,Outdoor Channel
@@ -172,10 +166,10 @@ rtmpe://46.246.29.160:1935/live/ playpath=sskys1 pageUrl=http://www.hdcast.org/ 
 http://acabsw.doiptv.com/sky_sport_2/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
 
 #EXTINF:0,Sky Sport 2
-rtmp://80.82.78.22:443/liverepeater playpath=14 swfUrl=http://popeoftheplayers.pw/atdedead.swf live=1 pageUrl=http://popeoftheplayers.pw/player3.php?id=14&width=600&height=450 token=#atd%#$ZH
+rtmpe://46.246.29.160:1935/live/ playpath=sskys2 pageUrl=http://www.hdcast.org/ token=#yw%tt#w@kku
 
 #EXTINF:0,Sky Sport 2
-rtmpe://46.246.29.160:1935/live/ playpath=sskys2 pageUrl=http://www.hdcast.org/ token=#yw%tt#w@kku
+rtmp://80.82.78.22:443/liverepeater playpath=14 swfUrl=http://popeoftheplayers.pw/atdedead.swf live=1 pageUrl=http://popeoftheplayers.pw/player3.php?id=14&width=600&height=450 token=#atd%#$ZH
 
 #EXTINF:0,Sky Sport 3
 http://acabsw.doiptv.com/sky_sport_3/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
@@ -212,6 +206,9 @@ rtmp://31.220.0.104:1935/live/tsn1x live=1 pageUrl=http://www.flashtv.co/ token=
 
 #EXTINF:0,TSN 2 
 rtmp://31.220.0.104:80/live playpath=tsnx2 swfUrl=http://www.flashtv.co/ePlayerr.swf pageUrl=http://www.flashtv.co/embed.php?live=tsnx2&vw=620&vh=490 token=%ZZri(nKa@#Z
+
+#EXTINF:0,UFC Next
+http://live77.la3.edge.filmon.com/live/713.low.stream/chunklist_w1948040124.m3u8?id=0ad5aac39bb13fbe2215ac6af2db412d0d87ac231a107c2aa62b865289378e98ef7ba25bfd24a0785b48b39f038943ee5dba7603a61452c3848098a51ff936ca622a10b6779978acef87f46dfcdc782131d67161f0a5e78fcbeeaf17a2926d529901f2bef267339f398ae787bd977f6f0940e27babe4bd5867ffe92d2a3695610bb11658bf986d68773fb11bc5535457ec6f233be5d0f345
 
 #EXTINF:0,Viasat Sport
 http://80.77.52.6:4444www.tvonlinestreams.com/udp/230.0.3.58:12345

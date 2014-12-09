@@ -2,8 +2,14 @@
 #EXTINF:0,
 
 
+#EXTINF:0,Alien Invasion TV
+http://204.107.26.245/live/3122.low.stream/playlist.m3u8?id=0ad5aac39bb13fbe3855aa86776a42dfa54f97ee57ea7ef61f2ad5904a3ac6412f15732b348963b086e07225d5a80fed480fb01b0ac043c0308c1580e5264657a6f08d0a62a99fbef8629275b9395b4be8276ea38a2176a93f3691e41be7d3ccd6d8d6063f1ec06364242566a6b1d7d0c74a362bb886a3cf5781b1bbb164a615867ebb7ef75a0297495f05ef2f9d85325933709fe9d2a131
+
 #EXTINF:0,Animal Planet
 http://202.75.23.34/live/ch31/03.m3u8
+
+#EXTINF:0,Biography TV
+http://live305.edge.filmon.com/live/2633.low.stream/playlist.m3u8?id=0ad5aac39bb13fbed50ed6546ee576a6400880750a57a94ce8ad89c2679cf807859d6d6f809da72531b49d5d8dcd6e07b03996615b36812ad00ad98f1697cae3df9c68d4a16f044b709ff71d7f2b007b0922d1aaf775b4acd784fcd378131bcf333f3a3e6447a55d3c26f095014ac05c069a2f085b6efbf35af63e12a8a67cbea92db42551641271b8e77b1a03f52bba551ced03db7112fa
 
 #EXTINF:0,Crime Investigation
 http://acabsw.doiptv.com/sky_discovery_investigation/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
@@ -12,13 +18,13 @@ http://acabsw.doiptv.com/sky_discovery_investigation/playlist.m3u8|User-Agent="L
 http://202.75.23.36/live/ch47/01.m3u8
 
 #EXTINF:0,Discovery Channel
-http://hls.cn.ru/streaming/discovery_hd/16/fullhd/playlist.m3u8
-
-#EXTINF:0,Discovery Channel
 http://acabsw.doiptv.com/sky_discovery_investigation/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
 
 #EXTINF:0,Discovery Channel
 http://202.75.23.34/live/ch29/03.m3u8
+
+#EXTINF:0,Discovery Channel
+http://hls.cn.ru/streaming/discovery_hd/16/fullhd/playlist.m3u8
 
 #EXTINF:0,Discovery History
 http://acabsw.doiptv.com/sky_discovery_history/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
@@ -65,20 +71,14 @@ http://acabsw.doiptv.com/sky_history/playlist.m3u8|User-Agent="Lavf53.32.100":ne
 #EXTINF:0,History Channel
 http://acabsw.doiptv.com/sky_history_2/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
 
-#EXTINF:0,History Channel
-http://176.51.80.38:1234/udp/233.7.70.185:5000
-
-#EXTINF:0,History Channel
-http://176.51.80.38:1234/udp/233.7.70.230:5000
+#EXTINF:0,Living History
+http://live58.la3.edge.filmon.com/live/2710.low.stream/playlist.m3u8?id=0ad5aac39bb13fbe695d186aab1a2087b69620892af3b67c929c107695a3aadbc08af4e26397127ab2544dbd59358ec80a0c2a80c43caddcfcccff242d933ee1258bd77480f436787ee1dbd119ce654b4cb029e79768fa0d5f367632edac11c57a53a5011e26d25cc01061f6a9d32288bcaba97acf359c21f6e103f915dd8bf997555ff7650661e5c69c0f4afa73bd5536cf2031a2ca8ea5
 
 #EXTINF:0,NASA Media
 http://media.infozen.cshls.lldns.net/infozen/media/media/media_1000.m3u8
 
 #EXTINF:0,NASA TV
 http://public.infozen.cshls.lldns.net/infozen/public/public.m3u8
-
-#EXTINF:0,Nat Geo
-http://202.75.23.34/live/ch31/03.m3u8
 
 #EXTINF:0,Nat Geo People 
 
@@ -102,13 +102,13 @@ http://hlsstr02.svc.iptv.rt.ru/hls/CH_VIASATEXPLORER/variant.m3u8
 http://80.77.52.6:4444/udp/230.0.3.55:12345
 
 #EXTINF:0,Viasat History
-http://80.77.52.6:4444/udp/230.0.3.56:12345
+http://83.139.104.123/Content/HLS/Live/Channel(viasat_history)/Stream(03)/index.m3u8
 
 #EXTINF:0,Viasat History
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_VIASATHISTORY/variant.m3u8
 
 #EXTINF:0,Viasat History
-http://83.139.104.123/Content/HLS/Live/Channel(viasat_history)/Stream(03)/index.m3u8
+http://80.77.52.6:4444/udp/230.0.3.56:12345
 
 #EXTINF:0,Viasat Nature
 http://80.77.52.6:4444/udp/230.0.3.53:12345

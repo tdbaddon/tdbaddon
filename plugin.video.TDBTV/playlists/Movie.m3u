@@ -55,6 +55,9 @@ rtmp://109.200.202.124/live playpath=hboplus swfUrl=http://www.tv-msn.com/player
 #EXTINF:0,Kino TV
 http://83.139.104.123/Content/HLS/Live/Channel(kino_tv)/Stream(03)/index.m3u8
 
+#EXTINF:0,Kung Fu Classics
+http://live54.la3.edge.filmon.com/live/1967.low.stream/playlist.m3u8?id=0ad5aac39bb13fbe1713b412a111a9b2737a718f3d902018811809aa764e4a56d60dd1af77a46f39373fa1d618ca4555cec9193b9ca25afeb93197800c3b1efcd65c9eaf46cfaa16df6e10d9fd23896a4cadd122c8a7a32dcc5e9e97c8cf771028c2b8bd9a768fd1db3e9d4ce202b8e261c162551c863a790dcc3c06e63a367bd95191e80cdf8d0de52e4f44c9e0fbf6bef719e1b7b8516d
+
 #EXTINF:0,Lotus Macau
 rtmp://58.97.57.152/live playpath=ch33 swfUrl=http://www.one2hd.com/swfs/mediaPlayer/mediaPlayer.swf pageUrl=http://www.one2hd.com
 
@@ -143,18 +146,3 @@ http://80.77.52.6:4444/udp/230.0.3.54:12345
 
 #EXTINF:0,TV 1000 Action
 http://80.77.52.6:4444/udp/230.0.3.52:12345
-
-#EXTINF:0,TV 1000 Action
-http://176.51.80.38:1234/udp/233.7.70.59:5000
-
-
-
-
-
-
-
-
-
-
-
-
