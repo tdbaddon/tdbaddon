@@ -40,13 +40,11 @@ rtmp://c.cdn.livenewschat.eu/edge playpath=cnn_live swfUrl=http://msnbclive.eu/p
 #EXTINF:0,DW
 http://www.metafilegenerator.de/DWelle/tv-asia/ios/master.m3u8
 
-#EXTINF:0,DW
-http://176.51.80.38:1234/udp/233.7.70.191:5000
-
 #EXTINF:0,Euro News
 
+
 #EXTINF:0,Fox News
-http://93.174.95.125:1935/edge/_definst_/w0mr10getvsikam/playlist.m3u8?xs=_we_dzBtcjEwZ2V0dnNpa2FtfDE0MTgxNjkzNDV8MTc0LjExMy4zMC4xODd8NTQ4NzdkZjEyMzVjNHw0NzljYTM5YzdmMjVmNGZjYzU1YmYwMzk5YjM3NGNhYTU4ODQ2Nzgx
+
 
 #EXTINF:0,HLN
 rtmp://c.cdn.newschat.tv/edge playpath=hln_live live=1 timeout=10 swfUrl=http://msnbclive.eu/player.swf pageUrl=http://www.livenewschat.eu/twoons/</link>

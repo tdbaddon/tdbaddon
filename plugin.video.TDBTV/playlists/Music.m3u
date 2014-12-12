@@ -8,7 +8,7 @@ http://csm-e.cds1.yospace.com/csm/live/86550614.m3u8
 #EXTINF:0,AKA
 http://rrr.sz.xlcdn.com/?account=AATW&file=akanew&type=live&service=wowza&protocol=http&output=playlist.m3u8
 
-#EXTINF:0,BPM TV THISCHANNELISDOWN----------
+#EXTINF:0,BPM TV
 
 
 #EXTINF:0,Capital Music
@@ -20,11 +20,17 @@ http://68.71.42.179/live/livestream1/playlist.m3u8
 #EXTINF:0,Clubbing TV
 rtmp://204.107.26.252:8086/live/691.high.stream
 
-#EXTINF:0,Club TV THISCHANNELISDOWN----------
+#EXTINF:0,Club TV
 
 
-#EXTINF:0,Clubland TV THISCHANNELISDOWN----------
+#EXTINF:0,Clubland TV
 
+
+#EXTINF:0,CMC California Music Channel
+rtmp://cmctv.flash.internapcdn.net:1935/cmctv_vitalstream_com/live_adaptive_1/CMC-TV_adaptive3 swfUrl=http://http.vitalstreamcdn.com/flashskins/V2Player.swf live=1 pageUrl=http://www.cmc-tv.com/
+
+#EXTINF:0,CMC Country
+rtmp://cmctv.flash.internapcdn.net:80/cmctv_vitalstream_com/live_1/CMCUSA swfUrl=http://http.vitalstreamcdn.com/flashskins/V2Player.swf live=1 pageUrl=http://www.cmctvusa.com/
 
 #EXTINF:0,Djing TV
 http://www.djing.com/tv/05.m3u8
@@ -56,29 +62,17 @@ http://csm-e.cds1.yospace.com/csm/live/86561776.m3u8
 #EXTINF:0,MTV Dance
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVDANCE/variant.m3u8
 
-#EXTINF:0,MTV Dance
-http://176.51.80.38:1234/udp/233.7.70.207:5000
-
 #EXTINF:0,MTV Hits
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVHITS/variant.m3u8
 
-#EXTINF:0,MTV Hits
-http://176.51.80.38:1234/udp/233.7.70.208:5000
-
 #EXTINF:0,MTV Live
-http://176.51.80.38:1234/udp/233.7.70.208:5000
 
-#EXTINF:0,MTV Live
-http://176.51.80.38:1234/udp/233.7.70.161:5000
 
 #EXTINF:0,MTV Music
 http://83.139.104.123/Content/HLS/Live/Channel(mtv_music)/Stream(03)/index.m3u8
 
 #EXTINF:0,MTV Rocks
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVROCKS/variant.m3u8
-
-#EXTINF:0,MTV Rocks
-http://176.51.80.38:1234/udp/233.7.70.209:5000
 
 #EXTINF:0,Musiq1
 http://88.212.10.27:81/streams/musiq1.m3u8

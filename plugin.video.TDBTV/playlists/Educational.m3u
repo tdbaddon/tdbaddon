@@ -2,14 +2,8 @@
 #EXTINF:0,
 
 
-#EXTINF:0,Alien Invasion TV
-http://204.107.26.245/live/3122.low.stream/playlist.m3u8?id=0ad5aac39bb13fbe3855aa86776a42dfa54f97ee57ea7ef61f2ad5904a3ac6412f15732b348963b086e07225d5a80fed480fb01b0ac043c0308c1580e5264657a6f08d0a62a99fbef8629275b9395b4be8276ea38a2176a93f3691e41be7d3ccd6d8d6063f1ec06364242566a6b1d7d0c74a362bb886a3cf5781b1bbb164a615867ebb7ef75a0297495f05ef2f9d85325933709fe9d2a131
-
 #EXTINF:0,Animal Planet
 http://202.75.23.34/live/ch31/03.m3u8
-
-#EXTINF:0,Biography TV
-http://live305.edge.filmon.com/live/2633.low.stream/playlist.m3u8?id=0ad5aac39bb13fbed50ed6546ee576a6400880750a57a94ce8ad89c2679cf807859d6d6f809da72531b49d5d8dcd6e07b03996615b36812ad00ad98f1697cae3df9c68d4a16f044b709ff71d7f2b007b0922d1aaf775b4acd784fcd378131bcf333f3a3e6447a55d3c26f095014ac05c069a2f085b6efbf35af63e12a8a67cbea92db42551641271b8e77b1a03f52bba551ced03db7112fa
 
 #EXTINF:0,Crime Investigation
 http://acabsw.doiptv.com/sky_discovery_investigation/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
@@ -22,9 +16,6 @@ http://acabsw.doiptv.com/sky_discovery_investigation/playlist.m3u8|User-Agent="L
 
 #EXTINF:0,Discovery Channel
 http://202.75.23.34/live/ch29/03.m3u8
-
-#EXTINF:0,Discovery Channel
-http://hls.cn.ru/streaming/discovery_hd/16/fullhd/playlist.m3u8
 
 #EXTINF:0,Discovery History
 http://acabsw.doiptv.com/sky_discovery_history/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
@@ -45,13 +36,7 @@ http://202.75.23.34:1400/live/ch34/01.m3u8
 http://acabsw.doiptv.com/sky_discovery_turbo/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
 
 #EXTINF:0,Discovery Max
-http://202.75.23.34/live/ch32/03.m3u8?b?b*t$
 
-#EXTINF:0,Discovery Max
-http://202.75.23.34/live/ch32/01.m3u8
-
-#EXTINF:0,Discovery Max
-http://202.75.23.34/live/ch32/03.m3u8
 
 #EXTINF:0,Discovery Science
 http://202.75.23.34/live/ch33/03.m3u8
@@ -62,7 +47,8 @@ http://202.75.23.34:1400/live/ch30/03.m3u8
 #EXTINF:0,Docu Box
 http://stream1.zoovision.com//livespi/docubox/playlist.m3u8
 
-#EXTINF:0, FYI 
+#EXTINF:0, FYI
+http://202.75.23.36/live/ch46/03.m3u8?b?b*t$
 
 
 #EXTINF:0,History Channel
@@ -70,9 +56,6 @@ http://acabsw.doiptv.com/sky_history/playlist.m3u8|User-Agent="Lavf53.32.100":ne
 
 #EXTINF:0,History Channel
 http://acabsw.doiptv.com/sky_history_2/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
-
-#EXTINF:0,Living History
-http://live58.la3.edge.filmon.com/live/2710.low.stream/playlist.m3u8?id=0ad5aac39bb13fbe695d186aab1a2087b69620892af3b67c929c107695a3aadbc08af4e26397127ab2544dbd59358ec80a0c2a80c43caddcfcccff242d933ee1258bd77480f436787ee1dbd119ce654b4cb029e79768fa0d5f367632edac11c57a53a5011e26d25cc01061f6a9d32288bcaba97acf359c21f6e103f915dd8bf997555ff7650661e5c69c0f4afa73bd5536cf2031a2ca8ea5
 
 #EXTINF:0,NASA Media
 http://media.infozen.cshls.lldns.net/infozen/media/media/media_1000.m3u8
@@ -94,9 +77,6 @@ http://202.75.23.35/live/ch38/03.m3u8
 
 #EXTINF:0,Travel Channel
 http://83.139.104.123/Content/HLS/Live/Channel(travel_channel)/Stream(03)/index.m3u8
-
-#EXTINF:0,Travel Channel
-http://93.174.95.125:1935/edge/_definst_/1fvuok2ny4jtmgq/playlist.m3u8?xs=_we_MWZ2dW9rMm55NGp0bWdxfDE0MTgxNjMyNzB8MTc0LjExMy4zMC4xODd8NTQ4NzY2MzY0ZTEzY3wyZGYzYjY0MGZlYmI5Mjg4ZmY3ZDZmMDIwM2JhMjYxNjVhYWZjNDA4
 
 #EXTINF:0,Viasat Explorer
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_VIASATEXPLORER/variant.m3u8

@@ -31,6 +31,9 @@ http://83.139.104.109/Content/HLS/Live/Channel(cinestar_premiere_2)/Stream(03)/i
 #EXTINF:0,Cinestar TV
 http://83.139.104.109/Content/HLS/Live/Channel(cinestar_tv)/Stream(03)/index.m3u8
 
+#EXTINF:0,Film4
+http://acabsw.doiptv.com/am-1_film4/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
+
 #EXTINF:0,Fox Family Movies
 rtmp://nonamehdfree.dyndns.org:443/limelight app=limelight?t=guest playpath=02_foxfamilyhd_360p swfUrl=https://nonamehd.com/playerv3.swf flashver=WIN\2013,0,0,214 pageUrl=https://nonamehd.com/?b?b*t$ live=1 timeout=15
 
@@ -54,9 +57,6 @@ rtmp://109.200.202.124/live playpath=hboplus swfUrl=http://www.tv-msn.com/player
 
 #EXTINF:0,Kino TV
 http://83.139.104.123/Content/HLS/Live/Channel(kino_tv)/Stream(03)/index.m3u8
-
-#EXTINF:0,Kung Fu Classics
-http://live54.la3.edge.filmon.com/live/1967.low.stream/playlist.m3u8?id=0ad5aac39bb13fbe1713b412a111a9b2737a718f3d902018811809aa764e4a56d60dd1af77a46f39373fa1d618ca4555cec9193b9ca25afeb93197800c3b1efcd65c9eaf46cfaa16df6e10d9fd23896a4cadd122c8a7a32dcc5e9e97c8cf771028c2b8bd9a768fd1db3e9d4ce202b8e261c162551c863a790dcc3c06e63a367bd95191e80cdf8d0de52e4f44c9e0fbf6bef719e1b7b8516d
 
 #EXTINF:0,Lotus Macau
 rtmp://58.97.57.152/live playpath=ch33 swfUrl=http://www.one2hd.com/swfs/mediaPlayer/mediaPlayer.swf pageUrl=http://www.one2hd.com
@@ -89,7 +89,7 @@ http://on108.setplex.net/fastv_2psh/PinkMovies3global_rly_greece_109/playlist.m3
 http://on108.setplex.net/fastv_2psh/PinkPremiumglobal_rly_greece_103/playlist.m3u8
 
 #EXTINF:0,SciFi
-http://93.174.95.125:1935/edge/_definst_/u8cfmo3g4uzwx8y/playlist.m3u8?xs=_we_dThjZm1vM2c0dXp3eDh5fDE0MTgxNjMxNDd8MTc0LjExMy4zMC4xODd8NTQ4NzY1YmI4N2U5M3xmZmRiYWFhNWU4YjdhNjhkMGRjNTlhYTVkMGIxY2I4YmI1NjJhMmJh
+
 
 #EXTINF:0,Showtime IQ 
 
@@ -97,20 +97,14 @@ http://93.174.95.125:1935/edge/_definst_/u8cfmo3g4uzwx8y/playlist.m3u8?xs=_we_dT
 #EXTINF:0,Showtime 
 rtmpe://46.246.124.87:1935/live/show99 playpath=show99 swfUrl=http://p.jwpcdn.com/6/8/jwplayer.flash.swf pageUrl=http://prvservers.com/embed2.php?u=show99&vw=620&vh=470&domain=usachannels.tv token=#yw%tt#w@kku
 
-#EXTINF:0,Showtime
-http://93.174.95.125:1935/edge/_definst_/bwbop58ixz281wv/playlist.m3u8?xs=_we_Yndib3A1OGl4ejI4MXd2fDE0MTgxNjI1MjZ8MTc0LjExMy4zMC4xODd8NTQ4NzYzNGViZDNkY3wzZjBlZDFmMGVjMmUyYWU0NDhjOGI0MGNiNGZlOThmZWM0YjY4MGEx
-
-#EXTINF:0,Showtime
-http://93.174.95.125:1935/edge/_definst_/s53jbkmyldngbks/playlist.m3u8?xs=_we_czUzamJrbXlsZG5nYmtzfDE0MTgxNjI5MTR8MTc0LjExMy4zMC4xODd8NTQ4NzY0ZDI2ODUyZnxiYjg4NTNiNjU2YTIwMzRmYjgxN2FiMDIwNDI4NWQwY2VmMzQxMjVj
-
 #EXTINF:0,Sky Movies Action Adventure
 http://acabsw.doiptv.com/sky_action/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
 
-#EXTINF:0,Sky Movies Cinema 
+#EXTINF:0,Sky 1
+http://acabsw.doiptv.com/sky_1/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
 
-
-#EXTINF:0,Sky Movies Cinema+1 
-
+#EXTINF:0,Sky 2
+http://acabsw.doiptv.com/sky_2/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
 
 #EXTINF:0,Sky Movies Cinema+24
 http://acabsw.doiptv.com/sky_movies_24_plus/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
@@ -123,14 +117,12 @@ http://acabsw.doiptv.com/sky_thriller/playlist.m3u8|User-Agent="Lavf53.32.100":n
 
 #EXTINF:0,Sky Movies Emotion 
 
+
 #EXTINF:0,Sky Movies Family
 http://acabsw.doiptv.com/sky_family/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
 
 #EXTINF:0,Sky Movies Greats
 http://acabsw.doiptv.com/sky_greats/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
-
-#EXTINF:0,Sky Movies Modern Greats 
-
 
 #EXTINF:0,Sky Movies Premiere
 http://acabsw.doiptv.com/sky_movies_premiere/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
@@ -148,7 +140,7 @@ http://acabsw.doiptv.com/sky_select/playlist.m3u8|User-Agent="Lavf53.32.100":net
 http://acabsw.doiptv.com/sky_showcase/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
 
 #EXTINF:0,Starz Movie Channel
-http://93.174.95.125:1935/edge/_definst_/8g7x80ozu6hz2ds/playlist.m3u8?xs=_we_OGc3eDgwb3p1Nmh6MmRzfDE0MTgxNjMzODd8MTc0LjExMy4zMC4xODd8NTQ4NzY2YWIyZDZiY3wyMzhmODRiOTFiMmJjYmQzMTI0NDQzNmQ1NWM1NTc3YWNlMDU0NTIy
+
 
 #EXTINF:0,SYFY Movie Channel 
 

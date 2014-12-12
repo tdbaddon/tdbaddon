@@ -8,10 +8,10 @@ http://130.88.20.233:1237/test.flv
 #EXTINF:0,Live Fish Tank
 rtmp://80.93.53.88:1935/live/channel_3
 
-#EXTINF:0,Live Niagra Falls 1
+#EXTINF:0,Live Niagra Falls
 mms://webcams.niagarafallshotels.com/CNH-Stream2
 
-#EXTINF:0,Live Niagra Falls 2
+#EXTINF:0,Live Niagra Falls
 rtsp://video2.earthcam.com/fecnetwork/4559.flv
 
 #EXTINF:0,Live Tropical Reef
@@ -22,3 +22,6 @@ http://video2.earthcam.com/fecnetwork/4717.flv/medien.m3u8
 
 #EXTINF:0,NY Times Square South View
 http://video2.earthcam.com/fecnetwork/4017timessquare.flv/medien.m3u8
+
+#EXTINF:0,San Francisco Alcatraz
+http://video2.earthcam.com/fecnetwork/6603.flv/medien.m3u8
