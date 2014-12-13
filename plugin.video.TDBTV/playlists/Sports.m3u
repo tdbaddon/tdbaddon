@@ -87,6 +87,9 @@ rtmpe://46.246.124.31:1935/live/nbcsn0 playpath=nbcsn0 swfUrl=swfUrl=http://p.jw
 #EXTINF:0,NFL Network
 rtmpe://46.246.124.31:1935/live/nfluuo4 playpath=nfluuo4 swfUrl=http://p.jwpcdn.com/6/8/jwplayer.flash.swf pageUrl=http://prvservers.com/embed2.php?u=nfluuo4&vw=620&vh=470&domain=usachannels.tv token=#yw%tt#w@kku
 
+#EXTINF:0,NFL Network
+rtmp://31.204.152.146:443/liverepeater playpath=179643 live=1 pageUrl=http://biggestplayer.me/Vd?u#bt!25 token=#atd%#$ZH timeout=15
+
 #EXTINF:-1,Outdoor Channel
 rtmp://lm02.everyon.tv:1935/ptv2/pld613
 
