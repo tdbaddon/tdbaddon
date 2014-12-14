@@ -41,7 +41,7 @@ rtmp://c.cdn.livenewschat.eu/edge playpath=cnn_live swfUrl=http://msnbclive.eu/p
 http://www.metafilegenerator.de/DWelle/tv-asia/ios/master.m3u8
 
 #EXTINF:0,Euro News
-
+rtsp://ewns-hls-b-stream.hexaglobe.net/rtpeuronewslive/en_vidan350_rtp.sdp?Vd?u#bt!25
 
 #EXTINF:0,Fox News
 

@@ -48,8 +48,10 @@ http://202.75.23.34:1400/live/ch30/03.m3u8
 http://stream1.zoovision.com//livespi/docubox/playlist.m3u8
 
 #EXTINF:0, FYI
-http://202.75.23.36/live/ch46/03.m3u8?b?b*t$
+http://202.75.23.36:1400/live/ch46/03.m3u8?Vd?u#bt!25
 
+#EXTINF:0,History Channel
+http://202.75.23.36:1400/live/ch45/03.m3u8?Vd?u#bt!25
 
 #EXTINF:0,History Channel
 http://acabsw.doiptv.com/sky_history/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000

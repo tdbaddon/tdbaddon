@@ -9,7 +9,7 @@ http://csm-e.cds1.yospace.com/csm/live/86550614.m3u8
 http://rrr.sz.xlcdn.com/?account=AATW&file=akanew&type=live&service=wowza&protocol=http&output=playlist.m3u8
 
 #EXTINF:0,BPM TV
-
+mms://ken-cdn220-is-2.se.bptvlive.ngcdn.telstra.com/bp_online_bpmusic_high
 
 #EXTINF:0,Capital Music
 rtmp://cdn-sov-2.musicradio.com:80/LiveVideo/Capital
@@ -64,9 +64,6 @@ http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVDANCE/variant.m3u8
 
 #EXTINF:0,MTV Hits
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVHITS/variant.m3u8
-
-#EXTINF:0,MTV Live
-
 
 #EXTINF:0,MTV Music
 http://83.139.104.123/Content/HLS/Live/Channel(mtv_music)/Stream(03)/index.m3u8

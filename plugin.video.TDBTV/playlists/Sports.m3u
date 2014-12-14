@@ -70,12 +70,12 @@ http://83.139.104.123/Content/HLS/Live/Channel(extreme_sports)/Stream(03)/index.
 rtmp://extondemand.livestream.com:80/ondemand/trans/dv10/mogulus-user-files/chmmabaytv/2010/09/12/d9fbeee7-79aa-4ec2-98d2-1f1f168b91a3
 
 #EXTINF:0,Motors TV
-
+rtmp://mi2.gv.filmon.com:8086/live/262.high.stream
 
 #EXTINF:0,Motor Sport
 http://motorsport.hopto.org:8080/
 
-#EXTINF:0, NBA TV 
+#EXTINF:0,NBA TV 
 
 
 #EXTINF:0,NBC Golf 
@@ -90,7 +90,7 @@ rtmpe://46.246.124.31:1935/live/nfluuo4 playpath=nfluuo4 swfUrl=http://p.jwpcdn.
 #EXTINF:0,NFL Network
 rtmp://31.204.152.146:443/liverepeater playpath=179643 live=1 pageUrl=http://biggestplayer.me/Vd?u#bt!25 token=#atd%#$ZH timeout=15
 
-#EXTINF:-1,Outdoor Channel
+#EXTINF:0,Outdoor Channel
 rtmp://lm02.everyon.tv:1935/ptv2/pld613
 
 #EXTINF:0,PAC Sports Arizona
@@ -199,7 +199,7 @@ rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9
 rtmp://31.220.0.104:1935/live/tsn1x live=1 pageUrl=http://www.flashtv.co/ token=%ZZri(nKa@#Z
 
 #EXTINF:0,TSN 2 
-
+rtmp://31.220.0.196:80/live playpath=tsnx2 swfUrl=http://flashtv.co/ePlayerr.swf pageUrl=http://flashtv.co/embedu.php?live=tsnx2&vw=620&vh=490 token=%ZZri(nKa@#Z
 
 #EXTINF:0,Viasat Sport
 http://80.77.52.6:4444www.tvonlinestreams.com/udp/230.0.3.58:12345

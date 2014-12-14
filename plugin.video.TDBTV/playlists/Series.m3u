@@ -89,13 +89,16 @@ rtmp://192.99.38.122/app/ playpath=himym02 swfUrl=http://www.tgun.tv/lock/player
 rtmp://192.99.38.122/app/ playpath=sunny02 swfUrl=http://www.tgun.tv/lock/player.swf pageUrl=http://tgun.tv/shows/ch1 playpath=sunny02
 
 #EXTINF:0,Just Shoot Me 
-rtmp://198.27.75.99/app playpath=shootme swfUrl=http://www.tgun.tv/lock/player.swf live=1 pageUrl=http://www.tgun.tv/menus/players/playerindex5.php?2bg01/
+
 
 #EXTINF:0,King of the Hill
 rtmp://192.99.38.122/app/ playpath=koth02 swfUrl=http://www.tgun.tv/lock/player.swf pageUrl=http://tgun.tv/shows/ch1 playpath=koth02
 
-#EXTINF:0,Law and Order - Special Victims Unit
-rtmp://198.27.75.99/app playpath=lawsuv02 swfUrl=http://www.tgun.tv/lock/player.swf live=1  pageUrl=http://www.tgun.tv/menus/players/playerindex5.php?lawsuv02
+#EXTINF:0,King of Queens
+
+
+#EXTINF:0,Law and Order SVU
+
 
 #EXTINF:0,Mad Men 
 http://62.210.76.216:8080/hls/madmen.m3u8
@@ -144,12 +147,21 @@ rtmp://192.99.38.122/app/ playpath=scrubs02 swfUrl=http://tgun.tv/jwplayer/playe
 
 #EXTINF:0,South Park
 rtmp://192.99.38.122/app/ playpath=southp02 swfUrl=http://www.tgun.tv/lock/player.swf pageUrl=http://tgun.tv/shows/ch1 playpath=southp02
+
+#EXTINF:0,South Park
+rtmp://192.99.38.122/app/southp02
+
+#EXTINF:0,Star Trek TNG
+rtmp://192.99.38.122/app/ playpath=tng02 swfUrl=http://tgun.tv/jwplayer/player.swf pageUrl=http://tgun.tv/shows/ch1 playpath=tng02 timeout=15
  
 #EXTINF:0,That 70s Show 
 
 
 #EXTINF:0,The Big Bang Theory
 rtmp://192.99.38.122/app playpath=tbbt02 swfUrl=http://www.tgun.tv/locked/player.swf pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex4.php?tbbt02
+
+#EXTINF:0,The Cleveland Show
+http://62.210.76.216:8080/hls/clevx.m3u8?Vd?u#bt!25
 
 #EXTINF:0,The Cosby Show 
 
@@ -179,7 +191,7 @@ rtmp://192.99.38.122/app playpath=office02 swfUrl=http://www.tgun.tv/locked/play
 rtmp://192.99.38.122/app playpath=tpb02 swfUrl=http://www.tgun.tv/locked/player.swf pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex3.php?tpb02
 
 #EXTINF:0,Third Rock From The Sun 
-rtmp://198.27.75.99/app playpath=rock swfUrl=http://www.tgun.tv/lock/player.swf live=1 pageUrl=http://www.tgun.tv/menus/players/playerindex5.php?2bg01/
+
 
 #EXTINF:0,Three's Company 
 
@@ -187,8 +199,10 @@ rtmp://198.27.75.99/app playpath=rock swfUrl=http://www.tgun.tv/lock/player.swf 
 #EXTINF:0,Two and a Half Men 
 rtmp://192.99.38.122/app playpath=men02 swfUrl=http://www.tgun.tv/locked/player.swf live=1 pageUrl=http://www.tgun.tv/embeds/index.php?men02&widthid=600&heightid=450
  
-#EXTINF:0,Vikings 720 
+#EXTINF:0,Vikings
 
+#EXTINF:0,Weeds
+http://62.210.76.216:8080/hls/weedshdx.m3u8?Vd?u#bt!25
  
 #EXTINF:0,Will & Grace 
 
