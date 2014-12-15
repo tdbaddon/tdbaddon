@@ -2,70 +2,82 @@
 #EXTINF:0,
 
 
-#EXTINF:0,Alfa SD
+#EXTINF:0,Alfa
 rtsp://fms.zulu.mk/zulu/alfa_1
 
-#EXTINF:0,Alsat M SD A
+#EXTINF:0,Alsat M A
 http://fms.zulu.mk:554/zulu/alsat_1/playlist_b125000_w1132785237.m3u8
 
-#EXTINF:0,Alsat M SD B
+#EXTINF:0,Alsat M B
 rtsp://fms.zulu.mk/zulu/alsat_1
 
-#EXTINF:0,B92 SD
+#EXTINF:0,B92 
 http://stream.b92.net:7999/tv-b92.ogg
 
-#EXTINF:0,Bela TV SD THISCHANNELISDOWN----------
+#EXTINF:0,Bela TV
 
 
-#EXTINF:0,BTR SD A
+#EXTINF:0,BTR A
 http://fms.zulu.mk:554/zulu/btr_1/playlist_b125000_w1132785237.m3u8
 
-#EXTINF:0,BTR SD B
+#EXTINF:0,BTR B
 rtsp://fms.zulu.mk/zulu/btr_1
 
-#EXTINF:0,K15 Music SD THISCHANNELISDOWN----------
+#EXTINF:0,Cegrani
+http://fms.zulu.mk:1935/zulu/cegrani_1/playlist.m3u8
+
+#EXTINF:0,ERA
+http://fms.zulu.mk:1935/zulu/era_2/playlist.m3u8?wowzasessionid=1274029124
+
+#EXTINF:0,Hutel
+http://fms.zulu.mk:1935/zulu/shutel_1/playlist.m3u8
+
+#EXTINF:0,K15 Music
 
 
-#EXTINF:0,Kanal 21 SD
+#EXTINF:0,Kanal 21 
 mms://62.162.58.55/TVkanal21
 
-#EXTINF:0,Kanal 5 SD A
+#EXTINF:0,Kanal 5 A
 mms://live.kanal5.com.mk/kanal5
 
-#EXTINF:0,Kanal 5 SD B
+#EXTINF:0,Kanal 5 B
 http://fms.zulu.mk:1935/zulu/kanal5_1/playlist.m3u8
 
-#EXTINF:0,Kanal 5 Plus SD A
+#EXTINF:0,Kanal 5 Plus A
 http://fms.zulu.mk:1935/zulu/kanal5plus_1/playlist.m3u8
 
-#EXTINF:0,Kanal 5 Plus SD B
+#EXTINF:0,Kanal 5 Plus B
 http://fms.zulu.mk:554/zulu/kanal5plus_1/playlist_b125000_w1132785237.m3u8
 
-#EXTINF:0,Kanal 8 SD
-mms://62.162.58.55/TVkanal8
-
-#EXTINF:0,МPT 1 SD THISCHANNELISDOWN----------
+#EXTINF:0,Kanal 8
 
 
-#EXTINF:0,Nasha TV SD
+#EXTINF:0,МRT 1 A
+http://fms.zulu.mk:554/zulu/mtv1_1/playlist_b125000_w1132785237.m3u8
+
+#EXTINF:0,МRT 1 B
+http://fms.zulu.mk:1935/zulu/mtv1_2/playlist.m3u8?wowzasessionid=337573726
+
+#EXTINF:0,Nasha TV
 http://fms.zulu.mk:1935/zulu/nashatv_1/playlist.m3u8
 
-#EXTINF:0,Pink Kids SD THISCHANNELISDOWN----------
+#EXTINF:0,Pink Kids
 
 
-#EXTINF:0,Sitel 1 SD
+#EXTINF:0,Sitel 1
 http://fms.zulu.mk:554/zulu/sitel_1/playlist_b125000_w1132785237.m3u8
 
-#EXTINF:0,Sitel 3 SD
+#EXTINF:0,Sitel 3
 http://fms.zulu.mk:554/zulu/sitel3_1/playlist_b125000_w1132785237.m3u8
 
-#EXTINF:0,Sonce TV SD
+#EXTINF:0,Sonce TV
 http://92.53.27.201:10000
 
 #EXTINF:0,Telma SD
 http://fms.zulu.mk:554/zulu/telma_1/playlist_b125000_w1132785237.m3u8
 
-#EXTINF:0,Tera TV SD THISCHANNELISDOWN----------
+#EXTINF:0,Tera TV
 
 
 #EXTINF:0,VESTI 24 SD

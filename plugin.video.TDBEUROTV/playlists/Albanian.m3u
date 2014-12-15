@@ -2,180 +2,184 @@
 #EXTINF:0,
 
 
-#EXTINF:0,Agon Channel SD
+#EXTINF:0,Agon Channel 
 http://str105mb.setplex.net:1935/str2iosmd5/7ios_agontv_34536544/HasBahCa.m3u8
 
-#EXTINF:0,Albanian Culture NY SD THISCHANNELISDOWN----------
+#EXTINF:0,Albanian Culture NY
 
 
-#EXTINF:0,Albanian Screen SD
+#EXTINF:0,Albanian Screen
 rtmp://95.110.242.231:11935/live/albanianscreentv
 
-#EXTINF:0,Alb Info SD THISCHANNELISDOWN----------
+#EXTINF:0,Alb Info
 
 
-#EXTINF:0,Alb Popullore SD THISCHANNELISDOWN----------
+#EXTINF:0,Alb Popullore
 
 
-#EXTINF:0,Al Jazeera Balkans HD THISCHANNELISDOWN----------
+#EXTINF:0,Al Jazeera Balkans
 
 
-#EXTINF:0,Alsat M SD
-http://edgetiboeu.tibo.tv:8081/europe/dveo2/m3u8/alsatchannel.m3u8 
-
-#EXTINF:0,Apollon A SD THISCHANNELISDOWN----------
+#EXTINF:0,Alsat M 
 
 
-#EXTINF:0,Apollon B SD THISCHANNELISDOWN----------
+#EXTINF:0,Apollon
+rtmp://95.107.200.140:554/live/rtmp.stream
+
+#EXTINF:0,Arta
 
 
-#EXTINF:0,Arta SD THISCHANNELISDOWN----------
+#EXTINF:0,Art Kanal
 
 
-#EXTINF:0,Art Kanal SD THISCHANNELISDOWN----------
+#EXTINF:0,ATV
 
 
-#EXTINF:0,ATV HD THISCHANNELISDOWN----------
+#EXTINF:0,B92
+http://109.122.121.21/live/b92.stream/playlist.m3u8?hash=5b0be985da9df72e39b64dec4396786cac8db951
 
-
-#EXTINF:0,B92 HD  THISCHANNELISDOWN----------
-
-
-#EXTINF:0,Balkan TV SD
+#EXTINF:0,Balkan TV
 rtmp://yayin.tvdunyasi.tv/live/balkanrtv
 
-#EXTINF:0,BBF TV THISCHANNELISDOWN----------
+#EXTINF:0,BBF TV
 
 
-#EXTINF:0,BHT 1 HD THISCHANNELISDOWN----------
+#EXTINF:0,BHT 1 
 
 
-#EXTINF:0,BN HD THISCHANNELISDOWN----------
+#EXTINF:0,BN
+
+#EXTINF:0,Dasma TV
+http://str105mb.setplex.net:1935/str2iosmd5/dasmatv_win1_203/HasBahCa.m3u8
+
+#EXTINF:0,Dukagjini
 
 
-#EXTINF:0,Dukagjini SD THISCHANNELISDOWN----------
+#EXTINF:0,Face TV 
 
 
-#EXTINF:0,Face TV HD THISCHANNELISDOWN----------
+#EXTINF:0,Federalna
 
 
-#EXTINF:0,Federalna TV SD THISCHANNELISDOWN----------
+#EXTINF:0,Folk Plus
 
 
-#EXTINF:0,Folk Plus SD THISCHANNELISDOWN----------
+#EXTINF:0,Globi
 
 
-#EXTINF:0,Globi SD THISCHANNELISDOWN----------
+#EXTINF:-1,Happy
+http://109.122.121.21/live/happy.stream/playlist.m3u8?hash=5b0be985da9df72e39b64dec4396786cac8db951
+
+#EXTINF:0,HTV 1
+http://109.122.121.21/live/rtrs.stream/playlist.m3u8?hash=5b0be985da9df72e39b64dec4396786cac8db951
+
+#EXTINF:0,HTV 2
+http://109.122.121.21/live/hrt_2.stream/playlist.m3u8?hash=5b0be985da9df72e39b64dec4396786cac8db951
+
+#EXTINF:0,Iliret 
 
 
-#EXTINF:-1,Happy HD THISCHANNELISDOWN----------
-
-
-#EXTINF:0,HRT 1 HD  THISCHANNELISDOWN----------
-
-
-#EXTINF:0,HTV 2 HD  THISCHANNELISDOWN----------
-
-
-#EXTINF:0,Iliret SD THISCHANNELISDOWN----------
-
-
-#EXTINF:0,Jug TV  SD
+#EXTINF:0,Jug TV
 rtmp://84.20.77.50/live/livestream1
 
-#EXTINF:0,Kanal 3 SD THISCHANNELISDOWN----------
+#EXTINF:0,Kanal 3
+http://109.122.121.21/live/kanal_3.stream/playlist.m3u8?hash=5b0be985da9df72e39b64dec4396786cac8db951
+
+#EXTINF:-1,KLAN KS
 
 
-#EXTINF:-1,KLAN KS  THISCHANNELISDOWN----------
-
-
-#EXTINF:0,Koha TV HD
+#EXTINF:0,Koha TV
 rtmp://live.tvkoha.tv/live/koha app=live/koha swfUrl=http://live.tvkoha.tv/playerplus.swf pageUrl=http://www.tvkoha.tv/live/tv playpath=livestream swfVfy=true live=true timeout=15
 
-#EXTINF:0,Kopliku SD THISCHANNELISDOWN----------
+#EXTINF:0,Kopliku 
+rtmp://psham1.setplex.net:1935/tvalb_loc_ams243?doPublish=eqc3AAs34OL/tvkop2431565
+
+#EXTINF:0, MPT 2
 
 
-#EXTINF:0, MPT 2 HD THISCHANNELISDOWN----------
+#EXTINF:0,Novosadska TV
+mms://176.106.121.32:8080/
 
 
-#EXTINF:0,NTV IC Kakanj SD THISCHANNELISDOWN----------
+#EXTINF:0,NTV
 
 
-#EXTINF:0,OBN A HD THISCHANNELISDOWN----------
+#EXTINF:0,OBN A
 
 
-#EXTINF:0,OBN B HD THISCHANNELISDOWN----------
+#EXTINF:0,OBN B
 
 
-#EXTINF:0,OTV Valentino SD THISCHANNELISDOWN----------
+#EXTINF:0,OTV Valentino
 
 
-#EXTINF:0,Palma SD  THISCHANNELISDOWN----------
+#EXTINF:0,Palma
+http://109.122.121.21/live/palma.stream/playlist.m3u8?hash=5b0be985da9df72e39b64dec4396786cac8db951
 
-
-#EXTINF:0,Pannon TV Subotica HD
+#EXTINF:0,Pannon TV Subotica
 http://212.200.235.242:8080/
 
-#EXTINF:0,Party HD
+#EXTINF:0,Party
 rtmp://149.11.34.6/live/partytv.stream
 
-#EXTINF:0,Pink Film HD THISCHANNELISDOWN----------
+#EXTINF:0,Pink Film
+http://109.122.121.21/live/pink.stream/playlist.m3u8?hash=5b0be985da9df72e39b64dec4396786cac8db951
 
+#EXTINF:0,PRVA
+http://109.122.121.21/live/prva.stream/playlist.m3u8?hash=5b0be985da9df72e39b64dec4396786cac8db951
 
-#EXTINF:0,PRVA HD THISCHANNELISDOWN----------
-
-
-#EXTINF:0,Rokum TV HD
+#EXTINF:0,Rokum TV
 rtmp://82.114.65.202/live/rrokumtv
 
-#EXTINF:0,RTCG SAT HD  THISCHANNELISDOWN----------
+#EXTINF:0,RTCG SAT
+http://109.122.121.21/live/rtcg.stream/playlist.m3u8?hash=5b0be985da9df72e39b64dec4396786cac8db951
 
-
-#EXTINF:0,RTK 1 HD
+#EXTINF:0,RTK 1
 rtmp://wowza.rtkit.com/live/livestream
 
-#EXTINF:0,RTRS HD  THISCHANNELISDOWN----------
+#EXTINF:0,RTRS
+http://109.122.121.21/live/rtrs.stream/playlist.m3u8?hash=5b0be985da9df72e39b64dec4396786cac8db951
+
+#EXTINF:0,RTS 1
+http://109.122.121.21/live/rts_1.stream/playlist.m3u8?hash=5b0be985da9df72e39b64dec4396786cac8db951
+
+#EXTINF:0,RTS 2
+http://109.122.121.21/live/rts_2.stream/playlist.m3u8?hash=5b0be985da9df72e39b64dec4396786cac8db951
+
+#EXTINF:-1,RTV 1
 
 
-#EXTINF:0,RTS 1 HD THISCHANNELISDOWN----------
+#EXTINF:0,Rozafa
 
 
-#EXTINF:0,RTS 2 HD THISCHANNELISDOWN----------
+#EXTINF:-1,SKY Plus
+http://109.122.121.21/live/sky_plus.stream/playlist.m3u8?hash=5b0be985da9df72e39b64dec4396786cac8db951
+
+#EXTINF:0,Sos
+http://109.122.121.21/live/sos.stream/playlist.m3u8?hash=5b0be985da9df72e39b64dec4396786cac8db951
+
+#EXTINF:0,Sot7
+mms://84.20.73.66:8001
+
+#EXTINF:0,Sot News
 
 
-#EXTINF:-1,RTV 1 HD THISCHANNELISDOWN----------
+#EXTINF:0,Studio B
+http://109.122.121.21/live/studio_b.stream/playlist.m3u8?hash=5b0be985da9df72e39b64dec4396786cac8db951
 
-
-#EXTINF:0,Rozafa SD THISCHANNELISDOWN----------
-
-
-#EXTINF:-1,SKY Plus HD THISCHANNELISDOWN----------
-
-
-#EXTINF:0,Sos HD  THISCHANNELISDOWN----------
-
-
-#EXTINF:0,Sot7 SD THISCHANNELISDOWN----------
-
-
-#EXTINF:0,Sot News SD THISCHANNELISDOWN----------
-
-
-#EXTINF:0,Studio B HD  THISCHANNELISDOWN----------
-
-
-#EXTINF:0,Superfolk SD
+#EXTINF:0,Superfolk
 rtmp://str103.setplex.net:1935/228/stv_folk
 
-#EXTINF:0,Supersonic SD
+#EXTINF:0,Supersonic
 rtmp://str103.setplex.net:1935/228/stv_online
 
-#EXTINF:0,Teuta TV SD THISCHANNELISDOWN----------
+#EXTINF:0,Teuta
+rtmp://str103.setplex.net:1935/228/teuta
+
+#EXTINF:0,TK
 
 
-#EXTINF:0,TK HD THISCHANNELISDOWN----------
+#EXTINF:0,TV1
 
-#EXTINF:0,TV1 HD THISCHANNELISDOWN----------
-
-#EXTINF:0,Vision Plus 1 SD
+#EXTINF:0,Vision Plus 1
 rtmp://live.vizionplus.tv:1935/live/livestream2
