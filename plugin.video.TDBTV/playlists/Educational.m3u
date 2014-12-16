@@ -6,40 +6,31 @@
 http://202.75.23.34/live/ch31/03.m3u8
 
 #EXTINF:0,Crime Investigation
-http://acabsw.doiptv.com/sky_discovery_investigation/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
-
-#EXTINF:0,Crime Investigation
 http://202.75.23.36/live/ch47/01.m3u8
-
-#EXTINF:0,Discovery Channel
-http://acabsw.doiptv.com/sky_discovery_investigation/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
 
 #EXTINF:0,Discovery Channel
 http://202.75.23.34/live/ch29/03.m3u8
 
 #EXTINF:0,Discovery History
-http://acabsw.doiptv.com/sky_discovery_history/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
+
 
 #EXTINF:0,Discovery Home And Health
 http://202.75.23.34/live/ch34/01.m3u8
 
-#EXTINF:0,Discovery Home And Health
-http://acabsw.doiptv.com/sky_discovery_home/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
-
 #EXTINF:0,Discovery Investigation
-http://acabsw.doiptv.com/sky_discovery_investigation/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
+
 
 #EXTINF:0,Discovery Travel & Living
 http://202.75.23.34:1400/live/ch34/01.m3u8
 
 #EXTINF:0,Discovery Turbo
-http://acabsw.doiptv.com/sky_discovery_turbo/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
+
 
 #EXTINF:0,Discovery Max
 
 
 #EXTINF:0,Discovery Science
-http://202.75.23.34/live/ch33/03.m3u8
+http://hlsstr02.svc.iptv.rt.ru/hls/CH_DISCOVERYSCIENCE/variant.m3u8
 
 #EXTINF:0,Discovery World
 http://202.75.23.34:1400/live/ch30/03.m3u8
@@ -51,16 +42,7 @@ http://stream1.zoovision.com//livespi/docubox/playlist.m3u8
 http://202.75.23.36:1400/live/ch46/03.m3u8?Vd?u#bt!25
 
 #EXTINF:0,History Channel
-http://202.75.23.36:1400/live/ch45/03.m3u8?Vd?u#bt!25
 
-#EXTINF:0,History Channel
-http://acabsw.doiptv.com/sky_history/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
-
-#EXTINF:0,History Channel
-http://acabsw.doiptv.com/sky_history_2/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
-
-#EXTINF:0,NASA Media
-http://media.infozen.cshls.lldns.net/infozen/media/media/media_1000.m3u8
 
 #EXTINF:0,NASA TV
 http://public.infozen.cshls.lldns.net/infozen/public/public.m3u8
@@ -70,9 +52,6 @@ http://public.infozen.cshls.lldns.net/infozen/public/public.m3u8
 
 #EXTINF:0,Nat Geo Wild
 http://202.75.23.35/live/ch39/03.m3u8
-
-#EXTINF:0,Nat Geo Wild
-http://acabsw.doiptv.com/sky_natgeowild/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
 
 #EXTINF:0,National Geographic
 http://202.75.23.35/live/ch38/03.m3u8
@@ -91,9 +70,6 @@ http://83.139.104.123/Content/HLS/Live/Channel(viasat_history)/Stream(03)/index.
 
 #EXTINF:0,Viasat History
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_VIASATHISTORY/variant.m3u8
-
-#EXTINF:0,Viasat History
-http://80.77.52.6:4444/udp/230.0.3.56:12345
 
 #EXTINF:0,Viasat Nature
 http://80.77.52.6:4444/udp/230.0.3.53:12345

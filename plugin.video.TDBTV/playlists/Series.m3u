@@ -1,6 +1,9 @@
 ﻿#EXTM3U
 
 
+#EXTINF:0,2 and a Half Men 
+rtmp://192.99.38.122/app playpath=men02 swfUrl=http://www.tgun.tv/locked/player.swf live=1 pageUrl=http://www.tgun.tv/embeds/index.php?men02&widthid=600&heightid=450
+
 #EXTINF:0,2 Broke Girls
 
 
@@ -151,8 +154,17 @@ rtmp://192.99.38.122/app/ playpath=southp02 swfUrl=http://www.tgun.tv/lock/playe
 #EXTINF:0,South Park
 rtmp://192.99.38.122/app/southp02
 
+#EXTINF:0,Star Trek DS9
+rtmp://192.99.38.122/app playpath=ds902 swfUrl=http://www.tgun.tv/lock/player.swf live=1 pageUrl=http://www.tgun.tv/menus/players/playerindex3.php?ds901
+
+#EXTINF:0,Star Trek Enterprise
+rtmp://192.99.38.122/app playpath=trekent02 swfUrl=http://www.tgun.tv/lock/player.swf live=1 pageUrl=http://www.tgun.tv/menus/players/playerindex3.php?trekent01
+
 #EXTINF:0,Star Trek TNG
-rtmp://192.99.38.122/app/ playpath=tng02 swfUrl=http://tgun.tv/jwplayer/player.swf pageUrl=http://tgun.tv/shows/ch1 playpath=tng02 timeout=15
+rtmp://192.99.38.122/app playpath=tng02 swfUrl=http://www.tgun.tv/lock/player.swf live=1 pageUrl=http://www.tgun.tv/menus/players/playerindex3.php?tng01
+
+#EXTINF:0,Star Trek Voyager
+rtmp://192.99.38.122/app playpath=voy02 swfUrl=http://www.tgun.tv/locked/player.swf live=1 pageUrl=http://www.tgun.tv/menus
  
 #EXTINF:0,That 70s Show 
 
@@ -196,10 +208,8 @@ rtmp://192.99.38.122/app playpath=tpb02 swfUrl=http://www.tgun.tv/locked/player.
 #EXTINF:0,Three's Company 
 
  
-#EXTINF:0,Two and a Half Men 
-rtmp://192.99.38.122/app playpath=men02 swfUrl=http://www.tgun.tv/locked/player.swf live=1 pageUrl=http://www.tgun.tv/embeds/index.php?men02&widthid=600&heightid=450
- 
 #EXTINF:0,Vikings
+
 
 #EXTINF:0,Weeds
 http://62.210.76.216:8080/hls/weedshdx.m3u8?Vd?u#bt!25

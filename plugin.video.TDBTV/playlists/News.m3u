@@ -32,9 +32,6 @@ http://hls.novotelecom.ru/streaming/cnn/tvrec/playlist.m3u8
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/cnn/ls_satlink/b_828.m3u8
 
 #EXTINF:0,CNN
-http://hls.novotelecom.ru/streaming/cnn/tvrec/playlist.m3u8
-
-#EXTINF:0,CNN
 rtmp://c.cdn.livenewschat.eu/edge playpath=cnn_live swfUrl=http://msnbclive.eu/player.swf swfVfy=1 live=1 pageUrl=http://weplaylive.tv timeout=15
 
 #EXTINF:0,DW

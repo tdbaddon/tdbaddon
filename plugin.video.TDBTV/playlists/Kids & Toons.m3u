@@ -14,7 +14,7 @@ rtmp://mi2.gv.filmon.com:1935/live/_definst_/2734.low.stream
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_BOOMERANG/variant.m3u8
 
 #EXTINF:0,C ITV
-http://acabsw.doiptv.com/am-1_itv_london/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
+
 
 #EXTINF:0,Cartoonito
 
@@ -50,10 +50,9 @@ rtmp://rtmp.zerocast.tv:1935/live/ playpath=fCqfhb14WwwFbAsDbV3Z  swfUrl=http://
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_NICKELODEON/variant.m3u8
 
 #EXTINF:0,Nick Jr
-http://95.188.126.233:1234/udp/233.7.70.169:5000
+
 
 #EXTINF:0,NickNight SD  
 
 
 #EXTINF:0,Sky Movies Disney
-http://acabsw.doiptv.com/sky_mov_disney/playlist.m3u8|User-Agent="Lavf53.32.100":network-caching=1000
