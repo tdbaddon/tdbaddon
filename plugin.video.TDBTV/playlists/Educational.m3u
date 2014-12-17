@@ -18,7 +18,7 @@ http://202.75.23.34/live/ch29/03.m3u8
 http://202.75.23.34/live/ch34/01.m3u8
 
 #EXTINF:0,Discovery Investigation
-
+http://46.44.3.20:5555/udp/224.0.90.10:1234
 
 #EXTINF:0,Discovery Travel & Living
 http://202.75.23.34:1400/live/ch34/01.m3u8

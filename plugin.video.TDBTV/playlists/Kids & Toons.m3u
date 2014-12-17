@@ -22,8 +22,8 @@ http://hlsstr02.svc.iptv.rt.ru/hls/CH_BOOMERANG/variant.m3u8
 #EXTINF:0,Cartoon Network
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_CN/variant.m3u8
 
-#EXTINF:0,Disney Channel 
-
+#EXTINF:0,Cartoon Network
+http://46.44.3.20:5555/udp/224.0.90.66:1234
 
 #EXTINF:0,Disney Channel 
 
@@ -35,7 +35,7 @@ http://hlsstr02.svc.iptv.rt.ru/hls/CH_CN/variant.m3u8
 
 
 #EXTINF:0,Jim Jam 
-
+http://46.44.3.20:5555/udp/224.0.90.51:1234
 
 #EXTINF:0,Kids Comedy
 rtmp://mi2.gv.filmon.com:1935/live/_definst_/2734.low.stream?b?b*t$

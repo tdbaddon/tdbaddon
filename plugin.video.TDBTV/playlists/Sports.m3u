@@ -24,7 +24,7 @@ rtmp://80.82.78.22:443/liverepeater playpath=13 swfUrl=http://popeoftheplayers.p
 rtmp://31.220.0.196:80/live playpath=xt1 swfUrl=http://flashtv.co/ePlayerr.swf pageUrl=http://flashtv.co/embedu.php?live=xt1&vw=620&vh=490 token=%ZZri(nKa@#Z
 
 #EXTINF:0,BT Sport 2
-rtmp://31.204.152.146:443/liverepeater playpath=179890 swfUrl=http://bernardotv.club/atdedead.swf pageUrl=http://biggestplayer.me/streamcr.php?id=179890&width=620&height=490 token=#atd%#$ZH
+
 
 #EXTINF:0,Drift 4 Ever
 rtsp://46.249.213.93/broadcast/drift4ever-tablet.3gp
@@ -75,7 +75,7 @@ rtmp://mi2.gv.filmon.com:8086/live/262.high.stream
 http://motorsport.hopto.org:8080/
 
 #EXTINF:0,NBA TV 
-rtmp://rtmp.zerocast.tv:1935/live/ playpath=5S7VAxdgbnpjSPB1pUkk  token=8964316ec8772dfa swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=13 live=1 swfVfy=1 pageUrl=http://zerocast.tv/ AnisotropicTV
+
 
 #EXTINF:0,NBC Golf 
 rtmp://31.220.0.196:80/live playpath=golfx swfUrl=http://www.flashtv.co/ePlayerr.swf pageUrl=http://www.flashtv.co/embed.php?live=golfx&vw=620&vh=490 token=%ZZri(nKa@#Z
@@ -123,25 +123,25 @@ rtmpe://46.246.124.30:1935/live/spremsp pageUrl=http://www.hdcast.org/Vd?u#bt!25
 rtmp://109.123.70.34:80/live/ playpath=rxing token=%ZZri(nKa@#Z swfUrl=http://www.flashtv.co/ePlayerr.swf live=1 timeout=13 pageUrl=http://www.flashtv.co/ AnisotropicTV
 
 #EXTINF:0,Rogers Sportsnet One
-http://rogerslive-i.akamaihd.net/hls/live/202799/event/index.m3u8
+
 
 #EXTINF:0,Rogers Sportsnet East
-http://rogerslive-i.akamaihd.net/hls/live/202800/event/index.m3u8?
+
 
 #EXTINF:0,Rogers Sportsnet Pacific
-http://rogerslive-i.akamaihd.net/hls/live/202802/event/index.m3u8?
+
 
 #EXTINF:0,Rogers Sportsnet West
-http://rogerslive-i.akamaihd.net/hls/live/202801/event/index.m3u8
+
 
 #EXTINF:0,Rogers Sportsnet Extra
-http://rogerslive-i.akamaihd.net/hls/live/202803/event/index.m3u8
+
 
 #EXTINF:0,Rogers Sportsnet Ontario
-http://rogerslive-i.akamaihd.net/hls/live/202827/event/index.m3u8
+rtmp://31.204.150.242:443/liverepeater/ playpath=180240 token=#atd%#$ZH swfUrl=http://static.surk.tv/atdedead.swf live=1 timeout=13 pageUrl=http://biggestplayer.me/ AnisotropicTV
 
 #EXTINF:0,Rogers Sportsnet World
-http://rogerslive-i.akamaihd.net/hls/live/202801/event/index.m3u8
+
 
 #EXTINF:0,SBS One
 http://motorsport.hopto.org:8080
