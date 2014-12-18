@@ -28,11 +28,17 @@ rtmp://192.99.38.122/app/ playpath=bad02 swfUrl=http://www.tgun.tv/lock/player.s
 #EXTINF:0,Bones
 rtmp://192.99.38.122/app/ playpath=bones02 swfUrl=http://www.tgun.tv/lock/player.swf pageUrl=http://tgun.tv/shows/ch1 playpath=bones02
 
+#EXTINF:0,Bonanza
+http://live78.la3.edge.filmon.com/live/2957.low.stream/playlist.m3u8?id=0ad5aac39bb13fbe7e3bbd9953bf39ed96622a352c859d4a865da843949d94314e0be19e23af97829a4ecb03d5d911b10bfc516412a4bcb0770434253fd2b66a779208406ac7aef6e6edc1ba75ad2ff62cd36fc09b3de1090ec1e5c458addc5e0e6bdf0af18f89ebf978fac0e94a986e338d5f71ada5db6241f4b655bea68ee28866631b95243261e3f27b8366a5b0f301561750d006c24a
+
 #EXTINF:0,Boy Meets World
 
 
 #EXTINF:0,Burn Notice 
 rtmp://192.99.38.122/app/ playpath=burnnotice03 swfUrl=http://www.tgun.tv/lock/player.swf pageUrl=http://tgun.tv/shows/ch1 playpath=burnnotice03
+
+#EXTINF:0,Charlie Chaplin
+http://live78.la3.edge.filmon.com/live/2966.low.stream/playlist.m3u8?id=0ad5aac39bb13fbe0f490e5eb30d76fb519b79293a5d604cae0913deba8c6e8246c120bf8e537e5d31ecd22e51a447094cebc09ac9ce49b8b3542fd4cf8a1dec0b36de5f763dd280e76afb1ed2dd1c6fcd26928bbb8c8faa576ab1e4a0e9e93f35ddcc1ef984d2026815ea3c87e6ddc497563ed5396ede118454e8019c00e81db343433fb0e959d8e22cc617df2bf99c336e9dad9a28fc80
  
 #EXTINF:0,Cheers
 
@@ -86,7 +92,7 @@ rtmp://192.99.38.122/app playpath=friends02 swfUrl=http://www.tgun.tv/locked/pla
 rtmp://192.99.38.122/app/ playpath=himym02 swfUrl=http://www.tgun.tv/lock/player.swf pageUrl=http://tgun.tv/shows/ch1 playpath=himym02
 
 #EXTINF:0,I Love Lucy
-
+http://live54.la3.edge.filmon.com/live/3101.low.stream/playlist.m3u8?id=0ad5aac39bb13fbe044f5f2ddf2e77f43a4fc7a839c1310ca6d6b0ed6f09bc75ee6640b267561acbe909e67d4b95fe5577c14988374d845b7afde9d94a4a94f9f4cdcefdc002459fae6723e178883128389aa0c221fb5a9b4cd3ba9f7d29be1d502765f43e7423a156995de80027196b07a8b9968061bcef05d97b8159fa0b92f5b57a0dcceaa640830ae3126b46e4e69f82c743b2e1f6b0
 
 #EXTINF:0,It's Always Sunny in Philadelphia 
 rtmp://192.99.38.122/app/ playpath=sunny02 swfUrl=http://www.tgun.tv/lock/player.swf pageUrl=http://tgun.tv/shows/ch1 playpath=sunny02
@@ -169,6 +175,15 @@ rtmp://192.99.38.122/app playpath=voy02 swfUrl=http://www.tgun.tv/locked/player.
 #EXTINF:0,That 70s Show 
 
 
+#EXTINF:0,The Adventures of Robin Hood
+http://live78.la3.edge.filmon.com/live/2972.low.stream/playlist.m3u8?id=0ad5aac39bb13fbe6f0708a00195148c794ff12e05a0d1fa0ae691cb4626457ac0f22943b4ad2fe997eba73a9235edf8cd17f5235cc00bee5ed8e2278fbd267a3310721f70632505cb3247130275fe1da7a9fe53fe85a6f1cbe391d959804814af1694e92e1542f34d26aa3a046a518fb42e107e629324f69a3eb636276d214747e4aa1511780a16239316b96ce878e45203d9163d5b9a2a
+
+#EXTINF:0,The Andy Griffith Show
+http://204.107.26.245/live/3119.low.stream/playlist.m3u8?id=0ad5aac39bb13fbe29767bec9940a7252b24c8aa567f70eae61d3e28158963ce7659d3145afd2626f6f1cae29dd28f2d3936fb81c8bab7e1317cd0173c48f2403071f926f0e581ec5c5ad53ca5757761c5f5a26826106907bd22c3bfe88785a413a80a537a793dd9ecd12d4ab1aae6bb33391f943a160ca825d6b3f458650b35c6ba2050b982e4b8773f3a5a180a114b3311a249e42c9d5e
+
+#EXTINF:0,The Beverly Hillbillies
+http://live78.la3.edge.filmon.com/live/2969.low.stream/playlist.m3u8?id=0ad5aac39bb13fbebe5c21aff0ea09895c1cd2a7176bd28f9334478caf5203655e4ae3f9de29c2eb28b1666548b052742d5719b8ca89db12d38e6127f093123d6589de7ddc58967423195808e1392b2f95585c3b9a8b65c1d4ac16bf30db7bc03660194b44dbd79840c9431609f8f76ed498bf1bf4613c831824ded48cd78608c419c2af82714e5ca2540d5fe2ddedd542922f8e114e1dae
+
 #EXTINF:0,The Big Bang Theory
 rtmp://192.99.38.122/app playpath=tbbt02 swfUrl=http://www.tgun.tv/locked/player.swf pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex4.php?tbbt02
 
@@ -177,6 +192,8 @@ http://62.210.76.216:8080/hls/clevx.m3u8?Vd?u#bt!25
 
 #EXTINF:0,The Cosby Show 
 
+#EXTINF:0,The Dick Van Dyke Show
+http://live54.la3.edge.filmon.com/live/3098.low.stream/playlist.m3u8?id=0ad5aac39bb13fbeeb2da4425bc5ef96b870a9c7b8e9e30e6f5ff7b6ab5ae8d23331a1abeaf826de444a5a8b684afd008d0e0a5e6646aa48e1e112df1d2592ec2d7cb95fef3abbef6a66924e1d726e1109c4f785de87cdac4d90914948805966988b1054d2ee628dcbb9dfe937f8223dcced0b3023a73e005fdd743432b3a975daa969ab5890e9f9e5ce34e50228d8a4a1d22a403f408fee
 
 #EXTINF:0,The Drew Carey Show 
 

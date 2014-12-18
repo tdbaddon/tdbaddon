@@ -44,8 +44,8 @@ rtmp://cdn-sov-2.musicradio.com:80/LiveVideo/Heart
 #EXTINF:0,Ibiza on TV
 http://46.249.213.87/iPhone/broadcast/ibizaontv-tablet.3gp/ibizaontv-tablet.3gp-mr648k.m3u8?trackingid=3391380000&os=desktop
 
-#EXTINF:0,Jazz THISCHANNELISDOWN----------
-
+#EXTINF:0,Jazz
+http://149.11.34.78:1935/live/jazztv.stream/hasbahca.m3u8
 
 #EXTINF:0,King TV
 rtmp://91.82.85.16/brdcaster/_definst_/nettv03_channel_1
@@ -123,6 +123,9 @@ http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch3/06/prog_index.m3u8
 
 #EXTINF:0,Vevo Pop
 http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/appleman.m3u8
+
+#EXTINF:0,VH1
+rtmp://edge03-03.az.myvideo.az/dvrh264/vh1/ playpath=mp4:vh1 swfUrl=http://www.myvideo.az/stml/dvr/dvrH.swf?v=1.2 live=1 pageUrl=http://www.myvideo.az/r.ates
 
 #EXTINF:0,VH1
 http://ys-live.cdns.yousee.tv/Content/HLS/Live/Channel(VH1)/Stream(05)/index.m3u8

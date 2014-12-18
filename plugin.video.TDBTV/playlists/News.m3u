@@ -34,6 +34,9 @@ http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/cnn/ls_satlink/b_828.m3u8
 #EXTINF:0,CNN
 rtmp://c.cdn.livenewschat.eu/edge playpath=cnn_live swfUrl=http://msnbclive.eu/player.swf swfVfy=1 live=1 pageUrl=http://weplaylive.tv timeout=15
 
+#EXTINF:0,CNN
+rtmpe://46.246.124.93:1935/live/ playpath=cnnn pageUrl=http://www.hdcast.org/ token=#yw%tt#w@kku timeout=10
+
 #EXTINF:0,DW
 http://www.metafilegenerator.de/DWelle/tv-asia/ios/master.m3u8
 
@@ -65,7 +68,7 @@ rtmp://204.107.26.252:8086/live/905.high.stream
 rtmp://mtv.fms-01.visionip.tv/live/mtv-ptv-live-25f-16x9-SDh
 
 #EXTINF:0,Reuters Live
-
+http://37.58.85.156/rlo001/ngrp:rlo001.stream_all/playlist.m3u8
 
 #EXTINF:0,RT News
 http://odna.octoshape.net/f3f5m2v4/cds/ch4_720p/playlist.m3u8
