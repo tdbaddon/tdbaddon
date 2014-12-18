@@ -65,6 +65,9 @@ http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVDANCE/variant.m3u8
 #EXTINF:0,MTV Hits
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVHITS/variant.m3u8
 
+#EXTINF:0,MTV Live
+http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=432&lan=2&rows=40&f=.m3u8
+
 #EXTINF:0,MTV Music
 http://83.139.104.123/Content/HLS/Live/Channel(mtv_music)/Stream(03)/index.m3u8
 

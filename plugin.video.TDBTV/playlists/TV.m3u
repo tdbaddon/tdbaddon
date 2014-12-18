@@ -170,6 +170,9 @@ rtmpe://46.246.124.3:1935/live/usao0 playpath=usao0 swfUrl=http://p.jwpcdn.com/6
 #EXTINF:0,Vernnissage TV
 http://149.11.34.6:1935/live/vernissagetv.stream/hasbahca.m3u8
 
+#EXTINF:0,Warner Brothers
+http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=96&lan=2&rows=40&f=.m3u8
+
 #EXTINF:0,WGN 9 Chicago
 http://wgntribune-lh.akamaihd.net/i/WGNTribune_1@109089/master.m3u8
 
