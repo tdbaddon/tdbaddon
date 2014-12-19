@@ -404,4 +404,7 @@ dc={
 "emba kids" : "403",
 "live boxing" : "404",
 "warner brothers" : "405",
+"fx hd" : "406",
+"syfy movie channel" : "407",
+"reuters live" : "408",
 }

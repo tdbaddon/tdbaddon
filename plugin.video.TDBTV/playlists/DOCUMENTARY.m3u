@@ -1,0 +1,95 @@
+﻿#EXTM3U
+
+
+#EXTINF:0,Animal Planet
+http://202.75.23.34/live/ch31/03.m3u8
+
+#EXTINF:0,Biography TV
+http://live305.edge.filmon.com/live/2633.low.stream/playlist.m3u8?id=0ad5aac39bb13fbe3dec09d80a8dc9c748ffd5e324455e469a466e5d442f5d1d920295963f5f92736d578c6d6f299367b99786b2eec4886bdb710f5165d167ab25cdbd51704a8ea1f9c62f4114ac07782451856385707819d802d62751e23980a409eb6c1fc04740182c263ada3cf2facffee94a7ed21d2b295bed796d7b8a0ccd91fabe27af98b5077751e3a45dcdaf4e30b9450cdc8d97
+
+#EXTINF:0,Crime Investigation
+http://202.75.23.36/live/ch47/01.m3u8
+
+#EXTINF:0,Discovery Channel
+http://202.75.23.34/live/ch29/03.m3u8
+
+#EXTINF:0,Discovery History
+
+
+#EXTINF:0,Discovery Home And Health
+http://202.75.23.34/live/ch34/01.m3u8
+
+#EXTINF:0,Discovery Investigation
+http://46.44.3.20:5555/udp/224.0.90.10:1234
+
+#EXTINF:0,Discovery Travel & Living
+http://202.75.23.34:1400/live/ch34/01.m3u8
+
+#EXTINF:0,Discovery Turbo
+
+
+#EXTINF:0,Discovery Max
+
+
+#EXTINF:0,Discovery Science
+http://hlsstr02.svc.iptv.rt.ru/hls/CH_DISCOVERYSCIENCE/variant.m3u8
+
+#EXTINF:0,Discovery World
+http://202.75.23.34:1400/live/ch30/03.m3u8
+
+#EXTINF:0,Docu Box
+http://stream1.zoovision.com//livespi/docubox/playlist.m3u8
+
+#EXTINF:0, FYI
+http://202.75.23.36:1400/live/ch46/03.m3u8?Vd?u#bt!25
+
+#EXTINF:0,History Channel
+http://176.51.82.229:1234/udp/233.7.70.230:5000
+
+#EXTINF:0,History Channel
+http://176.51.82.229:1234/udp/233.7.70.185:5000
+
+#EXTINF:0,Living History Channel
+http://live58.la3.edge.filmon.com/live/2710.low.stream/playlist.m3u8?id=0ad5aac39bb13fbef0e1166d6239fa008e991c4a688c24245ae443682bddbd9a13a9a6f39c666ce77d4b23174bbc16bbf1b50644ce844148700d3f998dfee0f392dafb6aad5a04e8d1b713f623ab315c9f3b5965f4f96072facdd66580effe432b6f149f5bf8a350c36646887b69d287866ae17506c602d47506ac091fad1af76e36df386341e9aee37a41031928833c63e4dea404682974
+
+#EXTINF:0,NASA TV
+http://public.infozen.cshls.lldns.net/infozen/public/public.m3u8
+
+#EXTINF:0,Nat Geo People 
+
+
+#EXTINF:0,Nat Geo Wild
+http://202.75.23.35/live/ch39/03.m3u8
+
+#EXTINF:0,Nat Geo Wild
+http://hlsstr02.svc.iptv.rt.ru/hls/CH_NATGEOWILD/variant.m3u8
+
+#EXTINF:0,National Geographic
+http://202.75.23.35/live/ch38/03.m3u8
+
+#EXTINF:0,Paranormal TV
+http://live305.edge.filmon.com/live/1618.low.stream/playlist.m3u8?id=0ad5aac39bb13fbe5364d6193063e77c0d3a9427b91952e72f389dbe3f21421437bd466fc9ba8840005b69620e92c9298c3161b64f245eaa1dd5b88ed44ec95600ea2e323bd9b40558c52177f1f719cae71ff010051c12d440b3537ee8c711476079291df4fa16ca3d1266c3a7d15631a1d539a616282c7df3150c77fbd9a099c2e1c7436b9ddb7a3a227414a7c5b70715c7c42bc0f85cda
+
+#EXTINF:0,Travel Channel
+http://83.139.104.123/Content/HLS/Live/Channel(travel_channel)/Stream(03)/index.m3u8
+
+#EXTINF:0,Viasat Explorer
+http://hlsstr02.svc.iptv.rt.ru/hls/CH_VIASATEXPLORER/variant.m3u8
+
+#EXTINF:0,Viasat Explorer
+http://80.77.52.6:4444/udp/230.0.3.55:12345
+
+#EXTINF:0,Viasat history
+http://83.139.104.123/Content/HLS/Live/Channel(viasat_history)/Stream(03)/index.m3u8?b?b*t$
+
+#EXTINF:0,Viasat History
+http://83.139.104.123/Content/HLS/Live/Channel(viasat_history)/Stream(03)/index.m3u8
+
+#EXTINF:0,Viasat History
+http://hlsstr02.svc.iptv.rt.ru/hls/CH_VIASATHISTORY/variant.m3u8
+
+#EXTINF:0,Viasat Nature
+http://80.77.52.6:4444/udp/230.0.3.53:12345
+
+#EXTINF:0,Wilderness Channel
+http://live77.la3.edge.filmon.com/live/3050.low.stream/playlist.m3u8?id=0ad5aac39bb13fbe4d952f25113e72a48ce0b4aceb34dacefbfa125bc0d88e78c09ec291c0498c88b5fdb84fa6c0a39a651358a29df44ee4efeae715c3ffced49f490fa14be283ff1b2419e5b250da1cd00cf2661e64d867e728b56dac21724d136115fb2d7a9f5c31a142dd3dd826b1375857896509480ab62445858eaa768b262d916e77e1727aa5efebce08b6f341906825697c78e94f

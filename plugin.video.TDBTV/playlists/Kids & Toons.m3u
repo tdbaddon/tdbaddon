@@ -5,7 +5,7 @@
 http://202.75.23.33/live/ch27/03.m3u8
 
 #EXTINF:0,BabyTV 
-
+http://176.51.82.229:1234/udp/233.7.70.188:5000
 
 #EXTINF:0,Boomerang
 rtmp://mi2.gv.filmon.com:1935/live/_definst_/2734.low.stream
@@ -56,6 +56,10 @@ rtmp://rtmp.zerocast.tv:1935/live/ playpath=fCqfhb14WwwFbAsDbV3Z  swfUrl=http://
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_NICKELODEON/variant.m3u8
 
 #EXTINF:0,Nick Jr
+http://176.51.82.229:1234/udp/233.7.70.169:5000
+
+#EXTINF:0,Nick Jr
+http://176.51.82.229:1234/udp/233.7.70.97:5000
 
 
 #EXTINF:0,NickNight SD  
