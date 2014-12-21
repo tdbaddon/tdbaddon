@@ -83,7 +83,7 @@ rtmp://stream.smcloud.net/live2/vox/vox_720p
 #EXTINF:0,MusicVoxTV
 rtmp://stream.smcloud.net/live2/vox/vox_360p
 
-#EXTINF:-1,Nat Geo Music THISCHANNELISDOWN----------
+#EXTINF:-1,Nat Geo Music 
 
 
 #EXTINF:0,Now Thats What I Call Music
@@ -95,9 +95,10 @@ rtmp://149.11.34.6/live/partytv.stream
 #EXTINF:0,Pink Music 3
 http://on108.setplex.net/fastv_2psh/PinkMusic3global_rly_greece_103/playlist.m3u8
 
-#EXTINF:0,Pink Music 4 THISCHANNELISDOWN----------
+#EXTINF:0,Pink Music 4 
 
-#EXTINF:0,Planet Pop THISCHANNELISDOWN----------
+
+#EXTINF:0,Planet Pop 
 
 
 #EXTINF:0,Radio Monte Carlo

@@ -4,6 +4,9 @@
 #EXTINF:0,Animal Planet
 http://202.75.23.34/live/ch31/03.m3u8
 
+#EXTINF:0,Animal Planet
+http://83.139.104.123/Content/HLS/Live/Channel(animal_planet)/Stream(03)/index.m3u8
+
 #EXTINF:0,Biography TV
 http://live305.edge.filmon.com/live/2633.low.stream/playlist.m3u8?id=0ad5aac39bb13fbe3dec09d80a8dc9c748ffd5e324455e469a466e5d442f5d1d920295963f5f92736d578c6d6f299367b99786b2eec4886bdb710f5165d167ab25cdbd51704a8ea1f9c62f4114ac07782451856385707819d802d62751e23980a409eb6c1fc04740182c263ada3cf2facffee94a7ed21d2b295bed796d7b8a0ccd91fabe27af98b5077751e3a45dcdaf4e30b9450cdc8d97
 

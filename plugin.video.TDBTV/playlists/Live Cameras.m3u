@@ -2,6 +2,12 @@
 #EXTINF:0,
 
 
+#EXTINF:0,Bourbon Street New Orleans
+rtmp://video2.earthcam.com/fecnetwork swfUrl=http://www.earthcam.com/swf/cam_player_v2/ecnPlayer.swf playpath=4280.flv live=true
+
+#EXTINF:0,Elephant Safari Indonesia
+rtmp://video2.earthcam.com/fecnetwork swfUrl=http://www.earthcam.com/swf/cam_player_v2/ecnPlayer.swf playpath=4338.flv live=true
+
 #EXTINF:0,Fish Tank
 rtmp://80.93.53.88:1935/live/channel_3
 
@@ -10,6 +16,9 @@ http://video2.earthcam.com/fecnetwork/lacitytours1.flv/hasbahca.m3u8
 
 #EXTINF:0,Landscape
 http://130.88.20.233:1237/test.flv
+
+#EXTINF:0,Las Vegas Nevada
+http://video2.earthcam.com/fecnetwork/eclasvegas.flv/hasbahca.m3u8
 
 #EXTINF:0,Niagra Falls
 mms://webcams.niagarafallshotels.com/CNH-Stream2
@@ -23,8 +32,14 @@ http://video2.earthcam.com/fecnetwork/4717.flv/medien.m3u8
 #EXTINF:0,NY Times Square South View
 http://video2.earthcam.com/fecnetwork/4017timessquare.flv/medien.m3u8
 
+#EXTINF:0,NY Times Square 47th and Broadway
+http://video2.earthcam.com/fecnetwork/hdtimes10.flv/hasbahca.m3u8
+
 #EXTINF:0,San Francisco Alcatraz
 http://video2.earthcam.com/fecnetwork/6603.flv/medien.m3u8
+
+#EXTINF:0,Santa Monica California
+http://video2.earthcam.com/fecnetwork/6253.flv/hasbahca.m3u8
 
 #EXTINF:0,Space Cam Ecuador
 rtmp://video2.earthcam.com/archives swfUrl=http://www.earthcam.com/swf/cam_player_v2/ecnPlayer.swf playpath=/permanent/5194/2013/05/16/pegasusfirstfootage.flv live=true

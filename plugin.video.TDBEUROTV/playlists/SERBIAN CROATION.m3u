@@ -1,0 +1,198 @@
+﻿#EXTM3U
+#EXTINF:0,
+
+
+#EXTINF:0,24 Sata
+http://83.139.104.123/Content/HLS/Live/Channel(24_sata)/Stream(03)/index.m3u8
+
+#EXTINF:-1,AL JAZEERA
+http://83.139.104.123/Content/HLS/Live/Channel(al_jazeera_balkans)/Stream(03)/index.m3u8
+
+#EXTINF:0,Alfa TV Makedon
+rtsp://streamer1.streamhost.org:1935/salive/GMIalfah
+
+#EXTINF:0,Ballkan TV
+
+
+#EXTINF:0,CMC
+http://83.139.104.123/Content/HLS/Live/Channel(cmc)/Stream(03)/index.m3u8
+
+#EXTINF:0,DMC
+http://83.139.104.123/Content/HLS/Live/Channel(DMC)/Stream(03)/index.m3u8
+
+#EXTINF:0,Full TV
+http://83.139.104.123/Content/HLS/Live/Channel(fullTV)/Stream(03)/index.m3u8
+
+#EXTINF:0,Hema 
+mms://77.238.209.50:1234
+
+#EXTINF:0,HRT 1 
+http://83.139.104.123/Content/HLS/Live/Channel(HTV1)/Stream(03)/index.m3u8
+
+#EXTINF:0,HRT 2 
+http://83.139.104.123/Content/HLS/Live/Channel(HTV2)/Stream(03)/index.m3u8
+
+#EXTINF:0,HRT 3 
+http://83.139.104.123/Content/HLS/Live/Channel(HTV3)/Stream(03)/index.m3u8
+
+#EXTINF:0,HRT 4 
+http://83.139.104.123/Content/HLS/Live/Channel(HTV4)/Stream(03)/index.m3u8
+
+#EXTINF:0,Jadran TV 
+http://83.139.104.123/Content/HLS/Live/Channel(tv_jadran)/Stream(03)/index.m3u8
+
+#EXTINF:0,Joj
+http://88.212.10.27:81/streams/joj.m3u8
+
+#EXTINF:0,Joj Plus
+http://88.212.10.27:81/streams/jojplus.m3u8
+
+#EXTINF:0,Jug Tv
+rtmp://84.20.77.50/live/livestream1
+
+#EXTINF:0,Jugoton
+http://83.139.104.123/Content/HLS/Live/Channel(jugoton)/Stream(03)/index.m3u8
+
+#EXTINF:0,Kanal 5
+http://83.139.104.123/Content/HLS/Live/Channel(kanal_5)/Stream(03)/index.m3u8
+
+#EXTINF:0,Kanal RI
+http://83.139.104.123/Content/HLS/Live/Channel(KanalRI)/Stream(03)/index.m3u8
+
+#EXTINF:0,Kino TV
+http://83.139.104.123/Content/HLS/Live/Channel(kino_tv)/Stream(03)/index.m3u8
+
+#EXTINF:0,Klasik TV
+http://83.139.104.123/Content/HLS/Live/Channel(klasik_tv)/Stream(03)/index.m3u8
+
+#EXTINF:0,Mediaset IT
+http://83.139.104.123/Content/HLS/Live/Channel(mediaset_italia)/Stream(03)/index.m3u8
+
+#EXTINF:0,Media Travel
+http://83.139.104.123/Content/HLS/Live/Channel(mediatravel)/Stream(03)/index.m3u8
+
+#EXTINF:0,Mreza
+http://83.139.104.123/Content/HLS/Live/Channel(mrezaST)/Stream(03)/index.m3u8
+
+#EXTINF:0,Nardona TV
+http://83.139.104.123/Content/HLS/Live/Channel(narodna_tv)/Stream(03)/index.m3u8
+
+#EXTINF:0,Nova TV Pula
+http://83.139.104.123/Content/HLS/Live/Channel(tv_nova)/Stream(03)/index.m3u8
+
+#EXTINF:0,OK Bambino
+http://83.139.104.123/Content/HLS/Live/Channel(ok_bambino)/Stream(03)/index.m3u8
+
+#EXTINF:0,Orlando Kids
+http://83.139.104.123/Content/HLS/Live/Channel(orlando_kids)/Stream(03)/index.m3u8
+
+#EXTINF:0,Osjecka
+http://83.139.104.123/Content/HLS/Live/Channel(osjecka_tv)/Stream(03)/index.m3u8
+
+#EXTINF:0,Pink
+http://on108.setplex.net/fastv_2psh/Pinkglobal_rly_greece_109/hasbahca.m3u8
+
+#EXTINF:0,Pink 2
+http://on108.setplex.net/fastv_2psh/Pink2global_rly_greece_109/hasbahca.m3u8
+
+#EXTINF:0,Pink 3
+http://on108.setplex.net/fastv_2psh/Pink3global_rly_greece_109/hasbahca.m3u8
+
+#EXTINF:0,Pink Action
+http://on108.setplex.net/fastv_2psh/PinkActionglobal_rly_greece_109/hasbahca.m3u8
+
+#EXTINF:0,Pink Action 2
+http://on108.setplex.net/fastv_2psh/PinkAction2global_rly_greece_103/hasbahca.m3u8
+
+#EXTINF:0,Pink Folk
+http://on108.setplex.net/fastv_2psh/PinkFolk1global_rly_greece_103/hasbahca.m3u8
+
+#EXTINF:0,Pink Horror
+http://on108.setplex.net/fastv_2psh/PinkHorrorglobal_rly_greece_103/hasbahca.m3u8
+
+#EXTINF:0,Pink Kids
+http://on108.setplex.net/fastv_2psh/PinkKidsglobal_rly_greece_103/hasbahca.m3u8
+
+#EXTINF:0,Pink Live
+http://on108.setplex.net/fastv_2psh/PinkLiveglobal_rly_greece_103/hasbahca.m3u8
+
+#EXTINF:0,Pink M
+http://on108.setplex.net/fastv_2psh/PinkMglobal_rly_greece_109/hasbahca.m3u8
+
+#EXTINF:0,Pink Movies 3
+http://on108.setplex.net/fastv_2psh/PinkMovies3global_rly_greece_109/hasbahca.m3u8
+
+#EXTINF:0,Pink Music 1
+http://on108.setplex.net/fastv_2psh/PinkMusicglobal_rly_greece_103/hasbahca.m3u8
+
+#EXTINF:0,Pink Music 2
+http://on108.setplex.net/fastv_2psh/PinkMusic2global_rly_greece_103/hasbahca.m3u8
+
+#EXTINF:0,Pink Music 4
+http://on108.setplex.net/fastv_2psh/PinkMusic4global_rly_greece_103/hasbahca.m3u8
+
+#EXTINF:0,Pink Music 5
+http://on108.setplex.net/fastv_2psh/PinkMusic5global_rly_greece_103/hasbahca.m3u8
+
+#EXTINF:0,Pink Pedia
+http://on108.setplex.net/fastv_2psh/PinkPediaglobal_rly_greece_103/hasbahca.m3u8
+
+#EXTINF:0,Pink Premium
+http://on108.setplex.net/fastv_2psh/PinkPremiumglobal_rly_greece_103/hasbahca.m3u8
+
+#EXTINF:0,Pink Reality
+http://on108.setplex.net/fastv_2psh/PinkRealityglobal_rly_greece_103/hasbahca.m3u8
+
+#EXTINF:0,Pink Soap
+http://on108.setplex.net/fastv_2psh/PinkSoapglobal_rly_greece_103/hasbahca.m3u8
+
+#EXTINF:0,Pink World
+http://on108.setplex.net/fastv_2psh/PinkWorldglobal_rly_greece_109/hasbahca.m3u8
+
+#EXTINF:0,Pink Zabava
+http://on108.setplex.net/fastv_2psh/PinkZabavaglobal_rly_greece_103/hasbahca.m3u8
+
+#EXTINF:0,RTB TV
+http://83.139.104.123/Content/HLS/Live/Channel(rtb_tv)/Stream(03)/index.m3u8
+
+#EXTINF:0,RTL
+http://178.218.162.146/918829941/rtl1.stream/chunklist_w151028916.m3u8
+
+#EXTINF:0,RTL
+rtmp://178.218.162.146/918829941/rtl1.stream
+
+#EXTINF:0,RTL Kockica
+http://83.139.104.123/Content/HLS/Live/Channel(rtl_kockica)/Stream(03)/index.m3u8
+
+#EXTINF:0,RTL Plus
+http://83.139.104.123/Content/HLS/Live/Channel(rtlplus)/Stream(03)/index.m3u8
+
+#EXTINF:0,SBTV
+http://83.139.104.123/Content/HLS/Live/Channel(sbtv)/Stream(03)/index.m3u8
+
+#EXTINF:0,Sprotska TV
+http://83.139.104.123/Content/HLS/Live/Channel(sportska_tv)/Stream(03)/index.m3u8
+
+#EXTINF:0,SRCE TV
+http://83.139.104.123/Content/HLS/Live/Channel(srce_tv)/Stream(03)/index.m3u8
+
+#EXTINF:0,STV1
+http://88.212.10.27:81/streams/stv1.m3u8
+
+#EXTINF:0,STV2
+http://88.212.10.27:81/streams/stv2.m3u8
+
+#EXTINF:0,Supersonic TV
+rtmp://str103.setplex.net:1935/228/stv_online
+
+#EXTINF:0,TA3
+http://88.212.10.27:81/streams/ta3.m3u8
+
+#EXTINF:0,TV Istra
+http://83.139.104.123/Content/HLS/Live/Channel(tv_istra)/Stream(03)/index.m3u8
+
+#EXTINF:0,Varazdiska TV
+http://83.139.104.123/Content/HLS/Live/Channel(VTV_varazdin)/Stream(03)/index.m3u8
+
+#EXTINF:0,Zdrava TV
+http://83.139.104.123/Content/HLS/Live/Channel(ZDRAVA_TV-7)/Stream(03)/index.m3u8

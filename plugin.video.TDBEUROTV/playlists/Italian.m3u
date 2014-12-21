@@ -2,179 +2,203 @@
 #EXTINF:0,
 
 
-#EXTINF:0,8 Video Calabria Crotone SD
+#EXTINF:0,8 Video Calabria Crotone
 rtmp://wms.shared.streamshow.it:80/videocalabria playpath=videocalabria swfUrl=http://player.streamshow.it/flowplayer/flowplayer.commercial-3.2.18.swf pageUrl=http://player.streamshow.it/embed/videocalabria.php?height=420&width=729 live=1 timeout=10
 
-#EXTINF:0,Alto Adige SD
+#EXTINF:0,Alto Adige
 rtsp://77.72.196.214:8554/live/mp4:AltoAdigeTV
 
-#EXTINF:0,Brescia Live TV SD
+#EXTINF:0,Brescia Live TV
 http://wms.shared.streamshow.it/brescialivetv/brescialivetv/chunklist_w957914602.m3u8
 
-#EXTINF:0,Calabria Channel SD THISCHANNELISDOWN----------
+#EXTINF:0,Calabria Channel
 
 
-#EXTINF:0,Canale 2 SD
+#EXTINF:0,Canale 2
 http://wms.iptv.4wardstream.net/canale2iptv/canale2iptv/chunklist_w585511673.m3u8
 
-#EXTINF:0,Canale 21 Napoli SD THISCHANNELISDOWN----------
+#EXTINF:0,Canale 21 Napoli
 
 
-#EXTINF:0,Canale 7 SD
+#EXTINF:0,Canale 7
 http://fms.shared.streamshow.it/canale7/canale7/sansar.m3u8
 
-#EXTINF:0,Cbl Cinema TV SD
+#EXTINF:0,Cbl Cinema TV
 rtmp://msh0193.stream.seeweb.it/live// playpath=stream00.sdp swfUrl=http://p.jwpcdn.com/6/8/jwplayer.flash.swf pageUrl=http://www.cblchannel.it/public/classic-43-cbl/prova.htm live=1
 
-#EXTINF:0,Cielo SD
+#EXTINF:0,Cielo
 http://skyianywhere2-i.akamaihd.net/hls/live/216865/cielo/stream2/streamPlaylist.m3u8
 
-#EXTINF:0,Cts Sicilia SD
+#EXTINF:0,Cts Sicilia
 rtmp://vs2.streamcaster.net:1935/cts_live playpath=ctsnotizie swfUrl=http://www.ctstv.it/flowplayer/flowplayer-3.2.16.swf pageUrl=http://www.ctstv.it/ live=1 timeout=10
 
-#EXTINF:0, ETV Marche SD
+#EXTINF:0, ETV Marche
 http://vs2.streamcaster.net:1935/etvmarche_live/etvmarche/sansar.m3u8
 
-#EXTINF:0,Fano TV Marche SD
+#EXTINF:0,Fano TV Marche
 rtmp://live.streamcaster.net:1935/live playpath=fanotv swfUrl=http://fanotvlive.kronopress.com/script/Flowplayer/flowplayer-3.2.16.swf pageUrl=http://fanotvlive.kronopress.com/player.aspx live=1 timeout=10
 
-#EXTINF:0,History Lab Trento SD
+#EXTINF:0,History Lab Trento
 rtmp://wma10.fluidstream.net/HistoryLab playpath=livestream swfUrl=http://www.radioetv.it/modules/mod_hllive/jw/player58l.swf pageUrl=http://www.radioetv.it/history-lab live=1 timeout=10
 
-#EXTINF:0,Jo TV SD
+#EXTINF:0,Iper TV
+mmsh://mediatv2.topix.it/24Ipertv66
+
+#EXTINF:0,Jo TV
 rtmp://wms.shared.streamshow.it:80/jotv playpath=jotv swfUrl=http://player.streamshow.it/flowplayer/flowplayer.commercial-3.2.18.swf pageUrl=http://player.streamshow.it/embed/jotv.php?height=170&width=300 live=1 timeout=10
 
-#EXTINF:0,Juwelo TV SD
+#EXTINF:0,Juwelo TV
 rtmp://85.214.72.27/juwelo_it playpath=juwelo_it1 swfUrl=http://www.streamcompany-player.de/player.swf live=1 pageUrl=http://www.streamcompany-player.de/liveplayer.htm?c:hd506x310:sv1:juwelo_it,juwelo_it%i
 
-#EXTINF:0,Lucania TV SD
+#EXTINF:0,La 6 TV
+rtmp://la6.stream.internetone.it/streaming/la6.stream
+
+#EXTINF:0,Lucania TV
 http://wms.shared.streamshow.it/lucaniatv/lucaniatv/playlist.m3u8
 
-#EXTINF:0,Luna Sport Caserta SD
-rtmp://vs2.streamcaster.net:1935/test_live playpath=lunasport swfUrl=http://www.lunaset.it/scripts/FlowPlayerNet/flowplayer.commercial-3.2.15.swf pageUrl=http://www.lunaset.it/video/live.aspx?live=3 live=1 timeout=10
+#EXTINF:0,Luna Sport Caserta
 
-#EXTINF:0,Onda TV SD
+
+#EXTINF:0,Onda TV
 rtmp://live.streamcaster.net/ondatv_live/ playpath=ondatv swfUrl=http://www.flashwebtown.com/mediaplayer/mediaplayer.swf pageUrl=http://www.ondatv.it/ live=1
 
-#EXTINF:0,Orler TV SD
+#EXTINF:0,Orler TV
 rtmp://77.92.76.135/orler/ playpath=livestream swfUrl=http://77.92.76.135/jw5/player.swf live=1 pageUrl=http://www.orler.it/streamingtv/
 
-#EXTINF:0,Piublu TV SD
+#EXTINF:0,Piublu TV
 rtmp://ondemand.superstreaming.it/piublu playpath=piublu.sdp
 
-#EXTINF:0,Quarterete 4 SD
+#EXTINF:0,Quarterete 4
 rtmp://wowza1.top-ix.org/quartaretetv/ playpath=quartareteweb
 
-#EXTINF:0,Radio Bruno TV Modena SD
+#EXTINF:0,Quarterete 4
+http://194.116.73.146/quartaretetv/quartareteweb/hasbahca.m3u8
+
+#EXTINF:0,Radio Bruno TV Modena
 rtmp://94.198.100.100/ditv/ playpath=channel3_cdn swfUrl=http://p.jwpcdn.com/6/8/jwplayer.flash.swf live=1 pageUrl=http://www.radiobruno.it/radio-bruno-tv
 
-#EXTINF:0,Rai Gulp SD
+#EXTINF:0,Rai Gulp
 http://212.162.68.163/Rai_Gulp
 
-#EXTINF:0,Rai Premium HD
+#EXTINF:0,Rai Premium
 mmsh://212.162.68.163:80/Rai_Premium?MSWMExt.asf
 
-#EXTINF:0,Rai Storia SD
+#EXTINF:0,Rai Scuola
+mmsh://212.162.68.163:80/Rai_Scuola?MSWMExt.asf
+
+#EXTINF:0,Rai Storia
 mmsh://212.162.68.163/rai_storia?MSWMExt.asf
 
-#EXTINF:0,Rai Yo Yo SD
+#EXTINF:0,Rai Yoyo
 http://212.162.68.163/Rai_yoyo
 
-#EXTINF:0,Rete Teleunica Lecco SD
+#EXTINF:0,Rete Teleunica Lecco
 rtmp://flash3.ipercast.net/teleunica.tv-live/livestream1
 
-#EXTINF:0,Rete Veneta Veneto SD
+#EXTINF:0,Rete Veneta Veneto
 rtmp://video.reteveneta.it:1935/live playpath=ReteVenetaStream1 swfUrl=http://fpdownload.adobe.com/strobe/FlashMediaPlayback.swf/[[DYNAMIC]]/1 pageUrl=http://www.reteveneta.it/live.aspx live=1 timeout=10
 
-#EXTINF:0,Rtb Network Virgilio SD
-rtmp://fls.6.c3.audiovideoweb.com:443/live playpath=6c3flslive2185
+#EXTINF:0,Rtb Network Virgilio
 
-#EXTINF:0,San Marino TV SD
+
+#EXTINF:0,San Marino TV
 rtmp://194.116.72.51/webtv_live4 playpath=0QBXFQ2L0I5P swfUrl=http://stream.senape.tv/scripts/player.swf pageUrl=http://www.smtvsanmarino.sm/programmi/web-tv live=1 timeout=10
 
-#EXTINF:0,Sardegna 1 SD
+#EXTINF:0,Sardegna 1
 rtmp://213.205.30.50/sardegna1 playpath=live1.stream
 
-#EXTINF:0,SkyTG24 SD
+#EXTINF:0,Sky TG 24
 rtmp://cp49989.live.edgefcs.net:1935/live playpath=streamRM1@2564 swfUrl=http://videoplatform.sky.it/player/swf/player_v2.swf pageUrl=http://video.sky.it/news/diretta live=1 timeout=10
 
-#EXTINF:0,Studio 100 SD
+#EXTINF:0,Studio 100
 http://wms2.shared.streamshow.it/studio100ta/studio100ta/playlist.m3u8
 
-#EXTINF:0,Tele 8 Sicilia SD
-rtmp://vs2.streamcaster.net:1935/tele8_live playpath=tele8 swfUrl=http://www.tele8tv.com/scripts/FlowPlayerNet/flowplayer.commercial-3.2.15.swf pageUrl=http://www.tele8tv.com/video/live.aspx?live=1&token=#$f5c286423cac4a6e762 live=1 timeout=10
-
-#EXTINF:0,Tele Abruzzo SD
-rtmp://184.173.179.163/TeleabruzzoTV playpath=TeleabruzzoTV swfUrl=http://184.173.179.163:2000/mediacp/system/misc/flvplayer/FLVplayer_Custom.swf live=1 pageUrl=http://www.abruzzo.fm/teleabruzzoflashplayer.html
-
-#EXTINF:0,Tele Luna SD
-rtmp://vs2.streamcaster.net:1935/test_live playpath=teleluna swfUrl=http://www.lunaset.it/scripts/FlowPlayerNet/flowplayer.commercial-3.2.15.swf pageUrl=http://www.lunaset.it/ live=1
-
-#EXTINF:0,Tele Sicilia SD
-rtmp://vs2.streamcaster.net:1935/cts_live playpath=telesicilia swfUrl=http://www.ctstv.it/flowplayer/flowplayer-3.2.16.swf pageUrl=http://www.ctstv.it/ live=1 timeout=10
-
-#EXTINF:0,Telearena Verona SD
-rtmp://wma07.fluidstream.net/TeleArena playpath=livestream swfUrl=http://media.larena.it/media/3rdparty/jwplayer/mediaplayer-5.10-licensed/player.swf pageUrl=http://tv-online.in/tele-arena-verona-live live=1 timeout=10
-
-#EXTINF:0,Telecitta SD
-rtmp://stream.telepadova.com/live/ playpath=tv1
-
-#EXTINF:0,TeleDiogene Calabria SD
-rtmp://wms.shared.streamshow.it:80/telediogene playpath=telediogene swfUrl=http://player.streamshow.it/flowplayer/flowplayer.commercial-3.2.18.swf pageUrl=http://player.streamshow.it/embed/telediogene.php?height=338&width=448 live=1 timeout=10
-
-#EXTINF:0,Teleducato Parma SD
-rtmp://wms.shared.streamshow.it:80/teleducatopr playpath=teleducatopr swfUrl=http://player.streamshow.it/flowplayer/flowplayer.commercial-3.2.18.swf pageUrl=http://player.streamshow.it/embed/teleducatopr.php?height=320&width=480 live=1 timeout=10
-
-#EXTINF:0,TeleDucato SD
-http://wms.shared.streamshow.it/teleducatopc/teleducatopc/playlist.m3u8
-
-#EXTINF:0,Teleliberta Live SD
-http://streaming1.bsnewline.com:80/telelibertalive
-
-#EXTINF:0,Telemilano SD
-rtmp://ondemand.superstreaming.it:1935/piublu playpath=piublu.sdp swfUrl=http://www.coolstreaming.us/consolle/StrobeMediaPlayback.swf pageUrl=http://www.coolstreaming.us/blog/piublu.php live=1
-
-#EXTINF:0,Telemonteneve 3 TV SD
-http://wms.shared.streamshow.it/telemonteneve3/telemonteneve3/playlist.m3u8
-
-#EXTINF:0,Telemonteneve TV SD
-http://wms.shared.streamshow.it/telemonteneve/telemonteneve/playlist.m3u8
-
-#EXTINF:0,Telepace HD
+#EXTINF:0,Telepace
 rtmp://188.165.206.81:1935/telepacelive2 playpath=telepacestream.sdp
 
-#EXTINF:0,TelePavia SD
+#EXTINF:0,Tele 8 Sicilia
+
+
+#EXTINF:0,Tele Arena Verona
+rtmp://wma07.fluidstream.net/TeleArena playpath=livestream swfUrl=http://media.larena.it/media/3rdparty/jwplayer/mediaplayer-5.10-licensed/player.swf pageUrl=http://tv-online.in/tele-arena-verona-live live=1 timeout=10
+
+#EXTINF:0,Tele Abruzzo
+rtmp://184.173.179.163/TeleabruzzoTV playpath=TeleabruzzoTV swfUrl=http://184.173.179.163:2000/mediacp/system/misc/flvplayer/FLVplayer_Custom.swf live=1 pageUrl=http://www.abruzzo.fm/teleabruzzoflashplayer.html
+
+#EXTINF:0,Tele Boario
+rtmp://91.121.222.160/teleboariotb/teleboario.sdp
+
+#EXTINF:0,Tele Citta
+rtmp://stream.telepadova.com/live/ playpath=tv1
+
+#EXTINF:0,Tele Diogene Calabria
+rtmp://wms.shared.streamshow.it:80/telediogene playpath=telediogene swfUrl=http://player.streamshow.it/flowplayer/flowplayer.commercial-3.2.18.swf pageUrl=http://player.streamshow.it/embed/telediogene.php?height=338&width=448 live=1 timeout=10
+
+#EXTINF:0,Tele Ducato
+http://wms.shared.streamshow.it/teleducatopc/teleducatopc/playlist.m3u8
+
+#EXTINF:0,Tele Ducato Parma
+rtmp://wms.shared.streamshow.it:80/teleducatopr playpath=teleducatopr swfUrl=http://player.streamshow.it/flowplayer/flowplayer.commercial-3.2.18.swf pageUrl=http://player.streamshow.it/embed/teleducatopr.php?height=320&width=480 live=1 timeout=10
+
+#EXTINF:0,Tele Liberta Live
+http://streaming1.bsnewline.com:80/telelibertalive
+
+#EXTINF:0,Tele Luna
+rtmp://vs2.streamcaster.net:1935/test_live playpath=teleluna swfUrl=http://www.lunaset.it/scripts/FlowPlayerNet/flowplayer.commercial-3.2.15.swf pageUrl=http://www.lunaset.it/ live=1
+
+#EXTINF:0,Tele Milano
+http://91.121.222.160:1935/piublu/piublu.sdp/hasbahca.m3u8
+
+#EXTINF:0,Tele Milano
+rtmp://ondemand.superstreaming.it:1935/piublu playpath=piublu.sdp swfUrl=http://www.coolstreaming.us/consolle/StrobeMediaPlayback.swf pageUrl=http://www.coolstreaming.us/blog/piublu.php live=1
+
+#EXTINF:0,Tele Monteneve TV
+http://wms.shared.streamshow.it/telemonteneve/telemonteneve/playlist.m3u8
+
+#EXTINF:0,Tele Monteneve 3 TV
+http://wms.shared.streamshow.it/telemonteneve3/telemonteneve3/playlist.m3u8
+
+#EXTINF:0,Tele Pavia
 rtmp://wms.shared.streamshow.it:80/telepavia playpath=telepavia swfUrl=http://player.streamshow.it/flowplayer/flowplayer.commercial-3.2.18.swf pageUrl=http://player.streamshow.it/embed/telepavia_2.php?width=640&height=360 live=1
 
-#EXTINF:0,TeleSondrio News SD
+#EXTINF:0,Tele Pavia
+http://fms.shared.streamshow.it:1935/telepavia/telepavia/hasbahca.m3u8
+
+#EXTINF:0,Tele Sicilia
+rtmp://vs2.streamcaster.net:1935/cts_live playpath=telesicilia swfUrl=http://www.ctstv.it/flowplayer/flowplayer-3.2.16.swf pageUrl=http://www.ctstv.it/ live=1 timeout=10
+
+#EXTINF:0,Tele Sondrio News
 http://wms.shared.streamshow.it/tsn/tsn_mobile/playlist.m3u8
 
-#EXTINF:0,TeleSondrio TV HD
+#EXTINF:0,Tele Sondrio TV
 http://wms.shared.streamshow.it/tsn2/tsn2/playlist.m3u8
 
-#EXTINF:0,TeleStudio Modena SD
+#EXTINF:0,Tele Studio Modena
 rtmp://fms2.shared.streamshow.it/telestudiomo playpath=telestudiomo swfUrl=http://www.telestudiomodena.it/flowplayer/flowplayer.commercial-3.2.15.swf pageUrl=http://www.telestudiomodena.it/telestudio.html live=1 timeout=10
 
-#EXTINF:0,Trentino TV SD
+#EXTINF:0,Trentino TV
 rtmp://77.72.196.214:8554/live playpath=TrentinoTV
 
-#EXTINF:0,Trg Media Umbria SD
-rtmp://www.trgmedia.it/live/_definst_/ playpath=trg swfUrl=http://www.trgmedia.it/player.swf pageUrl=http://www.trgmedia.it/diretta.aspx live=1 timeout=10
+#EXTINF:0,Trg Media Umbria
 
-#EXTINF:0,Trm TV Potenza SD
+
+#EXTINF:0,TRM TV
+http://flash.streamingmedia.it:1935/TRM/livestream/hasbahca.m3u8
+
+#EXTINF:0,Trm TV Potenza
 rtmp://flash.streamingmedia.it/TRM playpath=livestream swfUrl=http://flash.streamingmedia.it:8000/player/player.swf live=1 pageUrl=http://www.trmtv.it/home/
 
-#EXTINF:0,TV 2000 SD
+#EXTINF:0,TV 2000
 http://37.247.49.164/tv2000
 
-#EXTINF:0,TV 7 Benevento SD
+#EXTINF:0,TV 7 Benevento
 rtmp://37.9.228.45:1949/itstream65 playpath=itstream65 swfUrl=http://embed.itstream.tv/jwp/5/player.swf pageUrl=http://embed.itstream.tv/palinsesto.php?code=65&width=560&height=336&position_logo=top-left live=1 timeout=10
 
-#EXTINF:0,Vera TV SD
+#EXTINF:0,TV Uno
+http://ftp.tiscali.it/francescovernata/TVUNO/monoscopioTvUNOint-1.wmv
+
+#EXTINF:0,Vera TV
 http://wms.shared.streamshow.it/veratv/veratv/playlist.m3u8
 
-#EXTINF:0,Videolina SD
+#EXTINF:0,Videolina
 rtmp://178.33.229.111/live playpath=Videolina
-
-#EXTINF:0,Visual Radio TV SD
-http://wms.shared.streamshow.it/visualradio/visualradio_mobile/playlist.m3u8

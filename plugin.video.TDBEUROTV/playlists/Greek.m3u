@@ -19,6 +19,9 @@ http://alfakanali-lh.akamaihd.net/i/live_1@90368/master.m3u8
 #EXTINF:0,Ant1
 http://wow.ant1.gr:1935/live/smil:mavani.smil/playlist.m3u8
 
+#EXTINF:0,Ant1
+http://wow.ant1.gr:1935/live/smil:mavani.smil/hasbahca.m3u8
+
 #EXTINF:0,Ant1 Cyprus
 
 
@@ -106,6 +109,9 @@ rtmp://flashcloud.mediacdn.com/live/kontratv live=1
 #EXTINF:0,Kriti TV
 http://live.cretetv.gr:1935/cretetv/myStream/playlist.m3u8
 
+#EXTINF:0,Kriti TV
+http://live.cretetv.gr:1935/cretetv/myStream/hasbahca.m3u8
+
 #EXTINF:0,Mad TV
 rtmp://144.76.2.213:1935/live/livestream
 
@@ -130,7 +136,7 @@ http://mlivenews.istoikona.net/livenews.isml/manifest(format=m3u8-aapl).m3u8
 #EXTINF:0,Nea TV
 rtmp://srv1.viiideo.gr:1935/hellasonmedia/neatv
 
-#EXTINF:0,Nerit
+#EXTINF:0,Nepit
 http://hprt.flashcloud.mediacdn.com/hprt/nerit-2/playlist.m3u8
 
 #EXTINF:0,Odi TV
@@ -138,6 +144,9 @@ http://sjc-uhls-proxy-beta01.ustream.tv/watch/playlist.m3u8?cid=14336927
 
 #EXTINF:0,Oikologoi Elladas
 
+
+#EXTINF:0,Pada
+http://79.142.197.49:6566?by_HasBahCa
 
 #EXTINF:0,R Channel
 http://xrodopi-tvx.api.channel.livestream.com/3.0/playlist.m3u8

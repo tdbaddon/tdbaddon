@@ -44,7 +44,7 @@ http://www.metafilegenerator.de/DWelle/tv-asia/ios/master.m3u8
 rtsp://ewns-hls-b-stream.hexaglobe.net/rtpeuronewslive/en_vidan350_rtp.sdp?Vd?u#bt!25
 
 #EXTINF:0,Fox News
-
+rtmp://192.240.105.2:443/live?CtXSycNF44rGk4bPqSpCfqf6yKAjH3bi/live_pepperman
 
 #EXTINF:0,HLN
 rtmp://c.cdn.newschat.tv/edge playpath=hln_live live=1 timeout=10 swfUrl=http://msnbclive.eu/player.swf pageUrl=http://www.livenewschat.eu/twoons/</link>

@@ -24,7 +24,10 @@ rtmp://80.82.78.22:443/liverepeater playpath=13 swfUrl=http://popeoftheplayers.p
 rtmp://31.220.0.196:80/live playpath=xt1 swfUrl=http://flashtv.co/ePlayerr.swf pageUrl=http://flashtv.co/embedu.php?live=xt1&vw=620&vh=490 token=%ZZri(nKa@#Z
 
 #EXTINF:0,BT Sport 2
+http://popeoftheplayers.pw/Vd?u#bt!25 token=#atd%#$ZH timeout=15
 
+#EXTINF:-1,Combat Channel
+rtmp://204.107.26.145:1935/live/295.low.stream
 
 #EXTINF:0,Drift 4 Ever
 rtsp://46.249.213.93/broadcast/drift4ever-tablet.3gp
@@ -199,6 +202,9 @@ rtmp://89.248.172.159:443/liverepeater playpath=20 swfUrl=http://popeoftheplayer
 
 #EXTINF:0,TSN 2
 rtmp://31.220.0.195:80/live playpath=tsnx2 live=1 pageUrl=http://www.flashtv.co/Vd?u#bt!25 token=%ZZri(nKa@#Z timeout=15
+
+#EXTINF:0,TNA Wrestling
+rtmp://192.240.105.2:443/live?4VCFhmt2H8CgqXtwdSFfqIgoLYJykEp4 playpath=live_alwaysrocking2 swfUrl=http://vaughnlive.tv/4255479486/swf/VaughnSoftPlayer.swf live=1 pageUrl=http://vaughnlive.tv/embed/video/alwaysrocking2?viewers=false&watermark=left&autoplay=true
 
 #EXTINF:0,UFC Next
 http://live77.la3.edge.filmon.com/live/713.low.stream/playlist.m3u8?id=0ad5aac39bb13fbe1fc1ebcb61ebe17833d13c41ab41b3624332e4fa52c9973a87e2924c70e8e12b85d0eb25c122bce7aa4efef16b12ce0c10f0d6b6551171bdcd0bf754f7c4c8399f243a3a4725fe1d556e51a0fa5cff19aadc8350846391b1f6f58746fa95186876d5c6d747823480e5b0b971d69bf40f59f2010116fcec7ae30cc207a766b25d20ea3a2f88db97998ac30cd224a1444b
