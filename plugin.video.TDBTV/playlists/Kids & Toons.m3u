@@ -7,6 +7,9 @@ http://202.75.23.33/live/ch27/03.m3u8
 #EXTINF:0,BabyTV 
 http://176.51.82.229:1234/udp/233.7.70.188:5000
 
+#EXTINF:0,BabyTV 
+http://79.148.152.68:4022/udp/239.0.0.113:8208 
+
 #EXTINF:0,Boomerang
 rtmp://mi2.gv.filmon.com:1935/live/_definst_/2734.low.stream
 
@@ -29,13 +32,16 @@ http://hlsstr02.svc.iptv.rt.ru/hls/CH_CN/variant.m3u8
 http://46.44.3.20:5555/udp/224.0.90.66:1234
 
 #EXTINF:0,Disney Channel 
+http://79.148.152.68:4022/udp/239.0.0.64:8208
 
-
+#EXTINF:0,Disney Cinemagic 
+http://79.148.152.68:4022/udp/239.0.0.9:8208 
+ 
 #EXTINF:0,Disney Junior 
-
+http://79.148.152.68:4022/udp/239.0.0.10:8208 
 
 #EXTINF:0,Disney XD 
-
+http://79.148.152.68:4022/udp/239.0.0.11:8208 
 
 #EXTINF:0,Emba Kids
 http://live305.edge.filmon.com/live/719.low.stream/playlist.m3u8?id=0ad5aac39bb13fbea601b37b85506340c42e6202c70dc5bb25f19be45dcfef6d767d030d178421f41b63ecc6baf50524edb4491563635f75039d0efbc4eafb5d4f8d0e9c3d037aece6546edd371c881b117dc4a3f908765344e1afc49c91f6a6a36c32e7a65c72b1b2b11ad441313782e46b5dde8a9baec753608a5eb0ee34da3fd15fdb117a075fb8d86a60c7177448e378f62eb2354c0d

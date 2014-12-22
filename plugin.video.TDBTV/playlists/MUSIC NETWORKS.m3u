@@ -134,6 +134,9 @@ rtmp://edge03-03.az.myvideo.az/dvrh264/vh1/ playpath=mp4:vh1 swfUrl=http://www.m
 #EXTINF:0,VH1
 http://ys-live.cdns.yousee.tv/Content/HLS/Live/Channel(VH1)/Stream(05)/index.m3u8
 
+#EXTINF:0,VH1 
+http://79.148.152.68:4022/udp/239.0.0.75:8208 
+
 #EXTINF:0,VH1 Classics
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_VH1CLASSIC/variant.m3u8
 

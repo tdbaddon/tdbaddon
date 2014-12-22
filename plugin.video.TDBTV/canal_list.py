@@ -411,4 +411,8 @@ dc={
 "las vegas nevada" : "410",
 "ny times square 47th and broadway" : "411",
 "santa monica california" : "412",
+"disney cinemagic" : "413",
+"france 24" : "414",
+"sundance channel" : "415",
+"tcm" : "416",
 }

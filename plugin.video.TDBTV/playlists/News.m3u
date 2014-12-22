@@ -46,11 +46,20 @@ rtsp://ewns-hls-b-stream.hexaglobe.net/rtpeuronewslive/en_vidan350_rtp.sdp?Vd?u#
 #EXTINF:0,Fox News
 rtmp://192.240.105.2:443/live?CtXSycNF44rGk4bPqSpCfqf6yKAjH3bi/live_pepperman
 
+#EXTINF:0,Fox News
+http://79.148.152.68:4022/udp/239.0.7.65:8208 
+
+#EXTINF:0,France 24 
+http://79.148.152.68:4022/udp/239.0.7.67:8208 
+
 #EXTINF:0,HLN
 rtmp://c.cdn.newschat.tv/edge playpath=hln_live live=1 timeout=10 swfUrl=http://msnbclive.eu/player.swf pageUrl=http://www.livenewschat.eu/twoons/</link>
 
 #EXTINF:0,i24 News
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/i24/ls_satlink/b_828.m3u8
+
+#EXTINF:0,i24 News
+http://79.148.152.68:4022/udp/239.0.0.220:8208 
 
 #EXTINF:0,KTLA 5 US
 
