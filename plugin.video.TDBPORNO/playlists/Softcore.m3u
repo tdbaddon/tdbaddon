@@ -1,10 +1,12 @@
 ﻿#EXTM3U
-#EXTINF:0,
-
 
 
 #EXTINF:0,Aporn
 rtmp://lm07.everyon.tv/ptv7/phd499
+
+#EXTINF:0,Aporn
+http://cdn-edge01.livestreamcast.org:8081/erotic/phd499/chunklist_w875156738.m3u8
+
 
 #EXTINF:0,Bella Club
 http://46.249.213.93/iPhone/broadcast/bellaclub-tablet.3gp/bellaclub-tablet.3gp-mr648k.m3u8?trackingid=3391380000&os=desktop
@@ -15,14 +17,8 @@ rtmp://lm07.everyon.tv/ptv7/phd772
 #EXTINF:0,Fuego TV
 
 
-#EXTINF:0,Fundorado TV
-rtmp://streaming.fundorado.com:80/fundoradotv/live.stream
-
 #EXTINF:0,Honey
 rtmp://lm07.everyon.tv:1935/ptv7/phd63
-
-#EXTINF:0,Hustler
-http://cdn-edge01.livestreamcast.org:8081/erotic/phd499/chunklist_w875156738.m3u8
 
 #EXTINF:0,Korea 18+
 rtmp://lm07.everyon.tv/ptv7/phd1005
@@ -64,16 +60,13 @@ rtmp://lm07.everyon.tv:1935/ptv7/phd1006
 rtmp://lm07.everyon.tv/ptv7/phd10766
 
 #EXTINF:0,O La La
-http://hlsstr01.svc.iptv.rt.ru/hls/CH_OLALA/bw480000/playlist.m3u8?utcstart=1418853105.9943106
+
 
 #EXTINF:0,Okdai
 rtmp://lm07.everyon.tv/ptv7/phd61
 
 #EXTINF:0,Penthouse
 rtmp://lm07.everyon.tv/ptv7/phd10927
-
-#EXTINF:0,Playboy TV
-http://109.95.47.242:7088/udp/239.0.0.200:4000
 
 #EXTINF:0,Playboy TV
 rtmp://lm07.everyon.tv/ptv7/phd10497

@@ -75,7 +75,7 @@ http://83.139.104.123/Content/HLS/Live/Channel(mtv_music)/Stream(03)/index.m3u8
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVROCKS/variant.m3u8
 
 #EXTINF:0,Musiq1
-http://88.212.10.27:81/streams/musiq1.m3u8
+
 
 #EXTINF:0,MusicVoxTV
 rtmp://stream.smcloud.net/live2/vox/vox_720p
@@ -130,12 +130,6 @@ http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/appleman.m3u8
 
 #EXTINF:0,VH1
 rtmp://edge03-03.az.myvideo.az/dvrh264/vh1/ playpath=mp4:vh1 swfUrl=http://www.myvideo.az/stml/dvr/dvrH.swf?v=1.2 live=1 pageUrl=http://www.myvideo.az/r.ates
-
-#EXTINF:0,VH1
-http://ys-live.cdns.yousee.tv/Content/HLS/Live/Channel(VH1)/Stream(05)/index.m3u8
-
-#EXTINF:0,VH1 
-http://79.148.152.68:4022/udp/239.0.0.75:8208 
 
 #EXTINF:0,VH1 Classics
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_VH1CLASSIC/variant.m3u8

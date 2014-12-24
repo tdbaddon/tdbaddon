@@ -2,7 +2,7 @@
 
 
 #EXTINF:0,24/7 Movies
-rtmp://62.210.76.216/live2 playpath=stopstealingmyshitmotherfuckers swfUrl=http://releases.flowplayer.org/5.4.6/flowplayer.swf live=1 pageUrl=http://www.stream4free.eu/movies-hd/?b?b*t$
+
 
 #EXTINF:0,BigPond Movies
 mms://ken-cdn220-is-3.se.bptvlive.ngcdn.telstra.com/bp_online_movieextra_high
@@ -20,7 +20,7 @@ mms://ken-cdn220-is-3.se.bptvlive.ngcdn.telstra.com/bp_online_movieextra_high
 
 
 #EXTINF:0,Cinemax
-https://nonamehd.com/users/get_your_stream_free/3/185/360p
+
 
 #EXTINF:0,Cinestar Action & Thriller
 http://83.139.104.109/Content/HLS/Live/Channel(cinestar_action_and_thriller)/Stream(03)/index.m3u8
@@ -37,17 +37,17 @@ http://83.139.104.109/Content/HLS/Live/Channel(cinestar_tv)/Stream(03)/index.m3u
 #EXTINF:0,Film4
 
 
+#EXTINF:0,Fox Action Movies
+http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=304&lan=2&rows=40&f=.m3u8
+
 #EXTINF:0,Fox Family Movies
-rtmp://nonamehdfree.dyndns.org:443/limelight app=limelight?t=guest playpath=02_foxfamilyhd_360p swfUrl=https://nonamehd.com/playerv3.swf flashver=WIN\2013,0,0,214 pageUrl=https://nonamehd.com/?b?b*t$ live=1 timeout=15
+http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=343&lan=2&rows=40&f=.m3u8
 
 #EXTINF:0,Fox Movies Premium
-rtmp://nonamehdfree.dyndns.org:443/limelight app=limelight?t=guest playpath=02_foxmovies_360p swfUrl=https://nonamehd.com/playerv3.swf flashver=WIN\2013,0,0,214 pageUrl=https://nonamehd.com/?b?b*t$ live=1 timeout=15
+http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=300&lan=2&rows=40&f=.m3u8
 
 #EXTINF:0,FX HD 
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=104&lan=2&rows=40&f=.m3u8
-
-#EXTINF:0,HBO
-rtmp://rtmp.zerocast.tv:1935/live playpath=qKmzUdRhBM73njBBDFyL swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
 
 #EXTINF:0,HBO
 rtmpe://46.246.124.23:1935/live/hbo3 playpath=hbo3 swfUrl=http://p.jwpcdn.com/6/8/jwplayer.flash.swf pageUrl=http://prvservers.com/embed2.php?u=hbo3&vw=620&vh=470&domain=usachannels.tv token=#yw%tt#w@kku
@@ -94,10 +94,10 @@ http://on108.setplex.net/fastv_2psh/PinkPremiumglobal_rly_greece_103/playlist.m3
 #EXTINF:0,Showtime IQ 
 
 
-#EXTINF:0,Showtime 
+#EXTINF:0,Showtime
 rtmpe://46.246.124.87:1935/live/show99 playpath=show99 swfUrl=http://p.jwpcdn.com/6/8/jwplayer.flash.swf pageUrl=http://prvservers.com/embed2.php?u=show99&vw=620&vh=470&domain=usachannels.tv token=#yw%tt#w@kku
 
-#EXTINF:0,Showtime 
+#EXTINF:0,Showtime
 rtmpe://46.246.124.93:1935/live/ playpath=show99 pageUrl=http://www.hdcast.org/ token=#yw%tt#w@kku timeout=10
 
 #EXTINF:0,Sky Movies Action Adventure
@@ -142,10 +142,11 @@ rtmp://109.123.70.15:80/live playpath=mov2 swfUrl=http://www.flashtv.co/ePlayerr
 #EXTINF:0,Starz Movie Channel
 
 
-
-
 #EXTINF:0,SYFY Movie Channel 
 rtmpe://46.246.124.87:1935/live/ playpath=syfi9 swfUrl=http://prvservers.com/j/jwplayer.flash.swf pageUrl=http://prvservers.com/ token=#yw%tt#w@kku
+
+#EXTINF:0,TCM
+http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=381&lan=2&rows=40&f=.m3u8
 
 #EXTINF:0,TV 1000
 http://80.77.52.6:4444/udp/230.0.3.54:12345
