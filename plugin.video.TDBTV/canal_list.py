@@ -82,7 +82,7 @@ dc={
 "box nation" : "080",
 "bt sport" : "081",
 "classic goals" : "082",
-"drift 4 ever" : "083",
+"studio universal" : "083",
 "espn" : "084",
 "eurosport live" : "085",
 "eurosport" : "086",

@@ -14,7 +14,7 @@ http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/bbc_world/ls_satlink/b_828.m3u8
 http://93.184.221.133/hls-live/20C1A9/bbc_world/ls_satlink/b_828.m3u8
 
 #EXTINF:0,Bloomberg
-http://hd4.lsops.net/live/bloomber_en_hls.smil/chunklist_w976476961_b453000.m3u8
+
 
 #EXTINF:0,Bloomberg TV
 http://btv-i.akamaihd.net/hls/live/202760-b/btvusa_ios/P1/M12K.m3u8
@@ -34,9 +34,6 @@ http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/cnn/ls_satlink/b_828.m3u8
 #EXTINF:0,CNN
 rtmp://c.cdn.livenewschat.eu/edge playpath=cnn_live swfUrl=http://msnbclive.eu/player.swf swfVfy=1 live=1 pageUrl=http://weplaylive.tv timeout=15
 
-#EXTINF:0,CNN
-rtmpe://46.246.124.93:1935/live/ playpath=cnnn pageUrl=http://www.hdcast.org/ token=#yw%tt#w@kku timeout=10
-
 #EXTINF:0,DW
 http://www.metafilegenerator.de/DWelle/tv-asia/ios/master.m3u8
 
@@ -48,9 +45,6 @@ rtsp://ewns-hls-b-stream.hexaglobe.net/rtpeuronewslive/en_vidan350_rtp.sdp?Vd?u#
 
 #EXTINF:0,France 24 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_FRANCE24/variant.m3u8?b?b*t$
-
-#EXTINF:0,HLN
-rtmp://c.cdn.newschat.tv/edge playpath=hln_live live=1 timeout=10 swfUrl=http://msnbclive.eu/player.swf pageUrl=http://www.livenewschat.eu/twoons/</link>
 
 #EXTINF:0,i24 News
 http://bcoveliveios-i.akamaihd.net/hls/live/215102/master_english/398/master.m3u8?b?b*t$

@@ -16,9 +16,6 @@ http://83.139.104.123/Content/HLS/Live/Channel(animal_planet)/Stream(03)/index.m
 #EXTINF:0,Discovery Channel
 http://202.75.23.34/live/ch29/03.m3u8
 
-#EXTINF:0,Discovery Channel
-http://90.189.198.75:1234/udp/233.7.70.253:5000
-
 #EXTINF:0,Discovery History
 
 
@@ -41,7 +38,7 @@ http://202.75.23.34/live/ch32/03.m3u8?b?b*t$
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_DISCOVERYSCIENCE/variant.m3u8
 
 #EXTINF:0,Discovery Theater
-format=2&profile=241&lan=2&rows=40&f=.m3u8
+
 
 #EXTINF:0,Discovery Turbo
 
@@ -50,13 +47,13 @@ format=2&profile=241&lan=2&rows=40&f=.m3u8
 http://202.75.23.34:1400/live/ch30/03.m3u8
 
 #EXTINF:0,Docu Box
-http://stream1.zoovision.com//livespi/docubox/playlist.m3u8
+
 
 #EXTINF:0,FliteLevel TV
 rtmp://streaming.krautzer-lynn.com:1935/live/Stream4
 
 #EXTINF:0,FYI
-http://202.75.23.36:1400/live/ch46/03.m3u8?Vd?u#bt!25
+
 
 #EXTINF:0,History Channel
 
@@ -69,9 +66,6 @@ http://public.infozen.cshls.lldns.net/infozen/public/public.m3u8
 
 #EXTINF:0,Nat Geo People 
 http://202.75.23.35/live/ch38/03.m3u8?b?b*t$
-
-#EXTINF:0,Nat Geo Wild
-http://202.75.23.35/live/ch39/03.m3u8
 
 #EXTINF:0,Nat Geo Wild
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_NATGEOWILD/variant.m3u8

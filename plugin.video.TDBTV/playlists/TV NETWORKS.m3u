@@ -18,9 +18,6 @@ rtmp://oflash.dfw.swagit.com/live/austintx/live-1
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=109&lan=2&rows=40&f=.m3u8
 
 #EXTINF:0,BBC 1
-rtmp://31.220.0.194:1935/live playpath=bb1 token=%ZZri(nKa@#Z swfUrl=http://www.flashtv.co/ePlayerr.swf live=1 timeout=13 pageUrl=http://www.flashtv.co/
-
-#EXTINF:0,BBC 1
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=129&lan=2&rows=40&f=.m3u8
 
 #EXTINF:0,BBC 2
@@ -51,9 +48,6 @@ http://83.139.104.123/Content/HLS/Live/Channel(cbs_reality)/Stream(03)/index.m3u
 http://livestation_hls-lh.akamaihd.net/i/cnbc_en@106428/master.m3u8
 
 #EXTINF:0,Comedy Central 
-http://79.148.152.68:4022/udp/239.0.0.174:8208 
-
-#EXTINF:0,Comedy Central 
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=117&lan=2&rows=40&f=.m3u8
 
 #EXTINF:0,CW
@@ -66,7 +60,7 @@ rtmp://rtmp.zerocast.tv:1935/live/ playpath=IWSyIjvWgHRCMM7MEJoZ swfUrl=http://p
 http://85.187.154.9:2001/
 
 #EXTINF:0,E! Entertainment
-http://46.44.3.20:5555/udp/224.0.90.2:1234
+
 
 #EXTINF:0,Escapes
 rtmp://204.107.26.252:8086/live/341.high.stream
@@ -90,13 +84,13 @@ rtmp://rtmp.zerocast.tv:1935/live playpath=9pxGCtP3aEnJYgoBFFH8 swfUrl=http://p.
 rtmpe://46.246.124.23:1935/live/foxx playpath=foxx swfUrl=http://p.jwpcdn.com/6/8/jwplayer.flash.swf pageUrl=http://prvservers.com/embed2.php?u=foxx&vw=620&vh=470&domain=usachannels.tv token=#yw%tt#w@kku
 
 #EXTINF:0,FOX Life
-http://90.189.198.75:1234/udp/233.7.70.85:5000
+
 
 #EXTINF:0,FX
 rtmp://rtmp.zerocast.tv:1935/live/ playpath=VCV8SViFVBv2nX5RQwKI swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
 
-#EXTINF:0,FX
-rtmp://rtmp.zerocast.tv:1935/live/ playpath=VCV8SViFVBv2nX5RQwKI swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
+#EXTINF:0,HLN
+rtmp://c.cdn.newschat.tv/edge playpath=hln_live live=1 timeout=10 swfUrl=http://msnbclive.eu/player.swf pageUrl=http://www.livenewschat.eu/twoons/</link>
 
 #EXTINF:0,Home Shopping Network
 rtsp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:420p500kB31
@@ -137,6 +131,9 @@ rtmp://rtmp.zerocast.tv:1935/live playpath=3GdoAHRAxgZNzmQZL29l swfUrl=http://p.
 #EXTINF:0,Star World
 
 
+#EXTINF:0,Studio Universal
+http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=376&lan=2&rows=40&f=.m3u8
+
 #EXTINF:0,Sundance Channel
 
 
@@ -166,9 +163,6 @@ rtmp://rtmp.zerocast.tv:1935/live/ playpath=Waz0WqvbqNHmt0gdzrsm swfUrl=http://p
 
 #EXTINF:0,U TV
 
-
-#EXTINF:0,Universal Channel
-http://46.44.3.20:5555/udp/224.0.90.3:1234
 
 #EXTINF:0,Universal Channel
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=97&lan=2&rows=40&f=.m3u8
