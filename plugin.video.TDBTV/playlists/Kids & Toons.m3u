@@ -17,10 +17,10 @@ rtmp://mi2.gv.filmon.com:1935/live/_definst_/2734.low.stream
 
 
 #EXTINF:0,Cartoon Network
-rtmp://rtmp.zerocast.tv:1935/live playpath=08pydvp1b7ZwZb3a5TW1 swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
+
 
 #EXTINF:0,CBeebies
-http://live306.edge.filmon.com/live/103.low.stream/playlist.m3u8?id=0ad5aac39bb13fbe9185b997b6681afbd790a636229d7fd09dc4f41594ce47d6f2e97e54aea8ea6b7ba2335de4dff25165c4920dd6f47d2338a6ae6b3ffa8e3383de5529569a9e1a182b69d4766a4127551ba71f883734447436244fdecd27e68dabbc7b2281dc0c7da2446095a356c8d79e58e978993618ef80a14525d1f730aef0e7093daa6bf01d0ec8a57ff1bea784f75e669162488f
+
 
 #EXTINF:0,Disney Channel 
 
@@ -38,10 +38,7 @@ http://live306.edge.filmon.com/live/103.low.stream/playlist.m3u8?id=0ad5aac39bb1
 
 
 #EXTINF:0,Jim Jam
-http://202.75.23.37/live/ch17/03.m3u8?b?b*t$
 
-#EXTINF:0,Jim Jam
-http://202.75.23.37:1400/live/ch17/01.m3u8
 
 #EXTINF:0,Kids Comedy
 rtmp://mi2.gv.filmon.com:1935/live/_definst_/2734.low.stream?b?b*t$
@@ -50,12 +47,12 @@ rtmp://mi2.gv.filmon.com:1935/live/_definst_/2734.low.stream?b?b*t$
 
 
 #EXTINF:0,Nickelodeon
-http://hlsstr02.svc.iptv.rt.ru/hls/CH_NICKELODEON/variant.m3u8
+
 
 #EXTINF:0,Nick Jr
 
 
 #EXTINF:0,NickNight
-http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=213&lan=2&rows=40&f=.m3u8
+
 
 #EXTINF:0,Sky Movies Disney

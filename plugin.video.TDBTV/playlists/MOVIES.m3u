@@ -146,7 +146,7 @@ rtmpe://46.246.124.93:1935/live/ playpath=show99 pageUrl=http://www.hdcast.org/ 
 rtmpe://46.246.124.87:1935/live/ playpath=syfi9 swfUrl=http://prvservers.com/j/jwplayer.flash.swf pageUrl=http://prvservers.com/ token=#yw%tt#w@kku
 
 #EXTINF:0,TCM
-http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=381&lan=2&rows=40&f=.m3u8
+
 
 #EXTINF:0,TV 1000
 http://80.77.52.6:4444/udp/230.0.3.54:12345

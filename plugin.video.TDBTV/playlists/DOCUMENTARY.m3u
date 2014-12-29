@@ -5,6 +5,9 @@
 http://202.75.23.34/live/ch31/03.m3u8
 
 #EXTINF:0,Animal Planet
+http://202.75.23.34/live/ch31/01.m3u8
+
+#EXTINF:0,Animal Planet
 http://83.139.104.123/Content/HLS/Live/Channel(animal_planet)/Stream(03)/index.m3u8
 
 #EXTINF:0,Biography TV
@@ -16,26 +19,26 @@ http://83.139.104.123/Content/HLS/Live/Channel(animal_planet)/Stream(03)/index.m
 #EXTINF:0,Discovery Channel
 http://202.75.23.34/live/ch29/03.m3u8
 
+#EXTINF:0,Discovery Channel
+http://202.75.23.34/live/ch29/01.m3u8
+
 #EXTINF:0,Discovery History
 
 
 #EXTINF:0,Discovery Home And Health
-http://202.75.23.34/live/ch34/01.m3u8
+
 
 #EXTINF:0,Discovery Home And Health
-http://202.75.23.34:1400/live/ch34/01.m3u8
+
 
 #EXTINF:0,Discovery Investigation
 
 
 #EXTINF:0,Discovery Max
-http://202.75.23.34/live/ch32/01.m3u8
 
-#EXTINF:0,Discovery Max
-http://202.75.23.34/live/ch32/03.m3u8?b?b*t$
 
 #EXTINF:0,Discovery Science
-http://hlsstr02.svc.iptv.rt.ru/hls/CH_DISCOVERYSCIENCE/variant.m3u8
+http://202.75.23.34/live/ch33/01.m3u8
 
 #EXTINF:0,Discovery Theater
 
@@ -46,11 +49,17 @@ http://hlsstr02.svc.iptv.rt.ru/hls/CH_DISCOVERYSCIENCE/variant.m3u8
 #EXTINF:0,Discovery World
 http://202.75.23.34:1400/live/ch30/03.m3u8
 
+#EXTINF:0,Discovery World
+http://202.75.23.34/live/ch30/01.m3u8
+
 #EXTINF:0,Docu Box
 
 
+#EXTINF:0,Escapes
+rtmp://204.107.26.252:8086/live/341.high.stream
+
 #EXTINF:0,FliteLevel TV
-rtmp://streaming.krautzer-lynn.com:1935/live/Stream4
+
 
 #EXTINF:0,FYI
 
@@ -70,6 +79,9 @@ http://202.75.23.35/live/ch38/03.m3u8?b?b*t$
 #EXTINF:0,Nat Geo Wild
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_NATGEOWILD/variant.m3u8
 
+#EXTINF:0,Nat Geo Wild
+http://202.75.23.35/live/ch39/01.m3u8
+
 #EXTINF:0,National Geographic
 http://202.75.23.35/live/ch38/03.m3u8
 
@@ -79,8 +91,8 @@ http://202.75.23.35/live/ch38/03.m3u8
 #EXTINF:0,Travel Channel
 http://83.139.104.123/Content/HLS/Live/Channel(travel_channel)/Stream(03)/index.m3u8
 
-#EXTINF:0,Viasat Explorer
-http://hlsstr02.svc.iptv.rt.ru/hls/CH_VIASATEXPLORER/variant.m3u8
+#EXTINF:0,Travel Channel
+http://202.75.23.35/live/ch41/01.m3u8
 
 #EXTINF:0,Viasat Explorer
 http://80.77.52.6:4444/udp/230.0.3.55:12345
