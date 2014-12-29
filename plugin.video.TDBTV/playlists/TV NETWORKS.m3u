@@ -9,7 +9,7 @@
 rtmp://rtmp.zerocast.tv:1935/live/ playpath=rGCi7bg0Qxvs8q7Sl13l swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
 
 #EXTINF:0,AMC
-
+rtmp://rtmp.zerocast.tv:1935/live playpath=TfRQx7deUAuncJwM047m swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
 
 #EXTINF:0,AXN TV 6
 rtmp://oflash.dfw.swagit.com/live/austintx/live-1
@@ -33,10 +33,10 @@ rtmpe://46.246.124.22:1935/live/bravobraco playpath=bravobraco swfUrl=http://p.j
 rtmpe://46.246.124.93:1935/live/ playpath=bravobraco pageUrl=http://www.hdcast.org/ token=#yw%tt#w@kku timeout=10
 
 #EXTINF:0,CBS
-
+rtmp://rtmp.envivo.xyz:1935/live/Ger61uLQ4fedzvjRjrB7
 
 #EXTINF:0,CBS Drama
-
+http://204.107.27.248/live/1805.low.stream/playlist.m3u8?id=0ad5aac39bb13fbe3f1870ed3e35666fff9a767fdccf8897fa83348b84f3b6518733d5dc8c1f32be31ca6cd629e469e2261ceee244cc2a7c91d344753fdddf18fc5c61754cfc29db3016d7d8d700d322ee326579387479c4fe46fe02dae090185f712ff9d9a8cb3c3a2de7f7263030bad757f2a6ea441d18b136bfef13a32cbc67610630addc52931dbd6e9dbf63adeaa623dacdc168ac60
 
 #EXTINF:0,CBS Reality
 http://83.139.104.123/Content/HLS/Live/Channel(cbs_reality)/Stream(03)/index.m3u8?b?b*t$
@@ -96,19 +96,19 @@ rtmp://c.cdn.newschat.tv/edge playpath=hln_live live=1 timeout=10 swfUrl=http://
 rtsp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:420p500kB31
 
 #EXTINF:0,ITV 2
-
+http://204.107.27.248/live/1820.low.stream/playlist.m3u8?id=0ad5aac39bb13fbeb669172901c551dcd45060f34a2cb13fd4051e8f78bcac88a0a53cc38d89e7801f333f3788393d1602b19ceb5ee2be97a00f9c919dc290733975757413bf24b597ab6ec7b64a3d9cd5a0151405ad4b8806e2a626a84fd08a7134001600dbb5d4aafc03bd2544018fc01063323b88bd6d4fa1f771b6063d83ba1be1a6839081cf7eccad83d0654140163348a69dca7818
 
 #EXTINF:0,ITV 3
-
+http://204.107.27.248/live/1823.low.stream/playlist.m3u8?id=0ad5aac39bb13fbe11185a6a7d755050f229396d9c4cc4f58b2911d806c1d46a5d05b9f50f123b2623aaaa68ce502d1c163de922f2a67d49e6cf35c0552a2438b29763a0f8b9f613694afcffca4fb38964e7314e9bb6e893bd12a9f81e4a3908a31f7d4d19aa385c434224c6654101d23c041e017b14c6b6b5062b2919fe3be3e1682336e2892fc3790aefedb13ae1700674380c80a1361a
 
 #EXTINF:0,ITV 4
-
+http://204.107.27.248/live/1826.low.stream/playlist.m3u8?id=0ad5aac39bb13fbe2cbf0ee59b911b286e6f08db5c14c56c33eedd49b786efd50f9d9abade687e92668fc47decddc6efe6abdf807567a339172d84448bda0304123f4e401635000bf9672572c1086eb6c5e8bb63d1cd111d61f354784bcb9839e65c3f44e4cbfa22bb39738ba4d4fb0adb2bd0993b56de0293dc1da9d63209c8b662b96068a7f27fee243520bc980095fd8082b220a18002
 
 #EXTINF:0,ITV Encore
 
 
 #EXTINF:0,Lifetime Network
-
+http://202.75.23.36/live/ch48/01.m3u8?Vd?u
 
 #EXTINF:0,London Live
 http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
@@ -120,10 +120,10 @@ rtmp://rtmp.zerocast.tv:1935/live playpath=3GdoAHRAxgZNzmQZL29l swfUrl=http://p.
 
 
 #EXTINF:0,PBS
-
+rtmp://128.104.144.134/WisconsinChannel/mystream
 
 #EXTINF:0,Pick TV
-
+http://live308.edge.filmon.com/live/371.low.stream/playlist.m3u8?id=0ad5aac39bb13fbe9faf79c95e3a49dedf27610f9a2dfdfb265de0649538cad6d88ee7135559a03f30f62a8db8a66612aaeac8919c53e3101b4065127c1e87e33d8cbca6e8b6c0bb45c23ab81e0160b9ef341a1e911d39328761ffd88c6c6704cb7b0f0ffa64b7760bb3d8032639369390ae06cc6470a6f57e23fb7d46768082a0fd7f4cc4220766ff46e13a87cb6a05da1d5c16d0dcaa1d
 
 #EXTINF:0,Spike Tv
 
