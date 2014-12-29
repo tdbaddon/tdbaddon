@@ -11,6 +11,9 @@ rtmp://rtmp.zerocast.tv:1935/live/ playpath=rGCi7bg0Qxvs8q7Sl13l swfUrl=http://p
 #EXTINF:0,AMC
 rtmp://rtmp.zerocast.tv:1935/live playpath=TfRQx7deUAuncJwM047m swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
 
+#EXTINF:0,AMC
+rtmpe://46.246.124.87:1935/live/ playpath=amcamc swfUrl=http://prvservers.com/j/jwplayer.flash.swf pageUrl=http://prvservers.com/ token=#yw%tt#w@kku
+
 #EXTINF:0,AXN TV 6
 rtmp://oflash.dfw.swagit.com/live/austintx/live-1
 
