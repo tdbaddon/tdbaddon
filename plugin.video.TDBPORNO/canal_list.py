@@ -60,4 +60,7 @@ dc={
 "college hotties" : "058",
 "models in motion" : "059",
 "bunga bunga" : "060",
+"pink erotic" : "061",
+"dorcel tv" : "062",
+"private" : "063",
 }

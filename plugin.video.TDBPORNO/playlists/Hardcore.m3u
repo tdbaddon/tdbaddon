@@ -8,13 +8,13 @@ mmsh://tv.webmisto.cz:7000
 #EXTINF:0,Brasileirinhas 
 
 
-#EXTINF: 0,Brazzers TV Europe
+#EXTINF:0,Brazzers TV Europe
 
 #EXTINF:0,Bunga Bunga
 http://84.22.33.3:8066
 
 #EXTINF:0,Dorcel TV 
-
+http://185.6.104.184:23232/9070/index.m3u8
 
 #EXTINF:0,Frenchlover
 
@@ -24,6 +24,12 @@ rtmp://195.154.176.66:8082/hustlertv/hustlertv/ playpath=hustlertv swfUrl=http:/
 
 #EXTINF:0,Nubile Films
 http://188.165.220.116:8081/str/ru/playlist.m3u8
+
+#EXTINF:0,Private
+http://185.6.104.184:23232/9071/index.m3u8
+
+#EXTINF:0,Pink Erotic
+http://185.6.104.184:23232/9069/index.m3u8
 
 #EXTINF:0,Pure Mature
 http://188.165.220.116:8081/str/ner/playlist.m3u8

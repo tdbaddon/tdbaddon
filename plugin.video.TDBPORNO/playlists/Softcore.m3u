@@ -10,6 +10,9 @@ http://cdn-edge01.livestreamcast.org:8081/erotic/phd499/chunklist_w875156738.m3u
 #EXTINF:0,Bella Club
 http://46.249.213.93/iPhone/broadcast/bellaclub-tablet.3gp/bellaclub-tablet.3gp-mr648k.m3u8?trackingid=3391380000&os=desktop
 
+#EXTINF:0,Bella Club
+rtsp://46.249.213.87/broadcast/bellaluz-tablet.3gp
+
 #EXTINF:0,ButGo
 rtmp://lm07.everyon.tv/ptv7/phd772
 
@@ -72,6 +75,9 @@ rtmp://lm07.everyon.tv/ptv7/phd10497
 
 #EXTINF:0,Playboy TV
 rtmp://lm07.everyon.tv/ptv7/phd499
+
+#EXTINF:0,Playboy TV
+http://109.248.66.145:5555/udp/239.195.2.5:1234
 
 #EXTINF:0,Russian Night
 http://46.181.237.75:1234/udp/239.255.42.218:1234
