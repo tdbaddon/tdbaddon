@@ -84,7 +84,7 @@ class XbmcBackup:
 
         for aFile in files:
             file_ext = aFile.split('.')[-1]
-            folderName = aFile.split('.')[0]
+            folderName = utils.encode(aFile.split('.')[0])
             
             if(file_ext == 'zip' and (len(folderName) == 12 or len(folderName) == 8) and str.isdigit(folderName)):
                 
@@ -125,11 +125,11 @@ class XbmcBackup:
                 self.remote_vfs = ZipFileSystem(xbmc.translatePath("special://temp/xbmc_backup_temp.zip"),"w")
                 
             self.remote_vfs.set_root(self.remote_vfs.root_path + time.strftime("%Y%m%d%H%M") + "/")
-            progressBarTitle = progressBarTitle + utils.getString(30016)
+            progressBarTitle = progressBarTitle + utils.getString(30023) + ": " + utils.getString(30016)
         elif(mode == self.Restore and self.restore_point != None and self.remote_vfs.root_path != ''):
             if(self.restore_point.split('.')[-1] != 'zip'):
                 self.remote_vfs.set_root(self.remote_vfs.root_path + self.restore_point + "/")
-            progressBarTitle = progressBarTitle + utils.getString(30017)
+            progressBarTitle = progressBarTitle + utils.getString(30023) + ": " + utils.getString(30017)
         else:
             #kill the program here
             self.remote_vfs = None
@@ -489,10 +489,11 @@ class XbmcBackup:
 
     def _rotateBackups(self):
         total_backups = int(utils.getSetting('backup_rotation'))
+        
         if(total_backups > 0):
             #get a list of valid backup folders
             dirs = self.listBackups()
-
+            
             if(len(dirs) > total_backups):
                 #remove backups to equal total wanted
                 remove_num = 0
@@ -560,7 +561,7 @@ class FileManager:
 
     def walkTree(self,directory):
        
-        if(self.vfs.exists(directory)):
+        if(self.vfs.exists(directory + "/")):
             dirs,files = self.vfs.listdir(directory)
         
             #create all the subdirs first
