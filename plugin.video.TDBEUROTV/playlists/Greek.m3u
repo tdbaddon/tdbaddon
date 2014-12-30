@@ -5,15 +5,10 @@
 #EXTINF:0,4E TV
 http://mail.tv4e.gr:1935/live/myStream.sdp/playlist.m3u8
 
-#EXTINF:0,Achaia Channel
-
 #EXTINF:0,Airqio
 http://xaigaiotelevisionx.api.channel.livestream.com/3.0/playlist.m3u8
 
-#EXTINF:0,Alpha Ga TV
-
-
-#EXTINF:0,Alpha HD
+#EXTINF:0,Alpha
 http://alfakanali-lh.akamaihd.net/i/live_1@90368/master.m3u8
 
 #EXTINF:0,Ant1
@@ -23,10 +18,7 @@ http://wow.ant1.gr:1935/live/smil:mavani.smil/playlist.m3u8
 http://wow.ant1.gr:1935/live/smil:mavani.smil/hasbahca.m3u8
 
 #EXTINF:0,Ant1 Cyprus
-
-
-#EXTINF:0,ANeo
-http://alfakanali-lh.akamaihd.net/i/live_1@90368/master.m3u8
+http://videos.ant1.com.cy/hls-live/livepkgr/_definst_/liveevent/livestream.m3u8
 
 #EXTINF:0,Art Channel
 http://sjc-uhls-proxy-beta01.ustream.tv/watch/playlist.m3u8?appType=103&appVersion=3&conn=wifi&cid=16667543&stream=viewer_240p&group=iphone
@@ -40,14 +32,14 @@ http://smooth.istoikona.net/besttv.isml/manifest(format=m3u8-aapl).m3u8
 #EXTINF:0,Boyah
 http://streamer-cache.grnet.gr/parliament/parltv.sdp/master.m3u8
 
+#EXTINF:0,Boyah
+http://streamer-cache.grnet.gr/parliament/hls/webtv_1280_960x540/index.m3u8?hsesid=1fc6d3c3cea0dd9fe84ae5b289c8a2df
+
 #EXTINF:0,CY Sports
 http://mlivenews.istoikona.net/cysports.isml/manifest(format=m3u8-aapl).m3u8
 
-#EXTINF:0,Delta TV A
+#EXTINF:0,Delta TV
 mms://ams01.egihosting.com/989630
-
-#EXTINF:0,Delta TV B
-http://ams01.egihosting.com:80/989630
 
 #EXTINF:0,Diktyo TV
 http://sjc-uhls-proxy-beta01.ustream.tv/watch/playlist.m3u8?cid=2785459
@@ -61,23 +53,20 @@ http://xdrtvhellasx.api.channel.livestream.com/3.0/playlist.m3u8
 #EXTINF:0,E TV
 rtmp://213.16.167.187:1935/live/mpegts_256.stream live=1 timeout=10
 
+#EXTINF:0,E TV
+rtmp://213.16.167.187:1935/live playpath=mpegts_256.stream swfUrl=http://www.epsilontv.gr/wp-content/plugins/fv-wordpress-flowplayer/flowplayer/flowplayer.swf?ver=2.2.7 live=1 pageUrl=http://www.epsilontv.gr/live/
+
 #EXTINF:0,Eiprus TV 1
 http://xepirustv1x.api.channel.livestream.com/3.0/playlist.m3u8
 
-#EXTINF:0,Ena TV A
+#EXTINF:0,Ena TV
 rtmp://srv1.viiideo.gr/videon playpath=enatv swfUrl=http://enatv.viiideo.gr/flowplayer/flowplayer.commercial-3.2.15.swf live=1 pageUrl=http://enatv.viiideo.gr/?cid=7
 
-#EXTINF:0,Ena TV B
+#EXTINF:0,Ena TV
 rtmp://fml.68FC.edgecastcdn.net/2068FC/ena-rtmp swfUrl=http://www.ellastv.gr/jw/player.swf swfVfy=1 live=1 timeout=10
 
-#EXTINF:0,Epsilon TV
-rtmp://213.16.167.187:1935/live playpath=mpegts_256.stream swfUrl=http://www.epsilontv.gr/wp-content/plugins/fv-wordpress-flowplayer/flowplayer/flowplayer.swf?ver=2.2.7 live=1 pageUrl=http://www.epsilontv.gr/live/
-
-#EXTINF:0,ERT 3
+#EXTINF:0,ET3
 http://live2.ertopen.com/live2/e600/playlist.m3u8
-
-#EXTINF:0,Europe 1
-http://sjc-uhls-proxy-beta01.ustream.tv/watch/playlist.m3u8?cid=12548227
 
 #EXTINF:0,Extra 3
 rtmp://213.16.167.186:1935/live/mpegts_256.stream
@@ -85,38 +74,35 @@ rtmp://213.16.167.186:1935/live/mpegts_256.stream
 #EXTINF:0,Flash TV
 http://sjc-uhls-proxy-beta01.ustream.tv/watch/playlist.m3u8?cid=18477664
 
-#EXTINF:0,Fos TV
-http://46.4.64.247/ch-patra?ovpsv=2.3.1.0
-
 #EXTINF:0,Greek Cinema
 http://xnaturatv1x.api.channel.livestream.com/3.0/playlist.m3u8
 
-#EXTINF:0,Greek Music Hits
-mmsh://wpso.com:200/music
-
-#EXTINF:0,Greek Voice TV
+#EXTINF:0,Greek Voice
 http://wpso.com:200/tv48
 
 #EXTINF:0,Ionian Channel
 http://xioniantvlivebroadcastx.api.channel.livestream.com/3.0/playlist.m3u8
 
-#EXTINF:0,Kontra A
+#EXTINF:0,Kontra
 rtmp://flashcloud.mediacdn.com:1935/live/kontratv
 
-#EXTINF:0,Kontra B
+#EXTINF:0,Kontra
 rtmp://flashcloud.mediacdn.com/live/kontratv live=1
 
-#EXTINF:0,Kriti TV
+#EXTINF:0,Kphth TV
 http://live.cretetv.gr:1935/cretetv/myStream/playlist.m3u8
 
-#EXTINF:0,Kriti TV
+#EXTINF:0,Kphth TV
 http://live.cretetv.gr:1935/cretetv/myStream/hasbahca.m3u8
 
-#EXTINF:0,Mad TV
-rtmp://144.76.2.213:1935/live/livestream
+#EXTINF:0,Mad Music Hits
+mmsh://wpso.com:200/music
+
+#EXTINF:0,Mad TV 
+
 
 #EXTINF:0,Mad TV Cyprus
-rtmp://144.76.2.213/live/livestream
+
 
 #EXTINF:0,Makedonia TV
 rtmp://213.16.167.55:1935/livepkgr/livestream swfUrl=http://static.ant1.gr/maktvlive.ashx pageUrl=http://www.maktv.gr/Live swfVfy=1 live=1 timeout=10
@@ -127,46 +113,31 @@ http://megahdlive1-f.akamaihd.net/i/live_1@105260/master.m3u8
 #EXTINF:0,Mega Cyprus
 http://mlivenews.istoikona.net/livenews.isml/manifest(format=m3u8-aapl).m3u8
 
-#EXTINF:0,MeipoeTV 1
-
-
-#EXTINF:0,Mitilini TV 
-
-
 #EXTINF:0,Nea TV
 rtmp://srv1.viiideo.gr:1935/hellasonmedia/neatv
 
-#EXTINF:0,Nepit
-http://hprt.flashcloud.mediacdn.com/hprt/nerit-2/playlist.m3u8
+#EXTINF:0,Nerit
 
-#EXTINF:0,Odi TV
+
+#EXTINF:0,Odie TV
 http://sjc-uhls-proxy-beta01.ustream.tv/watch/playlist.m3u8?cid=14336927
-
-#EXTINF:0,Oikologoi Elladas
-
-
-#EXTINF:0,Pada
-http://79.142.197.49:6566?by_HasBahCa
 
 #EXTINF:0,R Channel
 http://xrodopi-tvx.api.channel.livestream.com/3.0/playlist.m3u8
 
-#EXTINF:-1,RikSat
+#EXTINF:-1,Rik Sat
 http://cdn.webvideocore.net/livenl/out_dqgyqc45pzk8c4gw40o4/index.m3u8
 
-#EXTINF:0,Samiaki TV
-rtmp://91.121.107.131/samiaki playpath=samiaki swfUrl=http://www.samiaki.tv/players/live/player.swf live=1 pageUrl=http://www.samiaki.tv/players/live/
-
-#EXTINF:0,Skai A
+#EXTINF:0,Skai
 mmsh://magictvbox.us:200/skai
 
-#EXTINF:0,Skai B
+#EXTINF:0,Skai
 http://iphone.skai.gr.edgesuite.net/iphone_iphone.m3u8
 
-#EXTINF:0,Star TV A
+#EXTINF:0,Star TV
 http://starhdlive2-lh.akamaihd.net/i/live_1@181243/master.m3u8
 
-#EXTINF:0,Star TV B
+#EXTINF:0,Star TV
 mms://radiofeeds1.mediabox.gr/startv
 
 #EXTINF:0,Star TV Drama
@@ -175,7 +146,7 @@ http://radiofeeds1.mediabox.gr:80/startv
 #EXTINF:0,Syros TV
 http://176.9.123.140:1935/msg116s/msg116s/playlist.m3u8
 
-#EXTINF:0,Tilesport
+#EXTINF:0,Tilesport TV
 rtmp://78.47.151.114/tilesport playpath=movie1 swfUrl=http://www.tilesport.tv/jwplayer/player.swf live=1 pageUrl=http://www.tilesport.tv/index_live.php
 
 #EXTINF:0,TRT
@@ -184,20 +155,14 @@ http://xelladalivex.api.channel.livestream.com/3.0/playlist.m3u8
 #EXTINF:0,TV 100
 rtmp://188.226.161.133:1935/TV100/TV100 live=1 timeout=10
 
-#EXTINF:0,TV Creta 
-
-
 #EXTINF:0,TVM
 rtmp://cp77174.live.edgefcs.net:443/live/123456@19937 live=1 timeout=10
 
 #EXTINF:0,Vima
 http://sjc-uhls-proxy-beta01.ustream.tv/watch/playlist.m3u8?cid=10731431
 
-#EXTINF:0,Vouli Tileorasi
-http://streamer-cache.grnet.gr/parliament/hls/webtv_1280_960x540/index.m3u8?hsesid=1fc6d3c3cea0dd9fe84ae5b289c8a2df
-
-#EXTINF:0,Zougla TV A
+#EXTINF:0,Zougla TV
 http://zouglahd-f.akamaihd.net/i/zougla_1@56341/index_700_av-p.m3u8
 
-#EXTINF:0,Zougla TV B
+#EXTINF:0,Zougla TV
 rtmp://213.16.167.186:1935/live/mpegts_256.stream

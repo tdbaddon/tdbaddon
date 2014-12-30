@@ -1,0 +1,146 @@
+﻿#EXTM3U
+#EXTINF:0,
+
+#EXTINF:0,Aghani Tv
+http://66.135.32.50/aghanitv/aghanitv/chunklist_w775380517.m3u8
+
+#EXTINF:0,AI TV
+http://cdnedvrdubaitv.endavomedia.com/smil:dmilivedubaitvhls.smil/playlist.m3u8
+
+#EXTINF:0,AI TV
+http://cdnedvrnoordubaitv.endavomedia.com/smil:dmilivenoordubaitvhls.smil/playlist.m3u8
+
+#EXTINF:0,Alasr
+http://xtvalasrx.api.channel.livestream.com/3.0/playlist.m3u8
+
+#EXTINF:0,Alayam
+http://155.obj.netromedia.net/alayam/alayam/playlist.m3u8
+
+#EXTINF:0,AL Garbia
+http://46.165.208.230:1935/samarra/mystream/gmswf.m3u8
+
+#EXTINF:0,Al Hurra
+rtmp://cp51007.live.edgefcs.net:80/live?ovpfv=2.1.6/Alhurra_Flash@15 swfUrl=http://p.jwpcdn.com/6/7/jwplayer.flash.swf live=1 pageUrl=http://www.alhurra.com/info/english/112.html
+
+#EXTINF:0,Al Hurra
+http://mbnhls-lh.akamaihd.net/i/MBN_1@118619/master.m3u8
+
+#EXTINF:0,Al Huria
+http://streamer1.hamuraabi.com:1935/hurria/live/chunklist_w1445668128.m3u8
+
+#EXTINF:0,AL Jazzera
+http://hd1.lsops.net/live/smil:aljamisr_ar_hls.smil/playlist.m3u8
+
+#EXTINF:0,Al Rasheed TV
+http://http.mmp.streamuk.com/live/smil:0_fk07czmb.smil/chunklist_b1228800.m3u8
+
+#EXTINF:0,AL Sharqiya
+rtmp://ns8.indexforce.com/alsharqiyalive/mystream
+
+#EXTINF:0,Al Sumaria
+rtmp://livestreaming2.itworkscdn.net/sumarialive playpath=live swfUrl=http://www.alsumaria.tv/LiveMedia4/jwplayer.flash.swf live=true timeout=15 pageUrl=http://www.alsumaria.tv/watch-Alsumaria-Live
+
+#EXTINF:0,Aliraqia
+http://212.7.205.5:1935/Iraqia/live/playlist.m3u8
+
+#EXTINF:0,Baghdad
+http://streamer1.hamuraabi.com:1935/baghdad/live/playlist.m3u8
+
+#EXTINF:0,Bahrain Sport
+rtmp://alayam.netromedia.net/btv3/btv3
+
+#EXTINF:0,BBC Arabia
+http://bbcwshdlive01-lh.akamaihd.net/i/atv_1@61433/master.m3u8
+
+#EXTINF:0,Dubai Racing
+http://cdnehlsdubairacing2.endavomedia.com/smil:dmilivedubairacing2.smil/playlist.m3u8
+
+#EXTINF:0,DW Arabia 
+http://www.metafilegenerator.de/DWelle/tv-arabia/ios/master.m3u8
+
+#EXTINF:0,Echorouk TV
+http://live.echoroukonline.com/live/EchoroukTV/chunklist.m3u8
+
+#EXTINF:0,Echorouk TV
+http://live.echoroukonline.com/live/EchoroukTV/playlist.m3u8
+
+#EXTINF:0,ERI TV
+rtmp://173.192.70.133:1935/live playpath=myStream swfUrl=http://player.longtailvideo.com/player5.9.swf pageUrl=http://eri.tv/ timeout=10
+
+#EXTINF:0,Funoon TV
+http://wpc.C56B.edgecastcdn.net/hls-live/20C56B/default/ThompsanECWTV/tsecwatanfunoonmed.m3u8
+
+#EXTINF:0,France 24
+http://vipwowza.yacast.net/f24_hlslive_ar/smil:iphone.fr24ar.smil/playlist.m3u8
+
+#EXTINF:0,i24 News Arabia
+http://bcoveliveios-i.akamaihd.net/hls/live/215102/master_arabic/391/master.m3u8
+
+#EXTINF:0,ITW
+rtmp://livestreaming.itworkscdn.net/smc1live/smc1tv
+
+#EXTINF:0,K24
+rtmp://mediamax.cs.netromedia.net/K24test playpath=K24test swfUrl=http://player.netromedia.com/flowplayer.commercial-3.2.18.swf pageUrl=http://player.netromedia.com/?ID=08ad3a43-97a5-4d23-973f-d726bc2bd52a&iframe=true&h=480&w=640&autoPlay=false&scaling=scale
+
+#EXTINF:0,Jordan
+rtmp://64.251.14.168/jorlive/jrtv
+
+#EXTINF:0,Maan News
+http://vstream2.hadara.ps:1935/maan/maan_1/gmswf.m3u8
+
+#EXTINF:0,Pro Sports 1
+http://mbcprosports03-live.hls.adaptive.level3.net/hls-live/mbc-mbcprosports01/_definst_/live.m3u8
+
+#EXTINF:0,Pro Sports 2
+http://mbcprosports03-live.hls.adaptive.level3.net/hls-live/mbc-mbcprosports02/_definst_/live.m3u8
+
+#EXTINF:0,Pro Sports 3
+http://mbcprosports03-live.hls.adaptive.level3.net/hls-live/mbc-mbcprosports03/_definst_/live.m3u8
+
+#EXTINF:0,Quran TV
+http://46.245.160.224/mekke/mekke/chunklist_w581447799.m3u8
+
+#EXTINF:0,Rouge TV
+http://rtmp.infomaniak.ch/livecast/rougetv/playlist.m3u8
+
+#EXTINF:0,SAFA
+http://50.7.131.42:1935/safa/smil:safa-smil.smil/chunklist_w1889871104_b632768.m3u8
+
+#EXTINF:0,Speda
+rtmp://sepidehlive.nanocdn.com:1935/live/sepideh256
+
+#EXTINF:0,Sudan TV
+http://ukk.live.net.sa:1935/live/africatv3/playlist.m3u8
+
+#EXTINF:0,Sudan TV
+http://ukk.live.net.sa:1935/live/africatv/playlist.m3u8
+
+#EXTINF:0,Syria
+http://82.137.248.16:1935/Sat/SatLive2/playlist.m3u8
+
+#EXTINF:0,Syria Aloula
+http://82.137.248.21:1935/Aloula/AloulaLive3/playlist.m3u8
+
+#EXTINF:0,Syria Drama
+http://82.137.248.21:1935/Drama/DramaLive3/playlist.m3u8
+
+#EXTINF:0,Tchad
+rtmp://tchad.streamakaci.com/tchad/tchad.stream
+
+#EXTINF:0,Vin
+http://95.170.203.137:8088/smooth.isml/manifest(format=m3u8-aapl).m3u8
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

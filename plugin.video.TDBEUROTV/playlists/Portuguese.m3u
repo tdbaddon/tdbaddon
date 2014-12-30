@@ -5,6 +5,12 @@
 #EXTINF:0,Basta Crer
 rtmp://streamspub.manasat.com/live/bastacrer
 
+#EXTINF:0,Benfica TV
+http://clickone.tvzune.org:8080/livex/benficatv.m3u8
+
+#EXTINF:0,Ciencia TV
+mms://video-wm.tvciencia.pt/video/tvcnews_256.wmv
+
 #EXTINF:0,Economico TV
 rtmp://213.13.26.11/live/ playpath=etv_direto swfUrl=http://sicnoticias.sapo.pt/skins/sicnot/gfx/jwplayer/player.swf live=1 pageUrl=http://sicnoticias.sapo.pt/skins/sicnot/gfx/jwplayer/player.swf
 
@@ -14,12 +20,21 @@ http://213.13.26.12:1935/live/_definst_/etv_direto/hasbahca.m3u8
 #EXTINF:0,Euronews
 rtmp://hd4.lsops.net/live/ playpath=bloomber_en_453
 
+#EXTINF:0,Hollywood
+http://clickone.tvzune.org:8080/livex/hollywood.m3u8
+
+#EXTINF:0,Mov
+http://clickone.tvzune.org:8080/livex/mov.m3u8
+
 #EXTINF:0,RTP 1
 rtmp://ec21.rtp.pt/livetv playpath=2ch5h264 swfUrl=http://www.rtp.pt/play/player.swf live=1 pageUrl=http://www.rtp.pt/noticias/votacao/?mysurvey=343r23
 
 #EXTINF:0,RTP 1
 http://www.rtp.pt/play/stream/video/rtp1?key=iphoneapp
 
+
+#EXTINF:0,RTP 1
+http://clickone.tvzune.org:8080/livex/rtp1.m3u8
 
 #EXTINF:0,RTP 2
 rtmp://ec21.rtp.pt/livetv playpath=2ch3h264 swfUrl=http://www.rtp.pt/play/player.swf live=1 pageUrl=http://www.rtp.pt/noticias/votacao/?mysurvey=343r23
@@ -38,5 +53,23 @@ http://www.rtp.pt/play/stream/video/rtp_internacional?key=iphoneapp
 http://www.rtp.pt/play/stream/video/rtp_madeira?key=iphoneapp
 
 
-#EXTINF:0,TV Ciencia
-mms://video-wm.tvciencia.pt/video/tvcnews_256.wmv
+#EXTINF:0,Sic Noticias
+http://clickone.tvzune.org:8080/livex/sicnoticias.m3u8
+
+#EXTINF:0,Sporting TV
+http://clickone.tvzune.org:8080/livex/sportingtv.m3u8
+
+#EXTINF:0,Sport TV 1
+http://clickone.tvzune.org:8080/livex/sporttv1.m3u8
+
+#EXTINF:0,Sport TV 2
+rtmp://178.217.185.120:1935/live/_definst_/channel2
+
+#EXTINF:0,TVI
+http://clickone.tvzune.org:8080/livex/tvi.m3u8
+
+#EXTINF:0,TVI Alt
+http://video-live.iol.pt:1935/live_tvi/_definst_/mp4:TVI3/playlist.m3u8
+
+#EXTINF:0,TVI 24
+http://video-live.iol.pt:1935/live_tvi24/_definst_/mp4:TVI24-1/chunklist_w1866938750.m3u8
