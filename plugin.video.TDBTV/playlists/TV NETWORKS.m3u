@@ -105,7 +105,7 @@ rtsp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:420p500kB31
 
 
 #EXTINF:0,ITV Encore
-
+http://81.23.58.184:8080/udp/0.0.0.0:20002
 
 #EXTINF:0,Lifetime Network
 

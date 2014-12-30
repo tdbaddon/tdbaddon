@@ -21,7 +21,7 @@ rtmpe://46.246.124.24:1935/live/ playpath=sboxn swfUrl=http://www.hdcast.org/j2/
 
 
 #EXTINF:0,BT Sport 1
-
+rtmp://142.4.216.60/fasts/ playpath=btsport1 swfUrl=http://www.gameso.tv/jwplayer-6.8/player.swf pageUrl=http://www.gameso.tv/embedplayer_firstsportstream.php?width=640&height=360&id=btsport1&autoplay=true token=#ed%h0#w18723jdsahjkDHF
 
 #EXTINF:0,BT Sport 2
 rtmp://80.82.64.140:443/liverepeater playpath=15 live=1 pageUrl=http://popeoftheplayers.pw/ token=#atd%#$ZH timeout=15
@@ -138,7 +138,7 @@ rtmp://31.220.0.195:80/live playpath=sn1 swfUrl=http://flashtv.co/ePlayerr.swf p
 
 
 #EXTINF:0,Rogers Sportsnet Ontario
-
+rtmp://31.220.0.195:80/live/ playpath=snon token=%ZZri(nKa@#Z swfUrl=http://www.flashtv.co/ePlayerr.swf live=1 timeout=13 pageUrl=http://www.flashtv.co/ AnisotropicTV
 
 #EXTINF:0,Rogers Sportsnet World
 
@@ -180,7 +180,7 @@ rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9
 
 
 #EXTINF:0,TSN 1
-
+rtmpe://46.246.124.27:1935/live/tsn1 playpath=tsn1 swfUrl=http://p.jwpcdn.com/6/8/jwplayer.flash.swf pageUrl=http://www.hdcast.org/embedlive4.php?u=tsn1&vw=620&vh=490&domain=cricfree.sx token=#yw%tt#w@kku
 
 #EXTINF:0,TSN 2
 rtmp://31.220.0.195:80/live playpath=tsnx2 live=1 pageUrl=http://www.flashtv.co/Vd?u#bt!25 token=%ZZri(nKa@#Z timeout=15
