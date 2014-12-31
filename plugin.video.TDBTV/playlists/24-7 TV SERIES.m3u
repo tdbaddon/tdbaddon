@@ -110,7 +110,7 @@ rtmp://198.27.75.99/steam playpath=lawsuv02 swfUrl=http://www.tgun.tv/locked/pla
 rtmp://62.210.76.216/live playpath=lostfree swfUrl=http://releases.flowplayer.org/5.5.1/flowplayer.swf pageUrl=http://www.stream4free.eu/lost
 
 #EXTINF:0,Mad Men 
-
+rtmp://62.210.76.216/live playpath=madxmen swfUrl=http://releases.flowplayer.org/5.5.1/flowplayer.swf live=1 pageUrl=http://www.stream4free.eu/mad-men
 
 #EXTINF:0,Malcolm In The Middle 
 rtmp://198.27.75.99/steam playpath=malcolm swfUrl=http://www.tgun.tv/locked/player.swf live=1 pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex6.php?malcolm?Vd?u#bt!25 timeout=10
@@ -161,7 +161,7 @@ rtmp://192.99.38.122/stt playpath=seinfeld03 swfUrl=http://www.tgun.tv/locked/pl
 rtmp://192.99.38.122/stt playpath=southp02 swfUrl=http://www.tgun.tv/locked/player.swf live=1 pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex4.php?southp02?Vd?u#bt!25 timeout=10
 
 #EXTINF:0,Sons of Anarchy
-
+rtmp://62.210.76.216/live playpath=soaxs4f swfUrl=http://releases.flowplayer.org/5.5.1/flowplayer.swf live=1 pageUrl=http://www.stream4free.eu/sons-of-anarchy
 
 #EXTINF:0,Star Trek DS9
 rtmp://192.99.38.122/stt playpath=ds902 swfUrl=http://www.tgun.tv/locked/player.swf pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex3.php?ds902

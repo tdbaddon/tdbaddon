@@ -2,11 +2,29 @@
 #EXTINF:0,
 
 
+#EXTINF:0,A1 Report
+rtmp://66.55.93.204/livepkgr playpath=a1stream?adbe-live-event=a1report swfUrl=http://www.aulona.de/player.swf?backcolor=000000&frontcolor=0xFFFFFF&streamer=rtmp://66.55.93.204/livepkgr&file=a1stream?adbe-live-event=a1report&logo=&stretching=exactfit&autostart=true live=1 pageUrl=http://albhd.tk/tv/a1report.html
+
+#EXTINF:0,A1 Report
+rtmp://66.55.93.204/livepkgr/a1stream?adbe-live-event=a1report
+
+#EXTINF:0,AA Vizion
+http://str105mb.setplex.net:1935/str2iosmd5/7ios_aavizion_223653126/playlist.m3u8
+
 #EXTINF:0,Agon Channel 
 http://str105mb.setplex.net:1935/str2iosmd5/7ios_agontv_34536544/HasBahCa.m3u8
 
-#EXTINF:0,Albanian Culture NY
+#EXTINF:0,Alb Info
+http://str105mb.setplex.net:1935/str2iosmd5/stralbinfo_2654_dfs/playlist.m3u8
 
+#EXTINF:0,Alb Popullore
+http://str105mb.setplex.net:1935/str2iosmd5/13ios_albpop_23165498/playlist.m3u8
+
+#EXTINF:0,Alb UK
+rtmp://188.138.17.8:1935/albuk/albuk.stream
+
+#EXTINF:0,Alb UK+
+rtmp://188.138.17.8:1935/albuk/albuk+.stream
 
 #EXTINF:0,Albanian Screen
 rtmp://95.110.242.231:11935/live/albanianscreentv
@@ -14,14 +32,11 @@ rtmp://95.110.242.231:11935/live/albanianscreentv
 #EXTINF:0,Albanian Screen
 http://str105mb.setplex.net:1935/str2iosmd5//25albanianscreen/HasBahCa.m3u8
 
-#EXTINF:0,Alb Info
-
-
-#EXTINF:0,Alb Popullore
-
-
 #EXTINF:0,Al Jazeera Balkans
 rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
+
+#EXTINF:0,Alsat
+rtmp://fms.zulu.mk/zulu/ playpath=alsat_2 swfUrl=http://on.net.mk/jwp/jwplayer.flash.swf live=1 pageUrl=http://on.net.mk/jwp/alsatm.html
 
 #EXTINF:0,Alsat M 
 http://str105mb.setplex.net:1935/str2iosmd5/7ios_alsatm_430958392/HasBahCa.m3u8
@@ -32,14 +47,11 @@ http://str105mb.setplex.net:1935/str2iosmd5/25ios_amoltv_32655893/HasBahCa.m3u8
 #EXTINF:0,Apollon
 rtmp://95.107.200.140:554/live/rtmp.stream
 
-#EXTINF:0,Arta
-
+#EXTINF:0,Apollon
+rtmp://95.107.200.140/live playpath=livestream1 swfUrl=http://www.aulona.de/player.swf?backcolor=000000&frontcolor=0xFFFFFF&streamer=rtmp://95.107.200.140/live&file=livestream1.flv&logo=&stretching=exactfit&autostart=true live=1 pageUrl=http://albhd.tk/tv/apolon.html
 
 #EXTINF:0,Art Kanal
-
-
-#EXTINF:0,ATV
-
+http://str105mb.setplex.net:1935/str2iosmd5/19ios_artkanal_31469877/playlist.m3u8
 
 #EXTINF:0,B92
 http://stream.b92.net:7999/tv-b92.ogg
@@ -47,23 +59,18 @@ http://stream.b92.net:7999/tv-b92.ogg
 #EXTINF:0,Balkan TV
 rtmp://yayin.tvdunyasi.tv/live/balkanrtv
 
-#EXTINF:0,BBF TV
-
-
-#EXTINF:0,BHT 1 
-
-
 #EXTINF:0,Blue Sky TV
 http://str105mb.setplex.net:1935/str2iosmd5/blueskytv_265265_266548/HasBahCa.m3u8
-
-#EXTINF:0,BN
-
 
 #EXTINF:0,Boin
 http://str105mb.setplex.net:1935/str2iosmd5/15ios_tvboin_32649785/HasBahCa.m3u8
 
 #EXTINF:0,Cegrani Media TV
 http://str105mb.setplex.net:1935/str2iosmd5/cergrani_media_tv_145trs/HasBahCa.m3u8
+
+#EXTINF:0,Cegrani Media
+http://fms.zulu.mk:1935/zulu/cegrani_1/playlist.m3u8
+
 #EXTINF:0,Dasma TV
 http://str105mb.setplex.net:1935/str2iosmd5/dasmatv_win1_203/HasBahCa.m3u8
 
@@ -73,30 +80,23 @@ http://str105mb.setplex.net:1935/str2iosmd5/tvdiaspora_de/HasBahCa.m3u8
 #EXTINF:0,Dukagjini
 http://str105mb.setplex.net:1935/str2iosmd5/20ios_tvdukagjini_2233555/HasBahCa.m3u8
 
-#EXTINF:-1,ERA
+#EXTINF:0,ERA
 http://130.0.24.5:9999/udp/228.200.200.47:30000?by_HasBahCa
 
+#EXTINF:0,ERA
+rtmp://fms.zulu.mk/zulu/ playpath=era_2 swfUrl=http://on.net.mk/jwp/jwplayer.flash.swf live=1 pageUrl=http://on.net.mk/jwp/era.html
 
-#EXTINF:0,Face TV 
+#EXTINF:0,ERA
+http://str105mb.setplex.net:1935/str2iosmd5/7ios_era_tv_6575678564/playlist.m3u8
 
-
-#EXTINF:0,Federalna
-
+#EXTINF:0,ERA
+http://fms.zulu.mk:1935/zulu/era_1/hasbahca.m3u8
 
 #EXTINF:0,Folk Plus
 http://str105mb.setplex.net:1935/str2iosmd5/7ios_folkplus_34564765/HasBahCa.m3u8
 
 #EXTINF:0,Globi
 http://str105mb.setplex.net:1935/str2iosmd5/22ios_tvglobe_236549153/HasBahCa.m3u8
-
-#EXTINF:0,Happy
-
-
-#EXTINF:0,HTV 1
-
-
-#EXTINF:0,HTV 2
-
 
 #EXTINF:0,Iliret 
 http://str105mb.setplex.net:1935/str2iosmd5/16ios_tviliret_26658914/HasBahCa.m3u8
@@ -115,6 +115,9 @@ http://109.122.121.21/live/kanal_3.stream/playlist.m3u8?hash=5b0be985da9df72e39b
 
 #EXTINF:0,Klan Kosovo
 http://str105mb.setplex.net:1935/str2iosmd5/10ios_klankosova_56468946/HasBahCa.m3u8
+
+#EXTINF:0,Klan Kosovo
+http://4.31.30.135:1935/str2iosmd5/10ios_klankosova_56468946/playlist.m3u8
 
 #EXTINF:0,Koha TV
 rtmp://live.tvkoha.tv/live/koha app=live/koha swfUrl=http://live.tvkoha.tv/playerplus.swf pageUrl=http://www.tvkoha.tv/live/tv playpath=livestream swfVfy=true live=true timeout=15
@@ -140,21 +143,8 @@ http://str105mb.setplex.net:1935/str2iosmd5/33ios_newstv_23652182/HasBahCa.m3u8
 #EXTINF:0,Novosadska TV
 mms://176.106.121.32:8080/
 
-
-#EXTINF:0,NTV
-
-
-#EXTINF:0,OBN A
-
-
-#EXTINF:0,OBN B
-
-
-#EXTINF:0,OTV Valentino
-
-
-#EXTINF:0,Palma
-
+#EXTINF:0,Ora News
+rtmp://69.65.46.191/live/livestream1
 
 #EXTINF:0,Pannon TV Subotica
 http://212.200.235.242:8080/
@@ -162,53 +152,20 @@ http://212.200.235.242:8080/
 #EXTINF:0,Party
 rtmp://149.11.34.6/live/partytv.stream
 
-#EXTINF:0,Pink Film
-
-
-#EXTINF:0,PRVA
-
-
 #EXTINF:0,Rokum TV
 rtmp://82.114.65.202/live/rrokumtv
 
 #EXTINF:0,Rokum TV
 rtmp://82.114.65.202/live/ playpath=rrokumtv swfUrl=http://albaniaplus.info/player.swf live=1 pageUrl=http://albaniaplus.info/Rrokumtv.html
 
-#EXTINF:0,RTCG SAT
+#EXTINF:0,RTK
+http://str105mb.setplex.net:1935/str2iosmd5/rtk_232_4dfaa/playlist.m3u8
 
-
-#EXTINF:0,RTK 1
-rtmp://wowza.rtkit.com/live/livestream
-
-#EXTINF:0,RTRS
-
-
-#EXTINF:0,RTS 1
-
-
-#EXTINF:0,RTS 2
-
-
-#EXTINF:0,RTV 1
-
-
-#EXTINF:0,Rozafa
-
-
-#EXTINF:0,SKY Plus
-
-
-#EXTINF:0,Sos
-
+#EXTINF:0,RTK
+rtmp://wowza.rtkit.com/live playpath=livestream swfUrl=http://www.aulona.de/player.swf?backcolor=000000&frontcolor=0xffffff&streamer=rtmp://wowza.rtkit.com/live&file=livestream&logo=&stretching=exactfit&autostart=true live=1 pageUrl=http://albhd.tk/tv/rtk.html
 
 #EXTINF:0,Sot7
 mms://84.20.73.66:8001
-
-#EXTINF:0,Sot News
-
-
-#EXTINF:0,Studio B
-
 
 #EXTINF:0,Superfolk
 rtmp://str103.setplex.net:1935/228/stv_folk
@@ -225,13 +182,16 @@ http://str105mb.setplex.net:1935/str2iosmd5/2ios9ew/HasBahCa.m3u8
 #EXTINF:0,Teuta
 rtmp://str103.setplex.net:1935/228/teuta
 
-#EXTINF:0,TK
+#EXTINF:0,Teuta
+http://str105mb.setplex.net:1935/str2iosmd5/7ios_tvteuta_34654675644/playlist.m3u8
 
+#EXTINF:0,Teuta
+rtmp://str103.setplex.net:1935/228 playpath=teuta swfUrl=http://www.aulona.de/player.swf?backcolor=0x000000&frontcolor=0xFFFFFF&streamer=rtmp://str103.setplex.net:1935/228&file=teuta.flv&logo=&stretching=exactfit&autostart=true live=1 pageUrl=http://albhd.tk/tv/teuta.html
 
-#EXTINF:0,TV1
+#EXTINF:0,TV Rozafa
+http://str105mb.setplex.net:1935/str2iosmd5/7ios_rozafa_65226289/playlist.m3u8
 
-
-#EXTINF:0,TVSH
+#EXTINF:0,TV SH
 http://str105mb.setplex.net:1935/str2iosmd5/tvsh_62554_5hfaa/HasBahCa.m3u8
 
 #EXTINF:0,Vision Plus
@@ -243,20 +203,8 @@ rtmp://live.vizionplus.tv:1935/live/livestream2
 #EXTINF:0,Vision Plus
 http://str105mb.setplex.net:1935/str2iosmd5/7ios_vizionplus_85674923/HasBahCa.m3u8
 
+#EXTINF:0,Vision Plus
+rtmp://$OPT:rtmp-raw=rtmp://live.vizionplus.tv:1935/live/ playpath=livestream2 swfUrl=http://www.aulona.de/player.swf?backcolor=0x000000&frontcolor=0xFFFFFF&streamer=rtmp://live.vizionplus.tv:1935/live/&file=livestream2&logo=&stretching=exactfit&autostart=true live=1 pageUrl=http://albhd.tk/tv/vizionplus.html
+
 #EXTINF:0,Zico TV
 http://str105mb.setplex.net:1935/str2iosmd5/zicoTV_652_4dfaa/HasBahCa.m3u8
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

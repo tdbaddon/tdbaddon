@@ -6,6 +6,9 @@
 rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
 
 #EXTINF:0,Alfa
+rtmp://ataka.tv/live/live
+
+#EXTINF:0,Alfa
 rtsp://fms.zulu.mk/zulu/alfa_1
 
 #EXTINF:0,Alfa

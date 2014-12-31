@@ -22,23 +22,26 @@ http://202.75.23.34/live/ch29/03.m3u8
 #EXTINF:0,Discovery Channel
 http://202.75.23.34/live/ch29/01.m3u8
 
+#EXTINF:0,Discovery Channel
+http://202.75.23.34:1400/live/ch29/02.m3u8
+
 #EXTINF:0,Discovery History
 
 
 #EXTINF:0,Discovery Home And Health
-
-
-#EXTINF:0,Discovery Home And Health
-
+http://202.75.23.34/live/ch34/01.m3u8
 
 #EXTINF:0,Discovery Investigation
 
 
 #EXTINF:0,Discovery Max
-
+http://202.75.23.34/live/ch32/01.m3u8
 
 #EXTINF:0,Discovery Science
 http://202.75.23.34/live/ch33/01.m3u8
+
+#EXTINF:0,Discovery Science
+http://202.75.23.34:1400/live/ch33/03.m3u8
 
 #EXTINF:0,Discovery Theater
 
@@ -96,6 +99,9 @@ http://202.75.23.35/live/ch41/01.m3u8
 
 #EXTINF:0,Viasat Explorer
 http://80.77.52.6:4444/udp/230.0.3.55:12345
+
+#EXTINF:0,Viasat Explorer
+http://83.139.104.123/Content/HLS/Live/Channel(viasat_explore)/Stream(03)/index.m3u8
 
 #EXTINF:0,Viasat history
 http://83.139.104.123/Content/HLS/Live/Channel(viasat_history)/Stream(03)/index.m3u8?b?b*t$

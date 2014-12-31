@@ -95,6 +95,9 @@ rtmp://c.cdn.newschat.tv/edge playpath=hln_live live=1 timeout=10 swfUrl=http://
 #EXTINF:0,Home Shopping Network
 rtsp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:420p500kB31
 
+#EXTINF:0,ITV 1
+rtmpe://46.246.124.22:1935/live/ playpath=itv1_usa token=#yw%tt#w@kku swfUrl=http://p.jwpcdn.com/6/8/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://prvservers.com/ AnisotropicTV
+
 #EXTINF:0,ITV 2
 
 

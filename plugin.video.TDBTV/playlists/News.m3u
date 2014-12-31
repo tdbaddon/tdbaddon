@@ -41,7 +41,7 @@ http://www.metafilegenerator.de/DWelle/tv-asia/ios/master.m3u8
 rtsp://ewns-hls-b-stream.hexaglobe.net/rtpeuronewslive/en_vidan350_rtp.sdp?Vd?u#bt!25
 
 #EXTINF:0,Fox News
-
+rtmpe://46.246.124.87:1935/live/ playpath=foxnewsss swfUrl=http://prvservers.com/j/jwplayer.flash.swf pageUrl=http://prvservers.com/ token=#yw%tt#w@kku
 
 #EXTINF:0,France 24 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_FRANCE24/variant.m3u8?b?b*t$

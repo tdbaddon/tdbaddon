@@ -59,6 +59,9 @@ http://83.139.104.123/Content/HLS/Live/Channel(eurosport)/Stream(03)/index.m3u8
 #EXTINF:0,Extreme Sports
 http://83.139.104.123/Content/HLS/Live/Channel(extreme_sports)/Stream(03)/index.m3u8
 
+#EXTINF:0,FightBox
+http://stream1.zoovision.com//livespi/fightbox/HasBahCa.m3u8
+
 #EXTINF:0,Live Boxing
 
 
@@ -176,8 +179,23 @@ rtmpe://46.246.29.162:1935/live/ playpath=Sporthdskyf1 pageUrl=http://www.hdcast
 #EXTINF:0,Sports Night
 rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9-HD
 
+#EXTINF:0,SportTime Tv
+rtmp://streamer.a1.net:1935/rtmplive/redundant/channels/Sporttime/SporttimeTV/mp4:channel1_1200
+
+#EXTINF:0,SportTime Tv
+rtmp://streamer.a1.net:1935/rtmplive/redundant/channels/Sporttime/SporttimeTV/mp4:channel3_800
+
+#EXTINF:0,SportTime Tv
+rtmp://streamer.a1.net:1935/rtmplive/redundant/channels/Sporttime/SporttimeTV/mp4:channel4_800
+
+#EXTINF:0,SportTime Tv
+rtmp://streamer.a1.net:1935/rtmplive/redundant/channels/Sporttime/SporttimeTV/mp4:channel7_800
+
 #EXTINF:0,TEN Cricket 
 
+
+#EXTINF:0,Trace Sports
+rtsp://46.249.213.87/broadcast/tracetvsports-tablet.3gp
 
 #EXTINF:0,TSN 1
 rtmpe://46.246.124.27:1935/live/tsn1 playpath=tsn1 swfUrl=http://p.jwpcdn.com/6/8/jwplayer.flash.swf pageUrl=http://www.hdcast.org/embedlive4.php?u=tsn1&vw=620&vh=490&domain=cricfree.sx token=#yw%tt#w@kku
@@ -202,3 +220,6 @@ rtmpe://46.246.124.87:1935/live/ playpath=wweell swfUrl=http://prvservers.com/j/
 
 #EXTINF:0,Xtreme Impacts
 http://46.249.213.93/iPhone/broadcast/xtremeimpacts-tablet.3gp/xtremeimpacts-tablet.3gp-mr647k.m3u8
+
+#EXTINF:0,XTreme Sports
+rtmp://mi2.gv.filmon.com:8086/live/326.high.stream

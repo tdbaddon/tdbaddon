@@ -11,14 +11,8 @@ rtsp://77.72.196.214:8554/live/mp4:AltoAdigeTV
 #EXTINF:0,Brescia Live TV
 http://wms.shared.streamshow.it/brescialivetv/brescialivetv/chunklist_w957914602.m3u8
 
-#EXTINF:0,Calabria Channel
-
-
 #EXTINF:0,Canale 2
 http://wms.iptv.4wardstream.net/canale2iptv/canale2iptv/chunklist_w585511673.m3u8
-
-#EXTINF:0,Canale 21 Napoli
-
 
 #EXTINF:0,Canale 7
 http://fms.shared.streamshow.it/canale7/canale7/sansar.m3u8
@@ -92,6 +86,12 @@ mmsh://212.162.68.163/rai_storia?MSWMExt.asf
 #EXTINF:0,Rai Yoyo
 http://212.162.68.163/Rai_yoyo
 
+#EXTINF:0,Rete 55
+rtmp://rete55.stream.internetone.it/streaming playpath=rete55.stream swfUrl=http://webtv.rete55news.tv/swf/player-5_8.swf pageUrl=http://webtv.rete55news.tv/
+
+#EXTINF:0,Retesole
+mms://streaming1.bsnewline.com/retesoleroma
+
 #EXTINF:0,Rete Teleunica Lecco
 rtmp://flash3.ipercast.net/teleunica.tv-live/livestream1
 
@@ -107,17 +107,20 @@ rtmp://194.116.72.51/webtv_live4 playpath=0QBXFQ2L0I5P swfUrl=http://stream.sena
 #EXTINF:0,Sardegna 1
 rtmp://213.205.30.50/sardegna1 playpath=live1.stream
 
+#EXTINF:0,Sardegna 1
+rtmp://94.32.101.17/sardegna1 playpath=live1.stream swfUrl=http://www.sardegna1.tv/flowplayer-3.2.5.swf pageUrl=http://www.sardegna1.tv/page.php?id_page=146 live=1
+
 #EXTINF:0,Sky TG 24
 rtmp://cp49989.live.edgefcs.net:1935/live playpath=streamRM1@2564 swfUrl=http://videoplatform.sky.it/player/swf/player_v2.swf pageUrl=http://video.sky.it/news/diretta live=1 timeout=10
 
 #EXTINF:0,Studio 100
 http://wms2.shared.streamshow.it/studio100ta/studio100ta/playlist.m3u8
 
+#EXTINF:0,Super TV
+rtmp://fms.shared.streamshow.it:1935/supertv/supertv
+
 #EXTINF:0,Telepace
 rtmp://188.165.206.81:1935/telepacelive2 playpath=telepacestream.sdp
-
-#EXTINF:0,Tele 8 Sicilia
-
 
 #EXTINF:0,Tele Arena Verona
 rtmp://wma07.fluidstream.net/TeleArena playpath=livestream swfUrl=http://media.larena.it/media/3rdparty/jwplayer/mediaplayer-5.10-licensed/player.swf pageUrl=http://tv-online.in/tele-arena-verona-live live=1 timeout=10
@@ -178,9 +181,6 @@ rtmp://fms2.shared.streamshow.it/telestudiomo playpath=telestudiomo swfUrl=http:
 
 #EXTINF:0,Trentino TV
 rtmp://77.72.196.214:8554/live playpath=TrentinoTV
-
-#EXTINF:0,Trg Media Umbria
-
 
 #EXTINF:0,TRM TV
 http://flash.streamingmedia.it:1935/TRM/livestream/hasbahca.m3u8

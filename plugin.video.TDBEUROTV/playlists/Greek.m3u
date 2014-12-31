@@ -26,6 +26,9 @@ http://sjc-uhls-proxy-beta01.ustream.tv/watch/playlist.m3u8?appType=103&appVersi
 #EXTINF:0,Astra TV
 http://www.astratv.gr:8090/hls/livestream/index.m3u8
 
+#EXTINF:0,Axeloos TV
+http://srv1.viiideo.gr:1935/videon/axeloostv/hasbahca.m3u
+
 #EXTINF:0,Best TV
 http://smooth.istoikona.net/besttv.isml/manifest(format=m3u8-aapl).m3u8
 
@@ -34,6 +37,9 @@ http://streamer-cache.grnet.gr/parliament/parltv.sdp/master.m3u8
 
 #EXTINF:0,Boyah
 http://streamer-cache.grnet.gr/parliament/hls/webtv_1280_960x540/index.m3u8?hsesid=1fc6d3c3cea0dd9fe84ae5b289c8a2df
+
+#EXTINF:0,Boyah
+mms://media19.internet.gr/ParliamentTV-HQ
 
 #EXTINF:0,CY Sports
 http://mlivenews.istoikona.net/cysports.isml/manifest(format=m3u8-aapl).m3u8
@@ -70,9 +76,6 @@ http://live2.ertopen.com/live2/e600/playlist.m3u8
 
 #EXTINF:0,Extra 3
 rtmp://213.16.167.186:1935/live/mpegts_256.stream
-
-#EXTINF:0,Flash TV
-http://sjc-uhls-proxy-beta01.ustream.tv/watch/playlist.m3u8?cid=18477664
 
 #EXTINF:0,Greek Cinema
 http://xnaturatv1x.api.channel.livestream.com/3.0/playlist.m3u8
