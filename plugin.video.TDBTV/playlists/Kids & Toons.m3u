@@ -10,16 +10,13 @@ http://202.75.23.33/live/ch27/03.m3u8
 #EXTINF:0,Boomerang
 rtmp://mi2.gv.filmon.com:1935/live/_definst_/2734.low.stream
 
-#EXTINF:0,C ITV
-
+#EXTINF:0,Cartoons
+rtmp://mi2.gv.filmon.com:1935/live/_definst_/2734.low.stream?b?b*t$
 
 #EXTINF:0,Cartoonito
 
 
 #EXTINF:0,Cartoon Network
-
-
-#EXTINF:0,CBeebies
 
 
 #EXTINF:0,Disney Channel 
@@ -34,17 +31,11 @@ rtmp://mi2.gv.filmon.com:1935/live/_definst_/2734.low.stream
 #EXTINF:0,Disney XD 
 
 
-#EXTINF:0,Emba Kids
-
-
 #EXTINF:0,Jim Jam
 
 
 #EXTINF:0,Kids Comedy
 rtmp://mi2.gv.filmon.com:1935/live/_definst_/2734.low.stream?b?b*t$
-
-#EXTINF:0,Looney Tunes 
-
 
 #EXTINF:0,Nickelodeon
 

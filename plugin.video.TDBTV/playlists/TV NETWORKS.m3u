@@ -44,11 +44,14 @@ rtmp://rtmp.envivo.xyz:1935/live/Ger61uLQ4fedzvjRjrB7
 #EXTINF:0,CBS Reality
 http://83.139.104.123/Content/HLS/Live/Channel(cbs_reality)/Stream(03)/index.m3u8?b?b*t$
 
-#EXTINF:0,CHCH Ontario
-
-
 #EXTINF:0,CNBC
 http://livestation_hls-lh.akamaihd.net/i/cnbc_en@106428/master.m3u8
+
+#EXTINF:0,CNBC
+http://livestation_hls-lh.akamaihd.net/i/cnbc_en@106428/index_838_av-b.m3u8
+
+#EXTINF:0,CNBC
+http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/cnbc_eu/ls_satlink/b_264.m3u8
 
 #EXTINF:0,Comedy Central 
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=117&lan=2&rows=40&f=.m3u8
@@ -56,14 +59,8 @@ http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=117&lan=2&rows=
 #EXTINF:0,CW
 rtmp://rtmp.zerocast.tv:1935/live/ playpath=IWSyIjvWgHRCMM7MEJoZ swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
 
-#EXTINF:0,Denver 8 TV 
-
-
 #EXTINF:0,English Club TV
 http://85.187.154.9:2001/
-
-#EXTINF:0,E! Entertainment
-
 
 #EXTINF:0,Fashion TV
 http://hls.novotelecom.ru/streaming/fashion/tvrec/playlist.m3u8 
@@ -98,18 +95,6 @@ rtsp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:420p500kB31
 #EXTINF:0,ITV 1
 rtmpe://46.246.124.22:1935/live/ playpath=itv1_usa token=#yw%tt#w@kku swfUrl=http://p.jwpcdn.com/6/8/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://prvservers.com/ AnisotropicTV
 
-#EXTINF:0,ITV 2
-
-
-#EXTINF:0,ITV 3
-
-
-#EXTINF:0,ITV 4
-
-
-#EXTINF:0,ITV Encore
-http://81.23.58.184:8080/udp/0.0.0.0:20002
-
 #EXTINF:0,Lifetime Network
 
 
@@ -125,11 +110,8 @@ rtmp://rtmp.zerocast.tv:1935/live playpath=3GdoAHRAxgZNzmQZL29l swfUrl=http://p.
 #EXTINF:0,PBS
 rtmp://128.104.144.134/WisconsinChannel/mystream
 
-#EXTINF:0,Pick TV
-
-
 #EXTINF:0,Spike Tv
-
+rtmp://111.118.21.76:1935/ptv/pld723
 
 #EXTINF:0,Star World
 
@@ -179,17 +161,14 @@ http://149.11.34.6:1935/live/vernissagetv.stream/hasbahca.m3u8
 #EXTINF:0,Warner Brothers
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=96&lan=2&rows=40&f=.m3u8
 
+#EXTINF:0,Warner Brothers
+http://200.76.77.237/LIVE/H01/CANAL205/PROFILE03.m3u8?
+
 #EXTINF:0,WGN 9 Chicago
 http://wgntribune-lh.akamaihd.net/i/WGNTribune_1@109089/master.m3u8
 
 #EXTINF:0,Wine Channel TV
 rtmp://mi2.gv.filmon.com:8086/live/263.high.stream
-
-#EXTINF:0,Wine Oh TV
-
-
-#EXTINF:0,Wineram TV
-
 
 #EXTINF:0,World Fashion TV
 http://btv-net.mediacdn.ru/TVB2/ngrp:wfhdeu.stream_all/chunklist_b3128000.m3u8

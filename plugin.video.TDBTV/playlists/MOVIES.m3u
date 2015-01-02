@@ -1,23 +1,8 @@
 ﻿#EXTM3U
 
 
-#EXTINF:0,24/7 Movies
-
-
 #EXTINF:0,BigPond Movies
 mms://ken-cdn220-is-3.se.bptvlive.ngcdn.telstra.com/bp_online_movieextra_high
-
-#EXTINF:0,C More Action 
-
- 
-#EXTINF:0,C More Emotion 
-
- 
-#EXTINF:0,C More First 
-
- 
-#EXTINF:0,C More Hits 
-
 
 #EXTINF:0,Cinemax
 
@@ -33,9 +18,6 @@ http://83.139.104.109/Content/HLS/Live/Channel(cinestar_premiere_2)/Stream(03)/i
 
 #EXTINF:0,Cinestar TV
 http://83.139.104.109/Content/HLS/Live/Channel(cinestar_tv)/Stream(03)/index.m3u8
-
-#EXTINF:0,Film4
-
 
 #EXTINF:0,Fox Action Movies
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=304&lan=2&rows=40&f=.m3u8
@@ -100,13 +82,13 @@ rtmpe://46.246.124.87:1935/live/show99 playpath=show99 swfUrl=http://p.jwpcdn.co
 #EXTINF:0,Showtime
 rtmpe://46.246.124.93:1935/live/ playpath=show99 pageUrl=http://www.hdcast.org/ token=#yw%tt#w@kku timeout=10
 
-#EXTINF:0,Sky Movies Action Adventure
-
-
 #EXTINF:0,Sky 1
 
 
 #EXTINF:0,Sky 2
+
+
+#EXTINF:0,Sky Movies Action Adventure
 
 
 #EXTINF:0,Sky Movies Cinema+24

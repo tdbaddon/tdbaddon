@@ -14,9 +14,6 @@ rtmp://80.93.53.88:1935/live/channel_3
 #EXTINF:0,LA Hollywood Blvd California
 http://video2.earthcam.com/fecnetwork/lacitytours1.flv/hasbahca.m3u8
 
-#EXTINF:0,Landscape
-http://130.88.20.233:1237/test.flv
-
 #EXTINF:0,Las Vegas Nevada
 http://video2.earthcam.com/fecnetwork/eclasvegas.flv/hasbahca.m3u8
 

@@ -17,11 +17,11 @@ http://bigten247.cdnak.bigtenhd.neulion.com/nlds/btn2go/btnnetwork/as/live/btnne
 #EXTINF:0,Box Nation
 rtmpe://46.246.124.24:1935/live/ playpath=sboxn swfUrl=http://www.hdcast.org/j2/jwplayer.flash.swf pageUrl=http://www.hdcast.org/embedlive.php?u=sboxn&vw=854&vh=480&domain=streamhd.eu live=1 token=#yw%tt#w@kku timeout=15
 
-#EXTINF:0,BT Sport
-
-
 #EXTINF:0,BT Sport 1
 rtmp://142.4.216.60/fasts/ playpath=btsport1 swfUrl=http://www.gameso.tv/jwplayer-6.8/player.swf pageUrl=http://www.gameso.tv/embedplayer_firstsportstream.php?width=640&height=360&id=btsport1&autoplay=true token=#ed%h0#w18723jdsahjkDHF
+
+#EXTINF:0,BT Sport 1
+rtmp://80.82.65.59:443/liverepeater playpath=13 live=1 pageUrl=http://popeoftheplayers.pw/Vd?u#bt!25 token=#atd%#$ZH timeout=15
 
 #EXTINF:0,BT Sport 2
 rtmp://80.82.64.140:443/liverepeater playpath=15 live=1 pageUrl=http://popeoftheplayers.pw/ token=#atd%#$ZH timeout=15
@@ -42,7 +42,7 @@ rtmp://142.4.216.60/fasts/ playpath=espn2hd swfUrl=http://www.gameso.tv/jwplayer
 http://83.139.104.123/Content/HLS/Live/Channel(eurosport)/Stream(03)/index.m3u8
 
 #EXTINF:0,Eurosport 1
-
+http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_1000.m3u8
 
 #EXTINF:0,Eurosport 2
 http://83.139.104.123/Content/HLS/Live/Channel(eurosport_2)/Stream(03)/index.m3u8
@@ -62,20 +62,11 @@ http://83.139.104.123/Content/HLS/Live/Channel(extreme_sports)/Stream(03)/index.
 #EXTINF:0,FightBox
 http://stream1.zoovision.com//livespi/fightbox/HasBahCa.m3u8
 
-#EXTINF:0,Live Boxing
-
-
-#EXTINF:0,MLB 
-
-
 #EXTINF:0,MMA Bay TV
 rtmp://extondemand.livestream.com:80/ondemand/trans/dv10/mogulus-user-files/chmmabaytv/2010/09/12/d9fbeee7-79aa-4ec2-98d2-1f1f168b91a3
 
 #EXTINF:0,Motors TV
 rtmp://mi2.gv.filmon.com:8086/live/262.high.stream
-
-#EXTINF:0,Motor Sport
-
 
 #EXTINF:0,NBA TV 
 
@@ -88,9 +79,6 @@ rtmpe://46.246.124.31:1935/live/nbcsn0 playpath=nbcsn0 swfUrl=swfUrl=http://p.jw
 
 #EXTINF:0,NFL Network
 rtmpe://46.246.124.31:1935/live/nfluuo4 playpath=nfluuo4 swfUrl=http://p.jwpcdn.com/6/8/jwplayer.flash.swf pageUrl=http://prvservers.com/embed2.php?u=nfluuo4&vw=620&vh=470&domain=usachannels.tv token=#yw%tt#w@kku
-
-#EXTINF:0,NWA Wrestling
-
 
 #EXTINF:0,Outdoor Channel
 rtmp://lm02.everyon.tv:1935/ptv2/pld613
@@ -116,9 +104,6 @@ http://xrxs.net/video/live-p12oreg-4728.m3u8
 #EXTINF:0,PAC Sports Washington
 http://xrxs.net/video/live-p12wash-4728.m3u8
 
-#EXTINF:0,Poker TV
-
-
 #EXTINF:0,Premier Sports
 rtmpe://46.246.124.30:1935/live/spremsp pageUrl=http://www.hdcast.org/Vd?u#bt!25 token=#yw%tt#w@kku  timeout=15
 
@@ -127,18 +112,6 @@ rtmp://rrbalancer.broadcast.tneg.de:1935/pw/ruk/ playpath=ruk swfUrl=http://pfer
 
 #EXTINF:0,Rogers Sportsnet One
 rtmp://31.220.0.195:80/live playpath=sn1 swfUrl=http://flashtv.co/ePlayerr.swf pageUrl=http://flashtv.co/embedu.php?live=sn1&vw=620&vh=490 token=%ZZri(nKa@#Z
-
-#EXTINF:0,Rogers Sportsnet East
-
-
-#EXTINF:0,Rogers Sportsnet Pacific
-
-
-#EXTINF:0,Rogers Sportsnet West
-
-
-#EXTINF:0,Rogers Sportsnet Extra
-
 
 #EXTINF:0,Rogers Sportsnet Ontario
 rtmp://31.220.0.195:80/live/ playpath=snon token=%ZZri(nKa@#Z swfUrl=http://www.flashtv.co/ePlayerr.swf live=1 timeout=13 pageUrl=http://www.flashtv.co/ AnisotropicTV
@@ -191,9 +164,6 @@ rtmp://streamer.a1.net:1935/rtmplive/redundant/channels/Sporttime/SporttimeTV/mp
 #EXTINF:0,SportTime Tv
 rtmp://streamer.a1.net:1935/rtmplive/redundant/channels/Sporttime/SporttimeTV/mp4:channel7_800
 
-#EXTINF:0,TEN Cricket 
-
-
 #EXTINF:0,Trace Sports
 rtsp://46.249.213.87/broadcast/tracetvsports-tablet.3gp
 
@@ -203,17 +173,8 @@ rtmpe://46.246.124.27:1935/live/tsn1 playpath=tsn1 swfUrl=http://p.jwpcdn.com/6/
 #EXTINF:0,TSN 2
 rtmp://31.220.0.195:80/live playpath=tsnx2 live=1 pageUrl=http://www.flashtv.co/Vd?u#bt!25 token=%ZZri(nKa@#Z timeout=15
 
-#EXTINF:0,TNA Wrestling
-
-
-#EXTINF:0,UFC Next
-
-
 #EXTINF:0,Viasat Sport
 http://80.77.52.6:4444www.tvonlinestreams.com/udp/230.0.3.58:12345
-
-#EXTINF:0,Willow Cricket
-
 
 #EXTINF:0,WWE Network
 rtmpe://46.246.124.87:1935/live/ playpath=wweell swfUrl=http://prvservers.com/j/jwplayer.flash.swf pageUrl=http://prvservers.com/ token=#yw%tt#w@kku
