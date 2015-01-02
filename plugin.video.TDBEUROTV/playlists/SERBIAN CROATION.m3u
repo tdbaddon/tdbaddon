@@ -23,6 +23,9 @@ rtmp://194.249.141.146:443/live/bktv
 #EXTINF:0,CETV
 http://213.81.153.221:8080/cetv
 
+#EXTINF:0,Cinemax
+http://213.81.153.221:8080/trnava
+
 #EXTINF:0,CMC
 http://83.139.104.123/Content/HLS/Live/Channel(cmc)/Stream(03)/index.m3u8
 
@@ -104,9 +107,6 @@ http://83.139.104.123/Content/HLS/Live/Channel(klasik_tv)/Stream(03)/index.m3u8
 #EXTINF:0,Leskovac TV
 http://5.153.25.7:8081/stream/?channel=tvleskovac&stream=1mb
 
-#EXTINF:0,Mediaset IT
-http://83.139.104.123/Content/HLS/Live/Channel(mediaset_italia)/Stream(03)/index.m3u8
-
 #EXTINF:0,Media Travel
 http://83.139.104.123/Content/HLS/Live/Channel(mediatravel)/Stream(03)/index.m3u8
 
@@ -119,10 +119,7 @@ http://83.139.104.123/Content/HLS/Live/Channel(mrezaZG)/Stream(03)/index.m3u8
 #EXTINF:0,Nardona TV
 http://83.139.104.123/Content/HLS/Live/Channel(narodna_tv)/Stream(03)/index.m3u8
 
-#EXTINF:0,Net TV Info
-http://5.153.25.7:8081/stream/?channel=nettvinfo&stream=1mb
-
-#EXTINF:0,Nova TV Pula
+#EXTINF:0,Nova TV
 http://83.139.104.123/Content/HLS/Live/Channel(tv_nova)/Stream(03)/index.m3u8
 
 #EXTINF:0,Novosadska TV
@@ -158,7 +155,7 @@ http://on108.setplex.net/fastv_2psh/Pink3global_rly_greece_109/hasbahca.m3u8
 #EXTINF:0,Pink Action 2
 http://on108.setplex.net/fastv_2psh/PinkAction2global_rly_greece_103/hasbahca.m3u8
 
-#EXTINF:0,Pink Folk
+#EXTINF:0,Pink Folk 1
 http://on108.setplex.net/fastv_2psh/PinkFolk1global_rly_greece_103/hasbahca.m3u8
 
 #EXTINF:0,Pink Horror
@@ -176,7 +173,7 @@ http://on108.setplex.net/fastv_2psh/PinkMglobal_rly_greece_109/hasbahca.m3u8
 #EXTINF:0,Pink Movies 3
 http://on108.setplex.net/fastv_2psh/PinkMovies3global_rly_greece_109/hasbahca.m3u8
 
-#EXTINF:0,Pink Music 1
+#EXTINF:0,Pink Music
 http://on108.setplex.net/fastv_2psh/PinkMusicglobal_rly_greece_103/hasbahca.m3u8
 
 #EXTINF:0,Pink Music 2
@@ -209,32 +206,29 @@ http://on108.setplex.net/fastv_2psh/PinkZabavaglobal_rly_greece_103/hasbahca.m3u
 #EXTINF:0,PTC
 http://4.31.30.135:1935/st3fstv/10ios_RTS1_4245875/playlist.m3u8
 
-#EXTINF:0,PTC Rts
+#EXTINF:0,PTC
 rtsp://195.252.113.40/rts
 
-#EXTINF:0,PTC Sat
+#EXTINF:0,PTC
+rtsp://rts.videostreaming.rs/rts/video
+
+#EXTINF:0,PTC
 rtsp://195.252.113.43/rts
 
 #EXTINF:0,RTB TV
 http://83.139.104.123/Content/HLS/Live/Channel(rtb_tv)/Stream(03)/index.m3u8
 
-#EXTINF:0,RTL
+#EXTINF:0,RTL Televizija
 http://83.139.104.123/Content/HLS/Live/Channel(rtl_televizija)/Stream(03)/index.m3u8
 
-#EXTINF:0,RTL Croatia
+#EXTINF:0,RTL Televizija
 rtmp://178.218.162.146/918829941/rtl1.stream
 
-#EXTINF:0,RTL Kockica
+#EXTINF:0,RTL Televizija
 http://83.139.104.123/Content/HLS/Live/Channel(rtl_kockica)/Stream(03)/index.m3u8
 
 #EXTINF:0,RTL Plus
 http://83.139.104.123/Content/HLS/Live/Channel(rtlplus)/Stream(03)/index.m3u8
-
-#EXTINF:0,Rts Sat
-rtsp://rts.videostreaming.rs/rts/video
-
-#EXTINF:0,Rts Sat
-rtsp://195.252.113.43/rts
 
 #EXTINF:0,RTV Krea
 http://213.81.153.221:8080/galanta
@@ -257,13 +251,16 @@ http://83.139.104.123/Content/HLS/Live/Channel(srce_tv)/Stream(03)/index.m3u8
 #EXTINF:0,STV1
 http://88.212.10.27:81/streams/stv1.m3u8
 
+#EXTINF:0,STV1
+mms://89.201.164.181/stv
+
 #EXTINF:0,STV2
 http://88.212.10.27:81/streams/stv2.m3u8
 
 #EXTINF:0,Student Televizija
 rtmp://213.202.73.202/iskon/studentska_b3.stream
 
-#EXTINF:0,Supersonic TV
+#EXTINF:0,STV
 rtmp://str103.setplex.net:1935/228/stv_online
 
 #EXTINF:0,TA3
@@ -272,17 +269,11 @@ http://88.212.10.27:81/streams/ta3.m3u8
 #EXTINF:0,Tera TV
 mms://62.162.58.55/TVTera
 
-#EXTINF:0,Trnava
-http://213.81.153.221:8080/trnava
-
 #EXTINF:0,TV CG
 mms://beotelmedia.beotel.net/tvcg
 
 #EXTINF:0,TV Istra
 http://83.139.104.123/Content/HLS/Live/Channel(tv_istra)/Stream(03)/index.m3u8
-
-#EXTINF:0,TV Osijek
-mms://89.201.164.181/stv
 
 #EXTINF:0,Varazdiska TV
 http://83.139.104.123/Content/HLS/Live/Channel(VTV_varazdin)/Stream(03)/index.m3u8
