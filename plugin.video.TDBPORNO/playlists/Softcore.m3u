@@ -16,9 +16,6 @@ rtsp://46.249.213.87/broadcast/bellaluz-tablet.3gp
 #EXTINF:0,ButGo
 rtmp://lm07.everyon.tv/ptv7/phd772
 
-#EXTINF:0,Fuego TV
-rtmp://vs2.streamcaster.net/fuego_live/fuego
-
 #EXTINF:0,Honey
 rtmp://lm07.everyon.tv:1935/ptv7/phd63
 
@@ -55,14 +52,11 @@ rtmp://lm07.everyon.tv/ptv7/phd60
 #EXTINF:0,Korea The O
 rtmp://lm07.everyon.tv/ptv7/phd771
 
-#EXTINF:0,LiveTing TV
-rtmp://lm07.everyon.tv:1935/ptv7/phd1006
-
 #EXTINF:0,Midnight
 rtmp://lm07.everyon.tv/ptv7/phd10766
 
 #EXTINF:0,O La La
-http://hlsstr01.svc.iptv.rt.ru/hls/CH_OLALA/bw480000/playlist.m3u8?utcstart=1419753003.5016592
+
 
 #EXTINF:0,Okdai
 rtmp://lm07.everyon.tv/ptv7/phd61
@@ -71,16 +65,13 @@ rtmp://lm07.everyon.tv/ptv7/phd61
 rtmp://lm07.everyon.tv/ptv7/phd10927
 
 #EXTINF:0,Playboy TV
-rtmp://lm07.everyon.tv/ptv7/phd10497
-
-#EXTINF:0,Playboy TV
 rtmp://lm07.everyon.tv/ptv7/phd499
 
 #EXTINF:0,Playboy TV
-http://109.248.66.145:5555/udp/239.195.2.5:1234
+rtmp://lm07.everyon.tv/ptv7/phd10497
 
 #EXTINF:0,Russian Night
-http://46.181.237.75:1234/udp/239.255.42.218:1234
+
 
 #EXTINF:0,Sex Ed
 rtmp://lm07.everyon.tv/ptv7/phd511

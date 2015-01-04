@@ -17,6 +17,9 @@ http://video2.earthcam.com/fecnetwork/lacitytours1.flv/hasbahca.m3u8
 #EXTINF:0,Las Vegas Nevada
 http://video2.earthcam.com/fecnetwork/eclasvegas.flv/hasbahca.m3u8
 
+#EXTINF:0,Macedonia Bitola
+rtsp://62.162.58.55/KameraBitola
+
 #EXTINF:0,Niagra Falls
 mms://webcams.niagarafallshotels.com/CNH-Stream2
 

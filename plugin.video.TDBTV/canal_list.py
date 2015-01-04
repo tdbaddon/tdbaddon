@@ -331,7 +331,7 @@ dc={
 "cmc california music channel" : "329",
 "cmc country" : "330",
 "nick jr" : "331",
-"0000000000000000000000000" : "332",
+"macedonia bitola" : "332",
 "xtreme impacts" : "333",
 "tsn 2" : "334",
 "racing uk" : "335",

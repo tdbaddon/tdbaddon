@@ -32,6 +32,9 @@ http://46.249.213.93/iPhone/broadcast/bikinihotties-tablet.3gp/bikinihotties-tab
 #EXTINF:0,College Hotties
 
 
+#EXTINF:0,Fuego TV
+rtmp://vs2.streamcaster.net/fuego_live/fuego
+
 #EXTINF:0,Fundorado TV
 rtmp://streaming.fundorado.com:80/fundoradotv/live.stream
 
@@ -48,6 +51,9 @@ trackingid=3641590000&os=desktop
 #EXTINF:0,Hooters Calender Girls
 
 
+#EXTINF:0,LiveTing TV
+rtmp://lm07.everyon.tv:1935/ptv7/phd1006
+
 #EXTINF:0,Miami TV
 
 
@@ -59,9 +65,6 @@ trackingid=3641590000&os=desktop
 
 #EXTINF:0,SexySat
 rtmp://81.89.48.215/xyz999wkz/sexysat.stream_360p
-
-#EXTINF:0,SexySat
-rtmp://81.89.48.215/xyz999wkz/ playpath=sexysat.stream swfUrl=http://ero-tv.org/jwplayer/jwplayer.flash.swf live=1pageUrl=http://ero-tv.org/sexysat-tv_online/
 
 #EXTINF:0,Visit X
 rtmp://194.116.150.47/live/visitx.stream1

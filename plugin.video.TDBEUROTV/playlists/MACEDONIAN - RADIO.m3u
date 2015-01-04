@@ -1,0 +1,93 @@
+﻿#EXTM3U
+#EXTINF:0,
+
+
+#EXTINF:0,Aleksandar Makedonski Kicevo
+http://ss1.mk.checast.com:21294/48.aac
+
+#EXTINF:0,City Radio Skopje
+http://ss1.mk.checast.com:21306/48.aac
+
+#EXTINF:0,City Radio Skopje
+rtmp://off.net.mk/radio/city.stream
+
+#EXTINF:0,Club FM Skopje
+http://ss1.mk.checast.com:21308/48.aac
+
+#EXTINF:0,Club FM Skopje
+rtmp://off.net.mk/radio/club.stream
+
+#EXTINF:0,Folk Radio Skopje
+http://ss1.mk.checast.com:9000/folkradio.aac?1420344327595.aac
+
+#EXTINF:0,Folk Radio Skopje
+rtmp://off.net.mk/radio/folk.stream
+
+#EXTINF:0,Kanal 77 Bitola
+http://ss1.mk.checast.com:9002/live.
+
+#EXTINF:0,Kanal 77 Bitola
+rtmp://off.net.mk/radio/kanal77.stream
+
+#EXTINF:0,Ohrid 24
+http://ss1.mk.checast.com:21090/live
+
+#EXTINF:0,Radio 105 Bitola
+http://radio105.makbots.com:21010/
+
+#EXTINF:0,Radio 105 Bitola
+http://streaming.makbots.com:21010/;
+
+#EXTINF:0,Radio 5 Veles
+http://5fm.com.mk:8011/
+
+#EXTINF:0,Radio Bubamara Skopje
+http://217.16.69.17:8000/bubamara.mp3
+
+#EXTINF:0,Radio Bubamara Skopje
+rtmp://off.net.mk/radio/bubamara.stream
+
+#EXTINF:0,Radio Delfin Bitola
+http://ss1.mk.checast.com:21110/live?1420343256204.aac
+
+#EXTINF:0,Radio Fortuna Skopje
+http://50.7.129.122:8497/;?1420340858258.mp3
+
+#EXTINF:0,Radio Fortuna Skopje
+rtmp://off.net.mk/radio/fortuna.stream
+
+#EXTINF:0,Radio Kometa Gostivar
+http://ss1.mk.checast.com:21070/48.aac
+
+#EXTINF:0,Radio Kavadarci Tikves
+http://217.115.140.23:8010/kavadarci
+
+#EXTINF:0,Radio Lav Ohrid
+http://ss1.mk.checast.com:21080/live?1420340085574.aac
+
+#EXTINF:0,Radio Medison Kicevo
+http://ss1.mk.checast.com:21300/live?1420340187325.aac
+
+#EXTINF:0,Radio Meff Prilep
+http://ss1.mk.checast.com:21084/live
+
+#EXTINF:0,Radio Meff Prilep
+http://5.35.251.86:18002/;
+
+#EXTINF:0,Radio Rosa Skopje
+rtmp://off.net.mk/radio/rosa.stream
+
+#EXTINF:0,Sky Radio Skopje
+http://89.205.123.70:8002/
+
+#EXTINF:0,Sky Radio Skopje
+http://ss1.mk.checast.com:21304/48.aac
+
+#EXTINF:0,Time FM Gevgelija
+http://ss1.mk.checast.com:21102/live
+
+#EXTINF:0,Time FM Gevgelija
+rtmp://off.net.mk/radio/time.stream
+
+#EXTINF:0,Zona M1 Skopje
+rtmp://off.net.mk/radio/zonam1.stream
