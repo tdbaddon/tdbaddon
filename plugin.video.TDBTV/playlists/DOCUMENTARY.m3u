@@ -38,10 +38,7 @@ http://202.75.23.34/live/ch32/01.m3u8
 http://202.75.23.34/live/ch32/03.m3u8
 
 #EXTINF:0,Discovery Science
-http://202.75.23.34/live/ch33/01.m3u8
 
-#EXTINF:0,Discovery Science
-http://202.75.23.34:1400/live/ch33/03.m3u8
 
 #EXTINF:0,Discovery Turbo
 

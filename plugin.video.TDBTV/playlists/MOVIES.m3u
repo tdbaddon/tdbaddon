@@ -53,7 +53,7 @@ http://202.75.23.35/live/ch40/01.m3u8
 
 
 #EXTINF:0,Pink Action 1
-http://on108.setplex.net/fastv_2psh/PinkActionglobal_rly_greece_109/playlist.m3u8
+
 
 #EXTINF:0,Pink Action 2
 http://on108.setplex.net/fastv_2psh/PinkAction2global_rly_greece_103/hasbahca.m3u8
@@ -78,9 +78,6 @@ http://on108.setplex.net/fastv_2psh/PinkPremiumglobal_rly_greece_103/playlist.m3
 
 #EXTINF:0,Showtime
 rtmpe://46.246.124.87:1935/live/show99 playpath=show99 swfUrl=http://p.jwpcdn.com/6/8/jwplayer.flash.swf pageUrl=http://prvservers.com/embed2.php?u=show99&vw=620&vh=470&domain=usachannels.tv token=#yw%tt#w@kku
-
-#EXTINF:0,Showtime
-rtmpe://46.246.124.93:1935/live/ playpath=show99 pageUrl=http://www.hdcast.org/ token=#yw%tt#w@kku timeout=10
 
 #EXTINF:0,Sky 1
 
