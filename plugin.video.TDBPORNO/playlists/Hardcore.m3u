@@ -11,6 +11,9 @@ mmsh://tv.webmisto.cz:7000
 #EXTINF:0,Brazzers TV Europe
 http://94.140.208.90:8888/udp/239.195.2.4:1234 
 
+#EXTINF:0,Brazzers TV Europe
+http://80.87.146.133:1111/udp/239.195.2.4:1234
+
 #EXTINF:0,Bunga Bunga
 http://84.22.33.3:8066
 
@@ -36,7 +39,7 @@ http://188.165.220.116:8081/str/ru/playlist.m3u8
 
 
 #EXTINF:0,Redlight Central
-
+http://playback.d2see.com/wavemachine-live01/playboytv_channel1/playlist.m3u8
 
 #EXTINF:0,Redlight Premium 
 

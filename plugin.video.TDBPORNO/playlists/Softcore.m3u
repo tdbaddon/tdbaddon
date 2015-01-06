@@ -16,11 +16,20 @@ rtsp://46.249.213.87/broadcast/bellaluz-tablet.3gp
 #EXTINF:0,ButGo
 rtmp://lm07.everyon.tv/ptv7/phd772
 
+#EXTINF:0,Fetish Woman
+rtmp://lm01.everyon.tv:1935/ptv/phd992
+
+#EXTINF:0,Fetish Woman
+rtmp://lm01.everyon.tv/ptv/phd968
+
 #EXTINF:0,Honey
 rtmp://lm07.everyon.tv:1935/ptv7/phd63
 
 #EXTINF:0,Korea 18+
 rtmp://lm07.everyon.tv/ptv7/phd1005
+
+#EXTINF:0,Korea 18+
+rtmp://lm07.everyon.tv/ptv7/pld1005
 
 #EXTINF:0,Korea Delight Empire
 rtmp://lm07.everyon.tv/ptv7/phd63
@@ -49,6 +58,9 @@ rtmp://lm07.everyon.tv/ptv7/phd769
 #EXTINF:0,Korea Red On
 rtmp://lm07.everyon.tv/ptv7/phd60
 
+#EXTINF:0,Korea Red On
+rtmp://lm07.everyon.tv/ptv7/pld60
+
 #EXTINF:0,Korea The O
 rtmp://lm07.everyon.tv/ptv7/phd771
 
@@ -56,7 +68,10 @@ rtmp://lm07.everyon.tv/ptv7/phd771
 rtmp://lm07.everyon.tv/ptv7/phd10766
 
 #EXTINF:0,O La La
+http://hlsstr01.svc.iptv.rt.ru/hls/CH_OLALA/bw1500000/playlist.m3u8?utcstart=1420528587.3644235
 
+#EXTINF:0,Ohdeok 942
+rtmp://lm01.everyon.tv:1935/ptv/phd993
 
 #EXTINF:0,Okdai
 rtmp://lm07.everyon.tv/ptv7/phd61
@@ -73,8 +88,14 @@ rtmp://lm07.everyon.tv/ptv7/phd10497
 #EXTINF:0,Playboy TV
 http://94.140.208.90:8888/udp/239.195.2.5:1234 
 
+#EXTINF:0,Playboy TV
+http://80.87.146.133:1111/udp/239.195.2.5:1234
+
 #EXTINF:0,Russian Night
 http://94.140.208.90:8888/udp/239.195.2.3:1234
+
+#EXTINF:0,Russian Night
+http://95.170.186.178:7781/udp/239.255.4.2:1234
 
 #EXTINF:0,Sex Ed
 rtmp://lm07.everyon.tv/ptv7/phd511
