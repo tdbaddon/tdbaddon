@@ -168,7 +168,7 @@ rtmp://streamer.a1.net:1935/rtmplive/redundant/channels/Sporttime/SporttimeTV/mp
 rtsp://46.249.213.87/broadcast/tracetvsports-tablet.3gp
 
 #EXTINF:0,TSN 1
-
+rtmp://31.204.154.78:443/liverepeater playpath=183106 swfUrl=http://bernardotv.club/atdedead.swf pageUrl=http://biggestplayer.me/streamcr.php?id=183106&width=620&height=490 token=#atd%#$ZH
 
 #EXTINF:0,TSN 2
 rtmp://31.220.0.195:80/live playpath=tsnx2 live=1 pageUrl=http://www.flashtv.co/Vd?u#bt!25 token=%ZZri(nKa@#Z timeout=15
