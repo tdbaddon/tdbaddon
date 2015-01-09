@@ -30,6 +30,12 @@ rtmp://80.82.64.140:443/liverepeater playpath=15 live=1 pageUrl=http://popeofthe
 rtmp://204.107.26.145:1935/live/295.low.stream
 
 #EXTINF:0,ESPN
+rtmp://207.244.67.7/iguide/mvu912lm6c5dzz6 playpath=rtmp://93.174.95.125:1935/edge/_definst_/dp2g1w4ip6v0zoc swfUrl=http://www.iguide.to/player/secure_player_iguide_embed_token.swf live=1 pageUrl=http://www.iguide.to/ token=#ed%h0#w18623jsda6523lDGDHur
+
+#EXTINF:0,ESPN
+http://200.76.77.237/LIVE/H01/CANAL516/PROFILE03.m3u8?
+
+#EXTINF:0,ESPN
 rtmp://80.82.78.87:443/liverepeater/ playpath=26 token=#atd%#$ZH swfUrl=http://popeoftheplayers.pw/atdedead.swf live=1 timeout=13 pageUrl=http://popeoftheplayers.pw/ AnisotropicTV
 
 #EXTINF:0,ESPN
@@ -39,10 +45,16 @@ http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=390&lan=2&rows=
 rtmp://rtmp.zerocast.tv:1935/live playpath=YEZib0gVfqaDdaFn9MQ9 swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
 
 #EXTINF:0,ESPN
+http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=389&lan=2&rows=40&f=.m3u8
+
+#EXTINF:0,ESPN
 rtmp://31.204.154.26:443/liverepeater playpath=183701 swfUrl=http://bernardotv.club/atdedead.swf pageUrl=http://biggestplayer.me/streamcr.php?id=183701&width=620&height=490 token=#atd%#$ZH
 
 #EXTINF:0,ESPN 2
 rtmp://31.204.154.15:443/liverepeater playpath=183211 swfUrl=http://bernardotv.club/atdedead.swf pageUrl=http://biggestplayer.me/streamcr.php?id=183211&width=620&height=490 token=#atd%#$ZH
+
+#EXTINF:0,ESPN 2
+rtmp://207.244.67.7/iguide/mvu912lm6c5dzz6 playpath=rtmp://93.174.95.125:1935/edge/_definst_/rgyus7ao2ullmbt swfUrl=http://www.iguide.to/player/secure_player_iguide_embed_token.swf live=1 pageUrl=http://www.iguide.to/ token=#ed%h0#w18623jsda6523lDGDHur
 
 #EXTINF:0,Eurosport
 http://83.139.104.123/Content/HLS/Live/Channel(eurosport)/Stream(03)/index.m3u8
@@ -75,7 +87,10 @@ rtmp://mi2.gv.filmon.com:8086/live/262.high.stream
 rtmp://rtmp.zerocast.tv:1935/live playpath=5S7VAxdgbnpjSPB1pUkk swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf pageUrl=http://zerocast.tv/ flashver=WIN\202012,0,0,77 token=8964316ec8772dfa timeout=10
 
 #EXTINF:0,NBC Golf 
+http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/2596k/prog.m3u8|X-Forwarded-For=209.239.112.104
 
+#EXTINF:0,NBC Golf
+rtmp://207.244.67.7/iguide/mvu912lm6c5dzz6 playpath=rtmp://93.174.95.125:1935/edge/_definst_/lw1kufim1kmit1h swfUrl=http://www.iguide.to/player/secure_player_iguide_embed_token.swf live=1 pageUrl=http://www.iguide.to/ token=#ed%h0#w18623jsda6523lDGDHur
 
 #EXTINF:0,NBCSN
 rtmpe://46.246.124.31:1935/live/nbcsn0 playpath=nbcsn0 swfUrl=swfUrl=http://p.jwpcdn.com/6/8/jwplayer.flash.swf pageUrl=http://prvservers.com/embed2.php?u=nbcsn0&vw=620&vh=470&domain=usachannels.tv token=#yw%tt#w@kku
@@ -107,7 +122,7 @@ http://xrxs.net/video/live-p12oreg-4728.m3u8
 #EXTINF:0,PAC Sports Washington
 http://xrxs.net/video/live-p12wash-4728.m3u8
 
-#EXTINF:0,Premier 
+#EXTINF:0,Premier Sports
 rtmpe://46.246.124.29:1935/live/spremsp playpath=spremsp swfUrl=http://p.jwpcdn.com/6/8/jwplayer.flash.swf pageUrl=http://www.hdcast.org/embedlive4.php?u=spremsp&vw=640&vh=400&domain=www.streamking.info token=#yw%tt#w@kku
 
 #EXTINF:0,Racing UK 
