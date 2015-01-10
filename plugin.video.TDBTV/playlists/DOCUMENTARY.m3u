@@ -25,9 +25,6 @@ http://202.75.23.34:1400/live/ch29/02.m3u8
 #EXTINF:0,Discovery History
 
 
-#EXTINF:0,Discovery Home And Health
-http://202.75.23.34/live/ch34/01.m3u8
-
 #EXTINF:0,Discovery Investigation
 rtmpe://46.246.29.154:1935/live/ playpath=rtmp://93.174.95.125:1935/edge/_definst_/yjma618cibkqxeo pageUrl=http://www.hdcast.org/ token=#yw%tt#w@kku timeout=10
 
@@ -52,6 +49,9 @@ http://202.75.23.34/live/ch30/01.m3u8
 #EXTINF:0,Escapes
 rtmp://204.107.26.252:8086/live/341.high.stream
 
+#EXTINF:0,EVE
+http://202.75.23.34/live/ch34/01.m3u8
+
 #EXTINF:0,FYI
 
 
@@ -60,9 +60,6 @@ rtmpe://46.246.29.154:1935/live/ playpath=rtmp://93.174.95.125:1935/edge/_defins
 
 #EXTINF:0,Landscape
 http://130.88.20.233:1237/test.flv
-
-#EXTINF:0,Marijuana TV
-rtmpe://46.246.29.154:1935/live/ playpath=rtmp://93.174.95.125:1935/edge/_definst_/bncy42xy2eip89d pageUrl=http://www.hdcast.org/ token=#yw%tt#w@kku timeout=10
 
 #EXTINF:0,NASA TV
 http://public.infozen.cshls.lldns.net/infozen/public/public.m3u8
@@ -80,7 +77,7 @@ http://202.75.23.35/live/ch39/01.m3u8
 http://202.75.23.35/live/ch38/03.m3u8
 
 #EXTINF:0,Science Channel
-rtmpe://46.246.29.154:1935/live/ playpath=rtmp://93.174.95.125:1935/edge/_definst_/00t250wv1d4ltib pageUrl=http://www.hdcast.org/ token=#yw%tt#w@kku timeout=10
+rtmp://207.244.67.7/iguide/mvu912lm6c5dzz6 playpath=rtmp://93.174.95.125:1935/edge/_definst_/00t250wv1d4ltib swfUrl=http://www.iguide.to/player/secure_player_iguide_embed_token.swf live=1 pageUrl=http://www.iguide.to/ token=#ed%h0#w18623jsda6523lDGDHur timeout=10
 
 #EXTINF:0,Travel Channel
 http://83.139.104.123/Content/HLS/Live/Channel(travel_channel)/Stream(03)/index.m3u8
