@@ -21,7 +21,7 @@ http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=109&lan=2&rows=
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=129&lan=2&rows=40&f=.m3u8
 
 #EXTINF:0,BBC 2
-
+http://198.179.30.109/live/25.high.stream/playlist.m3u8?id=0ad5aac39bb13fbe05a5a3379ee5065d152691a11e427e5f7ad1bae1fbd42a0f9022a4e1b6a5b2a6a16f7f9b48dc362fa4bc1f20911b4cf80c9b7b0e9192d6175e6f768295151cf933888d6a3e0d7d7ef88f95b7aa78dfcda100d48b2f37ceadf46428cfea43e360d31f4e5e93eaf889b74cdd8c216582ccf884ebee76fc60e029fba4c825087d02adcf98878f4c38a764a78fda3dee5184
 
 #EXTINF:0,BET
 rtmp://207.244.67.7/iguide/mvu912lm6c5dzz6 playpath=rtmp://93.174.95.125:1935/edge/_definst_/kexkxje3nqi6dtl swfUrl=http://www.iguide.to/player/secure_player_iguide_embed_token.swf live=1 pageUrl=http://www.iguide.to/ token=#ed%h0#w18623jsda6523lDGDHur timeout=10
@@ -36,7 +36,7 @@ rtmp://207.244.67.7/iguide/mvu912lm6c5dzz6 playpath=rtmp://93.174.95.125:1935/ed
 rtmp://rtmp.zerocast.tv:1935/live playpath=Ger61uLQ4fedzvjRjrB7 swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
 
 #EXTINF:0,CBS Drama
-
+http://198.179.30.110/live/1805.high.stream/playlist.m3u8?id=0ad5aac39bb13fbee700732dee8113d3f6e4a84c96be23fdc52174701414fc58b0f5741a1d873c7fa4e91ea0d73f45912fd29de8727529f8f86522f37e23a9a76f12bd7ad1b41d953a6075b42fcbaae97c23af6e1c7b6056b25115ee1c507a4cbad197cd3f32341cf3caac308c8f605c50b6a55fd887c10f8ebc03cc1837485dee3755531cbf50f1cb5129c418529abc2ffb82f323a9b44d
 
 #EXTINF:0,CBS Reality
 http://83.139.104.123/Content/HLS/Live/Channel(cbs_reality)/Stream(03)/index.m3u8?b?b*t$
