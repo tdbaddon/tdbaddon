@@ -11,7 +11,7 @@ http://202.75.23.34/live/ch31/01.m3u8
 http://83.139.104.123/Content/HLS/Live/Channel(animal_planet)/Stream(03)/index.m3u8
 
 #EXTINF:0,Crime Investigation
-
+http://202.75.23.36/live/ch47/01.m3u8 
 
 #EXTINF:0,Discovery Channel
 http://202.75.23.34/live/ch29/03.m3u8
@@ -52,6 +52,8 @@ rtmp://204.107.26.252:8086/live/341.high.stream
 #EXTINF:0,EVE
 http://202.75.23.34/live/ch34/01.m3u8
 
+#EXTINF:0,EVE
+http://202.75.23.34:1400/live/ch34/01.m3u8 
 #EXTINF:0,FYI
 
 

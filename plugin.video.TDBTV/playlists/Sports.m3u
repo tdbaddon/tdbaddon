@@ -10,6 +10,7 @@ http://bigten247.cdnak.bigtenhd.neulion.com/nlds/btn2go/btnnetwork/as/live/btnne
 
 #EXTINF:0,Box Nation
 
+
 #EXTINF:0,CBS Sports
 rtmp://207.244.67.7/iguide/mvu912lm6c5dzz6 playpath=rtmp://93.174.95.125:1935/edge/_definst_/vp4q2gonwzh2dku swfUrl=http://www.iguide.to/player/secure_player_iguide_embed_token.swf live=1 pageUrl=http://www.iguide.to/ token=#ed%h0#w18623jsda6523lDGDHur timeout=10
 
@@ -44,8 +45,8 @@ rtmp://207.244.67.7/iguide/mvu912lm6c5dzz6 playpath=rtmp://93.174.95.125:1935/ed
 #EXTINF:0,ESPN 2
 rtmp://31.204.154.15:443/liverepeater playpath=183211 swfUrl=http://bernardotv.club/atdedead.swf pageUrl=http://biggestplayer.me/streamcr.php?id=183211&width=620&height=490 token=#atd%#$ZH
 
-#EXTINF:0,Eurosport
-
+#EXTINF:0,Eurosport 1
+http://83.139.104.123/Content/HLS/Live/Channel(eurosport)/Stream(03)/index.m3u8
 
 #EXTINF:0,Eurosport 1
 http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_1000.m3u8
@@ -120,7 +121,7 @@ rtmpe://46.246.124.29:1935/live/spremsp playpath=spremsp swfUrl=http://p.jwpcdn.
 rtmp://rrbalancer.broadcast.tneg.de:1935/pw/ruk/ playpath=ruk swfUrl=http://pferdewetten.broadcast.tneg.de/jwplayer/player.swf live=1 pageUrl=http://pferdewetten.broadcast.tneg.de/jwplayer/player.php?type=live&stream=ruk1&token=ccf6c54e62bc5bd667661d5af5d61e8664c75b11
 
 #EXTINF:0,Rogers Sportsnet One
-
+rtmp://178.18.31.55:443/liverepeater playpath=184290 swfUrl=http://bernardotv.club/atdedead.swf pageUrl=http://biggestplayer.me/streamcr.php?id=184290&width=620&height=490 token=#atd%#$ZH
 
 #EXTINF:0,Rogers Sportsnet Ontario
 rtmp://31.204.154.26:443/liverepeater playpath=183640 swfUrl=http://bernardotv.club/atdedead.swf pageUrl=http://biggestplayer.me/streamcr.php?id=183640&width=620&height=490 token=#atd%#$ZH
@@ -177,7 +178,7 @@ rtmp://streamer.a1.net:1935/rtmplive/redundant/channels/Sporttime/SporttimeTV/mp
 rtsp://46.249.213.87/broadcast/tracetvsports-tablet.3gp
 
 #EXTINF:0,TSN 1
-
+rtmp://178.18.31.64:443/liverepeater playpath=184403 swfUrl=http://bernardotv.club/atdedead.swf pageUrl=http://biggestplayer.me/streamcr.php?id=184403&width=620&height=490 token=#atd%#$ZH
 
 #EXTINF:0,TSN 2
 rtmp://31.220.0.195:80/live playpath=tsnx2 live=1 pageUrl=http://www.flashtv.co/Vd?u#bt!25 token=%ZZri(nKa@#Z timeout=15
@@ -186,7 +187,7 @@ rtmp://31.220.0.195:80/live playpath=tsnx2 live=1 pageUrl=http://www.flashtv.co/
 http://80.77.52.6:4444www.tvonlinestreams.com/udp/230.0.3.58:12345
 
 #EXTINF:0,WWE Network
-rtmp://207.244.67.7/iguide/mvu912lm6c5dzz6 playpath=rtmp://93.174.95.125:1935/edge/_definst_/0i6e1w2q4non031 swfUrl=http://www.iguide.to/player/secure_player_iguide_embed_token.swf live=1 pageUrl=http://www.iguide.to/ token=#ed%h0#w18623jsda6523lDGDHur
+
 
 #EXTINF:0,Xtreme Impacts
 http://46.249.213.93/iPhone/broadcast/xtremeimpacts-tablet.3gp/xtremeimpacts-tablet.3gp-mr647k.m3u8

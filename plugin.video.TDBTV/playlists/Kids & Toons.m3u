@@ -1,6 +1,13 @@
 ﻿#EXTM3U
 #EXTINF:0,
 
+
+#EXTINF:0,Adventure Time
+rtmp://62.210.76.216/live playpath=adventure swfUrl=http://releases.flowplayer.org/5.5.1/flowplayer.swf pageUrl=http://www.stream4free.eu/adventure-time
+
+#EXTINF:0,Aqua Teen Hunger Force
+rtmp://62.210.76.216/live playpath=aquasx swfUrl=http://releases.flowplayer.org/5.5.1/flowplayer.swf live=1 pageUrl=http://www.stream4free.eu/aqua-teen-hunger-force
+
 #EXTINF:0,Baby First
 http://202.75.23.33/live/ch27/03.m3u8
 

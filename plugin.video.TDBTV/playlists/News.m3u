@@ -13,9 +13,6 @@ http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/bbc_world/ls_satlink/b_828.m3u8
 #EXTINF:0,BBC World News
 http://93.184.221.133/hls-live/20C1A9/bbc_world/ls_satlink/b_828.m3u8
 
-#EXTINF:0,Bloomberg
-
-
 #EXTINF:0,Bloomberg TV
 http://btv-i.akamaihd.net/hls/live/202760-b/btvusa_ios/P1/M12K.m3u8
 
@@ -49,6 +46,9 @@ http://bcoveliveios-i.akamaihd.net/hls/live/215102/master_english/398/master.m3u
 #EXTINF:0,MSNBC
 rtmp://c.cdn.livenewschat.eu/edge playpath=msnbc_live swfUrl=http://msnbclive.eu/player.swf swfVfy=1 live=1 pageUrl=http://weplaylive.tv timeout=15
 
+#EXTINF:0,NHK World
+http://nhkworld-hds-live1.hds1.fmslive.stream.ne.jp/hls-live/nhkworld-hds-live1/_definst_/livestream/nhkworld-live-512.m3u8 
+
 #EXTINF:0,Pentagon Channel
 http://149.11.34.6:1935/live/pentagon.stream/playlist.m3u8?wowzasessionid=750145898
 
@@ -58,11 +58,23 @@ rtmp://204.107.26.252:8086/live/905.high.stream
 #EXTINF:0,Press TV
 rtmp://mtv.fms-01.visionip.tv/live/mtv-ptv-live-25f-16x9-SDh
 
-#EXTINF:0,RT News
+#EXTINF:0,RT News America
+http://odna.octoshape.net/f3f5m2v4/cds/ch4_auto.smil/playlist.m3u8
+
+#EXTINF:0,RT News America
 http://odna.octoshape.net/f3f5m2v4/cds/ch4_720p/playlist.m3u8
 
-#EXTINF:0,RT News
+#EXTINF:0,RT News America
 http://odna.octoshape.net/f3f5m2v4/cds/ch4_320p/blizznow.m3u8
+
+#EXTINF:0,RT News Global
+http://odna.octoshape.net/f3f5m2v4/cds/ch1_auto.smil/playlist.m3u8 
+
+#EXTINF:0,RT News UK
+http://odna.octoshape.net/f3f5m2v4/cds/ch6_auto.smil/playlist.m3u8 
+
+#EXTINF:0,RT News Documentary
+http://odna.octoshape.net/f3f5m2v4/cds/ch5_auto.smil/playlist.m3u8 
 
 #EXTINF:0,Sky News
 mms://live1.wm.skynews.servecast.net/skynews_wmlz_live300k
