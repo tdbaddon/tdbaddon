@@ -6,13 +6,13 @@
 rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
 
 #EXTINF:0,Alfa
+http://fms.zulu.mk:1935/zulu/alfa_2/playlist.m3u8
+
+#EXTINF:0,Alfa
 rtmp://ataka.tv/live/live
 
 #EXTINF:0,Alfa
 rtsp://fms.zulu.mk/zulu/alfa_1
-
-#EXTINF:0,Alfa
-http://fms.zulu.mk:1935/zulu/alfa_2/playlist.m3u8
 
 #EXTINF:0,Alsat M
 http://fms.zulu.mk:554/zulu/alsat_1/playlist_b125000_w1132785237.m3u8
@@ -29,8 +29,8 @@ rtsp://fms.zulu.mk:554/zulu/alsat_2
 #EXTINF:0,B92 
 http://stream.b92.net:7999/tv-b92.ogg
 
-#EXTINF:-1,Balkan TV
-rtmp://yayin.tvdunyasi.tv/live/balkanrtv
+#EXTINF:0,Balkan TV
+
 
 #EXTINF:0,BTR
 http://fms.zulu.mk:554/zulu/btr_1/playlist_b125000_w1132785237.m3u8
@@ -113,17 +113,17 @@ http://fms.zulu.mk:1935/zulu/nashatv_1/playlist.m3u8
 #EXTINF:0,Pink Folk
 http://on108.setplex.net/fastv_2psh/PinkFolk1global_rly_greece_103/hasbahca.m3u8
 
-#EXTINF:-1,RTS
+#EXTINF:0,RTS
 mmsh://rts.videostreaming.rs/rts
 
 #EXTINF:0,Sitel
 http://fms.zulu.mk:554/zulu/sitel_1/playlist_b125000_w1132785237.m3u8
 
 #EXTINF:0,Sitel
-rtsp://fms.zulu.mk:554/zulu/sitel_2
+http://fms.zulu.mk:1935/zulu/sitel_2/playlist.m3u8
 
 #EXTINF:0,Sitel
-http://fms.zulu.mk:1935/zulu/sitel_2/playlist.m3u8
+rtsp://fms.zulu.mk:554/zulu/sitel_2
 
 #EXTINF:0,Sitel 3
 http://fms.zulu.mk:554/zulu/sitel3_1/playlist_b125000_w1132785237.m3u8
@@ -147,13 +147,13 @@ http://fms.zulu.mk:1935/zulu/shutel_2/playlist.m3u8
 http://fms.zulu.mk:554/zulu/telma_1/playlist_b125000_w1132785237.m3u8
 
 #EXTINF:0,Telma
-rtsp://fms.zulu.mk:554/zulu/telma_2
-
-#EXTINF:0,Telma
 http://fms.zulu.mk:1935/zulu/telma_2/playlist.m3u8
 
+#EXTINF:0,Telma
+rtsp://fms.zulu.mk:554/zulu/telma_2
+
 #EXTINF:0,Tera TV
-mms://62.162.58.55/TVTera
+
 
 #EXTINF:0,Vesti 24
 mms://62.162.58.55/24vesti

@@ -83,6 +83,9 @@ http://hlsstr02.svc.iptv.rt.ru/hls/CH_FOXLIFE/variant.m3u8
 #EXTINF:0,FX
 rtmp://rtmp.zerocast.tv:1935/live/ playpath=VCV8SViFVBv2nX5RQwKI swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
 
+#EXTINF:0,Ginx Gaming TV
+rtmp://204.107.26.252:8086/live/796.high.stream
+
 #EXTINF:0,Hallmark Channel
 
 
@@ -116,11 +119,20 @@ rtmp://rtmp.zerocast.tv:1935/live playpath=3GdoAHRAxgZNzmQZL29l swfUrl=http://p.
 #EXTINF:0,PBS
 rtmp://128.104.144.134/WisconsinChannel/mystream
 
+#EXTINF:0,Popcorn TV
+rtmp://mi2.gv.filmon.com:8086/live/716.high.stream
+
+#EXTINF:0,QVC
+rtmp://204.107.26.252:8086/live/413.high.stream
+
 #EXTINF:0,Spike Tv
 
 
 #EXTINF:0,Star World
 
+
+#EXTINF:0,SportSkool
+rtmp://204.107.26.252:8086/live/686.high.stream
 
 #EXTINF:0,Studio Universal
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=376&lan=2&rows=40&f=.m3u8
@@ -129,7 +141,7 @@ http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=376&lan=2&rows=
 
 
 #EXTINF:0,Syfy
-
+rtmp://37.221.172.85/youcloud/ playpath=syfyie?keys=B0-khOJYPTeqWS9XCQhnyA&keyt=1420391081 swfUrl=http://cdn.youcloud.tv/jwplayer.flash.swf live=1 pageUrl=http://youcloud.tv/player?streamname=syfyie&width=600&height=450 timeout=15
 
 #EXTINF:0,TBS
 

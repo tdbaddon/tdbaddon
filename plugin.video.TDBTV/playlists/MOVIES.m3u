@@ -1,5 +1,7 @@
 ﻿#EXTM3U
 
+#EXTINF:0,Action Zone
+rtmp://mi2.gv.filmon.com:8086/live/1045.high.stream
 
 #EXTINF:0,BigPond Movies
 mms://ken-cdn220-is-3.se.bptvlive.ngcdn.telstra.com/bp_online_movieextra_high
@@ -42,6 +44,9 @@ rtmp://207.244.67.7/iguide/mvu912lm6c5dzz6 playpath=rtmp://93.174.95.125:1935/ed
 
 #EXTINF:0,Kino TV
 http://83.139.104.123/Content/HLS/Live/Channel(kino_tv)/Stream(03)/index.m3u8
+
+#EXTINF:0,Kung Fu Classics
+rtmp://mi2.gv.filmon.com:8086/live/10.high.stream
 
 #EXTINF:0,Lotus Macau
 rtmp://58.97.57.152/live playpath=ch33 swfUrl=http://www.one2hd.com/swfs/mediaPlayer/mediaPlayer.swf pageUrl=http://www.one2hd.com

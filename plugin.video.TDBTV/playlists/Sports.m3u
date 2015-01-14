@@ -14,7 +14,6 @@ http://bigten247.cdnak.bigtenhd.neulion.com/nlds/btn2go/btnnetwork/as/live/btnne
 #EXTINF:0,CBS Sports
 rtmp://207.244.67.7/iguide/mvu912lm6c5dzz6 playpath=rtmp://93.174.95.125:1935/edge/_definst_/vp4q2gonwzh2dku swfUrl=http://www.iguide.to/player/secure_player_iguide_embed_token.swf live=1 pageUrl=http://www.iguide.to/ token=#ed%h0#w18623jsda6523lDGDHur timeout=10
 
-
 #EXTINF:0,BT Sport 1
 rtmp://80.82.65.59:443/liverepeater playpath=13 live=1 pageUrl=http://popeoftheplayers.pw/Vd?u#bt!25 token=#atd%#$ZH timeout=15
 
@@ -69,6 +68,12 @@ http://83.139.104.123/Content/HLS/Live/Channel(extreme_sports)/Stream(03)/index.
 #EXTINF:0,FightBox
 http://stream1.zoovision.com//livespi/fightbox/HasBahCa.m3u8
 
+#EXTINF:0,Football TV
+rtmp://mi2.gv.filmon.com:8086/live/374.high.stream
+
+#EXTINF:0,Lucha Libre
+rtmp://mi2.gv.filmon.com:8086/live/802.high.stream
+
 #EXTINF:0,MMA Bay TV
 rtmp://extondemand.livestream.com:80/ondemand/trans/dv10/mogulus-user-files/chmmabaytv/2010/09/12/d9fbeee7-79aa-4ec2-98d2-1f1f168b91a3
 
@@ -86,6 +91,9 @@ rtmp://207.244.67.7/iguide/mvu912lm6c5dzz6 playpath=rtmp://93.174.95.125:1935/ed
 
 #EXTINF:0,NBCSN
 rtmp://207.244.67.7/iguide/mvu912lm6c5dzz6 playpath=rtmp://93.174.95.125:1935/edge/_definst_/0fm1lstybe4a0j4 swfUrl=http://www.iguide.to/player/secure_player_iguide_embed_token.swf live=1 pageUrl=http://www.iguide.to/ token=#ed%h0#w18623jsda6523lDGDHur
+
+#EXTINF:0,NBCSN
+rtmp://192.254.65.82:1935/live/elite10
 
 #EXTINF:0,NFL Network
 rtmp://207.244.67.7/iguide/mvu912lm6c5dzz6 playpath=rtmp://93.174.95.125:1935/edge/_definst_/va73s86t8cl5e73 swfUrl=http://www.iguide.to/player/secure_player_iguide_embed_token.swf live=1 pageUrl=http://www.iguide.to/ token=#ed%h0#w18623jsda6523lDGDHur

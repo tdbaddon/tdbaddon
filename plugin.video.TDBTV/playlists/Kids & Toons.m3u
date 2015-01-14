@@ -37,6 +37,9 @@ rtmp://207.244.67.7/iguide/mvu912lm6c5dzz6 playpath=rtmp://93.174.95.125:1935/ed
 
 #EXTINF:0,Disney XD 
 
+#EXTINF:0,Emba Kids
+rtmp://mi2.gv.filmon.com:8086/live/719.high.stream
+
 
 #EXTINF:0,Jim Jam
 

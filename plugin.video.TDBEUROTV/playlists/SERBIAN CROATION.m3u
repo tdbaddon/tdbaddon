@@ -3,13 +3,16 @@
 
 
 #EXTINF:0,24 Sata
-http://83.139.104.123/Content/HLS/Live/Channel(24_sata)/Stream(03)/index.m3u8
+
 
 #EXTINF:0,Al Jazeera Balkan
-http://83.139.104.123/Content/HLS/Live/Channel(al_jazeera_balkans)/Stream(03)/index.m3u8
+
 
 #EXTINF:0,Alfa TV Makedon
 rtsp://streamer1.streamhost.org:1935/salive/GMIalfah
+
+#EXTINF:0,ATV
+rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
 
 #EXTINF:0,B92
 http://4.31.30.135:1935/st3fstv/9ios_B92_4523784/playlist.m3u8
@@ -27,25 +30,25 @@ http://213.81.153.221:8080/cetv
 http://213.81.153.221:8080/trnava
 
 #EXTINF:0,CMC
-http://83.139.104.123/Content/HLS/Live/Channel(cmc)/Stream(03)/index.m3u8
+
 
 #EXTINF:0,DMC
-http://83.139.104.123/Content/HLS/Live/Channel(DMC)/Stream(03)/index.m3u8
+
 
 #EXTINF:0,DM SAT
-http://4.31.30.135:1935/st3fstv/17ios_DMSAT_4453811/playlist.m3u8
+
 
 #EXTINF:0,DUGA
-http://4.31.30.135:1935/st3fstv/12ios_TVDUGA_2548745/playlist.m3u8
+
 
 #EXTINF:0,Euro Plus
-http://4.31.30.135:1935/st3fstv/7ios_Europlus_213384/playlist.m3u8
+
 
 #EXTINF:0,Fight Channel
-http://83.139.104.123/Content/HLS/Live/Channel(fight_channel)/Stream(03)/index.m3u8
+http://stream1.zoovision.com//livespi/fightbox/HasBahCa.m3u8
 
 #EXTINF:0,Full TV
-http://83.139.104.123/Content/HLS/Live/Channel(fullTV)/Stream(03)/index.m3u8
+
 
 #EXTINF:0,Hema 
 mms://77.238.209.50:1234
@@ -54,25 +57,22 @@ mms://77.238.209.50:1234
 http://213.81.153.221:8080/hronka
 
 #EXTINF:0,HRT 1 
-http://83.139.104.123/Content/HLS/Live/Channel(HTV1)/Stream(03)/index.m3u8
+
 
 #EXTINF:0,HRT 2 
-http://83.139.104.123/Content/HLS/Live/Channel(HTV2)/Stream(03)/index.m3u8
+
 
 #EXTINF:0,HRT 3 
-http://83.139.104.123/Content/HLS/Live/Channel(HTV3)/Stream(03)/index.m3u8
+
 
 #EXTINF:0,HRT 4 
-http://83.139.104.123/Content/HLS/Live/Channel(HTV4)/Stream(03)/index.m3u8
 
-#EXTINF:0,Iris
-http://62.162.58.54:8080/iris
 
 #EXTINF:0,Iris
 mms://62.162.58.55/TVIris
 
 #EXTINF:0,Jadran TV 
-http://83.139.104.123/Content/HLS/Live/Channel(tv_jadran)/Stream(03)/index.m3u8
+
 
 #EXTINF:0,Joj
 http://88.212.10.27:81/streams/joj.m3u8
@@ -84,46 +84,46 @@ http://88.212.10.27:81/streams/jojplus.m3u8
 rtmp://84.20.77.50/live/livestream1
 
 #EXTINF:0,Jugoton
-http://83.139.104.123/Content/HLS/Live/Channel(jugoton)/Stream(03)/index.m3u8
+
 
 #EXTINF:0,Kanal 21
 mms://62.162.58.55/TVkanal21
 
 #EXTINF:0,Kanal 5
-http://83.139.104.123/Content/HLS/Live/Channel(kanal_5)/Stream(03)/index.m3u8
+
 
 #EXTINF:0,Kanal RI
-http://83.139.104.123/Content/HLS/Live/Channel(KanalRI)/Stream(03)/index.m3u8
+
 
 #EXTINF:0,KCN 3
 http://4.31.30.135:1935/st3fstv/19ios_SVETPLUS_2547871/playlist.m3u8
 
 #EXTINF:0,Kino TV
-http://83.139.104.123/Content/HLS/Live/Channel(kino_tv)/Stream(03)/index.m3u8
+
 
 #EXTINF:0,Klasik TV
-http://83.139.104.123/Content/HLS/Live/Channel(klasik_tv)/Stream(03)/index.m3u8
+
+
+#EXTINF:0,Konyha TV
+rtmp://91.82.85.44/live/konyhatv
 
 #EXTINF:0,Leskovac TV
-http://5.153.25.7:8081/stream/?channel=tvleskovac&stream=1mb
+
 
 #EXTINF:0,Media Travel
-http://83.139.104.123/Content/HLS/Live/Channel(mediatravel)/Stream(03)/index.m3u8
+
 
 #EXTINF:0,Mreza ST
-http://83.139.104.123/Content/HLS/Live/Channel(mrezaST)/Stream(03)/index.m3u8
+
 
 #EXTINF:0,Mreza ZG
-http://83.139.104.123/Content/HLS/Live/Channel(mrezaZG)/Stream(03)/index.m3u8
+
 
 #EXTINF:0,Nardona TV
-http://83.139.104.123/Content/HLS/Live/Channel(narodna_tv)/Stream(03)/index.m3u8
+
 
 #EXTINF:0,Nova TV
-http://83.139.104.123/Content/HLS/Live/Channel(tv_nova)/Stream(03)/index.m3u8
 
-#EXTINF:0,Novosadska TV
-http://176.106.121.32:8080/
 
 #EXTINF:0,Novosadska TV
 mms://176.106.121.32:8080/
@@ -132,13 +132,13 @@ mms://176.106.121.32:8080/
 http://4.31.30.135:1935/st3fstv/3ios_OBN_1237865/playlist.m3u8
 
 #EXTINF:0,OK Bambino
-http://83.139.104.123/Content/HLS/Live/Channel(ok_bambino)/Stream(03)/index.m3u8
+
 
 #EXTINF:0,Orlando Kids
-http://83.139.104.123/Content/HLS/Live/Channel(orlando_kids)/Stream(03)/index.m3u8
+
 
 #EXTINF:0,Osjecka
-http://83.139.104.123/Content/HLS/Live/Channel(osjecka_tv)/Stream(03)/index.m3u8
+
 
 #EXTINF:0,OTV Valentino
 http://4.31.30.135:1935/st3fstv/20ios_VALENTINO_4584512/playlist.m3u8
@@ -203,32 +203,20 @@ http://on108.setplex.net/fastv_2psh/PinkWorldglobal_rly_greece_109/hasbahca.m3u8
 #EXTINF:0,Pink Zabava
 http://on108.setplex.net/fastv_2psh/PinkZabavaglobal_rly_greece_103/hasbahca.m3u8
 
-#EXTINF:0,PTC
-http://4.31.30.135:1935/st3fstv/10ios_RTS1_4245875/playlist.m3u8
+#EXTINF:0,Planet TV
+rtsp://origin.biokoda.tv/live/mbit-planet?k=planettv-public
 
 #EXTINF:0,PTC
-rtsp://195.252.113.40/rts
-
-#EXTINF:0,PTC
-rtsp://rts.videostreaming.rs/rts/video
-
-#EXTINF:0,PTC
-rtsp://195.252.113.43/rts
+mmsh://195.252.113.38:80/rts?MSWMExt=.asf
 
 #EXTINF:0,RTB TV
-http://83.139.104.123/Content/HLS/Live/Channel(rtb_tv)/Stream(03)/index.m3u8
 
-#EXTINF:0,RTL Televizija
-http://83.139.104.123/Content/HLS/Live/Channel(rtl_televizija)/Stream(03)/index.m3u8
 
 #EXTINF:0,RTL Televizija
 rtmp://178.218.162.146/918829941/rtl1.stream
 
-#EXTINF:0,RTL Televizija
-http://83.139.104.123/Content/HLS/Live/Channel(rtl_kockica)/Stream(03)/index.m3u8
-
 #EXTINF:0,RTL Plus
-http://83.139.104.123/Content/HLS/Live/Channel(rtlplus)/Stream(03)/index.m3u8
+
 
 #EXTINF:0,RTV Krea
 http://213.81.153.221:8080/galanta
@@ -237,16 +225,22 @@ http://213.81.153.221:8080/galanta
 http://213.81.153.221:8080/ruzinov
 
 #EXTINF:0,SB TV
-http://83.139.104.123/Content/HLS/Live/Channel(sbtv)/Stream(03)/index.m3u8
+mms://beotelmedia.beotel.net/studiob
+
+#EXTINF:0,SB TV
+mms://195.252.114.172/studiob
+
+#EXTINF:0,Slager TV
+http://92.62.234.221:10000
 
 #EXTINF:0,Sonce TV
 http://92.53.27.201:10000
 
 #EXTINF:0,Sprotska TV
-http://83.139.104.123/Content/HLS/Live/Channel(sportska_tv)/Stream(03)/index.m3u8
+
 
 #EXTINF:0,SRCE TV
-http://83.139.104.123/Content/HLS/Live/Channel(srce_tv)/Stream(03)/index.m3u8
+
 
 #EXTINF:0,STV1
 http://88.212.10.27:81/streams/stv1.m3u8
@@ -257,11 +251,20 @@ mms://89.201.164.181/stv
 #EXTINF:0,STV2
 http://88.212.10.27:81/streams/stv2.m3u8
 
+#EXTINF:0,STV Folk
+rtmp://str103.setplex.net:1935/228/stv_folk
+
+#EXTINF:0,STV Folk
+rtmp://str103.setplex.net:1935/228 playpath=stv_folk swfUrl=%http://shqip1.altervista.org/tvlive/player.swf live=1 pageUrl=%http://shqip1.altervista.org/tvlive/superfolk.html
+
 #EXTINF:0,Student Televizija
 rtmp://213.202.73.202/iskon/studentska_b3.stream
 
 #EXTINF:0,STV
 rtmp://str103.setplex.net:1935/228/stv_online
+
+#EXTINF:0,STV
+mms://89.201.164.181/stv
 
 #EXTINF:0,TA3
 http://88.212.10.27:81/streams/ta3.m3u8
@@ -272,14 +275,16 @@ mms://62.162.58.55/TVTera
 #EXTINF:0,TV CG
 mms://beotelmedia.beotel.net/tvcg
 
+#EXTINF:0,TV CG
+mms://195.252.114.172/tvcg
+
 #EXTINF:0,TV Istra
-http://83.139.104.123/Content/HLS/Live/Channel(tv_istra)/Stream(03)/index.m3u8
+
 
 #EXTINF:0,Varazdiska TV
-http://83.139.104.123/Content/HLS/Live/Channel(VTV_varazdin)/Stream(03)/index.m3u8
+
 
 #EXTINF:0,Vesti 24
 mms://62.162.58.55/24vesti
 
 #EXTINF:0,Zdrava TV
-http://83.139.104.123/Content/HLS/Live/Channel(ZDRAVA_TV-7)/Stream(03)/index.m3u8

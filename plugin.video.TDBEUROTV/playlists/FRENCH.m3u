@@ -1,0 +1,35 @@
+﻿#EXTM3U
+#EXTINF:0,
+
+#EXTINF:0,6TER
+https://sslhls.m6tv.cdn.sfr.net/hls-live/livepkgr/_definst_/six_ter_hls_aes/six_ter_hls_aes_856.m3u8
+
+#EXTINF:0,ARTE
+http://frlive.artestras.cshls.lldns.net/artestras/contrib/frlive/frlive_925.m3u8
+
+#EXTINF:0,BFM TV
+http://bfmlive2-i.akamaihd.net/hls/live/214427/bfmtv/04.m3u8
+
+#EXTINF:0,Eurosport
+http://esioslive6-i.akamaihd.net/hls/live/202892/AL_P_ESP1_FR_FRA/playlist.m3u8
+
+#EXTINF:0,Gulli
+http://vipwowza.yacast.net/gulli_live/_definst_/mp4:gulli_850/playlist.m3u8
+
+#EXTINF:0,i24 News
+http://bcoveliveios-i.akamaihd.net/hls/live/215102/master_french/412/master.m3u8
+
+#EXTINF:0,M6 Kid
+https://sslhls.m6tv.cdn.sfr.net/hls-live/livepkgr/_definst_/m6_hls_aes/m6_hls_aes_856.m3u8
+
+#EXTINF:0,OM5 TV
+http://ec.playmedia.fr/om5-tv/live/playlist.m3u8
+
+#EXTINF:0,TV5 MONDE
+http://uneapple-i.akamaihd.net/hls/live/206412/grupoune_st11@206412/st11_index.m3u8
+
+#EXTINF:0,W9
+https://sslhls.m6tv.cdn.sfr.net/hls-live/livepkgr/_definst_/w9_hls_aes/w9_hls_aes_856.m3u8
+
+#EXTINF:0,WEO
+rtmp://str81.creacast.com:80/weo/high

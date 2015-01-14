@@ -140,5 +140,8 @@ http://gogo.jksw.cz:8024
 #EXTINF:0,VH1 Shuffle
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_VH1EUROPEAN/variant.m3u8
 
+#EXTINF:0,Vintage Music TV
+rtmp://mi2.gv.filmon.com:8086/live/1042.high.stream
+
 #EXTINF:0,Virgin TV
 rtmp://fms.105.net:1935/live/virgin1
