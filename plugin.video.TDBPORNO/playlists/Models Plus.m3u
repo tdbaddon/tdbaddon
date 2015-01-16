@@ -1,76 +1,84 @@
 ﻿#EXTM3U
 #EXTINF:0,
 
-
-#EXTINF:0,AfterDark
-http://live54.la3.edge.filmon.com/live/345.low.stream/playlist.m3u8?id=0ad5aac39bb13fbe31c6608737a1bdc87931beec9cc6d4f88e77d725e6a0a5f0249a2743c935a5b3b524a163a68a620c29a612e1fe6224a627a87b6b48d4688142e84e74821cb3d182aec18bfea8071af5563a2038b88948201d7290ac51df6d97bb828b621cfbdb75fe444c0d2c61d74a7f85fa5932cad1a6eb203a4367e3e0fbee868bc1a4f47a9c998f371b6b98c5e95033b2b5e20a09 
-
-#EXTINF:0,America's Hottest Cheerleaders
+#EXTINF:0,ingiltere 
+http://83.139.104.105/Content/HLS/Live/Channel(ADULT_CHANNEL)/Stream(03)/index.m3u8
 
 
-#EXTINF:0,Babe Station 24
+#EXTINF:0,AfterDark 
+
+
+#EXTINF:0,America's Hottest Cheerleaders 
+
+
+#EXTINF:0,Babe Station 24 
 http://sdn-global-live-http-cache.3qsdn.com/2346/_definst_///mp4:Ct6zG7Nrj3v2JxD/manifest.m3u8
 
-#EXTINF:0,Babe Station 24
+#EXTINF:0,Babe Station 24 
 http://publish.thewebstream.co:1935/cellcast/encoder71/playlist.m3u8
 
-#EXTINF:0,Babe Station 24
+#EXTINF:0,Babe Station 24 
 http://publish.thewebstream.co:1935/cellcast/encoder31/playlist.m3u8
 
-#EXTINF:0,Babe Station 24
-http://publish.thewebstream.co:1935/cellcast/nakedchat/chunklist.m3u8
-
-#EXTINF:0,Babe Station 24
+#EXTINF:0,Babe Station 24 
 http://publish.thewebstream.co:1935/cellcast/encoder21/playlist.m3u8
 
-#EXTINF:0,Bikini Hotties
+#EXTINF:0,Bikini Hotties 
 http://46.249.213.93/iPhone/broadcast/bikinihotties-tablet.3gp/bikinihotties-tablet.3gp-mr647k.m3u8?trackingid=5091600000&os=desktop
 
-#EXTINF:0,Bikini Kitchen
+#EXTINF:0,Bikini Kitchen 
 
-#EXTINF:0,Bollywood Bikini
+#EXTINF:0,Bollywood Bikini 
 http://46.249.213.93/iPhone/broadcast/bollywoodbikini-iphone.3gp/bollywoodbikini-iphone.3gp-mr413k.m3u8
 
+#EXTINF:0,College Hotties 
 
-#EXTINF:0,College Hotties
 
-
-#EXTINF:0,Fuego TV
+#EXTINF:0,Fuego TV 
 rtmp://vs2.streamcaster.net/fuego_live/fuego
 
-#EXTINF:0,Fundorado TV
+#EXTINF:0,Fundorado TV 
 rtmp://streaming.fundorado.com:80/fundoradotv/live.stream
 
-#EXTINF:0,Hot 100
+#EXTINF:0,Hot 100 
 http://46.249.213.93/iPhone/broadcast/hot100-tablet.3gp/hot100-tablet.3gp-mr647k.m3u8?trackingid=4541740000&os=desktop
 
-#EXTINF:0,Hotshots Beach Babes
-http://46.249.213.93/iPhone/broadcast/hotshotsbeachbabes-tablet.3gp/hotshotsbeachbabes-tablet.3gp-mr647k.m3u8?trackingid=4591590000&os=desktop
-
-#EXTINF:0,Hotshots
+#EXTINF:0,Hotshots 
 http://46.249.213.93/iPhone/broadcast/hotshots-tablet.3gp/hotshots-tablet.3gp-mr646k.m3u8?
 trackingid=3641590000&os=desktop
 
-#EXTINF:0,Hooters Calender Girls
+#EXTINF:0,Hotshots Beach Babes 
+http://46.249.213.93/iPhone/broadcast/hotshotsbeachbabes-tablet.3gp/hotshotsbeachbabes-tablet.3gp-mr647k.m3u8?trackingid=4591590000&os=desktop
+
+#EXTINF:0,Hooters Calender Girls 
 
 
-#EXTINF:0,LiveTing TV
-rtmp://lm07.everyon.tv:1935/ptv7/phd1006
-
-#EXTINF:0,Miami TV
+#EXTINF:0,LiveTing TV 
 
 
-#EXTINF:0,Models In Motion
+#EXTINF:0,Miami TV 
 
 
-#EXTINF:0,Partygirls
+#EXTINF:0,Models In Motion 
 
 
-#EXTINF:0,Powergirls
-http://46.249.213.93/iPhone/broadcast/powergirls-tablet.3gp/powergirls-tablet.3gp-mr648k.m3u8
+#EXTINF:0,Partygirls 
 
-#EXTINF:0,SexySat
+
+#EXTINF:0,Playboy TV Chat 
+http://playback.d2see.com:1935/wavemachine-live01/_definst_/mp4:playboytv_channel1/playlist.m3u8
+
+#EXTINF:0,Playboy TV Chat 
+http://playback.d2see.com:1935/wavemachine-live01/_definst_/mp4:playboytv_channel2/playlist.m3u8
+
+#EXTINF:0,Playboy TV Chat 
+http://playback.d2see.com:1935/wavemachine-live01/_definst_/mp4:playboytv_channel3/playlist.m3u8
+
+#EXTINF:0,Playboy TV Chat 
+http://playback.d2see.com:1935/wavemachine-live01/_definst_/mp4:playboytv_channel4/playlist.m3u8
+
+#EXTINF:0,SexySat 
 rtmp://81.89.48.215/xyz999wkz/sexysat.stream_360p
 
-#EXTINF:0,Visit X
+#EXTINF:0,Visit X 
 rtmp://194.116.150.47/live/visitx.stream1

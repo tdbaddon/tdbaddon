@@ -2,68 +2,66 @@
 #EXTINF:0,
 
 
-#EXTINF:0,Amateri
+#EXTINF:0,Amateri 
 mmsh://tv.webmisto.cz:7000
 
 #EXTINF:0,Brasileirinhas 
 
 
-#EXTINF:0,Brazzers TV Europe
-http://94.140.208.90:8888/udp/239.195.2.4:1234 
+#EXTINF:0,Brazzers TV Europe 
+http://83.139.104.105/Content/HLS/Live/Channel(BRAZZERS_TV)/Stream(03)/index.m3u8
 
-#EXTINF:0,Brazzers TV Europe
+#EXTINF:0,Brazzers TV Europe 
 http://80.87.146.133:1111/udp/239.195.2.4:1234
 
-#EXTINF:0,Bunga Bunga
+#EXTINF:0,Brazzers TV Europe 
+http://178.167.92.126:4444/udp/234.5.2.248:1234
+
+#EXTINF:0,Bunga Bunga 
 http://84.22.33.3:8066
 
 #EXTINF:0,Dorcel TV 
+http://83.139.104.105/Content/HLS/Live/Channel(DORCEL_TV)/Stream(03)/index.m3u8
 
 
-#EXTINF:0,Erotic TV
-http://188.165.220.116:8081/str/etr/playlist.m3u8
-
-#EXTINF:0,Frenchlover
+#EXTINF:0,Erotic TV 
 
 
-#EXTINF:0,Hustler TV
-http://84.195.36.25:8001/1:0:1:4225:3DB8:13E:820000:0:0:0:
-
-#EXTINF:0,Nubile Films
-http://188.165.220.116:8081/str/ru/playlist.m3u8
-
-#EXTINF:0,Pink Erotic
+#EXTINF:0,Frenchlover 
 
 
-#EXTINF:0,Private
+#EXTINF:0,Hustler TV 
 
 
-#EXTINF:0,Pure Mature
+#EXTINF:0,Nubile Films 
 
 
-#EXTINF:0,Redlight Central
+#EXTINF:0,Pink Erotic 
+
+
+#EXTINF:0,Private 
+
+
+#EXTINF:0,Pure Mature 
+
+
+#EXTINF:0,Redlight Central 
 http://playback.d2see.com/wavemachine-live01/playboytv_channel1/playlist.m3u8
 
 #EXTINF:0,Redlight Premium 
-http://84.195.36.25:8001/1:0:1:4224:3DB8:13E:820000:0:0:0:
 
-#EXTINF:0,Russian Night Club TV
+
+#EXTINF:0,Russian Night Club TV 
 
 
 #EXTINF:0,SCT 
 
 
-#EXTINF:0,SexyHot
+#EXTINF:0,SexyHot 
 
 
-#EXTINF:0,X Desire
-http://artm:artm@84.22.33.3:8060/
-
-#EXTINF:0,X Desire
+#EXTINF:0,X Desire 
 http://84.22.33.3:8060
 
 #EXTINF:0,XXX
-http://94.140.208.90:8888/udp/239.195.2.3:1234
-
-#EXTINF:0,XXX
-http://188.165.220.116:8081/str/ner/playlist.m3u8
+http://188.165.220.116:8081/xxx/tv/playlist.m3u8

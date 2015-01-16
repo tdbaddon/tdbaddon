@@ -68,4 +68,5 @@ dc={
 "fetish woman" : "066",
 "ohdeok 942" : "067",
 "erotic tv" : "068",
+"playboy tv chat" : "069",
 }

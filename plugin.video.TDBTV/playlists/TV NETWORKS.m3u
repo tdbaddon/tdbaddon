@@ -5,184 +5,188 @@
 #EXTINF:0,A&E 
 
 
-#EXTINF:0,ABC
+#EXTINF:0,ABC 
 rtmp://rtmp.zerocast.tv:1935/live/ playpath=rGCi7bg0Qxvs8q7Sl13l swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
 
-#EXTINF:0,AMC
+#EXTINF:0,AMC 
 rtmp://rtmp.zerocast.tv:1935/live playpath=TfRQx7deUAuncJwM047m swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
 
-#EXTINF:0,AXN TV 6
+#EXTINF:0,AXN TV 6 
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=109&lan=2&rows=40&f=.m3u8
 
-#EXTINF:0,AXN TV 6
+#EXTINF:0,AXN TV 6 
 rtmp://oflash.dfw.swagit.com/live/austintx/live-1
 
-#EXTINF:0,BBC 1
+#EXTINF:0,BBC 1 
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=129&lan=2&rows=40&f=.m3u8
 
-#EXTINF:0,BBC 2
+#EXTINF:0,BBC 2 
 
 
-#EXTINF:0,BET
+#EXTINF:0,BET 
 
 
 #EXTINF:0,BIO 
 
 
-#EXTINF:0,Bravo
+#EXTINF:0,Bravo 
 
 
-#EXTINF:0,CBS
+#EXTINF:0,CBS 
 rtmp://rtmp.zerocast.tv:1935/live playpath=Ger61uLQ4fedzvjRjrB7 swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
 
-#EXTINF:0,CBS Drama
+#EXTINF:0,CBS Drama 
 
 
-#EXTINF:0,CBS Reality
-http://83.139.104.123/Content/HLS/Live/Channel(cbs_reality)/Stream(03)/index.m3u8?b?b*t$
+#EXTINF:0,CBS Reality 
+http://83.139.104.105/Content/HLS/Live/Channel(cbs_reality)/Stream(03)/index.m3u8
 
-#EXTINF:0,CHCH Ontario
-rtmp://54.85.197.21:1935/live playpath=news swfUrl=http://www.chch.com/wp-content/plugins/projekktorvm/src/StrobeMediaPlayback.swf?enableStageVideo=true&disableHardwareAcceleration=false&javascriptCallbackFunction=window.projekktorOSMFReady22bd91736c42e8eaf2e364c5492717cb& live=1 pageUrl=http://www.chch.com/live/
+#EXTINF:0,CHCH Ontario 
 
-#EXTINF:0,CNBC
+
+#EXTINF:0,CNBC 
 http://livestation_hls-lh.akamaihd.net/i/cnbc_en@106428/master.m3u8
 
-#EXTINF:0,CNBC
+#EXTINF:0,CNBC 
 http://livestation_hls-lh.akamaihd.net/i/cnbc_en@106428/index_838_av-b.m3u8
 
-#EXTINF:0,CNBC
+#EXTINF:0,CNBC 
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/cnbc_eu/ls_satlink/b_264.m3u8
 
 #EXTINF:0,Comedy Central 
 
 
-#EXTINF:0,CW
+#EXTINF:0,CW 
 rtmp://rtmp.zerocast.tv:1935/live/ playpath=IWSyIjvWgHRCMM7MEJoZ swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
 
-#EXTINF:0,English Club TV
+#EXTINF:0,E!
+http://84.32.80.15:7781/udp/233.136.41.107:1234
+
+#EXTINF:0,English Club TV 
 http://85.187.154.9:2001/
 
-#EXTINF:0,Fashion TV
+#EXTINF:0,Fashion TV 
 http://edgeb.streaming.sk/fashiontv/fashiontv.stream/playlist_b125000_w304569164.m3u8
 
 #EXTINF:0,Fashion TV
-http://83.139.104.123/Content/HLS/Live/Channel(fashion_tv)/Stream(03)/index.m3u8
+http://hls.novotelecom.ru/streaming/fashion/tvrec/playlist.m3u8
 
-#EXTINF:0,Food Network
-http://83.139.104.123/Content/HLS/Live/Channel(food_network)/Stream(03)/index.m3u8
+#EXTINF:0,Fashion TV
+http://83.139.104.105/Content/HLS/Live/Channel(fashion_tv)/Stream(03)/index.m3u8
 
-#EXTINF:0,FOX 5
+#EXTINF:0,FOX 5 
 rtmp://rtmp.zerocast.tv:1935/live playpath=9pxGCtP3aEnJYgoBFFH8 swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
 
-#EXTINF:0,FOX 45
+#EXTINF:0,FOX 45 
 
 
-#EXTINF:0,FOX Life
+#EXTINF:0,FOX Life 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_FOXLIFE/variant.m3u8
 
-#EXTINF:0,FX
+#EXTINF:0,Food Network
+http://83.139.104.105/Content/HLS/Live/Channel(food_network)/Stream(03)/index.m3u8
+
+#EXTINF:0,FX 
 rtmp://rtmp.zerocast.tv:1935/live/ playpath=VCV8SViFVBv2nX5RQwKI swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
 
-#EXTINF:0,Ginx Gaming TV
+#EXTINF:0,Ginx Gaming TV 
 rtmp://204.107.26.252:8086/live/796.high.stream
 
-#EXTINF:0,Hallmark Channel
+#EXTINF:0,Hallmark Channel 
 
 
-#EXTINF:0,HGTV
+#EXTINF:0,HGTV 
 
 
-#EXTINF:0,HLN
-rtmp://c.cdn.newschat.tv/edge playpath=hln_live live=1 timeout=10 swfUrl=http://msnbclive.eu/player.swf pageUrl=http://www.livenewschat.eu/twoons/</link>
+#EXTINF:0,HLN 
+rtmp://c.cdn.newschat.tv/edge playpath=hln_live live=1 timeout=10 swfUrl=http://msnbclive.eu/player.swf pageUrl=http://www.livenewschat.eu/twoons/
 
-#EXTINF:0,Home Shopping Network
+#EXTINF:0,Home Shopping Network 
 rtsp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:420p500kB31
 
-#EXTINF:0,ITV 1
+#EXTINF:0,ITV 1 
 http://93.184.221.133/00573D/283/283-0.m3u8
 
-#EXTINF:0,Lifetime Network
-rtmpe://46.246.29.154:1935/live/ playpath=rtmp://93.174.95.125:1935/edge/_definst_/7b2gr554gyyth8e pageUrl=http://www.hdcast.org/ token=#yw%tt#w@kku timeout=10
+#EXTINF:0,Lifetime Network 
 
-#EXTINF:0,London Live
+
+#EXTINF:0,London Live 
 http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
 
-#EXTINF:0,NBC
+#EXTINF:0,NBC 
 rtmp://rtmp.zerocast.tv:1935/live playpath=3GdoAHRAxgZNzmQZL29l swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
 
-#EXTINF:0,OWN Network
+#EXTINF:0,OWN Network 
 
 
-#EXTINF:0,Oxygen
+#EXTINF:0,Oxygen 
 
 
-#EXTINF:0,PBS
+#EXTINF:0,PBS 
 rtmp://128.104.144.134/WisconsinChannel/mystream
-
-#EXTINF:0,Popcorn TV
+ 
+#EXTINF:0,Popcorn TV 
 rtmp://mi2.gv.filmon.com:8086/live/716.high.stream
 
-#EXTINF:0,QVC
+#EXTINF:0,QVC 
 rtmp://204.107.26.252:8086/live/413.high.stream
 
-#EXTINF:0,Spike Tv
+#EXTINF:0,Spike TV 
 
 
-#EXTINF:0,Star World
+#EXTINF:0,Star World 
 
 
-#EXTINF:0,SportSkool
+#EXTINF:0,SportSkool 
 rtmp://204.107.26.252:8086/live/686.high.stream
 
-#EXTINF:0,Studio Universal
+#EXTINF:0,Studio Universal 
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=376&lan=2&rows=40&f=.m3u8
 
-#EXTINF:0,Sundance Channel
+#EXTINF:0,Sundance Channel 
 
 
-#EXTINF:0,Syfy
+#EXTINF:0,Syfy 
 rtmp://37.221.172.85/youcloud/ playpath=syfyie?keys=B0-khOJYPTeqWS9XCQhnyA&keyt=1420391081 swfUrl=http://cdn.youcloud.tv/jwplayer.flash.swf live=1 pageUrl=http://youcloud.tv/player?streamname=syfyie&width=600&height=450 timeout=15
 
-#EXTINF:0,TBS
+#EXTINF:0,TBS 
 
 
-#EXTINF:0,The Shopping Channel
+#EXTINF:0,The Shopping Channel 
 http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/master.m3u8?b?b*t$
 
-#EXTINF:0,TLC
+#EXTINF:0,TLC 
 http://202.75.23.34/live/ch35/01.m3u8
 
-#EXTINF:0,TLC
-http://83.139.104.123/Content/HLS/Live/Channel(TLC)/Stream(03)/index.m3u8?b?b*t$
-
-#EXTINF:0,TNT
+#EXTINF:0,TNT 
 
 
 #EXTINF:0,Tru TV
+http://cdn.live.simplestream.com/coder5/coder.channels.channel2/hls/4/playlist.m3u8
+
+#EXTINF:0,TV Land 
 
 
-#EXTINF:0,TV Land
-
-
-#EXTINF:0,Universal Channel
+#EXTINF:0,Universal Channel 
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=97&lan=2&rows=40&f=.m3u8
 
-#EXTINF:0,USA Network
+#EXTINF:0,Universal Channel
+http://84.32.80.15:7781/udp/233.136.41.103:1234
+
+#EXTINF:0,USA Network 
 
 
-#EXTINF:0,Vernnissage TV
+#EXTINF:0,Vernnissage TV 
 http://149.11.34.6:1935/live/vernissagetv.stream/hasbahca.m3u8
 
-#EXTINF:0,Warner Brothers
+#EXTINF:0,Warner Brothers 
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=96&lan=2&rows=40&f=.m3u8
 
-#EXTINF:0,WGN 9 Chicago
+#EXTINF:0,WGN 9 Chicago 
 http://wgntribune-lh.akamaihd.net/i/WGNTribune_1@109089/master.m3u8
 
-#EXTINF:0,Wine Channel TV
+#EXTINF:0,Wine Channel TV 
 rtmp://mi2.gv.filmon.com:8086/live/263.high.stream
 
 #EXTINF:0,World Fashion TV
 http://btv-net.mediacdn.ru/TVB2/ngrp:wfhdeu.stream_all/chunklist_b3128000.m3u8
-
-#EXTINF:0,World of Wine

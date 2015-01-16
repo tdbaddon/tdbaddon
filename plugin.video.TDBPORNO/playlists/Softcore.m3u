@@ -1,38 +1,32 @@
 ﻿#EXTM3U
 
 
-#EXTINF:0,Bella Club
-http://46.249.213.93/iPhone/broadcast/bellaclub-tablet.3gp/bellaclub-tablet.3gp-mr648k.m3u8?trackingid=3391380000&os=desktop
-
-#EXTINF:0,Bella Club
+#EXTINF:0,Bella Club 
 rtsp://46.249.213.87/broadcast/bellaluz-tablet.3gp
 
-#EXTINF:0,Penthouse
-rtmp://lm07.everyon.tv/ptv7/phd10927
+#EXTINF:0,Penthouse 
 
-#EXTINF:0,Playboy TV
-http://94.140.208.90:8888/udp/239.195.2.5:1234 
 
-#EXTINF:0,Playboy TV
+#EXTINF:0,Playboy TV 
 http://80.87.146.133:1111/udp/239.195.2.5:1234
 
-#EXTINF:0,Russian Night
-http://94.140.208.90:8888/udp/239.195.2.3:1234
+#EXTINF:0,Playboy TV 
+http://83.139.104.105/Content/HLS/Live/Channel(Playboy_tv)/Stream(03)/index.m3u8
 
-#EXTINF:0,Russian Night
-http://95.170.186.178:7781/udp/239.255.4.2:1234
+#EXTINF:0,Russian Night 
+http://hlsstr02.svc.iptv.rt.ru/hls/CH_XXL/variant.m3u8
 
-#EXTINF:0,Sex Ed
-rtmp://lm07.everyon.tv/ptv7/phd511
+#EXTINF:0,Sex Ed 
 
-#EXTINF:0,Sex Prive
-http://cdn-edge01.livestreamcast.org:8081/erotic/phd61/chunklist_w1372963382.m3u8
 
-#EXTINF:0,SexStation TV
+#EXTINF:0,Sex Prive 
+
+
+#EXTINF:0,SexStation TV 
 http://178.33.126.213:1935/iptv_cellcast_24/livestream1/playlist.m3u8
 
-#EXTINF:0,Viki
-rtmp://lm07.everyon.tv/ptv7/phd10765
+#EXTINF:0,Viki 
 
-#EXTINF:0,You Diva
+
+#EXTINF:0,You Diva 
 http://46.249.213.93/iPhone/broadcast/youdivalite-tablet.3gp/youdivalite-tablet.3gp-mr647k.m3u8?trackingid=3341430000&os=desktop
