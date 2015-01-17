@@ -81,3 +81,6 @@ rtmp://198.27.75.99/ch005 playpath=2502 swfUrl=http://www.tgun.tv/lock/player.sw
 
 #EXTINF:0,The Simpsons 
 rtmp://62.210.76.216/live playpath=simpsons swfUrl=http://releases.flowplayer.org/5.5.1/flowplayer.swf live=1 pageUrl=http://www.jtvstream.me/simpsons-hd
+
+#EXTINF:0,Tom & Jerry Show
+http://66.90.111.66:1935/ctv/tom/waldo_paes.m3u8?b?b*t$

@@ -10,14 +10,13 @@ mms://ken-cdn220-is-3.se.bptvlive.ngcdn.telstra.com/bp_online_movieextra_high
 
 
 #EXTINF:0,Cinestar Action & Thriller
-http://83.139.104.105/Content/HLS/Live/Channel
+http://83.139.104.106/Content/HLS/Live/Channel(cinestar_action_and_thriller)/Stream(03)/index.m3u8
 
 #EXTINF:0,Cinestar Premiere
 http://83.139.104.105/Content/HLS/Live/Channel(cinestar_premiere_1)/Stream(03)/index.m3u8
 
 #EXTINF:0,Cinestar Premiere
 http://83.139.104.105/Content/HLS/Live/Channel(cinestar_premiere_2)/Stream(03)/index.m3u8
-
 
 #EXTINF:0,Cinestar TV
 http://83.139.104.105/Content/HLS/Live/Channel(cinestar_tv)/Stream(03)/index.m3u8
@@ -44,7 +43,7 @@ http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=104&lan=2&rows=
 
 
 #EXTINF:0,Kino TV
-
+http://83.139.104.106/Content/HLS/Live/Channel(kino_tv)/Stream(03)/index.m3u8
 
 #EXTINF:0,Kung Fu Classics
 rtmp://mi2.gv.filmon.com:8086/live/10.high.stream
@@ -53,16 +52,13 @@ rtmp://mi2.gv.filmon.com:8086/live/10.high.stream
 rtmp://58.97.57.152/live playpath=ch33 swfUrl=http://www.one2hd.com/swfs/mediaPlayer/mediaPlayer.swf pageUrl=http://www.one2hd.com
 
 #EXTINF:0,MGM
-http://202.75.23.35:1400/live/ch40/03.m3u8
 
-#EXTINF:0,MGM
-http://202.75.23.35/live/ch40/01.m3u8
 
 #EXTINF:0,Paramount Channel 
 
 
 #EXTINF:0,Pink Action 1
-
+http://on108.setplex.net/fastv_2psh/PinkActionglobal_rly_greece_109/playlist.m3u8
 
 #EXTINF:0,Pink Action 2
 http://on108.setplex.net/fastv_2psh/PinkAction2global_rly_greece_103/hasbahca.m3u8
@@ -83,7 +79,7 @@ http://on108.setplex.net/fastv_2psh/PinkPremiumglobal_rly_greece_103/playlist.m3
 
 
 #EXTINF:0,Sky Movies Crime & Thriller
-rtmp://31.220.0.195:80/live playpath=mov3 swfUrl=http://flashtv.co/ePlayerr.swf pageUrl=http://flashtv.co/embedu.php?live=mov3&vw=620&vh=490 token=%ZZri(nKa@#Z
+
 
 #EXTINF:0,Showtime
 

@@ -16,6 +16,9 @@ http://93.184.221.133/hls-live/20C1A9/bbc_world/ls_satlink/b_828.m3u8
 #EXTINF:0,Bloomberg TV
 http://btv-i.akamaihd.net/hls/live/202760-b/btvusa_ios/P1/M12K.m3u8
 
+#EXTINF:0,Bloomberg TV
+http://x4012c4000.edge.core-cdn.net/40000mb/live/4012hbbtv/bloomberg.ts
+
 #EXTINF:0,CBC News Canada
 rtmp://d.cdn.newschat.tv/edge playpath=canadas_live swfUrl=http://msnbclive.eu/player.swf live=1 pageUrl=http://www.livenewschat.eu/canada/
 

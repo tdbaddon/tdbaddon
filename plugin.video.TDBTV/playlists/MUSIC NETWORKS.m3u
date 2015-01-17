@@ -2,6 +2,9 @@
 #EXTINF:0,
 
 
+#EXTINF:0,1HD
+rtmp://109.239.142.62/live/livestream3
+
 #EXTINF:0,4Music
 http://csm-e.cds1.yospace.com/csm/live/86550614.m3u8
 
@@ -12,7 +15,7 @@ http://rrr.sz.xlcdn.com/?account=AATW&file=akanew&type=live&service=wowza&protoc
 mms://ken-cdn220-is-2.se.bptvlive.ngcdn.telstra.com/bp_online_bpmusic_high
 
 #EXTINF:0,Capital Music
-rtmp://cdn-sov-2.musicradio.com:80/LiveVideo/Capital
+
 
 #EXTINF:0,CineStream TV
 http://68.71.42.179/live/livestream1/playlist.m3u8
@@ -20,11 +23,8 @@ http://68.71.42.179/live/livestream1/playlist.m3u8
 #EXTINF:0,Clubbing TV
 rtmp://204.107.26.252:8086/live/691.high.stream
 
-#EXTINF:0,Club TV
-
-
 #EXTINF:0,Clubland TV
-http://goo.gl/O4u5oo
+http://ngx.cr2.streamzilla.xlcdn.com/session/3a5cd4980373fa082fb3b1a66da93781/sz/AATW/wowza4/live/clublandtv/playlist.m3u8?token=MBC8Xzmt-LJfedrcGNlN0g&time=1421497389
 
 #EXTINF:0,CMC California Music Channel
 rtmp://cmctv.flash.internapcdn.net:1935/cmctv_vitalstream_com/live_adaptive_1/CMC-TV_adaptive3 swfUrl=http://http.vitalstreamcdn.com/flashskins/V2Player.swf live=1 pageUrl=http://www.cmc-tv.com/
@@ -39,7 +39,7 @@ http://www.djing.com/tv/05.m3u8
 rtmp://149.11.34.6/live/gotica.stream
 
 #EXTINF:0,Heart TV
-rtmp://cdn-sov-2.musicradio.com:80/LiveVideo/Heart
+
 
 #EXTINF:0,Ibiza on TV
 http://46.249.213.87/iPhone/broadcast/ibizaontv-tablet.3gp/ibizaontv-tablet.3gp-mr648k.m3u8?trackingid=3391380000&os=desktop
@@ -48,7 +48,7 @@ http://46.249.213.87/iPhone/broadcast/ibizaontv-tablet.3gp/ibizaontv-tablet.3gp-
 http://149.11.34.78:1935/live/jazztv.stream/hasbahca.m3u8
 
 #EXTINF:0,King TV
-rtmp://91.82.85.16/brdcaster/_definst_/nettv03_channel_1
+
 
 #EXTINF:0,Kiss TV
 http://csm-e.cds1.yospace.com/csm/live/86561716.m3u8
@@ -69,7 +69,7 @@ http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVHITS/variant.m3u8
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=432&lan=2&rows=40&f=.m3u8
 
 #EXTINF:0,MTV Music
-http://83.139.104.123/Content/HLS/Live/Channel(mtv_music)/Stream(03)/index.m3u8
+
 
 #EXTINF:0,MTV Rocks
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVROCKS/variant.m3u8
@@ -87,19 +87,13 @@ rtmp://stream.smcloud.net/live2/vox/vox_360p
 
 
 #EXTINF:0,Now Thats What I Call Music
-http://rrr.sz.xlcdn.com/?account=AATW&file=nowmusic&type=live&service=wowza&protocol=http&output=playlist.m3u8
+
 
 #EXTINF:0,PartyTV
 rtmp://149.11.34.6/live/partytv.stream
 
 #EXTINF:0,Pink Music 3
 http://on108.setplex.net/fastv_2psh/PinkMusic3global_rly_greece_103/playlist.m3u8
-
-#EXTINF:0,Pink Music 4 
-
-
-#EXTINF:0,Planet Pop 
-
 
 #EXTINF:0,Radio Monte Carlo
 rtmp://fms.105.net:1935/live/rmc1
@@ -135,7 +129,7 @@ rtmp://edge03-03.az.myvideo.az/dvrh264/vh1/ playpath=mp4:vh1 swfUrl=http://www.m
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_VH1CLASSIC/variant.m3u8
 
 #EXTINF:0,VH1 Classics
-http://gogo.jksw.cz:8024
+http://gogo.jksw.cz:8024/
 
 #EXTINF:0,VH1 Shuffle
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_VH1EUROPEAN/variant.m3u8
@@ -144,4 +138,3 @@ http://hlsstr02.svc.iptv.rt.ru/hls/CH_VH1EUROPEAN/variant.m3u8
 rtmp://mi2.gv.filmon.com:8086/live/1042.high.stream
 
 #EXTINF:0,Virgin TV
-rtmp://fms.105.net:1935/live/virgin1

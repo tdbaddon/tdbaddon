@@ -2,13 +2,10 @@
 
 
 #EXTINF:0,Animal Planet
-http://202.75.23.34/live/ch31/03.m3u8
-
-#EXTINF:0,Animal Planet
-http://202.75.23.34/live/ch31/01.m3u8
+http://83.139.104.106/Content/HLS/Live/Channel(animal_planet)/Stream(03)/index.m3u8
 
 #EXTINF:0,Crime Investigation
-http://202.75.23.36/live/ch47/01.m3u8 
+
 
 #EXTINF:0,Discovery Channel
 rtmp://95.211.148.206/youcloud/ playpath=discoveryeo?keys=5J87wkXqe2QurjwwXtsbhw&keyt=1420475490 conn=S:OK swfUrl=http://cdn.youcloud.tv/jwplayer.flash.swf live=true timeout=15 pageUrl=http://youcloud.tv/player?streamname=discoveryeo&width=600&height=450 timeout=15
@@ -50,7 +47,7 @@ http://202.75.23.34:1400/live/ch34/01.m3u8
 
 
 #EXTINF:0,History Channel
-rtmpe://46.246.29.154:1935/live/ playpath=rtmp://93.174.95.125:1935/edge/_definst_/dhp0rpd116qyyj6 pageUrl=http://www.hdcast.org/ token=#yw%tt#w@kku timeout=10
+
 
 #EXTINF:0,Landscape
 http://130.88.20.233:1237/test.flv
@@ -79,6 +76,9 @@ http://202.75.23.35/live/ch39/01.m3u8
 #EXTINF:0,National Geographic
 http://202.75.23.35/live/ch38/03.m3u8
 
+#EXTINF:0,National Geographic
+rtmp://66.55.92.79/e35a552a-7d88-497d-a7cd-fadf292cae6b/TbrS3mVLwato6H8hzoj1
+
 #EXTINF:0,Paranormal TV
 rtmp://mi2.gv.filmon.com:8086/live/1618.high.stream
 
@@ -90,9 +90,6 @@ http://202.75.23.35/live/ch41/01.m3u8
 
 #EXTINF:0,Travel Channel
 http://84.32.80.15:7781/udp/233.136.41.44:1234
-
-#EXTINF:0,Viasat Explorer
-http://80.77.52.6:4444/udp/230.0.3.55:12345
 
 #EXTINF:0,Viasat Explorer
 http://83.139.104.105/Content/HLS/Live/Channel(viasat_explore)/Stream(03)/index.m3u8
