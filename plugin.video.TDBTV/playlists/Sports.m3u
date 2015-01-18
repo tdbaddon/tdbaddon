@@ -11,7 +11,7 @@ http://bigten247.cdnak.bigtenhd.neulion.com/nlds/btn2go/btnnetwork/as/live/btnne
 #EXTINF:0,Box Nation 
 
 
-#EXTINF:0,CBS Sports 
+#EXTINF:0, CBS Sports 
 rtmp://207.244.67.7/iguide/mvu912lm6c5dzz6 playpath=rtmp://93.174.95.125:1935/edge/_definst_/vp4q2gonwzh2dku swfUrl=http://www.iguide.to/player/secure_player_iguide_embed_token.swf live=1 pageUrl=http://www.iguide.to/ token=#ed%h0#w18623jsda6523lDGDHur timeout=10
 
 #EXTINF:0,Bein Sport1
@@ -42,7 +42,7 @@ http://188.165.225.63:8080/bein7.m3u8
 
 
 #EXTINF:0,Combat Channel 
-rtmp://204.107.26.145:1935/live/295.low.stream
+
 
 #EXTINF:0,ESPN 
 http://200.76.77.237/LIVE/H01/CANAL516/PROFILE03.m3u8?
@@ -75,7 +75,7 @@ http://83.139.104.105/Content/HLS/Live/Channel(eurosport)/Stream(03)/index.m3u8
 http://83.139.104.105/Content/HLS/Live/Channel(extreme_sports)/Stream(03)/index.m3u8
 
 #EXTINF:0,FightBox 
-http://stream1.zoovision.com//livespi/fightbox/HasBahCa.m3u8
+http://83.139.104.105/Content/HLS/Live/Channel(fight_channel)/Stream(03)/index.m3u8
 
 #EXTINF:0,Football TV 
 rtmp://mi2.gv.filmon.com:8086/live/374.high.stream
@@ -96,7 +96,7 @@ rtmp://rtmp.zerocast.tv:1935/live playpath=5S7VAxdgbnpjSPB1pUkk swfUrl=http://p.
 http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/2596k/prog.m3u8|X-Forwarded-For=209.239.112.104
 
 #EXTINF:0,NBCSN 
-rtmp://192.254.65.82:1935/live/elite10
+rtsp://c.itvitv.com/nhke.huyudfroskrjw
 
 #EXTINF:0,NFL Network 
 
@@ -138,7 +138,7 @@ rtmp://178.18.31.55:443/liverepeater playpath=184290 swfUrl=http://bernardotv.cl
 rtmp://31.204.154.26:443/liverepeater playpath=183640 swfUrl=http://bernardotv.club/atdedead.swf pageUrl=http://biggestplayer.me/streamcr.php?id=183640&width=620&height=490 token=#atd%#$ZH
 
 #EXTINF:0,Rogers Sportsnet World 
-rtmp://178.18.31.54:443/liverepeater playpath=183635 swfUrl=http://bernardotv.club/atdedead.swf pageUrl=http://biggestplayer.me/streamcr.php?id=183635&width=620&height=490 token=#atd%#$ZH
+
 
 #EXTINF:0,SBS One 
 http://motorsport.hopto.org:8080
@@ -150,31 +150,28 @@ http://80.77.52.6:4444/udp/230.0.4.1:12345?Vd?u#bt!25
 rtmp://rtmp.playback.cdn1.showcaster.com/orcadigital-live06/_definst_/ playpath=stream1352471543352014903_hi swfUrl=https://c177371.ssl.cf3.rackcdn.com/jwplayer.commercial-5.9.swf pageUrl=https://play.showcaster.com/moduleVideoPlayer.jsp?SEID=135247&isMainCanvas=FALSE live=1 timeout=10
 
 #EXTINF:0,Sky Sport 1 
-http://77.221.65.240:7777/udp/239.195.0.11:1234
+
 
 #EXTINF:0,Sky Sport 2 
-http://77.221.65.240:7777/udp/239.195.0.12:1234
+
 
 #EXTINF:0,Sky Sport 3 
-http://77.221.65.240:7777/udp/239.195.0.13:1234
+
 
 #EXTINF:0,Sky Sport 4 
-http://77.221.65.240:7777/udp/239.195.0.23:1234
+
 
 #EXTINF:0,Sky Sport 5 
 
 
 #EXTINF:0,Sky Sport F1 
-http://77.221.65.240:7777/udp/239.195.0.14:1234
+
 
 #EXTINF:0,Sky Sport News 
 
 
 #EXTINF:0,Sports Night 
 rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9-HD
-
-#EXTINF:0,SportTime TV 
-rtmp://streamer.a1.net:1935/rtmplive/redundant/channels/Sporttime/SporttimeTV/mp4:channel1_1200
 
 #EXTINF:0,SportTime TV 
 rtmp://streamer.a1.net:1935/rtmplive/redundant/channels/Sporttime/SporttimeTV/mp4:channel3_800

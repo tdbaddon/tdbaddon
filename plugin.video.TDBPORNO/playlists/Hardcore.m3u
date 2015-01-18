@@ -14,24 +14,29 @@ http://83.139.104.105/Content/HLS/Live/Channel(BRAZZERS_TV)/Stream(03)/index.m3u
 #EXTINF:0,Brazzers TV Europe 
 http://80.87.146.133:1111/udp/239.195.2.4:1234
 
-#EXTINF:0,Brazzers TV Europe 
-http://178.167.92.126:4444/udp/234.5.2.248:1234
-
 #EXTINF:0,Bunga Bunga 
 http://84.22.33.3:8066
 
 #EXTINF:0,Dorcel TV 
 http://83.139.104.105/Content/HLS/Live/Channel(DORCEL_TV)/Stream(03)/index.m3u8
 
+#EXTINF:0,Dorcel TV  
+http://77.221.65.240:7777/udp/239.195.1.160:1234
 
 #EXTINF:0,Erotic TV 
 
+
+#EXTINF:0,Exotica TV
+http://77.221.65.240:7777/udp/239.195.1.82:1234
 
 #EXTINF:0,Frenchlover 
 
 
 #EXTINF:0,Hustler TV 
 
+
+#EXTINF:0,Ingiltere
+http://83.139.104.105/Content/HLS/Live/Channel(ADULT_CHANNEL)/Stream(03)/index.m3u8
 
 #EXTINF:0,Nubile Films 
 
@@ -40,19 +45,25 @@ http://83.139.104.105/Content/HLS/Live/Channel(DORCEL_TV)/Stream(03)/index.m3u8
 
 
 #EXTINF:0,Private 
-
+http://77.221.65.240:7777/udp/239.195.1.170:1234
 
 #EXTINF:0,Pure Mature 
 
+
+#EXTINF:0,Platinum TV 
+http://77.221.65.240:7777/udp/239.195.1.85:1234
 
 #EXTINF:0,Redlight Central 
 http://playback.d2see.com/wavemachine-live01/playboytv_channel1/playlist.m3u8
 
 #EXTINF:0,Redlight Premium 
-
+http://77.221.65.240:7777/udp/239.195.1.81:1234
 
 #EXTINF:0,Russian Night Club TV 
+http://46.181.237.75:1234/udp/239.255.42.217:1234
 
+#EXTINF:0,Satisfaction HD
+http://77.221.65.240:7777/udp/239.195.1.80:1234
 
 #EXTINF:0,SCT 
 

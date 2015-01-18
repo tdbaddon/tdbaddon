@@ -30,7 +30,7 @@ http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=129&lan=2&rows=
 
 
 #EXTINF:0,Bravo 
-
+http://142.4.216.60:1935/edge/_definst_/uw433ikqnrj501l/playlist.m3u8?wowzasessionid=1766788662&xs=_we_dXc0MzNpa3Fucmo1MDFsfDEzOTY5OTczNTd8MzkuNDUuMjUwLjE1OXw1MzQ0N2I4NWI4YWI5fDVkMzc4YWRkZWQ0YmI5MzkyZmUzNmQyOWExY2MyNTNhYjRhZjNkNGE
 
 #EXTINF:0,CBS 
 rtmp://rtmp.zerocast.tv:1935/live playpath=Ger61uLQ4fedzvjRjrB7 swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
@@ -99,7 +99,7 @@ rtmp://204.107.26.252:8086/live/796.high.stream
 
 
 #EXTINF:0,HLN 
-rtmp://c.cdn.newschat.tv/edge playpath=hln_live live=1 timeout=10 swfUrl=http://msnbclive.eu/player.swf pageUrl=http://www.livenewschat.eu/twoons/
+
 
 #EXTINF:0,Home Shopping Network 
 rtsp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:420p500kB31

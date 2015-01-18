@@ -4,17 +4,32 @@
 #EXTINF:0,Bella Club 
 rtsp://46.249.213.87/broadcast/bellaluz-tablet.3gp
 
-#EXTINF:0,Penthouse 
+#EXTINF:0,O La La
 
+
+#EXTINF:0,Penthouse
+rtmp://edge2.everyon.tv/etv2/phd927
 
 #EXTINF:0,Playboy TV 
 http://80.87.146.133:1111/udp/239.195.2.5:1234
 
+#EXTINF:0,Playboy TV
+rtmp://edge2.everyon.tv/etv2/phd499
+
 #EXTINF:0,Playboy TV 
 http://83.139.104.105/Content/HLS/Live/Channel(Playboy_tv)/Stream(03)/index.m3u8
 
+#EXTINF:0,Playboy TV 
+http://178.167.59.192:7777/udp/234.5.2.247:1234
+
 #EXTINF:0,Russian Night 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_XXL/variant.m3u8
+
+#EXTINF:0,Russian Night
+http://77.221.65.240:7777/udp/239.195.1.136:1234
+
+#EXTINF:0,Russian Night
+http://46.181.237.75:1234/udp/239.255.42.218:1234
 
 #EXTINF:0,Sex Ed 
 
@@ -26,7 +41,7 @@ http://hlsstr02.svc.iptv.rt.ru/hls/CH_XXL/variant.m3u8
 http://178.33.126.213:1935/iptv_cellcast_24/livestream1/playlist.m3u8
 
 #EXTINF:0,Viki 
-
+rtmp://edge1.everyon.tv/etv1/phd765
 
 #EXTINF:0,You Diva 
 http://46.249.213.93/iPhone/broadcast/youdivalite-tablet.3gp/youdivalite-tablet.3gp-mr647k.m3u8?trackingid=3341430000&os=desktop

@@ -5,7 +5,7 @@
 http://83.139.104.106/Content/HLS/Live/Channel(animal_planet)/Stream(03)/index.m3u8
 
 #EXTINF:0,Crime Investigation
-
+http://202.75.23.36/live/ch47/01.m3u8
 
 #EXTINF:0,Discovery Channel
 rtmp://95.211.148.206/youcloud/ playpath=discoveryeo?keys=5J87wkXqe2QurjwwXtsbhw&keyt=1420475490 conn=S:OK swfUrl=http://cdn.youcloud.tv/jwplayer.flash.swf live=true timeout=15 pageUrl=http://youcloud.tv/player?streamname=discoveryeo&width=600&height=450 timeout=15
