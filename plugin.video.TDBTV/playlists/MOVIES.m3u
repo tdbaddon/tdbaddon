@@ -1,73 +1,73 @@
 ﻿#EXTM3U
 
-#EXTINF:0,Action Zone
+#EXTINF:0,Action Zone 
 rtmp://mi2.gv.filmon.com:8086/live/1045.high.stream
 
-#EXTINF:0,BigPond Movies
+#EXTINF:0,BigPond Movies 
 mms://ken-cdn220-is-3.se.bptvlive.ngcdn.telstra.com/bp_online_movieextra_high
 
-#EXTINF:0,Cinemax
+#EXTINF:0,Cinemax 
 
 
-#EXTINF:0,Cinestar Action & Thriller
-http://83.139.104.106/Content/HLS/Live/Channel(cinestar_action_and_thriller)/Stream(03)/index.m3u8
+#EXTINF:0,Cinestar Action & Thriller 
 
-#EXTINF:0,Cinestar Premiere
-http://83.139.104.105/Content/HLS/Live/Channel(cinestar_premiere_1)/Stream(03)/index.m3u8
 
-#EXTINF:0,Cinestar Premiere
-http://83.139.104.105/Content/HLS/Live/Channel(cinestar_premiere_2)/Stream(03)/index.m3u8
+#EXTINF:0,Cinestar Premiere 
 
-#EXTINF:0,Cinestar TV
-http://83.139.104.105/Content/HLS/Live/Channel(cinestar_tv)/Stream(03)/index.m3u8
 
-#EXTINF:0,Fox Action Movies
+#EXTINF:0,Cinestar Premiere 
+
+
+#EXTINF:0,Cinestar TV 
+
+
+#EXTINF:0,Fox Action Movies 
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=304&lan=2&rows=40&f=.m3u8
 
-#EXTINF:0,Fox Family Movies
+#EXTINF:0,Fox Family Movies 
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=343&lan=2&rows=40&f=.m3u8
 
-#EXTINF:0,Fox Movies Premium
+#EXTINF:0,Fox Movies Premium 
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=300&lan=2&rows=40&f=.m3u8
 
-#EXTINF:0,Fright Fest
+#EXTINF:0,Fright Fest 
 rtmp://198.255.0.2:443/live?9z9y6yu6iQQvGiCBD32o65nzWrWsaVj9 playpath=live_frightfest0001 swfUrl=http://vaughnlive.tv/4261986735/swf/VaughnSoftPlayer.swf pageUrl=http://vaughnlive.tv/frightfest0001
 
 #EXTINF:0,FX HD 
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=104&lan=2&rows=40&f=.m3u8
 
-#EXTINF:0,HBO
+#EXTINF:0,HBO 
 
 
-#EXTINF:0,HBO Plus
+#EXTINF:0,HBO Plus 
 
 
-#EXTINF:0,Kino TV
-http://83.139.104.106/Content/HLS/Live/Channel(kino_tv)/Stream(03)/index.m3u8
+#EXTINF:0,Kino TV 
 
-#EXTINF:0,Kung Fu Classics
+
+#EXTINF:0,Kung Fu Classics 
 rtmp://mi2.gv.filmon.com:8086/live/10.high.stream
 
-#EXTINF:0,Lotus Macau
-rtmp://58.97.57.152/live playpath=ch33 swfUrl=http://www.one2hd.com/swfs/mediaPlayer/mediaPlayer.swf pageUrl=http://www.one2hd.com
+#EXTINF:0,Lotus Macau 
 
-#EXTINF:0,MGM
+
+#EXTINF:0,MGM 
 
 
 #EXTINF:0,Paramount Channel 
 
 
-#EXTINF:0,Pink Action 1
+#EXTINF:0,Pink Action 1 
 http://on108.setplex.net/fastv_2psh/PinkActionglobal_rly_greece_109/playlist.m3u8
 
-#EXTINF:0,Pink Action 2
+#EXTINF:0,Pink Action 2 
 http://on108.setplex.net/fastv_2psh/PinkAction2global_rly_greece_103/hasbahca.m3u8
 
-#EXTINF:0,Pink Comedy
+#EXTINF:0,Pink Comedy 
 http://on108.setplex.net/fastv_2psh/PinkComedyglobal_rly_greece_103/playlist.m3u8
 
-#EXTINF:0,Pink Horror
-http://on108.setplex.net/fastv_2psh/PinkHorrorglobal_rly_greece_103/playlist.m3u8
+#EXTINF:0,Pink Horror 
+
 
 #EXTINF:0,Pink Movies 3
 http://on108.setplex.net/fastv_2psh/PinkMovies3global_rly_greece_109/playlist.m3u8

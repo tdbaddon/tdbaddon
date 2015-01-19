@@ -20,21 +20,6 @@ http://188.165.225.63:8080/bein1.m3u8
 #EXTINF:0,Bein Sport2
 http://188.165.225.63:8080/bein2.m3u8
 
-#EXTINF:0,Bein Sport3
-http://188.165.225.63:8080/bein3.m3u8
-
-#EXTINF:0,Bein Sport4
-http://188.165.225.63:8080/bein4.m3u8
-
-#EXTINF:0,Bein Sport5
-http://188.165.225.63:8080/bein5.m3u8
-
-#EXTINF:0,Bein Sport6
-http://188.165.225.63:8080/bein6.m3u8
-
-#EXTINF:0,Bein Sport7
-http://188.165.225.63:8080/bein7.m3u8
-
 #EXTINF:0,BT Sport 1 
 
 
@@ -43,12 +28,6 @@ http://188.165.225.63:8080/bein7.m3u8
 
 #EXTINF:0,Combat Channel 
 
-
-#EXTINF:0,ESPN 
-http://200.76.77.237/LIVE/H01/CANAL516/PROFILE03.m3u8?
-
-#EXTINF:0,ESPN 
-http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=390&lan=2&rows=40&f=.m3u8
 
 #EXTINF:0,ESPN 
 rtmp://rtmp.zerocast.tv:1935/live playpath=YEZib0gVfqaDdaFn9MQ9 swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
@@ -63,19 +42,19 @@ rtmp://31.204.154.15:443/liverepeater playpath=183211 swfUrl=http://bernardotv.c
 http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_1000.m3u8
 
 #EXTINF:0,Eurosport 2 
-http://83.139.104.105/Content/HLS/Live/Channel(eurosport_2)/Stream(03)/index.m3u8
+
 
 #EXTINF:0,Eurosport Live
-http://83.139.104.105/Content/HLS/Live/Channel(eurosport)/Stream(03)/index.m3u8
+
 
 #EXTINF:0,Eurosport News 
 
 
 #EXTINF:0,Extreme Sports 
-http://83.139.104.105/Content/HLS/Live/Channel(extreme_sports)/Stream(03)/index.m3u8
+
 
 #EXTINF:0,FightBox 
-http://83.139.104.105/Content/HLS/Live/Channel(fight_channel)/Stream(03)/index.m3u8
+
 
 #EXTINF:0,Football TV 
 rtmp://mi2.gv.filmon.com:8086/live/374.high.stream
@@ -95,8 +74,11 @@ rtmp://rtmp.zerocast.tv:1935/live playpath=5S7VAxdgbnpjSPB1pUkk swfUrl=http://p.
 #EXTINF:0,NBC Golf 
 http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/2596k/prog.m3u8|X-Forwarded-For=209.239.112.104
 
+#EXTINF:0,NBC Golf 
+http://167.114.41.220:8080/nbcgolf/nbc/index.m3u8
+
 #EXTINF:0,NBCSN 
-rtsp://c.itvitv.com/nhke.huyudfroskrjw
+
 
 #EXTINF:0,NFL Network 
 
@@ -129,7 +111,13 @@ http://xrxs.net/video/live-p12wash-4728.m3u8
 
 
 #EXTINF:0,Racing UK 
+http://188.166.11.245:8080/racinguk/racinguk/index.m3u8
+
+#EXTINF:0,Racing UK 
 rtmp://rrbalancer.broadcast.tneg.de:1935/pw/ruk/ playpath=ruk swfUrl=http://pferdewetten.broadcast.tneg.de/jwplayer/player.swf live=1 pageUrl=http://pferdewetten.broadcast.tneg.de/jwplayer/player.php?type=live&stream=ruk1&token=ccf6c54e62bc5bd667661d5af5d61e8664c75b11
+
+#EXTINF:0,Rogers Sportsnet 360
+http://167.114.41.220:8080/sn360/sn360/index.m3u8
 
 #EXTINF:0,Rogers Sportsnet One 
 rtmp://178.18.31.55:443/liverepeater playpath=184290 swfUrl=http://bernardotv.club/atdedead.swf pageUrl=http://biggestplayer.me/streamcr.php?id=184290&width=620&height=490 token=#atd%#$ZH
@@ -185,6 +173,9 @@ rtmp://streamer.a1.net:1935/rtmplive/redundant/channels/Sporttime/SporttimeTV/mp
 #EXTINF:0,Trace Sports 
 rtsp://46.249.213.87/broadcast/tracetvsports-tablet.3gp
 
+#EXTINF:0,TSN 1
+http://167.114.41.220:8080/tsn1/tsn1/index.m3u8
+
 #EXTINF:0,TSN 1 
 rtmp://178.18.31.64:443/liverepeater playpath=184403 swfUrl=http://bernardotv.club/atdedead.swf pageUrl=http://biggestplayer.me/streamcr.php?id=184403&width=620&height=490 token=#atd%#$ZH
 
@@ -193,6 +184,9 @@ rtmp://31.220.0.195:80/live playpath=tsnx2 live=1 pageUrl=http://www.flashtv.co/
 
 #EXTINF:0,Viasat Sport 
 http://80.77.52.6:4444www.tvonlinestreams.com/udp/230.0.3.58:12345
+
+#EXTINF:0,Wrestling TV
+http://188.166.11.245:8080/wrestlingwrestling/index.m3u8
 
 #EXTINF:0,WWE Network 
 

@@ -30,7 +30,7 @@ http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=129&lan=2&rows=
 
 
 #EXTINF:0,Bravo 
-http://142.4.216.60:1935/edge/_definst_/uw433ikqnrj501l/playlist.m3u8?wowzasessionid=1766788662&xs=_we_dXc0MzNpa3Fucmo1MDFsfDEzOTY5OTczNTd8MzkuNDUuMjUwLjE1OXw1MzQ0N2I4NWI4YWI5fDVkMzc4YWRkZWQ0YmI5MzkyZmUzNmQyOWExY2MyNTNhYjRhZjNkNGE
+
 
 #EXTINF:0,CBS 
 rtmp://rtmp.zerocast.tv:1935/live playpath=Ger61uLQ4fedzvjRjrB7 swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
@@ -59,7 +59,7 @@ http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/cnbc_eu/ls_satlink/b_264.m3u8
 #EXTINF:0,CW 
 rtmp://rtmp.zerocast.tv:1935/live/ playpath=IWSyIjvWgHRCMM7MEJoZ swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
 
-#EXTINF:0,E!
+#EXTINF:0,E! 
 http://84.32.80.15:7781/udp/233.136.41.107:1234
 
 #EXTINF:0,English Club TV 
@@ -68,11 +68,8 @@ http://85.187.154.9:2001/
 #EXTINF:0,Fashion TV 
 http://edgeb.streaming.sk/fashiontv/fashiontv.stream/playlist_b125000_w304569164.m3u8
 
-#EXTINF:0,Fashion TV
+#EXTINF:0,Fashion TV 
 http://hls.novotelecom.ru/streaming/fashion/tvrec/playlist.m3u8
-
-#EXTINF:0,Fashion TV
-http://83.139.104.105/Content/HLS/Live/Channel(fashion_tv)/Stream(03)/index.m3u8
 
 #EXTINF:0,FOX 5 
 rtmp://rtmp.zerocast.tv:1935/live playpath=9pxGCtP3aEnJYgoBFFH8 swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
@@ -81,13 +78,13 @@ rtmp://rtmp.zerocast.tv:1935/live playpath=9pxGCtP3aEnJYgoBFFH8 swfUrl=http://p.
 
 
 #EXTINF:0,FOX Life 
-http://hlsstr02.svc.iptv.rt.ru/hls/CH_FOXLIFE/variant.m3u8
 
-#EXTINF:0,Food Network
-http://83.139.104.105/Content/HLS/Live/Channel(food_network)/Stream(03)/index.m3u8
+
+#EXTINF:0,Food Network 
+
 
 #EXTINF:0,FX 
-rtmp://rtmp.zerocast.tv:1935/live/ playpath=VCV8SViFVBv2nX5RQwKI swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
+
 
 #EXTINF:0,Ginx Gaming TV 
 rtmp://204.107.26.252:8086/live/796.high.stream
@@ -115,6 +112,9 @@ http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
 
 #EXTINF:0,NBC 
 rtmp://rtmp.zerocast.tv:1935/live playpath=3GdoAHRAxgZNzmQZL29l swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
+
+#EXTINF:0,NHK World 
+http://nhkworld-hds-live1.hds1.fmslive.stream.ne.jp/hls-live/nhkworld-hds-live1/_definst_/livestream/nhkworld-live-512.m3u8 
 
 #EXTINF:0,OWN Network 
 
@@ -147,7 +147,7 @@ http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=376&lan=2&rows=
 
 
 #EXTINF:0,Syfy 
-rtmp://37.221.172.85/youcloud/ playpath=syfyie?keys=B0-khOJYPTeqWS9XCQhnyA&keyt=1420391081 swfUrl=http://cdn.youcloud.tv/jwplayer.flash.swf live=1 pageUrl=http://youcloud.tv/player?streamname=syfyie&width=600&height=450 timeout=15
+
 
 #EXTINF:0,TBS 
 
@@ -156,7 +156,7 @@ rtmp://37.221.172.85/youcloud/ playpath=syfyie?keys=B0-khOJYPTeqWS9XCQhnyA&keyt=
 http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/master.m3u8?b?b*t$
 
 #EXTINF:0,TLC 
-http://202.75.23.34/live/ch35/01.m3u8
+
 
 #EXTINF:0,TNT 
 

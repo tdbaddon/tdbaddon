@@ -1,104 +1,89 @@
 ﻿#EXTM3U
 
 
-#EXTINF:0,Animal Planet
-http://83.139.104.106/Content/HLS/Live/Channel(animal_planet)/Stream(03)/index.m3u8
+#EXTINF:0,Animal Planet 
 
-#EXTINF:0,Crime Investigation
+
+#EXTINF:0,Crime Investigation 
 http://202.75.23.36/live/ch47/01.m3u8
 
-#EXTINF:0,Discovery Channel
+#EXTINF:0,Discovery Channel 
 rtmp://95.211.148.206/youcloud/ playpath=discoveryeo?keys=5J87wkXqe2QurjwwXtsbhw&keyt=1420475490 conn=S:OK swfUrl=http://cdn.youcloud.tv/jwplayer.flash.swf live=true timeout=15 pageUrl=http://youcloud.tv/player?streamname=discoveryeo&width=600&height=450 timeout=15
 
-#EXTINF:0,Discovery History
+#EXTINF:0,Discovery History 
 
 
-#EXTINF:0,Discovery Investigation
+#EXTINF:0,Discovery Investigation 
 
 
-#EXTINF:0,Discovery Max
+#EXTINF:0,Discovery Max 
 http://202.75.23.34/live/ch32/01.m3u8
 
-#EXTINF:0,Discovery Max
+#EXTINF:0,Discovery Max 
 http://202.75.23.34/live/ch32/03.m3u8
 
-#EXTINF:0,Discovery Science
+#EXTINF:0,Discovery Science 
 
 
-#EXTINF:0,Discovery Turbo
+#EXTINF:0,Discovery Turbo 
 
 
-#EXTINF:0,Discovery World
+#EXTINF:0,Discovery World 
 http://202.75.23.34:1400/live/ch30/03.m3u8
 
-#EXTINF:0,Discovery World
+#EXTINF:0,Discovery World 
 http://202.75.23.34/live/ch30/01.m3u8
 
-#EXTINF:0,Escapes
-rtmp://204.107.26.252:8086/live/341.high.stream
-
-#EXTINF:0,EVE
+#EXTINF:0,EVE 
 http://202.75.23.34/live/ch34/01.m3u8
 
-#EXTINF:0,EVE
+#EXTINF:0,EVE 
 http://202.75.23.34:1400/live/ch34/01.m3u8 
-
-#EXTINF:0,FYI
-
 
 #EXTINF:0,History Channel
 
 
-#EXTINF:0,Landscape
-http://130.88.20.233:1237/test.flv
-
-#EXTINF:0,NASA TV
+#EXTINF:0,NASA TV 
 http://public.infozen.cshls.lldns.net/infozen/public/public.m3u8
 
-#EXTINF:0,NASA TV
-http://media.infozen.cshls.lldns.net/infozen/infozen_media/streams/media/media_1000Num59400.ts
-
-#EXTINF:0,NASA TV
+#EXTINF:0,NASA TV 
 http://edu.infozen.cshls.lldns.net/infozen/edu/edu/edu_1000.m3u8
 
-#EXTINF:0,NASA TV
+#EXTINF:0,NASA TV 
 http://public.infozen.cshls.lldns.net/infozen/public/public/public_1000.m3u8
 
 #EXTINF:0,Nat Geo People 
 http://202.75.23.35/live/ch38/03.m3u8?b?b*t$
 
-#EXTINF:0,Nat Geo Wild
+#EXTINF:0,Nat Geo Wild 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_NATGEOWILD/variant.m3u8
 
-#EXTINF:0,Nat Geo Wild
+#EXTINF:0,Nat Geo Wild 
 http://202.75.23.35/live/ch39/01.m3u8
 
-#EXTINF:0,National Geographic
+#EXTINF:0,National Geographic 
 http://202.75.23.35/live/ch38/03.m3u8
 
-#EXTINF:0,National Geographic
-rtmp://66.55.92.79/e35a552a-7d88-497d-a7cd-fadf292cae6b/TbrS3mVLwato6H8hzoj1
-
-#EXTINF:0,Paranormal TV
+#EXTINF:0,Paranormal TV 
 rtmp://mi2.gv.filmon.com:8086/live/1618.high.stream
 
-#EXTINF:0,Science Channel
+#EXTINF:0,Science Channel 
 
 
-#EXTINF:0,Travel Channel
+#EXTINF:0,Travel Channel 
 http://202.75.23.35/live/ch41/01.m3u8
 
-#EXTINF:0,Travel Channel
+#EXTINF:0,Travel Channel 
 http://84.32.80.15:7781/udp/233.136.41.44:1234
 
-#EXTINF:0,Viasat Explorer
+#EXTINF:0,Viasat Explorer 
 http://83.139.104.105/Content/HLS/Live/Channel(viasat_explore)/Stream(03)/index.m3u8
 
-#EXTINF:0,Viasat History
-http://83.139.104.105/Content/HLS/Live/Channel(viasat_history)/Stream(03)/index.m3u8
-
-#EXTINF:0,Viasat Nature
+#EXTINF:0,Viasat History 
 
 
-#EXTINF:0,Wealth TV
+#EXTINF:0,Viasat Nature 
+
+
+#EXTINF:0,Wealth TV 
 

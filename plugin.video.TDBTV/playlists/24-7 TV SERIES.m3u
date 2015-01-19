@@ -2,13 +2,13 @@
 
 
 #EXTINF:0,2 Broke Girls
-rtmp://198.27.75.99/ch005/ playpath=2bg01 swfUrl=http://www.tgun.tv/locked/player.swf live=1 pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex5.php?2bg01
+
 
 #EXTINF:0,3rd Rock From The Sun 
-rtmp://198.27.75.99/ch005 playpath=rock swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex5.php?rock
+
 
 #EXTINF:0,All In The Family
-rtmp://198.27.75.99/ch005 playpath=aitf swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex5.php?aitf
+
 
 #EXTINF:0, American Dad
 rtmp://192.99.38.122/ch004/ playpath=americandad02 swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash live=1 pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex3.php?americandad02
@@ -17,16 +17,16 @@ rtmp://192.99.38.122/ch004/ playpath=americandad02 swfUrl=http://www.tgun.tv/men
 rtmp://198.255.0.18:443/live?cLBMPT560QWkYk1hpfJyZs8HsSP0Uuxc playpath=live_111aaacharkpickers swfUrl=http://vaughnlive.tv/4259041179/swf/VaughnSoftPlayer.swf live=1 pageUrl=http://vaughnlive.tv
  
 #EXTINF:0,Anger Management
-rtmp://198.27.75.99/ch005 playpath=anger02 swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex5.php?anger02
+
 
 #EXTINF:0,Archer
 rtmp://62.210.76.216/live playpath=archerxhd swfUrl=http://releases.flowplayer.org/5.5.1/flowplayer.swf live=1 pageUrl=http://www.stream4free.eu/archer
 
 #EXTINF:0,Arrested Development
-rtmp://198.27.75.99/ch005 playpath=arrested01 swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex5.php?arrested01
+
 
 #EXTINF:0,Becker
-rtmp://198.27.75.99/ch005 playpath=beck swfUrl=http://www.tgun.tv/locked/player.swf live=1 pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex5.php?beck
+
 
 #EXTINF:0,Breaking Bad 
 rtmp://192.99.38.122/ch004/ playpath=bad02 swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex3.php?bad02
@@ -44,7 +44,7 @@ rtmp://192.99.38.122/ch004/ playpath=bones02 swfUrl=http://www.tgun.tv/menus/pla
 
 
 #EXTINF:0,Boy Meets World
-rtmp://198.27.75.99/ch005 playpath=bmw swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex5.php?bmw
+
 
 #EXTINF:0,Burn Notice 
 rtmp://192.99.38.122/ch004/ playpath=burnnotice03 swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex3.php?burnnotice03
@@ -53,22 +53,22 @@ rtmp://192.99.38.122/ch004/ playpath=burnnotice03 swfUrl=http://www.tgun.tv/menu
 
  
 #EXTINF:0,Cheers
-rtmp://198.27.75.99/ch005 playpath=cheers01 swfUrl=http://www.tgun.tv/locked/player.swf live=1 pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex5.php?cheers01
+
 
 #EXTINF:0,Community 
-rtmp://62.210.76.216/live playpath=community swfUrl=http://releases.flowplayer.org/5.5.1/flowplayer.swf pageUrl=http://www.stream4free.eu/greendale-college
+
 
 #EXTINF:0,Community 
-rtmp://198.27.75.99/ch005 playpath=community01 swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex5.php?community01
+
 
 #EXTINF:0,Cops
-rtmp://198.27.75.99/ch005 playpath=cops01 swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex5.php?cops01
+
  
 #EXTINF:0,Curb Your Enthusiasm 
 rtmp://192.99.38.122/ch004 playpath=curbs03 swfUrl=http://www.tgun.tv/lock/player.swf live=1 pageUrl=http://www.tgun.tv/menus/players/playerindex3.php?curbs02
 
 #EXTINF:0,Eastbound & Down 
-rtmp://198.27.75.99/ch005 playpath=east swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex5.php?east
+
 
 #EXTINF:0,Everybody Loves Raymond
 rtmp://192.99.38.122/ch004/ playpath=elr02 swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex3.php?elr02
@@ -80,19 +80,19 @@ rtmp://192.99.38.122/ch004 playpath=frasier02 swfUrl=http://www.tgun.tv/menus/pl
 rtmp://192.99.38.122/ch004 playpath=friends02 swfUrl=http://www.tgun.tv/lock/player.swf live=1 pageUrl=http://www.tgun.tv/menus/players/playerindex3.php?friends01
 
 #EXTINF:0,Game of Thrones
-rtmp://62.210.76.216/live playpath=xgamehd swfUrl=http://releases.flowplayer.org/5.5.1/flowplayer.swf live=1 pageUrl=http://www.stream4free.eu/game-of-thrones
+
 
 #EXTINF:0,Game of Thrones
-rtmp://198.27.75.99/ch005 playpath=got02 swfUrl=http://www.tgun.tv/locked/player.swf live=1 pageUrl=http://www.tgun.tv
+
 
 #EXTINF:0,Growing Pains
-rtmp://198.27.75.99/ch005 playpath=gpain swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex5.php?gpain
+
 
 #EXTINF:0,Hangin with Mr Cooper
-rtmp://198.27.75.99/ch005 playpath=cooper swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex5.php?cooper
+
 
 #EXTINF:0,Home Improvement 
-rtmp://198.27.75.99/ch005 playpath=home01 swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex5.php?home01
+
  
 #EXTINF:0,House Of Cards 
 rtmp://62.210.76.216/live playpath=housecard swfUrl=http://releases.flowplayer.org/5.5.1/flowplayer.swf pageUrl=http://www.stream4free.eu/house-of-cards
@@ -104,7 +104,7 @@ rtmp://192.99.38.122/ch004/ playpath=himym02 swfUrl=http://www.tgun.tv/menus/pla
 rtmp://62.210.76.216/live playpath=s4fhimym swfUrl=http://releases.flowplayer.org/5.5.1/flowplayer.swf live=1 pageUrl=http://www.jtvstream.me/himym
 
 #EXTINF:0,I Love Lucy
-rtmp://198.27.75.99/ch005 playpath=lucy02 swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex5.php?lucy02
+
 
 #EXTINF:0,Its Always Sunny in Philadelphia 
 rtmp://192.99.38.122/ch004/ playpath=sunny02 swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex3.php?sunny02
@@ -113,22 +113,22 @@ rtmp://192.99.38.122/ch004/ playpath=sunny02 swfUrl=http://www.tgun.tv/menus/pla
 rtmp://198.255.0.18:443/live?cLBMPT560QWkYk1hpfJyZs8HsSP0Uuxc playpath=live_lmshows_ij swfUrl=http://vaughnlive.tv/4259041179/swf/VaughnSoftPlayer.swf live=1 pageUrl=http://vaughnlive.tv
 
 #EXTINF:0,Just Shoot Me 
-rtmp://198.27.75.99/ch005 playpath=shootme swfUrl=http://www.tgun.tv/lock/player.swf live=1 pageUrl=http://www.tgun.tv/menus/players/playerindex5.php?shootme
+
 
 #EXTINF:0,Law and Order 
 rtmp://198.255.0.18:443/live?cLBMPT560QWkYk1hpfJyZs8HsSP0Uuxc playpath=live_getyourdocsoff swfUrl=http://vaughnlive.tv/4259041179/swf/VaughnSoftPlayer.swf live=1 pageUrl=http://vaughnlive.tv
 
 #EXTINF:0,Law & Order SVU
-rtmp://198.27.75.99/ch005 playpath=lawsuv02 swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex5.php?lawsuv02
+
 
 #EXTINF:0,Lost
 
 
 #EXTINF:0,Mad Men 
-rtmp://62.210.76.216/live playpath=xmadxmen swfUrl=http://releases.flowplayer.org/5.5.1/flowplayer.swf live=1 pageUrl=http://www.stream4free.eu/mad-men
+
 
 #EXTINF:0,Malcolm In The Middle 
-rtmp://198.27.75.99/ch005 playpath=malcolm swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex5.php?malcolm
+
 
 #EXTINF:0,Married With Children 
 rtmp://192.99.38.122/ch004 playpath=mwc02 swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex3.php?mwc02
@@ -136,38 +136,38 @@ rtmp://192.99.38.122/ch004 playpath=mwc02 swfUrl=http://www.tgun.tv/menus/player
 #EXTINF:0,M*A*S*H*
 rtmp://192.99.38.122/ch004 playpath=mash02 swfUrl=http://www.tgun.tv/lock/player.swf live=1 pageUrl=http://www.tgun.tv/menus/players/playerindex3.php?mash01
 
-#EXTINF:0,Masterchef Worldwide
+#EXTINF:0,Masterchef
 rtmp://198.255.0.18:443/live?cLBMPT560QWkYk1hpfJyZs8HsSP0Uuxc playpath=live_changoxpr swfUrl=http://vaughnlive.tv/4259041179/swf/VaughnSoftPlayer.swf live=1 pageUrl=http://vaughnlive.tv
 
 #EXTINF:0,Modern Family 
-rtmp://198.27.75.99/ch005 playpath=mfamily02 swfUrl=http://www.tgun.tv/lock/player.swf live=1 pageUrl=http://www.tgun.tv/menus/players/playerindex3.php?mfamily02
+r
 
 #EXTINF:0,NCIS
 
 
 #EXTINF:0,New Girl 
-rtmp://198.27.75.99/ch005 playpath=ng swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex5.php?ng
+
  
 #EXTINF:0,NewsRadio 
-rtmp://198.27.75.99/ch005 playpath=nradio swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex5.php?nradio
+
 
 #EXTINF:0,Night Court
-rtmp://198.27.75.99/ch005 playpath=nightcourt swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex5.php?nightcourt
+
 
 #EXTINF:0,Northern Exposure 
-rtmp://198.27.75.99/ch005 playpath=northern swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex5.php?northern
+
 
 #EXTINF:0,OZ 
-rtmp://198.27.75.99/ch005 playpath=oz02 swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex5.php?oz02
+
 
 #EXTINF:0,Perfect Strangers
-rtmp://198.27.75.99/ch005 playpath=ps swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex5.php?ps
+
 
 #EXTINF:0,Reno 911
 
 
 #EXTINF:0,Roseanne
-rtmp://198.27.75.99/ch005 playpath=roseanne01 swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex5.php?roseanne01
+
 
 #EXTINF:0,Rules of Engagement
 rtmp://192.99.38.122/ch004 playpath=roe02 swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex3.php?roe02
@@ -179,13 +179,13 @@ rtmp://192.99.38.122/ch004 playpath=scrubs02 swfUrl=http://www.tgun.tv/lock/play
 rtmp://192.99.38.122/ch004 playpath=seinfeld03 swfUrl=http://www.tgun.tv/locked/player.swf live=1 pageUrl=http://www.tgun.tv/menus/players/dlock/playerindextab1.php?seinfeld03
 
 #EXTINF:0,Sons of Anarchy
-rtmp://62.210.76.216/live playpath=sonsofanarf4 swfUrl=http://releases.flowplayer.org/5.5.1/flowplayer.swf pageUrl=http://www.jtvstream.me/'@j@key|~j@ke
+
 
 #EXTINF:0,South Park
 rtmp://192.99.38.122/ch004/ playpath=southp02 swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf pageUrl=http://www.tgun.tv/menus/players/dlock/playerindextab1.php?southp02
 
 #EXTINF:0,South Park
-rtmp://62.210.76.216/live playpath=spark swfUrl=http://releases.flowplayer.org/5.5.1/flowplayer.swf live=1 pageUrl=http://www.jtvstream.me/south-park-hd
+
 
 #EXTINF:0,Star Trek DS9
 rtmp://192.99.38.122/ch004 playpath=ds902 swfUrl=http://www.tgun.tv/lock/player.swf live=1 pageUrl=http://www.tgun.tv/menus/players/playerindex3.php?ds901
@@ -200,7 +200,7 @@ rtmp://192.99.38.122/ch004 playpath=tng02 swfUrl=http://www.tgun.tv/lock/player.
 rtmp://192.99.38.122/ch004 playpath=voy02 swfUrl=http://www.tgun.tv/locked/player.swf live=1 pageUrl=http://www.tgun.tv/menus
  
 #EXTINF:0,That 70s Show 
-rtmp://198.27.75.99/ch005 playpath=that70sshow swfUrl=http://www.tgun.tv/lock/player.swf live=1 pageUrl=http://www.tgun.tv/menus/players/playerindex5.php?that70sshow
+
 
 #EXTINF:0,The Big Bang Theory
 rtmp://192.99.38.122/ch004/ playpath=tbbt02 swfUrl=http://www.tgun.tv/locked/player.swf live=1 pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex4.php?tbbt02 timeout=15
@@ -212,10 +212,10 @@ rtmp://198.27.75.99/ch005 playpath=tbbt01 swfUrl=http://www.tgun.tv/menus/player
 rtmp://62.210.76.216/live playpath=tbbangtheory swfUrl=http://releases.flowplayer.org/5.5.1/flowplayer.swf live=1 pageUrl=http://www.jtvstream.me/the-big-bang-theory
 
 #EXTINF:0,The Cosby Show 
-rtmp://198.27.75.99/ch005 playpath=cosby swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex5.php?cosby
+
 
 #EXTINF:0,The Drew Carey Show 
-rtmp://198.27.75.99/ch005 playpath=drewcarey swfUrl=http://www.tgun.tv/locked/player.swf live=1 pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex5.php?drewcarey
+
 
 #EXTINF:0,The Fresh Prince Of BelAir
 rtmp://192.99.38.122/ch004 playpath=freshprince02 swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf pageUrl=http://www.tgun.tv/menus/players/dlock/playerindextab1.php?freshprince02
@@ -224,7 +224,7 @@ rtmp://192.99.38.122/ch004 playpath=freshprince02 swfUrl=http://www.tgun.tv/menu
 rtmp://192.99.38.122/ch004 playpath=koq02 swfUrl=http://www.tgun.tv/lock/player.swf live=1 pageUrl=http://www.tgun.tv/menus/players/playerindex3.php?koq01
 
 #EXTINF:0,The Middle
-rtmp://198.27.75.99/ch005 playpath=middle swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex5.php?middle
+
 
 #EXTINF:0,The Office
 rtmp://192.99.38.122/ch004 playpath=office02 swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf pageUrl=http://www.tgun.tv/menus/players/dlock/playerindextab1.php?office02
@@ -233,22 +233,19 @@ rtmp://192.99.38.122/ch004 playpath=office02 swfUrl=http://www.tgun.tv/menus/pla
 rtmp://62.210.76.216/live playpath=theoffice swfUrl=http://releases.flowplayer.org/5.5.1/flowplayer.swf pageUrl=http://www.stream4free.eu/the-office
 
 #EXTINF:0,The Sopranos 
-rtmp://198.27.75.99/ch005 playpath=sopranos swfUrl=http://www.tgun.tv/lock/player.swf live=1 pageUrl=http://www.tgun.tv/menus/players/playerindex5.php?sopranos
+
 
 #EXTINF:0,The Trailer Park Boys
 rtmp://192.99.38.122/ch004 playpath=tpb02 swfUrl=http://www.tgun.tv/lock/player.swf live=1 pageUrl=http://www.tgun.tv/menus/players/playerindex3.php?tpb01
 
-#EXTINF:0,The Walking Dead
-rtmp://198.27.75.99/ch005/ playpath=twd02 swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex5.php?twd02
-
-#EXTINF:0,The Walking Dead
+#EXTINF:0,The Walking Dead 
 rtmp://62.210.76.216/live playpath=xxwalkingdead swfUrl=http://releases.flowplayer.org/5.5.1/flowplayer.swf pageUrl=http://www.stream4free.eu/the-walking-dead
 
 #EXTINF:0,The X Files 
 rtmp://192.99.38.122/ch004 playpath=xfiles02 swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex3.php?xfiles02
 
 #EXTINF:0,Three's Company 
-rtmp://198.27.75.99/ch005 playpath=3scom01 swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex5.php?3scom01
+
 
 #EXTINF:0,Top Gear
 rtmp://198.255.0.18:443/live?cLBMPT560QWkYk1hpfJyZs8HsSP0Uuxc playpath=live_profe3191 swfUrl=http://vaughnlive.tv/4259041179/swf/VaughnSoftPlayer.swf live=1 pageUrl=http://vaughnlive.tv
@@ -257,13 +254,12 @@ rtmp://198.255.0.18:443/live?cLBMPT560QWkYk1hpfJyZs8HsSP0Uuxc playpath=live_prof
 rtmp://192.99.38.122/ch004/ playpath=men02 swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex3.php?men02
  
 #EXTINF:0,Vikings
-rtmp://198.27.75.99/ch005 playpath=vikings02 swfUrl=http://www.tgun.tv/lock/player.swf pageUrl=http://tgun.tv/shows/ch1 playpath=vikings02
+
 
 #EXTINF:0,Weeds
-rtmp://62.210.76.216/live playpath=freeweed swfUrl=http://releases.flowplayer.org/5.5.1/flowplayer.swf pageUrl=http://www.jtvstream.me/weeds
+
 
 #EXTINF:0,Workaholics
 rtmp://62.210.76.216/live playpath=workaholics swfUrl=http://releases.flowplayer.org/5.5.1/flowplayer.swf pageUrl=http://www.jtvstream.me/workaholics
  
 #EXTINF:0,Will & Grace 
-rtmp://198.27.75.99/ch005 playpath=wag swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex5.php?wag

@@ -2,139 +2,136 @@
 #EXTINF:0,
 
 
-#EXTINF:0,1HD
+#EXTINF:0,1HD 
 rtmp://109.239.142.62/live/livestream3
 
-#EXTINF:0,4Music
+#EXTINF:0,4Music 
 http://csm-e.cds1.yospace.com/csm/live/86550614.m3u8
 
-#EXTINF:0,AKA
+#EXTINF:0,AKA 
 http://rrr.sz.xlcdn.com/?account=AATW&file=akanew&type=live&service=wowza&protocol=http&output=playlist.m3u8
 
-#EXTINF:0,BPM TV
+#EXTINF:0,BPM TV 
 mms://ken-cdn220-is-2.se.bptvlive.ngcdn.telstra.com/bp_online_bpmusic_high
 
-#EXTINF:0,Capital Music
+#EXTINF:0,Capital Music 
 
 
-#EXTINF:0,CineStream TV
-http://68.71.42.179/live/livestream1/playlist.m3u8
-
-#EXTINF:0,Clubbing TV
+#EXTINF:0,Clubbing TV 
 rtmp://204.107.26.252:8086/live/691.high.stream
 
-#EXTINF:0,Clubland TV
-http://ngx.cr2.streamzilla.xlcdn.com/session/3a5cd4980373fa082fb3b1a66da93781/sz/AATW/wowza4/live/clublandtv/playlist.m3u8?token=MBC8Xzmt-LJfedrcGNlN0g&time=1421497389
+#EXTINF:0,Clubland TV 
 
-#EXTINF:0,CMC California Music Channel
+
+#EXTINF:0,CMC California Music Channel 
 rtmp://cmctv.flash.internapcdn.net:1935/cmctv_vitalstream_com/live_adaptive_1/CMC-TV_adaptive3 swfUrl=http://http.vitalstreamcdn.com/flashskins/V2Player.swf live=1 pageUrl=http://www.cmc-tv.com/
 
-#EXTINF:0,CMC Country
+#EXTINF:0,CMC Country 
 rtmp://cmctv.flash.internapcdn.net:80/cmctv_vitalstream_com/live_1/CMCUSA swfUrl=http://http.vitalstreamcdn.com/flashskins/V2Player.swf live=1 pageUrl=http://www.cmctvusa.com/
 
-#EXTINF:0,Djing TV
+#EXTINF:0,Djing TV 
 http://www.djing.com/tv/05.m3u8
 
-#EXTINF:0,Gothic Rock TV
+#EXTINF:0,Gothic Rock TV 
 rtmp://149.11.34.6/live/gotica.stream
 
-#EXTINF:0,Heart TV
+#EXTINF:0,Heart TV 
 
 
-#EXTINF:0,Ibiza on TV
+#EXTINF:0,Ibiza on TV 
 http://46.249.213.87/iPhone/broadcast/ibizaontv-tablet.3gp/ibizaontv-tablet.3gp-mr648k.m3u8?trackingid=3391380000&os=desktop
 
-#EXTINF:0,Jazz
+#EXTINF:0,Jazz 
 http://149.11.34.78:1935/live/jazztv.stream/hasbahca.m3u8
 
-#EXTINF:0,King TV
+#EXTINF:0,King TV 
 
 
-#EXTINF:0,Kiss TV
+#EXTINF:0,Kiss TV 
 http://csm-e.cds1.yospace.com/csm/live/86561716.m3u8
 
-#EXTINF:0,M6 Music Club
+#EXTINF:0,M6 Music Club 
 http://sslhls.m6tv.cdn.sfr.net/hls-live/livepkgr/_definst_/m6_music_club_hls_aes/m6_music_club_hls_aes_856.m3u8
 
-#EXTINF:0,Magic
+#EXTINF:0,Magic 
 http://csm-e.cds1.yospace.com/csm/live/86561776.m3u8
 
-#EXTINF:0,MTV Dance
+#EXTINF:0,MTV Dance 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVDANCE/variant.m3u8
 
-#EXTINF:0,MTV Hits
+#EXTINF:0,MTV Hits 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVHITS/variant.m3u8
 
-#EXTINF:0,MTV Live
+#EXTINF:0,MTV Live 
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=432&lan=2&rows=40&f=.m3u8
 
-#EXTINF:0,MTV Music
+#EXTINF:0,MTV Music 
 
 
-#EXTINF:0,MTV Rocks
+#EXTINF:0,MTV Rocks 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVROCKS/variant.m3u8
 
-#EXTINF:0,Musiq1
+#EXTINF:0,Musiq1 
 
 
-#EXTINF:0,MusicVoxTV
+#EXTINF:0,MusicVoxTV 
 rtmp://stream.smcloud.net/live2/vox/vox_720p
 
-#EXTINF:0,MusicVoxTV
+#EXTINF:0,MusicVoxTV 
 rtmp://stream.smcloud.net/live2/vox/vox_360p
 
 #EXTINF:-1,Nat Geo Music 
 
 
-#EXTINF:0,Now Thats What I Call Music
+#EXTINF:0,Now Thats What I Call Music 
 
 
-#EXTINF:0,PartyTV
+#EXTINF:0,PartyTV 
 rtmp://149.11.34.6/live/partytv.stream
 
 #EXTINF:0,Pink Music 3
 http://on108.setplex.net/fastv_2psh/PinkMusic3global_rly_greece_103/playlist.m3u8
 
-#EXTINF:0,Radio Monte Carlo
+#EXTINF:0,Radio Monte Carlo 
 rtmp://fms.105.net:1935/live/rmc1
 
-#EXTINF:0,Reggae Entertainment
+#EXTINF:0,Reggae Entertainment 
 http://rjr_flash-lh.akamaihd.net/i/retv_1@177154/master.m3u8
 
-#EXTINF:0,Rock 66
+#EXTINF:0,Rock 66 
 http://mediatv2.topix.it/24RockOne66
 
-#EXTINF:0,Smash Hits
+#EXTINF:0,Smash Hits 
 http://csm-e.cds1.yospace.com/csm/live/86561609.m3u8
 
-#EXTINF:0,The Box
+#EXTINF:0,The Box 
 http://csm-e.cds1.yospace.com/csm/live/86561631.m3u8
 
-#EXTINF:0,The Heat
+#EXTINF:0,The Heat 
 http://csm-e.cds1.yospace.com/csm/live/86561584.m3u8
 
-#EXTINF:0,Vevo Hits
+#EXTINF:0,Vevo Hits 
 http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch2/06/prog_index.m3u8
 
-#EXTINF:0,Vevo Country
+#EXTINF:0,Vevo Country 
 http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch3/06/prog_index.m3u8
 
-#EXTINF:0,Vevo Pop
+#EXTINF:0,Vevo Pop 
 http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/appleman.m3u8
 
 #EXTINF:0,VH1
 rtmp://edge03-03.az.myvideo.az/dvrh264/vh1/ playpath=mp4:vh1 swfUrl=http://www.myvideo.az/stml/dvr/dvrH.swf?v=1.2 live=1 pageUrl=http://www.myvideo.az/r.ates
 
-#EXTINF:0,VH1 Classics
+#EXTINF:0,VH1 Classics 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_VH1CLASSIC/variant.m3u8
 
-#EXTINF:0,VH1 Classics
+#EXTINF:0,VH1 Classics 
 http://gogo.jksw.cz:8024/
 
-#EXTINF:0,VH1 Shuffle
+#EXTINF:0,VH1 Shuffle 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_VH1EUROPEAN/variant.m3u8
 
-#EXTINF:0,Vintage Music TV
+#EXTINF:0,Vintage Music TV 
 rtmp://mi2.gv.filmon.com:8086/live/1042.high.stream
 
-#EXTINF:0,Virgin TV
+#EXTINF:0,Virgin TV 
