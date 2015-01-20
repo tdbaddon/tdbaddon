@@ -35,6 +35,9 @@ http://www.djing.com/tv/05.m3u8
 #EXTINF:0,Gothic Rock TV 
 rtmp://149.11.34.6/live/gotica.stream
 
+#EXTINF:0,Heat 
+http://csm-e.cds1.yospace.com/csm/live/86561584.m3u8
+
 #EXTINF:0,Heart TV 
 
 
@@ -43,6 +46,9 @@ http://46.249.213.87/iPhone/broadcast/ibizaontv-tablet.3gp/ibizaontv-tablet.3gp-
 
 #EXTINF:0,Jazz 
 http://149.11.34.78:1935/live/jazztv.stream/hasbahca.m3u8
+
+#EXTINF:0,Kerrang! 
+http://csm-e.cds1.yospace.com/csm/live/86561794.m3u8
 
 #EXTINF:0,King TV 
 
@@ -101,7 +107,7 @@ http://rjr_flash-lh.akamaihd.net/i/retv_1@177154/master.m3u8
 #EXTINF:0,Rock 66 
 http://mediatv2.topix.it/24RockOne66
 
-#EXTINF:0,Smash Hits 
+#EXTINF:0,Smash Hits! 
 http://csm-e.cds1.yospace.com/csm/live/86561609.m3u8
 
 #EXTINF:0,The Box 

@@ -1,5 +1,5 @@
 ﻿c#EXTM3U
-#EXTINF:0, 
+
 
 #EXTINF:0,ABC News 
 http://abclive.abcnews.com/i/abc_live4@136330/index_1200_av-b.m3u8
@@ -21,6 +21,9 @@ http://btv-i.akamaihd.net/hls/live/202760-b/btvusa_ios/P1/M12K.m3u8
 
 #EXTINF:0,Bloomberg TV 
 http://x4012c4000.edge.core-cdn.net/40000mb/live/4012hbbtv/bloomberg.ts
+
+#EXTINF:0,Bloomberg TV 
+http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=461&lan=2&rows=40&f=.m3u8
 
 #EXTINF:0,CBC News Canada 
 

@@ -1,5 +1,4 @@
 ﻿#EXTM3U
-#EXTINF:0, 
 
 
 #EXTINF:0,A&E 
@@ -10,6 +9,9 @@ rtmp://rtmp.zerocast.tv:1935/live/ playpath=rGCi7bg0Qxvs8q7Sl13l swfUrl=http://p
 
 #EXTINF:0,AMC 
 rtmp://rtmp.zerocast.tv:1935/live playpath=TfRQx7deUAuncJwM047m swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
+
+#EXTINF:0,AMC 
+rtmp://93.174.95.125:1935/edge/_definst_/7pctmre0zfwsc24
 
 #EXTINF:0,AXN TV 6 
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=109&lan=2&rows=40&f=.m3u8
@@ -174,7 +176,7 @@ http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=97&lan=2&rows=4
 http://84.32.80.15:7781/udp/233.136.41.103:1234
 
 #EXTINF:0,USA Network 
-
+rtmp://rtmp.zerocast.tv:1935/live playpath=jvZXQUYQmlsPirfiVK1G swfUrl=http://20f3d0755392726229d8-7f14bc94688a30e4a2bde38a5eab6b77.r63.cf5.rackcdn.com/player.swf pageUrl=http://zerocast.tv/embed3.php?a=19&id=&width=580&height=400&autostart=true&strech=
 
 #EXTINF:0,Vernnissage TV 
 http://149.11.34.6:1935/live/vernissagetv.stream/hasbahca.m3u8

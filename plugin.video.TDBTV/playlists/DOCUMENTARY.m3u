@@ -2,7 +2,10 @@
 
 
 #EXTINF:0,Animal Planet 
+http://202.75.23.34/live/ch31/01.m3u8
 
+#EXTINF:0,Animal Planet 
+http://84.32.80.15:7781/udp/233.136.41.8:1234
 
 #EXTINF:0,Crime Investigation 
 http://202.75.23.36/live/ch47/01.m3u8
