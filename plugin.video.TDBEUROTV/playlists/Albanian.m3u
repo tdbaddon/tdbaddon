@@ -113,6 +113,9 @@ http://str105mb.setplex.net:1935/str2iosmd5/22ios_tvmitrovica_65499873/HasBahCa.
 #EXTINF:0, MPT 2
 http://str105mb.setplex.net:1935/str2iosmd5/7ios_MKTV2_32289956/HasBahCa.m3u8
 
+#EXTINF:0, MPT 2
+http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video_id/3548/token/bd0b11a4f8d05cc0bffe589f55909615/chunklist_w787058205_b1196000.m3u8
+
 #EXTINF:0,Novosadska TV
 mms://176.106.121.32:8080/
 
@@ -147,7 +150,7 @@ mms://84.20.73.66:8001
 http://80.80.160.201/http_livestr.m3u8?id=supersport1&k=pako_6234323231383137313533373734396134613035346434343030383334326361003530363663613965326165366461636630656339656134356530623037616639006d656e746f722e7368616c613030320066696c6d616b73696f6e
 
 #EXTINF:0,Super Sport Kosova 2
-http://80.80.160.201/http_livestr.m3u8?id=supersport2&k=pako_6234323231383137313533373734396134613035346434343030383334326361003530363663613965326165366461636630656339656134356530623037616639006d656e746f722e7368616c613030320066696c6d616b73696f6e
+
 
 #EXTINF:0,STV
 rtmp://str103.setplex.net:1935/228/stv_online
@@ -165,16 +168,16 @@ http://str105mb.setplex.net:1935/str2iosmd5/11ios_stvfolk_32236215/HasBahCa.m3u8
 rtmp://str103.setplex.net:1935/228/teuta
 
 #EXTINF:0,Teuta
-http://str105mb.setplex.net:1935/str2iosmd5/7ios_tvteuta_34654675644/playlist.m3u8
+
 
 #EXTINF:0,Teuta
-rtmp://str103.setplex.net:1935/228 playpath=teuta swfUrl=http://www.aulona.de/player.swf?backcolor=0x000000&frontcolor=0xFFFFFF&streamer=rtmp://str103.setplex.net:1935/228&file=teuta.flv&logo=&stretching=exactfit&autostart=true live=1 pageUrl=http://albhd.tk/tv/teuta.html
+
 
 #EXTINF:0,Top Channel
-http://80.80.160.201/http_livestr.m3u8?id=topchannel&k=pako_6234323231383137313533373734396134613035346434343030383334326361003530363663613965326165366461636630656339656134356530623037616639006d656e746f722e7368616c613030320066696c6d616b73696f6e
+
 
 #EXTINF:0,Top Channel News
-http://80.80.160.201/http_livestr.m3u8?id=topnews&k=pako_6234323231383137313533373734396134613035346434343030383334326361003530363663613965326165366461636630656339656134356530623037616639006d656e746f722e7368616c613030320066696c6d616b73696f6e
+
 
 #EXTINF:0,TV Rozafa
 http://str105mb.setplex.net:1935/str2iosmd5/7ios_rozafa_65226289/playlist.m3u8
@@ -182,17 +185,17 @@ http://str105mb.setplex.net:1935/str2iosmd5/7ios_rozafa_65226289/playlist.m3u8
 #EXTINF:0,TV SH
 http://str105mb.setplex.net:1935/str2iosmd5/tvsh_62554_5hfaa/HasBahCa.m3u8
 
-#EXTINF:0,Vizion Plus
-rtmp://slive.vizionplus.tv:1935/live/livestream1
-
-#EXTINF:0,Vizion Plus
-rtmp://live.vizionplus.tv:1935/live/livestream2
-
-#EXTINF:0,Vizion Plus
+#EXTINF:0,Vizion Plus 
 http://str105mb.setplex.net:1935/str2iosmd5/7ios_vizionplus_85674923/HasBahCa.m3u8
 
-#EXTINF:0,Vizion Plus
-rtmp://$OPT:rtmp-raw=rtmp://live.vizionplus.tv:1935/live/ playpath=livestream2 swfUrl=http://www.aulona.de/player.swf?backcolor=0x000000&frontcolor=0xFFFFFF&streamer=rtmp://live.vizionplus.tv:1935/live/&file=livestream2&logo=&stretching=exactfit&autostart=true live=1 pageUrl=http://albhd.tk/tv/vizionplus.html
+#EXTINF:0,Vizion Plus 
+rtmp://slive.vizionplus.tv:1935/live/livestream1
+
+#EXTINF:0,Vizion Plus 
+rtmp://live.vizionplus.tv:1935/live/livestream2
+
+#EXTINF:0,Vizion Plus 
+rtmp://live.vizionplus.tv:1935/live/ playpath=livestream2 swfUrl=http://www.aulona.de/player.swf?backcolor=0x000000&frontcolor=0xFFFFFF&streamer=rtmp://live.vizionplus.tv:1935/live/&file=livestream2&logo=&stretching=exactfit&autostart=true live=1 pageUrl=http://albhd.tk/tv/vizionplus.html
 
 #EXTINF:0,Zico TV
 http://str105mb.setplex.net:1935/str2iosmd5/zicoTV_652_4dfaa/HasBahCa.m3u8

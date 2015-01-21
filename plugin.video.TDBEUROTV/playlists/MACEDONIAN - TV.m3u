@@ -1,29 +1,28 @@
 ﻿#EXTM3U
-#EXTINF:0,
 
 
-#EXTINF:0,Al Jazeera Balkan
+#EXTINF:0,Al Jazeera Balkan 
 rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
 
-#EXTINF:0,Alfa
+#EXTINF:0,Alfa 
 http://fms.zulu.mk:1935/zulu/alfa_2/playlist.m3u8
 
-#EXTINF:0,Alfa
+#EXTINF:0,Alfa 
 rtmp://ataka.tv/live/live
 
-#EXTINF:0,Alfa
+#EXTINF:0,Alfa 
 rtsp://fms.zulu.mk/zulu/alfa_1
 
-#EXTINF:0,Alsat M
+#EXTINF:0,Alsat M 
 http://fms.zulu.mk:554/zulu/alsat_1/playlist_b125000_w1132785237.m3u8
 
-#EXTINF:0,Alsat M
+#EXTINF:0,Alsat M 
 http://fms.zulu.mk:1935/zulu/alsat_2/playlist.m3u8
 
-#EXTINF:0,Alsat M
+#EXTINF:0,Alsat M 
 rtsp://fms.zulu.mk/zulu/alsat_1
 
-#EXTINF:0,Alsat M
+#EXTINF:0,Alsat M 
 rtsp://fms.zulu.mk:554/zulu/alsat_2
 
 #EXTINF:0,B92 
@@ -32,34 +31,34 @@ http://stream.b92.net:7999/tv-b92.ogg
 #EXTINF:0,Balkan TV
 
 
-#EXTINF:0,BTR
+#EXTINF:0,BTR 
 http://fms.zulu.mk:554/zulu/btr_1/playlist_b125000_w1132785237.m3u8
 
-#EXTINF:0,BTR
+#EXTINF:0,BTR 
 http://fms.zulu.mk:1935/zulu/btr_2/playlist.m3u8
 
-#EXTINF:0,BTR
+#EXTINF:0,BTR 
 rtsp://fms.zulu.mk/zulu/btr_1
 
-#EXTINF:0,BTR
+#EXTINF:0,BTR 
 rtsp://fms.zulu.mk:554/zulu/btr_2
 
 #EXTINF:0,Cegrani Media
 http://fms.zulu.mk:1935/zulu/cegrani_1/playlist.m3u8
 
-#EXTINF:0,ERA TV
+#EXTINF:0,ERA TV 
 http://fms.zulu.mk:1935/zulu/era_1/hasbahca.m3u8
 
-#EXTINF:0,ERA TV
+#EXTINF:0,ERA TV 
 http://fms.zulu.mk:1935/zulu/era_2/playlist.m3u8?wowzasessionid=1274029124
 
 #EXTINF:0,Hema TV
 mms://77.238.209.50:1234
 
-#EXTINF:0,Iris
+#EXTINF:0,Iris 
 mms://62.162.58.55/TVIris
 
-#EXTINF:0,Iris
+#EXTINF:0,Iris 
 mms://62.162.58.54:8080
 
 #EXTINF:0,Joj TV
@@ -68,43 +67,43 @@ http://88.212.10.27:81/streams/joj.m3u8
 #EXTINF:0,Jug TV
 rtmp://84.20.77.50/live/ playpath=livestream1 swfUrl=http://www.profreetv.com/include/player.swf live=1 pageUrl=http://www.profreetv.com/index.php?content=watch&tvid=465 --live
 
-#EXTINF:0,Kanal 5
+#EXTINF:0,Kanal 5 
 http://fms.zulu.mk:1935/zulu/kanal5_1/hasbahca.m3u8
 
-#EXTINF:0,Kanal 5
+#EXTINF:0,Kanal 5 
 http://fms.zulu.mk:1935/zulu/kanal5_1/playlist.m3u8
 
-#EXTINF:0,Kanal 5
+#EXTINF:0,Kanal 5 
 mms://live.kanal5.com.mk/kanal5
 
-#EXTINF:0,Kanal 5 Plus
+#EXTINF:0,Kanal 5 Plus 
 http://fms.zulu.mk:1935/zulu/kanal5plus_1/playlist.m3u8
 
-#EXTINF:0,Kanal 5 Plus
+#EXTINF:0,Kanal 5 Plus 
 http://fms.zulu.mk:554/zulu/kanal5plus_1/playlist_b125000_w1132785237.m3u8
 
-#EXTINF:0,Kanal 5 Plus
+#EXTINF:0,Kanal 5 Plus 
 http://fms.zulu.mk:1935/zulu/kanal5plus_1/hasbahca.m3u8
 
-#EXTINF:0,Kanal 5 Plus
+#EXTINF:0,Kanal 5 Plus 
 rtsp://fms.zulu.mk:554/zulu/kanal5plus_2
 
 #EXTINF:0,Kanal 21 
 mms://62.162.58.55/TVkanal21
 
-#EXTINF:0,Mpt1
+#EXTINF:0,Mpt1 
 http://fms.zulu.mk:554/zulu/mtv1_1/playlist_b125000_w1132785237.m3u8
 
-#EXTINF:0,Mpt1
+#EXTINF:0,Mpt1 
 http://fms.zulu.mk:1935/zulu/mtv1_2/playlist.m3u8?wowzasessionid=337573726
 
-#EXTINF:0,Mpt1
+#EXTINF:0,Mpt1 
 http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video_id/3551/token/1551170c6b60563462fd429eec72b731/playlist.m3u8
 
-#EXTINF:0,Mpt 2
+#EXTINF:0,Mpt 2 
 http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video_id/3548/token/1551170c6b60563462fd429eec72b731/playlist.m3u8
 
-#EXTINF:0,Mpt 2
+#EXTINF:0,Mpt 2 
 http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video_id/3545/token/baf3cb0ceac4e5243d63f8bf96011783/playlist.m3u8
 
 #EXTINF:0,Nasha TV
@@ -116,19 +115,19 @@ http://on108.setplex.net/fastv_2psh/PinkFolk1global_rly_greece_103/hasbahca.m3u8
 #EXTINF:0,RTS
 mmsh://rts.videostreaming.rs/rts
 
-#EXTINF:0,Sitel
+#EXTINF:0,Sitel 
 http://fms.zulu.mk:554/zulu/sitel_1/playlist_b125000_w1132785237.m3u8
 
-#EXTINF:0,Sitel
+#EXTINF:0,Sitel 
 http://fms.zulu.mk:1935/zulu/sitel_2/playlist.m3u8
 
-#EXTINF:0,Sitel
+#EXTINF:0,Sitel 
 rtsp://fms.zulu.mk:554/zulu/sitel_2
 
-#EXTINF:0,Sitel 3
+#EXTINF:0,Sitel 3 
 http://fms.zulu.mk:554/zulu/sitel3_1/playlist_b125000_w1132785237.m3u8
 
-#EXTINF:0,Sitel 3
+#EXTINF:0,Sitel 3 
 rtsp://fms.zulu.mk:554/zulu/sitel3_2
 
 #EXTINF:0,Sonce TV
@@ -137,23 +136,20 @@ http://92.53.27.201:10000
 #EXTINF:0,STV Folk
 rtmp://str103.setplex.net:1935/228 playpath=stv_folk swfUrl=http://shqip1.altervista.org/tvlive/player.swf live=1 pageUrl=http://shqip1.altervista.org/tvlive/superfolk.html
 
-#EXTINF:0,Sutel TV
+#EXTINF:0,Sutel TV 
 http://fms.zulu.mk:1935/zulu/shutel_1/playlist.m3u8
 
-#EXTINF:0,Sutel TV
+#EXTINF:0,Sutel TV 
 http://fms.zulu.mk:1935/zulu/shutel_2/playlist.m3u8
 
-#EXTINF:0,Telma
+#EXTINF:0,Telma 
 http://fms.zulu.mk:554/zulu/telma_1/playlist_b125000_w1132785237.m3u8
 
-#EXTINF:0,Telma
+#EXTINF:0,Telma 
 http://fms.zulu.mk:1935/zulu/telma_2/playlist.m3u8
 
-#EXTINF:0,Telma
+#EXTINF:0,Telma 
 rtsp://fms.zulu.mk:554/zulu/telma_2
-
-#EXTINF:0,Tera TV
-
 
 #EXTINF:0,Vesti 24
 mms://62.162.58.55/24vesti

@@ -3,13 +3,10 @@
 
 
 #EXTINF:0,24 Sata
-
+mms://62.162.58.55/24vesti
 
 #EXTINF:0,Al Jazeera Balkan
-
-
-#EXTINF:0,Alfa TV Makedon
-rtsp://streamer1.streamhost.org:1935/salive/GMIalfah
+rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
 
 #EXTINF:0,ATV
 rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
@@ -27,7 +24,7 @@ rtmp://194.249.141.146:443/live/bktv
 http://213.81.153.221:8080/cetv
 
 #EXTINF:0,Cinemax
-http://213.81.153.221:8080/trnava
+
 
 #EXTINF:0,CMC
 
@@ -41,11 +38,14 @@ http://213.81.153.221:8080/trnava
 #EXTINF:0,DUGA
 
 
+#EXTINF:0,Elektrika TV
+rtmp://rtmp.elektrika.cz/live/myStream.sdp
+
 #EXTINF:0,Euro Plus
 
 
 #EXTINF:0,Fight Channel
-http://stream1.zoovision.com//livespi/fightbox/HasBahCa.m3u8
+
 
 #EXTINF:0,Full TV
 
@@ -71,6 +71,9 @@ http://213.81.153.221:8080/hronka
 #EXTINF:0,Iris
 mms://62.162.58.55/TVIris
 
+#EXTINF:0,Iris
+http://62.162.58.54:8080/iris
+
 #EXTINF:0,Jadran TV 
 
 
@@ -95,6 +98,9 @@ mms://62.162.58.55/TVkanal21
 #EXTINF:0,Kanal RI
 
 
+#EXTINF:0,Karpaty
+http://213.81.153.221:8080/karpaty
+
 #EXTINF:0,KCN 3
 http://4.31.30.135:1935/st3fstv/19ios_SVETPLUS_2547871/playlist.m3u8
 
@@ -109,6 +115,9 @@ rtmp://91.82.85.44/live/konyhatv
 
 #EXTINF:0,Leskovac TV
 
+
+#EXTINF:0,Music Box
+http://213.81.153.221:8080/nasa
 
 #EXTINF:0,Media Travel
 
@@ -270,7 +279,7 @@ mms://89.201.164.181/stv
 http://88.212.10.27:81/streams/ta3.m3u8
 
 #EXTINF:0,Tera TV
-mms://62.162.58.55/TVTera
+
 
 #EXTINF:0,TV CG
 mms://beotelmedia.beotel.net/tvcg
