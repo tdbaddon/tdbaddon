@@ -4,9 +4,6 @@
 #EXTINF:0,Animal Planet 
 http://202.75.23.34/live/ch31/01.m3u8
 
-#EXTINF:0,Animal Planet 
-http://84.32.80.15:7781/udp/233.136.41.8:1234
-
 #EXTINF:0,Crime Investigation 
 http://202.75.23.36/live/ch47/01.m3u8
 
@@ -19,11 +16,8 @@ rtmp://95.211.148.206/youcloud/ playpath=discoveryeo?keys=5J87wkXqe2QurjwwXtsbhw
 #EXTINF:0,Discovery Investigation 
 
 
-#EXTINF:0,Discovery Max 
-http://202.75.23.34/live/ch32/01.m3u8
+#EXTINF:0,Discovery Max
 
-#EXTINF:0,Discovery Max 
-http://202.75.23.34/live/ch32/03.m3u8
 
 #EXTINF:0,Discovery Science 
 
@@ -32,16 +26,10 @@ http://202.75.23.34/live/ch32/03.m3u8
 
 
 #EXTINF:0,Discovery World 
-http://202.75.23.34:1400/live/ch30/03.m3u8
-
-#EXTINF:0,Discovery World 
 http://202.75.23.34/live/ch30/01.m3u8
 
 #EXTINF:0,EVE 
-http://202.75.23.34/live/ch34/01.m3u8
 
-#EXTINF:0,EVE 
-http://202.75.23.34:1400/live/ch34/01.m3u8 
 
 #EXTINF:0,History Channel
 
@@ -61,9 +49,6 @@ http://202.75.23.35/live/ch38/03.m3u8?b?b*t$
 #EXTINF:0,Nat Geo Wild 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_NATGEOWILD/variant.m3u8
 
-#EXTINF:0,Nat Geo Wild 
-http://202.75.23.35/live/ch39/01.m3u8
-
 #EXTINF:0,National Geographic 
 http://202.75.23.35/live/ch38/03.m3u8
 
@@ -74,13 +59,10 @@ rtmp://mi2.gv.filmon.com:8086/live/1618.high.stream
 
 
 #EXTINF:0,Travel Channel 
-http://202.75.23.35/live/ch41/01.m3u8
 
-#EXTINF:0,Travel Channel 
-http://84.32.80.15:7781/udp/233.136.41.44:1234
 
 #EXTINF:0,Viasat Explorer 
-http://83.139.104.105/Content/HLS/Live/Channel(viasat_explore)/Stream(03)/index.m3u8
+
 
 #EXTINF:0,Viasat History 
 

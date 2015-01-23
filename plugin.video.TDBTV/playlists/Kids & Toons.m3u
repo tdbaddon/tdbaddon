@@ -8,16 +8,13 @@ rtmp://62.210.76.216/live playpath=adventure swfUrl=http://releases.flowplayer.o
 rtmp://62.210.76.216/live playpath=aquasx swfUrl=http://releases.flowplayer.org/5.5.1/flowplayer.swf live=1 pageUrl=http://www.stream4free.eu/aqua-teen-hunger-force
 
 #EXTINF:0,Baby First 
-http://202.75.23.33/live/ch27/03.m3u8
+http://202.75.23.33/live/ch27/01.m3u8
 
 #EXTINF:0,BabyTV 
 
 
 #EXTINF:0,Boomerang 
-http://84.32.80.15:7781/udp/233.136.41.7:1234
 
-#EXTINF:0,Cartoons 
-rtmp://mi2.gv.filmon.com:1935/live/_definst_/2734.low.stream?b?b*t$
 
 #EXTINF:0,Cartoon Network 
 rtmp://rtmp.zerocast.tv:1935/live playpath=08pydvp1b7ZwZb3a5TW1 swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
@@ -47,7 +44,7 @@ rtmp://192.99.38.122/ch004 playpath=familyguy02 swfUrl=http://www.tgun.tv/lock/p
 rtmp://62.210.76.216/live playpath=xfuturama swfUrl=http://releases.flowplayer.org/5.5.1/flowplayer.swf live=1 pageUrl=http://www.stream4free.eu/futurama
 
 #EXTINF:0,Jim Jam 
-http://91.219.133.187:8080/udp/239.1.1.37:1234
+
 
 #EXTINF:0,Kids Comedy 
 rtmp://mi2.gv.filmon.com:1935/live/_definst_/2734.low.stream?b?b*t$
@@ -72,3 +69,6 @@ rtmp://62.210.76.216/live playpath=simpsons swfUrl=http://releases.flowplayer.or
 
 #EXTINF:0,Tom & Jerry Show 
 http://66.90.111.66:1935/ctv/tom/waldo_paes.m3u8?b?b*t$
+
+#EXTINF:0,YFE
+rtmp://mi2.gv.filmon.com:1935/live/_definst_/2734.high.stream
