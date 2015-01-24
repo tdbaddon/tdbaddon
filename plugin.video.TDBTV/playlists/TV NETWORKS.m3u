@@ -10,6 +10,9 @@ rtmp://rtmp.zerocast.tv:1935/live/ playpath=rGCi7bg0Qxvs8q7Sl13l swfUrl=http://p
 #EXTINF:0,AMC 
 rtmp://rtmp.zerocast.tv:1935/live playpath=TfRQx7deUAuncJwM047m swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
 
+#EXTINF:0,Arthouse Film Box
+http://stream1.zoovision.com//livespi/arthouse/playlist.m3u8
+
 #EXTINF:0,AXN TV 6 
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=109&lan=2&rows=40&f=.m3u8
 
@@ -64,11 +67,17 @@ rtmp://rtmp.zerocast.tv:1935/live/ playpath=IWSyIjvWgHRCMM7MEJoZ swfUrl=http://p
 #EXTINF:0,English Club TV 
 http://85.187.154.9:2001/
 
+#EXTINF:0,Fashion Box
+http://stream1.zoovision.com//livespi/fashionbox/playlist.m3u8
+
 #EXTINF:0,Fashion TV 
 http://edgeb.streaming.sk/fashiontv/fashiontv.stream/playlist_b125000_w304569164.m3u8
 
 #EXTINF:0,Fashion TV 
 http://hls.novotelecom.ru/streaming/fashion/tvrec/playlist.m3u8
+
+#EXTINF:0,Fast & Fun Box
+http://stream1.zoovision.com//livespi/fastnfun/playlist.m3u8
 
 #EXTINF:0,Film4
 http://94.198.255.211:5555/pl.m3u8?channel=95

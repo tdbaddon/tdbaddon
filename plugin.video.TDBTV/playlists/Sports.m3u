@@ -37,16 +37,38 @@ http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=389&lan=2&rows=
 #EXTINF:0,ESPN 
 rtmp://178.132.79.20:80/live playpath=espnr swfUrl=http://flashtv.co/ePlayerr.swf pageUrl=http://flashtv.co/embedu.php?live=espnr&vw=620&vh=490 live=1 timeout=10 token=%ZZri(nKa@#Z
 
-#EXTINF:0,ESPN 2 
+#EXTINF:0,ESPN
+rtmp://178.132.79.20:80/live playpath=espnusar swfUrl=http://flashtv.co/ePlayerr.swf live=1 pageUrl=http://flashtv.co/embedu.php?live=espnusar&vw=620&vh=490 token=%ZZri(nKa@#Z
 
+#EXTINF:0,ESPN 
+rtmp://178.132.79.20:80/live swfUrl=http://www.flashtv.co/ePlayerr.swf pageUrl=http://www.flashtv.co/embed.php?live=mov3 token=%ZZri(nKa@#Z playpath=espnusar
+
+#EXTINF:0,ESPN
+rtmp://178.132.79.20:80/live swfUrl=http://www.flashtv.co/ePlayerr.swf pageUrl=http://www.flashtv.co/embed.php?live=mov3 token=%ZZri(nKa@#Z playpath=espnr
+
+#EXTINF:0,ESPN 2
+rtmp://178.132.79.20:80/live swfUrl=http://www.flashtv.co/ePlayerr.swf pageUrl=http://www.flashtv.co/embed.php?live=mov3 token=%ZZri(nKa@#Z playpath=espn2r
+
+#EXTINF:0,ESPN 2
+rtmp://178.132.79.20:80/live playpath=espn2r swfUrl=http://flashtv.co/ePlayerr.swf live=1 pageUrl=http://flashtv.co/embedu.php?live=espn2r&vw=620&vh=490 token=%ZZri(nKa@#Z
 
 #EXTINF:0,Eurosport 1 
 http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_1000.m3u8
 
+#EXTINF:0,EuroSport 1
+rtmp://178.132.79.20:80/live swfUrl=http://www.flashtv.co/ePlayerr.swf pageUrl=http://www.flashtv.co/embed.php?live=mov3 token=%ZZri(nKa@#Z playpath=eur1x
+
 #EXTINF:0,Eurosport 2 
 rtmp://31.220.0.195:80/live/ playpath=euro2 token=%ZZri(nKa@#Z swfUrl=http://www.flashtv.co/ePlayerr.swf live=1 timeout=13 pageUrl=http://www.flashtv.co/ AnisotropicTV
 
+#EXTINF:0,EuroSport 2
+rtmp://178.132.79.20:80/live swfUrl=http://www.flashtv.co/ePlayerr.swf pageUrl=http://www.flashtv.co/embed.php?live=mov3 token=%ZZri(nKa@#Z playpath=euro2
+
+#EXTINF:0,Eurosport 2
+rtmp://178.132.79.20:80/live playpath=euro2 swfUrl=http://flashtv.co/ePlayerr.swf live=1 pageUrl=http://flashtv.co/embedu.php?live=euro2&vw=620&vh=490 token=%ZZri(nKa@#Z
+
 #EXTINF:0,Eurosport Live
+rtmp://178.132.79.22:80/live playpath=eur1x swfUrl=http://flashtv.co/ePlayerr.swf live=1 pageUrl=http://flashtv.co/embedu.php?live=eur1x&vw=620&vh=490 token=%ZZri(nKa@#Z
 
 
 #EXTINF:0,Eurosport News 
@@ -73,17 +95,23 @@ rtmp://mi2.gv.filmon.com:8086/live/262.high.stream
 #EXTINF:0,NBA TV 
 rtmp://192.254.65.82:1935/live playpath=nbatv swfUrl=http://p.jwpcdn.com/6/8/jwplayer.flash.swf live=1 timeout=10 pageUrl=http://hostaccess.org/7-SFE-SZE-HOSTACCESS/media/nbatv.php
 
+#EXTINF:0,NBA TV 
+rtmp://178.132.79.20:80/live swfUrl=http://www.flashtv.co/ePlayerr.swf pageUrl=http://www.flashtv.co/embed.php?live=mov3 token=%ZZri(nKa@#Z playpath=nba
+
 #EXTINF:0,NBC Golf 
 http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/2596k/prog.m3u8|X-Forwarded-For=209.239.112.104
 
 #EXTINF:0,NBC Golf 
 http://167.114.41.220:8080/nbcgolf/nbc/index.m3u8
 
+#EXTINF:0,NBC Golf
+rtmp://178.132.79.20:80/live swfUrl=http://www.flashtv.co/ePlayerr.swf pageUrl=http://www.flashtv.co/embed.php?live=mov3 token=%ZZri(nKa@#Z playpath=golfx
+
 #EXTINF:0,NBCSN 
 
 
 #EXTINF:0,NFL Network 
-
+rtmp://178.132.79.20:80/live swfUrl=http://www.flashtv.co/ePlayerr.swf pageUrl=http://www.flashtv.co/embed.php?live=mov3 token=%ZZri(nKa@#Z playpath=nfx
 
 #EXTINF:0,Outdoor Channel 
 
@@ -141,6 +169,9 @@ rtmp://rtmp.playback.cdn1.showcaster.com/orcadigital-live06/_definst_/ playpath=
 
 #EXTINF:0,Sky Sport 1 
 rtmp://46.246.29.130:1935/stream playpath=WWv4pD0kYn.stream swfUrl=http://thecdn.04stream.com/p/ooolo1.swf pageUrl=http://www.04stream.com/ebb.php  timeout=10
+
+#EXTINF:0,Sky Sport 1
+rtmp://178.132.79.22:80/live playpath=skysports1 swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 pageUrl=http://reytv.co/embedu.php?live=skysports1 token=%ZZri(nKa@#Z
 
 #EXTINF:0,Sky Sport 2 
 rtmp://207.244.89.23/iguide/mvu912lm6c5dzz6 playpath=rtmp://93.174.95.125:1935/edge/_definst_/on39ol6in4f2ewp swfUrl=http://www.iguide.to/player/secure_player_iguide_embed_token.swf live=1 pageUrl=http://www.iguide.to/ token=#ed%h0#w18623jsda6523lDGDHur

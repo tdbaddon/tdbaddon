@@ -21,7 +21,7 @@ mms://ken-cdn220-is-2.se.bptvlive.ngcdn.telstra.com/bp_online_bpmusic_high
 rtmp://204.107.26.252:8086/live/691.high.stream
 
 #EXTINF:0,Clubland TV 
-
+http://rrr.sz.xlcdn.com/?account=AATW&file=clublandtv&type=live&service=wowza&protocol=http&output=playlist.m3u8
 
 #EXTINF:0,CMC California Music Channel 
 rtmp://cmctv.flash.internapcdn.net:1935/cmctv_vitalstream_com/live_adaptive_1/CMC-TV_adaptive3 swfUrl=http://http.vitalstreamcdn.com/flashskins/V2Player.swf live=1 pageUrl=http://www.cmc-tv.com/
@@ -144,3 +144,4 @@ http://hlsstr02.svc.iptv.rt.ru/hls/CH_VH1EUROPEAN/variant.m3u8
 rtmp://mi2.gv.filmon.com:8086/live/1042.high.stream
 
 #EXTINF:0,Virgin TV 
+rtmp://fms.105.net:1935/live/virgin1
