@@ -60,6 +60,7 @@ http://bcoveliveios-i.akamaihd.net/hls/live/215102/master_english/398/master.m3u
 
 #EXTINF:0,MSNBC 
 
+
 #EXTINF:0,NBC News
 rtmp://rtmp.zerocast.tv:1935/live playpath=3GdoAHRAxgZNzmQZL29l swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
 
@@ -71,6 +72,9 @@ rtmp://204.107.26.252:8086/live/905.high.stream
 
 #EXTINF:0,Press TV 
 rtmp://mtv.fms-01.visionip.tv/live/mtv-ptv-live-25f-16x9-SDh
+
+#EXTINF:0,Reuters Live
+http://37.58.85.156/rlo001/ngrp:rlo001.stream_all/playlist.m3u8
 
 #EXTINF:0,RT News
 http://odna.octoshape.net/f3f5m2v4/cds/ch1_auto.smil/playlist.m3u8 

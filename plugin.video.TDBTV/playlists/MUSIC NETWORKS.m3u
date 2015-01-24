@@ -32,6 +32,9 @@ rtmp://cmctv.flash.internapcdn.net:80/cmctv_vitalstream_com/live_1/CMCUSA swfUrl
 #EXTINF:0,Djing TV 
 http://www.djing.com/tv/05.m3u8
 
+#EXTINF:0,Djing TV 
+http://cdn.djing.com/tv/live.m3u8
+
 #EXTINF:0,Gothic Rock TV 
 rtmp://149.11.34.6/live/gotica.stream
 

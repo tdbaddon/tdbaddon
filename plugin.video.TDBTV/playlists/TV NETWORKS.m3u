@@ -38,7 +38,10 @@ rtmp://rtmp.zerocast.tv:1935/live playpath=Ger61uLQ4fedzvjRjrB7 swfUrl=http://p.
 
 
 #EXTINF:0,CHCH Ontario 
+rtmp://54.85.197.21:1935/live playpath=news swfUrl=http://www.chch.com/wp-content/plugins/projekktorvm/src/StrobeMediaPlayback.swf?enableStageVideo=true&disableHardwareAcceleration=false&javascriptCallbackFunction=window.projekktorOSMFReady22bd91736c42e8eaf2e364c5492717cb& live=1 pageUrl=http://www.chch.com/live/ 
 
+#EXTINF:0,CHCH Ontario 
+rtmp://54.85.197.21:1935/live/news
 
 #EXTINF:0,CNBC 
 http://livestation_hls-lh.akamaihd.net/i/cnbc_en@106428/master.m3u8
@@ -66,6 +69,9 @@ http://edgeb.streaming.sk/fashiontv/fashiontv.stream/playlist_b125000_w304569164
 
 #EXTINF:0,Fashion TV 
 http://hls.novotelecom.ru/streaming/fashion/tvrec/playlist.m3u8
+
+#EXTINF:0,Film4
+http://94.198.255.211:5555/pl.m3u8?channel=95
 
 #EXTINF:0,FOX 5 
 rtmp://rtmp.zerocast.tv:1935/live playpath=9pxGCtP3aEnJYgoBFFH8 swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
@@ -97,6 +103,9 @@ rtmp://rtmp.zerocast.tv:1935/live playpath=9pxGCtP3aEnJYgoBFFH8 swfUrl=http://p.
 #EXTINF:0,Home Shopping Network 
 rtsp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:420p500kB31
 
+#EXTINF:0,Irish TV
+http://ios.streamserver01.com:8080/ShowcaseTV/mystream.m3u8
+
 #EXTINF:0,ITV 1 
 http://93.184.221.133/00573D/283/283-0.m3u8
 
@@ -105,6 +114,9 @@ http://93.184.221.133/00573D/283/283-0.m3u8
 
 #EXTINF:0,London Live 
 http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
+
+#EXTINF:0,More4
+http://94.198.255.211:5555/pl.m3u8?channel=94
 
 #EXTINF:0,NHK World 
 http://plslive-w.nhk.or.jp/nhkworld/app/live.m3u8
@@ -155,7 +167,7 @@ http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/master.m3u8?b?b*t
 
 
 #EXTINF:0,TNT 
-
+rtmp://rtmp.zerocast.tv:1935/live/ playpath=Waz0WqvbqNHmt0gdzrsm swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
 
 #EXTINF:0,Tru TV
 http://cdn.live.simplestream.com/coder5/coder.channels.channel2/hls/4/playlist.m3u8

@@ -77,7 +77,7 @@
 
 <addon id="plugin.video.TDBTV"
        name="TDB TV"
-       version="1.66"
+       version="1.67"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
