@@ -8,8 +8,6 @@ mmsh://tv.webmisto.cz:7000
 #EXTINF:0,Brasileirinhas 
 
 
-#EXTINF:0,Brazzers TV Europe 
-http://83.139.104.105/Content/HLS/Live/Channel(BRAZZERS_TV)/Stream(03)/index.m3u8
 
 #EXTINF:0,Brazzers TV Europe 
 http://80.87.146.133:1111/udp/239.195.2.4:1234
@@ -18,16 +16,13 @@ http://80.87.146.133:1111/udp/239.195.2.4:1234
 http://84.22.33.3:8066
 
 #EXTINF:0,Dorcel TV 
-http://83.139.104.105/Content/HLS/Live/Channel(DORCEL_TV)/Stream(03)/index.m3u8
-
-#EXTINF:0,Dorcel TV  
-http://77.221.65.240:7777/udp/239.195.1.160:1234
+http://83.139.104.111/Content/HLS/Live/Channel(DORCEL_TV)/Stream(03)/index.m3u8
 
 #EXTINF:0,Erotic TV 
 
 
 #EXTINF:0,Exotica TV
-http://77.221.65.240:7777/udp/239.195.1.82:1234
+
 
 #EXTINF:0,Frenchlover 
 
@@ -36,7 +31,7 @@ http://77.221.65.240:7777/udp/239.195.1.82:1234
 
 
 #EXTINF:0,Ingiltere
-http://83.139.104.105/Content/HLS/Live/Channel(ADULT_CHANNEL)/Stream(03)/index.m3u8
+
 
 #EXTINF:0,Nubile Films 
 
@@ -45,25 +40,22 @@ http://83.139.104.105/Content/HLS/Live/Channel(ADULT_CHANNEL)/Stream(03)/index.m
 
 
 #EXTINF:0,Private 
-http://77.221.65.240:7777/udp/239.195.1.170:1234
+
 
 #EXTINF:0,Pure Mature 
 
 
 #EXTINF:0,Platinum TV 
-http://77.221.65.240:7777/udp/239.195.1.85:1234
 
-#EXTINF:0,Redlight Central 
-http://playback.d2see.com/wavemachine-live01/playboytv_channel1/playlist.m3u8
 
 #EXTINF:0,Redlight Premium 
-http://77.221.65.240:7777/udp/239.195.1.81:1234
+
 
 #EXTINF:0,Russian Night Club TV 
 http://46.181.237.75:1234/udp/239.255.42.217:1234
 
 #EXTINF:0,Satisfaction HD
-http://77.221.65.240:7777/udp/239.195.1.80:1234
+
 
 #EXTINF:0,SCT 
 
@@ -76,3 +68,6 @@ http://84.22.33.3:8060
 
 #EXTINF:0,XXX
 http://188.165.220.116:8081/xxx/tv/playlist.m3u8
+
+#EXTINF:0,XXX
+http://Smart:Adana01@188.165.239.200:7024
