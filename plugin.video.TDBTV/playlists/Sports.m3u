@@ -75,10 +75,10 @@ rtmp://178.132.79.22:80/live playpath=eur1x swfUrl=http://flashtv.co/ePlayerr.sw
 
 
 #EXTINF:0,Extreme Sports 
-
+http://83.139.104.111/Content/HLS/Live/Channel(extreme_sports)/Stream(03)/index.m3u8
 
 #EXTINF:0,FightBox 
-
+http://stream1.zoovision.com//livespi/fightbox/playlist.m3u8
 
 #EXTINF:0,Football TV 
 rtmp://mi2.gv.filmon.com:8086/live/374.high.stream

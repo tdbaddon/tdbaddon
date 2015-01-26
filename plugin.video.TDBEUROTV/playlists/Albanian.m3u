@@ -150,10 +150,10 @@ rtmp://wowza.rtkit.com/live playpath=livestream swfUrl=http://www.aulona.de/play
 mms://84.20.73.66:8001
 
 #EXTINF:0,Super Sport Kosova 1
-http://80.80.160.201/http_livestr.m3u8?id=supersport1&k=pako_6234323231383137313533373734396134613035346434343030383334326361003530363663613965326165366461636630656339656134356530623037616639006d656e746f722e7368616c613030320066696c6d616b73696f6e
+http://milica:milica@176.31.233.230:81/zemo4
 
 #EXTINF:0,Super Sport Kosova 2
-
+http://milica:milica@176.31.233.230:81/kosova2hd
 
 #EXTINF:0,STV
 rtmp://str103.setplex.net:1935/228/stv_online
@@ -170,14 +170,11 @@ http://str105mb.setplex.net:1935/str2iosmd5/11ios_stvfolk_32236215/HasBahCa.m3u8
 #EXTINF:0,Teuta
 rtmp://str103.setplex.net:1935/228/teuta
 
-#EXTINF:0,Teuta
-
-
-#EXTINF:0,Teuta
-
-
 #EXTINF:0,Top Channel
 http://91.187.97.5:8082/m3u8/103/mystream.m3u8
+
+#EXTINF:0,Top Channel
+http://milica:milica@176.31.233.230:81/zemo10
 
 #EXTINF:0,Top Channel News
 

@@ -54,7 +54,7 @@ http://149.11.34.78:1935/live/jazztv.stream/hasbahca.m3u8
 http://csm-e.cds1.yospace.com/csm/live/86561794.m3u8
 
 #EXTINF:0,King TV 
-
+http://91.82.85.16:1935/relay15/nettv03_channel_1/HasBahCa.m3u8
 
 #EXTINF:0,Kiss TV 
 http://csm-e.cds1.yospace.com/csm/live/86561716.m3u8
@@ -71,11 +71,17 @@ http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVDANCE/variant.m3u8
 #EXTINF:0,MTV Hits 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVHITS/variant.m3u8
 
+#EXTINF:0,MTV Live
+http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=429&lan=2&rows=40&f=BratuMarian.m3u8
+
 #EXTINF:0,MTV Live 
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=432&lan=2&rows=40&f=.m3u8
 
-#EXTINF:0,MTV Music 
+#EXTINF:0,MTV Live
+http://200.76.77.237/LIVE/H01/CANAL701/PROFILE03.m3u8?BratuMarian
 
+#EXTINF:0,MTV Music 
+http://83.139.104.111/Content/hls/live/channel(mtv_music)/stream(01)/index.m3u8
 
 #EXTINF:0,MTV Rocks 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVROCKS/variant.m3u8
@@ -110,8 +116,14 @@ http://rjr_flash-lh.akamaihd.net/i/retv_1@177154/master.m3u8
 #EXTINF:0,Rock 66 
 http://mediatv2.topix.it/24RockOne66
 
+#EXTINF:0,Rouge TV
+rtmp://rtmp.infomaniak.ch/livecast/rougetv
+
 #EXTINF:0,Smash Hits! 
 http://csm-e.cds1.yospace.com/csm/live/86561609.m3u8
+
+#EXTINF:0,Stage TV
+rtmp://149.11.34.6/live/stagetv.stream
 
 #EXTINF:0,The Box 
 http://csm-e.cds1.yospace.com/csm/live/86561631.m3u8
@@ -127,6 +139,12 @@ http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch3/06/prog_index.m3u8
 
 #EXTINF:0,Vevo Pop 
 http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/appleman.m3u8
+
+#EXTINF:0,VH1
+http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=437&lan=2&rows=40&f=BratuMarian.m3u8
+
+#EXTINF:0,VH1
+http://200.76.77.237/LIVE/H01/CANAL703/PROFILE03.m3u8?BratuMarian
 
 #EXTINF:0,VH1
 rtmp://edge03-03.az.myvideo.az/dvrh264/vh1/ playpath=mp4:vh1 swfUrl=http://www.myvideo.az/stml/dvr/dvrH.swf?v=1.2 live=1 pageUrl=http://www.myvideo.az/r.ates

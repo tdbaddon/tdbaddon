@@ -4,6 +4,9 @@
 #EXTINF:0,Action Zone 
 rtmp://mi2.gv.filmon.com:8086/live/1045.high.stream
 
+#EXTINF:0,Action Cinema
+rtmp://204.107.26.230:8086/live/500.high.stream
+
 #EXTINF:0,BigPond Movies 
 mms://ken-cdn220-is-3.se.bptvlive.ngcdn.telstra.com/bp_online_movieextra_high
 
@@ -11,10 +14,13 @@ mms://ken-cdn220-is-3.se.bptvlive.ngcdn.telstra.com/bp_online_movieextra_high
 
 
 #EXTINF:0,Cinestar Action & Thriller 
-
+http://83.139.104.111/Content/HLS/Live/Channel(CINESTAR_ACTION_AND_THRILLER)/index.m3u8
 
 #EXTINF:0,Cinestar Premiere 
 http://83.139.104.111/Content/HLS/Live/Channel(cinestar_premiere_1)/Stream(03)/index.m3u8
+
+#EXTINF:0,Cinestar Premiere 
+http://83.139.104.111/Content/HLS/Live/Channel(cinestar_premiere_2)/Stream(03)/index.m3u8
 
 #EXTINF:0,Cinestar TV 
 http://83.139.104.111/Content/HLS/Live/Channel(cinestar_tv)/Stream(03)/index.m3u8
@@ -22,20 +28,32 @@ http://83.139.104.111/Content/HLS/Live/Channel(cinestar_tv)/Stream(03)/index.m3u
 #EXTINF:0,Film Box Live
 http://stream.zoovision.com:1935/livespi/arthouse/chunklist_w1601426913.m3u8
 
+#EXTINF:0,Fox 1
+http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=297&lan=2&rows=40&f=BratuMarian.m3u8
+
 #EXTINF:0,Fox Action Movies 
-http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=304&lan=2&rows=40&f=.m3u8
+http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=305&lan=2&rows=40&f=.m3u8
+
+#EXTINF:0,Fox Action Movies 
+http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=301&lan=2&rows=40&f=BratuMarian.m3u8
+
+#EXTINF:0,Fox Classics
+http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=345&lan=2&rows=40&f=BratuMarian.m3u8
 
 #EXTINF:0,Fox Family Movies 
-http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=343&lan=2&rows=40&f=.m3u8
+http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=342&lan=2&rows=40&f=.m3u8
 
 #EXTINF:0,Fox Movies Premium 
-http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=300&lan=2&rows=40&f=.m3u8
+
 
 #EXTINF:0,Fright Fest 
 rtmp://198.255.0.2:443/live?9z9y6yu6iQQvGiCBD32o65nzWrWsaVj9 playpath=live_frightfest0001 swfUrl=http://vaughnlive.tv/4261986735/swf/VaughnSoftPlayer.swf pageUrl=http://vaughnlive.tv/frightfest0001
 
 #EXTINF:0,FX HD 
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=104&lan=2&rows=40&f=.m3u8
+
+#EXTINF:0,FX HD
+http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=103&lan=2&rows=40&f=BratuMarian.m3u8
 
 #EXTINF:0,HBO 
 rtmp://rtmp.zerocast.tv:1935/live playpath=qKmzUdRhBM73njBBDFyL swfUrl=http://20f3d0755392726229d8-7f14bc94688a30e4a2bde38a5eab6b77.r63.cf5.rackcdn.com/player.swf pageUrl=http://zerocast.tv/embed3.php?a=148&id=&width=580&height=400&autostart=true&strech=

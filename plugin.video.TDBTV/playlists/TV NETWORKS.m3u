@@ -21,6 +21,11 @@ http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=129&lan=2&rows=
 
 #EXTINF:0,BBC 2 
 
+#EXTINF:0,BBC Entertainment
+http://200.76.77.237/LIVE/H01/CANAL253/PROFILE03.m3u8?BratuMarian
+
+#EXTINF:0,BBC Entertainment
+http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?
 
 #EXTINF:0,BET 
 
@@ -38,7 +43,7 @@ rtmp://rtmp.zerocast.tv:1935/live playpath=Ger61uLQ4fedzvjRjrB7 swfUrl=http://p.
 
 
 #EXTINF:0,CBS Reality 
-
+http://83.139.104.111/Content/HLS/Live/Channel(cbs_reality)/Stream(03)/index.m3u8
 
 #EXTINF:0,CHCH Ontario 
 rtmp://54.85.197.21:1935/live playpath=news swfUrl=http://www.chch.com/wp-content/plugins/projekktorvm/src/StrobeMediaPlayback.swf?enableStageVideo=true&disableHardwareAcceleration=false&javascriptCallbackFunction=window.projekktorOSMFReady22bd91736c42e8eaf2e364c5492717cb& live=1 pageUrl=http://www.chch.com/live/ 
@@ -92,13 +97,13 @@ rtmp://rtmp.zerocast.tv:1935/live playpath=9pxGCtP3aEnJYgoBFFH8 swfUrl=http://p.
 
 
 #EXTINF:0,Food Network 
-
+http://83.139.104.111/Content/HLS/Live/Channel(food_network)/Stream(03)/index.m3u8
 
 #EXTINF:0,FX 
 
 
 #EXTINF:0,Ginx Gaming TV 
-
+http://83.139.104.111/Content/HLS/Live/Channel(ginx)/Stream(03)/index.m3u8
 
 #EXTINF:0,Hallmark Channel 
 
@@ -201,6 +206,9 @@ http://wgntribune-lh.akamaihd.net/i/WGNTribune_1@109089/master.m3u8
 
 #EXTINF:0,Wine Channel TV 
 rtmp://mi2.gv.filmon.com:8086/live/263.high.stream
+
+#EXTINF:0,Wobi
+http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=293&lan=2&rows=40&f=BratuMarian.m3u8
 
 #EXTINF:0,World Fashion TV
 http://btv-net.mediacdn.ru/TVB2/ngrp:wfhdeu.stream_all/chunklist_b3128000.m3u8

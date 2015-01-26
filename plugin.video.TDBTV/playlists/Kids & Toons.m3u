@@ -70,5 +70,8 @@ rtmp://62.210.76.216/live playpath=simpsons swfUrl=http://releases.flowplayer.or
 #EXTINF:0,Tom & Jerry Show 
 http://66.90.111.66:1935/ctv/tom/waldo_paes.m3u8?b?b*t$
 
+#EXTINF:0,Yes!
+http://uneapple-i.akamaihd.net/hls/live/205010/grupoune_st1@205010/st1_index.m3u8
+
 #EXTINF:0,YFE
 rtmp://mi2.gv.filmon.com:1935/live/_definst_/2734.high.stream
