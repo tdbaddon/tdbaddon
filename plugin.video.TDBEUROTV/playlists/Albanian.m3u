@@ -95,6 +95,9 @@ http://str105mb.setplex.net:1935/str2iosmd5/10ios_klankosova_56468946/HasBahCa.m
 #EXTINF:0,Klan Kosova
 http://4.31.30.135:1935/str2iosmd5/10ios_klankosova_56468946/playlist.m3u8
 
+#EXTINF:0,Klan Kosova
+http://91.187.97.5:8082/m3u8/102/mystream.m3u8
+
 #EXTINF:0,Koha TV
 http://str105mb.setplex.net:1935/str2iosmd5/tv_koha_ams228/HasBahCa.m3u8
 
@@ -174,7 +177,7 @@ rtmp://str103.setplex.net:1935/228/teuta
 
 
 #EXTINF:0,Top Channel
-
+http://91.187.97.5:8082/m3u8/103/mystream.m3u8
 
 #EXTINF:0,Top Channel News
 

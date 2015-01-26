@@ -1,0 +1,44 @@
+﻿#EXTM3U
+
+
+#EXTINF:0,Amazing
+http://redir.atmcdn.pl/hls/mm/multimedia/live/amazing/live.livx/playlist.m3u8?sessionId=ABA74CBC0702307FF0B559F938FC9B21.node1&stream=2
+
+#EXTINF:0,EskaGo Best Music TV
+rtmp://stream.smcloud.net/live2/best/best_360p
+
+#EXTINF:0,EskaGo Party
+rtmp://stream.smcloud.net/live2/eska_party/eska_party_360p
+
+#EXTINF:0,Eska TV Polska
+rtmp://stream.smcloud.net/live2/eskatv/ playpath=eskatv_480p swfUrl=http://p.jwpcdn.com/6/8/jwplayer.flash.swf live=1 pageUrl=http://meczhd.tv/eskatv
+
+#EXTINF:0,Eska TV Polska
+rtmp://stream.smcloud.net/live2/eskatv/ playpath=eskatv_360p swfUrl=http://p.jwpcdn.com/6/7/jwplayer.flash.swf live=1 pageUrl=http://freetv.cba.pl/include/jw.php?hash=%3DAHM2MzX2RXYrNXZvYHdht2cl9iMlZXas9Cdl5mLkV3bsNWbz5SbhVmc0N3LvoDctRnc
+
+#EXTINF:0,EskaGo Rock TV
+rtmp://stream.smcloud.net/live2/eska_rock/eska_rock_360p
+
+#EXTINF:0,Fightbox
+http://stream1.zoovision.com//livespi/fightbox/playlist.m3u8
+
+#EXTINF:0,Fokus TV
+rtmp://stream.smcloud.net/live/fokustv
+
+#EXTINF:0,ITV
+http://itv.net.pl/video1.asx
+
+#EXTINF:0,Polo TV
+rtmp://stream.smcloud.net/live/polotv
+
+#EXTINF:0,TVN
+http://79.142.197.49:6640?by_HasBahCa
+
+#EXTINF:0,Music Vox TV
+rtmp://stream.smcloud.net/live/vox2/stream1
+
+#EXTINF:0,Music Vox TV
+rtmp://stream.smcloud.net/live2/vox/vox_360p
+
+#EXTINF:0,Wawa TV
+rtmp://stream.smcloud.net/live2/wawa/wawa_360p
