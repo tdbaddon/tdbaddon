@@ -17,10 +17,16 @@ rtmp://edge2.everyon.tv/etv2/phd927
 rtmp://edge1.everyon.tv/etv1/phd497
 
 #EXTINF:0,Playboy TV 
+http://iptv.sat-x.tv/iptv/91f5ebece378143c8392d8ad6ae539797bc86a67/527/index.m3u8
+
+#EXTINF:0,Playboy TV 
 http://80.87.146.133:1111/udp/239.195.2.5:1234
 
 #EXTINF:0,Playboy TV 
 rtmp://edge2.everyon.tv/etv2/phd499
+
+#EXTINF:0,Playboy TV 
+http://83.139.104.112/Content/HLS/Live/Channel(Playboy_tv)/Stream(03)/index.m3u8
 
 #EXTINF:0,Russian Night 
 http://46.181.237.75:1234/udp/239.255.42.218:1234

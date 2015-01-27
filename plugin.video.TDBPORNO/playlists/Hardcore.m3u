@@ -8,12 +8,17 @@ mmsh://tv.webmisto.cz:7000
 #EXTINF:0,Brasileirinhas 
 
 
-
 #EXTINF:0,Brazzers TV Europe 
 http://80.87.146.133:1111/udp/239.195.2.4:1234
 
+#EXTINF:0,Brazzers TV Europe 
+http://83.139.104.112/Content/HLS/Live/Channel(BRAZZERS_TV)/Stream(03)/index.m3u8
+
 #EXTINF:0,Bunga Bunga 
 http://84.22.33.3:8066
+
+#EXTINF:0,Bunga Bunga 
+http://milica:milica@176.31.233.230:81/ch20
 
 #EXTINF:0,Dorcel TV 
 http://83.139.104.111/Content/HLS/Live/Channel(DORCEL_TV)/Stream(03)/index.m3u8
@@ -31,10 +36,13 @@ http://83.139.104.111/Content/HLS/Live/Channel(DORCEL_TV)/Stream(03)/index.m3u8
 
 
 #EXTINF:0,Ingiltere
-
+http://83.139.104.112/Content/HLS/Live/Channel(ADULT_CHANNEL)/Stream(03)/index.m3u8
 
 #EXTINF:0,Nubile Films 
 
+
+#EXTINF:0,NuArt
+http://193.232.151.130/hls-live/livepkgr/_1035_/1035/1035-70.m3u8
 
 #EXTINF:0,Pink Erotic 
 
@@ -71,3 +79,6 @@ http://188.165.220.116:8081/xxx/tv/playlist.m3u8
 
 #EXTINF:0,XXX
 http://Smart:Adana01@188.165.239.200:7024
+
+#EXTINF:0,XXX
+http://46.105.116.159:1935/iptv_cellcast_24/livestream1/player.m3u8
