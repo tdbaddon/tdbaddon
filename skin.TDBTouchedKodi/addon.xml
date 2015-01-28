@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<addon
+  id="skin.TDBTouchedKodi"
+  version="1.0.5"
+  name="TDB Touched Kodi"
+  provider-name="TDB">
+  <requires>
+    <import addon="xbmc.gui" version="5.3.0"/>
+  </requires>
+  <extension
+    point="xbmc.gui.skin"
+	    defaultthemename="textures.xbt"
+    debugging="false">
+    <res width="1280" height="960" aspect="4:3" default="true" folder="4x3Hirez" />
+    <res width="1706" height="960" aspect="16:9" folder="16x9" />
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en_US">Touched skin by TDB designed to be used on touch screen devices</summary>
+    <description lang="en">Skin designed from the ground up to be used on touch screen devices or Android TV's used with a Fly Mouse or Wireless Mouse.</description>
+    <description lang="en_US">Do not use this skin unless you have either touch screen or a mouse connected or you may lose navigation</description>
+    <disclaimer lang="en">Do not use this skin unless you have either touch screen or a mouse connected or you may lose navigation</disclaimer>
+    <disclaimer lang="en_US">Do not use this skin unless you have either touch screen or a mouse connected or you may lose navigation</disclaimer>
+    <platform>all</platform>
+  </extension>
+</addon>
