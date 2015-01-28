@@ -72,15 +72,16 @@
 				</control>
 				<control type="group">
 					<posx>220</posx>
-					<posy>135</posy>
+					<posy>140</posy>
 					<width>600</width>
-					<height>48</height>
+					<height>45</height>
 					<control type="image">
 						<description>Audio Codec Image</description>
 						<posx>0</posx>
 						<posy>0</posy>
 						<width>100</width>
-						<height>48</height>
+						<height>45</height>
+						<aspectratio align="left">keep</aspectratio>
 						<texture>$INFO[MusicPlayer.Codec,flagging/audio/,.png]</texture>
 					</control>
 					<control type="group">
@@ -88,22 +89,24 @@
 						<posx>105</posx>
 						<posy>0</posy>
 						<width>160</width>
-						<height>48</height>
+						<height>45</height>
 						<control type="image">
 							<description>rating back</description>
 							<posx>0</posx>
 							<posy>0</posy>
-							<width>145</width>
-							<height>48</height>
+							<width>160</width>
+							<height>45</height>
+							<aspectratio align="left">stretch</aspectratio>
 							<texture border="5">flagging/blank.png</texture>
 						</control>
 						<control type="image">
 							<description>Rating</description>
 							<posx>10</posx>
-							<posy>8</posy>
-							<width>125</width>
-							<height>32</height>
-							<texture fallback="light/left_rating/rating0.png">$INFO[Player.StarRating,light/left_rating/]</texture>
+							<posy>0</posy>
+							<width>140</width>
+							<height>45</height>
+							<aspectratio align="center">keep</aspectratio>
+							<texture fallback="LeftRating/rating0.png">$INFO[Player.StarRating,light/left_rating/]</texture>
 						</control>
 					</control>
 				</control>
@@ -211,39 +214,43 @@
 					</control>
 					<control type="group">
 						<posx>290</posx>
-						<posy>135</posy>
+						<posy>140</posy>
 						<width>600</width>
-						<height>48</height>
+						<height>45</height>
 						<control type="image">
 							<description>Video Codec Image</description>
 							<posx>0</posx>
 							<posy>0</posy>
 							<width>100</width>
-							<height>48</height>
+							<height>45</height>
+							<aspectratio align="left">keep</aspectratio>
 							<texture>$INFO[VideoPlayer.VideoCodec,flagging/video/,.png]</texture>
 						</control>
 						<control type="image">
 							<description>Resolution Image</description>
-							<posx>105</posx>
+							<posx>100</posx>
 							<posy>0</posy>
 							<width>75</width>
-							<height>48</height>
+							<height>45</height>
+							<aspectratio align="left">keep</aspectratio>
 							<texture>$INFO[VideoPlayer.VideoResolution,flagging/video/,.png]</texture>
 						</control>
 						<control type="image">
 							<description>Audio Codec Image</description>
-							<posx>174</posx>
+							<posx>175</posx>
 							<posy>0</posy>
 							<width>100</width>
-							<height>48</height>
+							<height>45</height>
+							<aspectratio align="left">keep</aspectratio>
 							<texture>$INFO[VideoPlayer.AudioCodec,flagging/audio/,.png]</texture>
 						</control>
 						<control type="image">
 							<description>Audio Codec Image</description>
-							<posx>279</posx>
+							<posx>275</posx>
 							<posy>0</posy>
 							<width>75</width>
-							<height>48</height>
+							<height>45</height>
+							<aspectratio align="left">keep</aspectratio>
 							<texture>$INFO[VideoPlayer.AudioChannels,flagging/audio/,.png]</texture>
 						</control>
 					</control>
@@ -297,39 +304,43 @@
 					</control>
 					<control type="group">
 						<posx>190</posx>
-						<posy>135</posy>
+						<posy>140</posy>
 						<width>600</width>
-						<height>48</height>
+						<height>45</height>
 						<control type="image">
 							<description>Video Codec Image</description>
 							<posx>0</posx>
 							<posy>0</posy>
 							<width>100</width>
-							<height>48</height>
+							<height>45</height>
+							<aspectratio align="left">keep</aspectratio>
 							<texture>$INFO[VideoPlayer.VideoCodec,flagging/video/,.png]</texture>
 						</control>
 						<control type="image">
 							<description>Resolution Image</description>
-							<posx>105</posx>
+							<posx>100</posx>
 							<posy>0</posy>
 							<width>75</width>
-							<height>48</height>
+							<height>45</height>
+							<aspectratio align="left">keep</aspectratio>
 							<texture>$INFO[VideoPlayer.VideoResolution,flagging/video/,.png]</texture>
 						</control>
 						<control type="image">
 							<description>Audio Codec Image</description>
-							<posx>174</posx>
+							<posx>175</posx>
 							<posy>0</posy>
 							<width>100</width>
-							<height>48</height>
+							<height>45</height>
+							<aspectratio align="left">keep</aspectratio>
 							<texture>$INFO[VideoPlayer.AudioCodec,flagging/audio/,.png]</texture>
 						</control>
 						<control type="image">
 							<description>Audio Codec Image</description>
-							<posx>279</posx>
+							<posx>275</posx>
 							<posy>0</posy>
 							<width>75</width>
-							<height>48</height>
+							<height>45</height>
+							<aspectratio align="left">keep</aspectratio>
 							<texture>$INFO[VideoPlayer.AudioChannels,flagging/audio/,.png]</texture>
 						</control>
 					</control>
@@ -383,39 +394,43 @@
 					</control>
 					<control type="group">
 						<posx>290</posx>
-						<posy>135</posy>
+						<posy>140</posy>
 						<width>600</width>
-						<height>48</height>
+						<height>45</height>
 						<control type="image">
 							<description>Video Codec Image</description>
 							<posx>0</posx>
 							<posy>0</posy>
 							<width>100</width>
-							<height>48</height>
+							<height>45</height>
+							<aspectratio align="left">keep</aspectratio>
 							<texture>$INFO[VideoPlayer.VideoCodec,flagging/video/,.png]</texture>
 						</control>
 						<control type="image">
 							<description>Resolution Image</description>
-							<posx>105</posx>
+							<posx>100</posx>
 							<posy>0</posy>
 							<width>75</width>
-							<height>48</height>
+							<height>45</height>
+							<aspectratio align="left">keep</aspectratio>
 							<texture>$INFO[VideoPlayer.VideoResolution,flagging/video/,.png]</texture>
 						</control>
 						<control type="image">
 							<description>Audio Codec Image</description>
-							<posx>174</posx>
+							<posx>175</posx>
 							<posy>0</posy>
 							<width>100</width>
-							<height>48</height>
+							<height>45</height>
+							<aspectratio align="left">keep</aspectratio>
 							<texture>$INFO[VideoPlayer.AudioCodec,flagging/audio/,.png]</texture>
 						</control>
 						<control type="image">
 							<description>Audio Codec Image</description>
-							<posx>279</posx>
+							<posx>275</posx>
 							<posy>0</posy>
 							<width>75</width>
-							<height>48</height>
+							<height>45</height>
+							<aspectratio align="left">keep</aspectratio>
 							<texture>$INFO[VideoPlayer.AudioChannels,flagging/audio/,.png]</texture>
 						</control>
 					</control>
@@ -611,10 +626,8 @@
 				<texturefocus border="5">floor_buttonFO.png</texturefocus>
 				<label>31008</label>
 				<onclick>fullscreen</onclick>
-				<textureradioonfocus>GoFullscreen.png</textureradioonfocus>
-				<textureradioonnofocus>GoFullscreen.png</textureradioonnofocus>
-				<textureradioofffocus>GoFullscreen.png</textureradioofffocus>
-				<textureradiooffnofocus>GoFullscreen.png</textureradiooffnofocus>
+				<textureradioon>GoFullscreen.png</textureradioon>
+				<textureradiooff>GoFullscreen.png</textureradiooff>
 				<visible>!Window.IsVisible(Visualisation) + !Window.IsVisible(FullScreenVideo) + !Window.IsVisible(Karaoke)</visible>
 			</control>
 			<control type="radiobutton">
@@ -633,10 +646,8 @@
 				<onclick>Dialog.Close(VideoOSD,true)</onclick>
 				<onclick>Dialog.Close(MusicOSD,true)</onclick>
 				<onclick>fullscreen</onclick>
-				<textureradioonfocus flipx="true" flipy="true">GoFullscreen.png</textureradioonfocus>
-				<textureradioonnofocus flipx="true" flipy="true">GoFullscreen.png</textureradioonnofocus>
-				<textureradioofffocus flipx="true" flipy="true">GoFullscreen.png</textureradioofffocus>
-				<textureradiooffnofocus flipx="true" flipy="true">GoFullscreen.png</textureradiooffnofocus>
+				<textureradioon flipx="true" flipy="true">GoFullscreen.png</textureradioon>
+				<textureradiooff flipx="true" flipy="true">GoFullscreen.png</textureradiooff>
 				<visible>Window.IsVisible(Visualisation) | Window.IsVisible(FullScreenVideo) + !Window.IsVisible(Karaoke)</visible>
 			</control>
 		</control>
@@ -736,7 +747,7 @@
 				<font>-</font>
 				<texturefocus>-</texturefocus>
 				<texturenofocus>-</texturenofocus>
-				<onclick>PlayerControl(Repeat)</onclick>
+				<onclick>XBMC.PlayerControl(Repeat)</onclick>
 				<onleft>605</onleft>
 				<onright>607</onright>
 				<onup>1000</onup>
@@ -808,7 +819,7 @@
 				<usealttexture>Playlist.IsRandom</usealttexture>
 				<alttexturefocus>OSDRandomOnFO.png</alttexturefocus>
 				<alttexturenofocus>OSDRandomOnNF.png</alttexturenofocus>
-				<onclick>PlayerControl(Random)</onclick>
+				<onclick>XBMC.PlayerControl(Random)</onclick>
 				<onleft>606</onleft>
 				<onright>701</onright>
 				<onup>1000</onup>
@@ -1067,7 +1078,7 @@
 						<label>13395</label>
 						<onclick>Dialog.Close(VideoOSD,true)</onclick>
 						<onclick>Skin.Reset(PlayerControlsSubMenuVisible)</onclick>
-						<onclick>ActivateWindow(123)</onclick>
+						<onclick>XBMC.ActivateWindow(123)</onclick>
 						<visible>Window.IsVisible(FullScreenVideo)</visible>
 					</control>
 					<control type="button">
@@ -1075,7 +1086,7 @@
 						<label>31002</label>
 						<onclick>Dialog.Close(VideoOSD,true)</onclick>
 						<onclick>Skin.Reset(PlayerControlsSubMenuVisible)</onclick>
-						<onclick>ActivateWindow(124)</onclick>
+						<onclick>XBMC.ActivateWindow(124)</onclick>
 						<visible>Window.IsVisible(FullScreenVideo)</visible>
 					</control>
 					<control type="button">
@@ -1083,7 +1094,7 @@
 						<label>298</label>
 						<onclick>Dialog.Close(VideoOSD,true)</onclick>
 						<onclick>Skin.Reset(PlayerControlsSubMenuVisible)</onclick>
-						<onclick>ActivateWindow(125)</onclick>
+						<onclick>XBMC.ActivateWindow(125)</onclick>
 						<visible>Window.IsVisible(FullScreenVideo)</visible>
 					</control>
 					<control type="button">
@@ -1115,7 +1126,7 @@
 						<label>31006</label>
 						<onclick>Dialog.Close(MusicOSD,true)</onclick>
 						<onclick>Skin.Reset(PlayerControlsSubMenuVisible)</onclick>
-						<onclick>ActivateWindow(122)</onclick>
+						<onclick>XBMC.ActivateWindow(122)</onclick>
 						<visible>Window.IsVisible(Visualisation)</visible>
 					</control>
 					<control type="image">

@@ -66,12 +66,12 @@
 
 		<control type="group">
 			<include>Window_OpenClose_Animation_Zoom</include>
-			<posx>330</posx>
-			<posy>730</posy>
+			<posx>480</posx>
+			<posy>760</posy>
 			<control type="image">
 				<posx>0</posx>
 				<posy>0</posy>
-				<width>920</width>
+				<width>620</width>
 				<height>140</height>
 				<texture border="5">SubBack.png</texture>
 				<bordertexture border="30">ShadowBorder.png</bordertexture>
@@ -81,16 +81,16 @@
 				<description>Settings Description</description>
 				<posx>40</posx>
 				<posy>25</posy>
-				<width>840</width>
+				<width>540</width>
 				<height>80</height>
-				<font>font13</font>
+				<font>font12</font>
 				<textcolor>grey2</textcolor>
 				<align>left</align>
 			</control>
 			<control type="image">
 				<posx>20</posx>
 				<posy>20</posy>
-				<width>400</width>
+				<width>200</width>
 				<height>100</height>
 				<texture>GlassOverlay.png</texture>
 				<colordiffuse>55FFFFFF</colordiffuse>
@@ -147,18 +147,6 @@
 			<aligny>center</aligny>
 			<reverse>yes</reverse>
 		</control>
-		<control type="sliderex" id="13">
-			<description>Default SpinControlex</description>
-			<posx>0</posx>
-			<posy>0</posy>
-			<height>60</height>
-			<font>font13</font>
-			<textcolor>white</textcolor>
-			<focusedcolor>black</focusedcolor>
-			<texturefocus border="5">ListFO.png</texturefocus>
-			<texturenofocus border="5">ListNF.png</texturenofocus>
-			<aligny>center</aligny>
-		</control>
 		<control type="image" id="11">
 			<description>separator image</description>
 			<height>5</height>
@@ -205,7 +193,7 @@
 					<height>200</height>
 					<texturefocus border="5">SubBack.png</texturefocus>
 					<texturenofocus border="5">SubBack.png</texturenofocus>
-					<onclick>noop</onclick>
+					<onclick>-</onclick>
 				</control>
 				<control type="image">
 					<description>Panel Forground image</description>

@@ -172,7 +172,7 @@
 			<label>1022</label>
 			<textcolor>black</textcolor>
 		</control>
-		<control type="edit" id="12">
+		<control type="button" id="12">
 			<description>Name Button</description>
 			<posx>20</posx>
 			<posy>490</posy>

@@ -109,7 +109,7 @@
 						<info>ListItem.Label</info>
 					</control>
 					<control type="label">
-						<posx>330</posx>
+						<posx>530</posx>
 						<posy>5</posy>
 						<width>200</width>
 						<height>24</height>
@@ -151,7 +151,7 @@
 						<info>ListItem.Label</info>
 					</control>
 					<control type="label">
-						<posx>330</posx>
+						<posx>530</posx>
 						<posy>5</posy>
 						<width>200</width>
 						<height>24</height>
@@ -269,7 +269,7 @@
 						<info>ListItem.Label</info>
 					</control>
 					<control type="label">
-						<posx>330</posx>
+						<posx>530</posx>
 						<posy>5</posy>
 						<width>200</width>
 						<height>24</height>
@@ -311,7 +311,7 @@
 						<info>ListItem.Label</info>
 					</control>
 					<control type="label">
-						<posx>330</posx>
+						<posx>530</posx>
 						<posy>5</posy>
 						<width>200</width>
 						<height>24</height>

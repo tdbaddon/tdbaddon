@@ -28,7 +28,6 @@
 					<width>110</width>
 					<height>165</height>
 					<texture background="true">$VAR[PosterThumb]</texture>
-					<aspectratio>keep</aspectratio>
 				</control>
 				<control type="image">
 					<posx>0</posx>
@@ -62,7 +61,7 @@
 					<label>$INFO[ListItem.Genre]</label>
 				</control>
 				<control type="label">
-					<posx>590</posx>
+					<posx>990</posx>
 					<posy>7</posy>
 					<width>400</width>
 					<height>30</height>
@@ -131,7 +130,6 @@
 					<width>110</width>
 					<height>165</height>
 					<texture background="true">$VAR[PosterThumb]</texture>
-					<aspectratio>keep</aspectratio>
 				</control>
 				<control type="image">
 					<posx>0</posx>
@@ -165,7 +163,7 @@
 					<label>$INFO[ListItem.Genre]</label>
 				</control>
 				<control type="label">
-					<posx>590</posx>
+					<posx>990</posx>
 					<posy>7</posy>
 					<width>400</width>
 					<height>30</height>
@@ -268,7 +266,7 @@
 					<label>$INFO[ListItem.Premiered,$LOCALIZE[20416] : ]</label>
 				</control>
 				<control type="label">
-					<posx>590</posx>
+					<posx>990</posx>
 					<posy>7</posy>
 					<width>400</width>
 					<height>30</height>
@@ -371,7 +369,7 @@
 					<label>$INFO[ListItem.Premiered,$LOCALIZE[20416] : ]</label>
 				</control>
 				<control type="label">
-					<posx>590</posx>
+					<posx>990</posx>
 					<posy>7</posy>
 					<width>400</width>
 					<height>30</height>
@@ -478,7 +476,7 @@
 					<label>$INFO[ListItem.Label]</label>
 				</control>
 				<control type="label">
-					<posx>800</posx>
+					<posx>1080</posx>
 					<posy>15</posy>
 					<width>280</width>
 					<height>20</height>
@@ -500,9 +498,9 @@
 				</control>
 				<control type="image">
 					<posx>5</posx>
-					<posy>8</posy>
-					<width>30</width>
-					<height>30</height>
+					<posy>2</posy>
+					<width>20</width>
+					<height>20</height>
 					<texture>$INFO[ListItem.Overlay,light/]</texture>
 					<visible>!ListItem.IsResumable</visible>
 				</control>
@@ -542,7 +540,7 @@
 					<label>$INFO[ListItem.Label]</label>
 				</control>
 				<control type="label">
-					<posx>800</posx>
+					<posx>1080</posx>
 					<posy>15</posy>
 					<width>280</width>
 					<height>20</height>
@@ -564,9 +562,9 @@
 				</control>
 				<control type="image">
 					<posx>5</posx>
-					<posy>8</posy>
-					<width>30</width>
-					<height>30</height>
+					<posy>2</posy>
+					<width>20</width>
+					<height>20</height>
 					<texture>$INFO[ListItem.Overlay,dark/]</texture>
 					<visible>!ListItem.IsResumable</visible>
 				</control>

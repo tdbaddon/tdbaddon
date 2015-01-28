@@ -122,7 +122,7 @@
 				<scrolltime>200</scrolltime>
 				<itemlayout height="30">
 					<control type="label">
-						<posx>40</posx>
+						<posx>200</posx>
 						<posy>0</posy>
 						<width>160</width>
 						<height>30</height>
@@ -148,7 +148,7 @@
 				</itemlayout>
 				<focusedlayout height="30">
 					<control type="label">
-						<posx>40</posx>
+						<posx>200</posx>
 						<posy>0</posy>
 						<width>160</width>
 						<height>30</height>
@@ -306,7 +306,7 @@
 				<scrolltime>200</scrolltime>
 				<itemlayout height="30">
 					<control type="label">
-						<posx>40</posx>
+						<posx>200</posx>
 						<posy>0</posy>
 						<width>160</width>
 						<height>30</height>
@@ -332,7 +332,7 @@
 				</itemlayout>
 				<focusedlayout height="30">
 					<control type="label">
-						<posx>40</posx>
+						<posx>200</posx>
 						<posy>0</posy>
 						<width>160</width>
 						<height>30</height>
@@ -471,7 +471,7 @@
 				<scrolltime>200</scrolltime>
 				<itemlayout height="30">
 					<control type="label">
-						<posx>40</posx>
+						<posx>200</posx>
 						<posy>0</posy>
 						<width>160</width>
 						<height>30</height>
@@ -497,7 +497,7 @@
 				</itemlayout>
 				<focusedlayout height="30">
 					<control type="label">
-						<posx>40</posx>
+						<posx>200</posx>
 						<posy>0</posy>
 						<width>160</width>
 						<height>30</height>
@@ -666,7 +666,7 @@
 				<scrolltime>200</scrolltime>
 				<itemlayout height="30">
 					<control type="label">
-						<posx>40</posx>
+						<posx>200</posx>
 						<posy>0</posy>
 						<width>160</width>
 						<height>30</height>
@@ -692,7 +692,7 @@
 				</itemlayout>
 				<focusedlayout height="30">
 					<control type="label">
-						<posx>40</posx>
+						<posx>200</posx>
 						<posy>0</posy>
 						<width>160</width>
 						<height>30</height>

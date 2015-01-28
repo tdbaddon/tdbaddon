@@ -98,8 +98,8 @@
 						<altlabel>31050</altlabel>
 						<usealttexture>Container.SortDirection(Ascending)</usealttexture>
 					</control>
-					<control type="button" id ="5">
-						<description>addon-updates</description>
+					<control type="radiobutton" id ="5">
+						<description>Enable auto-updates</description>
 						<include>ButtonCommonValues2</include>
 						<label>24063</label>
 					</control>
@@ -110,15 +110,14 @@
 					</control>
 					<control type="radiobutton" id="7">
 						<description>Hide foreign</description>
+						<posx>0</posx>
+						<posy>180</posy>
 						<include>ButtonCommonValues2</include>
 						<label>25001</label>
 					</control>
-					<control type="radiobutton" id="8">
-						<description>Hide broken</description>
-						<include>ButtonCommonValues2</include>
-						<label>24999</label>
-					</control>
 					<control type="image">
+						<posx>0</posx>
+						<posy>100</posy>
 						<width>298</width>
 						<height>10</height>
 						<texture>shelf_shadow.png</texture>

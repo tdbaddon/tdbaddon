@@ -339,10 +339,11 @@
 							<texture border="5">SubBack.png</texture>
 						</control>
 						<control type="image">
-							<posx>380</posx>
-							<posy>3</posy>
-							<width>164</width>
+							<posx>300</posx>
+							<posy>2</posy>
+							<width>260</width>
 							<height>164</height>
+							<aspectratio>scale</aspectratio>
 							<texture>$INFO[ListItem.ActualIcon]</texture>
 						</control>
 						<control type="label">
@@ -408,10 +409,11 @@
 							<texture border="5">SubBack.png</texture>
 						</control>
 						<control type="image">
-							<posx>380</posx>
-							<posy>3</posy>
-							<width>164</width>
+							<posx>300</posx>
+							<posy>2</posy>
+							<width>260</width>
 							<height>164</height>
+							<aspectratio>scale</aspectratio>
 							<texture>$INFO[ListItem.ActualIcon]</texture>
 						</control>
 						<control type="label">

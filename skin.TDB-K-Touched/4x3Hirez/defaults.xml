@@ -86,6 +86,7 @@
 		<subtype>text</subtype>
 		<textoffsetx>-5</textoffsetx>
 		<textoffsety>0</textoffsety>
+		<aligny>-</aligny>
 		<pulseonselect>no</pulseonselect>
 	</default>
 	<default type="spincontrolex">
@@ -116,10 +117,8 @@
 		<height>42</height>
 		<radiowidth>90</radiowidth>
 		<radioheight>45</radioheight>
-		<textureradioonfocus>radiobutton-on.png</textureradioonfocus>
-		<textureradioonnofocus>radiobutton-on.png</textureradioonnofocus>
-		<textureradioofffocus>radiobutton-off.png</textureradioofffocus>
-		<textureradiooffnofocus>radiobutton-off.png</textureradiooffnofocus>
+		<textureradioon>radiobutton-focus.png</textureradioon>
+		<textureradiooff>radiobutton-nofocus.png</textureradiooff>
 		<texturefocus>button-focus.png</texturefocus>
 		<texturenofocus>button-nofocus.png</texturenofocus>
 		<label>215</label>

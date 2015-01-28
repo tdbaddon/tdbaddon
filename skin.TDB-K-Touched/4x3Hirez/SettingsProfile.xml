@@ -7,7 +7,6 @@
 		<include>CommonBackgroundOverlay</include>
 		<include>HomeButtonCommons</include>
 		<include>CommonNowPlaying</include>
-		<include>ScrollBarCommons</include>
 		<control type="label">
 			<description>Window label</description>
 			<include>MediaWindowTitleCommons</include>
@@ -39,27 +38,12 @@
 			<control type="radiobutton" id ="4">
 				<description>Enable Login screen</description>
 				<posx>0</posx>
-				<posy>80</posy>
+				<posy>0</posy>
 				<width>350</width>
 				<height>60</height>
 				<align>left</align>
 				<include>ButtonInfoDialogsCommonValues</include>
 				<label>20096</label>
-				<onleft>2</onleft>
-				<onright>2</onright>
-				<onup>5</onup>
-				<ondown>5</ondown>
-				<enable>!Window.IsVisible(ProfileSettings)</enable>
-			</control>
-			<control type="button" id ="5">
-				<description>Auto Login</description>
-				<posx>0</posx>
-				<posy>150</posy>
-				<width>350</width>
-				<height>60</height>
-				<align>left</align>
-				<include>ButtonInfoDialogsCommonValues</include>
-				<label>$LOCALIZE[33084]: $INFO[System.ProfileAutoLogin]</label>
 				<onleft>2</onleft>
 				<onright>2</onright>
 				<onup>4</onup>
@@ -68,12 +52,12 @@
 			</control>
 			<control type="group">
 				<posx>0</posx>
-				<posy>220</posy>
+				<posy>80</posy>
 				<control type="image">
 					<posx>0</posx>
 					<posy>0</posy>
 					<width>350</width>
-					<height>420</height>
+					<height>500</height>
 					<texture border="5">SubBack.png</texture>
 				</control>
 				<control type="label">
@@ -146,7 +130,7 @@
 						<texture fallback="unknown-user.png">$INFO[Listitem.Icon]</texture>
 					</control>
 					<control type="label">
-						<posx>5</posx>
+						<posx>103</posx>
 						<posy>200</posy>
 						<width>197</width>
 						<height>25</height>
@@ -158,7 +142,7 @@
 						<label>$INFO[ListItem.Label]</label>
 					</control>
 					<control type="label">
-						<posx>5</posx>
+						<posx>103</posx>
 						<posy>230</posy>
 						<width>197</width>
 						<height>20</height>
@@ -171,7 +155,7 @@
 						<visible>!IsEmpty(ListItem.Label2)</visible>
 					</control>
 					<control type="label">
-						<posx>5</posx>
+						<posx>103</posx>
 						<posy>250</posy>
 						<width>197</width>
 						<height>20</height>
@@ -199,7 +183,7 @@
 						<texture fallback="unknown-user.png">$INFO[Listitem.Icon]</texture>
 					</control>
 					<control type="label">
-						<posx>5</posx>
+						<posx>103</posx>
 						<posy>200</posy>
 						<width>197</width>
 						<height>25</height>
@@ -211,7 +195,7 @@
 						<label>$INFO[ListItem.Label]</label>
 					</control>
 					<control type="label">
-						<posx>5</posx>
+						<posx>103</posx>
 						<posy>230</posy>
 						<width>197</width>
 						<height>20</height>
@@ -224,7 +208,7 @@
 						<visible>!IsEmpty(ListItem.Label2)</visible>
 					</control>
 					<control type="label">
-						<posx>5</posx>
+						<posx>103</posx>
 						<posy>250</posy>
 						<width>197</width>
 						<height>20</height>
@@ -236,6 +220,21 @@
 						<label>$INFO[ListItem.Label2]</label>
 					</control>
 				</focusedlayout>
+			</control>
+			<control type="scrollbar" id="60">
+				<posx>1060</posx>
+				<posy>60</posy>
+				<width>25</width>
+				<height>530</height>
+				<texturesliderbackground border="0,14,0,14">ScrollBarV.png</texturesliderbackground>
+				<texturesliderbar border="0,14,0,14">ScrollBarV_bar.png</texturesliderbar>
+				<texturesliderbarfocus border="0,14,0,14">ScrollBarV_bar_focus.png</texturesliderbarfocus>
+				<textureslidernib>ScrollBarNib.png</textureslidernib>
+				<textureslidernibfocus>ScrollBarNib.png</textureslidernibfocus>
+				<onleft>2</onleft>
+				<onright>4</onright>
+				<showonepage>false</showonepage>
+				<orientation>vertical</orientation>
 			</control>
 		</control>
 		<include>BehindDialogFadeOut</include>

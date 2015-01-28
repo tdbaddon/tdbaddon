@@ -16,7 +16,7 @@
 			<height>60</height>
 			<texture border="5">DialogHeader.png</texture>
 		</control>
-		<control type="label" id="2">
+		<control type="label">
 			<description>header label</description>
 			<posx>20</posx>
 			<posy>0</posy>
@@ -43,8 +43,9 @@
 			<width>960</width>
 			<height>720</height>
 			<itemgap>-1</itemgap>
+			<pagecontrol>60</pagecontrol>
 			<onleft>28</onleft>
-			<onright>29</onright>
+			<onright>60</onright>
 			<onup>28</onup>
 			<ondown>28</ondown>
 		</control>

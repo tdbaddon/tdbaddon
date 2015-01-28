@@ -12,7 +12,7 @@
 				<posx>0</posx>
 				<posy>0</posy>
 				<width>ScreenWidth</width>
-				<height>155</height>
+				<height>140</height>
 				<colordiffuse>AAFFFFFF</colordiffuse>
 				<texture>black-back.png</texture>
 			</control>
@@ -43,7 +43,7 @@
 				<posx>50</posx>
 				<posy>85</posy>
 				<width>1180</width>
-				<height>45</height>
+				<height>30</height>
 				<align>left</align>
 				<aligny>center</aligny>
 				<font>font12</font>

@@ -66,7 +66,7 @@
 					<label>-</label>
 					<texturenofocus>OSDPrevTrackNF.png</texturenofocus>
 					<texturefocus>OSDPrevTrackFO.png</texturefocus>
-					<onclick>PlayerControl(Previous)</onclick>
+					<onclick>XBMC.PlayerControl(Previous)</onclick>
 				</control>
 				<control type="togglebutton">
 					<description>Play Button</description>
@@ -80,7 +80,7 @@
 					<usealttexture>Player.Paused | Player.Forwarding | Player.Rewinding</usealttexture>
 					<alttexturefocus>OSDPauseFO.png</alttexturefocus>
 					<alttexturenofocus>OSDPauseNF.png</alttexturenofocus>
-					<onclick>PlayerControl(Play)</onclick>
+					<onclick>XBMC.PlayerControl(Play)</onclick>
 				</control>
 				<control type="button">
 					<description>Next Button</description>
@@ -91,7 +91,7 @@
 					<label>-</label>
 					<texturenofocus>OSDNextTrackNF.png</texturenofocus>
 					<texturefocus>OSDNextTrackFO.png</texturefocus>
-					<onclick>PlayerControl(Next)</onclick>
+					<onclick>XBMC.PlayerControl(Next)</onclick>
 				</control>
 				<control type="progress">
 					<description>Progressbar</description>
@@ -134,7 +134,7 @@
 			<texture>black.png</texture>
 		</control>
 		<control type="label">
-			<description>Kodi label</description>
+			<description>XBMC label</description>
 			<posx>5</posx>
 			<posy>0</posy>
 			<width>200</width>
@@ -143,7 +143,7 @@
 			<aligny>center</aligny>
 			<font>font10_title</font>
 			<textcolor>white</textcolor>
-			<label>Kodi</label>
+			<label>XBMC</label>
 		</control>
 		<control type="label">
 			<description>time label</description>
@@ -223,7 +223,7 @@
 			<texture>black-back.png</texture>
 			<animation effect="fade" time="400">Visible</animation>
 			<animation effect="fade" time="200">Hidden</animation>
-			<visible>Window.IsActive(ContextMenu) | Window.IsActive(MovieInformation) | Window.IsActive(MusicInformation) | Window.IsActive(SongInformation) | Window.IsActive(FileBrowser) | Window.IsActive(TextViewer) | Window.IsActive(AddonSettings) | Window.IsActive(ContentSettings) | Window.IsActive(SelectDialog) | Window.IsActive(FileStackingDialog) | Window.IsActive(MediaSource) | Window.IsActive(PictureInfo) | [Window.IsActive(NumericInput) + !Window.IsVisible(VirtualKeyboard)] | Window.IsActive(ProfileSettings) | Window.IsActive(LockSettings) | Window.IsActive(SmartPlaylistEditor) | Window.IsActive(SmartPlaylistRule) | Window.IsActive(script-RSS_Editor-rssEditor.xml) | Window.IsActive(script-RSS_Editor-setEditor.xml) | Window.IsActive(AddonInformation) | Window.IsActive(Favourites) | Window.IsActive(PictureInfo) | Window.IsActive(KaraokeLargeSelector) | Window.IsActive(SkinSettings) | Window.IsActive(Peripherals) | Window.IsActive(PeripheralSettings) | Window.IsActive(MediaFilter)</visible>
+			<visible>Window.IsActive(ContextMenu) | Window.IsActive(MovieInformation) | Window.IsActive(MusicInformation) | Window.IsActive(SongInformation) | Window.IsActive(FileBrowser) | Window.IsActive(TextViewer) | Window.IsActive(AddonSettings) | Window.IsActive(ContentSettings) | Window.IsActive(SelectDialog) | Window.IsActive(FileStackingDialog) | Window.IsActive(MediaSource) | Window.IsActive(PictureInfo) | [Window.IsActive(NumericInput) + !Window.IsVisible(VirtualKeyboard)] | Window.IsActive(ProfileSettings) | Window.IsActive(LockSettings) | Window.IsActive(SmartPlaylistEditor) | Window.IsActive(SmartPlaylistRule) | Window.IsActive(script-RSS_Editor-rssEditor.xml) | Window.IsActive(script-RSS_Editor-setEditor.xml) | Window.IsActive(AddonInformation) | Window.IsActive(Favourites) | Window.IsActive(PictureInfo) | Window.IsActive(KaraokeLargeSelector) | Window.IsActive(custom_skinsettings_1113.xml) | Window.IsActive(Peripherals) | Window.IsActive(PeripheralSettings) | Window.IsActive(MediaFilter)</visible>
 		</control>
 	</include>
 	<include name="MediaWindowTitleCommons">
@@ -460,9 +460,9 @@
 		<animation effect="slide" start="0,0" end="224,0" time="0" condition="StringCompare(Container(9002).NumItems,3)">conditional</animation>
 		<animation effect="slide" start="0,0" end="336,0" time="0" condition="StringCompare(Container(9002).NumItems,2)">conditional</animation>
 		<animation effect="slide" start="0,0" end="448,0" time="0" condition="StringCompare(Container(9002).NumItems,1)">conditional</animation>
-		<posx>670r</posx>
+		<posx>570r</posx>
 		<posy>105r</posy>
-		<width>660</width>
+		<width>560</width>
 		<height>120</height>
 		<onleft>9002</onleft>
 		<onright>9002</onright>
@@ -471,28 +471,27 @@
 		<pagecontrol>-</pagecontrol>
 		<scrolltime>300</scrolltime>
 		<orientation>Horizontal</orientation>
-		<itemlayout height="200" width="132">
+		<itemlayout height="200" width="112">
 			<control type="image">
-				<posx>26</posx>
+				<posx>16</posx>
 				<posy>80</posy>
 				<width>80</width>
 				<height>40</height>
 				<texture border="5">IconBack_reflect.png</texture>
 			</control>
 			<control type="image">
-				<posx>26</posx>
+				<posx>16</posx>
 				<posy>0</posy>
 				<width>80</width>
 				<height>80</height>
 				<bordertexture border="5">IconBack.png</bordertexture>
 				<bordersize>12</bordersize>
 				<texture>$INFO[ListItem.Icon]</texture>
-				<aspectratio>keep</aspectratio>
 			</control>
 			<control type="label">
-				<posx>5</posx>
+				<posx>56</posx>
 				<posy>82</posy>
-				<width>122</width>
+				<width>100</width>
 				<height>20</height>
 				<font>font11</font>
 				<textcolor>white</textcolor>
@@ -502,28 +501,27 @@
 				<label>$INFO[ListItem.Label]</label>
 			</control>
 		</itemlayout>
-		<focusedlayout height="200" width="132">
+		<focusedlayout height="200" width="112">
 			<control type="image">
-				<posx>26</posx>
+				<posx>16</posx>
 				<posy>80</posy>
 				<width>80</width>
 				<height>40</height>
 				<texture border="5">IconBack_reflect.png</texture>
 			</control>
 			<control type="image">
-				<posx>26</posx>
+				<posx>16</posx>
 				<posy>0</posy>
 				<width>80</width>
 				<height>80</height>
 				<bordertexture border="5">IconBack-focus.png</bordertexture>
 				<bordersize>12</bordersize>
 				<texture>$INFO[ListItem.Icon]</texture>
-				<aspectratio>keep</aspectratio>
 			</control>
 			<control type="label">
-				<posx>5</posx>
+				<posx>56</posx>
 				<posy>82</posy>
-				<width>122</width>
+				<width>100</width>
 				<height>20</height>
 				<font>font11</font>
 				<textcolor>white</textcolor>
@@ -546,10 +544,8 @@
 		<texturefocus border="5">HomeSubFO.png</texturefocus>
 		<texturenofocus border="5">HomeSubNF.png</texturenofocus>
 		<pulseonselect>false</pulseonselect>
-		<textureradioonfocus>HomeTab-focus.png</textureradioonfocus>
-		<textureradioonnofocus>HomeTab-focus.png</textureradioonnofocus>
-		<textureradioofffocus>-</textureradioofffocus>
-		<textureradiooffnofocus>-</textureradiooffnofocus>
+		<textureradioon>HomeTab-focus.png</textureradioon>
+		<textureradiooff>-</textureradiooff>
 		<radioposx>5</radioposx>
 		<radioposy>43</radioposy>
 		<radiowidth>190</radiowidth>
@@ -580,64 +576,64 @@
 	</include>
 	<include name="CommonNowPlaying">
 		<control type="group">
-			<posx>35</posx>
-			<posy>20</posy>
+			<posx>110</posx>
+			<posy>25</posy>
 			<visible>Player.HasMedia + !Window.IsVisible(PlayerControls)</visible>
 			<include>VisibleFadeEffect</include>
 			<control type="button">
 				<posx>0</posx>
 				<posy>0</posy>
-				<width>370</width>
-				<height>77</height>
+				<width>270</width>
+				<height>67</height>
 				<texturefocus border="8">IconBack.png</texturefocus>
 				<texturenofocus border="8">IconBack.png</texturenofocus>
 				<onclick>ActivateWindow(PlayerControls)</onclick>
 			</control>
 			<control type="fadelabel">
 				<posx>10</posx>
-				<posy>10</posy>
-				<width>350</width>
+				<posy>5</posy>
+				<width>250</width>
 				<height>15</height>
 				<scrollout>false</scrollout>
 				<pauseatend>3000</pauseatend>
 				<label>$LOCALIZE[31040]</label>
 				<align>center</align>
 				<aligny>center</aligny>
-				<font>font12_title</font>
+				<font>font10_title</font>
 				<textcolor>black</textcolor>
 				<visible>!Player.Paused</visible>
 			</control>
 			<control type="fadelabel">
 				<posx>10</posx>
-				<posy>10</posy>
-				<width>350</width>
+				<posy>5</posy>
+				<width>250</width>
 				<height>15</height>
 				<scrollout>false</scrollout>
 				<pauseatend>3000</pauseatend>
 				<label>$LOCALIZE[31043]</label>
 				<align>center</align>
 				<aligny>center</aligny>
-				<font>font12_title</font>
+				<font>font10_title</font>
 				<textcolor>black</textcolor>
 				<visible>Player.Paused</visible>
 			</control>
 			<control type="fadelabel">
 				<posx>10</posx>
-				<posy>30</posy>
-				<width>350</width>
+				<posy>24</posy>
+				<width>250</width>
 				<height>20</height>
 				<scrollout>false</scrollout>
 				<pauseatend>3000</pauseatend>
 				<label>[B]$INFO[MusicPlayer.Title]$INFO[VideoPlayer.Title][/B]</label>
 				<align>center</align>
 				<aligny>center</aligny>
-				<font>font13</font>
+				<font>font12</font>
 				<textcolor>black</textcolor>
 			</control>
 			<control type="fadelabel">
 				<posx>10</posx>
-				<posy>55</posy>
-				<width>350</width>
+				<posy>45</posy>
+				<width>250</width>
 				<height>15</height>
 				<scrollout>false</scrollout>
 				<pauseatend>3000</pauseatend>
@@ -645,49 +641,49 @@
 				<label>[B]$INFO[MusicPlayer.Album][/B]</label>
 				<align>center</align>
 				<aligny>center</aligny>
-				<font>font13</font>
+				<font>font10</font>
 				<textcolor>black</textcolor>
 				<visible>Player.HasAudio</visible>
 			</control>
 			<control type="fadelabel">
 				<posx>10</posx>
-				<posy>55</posy>
-				<width>350</width>
+				<posy>45</posy>
+				<width>250</width>
 				<height>15</height>
 				<scrollout>false</scrollout>
 				<pauseatend>3000</pauseatend>
 				<label>[B]$INFO[VideoPlayer.Studio][/B]</label>
 				<align>center</align>
 				<aligny>center</aligny>
-				<font>font13</font>
+				<font>font10</font>
 				<textcolor>black</textcolor>
 				<visible>Player.HasVideo + VideoPlayer.Content(Movies)</visible>
 			</control>
 			<control type="fadelabel">
 				<posx>10</posx>
-				<posy>55</posy>
-				<width>350</width>
+				<posy>45</posy>
+				<width>250</width>
 				<height>15</height>
 				<scrollout>false</scrollout>
 				<pauseatend>3000</pauseatend>
 				<label>[B]$INFO[VideoPlayer.TVShowTitle][/B]</label>
 				<align>center</align>
 				<aligny>center</aligny>
-				<font>font13</font>
+				<font>font10</font>
 				<textcolor>black</textcolor>
 				<visible>Player.HasVideo + VideoPlayer.Content(Episodes)</visible>
 			</control>
 			<control type="fadelabel">
 				<posx>10</posx>
-				<posy>55</posy>
-				<width>350</width>
+				<posy>45</posy>
+				<width>250</width>
 				<height>15</height>
 				<scrollout>false</scrollout>
 				<pauseatend>3000</pauseatend>
 				<label>[B]$INFO[VideoPlayer.Artist][/B]</label>
 				<align>center</align>
 				<aligny>center</aligny>
-				<font>font13</font>
+				<font>font10</font>
 				<textcolor>black</textcolor>
 				<visible>Player.HasVideo + VideoPlayer.Content(MusicVideos)</visible>
 			</control>
@@ -785,10 +781,9 @@
 						<width>60</width>
 						<height>80</height>
 						<texture>$INFO[ListItem.Icon]</texture>
-						<aspectratio>keep</aspectratio>
 					</control>
 					<control type="label">
-						<posx>0</posx>
+						<posx>280</posx>
 						<posy>0</posy>
 						<width>280</width>
 						<height>100</height>
@@ -834,10 +829,9 @@
 						<width>60</width>
 						<height>80</height>
 						<texture>$INFO[ListItem.Icon]</texture>
-						<aspectratio>keep</aspectratio>
 					</control>
 					<control type="label">
-						<posx>0</posx>
+						<posx>280</posx>
 						<posy>0</posy>
 						<width>280</width>
 						<height>100</height>
@@ -903,16 +897,6 @@
 			<thumb>-</thumb>
 			<visible>!Skin.HasSetting(HideHomeButtonPrograms)</visible>
 		</item>
-	</include>
-	<include name="KeyboardButton">
-		<width>80</width>
-		<height>80</height>
-		<texturenofocus border="5">KeyboardKey.png</texturenofocus>
-		<texturefocus border="5">KeyboardKeyFocus.png</texturefocus>
-		<textcolor>black</textcolor>
-		<font>font16</font>
-		<align>center</align>
-		<aligny>center</aligny>
 	</include>
 	<include name="16x9_xPos_Relocation">
 		<animation effect="slide" start="0,0" end="16x9Offset,0" time="0" condition="true">conditional</animation>

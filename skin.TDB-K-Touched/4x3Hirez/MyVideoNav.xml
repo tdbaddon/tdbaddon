@@ -132,7 +132,7 @@
 						<textwidth>170</textwidth>
 						<include>ButtonCommonValues2</include>
 						<label>20336</label>
-						<onclick>mastermode</onclick>
+						<onclick>xbmc.mastermode</onclick>
 						<selected>system.ismaster</selected>
 						<visible>false</visible>
 					</control>

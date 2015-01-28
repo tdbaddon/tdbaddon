@@ -104,7 +104,7 @@
 				<textcolor>black</textcolor>
 			</control>
 		</control>
-		<control type="edit" id="17">
+		<control type="button" id="17">
 			<description>Value Button</description>
 			<posx>20</posx>
 			<posy>170</posy>

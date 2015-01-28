@@ -58,7 +58,7 @@
 			<onright>9001</onright>
 		</control>
 
-		<control type="sliderex" id="13">
+		<control type="sliderex" id="10">
 			<description>Default Slider</description>
 			<height>55</height>
 			<texturefocus border="0,2,0,2">MenuItemNF.png</texturefocus>

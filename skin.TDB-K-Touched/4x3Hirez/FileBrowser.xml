@@ -76,7 +76,6 @@
 					<width>47</width>
 					<height>47</height>
 					<texture background="true">$INFO[ListItem.Icon]</texture>
-					<aspectratio>keep</aspectratio>
 				</control>
 				<control type="label">
 					<posx>70</posx>
@@ -105,7 +104,6 @@
 					<width>47</width>
 					<height>47</height>
 					<texture background="true">$INFO[ListItem.Icon]</texture>
-					<aspectratio>keep</aspectratio>
 				</control>
 				<control type="label">
 					<posx>70</posx>
@@ -173,12 +171,11 @@
 					<width>300</width>
 					<height>220</height>
 					<texture background="true">$INFO[ListItem.Icon]</texture>
-					<aspectratio>keep</aspectratio>
 					<bordertexture border="8">ThumbShadow.png</bordertexture>
 					<bordersize>8</bordersize>
 				</control>
 				<control type="label">
-					<posx>10</posx>
+					<posx>160</posx>
 					<posy>220</posy>
 					<width>300</width>
 					<height>20</height>
@@ -197,12 +194,11 @@
 					<width>300</width>
 					<height>220</height>
 					<texture background="true">$INFO[ListItem.Icon]</texture>
-					<aspectratio>keep</aspectratio>
 					<bordertexture border="8">ThumbShadow.png</bordertexture>
 					<bordersize>8</bordersize>
 				</control>
 				<control type="label">
-					<posx>10</posx>
+					<posx>160</posx>
 					<posy>220</posy>
 					<width>300</width>
 					<height>20</height>

@@ -51,7 +51,6 @@
 						<width>80</width>
 						<height>90</height>
 						<texture>$INFO[ListItem.Icon]</texture>
-						<aspectratio>keep</aspectratio>
 					</control>
 					<control type="label">
 						<posx>110</posx>
@@ -93,7 +92,6 @@
 						<width>90</width>
 						<height>80</height>
 						<texture>$INFO[ListItem.Icon]</texture>
-						<aspectratio>keep</aspectratio>
 					</control>
 					<control type="label">
 						<posx>110</posx>
@@ -129,7 +127,7 @@
 			<content>
 				<item>
 					<label>13012</label>
-					<onclick>Quit</onclick>
+					<onclick>XBMC.Quit</onclick>
 					<icon>icon_shutdown.png</icon>
 				</item>
 			</content>

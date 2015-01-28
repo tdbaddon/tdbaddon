@@ -314,10 +314,10 @@
 				<posx>60</posx>
 				<posy>220r</posy>
 				<control type="label" id="52">
-					<description>Kodi Build Version</description>
+					<description>XBMC BUILD Version</description>
 					<posx>1130</posx>
 					<posy>0</posy>
-					<width>1130</width>
+					<width>730</width>
 					<label>144</label>
 					<align>right</align>
 					<textcolor>white</textcolor>

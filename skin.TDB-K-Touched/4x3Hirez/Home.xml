@@ -59,12 +59,13 @@
 		<include>MediaBladeLeft</include>
 		<include>CommonBackgroundOverlay</include>
 		<control type="image">
-			<description>Kodi Logo</description>
-			<posx>22</posx>
-			<posy>22</posy>
-			<width>150</width>
-			<height>75</height>
-			<texture>kodi-logo.png</texture>
+			<description>XBMC Logo</description>
+			<posx>20</posx>
+			<posy>36</posy>
+			<width>360</width>
+			<height>48</height>
+			<aspectratio align="left">keep</aspectratio>
+			<texture>xbmc-logo.png</texture>
 			<visible>!Player.HasMedia</visible>
 			<include>VisibleFadeEffect</include>
 			<include>Window_OpenClose_Animation</include>
@@ -156,7 +157,7 @@
 			<content>
 				<item>
 					<label>13012</label>
-					<onclick>Quit</onclick>
+					<onclick>XBMC.Quit</onclick>
 					<icon>icon_shutdown.png</icon>
 				</item>
 				<item>

@@ -27,7 +27,6 @@
 					<width>50</width>
 					<height>50</height>
 					<texture background="true">$VAR[PosterThumb]</texture>
-					<aspectratio>keep</aspectratio>
 				</control>
 				<control type="label">
 					<posx>75</posx>
@@ -42,7 +41,7 @@
 					<label>$INFO[ListItem.Label]</label>
 				</control>
 				<control type="label">
-					<posx>1110</posx>
+					<posx>1510</posx>
 					<posy>2</posy>
 					<width>400</width>
 					<height>30</height>
@@ -78,7 +77,6 @@
 					<width>50</width>
 					<height>50</height>
 					<texture background="true">$VAR[PosterThumb]</texture>
-					<aspectratio>keep</aspectratio>
 				</control>
 				<control type="label">
 					<posx>75</posx>
@@ -93,7 +91,7 @@
 					<label>$INFO[ListItem.Label]</label>
 				</control>
 				<control type="label">
-					<posx>1110</posx>
+					<posx>1510</posx>
 					<posy>2</posy>
 					<width>400</width>
 					<height>30</height>
@@ -143,7 +141,6 @@
 					<width>50</width>
 					<height>50</height>
 					<texture background="true">$VAR[PosterThumb]</texture>
-					<aspectratio>keep</aspectratio>
 				</control>
 				<control type="label">
 					<posx>75</posx>
@@ -158,7 +155,7 @@
 					<label>$INFO[ListItem.Label]</label>
 				</control>
 				<control type="label">
-					<posx>1080</posx>
+					<posx>1480</posx>
 					<posy>2</posy>
 					<width>400</width>
 					<height>30</height>
@@ -181,7 +178,7 @@
 					<visible>![Container.Content(Movies) | Container.Content(Episodes) | Container.Content(MusicVideos)]</visible>
 				</control>
 				<control type="label">
-					<posx>1020</posx>
+					<posx>1420</posx>
 					<posy>2</posy>
 					<width>400</width>
 					<height>30</height>
@@ -243,7 +240,6 @@
 					<width>50</width>
 					<height>50</height>
 					<texture background="true">$VAR[PosterThumb]</texture>
-					<aspectratio>keep</aspectratio>
 				</control>
 				<control type="label">
 					<posx>75</posx>
@@ -258,7 +254,7 @@
 					<label>$INFO[ListItem.Label]</label>
 				</control>
 				<control type="label">
-					<posx>1080</posx>
+					<posx>1480</posx>
 					<posy>2</posy>
 					<width>400</width>
 					<height>30</height>
@@ -281,7 +277,7 @@
 					<visible>![Container.Content(Movies) | Container.Content(Episodes) | Container.Content(MusicVideos)]</visible>
 				</control>
 				<control type="label">
-					<posx>1020</posx>
+					<posx>1420</posx>
 					<posy>2</posy>
 					<width>400</width>
 					<height>30</height>
@@ -359,10 +355,9 @@
 					<width>200</width>
 					<height>185</height>
 					<texture background="true">$INFO[Listitem.Icon]</texture>
-					<aspectratio>keep</aspectratio>
 				</control>
 				<control type="label">
-					<posx>10</posx>
+					<posx>110</posx>
 					<posy>200</posy>
 					<width>200</width>
 					<height>25</height>
@@ -382,10 +377,11 @@
 					<visible>Container.Content(MusicVideos)</visible>
 				</control>
 				<control type="image">
-					<posx>170</posx>
-					<posy>260</posy>
+					<posx>180</posx>
+					<posy>170</posy>
 					<width>30</width>
 					<height>30</height>
+					<aspectratio>keep</aspectratio>
 					<texture>$INFO[ListItem.Overlay]</texture>
 				</control>
 				<control type="image">
@@ -410,10 +406,9 @@
 					<width>200</width>
 					<height>185</height>
 					<texture background="true">$INFO[Listitem.Icon]</texture>
-					<aspectratio>keep</aspectratio>
 				</control>
 				<control type="label">
-					<posx>10</posx>
+					<posx>110</posx>
 					<posy>200</posy>
 					<width>200</width>
 					<height>25</height>
@@ -433,10 +428,11 @@
 					<visible>Container.Content(MusicVideos)</visible>
 				</control>
 				<control type="image">
-					<posx>170</posx>
-					<posy>260</posy>
+					<posx>180</posx>
+					<posy>170</posy>
 					<width>30</width>
 					<height>30</height>
+					<aspectratio>keep</aspectratio>
 					<texture>$INFO[ListItem.Overlay]</texture>
 				</control>
 				<control type="image">
@@ -461,7 +457,6 @@
 					<width>190</width>
 					<height>285</height>
 					<texture background="true">$VAR[PosterThumb]</texture>
-					<aspectratio>keep</aspectratio>
 				</control>
 				<control type="textbox">
 					<posx>10</posx>
@@ -482,10 +477,11 @@
 					<texture>$INFO[ListItem.VideoResolution,light/,.png]</texture>
 				</control>
 				<control type="image">
-					<posx>170</posx>
-					<posy>260</posy>
+					<posx>180</posx>
+					<posy>270</posy>
 					<width>30</width>
 					<height>30</height>
+					<aspectratio>keep</aspectratio>
 					<texture>$INFO[ListItem.Overlay]</texture>
 				</control>
 				<control type="image">
@@ -510,7 +506,6 @@
 					<width>190</width>
 					<height>285</height>
 					<texture background="true">$VAR[PosterThumb]</texture>
-					<aspectratio>keep</aspectratio>
 				</control>
 				<control type="textbox">
 					<posx>10</posx>
@@ -531,10 +526,11 @@
 					<texture>$INFO[ListItem.VideoResolution,light/,.png]</texture>
 				</control>
 				<control type="image">
-					<posx>170</posx>
-					<posy>260</posy>
+					<posx>180</posx>
+					<posy>270</posy>
 					<width>30</width>
 					<height>30</height>
+					<aspectratio>keep</aspectratio>
 					<texture>$INFO[ListItem.Overlay]</texture>
 				</control>
 				<control type="image">
@@ -581,9 +577,10 @@
 				</control>
 				<control type="image">
 					<posx>263</posx>
-					<posy>155</posy>
+					<posy>160</posy>
 					<width>30</width>
 					<height>30</height>
+					<aspectratio>keep</aspectratio>
 					<texture>$INFO[ListItem.Overlay]</texture>
 				</control>
 				<control type="image">
@@ -630,9 +627,10 @@
 				</control>
 				<control type="image">
 					<posx>263</posx>
-					<posy>155</posy>
+					<posy>160</posy>
 					<width>30</width>
 					<height>30</height>
+					<aspectratio>keep</aspectratio>
 					<texture>$INFO[ListItem.Overlay]</texture>
 				</control>
 				<control type="image">
@@ -695,7 +693,7 @@
 					<label>$INFO[ListItem.Label]</label>
 				</control>
 				<control type="label">
-					<posx>500</posx>
+					<posx>750</posx>
 					<posy>145</posy>
 					<width>500</width>
 					<height>20</height>
@@ -706,11 +704,11 @@
 					<label>$INFO[ListItem.Label2]</label>
 				</control>
 				<control type="image">
-					<posx>20</posx>
-					<posy>8</posy>
-					<width>30</width>
-					<height>30</height>
-					<texture>$INFO[ListItem.Overlay]</texture>
+					<posx>5</posx>
+					<posy>1</posy>
+					<width>20</width>
+					<height>20</height>
+					<texture>$INFO[ListItem.Overlay,light/]</texture>
 					<visible>!ListItem.IsResumable</visible>
 				</control>
 			</itemlayout>
@@ -749,7 +747,7 @@
 					<label>$INFO[ListItem.Label]</label>
 				</control>
 				<control type="label">
-					<posx>500</posx>
+					<posx>750</posx>
 					<posy>145</posy>
 					<width>500</width>
 					<height>20</height>
@@ -760,11 +758,11 @@
 					<label>$INFO[ListItem.Label2]</label>
 				</control>
 				<control type="image">
-					<posx>20</posx>
-					<posy>8</posy>
-					<width>30</width>
-					<height>30</height>
-					<texture>$INFO[ListItem.Overlay]</texture>
+					<posx>5</posx>
+					<posy>1</posy>
+					<width>20</width>
+					<height>20</height>
+					<texture>$INFO[ListItem.Overlay,dark/]</texture>
 					<visible>!ListItem.IsResumable</visible>
 				</control>
 			</focusedlayout>
