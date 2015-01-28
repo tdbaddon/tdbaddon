@@ -192,6 +192,31 @@
 </addon>
 
 <addon
+  id="skin.TDB-K-Touched"
+  version="1.0.0"
+  name="TDB Kodi Touched"
+  provider-name="TDB">
+  <requires>
+    <import addon="xbmc.gui" version="5.3.0"/>
+  </requires>
+  <extension
+    point="xbmc.gui.skin"
+	    defaultthemename="textures.xbt"
+    debugging="false">
+    <res width="1280" height="960" aspect="4:3" default="true" folder="4x3Hirez" />
+    <res width="1706" height="960" aspect="16:9" folder="16x9" />
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en_US">Touched skin by TDB designed to be used on touch screen devices</summary>
+    <description lang="en">Skin designed from the ground up to be used on touch screen devices or Android TV's used with a Fly Mouse or Wireless Mouse.</description>
+    <description lang="en_US">Do not use this skin unless you have either touch screen or a mouse connected or you may lose navigation</description>
+    <disclaimer lang="en">Do not use this skin unless you have either touch screen or a mouse connected or you may lose navigation</disclaimer>
+    <disclaimer lang="en_US">Do not use this skin unless you have either touch screen or a mouse connected or you may lose navigation</disclaimer>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon
   id="skin.TDBFlow"
   version="1.01"
   name="TDB Flow"
@@ -665,31 +690,6 @@
     <disclaimer lang="vi_VN">Không sử dụng giao diện này trừ khi bạn có màn hình cảm ứng hoặc chuột được kết nối hoặc bạn mất điều khiển định hướng</disclaimer>
     <disclaimer lang="zh">在非触屏且没有鼠标控制的情况下使用此皮肤会造成无法控制设备</disclaimer>
     <disclaimer lang="zh_TW">除非你有觸控螢幕或滑鼠連接，否則請不要使用這個佈景主題，不然你會無法控制 XBMC。</disclaimer>
-    <platform>all</platform>
-  </extension>
-</addon>
-
-<addon
-  id="skin.TDBTouchedKodi"
-  version="1.0.5"
-  name="TDB Touched Kodi"
-  provider-name="TDB">
-  <requires>
-    <import addon="xbmc.gui" version="5.3.0"/>
-  </requires>
-  <extension
-    point="xbmc.gui.skin"
-	    defaultthemename="textures.xbt"
-    debugging="false">
-    <res width="1280" height="960" aspect="4:3" default="true" folder="4x3Hirez" />
-    <res width="1706" height="960" aspect="16:9" folder="16x9" />
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en_US">Touched skin by TDB designed to be used on touch screen devices</summary>
-    <description lang="en">Skin designed from the ground up to be used on touch screen devices or Android TV's used with a Fly Mouse or Wireless Mouse.</description>
-    <description lang="en_US">Do not use this skin unless you have either touch screen or a mouse connected or you may lose navigation</description>
-    <disclaimer lang="en">Do not use this skin unless you have either touch screen or a mouse connected or you may lose navigation</disclaimer>
-    <disclaimer lang="en_US">Do not use this skin unless you have either touch screen or a mouse connected or you may lose navigation</disclaimer>
     <platform>all</platform>
   </extension>
 </addon>
