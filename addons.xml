@@ -671,7 +671,7 @@
 
 <addon
   id="skin.TDBTouched-K"
-  version="1.0.1"
+  version="1.0.2"
   name="TDB Touched Kodi"
   provider-name="TDB">
   <requires>
