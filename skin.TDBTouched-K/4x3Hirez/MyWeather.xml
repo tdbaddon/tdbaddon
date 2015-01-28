@@ -339,11 +339,10 @@
 							<texture border="5">SubBack.png</texture>
 						</control>
 						<control type="image">
-							<posx>300</posx>
-							<posy>2</posy>
-							<width>260</width>
+							<posx>380</posx>
+							<posy>3</posy>
+							<width>164</width>
 							<height>164</height>
-							<aspectratio>scale</aspectratio>
 							<texture>$INFO[ListItem.ActualIcon]</texture>
 						</control>
 						<control type="label">
@@ -360,7 +359,7 @@
 							<label>$INFO[ListItem.Label]</label>
 						</control>
 						<control type="label">
-							<posx>0</posx>
+							<posx>100</posx>
 							<posy>70</posy>
 							<width>200</width>
 							<height>25</height>
@@ -374,7 +373,7 @@
 							<visible>!IsEmpty(ListItem.Property(HighTemp))</visible>
 						</control>
 						<control type="label">
-							<posx>110</posx>
+							<posx>210</posx>
 							<posy>70</posy>
 							<width>200</width>
 							<height>25</height>
@@ -409,11 +408,10 @@
 							<texture border="5">SubBack.png</texture>
 						</control>
 						<control type="image">
-							<posx>300</posx>
-							<posy>2</posy>
-							<width>260</width>
+							<posx>380</posx>
+							<posy>3</posy>
+							<width>164</width>
 							<height>164</height>
-							<aspectratio>scale</aspectratio>
 							<texture>$INFO[ListItem.ActualIcon]</texture>
 						</control>
 						<control type="label">
@@ -430,7 +428,7 @@
 							<label>$INFO[ListItem.Label]</label>
 						</control>
 						<control type="label">
-							<posx>0</posx>
+							<posx>100</posx>
 							<posy>70</posy>
 							<width>200</width>
 							<height>25</height>
@@ -444,7 +442,7 @@
 							<visible>!IsEmpty(ListItem.Property(HighTemp))</visible>
 						</control>
 						<control type="label">
-							<posx>110</posx>
+							<posx>210</posx>
 							<posy>70</posy>
 							<width>200</width>
 							<height>25</height>
