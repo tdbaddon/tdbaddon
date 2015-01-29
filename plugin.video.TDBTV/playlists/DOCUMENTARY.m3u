@@ -2,22 +2,16 @@
 
 
 #EXTINF:0,Animal Planet 
-http://202.75.23.34/live/ch31/01.m3u8
+http://ipm.iphone-tv.eu:1345/HDLive/Auth:test/Channel:animalplanet_uk/playlist.m3u8
 
 #EXTINF:0,Animal Planet 
-http://83.139.104.111/Content/HLS/Live/Channel(animal_planet)/Stream(03)/index.m3u8
+http://202.75.23.34/live/ch31/01.m3u8
 
 #EXTINF:0,Crime Investigation 
-http://202.75.23.36/live/ch47/01.m3u8
+http://cdn-07.sdn.si/crimeinvestigation/crimeinvestigation.isml/crimeinvestigation-video%3D350000-audio102%3D64000.m3u8
 
-#EXTINF:0,Discovery Channel 
-rtmp://95.211.148.206/youcloud/ playpath=discoveryeo?keys=5J87wkXqe2QurjwwXtsbhw&keyt=1420475490 conn=S:OK swfUrl=http://cdn.youcloud.tv/jwplayer.flash.swf live=true timeout=15 pageUrl=http://youcloud.tv/player?streamname=discoveryeo&width=600&height=450 timeout=15
+#EXTINF:0,Discovery Channel
 
-#EXTINF:0,Discovery Channel 
-http://83.139.104.111/Content/HLS/Live/Channel(discovery_channel)/Stream(03)/index.m3u8
-
-#EXTINF:0,Discovery Channel 
-http://83.139.104.111/Content/HLS/Live/Channel(discovery_channel)/index.m3u8
 
 #EXTINF:0,Discovery History 
 
@@ -44,7 +38,10 @@ http://202.75.23.34/live/ch30/01.m3u8
 http://stream1.zoovision.com//livespi/docubox/playlist.m3u8
 
 #EXTINF:0,EVE 
+http://202.75.23.34/live/ch34/03.m3u8?b?b*t$
 
+#EXTINF:0,EVE 
+http://202.75.23.34/live/ch34/01.m3u8
 
 #EXTINF:0,History Channel
 
@@ -59,13 +56,13 @@ http://edu.infozen.cshls.lldns.net/infozen/edu/edu/edu_1000.m3u8
 http://public.infozen.cshls.lldns.net/infozen/public/public/public_1000.m3u8
 
 #EXTINF:0,Nat Geo People 
-http://202.75.23.35/live/ch38/03.m3u8?b?b*t$
+
 
 #EXTINF:0,Nat Geo Wild 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_NATGEOWILD/variant.m3u8
 
 #EXTINF:0,National Geographic 
-http://202.75.23.35/live/ch38/03.m3u8
+
 
 #EXTINF:0,Paranormal TV 
 rtmp://mi2.gv.filmon.com:8086/live/1618.high.stream
@@ -75,15 +72,32 @@ rtmp://mi2.gv.filmon.com:8086/live/1618.high.stream
 
 #EXTINF:0,Travel Channel 
 
+#EXTINF:0,Viasat Explorer 
+http://83.139.104.102/Content/HLS/Live/Channel(viasat_explore)/Stream(01)/index.m3u8
 
 #EXTINF:0,Viasat Explorer 
+http://83.139.104.102/Content/HLS/Live/Channel(viasat_explore)/Stream(02)/index.m3u8
 
+#EXTINF:0,Viasat Explorer 
+http://83.139.104.102/Content/HLS/Live/Channel(viasat_explore)/Stream(03)/index.m3u8
+
+#EXTINF:0,Viasat Explorer 
+http://193.23.58.156:8888/udp/234.1.20.16:1234
 
 #EXTINF:0,Viasat History 
+http://83.139.104.102/Content/HLS/Live/Channel(viasat_history)/Stream(01)/index.m3u8
 
+#EXTINF:0,Viasat History 
+http://83.139.104.102/Content/HLS/Live/Channel(viasat_history)/Stream(02)/index.m3u8
+
+#EXTINF:0,Viasat History 
+http://83.139.104.102/Content/HLS/Live/Channel(viasat_history)/Stream(03)/index.m3u8
+
+#EXTINF:0,Viasat History 
+http://193.23.58.156:8888/udp/234.1.20.17:1234
 
 #EXTINF:0,Viasat Nature 
-
+http://193.23.58.156:8888/udp/234.1.20.18:1234
 
 #EXTINF:0,Wealth TV 
 

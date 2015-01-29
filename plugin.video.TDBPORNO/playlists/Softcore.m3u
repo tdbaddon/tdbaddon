@@ -26,7 +26,13 @@ http://80.87.146.133:1111/udp/239.195.2.5:1234
 rtmp://edge2.everyon.tv/etv2/phd499
 
 #EXTINF:0,Playboy TV 
-http://83.139.104.112/Content/HLS/Live/Channel(Playboy_tv)/Stream(03)/index.m3u8
+http://83.139.104.102/Content/HLS/Live/Channel(Playboy_tv)/Stream(01)/index.m3u8
+
+#EXTINF:0,Playboy TV 
+http://83.139.104.102/Content/HLS/Live/Channel(Playboy_tv)/Stream(02)/index.m3u8
+
+#EXTINF:0,Playboy TV 
+http://83.139.104.102/Content/HLS/Live/Channel(Playboy_tv)/Stream(03)/index.m3u8
 
 #EXTINF:0,Russian Night 
 http://46.181.237.75:1234/udp/239.255.42.218:1234

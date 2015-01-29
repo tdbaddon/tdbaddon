@@ -11,7 +11,7 @@ http://abclive.abcnews.com/i/abc_live4@136330/index_1200_av-b.m3u8
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/aljazeera_en/ls_satlink/b_528.m3u8%20#
 
 #EXTINF:0,BBC News 
-
+http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/bbc_world/ls_satlink/b_828.m3u8?Vd?u#bt!25
 
 #EXTINF:0,BBC World News 
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/bbc_world/ls_satlink/b_828.m3u8
@@ -26,11 +26,14 @@ http://btv-i.akamaihd.net/hls/live/202760-b/btvusa_ios/P1/M12K.m3u8
 http://x4012c4000.edge.core-cdn.net/40000mb/live/4012hbbtv/bloomberg.ts
 
 #EXTINF:0,CBC News Canada 
-
+rtmp://a.cdn.newschat.tv/edge playpath=cbc_live swfUrl=http://msnbclive.eu/player.swf pageUrl=http://www.livenewschat.eu/canada/ live=1
 
 #EXTINF:0,CCTV News 
 http://77.36.61.45:8010/CCTVNews.m3u8
 
+#EXTINF:0,CNBC
+http://livestation_hls-lh.akamaihd.net/i/cnbc_en@106428/index_838_av-b.m3u8?sd=10&rebase=on
+sd=10&rebase=on
 #EXTINF:0,CNN 
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/cnn/ls_satlink/b_828.m3u8
 
@@ -47,7 +50,7 @@ rtsp://ewns-hls-b-stream.hexaglobe.net/rtpeuronewslive/en_vidan350_rtp.sdp?Vd?u#
 rtsp://ewns-hls-b-stream.hexaglobe.net/rtpeuronewslive/en_vidan750_rtp.sdp
 
 #EXTINF:0,Fox News 
-
+http://79.145.164.237:4022/udp/239.0.7.65:8208
 
 #EXTINF:0,France 24 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_FRANCE24/variant.m3u8?b?b*t$
@@ -58,11 +61,17 @@ http://vipwowza.yacast.net/f24_hlslive_en/smil:iphone.fr24en.smil/playlist.m3u8
 #EXTINF:0,i24 News 
 http://bcoveliveios-i.akamaihd.net/hls/live/215102/master_english/398/master.m3u8?b?b*t$
 
+#EXTINF:0,InfoWars TV 
+http://cdn.rbm.tv:1935/rightbrainmedia-originpull-2/_definst_/infowars/playlist.m3u8
+
+#EXTINF:0,InfoWars TV 
+rtmp://cdn.rbm.tv:1935/rightbrainmedia-originpull-2/_definst_/247daily2
+
 #EXTINF:0,MSNBC 
 
 
 #EXTINF:0,NBC News
-rtmp://rtmp.zerocast.tv:1935/live playpath=3GdoAHRAxgZNzmQZL29l swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
+
 
 #EXTINF:0,Pentagon Channel 
 http://149.11.34.6:1935/live/pentagon.stream/playlist.m3u8?wowzasessionid=750145898

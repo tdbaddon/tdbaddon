@@ -28,14 +28,14 @@ http://sjc-uhls-proxy.ustream.tv/watch/playlist.m3u8?cid=9408562
 #EXTINF:0,Niagra Falls 
 mms://webcams.niagarafallshotels.com/CNH-Stream2
 
+#EXTINF:0,NY Times Square 47th and Broadway
+http://video2.earthcam.com/fecnetwork/hdtimes10.flv/hasbahca.m3u8
+
 #EXTINF:0,NY Times Square Crossroads
 http://video2.earthcam.com/fecnetwork/4717.flv/medien.m3u8
 
 #EXTINF:0,NY Times Square South View
 http://video2.earthcam.com/fecnetwork/4017timessquare.flv/medien.m3u8
-
-#EXTINF:0,NY Times Square 47th and Broadway
-http://video2.earthcam.com/fecnetwork/hdtimes10.flv/hasbahca.m3u8
 
 #EXTINF:0,San Francisco Alcatraz
 http://video2.earthcam.com/fecnetwork/6603.flv/medien.m3u8

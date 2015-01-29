@@ -14,16 +14,36 @@ mms://ken-cdn220-is-3.se.bptvlive.ngcdn.telstra.com/bp_online_movieextra_high
 
 
 #EXTINF:0,Cinestar Action & Thriller 
-http://83.139.104.111/Content/HLS/Live/Channel(CINESTAR_ACTION_AND_THRILLER)/index.m3u8
 
-#EXTINF:0,Cinestar Premiere 
-http://83.139.104.111/Content/HLS/Live/Channel(cinestar_premiere_1)/Stream(03)/index.m3u8
 
-#EXTINF:0,Cinestar Premiere 
-http://83.139.104.111/Content/HLS/Live/Channel(cinestar_premiere_2)/Stream(03)/index.m3u8
+#EXTINF:0,Cinestar Premiere 1
+http://83.139.104.102/Content/HLS/Live/Channel(cinestar_premiere_1)/Stream(03)/index.m3u8
+
+#EXTINF:0,Cinestar Premiere 2
+http://83.139.104.102/Content/HLS/Live/Channel(cinestar_premiere_2)/Stream(03)/index.m3u8
 
 #EXTINF:0,Cinestar TV 
-http://83.139.104.111/Content/HLS/Live/Channel(cinestar_tv)/Stream(03)/index.m3u8
+
+#EXTINF:0,CMore Action
+http://ys-live.cdns.yousee.tv/Content/HLS/Live/Channel(cact)/Stream(04)/index.m3u8
+
+#EXTINF:0,CMore Action
+http://ys-live.cdns.yousee.tv/Content/HLS/Live/Channel(cact)/Stream(05)/index.m3u8
+
+#EXTINF:0,CMore Emotion
+http://ys-live.cdns.yousee.tv/Content/HLS/Live/Channel(cemo)/Stream(04)/index.m3u8
+
+#EXTINF:0,CMore Emotion
+http://ys-live.cdns.yousee.tv/Content/HLS/Live/Channel(cemo)/Stream(04)/index.m3u8
+
+#EXTINF:0,CMore Emotion
+http://ys-live.cdns.yousee.tv/Content/HLS/Live/Channel(cemo)/Stream(05)/index.m3u8
+
+#EXTINF:0,CMore Series
+http://ys-live.cdns.yousee.tv/Content/HLS/Live/Channel(cseri)/Stream(04)/index.m3u8
+
+#EXTINF:0,CMore Series
+http://ys-live.cdns.yousee.tv/Content/HLS/Live/Channel(cseri)/Stream(05)/index.m3u8
 
 #EXTINF:0,Film Box Live
 http://stream.zoovision.com:1935/livespi/arthouse/chunklist_w1601426913.m3u8
@@ -56,7 +76,7 @@ http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=104&lan=2&rows=
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=103&lan=2&rows=40&f=BratuMarian.m3u8
 
 #EXTINF:0,HBO 
-rtmp://rtmp.zerocast.tv:1935/live playpath=qKmzUdRhBM73njBBDFyL swfUrl=http://20f3d0755392726229d8-7f14bc94688a30e4a2bde38a5eab6b77.r63.cf5.rackcdn.com/player.swf pageUrl=http://zerocast.tv/embed3.php?a=148&id=&width=580&height=400&autostart=true&strech=
+
 
 #EXTINF:0,HBO Plus 
 
@@ -77,22 +97,22 @@ rtmp://mi2.gv.filmon.com:8086/live/10.high.stream
 
 
 #EXTINF:0,Pink Action 1 
-http://on108.setplex.net/fastv_2psh/PinkActionglobal_rly_greece_109/playlist.m3u8
+
 
 #EXTINF:0,Pink Action 2 
-http://on108.setplex.net/fastv_2psh/PinkAction2global_rly_greece_103/hasbahca.m3u8
 
-#EXTINF:0,Pink Comedy 
-http://on108.setplex.net/fastv_2psh/PinkComedyglobal_rly_greece_103/playlist.m3u8
+
+#EXTINF:0,Pink Comedy
+
 
 #EXTINF:0,Pink Horror 
 
 
 #EXTINF:0,Pink Movies 3
-http://on108.setplex.net/fastv_2psh/PinkMovies3global_rly_greece_109/playlist.m3u8
+
 
 #EXTINF:0,Pink Premium
-http://on108.setplex.net/fastv_2psh/PinkPremiumglobal_rly_greece_103/playlist.m3u8
+
 
 #EXTINF:0,SciFi
 
@@ -110,7 +130,7 @@ http://on108.setplex.net/fastv_2psh/PinkPremiumglobal_rly_greece_103/playlist.m3
 
 
 #EXTINF:0,TV 1000
-http://80.77.52.6:4444/udp/230.0.3.54:12345
+http://193.23.58.156:8888/udp/234.1.20.13:1234
 
 #EXTINF:0,TV 1000 Action
-http://80.77.52.6:4444/udp/230.0.3.52:12345
+http://193.23.58.156:8888/udp/234.1.20.14:1234
