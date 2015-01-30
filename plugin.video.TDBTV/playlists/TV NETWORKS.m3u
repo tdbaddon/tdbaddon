@@ -68,6 +68,9 @@ http://livestation_hls-lh.akamaihd.net/i/cnbc_en@106428/index_838_av-b.m3u8
 #EXTINF:0,CNBC 
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/cnbc_eu/ls_satlink/b_264.m3u8
 
+#EXTINF:0,CTV
+http://204.107.26.247/live/2062.low.stream/playlist.m3u8?id=0ad5aac39bb13fbedf907273260b6a492ecdc123e7f2e23b3d30acca8fd06de56f97845f5d0c66a6a65959e2c6c7927c27bbde55f78100cc4c9f7e2b4683173ec45af8b4c55311ee31245c962f2b985095021f04640d25869ea8bde10f925f3659ad7f15d8abe75f1b3113ad4c4c1d649194f6d204d80ee03437d143925120b63b8bdb854ed16728b8db1121f63cb477a6c60b6541b2008a
+
 #EXTINF:0,Comedy Central
 http://ipm.iphone-tv.eu:1345/HDLive/Auth:test/Channel:comedycentral_uk/playlist.m3u8
 

@@ -95,6 +95,9 @@ http://stream1.zoovision.com//livespi/fightbox/playlist.m3u8
 #EXTINF:0,Football TV 
 rtmp://mi2.gv.filmon.com:8086/live/374.high.stream
 
+#EXTINF:0,HBO Boxing
+http://live305.edge.filmon.com/live/1864.high.stream/playlist.m3u8?id=0ad5aac39bb13fbefab77bfa9418cfe6f6a058728f2a9affe7c6e37d1a007fcc17a3e945e0f4cbb7c5d6b5bc747a52f59f57933e105b066a0dbaf969fc317a71f63a51e585da72b0220963926ccbb859d365f159fa689c58a0cc4143ded635bc3a1bd18598beb2457e0db19f42e4a94743a40cd18fdaece5eda5c8c53f54d4d4983d5cadc927fd94bbb4db2b0883a2951c8de981b912b11d
+
 #EXTINF:0,Masked Republic
 rtmp://mi2.gv.filmon.com:8086/live/802.high.stream
 
