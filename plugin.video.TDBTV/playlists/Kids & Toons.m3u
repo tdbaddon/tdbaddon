@@ -17,10 +17,10 @@ http://ipm.iphone-tv.eu:1345/HDLive/Auth:test/Channel:babytv/playlist.m3u8
 
 
 #EXTINF:0,Cartoon Network 
-rtmp://rtmp.zerocast.tv:1935/live playpath=08pydvp1b7ZwZb3a5TW1 swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
+http://109.200.1.82:1935/edge1/cartoon.stream/playlist.m3u8
 
 #EXTINF:0,Disney Channel 
-http://ipm.iphone-tv.eu:1345/HDLive/Auth:test/Channel:disneychannel_uk/playlist.m3u8
+http://109.200.1.82:1935/edge1/disney.stream/playlist.m3u8
 
 #EXTINF:0,Disney Cinemagic 
 
@@ -53,10 +53,13 @@ rtmp://mi2.gv.filmon.com:1935/live/_definst_/2734.low.stream?b?b*t$
 #EXTINF:0,King of the Hill 
 rtmp://62.210.76.216/live playpath=kinghillhxd swfUrl=http://releases.flowplayer.org/5.5.1/flowplayer.swf live=1 pageUrl=http://www.stream4free.eu/king-of-the-hill
 
-#EXTINF:0,Nickelodeon 
-http://ipm.iphone-tv.eu:1345/HDLive/Auth:test/Channel:nickelodeon_us/playlist.m3u8
+#EXTINF:0,Nick 
+http://109.200.1.82:1935/edge1/nick.stream/playlist.m3u8
 
 #EXTINF:0,Nick Jr 
+
+
+#EXTINF:0,Nickelodeon 
 
 
 #EXTINF:0,NickNight 
