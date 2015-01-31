@@ -12,9 +12,6 @@ rtmp://aragontvlivefs.fplive.net/aragontvlive-live/stream_normal_abt
 #EXTINF:0,Aragon TV
 http://149.11.34.6:1935/live/aragontv.stream/vcx7.m3u8
 
-#EXTINF:0,AXN
-http://200.76.77.237/LIVE/H01/CANAL213/PROFILE03.m3u8?BratuMarian
-
 #EXTINF:0,Azteca 7
 http://200.76.77.237/LIVE/H01/CANAL107/PROFILE03.m3u8?BratuMarian
 
@@ -95,6 +92,9 @@ rtmp://streaming2.radiohuesca.com/live/huescatv
 
 #EXTINF:0,IB3
 http://ibsatiphone.ib3tv.com/iphoneliveIB3/IB3/IB3.m3u8
+
+#EXTINF:0,INF
+http://200.76.77.237/LIVE/H01/CANAL266/PROFILE03.m3u8?BratuMarian
 
 #EXTINF:0,La Sexta
 http://antena3-aos1-apple-live.adaptive.level3.net/apple/antena3/channel02/la_sexta_hd_1548K_1280x720_main.m3u8

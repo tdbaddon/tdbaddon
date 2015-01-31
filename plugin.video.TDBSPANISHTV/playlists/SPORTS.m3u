@@ -19,7 +19,7 @@ http://200.76.77.237/LIVE/H01/CANAL520/PROFILE03.m3u8?BratuMarian
 #EXTINF:0,ESPN 3
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=394&lan=2&rows=40&f=BratuMarian.m3u8
 
-#EXTINF:0,Eurosport
+#EXTINF:0,Eurosport Live
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=285&lan=2&rows=40&f=BratuMarian.m3u8
 
 #EXTINF:0,Fox Sports

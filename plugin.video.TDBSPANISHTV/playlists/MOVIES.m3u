@@ -1,7 +1,5 @@
 ﻿#EXTM3U
 
-#EXTINF:0,AMC
-http://200.76.77.237/LIVE/H01/CANAL444/PROFILE03.m3u8?BratuMarian
 
 #EXTINF:0,Cinemax
 http://200.76.77.237/LIVE/H01/CANAL481/PROFILE03.m3u8?BratuMarian
@@ -18,17 +16,11 @@ http://200.76.77.237/LIVE/H01/CANAL430/PROFILE03.m3u8?BratuMarian
 #EXTINF:0,Cine Chileno
 rtmp://149.11.34.6/live/sesioncontinuatv.stream
 
-#EXTINF:0,Fox 1
-http://200.76.77.237/LIVE/H01/CANAL415/PROFILE03.m3u8?BratuMarian
+#EXTINF:0,Fox Action Movies
+http://200.76.77.237/LIVE/H01/CANAL417/PROFILE03.m3u8?BratuMarian
 
-#EXTINF:0,Fox
-http://200.76.77.237/LIVE/H01/CANAL201/PROFILE03.m3u8?BratuMarian
-
-#EXTINF:0,Fox Action
-http://200.76.77.237/LIVE/H01/CANAL416/PROFILE03.m3u8?BratuMarian
-
-#EXTINF:0,Fox Action
-http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=301&lan=2&rows=40&f=BratuMarian.m3u8
+#EXTINF:0,Fox Action Movies
+http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=305&lan=2&rows=40&f=BratuMarian.m3u8
 
 #EXTINF:0,Fox Cinema
 http://200.76.77.237/LIVE/H01/CANAL421/PROFILE03.m3u8?BratuMarian
@@ -54,32 +46,20 @@ http://200.76.77.237/LIVE/H01/CANAL271/PROFILE03.m3u8?BratuMarian
 #EXTINF:0,Fox Life
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=169&lan=2&rows=40&f=BratuMarian.m3u8
 
-#EXTINF:0,Fox Movies
-http://200.76.77.237/LIVE/H01/CANAL417/PROFILE03.m3u8?BratuMarian
-
-#EXTINF:0,Fox Movies
-http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=305&lan=2&rows=40&f=BratuMarian.m3u8
-
 #EXTINF:0,Film Zone
 http://200.76.77.237/LIVE/H01/CANAL440/PROFILE03.m3u8?BratuMarian
 
 #EXTINF:0,Film Zone
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=321&lan=2&rows=40&f=BratuMarian.m3u8
 
-#EXTINF:0,FX HD
+#EXTINF:0,FXHD
 http://200.76.77.237/LIVE/H01/CANAL209/PROFILE03.m3u8?BratuMarian
 
 #EXTINF:0,FXHD
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=103&lan=2&rows=40&f=BratuMarian.m3u8
-
-#EXTINF:0,FX
-http://200.76.77.237/LIVE/H01/CANAL258/PROFILE03.m3u8?BratuMarian
 
 #EXTINF:0,Golden HD
 http://200.76.77.237/LIVE/H01/CANAL436/PROFILE03.m3u8?BratuMarian
 
 #EXTINF:0,Golden Edge
 http://200.76.77.237/LIVE/H01/CANAL484/PROFILE03.m3u8?BratuMarian
-
-#EXTINF:0,INF
-http://200.76.77.237/LIVE/H01/CANAL266/PROFILE03.m3u8?BratuMarian
