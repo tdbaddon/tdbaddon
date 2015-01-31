@@ -65,7 +65,7 @@ mms://62.162.58.54:8080
 http://88.212.10.27:81/streams/joj.m3u8
 
 #EXTINF:0,Jug TV
-rtmp://84.20.77.50/live/ playpath=livestream1 swfUrl=http://www.profreetv.com/include/player.swf live=1 pageUrl=http://www.profreetv.com/index.php?content=watch&tvid=465 --live
+http://thedream:thedreamiptv@iptv2015.blogdns.net:8000/43.ch
 
 #EXTINF:0,Kanal 5 
 http://fms.zulu.mk:1935/zulu/kanal5_1/hasbahca.m3u8
@@ -87,6 +87,9 @@ http://fms.zulu.mk:1935/zulu/kanal5plus_1/hasbahca.m3u8
 
 #EXTINF:0,Kanal 5 Plus 
 rtsp://fms.zulu.mk:554/zulu/kanal5plus_2
+
+#EXTINF:0,Kanal 8
+mms://62.162.58.55/TVkanal8
 
 #EXTINF:0,Kanal 21 
 mms://62.162.58.55/TVkanal21
@@ -110,7 +113,7 @@ http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video
 http://fms.zulu.mk:1935/zulu/nashatv_1/playlist.m3u8
 
 #EXTINF:0,Pink Folk
-http://on108.setplex.net/fastv_2psh/PinkFolk1global_rly_greece_103/hasbahca.m3u8
+
 
 #EXTINF:0,RTS
 mmsh://rts.videostreaming.rs/rts
@@ -134,7 +137,7 @@ rtsp://fms.zulu.mk:554/zulu/sitel3_2
 http://92.53.27.201:10000
 
 #EXTINF:0,STV Folk
-rtmp://str103.setplex.net:1935/228 playpath=stv_folk swfUrl=http://shqip1.altervista.org/tvlive/player.swf live=1 pageUrl=http://shqip1.altervista.org/tvlive/superfolk.html
+
 
 #EXTINF:0,Sutel TV 
 http://fms.zulu.mk:1935/zulu/shutel_1/playlist.m3u8
@@ -153,3 +156,5 @@ rtsp://fms.zulu.mk:554/zulu/telma_2
 
 #EXTINF:0,Vesti 24
 mms://62.162.58.55/24vesti
+
+

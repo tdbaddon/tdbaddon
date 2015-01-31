@@ -87,7 +87,7 @@ rtmp://178.132.79.22:80/live playpath=eur1x swfUrl=http://flashtv.co/ePlayerr.sw
 
 
 #EXTINF:0,Extreme Sports 
-
+http://83.139.104.108/Content/HLS/Live/Channel(Extreme_Sports)/Stream(03)/index.m3u8
 
 #EXTINF:0,FightBox 
 http://stream1.zoovision.com//livespi/fightbox/playlist.m3u8
@@ -126,7 +126,7 @@ rtmp://178.18.31.52:443/liverepeater playpath=187164 pageUrl=http://biggestplaye
 rtmp://178.132.79.20:80/live swfUrl=http://www.flashtv.co/ePlayerr.swf pageUrl=http://www.flashtv.co/embed.php?live=mov3 token=%ZZri(nKa@#Z playpath=nfx
 
 #EXTINF:0,Outdoor Channel 
-
+http://cdn-07.sdn.si/outdoorchannel/outdoorchannel.isml/outdoorchannel-video%3D1500000-audio101%3D128000.m3u8
 
 #EXTINF:0,PAC Sports Arizona 
 http://www.xrxs.net/video/live-p12ariz-4728.m3u8
@@ -212,6 +212,9 @@ rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9
 #EXTINF:0,SportTime TV 
 rtmp://streamer.a1.net:1935/rtmplive/redundant/channels/Sporttime/SporttimeTV/mp4:channel4_800
 
+#EXTINF:0,Ten Sports
+http://80.243.182.106:8080/tensports0000/tensports0000/index.m3u8
+
 #EXTINF:0,Trace Sports 
 rtsp://46.249.213.87/broadcast/tracetvsports-tablet.3gp
 
@@ -231,7 +234,7 @@ rtsp://46.249.213.87/broadcast/tracetvsports-tablet.3gp
 
 
 #EXTINF:0,WWE Network 
-
+rtmp://skystreams.info:1935/live/wwe247
 
 #EXTINF:0,Xtreme Impacts 
 http://46.249.213.93/iPhone/broadcast/xtremeimpacts-tablet.3gp/xtremeimpacts-tablet.3gp-mr647k.m3u8

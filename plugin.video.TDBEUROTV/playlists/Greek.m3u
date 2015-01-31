@@ -27,7 +27,7 @@ http://sjc-uhls-proxy-beta01.ustream.tv/watch/playlist.m3u8?cid=16667543
 http://www.astratv.gr:8090/hls/livestream/index.m3u8
 
 #EXTINF:0,Axeloos TV
-http://srv1.viiideo.gr:1935/videon/axeloostv/hasbahca.m3u
+
 
 #EXTINF:0,Best TV
 http://smooth.istoikona.net/besttv.isml/manifest(format=m3u8-aapl).m3u8
@@ -45,7 +45,7 @@ mms://media19.internet.gr/ParliamentTV-HQ
 http://mlivenews.istoikona.net/cysports.isml/manifest(format=m3u8-aapl).m3u8
 
 #EXTINF:0,Delta TV
-
+mms://ams01.egihosting.com/989630
 
 #EXTINF:0,Diktyo TV
 
@@ -54,7 +54,7 @@ http://mlivenews.istoikona.net/cysports.isml/manifest(format=m3u8-aapl).m3u8
 
 
 #EXTINF:0,DR TV
-http://xdrtvhellasx.api.channel.livestream.com/3.0/playlist.m3u8
+
 
 #EXTINF:0,E TV
 rtmp://213.16.167.187:1935/live/mpegts_256.stream live=1 timeout=10
@@ -82,6 +82,9 @@ http://wpso.com:200/tv48
 
 #EXTINF:0,Ionian Channel
 http://xioniantvlivebroadcastx.api.channel.livestream.com/3.0/playlist.m3u8
+
+#EXTINF:0,Irida
+mms://212.251.44.111:27030
 
 #EXTINF:0,Kontra
 rtmp://flashcloud.mediacdn.com:1935/live/kontratv
@@ -128,6 +131,9 @@ http://xrodopi-tvx.api.channel.livestream.com/3.0/playlist.m3u8
 #EXTINF:0,Rik Sat
 http://player.webvideocore.net/eq473601t9w8.m3u8
 
+#EXTINF:0,Rik Sat
+http://cdn.webvideocore.net/livenl/out_dqgyqc45pzk8c4gw40o4/index.m3u8
+
 #EXTINF:0,Skai
 mmsh://magictvbox.us:200/skai
 
@@ -153,7 +159,7 @@ http://xelladalivex.api.channel.livestream.com/3.0/playlist.m3u8
 
 
 #EXTINF:0,TVM
-
+http://79.142.197.49:6572?by_HasBahCa
 
 #EXTINF:0,Vima
 
@@ -163,3 +169,11 @@ http://zouglahd-f.akamaihd.net/i/zougla_1@56341/index_700_av-p.m3u8
 
 #EXTINF:0,Zougla TV
 rtmp://213.16.167.186:1935/live/mpegts_256.stream
+
+
+
+
+
+
+
+
