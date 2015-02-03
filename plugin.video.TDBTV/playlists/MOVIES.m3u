@@ -16,34 +16,23 @@ mms://ken-cdn220-is-3.se.bptvlive.ngcdn.telstra.com/bp_online_movieextra_high
 #EXTINF:0,Cinestar Action & Thriller 
 
 
-#EXTINF:0,Cinestar Premiere 1
-http://83.139.104.102/Content/HLS/Live/Channel(cinestar_premiere_1)/Stream(03)/index.m3u8
+#EXTINF:0,Cinestar Premiere 1 
+http://83.139.104.108/Content/HLS/Live/Channel(Cinestar_Premiere_1)/Stream(03)/index.m3u8
 
-#EXTINF:0,Cinestar Premiere 2
-http://83.139.104.102/Content/HLS/Live/Channel(cinestar_premiere_2)/Stream(03)/index.m3u8
+#EXTINF:0,Cinestar Premiere 2 
+http://83.139.104.108/Content/HLS/Live/Channel(Cinestar_Premiere_2)/Stream(03)/index.m3u8
 
 #EXTINF:0,Cinestar TV 
+http://83.139.104.108/Content/HLS/Live/Channel(Cinestar_TV)/Stream(03)/index.m3u8
 
 #EXTINF:0,CMore Action
-http://ys-live.cdns.yousee.tv/Content/HLS/Live/Channel(cact)/Stream(04)/index.m3u8
 
-#EXTINF:0,CMore Action
-http://ys-live.cdns.yousee.tv/Content/HLS/Live/Channel(cact)/Stream(05)/index.m3u8
 
 #EXTINF:0,CMore Emotion
-http://ys-live.cdns.yousee.tv/Content/HLS/Live/Channel(cemo)/Stream(04)/index.m3u8
 
-#EXTINF:0,CMore Emotion
-http://ys-live.cdns.yousee.tv/Content/HLS/Live/Channel(cemo)/Stream(04)/index.m3u8
-
-#EXTINF:0,CMore Emotion
-http://ys-live.cdns.yousee.tv/Content/HLS/Live/Channel(cemo)/Stream(05)/index.m3u8
 
 #EXTINF:0,CMore Series
-http://ys-live.cdns.yousee.tv/Content/HLS/Live/Channel(cseri)/Stream(04)/index.m3u8
 
-#EXTINF:0,CMore Series
-http://ys-live.cdns.yousee.tv/Content/HLS/Live/Channel(cseri)/Stream(05)/index.m3u8
 
 #EXTINF:0,Film Box Live
 http://stream.zoovision.com:1935/livespi/arthouse/chunklist_w1601426913.m3u8
@@ -63,11 +52,12 @@ http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=345&lan=2&rows=
 #EXTINF:0,Fox Family Movies 
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=342&lan=2&rows=40&f=.m3u8
 
-#EXTINF:0,Fox Movies Premium 
+#EXTINF:0,Fox Movies 
+http://cdn-07.sdn.si/foxmovies/foxmovies.isml/foxmovies-video%3D1500000-audio101%3D128000.m3u8
 
 
 #EXTINF:0,Fright Fest 
-rtmp://198.255.0.2:443/live?9z9y6yu6iQQvGiCBD32o65nzWrWsaVj9 playpath=live_frightfest0001 swfUrl=http://vaughnlive.tv/4261986735/swf/VaughnSoftPlayer.swf pageUrl=http://vaughnlive.tv/frightfest0001
+
 
 #EXTINF:0,FX HD 
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=104&lan=2&rows=40&f=.m3u8
@@ -116,12 +106,8 @@ rtmp://mi2.gv.filmon.com:8086/live/10.high.stream
 
 #EXTINF:0,SciFi
 
+
 #EXTINF:0,Sky Movies Drama & Romance
-http://109.200.1.82:1935/edge1/movdrama.stream/playlist.m3u8
-
-
-
-
 
 
 #EXTINF:0,Sky Movies Crime & Thriller

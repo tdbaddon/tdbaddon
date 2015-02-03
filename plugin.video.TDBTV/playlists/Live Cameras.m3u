@@ -22,6 +22,9 @@ http://130.88.20.233:1237/test.flv
 #EXTINF:0,Las Vegas Nevada 
 http://video2.earthcam.com/fecnetwork/eclasvegas.flv/hasbahca.m3u8
 
+#EXTINF:0,Lax Airport
+rtmp://cp154688.live.edgefcs.net:1935/live playpath=KTTV_N2@2717 swfUrl=http://www.myfoxla.com/[[IMPORT]]/players.edgesuite.net/flash/plugins/osmf/advanced-streaming-plugin/v2.11/osmf1.5/fp10.1/AkamaiAdvancedStreamingPlugin.swf live=1 pageUrl=http://www.myfoxla.com/category/261142/live-lax-airport-webcam
+
 #EXTINF:0,NASA ISS 
 http://sjc-uhls-proxy.ustream.tv/watch/playlist.m3u8?cid=9408562
 

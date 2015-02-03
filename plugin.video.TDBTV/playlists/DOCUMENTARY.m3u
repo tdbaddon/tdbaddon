@@ -10,8 +10,17 @@ http://sjc-uhls-vip01.ustream.tv/watch/playlist.m3u8?cid=12762028
 #EXTINF:0,Crime Investigation 
 http://cdn-07.sdn.si/crimeinvestigation/crimeinvestigation.isml/crimeinvestigation-video%3D350000-audio102%3D64000.m3u8
 
+#EXTINF:0,Crime Investigation 
+http://cdn-07.sdn.si/crimeinvestigation/crimeinvestigation.isml/crimeinvestigation-video%3D1500000-audio101%3D128000.m3u8
+
 #EXTINF:0,Discovery Channel
-http://109.200.1.82:1935/edge1/discov.stream/playlist.m3u8
+http://202.75.23.34:1400/live/ch29/02.m3u8
+
+#EXTINF:0,Discovery Channel
+http://202.75.23.34/live/ch29/01.m3u8
+
+#EXTINF:0,Discovery Channel
+http://83.139.104.108/Content/HLS/Live/Channel(Discovery_Channel)/Stream(03)/index.m3u8
 
 #EXTINF:0,Discovery History 
 
@@ -44,7 +53,7 @@ http://202.75.23.34/live/ch34/03.m3u8?b?b*t$
 http://202.75.23.34/live/ch34/01.m3u8
 
 #EXTINF:0,History Channel
-
+http://cdn-07.sdn.si/historychannel/historychannel.isml/historychannel-video%3D1500000-audio101%3D128000.m3u8
 
 #EXTINF:0,NASA TV 
 http://public.infozen.cshls.lldns.net/infozen/public/public.m3u8
@@ -59,13 +68,20 @@ http://public.infozen.cshls.lldns.net/infozen/public/public/public_1000.m3u8
 
 
 #EXTINF:0,Nat Geo Wild 
+http://cdn-07.sdn.si/natgeowild/natgeowild.isml/natgeowild-video%3D1500000-audio101%3D128000.m3u8
+
+#EXTINF:0,Nat Geo Wild 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_NATGEOWILD/variant.m3u8
 
 #EXTINF:0,National Geographic 
-http://109.200.1.82:1935/edge1/natgeo.stream/playlist.m3u8
+http://cdn-07.sdn.si/natgeo/natgeo.isml/natgeo-video%3D1500000-audio101%3D128000.m3u8
+
 
 #EXTINF:0,Paranormal TV 
 rtmp://mi2.gv.filmon.com:8086/live/1618.high.stream
+
+#EXTINF:0,RT News Documentary 
+http://odna.octoshape.net/f3f5m2v4/cds/ch5_auto.smil/playlist.m3u8 
 
 #EXTINF:0,Science Channel 
 
@@ -83,4 +99,9 @@ rtmp://mi2.gv.filmon.com:8086/live/1618.high.stream
 
 
 #EXTINF:0,Wealth TV 
+
+
+
+
+
 

@@ -2,25 +2,25 @@
 
 
 #EXTINF:0,Adventure Time 
-rtmp://62.210.76.216/live playpath=adventure swfUrl=http://releases.flowplayer.org/5.5.1/flowplayer.swf pageUrl=http://www.stream4free.eu/adventure-time
+
 
 #EXTINF:0,Aqua Teen Hunger Force 
-rtmp://62.210.76.216/live playpath=aquasx swfUrl=http://releases.flowplayer.org/5.5.1/flowplayer.swf live=1 pageUrl=http://www.stream4free.eu/aqua-teen-hunger-force
+
 
 #EXTINF:0,Baby First 
 http://202.75.23.33/live/ch27/01.m3u8
 
 #EXTINF:0,BabyTV 
-http://ipm.iphone-tv.eu:1345/HDLive/Auth:test/Channel:babytv/playlist.m3u8
+
 
 #EXTINF:0,Boomerang 
 
 
 #EXTINF:0,Cartoon Network 
-http://109.200.1.82:1935/edge1/cartoon.stream/playlist.m3u8
 
-#EXTINF:0,Disney Channel 
-http://109.200.1.82:1935/edge1/disney.stream/playlist.m3u8
+
+#EXTINF:0,Disney Channel
+http://cdn-07.sdn.si/disneychannel/disneychannel.isml/disneychannel-video%3D1500000-audio101%3D128000.m3u8
 
 #EXTINF:0,Disney Cinemagic 
 
@@ -28,7 +28,10 @@ http://109.200.1.82:1935/edge1/disney.stream/playlist.m3u8
 #EXTINF:0,Disney Junior 
 
 
+
+
 #EXTINF:0,Disney XD 
+http://cdn-07.sdn.si/disneyxd/disneyxd.isml/disneyxd-video%3D1500000-audio101%3D128000.m3u8
 
 
 #EXTINF:0,Emba Kids 
@@ -41,7 +44,6 @@ rtmp://mi2.gv.filmon.com:8086/live/719.high.stream
 
 
 #EXTINF:0,Futurama 
-rtmp://62.210.76.216/live playpath=xfuturama swfUrl=http://releases.flowplayer.org/5.5.1/flowplayer.swf live=1 pageUrl=http://www.stream4free.eu/futurama
 
 
 #EXTINF:0,Jim Jam 
@@ -51,25 +53,25 @@ rtmp://62.210.76.216/live playpath=xfuturama swfUrl=http://releases.flowplayer.o
 rtmp://mi2.gv.filmon.com:1935/live/_definst_/2734.low.stream?b?b*t$
 
 #EXTINF:0,King of the Hill 
-rtmp://62.210.76.216/live playpath=kinghillhxd swfUrl=http://releases.flowplayer.org/5.5.1/flowplayer.swf live=1 pageUrl=http://www.stream4free.eu/king-of-the-hill
+
 
 #EXTINF:0,Nick 
-http://109.200.1.82:1935/edge1/nick.stream/playlist.m3u8
+
 
 #EXTINF:0,Nick Jr 
 
 
 #EXTINF:0,Nickelodeon 
-
+http://cdn-07.sdn.si/nickelodeon/nickelodeon.isml/nickelodeon-video%3D1500000-audio101%3D128000.m3u8
 
 #EXTINF:0,NickNight 
 
 
 #EXTINF:0,The Cleveland Show 
-rtmp://62.210.76.216/live playpath=xxcleveland swfUrl=http://releases.flowplayer.org/5.5.1/flowplayer.swf live=1 pageUrl=http://www.jtvstream.me/the-cleveland-show
+
 
 #EXTINF:0,The Simpsons 
-rtmp://62.210.76.216/live playpath=simpsons swfUrl=http://releases.flowplayer.org/5.5.1/flowplayer.swf live=1 pageUrl=http://www.jtvstream.me/simpsons-hd
+\
 
 #EXTINF:0,Tom & Jerry Show 
 http://66.90.111.66:1935/ctv/tom/waldo_paes.m3u8?b?b*t$

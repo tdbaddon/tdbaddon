@@ -1,0 +1,21 @@
+﻿#EXTM3U
+
+
+#EXTINF:0,UFC 183
+rtmp://skystreams.info/vod playpath=mp4:/ppvs/UFC.183.Silva.vs.Diaz.WEBRip.H264-Ben.mp4 
+
+#EXTINF:0,UFC 182
+rtmp://skystreams.info/vod playpath=mp4:/ppvs/UFC.182.Jan.3rd.2015.HDTV.x264-Sir.Paul.mp4 swfUrl=http://p.jwpcdn.com/6/8/jwplayer.flash.swf
+
+#EXTINF:0,UFC 180
+rtmp://skystreams.info/vod playpath=mp4:/ppvs/UFC.180.Hunt.vs.Werdum.Nov.15th.2014.HDTV.x264-Sir.Paul.mp4 swfUrl=http://p.jwpcdn.com/6/8/jwplayer.flash.swf pageUrl=http://www.sportsaccess.se/forum/misc.php?page=ufc180mainevent
+
+#EXTINF:0,WWE Battleground 2014
+rtmp://skystreams.info/vod playpath=mp4:/ppvs/WWE.Battleground.2013.WEB-DL.4500k-timster.mp4 swfUrl=http://p.jwpcdn.com/6/8/jwplayer.flash.swf pageUrl=http://www.sportsaccess.se/forum/misc.php?page=wwebg14
+
+#EXTINF:0,Wrestle Kingdom 9 
+rtmp://skystreams.info/vod playpath=mp4:/ppvs/NJPW.Wrestle.Kingdom.9.PPV.WEBRip.x264-jkkk.mp4 swfUrl=http://p.jwpcdn.com/6/8/jwplayer.flash.swf 
+
+#EXTINF:0,WWE Royal Rumble 28
+rtmp://37.49.224.107/vod/media playpath=mp4:wweppv.mp4 swfUrl=http://streamsbay.info/player.swf pageUrl=http://streamsbay.info/view.php?pg=wweppv
+

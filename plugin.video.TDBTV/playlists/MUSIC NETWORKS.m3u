@@ -2,9 +2,6 @@
 #EXTINF:0,
 
 
-#EXTINF:0,1HD 
-rtmp://109.239.142.62/live/livestream3
-
 #EXTINF:0,4Music 
 
 
@@ -33,13 +30,28 @@ rtmp://cmctv.flash.internapcdn.net:80/cmctv_vitalstream_com/live_1/CMCUSA swfUrl
 http://www.djing.com/tv/05.m3u8
 
 #EXTINF:0,Djing TV 
+http://www.djing.com/tv/04.m3u8
+
+#EXTINF:0,Djing TV 
+http://www.djing.com/tv/03.m3u8
+
+#EXTINF:0,Djing TV 
+http://www.djing.com/tv/02.m3u8
+
+#EXTINF:0,Djing TV 
+http://www.djing.com/tv/01.m3u8
+
+#EXTINF:0,Djing TV 
 http://cdn.djing.com/tv/live.m3u8
 
 #EXTINF:0,Gothic Rock TV 
 rtmp://149.11.34.6/live/gotica.stream
 
 #EXTINF:0,Heat 
+http://77.95.36.130/RSEG/HLS_TS/broadcast/boston3/rtsplive/mptslive/heat-sat.m3u8
 
+#EXTINF:0,Heat
+http://77.95.36.130/RSEG/HLS_TS/broadcast/boston3/rtsplive/mptslive/nowmus-sat.m3u8
 
 #EXTINF:0,Heart TV 
 
@@ -69,16 +81,17 @@ http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVDANCE/variant.m3u8
 #EXTINF:0,MTV Hits 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVHITS/variant.m3u8
 
-#EXTINF:0,MTV Live
+#EXTINF:0,MTV Live 
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=429&lan=2&rows=40&f=BratuMarian.m3u8
 
 #EXTINF:0,MTV Live 
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=432&lan=2&rows=40&f=.m3u8
 
-#EXTINF:0,MTV Live
+#EXTINF:0,MTV Live 
 http://200.76.77.237/LIVE/H01/CANAL701/PROFILE03.m3u8?BratuMarian
 
 #EXTINF:0,MTV Music 
+http://83.139.104.108/Content/HLS/Live/Channel(MTV_Music)/Stream(02)/index.m3u8
 
 
 #EXTINF:0,MTV Rocks 
@@ -93,17 +106,8 @@ rtmp://stream.smcloud.net/live2/vox/vox_720p
 #EXTINF:0,MusicVoxTV 
 rtmp://stream.smcloud.net/live2/vox/vox_360p
 
-#EXTINF:0,Nat Geo Music 
-
-
-#EXTINF:0,Now Thats What I Call Music 
-
-
 #EXTINF:0,PartyTV 
 rtmp://149.11.34.6/live/partytv.stream
-
-#EXTINF:0,Pink Music 3
-
 
 #EXTINF:0,Radio Monte Carlo 
 rtmp://fms.105.net:1935/live/rmc1
@@ -113,6 +117,8 @@ http://rjr_flash-lh.akamaihd.net/i/retv_1@177154/master.m3u8
 
 #EXTINF:0,Rock 66 
 http://mediatv2.topix.it/24RockOne66
+
+
 
 #EXTINF:0,Rouge TV
 rtmp://rtmp.infomaniak.ch/livecast/rougetv
@@ -138,6 +144,9 @@ http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch3/06/prog_index.m3u8
 #EXTINF:0,Vevo Pop 
 http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/appleman.m3u8
 
+
+http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch2/06/prog_index.m3u8
+
 #EXTINF:0,VH1
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=437&lan=2&rows=40&f=BratuMarian.m3u8
 
@@ -154,6 +163,10 @@ http://hlsstr02.svc.iptv.rt.ru/hls/CH_VH1CLASSIC/variant.m3u8
 http://gogo.jksw.cz:8024/
 
 #EXTINF:0,VH1 Shuffle 
+http://cdn-07.sdn.si/vh1/vh1.isml/vh1-video%3D1500000-audio101%3D128000.m3u8
+
+
+#EXTINF:0,VH1 Shuffle 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_VH1EUROPEAN/variant.m3u8
 
 #EXTINF:0,Vintage Music TV 
@@ -161,3 +174,9 @@ rtmp://mi2.gv.filmon.com:8086/live/1042.high.stream
 
 #EXTINF:0,Virgin TV 
 rtmp://fms.105.net:1935/live/virgin1
+
+
+
+
+
+

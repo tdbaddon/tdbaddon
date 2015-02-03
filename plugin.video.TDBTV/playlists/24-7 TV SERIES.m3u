@@ -1,6 +1,9 @@
 ﻿#EXTM3U
 
 
+#EXTINF:0,CHECK BACK SOON
+http://tcomputers.ca/_sites/xbmc/files/checkbacksoon.mp4
+
 #EXTINF:0,2 Broke Girls
 
 
@@ -20,7 +23,7 @@
 
 
 #EXTINF:0,Archer
-rtmp://62.210.76.216/live playpath=archerxhd swfUrl=http://releases.flowplayer.org/5.5.1/flowplayer.swf live=1 pageUrl=http://www.stream4free.eu/archer
+
 
 #EXTINF:0,Arrested Development
 
@@ -29,10 +32,10 @@ rtmp://62.210.76.216/live playpath=archerxhd swfUrl=http://releases.flowplayer.o
 
 
 #EXTINF:0,Breaking Bad 
-rtmp://62.210.76.216/live playpath=s4fbreakxbad swfUrl=http://releases.flowplayer.org/5.5.1/flowplayer.swf live=1 pageUrl=http://www.jtvstream.me/breaking-bad
+
 
 #EXTINF:0,Bobs Burgers
-rtmp://62.210.76.216/live playpath=s4fbobsburger swfUrl=http://releases.flowplayer.org/5.5.1/flowplayer.swf live=1 pageUrl=http://www.stream4free.eu/bobs-burgers
+
 
 #EXTINF:0,Bones
 
@@ -53,7 +56,7 @@ rtmp://62.210.76.216/live playpath=s4fbobsburger swfUrl=http://releases.flowplay
 
 
 #EXTINF:0,Community 
-rtmp://62.210.76.216/live playpath=community swfUrl=http://releases.flowplayer.org/5.5.1/flowplayer.swf live=1 pageUrl=http://www.stream4free.eu/greendale-college
+
 
 #EXTINF:0,Cops
 
@@ -74,7 +77,7 @@ rtmp://62.210.76.216/live playpath=community swfUrl=http://releases.flowplayer.o
 
 
 #EXTINF:0,Game of Thrones
-rtmp://62.210.76.216/live playpath=gamehd swfUrl=http://releases.flowplayer.org/5.5.1/flowplayer.swf live=1 pageUrl=http://www.stream4free.eu/game-of-thrones
+
 
 #EXTINF:0,Game of Thrones
 
@@ -89,10 +92,10 @@ rtmp://62.210.76.216/live playpath=gamehd swfUrl=http://releases.flowplayer.org/
 
  
 #EXTINF:0,House Of Cards 
-rtmp://62.210.76.216/live playpath=housecard swfUrl=http://releases.flowplayer.org/5.5.1/flowplayer.swf pageUrl=http://www.stream4free.eu/house-of-cards
+
 
 #EXTINF:0,How I Met Your Mother
-rtmp://62.210.76.216/live playpath=s4fhimym swfUrl=http://releases.flowplayer.org/5.5.1/flowplayer.swf live=1 pageUrl=http://www.jtvstream.me/himym
+
 
 #EXTINF:0,I Love Lucy
 
@@ -113,7 +116,7 @@ rtmp://62.210.76.216/live playpath=s4fhimym swfUrl=http://releases.flowplayer.or
 
 
 #EXTINF:0,Lost
-rtmp://62.210.76.216/live playpath=losts4f swfUrl=http://releases.flowplayer.org/5.5.1/flowplayer.swf live=1 pageUrl=http://www.stream4free.eu/lost
+
 
 #EXTINF:0,Mad Men 
 
@@ -173,7 +176,7 @@ rtmp://62.210.76.216/live playpath=losts4f swfUrl=http://releases.flowplayer.org
 
 
 #EXTINF:0,South Park
-rtmp://62.210.76.216/live playpath=spark swfUrl=http://releases.flowplayer.org/5.5.1/flowplayer.swf live=1 pageUrl=http://www.jtvstream.me/south-park-hd
+
 
 #EXTINF:0,Star Trek DS9
 
@@ -191,7 +194,7 @@ rtmp://62.210.76.216/live playpath=spark swfUrl=http://releases.flowplayer.org/5
 
 
 #EXTINF:0,The Big Bang Theory 
-rtmp://62.210.76.216/live playpath=tbbangtheory swfUrl=http://releases.flowplayer.org/5.5.1/flowplayer.swf live=1 pageUrl=http://www.jtvstream.me/the-big-bang-theory
+
 
 #EXTINF:0,The Cosby Show 
 
@@ -209,7 +212,7 @@ rtmp://62.210.76.216/live playpath=tbbangtheory swfUrl=http://releases.flowplaye
 
 
 #EXTINF:0,The Office 
-rtmp://62.210.76.216/live playpath=theoffice swfUrl=http://releases.flowplayer.org/5.5.1/flowplayer.swf pageUrl=http://www.stream4free.eu/the-office
+
 
 #EXTINF:0,The Sopranos 
 
@@ -218,7 +221,7 @@ rtmp://62.210.76.216/live playpath=theoffice swfUrl=http://releases.flowplayer.o
 
 
 #EXTINF:0,The Walking Dead 
-rtmp://62.210.76.216/live playpath=xxwalkingdead swfUrl=http://releases.flowplayer.org/5.5.1/flowplayer.swf pageUrl=http://www.stream4free.eu/the-walking-dead
+
 
 #EXTINF:0,The X Files 
 
@@ -227,7 +230,7 @@ rtmp://62.210.76.216/live playpath=xxwalkingdead swfUrl=http://releases.flowplay
 
 
 #EXTINF:0,Top Gear
-rtmp://198.255.0.18:443/live?cLBMPT560QWkYk1hpfJyZs8HsSP0Uuxc playpath=live_profe3191 swfUrl=http://vaughnlive.tv/4259041179/swf/VaughnSoftPlayer.swf live=1 pageUrl=http://vaughnlive.tv
+
 
 #EXTINF:0,Two and A Half Men 
 
@@ -236,9 +239,9 @@ rtmp://198.255.0.18:443/live?cLBMPT560QWkYk1hpfJyZs8HsSP0Uuxc playpath=live_prof
 
 
 #EXTINF:0,Weeds
-rtmp://62.210.76.216/live playpath=freeweed swfUrl=http://releases.flowplayer.org/5.5.1/flowplayer.swf live=1 pageUrl=http://www.jtvstream.me/weeds
+
 
 #EXTINF:0,Workaholics
-rtmp://62.210.76.216/live playpath=workaholics swfUrl=http://releases.flowplayer.org/5.5.1/flowplayer.swf pageUrl=http://www.jtvstream.me/workaholics
+
  
 #EXTINF:0,Will & Grace 

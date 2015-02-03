@@ -2,96 +2,87 @@
 #EXTINF:0,
 
 
-#EXTINF:0,AfterDark 
+#EXTINF:0,BABESTATION 
+rtmp://178.33.229.31/cellcast/ playpath=encoder21 swfUrl=http://iptv.firestormmedia.tv/flash/player/player.swf?d=20141128 live=1 pageUrl=http://iptv.firestormmedia.tv/iframes/firecall/?type=1&affid=1234&width=980&hO=0&member=0
 
-
-#EXTINF:0,America's Hottest Cheerleaders 
-
-
-#EXTINF:0,BabeStation 
+#EXTINF:0,BABESTATION 
 http://sdn-global-live-http-cache.3qsdn.com/2346/_definst_///mp4:Ct6zG7Nrj3v2JxD/manifest.m3u8
 
-#EXTINF:0,BabeStation 
-http://publish.thewebstream.co:1935/cellcast/encoder71/playlist.m3u8
-
-#EXTINF:0,BabeStation 
+#EXTINF:0,BABESTATION 
 http://178.33.126.213:1935/cellcast/encoder32/.m3u8
 
-#EXTINF:0,BabeStation 
+#EXTINF:0,BABESTATION 
 http://publish.thewebstream.co:1935/cellcast/encoder31/playlist.m3u8
 
-#EXTINF:0,BabeStation 
+#EXTINF:0,BABESTATION 
 http://46.105.116.159:1935/cellcast/encoder22/.m3u8
 
-#EXTINF:0,BabeStation 
+#EXTINF:0,BABESTATION 
 http://publish.thewebstream.co:1935/cellcast/encoder21/playlist.m3u8
 
-#EXTINF:0,Bikini Hotties 
+#EXTINF:0,BABESTATION 
+http://publish.thewebstream.co:1935/cellcast/encoder71/playlist.m3u8
+
+#EXTINF:0,BIKINI HOTTIES 
 http://46.249.213.93/iPhone/broadcast/bikinihotties-tablet.3gp/bikinihotties-tablet.3gp-mr647k.m3u8?trackingid=5091600000&os=desktop
 
-#EXTINF:0,Bikini Kitchen 
-
-
-#EXTINF:0,Bollywood Bikini 
+#EXTINF:0,BOLLY2BOX 
 http://46.249.213.93/iPhone/broadcast/bollywoodbikini-iphone.3gp/bollywoodbikini-iphone.3gp-mr413k.m3u8
 
-#EXTINF:0,College Hotties 
+#EXTINF:0,FUEGO TV 
 
 
-#EXTINF:0,FlirtXChange
-http://vod.flirtxchange.com:8082/stream.flv
-
-#EXTINF:0,Fuego TV 
-
-
-#EXTINF:0,Fundorado TV 
+#EXTINF:0,FUNDORADO TV 
 rtmp://streaming.fundorado.com:80/fundoradotv/live.stream
 
-#EXTINF:0,Hot 100 
+#EXTINF:0,HOT 100 
 http://46.249.213.93/iPhone/broadcast/hot100-tablet.3gp/hot100-tablet.3gp-mr647k.m3u8?trackingid=4541740000&os=desktop
 
-#EXTINF:0,Hotshots 
+#EXTINF:0,HOTSHOTS 
 http://46.249.213.93/iPhone/broadcast/hotshots-tablet.3gp/hotshots-tablet.3gp-mr646k.m3u8?
 trackingid=3641590000&os=desktop
 
-#EXTINF:0,Hotshots 
-rtsp://46.249.213.93:554/playlists/hotshots_hvga.hpl.3gp
-
-#EXTINF:0,Hotshots Beach Babes 
+#EXTINF:0,HOTSHOTS BEACH BABES 
 http://46.249.213.93/iPhone/broadcast/hotshotsbeachbabes-tablet.3gp/hotshotsbeachbabes-tablet.3gp-mr647k.m3u8?trackingid=4591590000&os=desktop
 
-#EXTINF:0,Hooters Calender Girls 
+#EXTINF:0,MIAMI TV 
+http://74.208.69.207/miamitv/stream2/stream.m3u8
+
+#EXTINF:0,MIAMI TV 
+http://nimlive1.giniko.com/miamitv/miamitv.stream/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9Mi8zLzIwMTUgMjozMzoyOSBBTSZoYXNoX3ZhbHVlPXJJcTFkUGhRZHBHR0ZWTWFkVW8yZGc9PSZ2YWxpZG1pbnV0ZXM9NjA=
+
+#EXTINF:0,PLAYBOY TV CHAT
 
 
-#EXTINF:0,Miami TV 
-http://miamitvchannel.com/miamitvhealth/miamitvhealth.asx
-
-#EXTINF:0,Miami TV 
-http://miamitvchannel.com/miamitvchannel.asx
-
-#EXTINF:0,Models In Motion 
-
-
-#EXTINF:0,Partygirls 
-
-
-#EXTINF:0,Playboy TV Chat 
-
-
-#EXTINF:0,Redlight Central 
+#EXTINF:0,REDLIGHT CENTRAL 
 http://playback.d2see.com/wavemachine-live01/playboytv_channel1/playlist.m3u8
 
-#EXTINF:0,Redlight Central 
+#EXTINF:0,REDLIGHT CENTRAL 
 http://playback.d2see.com:1935/wavemachine-live01/_definst_/mp4:playboytv_channel2/playlist.m3u8
 
-#EXTINF:0,SexySat 
+#EXTINF:0,SEXYSAT 
 rtmp://81.89.48.215/xyz999wkz/sexysat.stream_360p
 
-#EXTINF:0,SexStation TV 
+#EXTINF:0,SEXSTATION TV 
 http://178.33.126.213:1935/iptv_cellcast_24/livestream1/playlist.m3u8
 
-#EXTINF:0,Visit X 
+#EXTINF:0,SEXSTATION TV 
+http://178.33.126.213:1935/iptv_cellcast_24/livestream2/playlist.m3u8
+
+#EXTINF:0,SEXSTATION TV 
+http://178.33.126.213:1935/iptv_cellcast_24/livestream3/playlist.m3u8
+
+#EXTINF:0,VISIT X 
 rtmp://194.116.150.47/live/visitx.stream1
 
-#EXTINF:0,Visit X 
+#EXTINF:0,VISIT X 
 rtmp://194.116.150.47/live/visitx.stream2
+
+
+
+
+
+
+
+
+
