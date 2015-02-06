@@ -11,16 +11,26 @@
 http://202.75.23.33/live/ch27/01.m3u8
 
 #EXTINF:0,BabyTV 
-
+http://cdn-07.sdn.si/babytv/babytv.m3u8
 
 #EXTINF:0,Boomerang 
-
+http://cdn-07.sdn.si/boomerang/boomerang.m3u8
 
 #EXTINF:0,Cartoon Network 
+http://cdn-07.sdn.si/cartoonnetwork/cartoonnetwork.m3u8
 
+#EXTINF:0,DaVinci Learning
+http://cdn-07.sdn.si/davincilearning/davincilearning.m3u8
 
-#EXTINF:0,Disney Channel
+#EXTINF:0,Disney Channel 
 http://cdn-07.sdn.si/disneychannel/disneychannel.isml/disneychannel-video%3D1500000-audio101%3D128000.m3u8
+
+#EXTINF:0,Disney Channel 
+http://cdn-07.sdn.si/disneychannel/disneychannel.isml/disneychannel-video%3D2500000-audio101%3D128000.m3u8
+
+#EXTINF:0,Disney Channel 
+http://cdn-07.sdn.si/disneychannel/disneychannel.m3u8
+
 
 #EXTINF:0,Disney Cinemagic 
 
@@ -28,32 +38,37 @@ http://cdn-07.sdn.si/disneychannel/disneychannel.isml/disneychannel-video%3D1500
 #EXTINF:0,Disney Junior 
 
 
-
-
 #EXTINF:0,Disney XD 
 http://cdn-07.sdn.si/disneyxd/disneyxd.isml/disneyxd-video%3D1500000-audio101%3D128000.m3u8
 
+
+#EXTINF:0,Disney XD 
+http://cdn-07.sdn.si/disneyxd/disneyxd.isml/disneyxd-video%3D2500000-audio101%3D128000.m3u8
+
+
+#EXTINF:0,Disney XD 
+http://cdn-07.sdn.si/disneychannel/disneychannel.m3u8
 
 #EXTINF:0,Emba Kids 
 rtmp://mi2.gv.filmon.com:8086/live/719.high.stream
 
 #EXTINF:0,Family Guy 
-
+rtmp://192.99.38.122/codec playpath=familyguy02 swfUrl=http://www.tgun.tv/lock/player.swf live=1 pageUrl=http://www.tgun.tv/menus/players/playerindex3.php?familyguy01
 
 #EXTINF:0,Full House 
 
 
 #EXTINF:0,Futurama 
-
+rtmp://198.27.75.99/folder/ playpath=2501 swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf pageUrl=http://www.tgun.tv/menus/players/dlock/playerindextab2.php?2501
 
 #EXTINF:0,Jim Jam 
-
+http://cdn-07.sdn.si/jimjam/jimjam.m3u8
 
 #EXTINF:0,Kids Comedy 
 rtmp://mi2.gv.filmon.com:1935/live/_definst_/2734.low.stream?b?b*t$
 
 #EXTINF:0,King of the Hill 
-
+rtmp://192.99.38.122/codec playpath=koth02 swfUrl=http://www.tgun.tv/lock/player.swf live=1 pageUrl=http://www.tgun.tv/menus/players/playerindex3.php?koth01
 
 #EXTINF:0,Nick 
 
@@ -64,6 +79,9 @@ rtmp://mi2.gv.filmon.com:1935/live/_definst_/2734.low.stream?b?b*t$
 #EXTINF:0,Nickelodeon 
 http://cdn-07.sdn.si/nickelodeon/nickelodeon.isml/nickelodeon-video%3D1500000-audio101%3D128000.m3u8
 
+#EXTINF:0,Nickelodeon 
+http://cdn-07.sdn.si/nickelodeon/nickelodeon.isml/nickelodeon-video%3D2500000-audio101%3D128000.m3u8
+
 #EXTINF:0,NickNight 
 
 
@@ -71,7 +89,7 @@ http://cdn-07.sdn.si/nickelodeon/nickelodeon.isml/nickelodeon-video%3D1500000-au
 
 
 #EXTINF:0,The Simpsons 
-\
+rtmp://198.27.75.99/folder playpath=2502 swfUrl=http://www.tgun.tv/lock/player.swf live=1 pageUrl=http://www.tgun.tv/menus/players/playerindex5.php?2502
 
 #EXTINF:0,Tom & Jerry Show 
 http://66.90.111.66:1935/ctv/tom/waldo_paes.m3u8?b?b*t$

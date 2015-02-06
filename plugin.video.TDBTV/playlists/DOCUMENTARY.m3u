@@ -2,27 +2,51 @@
 
 
 #EXTINF:0,Animal Planet 
-http://202.75.23.34/live/ch31/01.m3u8
+http://cdn-07.sdn.si/animalplanet/animalplanet.isml/animalplanet-video%3D1500000-audio102%3D64000.m3u8
+
+#EXTINF:0,Animal Planet 
+http://cdn-07.sdn.si/animalplanet/animalplanet.isml/animalplanet-video%3D2500000-audio102%3D64000.m3u8
 
 #EXTINF:0,Animal Planet 
 http://sjc-uhls-vip01.ustream.tv/watch/playlist.m3u8?cid=12762028
 
-#EXTINF:0,Crime Investigation 
-http://cdn-07.sdn.si/crimeinvestigation/crimeinvestigation.isml/crimeinvestigation-video%3D350000-audio102%3D64000.m3u8
+#EXTINF:0,Animal Planet 
+http://83.139.104.108/Content/HLS/Live/Channel(Animal_Planet)/Stream(03)/index.m3u8
+
+#EXTINF:0,BBC Knowledge 
+http://cdn-07.sdn.si/bbcknowledge/bbcknowledge.isml/bbcknowledge-video%3D1500000-audio101%3D128000.m3u8
+
+#EXTINF:0,BBC Knowledge 
+http://cdn-07.sdn.si/bbcknowledge/bbcknowledge.isml/bbcknowledge-video%3D2500000-audio101%3D128000.m3u8
+
+#EXTINF:0,BBC Knowledge 
+http://cdn-07.sdn.si/bbcknowledge/bbcknowledge.m3u8
 
 #EXTINF:0,Crime Investigation 
 http://cdn-07.sdn.si/crimeinvestigation/crimeinvestigation.isml/crimeinvestigation-video%3D1500000-audio101%3D128000.m3u8
 
-#EXTINF:0,Discovery Channel
+#EXTINF:0,Crime Investigation 
+http://cdn-07.sdn.si/crimeinvestigation/crimeinvestigation.isml/crimeinvestigation-video%3D2500000-audio101%3D128000.m3u8
+
+#EXTINF:0,Crime Investigation 
+http://cdn-07.sdn.si/crimeinvestigation/crimeinvestigation.m3u8
+
+#EXTINF:0,Discovery Channel 
+http://cdn-07.sdn.si/discoverychannel/discoverychannel.isml/discoverychannel-video%3D1500000-audio102%3D64000.m3u8
+
+#EXTINF:0,Discovery Channel 
+http://cdn-07.sdn.si/discoverychannel/discoverychannel.isml/discoverychannel-video%3D2500000-audio102%3D64000.m3u8
+
+#EXTINF:0,Discovery Channel 
+http://cdn-07.sdn.si/discoverychannel/discoverychannel.m3u8
+
+#EXTINF:0,Discovery Channel 
 http://202.75.23.34:1400/live/ch29/02.m3u8
 
-#EXTINF:0,Discovery Channel
-http://202.75.23.34/live/ch29/01.m3u8
-
-#EXTINF:0,Discovery Channel
+#EXTINF:0,Discovery Channel 
 http://83.139.104.108/Content/HLS/Live/Channel(Discovery_Channel)/Stream(03)/index.m3u8
 
-#EXTINF:0,Discovery History 
+#EXTINF:0,Discovery History a
 
 
 #EXTINF:0,Discovery Investigation 
@@ -41,7 +65,7 @@ http://83.139.104.108/Content/HLS/Live/Channel(Discovery_Channel)/Stream(03)/ind
 
 
 #EXTINF:0,Discovery World 
-
+http://202.75.23.34:1400/live/ch30/01.m3u8
 
 #EXTINF:0,DocuBox
 http://stream1.zoovision.com//livespi/docubox/playlist.m3u8
@@ -52,8 +76,14 @@ http://202.75.23.34/live/ch34/03.m3u8?b?b*t$
 #EXTINF:0,EVE 
 http://202.75.23.34/live/ch34/01.m3u8
 
-#EXTINF:0,History Channel
+#EXTINF:0,History Channel 
 http://cdn-07.sdn.si/historychannel/historychannel.isml/historychannel-video%3D1500000-audio101%3D128000.m3u8
+
+#EXTINF:0,History Channel 
+http://cdn-07.sdn.si/historychannel/historychannel.isml/historychannel-video%3D2500000-audio101%3D128000.m3u8
+
+#EXTINF:0,History Channel 
+http://cdn-07.sdn.si/historychannel/historychannel.m3u8
 
 #EXTINF:0,NASA TV 
 http://public.infozen.cshls.lldns.net/infozen/public/public.m3u8
@@ -71,11 +101,24 @@ http://public.infozen.cshls.lldns.net/infozen/public/public/public_1000.m3u8
 http://cdn-07.sdn.si/natgeowild/natgeowild.isml/natgeowild-video%3D1500000-audio101%3D128000.m3u8
 
 #EXTINF:0,Nat Geo Wild 
+http://cdn-07.sdn.si/natgeowild/natgeowild.isml/natgeowild-video%3D2500000-audio101%3D128000.m3u8
+
+#EXTINF:0,Nat Geo Wild 
+http://cdn-07.sdn.si/natgeowild/natgeowild.m3u8
+
+#EXTINF:0,Nat Geo Wild 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_NATGEOWILD/variant.m3u8
 
 #EXTINF:0,National Geographic 
 http://cdn-07.sdn.si/natgeo/natgeo.isml/natgeo-video%3D1500000-audio101%3D128000.m3u8
 
+
+#EXTINF:0,National Geographic 
+http://cdn-07.sdn.si/natgeo/natgeo.isml/natgeo-video%3D2500000-audio101%3D128000.m3u8
+
+
+#EXTINF:0,National Geographic 
+http://cdn-07.sdn.si/natgeo/natgeo.m3u8
 
 #EXTINF:0,Paranormal TV 
 rtmp://mi2.gv.filmon.com:8086/live/1618.high.stream
@@ -87,13 +130,19 @@ http://odna.octoshape.net/f3f5m2v4/cds/ch5_auto.smil/playlist.m3u8
 
 
 #EXTINF:0,Travel Channel 
+http://cdn-07.sdn.si/travelchannel/travelchannel.m3u8
 
+#EXTINF:0,Travel Channel 
+http://83.139.104.108/Content/HLS/Live/Channel(Travel_Channel)/Stream(03)/index.m3u8
+
+#EXTINF:0,Travel Channel 
+http://83.139.104.108/Content/HLS/Live/Channel(Travel_Channel)/Stream(03)/index.m3u8
 
 #EXTINF:0,Viasat Explorer 
-
+http://83.139.104.108/Content/HLS/Live/Channel(Viasat_Explore)/Stream(03)/index.m3u8
 
 #EXTINF:0,Viasat History 
-
+http://83.139.104.108/Content/HLS/Live/Channel(Viasat_History)/Stream(03)/index.m3u8
 
 #EXTINF:0,Viasat Nature 
 

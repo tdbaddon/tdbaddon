@@ -26,32 +26,26 @@ rtmp://cmctv.flash.internapcdn.net:1935/cmctv_vitalstream_com/live_adaptive_1/CM
 #EXTINF:0,CMC Country 
 rtmp://cmctv.flash.internapcdn.net:80/cmctv_vitalstream_com/live_1/CMCUSA swfUrl=http://http.vitalstreamcdn.com/flashskins/V2Player.swf live=1 pageUrl=http://www.cmctvusa.com/
 
-#EXTINF:0,Djing TV 
-http://www.djing.com/tv/05.m3u8
+#EXTINF:0,Djing Hot Tracks
+http://www.djing.com/tv/h-04.m3u8
 
-#EXTINF:0,Djing TV 
-http://www.djing.com/tv/04.m3u8
+#EXTINF:0,Djing Ibiza
+http://www.djing.com/tv/d-04.m3u8
 
-#EXTINF:0,Djing TV 
-http://www.djing.com/tv/03.m3u8
-
-#EXTINF:0,Djing TV 
-http://www.djing.com/tv/02.m3u8
+#EXTINF:0,Djing Under Ground
+http://www.djing.com/tv/u-04.m3u8
 
 #EXTINF:0,Djing TV 
 http://www.djing.com/tv/01.m3u8
 
 #EXTINF:0,Djing TV 
-http://cdn.djing.com/tv/live.m3u8
+http://www.djing.com/tv/02.m3u8
 
 #EXTINF:0,Gothic Rock TV 
 rtmp://149.11.34.6/live/gotica.stream
 
 #EXTINF:0,Heat 
 http://77.95.36.130/RSEG/HLS_TS/broadcast/boston3/rtsplive/mptslive/heat-sat.m3u8
-
-#EXTINF:0,Heat
-http://77.95.36.130/RSEG/HLS_TS/broadcast/boston3/rtsplive/mptslive/nowmus-sat.m3u8
 
 #EXTINF:0,Heart TV 
 
@@ -78,6 +72,12 @@ http://91.82.85.16:1935/relay15/nettv03_channel_1/HasBahCa.m3u8
 #EXTINF:0,MTV Dance 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVDANCE/variant.m3u8
 
+#EXTINF:0,MTV Dance 
+http://cdn-07.sdn.si/mtvdance/mtvdance.m3u8
+
+#EXTINF:0,MTV Dance 
+http://cdn-07.sdn.si/mtvdance/mtvdance.m3u8
+
 #EXTINF:0,MTV Hits 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVHITS/variant.m3u8
 
@@ -96,6 +96,9 @@ http://83.139.104.108/Content/HLS/Live/Channel(MTV_Music)/Stream(02)/index.m3u8
 
 #EXTINF:0,MTV Rocks 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVROCKS/variant.m3u8
+
+#EXTINF:0,MTV Rocks 
+http://cdn-07.sdn.si/mtvrocks/mtvrocks.m3u8
 
 #EXTINF:0,Musiq1 
 
@@ -144,23 +147,29 @@ http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch3/06/prog_index.m3u8
 #EXTINF:0,Vevo Pop 
 http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/appleman.m3u8
 
+#EXTINF:0,VH1 
+http://cdn-07.sdn.si/vh1/vh1.isml/vh1-video%3D1500000-audio101%3D128000.m3u8
 
-http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch2/06/prog_index.m3u8
+#EXTINF:0,VH1 
+http://cdn-07.sdn.si/vh1/vh1.isml/vh1-video%3D2500000-audio101%3D128000.m3u8
 
-#EXTINF:0,VH1
+#EXTINF:0,VH1 
+http://cdn-07.sdn.si/vh1/vh1.m3u8
+
+#EXTINF:0,VH1 
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=437&lan=2&rows=40&f=BratuMarian.m3u8
 
-#EXTINF:0,VH1
+#EXTINF:0,VH1 
 http://200.76.77.237/LIVE/H01/CANAL703/PROFILE03.m3u8?BratuMarian
 
-#EXTINF:0,VH1
+#EXTINF:0,VH1 
 rtmp://edge03-03.az.myvideo.az/dvrh264/vh1/ playpath=mp4:vh1 swfUrl=http://www.myvideo.az/stml/dvr/dvrH.swf?v=1.2 live=1 pageUrl=http://www.myvideo.az/r.ates
 
 #EXTINF:0,VH1 Classics 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_VH1CLASSIC/variant.m3u8
 
 #EXTINF:0,VH1 Classics 
-http://gogo.jksw.cz:8024/
+http://cdn-07.sdn.si/vh1classic/vh1classic.m3u8
 
 #EXTINF:0,VH1 Shuffle 
 http://cdn-07.sdn.si/vh1/vh1.isml/vh1-video%3D1500000-audio101%3D128000.m3u8

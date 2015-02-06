@@ -32,10 +32,17 @@ http://167.114.41.220:8080/dfr/jdhfd/index.m3u8
 
 
 #EXTINF:0,ESPN 
-rtmp://80.82.78.85:443/liverepeater/ playpath=26 token=#atd%#$ZH swfUrl=http://popeoftheplayers.pw/atdedead.swf live=1 timeout=13 pageUrl=http://popeoftheplayers.pw/ AnisotropicTV
+
 
 #EXTINF:0,ESPN 2 
-rtmp://178.18.31.53:443/liverepeater/ playpath=187347 token=#atd%#$ZH swfUrl=http://static.surk.tv/atdedead.swf live=1 pageUrl=http://biggestplayer.me/ AnisotropicTV
+
+
+
+#EXTINF:0,Eurosport 1 
+http://213.250.19.50/eurosport/eurosport.isml/eurosport-video=1500000-audio101=128000.m3u8
+
+#EXTINF:0,Eurosport 1 
+http://213.250.19.50/eurosport/eurosport.isml/eurosport-video=2500000-audio101=128000.m3u8
 
 #EXTINF:0,Eurosport 1 
 http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_1000.m3u8
@@ -65,13 +72,16 @@ http://213.250.19.50/eurosport/eurosport.isml/eurosport-video=2500000-audio101=1
 http://83.139.104.108/Content/HLS/Live/Channel(Extreme_Sports)/Stream(03)/index.m3u8
 
 
+#EXTINF:0,Extreme Sports 
+http://cdn-07.sdn.si/extreme/extreme.m3u8
+
 #EXTINF:0,FightBox 
 http://stream.zoovision.com:1935/livespi/fightbox/chunklist_w933559352.m3u8
 
 #EXTINF:0,Football TV 
 rtmp://mi2.gv.filmon.com:8086/live/374.high.stream
 
-#EXTINF:0,Fox Sports 
+#EXTINF:0,Fox Sports News
 http://foxsportshdhls-lh.akamaihd.net/i/fsnewshls_0@136427/index_2128_av-p.m3u8?sd=10&rebase=on
 
 #EXTINF:0,Fox Sports News
@@ -93,9 +103,6 @@ rtmp://mi2.gv.filmon.com:8086/live/262.high.stream
 
 
 #EXTINF:0,NBC Golf 
-http://167.114.41.220:8080/nbcgolf/nbc/index.m3u8
-
-#EXTINF:0,NBC Golf 
 http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/2596k/prog.m3u8|X-Forwarded-For=209.239.112.104
 
 #EXTINF:0,NBCSN 
@@ -106,6 +113,12 @@ http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/2596k/prog.m3u8|X-Forwarded-
 
 #EXTINF:0,Outdoor Channel 
 http://cdn-07.sdn.si/outdoorchannel/outdoorchannel.isml/outdoorchannel-video%3D1500000-audio101%3D128000.m3u8
+
+#EXTINF:0,Outdoor Channel 
+http://cdn-07.sdn.si/outdoorchannel/outdoorchannel.isml/outdoorchannel-video%3D2500000-audio101%3D128000.m3u8
+
+#EXTINF:0,Outdoor Channel 
+http://cdn-07.sdn.si/outdoorchannel/outdoorchannel.m3u8
 
 #EXTINF:0,PAC Sports Arizona 
 http://www.xrxs.net/video/live-p12ariz-4728.m3u8
@@ -144,7 +157,7 @@ http://nlds187.cdnak.neulion.com/nlds/sportsnetnow/sn_360/as/live/sn_360_hd_ipad
 
 
 #EXTINF:0,Rogers Sportsnet World 
-rtmp://80.82.78.26:443/liverepeater/ playpath=17 token=#atd%#$ZH swfUrl=http://popeoftheplayers.pw/atdedead.swf live=1 timeout=13 pageUrl=http://popeoftheplayers.pw/ AnisotropicTV
+
 
 #EXTINF:0,SBS One 
 
@@ -172,9 +185,6 @@ rtmp://89.248.171.90:443/liverepeater playpath=23 pageUrl=http://popeoftheplayer
 
 #EXTINF:0,Sky Sport F1 
 rtmp://89.248.171.90:443/liverepeater playpath=22 pageUrl=http://popeoftheplayers.pw/byDMO token=#atd%#$ZH
-
-#EXTINF:0,Sky Sport F1 
-rtmpe://46.246.29.160:1935/l swfUrl=http://hdcast.org/eplayer.swf live=1 pageUrl=http://www.hdcast.org/embedlive4.php?u=sskysf1&vw=650&vh=470&domain=cricbox.tv token=Fo5_n0w?U.rA6l3-70w47ch playpath=sskysf1
 
 #EXTINF:0,Sky Sport News
 

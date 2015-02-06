@@ -108,10 +108,16 @@ http://odna.octoshape.net/f3f5m2v4/cds/ch4_320p/blizznow.m3u8
 http://odna.octoshape.net/f3f5m2v4/cds/ch6_auto.smil/playlist.m3u8 
 
 #EXTINF:0,Sky News 
+http://77.95.36.130/RSEG/HLS_TS/broadcast/boston2/rtsplive/mptslive/skyn-sat.m3u8
+
+#EXTINF:0,Sky News 
 mms://live1.wm.skynews.servecast.net/skynews_wmlz_live300k
 
 #EXTINF:0,Sky News International
 http://wpc.C1A9.edgecastcdn.net/hls-live/20C1A9/skynews/ls_satlink/b_,264,528,828,.m3u8
+
+#EXTINF:0,Weather Nation
+http://kalsegsec-a.akamaihd.net:80/dc-0/m/pa-live-publish3/kLive/smil:1_oorxcge2_all.smil/playlist.m3u8
 
 #EXTINF:0,Weather Network
 

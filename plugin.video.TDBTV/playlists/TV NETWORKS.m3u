@@ -26,10 +26,10 @@ http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=129&lan=2&rows=
 rtmp://178.18.31.57:443/liverepeater playpath=186372 swfUrl=http://bernardotv.club/atdedead.swf pageUrl=http://biggestplayer.me/streamcr.php?id=186372&width=620&height=490 token=#atd%#$ZH
 
 EXTINF:0,BBC Entertainment 
-
+http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=130&lan=2&rows=40&f=.m3u8
 
 #EXTINF:0,BBC Lifestyle
-http://cdn-07.sdn.si/bbcknowledge/bbcknowledge.isml/bbcknowledge-video%3D1500000-audio101%3D128000.m3u8
+
 
 #EXTINF:0,BET 
 
@@ -47,11 +47,16 @@ http://cdn-07.sdn.si/bbcknowledge/bbcknowledge.isml/bbcknowledge-video%3D1500000
 http://cdn-07.sdn.si/cbsdrama/cbsdrama.isml/cbsdrama-video%3D1500000-audio101%3D128000.m3u8
 
 
-#EXTINF:0,CBS Reality 
-http://198.179.30.110/live/1808.high.stream/playlist.m3u8?id=0ad5aac39bb13fbedefd9b2de8f29d824da0dd0c9f293e8cbe5cabbe306404df78dfe052fdb094254ee184f4e9a778ff0e1727230d184554f682c3446b6d2f766968308089e454d8dbe22b76b3ed5a295f43a21d9ebd5471bd803a0bdf6521820f5ca1d5d10b136fc4a19367341a6342f8671f2f1fbacfe12a5d2a45f02aeb184b636a26d6d323b37433f650948ae7622f4e79cb92ffcfe1 
+#EXTINF:0,CBS Drama 
+http://cdn-07.sdn.si/cbsdrama/cbsdrama.isml/cbsdrama-video%3D2500000-audio101%3D128000.m3u8
 
-#EXTINF:0,CBS Reality
-http://198.179.30.110/live/1811.high.stream/playlist.m3u8?id=0ad5aac39bb13fbefa7576cdf876b92013a5094d34a128ca1e0f0807694c5fbc6e9bd23181bd02317cb4b00eb3d01817b8b31a290428637880a502be293d203171533e268e0da8c1094ad8096551322274c624c8dfffcf1f9f3116c6a20346e29b816d2dafcf91be97c932168e5046af6a3bf0f18f238327db6cf86ee10bba1ddf408d90b6cae2e87879acbaf0fe06f4249949a9226bfff3 
+
+#EXTINF:0,CBS Drama 
+http://cdn-07.sdn.si/cbsdrama/cbsdrama.m3u8
+
+#EXTINF:0,CBS Reality 
+http://83.139.104.108/Content/HLS/Live/Channel(CBS_Reality)/Stream(03)/index.m3u8
+
 
 #EXTINF:0,CHCH Ontario 
 
@@ -87,6 +92,9 @@ http://stream1.zoovision.com//livespi/fashionbox/playlist.m3u8
 http://hls.novotelecom.ru/streaming/fashion/tvrec/playlist.m3u8
 
 #EXTINF:0,Fashion TV 
+http://cdn-07.sdn.si/fashiontv/fashiontv.m3u8
+
+#EXTINF:0,Fashion TV 
 http://83.139.104.108/Content/HLS/Live/Channel(Fashion_TV)/Stream(03)/index.m3u8
 
 
@@ -94,11 +102,18 @@ http://83.139.104.108/Content/HLS/Live/Channel(Fashion_TV)/Stream(03)/index.m3u8
 http://stream1.zoovision.com//livespi/fastnfun/playlist.m3u8
 
 #EXTINF:0,Film4
+http://77.95.36.130/RSEG/HLS_TS/broadcast/boston2/rtsplive/mptslive/film4-sat.m3u8
 
-
-#EXTINF:0,FOX
+#EXTINF:0,FOX 
 http://cdn-07.sdn.si/fox/fox.isml/fox-video%3D1500000-audio101%3D128000.m3u8
 
+
+#EXTINF:0,FOX 
+http://cdn-07.sdn.si/fox/fox.isml/fox-video%3D2500000-audio101%3D128000.m3u8
+
+
+#EXTINF:0,FOX 
+http://cdn-07.sdn.si/fox/fox.m3u8
 
 #EXTINF:0,FOX 5 
 
@@ -106,13 +121,27 @@ http://cdn-07.sdn.si/fox/fox.isml/fox-video%3D1500000-audio101%3D128000.m3u8
 #EXTINF:0,FOX 45 
 
 
-#EXTINF:0,FOX Crime
+#EXTINF:0,FOX Crime 
 http://cdn-07.sdn.si/foxcrime/foxcrime.isml/foxcrime-video%3D1500000-audio101%3D128000.m3u8
 
+
+#EXTINF:0,FOX Crime 
+http://cdn-07.sdn.si/foxcrime/foxcrime.isml/foxcrime-video%3D2500000-audio101%3D128000.m3u8
+
+
+#EXTINF:0,FOX Crime 
+http://cdn-07.sdn.si/foxcrime/foxcrime.m3u8
 
 #EXTINF:0,FOX Life 
 http://cdn-07.sdn.si/foxlife/foxlife.isml/foxlife-video%3D1500000-audio101%3D128000.m3u8
 
+
+#EXTINF:0,FOX Life 
+http://cdn-07.sdn.si/foxlife/foxlife.isml/foxlife-video%3D2500000-audio101%3D128000.m3u8
+
+
+#EXTINF:0,FOX Life 
+http://cdn-07.sdn.si/foxlife/foxlife.m3u8
 
 #EXTINF:0,Food network
 http://77.95.36.130/RSEG/HLS_TS/broadcast/boston2/rtsplive/mptslive/food.m3u8
@@ -124,7 +153,15 @@ http://77.95.36.130/RSEG/HLS_TS/broadcast/boston2/rtsplive/mptslive/comm-sat.m3u
 
 
 #EXTINF:0,Ginx Gaming TV 
+http://cdn-07.sdn.si/ginx/ginx.isml/ginx-video%3D1500000-audio101%3D128000.m3u8
 
+
+#EXTINF:0,Ginx Gaming TV 
+http://cdn-07.sdn.si/ginx/ginx.isml/ginx-video%3D2500000-audio101%3D128000.m3u8
+
+
+#EXTINF:0,Ginx Gaming TV 
+http://cdn-07.sdn.si/ginx/ginx.m3u8
 
 #EXTINF:0,Hallmark Channel 
 
@@ -144,6 +181,12 @@ http://ios.streamserver01.com:8080/ShowcaseTV/mystream.m3u8
 #EXTINF:0,ITV 1 
 http://93.184.221.133/00573D/283/283-0.m3u8
 
+#EXTINF:0,ITV 1 
+http://77.95.36.130/RSEG/HLS_TS/broadcast/boston2/rtsplive/mptslive/itv1-sat.m3u8
+
+#EXTINF:0,ITV 2 
+http://77.95.36.130/RSEG/HLS_TS/broadcast/boston2/rtsplive/mptslive/itv2-sat.m3u8
+
 #EXTINF:0,Jewelry Television
 rtmp://jtvmedia.jtv.com:1975/live playpath=live6 swfUrl=http://demandware.edgesuite.net/aaby_prd/on/demandware.static/Sites-jtv-Site/-/default/v1410110388581/swf/flashMediaPlayer/StrobeMediaPlayback.swf live=1 pageUrl=http://www.jtv.com/on/demandware.store/Sites-jtv-Site/default/LiveViewer-Show
 
@@ -158,7 +201,7 @@ http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_484.m3u8
 
 
 #EXTINF:0,More4 
-
+http://77.95.36.130/RSEG/HLS_TS/broadcast/boston3/rtsplive/mptslive/more4-sat.m3u8
 
 #EXTINF:0,NHK World 
 http://plslive-w.nhk.or.jp/nhkworld/app/live.m3u8
@@ -210,6 +253,18 @@ http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/master.m3u8?b?b*t
 
 #EXTINF:0,TLC 
 http://83.139.104.108/Content/HLS/Live/Channel(TLC)/Stream(03)/index.m3u8
+
+
+#EXTINF:0,TLC 
+http://cdn-07.sdn.si/tlc/tlc.isml/tlc-video%3D2500000-audio101%3D128000.m3u8
+
+
+#EXTINF:0,TLC 
+http://cdn-07.sdn.si/tlc/tlc.isml/tlc-video%3D2500000-audio101%3D128000.m3u8
+
+
+#EXTINF:0,TLC 
+http://cdn-07.sdn.si/tlc/tlc.m3u8
 
 
 #EXTINF:0,TNT 
