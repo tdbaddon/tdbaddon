@@ -5,6 +5,9 @@
 #EXTINF:0,4E TV
 http://mail.tv4e.gr:1935/live/myStream.sdp/playlist.m3u8
 
+#EXTINF:0,4E TV
+rtmp://82.192.84.30:1935/live/myStream.sdp
+
 #EXTINF:0,Airqio
 http://xaigaiotelevisionx.api.channel.livestream.com/3.0/playlist.m3u8
 
@@ -21,25 +24,22 @@ http://wow.ant1.gr:1935/live/smil:mavani.smil/hasbahca.m3u8
 
 
 #EXTINF:0,Art Channel
-http://sjc-uhls-proxy-beta01.ustream.tv/watch/playlist.m3u8?cid=16667543
+
+
+#EXTINF:0,Astra TV
+http://www.astratv.gr:8090/hls/livestream/index.m3u8
 
 #EXTINF:0,Astra TV
 http://www.astratv.gr:8090/hls/livestream/index.m3u8
 
 #EXTINF:0,Axeloos TV
-
+http://srv1.viiideo.gr:1935/videon/axeloostv/bratumarian.m3u
 
 #EXTINF:0,Best TV
 http://smooth.istoikona.net/besttv.isml/manifest(format=m3u8-aapl).m3u8
 
 #EXTINF:0,Boyah
 http://streamer-cache.grnet.gr/parliament/parltv.sdp/master.m3u8
-
-#EXTINF:0,Boyah
-http://streamer-cache.grnet.gr/parliament/hls/webtv_1280_960x540/index.m3u8?hsesid=1fc6d3c3cea0dd9fe84ae5b289c8a2df
-
-#EXTINF:0,Boyah
-mms://media19.internet.gr/ParliamentTV-HQ
 
 #EXTINF:0,CY Sports
 http://mlivenews.istoikona.net/cysports.isml/manifest(format=m3u8-aapl).m3u8
@@ -64,6 +64,9 @@ rtmp://213.16.167.187:1935/live playpath=mpegts_256.stream swfUrl=http://www.eps
 
 #EXTINF:0,Eiprus TV 1
 http://xepirustv1x.api.channel.livestream.com/3.0/playlist.m3u8
+
+#EXTINF:0,Ena TV 
+rtmp://srv1.viiideo.gr/videon/enatv
 
 #EXTINF:0,Ena TV 
 rtmp://srv1.viiideo.gr/videon playpath=enatv swfUrl=http://enatv.viiideo.gr/flowplayer/flowplayer.commercial-3.2.15.swf live=1 pageUrl=http://enatv.viiideo.gr/?cid=7
@@ -123,31 +126,52 @@ rtmp://srv1.viiideo.gr:1935/hellasonmedia/neatv
 
 
 #EXTINF:0,Odie TV
-http://sjc-uhls-proxy-beta01.ustream.tv/watch/playlist.m3u8?cid=14336927
+
+
+#EXTINF:0,OTE Sports 1 
+http://109.200.20.26:8981/FHDDD/Ote1/index.m3u8
+
+#EXTINF:0,OTE Sports 2 
+http://109.200.20.26:8981/FHDDD/Ote2/index.m3u8
+
+#EXTINF:0,OTE Sports 3 
+http://109.200.20.26:8981/FHDDD/Ote3/index.m3u8
+
+#EXTINF:0,OTE Sports 4 
+http://109.200.20.26:8981/FHDDD/Ote4/index.m3u8
+
+#EXTINF:0,OTE Sports 5 
+http://109.200.20.26:8981/FHDDD/Ote5/index.m3u8
+
+#EXTINF:0,OTE Sports 6 
+http://109.200.20.26:8981/FHDDD/Ote6/index.m3u8
 
 #EXTINF:0,R Channel
 http://xrodopi-tvx.api.channel.livestream.com/3.0/playlist.m3u8
 
-#EXTINF:0,Rik Sat
+#EXTINF:0,Rik Sat 
 http://player.webvideocore.net/eq473601t9w8.m3u8
 
-#EXTINF:0,Rik Sat
-http://cdn.webvideocore.net/livenl/out_dqgyqc45pzk8c4gw40o4/index.m3u8
+#EXTINF:0,Samiaki TV
+rtmp://91.121.107.131/samiaki/samiaki
 
-#EXTINF:0,Skai
+#EXTINF:0,Skai 
 mmsh://magictvbox.us:200/skai
 
-#EXTINF:0,Skai
+#EXTINF:0,Skai 
 http://iphone.skai.gr.edgesuite.net/iphone_iphone.m3u8
 
-#EXTINF:0,Star TV
+#EXTINF:0,Star TV 
 http://starhdlive2-lh.akamaihd.net/i/live_1@181243/master.m3u8
 
-#EXTINF:0,Star TV
+#EXTINF:0,Star TV 
 mms://radiofeeds1.mediabox.gr/startv
 
-#EXTINF:0,Star TV Drama
+#EXTINF:0,Star TV 
 http://radiofeeds1.mediabox.gr:80/startv
+
+Star TV Drama
+
 
 #EXTINF:0,Syros TV
 http://176.9.123.140:1935/msg116s/msg116s/playlist.m3u8
@@ -159,7 +183,7 @@ http://xelladalivex.api.channel.livestream.com/3.0/playlist.m3u8
 
 
 #EXTINF:0,TVM
-http://79.142.197.49:6572?by_HasBahCa
+
 
 #EXTINF:0,Vima
 

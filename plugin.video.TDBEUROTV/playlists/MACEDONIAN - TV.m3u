@@ -109,6 +109,9 @@ http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video
 #EXTINF:0,Mpt 2 
 http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video_id/3545/token/baf3cb0ceac4e5243d63f8bf96011783/playlist.m3u8
 
+#EXTINF:0, MPT 2
+http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video_id/3548/token/bd0b11a4f8d05cc0bffe589f55909615/chunklist_w787058205_b1196000.m3u8
+
 #EXTINF:0,Nasha TV
 http://fms.zulu.mk:1935/zulu/nashatv_1/playlist.m3u8
 

@@ -1,0 +1,75 @@
+﻿#EXTM3U
+
+
+#EXTINF:0,Aaj Tak
+plugin://plugin.video.youtube/?action=play_video&amp;videoid=L3lcSzcSrmU
+
+#EXTINF:0,ABP Ananda
+http://bengaliabp-lh.akamaihd.net/i/abpbanglanew_1@192108/master.m3u8
+
+#EXTINF:0,ABP News
+http://hindiabp-lh.akamaihd.net/i/hindiabp1new_1@192103/master.m3u8
+
+#EXTINF:0,AsiaNet News
+http://asianet-lh.akamaihd.net/i/asianetN_1@30556/master.m3u8
+
+#EXTINF:0,Colors
+rtmpe://5.153.233.74:443/ app=c0be82e1442e7169a9a358db47fcafcb playpath=colorsprts870 swfUrl=http://mybeststream.xyz/MTEwZjFiMmI4MWVkNmE4ZTIwYTg1MDMw/jwplayer.flash.swf pageUrl=http://mybeststream.xyz/ live=true timeout=15
+
+#EXTINF:0,DD NATIONAL
+http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD178_W_350.sdp/media_b639410.m3u8
+
+#EXTINF:0,India News
+http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD148_W_350.sdp/media_b623985.m3u8
+
+#EXTINF:0,India TV News
+http://indiatvnews-lh.akamaihd.net/i/ITV_1@199237/master.m3u8
+
+#EXTINF:0,Jeevan TV
+rtmp://119.81.30.126/ app=ebase-live/play/ playpath=jeevan13_1 swfUrl=http://www.yeslivetv.com/jeevan/player.swf pageUrl=http://www.jeevan.tv/ live=true timeout=15
+
+#EXTINF:0,Malayalam
+rtmp://65.51.67.40:1935/rtplive playpath=event.stream swfUrl=http://malayalamiptv.net/usa/player_s4_0.swf live=true timeout=15 pageUrl=http://malayalamtv.tv/iframe/mtv-live.php
+
+#EXTINF:0,Mera TV
+http://cnbc_awaaz_hls-lh.akamaihd.net/i/cnbc_awaaz_hls_n_1@174872/index_1_av-p.m3u8?sd=10&play-only=primary&rebase=on
+
+#EXTINF:0,Mtunes
+http://mthls-i.akamaihd.net/hls/live/219508/mthls/06.m3u8
+
+#EXTINF:0,News Express
+http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD21_W_150.sdp/media_b284233.m3u8
+
+#EXTINF:0,P7 News
+rtmp://edge-ind.inapcdn.in:1935/vivo playpath=semacb4.stream_aac swfUrl=http://smartstream.in/primusplayer/primus-3.2.12.swf live=true timeout=15 pageUrl=http://smartstream.in/p7news/
+
+#EXTINF:0,Peace TV
+rtmp://peace.fms.visionip.tv/live/ playpath=b2b-peace_usa-live-25f-4x3-sdh_1 live=true timeout=15 swfUrl=http://www.peacetv.tv/templates/swf/player.swf pageUrl=http://www.peacetv.tv/
+
+#EXTINF:0,Pogo
+http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD29_W_150.sdp/media_b153317.m3u8
+
+#EXTINF:0,Saam Tv Marathi
+rtmp://live.wmncdn.net/ app=saamtv/ playpath=058e42f470eddf946c6bee5bd785efb0.sdp swfUrl=http://player-apac-sing.webmobilive.com/player/liveplayer.swf pageUrl=http://player-apac-sing.webmobilive.com/ live=true timeout=15
+
+#EXTINF:0,Sony Sab
+http://46.249.213.93/iPhone/broadcast/sonysabtv-tablet.3gp/sonysabtv-tablet.3gp-mr498k.m3u8?trackingid=4271710000&os=desktop
+
+#EXTINF:0,Star Maza
+http://mediacontent-lh.akamaihd.net/i/marathiabpnew_1@188093/master.m3u8
+
+#EXTINF:0,Suvarna News 24x7
+http://suvarna-lh.akamaihd.net/i/suvarnaNews_1@138881/master.m3u8
+
+#EXTINF:0,TNews
+rtmp://edge-ind.inapcdn.in:1935/berry playpath=vdevice3.stream_aac swfUrl=http://smartstream.in/primusplayer/primus-3.2.12.swf live=true timeout=15 pageUrl=http://smartstream.in/tnews/
+
+#EXTINF:0,Venus TV
+http://46.249.213.93/iPhone/broadcast/venustv-tablet.3gp/venustv-tablet.3gp-mr648k.m3u8?trackingid=3431500000&os=desktop
+
+#EXTINF:0,Zing
+http://46.249.213.87/iPhone/broadcast/zing-tablet.3gp/zing-tablet.3gp-mr648k.m3u8?trackingid=3171370000&os=desktop
+
+
+
+

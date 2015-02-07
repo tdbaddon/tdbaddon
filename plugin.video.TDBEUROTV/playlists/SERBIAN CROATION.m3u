@@ -5,6 +5,9 @@
 #EXTINF:0,24 Sata
 mms://62.162.58.55/24vesti
 
+#EXTINF:0,24 Sata
+http://83.139.104.108/Content/HLS/Live/Channel(24_sata)/Stream(03)/index.m3u8
+
 #EXTINF:0,Al Jazeera Balkan
 rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
 
@@ -50,6 +53,10 @@ http://83.139.104.108/Content/HLS/Live/Channel(FullTV)/Stream(03)/index.m3u8
 #EXTINF:0,Hema 
 mms://77.238.209.50:1234
 
+#EXTINF:0,History
+http://84.22.33.3:8053
+
+
 #EXTINF:0,Hronka
 http://213.81.153.221:8080/hronka
 
@@ -65,11 +72,8 @@ http://83.139.104.108/Content/HLS/Live/Channel(HTV3)/Stream(03)/index.m3u8
 #EXTINF:0,HRT 4 
 http://83.139.104.108/Content/HLS/Live/Channel(HTV4)/Stream(03)/index.m3u8
 
-#EXTINF:0,Iris
+#EXTINF:0,Iris 
 mms://62.162.58.55/TVIris
-
-#EXTINF:0,Iris
-http://62.162.58.54:8080/iris
 
 #EXTINF:0,Jadran TV 
 http://83.139.104.108/Content/HLS/Live/Channel(TV_Jadran)/Stream(03)/index.m3u8
@@ -81,16 +85,19 @@ http://88.212.10.27:81/streams/joj.m3u8
 http://88.212.10.27:81/streams/jojplus.m3u8
 
 #EXTINF:0,Jug Tv
+rtmp://84.20.77.50/live/livestream1
 
+#EXTINF:0,Jug Tv
+rtmp://84.20.77.50/live//livestream2
 
 #EXTINF:0,Jugoton
 http://83.139.104.108/Content/HLS/Live/Channel(Jugoton)/Stream(03)/index.m3u8
 
-#EXTINF:0,Kanal 21
-mms://62.162.58.55/TVkanal21
-
 #EXTINF:0,Kanal 5
 http://83.139.104.108/Content/HLS/Live/Channel(Kanal_5)/Stream(03)/index.m3u8
+
+#EXTINF:0,Kanal 21
+mms://62.162.58.55/TVkanal21
 
 #EXTINF:0,Kanal RI
 http://83.139.104.108/Content/HLS/Live/Channel(KanalRI)/Stream(03)/index.m3u8
@@ -110,8 +117,11 @@ http://83.139.104.108/Content/HLS/Live/Channel(Klasik_TV)/Stream(03)/index.m3u8
 #EXTINF:0,Konyha TV
 rtmp://91.82.85.44/live/konyhatv
 
+#EXTINF:0,KTV
+http://213.81.153.221:8080/kezmarok
+
 #EXTINF:0,Leskovac TV
-http://5.153.25.7:8081/stream/?channel=tvleskovac&stream=1mb
+
 
 #EXTINF:0,Music Box
 http://213.81.153.221:8080/nasa
@@ -135,7 +145,7 @@ http://83.139.104.108/Content/HLS/Live/Channel(TV_Nova)/Stream(03)/index.m3u8
 mms://176.106.121.32:8080/
 
 #EXTINF:0,OBN
-
+http://balkantvmedia.com/stream/OBN/Marica18/iptv0205
 
 #EXTINF:0,OK Bambino
 http://83.139.104.108/Content/HLS/Live/Channel(OK_Bambino)/Stream(03)/index.m3u8
@@ -149,27 +159,33 @@ http://83.139.104.108/Content/HLS/Live/Channel(Osjecka_TV)/Stream(03)/index.m3u8
 #EXTINF:0,OTV Valentino
 
 
+#EXTINF:0,Party TV
+rtmp://149.11.34.6/live/partytv.stream
+
 #EXTINF:0,Pink
 
 
 #EXTINF:0,Pink 2
-
+http://balkantvmedia.com/stream/PINK2/Marica18/iptv0205
 
 #EXTINF:0,Pink 3
 
 
 #EXTINF:0,Pink Action 2
+http://109.72.63.89:6011/udp/238.0.0.100:9004
 
+#EXTINF:0,Pink Film
+http://109.72.63.89:6011/udp/238.0.0.100:9007
 
 #EXTINF:0,Pink Folk 1
 
 
 #EXTINF:0,Pink Horror
-
+http://109.72.63.89:6011/udp/238.0.0.100:9002
 
 #EXTINF:0,Pink Kids
 
-
+mm
 #EXTINF:0,Pink Live
 
 
@@ -195,7 +211,7 @@ http://83.139.104.108/Content/HLS/Live/Channel(Osjecka_TV)/Stream(03)/index.m3u8
 
 
 #EXTINF:0,Pink Premium
-
+http://109.72.63.89:6011/udp/238.0.0.100:9015
 
 #EXTINF:0,Pink Reality
 
@@ -215,8 +231,14 @@ rtsp://origin.biokoda.tv/live/mbit-planet?k=planettv-public
 #EXTINF:0,PTC
 mmsh://195.252.113.38:80/rts?MSWMExt=.asf
 
+#EXTINF:0,PTC
+http://109.72.63.89:6011/udp/238.0.0.100:9010
+
 #EXTINF:0,RTB TV
 http://83.139.104.108/Content/HLS/Live/Channel(RTB_TV)/Stream(03)/index.m3u8
+
+#EXTINF:0,RTL Kockica
+http://83.139.104.108/Content/HLS/Live/Channel(RTL_Kockica)/Stream(03)/index.m3u8
 
 #EXTINF:0,RTL Televizija
 http://83.139.104.108/Content/HLS/Live/Channel(RTL_Televizija)/Stream(03)/index.m3u8
@@ -260,9 +282,6 @@ http://88.212.10.27:81/streams/stv2.m3u8
 #EXTINF:0,Student Televizija
 rtmp://213.202.73.202/iskon/studentska_b3.stream
 
-#EXTINF:0,STV
-mms://89.201.164.181/stv
-
 #EXTINF:0,TA3
 http://88.212.10.27:81/streams/ta3.m3u8
 
@@ -283,6 +302,9 @@ http://83.139.104.108/Content/HLS/Live/Channel(TV_Istra)/Stream(03)/index.m3u8
 
 #EXTINF:0,Vesti 24
 mms://62.162.58.55/24vesti
+
+#EXTINF:0,Vizion Plus
+http://84.22.33.3:8043
 
 #EXTINF:0,Zdrava TV
 http://83.139.104.108/Content/HLS/Live/Channel(Zdrava_TV-7)/Stream(03)/index.m3u8

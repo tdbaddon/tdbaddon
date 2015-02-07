@@ -5,6 +5,9 @@
 #EXTINF:0,A1 Report
 rtmp://66.55.93.204/livepkgr playpath=a1stream?adbe-live-event=a1report swfUrl=http://www.aulona.de/player.swf?backcolor=000000&frontcolor=0xFFFFFF&streamer=rtmp://66.55.93.204/livepkgr&file=a1stream?adbe-live-event=a1report&logo=&stretching=exactfit&autostart=true live=1 pageUrl=http://albhd.tk/tv/a1report.html
 
+#EXTINF:0,ABC News
+rtmp://arlind.ontv.al:1935/live/abcnews
+
 #EXTINF:0,Agon Channel 
 
 
@@ -23,6 +26,9 @@ rtmp://fms.zulu.mk/zulu/ playpath=alsat_2 swfUrl=http://on.net.mk/jwp/jwplayer.f
 #EXTINF:0,Alsat M 
 rtmp://fms.zulu.mk:554/zulu playpath=alsat_2 swfUrl=http://on.net.mk/player/player5.swf live=1 pageUrl=http://shqip1.altervista.org/tvlive/alsat_m.html
 
+#EXTINF:0,Alsat M 
+rtmp://arlind.ontv.al:1935/live/alsatm
+
 #EXTINF:0,Amol
 
 
@@ -34,6 +40,9 @@ rtmp://95.107.200.140:554/live/rtmp.stream
 
 #EXTINF:0,Art Kanal
 
+
+#EXTINF:0,ATV
+rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
 
 #EXTINF:0,B92
 http://stream.b92.net:7999/tv-b92.ogg
@@ -48,7 +57,7 @@ http://stream.b92.net:7999/tv-b92.ogg
 
 
 #EXTINF:0,Cegrani Media
-
+http://fms.zulu.mk:1935/zulu/cegrani_1/playlist.m3u8
 
 #EXTINF:0,Dasma TV
 
@@ -58,6 +67,9 @@ http://stream.b92.net:7999/tv-b92.ogg
 
 #EXTINF:0,ERA
 http://fms.zulu.mk:1935/zulu/era_1/hasbahca.m3u8
+
+#EXTINF:0,ERA
+http://fms.zulu.mk:1935/zulu/era_1/BratuMarian.m3u8
 
 #EXTINF:0,ERA
 rtmp://fms.zulu.mk/zulu/ playpath=era_2 swfUrl=http://on.net.mk/jwp/jwplayer.flash.swf live=1 pageUrl=http://on.net.mk/jwp/era.html
@@ -74,8 +86,18 @@ rtmp://fms.zulu.mk/zulu/ playpath=era_2 swfUrl=http://on.net.mk/jwp/jwplayer.fla
 #EXTINF:0,Jug TV
 http://thedream:thedreamiptv@iptv2015.blogdns.net:8000/43.ch
 
+#EXTINF:0,Jug TV
+rtmp://84.20.77.50/live/livestream1
+
+#EXTINF:0,Jug TV
+rtmp://84.20.77.50/live playpath=livestream1 swfUrl=http://player.longtailvideo.com/player5.2.swf live=1 
+pageUrl=http://albhd.tk/tv/jug.html
+
 #EXTINF:0,Kanal 3
 
+
+#EXTINF:0,Kanal 7
+rtmp://arlind.ontv.al:1935/live/kanali7
 
 #EXTINF:0,Klan Kosova
 rtmp://arlind.ontv.al:1935/live/klanhd
@@ -88,6 +110,12 @@ rtmp://live.tvkoha.tv/live/koha app=live/koha swfUrl=http://live.tvkoha.tv/playe
 
 #EXTINF:0,Kopliku TV
 rtmp://psham1.setplex.net:1935/tvalb_loc_ams243?doPublish=eqc3AAs34OL/tvkop2431565
+
+#EXTINF:0,Kopliku TV
+rtmp://psham1.setplex.net:1935/tvalb_loc_ams243/tvkop2431565
+
+#EXTINF:0,Kopliku TV
+http://psham1.setplex.net:1935/tvalb_loc_ams243/tvkop2431565/BratuMarian.m3u8
 
 
 #EXTINF:0,Mitrovica
@@ -120,6 +148,12 @@ rtmp://82.114.65.202/live/ playpath=rrokumtv swfUrl=http://albaniaplus.info/play
 #EXTINF:0,RTK1
 rtmp://wowza.rtkit.com/live playpath=livestream swfUrl=http://www.aulona.de/player.swf?backcolor=000000&frontcolor=0xffffff&streamer=rtmp://wowza.rtkit.com/live&file=livestream&logo=&stretching=exactfit&autostart=true live=1 pageUrl=http://albhd.tk/tv/rtk.html
 
+#EXTINF:0,RTK 1
+rtmp://wowza.rtkit.com/live/livestream
+
+#EXTINF:0,Rtk 1
+http://wowza.rtkit.com:1935/live/livestream/chunklist.m3u8?wowzasessionid=491913886
+
 #EXTINF:0,Sot7
 mms://84.20.73.66:8001
 
@@ -140,6 +174,8 @@ http://88.212.10.27:81/streams/stv2.m3u8?
 
 #EXTINF:0,Teuta
 
+#EXTINF:0,Tip Tv
+rtmp://arlind.ontv.al:1935/live/tiptv
 
 #EXTINF:0,Top Channel
 
@@ -155,5 +191,17 @@ http://88.212.10.27:81/streams/stv2.m3u8?
 
 #EXTINF:0,Vizion Plus 
 rtmp://live.vizionplus.tv:1935/live/ playpath=livestream2 swfUrl=http://www.aulona.de/player.swf?backcolor=0x000000&frontcolor=0xFFFFFF&streamer=rtmp://live.vizionplus.tv:1935/live/&file=livestream2&logo=&stretching=exactfit&autostart=true live=1 pageUrl=http://albhd.tk/tv/vizionplus.html
+
+#EXTINF:0,Vizion Plus 
+rtmp://live.vizionplus.tv/live//livestream2
+
+#EXTINF:0,Vizion Plus 
+rtmp://slive.vizionplus.tv:1935/live/livestream2
+
+#EXTINF:0,Vizion Plus 
+rtmp://arlind.ontv.al:1935/live/vizionplus
+
+#EXTINF:0,Vizion Plus 
+rtmp://slive.vizionplus.tv:1935/live/livestream1
 
 #EXTINF:0,Zico TV
