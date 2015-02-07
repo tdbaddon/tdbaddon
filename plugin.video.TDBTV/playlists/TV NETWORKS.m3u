@@ -41,7 +41,7 @@ http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=130&lan=2&rows=
 
 
 #EXTINF:0,CBS 
-
+http://77.95.36.130/RSEG/HLS_TS/broadcast/boston3/rtsplive/mptslive/cbsact-sat.m3u8
 
 #EXTINF:0,CBS Drama 
 http://cdn-07.sdn.si/cbsdrama/cbsdrama.isml/cbsdrama-video%3D1500000-audio101%3D128000.m3u8
@@ -104,6 +104,9 @@ http://stream1.zoovision.com//livespi/fastnfun/playlist.m3u8
 #EXTINF:0,Film4
 http://77.95.36.130/RSEG/HLS_TS/broadcast/boston2/rtsplive/mptslive/film4-sat.m3u8
 
+#EXTINF:0,Fine Living Network
+http://83.139.104.108/Content/HLS/Live/Channel(Fine_Living)/Stream(03)/index.m3u8
+
 #EXTINF:0,FOX 
 http://cdn-07.sdn.si/fox/fox.isml/fox-video%3D1500000-audio101%3D128000.m3u8
 
@@ -143,10 +146,13 @@ http://cdn-07.sdn.si/foxlife/foxlife.isml/foxlife-video%3D2500000-audio101%3D128
 #EXTINF:0,FOX Life 
 http://cdn-07.sdn.si/foxlife/foxlife.m3u8
 
-#EXTINF:0,Food network
+#EXTINF:0,Food Network
+http://83.139.104.108/Content/HLS/Live/Channel(Food_Network)/Stream(03)/index.m3u8
+
+#EXTINF:0,Food Network
 http://77.95.36.130/RSEG/HLS_TS/broadcast/boston2/rtsplive/mptslive/food.m3u8
 
-#EXTINF:0,Food network
+#EXTINF:0,Food Network
 http://77.95.36.130/RSEG/HLS_TS/broadcast/boston2/rtsplive/mptslive/comm-sat.m3u8
 
 #EXTINF:0,FX 

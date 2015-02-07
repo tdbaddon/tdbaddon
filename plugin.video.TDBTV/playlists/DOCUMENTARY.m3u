@@ -94,6 +94,9 @@ http://edu.infozen.cshls.lldns.net/infozen/edu/edu/edu_1000.m3u8
 #EXTINF:0,NASA TV 
 http://public.infozen.cshls.lldns.net/infozen/public/public/public_1000.m3u8
 
+#EXTINF:0,NASA TV 
+http://www.nasa.gov/multimedia/nasatv/NTV-Public-IPS.m3u8
+
 #EXTINF:0,Nat Geo People 
 
 
@@ -131,9 +134,6 @@ http://odna.octoshape.net/f3f5m2v4/cds/ch5_auto.smil/playlist.m3u8
 
 #EXTINF:0,Travel Channel 
 http://cdn-07.sdn.si/travelchannel/travelchannel.m3u8
-
-#EXTINF:0,Travel Channel 
-http://83.139.104.108/Content/HLS/Live/Channel(Travel_Channel)/Stream(03)/index.m3u8
 
 #EXTINF:0,Travel Channel 
 http://83.139.104.108/Content/HLS/Live/Channel(Travel_Channel)/Stream(03)/index.m3u8

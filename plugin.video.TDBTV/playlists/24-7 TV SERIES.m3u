@@ -37,9 +37,6 @@ rtmp://192.99.38.122/codec playpath=bad02 swfUrl=http://www.tgun.tv/locked/playe
 #EXTINF:0,Bones
 rtmp://192.99.38.122/codec/ playpath=bones02 swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex3.php?bones02
 
-#EXTINF:0,Bonanza
-
-
 #EXTINF:0,Boy Meets World
 
 

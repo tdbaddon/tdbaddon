@@ -14,7 +14,7 @@ mms://ken-cdn220-is-3.se.bptvlive.ngcdn.telstra.com/bp_online_movieextra_high
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=353&lan=2&rows=40&f=.m3u8
 
 #EXTINF:0,Cinestar Action & Thriller 
-
+http://83.139.104.108/Content/HLS/Live/Channel(Cinestar_Action_and_Thriller)/Stream(03)/index.m3u8
 
 #EXTINF:0,Cinestar Premiere 1 
 http://83.139.104.108/Content/HLS/Live/Channel(Cinestar_Premiere_1)/Stream(03)/index.m3u8
@@ -97,19 +97,25 @@ rtmp://mi2.gv.filmon.com:8086/live/10.high.stream
 
 
 #EXTINF:0,Pink Action 2 
+http://109.72.63.89:6011/udp/238.0.0.100:9004
 
+#EXTINF:0,Pink Action 3
+http://109.72.63.89:6011/udp/238.0.0.100:9005
 
 #EXTINF:0,Pink Comedy
-
+http://109.72.63.89:6011/udp/238.0.0.100:9006
 
 #EXTINF:0,Pink Horror 
-
+http://109.72.63.89:6011/udp/238.0.0.100:9002
 
 #EXTINF:0,Pink Movies 3
 
 
 #EXTINF:0,Pink Premium
+http://109.72.63.89:6011/udp/238.0.0.100:9015
 
+#EXTINF:0,Pink Western
+http://109.72.63.89:6011/udp/238.0.0.100:9008
 
 #EXTINF:0,SciFi
 
