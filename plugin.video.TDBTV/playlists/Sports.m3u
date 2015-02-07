@@ -2,7 +2,7 @@
 
 
 #EXTINF:0,1 On 1 Boxing 
-
+http://198.179.31.196/live/1988.low.stream/playlist.m3u8?id=0ad5aac39bb13fbefed6c44547c53119f1e325207493bbf2a1dc2902b51c2f58be7d99e286c3e630fe57ece348ef37483ff56625c080d1b56c5d6509dc89500e3b53ff503be759e81445346c897c767c97c1cd772aef44de04defb4f719967308bfdfc8cec43cfea64ae04d4c804df67b5d70385034bf0f489a43db66e8db5bd7681800a39fb55022de132505fb574022fe5b22721ec7eef 
 
 #EXTINF:0,Big Ten Network 
 http://bigten247.cdnak.bigtenhd.neulion.com/nlds/btn2go/btnnetwork/as/live/btnnetwork_hd_3000.m3u8
@@ -111,7 +111,7 @@ http://foxsportshdhls-lh.akamaihd.net/i/fsnewshls_0@136427/index_248_av-p.m3u8
 rtmp://mi2.gv.filmon.com:8086/live/262.high.stream
 
 #EXTINF:0,NBA TV 
-
+http://198.27.94.105/hls/nba.m3u8 
 
 #EXTINF:0,NBC Golf 
 http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/2596k/prog.m3u8|X-Forwarded-For=209.239.112.104

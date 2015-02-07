@@ -1,6 +1,5 @@
 ﻿#EXTM3U
 
-
 #EXTINF:0,Action Zone 
 rtmp://mi2.gv.filmon.com:8086/live/1045.high.stream
 
@@ -89,6 +88,9 @@ rtmp://mi2.gv.filmon.com:8086/live/10.high.stream
 
 #EXTINF:0,MGM 
 
+
+#EXTINF:0,Movies 24/7
+http://167.114.65.88/hls/mv.m3u8 
 
 #EXTINF:0,Paramount Channel 
 

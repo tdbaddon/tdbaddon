@@ -70,7 +70,14 @@ http://livestation_hls-lh.akamaihd.net/i/cnbc_en@106428/index_838_av-b.m3u8
 #EXTINF:0,CNBC 
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/cnbc_eu/ls_satlink/b_264.m3u8
 
-#EXTINF:0,CTV
+#EXTINF:0,CTV 
+http://198.179.31.198/live/2053.low.stream/playlist.m3u8?id=0ad5aac39bb13fbe80144c43b252dafb17fb250a65f0451e49c7643b683a52fbc6622d0ba3603e2d1f55df0f52f41d9bf12d7ea130aad3e5a4902366a8eda60855528dedda135cd72873bdc93aea11d0b7eeac39cbc456d402903d9485af373447abf6caab264d125478ce345eec1b2681822734517054cf8a046928de616ecf392a1c312e4c63281174c589e85301640704fc90916e42cf 
+
+#EXTINF:0,CTV 
+http://198.179.31.198/live/2059.low.stream/playlist.m3u8?id=0ad5aac39bb13fbe1eceb2f1e62e471e7c1f1ebde1e4fe270ac0ae1cb0f3bec41bfddd9b3a2dbd3e7bd149a3ef803a49970a2084ad8826b83f0b37c7c4dfb8a7d9cdaf6c8ca04e742ad4e983df1549a655f2e895034d4c5b973d3b7f6825527e93526017b3de0fe8326c8319a6582b1c77d7aac7e780d184fb0547d57f04e649c1294c6737a2dc2774199d78cf5111352d4ef5c4309bf743 
+
+#EXTINF:0,CTV 
+http://198.179.31.198/live/2056.low.stream/playlist.m3u8?id=0ad5aac39bb13fbe64a8b613d7ac9c63017f3c4fdedf3f5c57e90009eaf6bfbfe43a729133c5355ad4591e32e2aeee6fddbde30f07cb5c77517ab9bd35bcf9e686be53459233a28f5779576c5b38edc3a9932559dab9bf828caeef5bf7de86a2e90fe0a3ef074f6b899a39e0ea9d57578bb605c9f288e20cdd4756c54c3fcc64064a43cc1abb7283ff5a4623d30ba1016ba1136e828c92b1 
 
 
 #EXTINF:0,Comedy Central
@@ -302,6 +309,12 @@ http://wgntribune-lh.akamaihd.net/i/WGNTribune_1@109089/master.m3u8
 
 #EXTINF:0,Wine Channel TV 
 rtmp://mi2.gv.filmon.com:8086/live/263.high.stream
+
+#EXTINF:0,Wineram TV
+http://198.179.31.197/live/3107.low.stream/playlist.m3u8?id=0ad5aac39bb13fbe1da564cb95077f6663dc046d525887031a2f6e61f3a0d751c7b60ea58677ae3013114bc41e2d4899f3caf04049db73caf95811a4b1b907a1b7f3f3bb34fe490150fa6e73c3103771183ea6aee652512cb926911d7e6234aebfb75766200d4f3b00c5986935ee25831d228d33f27f901990136becad81ceba9e30c557325470e53b653477ca8ab71d1e7c750d68fe36d5 
+
+#EXTINF:0,Wine Oh TV
+http://198.179.31.196/live/3002.low.stream/playlist.m3u8?id=0ad5aac39bb13fbee81d6af2ae0b0a6bf1ae15142df834e93e7e2a7cf9fdec3110aec2e1e3a84ac3c3b8124a30ee8af73c145ca74cc6ffc4eba4788b69f975773d34b641b3a6d6d28d95788b29f0296ec69f69d0243b9df9bcde91223d9b2109bdc2503937cee5ae3a4f3d21765e9ba777cf74c5239eb64f7a3c9dd09f3592e256be4f6f26d3bb138808833eda3646f1d9c91ebee3167f3b 
 
 #EXTINF:0,Wobi
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=293&lan=2&rows=40&f=BratuMarian.m3u8

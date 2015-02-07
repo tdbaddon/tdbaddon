@@ -43,8 +43,17 @@ http://video2.earthcam.com/fecnetwork/4017timessquare.flv/medien.m3u8
 #EXTINF:0,San Francisco Alcatraz
 http://video2.earthcam.com/fecnetwork/6603.flv/medien.m3u8
 
-#EXTINF:0,Santa Monica California
+#EXTINF:0,Santa Monica Beach California
 http://video2.earthcam.com/fecnetwork/6253.flv/hasbahca.m3u8
+
+#EXTINF:0,Santa Monica Beach California
+http://iphone-streaming.ustream.tv/uhls/12623587/streams/live/iphone/playlist.m3u8 
+
+#EXTINF:0,Shark Tank
+http://iphone-streaming.ustream.tv/uhls/14812707/streams/live/iphone/playlist.m3u8 
 
 #EXTINF:0,Space Cam Ecuador
 rtmp://video2.earthcam.com/archives swfUrl=http://www.earthcam.com/swf/cam_player_v2/ecnPlayer.swf playpath=/permanent/5194/2013/05/16/pegasusfirstfootage.flv live=true
+
+
+
