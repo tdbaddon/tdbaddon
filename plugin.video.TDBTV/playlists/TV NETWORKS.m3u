@@ -19,6 +19,9 @@ http://stream1.zoovision.com//livespi/arthouse/playlist.m3u8
 #EXTINF:0,AXN TV 6 
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=109&lan=2&rows=40&f=.m3u8
 
+#EXTINF:0,AXN TV 6 
+http://113.160.49.34/lives/origin03/axnhd.isml/axnhd-2096k.m3u8
+
 #EXTINF:0,BBC 1 
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=129&lan=2&rows=40&f=.m3u8
 
@@ -26,7 +29,7 @@ http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=129&lan=2&rows=
 rtmp://178.18.31.57:443/liverepeater playpath=186372 swfUrl=http://bernardotv.club/atdedead.swf pageUrl=http://biggestplayer.me/streamcr.php?id=186372&width=620&height=490 token=#atd%#$ZH
 
 EXTINF:0,BBC Entertainment 
-http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=130&lan=2&rows=40&f=.m3u8
+
 
 #EXTINF:0,BBC Lifestyle
 
@@ -41,7 +44,10 @@ http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=130&lan=2&rows=
 
 
 #EXTINF:0,CBS 
-http://77.95.36.130/RSEG/HLS_TS/broadcast/boston3/rtsplive/mptslive/cbsact-sat.m3u8
+http://212.250.46.35:4241/bysid/27744
+
+#EXTINF:0,CBS 
+http://212.250.46.35:2003/
 
 #EXTINF:0,CBS Drama 
 http://cdn-07.sdn.si/cbsdrama/cbsdrama.isml/cbsdrama-video%3D1500000-audio101%3D128000.m3u8
@@ -57,6 +63,8 @@ http://cdn-07.sdn.si/cbsdrama/cbsdrama.m3u8
 #EXTINF:0,CBS Reality 
 http://83.139.104.108/Content/HLS/Live/Channel(CBS_Reality)/Stream(03)/index.m3u8
 
+#EXTINF:0,CBS Reality 
+http://212.250.46.35:4244/bysid/14448
 
 #EXTINF:0,CHCH Ontario 
 
@@ -71,13 +79,6 @@ http://livestation_hls-lh.akamaihd.net/i/cnbc_en@106428/index_838_av-b.m3u8
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/cnbc_eu/ls_satlink/b_264.m3u8
 
 #EXTINF:0,CTV 
-http://198.179.31.198/live/2053.low.stream/playlist.m3u8?id=0ad5aac39bb13fbe80144c43b252dafb17fb250a65f0451e49c7643b683a52fbc6622d0ba3603e2d1f55df0f52f41d9bf12d7ea130aad3e5a4902366a8eda60855528dedda135cd72873bdc93aea11d0b7eeac39cbc456d402903d9485af373447abf6caab264d125478ce345eec1b2681822734517054cf8a046928de616ecf392a1c312e4c63281174c589e85301640704fc90916e42cf 
-
-#EXTINF:0,CTV 
-http://198.179.31.198/live/2059.low.stream/playlist.m3u8?id=0ad5aac39bb13fbe1eceb2f1e62e471e7c1f1ebde1e4fe270ac0ae1cb0f3bec41bfddd9b3a2dbd3e7bd149a3ef803a49970a2084ad8826b83f0b37c7c4dfb8a7d9cdaf6c8ca04e742ad4e983df1549a655f2e895034d4c5b973d3b7f6825527e93526017b3de0fe8326c8319a6582b1c77d7aac7e780d184fb0547d57f04e649c1294c6737a2dc2774199d78cf5111352d4ef5c4309bf743 
-
-#EXTINF:0,CTV 
-http://198.179.31.198/live/2056.low.stream/playlist.m3u8?id=0ad5aac39bb13fbe64a8b613d7ac9c63017f3c4fdedf3f5c57e90009eaf6bfbfe43a729133c5355ad4591e32e2aeee6fddbde30f07cb5c77517ab9bd35bcf9e686be53459233a28f5779576c5b38edc3a9932559dab9bf828caeef5bf7de86a2e90fe0a3ef074f6b899a39e0ea9d57578bb605c9f288e20cdd4756c54c3fcc64064a43cc1abb7283ff5a4623d30ba1016ba1136e828c92b1 
 
 
 #EXTINF:0,Comedy Central
@@ -87,7 +88,7 @@ http://198.179.31.198/live/2056.low.stream/playlist.m3u8?id=0ad5aac39bb13fbe64a8
 
 
 #EXTINF:0,E! 
-
+http://200.76.77.237/LIVE/H01/CANAL255/PROFILE03.m3u8?
 
 #EXTINF:0,English Club TV 
 http://85.187.154.9:2001/
@@ -109,7 +110,7 @@ http://83.139.104.108/Content/HLS/Live/Channel(Fashion_TV)/Stream(03)/index.m3u8
 http://stream1.zoovision.com//livespi/fastnfun/playlist.m3u8
 
 #EXTINF:0,Film4
-http://77.95.36.130/RSEG/HLS_TS/broadcast/boston2/rtsplive/mptslive/film4-sat.m3u8
+http://212.250.46.35:4243/bysid/8385
 
 #EXTINF:0,Fine Living Network
 http://83.139.104.108/Content/HLS/Live/Channel(Fine_Living)/Stream(03)/index.m3u8
@@ -142,6 +143,9 @@ http://cdn-07.sdn.si/foxcrime/foxcrime.isml/foxcrime-video%3D2500000-audio101%3D
 #EXTINF:0,FOX Crime 
 http://cdn-07.sdn.si/foxcrime/foxcrime.m3u8
 
+#EXTINF:0,Fox Crime
+http://109.72.63.89:22012/udp/238.0.0.100:9016
+
 #EXTINF:0,FOX Life 
 http://cdn-07.sdn.si/foxlife/foxlife.isml/foxlife-video%3D1500000-audio101%3D128000.m3u8
 
@@ -157,10 +161,7 @@ http://cdn-07.sdn.si/foxlife/foxlife.m3u8
 http://83.139.104.108/Content/HLS/Live/Channel(Food_Network)/Stream(03)/index.m3u8
 
 #EXTINF:0,Food Network
-http://77.95.36.130/RSEG/HLS_TS/broadcast/boston2/rtsplive/mptslive/food.m3u8
-
-#EXTINF:0,Food Network
-http://77.95.36.130/RSEG/HLS_TS/broadcast/boston2/rtsplive/mptslive/comm-sat.m3u8
+http://212.250.46.35:4240/bysid/23040
 
 #EXTINF:0,FX 
 
@@ -195,16 +196,19 @@ http://ios.streamserver01.com:8080/ShowcaseTV/mystream.m3u8
 http://93.184.221.133/00573D/283/283-0.m3u8
 
 #EXTINF:0,ITV 1 
-http://77.95.36.130/RSEG/HLS_TS/broadcast/boston2/rtsplive/mptslive/itv1-sat.m3u8
+http://46.245.179.144:4022/udp/239.4.0.9:1234
 
 #EXTINF:0,ITV 2 
-http://77.95.36.130/RSEG/HLS_TS/broadcast/boston2/rtsplive/mptslive/itv2-sat.m3u8
+http://212.250.46.35:4243/bysid/8325
+
+#EXTINF:0,ITV 2 
+http://46.245.179.144:4022/udp/239.5.5.89:1234
 
 #EXTINF:0,Jewelry Television
 rtmp://jtvmedia.jtv.com:1975/live playpath=live6 swfUrl=http://demandware.edgesuite.net/aaby_prd/on/demandware.static/Sites-jtv-Site/-/default/v1410110388581/swf/flashMediaPlayer/StrobeMediaPlayback.swf live=1 pageUrl=http://www.jtv.com/on/demandware.store/Sites-jtv-Site/default/LiveViewer-Show
 
 #EXTINF:0,Lifetime Network 
-
+http://200.76.77.237/LIVE/H01/CANAL379/PROFILE03.m3u8?
 
 #EXTINF:0,London Live 
 http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
@@ -214,7 +218,7 @@ http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_484.m3u8
 
 
 #EXTINF:0,More4 
-http://77.95.36.130/RSEG/HLS_TS/broadcast/boston3/rtsplive/mptslive/more4-sat.m3u8
+
 
 #EXTINF:0,NHK World 
 http://plslive-w.nhk.or.jp/nhkworld/app/live.m3u8
@@ -235,19 +239,16 @@ rtmp://128.104.144.134/WisconsinChannel/mystream
 rtmp://mi2.gv.filmon.com:8086/live/716.high.stream
 
 #EXTINF:0,QVC 
-rtmp://204.107.26.252:8086/live/413.high.stream
 
-#EXTINF:0,Sky 2 
 
+#EXTINF:0,Sky 1
+http://80.243.182.106:8080/javed/skyonej/index.m3u8
 
 #EXTINF:0,Spike TV 
 
 
 #EXTINF:0,Star World 
 
-
-#EXTINF:0,SportSkool 
-rtmp://204.107.26.252:8086/live/686.high.stream
 
 #EXTINF:0,Studio Universal 
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=376&lan=2&rows=40&f=.m3u8
@@ -284,7 +285,16 @@ http://cdn-07.sdn.si/tlc/tlc.m3u8
 
 
 #EXTINF:0,Tru TV 
+http://cdn.live.simplestream.com/coder5/coder.channels.channel2/hls/2/playlist.m3u8
 
+#EXTINF:0,Tru TV 
+http://212.250.46.35:4240/bysid/23152
+
+#EXTINF:0,True Drama
+http://212.250.46.35:4249/bysid/53380
+
+#EXTINF:0,True Entertainment 
+http://212.250.46.35:4249/bysid/53375
 
 #EXTINF:0,TV Land 
 
@@ -301,7 +311,7 @@ http://149.11.34.6:1935/live/vernissagetv.stream/hasbahca.m3u8
 #EXTINF:0,Warner Brothers 
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=96&lan=2&rows=40&f=.m3u8
 
-#EXTINF:0,Weather Network
+#EXTINF:0,Weather Nation
 http://kalsegsec-a.akamaihd.net:80/dc-0/m/pa-live-publish3/kLive/smil:1_oorxcge2_all.smil/playlist.m3u8
 
 #EXTINF:0,WGN 9 Chicago 
@@ -309,12 +319,6 @@ http://wgntribune-lh.akamaihd.net/i/WGNTribune_1@109089/master.m3u8
 
 #EXTINF:0,Wine Channel TV 
 rtmp://mi2.gv.filmon.com:8086/live/263.high.stream
-
-#EXTINF:0,Wineram TV
-http://198.179.31.197/live/3107.low.stream/playlist.m3u8?id=0ad5aac39bb13fbe1da564cb95077f6663dc046d525887031a2f6e61f3a0d751c7b60ea58677ae3013114bc41e2d4899f3caf04049db73caf95811a4b1b907a1b7f3f3bb34fe490150fa6e73c3103771183ea6aee652512cb926911d7e6234aebfb75766200d4f3b00c5986935ee25831d228d33f27f901990136becad81ceba9e30c557325470e53b653477ca8ab71d1e7c750d68fe36d5 
-
-#EXTINF:0,Wine Oh TV
-http://198.179.31.196/live/3002.low.stream/playlist.m3u8?id=0ad5aac39bb13fbee81d6af2ae0b0a6bf1ae15142df834e93e7e2a7cf9fdec3110aec2e1e3a84ac3c3b8124a30ee8af73c145ca74cc6ffc4eba4788b69f975773d34b641b3a6d6d28d95788b29f0296ec69f69d0243b9df9bcde91223d9b2109bdc2503937cee5ae3a4f3d21765e9ba777cf74c5239eb64f7a3c9dd09f3592e256be4f6f26d3bb138808833eda3646f1d9c91ebee3167f3b 
 
 #EXTINF:0,Wobi
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=293&lan=2&rows=40&f=BratuMarian.m3u8

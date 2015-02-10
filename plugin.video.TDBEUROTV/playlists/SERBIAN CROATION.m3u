@@ -56,7 +56,6 @@ mms://77.238.209.50:1234
 #EXTINF:0,History
 http://84.22.33.3:8053
 
-
 #EXTINF:0,Hronka
 http://213.81.153.221:8080/hronka
 
@@ -106,7 +105,7 @@ http://83.139.104.108/Content/HLS/Live/Channel(KanalRI)/Stream(03)/index.m3u8
 http://213.81.153.221:8080/karpaty
 
 #EXTINF:0,KCN 3
-
+http://178.79.24.7:9013
 
 #EXTINF:0,Kino TV
 http://83.139.104.108/Content/HLS/Live/Channel(Kino_TV)/Stream(03)/index.m3u8
@@ -121,7 +120,7 @@ rtmp://91.82.85.44/live/konyhatv
 http://213.81.153.221:8080/kezmarok
 
 #EXTINF:0,Leskovac TV
-
+http://5.153.25.7:8081/stream/?channel=tvleskovac&stream=1mb
 
 #EXTINF:0,Music Box
 http://213.81.153.221:8080/nasa
@@ -163,34 +162,43 @@ http://83.139.104.108/Content/HLS/Live/Channel(Osjecka_TV)/Stream(03)/index.m3u8
 rtmp://149.11.34.6/live/partytv.stream
 
 #EXTINF:0,Pink
-
+http://109.72.63.89:22012/udp/238.0.0.100:9001
 
 #EXTINF:0,Pink 2
-http://balkantvmedia.com/stream/PINK2/Marica18/iptv0205
+
 
 #EXTINF:0,Pink 3
 
 
 #EXTINF:0,Pink Action 2
-http://109.72.63.89:6011/udp/238.0.0.100:9004
+http://109.72.63.89:22012/udp/238.0.0.100:9004
+
+#EXTINF:0,Pink Action 3
+http://109.72.63.89:22012/udp/238.0.0.100:9005
+
+#EXTINF:0,Pink Comedy
+http://109.72.63.89:22012/udp/238.0.0.100:9006
 
 #EXTINF:0,Pink Film
-http://109.72.63.89:6011/udp/238.0.0.100:9007
+http://109.72.63.89:22012/udp/238.0.0.100:9007
 
 #EXTINF:0,Pink Folk 1
 
 
 #EXTINF:0,Pink Horror
-http://109.72.63.89:6011/udp/238.0.0.100:9002
+http://109.72.63.89:22012/udp/238.0.0.100:9002 
 
 #EXTINF:0,Pink Kids
 
-mm
+
 #EXTINF:0,Pink Live
 
 
 #EXTINF:0,Pink M
 
+
+#EXTINF:0,Pink Movies 2
+http://109.72.63.89:22012/udp/238.0.0.100:9009
 
 #EXTINF:0,Pink Movies 3
 
@@ -211,7 +219,7 @@ mm
 
 
 #EXTINF:0,Pink Premium
-http://109.72.63.89:6011/udp/238.0.0.100:9015
+http://109.72.63.89:22012/udp/238.0.0.100:9015
 
 #EXTINF:0,Pink Reality
 
@@ -225,6 +233,9 @@ http://109.72.63.89:6011/udp/238.0.0.100:9015
 #EXTINF:0,Pink Zabava
 
 
+#EXTINF:0,Pink Western
+http://109.72.63.89:22012/udp/238.0.0.100:9008
+
 #EXTINF:0,Planet TV
 rtsp://origin.biokoda.tv/live/mbit-planet?k=planettv-public
 
@@ -233,6 +244,12 @@ mmsh://195.252.113.38:80/rts?MSWMExt=.asf
 
 #EXTINF:0,PTC
 http://109.72.63.89:6011/udp/238.0.0.100:9010
+
+#EXTINF:0,PTC
+http://109.72.63.89:22012/udp/238.0.0.100:9014
+
+#EXTINF:0,PRVA
+http://109.72.63.89:22012/udp/238.0.0.100:9012
 
 #EXTINF:0,RTB TV
 http://83.139.104.108/Content/HLS/Live/Channel(RTB_TV)/Stream(03)/index.m3u8
@@ -254,6 +271,9 @@ http://213.81.153.221:8080/ruzinov
 
 #EXTINF:0,SB TV
 http://83.139.104.108/Content/HLS/Live/Channel(SBTV)/Stream(03)/index.m3u8
+
+#EXTINF:0,SB TV
+http://109.72.63.89:22012/udp/238.0.0.100:9013
 
 #EXTINF:0,Slager TV
 http://92.62.234.221:10000

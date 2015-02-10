@@ -46,7 +46,7 @@ http://202.75.23.34:1400/live/ch29/02.m3u8
 #EXTINF:0,Discovery Channel 
 http://83.139.104.108/Content/HLS/Live/Channel(Discovery_Channel)/Stream(03)/index.m3u8
 
-#EXTINF:0,Discovery History a
+#EXTINF:0,Discovery History 
 
 
 #EXTINF:0,Discovery Investigation 
@@ -59,7 +59,7 @@ http://83.139.104.108/Content/HLS/Live/Channel(Discovery_Channel)/Stream(03)/ind
 
 
 #EXTINF:0,Discovery Theater
-
+http://200.76.77.237/LIVE/H01/CANAL351/PROFILE03.m3u8?
 
 #EXTINF:0,Discovery Turbo 
 
@@ -124,7 +124,7 @@ http://cdn-07.sdn.si/natgeo/natgeo.isml/natgeo-video%3D2500000-audio101%3D128000
 http://cdn-07.sdn.si/natgeo/natgeo.m3u8
 
 #EXTINF:0,Paranormal TV 
-rtmp://mi2.gv.filmon.com:8086/live/1618.high.stream
+
 
 #EXTINF:0,RT News Documentary 
 http://odna.octoshape.net/f3f5m2v4/cds/ch5_auto.smil/playlist.m3u8 

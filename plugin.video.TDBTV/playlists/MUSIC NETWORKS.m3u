@@ -3,7 +3,7 @@
 
 
 #EXTINF:0,4Music 
-http://77.95.36.130/RSEG/HLS_TS/broadcast/HB400-4/rtsplive/mptslive/4music.m3u8
+http://212.250.46.35:4241/bysid/25664
 
 #EXTINF:0,AKA 
 http://rrr.sz.xlcdn.com/?account=AATW&file=akanew&type=live&service=wowza&protocol=http&output=playlist.m3u8
@@ -45,7 +45,7 @@ http://www.djing.com/tv/02.m3u8
 rtmp://149.11.34.6/live/gotica.stream
 
 #EXTINF:0,Heat 
-http://77.95.36.130/RSEG/HLS_TS/broadcast/boston3/rtsplive/mptslive/heat-sat.m3u8
+
 
 #EXTINF:0,Heart TV 
 
@@ -136,7 +136,7 @@ rtmp://149.11.34.6/live/stagetv.stream
 
 
 #EXTINF:0,The Heat 
-http://77.95.36.130/RSEG/HLS_TS/broadcast/boston3/rtsplive/mptslive/heat-sat.m3u8
+
 
 #EXTINF:0,Vevo Hits 
 http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch2/06/prog_index.m3u8

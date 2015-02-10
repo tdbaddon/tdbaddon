@@ -73,8 +73,8 @@ rtmp://192.99.38.122/codec playpath=koth02 swfUrl=http://www.tgun.tv/lock/player
 #EXTINF:0,Nick 
 
 
-#EXTINF:0,Nick Jr 
-
+#EXTINF:0,Nick Jr
+http://176.51.84.162:1234/udp/233.7.70.169:5000
 
 #EXTINF:0,Nickelodeon 
 http://cdn-07.sdn.si/nickelodeon/nickelodeon.isml/nickelodeon-video%3D1500000-audio101%3D128000.m3u8
@@ -85,8 +85,8 @@ http://cdn-07.sdn.si/nickelodeon/nickelodeon.isml/nickelodeon-video%3D2500000-au
 #EXTINF:0,NickNight 
 
 
-#EXTINF:0,Sky Movies Disney
-http://176.31.182.148:8080/sky/disney/index.m3u8
+#EXTINF:0,Sky Movies Disney 
+
 
 #EXTINF:0,The Cleveland Show 
 
