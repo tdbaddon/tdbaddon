@@ -11,9 +11,6 @@ http://abclive.abcnews.com/i/abc_live4@136330/index_1200_av-b.m3u8
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/aljazeera_en/ls_satlink/b_528.m3u8%20#
 
 #EXTINF:0,BBC News 
-http://212.250.46.35:4242/bysid/4352
-
-#EXTINF:0,BBC News 
 http://212.250.46.35:3001/
 
 #EXTINF:0,BBC World News 
@@ -36,7 +33,6 @@ http://77.36.61.45:8010/CCTVNews.m3u8
 
 #EXTINF:0,CNBC
 http://livestation_hls-lh.akamaihd.net/i/cnbc_en@106428/index_838_av-b.m3u8?sd=10&rebase=on
-sd=10&rebase=on
 
 #EXTINF:0,CNN 
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/cnn/ls_satlink/b_828.m3u8
@@ -103,9 +99,6 @@ http://odna.octoshape.net/f3f5m2v4/cds/ch6_auto.smil/playlist.m3u8
 
 #EXTINF:0,Sky News 
 http://wpc.C1A9.edgecastcdn.net/hls-live/20C1A9/skynews/ls_satlink/b_,264,528,828,.m3u8
-
-#EXTINF:0,Sky News 
-http://212.250.46.35:4240/bysid/22080
 
 #EXTINF:0,Sky News International
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/skynews/ls_satlink/b_828.m3u8

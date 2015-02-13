@@ -11,7 +11,7 @@ rtmp://198.27.75.99/folder/ playpath=2bg01 swfUrl=http://www.tgun.tv/locked/play
 rtmp://198.27.75.99/codec playpath=aitf swfUrl=http://www.tgun.tv/locked/player.swf live=1 pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex5.php?aitf
 
 #EXTINF:0, American Dad
-rtmp://192.99.38.122/codec/ playpath=americandad02 swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash live=1 pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex3.php?americandad02
+http://167.114.65.74/hls/ad.m3u8
 
 #EXTINF:0,American Pickers
 
@@ -168,6 +168,9 @@ rtmp://50.7.78.50:443/live?BedcyK9Mn4Mnp581N6qB4A9juCwcixki playpath=live_highsp
 
 #EXTINF:0,South Park
 rtmp://198.255.0.10:443/live?BedcyK9Mn4Mnp581N6qB4A9juCwcixki playpath=live_111aaacharksouthpk swfUrl=http://vaughnlive.tv/4268778366/swf/VaughnSoftPlayer.swf pageUrl=http://vaughnlive.tv/embed/video/111aaacharksouthpk
+
+#EXTINF:0,South Park
+http://167.114.65.88/hls/sp.m3u8
 
 #EXTINF:0,Star Trek DS9
 rtmp://192.99.38.122/codec playpath=ds902 swfUrl=http://www.tgun.tv/lock/player.swf live=1 pageUrl=http://www.tgun.tv/menus/players/playerindex3.php?ds901

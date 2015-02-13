@@ -5,7 +5,10 @@
 
 
 #EXTINF:0,ABC 
+http://198.27.94.105/hls/abc.m3u8
 
+#EXTINF:0,ABC Family
+http://198.27.94.105/hls/abcfam.m3u8
 
 #EXTINF:0,ACC TV
 http://stream.acctv.com.au/06.m3u8
@@ -44,36 +47,19 @@ EXTINF:0,BBC Entertainment
 
 
 #EXTINF:0,CBS 
-http://212.250.46.35:4241/bysid/27744
 
-#EXTINF:0,CBS 
-http://212.250.46.35:2003/
 
-#EXTINF:0,CBS Drama 
-http://cdn-07.sdn.si/cbsdrama/cbsdrama.isml/cbsdrama-video%3D1500000-audio101%3D128000.m3u8
-
+#EXTINF:0,CBS Action
+http://212.250.46.35:2003
 
 #EXTINF:0,CBS Drama 
-http://cdn-07.sdn.si/cbsdrama/cbsdrama.isml/cbsdrama-video%3D2500000-audio101%3D128000.m3u8
 
-
-#EXTINF:0,CBS Drama 
-http://cdn-07.sdn.si/cbsdrama/cbsdrama.m3u8
 
 #EXTINF:0,CBS Reality 
-http://83.139.104.108/Content/HLS/Live/Channel(CBS_Reality)/Stream(03)/index.m3u8
 
-#EXTINF:0,CBS Reality 
-http://212.250.46.35:4244/bysid/14448
 
 #EXTINF:0,CHCH Ontario 
 
-
-#EXTINF:0,CNBC 
-http://livestation_hls-lh.akamaihd.net/i/cnbc_en@106428/master.m3u8
-
-#EXTINF:0,CNBC 
-http://livestation_hls-lh.akamaihd.net/i/cnbc_en@106428/index_838_av-b.m3u8
 
 #EXTINF:0,CNBC 
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/cnbc_eu/ls_satlink/b_264.m3u8
@@ -82,7 +68,7 @@ http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/cnbc_eu/ls_satlink/b_264.m3u8
 
 
 #EXTINF:0,Comedy Central
-
+http://46.245.179.144:4022/udp/239.5.6.59:1234
 
 #EXTINF:0,CW 
 
@@ -91,7 +77,7 @@ http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/cnbc_eu/ls_satlink/b_264.m3u8
 http://200.76.77.237/LIVE/H01/CANAL255/PROFILE03.m3u8?
 
 #EXTINF:0,English Club TV 
-http://85.187.154.9:2001/
+
 
 #EXTINF:0,Fashion Box
 http://stream1.zoovision.com//livespi/fashionbox/playlist.m3u8
@@ -100,82 +86,40 @@ http://stream1.zoovision.com//livespi/fashionbox/playlist.m3u8
 http://hls.novotelecom.ru/streaming/fashion/tvrec/playlist.m3u8
 
 #EXTINF:0,Fashion TV 
-http://cdn-07.sdn.si/fashiontv/fashiontv.m3u8
-
-#EXTINF:0,Fashion TV 
-http://83.139.104.108/Content/HLS/Live/Channel(Fashion_TV)/Stream(03)/index.m3u8
-
+http://hls.novotelecom.ru/streaming/fashion/tvrec/playlist.m3u8?b?b*t$ timeout=10
 
 #EXTINF:0,Fast & Fun Box
 http://stream1.zoovision.com//livespi/fastnfun/playlist.m3u8
 
 #EXTINF:0,Film4
-http://212.250.46.35:4243/bysid/8385
+
 
 #EXTINF:0,Fine Living Network
-http://83.139.104.108/Content/HLS/Live/Channel(Fine_Living)/Stream(03)/index.m3u8
-
-#EXTINF:0,FOX 
-http://cdn-07.sdn.si/fox/fox.isml/fox-video%3D1500000-audio101%3D128000.m3u8
 
 
-#EXTINF:0,FOX 
-http://cdn-07.sdn.si/fox/fox.isml/fox-video%3D2500000-audio101%3D128000.m3u8
+#EXTINF:0,Fox
 
 
-#EXTINF:0,FOX 
-http://cdn-07.sdn.si/fox/fox.m3u8
-
-#EXTINF:0,FOX 5 
+#EXTINF:0,Fox 5 
 
 
-#EXTINF:0,FOX 45 
+#EXTINF:0,Fox 45 
 
-
-#EXTINF:0,FOX Crime 
-http://cdn-07.sdn.si/foxcrime/foxcrime.isml/foxcrime-video%3D1500000-audio101%3D128000.m3u8
-
-
-#EXTINF:0,FOX Crime 
-http://cdn-07.sdn.si/foxcrime/foxcrime.isml/foxcrime-video%3D2500000-audio101%3D128000.m3u8
-
-
-#EXTINF:0,FOX Crime 
-http://cdn-07.sdn.si/foxcrime/foxcrime.m3u8
 
 #EXTINF:0,Fox Crime
-http://109.72.63.89:22012/udp/238.0.0.100:9016
-
-#EXTINF:0,FOX Life 
-http://cdn-07.sdn.si/foxlife/foxlife.isml/foxlife-video%3D1500000-audio101%3D128000.m3u8
 
 
-#EXTINF:0,FOX Life 
-http://cdn-07.sdn.si/foxlife/foxlife.isml/foxlife-video%3D2500000-audio101%3D128000.m3u8
+#EXTINF:0,Fox Life 
 
-
-#EXTINF:0,FOX Life 
-http://cdn-07.sdn.si/foxlife/foxlife.m3u8
 
 #EXTINF:0,Food Network
-http://83.139.104.108/Content/HLS/Live/Channel(Food_Network)/Stream(03)/index.m3u8
 
-#EXTINF:0,Food Network
-http://212.250.46.35:4240/bysid/23040
 
 #EXTINF:0,FX 
 
 
 #EXTINF:0,Ginx Gaming TV 
-http://cdn-07.sdn.si/ginx/ginx.isml/ginx-video%3D1500000-audio101%3D128000.m3u8
 
-
-#EXTINF:0,Ginx Gaming TV 
-http://cdn-07.sdn.si/ginx/ginx.isml/ginx-video%3D2500000-audio101%3D128000.m3u8
-
-
-#EXTINF:0,Ginx Gaming TV 
-http://cdn-07.sdn.si/ginx/ginx.m3u8
 
 #EXTINF:0,Hallmark Channel 
 
@@ -197,9 +141,6 @@ http://93.184.221.133/00573D/283/283-0.m3u8
 
 #EXTINF:0,ITV 1 
 http://46.245.179.144:4022/udp/239.4.0.9:1234
-
-#EXTINF:0,ITV 2 
-http://212.250.46.35:4243/bysid/8325
 
 #EXTINF:0,ITV 2 
 http://46.245.179.144:4022/udp/239.5.5.89:1234
@@ -244,6 +185,9 @@ rtmp://mi2.gv.filmon.com:8086/live/716.high.stream
 #EXTINF:0,Sky 1
 http://80.243.182.106:8080/javed/skyonej/index.m3u8
 
+#EXTINF:0,Sky 1
+http://37.157.246.170:8000/sky/one/index.m3u8
+
 #EXTINF:0,Spike TV 
 
 
@@ -266,19 +210,6 @@ http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=376&lan=2&rows=
 http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/master.m3u8?b?b*t$
 
 #EXTINF:0,TLC 
-http://83.139.104.108/Content/HLS/Live/Channel(TLC)/Stream(03)/index.m3u8
-
-
-#EXTINF:0,TLC 
-http://cdn-07.sdn.si/tlc/tlc.isml/tlc-video%3D2500000-audio101%3D128000.m3u8
-
-
-#EXTINF:0,TLC 
-http://cdn-07.sdn.si/tlc/tlc.isml/tlc-video%3D2500000-audio101%3D128000.m3u8
-
-
-#EXTINF:0,TLC 
-http://cdn-07.sdn.si/tlc/tlc.m3u8
 
 
 #EXTINF:0,TNT 
@@ -287,14 +218,11 @@ http://cdn-07.sdn.si/tlc/tlc.m3u8
 #EXTINF:0,Tru TV 
 http://cdn.live.simplestream.com/coder5/coder.channels.channel2/hls/2/playlist.m3u8
 
-#EXTINF:0,Tru TV 
-http://212.250.46.35:4240/bysid/23152
-
 #EXTINF:0,True Drama
-http://212.250.46.35:4249/bysid/53380
+
 
 #EXTINF:0,True Entertainment 
-http://212.250.46.35:4249/bysid/53375
+
 
 #EXTINF:0,TV Land 
 

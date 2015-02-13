@@ -13,16 +13,16 @@ http://113.160.49.34/lives/origin03/cinemaxsd.isml/cinemaxsd-1096k.m3u8
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=353&lan=2&rows=40&f=.m3u8
 
 #EXTINF:0,Cinestar Action & Thriller 
-http://83.139.104.108/Content/HLS/Live/Channel(Cinestar_Action_and_Thriller)/Stream(03)/index.m3u8
+
 
 #EXTINF:0,Cinestar Premiere 1 
-http://83.139.104.108/Content/HLS/Live/Channel(Cinestar_Premiere_1)/Stream(03)/index.m3u8
+
 
 #EXTINF:0,Cinestar Premiere 2 
-http://83.139.104.108/Content/HLS/Live/Channel(Cinestar_Premiere_2)/Stream(03)/index.m3u8
+
 
 #EXTINF:0,Cinestar TV 
-http://83.139.104.108/Content/HLS/Live/Channel(Cinestar_TV)/Stream(03)/index.m3u8
+
 
 #EXTINF:0,CMore Action
 
@@ -52,15 +52,7 @@ http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=345&lan=2&rows=
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=342&lan=2&rows=40&f=.m3u8
 
 #EXTINF:0,Fox Movies 
-http://cdn-07.sdn.si/foxmovies/foxmovies.isml/foxmovies-video%3D1500000-audio101%3D128000.m3u8
 
-
-#EXTINF:0,Fox Movies 
-http://cdn-07.sdn.si/foxmovies/foxmovies.isml/foxmovies-video%3D2500000-audio101%3D128000.m3u8
-
-
-#EXTINF:0,Fox Movies 
-http://cdn-07.sdn.si/foxmovies/foxmovies.m3u8
 
 #EXTINF:0,Fright Fest 
 
@@ -79,7 +71,7 @@ http://113.160.49.34/lives/origin03/hbohd.isml/hbohd-2096k.m3u8
 
 
 #EXTINF:0,Kino TV 
-http://83.139.104.108/Content/HLS/Live/Channel(Kino_TV)/Stream(03)/index.m3u8
+
 
 #EXTINF:0,Kung Fu Classics 
 rtmp://mi2.gv.filmon.com:8086/live/10.high.stream
@@ -94,32 +86,31 @@ rtmp://mi2.gv.filmon.com:8086/live/10.high.stream
 http://167.114.65.88/hls/mv.m3u8 
 
 #EXTINF:0,Movies 4 Men
-http://212.250.46.35:4240/bysid/24016
 
 
 #EXTINF:0,Paramount Channel
-http://176.51.84.162:1234/udp/233.7.70.113:5000
+
 
 #EXTINF:0,Pink Action 2
-http://109.72.63.89:22012/udp/238.0.0.100:9004
+
 
 #EXTINF:0,Pink Action 3
-http://109.72.63.89:22012/udp/238.0.0.100:9005
+
 
 #EXTINF:0,Pink Comedy
-http://109.72.63.89:22012/udp/238.0.0.100:9006
+
 
 #EXTINF:0,Pink Horror
-http://109.72.63.89:22012/udp/238.0.0.100:9002 
+
 
 #EXTINF:0,Pink Movies 2
-http://109.72.63.89:22012/udp/238.0.0.100:9009
+
 
 #EXTINF:0,Pink Premium
-http://109.72.63.89:22012/udp/238.0.0.100:9015
+
 
 #EXTINF:0,Pink Western
-http://109.72.63.89:22012/udp/238.0.0.100:9008
+
 
 #EXTINF:0,SciFi
 
@@ -129,6 +120,12 @@ http://109.72.63.89:22012/udp/238.0.0.100:9008
 
 #EXTINF:0,Sky Movies Action
 http://80.243.182.106:8080/javed/skyactionj/index.m3u8
+
+#EXTINF:0,Sky Movies Atlantic
+http://37.157.246.170:8000/sky/atlantic/index.m3u8
+
+#EXTINF:0,Sky Movies Crime
+http://37.48.118.32/live/mcrime.stream/playlist.m3u8?wowzasessionid=206319818
 
 #EXTINF:0,Sky Movies Drama
 http://80.243.182.106:8080/javed/skydramaj/index.m3u8
@@ -158,7 +155,7 @@ http://212.250.46.35:4249/bysid/53325
 
 
 #EXTINF:0,TV 1000 Action
-http://193.23.58.156:8888/udp/234.1.20.14:1234
+
 
 
 
