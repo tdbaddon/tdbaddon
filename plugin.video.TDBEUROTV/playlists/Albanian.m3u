@@ -158,7 +158,7 @@ http://wowza.rtkit.com:1935/live/livestream/chunklist.m3u8?wowzasessionid=491913
 mms://84.20.73.66:8001
 
 #EXTINF:0,Super Sport Kosova 1
-
+http://akamai248.tibo.tv/testeri/ngrp:ss1dga.stream_all/playlist.m3u8
 
 #EXTINF:0,Super Sport Kosova 2
 

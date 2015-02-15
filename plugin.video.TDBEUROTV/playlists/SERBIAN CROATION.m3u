@@ -171,22 +171,22 @@ http://109.72.63.89:22012/udp/238.0.0.100:9001
 
 
 #EXTINF:0,Pink Action 2
-http://109.72.63.89:22012/udp/238.0.0.100:9004
+
 
 #EXTINF:0,Pink Action 3
-http://109.72.63.89:22012/udp/238.0.0.100:9005
+
 
 #EXTINF:0,Pink Comedy
-http://109.72.63.89:22012/udp/238.0.0.100:9006
+
 
 #EXTINF:0,Pink Film
-http://109.72.63.89:22012/udp/238.0.0.100:9007
+
 
 #EXTINF:0,Pink Folk 1
 
 
 #EXTINF:0,Pink Horror
-http://109.72.63.89:22012/udp/238.0.0.100:9002 
+
 
 #EXTINF:0,Pink Kids
 
@@ -198,7 +198,7 @@ http://109.72.63.89:22012/udp/238.0.0.100:9002
 
 
 #EXTINF:0,Pink Movies 2
-http://109.72.63.89:22012/udp/238.0.0.100:9009
+
 
 #EXTINF:0,Pink Movies 3
 
@@ -219,7 +219,7 @@ http://109.72.63.89:22012/udp/238.0.0.100:9009
 
 
 #EXTINF:0,Pink Premium
-http://109.72.63.89:22012/udp/238.0.0.100:9015
+
 
 #EXTINF:0,Pink Reality
 
@@ -234,7 +234,7 @@ http://109.72.63.89:22012/udp/238.0.0.100:9015
 
 
 #EXTINF:0,Pink Western
-http://109.72.63.89:22012/udp/238.0.0.100:9008
+
 
 #EXTINF:0,Planet TV
 rtsp://origin.biokoda.tv/live/mbit-planet?k=planettv-public

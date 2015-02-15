@@ -27,6 +27,7 @@ http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=353&lan=2&rows=
 #EXTINF:0,CMore Action
 
 
+
 #EXTINF:0,CMore Emotion
 
 
@@ -38,20 +39,11 @@ http://akamai231.tibo.tv/m3u8/aksionchannel.m3u8
 #EXTINF:0,Film Digi Gold
 http://akamai231.tibo.tv/m3u8/goldchannel.m3u8
 
-#EXTINF:0,Film Drame
-http://akamai231.tibo.tv/m3u8/dramechannel.m3u8
-
 #EXTINF:0,Film Dy
 http://akamai227.tibo.tv/227t2apk1/filmdy.stream_720p/playlist.m3u8
 
-#EXTINF:0,Film Hits
-http://akamai231.tibo.tv/m3u8/hitschannel.m3u8
-
 #EXTINF:0,Film Komedi
 http://akamai231.tibo.tv/m3u8/komedichannel.m3u8
-
-#EXTINF:0,Film Thriller
-http://akamai231.tibo.tv/m3u8/thrillerchannel.m3u8
 
 #EXTINF:0,Film Box Live
 
@@ -102,9 +94,6 @@ rtmp://mi2.gv.filmon.com:8086/live/10.high.stream
 #EXTINF:0,MBC 2
 http://63.237.48.23/ios/MBC2/MBC2.m3u8
 
-#EXTINF:0,MBC Action
-http://63.237.48.23/ios/MBC_ACTION/MBC_ACTION.m3u8
-
 #EXTINF:0,MBC Max
 http://63.237.48.23/ios/MBC_MAX/MBC_MAX.m3u8
 
@@ -118,6 +107,9 @@ http://167.114.65.88/hls/mv.m3u8
 
 
 #EXTINF:0,Paramount Channel
+
+
+#EXTINF:0,Pink Action 
 
 
 #EXTINF:0,Pink Action 2

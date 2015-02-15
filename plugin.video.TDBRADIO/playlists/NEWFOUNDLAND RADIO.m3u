@@ -1,0 +1,35 @@
+﻿#EXTM3U
+
+
+#EXTINF:0,93.5FM CHMR
+http://mp3srv.munsu.mun.ca:8000
+
+#EXTINF:0,94.7FM CHOZ OZ 
+http://174.37.159.206:8262
+
+#EXTINF:0,99.1FM CKIX HITS
+http://3043.live.streamtheworld.com/CKIXFMAAC?streamtheworld_user=1&nobuf=1422335261486
+
+#EXTINF:0,101.1FM CKSJ COAST
+http://server6.reliastream.com/tunein.php/coastbro/playlist.asx
+
+#EXTINF:0,103.9FM CHVO KIXX Country
+http://9213.live.streamtheworld.com/CHVOAMAAC_SC
+
+#EXTINF:0,103.9FM CKXX K-ROCK
+http://1611.live.streamtheworld.com/CKXXFMAAC_SC
+
+#EXTINF:0,1210AM VOAR
+http://s3.voscast.com:7820
+
+#EXTINF:0,590AM VOCM
+http://2773.live.streamtheworld.com/VOCMFMAAC_SC
+
+#EXTINF:0,800AM VOWR
+http://1651.live.streamtheworld.com/VOWRAMAAC_SC
+
+#EXTINF:0,570AM CFCB
+http://3103.live.streamtheworld.com/CFCBAMAAC_SC
+
+#EXTINF:0,870AM CFSX
+http://api-public.addthis.com/url/shares.json?url=http://www.surfmusic.de/radio-station/cfsx-870,16531.html&callback=_ate.cbs.sc_httpwwwsurfmusicderadiostationcfsx87016531html0

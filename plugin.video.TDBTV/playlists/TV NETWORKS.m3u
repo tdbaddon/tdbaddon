@@ -50,7 +50,7 @@ EXTINF:0,BBC Entertainment
 
 
 #EXTINF:0,CBS Action
-http://212.250.46.35:2003
+
 
 #EXTINF:0,CBS Drama 
 
@@ -113,7 +113,7 @@ http://akamai231.tibo.tv/m3u8/foxcrimechannel.m3u8
 http://akamai231.tibo.tv/m3u8/foxlifechannel.m3u8
 
 #EXTINF:0,Food Network
-
+http://83.139.104.101/Content/HLS/Live/Channel(food_network)/Stream(03)/index.m3u8
 
 #EXTINF:0,FX 
 
