@@ -34,7 +34,7 @@ http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=353&lan=2&rows=
 
 
 #EXTINF:0,Film Box Live
-http://stream.zoovision.com:1935/livespi/arthouse/chunklist_w1601426913.m3u8
+
 
 #EXTINF:0,Fox 1
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=297&lan=2&rows=40&f=BratuMarian.m3u8
@@ -52,7 +52,7 @@ http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=345&lan=2&rows=
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=342&lan=2&rows=40&f=.m3u8
 
 #EXTINF:0,Fox Movies 
-
+http://200.76.77.237/LIVE/H01/CANAL417/PROFILE03.m3u8?
 
 #EXTINF:0,Fright Fest 
 

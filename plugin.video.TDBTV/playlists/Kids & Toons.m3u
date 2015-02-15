@@ -17,19 +17,19 @@
 
 
 #EXTINF:0,Cartoon Network 
-http://198.27.94.105/hls/cartoon.m3u8
+
 
 #EXTINF:0,DaVinci Learning
 
 
 #EXTINF:0,Disney Channel 
-
+http://akamai231.tibo.tv/m3u8/disneychannel.m3u8
 
 #EXTINF:0,Disney Cinemagic 
 
  
 #EXTINF:0,Disney Junior 
-
+http://80.80.160.201/http_livestr.m3u8?id=juniortv&k=pako_6234323231383137313533373734396134613035346434343030383334326361003530363663613965326165366461636630656339656134356530623037616639006d656e746f722e7368616c613030320066696c6d616b73696f6e
 
 #EXTINF:0,Disney XD 
 
@@ -38,13 +38,13 @@ http://198.27.94.105/hls/cartoon.m3u8
 rtmp://mi2.gv.filmon.com:8086/live/719.high.stream
 
 #EXTINF:0,Family Guy 
-http://167.114.65.74/hls/fg.m3u8
+rtmpe://192.99.21.184/blink0110/ playpath=familyguy02 swfUrl=http://www.tgun.tv/lock/player.swf live=1 pageUrl=http://www.tgun.tv/menus/players/playerindex3.php?familyguy01
 
 #EXTINF:0,Full House 
 
 
 #EXTINF:0,Futurama 
-http://167.114.65.74/hls/fa.m3u8
+rtmpe://192.99.38.122/blink0220/ playpath=2501 swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf pageUrl=http://www.tgun.tv/menus/players/dlock/playerindextab2.php?2501
 
 #EXTINF:0,Jim Jam 
 
@@ -53,7 +53,7 @@ http://167.114.65.74/hls/fa.m3u8
 rtmp://mi2.gv.filmon.com:1935/live/_definst_/2734.low.stream?b?b*t$
 
 #EXTINF:0,King of the Hill 
-
+rtmpe://192.99.21.184/blink0110/ playpath=koth02 swfUrl=http://www.tgun.tv/lock/player.swf live=1 pageUrl=http://www.tgun.tv/menus/players/playerindex3.php?koth01
 
 #EXTINF:0,Nick 
 
@@ -74,7 +74,7 @@ rtmp://mi2.gv.filmon.com:1935/live/_definst_/2734.low.stream?b?b*t$
 
 
 #EXTINF:0,The Simpsons 
-http://167.114.65.88/hls/ss.m3u8
+rtmpe://192.99.38.122/blink0220/ playpath=2502 swfUrl=http://www.tgun.tv/lock/player.swf live=1 pageUrl=http://www.tgun.tv/menus/players/playerindex5.php?2502
 
 #EXTINF:0,Tom & Jerry Show 
 http://66.90.111.66:1935/ctv/tom/waldo_paes.m3u8?b?b*t$
