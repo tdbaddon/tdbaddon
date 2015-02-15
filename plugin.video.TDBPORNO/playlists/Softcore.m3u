@@ -19,23 +19,32 @@ rtmp://edge2.everyon.tv/etv2/phd927
 #EXTINF:0,PLAYBOY SPICE 
 rtmp://edge1.everyon.tv/etv1/phd497
 
-#EXTINF:-0,Playboy TV 
-http://cdn-07.sdn.si/playboy/playboy.isml/playboy-video=1500000-audio101=128000.m3u8
+#EXTINF:0,PLAYBOY SPICE 
+rtmp://edge2.everyon.tv/etv2/phd499
 
 #EXTINF:-0,Playboy TV 
-http://cdn-07.sdn.si/playboy/playboy.isml/playboy-video=2500000-audio101=128000.m3u8
+http://p22.sdn.si/playboy/playboy.isml/playboy-video=2500000-audio101=128000.m3u8
+
+#EXTINF:-0,Playboy TV 
+http://p22.sdn.si/playboy/playboy.isml/playboy-video=1500000-audio101=128000.m3u8
+
+#EXTINF:-0,Playboy TV 
+http://p21.sdn.si/playboy/playboy.isml/playboy-video=2500000-audio101=128000.m3u8
+
+#EXTINF:-0,Playboy TV 
+http://p21.sdn.si/playboy/playboy.isml/playboy-video=1500000-audio101=128000.m3u8
+
+#EXTINF:-0,Playboy TV 
+http://213.250.19.50/playboy/playboy.isml/playboy-video=2500000-audio101=128000.m3u8
+
+#EXTINF:-0,Playboy TV 
+http://213.250.19.50/playboy/playboy.isml/playboy-video=1500000-audio101=128000.m3u8
 
 #EXTINF:-0,Playboy TV 
 http://iptv.sat-x.tv/iptv/91f5ebece378143c8392d8ad6ae539797bc86a67/527/index.m3u8
 
-#EXTINF:-0,Playboy TV 
-http://80.87.146.133:1111/udp/239.195.2.5:1234
-
-#EXTINF:-0,Playboy TV 
-rtmp://edge2.everyon.tv/etv2/phd499
-
 #EXTINF:0,RUSSIAN NIGHT 
-http://46.181.237.75:1234/udp/239.255.42.218:1234
+
 
 #EXTINF:0,SEX ED 
 
@@ -45,3 +54,13 @@ http://46.181.237.75:1234/udp/239.255.42.218:1234
 
 #EXTINF:0,YOU DIVA 
 http://46.249.213.93/iPhone/broadcast/youdivalite-tablet.3gp/youdivalite-tablet.3gp-mr647k.m3u8?trackingid=3341430000&os=desktop
+
+
+
+
+
+
+
+
+
+
