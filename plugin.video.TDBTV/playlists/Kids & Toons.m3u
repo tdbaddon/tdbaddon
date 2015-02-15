@@ -49,6 +49,10 @@ rtmpe://192.99.38.122/blink0220/ playpath=2501 swfUrl=http://www.tgun.tv/menus/p
 #EXTINF:0,Jim Jam 
 
 
+
+#EXTINF:0,Junior TV
+http://akamai231.tibo.tv/m3u8/juniorchannel.m3u8
+
 #EXTINF:0,Kids Comedy 
 rtmp://mi2.gv.filmon.com:1935/live/_definst_/2734.low.stream?b?b*t$
 

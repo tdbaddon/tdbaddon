@@ -61,8 +61,14 @@ http://www.nasa.gov/multimedia/nasatv/NTV-Public-IPS.m3u8
 #EXTINF:0,Nat Geo Wild 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_NATGEOWILD/variant.m3u8
 
+#EXTINF:0,Nat Geo Wild 
+http://akamai231.tibo.tv/m3u8/natwildchannel.m3u8
+
 #EXTINF:0,National Geographic 
 http://95.188.124.200:1234/udp/233.7.70.32:5000
+
+#EXTINF:0,Nautical Channel
+http://95.188.124.200:1234/udp/233.7.70.84:5000
 
 #EXTINF:0,Paranormal TV 
 
