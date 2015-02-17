@@ -19,6 +19,9 @@ rtmpe://5.153.233.74:443/ app=c0be82e1442e7169a9a358db47fcafcb playpath=colorspr
 #EXTINF:0,DD NATIONAL
 http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD178_W_350.sdp/media_b639410.m3u8
 
+#EXTINF:0,GEM Bollywood
+rtmp://gemtv.fms.visionip.tv/live/gemtv-gemtv-gembollywood-live-25f-16x9-HD?ref=www.gemonline.tv&USER=Gem+Bollywood
+
 #EXTINF:0,India News
 http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD148_W_350.sdp/media_b623985.m3u8
 

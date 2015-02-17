@@ -47,6 +47,18 @@ http://77.36.61.45:8010/CCTVNews.m3u8
 http://livestation_hls-lh.akamaihd.net/i/cnbc_en@106428/index_838_av-b.m3u8?sd=10&rebase=on
 
 #EXTINF:0,CNN 
+http://p22.sdn.si/cnn/cnn.isml/cnn-video=2500000-audio101=128000.m3u8
+
+#EXTINF:0,CNN 
+http://p22.sdn.si/cnn/cnn.isml/cnn-video=1500000-audio101=128000.m3u8
+
+#EXTINF:0,CNN 
+http://p21.sdn.si/cnn/cnn.isml/cnn-video=2500000-audio101=128000.m3u8
+
+#EXTINF:0,CNN 
+http://p21.sdn.si/cnn/cnn.isml/cnn-video=1500000-audio101=128000.m3u8
+
+#EXTINF:0,CNN 
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/cnn/ls_satlink/b_828.m3u8
 
 #EXTINF:0,DW 

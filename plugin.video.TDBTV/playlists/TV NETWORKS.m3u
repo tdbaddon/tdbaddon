@@ -128,7 +128,7 @@ http://83.139.104.111/Content/HLS/Live/Channel(fashion_tv)/Stream(03)/index.m3u8
 
 
 #EXTINF:0,Film4
-
+http://37.48.118.32/live/film4.stream/playlist.m3u8
 
 #EXTINF:0,Fine Living Network
 http://83.139.104.111/Content/HLS/Live/Channel(fine_living)/Stream(03)/index.m3u8
@@ -221,7 +221,7 @@ http://ios.streamserver01.com:8080/ShowcaseTV/mystream.m3u8
 http://93.184.221.133/00573D/283/283-0.m3u8
 
 #EXTINF:0,ITV 2 
-
+http://37.48.118.32/live/itv2.stream/playlist.m3u8
 
 #EXTINF:0,Jewelry Television
 rtmp://jtvmedia.jtv.com:1975/live playpath=live6 swfUrl=http://demandware.edgesuite.net/aaby_prd/on/demandware.static/Sites-jtv-Site/-/default/v1410110388581/swf/flashMediaPlayer/StrobeMediaPlayback.swf live=1 pageUrl=http://www.jtv.com/on/demandware.store/Sites-jtv-Site/default/LiveViewer-Show

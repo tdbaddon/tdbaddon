@@ -64,6 +64,9 @@ http://83.139.104.111/Content/HLS/Live/Channel(discovery_channel)/index.m3u8
 #EXTINF:0,Discovery Investigation 
 http://212.70.155.243:40665/udp/237.100.0.128:4000
 
+#EXTINF:0,Discovery Investigation 
+http://37.48.118.32/live/discoveryi.stream/playlist.m3u8
+
 #EXTINF:0,Discovery Max
 
 

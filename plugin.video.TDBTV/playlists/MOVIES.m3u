@@ -70,6 +70,9 @@ http://p21.sdn.si/foxmovies/foxmovies.isml/foxmovies-video=1500000-audio101=1280
 #EXTINF:0,Fox Movies 
 http://200.76.77.237/LIVE/H01/CANAL417/PROFILE03.m3u8?
 
+#EXTINF:0,Fox Movies 
+rtmp://162.212.176.107:1935/fox_movies/globaltv-fox_movies.stream
+
 #EXTINF:0,Fright Fest 
 
 

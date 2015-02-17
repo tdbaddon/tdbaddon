@@ -35,31 +35,34 @@ http://198.27.94.105/hls/espnuk.m3u8
 rtmp://178.18.31.55:443/liverepeater playpath=188941 swfUrl=http://bernardotv.club/atdedead.swf pageUrl=http://biggestplayer.me/streamcr.php?id=188941&width=620&height=490 token=#atd%#$ZH<
 
 #EXTINF:0,Eurosport 1 
-http://213.250.19.50/eurosport/eurosport.isml/eurosport-video=1500000-audio101=128000.m3u8
+http://p22.sdn.si/eurosport/eurosport.isml/eurosport-video=2500000-audio101=128000.m3u8
 
 #EXTINF:0,Eurosport 1 
-http://213.250.19.50/eurosport/eurosport.isml/eurosport-video=2500000-audio101=128000.m3u8
+http://p22.sdn.si/eurosport/eurosport.isml/eurosport-video=1500000-audio101=128000.m3u8
 
 #EXTINF:0,Eurosport 1 
-http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_1000.m3u8
+http://p21.sdn.si/eurosport/eurosport.isml/eurosport-video=2500000-audio101=128000.m3u8
+
+#EXTINF:0,Eurosport 1 
+http://p21.sdn.si/eurosport/eurosport.isml/eurosport-video=1500000-audio101=128000.m3u8
 
 #EXTINF:0,Eurosport 1 
 http://83.139.104.111/Content/HLS/Live/Channel(discovery_channel)/index.m3u8
 
 #EXTINF:0,Eurosport 2 
-http://213.250.19.50/eurosport2/eurosport2.isml/eurosport2-video=1500000-audio101=128000.m3u8
+http://p22.sdn.si/eurosport2/eurosport2.isml/eurosport2-video=2500000-audio101=128000.m3u8
 
 #EXTINF:0,Eurosport 2 
-http://213.250.19.50/eurosport2/eurosport2.isml/eurosport2-video=2500000-audio101=128000.m3u8
+http://p22.sdn.si/eurosport2/eurosport2.isml/eurosport2-video=1500000-audio101=128000.m3u8
+
+#EXTINF:0,Eurosport 2 
+http://p21.sdn.si/eurosport2/eurosport2.isml/eurosport2-video=2500000-audio101=128000.m3u8
+
+#EXTINF:0,Eurosport 2 
+http://p21.sdn.si/eurosport2/eurosport2.isml/eurosport2-video=1500000-audio101=128000.m3u8
 
 #EXTINF:0,Eurosport 2 
 http://83.139.104.111/Content/HLS/Live/Channel(eurosport_2)/Stream(03)/index.m3u8
-
-#EXTINF:0,Eurosport Live 
-http://213.250.19.50/eurosport/eurosport.isml/eurosport-video=1500000-audio101=128000.m3u8
-
-#EXTINF:0,Eurosport Live 
-http://213.250.19.50/eurosport/eurosport.isml/eurosport-video=2500000-audio101=128000.m3u8
 
 #EXTINF:0,Eurosport News 
 

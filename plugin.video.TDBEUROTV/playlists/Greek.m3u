@@ -135,22 +135,22 @@ rtmp://stream2.omegatv.net/livepkgr/omegatv
 rtmp://media.patrisnews.com:1935/patris/tvstream live=1 timeout=10
 
 #EXTINF:0,OTE Sports 1 
-
+http://109.200.20.26:8981/FHDDD/Ot111/index.m3u8
 
 #EXTINF:0,OTE Sports 2 
-
+http://109.200.20.26:8981/FHDDD/Ot222/index.m3u8
 
 #EXTINF:0,OTE Sports 3 
-
+http://109.200.20.26:8981/FHDDD/Ot333/index.m3u8
 
 #EXTINF:0,OTE Sports 4 
-
+http://109.200.20.26:8981/FHDDD/Ot444/index.m3u8
 
 #EXTINF:0,OTE Sports 5 
-
+http://109.200.20.26:8981/FHDDD/Ot555/index.m3u8
 
 #EXTINF:0,OTE Sports 6 
-
+http://109.200.20.26:8981/FHDDD/Ot666/index.m3u8
 
 #EXTINF:0,R Channel
 http://xrodopi-tvx.api.channel.livestream.com/3.0/playlist.m3u8
