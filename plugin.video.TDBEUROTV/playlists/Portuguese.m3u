@@ -14,9 +14,6 @@ mms://video-wm.tvciencia.pt/video/tvcnews_256.wmv
 #EXTINF:0,Economico TV
 rtmp://213.13.26.11/live/ playpath=etv_direto swfUrl=http://sicnoticias.sapo.pt/skins/sicnot/gfx/jwplayer/player.swf live=1 pageUrl=http://sicnoticias.sapo.pt/skins/sicnot/gfx/jwplayer/player.swf
 
-#EXTINF:0,Economico TV
-http://213.13.26.12:1935/live/_definst_/etv_direto/hasbahca.m3u8
-
 #EXTINF:0,Euronews
 
 
@@ -26,20 +23,17 @@ http://213.13.26.12:1935/live/_definst_/etv_direto/hasbahca.m3u8
 #EXTINF:0,Mov
 
 
-#EXTINF:0,RTP One TV
+#EXTINF:0,RTP One TV 
 rtmp://ec21.rtp.pt/livetv playpath=2ch5h264 swfUrl=http://www.rtp.pt/play/player.swf live=1 pageUrl=http://www.rtp.pt/noticias/votacao/?mysurvey=343r23
 
-#EXTINF:0,RTP One TV
+#EXTINF:0,RTP One TV 
 http://www.rtp.pt/play/stream/video/rtp1?key=iphoneapp
 
 
-#EXTINF:0,RTP One TV
-http://clickone.tvzune.org:8080/livex/rtp1.m3u8
-
-#EXTINF:0,RTP Two TV
+#EXTINF:0,RTP Two TV 
 rtmp://ec21.rtp.pt/livetv playpath=2ch3h264 swfUrl=http://www.rtp.pt/play/player.swf live=1 pageUrl=http://www.rtp.pt/noticias/votacao/?mysurvey=343r23
 
-#EXTINF:0,RTP Two TV
+#EXTINF:0,RTP Two TV 
 http://www.rtp.pt/play/stream/video/rtp2?key=iphoneapp
 
 
@@ -61,10 +55,10 @@ http://213.13.26.12:1935/live/_definst_/sicnoticias/aatectv.m3u8
 
 
 #EXTINF:0,Sport TV1
-http://clickone.tvzune.org:8080/livex/sporttv1.m3u8
+
 
 #EXTINF:0,Sport TV2
-rtmp://46.246.29.132:1935/stream/ playpath=09xZnt1eYU.stream swfUrl=http://thecdn.04stream.com/p/ooolo1.swf live=1 pageUrl=http://www.04stream.com/
+
 
 #EXTINF:,TPA
 http://myafricanmega3.tulix.tv:1935/map-tpaint/map-tpaint.stream/playlist.m3u8
@@ -77,3 +71,11 @@ http://video-live.iol.pt:1935/live_tvi/_definst_/mp4:TVI3/playlist.m3u8
 
 #EXTINF:0,TVI 24
 http://video-live.iol.pt:1935/live_tvi24/_definst_/mp4:TVI24-1/chunklist_w1866938750.m3u8
+
+
+
+
+
+
+
+

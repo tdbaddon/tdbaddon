@@ -29,14 +29,14 @@ http://wow.ant1.gr:1935/live/smil:mavani.smil/hasbahca.m3u8
 #EXTINF:0,Astra TV
 http://www.astratv.gr:8090/hls/livestream/index.m3u8
 
-#EXTINF:0,Astra TV
-http://www.astratv.gr:8090/hls/livestream/index.m3u8
-
 #EXTINF:0,Axeloos TV
 http://srv1.viiideo.gr:1935/videon/axeloostv/bratumarian.m3u
 
 #EXTINF:0,Best TV
 http://smooth.istoikona.net/besttv.isml/manifest(format=m3u8-aapl).m3u8
+
+#EXTINF:0,BlueSky TV
+http://176.9.52.185:1935/bluesky/bluesky.stream/playlist.m3u8
 
 #EXTINF:0,Boyah
 http://streamer-cache.grnet.gr/parliament/parltv.sdp/master.m3u8
@@ -84,10 +84,10 @@ rtmp://213.16.167.186:1935/live/mpegts_256.stream
 http://wpso.com:200/tv48
 
 #EXTINF:0,Ionian Channel
-http://xioniantvlivebroadcastx.api.channel.livestream.com/3.0/playlist.m3u8
+
 
 #EXTINF:0,Irida
-mms://212.251.44.111:27030
+
 
 #EXTINF:0,Kontra
 rtmp://flashcloud.mediacdn.com:1935/live/kontratv
@@ -128,23 +128,29 @@ rtmp://srv1.viiideo.gr:1935/hellasonmedia/neatv
 #EXTINF:0,Odie TV
 
 
+#EXTINF:0,Omega TV
+rtmp://stream2.omegatv.net/livepkgr/omegatv
+
+#EXTINF:0,OPT TV
+rtmp://media.patrisnews.com:1935/patris/tvstream live=1 timeout=10
+
 #EXTINF:0,OTE Sports 1 
-http://109.200.20.26:8981/FHDDD/Ote1/index.m3u8
+
 
 #EXTINF:0,OTE Sports 2 
-http://109.200.20.26:8981/FHDDD/Ote2/index.m3u8
+
 
 #EXTINF:0,OTE Sports 3 
-http://109.200.20.26:8981/FHDDD/Ote3/index.m3u8
+
 
 #EXTINF:0,OTE Sports 4 
-http://109.200.20.26:8981/FHDDD/Ote4/index.m3u8
+
 
 #EXTINF:0,OTE Sports 5 
-http://109.200.20.26:8981/FHDDD/Ote5/index.m3u8
+
 
 #EXTINF:0,OTE Sports 6 
-http://109.200.20.26:8981/FHDDD/Ote6/index.m3u8
+
 
 #EXTINF:0,R Channel
 http://xrodopi-tvx.api.channel.livestream.com/3.0/playlist.m3u8

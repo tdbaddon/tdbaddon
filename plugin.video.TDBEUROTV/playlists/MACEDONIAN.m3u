@@ -1,5 +1,7 @@
 ﻿#EXTM3U
 
+#EXTINF:0,[COLOR red]MACEDONIAN TV [/COLOR]
+rtmp://
 
 #EXTINF:0,Al Jazeera Balkan 
 rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
@@ -29,7 +31,7 @@ rtsp://fms.zulu.mk:554/zulu/alsat_2
 http://stream.b92.net:7999/tv-b92.ogg
 
 #EXTINF:0,Balkan TV
-
+rtmp://yayin.tvdunyasi.tv/live/balkanrtv
 
 #EXTINF:0,BTR 
 http://fms.zulu.mk:554/zulu/btr_1/playlist_b125000_w1132785237.m3u8
@@ -47,10 +49,7 @@ rtsp://fms.zulu.mk:554/zulu/btr_2
 http://fms.zulu.mk:1935/zulu/cegrani_1/playlist.m3u8
 
 #EXTINF:0,ERA TV 
-http://fms.zulu.mk:1935/zulu/era_1/hasbahca.m3u8
 
-#EXTINF:0,ERA TV 
-http://fms.zulu.mk:1935/zulu/era_2/playlist.m3u8?wowzasessionid=1274029124
 
 #EXTINF:0,Hema TV
 mms://77.238.209.50:1234
@@ -64,8 +63,14 @@ mms://62.162.58.54:8080
 #EXTINF:0,Joj TV
 http://88.212.10.27:81/streams/joj.m3u8
 
-#EXTINF:0,Jug TV
-http://thedream:thedreamiptv@iptv2015.blogdns.net:8000/43.ch
+#EXTINF:0,Jug TV 
+rtmp://84.20.77.50/live/livestream1
+
+#EXTINF:0,Jug TV 
+rtmp://84.20.77.50/live//livestream2
+
+#EXTINF:0,Jug TV 
+rtmp://84.20.77.50/live playpath=livestream1 swfUrl=http://player.longtailvideo.com/player5.2.swf live=1 pageUrl=http://albhd.tk/tv/jug.html
 
 #EXTINF:0,Kanal 5 
 http://fms.zulu.mk:1935/zulu/kanal5_1/hasbahca.m3u8
@@ -93,6 +98,9 @@ mms://62.162.58.55/TVkanal8
 
 #EXTINF:0,Kanal 21 
 mms://62.162.58.55/TVkanal21
+
+#EXTINF:0,Koha TV
+rtmp://live.tvkoha.tv/live/koha app=live/koha swfUrl=http://live.tvkoha.tv/playerplus.swf pageUrl=http://www.tvkoha.tv/live/tv playpath=livestream swfVfy=true live=true timeout=15
 
 #EXTINF:0,Mpt1 
 http://fms.zulu.mk:554/zulu/mtv1_1/playlist_b125000_w1132785237.m3u8
@@ -159,5 +167,92 @@ rtsp://fms.zulu.mk:554/zulu/telma_2
 
 #EXTINF:0,Vesti 24
 mms://62.162.58.55/24vesti
+
+
+----------------------------------------------------------------------------------------------------------------------
+
+#EXTINF:0,[COLOR red]MACEDONIAN RADIO [/COLOR]
+rtmp://
+
+#EXTINF:0,Aleksandar Makedonski Kicevo
+
+
+#EXTINF:0,City Radio Skopje
+http://ss1.mk.checast.com:21306/48.aac
+
+#EXTINF:0,City Radio Skopje
+rtmp://off.net.mk/radio/city.stream
+
+#EXTINF:0,Club FM Skopje
+http://ss1.mk.checast.com:21308/48.aac
+
+#EXTINF:0,Club FM Skopje
+rtmp://off.net.mk/radio/club.stream
+
+#EXTINF:0,Folk Radio Skopje
+
+
+#EXTINF:0,Kanal 77 Bitola
+rtmp://off.net.mk/radio/kanal77.stream
+
+#EXTINF:0,Ohrid 24
+http://ss1.mk.checast.com:21090/live
+
+#EXTINF:0,Radio 105 Bitola
+http://radio105.makbots.com:21010/
+
+#EXTINF:0,Radio 105 Bitola
+http://streaming.makbots.com:21010/;
+
+#EXTINF:0,Radio 5 Veles
+http://5fm.com.mk:8011/
+
+#EXTINF:0,Radio Bubamara Skopje
+http://217.16.69.17:8000/bubamara.mp3
+
+#EXTINF:0,Radio Bubamara Skopje
+rtmp://off.net.mk/radio/bubamara.stream
+
+#EXTINF:0,Radio Delfin Bitola
+http://ss1.mk.checast.com:21110/live?1420343256204.aac
+
+#EXTINF:0,Radio Fortuna Skopje
+http://50.7.129.122:8497/;?1420340858258.mp3
+
+#EXTINF:0,Radio Fortuna Skopje
+rtmp://off.net.mk/radio/fortuna.stream
+
+#EXTINF:0,Radio Kometa Gostivar
+http://ss1.mk.checast.com:21070/48.aac
+
+#EXTINF:0,Radio Kavadarci Tikves
+http://217.115.140.23:8010/kavadarci
+
+#EXTINF:0,Radio Lav Ohrid
+http://ss1.mk.checast.com:21080/live?1420340085574.aac
+
+#EXTINF:0,Radio Medison Kicevo
+http://ss1.mk.checast.com:21300/live?1420340187325.aac
+
+#EXTINF:0,Radio Meff Prilep
+http://5.35.251.86:18002/;
+
+#EXTINF:0,Radio Rosa Skopje
+rtmp://off.net.mk/radio/rosa.stream
+
+#EXTINF:0,Sky Radio Skopje
+http://89.205.123.70:8002/
+
+#EXTINF:0,Sky Radio Skopje
+http://ss1.mk.checast.com:21304/48.aac
+
+#EXTINF:0,Time FM Gevgelija
+http://ss1.mk.checast.com:21102/live
+
+#EXTINF:0,Zona M1 Skopje
+rtmp://off.net.mk/radio/zonam1.stream
+
+
+
 
 
