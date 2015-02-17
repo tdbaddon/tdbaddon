@@ -1,5 +1,6 @@
 ﻿#EXTM3U
 
+
 #EXTINF:0,Action Zone 
 rtmp://mi2.gv.filmon.com:8086/live/1045.high.stream?
 
@@ -13,19 +14,18 @@ http://113.160.49.34/lives/origin03/cinemaxsd.isml/cinemaxsd-1096k.m3u8
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=353&lan=2&rows=40&f=.m3u8
 
 #EXTINF:0,Cinestar Action & Thriller 
-
+http://83.139.104.111/Content/HLS/Live/Channel(CINESTAR_ACTION_AND_THRILLER)/index.m3u8
 
 #EXTINF:0,Cinestar Premiere 1 
-
+http://83.139.104.111/Content/HLS/Live/Channel(cinestar_premiere_1)/Stream(03)/index.m3u8
 
 #EXTINF:0,Cinestar Premiere 2 
-
+http://83.139.104.111/Content/HLS/Live/Channel(cinestar_premiere_2)/Stream(03)/index.m3u8
 
 #EXTINF:0,Cinestar TV 
-
+http://83.139.104.111/Content/HLS/Live/Channel(cinestar_tv)/Stream(03)/index.m3u8
 
 #EXTINF:0,CMore Action
-
 
 
 #EXTINF:0,CMore Emotion
@@ -33,17 +33,9 @@ http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=353&lan=2&rows=
 
 #EXTINF:0,CMore Series
 
-#EXTINF:0,Film Aksion
-http://akamai231.tibo.tv/m3u8/aksionchannel.m3u8
-
-#EXTINF:0,Film Digi Gold
-http://akamai231.tibo.tv/m3u8/goldchannel.m3u8
 
 #EXTINF:0,Film Dy
 http://akamai227.tibo.tv/227t2apk1/filmdy.stream_720p/playlist.m3u8
-
-#EXTINF:0,Film Komedi
-http://akamai231.tibo.tv/m3u8/komedichannel.m3u8
 
 #EXTINF:0,Film Box Live
 
@@ -64,6 +56,18 @@ http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=345&lan=2&rows=
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=342&lan=2&rows=40&f=.m3u8
 
 #EXTINF:0,Fox Movies 
+http://p22.sdn.si/foxmovies/foxmovies.isml/foxmovies-video=2500000-audio101=128000.m3u8
+
+#EXTINF:0,Fox Movies 
+http://p22.sdn.si/foxmovies/foxmovies.isml/foxmovies-video=1500000-audio101=128000.m3u8
+
+#EXTINF:0,Fox Movies 
+http://p21.sdn.si/foxmovies/foxmovies.isml/foxmovies-video=2500000-audio101=128000.m3u8
+
+#EXTINF:0,Fox Movies 
+http://p21.sdn.si/foxmovies/foxmovies.isml/foxmovies-video=1500000-audio101=128000.m3u8
+
+#EXTINF:0,Fox Movies 
 http://200.76.77.237/LIVE/H01/CANAL417/PROFILE03.m3u8?
 
 #EXTINF:0,Fright Fest 
@@ -78,12 +82,11 @@ http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=103&lan=2&rows=
 #EXTINF:0,HBO 
 http://113.160.49.34/lives/origin03/hbohd.isml/hbohd-2096k.m3u8
 
-
 #EXTINF:0,HBO Plus 
 
 
 #EXTINF:0,Kino TV 
-
+http://83.139.104.111/Content/HLS/Live/Channel(kino_tv)/Stream(03)/index.m3u8
 
 #EXTINF:0,Kung Fu Classics 
 rtmp://mi2.gv.filmon.com:8086/live/10.high.stream
@@ -109,26 +112,29 @@ http://167.114.65.88/hls/mv.m3u8
 #EXTINF:0,Paramount Channel
 
 
-#EXTINF:0,Pink Action 
-
+#EXTINF:0,Pink Action 1
+http://str108.setplex.net/fastv_2psh/Pink2global_rly_greece_109/balkansatnet.m3u8
 
 #EXTINF:0,Pink Action 2
-
+http://str108.setplex.net/fastv_2psh/PinkAction2global_rly_greece_103/balkansatnet.m3u8
 
 #EXTINF:0,Pink Action 3
-
+http://str108.setplex.net/fastv_2psh/PinkAction3global_rly_greece_103/balkansatnet.m3u8
 
 #EXTINF:0,Pink Comedy
 
 
 #EXTINF:0,Pink Horror
-
+http://str108.setplex.net/fastv_2psh/PinkHorrorglobal_rly_greece_103/balkansatnet.m3u8
 
 #EXTINF:0,Pink Movies 2
+http://str108.setplex.net/fastv_2psh/PinkMovies2global_rly_greece_109/balkansatnet.m3u8
 
+#EXTINF:0,Pink Movies 3
+http://str108.setplex.net/fastv_2psh/PinkMovies3global_rly_greece_109/balkansatnet.m3u8
 
 #EXTINF:0,Pink Premium
-
+http://str108.setplex.net/fastv_2psh/PinkPremiumglobal_rly_greece_103/balkansatnet.m3u8
 
 #EXTINF:0,Pink Western
 
@@ -142,20 +148,38 @@ http://167.114.65.88/hls/mv.m3u8
 #EXTINF:0,Sky Movies Action
 http://80.243.182.106:8080/javed/skyactionj/index.m3u8
 
+#EXTINF:0,Sky Movies Action
+http://37.48.118.32/live/maction.stream/playlist.m3u8
+
 #EXTINF:0,Sky Movies Atlantic
 http://37.157.246.170:8000/sky/atlantic/index.m3u8
 
 #EXTINF:0,Sky Movies Crime
 http://37.48.118.32/live/mcrime.stream/playlist.m3u8?wowzasessionid=206319818
 
+#EXTINF:0,Sky Movies Comedy
+http://37.48.118.32/live/mcomedy.stream/playlist.m3u8
+
 #EXTINF:0,Sky Movies Drama
 http://80.243.182.106:8080/javed/skydramaj/index.m3u8
+
+#EXTINF:0,Sky Movies Drama
+http://37.48.118.32/live/mdrama.stream/playlist.m3u8
 
 #EXTINF:0,Sky Movies Family
 http://80.243.182.106:8080/javed/skyfamilyj/index.m3u8
 
+#EXTINF:0,Sky Movies Family
+http://37.48.118.32/live/mfamily.stream/playlist.m3u8
+
+#EXTINF:0,Sky Movies Horrors
+http://37.48.118.32/live/mscifi.stream/playlist.m3u8
+
 #EXTINF:0,Sky Movies Premiere
 http://80.243.182.106:8080/javed/skypremierej/index.m3u8
+
+#EXTINF:0,Sky Movies Premiere
+http://37.48.118.32/live/mpremiere.stream/playlist.m3u8
 
 #EXTINF:0,Star Movies
 http://113.160.49.34/lives/origin03/moviehd.isml/moviehd-2096k.m3u8
@@ -173,7 +197,7 @@ http://212.250.46.35:4249/bysid/53320
 http://212.250.46.35:4249/bysid/53325
 
 #EXTINF:0,TV 1000
-
+http://87.116.166.195:8101
 
 #EXTINF:0,TV 1000 Action
 

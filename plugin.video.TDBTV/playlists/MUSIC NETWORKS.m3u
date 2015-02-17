@@ -69,17 +69,39 @@ http://91.82.85.16:1935/relay15/nettv03_channel_1/HasBahCa.m3u8
 #EXTINF:0,Magic 
 
 
+
+#EXTINF:0,MTV Dance 
+http://p22.sdn.si/mtvdance/mtvdance.isml/mtvdance-video=2500000-audio101=128000.m3u8
+
+#EXTINF:0,MTV Dance 
+http://p22.sdn.si/mtvdance/mtvdance.isml/mtvdance-video=1500000-audio101=128000.m3u8
+
+#EXTINF:0,MTV Dance 
+http://p21.sdn.si/mtvdance/mtvdance.isml/mtvdance-video=2500000-audio101=128000.m3u8
+
+#EXTINF:0,MTV Dance 
+http://p21.sdn.si/mtvdance/mtvdance.isml/mtvdance-video=1500000-audio101=128000.m3u8
+
 #EXTINF:0,MTV Dance 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVDANCE/variant.m3u8
 
-#EXTINF:0,MTV Dance 
-http://cdn-07.sdn.si/mtvdance/mtvdance.m3u8
+#EXTINF:0,MTV Hits 
+http://p22.sdn.si/mtvhits/mtvhits.isml/mtvhits-video=2500000-audio101=128000.m3u8
 
-#EXTINF:0,MTV Dance 
-http://cdn-07.sdn.si/mtvdance/mtvdance.m3u8
+#EXTINF:0,MTV Hits 
+http://p22.sdn.si/mtvhits/mtvhits.isml/mtvhits-video=1500000-audio101=128000.m3u8
+
+#EXTINF:0,MTV Hits 
+http://p21.sdn.si/mtvhits/mtvhits.isml/mtvhits-video=2500000-audio101=128000.m3u8
+
+#EXTINF:0,MTV Hits 
+http://p21.sdn.si/mtvhits/mtvhits.isml/mtvhits-video=1500000-audio101=128000.m3u8
 
 #EXTINF:0,MTV Hits 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVHITS/variant.m3u8
+
+#EXTINF:0,MTV Live 
+http://83.139.104.111/Content/HLS/Live/Channel(mtv)/Stream(03)/index.m3u8
 
 #EXTINF:0,MTV Live 
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=429&lan=2&rows=40&f=BratuMarian.m3u8
@@ -91,14 +113,22 @@ http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=432&lan=2&rows=
 http://200.76.77.237/LIVE/H01/CANAL701/PROFILE03.m3u8?BratuMarian
 
 #EXTINF:0,MTV Music 
-http://83.139.104.108/Content/HLS/Live/Channel(MTV_Music)/Stream(02)/index.m3u8
-
+http://83.139.104.111/Content/HLS/Live/Channel(mtv_music)/Stream(03)/index.m3u8
 
 #EXTINF:0,MTV Rocks 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVROCKS/variant.m3u8
 
 #EXTINF:0,MTV Rocks 
-http://cdn-07.sdn.si/mtvrocks/mtvrocks.m3u8
+http://p22.sdn.si/mtvrocks/mtvrocks.isml/mtvrocks-video=2500000-audio101=128000.m3u8
+
+#EXTINF:0,MTV Rocks 
+http://p22.sdn.si/mtvrocks/mtvrocks.isml/mtvrocks-video=1500000-audio101=128000.m3u8
+
+#EXTINF:0,MTV Rocks 
+http://p21.sdn.si/mtvrocks/mtvrocks.isml/mtvrocks-video=2500000-audio101=128000.m3u8
+
+#EXTINF:0,MTV Rocks 
+http://p21.sdn.si/mtvrocks/mtvrocks.isml/mtvrocks-video=1500000-audio101=128000.m3u8
 
 #EXTINF:0,Musiq1 
 
@@ -112,6 +142,18 @@ rtmp://stream.smcloud.net/live2/vox/vox_360p
 #EXTINF:0,PartyTV 
 rtmp://149.11.34.6/live/partytv.stream
 
+#EXTINF:0,Pop Brio
+http://p22.sdn.si/popbrio/popbrio.isml/popbrio-video=2500000-audio101=128000.m3u8
+
+#EXTINF:0,Pop Brio
+http://p22.sdn.si/popbrio/popbrio.isml/popbrio-video=1500000-audio101=128000.m3u8
+
+#EXTINF:0,Pop Brio
+http://p21.sdn.si/popbrio/popbrio.isml/popbrio-video=2500000-audio101=128000.m3u8
+
+#EXTINF:0,Pop Brio
+http://p21.sdn.si/popbrio/popbrio.isml/popbrio-video=1500000-audio101=128000.m3u8
+
 #EXTINF:0,Radio Monte Carlo 
 rtmp://fms.105.net:1935/live/rmc1
 
@@ -120,8 +162,6 @@ http://rjr_flash-lh.akamaihd.net/i/retv_1@177154/master.m3u8
 
 #EXTINF:0,Rock 66 
 http://mediatv2.topix.it/24RockOne66
-
-
 
 #EXTINF:0,Rouge TV
 rtmp://rtmp.infomaniak.ch/livecast/rougetv
@@ -148,35 +188,43 @@ http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch3/06/prog_index.m3u8
 http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/appleman.m3u8
 
 #EXTINF:0,VH1 
-http://cdn-07.sdn.si/vh1/vh1.isml/vh1-video%3D1500000-audio101%3D128000.m3u8
-
-#EXTINF:0,VH1 
-http://cdn-07.sdn.si/vh1/vh1.isml/vh1-video%3D2500000-audio101%3D128000.m3u8
-
-#EXTINF:0,VH1 
-http://cdn-07.sdn.si/vh1/vh1.m3u8
+http://200.76.77.237/LIVE/H01/CANAL703/PROFILE03.m3u8?BratuMarian
 
 #EXTINF:0,VH1 
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=437&lan=2&rows=40&f=BratuMarian.m3u8
 
-#EXTINF:0,VH1 
-http://200.76.77.237/LIVE/H01/CANAL703/PROFILE03.m3u8?BratuMarian
+#EXTINF:0,VH1 Classics 
+http://p22.sdn.si/vh1classic/vh1classic.isml/vh1classic-video=2500000-audio101=128000.m3u8
 
-#EXTINF:0,VH1 
-rtmp://edge03-03.az.myvideo.az/dvrh264/vh1/ playpath=mp4:vh1 swfUrl=http://www.myvideo.az/stml/dvr/dvrH.swf?v=1.2 live=1 pageUrl=http://www.myvideo.az/r.ates
+#EXTINF:0,VH1 Classics 
+http://p22.sdn.si/vh1classic/vh1classic.isml/vh1classic-video=1500000-audio101=128000.m3u8
+
+#EXTINF:0,VH1 Classics 
+http://p21.sdn.si/vh1classic/vh1classic.isml/vh1classic-video=2500000-audio101=128000.m3u8
+
+#EXTINF:0,VH1 Classics 
+http://p21.sdn.si/vh1classic/vh1classic.isml/vh1classic-video=1500000-audio101=128000.m3u8
 
 #EXTINF:0,VH1 Classics 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_VH1CLASSIC/variant.m3u8
 
-#EXTINF:0,VH1 Classics 
-http://cdn-07.sdn.si/vh1classic/vh1classic.m3u8
+#EXTINF:0,VH1 Shuffle 
+http://p22.sdn.si/vh1/vh1.isml/vh1-video=2500000-audio101=128000.m3u8
 
 #EXTINF:0,VH1 Shuffle 
-http://cdn-07.sdn.si/vh1/vh1.isml/vh1-video%3D1500000-audio101%3D128000.m3u8
+http://p22.sdn.si/vh1/vh1.isml/vh1-video=1500000-audio101=128000.m3u8
 
+#EXTINF:0,VH1 Shuffle 
+http://p21.sdn.si/vh1/vh1.isml/vh1-video=2500000-audio101=128000.m3u8
+
+#EXTINF:0,VH1 Shuffle 
+http://p21.sdn.si/vh1/vh1.isml/vh1-video=1500000-audio101=128000.m3u8
 
 #EXTINF:0,VH1 Shuffle 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_VH1EUROPEAN/variant.m3u8
+
+#EXTINF:0,VH1 Shuffle 
+rtmp://edge03-03.az.myvideo.az/dvrh264/vh1/ playpath=mp4:vh1 swfUrl=http://www.myvideo.az/stml/dvr/dvrH.swf?v=1.2 live=1 pageUrl=http://www.myvideo.az/r.ates
 
 #EXTINF:0,Vintage Music TV 
 rtmp://mi2.gv.filmon.com:8086/live/1042.high.stream

@@ -73,6 +73,9 @@ rtmp://84.20.77.50/live//livestream2
 rtmp://84.20.77.50/live playpath=livestream1 swfUrl=http://player.longtailvideo.com/player5.2.swf live=1 pageUrl=http://albhd.tk/tv/jug.html
 
 #EXTINF:0,Kanal 5 
+http://83.139.104.111/Content/HLS/Live/Channel(kanal_5)/Stream(03)/index.m3u8
+
+#EXTINF:0,Kanal 5 
 http://fms.zulu.mk:1935/zulu/kanal5_1/hasbahca.m3u8
 
 #EXTINF:0,Kanal 5 

@@ -14,6 +14,18 @@ http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/aljazeera_en/ls_satlink/b_528.m3
 
 
 #EXTINF:0,BBC World News 
+http://p22.sdn.si/bbcworld/bbcworld.isml/bbcworld-video=2500000-audio101=128000.m3u8
+
+#EXTINF:0,BBC World News 
+http://p22.sdn.si/bbcworld/bbcworld.isml/bbcworld-video=1500000-audio101=128000.m3u8
+
+#EXTINF:0,BBC World News 
+http://p21.sdn.si/bbcworld/bbcworld.isml/bbcworld-video=2500000-audio101=128000.m3u8
+
+#EXTINF:0,BBC World News 
+http://p21.sdn.si/bbcworld/bbcworld.isml/bbcworld-video=1500000-audio101=128000.m3u8
+
+#EXTINF:0,BBC World News 
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/bbc_world/ls_satlink/b_828.m3u8
 
 #EXTINF:0,BBC World News 
@@ -29,7 +41,7 @@ http://x4012c4000.edge.core-cdn.net/40000mb/live/4012hbbtv/bloomberg.ts
 rtmp://a.cdn.newschat.tv/edge playpath=cbc_live swfUrl=http://msnbclive.eu/player.swf pageUrl=http://www.livenewschat.eu/canada/ live=1
 
 #EXTINF:0,CCTV News 
-
+http://77.36.61.45:8010/CCTVNews.m3u8
 
 #EXTINF:0,CNBC
 http://livestation_hls-lh.akamaihd.net/i/cnbc_en@106428/index_838_av-b.m3u8?sd=10&rebase=on
@@ -99,6 +111,9 @@ http://odna.octoshape.net/f3f5m2v4/cds/ch6_auto.smil/playlist.m3u8
 
 #EXTINF:0,Sky News 
 http://wpc.C1A9.edgecastcdn.net/hls-live/20C1A9/skynews/ls_satlink/b_,264,528,828,.m3u8
+
+#EXTINF:0,Sky News 
+http://37.48.118.32/live/skynews.stream/playlist.m3u8
 
 #EXTINF:0,Sky News International
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/skynews/ls_satlink/b_828.m3u8
