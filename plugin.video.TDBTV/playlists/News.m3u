@@ -14,16 +14,10 @@ http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/aljazeera_en/ls_satlink/b_528.m3
 
 
 #EXTINF:0,BBC World News 
-http://p22.sdn.si/bbcworld/bbcworld.isml/bbcworld-video=2500000-audio101=128000.m3u8
+http://213.250.19.50/bbcworld/bbcworld.isml/bbcworld-video=2500000-audio101=128000.m3u8
 
 #EXTINF:0,BBC World News 
-http://p22.sdn.si/bbcworld/bbcworld.isml/bbcworld-video=1500000-audio101=128000.m3u8
-
-#EXTINF:0,BBC World News 
-http://p21.sdn.si/bbcworld/bbcworld.isml/bbcworld-video=2500000-audio101=128000.m3u8
-
-#EXTINF:0,BBC World News 
-http://p21.sdn.si/bbcworld/bbcworld.isml/bbcworld-video=1500000-audio101=128000.m3u8
+http://213.250.19.50/bbcworld/bbcworld.isml/bbcworld-video=1500000-audio101=128000.m3u8
 
 #EXTINF:0,BBC World News 
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/bbc_world/ls_satlink/b_828.m3u8
@@ -47,16 +41,10 @@ http://77.36.61.45:8010/CCTVNews.m3u8
 http://livestation_hls-lh.akamaihd.net/i/cnbc_en@106428/index_838_av-b.m3u8?sd=10&rebase=on
 
 #EXTINF:0,CNN 
-http://p22.sdn.si/cnn/cnn.isml/cnn-video=2500000-audio101=128000.m3u8
+http://213.250.19.50/cnn/cnn.isml/cnn-video=2500000-audio101=128000.m3u8
 
 #EXTINF:0,CNN 
-http://p22.sdn.si/cnn/cnn.isml/cnn-video=1500000-audio101=128000.m3u8
-
-#EXTINF:0,CNN 
-http://p21.sdn.si/cnn/cnn.isml/cnn-video=2500000-audio101=128000.m3u8
-
-#EXTINF:0,CNN 
-http://p21.sdn.si/cnn/cnn.isml/cnn-video=1500000-audio101=128000.m3u8
+http://213.250.19.50/cnn/cnn.isml/cnn-video=1500000-audio101=128000.m3u8
 
 #EXTINF:0,CNN 
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/cnn/ls_satlink/b_828.m3u8

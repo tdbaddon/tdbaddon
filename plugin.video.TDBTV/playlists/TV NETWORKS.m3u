@@ -2,16 +2,10 @@
 
 
 #EXTINF:0,24 Kitchen
-http://p22.sdn.si/24kitchen/24kitchen.isml/24kitchen-video=2500000-audio101=128000.m3u8
+http://213.250.19.50/24kitchen/24kitchen.isml/24kitchen-video=2500000-audio101=128000.m3u8
 
 #EXTINF:0,24 Kitchen
-http://p22.sdn.si/24kitchen/24kitchen.isml/24kitchen-video=1500000-audio101=128000.m3u8
-
-#EXTINF:0,24 Kitchen
-http://p21.sdn.si/24kitchen/24kitchen.isml/24kitchen-video=2500000-audio101=128000.m3u8
-
-#EXTINF:0,24 Kitchen
-http://p21.sdn.si/24kitchen/24kitchen.isml/24kitchen-video=1500000-audio101=128000.m3u8
+http://213.250.19.50/24kitchen/24kitchen.isml/24kitchen-video=1500000-audio101=128000.m3u8
 
 #EXTINF:0,A&E 
 
@@ -65,16 +59,10 @@ rtmp://178.18.31.57:443/liverepeater playpath=186372 swfUrl=http://bernardotv.cl
 http://212.250.46.35:2003
 
 #EXTINF:0,CBS Drama 
-http://p22.sdn.si/cbsdrama/cbsdrama.isml/cbsdrama-video=2500000-audio101=128000.m3u8
+http://213.250.19.50/cbsdrama/cbsdrama.isml/cbsdrama-video=2500000-audio101=128000.m3u8
 
 #EXTINF:0,CBS Drama 
-http://p22.sdn.si/cbsdrama/cbsdrama.isml/cbsdrama-video=1500000-audio101=128000.m3u8
-
-#EXTINF:0,CBS Drama 
-http://p21.sdn.si/cbsdrama/cbsdrama.isml/cbsdrama-video=2500000-audio101=128000.m3u8
-
-#EXTINF:0,CBS Drama 
-http://p21.sdn.si/cbsdrama/cbsdrama.isml/cbsdrama-video=1500000-audio101=128000.m3u8
+http://213.250.19.50/cbsdrama/cbsdrama.isml/cbsdrama-video=1500000-audio101=128000.m3u8
 
 #EXTINF:0,CBS Reality 
 http://83.139.104.111/Content/HLS/Live/Channel(cbs_reality)/Stream(03)/index.m3u8
@@ -104,16 +92,10 @@ http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/cnbc_eu/ls_satlink/b_264.m3u8
 
 
 #EXTINF:0,Fashion TV 
-http://p22.sdn.si/fashiontv/fashiontv.isml/fashiontv-video=2500000-audio101=128000.m3u8
+http://213.250.19.50/fashiontv/fashiontv.isml/fashiontv-video=2500000-audio101=128000.m3u8
 
 #EXTINF:0,Fashion TV 
-http://p22.sdn.si/fashiontv/fashiontv.isml/fashiontv-video=1500000-audio101=128000.m3u8
-
-#EXTINF:0,Fashion TV 
-http://p21.sdn.si/fashiontv/fashiontv.isml/fashiontv-video=2500000-audio101=128000.m3u8
-
-#EXTINF:0,Fashion TV 
-http://p21.sdn.si/fashiontv/fashiontv.isml/fashiontv-video=1500000-audio101=128000.m3u8
+http://213.250.19.50/fashiontv/fashiontv.isml/fashiontv-video=1500000-audio101=128000.m3u8
 
 #EXTINF:0,Fashion TV 
 http://hls.novotelecom.ru/streaming/fashion/tvrec/playlist.m3u8
@@ -134,16 +116,10 @@ http://37.48.118.32/live/film4.stream/playlist.m3u8
 http://83.139.104.111/Content/HLS/Live/Channel(fine_living)/Stream(03)/index.m3u8
 
 #EXTINF:0,Fox
-http://p22.sdn.si/fox/fox.isml/fox-video=2500000-audio101=128000.m3u8
+http://213.250.19.50/fox/fox.isml/fox-video=2500000-audio101=128000.m3u8
 
 #EXTINF:0,Fox
-http://p22.sdn.si/fox/fox.isml/fox-video=1500000-audio101=128000.m3u8
-
-#EXTINF:0,Fox
-http://p21.sdn.si/fox/fox.isml/fox-video=2500000-audio101=128000.m3u8
-
-#EXTINF:0,Fox
-http://p21.sdn.si/fox/fox.isml/fox-video=1500000-audio101=128000.m3u8
+http://213.250.19.50/fox/fox.isml/fox-video=1500000-audio101=128000.m3u8
 
 #EXTINF:0,Fox 5 
 
@@ -155,28 +131,16 @@ http://p21.sdn.si/fox/fox.isml/fox-video=1500000-audio101=128000.m3u8
 http://akamai231.tibo.tv/m3u8/foxcrimechannel.m3u8
 
 #EXTINF:0,Fox Crime
-http://p22.sdn.si/foxcrime/foxcrime.isml/foxcrime-video=2500000-audio101=128000.m3u8
+http://213.250.19.50/foxcrime/foxcrime.isml/foxcrime-video=2500000-audio101=128000.m3u8
 
 #EXTINF:0,Fox Crime
-http://p22.sdn.si/foxcrime/foxcrime.isml/foxcrime-video=1500000-audio101=128000.m3u8
-
-#EXTINF:0,Fox Crime
-http://p21.sdn.si/foxcrime/foxcrime.isml/foxcrime-video=2500000-audio101=128000.m3u8
-
-#EXTINF:0,Fox Crime
-http://p21.sdn.si/foxcrime/foxcrime.isml/foxcrime-video=1500000-audio101=128000.m3u8
+http://213.250.19.50/foxcrime/foxcrime.isml/foxcrime-video=1500000-audio101=128000.m3u8
 
 #EXTINF:0,Fox Life 
-http://p22.sdn.si/foxlife/foxlife.isml/foxlife-video=2500000-audio101=128000.m3u8
+http://213.250.19.50/foxlife/foxlife.isml/foxlife-video=2500000-audio101=128000.m3u8
 
 #EXTINF:0,Fox Life 
-http://p22.sdn.si/foxlife/foxlife.isml/foxlife-video=1500000-audio101=128000.m3u8
-
-#EXTINF:0,Fox Life 
-http://p21.sdn.si/foxlife/foxlife.isml/foxlife-video=2500000-audio101=128000.m3u8
-
-#EXTINF:0,Fox Life 
-http://p21.sdn.si/foxlife/foxlife.isml/foxlife-video=1500000-audio101=128000.m3u8
+http://213.250.19.50/foxlife/foxlife.isml/foxlife-video=1500000-audio101=128000.m3u8
 
 #EXTINF:0,Fox Life 
 http://akamai231.tibo.tv/m3u8/foxlifechannel.m3u8
@@ -188,16 +152,10 @@ http://83.139.104.111/Content/HLS/Live/Channel(food_network)/Stream(03)/index.m3
 
 
 #EXTINF:0,Ginx Gaming TV 
-http://p22.sdn.si/ginx/ginx.isml/ginx-video=2500000-audio101=128000.m3u8
+http://213.250.19.50/ginx/ginx.isml/ginx-video=2500000-audio101=128000.m3u8
 
 #EXTINF:0,Ginx Gaming TV 
-http://p22.sdn.si/ginx/ginx.isml/ginx-video=1500000-audio101=128000.m3u8
-
-#EXTINF:0,Ginx Gaming TV 
-http://p21.sdn.si/ginx/ginx.isml/ginx-video=2500000-audio101=128000.m3u8
-
-#EXTINF:0,Ginx Gaming TV 
-http://p21.sdn.si/ginx/ginx.isml/ginx-video=1500000-audio101=128000.m3u8
+http://213.250.19.50/ginx/ginx.isml/ginx-video=1500000-audio101=128000.m3u8
 
 #EXTINF:0,Ginx Gaming TV 
 http://83.139.104.111/Content/HLS/Live/Channel(ginx)/Stream(03)/index.m3u8
@@ -300,16 +258,10 @@ http://176.31.182.148:8080/sky/disney/index.m3u8
 http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/master.m3u8?b?b*t$
 
 #EXTINF:0,TLC 
-http://p22.sdn.si/tlc/tlc.isml/tlc-video=2500000-audio101=128000.m3u8
+http://213.250.19.50/tlc/tlc.isml/tlc-video=2500000-audio101=128000.m3u8
 
 #EXTINF:0,TLC 
-http://p22.sdn.si/tlc/tlc.isml/tlc-video=1500000-audio101=128000.m3u8
-
-#EXTINF:0,TLC 
-http://p21.sdn.si/tlc/tlc.isml/tlc-video=2500000-audio101=128000.m3u8
-
-#EXTINF:0,TLC 
-http://p21.sdn.si/tlc/tlc.isml/tlc-video=1500000-audio101=128000.m3u8
+http://213.250.19.50/tlc/tlc.isml/tlc-video=1500000-audio101=128000.m3u8
 
 #EXTINF:0,TLC 
 http://83.139.104.111/Content/HLS/Live/Channel(TLC)/Stream(03)/index.m3u8

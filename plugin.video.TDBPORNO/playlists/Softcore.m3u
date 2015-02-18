@@ -23,18 +23,6 @@ rtmp://edge1.everyon.tv/etv1/phd497
 rtmp://edge2.everyon.tv/etv2/phd499
 
 #EXTINF:-0,Playboy TV 
-http://p22.sdn.si/playboy/playboy.isml/playboy-video=2500000-audio101=128000.m3u8
-
-#EXTINF:-0,Playboy TV 
-http://p22.sdn.si/playboy/playboy.isml/playboy-video=1500000-audio101=128000.m3u8
-
-#EXTINF:-0,Playboy TV 
-http://p21.sdn.si/playboy/playboy.isml/playboy-video=2500000-audio101=128000.m3u8
-
-#EXTINF:-0,Playboy TV 
-http://p21.sdn.si/playboy/playboy.isml/playboy-video=1500000-audio101=128000.m3u8
-
-#EXTINF:-0,Playboy TV 
 http://213.250.19.50/playboy/playboy.isml/playboy-video=2500000-audio101=128000.m3u8
 
 #EXTINF:-0,Playboy TV 
