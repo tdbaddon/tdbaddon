@@ -178,6 +178,9 @@ http://80.243.182.106:8080/javed/skypremierej/index.m3u8
 #EXTINF:0,Sky Movies Premiere
 http://37.48.118.32/live/mpremiere.stream/playlist.m3u8
 
+#EXTINF:0,Sky Movies Sci Fi
+http://37.48.118.32/live/mscifi.stream/playlist.m3u8
+
 #EXTINF:0,Star Movies
 http://113.160.49.34/lives/origin03/moviehd.isml/moviehd-2096k.m3u8
 

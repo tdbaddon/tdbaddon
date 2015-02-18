@@ -8,7 +8,7 @@ http://213.250.19.50/24kitchen/24kitchen.isml/24kitchen-video=2500000-audio101=1
 http://213.250.19.50/24kitchen/24kitchen.isml/24kitchen-video=1500000-audio101=128000.m3u8
 
 #EXTINF:0,A&E 
-
+http://198.27.94.105/hls/usa.m3u8
 
 #EXTINF:0,ABC 
 http://198.27.94.105/hls/abc.m3u8
@@ -38,7 +38,7 @@ http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=129&lan=2&rows=
 rtmp://178.18.31.57:443/liverepeater playpath=186372 swfUrl=http://bernardotv.club/atdedead.swf pageUrl=http://biggestplayer.me/streamcr.php?id=186372&width=620&height=490 token=#atd%#$ZH
 
 #EXTINF:0,BBC Entertainment 
-
+http://200.76.77.237/LIVE/H01/CANAL253/PROFILE03.m3u8
 
 #EXTINF:0,BBC Lifestyle
 
@@ -77,7 +77,7 @@ http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/cnbc_eu/ls_satlink/b_264.m3u8
 
 
 #EXTINF:0,Comedy Central
-
+http://37.48.118.32/live/cc.stream/playlist.m3u8
 
 #EXTINF:0,CW 
 
@@ -272,6 +272,9 @@ http://83.139.104.111/Content/HLS/Live/Channel(TLC)/Stream(03)/index.m3u8
 #EXTINF:0,Tru TV 
 http://cdn.live.simplestream.com/coder5/coder.channels.channel2/hls/2/playlist.m3u8
 
+#EXTINF:0,Tru TV 
+http://cdn.live.simplestream.com/coder5/coder.channels.channel2/hls/4/playlist.m3u8
+
 #EXTINF:0,True Drama
 
 
@@ -282,7 +285,7 @@ http://cdn.live.simplestream.com/coder5/coder.channels.channel2/hls/2/playlist.m
 
 
 #EXTINF:0,Universal Channel 
-
+http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=97&lan=2&rows=40&f=.m3u8
 
 #EXTINF:0,USA Network 
 

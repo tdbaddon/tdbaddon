@@ -44,7 +44,10 @@ http://212.70.155.243:40665/udp/237.100.0.128:4000
 
 
 #EXTINF:0,Discovery Science 
+http://hlsstr02.svc.iptv.rt.ru/hls/CH_DISCOVERYSCIENCE/variant.m3u8
 
+#EXTINF:0,Discovery Science 
+http://37.48.118.32/live/discoverys.stream/playlist.m3u8
 
 #EXTINF:0,Discovery Theater
 http://200.76.77.237/LIVE/H01/CANAL351/PROFILE03.m3u8?

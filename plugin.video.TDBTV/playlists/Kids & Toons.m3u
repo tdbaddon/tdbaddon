@@ -30,6 +30,9 @@ http://213.250.19.50/cartoonnetwork/cartoonnetwork.isml/cartoonnetwork-video=250
 #EXTINF:0,Cartoon Network
 http://213.250.19.50/cartoonnetwork/cartoonnetwork.isml/cartoonnetwork-video=1500000-audio101=128000.m3u8
 
+#EXTINF:0,Classic Loony Tunes
+http://167.114.65.74/hls/lt.m3u8
+
 #EXTINF:0,DaVinci Learning
 http://213.250.19.50/davincilearning/davincilearning.isml/davincilearning-video=2500000-audio101=128000.m3u8
 
@@ -82,13 +85,13 @@ rtmp://mi2.gv.filmon.com:1935/live/_definst_/2734.low.stream?b?b*t$
 rtmpe://192.99.38.122/bling0110hljdhaflhfahdfpadhfhurhgydhfbvkchugfayei/ playpath=koth02 swfUrl=http://www.tgun.tv/lock/player.swf live=1 pageUrl=http://www.tgun.tv/menus/players/playerindex3.php?koth01
 
 #EXTINF:0,Nick 
-
+http://37.48.118.32/live/nick.stream/playlist.m3u8
 
 #EXTINF:0,Nick Jr
 
 
 #EXTINF:0,Nickelodeon 
-
+http://37.48.118.32/live/nicktoons.stream/playlist.m3u8
 
 #EXTINF:0,NickNight 
 

@@ -8,7 +8,7 @@ http://bigten247.cdnak.bigtenhd.neulion.com/nlds/btn2go/btnnetwork/as/live/btnne
 http://37.220.29.186:8000/boxnation/boxvbnation/index.m3u8
 
 #EXTINF:0,Bein Sport1
-
+rtmp://95.211.211.222/iguide playpath=ao6r4bekczen8iy swfUrl=http://www.iguide.to/player/secure_player_iguide_embed_token.swf live=1 pageUrl=http://www.iguide.to/ token=#ed%h0#w18623jsda6523lDGD
 
 #EXTINF:0,Bein Sport2
 
@@ -30,6 +30,9 @@ rtmp://94.102.49.126:443/liverepeater playpath=15  swfUrl=http://popeoftheplayer
 
 #EXTINF:0,ESPN 
 http://198.27.94.105/hls/espnuk.m3u8
+
+#EXTINF:0,ESPN 
+rtmp://46.246.29.157:1935/stream/ playpath=1Kq68GX6Kc.stream swfUrl=http://thecdn.04stream.com/p/ooolo1.swf pageUrl=http://www.04stream.com/ebb.php?adsp=other&width=600&height=460&st=24g3z5b4d4t4w3x2x4h5n254v214y2t24424y213m2x2w2d4&adx=&stream=54y2n5i57494y264d4k544b4v2a494n244v4n4y2w2i304c4x4l5t234z2q274x2t2p2v2e4o234w243y3q2x4y5b4e4f3v3c4t4i2l5c4x5d484u546n2p2n4s2t23434j5c484x2y2c4u2w2u2z2d4q29413d4e54464k5j5o5z284a4k5y274u24494y23414r2p2l2s2t2343434&sooor=Mjc=&str=is&ok=&cat=1&link=1&idom=gofirstrow.eu
 
 #EXTINF:0,ESPN 2
 rtmp://178.18.31.55:443/liverepeater playpath=188941 swfUrl=http://bernardotv.club/atdedead.swf pageUrl=http://biggestplayer.me/streamcr.php?id=188941&width=620&height=490 token=#atd%#$ZH<
@@ -99,6 +102,9 @@ rtmp://mi2.gv.filmon.com:8086/live/262.high.stream
 
 #EXTINF:0,NBA TV 
 rtmp://178.18.31.56:443/liverepeater playpath=188908 swfUrl=http://bernardotv.club/atdedead.swf pageUrl=http://biggestplayer.me/streamcr.php?id=188908&width=620&height=490 token=#atd%#$ZH
+
+#EXTINF:0,NBA TV 
+http://198.27.94.105/hls/nba.m3u8
 
 #EXTINF:0,NBC Golf 
 http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/2596k/prog.m3u8|X-Forwarded-For=209.239.112.104
