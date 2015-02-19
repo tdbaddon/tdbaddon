@@ -18,17 +18,38 @@ http://213.250.19.50/babytv/babytv.isml/babytv-video=2500000-audio101=128000.m3u
 #EXTINF:0,BabyTV 
 http://213.250.19.50/babytv/babytv.isml/babytv-video=1500000-audio101=128000.m3u8
 
+#EXTINF:0,BabyTV 
+http://cdn-02.sdn.si/babytv/babytv.isml/babytv-video=2500000-audio101=128000.m3u8
+
+#EXTINF:0,BabyTV 
+http://cdn-02.sdn.si/babytv/babytv.isml/babytv-video=1500000-audio101=128000.m3u8
+
 #EXTINF:0,Boomerang 
 http://213.250.19.50/boomerang/boomerang.isml/boomerang-video=2500000-audio101=128000.m3u8
 
 #EXTINF:0,Boomerang 
 http://213.250.19.50/boomerang/boomerang.isml/boomerang-video=1500000-audio101=128000.m3u8
 
+#EXTINF:0,Boomerang 
+http://cdn-02.sdn.si/boomerang/boomerang.isml/boomerang-video=2500000-audio101=128000.m3u8
+
+#EXTINF:0,Boomerang 
+http://cdn-02.sdn.si/boomerang/boomerang.isml/boomerang-video=1500000-audio101=128000.m3u8
+
 #EXTINF:0,Cartoon Network
 http://213.250.19.50/cartoonnetwork/cartoonnetwork.isml/cartoonnetwork-video=2500000-audio101=128000.m3u8
 
 #EXTINF:0,Cartoon Network
 http://213.250.19.50/cartoonnetwork/cartoonnetwork.isml/cartoonnetwork-video=1500000-audio101=128000.m3u8
+
+#EXTINF:0,Cartoon Network
+http://cdn-02.sdn.si/cartoonnetwork/cartoonnetwork.isml/cartoonnetwork-video=2500000-audio101=128000.m3u8
+
+#EXTINF:0,Cartoon Network
+http://cdn-02.sdn.si/cartoonnetwork/cartoonnetwork.isml/cartoonnetwork-video=1500000-audio101=128000.m3u8
+
+#EXTINF:0,Cartoon Network 
+http://37.48.118.32/live/cn.stream/playlist.m3u8
 
 #EXTINF:0,Classic Loony Tunes
 http://167.114.65.74/hls/lt.m3u8
@@ -39,11 +60,26 @@ http://213.250.19.50/davincilearning/davincilearning.isml/davincilearning-video=
 #EXTINF:0,DaVinci Learning
 http://213.250.19.50/davincilearning/davincilearning.isml/davincilearning-video=1500000-audio101=128000.m3u8
 
+#EXTINF:0,DaVinci Learning
+http://cdn-02.sdn.si/davincilearning/davincilearning.isml/davincilearning-video=1500000-audio101=128000.m3u8
+
+#EXTINF:0,Disney Channel 
+http://cdn-02.sdn.si/disneychannel/disneychannel.isml/disneychannel-video=2500000-audio101=128000.m3u8
+
 #EXTINF:0,Disney Channel 
 http://213.250.19.50/disneychannel/disneychannel.isml/disneychannel-video=2500000-audio101=128000.m3u8
 
 #EXTINF:0,Disney Channel 
 http://213.250.19.50/disneychannel/disneychannel.isml/disneychannel-video=1500000-audio101=128000.m3u8
+
+#EXTINF:0,Disney Channel 
+http://cdn-02.sdn.si/disneychannel/disneychannel.isml/disneychannel-video=2500000-audio101=128000.m3u8
+
+#EXTINF:0,Disney Channel 
+http://cdn-02.sdn.si/disneychannel/disneychannel.isml/disneychannel-video=1500000-audio101=128000.m3u8
+
+#EXTINF:0,Disney Channel 
+http://37.48.118.32/live/disney.stream/playlist.m3u8
 
 #EXTINF:0,Disney Cinemagic 
 
@@ -56,6 +92,12 @@ http://213.250.19.50/disneyxd/disneyxd.isml/disneyxd-video=2500000-audio101=1280
 
 #EXTINF:0,Disney XD 
 http://213.250.19.50/disneyxd/disneyxd.isml/disneyxd-video=1500000-audio101=128000.m3u8
+
+#EXTINF:0,Disney XD 
+http://cdn-02.sdn.si/disneyxd/disneyxd.isml/disneyxd-video=2500000-audio101=128000.m3u8
+
+#EXTINF:0,Disney XD 
+http://cdn-02.sdn.si/disneyxd/disneyxd.isml/disneyxd-video=1500000-audio101=128000.m3u8
 
 #EXTINF:0,Emba Kids 
 rtmp://mi2.gv.filmon.com:8086/live/719.high.stream
@@ -74,6 +116,12 @@ http://213.250.19.50/jimjam/jimjam.isml/jimjam-video=2500000-audio101=128000.m3u
 
 #EXTINF:0,Jim Jam 
 http://213.250.19.50/jimjam/jimjam.isml/jimjam-video=1500000-audio101=128000.m3u8
+
+#EXTINF:0,Jim Jam 
+http://cdn-02.sdn.si/jimjam/jimjam.isml/jimjam-video=2500000-audio101=128000.m3u8
+
+#EXTINF:0,Jim Jam 
+http://cdn-02.sdn.si/jimjam/jimjam.isml/jimjam-video=1500000-audio101=128000.m3u8
 
 #EXTINF:0,Junior TV
 

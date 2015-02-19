@@ -10,8 +10,8 @@ http://abclive.abcnews.com/i/abc_live4@136330/index_1200_av-b.m3u8
 #EXTINF:0,AlJazeera 
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/aljazeera_en/ls_satlink/b_528.m3u8%20#
 
-#EXTINF:0,BBC News 
-
+#EXTINF:0,BBC news
+http://37.48.118.32/live/bbcnews.stream/playlist.m3u8
 
 #EXTINF:0,BBC World News 
 http://213.250.19.50/bbcworld/bbcworld.isml/bbcworld-video=2500000-audio101=128000.m3u8
@@ -51,6 +51,9 @@ http://213.250.19.50/cnn/cnn.isml/cnn-video=1500000-audio101=128000.m3u8
 
 #EXTINF:0,CNN 
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/cnn/ls_satlink/b_828.m3u8
+
+#EXTINF:0,CNN 
+http://37.48.118.32/live/cnn.stream/playlist.m3u8
 
 #EXTINF:0,DW 
 http://www.metafilegenerator.de/DWelle/tv-asia/ios/master.m3u8

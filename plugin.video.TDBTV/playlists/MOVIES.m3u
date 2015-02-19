@@ -62,6 +62,12 @@ http://213.250.19.50/foxmovies/foxmovies.isml/foxmovies-video=2500000-audio101=1
 http://213.250.19.50/foxmovies/foxmovies.isml/foxmovies-video=1500000-audio101=128000.m3u8
 
 #EXTINF:0,Fox Movies 
+http://cdn-02.sdn.si/foxmovies/foxmovies.isml/foxmovies-video=2500000-audio101=128000.m3u8
+
+#EXTINF:0,Fox Movies 
+http://cdn-02.sdn.si/foxmovies/foxmovies.isml/foxmovies-video=1500000-audio101=128000.m3u8
+
+#EXTINF:0,Fox Movies 
 http://200.76.77.237/LIVE/H01/CANAL417/PROFILE03.m3u8?
 
 #EXTINF:0,Fox Movies 
@@ -150,6 +156,9 @@ http://37.48.118.32/live/maction.stream/playlist.m3u8
 
 #EXTINF:0,Sky Movies Atlantic
 http://37.157.246.170:8000/sky/atlantic/index.m3u8
+
+#EXTINF:0,Sky Movies Atlantic
+http://37.48.118.32/live/skyatlantic.stream/playlist.m3u8
 
 #EXTINF:0,Sky Movies Crime
 http://37.48.118.32/live/mcrime.stream/playlist.m3u8?wowzasessionid=206319818

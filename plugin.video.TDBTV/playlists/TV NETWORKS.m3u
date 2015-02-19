@@ -7,6 +7,12 @@ http://213.250.19.50/24kitchen/24kitchen.isml/24kitchen-video=2500000-audio101=1
 #EXTINF:0,24 Kitchen
 http://213.250.19.50/24kitchen/24kitchen.isml/24kitchen-video=1500000-audio101=128000.m3u8
 
+#EXTINF:0,24 Kitchen
+http://cdn-02.sdn.si/24kitchen/24kitchen.isml/24kitchen-video=2500000-audio101=128000.m3u8
+
+#EXTINF:0,24 Kitchen
+http://cdn-02.sdn.si/24kitchen/24kitchen.isml/24kitchen-video=1500000-audio101=128000.m3u8
+
 #EXTINF:0,A&E 
 http://198.27.94.105/hls/usa.m3u8
 
@@ -34,8 +40,14 @@ http://113.160.49.34/lives/origin03/axnhd.isml/axnhd-2096k.m3u8
 #EXTINF:0,BBC 1 
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=129&lan=2&rows=40&f=.m3u8
 
+#EXTINF:0,BBC 1 
+http://37.48.118.32/live/bbc1.stream/playlist.m3u8
+
 #EXTINF:0,BBC 2 
 rtmp://178.18.31.57:443/liverepeater playpath=186372 swfUrl=http://bernardotv.club/atdedead.swf pageUrl=http://biggestplayer.me/streamcr.php?id=186372&width=620&height=490 token=#atd%#$ZH
+
+#EXTINF:0,BBC 2 
+http://37.48.118.32/live/bbc2.stream/playlist.m3u8
 
 #EXTINF:0,BBC Entertainment 
 http://200.76.77.237/LIVE/H01/CANAL253/PROFILE03.m3u8
@@ -63,6 +75,12 @@ http://213.250.19.50/cbsdrama/cbsdrama.isml/cbsdrama-video=2500000-audio101=1280
 
 #EXTINF:0,CBS Drama 
 http://213.250.19.50/cbsdrama/cbsdrama.isml/cbsdrama-video=1500000-audio101=128000.m3u8
+
+#EXTINF:0,CBS Drama 
+http://cdn-02.sdn.si/cbsdrama/cbsdrama.isml/cbsdrama-video=2500000-audio101=128000.m3u8
+
+#EXTINF:0,CBS Drama 
+http://cdn-02.sdn.si/cbsdrama/cbsdrama.isml/cbsdrama-video=1500000-audio101=128000.m3u8
 
 #EXTINF:0,CBS Reality 
 http://83.139.104.111/Content/HLS/Live/Channel(cbs_reality)/Stream(03)/index.m3u8
@@ -98,6 +116,12 @@ http://213.250.19.50/fashiontv/fashiontv.isml/fashiontv-video=2500000-audio101=1
 http://213.250.19.50/fashiontv/fashiontv.isml/fashiontv-video=1500000-audio101=128000.m3u8
 
 #EXTINF:0,Fashion TV 
+http://cdn-02.sdn.si/fashiontv/fashiontv.isml/fashiontv-video=2500000-audio101=128000.m3u8
+
+#EXTINF:0,Fashion TV 
+http://cdn-02.sdn.si/fashiontv/fashiontv.isml/fashiontv-video=1500000-audio101=128000.m3u8
+
+#EXTINF:0,Fashion TV 
 http://hls.novotelecom.ru/streaming/fashion/tvrec/playlist.m3u8
 
 #EXTINF:0,Fashion TV 
@@ -121,6 +145,12 @@ http://213.250.19.50/fox/fox.isml/fox-video=2500000-audio101=128000.m3u8
 #EXTINF:0,Fox
 http://213.250.19.50/fox/fox.isml/fox-video=1500000-audio101=128000.m3u8
 
+#EXTINF:0,Fox
+http://cdn-02.sdn.si/fox/fox.isml/fox-video=2500000-audio101=128000.m3u8
+
+#EXTINF:0,Fox
+http://cdn-02.sdn.si/fox/fox.isml/fox-video=1500000-audio101=128000.m3u8
+
 #EXTINF:0,Fox 5 
 
 
@@ -128,13 +158,19 @@ http://213.250.19.50/fox/fox.isml/fox-video=1500000-audio101=128000.m3u8
 
 
 #EXTINF:0,Fox Crime
-http://akamai231.tibo.tv/m3u8/foxcrimechannel.m3u8
-
-#EXTINF:0,Fox Crime
 http://213.250.19.50/foxcrime/foxcrime.isml/foxcrime-video=2500000-audio101=128000.m3u8
 
 #EXTINF:0,Fox Crime
 http://213.250.19.50/foxcrime/foxcrime.isml/foxcrime-video=1500000-audio101=128000.m3u8
+
+#EXTINF:0,Fox Crime
+http://cdn-02.sdn.si/foxcrime/foxcrime.isml/foxcrime-video=2500000-audio101=128000.m3u8
+
+#EXTINF:0,Fox Crime
+http://cdn-02.sdn.si/foxcrime/foxcrime.isml/foxcrime-video=1500000-audio101=128000.m3u8
+
+#EXTINF:0,Fox Crime
+http://akamai231.tibo.tv/m3u8/foxcrimechannel.m3u8
 
 #EXTINF:0,Fox Life 
 http://213.250.19.50/foxlife/foxlife.isml/foxlife-video=2500000-audio101=128000.m3u8
@@ -143,19 +179,31 @@ http://213.250.19.50/foxlife/foxlife.isml/foxlife-video=2500000-audio101=128000.
 http://213.250.19.50/foxlife/foxlife.isml/foxlife-video=1500000-audio101=128000.m3u8
 
 #EXTINF:0,Fox Life 
+http://cdn-02.sdn.si/foxlife/foxlife.isml/foxlife-video=2500000-audio101=128000.m3u8
+
+#EXTINF:0,Fox Life 
+http://cdn-02.sdn.si/foxlife/foxlife.isml/foxlife-video=1500000-audio101=128000.m3u8
+
+#EXTINF:0,Fox Life 
 http://akamai231.tibo.tv/m3u8/foxlifechannel.m3u8
 
 #EXTINF:0,Food Network
 http://83.139.104.111/Content/HLS/Live/Channel(food_network)/Stream(03)/index.m3u8
 
 #EXTINF:0,FX 
-
+http://live.oneplay.tv/reproducir/101.m3u8
 
 #EXTINF:0,Ginx Gaming TV 
 http://213.250.19.50/ginx/ginx.isml/ginx-video=2500000-audio101=128000.m3u8
 
 #EXTINF:0,Ginx Gaming TV 
 http://213.250.19.50/ginx/ginx.isml/ginx-video=1500000-audio101=128000.m3u8
+
+#EXTINF:0,Ginx Gaming TV 
+http://cdn-02.sdn.si/ginx/ginx.isml/ginx-video=2500000-audio101=128000.m3u8
+
+#EXTINF:0,Ginx Gaming TV 
+http://cdn-02.sdn.si/ginx/ginx.isml/ginx-video=1500000-audio101=128000.m3u8
 
 #EXTINF:0,Ginx Gaming TV 
 http://83.139.104.111/Content/HLS/Live/Channel(ginx)/Stream(03)/index.m3u8
@@ -178,7 +226,13 @@ http://ios.streamserver01.com:8080/ShowcaseTV/mystream.m3u8
 #EXTINF:0,ITV 1 
 http://93.184.221.133/00573D/283/283-0.m3u8
 
+#EXTINF:0,ITV 1
+http://37.48.118.32/live/itv1.stream/playlist.m3u8
+
 #EXTINF:0,ITV 2 
+http://37.48.118.32/live/itv2.stream/playlist.m3u8
+
+#EXTINF:0,ITV 2
 http://37.48.118.32/live/itv2.stream/playlist.m3u8
 
 #EXTINF:0,Jewelry Television
@@ -233,8 +287,17 @@ http://37.48.118.32/live/sky1.stream/playlist.m3u8
 #EXTINF:0,Sky 2
 http://37.48.118.32/live/sky2.stream/playlist.m3u8
 
+#EXTINF:0,Sky Arts 1
+http://37.48.118.32/live/skyarts1.stream/playlist.m3u8
+
+#EXTINF:0,Sky Arts 2
+http://37.48.118.32/live/skyarts2.stream/playlist.m3u8
+
 #EXTINF:0,Sky Living
 http://176.31.182.148:8080/sky/disney/index.m3u8
+
+#EXTINF:0,Sky Living 
+http://37.48.118.32/live/living.stream/playlist.m3u8
 
 #EXTINF:0,Spike TV 
 
@@ -262,6 +325,12 @@ http://213.250.19.50/tlc/tlc.isml/tlc-video=2500000-audio101=128000.m3u8
 
 #EXTINF:0,TLC 
 http://213.250.19.50/tlc/tlc.isml/tlc-video=1500000-audio101=128000.m3u8
+
+#EXTINF:0,TLC 
+http://cdn-02.sdn.si/tlc/tlc.isml/tlc-video=2500000-audio101=128000.m3u8
+
+#EXTINF:0,TLC 
+http://cdn-02.sdn.si/tlc/tlc.isml/tlc-video=1500000-audio101=128000.m3u8
 
 #EXTINF:0,TLC 
 http://83.139.104.111/Content/HLS/Live/Channel(TLC)/Stream(03)/index.m3u8

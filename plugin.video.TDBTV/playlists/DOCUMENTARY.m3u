@@ -8,7 +8,16 @@ http://213.250.19.50/animalplanet/animalplanet.isml/animalplanet-video=2500000-a
 http://213.250.19.50/animalplanet/animalplanet.isml/animalplanet-video=1500000-audio101=128000.m3u8
 
 #EXTINF:0,Animal Planet 
+http://cdn-02.sdn.si/animalplanet/animalplanet.isml/animalplanet-video=2500000-audio101=128000.m3u8
+
+#EXTINF:0,Animal Planet 
+http://cdn-02.sdn.si/animalplanet/animalplanet.isml/animalplanet-video=1500000-audio101=128000.m3u8
+
+#EXTINF:0,Animal Planet 
 http://sjc-uhls-vip01.ustream.tv/watch/playlist.m3u8?cid=12762028
+
+#EXTINF:0,Animal Planet 
+http://37.48.118.32/live/animal.stream/playlist.m3u8
 
 #EXTINF:0,Animal Planet 
 http://83.139.104.111:80/Content/HLS/Live/Channel(animal_planet)/Stream(03)/index.m3u8
@@ -19,17 +28,38 @@ http://213.250.19.50/bbcknowledge/bbcknowledge.isml/bbcknowledge-video=2500000-a
 #EXTINF:0,BBC Knowledge 
 http://213.250.19.50/bbcknowledge/bbcknowledge.isml/bbcknowledge-video=1500000-audio101=128000.m3u8
 
+#EXTINF:0,BBC Knowledge 
+http://cdn-02.sdn.si/bbcknowledge/bbcknowledge.isml/bbcknowledge-video=2500000-audio101=128000.m3u8
+
+#EXTINF:0,BBC Knowledge 
+http://cdn-02.sdn.si/bbcknowledge/bbcknowledge.isml/bbcknowledge-video=1500000-audio101=128000.m3u8
+
 #EXTINF:0,Crime Investigation 
 http://213.250.19.50/crimeinvestigation/crimeinvestigation.isml/crimeinvestigation-video=2500000-audio101=128000.m3u8
 
 #EXTINF:0,Crime Investigation 
 http://213.250.19.50/crimeinvestigation/crimeinvestigation.isml/crimeinvestigation-video=1500000-audio101=128000.m3u8
 
+#EXTINF:0,Crime Investigation 
+http://cdn-02.sdn.si/crimeinvestigation/crimeinvestigation.isml/crimeinvestigation-video=2500000-audio101=128000.m3u8
+
+#EXTINF:0,Crime Investigation 
+http://cdn-02.sdn.si/crimeinvestigation/crimeinvestigation.isml/crimeinvestigation-video=1500000-audio101=128000.m3u8
+
 #EXTINF:0,Discovery Channel 
 http://213.250.19.50/discoverychannel/discoverychannel.isml/discoverychannel-video=2500000-audio101=128000.m3u8
 
 #EXTINF:0,Discovery Channel 
 http://213.250.19.50/discoverychannel/discoverychannel.isml/discoverychannel-video=1500000-audio101=128000.m3u8
+
+#EXTINF:0,Discovery Channel 
+http://cdn-02.sdn.si/discoverychannel/discoverychannel.isml/discoverychannel-video=2500000-audio101=128000.m3u8
+
+#EXTINF:0,Discovery Channel 
+http://cdn-02.sdn.si/discoverychannel/discoverychannel.isml/discoverychannel-video=1500000-audio101=128000.m3u8
+
+#EXTINF:0,Discovery Channel 
+http://37.48.118.32/live/discovery.stream/playlist.m3u8
 
 #EXTINF:0,Discovery History 
 
@@ -41,6 +71,7 @@ http://37.48.118.32/live/discoveryi.stream/playlist.m3u8
 http://212.70.155.243:40665/udp/237.100.0.128:4000
 
 #EXTINF:0,Discovery Max
+http://37.48.118.32/live/dmax.stream/playlist.m3u8
 
 
 #EXTINF:0,Discovery Science 
@@ -70,6 +101,12 @@ http://213.250.19.50/historychannel/historychannel.isml/historychannel-video=250
 #EXTINF:0,History Channel 
 http://213.250.19.50/historychannel/historychannel.isml/historychannel-video=1500000-audio101=128000.m3u8
 
+#EXTINF:0,History Channel 
+http://cdn-02.sdn.si/historychannel/historychannel.isml/historychannel-video=2500000-audio101=128000.m3u8
+
+#EXTINF:0,History Channel 
+http://cdn-02.sdn.si/historychannel/historychannel.isml/historychannel-video=1500000-audio101=128000.m3u8
+
 #EXTINF:0,NASA TV 
 http://public.infozen.cshls.lldns.net/infozen/public/public.m3u8
 
@@ -92,6 +129,15 @@ http://213.250.19.50/natgeowild/natgeowild.isml/natgeowild-video=2500000-audio10
 http://213.250.19.50/natgeowild/natgeowild.isml/natgeowild-video=1500000-audio101=128000.m3u8
 
 #EXTINF:0,Nat Geo Wild 
+http://cdn-02.sdn.si/natgeowild/natgeowild.isml/natgeowild-video=2500000-audio101=128000.m3u8
+
+#EXTINF:0,Nat Geo Wild 
+http://cdn-02.sdn.si/natgeowild/natgeowild.isml/natgeowild-video=1500000-audio101=128000.m3u8
+
+#EXTINF:0,Nat Geo Wild 
+http://37.48.118.32/live/natgeow.stream/playlist.m3u8
+
+#EXTINF:0,Nat Geo Wild 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_NATGEOWILD/variant.m3u8
 
 #EXTINF:0,National Geographic 
@@ -99,6 +145,12 @@ http://213.250.19.50/natgeo/natgeo.isml/natgeo-video=2500000-audio101=128000.m3u
 
 #EXTINF:0,National Geographic 
 http://213.250.19.50/natgeo/natgeo.isml/natgeo-video=1500000-audio101=128000.m3u8
+
+#EXTINF:0,National Geographic 
+http://cdn-02.sdn.si/natgeo/natgeo.isml/natgeo-video=2500000-audio101=128000.m3u8
+
+#EXTINF:0,National Geographic 
+http://cdn-02.sdn.si/natgeo/natgeo.isml/natgeo-video=1500000-audio101=128000.m3u8
 
 #EXTINF:0,Paranormal TV 
 rtmp://mi2.gv.filmon.com:8086/live/1618.high.stream
@@ -114,6 +166,12 @@ http://213.250.19.50/travelchannel/travelchannel.isml/travelchannel-video=250000
 
 #EXTINF:0,Travel Channel 
 http://213.250.19.50/travelchannel/travelchannel.isml/travelchannel-video=1500000-audio101=128000.m3u8
+
+#EXTINF:0,Travel Channel 
+http://cdn-02.sdn.si/travelchannel/travelchannel.isml/travelchannel-video=2500000-audio101=128000.m3u8
+
+#EXTINF:0,Travel Channel 
+http://cdn-02.sdn.si/travelchannel/travelchannel.isml/travelchannel-video=1500000-audio101=128000.m3u8
 
 #EXTINF:0,Travel Channel 
 http://83.139.104.111/Content/HLS/Live/Channel(travel_channel)/Stream(03)/index.m3u8
