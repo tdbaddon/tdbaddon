@@ -61,6 +61,9 @@ http://cdn-02.sdn.si/discoverychannel/discoverychannel.isml/discoverychannel-vid
 #EXTINF:0,Discovery Channel 
 http://37.48.118.32/live/discovery.stream/playlist.m3u8
 
+#EXTINF:0,Discovery Channel 
+http://83.139.104.111/Content/HLS/Live/Channel(discovery_channel)/index.m3u8
+
 #EXTINF:0,Discovery History 
 
 
@@ -72,10 +75,6 @@ http://212.70.155.243:40665/udp/237.100.0.128:4000
 
 #EXTINF:0,Discovery Max
 http://37.48.118.32/live/dmax.stream/playlist.m3u8
-
-
-#EXTINF:0,Discovery Science 
-http://hlsstr02.svc.iptv.rt.ru/hls/CH_DISCOVERYSCIENCE/variant.m3u8
 
 #EXTINF:0,Discovery Science 
 http://37.48.118.32/live/discoverys.stream/playlist.m3u8
@@ -136,9 +135,6 @@ http://cdn-02.sdn.si/natgeowild/natgeowild.isml/natgeowild-video=1500000-audio10
 
 #EXTINF:0,Nat Geo Wild 
 http://37.48.118.32/live/natgeow.stream/playlist.m3u8
-
-#EXTINF:0,Nat Geo Wild 
-http://hlsstr02.svc.iptv.rt.ru/hls/CH_NATGEOWILD/variant.m3u8
 
 #EXTINF:0,National Geographic 
 http://213.250.19.50/natgeo/natgeo.isml/natgeo-video=2500000-audio101=128000.m3u8

@@ -126,6 +126,12 @@ http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video
 #EXTINF:0,Nasha TV
 http://fms.zulu.mk:1935/zulu/nashatv_1/playlist.m3u8
 
+#EXTINF:0,OBN
+http://cdn-02.sdn.si/obn/obn.isml/obn-video=2500000-audio101=128000.m3u8
+
+#EXTINF:0,OBN
+http://cdn-02.sdn.si/obn/obn.isml/obn-video=1500000-audio101=128000.m3u8
+
 #EXTINF:0,Pink Folk
 
 

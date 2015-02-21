@@ -12,9 +12,6 @@ rtmp://aragontvlivefs.fplive.net/aragontvlive-live/stream_normal_abt
 #EXTINF:0,Aragon TV
 http://149.11.34.6:1935/live/aragontv.stream/vcx7.m3u8
 
-#EXTINF:0,AXN
-http://200.76.77.237/LIVE/H01/CANAL213/PROFILE03.m3u8?BratuMarian
-
 #EXTINF:0,Azteca 7
 http://200.76.77.237/LIVE/H01/CANAL107/PROFILE03.m3u8?BratuMarian
 
@@ -54,6 +51,15 @@ http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=181&lan=2&rows=
 #EXTINF:0,Casa
 http://200.76.77.237/LIVE/H01/CANAL274/PROFILE03.m3u8?BratuMarian
 
+#EXTINF:0,Cine Canal
+http://200.76.77.237/LIVE/H01/CANAL480/PROFILE03.m3u8?BratuMarian
+
+#EXTINF:0,Cine Canal+
+http://200.76.77.237/LIVE/H01/CANAL430/PROFILE03.m3u8?BratuMarian
+
+#EXTINF:0,Cine Chileno
+rtmp://149.11.34.6/live/sesioncontinuatv.stream
+
 #EXTINF:0,Cosmovision
 http://uneapple-i.akamaihd.net/hls/live/206415/grupoune_st14@206415/st14_index.m3u8
 
@@ -87,14 +93,20 @@ http://200.76.77.237/LIVE/H01/CANAL268/PROFILE03.m3u8?BratuMarian
 #EXTINF:0,Guatevision TV
 http://bravo967.sysvirtuales.com/live/stream1.sdp/BratuMarian.m3u8
 
-#EXTINF:0,H & H
-http://200.76.77.237/LIVE/H01/CANAL374/PROFILE03.m3u8?BratuMarian
+#EXTINF:0,H13N
+http://uneapple-i.akamaihd.net/hls/live/205013/grupoune_st4@205013/st4_index.m3u8
 
 #EXTINF:0,Huesca TV
 rtmp://streaming2.radiohuesca.com/live/huescatv
 
 #EXTINF:0,IB3
 http://ibsatiphone.ib3tv.com/iphoneliveIB3/IB3/IB3.m3u8
+
+#EXTINF:0,INF
+http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=157&lan=2&rows=40&f=BratuMarian.m3u8
+
+#EXTINF:0,INF
+http://200.76.77.237/LIVE/H01/CANAL266/PROFILE03.m3u8?BratuMarian
 
 #EXTINF:0,La Sexta
 http://antena3-aos1-apple-live.adaptive.level3.net/apple/antena3/channel02/la_sexta_hd_1548K_1280x720_main.m3u8

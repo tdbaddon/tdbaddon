@@ -1,0 +1,143 @@
+#EXTM3U
+
+
+#EXTINF:0,SPORTS
+http://
+
+#EXTINF:0,ESPN
+http://200.76.77.237/LIVE/H01/CANAL558/PROFILE03.m3u8?BratuMarian
+
+#EXTINF:0,ESPN
+http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=406&lan=2&rows=40&f=BratuMarian.m3u8
+
+#EXTINF:0,ESPN 2
+http://200.76.77.237/LIVE/H01/CANAL561/PROFILE03.m3u8?BratuMarian
+
+#EXTINF:0,ESPN 2
+http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=409&lan=2&rows=40&f=BratuMarian.m3u8
+
+#EXTINF:0,ESPN 3
+http://200.76.77.237/LIVE/H01/CANAL520/PROFILE03.m3u8?BratuMarian
+
+#EXTINF:0,ESPN 3
+http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=394&lan=2&rows=40&f=BratuMarian.m3u8
+
+#EXTINF:0,Eurosport
+http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=285&lan=2&rows=40&f=BratuMarian.m3u8
+
+#EXTINF:0,Fox Sports 
+http://200.76.77.237/LIVE/H01/CANAL522/PROFILE03.m3u8?BratuMarian
+
+#EXTINF:0,Fox Sports 2
+http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=403&lan=2&rows=40&f=BratuMarian.m3u8
+
+#EXTINF:0,Fox Sports 2
+http://200.76.77.237/LIVE/H01/CANAL527/PROFILE03.m3u8?BratuMarian
+
+#EXTINF:0,PX TV
+http://200.76.77.237/LIVE/H01/CANAL528/PROFILE03.m3u8?BratuMarian
+
+#EXTINF:0,Star Sports
+http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=33&lan=2&rows=40&f=BratuMarian.m3u8
+
+#EXTINF:0,Star Sports
+http://200.76.77.237/LIVE/H01/CANAL52/PROFILE03.m3u8?BratuMarian
+
+
+#EXTINF:0,DOCUMENTARY
+http://
+
+#EXTINF:0,Animal Planet
+http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=261&lan=2&rows=40&f=BratuMarian.m3u8
+
+#EXTINF:0,Animal Planet
+http://200.76.77.237/LIVE/H01/CANAL373/PROFILE03.m3u8?BratuMarian
+
+#EXTINF:0,Discovery Channel
+http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=257&lan=2&rows=40&f=BratuMarian.m3u8
+
+#EXTINF:0,Discovery Civilization
+http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=281&lan=2&rows=40&f=BratuMarian.m3u8
+
+#EXTINF:0,Discovery Civilization
+http://200.76.77.237/LIVE/H01/CANAL382/PROFILE03.m3u8?BratuMarian
+
+#EXTINF:0,Discovery Home & Health
+http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=265&lan=2&rows=40&f=BratuMarian.m3u8
+
+#EXTINF:0,Discovery Home & Health
+http://200.76.77.237/LIVE/H01/CANAL374/PROFILE03.m3u8?BratuMarian
+
+#EXTINF:0,Discovery Investigation 
+http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=153&lan=2&rows=40&f=BratuMarian.m3u8
+
+#EXTINF:0,Discovery Science
+http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=277&lan=2&rows=40&f=BratuMarian.m3u8
+
+#EXTINF:0,Discovery Science
+http://200.76.77.237/LIVE/H01/CANAL381/PROFILE03.m3u8?BratuMarian
+
+#EXTINF:0,Discovery Theater
+http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=241&lan=2&rows=40&f=BratuMarian.m3u8
+
+#EXTINF:0,Discovery Turbo
+http://200.76.77.237/LIVE/H01/CANAL383/PROFILE03.m3u8?BratuMarian
+
+#EXTINF:0,History Channel
+http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=245&lan=2&rows=40&f=BratuMarian.m3u8
+
+#EXTINF:0,History Channel
+http://200.76.77.237/LIVE/H01/CANAL353/PROFILE03.m3u8?BratuMarian
+
+#EXTINF:0,National Geographic Channel
+http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=269&lan=2&rows=40&f=BratuMarian.m3u8
+
+#EXTINF:0,National Geographic Channel
+http://200.76.77.237/LIVE/H01/CANAL377/PROFILE03.m3u8?BratuMarian
+
+#EXTINF:0,Nat Geo Wild
+http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=249&lan=2&rows=40&f=BratuMarian.m3u8
+
+#EXTINF:0,Nat Geo Wild
+http://200.76.77.237/LIVE/H01/CANAL355/PROFILE03.m3u8?BratuMarian
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -33,7 +33,7 @@ http://46.249.213.93/iPhone/broadcast/bikinihotties-tablet.3gp/bikinihotties-tab
 http://46.249.213.93/iPhone/broadcast/bollywoodbikini-iphone.3gp/bollywoodbikini-iphone.3gp-mr413k.m3u8
 
 #EXTINF:0,FUEGO TV 
-
+rtmp://vs2.streamcaster.net/fuego_live/fuego
 
 #EXTINF:0,FUNDORADO TV 
 rtmp://streaming.fundorado.com:80/fundoradotv/live.stream
@@ -48,6 +48,9 @@ trackingid=3641590000&os=desktop
 #EXTINF:0,HOTSHOTS BEACH BABES 
 http://46.249.213.93/iPhone/broadcast/hotshotsbeachbabes-tablet.3gp/hotshotsbeachbabes-tablet.3gp-mr647k.m3u8?trackingid=4591590000&os=desktop
 
+#EXTINF:0,JASMIN TV
+rtmp://109.71.162.112:1935/live/sd.jasminchannel.stream
+
 #EXTINF:0,MIAMI TV 
 http://74.208.69.207/miamitv/stream2/stream.m3u8
 
@@ -55,7 +58,16 @@ http://74.208.69.207/miamitv/stream2/stream.m3u8
 http://playback.d2see.com/wavemachine-live01/playboytv_channel1/playlist.m3u8
 
 #EXTINF:0,PLAYBOY TV CHAT
+http://playback.d2see.com/wavemachine-live01/playboytv_channel2/playlist.m3u8
+
+#EXTINF:0,PLAYBOY TV CHAT
+http://playback.d2see.com:1935/wavemachine-live01/_definst_/mp4:playboytv_channel1/playlist.m3u8
+
+#EXTINF:0,PLAYBOY TV CHAT
 http://playback.d2see.com:1935/wavemachine-live01/_definst_/mp4:playboytv_channel2/playlist.m3u8
+
+#EXTINF:0,PLAYBOY TV CHAT
+http://playback.d2see.com:1935/wavemachine-live01/_definst_/mp4:playboytv_channel3/playlist.m3u8
 
 #EXTINF:0,REDLIGHT CENTRAL 
 

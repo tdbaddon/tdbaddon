@@ -180,88 +180,91 @@ http://83.139.104.111/Content/HLS/Live/Channel(osjecka_tv)/Stream(03)/index.m3u8
 rtmp://149.11.34.6/live/partytv.stream
 
 #EXTINF:0,Pink 1
-http://str108.setplex.net/fastv_2psh/Pinkglobal_rly_greece_109/balkansatnet.m3u8
+http://str108.setplex.net/fastv_2psh/Pinkglobal_rly_greece_109/TDB.m3u8
 
 #EXTINF:0,Pink 2
-http://str108.setplex.net/fastv_2psh/Pink2global_rly_greece_109/balkansatnet.m3u8
+http://str108.setplex.net/fastv_2psh/Pink2global_rly_greece_109/TDB.m3u8
 
 #EXTINF:0,Pink 3
-http://str108.setplex.net/fastv_2psh/Pink3global_rly_greece_109/balkansatnet.m3u8
+http://str108.setplex.net/fastv_2psh/Pink3global_rly_greece_109/TDB.m3u8
 
 #EXTINF:0,Pink Action 1
-http://str108.setplex.net/fastv_2psh/PinkActionglobal_rly_greece_109/balkansatnet.m3u8
+http://str108.setplex.net/fastv_2psh/PinkActionglobal_rly_greece_109/TDB.m3u8
 
 #EXTINF:0,Pink Action 2
-http://str108.setplex.net/fastv_2psh/PinkAction2global_rly_greece_103/balkansatnet.m3u8
+http://str108.setplex.net/fastv_2psh/PinkAction2global_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink Action 3
-http://str108.setplex.net/fastv_2psh/PinkAction3global_rly_greece_103/balkansatnet.m3u8
+http://str108.setplex.net/fastv_2psh/PinkAction3global_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink Comedy
-
+http://str108.setplex.net/fastv_2psh/PinkComedyglobal_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink Film
 
 
 #EXTINF:0,Pink Folk 1
-http://str108.setplex.net/fastv_2psh/PinkFolk1global_rly_greece_103/balkansatnet.m3u8
+http://str108.setplex.net/fastv_2psh/PinkFolk1global_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink Folk 2
-http://str108.setplex.net/fastv_2psh/PinkFolk2global_rly_greece_103/balkansatnet.m3u8
+http://str108.setplex.net/fastv_2psh/PinkFolk2global_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink Horror
-http://str108.setplex.net/fastv_2psh/PinkHorrorglobal_rly_greece_103/balkansatnet.m3u8
+http://str108.setplex.net/fastv_2psh/PinkHorrorglobal_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink Kids
-http://str108.setplex.net/fastv_2psh/PinkKidsglobal_rly_greece_103/balkansatnet.m3u8
+http://str108.setplex.net/fastv_2psh/PinkKidsglobal_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink Live
-http://str108.setplex.net/fastv_2psh/PinkLiveglobal_rly_greece_103/balkansatnet.m3u8
+http://str108.setplex.net/fastv_2psh/PinkLiveglobal_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink Movies 1
-http://str108.setplex.net/fastv_2psh/PinkMglobal_rly_greece_109/balkansatnet.m3u8
+http://str108.setplex.net/fastv_2psh/PinkMglobal_rly_greece_109/TDB.m3u8
 
 #EXTINF:0,Pink Movies 2
-http://str108.setplex.net/fastv_2psh/PinkMovies2global_rly_greece_109/balkansatnet.m3u8
+http://str108.setplex.net/fastv_2psh/PinkMovies2global_rly_greece_109/TDB.m3u8
 
 #EXTINF:0,Pink Movies 3
-http://str108.setplex.net/fastv_2psh/PinkMovies3global_rly_greece_109/balkansatnet.m3u8
+http://str108.setplex.net/fastv_2psh/PinkMovies3global_rly_greece_109/TDB.m3u8
 
 #EXTINF:0,Pink Music 1
-http://str108.setplex.net/fastv_2psh/PinkMusicglobal_rly_greece_103/balkansatnet.m3u8
+http://str108.setplex.net/fastv_2psh/PinkMusicglobal_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink Music 2
-http://str108.setplex.net/fastv_2psh/PinkMusic2global_rly_greece_103/balkansatnet.m3u8
+http://str108.setplex.net/fastv_2psh/PinkMusic2global_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink Music 3
-http://str108.setplex.net/fastv_2psh/PinkMusic3global_rly_greece_103/balkansatnet.m3u8
+http://str108.setplex.net/fastv_2psh/PinkMusic3global_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink Music 4
-http://str108.setplex.net/fastv_2psh/PinkMusic4global_rly_greece_103/balkansatnet.m3u8
+http://str108.setplex.net/fastv_2psh/PinkMusic4global_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink Music 5
-http://str108.setplex.net/fastv_2psh/PinkMusic5global_rly_greece_103/balkansatnet.m3u8
+http://str108.setplex.net/fastv_2psh/PinkMusic5global_rly_greece_103/TDB.m3u8
+
+#EXTINF:0,Pink Nostalgia
+http://str108.setplex.net/fastv_2psh/PinkNostalgijaglobal_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink Pedia
-http://str108.setplex.net/fastv_2psh/PinkPediaglobal_rly_greece_103/balkansatnet.m3u8
+http://str108.setplex.net/fastv_2psh/PinkPediaglobal_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink Premium
-http://str108.setplex.net/fastv_2psh/PinkPremiumglobal_rly_greece_103/balkansatnet.m3u8
+http://str108.setplex.net/fastv_2psh/PinkPremiumglobal_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink Reality
-http://str108.setplex.net/fastv_2psh/PinkRealityglobal_rly_greece_103/balkansatnet.m3u8
+http://str108.setplex.net/fastv_2psh/PinkRealityglobal_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink Soap
-http://str108.setplex.net/fastv_2psh/PinkSoapglobal_rly_greece_103/balkansatnet.m3u8
+http://str108.setplex.net/fastv_2psh/PinkSoapglobal_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink World
-http://str108.setplex.net/fastv_2psh/PinkWorldglobal_rly_greece_109/balkansatnet.m3u8
+http://str108.setplex.net/fastv_2psh/PinkWorldglobal_rly_greece_109/TDB.m3u8
 
 #EXTINF:0,Pink Zabava
-http://str108.setplex.net/fastv_2psh/PinkZabavaglobal_rly_greece_103/balkansatnet.m3u8
+http://str108.setplex.net/fastv_2psh/PinkZabavaglobal_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink Western
-
+http://str108.setplex.net/fastv_2psh/PinkWesternglobal_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Planet TV
 rtsp://origin.biokoda.tv/live/mbit-planet?k=planettv-public
