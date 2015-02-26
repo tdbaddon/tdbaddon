@@ -491,7 +491,7 @@ dc={
 "mbc max" : "490",
 "cbs action" : "491",
 "24 kitchen" : "492",
-"pop brio" : "493",
+"abc family" : "493",
 "war channel" : "494",
 "sky movies comedy" : "495",
 "sky movies horrors" : "496",
@@ -508,5 +508,6 @@ dc={
 "24" : "507",
 "classic loony tunes" : "508",
 "sky movies sci fi" : "509",
-"0000000000000000000000000" : "510",
+"sky arts 1" : "510",
+"sky arts 2" : "511",
 }

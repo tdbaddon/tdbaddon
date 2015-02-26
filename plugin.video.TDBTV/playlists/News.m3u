@@ -41,18 +41,24 @@ http://cdn-02.sdn.si/bloomberg/bloomberg.isml/bloomberg-video=2500000-audio101=1
 http://cdn-02.sdn.si/bloomberg/bloomberg.isml/bloomberg-video=1500000-audio101=128000.m3u8
 
 #EXTINF:0,Bloomberg News
+http://213.250.19.50/bloomberg/bloomberg.isml/bloomberg-video=2500000-audio101=128000.m3u8
+
+#EXTINF:0,Bloomberg News
+http://213.250.19.50/bloomberg/bloomberg.isml/bloomberg-video=1500000-audio101=128000.m3u8
+
+#EXTINF:0,Bloomberg News
 http://x4012c4000.edge.core-cdn.net/40000mb/live/4012hbbtv/bloomberg.ts
 
 #EXTINF:0,CBC News Canada 
 rtmp://a.cdn.newschat.tv/edge playpath=cbc_live swfUrl=http://msnbclive.eu/player.swf pageUrl=http://www.livenewschat.eu/canada/ live=1
 
+#EXTINF:0,CBC News Canada 
+rtmp://a.cdn.newschat.tv/edge playpath=cbc_live swfUrl=http://msnbclive.eu/player.swf pageUrl=http://www.livenewschat.eu/canada/ live=2
+
 #EXTINF:0,CCTV News 
 http://77.36.61.45:8010/CCTVNews.m3u8
 
-#EXTINF:0,CNBC
-http://livestation_hls-lh.akamaihd.net/i/cnbc_en@106428/index_838_av-b.m3u8?sd=10&rebase=on
-
-#EXTINF:0,CNBC
+#EXTINF:0,CNBC 
 http://37.48.118.32/live/cnbc.stream/playlist.m3u8
 
 #EXTINF:0,CNN 
@@ -146,7 +152,7 @@ http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/skynews/ls_satlink/b_828.m3u8
 http://kalsegsec-a.akamaihd.net:80/dc-0/m/pa-live-publish3/kLive/smil:1_oorxcge2_all.smil/playlist.m3u8
 
 #EXTINF:0,Weather Network
-http://bcoveliveios-i.akamaihd.net/hls/live/207737/1942203455001/nat/master.m3u8
+
 
 
 
