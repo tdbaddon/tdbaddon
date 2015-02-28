@@ -38,8 +38,8 @@ http://www.djing.com/tv/u-04.m3u8
 #EXTINF:0,Djing TV 
 http://www.djing.com/tv/01.m3u8
 
-#EXTINF:0,Djing TV 
-http://www.djing.com/tv/02.m3u8
+#EXTINF:0,DMC
+http://83.139.104.99/Content/HLS/Live/Channel(DMC)/Stream(03)/index.m3u8
 
 #EXTINF:0,Gothic Rock TV 
 rtmp://149.11.34.6/live/gotica.stream
@@ -61,10 +61,6 @@ http://149.11.34.78:1935/live/jazztv.stream/hasbahca.m3u8
 
 #EXTINF:0,King TV 
 http://91.82.85.16:1935/relay15/nettv03_channel_1/HasBahCa.m3u8
-
-
-#EXTINF:0,M6 Music Club 
-
 
 #EXTINF:0,Magic 
 
@@ -94,7 +90,13 @@ http://cdn-02.sdn.si/mtvhits/mtvhits.isml/mtvhits-video=2500000-audio101=128000.
 http://cdn-02.sdn.si/mtvhits/mtvhits.isml/mtvhits-video=1500000-audio101=128000.m3u8
 
 #EXTINF:0,MTV Live 
+http://198.27.94.105/hls/mtv_1.m3u8
+
+#EXTINF:0,MTV Live 
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=429&lan=2&rows=40&f=BratuMarian.m3u8
+
+#EXTINF:0,MTV Live 
+http://live.oneplay.tv/reproducir/429.m3u8
 
 #EXTINF:0,MTV Live 
 http://200.76.77.237/LIVE/H01/CANAL701/PROFILE03.m3u8?BratuMarian
@@ -133,7 +135,7 @@ rtmp://149.11.34.6/live/partytv.stream
 rtmp://fms.105.net/live/rmc1
 
 #EXTINF:0,Reggae Entertainment 
-http://rjr_flash-lh.akamaihd.net/i/retv_1@177154/master.m3u8
+
 
 #EXTINF:0,Rock 66 
 http://mediatv2.topix.it/24RockOne66
@@ -164,6 +166,9 @@ http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/appleman.m3u8
 
 #EXTINF:0,VH1 
 http://200.76.77.237/LIVE/H01/CANAL703/PROFILE03.m3u8?BratuMarian
+
+#EXTINF:0,VH1 
+http://live.oneplay.tv/reproducir/437.m3u8
 
 #EXTINF:0,VH1 
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=437&lan=2&rows=40&f=BratuMarian.m3u8

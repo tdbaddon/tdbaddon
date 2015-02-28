@@ -8,19 +8,19 @@ rtmp://video2.earthcam.com/fecnetwork swfUrl=http://www.earthcam.com/swf/cam_pla
 rtmp://video2.earthcam.com/fecnetwork swfUrl=http://www.earthcam.com/swf/cam_player_v2/ecnPlayer.swf playpath=4338.flv live=true
 
 #EXTINF:0,Escapes 
-rtmp://204.107.26.252:8086/live/341.high.stream
+
 
 #EXTINF:0,Fish Tank 
-rtmp://80.93.53.88:1935/live/channel_3
+
 
 #EXTINF:0,LA Hollywood Blvd California 
-http://video2.earthcam.com/fecnetwork/lacitytours1.flv/hasbahca.m3u8
+
 
 #EXTINF:0,Landscape 
-http://130.88.20.233:1237/test.flv
+
 
 #EXTINF:0,Las Vegas Nevada 
-http://video2.earthcam.com/fecnetwork/eclasvegas.flv/hasbahca.m3u8
+
 
 #EXTINF:0,Lax Airport
 rtmp://cp154688.live.edgefcs.net:1935/live playpath=KTTV_N2@2717 swfUrl=http://www.myfoxla.com/[[IMPORT]]/players.edgesuite.net/flash/plugins/osmf/advanced-streaming-plugin/v2.11/osmf1.5/fp10.1/AkamaiAdvancedStreamingPlugin.swf live=1 pageUrl=http://www.myfoxla.com/category/261142/live-lax-airport-webcam
@@ -35,21 +35,21 @@ mms://webcams.niagarafallshotels.com/CNH-Stream2
 rtsp://video2.earthcam.com/fecnetwork/4559.flv
 
 #EXTINF:0,NY Times Square 47th and Broadway
-http://video2.earthcam.com/fecnetwork/hdtimes10.flv/hasbahca.m3u8
+
 
 #EXTINF:0,NY Times Square Crossroads
-http://video2.earthcam.com/fecnetwork/4717.flv/medien.m3u8
+
 
 #EXTINF:0,NY Times Square South View
-http://video2.earthcam.com/fecnetwork/4017timessquare.flv/medien.m3u8
+
+
+#EXTINF:0,NY Times Square Street View
+
 
 #EXTINF:0,San Francisco Alcatraz
-http://video2.earthcam.com/fecnetwork/6603.flv/medien.m3u8
 
-#EXTINF:0,Santa Monica Beach California
-http://video2.earthcam.com/fecnetwork/6253.flv/hasbahca.m3u8
 
-#EXTINF:0,Santa Monica Beach California
+#EXTINF:0,Santa Monica Beach California 
 http://iphone-streaming.ustream.tv/uhls/12623587/streams/live/iphone/playlist.m3u8 
 
 #EXTINF:0,Shark Tank

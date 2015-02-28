@@ -16,6 +16,5 @@ rtmp://skystreams.info/vod playpath=mp4:/ppvs/WWE.Battleground.2013.WEB-DL.4500k
 #EXTINF:0,Wrestle Kingdom 9 
 rtmp://skystreams.info/vod playpath=mp4:/ppvs/NJPW.Wrestle.Kingdom.9.PPV.WEBRip.x264-jkkk.mp4 swfUrl=http://p.jwpcdn.com/6/8/jwplayer.flash.swf 
 
-#EXTINF:0,WWE Royal Rumble 28
-rtmp://37.49.224.107/vod/media playpath=mp4:wweppv.mp4 swfUrl=http://streamsbay.info/player.swf pageUrl=http://streamsbay.info/view.php?pg=wweppv
+
 

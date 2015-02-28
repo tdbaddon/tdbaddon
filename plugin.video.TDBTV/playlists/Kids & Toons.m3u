@@ -99,11 +99,17 @@ rtmp://mi2.gv.filmon.com:8086/live/719.high.stream
 #EXTINF:0,Family Guy 
 rtmpe://192.99.38.122/bling0110hljdhaflhfahdfpadhfhurhgydhfbvkchugfayei/ playpath=familyguy02 swfUrl=http://www.tgun.tv/lock/player.swf live=1 pageUrl=http://www.tgun.tv/menus/players/playerindex3.php?familyguy01
 
+#EXTINF:0,Family Guy 
+http://167.114.65.74/hls/fg.m3u8
+
 #EXTINF:0,Full House 
 
 
 #EXTINF:0,Futurama 
 rtmpe://192.99.21.184/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjkadgbutoarihn/ playpath=2501 swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf pageUrl=http://www.tgun.tv/menus/players/dlock/playerindextab2.php?2501
+
+#EXTINF:0,Futurama 
+http://167.114.65.74/hls/fa.m3u8
 
 #EXTINF:0,Jim Jam 
 http://213.250.19.50/jimjam/jimjam.isml/jimjam-video=2500000-audio101=128000.m3u8
@@ -123,17 +129,14 @@ http://cdn-02.sdn.si/jimjam/jimjam.isml/jimjam-video=1500000-audio101=128000.m3u
 #EXTINF:0,Kids Comedy 
 rtmp://mi2.gv.filmon.com:1935/live/_definst_/2734.low.stream?b?b*t$
 
-#EXTINF:0,King of the Hill 
-rtmpe://192.99.38.122/bling0110hljdhaflhfahdfpadhfhurhgydhfbvkchugfayei/ playpath=koth02 swfUrl=http://www.tgun.tv/lock/player.swf live=1 pageUrl=http://www.tgun.tv/menus/players/playerindex3.php?koth01
-
 #EXTINF:0,Nick 
-http://37.48.118.32/live/nick.stream/playlist.m3u8
 
-#EXTINF:0,Nick Jr
+
+#EXTINF:0,Nick Jr 
 
 
 #EXTINF:0,Nickelodeon 
-http://37.48.118.32/live/nicktoons.stream/playlist.m3u8
+
 
 #EXTINF:0,NickNight 
 

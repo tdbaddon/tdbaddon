@@ -17,9 +17,6 @@ http://cdn-02.sdn.si/animalplanet/animalplanet.isml/animalplanet-video=1500000-a
 http://sjc-uhls-vip01.ustream.tv/watch/playlist.m3u8?cid=12762028
 
 #EXTINF:0,Animal Planet 
-http://37.48.118.32/live/animal.stream/playlist.m3u8
-
-#EXTINF:0,Animal Planet 
 http://83.139.104.99/Content/HLS/Live/Channel(animal_planet)/Stream(03)/index.m3u8
 
 #EXTINF:0,BBC Knowledge 
@@ -62,22 +59,23 @@ http://cdn-02.sdn.si/discoverychannel/discoverychannel.isml/discoverychannel-vid
 http://83.139.104.99/Content/HLS/Live/Channel(discovery_channel)/index.m3u8
 
 #EXTINF:0,Discovery History 
-http://37.48.118.32/live/discoveryh.stream/playlist.m3u8
+
 
 #EXTINF:0,Discovery Investigation 
 http://37.48.118.32/live/discoveryi.stream/playlist.m3u8
 
-#EXTINF:0,Discovery Investigation 
-http://212.70.155.243:40665/udp/237.100.0.128:4000
 
-#EXTINF:0,Discovery Max
-http://37.48.118.32/live/dmax.stream/playlist.m3u8
+#EXTINF:0,Discovery Max 
+
 
 #EXTINF:0,Discovery Science 
 
 
-#EXTINF:0,Discovery Theater
+#EXTINF:0,Discovery Theater 
 http://200.76.77.237/LIVE/H01/CANAL351/PROFILE03.m3u8?
+
+#EXTINF:0,Discovery Theater 
+http://live.oneplay.tv/reproducir/241.m3u8
 
 #EXTINF:0,Discovery Turbo 
 
@@ -130,9 +128,6 @@ http://cdn-02.sdn.si/natgeowild/natgeowild.isml/natgeowild-video=2500000-audio10
 #EXTINF:0,Nat Geo Wild 
 http://cdn-02.sdn.si/natgeowild/natgeowild.isml/natgeowild-video=1500000-audio101=128000.m3u8
 
-#EXTINF:0,Nat Geo Wild 
-http://37.48.118.32/live/natgeow.stream/playlist.m3u8
-
 #EXTINF:0,National Geographic 
 http://213.250.19.50/natgeo/natgeo.isml/natgeo-video=2500000-audio101=128000.m3u8
 
@@ -150,9 +145,6 @@ rtmp://mi2.gv.filmon.com:8086/live/1618.high.stream
 
 #EXTINF:0,RT News Documentary 
 http://odna.octoshape.net/f3f5m2v4/cds/ch5_auto.smil/playlist.m3u8 
-
-#EXTINF:0,Science Channel 
-
 
 #EXTINF:0,Travel Channel 
 http://213.250.19.50/travelchannel/travelchannel.isml/travelchannel-video=2500000-audio101=128000.m3u8
@@ -176,7 +168,7 @@ http://83.139.104.99/Content/HLS/Live/Channel(viasat_explore)/Stream(03)/index.m
 http://83.139.104.99/Content/HLS/Live/Channel(viasat_history)/Stream(03)/index.m3u8
 
 #EXTINF:0,Viasat Nature 
-rtmp://212.83.171.82:1935/live/008
+
 
 #EXTINF:0,War Channel
 rtmp://mi2.gv.filmon.com:8086/live/805.high.stream

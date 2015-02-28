@@ -40,6 +40,9 @@ http://83.139.104.99/Content/HLS/Live/Channel(cinestar_tv)/Stream(03)/index.m3u8
 #EXTINF:0,Film Box Live
 
 
+#EXTINF:0,FilmZone
+http://live.oneplay.tv/reproducir/321.m3u8
+
 #EXTINF:0,Fox 1
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=297&lan=2&rows=40&f=BratuMarian.m3u8
 
@@ -49,11 +52,20 @@ http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=305&lan=2&rows=
 #EXTINF:0,Fox Action Movies 
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=301&lan=2&rows=40&f=BratuMarian.m3u8
 
+#EXTINF:0,Fox Action Movies 
+http://live.oneplay.tv/reproducir/301.m3u8
+
 #EXTINF:0,Fox Classics
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=345&lan=2&rows=40&f=BratuMarian.m3u8
 
 #EXTINF:0,Fox Family Movies 
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=342&lan=2&rows=40&f=.m3u8
+
+#EXTINF:0,Fox Movies 
+http://200.76.77.237/LIVE/H01/CANAL417/PROFILE03.m3u8?
+
+#EXTINF:0,Fox Movies 
+http://live.oneplay.tv/reproducir/305.m3u8
 
 #EXTINF:0,Fox Movies 
 http://213.250.19.50/foxmovies/foxmovies.isml/foxmovies-video=2500000-audio101=128000.m3u8
@@ -67,9 +79,6 @@ http://cdn-02.sdn.si/foxmovies/foxmovies.isml/foxmovies-video=2500000-audio101=1
 #EXTINF:0,Fox Movies 
 http://cdn-02.sdn.si/foxmovies/foxmovies.isml/foxmovies-video=1500000-audio101=128000.m3u8
 
-#EXTINF:0,Fox Movies 
-http://200.76.77.237/LIVE/H01/CANAL417/PROFILE03.m3u8?
-
 #EXTINF:0,Fright Fest 
 
 
@@ -79,6 +88,9 @@ http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=104&lan=2&rows=
 #EXTINF:0,FX HD
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=103&lan=2&rows=40&f=BratuMarian.m3u8
 
+#EXTINF:0,FX HD
+http://live.oneplay.tv/reproducir/101.m3u8
+
 #EXTINF:0,HBO 
 http://113.160.49.34/lives/origin03/hbohd.isml/hbohd-2096k.m3u8
 
@@ -86,7 +98,7 @@ http://113.160.49.34/lives/origin03/hbohd.isml/hbohd-2096k.m3u8
 rtmp://178.162.199.141/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to/player/secure_player_iguide_embed_token.swf live=1 pageUrl=http://www.iguide.to/ token=#ed%h0#w18623jsda6523lDGD
 
 #EXTINF:0,HBO 
-rtmp://212.83.171.82:1935/live/1019
+http://198.27.94.105/hls/hbo_1.m3u8
 
 #EXTINF:0,HBO Plus 
 
@@ -133,9 +145,6 @@ http://str108.setplex.net/fastv_2psh/PinkComedyglobal_rly_greece_103/playlist.m3
 #EXTINF:0,Pink Horror
 http://str108.setplex.net/fastv_2psh/PinkHorrorglobal_rly_greece_103/balkansatnet.m3u8
 
-#EXTINF:0,Pink Movies 2
-http://str108.setplex.net/fastv_2psh/PinkMovies2global_rly_greece_109/balkansatnet.m3u8
-
 #EXTINF:0,Pink Movies 3
 http://str108.setplex.net/fastv_2psh/PinkMovies3global_rly_greece_109/balkansatnet.m3u8
 
@@ -152,7 +161,7 @@ http://str108.setplex.net/fastv_2psh/PinkWesternglobal_rly_greece_103/balkansatn
 
 
 #EXTINF:0,Sky Movies Action 
-http://80.243.182.106:8080/javed/skyactionj/index.m3u8
+
 
 #EXTINF:0,Sky Movies Atlantic
 
@@ -164,16 +173,16 @@ http://80.243.182.106:8080/javed/skyactionj/index.m3u8
 
 
 #EXTINF:0,Sky Movies Drama
-http://80.243.182.106:8080/javed/skydramaj/index.m3u8
+
 
 #EXTINF:0,Sky Movies Family
-http://80.243.182.106:8080/javed/skyfamilyj/index.m3u8
+
 
 #EXTINF:0,Sky Movies Horrors
 
 
 #EXTINF:0,Sky Movies Premiere
-http://80.243.182.106:8080/javed/skypremierej/index.m3u8
+
 
 #EXTINF:0,Sky Movies Sci Fi
 
