@@ -13,14 +13,50 @@ http://hindiabp-lh.akamaihd.net/i/hindiabp1new_1@192103/master.m3u8
 #EXTINF:0,AsiaNet News
 http://asianet-lh.akamaihd.net/i/asianetN_1@30556/master.m3u8
 
+#EXTINF:0,Bollywood Cinema
+rtsp://46.249.213.87/broadcast/bollywoodcinema1-tablet.3gp
+
+#EXTINF:0,Bollywood Cinema
+rtsp://46.249.213.87/broadcast/bollywoodcinema2-tablet.3gp
+
+#EXTINF:0,Bollywood Gossip
+rtsp://46.249.213.87/broadcast/bollywoodgossip-tablet.3gp
+
+#EXTINF:0,Bollywood Hungama
+rtsp://46.249.213.87/broadcast/bollywoodhungama-tablet.3gp
+
+#EXTINF:0,Bollywood Independent Cinema
+rtsp://46.249.213.93/broadcast/indianstudentcinema-tablet.3gp
+
 #EXTINF:0,Colors
 rtmpe://5.153.233.74:443/ app=c0be82e1442e7169a9a358db47fcafcb playpath=colorsprts870 swfUrl=http://mybeststream.xyz/MTEwZjFiMmI4MWVkNmE4ZTIwYTg1MDMw/jwplayer.flash.swf pageUrl=http://mybeststream.xyz/ live=true timeout=15
 
-#EXTINF:0,DD NATIONAL
+#EXTINF:0,DD National
 http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD178_W_350.sdp/media_b639410.m3u8
+
+#EXTINF:0,Films of India
+rtsp://46.249.213.93/broadcast/filmsofindia-tablet.3gp
 
 #EXTINF:0,GEM Bollywood
 rtmp://gemtv.fms.visionip.tv/live/gemtv-gemtv-gembollywood-live-25f-16x9-HD?ref=www.gemonline.tv&USER=Gem+Bollywood
+
+#EXTINF:0,GEM Life
+rtmp://gemtv.fms.visionip.tv/live/gemtv-gemtv-life1-live-25f-16x9-HD?ref=www.gemonline.tv&USER=LIFE1
+
+#EXTINF:0,GEM Mifa
+rtmp://gemtv.fms.visionip.tv/live/gemtv-gemtv-mifa-live-16x9-HD?ref=www.gemonline.tv&USER=MIFA+MUSIC
+
+#EXTINF:0,GEM Onyx
+rtmp://gemtv.fms.visionip.tv/live/gemtv-gemtv-onyx-live-16x9-HD?ref=www.gemonline.tv&USER=ONYX
+
+#EXTINF:0,GEM River
+rtmp://gemtv.fms.visionip.tv/live/gemtv-gemtv-river-live-16x9-HD?ref=www.gemonline.tv&USER=River+HD
+
+#EXTINF:0,GEM Rubix
+rtmp://gemtv.fms.visionip.tv/live/gemtv-gemtv-rubix-live-16x9-HD?ref=www.gemonline.tv&USER=RUBIX+HD
+
+#EXTINF:0,GEM Travel
+rtmp://gemtv.fms.visionip.tv/live/gemtv-gemtv-travel-live-25f-16x9-HD?ref=www.gemonline.tv&USER=TRAVEL
 
 #EXTINF:0,India News
 http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD148_W_350.sdp/media_b623985.m3u8
@@ -42,6 +78,9 @@ http://mthls-i.akamaihd.net/hls/live/219508/mthls/06.m3u8
 
 #EXTINF:0,News Express
 http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD21_W_150.sdp/media_b284233.m3u8
+
+#EXTINF:0,NDTV India
+http://bglive-a.bitgravity.com/ndtv/indlo/live/native
 
 #EXTINF:0,P7 News
 rtmp://edge-ind.inapcdn.in:1935/vivo playpath=semacb4.stream_aac swfUrl=http://smartstream.in/primusplayer/primus-3.2.12.swf live=true timeout=15 pageUrl=http://smartstream.in/p7news/

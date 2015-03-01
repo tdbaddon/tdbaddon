@@ -64,6 +64,8 @@ http://83.139.104.99/Content/HLS/Live/Channel(discovery_channel)/index.m3u8
 #EXTINF:0,Discovery Investigation 
 http://37.48.118.32/live/discoveryi.stream/playlist.m3u8
 
+#EXTINF:0,Discovery Investigation 
+http://142.4.216.60:1935/edge/_definst_/yjma618cibkqxeo/playlist.m3u8?wowzasessionid=1420168729&xs=_we_aW1uOTAweTBzdmNyZHp1fDE0MjAyMDQ3Mjl8NzIuMjcuMjE0LjMzfDU0YTYwZTE5YzRjNzZ8NjQ5Y2VkYTk3MTI3ZmJhYTA5YWI3ZDdkYTEyYWM3ZDgzYTMzMjYwMg timeout=10
 
 #EXTINF:0,Discovery Max 
 
@@ -100,6 +102,9 @@ http://cdn-02.sdn.si/historychannel/historychannel.isml/historychannel-video=250
 
 #EXTINF:0,History Channel 
 http://cdn-02.sdn.si/historychannel/historychannel.isml/historychannel-video=1500000-audio101=128000.m3u8
+
+#EXTINF:0,History Channel 
+http://142.4.216.60:1935/edge/_definst_/dhp0rpd116qyyj6/playlist.m3u8?wowzasessionid=1419874554&xs=_we_OGc3eDgwb3p1Nmh6MmRzfDE0MTk5MTA1NTR8NzIuMjcuMjE0LjMzfDU0YTE5MGZhNTUwNjV8ZDM2MzAzYjkwYTE5MDBmMzhhOGM2YjE2ZDc4Mjk3ZDdkZjU0NDhlYw timeout=10
 
 #EXTINF:0,NASA TV 
 http://public.infozen.cshls.lldns.net/infozen/public/public.m3u8
@@ -160,6 +165,9 @@ http://cdn-02.sdn.si/travelchannel/travelchannel.isml/travelchannel-video=150000
 
 #EXTINF:0,Travel Channel 
 http://83.139.104.99/Content/HLS/Live/Channel(travel_channel)/Stream(03)/index.m3u8
+
+#EXTINF:0,Travel Channel 
+http://142.4.216.60:1935/edge/_definst_/4aiufk0o430qt0d/playlist.m3u8?wowzasessionid=1419877887&xs=_we_MWZ2dW9rMm55NGp0bWdxfDE0MTk5MTM4ODd8fDU0YTE5ZGZmMjgwNTR8MjZlNDRkMjc2ZDFiZDExODcyM2UyMGQ2OGZlNTFkNmI3NDA1NmQzZA timeout=10
 
 #EXTINF:0,Viasat Explorer 
 http://83.139.104.99/Content/HLS/Live/Channel(viasat_explore)/Stream(03)/index.m3u8

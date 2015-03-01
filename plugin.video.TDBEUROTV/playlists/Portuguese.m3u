@@ -21,7 +21,7 @@ rtmp://213.13.26.11/live/ playpath=etv_direto swfUrl=http://sicnoticias.sapo.pt/
 
 
 #EXTINF:0,Mov
-
+rtmp://109.200.202.124/live playpath=maxhd  swfUrl=http://www.tv-msn.com/player5.swf live=1  pageUrl=http://tv-msn.com/maxhd.html
 
 #EXTINF:0,RTP One TV 
 rtmp://ec21.rtp.pt/livetv playpath=2ch5h264 swfUrl=http://www.rtp.pt/play/player.swf live=1 pageUrl=http://www.rtp.pt/noticias/votacao/?mysurvey=343r23

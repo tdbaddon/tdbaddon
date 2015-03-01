@@ -184,6 +184,9 @@ http://cdn-02.sdn.si/foxlife/foxlife.isml/foxlife-video=1500000-audio101=128000.
 #EXTINF:0,Food Network 
 http://83.139.104.99/Content/HLS/Live/Channel(food_network)/Stream(03)/index.m3u8
 
+#EXTINF:0,Food Network 
+http://142.4.216.60:1935/edge/_definst_/ibnnu7537h3ax6e/playlist.m3u8?wowzasessionid=1419873022&xs=_we_cWM2eGt6ZjRoNDhiejJlfDE0MTk5MDkwMjJ8NzIuMjcuMjE0LjMzfDU0YTE4YWZlNzAwMGJ8Y2FkMmFlNzUyZmRkYWM3NjIzYjA2MDM2ZWRlY2FlMDlmMjBhYmQzZg timeout=10
+
 #EXTINF:0,FX 
 
 
@@ -206,7 +209,7 @@ http://83.139.104.99/Content/HLS/Live/Channel(ginx)/Stream(03)/index.m3u8
 
 
 #EXTINF:0,HGTV 
-
+http://142.4.216.60:1935/edge/_definst_/gj65q2rg18tpmut/playlist.m3u8?wowzasessionid=1419811602&xs=_we_cXpiYnUyNmdjdmp4a3N6fDE0MTk4NDc2MDJ8NzIuMjcuMjE0LjMzfDU0YTA5YjEyMGE1YmZ8OTJhMTdmNDg3NGM4ODk2NWNhZGIxOWMwYWNhZWQzYzFmMDg4YzY5MQ timeout=10
 
 #EXTINF:0,HLN 
 
@@ -227,7 +230,7 @@ http://93.184.221.133/00573D/283/283-0.m3u8
 rtmp://jtvmedia.jtv.com:1975/live playpath=live6 swfUrl=http://demandware.edgesuite.net/aaby_prd/on/demandware.static/Sites-jtv-Site/-/default/v1410110388581/swf/flashMediaPlayer/StrobeMediaPlayback.swf live=1 pageUrl=http://www.jtv.com/on/demandware.store/Sites-jtv-Site/default/LiveViewer-Show
 
 #EXTINF:0,Lifetime Network 
-
+http://142.4.216.60:1935/edge/_definst_/7b2gr554gyyth8e/playlist.m3u8?wowzasessionid=1419879018&xs=_we_MnFtaXdmeWRiajZ5dTg5fDE0MTk5MTUwMTh8fDU0YTFhMjZhYTVhZjl8MWVhMmFlNjIyY2RhZGM4MjFiYWI1ZjM2NjY3YzlkMjU2MDMwMWNhNg timeout=10
 
 #EXTINF:0,London Live 
 http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
@@ -246,7 +249,7 @@ http://plslive-w.nhk.or.jp/nhkworld/app/live.m3u8
 http://nhkworld-hds-live1.hds1.fmslive.stream.ne.jp/hls-live/nhkworld-hds-live1/_definst_/livestream/nhkworld-live-512.m3u8 
 
 #EXTINF:0,OWN Network 
-
+http://142.4.216.60:1935/edge/_definst_/uehgy5htiasffj3/playlist.m3u8?wowzasessionid=1419878658&xs=_we_dWVoZ3k1aHRpYXNmZmozfDE0MTk5MTQ2NTh8fDU0YTFhMTAyYWFmNDV8YjhmYTUyMTQ1OTQ5OWY3NzNiZWExYjdlZGE5ZWM5OWEzODkzMjI0ZA timeout=10
 
 #EXTINF:0,Oxygen 
 
@@ -290,11 +293,11 @@ http://live.oneplay.tv/reproducir/89.m3u8
 #EXTINF:0,Sundance Channel 
 
 
-#EXTINF:0,Syfy 
-
+#EXTINF:0,Syfy
+http://142.4.216.60:1935/edge/_definst_/oepz9q5oivflbcw/playlist.m3u8?wowzasessionid=1419878403&xs=_we_b2VwejlxNW9pdmZsYmN3fDE0MTk5MTQ0MDN8fDU0YTFhMDAzNTYyYWF8MGU5MmY3YWI2ZmZiM2E2ZjMwNDNmYWY1MjdhMjE4ZTYyNjM4N2I3Zg timeout=10
 
 #EXTINF:0,TBS 
-
+http://142.4.216.60:1935/edge/_definst_/jh8nj062bqbsxdh/playlist.m3u8?wowzasessionid=1419878319&xs=_we_amg4bmowNjJicWJzeGRofDE0MTk5MTQzMTl8fDU0YTE5ZmFmNTJhZjh8OGQ3NTAzZWFkMDNmN2JmMmFiMTE1ZWRjZmRjMjFmNTgyOWM4M2Y4NA timeout=10
 
 #EXTINF:0,The Shopping Channel 
 http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/master.m3u8?b?b*t$
@@ -314,8 +317,11 @@ http://cdn-02.sdn.si/tlc/tlc.isml/tlc-video=1500000-audio101=128000.m3u8
 #EXTINF:0,TLC 
 http://83.139.104.99/Content/HLS/Live/Channel(TLC)/Stream(03)/index.m3u8
 
-#EXTINF:0,TNT 
+#EXTINF:0,TLC 
+http://142.4.216.60:1935/edge/_definst_/iugceoy4o6ljhck/playlist.m3u8?wowzasessionid=1419907929&xs=_we_NnE0amxicXd2eHVpbmdvfDE0MTk5NDM5Mjl8NzIuMjcuMjE0LjMzfDU0YTIxMzU5YzNhNDl8NzlhMGE2NzE3M2RmZTE1NmNjMThhMmYyZDVjOTA3N2Q5OGU2YjNjMg timeout=10
 
+#EXTINF:0,TNT 
+http://142.4.216.60:1935/edge/_definst_/7uz4als3nigi0j3/playlist.m3u8?wowzasessionid=1420124827&xs=_we_NnE0amxicXd2eHVpbmdvfDE0MjAxNjA4Mjd8NzIuMjcuMjE0LjMzfDU0YTU2MjliZGU4Zjh8ZDhjZjgzMzk0ZTNiODI4MzFiNDU3ZmE1MDk4ODdlZTMzZTJjZ timeout=10GYwNw
 
 #EXTINF:0,Tru TV 
 http://cdn.live.simplestream.com/coder5/coder.channels.channel2/hls/2/playlist.m3u8

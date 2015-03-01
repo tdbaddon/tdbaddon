@@ -114,13 +114,13 @@ http://mlivenews.istoikona.net/livenews.isml/manifest(format=m3u8-aapl).m3u8
 rtmp://srv1.viiideo.gr:1935/hellasonmedia/neatv
 
 #EXTINF:0,Nerit
-
+http://nerit1-lh.akamaihd.net/i/live_1@42604/master.m3u8
 
 #EXTINF:0,Odie TV
 
 
 #EXTINF:0,Omega TV
-
+rtmp://stream2.omegatv.net/livepkgr/omegatv
 
 #EXTINF:0,OPT TV
 rtmp://media.patrisnews.com:1935/patris/tvstream live=1 timeout=10

@@ -18,7 +18,7 @@ http://publish.thewebstream.co:1935/cellcast/encoder71/playlist.m3u8
 
 
 #EXTINF:0,BOLLY2BOX 
-
+http://46.249.213.93/iPhone/broadcast/bollywoodbikini-iphone.3gp.m3u8
 
 #EXTINF:0,FUEGO TV 
 rtmp://vs2.streamcaster.net/fuego_live/fuego
@@ -30,7 +30,7 @@ rtmp://streaming.fundorado.com:80/fundoradotv/live.stream
 http://46.249.213.93/iPhone/broadcast/hot100-tablet.3gp/hot100-tablet.3gp-mr647k.m3u8?trackingid=4541740000&os=desktop
 
 #EXTINF:0,HOTSHOTS 
-
+http://46.249.213.93/iPhone/broadcast/hotshots-tablet.3gp.m3u8
 
 #EXTINF:0,HOTSHOTS BEACH BABES 
 
@@ -54,7 +54,7 @@ http://playback.d2see.com:1935/wavemachine-live01/_definst_/mp4:playboytv_channe
 http://playback.d2see.com:1935/wavemachine-live01/_definst_/mp4:playboytv_channel3/playlist.m3u8
 
 #EXTINF:0,REDLIGHT CENTRAL 
-
+http://46.249.213.87/iPhone/HLS_TS/broadcast/red_light_central_1-iphone.3gp.m3u8
 
 #EXTINF:0,SEXYSAT 
 rtmp://81.89.48.215/xyz999wkz/sexysat.stream_360p

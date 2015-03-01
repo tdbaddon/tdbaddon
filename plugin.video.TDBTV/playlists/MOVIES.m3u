@@ -100,6 +100,9 @@ rtmp://178.162.199.141/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.
 #EXTINF:0,HBO 
 http://198.27.94.105/hls/hbo_1.m3u8
 
+#EXTINF:0,HBO 
+http://142.4.216.60:1935/edge/_definst_/qzbbu26gcvjxksz/playlist.m3u8?wowzasessionid=1419907309&xs=_we_cXpiYnUyNmdjdmp4a3N6fDE0MTk5NDMzMDl8NzIuMjcuMjE0LjMzfDU0YTIxMGVkNTEyNmF8OGUzN2Q3OGJkNGZiNTBkOGU2ZmVlZTFiMzlkNjAxYWMyMzcyY2VmMg timeout=10
+
 #EXTINF:0,HBO Plus 
 
 

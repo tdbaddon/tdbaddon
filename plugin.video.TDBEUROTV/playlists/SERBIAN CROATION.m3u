@@ -149,8 +149,17 @@ http://83.139.104.99/Content/HLS/Live/Channel(mrezaZG)/Stream(03)/index.m3u8
 #EXTINF:0,Nardona TV
 http://83.139.104.99/Content/HLS/Live/Channel(narodna_tv)/Stream(03)/index.m3u8
 
+#EXTINF:0,Net TV 
+http://5.153.25.7:8082/stream/?channel=nettvinfo&stream=1mb
+
 #EXTINF:0,Nova TV
 http://83.139.104.99/Content/HLS/Live/Channel(tv_nova)/Stream(03)/index.m3u8
+
+#EXTINF:0,Novi Sad 1 
+rtsp://212.200.255.151/rtv1
+
+#EXTINF:0,Novi Sad 2 
+rtsp://212.200.255.151/rtv2
 
 #EXTINF:0,Novosadska TV
 mms://176.106.121.32:8080/

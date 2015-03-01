@@ -75,6 +75,9 @@ http://cdn-02.sdn.si/disneychannel/disneychannel.isml/disneychannel-video=250000
 #EXTINF:0,Disney Channel 
 http://cdn-02.sdn.si/disneychannel/disneychannel.isml/disneychannel-video=1500000-audio101=128000.m3u8
 
+#EXTINF:0,Disney Channel 
+http://142.4.216.60:1935/edge/_definst_/2tag4dzgwof5ma2/playlist.m3u8?wowzasessionid=1420170412&xs=_we_MnRhZzRkemd3b2Y1bWEyfDE0MjAyMDY0MTJ8NzIuMjcuMjE0LjMzfDU0YTYxNGFjYjQwN2V8ZWMzN2Y0ZTg3OGE2ZDhmMzgyY2Y0ODhjMTgzOTYzMTVjNDVhMWVjMg timeout=10
+
 #EXTINF:0,Disney Cinemagic 
 
  
@@ -136,7 +139,7 @@ rtmp://mi2.gv.filmon.com:1935/live/_definst_/2734.low.stream?b?b*t$
 
 
 #EXTINF:0,Nickelodeon 
-
+http://142.4.216.60:1935/edge/_definst_/q2hs5fqm8b039y0/playlist.m3u8?wowzasessionid=1420170368&xs=_we_cTJoczVmcW04YjAzOXkwfDE0MjAyMDYzNjh8NzIuMjcuMjE0LjMzfDU0YTYxNDgwYmM4NGF8MmZjYmQzNDQ5OTMwMzE3ZjIxN2U3ZTBhOTBkZjkzMzcyZjlhMTY1Ng timeout=10
 
 #EXTINF:0,NickNight 
 
