@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 dc={
 "brazzers tv europe" : "001",
-"amateri" : "002",
+"000000000000000000000000000" : "002",
 "frenchlover" : "003",
 "redlight central" : "004",
 "sexyhot" : "005",
@@ -57,7 +57,7 @@ dc={
 "dorcel tv hd" : "055",
 "adult channel" : "056",
 "jasmin tv" : "057",
-"000000000000000000000000000" : "058",
+"venus" : "058",
 "000000000000000000000000000" : "059",
 "bunga bunga" : "060",
 "pink erotic" : "061",
