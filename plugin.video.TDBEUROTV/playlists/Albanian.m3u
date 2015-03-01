@@ -42,7 +42,7 @@ rtmp://95.107.200.140/live playpath=livestream1 swfUrl=http://www.aulona.de/play
 rtmp://95.107.200.140:554/live/rtmp.stream
 
 #EXTINF:0,Art Kanal
-http://stream.deg.net/livehttp/arte.m3u8
+
 
 #EXTINF:0,ATV
 rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
@@ -102,13 +102,10 @@ rtmp://84.20.77.50/live playpath=livestream1 swfUrl=http://player.longtailvideo.
 rtmp://arlind.ontv.al:1935/live/kanali7
 
 #EXTINF:0,Klan Kosova 
-rtmp://arlind.ontv.al:1935/live/klanhd
 
-#EXTINF:0,Koha TV
+
+#EXTINF:0,Koha TV 
 rtmp://live.tvkoha.tv/live/koha app=live/koha swfUrl=http://live.tvkoha.tv/playerplus.swf pageUrl=http://www.tvkoha.tv/live/tv playpath=livestream swfVfy=true live=true timeout=15
-
-#EXTINF:0,Koha TV
-rtmp://live.tvkoha.tv/live/koha/livestream
 
 #EXTINF:0,Konyha TV
 rtmp://91.82.85.44/live/konyhatv
@@ -119,10 +116,6 @@ rtmp://psham1.setplex.net:1935/tvalb_loc_ams243?doPublish=eqc3AAs34OL/tvkop24315
 #EXTINF:0,Kopliku TV 
 rtmp://psham1.setplex.net:1935/tvalb_loc_ams243/tvkop2431565
 
-#EXTINF:0,Kopliku TV 
-http://psham1.setplex.net:1935/tvalb_loc_ams243/tvkop2431565/BratuMarian.m3u8
-
-
 #EXTINF:0,Mitrovica
 
 
@@ -132,7 +125,7 @@ http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video
 #EXTINF:0,Mpt 2 
 http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video_id/3545/token/baf3cb0ceac4e5243d63f8bf96011783/playlist.m3u8
 
-#EXTINF:0, MPT 2
+#EXTINF:0, MPT 2 
 http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video_id/3548/token/bd0b11a4f8d05cc0bffe589f55909615/chunklist_w787058205_b1196000.m3u8
 
 #EXTINF:0,News24
@@ -172,15 +165,12 @@ rtmp://wowza.rtkit.com/live/livestream
 http://wowza.rtkit.com:1935/live/livestream/chunklist.m3u8?wowzasessionid=491913886
 
 #EXTINF:0,RTV Panonija
-http://rtvpanonija.rs/panonija.asx
+
 
 #EXTINF:0,Sot7
 mms://84.20.73.66:8001
 
-#EXTINF:0,Super Sport Kosova 1
-http://akamai248.tibo.tv/testeri/ngrp:ss1dga.stream_all/playlist.m3u8
-
-#EXTINF:0,Super Sport Kosova 1
+#EXTINF:0,Super Sport Kosova 1 
 http://80.80.160.201/http_livestr.m3u8?id=supersport1&k=pako_6234323231383137313533373734396134613035346434343030383334326361003530363663613965326165366461636630656339656134356530623037616639006d656e746f722e7368616c613030320066696c6d616b73696f6e
 
 #EXTINF:0,Super Sport Kosova 2
@@ -201,7 +191,7 @@ http://88.212.10.27:81/streams/stv2.m3u8?
 #EXTINF:0,Tip Tv
 rtmp://arlind.ontv.al:1935/live/tiptv
 
-#EXTINF:0,Top Channel
+#EXTINF:0,Top Channel 
 http://80.80.160.201/http_livestr.m3u8?id=topchannel&k=pako_6234323231383137313533373734396134613035346434343030383334326361003530363663613965326165366461636630656339656134356530623037616639006d656e746f722e7368616c613030320066696c6d616b73696f6e
 
 #EXTINF:0,Top Channel News
@@ -212,6 +202,8 @@ http://80.80.160.201/http_livestr.m3u8?id=topnews&k=pako_62343232313831373135333
 
 #EXTINF:0,TV SH
 
+#EXTINF:0,Uskana
+http://fms.zulu.mk:1935/zulu/uskana_1/playlist.m3u8
 
 #EXTINF:0,Vizion Plus 
 rtmp://live.vizionplus.tv:1935/live/ playpath=livestream2 swfUrl=http://www.aulona.de/player.swf?backcolor=0x000000&frontcolor=0xFFFFFF&streamer=rtmp://live.vizionplus.tv:1935/live/&file=livestream2&logo=&stretching=exactfit&autostart=true live=1 pageUrl=http://albhd.tk/tv/vizionplus.html

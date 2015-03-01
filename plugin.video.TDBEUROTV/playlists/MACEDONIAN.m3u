@@ -3,6 +3,12 @@
 #EXTINF:0,[COLOR red]MACEDONIAN TV [/COLOR]
 rtmp://
 
+#EXTINF:0,24 Sata
+mms://62.162.58.55/24vesti
+
+#EXTINF:0,24 Sata
+http://83.139.104.111/Content/HLS/Live/Channel(24_sata)/Stream(03)/index.m3u8
+
 #EXTINF:0,Al Jazeera Balkan 
 rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
 
@@ -10,13 +16,10 @@ rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazee
 http://fms.zulu.mk:1935/zulu/alfa_2/playlist.m3u8
 
 #EXTINF:0,Alfa 
-rtmp://ataka.tv/live/live
-
-#EXTINF:0,Alfa 
 rtsp://fms.zulu.mk/zulu/alfa_1
 
 #EXTINF:0,Alsat M 
-http://fms.zulu.mk:554/zulu/alsat_1/playlist_b125000_w1132785237.m3u8
+http://fms.zulu.mk:554/zulu/alsat_1/playlist.m3u8
 
 #EXTINF:0,Alsat M 
 http://fms.zulu.mk:1935/zulu/alsat_2/playlist.m3u8
@@ -34,25 +37,19 @@ http://stream.b92.net:7999/tv-b92.ogg
 rtmp://yayin.tvdunyasi.tv/live/balkanrtv
 
 #EXTINF:0,BTR 
-http://fms.zulu.mk:554/zulu/btr_1/playlist_b125000_w1132785237.m3u8
 
-#EXTINF:0,BTR 
-http://fms.zulu.mk:1935/zulu/btr_2/playlist.m3u8
-
-#EXTINF:0,BTR 
-rtsp://fms.zulu.mk/zulu/btr_1
-
-#EXTINF:0,BTR 
-rtsp://fms.zulu.mk:554/zulu/btr_2
 
 #EXTINF:0,Cegrani Media
 http://fms.zulu.mk:1935/zulu/cegrani_1/playlist.m3u8
 
 #EXTINF:0,ERA TV 
-
+http://fms.zulu.mk:1935/zulu/era_1/hasbahca.m3u8
 
 #EXTINF:0,Hema TV
 mms://77.238.209.50:1234
+
+#EXTINF:0,In TV
+rtsp://streamus.intv.mk:1935/live/intv
 
 #EXTINF:0,Iris 
 mms://62.162.58.55/TVIris
@@ -60,7 +57,7 @@ mms://62.162.58.55/TVIris
 #EXTINF:0,Iris 
 mms://62.162.58.54:8080
 
-#EXTINF:0,Joj TV
+#EXTINF:0,Joj TV 
 http://88.212.10.27:81/streams/joj.m3u8
 
 #EXTINF:0,Jug TV 
@@ -69,14 +66,8 @@ rtmp://84.20.77.50/live/livestream1
 #EXTINF:0,Jug TV 
 rtmp://84.20.77.50/live//livestream2
 
-#EXTINF:0,Jug TV 
-rtmp://84.20.77.50/live playpath=livestream1 swfUrl=http://player.longtailvideo.com/player5.2.swf live=1 pageUrl=http://albhd.tk/tv/jug.html
-
 #EXTINF:0,Kanal 5 
-http://83.139.104.111/Content/HLS/Live/Channel(kanal_5)/Stream(03)/index.m3u8
-
-#EXTINF:0,Kanal 5 
-http://fms.zulu.mk:1935/zulu/kanal5_1/hasbahca.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(kanal_5)/Stream(03)/index.m3u8
 
 #EXTINF:0,Kanal 5 
 http://fms.zulu.mk:1935/zulu/kanal5_1/playlist.m3u8
@@ -88,10 +79,7 @@ mms://live.kanal5.com.mk/kanal5
 http://fms.zulu.mk:1935/zulu/kanal5plus_1/playlist.m3u8
 
 #EXTINF:0,Kanal 5 Plus 
-http://fms.zulu.mk:554/zulu/kanal5plus_1/playlist_b125000_w1132785237.m3u8
-
-#EXTINF:0,Kanal 5 Plus 
-http://fms.zulu.mk:1935/zulu/kanal5plus_1/hasbahca.m3u8
+http://fms.zulu.mk:554/zulu/kanal5plus_1/playlist.m3u8
 
 #EXTINF:0,Kanal 5 Plus 
 rtsp://fms.zulu.mk:554/zulu/kanal5plus_2
@@ -101,9 +89,6 @@ mms://62.162.58.55/TVkanal8
 
 #EXTINF:0,Kanal 21 
 mms://62.162.58.55/TVkanal21
-
-#EXTINF:0,Koha TV
-rtmp://live.tvkoha.tv/live/koha app=live/koha swfUrl=http://live.tvkoha.tv/playerplus.swf pageUrl=http://www.tvkoha.tv/live/tv playpath=livestream swfVfy=true live=true timeout=15
 
 #EXTINF:0,Mpt1 
 http://fms.zulu.mk:554/zulu/mtv1_1/playlist_b125000_w1132785237.m3u8
@@ -120,20 +105,23 @@ http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video
 #EXTINF:0,Mpt 2 
 http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video_id/3545/token/baf3cb0ceac4e5243d63f8bf96011783/playlist.m3u8
 
-#EXTINF:0, MPT 2
+#EXTINF:0,Mpt 2 
 http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video_id/3548/token/bd0b11a4f8d05cc0bffe589f55909615/chunklist_w787058205_b1196000.m3u8
 
 #EXTINF:0,Nasha TV
 http://fms.zulu.mk:1935/zulu/nashatv_1/playlist.m3u8
 
-#EXTINF:0,OBN
+#EXTINF:0,OBN 
 http://cdn-02.sdn.si/obn/obn.isml/obn-video=2500000-audio101=128000.m3u8
 
-#EXTINF:0,OBN
+#EXTINF:0,OBN 
 http://cdn-02.sdn.si/obn/obn.isml/obn-video=1500000-audio101=128000.m3u8
 
-#EXTINF:0,Pink Folk
+#EXTINF:0,Pop Brio 
+http://213.250.19.50/popbrio/popbrio.isml/popbrio-video=2500000-audio101=128000.m3u8
 
+#EXTINF:0,Pop Brio 
+http://213.250.19.50/popbrio/popbrio.isml/popbrio-video=1500000-audio101=128000.m3u8
 
 #EXTINF:0,RTS
 mmsh://rts.videostreaming.rs/rts

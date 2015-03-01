@@ -48,7 +48,7 @@ http://www.rtp.pt/play/stream/video/rtp_madeira?key=iphoneapp
 
 
 #EXTINF:0,Sic Noticias
-http://213.13.26.12:1935/live/_definst_/sicnoticias/aatectv.m3u8
+
 
 
 #EXTINF:0,Sporting TV
@@ -61,7 +61,7 @@ http://213.13.26.12:1935/live/_definst_/sicnoticias/aatectv.m3u8
 
 
 #EXTINF:,TPA
-http://myafricanmega3.tulix.tv:1935/map-tpaint/map-tpaint.stream/playlist.m3u8
+
 
 #EXTINF:0,TV Cabo Verde
 rtmp://213.13.26.11/live playpath=rtc_teste swfUrl=http://assets.web.sapo.io/sapovideo/swf/flvplayer-sapo.swf?v110713&file=http://rd.videos.sapo.cv/o7sf94LpzBDc94GY3N4i/mov/24&live=rtmp://{$hostname}/live/rtc_teste&movref=http%3A%2F%2Fpt.online-television.net%2F952-rtc.html pageUrl=http://pt.online-television.net/952-rtc.html#.VImSJHu8q48 Conn=S:OK live=1 timeout=15

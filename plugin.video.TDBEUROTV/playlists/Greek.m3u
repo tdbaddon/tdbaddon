@@ -17,9 +17,6 @@ http://alfakanali-lh.akamaihd.net/i/live_1@90368/master.m3u8
 #EXTINF:0,Ant1
 http://wow.ant1.gr:1935/live/smil:mavani.smil/playlist.m3u8
 
-#EXTINF:0,Ant1
-http://wow.ant1.gr:1935/live/smil:mavani.smil/hasbahca.m3u8
-
 #EXTINF:0,Ant1 Cyprus
 
 
@@ -36,7 +33,7 @@ http://srv1.viiideo.gr:1935/videon/axeloostv/bratumarian.m3u
 http://smooth.istoikona.net/besttv.isml/manifest(format=m3u8-aapl).m3u8
 
 #EXTINF:0,BlueSky TV
-http://176.9.52.185:1935/bluesky/bluesky.stream/playlist.m3u8
+
 
 #EXTINF:0,Boyah
 http://streamer-cache.grnet.gr/parliament/parltv.sdp/master.m3u8
@@ -56,20 +53,17 @@ mms://ams01.egihosting.com/989630
 #EXTINF:0,DR TV
 
 
-#EXTINF:0,E TV
+#EXTINF:0,E TV 
 rtmp://213.16.167.187:1935/live/mpegts_256.stream live=1 timeout=10
 
-#EXTINF:0,E TV
+#EXTINF:0,E TV 
 rtmp://213.16.167.187:1935/live playpath=mpegts_256.stream swfUrl=http://www.epsilontv.gr/wp-content/plugins/fv-wordpress-flowplayer/flowplayer/flowplayer.swf?ver=2.2.7 live=1 pageUrl=http://www.epsilontv.gr/live/
 
 #EXTINF:0,Eiprus TV 1
 http://xepirustv1x.api.channel.livestream.com/3.0/playlist.m3u8
 
 #EXTINF:0,Ena TV 
-rtmp://srv1.viiideo.gr/videon/enatv
 
-#EXTINF:0,Ena TV 
-rtmp://srv1.viiideo.gr/videon playpath=enatv swfUrl=http://enatv.viiideo.gr/flowplayer/flowplayer.commercial-3.2.15.swf live=1 pageUrl=http://enatv.viiideo.gr/?cid=7
 
 #EXTINF:0,ET3
 http://live2.ertopen.com/live2/e600/playlist.m3u8
@@ -87,7 +81,7 @@ http://wpso.com:200/tv48
 
 
 #EXTINF:0,Irida
-
+mms://212.251.44.111:27030
 
 #EXTINF:0,Kontra
 rtmp://flashcloud.mediacdn.com:1935/live/kontratv
@@ -95,20 +89,17 @@ rtmp://flashcloud.mediacdn.com:1935/live/kontratv
 #EXTINF:0,Kontra
 rtmp://flashcloud.mediacdn.com/live/kontratv live=1
 
-#EXTINF:0,Kphth TV
+#EXTINF:0,Kphth TV 
 http://live.cretetv.gr:1935/cretetv/myStream/playlist.m3u8
-
-#EXTINF:0,Kphth TV
-http://live.cretetv.gr:1935/cretetv/myStream/hasbahca.m3u8
 
 #EXTINF:0,Mad Music Hits
 mmsh://wpso.com:200/music
 
 #EXTINF:0,Mad TV 
-rtmp://144.76.2.213:1935/live/livestream
+
 
 #EXTINF:0,Mad TV Cyprus
-rtmp://144.76.2.213/live/livestream swfUrl=http://jwplayer.mediaserve.com/player.swf live=1 timeout=10
+
 
 #EXTINF:0,Makedonia TV
 rtmp://213.16.167.55:1935/livepkgr/livestream swfUrl=http://static.ant1.gr/maktvlive.ashx pageUrl=http://www.maktv.gr/Live swfVfy=1 live=1 timeout=10
@@ -129,28 +120,28 @@ rtmp://srv1.viiideo.gr:1935/hellasonmedia/neatv
 
 
 #EXTINF:0,Omega TV
-rtmp://stream2.omegatv.net/livepkgr/omegatv
+
 
 #EXTINF:0,OPT TV
 rtmp://media.patrisnews.com:1935/patris/tvstream live=1 timeout=10
 
 #EXTINF:0,OTE Sports 1 
-http://109.200.20.26:8981/FHDDD/Ot111/index.m3u8
+
 
 #EXTINF:0,OTE Sports 2 
-http://109.200.20.26:8981/FHDDD/Ot222/index.m3u8
+
 
 #EXTINF:0,OTE Sports 3 
-http://109.200.20.26:8981/FHDDD/Ot333/index.m3u8
+
 
 #EXTINF:0,OTE Sports 4 
-http://109.200.20.26:8981/FHDDD/Ot444/index.m3u8
+
 
 #EXTINF:0,OTE Sports 5 
-http://109.200.20.26:8981/FHDDD/Ot555/index.m3u8
+
 
 #EXTINF:0,OTE Sports 6 
-http://109.200.20.26:8981/FHDDD/Ot666/index.m3u8
+
 
 #EXTINF:0,R Channel
 http://xrodopi-tvx.api.channel.livestream.com/3.0/playlist.m3u8
@@ -166,9 +157,6 @@ mmsh://magictvbox.us:200/skai
 
 #EXTINF:0,Skai 
 http://iphone.skai.gr.edgesuite.net/iphone_iphone.m3u8
-
-#EXTINF:0,Star TV 
-http://starhdlive2-lh.akamaihd.net/i/live_1@181243/master.m3u8
 
 #EXTINF:0,Star TV 
 mms://radiofeeds1.mediabox.gr/startv
@@ -194,11 +182,10 @@ http://xelladalivex.api.channel.livestream.com/3.0/playlist.m3u8
 #EXTINF:0,Vima
 
 
-#EXTINF:0,Zougla TV
+#EXTINF:0,Zougla TV 
 http://zouglahd-f.akamaihd.net/i/zougla_1@56341/index_700_av-p.m3u8
 
-#EXTINF:0,Zougla TV
-rtmp://213.16.167.186:1935/live/mpegts_256.stream
+
 
 
 
