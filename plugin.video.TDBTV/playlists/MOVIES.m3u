@@ -41,7 +41,7 @@ http://83.139.104.99/Content/HLS/Live/Channel(cinestar_tv)/Stream(03)/index.m3u8
 
 
 #EXTINF:0,FilmZone
-http://live.oneplay.tv/reproducir/321.m3u8
+http://200.76.77.237/LIVE/H01/CANAL440/PROFILE03.m3u8?
 
 #EXTINF:0,Fox 1
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=297&lan=2&rows=40&f=BratuMarian.m3u8
@@ -52,20 +52,11 @@ http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=305&lan=2&rows=
 #EXTINF:0,Fox Action Movies 
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=301&lan=2&rows=40&f=BratuMarian.m3u8
 
-#EXTINF:0,Fox Action Movies 
-http://live.oneplay.tv/reproducir/301.m3u8
-
 #EXTINF:0,Fox Classics
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=345&lan=2&rows=40&f=BratuMarian.m3u8
 
 #EXTINF:0,Fox Family Movies 
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=342&lan=2&rows=40&f=.m3u8
-
-#EXTINF:0,Fox Movies 
-http://200.76.77.237/LIVE/H01/CANAL417/PROFILE03.m3u8?
-
-#EXTINF:0,Fox Movies 
-http://live.oneplay.tv/reproducir/305.m3u8
 
 #EXTINF:0,Fox Movies 
 http://213.250.19.50/foxmovies/foxmovies.isml/foxmovies-video=2500000-audio101=128000.m3u8
@@ -79,6 +70,12 @@ http://cdn-02.sdn.si/foxmovies/foxmovies.isml/foxmovies-video=2500000-audio101=1
 #EXTINF:0,Fox Movies 
 http://cdn-02.sdn.si/foxmovies/foxmovies.isml/foxmovies-video=1500000-audio101=128000.m3u8
 
+#EXTINF:0,Fox Movies 
+rtmp://162.212.176.107:1935/fox_movies/globaltv-fox_movies.stream
+
+#EXTINF:0,Fox Movies 
+http://200.76.77.237/LIVE/H01/CANAL417/PROFILE03.m3u8?
+
 #EXTINF:0,Fright Fest 
 
 
@@ -88,20 +85,11 @@ http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=104&lan=2&rows=
 #EXTINF:0,FX HD
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=103&lan=2&rows=40&f=BratuMarian.m3u8
 
-#EXTINF:0,FX HD
-http://live.oneplay.tv/reproducir/101.m3u8
-
 #EXTINF:0,HBO 
 http://113.160.49.34/lives/origin03/hbohd.isml/hbohd-2096k.m3u8
 
 #EXTINF:0,HBO 
 rtmp://178.162.199.141/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to/player/secure_player_iguide_embed_token.swf live=1 pageUrl=http://www.iguide.to/ token=#ed%h0#w18623jsda6523lDGD
-
-#EXTINF:0,HBO 
-http://198.27.94.105/hls/hbo_1.m3u8
-
-#EXTINF:0,HBO 
-http://142.4.216.60:1935/edge/_definst_/qzbbu26gcvjxksz/playlist.m3u8?wowzasessionid=1419907309&xs=_we_cXpiYnUyNmdjdmp4a3N6fDE0MTk5NDMzMDl8NzIuMjcuMjE0LjMzfDU0YTIxMGVkNTEyNmF8OGUzN2Q3OGJkNGZiNTBkOGU2ZmVlZTFiMzlkNjAxYWMyMzcyY2VmMg timeout=10
 
 #EXTINF:0,HBO Plus 
 
@@ -200,13 +188,13 @@ http://113.160.49.34/lives/origin03/moviehd.isml/moviehd-2096k.m3u8
 
 
 #EXTINF:0,True Movies 1
-
+http://wpc.AC3A.edgecastcdn.net:80/80AC3A/001/hls/m3u8/truemovies1.m3u8
 
 #EXTINF:0,True Movies 2
-
+http://wpc.AC3A.edgecastcdn.net:80/80AC3A/001/hls/m3u8/truemovies2.m3u8
 
 #EXTINF:0,TV 1000
-
+http://109.127.2.2:8024/c139
 
 #EXTINF:0,TV 1000 Action
 

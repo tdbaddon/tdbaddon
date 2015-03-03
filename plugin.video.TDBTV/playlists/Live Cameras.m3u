@@ -11,7 +11,7 @@ rtmp://video2.earthcam.com/fecnetwork swfUrl=http://www.earthcam.com/swf/cam_pla
 
 
 #EXTINF:0,Fish Tank 
-
+rtmp://80.93.53.88:1935/live/channel_3
 
 #EXTINF:0,LA Hollywood Blvd California 
 

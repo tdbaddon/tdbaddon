@@ -48,7 +48,10 @@ http://cdn-02.sdn.si/cartoonnetwork/cartoonnetwork.isml/cartoonnetwork-video=250
 #EXTINF:0,Cartoon Network
 http://cdn-02.sdn.si/cartoonnetwork/cartoonnetwork.isml/cartoonnetwork-video=1500000-audio101=128000.m3u8
 
-#EXTINF:0,Classic Loony Tunes
+#EXTINF:0,Cartoon Network
+http://109.127.2.2:8007/c48
+
+#EXTINF:0,Classic Looney Tunes
 http://167.114.65.74/hls/lt.m3u8
 
 #EXTINF:0,DaVinci Learning
@@ -74,9 +77,6 @@ http://cdn-02.sdn.si/disneychannel/disneychannel.isml/disneychannel-video=250000
 
 #EXTINF:0,Disney Channel 
 http://cdn-02.sdn.si/disneychannel/disneychannel.isml/disneychannel-video=1500000-audio101=128000.m3u8
-
-#EXTINF:0,Disney Channel 
-http://142.4.216.60:1935/edge/_definst_/2tag4dzgwof5ma2/playlist.m3u8?wowzasessionid=1420170412&xs=_we_MnRhZzRkemd3b2Y1bWEyfDE0MjAyMDY0MTJ8NzIuMjcuMjE0LjMzfDU0YTYxNGFjYjQwN2V8ZWMzN2Y0ZTg3OGE2ZDhmMzgyY2Y0ODhjMTgzOTYzMTVjNDVhMWVjMg timeout=10
 
 #EXTINF:0,Disney Cinemagic 
 
@@ -126,6 +126,9 @@ http://cdn-02.sdn.si/jimjam/jimjam.isml/jimjam-video=2500000-audio101=128000.m3u
 #EXTINF:0,Jim Jam 
 http://cdn-02.sdn.si/jimjam/jimjam.isml/jimjam-video=1500000-audio101=128000.m3u8
 
+#EXTINF:0,Jim Jam 
+http://109.127.2.2:8007/c99
+
 #EXTINF:0,Junior TV
 
 
@@ -133,13 +136,16 @@ http://cdn-02.sdn.si/jimjam/jimjam.isml/jimjam-video=1500000-audio101=128000.m3u
 rtmp://mi2.gv.filmon.com:1935/live/_definst_/2734.low.stream?b?b*t$
 
 #EXTINF:0,Nick 
-
+http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12145
 
 #EXTINF:0,Nick Jr 
-
+http://109.127.2.2:8023/c98
 
 #EXTINF:0,Nickelodeon 
-http://142.4.216.60:1935/edge/_definst_/q2hs5fqm8b039y0/playlist.m3u8?wowzasessionid=1420170368&xs=_we_cTJoczVmcW04YjAzOXkwfDE0MjAyMDYzNjh8NzIuMjcuMjE0LjMzfDU0YTYxNDgwYmM4NGF8MmZjYmQzNDQ5OTMwMzE3ZjIxN2U3ZTBhOTBkZjkzMzcyZjlhMTY1Ng timeout=10
+http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12140
+
+#EXTINF:0,Nickelodeon 
+http://109.127.2.2:8010/c83
 
 #EXTINF:0,NickNight 
 
@@ -154,7 +160,7 @@ http://142.4.216.60:1935/edge/_definst_/q2hs5fqm8b039y0/playlist.m3u8?wowzasessi
 rtmpe://192.99.21.184/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjkadgbutoarihn/ playpath=2502 swfUrl=http://www.tgun.tv/lock/player.swf live=1 pageUrl=http://www.tgun.tv/menus/players/playerindex5.php?2502
 
 #EXTINF:0,Tom & Jerry Show 
-
+http://66.90.111.66:1935/ctv/tom/waldo_paes.m3u8
 
 #EXTINF:0,Yes!
 http://uneapple-i.akamaihd.net/hls/live/205010/grupoune_st1@205010/st1_index.m3u8
