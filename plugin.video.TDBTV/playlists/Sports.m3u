@@ -2,13 +2,10 @@
 
 
 #EXTINF:0,Bein Sport1
-http://4.31.30.145:9128
 
-#EXTINF:0,Bein Sport1
-rtmp://65.111.174.111/iptv/beinsports1.stream
 
 #EXTINF:0,Bein Sport2
-rtmp://65.111.174.111/iptv/beinsports2.stream
+
 
 #EXTINF:0,Big Ten Network 
 http://bigten247.cdnak.bigtenhd.neulion.com/nlds/btn2go/btnnetwork/as/live/btnnetwork_hd_3000.m3u8
@@ -203,8 +200,11 @@ http://xrxs.net/video/live-p12wash-1164.m3u8
 #EXTINF:0,PAC Sports Washington HD
 http://xrxs.net/video/live-p12wash-4728.m3u8
 
-#EXTINF:0,Premier Sports 
+#EXTINF:0,Porsche Channel
+mms://100automoto.tv/channel_porsche
 
+#EXTINF:0,Premier Sports 
+rtmp://31.220.0.195:80/live/ playpath=premiersport token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://reytv.co/
 
 #EXTINF:0,Racing UK 
 rtmp://rrbalancer.broadcast.tneg.de:1935/pw/ruk/ playpath=ruk swfUrl=http://pferdewetten.broadcast.tneg.de/jwplayer/player.swf live=1 pageUrl=http://pferdewetten.broadcast.tneg.de/jwplayer/player.php?type=live&stream=ruk1&token=ccf6c54e62bc5bd667661d5af5d61e8664c75b11
@@ -225,22 +225,16 @@ http://198.27.94.105/hls/skysports1__1.m3u8
 http://198.27.94.105/hls/skysports2__1.m3u8
 
 #EXTINF:0,Sky Sports 3 
-rtmpe://46.246.124.86:1935/l playpath=sskys3 swfUrl=http://player.prvservers.com/_.swf live=1 pageUrl=http://prvservers.com/happy token=Fo5_n0w?U.rA6l3-70w47ch
-
-#EXTINF:0,Sky Sports 3 
 http://198.27.94.105/hls/skysports3__1.m3u8
-
-#EXTINF:0,Sky Sports 4 
-rtmpe://46.246.124.86:1935/l playpath=sskys4 swfUrl=http://player.prvservers.com/_.swf live=1 pageUrl=http://prvservers.com/happy token=Fo5_n0w?U.rA6l3-70w47ch
 
 #EXTINF:0,Sky Sports 4 
 http://198.27.94.105/hls/skysports4__1.m3u8
 
 #EXTINF:0,Sky Sports 5 
-http://198.27.94.105/hls/skysports5__1.m3u8
+
 
 #EXTINF:0,Sky Sports F1 
-rtmpe://46.246.124.86:1935/l playpath=sskysf1 swfUrl=http://player.prvservers.com/_.swf live=1 pageUrl=http://prvservers.com/happy token=Fo5_n0w?U.rA6l3-70w47ch
+
 
 #EXTINF:0,Sky Sport News 
 
@@ -258,10 +252,10 @@ rtmpe://46.246.124.86:1935/l playpath=sskysf1 swfUrl=http://player.prvservers.co
 http://nlds187.cdnak.neulion.com/nlds/sportsnetnow/sn_360/as/live/sn_360_hd_ipad.m3u8
 
 #EXTINF:0,Sportsnet One 
-
+rtmp://109.123.70.38:80/live/ playpath=sportsnetw token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://reytv.co/
 
 #EXTINF:0,Sportsnet Ontario 
-
+rtmp://31.220.0.195:80/live/ playpath=sno token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://reytv.co/
 
 #EXTINF:0,Sportsnet World 
 rtmp://31.220.0.195:80/live/ playpath=world token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://reytv.co/ AnisotropicTV
@@ -315,7 +309,7 @@ http://ams-lp2.9c9media.com/hls-live/livepkgr/_definst_/liveeventNoDRM/TSN4Open8
 http://ams-lp3.9c9media.com/hls-live/livepkgr/_definst_/liveeventNoDRM/TSN5Open8.m3u8
 
 #EXTINF:0,Viasat Golf
-
+http://hlsstr04.svc.iptv.rt.ru/hls/CH_C06_VIASATGOLFHD/variant.m3u8?version=2
 
 #EXTINF:0,Viasat Sport
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_VIASATSPORT/variant.m3u8

@@ -45,6 +45,9 @@ http://fms.zulu.mk:1935/zulu/cegrani_1/playlist.m3u8
 #EXTINF:0,ERA TV 
 http://fms.zulu.mk:1935/zulu/era_1/hasbahca.m3u8
 
+#EXTINF:0,H1
+rtmp://hugo-iptv.zapto.org/live/h1
+
 #EXTINF:0,Hema TV
 mms://77.238.209.50:1234
 

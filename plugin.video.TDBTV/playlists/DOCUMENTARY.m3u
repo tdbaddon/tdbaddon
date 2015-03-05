@@ -85,9 +85,6 @@ http://109.127.2.2:8007/c31
 #EXTINF:0,Discovery Theater 
 http://200.76.77.237/LIVE/H01/CANAL351/PROFILE03.m3u8?
 
-#EXTINF:0,Discovery Theater 
-http://live.oneplay.tv/reproducir/241.m3u8
-
 #EXTINF:0,Discovery Turbo 
 
 
@@ -186,9 +183,6 @@ http://83.139.104.99/Content/HLS/Live/Channel(travel_channel)/Stream(03)/index.m
 
 #EXTINF:0,Travel Channel 
 http://109.127.2.2:8008/c108
-
-#EXTINF:0,Travel Channel 
-http://142.4.216.60:1935/edge/_definst_/4aiufk0o430qt0d/playlist.m3u8?wowzasessionid=1419877887&xs=_we_MWZ2dW9rMm55NGp0bWdxfDE0MTk5MTM4ODd8fDU0YTE5ZGZmMjgwNTR8MjZlNDRkMjc2ZDFiZDExODcyM2UyMGQ2OGZlNTFkNmI3NDA1NmQzZA timeout=10
 
 #EXTINF:0,Viasat Explorer 
 http://83.139.104.99/Content/HLS/Live/Channel(viasat_explore)/Stream(03)/index.m3u8

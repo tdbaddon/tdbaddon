@@ -91,6 +91,9 @@ http://113.160.49.34/lives/origin03/hbohd.isml/hbohd-2096k.m3u8
 #EXTINF:0,HBO 
 rtmp://178.162.199.141/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to/player/secure_player_iguide_embed_token.swf live=1 pageUrl=http://www.iguide.to/ token=#ed%h0#w18623jsda6523lDGD
 
+#EXTINF:0,HBO 
+rtmp://89.248.168.57:1935/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to/player/secure_player_iguide_token.swf live=1 pageUrl=http://www.iguide.to/view/1/HBO token=#ed%h0#w18623jsda6523lDGDve
+
 #EXTINF:0,HBO Plus 
 
 
@@ -197,7 +200,7 @@ http://wpc.AC3A.edgecastcdn.net:80/80AC3A/001/hls/m3u8/truemovies2.m3u8
 http://109.127.2.2:8024/c139
 
 #EXTINF:0,TV 1000 Action
-
+http://176.51.82.51:1234/udp/233.7.70.59:5000
 
 
 

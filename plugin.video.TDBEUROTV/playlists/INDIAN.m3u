@@ -1,9 +1,6 @@
 ﻿#EXTM3U
 
 
-#EXTINF:0,Aaj Tak
-plugin://plugin.video.youtube/?action=play_video&amp;videoid=L3lcSzcSrmU
-
 #EXTINF:0,ABP Ananda
 http://bengaliabp-lh.akamaihd.net/i/abpbanglanew_1@192108/master.m3u8
 
@@ -31,6 +28,9 @@ rtsp://46.249.213.93/broadcast/indianstudentcinema-tablet.3gp
 #EXTINF:0,Colors
 rtmpe://5.153.233.74:443/ app=c0be82e1442e7169a9a358db47fcafcb playpath=colorsprts870 swfUrl=http://mybeststream.xyz/MTEwZjFiMmI4MWVkNmE4ZTIwYTg1MDMw/jwplayer.flash.swf pageUrl=http://mybeststream.xyz/ live=true timeout=15
 
+#EXTINF:0,DAAI TV
+rtsp://cdn.mivo.tv/mivotvjkt/daaitv2
+
 #EXTINF:0,DD National
 http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD178_W_350.sdp/media_b639410.m3u8
 
@@ -57,6 +57,9 @@ rtmp://gemtv.fms.visionip.tv/live/gemtv-gemtv-rubix-live-16x9-HD?ref=www.gemonli
 
 #EXTINF:0,GEM Travel
 rtmp://gemtv.fms.visionip.tv/live/gemtv-gemtv-travel-live-25f-16x9-HD?ref=www.gemonline.tv&USER=TRAVEL
+
+#EXTINF:0,Global TV
+rtsp://cdn.mivo.tv/mivotvjkt/globaltv2
 
 #EXTINF:0,India News
 http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD148_W_350.sdp/media_b623985.m3u8
