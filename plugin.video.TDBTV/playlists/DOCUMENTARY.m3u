@@ -2,94 +2,49 @@
 
 
 #EXTINF:0,Animal Planet 
-http://213.250.19.50/animalplanet/animalplanet.isml/animalplanet-video=2500000-audio101=128000.m3u8
-
-#EXTINF:0,Animal Planet 
-http://213.250.19.50/animalplanet/animalplanet.isml/animalplanet-video=1500000-audio101=128000.m3u8
-
-#EXTINF:0,Animal Planet 
-http://cdn-02.sdn.si/animalplanet/animalplanet.isml/animalplanet-video=2500000-audio101=128000.m3u8
-
-#EXTINF:0,Animal Planet 
-http://cdn-02.sdn.si/animalplanet/animalplanet.isml/animalplanet-video=1500000-audio101=128000.m3u8
-
-#EXTINF:0,Animal Planet 
 http://sjc-uhls-vip01.ustream.tv/watch/playlist.m3u8?cid=12762028
 
 #EXTINF:0,Animal Planet 
-http://83.139.104.99/Content/HLS/Live/Channel(animal_planet)/Stream(03)/index.m3u8
-
-#EXTINF:0,Animal Planet 
-http://109.127.2.2:8023/c74
-
-#EXTINF:0,Animal Planet 
-http://109.127.2.2:8013/c159
+http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12127
 
 #EXTINF:0,BBC Knowledge 
-http://213.250.19.50/bbcknowledge/bbcknowledge.isml/bbcknowledge-video=2500000-audio101=128000.m3u8
-
-#EXTINF:0,BBC Knowledge 
-http://213.250.19.50/bbcknowledge/bbcknowledge.isml/bbcknowledge-video=1500000-audio101=128000.m3u8
-
-#EXTINF:0,BBC Knowledge 
-http://cdn-02.sdn.si/bbcknowledge/bbcknowledge.isml/bbcknowledge-video=2500000-audio101=128000.m3u8
-
-#EXTINF:0,BBC Knowledge 
-http://cdn-02.sdn.si/bbcknowledge/bbcknowledge.isml/bbcknowledge-video=1500000-audio101=128000.m3u8
+http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12366
 
 #EXTINF:0,Crime Investigation 
-http://213.250.19.50/crimeinvestigation/crimeinvestigation.isml/crimeinvestigation-video=2500000-audio101=128000.m3u8
-
-#EXTINF:0,Crime Investigation 
-http://213.250.19.50/crimeinvestigation/crimeinvestigation.isml/crimeinvestigation-video=1500000-audio101=128000.m3u8
-
-#EXTINF:0,Crime Investigation 
-http://cdn-02.sdn.si/crimeinvestigation/crimeinvestigation.isml/crimeinvestigation-video=2500000-audio101=128000.m3u8
-
-#EXTINF:0,Crime Investigation 
-http://cdn-02.sdn.si/crimeinvestigation/crimeinvestigation.isml/crimeinvestigation-video=1500000-audio101=128000.m3u8
+http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12129
 
 #EXTINF:0,Discovery Channel 
-http://213.250.19.50/discoverychannel/discoverychannel.isml/discoverychannel-video=2500000-audio101=128000.m3u8
-
-#EXTINF:0,Discovery Channel 
-http://213.250.19.50/discoverychannel/discoverychannel.isml/discoverychannel-video=1500000-audio101=128000.m3u8
-
-#EXTINF:0,Discovery Channel 
-http://cdn-02.sdn.si/discoverychannel/discoverychannel.isml/discoverychannel-video=2500000-audio101=128000.m3u8
-
-#EXTINF:0,Discovery Channel 
-http://cdn-02.sdn.si/discoverychannel/discoverychannel.isml/discoverychannel-video=1500000-audio101=128000.m3u8
-
-#EXTINF:0,Discovery Channel 
-http://83.139.104.99/Content/HLS/Live/Channel(discovery_channel)/index.m3u8
-
-#EXTINF:0,Discovery Channel 
-http://109.127.2.2:8023/c71
-
-#EXTINF:0,Discovery Channel 
-http://109.127.2.2:8025/c154
+http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12122
 
 #EXTINF:0,Discovery History 
+http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12133
 
+#EXTINF:0,Discovery Home and Health
+http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12134
 
 #EXTINF:0,Discovery Investigation 
-http://109.127.2.2:8007/c126
+http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12130
 
 #EXTINF:0,Discovery Max 
+http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12136
 
+#EXTINF:0,Discovery Max 
+http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12365
 
 #EXTINF:0,Discovery Science 
-http://109.127.2.2:8007/c31
+
+
+#EXTINF:0,Discovery Shed
+http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12131
 
 #EXTINF:0,Discovery Theater 
 http://200.76.77.237/LIVE/H01/CANAL351/PROFILE03.m3u8?
 
 #EXTINF:0,Discovery Turbo 
-
+http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12135
 
 #EXTINF:0,Discovery World 
-http://109.127.2.2:8007/c30
+http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12357
 
 #EXTINF:0,DocuBox
 
@@ -98,19 +53,16 @@ http://109.127.2.2:8007/c30
 
 
 #EXTINF:0,History Channel 
-http://213.250.19.50/historychannel/historychannel.isml/historychannel-video=2500000-audio101=128000.m3u8
+http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12125
 
 #EXTINF:0,History Channel 
-http://213.250.19.50/historychannel/historychannel.isml/historychannel-video=1500000-audio101=128000.m3u8
+http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12126
 
 #EXTINF:0,History Channel 
-http://cdn-02.sdn.si/historychannel/historychannel.isml/historychannel-video=2500000-audio101=128000.m3u8
+http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12358
 
-#EXTINF:0,History Channel 
-http://cdn-02.sdn.si/historychannel/historychannel.isml/historychannel-video=1500000-audio101=128000.m3u8
-
-#EXTINF:0,History Channel 
-http://109.127.2.2:8008/c93
+#EXTINF:0,History Channel 2
+http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12359
 
 #EXTINF:0,NASA TV 
 http://public.infozen.cshls.lldns.net/infozen/public/public.m3u8
@@ -128,37 +80,10 @@ http://www.nasa.gov/multimedia/nasatv/NTV-Public-IPS.m3u8
 
 
 #EXTINF:0,Nat Geo Wild 
-http://213.250.19.50/natgeowild/natgeowild.isml/natgeowild-video=2500000-audio101=128000.m3u8
-
-#EXTINF:0,Nat Geo Wild 
-http://213.250.19.50/natgeowild/natgeowild.isml/natgeowild-video=1500000-audio101=128000.m3u8
-
-#EXTINF:0,Nat Geo Wild 
-http://cdn-02.sdn.si/natgeowild/natgeowild.isml/natgeowild-video=2500000-audio101=128000.m3u8
-
-#EXTINF:0,Nat Geo Wild 
-http://cdn-02.sdn.si/natgeowild/natgeowild.isml/natgeowild-video=1500000-audio101=128000.m3u8
-
-#EXTINF:0,Nat Geo Wild 
-http://109.127.2.2:8013/c160
-
-#EXTINF:0,Nat Geo Wild 
-http://109.127.2.2:8023/c73
+http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12124
 
 #EXTINF:0,National Geographic 
-http://213.250.19.50/natgeo/natgeo.isml/natgeo-video=2500000-audio101=128000.m3u8
-
-#EXTINF:0,National Geographic 
-http://213.250.19.50/natgeo/natgeo.isml/natgeo-video=1500000-audio101=128000.m3u8
-
-#EXTINF:0,National Geographic 
-http://cdn-02.sdn.si/natgeo/natgeo.isml/natgeo-video=2500000-audio101=128000.m3u8
-
-#EXTINF:0,National Geographic 
-http://cdn-02.sdn.si/natgeo/natgeo.isml/natgeo-video=1500000-audio101=128000.m3u8
-
-#EXTINF:0,National Geographic 
-http://109.127.2.2:8023/c72
+http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12123
 
 #EXTINF:0,Paranormal TV 
 rtmp://mi2.gv.filmon.com:8086/live/1618.high.stream
@@ -166,38 +91,21 @@ rtmp://mi2.gv.filmon.com:8086/live/1618.high.stream
 #EXTINF:0,RT News Documentary 
 http://odna.octoshape.net/f3f5m2v4/cds/ch5_auto.smil/playlist.m3u8 
 
-#EXTINF:0,Travel Channel 
-http://213.250.19.50/travelchannel/travelchannel.isml/travelchannel-video=2500000-audio101=128000.m3u8
+#EXTINF:0,Science Channel
+http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12132
+
 
 #EXTINF:0,Travel Channel 
-http://213.250.19.50/travelchannel/travelchannel.isml/travelchannel-video=1500000-audio101=128000.m3u8
-
-#EXTINF:0,Travel Channel 
-http://cdn-02.sdn.si/travelchannel/travelchannel.isml/travelchannel-video=2500000-audio101=128000.m3u8
-
-#EXTINF:0,Travel Channel 
-http://cdn-02.sdn.si/travelchannel/travelchannel.isml/travelchannel-video=1500000-audio101=128000.m3u8
-
-#EXTINF:0,Travel Channel 
-http://83.139.104.99/Content/HLS/Live/Channel(travel_channel)/Stream(03)/index.m3u8
-
-#EXTINF:0,Travel Channel 
-http://109.127.2.2:8008/c108
+http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12392
 
 #EXTINF:0,Viasat Explorer 
-http://83.139.104.99/Content/HLS/Live/Channel(viasat_explore)/Stream(03)/index.m3u8
 
-#EXTINF:0,Viasat Explorer 
-http://109.127.2.2:8024/c136
 
 #EXTINF:0,Viasat History 
-http://83.139.104.99/Content/HLS/Live/Channel(viasat_history)/Stream(03)/index.m3u8
 
-#EXTINF:0,Viasat History 
-http://109.127.2.2:8024/c137
 
 #EXTINF:0,Viasat Nature 
-http://109.127.2.2:8024/c138
+
 
 #EXTINF:0,War Channel
 rtmp://mi2.gv.filmon.com:8086/live/805.high.stream

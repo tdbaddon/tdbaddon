@@ -13,97 +13,37 @@
 
 
 #EXTINF:0,BabyTV 
-http://213.250.19.50/babytv/babytv.isml/babytv-video=2500000-audio101=128000.m3u8
-
-#EXTINF:0,BabyTV 
-http://213.250.19.50/babytv/babytv.isml/babytv-video=1500000-audio101=128000.m3u8
-
-#EXTINF:0,BabyTV 
-http://cdn-02.sdn.si/babytv/babytv.isml/babytv-video=2500000-audio101=128000.m3u8
-
-#EXTINF:0,BabyTV 
-http://cdn-02.sdn.si/babytv/babytv.isml/babytv-video=1500000-audio101=128000.m3u8
+http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12147
 
 #EXTINF:0,Boomerang 
-http://213.250.19.50/boomerang/boomerang.isml/boomerang-video=2500000-audio101=128000.m3u8
-
-#EXTINF:0,Boomerang 
-http://213.250.19.50/boomerang/boomerang.isml/boomerang-video=1500000-audio101=128000.m3u8
-
-#EXTINF:0,Boomerang 
-http://cdn-02.sdn.si/boomerang/boomerang.isml/boomerang-video=2500000-audio101=128000.m3u8
-
-#EXTINF:0,Boomerang 
-http://cdn-02.sdn.si/boomerang/boomerang.isml/boomerang-video=1500000-audio101=128000.m3u8
+http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12148
 
 #EXTINF:0,Cartoon Network
-http://213.250.19.50/cartoonnetwork/cartoonnetwork.isml/cartoonnetwork-video=2500000-audio101=128000.m3u8
-
-#EXTINF:0,Cartoon Network
-http://213.250.19.50/cartoonnetwork/cartoonnetwork.isml/cartoonnetwork-video=1500000-audio101=128000.m3u8
-
-#EXTINF:0,Cartoon Network
-http://cdn-02.sdn.si/cartoonnetwork/cartoonnetwork.isml/cartoonnetwork-video=2500000-audio101=128000.m3u8
-
-#EXTINF:0,Cartoon Network
-http://cdn-02.sdn.si/cartoonnetwork/cartoonnetwork.isml/cartoonnetwork-video=1500000-audio101=128000.m3u8
-
-#EXTINF:0,Cartoon Network
-http://109.127.2.2:8007/c48
+http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12141
 
 #EXTINF:0,Classic Looney Tunes
-http://167.114.65.74/hls/lt.m3u8
+
 
 #EXTINF:0,DaVinci Learning
-http://213.250.19.50/davincilearning/davincilearning.isml/davincilearning-video=2500000-audio101=128000.m3u8
 
-#EXTINF:0,DaVinci Learning
-http://213.250.19.50/davincilearning/davincilearning.isml/davincilearning-video=1500000-audio101=128000.m3u8
-
-#EXTINF:0,DaVinci Learning
-http://cdn-02.sdn.si/davincilearning/davincilearning.isml/davincilearning-video=2500000-audio101=128000.m3u8
-
-#EXTINF:0,DaVinci Learning
-http://cdn-02.sdn.si/davincilearning/davincilearning.isml/davincilearning-video=1500000-audio101=128000.m3u8
 
 #EXTINF:0,Disney Channel 
-http://213.250.19.50/disneychannel/disneychannel.isml/disneychannel-video=2500000-audio101=128000.m3u8
 
-#EXTINF:0,Disney Channel 
-http://213.250.19.50/disneychannel/disneychannel.isml/disneychannel-video=1500000-audio101=128000.m3u8
-
-#EXTINF:0,Disney Channel 
-http://cdn-02.sdn.si/disneychannel/disneychannel.isml/disneychannel-video=2500000-audio101=128000.m3u8
-
-#EXTINF:0,Disney Channel 
-http://cdn-02.sdn.si/disneychannel/disneychannel.isml/disneychannel-video=1500000-audio101=128000.m3u8
 
 #EXTINF:0,Disney Cinemagic 
 
  
 #EXTINF:0,Disney Junior 
-
-
-#EXTINF:0,Disney XD 
-http://213.250.19.50/disneyxd/disneyxd.isml/disneyxd-video=2500000-audio101=128000.m3u8
+http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12143
 
 #EXTINF:0,Disney XD 
-http://213.250.19.50/disneyxd/disneyxd.isml/disneyxd-video=1500000-audio101=128000.m3u8
-
-#EXTINF:0,Disney XD 
-http://cdn-02.sdn.si/disneyxd/disneyxd.isml/disneyxd-video=2500000-audio101=128000.m3u8
-
-#EXTINF:0,Disney XD 
-http://cdn-02.sdn.si/disneyxd/disneyxd.isml/disneyxd-video=1500000-audio101=128000.m3u8
+http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12142
 
 #EXTINF:0,Emba Kids 
 rtmp://mi2.gv.filmon.com:8086/live/719.high.stream
 
 #EXTINF:0,Family Guy 
-rtmpe://192.99.38.122/bling0110hljdhaflhfahdfpadhfhurhgydhfbvkchugfayei/ playpath=familyguy02 swfUrl=http://www.tgun.tv/lock/player.swf live=1 pageUrl=http://www.tgun.tv/menus/players/playerindex3.php?familyguy01
 
-#EXTINF:0,Family Guy 
-http://167.114.65.74/hls/fg.m3u8
 
 #EXTINF:0,Full House 
 
@@ -111,23 +51,8 @@ http://167.114.65.74/hls/fg.m3u8
 #EXTINF:0,Futurama 
 rtmpe://192.99.21.184/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjkadgbutoarihn/ playpath=2501 swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf pageUrl=http://www.tgun.tv/menus/players/dlock/playerindextab2.php?2501
 
-#EXTINF:0,Futurama 
-http://167.114.65.74/hls/fa.m3u8
-
 #EXTINF:0,Jim Jam 
-http://213.250.19.50/jimjam/jimjam.isml/jimjam-video=2500000-audio101=128000.m3u8
 
-#EXTINF:0,Jim Jam 
-http://213.250.19.50/jimjam/jimjam.isml/jimjam-video=1500000-audio101=128000.m3u8
-
-#EXTINF:0,Jim Jam 
-http://cdn-02.sdn.si/jimjam/jimjam.isml/jimjam-video=2500000-audio101=128000.m3u8
-
-#EXTINF:0,Jim Jam 
-http://cdn-02.sdn.si/jimjam/jimjam.isml/jimjam-video=1500000-audio101=128000.m3u8
-
-#EXTINF:0,Jim Jam 
-http://109.127.2.2:8007/c99
 
 #EXTINF:0,Junior TV
 
@@ -139,16 +64,19 @@ rtmp://mi2.gv.filmon.com:1935/live/_definst_/2734.low.stream?b?b*t$
 http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12145
 
 #EXTINF:0,Nick Jr 
-http://109.127.2.2:8023/c98
+http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12146
 
 #EXTINF:0,Nickelodeon 
 http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12140
 
-#EXTINF:0,Nickelodeon 
-http://109.127.2.2:8010/c83
-
 #EXTINF:0,NickNight 
 
+
+#EXTINF:0,PBS Kids
+http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12199
+
+#EXTINF:0,PBS Kids
+http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12037
 
 #EXTINF:0,Sky Movies Disney 
 

@@ -10,20 +10,17 @@ rtmp://mi2.gv.filmon.com:8086/live/1045.high.stream?
 #EXTINF:0,Cinemax 
 http://113.160.49.34/lives/origin03/cinemaxsd.isml/cinemaxsd-1096k.m3u8
 
-#EXTINF:0,Cinemax 
-http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=353&lan=2&rows=40&f=.m3u8
-
 #EXTINF:0,Cinestar Action & Thriller 
-http://83.139.104.99/Content/HLS/Live/Channel(CINESTAR_ACTION_AND_THRILLER)/index.m3u8
+
 
 #EXTINF:0,Cinestar Premiere 1 
-http://83.139.104.99/Content/HLS/Live/Channel(cinestar_premiere_1)/Stream(03)/index.m3u8
+
 
 #EXTINF:0,Cinestar Premiere 2 
-http://83.139.104.99/Content/HLS/Live/Channel(cinestar_premiere_2)/Stream(03)/index.m3u8
+
 
 #EXTINF:0,Cinestar TV 
-http://83.139.104.99/Content/HLS/Live/Channel(cinestar_tv)/Stream(03)/index.m3u8
+
 
 #EXTINF:0,CMore Action
 
@@ -59,18 +56,6 @@ http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=345&lan=2&rows=
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=342&lan=2&rows=40&f=.m3u8
 
 #EXTINF:0,Fox Movies 
-http://213.250.19.50/foxmovies/foxmovies.isml/foxmovies-video=2500000-audio101=128000.m3u8
-
-#EXTINF:0,Fox Movies 
-http://213.250.19.50/foxmovies/foxmovies.isml/foxmovies-video=1500000-audio101=128000.m3u8
-
-#EXTINF:0,Fox Movies 
-http://cdn-02.sdn.si/foxmovies/foxmovies.isml/foxmovies-video=2500000-audio101=128000.m3u8
-
-#EXTINF:0,Fox Movies 
-http://cdn-02.sdn.si/foxmovies/foxmovies.isml/foxmovies-video=1500000-audio101=128000.m3u8
-
-#EXTINF:0,Fox Movies 
 rtmp://162.212.176.107:1935/fox_movies/globaltv-fox_movies.stream
 
 #EXTINF:0,Fox Movies 
@@ -89,16 +74,22 @@ http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=103&lan=2&rows=
 http://113.160.49.34/lives/origin03/hbohd.isml/hbohd-2096k.m3u8
 
 #EXTINF:0,HBO 
+http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12360
+
+#EXTINF:0,HBO 
 rtmp://178.162.199.141/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to/player/secure_player_iguide_embed_token.swf live=1 pageUrl=http://www.iguide.to/ token=#ed%h0#w18623jsda6523lDGD
 
 #EXTINF:0,HBO 
 rtmp://89.248.168.57:1935/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to/player/secure_player_iguide_token.swf live=1 pageUrl=http://www.iguide.to/view/1/HBO token=#ed%h0#w18623jsda6523lDGDve
 
+#EXTINF:0,HBO 
+http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12361
+
 #EXTINF:0,HBO Plus 
 
 
 #EXTINF:0,Kino TV 
-http://83.139.104.99/Content/HLS/Live/Channel(kino_tv)/Stream(03)/index.m3u8
+
 
 #EXTINF:0,Kung Fu Classics 
 rtmp://mi2.gv.filmon.com:8086/live/10.high.stream
@@ -107,16 +98,19 @@ rtmp://mi2.gv.filmon.com:8086/live/10.high.stream
 
 
 #EXTINF:0,MBC 2
-http://63.237.48.23/ios/MBC2/MBC2.m3u8
+
 
 #EXTINF:0,MBC Max
-http://63.237.48.23/ios/MBC_MAX/MBC_MAX.m3u8
+
 
 #EXTINF:0,MGM 
 
 
+#EXTINF:0,More Movies
+http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12393
+
 #EXTINF:0,Movies 24/7
-http://167.114.65.88/hls/mv.m3u8 
+http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12411
 
 #EXTINF:0,Movies 4 Men
 
@@ -155,31 +149,41 @@ http://str108.setplex.net/fastv_2psh/PinkWesternglobal_rly_greece_103/balkansatn
 
 
 #EXTINF:0,Sky Movies Action 
+http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12115
 
+#EXTINF:0,Sky Movies Action 
+http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12118
 
 #EXTINF:0,Sky Movies Atlantic
 
 
 #EXTINF:0,Sky Movies Crime
-
+http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12120
 
 #EXTINF:0,Sky Movies Comedy
 
 
 #EXTINF:0,Sky Movies Drama
+http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12117
 
+#EXTINF:0,Sky Movies Drama
+http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12116
 
 #EXTINF:0,Sky Movies Family
+http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12114
 
 
 #EXTINF:0,Sky Movies Horrors
 
 
 #EXTINF:0,Sky Movies Premiere
-
+http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12120
 
 #EXTINF:0,Sky Movies Sci Fi
 
+
+#EXTINF:0,Sony Movie Channel
+http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12121
 
 #EXTINF:0,Star Movies
 http://113.160.49.34/lives/origin03/moviehd.isml/moviehd-2096k.m3u8
@@ -188,7 +192,7 @@ http://113.160.49.34/lives/origin03/moviehd.isml/moviehd-2096k.m3u8
 
 
 #EXTINF:0,TCM
-
+http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12113
 
 #EXTINF:0,True Movies 1
 http://wpc.AC3A.edgecastcdn.net:80/80AC3A/001/hls/m3u8/truemovies1.m3u8
@@ -197,10 +201,10 @@ http://wpc.AC3A.edgecastcdn.net:80/80AC3A/001/hls/m3u8/truemovies1.m3u8
 http://wpc.AC3A.edgecastcdn.net:80/80AC3A/001/hls/m3u8/truemovies2.m3u8
 
 #EXTINF:0,TV 1000
-http://109.127.2.2:8024/c139
+
 
 #EXTINF:0,TV 1000 Action
-http://176.51.82.51:1234/udp/233.7.70.59:5000
+
 
 
 
