@@ -1,55 +1,38 @@
 ﻿#EXTM3U
 
 
-
-
-#EXTINF:0,Adventure Time 
-
-
-#EXTINF:0,Aqua Teen Hunger Force 
-
-
 #EXTINF:0,Baby First 
 
 
 #EXTINF:0,BabyTV 
-http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12147
+
 
 #EXTINF:0,Boomerang 
-http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12148
+
 
 #EXTINF:0,Cartoon Network
-http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12141
+http://188.227.86.4:4022/udp/239.77.0.77:1234
 
 #EXTINF:0,Classic Looney Tunes
-
+http://167.114.65.74/hls/lt.m3u8
 
 #EXTINF:0,DaVinci Learning
 
 
 #EXTINF:0,Disney Channel 
-
+http://142.4.216.60:1935/edge/_definst_/2tag4dzgwof5ma2/playlist.m3u8?wowzasessionid=1420170412&xs=_we_MnRhZzRkemd3b2Y1bWEyfDE0MjAyMDY0MTJ8NzIuMjcuMjE0LjMzfDU0YTYxNGFjYjQwN2V8ZWMzN2Y0ZTg3OGE2ZDhmMzgyY2Y0ODhjMTgzOTYzMTVjNDVhMWVjMg timeout=10
 
 #EXTINF:0,Disney Cinemagic 
 
  
 #EXTINF:0,Disney Junior 
-http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12143
+
 
 #EXTINF:0,Disney XD 
-http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12142
+
 
 #EXTINF:0,Emba Kids 
 rtmp://mi2.gv.filmon.com:8086/live/719.high.stream
-
-#EXTINF:0,Family Guy 
-
-
-#EXTINF:0,Full House 
-
-
-#EXTINF:0,Futurama 
-rtmpe://192.99.21.184/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjkadgbutoarihn/ playpath=2501 swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf pageUrl=http://www.tgun.tv/menus/players/dlock/playerindextab2.php?2501
 
 #EXTINF:0,Jim Jam 
 
@@ -61,37 +44,25 @@ rtmpe://192.99.21.184/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjk
 rtmp://mi2.gv.filmon.com:1935/live/_definst_/2734.low.stream?b?b*t$
 
 #EXTINF:0,Nick 
-http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12145
+
 
 #EXTINF:0,Nick Jr 
-http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12146
+
 
 #EXTINF:0,Nickelodeon 
-http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12140
+http://188.227.86.4:4022/udp/239.77.0.60:1234
 
 #EXTINF:0,NickNight 
 
 
 #EXTINF:0,PBS Kids
-http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12199
 
-#EXTINF:0,PBS Kids
-http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12037
 
 #EXTINF:0,Sky Movies Disney 
 
 
-#EXTINF:0,The Cleveland Show 
-
-
-#EXTINF:0,The Simpsons 
-rtmpe://192.99.21.184/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjkadgbutoarihn/ playpath=2502 swfUrl=http://www.tgun.tv/lock/player.swf live=1 pageUrl=http://www.tgun.tv/menus/players/playerindex5.php?2502
-
 #EXTINF:0,Tom & Jerry Show 
 http://66.90.111.66:1935/ctv/tom/waldo_paes.m3u8
-
-#EXTINF:0,Yes!
-http://uneapple-i.akamaihd.net/hls/live/205010/grupoune_st1@205010/st1_index.m3u8
 
 #EXTINF:0,YFE
 

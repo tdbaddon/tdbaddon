@@ -9,6 +9,12 @@ rtmpe://192.99.21.184/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjk
 #EXTINF:0,3rd Rock From The Sun 
 
 
+#EXTINF:0,Adventure Time 
+
+
+#EXTINF:0,Aqua Teen Hunger Force 
+
+
 #EXTINF:0,All In The Family
 rtmpe://192.99.21.184/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjkadgbutoarihn/ playpath=aitf swfUrl=http://www.tgun.tv/locked/player.swf live=1 pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex5.php?aitf
 
@@ -68,6 +74,18 @@ rtmpe://192.99.38.122/bling0110hljdhaflhfahdfpadhfhurhgydhfbvkchugfayei/ playpat
 
 #EXTINF:0,Everybody Loves Raymond
 rtmpe://192.99.38.122/bling0110hljdhaflhfahdfpadhfhurhgydhfbvkchugfayei/ playpath=elr02 swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex3.php?elr02
+
+#EXTINF:0,Family Guy 
+http://167.114.65.74/hls/fg.m3u8
+
+#EXTINF:0,Full House 
+
+
+#EXTINF:0,Futurama 
+rtmpe://192.99.21.184/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjkadgbutoarihn/ playpath=2501 swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf pageUrl=http://www.tgun.tv/menus/players/dlock/playerindextab2.php?2501
+
+#EXTINF:0,Futurama 
+http://167.114.65.74/hls/fa.m3u8
 
 #EXTINF:0,Frasier
 
@@ -201,6 +219,9 @@ rtmpe://192.99.21.184/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjk
 #EXTINF:0,The Big Bang Theory 
 rtmpe://192.99.38.122/bling0110hljdhaflhfahdfpadhfhurhgydhfbvkchugfayei/ playpath=tbbt02 swfUrl=http://www.tgun.tv/locked/player.swf live=1 pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex4.php?tbbt02 timeout=15
 
+#EXTINF:0,The Cleveland Show 
+
+
 #EXTINF:0,The Cosby Show 
 
 
@@ -218,6 +239,12 @@ rtmpe://192.99.38.122/bling0110hljdhaflhfahdfpadhfhurhgydhfbvkchugfayei/ playpat
 
 #EXTINF:0,The Office 
 
+
+#EXTINF:0,The Simpsons 
+rtmpe://192.99.21.184/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjkadgbutoarihn/ playpath=2502 swfUrl=http://www.tgun.tv/lock/player.swf live=1 pageUrl=http://www.tgun.tv/menus/players/playerindex5.php?2502
+
+#EXTINF:0,The Simpsons 
+http://167.114.65.88/hls/ss.m3u8
 
 #EXTINF:0,The Sopranos 
 rtmpe://192.99.21.184/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjkadgbutoarihn/ playpath=sopranos swfUrl=http://www.tgun.tv/lock/player.swf live=1 pageUrl=http://www.tgun.tv/menus/players/playerindex5.php?sopranos

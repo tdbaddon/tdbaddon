@@ -5,46 +5,47 @@
 http://sjc-uhls-vip01.ustream.tv/watch/playlist.m3u8?cid=12762028
 
 #EXTINF:0,Animal Planet 
-http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12127
+http://83.139.104.112/Content/HLS/Live/Channel(animal_planet)/Stream(03)/index.m3u8
 
 #EXTINF:0,BBC Knowledge 
-http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12366
+
 
 #EXTINF:0,Crime Investigation 
-http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12129
+
 
 #EXTINF:0,Discovery Channel 
-http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12122
+http://142.4.216.60:1935/edge/_definst_/ishyd3sopok3p27/playlist.m3u8?wowzasessionid=1419872569&xs=_we_cm83YzllaGEwejk2aHBwfDE0MTk5MDg1Njl8NzIuMjcuMjE0LjMzfDU0YTE4OTM5ZjJkMzN8YTI0NDkzYmNjNmJiM2NjYTQ4YTAzYWE4ODRjODY0M2M0ZThhM timeout=10GVlOA
+
+#EXTINF:0,Discovery Channel 
+http://83.139.104.112/Content/HLS/Live/Channel(discovery_channel)/index.m3u8
 
 #EXTINF:0,Discovery History 
-http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12133
+
 
 #EXTINF:0,Discovery Home and Health
-http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12134
+
 
 #EXTINF:0,Discovery Investigation 
-http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12130
+
 
 #EXTINF:0,Discovery Max 
-http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12136
 
-#EXTINF:0,Discovery Max 
-http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12365
 
 #EXTINF:0,Discovery Science 
-
+http://188.227.86.4:4022/udp/239.77.0.79:1234
 
 #EXTINF:0,Discovery Shed
-http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12131
+
 
 #EXTINF:0,Discovery Theater 
 http://200.76.77.237/LIVE/H01/CANAL351/PROFILE03.m3u8?
 
 #EXTINF:0,Discovery Turbo 
-http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12135
 
-#EXTINF:0,Discovery World 
-http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12357
+
+#EXTINF:0,Discovery World
+http://188.227.86.4:4022/udp/239.77.0.78:1234
+
 
 #EXTINF:0,DocuBox
 
@@ -53,13 +54,7 @@ http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12357
 
 
 #EXTINF:0,History Channel 
-http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12125
 
-#EXTINF:0,History Channel 
-http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12126
-
-#EXTINF:0,History Channel 
-http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12358
 
 #EXTINF:0,History Channel 2
 http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12359
@@ -80,10 +75,10 @@ http://www.nasa.gov/multimedia/nasatv/NTV-Public-IPS.m3u8
 
 
 #EXTINF:0,Nat Geo Wild 
-http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12124
+
 
 #EXTINF:0,National Geographic 
-http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12123
+http://142.4.216.60:1935/edge/_definst_/b8bav5ayzso8m8q/playlist.m3u8?wowzasessionid=1420170282&xs=_we_YjhiYXY1YXl6c284bThxfDE0MjAyMDYyODJ8NzIuMjcuMjE0LjMzfDU0YTYxNDJhNDM5YWF8NTVjODFmOGQzMGVmN2M3ODhlZjEyYWNmNWVkNWFhNjE0NjVlOWYyNQ timeout=10
 
 #EXTINF:0,Paranormal TV 
 rtmp://mi2.gv.filmon.com:8086/live/1618.high.stream
@@ -92,17 +87,16 @@ rtmp://mi2.gv.filmon.com:8086/live/1618.high.stream
 http://odna.octoshape.net/f3f5m2v4/cds/ch5_auto.smil/playlist.m3u8 
 
 #EXTINF:0,Science Channel
-http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12132
-
+http://142.4.216.60:1935/edge/_definst_/00t250wv1d4ltib/playlist.m3u8?wowzasessionid=1420170626&xs=_we_cWFuOTZuYXNlbXU5eGZufDE0MjAyMDY2MjZ8NzIuMjcuMjE0LjMzfDU0YTYxNTgyMzg3MmJ8YjQxYTMwNTkzYTgzOGI2MWYyMTc2MDEzYmFlMGZjZDZlYjc5OGQ0Ng
 
 #EXTINF:0,Travel Channel 
-http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12392
+http://83.139.104.112/Content/HLS/Live/Channel(travel_channel)/Stream(03)/index.m3u8
 
 #EXTINF:0,Viasat Explorer 
-
+http://83.139.104.112/Content/HLS/Live/Channel(viasat_explore)/Stream(03)/index.m3u8
 
 #EXTINF:0,Viasat History 
-
+http://83.139.104.112/Content/HLS/Live/Channel(viasat_history)/Stream(03)/index.m3u8
 
 #EXTINF:0,Viasat Nature 
 
