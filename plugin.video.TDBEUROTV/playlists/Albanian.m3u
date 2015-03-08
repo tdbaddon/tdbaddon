@@ -3,10 +3,10 @@
 
 
 #EXTINF:0,A1 Report
-rtmp://66.55.93.204/livepkgr playpath=a1stream?adbe-live-event=a1report swfUrl=http://www.aulona.de/player.swf?backcolor=000000&frontcolor=0xFFFFFF&streamer=rtmp://66.55.93.204/livepkgr&file=a1stream?adbe-live-event=a1report&logo=&stretching=exactfit&autostart=true live=1 pageUrl=http://albhd.tk/tv/a1report.html
+
 
 #EXTINF:0,ABC News
-rtmp://arlind.ontv.al:1935/live/abcnews
+
 
 #EXTINF:0,Agon Channel 
 
@@ -17,9 +17,6 @@ http://str105mb.setplex.net:1935/str2iosmd5/stralbinfo_2654_dfs/HasBahCa.m3u8
 #EXTINF:0,Albanian Screen
 rtmp://95.110.242.231:11935/live/albanianscreentv
 
-#EXTINF:0,Albanian Screen
-http://95.110.242.231:11935/live/albanianscreentv/HasBahCa.m3u8
-
 #EXTINF:0,Al Jazeera Balkan
 rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
 
@@ -28,9 +25,6 @@ rtmp://fms.zulu.mk/zulu/ playpath=alsat_2 swfUrl=http://on.net.mk/jwp/jwplayer.f
 
 #EXTINF:0,Alsat M 
 rtmp://fms.zulu.mk:554/zulu playpath=alsat_2 swfUrl=http://on.net.mk/player/player5.swf live=1 pageUrl=http://shqip1.altervista.org/tvlive/alsat_m.html
-
-#EXTINF:0,Alsat M 
-rtmp://arlind.ontv.al:1935/live/alsatm
 
 #EXTINF:0,Amol
 
@@ -99,7 +93,7 @@ rtmp://84.20.77.50/live playpath=livestream1 swfUrl=http://player.longtailvideo.
 
 
 #EXTINF:0,Kanal 7
-rtmp://arlind.ontv.al:1935/live/kanali7
+
 
 #EXTINF:0,Klan Kosova 
 
@@ -129,13 +123,13 @@ http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video
 http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video_id/3548/token/bd0b11a4f8d05cc0bffe589f55909615/chunklist_w787058205_b1196000.m3u8
 
 #EXTINF:0,News24
-rtmp://66.55.93.203/livepkgr//n24stream?adbe-live-event=news24
+
 
 #EXTINF:0,Novosadska TV
 mms://176.106.121.32:8080/
 
 #EXTINF:0,Ora News
-rtmp://69.65.46.191/live/livestream1
+
 
 #EXTINF:0,Pannon TV
 
@@ -189,7 +183,7 @@ http://88.212.10.27:81/streams/stv2.m3u8?
 
 
 #EXTINF:0,Tip Tv
-rtmp://arlind.ontv.al:1935/live/tiptv
+
 
 #EXTINF:0,Top Channel 
 http://80.80.160.201/http_livestr.m3u8?id=topchannel&k=pako_6234323231383137313533373734396134613035346434343030383334326361003530363663613965326165366461636630656339656134356530623037616639006d656e746f722e7368616c613030320066696c6d616b73696f6e
@@ -201,6 +195,7 @@ http://80.80.160.201/http_livestr.m3u8?id=topnews&k=pako_62343232313831373135333
 
 
 #EXTINF:0,TV SH
+
 
 #EXTINF:0,Uskana
 http://fms.zulu.mk:1935/zulu/uskana_1/playlist.m3u8
@@ -216,9 +211,6 @@ rtmp://live.vizionplus.tv/live//livestream2
 
 #EXTINF:0,Vizion Plus 
 rtmp://slive.vizionplus.tv:1935/live/livestream2
-
-#EXTINF:0,Vizion Plus 
-rtmp://arlind.ontv.al:1935/live/vizionplus
 
 #EXTINF:0,Zico TV
 
