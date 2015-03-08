@@ -194,6 +194,13 @@ http://str108.setplex.net/fastv_2psh/PinkAction3global_rly_greece_103/TDB.m3u8
 #EXTINF:0,Pink Comedy
 http://str108.setplex.net/fastv_2psh/PinkComedyglobal_rly_greece_103/TDB.m3u8
 
+#EXTINF:0,Pink Family
+http://str108.setplex.net/fastv_2psh/PinkFamilyglobal_rly_greece_103/TDB.m3u8
+
+#EXTINF:0,Pink Fashion
+http://str108.setplex.net/fastv_2psh/PinkFashionglobal_rly_greece_103/TDB.m3u8
+
+
 #EXTINF:0,Pink Film
 
 
@@ -251,14 +258,14 @@ http://str108.setplex.net/fastv_2psh/PinkRealityglobal_rly_greece_103/TDB.m3u8
 #EXTINF:0,Pink Soap
 http://str108.setplex.net/fastv_2psh/PinkSoapglobal_rly_greece_103/TDB.m3u8
 
+#EXTINF:0,Pink Western
+http://str108.setplex.net/fastv_2psh/PinkWesternglobal_rly_greece_103/TDB.m3u8
+
 #EXTINF:0,Pink World
 http://str108.setplex.net/fastv_2psh/PinkWorldglobal_rly_greece_109/TDB.m3u8
 
 #EXTINF:0,Pink Zabava
 http://str108.setplex.net/fastv_2psh/PinkZabavaglobal_rly_greece_103/TDB.m3u8
-
-#EXTINF:0,Pink Western
-http://str108.setplex.net/fastv_2psh/PinkWesternglobal_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Planet TV
 rtsp://origin.biokoda.tv/live/mbit-planet?k=planettv-public
