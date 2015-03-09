@@ -5,7 +5,7 @@
 http://sjc-uhls-vip01.ustream.tv/watch/playlist.m3u8?cid=12762028
 
 #EXTINF:0,Animal Planet 
-http://83.139.104.112/Content/HLS/Live/Channel(animal_planet)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(animal_planet)/Stream(03)/index.m3u8
 
 #EXTINF:0,BBC Knowledge 
 
@@ -17,7 +17,7 @@ http://83.139.104.112/Content/HLS/Live/Channel(animal_planet)/Stream(03)/index.m
 http://142.4.216.60:1935/edge/_definst_/ishyd3sopok3p27/playlist.m3u8?wowzasessionid=1419872569&xs=_we_cm83YzllaGEwejk2aHBwfDE0MTk5MDg1Njl8NzIuMjcuMjE0LjMzfDU0YTE4OTM5ZjJkMzN8YTI0NDkzYmNjNmJiM2NjYTQ4YTAzYWE4ODRjODY0M2M0ZThhM timeout=10GVlOA
 
 #EXTINF:0,Discovery Channel 
-http://83.139.104.112/Content/HLS/Live/Channel(discovery_channel)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(discovery_channel)/index.m3u8
 
 #EXTINF:0,Discovery History 
 
@@ -90,13 +90,13 @@ http://odna.octoshape.net/f3f5m2v4/cds/ch5_auto.smil/playlist.m3u8
 http://142.4.216.60:1935/edge/_definst_/00t250wv1d4ltib/playlist.m3u8?wowzasessionid=1420170626&xs=_we_cWFuOTZuYXNlbXU5eGZufDE0MjAyMDY2MjZ8NzIuMjcuMjE0LjMzfDU0YTYxNTgyMzg3MmJ8YjQxYTMwNTkzYTgzOGI2MWYyMTc2MDEzYmFlMGZjZDZlYjc5OGQ0Ng
 
 #EXTINF:0,Travel Channel 
-http://83.139.104.112/Content/HLS/Live/Channel(travel_channel)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(travel_channel)/Stream(03)/index.m3u8
 
 #EXTINF:0,Viasat Explorer 
-http://83.139.104.112/Content/HLS/Live/Channel(viasat_explore)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(viasat_explore)/Stream(03)/index.m3u8
 
 #EXTINF:0,Viasat History 
-http://83.139.104.112/Content/HLS/Live/Channel(viasat_history)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(viasat_history)/Stream(03)/index.m3u8
 
 #EXTINF:0,Viasat Nature 
 

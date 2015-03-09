@@ -52,10 +52,10 @@ rtmp://46.246.29.157:1935/stream/ playpath=1Kq68GX6Kc.stream swfUrl=http://thecd
 rtmp://31.220.0.195:80/live/ playpath=espn22 token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://reytv.co/ AnisotropicTV
 
 #EXTINF:0,Eurosport 1 
-http://83.139.104.112/Content/HLS/Live/Channel(eurosport)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(eurosport)/Stream(03)/index.m3u8
 
 #EXTINF:0,Eurosport 2 
-http://83.139.104.112/Content/HLS/Live/Channel(eurosport_2)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(eurosport_2)/Stream(03)/index.m3u8
 
 #EXTINF:0,Eurosport 2 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_EUROSPORT2/variant.m3u8
@@ -64,13 +64,13 @@ http://hlsstr02.svc.iptv.rt.ru/hls/CH_EUROSPORT2/variant.m3u8
 
 
 #EXTINF:0,Extreme Sports 
-http://83.139.104.112/Content/HLS/Live/Channel(extreme_sports)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(extreme_sports)/Stream(03)/index.m3u8
 
 #EXTINF:0,FightBox 
 
 
 #EXTINF:0,Fight Channel
-http://83.139.104.112/Content/HLS/Live/Channel(fight_channel)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(fight_channel)/Stream(03)/index.m3u8
 
 #EXTINF:0,Football TV 
 rtmp://mi2.gv.filmon.com:8086/live/374.high.stream

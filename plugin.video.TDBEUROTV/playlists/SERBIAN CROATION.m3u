@@ -6,7 +6,7 @@
 mms://62.162.58.55/24vesti
 
 #EXTINF:0,24 Sata
-http://83.139.104.112/Content/HLS/Live/Channel(24_sata)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(24_sata)/Stream(03)/index.m3u8
 
 #EXTINF:0,Al Jazeera Balkan
 rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
@@ -27,10 +27,10 @@ http://213.81.153.221:8080/cetv
 
 
 #EXTINF:0,CMC
-http://83.139.104.112/Content/HLS/Live/Channel(cmc)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(cmc)/Stream(03)/index.m3u8
 
 #EXTINF:0,DMC
-http://83.139.104.112/Content/HLS/Live/Channel(DMC)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(DMC)/Stream(03)/index.m3u8
 
 #EXTINF:0,DM SAT
 
@@ -45,10 +45,10 @@ rtmp://rtmp.elektrika.cz/live/myStream.sdp
 
 
 #EXTINF:0,Fight Channel
-http://83.139.104.112/Content/HLS/Live/Channel(fight_channel)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(fight_channel)/Stream(03)/index.m3u8
 
 #EXTINF:0,Full TV
-http://83.139.104.112/Content/HLS/Live/Channel(fullTV)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(fullTV)/Stream(03)/index.m3u8
 
 #EXTINF:0,Hema 
 mms://77.238.209.50:1234
@@ -60,22 +60,22 @@ mms://77.238.209.50:1234
 http://213.81.153.221:8080/hronka
 
 #EXTINF:0,HRT 1 
-http://83.139.104.112/Content/HLS/Live/Channel(HTV1)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(HTV1)/Stream(03)/index.m3u8
 
 #EXTINF:0,HRT 2 
-http://83.139.104.112/Content/HLS/Live/Channel(HTV2)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(HTV2)/Stream(03)/index.m3u8
 
 #EXTINF:0,HRT 3 
-http://83.139.104.112/Content/HLS/Live/Channel(HTV3)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(HTV3)/Stream(03)/index.m3u8
 
 #EXTINF:0,HRT 4 
-http://83.139.104.112/Content/HLS/Live/Channel(HTV4)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(HTV4)/Stream(03)/index.m3u8
 
 #EXTINF:0,Iris 
 mms://62.162.58.55/TVIris
 
 #EXTINF:0,Jadran TV 
-http://83.139.104.112/Content/HLS/Live/Channel(tv_jadran)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(tv_jadran)/Stream(03)/index.m3u8
 
 #EXTINF:0,Joj
 http://88.212.10.27:81/streams/joj.m3u8
@@ -90,10 +90,10 @@ rtmp://84.20.77.50/live/livestream1
 rtmp://84.20.77.50/live//livestream2
 
 #EXTINF:0,Jugoton
-http://83.139.104.112/Content/HLS/Live/Channel(jugoton)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(jugoton)/Stream(03)/index.m3u8
 
 #EXTINF:0,Kanal 5 
-http://83.139.104.112/Content/HLS/Live/Channel(kanal_5)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(kanal_5)/Stream(03)/index.m3u8
 
 #EXTINF:0,Kanal 5 
 http://fms.zulu.mk:1935/zulu/kanal5_1/playlist.m3u8
@@ -105,7 +105,7 @@ mms://live.kanal5.com.mk/kanal5
 mms://62.162.58.55/TVkanal21
 
 #EXTINF:0,Kanal RI
-http://83.139.104.112/Content/HLS/Live/Channel(KanalRI)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(KanalRI)/Stream(03)/index.m3u8
 
 #EXTINF:0,Karpaty
 http://213.81.153.221:8080/karpaty
@@ -120,10 +120,10 @@ http://178.79.24.7:9012
 http://178.79.24.7:9013
 
 #EXTINF:0,Kino TV
-http://83.139.104.112/Content/HLS/Live/Channel(kino_tv)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(kino_tv)/Stream(03)/index.m3u8
 
 #EXTINF:0,Klasik TV
-http://83.139.104.112/Content/HLS/Live/Channel(klasik_tv)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(klasik_tv)/Stream(03)/index.m3u8
 
 #EXTINF:0,Konyha TV
 rtmp://91.82.85.44/live/konyhatv
@@ -138,19 +138,19 @@ http://213.81.153.221:8080/kezmarok
 http://213.81.153.221:8080/nasa
 
 #EXTINF:0,Media Travel
-http://83.139.104.112/Content/HLS/Live/Channel(mediatravel)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(mediatravel)/Stream(03)/index.m3u8
 
 #EXTINF:0,Mreza ST
-http://83.139.104.112/Content/HLS/Live/Channel(mrezaST)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(mrezaST)/Stream(03)/index.m3u8
 
 #EXTINF:0,Mreza ZG
-http://83.139.104.112/Content/HLS/Live/Channel(mrezaZG)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(mrezaZG)/Stream(03)/index.m3u8
 
 #EXTINF:0,Nardona TV
-http://83.139.104.112/Content/HLS/Live/Channel(narodna_tv)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(narodna_tv)/Stream(03)/index.m3u8
 
 #EXTINF:0,Nova TV
-http://83.139.104.112/Content/HLS/Live/Channel(tv_nova)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(tv_nova)/Stream(03)/index.m3u8
 
 #EXTINF:0,Novosadska TV
 mms://176.106.121.32:8080/
@@ -159,13 +159,13 @@ mms://176.106.121.32:8080/
 
 
 #EXTINF:0,OK Bambino
-http://83.139.104.112/Content/HLS/Live/Channel(ok_bambino)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(ok_bambino)/Stream(03)/index.m3u8
 
 #EXTINF:0,Orlando Kids
-http://83.139.104.112/Content/HLS/Live/Channel(orlando_kids)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(orlando_kids)/Stream(03)/index.m3u8
 
 #EXTINF:0,Osjecka
-http://83.139.104.112/Content/HLS/Live/Channel(osjecka_tv)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(osjecka_tv)/Stream(03)/index.m3u8
 
 #EXTINF:0,OTV Valentino
 
@@ -283,22 +283,22 @@ mmsh://195.252.113.38:80/rts?MSWMExt=.asf
 
 
 #EXTINF:0,RTB TV
-http://83.139.104.112/Content/HLS/Live/Channel(rtb_tv)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(rtb_tv)/Stream(03)/index.m3u8
 
 #EXTINF:0,RTL 1
-http://83.139.104.112/Content/HLS/Live/Channel(rtl_televizija)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(rtl_televizija)/Stream(03)/index.m3u8
 
 #EXTINF:0,RTL 2
-http://83.139.104.112/Content/HLS/Live/Channel(rtl_2)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(rtl_2)/Stream(03)/index.m3u8
 
 #EXTINF:0,RTL Kockica
-http://83.139.104.112/Content/HLS/Live/Channel(rtl_kockica)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(rtl_kockica)/Stream(03)/index.m3u8
 
 #EXTINF:0,RTL Televizija
 
 
 #EXTINF:0,RTL Plus
-http://83.139.104.112/Content/HLS/Live/Channel(rtlplus)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(rtlplus)/Stream(03)/index.m3u8
 
 #EXTINF:0,RTV Krea
 http://213.81.153.221:8080/galanta
@@ -307,16 +307,16 @@ http://213.81.153.221:8080/galanta
 http://213.81.153.221:8080/ruzinov
 
 #EXTINF:0,SB TV
-http://83.139.104.112/Content/HLS/Live/Channel(sbtv)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(sbtv)/Stream(03)/index.m3u8
 
 #EXTINF:0,Sonce TV
 http://92.53.27.201:10000
 
 #EXTINF:0,Sprotska TV
-http://83.139.104.112/Content/HLS/Live/Channel(sportska_tv)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(sportska_tv)/Stream(03)/index.m3u8
 
 #EXTINF:0,SRCE TV
-http://83.139.104.112/Content/HLS/Live/Channel(srce_tv)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(srce_tv)/Stream(03)/index.m3u8
 
 #EXTINF:0,STV1
 http://88.212.10.27:81/streams/stv1.m3u8
@@ -346,13 +346,13 @@ mms://beotelmedia.beotel.net/tvcg
 mms://195.252.114.172/tvcg
 
 #EXTINF:0,TV Istra
-http://83.139.104.112/Content/HLS/Live/Channel(tv_istra)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(tv_istra)/Stream(03)/index.m3u8
 
 #EXTINF:0,Uskana
 http://fms.zulu.mk:1935/zulu/uskana_1/playlist.m3u8
 
 #EXTINF:0,Varazdiska TV
-http://83.139.104.112/Content/HLS/Live/Channel(VTV_varazdin)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(VTV_varazdin)/Stream(03)/index.m3u8
 
 #EXTINF:0,Vesti 24
 mms://62.162.58.55/24vesti
@@ -361,7 +361,7 @@ mms://62.162.58.55/24vesti
 http://84.22.33.3:8043
 
 #EXTINF:0,Zdrava TV
-http://83.139.104.112/Content/HLS/Live/Channel(ZDRAVA_TV-7)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(ZDRAVA_TV-7)/Stream(03)/index.m3u8
 
 
 

@@ -3,13 +3,13 @@
 
 
 #EXTINF:0,ADULT CHANNEL
-http://83.139.104.112/Content/HLS/Live/Channel(ADULT_CHANNEL)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(ADULT_CHANNEL)/Stream(03)/index.m3u8
 
 #EXTINF:0,BRASILEIRINHAS 
 rtmp://37.130.228.4:8082/brasileirinhas2/brasileirinhas2/ playpath=brasileirinhas2 swfUrl=http://livestreamcast.org/jwplayer/jwplayer.flash.swf live=1 pageUrl=http://livestreamcast.org/embeds.php?c=Brasileirinhas
 
 #EXTINF:0,BRAZZERS TV EUROPE 
-http://83.139.104.112/Content/HLS/Live/Channel(BRAZZERS_TV)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(BRAZZERS_TV)/Stream(03)/index.m3u8
 
 #EXTINF:0,BUNGA BUNGA 
 http://84.22.33.3:8066
@@ -21,7 +21,7 @@ http://iptv.sat-elit.net/iptv/6d0fe8e1eb8158423643ddd1b4ccfe6b/564/index.m3u8
 
 
 #EXTINF:0,DORCEL TV 
-http://83.139.104.112/Content/HLS/Live/Channel(DORCEL_TV)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(DORCEL_TV)/Stream(03)/index.m3u8
 
 #EXTINF:0,EROTIC TV 
 

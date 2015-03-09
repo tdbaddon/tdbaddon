@@ -68,7 +68,7 @@ http://212.250.46.35:2003
 
 
 #EXTINF:0,CBS Reality 
-http://83.139.104.112/Content/HLS/Live/Channel(cbs_reality)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(cbs_reality)/Stream(03)/index.m3u8
 
 #EXTINF:0,CHCH Ontario 
 
@@ -104,7 +104,7 @@ rtmpe://46.246.124.89:1935/l playpath=cw_usa token=Fo5_n0w?U.rA6l3-70w47ch timeo
 http://hls.novotelecom.ru/streaming/fashion/tvrec/playlist.m3u8
 
 #EXTINF:0,Fashion TV 
-http://83.139.104.112/Content/HLS/Live/Channel(fashion_tv)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(fashion_tv)/Stream(03)/index.m3u8
 
 #EXTINF:0,Fast & Fun Box
 
@@ -113,7 +113,7 @@ http://83.139.104.112/Content/HLS/Live/Channel(fashion_tv)/Stream(03)/index.m3u8
 http://wpc.AC3A.edgecastcdn.net:80/80AC3A/001/hls/m3u8/film4.m3u8
 
 #EXTINF:0,Fine Living Network
-http://83.139.104.112/Content/HLS/Live/Channel(fine_living)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(fine_living)/Stream(03)/index.m3u8
 
 #EXTINF:0,Fox
 
@@ -137,13 +137,13 @@ http://83.139.104.112/Content/HLS/Live/Channel(fine_living)/Stream(03)/index.m3u
 http://142.4.216.60:1935/edge/_definst_/qc6xkzf4h48bz2e/playlist.m3u8?wowzasessionid=1419873022&xs=_we_cWM2eGt6ZjRoNDhiejJlfDE0MTk5MDkwMjJ8NzIuMjcuMjE0LjMzfDU0YTE4YWZlNzAwMGJ8Y2FkMmFlNzUyZmRkYWM3NjIzYjA2MDM2ZWRlY2FlMDlmMjBhYmQzZg timeout=10
 
 #EXTINF:0,Food Network 
-http://83.139.104.112/Content/HLS/Live/Channel(food_network)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(food_network)/Stream(03)/index.m3u8
 
 #EXTINF:0,FX 
 
 
 #EXTINF:0,Ginx Gaming TV 
-http://83.139.104.112/Content/HLS/Live/Channel(ginx)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(ginx)/Stream(03)/index.m3u8
 
 #EXTINF:0,Hallmark Channel 
 http://142.4.216.60:1935/edge/_definst_/v4ynnryunsoxzbq/playlist.m3u8?wowzasessionid=1419874236&xs=_we_bHcxa3VmaW0xa21pdDFofDE0MTk5MTAyMzZ8NzIuMjcuMjE0LjMzfDU0YTE4ZmJjOTVhMWN8MzJmYjg0MzMxMDZiMTlhNzNhNzY0M2JlNjBmNTdkZDJkYjEyMWFjNA timeout=10
@@ -250,7 +250,7 @@ rtmp://mi2.gv.filmon.com:8086/live/716.high.stream
 http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/master.m3u8?b?b*t$
 
 #EXTINF:0,TLC 
-http://83.139.104.112/Content/HLS/Live/Channel(TLC)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(TLC)/Stream(03)/index.m3u8
 
 #EXTINF:0,TNT 
 http://142.4.216.60:1935/edge/_definst_/7uz4als3nigi0j3/playlist.m3u8?wowzasessionid=1420124827&xs=_we_NnE0amxicXd2eHVpbmdvfDE0MjAxNjA4Mjd8NzIuMjcuMjE0LjMzfDU0YTU2MjliZGU4Zjh8ZDhjZjgzMzk0ZTNiODI4MzFiNDU3ZmE1MDk4ODdlZTMzZTJjZ timeout=10GYwNw

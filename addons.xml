@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<addons>
+<addon id="plugin.video.TDBEUROTV"
+       name="TDB EURO TV"
+       version="1.36"
+       provider-name="TDB">
+<requires>
+<import addon="xbmc.python" version="2.1.0"/>
+</requires>
+<extension point="xbmc.python.pluginsource"
+            library="default.py">
+<provides>video</provides>
+</extension>
+<extension point="xbmc.addon.metadata">
+<summary>TDB EURO TV</summary>
+<description>Multicultural TV</description>
+<disclaimer>The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.video.TDBPORNO"
+       name="TDB PORNO"
+       version="1.39"
+       provider-name="TDB">
+<requires>
+<import addon="xbmc.python" version="2.1.0"/>
+</requires>
+<extension point="xbmc.python.pluginsource"
+            library="default.py">
+<provides>video</provides>
+</extension>
+<extension point="xbmc.addon.metadata">
+<summary>TDB PORNO</summary>
+<description>Must be 19+ and older!</description>
+<disclaimer>The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.video.TDBRADIO"
+       name="TDB RADIO"
+       version="1.12"
+       provider-name="TDB">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource"
+            library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>TDB RADIO</summary>
+    <description>Live streaming Music</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.video.TDBSIMPLE"
+       name="TDB SIMPLE"
+       version="1.01"
+       provider-name="TDB">
+<requires>
+<import addon="xbmc.python" version="2.1.0"/>
+</requires>
+<extension point="xbmc.python.pluginsource"
+            library="default.py">
+<provides>video</provides>
+</extension>
+<extension point="xbmc.addon.metadata">
+<summary>TDB SIMPLE</summary>
+<description>Live Streaming TV</description>
+<disclaimer>The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.video.TDBSPANISHTV"
+       name="TDB SPANISH TV"
+       version="1.03"
+       provider-name="TDB">
+<requires>
+<import addon="xbmc.python" version="2.1.0"/>
+</requires>
+<extension point="xbmc.python.pluginsource"
+            library="default.py">
+<provides>video</provides>
+</extension>
+<extension point="xbmc.addon.metadata">
+<summary>TDB SPANISH TV</summary>
+<description>SPANISH TV</description>
+<disclaimer>The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.video.TDBTV"
+       name="TDB TV"
+       version="2.04"
+       provider-name="TDB">
+<requires>
+<import addon="xbmc.python" version="2.1.0"/>
+</requires>
+<extension point="xbmc.python.pluginsource"
+            library="default.py">
+<provides>video</provides>
+</extension>
+<extension point="xbmc.addon.metadata">
+<summary>TDB TV</summary>
+<description>Live Streaming TV</description>
+<disclaimer>The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="repository.tdbaddon" name="TDB REPO" version="1.01" provider-name="tdbaddon">
+<extension point="xbmc.addon.repository" name="TDB Addon Repository">
+<info compressed="false">http://github.com/tdbaddon/tdbaddon/raw/master/addons.xml</info>
+<checksum>http://github.com/tdbaddon/tdbaddon/raw/master/addons.xml.md5</checksum>
+<datadir zip="true">http://github.com/tdbaddon/tdbaddon/raw/master/zips</datadir>
+</extension>
+<extension point="xbmc.addon.metadata">
+<summary>Wisely choose you Must!</summary>
+<description>Download and Install Addons</description>
+<platform>all</platform>
+</extension>
+</addon>
+
+<addon id="script.xbmcbackup"
+    name="TDB-Backup" version="10.03" provider-name="TDB">
+  <requires>
+    <import addon="xbmc.python" version="2.19.0"/>
+  </requires>
+  <extension point="xbmc.python.script" library="default.py">
+     <provides>executable</provides>
+  </extension>
+  <extension point="xbmc.service" library="scheduler.py" start="startup" />
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Backup and restore your Kodi database and configuration files in the event of a crash or file corruption.</summary>
+    <summary lang="en_US">Backup and restore your database and configuration files in the event of a crash or file corruption.</summary>
+    <description lang="en">Ever hosed your Kodi configuration and wished you'd had a backup? Now you can with one easy click. You can export your database, playlist, thumbnails, addons and other configuration details to any source writeable by XBMC or directly to Dropbox cloud storage. Backups can be run on demand or via a scheduler. </description>
+    <description lang="en_US">Ever hosed your configuration and wished you'd had a backup? Now you can with one easy click. You can export your database, playlist, thumbnails, addons and other configuration details to any source writeable by Kodi or directly to Dropbox cloud storage. Backups can be run on demand or via a scheduler. </description>
+    <language></language>
+    <platform>all</platform>
+    <license></license>
+    <forum></forum>
+    <source></source>
+  </extension>
+</addon>
+</addons>

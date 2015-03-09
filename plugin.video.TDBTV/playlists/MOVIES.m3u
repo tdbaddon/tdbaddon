@@ -11,16 +11,16 @@ rtmp://mi2.gv.filmon.com:8086/live/1045.high.stream?
 http://113.160.49.34/lives/origin03/cinemaxsd.isml/cinemaxsd-1096k.m3u8
 
 #EXTINF:0,Cinestar Action & Thriller 
-http://83.139.104.112/Content/HLS/Live/Channel(CINESTAR_ACTION_AND_THRILLER)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(CINESTAR_ACTION_AND_THRILLER)/index.m3u8
 
 #EXTINF:0,Cinestar Premiere 1 
-http://83.139.104.112/Content/HLS/Live/Channel(cinestar_premiere_1)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(cinestar_premiere_1)/Stream(03)/index.m3u8
 
 #EXTINF:0,Cinestar Premiere 2 
-http://83.139.104.112/Content/HLS/Live/Channel(cinestar_premiere_2)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(cinestar_premiere_2)/Stream(03)/index.m3u8
 
 #EXTINF:0,Cinestar TV 
-http://83.139.104.112/Content/HLS/Live/Channel(cinestar_tv)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(cinestar_tv)/Stream(03)/index.m3u8
 
 #EXTINF:0,CMore Action
 
@@ -89,7 +89,7 @@ http://142.4.216.60:1935/edge/_definst_/qzbbu26gcvjxksz/playlist.m3u8?wowzasessi
 
 
 #EXTINF:0,Kino TV 
-http://83.139.104.112/Content/HLS/Live/Channel(kino_tv)/Stream(03)/index.m3u8
+http://83.139.104.99/Content/HLS/Live/Channel(kino_tv)/Stream(03)/index.m3u8
 
 #EXTINF:0,Kung Fu Classics 
 rtmp://mi2.gv.filmon.com:8086/live/10.high.stream
