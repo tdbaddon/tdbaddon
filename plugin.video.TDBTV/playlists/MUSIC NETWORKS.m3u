@@ -174,7 +174,7 @@ rtmp://edge03-03.az.myvideo.az/dvrh264/vh1/ playpath=mp4:vh1 swfUrl=http://www.m
 rtmp://mi2.gv.filmon.com:8086/live/1042.high.stream
 
 #EXTINF:0,Virgin TV 
-
+rtmp://fms.105.net:1935/live/virgin1 playpath=virgin1 swfurl=http://www.highermedia.com/assets/flash/jw_player.swf live=1 pageurl=http://www.google.com/Virgin 1
 
 
 
