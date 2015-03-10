@@ -34,6 +34,9 @@ http://83.139.104.99/Content/HLS/Live/Channel(discovery_channel)/index.m3u8
 #EXTINF:0,Discovery Science 
 http://188.227.86.4:4022/udp/239.77.0.79:1234
 
+#EXTINF:0,Discovery Science 
+http://142.4.216.60:1935/edge/_definst_/00t250wv1d4ltib/playlist.m3u8?wowzasessionid=1420170626&xs=_we_cWFuOTZuYXNlbXU5eGZufDE0MjAyMDY2MjZ8NzIuMjcuMjE0LjMzfDU0YTYxNTgyMzg3MmJ8YjQxYTMwNTkzYTgzOGI2MWYyMTc2MDEzYmFlMGZjZDZlYjc5OGQ0Ng
+
 #EXTINF:0,Discovery Shed
 
 
@@ -54,7 +57,7 @@ http://188.227.86.4:4022/udp/239.77.0.78:1234
 
 
 #EXTINF:0,History Channel 
-
+http://142.4.216.60:1935/edge/_definst_/dhp0rpd116qyyj6/playlist.m3u8?wowzasessionid=1419874554&xs=_we_OGc3eDgwb3p1Nmh6MmRzfDE0MTk5MTA1NTR8NzIuMjcuMjE0LjMzfDU0YTE5MGZhNTUwNjV8ZDM2MzAzYjkwYTE5MDBmMzhhOGM2YjE2ZDc4Mjk3ZDdkZjU0NDhlYw
 
 #EXTINF:0,History Channel 2
 http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12359

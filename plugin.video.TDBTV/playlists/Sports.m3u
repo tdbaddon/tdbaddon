@@ -118,6 +118,9 @@ http://142.4.216.60:1935/edge/_definst_/fzasab6vz02yuf7/playlist.m3u8?wowzasessi
 #EXTINF:0,NBC Golf 
 http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/2596k/prog.m3u8|X-Forwarded-For=209.239.112.104
 
+#EXTINF:0,NBC Golf 
+http://142.4.216.60:1935/edge/_definst_/ts6w24dx29tcwi4/playlist.m3u8?wowzasessionid=1420169504&xs=_we_bHcxa3VmaW0xa21pdDFofDE0MjAyMDU1MDR8NzIuMjcuMjE0LjMzfDU0YTYxMTIwYWY1YTh8ZTRmZmI3YTRmZmQwZmE2YmMxODA4YzVjYWE1ZGEzOTc4NzE3Y 
+
 #EXTINF:0,NBCSN 
 http://cdn.phoenix.intergi.com/21772/videos/3362254/video-sd.mp4?hosting_id=21772
 

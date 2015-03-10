@@ -46,6 +46,9 @@ rtsp://cdn.mivo.tv/mivotvjkt/daaitv2
 #EXTINF:0,DD News
 http://164.100.49.24:8080/hls-live/livepkgr/_definst_/ddnewslive/ddnewslive1.m3u8
 
+#EXTINF:0,DD Punjabi
+http://164.100.49.24:8080/hls-live/livepkgr/_definst_/ddpunjabi.m3u8
+
 #EXTINF:0,Films of India
 rtsp://46.249.213.93/broadcast/filmsofindia-tablet.3gp
 
@@ -61,8 +64,11 @@ rtmp://gemtv.fms.visionip.tv/live/gemtv-gemtv-mifa-live-16x9-HD?ref=www.gemonlin
 #EXTINF:0,Hum
 http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12182
 
-#EXTINF:0,IBN LookMat
+#EXTINF:0,IBN
 http://ibn_lokmat_hls-lh.akamaihd.net/i/ibn_lokmat_hls_n_1@178974/index_3.m3u8
+
+#EXTINF:0,IBN
+http://etv_marathi-lh.akamaihd.net/i/etv_marathi_n_1@87184/master.m3u8
 
 #EXTINF:0,India News
 http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD148_W_350.sdp/media_b623985.m3u8
