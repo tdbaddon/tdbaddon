@@ -3,7 +3,7 @@
 
 
 #EXTINF:0,A1 Report
-
+rtmp://66.55.93.204/livepkgr/a1stream?adbe-live-event=a1report
 
 #EXTINF:0,ABC News
 
@@ -12,7 +12,7 @@
 
 
 #EXTINF:0,Alb Info
-http://str105mb.setplex.net:1935/str2iosmd5/stralbinfo_2654_dfs/HasBahCa.m3u8
+
 
 #EXTINF:0,Albanian Screen
 rtmp://95.110.242.231:11935/live/albanianscreentv
@@ -54,10 +54,10 @@ rtmp://yayin.tvdunyasi.tv/live/balkanrtv
 
 
 #EXTINF:0,Cegrani Media
-http://fms.zulu.mk:1935/zulu/cegrani_1/playlist.m3u8
+
 
 #EXTINF:0,Cufo TV
-http://bit.ly/1o7J1v6
+
 
 #EXTINF:0,Dasma TV
 
@@ -76,6 +76,9 @@ http://bit.ly/1o7J1v6
 
 #EXTINF:0,Grad Lebane
 http://91.150.78.249:8080/
+
+#EXTINF:0,Hema TV
+mms://77.238.209.50:1234
 
 #EXTINF:0,Iliret 
 
@@ -123,7 +126,7 @@ http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video
 http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video_id/3548/token/bd0b11a4f8d05cc0bffe589f55909615/chunklist_w787058205_b1196000.m3u8
 
 #EXTINF:0,News24
-
+rtmp://66.55.93.203/livepkgr//n24stream?adbe-live-event=news24
 
 #EXTINF:0,Novosadska TV
 mms://176.106.121.32:8080/
@@ -135,7 +138,7 @@ mms://176.106.121.32:8080/
 
 
 #EXTINF:0,Party TV
-rtmp://149.11.34.6/live/partytv.stream
+
 
 #EXTINF:0,Planet TV
 rtsp://origin.biokoda.tv/live/mbit-planet?k=planettv-public
@@ -165,10 +168,10 @@ http://wowza.rtkit.com:1935/live/livestream/chunklist.m3u8?wowzasessionid=491913
 mms://84.20.73.66:8001
 
 #EXTINF:0,Super Sport Kosova 1 
-http://80.80.160.201/http_livestr.m3u8?id=supersport1&k=pako_6234323231383137313533373734396134613035346434343030383334326361003530363663613965326165366461636630656339656134356530623037616639006d656e746f722e7368616c613030320066696c6d616b73696f6e
+
 
 #EXTINF:0,Super Sport Kosova 2
-http://80.80.160.201/http_livestr.m3u8?id=supersport2&k=pako_6234323231383137313533373734396134613035346434343030383334326361003530363663613965326165366461636630656339656134356530623037616639006d656e746f722e7368616c613030320066696c6d616b73696f6e
+
 
 #EXTINF:0,STV 
 http://88.212.10.27:81/streams/stv1.m3u8?
@@ -186,10 +189,10 @@ http://88.212.10.27:81/streams/stv2.m3u8?
 
 
 #EXTINF:0,Top Channel 
-http://80.80.160.201/http_livestr.m3u8?id=topchannel&k=pako_6234323231383137313533373734396134613035346434343030383334326361003530363663613965326165366461636630656339656134356530623037616639006d656e746f722e7368616c613030320066696c6d616b73696f6e
+
 
 #EXTINF:0,Top Channel News
-http://80.80.160.201/http_livestr.m3u8?id=topnews&k=pako_6234323231383137313533373734396134613035346434343030383334326361003530363663613965326165366461636630656339656134356530623037616639006d656e746f722e7368616c613030320066696c6d616b73696f6e
+
 
 #EXTINF:0,TV Rozafa
 
@@ -198,19 +201,10 @@ http://80.80.160.201/http_livestr.m3u8?id=topnews&k=pako_62343232313831373135333
 
 
 #EXTINF:0,Uskana
-http://fms.zulu.mk:1935/zulu/uskana_1/playlist.m3u8
+
 
 #EXTINF:0,Vizion Plus 
-rtmp://live.vizionplus.tv:1935/live/ playpath=livestream2 swfUrl=http://www.aulona.de/player.swf?backcolor=0x000000&frontcolor=0xFFFFFF&streamer=rtmp://live.vizionplus.tv:1935/live/&file=livestream2&logo=&stretching=exactfit&autostart=true live=1 pageUrl=http://albhd.tk/tv/vizionplus.html
 
-#EXTINF:0,Vizion Plus 
-rtmp://slive.vizionplus.tv:1935/live/livestream1
-
-#EXTINF:0,Vizion Plus 
-rtmp://live.vizionplus.tv/live//livestream2
-
-#EXTINF:0,Vizion Plus 
-rtmp://slive.vizionplus.tv:1935/live/livestream2
 
 #EXTINF:0,Zico TV
 
