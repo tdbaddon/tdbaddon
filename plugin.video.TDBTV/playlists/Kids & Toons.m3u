@@ -14,13 +14,13 @@
 http://188.227.86.4:4022/udp/239.77.0.77:1234
 
 #EXTINF:0,Classic Looney Tunes
-http://167.114.65.74/hls/lt.m3u8
+
 
 #EXTINF:0,DaVinci Learning
 
 
 #EXTINF:0,Disney Channel 
-http://142.4.216.60:1935/edge/_definst_/2tag4dzgwof5ma2/playlist.m3u8?wowzasessionid=1420170412&xs=_we_MnRhZzRkemd3b2Y1bWEyfDE0MjAyMDY0MTJ8NzIuMjcuMjE0LjMzfDU0YTYxNGFjYjQwN2V8ZWMzN2Y0ZTg3OGE2ZDhmMzgyY2Y0ODhjMTgzOTYzMTVjNDVhMWVjMg timeout=10
+
 
 #EXTINF:0,Disney Cinemagic 
 

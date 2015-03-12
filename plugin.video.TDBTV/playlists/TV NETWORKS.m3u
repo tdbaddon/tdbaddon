@@ -5,13 +5,10 @@
 
 
 #EXTINF:0,A&E 
-http://142.4.216.60:1935/edge/_definst_/tuc280rbycwnsvs/playlist.m3u8?wowzasessionid=1419880467&xs=_we_dHVjMjgwcmJ5Y3duc3ZzfDE0MTk5MTY0Njd8NzIuMjcuMjE0LjMzfDU0YTFhODEzOGZkNDR8ZmE0OGE4YmUwMTczYjU4MWVjNzUzYTg4OTQzM2 timeout=10I1MGE0ODYwNjQzZA
+
 
 #EXTINF:0,ABC 
-rtmpe://46.246.124.89:1935/l playpath=abcbc token=Fo5_n0w?U.rA6l3-70w47ch timeout=10 pageUrl=http://www.hdcast.org/
 
-#EXTINF:0,ABC 
-http://142.4.216.60:1935/edge/_definst_/nz7l9vc5nv1og7b/playlist.m3u8?wowzasessionid=1419880374&xs=_we_Mzcxamx1aXJsamNzamVufDE0MTk5MTYzNzR8NzIuMjcuMjE0LjMzfDU0YTFhN2I2MzUxMWJ8ZDU3ODc0MTUyMWE0YTMyODdmZjdkYzJiMTYyZmY0MDA1YzM4NjdkYQ
 
 #EXTINF:0,ABC Family
 
@@ -20,7 +17,7 @@ http://142.4.216.60:1935/edge/_definst_/nz7l9vc5nv1og7b/playlist.m3u8?wowzasessi
 http://stream.acctv.com.au/06.m3u8
 
 #EXTINF:0,AMC 
-rtmpe://46.246.124.89:1935/l playpath=amcamc token=Fo5_n0w?U.rA6l3-70w47ch timeout=10 pageUrl=http://www.hdcast.org/
+
 
 #EXTINF:0,Arthouse Film Box
 
@@ -62,7 +59,7 @@ http://200.76.77.237/LIVE/H01/CANAL253/PROFILE03.m3u8
 
 
 #EXTINF:0,CBS 
-http://142.4.216.60:1935/edge/_definst_/vp4q2gonwzh2dku/playlist.m3u8?wowzasessionid=1419872048&xs=_we_b2J6cTNsdHJqb2F4Z2xmfDE0MTk5MDgwNDh8NzIuMjcuMjE0LjMzfDU0YTE4NzMwOGM1Y2Z8Y2ZhYmFmNTFiY2VmNzczNzQ5MDI4YWU1OGUxNDBhZmZlYjhlYTRlMw timeout=10
+
 
 #EXTINF:0,CBS Action 
 http://212.250.46.35:2003
@@ -92,7 +89,7 @@ http://ams-lp3.9c9media.com/hls-live/livepkgr/_definst_/liveeventNoDRM/cp24Open8
 http://ams-lp2.9c9media.com/hls-live/livepkgr/_definst_/liveeventNoDRM/ctvnewsOpen8.m3u8
 
 #EXTINF:0,CW 
-rtmpe://46.246.124.89:1935/l playpath=cw_usa token=Fo5_n0w?U.rA6l3-70w47ch timeout=10 pageUrl=http://www.hdcast.org/
+
 
 #EXTINF:0,E! 
 
@@ -108,6 +105,9 @@ http://hls.novotelecom.ru/streaming/fashion/tvrec/playlist.m3u8
 
 #EXTINF:0,Fashion TV 
 http://83.139.104.99/Content/HLS/Live/Channel(fashion_tv)/Stream(03)/index.m3u8
+
+#EXTINF:0,Fashion TV 
+http://113.160.49.34/lives/origin03/fashionhd.isml/fashionhd-2096k.m3u8
 
 #EXTINF:0,Fast & Fun Box
 
@@ -134,10 +134,7 @@ http://83.139.104.99/Content/HLS/Live/Channel(fine_living)/Stream(03)/index.m3u8
 
 
 #EXTINF:0,Fox Life 
-
-
-#EXTINF:0,Food Network 
-http://142.4.216.60:1935/edge/_definst_/qc6xkzf4h48bz2e/playlist.m3u8?wowzasessionid=1419873022&xs=_we_cWM2eGt6ZjRoNDhiejJlfDE0MTk5MDkwMjJ8NzIuMjcuMjE0LjMzfDU0YTE4YWZlNzAwMGJ8Y2FkMmFlNzUyZmRkYWM3NjIzYjA2MDM2ZWRlY2FlMDlmMjBhYmQzZg timeout=10
+http://188.227.86.4:4022/udp/239.77.0.3:1234
 
 #EXTINF:0,Food Network 
 http://83.139.104.99/Content/HLS/Live/Channel(food_network)/Stream(03)/index.m3u8
@@ -149,7 +146,7 @@ http://83.139.104.99/Content/HLS/Live/Channel(food_network)/Stream(03)/index.m3u
 http://83.139.104.99/Content/HLS/Live/Channel(ginx)/Stream(03)/index.m3u8
 
 #EXTINF:0,Hallmark Channel 
-http://142.4.216.60:1935/edge/_definst_/v4ynnryunsoxzbq/playlist.m3u8?wowzasessionid=1419874236&xs=_we_bHcxa3VmaW0xa21pdDFofDE0MTk5MTAyMzZ8NzIuMjcuMjE0LjMzfDU0YTE4ZmJjOTVhMWN8MzJmYjg0MzMxMDZiMTlhNzNhNzY0M2JlNjBmNTdkZDJkYjEyMWFjNA timeout=10
+
 
 #EXTINF:0,HGTV 
 
@@ -175,19 +172,14 @@ http://wpc.AC3A.edgecastcdn.net:80/80AC3A/001/hls/m3u8/itv1.m3u8
 #EXTINF:0,ITV 2 
 http://wpc.AC3A.edgecastcdn.net:80/80AC3A/001/hls/m3u8/itv2.m3u8
 
-
 #EXTINF:0,Jewelry Television
 rtmp://jtvmedia.jtv.com:1975/live playpath=live6 swfUrl=http://demandware.edgesuite.net/aaby_prd/on/demandware.static/Sites-jtv-Site/-/default/v1410110388581/swf/flashMediaPlayer/StrobeMediaPlayback.swf live=1 pageUrl=http://www.jtv.com/on/demandware.store/Sites-jtv-Site/default/LiveViewer-Show
 
 #EXTINF:0,Lifetime Network 
-http://142.4.216.60:1935/edge/_definst_/7b2gr554gyyth8e/playlist.m3u8?wowzasessionid=1419879018&xs=_we_MnFtaXdmeWRiajZ5dTg5fDE0MTk5MTUwMTh8fDU0YTFhMjZhYTVhZjl8MWVhMmFlNjIyY2RhZGM4MjFiYWI1ZjM2NjY3YzlkMjU2MDMwMWNhNg timeout=10
+
 
 #EXTINF:0,London Live 
 http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
-
-#EXTINF:0,London Live 
-http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_484.m3u8
-
 
 #EXTINF:0,More4 
 
@@ -199,7 +191,7 @@ http://plslive-w.nhk.or.jp/nhkworld/app/live.m3u8
 http://nhkworld-hds-live1.hds1.fmslive.stream.ne.jp/hls-live/nhkworld-hds-live1/_definst_/livestream/nhkworld-live-512.m3u8 
 
 #EXTINF:0,OWN Network 
-http://142.4.216.60:1935/edge/_definst_/uehgy5htiasffj3/playlist.m3u8?wowzasessionid=1419878658&xs=_we_dWVoZ3k1aHRpYXNmZmozfDE0MTk5MTQ2NTh8fDU0YTFhMTAyYWFmNDV8YjhmYTUyMTQ1OTQ5OWY3NzNiZWExYjdlZGE5ZWM5OWEzODkzMjI0ZA timeout=10
+
 
 #EXTINF:0,Oxygen 
 
@@ -229,7 +221,7 @@ rtmp://mi2.gv.filmon.com:8086/live/716.high.stream
 
 
 #EXTINF:0,Sony TV
-
+http://188.227.86.4:4022/udp/239.77.0.5:1234
 
 #EXTINF:0,Spike TV 
 
@@ -244,28 +236,22 @@ rtmp://mi2.gv.filmon.com:8086/live/716.high.stream
 
 
 #EXTINF:0,Syfy
-http://142.4.216.60:1935/edge/_definst_/x7uii7mll2b7lh4/playlist.m3u8?wowzasessionid=1419878403&xs=_we_b2VwejlxNW9pdmZsYmN3fDE0MTk5MTQ0MDN8fDU0YTFhMDAzNTYyYWF8MGU5MmY3YWI2ZmZiM2E2ZjMwNDNmYWY1MjdhMjE4ZTYyNjM4N2I3Zg
+
 
 #EXTINF:0,TBS 
-http://142.4.216.60:1935/edge/_definst_/jh8nj062bqbsxdh/playlist.m3u8?wowzasessionid=1419878319&xs=_we_amg4bmowNjJicWJzeGRofDE0MTk5MTQzMTl8fDU0YTE5ZmFmNTJhZjh8OGQ3NTAzZWFkMDNmN2JmMmFiMTE1ZWRjZmRjMjFmNTgyOWM4M2Y4NA
+
 
 #EXTINF:0,The Shopping Channel 
-http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/master.m3u8?b?b*t$
+
 
 #EXTINF:0,TLC 
 http://83.139.104.99/Content/HLS/Live/Channel(TLC)/Stream(03)/index.m3u8
 
 #EXTINF:0,TNT 
-http://142.4.216.60:1935/edge/_definst_/7uz4als3nigi0j3/playlist.m3u8?wowzasessionid=1420124827&xs=_we_NnE0amxicXd2eHVpbmdvfDE0MjAxNjA4Mjd8NzIuMjcuMjE0LjMzfDU0YTU2MjliZGU4Zjh8ZDhjZjgzMzk0ZTNiODI4MzFiNDU3ZmE1MDk4ODdlZTMzZTJjZ timeout=10GYwNw
+
 
 #EXTINF:0,Tru TV 
-http://cdn.live.simplestream.com/coder5/coder.channels.channel2/hls/2/playlist.m3u8
 
-#EXTINF:0,Tru TV 
-http://cdn.live.simplestream.com/coder5/coder.channels.channel2/hls/4/playlist.m3u8
-
-#EXTINF:0,Tru TV 
-http://142.4.216.60:1935/edge/_definst_/uhnr4161ybioa5w/playlist.m3u8?wowzasessionid=1420124955&xs=_we_aDVlb3ZhajFqZWVnbHVxfDE0MjAxNjA5NTV8NzIuMjcuMjE0LjMzfDU0YTU2MzFiMGExMzJ8ZTI3MjlkOTQ0NmFmYTJjMDU5NjQ5NTg5OWQwNDdmYzI5Y2VkNDRjMA timeout=10
 
 #EXTINF:0,True Drama
 http://wpc.AC3A.edgecastcdn.net:80/80AC3A/001/hls/m3u8/truedrama.m3u8
@@ -298,7 +284,7 @@ http://kalsegsec-a.akamaihd.net:80/dc-0/m/pa-live-publish3/kLive/smil:1_oorxcge2
 
 
 #EXTINF:0,WGN 9 Chicago 
-http://wgntribune-lh.akamaihd.net/i/WGNTribune_1@109089/master.m3u8
+
 
 #EXTINF:0,Wine Channel TV 
 rtmp://mi2.gv.filmon.com:8086/live/263.high.stream
@@ -307,7 +293,7 @@ rtmp://mi2.gv.filmon.com:8086/live/263.high.stream
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=293&lan=2&rows=40&f=BratuMarian.m3u8
 
 #EXTINF:0,World Fashion TV
-http://btv-net.mediacdn.ru/TVB2/ngrp:wfhdeu.stream_all/chunklist_b3128000.m3u8
+
 
 #EXTINF:0,Yes!
 http://uneapple-i.akamaihd.net/hls/live/205010/grupoune_st1@205010/st1_index.m3u8

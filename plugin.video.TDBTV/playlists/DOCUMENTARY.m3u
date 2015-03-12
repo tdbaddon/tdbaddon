@@ -7,14 +7,14 @@ http://sjc-uhls-vip01.ustream.tv/watch/playlist.m3u8?cid=12762028
 #EXTINF:0,Animal Planet 
 http://83.139.104.99/Content/HLS/Live/Channel(animal_planet)/Stream(03)/index.m3u8
 
+#EXTINF:0,Animal Planet 
+http://113.160.49.34/lives/origin03/animalsd.isml/animalsd-1096k.m3u8
+
 #EXTINF:0,BBC Knowledge 
 
 
 #EXTINF:0,Crime Investigation 
 
-
-#EXTINF:0,Discovery Channel 
-http://142.4.216.60:1935/edge/_definst_/ishyd3sopok3p27/playlist.m3u8?wowzasessionid=1419872569&xs=_we_cm83YzllaGEwejk2aHBwfDE0MTk5MDg1Njl8NzIuMjcuMjE0LjMzfDU0YTE4OTM5ZjJkMzN8YTI0NDkzYmNjNmJiM2NjYTQ4YTAzYWE4ODRjODY0M2M0ZThhM timeout=10GVlOA
 
 #EXTINF:0,Discovery Channel 
 http://83.139.104.99/Content/HLS/Live/Channel(discovery_channel)/index.m3u8
@@ -33,9 +33,6 @@ http://83.139.104.99/Content/HLS/Live/Channel(discovery_channel)/index.m3u8
 
 #EXTINF:0,Discovery Science 
 http://188.227.86.4:4022/udp/239.77.0.79:1234
-
-#EXTINF:0,Discovery Science 
-http://142.4.216.60:1935/edge/_definst_/00t250wv1d4ltib/playlist.m3u8?wowzasessionid=1420170626&xs=_we_cWFuOTZuYXNlbXU5eGZufDE0MjAyMDY2MjZ8NzIuMjcuMjE0LjMzfDU0YTYxNTgyMzg3MmJ8YjQxYTMwNTkzYTgzOGI2MWYyMTc2MDEzYmFlMGZjZDZlYjc5OGQ0Ng
 
 #EXTINF:0,Discovery Shed
 
@@ -57,10 +54,10 @@ http://188.227.86.4:4022/udp/239.77.0.78:1234
 
 
 #EXTINF:0,History Channel 
-http://142.4.216.60:1935/edge/_definst_/dhp0rpd116qyyj6/playlist.m3u8?wowzasessionid=1419874554&xs=_we_OGc3eDgwb3p1Nmh6MmRzfDE0MTk5MTA1NTR8NzIuMjcuMjE0LjMzfDU0YTE5MGZhNTUwNjV8ZDM2MzAzYjkwYTE5MDBmMzhhOGM2YjE2ZDc4Mjk3ZDdkZjU0NDhlYw
+
 
 #EXTINF:0,History Channel 2
-http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12359
+
 
 #EXTINF:0,NASA TV 
 http://public.infozen.cshls.lldns.net/infozen/public/public.m3u8
@@ -81,7 +78,7 @@ http://www.nasa.gov/multimedia/nasatv/NTV-Public-IPS.m3u8
 
 
 #EXTINF:0,National Geographic 
-http://142.4.216.60:1935/edge/_definst_/b8bav5ayzso8m8q/playlist.m3u8?wowzasessionid=1420170282&xs=_we_YjhiYXY1YXl6c284bThxfDE0MjAyMDYyODJ8NzIuMjcuMjE0LjMzfDU0YTYxNDJhNDM5YWF8NTVjODFmOGQzMGVmN2M3ODhlZjEyYWNmNWVkNWFhNjE0NjVlOWYyNQ timeout=10
+http://188.227.86.4:4022/udp/239.77.0.41:1234
 
 #EXTINF:0,Paranormal TV 
 rtmp://mi2.gv.filmon.com:8086/live/1618.high.stream
@@ -90,7 +87,7 @@ rtmp://mi2.gv.filmon.com:8086/live/1618.high.stream
 http://odna.octoshape.net/f3f5m2v4/cds/ch5_auto.smil/playlist.m3u8 
 
 #EXTINF:0,Science Channel
-http://142.4.216.60:1935/edge/_definst_/00t250wv1d4ltib/playlist.m3u8?wowzasessionid=1420170626&xs=_we_cWFuOTZuYXNlbXU5eGZufDE0MjAyMDY2MjZ8NzIuMjcuMjE0LjMzfDU0YTYxNTgyMzg3MmJ8YjQxYTMwNTkzYTgzOGI2MWYyMTc2MDEzYmFlMGZjZDZlYjc5OGQ0Ng
+
 
 #EXTINF:0,Travel Channel 
 http://83.139.104.99/Content/HLS/Live/Channel(travel_channel)/Stream(03)/index.m3u8

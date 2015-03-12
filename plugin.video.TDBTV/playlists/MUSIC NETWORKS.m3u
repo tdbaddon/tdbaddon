@@ -33,7 +33,7 @@ http://www.djing.com/tv/d-04.m3u8
 http://www.djing.com/tv/u-04.m3u8
 
 #EXTINF:0,Djing TV 
-http://www.djing.com/tv/01.m3u8
+http://www.djing.com/tv/05.m3u8
 
 #EXTINF:0,DMC
 http://83.139.104.99/Content/HLS/Live/Channel(DMC)/Stream(03)/index.m3u8
@@ -147,7 +147,7 @@ http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch2/06/prog_index.m3u8
 http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch3/06/prog_index.m3u8
 
 #EXTINF:0,Vevo Pop 
-http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/appleman.m3u8
+http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/06/prog_index.m3u8
 
 #EXTINF:0,VH1 
 http://200.76.77.237/LIVE/H01/CANAL703/PROFILE03.m3u8?BratuMarian
