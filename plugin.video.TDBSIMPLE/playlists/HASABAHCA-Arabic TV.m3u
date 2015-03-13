@@ -1,0 +1,409 @@
+﻿#EXTM3U
+#EXTINF:-1,***HasBahCa IPTV***ARABIC***
+http://www.hasbahcaiptv.com/m3u/turkiye.mp4
+#EXTINF:-1,0 -Dubai Racing (UAE)
+http://cdnehlsdubairacing2.endavomedia.com/smil:dmilivedubairacing2.smil/playlist.m3u8
+#EXTINF:-1,0 -Dubai Sports 3
+http://cdnehlsdubaisports3.endavomedia.com/smil:dmilivedubaisports3.smil/HasBahCa.m3u8
+#EXTINF:-1,0 -KTV Sport Extra
+rtmp://91.140.238.7/rtmplive/rtpencoder/sportextra.sdp
+#EXTINF:-1,0 -KTV Sport Plus
+rtmp://91.140.238.7/rtmplive/rtpencoder/sportplus.sdp
+#EXTINF:-1,0 -SaudiSport
+http://intigral_live-lh.akamaihd.net/i/DPS2KCCAHLXSHB010514_1@135296/index_1200_av-p.m3u8?sd=10&rebase=on
+#EXTINF:-1,A ***HasBahCa IPTV***
+http://www.hasbahcaiptv.com/m3u/turkiye.mp4
+#EXTINF:-1,AbuDhabi1
+rtmp://alsersawy2-stream.dyndns.tv:1935/us1/AbuDhabi1
+#EXTINF:-1,Al Maaref
+http://almaareftv.com:1935/live/1/HasBahCa.m3u8
+#EXTINF:-1,Al Nahar Sport
+rtmp://50.7.180.18:1935/elnahar_tv/nahar_sport.stream
+#EXTINF:-1,Al Nahar Youm
+rtmp://50.7.180.18/elnahar_tv/nahar_youm.stream
+#EXTINF:-1,Al Sumaria (Iraq)
+rtmp://$OPT:rtmp-raw=rtmp://livestreaming2.itworkscdn.net/sumarialive playpath=live swfUrl=http://www.alsumaria.tv/LiveMedia4/jwplayer.flash.swf live=true timeout=15 pageUrl=http://www.alsumaria.tv/watch-Alsumaria-Live
+#EXTINF:-1,Al yawm
+http://live.paltoday.tv:1935/paltv/live/gmswf.m3u8
+#EXTINF:-1,AlArabiya
+rtmp://alsersawy2-stream.dyndns.tv:1935/jr3/AlArabiya
+#EXTINF:-1,Albadawiyah
+http://94.127.209.149:8080/albadawiyah-800-hdsx/playlist.m3u8
+#EXTINF:-1,Albadawiyahtv
+http://94.127.209.149:8080/edhakx/playlist.m3u8?DVR
+#EXTINF:-1,Albaghdadia
+http://albaghdadiahls-i.akamaihd.net/hls/live/218980/albaghdadia-ios/01.m3u8
+#EXTINF:-1,Alfady TV
+rtmp://stream.truth-voice.net/FadyLive//FadyLive
+#EXTINF:-1,Alhayah1
+rtmp://alsersawy2-stream.dyndns.tv:1935/jr1/Alhayah1
+#EXTINF:-1,Alhayah2
+rtmp://alsersawy2-stream.dyndns.tv:1935/jr3/Alhayah2
+#EXTINF:-1,AlhayahMosalsalat
+rtmp://alsersawy2-stream.dyndns.tv:1935/jr1/AlhayahMosalsalat
+#EXTINF:-1,Aljazeera Arabic
+rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live//aljazeera_ara_high
+#EXTINF:-1,Aljazeera Arabic
+rtmp://$OPT:rtmp-raw=rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_ara_high swfUrl=http://www.watcharab.com/tv/swf/aljazeera.swf pageUrl=http://www.elahmad.com/tv/Webtv/Arabian.htm swfVfy=true live=true timeout=60
+#EXTINF:-1,Aljazeera Doc
+http://aljazeera-doc-apple-live.adaptive.level3.net/apple/aljazeera/hq-doc/800kStream.m3u8
+#EXTINF:-1,AlKaheraWalNas
+rtmp://alsersawy2-stream.dyndns.tv:1935/jr3/AlKaheraWalNas
+#EXTINF:-1,AlMasriya
+rtmp://alsersawy2-stream.dyndns.tv:1935/jr3/AlMasriya
+#EXTINF:-1,AlNahar
+rtmp://alsersawy2-stream.dyndns.tv:1935/jr3/AlNahar
+#EXTINF:-1,Al-Nahar Drama
+rtmp://50.7.180.18/elnahar_tv/nahar_drama.stream
+#EXTINF:-1,AlNaharDrama
+rtmp://alsersawy2-stream.dyndns.tv:1935/jr3/AlNaharDrama
+#EXTINF:-1,Alrayi mms wmv
+mms://62.215.216.130/wmtencoder/alrai350.wmv
+#EXTINF:-1,AlSharqiya
+rtmp://alsersawy2-stream.dyndns.tv:1935/jr2/AlSharqiya
+#EXTINF:-1,AlTahrir
+rtmp://alsersawy2-stream.dyndns.tv:1935/jr2/AlTahrir
+#EXTINF:-1,AlThanya
+rtmp://alsersawy2-stream.dyndns.tv:1935/jr3/AlThanya
+#EXTINF:-1,ANIMAL PLANET
+http://185.27.237.105:8082/TV0097
+#EXTINF:-1,ANN
+rtmp://ns8.indexforce.com/ann/ann
+#EXTINF:-1,ANN News
+rtmp://ns8.indexforce.com/ann/ann
+#EXTINF:-1,art hikayat
+http://185.27.237.105:8082/TV0102
+#EXTINF:-1,B ***HasBahCa IPTV***
+http://www.hasbahcaiptv.com/m3u/turkiye.mp4
+#EXTINF:-1,BBC Arabia
+http://bbcwshdlive01-lh.akamaihd.net/i/atv_1@61433/master.m3u8
+#EXTINF:-1,BBCArabic
+rtmp://alsersawy2-stream.dyndns.tv:1935/jr1/BBCArabic
+#EXTINF:-1,C ***HasBahCa IPTV***
+http://www.hasbahcaiptv.com/m3u/turkiye.mp4
+#EXTINF:-1,CBC1
+rtmp://alsersawy2-stream.dyndns.tv:1935/jr3/CBC1
+#EXTINF:-1,CBCDrama
+rtmp://alsersawy2-stream.dyndns.tv:1935/jr3/CBCDrama
+#EXTINF:-1,CBCExtra
+rtmp://alsersawy2-stream.dyndns.tv:1935/jr3/CBCExtra
+#EXTINF:-1,D ***HasBahCa IPTV***
+http://www.hasbahcaiptv.com/m3u/turkiye.mp4
+#EXTINF:-1,discovery channel
+http://185.27.237.105:8082/TV0059
+#EXTINF:-1,discovery id
+http://185.27.237.105:8082/TV0092
+#EXTINF:-1,diseny
+http://185.27.237.105:8082/TV0110
+#EXTINF:-1,Dream2
+rtmp://alsersawy2-stream.dyndns.tv:1935/jr1/Dream2
+#EXTINF:-1,Dubai TV
+http://cdnedvrdubaitv.endavomedia.com/smil:dmilivedubaitvhls.smil/HasBahCa.m3u8
+#EXTINF:-1,E ***HasBahCa IPTV***
+http://www.hasbahcaiptv.com/m3u/turkiye.mp4
+#EXTINF:-1,Edhaktv
+http://94.127.209.149:8080/albadawiyah-800-hdsx/playlist.m3u8
+#EXTINF:-1,F ***HasBahCa IPTV***
+http://www.hasbahcaiptv.com/m3u/turkiye.mp4
+#EXTINF:-1,Faraeen
+rtmp://alsersawy2-stream.dyndns.tv:1935/jr3/Faraeen
+#EXTINF:-1,fashion tv
+http://185.27.237.105:8082/TV0088
+#EXTINF:-1,Funoon TV
+http://wpc.C56B.edgecastcdn.net/hls-live/20C56B/default/ThompsanECWTV/tsecwatanfunoonmed.m3u8
+#EXTINF:-1,FutureTV
+rtmp://alsersawy2-stream.dyndns.tv:1935/jr2/FutureTV
+#EXTINF:-1,G ***HasBahCa IPTV***
+http://www.hasbahcaiptv.com/m3u/turkiye.mp4
+#EXTINF:-1,H ***HasBahCa IPTV***
+http://www.hasbahcaiptv.com/m3u/turkiye.mp4
+#EXTINF:-1,I ***HasBahCa IPTV***
+http://www.hasbahcaiptv.com/m3u/turkiye.mp4
+#EXTINF:-1,i24 News Arabia
+http://bcoveliveios-i.akamaihd.net/hls/live/215102/master_arabic/391/master.m3u8
+#EXTINF:-1,Iqraatv
+http://fl1.viastreaming.net:1935/iqraatv/livestream/HasBahCa.m3u8
+#EXTINF:-1,K ***HasBahCa IPTV***
+http://www.hasbahcaiptv.com/m3u/turkiye.mp4
+#EXTINF:-1,KAS
+http://137.135.64.32:1935/kas/kas/gmswf.m3u8
+#EXTINF:-1,KTV 2
+rtmp://91.140.238.7/rtmplive/rtpencoder/ch2.sdp
+#EXTINF:-1,Kuwait
+rtmp://91.140.238.7/rtmplive/rtpencoder/ch1.sdp
+#EXTINF:-1,L ***HasBahCa IPTV***
+http://www.hasbahcaiptv.com/m3u/turkiye.mp4
+#EXTINF:-1,LBCSat
+rtmp://alsersawy2-stream.dyndns.tv:1935/jr1/LBCSat
+#EXTINF:-1,M ***HasBahCa IPTV***
+http://www.hasbahcaiptv.com/m3u/turkiye.mp4
+#EXTINF:-1,Mbc 2
+http://63.237.48.3/ios/MBC2/MBC2.m3u8
+#EXTINF:-1,MBC-1
+rtmp://alsersawy2-stream.dyndns.tv:1935/jr2/MBC-1
+#EXTINF:-1,MBC2
+rtmp://alsersawy2-stream.dyndns.tv:1935/jr2/MBC2
+#EXTINF:-1,MBCAction
+rtmp://alsersawy2-stream.dyndns.tv:1935/jr2/MBCAction
+#EXTINF:-1,MBCDrama
+rtmp://alsersawy2-stream.dyndns.tv:1935/jr2/MBCDrama
+#EXTINF:-1,MBCMaser
+rtmp://alsersawy2-stream.dyndns.tv:1935/jr2/MBCMaser
+#EXTINF:-1,MBCMAX
+rtmp://alsersawy2-stream.dyndns.tv:1935/jr2/MBCMAX
+#EXTINF:-1,Mehwer
+rtmp://alsersawy2-stream.dyndns.tv:1935/jr3/Mehwer
+#EXTINF:-1,mgm
+http://185.27.237.105:8082/TV0050
+#EXTINF:-1,N ***HasBahCa IPTV***
+http://www.hasbahcaiptv.com/m3u/turkiye.mp4
+#EXTINF:-1,Nabaa
+rtmp://31.14.40.238:1935/live/Nabaa
+#EXTINF:-1,New channel - http://185.27.237.105:8082/TV0090
+http://185.27.237.105:8082/TV0090
+#EXTINF:-1,New channel - http://185.27.237.105:8082/TV0109
+http://185.27.237.105:8082/TV0109
+#EXTINF:-1,NileComedy
+rtmp://alsersawy2-stream.dyndns.tv:1935/jr1/NileComedy
+#EXTINF:-1,NileLife
+rtmp://alsersawy2-stream.dyndns.tv:1935/jr1/NileLife
+#EXTINF:-1,NileNews
+rtmp://alsersawy2-stream.dyndns.tv:1935/jr1/NileNews
+#EXTINF:-1,NileSports
+rtmp://alsersawy2-stream.dyndns.tv:1935/jr1/NileSports
+#EXTINF:-1,Noor Dubai TV
+http://cdnedvrnoordubaitv.endavomedia.com/smil:dmilivenoordubaitvhls.smil/HasBahCa.m3u8
+#EXTINF:-1,O ***HasBahCa IPTV***
+http://www.hasbahcaiptv.com/m3u/turkiye.mp4
+#EXTINF:-1,OMN
+http://185.27.237.105:8082/TV0103
+#EXTINF:-1,OMN
+http://185.27.237.105:8082/TV0093
+#EXTINF:-1,OMN
+http://185.27.237.105:8082/TV0104
+#EXTINF:-1,OMN
+http://185.27.237.105:8082/TV0089
+#EXTINF:-1,OMN
+http://185.27.237.105:8082/TV0091
+#EXTINF:-1,OMN
+http://185.27.237.105:8082/TV0086
+#EXTINF:-1,OMN
+http://185.27.237.105:8082/TV0083
+#EXTINF:-1,OMN
+http://185.27.237.105:8082/TV0065
+#EXTINF:-1,OMN
+http://185.27.237.105:8082/TV0077
+#EXTINF:-1,OMN +2
+http://185.27.237.105:8082/TV0062
+#EXTINF:-1,OMN COMEDY +2
+http://185.27.237.105:8082/TV0021
+#EXTINF:-1,OMN FIRST HD
+http://185.27.237.105:8082/TV0063
+#EXTINF:-1,OMN first more
+http://185.27.237.105:8082/TV0084
+#EXTINF:-1,OMN movie
+http://185.27.237.105:8082/TV0060
+#EXTINF:-1,omn movie
+http://185.27.237.105:8082/TV0053
+#EXTINF:-1,OMN movie drama
+http://185.27.237.105:8082/TV0022
+#EXTINF:-1,OMN movie drama +2
+http://185.27.237.105:8082/TV0075
+#EXTINF:-1,OMN movie hd
+http://185.27.237.105:8082/TV0024
+#EXTINF:-1,OMN movie hd
+http://185.27.237.105:8082/TV0025
+#EXTINF:-1,OMN movie hd
+http://185.27.237.105:8082/TV0023
+#EXTINF:-1,omn movie hd
+http://185.27.237.105:8082/TV0055
+#EXTINF:-1,omn movie hd
+http://185.27.237.105:8082/TV0056
+#EXTINF:-1,omn movie hd +2
+http://185.27.237.105:8082/TV0054
+#EXTINF:-1,omn ya halla hd
+http://185.27.237.105:8082/TV0064
+#EXTINF:-1,omn yahalla chabab hd
+http://185.27.237.105:8082/TV0052
+#EXTINF:-1,ONTV
+rtmp://alsersawy2-stream.dyndns.tv:1935/jr2/ONTV
+#EXTINF:-1,P ***HasBahCa IPTV***
+http://www.hasbahcaiptv.com/m3u/turkiye.mp4
+#EXTINF:-1,R ***HasBahCa IPTV***
+http://www.hasbahcaiptv.com/m3u/turkiye.mp4
+#EXTINF:-1,RotanaCinema
+rtmp://alsersawy2-stream.dyndns.tv:1935/jr2/RotanaCinema
+#EXTINF:-1,RotanaClassic
+rtmp://alsersawy2-stream.dyndns.tv:1935/jr2/RotanaClassic
+#EXTINF:-1,RotanaMasriya
+rtmp://alsersawy2-stream.dyndns.tv:1935/jr2/RotanaMasriya
+#EXTINF:-1,S ***HasBahCa IPTV***
+http://www.hasbahcaiptv.com/m3u/turkiye.mp4
+#EXTINF:-1,SadaElBalad
+rtmp://alsersawy2-stream.dyndns.tv:1935/jr3/SadaElBalad
+#EXTINF:-1,safwa
+http://185.27.237.105:8082/TV0099
+#EXTINF:-1,SaudiQuran
+rtmp://alsersawy2-stream.dyndns.tv:1935/us1/SaudiQuran
+#EXTINF:-1,SaudiSunah
+rtmp://alsersawy2-stream.dyndns.tv:1935/us1/SaudiSunah
+#EXTINF:-1,star movie hd
+http://185.27.237.105:8082/TV0051
+#EXTINF:-1,T ***HasBahCa IPTV***
+http://www.hasbahcaiptv.com/m3u/turkiye.mp4
+#EXTINF:-1,tcm
+http://185.27.237.105:8082/TV0082
+#EXTINF:-1,Z ***HasBahCa IPTV***
+http://www.hasbahcaiptv.com/m3u/turkiye.mp4
+#EXTINF:-1,***HasBahCa IPTV***MISIR EGYPT***
+http://www.hasbahcaiptv.com/m3u/turkiye.mp4
+#EXTINF:-1,abu_dhabi
+rtmp://162.212.176.107:1935/abu_dhabi/globaltv-abu_dhabi.stream
+#EXTINF:-1,abu_dhabi m3u8
+http://162.212.176.107:1935/abu_dhabi/globaltv-abu_dhabi.stream/HasBahCa.m3u8
+#EXTINF:-1,abu_dhabi_drama
+rtmp://162.212.176.107:1935/abu_dhabi_drama/globaltv-abu_dhabi_drama.stream
+#EXTINF:-1,abu_dhabi_drama m3u8
+http://162.212.176.107:1935/abu_dhabi_drama/globaltv-abu_dhabi_drama.stream/HasBahCa.m3u8
+#EXTINF:-1,alhayat 1
+rtmp://162.212.176.107:1935/alhayat_1/globaltv-alhayat_1.stream
+#EXTINF:-1,alhayat 1  m3u8
+http://162.212.176.107:1935/alhayat_1/globaltv-alhayat_1.stream/HasBahCa.m3u8
+#EXTINF:-1,Alriadia_sport
+rtmp://162.212.176.107:1935/alriadia_sport/globaltv-alriadia_sport.stream
+#EXTINF:-1,Alriadia_sport m3u8
+http://162.212.176.107:1935/alriadia_sport/globaltv-alriadia_sport.stream/HasBahCa.m3u8
+#EXTINF:-1,art _aflam
+rtmp://162.212.176.107:1935/art_aflam_2/globaltv-art_aflam_2.stream
+#EXTINF:-1,art _aflam m3u8
+http://162.212.176.107:1935/art_aflam_2/globaltv-art_aflam_2.stream/HasBahCa.m3u8
+#EXTINF:-1,cairo_cinema
+rtmp://162.212.176.107:1935/cairo_cinema/globaltv-cairo_cinema.stream
+#EXTINF:-1,cairo_cinema m3u8
+http://162.212.176.107:1935/cairo_cinema/globaltv-cairo_cinema.stream/HasBahCa.m3u8
+#EXTINF:-1,fox_movies
+rtmp://162.212.176.107:1935/fox_movies/globaltv-fox_movies.stream
+#EXTINF:-1,fox_movies m3u8
+http://162.212.176.107:1935/fox_movies/globaltv-fox_movies.stream/HasBahCa.m3u8
+#EXTINF:-1,hanibal
+rtmp://162.212.176.107:1935/hanibal/globaltv-hanibal.stream
+#EXTINF:-1,hanibal m3u8
+http://162.212.176.107:1935/hanibal/globaltv-hanibal.stream/HasBahCa.m3u8
+#EXTINF:-1,LBC
+rtmp://162.212.176.107/lbc_europe/globaltv-lbc_europe.stream
+#EXTINF:-1,MBC 3
+rtmp://162.212.176.107:1935/mbc_3/globaltv-mbc_3.stream
+#EXTINF:-1,MBC 3 m3u8
+http://162.212.176.107:1935/mbc_3/globaltv-mbc_3.stream/HasBahCa.m3u8
+#EXTINF:-1,mbc_max
+rtmp://162.212.176.107:1935/mbc_max/globaltv-mbc_max.stream
+#EXTINF:-1,mbc_max m3u8
+http://162.212.176.107:1935/mbc_max/globaltv-mbc_max.stream/HasBahCa.m3u8
+#EXTINF:-1,national_geo
+rtmp://162.212.176.107:1935/national_geo_ad/globaltv-national_geo_ad.stream
+#EXTINF:-1,national_geo m3u8
+http://162.212.176.107:1935/national_geo_ad/globaltv-national_geo_ad.stream/HasBahCa.m3u8
+#EXTINF:-1,nessma
+rtmp://162.212.176.107:1935/nessma/globaltv-nessma.stream
+#EXTINF:-1,nessma m3u8
+http://162.212.176.107:1935/nessma/globaltv-nessma.stream/HasBahCa.m3u8
+#EXTINF:-1,rotana_cinema
+rtmp://162.212.176.107:1935/rotana_cinema/globaltv-rotana_cinema.stream
+#EXTINF:-1,rotana_cinema m3u8
+http://162.212.176.107:1935/rotana_cinema/globaltv-rotana_cinema.stream/HasBahCa.m3u8
+#EXTINF:-1,rotana_music
+rtmp://162.212.176.107:1935/rotana_music/globaltv-rotana_music.stream
+#EXTINF:-1,rotana_music m3u8
+http://162.212.176.107:1935/rotana_music/globaltv-rotana_music.stream/HasBahCa.m3u8
+#EXTINF:-1,tunisia_national_1
+rtmp://162.212.176.107:1935/tunisia_national_1/globaltv-tunisia_national_1.stream
+#EXTINF:-1,tunisia_national_1 m3u8
+http://162.212.176.107:1935/tunisia_national_1/globaltv-tunisia_national_1.stream/HasBahCa.m3u8
+#EXTINF:-1,tunisia_national_2
+rtmp://162.212.176.107:1935/tunisia_national_2/globaltv-tunisia_national_2.stream
+#EXTINF:-1,tunisia_national_2 m3u8
+http://162.212.176.107:1935/tunisia_national_2/globaltv-tunisia_national_2.stream/HasBahCa.m3u8
+#EXTINF:-1,***HasBahCa IPTV***IRAN***
+http://www.hasbahcaiptv.com/m3u/turkiye.mp4
+#EXTINF:-1,ASRE_EMROZZ
+http://63.237.48.3/ios/ASRE_EMROZZ/ASRE_EMROZZ.m3u8
+#EXTINF:-1,Bidari
+rtsp://bidari.streamwebtown.com/bidaritv
+#EXTINF:-1,CHANNEL_ONE
+http://63.237.48.3/ios/CHANNEL_ONE_TV/CHANNEL_ONE_TV.m3u8
+#EXTINF:-1,GEM Bollywood
+rtmp://gemtv.fms.visionip.tv/live/gemtv-gemtv-gembollywood-live-25f-16x9-HD?ref=www.gemonline.tv&USER=Gem+Bollywood
+#EXTINF:-1,GEM Junior Live
+rtmp://gemtv.fms.visionip.tv/live/gemtv-gemtv-junior-live-25f-4x3-SDq?ref=www.gemonline.tv&USER=GEM+Junior
+#EXTINF:-1,GEM LIFE
+rtmp://gemtv.fms.visionip.tv/live/gemtv-gemtv-life1-live-25f-16x9-HD?ref=www.gemonline.tv&USER=Life+1
+#EXTINF:-1,GEM MIFA MUSIC
+rtmp://gemtv.fms.visionip.tv/live/gemtv-gemtv-mifa-live-16x9-SDq?ref=www.gemonline.tv&USER=MIFA+MUSIC
+#EXTINF:-1,GEM ONYX
+rtmp://gemtv.fms.visionip.tv/live/gemtv-gemtv-onyx-live-16x9-HD?ref=www.gemonline.tv&USER=ONYX
+#EXTINF:-1,GEM RIVER
+rtmp://gemtv.fms.visionip.tv/live/gemtv-gemtv-river-live-16x9-HD?ref=www.gemonline.tv&USER=River+HD
+#EXTINF:-1,GEM RUBIX
+rtmp://gemtv.fms.visionip.tv/live/gemtv-gemtv-rubix-live-16x9-HD?ref=www.gemonline.tv&USER=RUBIX+HD
+#EXTINF:-1,GEM Travel
+rtmp://gemtv.fms.visionip.tv/live/gemtv-gemtv-travel-live-25f-16x9-SD?ref=www.gemonline.tv&USER=0-100
+#EXTINF:-1,GEM TV
+rtmp://gemtv.fms.visionip.tv/live/gemtv-gemtv-gemtv-live-25f-16x9-SDq?ref=www.gemonline.tv&USER=GEM+TV
+#EXTINF:-1,GEM_KURD
+http://63.237.48.3/ios/GEM_KURD/GEM_KURD.m3u8
+#EXTINF:-1,GEM_TRAVEL
+http://63.237.48.3/ios/GEM_TRAVEL/GEM_TRAVEL.m3u8
+#EXTINF:-1,Irib 1
+rtmp://edge5.live.irib.ir/etv/irib1-2
+#EXTINF:-1,Irib 2
+rtmp://edge3.live.irib.ir/etv/irib2-3
+#EXTINF:-1,Irib 3
+rtmp://edge4.live.irib.ir/etv3/irib3-3
+#EXTINF:-1,Irib 4
+rtmp://edge3.live.irib.ir/etv/irib4-3
+#EXTINF:-1,Irib 5
+rtmp://edge3.live.irib.ir/etv/irib5-3
+#EXTINF:-1,Irib Ofogh
+rtmp://edge4.live.irib.ir/etv/ofogh-3
+#EXTINF:-1,IRINN
+http://63.237.48.3/ios/IRINN/IRINN.m3u8
+#EXTINF:-1,Irinn TV
+rtmp://edge3.live.irib.ir/etv/irinn-3
+#EXTINF:-1,ITC TV
+http://63.237.48.3/ios/ITC/ITC.m3u8
+#EXTINF:-1,JAME_JAM
+http://63.237.48.3/ios/JAME_JAM_TV_NETWORK_1/JAME_JAM_TV_NETWORK_1.m3u8
+#EXTINF:-1,MBC2
+http://63.237.48.3/ios/MBC2/MBC2.m3u8
+#EXTINF:-1,ONYX HD
+http://63.237.48.3/ios/ONYX_HD/ONYX_HD.m3u8
+#EXTINF:-1,Pezhvak Show
+rtmp://media.mohabat.tv/live_transcoder/_definst_/mp4:mohabat.stream_240p
+#EXTINF:-1,PNG
+http://63.237.48.3/ios/PNG/PNG.m3u8
+#EXTINF:-1,QURAN_TV
+http://63.237.48.3/ios/QURAN_TV/QURAN_TV.m3u8
+#EXTINF:-1,TAPESH
+http://63.237.48.3/ios/TAPESH/TAPESH.m3u8
+#EXTINF:-1,VARZESH_TV
+http://63.237.48.3/ios/VARZESH_TV/VARZESH_TV.m3u8
+#EXTINF:-1,VELAYAT
+http://63.237.48.3/ios/VELAYAT_TV/VELAYAT_TV.m3u8
+#EXTINF:-1,VOA Persian TV
+rtsp://a1278.l211049675.c2110.g.lm.akamaistream.net/D/1278/2110/v0001/reflector:49675
+#EXTINF:-1,Voice Of America Persian
+rtsp://a1278.l211049675.c2110.g.lm.akamaistream.net/D/1278/2110/v0001/reflector:49675
+#EXTINF:-1,***HasBahCa IPTV***IRAK***
+http://www.hasbahcaiptv.com/m3u/turkiye.mp4
+#EXTINF:-1,Al Baghdadia
+http://albaghdadiahls-i.akamaihd.net/hls/live/218980/albaghdadia-ios/01.m3u8
+#EXTINF:-1,Al Forat
+http://alforatlive.nanocdn.com:1935/live/alforat256/HasBahCa.m3u8
+#EXTINF:-1,AlDyar
+http://188.247.93.26:1935/live/aldyar.stream_360p/hassuni.m3u8
+#EXTINF:-1,Baghdad tv
+http://streamer1.hamuraabi.com:1935/baghdad/live/HasBahCa.m3u8
+#EXTINF:-1,Iraqiya
+http://212.7.205.5:1935/Iraqia/live/HasBahCa.m3u8
+#EXTINF:-1,Iraqiya Sport
+http://212.7.205.5:1935/sport/live/HasBahCa.m3u8

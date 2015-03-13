@@ -1,0 +1,53 @@
+﻿#EXTM3U
+#EXTINF:-1, Baby First
+http://202.75.23.33/live/ch27/03.m3u8
+#EXTINF:-1, Tom&Jerry
+http://66.90.111.66:1935/ctv/tom/waldo_paes.m3u8?b?b*t$
+#EXTINF:-1,BRASIL-Cartoon Network
+rtmp://$OPT:rtmp-raw=rtmp://31.204.128.140/live/ playpath=brlive_0028 swfUrl=http://www.tv-msn.com/player5.swf live=1 pageUrl=http://www.cdnbr.biz/mastertv/Cartoon Network.html
+#EXTINF:-1,BRASIL-CARTOON NETWORK
+rtmp://31.204.128.140/live/brlive_0028
+#EXTINF:-1,BRASIL-DISCOVERY KIDS
+rtmp://31.204.128.74/live/master24
+#EXTINF:-1,BRASIL-Disney
+rtmp://$OPT:rtmp-raw=rtmp://109.200.202.124/live playpath=disney swfUrl=http://www.tv-msn.com/player5.swf live=1 pageUrl=http://www.tv-msn.com/disney.html
+#EXTINF:-1,CHINA-Channel Cartoon SITV
+rtsp://rlive.tv189.cn/live/571?by_HasBahCa
+#EXTINF:-1,CHINA-Channel Cartoon SITV sd1
+rtsp://rlive.tv189.cn/live/572?by_HasBahCa
+#EXTINF:-1,CHINA-Channel Cartoon SITV sd2
+rtsp://rlive.tv189.cn/live/573?by_HasBahCa
+#EXTINF:-1,CHINA-Hunan Golden Eagle Cartoon Channel
+rtsp://rlive.tv189.cn/live/681?by_HasBahCa
+#EXTINF:-1,CHINA-Hunan Golden Eagle Cartoon Channel sd1
+rtsp://rlive.tv189.cn/live/682?by_HasBahCa
+#EXTINF:-1,CHINA-Hunan Golden Eagle Cartoon Channel sd2
+rtsp://rlive.tv189.cn/live/683?by_HasBahCa
+#EXTINF:-1,CHINA-Japan cartoon 日本卡通,
+rtsp://c.itvitv.com/d365
+#EXTINF:-1,CHINA-Jiangsu TV Children’s Channel
+rtsp://rlive.tv189.cn/live/701?by_HasBahCa
+#EXTINF:-1,CHINA-Jiangsu TV Children’s Channel sd1
+rtsp://rlive.tv189.cn/live/702?by_HasBahCa
+#EXTINF:-1,CHINA-SITV Cartoon Channel sd2
+rtsp://rlive.tv189.cn/live/563?by_HasBahCa
+#EXTINF:-1,FILMON-GALAXIE KIDS STUFF
+rtmp://$OPT:rtmp-raw=rtmp://live61.la3.edge.filmon.com:1935/ app=live/?id=1ad5aac39bb13fbe2ec2cb9f30304e0cbe80b74b891ced99588c1523b3a408148282ed27b1e525ca6e75e5631ab6c5ab5c2fd8ff1c26ce979b5510bf41c77f41f23208ad87debc8be106aaa9db50099ed5b4784c3c94cb2eacb07e6b99f59e37af647fd60077d5472adb4b0fdb6da7aa10bc140627d4a06e5dea5c5f0a1c51cb042a3efa243bae6210c191f7aa45158bc9131880fab2e27d pageUrl=https://www.filmon.com/ swfUrl=https://www.filmon.com/tv/modules/FilmOnTV/files/flashapp/filmon/FilmonPlayer.swf?v=28 conn=O:1 conn=O:0 playpath=572.high.stream buffer=96000000
+#EXTINF:-1,Georgia-Disney
+http://80.77.52.6:4444/udp/230.0.3.30:12345?by_HasBahCa
+#EXTINF:-1,JAPAN-bskids
+rtsp://c.itvitv.com/bskids
+#EXTINF:-1,Portugal-Cartoon Network
+rtmp://$OPT:rtmp-raw=rtmp://31.204.128.140/live/ playpath=brlive_0028  swfUrl=http://www.tv-msn.com/player5.swf live=1  pageUrl=http://www.cdnbr.biz/mastertv/Cartoon Network.html
+#EXTINF:-1,Portugal-Disney
+rtmp://$OPT:rtmp-raw=rtmp://109.200.202.124/live playpath=disney  swfUrl=http://www.tv-msn.com/player5.swf live=1  pageUrl=http://www.tv-msn.com/disney.html
+#EXTINF:-1,Portugal-Disney Channel
+rtmp://$OPT:rtmp-raw=rtmp://109.200.202.124/live playpath=animax  swfUrl=http://www.tv-msn.com/player5.swf live=1  pageUrl=http://tv-msn.com/disneyjr.html
+#EXTINF:-1,Spain-DISCOVERY KIDS
+rtmp://$OPT:rtmp-raw=rtmp://31.204.128.74/live/master24 swfUrl=http://www.cdnbr.biz/ pageUrl=http://www.cdnbr.biz/mastertv/
+#EXTINF:-1,TÜRK - ÇIZGI FILM TV mms
+mms://yayin.networkbil.com/cizgifilmtv
+#EXTINF:-1,USA-Cartoon Network
+rtmp://$OPT:rtmp-raw=rtmp://rtmp.zerocast.tv:1935/live playpath=08pydvp1b7ZwZb3a5TW1 swfUrl=http://p.jwpcdn.com/6/10/jwplayer.flash.swf live=1 flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv
+#EXTINF:-1,USA-Discovery Kids
+http://202.75.23.35/live/ch36/01.m3u8

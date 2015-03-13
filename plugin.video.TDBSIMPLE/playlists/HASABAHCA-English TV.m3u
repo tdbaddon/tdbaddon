@@ -1,0 +1,197 @@
+﻿#EXTM3U
+#EXTINF:-1,***HasBahCa IPTV*** INGILIZCE - ENGLISH***
+http://www.hasbahcaiptv.com/m3u/turkiye.mp4
+#EXTINF:-1,Amazing Facts TV
+http://bglive-w.bitgravity.com/amazingfacts/live/feed01
+#EXTINF:-1,BBC News
+http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/bbc_world/ls_satlink/b_828.m3u8?Vd?u#bt!25
+#EXTINF:-1,BBC WORLD NEWS
+http://93.184.221.133/hls-live/20C1A9/bbc_world/ls_satlink/b_828.m3u8
+#EXTINF:-1,bbcworld m3u8 1024*576
+http://pebbles105-lh.akamaihd.net/i/bbcworld_1@97498/index_1300_av-p.m3u8
+#EXTINF:-1,Beauty TV
+rtsp://46.249.213.87/broadcast/beautytv-tablet.3gp
+#EXTINF:-1,bollywoodcinema2
+rtsp://46.249.213.87/broadcast/bollywoodcinema2-tablet.3gp
+#EXTINF:-1,bollywoodhungama
+rtsp://46.249.213.87/broadcast/bollywoodhungama-tablet.3gp
+#EXTINF:-1,CBS ACTION
+http://212.250.46.35:2003/
+#EXTINF:-1,cnn m3u8
+http://pebbles105-lh.akamaihd.net/i/cnn_1@97501/master.m3u8?by_HasBahCa
+#EXTINF:-1,DAIL EIREANN
+rtsp://wms.servers.heanet.ie/Dail
+#EXTINF:-1,english
+http://bglive-a.bitgravity.com/ndtv/247hi/live/native
+#EXTINF:-1,Florida-CarolCablesTV mms
+mms://207.7.154.95/G0937_002?wmcache=0
+#EXTINF:-1,Fresh TV
+rtmp://80.93.53.88:1935/live/channel_4
+#EXTINF:-1,gotica tv
+rtmp://149.11.34.6:1935/live/gotica.stream
+#EXTINF:-1,ITVBE
+http://212.250.46.35:2004/
+#EXTINF:-1,JCTV
+http://nstream.trinetsolutions.com/wmedia-live/tbn/8032/300_tbn-jctv_050222.asx
+#EXTINF:-1,JCTV Music, Mobile, Music Blender, Others US
+http://www.jctv.org/watchlive/jc-tv200.asx
+#EXTINF:-1,Knob Ch1 mms
+mms://streams.tvknob.com/tvloops/Ch1/tvknob.wsx
+#EXTINF:-1,RTE One
+http://212.250.46.35:4252/bysid/9601
+#EXTINF:-1,RTE2
+http://212.250.46.35:4252/bysid/9602
+#EXTINF:-1,RTEjr
+http://212.250.46.35:4252/bysid/9606
+#EXTINF:-1,Starz
+http://212.70.155.243:40665/udp/237.100.0.180:4000
+#EXTINF:-1,TG4
+http://212.250.46.35:4252/bysid/9603
+#EXTINF:-1,The Florida Channel
+rtmp://webcasting.thefloridachannel.org/live/tvweb1
+#EXTINF:-1,TV3
+http://212.250.46.35:4252/bysid/9605
+#EXTINF:-1,TV-EN, Media Childrens Live TBN smile of a child
+http://media.tbn.org/wmedia-live/tbn/10200/300_tbn-the_smile_of_a_child_051222.asx
+#EXTINF:-1,University of California TV
+rtmp://ucsdtv-wowza.ucsd.edu:1935/live/live_800
+#EXTINF:-1,US TWit
+http://bglive-a.bitgravity.com/twit/live/high
+#EXTINF:-1,Virginia-GMUTV mms
+mms://media.mesa.gmu.edu/capconwhite1
+#EXTINF:-1,***HasBahCa IPTV***ABD - USA ***
+http://www.hasbahcaiptv.com/m3u/turkiye.mp4
+#EXTINF:-1,abc family
+rtmp://$OPT:rtmp-raw=rtmp://rtmp.myhdcast.com/redirect/NyRerYqWuhRWGCsmb3f3 swfUrl=http://cdn.zerocast.tv/player/jwplayer.flash.swf pageUrl=http://zerocast.in/embed.php?a=2 token=OOG17t.x#K9Vh#|
+#EXTINF:-1,amc
+rtmp://$OPT:rtmp-raw=rtmp://rtmp.myhdcast.com/redirect/TfRQx7deUAuncJwM047m swfUrl=http://cdn.zerocast.tv/player/jwplayer.flash.swf pageUrl=http://zerocast.in/embed.php?a=237 token=OOG17t.x#K9Vh#|
+#EXTINF:-1,BLOMBERG
+http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/bloomberg/ls_satlink/b_828.m3u8
+#EXTINF:-1,CarolCablesTV (Florida) mmsh
+mmsh://207.7.154.95/G0937_002?wmcache=0&MSWMExt=.asf
+#EXTINF:-1,cbs
+rtmp://$OPT:rtmp-raw=rtmp://rtmp.myhdcast.com/redirect/Ger61uLQ4fedzvjRjrB7 swfUrl=http://cdn.zerocast.tv/player/jwplayer.flash.swf pageUrl=http://zerocast.in/embed.php?a=338 token=OOG17t.x#K9Vh#|
+#EXTINF:-1,Channel 6 - City of Austin
+rtmp://oflash.dfw.swagit.com/live/austintx/live-1?b?b*t$
+#EXTINF:-1,City of Boston TV English
+rtmp://streaming.cityofboston.gov/live/cable
+#EXTINF:-1,Classic Arts Showcase (Boston)
+rtmp://streaming.cityofboston.gov/live/cable
+#EXTINF:-1,cw
+rtmp://$OPT:rtmp-raw=rtmp://rtmp.myhdcast.com/redirect/IWSyIjvWgHRCMM7MEJoZ swfUrl=http://cdn.zerocast.tv/player/jwplayer.flash.swf pageUrl=http://zerocast.in/embed.php?a=8 token=OOG17t.x#K9Vh#|
+#EXTINF:-1,Ebru TV
+http://204.107.26.252:1935/live/914.high.stream/HasBahCa.m3u8
+#EXTINF:-1,fox
+rtmp://$OPT:rtmp-raw=rtmp://rtmp.myhdcast.com/redirect/9pxGCtP3aEnJYgoBFFH8 swfUrl=http://cdn.zerocast.tv/player/jwplayer.flash.swf pageUrl=http://zerocast.in/embed.php?a=306 token=OOG17t.x#K9Vh#|
+#EXTINF:-1,FX
+rtmp://$OPT:rtmp-raw=rtmp://rtmp.myhdcast.com/redirect/VCV8SViFVBv2nX5RQwKI swfUrl=http://cdn.zerocast.tv/player/jwplayer.flash.swf pageUrl=http://zerocast.in/embed.php?a=10 token=OOG17t.x#K9Vh#|
+#EXTINF:-1,GMU TV (Virginia) mms
+mms://media.mesa.gmu.edu/capconwhite1
+#EXTINF:-1,looney toons
+rtmp://$OPT:rtmp-raw=rtmp://rtmp.myhdcast.com/redirect/fo2FgVN6vw1izsjm5CqJ swfUrl=http://cdn.zerocast.tv/player/jwplayer.flash.swf pageUrl=http://zerocast.in/embed.php?a=330 token=OOG17t.x#K9Vh#|
+#EXTINF:-1,Mission TV
+rtmp://streamer1.streamhost.org/salive/GMImissiontvh
+#EXTINF:-1,nbc
+rtmp://$OPT:rtmp-raw=rtmp://rtmp.myhdcast.com/redirect/nbc01_augqlbj1 swfUrl=http://cdn.zerocast.tv/player/jwplayer.flash.swf pageUrl=http://zerocast.in/embed.php?a=653 token=OOG17t.x#K9Vh#|
+#EXTINF:-1,News 12 Long Island(Stream 1)
+rtmp://$OPT:rtmp-raw=rtmp://fs-b4e3010000000000.id.cdn.cv.net/vxedge/fs-b4e3010000000000/fs-b4e3010000000000
+#EXTINF:-1,News Bronx(Stream 1)
+rtmp://$OPT:rtmp-raw=rtmp://fs-b5e3010000000000.id.cdn.cv.net/vxedge/fs-b5e3010000000000/fs-b5e3010000000000
+#EXTINF:-1,News Bronx(Weather)
+rtmp://$OPT:rtmp-raw=rtmp://fs-afe3010000000000.id.cdn.cv.net/vxedge/fs-afe3010000000000/fs-afe3010000000000
+#EXTINF:-1,News Brooklyn(Stream 1)
+rtmp://$OPT:rtmp-raw=rtmp://fs-ace3010000000000.id.cdn.cv.net/vxedge/fs-ace3010000000000/fs-ace3010000000000
+#EXTINF:-1,News Brooklyn(Weather)
+rtmp://$OPT:rtmp-raw=rtmp://fs-afe3010000000000.id.cdn.cv.net/vxedge/fs-afe3010000000000/fs-afe3010000000000
+#EXTINF:-1,News Connecticut(Stream 1)
+rtmp://$OPT:rtmp-raw=rtmp://fs-bbe3010000000000.id.cdn.cv.net/vxedge/fs-bbe3010000000000/fs-bbe3010000000000
+#EXTINF:-1,News Connecticut(Weather)
+rtmp://$OPT:rtmp-raw=rtmp://fs-b6e3010000000000.id.cdn.cv.net/vxedge/fs-b6e3010000000000/fs-b6e3010000000000
+#EXTINF:-1,News Hudson Valley(Stream 1)
+rtmp://$OPT:rtmp-raw=rtmp://fs-bae3010000000000.id.cdn.cv.net/vxedge/fs-bae3010000000000/fs-bae3010000000000
+#EXTINF:-1,News Hudson Valley(Weather)
+rtmp://$OPT:rtmp-raw=rtmp://fs-b8e3010000000000.id.cdn.cv.net/vxedge/fs-b8e3010000000000/fs-b8e3010000000000
+#EXTINF:-1,News Long Island(Stream 2)
+rtmp://$OPT:rtmp-raw=rtmp://fs-b94e110000000000.id.cdn.cv.net/vxedge/fs-b94e110000000000/fs-b94e110000000000
+#EXTINF:-1,News Long Island(Weather)
+rtmp://$OPT:rtmp-raw=rtmp://fs-aee3010000000000.id.cdn.cv.net/vxedge/fs-aee3010000000000/fs-aee3010000000000
+#EXTINF:-1,News New Jersey(Stream 1)
+rtmp://$OPT:rtmp-raw=rtmp://fs-b9e3010000000000.id.cdn.cv.net/vxedge/fs-b9e3010000000000/fs-b9e3010000000000
+#EXTINF:-1,News New Jersey(Weather)
+rtmp://$OPT:rtmp-raw=rtmp://fs-b3e3010000000000.id.cdn.cv.net/vxedge/fs-b3e3010000000000/fs-b3e3010000000000
+#EXTINF:-1,News Westchester(Stream 1)
+rtmp://$OPT:rtmp-raw=rtmp://fs-bce3010000000000.id.cdn.cv.net/vxedge/fs-bce3010000000000/fs-bce3010000000000
+#EXTINF:-1,News Westchester(Weather from Hudson Valley)
+rtmp://$OPT:rtmp-raw=rtmp://fs-b8e3010000000000.id.cdn.cv.net/vxedge/fs-b8e3010000000000/fs-b8e3010000000000
+#EXTINF:-1,PAC National 1280*720
+http://xrxs.net/video/live-p12netw-2328.m3u8
+#EXTINF:-1,PAC National 640*360
+http://xrxs.net/video/live-p12netw-1164.m3u8
+#EXTINF:-1,PAC-12 Net. (Arizona) 1280*720
+http://xrxs.net/video/live-p12ariz-2328.m3u8
+#EXTINF:-1,PAC-12 Net. (Arizona) 640*360
+http://xrxs.net/video/live-p12ariz-1164.m3u8
+#EXTINF:-1,PAC-12 Net. (Bay Area) 1280*720
+http://xrxs.net/video/live-p12baya-2328.m3u8
+#EXTINF:-1,PAC-12 Net. (Los Angeles) 1280*720
+http://xrxs.net/video/live-p12losa-2328.m3u8
+#EXTINF:-1,PAC-12 Net. (Los Angeles) 640*360
+http://xrxs.net/video/live-p12losa-1164.m3u8
+#EXTINF:-1,PAC-12 Net. (Oregon) 1280*720
+http://xrxs.net/video/live-p12oreg-2328.m3u8
+#EXTINF:-1,PAC-12 Net. (Oregon) 640*360
+http://xrxs.net/video/live-p12oreg-1164.m3u8
+#EXTINF:-1,PAC-12 Net. (Washington) 1280*720
+http://xrxs.net/video/live-p12wash-2328.m3u8
+#EXTINF:-1,PAC-12 Net. (Washington) 640*360
+http://xrxs.net/video/live-p12wash-1164.m3u8
+#EXTINF:-1,RT AMERIKA
+http://odna.octoshape.net/f3f5m2v4/cds/ch4_320p/chunklist.m3u8
+#EXTINF:-1,tnt
+rtmp://$OPT:rtmp-raw=rtmp://rtmp.myhdcast.com/redirect/Waz0WqvbqNHmt0gdzrsm swfUrl=http://cdn.zerocast.tv/player/jwplayer.flash.swf pageUrl=http://zerocast.in/embed.php?a=309 token=OOG17t.x#K9Vh#|
+#EXTINF:-1,usa
+rtmp://$OPT:rtmp-raw=rtmp://rtmp.myhdcast.com/redirect/jvZXQUYQmlsPirfiVK1G swfUrl=http://cdn.zerocast.tv/player/jwplayer.flash.swf pageUrl=http://zerocast.in/embed.php?a=19 token=OOG17t.x#K9Vh#|
+#EXTINF:-1,***HasBahCa IPTV***ENGLISH USA SERIES***
+http://www.hasbahcaiptv.com/m3u/turkiye.mp4
+#EXTINF:-1,A Sweet Reality
+http://archive.org/download/scm-27690-asweetreality/words-of-peace-a-sweet-reality.mp4
+#EXTINF:-1,Choose to Win
+http://archive.org/download/scm-27694-choosetowin/words-of-peace-choose-to-win.mp4
+#EXTINF:-1,Dance with the Rhythm of Existence
+http://archive.org/download/scm-42286-dancewiththerhythmofexistence/words-of-peace-dance-with-the-rhythm-of-existence.mp4
+#EXTINF:-1,How I met your mother s08e16
+http://s2.mvds1.org/media/tv/howimetyourmother/How.I.Met.Your.Mother.S08E16.HDTV.x264-LOL.mp4
+#EXTINF:-1,Make Connection
+http://archive.org/download/scm-27702-makeconnection-en/words-of-peace-make-connection-en.mp4
+#EXTINF:-1,New Girl S02E17
+http://s2.mvds1.org/media3/tv/newgirl/New.Girl.S02E17.HDTV.x264-LOL.mp4
+#EXTINF:-1,New Girl S02E18
+http://s2.mvds1.org/media3/tv/newgirl/New.Girl.S02E18.HDTV.x264-LOL.mp4
+#EXTINF:-1,New Girl S02E20
+http://s2.mvds1.org/media3/tv/newgirl/New.Girl.S02E20.HDTV.x264-LOL.mp4
+#EXTINF:-1,New Girl S02E21
+http://s2.mvds1.org/media3/tv/newgirl/New.Girl.S02E21.HDTV.x264-LOL.mp4
+#EXTINF:-1,New Girl S02E22
+http://s2.mvds1.org/media3/tv/newgirl/New.Girl.S02E22.HDTV.x264-LOL.mp4
+#EXTINF:-1,New Girl S2E16
+http://s2.mvds1.org/media3/tv/newgirl/New.Girl.S02E16.HDTV.x264-LOL.mp4
+#EXTINF:-1,Revolution of Understanding
+http://archive.org/download/scm-42290-revolutionofunderstanding/words-of-peace-revolution-of-understanding.mp4
+#EXTINF:-1,Shah Alam Words of Peace Global http://wopg.org
+http://archive.org/download/scm-70078-shahalam/words-of-peace-shah-alam.mp4
+#EXTINF:-1,The Big Bang Theory S06E16
+http://s2.mvds1.org/media3/tv/bigbangtheory//The.Big.Bang.Theory.S06E16.mp4
+#EXTINF:-1,Two and a Half Men S10E14
+http://s2.mvds1.org/media/tv/twoandahalfmen/Two.and.a.Half.Men.S10E14.HDTV.x264-LOL.mp4
+#EXTINF:-1,Two and a Half Men S10E15
+http://s2.mvds1.org/media/tv/twoandahalfmen/Two.and.a.Half.Men.1015.mp4
+#EXTINF:-1,Two and a Half Men S10E17
+http://s2.mvds1.org/media/tv/twoandahalfmen/Two.and.a.Half.Men.S10E17.HDTV.x264-LOL.mp4
+#EXTINF:-1,WORDS OF PEACE - IN THE BOX
+http://archive.org/download/scm-70098-inthebox/words-of-peace-in-the-box.pegssc.mpeg
+#EXTINF:-1,Words of Peace - Peace is Already There
+http://archive.org/download/scm-22554-wordsofpeace-peaceisalreadythe/words-of-peace-2012-03-18-peace-is-already-there.mp4
+#EXTINF:-1,Words of Peace- peace and well being
+http://ia700808.us.archive.org/14/items/dom-420801-wordsofpeace-peaceandwellbein/words_of_peace_212_280_0.mp4
+#EXTINF:-1,Words of Peace- Seeds of Peace
+http://ia700802.us.archive.org/35/items/dom-420798-wordsofpeace-seedsofpeace/words_of_peace_211_279_0.mp4

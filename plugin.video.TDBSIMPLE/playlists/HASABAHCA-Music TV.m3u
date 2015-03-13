@@ -1,0 +1,179 @@
+﻿#EXTM3U
+#EXTINF:-1,***HasBahCa IPTV***MÜZİK_INT_MUSIC***
+http://www.hasbahcaiptv.com/m3u/turkiye.mp4
+#EXTINF:-1,Amerika_Latino Argentina - Quiero Musica mms
+mms://200.42.92.6:1755/qmusica
+#EXTINF:-1,Amerika_Latino Gotica Music
+rtmp://149.11.34.6:1935/live/gotica.stream
+#EXTINF:-1,Amerika_Latino MiMusica TV (Latino)
+http://uneapple-i.akamaihd.net/hls/live/206731/grupoune_st20@206731/st20_index.m3u8
+#EXTINF:-1,BRASIL First Music HD 1080p
+rtmp://109.239.142.62/live/livestream3
+#EXTINF:-1,Deluxe 80S EXTREME
+rtmp://$OPT:rtmp-raw=rtmp://flash1.ipercast.net/deluxemusic.tv playpath=mp4:staging/120208-80s-extreme-catchup.mp4.mp4 swfUrl=http://static.staging.deluxemusic.tv.dl1.ipercast.net/theme/deluxemusic.tv/flash/player.swf pageUrl=http://deluxemusic.tv.staging.ipercast.net/?live_playlist_id=30&policy=4c63b58575744&Playlist;********** live=1
+#EXTINF:-1,DELUXE ALLSTARS
+rtmp://$OPT:rtmp-raw=rtmp://flash1.ipercast.net/deluxemusic.tv playpath=mp4:staging/120209-allstars-catchup.mp4.mp4 swfUrl=http://static.staging.deluxemusic.tv.dl1.ipercast.net/theme/deluxemusic.tv/flash/player.swf pageUrl=http://deluxemusic.tv.staging.ipercast.net/?live_playlist_id=56&policy;=&Playlist;********** live=1
+#EXTINF:-1,Deluxe AMERICAN
+rtmp://$OPT:rtmp-raw=rtmp://flash1.ipercast.net/deluxemusic.tv playpath=mp4:staging/120227-american-catchup.mp4.mp4 swfUrl=http://static.staging.deluxemusic.tv.dl1.ipercast.net/theme/deluxemusic.tv/flash/player.swf pageUrl=http://deluxemusic.tv.staging.ipercast.net/?live_playlist_id=17&policy=4c63b58575744&Playlist;********** live=1
+#EXTINF:-1,Deluxe BEST OF GENRE
+rtmp://$OPT:rtmp-raw=rtmp://flash1.ipercast.net/deluxemusic.tv playpath=mp4:staging/111201-best-of-genre-catchup.mp4 swfUrl=http://static.staging.deluxemusic.tv.dl1.ipercast.net/theme/deluxemusic.tv/flash/player.swf pageUrl=http://deluxemusic.tv.staging.ipercast.net/?live_playlist_id=62&policy;=&Playlist;********** live=1
+#EXTINF:-1,Deluxe DINNER @ BAR TUNES
+rtmp://$OPT:rtmp-raw=rtmp://flash1.ipercast.net/deluxemusic.tv playpath=mp4:staging/120217-dinner-bar-tunes-catchup.mp4.mp4 swfUrl=http://static.staging.deluxemusic.tv.dl1.ipercast.net/theme/deluxemusic.tv/flash/player.swf pageUrl=http://deluxemusic.tv.staging.ipercast.net/?live_playlist_id=66&policy;=&Playlist;********** live=1
+#EXTINF:-1,Deluxe DISCO
+rtmp://$OPT:rtmp-raw=rtmp://flash1.ipercast.net/deluxemusic.tv playpath=mp4:staging/120228-disco-deluxe-catchup.mp4.mp4 swfUrl=http://static.staging.deluxemusic.tv.dl1.ipercast.net/theme/deluxemusic.tv/flash/player.swf pageUrl=http://deluxemusic.tv.staging.ipercast.net/?live_playlist_id=26&policy=4c63b58575744&Playlist;********** live=1
+#EXTINF:-1,Deluxe GOLD
+rtmp://$OPT:rtmp-raw=rtmp://flash1.ipercast.net/deluxemusic.tv playpath=mp4:staging/120208-gold-catchup.mp4.mp4 swfUrl=http://static.staging.deluxemusic.tv.dl1.ipercast.net/theme/deluxemusic.tv/flash/player.swf pageUrl=http://deluxemusic.tv.staging.ipercast.net/?live_playlist_id=57&policy;=&Playlist;********** live=1
+#EXTINF:-1,Deluxe HITS ONLY
+rtmp://$OPT:rtmp-raw=rtmp://flash1.ipercast.net/deluxemusic.tv playpath=mp4:staging/120203-hits-only-catchup.mp4.mp4 swfUrl=http://static.staging.deluxemusic.tv.dl1.ipercast.net/theme/deluxemusic.tv/flash/player.swf pageUrl=http://deluxemusic.tv.staging.ipercast.net/?live_playlist_id=33&policy=4c63b58575744&Playlist;********** live=1
+#EXTINF:-1,Deluxe JUKEBOX
+rtmp://$OPT:rtmp-raw=rtmp://flash1.ipercast.net/deluxemusic.tv playpath=mp4:staging/120227-jukebox-catchup.mp4.mp4 swfUrl=http://static.staging.deluxemusic.tv.dl1.ipercast.net/theme/deluxemusic.tv/flash/player.swf pageUrl=http://deluxemusic.tv.staging.ipercast.net/?live_playlist_id=103&policy;=&Playlist;********** live=1
+#EXTINF:-1,Deluxe Ladies Night
+rtmp://$OPT:rtmp-raw=rtmp://flash1.ipercast.net/deluxemusic.tv playpath=mp4:staging/120215-ladies-night-catchup.mp4.mp4 swfUrl=http://static.staging.deluxemusic.tv.dl1.ipercast.net/theme/deluxemusic.tv/flash/player.swf pageUrl=http://deluxemusic.tv.staging.ipercast.net/?live_playlist_id=63&policy;=&Playlist;********** live=1
+#EXTINF:-1,Deluxe LOVE LOUNGE
+rtmp://$OPT:rtmp-raw=rtmp://flash1.ipercast.net/deluxemusic.tv playpath=mp4:staging/120131-love-lounge-catchup.mp4.mp4 swfUrl=http://static.staging.deluxemusic.tv.dl1.ipercast.net/theme/deluxemusic.tv/flash/player.swf pageUrl=http://deluxemusic.tv.staging.ipercast.net/?live_playlist_id=51&policy;=&Playlist;********** live=1
+#EXTINF:-1,Deluxe MORNING COFFEE
+rtmp://$OPT:rtmp-raw=rtmp://flash1.ipercast.net/deluxemusic.tv playpath=mp4:staging/120228-morning-coffee-catchup.mp4.mp4 swfUrl=http://static.staging.deluxemusic.tv.dl1.ipercast.net/theme/deluxemusic.tv/flash/player.swf pageUrl=http://deluxemusic.tv.staging.ipercast.net/?live_playlist_id=64&policy;=&Playlist;********** live=1
+#EXTINF:-1,Deluxe Music TV
+rtmp://flash.cdn.deluxemusic.tv/deluxemusic.tv-live/web_850.stream
+#EXTINF:-1,Deluxe PURE 90S
+rtmp://$OPT:rtmp-raw=rtmp://flash1.ipercast.net/deluxemusic.tv playpath=mp4:staging/120208-pure-90s-catchup.mp4.mp4 swfUrl=http://static.staging.deluxemusic.tv.dl1.ipercast.net/theme/deluxemusic.tv/flash/player.swf pageUrl=http://deluxemusic.tv.staging.ipercast.net/?live_playlist_id=29&policy=4c63b58575744&Playlist;********** live=1
+#EXTINF:-1,DELUXE ROCK
+rtmp://$OPT:rtmp-raw=rtmp://flash1.ipercast.net/deluxemusic.tv playpath=mp4:staging/120207-deluxe-rock-catchup.mp4.mp4 swfUrl=http://static.staging.deluxemusic.tv.dl1.ipercast.net/theme/deluxemusic.tv/flash/player.swf pageUrl=http://deluxemusic.tv.staging.ipercast.net/?live_playlist_id=28&policy=4c63b58575744&Playlist;********** live=1
+#EXTINF:-1,Deluxe SOUL
+rtmp://$OPT:rtmp-raw=rtmp://flash1.ipercast.net/deluxemusic.tv playpath=mp4:staging/120216-soul-catchup.mp4.mp4 swfUrl=http://static.staging.deluxemusic.tv.dl1.ipercast.net/theme/deluxemusic.tv/flash/player.swf pageUrl=http://deluxemusic.tv.staging.ipercast.net/?live_playlist_id=54&policy;=&Playlist;********** live=1
+#EXTINF:-1,Deluxe SUNDAY BRUNCH
+rtmp://$OPT:rtmp-raw=rtmp://flash1.ipercast.net/deluxemusic.tv playpath=mp4:staging/120215-brunch-catchup.mp4.mp4 swfUrl=http://static.staging.deluxemusic.tv.dl1.ipercast.net/theme/deluxemusic.tv/flash/player.swf pageUrl=http://deluxemusic.tv.staging.ipercast.net/?live_playlist_id=53&policy;=&Playlist;********** live=1
+#EXTINF:-1,Deluxe UK SENSATIONS
+rtmp://$OPT:rtmp-raw=rtmp://flash1.ipercast.net/deluxemusic.tv playpath=mp4:staging/120203-uk-sensations-catchup.mp4.mp4 swfUrl=http://static.staging.deluxemusic.tv.dl1.ipercast.net/theme/deluxemusic.tv/flash/player.swf pageUrl=http://deluxemusic.tv.staging.ipercast.net/?live_playlist_id=31&policy=4c63b58575744&Playlist;********** live=1
+#EXTINF:-1,DEUTSCH Deluxe Music  TV
+rtmp://flash.cdn.deluxemusic.tv/deluxemusic.tv-live/web_850.stream
+#EXTINF:-1,DEUTSCH DELUXE MUSIC TV 720*406
+http://flash.cdn.deluxemusic.tv/deluxemusic.tv-live/web_850.stream/hasbahca.m3u8?bitrate=800
+#EXTINF:-1,DISCOTKTV
+rtmp://$OPT:rtmp-raw=rtmp://190.0.28.154:1935/live/ playpath=discotktv pageUrl=http://www.huraivzatv.club/
+#EXTINF:-1,English JCTV Music, Mobile, Music Blender, Others US
+http://www.jctv.org/watchlive/jc-tv200.asx
+#EXTINF:-1,English Knob Ch3 music mms
+mms://streams.tvknob.com/tvloops/Ch3/tvknob.wsx
+#EXTINF:-1,English Music Box UA
+rtmp://212.26.132.86/live/mb_ua
+#EXTINF:-1,ESKA ROCK Music
+rtmp://stream.smcloud.net/live2/eska_rock/eska_rock_360p
+#EXTINF:-1,Europa Plus Music
+rtsp://europaplus.cdnvideo.ru:1935/europaplus-live/eptv_main.sdp
+#EXTINF:-1,EuropaPlus Music
+rtmp://europaplus.cdnvideo.ru:1935/europaplus-live/eptv_main.sdp
+#EXTINF:-1,FILMON FilmOn Music Legends TV
+rtmp://mi2.gv.filmon.com:8086/live/257.high.stream
+#EXTINF:-1,Four Music TV
+rtmp://wowza1.top-ix.org/quartaretetv1/formusicweb
+#EXTINF:-1,Georgia Russian Music Box
+http://80.77.52.6:4444/udp/230.0.4.9:12345?by_HasBahCa
+#EXTINF:-1,GOTICA TV
+rtmp://$OPT:rtmp-raw=rtmp://149.11.34.6:1935/live playpath=gotica.stream pageUrl=http://www.huraivzatv.club/
+#EXTINF:-1,IBIZA ON TV
+rtsp://46.249.213.87/broadcast/ibizaontv-tablet.3gp?trackingid=3041310000
+#EXTINF:-1,Iper TV mmsh
+mmsh://mediatv2.topix.it/24Ipertv66
+#EXTINF:-1,ITV Poland
+mms://194.150.185.253/ITV
+#EXTINF:-1,JAPAN TbsMusicDay
+rtsp://u.itvitv.com/TbsMusicDay
+#EXTINF:-1,KISS TV
+rtmp://$OPT:rtmp-raw=rtmp://tst.es.flash.glb.ipercast.net:1935/tst.es-live playpath=live pageUrl=http://www.huraivzatv.club/
+#EXTINF:-1,LOBAS TV
+rtmp://$OPT:rtmp-raw=rtmp://149.11.34.6:1935/live playpath=lobas.stream pageUrl=http://www.huraivzatv.club/
+#EXTINF:-1,MELODY CHANNEL TV
+rtmp://$OPT:rtmp-raw=rtmp://190.0.28.154:1935/live/ playpath=pqDyhE3GWS swfUrl=http://p.jwpcdn.com/6/6/jwplayer.flash.swf live=1 pageUrl=http://www.huraivzatv.club/
+#EXTINF:-1,MIMUSICA HD
+http://uneapple-i.akamaihd.net/hls/live/206731/grupoune_st20@206731/st20_index.m3u8
+#EXTINF:-1,mms Quiero Musica En Mi Idioma
+mms://streamqm.uigc.net/qmusica
+#EXTINF:-1,MONTECARLO MUSIC
+rtmp://fms.105.net/live/rmc1
+#EXTINF:-1,MUSIC BOX
+rtmp://$OPT:rtmp-raw=rtmp://musicbox.cdnvideo.ru/musicbox-live playpath=musicbox.sdp swfUrl=http://out.pro-tv.net/player/player.swf pageUrl=http://out.pro-tv.net/481ussian-musicbox.html live=1
+#EXTINF:-1,MUSICBOX TV RU
+rtmp://musicbox.cdnvideo.ru/musicbox-live/musicbox.sdp
+#EXTINF:-1,PARTY TV
+rtmp://$OPT:rtmp-raw=rtmp://149.11.34.6:1935/live playpath=partytv.stream pageUrl=http://www.huraivzatv.club/
+#EXTINF:-1,Party TV Entertainment
+rtmp://149.11.34.6/live/partytv.stream
+#EXTINF:-1,POLSKI Eska Best.Music Tv
+rtmp://stream.smcloud.net/live2/best/best_360p
+#EXTINF:-1,POLSKI Vox Music Tv
+rtmp://stream.smcloud.net/live/vox2/stream1
+#EXTINF:-1,Rock One mmsh
+mmsh://mediatv2.topix.it/24RockOne66
+#EXTINF:-1,ROUGE TV France
+rtmp://rtmp.infomaniak.ch/livecast/rougetv
+#EXTINF:-1,Spain First Music HD 1080p
+rtmp://109.239.142.62/live/livestream3
+#EXTINF:-1,Spain Gotica tv (musica)
+rtmp://$OPT:rtmp-raw=rtmp://149.11.34.6/live playpath=gotica.stream swfUrl=http://tvonlineapp.com/player/jwplayer/player.swf live=1 pageUrl=http://tvonlineapp.com/app/containerEmbed.php?p=11641
+#EXTINF:-1,Spain Kiss tv (Musica)
+rtmp://$OPT:rtmp-raw=rtmp://tst.es.flash.glb.ipercast.net/tst.es-live/ playpath=live swfUrl=http://www.kisstelevision.es/flowplayer-3.2.16.swf live=vcx7
+#EXTINF:-1,Spain Kiss tv (Musica)
+rtmp://tst.es.flash.glb.ipercast.net/tst.es-live/live
+#EXTINF:-1,Spain mimusica
+http://uneapple-i.akamaihd.net/hls/live/206731/grupoune_st20@206731/st20_index.m3u8
+#EXTINF:-1,Spain PARTY TV-(Musica)
+rtmp://$OPT:rtmp-raw=rtmp://149.11.34.6/live playpath=partytv.stream swfUrl=http://www.lasteles.com/js/mediaplayer-5.10/player.swf?729 live=1 pageUrl=http://www.lasteles.com/es/directo/PARTY-TV/video/Party-TV/10870
+#EXTINF:-1,Spain STAGE TV-(musica) 24 horas de los mejores Directos
+rtmp://$OPT:rtmp-raw=rtmp://149.11.34.6/live playpath=stagetv.stream swfUrl=http://www.lasteles.com/js/mediaplayer-5.10/player.swf?922 live=1 pageUrl=http://www.lasteles.com/es/directo/STAGE-TV/
+#EXTINF:-1,Spain TOPHITS MUSIC
+rtmp://$OPT:rtmp-raw=rtmp://rtmp.infomaniak.ch/livecast playpath=rougetv swfUrl=http://static.infomaniak.ch/livetv/playerMain-v4.2.63.swf?bLd=0&sVersion=4%2E2%2E63&sDescription=&sTitle= live=1 pageUrl=http://static.infomaniak.ch/configvideo/rougetv/rouge_tv_live_2011/live.html
+#EXTINF:-1,Spain UNLOVE TV-(Musica)
+rtmp://$OPT:rtmp-raw=rtmp://149.11.34.6/live playpath=unlovechannel.stream swfUrl=http://lasteles.com/js/mediaplayer-5.10/player.swf?171 live=1 pageUrl=http://lasteles.com/es/directo/UNLOVE-TV/video/Unlove-TV/7313
+#EXTINF:-1,STAGE TV
+rtmp://$OPT:rtmp-raw=rtmp://149.11.34.6:1935/live playpath=stagetv.stream pageUrl=http://www.huraivzatv.club/
+#EXTINF:-1,UNLOVE TV
+rtmp://$OPT:rtmp-raw=rtmp://149.11.34.6/live playpath=unlovechannel.stream pageUrl=http://www.huraivzatv.club/
+#EXTINF:-1,VEVO 01
+http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/01/prog_index.m3u8
+#EXTINF:-1,VEVO 02
+http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch2/01/prog_index.m3u8
+#EXTINF:-1,VEVO 03
+http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch3/01/prog_index.m3u8
+#EXTINF:-1,VEVO 04
+http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/02/prog_index.m3u8
+#EXTINF:-1,VEVO 05
+http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch2/02/prog_index.m3u8
+#EXTINF:-1,VEVO 06
+http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch3/02/prog_index.m3u8
+#EXTINF:-1,VEVO 07
+http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/03/prog_index.m3u8
+#EXTINF:-1,VEVO 08
+http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch2/03/prog_index.m3u8
+#EXTINF:-1,VEVO 09
+http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch3/03/prog_index.m3u8
+#EXTINF:-1,VEVO 1
+http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/06/prog_index.m3u8
+#EXTINF:-1,VEVO 10
+http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/04/prog_index.m3u8
+#EXTINF:-1,VEVO 11
+http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch2/04/prog_index.m3u8
+#EXTINF:-1,VEVO 12
+http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch3/04/prog_index.m3u8
+#EXTINF:-1,VEVO 13
+http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/05/prog_index.m3u8
+#EXTINF:-1,VEVO 14
+http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch2/05/prog_index.m3u8
+#EXTINF:-1,VEVO 15
+http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch3/05/prog_index.m3u8
+#EXTINF:-1,VEVO 16
+http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/06/prog_index.m3u8
+#EXTINF:-1,VEVO 17
+http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch2/06/prog_index.m3u8
+#EXTINF:-1,VEVO 18
+http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch3/06/prog_index.m3u8
+#EXTINF:-1,VEVO 3
+http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch3/06/prog_index.m3u8
+#EXTINF:-1,Vevo TV 1 HD
+http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/06/prog_index.m3u8
+#EXTINF:-1,Vevo TV 2 HD
+http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch2/06/prog_index.m3u8
+#EXTINF:-1,Vevo TV 3 HD
+http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch3/06/prog_index.m3u8
+#EXTINF:-1,VIETNAM VMusic
+http://83.170.111.147:1935/liveStream/mtv_1/HasBahCa.m3u8

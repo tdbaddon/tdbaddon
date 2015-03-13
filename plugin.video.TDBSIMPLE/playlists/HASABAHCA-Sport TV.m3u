@@ -1,0 +1,243 @@
+﻿#EXTM3U
+#EXTINF:-1,***HasBahCa IPTV***SPOR_INT_SPORTS***
+http://www.hasbahcaiptv.com/m3u/turkiye.mp4
+#EXTINF:-1,AD Sports 1 UAE
+http://odna.octoshape.net/h5f3k7p8/cds/smil:adsport1hd/chunklist_b880000.m3u8
+#EXTINF:-1,AD Sports 2 UAE
+http://odna.octoshape.net/h5f3k7p8/cds/smil:adsport2hd/chunklist_b880000.m3u8
+#EXTINF:-1,ALBANIA_BOSNIA:Super Sport 1HD
+http://5.39.44.105/albtv/albtv24.com/2.ch
+#EXTINF:-1,ALBANIA_BOSNIA:Super Sport 2HD
+http://5.39.44.105/albtv/albtv24.com/1.ch
+#EXTINF:-1,ALBANIA_BOSNIA:Super Sport 3HD
+http://5.39.44.105/albtv/albtv24.com/3.ch
+#EXTINF:-1,Antena 3 Sports 720 HD
+http://antena3-aos1-apple-live.adaptive.level3.net/apple/antena3/channel01/antena_3_hd_1548K_1280x720_main.m3u8
+#EXTINF:-1,ARABIC:Al Nahar Sport
+rtmp://50.7.180.18:1935/elnahar_tv/nahar_sport.stream
+#EXTINF:-1,ARABIC:NileSports
+rtmp://alsersawy2-stream.dyndns.tv:1935/jr1/NileSports
+#EXTINF:-1,ARABIC-Dubai Sports 3
+http://cdnehlsdubaisports3.endavomedia.com/smil:dmilivedubaisports3.smil/HasBahCa.m3u8
+#EXTINF:-1,ARABIC-SaudiSport
+http://intigral_live-lh.akamaihd.net/i/DPS2KCCAHLXSHB010514_1@135296/index_1200_av-p.m3u8
+#EXTINF:-1,ARENA SPORT
+http://118.97.167.19/jhos/arena//Playlist.m3u8
+#EXTINF:-1,Arena Sport 1 sr
+http://89.212.240.49:11980/live/smil:365_0.smil/playlist.m3u8?authorization_key=hNj0mnLtB9O5rfIKuCVsX7oWASQayqZg&stream_id=0
+#EXTINF:-1,Arena Sport 3 sr
+http://89.212.240.49:11980/live/smil:367_0.smil/playlist.m3u8?authorization_key=hNj0mnLtB9O5rfIKuCVsX7oWASQayqZg&stream_id=0
+#EXTINF:-1,Arenasport 1
+http://sipragezabava.com/live/arena1
+#EXTINF:-1,Arenasport 1 HD
+http://89.212.240.49:11980/live/smil:365_0.smil/playlist.m3u8?authorization_key=hNj0mnLtB9O5rfIKuCVsX7oWASQayqZg&stream_id=0
+#EXTINF:-1,Arenasport 2
+http://sipragezabava.com/live/arena2
+#EXTINF:-1,Arenasport 2 HD
+http://89.212.240.49:11980/live/smil:366_0.smil/playlist.m3u8?authorization_key=hNj0mnLtB9O5rfIKuCVsX7oWASQayqZg&stream_id=0
+#EXTINF:-1,Arenasport 3
+http://sipragezabava.com/live/arena3
+#EXTINF:-1,Arenasport 3 HD
+http://89.212.240.49:11980/live/smil:367_0.smil/playlist.m3u8?authorization_key=hNj0mnLtB9O5rfIKuCVsX7oWASQayqZg&stream_id=0
+#EXTINF:-1,Arenasport 4
+http://sipragezabava.com/live/arena4
+#EXTINF:-1,Arenasport 5
+http://sipragezabava.com/live/arena5
+#EXTINF:-1,Arenasport 5 HD
+http://89.212.240.49:11980/live/smil:369_0.smil/playlist.m3u8?authorization_key=hNj0mnLtB9O5rfIKuCVsX7oWASQayqZg&stream_id=0
+#EXTINF:-1,Auto Moto TV Gaz
+mms://100automoto.tv/100gaz
+#EXTINF:-1,AZERBAYCAN-idman sports m3u8 myvideo.az
+http://hls01-07.az.myvideo.az/hls-live/livepkgr/idman/idman/idman.m3u8
+#EXTINF:-1,BRASIL-ESPN+
+rtmp://31.204.128.74/live/master27
+#EXTINF:-1,BRASIL-FOX SPORTS
+rtmp://31.204.153.72/live/fsb
+#EXTINF:-1,BULGAR-BULSAT:Eurosport 2
+http://93.155.252.19:37665/udp/239.1.1.130:4000
+#EXTINF:-1,BULGAR-BULSAT:nova sport
+http://74.122.193.208:1935/DrundooDVR/_definst_/smil:b0525ed5-1933-4408-9248-1569491c8448.smil/HasBahCa.m3u8
+#EXTINF:-1,BULGAR-BULSAT:Nova Sport
+http://74.122.193.208:1935/DrundooDVR/_definst_/smil:74010166-8ebf-4a14-9e8d-7a6e90072611.smil/HasBahCa.m3u8
+#EXTINF:-1,Czech:O Sport
+http://212.79.96.134:8014/
+#EXTINF:-1,DEUTSCH EUROSPORT m3u8 1024*576
+http://pebbles105-lh.akamaihd.net/i/eurosportde_1@97452/index_1300_av-p.m3u8
+#EXTINF:-1,DEUTSCH EUROSPORT m3u8 720*404
+http://pebbles105-lh.akamaihd.net/i/eurosportde_1@97452/index_900_av-p.m3u8
+#EXTINF:-1,DEUTSCH SPORT 1 m3u8 1024*576
+http://pebbles108-lh.akamaihd.net/i/sport1_1@97464/index_1300_av-p.m3u8
+#EXTINF:-1,DEUTSCH SPORT 1 m3u8 720*404
+http://pebbles108-lh.akamaihd.net/i/sport1_1@97464/index_900_av-p.m3u8
+#EXTINF:-1,Digi Sport 2
+http://91.211.51.155:5555/udp/224.20.20.240:1234
+#EXTINF:-1,Digi Sport 3
+http://91.211.51.155:5555/udp/224.20.20.239:1234
+#EXTINF:-1,Dolce Sport
+http://91.211.51.155:5555/udp/224.20.20.229:1234
+#EXTINF:-1,Dolce Sport 2
+http://91.211.51.155:5555/udp/224.20.20.242:1234
+#EXTINF:-1,Dolce Sport 3
+http://91.211.51.155:5555/udp/224.20.20.228:1234
+#EXTINF:-1,Dolce Sport 4
+http://91.211.51.155:5555/udp/224.20.20.227:1234
+#EXTINF:-1,Dolce Sport HD
+http://91.211.51.155:5555/udp/224.20.20.226:1234
+#EXTINF:-1,ENG-Climb On
+rtsp://46.249.213.93/broadcast/climbon-tablet.3gp
+#EXTINF:-1,ENG-MMA BAY TV
+rtmp://extondemand.livestream.com:80/ondemand/trans/dv10/mogulus-user-files/chmmabaytv/2010/09/12/d9fbeee7-79aa-4ec2-98d2-1f1f168b91a3
+#EXTINF:-1,ESPN
+http://live.oneplay.tv/reproducir/405.m3u8
+#EXTINF:-1,ESPN 2
+http://live.oneplay.tv/reproducir/409.m3u8
+#EXTINF:-1,ESPN 3
+http://live.oneplay.tv/reproducir/393.m3u8
+#EXTINF:-1,ESPN 3 arg
+http://200.76.77.237/LIVE/H01/CANAL520/PROFILE03.m3u8
+#EXTINF:-1,ESPN HD
+http://live.oneplay.tv/reproducir/389.m3u8
+#EXTINF:-1,Eurosport 1 ENG
+http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_1000.m3u8
+#EXTINF:-1,EUROSPORT 1 FR
+http://esioslive6-i.akamaihd.net/hls/live/202892/AL_P_ESP1_FR_FRA/playlist_1800.m3u8
+#EXTINF:-1,Eurosport 2  m3u8 720*576 myvideo.az
+http://hls01-04.az.myvideo.az/hls-live/livepkgr/eurosport2/eurosport2/eurosport2.m3u8?hasbahcaiptv.com=fb%2Fsimpletvipadresleri
+#EXTINF:-1,Football 1(UA)
+http://streamer-hls.fregat.net:8080/hls/football1.m3u8
+#EXTINF:-1,Football 2 (UA)
+http://streamer-hls.fregat.net:8080/hls/football2.m3u8
+#EXTINF:-1,FOX SPORT
+http://live.oneplay.tv/reproducir/397.m3u8
+#EXTINF:-1,Fox Sports ar
+http://200.76.77.237/LIVE/H01/CANAL522/PROFILE03.m3u8
+#EXTINF:-1,Fox Sports br
+rtmp://$OPT:rtmp-raw=rtmp://31.204.153.72/live/ playpath=fsb swfUrl=http://www.tv-msn.com/player5.swf live=1 pageUrl=http://www.cdnbr.biz/
+#EXTINF:-1,Fox Sports br
+rtmp://31.204.153.72/live//fsb
+#EXTINF:-1,KAZSPORT
+http://vs1.cdn.ott.otautv.kz/dtv/id14_KTR_SG--KazSport/01/plst.m3u8
+#EXTINF:-1,KURDI:waar-sport-tv
+rtmp://$OPT:rtmp-raw=rtmp://live.karwan.tv:1935/waar-sport-tv/ playpath=waar-sport-tv.stream swfUrl=http://onyxvids.stream.onyxservers.com/[[IMPORT]]/karwan.tv/player_file/flowplayer/player.cluster-3.2.9.swf live=1 pageUrl=http://karwan.tv/waar-sport-tv.html
+#EXTINF:-1,Magyar:SPORT M
+http://bobanku:bobistb@217.17.106.114:9508
+#EXTINF:-1,MISIR_EGYPTIAN:Alriadia_sport
+rtmp://162.212.176.107:1935/alriadia_sport/globaltv-alriadia_sport.stream
+#EXTINF:-1,MOTOR TV
+rtmp://mi2.gv.filmon.com:8086/live/262.high.stream
+#EXTINF:-1,Motorsport 7 Channel Australia
+http://motorsport.hopto.org:8080/
+#EXTINF:-1,MTV Fudbal 2
+http://91.211.51.155:5555/udp/224.21.21.244:1234
+#EXTINF:-1,NTV Fudbal 1
+http://91.211.51.155:5555/udp/224.21.21.243:1234
+#EXTINF:-1,NTV Fudbal 3
+http://91.211.51.155:5555/udp/224.21.21.155:1234
+#EXTINF:-1,Serbia_Croatia:Eurosport
+http://83.139.104.105/Content/HLS/Live/Channel(eurosport)/Stream(03)/index.m3u8
+#EXTINF:-1,Serbia_Croatia:Eurosport 2
+http://83.139.104.105/Content/HLS/Live/Channel(eurosport_2)/Stream(03)/index.m3u8
+#EXTINF:-1,Serbia_Croatia:EXTREME SPORTS
+http://83.139.104.105/Content/HLS/Live/Channel(extreme_sports)/Stream(03)/index.m3u8
+#EXTINF:-1,Serbia_Croatia:SPORTSKA TV
+http://83.139.104.105/Content/HLS/Live/Channel(sportska_tv)/Stream(03)/index.m3u8
+#EXTINF:-1,Setanta Eurasia
+http://80.77.52.6:7781/udp/230.0.4.1:12345
+#EXTINF:-1,Spain:ESPN
+http://200.76.77.237/LIVE/H01/CANAL558/PROFILE03.m3u8?HasBahCa
+#EXTINF:-1,Spain:ESPN HD
+http://200.76.77.237/LIVE/H01/CANAL516/PROFILE03.m3u8?HasBahCa
+#EXTINF:-1,Spain:ESPN2
+http://200.76.77.237/LIVE/H01/CANAL561/PROFILE03.m3u8?HasBahCa
+#EXTINF:-1,Spain:ESPN3
+http://200.76.77.237/LIVE/H01/CANAL520/PROFILE03.m3u8?HasBahCa
+#EXTINF:-1,Spain:FOX SPORTS
+http://200.76.77.237/LIVE/H01/CANAL522/PROFILE03.m3u8?HasBahCa
+#EXTINF:-1,Spain:FOX SPORTS 2
+http://200.76.77.237/LIVE/H01/CANAL527/PROFILE03.m3u8?HasBahCa
+#EXTINF:-1,Spain-FOX SPORTS
+http://200.76.77.237/LIVE/H01/CANAL522/PROFILE03.m3u8?HasBahCa
+#EXTINF:-1,Spain-FOX SPORTS 2
+http://200.76.77.237/LIVE/H01/CANAL527/PROFILE03.m3u8?HasBahCa
+#EXTINF:-1,SPORT TIME TV 1HD
+rtmp://streamer.a1.net:1935/rtmplive/redundant/channels/Sporttime/SporttimeTV/mp4:channel1_1200
+#EXTINF:-1,SPORT TIME TV 2HD
+rtmp://streamer.a1.net:1935/rtmplive/redundant/channels/Sporttime/SporttimeTV/mp4:channel2_1200
+#EXTINF:-1,SPORT TIME TV 3HD
+rtmp://streamer.a1.net:1935/rtmplive/redundant/channels/Sporttime/SporttimeTV/mp4:channel3_1200
+#EXTINF:-1,SPORT TIME TV 6HD
+rtmp://streamer.a1.net:1935/rtmplive/redundant/channels/Sporttime/SporttimeTV/mp4:channel6_1200
+#EXTINF:-1,Sport Tv 2 pt
+rtmp://$OPT:rtmp-raw=rtmpe://5.153.233.106:443/share/ playpath=live2-bipmr swfUrl=http://sharecast.to/player/player20.swf live=1 timeout=13 pageUrl=http://sharecast.to/
+#EXTINF:-1,Sport Tv 2 slovenjia
+http://maxtv.ml.twilightparadox.com/sporttv2/sporttv2.isml/sporttv2-video%3D4500000-audio101%3D128000.m3u8
+#EXTINF:-1,Sport Tv 3 pt
+rtmp://$OPT:rtmp-raw=rtmpe://5.153.233.106:443/share/ playpath=live3-qszlx swfUrl=http://sharecast.to/player/player20.swf live=1 timeout=10 pageUrl=http://sharecast.to/
+#EXTINF:-1,Sport.ro HD
+http://91.211.51.155:5555/udp/224.20.20.248:1234
+#EXTINF:-1,Sports Night
+rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9-SD
+#EXTINF:-1,Sports Night HD
+rtmp://$OPT:rtmp-raw=rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9-HD
+#EXTINF:-1,Sports Tonight UK
+rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9-SD?ref=www.sportstonightlive.com&USER=STL_0001
+#EXTINF:-1,Sports Tonight UK
+rtmp://$OPT:rtmp-raw=rtmp://freeview.fms.visionip.tv/live playpath=sports_tonight-sports_tonight-live-25f-16x9-SD?ref=www.sportstonightlive.com&USER=STL_0001 swfUrl=http://embeddedplayer.visionip.tv/data/swf/f22ee95bcec532c04146635a1a1adf00559/player.swf
+#EXTINF:-1,TURK-A SPOR rtmp 720*510
+http://rtmp.turkuvazgroup.net/aspor/aspor3/player.m3u8
+#EXTINF:-1,TURK-BURSASPOR TV
+http://stream.yayindayiz.biz/Bursaspor/bursaspor/hasbahca.m3u8
+#EXTINF:-1,TURK-BURSASPOR TV 720*576
+rtmp://stream.yayindayiz.biz:80/Bursaspor/bursaspor
+#EXTINF:-1,TURKMEN SPORT
+rtmp://217.174.227.20/webtv/ch004_sd
+#EXTINF:-1,TURK-NTV SPOR m3u8 640*360
+http://origin.live.web.tv.streamprovider.net/streams/a820629b8abc43c73c76b091086c138a_live_0_0/index.m3u8
+#EXTINF:-1,TURK-NTV SPOR m3u8 640*360
+http://origin.live.web.tv.streamprovider.net/streams/a820629b8abc43c73c76b091086c138a_live_0_0/index.m3u8
+#EXTINF:-1,TURK-NTV SPOR m3u8 720*576 myvideo.az
+http://hls01-08.az.myvideo.az/hls-live/livepkgr/ntvspor/ntvspor/ntvspor.m3u8?hasbahcaiptv.com=fb%2Fsimpletvipadresleri
+#EXTINF:-1,TURK-SPORTS TV m3u8 640*360
+http://origin.live.web.tv.streamprovider.net/streams/4be5c4a578575c5b4e15a61f2dbc01cf_live_0_0/index.m3u8
+#EXTINF:-1,TURK-Sports TV m3u8 720*576 myvideo.az
+http://hls01-04.az.myvideo.az/hls-live/livepkgr/sport1/sport1/sport1.m3u8?hasbahcaiptv.com=fb%2Fsimpletvipadresleri
+#EXTINF:-1,TURK-TRT SPOR m3u8 640*360
+http://origin.live.web.tv.streamprovider.net/streams/4ec69caf3e7c904f476f91d9e20213d0_live_0_0/index.m3u8
+#EXTINF:-1,TURK-TRT SPOR m3u8 720*576 myvideo.az
+http://hls01-08.az.myvideo.az/hls-live/livepkgr/trt3/trt3/trt3.m3u8?hasbahcaiptv.com=fb%2Fsimpletvipadresleri
+#EXTINF:-1,tyson
+http://hls.cn.ru/streaming/futbol/tvrec/playlist.m3u8
+#EXTINF:-1,Ukraina:EuroSport
+http://178.165.0.101:4022/udp/239.0.0.211:1234
+#EXTINF:-1,Ukraina:EuroSport 2
+http://178.165.0.101:4022/udp/239.0.0.212:1234
+#EXTINF:-1,Ukraina:Eurosport News
+http://178.165.0.101:4022/udp/239.0.0.219:1234
+#EXTINF:-1,Ukraina:Extreme Sports
+http://178.165.0.101:4022/udp/239.0.0.209:1234
+#EXTINF:-1,Ukraina:Sport 1
+http://178.165.0.101:4022/udp/239.0.0.217:1234
+#EXTINF:-1,Ukraina:Viasat Sport
+http://178.165.0.101:4022/udp/239.0.0.216:1234
+#EXTINF:-1,Ukraina:XSport
+http://178.165.0.101:4022/udp/239.0.0.218:1234
+#EXTINF:-1,USA:SPORTES 3 HD
+http://xrxs.net/video/live-p12losa-4728.m3u8
+#EXTINF:-1,USA:SPORTES 5 HD
+http://www.xrxs.net/video/live-p12netw-4728.m3u8
+#EXTINF:-1,USA:SPORTES 6 HD
+http://xrxs.net/video/live-p12netw-4728.m3u8
+#EXTINF:-1,USA:SPORTES 8 HD
+http://xrxs.net/video/live-p12wash-4728.m3u8
+#EXTINF:-1,USA-PAC 12 Arizona (HD link 1)
+http://www.xrxs.net/video/live-p12ariz-4728.m3u8
+#EXTINF:-1,USA-Pac 12 Arizona (HD link 2)
+http://xrxs.net/video/live-p12ariz-4728.m3u8
+#EXTINF:-1,USA-PAC 12 Bay Area (HD)
+http://www.xrxs.net/video/live-p12baya-4728.m3u8
+#EXTINF:-1,USA-Pac 12 Bay Area 720 HD
+http://xrxs.net/video/live-p12baya-2328.m3u8
+#EXTINF:-1,USA-PAC 12 Oregon (HD)
+http://xrxs.net/video/live-p12oreg-4728.m3u8
+#EXTINF:-1,X-Treme Sports
+rtmp://mi2.gv.filmon.com:8086/live/326.high.stream

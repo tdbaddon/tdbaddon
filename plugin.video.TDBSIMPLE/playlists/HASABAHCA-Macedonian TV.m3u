@@ -1,0 +1,73 @@
+﻿#EXTM3U
+#EXTINF:-1,***HasBahCa IPTV MAKADONYA MAZEDONIEN***
+http://www.hasbahcaiptv.com/m3u/turkiye.mp4
+#EXTINF:-1,24 kitchen
+http://macedoniathebest.mine.nu:8000/live/MACEDONIA/THEBEST/38.ts
+#EXTINF:-1,24 VESTI
+http://macedoniathebest.mine.nu:8000/live/MACEDONIA/THEBEST/60.ts
+#EXTINF:-1,24 VESTI mk
+http://macedoniathebest.mine.nu:8000/live/MACEDONIA/THEBEST/27.ts
+#EXTINF:-1,Alfa TV
+rtmp://ataka.tv/live/live
+#EXTINF:-1,ALFA TV (MKD)
+http://macedoniathebest.mine.nu:8000/live/MACEDONIA/THEBEST/61.ts
+#EXTINF:-1,BNT HD
+http://macedoniathebest.mine.nu:8000/live/MACEDONIA/THEBEST/39.ts
+#EXTINF:-1,DICOVERY
+http://macedoniathebest.mine.nu:8000/live/MACEDONIA/THEBEST/52.ts
+#EXTINF:-1,DIEMA
+http://macedoniathebest.mine.nu:8000/live/MACEDONIA/THEBEST/44.ts
+#EXTINF:-1,DIEMA FAMILY
+http://macedoniathebest.mine.nu:8000/live/MACEDONIA/THEBEST/43.ts
+#EXTINF:-1,DISCOVERY ID (SRB)
+http://macedoniathebest.mine.nu:8000/live/MACEDONIA/THEBEST/20.ts
+#EXTINF:-1,FEN TV
+http://macedoniathebest.mine.nu:8000/live/MACEDONIA/THEBEST/35.ts
+#EXTINF:-1,FOLK TV
+http://macedoniathebest.mine.nu:8000/live/MACEDONIA/THEBEST/55.ts
+#EXTINF:-1,Folklor TV
+http://macedoniathebest.mine.nu:8000/live/MACEDONIA/THEBEST/34.ts
+#EXTINF:-1,FOX
+http://macedoniathebest.mine.nu:8000/live/MACEDONIA/THEBEST/45.ts
+#EXTINF:-1,FOX CRIME
+http://macedoniathebest.mine.nu:8000/live/MACEDONIA/THEBEST/59.ts
+#EXTINF:-1,H1(Satelite)
+rtmp://hugo-iptv.zapto.org/live/h1
+#EXTINF:-1,IN TV (Australia)
+rtsp://streamus.intv.mk:1935/live/intv
+#EXTINF:-1,IRIS TV (Stip) mms
+mms://62.162.58.55/TVIris
+#EXTINF:-1,kanal + mk
+http://macedoniathebest.mine.nu:8000/live/MACEDONIA/THEBEST/28.ts
+#EXTINF:-1,KANAL 5
+http://macedoniathebest.mine.nu:8000/live/MACEDONIA/THEBEST/24.ts
+#EXTINF:-1,KANAL 8 (Kocani) mms
+mms://62.162.58.55/TVkanal8
+#EXTINF:-1,KINO NOVA
+http://macedoniathebest.mine.nu:8000/live/MACEDONIA/THEBEST/42.ts
+#EXTINF:-1,MEZZO
+http://macedoniathebest.mine.nu:8000/live/MACEDONIA/THEBEST/33.ts
+#EXTINF:-1,MRT 1
+http://macedoniathebest.mine.nu:8000/live/MACEDONIA/THEBEST/77.ts
+#EXTINF:-1,MRT 2
+http://macedoniathebest.mine.nu:8000/live/MACEDONIA/THEBEST/78.ts
+#EXTINF:-1,MRT 3
+http://macedoniathebest.mine.nu:8000/live/MACEDONIA/THEBEST/79.ts
+#EXTINF:-1,MRT SAT 1
+http://macedoniathebest.mine.nu:8000/live/MACEDONIA/THEBEST/80.ts
+#EXTINF:-1,MRT SAT 2
+http://macedoniathebest.mine.nu:8000/live/MACEDONIA/THEBEST/81.ts
+#EXTINF:-1,NAC GEO CHANNEL
+http://macedoniathebest.mine.nu:8000/live/MACEDONIA/THEBEST/53.ts
+#EXTINF:-1,NAC GEO WILD
+http://macedoniathebest.mine.nu:8000/live/MACEDONIA/THEBEST/54.ts
+#EXTINF:-1,PLANETA TV
+http://macedoniathebest.mine.nu:8000/live/MACEDONIA/THEBEST/31.ts
+#EXTINF:-1,TELMA
+http://macedoniathebest.mine.nu:8000/live/MACEDONIA/THEBEST/25.ts
+#EXTINF:-1,TOP MUSIC (SRB)
+http://macedoniathebest.mine.nu:8000/live/MACEDONIA/THEBEST/22.ts
+#EXTINF:-1,VESTI 24 MMS
+mms://62.162.58.55/24vesti
+#EXTINF:-1,VH 1 CLASSIC
+http://macedoniathebest.mine.nu:8000/live/MACEDONIA/THEBEST/18.ts

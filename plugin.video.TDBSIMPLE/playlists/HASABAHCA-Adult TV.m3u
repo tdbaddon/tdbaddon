@@ -1,0 +1,91 @@
+﻿#EXTM3U
+#EXTINF:-1,***HasBahCa IPTV***YETİSKİN-ADULT+18***
+http://www.hasbahcaiptv.com/m3u/turkiye.mp4
+#EXTINF:-1,A  D  U  L  T_C H A N N E L
+http://83.139.104.112/Content/HLS/Live/Channel(ADULT_CHANNEL)/Stream(03)/index.m3u8
+#EXTINF:-1,Bluebird
+rtmp://$OPT:rtmp-raw=rtmp://46.105.116.183/iptv_cellcast_24/ playpath=livestream1 swfUrl=http://iptv.firestormmedia.tv/flash/player/player.swf?d=20141103 live=1 pageUrl=http://api.firestormmedia.tv/iptv/iframes/player/?type=133&affid=1738889&channelName=Bluebird+1
+#EXTINF:-1,Brasileirinhas
+rtmp://$OPT:rtmp-raw=rtmp://37.130.228.4:8082/brasileirinhas2/brasileirinhas2/ playpath=brasileirinhas2 swfUrl=http://livestreamcast.org/jwplayer/jwplayer.flash.swf live=1 pageUrl=http://livestreamcast.org/embeds.php?c=Brasileirinhas
+#EXTINF:-1,BRAZZERS TV
+http://213.250.24.130/brazzerstv/brazzerstv.isml/brazzerstv-video=2500000-audio101=128000.m3u8
+#EXTINF:-1,BRAZZERS_TV
+http://83.139.104.105/Content/HLS/Live/Channel(BRAZZERS_TV)/Stream(03)/index.m3u8
+#EXTINF:-1,Bunga Bunga
+http://84.22.33.3:8066/
+#EXTINF:-1,CENTOX CENTO TV
+http://213.250.24.130/priveetv/priveetv.isml/priveetv-video=2500000-audio101=128000.m3u8
+#EXTINF:-1,CENTOXCENTO TV
+http://iptv.sat-x.tv/iptv/a34321a744a74c408c5186b476d0013459c54634/564/index.m3u8
+#EXTINF:-1,CS Sex +18 ADULT mmsh
+mmsh://tv.webmisto.cz:7000
+#EXTINF:-1,DARİNG
+http://213.250.24.130/daring/daring.isml/daring-video=2500000-audio101=128000.m3u8
+#EXTINF:-1,DLDVS 1
+http://208.122.3.2:9000
+#EXTINF:-1,DLDVS 2
+http://208.122.3.2:8700
+#EXTINF:-1,dorcel
+http://83.139.104.105/Content/HLS/Live/Channel(DORCEL_TV)/Stream(03)/index.m3u8
+#EXTINF:-1,DORCEL
+http://213.250.24.130/dorcel/dorcel.isml/dorcel-video=2500000-audio101=128000.m3u8
+#EXTINF:-1,DORCEL HD
+http://213.250.24.130/dorcelhd/dorcelhd.isml/dorcelhd-video=2500000-audio101=128000.m3u8
+#EXTINF:-1,Dorcel TV
+http://91.211.51.155:5555/udp/224.20.20.92:1234
+#EXTINF:-1,Egoist tv
+http://iptv.sat-x.tv/iptv/a34321a744a74c408c5186b476d0013459c54634/526/index.m3u8
+#EXTINF:-1,EROX HD
+http://213.250.24.130/eroxhd/eroxhd.isml/eroxhd-video=2500000-audio101=128000.m3u8
+#EXTINF:-1,EROXXX HD
+http://213.250.24.130/eroxxxhd/eroxxxhd.isml/eroxxxhd-video=2500000-audio101=128000.m3u8
+#EXTINF:-1,exotica plus
+http://iptv.sat-x.tv/iptv/a34321a744a74c408c5186b476d0013459c54634/562/index.m3u8
+#EXTINF:-1,FRENCHLOVER
+http://213.250.24.130/frenchlovertv/frenchlovertv.isml/frenchlovertv-video=2500000-audio101=128000.m3u8
+#EXTINF:-1,FRENCHLOVER TV
+http://iptv.sat-x.tv/iptv/a34321a744a74c408c5186b476d0013459c54634/569/index.m3u8
+#EXTINF:-1,HQ Amateurs
+http://galsflv.videosz.com//mom-and-the-pop_5/videosz-mom-and-the-pop-53.flv
+#EXTINF:-1,HUSTLER
+http://213.250.24.130/hustler/hustler.isml/hustler-video=2500000-audio101=128000.m3u8
+#EXTINF:-1,HUSTLER HD
+http://213.250.24.130/hustlerhd/hustlerhd.isml/hustlerhd-video=2500000-audio101=128000.m3u8
+#EXTINF:-1,Korea m3u8 Ask TV
+http://edge2.everyon.tv/etv2/phd1005/HasBahCa.m3u8
+#EXTINF:-1,Korea m3u8 Okadai
+http://edge2.everyon.tv/etv2/pld1003/HasBahCa.m3u8
+#EXTINF:-1,Korea m3u8 Okadai HD
+http://edge2.everyon.tv/etv2/phd1003/HasBahCa.m3u8
+#EXTINF:-1,Korea m3u8 Paradise TV
+http://edge2.everyon.tv/etv2/pld1008/HasBahCa.m3u8
+#EXTINF:-1,Korea rtmp Ask TV
+rtmp://edge2.everyon.tv/etv2/phd1005
+#EXTINF:-1,Korea rtmp Livething Premium
+rtmp://edge2.everyon.tv/etv2/phd1006
+#EXTINF:-1,Korea rtmp Okadai
+rtmp://edge2.everyon.tv/etv2/pld1003
+#EXTINF:-1,P.B
+http://iptv.sat-x.tv/iptv/a34321a744a74c408c5186b476d0013459c54634/527/index.m3u8
+#EXTINF:-1,PINK O TV
+http://iptv.sat-x.tv/iptv/a34321a744a74c408c5186b476d0013459c54634/567/index.m3u8
+#EXTINF:-1,Platinum Tv
+http://iptv.sat-x.tv/iptv/a34321a744a74c408c5186b476d0013459c54634/565/index.m3u8
+#EXTINF:-1,Playboy
+rtmp://$OPT:rtmp-raw=rtmp://37.130.228.4:8082/pboytv/pboytv playpath=pboytv swfUrl=http://livestreamcast.org/jwplayer/jwplayer.flash.swf live=1 pageUrl=http://ngacengo.blogspot.com/2015/01/pby2.html
+#EXTINF:-1,Private
+http://185.38.12.20:8088/private/
+#EXTINF:-1,Russian night
+http://185.38.12.20:8088/rusnoch/
+#EXTINF:-1,SATISFACTION HD
+http://iptv.sat-x.tv/iptv/a34321a744a74c408c5186b476d0013459c54634/561/index.m3u8
+#EXTINF:-1,SCT
+http://213.250.24.130/sct/sct.isml/sct-video=2500000-audio101=128000.m3u8
+#EXTINF:-1,SCT
+http://iptv.sat-x.tv/iptv/a34321a744a74c408c5186b476d0013459c54634/566/index.m3u8
+#EXTINF:-1,SUPER ONE+18
+http://213.250.24.130/superone/superone.isml/superone-video=2500000-audio101=128000.m3u8
+#EXTINF:-1,XXI
+http://iptv.sat-x.tv/iptv/a34321a744a74c408c5186b476d0013459c54634/525/index.m3u8
+#EXTINF:-1,Русская ночь
+http://iptv.sat-x.tv/iptv/a34321a744a74c408c5186b476d0013459c54634/147/index.m3u8
