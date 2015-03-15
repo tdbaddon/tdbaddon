@@ -68,7 +68,10 @@ http://212.250.46.35:2003
 
 
 #EXTINF:0,CBS Reality 
-http://83.139.104.99/Content/HLS/Live/Channel(cbs_reality)/Stream(03)/index.m3u8
+http://83.139.104.111/Content/HLS/Live/Channel(cbs_reality)/Stream(03)/index.m3u8
+
+#EXTINF:0,CBS Reality 
+http://83.139.104.112/Content/HLS/Live/Channel(cbs_reality)/Stream(03)/index.m3u8
 
 #EXTINF:0,CHCH Ontario 
 
@@ -92,7 +95,7 @@ http://ams-lp2.9c9media.com/hls-live/livepkgr/_definst_/liveeventNoDRM/ctvnewsOp
 
 
 #EXTINF:0,E! 
-
+http://185.27.237.105:8082/TV0060
 
 #EXTINF:0,English Club TV 
 
@@ -104,10 +107,16 @@ http://ams-lp2.9c9media.com/hls-live/livepkgr/_definst_/liveeventNoDRM/ctvnewsOp
 http://hls.novotelecom.ru/streaming/fashion/tvrec/playlist.m3u8
 
 #EXTINF:0,Fashion TV 
-http://83.139.104.99/Content/HLS/Live/Channel(fashion_tv)/Stream(03)/index.m3u8
+http://83.139.104.111/Content/HLS/Live/Channel(fashion_tv)/Stream(03)/index.m3u8
+
+#EXTINF:0,Fashion TV 
+http://83.139.104.112/Content/HLS/Live/Channel(fashion_tv)/Stream(03)/index.m3u8
 
 #EXTINF:0,Fashion TV 
 http://113.160.49.34/lives/origin03/fashionhd.isml/fashionhd-2096k.m3u8
+
+#EXTINF:0,Fashion TV 
+http://185.27.237.105:8082/TV0088
 
 #EXTINF:0,Fast & Fun Box
 
@@ -116,7 +125,10 @@ http://113.160.49.34/lives/origin03/fashionhd.isml/fashionhd-2096k.m3u8
 http://wpc.AC3A.edgecastcdn.net:80/80AC3A/001/hls/m3u8/film4.m3u8
 
 #EXTINF:0,Fine Living Network
-http://83.139.104.99/Content/HLS/Live/Channel(fine_living)/Stream(03)/index.m3u8
+http://83.139.104.111/Content/HLS/Live/Channel(fine_living)/Stream(03)/index.m3u8
+
+#EXTINF:0,Fine Living Network
+http://83.139.104.112/Content/HLS/Live/Channel(fine_living)/Stream(03)/index.m3u8
 
 #EXTINF:0,Fox
 
@@ -137,13 +149,22 @@ http://83.139.104.99/Content/HLS/Live/Channel(fine_living)/Stream(03)/index.m3u8
 http://188.227.86.4:4022/udp/239.77.0.3:1234
 
 #EXTINF:0,Food Network 
-http://83.139.104.99/Content/HLS/Live/Channel(food_network)/Stream(03)/index.m3u8
+http://83.139.104.111/Content/HLS/Live/Channel(food_network)/Stream(03)/index.m3u8
+
+#EXTINF:0,Food Network 
+http://83.139.104.112/Content/HLS/Live/Channel(food_network)/Stream(03)/index.m3u8
+
+#EXTINF:0,Food Network 
+http://185.27.237.105:8082/TV0086
 
 #EXTINF:0,FX 
 
 
 #EXTINF:0,Ginx Gaming TV 
-http://83.139.104.99/Content/HLS/Live/Channel(ginx)/Stream(03)/index.m3u8
+http://83.139.104.111/Content/HLS/Live/Channel(ginx)/Stream(03)/index.m3u8
+
+#EXTINF:0,Ginx Gaming TV 
+http://83.139.104.112/Content/HLS/Live/Channel(ginx)/Stream(03)/index.m3u8
 
 #EXTINF:0,Hallmark Channel 
 
@@ -189,6 +210,12 @@ http://plslive-w.nhk.or.jp/nhkworld/app/live.m3u8
 
 #EXTINF:0,NHK World 
 http://nhkworld-hds-live1.hds1.fmslive.stream.ne.jp/hls-live/nhkworld-hds-live1/_definst_/livestream/nhkworld-live-512.m3u8 
+
+#EXTINF:0,OMN First Comedy 2
+http://185.27.237.105:8082/TV0021
+
+#EXTINF:0,OMN First More
+http://185.27.237.105:8082/TV0084
 
 #EXTINF:0,OWN Network 
 
@@ -245,7 +272,10 @@ http://188.227.86.4:4022/udp/239.77.0.5:1234
 
 
 #EXTINF:0,TLC 
-http://83.139.104.99/Content/HLS/Live/Channel(TLC)/Stream(03)/index.m3u8
+http://83.139.104.111/Content/HLS/Live/Channel(TLC)/Stream(03)/index.m3u8
+
+#EXTINF:0,TLC 
+http://83.139.104.112/Content/HLS/Live/Channel(TLC)/Stream(03)/index.m3u8
 
 #EXTINF:0,TNT 
 
