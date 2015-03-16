@@ -2,7 +2,7 @@
 
 
 #EXTINF:0,Action Zone 
-rtmp://mi2.gv.filmon.com:8086/live/1045.high.stream?
+
 
 #EXTINF:0,Action Cinema
 
@@ -104,7 +104,7 @@ http://83.139.104.111/Content/HLS/Live/Channel(kino_tv)/Stream(03)/index.m3u8
 http://83.139.104.112/Content/HLS/Live/Channel(kino_tv)/Stream(03)/index.m3u8
 
 #EXTINF:0,Kung Fu Classics 
-rtmp://mi2.gv.filmon.com:8086/live/10.high.stream
+
 
 #EXTINF:0,Lotus Macau 
 
@@ -126,20 +126,12 @@ http://167.114.65.88/hls/mv.m3u8
 
 #EXTINF:0,Movies 4 Men
 
-#EXTINF:0,OMN Festival
+
+#EXTINF:0,OMN Movies Festival
 http://185.27.237.105:8082/TV0129
-
-#EXTINF:0,OMN First 
-http://185.27.237.105:8082/TV0063
-
-#EXTINF:0,OMN First 2
-http://185.27.237.105:8082/TV0062
 
 #EXTINF:0,OMN Movies
 http://185.27.237.105:8082/TV0023
-
-#EXTINF:0,OMN Movies
-http://185.27.237.105:8082/TV0125
 
 #EXTINF:0,OMN Movies 2
 http://185.27.237.105:8082/TV0054
@@ -152,9 +144,6 @@ http://185.27.237.105:8082/TV0022
 
 #EXTINF:0,OMN Movies Drama 2
 http://185.27.237.105:8082/TV0075
-
-#EXTINF:0,OMN Movies Premiere
-http://185.27.237.105:8082/TV0024
 
 #EXTINF:0,Paramount Channel
 
@@ -224,9 +213,6 @@ http://113.160.49.34/lives/origin03/moviehd.isml/moviehd-2096k.m3u8
 
 #EXTINF:0,Star Movies
 http://185.27.237.105:8082/TV0051
-
-#EXTINF:0,Star Movies World
-http://185.27.237.105:8082/TV0056
 
 #EXTINF:0,SYFY Movie Channel 
 

@@ -8,7 +8,7 @@
 
 
 #EXTINF:0,ABC 
-
+http://198.27.94.105/hls/abc____0.m3u8
 
 #EXTINF:0,ABC Family
 
@@ -17,7 +17,7 @@
 http://stream.acctv.com.au/06.m3u8
 
 #EXTINF:0,AMC 
-
+http://198.27.94.105/hls/amc____0.m3u8
 
 #EXTINF:0,Arthouse Film Box
 
@@ -59,10 +59,10 @@ http://200.76.77.237/LIVE/H01/CANAL253/PROFILE03.m3u8
 
 
 #EXTINF:0,CBS 
-
+http://198.27.94.105/hls/cbs____0.m3u8
 
 #EXTINF:0,CBS Action 
-http://212.250.46.35:2003
+
 
 #EXTINF:0,CBS Drama 
 
@@ -92,7 +92,7 @@ http://ams-lp3.9c9media.com/hls-live/livepkgr/_definst_/liveeventNoDRM/cp24Open8
 http://ams-lp2.9c9media.com/hls-live/livepkgr/_definst_/liveeventNoDRM/ctvnewsOpen8.m3u8
 
 #EXTINF:0,CW 
-
+http://198.27.94.105/hls/cw____0.m3u8
 
 #EXTINF:0,E! 
 http://185.27.237.105:8082/TV0060
@@ -107,16 +107,16 @@ http://185.27.237.105:8082/TV0060
 http://hls.novotelecom.ru/streaming/fashion/tvrec/playlist.m3u8
 
 #EXTINF:0,Fashion TV 
-http://83.139.104.111/Content/HLS/Live/Channel(fashion_tv)/Stream(03)/index.m3u8
-
-#EXTINF:0,Fashion TV 
-http://83.139.104.112/Content/HLS/Live/Channel(fashion_tv)/Stream(03)/index.m3u8
-
-#EXTINF:0,Fashion TV 
 http://113.160.49.34/lives/origin03/fashionhd.isml/fashionhd-2096k.m3u8
 
 #EXTINF:0,Fashion TV 
 http://185.27.237.105:8082/TV0088
+
+#EXTINF:0,Fashion TV 
+http://83.139.104.111/Content/HLS/Live/Channel(fashion_tv)/Stream(03)/index.m3u8
+
+#EXTINF:0,Fashion TV 
+http://83.139.104.112/Content/HLS/Live/Channel(fashion_tv)/Stream(03)/index.m3u8
 
 #EXTINF:0,Fast & Fun Box
 
@@ -124,10 +124,10 @@ http://185.27.237.105:8082/TV0088
 #EXTINF:0,Film4 
 http://wpc.AC3A.edgecastcdn.net:80/80AC3A/001/hls/m3u8/film4.m3u8
 
-#EXTINF:0,Fine Living Network
+#EXTINF:0,Fine Living Network 
 http://83.139.104.111/Content/HLS/Live/Channel(fine_living)/Stream(03)/index.m3u8
 
-#EXTINF:0,Fine Living Network
+#EXTINF:0,Fine Living Network 
 http://83.139.104.112/Content/HLS/Live/Channel(fine_living)/Stream(03)/index.m3u8
 
 #EXTINF:0,Fox
@@ -149,13 +149,14 @@ http://83.139.104.112/Content/HLS/Live/Channel(fine_living)/Stream(03)/index.m3u
 http://188.227.86.4:4022/udp/239.77.0.3:1234
 
 #EXTINF:0,Food Network 
+http://185.27.237.105:8082/TV0086
+
+#EXTINF:0,Food Network 
 http://83.139.104.111/Content/HLS/Live/Channel(food_network)/Stream(03)/index.m3u8
 
 #EXTINF:0,Food Network 
 http://83.139.104.112/Content/HLS/Live/Channel(food_network)/Stream(03)/index.m3u8
 
-#EXTINF:0,Food Network 
-http://185.27.237.105:8082/TV0086
 
 #EXTINF:0,FX 
 
@@ -211,12 +212,6 @@ http://plslive-w.nhk.or.jp/nhkworld/app/live.m3u8
 #EXTINF:0,NHK World 
 http://nhkworld-hds-live1.hds1.fmslive.stream.ne.jp/hls-live/nhkworld-hds-live1/_definst_/livestream/nhkworld-live-512.m3u8 
 
-#EXTINF:0,OMN First Comedy 2
-http://185.27.237.105:8082/TV0021
-
-#EXTINF:0,OMN First More
-http://185.27.237.105:8082/TV0084
-
 #EXTINF:0,OWN Network 
 
 
@@ -227,7 +222,7 @@ http://185.27.237.105:8082/TV0084
 rtmp://128.104.144.134/WisconsinChannel/mystream
  
 #EXTINF:0,Popcorn TV 
-rtmp://mi2.gv.filmon.com:8086/live/716.high.stream
+
 
 #EXTINF:0,QVC 
 

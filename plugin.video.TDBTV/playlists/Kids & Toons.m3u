@@ -5,7 +5,7 @@
 
 
 #EXTINF:0,BabyTV 
-
+http://hlsstr03.svc.iptv.rt.ru/hls/CH_BABYTV/variant.m3u8
 
 #EXTINF:0,Boomerang 
 http://185.27.237.105:8082/TV0111
@@ -32,7 +32,7 @@ http://185.27.237.105:8082/TV0109
 http://185.27.237.105:8082/TV0112
 
 #EXTINF:0,Emba Kids 
-rtmp://mi2.gv.filmon.com:8086/live/719.high.stream
+
 
 #EXTINF:0,Jim Jam 
 
@@ -41,7 +41,7 @@ rtmp://mi2.gv.filmon.com:8086/live/719.high.stream
 
 
 #EXTINF:0,Kids Comedy 
-rtmp://mi2.gv.filmon.com:1935/live/_definst_/2734.low.stream?b?b*t$
+
 
 #EXTINF:0,Nick 
 
@@ -51,6 +51,7 @@ rtmp://mi2.gv.filmon.com:1935/live/_definst_/2734.low.stream?b?b*t$
 
 #EXTINF:0,Nickelodeon 
 http://188.227.86.4:4022/udp/239.77.0.60:1234
+
 
 #EXTINF:0,NickNight 
 
@@ -63,6 +64,9 @@ http://188.227.86.4:4022/udp/239.77.0.60:1234
 
 #EXTINF:0,Tom & Jerry Show 
 http://66.90.111.66:1935/ctv/tom/waldo_paes.m3u8
+
+#EXTINF:0,Tom & Jerry Show 
+http://66.90.111.66:1935/ctv/tom/playlist.m3u8
 
 #EXTINF:0,YFE
 

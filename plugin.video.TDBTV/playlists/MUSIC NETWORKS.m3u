@@ -35,12 +35,6 @@ http://www.djing.com/tv/u-04.m3u8
 #EXTINF:0,Djing TV 
 http://www.djing.com/tv/05.m3u8
 
-#EXTINF:0,DMC
-http://83.139.104.111/Content/HLS/Live/Channel(DMC)/Stream(03)/index.m3u8
-
-#EXTINF:0,DMC
-http://83.139.104.112/Content/HLS/Live/Channel(DMC)/Stream(03)/index.m3u8
-
 #EXTINF:0,Gothic Rock TV 
 rtmp://149.11.34.6/live/gotica.stream
 
@@ -87,15 +81,6 @@ http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVDANCE/variant.m3u8
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVHITS/variant.m3u8
 
 #EXTINF:0,MTV Live 
-http://198.27.94.105/hls/mtv_1.m3u8
-
-#EXTINF:0,MTV Live 
-http://83.139.104.111/Content/HLS/Live/Channel(mtv)/Stream(03)/index.m3u8
-
-#EXTINF:0,MTV Live 
-http://83.139.104.112/Content/HLS/Live/Channel(mtv)/Stream(03)/index.m3u8
-
-#EXTINF:0,MTV Live 
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=429&lan=2&rows=40&f=BratuMarian.m3u8
 
 #EXTINF:0,MTV Live 
@@ -137,9 +122,6 @@ rtmp://fms.105.net/live/rmc1
 #EXTINF:0,Rock 66 
 http://mediatv2.topix.it/24RockOne66
 
-#EXTINF:0,Rouge TV
-rtmp://rtmp.infomaniak.ch/livecast/rougetv
-
 #EXTINF:0,Smash Hits! 
 
 
@@ -153,7 +135,7 @@ rtmp://149.11.34.6/live/stagetv.stream
 
 
 #EXTINF:0,Trace Urban
-http://46.249.213.87/iPhone/broadcast/tracetvurban-tablet.3gp/tracetvurban-tablet.3gp-mr647k.m3u8
+
 
 #EXTINF:0,Vevo Hits 
 http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch2/06/prog_index.m3u8
@@ -168,10 +150,10 @@ http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/06/prog_index.m3u8
 http://200.76.77.237/LIVE/H01/CANAL703/PROFILE03.m3u8?BratuMarian
 
 #EXTINF:0,VH1 
-http://hlsstr02.svc.iptv.rt.ru/hls/CH_VH1EUROPEAN/variant.m3u8
+http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=437&lan=2&rows=40&f=BratuMarian.m3u8
 
 #EXTINF:0,VH1 
-http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=437&lan=2&rows=40&f=BratuMarian.m3u8
+http://hlsstr02.svc.iptv.rt.ru/hls/CH_VH1EUROPEAN/variant.m3u8
 
 #EXTINF:0,VH1 Classics 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_VH1CLASSIC/variant.m3u8
@@ -180,7 +162,7 @@ http://hlsstr02.svc.iptv.rt.ru/hls/CH_VH1CLASSIC/variant.m3u8
 rtmp://edge03-03.az.myvideo.az/dvrh264/vh1/ playpath=mp4:vh1 swfUrl=http://www.myvideo.az/stml/dvr/dvrH.swf?v=1.2 live=1 pageUrl=http://www.myvideo.az/r.ates
 
 #EXTINF:0,Vintage Music TV 
-rtmp://mi2.gv.filmon.com:8086/live/1042.high.stream
+
 
 #EXTINF:0,Virgin TV 
 rtmp://fms.105.net:1935/live/virgin1 playpath=virgin1 swfurl=http://www.highermedia.com/assets/flash/jw_player.swf live=1 pageurl=http://www.google.com/Virgin 1

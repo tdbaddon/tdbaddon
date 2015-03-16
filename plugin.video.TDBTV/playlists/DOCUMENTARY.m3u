@@ -98,7 +98,7 @@ http://www.nasa.gov/multimedia/nasatv/NTV-Public-IPS.m3u8
 http://188.227.86.4:4022/udp/239.77.0.41:1234
 
 #EXTINF:0,Paranormal TV 
-rtmp://mi2.gv.filmon.com:8086/live/1618.high.stream
+
 
 #EXTINF:0,RT News Documentary 
 http://odna.octoshape.net/f3f5m2v4/cds/ch5_auto.smil/playlist.m3u8 
@@ -128,7 +128,7 @@ http://83.139.104.112/Content/HLS/Live/Channel(viasat_history)/Stream(03)/index.
 
 
 #EXTINF:0,War Channel
-rtmp://mi2.gv.filmon.com:8086/live/805.high.stream
+
 
 #EXTINF:0,Wealth TV 
 
