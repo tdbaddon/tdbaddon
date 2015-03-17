@@ -83,7 +83,11 @@ http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/cnbc_eu/ls_satlink/b_264.m3u8
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/cnbc_eu/ls_satlink/b_,264,528,828,.m3u8
 
 #EXTINF:0,Comedy Central
+http://188.138.9.228:8022
 
+#EXTINF:0,Comedy Central
+rtmp://167.114.65.88/medium/ Playpath=sp swfUrl=http://www.flashwebtown.com/mediaplayer/mediaplayer.swf pageUrl=http://tvtoss.com/channel-frames/Comedy_Central/comedy_central_usa_channel_server-1.php live=1
+player=default
 
 #EXTINF:0,CP24
 http://ams-lp3.9c9media.com/hls-live/livepkgr/_definst_/liveeventNoDRM/cp24Open8.m3u8

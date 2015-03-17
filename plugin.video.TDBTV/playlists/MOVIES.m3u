@@ -38,10 +38,16 @@ http://83.139.104.112/Content/HLS/Live/Channel(cinestar_tv)/Stream(03)/index.m3u
 
 
 #EXTINF:0,CMore Emotion
+http://188.138.9.228:8025
 
+#EXTINF:0,CMore First
+http://188.138.9.228:8024
+
+#EXTINF:0,CMore Hits
+http://188.138.9.228:8020
 
 #EXTINF:0,CMore Series
-
+http://188.138.9.228:8021
 
 #EXTINF:0,Film Dy
 
@@ -110,7 +116,7 @@ http://83.139.104.112/Content/HLS/Live/Channel(kino_tv)/Stream(03)/index.m3u8
 
 
 #EXTINF:0,MBC 2
-
+rtmp://web.iptv-planet.com:1937/live2 playpath=Hi_mbc2 swfUrl=http://iptv-planet.com/swfs/player.swf pageUrl=http://iptv-planet.com/embed.php?id=Hi_mbc4&width=600&height=400
 
 #EXTINF:0,MBC Max
 
@@ -215,7 +221,7 @@ http://113.160.49.34/lives/origin03/moviehd.isml/moviehd-2096k.m3u8
 http://185.27.237.105:8082/TV0051
 
 #EXTINF:0,SYFY Movie Channel 
-
+rtmp://174.36.55.76/youcloud/ playpath=syfiles934r?keys=mRtger8HcwnH3AEiuOuplg&keyt=1424715442 swfUrl=http://cdn.youcloud.tv/jwplayer.flash.swf live=1 swfVfy=1 pageUrl=http://youcloud.tv/player?streamname=syfiles934r&width=555&height=435 timeout=15
 
 #EXTINF:0,TCM
 http://185.27.237.105:8082/TV0082

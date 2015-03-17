@@ -11,7 +11,7 @@
 http://bigten247.cdnak.bigtenhd.neulion.com/nlds/btn2go/btnnetwork/as/live/btnnetwork_hd_3000.m3u8
 
 #EXTINF:0,Box Nation 
-
+http://93.184.221.133/00573D/1222/1222-0.m3u8
 
 #EXTINF:0,BT Sport 1 
 rtmp://80.82.65.59:443/liverepeater playpath=13  swfUrl=http://popeoftheplayers.eu/atdedead.swf  pageUrl=http://popeoftheplayers.eu/player3.php?id=13&width=600&height=450 token=#atd%#$ZH
@@ -95,6 +95,9 @@ http://foxsportshdhls-lh.akamaihd.net/i/fsnewshls_0@136427/index_248_av-p.m3u8
 
 #EXTINF:0,Masked Republic
 
+
+#EXTINF:0,MLB
+rtmp://w3.vmnode.pw:1935/live playpath=elite10 swfUrl=http://skyaccess.se/vb/jwplayer/player-licensed.swf pageUrl=http://nodetower.com/7-SFE-SZE-HOSTACCESS/media/elite10.php live=true timeout=20
 
 #EXTINF:0,Motors TV 
 http://hlsstr04.svc.iptv.rt.ru/hls/CH_MOTORSTV/variant.m3u8
@@ -217,7 +220,7 @@ rtmp://109.123.70.38:80/live/ playpath=sportsnetw token=%Zrey(nKa@#Z swfUrl=http
 rtmp://31.220.0.195:80/live/ playpath=sno token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://reytv.co/
 
 #EXTINF:0,Sportsnet World 
-
+rtmp://178.18.31.59:443/liverepeater/ playpath=191304 token=#atd%#$ZH swfUrl=http://static.surk.tv/atdedead.swf live=1 pageUrl=http://biggestplayer.me/ AnisotropicTV
 
 #EXTINF:0,Sports Tonight 
 rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9-HD
