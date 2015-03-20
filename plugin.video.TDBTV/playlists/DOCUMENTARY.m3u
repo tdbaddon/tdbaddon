@@ -1,14 +1,13 @@
 ﻿#EXTM3U
 
+#EXTINF:0,Animal Planet 
+http://83.139.104.111/Content/HLS/Live/Channel(animal_planet)/index.m3u8
+
+#EXTINF:0,Animal Planet 
+http://83.139.104.112/Content/HLS/Live/Channel(animal_planet)/index.m3u8
 
 #EXTINF:0,Animal Planet 
 http://sjc-uhls-vip01.ustream.tv/watch/playlist.m3u8?cid=12762028
-
-#EXTINF:0,Animal Planet 
-http://83.139.104.111/Content/HLS/Live/Channel(animal_planet)/Stream(03)/index.m3u8
-
-#EXTINF:0,Animal Planet 
-http://83.139.104.112/Content/HLS/Live/Channel(animal_planet)/Stream(03)/index.m3u8
 
 #EXTINF:0,Animal Planet 
 http://113.160.49.34/lives/origin03/animalsd.isml/animalsd-1096k.m3u8
@@ -107,22 +106,22 @@ http://odna.octoshape.net/f3f5m2v4/cds/ch5_auto.smil/playlist.m3u8
 
 
 #EXTINF:0,Travel Channel 
-http://83.139.104.111/Content/HLS/Live/Channel(travel_channel)/Stream(03)/index.m3u8
+http://83.139.104.111/Content/HLS/Live/Channel(travel_channel)/index.m3u8
 
 #EXTINF:0,Travel Channel 
-http://83.139.104.112/Content/HLS/Live/Channel(travel_channel)/Stream(03)/index.m3u8
+http://83.139.104.112/Content/HLS/Live/Channel(travel_channel)/index.m3u8
 
 #EXTINF:0,Viasat Explorer 
-http://83.139.104.111/Content/HLS/Live/Channel(viasat_explore)/Stream(03)/index.m3u8
+http://83.139.104.111/Content/HLS/Live/Channel(viasat_explore)/index.m3u8
 
 #EXTINF:0,Viasat Explorer 
-http://83.139.104.112/Content/HLS/Live/Channel(viasat_explore)/Stream(03)/index.m3u8
+http://83.139.104.112/Content/HLS/Live/Channel(viasat_explore)/index.m3u8
 
 #EXTINF:0,Viasat History 
-http://83.139.104.111/Content/HLS/Live/Channel(viasat_history)/Stream(03)/index.m3u8
+http://83.139.104.111/Content/HLS/Live/Channel(viasat_history)/index.m3u8
 
 #EXTINF:0,Viasat History 
-http://83.139.104.112/Content/HLS/Live/Channel(viasat_history)/Stream(03)/index.m3u8
+http://83.139.104.112/Content/HLS/Live/Channel(viasat_history)/index.m3u8
 
 #EXTINF:0,Viasat Nature 
 

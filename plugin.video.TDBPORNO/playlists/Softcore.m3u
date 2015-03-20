@@ -32,10 +32,16 @@ rtmp://edge2.everyon.tv/etv2sb/pld499
 http://iptv.sat-x.tv/iptv/91f5ebece378143c8392d8ad6ae539797bc86a67/527/index.m3u8
 
 #EXTINF:-0,PLAYBOY TV 
-http://83.139.104.111/Content/HLS/Live/Channel(Playboy_tv)/Stream(03)/index.m3u8
+http://iptv4.zargacum.net/iptv/8KRZ8Q8AMD/527/index.m3u8
+
+#EXTINF:-0,PLAYBOY TV 
+http://83.139.104.111/Content/HLS/Live/Channel(Playboy_tv)/index.m3u8
 
 #EXTINF:-0,PLAYBOY TV 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_PLAYBOY/variant.m3u8
+
+#EXTINF:-0,PLAYBOY TV 
+http://37.228.91.166:8081/cdn/playboy/playlist.m3u8
 
 #EXTINF:0,RUSSIAN NIGHT 
 http://iptv.sat-x.tv/iptv/91f5ebece378143c8392d8ad6ae539797bc86a67/147/index.m3u8

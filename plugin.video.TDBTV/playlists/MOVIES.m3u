@@ -17,22 +17,22 @@ http://83.139.104.111/Content/HLS/Live/Channel(CINESTAR_ACTION_AND_THRILLER)/ind
 http://83.139.104.112/Content/HLS/Live/Channel(CINESTAR_ACTION_AND_THRILLER)/index.m3u8
 
 #EXTINF:0,Cinestar Premiere 1 
-http://83.139.104.111/Content/HLS/Live/Channel(cinestar_premiere_1)/Stream(03)/index.m3u8
+http://83.139.104.111/Content/HLS/Live/Channel(cinestar_premiere_1)/index.m3u8
 
 #EXTINF:0,Cinestar Premiere 1 
-http://83.139.104.112/Content/HLS/Live/Channel(cinestar_premiere_1)/Stream(03)/index.m3u8
+http://83.139.104.112/Content/HLS/Live/Channel(cinestar_premiere_1)/index.m3u8
 
 #EXTINF:0,Cinestar Premiere 2 
-http://83.139.104.111/Content/HLS/Live/Channel(cinestar_premiere_2)/Stream(03)/index.m3u8
+http://83.139.104.111/Content/HLS/Live/Channel(cinestar_premiere_2)/index.m3u8
 
 #EXTINF:0,Cinestar Premiere 2 
-http://83.139.104.112/Content/HLS/Live/Channel(cinestar_premiere_2)/Stream(03)/index.m3u8
+http://83.139.104.112/Content/HLS/Live/Channel(cinestar_premiere_2)/index.m3u8
 
 #EXTINF:0,Cinestar TV 
-http://83.139.104.111/Content/HLS/Live/Channel(cinestar_tv)/Stream(03)/index.m3u8
+http://83.139.104.111/Content/HLS/Live/Channel(cinestar_tv)/index.m3u8
 
 #EXTINF:0,Cinestar TV 
-http://83.139.104.112/Content/HLS/Live/Channel(cinestar_tv)/Stream(03)/index.m3u8
+http://83.139.104.112/Content/HLS/Live/Channel(cinestar_tv)/index.m3u8
 
 #EXTINF:0,CMore Action
 
@@ -104,10 +104,10 @@ rtmp://89.248.168.57:1935/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.igui
 
 
 #EXTINF:0,Kino TV 
-http://83.139.104.111/Content/HLS/Live/Channel(kino_tv)/Stream(03)/index.m3u8
+http://83.139.104.111/Content/HLS/Live/Channel(kino_tv)/index.m3u8
 
 #EXTINF:0,Kino TV 
-http://83.139.104.112/Content/HLS/Live/Channel(kino_tv)/Stream(03)/index.m3u8
+http://83.139.104.112/Content/HLS/Live/Channel(kino_tv)/index.m3u8
 
 #EXTINF:0,Kung Fu Classics 
 
@@ -119,7 +119,7 @@ http://83.139.104.112/Content/HLS/Live/Channel(kino_tv)/Stream(03)/index.m3u8
 rtmp://web.iptv-planet.com:1937/live2 playpath=Hi_mbc2 swfUrl=http://iptv-planet.com/swfs/player.swf pageUrl=http://iptv-planet.com/embed.php?id=Hi_mbc4&width=600&height=400
 
 #EXTINF:0,MBC Max
-
+rtmp://63.237.48.23/live//MBC_MAX
 
 #EXTINF:0,MGM 
 http://185.27.237.105:8082/TV0050

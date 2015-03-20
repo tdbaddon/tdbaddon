@@ -68,10 +68,10 @@ http://198.27.94.105/hls/cbs____0.m3u8
 
 
 #EXTINF:0,CBS Reality 
-http://83.139.104.111/Content/HLS/Live/Channel(cbs_reality)/Stream(03)/index.m3u8
+http://83.139.104.111/Content/HLS/Live/Channel(cbs_reality)/index.m3u8
 
 #EXTINF:0,CBS Reality 
-http://83.139.104.112/Content/HLS/Live/Channel(cbs_reality)/Stream(03)/index.m3u8
+http://83.139.104.112/Content/HLS/Live/Channel(cbs_reality)/index.m3u8
 
 #EXTINF:0,CHCH Ontario 
 
@@ -117,10 +117,10 @@ http://113.160.49.34/lives/origin03/fashionhd.isml/fashionhd-2096k.m3u8
 http://185.27.237.105:8082/TV0088
 
 #EXTINF:0,Fashion TV 
-http://83.139.104.111/Content/HLS/Live/Channel(fashion_tv)/Stream(03)/index.m3u8
+http://83.139.104.111/Content/HLS/Live/Channel(fashion_tv)/index.m3u8
 
 #EXTINF:0,Fashion TV 
-http://83.139.104.112/Content/HLS/Live/Channel(fashion_tv)/Stream(03)/index.m3u8
+http://83.139.104.112/Content/HLS/Live/Channel(fashion_tv)/index.m3u8
 
 #EXTINF:0,Fast & Fun Box
 
@@ -129,10 +129,10 @@ http://83.139.104.112/Content/HLS/Live/Channel(fashion_tv)/Stream(03)/index.m3u8
 http://wpc.AC3A.edgecastcdn.net:80/80AC3A/001/hls/m3u8/film4.m3u8
 
 #EXTINF:0,Fine Living Network 
-http://83.139.104.111/Content/HLS/Live/Channel(fine_living)/Stream(03)/index.m3u8
+http://83.139.104.111/Content/HLS/Live/Channel(fine_living)/index.m3u8
 
 #EXTINF:0,Fine Living Network 
-http://83.139.104.112/Content/HLS/Live/Channel(fine_living)/Stream(03)/index.m3u8
+http://83.139.104.112/Content/HLS/Live/Channel(fine_living)/index.m3u8
 
 #EXTINF:0,Fox
 
@@ -156,20 +156,20 @@ http://188.227.86.4:4022/udp/239.77.0.3:1234
 http://185.27.237.105:8082/TV0086
 
 #EXTINF:0,Food Network 
-http://83.139.104.111/Content/HLS/Live/Channel(food_network)/Stream(03)/index.m3u8
+http://83.139.104.111/Content/HLS/Live/Channel(food_network)/index.m3u8
 
 #EXTINF:0,Food Network 
-http://83.139.104.112/Content/HLS/Live/Channel(food_network)/Stream(03)/index.m3u8
+http://83.139.104.112/Content/HLS/Live/Channel(food_network)/index.m3u8
 
 
 #EXTINF:0,FX 
 
 
 #EXTINF:0,Ginx Gaming TV 
-http://83.139.104.111/Content/HLS/Live/Channel(ginx)/Stream(03)/index.m3u8
+http://83.139.104.111/Content/HLS/Live/Channel(ginx)/index.m3u8
 
 #EXTINF:0,Ginx Gaming TV 
-http://83.139.104.112/Content/HLS/Live/Channel(ginx)/Stream(03)/index.m3u8
+http://83.139.104.112/Content/HLS/Live/Channel(ginx)/index.m3u8
 
 #EXTINF:0,Hallmark Channel 
 
@@ -271,10 +271,10 @@ http://188.227.86.4:4022/udp/239.77.0.5:1234
 
 
 #EXTINF:0,TLC 
-http://83.139.104.111/Content/HLS/Live/Channel(TLC)/Stream(03)/index.m3u8
+http://83.139.104.111/Content/HLS/Live/Channel(TLC)/index.m3u8
 
 #EXTINF:0,TLC 
-http://83.139.104.112/Content/HLS/Live/Channel(TLC)/Stream(03)/index.m3u8
+http://83.139.104.112/Content/HLS/Live/Channel(TLC)/index.m3u8
 
 #EXTINF:0,TNT 
 
