@@ -63,9 +63,6 @@ http://188.227.86.4:4022/udp/239.77.0.60:1234
 
 
 #EXTINF:0,Tom & Jerry Show 
-http://66.90.111.66:1935/ctv/tom/waldo_paes.m3u8
-
-#EXTINF:0,Tom & Jerry Show 
 http://66.90.111.66:1935/ctv/tom/playlist.m3u8
 
 #EXTINF:0,YFE

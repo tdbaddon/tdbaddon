@@ -8,7 +8,7 @@
 
 
 #EXTINF:0,ABC 
-http://198.27.94.105/hls/abc____0.m3u8
+
 
 #EXTINF:0,ABC Family
 
@@ -17,25 +17,25 @@ http://198.27.94.105/hls/abc____0.m3u8
 http://stream.acctv.com.au/06.m3u8
 
 #EXTINF:0,AMC 
-http://198.27.94.105/hls/amc____0.m3u8
+
 
 #EXTINF:0,Arthouse Film Box
 
 
-#EXTINF:0,AXN TV 6 
+#EXTINF:0,AXN
 http://113.160.49.34/lives/origin03/axnhd.isml/axnhd-2096k.m3u8
 
-#EXTINF:0,AXN TV 6 
+#EXTINF:0,AXN
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=109&lan=2&rows=40&f=.m3u8
 
 #EXTINF:0,BBC 1 
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=129&lan=2&rows=40&f=.m3u8
 
 #EXTINF:0,BBC 1 
-http://wpc.AC3A.edgecastcdn.net:80/80AC3A/001/hls/m3u8/bbc1.m3u8
+http://93.184.221.133/00573D/1277/1277-0.m3u8
 
 #EXTINF:0,BBC 1 
-http://93.184.221.133/00573D/1277/1277-0.m3u8
+http://wpc.AC3A.edgecastcdn.net:80/80AC3A/001/hls/m3u8/bbc1.m3u8
 
 #EXTINF:0,BBC 2 
 http://wpc.AC3A.edgecastcdn.net:80/80AC3A/001/hls/m3u8/bbc2.m3u8
@@ -59,19 +59,16 @@ http://200.76.77.237/LIVE/H01/CANAL253/PROFILE03.m3u8
 
 
 #EXTINF:0,CBS 
-http://198.27.94.105/hls/cbs____0.m3u8
+
 
 #EXTINF:0,CBS Action 
 
 
 #EXTINF:0,CBS Drama 
-
-
-#EXTINF:0,CBS Reality 
-http://83.139.104.111/Content/HLS/Live/Channel(cbs_reality)/index.m3u8
+http://93.184.221.133/00573D/712/712-0.m3u8
 
 #EXTINF:0,CBS Reality 
-http://83.139.104.112/Content/HLS/Live/Channel(cbs_reality)/index.m3u8
+
 
 #EXTINF:0,CHCH Ontario 
 
@@ -83,9 +80,6 @@ http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/cnbc_eu/ls_satlink/b_264.m3u8
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/cnbc_eu/ls_satlink/b_,264,528,828,.m3u8
 
 #EXTINF:0,Comedy Central
-http://188.138.9.228:8022
-
-#EXTINF:0,Comedy Central
 rtmp://167.114.65.88/medium/ Playpath=sp swfUrl=http://www.flashwebtown.com/mediaplayer/mediaplayer.swf pageUrl=http://tvtoss.com/channel-frames/Comedy_Central/comedy_central_usa_channel_server-1.php live=1
 player=default
 
@@ -95,11 +89,18 @@ http://ams-lp3.9c9media.com/hls-live/livepkgr/_definst_/liveeventNoDRM/cp24Open8
 #EXTINF:0,CTV 
 http://ams-lp2.9c9media.com/hls-live/livepkgr/_definst_/liveeventNoDRM/ctvnewsOpen8.m3u8
 
+#EXTINF:0,CTV 
+http://198.179.31.198/live/2053.high.stream/2053.high.stream/index.m3u8
+
+
 #EXTINF:0,CW 
-http://198.27.94.105/hls/cw____0.m3u8
+
 
 #EXTINF:0,E! 
 http://185.27.237.105:8082/TV0060
+
+#EXTINF:0,E4
+http://wpc.AC3A.edgecastcdn.net:80/80AC3A/001/hls/m3u8/e4.m3u8
 
 #EXTINF:0,English Club TV 
 
@@ -116,12 +117,6 @@ http://113.160.49.34/lives/origin03/fashionhd.isml/fashionhd-2096k.m3u8
 #EXTINF:0,Fashion TV 
 http://185.27.237.105:8082/TV0088
 
-#EXTINF:0,Fashion TV 
-http://83.139.104.111/Content/HLS/Live/Channel(fashion_tv)/index.m3u8
-
-#EXTINF:0,Fashion TV 
-http://83.139.104.112/Content/HLS/Live/Channel(fashion_tv)/index.m3u8
-
 #EXTINF:0,Fast & Fun Box
 
 
@@ -129,10 +124,7 @@ http://83.139.104.112/Content/HLS/Live/Channel(fashion_tv)/index.m3u8
 http://wpc.AC3A.edgecastcdn.net:80/80AC3A/001/hls/m3u8/film4.m3u8
 
 #EXTINF:0,Fine Living Network 
-http://83.139.104.111/Content/HLS/Live/Channel(fine_living)/index.m3u8
 
-#EXTINF:0,Fine Living Network 
-http://83.139.104.112/Content/HLS/Live/Channel(fine_living)/index.m3u8
 
 #EXTINF:0,Fox
 
@@ -155,21 +147,11 @@ http://188.227.86.4:4022/udp/239.77.0.3:1234
 #EXTINF:0,Food Network 
 http://185.27.237.105:8082/TV0086
 
-#EXTINF:0,Food Network 
-http://83.139.104.111/Content/HLS/Live/Channel(food_network)/index.m3u8
-
-#EXTINF:0,Food Network 
-http://83.139.104.112/Content/HLS/Live/Channel(food_network)/index.m3u8
-
-
 #EXTINF:0,FX 
 
 
 #EXTINF:0,Ginx Gaming TV 
-http://83.139.104.111/Content/HLS/Live/Channel(ginx)/index.m3u8
 
-#EXTINF:0,Ginx Gaming TV 
-http://83.139.104.112/Content/HLS/Live/Channel(ginx)/index.m3u8
 
 #EXTINF:0,Hallmark Channel 
 
@@ -198,6 +180,12 @@ http://wpc.AC3A.edgecastcdn.net:80/80AC3A/001/hls/m3u8/itv1.m3u8
 #EXTINF:0,ITV 2 
 http://wpc.AC3A.edgecastcdn.net:80/80AC3A/001/hls/m3u8/itv2.m3u8
 
+#EXTINF:0,ITV 3
+http://wpc.AC3A.edgecastcdn.net:80/80AC3A/001/hls/m3u8/itv3.m3u8
+
+#EXTINF:0,ITV 4
+http://wpc.AC3A.edgecastcdn.net:80/80AC3A/001/hls/m3u8/itv4.m3u8
+
 #EXTINF:0,Jewelry Television
 rtmp://jtvmedia.jtv.com:1975/live playpath=live6 swfUrl=http://demandware.edgesuite.net/aaby_prd/on/demandware.static/Sites-jtv-Site/-/default/v1410110388581/swf/flashMediaPlayer/StrobeMediaPlayback.swf live=1 pageUrl=http://www.jtv.com/on/demandware.store/Sites-jtv-Site/default/LiveViewer-Show
 
@@ -208,7 +196,7 @@ rtmp://jtvmedia.jtv.com:1975/live playpath=live6 swfUrl=http://demandware.edgesu
 http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
 
 #EXTINF:0,More4 
-
+http://wpc.AC3A.edgecastcdn.net:80/80AC3A/001/hls/m3u8/more4.m3u8
 
 #EXTINF:0,NHK World 
 http://plslive-w.nhk.or.jp/nhkworld/app/live.m3u8
@@ -271,10 +259,7 @@ http://188.227.86.4:4022/udp/239.77.0.5:1234
 
 
 #EXTINF:0,TLC 
-http://83.139.104.111/Content/HLS/Live/Channel(TLC)/index.m3u8
 
-#EXTINF:0,TLC 
-http://83.139.104.112/Content/HLS/Live/Channel(TLC)/index.m3u8
 
 #EXTINF:0,TNT 
 
@@ -306,6 +291,9 @@ http://46.249.213.93/iPhone/broadcast/victoriassecretangels-tablet.3gp/victorias
 #EXTINF:0,Warner Brothers 
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=96&lan=2&rows=40&f=.m3u8
 
+#EXTINF:0,Warner Brothers 
+http://200.76.77.237/LIVE/H01/CANAL205/PROFILE03.m3u8?
+
 #EXTINF:0,Weather Nation
 http://kalsegsec-a.akamaihd.net:80/dc-0/m/pa-live-publish3/kLive/smil:1_oorxcge2_all.smil/chunklist_b2096000.m3u8
 
@@ -316,7 +304,7 @@ http://kalsegsec-a.akamaihd.net:80/dc-0/m/pa-live-publish3/kLive/smil:1_oorxcge2
 
 
 #EXTINF:0,Wine Channel TV 
-rtmp://mi2.gv.filmon.com:8086/live/263.high.stream
+
 
 #EXTINF:0,Wobi
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=293&lan=2&rows=40&f=BratuMarian.m3u8

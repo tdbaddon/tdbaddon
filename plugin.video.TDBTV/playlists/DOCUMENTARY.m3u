@@ -1,31 +1,19 @@
 ﻿#EXTM3U
 
 #EXTINF:0,Animal Planet 
-http://83.139.104.111/Content/HLS/Live/Channel(animal_planet)/index.m3u8
-
-#EXTINF:0,Animal Planet 
-http://83.139.104.112/Content/HLS/Live/Channel(animal_planet)/index.m3u8
-
-#EXTINF:0,Animal Planet 
 http://sjc-uhls-vip01.ustream.tv/watch/playlist.m3u8?cid=12762028
 
 #EXTINF:0,Animal Planet 
-http://113.160.49.34/lives/origin03/animalsd.isml/animalsd-1096k.m3u8
+http://185.27.237.105:8082/TV0097
 
 #EXTINF:0,Animal Planet 
-http://185.27.237.105:8082/TV0097
+http://202.75.23.34:1400/live/ch31/01.m3u8
 
 #EXTINF:0,BBC Knowledge 
 
 
 #EXTINF:0,Crime Investigation 
-
-
-#EXTINF:0,Discovery Channel 
-http://83.139.104.111/Content/HLS/Live/Channel(discovery_channel)/index.m3u8
-
-#EXTINF:0,Discovery Channel 
-http://83.139.104.112/Content/HLS/Live/Channel(discovery_channel)/index.m3u8
+http://185.27.237.105:8082/TV0093
 
 #EXTINF:0,Discovery Channel 
 http://185.27.237.105:8082/TV0089
@@ -46,13 +34,16 @@ http://185.27.237.105:8082/TV0092
 
 
 #EXTINF:0,Discovery Science 
-http://188.227.86.4:4022/udp/239.77.0.79:1234
+http://185.27.237.105:8082/TV0090
 
 #EXTINF:0,Discovery Shed
 
 
 #EXTINF:0,Discovery Theater 
 http://200.76.77.237/LIVE/H01/CANAL351/PROFILE03.m3u8?
+
+#EXTINF:0,Discovery Theater 
+http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=241&lan=2&rows=40&f=.m3u8
 
 #EXTINF:0,Discovery Turbo 
 
@@ -62,6 +53,12 @@ http://188.227.86.4:4022/udp/239.77.0.78:1234
 
 #EXTINF:0,Discovery World
 http://185.27.237.105:8082/TV0089
+
+#EXTINF:0,Discovery World
+http://202.75.23.34:1400/live/ch30/01.m3u8
+
+#EXTINF:0,Discovery World
+http://200.76.77.237/LIVE/H01/CANAL356/PROFILE03.m3u8?
 
 #EXTINF:0,DocuBox
 
@@ -106,25 +103,16 @@ http://odna.octoshape.net/f3f5m2v4/cds/ch5_auto.smil/playlist.m3u8
 
 
 #EXTINF:0,Travel Channel 
-http://83.139.104.111/Content/HLS/Live/Channel(travel_channel)/index.m3u8
 
-#EXTINF:0,Travel Channel 
-http://83.139.104.112/Content/HLS/Live/Channel(travel_channel)/index.m3u8
 
 #EXTINF:0,Viasat Explorer 
-http://83.139.104.111/Content/HLS/Live/Channel(viasat_explore)/index.m3u8
-
-#EXTINF:0,Viasat Explorer 
-http://83.139.104.112/Content/HLS/Live/Channel(viasat_explore)/index.m3u8
+http://109.87.57.217:8888/udp/238.0.17.74:1234
 
 #EXTINF:0,Viasat History 
-http://83.139.104.111/Content/HLS/Live/Channel(viasat_history)/index.m3u8
-
-#EXTINF:0,Viasat History 
-http://83.139.104.112/Content/HLS/Live/Channel(viasat_history)/index.m3u8
+http://109.87.57.217:8888/udp/238.0.17.91:1234
 
 #EXTINF:0,Viasat Nature 
-
+http://109.87.57.217:8888/udp/238.0.17.73:1234
 
 #EXTINF:0,War Channel
 

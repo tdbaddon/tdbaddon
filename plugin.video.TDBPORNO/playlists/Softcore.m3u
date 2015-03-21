@@ -16,35 +16,44 @@ rtmp://edge2.everyon.tv/etv2sb/pld511
 #EXTINF:0,O LA LA 
 http://hlsstr01.svc.iptv.rt.ru/hls/CH_OLALA/variant.m3u8
 
-#EXTINF:0,Penthouse
-rtmp://edge2.everyon.tv/etv2sb/phd927
+#EXTINF:0,PENTHOUSE
 
-#EXTINF:0,Penthouse
-rtmp://edge2.everyon.tv/etv2sb/pld927
 
-#EXTINF:0,Playboy Spice
+#EXTINF:-0,PLAYBOY SPICE
 rtmp://edge2.everyon.tv/etv2sb/phd499
 
-#EXTINF:0,Playboy Spice
+#EXTINF:-0,PLAYBOY SPICE
 rtmp://edge2.everyon.tv/etv2sb/pld499
 
 #EXTINF:-0,PLAYBOY TV 
 http://iptv.sat-x.tv/iptv/91f5ebece378143c8392d8ad6ae539797bc86a67/527/index.m3u8
 
 #EXTINF:-0,PLAYBOY TV 
-http://iptv4.zargacum.net/iptv/8KRZ8Q8AMD/527/index.m3u8
-
-#EXTINF:-0,PLAYBOY TV 
-http://83.139.104.111/Content/HLS/Live/Channel(Playboy_tv)/index.m3u8
-
-#EXTINF:-0,PLAYBOY TV 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_PLAYBOY/variant.m3u8
 
 #EXTINF:-0,PLAYBOY TV 
-http://37.228.91.166:8081/cdn/playboy/playlist.m3u8
+http://tv1.sunduk.tv:8080/CH175_std/playlist.m3u8
+
+#EXTINF:-0,PLAYBOY TV 
+http://178.167.48.241:7777/udp/234.5.2.247:1234
+
+#EXTINF:-0,PLAYBOY TV 
+http://iptv4.zargacum.net/iptv/8KRZ8Q8AMD/527/index.m3u8
 
 #EXTINF:0,RUSSIAN NIGHT 
 http://iptv.sat-x.tv/iptv/91f5ebece378143c8392d8ad6ae539797bc86a67/147/index.m3u8
+
+#EXTINF:0,RUSSIAN NIGHT 
+http://185.38.12.20:8088/rusnoch/
+
+#EXTINF:0,RUSSIAN NIGHT 
+http://hlsstr02.svc.iptv.rt.ru/hls/CH_RUSSIANNIGHT/variant.m3u8?version=2
+
+#EXTINF:0,RUSSIAN NIGHT
+http://tv10.sunduk.tv:8080/CH163_std/playlist.m3u8
+
+#EXTINF:0,RUSSIAN NIGHT
+http://178.167.48.241:7777/udp/234.5.2.249:1234
 
 #EXTINF:0,SEX ED 
 
@@ -53,7 +62,6 @@ http://iptv.sat-x.tv/iptv/91f5ebece378143c8392d8ad6ae539797bc86a67/147/index.m3u
 
 
 #EXTINF:0,YOU DIVA 
-http://46.249.213.93/iPhone/broadcast/youdivalite-tablet.3gp/youdivalite-tablet.3gp-mr647k.m3u8?trackingid=3341430000&os=desktop
 
 
 

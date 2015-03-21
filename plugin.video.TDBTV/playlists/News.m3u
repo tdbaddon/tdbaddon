@@ -31,17 +31,11 @@ http://cdn3.videos.bloomberg.com/btv/us/master.m3u8
 #EXTINF:0,Bloomberg News 
 http://x4012c4000.edge.core-cdn.net/40000mb/live/4012hbbtv/bloomberg.ts
 
-#EXTINF:0,Bloomberg News 
-rtmp://d.cdn.newschat.tv/edge playpath=bloomberg_live swfUrl=http://msnbclive.eu/player.swf live=1 pageUrl=http://www.livenewschat.eu/bloombug/
-
 #EXTINF:0,CBC News Canada 
 rtmp://a.cdn.newschat.tv/edge playpath=cbc_live swfUrl=http://msnbclive.eu/player.swf pageUrl=http://www.livenewschat.eu/canada/ live=1
 
 #EXTINF:0,CBC News Canada 
 rtmp://a.cdn.newschat.tv/edge playpath=cbc_live swfUrl=http://msnbclive.eu/player.swf pageUrl=http://www.livenewschat.eu/canada/ live=2
-
-#EXTINF:0,CTV 
-http://ams-lp2.9c9media.com/hls-live/livepkgr/_definst_/liveeventNoDRM/ctvnewsOpen8.m3u8
 
 #EXTINF:0,CCTV News 
 http://77.36.61.45:8010/CCTVNews.m3u8
@@ -57,6 +51,9 @@ rtmp://edge1.everyon.tv/etv1sb/phd16
 
 #EXTINF:0,CP24
 http://ams-lp3.9c9media.com/hls-live/livepkgr/_definst_/liveeventNoDRM/cp24Open8.m3u8
+
+#EXTINF:0,CTV 
+http://ams-lp2.9c9media.com/hls-live/livepkgr/_definst_/liveeventNoDRM/ctvnewsOpen8.m3u8
 
 #EXTINF:0,DW 
 http://www.metafilegenerator.de/DWelle/tv-asia/ios/master.m3u8
@@ -92,7 +89,7 @@ http://cdn.rbm.tv:1935/rightbrainmedia-originpull-2/_definst_/infowars/playlist.
 rtmp://cdn.rbm.tv:1935/rightbrainmedia-originpull-2/_definst_/247daily2
 
 #EXTINF:0,MSNBC 
-
+rtmp://d.cdn.newschat.tv/edge playpath=msnbc_live swfUrl=http://msnbclive.eu/player.swf swfVfy=1 live=1 pageUrl=http://www.livenewschat.eu/politics/ timeout=15
 
 #EXTINF:0,NBC News
 

@@ -63,10 +63,10 @@ http://sslhls.m6tv.cdn.sfr.net/hls-live/livepkgr/_definst_/m6_music_hits_hls_aes
 
 
 #EXTINF:0,MTV 
-http://83.139.104.111/Content/HLS/Live/Channel(mtv)/index.m3u8
+rtmp://83.218.202.202/live swfUrl=http://webtv.md/swf/WebTV.swf playpath=wt_mtv.stream
 
 #EXTINF:0,MTV 
-http://83.139.104.112/Content/HLS/Live/Channel(mtv)/index.m3u8
+http://200.76.77.237/LIVE/H01/CANAL726/PROFILE02.m3u8?
 
 #EXTINF:0,MTV Base
 
@@ -86,17 +86,8 @@ http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=429&lan=2&rows=
 #EXTINF:0,MTV Live 
 http://200.76.77.237/LIVE/H01/CANAL701/PROFILE03.m3u8?BratuMarian
 
-#EXTINF:0,MTV Live 
-http://83.139.104.111/Content/HLS/Live/Channel(mtv)/index.m3u8
-
-#EXTINF:0,MTV Live 
-http://83.139.104.112/Content/HLS/Live/Channel(mtv)/index.m3u8
-
 #EXTINF:0,MTV Music 
-http://83.139.104.111/Content/HLS/Live/Channel(mtv_music)/index.m3u8
 
-#EXTINF:0,MTV Music 
-http://83.139.104.112/Content/HLS/Live/Channel(mtv_music)/index.m3u8
 
 #EXTINF:0,MTV Rocks 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVROCKS/variant.m3u8
