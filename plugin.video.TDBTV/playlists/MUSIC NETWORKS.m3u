@@ -68,6 +68,9 @@ rtmp://83.218.202.202/live swfUrl=http://webtv.md/swf/WebTV.swf playpath=wt_mtv.
 #EXTINF:0,MTV 
 http://200.76.77.237/LIVE/H01/CANAL726/PROFILE02.m3u8?
 
+#EXTINF:0,MTV 
+http://198.27.94.105/hls/mtv____2.m3u8
+
 #EXTINF:0,MTV Base
 
 

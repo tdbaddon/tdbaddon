@@ -72,6 +72,9 @@ http://200.76.77.237/LIVE/H01/CANAL356/PROFILE03.m3u8?
 #EXTINF:0,History Channel 2
 
 
+#EXTINF:0,Horse and Country
+http://cdn.live.simplestream.com/coder5/coder.channels.channel5/hls/4/playlist.m3u8
+
 #EXTINF:0,NASA TV 
 http://public.infozen.cshls.lldns.net/infozen/public/public.m3u8
 

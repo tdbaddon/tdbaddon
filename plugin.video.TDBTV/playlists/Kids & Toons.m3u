@@ -13,6 +13,9 @@ http://185.27.237.105:8082/TV0111
 #EXTINF:0,Cartoon Network
 http://188.227.86.4:4022/udp/239.77.0.77:1234
 
+#EXTINF:0,Cartoon Network
+http://198.27.94.105/hls/cartoon____2.m3u8
+
 #EXTINF:0,Classic Looney Tunes
 
 

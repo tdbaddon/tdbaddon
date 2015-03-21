@@ -8,10 +8,10 @@
 
 
 #EXTINF:0,ABC 
-
+http://198.27.94.105/hls/abc____2.m3u8
 
 #EXTINF:0,ABC Family
-
+http://198.27.94.105/hls/abcfam____2.m3u8
 
 #EXTINF:0,ACC TV
 http://stream.acctv.com.au/06.m3u8
@@ -59,7 +59,7 @@ http://200.76.77.237/LIVE/H01/CANAL253/PROFILE03.m3u8
 
 
 #EXTINF:0,CBS 
-
+http://198.27.94.105/hls/cbs____2.m3u8
 
 #EXTINF:0,CBS Action 
 
@@ -92,9 +92,8 @@ http://ams-lp2.9c9media.com/hls-live/livepkgr/_definst_/liveeventNoDRM/ctvnewsOp
 #EXTINF:0,CTV 
 http://198.179.31.198/live/2053.high.stream/2053.high.stream/index.m3u8
 
-
 #EXTINF:0,CW 
-
+http://198.27.94.105/hls/cw____2.m3u8
 
 #EXTINF:0,E! 
 http://185.27.237.105:8082/TV0060
@@ -301,7 +300,7 @@ http://kalsegsec-a.akamaihd.net:80/dc-0/m/pa-live-publish3/kLive/smil:1_oorxcge2
 
 
 #EXTINF:0,WGN 9 Chicago 
-
+http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
 
 #EXTINF:0,Wine Channel TV 
 

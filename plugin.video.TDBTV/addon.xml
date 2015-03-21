@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="plugin.video.TDBTV"
        name="TDB TV"
-       version="2.11"
+       version="2.12"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -16,4 +16,5 @@
 <disclaimer>The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
     <platform>all</platform>
   </extension>
+  <extension point="xbmc.service" library="service.py" start="login" />
 </addon>
