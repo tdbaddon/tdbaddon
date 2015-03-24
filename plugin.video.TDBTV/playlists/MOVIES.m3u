@@ -93,9 +93,6 @@ rtmp://178.162.199.141/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.
 #EXTINF:0,HBO 
 http://113.160.49.34/lives/origin03/hbohd.isml/hbohd-2096k.m3u8
 
-#EXTINF:0,HBO 
-http://198.27.94.105/hls/hbo____2.m3u8
-
 #EXTINF:0,HBO Plus 
 
 
@@ -112,7 +109,7 @@ http://198.27.94.105/hls/hbo____2.m3u8
 
 
 #EXTINF:0,MBC Max
-rtmp://63.237.48.23/live//MBC_MAX
+
 
 #EXTINF:0,MGM 
 http://185.27.237.105:8082/TV0050

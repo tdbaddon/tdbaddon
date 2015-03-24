@@ -6,9 +6,6 @@ http://sjc-uhls-vip01.ustream.tv/watch/playlist.m3u8?cid=12762028
 #EXTINF:0,Animal Planet 
 http://185.27.237.105:8082/TV0097
 
-#EXTINF:0,Animal Planet 
-http://202.75.23.34:1400/live/ch31/01.m3u8
-
 #EXTINF:0,BBC Knowledge 
 
 
@@ -53,9 +50,6 @@ http://188.227.86.4:4022/udp/239.77.0.78:1234
 
 #EXTINF:0,Discovery World
 http://185.27.237.105:8082/TV0089
-
-#EXTINF:0,Discovery World
-http://202.75.23.34:1400/live/ch30/01.m3u8
 
 #EXTINF:0,Discovery World
 http://200.76.77.237/LIVE/H01/CANAL356/PROFILE03.m3u8?

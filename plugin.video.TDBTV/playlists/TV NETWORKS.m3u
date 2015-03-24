@@ -8,10 +8,10 @@
 
 
 #EXTINF:0,ABC 
-http://198.27.94.105/hls/abc____2.m3u8
+
 
 #EXTINF:0,ABC Family
-http://198.27.94.105/hls/abcfam____2.m3u8
+
 
 #EXTINF:0,ACC TV
 http://stream.acctv.com.au/06.m3u8
@@ -22,10 +22,10 @@ http://stream.acctv.com.au/06.m3u8
 #EXTINF:0,Arthouse Film Box
 
 
-#EXTINF:0,AXN
+#EXTINF:0,AXN 
 http://113.160.49.34/lives/origin03/axnhd.isml/axnhd-2096k.m3u8
 
-#EXTINF:0,AXN
+#EXTINF:0,AXN 
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=109&lan=2&rows=40&f=.m3u8
 
 #EXTINF:0,BBC 1 
@@ -59,16 +59,16 @@ http://200.76.77.237/LIVE/H01/CANAL253/PROFILE03.m3u8
 
 
 #EXTINF:0,CBS 
-http://198.27.94.105/hls/cbs____2.m3u8
+
 
 #EXTINF:0,CBS Action 
-
+http://93.184.221.133/00573D/711/711-0.m3u8
 
 #EXTINF:0,CBS Drama 
 http://93.184.221.133/00573D/712/712-0.m3u8
 
 #EXTINF:0,CBS Reality 
-
+http://hls01-05.az.myvideo.az/hls-live/livepkgr/cbsreality/cbsreality/cbsreality.m3u8?simpletvipadresleri
 
 #EXTINF:0,CHCH Ontario 
 
@@ -93,7 +93,7 @@ http://ams-lp2.9c9media.com/hls-live/livepkgr/_definst_/liveeventNoDRM/ctvnewsOp
 http://198.179.31.198/live/2053.high.stream/2053.high.stream/index.m3u8
 
 #EXTINF:0,CW 
-http://198.27.94.105/hls/cw____2.m3u8
+
 
 #EXTINF:0,E! 
 http://185.27.237.105:8082/TV0060
@@ -150,6 +150,16 @@ http://185.27.237.105:8082/TV0086
 
 
 #EXTINF:0,Ginx Gaming TV 
+
+
+#EXTINF:0,Global TV 
+http://link.theplatform.com/s/dtjsEC/EqBPGYLY6fEx?feed=DEV%20Live%20Stream%20Feed
+
+#EXTINF:0,Global TV 
+http://link.theplatform.com/s/dtjsEC/77l1KA_G_5P1?feed=DEV%20Live%20Stream%20Feed
+
+#EXTINF:0,Global TV 
+http://link.theplatform.com/s/dtjsEC/hdSH3iztz_j_?feed=DEV%20Live%20Stream%20Feed
 
 
 #EXTINF:0,Hallmark Channel 
@@ -270,7 +280,7 @@ http://188.227.86.4:4022/udp/239.77.0.5:1234
 http://wpc.AC3A.edgecastcdn.net:80/80AC3A/001/hls/m3u8/truedrama.m3u8
 
 #EXTINF:0,True Entertainment 
-
+http://wpc.ac3a.edgecastcdn.net/80AC3A/001/hls/m3u8/trueent.m3u8
 
 #EXTINF:0,TV Land 
 
@@ -285,7 +295,7 @@ http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=97&lan=2&rows=4
 http://149.11.34.6:1935/live/vernissagetv.stream/hasbahca.m3u8
 
 #EXTINF:0,Victoria Secret TV
-http://46.249.213.93/iPhone/broadcast/victoriassecretangels-tablet.3gp/victoriassecretangels-tablet.3gp-mr648k.m3u8
+
 
 #EXTINF:0,Warner Brothers 
 http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=96&lan=2&rows=40&f=.m3u8
