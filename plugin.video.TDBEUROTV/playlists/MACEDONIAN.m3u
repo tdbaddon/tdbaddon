@@ -6,12 +6,6 @@ rtmp://
 #EXTINF:0,24 Sata
 mms://62.162.58.55/24vesti
 
-#EXTINF:0,24 Sata
-http://83.139.104.111/Content/HLS/Live/Channel(24_sata)/index.m3u8
-
-#EXTINF:0,24 Sata
-http://83.139.104.112/Content/HLS/Live/Channel(24_sata)/index.m3u8
-
 #EXTINF:0,Al Jazeera Balkan 
 rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
 
@@ -43,10 +37,10 @@ rtmp://yayin.tvdunyasi.tv/live/balkanrtv
 
 
 #EXTINF:0,Cegrani Media
-http://fms.zulu.mk:1935/zulu/cegrani_1/playlist.m3u8
+
 
 #EXTINF:0,ERA TV 
-http://fms.zulu.mk:1935/zulu/era_1/hasbahca.m3u8
+
 
 #EXTINF:0,Hema TV
 mms://77.238.209.50:1234
@@ -68,12 +62,6 @@ rtmp://84.20.77.50/live/livestream1
 
 #EXTINF:0,Jug TV 
 rtmp://84.20.77.50/live//livestream2
-
-#EXTINF:0,Kanal 5 
-http://83.139.104.111/Content/HLS/Live/Channel(kanal_5)/index.m3u8
-
-#EXTINF:0,Kanal 5 
-http://83.139.104.112/Content/HLS/Live/Channel(kanal_5)/index.m3u8
 
 #EXTINF:0,Kanal 5 
 http://fms.zulu.mk:1935/zulu/kanal5_1/playlist.m3u8

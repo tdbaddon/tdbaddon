@@ -8,20 +8,17 @@ http://mail.tv4e.gr:1935/live/myStream.sdp/playlist.m3u8
 #EXTINF:0,4E TV
 rtmp://82.192.84.30:1935/live/myStream.sdp
 
+#EXTINF:0,4E TV
+http://database.freetuxtv.net/playlists/playlist_webtv_el.m3u
+
 #EXTINF:0,Airqio
 http://xaigaiotelevisionx.api.channel.livestream.com/3.0/playlist.m3u8
 
 #EXTINF:0,Alpha
 http://alfakanali-lh.akamaihd.net/i/live_1@90368/master.m3u8
 
-#EXTINF:0,Alpha
-http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12307
-
 #EXTINF:0,Ant1
 http://wow.ant1.gr:1935/live/smil:mavani.smil/playlist.m3u8
-
-#EXTINF:0,Ant1
-http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12306
 
 #EXTINF:0,Ant1 Cyprus
 
@@ -38,14 +35,14 @@ http://srv1.viiideo.gr:1935/videon/axeloostv/bratumarian.m3u
 #EXTINF:0,Best TV
 http://smooth.istoikona.net/besttv.isml/manifest(format=m3u8-aapl).m3u8
 
+#EXTINF:0,Bergina
+http://195.81.140.68/0f5e3de651a80e17745bbef999c967e8/VerginaStream1.m3u8
+
 #EXTINF:0,BlueSky TV
 http://88.198.238.44:1935/bluesky/bluesky.stream/playlist.m3u8
 
 #EXTINF:0,Boyah 
 http://streamer-cache.grnet.gr/parliament/parltv.sdp/master.m3u8
-
-#EXTINF:0,Boyah 
-http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12312
 
 #EXTINF:0,CY Sports
 http://mlivenews.istoikona.net/cysports.isml/manifest(format=m3u8-aapl).m3u8
@@ -62,26 +59,26 @@ mms://ams01.egihosting.com/989630
 #EXTINF:0,Diras TV
 rtmp://www.cityofkos.gr/live/livetv
 
+#EXTINF:0,Diras TV
+rtmp://www.cityofkos.gr/live/livetv live=1 timeout=10
+
 #EXTINF:0,DR TV
-http://www.livestream.com/drtvhellas
+
 
 #EXTINF:0,E TV 
 rtmp://213.16.167.187:1935/live/mpegts_256.stream live=1 timeout=10
 
 #EXTINF:0,E TV 
-http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12308
-
-#EXTINF:0,E TV 
 rtmp://213.16.167.187:1935/live playpath=mpegts_256.stream swfUrl=http://www.epsilontv.gr/wp-content/plugins/fv-wordpress-flowplayer/flowplayer/flowplayer.swf?ver=2.2.7 live=1 pageUrl=http://www.epsilontv.gr/live/
 
 #EXTINF:0,Eiprus TV 1
-http://xepirustv1x.api.channel.livestream.com/3.0/playlist.m3u8
+
 
 #EXTINF:0,Ellada TV
 rtmp://fml.68FC.edgecastcdn.net/2068FC/elladatv swfUrl=http://www.elladatv.gr/scripts/player.swf swfVfy=1 live=1 timeout=10
 
 #EXTINF:0,Ena TV 
-rtmp://fml.68FC.edgecastcdn.net/2068FC/ena-rtmp swfUrl=http://www.ellastv.gr/jw/player.swf swfVfy=1 live=1 timeout=10
+
 
 #EXTINF:0,ET3
 http://live2.ertopen.com/live2/e600/playlist.m3u8
@@ -90,7 +87,7 @@ http://live2.ertopen.com/live2/e600/playlist.m3u8
 rtmp://213.16.167.186:1935/live/mpegts_256.stream
 
 #EXTINF:0,Flash TV
-http://www.ustream.tv/channel/flash-tv-ch
+
 
 #EXTINF:0,Greek Cinema
 
@@ -99,7 +96,7 @@ http://www.ustream.tv/channel/flash-tv-ch
 http://wpso.com:200/tv48
 
 #EXTINF:0,Ionian Channel
-http://www.ustream.tv/channel/ioannina-tv1
+http://stream8.upg.gr:1935/live/stream/playlist.m3u8
 
 #EXTINF:0,Infinity Cinema
 http://wpc.68FC.edgecastcdn.net/8068FC/INFINITY/m3u8/cinema.m3u8
@@ -120,22 +117,22 @@ rtmp://edge.vidblee.com/tvkosmos/mp4:tvkosmos.mp4 live=1 timeout=10
 http://live.cretetv.gr:1935/cretetv/myStream/playlist.m3u8
 
 #EXTINF:0,M Channel
-http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12310
+
 
 #EXTINF:0,Mad Music Hits
 mmsh://wpso.com:200/music
 
 #EXTINF:0,Mad TV 
-http://www.mad.tv/players/madtv/
+rtmp://144.76.2.213:1935/live/livestream
 
 #EXTINF:0,Mad TV Cyprus
-
+rtmp://144.76.2.213/live/livestream swfUrl=http://jwplayer.mediaserve.com/player.swf live=1 timeout=10
 
 #EXTINF:0,Makedonia TV
 rtmp://213.16.167.55:1935/livepkgr/livestream swfUrl=http://static.ant1.gr/maktvlive.ashx pageUrl=http://www.maktv.gr/Live swfVfy=1 live=1 timeout=10
 
 #EXTINF:0,Mega 
-http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12305
+http://megahdlive1-f.akamaihd.net/i/live_1@105260/master.m3u8
 
 #EXTINF:0,Mega Cyprus
 http://mlivenews.istoikona.net/livenews.isml/manifest(format=m3u8-aapl).m3u8
@@ -144,40 +141,40 @@ http://mlivenews.istoikona.net/livenews.isml/manifest(format=m3u8-aapl).m3u8
 rtmp://srv1.viiideo.gr:1935/hellasonmedia/neatv
 
 #EXTINF:0,Nerit 
-http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12311
-
-#EXTINF:0,Nerit 
-http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12313
-
-#EXTINF:0,Nerit 
 http://magictvbox.us:200/skai
 
+#EXTINF:0,Nerit 
+http://nerit2-lh.akamaihd.net/i/neritplus_1@45603/master.m3u8
+
+#EXTINF:0,Nerit 
+http://nerit1-lh.akamaihd.net/i/nerit_1@42604/master.m3u8
+
 #EXTINF:0,Odie TV
-http://www.ustream.tv/channel/odie-tv-live
+
 
 #EXTINF:0,Omega TV
-rtmp://stream2.omegatv.net:1935/livepkgr/omegatv
+
 
 #EXTINF:0,OPT TV
 rtmp://media.patrisnews.com:1935/patris/tvstream live=1 timeout=10
 
 #EXTINF:0,OTE Sports 1 
-http://37.157.246.170:8080/ote/sports1/index.m3u8
+
 
 #EXTINF:0,OTE Sports 2 
-http://37.157.246.170:8080/ote/sports2/index.m3u8
+
 
 #EXTINF:0,OTE Sports 3 
-http://37.157.246.170:8080/ote/sports3/index.m3u8
+
 
 #EXTINF:0,OTE Sports 4 
-http://37.157.246.170:8080/ote/sports4/index.m3u8
+
 
 #EXTINF:0,OTE Sports 5 
-http://37.157.246.170:8080/ote/sports5/index.m3u8
+
 
 #EXTINF:0,OTE Sports 6 
-http://37.157.246.170:8080/ote/sports6/index.m3u8
+
 
 #EXTINF:0,R Channel
 http://xrodopi-tvx.api.channel.livestream.com/3.0/playlist.m3u8
@@ -192,16 +189,10 @@ rtmp://91.121.107.131/samiaki/samiaki
 http://81.21.47.74/hls/live.m3u8
 
 #EXTINF:0,Skai 
-mmsh://magictvbox.us:200/skai
-
-#EXTINF:0,Skai 
-http://86.106.137.188:88/ruyaserver/stream/plays_b1.php?stream_id=12309
-
-#EXTINF:0,Skai 
 http://iphone.skai.gr.edgesuite.net/iphone_iphone.m3u8
 
 #EXTINF:0,Star TV 
-http://www.dailymotion.com/video/xqjey2
+
 
 #EXTINF:0,Syros TV
 http://176.9.123.140:1935/msg116s/msg116s/playlist.m3u8

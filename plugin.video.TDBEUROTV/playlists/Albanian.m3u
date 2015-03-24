@@ -116,17 +116,14 @@ rtmp://psham1.setplex.net:1935/tvalb_loc_ams243/tvkop2431565
 #EXTINF:0,Mitrovica
 
 
-#EXTINF:0,Mpt 2 
+#EXTINF:0,MPT 2 
 http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video_id/3548/token/1551170c6b60563462fd429eec72b731/playlist.m3u8
 
-#EXTINF:0,Mpt 2 
-http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video_id/3545/token/baf3cb0ceac4e5243d63f8bf96011783/playlist.m3u8
-
-#EXTINF:0, MPT 2 
+#EXTINF:0,MPT 2 
 http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video_id/3548/token/bd0b11a4f8d05cc0bffe589f55909615/chunklist_w787058205_b1196000.m3u8
 
 #EXTINF:0,News24
-rtmp://66.55.93.203/livepkgr//n24stream?adbe-live-event=news24
+
 
 #EXTINF:0,Novosadska TV
 mms://176.106.121.32:8080/
