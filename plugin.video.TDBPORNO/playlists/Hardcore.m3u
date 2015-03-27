@@ -8,22 +8,13 @@
 
 
 #EXTINF:0,BRAZZERS TV EUROPE 
-http://tv1.sunduk.tv:8080/CH152_std/playlist.m3u8
-
-#EXTINF:0,BRAZZERS TV EUROPE 
-http://178.167.48.241:7777/udp/234.5.2.248:1234
+http://serv02.vintera.tv:1935/live/play/playlist.m3u8
 
 #EXTINF:0,BUNGA BUNGA 
 http://84.22.33.3:8066
 
 #EXTINF:0,CENTOX CENTO 
-http://iptv.sat-elit.net/iptv/6d0fe8e1eb8158423643ddd1b4ccfe6b/564/index.m3u8
 
-#EXTINF:0,CENTOX CENTO 
-http://88.150.210.146/iptv/a34321a744a74c408c5186b476d0013459c54634/564/index.m3u8
-
-#EXTINF:0,CENTOX CENTO 
-http://88.150.210.146/iptv/91f5ebece378143c8392d8ad6ae539797bc86a67/564/index.m3u8
 
 #EXTINF:0,DORCEL TV HD
 
@@ -37,32 +28,14 @@ http://88.150.210.146/iptv/91f5ebece378143c8392d8ad6ae539797bc86a67/564/index.m3
 #EXTINF:0,EROX 
 
 
+#EXTINF:0,EXOTICA TV 
+
+
 #EXTINF:0,ERO XXX
 
 
-#EXTINF:0,EXOTICA TV 
-http://iptv.sat-elit.net/iptv/6d0fe8e1eb8158423643ddd1b4ccfe6b/562/index.m3u8
-
-#EXTINF:0,EXOTICA TV 
-http://iptv.sat-x.tv/iptv/91f5ebece378143c8392d8ad6ae539797bc86a67/562/index.m3u8
-
-#EXTINF:0,EXOTICA TV 
-http://88.150.210.146/iptv/a34321a744a74c408c5186b476d0013459c54634/562/index.m3u8
-
-#EXTINF:0,EXOTICA TV 
-http://88.150.210.146/iptv/91f5ebece378143c8392d8ad6ae539797bc86a67/562/index.m3u8
-
 #EXTINF:0,FRENCHLOVER 
-http://iptv.sat-x.tv/iptv/a34321a744a74c408c5186b476d0013459c54634/569/index.m3u8
 
-#EXTINF:0,FRENCHLOVER 
-http://iptv.sat-x.tv/iptv/91f5ebece378143c8392d8ad6ae539797bc86a67/569/index.m3u8
-
-#EXTINF:0,FRENCHLOVER 
-http://88.150.210.146/iptv/a34321a744a74c408c5186b476d0013459c54634/569/index.m3u8
-
-#EXTINF:0,FRENCHLOVER 
-http://88.150.210.146/iptv/91f5ebece378143c8392d8ad6ae539797bc86a67/569/index.m3u8
 
 #EXTINF:0,HOT
 
@@ -71,7 +44,7 @@ http://88.150.210.146/iptv/91f5ebece378143c8392d8ad6ae539797bc86a67/569/index.m3
 
 
 #EXTINF:0,HUSTLER TV 
-http://tv1.sunduk.tv:8080/CH171_std/playlist.m3u8
+
 
 #EXTINF:0,ILIVE 1
 
@@ -86,28 +59,16 @@ http://tv1.sunduk.tv:8080/CH171_std/playlist.m3u8
 
 
 #EXTINF:0,PINK EROTIC 
-http://iptv.sat-elit.net/iptv/6d0fe8e1eb8158423643ddd1b4ccfe6b/567/index.m3u8
 
-#EXTINF:0,PINK EROTIC 
-http://iptv.sat-x.tv/iptv/91f5ebece378143c8392d8ad6ae539797bc86a67/567/index.m3u8
 
-#EXTINF:0,PINK EROTIC 
-http://88.150.210.146/iptv/a34321a744a74c408c5186b476d0013459c54634/567/index.m3u8
+#EXTINF:0,PLATINUM TV 
 
-#EXTINF:0,PINK EROTIC 
-http://88.150.210.146/iptv/91f5ebece378143c8392d8ad6ae539797bc86a67/567/index.m3u8
 
 #EXTINF:0,PRIVATE 
 http://185.38.12.20:8088/private/
 
-#EXTINF:0,PRIVATE 
-http://tv1.sunduk.tv:8080/CH151_std/playlist.m3u8
-
 #EXTINF:0,PURE MATURE
 
-
-#EXTINF:0,PLATINUM TV 
-http://iptv.sat-x.tv/iptv/a34321a744a74c408c5186b476d0013459c54634/565/index.m3u8
 
 #EXTINF:0,REDLIGHT PREMIUM 
 
@@ -116,31 +77,12 @@ http://iptv.sat-x.tv/iptv/a34321a744a74c408c5186b476d0013459c54634/565/index.m3u
 
 
 #EXTINF:0,SATISFACTION HD 
-http://iptv.sat-x.tv/iptv/a34321a744a74c408c5186b476d0013459c54634/561/index.m3u8
 
-#EXTINF:0,SATISFACTION HD 
-http://iptv.sat-x.tv/iptv/91f5ebece378143c8392d8ad6ae539797bc86a67/561/index.m3u8
-
-#EXTINF:0,SATISFACTION HD 
-http://88.150.210.146/iptv/91f5ebece378143c8392d8ad6ae539797bc86a67/561/index.m3u8
-
-#EXTINF:0,SATISFACTION HD 
-http://88.150.210.146/iptv/a34321a744a74c408c5186b476d0013459c54634/561/index.m3u8
 
 #EXTINF:0,SCT 
-http://iptv.sat-x.tv/iptv/a34321a744a74c408c5186b476d0013459c54634/566/index.m3u8
 
-#EXTINF:0,SCT 
-http://iptv.sat-x.tv/iptv/91f5ebece378143c8392d8ad6ae539797bc86a67/566/index.m3u8
-
-#EXTINF:0,SCT 
-http://88.150.210.146/iptv/a34321a744a74c408c5186b476d0013459c54634/566/index.m3u8
-
-#EXTINF:0,SCT 
-http://88.150.210.146/iptv/91f5ebece378143c8392d8ad6ae539797bc86a67/566/index.m3u8
 
 #EXTINF:0,SEXT SENSO
-http://88.150.210.146/iptv/a34321a744a74c408c5186b476d0013459c54634/565/index.m3u8
 
 
 #EXTINF:0,SEXYHOT 
@@ -153,7 +95,7 @@ http://88.150.210.146/iptv/a34321a744a74c408c5186b476d0013459c54634/565/index.m3
 
 
 #EXTINF:0,VENUS
-http://4.31.30.145:9145
+
 
 #EXTINF:0,X DESIRE 
 
@@ -162,10 +104,7 @@ http://4.31.30.145:9145
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_XXL/variant.m3u8
 
 #EXTINF:0,XXX 
-http://Smart:Adana01@188.165.239.200:7024
 
-#EXTINF:0,XXX 
-http://188.165.239.200:7024
 
 
 

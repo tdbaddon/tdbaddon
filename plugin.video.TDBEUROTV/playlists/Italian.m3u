@@ -57,10 +57,10 @@ rtmp://ondemand.superstreaming.it/piublu playpath=piublu.sdp
 rtmp://wowza1.top-ix.org/quartaretetv/ playpath=quartareteweb
 
 #EXTINF:0,Quartarete 4
-http://194.116.73.146/quartaretetv/quartareteweb/hasbahca.m3u8
+
 
 #EXTINF:0,Radio Bruno TV
-rtmp://94.198.100.100/ditv/ playpath=channel3_cdn swfUrl=http://p.jwpcdn.com/6/8/jwplayer.flash.swf live=1 pageUrl=http://www.radiobruno.it/radio-bruno-tv
+
 
 #EXTINF:0,Rai Gulp
 http://212.162.68.163/Rai_Gulp
@@ -125,16 +125,16 @@ http://91.121.222.160:1935/piublu/piublu.sdp/hasbahca.m3u8
 #EXTINF:0,Tele Milano
 rtmp://ondemand.superstreaming.it:1935/piublu playpath=piublu.sdp swfUrl=http://www.coolstreaming.us/consolle/StrobeMediaPlayback.swf pageUrl=http://www.coolstreaming.us/blog/piublu.php live=1
 
-#EXTINF:0,Tele Monteneve
+#EXTINF:0,Tele Monteneve 
 http://wms.shared.streamshow.it/telemonteneve/telemonteneve/playlist.m3u8
 
-#EXTINF:0,Tele Monteneve
+#EXTINF:0,Tele Monteneve 
 http://wms.shared.streamshow.it/telemonteneve3/telemonteneve3/playlist.m3u8
 
-#EXTINF:0,Tele Pavia
+#EXTINF:0,Tele Pavia 
 rtmp://wms.shared.streamshow.it:80/telepavia playpath=telepavia swfUrl=http://player.streamshow.it/flowplayer/flowplayer.commercial-3.2.18.swf pageUrl=http://player.streamshow.it/embed/telepavia_2.php?width=640&height=360 live=1
 
-#EXTINF:0,Tele Pavia
+#EXTINF:0,Tele Pavia 
 http://fms.shared.streamshow.it:1935/telepavia/telepavia/hasbahca.m3u8
 
 #EXTINF:0,Tele Sicilia
@@ -180,10 +180,10 @@ http://flash.streamingmedia.it:1935/TRM/livestream/hasbahca.m3u8
 rtmp://flash.streamingmedia.it/TRM playpath=livestream swfUrl=http://flash.streamingmedia.it:8000/player/player.swf live=1 pageUrl=http://www.trmtv.it/home/
 
 #EXTINF:0,TV 2000
-http://37.247.49.164/tv2000
+
 
 #EXTINF:0,TV7
-rtmp://37.9.228.45:1949/itstream65 playpath=itstream65 swfUrl=http://embed.itstream.tv/jwp/5/player.swf pageUrl=http://embed.itstream.tv/palinsesto.php?code=65&width=560&height=336&position_logo=top-left live=1 timeout=10
+
 
 #EXTINF:0,TV Uno
 http://ftp.tiscali.it/francescovernata/TVUNO/monoscopioTvUNOint-1.wmv

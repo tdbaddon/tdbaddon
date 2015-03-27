@@ -2,22 +2,13 @@
 
 
 #EXTINF:0,Boomerang
-http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=229&lan=2&rows=40&f=BratuMarian.m3u8
-
-#EXTINF:0,Boomerang
 http://200.76.77.237/LIVE/H01/CANAL324/PROFILE03.m3u8?BratuMarian
 
 #EXTINF:0,Cartoon Network
 http://200.76.77.237/LIVE/H01/CANAL320/PROFILE03.m3u8?BratuMarian
 
-#EXTINF:0,Cartoon Network
-http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?
-
 #EXTINF:0,Creebies
 http://200.76.77.237/LIVE/H01/CANAL305/PROFILE03.m3u8?BratuMarian
-
-#EXTINF:0,Creebies
-http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?
 
 #EXTINF:0,Discovery Kids
 http://200.76.77.237/LIVE/H01/CANAL303/PROFILE03.m3u8?BratuMarian
@@ -29,34 +20,19 @@ rtmp://31.204.128.74/live/master24
 http://200.76.77.237/LIVE/H01/CANAL312/PROFILE03.m3u8?BratuMarian
 
 #EXTINF:0,Disney JR
-http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=201&lan=2&rows=40&f=BratuMarian.m3u8
-
-#EXTINF:0,Disney JR
 http://200.76.77.237/LIVE/H01/CANAL308/PROFILE03.m3u8?BratuMarian
-
-#EXTINF:0,Disney XD
-http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=225&lan=2&rows=40&f=BratuMarian.m3u8
 
 #EXTINF:0,Disney XD
 http://200.76.77.237/LIVE/H01/CANAL322/PROFILE03.m3u8?BratuMarian
 
 #EXTINF:0,Nick
-http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=217&lan=2&rows=40&f=BratuMarian.m3u8
-
-#EXTINF:0,Nick
 http://200.76.77.237/LIVE/H01/CANAL317/PROFILE03.m3u8?BratuMarian
-
-#EXTINF:0,Nick HD
-http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=213&lan=2&rows=40&f=BratuMarian.m3u8
 
 #EXTINF:0,Nick HD
 http://200.76.77.237/LIVE/H01/CANAL315/PROFILE03.m3u8?BratuMarian
 
 #EXTINF:0,Nick JR
 http://200.76.77.237/LIVE/H01/CANAL310/PROFILE03.m3u8?BratuMarian
-
-#EXTINF:0,Nicktoons
-http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=468&lan=2&rows=40&f=BratuMarian.m3u8
 
 #EXTINF:0,Nicktoons
 http://200.76.77.237/LIVE/H01/CANAL314/PROFILE03.m3u8?BratuMarian

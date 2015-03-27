@@ -23,7 +23,7 @@ http://113.160.49.34/lives/origin03/cinemaxsd.isml/cinemaxsd-1096k.m3u8
 
 
 #EXTINF:0,CMore Action
-
+http://93.184.221.133/00573D/1460/1460-0.m3u8
 
 #EXTINF:0,CMore Emotion
 
@@ -46,32 +46,26 @@ http://113.160.49.34/lives/origin03/cinemaxsd.isml/cinemaxsd-1096k.m3u8
 #EXTINF:0,FilmZone
 http://200.76.77.237/LIVE/H01/CANAL440/PROFILE03.m3u8?
 
-#EXTINF:0,Fox 1
-http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=297&lan=2&rows=40&f=.m3u8
-
-#EXTINF:0,Fox 1
-http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=300&lan=2&rows=40&f=.m3u8
+#EXTINF:0,Fox 1 
+http://200.76.77.237/LIVE/H01/CANAL415/PROFILE03.m3u8?BratuMarian
 
 #EXTINF:0,Fox Action Movies 
-http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=301&lan=2&rows=40&f=.m3u8
-
-#EXTINF:0,Fox Action Movies 
-http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=305&lan=2&rows=40&f=.m3u8
+http://103.242.13.66:5000/nn_live.ts?id=foxactionmovie-m-h
 
 #EXTINF:0,Fox Action Movies 
 http://200.76.77.237/LIVE/H01/CANAL416/PROFILE03.m3u8? 
 
 #EXTINF:0,Fox Family Movies 
-http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=342&lan=2&rows=40&f=.m3u8
+http://200.76.77.237/LIVE/H01/CANAL475/PROFILE03.m3u8?BratuMarian
 
 #EXTINF:0,Fox Classics
-http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=345&lan=2&rows=40&f=.m3u8
+http://200.76.77.237/LIVE/H01/CANAL478/PROFILE03.m3u8?BratuMarian
 
 #EXTINF:0,Fox Movies 
-http://200.76.77.237/LIVE/H01/CANAL417/PROFILE03.m3u8?
+http://103.242.13.67:5000/nn_live.ts?id=foxmovies-m-h
 
 #EXTINF:0,Fox Movies 
-rtmp://162.212.176.107:1935/fox_movies/globaltv-fox_movies.stream
+http://200.76.77.237/LIVE/H01/CANAL417/PROFILE03.m3u8?BratuMarian
 
 
 
@@ -79,10 +73,7 @@ rtmp://162.212.176.107:1935/fox_movies/globaltv-fox_movies.stream
 
 
 #EXTINF:0,FX HD 
-http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=104&lan=2&rows=40&f=.m3u8
-
-#EXTINF:0,FX HD 
-http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=103&lan=2&rows=40&f=.m3u8
+http://200.76.77.237/LIVE/H01/CANAL209/PROFILE03.m3u8?BratuMarian
 
 #EXTINF:0,HBO 
 rtmp://94.102.63.54/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to/player/secure_player_iguide_embed_token.swf pageUrl=http://www.iguide.to/view/1/watch-live-HBO-channel-for-free token=#ed%h0#w18623jsda6523lDGD timeout=15
@@ -112,7 +103,7 @@ http://113.160.49.34/lives/origin03/hbohd.isml/hbohd-2096k.m3u8
 
 
 #EXTINF:0,MGM 
-http://185.27.237.105:8082/TV0050
+
 
 #EXTINF:0,More Movies
 
@@ -121,16 +112,16 @@ http://185.27.237.105:8082/TV0050
 http://167.114.65.88/hls/mv.m3u8
 
 #EXTINF:0,Movies 4 Men
-
+http://93.184.221.133/00573D/311/311-0.m3u8
 
 #EXTINF:0,OMN Movies
-http://185.27.237.105:8082/TV0023
+http://185.27.237.105:8082/TV0053
 
 #EXTINF:0,OMN Movies 2
 http://185.27.237.105:8082/TV0054
 
 #EXTINF:0,OMN Movies Action
-http://185.27.237.105:8082/TV0025
+
 
 #EXTINF:0,OMN Movies Drama
 http://185.27.237.105:8082/TV0022
@@ -140,7 +131,6 @@ http://185.27.237.105:8082/TV0075
 
 #EXTINF:0,OMN Movies Festival
 http://185.27.237.105:8082/TV0129
-
 
 #EXTINF:0,Paramount Channel
 
@@ -206,22 +196,19 @@ http://str108.setplex.net/fastv_2psh/PinkWesternglobal_rly_greece_103/balkansatn
 
 
 #EXTINF:0,Star Movies
-http://185.27.237.105:8082/TV0051
-
-#EXTINF:0,Star Movies
 http://113.160.49.34/lives/origin03/moviehd.isml/moviehd-2096k.m3u8
 
 #EXTINF:0,SYFY Movie Channel 
 
 
 #EXTINF:0,TCM
-http://185.27.237.105:8082/TV0082
+
 
 #EXTINF:0,True Movies 1
-http://wpc.AC3A.edgecastcdn.net:80/80AC3A/001/hls/m3u8/truemovies1.m3u8
+
 
 #EXTINF:0,True Movies 2
-http://wpc.AC3A.edgecastcdn.net:80/80AC3A/001/hls/m3u8/truemovies2.m3u8
+
 
 #EXTINF:0,TV 1000
 http://109.87.57.217:8888/udp/238.0.17.77:1234

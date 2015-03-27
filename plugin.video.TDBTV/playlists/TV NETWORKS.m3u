@@ -5,19 +5,22 @@
 
 
 #EXTINF:0,A&E 
-
+http://50.7.69.170:1935/edge/_definst_/tuc280rbycwnsvs/playlist.m3u8?wowzasessionid=1419880468
 
 #EXTINF:0,ABC 
+http://198.27.94.105/hls/61c44432f8a321e34c4eeff25d26b91c.m3u8
 
+#EXTINF:0,ABC 
+http://93.184.221.133/00573D/1086/1086-0.m3u8
 
 #EXTINF:0,ABC Family
-
+http://198.27.94.105/hls/81f73e53bdcec0c1efb3d0675fbd056f.m3u8
 
 #EXTINF:0,ACC TV
 http://stream.acctv.com.au/06.m3u8
 
 #EXTINF:0,AMC 
-
+http://198.27.94.105/hls/f029dd8902d2f7da7331adaaaf0e5f5c.m3u8
 
 #EXTINF:0,Arthouse Film Box
 
@@ -59,7 +62,10 @@ http://200.76.77.237/LIVE/H01/CANAL253/PROFILE03.m3u8
 
 
 #EXTINF:0,CBS 
+http://93.184.221.133/00573D/1084/1084-0.m3u8
 
+#EXTINF:0,CBS 
+http://198.27.94.105/hls/5a665c396aaeb40e55ef64124b5d919b.m3u8
 
 #EXTINF:0,CBS Action 
 http://93.184.221.133/00573D/711/711-0.m3u8
@@ -68,10 +74,15 @@ http://93.184.221.133/00573D/711/711-0.m3u8
 http://93.184.221.133/00573D/712/712-0.m3u8
 
 #EXTINF:0,CBS Reality 
+http://93.184.221.133/00573D/713/713-0.m3u8
+
+#EXTINF:0,CBS Reality 
 http://hls01-05.az.myvideo.az/hls-live/livepkgr/cbsreality/cbsreality/cbsreality.m3u8?simpletvipadresleri
 
 #EXTINF:0,CHCH Ontario 
 
+#EXTINF:0,CNBC 
+http://93.184.221.133/00573D/1085/1085-0.m3u8
 
 #EXTINF:0,CNBC 
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/cnbc_eu/ls_satlink/b_264.m3u8
@@ -129,6 +140,10 @@ http://wpc.AC3A.edgecastcdn.net:80/80AC3A/001/hls/m3u8/film4.m3u8
 
 
 #EXTINF:0,Fox 5 
+
+
+#EXTINF:0,Fox 11
+http://93.184.221.133/00573D/1093/1093-0.m3u8
 
 
 #EXTINF:0,Fox 29
@@ -259,7 +274,7 @@ http://188.227.86.4:4022/udp/239.77.0.5:1234
 
 
 #EXTINF:0,Syfy
-
+http://198.27.94.105/hls/696169089e59391f35c78355564329e3.m3u8
 
 #EXTINF:0,TBS 
 
@@ -271,7 +286,7 @@ http://188.227.86.4:4022/udp/239.77.0.5:1234
 
 
 #EXTINF:0,TNT 
-
+http://198.27.94.105/hls/73c665e20f9ea5749fe8f8985289c89a.m3u8
 
 #EXTINF:0,Tru TV 
 

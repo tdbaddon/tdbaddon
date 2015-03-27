@@ -8,7 +8,7 @@
 http://hlsstr03.svc.iptv.rt.ru/hls/CH_BABYTV/variant.m3u8
 
 #EXTINF:0,Boomerang 
-http://185.27.237.105:8082/TV0111
+
 
 #EXTINF:0,Cartoon Network
 http://188.227.86.4:4022/udp/239.77.0.77:1234
@@ -20,16 +20,16 @@ http://188.227.86.4:4022/udp/239.77.0.77:1234
 
 
 #EXTINF:0,Disney Channel 
-http://185.27.237.105:8082/TV0110
+
 
 #EXTINF:0,Disney Cinemagic 
 
  
 #EXTINF:0,Disney Junior 
-http://185.27.237.105:8082/TV0109
+
 
 #EXTINF:0,Disney XD 
-http://185.27.237.105:8082/TV0112
+
 
 #EXTINF:0,Emba Kids 
 

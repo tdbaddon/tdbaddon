@@ -1,6 +1,9 @@
 ﻿#EXTM3U
 
 
+#EXTINF:0,BBC Sports
+http://93.184.221.133/00573D/1104/1104-0.m3u8
+
 #EXTINF:0,Bein Sport1
 
 
@@ -14,10 +17,10 @@ http://bigten247.cdnak.bigtenhd.neulion.com/nlds/btn2go/btnnetwork/as/live/btnne
 http://93.184.221.133/00573D/1222/1222-0.m3u8
 
 #EXTINF:0,BT Sport 1 
-
+rtmp://192.95.32.74/live/bt1 swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf pageUrl=http://rarehost.net/amember/vip/bt1.php live=true timeout=20 token=WY846p1E1g15W7s
 
 #EXTINF:0,BT Sport 2 
-
+rtmpe://46.246.124.22:1935/l playpath=sbt2 swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf pageUrl=http://www.hdcast.org/embedlive4.php?u=sbt2&vw=640&vh=400&domain=www.streamking.org live=true timeout=10 token=Fo5_n0w?U.rA6l3-70w47ch
 
 #EXTINF:0,CBS Sports 
 
@@ -31,25 +34,25 @@ http://hlsstr04.svc.iptv.rt.ru/hls/CH_FUTBALL/variant.m3u8
 #EXTINF:0,Combat Channel 
 
 #EXTINF:0,ESPN 
-http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=389&lan=2&rows=40&f=.m3u8
+
 
 #EXTINF:0,ESPN 2 
 rtmp://31.220.0.195:80/live/ playpath=espn22 token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://reytv.co/ AnisotropicTV
 
 #EXTINF:0,Eurosport 1 
-http://hlsstr02.svc.iptv.rt.ru/hls/CH_EUROSPORT/variant.m3u8
+http://93.184.221.133/00573D/1210/1210-0.m3u8
 
 #EXTINF:0,Eurosport 1 
-http://178.165.0.101:4022/udp/239.0.0.211:1234
+http://hlsstr02.svc.iptv.rt.ru/hls/CH_EUROSPORT/variant.m3u8
 
 #EXTINF:0,Eurosport 1 
 http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_1000.m3u8
 
 #EXTINF:0,Eurosport 2 
-http://hlsstr02.svc.iptv.rt.ru/hls/CH_EUROSPORT2/variant.m3u8
+http://93.184.221.133/00573D/1211/1211-0.m3u8
 
 #EXTINF:0,Eurosport 2 
-http://178.165.0.101:4022/udp/239.0.0.212:1234
+http://hlsstr02.svc.iptv.rt.ru/hls/CH_EUROSPORT2/variant.m3u8
 
 #EXTINF:0,Eurosport News 
 
@@ -76,6 +79,7 @@ http://113.160.49.34/lives/origin03/foxhd.isml/foxhd-2096k.m3u8
 http://2co1.vp9.tv/chn/fox1/v.m3u8
 
 #EXTINF:0,Fox Sports 2 
+http://103.242.13.66:5000/nn_live.ts?id=starsport-m-h
 
 #EXTINF:0,Fox Sports News 
 http://foxsportshdhls-lh.akamaihd.net/i/fsnewshls_0@136427/index_248_av-p.m3u8
@@ -117,7 +121,7 @@ rtmp://edge1.everyon.tv/etv1sb/pld613
 
 
 #EXTINF:0,PAC Sports Arizona HD
-
+http://pac12hd2-lh.akamaihd.net/i/p12ariz_delivery@132836/master.m3u8
 
 #EXTINF:0,PAC Sports Bay Area 
 http://xrxs.net/video/live-p12baya-1164.m3u8
@@ -129,7 +133,7 @@ http://www.xrxs.net/video/live-p12baya-4728.m3u8
 
  
 #EXTINF:0,PAC Sports LA HD
-
+http://pac12hd2-lh.akamaihd.net/i/p12losa_delivery@132838/master.m3u8
 
 #EXTINF:0,PAC Sports National 
 http://xrxs.net/video/live-p12netw-1164.m3u8
@@ -153,7 +157,7 @@ http://xrxs.net/video/live-p12oreg-4728.m3u8
 
  
 #EXTINF:0,PAC Sports Washington HD
-
+http://pac12hd2-lh.akamaihd.net/i/p12wash_delivery@132841/master.m3u8
 
 #EXTINF:0,Porsche Channel
 mms://100automoto.tv/channel_porsche
@@ -165,7 +169,7 @@ mms://100automoto.tv/channel_porsche
 rtmp://rrbalancer.broadcast.tneg.de:1935/pw/ruk/ playpath=ruk swfUrl=http://pferdewetten.broadcast.tneg.de/jwplayer/player.swf live=1 pageUrl=http://pferdewetten.broadcast.tneg.de/jwplayer/player.php?type=live&stream=ruk1&token=ccf6c54e62bc5bd667661d5af5d61e8664c75b11
 
 #EXTINF:0,SBS One 
-http://motorsport.hopto.org:8080
+
 
 #EXTINF:0,Setanta Sports 
 
@@ -174,19 +178,22 @@ http://motorsport.hopto.org:8080
 
 
 #EXTINF:0,Sky Sports 1 
-
+rtmp://192.95.32.74/live/sky1 swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf pageUrl=http://rarehost.net/amember/vip/sky1.php live=true timeout=20 token=WY846p1E1g15W7s
 
 #EXTINF:0,Sky Sports 2 
-
+rtmp://192.95.32.74/live/sky2 swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf pageUrl=http://rarehost.net/amember/vip/sky2.php live=true timeout=20 token=WY846p1E1g15W7s
 
 #EXTINF:0,Sky Sports 3 
-
+rtmp://192.95.32.74/live/sky3 swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf pageUrl=http://rarehost.net/amember/vip/sky3.php live=true timeout=20 token=WY846p1E1g15W7s
 
 #EXTINF:0,Sky Sports 4 
 rtmp://31.220.0.195:80/live/ playpath=ssx4 token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://reytv.co/
 
-#EXTINF:0,Sky Sports 5 
+#EXTINF:0,Sky Sports 4 
+rtmp://192.95.32.74/live/sky4 swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf pageUrl=http://rarehost.net/amember/vip/sky4.php live=true timeout=20 token=WY846p1E1g15W7s
 
+#EXTINF:0,Sky Sports 5 
+rtmp://192.95.32.74/live/sky5 swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf pageUrl=http://rarehost.net/amember/vip/sky5.php live=true timeout=20 token=WY846p1E1g15W7s
 
 #EXTINF:0,Sky Sports F1 
 rtmp://80.82.64.140:443/liverepeater playpath=22 swfUrl=http://popeoftheplayers.eu/atdedead.swf pageUrl=http://popeoftheplayers.eu/player3.php?id=22&width=600&height=450 token=#atd%#$ZH
@@ -194,8 +201,11 @@ rtmp://80.82.64.140:443/liverepeater playpath=22 swfUrl=http://popeoftheplayers.
 #EXTINF:0,Sky Sports News 
 rtmp://31.220.0.195:80/live/ playpath=snc token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://reytv.co/
 
-#EXTINF:0,Sky Sports World Cup 
+#EXTINF:0,Sky Sports News 
+http://93.184.221.133/00573D/183/183-0.m3u8
 
+#EXTINF:0,Sky Sports World Cup 
+http://198.27.94.105/hls/402de5fcdb1f79c012ff2e9ee371308e.m3u8
 
 #EXTINF:0,SportSkool 
 
@@ -210,6 +220,7 @@ http://nlds187.cdnak.neulion.com/nlds/sportsnetnow/sn_360/as/live/sn_360_hd_ipad
 rtmp://31.220.0.195:80/live/ playpath=sno token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://reytv.co/
 
 #EXTINF:0,Sportsnet World 
+
 
 #EXTINF:0,Sports Tonight 
 rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9-HD
@@ -248,7 +259,7 @@ http://ams-lp2.9c9media.com/hls-live/livepkgr/_definst_/liveeventNoDRM/TSN4Open8
 http://ams-lp3.9c9media.com/hls-live/livepkgr/_definst_/liveeventNoDRM/TSN5Open8.m3u8
 
 #EXTINF:0,Viasat Golf
-
+http://93.184.221.133/00573D/911/911-0.m3u8
 
 #EXTINF:0,Viasat Sport
 

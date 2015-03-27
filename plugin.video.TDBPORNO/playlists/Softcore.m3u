@@ -2,10 +2,10 @@
 
 
 #EXTINF:0,BELLA CLUB 
-http://46.249.213.93/iPhone/broadcast/bellaclub-tablet.3gp/bellaclub-tablet.3gp-mr648k.m3u8
+rtsp://46.249.213.87/broadcast/bellaluz-tablet.3gp
 
 #EXTINF:0,BELLA CLUB 
-rtsp://46.249.213.87/broadcast/bellaluz-tablet.3gp
+http://46.249.213.93/iPhone/broadcast/bellaclub-tablet.3gp/bellaclub-tablet.3gp-mr648k.m3u8
 
 #EXTINF:0,BITCH FLICKS 
 rtmp://edge2.everyon.tv/etv2sb/phd511
@@ -31,15 +31,6 @@ http://iptv.sat-x.tv/iptv/91f5ebece378143c8392d8ad6ae539797bc86a67/527/index.m3u
 #EXTINF:-0,PLAYBOY TV 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_PLAYBOY/variant.m3u8
 
-#EXTINF:-0,PLAYBOY TV 
-http://tv1.sunduk.tv:8080/CH175_std/playlist.m3u8
-
-#EXTINF:-0,PLAYBOY TV 
-http://178.167.48.241:7777/udp/234.5.2.247:1234
-
-#EXTINF:-0,PLAYBOY TV 
-http://iptv4.zargacum.net/iptv/8KRZ8Q8AMD/527/index.m3u8
-
 #EXTINF:0,RUSSIAN NIGHT 
 http://iptv.sat-x.tv/iptv/91f5ebece378143c8392d8ad6ae539797bc86a67/147/index.m3u8
 
@@ -48,12 +39,6 @@ http://185.38.12.20:8088/rusnoch/
 
 #EXTINF:0,RUSSIAN NIGHT 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_RUSSIANNIGHT/variant.m3u8?version=2
-
-#EXTINF:0,RUSSIAN NIGHT
-http://tv10.sunduk.tv:8080/CH163_std/playlist.m3u8
-
-#EXTINF:0,RUSSIAN NIGHT
-http://178.167.48.241:7777/udp/234.5.2.249:1234
 
 #EXTINF:0,SEX ED 
 
