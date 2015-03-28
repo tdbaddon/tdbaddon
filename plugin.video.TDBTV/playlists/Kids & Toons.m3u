@@ -8,28 +8,31 @@
 http://hlsstr03.svc.iptv.rt.ru/hls/CH_BABYTV/variant.m3u8
 
 #EXTINF:0,Boomerang 
-
+http://185.27.237.105:8082/TV0111
 
 #EXTINF:0,Cartoon Network
 http://188.227.86.4:4022/udp/239.77.0.77:1234
 
-#EXTINF:0,Classic Looney Tunes
+#EXTINF:0,Cartoon Network
+http://113.160.49.34/lives/origin03/cartoonsd.isml/cartoonsd.m3u8
 
+#EXTINF:0,Classic Looney Tunes
+http://167.114.65.74/hls/lt.m3u8
 
 #EXTINF:0,DaVinci Learning
 
 
 #EXTINF:0,Disney Channel 
-
+http://185.27.237.105:8082/TV0110
 
 #EXTINF:0,Disney Cinemagic 
 
  
 #EXTINF:0,Disney Junior 
-
+http://185.27.237.105:8082/TV0109
 
 #EXTINF:0,Disney XD 
-
+http://185.27.237.105:8082/TV0112
 
 #EXTINF:0,Emba Kids 
 
@@ -52,6 +55,11 @@ http://188.227.86.4:4022/udp/239.77.0.77:1234
 #EXTINF:0,Nickelodeon 
 http://188.227.86.4:4022/udp/239.77.0.60:1234
 
+#EXTINF:0,Nickelodeon 
+http://2co1.vp9.tv/chn/nicke/v.m3u8
+
+#EXTINF:0,Nickelodeon 
+http://50.7.69.186:1935/edge/_definst_/q2hs5fqm8b039y0/chunklist.m3u8?wowzasessionid=1420206368
 
 #EXTINF:0,NickNight 
 

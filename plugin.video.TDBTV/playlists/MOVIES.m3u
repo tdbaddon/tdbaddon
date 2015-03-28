@@ -55,6 +55,9 @@ http://103.242.13.66:5000/nn_live.ts?id=foxactionmovie-m-h
 #EXTINF:0,Fox Action Movies 
 http://200.76.77.237/LIVE/H01/CANAL416/PROFILE03.m3u8? 
 
+#EXTINF:0,Fox Action Movies 
+http://103.242.13.66:5000/nn_live.ts?id=foxactionmovie-m-h&hpgdisco_m3u8
+
 #EXTINF:0,Fox Family Movies 
 http://200.76.77.237/LIVE/H01/CANAL475/PROFILE03.m3u8?BratuMarian
 
@@ -67,7 +70,8 @@ http://103.242.13.67:5000/nn_live.ts?id=foxmovies-m-h
 #EXTINF:0,Fox Movies 
 http://200.76.77.237/LIVE/H01/CANAL417/PROFILE03.m3u8?BratuMarian
 
-
+#EXTINF:0,Fox Movies 
+http://50.7.69.186:1935/edge/_definst_/hc992q7x7cz86t9/chunklist.m3u8?wowzasessionid=1419909438
 
 #EXTINF:0,Fright Fest 
 
@@ -84,6 +88,9 @@ rtmp://178.162.199.141/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.
 #EXTINF:0,HBO 
 http://113.160.49.34/lives/origin03/hbohd.isml/hbohd-2096k.m3u8
 
+#EXTINF:0,HBO 
+http://50.7.69.186:1935/edge/_definst_/qzbbu26gcvjxksz/chunklist.m3u8?wowzasessionid=1419847602
+
 #EXTINF:0,HBO Plus 
 
 
@@ -94,7 +101,7 @@ http://113.160.49.34/lives/origin03/hbohd.isml/hbohd-2096k.m3u8
 
 
 #EXTINF:0,Lotus Macau 
-
+http://103.242.13.67:5000/nn_live.ts?id=amlh-m-h
 
 #EXTINF:0,MBC 2
 
@@ -103,7 +110,7 @@ http://113.160.49.34/lives/origin03/hbohd.isml/hbohd-2096k.m3u8
 
 
 #EXTINF:0,MGM 
-
+http://185.27.237.105:8082/TV0050
 
 #EXTINF:0,More Movies
 
@@ -117,11 +124,14 @@ http://93.184.221.133/00573D/311/311-0.m3u8
 #EXTINF:0,OMN Movies
 http://185.27.237.105:8082/TV0053
 
+#EXTINF:0,OMN Movies
+http://185.27.237.105:8082/TV0023
+
 #EXTINF:0,OMN Movies 2
 http://185.27.237.105:8082/TV0054
 
 #EXTINF:0,OMN Movies Action
-
+http://185.27.237.105:8082/TV0025
 
 #EXTINF:0,OMN Movies Drama
 http://185.27.237.105:8082/TV0022
@@ -163,7 +173,7 @@ http://str108.setplex.net/fastv_2psh/PinkWesternglobal_rly_greece_103/balkansatn
 
 
 #EXTINF:0,Showtime
-
+http://50.7.69.186:1935/edge/_definst_/bwbop58ixz281wv/chunklist.m3u8?wowzasessionid=1419875151
 
 #EXTINF:0,Sky Movies Action 
 
@@ -196,13 +206,16 @@ http://str108.setplex.net/fastv_2psh/PinkWesternglobal_rly_greece_103/balkansatn
 
 
 #EXTINF:0,Star Movies
+http://185.27.237.105:8082/TV0051
+
+#EXTINF:0,Star Movies
 http://113.160.49.34/lives/origin03/moviehd.isml/moviehd-2096k.m3u8
 
 #EXTINF:0,SYFY Movie Channel 
 
 
 #EXTINF:0,TCM
-
+http://185.27.237.105:8082/TV0082
 
 #EXTINF:0,True Movies 1
 

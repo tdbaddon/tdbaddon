@@ -3,11 +3,26 @@
 #EXTINF:0,Animal Planet 
 http://sjc-uhls-vip01.ustream.tv/watch/playlist.m3u8?cid=12762028
 
+#EXTINF:0,Animal Planet 
+http://185.27.237.105:8082/TV0097
+
+#EXTINF:0,Animal Planet 
+http://50.7.69.186:1935/edge/_definst_/4nm2ewg5jznklf0/chunklist.m3u8?
+
 #EXTINF:0,BBC Knowledge 
 
 
 #EXTINF:0,Crime Investigation 
 http://185.27.237.105:8082/TV0093
+
+#EXTINF:0,Discovery Channel 
+http://50.7.69.186:1935/edge/_definst_/ishyd3sopok3p27/chunklist.m3u8?wowzasessionid=1419872569
+
+#EXTINF:0,Discovery Channel 
+http://185.27.237.105:8082/TV0059
+
+#EXTINF:0,Discovery Channel 
+http://185.27.237.105:8082/TV0089
 
 #EXTINF:0,Discovery Channel 
 http://50.7.69.186:1935/edge/_definst_/ro7c9eha0z96hpp/playlist.m3u8?wowzasessionid=1419880467
@@ -18,18 +33,23 @@ http://93.184.221.133/00573D/1348/1348-0.m3u8
 #EXTINF:0,Discovery History 
 http://93.184.221.133/00573D/1347/1347-0.m3u8
 
-
 #EXTINF:0,Discovery Home and Health
 
 
 #EXTINF:0,Discovery Investigation 
+http://50.7.69.186:1935/edge/_definst_/yjma618cibkqxeo/chunklist.m3u8?wowzasessionid=1420168729
 
+#EXTINF:0,Discovery Investigation 
+http://185.27.237.105:8082/TV0092
 
 #EXTINF:0,Discovery Max 
 
 
 #EXTINF:0,Discovery Science 
+http://185.27.237.105:8082/TV0090
 
+#EXTINF:0,Discovery Science
+http://50.7.69.186:1935/edge/_definst_/bmbahkumnsqcydw/manifest.m3u8?wowzasessionid=1426232934
 
 #EXTINF:0,Discovery Shed
 
@@ -39,6 +59,9 @@ http://200.76.77.237/LIVE/H01/CANAL351/PROFILE03.m3u8?
 
 #EXTINF:0,Discovery Turbo 
 
+
+#EXTINF:0,Discovery World
+http://185.27.237.105:8082/TV0089
 
 #EXTINF:0,Discovery World
 http://188.227.86.4:4022/udp/239.77.0.78:1234
@@ -53,7 +76,7 @@ http://200.76.77.237/LIVE/H01/CANAL356/PROFILE03.m3u8?
 
 
 #EXTINF:0,History Channel 
-
+http://50.7.69.186:1935/edge/_definst_/logojbjhar79pc8/manifest.m3u8?wowzasessionid=1426231700
 
 #EXTINF:0,History Channel 2
 
@@ -84,6 +107,9 @@ http://188.227.86.4:4022/udp/239.77.0.41:1234
 
 #EXTINF:0,National Geographic 
 http://93.184.221.133/00573D/338/338-0.m3u8
+
+#EXTINF:0,National Geographic 
+http://103.242.13.67:5000/nn_live.ts?id=nationalgeographic-m-h&hpgdisco_m3u8
 
 #EXTINF:0,Paranormal TV 
 

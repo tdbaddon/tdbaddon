@@ -7,6 +7,9 @@
 #EXTINF:0,A&E 
 http://50.7.69.170:1935/edge/_definst_/tuc280rbycwnsvs/playlist.m3u8?wowzasessionid=1419880468
 
+#EXTINF:0,A&E 
+http://50.7.69.186:1935/edge/_definst_/tuc280rbycwnsvs/manifest.m3u8?wowzasessionid=1426231480
+
 #EXTINF:0,ABC 
 http://198.27.94.105/hls/61c44432f8a321e34c4eeff25d26b91c.m3u8
 
@@ -119,6 +122,9 @@ http://wpc.AC3A.edgecastcdn.net:80/80AC3A/001/hls/m3u8/e4.m3u8
 
 
 #EXTINF:0,Fashion TV 
+http://185.27.237.105:8082/TV0088
+
+#EXTINF:0,Fashion TV 
 http://hls.novotelecom.ru/streaming/fashion/tvrec/playlist.m3u8
 
 #EXTINF:0,Fashion TV 
@@ -165,7 +171,7 @@ http://185.27.237.105:8082/TV0086
 
 
 #EXTINF:0,Ginx Gaming TV 
-
+http://204.107.26.252:1935/live/796.high.stream/HasBahCa.m3u8
 
 #EXTINF:0,Global TV 
 http://link.theplatform.com/s/dtjsEC/EqBPGYLY6fEx?feed=DEV%20Live%20Stream%20Feed
@@ -222,11 +228,17 @@ http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
 #EXTINF:0,More4 
 http://wpc.AC3A.edgecastcdn.net:80/80AC3A/001/hls/m3u8/more4.m3u8
 
+#EXTINF:0,NBC
+http://50.7.69.186:1935/edge/_definst_/s5whw37nl7weedp/chunklist.m3u8?wowzasessionid=1420160473
+
 #EXTINF:0,NHK World 
 http://plslive-w.nhk.or.jp/nhkworld/app/live.m3u8
 
 #EXTINF:0,NHK World 
 http://nhkworld-hds-live1.hds1.fmslive.stream.ne.jp/hls-live/nhkworld-hds-live1/_definst_/livestream/nhkworld-live-512.m3u8 
+
+#EXTINF:0, NHK World
+http://103.242.13.67:5000/nn_live.ts?id=nhkworldhd-m-h
 
 #EXTINF:0,OWN Network 
 
@@ -241,7 +253,7 @@ rtmp://128.104.144.134/WisconsinChannel/mystream
 
 
 #EXTINF:0,QVC 
-
+http://95.172.231.17/flashstream/stream.flv?Preset=7&aspect=16A9&ffPreset=ultrafast&maxwidth=&maxheight=&chid=39
 
 #EXTINF:0,Sky 1 
 
@@ -276,6 +288,9 @@ http://188.227.86.4:4022/udp/239.77.0.5:1234
 #EXTINF:0,Syfy
 http://198.27.94.105/hls/696169089e59391f35c78355564329e3.m3u8
 
+#EXTINF:0,Syfy 
+rtmp://50.22.223.42/youcloud/syfiles934r?keys=HR5VwoZWiEObWBlZtAWIjA&keyt=1426419012 swfUrl=http://cdn.youcloud.tv/jwplayer.flash.swf live=1 timeout=15 swfVfy=1 pageUrl=http://youcloud.tv/player?streamname=syfiles934r
+
 #EXTINF:0,TBS 
 
 
@@ -289,7 +304,7 @@ http://198.27.94.105/hls/696169089e59391f35c78355564329e3.m3u8
 http://198.27.94.105/hls/73c665e20f9ea5749fe8f8985289c89a.m3u8
 
 #EXTINF:0,Tru TV 
-
+http://95.172.231.17/flashstream/stream.flv?Preset=7&aspect=16A9&ffPreset=ultrafast&maxwidth=&maxheight=&chid=9
 
 #EXTINF:0,True Drama
 http://wpc.AC3A.edgecastcdn.net:80/80AC3A/001/hls/m3u8/truedrama.m3u8
