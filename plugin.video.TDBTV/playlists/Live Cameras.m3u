@@ -2,7 +2,7 @@
 
 
 #EXTINF:0,Bourbon Street New Orleans 
-rtmp://video2.earthcam.com/fecnetwork swfUrl=http://www.earthcam.com/swf/cam_player_v2/ecnPlayer.swf playpath=4280.flv live=true
+
 
 #EXTINF:0,Elephant Safari Indonesia 
 rtmp://video2.earthcam.com/fecnetwork swfUrl=http://www.earthcam.com/swf/cam_player_v2/ecnPlayer.swf playpath=4338.flv live=true
@@ -16,9 +16,6 @@ rtmp://80.93.53.88:1935/live/channel_3
 #EXTINF:0,LA Hollywood Blvd California 
 http://video1.earthcam.com/fecnetwork/lacitytours1.flv/hasbahca.m3u8
 
-#EXTINF:0,Landscape 
-http://130.88.20.233:1237/test.flv
-
 #EXTINF:0,Las Vegas Nevada 
 http://video1.earthcam.com/fecnetwork/eclasvegas.flv/hasbahca.m3u8
 
@@ -30,9 +27,6 @@ http://sjc-uhls-proxy.ustream.tv/watch/playlist.m3u8?cid=9408562
 
 #EXTINF:0,Niagra Falls 
 mms://webcams.niagarafallshotels.com/CNH-Stream2
-
-#EXTINF:0,Niagra Falls 
-rtsp://video2.earthcam.com/fecnetwork/4559.flv
 
 #EXTINF:0,NY Times Square 47th and Broadway
 http://video1.earthcam.com/fecnetwork/hdtimes10.flv/hasbahca.m3u8

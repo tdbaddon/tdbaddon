@@ -8,9 +8,6 @@
 #EXTINF:0,AKA 
 http://rrr.sz.xlcdn.com/?account=AATW&file=akanew&type=live&service=wowza&protocol=http&output=playlist.m3u8
 
-#EXTINF:0,BPM TV 
-
-
 #EXTINF:0,Capital Music 
 http://ooyalahd2-f.akamaihd.net/i/globalradio01_delivery@156521/index_656_av-p.m3u8?sd=10&rebase=on
 
@@ -38,9 +35,6 @@ http://www.djing.com/tv/05.m3u8
 #EXTINF:0,Gothic Rock TV 
 rtmp://149.11.34.6/live/gotica.stream
 
-#EXTINF:0,Heat 
-
-
 #EXTINF:0,Heart TV 
 http://ooyalahd2-f.akamaihd.net/i/globalradio02_delivery@156522/master.m3u8
 
@@ -50,26 +44,17 @@ http://46.249.213.87/iPhone/broadcast/ibizaontv-tablet.3gp/ibizaontv-tablet.3gp-
 #EXTINF:0,Jazz 
 http://149.11.34.78:1935/live/jazztv.stream/hasbahca.m3u8
 
-#EXTINF:0,Kerrang! 
-http://csm-e.cds1.yospace.com/csm/live/86561794.m3u8
-
 #EXTINF:0,King TV 
 http://91.82.85.16:1935/relay15/nettv03_channel_1/HasBahCa.m3u8
 
 #EXTINF:0,M6 Music
 http://sslhls.m6tv.cdn.sfr.net/hls-live/livepkgr/_definst_/m6_music_hits_hls_aes/m6_music_hits_hls_aes_856.m3u8
 
-#EXTINF:0,Magic 
-
-
 #EXTINF:0,MTV 
 rtmp://83.218.202.202/live swfUrl=http://webtv.md/swf/WebTV.swf playpath=wt_mtv.stream
 
 #EXTINF:0,MTV 
 http://200.76.77.237/LIVE/H01/CANAL726/PROFILE02.m3u8?
-
-#EXTINF:0,MTV 
-http://198.27.94.105/hls/mtv____2.m3u8
 
 #EXTINF:0,MTV Base
 
@@ -84,9 +69,6 @@ http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVDANCE/variant.m3u8
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVHITS/variant.m3u8
 
 #EXTINF:0,MTV Live 
-http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=429&lan=2&rows=40&f=BratuMarian.m3u8
-
-#EXTINF:0,MTV Live 
 http://200.76.77.237/LIVE/H01/CANAL701/PROFILE03.m3u8?BratuMarian
 
 #EXTINF:0,MTV Music 
@@ -95,41 +77,20 @@ http://93.184.221.133/00573D/1345/1345-0.m3u8
 #EXTINF:0,MTV Rocks 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVROCKS/variant.m3u8
 
-#EXTINF:0,Musiq1 
-
-
 #EXTINF:0,MusicVoxTV 
 rtmp://stream.smcloud.net/live2/vox/vox_720p
 
 #EXTINF:0,MusicVoxTV 
 rtmp://stream.smcloud.net/live2/vox/vox_360p
 
-#EXTINF:0,PartyTV 
-
-
 #EXTINF:0,Radio Monte Carlo 
 rtmp://fms.105.net/live/rmc1
-
-#EXTINF:0,Reggae Entertainment 
-
 
 #EXTINF:0,Rock 66 
 http://mediatv2.topix.it/24RockOne66
 
-#EXTINF:0,Smash Hits! 
-
-
 #EXTINF:0,Stage TV
 rtmp://149.11.34.6/live/stagetv.stream
-
-#EXTINF:0,The Box 
-
-
-#EXTINF:0,The Heat 
-
-
-#EXTINF:0,Trace Urban
-
 
 #EXTINF:0,Vevo Hits 
 http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch2/06/prog_index.m3u8
@@ -141,10 +102,7 @@ http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch3/06/prog_index.m3u8
 http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/06/prog_index.m3u8
 
 #EXTINF:0,VH1 
-http://200.76.77.237/LIVE/H01/CANAL703/PROFILE03.m3u8?BratuMarian
-
-#EXTINF:0,VH1 
-http://200.38.126.38:8081/TPHLSWeb/M3U8LiveFile?format=2&profile=437&lan=2&rows=40&f=BratuMarian.m3u8
+http://200.76.77.237/LIVE/H01/CANAL703/PROFILE03.m3u8?
 
 #EXTINF:0,VH1 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_VH1EUROPEAN/variant.m3u8
@@ -155,11 +113,15 @@ http://hlsstr02.svc.iptv.rt.ru/hls/CH_VH1CLASSIC/variant.m3u8
 #EXTINF:0,VH1 Shuffle 
 rtmp://edge03-03.az.myvideo.az/dvrh264/vh1/ playpath=mp4:vh1 swfUrl=http://www.myvideo.az/stml/dvr/dvrH.swf?v=1.2 live=1 pageUrl=http://www.myvideo.az/r.ates
 
-#EXTINF:0,Vintage Music TV 
-
-
 #EXTINF:0,Virgin TV 
 rtmp://fms.105.net:1935/live/virgin1 playpath=virgin1 swfurl=http://www.highermedia.com/assets/flash/jw_player.swf live=1 pageurl=http://www.google.com/Virgin 1
+
+
+
+
+
+
+
 
 
 

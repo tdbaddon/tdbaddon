@@ -6,9 +6,6 @@ http://sjc-uhls-vip01.ustream.tv/watch/playlist.m3u8?cid=12762028
 #EXTINF:0,Animal Planet 
 http://185.27.237.105:8082/TV0097
 
-#EXTINF:0,Animal Planet 
-http://50.7.69.186:1935/edge/_definst_/4nm2ewg5jznklf0/chunklist.m3u8?
-
 #EXTINF:0,BBC Knowledge 
 
 
@@ -48,7 +45,7 @@ http://185.27.237.105:8082/TV0092
 #EXTINF:0,Discovery Science 
 http://185.27.237.105:8082/TV0090
 
-#EXTINF:0,Discovery Science
+#EXTINF:0,Discovery Science 
 http://50.7.69.186:1935/edge/_definst_/bmbahkumnsqcydw/manifest.m3u8?wowzasessionid=1426232934
 
 #EXTINF:0,Discovery Shed
@@ -60,14 +57,11 @@ http://200.76.77.237/LIVE/H01/CANAL351/PROFILE03.m3u8?
 #EXTINF:0,Discovery Turbo 
 
 
-#EXTINF:0,Discovery World
+#EXTINF:0,Discovery World 
 http://185.27.237.105:8082/TV0089
 
-#EXTINF:0,Discovery World
+#EXTINF:0,Discovery World 
 http://188.227.86.4:4022/udp/239.77.0.78:1234
-
-#EXTINF:0,Discovery World
-http://200.76.77.237/LIVE/H01/CANAL356/PROFILE03.m3u8?
 
 #EXTINF:0,DocuBox
 
@@ -103,16 +97,13 @@ http://www.nasa.gov/multimedia/nasatv/NTV-Public-IPS.m3u8
 
 
 #EXTINF:0,National Geographic 
-http://188.227.86.4:4022/udp/239.77.0.41:1234
-
-#EXTINF:0,National Geographic 
 http://93.184.221.133/00573D/338/338-0.m3u8
 
 #EXTINF:0,National Geographic 
 http://103.242.13.67:5000/nn_live.ts?id=nationalgeographic-m-h&hpgdisco_m3u8
 
-#EXTINF:0,Paranormal TV 
-
+#EXTINF:0,National Geographic 
+http://188.227.86.4:4022/udp/239.77.0.41:1234
 
 #EXTINF:0,RT News Documentary 
 http://odna.octoshape.net/f3f5m2v4/cds/ch5_auto.smil/playlist.m3u8 
@@ -132,10 +123,7 @@ http://109.87.57.217:8888/udp/238.0.17.91:1234
 #EXTINF:0,Viasat Nature 
 http://109.87.57.217:8888/udp/238.0.17.73:1234
 
-#EXTINF:0,War Channel
 
-
-#EXTINF:0,Wealth TV 
 
 
 
