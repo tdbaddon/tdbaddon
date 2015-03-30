@@ -8,13 +8,13 @@ http://113.160.49.34/lives/origin03/cinemaxsd.isml/cinemaxsd-1096k.m3u8
 
 
 #EXTINF:0,Cinestar Premiere 1 
-
+http://ultra.goldtv.al:8000/live/testyy/testzzz/205.ts
 
 #EXTINF:0,Cinestar Premiere 2 
-
+http://ultra.goldtv.al:8000/live/testyy/testzzz/206.ts
 
 #EXTINF:0,Cinestar TV 
-
+http://ultra.goldtv.al:8000/live/testyy/testzzz/207.ts
 
 #EXTINF:0,CMore Action
 http://93.184.221.133/00573D/1460/1460-0.m3u8
@@ -26,10 +26,10 @@ http://93.184.221.133/00573D/1460/1460-0.m3u8
 
 
 #EXTINF:0,CMore Hits
-
+http://ultra.goldtv.al:8000/live/testyy/testzzz/263.ts
 
 #EXTINF:0,CMore Series
-
+http://ultra.goldtv.al:8000/live/testyy/testzzz/264.ts
 
 #EXTINF:0,Fox 1 
 http://200.76.77.237/LIVE/H01/CANAL415/PROFILE03.m3u8?BratuMarian
