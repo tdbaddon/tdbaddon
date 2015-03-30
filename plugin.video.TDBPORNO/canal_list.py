@@ -65,7 +65,7 @@ dc={
 "private" : "063",
 "xxl" : "064",
 "powergirls" : "065",
-"fetish woman" : "066",
+"fetish women" : "066",
 "ohdeok 942" : "067",
 "erotic tv" : "068",
 "playboy tv chat" : "069",

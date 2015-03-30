@@ -13,16 +13,25 @@ rtmp://edge2.everyon.tv/etv2sb/phd511
 #EXTINF:0,BITCH FLICKS 
 rtmp://edge2.everyon.tv/etv2sb/pld511
 
+#EXTINF:0,BUTGO
+rtmp://edge2.everyon.tv/etv2sb/phd772
+
+#EXTINF:0,BUTGO
+rtmp://edge2.everyon.tv/etv2sb/pld772
+
 #EXTINF:0,O LA LA 
 http://hlsstr01.svc.iptv.rt.ru/hls/CH_OLALA/variant.m3u8
 
 #EXTINF:0,PENTHOUSE
 
 
-#EXTINF:-0,PLAYBOY SPICE
+#EXTINF:0,PLAYBOY SPICE
 rtmp://edge2.everyon.tv/etv2sb/phd499
 
-#EXTINF:-0,PLAYBOY SPICE
+#EXTINF:0,PLAYBOY SPICE
+http://cr.stream.omc.hk/etv2sb/phd499/playlist.m3u8
+
+#EXTINF:0,PLAYBOY SPICE
 rtmp://edge2.everyon.tv/etv2sb/pld499
 
 #EXTINF:-0,PLAYBOY TV 
@@ -30,6 +39,9 @@ http://iptv.sat-x.tv/iptv/91f5ebece378143c8392d8ad6ae539797bc86a67/527/index.m3u
 
 #EXTINF:-0,PLAYBOY TV 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_PLAYBOY/variant.m3u8
+
+#EXTINF:-0,PLAYBOY TV 
+http://88.150.210.146/iptv/9da10de2b4a0499116d762e83c570cd7/527/index.m3u8
 
 #EXTINF:0,RUSSIAN NIGHT 
 http://iptv.sat-x.tv/iptv/91f5ebece378143c8392d8ad6ae539797bc86a67/147/index.m3u8
@@ -39,6 +51,9 @@ http://185.38.12.20:8088/rusnoch/
 
 #EXTINF:0,RUSSIAN NIGHT 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_RUSSIANNIGHT/variant.m3u8?version=2
+
+#EXTINF:0,RUSSIAN NIGHT 
+http://iptv.sat-elit.net/iptv/securekey/147/index.m3u8
 
 #EXTINF:0,SEX ED 
 

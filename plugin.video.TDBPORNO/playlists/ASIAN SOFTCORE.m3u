@@ -1,143 +1,164 @@
 ﻿#EXTM3U
 
 
-#EXTINF:0,Ask TV
+#EXTINF:0,ASK TV
 rtmp://edge2.everyon.tv/etv2/phd1005
 
-#EXTINF:0,Ask TV
+#EXTINF:0,ASK TV
 rtmp://edge2.everyon.tv/etv2/pld1005
 
-#EXTINF:0,ButGo
-rtmp://edge2.everyon.tv/etv2sb/phd772
+#EXTINF:0,ASIA 8081
+http://59.120.43.181:8081
 
-#EXTINF:0,ButGo
-rtmp://edge2.everyon.tv/etv2sb/pld772
+#EXTINF:0,ASIA 8082
+http://59.120.43.181:8082
 
-#EXTINF:0,Delight Empire
-rtmp://edge2.everyon.tv/etv2sb/phd63
+#EXTINF:0,ASIA 8083
+http://59.120.43.181:8083
 
-#EXTINF:0,Delight Empire
-rtmp://edge2.everyon.tv/etv2sb/pld63
+#EXTINF:0,ASIA 8084
+http://59.120.43.181:8084
 
-#EXTINF:0,Delight Empire
-http://cr.stream.omc.hk/etv2sb/phd63/playlist.m3u8
-
-#EXTINF:0,Fetish Woman
+#EXTINF:0,BEST PUBLIC
 rtmp://edge2.everyon.tv/etv2sb/phd991
 
-#EXTINF:0,Fetish Woman
+#EXTINF:0,BEST PUBLIC
+http://cr.stream.omc.hk/etv2sb/phd991/playlist.m3u8
+
+#EXTINF:0,BEST PUBLIC
 rtmp://edge2.everyon.tv/etv2sb/pld991
 
-#EXTINF:0,Fetish Woman
+#EXTINF:0,DELIGHT EMPIRE
+rtmp://edge2.everyon.tv/etv2sb/phd63
+
+#EXTINF:0,DELIGHT EMPIRE
+rtmp://edge2.everyon.tv/etv2sb/pld63
+
+#EXTINF:0,DELIGHT EMPIRE
+http://cr.stream.omc.hk/etv2sb/phd63/playlist.m3u8
+
+#EXTINF:0,FETISH WOMEN
 rtmp://edge2.everyon.tv/etv2sb/phd992
 
-#EXTINF:0,Fetish Woman
+#EXTINF:0,FETISH WOMEN
+http://cr.stream.omc.hk/etv2sb/phd992/playlist.m3u8
+
+#EXTINF:0,FETISH WOMEN
 rtmp://edge2.everyon.tv/etv2sb/pld992
 
-#EXTINF:0,Girl TV
+#EXTINF:0,GIRL TV
 rtmp://edge2.everyon.tv/etv2sb/phd501
 
-#EXTINF:0,Girl TV
+#EXTINF:0,GIRL TV
+http://cr.stream.omc.hk/etv2sb/phd501/playlist.m3u8
+
+#EXTINF:0,GIRL TV
 rtmp://edge2.everyon.tv/etv2sb/pld501
 
-#EXTINF:0,Honey TV
-rtmp://edge2.everyon.tv/etv2sb/phd928
+#EXTINF:0,HONEY TV
+928
 
-#EXTINF:0,Honey TV
-rtmp://edge2.everyon.tv/etv2sb/pld928
-
-#EXTINF:0,J Hot Girl
+#EXTINF:0,J HOT GIRL
 rtmp://edge2.everyon.tv/etv2sb/phd59
 
-#EXTINF:0,J Hot Girl
+#EXTINF:0,J HOT GIRL
+http://cr.stream.omc.hk/etv2sb/phd59/playlist.m3u8
+
+#EXTINF:0,J HOT GIRL
 rtmp://edge2.everyon.tv/etv2sb/pld59
 
-#EXTINF:0,Jav TV
+#EXTINF:0,JAV TV
 rtmp://edge2.everyon.tv/etv2/phd1003
 
-#EXTINF:0,Jav TV
+#EXTINF:0,JAV TV
 rtmp://edge2.everyon.tv/etv2/pld1003
 
-#EXTINF:0,LiveTing TV 
+#EXTINF:0,LIVETING TV 
 rtmp://edge2.everyon.tv/etv2/phd1006
 
-#EXTINF:0,LiveTing TV 
+#EXTINF:0,LIVETING TV 
 rtmp://edge2.everyon.tv/etv2/pld1006
 
-#EXTINF:0,Midnight
-rtmp://edge2.everyon.tv/etv2sb/phd766
+#EXTINF:0,MIDNIGHT
+766
 
-#EXTINF:0,Midnight
-rtmp://edge2.everyon.tv/etv2sb/pld766
-
-#EXTINF:0,Ohdeok 942
+#EXTINF:0,OHDEOK 942
 rtmp://edge2.everyon.tv/etv2sb/phd993
 
-#EXTINF:0,Ohdeok 942
+#EXTINF:0,OHDEOK 942
+http://cr.stream.omc.hk/etv2sb/phd993/playlist.m3u8
+
+#EXTINF:0,OHDEOK 942
 rtmp://edge2.everyon.tv/etv2sb/pld993
 
-#EXTINF:0,Okadai 	
-
-
-#EXTINF:0,Paradise
+#EXTINF:0,PARADISE
 rtmp://edge2.everyon.tv/etv2/phd1008
 
-#EXTINF:0,Paradise
+#EXTINF:0,PARADISE
 rtmp://edge2.everyon.tv/etv2/pld1008
 
-#EXTINF:0,Penthouse
-rtmp://edge2.everyon.tv/etv2sb/phd927
+#EXTINF:0,PENTHOUSE
+927
 
-#EXTINF:0,Penthouse
-rtmp://edge2.everyon.tv/etv2sb/pld927
-
-#EXTINF:0,Pink
+#EXTINF:0,PINK
 rtmp://edge2.everyon.tv/etv2sb/phd62
 
-#EXTINF:0,Pink
+#EXTINF:0,PINK
+http://cr.stream.omc.hk/etv2sb/phd62/playlist.m3u8
+
+#EXTINF:0,PINK
 rtmp://edge2.everyon.tv/etv2sb/pld62
 
-#EXTINF:0,Playboy TV
-rtmp://edge2.everyon.tv/etv2sb/phd497
+#EXTINF:0,PLAYBOY TV
+497
 
-#EXTINF:0,Playboy TV
-rtmp://edge2.everyon.tv/etv2sb/pld497
-
-#EXTINF:0,Playboy Spice
-rtmp://edge2.everyon.tv/etv2sb/phd499
-
-#EXTINF:0,Playboy Spice
-rtmp://edge2.everyon.tv/etv2sb/pld499
-
-#EXTINF:0,Playy
+#EXTINF:0,PLAYY
 rtmp://edge2.everyon.tv/etv2sb/phd769
 
-#EXTINF:0,Playy
+#EXTINF:0,PLAYY
+http://cr.stream.omc.hk/etv2sb/phd769/playlist.m3u8
+
+#EXTINF:0,PLAYY
 rtmp://edge2.everyon.tv/etv2sb/pld769
 
-#EXTINF:0,Red On
+#EXTINF:0,RED ON
 rtmp://edge2.everyon.tv/etv2sb/phd60
 
-#EXTINF:0,Red On
+#EXTINF:0,RED ON
+http://cr.stream.omc.hk/etv2sb/phd60/playlist.m3u8
+
+#EXTINF:0,RED ON
 rtmp://edge2.everyon.tv/etv2sb/pld60
 
-#EXTINF:0,Sex TV
+#EXTINF:0,SEX TV
 rtmp://edge2.everyon.tv/etv2sb/phd61
 
-#EXTINF:0,Sex TV
+#EXTINF:0,SEX TV
+http://cr.stream.omc.hk/etv2sb/phd61/playlist.m3u8
+
+#EXTINF:0,SEX TV
 rtmp://edge2.everyon.tv/etv2sb/pld61
 
-#EXTINF:0,The O
+#EXTINF:0,SONSEE TV 1
+rtmp://149.3.141.210:1935/tv/ttv11
+
+#EXTINF:0,SONSEE TV 4
+rtmp://149.3.141.210:1935/tv/ttv12
+
+#EXTINF:0,THE O
 rtmp://edge2.everyon.tv/etv2sb/phd771
 
-#EXTINF:0,The O
+#EXTINF:0,THE O
+http://cr.stream.omc.hk/etv2sb/phd771/playlist.m3u8
+
+#EXTINF:0,THE O
 rtmp://edge2.everyon.tv/etv2sb/pld771
 
-#EXTINF:0,Viki 
-rtmp://edge2.everyon.tv/etv2sb/phd765
+#EXTINF:0,USEXY
+http://59.120.43.181:8087
 
-#EXTINF:0,Viki 
-rtmp://edge2.everyon.tv/etv2sb/pld765
+#EXTINF:0,VIKI
+765
 
 
 
