@@ -1,18 +1,17 @@
 ﻿#EXTM3U
-#EXTINF:0,
 
 
-#EXTINF:0,4E TV
+#EXTINF:0,4E TV 
 http://mail.tv4e.gr:1935/live/myStream.sdp/playlist.m3u8
 
-#EXTINF:0,4E TV
+#EXTINF:0,4E TV 
 rtmp://82.192.84.30:1935/live/myStream.sdp
 
-#EXTINF:0,4E TV
+#EXTINF:0,4E TV 
 http://database.freetuxtv.net/playlists/playlist_webtv_el.m3u
 
 #EXTINF:0,Airqio
-http://xaigaiotelevisionx.api.channel.livestream.com/3.0/playlist.m3u8
+http://4.31.30.145:9081
 
 #EXTINF:0,Alpha
 http://alfakanali-lh.akamaihd.net/i/live_1@90368/master.m3u8
@@ -36,7 +35,7 @@ http://srv1.viiideo.gr:1935/videon/axeloostv/bratumarian.m3u
 http://smooth.istoikona.net/besttv.isml/manifest(format=m3u8-aapl).m3u8
 
 #EXTINF:0,Bergina
-http://195.81.140.68/0f5e3de651a80e17745bbef999c967e8/VerginaStream1.m3u8
+
 
 #EXTINF:0,BlueSky TV
 http://88.198.238.44:1935/bluesky/bluesky.stream/playlist.m3u8
@@ -56,10 +55,10 @@ mms://ams01.egihosting.com/989630
 #EXTINF:0,Diktyo TV
 
 
-#EXTINF:0,Diras TV
+#EXTINF:0,Diras TV 
 rtmp://www.cityofkos.gr/live/livetv
 
-#EXTINF:0,Diras TV
+#EXTINF:0,Diras TV 
 rtmp://www.cityofkos.gr/live/livetv live=1 timeout=10
 
 #EXTINF:0,DR TV
@@ -86,6 +85,9 @@ http://live2.ertopen.com/live2/e600/playlist.m3u8
 #EXTINF:0,Extra 3
 rtmp://213.16.167.186:1935/live/mpegts_256.stream
 
+#EXTINF:0,Extra 3
+http://213.16.167.186:1935/live/mpegts_256.stream/hasbahca.m3u
+
 #EXTINF:0,Flash TV
 
 
@@ -94,6 +96,9 @@ rtmp://213.16.167.186:1935/live/mpegts_256.stream
 
 #EXTINF:0,Greek Voice
 http://wpso.com:200/tv48
+
+#EXTINF:0,Hellas TV
+rtmp://176.9.123.140:1935/leveltgp/leveltgp live=1 timeout=10
 
 #EXTINF:0,Ionian Channel
 http://stream8.upg.gr:1935/live/stream/playlist.m3u8
@@ -140,11 +145,11 @@ http://mlivenews.istoikona.net/livenews.isml/manifest(format=m3u8-aapl).m3u8
 #EXTINF:0,Nea TV
 rtmp://srv1.viiideo.gr:1935/hellasonmedia/neatv
 
-#EXTINF:0,Nerit 
-http://magictvbox.us:200/skai
+#EXTINF:0,N Cinema
+http://xnaturatv1x.api.channel.livestream.com/3.0/playlist.m3u8
 
 #EXTINF:0,Nerit 
-http://nerit2-lh.akamaihd.net/i/neritplus_1@45603/master.m3u8
+http://magictvbox.us:200/skai
 
 #EXTINF:0,Nerit 
 http://nerit1-lh.akamaihd.net/i/nerit_1@42604/master.m3u8
@@ -156,7 +161,7 @@ http://nerit1-lh.akamaihd.net/i/nerit_1@42604/master.m3u8
 
 
 #EXTINF:0,OPT TV
-rtmp://media.patrisnews.com:1935/patris/tvstream live=1 timeout=10
+
 
 #EXTINF:0,OTE Sports 1 
 
@@ -183,7 +188,7 @@ http://xrodopi-tvx.api.channel.livestream.com/3.0/playlist.m3u8
 http://player.webvideocore.net/eq473601t9w8.m3u8
 
 #EXTINF:0,Samiaki TV
-rtmp://91.121.107.131/samiaki/samiaki
+
 
 #EXTINF:0,Sigma Cyprus
 http://81.21.47.74/hls/live.m3u8
@@ -194,14 +199,23 @@ http://iphone.skai.gr.edgesuite.net/iphone_iphone.m3u8
 #EXTINF:0,Star TV 
 
 
+#EXTINF:0,Super B
+rtmp://37.220.27.70/live/livestream
+
 #EXTINF:0,Syros TV
 http://176.9.123.140:1935/msg116s/msg116s/playlist.m3u8
+
+#EXTINF:0,Thraki
+mmsh://live.onestreaming.com/thrakinet
 
 #EXTINF:0,TRT
 http://xelladalivex.api.channel.livestream.com/3.0/playlist.m3u8
 
 #EXTINF:0,TV 100
 rtmp://178.62.176.153:1935/TV100/TV100
+
+#EXTINF:0,TV Creta
+rtmp://srv1.viiideo.gr/hellasonmedia/tvcreta
 
 #EXTINF:0,TVM
 rtmp://cp77174.live.edgefcs.net:443/live/123456@19937 live=1 timeout=10

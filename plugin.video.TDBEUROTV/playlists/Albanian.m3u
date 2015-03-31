@@ -20,6 +20,9 @@ rtmp://95.110.242.231:11935/live/albanianscreentv
 #EXTINF:0,Al Jazeera Balkan
 rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
 
+#EXTINF:0,Al Jazeera Balkan
+http://62.112.54.4/hls/al_jaz_balkan.m3u8
+
 #EXTINF:0,Alsat
 rtmp://fms.zulu.mk/zulu/ playpath=alsat_2 swfUrl=http://on.net.mk/jwp/jwplayer.flash.swf live=1 pageUrl=http://on.net.mk/jwp/alsatm.html
 
@@ -44,6 +47,9 @@ rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
 #EXTINF:0,B92
 http://stream.b92.net:7999/tv-b92.ogg
 
+#EXTINF:0,Bang Bang
+http://zhuki.herokuapp.com/live/737/index.m3u8
+
 #EXTINF:0,Balkan TV
 rtmp://yayin.tvdunyasi.tv/live/balkanrtv
 
@@ -57,7 +63,7 @@ rtmp://yayin.tvdunyasi.tv/live/balkanrtv
 
 
 #EXTINF:0,Cufo TV
-
+http://zhuki.herokuapp.com/live/738/index.m3u8
 
 #EXTINF:0,Dasma TV
 
@@ -65,11 +71,17 @@ rtmp://yayin.tvdunyasi.tv/live/balkanrtv
 #EXTINF:0,Dukagjini
 
 
+#EXTINF:0,DY TV
+http://zhuki.herokuapp.com/live/731/index.m3u8
+
 #EXTINF:0,ERA 
 
 
 #EXTINF:0,Folk Plus
 
+
+#EXTINF:0,Folklorit
+http://zhuki.herokuapp.com/live/735/index.m3u8
 
 #EXTINF:0,Globi TV
 
@@ -122,7 +134,14 @@ http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video
 #EXTINF:0,MPT 2 
 http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video_id/3548/token/bd0b11a4f8d05cc0bffe589f55909615/chunklist_w787058205_b1196000.m3u8
 
+#EXTINF:0,Natyra
+http://zhuki.herokuapp.com/live/739/index.m3u8
+
 #EXTINF:0,News24
+
+
+#EXTINF:0, NJE TV
+http://zhuki.herokuapp.com/live/730/index.m3u8
 
 
 #EXTINF:0,Novosadska TV

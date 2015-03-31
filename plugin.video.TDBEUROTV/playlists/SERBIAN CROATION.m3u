@@ -5,8 +5,11 @@
 #EXTINF:0,24 Sata
 mms://62.162.58.55/24vesti
 
-#EXTINF:0,Al Jazeera Balkan
+#EXTINF:0,Al Jazeera Balkan 
 rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
+
+#EXTINF:0,Al Jazeera Balkan 
+http://62.112.54.4/hls/al_jaz_balkan.m3u8
 
 #EXTINF:0,ATV
 rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
@@ -17,6 +20,9 @@ http://stream.b92.net:7999/tv-b92.ogg
 #EXTINF:0,BKTV
 
 
+#EXTINF:0,Bn Sat
+http://62.112.54.4/hls/bn-sat.m3u8
+
 #EXTINF:0,CETV
 http://213.81.153.221:8080/cetv
 
@@ -24,16 +30,16 @@ http://213.81.153.221:8080/cetv
 
 
 #EXTINF:0,CMC
-
+http://62.112.54.4/hls/cmc.m3u8
 
 #EXTINF:0,DMC
 
 
 #EXTINF:0,DM SAT
-http://93.155.254.34:8080/dmsat
+http://62.112.54.4/hls/dm-sat.m3u8
 
 #EXTINF:0,DUGA
-
+http://62.112.54.4/hls/duga-tv.m3u8
 
 #EXTINF:0,Elektrika TV
 rtmp://rtmp.elektrika.cz/live/myStream.sdp
@@ -47,6 +53,21 @@ rtmp://rtmp.elektrika.cz/live/myStream.sdp
 #EXTINF:0,Full TV
 
 
+#EXTINF:0,Grand Narodna
+http://62.112.54.4/hls/grand-tv.m3u8
+
+#EXTINF:0,Hayat Folk
+http://62.112.54.4/hls/hayatfolk-tv.m3u8
+
+#EXTINF:0,Hayat Plus
+http://62.112.54.4/hls/hayat-plus.m3u8
+
+#EXTINF:0,Hayat TV
+http://62.112.54.4/hls/hayat-tv.m3u8
+
+#EXTINF:0,Hayatovci
+http://62.112.54.4/hls/hayat-tv.m3u8
+
 #EXTINF:0,Hema 
 mms://77.238.209.50:1234
 
@@ -57,13 +78,25 @@ mms://77.238.209.50:1234
 http://213.81.153.221:8080/hronka
 
 #EXTINF:0,HRT 1 
+http://62.112.54.4/hls/hrt1.m3u8
+
+#EXTINF:0,HRT 1 
 http://213.5.58.58:1935/hrt_live/smil:hrt1.smil/nesto.m3u8
+
+#EXTINF:0,HRT 2 
+http://62.112.54.4/hls/hrt2.m3u8
 
 #EXTINF:0,HRT 2 
 http://213.5.58.58:1935/hrt_live/smil:hrt2.smil/nesto.m3u8
 
 #EXTINF:0,HRT 3 
+http://62.112.54.4/hls/hrt3.m3u8
+
+#EXTINF:0,HRT 3 
 http://213.5.58.58:1935/hrt_live/smil:hrt3.smil/nesto.m3u8
+
+#EXTINF:0,HRT 4 
+http://62.112.54.4/hls/hrt4.m3u8
 
 #EXTINF:0,HRT 4 
 http://213.5.58.58:1935/hrt_live/smil:hrt4.smil/nesto.m3u8
@@ -89,6 +122,9 @@ rtmp://84.20.77.50/live//livestream2
 #EXTINF:0,Jugoton
 
 
+#EXTINF:0,K3
+http://62.112.54.4/hls/k3.m3u8
+
 #EXTINF:0,Kanal 5 
 http://fms.zulu.mk:1935/zulu/kanal5_1/playlist.m3u8
 
@@ -112,6 +148,9 @@ http://178.79.24.7:9012
 
 #EXTINF:0,KCN 3
 http://178.79.24.7:9013
+
+#EXTINF:0,KCN Music 2
+http://62.112.54.4/hls/kcn-music-2.m3u8
 
 #EXTINF:0,Kino TV
 
@@ -144,13 +183,13 @@ http://213.81.153.221:8080/nasa
 
 
 #EXTINF:0,Nova TV
-
+http://62.112.54.4/hls/nova.m3u8
 
 #EXTINF:0,Novosadska TV
 mms://176.106.121.32:8080/
 
 #EXTINF:0,OBN
-
+http://62.112.54.4/hls/obn.m3u8
 
 #EXTINF:0,OK Bambino
 
@@ -162,7 +201,7 @@ mms://176.106.121.32:8080/
 
 
 #EXTINF:0,OTV Valentino
-
+http://62.112.54.4/hls/otv-valentino.m3u8
 
 #EXTINF:0,Party TV
 
@@ -193,10 +232,6 @@ http://str108.setplex.net/fastv_2psh/PinkFamilyglobal_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink Fashion
 http://str108.setplex.net/fastv_2psh/PinkFashionglobal_rly_greece_103/TDB.m3u8
-
-
-#EXTINF:0,Pink Film
-
 
 #EXTINF:0,Pink Folk 1
 http://str108.setplex.net/fastv_2psh/PinkFolk1global_rly_greece_103/TDB.m3u8
@@ -249,7 +284,7 @@ http://str108.setplex.net/fastv_2psh/PinkPremiumglobal_rly_greece_103/TDB.m3u8
 #EXTINF:0,Pink Reality
 http://str108.setplex.net/fastv_2psh/PinkRealityglobal_rly_greece_103/TDB.m3u8
 
-#EXTINF:0,Pink Soap
+#	EXTINF:0,Pink Soap
 http://str108.setplex.net/fastv_2psh/PinkSoapglobal_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink Western
@@ -264,10 +299,17 @@ http://str108.setplex.net/fastv_2psh/PinkZabavaglobal_rly_greece_103/TDB.m3u8
 #EXTINF:0,Planet TV
 rtsp://origin.biokoda.tv/live/mbit-planet?k=planettv-public
 
+#EXTINF:0,Posavina TV
+http://62.112.54.4/hls/posavina-tv.m3u8
+
 #EXTINF:0,Pop Brio
+
 
 #EXTINF:0,PTC 
 mmsh://195.252.113.38:80/rts?MSWMExt=.asf
+
+#EXTINF:0,PTC 
+rtsp://195.252.113.43/rts
 
 #EXTINF:0,PRVA
 
@@ -276,7 +318,7 @@ mmsh://195.252.113.38:80/rts?MSWMExt=.asf
 
 
 #EXTINF:0,RTL 1
-
+http://62.112.54.4/hls/rtl.m3u8
 
 #EXTINF:0,RTL 2
 

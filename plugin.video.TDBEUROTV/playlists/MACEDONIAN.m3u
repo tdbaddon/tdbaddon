@@ -9,6 +9,9 @@ mms://62.162.58.55/24vesti
 #EXTINF:0,Al Jazeera Balkan 
 rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
 
+#EXTINF:0,Al Jazeera Balkan
+http://62.112.54.4/hls/al_jaz_balkan.m3u8
+
 #EXTINF:0,Alfa 
 http://fms.zulu.mk:1935/zulu/alfa_2/playlist.m3u8
 
@@ -41,6 +44,9 @@ rtmp://yayin.tvdunyasi.tv/live/balkanrtv
 
 #EXTINF:0,ERA TV 
 
+
+#EXTINF:0,H1
+rtmp://hugo-iptv.zapto.org/live/h1
 
 #EXTINF:0,Hema TV
 mms://77.238.209.50:1234
