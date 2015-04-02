@@ -8,13 +8,13 @@ http://113.160.49.34/lives/origin03/cinemaxsd.isml/cinemaxsd-1096k.m3u8
 
 
 #EXTINF:0,Cinestar Premiere 1 
-http://ultra.goldtv.al:8000/live/testyy/testzzz/205.ts
+
 
 #EXTINF:0,Cinestar Premiere 2 
-http://ultra.goldtv.al:8000/live/testyy/testzzz/206.ts
+
 
 #EXTINF:0,Cinestar TV 
-http://ultra.goldtv.al:8000/live/testyy/testzzz/207.ts
+
 
 #EXTINF:0,CMore Action
 http://93.184.221.133/00573D/1460/1460-0.m3u8
@@ -26,37 +26,61 @@ http://93.184.221.133/00573D/1460/1460-0.m3u8
 
 
 #EXTINF:0,CMore Hits
-http://ultra.goldtv.al:8000/live/testyy/testzzz/263.ts
+
 
 #EXTINF:0,CMore Series
-http://ultra.goldtv.al:8000/live/testyy/testzzz/264.ts
+
 
 #EXTINF:0,Fox 1 
-http://200.76.77.237/LIVE/H01/CANAL415/PROFILE03.m3u8?BratuMarian
+http://200.76.77.237/LIVE/H01/CANAL415/PROFILE05.m3u8?
+
+#EXTINF:0,Fox 1 
+http://200.76.77.237/LIVE/H01/CANAL415/PROFILE03.m3u8?
+
+#EXTINF:0,Fox Action Movies 
+http://200.76.77.237/LIVE/H01/CANAL416/PROFILE05.m3u8? 
+
+#EXTINF:0,Fox Action Movies 
+http://200.76.77.237/LIVE/H01/CANAL416/PROFILE03.m3u8?
 
 #EXTINF:0,Fox Action Movies 
 http://103.242.13.66:5000/nn_live.ts?id=foxactionmovie-m-h
 
-#EXTINF:0,Fox Action Movies 
-http://200.76.77.237/LIVE/H01/CANAL416/PROFILE03.m3u8? 
+#EXTINF:0,Fox Family Movies 
+http://200.76.77.237/LIVE/H01/CANAL475/PROFILE05.m3u8?
 
 #EXTINF:0,Fox Family Movies 
-http://200.76.77.237/LIVE/H01/CANAL475/PROFILE03.m3u8?BratuMarian
+http://200.76.77.237/LIVE/H01/CANAL475/PROFILE03.m3u8?
 
 #EXTINF:0,Fox Classics
-http://200.76.77.237/LIVE/H01/CANAL478/PROFILE03.m3u8?BratuMarian
+http://200.76.77.237/LIVE/H01/CANAL424/PROFILE05.m3u8?
+
+#EXTINF:0,Fox Classics
+http://200.76.77.237/LIVE/H01/CANAL478/PROFILE03.m3u8?
+
+#EXTINF:0,Fox Movies 
+http://200.76.77.237/LIVE/H01/CANAL417/PROFILE05.m3u8?
+
+#EXTINF:0,Fox Movies 
+http://200.76.77.237/LIVE/H01/CANAL417/PROFILE03.m3u8?
 
 #EXTINF:0,Fox Movies 
 http://103.242.13.67:5000/nn_live.ts?id=foxmovies-m-h
 
 #EXTINF:0,Fox Movies 
-http://200.76.77.237/LIVE/H01/CANAL417/PROFILE03.m3u8?BratuMarian
-
-#EXTINF:0,Fox Movies 
 http://50.7.69.186:1935/edge/_definst_/hc992q7x7cz86t9/chunklist.m3u8?wowzasessionid=1419909438
 
 #EXTINF:0,FX HD 
-http://200.76.77.237/LIVE/H01/CANAL209/PROFILE03.m3u8?BratuMarian
+http://200.76.77.237/LIVE/H01/CANAL209/PROFILE05.m3u8?
+
+#EXTINF:0,FX HD 
+http://200.76.77.237/LIVE/H01/CANAL209/PROFILE03.m3u8?
+
+#EXTINF:0,Golden Edge
+http://200.76.77.237/LIVE/H01/CANAL484/PROFILE05.m3u8?
+
+#EXTINF:0,Golden Edge
+http://200.76.77.237/LIVE/H01/CANAL484/PROFILE03.m3u8?
 
 #EXTINF:0,HBO 
 http://113.160.49.34/lives/origin03/hbohd.isml/hbohd-2096k.m3u8
@@ -79,13 +103,13 @@ http://167.114.65.88/hls/mv.m3u8
 #EXTINF:0,Movies 4 Men
 http://93.184.221.133/00573D/311/311-0.m3u8
 
-#EXTINF:0,OMN Movies
+#EXTINF:0,OMN Movies 
 http://185.27.237.105:8082/TV0053
 
-#EXTINF:0,OMN Movies
+#EXTINF:0,OMN Movies 
 http://185.27.237.105:8082/TV0023
 
-#EXTINF:0,OMN Movies 2
+#EXTINF:0,OMN Movies 
 http://185.27.237.105:8082/TV0054
 
 #EXTINF:0,OMN Movies Action
@@ -104,28 +128,25 @@ http://185.27.237.105:8082/TV0129
 
 
 #EXTINF:0,Pink Action 1
-http://str108.setplex.net/fastv_2psh/Pink2global_rly_greece_109/balkansatnet.m3u8
+http://str108.setplex.net/fastv_2psh/Pink2global_rly_greece_109/TDB.m3u8
 
 #EXTINF:0,Pink Action 2
-http://str108.setplex.net/fastv_2psh/PinkAction2global_rly_greece_103/balkansatnet.m3u8
+http://str108.setplex.net/fastv_2psh/PinkAction2global_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink Action 3
-http://str108.setplex.net/fastv_2psh/PinkAction3global_rly_greece_103/balkansatnet.m3u8
+http://str108.setplex.net/fastv_2psh/PinkAction3global_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink Comedy
-http://str108.setplex.net/fastv_2psh/PinkComedyglobal_rly_greece_103/playlist.m3u8
-
-#EXTINF:0,Pink Horror
-http://str108.setplex.net/fastv_2psh/PinkHorrorglobal_rly_greece_103/balkansatnet.m3u8
+http://str108.setplex.net/fastv_2psh/PinkComedyglobal_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink Movies 3
-http://str108.setplex.net/fastv_2psh/PinkMovies3global_rly_greece_109/balkansatnet.m3u8
+http://str108.setplex.net/fastv_2psh/PinkMovies3global_rly_greece_109/TDB.m3u8
 
 #EXTINF:0,Pink Premium
-http://str108.setplex.net/fastv_2psh/PinkPremiumglobal_rly_greece_103/balkansatnet.m3u8
+http://str108.setplex.net/fastv_2psh/PinkPremiumglobal_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink Western
-http://str108.setplex.net/fastv_2psh/PinkWesternglobal_rly_greece_103/balkansatnet.m3u8
+http://str108.setplex.net/fastv_2psh/PinkWesternglobal_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,SciFi
 
@@ -164,13 +185,19 @@ http://50.7.69.186:1935/edge/_definst_/bwbop58ixz281wv/chunklist.m3u8?wowzasessi
 
 
 #EXTINF:0,Star Movies
-http://185.27.237.105:8082/TV0051
+http://113.160.49.34/lives/origin03/moviehd.isml/moviehd-2096k.m3u8
 
 #EXTINF:0,Star Movies
-http://113.160.49.34/lives/origin03/moviehd.isml/moviehd-2096k.m3u8
+http://185.27.237.105:8082/TV0051
 
 #EXTINF:0,SYFY Movie Channel 
 
+
+#EXTINF:0,TCM
+http://200.76.77.237/LIVE/H01/CANAL496/PROFILE05.m3u8?
+
+#EXTINF:0,TCM
+http://200.76.77.237/LIVE/H01/CANAL496/PROFILE03.m3u8?
 
 #EXTINF:0,TCM
 http://185.27.237.105:8082/TV0082
@@ -182,10 +209,10 @@ http://185.27.237.105:8082/TV0082
 
 
 #EXTINF:0,TV 1000
-http://109.87.57.217:8888/udp/238.0.17.77:1234
+
 
 #EXTINF:0,TV 1000 Action
-http://109.87.57.217:8888/udp/238.0.17.80:1234
+
 
 
 

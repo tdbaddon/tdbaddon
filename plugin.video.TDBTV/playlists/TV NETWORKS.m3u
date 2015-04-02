@@ -8,28 +8,34 @@ http://50.7.69.170:1935/edge/_definst_/tuc280rbycwnsvs/playlist.m3u8?wowzasessio
 http://50.7.69.186:1935/edge/_definst_/tuc280rbycwnsvs/manifest.m3u8?wowzasessionid=1426231480
 
 #EXTINF:0,ABC 
-http://198.27.94.105/hls/61c44432f8a321e34c4eeff25d26b91c.m3u8
-
-#EXTINF:0,ABC 
 http://93.184.221.133/00573D/1086/1086-0.m3u8
 
 #EXTINF:0,ABC Family
-http://198.27.94.105/hls/81f73e53bdcec0c1efb3d0675fbd056f.m3u8
+
 
 #EXTINF:0,ACC TV
 http://stream.acctv.com.au/06.m3u8
 
 #EXTINF:0,AMC 
-http://198.27.94.105/hls/f029dd8902d2f7da7331adaaaf0e5f5c.m3u8
+
 
 #EXTINF:0,AXN 
 http://113.160.49.34/lives/origin03/axnhd.isml/axnhd-2096k.m3u8
+
+#EXTINF:0,AXN 
+http://200.76.77.237/LIVE/H01/CANAL213/PROFILE05.m3u8?
+
+#EXTINF:0,AXN 
+http://200.76.77.237/LIVE/H01/CANAL213/PROFILE03.m3u8?
 
 #EXTINF:0,BBC 1 
 http://93.184.221.133/00573D/1277/1277-0.m3u8
 
 #EXTINF:0,BBC 2 
 
+
+#EXTINF:0,BBC Entertainment 
+http://200.76.77.237/LIVE/H01/CANAL253/PROFILE05.m3u8?
 
 #EXTINF:0,BBC Entertainment 
 http://200.76.77.237/LIVE/H01/CANAL253/PROFILE03.m3u8
@@ -48,9 +54,6 @@ http://200.76.77.237/LIVE/H01/CANAL253/PROFILE03.m3u8
 
 #EXTINF:0,CBS 
 http://93.184.221.133/00573D/1084/1084-0.m3u8
-
-#EXTINF:0,CBS 
-http://198.27.94.105/hls/5a665c396aaeb40e55ef64124b5d919b.m3u8
 
 #EXTINF:0,CBS Action 
 http://93.184.221.133/00573D/711/711-0.m3u8
@@ -113,13 +116,13 @@ http://185.27.237.105:8082/TV0060
 
 
 #EXTINF:0,Fashion TV 
-http://hls.novotelecom.ru/streaming/fashion/tvrec/playlist.m3u8
-
-#EXTINF:0,Fashion TV 
 http://113.160.49.34/lives/origin03/fashionhd.isml/fashionhd-2096k.m3u8
 
 #EXTINF:0,Fashion TV 
 http://185.27.237.105:8082/TV0088
+
+#EXTINF:0,Fashion TV 
+http://hls.novotelecom.ru/streaming/fashion/tvrec/playlist.m3u8
 
 #EXTINF:0,Film4 
 
@@ -128,7 +131,10 @@ http://185.27.237.105:8082/TV0088
 
 
 #EXTINF:0,Fox
-http://ultra.goldtv.al:8000/live/testyy/testzzz/277.ts
+http://200.76.77.237/LIVE/H01/CANAL415/PROFILE05.m3u8?
+
+#EXTINF:0,Fox
+http://200.76.77.237/LIVE/H01/CANAL415/PROFILE03.m3u8?
 
 #EXTINF:0,Fox 5 
 
@@ -144,16 +150,19 @@ http://93.184.221.133/00573D/1093/1093-0.m3u8
 
 
 #EXTINF:0,Fox Crime
-http://ultra.goldtv.al:8000/live/testyy/testzzz/211.ts
+
 
 #EXTINF:0,Fox Life 
-http://188.227.86.4:4022/udp/239.77.0.3:1234
+
 
 #EXTINF:0,Food Network 
 http://185.27.237.105:8082/TV0086
 
 #EXTINF:0,FX 
-http://200.76.77.237/LIVE/H01/CANAL209/PROFILE03.m3u8?HasBahCa
+http://200.76.77.237/LIVE/H01/CANAL209/PROFILE05.m3u8?
+
+#EXTINF:0,FX 
+http://200.76.77.237/LIVE/H01/CANAL209/PROFILE03.m3u8?
 
 #EXTINF:0,Ginx Gaming TV 
 http://204.107.26.252:1935/live/796.high.stream/HasBahCa.m3u8
@@ -211,16 +220,13 @@ http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
 
 
 #EXTINF:0,NBC
-http://50.7.69.186:1935/edge/_definst_/s5whw37nl7weedp/chunklist.m3u8?wowzasessionid=1420160473
+
 
 #EXTINF:0,NHK World 
 http://plslive-w.nhk.or.jp/nhkworld/app/live.m3u8
 
 #EXTINF:0,NHK World 
 http://nhkworld-hds-live1.hds1.fmslive.stream.ne.jp/hls-live/nhkworld-hds-live1/_definst_/livestream/nhkworld-live-512.m3u8 
-
-#EXTINF:0, NHK World 
-http://103.242.13.67:5000/nn_live.ts?id=nhkworldhd-m-h
 
 #EXTINF:0,OWN Network 
 
@@ -244,6 +250,12 @@ rtmp://128.104.144.134/WisconsinChannel/mystream
 
 
 #EXTINF:0,Sony TV
+http://200.76.77.237/LIVE/H01/CANAL203/PROFILE05.m3u8?
+
+#EXTINF:0,Sony TV
+http://200.76.77.237/LIVE/H01/CANAL203/PROFILE03.m3u8?
+
+#EXTINF:0,Sony TV
 http://188.227.86.4:4022/udp/239.77.0.5:1234
 
 #EXTINF:0,Spike TV 
@@ -259,9 +271,6 @@ http://188.227.86.4:4022/udp/239.77.0.5:1234
 
 
 #EXTINF:0,Syfy 
-http://198.27.94.105/hls/696169089e59391f35c78355564329e3.m3u8
-
-#EXTINF:0,Syfy 
 rtmp://174.36.55.76/youcloud/ playpath=syfiles934r?keys=mRtger8HcwnH3AEiuOuplg&keyt;=1424715442 swfUrl=http://cdn.youcloud.tv/jwplayer.flash.swf live=1 swfVfy=1 pageUrl=http://youcloud.tv/player?streamname=syfiles934r&width;=555&height;=435 timeout=15
 
 #EXTINF:0,TBS 
@@ -274,7 +283,7 @@ http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/index_3_av-p.m3u8
 
 
 #EXTINF:0,TNT 
-http://198.27.94.105/hls/73c665e20f9ea5749fe8f8985289c89a.m3u8
+
 
 #EXTINF:0,Tru TV 
 
@@ -289,7 +298,7 @@ http://198.27.94.105/hls/73c665e20f9ea5749fe8f8985289c89a.m3u8
 
 
 #EXTINF:0,Universal Channel 
-http://200.76.77.237/LIVE/H01/CANAL256/PROFILE03.m3u8?
+http://200.76.77.237/LIVE/H01/CANAL207/PROFILE05.m3u8?
 
 #EXTINF:0,USA Network 
 
@@ -299,6 +308,9 @@ http://149.11.34.6:1935/live/vernissagetv.stream/hasbahca.m3u8
 
 #EXTINF:0,Victoria Secret TV
 
+
+#EXTINF:0,Warner Brothers 
+http://200.76.77.237/LIVE/H01/CANAL205/PROFILE05.m3u8?
 
 #EXTINF:0,Warner Brothers 
 http://200.76.77.237/LIVE/H01/CANAL205/PROFILE03.m3u8?
@@ -311,6 +323,9 @@ http://bcoveliveios-i.akamaihd.net/hls/live/207737/1942203455001/nat/master_Laye
 
 #EXTINF:0,WGN 9 Chicago 
 http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
+
+#EXTINF:0,Wobi
+http://200.76.77.237/LIVE/H01/CANAL387/PROFILE05.m3u8?
 
 #EXTINF:0,Wobi
 http://200.76.77.237/LIVE/H01/CANAL387/PROFILE03.m3u8?

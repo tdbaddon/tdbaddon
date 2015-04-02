@@ -62,12 +62,6 @@ http://62.112.54.4/hls/hayatfolk-tv.m3u8
 #EXTINF:0,Hayat Plus
 http://62.112.54.4/hls/hayat-plus.m3u8
 
-#EXTINF:0,Hayat TV
-http://62.112.54.4/hls/hayat-tv.m3u8
-
-#EXTINF:0,Hayatovci
-http://62.112.54.4/hls/hayat-tv.m3u8
-
 #EXTINF:0,Hema 
 mms://77.238.209.50:1234
 
@@ -122,9 +116,6 @@ rtmp://84.20.77.50/live//livestream2
 #EXTINF:0,Jugoton
 
 
-#EXTINF:0,K3
-http://62.112.54.4/hls/k3.m3u8
-
 #EXTINF:0,Kanal 5 
 http://fms.zulu.mk:1935/zulu/kanal5_1/playlist.m3u8
 
@@ -148,9 +139,6 @@ http://178.79.24.7:9012
 
 #EXTINF:0,KCN 3
 http://178.79.24.7:9013
-
-#EXTINF:0,KCN Music 2
-http://62.112.54.4/hls/kcn-music-2.m3u8
 
 #EXTINF:0,Kino TV
 
@@ -298,9 +286,6 @@ http://str108.setplex.net/fastv_2psh/PinkZabavaglobal_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Planet TV
 rtsp://origin.biokoda.tv/live/mbit-planet?k=planettv-public
-
-#EXTINF:0,Posavina TV
-http://62.112.54.4/hls/posavina-tv.m3u8
 
 #EXTINF:0,Pop Brio
 

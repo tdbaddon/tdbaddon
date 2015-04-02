@@ -55,20 +55,8 @@ http://bcliveuniv-lh.akamaihd.net/i/cpac1eng2014_01@119330/index_2000_av-p.m3u8
 #EXTINF:0,CPAC
 http://bcliveuniv-lh.akamaihd.net/i/cpac1flr2014_01@51230/index_2000_av-p.m3u8
 
-#EXTINF:0,CTV News
+#EXTINF:0,CTV News 
 http://ams-lp2.9c9media.com/hls-live/livepkgr/_definst_/liveeventNoDRM/ctvnewsOpen8.m3u8
-
-# EXTINF:0,CTV News
-http://ams-lp10.9c9media.com/hls-live/livepkgr/_definst_/liveNews/News18.m3u8
-
-# EXTINF:0,CTV News
-http://ams-lp7.9c9media.com/hls-live/livepkgr/_definst_/liveNews/News28.m3u8
-
-# EXTINF:0,CTV News
-http://ams-lp6.9c9media.com/hls-live/livepkgr/_definst_/liveNews/News38.m3u8
-
-# EXTINF:0,CTV News
-http://ams-lp5.9c9media.com/hls-live/livepkgr/_definst_/liveNews/News48.m3u8
 
 #EXTINF:0,DW 
 http://www.metafilegenerator.de/DWelle/tv-asia/ios/master.m3u8
@@ -83,7 +71,7 @@ rtsp://ewns-hls-b-stream.hexaglobe.net/rtpeuronewslive/en_vidan350_rtp.sdp?
 rtsp://ewns-hls-b-stream.hexaglobe.net/rtpeuronewslive/en_vidan750_rtp.sdp
 
 #EXTINF:0,Fox News 
-
+http://37.59.16.4:1935/global/fox.stream/playlist.m3u8
 
 #EXTINF:0,France 24 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_FRANCE24/variant.m3u8?b?b*t$
@@ -95,7 +83,7 @@ http://vipwowza.yacast.net/f24_hlslive_en/smil:iphone.fr24en.smil/playlist.m3u8
 http://bcoveliveios-i.akamaihd.net/hls/live/215102/master_english/398/master.m3u8?b?b*t$
 
 #EXTINF:0,i24 News 
-http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/i24/ls_satlink/b_828.m3u8??husham.com
+http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/i24/ls_satlink/b_828.m3u8??
 
 #EXTINF:0,InfoWars TV 
 http://cdn.rbm.tv:1935/rightbrainmedia-originpull-2/_definst_/infowars/playlist.m3u8
@@ -113,10 +101,10 @@ rtmp://cdn.rbm.tv:1935/rightbrainmedia-originpull-2/_definst_/247daily2
 http://plslive-w.nhk.or.jp/nhkworld/app/live.m3u8
 
 #EXTINF:0,Press TV 
-rtmp://mtv.fms-01.visionip.tv/live/mtv-ptv-live-25f-16x9-SDh
+http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/presstv/ls_fiber/b_,828,528,264,.m3u8
 
 #EXTINF:0,Press TV 
-http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/presstv/ls_fiber/b_,828,528,264,.m3u8
+rtmp://mtv.fms-01.visionip.tv/live/mtv-ptv-live-25f-16x9-SDh
 
 #EXTINF:0,Reuters Live
 http://37.58.85.156/rlo001/ngrp:rlo001.stream_all/playlist.m3u8
@@ -138,6 +126,21 @@ http://kalsegsec-a.akamaihd.net:80/dc-0/m/pa-live-publish3/kLive/smil:1_oorxcge2
 
 #EXTINF:0,Weather Network
 http://bcoveliveios-i.akamaihd.net/hls/live/207737/1942203455001/nat/master_Layer5.m3u8
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -35,13 +35,7 @@ http://185.27.237.105:8082/TV0112
 
 
 #EXTINF:0,Nickelodeon 
-http://50.7.69.186:1935/edge/_definst_/q2hs5fqm8b039y0/chunklist.m3u8?wowzasessionid=1420206368
-
-#EXTINF:0,Nickelodeon 
 http://188.227.86.4:4022/udp/239.77.0.60:1234
-
-#EXTINF:0,Nickelodeon 
-http://2co1.vp9.tv/chn/nicke/v.m3u8
 
 #EXTINF:0,NickNight 
 

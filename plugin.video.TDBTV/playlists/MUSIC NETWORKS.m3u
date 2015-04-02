@@ -54,7 +54,10 @@ http://sslhls.m6tv.cdn.sfr.net/hls-live/livepkgr/_definst_/m6_music_hits_hls_aes
 rtmp://83.218.202.202/live swfUrl=http://webtv.md/swf/WebTV.swf playpath=wt_mtv.stream
 
 #EXTINF:0,MTV 
-http://200.76.77.237/LIVE/H01/CANAL726/PROFILE02.m3u8?
+http://200.76.77.237/LIVE/H01/CANAL726/PROFILE05.m3u8?
+
+#EXTINF:0,MTV 
+http://200.76.77.237/LIVE/H01/CANAL726/PROFILE03.m3u8?
 
 #EXTINF:0,MTV Base
 
@@ -66,10 +69,19 @@ http://200.76.77.237/LIVE/H01/CANAL726/PROFILE02.m3u8?
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVDANCE/variant.m3u8
 
 #EXTINF:0,MTV Hits 
+http://200.76.77.237/LIVE/H01/CANAL727/PROFILE05.m3u8?
+
+#EXTINF:0,MTV Hits 
+http://200.76.77.237/LIVE/H01/CANAL727/PROFILE03.m3u8?
+
+#EXTINF:0,MTV Hits 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVHITS/variant.m3u8
 
 #EXTINF:0,MTV Live 
-http://200.76.77.237/LIVE/H01/CANAL701/PROFILE03.m3u8?BratuMarian
+http://200.76.77.237/LIVE/H01/CANAL701/PROFILE05.m3u8?
+
+#EXTINF:0,MTV Live 
+http://200.76.77.237/LIVE/H01/CANAL701/PROFILE03.m3u8?
 
 #EXTINF:0,MTV Music 
 http://93.184.221.133/00573D/1345/1345-0.m3u8
@@ -102,10 +114,19 @@ http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch3/06/prog_index.m3u8
 http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/06/prog_index.m3u8
 
 #EXTINF:0,VH1 
+http://200.76.77.237/LIVE/H01/CANAL703/PROFILE05.m3u8?
+
+#EXTINF:0,VH1 
 http://200.76.77.237/LIVE/H01/CANAL703/PROFILE03.m3u8?
 
 #EXTINF:0,VH1 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_VH1EUROPEAN/variant.m3u8
+
+#EXTINF:0,VH1 Classics 
+http://200.76.77.237/LIVE/H01/CANAL728/PROFILE05.m3u8?
+
+#EXTINF:0,VH1 Classics 
+http://200.76.77.237/LIVE/H01/CANAL728/PROFILE03.m3u8?
 
 #EXTINF:0,VH1 Classics 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_VH1CLASSIC/variant.m3u8

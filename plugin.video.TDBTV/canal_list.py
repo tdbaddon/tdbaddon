@@ -50,7 +50,7 @@ dc={
 "paramount channel" : "048",
 "pink action 3" : "049",
 "pink comedy" : "050",
-"pink horror" : "051",
+"000000000000000000000000000" : "051",
 "prison break" : "052",
 "pink premium" : "053",
 "pink western" : "054",
