@@ -1,65 +1,60 @@
 ﻿#EXTM3U
 
+#URL,STARTER,TEST.m3u
+#URL,TDB TV DOCUMENTARY,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBTV/playlists/DOCUMENTARY.m3u
+#URL,TDB TV CARTOONS,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBTV/playlists/Kids%20%26%20Toons.m3u
+#URL,TDB TV LIVE TV SERIES,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBTV/playlists/LIVE%20TV%20SERIES.m3u
+#URL,TDB TV LIVE CAMERAS,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBTV/playlists/Live%20Cameras.m3u
+#URL,TDB TV MOVIES,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBTV/playlists/MOVIES.m3u
+#URL,TDB TV MUSIC NETWORKS,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBTV/playlists/MUSIC%20NETWORKS.m3u
+#URL,TDB TV NEWS,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBTV/playlists/News.m3u
+#URL,TDB TV SPORTS REPLAY,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBTV/playlists/SPORTS%20REPLAY.m3u
+#URL,TDB TV SPORTS,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBTV/playlists/Sports.m3u
+#URL,TDB TV TV NETWORKS,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBTV/playlists/TV%20NETWORKS.m3u
 
+#URL,TDB EURO ARABIC,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBEUROTV/playlists/ARABIC.m3u
+#URL,TDB EURO ALBANIAN,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBEUROTV/playlists/Albanian.m3u
+#URL,TDB EURO BULGARIAN,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBEUROTV/playlists/BULGARIAN.m3u
+#URL,TDB EURO GREEK,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBEUROTV/playlists/Greek.m3u
+#URL,TDB EURO INDIAN,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBEUROTV/playlists/INDIAN.m3u
+#URL,TDB EURO ITALIAN,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBEUROTV/playlists/Italian.m3u
+#URL,TDB EURO MACEDONIAN,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBEUROTV/playlists/MACEDONIAN.m3u
+#URL,TDB EURO PORTUGUESE,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBEUROTV/playlists/Portuguese.m3u
+#URL,TDB EURO SERBIAN CROATIAN,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBEUROTV/playlists/SERBIAN%20CROATION.m3u
+#URL,TDB EURO SPANISH KIDS TV,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBEUROTV/playlists/SPANISH%20KIDS%20TV.m3u
+#URL,TDB EURO SPANISH LOCALS,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBEUROTV/playlists/SPANISH%20LOCALS.m3u
+#URL,TDB EURO SPANISH SPORTS DOCUMENTARY,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBEUROTV/playlists/SPANISH%20SPORTS%20%26%20DOCUMENTRY.m3u
+#URL,TDB EURO SPANISH TV & MOVIES,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBEUROTV/playlists/SPANISH%20TV%20%26%20MOVIES.m3u
 
-#URL,HASABAHCA-Adult TV,http://hasbahcaiptv.com/m3u/iptv/XXX.m3u
-#URL,HASABAHCA-Adult TV,http://hasbahcaiptv.com/m3u/iptv/XXX.m3u
-#URL,HASABAHCA-Serbia TV,http://hasbahcaiptv.com/m3u/iptv/Serbia_Croatia_SIRPCA_HIRVATCA.m3u
-#URL,HASABAHCA-Sport TV,http://hasbahcaiptv.com/m3u/iptv/Sport_SPOR.m3u
-#URL,HASABAHCA-USA TV,http://hasbahcaiptv.com/m3u/iptv/Usa_ABD.m3u
-#URL,HASABAHCA-USA Shows TV,http://hasbahcaiptv.com/m3u/iptv/Usa_shows.m3u
-#URL,HASABAHCA-Kids TV,http://hasbahcaiptv.com/m3u/iptv/Kids_COCUK.m3u
-#URL,HASABAHCA-Greek TV,http://hasbahcaiptv.com/m3u/iptv/Greek_YUNANCA.m3u
-#URL,HASABAHCA-Albania TV,http://hasbahcaiptv.com/m3u/iptv/Albania_Bosnia_ARNAVUTCA_BOSNA.m3u
-#URL,HASABAHCA-Macedonian TV,http://hasbahcaiptv.com/m3u/iptv/Makadonia.m3u
-#URL,HASABAHCA-English TV,http://hasbahcaiptv.com/m3u/iptv/English_INGiLiZCE.m3u
-#URL,HASABAHCA-India TV,http://hasbahcaiptv.com/m3u/iptv/India_Tamil_HiNDiSTAN.m3u
-#URL,HASABAHCA-Arabic TV,http://hasbahcaiptv.com/m3u/iptv/Arabic_ARAPCA.m3u
-#URL,HASABAHCA-Music TV,http://hasbahcaiptv.com/m3u/iptv/Music_MUZiK.m3u
-#URL,HASABAHCA-Spain TV,http://hasbahcaiptv.com/m3u/iptv/Spain_ISPANYOLCA.m3u
-#URL,HASABAHCA-Portugal TV,http://hasbahcaiptv.com/m3u/iptv/Portugal_PORTEKiZ.m3u
-#URL,HASABAHCA-Webcam TV,http://hasbahcaiptv.com/m3u/iptv/Webcam.m3u
-#URL,HASABAHCA-Film On,http://hasbahcaiptv.com/m3u/iptv/Filmon.m3u
-#URL,HASABAHCA-TEST,http://iptv.hopto.org:9705/get.php?username=testiptv1234&password=testiptv1234&type=m3u
+#URL,TDB SPANISH TV - KIDS TV,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBSPANISHTV/playlists/SPANISH%20KIDS%20TV.m3u
+#URL,TDB SPANISH TV - LOCAL TV,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBSPANISHTV/playlists/SPANISH%20LOCALS.m3u
+#URL,TDB SPANISH TV - SPORTS DOCUMENTARY,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBSPANISHTV/playlists/SPANISH%20SPORTS%20%26%20DOCUMENTRY.m3u
+#URL,TDB SPANISH TV - TV & MOVIES,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBSPANISHTV/playlists/SPANISH%20TV%20%26%20MOVIES.m3u
 
+#URL,TDB RADIO TORONTO,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBRADIO/playlists/-%20TORONTO%20RADIO.m3u
+#URL,TDB RADIO BANDS,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBRADIO/playlists/BANDS.m3u
+#URL,TDB RADIO CHILL,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBRADIO/playlists/CHILL.m3u
+#URL,TDB RADIO DISCO,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBRADIO/playlists/DISCO.m3u
+#URL,TDB RADIO DUBSTEP,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBRADIO/playlists/DUBSTEP.m3u
+#URL,TDB RADIO ELECTRONIC DANCE,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBRADIO/playlists/ELECTRONIC%20DANCE.m3u
+#URL,TDB RADIO FREESTYLE,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBRADIO/playlists/FREESTYLE.m3u
+#URL,TDB RADIO HOUSE,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBRADIO/playlists/HOUSE.m3u
+#URL,TDB RADIO JUNGLE,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBRADIO/playlists/JUNGLE.m3u
+#URL,TDB RADIO LOUNGE,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBRADIO/playlists/LOUNGE.m3u
+#URL,TDB RADIO MUSIC CHOICE,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBRADIO/playlists/MUSIC%20CHOICE.m3u
+#URL,TDB RADIO NEWFOUNDLAND,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBRADIO/playlists/NEWFOUNDLAND%20RADIO.m3u
+#URL,TDB RADIO OLDSCHOOL,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBRADIO/playlists/OLD%20SCHOOL.m3u
+#URL,TDB RADIO REGGAE,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBRADIO/playlists/REGGAE.m3u
+#URL,TDB RADIO RETRO POP 80'S & 90'S,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBRADIO/playlists/RETRO%20POP%2080s%2090s.m3u
+#URL,TDB RADIO ROCK CLASSICS,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBRADIO/playlists/ROCK%20CLASSIC.m3u
+#URL,TDB RADIO ROCK,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBRADIO/playlists/ROCK.m3u
+#URL,TDB RADIO TOM DA BOMB MIXED SETS,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBRADIO/playlists/TOM%20DA%20BOMB%20%5B%20MIXED%20SETS%20%5D.m3u
+#URL,TDB RADIO TOM DA BOMB RELEASES,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBRADIO/playlists/TOM%20DA%20BOMB%20%5B%20RELEASES%20%5D.m3u
+#URL,TDB RADIO TOM DA BOMB UNRELEASED,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBRADIO/playlists/TOM%20DA%20BOMB%20%5B%20UNRELEASED%20%5D.m3u
+#URL,TDB RADIO TOP 40,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBRADIO/playlists/TOP%2040.m3u
+#URL,TDB RADIO TRANCE,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBRADIO/playlists/TRANCE.m3u
 
-
-
-#URL,HASABAHCA-
-#URL,HASABAHCA-
-#URL,HASABAHCA-
-
-
-
-
-
--#URL,IPTV01,http://plstonline.org/iptv/IPTV_1_V.m3u?
--#URL,IPTV02,http://plstonline.org/iptv/IPTV_2_V.m3u?
--#URL,IPTV03,http://plstonline.org/iptv/IPTV_3_V.m3u?
--#URL,IPTV04,http://plstonline.org/iptv/IPTV_4_V.m3u?
--#URL,IPTV05,http://plstonline.org/iptv/IPTV_5_V.m3u?
--#URL,IPTV06,http://plstonline.org/iptv/IPTV_6_V.m3u?
--#URL,IPTV07,http://plstonline.org/iptv/IPTV_7_V.m3u?
--#URL,IPTV08,http://plstonline.org/iptv/IPTV_8_V.m3u?
--#URL,IPTV09,http://plstonline.org/iptv/IPTV_9_V.m3u?
--#URL,IPTV10,http://plstonline.org/iptv/IPTV_10_V.m3u?
--#URL,IPTV11,http://plstonline.org/iptv/IPTV_11_V.m3u?
--#URL,IPTV12,http://plstonline.org/iptv/IPTV_12_V.m3u?
--#URL,IPTV13,http://plstonline.org/iptv/IPTV_13_V.m3u?
--#URL,IPTV14,http://plstonline.org/iptv/IPTV_14_V.m3u?
--#URL,IPTV15,http://plstonline.org/iptv/IPTV_15_V.m3u?
--#URL,IPTV16,http://plstonline.org/iptv/IPTV_16_V.m3u?
--#URL,IPTV17,http://plstonline.org/iptv/IPTV_17_V.m3u?
--#URL,IPTV18,http://plstonline.org/iptv/IPTV_18_V.m3u?
--#URL,IPTV19,http://plstonline.org/iptv/IPTV_19_V.m3u?
--#URL,IPTV20,http://plstonline.org/iptv/IPTV_20_V.m3u?
--#URL,IPTV21,http://plstonline.org/iptv/IPTV_21_V.m3u?
--#URL,IPTV22,http://plstonline.org/iptv/IPTV_22_V.m3u?
--#URL,IPTV23,http://plstonline.org/iptv/IPTV_23_V.m3u?
--#URL,IPTV24,http://plstonline.org/iptv/IPTV_24_V.m3u?
--#URL,IPTV01,http://plstonline.org/iptv/IPTV_1_V.m3u?
-
-
-
-
-
+#URL,TDB PORNO ASIAN SOFTCORE,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBPORNO/playlists/ASIAN%20SOFTCORE.m3u
+#URL,TDB PORNO HARDCORE,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBPORNO/playlists/Hardcore.m3u
+#URL,TDB PORNO MODELS PLUS,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBPORNO/playlists/Models%20Plus.m3u
+#URL,TDB PORNO SOFTCORE,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBPORNO/playlists/Softcore.m3u

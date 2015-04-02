@@ -88,6 +88,12 @@ http://113.160.49.34/lives/origin03/hbohd.isml/hbohd-2096k.m3u8
 #EXTINF:0,HBO 
 http://50.7.69.186:1935/edge/_definst_/qzbbu26gcvjxksz/chunklist.m3u8?wowzasessionid=1419847602
 
+#EXTINF:0,HBO 
+http://50.7.69.186:1935/edge/_definst_/a1wn1j3ra1w0cv0/chunklist.m3u8?wowzasessionid=1419915335
+
+#EXTINF:0,HBO 
+rtmp://149.3.141.210:1935/tv/ttv16
+
 #EXTINF:0,Kino TV 
 
 
@@ -103,6 +109,9 @@ http://167.114.65.88/hls/mv.m3u8
 #EXTINF:0,Movies 4 Men
 http://93.184.221.133/00573D/311/311-0.m3u8
 
+#EXTINF:0,OMN First
+http://185.27.237.105:8082/TV0063
+
 #EXTINF:0,OMN Movies 
 http://185.27.237.105:8082/TV0053
 
@@ -115,6 +124,9 @@ http://185.27.237.105:8082/TV0054
 #EXTINF:0,OMN Movies Action
 http://185.27.237.105:8082/TV0025
 
+#EXTINF:0,OMN Movies Comedy
+http://185.27.237.105:8082/TV0125
+
 #EXTINF:0,OMN Movies Drama
 http://185.27.237.105:8082/TV0022
 
@@ -123,6 +135,12 @@ http://185.27.237.105:8082/TV0075
 
 #EXTINF:0,OMN Movies Festival
 http://185.27.237.105:8082/TV0129
+
+#EXTINF:0,OMN Movies Premiere
+http://185.27.237.105:8082/TV0024
+
+#EXTINF:0,OMN Movies Premiere 3
+http://185.27.237.105:8082/TV0124
 
 #EXTINF:0,Paramount Channel
 
