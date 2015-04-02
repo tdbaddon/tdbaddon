@@ -21,15 +21,11 @@
 #URL,TDB EURO MACEDONIAN,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBEUROTV/playlists/MACEDONIAN.m3u
 #URL,TDB EURO PORTUGUESE,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBEUROTV/playlists/Portuguese.m3u
 #URL,TDB EURO SERBIAN CROATIAN,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBEUROTV/playlists/SERBIAN%20CROATION.m3u
-#URL,TDB EURO SPANISH KIDS TV,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBEUROTV/playlists/SPANISH%20KIDS%20TV.m3u
-#URL,TDB EURO SPANISH LOCALS,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBEUROTV/playlists/SPANISH%20LOCALS.m3u
-#URL,TDB EURO SPANISH SPORTS DOCUMENTARY,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBEUROTV/playlists/SPANISH%20SPORTS%20%26%20DOCUMENTRY.m3u
-#URL,TDB EURO SPANISH TV & MOVIES,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBEUROTV/playlists/SPANISH%20TV%20%26%20MOVIES.m3u
+#URL,TDB SPANISH TV - LOCALS,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBEUROTV/playlists/SPANISH%20LOCALS.m3u
+#URL,TDB SPANISH TV - TV,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBEUROTV/playlists/SPANISH%20TV.m3u
 
-#URL,TDB SPANISH TV - KIDS TV,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBSPANISHTV/playlists/SPANISH%20KIDS%20TV.m3u
-#URL,TDB SPANISH TV - LOCAL TV,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBSPANISHTV/playlists/SPANISH%20LOCALS.m3u
-#URL,TDB SPANISH TV - SPORTS DOCUMENTARY,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBSPANISHTV/playlists/SPANISH%20SPORTS%20%26%20DOCUMENTRY.m3u
-#URL,TDB SPANISH TV - TV & MOVIES,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBSPANISHTV/playlists/SPANISH%20TV%20%26%20MOVIES.m3u
+#URL,TDB SPANISH TV - LOCALS,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBSPANISHTV/playlists/SPANISH%20LOCALS.m3u
+#URL,TDB SPANISH TV - TV,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBSPANISHTV/playlists/SPANISH%20TV.m3u
 
 #URL,TDB RADIO TORONTO,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBRADIO/playlists/-%20TORONTO%20RADIO.m3u
 #URL,TDB RADIO BANDS,https://raw.githubusercontent.com/tdbaddon/tdbaddon/master/plugin.video.TDBRADIO/playlists/BANDS.m3u
