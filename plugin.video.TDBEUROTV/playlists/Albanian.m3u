@@ -3,7 +3,7 @@
 
 
 #EXTINF:0,A1 Report
-rtmp://66.55.93.204/livepkgr/a1stream?adbe-live-event=a1report
+
 
 #EXTINF:0,ABC News
 
@@ -189,10 +189,10 @@ http://88.212.10.27:81/streams/stv2.m3u8?
 
 
 #EXTINF:0,Top Channel 
-
+http://176.52.178.23/1992/playlist.m3u8?stb_id=76408&uid=29d3b00b272e86e9876ed39e8be61959
 
 #EXTINF:0,Top Channel News
-
+http://176.52.178.23/1995/playlist.m3u8?stb_id=76408&uid=29d3b00b272e86e9876ed39e8be61959
 
 #EXTINF:0,TV Rozafa
 

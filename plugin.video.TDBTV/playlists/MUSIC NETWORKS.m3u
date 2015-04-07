@@ -1,8 +1,4 @@
 ﻿#EXTM3U
-#EXTINF:0,
-
-
-#EXTINF:0,4Music 
 
 
 #EXTINF:0,AKA 
@@ -26,7 +22,7 @@ http://www.djing.com/tv/h-04.m3u8
 #EXTINF:0,Djing Ibiza
 http://www.djing.com/tv/d-04.m3u8
 
-#EXTINF:0,Djing Under Ground
+#EXTINF:0,Djing UnderGround
 http://www.djing.com/tv/u-04.m3u8
 
 #EXTINF:0,Djing TV 
@@ -44,9 +40,6 @@ http://46.249.213.87/iPhone/broadcast/ibizaontv-tablet.3gp/ibizaontv-tablet.3gp-
 #EXTINF:0,Jazz 
 http://149.11.34.78:1935/live/jazztv.stream/hasbahca.m3u8
 
-#EXTINF:0,King TV 
-http://91.82.85.16:1935/relay15/nettv03_channel_1/HasBahCa.m3u8
-
 #EXTINF:0,M6 Music
 http://sslhls.m6tv.cdn.sfr.net/hls-live/livepkgr/_definst_/m6_music_hits_hls_aes/m6_music_hits_hls_aes_856.m3u8
 
@@ -58,9 +51,6 @@ http://200.76.77.237/LIVE/H01/CANAL726/PROFILE05.m3u8?
 
 #EXTINF:0,MTV 
 http://200.76.77.237/LIVE/H01/CANAL726/PROFILE03.m3u8?
-
-#EXTINF:0,MTV Base
-
 
 #EXTINF:0,MTV Classic
 
@@ -135,7 +125,7 @@ http://hlsstr02.svc.iptv.rt.ru/hls/CH_VH1CLASSIC/variant.m3u8
 rtmp://edge03-03.az.myvideo.az/dvrh264/vh1/ playpath=mp4:vh1 swfUrl=http://www.myvideo.az/stml/dvr/dvrH.swf?v=1.2 live=1 pageUrl=http://www.myvideo.az/r.ates
 
 #EXTINF:0,Virgin TV 
-rtmp://fms.105.net:1935/live/virgin1 playpath=virgin1 swfurl=http://www.highermedia.com/assets/flash/jw_player.swf live=1 pageurl=http://www.google.com/Virgin 1
+
 
 
 

@@ -7,10 +7,10 @@ http://93.184.221.133/00573D/1104/1104-0.m3u8
 #EXTINF:0,Bein Sport1
 
 
-#EXTINF:0,Bein Sport2
+#EXTINF:0,Bein Sport2 
 http://65.111.174.111:1935/iptv/beinsports2.stream/playlist.m3u8?
 
-#EXTINF:0,Bein Sport2
+#EXTINF:0,Bein Sport2 
 rtmp://65.111.174.111/iptv/beinsports2.stream
 
 #EXTINF:0,Big Ten Network 
@@ -68,13 +68,19 @@ rtmp://80.82.64.140:443/liverepeater/ playpath=21 token=#atd%#$ZH swfUrl=http://
 http://113.160.49.34/lives/origin03/foxhd.isml/foxhd-2096k.m3u8
 
 #EXTINF:0,Fox Sports 1 
-
+http://115.146.126.245/chn/fox1/v.m3u8
 
 #EXTINF:0,Fox Sports 2 
 http://103.242.13.66:5000/nn_live.ts?id=starsport-m-h
 
+#EXTINF:0,Fox Sports 2 
+http://115.146.126.245/chn/fox2/v.m3u8
+
 #EXTINF:0,Fox Sports News 
 http://foxsportshdhls-lh.akamaihd.net/i/fsnewshls_0@136427/index_248_av-p.m3u8
+
+#EXTINF:0,Horse and Country
+http://cdn.live.simplestream.com/coder5/coder.channels.channel5/hls/4/playlist.m3u8
 
 #EXTINF:0,MLB 
 rtmp://31.220.0.195:80/live playpath=mlbxx swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf pageUrl=http://reytv.co/embedu.php?live=mlbxx&vw=620&vh=490 token=%Zrey(nKa@#Z
@@ -160,11 +166,17 @@ rtmp://rrbalancer.broadcast.tneg.de:1935/pw/ruk/ playpath=ruk swfUrl=http://pfer
 #EXTINF:0,Sky Sports 1 
 rtmpe://46.246.29.160:1935/l playpath=sskys1 swfUrl=http://hdcast.org/eplayer.swf pageUrl=http://www.hdcast.org/ token=Fo5_n0w?U.rA6l3-70w47ch
 
+#EXTINF:0,Sky Sports 1 
+http://178.33.24.14:2501
+
 #EXTINF:0,Sky Sports 2 
-rtmp://31.220.0.195:80/live/ playpath=s2r token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://reytv.co/
+http://178.33.24.14:2502
 
 #EXTINF:0,Sky Sports 3 
 rtmp://31.220.0.195:80/live/ playpath=s3c token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 timeout=13  pageUrl=http://reytv.co/
+
+#EXTINF:0,Sky Sports 3 
+http://178.33.24.14:2503
 
 #EXTINF:0,Sky Sports 4 
 rtmp://31.220.0.195:80/live/ playpath=ssx4 token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://reytv.co/

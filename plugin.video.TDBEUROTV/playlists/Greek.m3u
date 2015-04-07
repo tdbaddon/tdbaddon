@@ -11,7 +11,7 @@ rtmp://82.192.84.30:1935/live/myStream.sdp
 http://database.freetuxtv.net/playlists/playlist_webtv_el.m3u
 
 #EXTINF:0,Airqio
-http://4.31.30.145:9081
+
 
 #EXTINF:0,Alpha
 http://alfakanali-lh.akamaihd.net/i/live_1@90368/master.m3u8
@@ -29,7 +29,7 @@ http://wow.ant1.gr:1935/live/smil:mavani.smil/playlist.m3u8
 http://www.astratv.gr:8090/hls/livestream/index.m3u8
 
 #EXTINF:0,Axeloos TV
-http://srv1.viiideo.gr:1935/videon/axeloostv/bratumarian.m3u
+
 
 #EXTINF:0,Best TV
 http://smooth.istoikona.net/besttv.isml/manifest(format=m3u8-aapl).m3u8
@@ -128,16 +128,16 @@ http://live.cretetv.gr:1935/cretetv/myStream/playlist.m3u8
 mmsh://wpso.com:200/music
 
 #EXTINF:0,Mad TV 
-rtmp://144.76.2.213:1935/live/livestream
+
 
 #EXTINF:0,Mad TV Cyprus
-rtmp://144.76.2.213/live/livestream swfUrl=http://jwplayer.mediaserve.com/player.swf live=1 timeout=10
+
 
 #EXTINF:0,Makedonia TV
 rtmp://213.16.167.55:1935/livepkgr/livestream swfUrl=http://static.ant1.gr/maktvlive.ashx pageUrl=http://www.maktv.gr/Live swfVfy=1 live=1 timeout=10
 
 #EXTINF:0,Mega 
-http://megahdlive1-f.akamaihd.net/i/live_1@105260/master.m3u8
+
 
 #EXTINF:0,Mega Cyprus
 http://mlivenews.istoikona.net/livenews.isml/manifest(format=m3u8-aapl).m3u8
@@ -150,9 +150,6 @@ http://xnaturatv1x.api.channel.livestream.com/3.0/playlist.m3u8
 
 #EXTINF:0,Nerit 
 http://magictvbox.us:200/skai
-
-#EXTINF:0,Nerit 
-http://nerit1-lh.akamaihd.net/i/nerit_1@42604/master.m3u8
 
 #EXTINF:0,Odie TV
 

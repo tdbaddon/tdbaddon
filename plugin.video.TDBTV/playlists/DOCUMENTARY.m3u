@@ -3,23 +3,11 @@
 #EXTINF:0,Animal Planet 
 http://sjc-uhls-vip01.ustream.tv/watch/playlist.m3u8?cid=12762028
 
-#EXTINF:0,Animal Planet 
-http://185.27.237.105:8082/TV0097
-
 #EXTINF:0,BBC Knowledge 
 
 
 #EXTINF:0,Crime Investigation 
-http://185.27.237.105:8082/TV0093
 
-#EXTINF:0,Discovery Channel 
-http://50.7.69.186:1935/edge/_definst_/ishyd3sopok3p27/chunklist.m3u8?wowzasessionid=1419872569
-
-#EXTINF:0,Discovery Channel 
-http://185.27.237.105:8082/TV0059
-
-#EXTINF:0,Discovery Channel 
-http://185.27.237.105:8082/TV0089
 
 #EXTINF:0,Discovery Channel 
 http://93.184.221.133/00573D/1347/1347-0.m3u8
@@ -43,9 +31,6 @@ http://185.27.237.105:8082/TV0092
 
 
 #EXTINF:0,Discovery Science 
-http://185.27.237.105:8082/TV0090
-
-#EXTINF:0,Discovery Science 
 http://50.7.69.186:1935/edge/_definst_/bmbahkumnsqcydw/manifest.m3u8?wowzasessionid=1426232934
 
 #EXTINF:0,Discovery Shed
@@ -59,9 +44,6 @@ http://200.76.77.237/LIVE/H01/CANAL351/PROFILE03.m3u8?
 
 #EXTINF:0,Discovery Turbo 
 
-
-#EXTINF:0,Discovery World 
-http://185.27.237.105:8082/TV0089
 
 #EXTINF:0,Discovery World 
 http://188.227.86.4:4022/udp/239.77.0.78:1234
@@ -84,17 +66,14 @@ http://50.7.69.186:1935/edge/_definst_/logojbjhar79pc8/manifest.m3u8?wowzasessio
 #EXTINF:0,History Channel 2
 
 
-#EXTINF:0,Horse and Country
-http://cdn.live.simplestream.com/coder5/coder.channels.channel5/hls/4/playlist.m3u8
-
 #EXTINF:0,NASA TV 
 http://public.infozen.cshls.lldns.net/infozen/public/public.m3u8
 
 #EXTINF:0,NASA TV 
-http://edu.infozen.cshls.lldns.net/infozen/edu/edu/edu_1000.m3u8
+http://public.infozen.cshls.lldns.net/infozen/public/public/public_1000.m3u8
 
 #EXTINF:0,NASA TV 
-http://public.infozen.cshls.lldns.net/infozen/public/public/public_1000.m3u8
+http://edu.infozen.cshls.lldns.net/infozen/edu/edu/edu_1000.m3u8
 
 #EXTINF:0,NASA TV 
 http://www.nasa.gov/multimedia/nasatv/NTV-Public-IPS.m3u8

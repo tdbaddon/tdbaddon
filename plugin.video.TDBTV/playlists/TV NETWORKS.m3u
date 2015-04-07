@@ -80,7 +80,7 @@ http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/cnbc_eu/ls_satlink/b_264.m3u8
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/cnbc_eu/ls_satlink/b_,264,528,828,.m3u8
 
 #EXTINF:0,Comedy Central
-rtmp://167.114.65.88/medium/ Playpath=sp swfUrl=http://www.flashwebtown.com/mediaplayer/mediaplayer.swf pageUrl=http://tvtoss.com/channel-frames/Comedy_Central/comedy_central_usa_channel_server-1.php live=1
+
 
 #EXTINF:0,CP24
 http://ams-lp3.9c9media.com/hls-live/livepkgr/_definst_/liveeventNoDRM/cp24Open8.m3u8
@@ -104,7 +104,7 @@ http://ams-lp2.9c9media.com/hls-live/livepkgr/_definst_/liveeventNoDRM/ctvnewsOp
 http://50.7.69.186:1935/edge/_definst_/qvvkvojlano9hnj/manifest.m3u8?wowzasessionid=1426889772
 
 #EXTINF:0,E! 
-http://185.27.237.105:8082/TV0060
+
 
 #EXTINF:0,E4
 
@@ -116,13 +116,10 @@ http://185.27.237.105:8082/TV0060
 
 
 #EXTINF:0,Fashion TV 
-http://113.160.49.34/lives/origin03/fashionhd.isml/fashionhd-2096k.m3u8
-
-#EXTINF:0,Fashion TV 
-http://185.27.237.105:8082/TV0088
-
-#EXTINF:0,Fashion TV 
 http://hls.novotelecom.ru/streaming/fashion/tvrec/playlist.m3u8
+
+#EXTINF:0,Fashion TV 
+http://113.160.49.34/lives/origin03/fashionhd.isml/fashionhd-2096k.m3u8
 
 #EXTINF:0,Film4 
 
@@ -130,10 +127,10 @@ http://hls.novotelecom.ru/streaming/fashion/tvrec/playlist.m3u8
 #EXTINF:0,Fine Living Network 
 
 
-#EXTINF:0,Fox
+#EXTINF:0,Fox 
 http://200.76.77.237/LIVE/H01/CANAL415/PROFILE05.m3u8?
 
-#EXTINF:0,Fox
+#EXTINF:0,Fox 
 http://200.76.77.237/LIVE/H01/CANAL415/PROFILE03.m3u8?
 
 #EXTINF:0,Fox 5 
@@ -156,7 +153,7 @@ http://93.184.221.133/00573D/1093/1093-0.m3u8
 
 
 #EXTINF:0,Food Network 
-http://185.27.237.105:8082/TV0086
+
 
 #EXTINF:0,FX 
 http://200.76.77.237/LIVE/H01/CANAL209/PROFILE05.m3u8?
@@ -192,7 +189,7 @@ rtsp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:420p500kB31
 http://ios.streamserver01.com:8080/ShowcaseTV/mystream.m3u8
 
 #EXTINF:0,ID TV
-http://185.27.237.105:8082/TV0113
+
 
 #EXTINF:0,ITV 1 
 http://93.184.221.133/00573D/283/283-0.m3u8
@@ -210,7 +207,6 @@ http://wpc.573d.edgecastcdn.net/00573D/283/283-0.m3u8
 
 
 #EXTINF:0,ITV Choice
-http://185.27.237.105:8082/TV0055
 
 
 #EXTINF:0,Jewelry Television
@@ -234,11 +230,11 @@ http://plslive-w.nhk.or.jp/nhkworld/app/live.m3u8
 #EXTINF:0,NHK World 
 http://nhkworld-hds-live1.hds1.fmslive.stream.ne.jp/hls-live/nhkworld-hds-live1/_definst_/livestream/nhkworld-live-512.m3u8 
 
+#EXTINF:0,OSN First Comedy
+
+
 #EXTINF:0,OWN Network 
 
-
-#EXTINF:0,OSN First Comedy
-http://185.27.237.105:8082/TV0021
 
 #EXTINF:0,PBS 
 rtmp://128.104.144.134/WisconsinChannel/mystream
@@ -258,13 +254,13 @@ rtmp://128.104.144.134/WisconsinChannel/mystream
 #EXTINF:0,Sky Living 
 
 
-#EXTINF:0,Sony TV
+#EXTINF:0,Sony TV 
 http://200.76.77.237/LIVE/H01/CANAL203/PROFILE05.m3u8?
 
-#EXTINF:0,Sony TV
+#EXTINF:0,Sony TV 
 http://200.76.77.237/LIVE/H01/CANAL203/PROFILE03.m3u8?
 
-#EXTINF:0,Sony TV
+#EXTINF:0,Sony TV 
 http://188.227.86.4:4022/udp/239.77.0.5:1234
 
 #EXTINF:0,Spike TV 
@@ -277,7 +273,7 @@ http://188.227.86.4:4022/udp/239.77.0.5:1234
 
 
 #EXTINF:0,Sundance Channel 
-http://185.27.237.105:8082/TV0074
+
 
 #EXTINF:0,Syfy 
 rtmp://174.36.55.76/youcloud/ playpath=syfiles934r?keys=mRtger8HcwnH3AEiuOuplg&keyt;=1424715442 swfUrl=http://cdn.youcloud.tv/jwplayer.flash.swf live=1 swfVfy=1 pageUrl=http://youcloud.tv/player?streamname=syfiles934r&width;=555&height;=435 timeout=15
@@ -333,10 +329,10 @@ http://bcoveliveios-i.akamaihd.net/hls/live/207737/1942203455001/nat/master_Laye
 #EXTINF:0,WGN 9 Chicago 
 http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
 
-#EXTINF:0,Wobi
+#EXTINF:0,Wobi 
 http://200.76.77.237/LIVE/H01/CANAL387/PROFILE05.m3u8?
 
-#EXTINF:0,Wobi
+#EXTINF:0,Wobi 
 http://200.76.77.237/LIVE/H01/CANAL387/PROFILE03.m3u8?
 
 #EXTINF:0,World Fashion TV
