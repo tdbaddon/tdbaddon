@@ -8,10 +8,7 @@ http://93.184.221.133/00573D/1104/1104-0.m3u8
 
 
 #EXTINF:0,Bein Sport2 
-http://65.111.174.111:1935/iptv/beinsports2.stream/playlist.m3u8?
 
-#EXTINF:0,Bein Sport2 
-rtmp://65.111.174.111/iptv/beinsports2.stream
 
 #EXTINF:0,Big Ten Network 
 http://bigten247.cdnak.bigtenhd.neulion.com/nlds/btn2go/btnnetwork/as/live/btnnetwork_hd_3000.m3u8
@@ -21,6 +18,9 @@ http://93.184.221.133/00573D/1222/1222-0.m3u8
 
 #EXTINF:0,BT Sport 1 
 rtmp://80.82.78.26:443/liverepeater playpath=13  swfUrl=http://popeoftheplayers.eu/atdedead.swf  pageUrl=http://popeoftheplayers.eu/player3.php?id=13&amp;width=620&amp;height=490 token=#atd%#$ZH
+
+#EXTINF:0,BT Sport 1 
+http://192.99.24.176:8080/BTt1/BTt1/index.m3u8
 
 #EXTINF:0,BT Sport 2 
 rtmp://31.220.0.195:80/live/ playpath=btx22 token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://reytv.co/
@@ -68,13 +68,10 @@ rtmp://80.82.64.140:443/liverepeater/ playpath=21 token=#atd%#$ZH swfUrl=http://
 http://113.160.49.34/lives/origin03/foxhd.isml/foxhd-2096k.m3u8
 
 #EXTINF:0,Fox Sports 1 
-http://115.146.126.245/chn/fox1/v.m3u8
+
 
 #EXTINF:0,Fox Sports 2 
 http://103.242.13.66:5000/nn_live.ts?id=starsport-m-h
-
-#EXTINF:0,Fox Sports 2 
-http://115.146.126.245/chn/fox2/v.m3u8
 
 #EXTINF:0,Fox Sports News 
 http://foxsportshdhls-lh.akamaihd.net/i/fsnewshls_0@136427/index_248_av-p.m3u8
@@ -107,10 +104,10 @@ rtmp://46.246.29.140:1935/stream/ playpath=6fUnIBKxvH.stream swfUrl=http://thecd
 rtmp://edge1.everyon.tv/etv1sb/pld613
 
 #EXTINF:0,PAC Sports Arizona 
-
+http://xrxs.net/video/live-p12ariz-1164.m3u8
 
 #EXTINF:0,PAC Sports Arizona HD
-http://pac12hd2-lh.akamaihd.net/i/p12ariz_delivery@132836/master.m3u8
+http://xrxs.net/video/live-p12ariz-4728.m3u8
 
 #EXTINF:0,PAC Sports Bay Area 
 http://xrxs.net/video/live-p12baya-1164.m3u8
@@ -119,10 +116,10 @@ http://xrxs.net/video/live-p12baya-1164.m3u8
 http://www.xrxs.net/video/live-p12baya-4728.m3u8
 
 #EXTINF:0,PAC Sports LA 
-
+http://xrxs.net/video/live-p12losa-1164.m3u8?
  
 #EXTINF:0,PAC Sports LA HD
-http://pac12hd2-lh.akamaihd.net/i/p12losa_delivery@132838/master.m3u8
+http://xrxs.net/video/live-p12losa-4728.m3u8?
 
 #EXTINF:0,PAC Sports National 
 http://xrxs.net/video/live-p12netw-1164.m3u8
@@ -143,10 +140,10 @@ http://xrxs.net/video/live-p12oreg-1164.m3u8
 http://xrxs.net/video/live-p12oreg-4728.m3u8
 
 #EXTINF:0,PAC Sports Washington 
-
+http://xrxs.net/video/live-p12wash-1164.m3u8
  
 #EXTINF:0,PAC Sports Washington HD
-http://pac12hd2-lh.akamaihd.net/i/p12wash_delivery@132841/master.m3u8
+http://xrxs.net/video/live-p12wash-4728.m3u8
 
 #EXTINF:0,Porsche Channel
 mms://100automoto.tv/channel_porsche
@@ -167,25 +164,34 @@ rtmp://rrbalancer.broadcast.tneg.de:1935/pw/ruk/ playpath=ruk swfUrl=http://pfer
 rtmpe://46.246.29.160:1935/l playpath=sskys1 swfUrl=http://hdcast.org/eplayer.swf pageUrl=http://www.hdcast.org/ token=Fo5_n0w?U.rA6l3-70w47ch
 
 #EXTINF:0,Sky Sports 1 
-http://178.33.24.14:2501
+http://192.99.24.176:8080/Skyy1/Skky1/index.m3u8
 
 #EXTINF:0,Sky Sports 2 
-http://178.33.24.14:2502
+rtmpe://46.246.29.160:1935/l swfUrl=http://hdcast.org/eplayer.swf live=1 pageUrl=http://www.hdcast.org/embedlive4.php?u=sskys2&vw;=650&vh;=470&domain;=cricbox.tv/amine1313dz token=Fo5_n0w?U.rA6l3-70w47ch playpath=sskys2 timeout=10
 
 #EXTINF:0,Sky Sports 3 
 rtmp://31.220.0.195:80/live/ playpath=s3c token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 timeout=13  pageUrl=http://reytv.co/
 
 #EXTINF:0,Sky Sports 3 
-http://178.33.24.14:2503
+http://192.99.24.176:8080/skkY3/sk303/index.m3u8
 
 #EXTINF:0,Sky Sports 4 
 rtmp://31.220.0.195:80/live/ playpath=ssx4 token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://reytv.co/
 
+#EXTINF:0,Sky Sports 4 
+http://192.99.24.176:8080/skY4/sSk4/index.m3u8
+
 #EXTINF:0,Sky Sports 5 
 rtmp://31.220.0.195:80/live/ playpath=ss5ry token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://reytv.co/
 
+#EXTINF:0,Sky Sports 5 
+http://192.99.24.176:8080/skY5/skK5/index.m3u8
+
 #EXTINF:0,Sky Sports F1 
 rtmp://80.82.64.140:443/liverepeater playpath=22 swfUrl=http://popeoftheplayers.eu/atdedead.swf pageUrl=http://popeoftheplayers.eu/player3.php?id=22&width=600&height=450 token=#atd%#$ZH
+
+#EXTINF:0,Sky Sports F1 
+http://192.99.24.176:8080/skfF1/skfF1/index.m3u8
 
 #EXTINF:0,Sky Sports News 
 http://93.184.221.133/00573D/183/183-0.m3u8

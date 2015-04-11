@@ -38,13 +38,13 @@ http://200.76.77.237/LIVE/H01/CANAL415/PROFILE05.m3u8?
 http://200.76.77.237/LIVE/H01/CANAL415/PROFILE03.m3u8?
 
 #EXTINF:0,Fox Action Movies 
+http://103.242.13.66:5000/nn_live.ts?id=foxactionmovie-m-h
+
+#EXTINF:0,Fox Action Movies 
 http://200.76.77.237/LIVE/H01/CANAL416/PROFILE05.m3u8? 
 
 #EXTINF:0,Fox Action Movies 
 http://200.76.77.237/LIVE/H01/CANAL416/PROFILE03.m3u8?
-
-#EXTINF:0,Fox Action Movies 
-http://103.242.13.66:5000/nn_live.ts?id=foxactionmovie-m-h
 
 #EXTINF:0,Fox Family Movies 
 http://200.76.77.237/LIVE/H01/CANAL475/PROFILE05.m3u8?
@@ -56,13 +56,13 @@ http://200.76.77.237/LIVE/H01/CANAL475/PROFILE03.m3u8?
 http://200.76.77.237/LIVE/H01/CANAL478/PROFILE03.m3u8?
 
 #EXTINF:0,Fox Movies 
+http://103.242.13.67:5000/nn_live.ts?id=foxmovies-m-h
+
+#EXTINF:0,Fox Movies 
 http://200.76.77.237/LIVE/H01/CANAL417/PROFILE05.m3u8?
 
 #EXTINF:0,Fox Movies 
 http://200.76.77.237/LIVE/H01/CANAL417/PROFILE03.m3u8?
-
-#EXTINF:0,Fox Movies 
-http://103.242.13.67:5000/nn_live.ts?id=foxmovies-m-h
 
 #EXTINF:0,FX HD 
 http://200.76.77.237/LIVE/H01/CANAL209/PROFILE05.m3u8?
@@ -95,31 +95,31 @@ http://103.242.13.67:5000/nn_live.ts?id=amlh-m-h
 
 
 #EXTINF:0,Movies 24/7
-http://167.114.65.88/hls/mv.m3u8
+
 
 #EXTINF:0,Movies 4 Men
 http://93.184.221.133/00573D/311/311-0.m3u8
 
 #EXTINF:0,OMN First
-
+http://185.27.237.105:8082/TV0063
 
 #EXTINF:0,OMN Movies 
-
+http://185.27.237.105:8082/TV0054
 
 #EXTINF:0,OMN Movies Action
-
+http://185.27.237.105:8082/TV0025
 
 #EXTINF:0,OMN Movies Comedy
-
+http://185.27.237.105:8082/TV0125
 
 #EXTINF:0,OMN Movies Drama
 
 
 #EXTINF:0,OMN Movies Drama 2
-
+http://185.27.237.105:8082/TV0075
 
 #EXTINF:0,OMN Movies Festival
-
+http://185.27.237.105:8082/TV0129
 
 #EXTINF:0,OMN Movies Premiere
 
@@ -192,6 +192,9 @@ http://113.160.49.34/lives/origin03/moviehd.isml/moviehd-2096k.m3u8
 
 #EXTINF:0,SYFY Movie Channel 
 
+
+#EXTINF:0,TCM
+http://185.27.237.105:8082/TV0082
 
 #EXTINF:0,TCM 
 http://200.76.77.237/LIVE/H01/CANAL496/PROFILE05.m3u8?

@@ -2,9 +2,6 @@
 
 
 #EXTINF:0,A&E 
-http://50.7.69.170:1935/edge/_definst_/tuc280rbycwnsvs/playlist.m3u8?wowzasessionid=1419880468
-
-#EXTINF:0,A&E 
 http://50.7.69.186:1935/edge/_definst_/tuc280rbycwnsvs/manifest.m3u8?wowzasessionid=1426231480
 
 #EXTINF:0,ABC 
@@ -14,7 +11,7 @@ http://93.184.221.133/00573D/1086/1086-0.m3u8
 
 
 #EXTINF:0,ACC TV
-http://stream.acctv.com.au/06.m3u8
+
 
 #EXTINF:0,AMC 
 
@@ -28,11 +25,14 @@ http://200.76.77.237/LIVE/H01/CANAL213/PROFILE05.m3u8?
 #EXTINF:0,AXN 
 http://200.76.77.237/LIVE/H01/CANAL213/PROFILE03.m3u8?
 
+#EXTINF:0,BabyTV 
+
+
 #EXTINF:0,BBC 1 
 http://93.184.221.133/00573D/1277/1277-0.m3u8
 
 #EXTINF:0,BBC 2 
-
+http://81.23.58.184:8080/udp/0.0.0.0:20015
 
 #EXTINF:0,BBC Entertainment 
 http://200.76.77.237/LIVE/H01/CANAL253/PROFILE05.m3u8?
@@ -49,8 +49,17 @@ http://200.76.77.237/LIVE/H01/CANAL253/PROFILE03.m3u8
 #EXTINF:0,BIO 
 
 
+#EXTINF:0,Boomerang 
+
+
 #EXTINF:0,Bravo 
 
+
+#EXTINF:0,Cartoon Network 
+http://188.227.86.4:4022/udp/239.77.0.77:1234
+
+#EXTINF:0,Cartoon Network
+http://hls.svc.moyo.tv/hls/CH_CARTOON/variant.m3u8?version=2
 
 #EXTINF:0,CBS 
 http://93.184.221.133/00573D/1084/1084-0.m3u8
@@ -69,6 +78,9 @@ http://hls01-05.az.myvideo.az/hls-live/livepkgr/cbsreality/cbsreality/cbsreality
 
 #EXTINF:0,CHCH Ontario 
 rtmp://54.85.197.21:1935/live/news live=1 timeout=15
+
+#EXTINF:0,Classic Looney Tunes
+
 
 #EXTINF:0,CNBC 
 http://93.184.221.133/00573D/1085/1085-0.m3u8
@@ -103,8 +115,17 @@ http://ams-lp2.9c9media.com/hls-live/livepkgr/_definst_/liveeventNoDRM/ctvnewsOp
 #EXTINF:0,CW 
 http://50.7.69.186:1935/edge/_definst_/qvvkvojlano9hnj/manifest.m3u8?wowzasessionid=1426889772
 
-#EXTINF:0,E! 
+#EXTINF:0,Disney Channel 
 
+ 
+#EXTINF:0,Disney Junior 
+
+
+#EXTINF:0,Disney XD 
+
+
+#EXTINF:0,E! 
+http://185.27.237.105:8082/TV0060
 
 #EXTINF:0,E4
 
@@ -120,6 +141,9 @@ http://hls.novotelecom.ru/streaming/fashion/tvrec/playlist.m3u8
 
 #EXTINF:0,Fashion TV 
 http://113.160.49.34/lives/origin03/fashionhd.isml/fashionhd-2096k.m3u8
+
+#EXTINF:0,Fashion TV 
+http://185.27.237.105:8082/TV0088
 
 #EXTINF:0,Film4 
 
@@ -155,11 +179,8 @@ http://93.184.221.133/00573D/1093/1093-0.m3u8
 #EXTINF:0,Food Network 
 
 
-#EXTINF:0,FX 
-http://200.76.77.237/LIVE/H01/CANAL209/PROFILE05.m3u8?
+#EXTINF:0,FX
 
-#EXTINF:0,FX 
-http://200.76.77.237/LIVE/H01/CANAL209/PROFILE03.m3u8?
 
 #EXTINF:0,Ginx Gaming TV 
 http://204.107.26.252:1935/live/796.high.stream/HasBahCa.m3u8
@@ -189,7 +210,7 @@ rtsp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:420p500kB31
 http://ios.streamserver01.com:8080/ShowcaseTV/mystream.m3u8
 
 #EXTINF:0,ID TV
-
+http://185.27.237.105:8082/TV0113
 
 #EXTINF:0,ITV 1 
 http://93.184.221.133/00573D/283/283-0.m3u8
@@ -207,10 +228,13 @@ http://wpc.573d.edgecastcdn.net/00573D/283/283-0.m3u8
 
 
 #EXTINF:0,ITV Choice
-
+http://185.27.237.105:8082/TV0055
 
 #EXTINF:0,Jewelry Television
 rtmp://jtvmedia.jtv.com:1975/live playpath=live6 swfUrl=http://demandware.edgesuite.net/aaby_prd/on/demandware.static/Sites-jtv-Site/-/default/v1410110388581/swf/flashMediaPlayer/StrobeMediaPlayback.swf live=1 pageUrl=http://www.jtv.com/on/demandware.store/Sites-jtv-Site/default/LiveViewer-Show
+
+#EXTINF:0,Jim Jam 
+
 
 #EXTINF:0,Lifetime Network 
 
@@ -222,7 +246,7 @@ http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
 
 
 #EXTINF:0,NBC
-
+http://50.7.69.186:1935/edge/_definst_/s5whw37nl7weedp/chunklist.m3u8?wowzasessionid=1420160473
 
 #EXTINF:0,NHK World 
 http://plslive-w.nhk.or.jp/nhkworld/app/live.m3u8
@@ -230,8 +254,20 @@ http://plslive-w.nhk.or.jp/nhkworld/app/live.m3u8
 #EXTINF:0,NHK World 
 http://nhkworld-hds-live1.hds1.fmslive.stream.ne.jp/hls-live/nhkworld-hds-live1/_definst_/livestream/nhkworld-live-512.m3u8 
 
-#EXTINF:0,OSN First Comedy
+#EXTINF:0,Nick 
 
+
+#EXTINF:0,Nick Jr 
+
+
+#EXTINF:0,Nickelodeon 
+http://188.227.86.4:4022/udp/239.77.0.60:1234
+
+#EXTINF:0,NickNight 
+
+
+#EXTINF:0,OSN First Comedy
+http://185.27.237.105:8082/TV0021
 
 #EXTINF:0,OWN Network 
 
@@ -276,7 +312,7 @@ http://188.227.86.4:4022/udp/239.77.0.5:1234
 
 
 #EXTINF:0,Syfy 
-rtmp://174.36.55.76/youcloud/ playpath=syfiles934r?keys=mRtger8HcwnH3AEiuOuplg&keyt;=1424715442 swfUrl=http://cdn.youcloud.tv/jwplayer.flash.swf live=1 swfVfy=1 pageUrl=http://youcloud.tv/player?streamname=syfiles934r&width;=555&height;=435 timeout=15
+
 
 #EXTINF:0,TBS 
 
@@ -288,6 +324,9 @@ http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/index_3_av-p.m3u8
 
 
 #EXTINF:0,TNT 
+
+
+#EXTINF:0,Tom & Jerry Show 
 
 
 #EXTINF:0,Tru TV 
@@ -304,6 +343,9 @@ http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/index_3_av-p.m3u8
 
 #EXTINF:0,Universal Channel 
 http://200.76.77.237/LIVE/H01/CANAL207/PROFILE05.m3u8?
+
+#EXTINF:0,Universal Channel 
+http://200.76.77.237/LIVE/H01/CANAL207/PROFILE03.m3u8?
 
 #EXTINF:0,USA Network 
 
@@ -324,7 +366,7 @@ http://200.76.77.237/LIVE/H01/CANAL205/PROFILE03.m3u8?
 http://kalsegsec-a.akamaihd.net:80/dc-0/m/pa-live-publish3/kLive/smil:1_oorxcge2_all.smil/chunklist_b2096000.m3u8
 
 #EXTINF:0,Weather Network
-http://bcoveliveios-i.akamaihd.net/hls/live/207737/1942203455001/nat/master_Layer5.m3u8
+
 
 #EXTINF:0,WGN 9 Chicago 
 http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8

@@ -14,13 +14,13 @@ rtmpe://192.99.21.184/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjk
 rtmpe://192.99.21.184/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjkadgbutoarihn/ playpath=aitf swfUrl=http://www.tgun.tv/locked/player.swf live=1 pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex5.php?aitf
 
 #EXTINF:0, American Dad 
-http://167.114.65.74/hls/ad.m3u8
+
  
 #EXTINF:0,Anger Management
 rtmpe://192.99.21.184/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjkadgbutoarihn/ playpath=anger02 swfUrl=http://www.tgun.tv/locked/player.swf live=1 pageUrl=http://www.tgun.tv/embeds2/index2.html?anger02
 
 #EXTINF:0,Archer
-http://rtmp1.arconai.tv/hls/aa.m3u8
+
 
 #EXTINF:0,Arrested Development
 rtmpe://192.99.21.184/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjkadgbutoarihn/arrested01 playpath=arrested01 pageURL=http://www.tgun.tv/embeds2/index2.html?arrested01 swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf live=true
@@ -28,17 +28,17 @@ rtmpe://192.99.21.184/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjk
 #EXTINF:0,Becker
 rtmpe://192.99.21.184/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjkadgbutoarihn/beck playpath=beck pageURL=http://www.tgun.tv/embeds2/index2.html?beck swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf live=true
 
-#EXTINF:0,Breaking Bad 
-
-
 #EXTINF:0,Bobs Burgers
-http://167.114.65.74/hls/bb.m3u8
+
 
 #EXTINF:0,Bones
 
 
 #EXTINF:0,Boy Meets World
 rtmpe://192.99.21.184/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjkadgbutoarihn/bmw playpath=bmw pageURL=http://www.tgun.tv/embeds2/index2.html?bmw swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf live=true
+
+#EXTINF:0,Breaking Bad 
+
 
 #EXTINF:0,Burn Notice 
 
@@ -62,7 +62,7 @@ rtmpe://192.99.21.184/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjk
 
 
 #EXTINF:0,Family Guy 
-http://167.114.65.74/hls/fg.m3u8
+
 
 #EXTINF:0,Frasier
 
@@ -74,7 +74,7 @@ http://167.114.65.74/hls/fg.m3u8
 rtmpe://192.99.21.184/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjkadgbutoarihn/fullhouse playpath=fullhouse pageURL=http://www.tgun.tv/embeds2/index2.html?fullhouse swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf live=true
 
 #EXTINF:0,Futurama 
-http://167.114.65.74/hls/fa.m3u8
+
 
 #EXTINF:0,Game of Thrones
 rtmpe://192.99.21.184/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjkadgbutoarihn/ playpath=got02 swfUrl=http://www.tgun.tv/locked/player.swf live=1 pageUrl=http://www.tgun.tv
@@ -104,7 +104,7 @@ rtmpe://192.99.21.184/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjk
 rtmpe://192.99.21.184/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjkadgbutoarihn/ playpath=shootme swfUrl=http://www.tgun.tv/lock/player.swf live=1 pageUrl=http://www.tgun.tv/menus/players/playerindex5.php?shootme
 
 #EXTINF:0,King of the Hill 
-http://167.114.65.74/hls/kh.m3u8
+
 
 #EXTINF:0,Law and Order 
 
@@ -170,10 +170,7 @@ rtmpe://192.99.21.184/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjk
 
 
 #EXTINF:0,South Park 
-http://167.114.65.88/hls/sp.m3u8
 
-#EXTINF:0,South Park 
-rtmpe://192.99.38.122/rizla01/southp02 playpath=southp02 pageURL=http://www.tgun.tv/embeds2/index.html?southp02 swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf live=true
 
 #EXTINF:0,Star Trek DS9
 
@@ -213,9 +210,6 @@ rtmpe://192.99.21.184/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjk
 
 #EXTINF:0,The Office 
 rtmp://198.255.0.10:443/live?uZhWNm5iTxZo2yckDWwYmoKCFbu2BXxE Playpath=live_111aaacharkoffice swfUrl=http://vaughnlive.tv/4275533154/swf/VaughnSoftPlayer.swf live=true pageUrl=http://vaughnlive.tv/embed/video/111aaacharkoffice?viewers=true&watermark=left&autoplay=true
-
-#EXTINF:0,The Simpsons 
-http://167.114.65.88/hls/ss.m3u8
 
 #EXTINF:0,The Simpsons 
 rtmpe://192.99.21.184/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjkadgbutoarihn/ playpath=2502 swfUrl=http://www.tgun.tv/lock/player.swf live=1 pageUrl=http://www.tgun.tv/menus/players/playerindex5.php?2502

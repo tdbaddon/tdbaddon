@@ -15,6 +15,9 @@ http://93.184.221.133/00573D/1347/1347-0.m3u8
 #EXTINF:0,Discovery Channel 
 http://50.7.69.186:1935/edge/_definst_/ro7c9eha0z96hpp/playlist.m3u8?wowzasessionid=1419880467
 
+#EXTINF:0,Discovery Channel 
+http://185.27.237.105:8082/TV0059
+
 #EXTINF:0,Discovery History 
 http://93.184.221.133/00573D/1348/1348-0.m3u8
 
@@ -31,7 +34,7 @@ http://185.27.237.105:8082/TV0092
 
 
 #EXTINF:0,Discovery Science 
-http://50.7.69.186:1935/edge/_definst_/bmbahkumnsqcydw/manifest.m3u8?wowzasessionid=1426232934
+
 
 #EXTINF:0,Discovery Shed
 
@@ -48,6 +51,9 @@ http://200.76.77.237/LIVE/H01/CANAL351/PROFILE03.m3u8?
 #EXTINF:0,Discovery World 
 http://188.227.86.4:4022/udp/239.77.0.78:1234
 
+#EXTINF:0,Discovery World 
+http://113.160.49.34/lives/origin03/discoveryhd.isml/discoveryhd-2096k.m3u8
+
 #EXTINF:0,DocuBox
 
 
@@ -59,9 +65,6 @@ https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8?hdnea=ip=174.113.
 
 #EXTINF:0,History Channel 
 http://link.theplatform.com/s/dtjsEC/chjdYJxKb44V?manifest=m3u&feed=History%20Live%20Stream%20Feed
-
-#EXTINF:0,History Channel 
-http://50.7.69.186:1935/edge/_definst_/logojbjhar79pc8/manifest.m3u8?wowzasessionid=1426231700
 
 #EXTINF:0,History Channel 2
 
