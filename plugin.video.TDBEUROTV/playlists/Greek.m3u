@@ -2,16 +2,10 @@
 
 
 #EXTINF:0,4E TV 
-http://mail.tv4e.gr:1935/live/myStream.sdp/playlist.m3u8
 
-#EXTINF:0,4E TV 
-rtmp://82.192.84.30:1935/live/myStream.sdp
-
-#EXTINF:0,4E TV 
-http://database.freetuxtv.net/playlists/playlist_webtv_el.m3u
 
 #EXTINF:0,Airqio
-
+http://4.31.30.145:9081/
 
 #EXTINF:0,Alpha
 http://alfakanali-lh.akamaihd.net/i/live_1@90368/master.m3u8
@@ -29,7 +23,7 @@ http://wow.ant1.gr:1935/live/smil:mavani.smil/playlist.m3u8
 http://www.astratv.gr:8090/hls/livestream/index.m3u8
 
 #EXTINF:0,Axeloos TV
-
+http://srv1.viiideo.gr:1935/videon/axeloostv/widih.m3u8
 
 #EXTINF:0,Best TV
 http://smooth.istoikona.net/besttv.isml/manifest(format=m3u8-aapl).m3u8
@@ -56,10 +50,7 @@ mms://ams01.egihosting.com/989630
 
 
 #EXTINF:0,Diras TV 
-rtmp://www.cityofkos.gr/live/livetv
 
-#EXTINF:0,Diras TV 
-rtmp://www.cityofkos.gr/live/livetv live=1 timeout=10
 
 #EXTINF:0,DR TV
 
@@ -82,11 +73,8 @@ rtmp://fml.68FC.edgecastcdn.net/2068FC/elladatv swfUrl=http://www.elladatv.gr/sc
 #EXTINF:0,ET3
 http://live2.ertopen.com/live2/e600/playlist.m3u8
 
-#EXTINF:0,Extra 3
+#EXTINF:0,Extra 3 
 rtmp://213.16.167.186:1935/live/mpegts_256.stream
-
-#EXTINF:0,Extra 3
-http://213.16.167.186:1935/live/mpegts_256.stream/hasbahca.m3u
 
 #EXTINF:0,Flash TV
 
@@ -115,6 +103,9 @@ rtmp://flashcloud.mediacdn.com:1935/live/kontratv
 #EXTINF:0,Kontra 
 rtmp://flashcloud.mediacdn.com/live/kontratv live=1
 
+#EXTINF:0,Kontra 
+rtmp://flashcloud.mediacdn.com/live playpath=kontratv pageUrl=http://www.tvonlinestreams.com live=1
+
 #EXTINF:0,Kosmos TV
 rtmp://edge.vidblee.com/tvkosmos/mp4:tvkosmos.mp4 live=1 timeout=10
 
@@ -142,11 +133,14 @@ rtmp://213.16.167.55:1935/livepkgr/livestream swfUrl=http://static.ant1.gr/maktv
 #EXTINF:0,Mega Cyprus
 http://mlivenews.istoikona.net/livenews.isml/manifest(format=m3u8-aapl).m3u8
 
+#EXTINF:0,Mylitini Lesvos
+rtmp://cp77174.live.edgefcs.net:443/live/123456@19937
+
 #EXTINF:0,Nea TV
 rtmp://srv1.viiideo.gr:1935/hellasonmedia/neatv
 
 #EXTINF:0,N Cinema
-http://xnaturatv1x.api.channel.livestream.com/3.0/playlist.m3u8
+
 
 #EXTINF:0,Nerit 
 http://magictvbox.us:200/skai
@@ -155,7 +149,7 @@ http://magictvbox.us:200/skai
 
 
 #EXTINF:0,Omega TV
-
+rtmp://stream2.omegatv.net/livepkgr/omegatv
 
 #EXTINF:0,OPT TV
 
@@ -185,7 +179,7 @@ http://xrodopi-tvx.api.channel.livestream.com/3.0/playlist.m3u8
 http://player.webvideocore.net/eq473601t9w8.m3u8
 
 #EXTINF:0,Samiaki TV
-
+rtmp://91.121.107.131/samiaki/samiaki live=1
 
 #EXTINF:0,Sigma Cyprus
 http://81.21.47.74/hls/live.m3u8
@@ -194,7 +188,7 @@ http://81.21.47.74/hls/live.m3u8
 http://iphone.skai.gr.edgesuite.net/iphone_iphone.m3u8
 
 #EXTINF:0,Star TV 
-
+http://radiofeeds1.mediabox.gr/startv?MSWMExt=.asf
 
 #EXTINF:0,Syros TV
 http://176.9.123.140:1935/msg116s/msg116s/playlist.m3u8
@@ -206,10 +200,10 @@ mmsh://live.onestreaming.com/thrakinet
 http://xelladalivex.api.channel.livestream.com/3.0/playlist.m3u8
 
 #EXTINF:0,TV 100
-rtmp://178.62.176.153:1935/TV100/TV100
+
 
 #EXTINF:0,TV Creta
-rtmp://srv1.viiideo.gr/hellasonmedia/tvcreta
+
 
 #EXTINF:0,TVM
 rtmp://cp77174.live.edgefcs.net:443/live/123456@19937 live=1 timeout=10

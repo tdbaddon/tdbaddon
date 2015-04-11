@@ -56,9 +56,6 @@ rtmp://ondemand.superstreaming.it/piublu playpath=piublu.sdp
 #EXTINF:0,Quartarete 4
 rtmp://wowza1.top-ix.org/quartaretetv/ playpath=quartareteweb
 
-#EXTINF:0,Quartarete 4
-
-
 #EXTINF:0,Radio Bruno TV
 
 
@@ -84,15 +81,15 @@ rtmp://rete55.stream.internetone.it/streaming playpath=rete55.stream swfUrl=http
 
 
 #EXTINF:0,Rete Veneta
-rtmp://video.reteveneta.it:1935/live playpath=ReteVenetaStream1 swfUrl=http://fpdownload.adobe.com/strobe/FlashMediaPlayback.swf/[[DYNAMIC]]/1 pageUrl=http://www.reteveneta.it/live.aspx live=1 timeout=10
+
 
 #EXTINF:0,San Marino TV
 rtmp://194.116.72.51/webtv_live4 playpath=0QBXFQ2L0I5P swfUrl=http://stream.senape.tv/scripts/player.swf pageUrl=http://www.smtvsanmarino.sm/programmi/web-tv live=1 timeout=10
 
-#EXTINF:0,Sardegnauno
+#EXTINF:0,Sardegnauno 
 rtmp://94.32.101.17/sardegna1 playpath=live1.stream swfUrl=http://www.sardegna1.tv/flowplayer-3.2.5.swf pageUrl=http://www.sardegna1.tv/page.php?id_page=146 live=1
 
-#EXTINF:0,Sardegnauno
+#EXTINF:0,Sardegnauno 
 rtmp://213.205.30.50/sardegna1 playpath=live1.stream
 
 #EXTINF:0,Sky TG24
@@ -190,3 +187,11 @@ http://ftp.tiscali.it/francescovernata/TVUNO/monoscopioTvUNOint-1.wmv
 
 #EXTINF:0,Vera TV
 http://wms.shared.streamshow.it/veratv/veratv/playlist.m3u8
+
+
+
+
+
+
+
+

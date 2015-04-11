@@ -24,31 +24,21 @@ rtmp://213.13.26.11/live/ playpath=etv_direto swfUrl=http://sicnoticias.sapo.pt/
 rtmp://109.200.202.124/live playpath=maxhd  swfUrl=http://www.tv-msn.com/player5.swf live=1  pageUrl=http://tv-msn.com/maxhd.html
 
 #EXTINF:0,RTP One TV 
-rtmp://ec21.rtp.pt/livetv playpath=2ch5h264 swfUrl=http://www.rtp.pt/play/player.swf live=1 pageUrl=http://www.rtp.pt/noticias/votacao/?mysurvey=343r23
-
-#EXTINF:0,RTP One TV 
-http://www.rtp.pt/play/stream/video/rtp1?key=iphoneapp
 
 
 #EXTINF:0,RTP Two TV 
-rtmp://ec21.rtp.pt/livetv playpath=2ch3h264 swfUrl=http://www.rtp.pt/play/player.swf live=1 pageUrl=http://www.rtp.pt/noticias/votacao/?mysurvey=343r23
-
-#EXTINF:0,RTP Two TV 
-http://www.rtp.pt/play/stream/video/rtp2?key=iphoneapp
 
 
 #EXTINF:0,RTP Acores
-http://www.rtp.pt/play/stream/video/rtp_acores?key=iphoneapp
+
 
 #EXTINF:0,RTP Internacional
-http://www.rtp.pt/play/stream/video/rtp_internacional?key=iphoneapp
+
 
 #EXTINF:0,RTP Madeira
-http://www.rtp.pt/play/stream/video/rtp_madeira?key=iphoneapp
 
 
 #EXTINF:0,Sic Noticias
-
 
 
 #EXTINF:0,Sporting TV
@@ -67,10 +57,10 @@ http://www.rtp.pt/play/stream/video/rtp_madeira?key=iphoneapp
 rtmp://213.13.26.11/live playpath=rtc_teste swfUrl=http://assets.web.sapo.io/sapovideo/swf/flvplayer-sapo.swf?v110713&file=http://rd.videos.sapo.cv/o7sf94LpzBDc94GY3N4i/mov/24&live=rtmp://{$hostname}/live/rtc_teste&movref=http%3A%2F%2Fpt.online-television.net%2F952-rtc.html pageUrl=http://pt.online-television.net/952-rtc.html#.VImSJHu8q48 Conn=S:OK live=1 timeout=15
 
 #EXTINF:0,TVI
-http://video-live.iol.pt:1935/live_tvi/_definst_/mp4:TVI3/playlist.m3u8
+
 
 #EXTINF:0,TVI 24
-http://video-live.iol.pt:1935/live_tvi24/_definst_/mp4:TVI24-1/chunklist_w1866938750.m3u8
+
 
 
 

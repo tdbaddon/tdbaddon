@@ -269,6 +269,9 @@ http://188.227.86.4:4022/udp/239.77.0.60:1234
 #EXTINF:0,OSN First Comedy
 http://185.27.237.105:8082/TV0021
 
+#EXTINF:0,OSN First 
+http://185.27.237.105:8082/TV0063
+
 #EXTINF:0,OWN Network 
 
 

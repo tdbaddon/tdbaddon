@@ -1,5 +1,5 @@
 ﻿#EXTM3U
-#EXTINF:0,
+
 
 
 #EXTINF:0,24 Sata
@@ -8,20 +8,20 @@ mms://62.162.58.55/24vesti
 #EXTINF:0,Al Jazeera Balkan 
 rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
 
-#EXTINF:0,Al Jazeera Balkan 
-http://62.112.54.4/hls/al_jaz_balkan.m3u8
-
 #EXTINF:0,ATV
 rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
 
 #EXTINF:0,B92
 http://stream.b92.net:7999/tv-b92.ogg
 
+#EXTINF:0,B92
+http://edge1.volim.tv/live/b92.stream/playlist.m3u8?hash=bce8d71c254913183829d491f62235c70ae93e71
+
 #EXTINF:0,BKTV
 
 
 #EXTINF:0,Bn Sat
-http://62.112.54.4/hls/bn-sat.m3u8
+
 
 #EXTINF:0,CETV
 http://213.81.153.221:8080/cetv
@@ -30,16 +30,16 @@ http://213.81.153.221:8080/cetv
 
 
 #EXTINF:0,CMC
-http://62.112.54.4/hls/cmc.m3u8
+
 
 #EXTINF:0,DMC
 
 
 #EXTINF:0,DM SAT
-http://62.112.54.4/hls/dm-sat.m3u8
+
 
 #EXTINF:0,DUGA
-http://62.112.54.4/hls/duga-tv.m3u8
+
 
 #EXTINF:0,Elektrika TV
 rtmp://rtmp.elektrika.cz/live/myStream.sdp
@@ -54,16 +54,20 @@ rtmp://rtmp.elektrika.cz/live/myStream.sdp
 
 
 #EXTINF:0,Grand Narodna
-http://62.112.54.4/hls/grand-tv.m3u8
+
+
+#EXTINF:0,Happy TV
+http://109.122.121.21/live/happy.stream/chunklist.m3u8?hash=
 
 #EXTINF:0,Hayat Folk
-http://62.112.54.4/hls/hayatfolk-tv.m3u8
+
 
 #EXTINF:0,Hayat Plus
-http://62.112.54.4/hls/hayat-plus.m3u8
+
 
 #EXTINF:0,Hema 
 mms://77.238.209.50:1234
+
 
 #EXTINF:0,History
 
@@ -72,25 +76,13 @@ mms://77.238.209.50:1234
 http://213.81.153.221:8080/hronka
 
 #EXTINF:0,HRT 1 
-http://62.112.54.4/hls/hrt1.m3u8
-
-#EXTINF:0,HRT 1 
 http://213.5.58.58:1935/hrt_live/smil:hrt1.smil/nesto.m3u8
-
-#EXTINF:0,HRT 2 
-http://62.112.54.4/hls/hrt2.m3u8
 
 #EXTINF:0,HRT 2 
 http://213.5.58.58:1935/hrt_live/smil:hrt2.smil/nesto.m3u8
 
 #EXTINF:0,HRT 3 
-http://62.112.54.4/hls/hrt3.m3u8
-
-#EXTINF:0,HRT 3 
 http://213.5.58.58:1935/hrt_live/smil:hrt3.smil/nesto.m3u8
-
-#EXTINF:0,HRT 4 
-http://62.112.54.4/hls/hrt4.m3u8
 
 #EXTINF:0,HRT 4 
 http://213.5.58.58:1935/hrt_live/smil:hrt4.smil/nesto.m3u8
@@ -116,6 +108,9 @@ rtmp://84.20.77.50/live//livestream2
 #EXTINF:0,Jugoton
 
 
+#EXTINF:0,Kanal 3
+http://109.122.121.21/live/kanal_3.stream/chunklist.m3u8?hash=
+
 #EXTINF:0,Kanal 5 
 http://fms.zulu.mk:1935/zulu/kanal5_1/playlist.m3u8
 
@@ -129,15 +124,15 @@ mms://62.162.58.55/TVkanal21
 
 
 #EXTINF:0,Karpaty
-http://213.81.153.221:8080/karpaty
 
-#EXTINF:0,KCN 1
+
+#EXTINF:0,KCN 1 
 http://178.79.24.7:9011
 
-#EXTINF:0,KCN 2
+#EXTINF:0,KCN 2 
 http://178.79.24.7:9012
 
-#EXTINF:0,KCN 3
+#EXTINF:0,KCN 3 
 http://178.79.24.7:9013
 
 #EXTINF:0,Kino TV
@@ -146,16 +141,16 @@ http://178.79.24.7:9013
 #EXTINF:0,Klasik TV
 
 
-#EXTINF:0,Konyha TV
+#EXTINF:0,Konyha TV 
 rtmp://91.82.85.44/live/konyhatv
 
-#EXTINF:0,KTV
+#EXTINF:0,KTV 
 http://213.81.153.221:8080/kezmarok
 
 #EXTINF:0,Leskovac TV
 
 
-#EXTINF:0,Music Box
+#EXTINF:0,Music Box 
 http://213.81.153.221:8080/nasa
 
 #EXTINF:0,Media Travel
@@ -170,14 +165,14 @@ http://213.81.153.221:8080/nasa
 #EXTINF:0,Nardona TV
 
 
-#EXTINF:0,Nova TV
-http://62.112.54.4/hls/nova.m3u8
+#EXTINF:0,Nova TV 
 
-#EXTINF:0,Novosadska TV
+
+#EXTINF:0,Novosadska TV 
 mms://176.106.121.32:8080/
 
-#EXTINF:0,OBN
-http://62.112.54.4/hls/obn.m3u8
+#EXTINF:0,OBN 
+
 
 #EXTINF:0,OK Bambino
 
@@ -189,7 +184,13 @@ http://62.112.54.4/hls/obn.m3u8
 
 
 #EXTINF:0,OTV Valentino
-http://62.112.54.4/hls/otv-valentino.m3u8
+
+
+#EXTINF:0,Kanal 
+
+
+#EXTINF:0,Palma Plus
+http://109.122.121.21/live/palma.stream/chunklist.m3u8?hash=
 
 #EXTINF:0,Party TV
 
@@ -272,7 +273,7 @@ http://str108.setplex.net/fastv_2psh/PinkPremiumglobal_rly_greece_103/TDB.m3u8
 #EXTINF:0,Pink Reality
 http://str108.setplex.net/fastv_2psh/PinkRealityglobal_rly_greece_103/TDB.m3u8
 
-#	EXTINF:0,Pink Soap
+#EXTINF:0,Pink Soap
 http://str108.setplex.net/fastv_2psh/PinkSoapglobal_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink Western
@@ -293,17 +294,20 @@ rtsp://origin.biokoda.tv/live/mbit-planet?k=planettv-public
 #EXTINF:0,PTC 
 mmsh://195.252.113.38:80/rts?MSWMExt=.asf
 
-#EXTINF:0,PTC 
-rtsp://195.252.113.43/rts
+#EXTINF:0,PTC 1
+http://109.122.121.21/live/rts_1.stream/playlist.m3u8?hash=
+
+#EXTINF:0,PTC 2
+http://109.122.121.21/live/rts_2.stream/playlist.m3u8?hash=
 
 #EXTINF:0,PRVA
-
+http://109.122.121.21/live/prva.stream/chunklist.m3u8?hash=
 
 #EXTINF:0,RTB TV
 
 
 #EXTINF:0,RTL 1
-http://62.112.54.4/hls/rtl.m3u8
+
 
 #EXTINF:0,RTL 2
 
@@ -317,6 +321,9 @@ http://62.112.54.4/hls/rtl.m3u8
 #EXTINF:0,RTL Plus
 
 
+#EXTINF:0,RTV 1
+http://109.122.121.21/live/rtv_1.stream/chunklist.m3u8?hash=
+
 #EXTINF:0,RTV Krea
 http://213.81.153.221:8080/galanta
 
@@ -327,7 +334,11 @@ http://213.81.153.221:8080/ruzinov
 
 
 #EXTINF:0,Sonce TV
-http://92.53.27.201:10000
+
+
+#EXTINF:0,SOS TV
+http://109.122.121.21/live/sos.stream/chunklist.m3u8?hash=
+
 
 #EXTINF:0,Sprotska TV
 
@@ -335,10 +346,7 @@ http://92.53.27.201:10000
 #EXTINF:0,SRCE TV
 
 
-#EXTINF:0,STV1
-http://88.212.10.27:81/streams/stv1.m3u8
-
-#EXTINF:0,STV1
+#EXTINF:0,STV1 
 mms://89.201.164.181/stv
 
 #EXTINF:0,STV2
@@ -356,10 +364,10 @@ http://88.212.10.27:81/streams/ta3.m3u8
 #EXTINF:0,Tera TV
 
 
-#EXTINF:0,TV CG Sat
+#EXTINF:0,TV CG Sat 
 mms://beotelmedia.beotel.net/tvcg
 
-#EXTINF:0,TV CG Sat
+#EXTINF:0,TV CG Sat 
 mms://195.252.114.172/tvcg
 
 #EXTINF:0,TV Istra

@@ -1,23 +1,17 @@
 ﻿#EXTM3U
 
 
-#EXTINF:0,ABP News
-http://bengaliabp-lh.akamaihd.net/i/abpbanglanew_1@192108/master.m3u8
-
-#EXTINF:0,ABP News
+#EXTINF:0,ABP News 
 http://hindiabp-lh.akamaihd.net/i/hindiabp1new_1@192103/master.m3u8
 
-#EXTINF:0,ABP News
+#EXTINF:0,ABP News 
 http://mediacontent-lh.akamaihd.net/i/marathiabpnew_1@188093/master.m3u8
 
 #EXTINF:0,AsiaNet News
-http://asianet-lh.akamaihd.net/i/asianetN_1@30556/master.m3u8
+
 
 #EXTINF:0,ATN Bangla
 
-
-#EXTINF:0,Bollywood Cinema 
-rtsp://46.249.213.87/broadcast/bollywoodcinema2-tablet.3gp
 
 #EXTINF:0,Bollywood Cinema 
 rtsp://46.249.213.93/broadcast/indianstudentcinema-tablet.3gp
@@ -58,10 +52,10 @@ rtmp://gemtv.fms.visionip.tv/live/gemtv-gemtv-mifa-live-16x9-HD?ref=www.gemonlin
 #EXTINF:0,Hum
 
 
-#EXTINF:0,IBN
+#EXTINF:0,IBN 
 http://ibn_lokmat_hls-lh.akamaihd.net/i/ibn_lokmat_hls_n_1@178974/index_3.m3u8
 
-#EXTINF:0,IBN
+#EXTINF:0,IBN 
 http://etv_marathi-lh.akamaihd.net/i/etv_marathi_n_1@87184/master.m3u8
 
 #EXTINF:0,India News
@@ -83,7 +77,7 @@ http://mthls-i.akamaihd.net/hls/live/219508/mthls/06.m3u8
 
 
 #EXTINF:0,Prime TV
-
+http://46.249.213.93/iPhone/HLS_TS/broadcast/primetv-tablet.3gp.m3u8
 
 #EXTINF:0,Rishey
 

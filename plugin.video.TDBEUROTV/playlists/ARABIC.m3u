@@ -3,13 +3,13 @@
 
 
 #EXTINF:0,Abu Dhabi Drama
-
+rtmpt://162.212.176.107:1935/abu_dhabi_drama/globaltv-abu_dhabi_drama.stream
 
 #EXTINF:0,Abu Dhabi News
 
 
 #EXTINF:0,Al Dyar
-http://188.247.93.26:1935/live/aldyar.stream_360p/hassuni.m3u8
+
 
 #EXTINF:0,Al Forat
 http://alforatlive.nanocdn.com:1935/live/alforat256/HasBahCa.m3u8
@@ -18,10 +18,10 @@ http://alforatlive.nanocdn.com:1935/live/alforat256/HasBahCa.m3u8
 
 
 #EXTINF:0,Al Nahar Sport
-rtmp://50.7.180.18:1935/elnahar_tv/nahar_sport.stream
+
 
 #EXTINF:0,Al Nahar Youm
-rtmp://50.7.180.18/elnahar_tv/nahar_youm.stream
+
 
 #EXTINF:0,Al Sumaria
 rtmp://livestreaming2.itworkscdn.net/sumarialive playpath=live swfUrl=http://www.alsumaria.tv/LiveMedia4/jwplayer.flash.swf live=true timeout=15 pageUrl=http://www.alsumaria.tv/watch-Alsumaria-Live
@@ -42,10 +42,10 @@ http://albaghdadiahls-i.akamaihd.net/hls/live/218980/albaghdadia-ios/01.m3u8
 rtmp://stream.truth-voice.net/FadyLive//FadyLive
 
 #EXTINF:0,Alhayat Cinema
-
+http://media.islamexplained.com:1935/live/ngrp:ahusa.stream_all/HasBahCa.m3u8
 
 #EXTINF:0,Al Nahar Drama
-rtmp://50.7.180.18/elnahar_tv/nahar_drama.stream
+
 
 #EXTINF:0,Alrayi
 mms://62.215.216.130/wmtencoder/alrai350.wmv
@@ -81,7 +81,7 @@ http://cdnedvrdubaitv.endavomedia.com/smil:dmilivedubaitvhls.smil/HasBahCa.m3u8
 http://94.127.209.149:8080/albadawiyah-800-hdsx/playlist.m3u8
 
 #EXTINF:0,France 24
-http://edge20.magictvbox.com/live/france_24_arabic/index.m3u8
+
 
 #EXTINF:0,Funoon TV
 http://wpc.C56B.edgecastcdn.net/hls-live/20C56B/default/ThompsanECWTV/tsecwatanfunoonmed.m3u8
@@ -126,7 +126,7 @@ http://63.237.48.3/ios/IRINN/IRINN.m3u8
 rtmp://edge3.live.irib.ir/etv/irinn-3
 
 #EXTINF:0,KTV Etraa
-
+rtmp://91.140.238.7/rtmplive/rtpencoder/ch2.sdp
 
 #EXTINF:0,KTV Plus
 rtmp://91.140.238.7/rtmplive/rtpencoder/ch6.sdp
@@ -141,7 +141,7 @@ rtmp://91.140.238.7/rtmplive/rtpencoder/sportextra.sdp
 
 
 #EXTINF:0,Nabaa
-
+rtmp://31.14.40.238:1935/live/Nabaa
 
 #EXTINF:0,National Geographic
 
@@ -152,20 +152,23 @@ rtmp://91.140.238.7/rtmplive/rtpencoder/sportextra.sdp
 #EXTINF:0,Noor Dubai TV
 http://cdnedvrnoordubaitv.endavomedia.com/smil:dmilivenoordubaitvhls.smil/HasBahCa.m3u8
 
+#EXTINF:0,OMN Yahala
+http://185.27.237.105:8082/TV0064
+
 #EXTINF:0,Plus Dawri
 
 
 #EXTINF:0,Rotana Cinema
-http://edge22.magictvbox.com/live/rotana_cinema_plus/index.m3u8
+
 
 #EXTINF:0,Rotana Classic
-http://edge22.magictvbox.com/live/rotana_classic/index.m3u8
+
 
 #EXTINF:0,Rotana Khalijiah
-http://edge20.magictvbox.com/live/rotana_khalijiah/index.m3u8
+
 
 #EXTINF:0,Rotana Massriya
-http://edge22.magictvbox.com/live/rotana_khalijiah_plus/index.m3u8
+
 
 #EXTINF:0,Rotana Music
 

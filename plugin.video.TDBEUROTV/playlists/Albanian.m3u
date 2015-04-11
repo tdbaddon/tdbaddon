@@ -1,9 +1,8 @@
 ﻿#EXTM3U
-#EXTINF:0,
 
 
 #EXTINF:0,A1 Report
-
+rtmp://66.55.93.204/livepkgr?adbe-live-event=a1report/a1stream?adbe-live-event=a1report
 
 #EXTINF:0,ABC News
 
@@ -14,16 +13,22 @@
 #EXTINF:0,Alb Info
 
 
+#EXTINF:0,Alb UK
+rtmp://188.138.17.8:1935/albuk/albuk.stream
+
+#EXTINF:0,Alb UK Plus
+rtmp://188.138.17.8:1935/albuk/albuk+.stream
+
 #EXTINF:0,Albanian Screen
 rtmp://95.110.242.231:11935/live/albanianscreentv
 
-#EXTINF:0,Al Jazeera Balkan
+#EXTINF:0,Al Jazeera Balkan 
 rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
 
-#EXTINF:0,Al Jazeera Balkan
-http://62.112.54.4/hls/al_jaz_balkan.m3u8
-
 #EXTINF:0,Alsat
+
+
+#EXTINF:0,Alsat M 
 rtmp://fms.zulu.mk/zulu/ playpath=alsat_2 swfUrl=http://on.net.mk/jwp/jwplayer.flash.swf live=1 pageUrl=http://on.net.mk/jwp/alsatm.html
 
 #EXTINF:0,Alsat M 
@@ -32,14 +37,14 @@ rtmp://fms.zulu.mk:554/zulu playpath=alsat_2 swfUrl=http://on.net.mk/player/play
 #EXTINF:0,Amol
 
 
-#EXTINF:0,Apollon
+#EXTINF:0,Apollon 
 rtmp://95.107.200.140/live playpath=livestream1 swfUrl=http://www.aulona.de/player.swf?backcolor=000000&frontcolor=0xFFFFFF&streamer=rtmp://95.107.200.140/live&file=livestream1.flv&logo=&stretching=exactfit&autostart=true live=1 pageUrl=http://albhd.tk/tv/apolon.html
 
-#EXTINF:0,Apollon
+#EXTINF:0,Apollon 
 rtmp://95.107.200.140:554/live/rtmp.stream
 
 #EXTINF:0,Art Kanal
-
+rtmp://82.114.65.202/live/rrokumtv.flv swfUrl=http://tv24.al/shqiptv/css/player.swf live=1
 
 #EXTINF:0,ATV
 rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
@@ -60,7 +65,7 @@ rtmp://yayin.tvdunyasi.tv/live/balkanrtv
 
 
 #EXTINF:0,Cufo TV
-http://zhuki.herokuapp.com/live/738/index.m3u8
+
 
 #EXTINF:0,Dasma TV
 
@@ -78,7 +83,7 @@ http://zhuki.herokuapp.com/live/738/index.m3u8
 
 
 #EXTINF:0,Grad Lebane
-http://91.150.78.249:8080/
+
 
 #EXTINF:0,Hema TV
 mms://77.238.209.50:1234
@@ -119,14 +124,23 @@ rtmp://psham1.setplex.net:1935/tvalb_loc_ams243/tvkop2431565
 #EXTINF:0,Mitrovica
 
 
+#EXTINF:0,MPT
+http://mrt.cdn.spectar.tv:1935/mrt-edge/_definst_/mrt1-sat/playlist.m3u8
+
+#EXTINF:0,MPT1
+http://fms.zulu.mk:1935/zulu/mtv1_1/playlist.m3u8
+
 #EXTINF:0,MPT 2 
 http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video_id/3548/token/1551170c6b60563462fd429eec72b731/playlist.m3u8
 
 #EXTINF:0,MPT 2 
 http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video_id/3548/token/bd0b11a4f8d05cc0bffe589f55909615/chunklist_w787058205_b1196000.m3u8
 
-#EXTINF:0,News24
+#EXTINF:0,MPT 2 
+http://mrt.cdn.spectar.tv:1935/mrt-edge/_definst_/mrt2-sat/playlist.m3u8
 
+#EXTINF:0,News24
+http://66.55.93.203/hls-live/livepkgr/_definst_/news24/n24stream.m3u8
 
 #EXTINF:0,Novosadska TV
 mms://176.106.121.32:8080/
@@ -164,14 +178,23 @@ http://wowza.rtkit.com:1935/live/livestream/chunklist.m3u8?wowzasessionid=491913
 #EXTINF:0,RTV Panonija
 
 
+#EXTINF:0,Screen TV
+rtmp://95.110.242.231:11935/live/albanianscreentv_android
+
 #EXTINF:0,Sot7
 mms://84.20.73.66:8001
+
+#EXTINF:0,Super Sky
+rtmp://flash.supersky.ch/live/supersky/livestream
 
 #EXTINF:0,Super Sport Kosova 1 
 
 
 #EXTINF:0,Super Sport Kosova 2
 
+
+#EXTINF:0,Supersonic TV
+rtmp://str103.setplex.net:1935/228/stv_online
 
 #EXTINF:0,STV 
 http://88.212.10.27:81/streams/stv1.m3u8?
@@ -180,7 +203,7 @@ http://88.212.10.27:81/streams/stv1.m3u8?
 http://88.212.10.27:81/streams/stv2.m3u8?
 
 #EXTINF:0,STV Folk
-
+rtmp://str103.setplex.net:1935/228/stv_folk
 
 #EXTINF:0,Teuta
 
@@ -189,10 +212,10 @@ http://88.212.10.27:81/streams/stv2.m3u8?
 
 
 #EXTINF:0,Top Channel 
-http://176.52.178.23/1992/playlist.m3u8?stb_id=76408&uid=29d3b00b272e86e9876ed39e8be61959
+
 
 #EXTINF:0,Top Channel News
-http://176.52.178.23/1995/playlist.m3u8?stb_id=76408&uid=29d3b00b272e86e9876ed39e8be61959
+
 
 #EXTINF:0,TV Rozafa
 
@@ -204,6 +227,10 @@ http://176.52.178.23/1995/playlist.m3u8?stb_id=76408&uid=29d3b00b272e86e9876ed39
 
 
 #EXTINF:0,Vizion Plus 
+rtmp://live.vizionplus.tv/live//livestream3
+
+#EXTINF:0,Vizion Plus 
+rtmp://live.vizionplus.tv/live//livestream2
 
 
 #EXTINF:0,Zico TV

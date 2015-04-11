@@ -9,9 +9,6 @@ mms://62.162.58.55/24vesti
 #EXTINF:0,Al Jazeera Balkan 
 rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
 
-#EXTINF:0,Al Jazeera Balkan
-http://62.112.54.4/hls/al_jaz_balkan.m3u8
-
 #EXTINF:0,Alfa 
 http://fms.zulu.mk:1935/zulu/alfa_2/playlist.m3u8
 
@@ -64,10 +61,7 @@ mms://62.162.58.54:8080
 http://88.212.10.27:81/streams/joj.m3u8
 
 #EXTINF:0,Jug TV 
-rtmp://84.20.77.50/live/livestream1
 
-#EXTINF:0,Jug TV 
-rtmp://84.20.77.50/live//livestream2
 
 #EXTINF:0,Kanal 5 
 http://fms.zulu.mk:1935/zulu/kanal5_1/playlist.m3u8
@@ -136,7 +130,7 @@ http://fms.zulu.mk:554/zulu/sitel3_1/playlist_b125000_w1132785237.m3u8
 rtsp://fms.zulu.mk:554/zulu/sitel3_2
 
 #EXTINF:0,Sonce TV
-http://92.53.27.201:10000
+
 
 #EXTINF:0,STV Folk
 
@@ -205,7 +199,7 @@ http://217.16.69.17:8000/bubamara.mp3
 rtmp://off.net.mk/radio/bubamara.stream
 
 #EXTINF:0,Radio Delfin Bitola
-http://ss1.mk.checast.com:21110/live?1420343256204.aac
+
 
 #EXTINF:0,Radio Fortuna Skopje
 http://50.7.129.122:8497/;?1420340858258.mp3
