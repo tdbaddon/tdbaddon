@@ -13,8 +13,8 @@ rtmpe://192.99.21.184/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjk
 #EXTINF:0,All In The Family
 rtmpe://192.99.21.184/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjkadgbutoarihn/ playpath=aitf swfUrl=http://www.tgun.tv/locked/player.swf live=1 pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex5.php?aitf
 
-#EXTINF:0, American Dad 
-
+#EXTINF:0,American Dad 
+rtmpe://192.99.39.7/rizla01/americandad02 swfUrl=http://www.tgun.tv/embeds2/jwplayer.flash.swf pageUrl=http://www.tgun.tv/embeds2/index.html?
  
 #EXTINF:0,Anger Management
 rtmpe://192.99.21.184/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjkadgbutoarihn/ playpath=anger02 swfUrl=http://www.tgun.tv/locked/player.swf live=1 pageUrl=http://www.tgun.tv/embeds2/index2.html?anger02
@@ -32,19 +32,22 @@ rtmpe://192.99.21.184/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjk
 
 
 #EXTINF:0,Bones
-
+rtmpe://192.99.39.7/rizla01/bones02 swfUrl=http://www.tgun.tv/embeds2/jwplayer.flash.swf pageUrl=http://www.tgun.tv/embeds2/index.html?bones02
 
 #EXTINF:0,Boy Meets World
 rtmpe://192.99.21.184/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjkadgbutoarihn/bmw playpath=bmw pageURL=http://www.tgun.tv/embeds2/index2.html?bmw swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf live=true
 
-#EXTINF:0,Breaking Bad 
-
+#EXTINF:0,Breaking Bad
+rtmpe://192.99.39.7/rizla01/bad02 swfUrl=http://www.tgun.tv/locked/player.swf pageUrl=http://www.tgun.tv/embeds2/index.html?bad02
 
 #EXTINF:0,Burn Notice 
 
 
 #EXTINF:0,Cheers
 rtmpe://192.99.21.184/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjkadgbutoarihn/ playpath=cheers01 swfUrl=http://www.tgun.tv/locked/player.swf live=1 pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex5.php?cheers01
+
+#EXTINF:0,Chuck 
+rtmpe://167.114.157.191:1935/goLive/NAs5y7UIdT0ncvHo0cfv swfUrl=http://cdn.zerocast.tv/player/aaaaa.swf pageUrl=http://zerocast.in/embed.php?a=1 token=OOG17t.x#K9Vh#|
 
 #EXTINF:0,Community 
 rtmpe://192.99.21.184/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjkadgbutoarihn/community01 playpath=community01 pageURL=http://www.tgun.tv/embeds2/index2.html?community01 swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf live=true
@@ -55,20 +58,23 @@ rtmpe://192.99.21.184/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjk
 #EXTINF:0,Curb Your Enthusiasm 
 
 
+#EXTINF:0,Dexter 
+rtmpe://167.114.157.191:1935/goLive/eNB8IxXwfy6BS40R2ks9 swfUrl=http://cdn.zerocast.tv/player/aaaaa.swf pageUrl=http://zerocast.in/embed.php?a=1 token=OOG17t.x#K9Vh#|
+
 #EXTINF:0,Eastbound & Down 
 rtmpe://192.99.21.184/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjkadgbutoarihn/east playpath=east pageURL=http://www.tgun.tv/embeds2/index2.html?east swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf live=true
 
 #EXTINF:0,Everybody Loves Raymond
-
+rtmpe://192.99.39.7/rizla01/elr02 swfUrl=http://www.tgun.tv/embeds2/jwplayer.flash.swf pageUrl=http://www.tgun.tv/embeds2/index.html?elr02
 
 #EXTINF:0,Family Guy 
 
 
 #EXTINF:0,Frasier
+rtmpe://192.99.39.7/rizla01/frasier02 swfUrl=http://www.tgun.tv/embeds2/jwplayer.flash.swf pageUrl=http://www.tgun.tv/embeds2/index.html?frasier02
 
-
-#EXTINF:0,Friends 
-
+#EXTINF:0,Friends
+rtmpe://192.99.39.7/rizla01/friends02 swfUrl=http://www.tgun.tv/embeds2/jwplayer.flash.swf pageUrl=http://www.tgun.tv/embeds2/index.html?
 
 #EXTINF:0,Full House 
 rtmpe://192.99.21.184/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjkadgbutoarihn/fullhouse playpath=fullhouse pageURL=http://www.tgun.tv/embeds2/index2.html?fullhouse swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf live=true
@@ -125,7 +131,7 @@ rtmpe://192.99.21.184/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjk
 
 
 #EXTINF:0,Married With Children 
-
+rtmpe://192.99.39.7/rizla01/mwc02 swfUrl=http://www.tgun.tv/embeds2/jwplayer.flash.swf pageUrl=http://www.tgun.tv/embeds2/index.html?mwc02
 
 #EXTINF:0,Modern Family 
 rtmpe://192.99.21.184/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjkadgbutoarihn/ playpath=mfamily02 swfUrl=http://www.tgun.tv/lock/player.swf live=1 pageUrl=http://www.tgun.tv/menus/players/playerindex3.php?mfamily02
@@ -170,7 +176,7 @@ rtmpe://192.99.21.184/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjk
 
 
 #EXTINF:0,South Park 
-
+rtmpe://192.99.39.7/rizla01/southp02 swfUrl=http://www.tgun.tv/locked/player.swf pageUrl=http://www.tgun.tv/embeds2/index.html?southp02
 
 #EXTINF:0,Star Trek DS9
 
@@ -200,7 +206,7 @@ rtmpe://192.99.21.184/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjk
 rtmpe://192.99.21.184/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjkadgbutoarihn/ playpath=drewcarey swfUrl=http://www.tgun.tv/locked/player.swf live=1 pageUrl=http://www.tgun.tv/menus/players/dlock/playerindex5.php?drewcarey
 
 #EXTINF:0,The Fresh Prince Of BelAir
-
+rtmpe://192.99.39.7/rizla01/freshprince02 swfUrl=http://www.tgun.tv/embeds2/jwplayer.flash.swf pageUrl=http://www.tgun.tv/embeds2/index.html?
 
 #EXTINF:0,The King of Queens 
 

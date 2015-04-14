@@ -29,7 +29,7 @@ http://93.184.221.133/00573D/1460/1460-0.m3u8
 
 
 #EXTINF:0,CMore Series
-
+http://188.138.9.228:8021
 
 #EXTINF:0,Fox 1 
 http://200.76.77.237/LIVE/H01/CANAL415/PROFILE05.m3u8?
@@ -84,6 +84,12 @@ http://93.184.221.133/00573D/1348/1348-0.m3u8
 
 #EXTINF:0,HBO 
 http://50.7.69.186:1935/edge/_definst_/qzbbu26gcvjxksz/chunklist.m3u8?wowzasessionid=1419847602
+
+#EXTINF:0,HBO 
+rtmp://89.248.168.57/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to/player/secure_player_iguide_embed_token.swf pageUrl=http://www.iguide.to/ token=#ed%h0#w18623jsda6523lDGD
+
+#EXTINF:0,HBO
+rtmpe://192.99.39.27:1935/goLive/qKmzUdRhBM73njBBDFyL swfurl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf pageUrl=http://zerocast.tv/embed.php?a=1482 token=OOG17t.x#K9Vh#|
 
 #EXTINF:0,Kino TV 
 

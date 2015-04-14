@@ -91,7 +91,7 @@ http://www.nasa.gov/multimedia/nasatv/NTV-Public-IPS.m3u8
 
 
 #EXTINF:0,Nat Geo Wild 
-
+http://185.5.40.101/hls/session-37473uCyyxurSfw/CH_NATGEOWILD/variant.m3u8?version=2
 
 #EXTINF:0,National Geographic 
 http://103.242.13.67:5000/nn_live.ts?id=nationalgeographic-m-h&hpgdisco_m3u8

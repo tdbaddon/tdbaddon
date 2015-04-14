@@ -10,6 +10,9 @@ http://abclive.abcnews.com/i/abc_live4@136330/index_1200_av-b.m3u8
 #EXTINF:0,AlJazeera 
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/aljazeera_en/ls_satlink/b_528.m3u8%20#
 
+#EXTINF:0,AlJazeera 
+http://78.108.255.7:12349/udp/239.1.1.208:4000
+
 #EXTINF:0,BBC World News 
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/bbc_world/ls_satlink/b_828.m3u8
 
@@ -38,10 +41,16 @@ http://origin2.live.web.tv.streamprovider.net/streams/877ba7a57aa68fd898b838f58d
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/cnn/ls_satlink/b_,264,528,828,.m3u8
 
 #EXTINF:0,CNN 
+http://128.105.21.253:8080/udp/239.1.1.78:3078
+
+#EXTINF:0,CNN 
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/cnn/ls_satlink/b_828.m3u8?Vd?u#bt!25
 
 #EXTINF:0,CNN 
 rtmp://edge1.everyon.tv/etv1sb/phd16
+
+#EXTINF:0,CNN 
+rtmp://d.cdn.newschat.tv/edge playpath=cnn_live swfUrl=http://msnbclive.eu/player.swf live=1 pageUrl=http://www.livenewschat.eu/breaking/
 
 #EXTINF:0,CNBC
 http://origin2.live.web.tv.streamprovider.net/streams/3bc166ba3776c04e987eb242710e75c0/index.m3u8
@@ -54,6 +63,9 @@ http://bcliveuniv-lh.akamaihd.net/i/cpac1eng2014_01@119330/index_2000_av-p.m3u8
 
 #EXTINF:0,CPAC 
 http://bcliveuniv-lh.akamaihd.net/i/cpac1flr2014_01@51230/index_2000_av-p.m3u8
+
+#EXTINF:0,CSPAN
+http://128.105.21.253:8080/udp/239.1.1.94:3094
 
 #EXTINF:0,CTV News 
 http://ams-lp2.9c9media.com/hls-live/livepkgr/_definst_/liveeventNoDRM/ctvnewsOpen8.m3u8
@@ -73,11 +85,17 @@ rtsp://ewns-hls-b-stream.hexaglobe.net/rtpeuronewslive/en_vidan750_rtp.sdp
 #EXTINF:0,Euro News 
 http://93.184.221.133/00573D/346/346-0.m3u8
 
+#EXTINF:0,Euro News 
+http://78.108.255.7:12349/udp/239.1.1.210:4000
+
 #EXTINF:0,Fox News 
 
 
 #EXTINF:0,France 24 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_FRANCE24/variant.m3u8?b?b*t$
+
+#EXTINF:0,HLN
+http://128.105.21.253:8080/udp/239.1.1.80:3080
 
 #EXTINF:0,i24 News 
 http://bcoveliveios-i.akamaihd.net/hls/live/215102/master_english/398/master.m3u8?b?b*t$
@@ -92,7 +110,10 @@ http://cdn.rbm.tv:1935/rightbrainmedia-originpull-2/_definst_/infowars/playlist.
 rtmp://cdn.rbm.tv:1935/rightbrainmedia-originpull-2/_definst_/247daily2
 
 #EXTINF:0,MSNBC 
+http://128.105.21.253:8080/udp/239.1.1.84:3084
 
+#EXTINF:0,MSNBC
+rtmp://d.cdn.newschat.tv/edge playpath=msnbc_live swfUrl=http://msnbclive.eu/player.swf live=1 pageUrl=http://www.livenewschat.eu/politics/
 
 #EXTINF:0,NBC News
 
@@ -123,6 +144,9 @@ http://wpc.C1A9.edgecastcdn.net/hls-live/20C1A9/skynews/ls_satlink/b_,264,528,82
 
 #EXTINF:0,Sky News 
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/skynews/ls_satlink/b_828.m3u8
+
+#EXTINF:0,The Weather Channel
+http://128.105.21.253:8080/udp/239.1.1.82:3082
 
 #EXTINF:0,Weather Nation
 http://kalsegsec-a.akamaihd.net:80/dc-0/m/pa-live-publish3/kLive/smil:1_oorxcge2_all.smil/chunklist_b2096000.m3u8

@@ -1,5 +1,4 @@
 ﻿#EXTM3U
-#EXTINF:0,
 
 
 #EXTINF:0,BABESTATION 
@@ -13,9 +12,6 @@ http://publish.thewebstream.co:1935/cellcast/encoder71/playlist.m3u8
 
 #EXTINF:0,BABESTATION 
 http://178.33.126.213:1935/cellcast/encoder32/.m3u8
-
-#EXTINF:0,BIKINI HOTTIES 
-
 
 #EXTINF:0,BOLLY2BOX 
 http://46.249.213.93/iPhone/broadcast/bollywoodbikini-iphone.3gp.m3u8
@@ -32,14 +28,11 @@ http://46.249.213.93/iPhone/broadcast/hot100-tablet.3gp/hot100-tablet.3gp-mr647k
 #EXTINF:0,HOTSHOTS 
 http://46.249.213.93/iPhone/broadcast/hotshots-tablet.3gp.m3u8
 
-#EXTINF:0,HOTSHOTS BEACH BABES 
-
-
 #EXTINF:0,JASMIN TV
 rtmp://109.71.162.112:1935/live/sd.jasminchannel.stream
 
 #EXTINF:0,MIAMI TV 
-http://74.208.69.207/miamitv/stream2/stream.m3u8
+http://miamitvchannel.com/miamitv.asx
 
 #EXTINF:0,PLAYBOY TV CHAT 
 http://playback.d2see.com:1935/wavemachine-live01/_definst_/mp4:playboytv_channel1/playlist.m3u8

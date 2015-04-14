@@ -2,25 +2,35 @@
 
 
 #EXTINF:0,ADULT CHANNEL
+http://wowza1.videos.movile.com:8080/live/smil:adulto_1.smil/chunklist-b1100000.m3u8?wowzasessionid=657917401
 
+#EXTINF:0,ANILOS
+http://188.165.220.116:8081/live/x/l_3_820167210_5969.ts?nimblesessionid=21935352
 
 #EXTINF:0,BRASILEIRINHAS 
 http://wowza1.videos.movile.com:8080/live/smil:adultopremium_1.smil/playlist.m3u8
 
+#EXTINF:0,BRASILEIRINHAS 
+http://212.129.30.215/brasileirinhas/brasileirinhas/chunklist_w957817640.m3u8
+
+#EXTINF:0,BRASILEIRINHAS 
+http://212.129.30.215/brasileirinhas/brasileirinhas/media_w219953667.m3u8
+
+
 #EXTINF:0,BRAZZERS TV EUROPE 
-http://serv02.vintera.tv:1935/live/play/playlist.m3u8
+
 
 #EXTINF:0,BUNGA BUNGA 
-http://84.22.33.3:8066
+
 
 #EXTINF:0,CENTOX CENTO 
-http://iptv.sat-elit.net/iptv/6d0fe8e1eb8158423643ddd1b4ccfe6b/564/index.m3u8
+http://78.108.255.7:12349/udp/239.1.1.249:4000
 
 #EXTINF:0,DORCEL TV HD
 
 
 #EXTINF:0,DORCEL TV 
-
+http://wowza1.videos.movile.com:8080/live/smil:adulto_1.smil/playlist.m3u8
 
 #EXTINF:0,EROTIC TV 
 
@@ -29,19 +39,19 @@ http://iptv.sat-elit.net/iptv/6d0fe8e1eb8158423643ddd1b4ccfe6b/564/index.m3u8
 
 
 #EXTINF:0,EXOTICA TV 
-http://iptv.sat-elit.net/iptv/6d0fe8e1eb8158423643ddd1b4ccfe6b/562/index.m3u8
+http://78.108.255.7:12349/udp/239.1.1.245:4000
 
 #EXTINF:0,ERO XXX
 
 
 #EXTINF:0,FRENCHLOVER 
-http://iptv.sat-x.tv/iptv/a34321a744a74c408c5186b476d0013459c54634/569/index.m3u8
+http://78.108.255.7:12349/udp/239.1.1.246:4000
 
 #EXTINF:0,HOT
 
 
 #EXTINF:0,HUSTLER HD 
-
+http://46.160.189.17:81/udp/239.254.2.232:1234
 
 #EXTINF:0,HUSTLER TV 
 
@@ -59,31 +69,38 @@ http://wowza1.videos.movile.com:8080/live/smil:adulto_1.smil/playlist.m3u8
 
 
 #EXTINF:0,PINK EROTIC 
-http://iptv.sat-elit.net/iptv/6d0fe8e1eb8158423643ddd1b4ccfe6b/567/index.m3u8
+
 
 #EXTINF:0,PLATINUM TV 
-http://iptv.sat-x.tv/iptv/a34321a744a74c408c5186b476d0013459c54634/565/index.m3u8
+
 
 #EXTINF:0,PRIVATE 
 http://185.38.12.20:8088/private/
+
+#EXTINF:0,PRIVATE 
+http://78.108.255.7:12349/udp/239.1.1.252:4000
 
 #EXTINF:0,PURE MATURE
 
 
 #EXTINF:0,REDLIGHT PREMIUM 
-http://188.165.220.116:8081/live/v/chunks.m3u8?nimblesessionid=19291879
+
+
+
+#EXTINF:0,REDTUBE
+http://cdn5.iviplanet.com:1935/VODLive1/_definst_/smil:vodlive1.smil/chunklist_w1867210502_b1300000.m3u8
 
 #EXTINF:0,RUSSIAN NIGHT CLUB TV 
 
 
 #EXTINF:0,SATISFACTION HD 
-http://iptv.sat-x.tv/iptv/a34321a744a74c408c5186b476d0013459c54634/561/index.m3u8
+http://78.108.255.7:12349/udp/239.1.1.253:4000
 
 #EXTINF:0,SCT 
-http://iptv.sat-x.tv/iptv/a34321a744a74c408c5186b476d0013459c54634/566/index.m3u8
+http://78.108.255.7:12349/udp/239.1.1.251:4000
 
 #EXTINF:0,SEXT SENSO
-http://88.150.210.146/iptv/a34321a744a74c408c5186b476d0013459c54634/565/index.m3u8
+http://78.108.255.7:12349/udp/239.1.1.250:4000
 
 #EXTINF:0,SEXYHOT 
 
@@ -104,9 +121,13 @@ http://88.150.210.146/iptv/a34321a744a74c408c5186b476d0013459c54634/565/index.m3
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_XXL/variant.m3u8
 
 #EXTINF:0,XXX 
+http://cdn5.iviplanet.com:1935/VODLive2/_definst_/smil:vodlive2.smil/chunklist_w1354878964_b1300000.m3u8
 
+#EXTINF:0,XXX 
+http://cdn5.iviplanet.com:1935/VODLive3/_definst_/smil:vodlive3.smil/chunklist_w1633630483_b1200000.m3u8
 
-
+#EXTINF:0,XXX
+http://59.120.43.181:8081
 
 
 

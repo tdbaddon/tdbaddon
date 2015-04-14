@@ -6,6 +6,9 @@ rtmp://
 #EXTINF:0,24 Sata
 mms://62.162.58.55/24vesti
 
+#EXTINF:0,A1 Strumica
+http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/a1-strumica/chunklist.m3u8
+
 #EXTINF:0,Al Jazeera Balkan 
 rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
 
@@ -63,6 +66,12 @@ http://88.212.10.27:81/streams/joj.m3u8
 #EXTINF:0,Jug TV 
 
 
+#EXTINF:0,K1 Veles
+http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/k1-tv-veles/chunklist.m3u8
+
+#‎EXTINF‬:0,K3 Kumanovo
+http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/k3-tv-kumanovo/chunklist.m3u8
+
 #EXTINF:0,Kanal 5 
 http://fms.zulu.mk:1935/zulu/kanal5_1/playlist.m3u8
 
@@ -84,6 +93,12 @@ mms://62.162.58.55/TVkanal8
 #EXTINF:0,Kanal 21 
 mms://62.162.58.55/TVkanal21
 
+#‎EXTINF‬:0,K Plus Stip
+http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/kplus-tv-stip/chunklist.m3u8 
+
+#‎EXTINF‬:0,Mega Bitola
+http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/hdtv-mega-bitola/chunklist.m3u8
+
 #EXTINF:0,Mpt1 
 http://fms.zulu.mk:554/zulu/mtv1_1/playlist_b125000_w1132785237.m3u8
 
@@ -104,6 +119,9 @@ http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video
 
 #EXTINF:0,Nasha TV
 http://fms.zulu.mk:1935/zulu/nashatv_1/playlist.m3u8
+
+#EXTINF:0,O2 Ohrid
+http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/o2-tv-ohrid/chunklist.m3u8
 
 #EXTINF:0,OBN 
 
@@ -149,6 +167,9 @@ http://fms.zulu.mk:1935/zulu/telma_2/playlist.m3u8
 
 #EXTINF:0,Telma 
 rtsp://fms.zulu.mk:554/zulu/telma_2
+
+#‎EXTINF‬:0,Ultra Tetovo
+http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/ultra-tv-tetovo/chunklist.m3u8
 
 #EXTINF:0,Vesti 24
 mms://62.162.58.55/24vesti

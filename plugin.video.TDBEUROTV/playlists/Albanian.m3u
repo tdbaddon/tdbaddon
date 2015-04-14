@@ -55,6 +55,9 @@ http://stream.b92.net:7999/tv-b92.ogg
 #EXTINF:0,Balkan TV
 rtmp://yayin.tvdunyasi.tv/live/balkanrtv
 
+#EXTINF:0,Bangbang
+http://alblive.tv/channels/bangbang.m3u
+
 #EXTINF:0,Blue Sky
 
 
@@ -75,6 +78,21 @@ rtmp://yayin.tvdunyasi.tv/live/balkanrtv
 
 #EXTINF:0,ERA 
 
+
+#EXTINF:0,Filmaksion
+http://alblive.tv/channels/filmaksion.m3u
+
+#EXTINF:0,Filmdrame
+http://alblive.tv/channels/filmdrame.m3u
+
+#EXTINF:0,Filmhits
+http://alblive.tv/channels/filmhits.m3u
+
+#EXTINF:0,Filmkomedi
+http://alblive.tv/channels/filmkomedi.m3u
+
+#EXTINF:0,Filmthriller
+http://alblive.tv/channels/filmthriller.m3u
 
 #EXTINF:0,Folk Plus
 

@@ -29,31 +29,22 @@ http://hlsstr01.svc.iptv.rt.ru/hls/CH_OLALA/variant.m3u8
 rtmp://edge2.everyon.tv/etv2sb/phd499
 
 #EXTINF:0,PLAYBOY SPICE
-http://cr.stream.omc.hk/etv2sb/phd499/playlist.m3u8
-
-#EXTINF:0,PLAYBOY SPICE
 rtmp://edge2.everyon.tv/etv2sb/pld499
 
 #EXTINF:-0,PLAYBOY TV 
-http://iptv.sat-x.tv/iptv/91f5ebece378143c8392d8ad6ae539797bc86a67/527/index.m3u8
+http://46.61.226.21/hls/CH_PLAYBOY/variant.m3u8?version=2
+
+#EXTINF:-0,PLAYBOY TV 
+http://185.27.237.105:8082/TV0076
 
 #EXTINF:-0,PLAYBOY TV 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_PLAYBOY/variant.m3u8
-
-#EXTINF:-0,PLAYBOY TV 
-http://88.150.210.146/iptv/9da10de2b4a0499116d762e83c570cd7/527/index.m3u8
-
-#EXTINF:0,RUSSIAN NIGHT 
-http://iptv.sat-x.tv/iptv/91f5ebece378143c8392d8ad6ae539797bc86a67/147/index.m3u8
 
 #EXTINF:0,RUSSIAN NIGHT 
 http://185.38.12.20:8088/rusnoch/
 
 #EXTINF:0,RUSSIAN NIGHT 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_RUSSIANNIGHT/variant.m3u8?version=2
-
-#EXTINF:0,RUSSIAN NIGHT 
-http://iptv.sat-elit.net/iptv/securekey/147/index.m3u8
 
 #EXTINF:0,SEX ED 
 
