@@ -2,10 +2,10 @@
 
 
 #EXTINF:0,BBC Sports
-http://93.184.221.133/00573D/1104/1104-0.m3u8
+
 
 #EXTINF:0,Bein Sport1
-
+http://50.7.69.186:1935/edge/_definst_/dhpj1xgov72x4br/manifest.m3u8?wowzasessionid=1426958694
 
 #EXTINF:0,Bein Sport2 
 
@@ -14,16 +14,13 @@ http://93.184.221.133/00573D/1104/1104-0.m3u8
 http://bigten247.cdnak.bigtenhd.neulion.com/nlds/btn2go/btnnetwork/as/live/btnnetwork_hd_3000.m3u8
 
 #EXTINF:0,Box Nation 
-http://93.184.221.133/00573D/1222/1222-0.m3u8
+
 
 #EXTINF:0,BT Sport 1 
-rtmp://80.82.78.26:443/liverepeater playpath=13  swfUrl=http://popeoftheplayers.eu/atdedead.swf  pageUrl=http://popeoftheplayers.eu/player3.php?id=13&amp;width=620&amp;height=490 token=#atd%#$ZH
 
-#EXTINF:0,BT Sport 1 
-http://192.99.24.176:8080/BTt1/BTt1/index.m3u8
 
 #EXTINF:0,BT Sport 2 
-rtmp://31.220.0.195:80/live/ playpath=btx22 token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://reytv.co/
+
 
 #EXTINF:0,CBS Sports 
 
@@ -32,25 +29,23 @@ rtmp://31.220.0.195:80/live/ playpath=btx22 token=%Zrey(nKa@#Z swfUrl=http://p.j
 http://hlsstr04.svc.iptv.rt.ru/hls/CH_FUTBALL/variant.m3u8
 
 #EXTINF:0,ESPN 
-http://50.7.69.186:1935/edge/_definst_/erooxo5dcvk05zk/chunklist.m3u8?wowzasessionid=1426891013
-
-#EXTINF:0,ESPN 
 rtmp://195.154.243.50:80/liverepeater playpath=302567 swfUrl=http://cdn.goodcast.co/players.swf live=1 pageUrl=http://goodcast.co.uk/streamn token=Fo5_n0w?U.rA6l3-70w47ch
 
 #EXTINF:0,ESPN 
 rtmp://46.246.29.157:1935/stream/ playpath=1Kq68GX6Kc.stream swfUrl=http://thecdn.04stream.com/p/ooolo1.swf pageUrl=http://www.04stream.com/ebb.php?adsp=otherse&width=600&height=460
 
+#EXTINF:0,ESPN 
+http://talentmechanic.files.wordpress.com/2011/06/espn_3d.jpg
+URL=rtmp://46.246.29.144:1935/stream/ playpath=1Kq68GX6Kc.stream swfUrl=http://thecdn.04stream.com/p/ooolo1.swf live=1 timeout=13 pageUrl=http://www.04stream.com/ AnisotropicTV
+
 #EXTINF:0,ESPN 2 
-
-
-#EXTINF:0,Eurosport 1 
-http://93.184.221.133/00573D/1210/1210-0.m3u8
+http://50.7.69.186:1935/edge/_definst_/5hd19kwxef5b59o/chunklist.m3u8?wowzasessionid=1420159722
 
 #EXTINF:0,Eurosport 1 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_EUROSPORT/variant.m3u8
 
-#EXTINF:0,Eurosport 2 
-http://93.184.221.133/00573D/1211/1211-0.m3u8
+#EXTINF:0,Eurosport 1 
+rtmp://80.82.78.85:443/liverepeater/ playpath=28 token=#atd%#$ZH swfUrl=http://popeoftheplayers.pw/atdedead.swf live=1 timeout=13 pageUrl=http://popeoftheplayers.eu/ AnisotropicTV
 
 #EXTINF:0,Eurosport 2 
 rtmp://80.82.64.140:443/liverepeater/ playpath=21 token=#atd%#$ZH swfUrl=http://popeoftheplayers.pw/atdedead.swf live=1 timeout=13 pageUrl=http://popeoftheplayers.eu/
@@ -74,10 +69,13 @@ rtmp://80.82.64.140:443/liverepeater/ playpath=21 token=#atd%#$ZH swfUrl=http://
 http://113.160.49.34/lives/origin03/foxhd.isml/foxhd-2096k.m3u8
 
 #EXTINF:0,Fox Sports 1 
-
+rtmp://178.18.31.56:443/liverepeater/ playpath=191781 token=#atd%#$ZH swfUrl=http://static.surk.tv/atdedead.swf live=1 pageUrl=http://biggestplayer.me/ AnisotropicTV
 
 #EXTINF:0,Fox Sports 2 
 http://103.242.13.66:5000/nn_live.ts?id=starsport-m-h
+
+#EXTINF:0,Fox Sports 2 
+rtmp://178.18.31.65:443/liverepeater/ playpath=191782 token=#atd%#$ZH swfUrl=http://static.surk.tv/atdedead.swf live=1 pageUrl=http://biggestplayer.me/ AnisotropicTV
 
 #EXTINF:0,Fox Sports News 
 http://foxsportshdhls-lh.akamaihd.net/i/fsnewshls_0@136427/index_248_av-p.m3u8
@@ -167,40 +165,25 @@ rtmp://rrbalancer.broadcast.tneg.de:1935/pw/ruk/ playpath=ruk swfUrl=http://pfer
 
 
 #EXTINF:0,Sky Sports 1 
-rtmpe://46.246.29.160:1935/l playpath=sskys1 swfUrl=http://hdcast.org/eplayer.swf pageUrl=http://www.hdcast.org/ token=Fo5_n0w?U.rA6l3-70w47ch
-
-#EXTINF:0,Sky Sports 1 
-http://192.99.24.176:8080/Skyy1/Skky1/index.m3u8
+http://91.109.20.227:8080/TV4284
 
 #EXTINF:0,Sky Sports 2 
-rtmpe://46.246.29.160:1935/l swfUrl=http://hdcast.org/eplayer.swf live=1 pageUrl=http://www.hdcast.org/embedlive4.php?u=sskys2&vw;=650&vh;=470&domain;=cricbox.tv/amine1313dz token=Fo5_n0w?U.rA6l3-70w47ch playpath=sskys2 timeout=10
+http://50.7.69.170:1935/edge/_definst_/on39ol6in4f2ewp/playlist.m3u8?wowzasessionid=1419879754&xs=_we_OWRkbHBpaWpqY2kxMm85fDE0MTk5MTU3NTR8NzIuMjcuMjE0LjMzfDU0YTFhNTRhNmJiYjV8NTllOTBjMzBlZTI3NTdmMWFkYzBjZWRmNWJiMmEzZDg1MWY1YzRkOA
 
 #EXTINF:0,Sky Sports 3 
 rtmp://31.220.0.195:80/live/ playpath=s3c token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 timeout=13  pageUrl=http://reytv.co/
 
-#EXTINF:0,Sky Sports 3 
-http://192.99.24.176:8080/skkY3/sk303/index.m3u8
-
 #EXTINF:0,Sky Sports 4 
 rtmp://31.220.0.195:80/live/ playpath=ssx4 token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://reytv.co/
-
-#EXTINF:0,Sky Sports 4 
-http://192.99.24.176:8080/skY4/sSk4/index.m3u8
 
 #EXTINF:0,Sky Sports 5 
 rtmp://31.220.0.195:80/live/ playpath=ss5ry token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://reytv.co/
 
-#EXTINF:0,Sky Sports 5 
-http://192.99.24.176:8080/skY5/skK5/index.m3u8
-
 #EXTINF:0,Sky Sports F1 
 rtmp://80.82.64.140:443/liverepeater playpath=22 swfUrl=http://popeoftheplayers.eu/atdedead.swf pageUrl=http://popeoftheplayers.eu/player3.php?id=22&width=600&height=450 token=#atd%#$ZH
 
-#EXTINF:0,Sky Sports F1 
-http://192.99.24.176:8080/skfF1/skfF1/index.m3u8
-
 #EXTINF:0,Sky Sports News 
-http://93.184.221.133/00573D/183/183-0.m3u8
+
 
 #EXTINF:0,Sky Sports World Cup 
 
@@ -218,7 +201,7 @@ http://nlds187.cdnak.neulion.com/nlds/sportsnetnow/sn_360/as/live/sn_360_hd_ipad
 rtmp://31.220.0.195:80/live/ playpath=sno token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://reytv.co/
 
 #EXTINF:0,Sportsnet World 
-
+rtmp://178.18.31.58:443/liverepeater/ playpath=191304 token=#atd%#$ZH swfUrl=http://static.surk.tv/atdedead.swf live=1 pageUrl=http://biggestplayer.me/ AnisotropicTV
 
 #EXTINF:0,Sports Tonight 
 rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9-HD
@@ -254,7 +237,7 @@ http://ams-lp2.9c9media.com/hls-live/livepkgr/_definst_/liveeventNoDRM/TSN4Open8
 http://ams-lp3.9c9media.com/hls-live/livepkgr/_definst_/liveeventNoDRM/TSN5Open8.m3u8
 
 #EXTINF:0,Viasat Golf
-http://93.184.221.133/00573D/911/911-0.m3u8
+
 
 #EXTINF:0,Viasat Sport
 
