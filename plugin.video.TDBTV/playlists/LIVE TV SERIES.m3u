@@ -103,6 +103,9 @@ rtmpe://192.99.39.7/rizla01/himym02 swfUrl=http://www.tgun.tv/embeds2/jwplayer.f
 #EXTINF:0,I Love Lucy
 rtmpe://192.99.21.184/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjkadgbutoarihn/lucy02 playpath=lucy02 pageURL=http://www.tgun.tv/embeds2/index2.html?lucy02 swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf live=true
 
+#EXTINF:0,I Love Lucy
+http://192.99.21.184:1935/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjkadgbutoarihn/lucy02/Manifest
+
 #EXTINF:0,Its Always Sunny in Philadelphia 
 rtmpe://192.99.39.7/rizla01/sunny02 swfUrl=http://www.tgun.tv/embeds2/jwplayer.flash.swf pageUrl=http://www.tgun.tv/embeds2/index.html?sunny02
 
@@ -126,6 +129,9 @@ rtmpe://192.99.39.7/rizla01/koth02 swfUrl=http://www.tgun.tv/embeds2/jwplayer.fl
 
 #EXTINF:0,Malcolm In The Middle 
 rtmpe://192.99.21.184/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjkadgbutoarihn/malcolm playpath=malcolm pageURL=http://www.tgun.tv/embeds2/index2.html?malcolm swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf live=true
+
+#EXTINF:0,Malcolm In The Middle 
+http://192.99.21.184:1935/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjkadgbutoarihn/malcolm/Manifest
 
 #EXTINF:0,M*A*S*H*
 rtmpe://192.99.39.7/rizla01/mash02 swfUrl=http://www.tgun.tv/embeds2/jwplayer.flash.swf pageUrl=http://www.tgun.tv/embeds2/index.html?mash02
@@ -156,6 +162,9 @@ rtmpe://192.99.21.184/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjk
 
 #EXTINF:0,Perfect Strangers
 rtmpe://192.99.21.184/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjkadgbutoarihn/ps playpath=ps pageURL=http://www.tgun.tv/embeds2/index2.html?ps swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf live=true
+
+#EXTINF:0,Perfect Strangers
+http://192.99.21.184:1935/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjkadgbutoarihn/ps/Manifest
 
 #EXTINF:0,Prison Break
 rtmpe://192.99.21.184/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjkadgbutoarihn/pbreak playpath=pbreak pageURL=http://www.tgun.tv/embeds2/index2.html?pbreak swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf live=true

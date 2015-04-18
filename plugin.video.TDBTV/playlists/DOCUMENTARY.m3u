@@ -25,9 +25,6 @@ http://185.27.237.105:8082/TV0059
 #EXTINF:0,Discovery Investigation 
 http://185.27.237.105:8082/TV0092
 
-#EXTINF:0,Discovery Investigation 
-http://185.27.237.105:8082/TV0113
-
 #EXTINF:0,Discovery Max 
 
 
@@ -50,7 +47,7 @@ http://200.76.77.237/LIVE/H01/CANAL351/PROFILE03.m3u8?
 http://188.227.86.4:4022/udp/239.77.0.78:1234
 
 #EXTINF:0,Discovery World 
-http://113.160.49.34/lives/origin03/discoveryhd.isml/discoveryhd-2096k.m3u8
+http://185.27.237.105:8082/TV0089
 
 #EXTINF:0,DocuBox
 
@@ -95,7 +92,10 @@ http://odna.octoshape.net/f3f5m2v4/cds/ch5_auto.smil/playlist.m3u8
 
 
 #EXTINF:0,Travel Channel 
+http://llnw.live.simplestream.com/coder6/coder.channels.channel12/hls/3/playlist.m3u8
 
+#EXTINF:0,Travel Channel 
+http://llnw.live.simplestream.com/coder6/coder.channels.channel14/hls/3/playlist.m3u8
 
 #EXTINF:0,Viasat Explorer 
 

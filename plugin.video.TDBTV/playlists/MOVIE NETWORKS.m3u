@@ -67,9 +67,6 @@ http://200.76.77.237/LIVE/H01/CANAL417/PROFILE05.m3u8?
 #EXTINF:0,Fox Movies 
 http://200.76.77.237/LIVE/H01/CANAL417/PROFILE03.m3u8?
 
-#EXTINF:0,Fox Movies 
-http://50.7.69.186:1935/edge/_definst_/hc992q7x7cz86t9/chunklist.m3u8?wowzasessionid=1419909438
-
 #EXTINF:0,FX HD 
 http://200.76.77.237/LIVE/H01/CANAL209/PROFILE05.m3u8?
 
@@ -121,9 +118,6 @@ http://185.27.237.105:8082/TV0023
 #EXTINF:0,OMN Movies 
 http://185.27.237.105:8082/TV0054
 
-#EXTINF:0,OMN Movies 
-http://185.27.237.105:8082/TV0062
-
 #EXTINF:0,OMN Movies Action
 http://185.27.237.105:8082/TV0025
 
@@ -150,9 +144,6 @@ http://185.27.237.105:8082/TV0024
 
 #EXTINF:0,Paramount Channel
 
-
-#EXTINF:0,Pink Action 1
-http://str108.setplex.net/fastv_2psh/Pink2global_rly_greece_109/TDB.m3u8
 
 #EXTINF:0,Pink Action 2
 http://str108.setplex.net/fastv_2psh/PinkAction2global_rly_greece_103/TDB.m3u8
@@ -199,25 +190,22 @@ http://91.109.20.227:8080/TV4247
 #EXTINF:0,Sky Movies Family
 http://91.109.20.227:8080/TV4248
 
-#EXTINF:0,Sky Movies Family
-http://91.109.20.227:8080/TV4249
-
 #EXTINF:0,Sky Movies Horrors
 
 
-#EXTINF:0,Sky Movies Premiere
+#EXTINF:0,Sky Movies Premiere 
 http://185.56.30.123:8082/TV4251
 
-#EXTINF:0,Sky Movies Premiere
+#EXTINF:0,Sky Movies Premiere 
 http://185.56.30.123:8082/TV4252
 
-#EXTINF:0,Sky Movies SciFi
-http://185.56.30.123:8082/TV4249
+#EXTINF:0,Sky Movies SciFi 
 
-#EXTINF:0,Sky Movies Select
+
+#EXTINF:0,Sky Movies Select 
 http://185.56.30.123:8082/TV4254
 
-#EXTINF:0,Sky Movies Superheros
+#EXTINF:0,Sky Movies Superheros 
 http://185.56.30.123:8082/TV4249
 
 #EXTINF:0,Sony Movie Channel
@@ -228,9 +216,6 @@ http://113.160.49.34/lives/origin03/moviehd.isml/moviehd-2096k.m3u8
 
 #EXTINF:0,Star Movies 
 http://185.27.237.105:8082/TV0051
-
-#EXTINF:0,Star Movies 
-http://50.7.69.170:1935/edge/_definst_/8g7x80ozu6hz2ds/playlist.m3u8?wowzasessionid=1419874554
 
 #EXTINF:0,SYFY Movie Channel 
 
@@ -245,10 +230,13 @@ http://200.76.77.237/LIVE/H01/CANAL496/PROFILE05.m3u8?
 http://200.76.77.237/LIVE/H01/CANAL496/PROFILE03.m3u8?
 
 #EXTINF:0,True Movies 1
-
+http://llnw.live.simplestream.com/coder4/coder.channels.channel8/hls/3/playlist.m3u8
 
 #EXTINF:0,True Movies 2
+http://llnw.live.simplestream.com/coder4/coder.channels.channel10/hls/3/playlist.m3u8
 
+#EXTINF:0,True Movies 2
+http://212.70.155.243:40665/udp/237.100.0.178:4000
 
 #EXTINF:0,TV 1000
 
