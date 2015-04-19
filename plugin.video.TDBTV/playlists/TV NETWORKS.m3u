@@ -4,6 +4,9 @@
 #EXTINF:0,A&E 
 http://50.7.69.186:1935/edge/_definst_/tuc280rbycwnsvs/manifest.m3u8?wowzasessionid=1426231480
 
+#EXTINF:0,A&E 
+http://noscdn1.connectedviews.com:1935/live/sporttv3hd.stream/livestream.m3u8
+
 #EXTINF:0,ABC 
 rtmpe://192.99.39.27:1935/goLive/rGCi7bg0Qxvs8q7Sl13l swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf pageUrl=http://zerocast.tv/embed.php live=1 token=OOG17t.x#K9Vh#|
 
@@ -77,6 +80,9 @@ http://200.76.77.237/LIVE/H01/CANAL253/PROFILE03.m3u8
 http://188.227.86.4:4022/udp/239.77.0.77:1234
 
 #EXTINF:0,Cartoon Network 
+http://85.255.183.212:1234/udp/239.0.0.15:1234
+
+#EXTINF:0,Cartoon Network 
 http://hls.svc.moyo.tv/hls/CH_CARTOON/variant.m3u8?version=2
 
 #EXTINF:0,Cartoon Network 
@@ -133,8 +139,11 @@ http://ams-lp2.9c9media.com/hls-live/livepkgr/_definst_/liveeventNoDRM/ctvnewsOp
 #EXTINF:0,CW 
 rtmp://rtmp.zerocast.tv/goLive/ playpath=IWSyIjvWgHRCMM7MEJoZ swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 pageUrl=http://zerocast.tv/embed.php?a token=OOG17t.x#K9Vh#|
 
-#EXTINF:0,Disney Channel 
+#EXTINF:0,CW 
+http://46.105.122.74:8000/live/simonday/jGM2NPnPBM/160.m3u8
 
+#EXTINF:0,Disney Channel 
+http://203.162.235.124:5555/udp/225.2.100.96:5000
  
 #EXTINF:0,Disney Junior 
 
@@ -212,7 +221,7 @@ http://llnw.live.simplestream.com/coder2/coder.channels.channel2/hls/3/playlist.
 http://llnw.live.simplestream.com/coder2/coder.channels.channel8/hls/3/playlist.m3u8
 
 #EXTINF:0,FX
-
+http://46.105.122.74:8000/live/simonday/jGM2NPnPBM/198.m3u8
 
 #EXTINF:0,Ginx Gaming TV 
 
@@ -286,6 +295,9 @@ http://llnw.live.simplestream.com/coder8/coder.channels.channel2/hls/3/playlist.
 #EXTINF:0,NBC 
 http://50.7.69.186:1935/edge/_definst_/s5whw37nl7weedp/chunklist.m3u8?wowzasessionid=1420160473
 
+#EXTINF:0,NBC 
+http://46.105.122.74:8000/live/simonday/jGM2NPnPBM/193.m3u8
+
 #EXTINF:0,NHK World 
 http://llnw.live.simplestream.com/coder1/coder.channels.channel11/hls/3/playlist.m3u8
 
@@ -296,7 +308,7 @@ http://nhkworld-hds-live1.hds1.fmslive.stream.ne.jp/hls-live/nhkworld-hds-live1/
 
 
 #EXTINF:0,Nick Jr 
-
+http://85.255.183.212:1234/udp/239.0.0.1:1234
 
 #EXTINF:0,Nickelodeon 
 http://188.227.86.4:4022/udp/239.77.0.60:1234
@@ -350,7 +362,7 @@ http://200.76.77.237/LIVE/H01/CANAL203/PROFILE05.m3u8?
 http://200.76.77.237/LIVE/H01/CANAL203/PROFILE03.m3u8?
 
 #EXTINF:0,Spike TV 
-
+http://50.7.69.186:1935/edge/_definst_/sax2mq2alpirnww/playlist.m3u8?wowzasessionid=1419878529
 
 #EXTINF:0,Star World 
 http://185.27.237.105:8082/TV0056
@@ -385,6 +397,9 @@ http://203.162.235.124:5555/udp/225.2.100.156:5000
 #EXTINF:0,TNT 
 rtmpe://167.114.157.67:1935/goLive/Waz0WqvbqNHmt0gdzrsm swfurl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf pageUrl=http://zerocast.tv/embed.php?a=309 token=OOG17t.x#K9Vh#|
 
+#EXTINF:0,TNT 
+http://46.105.122.74:8000/live/simonday/jGM2NPnPBM/172.m3u8
+
 #EXTINF:0,Tom & Jerry Show 
 
 
@@ -392,10 +407,10 @@ rtmpe://167.114.157.67:1935/goLive/Waz0WqvbqNHmt0gdzrsm swfurl=http://p.jwpcdn.c
 
 
 #EXTINF:0,True Drama
-
+http://212.70.155.243:40665/udp/237.100.0.190:4000
 
 #EXTINF:0,True Entertainment 
-
+http://212.70.155.243:40665/udp/237.100.0.189:4000
 
 #EXTINF:0,TV Land 
 

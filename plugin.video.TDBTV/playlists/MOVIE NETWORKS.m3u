@@ -14,7 +14,7 @@ http://113.160.49.34/lives/origin03/cinemaxsd.isml/cinemaxsd-1096k.m3u8
 
 
 #EXTINF:0,Cinestar TV 
-
+http://68.71.42.179/live/livestream1/chunklist_w563623579.m3u8
 
 #EXTINF:0,CMore Action
 
@@ -96,6 +96,9 @@ http://50.7.69.186:1935/edge/_definst_/a1wn1j3ra1w0cv0/chunklist.m3u8?wowzasessi
 
 #EXTINF:0,HBO 
 http://50.7.69.186:1935/edge/_definst_/qzbbu26gcvjxksz/chunklist.m3u8?wowzasessionid=1419847602
+
+#EXTINF:0,HBO 
+http://50.7.69.186:1935/edge/_definst_/a1wn1j3ra1w0cv0/manifest.m3u8?wowzasessionid=1419915335
 
 #EXTINF:0,Kino TV 
 

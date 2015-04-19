@@ -131,6 +131,9 @@ http://200.76.77.237/LIVE/H01/CANAL703/PROFILE03.m3u8?
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_VH1EUROPEAN/variant.m3u8
 
 #EXTINF:0,VH1 Classics 
+http://85.255.183.212:1234/udp/239.0.0.17:1234
+
+#EXTINF:0,VH1 Classics 
 http://200.76.77.237/LIVE/H01/CANAL728/PROFILE05.m3u8?
 
 #EXTINF:0,VH1 Classics 
@@ -143,7 +146,7 @@ http://hlsstr02.svc.iptv.rt.ru/hls/CH_VH1CLASSIC/variant.m3u8
 rtmp://edge03-03.az.myvideo.az/dvrh264/vh1/ playpath=mp4:vh1 swfUrl=http://www.myvideo.az/stml/dvr/dvrH.swf?v=1.2 live=1 pageUrl=http://www.myvideo.az/r.ates
 
 #EXTINF:0,Virgin TV 
-
+rtmp://fms.105.net:1935/live/virgin1
 
 
 

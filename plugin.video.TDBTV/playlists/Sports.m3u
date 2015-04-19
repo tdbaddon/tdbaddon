@@ -94,6 +94,9 @@ http://motorsport.hopto.org:8080/
 #EXTINF:0,NBA TV 
 rtmp://213.152.180.159:1935/stream/ playpath=0f5bZcQBIw.stream swfUrl=http://thecdn.04stream.com/p/ooolo1.swf live=1 pageUrl=http://www.04stream.com/ebb.php?adsp=other&width=600&height=460&st=1474b4j5b5l5p393v416n274s214y2s2b424w2u2v2t24394&adx=&stream=6474b4j554f4t2u2n5a4t2k5644443n234m5z264u3a4t3o4v456t254w2q274w203p2t274x2z34303y3p2o5a4j5c574o3o4r4i2k4j4v5k474n33574a414p4h4z33456t2y3s2p2l51313s274d4z284236324q264m554o5v2r2m5a4u274t254a484g54484z2o2y2t2343434t2y3s2p224&sooor=Ng==&str=is&ok=&cat=2&link=1&idom=ifirstrow.eu
 
+#EXTINF:0,NBA TV 
+http://50.7.69.186:1935/edge/_definst_/fzasab6vz02yuf7/chunklist.m3u8?wowzasessionid=1419914830
+
 #EXTINF:0,NBC Golf 
 http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/2596k/prog.m3u8|X-Forwarded-For=209.239.112.104
 
@@ -231,19 +234,38 @@ http://113.160.49.34/lives/origin03/starsportsd.isml/starsportsd-1096k.m3u8
 #EXTINF:0,TSN 1 
 http://ams-lp5.9c9media.com/hls-live/livepkgr/_definst_/liveeventNoDRM/tsnOpen8.m3u8
 
+#EXTINF:0,TSN 1 
+http://alil.in/tsn1
+
 #EXTINF:0,TSN 2 
 http://ams-lp7.9c9media.com/hls-live/livepkgr/_definst_/liveeventNoDRM/TSN2Open8.m3u8
+
+#EXTINF:0,TSN 2 
+http://alil.in/tsn2
 
 #EXTINF:0,TSN 3 
 http://ams-lp1.9c9media.com/hls-live/livepkgr/_definst_/liveeventNoDRM/TSN3Open8.m3u8
 
+#EXTINF:0,TSN 3 
+http://alil.in/tsn3
+
 #EXTINF:0,TSN 4 
 http://ams-lp2.9c9media.com/hls-live/livepkgr/_definst_/liveeventNoDRM/TSN4Open8.m3u8
+
+#EXTINF:0,TSN 4 
+http://alil.in/tsn4
 
 #EXTINF:0,TSN 5 
 http://ams-lp3.9c9media.com/hls-live/livepkgr/_definst_/liveeventNoDRM/TSN5Open8.m3u8
 
+#EXTINF:0,TSN 5 
+http://alil.in/tsn5
+
 #EXTINF:0,Viasat Golf
+http://hlsstr04.svc.iptv.rt.ru/hls/CH_C06_VIASATGOLFHD/variant.m3u8
+
+#EXTINF:0,Viasat Golf
+http://46.61.226.18/hls/CH_C06_VIASATGOLFHD/bw3000000/variant.m3u8?version=2
 
 
 #EXTINF:0,Viasat Sport
