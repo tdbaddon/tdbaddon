@@ -3,7 +3,7 @@
 
 
 #EXTINF:0,Abu Dhabi Drama
-rtmpt://162.212.176.107:1935/abu_dhabi_drama/globaltv-abu_dhabi_drama.stream
+rtmp://162.212.176.107:1935/abu_dhabi/globaltv-abu_dhabi.stream
 
 #EXTINF:0,Abu Dhabi News
 
@@ -15,7 +15,7 @@ rtmpt://162.212.176.107:1935/abu_dhabi_drama/globaltv-abu_dhabi_drama.stream
 http://alforatlive.nanocdn.com:1935/live/alforat256/HasBahCa.m3u8
 
 #EXTINF:0,Al Kout
-
+rtmp://66.23.237.233:1935/alkout/alkout
 
 #EXTINF:0,Al Nahar Sport
 
@@ -51,10 +51,13 @@ http://media.islamexplained.com:1935/live/ngrp:ahusa.stream_all/HasBahCa.m3u8
 mms://62.215.216.130/wmtencoder/alrai350.wmv
 
 #EXTINF:0,Alriadia Sport
-
+rtmp://162.212.176.107:1935/alriadia_sport/globaltv-alriadia_sport.stream
 
 #EXTINF:0,Art Aflam
+rtmp://162.212.176.107:1935/art_aflam_2/globaltv-art_aflam_2.stream
 
+#EXTINF:0,Art Aflam
+rtmp://162.212.176.107:1935/art_aflam_2?v=a2V5bGl2ZTgzLTQ1LTEwMy0yODIw.MTUtMDEtMjUtMDAtNDUtMTc=/globaltv-art_aflam_2.stream
 
 #EXTINF:0,Baghdad TV
 http://streamer1.hamuraabi.com:1935/baghdad/live/HasBahCa.m3u8
@@ -63,10 +66,13 @@ http://streamer1.hamuraabi.com:1935/baghdad/live/HasBahCa.m3u8
 http://bbcwshdlive01-lh.akamaihd.net/i/atv_1@61433/master.m3u8
 
 #EXTINF:0,Cairo Cinema
+rtmp://162.212.176.107/cairo_cinema//globaltv-cairo_cinema.stream
 
+#EXTINF:0,Cairo Cinema
+rtmp://162.212.176.107:1935/cairo_cinema/globaltv-cairo_cinema.stream
 
 #EXTINF:0,Cairo Drama
-
+rtmp://162.212.176.107/cairo_drama//globaltv-cairo_drama.stream
 
 #EXTINF:0,Dubai Racing
 http://cdnehlsdubairacing2.endavomedia.com/smil:dmilivedubairacing2.smil/playlist.m3u8
@@ -90,7 +96,7 @@ http://wpc.C56B.edgecastcdn.net/hls-live/20C56B/default/ThompsanECWTV/tsecwatanf
 http://63.237.48.3/ios/GEM_KURD/GEM_KURD.m3u8
 
 #EXTINF:0,Hanibal
-
+rtmp://162.212.176.107:1935/hanibal/globaltv-hanibal.stream
 
 #EXTINF:0,i24 News Arabic
 http://bcoveliveios-i.akamaihd.net/hls/live/215102/master_arabic/391/master.m3u8
@@ -135,31 +141,31 @@ rtmp://91.140.238.7/rtmplive/rtpencoder/ch6.sdp
 rtmp://91.140.238.7/rtmplive/rtpencoder/sportextra.sdp
 
 #EXTINF:0,Kuwait
-
+rtmp://91.140.238.7/rtmplive/rtpencoder/ch2.sdp
 
 #EXTINF:0,Moga Comedy
-
+rtmp://162.212.176.107/moga_comedy//globaltv-moga_comedy.stream
 
 #EXTINF:0,Nabaa
 rtmp://31.14.40.238:1935/live/Nabaa
 
 #EXTINF:0,National Geographic
-
+rtmp://162.212.176.107:1935/national_geo_ad/globaltv-national_geo_ad.stream
 
 #EXTINF:0,Nessma
-
+rtmp://162.212.176.107:1935/nessma/globaltv-nessma.stream
 
 #EXTINF:0,Noor Dubai TV
 http://cdnedvrnoordubaitv.endavomedia.com/smil:dmilivenoordubaitvhls.smil/HasBahCa.m3u8
 
-#EXTINF:0,OMN Yahala
+#EXTINF:0,OSN Yahala
 http://185.27.237.105:8082/TV0064
 
 #EXTINF:0,Plus Dawri
 
 
 #EXTINF:0,Rotana Cinema
-
+rtmp://162.212.176.107:1935/rotana_cinema/globaltv-rotana_cinema.stream
 
 #EXTINF:0,Rotana Classic
 
@@ -171,16 +177,16 @@ http://185.27.237.105:8082/TV0064
 
 
 #EXTINF:0,Rotana Music
-
+rtmp://162.212.176.107:1935/rotana_music/globaltv-rotana_music.stream
 
 #EXTINF:0,TChad
 rtmp://tchad.streamakaci.com/tchad/tchad.stream
 
 #EXTINF:0,Tunisia National 1
-
+rtmp://162.212.176.107:1935/tunisia_national_1/globaltv-tunisia_national_1.stream
 
 #EXTINF:0,Tunisia National 2
-
+rtmp://162.212.176.107:1935/tunisia_national_2/globaltv-tunisia_national_2.stream
 
 
 

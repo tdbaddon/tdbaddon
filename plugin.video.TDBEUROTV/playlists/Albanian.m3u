@@ -2,10 +2,10 @@
 
 
 #EXTINF:0,A1 Report
-rtmp://66.55.93.204/livepkgr?adbe-live-event=a1report/a1stream?adbe-live-event=a1report
+
 
 #EXTINF:0,ABC News
-
+http://81.7.13.162/hls/abcnews/index.m3u8
 
 #EXTINF:0,Agon Channel 
 
@@ -14,19 +14,25 @@ rtmp://66.55.93.204/livepkgr?adbe-live-event=a1report/a1stream?adbe-live-event=a
 
 
 #EXTINF:0,Alb UK
-rtmp://188.138.17.8:1935/albuk/albuk.stream
-
-#EXTINF:0,Alb UK Plus
 rtmp://188.138.17.8:1935/albuk/albuk+.stream
+
+#EXTINF:0,Alb Plus
+
 
 #EXTINF:0,Albanian Screen
 rtmp://95.110.242.231:11935/live/albanianscreentv
+
+#EXTINF:0,Albanian Screen
+rtmp://95.110.242.231:11935/live/albanianscreentv_android
 
 #EXTINF:0,Al Jazeera Balkan 
 rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
 
 #EXTINF:0,Alsat
 
+
+#EXTINF:0,Alsat M 
+http://81.7.13.162/hls/alsatm/index.m3u8
 
 #EXTINF:0,Alsat M 
 rtmp://fms.zulu.mk/zulu/ playpath=alsat_2 swfUrl=http://on.net.mk/jwp/jwplayer.flash.swf live=1 pageUrl=http://on.net.mk/jwp/alsatm.html
@@ -67,11 +73,17 @@ http://alblive.tv/channels/bangbang.m3u
 #EXTINF:0,Cegrani Media
 
 
-#EXTINF:0,Cufo TV
+#EXTINF:0,Channel One
+http://81.7.13.162/hls/channelone/index.m3u8
 
+#EXTINF:0,Cufo TV
+http://81.7.13.162/hls/cufotv/index.m3u8
 
 #EXTINF:0,Dasma TV
 
+
+#EXTINF:0,Disney Channel
+http://81.7.13.162/hls/disneychannel/index.m3u8
 
 #EXTINF:0,Dukagjini
 
@@ -79,20 +91,44 @@ http://alblive.tv/channels/bangbang.m3u
 #EXTINF:0,ERA 
 
 
-#EXTINF:0,Filmaksion
+#EXTINF:0,Film Aksion
 http://alblive.tv/channels/filmaksion.m3u
 
-#EXTINF:0,Filmdrame
+#EXTINF:0,Film Aksion
+http://81.7.13.162/hls/filmaksion/index.m3u8
+
+#EXTINF:0,Film Drame
 http://alblive.tv/channels/filmdrame.m3u
 
-#EXTINF:0,Filmhits
+#EXTINF:0,Film Drame
+http://81.7.13.162/hls/filmdrame/index.m3u8
+
+#EXTINF:0,Film Dy
+http://81.7.13.162/hls/filmdyhd/index.m3u8
+
+#EXTINF:0,Film Hits
 http://alblive.tv/channels/filmhits.m3u
 
-#EXTINF:0,Filmkomedi
+#EXTINF:0,Film Hits
+http://81.7.13.162/hls/filmhits/index.m3u8
+
+#EXTINF:0,Film Komedi
 http://alblive.tv/channels/filmkomedi.m3u
 
-#EXTINF:0,Filmthriller
+#EXTINF:0,Film Komedi
+http://81.7.13.162/hls/filmkomedi/index.m3u8
+
+#EXTINF:0,Film Nje
+http://81.7.13.162/hls/filmnjehd/index.m3u8
+
+#EXTINF:0,Film Plus
+http://81.7.13.162/hls/plushd/index.m3u8
+
+#EXTINF:0,Film Thriller
 http://alblive.tv/channels/filmthriller.m3u
+
+#EXTINF:0,Film Thriller
+http://81.7.13.162/hls/filmthriller/index.m3u8
 
 #EXTINF:0,Folk Plus
 
@@ -110,13 +146,7 @@ mms://77.238.209.50:1234
 
 
 #EXTINF:0,Jug TV 
-rtmp://84.20.77.50/live/livestream1
 
-#EXTINF:0,Jug TV 
-rtmp://84.20.77.50/live//livestream2
-
-#EXTINF:0,Jug TV 
-rtmp://84.20.77.50/live playpath=livestream1 swfUrl=http://player.longtailvideo.com/player5.2.swf live=1 pageUrl=http://albhd.tk/tv/jug.html
 
 #EXTINF:0,Kanal 3
 
@@ -125,10 +155,16 @@ rtmp://84.20.77.50/live playpath=livestream1 swfUrl=http://player.longtailvideo.
 
 
 #EXTINF:0,Klan Kosova 
+http://81.7.13.162/hls/klanhd/index.m3u8
 
+#EXTINF:0,Klan Kosova 
+http://81.7.13.162/hls/klankosova/index.m3u8
 
 #EXTINF:0,Koha TV 
 rtmp://live.tvkoha.tv/live/koha app=live/koha swfUrl=http://live.tvkoha.tv/playerplus.swf pageUrl=http://www.tvkoha.tv/live/tv playpath=livestream swfVfy=true live=true timeout=15
+
+#EXTINF:0,Kohavision
+http://81.7.13.162/hls/kohavizion/index.m3u8
 
 #EXTINF:0,Konyha TV
 rtmp://91.82.85.44/live/konyhatv
@@ -142,20 +178,20 @@ rtmp://psham1.setplex.net:1935/tvalb_loc_ams243/tvkop2431565
 #EXTINF:0,Mitrovica
 
 
-#EXTINF:0,MPT
+#EXTINF:0,MPT1
 http://mrt.cdn.spectar.tv:1935/mrt-edge/_definst_/mrt1-sat/playlist.m3u8
 
-#EXTINF:0,MPT1
+#EXTINF:0,MPT1 
 http://fms.zulu.mk:1935/zulu/mtv1_1/playlist.m3u8
+
+#EXTINF:0,MPT 2
+http://mrt.cdn.spectar.tv:1935/mrt-edge/_definst_/mrt2-sat/playlist.m3u8
 
 #EXTINF:0,MPT 2 
 http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video_id/3548/token/1551170c6b60563462fd429eec72b731/playlist.m3u8
 
 #EXTINF:0,MPT 2 
 http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video_id/3548/token/bd0b11a4f8d05cc0bffe589f55909615/chunklist_w787058205_b1196000.m3u8
-
-#EXTINF:0,MPT 2 
-http://mrt.cdn.spectar.tv:1935/mrt-edge/_definst_/mrt2-sat/playlist.m3u8
 
 #EXTINF:0,News24
 http://66.55.93.203/hls-live/livepkgr/_definst_/news24/n24stream.m3u8
@@ -164,7 +200,7 @@ http://66.55.93.203/hls-live/livepkgr/_definst_/news24/n24stream.m3u8
 mms://176.106.121.32:8080/
 
 #EXTINF:0,Ora News
-
+http://81.7.13.162/hls/oranews/index.m3u8
 
 #EXTINF:0,Pannon TV
 
@@ -191,25 +227,34 @@ rtmp://wowza.rtkit.com/live playpath=livestream swfUrl=http://www.aulona.de/play
 rtmp://wowza.rtkit.com/live/livestream
 
 #EXTINF:0,RTK1 
+http://81.7.13.162/hls/rtk/index.m3u8
+
+#EXTINF:0,RTK1 
 http://wowza.rtkit.com:1935/live/livestream/chunklist.m3u8?wowzasessionid=491913886
 
 #EXTINF:0,RTV Panonija
 
 
-#EXTINF:0,Screen TV
-rtmp://95.110.242.231:11935/live/albanianscreentv_android
+#EXTINF:0,RTV 21
+http://81.7.13.162/hls/rtv21/index.m3u8
 
 #EXTINF:0,Sot7
 mms://84.20.73.66:8001
 
 #EXTINF:0,Super Sky
-rtmp://flash.supersky.ch/live/supersky/livestream
-
-#EXTINF:0,Super Sport Kosova 1 
 
 
-#EXTINF:0,Super Sport Kosova 2
+#EXTINF:0,Super Sport 1 
+http://81.7.13.162/hls/ss1/index.m3u8
 
+#EXTINF:0,Super Sport 2 
+http://81.7.13.162/hls/ss2/index.m3u8
+
+#EXTINF:0,Super Sport 3
+http://81.7.13.162/hls/ss3/index.m3u8
+
+#EXTINF:0,Super Sport 4
+http://81.7.13.162/hls/ss4/index.m3u8
 
 #EXTINF:0,Supersonic TV
 rtmp://str103.setplex.net:1935/228/stv_online
@@ -230,7 +275,7 @@ rtmp://str103.setplex.net:1935/228/stv_folk
 
 
 #EXTINF:0,Top Channel 
-
+http://81.7.13.162/hls/topchannelhd/index.m3u8
 
 #EXTINF:0,Top Channel News
 

@@ -92,7 +92,7 @@ rtmp://live.wmncdn.net/ app=saamtv/ playpath=058e42f470eddf946c6bee5bd785efb0.sd
 
 
 #EXTINF:0,Sony Sab
-
+rtsp://46.249.213.93/broadcast/sonysabtv-tablet.3gp
 
 #EXTINF:0,Sony Max
 
