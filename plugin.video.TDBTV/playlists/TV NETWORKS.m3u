@@ -34,26 +34,14 @@ http://200.76.77.237/LIVE/H01/CANAL213/PROFILE03.m3u8?
 #EXTINF:0,BBC 1 
 http://82.135.224.134:80/udp/239.100.3.1:1234
 
-#EXTINF:0,BBC 1 
-http://81.92.105.135:5555/pl.m3u8?channel=141
-
-#EXTINF:0,BBC 1 
-http://81.92.105.135:5555/pl.m3u8?channel=145
-
 #EXTINF:0,BBC 2 
 http://81.23.58.184:8080/udp/0.0.0.0:20015
-
-#EXTINF:0,BBC 2 
-http://81.92.105.135:5555/pl.m3u8?channel=142
 
 #EXTINF:0,BBC 2 
 http://37.220.29.186:8000/bbc2/bbc2/index.m3u8
 
 #EXTINF:0,BBC 2 
 http://llnw.live.simplestream.com/mediaexcel01/channel02/3/prog_index.m3u8
-
-#EXTINF:0,BBC Entertainment 
-http://81.92.105.135:5555/pl.m3u8?channel=143
 
 #EXTINF:0,BBC Entertainment 
 http://200.76.77.237/LIVE/H01/CANAL253/PROFILE05.m3u8?
@@ -78,9 +66,6 @@ http://200.76.77.237/LIVE/H01/CANAL253/PROFILE03.m3u8
 
 #EXTINF:0,Cartoon Network 
 http://188.227.86.4:4022/udp/239.77.0.77:1234
-
-#EXTINF:0,Cartoon Network 
-http://85.255.183.212:1234/udp/239.0.0.15:1234
 
 #EXTINF:0,Cartoon Network 
 http://hls.svc.moyo.tv/hls/CH_CARTOON/variant.m3u8?version=2
@@ -139,11 +124,8 @@ http://ams-lp2.9c9media.com/hls-live/livepkgr/_definst_/liveeventNoDRM/ctvnewsOp
 #EXTINF:0,CW 
 rtmp://rtmp.zerocast.tv/goLive/ playpath=IWSyIjvWgHRCMM7MEJoZ swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 pageUrl=http://zerocast.tv/embed.php?a token=OOG17t.x#K9Vh#|
 
-#EXTINF:0,CW 
-http://46.105.122.74:8000/live/simonday/jGM2NPnPBM/160.m3u8
-
 #EXTINF:0,Disney Channel 
-http://203.162.235.124:5555/udp/225.2.100.96:5000
+
  
 #EXTINF:0,Disney Junior 
 
@@ -165,9 +147,6 @@ http://llnw.live.simplestream.com/coder10/coder.channels.channel21/hls/3/playlis
 
 #EXTINF:0,Fashion TV 
 http://hls.novotelecom.ru/streaming/fashion/tvrec/playlist.m3u8
-
-#EXTINF:0,Fashion TV 
-http://185.27.237.105:8082/TV0088
 
 #EXTINF:0,Fashion TV 
 http://113.160.49.34/lives/origin03/fashionhd.isml/fashionhd-2096k.m3u8
@@ -212,16 +191,13 @@ rtmp://rtmp.zerocast.tv/goLive/ playpath=9pxGCtP3aEnJYgoBFFH8 swfUrl=http://p.jw
 
 
 #EXTINF:0,Food Network 
-http://185.27.237.105:8082/TV0086
-
-#EXTINF:0,Food Network 
 http://llnw.live.simplestream.com/coder2/coder.channels.channel2/hls/3/playlist.m3u8
 
 #EXTINF:0,Food Network 
 http://llnw.live.simplestream.com/coder2/coder.channels.channel8/hls/3/playlist.m3u8
 
 #EXTINF:0,FX
-http://46.105.122.74:8000/live/simonday/jGM2NPnPBM/198.m3u8
+
 
 #EXTINF:0,Ginx Gaming TV 
 
@@ -257,7 +233,7 @@ http://llnw.live.simplestream.com/coder4/coder.channels.channel6/hls/3/playlist.
 http://ios.streamserver01.com:8080/ShowcaseTV/mystream.m3u8
 
 #EXTINF:0,ID TV
-http://185.27.237.105:8082/TV0113
+
 
 #EXTINF:0,ITV 1 
 http://82.135.224.134:80/udp/239.100.3.6:1234
@@ -275,7 +251,7 @@ http://llnw.live.simplestream.com/coder12/coder.channels.channel10/hls/3/playlis
 http://llnw.live.simplestream.com/coder12/coder.channels.channel12/hls/3/playlist.m3u8
 
 #EXTINF:0,ITV Choice
-http://185.27.237.105:8082/TV0055
+
 
 #EXTINF:0,Jewelry Television
 rtmp://jtvmedia.jtv.com:1975/live playpath=live6 swfUrl=http://demandware.edgesuite.net/aaby_prd/on/demandware.static/Sites-jtv-Site/-/default/v1410110388581/swf/flashMediaPlayer/StrobeMediaPlayback.swf live=1 pageUrl=http://www.jtv.com/on/demandware.store/Sites-jtv-Site/default/LiveViewer-Show
@@ -295,9 +271,6 @@ http://llnw.live.simplestream.com/coder8/coder.channels.channel2/hls/3/playlist.
 #EXTINF:0,NBC 
 http://50.7.69.186:1935/edge/_definst_/s5whw37nl7weedp/chunklist.m3u8?wowzasessionid=1420160473
 
-#EXTINF:0,NBC 
-http://46.105.122.74:8000/live/simonday/jGM2NPnPBM/193.m3u8
-
 #EXTINF:0,NHK World 
 http://llnw.live.simplestream.com/coder1/coder.channels.channel11/hls/3/playlist.m3u8
 
@@ -308,7 +281,7 @@ http://nhkworld-hds-live1.hds1.fmslive.stream.ne.jp/hls-live/nhkworld-hds-live1/
 
 
 #EXTINF:0,Nick Jr 
-http://85.255.183.212:1234/udp/239.0.0.1:1234
+
 
 #EXTINF:0,Nickelodeon 
 http://188.227.86.4:4022/udp/239.77.0.60:1234
@@ -317,19 +290,10 @@ http://188.227.86.4:4022/udp/239.77.0.60:1234
 
 
 #EXTINF:0,OSN First 
-http://185.27.237.105:8082/TV0063
 
-#EXTINF:0,OSN First 
-http://185.27.237.105:8082/TV0084
-
-#EXTINF:0,OSN First 
-http://185.27.237.105:8082/TV0062
 
 #EXTINF:0,OSN First Comedy 
-http://185.27.237.105:8082/TV0021
 
-#EXTINF:0,OSN First Comedy 
-http://185.27.237.105:8082/TV0083
 
 #EXTINF:0,OWN Network 
 
@@ -347,7 +311,7 @@ rtmp://128.104.144.134/WisconsinChannel/mystream
 
 
 #EXTINF:0,Sky Arts 2 
-http://185.56.30.123:8082/TV4253
+
 
 #EXTINF:0,Sky Living 
 
@@ -362,10 +326,10 @@ http://200.76.77.237/LIVE/H01/CANAL203/PROFILE05.m3u8?
 http://200.76.77.237/LIVE/H01/CANAL203/PROFILE03.m3u8?
 
 #EXTINF:0,Spike TV 
-http://50.7.69.186:1935/edge/_definst_/sax2mq2alpirnww/playlist.m3u8?wowzasessionid=1419878529
+
 
 #EXTINF:0,Star World 
-http://185.27.237.105:8082/TV0056
+
 
 #EXTINF:0,Studio Universal 
 
@@ -380,25 +344,19 @@ http://185.27.237.105:8082/TV0056
 rtmp://rtmp.zerocast.tv/goLive/RhMi9RdAAt7fpq8H3qZh swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 pageUrl=http://zerocast.tv/embed token=OOG17t.x#K9Vh#|
 
 #EXTINF:0,The Shopping Channel 
-http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/index_3_av-p.m3u8
+
 
 #EXTINF:0,The Weather Channel
 
 
-#EXTINF:0,Tiny Pop
-http://212.70.155.243:40665/udp/237.100.0.179:4000
+#EXTINF:0,Tiny Pop 
 
-#EXTINF:0,Tiny Pop
-http://212.70.155.243:40665/udp/237.100.0.182:4000
 
 #EXTINF:0,TLC 
-http://203.162.235.124:5555/udp/225.2.100.156:5000
+
 
 #EXTINF:0,TNT 
 rtmpe://167.114.157.67:1935/goLive/Waz0WqvbqNHmt0gdzrsm swfurl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf pageUrl=http://zerocast.tv/embed.php?a=309 token=OOG17t.x#K9Vh#|
-
-#EXTINF:0,TNT 
-http://46.105.122.74:8000/live/simonday/jGM2NPnPBM/172.m3u8
 
 #EXTINF:0,Tom & Jerry Show 
 
@@ -407,10 +365,10 @@ http://46.105.122.74:8000/live/simonday/jGM2NPnPBM/172.m3u8
 
 
 #EXTINF:0,True Drama
-http://212.70.155.243:40665/udp/237.100.0.190:4000
+
 
 #EXTINF:0,True Entertainment 
-http://212.70.155.243:40665/udp/237.100.0.189:4000
+
 
 #EXTINF:0,TV Land 
 
@@ -440,7 +398,7 @@ http://200.76.77.237/LIVE/H01/CANAL205/PROFILE05.m3u8?
 http://200.76.77.237/LIVE/H01/CANAL205/PROFILE03.m3u8?
 
 #EXTINF:0,Weather Nation
-http://kalsegsec-a.akamaihd.net:80/dc-0/m/pa-live-publish3/kLive/smil:1_oorxcge2_all.smil/chunklist_b2096000.m3u8
+
 
 #EXTINF:0,Weather Network
 
