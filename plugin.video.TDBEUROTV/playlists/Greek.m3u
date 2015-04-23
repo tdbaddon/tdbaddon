@@ -4,9 +4,6 @@
 #EXTINF:0,4E TV 
 http://mail.tv4e.gr:1935/live/myStream.sdp/playlist.m3u8
 
-#EXTINF:0,Airqio
-
-
 #EXTINF:0,Alpha
 http://alfakanali-lh.akamaihd.net/i/live_1@90368/master.m3u8
 
@@ -27,9 +24,6 @@ http://srv1.viiideo.gr:1935/videon/axeloostv/widih.m3u8
 
 #EXTINF:0,Best TV
 http://smooth.istoikona.net/besttv.isml/manifest(format=m3u8-aapl).m3u8
-
-#EXTINF:0,Bergina
-
 
 #EXTINF:0,BlueSky TV
 http://88.198.238.44:1935/bluesky/bluesky.stream/playlist.m3u8
@@ -60,9 +54,6 @@ rtmp://213.16.167.187:1935/live/mpegts_256.stream live=1 timeout=10
 
 #EXTINF:0,E TV 
 rtmp://213.16.167.187:1935/live playpath=mpegts_256.stream swfUrl=http://www.epsilontv.gr/wp-content/plugins/fv-wordpress-flowplayer/flowplayer/flowplayer.swf?ver=2.2.7 live=1 pageUrl=http://www.epsilontv.gr/live/
-
-#EXTINF:0,Eiprus TV 1
-
 
 #EXTINF:0,Ellada TV
 rtmp://fml.68FC.edgecastcdn.net/2068FC/elladatv swfUrl=http://www.elladatv.gr/scripts/player.swf swfVfy=1 live=1 timeout=10
@@ -213,9 +204,6 @@ http://xelladalivex.api.channel.livestream.com/3.0/playlist.m3u8
 
 #EXTINF:0,TVM
 rtmp://cp77174.live.edgefcs.net:443/live/123456@19937 live=1 timeout=10
-
-#EXTINF:0,Vima
-
 
 #EXTINF:0,Zougla TV 
 http://zouglahd-f.akamaihd.net/i/zougla_1@56341/index_700_av-p.m3u8

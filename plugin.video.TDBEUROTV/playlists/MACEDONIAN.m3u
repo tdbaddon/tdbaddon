@@ -148,7 +148,7 @@ http://fms.zulu.mk:554/zulu/sitel3_1/playlist_b125000_w1132785237.m3u8
 rtsp://fms.zulu.mk:554/zulu/sitel3_2
 
 #EXTINF:0,Sonce TV
-
+http://92.53.27.201:10000/
 
 #EXTINF:0,STV Folk
 

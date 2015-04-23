@@ -10,6 +10,9 @@ rtmp://stream.smcloud.net/live2/eska_rock/eska_rock_720p
 #EXTINF:0,Eska TV
 rtmp://stream.smcloud.net/live2/best/best_720p
 
+#EXTINF:0,Fokus Tv
+rtmp://stream.smcloud.net/live/fokustv
+
 #EXTINF:0,iTV
 http://itv.net.pl/video1.asx
 

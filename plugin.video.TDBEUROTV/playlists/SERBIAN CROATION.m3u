@@ -47,12 +47,6 @@ rtmp://rtmp.elektrika.cz/live/myStream.sdp
 #EXTINF:0,Euro Plus
 
 
-#EXTINF:0,Fight Channel
-
-
-#EXTINF:0,Full TV
-
-
 #EXTINF:0,Grand Narodna
 
 
@@ -67,10 +61,6 @@ http://109.122.121.21/live/happy.stream/chunklist.m3u8?hash=
 
 #EXTINF:0,Hema 
 mms://77.238.209.50:1234
-
-
-#EXTINF:0,History
-
 
 #EXTINF:0,Hronka
 http://213.81.153.221:8080/hronka
@@ -146,9 +136,6 @@ rtmp://91.82.85.44/live/konyhatv
 
 #EXTINF:0,KTV 
 http://213.81.153.221:8080/kezmarok
-
-#EXTINF:0,Leskovac TV
-
 
 #EXTINF:0,Music Box 
 http://213.81.153.221:8080/nasa
@@ -334,7 +321,7 @@ http://213.81.153.221:8080/ruzinov
 
 
 #EXTINF:0,Sonce TV
-
+http://92.53.27.201:10000/
 
 #EXTINF:0,SOS TV
 http://109.122.121.21/live/sos.stream/chunklist.m3u8?hash=
@@ -374,9 +361,6 @@ mms://195.252.114.172/tvcg
 
 
 #EXTINF:0,Uskana
-
-
-#EXTINF:0,Varazdiska TV
 
 
 #EXTINF:0,Vesti 24

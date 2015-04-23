@@ -2,7 +2,7 @@
 
 
 #EXTINF:0,A1 Report
-
+rtmp://66.55.93.204/livepkgr/a1stream?adbe-live-event=a1report
 
 #EXTINF:0,ABC News
 http://81.7.13.162/hls/abcnews/index.m3u8
@@ -27,9 +27,6 @@ rtmp://95.110.242.231:11935/live/albanianscreentv_android
 
 #EXTINF:0,Al Jazeera Balkan 
 rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
-
-#EXTINF:0,Alsat
-
 
 #EXTINF:0,Alsat M 
 http://81.7.13.162/hls/alsatm/index.m3u8
@@ -67,9 +64,6 @@ http://alblive.tv/channels/bangbang.m3u
 #EXTINF:0,Blue Sky
 
 
-#EXTINF:0,Boin
-
-
 #EXTINF:0,Cegrani Media
 
 
@@ -84,9 +78,6 @@ http://81.7.13.162/hls/cufotv/index.m3u8
 
 #EXTINF:0,Disney Channel
 http://81.7.13.162/hls/disneychannel/index.m3u8
-
-#EXTINF:0,Dukagjini
-
 
 #EXTINF:0,ERA 
 
@@ -133,9 +124,6 @@ http://81.7.13.162/hls/filmthriller/index.m3u8
 #EXTINF:0,Folk Plus
 
 
-#EXTINF:0,Globi TV
-
-
 #EXTINF:0,Grad Lebane
 
 
@@ -174,9 +162,6 @@ rtmp://psham1.setplex.net:1935/tvalb_loc_ams243?doPublish=eqc3AAs34OL/tvkop24315
 
 #EXTINF:0,Kopliku TV 
 rtmp://psham1.setplex.net:1935/tvalb_loc_ams243/tvkop2431565
-
-#EXTINF:0,Mitrovica
-
 
 #EXTINF:0,MPT1
 http://mrt.cdn.spectar.tv:1935/mrt-edge/_definst_/mrt1-sat/playlist.m3u8
@@ -232,17 +217,11 @@ http://81.7.13.162/hls/rtk/index.m3u8
 #EXTINF:0,RTK1 
 http://wowza.rtkit.com:1935/live/livestream/chunklist.m3u8?wowzasessionid=491913886
 
-#EXTINF:0,RTV Panonija
-
-
 #EXTINF:0,RTV 21
 http://81.7.13.162/hls/rtv21/index.m3u8
 
 #EXTINF:0,Sot7
 mms://84.20.73.66:8001
-
-#EXTINF:0,Super Sky
-
 
 #EXTINF:0,Super Sport 1 
 http://81.7.13.162/hls/ss1/index.m3u8
@@ -268,25 +247,10 @@ http://88.212.10.27:81/streams/stv2.m3u8?
 #EXTINF:0,STV Folk
 rtmp://str103.setplex.net:1935/228/stv_folk
 
-#EXTINF:0,Teuta
-
-
-#EXTINF:0,Tip Tv
-
-
 #EXTINF:0,Top Channel 
 http://81.7.13.162/hls/topchannelhd/index.m3u8
 
 #EXTINF:0,Top Channel News
-
-
-#EXTINF:0,TV Rozafa
-
-
-#EXTINF:0,TV SH
-
-
-#EXTINF:0,Uskana
 
 
 #EXTINF:0,Vizion Plus 
@@ -294,9 +258,6 @@ rtmp://live.vizionplus.tv/live//livestream3
 
 #EXTINF:0,Vizion Plus 
 rtmp://live.vizionplus.tv/live//livestream2
-
-
-#EXTINF:0,Zico TV
 
 
 
