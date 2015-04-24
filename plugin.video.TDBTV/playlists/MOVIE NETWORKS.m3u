@@ -59,6 +59,9 @@ http://200.76.77.237/LIVE/H01/CANAL478/PROFILE03.m3u8?
 http://103.242.13.67:5000/nn_live.ts?id=foxmovies-m-h
 
 #EXTINF:0,Fox Movies 
+http://103.242.13.66:5000/nn_live.ts?id=supernet-m-h
+
+#EXTINF:0,Fox Movies 
 http://200.76.77.237/LIVE/H01/CANAL417/PROFILE05.m3u8?
 
 #EXTINF:0,Fox Movies 
@@ -95,13 +98,13 @@ http://50.7.69.186:1935/edge/_definst_/a1wn1j3ra1w0cv0/chunklist.m3u8?wowzasessi
 http://50.7.69.186:1935/edge/_definst_/qzbbu26gcvjxksz/chunklist.m3u8?wowzasessionid=1419847602
 
 #EXTINF:0,HBO 
-http://50.7.69.186:1935/edge/_definst_/a1wn1j3ra1w0cv0/manifest.m3u8?wowzasessionid=1419915335
+rtmp://94.102.49.207/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to/player/secure_player_iguide_token.swf live=1 pageUrl=http://www.iguide.to/view/1/watch-live-HBO-channel-for-free token=#ed%h0#w18623jsda6523lDGDVe
 
 #EXTINF:0,Kino TV 
 
 
 #EXTINF:0,Lotus Macau 
-
+http://103.242.13.67:5000/nn_live.ts?id=amlh-m-h
 
 #EXTINF:0,MGM 
 
@@ -167,37 +170,39 @@ http://str108.setplex.net/fastv_2psh/PinkWesternglobal_rly_greece_103/TDB.m3u8
 http://50.7.69.186:1935/edge/_definst_/bwbop58ixz281wv/chunklist.m3u8?wowzasessionid=1419875151
 
 #EXTINF:0,Sky Movies Action 
-
+http://185.56.30.123:8082/TV4245
 
 #EXTINF:0,Sky Movies Atlantic
 
 
 #EXTINF:0,Sky Movies Comedy
-
+http://185.56.30.123:8082/TV4246
 
 #EXTINF:0,Sky Movies Crime
 
 
 #EXTINF:0,Sky Movies Disney
-
+http://185.56.30.123:8082/TV4247
 
 #EXTINF:0,Sky Movies Drama
 
 
 #EXTINF:0,Sky Movies Family
-
+http://185.56.30.123:8082/TV4248
 
 #EXTINF:0,Sky Movies Horrors
 
+#EXTINF:0,Sky Movies Premiere 
+http://185.56.30.123:8082/TV4251
 
 #EXTINF:0,Sky Movies Premiere 
-
+http://185.56.30.123:8082/TV4252
 
 #EXTINF:0,Sky Movies SciFi 
-
+http://185.56.30.123:8082/TV4249
 
 #EXTINF:0,Sky Movies Select 
-
+http://185.56.30.123:8082/TV4254
 
 #EXTINF:0,Sky Movies Superheros 
 
@@ -210,6 +215,9 @@ http://113.160.49.34/lives/origin03/moviehd.isml/moviehd-2096k.m3u8
 
 #EXTINF:0,SYFY Movie Channel 
 
+
+#EXTINF:0,TCM
+http://194.116.252.129:4022/udp/239.239.2.49:1234
 
 #EXTINF:0,TCM 
 http://200.76.77.237/LIVE/H01/CANAL496/PROFILE05.m3u8?

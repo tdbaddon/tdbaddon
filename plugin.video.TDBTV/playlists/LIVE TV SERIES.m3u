@@ -80,7 +80,7 @@ rtmpe://192.99.39.7/rizla01/friends02 swfUrl=http://www.tgun.tv/embeds2/jwplayer
 rtmpe://192.99.21.184/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjkadgbutoarihn/fullhouse playpath=fullhouse pageURL=http://www.tgun.tv/embeds2/index2.html?fullhouse swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf live=true
 
 #EXTINF:0,Futurama 
-
+rtmpe://192.99.21.184/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjkadgbutoarihn/2501 playpath=2501 pageURL=http://www.tgun.tv/embeds2/index2.html?2501 swfUrl=http://www.tgun.tv/menus/players/jwplayer/jwplayer.flash.swf live=true
 
 #EXTINF:0,Game of Thrones
 rtmpe://192.99.21.184/blink02202afghadfgfodfndanfkjncvnjvnkjfhfgjhadfvandkjcnbjkadgbutoarihn/ playpath=got02 swfUrl=http://www.tgun.tv/locked/player.swf live=1 pageUrl=http://www.tgun.tv

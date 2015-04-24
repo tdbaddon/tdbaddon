@@ -5,6 +5,9 @@
 http://50.7.69.186:1935/edge/_definst_/tuc280rbycwnsvs/manifest.m3u8?wowzasessionid=1426231480
 
 #EXTINF:0,A&E 
+http://sjc-uhls-vip01.ustream.tv/watch/playlist.m3u8?cid=12762028
+
+#EXTINF:0,A&E 
 http://noscdn1.connectedviews.com:1935/live/sporttv3hd.stream/livestream.m3u8
 
 #EXTINF:0,ABC 
@@ -179,7 +182,7 @@ rtmp://rtmp.zerocast.tv/goLive/ playpath=9pxGCtP3aEnJYgoBFFH8 swfUrl=http://p.jw
 
 
 #EXTINF:0,Fox 45 
-
+http://50.7.69.186:1935/edge/_definst_/q49uyvij145wcky/playlist.m3u8?wowzasessionid=1419873438
 
 #EXTINF:0,Fox 47
 
@@ -195,6 +198,9 @@ http://llnw.live.simplestream.com/coder2/coder.channels.channel2/hls/3/playlist.
 
 #EXTINF:0,Food Network 
 http://llnw.live.simplestream.com/coder2/coder.channels.channel8/hls/3/playlist.m3u8
+
+#EXTINF:0,Food Network 
+http://50.7.69.186:1935/edge/_definst_/ibnnu7537h3ax6e/playlist.m3u8?wowzasessionid=1419873022
 
 #EXTINF:0,FX
 
@@ -244,11 +250,17 @@ http://llnw.live.simplestream.com/mediaexcel01/channel03/3/prog_index.m3u8
 #EXTINF:0,ITV 2 
 http://llnw.live.simplestream.com/coder12/coder.channels.channel8/hls/3/playlist.m3u8
 
+#EXTINF:0,ITV 2 
+http://78.129.175.72/live/itv2/itv2.m3u8
+
 #EXTINF:0,ITV 3
 http://llnw.live.simplestream.com/coder12/coder.channels.channel10/hls/3/playlist.m3u8
 
 #EXTINF:0,ITV 4
 http://llnw.live.simplestream.com/coder12/coder.channels.channel12/hls/3/playlist.m3u8
+
+#EXTINF:0,ITV 4
+http://78.129.175.72/live/itv4/itv4.m3u8
 
 #EXTINF:0,ITV Choice
 
@@ -268,6 +280,9 @@ http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
 #EXTINF:0,More4 
 http://llnw.live.simplestream.com/coder8/coder.channels.channel2/hls/3/playlist.m3u8
 
+#EXTINF:0,More4 
+http://78.129.175.72/live/more4/more4.m3u8
+
 #EXTINF:0,NBC 
 http://50.7.69.186:1935/edge/_definst_/s5whw37nl7weedp/chunklist.m3u8?wowzasessionid=1420160473
 
@@ -276,6 +291,9 @@ http://llnw.live.simplestream.com/coder1/coder.channels.channel11/hls/3/playlist
 
 #EXTINF:0,NHK World 
 http://nhkworld-hds-live1.hds1.fmslive.stream.ne.jp/hls-live/nhkworld-hds-live1/_definst_/livestream/nhkworld-live-512.m3u8 
+
+#EXTINF:0,NHK World 
+http://103.242.13.67:5000/nn_live.ts?id=nhkworldhd-m-h
 
 #EXTINF:0,Nick 
 
@@ -305,7 +323,7 @@ rtmp://128.104.144.134/WisconsinChannel/mystream
 
 
 #EXTINF:0,Sky 2
-
+http://185.56.30.123:8082/TV4250
 
 #EXTINF:0,Sky Arts 1 
 
@@ -326,7 +344,7 @@ http://200.76.77.237/LIVE/H01/CANAL203/PROFILE05.m3u8?
 http://200.76.77.237/LIVE/H01/CANAL203/PROFILE03.m3u8?
 
 #EXTINF:0,Spike TV 
-
+http://50.7.69.186:1935/edge/_definst_/sax2mq2alpirnww/playlist.m3u8?wowzasessionid=1419878529
 
 #EXTINF:0,Star World 
 
@@ -335,7 +353,7 @@ http://200.76.77.237/LIVE/H01/CANAL203/PROFILE03.m3u8?
 
 
 #EXTINF:0,Sundance Channel 
-
+http://194.116.252.129:4022/udp/239.239.2.167:1234
 
 #EXTINF:0,Syfy 
 
@@ -350,7 +368,10 @@ rtmp://rtmp.zerocast.tv/goLive/RhMi9RdAAt7fpq8H3qZh swfUrl=http://p.jwpcdn.com/6
 
 
 #EXTINF:0,Tiny Pop 
+http://llnw.live.simplestream.com/coder4/coder.channels.channel12/hls/3/playlist.m3u8
 
+#EXTINF:0,Tiny Pop 
+http://llnw.live.simplestream.com/coder4/coder.channels.channel14/hls/3/playlist.m3u8
 
 #EXTINF:0,TLC 
 
@@ -385,6 +406,9 @@ rtmpe://167.114.65.139:1935/goLive playpath=jvZXQUYQmlsPirfiVK1G swfUrl=http://p
 #EXTINF:0,USA Network 
 rtmpe://167.114.157.67:1935/goLive/jvZXQUYQmlsPirfiVK1G swfurl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf pageUrl=http://zerocast.tv/embed.php?a=19 token=OOG17t.x#K9Vh#|
 
+#EXTINF:0,USA Network 
+http://4.31.30.145:9150
+
 #EXTINF:0,Vernnissage TV 
 http://149.11.34.6:1935/live/vernissagetv.stream/hasbahca.m3u8
 
@@ -410,7 +434,7 @@ http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
 http://200.76.77.237/LIVE/H01/CANAL387/PROFILE03.m3u8?
 
 #EXTINF:0,World Fashion TV
-
+http://103.242.13.67:5000/nn_live.ts?id=worldfashion-m-h
 
 #EXTINF:0,WPIX 11
 rtmp://rtmp.zerocast.tv/goLive/ playpath=IWSyIjvWgHRCMM7MEJoZ swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 pageUrl=http://zerocast.tv/embed.php?a token=OOG17t.x#K9Vh#|

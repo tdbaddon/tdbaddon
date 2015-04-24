@@ -56,6 +56,9 @@ https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8?hdnea=ip=174.113.
 #EXTINF:0,History Channel 
 http://link.theplatform.com/s/dtjsEC/chjdYJxKb44V?manifest=m3u&feed=History%20Live%20Stream%20Feed
 
+#EXTINF:0,History Channel 
+http://50.7.69.186:1935/edge/_definst_/logojbjhar79pc8/manifest.m3u8?wowzasessionid=1426231700
+
 #EXTINF:0,History Channel 2
 
 
@@ -78,10 +81,19 @@ http://www.nasa.gov/multimedia/nasatv/NTV-Public-IPS.m3u8
 http://185.5.40.101/hls/session-37473uCyyxurSfw/CH_NATGEOWILD/variant.m3u8?version=2
 
 #EXTINF:0,National Geographic 
-http://103.242.13.67:5000/nn_live.ts?id=nationalgeographic-m-h&hpgdisco_m3u8
+http://103.242.13.67:5000/nn_live.ts?id=nationalgeographic-m-h
+
+#EXTINF:0,National Geographic 
+http://203.162.235.124:5555/udp/225.2.100.104:5000
 
 #EXTINF:0,RT News Documentary 
 http://odna.octoshape.net/f3f5m2v4/cds/ch5_auto.smil/playlist.m3u8 
+
+#EXTINF:0,RT News Documentary 
+http://103.242.13.67:5000/nn_live.ts?id=rtdoc-m-h
+
+#EXTINF:0,RT News Documentary 
+http://odna.octoshape.net/f3f5m2v4/cds/ch5_720p/chunklist.m3u8
 
 #EXTINF:0,Science Channel
 

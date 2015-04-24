@@ -61,6 +61,9 @@ rtmp://edge1.everyon.tv/etv1sb/phd16
 #EXTINF:0,CNN 
 rtmp://d.cdn.newschat.tv/edge playpath=cnn_live swfUrl=http://msnbclive.eu/player.swf live=1 pageUrl=http://www.livenewschat.eu/breaking/
 
+#EXTINF:0,CNN 
+http://203.162.235.124:5555/udp/225.2.100.110:5000
+
 #EXTINF:0,CP24
 http://ams-lp3.9c9media.com/hls-live/livepkgr/_definst_/liveeventNoDRM/cp24Open8.m3u8
 
