@@ -50,9 +50,6 @@ rtmp://rtmp.elektrika.cz/live/myStream.sdp
 #EXTINF:0,Grand Narodna
 
 
-#EXTINF:0,Happy TV
-http://109.122.121.21/live/happy.stream/chunklist.m3u8?hash=
-
 #EXTINF:0,Hayat Folk
 
 
@@ -176,9 +173,6 @@ mms://176.106.121.32:8080/
 #EXTINF:0,Kanal 
 
 
-#EXTINF:0,Palma Plus
-http://109.122.121.21/live/palma.stream/chunklist.m3u8?hash=
-
 #EXTINF:0,Party TV
 
 
@@ -282,13 +276,13 @@ rtsp://origin.biokoda.tv/live/mbit-planet?k=planettv-public
 mmsh://195.252.113.38:80/rts?MSWMExt=.asf
 
 #EXTINF:0,PTC 1
-http://109.122.121.21/live/rts_1.stream/playlist.m3u8?hash=
+
 
 #EXTINF:0,PTC 2
-http://109.122.121.21/live/rts_2.stream/playlist.m3u8?hash=
+
 
 #EXTINF:0,PRVA
-http://109.122.121.21/live/prva.stream/chunklist.m3u8?hash=
+
 
 #EXTINF:0,RTB TV
 
@@ -309,7 +303,7 @@ http://109.122.121.21/live/prva.stream/chunklist.m3u8?hash=
 
 
 #EXTINF:0,RTV 1
-http://109.122.121.21/live/rtv_1.stream/chunklist.m3u8?hash=
+
 
 #EXTINF:0,RTV Krea
 http://213.81.153.221:8080/galanta
@@ -324,7 +318,6 @@ http://213.81.153.221:8080/ruzinov
 http://92.53.27.201:10000/
 
 #EXTINF:0,SOS TV
-http://109.122.121.21/live/sos.stream/chunklist.m3u8?hash=
 
 
 #EXTINF:0,Sprotska TV

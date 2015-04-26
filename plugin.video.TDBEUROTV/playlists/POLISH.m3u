@@ -1,14 +1,26 @@
 ﻿#EXTM3U
 
 
+#EXTINF:0,4fun TV
+rtmp://edge4.popler.tv:1935/publishlive?play=123452/4funtv live=1 swfUrl=http://images.popler.tv/player/flowplayer.commercial.swf pageUrl=http://www.popler.tv/live/4funtv
+
 #EXTINF:0,Eska Party
 rtmp://stream.smcloud.net/live2/eska_party/eska_party_720p
 
 #EXTINF:0,Eska Rock
 rtmp://stream.smcloud.net/live2/eska_rock/eska_rock_720p
 
+#EXTINF:0,Eska Vox TV
+rtmp://stream.smcloud.net/live2/vox/vox_480p
+
 #EXTINF:0,Eska TV
 rtmp://stream.smcloud.net/live2/best/best_720p
+
+#EXTINF:0,Eska Wawa TV
+rtmp://stream.smcloud.net/live2/wawa/wawa_360p
+
+#EXTINF:0,Eska Wawa TV
+rtmp://stream.smcloud.net/live2/wawa/wawa_720p
 
 #EXTINF:0,Fokus Tv
 rtmp://stream.smcloud.net/live/fokustv
@@ -19,101 +31,26 @@ http://itv.net.pl/video1.asx
 #EXTINF:0,Polo TV
 rtmp://stream.smcloud.net/live/polotv
 
-#EXTINF:0,Pro Sieben
-http://194.116.252.129:4022/udp/239.239.2.25:1234
-
-#EXTINF:0,Puls 2
-http://194.116.252.129:4022/udp/239.239.2.192:1234
-
-#EXTINF:0,Republika
-http://194.116.252.129:4022/udp/239.239.2.161:1234
+#EXTINF:0,Polo TV
+rtmp://stream.smcloud.net/live/polotv swfUrl=http://polotv.pl/thrdparty/flowplayer/flowplayer.rtmp-3.1.4.swf pageUrl=http://polotv.pl/player
 
 #EXTINF:0,RTV Lubuska
 rtmp://87.98.237.131/rtlubuska/rtl
 
-#EXTINF:0,Sportklub
-http://194.116.252.129:4022/udp/239.239.2.59:1234
-
-#EXTINF:0,Stars
-http://194.116.252.129:4022/udp/239.239.2.244:1234
-
-#EXTINF:0,Superstacja
-http://194.116.252.129:4022/udp/239.239.2.63:1234
-
-#EXTINF:0,Teletoon
+#EXTINF:0,Teletoon+
 http://194.116.252.129:4022/udp/239.239.2.99:1234
-
-#EXTINF:0,Teletoon
-http://194.116.252.129:4022/udp/239.239.2.157:1234
 
 #EXTINF:0,TV 6
 http://194.116.252.129:4022/udp/239.239.2.145:1234
 
-#EXTINF:0,TVN
-http://194.116.252.129:4022/udp/239.239.2.222:1234
-
-#EXTINF:0,TVN 7
-http://194.116.252.129:4022/udp/239.239.2.160:1234
-
-#EXTINF:0,TVN 7
-http://194.116.252.129:4022/udp/239.239.2.70:1234
-
-#EXTINF:0,TVN Meteo
-http://194.116.252.129:4022/udp/239.239.2.62:1234
-
-#EXTINF:0,TVN Style
-http://194.116.252.129:4022/udp/239.239.2.69:1234
-
-#EXTINF:0,TVN Turbo
-http://194.116.252.129:4022/udp/239.239.2.68:1234
-
-#EXTINF:0,TVN Turbo
-http://194.116.252.129:4022/udp/239.239.2.159:1234
+#EXTINF:0,TV Trwam
+mms://195.94.205.211/Trwam
 
 #EXTINF:0,TVP
 http://194.116.252.129:4022/udp/239.239.4.12:1234
 
+#EXTINF:0,TVP2
+rtmp://free.stream-tv.com.pl/live/streamtv-tvp2
+
 #EXTINF:0,TVP Bialystok
 http://194.116.252.129:4022/udp/239.239.4.78:1234
-
-#EXTINF:0,TVP Gdansk
-http://194.116.252.129:4022/udp/239.239.4.79:1234
-
-#EXTINF:0,TVP Info Katowice
-http://194.116.252.129:4022/udp/239.239.2.108:1234
-
-#EXTINF:0,TVP Regionalna
-http://194.116.252.129:4022/udp/239.239.4.66:1234
-
-#EXTINF:0,TVP Rzeszow
-http://194.116.252.129:4022/udp/239.239.4.81:1234
-
-#EXTINF:0,TVP Szczecin
-http://194.116.252.129:4022/udp/239.239.4.80:1234
-
-#EXTINF:0,TVP Warszava
-http://194.116.252.129:4022/udp/239.239.4.85:1234
-
-#EXTINF:0,TVR
-http://194.116.252.129:4022/udp/239.239.2.148:1234
-
-#EXTINF:0,TVS
-http://194.116.252.129:4022/udp/239.239.2.74:1234
-
-#EXTINF:0,TVT
-http://194.116.252.129:4022/udp/239.239.2.122:1234
-
-#EXTINF:0,Twoja TV
-http://194.116.252.129:4022/udp/239.239.4.100:1234
-
-#EXTINF:0,Viasat History
-http://194.116.252.129:4022/udp/239.239.2.138:1234
-
-#EXTINF:0,Viasat Nature
-http://194.116.252.129:4022/udp/239.239.2.140:1234
-
-
-
-
-
-

@@ -120,7 +120,7 @@ http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video
 #EXTINF:0,Nasha TV
 http://fms.zulu.mk:1935/zulu/nashatv_1/playlist.m3u8
 
-#EXTINF:0,O2 Ohrid
+#EXTINF:0,Ohrid 02
 http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/o2-tv-ohrid/chunklist.m3u8
 
 #EXTINF:0,OBN 
