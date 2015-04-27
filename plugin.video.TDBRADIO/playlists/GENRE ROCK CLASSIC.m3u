@@ -1,0 +1,50 @@
+﻿#EXTM3U
+#EXTINF:0,
+
+#EXTINF:0,181.FM 
+http://mp3uplink.duplexfx.com:8014
+
+#EXTINF:0,4U Classic Rock (France) 
+http://str4uice.streamakaci.com/4uclassicrock.mp3
+
+#EXTINF:0,Arrow Rock 
+http://www.garnierstreamingmedia.com/asx/streamerswitch.asp?stream=205
+
+#EXTINF:0,Big Feat Radio 
+http://184.154.90.186:8235/
+
+#EXTINF:0,Big R Radio 80s (US) 
+http://107.155.111.234:8310/
+
+#EXTINF:0,Big R Radio Grunge (US) 
+http://107.155.111.170:8250/
+
+#EXTINF:0,Classic Rock Stop (US) 
+http://los.abovecast.com/crs128k
+
+#EXTINF:0,Famas Radio (US) 
+http://162.251.160.2/famasradiohigh
+
+#EXTINF:0,GotRadio Classic Rock (US) 
+http://173.244.215.163:8400/
+
+#EXTINF:0,HDR Big 80s (US) 
+http://djc.kicks-ass.net/big80smetalhigh
+
+#EXTINF:0,Nova Classic Rock (Netherlands) 
+http://208.43.9.96:8288/
+
+#EXTINF:0,Paradise Classic Rock 
+http://stream-uk1.radioparadise.com:80/mp3-128
+
+#EXTINF:0,Radio Tunes 80s Rock Hits (US) 
+http://pub6.radiotunes.com/radiotunes_80srock
+
+#EXTINF:0,Rockin 80's 
+http://173.244.215.163:8420
+
+#EXTINF:0,Stellar Attraction (UK) 
+http://77.68.36.137:8000/stream
+
+#EXTINF:0,Zenith Classic Rock (Ireland) 
+http://184.105.134.25:8006/

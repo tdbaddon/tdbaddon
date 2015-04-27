@@ -1,17 +1,10 @@
 ﻿#EXTM3U
 
-
-#EXTINF:0,BABESTATION 
-http://46.105.116.159:1935/cellcast/encoder22/.m3u8
-
 #EXTINF:0,BABESTATION 
 http://sdn-global-live-http-cache.3qsdn.com/2346/_definst_///mp4:Ct6zG7Nrj3v2JxD/manifest.m3u8
 
 #EXTINF:0,BABESTATION 
-http://publish.thewebstream.co:1935/cellcast/encoder71/playlist.m3u8
-
-#EXTINF:0,BABESTATION 
-http://178.33.126.213:1935/cellcast/encoder32/.m3u8
+http://46.105.116.159:1935/cellcast/encoder22/.m3u8
 
 #EXTINF:0,BOLLY2BOX 
 http://46.249.213.93/iPhone/broadcast/bollywoodbikini-iphone.3gp.m3u8
@@ -32,7 +25,7 @@ http://46.249.213.93/iPhone/broadcast/hotshots-tablet.3gp.m3u8
 rtmp://109.71.162.112:1935/live/sd.jasminchannel.stream
 
 #EXTINF:0,MIAMI TV 
-http://miamitvchannel.com/miamitv.asx
+
 
 #EXTINF:0,PLAYBOY TV CHAT 
 http://playback.d2see.com:1935/wavemachine-live01/_definst_/mp4:playboytv_channel1/playlist.m3u8
@@ -44,7 +37,7 @@ http://playback.d2see.com:1935/wavemachine-live01/_definst_/mp4:playboytv_channe
 http://playback.d2see.com:1935/wavemachine-live01/_definst_/mp4:playboytv_channel3/playlist.m3u8
 
 #EXTINF:0,REDLIGHT CENTRAL 
-http://46.249.213.87/iPhone/HLS_TS/broadcast/red_light_central_1-iphone.3gp.m3u8
+
 
 #EXTINF:0,SEXYSAT 
 rtmp://81.89.48.215/xyz999wkz/sexysat.stream_360p

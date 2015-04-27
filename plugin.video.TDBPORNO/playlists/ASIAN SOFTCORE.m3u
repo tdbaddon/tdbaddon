@@ -1,12 +1,6 @@
 ﻿#EXTM3U
 
 
-#EXTINF:0,ASK TV
-rtmp://edge2.everyon.tv/etv2/phd1005
-
-#EXTINF:0,ASK TV
-rtmp://edge2.everyon.tv/etv2/pld1005
-
 #EXTINF:0,ASIA 8081
 http://59.120.43.181:8081
 
@@ -19,11 +13,11 @@ http://59.120.43.181:8083
 #EXTINF:0,ASIA 8084
 http://59.120.43.181:8084
 
-#EXTINF:0,BEST PUBLIC
-rtmp://edge2.everyon.tv/etv2sb/phd991
+#EXTINF:0,ASK TV
+rtmp://edge2.everyon.tv/etv2/phd1005
 
-#EXTINF:0,BEST PUBLIC
-rtmp://edge2.everyon.tv/etv2sb/pld991
+#EXTINF:0,ASK TV
+rtmp://edge2.everyon.tv/etv2/pld1005
 
 #EXTINF:0,DELIGHT EMPIRE
 rtmp://edge2.everyon.tv/etv2sb/phd63
@@ -32,19 +26,34 @@ rtmp://edge2.everyon.tv/etv2sb/phd63
 rtmp://edge2.everyon.tv/etv2sb/pld63
 
 #EXTINF:0,FETISH WOMEN
+rtmp://edge2.everyon.tv/etv2sb/pld968
+
+#EXTINF:0,FETISH WOMEN
+rtmp://edge2.everyon.tv/etv2sb/phd968
+
+#EXTINF:0,FETISH WOMEN
+rtmp://edge2.everyon.tv/etv2sb/phd991
+
+#EXTINF:0,FETISH WOMEN
+rtmp://edge2.everyon.tv/etv2sb/pld991
+
+#EXTINF:0,FETISH WOMEN
 rtmp://edge2.everyon.tv/etv2sb/phd992
 
 #EXTINF:0,FETISH WOMEN
 rtmp://edge2.everyon.tv/etv2sb/pld992
+
+#EXTINF:0,FETISH WOMEN
+rtmp://149.3.141.210:1935/tv/ttv11
+
+#EXTINF:0,FETISH WOMEN
+rtmp://149.3.141.210:1935/tv/ttv12
 
 #EXTINF:0,GIRL TV
 rtmp://edge2.everyon.tv/etv2sb/phd501
 
 #EXTINF:0,GIRL TV
 rtmp://edge2.everyon.tv/etv2sb/pld501
-
-#EXTINF:0,HONEY TV
-928
 
 #EXTINF:0,J HOT GIRL
 rtmp://edge2.everyon.tv/etv2sb/phd59
@@ -64,9 +73,6 @@ rtmp://edge2.everyon.tv/etv2/phd1006
 #EXTINF:0,LIVETING TV 
 rtmp://edge2.everyon.tv/etv2/pld1006
 
-#EXTINF:0,MIDNIGHT
-766
-
 #EXTINF:0,OHDEOK 942
 rtmp://edge2.everyon.tv/etv2sb/phd993
 
@@ -79,17 +85,11 @@ rtmp://edge2.everyon.tv/etv2/phd1008
 #EXTINF:0,PARADISE
 rtmp://edge2.everyon.tv/etv2/pld1008
 
-#EXTINF:0,PENTHOUSE
-927
-
 #EXTINF:0,PINK
 rtmp://edge2.everyon.tv/etv2sb/phd62
 
 #EXTINF:0,PINK
 rtmp://edge2.everyon.tv/etv2sb/pld62
-
-#EXTINF:0,PLAYBOY TV
-497
 
 #EXTINF:0,PLAYY
 rtmp://edge2.everyon.tv/etv2sb/phd769
@@ -115,8 +115,6 @@ rtmp://edge2.everyon.tv/etv2sb/phd771
 #EXTINF:0,THE O
 rtmp://edge2.everyon.tv/etv2sb/pld771
 
-#EXTINF:0,VIKI
-765
 
 
 

@@ -2,10 +2,10 @@
 
 
 #EXTINF:0,BELLA CLUB 
-rtsp://46.249.213.87/broadcast/bellaluz-tablet.3gp
+http://46.249.213.93/iPhone/broadcast/bellaclub-tablet.3gp/bellaclub-tablet.3gp-mr648k.m3u8
 
 #EXTINF:0,BELLA CLUB 
-http://46.249.213.93/iPhone/broadcast/bellaclub-tablet.3gp/bellaclub-tablet.3gp-mr648k.m3u8
+rtsp://46.249.213.87/broadcast/bellaluz-tablet.3gp
 
 #EXTINF:0,BITCH FLICKS 
 rtmp://edge2.everyon.tv/etv2sb/phd511
@@ -35,16 +35,13 @@ rtmp://edge2.everyon.tv/etv2sb/pld499
 http://46.61.226.21/hls/CH_PLAYBOY/variant.m3u8?version=2
 
 #EXTINF:-0,PLAYBOY TV 
-http://185.27.237.105:8082/TV0076
-
-#EXTINF:-0,PLAYBOY TV 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_PLAYBOY/variant.m3u8
 
 #EXTINF:0,RUSSIAN NIGHT 
-http://185.38.12.20:8088/rusnoch/
+http://hlsstr02.svc.iptv.rt.ru/hls/CH_RUSSIANNIGHT/variant.m3u8?version=2
 
 #EXTINF:0,RUSSIAN NIGHT 
-http://hlsstr02.svc.iptv.rt.ru/hls/CH_RUSSIANNIGHT/variant.m3u8?version=2
+http://185.38.12.20:8088/rusnoch/
 
 #EXTINF:0,SEX ED 
 
