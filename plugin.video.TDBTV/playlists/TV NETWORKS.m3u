@@ -10,6 +10,9 @@ http://sjc-uhls-vip01.ustream.tv/watch/playlist.m3u8?cid=12762028
 #EXTINF:0,A&E 
 http://noscdn1.connectedviews.com:1935/live/sporttv3hd.stream/livestream.m3u8
 
+#EXTINF:0,A&E 
+rtmpe://rtmp.zerocast.tv/goLive/kbMD64czDshAmjDd4kxQ swfurl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf pageUrl=http://zerocast.tv/embed.php?a=511 token=OOG17t.x#K9Vh#|
+
 #EXTINF:0,ABC 
 rtmpe://192.99.39.27:1935/goLive/rGCi7bg0Qxvs8q7Sl13l swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf pageUrl=http://zerocast.tv/embed.php live=1 token=OOG17t.x#K9Vh#|
 
@@ -182,7 +185,7 @@ rtmp://rtmp.zerocast.tv/goLive/ playpath=9pxGCtP3aEnJYgoBFFH8 swfUrl=http://p.jw
 
 
 #EXTINF:0,Fox 45 
-http://50.7.69.186:1935/edge/_definst_/q49uyvij145wcky/playlist.m3u8?wowzasessionid=1419873438
+
 
 #EXTINF:0,Fox 47
 
@@ -256,10 +259,10 @@ http://78.129.175.72/live/itv2/itv2.m3u8
 #EXTINF:0,ITV 3
 http://llnw.live.simplestream.com/coder12/coder.channels.channel10/hls/3/playlist.m3u8
 
-#EXTINF:0,ITV 4
+#EXTINF:0,ITV 4 
 http://llnw.live.simplestream.com/coder12/coder.channels.channel12/hls/3/playlist.m3u8
 
-#EXTINF:0,ITV 4
+#EXTINF:0,ITV 4 
 http://78.129.175.72/live/itv4/itv4.m3u8
 
 #EXTINF:0,ITV Choice
@@ -277,6 +280,9 @@ rtmp://jtvmedia.jtv.com:1975/live playpath=live6 swfUrl=http://demandware.edgesu
 #EXTINF:0,London Live 
 http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
 
+#EXTINF:0,Looney Tunes
+rtmpe://167.114.157.191:1935/goLive/fo2FgVN6vw1izsjm5CqJ swfUrl=http://cdn.zerocast.tv/player/aaaaa.swf pageUrl=http://zerocast.in/embed.php?a=1 token=OOG17t.x#K9Vh#|
+
 #EXTINF:0,More4 
 http://llnw.live.simplestream.com/coder8/coder.channels.channel2/hls/3/playlist.m3u8
 
@@ -292,8 +298,6 @@ http://llnw.live.simplestream.com/coder1/coder.channels.channel11/hls/3/playlist
 #EXTINF:0,NHK World 
 http://nhkworld-hds-live1.hds1.fmslive.stream.ne.jp/hls-live/nhkworld-hds-live1/_definst_/livestream/nhkworld-live-512.m3u8 
 
-#EXTINF:0,NHK World 
-http://103.242.13.67:5000/nn_live.ts?id=nhkworldhd-m-h
 
 #EXTINF:0,Nick 
 
@@ -344,7 +348,7 @@ http://200.76.77.237/LIVE/H01/CANAL203/PROFILE05.m3u8?
 http://200.76.77.237/LIVE/H01/CANAL203/PROFILE03.m3u8?
 
 #EXTINF:0,Spike TV 
-http://50.7.69.186:1935/edge/_definst_/sax2mq2alpirnww/playlist.m3u8?wowzasessionid=1419878529
+
 
 #EXTINF:0,Star World 
 
@@ -356,7 +360,7 @@ http://50.7.69.186:1935/edge/_definst_/sax2mq2alpirnww/playlist.m3u8?wowzasessio
 http://194.116.252.129:4022/udp/239.239.2.167:1234
 
 #EXTINF:0,Syfy 
-
+rtmpe://rtmp.zerocast.tv/redirect/tPjsURqsVo4NSe23EhJP swfUrl=http://cdn.zerocast.tv/player/jwplayer.flash.swf pageUrl=http://zerocast.in/embed.php?a=16 token=OOG17t.x#K9Vh#|
 
 #EXTINF:0,TBS 
 rtmp://rtmp.zerocast.tv/goLive/RhMi9RdAAt7fpq8H3qZh swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 pageUrl=http://zerocast.tv/embed token=OOG17t.x#K9Vh#|
@@ -434,13 +438,13 @@ http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
 http://200.76.77.237/LIVE/H01/CANAL387/PROFILE03.m3u8?
 
 #EXTINF:0,World Fashion TV
-http://103.242.13.67:5000/nn_live.ts?id=worldfashion-m-h
+
 
 #EXTINF:0,WPIX 11
 rtmp://rtmp.zerocast.tv/goLive/ playpath=IWSyIjvWgHRCMM7MEJoZ swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 pageUrl=http://zerocast.tv/embed.php?a token=OOG17t.x#K9Vh#|
 
 #EXTINF:0,Yes!
-http://uneapple-i.akamaihd.net/hls/live/205010/grupoune_st1@205010/st1_index.m3u8
+
 
 
 

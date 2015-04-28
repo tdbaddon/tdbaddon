@@ -40,17 +40,14 @@ rtmp://a.cdn.newschat.tv/edge playpath=cbc_live swfUrl=http://msnbclive.eu/playe
 #EXTINF:0,CCTV News 
 http://origin2.live.web.tv.streamprovider.net/streams/877ba7a57aa68fd898b838f58d51a69f/index.m3u8
 
-#EXTINF:0,CNBC
+#EXTINF:0,CNBC 
 http://origin2.live.web.tv.streamprovider.net/streams/3bc166ba3776c04e987eb242710e75c0/index.m3u8
 
-#EXTINF:0,CNBC
+#EXTINF:0,CNBC 
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/cnbc_eu/ls_satlink/b_,264,528,828,.m3u8
 
 #EXTINF:0,CNN 
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/cnn/ls_satlink/b_,264,528,828,.m3u8
-
-#EXTINF:0,CNN 
-http://128.105.21.253:8080/udp/239.1.1.78:3078
 
 #EXTINF:0,CNN 
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/cnn/ls_satlink/b_828.m3u8?Vd?u#bt!25
@@ -74,7 +71,7 @@ http://bcliveuniv-lh.akamaihd.net/i/cpac1eng2014_01@119330/index_2000_av-p.m3u8
 http://bcliveuniv-lh.akamaihd.net/i/cpac1flr2014_01@51230/index_2000_av-p.m3u8
 
 #EXTINF:0,CSPAN
-http://128.105.21.253:8080/udp/239.1.1.94:3094
+
 
 #EXTINF:0,CTV News 
 http://ams-lp2.9c9media.com/hls-live/livepkgr/_definst_/liveeventNoDRM/ctvnewsOpen8.m3u8
@@ -107,7 +104,7 @@ http://hlsstr02.svc.iptv.rt.ru/hls/CH_FRANCE24/variant.m3u8?b?b*t$
 http://llnw.live.simplestream.com/coder7/coder.channels.channel14/hls/3/playlist.m3u8
 
 #EXTINF:0,HLN
-http://128.105.21.253:8080/udp/239.1.1.80:3080
+rtmp://a.cdn.newschat.tv/edge playpath=hln_live swfUrl=http://msnbclive.eu/player.swf live=1 pageUrl=http://www.livenewschat.eu/twoons/
 
 #EXTINF:0,i24 News 
 http://bcoveliveios-i.akamaihd.net/hls/live/215102/master_english/398/master.m3u8?b?b*t$
@@ -122,10 +119,10 @@ http://cdn.rbm.tv:1935/rightbrainmedia-originpull-2/_definst_/infowars/playlist.
 rtmp://cdn.rbm.tv:1935/rightbrainmedia-originpull-2/_definst_/247daily2
 
 #EXTINF:0,MSNBC 
-rtmp://d.cdn.newschat.tv/edge playpath=msnbc_live swfUrl=http://msnbclive.eu/player.swf live=1 pageUrl=http://www.livenewschat.eu/politics/
+http://50.7.69.186:1935/edge/_definst_/1341ujtliqndod8/playlist.m3u8?wowzasessionid=1419874712
 
 #EXTINF:0,MSNBC 
-http://50.7.69.186:1935/edge/_definst_/1341ujtliqndod8/playlist.m3u8?wowzasessionid=1419874712
+rtmp://d.cdn.newschat.tv/edge playpath=msnbc_live swfUrl=http://msnbclive.eu/player.swf live=1 pageUrl=http://www.livenewschat.eu/politics/
 
 #EXTINF:0,NBC News
 
@@ -134,10 +131,10 @@ http://50.7.69.186:1935/edge/_definst_/1341ujtliqndod8/playlist.m3u8?wowzasessio
 
 
 #EXTINF:0,NHK World 
-http://plslive-w.nhk.or.jp/nhkworld/app/live.m3u8
+http://llnw.live.simplestream.com/coder1/coder.channels.channel11/hls/3/playlist.m3u8
 
-#EXTINF:0,Press TV 
-http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/presstv/ls_fiber/b_,828,528,264,.m3u8
+#EXTINF:0,NHK World 
+http://nhkworld-hds-live1.hds1.fmslive.stream.ne.jp/hls-live/nhkworld-hds-live1/_definst_/livestream/nhkworld-live-512.m3u8 
 
 #EXTINF:0,Press TV 
 rtmp://mtv.fms-01.visionip.tv/live/mtv-ptv-live-25f-16x9-SDh
@@ -158,10 +155,10 @@ http://wpc.C1A9.edgecastcdn.net/hls-live/20C1A9/skynews/ls_satlink/b_,264,528,82
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/skynews/ls_satlink/b_828.m3u8
 
 #EXTINF:0,The Weather Channel
-http://128.105.21.253:8080/udp/239.1.1.82:3082
+
 
 #EXTINF:0,Weather Nation
-http://kalsegsec-a.akamaihd.net:80/dc-0/m/pa-live-publish3/kLive/smil:1_oorxcge2_all.smil/chunklist_b2096000.m3u8
+
 
 #EXTINF:0,Weather Network
 

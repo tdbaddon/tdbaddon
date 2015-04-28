@@ -17,9 +17,6 @@ http://204.107.26.252:1935/live/691.high.stream/HasBahCa.m3u8
 http://46.249.213.87/iPhone/broadcast/clubbingtv-tablet.3gp/clubbingtv-tablet.3gp-mr648k.m3u8
 
 #EXTINF:0,Clubland TV 
-http://rrr.sz.xlcdn.com/?account=AATW&file=clublandtv&type=live&service=wowza&protocol=http&output=playlist.m3u8
-
-#EXTINF:0,Clubland TV 
 http://llnw.live.simplestream.com/coder2/coder.channels.channel11/hls/3/playlist.m3u8
 
 #EXTINF:0,Djing Hot Tracks
@@ -50,7 +47,7 @@ http://46.249.213.87/iPhone/broadcast/ibizaontv-tablet.3gp/ibizaontv-tablet.3gp-
 http://149.11.34.78:1935/live/jazztv.stream/hasbahca.m3u8
 
 #EXTINF:0,M6 Music
-http://sslhls.m6tv.cdn.sfr.net/hls-live/livepkgr/_definst_/m6_music_hits_hls_aes/m6_music_hits_hls_aes_856.m3u8
+
 
 #EXTINF:0,MTV 
 rtmp://83.218.202.202/live swfUrl=http://webtv.md/swf/WebTV.swf playpath=wt_mtv.stream
@@ -83,7 +80,7 @@ http://200.76.77.237/LIVE/H01/CANAL701/PROFILE05.m3u8?
 http://200.76.77.237/LIVE/H01/CANAL701/PROFILE03.m3u8?
 
 #EXTINF:0,MTV Music 
-http://93.184.221.133/00573D/1345/1345-0.m3u8
+
 
 #EXTINF:0,MTV Rocks 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVROCKS/variant.m3u8
@@ -101,16 +98,16 @@ rtmp://fms.105.net/live/rmc1
 http://mediatv2.topix.it/24RockOne66
 
 #EXTINF:0,Scuzz
-http://212.70.155.243:40665/udp/237.100.0.175:4000
+
 
 #EXTINF:0,Stage TV
 rtmp://149.11.34.6/live/stagetv.stream
 
 #EXTINF:0,Starz
-http://212.70.155.243:40665/udp/237.100.0.180:4000
+
 
 #EXTINF:0,The Vault
-http://212.70.155.243:40665/udp/237.100.0.184:4000
+
 
 #EXTINF:0,Vevo Hits 
 http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch2/06/prog_index.m3u8
@@ -129,9 +126,6 @@ http://200.76.77.237/LIVE/H01/CANAL703/PROFILE03.m3u8?
 
 #EXTINF:0,VH1 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_VH1EUROPEAN/variant.m3u8
-
-#EXTINF:0,VH1 Classics 
-http://85.255.183.212:1234/udp/239.0.0.17:1234
 
 #EXTINF:0,VH1 Classics 
 http://200.76.77.237/LIVE/H01/CANAL728/PROFILE05.m3u8?
