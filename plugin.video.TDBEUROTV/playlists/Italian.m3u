@@ -29,9 +29,6 @@ rtmp://live.streamcaster.net:1935/live playpath=fanotv swfUrl=http://fanotvlive.
 #EXTINF:0,History Lab
 rtmp://wma10.fluidstream.net/HistoryLab playpath=livestream swfUrl=http://www.radioetv.it/modules/mod_hllive/jw/player58l.swf pageUrl=http://www.radioetv.it/history-lab live=1 timeout=10
 
-#EXTINF:0,Iper TV
-
-
 #EXTINF:0,Jo TV
 rtmp://wms.shared.streamshow.it:80/jotv playpath=jotv swfUrl=http://player.streamshow.it/flowplayer/flowplayer.commercial-3.2.18.swf pageUrl=http://player.streamshow.it/embed/jotv.php?height=170&width=300 live=1 timeout=10
 
@@ -56,9 +53,6 @@ rtmp://ondemand.superstreaming.it/piublu playpath=piublu.sdp
 #EXTINF:0,Quartarete 4
 rtmp://wowza1.top-ix.org/quartaretetv/ playpath=quartareteweb
 
-#EXTINF:0,Radio Bruno TV
-
-
 #EXTINF:0,Rai Gulp
 http://212.162.68.163/Rai_Gulp
 
@@ -77,15 +71,6 @@ http://212.162.68.163/Rai_yoyo
 #EXTINF:0,Rete 55
 rtmp://rete55.stream.internetone.it/streaming playpath=rete55.stream swfUrl=http://webtv.rete55news.tv/swf/player-5_8.swf pageUrl=http://webtv.rete55news.tv/
 
-#EXTINF:0,Retesole
-
-
-#EXTINF:0,Rete Veneta
-
-
-#EXTINF:0,San Marino TV
-rtmp://194.116.72.51/webtv_live4 playpath=0QBXFQ2L0I5P swfUrl=http://stream.senape.tv/scripts/player.swf pageUrl=http://www.smtvsanmarino.sm/programmi/web-tv live=1 timeout=10
-
 #EXTINF:0,Sardegnauno 
 rtmp://94.32.101.17/sardegna1 playpath=live1.stream swfUrl=http://www.sardegna1.tv/flowplayer-3.2.5.swf pageUrl=http://www.sardegna1.tv/page.php?id_page=146 live=1
 
@@ -94,12 +79,6 @@ rtmp://213.205.30.50/sardegna1 playpath=live1.stream
 
 #EXTINF:0,Sky TG24
 rtmp://cp49989.live.edgefcs.net:1935/live playpath=streamRM1@2564 swfUrl=http://videoplatform.sky.it/player/swf/player_v2.swf pageUrl=http://video.sky.it/news/diretta live=1 timeout=10
-
-#EXTINF:0,Studio 100
-
-
-#EXTINF:0,Super TV
-rtmp://fms.shared.streamshow.it:1935/supertv/supertv
 
 #EXTINF:0,Tele Arena
 rtmp://wma07.fluidstream.net/TeleArena playpath=livestream swfUrl=http://media.larena.it/media/3rdparty/jwplayer/mediaplayer-5.10-licensed/player.swf pageUrl=http://tv-online.in/tele-arena-verona-live live=1 timeout=10
@@ -134,9 +113,6 @@ rtmp://wms.shared.streamshow.it:80/telepavia playpath=telepavia swfUrl=http://pl
 #EXTINF:0,Tele Pavia 
 http://fms.shared.streamshow.it:1935/telepavia/telepavia/hasbahca.m3u8
 
-#EXTINF:0,Tele Sicilia
-rtmp://vs2.streamcaster.net:1935/cts_live playpath=telesicilia swfUrl=http://www.ctstv.it/flowplayer/flowplayer-3.2.16.swf pageUrl=http://www.ctstv.it/ live=1 timeout=10
-
 #EXTINF:0,Tele Sondrio
 http://wms.shared.streamshow.it/tsn/tsn_mobile/playlist.m3u8
 
@@ -161,9 +137,6 @@ http://streaming1.bsnewline.com:80/telelibertalive
 #EXTINF:0,Teleunica
 rtmp://flash3.ipercast.net/teleunica.tv-live/livestream1
 
-#EXTINF:0,Telepace
-
-
 #EXTINF:0,Tilesport TV
 rtmp://78.47.151.114/tilesport playpath=movie1 swfUrl=http://www.tilesport.tv/jwplayer/player.swf live=1 pageUrl=http://www.tilesport.tv/index_live.php
 
@@ -175,12 +148,6 @@ http://flash.streamingmedia.it:1935/TRM/livestream/hasbahca.m3u8
 
 #EXTINF:0,TRM TV
 rtmp://flash.streamingmedia.it/TRM playpath=livestream swfUrl=http://flash.streamingmedia.it:8000/player/player.swf live=1 pageUrl=http://www.trmtv.it/home/
-
-#EXTINF:0,TV 2000
-
-
-#EXTINF:0,TV7
-
 
 #EXTINF:0,TV Uno
 http://ftp.tiscali.it/francescovernata/TVUNO/monoscopioTvUNOint-1.wmv

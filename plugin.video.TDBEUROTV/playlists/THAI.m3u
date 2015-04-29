@@ -6,7 +6,7 @@
 rtmp://stream.13livetv.com:1935/rtplive/_definst_/13livetv
 
 #EXTINF:0,An Giang TV
-rtmp://113.161.212.25/live//atv1
+
 
 #EXTINF:0,Amarin Activ TV
 http://s2.live14.com/stream/5195e80fe1ed0/playlist.m3u8
@@ -21,7 +21,7 @@ http://210.1.60.208:1935/live/bang.sdp/chunklist.m3u8
 http://live.khmer.be:1935/live/BayonNews/hasbahca.m3u8
 
 #EXTINF:0,Block A
-http://live2.netdesignhost.com/blockatvlive/blockatvlive/playlist.m3u8
+
 
 #EXTINF:0,CAT Channel
 rtmp://61.19.18.238/live/web1stream
@@ -36,7 +36,7 @@ http://111.223.37.198:1935/liveedge/thaitv3/playlist.m3u8
 http://203.151.133.100:1935/live/ch5_1/playlist.m3u8
 
 #EXTINF:0,Channel 7
-http://mlivestream03.truelife.com:1935/live/smil:partner_ch7_smil.smil/playlist.m3u8?transactionid=201504231400331273554551&param1=7016303fff6f087835af0a8be25b40d66fc3beb2&token=GHF6HEaR3BeGZ-jQqSyneiop4ahamaglWiQOwITWwOOXdOWt9BnvVpQ3LCbUsZtx&project=af&device=&sso_id=guest&client_ip=&product_id=3073973&ref=af&title=
+
 
 #EXTINF:0,Channel 8 
 rtmp://202.142.207.150/live/liveinfinity1

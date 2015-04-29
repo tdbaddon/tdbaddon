@@ -3,17 +3,23 @@
 #EXTINF:0,Alfa TV
 rtsp://streamer1.streamhost.org:1935/salive/GMIalfah
 
-#EXTINF:0,Antena 3
-
-
 #EXTINF:0,Aragon TV 
 http://149.11.34.6:1935/live/aragontv.stream/vcx7.m3u8
 
 #EXTINF:0,Az Corazon
 http://200.76.77.237/LIVE/H01/CANAL45/PROFILE03.m3u8?
 
-#EXTINF:0,AZ Noticias
+#EXTINF:0,Az Corazon
+http://200.76.77.237/LIVE/H01/CANAL45/PROFILE05.m3u8?
 
+#EXTINF:0,Azteca Noticias
+http://200.76.77.237/LIVE/H01/CANAL2/PROFILE03.m3u8? 
+
+#EXTINF:0,Azteca Noticias
+http://200.76.77.237/LIVE/H01/CANAL2/PROFILE05.m3u8? 
+
+#EXTINF:0,Azteca Siete
+http://200.76.77.237/LIVE/H01/CANAL7/PROFILE03.m3u8?
 
 #EXTINF:0,Azteca Siete
 http://200.76.77.237/LIVE/H01/CANAL7/PROFILE05.m3u8?
@@ -21,44 +27,50 @@ http://200.76.77.237/LIVE/H01/CANAL7/PROFILE05.m3u8?
 #EXTINF:0,Azteca Siete
 http://200.76.77.237/LIVE/H01/CANAL107/PROFILE03.m3u8?
 
-#EXTINF:0,Azteca Treece
-
+#EXTINF:0,Azteca Siete
+http://200.76.77.237/LIVE/H01/CANAL107/PROFILE05.m3u8?
 
 #EXTINF:0,Bandamax
 http://200.76.77.237/LIVE/H01/CANAL732/PROFILE03.m3u8?
 
-#EXTINF:0,Cable Noticias
-http://uneapple-i.akamaihd.net/hls/live/205016/grupoune_st7@205016/st7_index.m3u8
+#EXTINF:0,Bandamax
+http://200.76.77.237/LIVE/H01/CANAL732/PROFILE05.m3u8?
+
+#EXTINF:0,Cadena 3
+http://200.76.77.237/LIVE/H01/CANAL143/PROFILE03.m3u8?
 
 #EXTINF:0,Cadena 3
 http://200.76.77.237/LIVE/H01/CANAL143/PROFILE05.m3u8?
 
 #EXTINF:0,Canal 2
+http://200.76.77.237/LIVE/H01/CANAL102/PROFILE03.m3u8?
+
+#EXTINF:0,Canal 2
 http://200.76.77.237/LIVE/H01/CANAL102/PROFILE05.m3u8?
 
 #EXTINF:0,Canal 5 
-http://200.76.77.237/LIVE/H01/CANAL105/PROFILE05.m3u8?
-
-#EXTINF:0,Canal 28
-http://200.76.77.237/LIVE/H01/CANAL143/PROFILE03.m3u8?
+http://200.76.77.237/LIVE/H01/CANAL105/PROFILE03.m3u8?
 
 #EXTINF:0,Canal 5
-http://200.76.77.237/LIVE/H01/CANAL105/PROFILE03.m3u8?
+http://200.76.77.237/LIVE/H01/CANAL105/PROFILE05.m3u8?
 
 #EXTINF:0,Canal 7
 http://200.76.77.237/LIVE/H01/CANAL7/PROFILE03.m3u8?
 
-#EXTINF:0,Canal Antiestres
-http://uneapple-i.akamaihd.net/hls/live/206413/grupoune_st12@206413/st12_index.m3u8
+#EXTINF:0,Canal 7
+http://200.76.77.237/LIVE/H01/CANAL7/PROFILE05.m3u8?
 
-#EXTINF:0,Canal Once
+#EXTINF:0,Canal 28
+http://200.76.77.237/LIVE/H01/CANAL143/PROFILE03.m3u8?
 
-
-#EXTINF:0,Canal U
-http://uneapple-i.akamaihd.net/hls/live/206416/grupoune_st15@206416/st15_index.m3u8
+#EXTINF:0,Canal 28
+http://200.76.77.237/LIVE/H01/CANAL143/PROFILE05.m3u8?
 
 #EXTINF:0,Casa
 http://200.76.77.237/LIVE/H01/CANAL274/PROFILE03.m3u8?
+
+#EXTINF:0,Casa
+http://200.76.77.237/LIVE/H01/CANAL274/PROFILE05.m3u8?
 
 #EXTINF:0,CDN 37
 http://108.168.206.90:1935/cdn/cdn/playlist.m3u8
@@ -66,32 +78,47 @@ http://108.168.206.90:1935/cdn/cdn/playlist.m3u8
 #EXTINF:0,Cine Canal
 http://200.76.77.237/LIVE/H01/CANAL480/PROFILE03.m3u8?
 
+#EXTINF:0,Cine Canal
+http://200.76.77.237/LIVE/H01/CANAL480/PROFILE05.m3u8?
+
 #EXTINF:0,Cine Canal+
 http://200.76.77.237/LIVE/H01/CANAL430/PROFILE03.m3u8?
 
-#EXTINF:0,Cine Chileno
-rtmp://149.11.34.6/live/sesioncontinuatv.stream
-
-#EXTINF:0,Cosmovision
-http://uneapple-i.akamaihd.net/hls/live/206415/grupoune_st14@206415/st14_index.m3u8
+#EXTINF:0,Cine Canal+
+http://200.76.77.237/LIVE/H01/CANAL430/PROFILE05.m3u8?
 
 #EXTINF:0,De Pelicula
 http://200.76.77.237/LIVE/H01/CANAL442/PROFILE03.m3u8?
 
+#EXTINF:0,De Pelicula
+http://200.76.77.237/LIVE/H01/CANAL442/PROFILE05.m3u8?
+
 #EXTINF:0,Distrito Comedia
 http://200.76.77.237/LIVE/H01/CANAL272/PROFILE03.m3u8?
 
-#EXTINF:0,El Correo TV
-http://cls.elitehd-audiovisuales.com/luztv/livestream/playlist.m3u8
+#EXTINF:0,Distrito Comedia
+http://200.76.77.237/LIVE/H01/CANAL272/PROFILE05.m3u8?
 
 #EXTINF:0,El Trece
 http://200.76.77.237/LIVE/H01/CANAL113/PROFILE03.m3u8?
 
-#EXTINF:0,Europa Press
-rtmp://149.11.34.78/live/newspeopletv.stream
+#EXTINF:0,El Trece
+http://200.76.77.237/LIVE/H01/CANAL113/PROFILE05.m3u8?
+
+#EXTINF:0,El Trece
+http://200.76.77.237/LIVE/H01/CANAL23/PROFILE03.m3u8?
+
+#EXTINF:0,El Trece
+http://200.76.77.237/LIVE/H01/CANAL23/PROFILE05.m3u8?
 
 #EXTINF:0,Foro TV
 http://200.76.77.237/LIVE/H01/CANAL104/PROFILE03.m3u8?
+
+#EXTINF:0,Foro TV
+http://200.76.77.237/LIVE/H01/CANAL104/PROFILE05.m3u8?
+
+#EXTINF:0,Gala TV
+http://200.76.77.237/LIVE/H01/CANAL109/PROFILE03.m3u8?
 
 #EXTINF:0,Gala TV
 http://200.76.77.237/LIVE/H01/CANAL109/PROFILE05.m3u8?
@@ -102,20 +129,29 @@ http://media3.crtvg.es/live/tvga/.m3u8
 #EXTINF:0,Glitz
 http://200.76.77.237/LIVE/H01/CANAL270/PROFILE03.m3u8?
 
+#EXTINF:0,Glitz
+http://200.76.77.237/LIVE/H01/CANAL270/PROFILE05.m3u8?
+
 #EXTINF:0,Golden HD
 http://200.76.77.237/LIVE/H01/CANAL484/PROFILE03.m3u8?
 
 #EXTINF:0,Golden HD
+http://200.76.77.237/LIVE/H01/CANAL484/PROFILE05.m3u8?
+
+#EXTINF:0,Golden HD
 http://200.76.77.237/LIVE/H01/CANAL436/PROFILE03.m3u8?
+
+#EXTINF:0,Golden HD
+http://200.76.77.237/LIVE/H01/CANAL436/PROFILE05.m3u8?
 
 #EXTINF:0,Gourmet
 http://200.76.77.237/LIVE/H01/CANAL268/PROFILE03.m3u8?
 
+#EXTINF:0,Gourmet
+http://200.76.77.237/LIVE/H01/CANAL268/PROFILE05.m3u8?
+
 #EXTINF:0,Guatevision TV
 http://bravo967.sysvirtuales.com/live/stream1.sdp/.m3u8
-
-#EXTINF:0,H13N
-http://uneapple-i.akamaihd.net/hls/live/205013/grupoune_st4@205013/st4_index.m3u8
 
 #EXTINF:0,IB3
 http://ibsatiphone.ib3tv.com/iphoneliveIB3/IB3/IB3.m3u8
@@ -123,8 +159,8 @@ http://ibsatiphone.ib3tv.com/iphoneliveIB3/IB3/IB3.m3u8
 #EXTINF:0,INF
 http://200.76.77.237/LIVE/H01/CANAL266/PROFILE03.m3u8?
 
-#EXTINF:0,La Sexta
-
+#EXTINF:0,INF
+http://200.76.77.237/LIVE/H01/CANAL266/PROFILE05.m3u8?
 
 #EXTINF:0,Levante TV
 rtmp://teledifusion.tv:1935/levantetvlive/levantetvlive
@@ -132,20 +168,35 @@ rtmp://teledifusion.tv:1935/levantetvlive/levantetvlive
 #EXTINF:0,Mas Milenio
 http://200.76.77.237/LIVE/H01/CANAL603/PROFILE03.m3u8?
 
+#EXTINF:0,Mas Milenio
+http://200.76.77.237/LIVE/H01/CANAL603/PROFILE05.m3u8?
+
 #EXTINF:0,Multi Show
 rtmp://31.204.128.74/live/brlive_0031
 
 #EXTINF:0,Multimedios
 http://200.76.77.237/LIVE/H01/CANAL167/PROFILE03.m3u8?
 
-#EXTINF:0,Novedades TV
-http://uneapple-i.akamaihd.net/hls/live/205011/grupoune_st2@205011/st2_index.m3u8
+#EXTINF:0,Multimedios
+http://200.76.77.237/LIVE/H01/CANAL167/PROFILE05.m3u8?
+
+#EXTINF:0,Nazareno TV
+rtmp://87.106.232.7/live/myStream_2
+
+#EXTINF:0,Once TV
+http://200.76.77.237/LIVE/H01/CANAL111/PROFILE03.m3u8?
 
 #EXTINF:0,Once TV
 http://200.76.77.237/LIVE/H01/CANAL111/PROFILE05.m3u8?
 
 #EXTINF:0,Proyecto 40
 http://200.76.77.237/LIVE/H01/CANAL40/PROFILE03.m3u8?
+
+#EXTINF:0,Proyecto 40
+http://200.76.77.237/LIVE/H01/CANAL40/PROFILE05.m3u8?
+
+#EXTINF:0,Ritmoson
+http://200.76.77.237/LIVE/H01/CANAL731/PROFILE03.m3u8?
 
 #EXTINF:0,Ritmoson
 http://200.76.77.237/LIVE/H01/CANAL731/PROFILE05.m3u8?
@@ -156,11 +207,14 @@ mms://87.106.208.121/stv
 #EXTINF:0,Teleformula
 http://200.76.77.237/LIVE/H01/CANAL161/PROFILE03.m3u8?
 
+#EXTINF:0,Teleformula
+http://200.76.77.237/LIVE/H01/CANAL161/PROFILE05.m3u8?
+
 #EXTINF:0,Telehit
 http://200.76.77.237/LIVE/H01/CANAL702/PROFILE03.m3u8?
 
-#EXTINF:0,Telemedellin
-http://uneapple-i.akamaihd.net/hls/live/206414/grupoune_st13@206414/st13_index.m3u8
+#EXTINF:0,Telehit
+http://200.76.77.237/LIVE/H01/CANAL702/PROFILE05.m3u8?
 
 #EXTINF:0,Telemundo
 http://66.55.92.79:1935/app/chivasss69s-channel/.m3u8
@@ -168,39 +222,50 @@ http://66.55.92.79:1935/app/chivasss69s-channel/.m3u8
 #EXTINF:0,Televisa Musica
 http://200.76.77.237/LIVE/H01/CANAL109/PROFILE03.m3u8?
 
-#EXTINF:0,Tele Vid
-http://uneapple-i.akamaihd.net/hls/live/205018/grupoune_st9@205018/st9_index.m3u8
+#EXTINF:0,Televisa Musica
+http://200.76.77.237/LIVE/H01/CANAL109/PROFILE05.m3u8?
 
 #EXTINF:0,TINovelas
 http://200.76.77.237/LIVE/H01/CANAL275/PROFILE03.m3u8?
 
+#EXTINF:0,TINovelas
+http://200.76.77.237/LIVE/H01/CANAL275/PROFILE05.m3u8?
+
 #EXTINF:0,TIIN
 http://200.76.77.237/LIVE/H01/CANAL325/PROFILE03.m3u8?
+
+#EXTINF:0,TIIN
+http://200.76.77.237/LIVE/H01/CANAL325/PROFILE05.m3u8?
 
 #EXTINF:0,TotalPlay
 http://200.76.77.237/LIVE/H01/CANAL1/PROFILE03.m3u8?
 
-#EXTINF:0,Trendy
-http://uneapple-i.akamaihd.net/hls/live/205019/grupoune_st10@205019/st10_index.m3u8
+#EXTINF:0,TotalPlay
+http://200.76.77.237/LIVE/H01/CANAL1/PROFILE05.m3u8?
 
+#EXTINF:0,Travel TV
+rtmp://87.106.219.140/live/myStream_2
 
-#EXTINF:0,TV Agro
-http://uneapple-i.akamaihd.net/hls/live/205015/grupoune_st6@205015/st6_index.m3u8
-
-#EXTINF:0,TV Melilla
-
-
-#EXTINF:0,TV5 Monde
-http://uneapple-i.akamaihd.net/hls/live/206412/grupoune_st11@206412/st11_index.m3u8
+#EXTINF:0,TV Noticias 10
+rtmp://87.106.220.67/live/myStream_2
 
 #EXTINF:0,TVE
 http://200.76.77.237/LIVE/H01/CANAL651/PROFILE03.m3u8?
 
-#EXTINF:0,Une TV
-http://uneapple-i.akamaihd.net/hls/live/205017/grupoune_st8@205017/st8_index.m3u8
+#EXTINF:0,TVE
+http://200.76.77.237/LIVE/H01/CANAL651/PROFILE05.m3u8?
 
 #EXTINF:0,Unicable
 http://200.76.77.237/LIVE/H01/CANAL218/PROFILE03.m3u8?
+
+#EXTINF:0,Unicable
+http://200.76.77.237/LIVE/H01/CANAL218/PROFILE05.m3u8?
+
+
+
+
+
+
 
 
 

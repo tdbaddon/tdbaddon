@@ -29,11 +29,8 @@ rtmp://livestreaming2.itworkscdn.net/sumarialive playpath=live swfUrl=http://www
 #EXTINF:0,Al Yawm
 http://live.paltoday.tv:1935/paltv/live/gmswf.m3u8
 
-#EXTINF:0,Al Badawiyah TV
-http://94.127.209.149:8080/albadawiyah-800-hdsx/playlist.m3u8
+#EXTINF:0,Al Badawiyah TV 
 
-#EXTINF:0,Al Badawiyah TV
-http://94.127.209.149:8080/edhakx/playlist.m3u8?DVR
 
 #EXTINF:0,Al Baghdadia
 http://albaghdadiahls-i.akamaihd.net/hls/live/218980/albaghdadia-ios/01.m3u8
@@ -53,10 +50,10 @@ mms://62.215.216.130/wmtencoder/alrai350.wmv
 #EXTINF:0,Alriadia Sport
 rtmp://162.212.176.107:1935/alriadia_sport/globaltv-alriadia_sport.stream
 
-#EXTINF:0,Art Aflam
+#EXTINF:0,Art Aflam 
 rtmp://162.212.176.107:1935/art_aflam_2/globaltv-art_aflam_2.stream
 
-#EXTINF:0,Art Aflam
+#EXTINF:0,Art Aflam 
 rtmp://162.212.176.107:1935/art_aflam_2?v=a2V5bGl2ZTgzLTQ1LTEwMy0yODIw.MTUtMDEtMjUtMDAtNDUtMTc=/globaltv-art_aflam_2.stream
 
 #EXTINF:0,Baghdad TV
@@ -65,10 +62,10 @@ http://streamer1.hamuraabi.com:1935/baghdad/live/HasBahCa.m3u8
 #EXTINF:0,BBC Arabic
 http://bbcwshdlive01-lh.akamaihd.net/i/atv_1@61433/master.m3u8
 
-#EXTINF:0,Cairo Cinema
+#EXTINF:0,Cairo Cinema 
 rtmp://162.212.176.107/cairo_cinema//globaltv-cairo_cinema.stream
 
-#EXTINF:0,Cairo Cinema
+#EXTINF:0,Cairo Cinema 
 rtmp://162.212.176.107:1935/cairo_cinema/globaltv-cairo_cinema.stream
 
 #EXTINF:0,Cairo Drama
@@ -84,7 +81,7 @@ http://cdnehlsdubaisports3.endavomedia.com/smil:dmilivedubaisports3.smil/HasBahC
 http://cdnedvrdubaitv.endavomedia.com/smil:dmilivedubaitvhls.smil/HasBahCa.m3u8
 
 #EXTINF:0,Edhak TV
-http://94.127.209.149:8080/albadawiyah-800-hdsx/playlist.m3u8
+
 
 #EXTINF:0,France 24
 
@@ -127,9 +124,6 @@ rtmp://edge4.live.irib.ir/etv/ofogh-3
 
 #EXTINF:0,Irinn
 http://63.237.48.3/ios/IRINN/IRINN.m3u8
-
-#EXTINF:0,Irinn
-rtmp://edge3.live.irib.ir/etv/irinn-3
 
 #EXTINF:0,KTV Etraa
 rtmp://91.140.238.7/rtmplive/rtpencoder/ch2.sdp
