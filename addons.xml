@@ -77,7 +77,7 @@
 
 <addon id="plugin.video.TDBSPANISHTV"
        name="TDB SPANISH TV"
-       version="1.08"
+       version="1.09"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
