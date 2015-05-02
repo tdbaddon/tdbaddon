@@ -1,0 +1,37 @@
+﻿#EXTM3U
+
+#EXTINF:0,Stream 1 
+rtmp://178.18.31.52:443/liverepeater playpath=192183 swfUrl=http://bernardotv.club/gofuckyourself.swf live=1 pageUrl=http://biggestplayer.me/streamcr.php?id=191781&width=620&height=490 token=#atd%#$ZH
+
+#EXTINF:0,Stream 2 
+http://87.248.160.8/edge/smil:protv/playlist.m3u8
+
+#EXTINF:0,Stream 3
+rtmpe://46.246.29.154:1935/liveedge playpath=sboxn swfUrl=http://player.hdcast.org/_.swf pageUrl=http://www.hdcast.org/embedlive4.php?u=sboxn&vw=640&vh=400&domain=www.streamhd.eu live=1 token=Fo5_n0w?U.rA6l3-70w47ch
+
+#EXTINF:0,Stream 4
+rtmpe://167.114.157.191:1935/goLive playpath=kbMD64czDshAmjDd4kxQ swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf pageUrl=http://zerocast.tv/embed.php?a=1903&id=&width=700&height=480&autostart=true&strech= token=OOG17t.x#K9Vh#|  live=1
+
+#EXTINF:0,Stream 5
+rtmpe://46.246.29.162:1935/livedge playpath=llive1 swfUrl=http://player.hdcast.org/_.swf pageUrl=http://www.hdcast.org/embedlive4.php?u=llive1&vw=640&vh=400&domain=www.streamhd.eu live=1 token=Fo5_n0w?U.rA6l3-70w47ch
+
+#EXTINF:0,Stream 6
+rtmpe://46.246.124.12:1935/livedge playpath=llive2 swfUrl=http://player.hdcast.org/_.swf pageUrl=http://www.hdcast.org/embedlive4.php?u=llive2&vw=640&vh=400&domain=www.streamhd.eu live=1 token=Fo5_n0w?U.rA6l3-70w47ch
+
+#EXTINF:0,Stream 7
+http://live-edge01.telecentro.net.ar/live/smil:tvp.smil/chunklist_w563752439_b1264000_sleng.m3u8?
+
+#EXTINF:0,Stream 8
+http://edge-51-cl.edge.mdstrm.com/tvn-live/_definst_/smil:7cb6048ff45cb5cdf7f5fed828597fd1/chunklist_b1500000.m3u8?
+
+#EXTINF:0,Stream 9
+http://kanalturk.ercdn.net/er/kanalturk3/chunklist_w612132631.m3u8
+
+#EXTINF:0,Stream 10
+http://tv4p.ru/03t/239.1.29.74.m3u8
+
+#EXTINF:0,Stream 11
+http://62.122.93.134:4022/udp/238.1.2.16:1234
+
+#EXTINF:0,Stream 12
+rtmp://31.204.128.74/live/master27

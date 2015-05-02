@@ -82,6 +82,15 @@ rtmpe://192.99.39.27:1935/goLive/qKmzUdRhBM73njBBDFyL swfurl=http://p.jwpcdn.com
 #EXTINF:0,HBO 
 rtmp://94.102.49.207/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to/player/secure_player_iguide_token.swf live=1 pageUrl=http://www.iguide.to/view/1/watch-live-HBO-channel-for-free token=#ed%h0#w18623jsda6523lDGDVe
 
+#EXTINF:0,HBO 
+rtmp://cdn.cast-tv.us/stream playpath=z00012.stream swfUrl=http://imveoh.info/player/player.swf pageUrl=http://imveoh.info/embed.php?n=z00010 token=#ed%h0#w@1
+
+#EXTINF:0,HBO 
+rtmp://109.200.202.124/live playpath=hbo2 swfUrl=http://www.tv-msn.com/player/player.swf live=1 pageUrl=http://tv-msn.com/hbo2.html
+
+#EXTINF:0,HBO 
+rtmp://178.18.31.59:443/liverepeater playpath=191881 swfUrl=http://bernardotv.club/gofuckyourself.swf pageUrl=http://biggestplayer.me/index.php?id=191881&width=620&height=470 token=#atd%#$ZH'
+
 #EXTINF:0,Kino TV 
 
 
