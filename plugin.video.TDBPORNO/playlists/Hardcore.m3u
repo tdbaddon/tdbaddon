@@ -45,7 +45,7 @@ http://wowza1.videos.movile.com:8080/live/smil:adulto_1.smil/media-b450000_1413.
 
 
 #EXTINF:0,HOT
-
+http://103.7.56.6:8081/ohho/hbohd.stream/chunklist.m3u8
 
 #EXTINF:0,HUSTLER HD 
 http://185.38.12.20:8088/hustler_hd/
@@ -63,6 +63,7 @@ http://185.38.12.20:8088/hustler_hd/
 http://cdn5.iviplanet.com:1935/VODLive4/_definst_/smil:vodlive4.smil/playlist.m3u8
 
 #EXTINF:0,NUART 
+http://188.165.220.116:8081/live/13/playlist.m3u8
 
 #EXTINF:0,Passie XXX
 http://publish.thewebstream.co:1935/leved/_definst_/passiexxx/playlist.m3u8
@@ -81,6 +82,9 @@ http://185.38.12.20:8088/private/
 
 #EXTINF:0,REDLIGHT PREMIUM 
 
+
+#EXTINF:0,REDTUBE
+http://cdn5.iviplanet.com:1935/VODLive1/_definst_/smil:vodlive1.smil/chunklist_w1867210502_b1300000.m3u8
 
 #EXTINF:0,RUSSIAN NIGHT CLUB TV 
 

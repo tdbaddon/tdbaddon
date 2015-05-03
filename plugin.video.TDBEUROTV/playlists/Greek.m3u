@@ -178,6 +178,9 @@ rtmp://media.patrisnews.com:1935/patris/tvstream live=1 timeout=10
 #EXTINF:0,Rik Sat 
 http://cdnvideo.webvideocore.net/livenl/out_2xtqzyrq6gysc48ko0cs/index.m3u8
 
+#EXTINF:0,Rik Sat 
+http://31.186.24.231:8000/33
+
 #EXTINF:0,Samiaki TV
 rtmp://91.121.107.131/samiaki/samiaki live=1
 

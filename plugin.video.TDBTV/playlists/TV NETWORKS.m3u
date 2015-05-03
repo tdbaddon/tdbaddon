@@ -25,6 +25,9 @@ rtmpe://167.114.65.139:1935/goLive playpath=NyRerYqWuhRWGCsmb3f3 swfUrl=http://p
 #EXTINF:0,AMC 
 rtmp://178.18.31.61:443/liverepeater playpath=191904 swfUrl=http://bernardotv.club/gofuckyourself.swf pageUrl=http://biggestplayer.me/index.php?id=191881&width=620&height=470 token=#atd%#$ZH
 
+#EXTINF:0,AMC 
+http://78.30.254.43:8989/udp/239.0.0.89:4000
+
 #EXTINF:0,AXN 
 http://113.160.49.34/lives/origin03/axnhd.isml/axnhd-2096k.m3u8
 
@@ -39,6 +42,9 @@ http://hlsstr03.svc.iptv.rt.ru/hls/CH_BABYTV/bw480000/variant.m3u8?version=2
 
 #EXTINF:0,BBC 1 
 http://82.135.224.134:80/udp/239.100.3.1:1234
+
+#EXTINF:0,BBC 1 
+http://5.189.144.85:1935/live/bbc1/playlist.m3u8?auth=test
 
 #EXTINF:0,BBC 2 
 http://81.23.58.184:8080/udp/0.0.0.0:20015
@@ -80,6 +86,9 @@ http://188.227.86.4:4022/udp/239.77.0.77:1234
 http://hls.svc.moyo.tv/hls/CH_CARTOON/variant.m3u8?version=2
 
 #EXTINF:0,Cartoon Network 
+http://78.30.254.43:8989/udp/239.0.0.46:4000
+
+#EXTINF:0,Cartoon Network 
 rtmpe://192.99.39.152:1935/goLive/08pydvp1b7ZwZb3a5TW1 swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 pageUrl=http://zerocast.tv/embed token=OOG17t.x#K9Vh#|
 
 #EXTINF:0,Cbeebies
@@ -102,6 +111,9 @@ http://llnw.live.simplestream.com/coder4/coder.channels.channel2/hls/3/playlist.
 
 #EXTINF:0,CBS Reality 
 http://hls01-05.az.myvideo.az/hls-live/livepkgr/cbsreality/cbsreality/cbsreality.m3u8?simpletvipadresleri
+
+#EXTINF:0,CBS Reality 
+http://78.30.254.43:8989/udp/239.0.0.91:4000
 
 #EXTINF:0,CHCH Ontario 
 rtmp://54.85.197.21:1935/live/news live=1 timeout=15
@@ -195,7 +207,7 @@ rtmpe://192.99.38.90:1935/goLive playpath=9pxGCtP3aEnJYgoBFFH8 swfUrl=http://p.j
 rtmp://178.18.31.61:443/liverepeater playpath=191910 swfUrl=http://bernardotv.club/gofuckyourself.swf pageUrl=http://biggestplayer.me/index.php?id=191881&width=620&height=470 token=#atd%#$ZH
 
 #EXTINF:0,Fox 29
-
+http://78.30.254.43:8989/udp/239.0.0.141:4000
 
 #EXTINF:0,Fox 45 
 
@@ -207,7 +219,10 @@ rtmp://178.18.31.61:443/liverepeater playpath=191910 swfUrl=http://bernardotv.cl
 
 
 #EXTINF:0,Fox Life 
+http://78.30.254.43:8989/udp/239.0.0.144:4000
 
+#EXTINF:0,Fox Life 
+http://bit.do/3Tha
 
 #EXTINF:0,Food Network 
 http://llnw.live.simplestream.com/coder2/coder.channels.channel2/hls/3/playlist.m3u8
@@ -257,6 +272,9 @@ http://llnw.live.simplestream.com/mediaexcel01/channel03/3/prog_index.m3u8
 #EXTINF:0,ITV 1 
 http://82.135.224.134:80/udp/239.100.3.6:1234
 
+#EXTINF:0,ITV 1 
+http://5.189.144.85:1935/live/itv1_hd/playlist.m3u8?auth=test
+
 #EXTINF:0,ITV 2 
 http://llnw.live.simplestream.com/coder12/coder.channels.channel8/hls/3/playlist.m3u8
 
@@ -273,7 +291,7 @@ http://llnw.live.simplestream.com/coder12/coder.channels.channel12/hls/3/playlis
 rtmp://jtvmedia.jtv.com:1975/live playpath=live6 swfUrl=http://demandware.edgesuite.net/aaby_prd/on/demandware.static/Sites-jtv-Site/-/default/v1410110388581/swf/flashMediaPlayer/StrobeMediaPlayback.swf live=1 pageUrl=http://www.jtv.com/on/demandware.store/Sites-jtv-Site/default/LiveViewer-Show
 
 #EXTINF:0,Jim Jam 
-
+http://78.30.254.43:8989/udp/239.0.0.192:4000
 
 #EXTINF:0,Lifetime Network 
 
@@ -300,6 +318,8 @@ http://llnw.live.simplestream.com/coder1/coder.channels.channel11/hls/3/playlist
 #EXTINF:0,NHK World 
 http://nhkworld-hds-live1.hds1.fmslive.stream.ne.jp/hls-live/nhkworld-hds-live1/_definst_/livestream/nhkworld-live-512.m3u8 
 
+#EXTINF:0,NHK World 
+http://78.30.254.43:8989/udp/239.0.0.234:4000
 
 #EXTINF:0,Nick 
 
@@ -309,6 +329,12 @@ http://nhkworld-hds-live1.hds1.fmslive.stream.ne.jp/hls-live/nhkworld-hds-live1/
 
 #EXTINF:0,Nickelodeon 
 http://188.227.86.4:4022/udp/239.77.0.60:1234
+
+#EXTINF:0,Nickelodeon 
+http://78.30.254.43:8989/udp/239.0.0.86:4000
+
+#EXTINF:0,Nickelodeon 
+http://78.30.254.43:8989/udp/239.0.0.128:4000
 
 #EXTINF:0,NickNight 
 
@@ -383,7 +409,7 @@ http://llnw.live.simplestream.com/coder4/coder.channels.channel12/hls/3/playlist
 http://llnw.live.simplestream.com/coder4/coder.channels.channel14/hls/3/playlist.m3u8
 
 #EXTINF:0,TLC 
-
+http://78.30.254.43:8989/udp/239.0.0.32:4000
 
 #EXTINF:0,TNT 
 rtmpe://167.114.157.67:1935/goLive/Waz0WqvbqNHmt0gdzrsm swfurl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf pageUrl=http://zerocast.tv/embed.php?a=309 token=OOG17t.x#K9Vh#|
@@ -440,7 +466,7 @@ http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
 http://200.76.77.237/LIVE/H01/CANAL387/PROFILE03.m3u8?
 
 #EXTINF:0,World Fashion TV
-
+http://78.30.254.43:8989/udp/239.0.0.183:4000
 
 #EXTINF:0,WPIX 11
 rtmp://rtmp.zerocast.tv/goLive/ playpath=IWSyIjvWgHRCMM7MEJoZ swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 pageUrl=http://zerocast.tv/embed.php?a token=OOG17t.x#K9Vh#|

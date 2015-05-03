@@ -2,10 +2,13 @@
 
 
 #EXTINF:0,A1 Report
+rtmp://66.55.93.204/livepkgr/a1stream?adbe-live-event=a1report
 
+#EXTINF:0,A1 Report
+http://5.101.112.149:9705/satsupreme/cccam-server.net/36.ch
 
 #EXTINF:0,ABC News
-
+http://5.101.112.149:9705/satsupreme/cccam-server.net/41.ch
 
 #EXTINF:0,Agon Channel 
 http://str105mb.setplex.net:1935/str2iosmd5/7ios_agontv_34536544/playlist.m3u8
@@ -19,11 +22,14 @@ rtmp://188.138.17.8:1935/albuk/albuk.stream
 #EXTINF:0,Alb UK
 rtmp://188.138.17.8:1935/albuk/albuk+.stream
 
+#EXTINF:0,Alb UK
+http://5.101.112.149:9705/satsupreme/cccam-server.net/10.ch
+
 #EXTINF:0,Alb Plus
 
 
 #EXTINF:0,Albanian Screen
-
+http://5.101.112.149:9705/satsupreme/cccam-server.net/14.ch
 
 #EXTINF:0,Al Jazeera Balkan 
 rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html

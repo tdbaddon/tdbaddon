@@ -47,10 +47,19 @@ rtmp://93.158.217.202:80/live playpath=espn22 swfUrl=http://p.jwpcdn.com/6/12/jw
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_EUROSPORT/variant.m3u8
 
 #EXTINF:0,Eurosport 1 
+http://78.30.254.43:8989/udp/239.0.0.33:4000
+
+#EXTINF:0,Eurosport 1 
+http://78.30.254.43:8989/udp/239.0.0.195:4000
+
+#EXTINF:0,Eurosport 1 
 http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_1000.m3u8
 
 #EXTINF:0,Eurosport 2 
 rtmp://80.82.64.140:443/liverepeater/ playpath=21 token=#atd%#$ZH swfUrl=http://popeoftheplayers.pw/atdedead.swf live=1 timeout=13 pageUrl=http://popeoftheplayers.eu/
+
+#EXTINF:0,Eurosport 2 
+http://78.30.254.43:8989/udp/239.0.0.81:4000
 
 #EXTINF:0,Eurosport News 
 
@@ -278,7 +287,7 @@ http://hlsstr04.svc.iptv.rt.ru/hls/CH_C06_VIASATGOLFHD/variant.m3u8
 http://46.61.226.18/hls/CH_C06_VIASATGOLFHD/bw3000000/variant.m3u8?version=2
 
 #EXTINF:0,Viasat Sport
-
+http://78.30.254.43:8989/udp/239.0.0.179:4000
 
 #EXTINF:0,WWE Network 
 rtmp://80.82.78.39:443/liverepeater playpath=49 swfUrl=http://popeoftheplayers.eu/atdedead.swf pageUrl=http://popeoftheplayers.eu/crichd.php?id=49&width=700&height=450 token=#atd%#$ZH
@@ -291,5 +300,8 @@ rtmp://178.18.31.61:443/liverepeater playpath=191918 swfUrl=http://bernardotv.cl
 
 #EXTINF:0,XTreme Sports 
 http://46.249.213.93/iPhone/broadcast/xtremeimpacts-tablet.3gp/xtremeimpacts-tablet.3gp-mr647k.m3u8
+
+#EXTINF:0,XTreme Sports 
+http://78.30.254.43:8989/udp/239.0.0.50:4000
 
 

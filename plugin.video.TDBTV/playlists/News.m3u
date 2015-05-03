@@ -91,6 +91,9 @@ http://wpc.c1a9.edgecastcdn.net:80/hls-live/20C1A9/euronews_en/ls_satlink/b_828.
 #EXTINF:0,Euro News 
 http://llnw.live.simplestream.com/coder6/coder.channels.channel11/hls/3/playlist.m3u8
 
+#EXTINF:0,Euro News
+http://78.30.254.43:8989/udp/239.0.0.185:4000
+
 #EXTINF:0,Fox News 
 rtmp://whdh.mpl.miisolutions.net:1935/whdh-live01 playpath=mp4:whdh_1 swfUrl=http://www.whdh.com/ pageUrl=http://players.edgesuite.net/flash/plugins/osmf/advanced-streaming-plugin/v2.11/osmf1.5/fp10.1/AkamaiAdvancedStreamingPlugin.swf
 
