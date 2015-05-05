@@ -4,6 +4,9 @@
 #EXTINF:0,Cinemax 
 http://113.160.49.34/lives/origin03/cinemaxsd.isml/cinemaxsd-1096k.m3u8
 
+#EXTINF:0,Cinemax 
+http://31.220.41.111/LiveEdge/CinemaxEastUS/playlist.m3u8?token=
+
 #EXTINF:0,Cinestar Action & Thriller 
 
 
@@ -17,19 +20,22 @@ http://113.160.49.34/lives/origin03/cinemaxsd.isml/cinemaxsd-1096k.m3u8
 
 
 #EXTINF:0,CMore Action
-
+http://188.138.9.228:8035
 
 #EXTINF:0,CMore Emotion
-
+http://188.138.9.228:8025
 
 #EXTINF:0,CMore First
-
+http://188.138.9.228:8024
 
 #EXTINF:0,CMore Hits
-
+http://188.138.9.228:8020
 
 #EXTINF:0,CMore Series
+http://188.138.9.228:8021
 
+#EXTINF:0,Encore East
+http://31.220.41.110:80/LiveEdge/EncoreEastHD/playlist.m3u8?token=
 
 #EXTINF:0,Fox 1 
 http://200.76.77.237/LIVE/H01/CANAL415/PROFILE03.m3u8?
@@ -49,8 +55,14 @@ http://200.76.77.237/LIVE/H01/CANAL475/PROFILE03.m3u8?
 #EXTINF:0,Fox Family Movies 
 http://200.76.77.237/LIVE/H01/CANAL475/PROFILE05.m3u8?
 
+#EXTINF:0,Fox Family Movies 
+http://188.93.18.238:1935/tv/1702/playlist.m3u8
+
 #EXTINF:0,Fox Classics 
 http://200.76.77.237/LIVE/H01/CANAL478/PROFILE03.m3u8?
+
+#EXTINF:0,Fox Movies 
+http://162.212.176.107:1935/fox_movies/globaltv-fox_movies.stream/gmswf.m3u8
 
 #EXTINF:0,Fox Movies 
 http://200.76.77.237/LIVE/H01/CANAL417/PROFILE03.m3u8?
@@ -71,13 +83,22 @@ http://200.76.77.237/LIVE/H01/CANAL484/PROFILE03.m3u8?
 http://200.76.77.237/LIVE/H01/CANAL484/PROFILE05.m3u8?
 
 #EXTINF:0,HBO 
+http://31.220.2.221:80/LiveEdge/HBOWestUS/chunklist_w1108801454_b1000000.m3u8?token=
+
+#EXTINF:0,HBO 
+http://31.220.41.111:80/LiveEdge/HBOEastUS/chunklist_w1634307971_b1000000.m3u8?token=
+
+#EXTINF:0,HBO 
 http://113.160.49.34/lives/origin03/hbohd.isml/hbohd-2096k.m3u8
 
 #EXTINF:0,HBO 
-rtmp://89.248.168.57/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to/player/secure_player_iguide_embed_token.swf pageUrl=http://www.iguide.to/ token=#ed%h0#w18623jsda6523lDGD
+http://31.220.40.108:80/LiveEdge/HBOZoneUS/chunklist_w320493732_b1000000.m3u8?token=
 
 #EXTINF:0,HBO 
 rtmpe://192.99.39.27:1935/goLive/qKmzUdRhBM73njBBDFyL swfurl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf pageUrl=http://zerocast.tv/embed.php?a=1482 token=OOG17t.x#K9Vh#|
+
+#EXTINF:0,HBO 
+rtmp://89.248.168.57/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to/player/secure_player_iguide_embed_token.swf pageUrl=http://www.iguide.to/ token=#ed%h0#w18623jsda6523lDGD
 
 #EXTINF:0,HBO 
 rtmp://94.102.49.207/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to/player/secure_player_iguide_token.swf live=1 pageUrl=http://www.iguide.to/view/1/watch-live-HBO-channel-for-free token=#ed%h0#w18623jsda6523lDGDVe
@@ -88,9 +109,6 @@ rtmp://cdn.cast-tv.us/stream playpath=z00012.stream swfUrl=http://imveoh.info/pl
 #EXTINF:0,HBO 
 rtmp://109.200.202.124/live playpath=hbo2 swfUrl=http://www.tv-msn.com/player/player.swf live=1 pageUrl=http://tv-msn.com/hbo2.html
 
-#EXTINF:0,HBO 
-rtmp://178.18.31.59:443/liverepeater playpath=191881 swfUrl=http://bernardotv.club/gofuckyourself.swf pageUrl=http://biggestplayer.me/index.php?id=191881&width=620&height=470 token=#atd%#$ZH'
-
 #EXTINF:0,Kino TV 
 
 
@@ -98,7 +116,10 @@ rtmp://178.18.31.59:443/liverepeater playpath=191881 swfUrl=http://bernardotv.cl
 
 
 #EXTINF:0,MGM 
-http://78.30.254.43:8989/udp/239.0.0.104:4000
+
+
+#EXTINF:0,The Movie Channel Xtra
+http://31.220.41.107:80/LiveEdge/TheMovieChannelXtraEastUS/playlist.m3u8?token=
 
 #EXTINF:0,Movies 24/7
 
@@ -157,8 +178,20 @@ http://78.30.254.43:8989/udp/239.0.0.104:4000
 #EXTINF:0,SciFi
 
 
-#EXTINF:0,Showtime
+#EXTINF:0,Showtime 
 
+
+#EXTINF:0,Showtime Beyond
+http://31.220.41.107/LiveEdge/ShowtimeBeyondEastUS/chunklist_w1863492743_b1000000.m3u8?token=
+
+#EXTINF:0,Showtime Extreme 
+http://31.220.41.103:80/LiveEdge/ShowtimeExtremeEastUS/chunklist_w597992924_b1000000.m3u8?token=
+
+#EXTINF:0,Showtime Showcase
+http://31.220.41.107:80/LiveEdge/ShowtimeShowcaseEastUS/chunklist_w558093061_b1000000.m3u8?token=
+
+#EXTINF:0,Showtime West
+http://31.220.41.103:80/LiveEdge/ShowtimeWestUS/chunklist_w514349824_b1000000.m3u8?token=
 
 #EXTINF:0,Sky Movies Action 
 
@@ -197,13 +230,40 @@ http://78.30.254.43:8989/udp/239.0.0.104:4000
 
 
 #EXTINF:0,Sony Movie Channel
-
+http://31.220.2.221:80/LiveEdge/SonyMovieChannelUS/playlist.m3u8?token=
 
 #EXTINF:0,Star Movies 
 http://113.160.49.34/lives/origin03/moviehd.isml/moviehd-2096k.m3u8
 
-#EXTINF:0,SYFY Movie Channel 
+#EXTINF:0,Starz Black
+http://31.220.41.103/LiveEdge/StarzInBlackEastUS/playlist.m3u8?token=
 
+#EXTINF:0,Starz Cinema
+http://31.220.2.221/LiveEdge/StarzCinemaEastUS/playlist.m3u8?token=
+
+#EXTINF:0,Starz East
+http://31.220.40.108:80/LiveEdge/StarzEastHD/chunklist_w2022301216_b1000000.m3u8?token=
+
+#EXTINF:0,Starz Family
+http://31.220.41.102:80/LiveEdge/StarzKidsFamilyEastUS/playlist.m3u8?token=
+
+#EXTINF:0,Starz Kids and Family 
+http://31.220.41.102:80/LiveEdge/StarzKidsFamilyEastUS/chunklist_w1565892697_b1000000.m3u8?token=
+
+#EXTINF:0,Starz LA
+http://31.220.40.108:80/LiveEdge/StarzWestUS/playlist.m3u8?token=
+
+#EXTINF:0,Starz NY
+http://31.220.40.108:80/LiveEdge/StarzEastHD/playlist.m3u8?token=
+
+#EXTINF:0,Starz West
+http://31.220.40.108:80/LiveEdge/StarzWestUS/chunklist_w180614607_b1000000.m3u8?token=
+
+#EXTINF:0,SYFY Movie Channel 
+http://31.220.40.108/LiveEdge/TheMovieChannelEastHD/playlist.m3u8?token=
+
+#EXTINF:0,TCM
+http://31.220.41.102/LiveEdge/TCMUS/chunklist_w2047265790_b1000000.m3u8?token=
 
 #EXTINF:0,TCM 
 http://200.76.77.237/LIVE/H01/CANAL496/PROFILE03.m3u8?
@@ -211,17 +271,26 @@ http://200.76.77.237/LIVE/H01/CANAL496/PROFILE03.m3u8?
 #EXTINF:0,TCM 
 http://200.76.77.237/LIVE/H01/CANAL496/PROFILE05.m3u8?
 
+#EXTINF:0,The Movie Channel
+http://31.220.40.108/LiveEdge/TheMovieChannelEastHD/playlist.m3u8?token=
+
+#EXTINF:0,The Movie Channel Xtra
+http://31.220.41.107:80/LiveEdge/TheMovieChannelXtraEastUS/playlist.m3u8?token=
+
+#EXTINF:0,Thriller Max
+http://31.220.41.110:80/LiveEdge/ThrillerMaxEasUS/playlist.m3u8?token=
+
 #EXTINF:0,True Movies 1
-http://llnw.live.simplestream.com/coder4/coder.channels.channel8/hls/3/playlist.m3u8
+
 
 #EXTINF:0,True Movies 2 
-http://llnw.live.simplestream.com/coder4/coder.channels.channel10/hls/3/playlist.m3u8
+
 
 #EXTINF:0,TV 1000
-http://78.30.254.43:8989/udp/239.0.0.153:4000
+
 
 #EXTINF:0,TV 1000 Action
-http://78.30.254.43:8989/udp/239.0.0.152:4000
+
 
 
 

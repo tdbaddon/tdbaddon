@@ -2,13 +2,7 @@
 
 
 #EXTINF:0,Animal Planet 
-http://sjc-uhls-vip01.ustream.tv/watch/playlist.m3u8?cid=12762028
 
-#EXTINF:0,Animal Planet 
-http://78.30.254.43:8989/udp/239.0.0.34:4000
-
-#EXTINF:0,Animal Planet 
-http://78.30.254.43:8989/udp/239.0.0.129:4000
 
 #EXTINF:0,BBC Knowledge 
 
@@ -26,13 +20,13 @@ http://78.30.254.43:8989/udp/239.0.0.129:4000
 
 
 #EXTINF:0,Discovery Investigation 
-http://78.30.254.43:8989/udp/239.0.0.136:4000
+http://31.130.9.158:81/udp/238.1.2.131:1234
 
 #EXTINF:0,Discovery Max 
 
 
 #EXTINF:0,Discovery Science 
-http://78.30.254.43:8989/udp/239.0.0.48:4000
+
 
 #EXTINF:0,Discovery Shed
 
@@ -50,11 +44,7 @@ http://200.76.77.237/LIVE/H01/CANAL351/PROFILE03.m3u8?
 http://188.227.86.4:4022/udp/239.77.0.78:1234
 
 #EXTINF:0,Discovery World 
-http://78.30.254.43:8989/udp/239.0.0.47:4000?by_ratus42
-
-#EXTINF:0,Discovery World 
-http://78.30.254.43:8989/udp/239.0.0.47:4000
-
+http://31.223.238.10:8001/1:0:1:404:2:1:E0831B3:0:0:0:
 
 #EXTINF:0,DocuBox
 
@@ -89,17 +79,8 @@ http://www.nasa.gov/multimedia/nasatv/NTV-Public-IPS.m3u8
 #EXTINF:0,Nat Geo Wild 
 http://185.5.40.101/hls/session-37473uCyyxurSfw/CH_NATGEOWILD/variant.m3u8?version=2
 
-#EXTINF:0,Nat Geo Wild 
-http://78.30.254.43:8989/udp/239.0.0.168:4000
-
-#EXTINF:0,Nat Geo Wild
-http://78.30.254.43:8989/udp/239.0.0.51:4000
-
 #EXTINF:0,National Geographic 
 http://188.227.86.4:4022/udp/239.77.0.41:1234
-
-#EXTINF:0,National Geographic 
-http://78.30.254.43:8989/udp/239.0.0.35:4000
 
 #EXTINF:0,RT News Documentary 
 http://odna.octoshape.net/f3f5m2v4/cds/ch5_auto.smil/playlist.m3u8 
@@ -111,22 +92,16 @@ http://odna.octoshape.net/f3f5m2v4/cds/ch5_720p/chunklist.m3u8
 
 
 #EXTINF:0,Travel Channel 
-http://llnw.live.simplestream.com/coder6/coder.channels.channel12/hls/3/playlist.m3u8
 
-#EXTINF:0,Travel Channel 
-http://llnw.live.simplestream.com/coder6/coder.channels.channel14/hls/3/playlist.m3u8
-
-#EXTINF:0,Travel Channel 
-http://78.30.254.43:8989/udp/239.0.0.214:4000
 
 #EXTINF:0,Viasat Explorer 
-http://78.30.254.43:8989/udp/239.0.0.155:4000
+
 
 #EXTINF:0,Viasat History 
-http://78.30.254.43:8989/udp/239.0.0.197:4000
+
 
 #EXTINF:0,Viasat Nature 
-http://78.30.254.43:8989/udp/239.0.0.154:4000
+
 
 
 
