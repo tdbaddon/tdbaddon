@@ -74,7 +74,7 @@ rtmp://yayin.tvdunyasi.tv/live/balkanrtv
 http://81.7.13.162/hls/channelone/index.m3u8
 
 #EXTINF:0,Cufo TV
-
+http://94.100.31.242:8183/hls/xz3123/index.m3u8
 
 #EXTINF:0,Dasma TV
 
@@ -86,7 +86,7 @@ http://81.7.13.162/hls/channelone/index.m3u8
 http://217.16.82.6:1935/zulu//era_2/simpletvmaclinkleri.m3u8
 
 #EXTINF:0,Film Aksion 
-
+http://94.100.31.242:8183/hls/xz3126/index.m3u8
 
 #EXTINF:0,Film Drame 
 
@@ -95,13 +95,13 @@ http://217.16.82.6:1935/zulu//era_2/simpletvmaclinkleri.m3u8
 
 
 #EXTINF:0,Film Hits 
-
+http://94.100.31.242:8183/hls/film1/index.m3u8
 
 #EXTINF:0,Film Komedi 
 
 
 #EXTINF:0,Film Nje
-
+http://94.100.31.242:8183/hls/film3/index.m3u8
 
 #EXTINF:0,Film Plus
 
@@ -209,13 +209,13 @@ http://wowza.rtkit.com:1935/live/livestream/chunklist.m3u8?wowzasessionid=491913
 mms://84.20.73.66:8001
 
 #EXTINF:0,Super Sport 1 
-
+http://81.7.13.162/hls/ss1/index.m3u8
 
 #EXTINF:0,Super Sport 2 
-
+http://81.7.13.162/hls/ss2/index.m3u8
 
 #EXTINF:0,Super Sport 3
-
+http://81.7.13.162/hls/ss3/index.m3u8
 
 #EXTINF:0,Super Sport 4
 
@@ -233,7 +233,7 @@ http://88.212.10.27:81/streams/stv2.m3u8?
 rtmp://str103.setplex.net:1935/228/stv_folk
 
 #EXTINF:0,Top Channel 
-
+http://94.100.31.242:8183/hls/TopChannel/index.m3u8
 
 #EXTINF:0,Top Channel News
 
