@@ -2,7 +2,7 @@
 <addons>
 <addon id="plugin.video.TDBEUROTV"
        name="TDB EURO TV"
-       version="1.57"
+       version="1.58"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -96,7 +96,7 @@
 
 <addon id="plugin.video.TDBTV"
        name="TDB TV"
-       version="2.36"
+       version="2.37"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>

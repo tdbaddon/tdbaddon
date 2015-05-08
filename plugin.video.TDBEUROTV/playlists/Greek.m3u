@@ -10,6 +10,9 @@ http://alfakanali-lh.akamaihd.net/i/live_1@90368/master.m3u8
 #EXTINF:0,Ant1
 http://wow.ant1.gr:1935/live/smil:mavani.smil/playlist.m3u8
 
+#EXTINF:0,Ant1
+http://wow.ant1.gr:1935/live/_definst_/ant1tv1711video/playlist.m3u8?wowzasessionid=1155125647
+
 #EXTINF:0,Ant1 Cyprus
 
 

@@ -32,10 +32,13 @@ http://200.76.77.237/LIVE/H01/CANAL213/PROFILE05.m3u8?
 http://hlsstr03.svc.iptv.rt.ru/hls/CH_BABYTV/bw480000/variant.m3u8?version=2
 
 #EXTINF:0,BBC 1 
-
+http://37.48.118.29:1935/live/bbc1.stream/playlist.m3u8?wowzasessionid=607271884&wmsAuthSign=c2VydmVyX3RpbWU9NS84LzIwMTUgODoxNjoyOCBBTSZoYXNoX3ZhbHVlPVF5YlhlcEZOUGlwTGdRcFplN3hLcHc9PSZ2YWxpZG1pbnV0ZXM9MjA=
 
 #EXTINF:0,BBC 2 
 http://37.220.29.186:8000/bbc2/bbc2/index.m3u8
+
+#EXTINF:0,BBC 2 
+http://37.48.118.29:1935/live/bbc2.stream/playlist.m3u8?wowzasessionid=737518321&wmsAuthSign=c2VydmVyX3RpbWU9NS84LzIwMTUgODoxNjoyOCBBTSZoYXNoX3ZhbHVlPVF5YlhlcEZOUGlwTGdRcFplN3hLcHc9PSZ2YWxpZG1pbnV0ZXM9MjA=
 
 #EXTINF:0,BBC Entertainment 
 http://200.76.77.237/LIVE/H01/CANAL253/PROFILE03.m3u8?
@@ -293,7 +296,7 @@ rtmp://128.104.144.134/WisconsinChannel/mystream
 
 
 #EXTINF:0,Sky Arts 2 
-
+http://188.227.189.18:8082/TV4250
 
 #EXTINF:0,Sky Living 
 
