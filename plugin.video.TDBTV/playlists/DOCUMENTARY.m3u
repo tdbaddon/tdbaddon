@@ -4,9 +4,6 @@
 #EXTINF:0,Animal Planet 
 http://113.160.49.34/lives/origin03/animalsd.isml/animalsd-1096k.m3u8
 
-#EXTINF:0,Animal Planet 
-http://sjc-uhls-vip01.ustream.tv/watch/playlist.m3u8?cid=12762028
-
 #EXTINF:0,BBC Knowledge 
 
 
@@ -35,19 +32,16 @@ http://31.130.9.158:81/udp/238.1.2.131:1234
 
 
 #EXTINF:0,Discovery Theater 
-http://200.76.77.237/LIVE/H01/CANAL351/PROFILE05.m3u8?
+http://200.76.77.237/LIVE/H01/CANAL351/PROFILE03.m3u8?
 
 #EXTINF:0,Discovery Theater 
-http://200.76.77.237/LIVE/H01/CANAL351/PROFILE03.m3u8?
+http://200.76.77.237/LIVE/H01/CANAL351/PROFILE05.m3u8?
 
 #EXTINF:0,Discovery Turbo 
 
 
 #EXTINF:0,Discovery World 
 http://188.227.86.4:4022/udp/239.77.0.78:1234
-
-#EXTINF:0,Discovery World 
-http://31.223.238.10:8001/1:0:1:404:2:1:E0831B3:0:0:0:
 
 #EXTINF:0,DocuBox
 

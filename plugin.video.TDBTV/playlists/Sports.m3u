@@ -4,13 +4,13 @@
 #EXTINF:0,BBC Sports
 
 
-#EXTINF:0,Bein Sport1
+#EXTINF:0,Bein Sport1 
 http://streamindo.ddns.net/jhos/beib1_2/streamindo/playlist.m3u8
 
-#EXTINF:0,Bein Sport1
+#EXTINF:0,Bein Sport1 
 http://streamindo.ddns.net/jhos/beib1_3/streamindo/playlist.m3u8
 
-#EXTINF:0,Bein Sport1
+#EXTINF:0,Bein Sport1 
 http://streamindo.ddns.net/jhos/beib1_3/streamindo/playlist.m3u8
 
 #EXTINF:0,Bein Sport2 
@@ -31,14 +31,8 @@ http://bigten247.cdnak.bigtenhd.neulion.com/nlds/btn2go/btnnetwork/as/live/btnne
 #EXTINF:0,BT Sport 1 
 rtmpe://46.246.124.14:1935/live/ playpath=btsports1lsh swfUrl=http://cdn.lshstream.com/jw/jwplayer.js pageUrl=http://cdn.lshstream.com/embed.php?u=btsports1lsh&vw=640&vh=360&domain=live..eu token=SECURET0KEN#yw%.?()@W
 
-#EXTINF:0,BT Sport 1 
-rtmp://195.154.168.217:80/liverepeater playpath=303023 swfUrl=http://cdn.goodcast.co/players.swf live=1 pageUrl=http://goodcast.co/.coms token=Fo5_n0w?U.rA6l3-70w47ch timeout=10
-
 #EXTINF:0,BT Sport 2 
 rtmp://80.82.78.87:443/liverepeater playpath=15 swfUrl=http://popeoftheplayers.eu/atdedead.swf live=1 pageUrl=http://popeoftheplayers.eu/crichd.php?id=15&width=530&height=370 token=#atd%#$ZH
-
-#EXTINF:0,BT Sport 2 
-rtmp://195.154.168.217:80/liverepeater playpath=303024 swfUrl=http://cdn.goodcast.co/players.swf live=1 pageUrl=http://goodcast.co/.coms token=Fo5_n0w?U.rA6l3-70w47ch timeout=10
 
 #EXTINF:0,CBS Sports 
 
@@ -46,8 +40,11 @@ rtmp://195.154.168.217:80/liverepeater playpath=303024 swfUrl=http://cdn.goodcas
 #EXTINF:0,Chelsea TV
 http://hlsstr04.svc.iptv.rt.ru/hls/CH_FUTBALL/variant.m3u8
 
-#EXTINF:0,ESPN
+#EXTINF:0,ESPN 
 http://200.76.77.237/LIVE/H01/CANAL516/PROFILE03.m3u8
+
+#EXTINF:0,ESPN 
+http://200.76.77.237/LIVE/H01/CANAL516/PROFILE05.m3u8
 
 #EXTINF:0,ESPN 
 rtmp://213.152.181.12:1935/stream/ playpath=1Kq68GX6Kc.stream swfUrl=http://thecdn.04stream.com/p/ooolo1.swf live=1 pageUrl=http://www.04stream.com/ebb.php?adsp=other&width=600&height=460&st=24g3z5b4d4t4w3x2x4h5n274s214y2s2b424w2u2v2t24394&adx=&stream=54y2n5i57494y264d4k544b4v2a494n244v4n4y2w2i304c4x4l5t254w2q274w203p2t274x2z34303y3q2x4y5b4e4f3v3c4t4i2k4j4v5k474n33574a414p4h4z33456t2y3s2p2l51313s274d4z284236324q264m554o5v2r2m5a4u274t254a484g54484z2o2y2t2343434t2y3s2p224&sooor=OQ==&str=is&ok=&cat=1&link=1&idom=ifirstrow.eu
@@ -67,8 +64,8 @@ http://hlsstr02.svc.iptv.rt.ru/hls/CH_EUROSPORT/variant.m3u8
 #EXTINF:0,Eurosport 1 
 http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_1000.m3u8
 
-#EXTINF:0,Eurosport 1 
-http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_1800.m3u8
+#EXTINF:0,Eurosport 2 
+http://hlsstr01.svc.iptv.rt.ru/hls/CH_EUROSPORT2/variant.m3u8
 
 #EXTINF:0,Eurosport 2 
 rtmp://80.82.64.140:443/liverepeater/ playpath=21 token=#atd%#$ZH swfUrl=http://popeoftheplayers.pw/atdedead.swf live=1 timeout=13 pageUrl=http://popeoftheplayers.eu/
@@ -158,7 +155,7 @@ http://xrxs.net/video/live-p12losa-4728.m3u8?
 http://xrxs.net/video/live-p12netw-1164.m3u8
  
 #EXTINF:0,PAC Sports National HD
-http://xrxs.net/video/live-p12netw-4728.m3u8?
+http://xrxs.net/video/live-p12netw-2328.m3u8
 
 #EXTINF:0,PAC Sports Mountain 
 http://www.xrxs.net/video/live-p12moun-1164.m3u8
@@ -182,7 +179,7 @@ http://xrxs.net/video/live-p12wash-4728.m3u8
 mms://100automoto.tv/channel_porsche
 
 #EXTINF:0,Premier Sports 
-rtmp://31.220.0.195:80/live/ playpath=premiersport token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://reytv.co/
+
 
 #EXTINF:0,Racing UK 
 rtmp://rrbalancer.broadcast.tneg.de:1935/pw/ruk/ playpath=ruk swfUrl=http://pferdewetten.broadcast.tneg.de/jwplayer/player.swf live=1 pageUrl=http://pferdewetten.broadcast.tneg.de/jwplayer/player.php?type=live&stream=ruk1&token=ccf6c54e62bc5bd667661d5af5d61e8664c75b11
@@ -190,62 +187,20 @@ rtmp://rrbalancer.broadcast.tneg.de:1935/pw/ruk/ playpath=ruk swfUrl=http://pfer
 #EXTINF:0,Setanta Sports 
 
 
-#EXTINF:0,Sky Sports 1
-http://apniapps.ddns.net:8080/sp1/sp0RT1/index.m3u8
+#EXTINF:0,Sky Sports 1 
 
-#EXTINF:0,Sky Sports 1
-rtmp://94.23.53.51/send//ss1hd.stream
-
-#EXTINF:0,Sky Sports 1
-rtmp://46.246.29.135:1935/stream/ playpath=WWv4pD0kYn.stream swfUrl=http://thecdn.04stream.com/p/ooolo1.swf pageUrl=http://www.04stream.com/
-
-#EXTINF:0,Sky Sports 1
-rtmp://195.154.168.217:80/liverepeater playpath=303035 swfUrl=http://cdn.goodcast.co/players.swf live=1 pageUrl=http://goodcast.co/.coms token=Fo5_n0w?U.rA6l3-70w47ch timeout=10
-
-#EXTINF:0,Sky Sports 1
-rtmp://195.154.168.217:80/liverepeater playpath=303035 swfUrl=http://cdn.goodcast.co/players.swf live=1 pageUrl=http://goodcast.co/.coms token=Fo5_n0w?U.rA6l3-70w47ch
-
-#EXTINF:0,Sky Sports 2 
-http://apniapps.ddns.net:8080/sp2/Msp2Two/index.m3u8
-
-#EXTINF:0,Sky Sports 2 
-rtmp://94.23.53.51/send//ss2hd.stream
 
 #EXTINF:0,Sky Sports 2 
 rtmp://80.82.70.106:443/liverepeater playpath=48 swfUrl=http://popeoftheplayers.eu/atdedead.swf pageUrl=http://popeoftheplayers.eu/crichd.php?id=48&width=620&height=490 token=#atd%#$ZH
 
 #EXTINF:0,Sky Sports 2 
-rtmp://195.154.168.217:80/liverepeater/303018 pageUrl=http://goodcast.co/ token=Fo5_n0w?U.rA6l3-70w47ch
-
-#EXTINF:0,Sky Sports 2 
-rtmp://195.154.168.217:80/liverepeater playpath=303018 swfUrl=http://cdn.goodcast.co/players.swf live=1 pageUrl=http://goodcast.co/.coms token=Fo5_n0w?U.rA6l3-70w47ch timeout=10
-
-#EXTINF:0,Sky Sports 2 
 rtmp://31.220.0.195:80/live playpath=s2r swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf pageUrl=http://reytv.co/embedo.php?live=skysports2&vw=620&vh=490 token=%Zrey(nKa@#Z
 
 #EXTINF:0,Sky Sports 3 
-http://apniapps.ddns.net:8080/sp3/sprT3/index.m3u8
-
-#EXTINF:0,Sky Sports 3 
-rtmp://94.23.53.51/send//ss3hd.stream
-
-#EXTINF:0,Sky Sports 3 
-rtmp://31.220.0.195:80/live/ playpath=s3c token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 timeout=13  pageUrl=http://reytv.co/
-
-#EXTINF:0,Sky Sports 3 
-rtmp://31.220.0.195:80/live playpath=s3c swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf pageUrl=http://reytv.co/embedo.php?live=skysports2&vw=620&vh=490 token=%Zrey(nKa@#Z
-
-#EXTINF:0,Sky Sports 3 
-rtmp://80.82.64.140:443/liverepeater playpath=10 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH timeout=10
+http://smarterapps.ddns.net:8080/sp3/sprT3Ke/index.m3u8
 
 #EXTINF:0,Sky Sports 3 
 rtmp://80.82.78.15:443/liverepeater playpath=10 swfUrl=http://popeoftheplayers.eu/atdedead.swf pageUrl=http://popeoftheplayers.eu/crichd.php?id=10&width=620&height=490 token=#atd%#$ZH
-
-#EXTINF:0,Sky Sports 4
-http://apniapps.ddns.net:8080/sp4/sp4Rkk/index.m3u8
-
-#EXTINF:0,Sky Sports 4
-rtmp://94.23.53.51/send//ss5hd.stream
 
 #EXTINF:0,Sky Sports 4 
 rtmp://31.220.0.195:80/live/ playpath=ssx4 token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://reytv.co/
@@ -257,37 +212,16 @@ rtmp://31.220.0.195:80/live playpath=ssx4 swfUrl=http://p.jwpcdn.com/6/11/jwplay
 rtmp://195.154.168.217:80/liverepeater playpath=303020 swfUrl=http://cdn.goodcast.co/players.swf live=1 pageUrl=http://goodcast.co/.coms token=Fo5_n0w?U.rA6l3-70w47ch timeout=10
 
 #EXTINF:0,Sky Sports 5 
-http://apniapps.ddns.net:8080/sp5/sp5Pk/index.m3u8
-
-#EXTINF:0,Sky Sports 5 
-rtmp://94.23.53.51/send//ss5hd.stream
-
-#EXTINF:0,Sky Sports 5 
 rtmp://195.154.168.217:80/liverepeater playpath=303021 swfUrl=http://cdn.goodcast.co/players.swf live=1 pageUrl=http://goodcast.co/.coms token=Fo5_n0w?U.rA6l3-70w47ch timeout=10
 
-#EXTINF:0,Sky Sports 5
-rtmp://46.246.29.135:1935/stream/ playpath=00npFnXMLx.stream swfUrl=http://thecdn.04stream.com/p/ooolo1.swf pageUrl=http://www.04stream.com/
-
-#EXTINF:0,Sky Sports 5 
-rtmp://195.154.168.217:80/liverepeater/303021 pageUrl=http://goodcast.co/ token=Fo5_n0w?U.rA6l3-70w47ch
-
 #EXTINF:0,Sky Sports F1 
-rtmp://195.154.168.217:80/liverepeater/303022 pageUrl=http://goodcast.co/ token=Fo5_n0w?U.rA6l3-70w47ch
 
-#EXTINF:0,Sky Sports F1 
-rtmp://195.154.168.217:80/liverepeater playpath=303022 swfUrl=http://cdn.goodcast.co/players.swf live=1 pageUrl=http://goodcast.co/.coms token=Fo5_n0w?U.rA6l3-70w47ch timeout=10
-
-#EXTINF:0,Sky Sports F1 
-http://apniapps.ddns.net:8080/f1/fOnE1/index.m3u8
 
 #EXTINF:0,Sky Sports News 
-rtmp://94.23.53.51/send//ssnewshd.stream
+
 
 #EXTINF:0,Sportsnet 360
 http://nlds187.cdnak.neulion.com/nlds/sportsnetnow/sn_360/as/live/sn_360_hd_ipad.m3u8
-
-#EXTINF:0,Sportsnet One 
-rtmp://41.242.151.6:80/live playpath=sportsnetw swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf pageUrl=http://reytv.co/embedu.php?live=sportsnetw&vw=620&vh=490 token=%Zrey(nKa@#Z
 
 #EXTINF:0,Sportsnet One 
 rtmp://93.158.217.202:80/live playpath=sportsnetw swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf live=1 pageUrl=http://reytv.co/embedo.php?live=sportsnetw&vw=620&vh=490 token=%Zrey(nKa@#Z
@@ -344,7 +278,7 @@ rtmp://80.82.78.39:443/liverepeater playpath=49 swfUrl=http://popeoftheplayers.e
 rtmp://89.248.172.159:443/liverepeater playpath=49 swfUrl=http://popeoftheplayers.eu/atdedead.swf live=1 pageUrl=http://popeoftheplayers.eu/crichd.php?id=49&width=530&height=370 token=#atd%#$ZH
 
 #EXTINF:0,XTreme Sports 
-http://46.249.213.93/iPhone/broadcast/xtremeimpacts-tablet.3gp/xtremeimpacts-tablet.3gp-mr647k.m3u8
+
 
 
 

@@ -47,13 +47,13 @@ http://200.76.77.237/LIVE/H01/CANAL416/PROFILE03.m3u8?
 http://200.76.77.237/LIVE/H01/CANAL416/PROFILE05.m3u8?
 
 #EXTINF:0,Fox Family Movies 
+http://188.93.18.238:1935/tv/1702/playlist.m3u8
+
+#EXTINF:0,Fox Family Movies 
 http://200.76.77.237/LIVE/H01/CANAL475/PROFILE03.m3u8?
 
 #EXTINF:0,Fox Family Movies 
 http://200.76.77.237/LIVE/H01/CANAL475/PROFILE05.m3u8?
-
-#EXTINF:0,Fox Family Movies 
-http://188.93.18.238:1935/tv/1702/playlist.m3u8
 
 #EXTINF:0,Fox Classics 
 http://200.76.77.237/LIVE/H01/CANAL478/PROFILE03.m3u8?
@@ -83,9 +83,6 @@ http://200.76.77.237/LIVE/H01/CANAL484/PROFILE05.m3u8?
 http://113.160.49.34/lives/origin03/hbohd.isml/hbohd-2096k.m3u8
 
 #EXTINF:0,HBO 
-rtmpe://192.99.39.27:1935/goLive/qKmzUdRhBM73njBBDFyL swfurl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf pageUrl=http://zerocast.tv/embed.php?a=1482 token=OOG17t.x#K9Vh#|
-
-#EXTINF:0,HBO 
 rtmp://89.248.168.57/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to/player/secure_player_iguide_embed_token.swf pageUrl=http://www.iguide.to/ token=#ed%h0#w18623jsda6523lDGD
 
 #EXTINF:0,HBO 
@@ -93,9 +90,6 @@ rtmp://94.102.49.207/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to
 
 #EXTINF:0,HBO 
 rtmp://cdn.cast-tv.us/stream playpath=z00012.stream swfUrl=http://imveoh.info/player/player.swf pageUrl=http://imveoh.info/embed.php?n=z00010 token=#ed%h0#w@1
-
-#EXTINF:0,HBO 
-rtmp://109.200.202.124/live playpath=hbo2 swfUrl=http://www.tv-msn.com/player/player.swf live=1 pageUrl=http://tv-msn.com/hbo2.html
 
 #EXTINF:0,Kino TV 
 
@@ -164,7 +158,7 @@ rtmp://109.200.202.124/live playpath=hbo2 swfUrl=http://www.tv-msn.com/player/pl
 
 
 #EXTINF:0,Showtime 
-rtmpe://167.114.157.191:1935/goLive playpath=kbMD64czDshAmjDd4kxQ swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf pageUrl=http://zerocast.tv/embed.php?a=1903&id=&width=700&height=480&autostart=true&strech= token=OOG17t.x#K9Vh#|  live=1
+
 
 #EXTINF:0,Showtime Beyond
 
@@ -209,10 +203,10 @@ http://188.227.189.18:8082/TV4251
 http://188.227.189.18:8082/TV4252
 
 #EXTINF:0,Sky Movies SciFi 
-http://188.227.189.18:8082/TV4249
+
 
 #EXTINF:0,Sky Movies Select 
-http://188.227.189.18:8082/TV4254
+
 
 #EXTINF:0,Sky Movies Superheros 
 

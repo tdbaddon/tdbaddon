@@ -7,20 +7,17 @@ http://rrr.sz.xlcdn.com/?account=AATW&file=akanew&type=live&service=wowza&protoc
 #EXTINF:0,Capital Music 
 http://ooyalahd2-f.akamaihd.net/i/globalradio01_delivery@156521/index_656_av-p.m3u8?sd=10&rebase=on
 
-#EXTINF:0,Capital Music 
-http://llnw.live.simplestream.com/coder7/coder.channels.channel8/hls/3/playlist.m3u8
-
 #EXTINF:0,Clubbing TV 
 http://204.107.26.252:1935/live/691.high.stream/HasBahCa.m3u8
 
 #EXTINF:0,Clubbing TV 
 http://46.249.213.87/iPhone/broadcast/clubbingtv-tablet.3gp/clubbingtv-tablet.3gp-mr648k.m3u8
 
-#EXTINF:0,Clubland TV 
-http://llnw.live.simplestream.com/coder2/coder.channels.channel11/hls/3/playlist.m3u8
-
 #EXTINF:0,Djing Hot Tracks
 http://www.djing.com/tv/h-04.m3u8
+
+#EXTINF:0,Djing Hot Tracks
+http://www.djing.com/tv/hothothot.m3u8
 
 #EXTINF:0,Djing Ibiza
 http://www.djing.com/tv/d-04.m3u8
@@ -31,20 +28,35 @@ http://www.djing.com/tv/u-04.m3u8
 #EXTINF:0,Djing TV 
 http://www.djing.com/tv/05.m3u8
 
+#EXTINF:0,Eska Best
+rtmp://stream.smcloud.net/live2/best/best_720p
+
+#EXTINF:0,Eska Best
+rtmp://stream.smcloud.net/live2/best/best_360p
+
+#EXTINF:0,Eska Party
+rtmp://stream.smcloud.net/live2/eska_party/eska_party_720p
+
+#EXTINF:0,Eska Party
+rtmp://stream.smcloud.net/live2/eska_party/eska_party_360p
+
+#EXTINF:0,Eska Rock
+rtmp://stream.smcloud.net/live2/eska_rock/eska_rock_720p
+
+#EXTINF:0,Eska Rock
+rtmp://stream.smcloud.net/live2/eska_rock/eska_rock_360p
+
 #EXTINF:0,Gothic Rock TV 
 rtmp://149.11.34.6/live/gotica.stream
 
 #EXTINF:0,Heart TV 
 http://ooyalahd2-f.akamaihd.net/i/globalradio02_delivery@156522/master.m3u8
 
-#EXTINF:0,Heart TV 
-http://llnw.live.simplestream.com/coder7/coder.channels.channel10/hls/3/playlist.m3u8
-
 #EXTINF:0,Ibiza on TV 
 http://46.249.213.87/iPhone/broadcast/ibizaontv-tablet.3gp/ibizaontv-tablet.3gp-mr648k.m3u8?trackingid=3391380000&os=desktop
 
 #EXTINF:0,Jazz 
-http://149.11.34.78:1935/live/jazztv.stream/hasbahca.m3u8
+
 
 #EXTINF:0,M6 Music
 
@@ -137,7 +149,7 @@ http://200.76.77.237/LIVE/H01/CANAL728/PROFILE03.m3u8?
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_VH1CLASSIC/variant.m3u8
 
 #EXTINF:0,VH1 Shuffle 
-rtmp://edge03-03.az.myvideo.az/dvrh264/vh1/ playpath=mp4:vh1 swfUrl=http://www.myvideo.az/stml/dvr/dvrH.swf?v=1.2 live=1 pageUrl=http://www.myvideo.az/r.ates
+
 
 #EXTINF:0,Virgin TV 
 rtmp://fms.105.net:1935/live/virgin1
