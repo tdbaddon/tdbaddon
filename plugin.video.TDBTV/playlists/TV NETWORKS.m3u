@@ -5,15 +5,16 @@
 http://noscdn1.connectedviews.com:1935/live/sporttv3hd.stream/livestream.m3u8
 
 #EXTINF:0,ABC 
-rtmpe://192.99.39.27:1935/goLive/rGCi7bg0Qxvs8q7Sl13l swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf pageUrl=http://zerocast.tv/embed.php live=1 token=OOG17t.x#K9Vh#|
+
 
 #EXTINF:0,ABC Family
+
 
 #EXTINF:0,ACC TV
 
 
 #EXTINF:0,AMC 
-http://31.130.9.158:81/udp/238.1.2.44:1234
+
 
 #EXTINF:0,AXN 
 http://113.160.49.34/lives/origin03/axnhd.isml/axnhd-2096k.m3u8
@@ -27,8 +28,17 @@ http://200.76.77.237/LIVE/H01/CANAL213/PROFILE05.m3u8?
 #EXTINF:0,BabyTV 
 http://hlsstr03.svc.iptv.rt.ru/hls/CH_BABYTV/bw480000/variant.m3u8?version=2
 
+#EXTINF:0,BBC 1 
+http://live.zoptv.com/filmon/master.m3u8?id=14
+
+#EXTINF:0,BBC 1 
+http://live.zoptv.com/filmon/master.m3u8?id=361
+
 #EXTINF:0,BBC 2 
 http://37.220.29.186:8000/bbc2/bbc2/index.m3u8
+
+#EXTINF:0,BBC 2 
+http://live.zoptv.com/filmon/master.m3u8?id=25
 
 #EXTINF:0,BBC Entertainment 
 http://200.76.77.237/LIVE/H01/CANAL253/PROFILE03.m3u8?
@@ -55,7 +65,7 @@ http://200.76.77.237/LIVE/H01/CANAL253/PROFILE05.m3u8
 http://188.227.86.4:4022/udp/239.77.0.77:1234
 
 #EXTINF:0,Cbeebies
-
+http://live.zoptv.com/filmon/master.m3u8?id=103
 
 #EXTINF:0,CBS 
 
@@ -64,10 +74,16 @@ http://188.227.86.4:4022/udp/239.77.0.77:1234
 
 
 #EXTINF:0,CBS Drama 
-
+http://live.zoptv.com/filmon/master.m3u8?id=1805
 
 #EXTINF:0,CBS Reality 
 http://hls01-05.az.myvideo.az/hls-live/livepkgr/cbsreality/cbsreality/cbsreality.m3u8?simpletvipadresleri
+
+#EXTINF:0,CBS Reality 
+http://live.zoptv.com/filmon/master.m3u8?id=1808
+
+#EXTINF:0,CBS Reality 
+http://live.zoptv.com/filmon/master.m3u8?id=1811
 
 #EXTINF:0,CHCH Ontario 
 rtmp://54.85.197.21:1935/live/news live=1 timeout=15
@@ -121,7 +137,7 @@ http://198.179.31.198/live/2062.high.stream/2062.high.stream/index.m3u8
 
 
 #EXTINF:0,E4
-
+http://live.zoptv.com/filmon/master.m3u8?id=65
 
 #EXTINF:0,English Club TV 
 
@@ -135,14 +151,17 @@ http://hls.novotelecom.ru/streaming/fashion/tvrec/playlist.m3u8
 #EXTINF:0,Fashion TV 
 http://113.160.49.34/lives/origin03/fashionhd.isml/fashionhd-2096k.m3u8
 
-#EXTINF:0,Film4 
+#EXTINF:0,Fashion TV 
+http://live.zoptv.com/filmon/master.m3u8?id=21
 
+#EXTINF:0,Film4 
+http://live.zoptv.com/filmon/master.m3u8?id=13
 
 #EXTINF:0,Fine Living Network 
 
 
 #EXTINF:0,Food Network 
-
+http://live.zoptv.com/filmon/master.m3u8?id=20
 
 #EXTINF:0,Fox 5 
 
@@ -207,17 +226,35 @@ http://ios.streamserver01.com:8080/ShowcaseTV/mystream.m3u8
 #EXTINF:0,ITV 1 
 http://82.135.224.134:80/udp/239.100.3.6:1234
 
+#EXTINF:0,ITV 1 
+http://live.zoptv.com/filmon/master.m3u8?id=11
+
+#EXTINF:0,ITV 1 
+http://live.zoptv.com/filmon/master.m3u8?id=1817
+
+#EXTINF:0,ITV 1 
+http://live.zoptv.com/filmon/master.m3u8?id=119
+
 #EXTINF:0,ITV 2 
+http://live.zoptv.com/filmon/master.m3u8?id=67
 
+#EXTINF:0,ITV 2 
+http://live.zoptv.com/filmon/master.m3u8?id=1820
 
-#EXTINF:0,ITV 3
+#EXTINF:0,ITV 3 
+http://live.zoptv.com/filmon/master.m3u8?id=26
 
+#EXTINF:0,ITV 3 
+http://live.zoptv.com/filmon/master.m3u8?id=1823
 
 #EXTINF:0,ITV 4 
+http://live.zoptv.com/filmon/master.m3u8?id=101
 
+#EXTINF:0,ITV 4 
+http://live.zoptv.com/filmon/master.m3u8?id=1826
 
 #EXTINF:0,ITV Choice
-
+http://live.zoptv.com/filmon/master.m3u8?id=3211
 
 #EXTINF:0,Jewelry Television
 rtmp://jtvmedia.jtv.com:1975/live playpath=live6 swfUrl=http://demandware.edgesuite.net/aaby_prd/on/demandware.static/Sites-jtv-Site/-/default/v1410110388581/swf/flashMediaPlayer/StrobeMediaPlayback.swf live=1 pageUrl=http://www.jtv.com/on/demandware.store/Sites-jtv-Site/default/LiveViewer-Show
@@ -235,7 +272,7 @@ http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
 
 
 #EXTINF:0,More4 
-
+http://live.zoptv.com/filmon/master.m3u8?id=97
 
 #EXTINF:0,NBC 
 
@@ -247,7 +284,7 @@ http://nhkworld-hds-live1.hds1.fmslive.stream.ne.jp/hls-live/nhkworld-hds-live1/
 
 
 #EXTINF:0,Nick Jr 
-http://31.130.9.158:81/udp/238.1.2.8:1234
+
 
 #EXTINF:0,Nickelodeon 
 
@@ -277,7 +314,7 @@ rtmp://128.104.144.134/WisconsinChannel/mystream
 
 
 #EXTINF:0,Sky Arts 2 
-http://188.227.189.18:8082/TV4250
+
 
 #EXTINF:0,Sky Living 
 

@@ -125,7 +125,7 @@ http://tvenbcsn-i.Akamaihd.net/hls/live/218235/nbcsnx/2596k/prog.m3u8|X-Forwarde
 rtmp://31.220.0.195:80/live/tx1 pageUrl=http://reytv.co token=%Zrey(nKa@#Z
 
 #EXTINF:0,NFL Network 
-rtmp://46.246.29.140:1935/stream/ playpath=6fUnIBKxvH.stream swfUrl=http://thecdn.04stream.com/p/ooolo1.swf pageUrl=http://www.04stream.com/ebb.php?adsp=other&width=600&height=460&st=747475v5u4o4j3r446q4n244z294u2u28424w2u2w2t223f4&adx=&stream=24s274i5a4a4u274o5248494t284b4n294m5v3i4d3d3n36646u4t22433y234y2x2p2t274y2z32363y3v2o565v5v4a3i36606i2k4j4v5k474n33574a414p4h4z33456t226c4n424r2p2z294b434h5233314y2k5b4a4j5u24494j5s244v264338444d4y2z264b494m56434t2y3s2p224r2p2o2&sooor=MjA=&str=is&ok=&cat=3&link=1&idom=www.ifeed2all.eu token=%ZZri(nKa@#Z
+
 
 #EXTINF:0,Outdoor Channel 
 rtmp://edge1.everyon.tv/etv1sb/pld613
@@ -191,13 +191,7 @@ rtmp://rrbalancer.broadcast.tneg.de:1935/pw/ruk/ playpath=ruk swfUrl=http://pfer
 
 
 #EXTINF:0,Sky Sports 2 
-rtmp://80.82.70.106:443/liverepeater playpath=48 swfUrl=http://popeoftheplayers.eu/atdedead.swf pageUrl=http://popeoftheplayers.eu/crichd.php?id=48&width=620&height=490 token=#atd%#$ZH
-
-#EXTINF:0,Sky Sports 2 
 rtmp://31.220.0.195:80/live playpath=s2r swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf pageUrl=http://reytv.co/embedo.php?live=skysports2&vw=620&vh=490 token=%Zrey(nKa@#Z
-
-#EXTINF:0,Sky Sports 3 
-http://smarterapps.ddns.net:8080/sp3/sprT3Ke/index.m3u8
 
 #EXTINF:0,Sky Sports 3 
 rtmp://80.82.78.15:443/liverepeater playpath=10 swfUrl=http://popeoftheplayers.eu/atdedead.swf pageUrl=http://popeoftheplayers.eu/crichd.php?id=10&width=620&height=490 token=#atd%#$ZH
@@ -212,7 +206,7 @@ rtmp://31.220.0.195:80/live playpath=ssx4 swfUrl=http://p.jwpcdn.com/6/11/jwplay
 rtmp://195.154.168.217:80/liverepeater playpath=303020 swfUrl=http://cdn.goodcast.co/players.swf live=1 pageUrl=http://goodcast.co/.coms token=Fo5_n0w?U.rA6l3-70w47ch timeout=10
 
 #EXTINF:0,Sky Sports 5 
-rtmp://195.154.168.217:80/liverepeater playpath=303021 swfUrl=http://cdn.goodcast.co/players.swf live=1 pageUrl=http://goodcast.co/.coms token=Fo5_n0w?U.rA6l3-70w47ch timeout=10
+
 
 #EXTINF:0,Sky Sports F1 
 
@@ -263,10 +257,7 @@ rtmp://31.220.0.195:80/live/ playpath=tx1 token=%Zrey(nKa@#Z swfUrl=http://p.jwp
 
 
 #EXTINF:0,Viasat Golf 
-http://hlsstr04.svc.iptv.rt.ru/hls/CH_C06_VIASATGOLFHD/variant.m3u8
 
-#EXTINF:0,Viasat Golf 
-http://46.61.226.18/hls/CH_C06_VIASATGOLFHD/bw3000000/variant.m3u8?version=2
 
 #EXTINF:0,Viasat Sport
 

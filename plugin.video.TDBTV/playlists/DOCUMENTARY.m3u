@@ -20,7 +20,7 @@ http://113.160.49.34/lives/origin03/animalsd.isml/animalsd-1096k.m3u8
 
 
 #EXTINF:0,Discovery Investigation 
-http://31.130.9.158:81/udp/238.1.2.131:1234
+
 
 #EXTINF:0,Discovery Max 
 
@@ -89,7 +89,7 @@ http://odna.octoshape.net/f3f5m2v4/cds/ch5_720p/chunklist.m3u8
 
 
 #EXTINF:0,Travel Channel 
-
+http://live.zoptv.com/filmon/master.m3u8?id=842
 
 #EXTINF:0,Viasat Explorer 
 
