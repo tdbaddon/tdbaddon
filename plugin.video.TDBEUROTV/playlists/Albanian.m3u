@@ -1,14 +1,11 @@
 ﻿#EXTM3U
 
 
-#EXTINF:0,A1 Report
-rtmp://66.55.93.204/livepkgr/a1stream?adbe-live-event=a1report
+#EXTINF:0,A1 Report 
 
-#EXTINF:0,A1 Report
-http://5.101.112.149:9705/satsupreme/cccam-server.net/36.ch
 
 #EXTINF:0,ABC News
-http://5.101.112.149:9705/satsupreme/cccam-server.net/41.ch
+
 
 #EXTINF:0,Agon Channel 
 http://str105mb.setplex.net:1935/str2iosmd5/7ios_agontv_34536544/playlist.m3u8
@@ -16,20 +13,17 @@ http://str105mb.setplex.net:1935/str2iosmd5/7ios_agontv_34536544/playlist.m3u8
 #EXTINF:0,Alb Info
 
 
-#EXTINF:0,Alb UK
+#EXTINF:0,Alb UK 
 rtmp://188.138.17.8:1935/albuk/albuk.stream
 
-#EXTINF:0,Alb UK
+#EXTINF:0,Alb UK 
 rtmp://188.138.17.8:1935/albuk/albuk+.stream
-
-#EXTINF:0,Alb UK
-http://5.101.112.149:9705/satsupreme/cccam-server.net/10.ch
 
 #EXTINF:0,Alb Plus
 
 
 #EXTINF:0,Albanian Screen
-http://5.101.112.149:9705/satsupreme/cccam-server.net/14.ch
+
 
 #EXTINF:0,Al Jazeera Balkan 
 rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
@@ -74,7 +68,7 @@ rtmp://yayin.tvdunyasi.tv/live/balkanrtv
 http://81.7.13.162/hls/channelone/index.m3u8
 
 #EXTINF:0,Cufo TV
-http://94.100.31.242:8183/hls/xz3123/index.m3u8
+
 
 #EXTINF:0,Dasma TV
 
@@ -95,13 +89,13 @@ http://94.100.31.242:8183/hls/xz3126/index.m3u8
 
 
 #EXTINF:0,Film Hits 
-http://94.100.31.242:8183/hls/film1/index.m3u8
+
 
 #EXTINF:0,Film Komedi 
 
 
 #EXTINF:0,Film Nje
-http://94.100.31.242:8183/hls/film3/index.m3u8
+
 
 #EXTINF:0,Film Plus
 
@@ -122,10 +116,7 @@ mms://77.238.209.50:1234
 
 
 #EXTINF:0,Jug TV 
-rtmp://84.20.77.50/live/livestream1
 
-#EXTINF:0,Jug TV 
-rtmp://84.20.77.50/live//livestream2
 
 #EXTINF:0,Kanal 3
 
@@ -159,9 +150,6 @@ http://fms.zulu.mk:1935/zulu/mtv1_1/playlist.m3u8
 
 #EXTINF:0,MPT 2 
 http://mrt.cdn.spectar.tv:1935/mrt-edge/_definst_/mrt2-sat/playlist.m3u8
-
-#EXTINF:0,MPT 2 
-http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video_id/3548/token/1551170c6b60563462fd429eec72b731/playlist.m3u8
 
 #EXTINF:0,MPT 2 
 http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video_id/3548/token/bd0b11a4f8d05cc0bffe589f55909615/chunklist_w787058205_b1196000.m3u8
@@ -233,7 +221,7 @@ http://88.212.10.27:81/streams/stv2.m3u8?
 rtmp://str103.setplex.net:1935/228/stv_folk
 
 #EXTINF:0,Top Channel 
-http://94.100.31.242:8183/hls/TopChannel/index.m3u8
+
 
 #EXTINF:0,Top Channel News
 

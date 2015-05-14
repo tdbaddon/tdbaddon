@@ -11,10 +11,10 @@ rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazee
 rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
 
 #EXTINF:0,B92 
-http://stream.b92.net:7999/tv-b92.ogg
+http://edge1.volim.tv/live/b92.stream/playlist.m3u8?hash=bce8d71c254913183829d491f62235c70ae93e71
 
 #EXTINF:0,B92 
-http://edge1.volim.tv/live/b92.stream/playlist.m3u8?hash=bce8d71c254913183829d491f62235c70ae93e71
+http://stream.b92.net:7999/tv-b92.ogg
 
 #EXTINF:0,BKTV
 
@@ -86,10 +86,7 @@ http://88.212.10.27:81/streams/joj.m3u8
 http://88.212.10.27:81/streams/jojplus.m3u8
 
 #EXTINF:0,Jug TV 
-rtmp://84.20.77.50/live/livestream1
 
-#EXTINF:0,Jug TV 
-rtmp://84.20.77.50/live//livestream2
 
 #EXTINF:0,Jugoton
 
@@ -287,7 +284,7 @@ mmsh://195.252.113.38:80/rts?MSWMExt=.asf
 
 
 #EXTINF:0,RTL 1
-rtsp://195.252.113.40/rts
+
 
 #EXTINF:0,RTL 2
 

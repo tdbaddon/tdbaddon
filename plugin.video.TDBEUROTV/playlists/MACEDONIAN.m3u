@@ -52,7 +52,7 @@ rtmp://hugo-iptv.zapto.org/live/h1
 mms://77.238.209.50:1234
 
 #EXTINF:0,In TV
-rtsp://streamus.intv.mk:1935/live/intv
+
 
 #EXTINF:0,Iris 
 mms://62.162.58.55/TVIris
@@ -64,10 +64,7 @@ mms://62.162.58.54:8080
 http://88.212.10.27:81/streams/joj.m3u8
 
 #EXTINF:0,Jug TV 
-rtmp://84.20.77.50/live/livestream1
 
-#EXTINF:0,Jug TV 
-rtmp://84.20.77.50/live//livestream2
 
 #EXTINF:0,K1 Veles
 http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/k1-tv-veles/playlist.m3u8
@@ -94,22 +91,16 @@ mms://62.162.58.55/TVkanal8
 mms://62.162.58.55/TVkanal21
 
 #‎EXTINF‬:0,K Plus Stip
-http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/kplus-tv-stip/playlist.m3u8
+
 
 #‎EXTINF‬:0,Mega Bitola
-http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/hdtv-mega-bitola/playlist.m3u8
+
 
 #EXTINF:0,Mpt1 
 http://fms.zulu.mk:554/zulu/mtv1_1/playlist_b125000_w1132785237.m3u8
 
 #EXTINF:0,Mpt1 
 http://fms.zulu.mk:1935/zulu/mtv1_2/playlist.m3u8?wowzasessionid=337573726
-
-#EXTINF:0,Mpt1 
-http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video_id/3551/token/1551170c6b60563462fd429eec72b731/playlist.m3u8
-
-#EXTINF:0,Mpt 2 
-http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video_id/3548/token/1551170c6b60563462fd429eec72b731/playlist.m3u8
 
 #EXTINF:0,Mpt 2 
 http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video_id/3545/token/baf3cb0ceac4e5243d63f8bf96011783/playlist.m3u8
@@ -169,7 +160,7 @@ http://fms.zulu.mk:1935/zulu/telma_2/playlist.m3u8
 rtsp://fms.zulu.mk:554/zulu/telma_2
 
 #‎EXTINF‬:0,Ultra Tetovo
-http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/ultra-tv-tetovo/playlist.m3u8
+
 
 #EXTINF:0,Vesti 24
 mms://62.162.58.55/24vesti

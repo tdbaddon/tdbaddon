@@ -7,10 +7,10 @@ http://mail.tv4e.gr:1935/live/myStream.sdp/playlist.m3u8
 #EXTINF:0,Alpha
 http://alfakanali-lh.akamaihd.net/i/live_1@90368/master.m3u8
 
-#EXTINF:0,Ant1
+#EXTINF:0,Ant1 
 http://wow.ant1.gr:1935/live/smil:mavani.smil/playlist.m3u8
 
-#EXTINF:0,Ant1
+#EXTINF:0,Ant1 
 http://wow.ant1.gr:1935/live/_definst_/ant1tv1711video/playlist.m3u8?wowzasessionid=1155125647
 
 #EXTINF:0,Ant1 Cyprus
@@ -119,7 +119,7 @@ rtmp://78.129.184.15:10223/streaming/stream pageUrl=http://lepantortv.listen2myr
 mmsh://wpso.com:200/music
 
 #EXTINF:0,Mad TV 
-http://www.mad.tv/players/madtv/
+
 
 #EXTINF:0,Mad TV Cyprus
 rtmp://144.76.2.213/live/livestream swfUrl=http://jwplayer.mediaserve.com/player.swf live=1 timeout=10
@@ -128,7 +128,7 @@ rtmp://144.76.2.213/live/livestream swfUrl=http://jwplayer.mediaserve.com/player
 rtmp://213.16.167.55:1935/livepkgr/livestream swfUrl=http://static.ant1.gr/maktvlive.ashx pageUrl=http://www.maktv.gr/Live swfVfy=1 live=1 timeout=10
 
 #EXTINF:0,Mega 
-http://megahdlive1-f.akamaihd.net/i/live_1@105260/master.m3u8
+
 
 #EXTINF:0,Mega Cyprus
 http://mlivenews.istoikona.net/livenews.isml/manifest(format=m3u8-aapl).m3u8
@@ -179,10 +179,7 @@ rtmp://media.patrisnews.com:1935/patris/tvstream live=1 timeout=10
 
 
 #EXTINF:0,Rik Sat 
-http://cdnvideo.webvideocore.net/livenl/out_2xtqzyrq6gysc48ko0cs/index.m3u8
 
-#EXTINF:0,Rik Sat 
-http://31.186.24.231:8000/33
 
 #EXTINF:0,Samiaki TV
 rtmp://91.121.107.131/samiaki/samiaki live=1
@@ -209,10 +206,10 @@ http://xelladalivex.api.channel.livestream.com/3.0/playlist.m3u8
 http://178.62.176.153:1935/TV100/myStream/playlist.m3u8
 
 #EXTINF:0,TV Creta
-http://hellasonmedia.viiideo.gr/tvcreta1.html
+
 
 #EXTINF:0,TVM
-rtmp://cp77174.live.edgefcs.net:443/live/123456@19937 live=1 timeout=10
+
 
 #EXTINF:0,Zougla TV 
 http://zouglahd-f.akamaihd.net/i/zougla_1@56341/index_700_av-p.m3u8

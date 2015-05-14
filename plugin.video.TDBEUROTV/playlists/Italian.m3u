@@ -1,5 +1,5 @@
 ﻿#EXTM3U
-#EXTINF:0,
+
 
 
 #EXTINF:0,8 Video Calabria Crotone
@@ -45,7 +45,7 @@ http://wms.shared.streamshow.it/lucaniatv/lucaniatv/playlist.m3u8
 rtmp://live.streamcaster.net/ondatv_live/ playpath=ondatv swfUrl=http://www.flashwebtown.com/mediaplayer/mediaplayer.swf pageUrl=http://www.ondatv.it/ live=1
 
 #EXTINF:0,Orler TV
-rtmp://77.92.76.135/orler/ playpath=livestream swfUrl=http://77.92.76.135/jw5/player.swf live=1 pageUrl=http://www.orler.it/streamingtv/
+
 
 #EXTINF:0,Piu Blu
 rtmp://ondemand.superstreaming.it/piublu playpath=piublu.sdp
@@ -120,21 +120,21 @@ http://wms.shared.streamshow.it/tsn/tsn_mobile/playlist.m3u8
 http://wms.shared.streamshow.it/tsn2/tsn2/playlist.m3u8
 
 #EXTINF:0,Tele Studiomo
-rtmp://fms2.shared.streamshow.it/telestudiomo playpath=telestudiomo swfUrl=http://www.telestudiomodena.it/flowplayer/flowplayer.commercial-3.2.15.swf pageUrl=http://www.telestudiomodena.it/telestudio.html live=1 timeout=10
+
 
 #EXTINF:0,Telecitta
 rtmp://stream.telepadova.com/live/ playpath=tv1
 
-#EXTINF:0,Teleducato
+#EXTINF:0,Teleducato 
 http://wms.shared.streamshow.it/teleducatopc/teleducatopc/playlist.m3u8
 
-#EXTINF:0,Teleducato
+#EXTINF:0,Teleducato 
 rtmp://wms.shared.streamshow.it:80/teleducatopr playpath=teleducatopr swfUrl=http://player.streamshow.it/flowplayer/flowplayer.commercial-3.2.18.swf pageUrl=http://player.streamshow.it/embed/teleducatopr.php?height=320&width=480 live=1 timeout=10
 
-#EXTINF:0,Teleliberta
+#EXTINF:0,Teleliberta 
 http://streaming1.bsnewline.com:80/telelibertalive
 
-#EXTINF:0,Teleunica
+#EXTINF:0,Teleunica 
 rtmp://flash3.ipercast.net/teleunica.tv-live/livestream1
 
 #EXTINF:0,Tilesport TV

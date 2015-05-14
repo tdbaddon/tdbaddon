@@ -18,7 +18,7 @@ http://202.170.127.178:1935/dcinode001/astvtotv.sdp/playlist.m3u8
 http://210.1.60.208:1935/live/bang.sdp/chunklist.m3u8
 
 #EXTINF:0,Bayon News
-http://live.khmer.be:1935/live/BayonNews/hasbahca.m3u8
+
 
 #EXTINF:0,Block A
 
@@ -30,7 +30,7 @@ rtmp://61.19.18.238/live/web1stream
 http://symphony.live-s.cdn.bitgravity.com/cdn-live/_definst_/symphony/live/feed04/playlist.m3u8
 
 #EXTINF:0,Channel 3
-http://111.223.37.198:1935/liveedge/thaitv3/playlist.m3u8
+
 
 #EXTINF:0,Channel 5
 http://203.151.133.100:1935/live/ch5_1/playlist.m3u8
@@ -63,7 +63,7 @@ rtsp://202.142.207.150:1935/live/livesabaidee1
 rtmp://202.142.207.150/live//livesabaidee1
 
 #EXTINF:0,TVK
-http://live.khmer.be:1935/live/TVK/hasbahca.m3u8
+
 
 #EXTINF:0,White Channel
 http://27.254.44.112/whitechannellive2/whitechannellive2/playlist.m3u8

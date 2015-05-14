@@ -15,7 +15,7 @@ rtmp://162.212.176.107:1935/abu_dhabi/globaltv-abu_dhabi.stream
 http://alforatlive.nanocdn.com:1935/live/alforat256/HasBahCa.m3u8
 
 #EXTINF:0,Al Kout
-rtmp://66.23.237.233:1935/alkout/alkout
+
 
 #EXTINF:0,Al Nahar Sport
 
@@ -72,13 +72,13 @@ rtmp://162.212.176.107:1935/cairo_cinema/globaltv-cairo_cinema.stream
 rtmp://162.212.176.107/cairo_drama//globaltv-cairo_drama.stream
 
 #EXTINF:0,Dubai Racing
-http://cdnehlsdubairacing2.endavomedia.com/smil:dmilivedubairacing2.smil/playlist.m3u8
+
 
 #EXTINF:0,Dubai Sports 3
-http://cdnehlsdubaisports3.endavomedia.com/smil:dmilivedubaisports3.smil/HasBahCa.m3u8
+
 
 #EXTINF:0,Dubai TV
-http://cdnedvrdubaitv.endavomedia.com/smil:dmilivedubaitvhls.smil/HasBahCa.m3u8
+
 
 #EXTINF:0,Edhak TV
 
@@ -135,13 +135,13 @@ rtmp://91.140.238.7/rtmplive/rtpencoder/ch6.sdp
 rtmp://91.140.238.7/rtmplive/rtpencoder/sportextra.sdp
 
 #EXTINF:0,Kuwait
-rtmp://91.140.238.7/rtmplive/rtpencoder/ch2.sdp
+
 
 #EXTINF:0,Moga Comedy
 rtmp://162.212.176.107/moga_comedy//globaltv-moga_comedy.stream
 
 #EXTINF:0,Nabaa
-rtmp://31.14.40.238:1935/live/Nabaa
+
 
 #EXTINF:0,National Geographic
 rtmp://162.212.176.107:1935/national_geo_ad/globaltv-national_geo_ad.stream
@@ -150,10 +150,10 @@ rtmp://162.212.176.107:1935/national_geo_ad/globaltv-national_geo_ad.stream
 rtmp://162.212.176.107:1935/nessma/globaltv-nessma.stream
 
 #EXTINF:0,Noor Dubai TV
-http://cdnedvrnoordubaitv.endavomedia.com/smil:dmilivenoordubaitvhls.smil/HasBahCa.m3u8
+
 
 #EXTINF:0,OSN Yahala
-http://185.27.237.105:8082/TV0064
+
 
 #EXTINF:0,Plus Dawri
 
