@@ -56,7 +56,7 @@ http://ooyalahd2-f.akamaihd.net/i/globalradio02_delivery@156522/master.m3u8
 http://46.249.213.87/iPhone/broadcast/ibizaontv-tablet.3gp/ibizaontv-tablet.3gp-mr648k.m3u8?trackingid=3391380000&os=desktop
 
 #EXTINF:0,Jazz 
-
+rtmp://91.201.78.3:1935/live/jazzhd
 
 #EXTINF:0,M6 Music
 

@@ -97,8 +97,14 @@ rtmp://cdn.cast-tv.us/stream playpath=z00012.stream swfUrl=http://imveoh.info/pl
 #EXTINF:0,Lotus Macau 
 
 
-#EXTINF:0,MGM 
+#EXTINF:0,MBC 2
+http://63.237.48.3/ios/MBC2/MBC2.m3u8
 
+#EXTINF:0,MBC Max
+http://63.237.48.23/ios/MBC_MAX/MBC_MAX.m3u8
+
+#EXTINF:0,MGM 
+http://46.173.175.164:8099/99
 
 #EXTINF:0,Movies 24/7
 
@@ -173,37 +179,40 @@ rtmp://cdn.cast-tv.us/stream playpath=z00012.stream swfUrl=http://imveoh.info/pl
 
 
 #EXTINF:0,Sky Movies Action 
-
+http://188.227.189.18:8082/TV4245
 
 #EXTINF:0,Sky Movies Atlantic
 
 
 #EXTINF:0,Sky Movies Comedy
-
+http://188.227.189.18:8082/TV4246
 
 #EXTINF:0,Sky Movies Crime
 
 
 #EXTINF:0,Sky Movies Disney
-
+http://188.227.189.18:8082/TV4247
 
 #EXTINF:0,Sky Movies Drama
 
 
 #EXTINF:0,Sky Movies Family
-
+http://188.227.189.18:8082/TV4248
 
 #EXTINF:0,Sky Movies Horrors
 
 
 #EXTINF:0,Sky Movies Premiere 
+http://188.227.189.18:8082/TV4251
 
+#EXTINF:0,Sky Movies Premiere 
+http://188.227.189.18:8082/TV4252
 
 #EXTINF:0,Sky Movies SciFi 
-
+http://188.227.189.18:8082/TV4249
 
 #EXTINF:0,Sky Movies Select 
-
+http://188.227.189.18:8082/TV4254
 
 #EXTINF:0,Sky Movies Superheros 
 
@@ -221,7 +230,7 @@ http://113.160.49.34/lives/origin03/moviehd.isml/moviehd-2096k.m3u8
 
 
 #EXTINF:0,Starz East
-
+http://188.227.189.18:8082/TV4251
 
 #EXTINF:0,Starz Family
 
@@ -240,6 +249,9 @@ http://113.160.49.34/lives/origin03/moviehd.isml/moviehd-2096k.m3u8
 
 #EXTINF:0,SYFY Movie Channel 
 
+
+#EXTINF:0,TCM 
+http://194.116.252.129:4022/udp/239.239.2.49:1234
 
 #EXTINF:0,TCM 
 http://200.76.77.237/LIVE/H01/CANAL496/PROFILE03.m3u8?
@@ -266,7 +278,7 @@ http://200.76.77.237/LIVE/H01/CANAL496/PROFILE05.m3u8?
 
 
 #EXTINF:0,TV 1000 Action
-
+http://195.78.244.219:10000/udp/239.0.3.27:1234
 
 
 

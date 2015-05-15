@@ -91,10 +91,10 @@ mms://62.162.58.55/TVkanal8
 mms://62.162.58.55/TVkanal21
 
 #‎EXTINF‬:0,K Plus Stip
-
+http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/kplus-tv-stip/chunklist.m3u8 
 
 #‎EXTINF‬:0,Mega Bitola
-
+http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/hdtv-mega-bitola/chunklist.m3u8 
 
 #EXTINF:0,Mpt1 
 http://fms.zulu.mk:554/zulu/mtv1_1/playlist_b125000_w1132785237.m3u8
@@ -115,7 +115,7 @@ http://fms.zulu.mk:1935/zulu/nashatv_1/playlist.m3u8
 http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/o2-tv-ohrid/playlist.m3u8
 
 #EXTINF:0,OBN 
-
+http://178.33.24.14:2502/www.sipragezabava.com 
 
 #EXTINF:0,Pop Brio 
 
@@ -160,7 +160,7 @@ http://fms.zulu.mk:1935/zulu/telma_2/playlist.m3u8
 rtsp://fms.zulu.mk:554/zulu/telma_2
 
 #‎EXTINF‬:0,Ultra Tetovo
-
+http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/ultra-tv-tetovo/chunklist.m3u8 
 
 #EXTINF:0,Vesti 24
 mms://62.162.58.55/24vesti

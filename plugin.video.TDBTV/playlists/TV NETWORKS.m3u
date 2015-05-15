@@ -64,6 +64,9 @@ http://200.76.77.237/LIVE/H01/CANAL253/PROFILE05.m3u8
 #EXTINF:0,Cartoon Network 
 http://188.227.86.4:4022/udp/239.77.0.77:1234
 
+#EXTINF:0,Cartoon Network 
+http://92.38.137.240:20000/udp/239.77.0.77:1234
+
 #EXTINF:0,Cbeebies
 http://live.zoptv.com/filmon/master.m3u8?id=103
 
@@ -125,7 +128,7 @@ http://198.179.31.198/live/2062.high.stream/2062.high.stream/index.m3u8
 
 
 #EXTINF:0,Disney Channel 
-
+http://203.162.235.124:5555/udp/225.2.100.96:5000
  
 #EXTINF:0,Disney Junior 
 
@@ -164,7 +167,7 @@ http://live.zoptv.com/filmon/master.m3u8?id=13
 http://live.zoptv.com/filmon/master.m3u8?id=20
 
 #EXTINF:0,Fox 5 
-
+http://92.38.137.240:20000/udp/239.77.0.3:1234
 
 #EXTINF:0,Fox 7
 
@@ -185,7 +188,7 @@ http://live.zoptv.com/filmon/master.m3u8?id=20
 
 
 #EXTINF:0,Fox Life 
-
+http://92.38.137.240:20000/udp/239.77.0.4:1234
 
 #EXTINF:0,FX
 
@@ -193,14 +196,15 @@ http://live.zoptv.com/filmon/master.m3u8?id=20
 #EXTINF:0,Ginx Gaming TV 
 
 
+#EXTINF:0,Global TV Halifax
+http://link.theplatform.com/s/dtjsEC/77l1KA_G_5P1?feed=DEV%20Live%20Stream%20Feed
+
 #EXTINF:0,Global TV Toronto
 http://link.theplatform.com/s/dtjsEC/hdSH3iztz_j_?feed=DEV%20Live%20Stream%20Feed
 
 #EXTINF:0,Global TV Vancouver
 http://link.theplatform.com/s/dtjsEC/EqBPGYLY6fEx?feed=DEV%20Live%20Stream%20Feed
 
-#EXTINF:0,Global TV Halifax
-http://link.theplatform.com/s/dtjsEC/77l1KA_G_5P1?feed=DEV%20Live%20Stream%20Feed
 
 #EXTINF:0,Hallmark Channel 
 
@@ -284,10 +288,10 @@ http://nhkworld-hds-live1.hds1.fmslive.stream.ne.jp/hls-live/nhkworld-hds-live1/
 
 
 #EXTINF:0,Nick Jr 
-
+http://195.78.244.219:10000/udp/239.0.3.137:1234
 
 #EXTINF:0,Nickelodeon 
-
+http://46.173.175.164:8089/89
 
 #EXTINF:0,NickNight 
 
@@ -314,7 +318,7 @@ rtmp://128.104.144.134/WisconsinChannel/mystream
 
 
 #EXTINF:0,Sky Arts 2 
-
+http://188.227.189.18:8082/TV4250
 
 #EXTINF:0,Sky Living 
 
@@ -335,7 +339,7 @@ http://200.76.77.237/LIVE/H01/CANAL203/PROFILE05.m3u8?
 
 
 #EXTINF:0,Sundance Channel 
-
+http://194.116.252.129:4022/udp/239.239.2.167:1234
 
 #EXTINF:0,Syfy 
 
@@ -353,13 +357,16 @@ http://200.76.77.237/LIVE/H01/CANAL203/PROFILE05.m3u8?
 
 
 #EXTINF:0,TLC 
-
+http://92.38.137.240:20000/udp/239.77.0.147:1234
 
 #EXTINF:0,TNT 
+http://200.76.77.237/LIVE/H01/CANAL266/PROFILE03.m3u8?
 
+#EXTINF:0,TNT 
+http://200.76.77.237/LIVE/H01/CANAL266/PROFILE05.m3u8?
 
 #EXTINF:0,Tom & Jerry Show 
-
+rtmp://208.53.180.218/ctv playpath=tom swfUrl=http://www.carolineoliveira.com.br/swf/player.swf live=1 pageUrl=http://carolineoliveira.com.br/tvamigos/tomejerry.html
 
 #EXTINF:0,Tru TV 
 

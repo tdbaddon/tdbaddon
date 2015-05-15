@@ -92,7 +92,7 @@ rtmp://176.9.123.140:1935/leveltgp/leveltgp live=1 timeout=10
 http://wpc.68FC.edgecastcdn.net/8068FC/INFINITY/m3u8/cinema.m3u8
 
 #EXTINF:0,Irida 
-
+mmsh://212.251.44.111:27030
 
 #EXTINF:0,Kontra 
 rtmp://flashcloud.mediacdn.com:1935/live/kontratv
@@ -119,7 +119,7 @@ rtmp://78.129.184.15:10223/streaming/stream pageUrl=http://lepantortv.listen2myr
 mmsh://wpso.com:200/music
 
 #EXTINF:0,Mad TV 
-
+rtmp://144.76.2.213:1935/live/livestream
 
 #EXTINF:0,Mad TV Cyprus
 rtmp://144.76.2.213/live/livestream swfUrl=http://jwplayer.mediaserve.com/player.swf live=1 timeout=10
@@ -128,7 +128,7 @@ rtmp://144.76.2.213/live/livestream swfUrl=http://jwplayer.mediaserve.com/player
 rtmp://213.16.167.55:1935/livepkgr/livestream swfUrl=http://static.ant1.gr/maktvlive.ashx pageUrl=http://www.maktv.gr/Live swfVfy=1 live=1 timeout=10
 
 #EXTINF:0,Mega 
-
+http://megahdlive1-f.akamaihd.net/i/live_1@105260/master.m3u8
 
 #EXTINF:0,Mega Cyprus
 http://mlivenews.istoikona.net/livenews.isml/manifest(format=m3u8-aapl).m3u8

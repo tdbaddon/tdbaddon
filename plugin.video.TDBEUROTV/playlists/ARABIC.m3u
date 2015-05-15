@@ -78,7 +78,7 @@ rtmp://162.212.176.107/cairo_drama//globaltv-cairo_drama.stream
 
 
 #EXTINF:0,Dubai TV
-
+http://dmi.mangomolo.com:1935/dubaitv/smil:dubaitv.smil/playlist.m3u8
 
 #EXTINF:0,Edhak TV
 
@@ -150,7 +150,7 @@ rtmp://162.212.176.107:1935/national_geo_ad/globaltv-national_geo_ad.stream
 rtmp://162.212.176.107:1935/nessma/globaltv-nessma.stream
 
 #EXTINF:0,Noor Dubai TV
-
+http://dmi.mangomolo.com:1935/noordubaitv/smil:noordubaitv.smil/chunklist_w932561967_b1200000.m3u8
 
 #EXTINF:0,OSN Yahala
 
