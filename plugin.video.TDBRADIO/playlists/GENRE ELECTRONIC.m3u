@@ -31,8 +31,14 @@ http://188.138.100.101:8000/
 #EXTINF:0,Chicago Fusion 
 http://launch.fusionchicago.com:8004
 
+#EXTINF:0,Club Music
+http://95.81.147.20/3756/nrj_3756.mp3
+
 #EXTINF:0,Dancetime FM
 http://87.230.53.17:9000
+
+#EXTINF:0,Dance Hits
+http://95.81.147.7/5164/nrj_110148.mp3
 
 #EXTINF:0,Dance Nation 1 
 http://stream.dancenationone.fm

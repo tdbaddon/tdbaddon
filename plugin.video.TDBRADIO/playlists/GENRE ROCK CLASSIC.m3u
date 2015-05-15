@@ -40,6 +40,12 @@ http://stream-uk1.radioparadise.com:80/mp3-128
 #EXTINF:0,Radio Tunes 80s Rock Hits (US) 
 http://pub6.radiotunes.com/radiotunes_80srock
 
+#EXTINF:0,Rock Classics
+http://95.81.155.7/4971/nrj_143732.mp3
+
+#EXTINF:0,Rock Music
+http://95.81.155.20/3811/nrj_3811.mp3
+
 #EXTINF:0,Rockin 80's 
 http://173.244.215.163:8420
 

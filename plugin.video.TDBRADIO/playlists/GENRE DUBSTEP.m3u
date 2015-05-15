@@ -10,6 +10,9 @@ http://stream.dubbase.fm:7004/
 #EXTINF:0,Dubstep FM (US) 
 http://stream.dubstep.fm/;stream/DUBSTEP.FM
 
+#EXTINF:0,Dubstep Music
+http://95.81.147.20/5334/nrj_104446.mp3
+
 #EXTINF:0,Dubstep Light Radio (Russia) 
 http://dubstep-light.info:8000/dubsteplight.mp3
 

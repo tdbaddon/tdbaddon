@@ -25,6 +25,9 @@ http://88.198.3.15:30100
 #EXTINF:0,Diva Funk 
 http://deevaradio.net/diva/stream/divaradio_wa.m3u
 
+#EXTINF:0,Funky Music
+http://95.81.147.20/3918/nrj_111818.mp3
+
 #EXTINF:0,GotRadio Old School (US) 
 http://173.244.215.163:8580/
 

@@ -25,6 +25,9 @@ http://www.jumpradio.de/static/webchannel/jump_rock_channel_128.m3u
 #EXTINF:0,Metal Head Radio 
 http://208.53.138.151:8032
 
+#EXTINF:0,Metal Music
+http://rouge-metal.ice.infomaniak.ch/rouge-metal-64.aac
+
 #EXTINF:0,Radio Paradise 
 http://87.98.146.216:8000
 

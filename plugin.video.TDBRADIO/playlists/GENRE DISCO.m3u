@@ -34,6 +34,9 @@ http://stream.radiocorp.nl/r10_Disco_mp3
 #EXTINF:0,RadioTunes Disco Party (US) 
 http://pub4.radiotunes.com/radiotunes_discoparty
 
+#EXTINF:0,Rouge Disco
+http://rouge-disco.ice.infomaniak.ch/rouge-disco-64.aac
+
 #EXTINF:0,The Disco Palace (US) 
 http://s4.viastreaming.net:9040/
 

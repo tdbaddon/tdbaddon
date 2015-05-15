@@ -25,6 +25,9 @@ http://85.25.86.69:8100
 #EXTINF:0,Costa Del Mar (Canary Islands) 
 http://sc-costadelmar.1.fm:10156/
 
+#EXTINF:0,Driving Music
+http://95.81.147.7/3779/nrj_3779.mp3
+
 #EXTINF:0,Groove Salad 
 http://uwstream1.somafm.com:80
 
@@ -36,6 +39,9 @@ http://de1.streamhosting.ch:8050
 
 #EXTINF:0,Radio Sar 
 http://radio.sar.by:8000/mp3128
+
+#EXTINF:0,Relaxing Music
+http://95.81.155.20/5620/nrj_110007.mp3
 
 
 

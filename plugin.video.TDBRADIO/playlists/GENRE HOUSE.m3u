@@ -19,6 +19,9 @@ http://s5.onweb.gr:8488
 #EXTINF:0,Chic Radio (France) 
 http://dancefloor.chicradio.fr/
 
+#EXTINF:0,Deep House
+http://95.81.147.24/9962/nrj_100122.mp3
+
 #EXTINF:0,Deep FM 
 http://195.66.134.41:80
 
@@ -48,6 +51,9 @@ http://hirschmilch.de:7000/prog-house.mp3
 
 #EXTINF:0,Hi-Five Radio 
 http://85.214.130.123:8000
+
+#EXTINF:0,Ibiza House Music
+http://95.81.155.20/3776/nrj_3776.mp3
 
 #EXTINF:0,Love House FM 
 http://we-love-house.fm:8000/stream
