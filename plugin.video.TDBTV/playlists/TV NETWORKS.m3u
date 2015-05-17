@@ -5,16 +5,16 @@
 http://noscdn1.connectedviews.com:1935/live/sporttv3hd.stream/livestream.m3u8
 
 #EXTINF:0,ABC 
-
+0
 
 #EXTINF:0,ABC Family
-
+0
 
 #EXTINF:0,ACC TV
-
+0
 
 #EXTINF:0,AMC 
-
+0
 
 #EXTINF:0,AXN 
 http://113.160.49.34/lives/origin03/axnhd.isml/axnhd-2096k.m3u8
@@ -29,16 +29,10 @@ http://200.76.77.237/LIVE/H01/CANAL213/PROFILE05.m3u8?
 http://hlsstr03.svc.iptv.rt.ru/hls/CH_BABYTV/bw480000/variant.m3u8?version=2
 
 #EXTINF:0,BBC 1 
-http://live.zoptv.com/filmon/master.m3u8?id=14
-
-#EXTINF:0,BBC 1 
-http://live.zoptv.com/filmon/master.m3u8?id=361
+0
 
 #EXTINF:0,BBC 2 
 http://37.220.29.186:8000/bbc2/bbc2/index.m3u8
-
-#EXTINF:0,BBC 2 
-http://live.zoptv.com/filmon/master.m3u8?id=25
 
 #EXTINF:0,BBC Entertainment 
 http://200.76.77.237/LIVE/H01/CANAL253/PROFILE03.m3u8?
@@ -47,52 +41,43 @@ http://200.76.77.237/LIVE/H01/CANAL253/PROFILE03.m3u8?
 http://200.76.77.237/LIVE/H01/CANAL253/PROFILE05.m3u8
 
 #EXTINF:0,BBC Lifestyle
-
+0
 
 #EXTINF:0,BET 
-
+0
 
 #EXTINF:0,BIO 
-
+0
 
 #EXTINF:0,Boomerang 
-
+0
 
 #EXTINF:0,Bravo 
-
+0
 
 #EXTINF:0,Cartoon Network 
 http://188.227.86.4:4022/udp/239.77.0.77:1234
 
-#EXTINF:0,Cartoon Network 
-http://92.38.137.240:20000/udp/239.77.0.77:1234
-
 #EXTINF:0,Cbeebies
-http://live.zoptv.com/filmon/master.m3u8?id=103
+0
 
 #EXTINF:0,CBS 
-
+0
 
 #EXTINF:0,CBS Action 
-
+0
 
 #EXTINF:0,CBS Drama 
-http://live.zoptv.com/filmon/master.m3u8?id=1805
+0
 
 #EXTINF:0,CBS Reality 
 http://hls01-05.az.myvideo.az/hls-live/livepkgr/cbsreality/cbsreality/cbsreality.m3u8?simpletvipadresleri
-
-#EXTINF:0,CBS Reality 
-http://live.zoptv.com/filmon/master.m3u8?id=1808
-
-#EXTINF:0,CBS Reality 
-http://live.zoptv.com/filmon/master.m3u8?id=1811
 
 #EXTINF:0,CHCH Ontario 
 rtmp://54.85.197.21:1935/live/news live=1 timeout=15
 
 #EXTINF:0,Classic Looney Tunes
-
+0
 
 #EXTINF:0,CNBC 
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/cnbc_eu/ls_satlink/b_,264,528,828,.m3u8
@@ -104,10 +89,7 @@ http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/cnbc_eu/ls_satlink/b_264.m3u8
 rtmp://c.cdn.newschat.tv/edge playpath=cnbc_live  swfUrl=http://msnbclive.eu/player.swf  pageUrl=http://www.livenewschat.eu/stocks/player=default
 
 #EXTINF:0,Comedy Central
-
-
-#EXTINF:0,CP24
-
+0
 
 #EXTINF:0,CTV Edmonton
 http://198.179.31.198/live/2053.high.stream/2053.high.stream/index.m3u8
@@ -121,32 +103,32 @@ http://198.179.31.198/live/2056.high.stream/2056.high.stream/index.m3u8
 #EXTINF:0,CTV Yorkton
 http://198.179.31.198/live/2062.high.stream/2062.high.stream/index.m3u8
 
-#EXTINF:0,CTV News
-
-
 #EXTINF:0,CW 
-
+0
 
 #EXTINF:0,Disney Channel 
 http://203.162.235.124:5555/udp/225.2.100.96:5000
+
+#EXTINF:0,Disney Channel 
+rtmp://stream.connectcast.tv/live playpath=mp4:CC-F91655E4-277C-E23A-B447-5E1B21E83E21-31816 swfUrl=http://connectcast.tv/jwplayer/v6.12/jwplayer.flash.swf live=1 pageUrl=http://connectcast.tv/hoaney
  
 #EXTINF:0,Disney Junior 
-
+0
 
 #EXTINF:0,Disney XD 
-
+0
 
 #EXTINF:0,E! 
-
+0
 
 #EXTINF:0,E4
-http://live.zoptv.com/filmon/master.m3u8?id=65
+0
 
 #EXTINF:0,English Club TV 
-
+0
 
 #EXTINF:0,Fashion Box
-
+0
 
 #EXTINF:0,Fashion TV 
 http://hls.novotelecom.ru/streaming/fashion/tvrec/playlist.m3u8
@@ -154,63 +136,68 @@ http://hls.novotelecom.ru/streaming/fashion/tvrec/playlist.m3u8
 #EXTINF:0,Fashion TV 
 http://113.160.49.34/lives/origin03/fashionhd.isml/fashionhd-2096k.m3u8
 
-#EXTINF:0,Fashion TV 
-http://live.zoptv.com/filmon/master.m3u8?id=21
-
 #EXTINF:0,Film4 
-http://live.zoptv.com/filmon/master.m3u8?id=13
+0
 
 #EXTINF:0,Fine Living Network 
-
+0
 
 #EXTINF:0,Food Network 
-http://live.zoptv.com/filmon/master.m3u8?id=20
+0
 
 #EXTINF:0,Fox 5 
 http://92.38.137.240:20000/udp/239.77.0.3:1234
 
 #EXTINF:0,Fox 7
-
+0
 
 #EXTINF:0,Fox 11
-
+0
 
 #EXTINF:0,Fox 29
-
+0
 
 #EXTINF:0,Fox 45 
-
+0
 
 #EXTINF:0,Fox 47
-
+0
 
 #EXTINF:0,Fox Crime
-
+0
 
 #EXTINF:0,Fox Life 
 http://92.38.137.240:20000/udp/239.77.0.4:1234
 
 #EXTINF:0,FX
-
+0
 
 #EXTINF:0,Ginx Gaming TV 
+0
 
+#EXTINF:0,Global TV Halifax 
+http://207.223.2.93/s/dtjsEC/77l1KA_G_5P1?feed=DEV%20Live%20Stream%20Feed
 
-#EXTINF:0,Global TV Halifax
+#EXTINF:0,Global TV Halifax 
 http://link.theplatform.com/s/dtjsEC/77l1KA_G_5P1?feed=DEV%20Live%20Stream%20Feed
+
+#EXTINF:0,Global TV Toronto
+http://207.223.2.93/s/dtjsEC/hdSH3iztz_j_?feed=DEV%20Live%20Stream%20Feed
 
 #EXTINF:0,Global TV Toronto
 http://link.theplatform.com/s/dtjsEC/hdSH3iztz_j_?feed=DEV%20Live%20Stream%20Feed
 
 #EXTINF:0,Global TV Vancouver
+http://207.223.2.93/s/dtjsEC/EqBPGYLY6fEx?feed=DEV%20Live%20Stream%20Feed
+
+#EXTINF:0,Global TV Vancouver
 http://link.theplatform.com/s/dtjsEC/EqBPGYLY6fEx?feed=DEV%20Live%20Stream%20Feed
 
-
 #EXTINF:0,Hallmark Channel 
-
+0
 
 #EXTINF:0,HGTV 
-
+0
 
 #EXTINF:0,Home Shopping Network 
 rtsp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:420p500kB31
@@ -219,73 +206,55 @@ rtsp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:420p500kB31
 rtmp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_ playpath=mp4:468p500kB31 swfUrl=http://www.hsn.com/[[IMPORT]]/players.edgesuite.net/flash/plugins/osmf/advanced-streaming-plugin/v3.5/osmf2.0/AkamaiAdvancedStreamingPlugin.swf live=1 pageUrl=http://www.hsn.com/watch/live?network=4
 
 #EXTINF:0,Horror Channel
-
+0
 
 #EXTINF:0,Irish TV 
 http://ios.streamserver01.com:8080/ShowcaseTV/mystream.m3u8
 
 #EXTINF:0,ID TV
-
+0
 
 #EXTINF:0,ITV 1 
 http://82.135.224.134:80/udp/239.100.3.6:1234
 
-#EXTINF:0,ITV 1 
-http://live.zoptv.com/filmon/master.m3u8?id=11
-
-#EXTINF:0,ITV 1 
-http://live.zoptv.com/filmon/master.m3u8?id=1817
-
-#EXTINF:0,ITV 1 
-http://live.zoptv.com/filmon/master.m3u8?id=119
-
 #EXTINF:0,ITV 2 
-http://live.zoptv.com/filmon/master.m3u8?id=67
-
-#EXTINF:0,ITV 2 
-http://live.zoptv.com/filmon/master.m3u8?id=1820
+0
 
 #EXTINF:0,ITV 3 
-http://live.zoptv.com/filmon/master.m3u8?id=26
-
-#EXTINF:0,ITV 3 
-http://live.zoptv.com/filmon/master.m3u8?id=1823
+0
 
 #EXTINF:0,ITV 4 
-http://live.zoptv.com/filmon/master.m3u8?id=101
-
-#EXTINF:0,ITV 4 
-http://live.zoptv.com/filmon/master.m3u8?id=1826
+0
 
 #EXTINF:0,ITV Choice
-http://live.zoptv.com/filmon/master.m3u8?id=3211
+0
 
 #EXTINF:0,Jewelry Television
 rtmp://jtvmedia.jtv.com:1975/live playpath=live6 swfUrl=http://demandware.edgesuite.net/aaby_prd/on/demandware.static/Sites-jtv-Site/-/default/v1410110388581/swf/flashMediaPlayer/StrobeMediaPlayback.swf live=1 pageUrl=http://www.jtv.com/on/demandware.store/Sites-jtv-Site/default/LiveViewer-Show
 
 #EXTINF:0,Jim Jam 
-
+0
 
 #EXTINF:0,Lifetime Network 
-
+0
 
 #EXTINF:0,London Live 
 http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
 
 #EXTINF:0,Looney Tunes
-
+0
 
 #EXTINF:0,More4 
-http://live.zoptv.com/filmon/master.m3u8?id=97
+0
 
 #EXTINF:0,NBC 
-
+0
 
 #EXTINF:0,NHK World 
 http://nhkworld-hds-live1.hds1.fmslive.stream.ne.jp/hls-live/nhkworld-hds-live1/_definst_/livestream/nhkworld-live-512.m3u8 
 
 #EXTINF:0,Nick 
-
+rtmp://stream.connectcast.tv/live playpath=mp4:CC-B5EF5A43-35CC-E66C-FDFA-97D2BF1244C4-31817 swfUrl=http://connectcast.tv/jwplayer/v6.12/jwplayer.flash.swf live=1 pageUrl=http://connectcast.tv/hoanicke
 
 #EXTINF:0,Nick Jr 
 http://195.78.244.219:10000/udp/239.0.3.137:1234
@@ -294,34 +263,34 @@ http://195.78.244.219:10000/udp/239.0.3.137:1234
 http://46.173.175.164:8089/89
 
 #EXTINF:0,NickNight 
-
+0
 
 #EXTINF:0,OSN First 
-
+0
 
 #EXTINF:0,OSN First Comedy 
-
+0
 
 #EXTINF:0,OWN Network 
-
+0
 
 #EXTINF:0,PBS 
 rtmp://128.104.144.134/WisconsinChannel/mystream
 
 #EXTINF:0,Sky 1 
-
+0
 
 #EXTINF:0,Sky 2
-
+0
 
 #EXTINF:0,Sky Arts 1 
-
+0
 
 #EXTINF:0,Sky Arts 2 
-http://188.227.189.18:8082/TV4250
+0
 
 #EXTINF:0,Sky Living 
-
+0
 
 #EXTINF:0,Sony TV 
 http://200.76.77.237/LIVE/H01/CANAL203/PROFILE03.m3u8?
@@ -330,31 +299,28 @@ http://200.76.77.237/LIVE/H01/CANAL203/PROFILE03.m3u8?
 http://200.76.77.237/LIVE/H01/CANAL203/PROFILE05.m3u8?
 
 #EXTINF:0,Spike TV 
-
+0
 
 #EXTINF:0,Star World 
-
+0
 
 #EXTINF:0,Studio Universal 
-
+0
 
 #EXTINF:0,Sundance Channel 
-http://194.116.252.129:4022/udp/239.239.2.167:1234
+0
 
 #EXTINF:0,Syfy 
-
+0
 
 #EXTINF:0,TBS 
-
+0
 
 #EXTINF:0,The Shopping Channel 
-
-
-#EXTINF:0,The Weather Channel
-
+0
 
 #EXTINF:0,Tiny Pop 
-
+0
 
 #EXTINF:0,TLC 
 http://92.38.137.240:20000/udp/239.77.0.147:1234
@@ -369,16 +335,16 @@ http://200.76.77.237/LIVE/H01/CANAL266/PROFILE05.m3u8?
 rtmp://208.53.180.218/ctv playpath=tom swfUrl=http://www.carolineoliveira.com.br/swf/player.swf live=1 pageUrl=http://carolineoliveira.com.br/tvamigos/tomejerry.html
 
 #EXTINF:0,Tru TV 
-
+0
 
 #EXTINF:0,True Drama
-
+0
 
 #EXTINF:0,True Entertainment 
-
+0
 
 #EXTINF:0,TV Land 
-
+0
 
 #EXTINF:0,Universal Channel 
 http://200.76.77.237/LIVE/H01/CANAL207/PROFILE03.m3u8?
@@ -387,13 +353,13 @@ http://200.76.77.237/LIVE/H01/CANAL207/PROFILE03.m3u8?
 http://200.76.77.237/LIVE/H01/CANAL207/PROFILE05.m3u8?
 
 #EXTINF:0,USA Network 
-
+0
 
 #EXTINF:0,Vernnissage TV 
 http://149.11.34.6:1935/live/vernissagetv.stream/hasbahca.m3u8
 
 #EXTINF:0,Victoria Secret TV
-
+0
 
 #EXTINF:0,Warner Brothers 
 http://200.76.77.237/LIVE/H01/CANAL205/PROFILE03.m3u8?
@@ -401,11 +367,8 @@ http://200.76.77.237/LIVE/H01/CANAL205/PROFILE03.m3u8?
 #EXTINF:0,Warner Brothers 
 http://200.76.77.237/LIVE/H01/CANAL205/PROFILE05.m3u8?
 
-#EXTINF:0,Weather Nation
-
-
-#EXTINF:0,Weather Network
-http://bcoveliveios-i.akamaihd.net/hls/live/207737/1942203455001/nat/master_Layer5.m3u8
+#EXTINF:0,WBCQ TV
+rtmp://stream.connectcast.tv/live playpath=mp4:CC-1C1C4B9C-3479-C277-F6F8-3B3B78E8B46B-21460 swfUrl=http://connectcast.tv/jwplayer/v6.12/jwplayer.flash.swf live=1 pageUrl=http://connectcast.tv/WBCQTV
 
 #EXTINF:0,WGN 9 Chicago 
 http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
@@ -413,14 +376,17 @@ http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
 #EXTINF:0,Wobi 
 http://200.76.77.237/LIVE/H01/CANAL387/PROFILE03.m3u8?
 
-#EXTINF:0,World Fashion TV
+#EXTINF:0,Wobi 
+http://200.76.77.237/LIVE/H01/CANAL387/PROFILE05.m3u8?
 
+#EXTINF:0,World Fashion TV
+0
 
 #EXTINF:0,WPIX 11
-
+0
 
 #EXTINF:0,Yes!
-
+0
 
 
 

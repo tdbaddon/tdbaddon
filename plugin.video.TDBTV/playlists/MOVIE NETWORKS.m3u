@@ -5,34 +5,34 @@
 http://113.160.49.34/lives/origin03/cinemaxsd.isml/cinemaxsd-1096k.m3u8
 
 #EXTINF:0,Cinestar Action & Thriller 
-
+0
 
 #EXTINF:0,Cinestar Premiere 1 
-
+0
 
 #EXTINF:0,Cinestar Premiere 2 
-
+0
 
 #EXTINF:0,Cinestar TV 
-
+0
 
 #EXTINF:0,CMore Action
-
+0
 
 #EXTINF:0,CMore Emotion
-
+0
 
 #EXTINF:0,CMore First
-
+0
 
 #EXTINF:0,CMore Hits
-
+0
 
 #EXTINF:0,CMore Series
-
+0
 
 #EXTINF:0,Encore East
-
+0
 
 #EXTINF:0,Fox 1 
 http://200.76.77.237/LIVE/H01/CANAL415/PROFILE03.m3u8?
@@ -57,6 +57,9 @@ http://200.76.77.237/LIVE/H01/CANAL475/PROFILE05.m3u8?
 
 #EXTINF:0,Fox Classics 
 http://200.76.77.237/LIVE/H01/CANAL478/PROFILE03.m3u8?
+
+#EXTINF:0,Fox Classics 
+http://200.76.77.237/LIVE/H01/CANAL478/PROFILE05.m3u8?
 
 #EXTINF:0,Fox Movies 
 http://162.212.176.107:1935/fox_movies/globaltv-fox_movies.stream/gmswf.m3u8
@@ -83,19 +86,19 @@ http://200.76.77.237/LIVE/H01/CANAL484/PROFILE05.m3u8?
 http://113.160.49.34/lives/origin03/hbohd.isml/hbohd-2096k.m3u8
 
 #EXTINF:0,HBO 
+rtmp://cdn.cast-tv.us/stream playpath=z00012.stream swfUrl=http://imveoh.info/player/player.swf pageUrl=http://imveoh.info/embed.php?n=z00010 token=#ed%h0#w@1
+
+#EXTINF:0,HBO 
 rtmp://89.248.168.57/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to/player/secure_player_iguide_embed_token.swf pageUrl=http://www.iguide.to/ token=#ed%h0#w18623jsda6523lDGD
 
 #EXTINF:0,HBO 
 rtmp://94.102.49.207/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to/player/secure_player_iguide_token.swf live=1 pageUrl=http://www.iguide.to/view/1/watch-live-HBO-channel-for-free token=#ed%h0#w18623jsda6523lDGDVe
 
-#EXTINF:0,HBO 
-rtmp://cdn.cast-tv.us/stream playpath=z00012.stream swfUrl=http://imveoh.info/player/player.swf pageUrl=http://imveoh.info/embed.php?n=z00010 token=#ed%h0#w@1
-
 #EXTINF:0,Kino TV 
-
+0
 
 #EXTINF:0,Lotus Macau 
-
+0
 
 #EXTINF:0,MBC 2
 http://63.237.48.3/ios/MBC2/MBC2.m3u8
@@ -107,151 +110,142 @@ http://63.237.48.23/ios/MBC_MAX/MBC_MAX.m3u8
 http://46.173.175.164:8099/99
 
 #EXTINF:0,Movies 24/7
-
+0
 
 #EXTINF:0,Movies 4 Men
-
+0
 
 #EXTINF:0,OMN Movies 
-
+0
 
 #EXTINF:0,OMN Movies Action
-
+0
 
 #EXTINF:0,OMN Movies Comedy
-
+0
 
 #EXTINF:0,OMN Movies Drama
-
+0
 
 #EXTINF:0,OMN Movies Drama 2
-
-
-#EXTINF:0,OMN Movies Festival
-
+0
 
 #EXTINF:0,OMN Movies Kids
-
+0
 
 #EXTINF:0,OMN Movies Premiere
-
+0
 
 #EXTINF:0,OMN Movies Premiere 3
-
+0
 
 #EXTINF:0,Paramount Channel
-
+0
 
 #EXTINF:0,Pink Action 2
-
+0
 
 #EXTINF:0,Pink Action 3
-
+0
 
 #EXTINF:0,Pink Comedy
-
+0
 
 #EXTINF:0,Pink Movies 3
-
+0
 
 #EXTINF:0,Pink Premium
-
+0
 
 #EXTINF:0,Pink Western
-
+0
 
 #EXTINF:0,SciFi
-
+0
 
 #EXTINF:0,Showtime 
-
+0
 
 #EXTINF:0,Showtime Beyond
-
+0
 
 #EXTINF:0,Showtime Extreme 
-
+0
 
 #EXTINF:0,Showtime Showcase
-
+0
 
 #EXTINF:0,Showtime West
-
+0
 
 #EXTINF:0,Sky Movies Action 
-http://188.227.189.18:8082/TV4245
+0
 
 #EXTINF:0,Sky Movies Atlantic
-
+0
 
 #EXTINF:0,Sky Movies Comedy
-http://188.227.189.18:8082/TV4246
+0
 
 #EXTINF:0,Sky Movies Crime
-
+0
 
 #EXTINF:0,Sky Movies Disney
-http://188.227.189.18:8082/TV4247
+0
 
 #EXTINF:0,Sky Movies Drama
-
+0
 
 #EXTINF:0,Sky Movies Family
-http://188.227.189.18:8082/TV4248
+0
 
 #EXTINF:0,Sky Movies Horrors
-
-
-#EXTINF:0,Sky Movies Premiere 
-http://188.227.189.18:8082/TV4251
+0
 
 #EXTINF:0,Sky Movies Premiere 
-http://188.227.189.18:8082/TV4252
+0
 
 #EXTINF:0,Sky Movies SciFi 
-http://188.227.189.18:8082/TV4249
+0
 
 #EXTINF:0,Sky Movies Select 
-http://188.227.189.18:8082/TV4254
+0
 
 #EXTINF:0,Sky Movies Superheros 
-
+0
 
 #EXTINF:0,Sony Movie Channel
-
+0
 
 #EXTINF:0,Star Movies 
 http://113.160.49.34/lives/origin03/moviehd.isml/moviehd-2096k.m3u8
 
 #EXTINF:0,Starz Black
-
+0
 
 #EXTINF:0,Starz Cinema
-
+0
 
 #EXTINF:0,Starz East
-http://188.227.189.18:8082/TV4251
+0
 
 #EXTINF:0,Starz Family
-
+0
 
 #EXTINF:0,Starz Kids and Family 
-
+0
 
 #EXTINF:0,Starz LA
-
+0
 
 #EXTINF:0,Starz NY
-
+0
 
 #EXTINF:0,Starz West
-
+0
 
 #EXTINF:0,SYFY Movie Channel 
-
-
-#EXTINF:0,TCM 
-http://194.116.252.129:4022/udp/239.239.2.49:1234
+0
 
 #EXTINF:0,TCM 
 http://200.76.77.237/LIVE/H01/CANAL496/PROFILE03.m3u8?
@@ -260,22 +254,22 @@ http://200.76.77.237/LIVE/H01/CANAL496/PROFILE03.m3u8?
 http://200.76.77.237/LIVE/H01/CANAL496/PROFILE05.m3u8?
 
 #EXTINF:0,The Movie Channel
-
+0
 
 #EXTINF:0,The Movie Channel Xtra
-
+0
 
 #EXTINF:0,Thriller Max
-
+0
 
 #EXTINF:0,True Movies 1
-
+0
 
 #EXTINF:0,True Movies 2 
-
+0
 
 #EXTINF:0,TV 1000
-
+0
 
 #EXTINF:0,TV 1000 Action
 http://195.78.244.219:10000/udp/239.0.3.27:1234
