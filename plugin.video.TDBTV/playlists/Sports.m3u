@@ -59,7 +59,7 @@ rtmp://141.255.160.202:1935/stream/ playpath=1Kq68GX6Kc.stream swfUrl=http://the
 rtmp://46.246.29.157:1935/stream/ playpath=1Kq68GX6Kc.stream swfUrl=http://thecdn.04stream.com/p/ooolo1.swf pageUrl=http://www.04stream.com/ebb.php?adsp=otherse&width=600&height=460
 
 #EXTINF:0,ESPN 2 
-0
+rtmp://41.242.151.4:80/live playpath=espn22 swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf live=1 pageUrl=http://reytv.co/embedo.php?live=espnusxx&vw=620&vh=490 token=%Zrey(nKa@#Z timeout=10
 
 #EXTINF:0,Eurosport 1 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_EUROSPORT/variant.m3u8
@@ -185,7 +185,7 @@ http://xrxs.net/video/live-p12wash-4728.m3u8
 mms://100automoto.tv/channel_porsche
 
 #EXTINF:0,Premier Sports 
-0
+rtmp://93.158.217.202:80/live playpath=premiersport swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf pageUrl=http://reytv.co/embedu.php?live=premiersport&vw=620&vh=490 token=%Zrey(nKa@#Z
 
 #EXTINF:0,Racing UK 
 rtmp://rrbalancer.broadcast.tneg.de:1935/pw/ruk/ playpath=ruk swfUrl=http://pferdewetten.broadcast.tneg.de/jwplayer/player.swf live=1 pageUrl=http://pferdewetten.broadcast.tneg.de/jwplayer/player.php?type=live&stream=ruk1&token=ccf6c54e62bc5bd667661d5af5d61e8664c75b11
