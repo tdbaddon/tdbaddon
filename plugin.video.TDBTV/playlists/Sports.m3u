@@ -1,9 +1,6 @@
 ﻿#EXTM3U
 
 
-#EXTINF:0,BBC Sports
-0
-
 #EXTINF:0,Bein Sport1 
 http://streamindo.ddns.net/jhos/beib1_2/streamindo/playlist.m3u8
 
@@ -26,7 +23,10 @@ http://streamindo.ddns.net/jhos/beib2_5/streamindo/playlist.m3u8
 http://bigten247.cdnak.bigtenhd.neulion.com/nlds/btn2go/btnnetwork/as/live/btnnetwork_hd_3000.m3u8
 
 #EXTINF:0,Box Nation 
-0
+rtmp://31.220.0.195:80/live playpath=bxx pageUrl=http://reytv.co token=%Zrey(nKa@#Z
+
+#EXTINF:0,Box Nation 
+rtmpe://46.246.124.89:1935/livedge playpath=sboxn pageUrl=http://www.hdcast.org/ token=Fo5_n0w?U.rA6l3-70w47ch
 
 #EXTINF:0,BT Sport 1 
 http://195.154.227.38:1935/live/btsports1lsh/playlist.m3u8 
@@ -187,6 +187,9 @@ mms://100automoto.tv/channel_porsche
 #EXTINF:0,Premier Sports 
 rtmp://93.158.217.202:80/live playpath=premiersport swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf pageUrl=http://reytv.co/embedu.php?live=premiersport&vw=620&vh=490 token=%Zrey(nKa@#Z
 
+#EXTINF:0,Premier Sports 
+http://euroiptv3.mine.nu:80/live?channelId=115&uid=14&deviceUser=Euro.iptv&devicePass=Euro.iptv&deviceSn=9BEF7B34F4FB54FA
+
 #EXTINF:0,Racing UK 
 rtmp://rrbalancer.broadcast.tneg.de:1935/pw/ruk/ playpath=ruk swfUrl=http://pferdewetten.broadcast.tneg.de/jwplayer/player.swf live=1 pageUrl=http://pferdewetten.broadcast.tneg.de/jwplayer/player.php?type=live&stream=ruk1&token=ccf6c54e62bc5bd667661d5af5d61e8664c75b11
 
@@ -200,13 +203,25 @@ http://195.154.227.38:1935/live/skysports1lsh/playlist.m3u8
 http://195.154.227.38:1935/live/skysports2lsh/playlist.m3u8
 
 #EXTINF:0,Sky Sports 2 
+http://euroiptv1.mine.nu:80/live?channelId=121&uid=14&deviceUser=Euro.iptv&devicePass=Euro.iptv&deviceSn=9BEF7B34F4FB54FA
+
+#EXTINF:0,Sky Sports 2 
 rtmp://31.220.0.195:80/live playpath=s2r swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf pageUrl=http://reytv.co/embedo.php?live=skysports2&vw=620&vh=490 token=%Zrey(nKa@#Z
 
 #EXTINF:0,Sky Sports 3 
 http://195.154.227.38:1935/live/skysports3lsh/playlist.m3u8 
 
+#EXTINF:0,Sky Sports 3 
+http://euroiptv1.mine.nu:80/live?channelId=122&uid=14&deviceUser=Euro.iptv&devicePass=Euro.iptv&deviceSn=9BEF7B34F4FB54FA
+
+#EXTINF:0,Sky Sports 3 
+http://euroiptv3.mine.nu:80/live?channelId=103&uid=14&deviceUser=Euro.iptv&devicePass=Euro.iptv&deviceSn=9BEF7B34F4FB54FA
+
 #EXTINF:0,Sky Sports 4 
 http://195.154.227.38:1935/live/skysports4lsh/playlist.m3u8
+
+#EXTINF:0,Sky Sports 4 
+http://euroiptv3.mine.nu:80/live?channelId=104&uid=14&deviceUser=Euro.iptv&devicePass=Euro.iptv&deviceSn=9BEF7B34F4FB54FA
 
 #EXTINF:0,Sky Sports 4 
 rtmp://31.220.0.195:80/live/ playpath=ssx4 token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://reytv.co/
@@ -218,10 +233,10 @@ rtmp://31.220.0.195:80/live playpath=ssx4 swfUrl=http://p.jwpcdn.com/6/11/jwplay
 http://195.154.227.38:1935/live/skysports5lsh/playlist.m3u8 
 
 #EXTINF:0,Sky Sports F1 
-0
+http://euroiptv3.mine.nu:80/live?channelId=107&uid=14&deviceUser=Euro.iptv&devicePass=Euro.iptv&deviceSn=9BEF7B34F4FB54FA
 
 #EXTINF:0,Sky Sports News 
-0
+rtmp://watch4.streamlive.to:1935/edge app=edge/_definst_/$doregex[xs] playpath=$doregex[path] swfVfy=1 token=$doregex[tok] swfUrl=https://www.streamlive.to/ads/streamlive.swf pageUrl=http://www.streamlive.to/view/70648/Sky_Sports_News-live-stream-channel-for-free
 
 #EXTINF:0,Sportsnet 360
 http://nlds187.cdnak.neulion.com/nlds/sportsnetnow/sn_360/as/live/sn_360_hd_ipad.m3u8
@@ -234,6 +249,9 @@ rtmp://31.220.0.195:80/live/ playpath=sno token=%Zrey(nKa@#Z swfUrl=http://p.jwp
 
 #EXTINF:0,Sportsnet Ontario 
 rtmp://41.242.151.4:80/live playpath=sno swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf pageUrl=http://reytv.co/embedu.php?live=sno&vw=620&vh=490 token=%Zrey(nKa@#Z
+
+#EXTINF:0,Sportsnet Ontario 
+rtmp://31.220.0.195:80/live/ playpath=sno token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://reytv.co
 
 #EXTINF:0,Sportsnet World 
 0
@@ -253,23 +271,38 @@ http://113.160.49.34/lives/origin03/starsportsd.isml/starsportsd-1096k.m3u8
 #EXTINF:0,TSN 1 
 rtmp://31.220.0.195:80/live/ playpath=tx1 token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://reytv.co/ AnisotropicTV
 
+#EXTINF:0,TSN 1 
+http://euroiptv1.mine.nu:80/live?channelId=219&uid=14&deviceUser=Euro.iptv&devicePass=Euro.iptv&deviceSn=9BEF7B34F4FB54FA
+
+#EXTINF:0,TSN 1 
+rtmp://31.220.0.195:80/live/tx1 pageUrl=http://reytv.co token=%Zrey(nKa@#Z
+
+#EXTINF:0,TSN 1 
+rtmp://31.220.0.195:80/live playpath=tx1 swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf pageUrl=http://www.reytv.co/embed.php?live=mlbxx&vw=620&vh=490 token=%Zrey(nKa@#Z
+
 #EXTINF:0,TSN 2 
-0
+http://euroiptv1.mine.nu:80/live?channelId=220&uid=14&deviceUser=Euro.iptv&devicePass=Euro.iptv&deviceSn=9BEF7B34F4FB54FA
+
+#EXTINF:0,TSN 2 
+rtmp://31.220.0.195:80/live/ playpath=tsn2x token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://reytv.co
+
+#EXTINF:0,TSN 2 
+rtmp://31.220.0.195:80/live playpath=tsn2x swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf pageUrl=http://www.reytv.co/embed.php?live=mlbxx&vw=620&vh=490 token=%Zrey(nKa@#Z
 
 #EXTINF:0,TSN 3 
-0
+http://euroiptv1.mine.nu:80/live?channelId=221&uid=14&deviceUser=Euro.iptv&devicePass=Euro.iptv&deviceSn=9BEF7B34F4FB54FA
 
 #EXTINF:0,TSN 4 
-0
+http://euroiptv1.mine.nu:80/live?channelId=222&uid=14&deviceUser=Euro.iptv&devicePass=Euro.iptv&deviceSn=9BEF7B34F4FB54FA
 
 #EXTINF:0,TSN 5 
-0
+http://euroiptv1.mine.nu:80/live?channelId=223&uid=14&deviceUser=Euro.iptv&devicePass=Euro.iptv&deviceSn=9BEF7B34F4FB54FA
 
 #EXTINF:0,UFC Network
 0
 
 #EXTINF:0,Viasat Golf 
-0
+http://hlsstr04.svc.iptv.rt.ru/hls/CH_C06_VIASATGOLFHD/variant.m3u8
 
 #EXTINF:0,Viasat Sport
 0
@@ -279,6 +312,9 @@ rtmp://80.82.78.39:443/liverepeater playpath=49 swfUrl=http://popeoftheplayers.e
 
 #EXTINF:0,WWE Network 
 rtmp://89.248.172.159:443/liverepeater playpath=49 swfUrl=http://popeoftheplayers.eu/atdedead.swf live=1 pageUrl=http://popeoftheplayers.eu/crichd.php?id=49&width=530&height=370 token=#atd%#$ZH
+
+#EXTINF:0,WWE Network 
+rtmp://watch4.streamlive.to:1935/edge app=edge/_definst_/$doregex[xs] playpath=$doregex[path] swfVfy=1 token=$doregex[tok] swfUrl=https://www.streamlive.to/ads/streamlive.swf pageUrl=http://www.streamlive.to/view/67052/TNA_Impact_Wrestling_Live_Destination_America_HD-live-stream-channel-for-free
 
 #EXTINF:0,XTreme Sports 
 0

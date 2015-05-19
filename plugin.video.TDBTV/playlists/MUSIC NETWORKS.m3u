@@ -109,17 +109,8 @@ rtmp://fms.105.net/live/rmc1
 #EXTINF:0,Rock 66 
 http://mediatv2.topix.it/24RockOne66
 
-#EXTINF:0,Scuzz
-0
-
 #EXTINF:0,Stage TV
 rtmp://149.11.34.6/live/stagetv.stream
-
-#EXTINF:0,Starz
-0
-
-#EXTINF:0,The Vault
-0
 
 #EXTINF:0,Vevo Hits 
 http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch2/06/prog_index.m3u8

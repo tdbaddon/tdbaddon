@@ -13,14 +13,14 @@ http://79.133.110.101:8888/udp/239.191.254.32:13343
 #EXTINF:0,ABC Family
 0
 
-#EXTINF:0,ACC TV
-0
-
 #EXTINF:0,AMC 
 0
 
 #EXTINF:0,AXN 
 http://113.160.49.34/lives/origin03/axnhd.isml/axnhd-2096k.m3u8
+
+#EXTINF:0,AXN 
+http://euroiptv1.mine.nu:80/live?channelId=409&uid=14&deviceUser=Euro.iptv&devicePass=Euro.iptv&deviceSn=9BEF7B34F4FB54FA
 
 #EXTINF:0,AXN 
 http://200.76.77.237/LIVE/H01/CANAL213/PROFILE03.m3u8?
@@ -42,9 +42,6 @@ http://200.76.77.237/LIVE/H01/CANAL253/PROFILE03.m3u8?
 
 #EXTINF:0,BBC Entertainment 
 http://200.76.77.237/LIVE/H01/CANAL253/PROFILE05.m3u8
-
-#EXTINF:0,BBC Lifestyle
-0
 
 #EXTINF:0,BET 
 0
@@ -79,9 +76,6 @@ http://hls01-05.az.myvideo.az/hls-live/livepkgr/cbsreality/cbsreality/cbsreality
 #EXTINF:0,CHCH Ontario 
 rtmp://54.85.197.21:1935/live/news live=1 timeout=15
 
-#EXTINF:0,Classic Looney Tunes
-0
-
 #EXTINF:0,CNBC 
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/cnbc_eu/ls_satlink/b_,264,528,828,.m3u8
 
@@ -92,7 +86,7 @@ http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/cnbc_eu/ls_satlink/b_264.m3u8
 rtmp://c.cdn.newschat.tv/edge playpath=cnbc_live  swfUrl=http://msnbclive.eu/player.swf  pageUrl=http://www.livenewschat.eu/stocks/player=default
 
 #EXTINF:0,Comedy Central
-0
+rtmp://178.18.31.56:443/liverepeater playpath=191907 swfUrl=http://bernardotv.club/playertest.swf pageUrl=http://biggestplayer.me/index.php?id=191881&width=620&height=470 token=Fo5_n0w?U.rA6l3-70w47ch
 
 #EXTINF:0,CTV Edmonton
 http://198.179.31.198/live/2053.high.stream/2053.high.stream/index.m3u8
@@ -125,16 +119,10 @@ rtmp://watch4.streamlive.to:1935/edge app=edge/_definst_/$doregex[xs] playpath=$
 rtmp://watch4.streamlive.to:1935/edge app=edge/_definst_/$doregex[xs] playpath=$doregex[path] swfVfy=1 token=$doregex[tok] swfUrl=https://www.streamlive.to/ads/streamlive.swf pageUrl=http://www.streamlive.to/view/70698/Disney_XD_%5BHD%5D-live-stream-channel-for-free
 
 #EXTINF:0,E! 
-0
+http://euroiptv3.mine.nu:80/live?channelId=573&uid=14&deviceUser=Euro.iptv&devicePass=Euro.iptv&deviceSn=9BEF7B34F4FB54FA
 
 #EXTINF:0,E4
-0
-
-#EXTINF:0,English Club TV 
-0
-
-#EXTINF:0,Fashion Box
-0
+http://95.172.231.17/flashstream/stream.flv?Preset=7&aspect=16A9&ffPreset=ultrafast&maxwidth=&maxheight=&chid=16
 
 #EXTINF:0,Fashion TV 
 http://hls.novotelecom.ru/streaming/fashion/tvrec/playlist.m3u8
@@ -149,7 +137,7 @@ http://pebbles124-lh.akamaihd.net/i/film4_1@137790/master.m3u8|X-Forwarded-For=8
 0
 
 #EXTINF:0,Food Network 
-0
+http://95.172.231.17/flashstream/stream.flv?Preset=7&aspect=16A9&ffPreset=ultrafast&maxwidth=&maxheight=&chid=32
 
 #EXTINF:0,Fox 5 
 http://92.38.137.240:20000/udp/239.77.0.3:1234
@@ -161,7 +149,7 @@ http://92.38.137.240:20000/udp/239.77.0.3:1234
 0
 
 #EXTINF:0,Fox 29
-0
+http://euroiptv3.mine.nu:80/live?channelId=575&uid=14&deviceUser=Euro.iptv&devicePass=Euro.iptv&deviceSn=9BEF7B34F4FB54FA
 
 #EXTINF:0,Fox 45 
 0
@@ -175,10 +163,10 @@ http://92.38.137.240:20000/udp/239.77.0.3:1234
 #EXTINF:0,Fox Life 
 http://92.38.137.240:20000/udp/239.77.0.4:1234
 
-#EXTINF:0,FX
-0
+#EXTINF:0,Fox Life 
+http://euroiptv3.mine.nu:80/live?channelId=574&uid=14&deviceUser=Euro.iptv&devicePass=Euro.iptv&deviceSn=9BEF7B34F4FB54FA
 
-#EXTINF:0,Ginx Gaming TV 
+#EXTINF:0,FX
 0
 
 #EXTINF:0,Global TV Halifax 
@@ -211,14 +199,8 @@ rtsp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:420p500kB31
 #EXTINF:0,Home Shopping Network 2
 rtmp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_ playpath=mp4:468p500kB31 swfUrl=http://www.hsn.com/[[IMPORT]]/players.edgesuite.net/flash/plugins/osmf/advanced-streaming-plugin/v3.5/osmf2.0/AkamaiAdvancedStreamingPlugin.swf live=1 pageUrl=http://www.hsn.com/watch/live?network=4
 
-#EXTINF:0,Horror Channel
-0
-
 #EXTINF:0,Irish TV 
 http://ios.streamserver01.com:8080/ShowcaseTV/mystream.m3u8
-
-#EXTINF:0,ID TV
-0
 
 #EXTINF:0,ITV 1 
 http://82.135.224.134:80/udp/239.100.3.6:1234
@@ -230,9 +212,6 @@ http://82.135.224.134:80/udp/239.100.3.6:1234
 0
 
 #EXTINF:0,ITV 4 
-0
-
-#EXTINF:0,ITV Choice
 0
 
 #EXTINF:0,Jewelry Television
@@ -247,11 +226,11 @@ rtmp://jtvmedia.jtv.com:1975/live playpath=live6 swfUrl=http://demandware.edgesu
 #EXTINF:0,London Live 
 http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
 
-#EXTINF:0,Looney Tunes
-0
-
 #EXTINF:0,More4 
 0
+
+#EXTINF:0,My9
+http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
 
 #EXTINF:0,NBC 
 rtmp://178.18.31.56:443/liverepeater playpath=191914 swfUrl=http://bernardotv.club/playertest.swf pageUrl=http://biggestplayer.me/stream.php?id=191914&width=620&height=470 token=Fo5_n0w?U.rA6l3-70w47ch timeout=15
@@ -288,6 +267,9 @@ rtmp://178.18.31.62:443/liverepeater playpath=191910 swfUrl=http://bernardotv.cl
 
 #EXTINF:0,PBS 
 rtmp://128.104.144.134/WisconsinChannel/mystream
+
+#EXTINF:0,Showtime
+rtmp://rtmp.zerocast.tv/live?t=xwqRhn5dC playpath=showtime swfUrl=http://cdn.ibrod.tv/player.swf flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv/
 
 #EXTINF:0,Sky 1 
 0
@@ -328,14 +310,17 @@ rtmp://rtmp.zerocast.tv/live?t=xwqRhn5dC playpath=syfy swfUrl=http://cdn.ibrod.t
 #EXTINF:0,TBS 
 rtmp://178.18.31.56:443/liverepeater playpath=191916 swfUrl=http://bernardotv.club/playertest.swf pageUrl=http://biggestplayer.me/stream.php?id=191916&width=620&height=470 token=Fo5_n0w?U.rA6l3-70w47ch timeout=15
 
-#EXTINF:0,The Shopping Channel 
-0
+#EXTINF:0,TBS 
+http://euroiptv1.mine.nu:80/live?channelId=412&uid=14&deviceUser=Euro.iptv&devicePass=Euro.iptv&deviceSn=9BEF7B34F4FB54FA
 
-#EXTINF:0,Tiny Pop 
+#EXTINF:0,The Shopping Channel 
 0
 
 #EXTINF:0,TLC 
 http://92.38.137.240:20000/udp/239.77.0.147:1234
+
+#EXTINF:0,TLC 
+http://212.178.3.209:1234/udp/239.2.2.123:1234
 
 #EXTINF:0,TNT 
 http://200.76.77.237/LIVE/H01/CANAL266/PROFILE03.m3u8?
@@ -371,7 +356,7 @@ http://200.76.77.237/LIVE/H01/CANAL207/PROFILE05.m3u8?
 http://149.11.34.6:1935/live/vernissagetv.stream/hasbahca.m3u8
 
 #EXTINF:0,Victoria Secret TV
-0
+http://stream02.yamgo.com/iPhone/HLS_TS/broadcast/victorias_secret_angels-tablet.3gp/victorias_secret_angels-tablet.3gp-mr648k.m3u8
 
 #EXTINF:0,Warner Brothers 
 http://200.76.77.237/LIVE/H01/CANAL205/PROFILE03.m3u8?
@@ -390,9 +375,6 @@ http://200.76.77.237/LIVE/H01/CANAL387/PROFILE03.m3u8?
 
 #EXTINF:0,Wobi 
 http://200.76.77.237/LIVE/H01/CANAL387/PROFILE05.m3u8?
-
-#EXTINF:0,World Fashion TV
-0
 
 #EXTINF:0,WPIX 11
 0
