@@ -37,6 +37,9 @@ http://77.36.61.45:8010/CCTVNews.m3u8?husham.com
 #EXTINF:0,CNBC 
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/cnbc_eu/ls_satlink/b_,264,528,828,.m3u8
 
+#EXTINF:0,CNBC 
+http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/cnbc_eu/ls_satlink/b_828.m3u8
+
 #EXTINF:0,CNN 
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/cnn/ls_satlink/b_,264,528,828,.m3u8
 
@@ -56,9 +59,6 @@ rtmp://edge1.everyon.tv/etv1sb/phd16
 http://bcliveuniv-lh.akamaihd.net/i/cpac1flr2014_01@51230/index_2000_av-p.m3u8
 
 #EXTINF:0,CSPAN
-0
-
-#EXTINF:0,CTV News 
 0
 
 #EXTINF:0,DW 
@@ -135,20 +135,6 @@ http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/skynews/ls_satlink/b_828.m3u8
 
 #EXTINF:0,Weather Network
 http://bcoveliveios-i.akamaihd.net/hls/live/207737/1942203455001/nat/master_Layer5.m3u8
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

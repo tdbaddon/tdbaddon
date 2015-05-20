@@ -20,9 +20,6 @@ http://79.133.110.101:8888/udp/239.191.254.32:13343
 http://113.160.49.34/lives/origin03/axnhd.isml/axnhd-2096k.m3u8
 
 #EXTINF:0,AXN 
-http://euroiptv1.mine.nu:80/live?channelId=409&uid=14&deviceUser=Euro.iptv&devicePass=Euro.iptv&deviceSn=9BEF7B34F4FB54FA
-
-#EXTINF:0,AXN 
 http://200.76.77.237/LIVE/H01/CANAL213/PROFILE03.m3u8?
 
 #EXTINF:0,AXN 
@@ -88,6 +85,9 @@ rtmp://c.cdn.newschat.tv/edge playpath=cnbc_live  swfUrl=http://msnbclive.eu/pla
 #EXTINF:0,Comedy Central
 rtmp://178.18.31.56:443/liverepeater playpath=191907 swfUrl=http://bernardotv.club/playertest.swf pageUrl=http://biggestplayer.me/index.php?id=191881&width=620&height=470 token=Fo5_n0w?U.rA6l3-70w47ch
 
+#EXTINF:0,Comedy Central
+http://188.138.9.228:8022
+
 #EXTINF:0,CTV Edmonton
 http://198.179.31.198/live/2053.high.stream/2053.high.stream/index.m3u8
 
@@ -104,22 +104,16 @@ http://198.179.31.198/live/2062.high.stream/2062.high.stream/index.m3u8
 0
 
 #EXTINF:0,Disney Channel 
-http://203.162.235.124:5555/udp/225.2.100.96:5000
-
-#EXTINF:0,Disney Channel 
-rtmp://stream.connectcast.tv/live playpath=mp4:CC-F91655E4-277C-E23A-B447-5E1B21E83E21-31816 swfUrl=http://connectcast.tv/jwplayer/v6.12/jwplayer.flash.swf live=1 pageUrl=http://connectcast.tv/hoaney
-
-#EXTINF:0,Disney Channel 
-rtmp://watch4.streamlive.to:1935/edge app=edge/_definst_/$doregex[xs] playpath=$doregex[path] swfVfy=1 token=$doregex[tok] swfUrl=https://www.streamlive.to/ads/streamlive.swf pageUrl=http://www.streamlive.to/view/38804/Disney_(HD)-live-stream-channely_%28HD%29-live-stream-channel-for-free
+0
  
 #EXTINF:0,Disney Junior 
 0
 
 #EXTINF:0,Disney XD 
-rtmp://watch4.streamlive.to:1935/edge app=edge/_definst_/$doregex[xs] playpath=$doregex[path] swfVfy=1 token=$doregex[tok] swfUrl=https://www.streamlive.to/ads/streamlive.swf pageUrl=http://www.streamlive.to/view/70698/Disney_XD_%5BHD%5D-live-stream-channel-for-free
+0
 
 #EXTINF:0,E! 
-http://euroiptv3.mine.nu:80/live?channelId=573&uid=14&deviceUser=Euro.iptv&devicePass=Euro.iptv&deviceSn=9BEF7B34F4FB54FA
+0
 
 #EXTINF:0,E4
 http://95.172.231.17/flashstream/stream.flv?Preset=7&aspect=16A9&ffPreset=ultrafast&maxwidth=&maxheight=&chid=16
@@ -139,32 +133,15 @@ http://pebbles124-lh.akamaihd.net/i/film4_1@137790/master.m3u8|X-Forwarded-For=8
 #EXTINF:0,Food Network 
 http://95.172.231.17/flashstream/stream.flv?Preset=7&aspect=16A9&ffPreset=ultrafast&maxwidth=&maxheight=&chid=32
 
-#EXTINF:0,Fox 5 
-http://92.38.137.240:20000/udp/239.77.0.3:1234
-
-#EXTINF:0,Fox 7
-0
-
-#EXTINF:0,Fox 11
-0
-
-#EXTINF:0,Fox 29
-http://euroiptv3.mine.nu:80/live?channelId=575&uid=14&deviceUser=Euro.iptv&devicePass=Euro.iptv&deviceSn=9BEF7B34F4FB54FA
-
-#EXTINF:0,Fox 45 
-0
-
-#EXTINF:0,Fox 47
-0
-
 #EXTINF:0,Fox Crime
 0
 
 #EXTINF:0,Fox Life 
 http://92.38.137.240:20000/udp/239.77.0.4:1234
 
-#EXTINF:0,Fox Life 
-http://euroiptv3.mine.nu:80/live?channelId=574&uid=14&deviceUser=Euro.iptv&devicePass=Euro.iptv&deviceSn=9BEF7B34F4FB54FA
+#EXTINF:0,Fox TV
+http://92.38.137.240:20000/udp/239.77.0.3:1234
+
 
 #EXTINF:0,FX
 0
@@ -205,11 +182,14 @@ http://ios.streamserver01.com:8080/ShowcaseTV/mystream.m3u8
 #EXTINF:0,ITV 1 
 http://82.135.224.134:80/udp/239.100.3.6:1234
 
+#EXTINF:0,ITV 1 
+http://95.172.231.17/flashstream/stream.flv?Preset=7&aspect=16A9&ffPreset=ultrafast&maxwidth=&maxheight=&chid=2
+
 #EXTINF:0,ITV 2 
 0
 
 #EXTINF:0,ITV 3 
-0
+http://212.250.46.35:4252/bysid/9605
 
 #EXTINF:0,ITV 4 
 0
@@ -254,12 +234,6 @@ rtmp://watch4.streamlive.to:1935/edge app=edge/_definst_/$doregex[xs] playpath=$
 rtmp://178.18.31.56:443/liverepeater playpath=194059 swfUrl=http://bernardotv.club/playertest.swf pageUrl=http://biggestplayer.me/stream.php?id=194058&width=620&height=470 token=Fo5_n0w?U.rA6l3-70w47ch
 
 #EXTINF:0,NickNight 
-0
-
-#EXTINF:0,OSN First 
-0
-
-#EXTINF:0,OSN First Comedy 
 0
 
 #EXTINF:0,OWN Network 

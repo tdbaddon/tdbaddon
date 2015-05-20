@@ -31,9 +31,6 @@ http://188.138.9.228:8024
 #EXTINF:0,CMore Series
 http://188.138.9.228:8021
 
-#EXTINF:0,Encore East
-0
-
 #EXTINF:0,Fox 1 
 http://200.76.77.237/LIVE/H01/CANAL415/PROFILE03.m3u8?
 
@@ -83,9 +80,6 @@ http://200.76.77.237/LIVE/H01/CANAL484/PROFILE03.m3u8?
 http://200.76.77.237/LIVE/H01/CANAL484/PROFILE05.m3u8?
 
 #EXTINF:0,HBO 
-http://113.160.49.34/lives/origin03/hbohd.isml/hbohd-2096k.m3u8
-
-#EXTINF:0,HBO 
 rtmp://cdn.cast-tv.us/stream playpath=z00012.stream swfUrl=http://imveoh.info/player/player.swf pageUrl=http://imveoh.info/embed.php?n=z00010 token=#ed%h0#w@1
 
 #EXTINF:0,HBO 
@@ -95,13 +89,7 @@ rtmp://89.248.168.57/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to
 rtmp://94.102.49.207/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to/player/secure_player_iguide_token.swf live=1 pageUrl=http://www.iguide.to/view/1/watch-live-HBO-channel-for-free token=#ed%h0#w18623jsda6523lDGDVe
 
 #EXTINF:0,HBO 
-http://euroiptv3.mine.nu:80/live?channelId=352&uid=14&deviceUser=Euro.iptv&devicePass=Euro.iptv&deviceSn=9BEF7B34F4FB54FA
-
-#EXTINF:0,HBO 
-http://euroiptv1.mine.nu:80/live?channelId=384&uid=14&deviceUser=Euro.iptv&devicePass=Euro.iptv&deviceSn=9BEF7B34F4FB54FA
-
-#EXTINF:0,HBO 
-http://euroiptv1.mine.nu:80/live?channelId=404&uid=14&deviceUser=Euro.iptv&devicePass=Euro.iptv&deviceSn=9BEF7B34F4FB54FA
+http://113.160.49.34/lives/origin03/hbohd.isml/hbohd-2096k.m3u8
 
 #EXTINF:0,MBC 2
 http://63.237.48.3/ios/MBC2/MBC2.m3u8
@@ -110,36 +98,12 @@ http://63.237.48.3/ios/MBC2/MBC2.m3u8
 http://63.237.48.23/ios/MBC_MAX/MBC_MAX.m3u8
 
 #EXTINF:0,MGM 
-http://46.173.175.164:8099/99
+0
 
 #EXTINF:0,Movies 24/7
 0
 
 #EXTINF:0,Movies 4 Men
-0
-
-#EXTINF:0,OMN Movies 
-0
-
-#EXTINF:0,OMN Movies Action
-0
-
-#EXTINF:0,OMN Movies Comedy
-0
-
-#EXTINF:0,OMN Movies Drama
-0
-
-#EXTINF:0,OMN Movies Drama 2
-0
-
-#EXTINF:0,OMN Movies Kids
-0
-
-#EXTINF:0,OMN Movies Premiere
-0
-
-#EXTINF:0,OMN Movies Premiere 3
 0
 
 #EXTINF:0,Paramount Channel
@@ -169,18 +133,6 @@ http://46.173.175.164:8099/99
 #EXTINF:0,Showtime 
 0
 
-#EXTINF:0,Showtime Beyond
-0
-
-#EXTINF:0,Showtime Extreme 
-0
-
-#EXTINF:0,Showtime Showcase
-0
-
-#EXTINF:0,Showtime West
-0
-
 #EXTINF:0,Sky Movies Action 
 0
 
@@ -188,7 +140,7 @@ http://46.173.175.164:8099/99
 http://euroiptv3.mine.nu:80/live?channelId=311&uid=14&deviceUser=Euro.iptv&devicePass=Euro.iptv&deviceSn=9BEF7B34F4FB54FA
 
 #EXTINF:0,Sky Movies Comedy
-http://euroiptv3.mine.nu:80/live?channelId=308&uid=14&deviceUser=Euro.iptv&devicePass=Euro.iptv&deviceSn=9BEF7B34F4FB54FA
+0
 
 #EXTINF:0,Sky Movies Crime
 0
@@ -197,22 +149,22 @@ http://euroiptv3.mine.nu:80/live?channelId=308&uid=14&deviceUser=Euro.iptv&devic
 0
 
 #EXTINF:0,Sky Movies Drama
-http://euroiptv1.mine.nu:80/live?channelId=303&uid=14&deviceUser=Euro.iptv&devicePass=Euro.iptv&deviceSn=9BEF7B34F4FB54FA
+0
 
 #EXTINF:0,Sky Movies Family
-http://euroiptv3.mine.nu:80/live?channelId=304&uid=14&deviceUser=Euro.iptv&devicePass=Euro.iptv&deviceSn=9BEF7B34F4FB54FA
+0
 
 #EXTINF:0,Sky Movies Horrors
 0
 
 #EXTINF:0,Sky Movies Premiere 
-http://euroiptv3.mine.nu:80/live?channelId=307&uid=14&deviceUser=Euro.iptv&devicePass=Euro.iptv&deviceSn=9BEF7B34F4FB54FA
+0
 
 #EXTINF:0,Sky Movies SciFi 
-http://euroiptv3.mine.nu:80/live?channelId=309&uid=14&deviceUser=Euro.iptv&devicePass=Euro.iptv&deviceSn=9BEF7B34F4FB54FA
+0
 
 #EXTINF:0,Sky Movies Select 
-http://euroiptv1.mine.nu:80/live?channelId=342&uid=14&deviceUser=Euro.iptv&devicePass=Euro.iptv&deviceSn=9BEF7B34F4FB54FA
+0
 
 #EXTINF:0,Sky Movies Superheros 
 0
@@ -223,30 +175,6 @@ http://euroiptv1.mine.nu:80/live?channelId=342&uid=14&deviceUser=Euro.iptv&devic
 #EXTINF:0,Star Movies 
 http://113.160.49.34/lives/origin03/moviehd.isml/moviehd-2096k.m3u8
 
-#EXTINF:0,Starz Black
-0
-
-#EXTINF:0,Starz Cinema
-0
-
-#EXTINF:0,Starz East
-0
-
-#EXTINF:0,Starz Family
-0
-
-#EXTINF:0,Starz Kids and Family 
-0
-
-#EXTINF:0,Starz LA
-0
-
-#EXTINF:0,Starz NY
-0
-
-#EXTINF:0,Starz West
-0
-
 #EXTINF:0,SYFY Movie Channel 
 0
 
@@ -255,15 +183,6 @@ http://200.76.77.237/LIVE/H01/CANAL496/PROFILE03.m3u8?
 
 #EXTINF:0,TCM 
 http://200.76.77.237/LIVE/H01/CANAL496/PROFILE05.m3u8?
-
-#EXTINF:0,The Movie Channel
-0
-
-#EXTINF:0,The Movie Channel Xtra
-0
-
-#EXTINF:0,Thriller Max
-0
 
 #EXTINF:0,True Movies 1
 0

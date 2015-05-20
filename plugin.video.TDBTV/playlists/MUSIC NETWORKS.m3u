@@ -70,9 +70,6 @@ http://200.76.77.237/LIVE/H01/CANAL726/PROFILE05.m3u8?
 #EXTINF:0,MTV 
 http://200.76.77.237/LIVE/H01/CANAL726/PROFILE03.m3u8?
 
-#EXTINF:0,MTV Classic
-0
-
 #EXTINF:0,MTV Dance 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVDANCE/variant.m3u8
 
@@ -90,9 +87,6 @@ http://200.76.77.237/LIVE/H01/CANAL701/PROFILE05.m3u8?
 
 #EXTINF:0,MTV Live 
 http://200.76.77.237/LIVE/H01/CANAL701/PROFILE03.m3u8?
-
-#EXTINF:0,MTV Music 
-0
 
 #EXTINF:0,MTV Rocks 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVROCKS/variant.m3u8
@@ -139,19 +133,8 @@ http://200.76.77.237/LIVE/H01/CANAL728/PROFILE03.m3u8?
 #EXTINF:0,VH1 Classics 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_VH1CLASSIC/variant.m3u8
 
-#EXTINF:0,VH1 Shuffle 
-0
-
 #EXTINF:0,Virgin TV 
 rtmp://fms.105.net:1935/live/virgin2
-
-
-
-
-
-
-
-
 
 
 
