@@ -1,18 +1,6 @@
 ﻿#EXTM3U
 
 
-#EXTINF:0,ASIA 8081
-http://59.120.43.181:8081
-
-#EXTINF:0,ASIA 8082
-http://59.120.43.181:8082
-
-#EXTINF:0,ASIA 8083
-http://59.120.43.181:8083
-
-#EXTINF:0,ASIA 8084
-http://59.120.43.181:8084
-
 #EXTINF:0,ASK TV
 rtmp://edge2.everyon.tv/etv2/phd1005
 

@@ -2,9 +2,6 @@
 
 
 #EXTINF:0,BELLA CLUB 
-http://46.249.213.93/iPhone/broadcast/bellaclub-tablet.3gp/bellaclub-tablet.3gp-mr648k.m3u8
-
-#EXTINF:0,BELLA CLUB 
 rtsp://46.249.213.87/broadcast/bellaluz-tablet.3gp
 
 #EXTINF:0,BITCH FLICKS 
@@ -19,11 +16,17 @@ rtmp://edge2.everyon.tv/etv2sb/phd772
 #EXTINF:0,BUTGO 
 rtmp://edge2.everyon.tv/etv2sb/pld772
 
+#EXTINF:0,JASMIN TV
+rtmp://109.71.162.112:1935/live/sd.jasminchannel.stream
+
+#EXTINF:0,MIAMI TV 
+rtmp://74.208.69.207/live/miamitvhd
+
 #EXTINF:0,O LA LA 
 http://hlsstr01.svc.iptv.rt.ru/hls/CH_OLALA/variant.m3u8
 
 #EXTINF:0,PENTHOUSE
-
+0
 
 #EXTINF:0,PLAYBOY SPICE 
 rtmp://edge2.everyon.tv/etv2sb/phd499
@@ -37,22 +40,23 @@ http://46.61.226.21/hls/CH_PLAYBOY/variant.m3u8?version=2
 #EXTINF:-0,PLAYBOY TV 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_PLAYBOY/variant.m3u8
 
+#EXTINF:-0,PLAYBOY TV 
+http://f1.mnogo-tv.com/ott-tv/1167/1433972580/7e5b62bec54ebc00c7ac295d5629e790/hls/PLboi/index.m3u8
+
 #EXTINF:0,RUSSIAN NIGHT 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_RUSSIANNIGHT/variant.m3u8?version=2
 
-#EXTINF:0,RUSSIAN NIGHT 
-http://185.38.12.20:8088/rusnoch/
-
-#EXTINF:0,RUSSIAN NIGHT 
-http://46.47.7.160:1234/udp/224.244.244.200:19993
-
 #EXTINF:0,SEX ED 
-
+0
 
 #EXTINF:0,SEX PRIVE 
+0
 
+#EXTINF:0,VISIT X 
+0
 
 #EXTINF:0,YOU DIVA 
+http://46.249.213.87/iPhone/HLS_TS/broadcast/you_diva-iphone.3gp.m3u8
 
 
 
