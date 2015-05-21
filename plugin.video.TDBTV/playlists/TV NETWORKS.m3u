@@ -14,7 +14,7 @@ http://79.133.110.101:8888/udp/239.191.254.32:13343
 0
 
 #EXTINF:0,AMC 
-0
+http://84.32.80.15:7781/udp/233.136.41.65:1234
 
 #EXTINF:0,AXN 
 http://113.160.49.34/lives/origin03/axnhd.isml/axnhd-2096k.m3u8
@@ -47,7 +47,7 @@ http://200.76.77.237/LIVE/H01/CANAL253/PROFILE05.m3u8
 0
 
 #EXTINF:0,Boomerang 
-0
+http://84.32.80.15:7781/udp/233.136.41.07:1234
 
 #EXTINF:0,Bravo 
 rtmp://rtmp.zerocast.tv/live?t=xwqRhn5dC playpath=bravo swfUrl=http://cdn.ibrod.tv/player.swf flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv/
@@ -65,10 +65,13 @@ rtmp://178.18.31.64:443/liverepeater playpath=191906 swfUrl=http://bernardotv.cl
 http://95.172.231.17/flashstream/stream.flv?Preset=7&aspect=16A9&ffPreset=ultrafast&maxwidth=&maxheight=&chid=28
 
 #EXTINF:0,CBS Drama 
-0
+http://84.32.80.15:7781/udp/233.136.41.89:1234
 
 #EXTINF:0,CBS Reality 
 http://95.172.231.17/flashstream/stream.flv?Preset=7&aspect=16A9&ffPreset=ultrafast&maxwidth=&maxheight=&chid=27
+
+#EXTINF:0,CBS Reality 
+http://84.32.80.15:7781/udp/233.136.41.88:1234
 
 #EXTINF:0,CHCH Ontario 
 rtmp://54.85.197.21:1935/live/news live=1 timeout=15
@@ -104,13 +107,19 @@ http://198.179.31.198/live/2062.high.stream/2062.high.stream/index.m3u8
 0
 
 #EXTINF:0,Disney Channel 
-0
+http://84.32.80.15:7781/udp/233.136.41.90:1234
  
 #EXTINF:0,Disney Junior 
-0
+http://84.32.80.15:7781/udp/233.136.41.92:1234
 
 #EXTINF:0,Disney XD 
-0
+http://84.32.80.15:7781/udp/233.136.41.91:1234
+
+#EXTINF:0,Duck TV
+http://84.32.80.15:7781/udp/233.136.41.108:1234
+
+#EXTINF:0,Duck TV
+http://84.32.80.15:7781/udp/233.136.41.48:1234
 
 #EXTINF:0,E! 
 0
@@ -124,11 +133,17 @@ http://hls.novotelecom.ru/streaming/fashion/tvrec/playlist.m3u8
 #EXTINF:0,Fashion TV 
 http://113.160.49.34/lives/origin03/fashionhd.isml/fashionhd-2096k.m3u8
 
+#EXTINF:0,Fashion TV 
+http://84.32.80.15:7781/udp/233.136.41.57:1234
+
+#EXTINF:0,Fashion TV 
+http://84.32.80.15:7781/udp/233.136.41.131:1234
+
 #EXTINF:0,Film4 
 http://pebbles124-lh.akamaihd.net/i/film4_1@137790/master.m3u8|X-Forwarded-For=85.5.87.218
 
 #EXTINF:0,Fine Living Network 
-0
+http://84.32.80.15:7781/udp/233.136.41.135:1234
 
 #EXTINF:0,Food Network 
 http://95.172.231.17/flashstream/stream.flv?Preset=7&aspect=16A9&ffPreset=ultrafast&maxwidth=&maxheight=&chid=32
@@ -139,9 +154,14 @@ http://95.172.231.17/flashstream/stream.flv?Preset=7&aspect=16A9&ffPreset=ultraf
 #EXTINF:0,Fox Life 
 http://92.38.137.240:20000/udp/239.77.0.4:1234
 
+#EXTINF:0,Fox Life 
+http://84.32.80.15:7781/udp/233.136.41.110:1234
+
 #EXTINF:0,Fox TV
 http://92.38.137.240:20000/udp/239.77.0.3:1234
 
+#EXTINF:0,Fox TV
+http://84.32.80.15:7781/udp/233.136.41.111:1234
 
 #EXTINF:0,FX
 0
@@ -198,7 +218,7 @@ http://212.250.46.35:4252/bysid/9605
 rtmp://jtvmedia.jtv.com:1975/live playpath=live6 swfUrl=http://demandware.edgesuite.net/aaby_prd/on/demandware.static/Sites-jtv-Site/-/default/v1410110388581/swf/flashMediaPlayer/StrobeMediaPlayback.swf live=1 pageUrl=http://www.jtv.com/on/demandware.store/Sites-jtv-Site/default/LiveViewer-Show
 
 #EXTINF:0,Jim Jam 
-0
+http://84.32.80.15:7781/udp/233.136.41.16:1234
 
 #EXTINF:0,Lifetime Network 
 0
@@ -266,6 +286,9 @@ http://200.76.77.237/LIVE/H01/CANAL203/PROFILE03.m3u8?
 #EXTINF:0,Sony TV 
 http://200.76.77.237/LIVE/H01/CANAL203/PROFILE05.m3u8?
 
+#EXTINF:0,Sony TV 
+http://84.32.80.15:7781/udp/233.136.41.75:1234
+
 #EXTINF:0,Spike TV 
 0
 
@@ -296,11 +319,17 @@ http://92.38.137.240:20000/udp/239.77.0.147:1234
 #EXTINF:0,TLC 
 http://212.178.3.209:1234/udp/239.2.2.123:1234
 
+#EXTINF:0,TLC
+http://84.32.80.15:7781/udp/233.136.41.02:1234
+
 #EXTINF:0,TNT 
 http://200.76.77.237/LIVE/H01/CANAL266/PROFILE03.m3u8?
 
 #EXTINF:0,TNT 
 http://200.76.77.237/LIVE/H01/CANAL266/PROFILE05.m3u8?
+
+#EXTINF:0,TNT 
+http://84.32.80.15:7781/udp/233.136.41.122:1234
 
 #EXTINF:0,Tom & Jerry Show 
 rtmp://208.53.180.218/ctv playpath=tom swfUrl=http://www.carolineoliveira.com.br/swf/player.swf live=1 pageUrl=http://carolineoliveira.com.br/tvamigos/tomejerry.html

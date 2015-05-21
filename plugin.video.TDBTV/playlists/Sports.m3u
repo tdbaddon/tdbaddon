@@ -67,11 +67,20 @@ http://hlsstr02.svc.iptv.rt.ru/hls/CH_EUROSPORT/variant.m3u8
 #EXTINF:0,Eurosport 1 
 http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_1000.m3u8
 
+#EXTINF:0,Eurosport 1 
+http://84.32.80.15:7781/udp/233.136.41.11:1234
+
+#EXTINF:0,Eurosport 1 
+http://84.32.80.15:7781/udp/233.136.41.104:1234
+
 #EXTINF:0,Eurosport 2 
 http://hlsstr01.svc.iptv.rt.ru/hls/CH_EUROSPORT2/variant.m3u8
 
 #EXTINF:0,Eurosport 2 
 rtmp://80.82.64.140:443/liverepeater/ playpath=21 token=#atd%#$ZH swfUrl=http://popeoftheplayers.pw/atdedead.swf live=1 timeout=13 pageUrl=http://popeoftheplayers.eu/
+
+#EXTINF:0,Eurosport 2 
+http://84.32.80.15:7781/udp/233.136.41.19:1234
 
 #EXTINF:0,Eurosport News 
 0
@@ -284,6 +293,9 @@ rtmp://31.220.0.195:80/live playpath=tsn2x swfUrl=http://p.jwpcdn.com/6/12/jwpla
 #EXTINF:0,Viasat Golf 
 http://hlsstr04.svc.iptv.rt.ru/hls/CH_C06_VIASATGOLFHD/variant.m3u8
 
+#EXTINF:0,Viasat Golf 
+http://84.32.80.15:7781/udp/233.136.41.85:1234
+
 #EXTINF:0,Viasat Sport
 0
 
@@ -297,7 +309,7 @@ rtmp://89.248.172.159:443/liverepeater playpath=49 swfUrl=http://popeoftheplayer
 rtmp://watch4.streamlive.to:1935/edge app=edge/_definst_/$doregex[xs] playpath=$doregex[path] swfVfy=1 token=$doregex[tok] swfUrl=https://www.streamlive.to/ads/streamlive.swf pageUrl=http://www.streamlive.to/view/67052/TNA_Impact_Wrestling_Live_Destination_America_HD-live-stream-channel-for-free
 
 #EXTINF:0,XTreme Sports 
-0
+http://84.32.80.15:7781/udp/233.136.41.18:1234
 
 
 

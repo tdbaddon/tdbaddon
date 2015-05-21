@@ -13,6 +13,12 @@ http://204.107.26.252:1935/live/691.high.stream/HasBahCa.m3u8
 #EXTINF:0,Clubbing TV 
 http://46.249.213.87/iPhone/broadcast/clubbingtv-tablet.3gp/clubbingtv-tablet.3gp-mr648k.m3u8
 
+#EXTINF:0,Deluxe Music
+http://84.32.80.15:7781/udp/233.136.41.87:1234
+
+#EXTINF:0,Deluxe Music
+http://84.32.80.15:7781/udp/233.136.41.96:1234
+
 #EXTINF:0,Djing Hot Tracks
 http://www.djing.com/tv/h-04.m3u8
 
@@ -69,6 +75,12 @@ http://200.76.77.237/LIVE/H01/CANAL726/PROFILE05.m3u8?
 
 #EXTINF:0,MTV 
 http://200.76.77.237/LIVE/H01/CANAL726/PROFILE03.m3u8?
+
+#EXTINF:0,MTV 
+http://84.32.80.15:7781/udp/233.136.41.30:1234
+
+#EXTINF:0,MTV 
+http://84.32.80.15:7781/udp/233.136.41.114:1234
 
 #EXTINF:0,MTV Dance 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVDANCE/variant.m3u8
@@ -132,6 +144,9 @@ http://200.76.77.237/LIVE/H01/CANAL728/PROFILE03.m3u8?
 
 #EXTINF:0,VH1 Classics 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_VH1CLASSIC/variant.m3u8
+
+#EXTINF:0,VH1 Shuffle
+http://84.32.80.15:7781/udp/233.136.41.32:1234
 
 #EXTINF:0,Virgin TV 
 rtmp://fms.105.net:1935/live/virgin2
