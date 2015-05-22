@@ -13,9 +13,6 @@ http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/bbc_world/ls_satlink/b_828.m3u8
 #EXTINF:0,BBC World News 
 http://93.184.221.133/hls-live/20C1A9/bbc_world/ls_satlink/b_828.m3u8
 
-#EXTINF:0,BBC World News 
-http://92.38.137.240:20000/udp/239.77.0.142:1234
-
 #EXTINF:0,Bloomberg TV 
 http://btv-i.akamaihd.net/hls/live/202760-b/btvusa_ios/P1/M12K.m3u8
 
@@ -50,10 +47,10 @@ http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/cnn/ls_satlink/b_828.m3u8?Vd?u#b
 http://84.32.80.15:7781/udp/233.136.41.52:1234
 
 #EXTINF:0,CNN 
-rtmp://edge1.everyon.tv/etv1sb/pld16
+rtmp://edge1.everyon.tv/etv1sb/phd16
 
 #EXTINF:0,CNN 
-rtmp://edge1.everyon.tv/etv1sb/phd16
+rtmp://edge1.everyon.tv/etv1sb/pld16
 
 #EXTINF:0,CP24 
 0
@@ -74,16 +71,16 @@ http://84.32.80.15:7781/udp/233.136.41.53:1234
 http://wpc.C1A9.edgecastcdn.net/hls-live/20C1A9/enca/ls_satlink/b_,264,528,828,.m3u8
 
 #EXTINF:0,Euro News 
-rtsp://ewns-hls-b-stream.hexaglobe.net/rtpeuronewslive/en_vidan350_rtp.sdp?
-
-#EXTINF:0,Euro News 
-rtsp://ewns-hls-b-stream.hexaglobe.net/rtpeuronewslive/en_vidan750_rtp.sdp
-
-#EXTINF:0,Euro News 
 http://wpc.c1a9.edgecastcdn.net:80/hls-live/20C1A9/euronews_en/ls_satlink/b_828.m3u8
 
 #EXTINF:0,Euro News 
 http://84.32.80.15:7781/udp/233.136.41.56:1234
+
+#EXTINF:0,Euro News 
+rtsp://ewns-hls-b-stream.hexaglobe.net/rtpeuronewslive/en_vidan350_rtp.sdp?
+
+#EXTINF:0,Euro News 
+rtsp://ewns-hls-b-stream.hexaglobe.net/rtpeuronewslive/en_vidan750_rtp.sdp
 
 #EXTINF:0,Fox News 
 0
@@ -134,13 +131,13 @@ http://odna.octoshape.net/f3f5m2v4/cds/ch4_320p/blizznow.m3u8
 http://84.32.80.15:7781/udp/233.136.41.98:1234
 
 #EXTINF:0,Sky News 
-http://wpc.C1A9.edgecastcdn.net/hls-live/20C1A9/skynews/ls_satlink/b_,264,528,828,.m3u8
-
-#EXTINF:0,Sky News 
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/skynews/ls_satlink/b_828.m3u8
 
 #EXTINF:0,Sky News 
 http://84.32.80.15:7781/udp/233.136.41.112:1234
+
+#EXTINF:0,Sky News 
+http://wpc.C1A9.edgecastcdn.net/hls-live/20C1A9/skynews/ls_satlink/b_,264,528,828,.m3u8
 
 #EXTINF:0,The Weather Channel
 0

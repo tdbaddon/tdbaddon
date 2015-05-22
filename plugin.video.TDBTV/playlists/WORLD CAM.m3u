@@ -4,11 +4,8 @@
 #EXTINF:0,5th Avenue New York
 http://video1.earthcam.com:1935/fecnetwork/fridays_5th.flv/hasbahca.m3u8
 
-#EXTINF:0,Abby Road England
+#EXTINF:0,Abbey Road England
 http://video1.earthcam.com/fecnetwork/AbbeyRoadHD1.flv/hasbahca.m3u8
-
-#EXTINF:0,Amman Citadel Jordon
-http://video1.earthcam.com:1935/fecnetwork/4516.flv/hasbahca.m3u8
 
 #EXTINF:0,Atlantis Palm Dubai
 http://video1.earthcam.com:1935/fecnetwork/5868.flv/hasbahca.m3u8
@@ -31,9 +28,6 @@ http://video1.earthcam.com:1935/fecnetwork/4337.flv/hasbahca.m3u8
 #EXTINF:0,Fish Tank 
 rtmp://80.93.53.88:1935/live/channel_3
 
-#EXTINF:0,Iceland South
-http://video1.earthcam.com:1935/fecnetwork/5299.flv/hasbahca.m3u8
-
 #EXTINF:0,LA Hollywood Blvd California 
 http://video1.earthcam.com/fecnetwork/lacitytours1.flv/hasbahca.m3u8
 
@@ -42,9 +36,6 @@ http://video1.earthcam.com/fecnetwork/eclasvegas.flv/hasbahca.m3u8
 
 #EXTINF:0,Lax Airport
 rtmp://cp154688.live.edgefcs.net:1935/live playpath=KTTV_N2@2717 swfUrl=http://www.myfoxla.com/[[IMPORT]]/players.edgesuite.net/flash/plugins/osmf/advanced-streaming-plugin/v2.11/osmf1.5/fp10.1/AkamaiAdvancedStreamingPlugin.swf live=1 pageUrl=http://www.myfoxla.com/category/261142/live-lax-airport-webcam
-
-#EXTINF:0,Ma in Hot Springs Jordan
-http://video1.earthcam.com:1935/fecnetwork/4515.flv/hasbahca.m3u8
 
 #EXTINF:0,Moscow Skyline
 http://video1.earthcam.com:1935/fecnetwork/moscowHD1.flv/hasbahca.m3u8
@@ -70,7 +61,7 @@ http://video1.earthcam.com:1935/fecnetwork/4017timessquare.flv/hasbahca.m3u8
 #EXTINF:0,NY Times Square Street View
 http://video1.earthcam.com/fecnetwork/hdtimes11.flv/hasbahca.m3u8
 
-#EXTINF:0,Patterson Falls New Jersey
+#EXTINF:0,Paterson Falls New Jersey
 http://video1.earthcam.com:1935/fecnetwork/4918.flv/hasbahca.m3u8
 
 #EXTINF:0,San Francisco Alcatraz

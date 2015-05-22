@@ -5,10 +5,7 @@
 http://noscdn1.connectedviews.com:1935/live/sporttv3hd.stream/livestream.m3u8
 
 #EXTINF:0,ABC 
-rtmp://178.18.31.55:443/liverepeater playpath=191903 swfUrl=http://bernardotv.club/playertest.swf pageUrl=http://biggestplayer.me/stream.php?id=191903&width=620&height=470 token=Fo5_n0w?U.rA6l3-70w47ch timeout=15
-
-#EXTINF:0,ABC 
-http://79.133.110.101:8888/udp/239.191.254.32:13343
+0
 
 #EXTINF:0,ABC Family
 0
@@ -17,13 +14,13 @@ http://79.133.110.101:8888/udp/239.191.254.32:13343
 http://84.32.80.15:7781/udp/233.136.41.65:1234
 
 #EXTINF:0,AXN 
-http://113.160.49.34/lives/origin03/axnhd.isml/axnhd-2096k.m3u8
-
-#EXTINF:0,AXN 
 http://200.76.77.237/LIVE/H01/CANAL213/PROFILE03.m3u8?
 
 #EXTINF:0,AXN 
 http://200.76.77.237/LIVE/H01/CANAL213/PROFILE05.m3u8?
+
+#EXTINF:0,AXN 
+http://113.160.49.34/lives/origin03/axnhd.isml/axnhd-2096k.m3u8
 
 #EXTINF:0,BabyTV 
 http://hlsstr03.svc.iptv.rt.ru/hls/CH_BABYTV/bw480000/variant.m3u8?version=2
@@ -59,16 +56,13 @@ http://188.227.86.4:4022/udp/239.77.0.77:1234
 0
 
 #EXTINF:0,CBS 
-rtmp://178.18.31.64:443/liverepeater playpath=191906 swfUrl=http://bernardotv.club/playertest.swf pageUrl=http://biggestplayer.me/stream.php?id=191906&width=620&height=470 token=Fo5_n0w?U.rA6l3-70w47ch timeout=15
+0
 
 #EXTINF:0,CBS Action 
-http://95.172.231.17/flashstream/stream.flv?Preset=7&aspect=16A9&ffPreset=ultrafast&maxwidth=&maxheight=&chid=28
+0
 
 #EXTINF:0,CBS Drama 
 http://84.32.80.15:7781/udp/233.136.41.89:1234
-
-#EXTINF:0,CBS Reality 
-http://95.172.231.17/flashstream/stream.flv?Preset=7&aspect=16A9&ffPreset=ultrafast&maxwidth=&maxheight=&chid=27
 
 #EXTINF:0,CBS Reality 
 http://84.32.80.15:7781/udp/233.136.41.88:1234
@@ -76,20 +70,8 @@ http://84.32.80.15:7781/udp/233.136.41.88:1234
 #EXTINF:0,CHCH Ontario 
 rtmp://54.85.197.21:1935/live/news live=1 timeout=15
 
-#EXTINF:0,CNBC 
-http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/cnbc_eu/ls_satlink/b_,264,528,828,.m3u8
-
-#EXTINF:0,CNBC 
-http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/cnbc_eu/ls_satlink/b_264.m3u8
-
-#EXTINF:0,CNBC 
-rtmp://c.cdn.newschat.tv/edge playpath=cnbc_live  swfUrl=http://msnbclive.eu/player.swf  pageUrl=http://www.livenewschat.eu/stocks/player=default
-
-#EXTINF:0,Comedy Central
-rtmp://178.18.31.56:443/liverepeater playpath=191907 swfUrl=http://bernardotv.club/playertest.swf pageUrl=http://biggestplayer.me/index.php?id=191881&width=620&height=470 token=Fo5_n0w?U.rA6l3-70w47ch
-
-#EXTINF:0,Comedy Central
-http://188.138.9.228:8022
+#EXTINF:0,Comedy Central 
+0
 
 #EXTINF:0,CTV Edmonton
 http://198.179.31.198/live/2053.high.stream/2053.high.stream/index.m3u8
@@ -115,29 +97,29 @@ http://84.32.80.15:7781/udp/233.136.41.92:1234
 #EXTINF:0,Disney XD 
 http://84.32.80.15:7781/udp/233.136.41.91:1234
 
-#EXTINF:0,Duck TV
+#EXTINF:0,Duck TV 
 http://84.32.80.15:7781/udp/233.136.41.108:1234
 
-#EXTINF:0,Duck TV
+#EXTINF:0,Duck TV 
 http://84.32.80.15:7781/udp/233.136.41.48:1234
 
 #EXTINF:0,E! 
 0
 
 #EXTINF:0,E4
-http://95.172.231.17/flashstream/stream.flv?Preset=7&aspect=16A9&ffPreset=ultrafast&maxwidth=&maxheight=&chid=16
-
-#EXTINF:0,Fashion TV 
-http://hls.novotelecom.ru/streaming/fashion/tvrec/playlist.m3u8
-
-#EXTINF:0,Fashion TV 
-http://113.160.49.34/lives/origin03/fashionhd.isml/fashionhd-2096k.m3u8
+0
 
 #EXTINF:0,Fashion TV 
 http://84.32.80.15:7781/udp/233.136.41.57:1234
 
 #EXTINF:0,Fashion TV 
 http://84.32.80.15:7781/udp/233.136.41.131:1234
+
+#EXTINF:0,Fashion TV 
+http://113.160.49.34/lives/origin03/fashionhd.isml/fashionhd-2096k.m3u8
+
+#EXTINF:0,Fashion TV 
+http://hls.novotelecom.ru/streaming/fashion/tvrec/playlist.m3u8
 
 #EXTINF:0,Film4 
 http://pebbles124-lh.akamaihd.net/i/film4_1@137790/master.m3u8|X-Forwarded-For=85.5.87.218
@@ -146,43 +128,37 @@ http://pebbles124-lh.akamaihd.net/i/film4_1@137790/master.m3u8|X-Forwarded-For=8
 http://84.32.80.15:7781/udp/233.136.41.135:1234
 
 #EXTINF:0,Food Network 
-http://95.172.231.17/flashstream/stream.flv?Preset=7&aspect=16A9&ffPreset=ultrafast&maxwidth=&maxheight=&chid=32
+0
 
 #EXTINF:0,Fox Crime
 0
 
 #EXTINF:0,Fox Life 
-http://92.38.137.240:20000/udp/239.77.0.4:1234
-
-#EXTINF:0,Fox Life 
 http://84.32.80.15:7781/udp/233.136.41.110:1234
 
-#EXTINF:0,Fox TV
-http://92.38.137.240:20000/udp/239.77.0.3:1234
-
-#EXTINF:0,Fox TV
+#EXTINF:0,Fox TV 
 http://84.32.80.15:7781/udp/233.136.41.111:1234
 
 #EXTINF:0,FX
 0
 
 #EXTINF:0,Global TV Halifax 
-http://207.223.2.93/s/dtjsEC/77l1KA_G_5P1?feed=DEV%20Live%20Stream%20Feed
+http://207.223.2.93/s/dtjsEC/77l1KA_G_5P1?feed=DEV%20Live%20Stream%20Feed/playlist.m3u8
 
 #EXTINF:0,Global TV Halifax 
-http://link.theplatform.com/s/dtjsEC/77l1KA_G_5P1?feed=DEV%20Live%20Stream%20Feed
+http://link.theplatform.com/s/dtjsEC/77l1KA_G_5P1?feed=DEV%20Live%20Stream%20Feed/playlist.m3u8
 
-#EXTINF:0,Global TV Toronto
-http://207.223.2.93/s/dtjsEC/hdSH3iztz_j_?feed=DEV%20Live%20Stream%20Feed
+#EXTINF:0,Global TV Toronto 
+http://207.223.2.93/s/dtjsEC/hdSH3iztz_j_?feed=DEV%20Live%20Stream%20Feed/playlist.m3u8
 
-#EXTINF:0,Global TV Toronto
-http://link.theplatform.com/s/dtjsEC/hdSH3iztz_j_?feed=DEV%20Live%20Stream%20Feed
+#EXTINF:0,Global TV Toronto 
+http://link.theplatform.com/s/dtjsEC/hdSH3iztz_j_?feed=DEV%20Live%20Stream%20Feed/playlist.m3u8
 
-#EXTINF:0,Global TV Vancouver
-http://207.223.2.93/s/dtjsEC/EqBPGYLY6fEx?feed=DEV%20Live%20Stream%20Feed
+#EXTINF:0,Global TV Vancouver 
+http://207.223.2.93/s/dtjsEC/EqBPGYLY6fEx?feed=DEV%20Live%20Stream%20Feed/playlist.m3u8
 
-#EXTINF:0,Global TV Vancouver
-http://link.theplatform.com/s/dtjsEC/EqBPGYLY6fEx?feed=DEV%20Live%20Stream%20Feed
+#EXTINF:0,Global TV Vancouver 
+http://link.theplatform.com/s/dtjsEC/EqBPGYLY6fEx?feed=DEV%20Live%20Stream%20Feed/playlist.m3u8
 
 #EXTINF:0,Hallmark Channel 
 0
@@ -201,9 +177,6 @@ http://ios.streamserver01.com:8080/ShowcaseTV/mystream.m3u8
 
 #EXTINF:0,ITV 1 
 http://82.135.224.134:80/udp/239.100.3.6:1234
-
-#EXTINF:0,ITV 1 
-http://95.172.231.17/flashstream/stream.flv?Preset=7&aspect=16A9&ffPreset=ultrafast&maxwidth=&maxheight=&chid=2
 
 #EXTINF:0,ITV 2 
 0
@@ -233,7 +206,7 @@ http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
 http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
 
 #EXTINF:0,NBC 
-rtmp://178.18.31.56:443/liverepeater playpath=191914 swfUrl=http://bernardotv.club/playertest.swf pageUrl=http://biggestplayer.me/stream.php?id=191914&width=620&height=470 token=Fo5_n0w?U.rA6l3-70w47ch timeout=15
+0
 
 #EXTINF:0,NHK World 
 http://nhkworld-hds-live1.hds1.fmslive.stream.ne.jp/hls-live/nhkworld-hds-live1/_definst_/livestream/nhkworld-live-512.m3u8 
@@ -245,25 +218,19 @@ rtmp://stream.connectcast.tv/live playpath=mp4:CC-B5EF5A43-35CC-E66C-FDFA-97D2BF
 http://195.78.244.219:10000/udp/239.0.3.137:1234
 
 #EXTINF:0,Nickelodeon 
-http://46.173.175.164:8089/89
-
-#EXTINF:0,Nickelodeon 
-rtmp://watch4.streamlive.to:1935/edge app=edge/_definst_/$doregex[xs] playpath=$doregex[path] swfVfy=1 token=$doregex[tok] swfUrl=https://www.streamlive.to/ads/streamlive.swf pageUrl=http://www.streamlive.to/view/71112/Nickelodeon-live-stream-channel-for-free
-
-#EXTINF:0,Nickelodeon 
-rtmp://178.18.31.56:443/liverepeater playpath=194059 swfUrl=http://bernardotv.club/playertest.swf pageUrl=http://biggestplayer.me/stream.php?id=194058&width=620&height=470 token=Fo5_n0w?U.rA6l3-70w47ch
+0
 
 #EXTINF:0,NickNight 
 0
 
 #EXTINF:0,OWN Network 
-rtmp://178.18.31.62:443/liverepeater playpath=191910 swfUrl=http://bernardotv.club/playertest.swf pageUrl=http://biggestplayer.me/stream.php?id=191910&width=620&height=470 token=Fo5_n0w?U.rA6l3-70w47ch timeout=15
+0
 
 #EXTINF:0,PBS 
 rtmp://128.104.144.134/WisconsinChannel/mystream
 
 #EXTINF:0,Showtime
-rtmp://rtmp.zerocast.tv/live?t=xwqRhn5dC playpath=showtime swfUrl=http://cdn.ibrod.tv/player.swf flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv/
+0
 
 #EXTINF:0,Sky 1 
 0
@@ -275,19 +242,19 @@ rtmp://rtmp.zerocast.tv/live?t=xwqRhn5dC playpath=showtime swfUrl=http://cdn.ibr
 0
 
 #EXTINF:0,Sky Arts 2 
-0
+http://188.227.189.18:8082/TV4250
 
 #EXTINF:0,Sky Living 
 0
+
+#EXTINF:0,Sony TV 
+http://84.32.80.15:7781/udp/233.136.41.75:1234
 
 #EXTINF:0,Sony TV 
 http://200.76.77.237/LIVE/H01/CANAL203/PROFILE03.m3u8?
 
 #EXTINF:0,Sony TV 
 http://200.76.77.237/LIVE/H01/CANAL203/PROFILE05.m3u8?
-
-#EXTINF:0,Sony TV 
-http://84.32.80.15:7781/udp/233.136.41.75:1234
 
 #EXTINF:0,Spike TV 
 0
@@ -305,31 +272,22 @@ http://84.32.80.15:7781/udp/233.136.41.75:1234
 rtmp://rtmp.zerocast.tv/live?t=xwqRhn5dC playpath=syfy swfUrl=http://cdn.ibrod.tv/player.swf flashver=WIN\202012,0,0,77 timeout=15 live=1swfVfy=1 pageUrl=http://zerocast.tv/ token=8964316ec8772dfa
 
 #EXTINF:0,TBS 
-rtmp://178.18.31.56:443/liverepeater playpath=191916 swfUrl=http://bernardotv.club/playertest.swf pageUrl=http://biggestplayer.me/stream.php?id=191916&width=620&height=470 token=Fo5_n0w?U.rA6l3-70w47ch timeout=15
-
-#EXTINF:0,TBS 
-http://euroiptv1.mine.nu:80/live?channelId=412&uid=14&deviceUser=Euro.iptv&devicePass=Euro.iptv&deviceSn=9BEF7B34F4FB54FA
+0
 
 #EXTINF:0,The Shopping Channel 
 0
 
 #EXTINF:0,TLC 
-http://92.38.137.240:20000/udp/239.77.0.147:1234
-
-#EXTINF:0,TLC 
-http://212.178.3.209:1234/udp/239.2.2.123:1234
-
-#EXTINF:0,TLC
 http://84.32.80.15:7781/udp/233.136.41.02:1234
+
+#EXTINF:0,TNT 
+http://84.32.80.15:7781/udp/233.136.41.122:1234
 
 #EXTINF:0,TNT 
 http://200.76.77.237/LIVE/H01/CANAL266/PROFILE03.m3u8?
 
 #EXTINF:0,TNT 
 http://200.76.77.237/LIVE/H01/CANAL266/PROFILE05.m3u8?
-
-#EXTINF:0,TNT 
-http://84.32.80.15:7781/udp/233.136.41.122:1234
 
 #EXTINF:0,Tom & Jerry Show 
 rtmp://208.53.180.218/ctv playpath=tom swfUrl=http://www.carolineoliveira.com.br/swf/player.swf live=1 pageUrl=http://carolineoliveira.com.br/tvamigos/tomejerry.html
@@ -369,9 +327,6 @@ http://200.76.77.237/LIVE/H01/CANAL205/PROFILE05.m3u8?
 
 #EXTINF:0,WBCQ TV
 rtmp://stream.connectcast.tv/live playpath=mp4:CC-1C1C4B9C-3479-C277-F6F8-3B3B78E8B46B-21460 swfUrl=http://connectcast.tv/jwplayer/v6.12/jwplayer.flash.swf live=1 pageUrl=http://connectcast.tv/WBCQTV
-
-#EXTINF:0,WGN 9 Chicago 
-http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
 
 #EXTINF:0,Wobi 
 http://200.76.77.237/LIVE/H01/CANAL387/PROFILE03.m3u8?

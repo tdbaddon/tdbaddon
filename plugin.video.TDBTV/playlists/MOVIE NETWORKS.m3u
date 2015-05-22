@@ -20,16 +20,16 @@ http://113.160.49.34/lives/origin03/cinemaxsd.isml/cinemaxsd-1096k.m3u8
 0
 
 #EXTINF:0,CMore Emotion
-http://188.138.9.228:8025
+0
 
 #EXTINF:0,CMore First
-http://188.138.9.228:8024
+0
 
 #EXTINF:0,CMore Hits
 0
 
 #EXTINF:0,CMore Series
-http://188.138.9.228:8021
+0
 
 #EXTINF:0,Fox 1 
 http://200.76.77.237/LIVE/H01/CANAL415/PROFILE03.m3u8?
@@ -80,7 +80,7 @@ http://200.76.77.237/LIVE/H01/CANAL484/PROFILE03.m3u8?
 http://200.76.77.237/LIVE/H01/CANAL484/PROFILE05.m3u8?
 
 #EXTINF:0,HBO 
-rtmp://cdn.cast-tv.us/stream playpath=z00012.stream swfUrl=http://imveoh.info/player/player.swf pageUrl=http://imveoh.info/embed.php?n=z00010 token=#ed%h0#w@1
+http://113.160.49.34/lives/origin03/hbohd.isml/hbohd-2096k.m3u8
 
 #EXTINF:0,HBO 
 rtmp://89.248.168.57/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to/player/secure_player_iguide_embed_token.swf pageUrl=http://www.iguide.to/ token=#ed%h0#w18623jsda6523lDGD
@@ -88,13 +88,10 @@ rtmp://89.248.168.57/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to
 #EXTINF:0,HBO 
 rtmp://94.102.49.207/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to/player/secure_player_iguide_token.swf live=1 pageUrl=http://www.iguide.to/view/1/watch-live-HBO-channel-for-free token=#ed%h0#w18623jsda6523lDGDVe
 
-#EXTINF:0,HBO 
-http://113.160.49.34/lives/origin03/hbohd.isml/hbohd-2096k.m3u8
-
-#EXTINF:0,MBC 2
+#EXTINF:0,MBC 2 
 http://63.237.48.3/ios/MBC2/MBC2.m3u8
 
-#EXTINF:0,MBC Max
+#EXTINF:0,MBC Max 
 http://63.237.48.23/ios/MBC_MAX/MBC_MAX.m3u8
 
 #EXTINF:0,MGM 
@@ -134,37 +131,40 @@ http://63.237.48.23/ios/MBC_MAX/MBC_MAX.m3u8
 0
 
 #EXTINF:0,Sky Movies Action 
-0
+http://188.227.189.18:8082/TV4245
 
 #EXTINF:0,Sky Movies Atlantic
-http://euroiptv3.mine.nu:80/live?channelId=311&uid=14&deviceUser=Euro.iptv&devicePass=Euro.iptv&deviceSn=9BEF7B34F4FB54FA
+0
 
 #EXTINF:0,Sky Movies Comedy
-0
+http://188.227.189.18:8082/TV4246 
 
 #EXTINF:0,Sky Movies Crime
 0
 
 #EXTINF:0,Sky Movies Disney
-0
+http://188.227.189.18:8082/TV4247
 
 #EXTINF:0,Sky Movies Drama
 0
 
 #EXTINF:0,Sky Movies Family
-0
+http://188.227.189.18:8082/TV4248 
 
 #EXTINF:0,Sky Movies Horrors
 0
 
 #EXTINF:0,Sky Movies Premiere 
-0
+http://188.227.189.18:8082/TV4251
+
+#EXTINF:0,Sky Movies Premiere 
+http://188.227.189.18:8082/TV4252 
 
 #EXTINF:0,Sky Movies SciFi 
-0
+http://188.227.189.18:8082/TV4249
 
 #EXTINF:0,Sky Movies Select 
-0
+http://188.227.189.18:8082/TV4254
 
 #EXTINF:0,Sky Movies Superheros 
 0
@@ -190,10 +190,10 @@ http://200.76.77.237/LIVE/H01/CANAL496/PROFILE05.m3u8?
 #EXTINF:0,True Movies 2 
 0
 
-#EXTINF:0,TV 1000
+#EXTINF:0,TV 1000 
 http://84.32.80.15:7781/udp/233.136.41.41:1234
 
-#EXTINF:0,TV 1000
+#EXTINF:0,TV 1000 Action
 http://84.32.80.15:7781/udp/233.136.41.120:1234
 
 #EXTINF:0,TV 1000 Action
