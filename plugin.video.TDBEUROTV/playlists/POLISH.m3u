@@ -73,8 +73,14 @@ rtmp://stream.smcloud.net/live/polotv swfUrl=http://polotv.pl/thrdparty/flowplay
 #EXTINF:0,Polsat
 rtmp://rtmp.goodcast.me:1935/liverepeater/_definst_/303487
 
+#EXTINF:0,Polsat
+http://95.215.233.11:4022/udp/239.255.2.1:1234
+
 #EXTINF:0,Polsat Sport
 rtmp://rtmp.goodcast.me:1935/liverepeater/_definst_/303051
+
+#EXTINF:0,Polsat Sport
+http://95.215.233.11:4022/udp/239.255.2.8:1234
 
 #EXTINF:0,Prima
 http://212.79.96.134:8004/
@@ -95,7 +101,7 @@ http://212.79.96.134:8008/
 rtmp://87.98.237.131/rtlubuska/rtl
 
 #EXTINF:0,SAT 1
-http://212.79.96.134:8010/
+0
 
 #EXTINF:0,Slagr TV
 http://212.79.96.134:8013/
@@ -103,21 +109,26 @@ http://212.79.96.134:8013/
 #EXTINF:0,Superstacja
 http://194.116.252.129:4022/udp/239.239.2.63:1234
 
-
 #EXTINF:0,TA3
-http://212.79.96.134:8009/
+0
 
 #EXTINF:0,Teletoon+
-
+0
 
 #EXTINF:0,TV 6
+0
 
+#EXTINF:0,TV 7
+http://95.215.233.11:4022/udp/239.255.2.5:1234
 
 #EXTINF:0,TV Barrandow
 http://212.79.96.134:8022/
 
 #EXTINF:0,TV Narew
 mms://93.105.142.26:2525/
+
+#EXTINF:0,TV Plus
+http://95.215.233.11:4022/udp/239.255.2.4:1234
 
 #EXTINF:0,TV Republika
 http://republikatv.live.e96-jw.insyscd.net/republikatv.smil/chunklist.m3u8
@@ -132,22 +143,31 @@ mms://195.94.205.211/Trwam
 http://trwamtv.live.e96-jw.insyscd.net/trwamtv.smil/playlist.m3u8
 
 #EXTINF:0,TVK
-rtmp://stream.tvkujawy.pl/live/broadcast
+0
 
 #EXTINF:0,TVN
 rtmp://rtmp.goodcast.me:1935/liverepeater/_definst_/302426
+
+#EXTINF:0,TVN
+http://95.215.233.11:4022/udp/239.255.2.2:1234
 
 #EXTINF:0,TVN Style
 http://194.116.252.129:4022/udp/239.239.2.69:1234
 
 #EXTINF:0,TVP
-http://158.85.70.118:8080/stream/?i=1b440594c2b75b656f20eb34d7e1f85f&k=8739123a2f16b26146d5f7f83d68f61cd01bbcc3aaa3eb617b3693ceeb99bf8c89e266aeeb11def3557a928f71e3ebb1cf357f83e05597467953e8f3b4bcee39ef9c5660f0947be0868e5df67cd03673ae1b24959518bf997bed3eef1e2628a782d5b4d0b3dac9e41fd5c08879986e937a22d7d57ac9e13e3196abcdc79f7ffb2227c0bd085e9d46b04b5b7f191041296c66c7f643031995b99ed2be42c67055aff914765ead73cd8578190bede6fa1d&sp=partners&u=tvppolonia&player=m3u8
+http://95.215.233.11:4022/udp/239.255.2.189:1234
 
 #EXTINF:0,TVP2
-
+http://95.215.233.11:4022/udp/239.255.2.190:1234
 
 #EXTINF:0,TVP Bialystok
+0
 
+#EXTINF:0,TVP Historia
+http://95.215.233.11:4022/udp/239.255.2.9:1234
+
+#EXTINF:0,TVP Rozrywka
+http://95.215.233.11:4022/udp/239.255.2.245:1234
 
 #EXTINF:0,TVS
 http://194.116.252.129:4022/udp/239.239.2.74:1234

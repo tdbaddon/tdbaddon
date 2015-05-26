@@ -7,23 +7,17 @@ http://mail.tv4e.gr:1935/live/myStream.sdp/playlist.m3u8
 #EXTINF:0,Alpha
 http://alfakanali-lh.akamaihd.net/i/live_1@90368/master.m3u8
 
-#EXTINF:0,Alpha
-http://euroiptv3.mine.nu:80/live?channelId=572&uid=14&deviceUser=Euro.iptv&devicePass=Euro.iptv&deviceSn=9BEF7B34F4FB54FA
-
 #EXTINF:0,Ant1 
 http://wow.ant1.gr:1935/live/smil:mavani.smil/playlist.m3u8
 
 #EXTINF:0,Ant1 
 http://wow.ant1.gr:1935/live/_definst_/ant1tv1711video/playlist.m3u8?wowzasessionid=1155125647
 
-#EXTINF:0,Ant1 
-http://euroiptv3.mine.nu:80/live?channelId=565&uid=14&deviceUser=Euro.iptv&devicePass=Euro.iptv&deviceSn=9BEF7B34F4FB54FA
-
 #EXTINF:0,Ant1 Cyprus
-http://euroiptv3.mine.nu:80/live?channelId=566&uid=14&deviceUser=Euro.iptv&devicePass=Euro.iptv&deviceSn=9BEF7B34F4FB54FA
+0
 
 #EXTINF:0,Art Channel
-
+0
 
 #EXTINF:0,Astra TV
 http://www.astratv.gr:8090/hls/livestream/index.m3u8
@@ -41,7 +35,7 @@ http://88.198.238.44:1935/bluesky/bluesky.stream/playlist.m3u8
 http://streamer-cache.grnet.gr/parliament/parltv.sdp/master.m3u8
 
 #EXTINF:0,Capital
-http://euroiptv3.mine.nu:80/live?channelId=582&uid=14&deviceUser=Euro.iptv&devicePass=Euro.iptv&deviceSn=9BEF7B34F4FB54FA
+0
 
 #EXTINF:0,CY Sports
 http://mlivenews.istoikona.net/cysports.isml/manifest(format=m3u8-aapl).m3u8
@@ -50,22 +44,22 @@ http://mlivenews.istoikona.net/cysports.isml/manifest(format=m3u8-aapl).m3u8
 mms://ams01.egihosting.com/989630
 
 #EXTINF:0,Dion TV
-
+0
 
 #EXTINF:0,Diktyo TV
-
+0
 
 #EXTINF:0,Diras TV 
-
+0
 
 #EXTINF:0,Disney Channel
-http://euroiptv3.mine.nu:80/live?channelId=577&uid=14&deviceUser=Euro.iptv&devicePass=Euro.iptv&deviceSn=9BEF7B34F4FB54FA
+0
 
 #EXTINF:0,Disney Jr
-http://euroiptv3.mine.nu:80/live?channelId=578&uid=14&deviceUser=Euro.iptv&devicePass=Euro.iptv&deviceSn=9BEF7B34F4FB54FA
+0
 
 #EXTINF:0,DR TV
-
+0
 
 #EXTINF:0,E TV 
 rtmp://213.16.167.187:1935/live/mpegts_256.stream live=1 timeout=10
@@ -77,22 +71,25 @@ rtmp://213.16.167.187:1935/live playpath=mpegts_256.stream swfUrl=http://www.eps
 rtmp://fml.68FC.edgecastcdn.net/2068FC/elladatv swfUrl=http://www.elladatv.gr/scripts/player.swf swfVfy=1 live=1 timeout=10
 
 #EXTINF:0,Ena TV 
-
+0
 
 #EXTINF:0,ET3
 http://live2.ertopen.com/live2/e600/playlist.m3u8
 
 #EXTINF:0,Europe 1
-
+0
 
 #EXTINF:0,Extra
-http://euroiptv3.mine.nu:80/live?channelId=583&uid=14&deviceUser=Euro.iptv&devicePass=Euro.iptv&deviceSn=9BEF7B34F4FB54FA
+rtmp://213.16.167.186/live/mpegts_256.stream
 
-#EXTINF:0,Extra 3 
+#EXTINF:0,Extra 
 rtmp://213.16.167.186:1935/live/mpegts_256.stream
 
-#EXTINF:0,Flash TV
+#EXTINF:0,Extra 3 
+0
 
+#EXTINF:0,Flash TV
+0
 
 #EXTINF:0,Greek Cinema
 http://wpc.68FC.edgecastcdn.net/8068FC/INFINITY/m3u8/cinema.m3u8
@@ -104,7 +101,7 @@ http://wpso.com:200/tv48
 rtmp://176.9.123.140:1935/leveltgp/leveltgp live=1 timeout=10
 
 #EXTINF:0,Ionian Channel
-
+0
 
 #EXTINF:0,Infinity Cinema
 http://wpc.68FC.edgecastcdn.net/8068FC/INFINITY/m3u8/cinema.m3u8
@@ -122,7 +119,7 @@ rtmp://flashcloud.mediacdn.com/live/kontratv live=1
 rtmp://flashcloud.mediacdn.com/live playpath=kontratv pageUrl=http://www.tvonlinestreams.com live=1
 
 #EXTINF:0,Kosmos TV
-
+0
 
 #EXTINF:0,Kphth TV 
 http://live.cretetv.gr:1935/cretetv/myStream/playlist.m3u8
@@ -131,7 +128,7 @@ http://live.cretetv.gr:1935/cretetv/myStream/playlist.m3u8
 rtmp://78.129.184.15:10223/streaming/stream pageUrl=http://lepantortv.listen2myradio.com/ live=1 timeout=10
 
 #EXTINF:0,M Channel
-
+0
 
 #EXTINF:0,Mad Music Hits
 mmsh://wpso.com:200/music
@@ -149,13 +146,13 @@ rtmp://213.16.167.55:1935/livepkgr/livestream swfUrl=http://static.ant1.gr/maktv
 http://megahdlive1-f.akamaihd.net/i/live_1@105260/master.m3u8
 
 #EXTINF:0,Mega Cyprus
-http://mlivenews.istoikona.net/livenews.isml/manifest(format=m3u8-aapl).m3u8
+0
 
 #EXTINF:0,Nea TV
 rtmp://srv1.viiideo.gr:1935/hellasonmedia/neatv
 
 #EXTINF:0,N Cinema
-
+0
 
 #EXTINF:0,Nerit 
 http://magictvbox.us:200/skai
@@ -163,11 +160,8 @@ http://magictvbox.us:200/skai
 #EXTINF:0,Nerit 
 http://nerit2-lh.akamaihd.net/i/neritplus_1@45603/master.m3u8
 
-#EXTINF:0,Nerit 
-http://nerit2-lh.akamaihd.net/i/neritplus_1@45603/master.m3u8
-
 #EXTINF:0,Odie TV
-
+0
 
 #EXTINF:0,Omega TV
 rtmp://stream2.omegatv.net:1935/livepkgr/omegatv live=1 timeout=10
@@ -176,34 +170,34 @@ rtmp://stream2.omegatv.net:1935/livepkgr/omegatv live=1 timeout=10
 rtmp://media.patrisnews.com:1935/patris/tvstream live=1 timeout=10
 
 #EXTINF:0,OTE Cinema 2
-http://euroiptv3.mine.nu:80/live?channelId=415&uid=14&deviceUser=Euro.iptv&devicePass=Euro.iptv&deviceSn=9BEF7B34F4FB54FA
+0
 
 #EXTINF:0,OTE Cinema 3
-http://euroiptv3.mine.nu:80/live?channelId=416&uid=14&deviceUser=Euro.iptv&devicePass=Euro.iptv&deviceSn=9BEF7B34F4FB54FA
+0
 
 #EXTINF:0,OTE Sports 1 
-
+0
 
 #EXTINF:0,OTE Sports 2 
-
+0
 
 #EXTINF:0,OTE Sports 3 
-
+0
 
 #EXTINF:0,OTE Sports 4 
-
+0
 
 #EXTINF:0,OTE Sports 5 
-
+0
 
 #EXTINF:0,OTE Sports 6 
-
+0
 
 #EXTINF:0,R Channel
-
+0
 
 #EXTINF:0,Rik Sat 
-
+0
 
 #EXTINF:0,Samiaki TV
 rtmp://91.121.107.131/samiaki/samiaki live=1
@@ -211,14 +205,8 @@ rtmp://91.121.107.131/samiaki/samiaki live=1
 #EXTINF:0,Sigma Cyprus
 http://81.21.47.74/hls/live.m3u8
 
-#EXTINF:0,Sigma Cyprus
-http://euroiptv3.mine.nu:80/live?channelId=581&uid=14&deviceUser=Euro.iptv&devicePass=Euro.iptv&deviceSn=9BEF7B34F4FB54FA
-
 #EXTINF:0,Skai 
 http://iphone.skai.gr.edgesuite.net/iphone_iphone.m3u8
-
-#EXTINF:0,Skai 
-http://euroiptv3.mine.nu:80/live?channelId=570&uid=14&deviceUser=Euro.iptv&devicePass=Euro.iptv&deviceSn=9BEF7B34F4FB54FA
 
 #EXTINF:0,Star TV 
 http://radiofeeds1.mediabox.gr/startv?MSWMExt=.asf
@@ -232,14 +220,17 @@ mmsh://live.onestreaming.com/thrakinet
 #EXTINF:0,TRT
 http://xelladalivex.api.channel.livestream.com/3.0/playlist.m3u8
 
+#EXTINF:0,TV 1
+http://176.9.123.140:1935/msg116s/msg116s/playlist.m3u8
+
 #EXTINF:0,TV 100
 http://178.62.176.153:1935/TV100/myStream/playlist.m3u8
 
 #EXTINF:0,TV Creta
-
+0
 
 #EXTINF:0,TVM
-
+0
 
 #EXTINF:0,Zougla TV 
 http://zouglahd-f.akamaihd.net/i/zougla_1@56341/index_700_av-p.m3u8

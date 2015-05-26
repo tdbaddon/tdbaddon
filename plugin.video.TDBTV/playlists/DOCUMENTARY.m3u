@@ -2,25 +2,22 @@
 
 
 #EXTINF:0,Animal Planet 
-http://84.32.80.15:7781/udp/233.136.41.55:1234
-
-#EXTINF:0,Animal Planet 
 http://113.160.49.34/lives/origin03/animalsd.isml/animalsd-1096k.m3u8
 
 #EXTINF:0,Crime Investigation 
 http://pdd2.loginto.me:443/cdn78/tot_ci_360p/playlist.m3u8
 
 #EXTINF:0,Da Vinci Learning
-http://84.32.80.15:7781/udp/233.136.41.05:1234
-
-#EXTINF:0,Discovery Channel 
-http://84.32.80.15:7781/udp/233.136.41.04:1234
+0
 
 #EXTINF:0,Discovery Channel 
 http://200.76.77.237/LIVE/H01/CANAL351/PROFILE03.m3u8?
 
 #EXTINF:0,Discovery Channel 
 http://200.76.77.237/LIVE/H01/CANAL351/PROFILE05.m3u8?
+
+#EXTINF:0,Discovery Channel 
+rtmp://watch4.streamlive.to:1935/edge app=edge/_definst_/$doregex[xs] playpath=$doregex[path] swfVfy=1 token=$doregex[tok] swfUrl=https://www.streamlive.to/ads/streamlive.swf pageUrl=http://www.streamlive.to/view/69110/Discovery-live-stream-channel-for-free
 
 #EXTINF:0,Discovery History 
 0
@@ -29,13 +26,13 @@ http://200.76.77.237/LIVE/H01/CANAL351/PROFILE05.m3u8?
 0
 
 #EXTINF:0,Discovery Investigation 
-0
+.
 
 #EXTINF:0,Discovery Science 
-http://84.32.80.15:7781/udp/233.136.41.03:1234
+0
 
 #EXTINF:0,Discovery Showcase
-http://84.32.80.15:7781/udp/233.136.41.54:1234
+0
 
 #EXTINF:0,Discovery Theater 
 http://200.76.77.237/LIVE/H01/CANAL351/PROFILE03.m3u8?
@@ -47,13 +44,7 @@ http://200.76.77.237/LIVE/H01/CANAL351/PROFILE05.m3u8?
 0
 
 #EXTINF:0,Discovery World 
-http://84.32.80.15:7781/udp/233.136.41.01:1234
-
-#EXTINF:0,Discovery World 
 http://188.227.86.4:4022/udp/239.77.0.78:1234
-
-#EXTINF:0,History Channel 
-http://84.32.80.15:7781/udp/233.136.41.109:1234
 
 #EXTINF:0,History Channel 
 https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8?hdnea=ip=174.113.30.187~st=1427694727~exp=1427695327~acl=/i/*~id=a86de0c2-ad09-4469-9a63-6ebbc1bba4d3~hmac=ac144089000bdd16f6916c517ce3e6e04813d4de11ac16839ad468a977ec80b1
@@ -77,16 +68,13 @@ http://www.nasa.gov/multimedia/nasatv/NTV-Public-IPS.m3u8
 0
 
 #EXTINF:0,Nat Geo Wild 
-http://84.32.80.15:7781/udp/233.136.41.101:1234
-
-#EXTINF:0,Nat Geo Wild 
 http://185.5.40.101/hls/session-37473uCyyxurSfw/CH_NATGEOWILD/variant.m3u8?version=2
 
 #EXTINF:0,National Geographic 
-http://84.32.80.15:7781/udp/233.136.41.29:1234
+http://188.227.86.4:4022/udp/239.77.0.41:1234
 
 #EXTINF:0,National Geographic 
-http://188.227.86.4:4022/udp/239.77.0.41:1234
+rtmp://watch4.streamlive.to:1935/edge app=edge/_definst_/$doregex[xs] playpath=$doregex[path] swfVfy=1 token=$doregex[tok] swfUrl=https://www.streamlive.to/ads/streamlive.swf pageUrl=http://www.streamlive.to/view/69018/National_Geographic-live-stream-channel-for-free
 
 #EXTINF:0,RT News Documentary 
 http://odna.octoshape.net/f3f5m2v4/cds/ch5_auto.smil/playlist.m3u8 
@@ -95,28 +83,18 @@ http://odna.octoshape.net/f3f5m2v4/cds/ch5_auto.smil/playlist.m3u8
 http://odna.octoshape.net/f3f5m2v4/cds/ch5_720p/chunklist.m3u8
 
 #EXTINF:0,Travel Channel 
-http://84.32.80.15:7781/udp/233.136.41.44:1234
-
-#EXTINF:0,Travel Channel 
-http://84.32.80.15:7781/udp/233.136.41.124:1234
+0
 
 #EXTINF:0,Viasat Explorer 
 http://195.78.244.219:10000/udp/239.0.3.30:1234
 
-#EXTINF:0,Viasat Explorer 
-http://84.32.80.15:7781/udp/233.136.41.37:1234
-
 #EXTINF:0,Viasat History 
 http://195.78.244.219:10000/udp/239.0.3.31:1234
-
-#EXTINF:0,Viasat History 
-http://84.32.80.15:7781/udp/233.136.41.34:1234
 
 #EXTINF:0,Viasat Nature 
 http://195.78.244.219:10000/udp/239.0.3.28:1234
 
-#EXTINF:0,Viasat Nature 
-http://84.32.80.15:7781/udp/233.136.41.133:1234
+
 
 
 

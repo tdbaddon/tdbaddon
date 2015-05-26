@@ -11,49 +11,46 @@ rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazee
 rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
 
 #EXTINF:0,B92 
-http://edge1.volim.tv/live/b92.stream/playlist.m3u8?hash=bce8d71c254913183829d491f62235c70ae93e71
-
-#EXTINF:0,B92 
 http://stream.b92.net:7999/tv-b92.ogg
 
 #EXTINF:0,BKTV
-
+0
 
 #EXTINF:0,Bn Sat
-
+0
 
 #EXTINF:0,CETV
 http://213.81.153.221:8080/cetv
 
 #EXTINF:0,Cinemax
-
+0
 
 #EXTINF:0,CMC
-
+0
 
 #EXTINF:0,DMC
-
+0
 
 #EXTINF:0,DM SAT
-
+0
 
 #EXTINF:0,DUGA
-
+0
 
 #EXTINF:0,Elektrika TV
 rtmp://rtmp.elektrika.cz/live/myStream.sdp
 
 #EXTINF:0,Euro Plus
-
+0
 
 #EXTINF:0,Grand Narodna
-
+0
 
 #EXTINF:0,Hayat Folk
-
+0
 
 #EXTINF:0,Hayat Plus
-
+0
 
 #EXTINF:0,Hema 
 mms://77.238.209.50:1234
@@ -77,7 +74,7 @@ http://213.5.58.58:1935/hrt_live/smil:hrt4.smil/nesto.m3u8
 mms://62.162.58.55/TVIris
 
 #EXTINF:0,Jadran TV 
-
+0
 
 #EXTINF:0,Joj
 http://88.212.10.27:81/streams/joj.m3u8
@@ -86,13 +83,13 @@ http://88.212.10.27:81/streams/joj.m3u8
 http://88.212.10.27:81/streams/jojplus.m3u8
 
 #EXTINF:0,Jug TV 
-
+0
 
 #EXTINF:0,Jugoton
-
+0
 
 #EXTINF:0,Kanal 3
-
+0
 
 #EXTINF:0,Kanal 5 
 http://fms.zulu.mk:1935/zulu/kanal5_1/playlist.m3u8
@@ -104,25 +101,25 @@ mms://live.kanal5.com.mk/kanal5
 mms://62.162.58.55/TVkanal21
 
 #EXTINF:0,Kanal RI
-
+0
 
 #EXTINF:0,Karpaty
-
+0
 
 #EXTINF:0,KCN 1 
-
+0
 
 #EXTINF:0,KCN 2 
-http://178.79.24.7:9012
+0
 
 #EXTINF:0,KCN 3 
 http://178.79.24.7:9013
 
 #EXTINF:0,Kino TV
-
+0
 
 #EXTINF:0,Klasik TV
-
+0
 
 #EXTINF:0,Konyha TV 
 rtmp://91.82.85.44/live/konyhatv
@@ -134,172 +131,181 @@ http://213.81.153.221:8080/kezmarok
 http://213.81.153.221:8080/nasa
 
 #EXTINF:0,Media Travel
-
+0
 
 #EXTINF:0,Mreza ST
-
+0
 
 #EXTINF:0,Mreza ZG
+0
 
+#EXTINF:0,N1
+http://best.str.n1info.com:8080/stream?channel=n1hdbih?stream=hd?u=n1info
 
 #EXTINF:0,Nardona TV
-
+0
 
 #EXTINF:0,Nova TV 
+0
 
+#EXTINF:0,Novisad 1
+rtsp://212.200.255.151/rtv1
+
+#EXTINF:0,Novisad 2
+rtsp://212.200.255.151/rtv2
 
 #EXTINF:0,Novosadska TV 
 mms://176.106.121.32:8080/
 
 #EXTINF:0,OBN 
-
+0
 
 #EXTINF:0,OK Bambino
-
+0
 
 #EXTINF:0,Orlando Kids
-
+0
 
 #EXTINF:0,Osjecka
-
+0
 
 #EXTINF:0,OTV Valentino
-
+0
 
 #EXTINF:0,Kanal 
-
+0
 
 #EXTINF:0,Party TV
-
+0
 
 #EXTINF:0,Pink 1
-
+0
 
 #EXTINF:0,Pink 2
-
+http://str108.setplex.net/fastv_2psh/Pink2global_rly_greece_109/TDB.m3u8
 
 #EXTINF:0,Pink 3
-
+http://str108.setplex.net/fastv_2psh/Pink3global_rly_greece_109/TDB.m3u8
 
 #EXTINF:0,Pink Action 1
-
+0
 
 #EXTINF:0,Pink Action 2
-
+0
 
 #EXTINF:0,Pink Action 3
-
+http://str108.setplex.net/fastv_2psh/PinkAction3global_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink Comedy
-
+http://str108.setplex.net/fastv_2psh/PinkComedyglobal_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink Family
-
+http://str108.setplex.net/fastv_2psh/PinkFamilyglobal_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink Fashion
-
+http://str108.setplex.net/fastv_2psh/PinkFashionglobal_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink Folk 1
-
+http://str108.setplex.net/fastv_2psh/PinkFolk1global_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink Folk 2
-
+http://str108.setplex.net/fastv_2psh/PinkFolk2global_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink Horror
-
+http://str108.setplex.net/fastv_2psh/PinkHorrorglobal_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink Kids
-
+http://str108.setplex.net/fastv_2psh/PinkKidsglobal_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink Live
-
+http://str108.setplex.net/fastv_2psh/PinkLiveglobal_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink Movies 1
-
+http://str108.setplex.net/fastv_2psh/PinkMoviesglobal_rly_greece_109/TDB.m3u8
 
 #EXTINF:0,Pink Movies 2
-
+0
 
 #EXTINF:0,Pink Movies 3
-
+0
 
 #EXTINF:0,Pink Music 1
-
+http://str108.setplex.net/fastv_2psh/PinkMusicglobal_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink Music 2
-
+http://str108.setplex.net/fastv_2psh/PinkMusic2global_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink Music 3
-
+http://str108.setplex.net/fastv_2psh/PinkMusic3global_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink Music 4
-
+http://str108.setplex.net/fastv_2psh/PinkMusic4global_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink Music 5
-
+http://str108.setplex.net/fastv_2psh/PinkMusic5global_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink Nostalgia
-
+http://str108.setplex.net/fastv_2psh/PinkNostalgijaglobal_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink Pedia
-
+http://str108.setplex.net/fastv_2psh/PinkPediaglobal_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink Premium
-
+http://str108.setplex.net/fastv_2psh/PinkPremiumglobal_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink Reality
-
+http://str108.setplex.net/fastv_2psh/PinkRealityglobal_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink Soap
-
+http://str108.setplex.net/fastv_2psh/PinkSoapglobal_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink Western
-
+0
 
 #EXTINF:0,Pink World
-
+http://str108.setplex.net/fastv_2psh/PinkWorldglobal_rly_greece_109/TDB.m3u8
 
 #EXTINF:0,Pink Zabava
-
+http://str108.setplex.net/fastv_2psh/PinkZabavaglobal_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Planet TV
 rtsp://origin.biokoda.tv/live/mbit-planet?k=planettv-public
 
 #EXTINF:0,Pop Brio
-
+0
 
 #EXTINF:0,PTC 
 mmsh://195.252.113.38:80/rts?MSWMExt=.asf
 
 #EXTINF:0,PTC 1
-
+0
 
 #EXTINF:0,PTC 2
-
+0
 
 #EXTINF:0,PRVA
-
+0
 
 #EXTINF:0,RTB TV
-
+0
 
 #EXTINF:0,RTL 1
-
+0
 
 #EXTINF:0,RTL 2
-
+0
 
 #EXTINF:0,RTL Kockica
-
+0
 
 #EXTINF:0,RTL Televizija
-
+0
 
 #EXTINF:0,RTL Plus
-
+0
 
 #EXTINF:0,RTV 1
-
+0
 
 #EXTINF:0,RTV Krea
 http://213.81.153.221:8080/galanta
@@ -308,19 +314,19 @@ http://213.81.153.221:8080/galanta
 http://213.81.153.221:8080/ruzinov
 
 #EXTINF:0,SB TV
-
+0
 
 #EXTINF:0,Sonce TV
 http://92.53.27.201:10000/
 
 #EXTINF:0,SOS TV
-
+0
 
 #EXTINF:0,Sprotska TV
-
+0
 
 #EXTINF:0,SRCE TV
-
+0
 
 #EXTINF:0,STV1 
 mms://89.201.164.181/stv
@@ -329,16 +335,16 @@ mms://89.201.164.181/stv
 http://88.212.10.27:81/streams/stv2.m3u8
 
 #EXTINF:0,STV Folk
-
+0
 
 #EXTINF:0,Student Televizija
 rtmp://213.202.73.202/iskon/studentska_b3.stream
 
 #EXTINF:0,TA3
-
+0
 
 #EXTINF:0,Tera TV
-
+0
 
 #EXTINF:0,TV CG Sat 
 mms://beotelmedia.beotel.net/tvcg
@@ -347,10 +353,10 @@ mms://beotelmedia.beotel.net/tvcg
 mms://195.252.114.172/tvcg
 
 #EXTINF:0,TV Istra
-
+0
 
 #EXTINF:0,Uskana
-
+0
 
 #EXTINF:0,Vesti 24
 mms://62.162.58.55/24vesti
@@ -362,7 +368,7 @@ rtmp://live.vizionplus.tv/live//livestream3
 rtmp://live.vizionplus.tv/live//livestream2
 
 #EXTINF:0,Zdrava TV
-
+0
 
 
 

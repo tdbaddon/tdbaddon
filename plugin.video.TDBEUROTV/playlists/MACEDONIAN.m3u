@@ -37,10 +37,10 @@ http://stream.b92.net:7999/tv-b92.ogg
 rtmp://yayin.tvdunyasi.tv/live/balkanrtv
 
 #EXTINF:0,BTR 
-
+0
 
 #EXTINF:0,Cegrani Media
-
+0
 
 #EXTINF:0,ERA TV 
 http://217.16.82.6:1935/zulu//era_2/simpletvmaclinkleri.m3u8
@@ -52,7 +52,7 @@ rtmp://hugo-iptv.zapto.org/live/h1
 mms://77.238.209.50:1234
 
 #EXTINF:0,In TV
-
+0
 
 #EXTINF:0,Iris 
 mms://62.162.58.55/TVIris
@@ -64,13 +64,16 @@ mms://62.162.58.54:8080
 http://88.212.10.27:81/streams/joj.m3u8
 
 #EXTINF:0,Jug TV 
-
+0
 
 #EXTINF:0,K1 Veles
 http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/k1-tv-veles/playlist.m3u8
 
-#‎EXTINF‬:0,K3 Kumanovo
+#EXTINF:0,Kanal 21 
+mms://62.162.58.55/TVkanal21
 
+#‎EXTINF‬:0,K3 Kumanovo
+http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/k3-tv-kumanovo/chunklist.m3u8
 
 #EXTINF:0,Kanal 5 
 http://fms.zulu.mk:1935/zulu/kanal5_1/playlist.m3u8
@@ -86,9 +89,6 @@ rtsp://fms.zulu.mk:554/zulu/kanal5plus_2
 
 #EXTINF:0,Kanal 8
 mms://62.162.58.55/TVkanal8
-
-#EXTINF:0,Kanal 21 
-mms://62.162.58.55/TVkanal21
 
 #‎EXTINF‬:0,K Plus Stip
 http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/kplus-tv-stip/chunklist.m3u8 
@@ -111,6 +111,9 @@ http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video
 #EXTINF:0,Nasha TV
 http://fms.zulu.mk:1935/zulu/nashatv_1/playlist.m3u8
 
+#EXTINF:0,Nasha TV
+http://fms.zulu.mk:1935/zulu/nashatv_2/playlist.m3u8
+
 #EXTINF:0,Ohrid 02
 http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/o2-tv-ohrid/playlist.m3u8
 
@@ -118,7 +121,7 @@ http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/o2-tv-ohrid/playlist
 http://178.33.24.14:2502/www.sipragezabava.com 
 
 #EXTINF:0,Pop Brio 
-
+0
 
 #EXTINF:0,RTS
 mmsh://rts.videostreaming.rs/rts
@@ -142,7 +145,7 @@ rtsp://fms.zulu.mk:554/zulu/sitel3_2
 http://92.53.27.201:10000/
 
 #EXTINF:0,STV Folk
-
+0
 
 #EXTINF:0,Sutel TV 
 http://fms.zulu.mk:1935/zulu/shutel_1/playlist.m3u8
@@ -159,7 +162,7 @@ http://fms.zulu.mk:1935/zulu/telma_2/playlist.m3u8
 #EXTINF:0,Telma 
 rtsp://fms.zulu.mk:554/zulu/telma_2
 
-#‎EXTINF‬:0,Ultra Tetovo
+#EXTINF:0,Ultra Tetovo
 http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/ultra-tv-tetovo/chunklist.m3u8 
 
 #EXTINF:0,Vesti 24

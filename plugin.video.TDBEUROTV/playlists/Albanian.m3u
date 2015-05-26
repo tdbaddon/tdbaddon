@@ -2,16 +2,16 @@
 
 
 #EXTINF:0,A1 Report 
-
+rtmp://66.55.93.204/livepkgr/a1stream?adbe-live-event=a1report
 
 #EXTINF:0,ABC News
-
+0
 
 #EXTINF:0,Agon Channel 
 http://str105mb.setplex.net:1935/str2iosmd5/7ios_agontv_34536544/playlist.m3u8
 
 #EXTINF:0,Alb Info
-
+0
 
 #EXTINF:0,Alb UK 
 rtmp://188.138.17.8:1935/albuk/albuk.stream
@@ -20,10 +20,10 @@ rtmp://188.138.17.8:1935/albuk/albuk.stream
 rtmp://188.138.17.8:1935/albuk/albuk+.stream
 
 #EXTINF:0,Alb Plus
-
+0
 
 #EXTINF:0,Albanian Screen
-
+0
 
 #EXTINF:0,Al Jazeera Balkan 
 rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
@@ -35,10 +35,10 @@ rtmp://fms.zulu.mk/zulu/ playpath=alsat_2 swfUrl=http://on.net.mk/jwp/jwplayer.f
 rtmp://fms.zulu.mk:554/zulu playpath=alsat_2 swfUrl=http://on.net.mk/player/player5.swf live=1 pageUrl=http://shqip1.altervista.org/tvlive/alsat_m.html
 
 #EXTINF:0,Amol
-
+0
 
 #EXTINF:0,Apollon 
-
+0
 
 #EXTINF:0,Art Kanal
 rtmp://82.114.65.202/live/rrokumtv.flv swfUrl=http://tv24.al/shqiptv/css/player.swf live=1
@@ -49,92 +49,86 @@ rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
 #EXTINF:0,B92 
 http://stream.b92.net:7999/tv-b92.ogg
 
-#EXTINF:0,B92 
-http://edge1.volim.tv/live/b92.stream/playlist.m3u8?hash=bce8d71c254913183829d491f62235c70ae93e71
-
 #EXTINF:0,Balkan TV
 rtmp://yayin.tvdunyasi.tv/live/balkanrtv
 
 #EXTINF:0,Bangbang
-
+0
 
 #EXTINF:0,Blue Sky
-
+0
 
 #EXTINF:0,Cegrani Media
-
+0
 
 #EXTINF:0,Channel One
 http://81.7.13.162/hls/channelone/index.m3u8
 
 #EXTINF:0,Cufo TV
-
+0
 
 #EXTINF:0,Dasma TV
-
+0
 
 #EXTINF:0,Disney Channel
-
+0
 
 #EXTINF:0,ERA 
 http://217.16.82.6:1935/zulu//era_2/simpletvmaclinkleri.m3u8
 
-#EXTINF:0,Film Aksion
-http://euroiptv2.mine.nu:80/live?channelId=388&uid=14&deviceUser=Euro.iptv&devicePass=Euro.iptv&deviceSn=9BEF7B34F4FB54FA
-
 #EXTINF:0,Film Aksion 
-http://94.100.31.242:8183/hls/xz3126/index.m3u8
+0
 
 #EXTINF:0,Film Drame 
-http://euroiptv2.mine.nu:80/live?channelId=392&uid=14&deviceUser=Euro.iptv&devicePass=Euro.iptv&deviceSn=9BEF7B34F4FB54FA
+0
 
 #EXTINF:0,Film Dy
-
+0
 
 #EXTINF:0,Film Hits 
-
+0
 
 #EXTINF:0,Film Komedi 
-
+0
 
 #EXTINF:0,Film Nje
-
+0
 
 #EXTINF:0,Film Plus
-
+0
 
 #EXTINF:0,Film Thriller 
-http://euroiptv2.mine.nu:80/live?channelId=387&uid=14&deviceUser=Euro.iptv&devicePass=Euro.iptv&deviceSn=9BEF7B34F4FB54FA
+0
 
 #EXTINF:0,Folk Plus
-
+0
 
 #EXTINF:0,Grad Lebane
-
+0
 
 #EXTINF:0,Hema TV
 mms://77.238.209.50:1234
 
 #EXTINF:0,Iliret 
-
+0
 
 #EXTINF:0,Jug TV 
-
+0
 
 #EXTINF:0,Kanal 3
-
+0
 
 #EXTINF:0,Kanal 7
-
+0
 
 #EXTINF:0,Klan Kosova 
-
+0
 
 #EXTINF:0,Koha TV 
 rtmp://live.tvkoha.tv/live/koha app=live/koha swfUrl=http://live.tvkoha.tv/playerplus.swf pageUrl=http://www.tvkoha.tv/live/tv playpath=livestream swfVfy=true live=true timeout=15
 
 #EXTINF:0,Kohavision
-
+0
 
 #EXTINF:0,Konyha TV 
 rtmp://91.82.85.44/live/konyhatv
@@ -167,16 +161,16 @@ mms://176.106.121.32:8080/
 http://81.7.13.162/hls/oranews/index.m3u8
 
 #EXTINF:0,Pannon TV
-
+0
 
 #EXTINF:0,Party TV
-
+0
 
 #EXTINF:0,Planet TV
 rtsp://origin.biokoda.tv/live/mbit-planet?k=planettv-public
 
 #EXTINF:0,Popullore 21
-
+0
 
 #EXTINF:0,Rokum TV 
 rtmp://82.114.65.202/live/rrokumtv
@@ -194,10 +188,10 @@ rtmp://wowza.rtkit.com/live/livestream
 http://wowza.rtkit.com:1935/live/livestream/chunklist.m3u8?wowzasessionid=491913886
 
 #EXTINF:0,RTV 21
-
+0
 
 #EXTINF:0,Sot7
-mms://84.20.73.66:8001
+0
 
 #EXTINF:0,Super Sport 1 
 http://81.7.13.162/hls/ss1/index.m3u8
@@ -205,17 +199,11 @@ http://81.7.13.162/hls/ss1/index.m3u8
 #EXTINF:0,Super Sport 2 
 http://81.7.13.162/hls/ss2/index.m3u8
 
-#EXTINF:0,Super Sport 2 
-http://euroiptv2.mine.nu:80/live?channelId=241&uid=14&deviceUser=Euro.iptv&devicePass=Euro.iptv&deviceSn=9BEF7B34F4FB54FA
-
 #EXTINF:0,Super Sport 3
 http://81.7.13.162/hls/ss3/index.m3u8
 
-#EXTINF:0,Super Sport 3
-http://euroiptv2.mine.nu:80/live?channelId=242&uid=14&deviceUser=Euro.iptv&devicePass=Euro.iptv&deviceSn=9BEF7B34F4FB54FA
-
 #EXTINF:0,Super Sport 4
-
+0
 
 #EXTINF:0,Supersonic TV
 rtmp://str103.setplex.net:1935/228/stv_online
@@ -230,10 +218,10 @@ http://88.212.10.27:81/streams/stv2.m3u8?
 rtmp://str103.setplex.net:1935/228/stv_folk
 
 #EXTINF:0,Top Channel 
-
+0
 
 #EXTINF:0,Top Channel News
-
+0
 
 #EXTINF:0,Vizion Plus 
 rtmp://live.vizionplus.tv/live//livestream3

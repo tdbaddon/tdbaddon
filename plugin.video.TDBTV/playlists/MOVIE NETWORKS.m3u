@@ -100,12 +100,6 @@ http://200.76.77.237/LIVE/H01/CANAL484/PROFILE05.m3u8?
 #EXTINF:0,HBO 
 http://113.160.49.34/lives/origin03/hbohd.isml/hbohd-2096k.m3u8
 
-#EXTINF:0,HBO 
-rtmp://89.248.168.57/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to/player/secure_player_iguide_embed_token.swf pageUrl=http://www.iguide.to/ token=#ed%h0#w18623jsda6523lDGD
-
-#EXTINF:0,HBO 
-rtmp://94.102.49.207/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to/player/secure_player_iguide_token.swf live=1 pageUrl=http://www.iguide.to/view/1/watch-live-HBO-channel-for-free token=#ed%h0#w18623jsda6523lDGDVe
-
 #EXTINF:0,MBC 2 
 http://63.237.48.3/ios/MBC2/MBC2.m3u8
 
@@ -119,7 +113,7 @@ http://63.237.48.23/ios/MBC_MAX/MBC_MAX.m3u8
 0
 
 #EXTINF:0,Movies 4 Men
-0
+http://95.172.231.17/flashstream/stream.flv?Preset=7&aspect=16A9&ffPreset=ultrafast&maxwidth=&maxheight=&chid=33
 
 #EXTINF:0,Paramount Channel
 0
@@ -128,16 +122,16 @@ http://63.237.48.23/ios/MBC_MAX/MBC_MAX.m3u8
 0
 
 #EXTINF:0,Pink Action 3
-0
+http://str108.setplex.net/fastv_2psh/PinkAction3global_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink Comedy
-0
+http://str108.setplex.net/fastv_2psh/PinkComedyglobal_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink Movies 3
 0
 
 #EXTINF:0,Pink Premium
-0
+http://str108.setplex.net/fastv_2psh/PinkPremiumglobal_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink Western
 0
@@ -209,10 +203,7 @@ http://200.76.77.237/LIVE/H01/CANAL496/PROFILE05.m3u8?
 0
 
 #EXTINF:0,TV 1000 
-http://84.32.80.15:7781/udp/233.136.41.41:1234
-
-#EXTINF:0,TV 1000 Action
-http://84.32.80.15:7781/udp/233.136.41.120:1234
+0
 
 #EXTINF:0,TV 1000 Action
 http://195.78.244.219:10000/udp/239.0.3.27:1234
