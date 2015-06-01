@@ -127,11 +127,17 @@ http://200.76.77.237/LIVE/H01/CANAL703/PROFILE03.m3u8?
 #EXTINF:0,VH1 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_VH1EUROPEAN/variant.m3u8
 
+#EXTINF:0,VH1 
+http://37.59.45.208:1234/live/clikmega/@gmail.com/96.ts
+
 #EXTINF:0,VH1 Classics 
 http://200.76.77.237/LIVE/H01/CANAL728/PROFILE05.m3u8?
 
 #EXTINF:0,VH1 Classics 
 http://200.76.77.237/LIVE/H01/CANAL728/PROFILE03.m3u8?
+
+#EXTINF:0,VH1 Classics
+http://92.50.181.6/tv/1282/index.m3u8
 
 #EXTINF:0,VH1 Shuffle
 0

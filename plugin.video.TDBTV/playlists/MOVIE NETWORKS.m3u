@@ -44,9 +44,6 @@ http://200.76.77.237/LIVE/H01/CANAL416/PROFILE03.m3u8?
 http://200.76.77.237/LIVE/H01/CANAL416/PROFILE05.m3u8?
 
 #EXTINF:0,Fox Family Movies 
-http://188.93.18.238:1935/tv/1702/playlist.m3u8
-
-#EXTINF:0,Fox Family Movies 
 http://200.76.77.237/LIVE/H01/CANAL475/PROFILE03.m3u8?
 
 #EXTINF:0,Fox Family Movies 
@@ -85,6 +82,9 @@ http://200.76.77.237/LIVE/H01/CANAL417/PROFILE03.m3u8?
 #EXTINF:0,Fox Movies 
 http://200.76.77.237/LIVE/H01/CANAL417/PROFILE05.m3u8?
 
+#EXTINF:0,Fox Movies 
+http://37.59.45.208:1234/live/clikmega/@gmail.com/78.ts
+
 #EXTINF:0,FX HD 
 http://200.76.77.237/LIVE/H01/CANAL209/PROFILE03.m3u8?
 
@@ -99,6 +99,12 @@ http://200.76.77.237/LIVE/H01/CANAL484/PROFILE05.m3u8?
 
 #EXTINF:0,HBO 
 http://113.160.49.34/lives/origin03/hbohd.isml/hbohd-2096k.m3u8
+
+#EXTINF:0,HBO 
+http://192.99.4.70/hls/HBO_PLUS.m3u8
+
+
+
 
 #EXTINF:0,MBC 2 
 http://63.237.48.3/ios/MBC2/MBC2.m3u8
@@ -143,40 +149,40 @@ http://str108.setplex.net/fastv_2psh/PinkPremiumglobal_rly_greece_103/TDB.m3u8
 0
 
 #EXTINF:0,Sky Movies Action 
-http://188.227.189.18:8082/TV4245
+http://185.56.30.127:8082/TV4245
 
 #EXTINF:0,Sky Movies Atlantic
 0
 
 #EXTINF:0,Sky Movies Comedy
-http://188.227.189.18:8082/TV4246 
+http://185.56.30.127:8082/TV4246
 
 #EXTINF:0,Sky Movies Crime
 0
 
 #EXTINF:0,Sky Movies Disney
-http://188.227.189.18:8082/TV4247
+http://185.56.30.127:8082/TV4247
 
 #EXTINF:0,Sky Movies Drama
 0
 
 #EXTINF:0,Sky Movies Family
-http://188.227.189.18:8082/TV4248 
+http://185.56.30.127:8082/TV4248
 
 #EXTINF:0,Sky Movies Horrors
 0
 
 #EXTINF:0,Sky Movies Premiere 
-http://188.227.189.18:8082/TV4251
+http://185.56.30.127:8082/TV4251
 
 #EXTINF:0,Sky Movies Premiere 
-http://188.227.189.18:8082/TV4252 
+http://185.56.30.127:8082/TV4252
 
 #EXTINF:0,Sky Movies SciFi 
-http://188.227.189.18:8082/TV4249
+http://185.56.30.127:8082/TV4249
 
 #EXTINF:0,Sky Movies Select 
-http://188.227.189.18:8082/TV4254
+http://185.56.30.127:8082/TV4254
 
 #EXTINF:0,Sky Movies Superheros 
 0

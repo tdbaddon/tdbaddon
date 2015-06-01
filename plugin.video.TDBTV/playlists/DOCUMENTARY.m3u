@@ -17,7 +17,7 @@ http://200.76.77.237/LIVE/H01/CANAL351/PROFILE03.m3u8?
 http://200.76.77.237/LIVE/H01/CANAL351/PROFILE05.m3u8?
 
 #EXTINF:0,Discovery Channel 
-rtmp://watch4.streamlive.to:1935/edge app=edge/_definst_/$doregex[xs] playpath=$doregex[path] swfVfy=1 token=$doregex[tok] swfUrl=https://www.streamlive.to/ads/streamlive.swf pageUrl=http://www.streamlive.to/view/69110/Discovery-live-stream-channel-for-free
+http://37.59.45.208:1234/live/clikmega/@gmail.com/82.ts
 
 #EXTINF:0,Discovery History 
 0
@@ -52,17 +52,11 @@ https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8?hdnea=ip=174.113.
 #EXTINF:0,History Channel 
 http://link.theplatform.com/s/dtjsEC/chjdYJxKb44V?manifest=m3u&feed=History%20Live%20Stream%20Feed
 
-#EXTINF:0,NASA TV 
-http://public.infozen.cshls.lldns.net/infozen/public/public.m3u8
+#EXTINF:0,History Channel 
+http://37.59.45.208:1234/live/clikmega/@gmail.com/81.ts
 
 #EXTINF:0,NASA TV 
-http://public.infozen.cshls.lldns.net/infozen/public/public/public_1000.m3u8
-
-#EXTINF:0,NASA TV 
-http://edu.infozen.cshls.lldns.net/infozen/edu/edu/edu_1000.m3u8
-
-#EXTINF:0,NASA TV 
-http://www.nasa.gov/multimedia/nasatv/NTV-Public-IPS.m3u8
+0
 
 #EXTINF:0,Nat Geo People 
 0
@@ -70,11 +64,14 @@ http://www.nasa.gov/multimedia/nasatv/NTV-Public-IPS.m3u8
 #EXTINF:0,Nat Geo Wild 
 http://185.5.40.101/hls/session-37473uCyyxurSfw/CH_NATGEOWILD/variant.m3u8?version=2
 
+#EXTINF:0,Nat Geo Wild 
+http://37.59.45.208:1234/live/clikmega/@gmail.com/83.ts
+
 #EXTINF:0,National Geographic 
 http://188.227.86.4:4022/udp/239.77.0.41:1234
 
 #EXTINF:0,National Geographic 
-rtmp://watch4.streamlive.to:1935/edge app=edge/_definst_/$doregex[xs] playpath=$doregex[path] swfVfy=1 token=$doregex[tok] swfUrl=https://www.streamlive.to/ads/streamlive.swf pageUrl=http://www.streamlive.to/view/69018/National_Geographic-live-stream-channel-for-free
+http://46.252.125.29:4321/udp/238.0.4.7:1234
 
 #EXTINF:0,RT News Documentary 
 http://odna.octoshape.net/f3f5m2v4/cds/ch5_auto.smil/playlist.m3u8 
@@ -88,8 +85,14 @@ http://odna.octoshape.net/f3f5m2v4/cds/ch5_720p/chunklist.m3u8
 #EXTINF:0,Viasat Explorer 
 http://195.78.244.219:10000/udp/239.0.3.30:1234
 
+#EXTINF:0,Viasat Explorer 
+http://46.252.125.29:4321/udp/238.0.4.8:1234
+
 #EXTINF:0,Viasat History 
 http://195.78.244.219:10000/udp/239.0.3.31:1234
+
+#EXTINF:0,Viasat History
+http://46.252.125.29:4321/udp/238.0.4.9:1234
 
 #EXTINF:0,Viasat Nature 
 http://195.78.244.219:10000/udp/239.0.3.28:1234

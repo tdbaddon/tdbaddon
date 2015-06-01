@@ -11,7 +11,7 @@
 0
 
 #EXTINF:0,AMC 
-0
+http://37.59.45.208:1234/live/clikmega/@gmail.com/79.ts
 
 #EXTINF:0,AXN 
 http://200.76.77.237/LIVE/H01/CANAL213/PROFILE03.m3u8?
@@ -44,7 +44,7 @@ http://200.76.77.237/LIVE/H01/CANAL253/PROFILE05.m3u8
 0
 
 #EXTINF:0,Bravo 
-rtmp://rtmp.zerocast.tv/live?t=xwqRhn5dC playpath=bravo swfUrl=http://cdn.ibrod.tv/player.swf flashver=WIN\202012,0,0,77 timeout=15 token=8964316ec8772dfa live=1swfVfy=1 pageUrl=http://zerocast.tv/
+0
 
 #EXTINF:0,Cartoon Network 
 http://188.227.86.4:4022/udp/239.77.0.77:1234
@@ -98,6 +98,9 @@ http://198.179.31.198/live/2062.high.stream/2062.high.stream/index.m3u8
 0
 
 #EXTINF:0,E! 
+http://37.59.45.208:1234/live/clikmega/@gmail.com/75.ts
+
+#EXTINF:0,E! 
 http://200.76.77.237/LIVE/H01/CANAL255/PROFILE03.m3u8?
 
 #EXTINF:0,E! 
@@ -111,6 +114,9 @@ http://113.160.49.34/lives/origin03/fashionhd.isml/fashionhd-2096k.m3u8
 
 #EXTINF:0,Fashion TV 
 http://hls.novotelecom.ru/streaming/fashion/tvrec/playlist.m3u8
+
+#EXTINF:0,Fashion TV 
+http://37.59.45.208:1234/live/clikmega/@gmail.com/77.ts
 
 #EXTINF:0,Film4 
 http://pebbles124-lh.akamaihd.net/i/film4_1@137790/master.m3u8|X-Forwarded-For=85.5.87.218
@@ -245,7 +251,7 @@ rtmp://128.104.144.134/WisconsinChannel/mystream
 0
 
 #EXTINF:0,Sky Arts 2 
-http://188.227.189.18:8082/TV4250
+0
 
 #EXTINF:0,Sky Living 
 0
@@ -269,7 +275,7 @@ http://95.172.231.17/flashstream/stream.flv?Preset=7&aspect=16A9&ffPreset=ultraf
 0
 
 #EXTINF:0,Syfy 
-rtmp://rtmp.zerocast.tv/live?t=xwqRhn5dC playpath=syfy swfUrl=http://cdn.ibrod.tv/player.swf flashver=WIN\202012,0,0,77 timeout=15 live=1swfVfy=1 pageUrl=http://zerocast.tv/ token=8964316ec8772dfa
+http://37.59.45.208:1234/live/clikmega/@gmail.com/61.ts
 
 #EXTINF:0,TBS 
 0
