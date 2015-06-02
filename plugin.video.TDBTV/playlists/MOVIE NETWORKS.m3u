@@ -103,8 +103,8 @@ http://113.160.49.34/lives/origin03/hbohd.isml/hbohd-2096k.m3u8
 #EXTINF:0,HBO 
 http://192.99.4.70/hls/HBO_PLUS.m3u8
 
-
-
+#EXTINF:0,HBO 
+http://192.99.4.70/hls/hbo_signature.m3u8
 
 #EXTINF:0,MBC 2 
 http://63.237.48.3/ios/MBC2/MBC2.m3u8
@@ -113,13 +113,43 @@ http://63.237.48.3/ios/MBC2/MBC2.m3u8
 http://63.237.48.23/ios/MBC_MAX/MBC_MAX.m3u8
 
 #EXTINF:0,MGM 
-0
+http://esiptv.mine.nu/679/650
 
 #EXTINF:0,Movies 24/7
 0
 
 #EXTINF:0,Movies 4 Men
 http://95.172.231.17/flashstream/stream.flv?Preset=7&aspect=16A9&ffPreset=ultrafast&maxwidth=&maxheight=&chid=33
+
+#EXTINF:0,OSN Action
+http://esiptv.mine.nu/633/650
+
+#EXTINF:0,OSN Action 2
+http://esiptv.mine.nu/668/650
+
+#EXTINF:0,OSN Box Office 1
+http://esiptv.mine.nu/662/650
+
+#EXTINF:0,OSN Drama
+http://esiptv.mine.nu/675/650
+
+#EXTINF:0,OSN Kids
+http://esiptv.mine.nu/634/650
+
+#EXTINF:0,OSN On Demand
+http://esiptv.mine.nu/678/650
+
+#EXTINF:0,OSN Movies
+http://esiptv.mine.nu/688/650
+
+#EXTINF:0,OSN Movies
+http://esiptv.mine.nu/689/650
+
+#EXTINF:0,OSN Movies
+http://esiptv.mine.nu/691/650
+
+#EXTINF:0,OSN Movies
+http://esiptv.mine.nu/692/650
 
 #EXTINF:0,Paramount Channel
 0
@@ -132,6 +162,9 @@ http://str108.setplex.net/fastv_2psh/PinkAction3global_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink Comedy
 http://str108.setplex.net/fastv_2psh/PinkComedyglobal_rly_greece_103/TDB.m3u8
+
+#EXTINF:0,Pink Horror
+http://str108.setplex.net/fastv_2psh/PinkHorrorglobal_rly_greece_103/playlist.m3u8
 
 #EXTINF:0,Pink Movies 3
 0
@@ -164,7 +197,7 @@ http://185.56.30.127:8082/TV4246
 http://185.56.30.127:8082/TV4247
 
 #EXTINF:0,Sky Movies Drama
-0
+http://esiptv.mine.nu/673/650
 
 #EXTINF:0,Sky Movies Family
 http://185.56.30.127:8082/TV4248
@@ -201,6 +234,12 @@ http://200.76.77.237/LIVE/H01/CANAL496/PROFILE03.m3u8?
 
 #EXTINF:0,TCM 
 http://200.76.77.237/LIVE/H01/CANAL496/PROFILE05.m3u8?
+
+#EXTINF:0,TCM 
+http://esiptv.mine.nu/650/650
+
+#EXTINF:0,TCM 
+http://esiptv.mine.nu/673/650
 
 #EXTINF:0,True Movies 1
 0

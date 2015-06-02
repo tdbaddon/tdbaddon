@@ -26,10 +26,10 @@ http://37.59.45.208:1234/live/clikmega/@gmail.com/82.ts
 0
 
 #EXTINF:0,Discovery Investigation 
-.
+http://esiptv.mine.nu/683/650
 
 #EXTINF:0,Discovery Science 
-0
+http://5.128.118.163:7777/udp/239.1.5.9:1234
 
 #EXTINF:0,Discovery Showcase
 0
@@ -45,6 +45,9 @@ http://200.76.77.237/LIVE/H01/CANAL351/PROFILE05.m3u8?
 
 #EXTINF:0,Discovery World 
 http://188.227.86.4:4022/udp/239.77.0.78:1234
+
+#EXTINF:0,Discovery World 
+http://5.128.118.163:7777/udp/239.1.5.2:1234
 
 #EXTINF:0,History Channel 
 https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8?hdnea=ip=174.113.30.187~st=1427694727~exp=1427695327~acl=/i/*~id=a86de0c2-ad09-4469-9a63-6ebbc1bba4d3~hmac=ac144089000bdd16f6916c517ce3e6e04813d4de11ac16839ad468a977ec80b1
@@ -72,6 +75,9 @@ http://188.227.86.4:4022/udp/239.77.0.41:1234
 
 #EXTINF:0,National Geographic 
 http://46.252.125.29:4321/udp/238.0.4.7:1234
+
+#EXTINF:0,National Geographic 
+http://5.128.118.163:7777/udp/239.1.5.8:1234
 
 #EXTINF:0,RT News Documentary 
 http://odna.octoshape.net/f3f5m2v4/cds/ch5_auto.smil/playlist.m3u8 
