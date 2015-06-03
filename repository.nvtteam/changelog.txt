@@ -1,0 +1,8 @@
+ v1.0.2
+-Fix For New Kodi Beta... 
+
+ v1.0.1
+-Updated... 
+
+ v1.0.0
+-Initial version

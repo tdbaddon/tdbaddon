@@ -1,0 +1,43 @@
+Thanks for using Mutts, Let total know of their actions caused it to be removed
+
+[B][COLOR green]V 1000.000.004q (Friday 15 May, 2015)[/COLOR][/B]
+
+-- [COLOR yellow][B]ADDED[/COLOR][/B] SuperSearch-mode for iSearch compatibility.
+
+
+[B][COLOR green]V 0.0.9 (Friday 03 April, 2015)[/COLOR][/B]
+
+-- [COLOR yellow][B]FIXED[/COLOR][/B] Video Playback problems.
+
+
+
+[B][COLOR green]V 0.0.8 (Friday 27 March, 2015)[/COLOR][/B]
+
+-- [COLOR yellow][B]FIXED/ADDED [/COLOR][/B] Add to remove from library.
+
+
+[B][COLOR green]V 0.0.7 (Tuesday 24 March, 2015)[/COLOR][/B]
+
+-- Added Add to library in context menu, Not finished still work to be done)
+
+-- FIXED a bug i made when added Autoplay.
+
+
+
+[B][COLOR green]V 0.0.4 (Saturday 21 March, 2015)[/COLOR][/B]
+
+-- 	Added Autoplay, so set your chosen quality stream in addon settings,
+	The addon will TRY to get the correct stream for you.
+	
+--	Autoview, set your prefernce in settings
+	
+
+[B][COLOR green]V 0.0.1 (Friday 20 March, 2015)[/COLOR][/B]
+
+-- Preview release, There will be errors, In the final version some features may be added
+   Some may be taken away.
+   BIG THANKS to so many People, @Gabbs, @Krankie, @CraigB, @iJordan, @Mz, If I missed you
+   I apologise, It was not intentional.
+   Thank you to YOU all. Lots of people ONE vision.
+   
+   Holla
