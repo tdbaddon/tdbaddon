@@ -77,13 +77,13 @@ http://200.76.77.237/LIVE/H01/CANAL424/PROFILE05.m3u8?
 http://162.212.176.107:1935/fox_movies/globaltv-fox_movies.stream/gmswf.m3u8
 
 #EXTINF:0,Fox Movies 
+http://37.59.45.208:1234/live/clikmega/@gmail.com/78.ts
+
+#EXTINF:0,Fox Movies 
 http://200.76.77.237/LIVE/H01/CANAL417/PROFILE03.m3u8?
 
 #EXTINF:0,Fox Movies 
 http://200.76.77.237/LIVE/H01/CANAL417/PROFILE05.m3u8?
-
-#EXTINF:0,Fox Movies 
-http://37.59.45.208:1234/live/clikmega/@gmail.com/78.ts
 
 #EXTINF:0,FX HD 
 http://200.76.77.237/LIVE/H01/CANAL209/PROFILE03.m3u8?
@@ -173,7 +173,7 @@ http://str108.setplex.net/fastv_2psh/PinkHorrorglobal_rly_greece_103/playlist.m3
 http://str108.setplex.net/fastv_2psh/PinkPremiumglobal_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink Western
-0
+http://str108.setplex.net/fastv_2psh/PinkWesternglobal_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,SciFi
 0
@@ -230,16 +230,16 @@ http://113.160.49.34/lives/origin03/moviehd.isml/moviehd-2096k.m3u8
 0
 
 #EXTINF:0,TCM 
-http://200.76.77.237/LIVE/H01/CANAL496/PROFILE03.m3u8?
-
-#EXTINF:0,TCM 
-http://200.76.77.237/LIVE/H01/CANAL496/PROFILE05.m3u8?
-
-#EXTINF:0,TCM 
 http://esiptv.mine.nu/650/650
 
 #EXTINF:0,TCM 
 http://esiptv.mine.nu/673/650
+
+#EXTINF:0,TCM 
+http://200.76.77.237/LIVE/H01/CANAL496/PROFILE03.m3u8?
+
+#EXTINF:0,TCM 
+http://200.76.77.237/LIVE/H01/CANAL496/PROFILE05.m3u8?
 
 #EXTINF:0,True Movies 1
 0

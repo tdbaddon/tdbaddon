@@ -125,7 +125,7 @@ mms://77.238.209.50:1234
 0
 
 #EXTINF:0,Koha TV 
-rtmp://live.tvkoha.tv/live/koha app=live/koha swfUrl=http://live.tvkoha.tv/playerplus.swf pageUrl=http://www.tvkoha.tv/live/tv playpath=livestream swfVfy=true live=true timeout=15
+0
 
 #EXTINF:0,Kohavision
 0
@@ -134,15 +134,12 @@ rtmp://live.tvkoha.tv/live/koha app=live/koha swfUrl=http://live.tvkoha.tv/playe
 rtmp://91.82.85.44/live/konyhatv
 
 #EXTINF:0,Kopliku TV 
-rtmp://psham1.setplex.net:1935/tvalb_loc_ams243?doPublish=eqc3AAs34OL/tvkop2431565
+0
 
-#EXTINF:0,Kopliku TV 
-rtmp://psham1.setplex.net:1935/tvalb_loc_ams243/tvkop2431565
-
-#EXTINF:0,MPT1 
+#EXTINF:0,MPT 1 
 http://mrt.cdn.spectar.tv:1935/mrt-edge/_definst_/mrt1-sat/playlist.m3u8
 
-#EXTINF:0,MPT1 
+#EXTINF:0,MPT 1 
 http://fms.zulu.mk:1935/zulu/mtv1_1/playlist.m3u8
 
 #EXTINF:0,MPT 2 

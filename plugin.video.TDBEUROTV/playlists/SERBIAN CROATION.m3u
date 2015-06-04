@@ -56,7 +56,7 @@ rtmp://rtmp.elektrika.cz/live/myStream.sdp
 mms://77.238.209.50:1234
 
 #EXTINF:0,Hronka
-http://213.81.153.221:8080/hronka
+0
 
 #EXTINF:0,HRT 1 
 http://213.5.58.58:1935/hrt_live/smil:hrt1.smil/nesto.m3u8
@@ -89,7 +89,7 @@ http://88.212.10.27:81/streams/jojplus.m3u8
 0
 
 #EXTINF:0,Kanal 3
-0
+http://edge1.volim.tv/live/kanal_3.stream/playlist.m3u8?hash=90df8700863cdf89ca0d31e74377ea58f060e02e
 
 #EXTINF:0,Kanal 5 
 http://fms.zulu.mk:1935/zulu/kanal5_1/playlist.m3u8
@@ -113,7 +113,7 @@ mms://62.162.58.55/TVkanal21
 0
 
 #EXTINF:0,KCN 3 
-http://178.79.24.7:9013
+0
 
 #EXTINF:0,Kino TV
 0
@@ -140,7 +140,7 @@ http://213.81.153.221:8080/nasa
 0
 
 #EXTINF:0,N1
-http://best.str.n1info.com:8080/stream?channel=n1hdbih?stream=hd?u=n1info
+http://best.str.n1info.com:8080/stream?channel=n1hdsrb?stream=hd?u=n1info
 
 #EXTINF:0,Nardona TV
 0
@@ -149,10 +149,10 @@ http://best.str.n1info.com:8080/stream?channel=n1hdbih?stream=hd?u=n1info
 0
 
 #EXTINF:0,Novisad 1
-rtsp://212.200.255.151/rtv1
+0
 
 #EXTINF:0,Novisad 2
-rtsp://212.200.255.151/rtv2
+0
 
 #EXTINF:0,Novosadska TV 
 mms://176.106.121.32:8080/
@@ -260,7 +260,7 @@ http://str108.setplex.net/fastv_2psh/PinkRealityglobal_rly_greece_103/TDB.m3u8
 http://str108.setplex.net/fastv_2psh/PinkSoapglobal_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink Western
-0
+http://str108.setplex.net/fastv_2psh/PinkWesternglobal_rly_greece_103/TDB.m3u8
 
 #EXTINF:0,Pink World
 http://str108.setplex.net/fastv_2psh/PinkWorldglobal_rly_greece_109/TDB.m3u8
@@ -273,6 +273,9 @@ rtsp://origin.biokoda.tv/live/mbit-planet?k=planettv-public
 
 #EXTINF:0,Pop Brio
 0
+
+#EXTINF:0,PTC
+rtsp://195.252.113.40/rts
 
 #EXTINF:0,PTC 
 mmsh://195.252.113.38:80/rts?MSWMExt=.asf
@@ -329,7 +332,7 @@ http://92.53.27.201:10000/
 0
 
 #EXTINF:0,STV1 
-mms://89.201.164.181/stv
+http://88.212.10.27:81/streams/stv1.m3u8
 
 #EXTINF:0,STV2
 http://88.212.10.27:81/streams/stv2.m3u8

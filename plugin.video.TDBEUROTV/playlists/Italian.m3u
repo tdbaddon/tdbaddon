@@ -24,7 +24,7 @@ rtmp://msh0193.stream.seeweb.it/live// playpath=stream00.sdp swfUrl=http://p.jwp
 http://skyianywhere2-i.akamaihd.net/hls/live/216865/cielo/stream2/streamPlaylist.m3u8
 
 #EXTINF:0,Fano TV
-rtmp://live.streamcaster.net:1935/live playpath=fanotv swfUrl=http://fanotvlive.kronopress.com/script/Flowplayer/flowplayer-3.2.16.swf pageUrl=http://fanotvlive.kronopress.com/player.aspx live=1 timeout=10
+0
 
 #EXTINF:0,History Lab
 rtmp://wma10.fluidstream.net/HistoryLab playpath=livestream swfUrl=http://www.radioetv.it/modules/mod_hllive/jw/player58l.swf pageUrl=http://www.radioetv.it/history-lab live=1 timeout=10

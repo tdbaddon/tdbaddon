@@ -5,7 +5,7 @@
 http://mail.tv4e.gr:1935/live/myStream.sdp/playlist.m3u8
 
 #EXTINF:0,Alpha
-http://alfakanali-lh.akamaihd.net/i/live_1@90368/master.m3u8
+0
 
 #EXTINF:0,Ant1 
 http://wow.ant1.gr:1935/live/smil:mavani.smil/playlist.m3u8
@@ -23,13 +23,13 @@ http://wow.ant1.gr:1935/live/_definst_/ant1tv1711video/playlist.m3u8?wowzasessio
 http://www.astratv.gr:8090/hls/livestream/index.m3u8
 
 #EXTINF:0,Axeloos TV
-http://srv1.viiideo.gr:1935/videon/axeloostv/widih.m3u8
+0
 
 #EXTINF:0,Best TV
 http://smooth.istoikona.net/besttv.isml/manifest(format=m3u8-aapl).m3u8
 
 #EXTINF:0,BlueSky TV
-http://88.198.238.44:1935/bluesky/bluesky.stream/playlist.m3u8
+0
 
 #EXTINF:0,Boyah 
 http://streamer-cache.grnet.gr/parliament/parltv.sdp/master.m3u8
@@ -86,7 +86,7 @@ rtmp://213.16.167.186/live/mpegts_256.stream
 rtmp://213.16.167.186:1935/live/mpegts_256.stream
 
 #EXTINF:0,Extra 3 
-0
+rtmp://213.16.167.186:1935/live/mpegts_256.stream
 
 #EXTINF:0,Flash TV
 0
@@ -149,7 +149,7 @@ http://megahdlive1-f.akamaihd.net/i/live_1@105260/master.m3u8
 0
 
 #EXTINF:0,Nea TV
-rtmp://srv1.viiideo.gr:1935/hellasonmedia/neatv
+0
 
 #EXTINF:0,N Cinema
 0
@@ -215,13 +215,10 @@ http://radiofeeds1.mediabox.gr/startv?MSWMExt=.asf
 http://176.9.123.140:1935/msg116s/msg116s/playlist.m3u8
 
 #EXTINF:0,Thraki
-mmsh://live.onestreaming.com/thrakinet
+0
 
 #EXTINF:0,TRT
-http://xelladalivex.api.channel.livestream.com/3.0/playlist.m3u8
-
-#EXTINF:0,TV 1
-http://176.9.123.140:1935/msg116s/msg116s/playlist.m3u8
+0
 
 #EXTINF:0,TV 100
 http://178.62.176.153:1935/TV100/myStream/playlist.m3u8
@@ -233,7 +230,7 @@ http://178.62.176.153:1935/TV100/myStream/playlist.m3u8
 0
 
 #EXTINF:0,Zougla TV 
-http://zouglahd-f.akamaihd.net/i/zougla_1@56341/index_700_av-p.m3u8
+http://zouglahd-f.akamaihd.net/i/zougla_1@56341/master.m3u8
 
 
 
