@@ -106,6 +106,9 @@ http://192.99.4.70/hls/HBO_PLUS.m3u8
 #EXTINF:0,HBO 
 http://192.99.4.70/hls/hbo_signature.m3u8
 
+#EXTINF:0,HBO 
+rtmp://89.248.168.57/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to/player/secure_player_iguide_embed_token.swf pageUrl=http://www.iguide.to/ token=#ed%h0#w18623jsda6523lDGD
+
 #EXTINF:0,MBC 2 
 http://63.237.48.3/ios/MBC2/MBC2.m3u8
 

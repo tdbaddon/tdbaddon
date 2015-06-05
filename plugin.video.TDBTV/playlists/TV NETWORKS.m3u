@@ -49,6 +49,9 @@ http://200.76.77.237/LIVE/H01/CANAL253/PROFILE05.m3u8
 #EXTINF:0,Cartoon Network 
 http://188.227.86.4:4022/udp/239.77.0.77:1234
 
+#EXTINF:0,Cartoon Network 
+http://hls.svc.moyo.tv/hls/CH_CARTOON/variant.m3u8?version=2
+
 #EXTINF:0,Cbeebies
 0
 
