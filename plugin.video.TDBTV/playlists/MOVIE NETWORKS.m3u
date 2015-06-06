@@ -32,46 +32,16 @@ http://113.160.49.34/lives/origin03/cinemaxsd.isml/cinemaxsd-1096k.m3u8
 0
 
 #EXTINF:0,Fox 1 
-http://200.76.77.237/LIVE/H01/CANAL415/PROFILE03.m3u8?
-
-#EXTINF:0,Fox 1 
-http://200.76.77.237/LIVE/H01/CANAL415/PROFILE05.m3u8?
+0
 
 #EXTINF:0,Fox Action Movies 
-http://200.76.77.237/LIVE/H01/CANAL416/PROFILE03.m3u8? 
-
-#EXTINF:0,Fox Action Movies 
-http://200.76.77.237/LIVE/H01/CANAL416/PROFILE05.m3u8?
-
-#EXTINF:0,Fox Family Movies 
-http://200.76.77.237/LIVE/H01/CANAL475/PROFILE03.m3u8?
-
-#EXTINF:0,Fox Family Movies 
-http://200.76.77.237/LIVE/H01/CANAL475/PROFILE05.m3u8?
+0
 
 #EXTINF:0,Fox Cinema
-http://200.76.77.237/LIVE/H01/CANAL421/PROFILE03.m3u8?
-
-#EXTINF:0,Fox Cinema
-http://200.76.77.237/LIVE/H01/CANAL421/PROFILE05.m3u8?
-
-#EXTINF:0,Fox Cinema
-http://200.76.77.237/LIVE/H01/CANAL472/PROFILE03.m3u8?
-
-#EXTINF:0,Fox Cinema
-http://200.76.77.237/LIVE/H01/CANAL472/PROFILE05.m3u8?
+0
 
 #EXTINF:0,Fox Classics 
-http://200.76.77.237/LIVE/H01/CANAL478/PROFILE03.m3u8?
-
-#EXTINF:0,Fox Classics 
-http://200.76.77.237/LIVE/H01/CANAL478/PROFILE05.m3u8?
-
-#EXTINF:0,Fox Classics 
-http://200.76.77.237/LIVE/H01/CANAL424/PROFILE03.m3u8?
-
-#EXTINF:0,Fox Classics 
-http://200.76.77.237/LIVE/H01/CANAL424/PROFILE05.m3u8?
+0
 
 #EXTINF:0,Fox Movies 
 http://162.212.176.107:1935/fox_movies/globaltv-fox_movies.stream/gmswf.m3u8
@@ -79,32 +49,14 @@ http://162.212.176.107:1935/fox_movies/globaltv-fox_movies.stream/gmswf.m3u8
 #EXTINF:0,Fox Movies 
 http://37.59.45.208:1234/live/clikmega/@gmail.com/78.ts
 
-#EXTINF:0,Fox Movies 
-http://200.76.77.237/LIVE/H01/CANAL417/PROFILE03.m3u8?
-
-#EXTINF:0,Fox Movies 
-http://200.76.77.237/LIVE/H01/CANAL417/PROFILE05.m3u8?
-
 #EXTINF:0,FX HD 
-http://200.76.77.237/LIVE/H01/CANAL209/PROFILE03.m3u8?
-
-#EXTINF:0,FX HD 
-http://200.76.77.237/LIVE/H01/CANAL209/PROFILE05.m3u8?
+0
 
 #EXTINF:0,Golden Edge 
-http://200.76.77.237/LIVE/H01/CANAL484/PROFILE03.m3u8?
-
-#EXTINF:0,Golden Edge 
-http://200.76.77.237/LIVE/H01/CANAL484/PROFILE05.m3u8?
+0
 
 #EXTINF:0,HBO 
 http://113.160.49.34/lives/origin03/hbohd.isml/hbohd-2096k.m3u8
-
-#EXTINF:0,HBO 
-http://192.99.4.70/hls/HBO_PLUS.m3u8
-
-#EXTINF:0,HBO 
-http://192.99.4.70/hls/hbo_signature.m3u8
 
 #EXTINF:0,HBO 
 rtmp://89.248.168.57/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to/player/secure_player_iguide_embed_token.swf pageUrl=http://www.iguide.to/ token=#ed%h0#w18623jsda6523lDGD
@@ -116,7 +68,7 @@ http://63.237.48.3/ios/MBC2/MBC2.m3u8
 http://63.237.48.23/ios/MBC_MAX/MBC_MAX.m3u8
 
 #EXTINF:0,MGM 
-http://esiptv.mine.nu/679/650
+0
 
 #EXTINF:0,Movies 24/7
 0
@@ -125,34 +77,25 @@ http://esiptv.mine.nu/679/650
 http://95.172.231.17/flashstream/stream.flv?Preset=7&aspect=16A9&ffPreset=ultrafast&maxwidth=&maxheight=&chid=33
 
 #EXTINF:0,OSN Action
-http://esiptv.mine.nu/633/650
+
 
 #EXTINF:0,OSN Action 2
-http://esiptv.mine.nu/668/650
+0
 
 #EXTINF:0,OSN Box Office 1
-http://esiptv.mine.nu/662/650
+0
 
 #EXTINF:0,OSN Drama
-http://esiptv.mine.nu/675/650
+0
 
 #EXTINF:0,OSN Kids
-http://esiptv.mine.nu/634/650
+0
 
 #EXTINF:0,OSN On Demand
-http://esiptv.mine.nu/678/650
+0
 
 #EXTINF:0,OSN Movies
-http://esiptv.mine.nu/688/650
-
-#EXTINF:0,OSN Movies
-http://esiptv.mine.nu/689/650
-
-#EXTINF:0,OSN Movies
-http://esiptv.mine.nu/691/650
-
-#EXTINF:0,OSN Movies
-http://esiptv.mine.nu/692/650
+0
 
 #EXTINF:0,Paramount Channel
 0
@@ -200,7 +143,7 @@ http://185.56.30.127:8082/TV4246
 http://185.56.30.127:8082/TV4247
 
 #EXTINF:0,Sky Movies Drama
-http://esiptv.mine.nu/673/650
+0
 
 #EXTINF:0,Sky Movies Family
 http://185.56.30.127:8082/TV4248
@@ -233,16 +176,7 @@ http://113.160.49.34/lives/origin03/moviehd.isml/moviehd-2096k.m3u8
 0
 
 #EXTINF:0,TCM 
-http://esiptv.mine.nu/650/650
-
-#EXTINF:0,TCM 
-http://esiptv.mine.nu/673/650
-
-#EXTINF:0,TCM 
-http://200.76.77.237/LIVE/H01/CANAL496/PROFILE03.m3u8?
-
-#EXTINF:0,TCM 
-http://200.76.77.237/LIVE/H01/CANAL496/PROFILE05.m3u8?
+0
 
 #EXTINF:0,True Movies 1
 0

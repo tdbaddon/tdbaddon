@@ -73,6 +73,9 @@ rtsp://ewns-hls-b-stream.hexaglobe.net/rtpeuronewslive/en_vidan350_rtp.sdp?
 #EXTINF:0,Euro News 
 rtsp://ewns-hls-b-stream.hexaglobe.net/rtpeuronewslive/en_vidan750_rtp.sdp
 
+#EXTINF:0,Euro News 
+http://212.250.46.35:4252/bysid/9602
+
 #EXTINF:0,Fox News 
 0
 

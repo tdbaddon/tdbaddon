@@ -11,13 +11,7 @@ http://pdd2.loginto.me:443/cdn78/tot_ci_360p/playlist.m3u8
 0
 
 #EXTINF:0,Discovery Channel 
-http://37.59.45.208:1234/live/clikmega/@gmail.com/82.ts
-
-#EXTINF:0,Discovery Channel 
-http://200.76.77.237/LIVE/H01/CANAL351/PROFILE03.m3u8?
-
-#EXTINF:0,Discovery Channel 
-http://200.76.77.237/LIVE/H01/CANAL351/PROFILE05.m3u8?
+0
 
 #EXTINF:0,Discovery History 
 0
@@ -35,10 +29,7 @@ http://5.128.118.163:7777/udp/239.1.5.9:1234
 0
 
 #EXTINF:0,Discovery Theater 
-http://200.76.77.237/LIVE/H01/CANAL351/PROFILE03.m3u8?
-
-#EXTINF:0,Discovery Theater 
-http://200.76.77.237/LIVE/H01/CANAL351/PROFILE05.m3u8?
+0
 
 #EXTINF:0,Discovery Turbo 
 0
@@ -52,9 +43,6 @@ https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8?hdnea=ip=174.113.
 #EXTINF:0,History Channel 
 http://link.theplatform.com/s/dtjsEC/chjdYJxKb44V?manifest=m3u&feed=History%20Live%20Stream%20Feed
 
-#EXTINF:0,History Channel 
-http://37.59.45.208:1234/live/clikmega/@gmail.com/81.ts
-
 #EXTINF:0,NASA TV 
 0
 
@@ -64,15 +52,14 @@ http://37.59.45.208:1234/live/clikmega/@gmail.com/81.ts
 #EXTINF:0,Nat Geo Wild 
 http://185.5.40.101/hls/session-37473uCyyxurSfw/CH_NATGEOWILD/variant.m3u8?version=2
 
-#EXTINF:0,Nat Geo Wild 
-http://37.59.45.208:1234/live/clikmega/@gmail.com/83.ts
-
 #EXTINF:0,National Geographic 
 http://46.252.125.29:4321/udp/238.0.4.7:1234
 
 #EXTINF:0,National Geographic 
 http://5.128.118.163:7777/udp/239.1.5.8:1234
 
+#EXTINF:0,National Geographic 
+http://185.5.40.101/hls/session-10326907gnZKxnzwfY/CH_NATGEO/variant.m3u8?version=2 
 #EXTINF:0,RT News Documentary 
 http://odna.octoshape.net/f3f5m2v4/cds/ch5_auto.smil/playlist.m3u8 
 
@@ -96,12 +83,6 @@ http://46.252.125.29:4321/udp/238.0.4.9:1234
 
 #EXTINF:0,Viasat Nature 
 http://195.78.244.219:10000/udp/239.0.3.28:1234
-
-
-
-
-
-
 
 
 

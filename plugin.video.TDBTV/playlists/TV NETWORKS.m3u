@@ -11,28 +11,22 @@
 0
 
 #EXTINF:0,AMC 
-http://37.59.45.208:1234/live/clikmega/@gmail.com/79.ts
+0
 
 #EXTINF:0,AXN 
-http://200.76.77.237/LIVE/H01/CANAL213/PROFILE03.m3u8?
-
-#EXTINF:0,AXN 
-http://200.76.77.237/LIVE/H01/CANAL213/PROFILE05.m3u8?
+0
 
 #EXTINF:0,BabyTV 
 http://hlsstr03.svc.iptv.rt.ru/hls/CH_BABYTV/bw480000/variant.m3u8?version=2
 
 #EXTINF:0,BBC 1 
-http://82.135.224.134:80/udp/239.100.3.1:1234
+0
 
 #EXTINF:0,BBC 2 
 http://37.220.29.186:8000/bbc2/bbc2/index.m3u8
 
 #EXTINF:0,BBC Entertainment 
-http://200.76.77.237/LIVE/H01/CANAL253/PROFILE03.m3u8?
-
-#EXTINF:0,BBC Entertainment 
-http://200.76.77.237/LIVE/H01/CANAL253/PROFILE05.m3u8
+0
 
 #EXTINF:0,BET 
 0
@@ -89,7 +83,7 @@ http://198.179.31.198/live/2062.high.stream/2062.high.stream/index.m3u8
 0
 
 #EXTINF:0,Disney Channel 
-http://esiptv.mine.nu/659/650
+0
  
 #EXTINF:0,Disney Junior 
 0
@@ -101,13 +95,7 @@ http://esiptv.mine.nu/659/650
 0
 
 #EXTINF:0,E! 
-http://37.59.45.208:1234/live/clikmega/@gmail.com/75.ts
-
-#EXTINF:0,E! 
-http://200.76.77.237/LIVE/H01/CANAL255/PROFILE03.m3u8?
-
-#EXTINF:0,E! 
-http://200.76.77.237/LIVE/H01/CANAL255/PROFILE05.m3u8?
+0
 
 #EXTINF:0,E4
 http://95.172.231.17/flashstream/stream.flv?Preset=7&aspect=16A9&ffPreset=ultrafast&maxwidth=&maxheight=&chid=16
@@ -117,9 +105,6 @@ http://113.160.49.34/lives/origin03/fashionhd.isml/fashionhd-2096k.m3u8
 
 #EXTINF:0,Fashion TV 
 http://hls.novotelecom.ru/streaming/fashion/tvrec/playlist.m3u8
-
-#EXTINF:0,Fashion TV 
-http://37.59.45.208:1234/live/clikmega/@gmail.com/77.ts
 
 #EXTINF:0,Film4 
 http://pebbles124-lh.akamaihd.net/i/film4_1@137790/master.m3u8|X-Forwarded-For=85.5.87.218
@@ -140,10 +125,7 @@ http://95.172.231.17/flashstream/stream.flv?Preset=7&aspect=16A9&ffPreset=ultraf
 0
 
 #EXTINF:0,Fox TV 
-http://200.76.77.237/LIVE/H01/CANAL251/PROFILE03.m3u8?
-
-#EXTINF:0,Fox TV 
-http://200.76.77.237/LIVE/H01/CANAL251/PROFILE05.m3u8?
+0
 
 #EXTINF:0,FX
 0
@@ -180,9 +162,6 @@ rtmp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_ playpath=mp4:468p500kB
 
 #EXTINF:0,Irish TV 
 http://ios.streamserver01.com:8080/ShowcaseTV/mystream.m3u8
-
-#EXTINF:0,ITV 1 
-http://82.135.224.134:80/udp/239.100.3.6:1234
 
 #EXTINF:0,ITV 1 
 http://95.172.231.17/flashstream/stream.flv?Preset=7&aspect=16A9&ffPreset=ultrafast&maxwidth=&maxheight=&chid=2
@@ -260,10 +239,7 @@ rtmp://128.104.144.134/WisconsinChannel/mystream
 0
 
 #EXTINF:0,Sony TV 
-http://200.76.77.237/LIVE/H01/CANAL203/PROFILE03.m3u8?
-
-#EXTINF:0,Sony TV 
-http://200.76.77.237/LIVE/H01/CANAL203/PROFILE05.m3u8?
+0
 
 #EXTINF:0,Spike TV 
 http://95.172.231.17/flashstream/stream.flv?Preset=7&aspect=16A9&ffPreset=ultrafast&maxwidth=&maxheight=&chid=26
@@ -278,25 +254,18 @@ http://95.172.231.17/flashstream/stream.flv?Preset=7&aspect=16A9&ffPreset=ultraf
 0
 
 #EXTINF:0,Syfy 
-http://37.59.45.208:1234/live/clikmega/@gmail.com/61.ts
+0
 
 #EXTINF:0,TBS 
 0
 
 #EXTINF:0,The Shopping Channel 
+http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/master.m3u8?b?b*t$ 
+#EXTINF:0,TLC 
 0
 
-#EXTINF:0,TLC 
-http://200.76.77.237/LIVE/H01/CANAL386/PROFILE03.m3u8?
-
-#EXTINF:0,TLC 
-http://200.76.77.237/LIVE/H01/CANAL386/PROFILE05.m3u8?
-
 #EXTINF:0,TNT 
-http://200.76.77.237/LIVE/H01/CANAL266/PROFILE03.m3u8?
-
-#EXTINF:0,TNT 
-http://200.76.77.237/LIVE/H01/CANAL266/PROFILE05.m3u8?
+0
 
 #EXTINF:0,Tom & Jerry Show 
 rtmp://208.53.180.218/ctv playpath=tom swfUrl=http://www.carolineoliveira.com.br/swf/player.swf live=1 pageUrl=http://carolineoliveira.com.br/tvamigos/tomejerry.html
@@ -314,34 +283,25 @@ http://95.172.231.17/flashstream/stream.flv?Preset=7&aspect=16A9&ffPreset=ultraf
 0
 
 #EXTINF:0,Universal Channel 
-http://200.76.77.237/LIVE/H01/CANAL207/PROFILE03.m3u8?
-
-#EXTINF:0,Universal Channel 
-http://200.76.77.237/LIVE/H01/CANAL207/PROFILE05.m3u8?
+0
 
 #EXTINF:0,USA Network 
 0
 
 #EXTINF:0,Vernnissage TV 
-http://149.11.34.6:1935/live/vernissagetv.stream/hasbahca.m3u8
+0
 
 #EXTINF:0,Victoria Secret TV
 http://stream02.yamgo.com/iPhone/HLS_TS/broadcast/victorias_secret_angels-tablet.3gp/victorias_secret_angels-tablet.3gp-mr648k.m3u8
 
 #EXTINF:0,Warner Brothers 
-http://200.76.77.237/LIVE/H01/CANAL205/PROFILE03.m3u8?
-
-#EXTINF:0,Warner Brothers 
-http://200.76.77.237/LIVE/H01/CANAL205/PROFILE05.m3u8?
+0
 
 #EXTINF:0,WBCQ TV
 rtmp://stream.connectcast.tv/live playpath=mp4:CC-1C1C4B9C-3479-C277-F6F8-3B3B78E8B46B-21460 swfUrl=http://connectcast.tv/jwplayer/v6.12/jwplayer.flash.swf live=1 pageUrl=http://connectcast.tv/WBCQTV
 
 #EXTINF:0,Wobi 
-http://200.76.77.237/LIVE/H01/CANAL387/PROFILE03.m3u8?
-
-#EXTINF:0,Wobi 
-http://200.76.77.237/LIVE/H01/CANAL387/PROFILE05.m3u8?
+0
 
 #EXTINF:0,WPIX 11
 0
