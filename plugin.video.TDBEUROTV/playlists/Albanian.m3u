@@ -136,6 +136,9 @@ rtmp://91.82.85.44/live/konyhatv
 #EXTINF:0,Kopliku TV 
 0
 
+#EXTINF:0,Mpt 1 
+http://mrt.cdn.spectar.tv:1935/mrt-edge/_definst_/mrt1-sat/chunklist_w103032136.m3u8
+
 #EXTINF:0,MPT 1 
 http://mrt.cdn.spectar.tv:1935/mrt-edge/_definst_/mrt1-sat/playlist.m3u8
 

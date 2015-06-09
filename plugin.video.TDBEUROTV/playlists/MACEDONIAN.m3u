@@ -40,6 +40,9 @@ rtmp://yayin.tvdunyasi.tv/live/balkanrtv
 #EXTINF:0,Cegrani Media
 0
 
+#EXTINF:0,Duga Plus
+http://w10.streamgb.com:1935/dugaplus/dugaplus/playlist.m3u8
+
 #EXTINF:0,ERA TV 
 http://217.16.82.6:1935/zulu//era_2/simpletvmaclinkleri.m3u8
 
@@ -93,6 +96,9 @@ http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/kplus-tv-stip/chunkl
 
 #EXTINF:0,Mega TV Bitola
 http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/hdtv-mega-bitola/chunklist.m3u8
+
+#EXTINF:0,Mpt 1 
+http://mrt.cdn.spectar.tv:1935/mrt-edge/_definst_/mrt1-sat/chunklist_w103032136.m3u8
 
 #EXTINF:0,Mpt 1 
 http://fms.zulu.mk:554/zulu/mtv1_1/playlist_b125000_w1132785237.m3u8
