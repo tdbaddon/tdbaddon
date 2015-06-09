@@ -44,6 +44,9 @@ http://37.220.29.186:8000/bbc2/bbc2/index.m3u8
 http://188.227.86.4:4022/udp/239.77.0.77:1234
 
 #EXTINF:0,Cartoon Network 
+http://91.205.164.201:8181/udp/239.1.5.10:1234
+
+#EXTINF:0,Cartoon Network 
 http://hls.svc.moyo.tv/hls/CH_CARTOON/variant.m3u8?version=2
 
 #EXTINF:0,Cbeebies
@@ -53,13 +56,13 @@ http://hls.svc.moyo.tv/hls/CH_CARTOON/variant.m3u8?version=2
 0
 
 #EXTINF:0,CBS Action 
-http://95.172.231.17/flashstream/stream.flv?Preset=7&aspect=16A9&ffPreset=ultrafast&maxwidth=&maxheight=&chid=28
+0
 
 #EXTINF:0,CBS Drama 
 0
 
 #EXTINF:0,CBS Reality 
-http://95.172.231.17/flashstream/stream.flv?Preset=7&aspect=16A9&ffPreset=ultrafast&maxwidth=&maxheight=&chid=27
+0
 
 #EXTINF:0,CHCH Ontario 
 rtmp://54.85.197.21:1935/live/news live=1 timeout=15
@@ -98,7 +101,7 @@ http://198.179.31.198/live/2062.high.stream/2062.high.stream/index.m3u8
 0
 
 #EXTINF:0,E4
-http://95.172.231.17/flashstream/stream.flv?Preset=7&aspect=16A9&ffPreset=ultrafast&maxwidth=&maxheight=&chid=16
+http://pebbles124-lh.akamaihd.net/i/e4_1@137789/master.m3u8|X-Forwarded-For=85.5.87.218
 
 #EXTINF:0,Fashion TV 
 http://113.160.49.34/lives/origin03/fashionhd.isml/fashionhd-2096k.m3u8
@@ -109,14 +112,11 @@ http://hls.novotelecom.ru/streaming/fashion/tvrec/playlist.m3u8
 #EXTINF:0,Film4 
 http://pebbles124-lh.akamaihd.net/i/film4_1@137790/master.m3u8|X-Forwarded-For=85.5.87.218
 
-#EXTINF:0,Film4 
-http://95.172.231.17/flashstream/stream.flv?Preset=7&aspect=16A9&ffPreset=ultrafast&maxwidth=&maxheight=&chid=14
-
 #EXTINF:0,Fine Living Network 
 0
 
 #EXTINF:0,Food Network 
-http://95.172.231.17/flashstream/stream.flv?Preset=7&aspect=16A9&ffPreset=ultrafast&maxwidth=&maxheight=&chid=32
+0
 
 #EXTINF:0,Fox Crime
 0
@@ -125,7 +125,7 @@ http://95.172.231.17/flashstream/stream.flv?Preset=7&aspect=16A9&ffPreset=ultraf
 0
 
 #EXTINF:0,Fox TV 
-0
+rtmp://rtmp.zerocast.tv/goLive/ playpath=9pxGCtP3aEnJYgoBFFH8 swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 pageUrl=http://zerocast.tv/embed token=OOG17t.x#K9Vh#|
 
 #EXTINF:0,FX
 0
@@ -164,19 +164,16 @@ rtmp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_ playpath=mp4:468p500kB
 http://ios.streamserver01.com:8080/ShowcaseTV/mystream.m3u8
 
 #EXTINF:0,ITV 1 
-http://95.172.231.17/flashstream/stream.flv?Preset=7&aspect=16A9&ffPreset=ultrafast&maxwidth=&maxheight=&chid=2
+http://82.135.224.134:80/udp/239.100.3.6:1234
 
 #EXTINF:0,ITV 2 
-0
+http://78.129.175.72/live/itv2/itv2.m3u8
 
 #EXTINF:0,ITV 3 
 http://212.250.46.35:4252/bysid/9605
 
-#EXTINF:0,ITV 3 
-http://95.172.231.17/flashstream/stream.flv?Preset=7&aspect=16A9&ffPreset=ultrafast&maxwidth=&maxheight=&chid=8
-
 #EXTINF:0,ITV 4 
-http://95.172.231.17/flashstream/stream.flv?Preset=7&aspect=16A9&ffPreset=ultrafast&maxwidth=&maxheight=&chid=9
+0
 
 #EXTINF:0,Jewelry Television
 rtmp://jtvmedia.jtv.com:1975/live playpath=live6 swfUrl=http://demandware.edgesuite.net/aaby_prd/on/demandware.static/Sites-jtv-Site/-/default/v1410110388581/swf/flashMediaPlayer/StrobeMediaPlayback.swf live=1 pageUrl=http://www.jtv.com/on/demandware.store/Sites-jtv-Site/default/LiveViewer-Show
@@ -191,7 +188,7 @@ rtmp://jtvmedia.jtv.com:1975/live playpath=live6 swfUrl=http://demandware.edgesu
 http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
 
 #EXTINF:0,More4 
-http://95.172.231.17/flashstream/stream.flv?Preset=7&aspect=16A9&ffPreset=ultrafast&maxwidth=&maxheight=&chid=15
+http://78.129.175.72/live/more4/more4.m3u8
 
 #EXTINF:0,My9
 http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
@@ -199,17 +196,14 @@ http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
 #EXTINF:0,NBC 
 0
 
-#EXTINF:0,NHK World 
-http://nhkworld-hds-live1.hds1.fmslive.stream.ne.jp/hls-live/nhkworld-hds-live1/_definst_/livestream/nhkworld-live-512.m3u8 
-
 #EXTINF:0,Nick 
 0
 
 #EXTINF:0,Nick Jr 
-http://195.78.244.219:10000/udp/239.0.3.137:1234
+0
 
 #EXTINF:0,Nickelodeon 
-0
+http://91.205.164.201:8181/udp/239.1.5.8:1234
 
 #EXTINF:0,NickNight 
 0
@@ -242,7 +236,7 @@ rtmp://128.104.144.134/WisconsinChannel/mystream
 0
 
 #EXTINF:0,Spike TV 
-http://95.172.231.17/flashstream/stream.flv?Preset=7&aspect=16A9&ffPreset=ultrafast&maxwidth=&maxheight=&chid=26
+0
 
 #EXTINF:0,Star World 
 0
@@ -257,7 +251,7 @@ http://95.172.231.17/flashstream/stream.flv?Preset=7&aspect=16A9&ffPreset=ultraf
 0
 
 #EXTINF:0,TBS 
-0
+rtmp://rtmp.zerocast.tv/goLive/RhMi9RdAAt7fpq8H3qZh swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 pageUrl=http://zerocast.tv/embed token=OOG17t.x#K9Vh#|
 
 #EXTINF:0,The Shopping Channel 
 http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/master.m3u8?b?b*t$ 
@@ -271,13 +265,13 @@ http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/master.m3u8?b?b*t
 rtmp://208.53.180.218/ctv playpath=tom swfUrl=http://www.carolineoliveira.com.br/swf/player.swf live=1 pageUrl=http://carolineoliveira.com.br/tvamigos/tomejerry.html
 
 #EXTINF:0,Tru TV 
-http://95.172.231.17/flashstream/stream.flv?Preset=7&aspect=16A9&ffPreset=ultrafast&maxwidth=&maxheight=&chid=34
+0
 
 #EXTINF:0,True Drama
 0
 
 #EXTINF:0,True Entertainment 
-http://95.172.231.17/flashstream/stream.flv?Preset=7&aspect=16A9&ffPreset=ultrafast&maxwidth=&maxheight=&chid=20
+0
 
 #EXTINF:0,TV Land 
 0

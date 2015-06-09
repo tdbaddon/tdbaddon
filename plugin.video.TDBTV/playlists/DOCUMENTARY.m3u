@@ -11,7 +11,7 @@ http://pdd2.loginto.me:443/cdn78/tot_ci_360p/playlist.m3u8
 0
 
 #EXTINF:0,Discovery Channel 
-0
+http://113.160.49.34/lives/origin03/discoverysd.isml/discoverysd.m3u8
 
 #EXTINF:0,Discovery History 
 0
@@ -23,7 +23,7 @@ http://pdd2.loginto.me:443/cdn78/tot_ci_360p/playlist.m3u8
 0
 
 #EXTINF:0,Discovery Science 
-http://5.128.118.163:7777/udp/239.1.5.9:1234
+http://188.227.86.4:4022/udp/239.77.0.79:1234
 
 #EXTINF:0,Discovery Showcase
 0
@@ -35,7 +35,7 @@ http://5.128.118.163:7777/udp/239.1.5.9:1234
 0
 
 #EXTINF:0,Discovery World 
-http://5.128.118.163:7777/udp/239.1.5.2:1234
+http://113.160.49.34/lives/origin03/discoveryhd.isml/discoveryhd-2096k.m3u8 
 
 #EXTINF:0,History Channel 
 https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8?hdnea=ip=174.113.30.187~st=1427694727~exp=1427695327~acl=/i/*~id=a86de0c2-ad09-4469-9a63-6ebbc1bba4d3~hmac=ac144089000bdd16f6916c517ce3e6e04813d4de11ac16839ad468a977ec80b1
@@ -52,14 +52,18 @@ http://link.theplatform.com/s/dtjsEC/chjdYJxKb44V?manifest=m3u&feed=History%20Li
 #EXTINF:0,Nat Geo Wild 
 http://185.5.40.101/hls/session-37473uCyyxurSfw/CH_NATGEOWILD/variant.m3u8?version=2
 
-#EXTINF:0,National Geographic 
-http://46.252.125.29:4321/udp/238.0.4.7:1234
+#EXTINF:0,Nat Geo Wild 
+http://hls.svc.moyo.tv/hls/CH_NATGEOWILD/variant.m3u8?version=2
 
 #EXTINF:0,National Geographic 
 http://5.128.118.163:7777/udp/239.1.5.8:1234
 
 #EXTINF:0,National Geographic 
+http://hls.svc.moyo.tv/hls/CH_NATGEO/variant.m3u8?version=2
+
+#EXTINF:0,National Geographic 
 http://185.5.40.101/hls/session-10326907gnZKxnzwfY/CH_NATGEO/variant.m3u8?version=2 
+
 #EXTINF:0,RT News Documentary 
 http://odna.octoshape.net/f3f5m2v4/cds/ch5_auto.smil/playlist.m3u8 
 
@@ -72,14 +76,8 @@ http://odna.octoshape.net/f3f5m2v4/cds/ch5_720p/chunklist.m3u8
 #EXTINF:0,Viasat Explorer 
 http://195.78.244.219:10000/udp/239.0.3.30:1234
 
-#EXTINF:0,Viasat Explorer 
-http://46.252.125.29:4321/udp/238.0.4.8:1234
-
 #EXTINF:0,Viasat History 
 http://195.78.244.219:10000/udp/239.0.3.31:1234
-
-#EXTINF:0,Viasat History
-http://46.252.125.29:4321/udp/238.0.4.9:1234
 
 #EXTINF:0,Viasat Nature 
 http://195.78.244.219:10000/udp/239.0.3.28:1234
