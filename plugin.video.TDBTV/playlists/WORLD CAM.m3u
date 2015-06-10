@@ -1,11 +1,15 @@
 ﻿#EXTM3U
 
 
+
 #EXTINF:0,5th Avenue New York
 http://video1.earthcam.com:1935/fecnetwork/fridays_5th.flv/hasbahca.m3u8
 
 #EXTINF:0,Abbey Road England
 http://video1.earthcam.com/fecnetwork/AbbeyRoadHD1.flv/hasbahca.m3u8
+
+#EXTINF:0,Aliso Beach California
+http://video4.earthcam.com/fecnetwork/5023.flv/playlist.m3u8 
 
 #EXTINF:0,Atlantis Palm Dubai
 http://video1.earthcam.com:1935/fecnetwork/5868.flv/hasbahca.m3u8
@@ -75,4 +79,7 @@ http://video1.earthcam.com:1935/fecnetwork/statueoflibertyHD.flv/hasbahca.m3u8
 
 #EXTINF:0,The Temple Bar Ireland
 http://video1.earthcam.com:1935/fecnetwork/4054.flv/hasbahca.m3u8
+
+#EXTINF:0,Tokyo Japan
+http://video4.earthcam.com/fecnetwork/tokyo1.flv/playlist.m3u8 
 

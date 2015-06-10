@@ -17,7 +17,10 @@ rtmp://31.220.0.195:80/live playpath=bxx pageUrl=http://reytv.co token=%Zrey(nKa
 rtmpe://46.246.124.14:1935/live/ playpath=btsports1lsh swfUrl=http://cdn.lshstream.com/jw/jwplayer.js pageUrl=http://cdn.lshstream.com/embed.php?u=skysports1lsh&amp;vw=640&amp;vh=360&amp;domain=live..eu token=SECURET0KEN#yw%.?()@W
 
 #EXTINF:0,BT Sport 2 
-0
+rtmp://198.100.156.87:1935/iptv/ch86
+
+#EXTINF:0,CBS Sports
+http://31.220.41.103:80/LiveEdge/CBSSportsNetworkUS/chunklist_w2063228985_b1000000.m3u8?token=b98c3d86a1c06cf3f73e333b621410eb
 
 #EXTINF:0,Chelsea TV
 http://87.245.214.43/streaming/futbol/16/tvrec/playlist.m3u8?sd=10&amp;rebase=on#AnisotropicTV?wmsAuthSign=c2VydmVyX3RpbWU9Ni84LzIwMTUgODoyODowMyBQTSZoYXNoX3ZhbHVlPU1QRGpyRm1vQk43NE1IOGFxUndmemc9PSZ2YWxpZG1pbnV0ZXM9MTA=
@@ -80,7 +83,7 @@ rtmp://31.220.0.195:80/live playpath=mlbxx swfUrl=http://p.jwpcdn.com/6/12/jwpla
 http://hlsstr04.svc.iptv.rt.ru/hls/CH_MOTORSTV/variant.m3u8
 
 #EXTINF:0,Motorsport 7
-0
+http://motorsport.hopto.org:8080/
 
 #EXTINF:0,NBA TV 
 0
@@ -146,7 +149,7 @@ http://xrxs.net/video/live-p12wash-4728.m3u8
 mms://100automoto.tv/channel_porsche
 
 #EXTINF:0,Premier Sports 
-0
+rtmp://31.220.0.195:80/live playpath=premiersport swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf pageUrl=http://reytv.co/embedo.php?live=skysports2&vw=620&vh=490 token=%Zrey(nKa@#Z
 
 #EXTINF:0,Racing UK 
 0

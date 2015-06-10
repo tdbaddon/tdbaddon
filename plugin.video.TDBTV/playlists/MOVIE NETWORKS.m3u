@@ -71,7 +71,7 @@ http://63.237.48.3/ios/MBC2/MBC2.m3u8
 http://63.237.48.23/ios/MBC_MAX/MBC_MAX.m3u8
 
 #EXTINF:0,MGM 
-0
+http://78.30.254.43:8989/udp/239.0.0.104:4000
 
 #EXTINF:0,Movies 24/7
 0
@@ -188,7 +188,7 @@ http://113.160.49.34/lives/origin03/moviehd.isml/moviehd-2096k.m3u8
 0
 
 #EXTINF:0,TV 1000 
-0
+http://78.30.254.43:8989/udp/239.0.0.153:4000
 
 #EXTINF:0,TV 1000 Action
 http://195.78.244.219:10000/udp/239.0.3.27:1234

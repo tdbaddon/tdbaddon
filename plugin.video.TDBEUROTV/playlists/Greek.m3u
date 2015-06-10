@@ -14,7 +14,7 @@ http://wow.ant1.gr:1935/live/smil:mavani.smil/playlist.m3u8
 http://wow.ant1.gr:1935/live/_definst_/ant1tv1711video/playlist.m3u8?wowzasessionid=1155125647
 
 #EXTINF:0,Ant1 Cyprus
-0
+rtmp://46.21.53.171/iwohttporigin/mp4:livestream
 
 #EXTINF:0,Art Channel
 0
@@ -47,7 +47,7 @@ mms://ams01.egihosting.com/989630
 0
 
 #EXTINF:0,Diktyo TV
-0
+http://iphone-streaming.ustream.tv/uhls/2785459/streams/live/iphone/playlist.m3u8
 
 #EXTINF:0,Diras TV 
 0
@@ -59,7 +59,7 @@ mms://ams01.egihosting.com/989630
 0
 
 #EXTINF:0,DR TV
-0
+http://xdrtvhellasx.api.channel.livestream.com/3.0/playlist.m3u8
 
 #EXTINF:0,E TV 
 rtmp://213.16.167.187:1935/live/mpegts_256.stream live=1 timeout=10
@@ -70,8 +70,11 @@ rtmp://213.16.167.187:1935/live playpath=mpegts_256.stream swfUrl=http://www.eps
 #EXTINF:0,Ellada TV
 rtmp://fml.68FC.edgecastcdn.net/2068FC/elladatv swfUrl=http://www.elladatv.gr/scripts/player.swf swfVfy=1 live=1 timeout=10
 
+#EXTINF:0,Ellinikos TV
+http://206.222.31.146/ellinikos
+
 #EXTINF:0,Ena TV 
-0
+http://ec2-54-162-205-148.compute-1.amazonaws.com:1935/live/ecb164fa0418d5d59af852da28d376a3/playlist.m3u8
 
 #EXTINF:0,ET3
 http://live2.ertopen.com/live2/e600/playlist.m3u8
@@ -101,7 +104,7 @@ http://wpso.com:200/tv48
 rtmp://176.9.123.140:1935/leveltgp/leveltgp live=1 timeout=10
 
 #EXTINF:0,Ionian Channel
-0
+rtmp://stream8.upg.gr:1935/live/stream
 
 #EXTINF:0,Infinity Cinema
 http://wpc.68FC.edgecastcdn.net/8068FC/INFINITY/m3u8/cinema.m3u8
@@ -142,17 +145,20 @@ rtmp://144.76.2.213/live/livestream swfUrl=http://jwplayer.mediaserve.com/player
 #EXTINF:0,Makedonia TV
 rtmp://213.16.167.55:1935/livepkgr/livestream swfUrl=http://static.ant1.gr/maktvlive.ashx pageUrl=http://www.maktv.gr/Live swfVfy=1 live=1 timeout=10
 
+#EXTINF:0,Max
+http://xmaxtvdigitalx.api.channel.livestream.com/3.0/playlist.m3u8
+
 #EXTINF:0,Mega 
 http://megahdlive1-f.akamaihd.net/i/live_1@105260/master.m3u8
 
 #EXTINF:0,Mega Cyprus
-0
+http://mlivenews.istoikona.net/livenews.isml/manifest(format=m3u8-aapl).m3u8
 
 #EXTINF:0,Nea TV
 0
 
 #EXTINF:0,N Cinema
-0
+http://xnaturatv1x.api.channel.livestream.com/3.0/playlist.m3u8
 
 #EXTINF:0,Nerit 
 http://magictvbox.us:200/skai
@@ -202,6 +208,9 @@ rtmp://media.patrisnews.com:1935/patris/tvstream live=1 timeout=10
 #EXTINF:0,Samiaki TV
 rtmp://91.121.107.131/samiaki/samiaki live=1
 
+#EXTINF:0,SBC
+http://xsbcgrx.api.channel.livestream.com/3.0/playlist.m3u8
+
 #EXTINF:0,Sigma Cyprus
 http://81.21.47.74/hls/live.m3u8
 
@@ -218,13 +227,16 @@ http://176.9.123.140:1935/msg116s/msg116s/playlist.m3u8
 0
 
 #EXTINF:0,TRT
-0
+http://xelladalivex.api.channel.livestream.com/3.0/playlist.m3u8
 
 #EXTINF:0,TV 100
 http://178.62.176.153:1935/TV100/myStream/playlist.m3u8
 
 #EXTINF:0,TV Creta
 0
+
+#EXTINF:0,TV Thesaloniki
+http://xthessalonikitelevisionx.api.channel.livestream.com/3.0/playlist.m3u8
 
 #EXTINF:0,TVM
 0

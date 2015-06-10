@@ -128,7 +128,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 <addon id="plugin.video.TDBEUROTV"
        name="TDB EURO TV"
-       version="1.66"
+       version="1.67"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -203,7 +203,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="2.56"
+       version="2.57"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
