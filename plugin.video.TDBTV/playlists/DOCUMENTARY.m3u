@@ -19,12 +19,6 @@ http://113.160.49.34/lives/origin03/discoverysd.isml/discoverysd.m3u8
 #EXTINF:0,Discovery Channel 
 http://78.30.254.43:8989/udp/239.0.0.29:4000
 
-#EXTINF:0,Discovery Channel 
-http://142.4.216.60:1935/edge/_definst_/ishyd3sopok3p27/playlist.m3u8?wowzasessionid=1419872569&xs=_we_cm83YzllaGEwejk2aHBwfDE0MTk5MDg1Njl8NzIuMjcuMjE0LjMzfDU0YTE4OTM5ZjJkMzN8YTI0NDkzYmNjNmJiM2NjYTQ4YTAzYWE4ODRjODY0M2M0ZThhM timeout=10GVlOA
-
-#EXTINF:0,Discovery Channel 
-http://142.4.216.60:1935/edge/_definst_/ishyd3sopok3p27/playlist.m3u8?wowzasessionid=1419872569
-
 #EXTINF:0,Discovery History 
 0
 
@@ -34,14 +28,8 @@ http://142.4.216.60:1935/edge/_definst_/ishyd3sopok3p27/playlist.m3u8?wowzasessi
 #EXTINF:0,Discovery Investigation 
 http://78.30.254.43:8989/udp/239.0.0.136:4000
 
-#EXTINF:0,Discovery Investigation 
-http://142.4.216.60:1935/edge/_definst_/yjma618cibkqxeo/playlist.m3u8?wowzasessionid=1420168729&xs=_we_aW1uOTAweTBzdmNyZHp1fDE0MjAyMDQ3Mjl8NzIuMjcuMjE0LjMzfDU0YTYwZTE5YzRjNzZ8NjQ5Y2VkYTk3MTI3ZmJhYTA5YWI3ZDdkYTEyYWM3ZDgzYTMzMjYwMg timeout=10
-
 #EXTINF:0,Discovery Science 
 http://78.30.254.43:8989/udp/239.0.0.48:4000
-
-#EXTINF:0,Discovery Science 
-http://142.4.216.60:1935/edge/_definst_/00t250wv1d4ltib/playlist.m3u8?wowzasessionid=1420170626&xs=_we_cWFuOTZuYXNlbXU5eGZufDE0MjAyMDY2MjZ8NzIuMjcuMjE0LjMzfDU0YTYxNTgyMzg3MmJ8YjQxYTMwNTkzYTgzOGI2MWYyMTc2MDEzYmFlMGZjZDZlYjc5OGQ0Ng timeout=10
 
 #EXTINF:0,Discovery Showcase
 0
@@ -64,12 +52,8 @@ https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8?hdnea=ip=174.113.
 #EXTINF:0,History Channel 
 http://link.theplatform.com/s/dtjsEC/chjdYJxKb44V?manifest=m3u&feed=History%20Live%20Stream%20Feed
 
-#EXTINF:0,History Channel 
-http://142.4.216.60:1935/edge/_definst_/dhp0rpd116qyyj6/playlist.m3u8?wowzasessionid=1419874554&xs=_we_OGc3eDgwb3p1Nmh6MmRzfDE0MTk5MTA1NTR8NzIuMjcuMjE0LjMzfDU0YTE5MGZhNTUwNjV8ZDM2MzAzYjkwYTE5MDBmMzhhOGM2YjE2ZDc4Mjk3ZDdkZjU0NDhlYw timeout=10
-
 #EXTINF:0,NASA TV 
-0
-
+http://nasatv-lh.akamaihd.net/i/NASA_101@319270/master.m3u8 
 #EXTINF:0,Nat Geo People 
 0
 
@@ -90,12 +74,6 @@ http://hls.svc.moyo.tv/hls/CH_NATGEO/variant.m3u8?version=2
 
 #EXTINF:0,National Geographic 
 http://185.5.40.101/hls/session-10326907gnZKxnzwfY/CH_NATGEO/variant.m3u8?version=2 
-
-#EXTINF:0,National Geographic 
-http://142.4.216.60:1935/edge/_definst_/b8bav5ayzso8m8q/playlist.m3u8?wowzasessionid=1420170282&xs=_we_YjhiYXY1YXl6c284bThxfDE0MjAyMDYyODJ8NzIuMjcuMjE0LjMzfDU0YTYxNDJhNDM5YWF8NTVjODFmOGQzMGVmN2M3ODhlZjEyYWNmNWVkNWFhNjE0NjVlOWYyNQ timeout=10
-
-#EXTINF:0,National Geographic 
-http://142.4.216.60:1935/edge/_definst_/b8bav5ayzso8m8q/playlist.m3u8?wowzasessionid=1420170282
 
 #EXTINF:0,RT News Documentary 
 http://odna.octoshape.net/f3f5m2v4/cds/ch5_auto.smil/playlist.m3u8 

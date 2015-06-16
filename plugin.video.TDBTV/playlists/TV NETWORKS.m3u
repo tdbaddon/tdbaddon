@@ -16,9 +16,6 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mp4
 #EXTINF:0,AMC 
 http://78.30.254.43:8989/udp/239.0.0.89:4000
 
-#EXTINF:0,AMC 
-http://142.4.216.60:1935/edge/_definst_/z4cxm7zlfyqs65m/playlist.m3u8?wowzasessionid=1419872183
-
 #EXTINF:0,AXN 
 0
 
@@ -38,10 +35,7 @@ http://82.135.224.134:80/udp/239.100.3.3:1234
 0
 
 #EXTINF:0,BET 
-http://142.4.216.60:1935/edge/_definst_/kexkxje3nqi6dtl/playlist.m3u8?wowzasessionid=1419880467&xs=_we_dHVjMjgwcmJ5Y3duc3ZzfDE0MTk5MTY0Njd8NzIuMjcuMjE0LjMzfDU0YTFhODEzOGZkNDR8ZmE0OGE4YmUwMTczYjU4MWVjNzUzYTg4OTQzM2I1MGE0ODYwNjQzZA timeout=10
-
-#EXTINF:0,BET 
-http://142.4.216.60:1935/edge/_definst_/kexkxje3nqi6dtl/playlist.m3u8?wowzasessionid=1419880467
+0
 
 #EXTINF:0,BIO 
 0
@@ -64,18 +58,11 @@ http://hls.svc.moyo.tv/hls/CH_CARTOON/variant.m3u8?version=2
 #EXTINF:0,Cartoon Network 
 http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD28_W_250.sdp/playlist.m3u8
 
-#EXTINF:0,Cartoon Network 
-http://hls.svc.moyo.tv/hls/CH_CARTOON/variant.m3u8?version=2
-
 #EXTINF:0,Cbeebies
 0
 
 #EXTINF:0,CBS 
-http://142.4.216.60:1935/edge/_definst_/vp4q2gonwzh2dku/playlist.m3u8?wowzasessionid=1419872048&xs=_we_b2J6cTNsdHJqb2F4Z2xmfDE0MTk5MDgwNDh8NzIuMjcuMjE0LjMzfDU0YTE4NzMwOGM1Y2Z8Y2ZhYmFmNTFiY2VmNzczNzQ5MDI4YWU1OGUxNDBhZmZlYjhlYTRlMw timeout=10
-
-#EXTINF:0,CBS 
-http://142.4.216.60:1935/edge/_definst_/vp4q2gonwzh2dku/playlist.m3u8?wowzasessionid=1419872048
-
+0
 
 #EXTINF:0,CBS Action 
 0
@@ -92,9 +79,6 @@ rtmp://54.85.197.21:1935/live/news live=1 timeout=15
 #EXTINF:0,Comedy Central 
 http://188.138.9.228:8022
 
-#EXTINF:0,Comedy Central 
-http://31.220.40.105:80/LiveEdge/ComedyCentralHD/playlist.m3u8?token=b98c3d86a1c06cf3f73e333b621410eb
-
 #EXTINF:0,CTV Edmonton
 http://198.179.31.198/live/2053.high.stream/2053.high.stream/index.m3u8
 
@@ -108,13 +92,10 @@ http://198.179.31.198/live/2056.high.stream/2056.high.stream/index.m3u8
 http://198.179.31.198/live/2062.high.stream/2062.high.stream/index.m3u8
 
 #EXTINF:0,CW 
-http://142.4.216.60:1935/edge/_definst_/fvksu1sp51ijtyd/playlist.m3u8?wowzasessionid=1419879994&xs=_we_cXZ2a3Zvamxhbm85aG5qfDE0MTk5MTU5OTR8NzIuMjcuMjE0LjMzfDU0YTFhNjNhY2MxYzJ8OThiYzA4YWRlNmVhZTRhNWM3ZmExNTM0MTg0OWMyNzA3MWFjODU3Nw timeout=10
+0
 
 #EXTINF:0,Disney Channel 
-http://31.220.41.107:80/LiveEdge/DisneyChannelEastHD/playlist.m3u8?token=b98c3d86a1c06cf3f73e333b621410eb
- 
-#EXTINF:0,Disney Channel
-http://142.4.216.60:1935/edge/_definst_/2tag4dzgwof5ma2/playlist.m3u8?wowzasessionid=1420170412&xs=_we_MnRhZzRkemd3b2Y1bWEyfDE0MjAyMDY0MTJ8NzIuMjcuMjE0LjMzfDU0YTYxNGFjYjQwN2V8ZWMzN2Y0ZTg3OGE2ZDhmMzgyY2Y0ODhjMTgzOTYzMTVjNDVhMWVjMg timeout=10
+0
 
 #EXTINF:0,Disney Junior 
 0
@@ -132,9 +113,6 @@ http://142.4.216.60:1935/edge/_definst_/2tag4dzgwof5ma2/playlist.m3u8?wowzasessi
 http://pebbles124-lh.akamaihd.net/i/e4_1@137789/master.m3u8|X-Forwarded-For=85.5.87.218
 
 #EXTINF:0,Fashion TV 
-http://113.160.49.34/lives/origin03/fashionhd.isml/fashionhd-2096k.m3u8
-
-#EXTINF:0,Fashion TV 
 http://hls.novotelecom.ru/streaming/fashion/tvrec/playlist.m3u8
 
 #EXTINF:0,Film4 
@@ -144,10 +122,7 @@ http://pebbles124-lh.akamaihd.net/i/film4_1@137790/master.m3u8|X-Forwarded-For=8
 0
 
 #EXTINF:0,Food Network 
-http://142.4.216.60:1935/edge/_definst_/qc6xkzf4h48bz2e/playlist.m3u8?wowzasessionid=1419873022&xs=_we_cWM2eGt6ZjRoNDhiejJlfDE0MTk5MDkwMjJ8NzIuMjcuMjE0LjMzfDU0YTE4YWZlNzAwMGJ8Y2FkMmFlNzUyZmRkYWM3NjIzYjA2MDM2ZWRlY2FlMDlmMjBhYmQzZg timeout=10
-
-#EXTINF:0,Food Network 
-http://142.4.216.60:1935/edge/_definst_/qc6xkzf4h48bz2e/playlist.m3u8?wowzasessionid=1419873022
+0
 
 #EXTINF:0,Fox Crime
 0
@@ -183,7 +158,7 @@ http://link.theplatform.com/s/dtjsEC/EqBPGYLY6fEx?feed=DEV%20Live%20Stream%20Fee
 0
 
 #EXTINF:0,HGTV 
-http://142.4.216.60:1935/edge/_definst_/gj65q2rg18tpmut/playlist.m3u8?wowzasessionid=1419811602&xs=_we_cXpiYnUyNmdjdmp4a3N6fDE0MTk4NDc2MDJ8NzIuMjcuMjE0LjMzfDU0YTA5YjEyMGE1YmZ8OTJhMTdmNDg3NGM4ODk2NWNhZGIxOWMwYWNhZWQzYzFmMDg4YzY5MQ timeout=10
+0
 
 #EXTINF:0,Home Shopping Network 
 rtsp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:420p500kB31
@@ -287,9 +262,6 @@ rtmp://128.104.144.134/WisconsinChannel/mystream
 #EXTINF:0,TBS 
 rtmp://rtmp.zerocast.tv/goLive/RhMi9RdAAt7fpq8H3qZh swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 pageUrl=http://zerocast.tv/embed token=OOG17t.x#K9Vh#|
 
-#EXTINF:0,TBS
-http://142.4.216.60:1935/edge/_definst_/jh8nj062bqbsxdh/playlist.m3u8?wowzasessionid=1419878319&xs=_we_amg4bmowNjJicWJzeGRofDE0MTk5MTQzMTl8fDU0YTE5ZmFmNTJhZjh8OGQ3NTAzZWFkMDNmN2JmMmFiMTE1ZWRjZmRjMjFmNTgyOWM4M2Y4NA timeout=10
-
 #EXTINF:0,The Shopping Channel 
 http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/master.m3u8?b?b*t$ 
 
@@ -303,10 +275,7 @@ http://78.30.254.43:8989/udp/239.0.0.32:4000
 rtmp://208.53.180.218/ctv playpath=tom swfUrl=http://www.carolineoliveira.com.br/swf/player.swf live=1 pageUrl=http://carolineoliveira.com.br/tvamigos/tomejerry.html
 
 #EXTINF:0,Tru TV 
-http://142.4.216.60:1935/edge/_definst_/uhnr4161ybioa5w/playlist.m3u8?wowzasessionid=1420124955&xs=_we_aDVlb3ZhajFqZWVnbHVxfDE0MjAxNjA5NTV8NzIuMjcuMjE0LjMzfDU0YTU2MzFiMGExMzJ8ZTI3MjlkOTQ0NmFmYTJjMDU5NjQ5NTg5OWQwNDdmYzI5Y2VkNDRjMA timeout=10
-
-#EXTINF:0,Tru TV 
-http://142.4.216.60:1935/edge/_definst_/uhnr4161ybioa5w/playlist.m3u8?wowzasessionid=1420124955
+0
 
 #EXTINF:0,True Drama
 0
