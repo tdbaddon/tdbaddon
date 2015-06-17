@@ -34,23 +34,30 @@ http://113.160.49.34/lives/origin03/cinemaxsd.isml/cinemaxsd-1096k.m3u8
 #EXTINF:0,CMore Series
 0
 
+
+#EXTINF:0,Film Zone
+http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0zMjImbGFuPTImcm93cz05OSZzZXNzaW9uPTZzeGFwNTlhYnJ4aGxpeiZsYW49Mg==&f=.m3u8
+
 #EXTINF:0,Fox 1 
-0
+http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0yOTgmbGFuPTImcm93cz05OSZzZXNzaW9uPTZzeGFwNTlhYnJ4aGxpeiZsYW49Mg==&f=.m3u8
 
 #EXTINF:0,Fox Action Movies 
-0
+http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0zMDImbGFuPTImcm93cz05OSZzZXNzaW9uPTZzeGFwNTlhYnJ4aGxpeiZsYW49Mg==&f=.m3u8
 
 #EXTINF:0,Fox Cinema
-0
+http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT00OTMmbGFuPTImcm93cz05OSZzZXNzaW9uPTZzeGFwNTlhYnJ4aGxpeiZsYW49Mg==&f=.m3u8
 
 #EXTINF:0,Fox Classics 
-0
+http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT00OTMmbGFuPTImcm93cz05OSZzZXNzaW9uPTZzeGFwNTlhYnJ4aGxpeiZsYW49Mg==&f=.m3u8
 
 #EXTINF:0,Fox Movies 
 http://162.212.176.107:1935/fox_movies/globaltv-fox_movies.stream/gmswf.m3u8
 
+#EXTINF:0,Fox Movies 
+http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0zMDUmbGFuPTImcm93cz05OSZzZXNzaW9uPTZzeGFwNTlhYnJ4aGxpeiZsYW49Mg==&f=.m3u8
+
 #EXTINF:0,FX HD 
-0
+http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0xMDEmbGFuPTImcm93cz05OSZzZXNzaW9uPTZzeGFwNTlhYnJ4aGxpeiZsYW49Mg==&f=.m3u8
 
 #EXTINF:0,Golden Edge 
 0

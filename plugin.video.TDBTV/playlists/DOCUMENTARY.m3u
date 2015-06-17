@@ -35,7 +35,7 @@ http://78.30.254.43:8989/udp/239.0.0.48:4000
 0
 
 #EXTINF:0,Discovery Theater 
-0
+http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0yNDEmbGFuPTImcm93cz05OSZzZXNzaW9uPTZzeGFwNTlhYnJ4aGxpeiZsYW49Mg==&f=.m3u8
 
 #EXTINF:0,Discovery Turbo 
 0
@@ -45,6 +45,9 @@ http://78.30.254.43:8989/udp/239.0.0.47:4000
 
 #EXTINF:0,Discovery World 
 http://113.160.49.34/lives/origin03/discoveryhd.isml/discoveryhd-2096k.m3u8 
+
+#EXTINF:0,Discovery World 
+http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0yNTQmbGFuPTImcm93cz05OSZzZXNzaW9uPTZzeGFwNTlhYnJ4aGxpeiZsYW49Mg==&f=.m3u8
 
 #EXTINF:0,History Channel 
 https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8?hdnea=ip=174.113.30.187~st=1427694727~exp=1427695327~acl=/i/*~id=a86de0c2-ad09-4469-9a63-6ebbc1bba4d3~hmac=ac144089000bdd16f6916c517ce3e6e04813d4de11ac16839ad468a977ec80b1

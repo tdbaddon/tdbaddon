@@ -23,7 +23,7 @@ http://live-edge01.telecentro.net.ar/live/amrchd-180/playlist.m3u8
 http://ss6.domint.net:1962/al_edge/antena/playlist.m3u8
 
 #EXTINF:0,Aragon TV 
-0
+http://149.11.34.6:1935/live/aragontv.stream/vcx7.m3u8#MegaIPTVArgentina
 
 #EXTINF:0,Arica TV
 http://wow2.cl.digitalproserver.com/aricatv/aricatvvivo/aricatv.smil/chunklist_w725671068_b848000.m3u8
@@ -86,7 +86,13 @@ rtmp://c5n.stweb.tv:1935/c5n/live
 rtmp://k3.usastreams.com:1935/cana6/cana6
 
 #EXTINF:0,Canal 7
-0
+http://ecuadortv_livehd-lh.akamaihd.net/i/0n0xzqt3o_1@323283/master.m3u8#alxvill
+
+#EXTINF:0,Canal 7
+http://72.46.226.61/live01/canal71/playlist.m3u8#MegaIPTVArgentina
+
+#EXTINF:0,Canal 7
+http://74.63.97.188:1935/gpacifico4/videogpacifico4/chunklist_w1774114891.m3u8?
 
 #EXTINF:0,Canal 9
 http://ionlive1-lh.akamaihd.net/i/canal9_1@125365/master.m3u8
@@ -149,16 +155,16 @@ http://38.96.148.216:1935/live/canelatv/playlist.m3u8
 http://187.237.253.94:8134/hls-live/livepkgr/_definst_/liveevent.m3u8
 
 #EXTINF:0,Casa
-0
+http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0xODImbGFuPTImcm93cz05OSZzZXNzaW9uPTZzeGFwNTlhYnJ4aGxpeiZsYW49Mg==&f=.m3u8
 
 #EXTINF:0,CDN 37
 http://108.168.206.90:1935/cdn/cdn/playlist.m3u8
 
 #EXTINF:0,Cine Canal
-0
+http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0zNDkmbGFuPTImcm93cz05OSZzZXNzaW9uPTZzeGFwNTlhYnJ4aGxpeiZsYW49Mg==&f=.m3u8
 
 #EXTINF:0,Cine Canal+
-0
+http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0zMDkmbGFuPTImcm93cz05OSZzZXNzaW9uPTZzeGFwNTlhYnJ4aGxpeiZsYW49Mg==&f=.m3u8
 
 #EXTINF:0,Colosal TV
 rtmp://k3.usastreams.com:1935/colosaltv1/colosaltv1
@@ -173,10 +179,10 @@ http://cdns840stu1010.multistream.net/cristovisionlive/amlst:live/playlist_b3000
 http://184.164.158.202:1936/48/smil:48.smil/playlist.m3u8
 
 #EXTINF:0,De Pelicula
-0
+http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0zMjUmbGFuPTImcm93cz05OSZzZXNzaW9uPTZzeGFwNTlhYnJ4aGxpeiZsYW49Mg==&f=.m3u8
 
 #EXTINF:0,Distrito Comedia
-0
+http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0xNzMmbGFuPTImcm93cz05OSZzZXNzaW9uPTZzeGFwNTlhYnJ4aGxpeiZsYW49Mg==&f=.m3u8
 
 #EXTINF:0,Ecotel TV
 rtmp://enhd.co:1935/ecoteltv/ecoteltv
@@ -200,19 +206,19 @@ http://198.154.228.82:1935/live/esnetv/playlist.m3u8
 http://185417-f.akamaihd.net/i/n0tf0r0_1@81283/index_1200_av-b.m3u8
 
 #EXTINF:0,Gala TV
-0
+http://rightbrainmedia.mpl.miisolutions.net/rightbrainmedia-live-244/_definst_/mp4:GalaTVCancun/playlist.m3u8?
 
 #EXTINF:0,Galicia
 http://media3.crtvg.es/live/tvga/.m3u8
 
 #EXTINF:0,Glitz
-0
+http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0xNjUmbGFuPTImcm93cz05OSZzZXNzaW9uPTZzeGFwNTlhYnJ4aGxpeiZsYW49Mg==&f=.m3u8
 
 #EXTINF:0,Golden HD
-0
+http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0zMTgmbGFuPTImcm93cz05OSZzZXNzaW9uPTZzeGFwNTlhYnJ4aGxpeiZsYW49Mg==&f=.m3u8
 
 #EXTINF:0,Gourmet
-0
+http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0xNjEmbGFuPTImcm93cz05OSZzZXNzaW9uPTZzeGFwNTlhYnJ4aGxpeiZsYW49Mg==&f=.m3u8
 
 #EXTINF:0,Guatevision TV
 http://bravo967.sysvirtuales.com/live/stream1.sdp/playlist.m3u8
@@ -314,22 +320,22 @@ http://cdns840stu1010.multistream.net/telecaribelive/amlst:live/master.m3u8
 0
 
 #EXTINF:0,Telehit
-0
+http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT00MzQmbGFuPTImcm93cz05OSZzZXNzaW9uPTZzeGFwNTlhYnJ4aGxpeiZsYW49Mg==&f=.m3u8
 
 #EXTINF:0,Telemundo
-0
+http://199.168.116.12:1935/app/chivass_69s-channel/.m3u8?
 
 #EXTINF:0,TeleSur TV
 http://cdn2.telesur.ultrabase.net/livecf/telesurLive/chunklist.m3u8
 
 #EXTINF:0,Televisa Musica
-0
+http://186.155.200.118:1935/live/telemusica/playlist.m3u8
 
 #EXTINF:0,TINovelas
-0
+http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0xODYmbGFuPTImcm93cz05OSZzZXNzaW9uPTZzeGFwNTlhYnJ4aGxpeiZsYW49Mg==&f=.m3u8
 
 #EXTINF:0,TIIN
-0
+http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0yMzQmbGFuPTImcm93cz05OSZzZXNzaW9uPTZzeGFwNTlhYnJ4aGxpeiZsYW49Mg==&f=.m3u8
 
 #EXTINF:0,TiVa
 http://live-h1.frontlayer.net/fl729845/live/live.m3u8?wowzasessionid=1243637292
