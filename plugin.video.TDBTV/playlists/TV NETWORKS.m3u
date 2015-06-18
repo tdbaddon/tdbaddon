@@ -8,10 +8,10 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mp4
 0
 
 #EXTINF:0,ABC 
-0
+http://93.174.95.125:1935/edge/_definst_/nz7l9vc5nv1og7b/playlist.m3u8?wowzasessionid=1419880374&xs=_we_Mzcxamx1aXJsamNzamVufDE0MTk5MTYzNzR8NzIuMjcuMjE0LjMzfDU0YTFhN2I2MzUxMWJ8ZDU3ODc0MTUyMWE0YTMyODdmZjdkYzJiMTYyZmY0MDA1YzM4NjdkYQ%20timeout=10
 
 #EXTINF:0,ABC Family
-0
+http://93.174.95.125:1935/edge/_definst_/oeiigxxv1gbeqq9/playlist.m3u8?wowzasessionid=1420170560
 
 #EXTINF:0,AMC 
 http://78.30.254.43:8989/udp/239.0.0.89:4000
@@ -32,10 +32,10 @@ http://82.135.224.134:80/udp/239.100.3.2:1234
 http://82.135.224.134:80/udp/239.100.3.3:1234
 
 #EXTINF:0,BBC Entertainment 
-http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0xMzAmbGFuPTImcm93cz05OSZzZXNzaW9uPTZzeGFwNTlhYnJ4aGxpeiZsYW49Mg==&f=.m3u8
+0
 
 #EXTINF:0,BET 
-0
+http://93.174.95.125:1935/edge/_definst_/kexkxje3nqi6dtl/playlist.m3u8?wowzasessionid=1419880467
 
 #EXTINF:0,BIO 
 0
@@ -92,7 +92,7 @@ http://198.179.31.198/live/2056.high.stream/2056.high.stream/index.m3u8
 http://198.179.31.198/live/2062.high.stream/2062.high.stream/index.m3u8
 
 #EXTINF:0,CW 
-0
+http://93.174.95.125:1935/edge/_definst_/qvvkvojlano9hnj/playlist.m3u8?wowzasessionid=1419903868
 
 #EXTINF:0,Disney Channel 
 0
@@ -122,7 +122,7 @@ http://pebbles124-lh.akamaihd.net/i/film4_1@137790/master.m3u8|X-Forwarded-For=8
 0
 
 #EXTINF:0,Food Network 
-0
+http://93.174.95.125:1935/edge/_definst_/qc6xkzf4h48bz2e/playlist.m3u8?wowzasessionid=1419873022
 
 #EXTINF:0,Fox Crime
 0
@@ -132,6 +132,9 @@ http://pebbles124-lh.akamaihd.net/i/film4_1@137790/master.m3u8|X-Forwarded-For=8
 
 #EXTINF:0,Fox TV 
 rtmp://rtmp.zerocast.tv/goLive/ playpath=9pxGCtP3aEnJYgoBFFH8 swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 pageUrl=http://zerocast.tv/embed token=OOG17t.x#K9Vh#|
+
+#EXTINF:0,Fox TV 
+http://93.174.95.125:1935/edge/_definst_/yuu6p5oaa1x4a1p/playlist.m3u8?wowzasessionid=1419906680
 
 #EXTINF:0,FX
 0
@@ -155,7 +158,7 @@ http://207.223.2.93/s/dtjsEC/EqBPGYLY6fEx?feed=DEV%20Live%20Stream%20Feed/playli
 http://link.theplatform.com/s/dtjsEC/EqBPGYLY6fEx?feed=DEV%20Live%20Stream%20Feed/playlist.m3u8
 
 #EXTINF:0,Hallmark Channel 
-0
+http://93.174.95.125:1935/edge/_definst_/v4ynnryunsoxzbq/playlist.m3u8?wowzasessionid=1419874236
 
 #EXTINF:0,HGTV 
 0
@@ -203,7 +206,10 @@ http://78.129.175.72/live/more4/more4.m3u8
 http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
 
 #EXTINF:0,NBC 
-0
+http://93.174.95.125:1935/edge/_definst_/kjgkefh6la1di6g/playlist.m3u8?wowzasessionid=1419879103
+
+#EXTINF:0,NBC 
+http://93.174.95.125:1935/edge/_definst_/s5whw37nl7weedp/playlist.m3u8?wowzasessionid=1420124473
 
 #EXTINF:0,Nick 
 0
@@ -257,7 +263,10 @@ rtmp://128.104.144.134/WisconsinChannel/mystream
 0
 
 #EXTINF:0,Syfy 
-0
+http://93.174.95.125:1935/edge/_definst_/oepz9q5oivflbcw/playlist.m3u8?wowzasessionid=1419878403
+
+#EXTINF:0,TBS 
+http://93.174.95.125:1935/edge/_definst_/jh8nj062bqbsxdh/playlist.m3u8?wowzasessionid=1419878319
 
 #EXTINF:0,TBS 
 rtmp://rtmp.zerocast.tv/goLive/RhMi9RdAAt7fpq8H3qZh swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 pageUrl=http://zerocast.tv/embed token=OOG17t.x#K9Vh#|
@@ -268,8 +277,14 @@ http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/master.m3u8?b?b*t
 #EXTINF:0,TLC 
 http://78.30.254.43:8989/udp/239.0.0.32:4000
 
+#EXTINF:0,TLC 
+http://93.174.95.125:1935/edge/_definst_/iugceoy4o6ljhck/playlist.m3u8?wowzasessionid=1419907929
+
+#EXTINF:0,TLC 
+http://80.80.160.168/live/2/live.m3u8
+
 #EXTINF:0,TNT 
-0
+http://93.174.95.125:1935/edge/_definst_/7uz4als3nigi0j3/playlist.m3u8?wowzasessionid=1420124827
 
 #EXTINF:0,Tom & Jerry Show 
 rtmp://208.53.180.218/ctv playpath=tom swfUrl=http://www.carolineoliveira.com.br/swf/player.swf live=1 pageUrl=http://carolineoliveira.com.br/tvamigos/tomejerry.html
@@ -290,7 +305,7 @@ rtmp://208.53.180.218/ctv playpath=tom swfUrl=http://www.carolineoliveira.com.br
 0
 
 #EXTINF:0,USA Network 
-0
+http://93.174.95.125:1935/edge/_definst_/h5eovaj1jeegluq/playlist.m3u8?wowzasessionid=1420170509
 
 #EXTINF:0,Vernnissage TV 
 0
@@ -299,13 +314,13 @@ rtmp://208.53.180.218/ctv playpath=tom swfUrl=http://www.carolineoliveira.com.br
 http://stream02.yamgo.com/iPhone/HLS_TS/broadcast/victorias_secret_angels-tablet.3gp/victorias_secret_angels-tablet.3gp-mr648k.m3u8
 
 #EXTINF:0,Warner Brothers 
-http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0wOTQmbGFuPTImcm93cz05OSZzZXNzaW9uPTZzeGFwNTlhYnJ4aGxpeiZsYW49Mg==&f=.m3u8
+0
 
 #EXTINF:0,WBCQ TV
 rtmp://stream.connectcast.tv/live playpath=mp4:CC-1C1C4B9C-3479-C277-F6F8-3B3B78E8B46B-21460 swfUrl=http://connectcast.tv/jwplayer/v6.12/jwplayer.flash.swf live=1 pageUrl=http://connectcast.tv/WBCQTV
 
 #EXTINF:0,Wobi 
-http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0yOTQmbGFuPTImcm93cz05OSZzZXNzaW9uPTZzeGFwNTlhYnJ4aGxpeiZsYW49Mg==&f=.m3u8
+0
 
 #EXTINF:0,WPIX 11
 0

@@ -37,6 +37,9 @@ http://87.245.214.43/streaming/futbol/16/tvrec/playlist.m3u8
 #EXTINF:0,ESPN 
 rtmp://141.255.160.202:1935/stream/ playpath=1Kq68GX6Kc.stream swfUrl=http://thecdn.04stream.com/p/ooolo1.swf pageUrl=http://www.04stream.com/ebb.php?adsp=other&width=600&height=460&st=24g3z5b4d4t4w3x2x4h5n244z294u2u28424w2u2w2t223f4&adx=&stream=54y2n5i57494y264d4k544b4v2a494n244v4n4y2w2i304c4x4l5t22433y234y2x2p2t274y2z32363y3q2x4y5b4e4f3v3c4t4i2k4j4v5k474n33574a414p4h4z33456t226c4n424r2p2z294b434h5233314y2k5b4a4j5u24494j5s244v264338444d4y2z264b494m56434t2y3s2p224r2p2o2&sooor=NA==&str=is&ok=&cat=2&link=1&idom=www.gofeed2all.eu token=%ZZri(nKa@#Z
 
+#EXTINF:0,ESPN 
+http://80.80.160.168/live/6/live.m3u8
+
 #EXTINF:0,ESPN 2 
 0
 
@@ -143,19 +146,19 @@ mms://100automoto.tv/channel_porsche
 rtmp://31.220.0.195:80/live playpath=premiersport swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf pageUrl=http://reytv.co/embedo.php?live=skysports2&vw=620&vh=490 token=%Zrey(nKa@#Z
 
 #EXTINF:0,Racing UK 
-0
+rtmp://178.18.31.53:443/liverepeater playpath=195156 token=deadsoon%%7 swfUrl=http://bernardotv.club/player6.swf live=1 timeout=13 pageUrl=http://biggestplayer.me
 
 #EXTINF:0,Setanta Sports 
 http://80.77.52.6:4394/udp/230.0.4.1:12345
 
 #EXTINF:0,Sky Sports 1 
-0
+rtmp://178.18.31.60:443/liverepeater playpath=194484 swfUrl=http://bernardotv.club/player6.swf live=1 pageUrl=http://biggestplayer.me/streamcr.php?id=194484&width=620&height=490 token=deadsoon%%7
 
 #EXTINF:0,Sky Sports 2 
 0
 
 #EXTINF:0,Sky Sports 3 
-0
+rtmp://178.18.31.60:443/liverepeater playpath=195185 swfUrl=http://bernardotv.club/player6.swf live=1 pageUrl=http://biggestplayer.me/streamcr.php?id=195185&width=620&height=490 token=deadsoon%%7
 
 #EXTINF:0,Sky Sports 4 
 rtmp://31.220.0.195:80/live/ playpath=ssx4 token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://reytv.co/
@@ -164,10 +167,10 @@ rtmp://31.220.0.195:80/live/ playpath=ssx4 token=%Zrey(nKa@#Z swfUrl=http://p.jw
 rtmp://31.220.0.195:80/live playpath=ssx4 swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf pageUrl=http://reytv.co/embedo.php?live=skysports2&vw=620&vh=490 token=%Zrey(nKa@#Z
 
 #EXTINF:0,Sky Sports 5 
-0
+rtmp://178.18.31.60:443/liverepeater playpath=195087 swfUrl=http://bernardotv.club/player6.swf live=1 pageUrl=http://biggestplayer.me/streamcr.php?id=195087&width=620&height=490 token=deadsoon%%7
 
 #EXTINF:0,Sky Sports F1 
-0
+rtmp://178.18.31.60:443/liverepeater playpath=195088 swfUrl=http://bernardotv.club/player6.swf live=1 pageUrl=http://biggestplayer.me/streamcr.php?id=195088&width=620&height=490 token=deadsoon%%7
 
 #EXTINF:0,Sky Sports News 
 0
@@ -197,7 +200,7 @@ rtmp://streamer.a1.net:1935/rtmplive/redundant/channels/Sporttime/SporttimeTV/mp
 http://113.160.49.34/lives/origin03/starsportsd.isml/starsportsd-1096k.m3u8
 
 #EXTINF:0,TSN 1 
-0
+rtmp://178.18.31.64:443/liverepeater playpath=195143 token=deadsoon%%7 swfUrl=http://bernardotv.club/player6.swf live=1 timeout=13 pageUrl=http://biggestplayer.me
 
 #EXTINF:0,TSN 2 
 rtmp://31.220.0.195:80/live/ playpath=tsn2x token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://reytv.co/?b?b*t$
@@ -218,7 +221,7 @@ http://hlsstr04.svc.iptv.rt.ru/hls/CH_C06_VIASATGOLFHD/variant.m3u8
 0
 
 #EXTINF:0,WWE Network 
-0
+rtmp://178.18.31.60:443/liverepeater playpath=195146 swfUrl=http://bernardotv.club/player6.swf live=1 pageUrl=http://biggestplayer.me/streamcr.php?id=1951146&width=620&height=490 token=deadsoon%%7
 
 #EXTINF:0,XTreme Sports 
 0
