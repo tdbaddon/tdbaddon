@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<strings>
+  <!-- Plugin name -->
+  <string id="30000">KODI Popcorn Time</string>
+
+  <!-- 
+   * Settings
+   -->
+  <string id="30101">General</string>
+  <string id="30102">General</string>
+  <string id="30103">Download Path</string>
+  <string id="30104">Keep files after playback/download stops</string>
+  <string id="30105">Content</string>
+  <string id="30106">Auto-unblocking via Immunicity</string>
+
+  <string id="30108">Network</string>
+
+  <string id="30110">Max Download Rate (kB/s)</string>
+  <string id="30111">Encryption</string>
+  <string id="30112">Advanced</string>
+  <string id="30113">Maintenance</string>
+  <string id="30114">Clear cache</string>
+  <string id="30115">Custom domain</string>
+  <string id="30116">YIFY Torrents</string>
+  <string id="30117">KODI Android ID</string>
+  <string id="30118">Custom Android Application ID</string>
+  <string id="30119">Subtitle Language Priority #1</string>
+  <string id="30120">Subtitle Language Priority #2</string>
+  <string id="30121">Subtitle Language Priority #3</string>
+
+  <!-- 
+   * Languages
+   -->
+  <string id="30200">None</string>
+  <string id="30201">Albanian</string>
+  <string id="30202">Arabic</string>
+  <string id="30203">Bengali</string>
+  <string id="30204">Brazilian Portuguese</string>
+  <string id="30205">Bulgarian</string>
+  <string id="30206">Chinese</string>
+  <string id="30207">Croatian</string>
+  <string id="30208">Czech</string>
+  <string id="30209">Danish</string>
+  <string id="30210">Dutch</string>
+  <string id="30211">English</string>
+  <string id="30212">Farsi/Persian</string>
+  <string id="30213">Finnish</string>
+  <string id="30214">French</string>
+  <string id="30215">German</string>
+  <string id="30216">Greek</string>
+  <string id="30217">Hebrew</string>
+  <string id="30218">Hungarian</string>
+  <string id="30219">Indonesian</string>
+  <string id="30220">Italian</string>
+  <string id="30221">Japanese</string>
+  <string id="30222">Korean</string>
+  <string id="30223">Lithuanian</string>
+  <string id="30224">Macedonian</string>
+  <string id="30225">Malay</string>
+  <string id="30226">Norwegian</string>
+  <string id="30227">Polish</string>
+  <string id="30228">Portuguese</string>
+  <string id="30229">Romanian</string>
+  <string id="30230">Russian</string>
+  <string id="30231">Serbian</string>
+  <string id="30232">Slovenian</string>
+  <string id="30233">Spanish</string>
+  <string id="30234">Swedish</string>
+  <string id="30235">Thai</string>
+  <string id="30236">Turkish</string>
+  <string id="30237">Urdu</string>
+  <string id="30238">Vietnamese</string>
+
+  <!-- 
+   * notify
+   -->
+  <string id="30300">Please review your settings.</string>
+  <string id="30301">Cache cleared.</string>
+  <string id="30302">Your system "%(os)s_%(arch)s" is not supported.</string>
+  <string id="30303">Unable to add this file. Magnet is incomplete.</string>
+  <string id="30304">xxxx</string>
+  <string id="30305">xxxx</string>
+  <string id="30306">xxxx</string>
+  <string id="30307">xxxx</string>
+  <string id="30308">xxxx</string>
+  <string id="30309">xxxx</string>
+  <string id="30310">xxxx</string>
+  <string id="30311">xxxx</string>
+  <string id="30312">xxxx</string>
+  <string id="30313">xxxx</string>
+  <string id="30314">xxxx</string>
+  <string id="30315">xxxx</string>
+  <string id="30316">xxxx</string>
+  <string id="30317">xxxx</string>
+  <string id="30318">xxxx</string>
+  <string id="30319">xxxx</string>
+  <string id="30320">xxxx</string>
+  <string id="30321">xxxx</string>
+</strings>

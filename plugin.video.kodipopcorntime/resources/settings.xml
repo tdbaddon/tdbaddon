@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+    <category label="30101">
+        <setting label="30102" type="lsep" />
+        <setting id="dlpath" type="folder" label="30103" source="auto" option="writeable" />
+        <setting id="keep_files" type="bool" label="30104" default="false" />
+
+        <setting label="30105" type="lsep"/>
+        <setting id="sub_language1" type="enum" label="30119" default="0" lvalues="30200|30201|30202|30203|30204|30205|30206|30207|30208|30209|30210|30211|30212|30213|30214|30215|30216|30217|30218|30219|30220|30221|30222|30223|30224|30225|30226|30227|30228|30229|30230|30231|30232|30233|30234|30235|30236|30237|30238" />
+        <setting id="sub_language2" type="enum" label="30120" default="0" lvalues="30200|30201|30202|30203|30204|30205|30206|30207|30208|30209|30210|30211|30212|30213|30214|30215|30216|30217|30218|30219|30220|30221|30222|30223|30224|30225|30226|30227|30228|30229|30230|30231|30232|30233|30234|30235|30236|30237|30238" enable="gt(-1,0)" />
+        <setting id="sub_language3" type="enum" label="30121" default="0" lvalues="30200|30201|30202|30203|30204|30205|30206|30207|30208|30209|30210|30211|30212|30213|30214|30215|30216|30217|30218|30219|30220|30221|30222|30223|30224|30225|30226|30227|30228|30229|30230|30231|30232|30233|30234|30235|30236|30237|30238" enable="gt(-1,0)" />
+    
+        <setting label="30108" type="lsep"/>
+        <setting id="max_download_rate" label="30110" type="number" default="" />
+        <setting id="immunicity" type="bool" label="30106" default="false" />
+        <setting id="encryption" label="30111" type="enum" values="Forced|Enabled|Disabled" default="1" />
+    </category>
+    <category label="30112">
+        <setting label="30113" type="lsep"/>
+        <setting type="action" label="30114" action="RunPlugin(plugin://plugin.video.kodipopcorntime/cmd/clear_cache)" />
+
+        <setting label="30115" type="lsep"/>
+        <setting id="base_yify" type="text" label="30116" default="http://yts.to" />
+
+        <setting label="30117" type="lsep"/>
+        <setting id="android_app_id" type="text" label="30118" default="org.xbmc.kodi" />
+    </category>
+</settings>
