@@ -14,7 +14,7 @@ http://93.174.95.125:1935/edge/_definst_/nz7l9vc5nv1og7b/playlist.m3u8?wowzasess
 http://93.174.95.125:1935/edge/_definst_/oeiigxxv1gbeqq9/playlist.m3u8?wowzasessionid=1420170560
 
 #EXTINF:0,AMC 
-http://78.30.254.43:8989/udp/239.0.0.89:4000
+0
 
 #EXTINF:0,AXN 
 0
@@ -35,7 +35,7 @@ http://82.135.224.134:80/udp/239.100.3.3:1234
 0
 
 #EXTINF:0,BET 
-http://93.174.95.125:1935/edge/_definst_/kexkxje3nqi6dtl/playlist.m3u8?wowzasessionid=1419880467
+0
 
 #EXTINF:0,BIO 
 0
@@ -71,13 +71,13 @@ http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD28_W_250.sdp/p
 0
 
 #EXTINF:0,CBS Reality 
-http://78.30.254.43:8989/udp/239.0.0.91:4000
+0
 
 #EXTINF:0,CHCH Ontario 
 rtmp://54.85.197.21:1935/live/news live=1 timeout=15
 
 #EXTINF:0,Comedy Central 
-http://188.138.9.228:8022
+0
 
 #EXTINF:0,CTV Edmonton
 http://198.179.31.198/live/2053.high.stream/2053.high.stream/index.m3u8
@@ -175,11 +175,8 @@ http://ios.streamserver01.com:8080/ShowcaseTV/mystream.m3u8
 #EXTINF:0,ITV 1 
 http://82.135.224.134:80/udp/239.100.3.6:1234
 
-#EXTINF:0,ITV 1 
-http://78.129.175.72/live/itv/itv.m3u8
-
 #EXTINF:0,ITV 2 
-http://78.129.175.72/live/itv2/itv2.m3u8
+0
 
 #EXTINF:0,ITV 3 
 http://212.250.46.35:4252/bysid/9605
@@ -191,7 +188,7 @@ http://212.250.46.35:4252/bysid/9605
 rtmp://jtvmedia.jtv.com:1975/live playpath=live6 swfUrl=http://demandware.edgesuite.net/aaby_prd/on/demandware.static/Sites-jtv-Site/-/default/v1410110388581/swf/flashMediaPlayer/StrobeMediaPlayback.swf live=1 pageUrl=http://www.jtv.com/on/demandware.store/Sites-jtv-Site/default/LiveViewer-Show
 
 #EXTINF:0,Jim Jam 
-http://78.30.254.43:8989/udp/239.0.0.192:4000
+0
 
 #EXTINF:0,Lifetime Network 
 0
@@ -200,7 +197,7 @@ http://78.30.254.43:8989/udp/239.0.0.192:4000
 http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
 
 #EXTINF:0,More4 
-http://78.129.175.72/live/more4/more4.m3u8
+0
 
 #EXTINF:0,My9
 http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
@@ -273,9 +270,6 @@ rtmp://rtmp.zerocast.tv/goLive/RhMi9RdAAt7fpq8H3qZh swfUrl=http://p.jwpcdn.com/6
 
 #EXTINF:0,The Shopping Channel 
 http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/master.m3u8?b?b*t$ 
-
-#EXTINF:0,TLC 
-http://78.30.254.43:8989/udp/239.0.0.32:4000
 
 #EXTINF:0,TLC 
 http://93.174.95.125:1935/edge/_definst_/iugceoy4o6ljhck/playlist.m3u8?wowzasessionid=1419907929

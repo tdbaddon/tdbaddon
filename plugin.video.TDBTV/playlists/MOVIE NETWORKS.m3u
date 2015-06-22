@@ -29,7 +29,7 @@ http://188.138.9.228:8025
 http://188.138.9.228:8024
 
 #EXTINF:0,CMore Hits
-http://188.138.9.228:8020
+0
 
 #EXTINF:0,CMore Series
 http://188.138.9.228:8021
@@ -51,16 +51,13 @@ http://188.138.9.228:8021
 0
 
 #EXTINF:0,Fox Movies 
-http://162.212.176.107:1935/fox_movies/globaltv-fox_movies.stream/gmswf.m3u8
+0
 
 #EXTINF:0,FX HD 
 0
 
 #EXTINF:0,Golden Edge 
 0
-
-#EXTINF:0,HBO 
-http://93.174.95.125:1935/edge/_definst_/z28ie9oqoku4qoy/playlist.m3u8?wowzasessionid=1419879571
 
 #EXTINF:0,HBO 
 http://113.160.49.34/lives/origin03/hbohd.isml/hbohd-2096k.m3u8
@@ -78,7 +75,7 @@ http://63.237.48.3/ios/MBC2/MBC2.m3u8
 http://63.237.48.23/ios/MBC_MAX/MBC_MAX.m3u8
 
 #EXTINF:0,MGM 
-http://78.30.254.43:8989/udp/239.0.0.104:4000
+0
 
 #EXTINF:0,Movies 24/7
 0
@@ -201,7 +198,7 @@ http://113.160.49.34/lives/origin03/moviehd.isml/moviehd-2096k.m3u8
 0
 
 #EXTINF:0,TV 1000 
-http://78.30.254.43:8989/udp/239.0.0.153:4000
+0
 
 #EXTINF:0,TV 1000 Action
 http://195.78.244.219:10000/udp/239.0.3.27:1234
