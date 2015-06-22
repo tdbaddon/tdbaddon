@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.video.MegaReBorn"
+       name="Mega ReBorn"
+       version="2.1.1"
+       provider-name="Adam Fishley">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.beautifulsoup" version="3.2.1"/>
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.beautifulsoup4" />
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.requests" />
+    <import addon="script.module.httplib2" />
+    <import addon="script.module.youtube.dl" optional="true"/>
+    <import addon="plugin.video.youtube" />
+    <import addon="script.module.urlresolver" optional="true"/>
+    <import addon="script.module.simplejson" />    
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Mega Reborn redesigned and unique with exclusive links found by me. Includes live U.S.A Channels and U.K and many more to come</summary>
+    <description lang="en">Mega Reborn is developed by one one developer Adam Fishley i have no team with me and a solo army. Thank You Robin hood for the source.
+	
+	Settings instructions
+	Go to settings/configure and click defaults then add the source.
+	Consider donating for my work please :)
+	
+	P.S. Special Thanks to the people who donated also Husham :)
+</description>
+    <platform>all</platform>
+  </extension>
+</addon>

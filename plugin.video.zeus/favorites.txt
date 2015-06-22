@@ -1,0 +1,7 @@
+[
+    {
+        "url": "http://194.90.120.149:1935/cellcom_CelSport5HDPublish/_definst_/smil:CelSport5HD_pub_group.smil/chunklist_w1241810288_b27128000.m3u8", 
+        "image": "http://2.bp.blogspot.com/_UqUwVPikChs/SmrNn69GuzI/AAAAAAAAJx0/xPsCAW9sSR8/s320/solo_-ottavima-volley-team-captain-17724.png", 
+        "name": "[COLOR lime] Cel Sport 5 HD[/COLOR]"
+    }
+]

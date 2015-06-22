@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+   <category label="Definicoes gerais">
+      <setting label="[B][COLOR green]Dados de conta:[/B][/COLOR]" type="lsep" />
+	  <setting id="quality" type="enum" label="Qualidade" values="320kbps|450kbps|600kbps|950kbps|1500kbps" default="4" />
+      <setting id="login_name" type="text" label="Username" default=""/>
+      <setting id="login_password" type="text" label="Password" default="" option="hidden" enable="!eq(-1,false)"/>
+   </category>
+</settings>

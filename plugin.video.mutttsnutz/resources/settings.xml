@@ -1,0 +1,17 @@
+<settings>
+	<category label="Autoplay">
+	<setting id="autoplay" type="bool" label="Enable Auto Play" default="false"/>
+	<setting id="default_quality" type="labelenum" label="Default Autoplay Quality" values="1080p|720p|360p" default="720p" enable="!eq(-1,false))" />
+	</category>
+	<!--category label="AutoView">
+	<setting id="meta-data" type="bool" label="Enable Meta Data" default="true"/>
+	<setting id="auto-view" type="bool" label="Enable Automatic View" default="true"/>
+	<setting id="movie-view" type="labelenum" label="Movies View" values="Info|Wall" default="Info" enable="!eq(-1,false)"/>
+	<setting id="default-view" type="number" label="Default View" default="50" enable="!eq(-2,false)"/>
+	<setting id="transform" value="" visible="false"/>
+	
+	</category-->
+	<category label="Library Integration">
+	<setting id="movie-folder" type="folder" label="Movie Folder:" default="special://userdata/addon_data/plugin.video.mutttsnutz/Movies"/>
+	</category>
+</settings>
