@@ -36,28 +36,28 @@ http://188.138.9.228:8021
 
 
 #EXTINF:0,Film Zone
-0
+http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0zMjEmbGFuPTImcm93cz05OSZzZXNzaW9uPXdxbTE3a2hoMWFicTY3Zw==&f=.m3u8
 
 #EXTINF:0,Fox 1 
-0
+http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0yOTcmbGFuPTImcm93cz05OSZzZXNzaW9uPXdxbTE3a2hoMWFicTY3Zw==&f=.m3u8
 
 #EXTINF:0,Fox Action Movies 
-0
+http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0zMDEmbGFuPTImcm93cz05OSZzZXNzaW9uPXdxbTE3a2hoMWFicTY3Zw==&f=.m3u8
 
 #EXTINF:0,Fox Cinema
-0
+http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0zMzgmbGFuPTImcm93cz05OSZzZXNzaW9uPXdxbTE3a2hoMWFicTY3Zw==&f=.m3u8
 
 #EXTINF:0,Fox Classics 
-0
+http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT00OTMmbGFuPTImcm93cz05OSZzZXNzaW9uPXdxbTE3a2hoMWFicTY3Zw==&f=.m3u8
 
 #EXTINF:0,Fox Movies 
-0
+http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0zMDYmbGFuPTImcm93cz05OSZzZXNzaW9uPXdxbTE3a2hoMWFicTY3Zw==&f=.m3u8
 
 #EXTINF:0,FX HD 
-0
+http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0xMDEmbGFuPTImcm93cz05OSZzZXNzaW9uPXdxbTE3a2hoMWFicTY3Zw==&f=.m3u8
 
 #EXTINF:0,Golden Edge 
-0
+http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0zNjEmbGFuPTImcm93cz05OSZzZXNzaW9uPXdxbTE3a2hoMWFicTY3Zw==&f=.m3u8
 
 #EXTINF:0,HBO 
 http://113.160.49.34/lives/origin03/hbohd.isml/hbohd-2096k.m3u8
@@ -107,26 +107,41 @@ http://63.237.48.23/ios/MBC_MAX/MBC_MAX.m3u8
 #EXTINF:0,Paramount Channel
 0
 
+#EXTINF:0,Pink Action 1
+http://www.nasatv.eu:80/live?channelId=64&uid=5&deviceUser=amer&devicePass=amer
+
 #EXTINF:0,Pink Action 2
-0
+http://www.nasatv.eu:80/live?channelId=25&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,Pink Action 3
-0
+http://www.nasatv.eu:80/live?channelId=26&uid=5&deviceUser=amer&devicePass=amer
+
+#EXTINF:0,Pink Classic
+http://www.nasatv.eu:80/live?channelId=80&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,Pink Comedy
-0
+http://www.nasatv.eu:80/live?channelId=4&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,Pink Horror
-0
+http://www.nasatv.eu:80/live?channelId=31&uid=5&deviceUser=amer&devicePass=amer
+
+#EXTINF:0,Pink M
+http://www.nasatv.eu:80/live?channelId=71&uid=5&deviceUser=amer&devicePass=amer
+
+#EXTINF:0,Pink Movies 1
+http://www.nasatv.eu:80/live?channelId=82&uid=5&deviceUser=amer&devicePass=amer
+
+#EXTINF:0,Pink Movies 2
+http://www.nasatv.eu:80/live?channelId=27&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,Pink Movies 3
-0
+http://www.nasatv.eu:80/live?channelId=28&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,Pink Horror
-0
+http://www.nasatv.eu:80/live?channelId=31&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,Pink Western
-0
+http://www.nasatv.eu:80/live?channelId=56&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,SciFi
 0

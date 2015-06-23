@@ -11,6 +11,9 @@ http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/a1-strumica/playlist
 rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
 
 #EXTINF:0,Alfa 
+http://www.nasatv.eu:80/live?channelId=111&uid=5&deviceUser=amer&devicePass=amer
+
+#EXTINF:0,Alfa 
 http://fms.zulu.mk:1935/zulu/alfa_2/playlist.m3u8
 
 #EXTINF:0,Alfa 
@@ -76,6 +79,9 @@ mms://62.162.58.55/TVkanal21
 #EXTINF:0,K3 Kumanovo
 http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/k3-tv-kumanovo/chunklist.m3u8
 
+#EXTINF:0,K3 Kumanovo
+http://www.nasatv.eu:80/live?channelId=53&uid=5&deviceUser=amer&devicePass=amer
+
 #EXTINF:0,Kanal 5 
 http://fms.zulu.mk:1935/zulu/kanal5_1/playlist.m3u8
 
@@ -122,7 +128,7 @@ http://fms.zulu.mk:1935/zulu/nashatv_2/playlist.m3u8
 http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/o2-tv-ohrid/playlist.m3u8
 
 #EXTINF:0,OBN 
-0
+http://www.nasatv.eu:80/live?channelId=54&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,Pop Brio 
 0

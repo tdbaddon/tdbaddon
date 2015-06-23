@@ -5,10 +5,16 @@
 http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mp4
 
 #EXTINF:0,Bein Sport1 
-0
+http://streamindo.ddns.net/jhos/beib1_2/streamindo/playlist.m3u8
+
+#EXTINF:0,Bein Sport1 
+http://streamindo.ddns.net/jhos/beib1_3/streamindo/playlist.m3u8
 
 #EXTINF:0,Bein Sport2 
 rtmp://180.250.29.12:1935/jhos/beib2_5?b?b*t$
+
+#EXTINF:0,Bein Sport2 
+http://streamindo.ddns.net/jhos/beib2_2/streamindo/playlist.m3u8
 
 #EXTINF:0,Big Ten Network 
 http://bigten247.cdnak.bigtenhd.neulion.com/nlds/btn2go/btnnetwork/as/live/btnnetwork_hd_3000.m3u8

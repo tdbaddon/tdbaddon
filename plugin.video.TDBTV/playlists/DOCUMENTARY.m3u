@@ -31,6 +31,9 @@ http://80.80.160.168/live/8/live.m3u8
 #EXTINF:0,Discovery Investigation 
 http://93.174.95.125:1935/edge/_definst_/yjma618cibkqxeo/playlist.m3u8?wowzasessionid=1420168729
 
+#EXTINF:0,Discovery Investigation 
+http://80.80.160.168/live/5/live.m3u8
+
 #EXTINF:0,Discovery Science 
 http://80.80.160.168/live/9/live.m3u8
 
@@ -38,13 +41,16 @@ http://80.80.160.168/live/9/live.m3u8
 0
 
 #EXTINF:0,Discovery Theater 
-0
+http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0yNDImbGFuPTImcm93cz05OSZzZXNzaW9uPXdxbTE3a2hoMWFicTY3Zw==&f=.m3u8
 
 #EXTINF:0,Discovery Turbo 
 0
 
 #EXTINF:0,Discovery World 
 http://113.160.49.34/lives/origin03/discoveryhd.isml/discoveryhd-2096k.m3u8 
+
+#EXTINF:0,Discovery World 
+http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0yNTQmbGFuPTImcm93cz05OSZzZXNzaW9uPXdxbTE3a2hoMWFicTY3Zw==&f=.m3u8
 
 #EXTINF:0,History Channel 
 https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8?hdnea=ip=174.113.30.187~st=1427694727~exp=1427695327~acl=/i/*~id=a86de0c2-ad09-4469-9a63-6ebbc1bba4d3~hmac=ac144089000bdd16f6916c517ce3e6e04813d4de11ac16839ad468a977ec80b1
@@ -72,7 +78,11 @@ http://hls.svc.moyo.tv/hls/CH_NATGEO/variant.m3u8?version=2
 #EXTINF:0,National Geographic 
 http://185.5.40.101/hls/session-10326907gnZKxnzwfY/CH_NATGEO/variant.m3u8?version=2 
 
-#EXTINF:0,RT News Documentary http://odna.octoshape.net/f3f5m2v4/cds/ch5_auto.smil/playlist.m3u8 
+#EXTINF:0,Planet Green
+http://80.80.160.168/live/4/live.m3u8
+
+#EXTINF:0,RT News Documentary 
+http://odna.octoshape.net/f3f5m2v4/cds/ch5_auto.smil/playlist.m3u8 
 
 #EXTINF:0,RT News Documentary 
 http://odna.octoshape.net/f3f5m2v4/cds/ch5_720p/chunklist.m3u8

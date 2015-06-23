@@ -32,7 +32,7 @@ http://82.135.224.134:80/udp/239.100.3.2:1234
 http://82.135.224.134:80/udp/239.100.3.3:1234
 
 #EXTINF:0,BBC Entertainment 
-0
+http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0xMzAmbGFuPTImcm93cz05OSZzZXNzaW9uPXdxbTE3a2hoMWFicTY3Zw==&f=.m3u8
 
 #EXTINF:0,BET 
 0
@@ -308,13 +308,13 @@ http://93.174.95.125:1935/edge/_definst_/h5eovaj1jeegluq/playlist.m3u8?wowzasess
 http://stream02.yamgo.com/iPhone/HLS_TS/broadcast/victorias_secret_angels-tablet.3gp/victorias_secret_angels-tablet.3gp-mr648k.m3u8
 
 #EXTINF:0,Warner Brothers 
-0
+http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0wOTMmbGFuPTImcm93cz05OSZzZXNzaW9uPXdxbTE3a2hoMWFicTY3Zw==&f=.m3u8
 
 #EXTINF:0,WBCQ TV
 rtmp://stream.connectcast.tv/live playpath=mp4:CC-1C1C4B9C-3479-C277-F6F8-3B3B78E8B46B-21460 swfUrl=http://connectcast.tv/jwplayer/v6.12/jwplayer.flash.swf live=1 pageUrl=http://connectcast.tv/WBCQTV
 
 #EXTINF:0,Wobi 
-0
+http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0yOTMmbGFuPTImcm93cz05OSZzZXNzaW9uPXdxbTE3a2hoMWFicTY3Zw==&f=.m3u8
 
 #EXTINF:0,WPIX 11
 0

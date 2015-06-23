@@ -4,11 +4,20 @@
 #EXTINF:0,24 Sata
 mms://62.162.58.55/24vesti
 
+#EXTINF:0,Alfa 
+http://www.nasatv.eu:80/live?channelId=111&uid=5&deviceUser=amer&devicePass=amer
+
 #EXTINF:0,Al Jazeera Balkan 
 rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
 
+#EXTINF:0,Al Jazeera Balkan 
+http://www.nasatv.eu:80/live?channelId=50&uid=5&deviceUser=amer&devicePass=amer
+
 #EXTINF:0,ATV
 rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
+
+#EXTINF:0,ATV
+http://www.nasatv.eu:80/live?channelId=106&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,B92 
 http://stream.b92.net:7999/tv-b92.ogg
@@ -17,7 +26,7 @@ http://stream.b92.net:7999/tv-b92.ogg
 0
 
 #EXTINF:0,Bn Sat
-0
+http://www.nasatv.eu:80/live?channelId=75&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,CETV
 http://213.81.153.221:8080/cetv
@@ -32,7 +41,7 @@ http://213.81.153.221:8080/cetv
 0
 
 #EXTINF:0,DM SAT
-0
+http://www.nasatv.eu:80/live?channelId=49&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,DUGA
 0
@@ -41,13 +50,13 @@ http://213.81.153.221:8080/cetv
 rtmp://rtmp.elektrika.cz/live/myStream.sdp
 
 #EXTINF:0,Euro Plus
-0
+http://www.nasatv.eu:80/live?channelId=45&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,Grand Narodna
 0
 
 #EXTINF:0,Hayat Folk
-0
+http://www.nasatv.eu:80/live?channelId=46&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,Hayat Plus
 0
@@ -64,8 +73,14 @@ http://213.5.58.58:1935/hrt_live/smil:hrt1.smil/nesto.m3u8
 #EXTINF:0,HRT 2 
 http://213.5.58.58:1935/hrt_live/smil:hrt2.smil/nesto.m3u8
 
+#EXTINF:0,HRT 2 
+http://www.nasatv.eu:80/live?channelId=3&uid=5&deviceUser=amer&devicePass=amer
+
 #EXTINF:0,HRT 3 
 http://213.5.58.58:1935/hrt_live/smil:hrt3.smil/nesto.m3u8
+
+#EXTINF:0,HRT 3 
+http://www.nasatv.eu:80/live?channelId=83&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,HRT 4 
 http://213.5.58.58:1935/hrt_live/smil:hrt4.smil/nesto.m3u8
@@ -158,7 +173,7 @@ http://best.str.n1info.com:8080/stream?channel=n1hdsrb?stream=hd?u=n1info
 mms://176.106.121.32:8080/
 
 #EXTINF:0,OBN 
-0
+http://www.nasatv.eu:80/live?channelId=54&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,OK Bambino
 0
@@ -179,94 +194,133 @@ mms://176.106.121.32:8080/
 0
 
 #EXTINF:0,Pink 1
-0
+http://www.nasatv.eu:80/live?channelId=22&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,Pink 2
-http://str108.setplex.net/fastv_2psh/Pink2global_rly_greece_109/TDB.m3u8
+http://www.nasatv.eu:80/live?channelId=23&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,Pink 3
-http://str108.setplex.net/fastv_2psh/Pink3global_rly_greece_109/TDB.m3u8
+http://www.nasatv.eu:80/live?channelId=24&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,Pink Action 1
-0
+http://www.nasatv.eu:80/live?channelId=64&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,Pink Action 2
-0
+http://www.nasatv.eu:80/live?channelId=25&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,Pink Action 3
-http://str108.setplex.net/fastv_2psh/PinkAction3global_rly_greece_103/TDB.m3u8
+http://www.nasatv.eu:80/live?channelId=26&uid=5&deviceUser=amer&devicePass=amer
+
+#EXTINF:0,Pink BH
+http://www.nasatv.eu:80/live?channelId=38&uid=5&deviceUser=amer&devicePass=amer
+
+#EXTINF:0,Pink Classic
+http://www.nasatv.eu:80/live?channelId=80&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,Pink Comedy
-http://str108.setplex.net/fastv_2psh/PinkComedyglobal_rly_greece_103/TDB.m3u8
+http://www.nasatv.eu:80/live?channelId=4&uid=5&deviceUser=amer&devicePass=amer
+
+#EXTINF:0,Pink Extra
+http://www.nasatv.eu:80/live?channelId=70&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,Pink Family
-http://str108.setplex.net/fastv_2psh/PinkFamilyglobal_rly_greece_103/TDB.m3u8
+http://www.nasatv.eu:80/live?channelId=65&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,Pink Fashion
-http://str108.setplex.net/fastv_2psh/PinkFashionglobal_rly_greece_103/TDB.m3u8
+http://www.nasatv.eu:80/live?channelId=58&uid=5&deviceUser=amer&devicePass=amer
+
+#EXTINF:0,Pink Film
+http://www.nasatv.eu:80/live?channelId=63&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,Pink Folk 1
-http://str108.setplex.net/fastv_2psh/PinkFolk1global_rly_greece_103/TDB.m3u8
+0
 
 #EXTINF:0,Pink Folk 2
-http://str108.setplex.net/fastv_2psh/PinkFolk2global_rly_greece_103/TDB.m3u8
+http://www.nasatv.eu:80/live?channelId=69&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,Pink Horror
-http://str108.setplex.net/fastv_2psh/PinkHorrorglobal_rly_greece_103/TDB.m3u8
+http://www.nasatv.eu:80/live?channelId=31&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,Pink Kids
-http://str108.setplex.net/fastv_2psh/PinkKidsglobal_rly_greece_103/TDB.m3u8
+http://www.nasatv.eu:80/live?channelId=61&uid=5&deviceUser=amer&devicePass=amer
+
+#EXTINF:0,Pink Kuvar
+http://www.nasatv.eu:80/live?channelId=114&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,Pink Live
-http://str108.setplex.net/fastv_2psh/PinkLiveglobal_rly_greece_103/TDB.m3u8
+http://www.nasatv.eu:80/live?channelId=36&uid=5&deviceUser=amer&devicePass=amer
+
+#EXTINF:0,Pink M
+http://www.nasatv.eu:80/live?channelId=71&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,Pink Movies 1
-http://str108.setplex.net/fastv_2psh/PinkMoviesglobal_rly_greece_109/TDB.m3u8
+http://www.nasatv.eu:80/live?channelId=82&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,Pink Movies 2
-0
+http://www.nasatv.eu:80/live?channelId=27&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,Pink Movies 3
-0
+http://www.nasatv.eu:80/live?channelId=28&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,Pink Music 1
-http://str108.setplex.net/fastv_2psh/PinkMusicglobal_rly_greece_103/TDB.m3u8
+http://www.nasatv.eu:80/live?channelId=81&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,Pink Music 2
-http://str108.setplex.net/fastv_2psh/PinkMusic2global_rly_greece_103/TDB.m3u8
+0
 
 #EXTINF:0,Pink Music 3
-http://str108.setplex.net/fastv_2psh/PinkMusic3global_rly_greece_103/TDB.m3u8
+http://www.nasatv.eu:80/live?channelId=35&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,Pink Music 4
-http://str108.setplex.net/fastv_2psh/PinkMusic4global_rly_greece_103/TDB.m3u8
+0
 
 #EXTINF:0,Pink Music 5
-http://str108.setplex.net/fastv_2psh/PinkMusic5global_rly_greece_103/TDB.m3u8
+0
+
+#EXTINF:0,Pink N Roll
+http://www.nasatv.eu:80/live?channelId=7&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,Pink Nostalgia
-http://str108.setplex.net/fastv_2psh/PinkNostalgijaglobal_rly_greece_103/TDB.m3u8
+http://www.nasatv.eu:80/live?channelId=52&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,Pink Pedia
-http://str108.setplex.net/fastv_2psh/PinkPediaglobal_rly_greece_103/TDB.m3u8
+http://www.nasatv.eu:80/live?channelId=33&uid=5&deviceUser=amer&devicePass=amer
+
+#EXTINF:0,Pink Plus
+http://www.nasatv.eu:80/live?channelId=29&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,Pink Premium
-http://str108.setplex.net/fastv_2psh/PinkPremiumglobal_rly_greece_103/TDB.m3u8
+http://www.nasatv.eu:80/live?channelId=5&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,Pink Reality
-http://str108.setplex.net/fastv_2psh/PinkRealityglobal_rly_greece_103/TDB.m3u8
+http://www.nasatv.eu:80/live?channelId=34&uid=5&deviceUser=amer&devicePass=amer
+
+#EXTINF:0,Pink Serije
+http://www.nasatv.eu:80/live?channelId=113&uid=5&deviceUser=amer&devicePass=amer
+
+#EXTINF:0,Pink Show
+http://www.nasatv.eu:80/live?channelId=116&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,Pink Soap
-http://str108.setplex.net/fastv_2psh/PinkSoapglobal_rly_greece_103/TDB.m3u8
+http://www.nasatv.eu:80/live?channelId=32&uid=5&deviceUser=amer&devicePass=amer
+
+#EXTINF:0,Pink Style
+http://www.nasatv.eu:80/live?channelId=57&uid=5&deviceUser=amer&devicePass=amer
+
+#EXTINF:0,Pink Super Kids
+http://www.nasatv.eu:80/live?channelId=115&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,Pink Western
-http://str108.setplex.net/fastv_2psh/PinkWesternglobal_rly_greece_103/TDB.m3u8
+http://www.nasatv.eu:80/live?channelId=56&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,Pink World
-http://str108.setplex.net/fastv_2psh/PinkWorldglobal_rly_greece_109/TDB.m3u8
+http://www.nasatv.eu:80/live?channelId=6&uid=5&deviceUser=amer&devicePass=amer
+
+#EXTINF:0,Pink World Cinema
+http://www.nasatv.eu:80/live?channelId=112&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,Pink Zabava
-http://str108.setplex.net/fastv_2psh/PinkZabavaglobal_rly_greece_103/TDB.m3u8
+http://www.nasatv.eu:80/live?channelId=62&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,Planet TV
 rtsp://origin.biokoda.tv/live/mbit-planet?k=planettv-public
@@ -280,23 +334,29 @@ rtsp://195.252.113.40/rts
 #EXTINF:0,PTC 
 mmsh://195.252.113.38:80/rts?MSWMExt=.asf
 
+#EXTINF:0,PTC 
+http://www.nasatv.eu:80/live?channelId=8&uid=5&deviceUser=amer&devicePass=amer
+
 #EXTINF:0,PTC 1
-0
+http://www.nasatv.eu:80/live?channelId=12&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,PTC 2
-0
+http://www.nasatv.eu:80/live?channelId=13&uid=5&deviceUser=amer&devicePass=amer
+
+#EXTINF:0,PTC 2
+http://www.nasatv.eu:80/live?channelId=55&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,PRVA
-0
+http://www.nasatv.eu:80/live?channelId=72&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,RTB TV
 0
 
 #EXTINF:0,RTL 1
-0
+http://www.nasatv.eu:80/live?channelId=14&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,RTL 2
-0
+http://www.nasatv.eu:80/live?channelId=15&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,RTL Kockica
 0
@@ -323,7 +383,7 @@ http://213.81.153.221:8080/ruzinov
 http://92.53.27.201:10000/
 
 #EXTINF:0,SOS TV
-0
+http://www.nasatv.eu:80/live?channelId=20&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,Sprotska TV
 0
@@ -341,7 +401,7 @@ http://88.212.10.27:81/streams/stv2.m3u8
 0
 
 #EXTINF:0,Student Televizija
-rtmp://213.202.73.202/iskon/studentska_b3.stream
+0
 
 #EXTINF:0,TA3
 0
@@ -356,7 +416,7 @@ mms://beotelmedia.beotel.net/tvcg
 mms://195.252.114.172/tvcg
 
 #EXTINF:0,TV Istra
-0
+http://www.nasatv.eu:80/live?channelId=40&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,Uskana
 0
@@ -365,10 +425,7 @@ mms://195.252.114.172/tvcg
 mms://62.162.58.55/24vesti
 
 #EXTINF:0,Vizion Plus 
-rtmp://live.vizionplus.tv/live//livestream3
-
-#EXTINF:0,Vizion Plus 
-rtmp://live.vizionplus.tv/live//livestream2
+0
 
 #EXTINF:0,Zdrava TV
 0
