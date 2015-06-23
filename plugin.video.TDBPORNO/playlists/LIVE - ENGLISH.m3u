@@ -10,6 +10,15 @@ http://wowza1.videos.movile.com:8080/live/smil:adulto_1.smil/media-b1100000_2400
 #EXTINF:0,ADULT CHANNEL 
 http://wowza1.videos.movile.com:8080/live/smil:adultopremium_1.smil/playlist.m3u8
 
+#EXTINF:0,ADULT CHANNEL 
+http://210.200.79.26:1935/live/aracity03/playlist.m3u8
+
+#EXTINF:0,ADULT CHANNEL 
+http://199.195.195.108:32005
+
+#EXTINF:0,ADULT CHANNEL 
+http://199.195.195.108:32006
+
 #EXTINF:0,BELLA CLUB 
 rtsp://46.249.213.87/broadcast/bellaluz-tablet.3gp
 
@@ -41,7 +50,7 @@ http://94.23.117.92:8000/live/sonia/sonia/360.ts
 http://94.23.117.92:8000/live/sonia/sonia/361.ts
 
 #EXTINF:0,BRAZZERS TV EUROPE 
-0
+http://hlsstr01.svc.iptv.rt.ru/hls/CH_BRAZZERSTV/variant.m3u8?version=2
 
 #EXTINF:0,BUNGA BUNGA 
 0
@@ -61,6 +70,9 @@ rtmp://edge2.everyon.tv/etv2sb/pld772
 #EXTINF:0,DORCEL TV 
 http://62.210.82.241:8081/sexzonehd/sexzonehd/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9NS8yMC8yMDE1IDEyOjIwOjQzIEFNJmhhc2hfdmFsdWU9bXdZbnIwM2V4NE5jNXY4YnpNb2dtZz09JnZhbGlkbWludXRlcz0zMDA=
 
+#EXTINF:0,DREAMGIRLS NETWORK
+http://188.93.18.237:1935/tv/3460/playlist.m3u8
+
 #EXTINF:0,EROTIC TV 
 0
 
@@ -75,6 +87,9 @@ http://62.210.82.241:8081/sexzonehd/sexzonehd/playlist.m3u8?wmsAuthSign=c2VydmVy
 
 #EXTINF:0,FRENCHLOVER 
 0
+
+#EXTINF:0,HOT SHOTS
+http://46.249.213.93/iPhone/HLS_TS/broadcast/hotshots-tablet.3gp/hotshots-tablet.3gp-mr649k.m3u8
 
 #EXTINF:0,HUSTLER HD 
 0
@@ -94,8 +109,12 @@ rtmp://109.71.162.112:1935/live/sd.jasminchannel.stream
 #EXTINF:0,MIAMI TV 
 rtmp://74.208.69.207/live/miamitvhd
 
+#EXTINF:0,MIAMI TV 
+http://k4.usastreams.com:1935/miamitv/miamitv/chunklist_w128908539.m3u8
+
 #EXTINF:0,NUBILE FILMS 
 http://188.165.220.116:8081/live/33/playlist.m3u8 
+
 #EXTINF:0,NUART 
 0
 
@@ -107,6 +126,9 @@ http://hlsstr04.svc.iptv.rt.ru/hls/CH_OLALA/variant.m3u8?version=2
 
 #EXTINF:0,O LA LA 
 http://94.23.117.92:8000/live/sonia/sonia/242.ts
+
+#EXTINF:0,O LA LA 
+http://185.5.40.101/hls/session-4677617QfHCCZsLqE/CH_OLALA/bw1758000/variant.m3u8?version=1
 
 #EXTINF:0,Passie XXX
 http://publish.thewebstream.co:1935/leved/_definst_/passiexxx/playlist.m3u8
@@ -152,6 +174,9 @@ http://hlsstr01.svc.iptv.rt.ru/hls/CH_RUSSIANNIGHT/variant.m3u8?version=2
 
 #EXTINF:0,RUSSIAN NIGHT 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_RUSSIANNIGHT/variant.m3u8?version=2
+
+#EXTINF:0,RUSSIAN NIGHT 
+http://46.61.226.19/hls/CH_RUSSIANNIGHT/bw1500000/variant.m3u8?version=2
 
 #EXTINF:0,RUSSIAN NIGHT CLUB TV 
 0

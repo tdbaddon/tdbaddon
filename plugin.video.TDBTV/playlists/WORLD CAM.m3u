@@ -1,7 +1,6 @@
 ﻿#EXTM3U
 
 
-
 #EXTINF:0,5th Avenue New York
 http://video1.earthcam.com:1935/fecnetwork/fridays_5th.flv/hasbahca.m3u8
 
@@ -17,6 +16,12 @@ http://video1.earthcam.com/fecnetwork/4280.flv/hasbahca.m3u8
 #EXTINF:0,Bourbon Street New Orleans 
 http://video1.earthcam.com:1935/fecnetwork/4282.flv/hasbahca.m3u8
 
+#EXTINF:0,Bucuti Beach Aruba
+http://video1.earthcam.com/fecnetwork/4646.flv/HasBahCa.m3u8
+
+#EXTINF:0,Daytona Beach Florida
+http://video1.earthcam.com/fecnetwork/5718.flv/HasBahCa.m3u8
+
 #EXTINF:0,Elephant Safari Indonesia 
 http://video1.earthcam.com:1935/fecnetwork/4338.flv/hasbahca.m3u8
 
@@ -25,6 +30,9 @@ http://video1.earthcam.com:1935/fecnetwork/4337.flv/hasbahca.m3u8
 
 #EXTINF:0,Fish Tank 
 rtmp://80.93.53.88:1935/live/channel_3
+
+#EXTINF:0,Fort Lauderdale Florida
+http://video1.earthcam.com/fecnetwork/windjammerHD2.flv/HasBahCa.m3u8
 
 #EXTINF:0,LA Hollywood Blvd California 
 http://video1.earthcam.com/fecnetwork/lacitytours1.flv/hasbahca.m3u8
@@ -59,6 +67,9 @@ http://video1.earthcam.com:1935/fecnetwork/4017timessquare.flv/hasbahca.m3u8
 #EXTINF:0,NY Times Square Street View
 http://video1.earthcam.com/fecnetwork/hdtimes11.flv/hasbahca.m3u8
 
+#EXTINF:0,Panda Cam Atlanta Georgia
+http://video1.earthcam.com/fecnetwork/pandacam.flv/HasBahCa.m3u8
+
 #EXTINF:0,Paterson Falls New Jersey
 http://video1.earthcam.com:1935/fecnetwork/4918.flv/hasbahca.m3u8
 
@@ -68,6 +79,12 @@ http://video1.earthcam.com/fecnetwork/6603.flv/hasbahca.m3u8
 #EXTINF:0,Santa Monica Beach California 
 http://video1.earthcam.com/fecnetwork/6253.flv/hasbahca.m3u8
 
+#EXTINF:0,Sedona Red Rock Arizona
+http://video4.earthcam.com/fecnetwork/sedonawebcam.flv/playlist.m3u8
+
+#EXTINF:0,Sedona Red Rock Arizona
+http://video1.earthcam.com/fecnetwork/5805.flv/HasBahCa.m3u8
+
 #EXTINF:0,Shark Tank
 http://iphone-streaming.ustream.tv/uhls/14812707/streams/live/iphone/playlist.m3u8 
 
@@ -76,4 +93,11 @@ http://video1.earthcam.com:1935/fecnetwork/statueoflibertyHD.flv/hasbahca.m3u8
 
 #EXTINF:0,The Temple Bar Ireland
 http://video1.earthcam.com:1935/fecnetwork/4054.flv/hasbahca.m3u8
+
+#EXTINF:0,Tokyo Japan
+http://video4.earthcam.com/fecnetwork/tokyo1.flv/playlist.m3u8
+
+
+
+
 

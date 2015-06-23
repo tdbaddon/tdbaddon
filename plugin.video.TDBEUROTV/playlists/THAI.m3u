@@ -18,7 +18,7 @@ http://202.170.127.178:1935/dcinode001/astvtotv.sdp/playlist.m3u8
 http://210.1.60.208:1935/live/bang.sdp/chunklist.m3u8
 
 #EXTINF:0,Bayon News
-0
+http://live.khmer.be:1935/live/BayonNews/HasBahCa.m3u8
 
 #EXTINF:0,Block A
 0
@@ -63,7 +63,7 @@ rtsp://202.142.207.150:1935/live/livesabaidee1
 rtmp://202.142.207.150/live//livesabaidee1
 
 #EXTINF:0,TVK
-0
+http://live.khmer.be:1935/live/TVK/HasBahCa.m3u8
 
 #EXTINF:0,White Channel
 http://27.254.44.112/whitechannellive2/whitechannellive2/playlist.m3u8
@@ -76,31 +76,6 @@ http://radio2.thaidhost.com:8888/muslimonair1/live/playlist.m3u8
 
 #EXTINF:0,Yellow TV
 rtmp://yellow.ether.tv/live/thailand/broadcast18
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

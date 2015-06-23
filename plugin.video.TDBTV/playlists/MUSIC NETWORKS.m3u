@@ -8,7 +8,7 @@ http://rrr.sz.xlcdn.com/?account=AATW&file=akanew&type=live&service=wowza&protoc
 http://ooyalahd2-f.akamaihd.net/i/globalradio01_delivery@156521/index_656_av-p.m3u8?sd=10&rebase=on
 
 #EXTINF:0,Clubland
-http://ngx.cr1.streamzilla.xlcdn.com/session/d3f93c964eeb4571da18bc61d43731bd/sz/AATW/wowza4/live/clublandtv/playlist.m3u8?token=drGlTaRpxhITy2XQTYBazw&time=1433585299
+http://rrr.sz.xlcdn.com/?account=AATW&file=clublandtv&type=live&service=wowza&protocol=http&output=playlist.m3u8
 
 #EXTINF:0,Clubbing TV 
 http://204.107.26.252:1935/live/691.high.stream/HasBahCa.m3u8
@@ -20,7 +20,7 @@ http://46.249.213.87/iPhone/broadcast/clubbingtv-tablet.3gp/clubbingtv-tablet.3g
 http://87.239.31.232/hls/230.3.4.169.sd.stream.m3u8?b?b*t$
 
 #EXTINF:0,Deluxe Music 
-0
+rtmp://flash1.ipercast.net/deluxemusic.tv/mp4:staging/120131-love-lounge-catchup.mp4.mp4
 
 #EXTINF:0,Djing Hot Tracks 
 http://www.djing.com/tv/hothothot.m3u8
@@ -53,8 +53,7 @@ rtmp://stream.smcloud.net/live2/eska_rock/eska_rock_720p
 rtmp://stream.smcloud.net/live2/eska_rock/eska_rock_480p
 
 #EXTINF:0,Gothic Rock TV 
-0
-
+http://149.11.34.6:1935/live/gotica.stream/playlist.m3u8 
 #EXTINF:0,Heart TV 
 http://ooyalahd2-f.akamaihd.net/i/globalradio02_delivery@156522/master.m3u8
 
@@ -67,9 +66,6 @@ rtmp://91.201.78.3:1935/live/jazzhd
 #EXTINF:0,MTV 
 rtmp://83.218.202.202/live swfUrl=http://webtv.md/swf/WebTV.swf playpath=wt_mtv.stream
 
-#EXTINF:0,MTV 
-http://142.4.216.60:1935:1935/edge/_definst_/d2z1vc4ahrl6x26/playlist.m3u8?wowzasessionid=1420171062&xs=_we_ZDJ6MXZjNGFocmw2eDI2fDE0MjAyMDcwNjJ8NzIuMjcuMjE0LjMzfDU0YTYxNzM2OGE4ODl8NDAyY2I4NjFkNzk5YmY5ZTA5MzFlZTEyZTQ1NTBiOWY5OGQ1NzQ4OQ timeout=10
-
 #EXTINF:0,MTV Dance 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVDANCE/variant.m3u8
 
@@ -78,9 +74,6 @@ http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVHITS/variant.m3u8
 
 #EXTINF:0,MTV Live 
 http://46.61.226.18/hls/CH_C03_MTVLIVEHD/bw3000000/variant.m3u8?version=2
-
-#EXTINF:0,MTV Live 
-http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT00MzAmbGFuPTImcm93cz05OSZzZXNzaW9uPXdxbTE3a2hoMWFicTY3Zw==&f=.m3u8
 
 #EXTINF:0,MTV Rocks 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVROCKS/variant.m3u8
@@ -95,7 +88,7 @@ rtmp://stream.smcloud.net/live2/vox/vox_480p
 rtmp://fms.105.net/live/rmc1
 
 #EXTINF:0,Real Jamaica TV
-http://rjr_flash-lh.akamaihd.net/i/retvD_1@39668/master.m3u8
+0
 
 #EXTINF:0,Rock 66 
 http://mediatv2.topix.it/24RockOne66
@@ -115,14 +108,8 @@ http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/06/prog_index.m3u8
 #EXTINF:0,VH1 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_VH1EUROPEAN/variant.m3u8
 
-#EXTINF:0,VH1 
-http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT00MzgmbGFuPTImcm93cz05OSZzZXNzaW9uPXdxbTE3a2hoMWFicTY3Zw==&f=.m3u8
-
 #EXTINF:0,VH1 Classics
 http://92.50.181.6/tv/1282/index.m3u8
-
-#EXTINF:0,VH1 Classics 
-http://gogo.jksw.cz:8024/
 
 #EXTINF:0,VH1 Shuffle
 0

@@ -8,8 +8,7 @@ http://abclive.abcnews.com/i/abc_live4@136330/index_1200_av-b.m3u8
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/aljazeera_en/ls_satlink/b_528.m3u8%20#
 
 #EXTINF:0,BBC World News 
-0
-
+http://93.184.221.133/hls-live/20C1A9/bbc_world/ls_satlink/b_828.m3u8 
 #EXTINF:0,Bloomberg TV 
 http://btv-i.akamaihd.net/hls/live/202760-b/btvusa_ios/P1/M12K.m3u8
 
