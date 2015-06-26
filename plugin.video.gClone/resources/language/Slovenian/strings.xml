@@ -33,7 +33,7 @@
 	<String id="30030">Info Predvajanja</String>
 	<String id="30040">Filmi</String>
 	<String id="30041">TV</String>
-	<String id="30060">Gostiteljev HD</String>
+	<String id="30060">Gostitelji HD</String>
     <String id="30061">Gostitelji SD</String>
     <String id="30071">Prioriteta 1</String>
     <String id="30072">Prioriteta 2</String>
@@ -94,7 +94,7 @@
     <String id="30316">Napaka!</String>
     <String id="30317">Končano!</String>
     <!-- YesNo -->
-    <String id="30341">Niste nastavili mapo za prenos.</String>
+    <String id="30341">Niste nastavili mape za prenos.</String>
     <String id="30342">Ali želite, septembra pa zdaj?</String>
     <String id="30343">Video poskušate prenesti,a že obstaja.</String>
     <String id="30344">Ali želite ponovno prenesti?</String>
@@ -112,7 +112,7 @@
     <!-- ContextMenu -->
     <String id="30401">Queue postavka</String>
     <String id="30402">Prenos videa</String>
-    <String id="30403">Označi kot nepogledane</String>
+    <String id="30403">Označi kot Negledane</String>
     <String id="30404">Označi kot Gledano</String>
     <String id="30405">Dodaj med Priljubljene</String>
     <String id="30406">Odstrani iz Priljubljenih</String>
@@ -137,7 +137,7 @@
     <String id="30425">Dodaj</String>
     <String id="30426">Odstrani iz</String>
     <!-- Opis -->
-    <String id="30450">Začetki streaming </ String>
+    <String id="30450">Začetek streaminga </ String>
     <!-- Etikete -->
     <String id="30501">Filmi</String>
     <String id="30502">TV Oddaje</String>

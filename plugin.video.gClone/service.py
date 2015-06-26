@@ -2,7 +2,7 @@
 
 '''
     gClone Add-on
-    Copyright (C) 2015 lambda
+    Copyright (C) 2015 NVTTeam
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by

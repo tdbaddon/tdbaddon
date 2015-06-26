@@ -72,11 +72,17 @@ http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVDANCE/variant.m3u8
 #EXTINF:0,MTV Hits 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVHITS/variant.m3u8
 
+#EXTINF:0,MTV Hits 
+http://194.44.229.77:777/udp/237.1.238.1:1234
+
 #EXTINF:0,MTV Live 
 http://46.61.226.18/hls/CH_C03_MTVLIVEHD/bw3000000/variant.m3u8?version=2
 
 #EXTINF:0,MTV Rocks 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVROCKS/variant.m3u8
+
+#EXTINF:0,MTV Rocks 
+http://194.44.229.77:777/udp/237.1.239.73:1234
 
 #EXTINF:0,MusicVoxTV 
 rtmp://stream.smcloud.net/live2/vox/vox_720p
@@ -107,6 +113,9 @@ http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/06/prog_index.m3u8
 
 #EXTINF:0,VH1 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_VH1EUROPEAN/variant.m3u8
+
+#EXTINF:0,VH1 
+http://194.44.229.77:777/udp/237.1.239.20:1234
 
 #EXTINF:0,VH1 Classics
 http://92.50.181.6/tv/1282/index.m3u8

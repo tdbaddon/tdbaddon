@@ -109,7 +109,7 @@ class main:
         elif action == 'root_movies':                 root().movies()
         elif action == 'root_shows':                  root().shows()
         elif action == 'root_calendar':               root().calendar()
-        elif action == 'root_genesis':                root().gClone()
+        elif action == 'root_gClone':                 root().gClone()
         elif action == 'root_tools':                  root().tools()
         elif action == 'root_search':                 root().search()
         elif action == 'root_library':                root().library()

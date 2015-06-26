@@ -50,19 +50,20 @@ http://hlsstr02.svc.iptv.rt.ru/hls/CH_BOOMERANG/variant.m3u8
 http://5.128.118.163:7777/udp/239.1.3.3:1234
 
 #EXTINF:0,Cartoon Network 
-http://91.205.164.201:8181/udp/239.1.5.10:1234
-
-#EXTINF:0,Cartoon Network 
 http://hls.svc.moyo.tv/hls/CH_CARTOON/variant.m3u8?version=2
 
 #EXTINF:0,Cartoon Network 
 http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD28_W_250.sdp/playlist.m3u8
+
+#EXTINF:0,Cartoon Network 
+http://194.44.229.77:777/udp/237.1.239.97:1234
 
 #EXTINF:0,Cbeebies
 0
 
 #EXTINF:0,CBS 
 http://93.174.95.125:1935/edge/_definst_/vp4q2gonwzh2dku/chunklist.m3u8?wowzasessionid=1419872048 
+
 #EXTINF:0,CBS Action 
 0
 
@@ -127,13 +128,16 @@ http://93.174.95.125:1935/edge/_definst_/qc6xkzf4h48bz2e/playlist.m3u8?wowzasess
 0
 
 #EXTINF:0,Fox Life 
-0
+http://194.44.229.77:777/udp/237.1.239.74:1234
 
 #EXTINF:0,Fox TV 
 rtmp://rtmp.zerocast.tv/goLive/ playpath=9pxGCtP3aEnJYgoBFFH8 swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 pageUrl=http://zerocast.tv/embed token=OOG17t.x#K9Vh#|
 
 #EXTINF:0,Fox TV 
 http://93.174.95.125:1935/edge/_definst_/yuu6p5oaa1x4a1p/playlist.m3u8?wowzasessionid=1419906680
+
+#EXTINF:0,Fox TV 
+http://194.44.229.77:777/udp/237.1.239.72:1234
 
 #EXTINF:0,FX
 0
@@ -146,6 +150,7 @@ http://link.theplatform.com/s/dtjsEC/77l1KA_G_5P1?feed=DEV%20Live%20Stream%20Fee
 
 #EXTINF:0,Global TV Halifax 
 http://link.theplatform.com/s/dtjsEC/77l1KA_G_5P1?feed=DEV%20Live%20Stream%20Feed 
+
 #EXTINF:0,Global TV Toronto 
 http://207.223.2.93/s/dtjsEC/hdSH3iztz_j_?feed=DEV%20Live%20Stream%20Feed/playlist.m3u8
 
@@ -153,7 +158,8 @@ http://207.223.2.93/s/dtjsEC/hdSH3iztz_j_?feed=DEV%20Live%20Stream%20Feed/playli
 http://link.theplatform.com/s/dtjsEC/hdSH3iztz_j_?feed=DEV%20Live%20Stream%20Feed/playlist.m3u8
 
 #EXTINF:0,Global TV Toronto 
-http://link.theplatform.com/s/dtjsEC/hdSH3iztz_j_?feed=DEV%20Live%20Stream%20Feed 
+http://link.theplatform.com/s/dtjsEC/hdSH3iztz_j_?feed=DEV%20Live%20Stream%20Feed
+ 
 #EXTINF:0,Global TV Vancouver 
 http://207.223.2.93/s/dtjsEC/EqBPGYLY6fEx?feed=DEV%20Live%20Stream%20Feed/playlist.m3u8
 
@@ -194,7 +200,7 @@ http://212.250.46.35:4252/bysid/9605
 rtmp://jtvmedia.jtv.com:1975/live playpath=live6 swfUrl=http://demandware.edgesuite.net/aaby_prd/on/demandware.static/Sites-jtv-Site/-/default/v1410110388581/swf/flashMediaPlayer/StrobeMediaPlayback.swf live=1 pageUrl=http://www.jtv.com/on/demandware.store/Sites-jtv-Site/default/LiveViewer-Show
 
 #EXTINF:0,Jim Jam 
-0
+http://194.44.229.77:777/udp/237.1.239.96:1234
 
 #EXTINF:0,Lifetime Network 
 0
@@ -211,9 +217,6 @@ http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
 #EXTINF:0,NBC 
 http://93.174.95.125:1935/edge/_definst_/kjgkefh6la1di6g/playlist.m3u8?wowzasessionid=1419879103
 
-#EXTINF:0,NBC 
-http://93.174.95.125:1935/edge/_definst_/s5whw37nl7weedp/playlist.m3u8?wowzasessionid=1420124473
-
 #EXTINF:0,Nick 
 0
 
@@ -221,7 +224,7 @@ http://93.174.95.125:1935/edge/_definst_/s5whw37nl7weedp/playlist.m3u8?wowzasess
 0
 
 #EXTINF:0,Nickelodeon 
-http://91.205.164.201:8181/udp/239.1.5.8:1234
+http://194.44.229.77:777/udp/237.1.239.14:1234
 
 #EXTINF:0,NickNight 
 0
@@ -266,13 +269,10 @@ http://93.174.95.125:1935/edge/_definst_/sax2mq2alpirnww/playlist.m3u8?wowzasess
 0
 
 #EXTINF:0,Syfy 
-http://93.174.95.125:1935/edge/_definst_/oepz9q5oivflbcw/playlist.m3u8?wowzasessionid=1419878403
+0
 
 #EXTINF:0,TBS 
 http://93.174.95.125:1935/edge/_definst_/jh8nj062bqbsxdh/playlist.m3u8?wowzasessionid=1419878319
-
-#EXTINF:0,TBS 
-rtmp://rtmp.zerocast.tv/goLive/RhMi9RdAAt7fpq8H3qZh swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 pageUrl=http://zerocast.tv/embed token=OOG17t.x#K9Vh#|
 
 #EXTINF:0,The Shopping Channel 
 http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/master.m3u8?b?b*t$ 
@@ -282,6 +282,12 @@ http://93.174.95.125:1935/edge/_definst_/iugceoy4o6ljhck/playlist.m3u8?wowzasess
 
 #EXTINF:0,TLC 
 http://80.80.160.168/live/2/live.m3u8
+
+#EXTINF:0,TLC 
+http://194.44.229.77:777/udp/237.1.238.13:1234
+
+#EXTINF:0,TLC 
+http://194.44.229.77:777/udp/237.1.239.23:1234
 
 #EXTINF:0,TNT 
 http://93.174.95.125:1935/edge/_definst_/7uz4als3nigi0j3/playlist.m3u8?wowzasessionid=1420124827
@@ -304,28 +310,28 @@ http://93.174.95.125:1935/edge/_definst_/uhnr4161ybioa5w/playlist.m3u8?wowzasess
 0
 
 #EXTINF:0,USA Network 
-http://93.174.95.125:1935/edge/_definst_/h5eovaj1jeegluq/playlist.m3u8?wowzasessionid=1420170509
+0
 
 #EXTINF:0,Vernnissage TV 
-0
+http://149.11.34.6:1935/live/vernissagetv.stream/hasbahca.m3u8
 
 #EXTINF:0,Victoria Secret TV
 http://stream02.yamgo.com/iPhone/HLS_TS/broadcast/victorias_secret_angels-tablet.3gp/victorias_secret_angels-tablet.3gp-mr648k.m3u8
 
 #EXTINF:0,Warner Brothers 
-http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0wOTMmbGFuPTImcm93cz05OSZzZXNzaW9uPXdxbTE3a2hoMWFicTY3Zw==&f=.m3u8
+0
 
 #EXTINF:0,WBCQ TV
-rtmp://stream.connectcast.tv/live playpath=mp4:CC-1C1C4B9C-3479-C277-F6F8-3B3B78E8B46B-21460 swfUrl=http://connectcast.tv/jwplayer/v6.12/jwplayer.flash.swf live=1 pageUrl=http://connectcast.tv/WBCQTV
+0
 
 #EXTINF:0,Wobi 
-http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0yOTMmbGFuPTImcm93cz05OSZzZXNzaW9uPXdxbTE3a2hoMWFicTY3Zw==&f=.m3u8
+0
 
 #EXTINF:0,WPIX 11
 0
 
 #EXTINF:0,Yes!
-http://uneapple-i.akamaihd.net/hls/live/205010/grupoune_st1@205010/st1_index.m3u8 
+0
 
 
 

@@ -23,17 +23,16 @@ http://113.160.49.34/lives/origin03/cinemaxsd.isml/cinemaxsd-1096k.m3u8
 0
 
 #EXTINF:0,CMore Emotion
-http://188.138.9.228:8025
+0
 
 #EXTINF:0,CMore First
-http://188.138.9.228:8024
+0
 
 #EXTINF:0,CMore Hits
 0
 
 #EXTINF:0,CMore Series
-http://188.138.9.228:8021
-
+0
 
 #EXTINF:0,Film Zone
 0
@@ -213,10 +212,13 @@ http://113.160.49.34/lives/origin03/moviehd.isml/moviehd-2096k.m3u8
 0
 
 #EXTINF:0,TV 1000 
-0
+http://194.44.229.77:777/udp/237.1.238.17:1234
 
 #EXTINF:0,TV 1000 Action
 http://195.78.244.219:10000/udp/239.0.3.27:1234
+
+#EXTINF:0,TV 1000 Action
+http://194.44.229.77:777/udp/237.1.238.18:1234
 
 
 
