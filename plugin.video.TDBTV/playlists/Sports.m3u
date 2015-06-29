@@ -67,6 +67,9 @@ http://hlsstr04.svc.iptv.rt.ru/hls/CH_EUROSPORTNEWS/variant.m3u8
 #EXTINF:0,Fox Sports 
 http://113.160.49.34/lives/origin03/foxhd.isml/foxhd-2096k.m3u8
 
+#EXTINF:0,Fox Sports 
+rtmp://kv2.ts33.net/sat/us011
+
 #EXTINF:0,Fox Sports 1 
 0
 

@@ -62,6 +62,9 @@ http://113.160.49.34/lives/origin03/discoveryhd.isml/discoveryhd-2096k.m3u8
 http://194.44.229.77:777/udp/237.1.239.93:1234
 
 #EXTINF:0,History Channel 
+http://93.174.95.125:1935/edge/_definst_/dhp0rpd116qyyj6/playlist.m3u8?wowzasessionid=1419874554
+
+#EXTINF:0,History Channel 
 https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8?hdnea=ip=174.113.30.187~st=1427694727~exp=1427695327~acl=/i/*~id=a86de0c2-ad09-4469-9a63-6ebbc1bba4d3~hmac=ac144089000bdd16f6916c517ce3e6e04813d4de11ac16839ad468a977ec80b1
 
 #EXTINF:0,History Channel 
@@ -86,6 +89,9 @@ http://194.44.229.77:777/udp/237.1.239.21:1234
 
 #EXTINF:0,National Geographic 
 http://hls.svc.moyo.tv/hls/CH_NATGEO/variant.m3u8?version=2
+
+#EXTINF:0,National Geographic 
+http://93.174.95.125:1935/edge/_definst_/b8bav5ayzso8m8q/playlist.m3u8?wowzasessionid=1420170282
 
 #EXTINF:0,National Geographic 
 http://185.5.40.101/hls/session-10326907gnZKxnzwfY/CH_NATGEO/variant.m3u8?version=2 
