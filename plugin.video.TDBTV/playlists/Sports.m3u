@@ -41,10 +41,10 @@ http://87.245.214.43/streaming/futbol/16/tvrec/playlist.m3u8
 0
 
 #EXTINF:0,ESPN 
-rtmp://141.255.160.202:1935/stream/ playpath=1Kq68GX6Kc.stream swfUrl=http://thecdn.04stream.com/p/ooolo1.swf pageUrl=http://www.04stream.com/ebb.php?adsp=other&width=600&height=460&st=24g3z5b4d4t4w3x2x4h5n244z294u2u28424w2u2w2t223f4&adx=&stream=54y2n5i57494y264d4k544b4v2a494n244v4n4y2w2i304c4x4l5t22433y234y2x2p2t274y2z32363y3q2x4y5b4e4f3v3c4t4i2k4j4v5k474n33574a414p4h4z33456t226c4n424r2p2z294b434h5233314y2k5b4a4j5u24494j5s244v264338444d4y2z264b494m56434t2y3s2p224r2p2o2&sooor=NA==&str=is&ok=&cat=2&link=1&idom=www.gofeed2all.eu token=%ZZri(nKa@#Z
+http://80.80.160.168/live/6/live.m3u8
 
 #EXTINF:0,ESPN 
-http://80.80.160.168/live/6/live.m3u8
+rtmp://141.255.160.202:1935/stream/ playpath=1Kq68GX6Kc.stream swfUrl=http://thecdn.04stream.com/p/ooolo1.swf pageUrl=http://www.04stream.com/ebb.php?adsp=other&width=600&height=460&st=24g3z5b4d4t4w3x2x4h5n244z294u2u28424w2u2w2t223f4&adx=&stream=54y2n5i57494y264d4k544b4v2a494n244v4n4y2w2i304c4x4l5t22433y234y2x2p2t274y2z32363y3q2x4y5b4e4f3v3c4t4i2k4j4v5k474n33574a414p4h4z33456t226c4n424r2p2z294b434h5233314y2k5b4a4j5u24494j5s244v264338444d4y2z264b494m56434t2y3s2p224r2p2o2&sooor=NA==&str=is&ok=&cat=2&link=1&idom=www.gofeed2all.eu token=%ZZri(nKa@#Z
 
 #EXTINF:0,ESPN 2 
 0
@@ -66,9 +66,6 @@ http://hlsstr04.svc.iptv.rt.ru/hls/CH_EUROSPORTNEWS/variant.m3u8
 
 #EXTINF:0,Fox Sports 
 http://113.160.49.34/lives/origin03/foxhd.isml/foxhd-2096k.m3u8
-
-#EXTINF:0,Fox Sports 
-rtmp://kv2.ts33.net/sat/us011
 
 #EXTINF:0,Fox Sports 1 
 0
@@ -167,22 +164,22 @@ mms://100automoto.tv/channel_porsche
 0
 
 #EXTINF:0,Setanta Sports 
-http://80.77.52.6:4394/udp/230.0.4.1:12345
+0
 
 #EXTINF:0,Sky Sports 1 
-rtmp://178.18.31.57:443/liverepeater playpath=195085 swfUrl=http://bernardotv.club/secure1.swf live=1 pageUrl=http://biggestplayer.me/streamcr.php?id=195085 token=deadreallysoon%%7
+http://144.76.3.83/sky_sports1gb.m3u8?bandwidth=956&token=205e6dc135bf9e7fe3da60d6ba052211&user=35430&playlistlength=25&os=browser
 
 #EXTINF:0,Sky Sports 2 
-rtmp://178.18.31.61:443/liverepeater playpath=195086 swfUrl=http://bernardotv.club/secure1.swf live=1 pageUrl=http://biggestplayer.me/streamcr.php?id=195086 token=deadreallysoon%%7
+0
 
 #EXTINF:0,Sky Sports 3 
 0
 
 #EXTINF:0,Sky Sports 4 
-rtmp://178.18.31.61:443/liverepeater playpath=195376 swfUrl=http://bernardotv.club/secure1.swf live=1 pageUrl=http://biggestplayer.me/streamcr.php?id=195376 token=deadreallysoon%%7
+0
 
 #EXTINF:0,Sky Sports 5 
-rtmp://178.18.31.52:443/liverepeater playpath=195087 swfUrl=http://bernardotv.club/secure1.swf live=1 pageUrl=http://biggestplayer.me/streamcr.php?id=195087 token=deadreallysoon%%7
+0
 
 #EXTINF:0,Sky Sports F1 
 0
@@ -200,7 +197,7 @@ http://nlds187.cdnak.neulion.com/nlds/sportsnetnow/sn_360/as/live/sn_360_hd_ipad
 0
 
 #EXTINF:0,Sportsnet World 
-
+0
 
 #EXTINF:0,Sports Tonight 
 rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9-HD
@@ -218,7 +215,7 @@ http://113.160.49.34/lives/origin03/starsportsd.isml/starsportsd-1096k.m3u8
 0
 
 #EXTINF:0,TSN 2 
-0
+http://195.154.227.38:1935/Iive/tsn2lsh/playlist.m3u8
 
 #EXTINF:0,TSN 3 
 0
@@ -227,10 +224,10 @@ http://113.160.49.34/lives/origin03/starsportsd.isml/starsportsd-1096k.m3u8
 0
 
 #EXTINF:0,TSN 5 
-0
+http://195.154.227.38:1935/Iive/tsn5lsh/playlist.m3u8
 
 #EXTINF:0,Viasat Golf 
-http://hlsstr04.svc.iptv.rt.ru/hls/CH_C06_VIASATGOLFHD/variant.m3u8 
+0
 
 #EXTINF:0,Viasat Sport
 http://194.44.229.77:777/udp/237.1.238.9:1234

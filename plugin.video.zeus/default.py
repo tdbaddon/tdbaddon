@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-ZeusStreamVersion = "V1.0.1"
-ZeusStreamDate = "17/06/2015 12:00hrs GMT"
+ZeusStreamVersion = "V1.0.2"
+ZeusStreamDate = "01/06/2015 13:00hrs GMT"
 
 '''
     ZEUS Add-on
@@ -42,7 +42,7 @@ localizedString = Addon.getLocalizedString
 
 LocalisedReplay = 'aHR0cDovL2xpdmVmb290YmFsbHZpZGVvLmNvbS8='
 Raw = base64.decodestring('aHR0cDovL3Bhc3RlYmluLmNvbS9yYXcucGhwP2k9')
-ZeusAlpha = 'http://zeusrepo.com/alpha/central?link='
+ZeusAlpha = 'http://zeusrepo.com/alpha/central.php?link='
 ZeusLink = 'http://zeusrepo.com/'
 LibDBLink = base64.decodestring('aHR0cDovL2ltdmRiLmNvbS8=')
 ZeusHome = str(base64.decodestring('aHR0cDovL3pldXMudmlkZW8vdXBkYXRlcy9ob21lLnBocA=='))
@@ -55,7 +55,7 @@ HTMLPattern = "<(.*?)>"
 
 resolve_url=['180upload', 'my.mail.ru','streamin.to', '2gbhosting', 'alldebrid', 'allmyvideos', 'auengine', 'bayfiles', 'bestreams', 'billionuploads', 'castamp', 'cheesestream', 'clicktoview', 'cloudy', 'crunchyroll', 'cyberlocker', 'daclips', 'dailymotion', 'divxstage', 'donevideo', 'ecostream', 'entroupload', 'exashare', 'facebook', 'filebox', 'filenuke', 'flashx', 'gorillavid', 'hostingbulk', 'hostingcup', 'hugefiles', 'jumbofiles', 'lemuploads', 'limevideo', 'megarelease', 'megavids', 'mightyupload', 'mooshare_biz', 'movdivx', 'movpod', 'movreel', 'movshare', 'movzap', 'mp4stream', 'mp4upload', 'mrfile', 'muchshare', 'nolimitvideo', 'nosvideo', 'novamov', 'nowvideo', 'ovfile', 'play44_net', 'played', 'playwire', 'premiumize_me', 'primeshare', 'promptfile', 'purevid', 'putlocker', 'rapidvideo', 'realdebrid', 'rpnet', 'seeon', 'sharedsx', 'sharefiles', 'sharerepo', 'sharesix', 'sharevid', 'skyload', 'slickvid', 'sockshare', 'stagevu', 'stream2k', 'streamcloud', 'teramixer', 'thefile', 'thevideo', 'trollvid', 'tubeplus', 'tunepk', 'ufliq', 'uploadc', 'uploadcrazynet', 'veeHD', 'veoh', 'vidbull', 'vidcrazynet', 'video44', 'videobb', 'videoboxone', 'videofun', 'videomega', 'videoraj', 'videotanker', 'videovalley', 'videoweed', 'videozed', 'videozer', 'vidhog', 'vidpe', 'vidplay', 'vidspot', 'vidstream', 'vidto', 'vidup_org', 'vidxden', 'vidzi', 'vidzur', 'vimeo', 'vk', 'vodlocker', 'vureel', 'watchfreeinhd', 'xvidstage', 'yourupload', 'youwatch', 'zalaa', 'zooupload', 'zshare']
 g_ignoreSetResolved=['plugin.video.dramasonline','plugin.video.f4mTester','plugin.video.shahidmbcnet','plugin.video.SportsDevil','plugin.stream.vaughnlive.tv','plugin.video.ZemTV-shani']
-DirectoryMSG = "[B][COLOR gold]INFORMATION[/COLOR][/B]"
+DirectoryMSG = "[B][COLOR gold]DONATE TODAY[/COLOR][/B]"
 
 net = Net(user_agent='Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.72 Safari/537.36')
 headers = {
@@ -575,7 +575,7 @@ def StreamUFC(name,url,thumb):
         Notify('small','ZEUS VIDEO Sorry Link Removed:', 'Please try another one.',9000)
 		   
 def AddInfoLink():
-    AddDir(DirectoryMSG,'chin-info', 6, "http://s6.postimg.org/z7f6zttwh/info.png", isFolder=True)
+    AddDir(DirectoryMSG,'chin-info', 6, "http://s6.postimg.org/fr7wa8azl/donate.png", isFolder=True)
 	
 
 def PlayVimeo(url):
@@ -1913,7 +1913,7 @@ def cleanlink(link):
     return data
 
 def ReportFaultDiag():
-    xbmcgui.Dialog().ok('Zeus Video Support', 'For reporting faults, suggestions or general support',' ', 'Go to http://zeus.video')
+    xbmcgui.Dialog().ok('Zeus Video Support', 'For reporting faults, suggestions, general support',' ', 'or donations go to http://zeus.video')
 	
 def UpdateMe():
     dp = xbmcgui.DialogProgress()
@@ -1944,7 +1944,7 @@ def UpdateMe():
     dp.update(100)       
     dp.close()
        
-    xbmcgui.Dialog().ok('Zeus Video', 'Updated. A reboot of Kodi/XBMC may be required', '   ', 'Donation website: http://tvip.xyz')
+    xbmcgui.Dialog().ok('Zeus Video Updated', 'A reboot may be required', '   ', 'Support News & updates go to http://zeus.video')
 	
 def RemoveFavorties(url):
 	list = common.ReadList(favoritesFile) 
@@ -2039,13 +2039,19 @@ def playsetresolved(url,name,iconimage):
     
     try:
         xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
-        xbmc.sleep(10000)
     except:
         pass
 
-    if xbmc.Player().isPlaying():
-        Popit = 'alpha/chin-chan?zeusn=' + urllib.quote_plus(name) + '&zeusl=' + urllib.quote_plus(url)
-        ZeusGetContent(ZeusLink + Popit)
+     
+    if '[COLOR lime]' in name:
+        name = name.replace("[COLOR lime]","").replace("[/COLOR]","")
+        xbmc.sleep(20000)
+        if xbmc.Player().isPlaying():
+           Popit = 'alpha/chin-chan.php?zeusn=' + urllib.quote_plus(name) + '&zeusl=' + urllib.quote_plus(url)
+           ZeusGetContent(ZeusLink + Popit)
+        else:
+           Popit = 'alpha/chin-chandown.php?zeusn=' + urllib.quote_plus(name) + '&zeusl=' + urllib.quote_plus(url)
+           ZeusGetContent(ZeusLink + Popit)
 
 	
 def regex_from_to(text, from_string, to_string, excluding=True):

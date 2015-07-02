@@ -41,16 +41,13 @@ http://video1.earthcam.com/fecnetwork/lacitytours1.flv/hasbahca.m3u8
 http://video1.earthcam.com/fecnetwork/eclasvegas.flv/hasbahca.m3u8
 
 #EXTINF:0,Lax Airport
-rtmp://cp154688.live.edgefcs.net:1935/live playpath=KTTV_N2@2717 swfUrl=http://www.myfoxla.com/[[IMPORT]]/players.edgesuite.net/flash/plugins/osmf/advanced-streaming-plugin/v2.11/osmf1.5/fp10.1/AkamaiAdvancedStreamingPlugin.swf live=1 pageUrl=http://www.myfoxla.com/category/261142/live-lax-airport-webcam
+0
 
 #EXTINF:0,Moscow Skyline
 http://video1.earthcam.com:1935/fecnetwork/moscowHD1.flv/hasbahca.m3u8
 
 #EXTINF:0,NASA ISS 
 0
-
-#EXTINF:0,Niagra Falls 
-mms://webcams.niagarafallshotels.com/CNH-Stream2
 
 #EXTINF:0,Niagra Falls 
 rtsp://video1.earthcam.com/fecnetwork/4559.flv
@@ -61,17 +58,17 @@ http://video1.earthcam.com/fecnetwork/hdtimes10.flv/hasbahca.m3u8
 #EXTINF:0,NY Times Square Crossroads
 http://video1.earthcam.com/fecnetwork/4717.flv/hasbahca.m3u8
 
-#EXTINF:0,NY Times Square South View
+#EXTINF:0,NY Times Square South View 
 http://video1.earthcam.com:1935/fecnetwork/4017timessquare.flv/hasbahca.m3u8
 
-#EXTINF:0,NY Times Square Street View
+#EXTINF:0,NY Times Square Street View 
 http://video1.earthcam.com/fecnetwork/hdtimes11.flv/hasbahca.m3u8
 
 #EXTINF:0,Panda Cam Atlanta Georgia
 http://video1.earthcam.com/fecnetwork/pandacam.flv/HasBahCa.m3u8
 
 #EXTINF:0,Paterson Falls New Jersey
-http://video1.earthcam.com:1935/fecnetwork/4918.flv/hasbahca.m3u8
+0
 
 #EXTINF:0,San Francisco Alcatraz
 http://video1.earthcam.com/fecnetwork/6603.flv/hasbahca.m3u8

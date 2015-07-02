@@ -10,14 +10,14 @@ http://80.80.160.168/live/1/live.m3u8
 #EXTINF:0,Animal Planet 
 http://194.44.229.77:777/udp/237.1.239.18:1234
 
+#EXTINF:0,Animal Planet 
+http://best-shqip-iptv.blogdns.com/stream/animalplanet/Zyrija-Jusufi0603/jusufizyrija0603
+
 #EXTINF:0,Crime Investigation 
 0
 
 #EXTINF:0,Da Vinci Learning
 0
-
-#EXTINF:0,Discovery Channel 
-http://113.160.49.34/lives/origin03/discoverysd.isml/discoverysd.m3u8
 
 #EXTINF:0,Discovery Channel 
 http://93.174.95.125:1935/edge/_definst_/ishyd3sopok3p27/playlist.m3u8?wowzasessionid=1419872569
@@ -28,6 +28,9 @@ http://80.80.160.168/live/8/live.m3u8
 #EXTINF:0,Discovery Channel 
 http://194.44.229.77:777/udp/237.1.239.16:1234
 
+#EXTINF:0,Discovery Channel 
+http://best-shqip-iptv.blogdns.com/stream/discovery/Zyrija-Jusufi0603/jusufizyrija0603
+
 #EXTINF:0,Discovery History 
 0
 
@@ -37,14 +40,11 @@ http://194.44.229.77:777/udp/237.1.239.16:1234
 #EXTINF:0,Discovery Investigation 
 http://80.80.160.168/live/5/live.m3u8
 
-#EXTINF:0,Discovery Investigation
-http://194.44.229.77:777/udp/237.1.239.92:1234
+#EXTINF:0,Discovery Investigation 
+http://62.210.89.38:1935/liverepeat/discivil377/discivil377/live.m3u8
 
 #EXTINF:0,Discovery Science 
 http://80.80.160.168/live/9/live.m3u8
-
-#EXTINF:0,Discovery Science 
-http://194.44.229.77:777/udp/237.1.239.94:1234
 
 #EXTINF:0,Discovery Showcase
 0
@@ -56,10 +56,7 @@ http://194.44.229.77:777/udp/237.1.239.94:1234
 0
 
 #EXTINF:0,Discovery World 
-http://113.160.49.34/lives/origin03/discoveryhd.isml/discoveryhd-2096k.m3u8 
-
-#EXTINF:0,Discovery World 
-http://194.44.229.77:777/udp/237.1.239.93:1234
+0
 
 #EXTINF:0,History Channel 
 http://93.174.95.125:1935/edge/_definst_/dhp0rpd116qyyj6/playlist.m3u8?wowzasessionid=1419874554
@@ -71,10 +68,14 @@ https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8?hdnea=ip=174.113.
 http://link.theplatform.com/s/dtjsEC/chjdYJxKb44V?manifest=m3u&feed=History%20Live%20Stream%20Feed
 
 #EXTINF:0,History Channel 
+http://best-shqip-iptv.blogdns.com/stream/history/Zyrija-Jusufi0603/jusufizyrija0603
+
+#EXTINF:0,History Channel 
 http://194.44.229.77:777/udp/237.1.238.12:1234
 
 #EXTINF:0,NASA TV 
 http://nasatv-lh.akamaihd.net/i/NASA_101@319270/master.m3u8 
+
 #EXTINF:0,Nat Geo People 
 0
 
@@ -102,14 +103,14 @@ http://194.44.229.77:777/udp/237.1.238.10:1234
 #EXTINF:0,National Geographic 
 http://194.44.229.77:777/udp/237.1.239.22:1234
 
+#EXTINF:0,National Geographic 
+http://best-shqip-iptv.blogdns.com/stream/national/Zyrija-Jusufi0603/jusufizyrija0603
+
 #EXTINF:0,Planet Green
 http://80.80.160.168/live/4/live.m3u8
 
 #EXTINF:0,RT News Documentary 
 http://odna.octoshape.net/f3f5m2v4/cds/ch5_auto.smil/playlist.m3u8 
-
-#EXTINF:0,RT News Documentary 
-http://odna.octoshape.net/f3f5m2v4/cds/ch5_720p/chunklist.m3u8
 
 #EXTINF:0,Travel Channel 
 http://80.80.160.168/live/3/live.m3u8
@@ -123,11 +124,20 @@ http://195.78.244.219:10000/udp/239.0.3.30:1234
 #EXTINF:0,Viasat History 
 http://195.78.244.219:10000/udp/239.0.3.31:1234
 
+#EXTINF:0,Viasat History 
+http://best-shqip-iptv.blogdns.com/stream/cinestar/Zyrija-Jusufi0603/jusufizyrija0603
+
+#EXTINF:0,Viasat History 
+http://best-shqip-iptv.blogdns.com/stream/viasathistory/Zyrija-Jusufi0603/jusufizyrija0603
+
 #EXTINF:0,Viasat Nature 
 http://195.78.244.219:10000/udp/239.0.3.28:1234
 
 #EXTINF:0,Viasat Nature 
 http://194.44.229.77:777/udp/237.1.238.19:1234
+
+#EXTINF:0,Viasat Nature 
+http://best-shqip-iptv.blogdns.com/stream/viasatnature/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,World Travel Channel
 0

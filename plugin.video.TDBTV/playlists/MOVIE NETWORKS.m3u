@@ -7,6 +7,9 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mp4
 #EXTINF:0,Cinemax 
 http://113.160.49.34/lives/origin03/cinemaxsd.isml/cinemaxsd-1096k.m3u8
 
+#EXTINF:0,Cinemax 
+http://best-shqip-iptv.blogdns.com/stream/Cinemax/Zyrija-Jusufi0603/jusufizyrija0603
+
 #EXTINF:0,Cinestar Action & Thriller 
 0
 
@@ -23,16 +26,16 @@ http://113.160.49.34/lives/origin03/cinemaxsd.isml/cinemaxsd-1096k.m3u8
 0
 
 #EXTINF:0,CMore Emotion
-http://188.138.9.228:8025
+0
 
 #EXTINF:0,CMore First
-http://188.138.9.228:8024
+0
 
 #EXTINF:0,CMore Hits
-http://188.138.9.228:8020
+0
 
 #EXTINF:0,CMore Series
-http://188.138.9.228:8021
+0
 
 #EXTINF:0,Film Zone
 0
@@ -69,6 +72,12 @@ rtmp://94.102.49.207/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to
 
 #EXTINF:0,HBO 
 rtmp://89.248.168.57/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to/player/secure_player_iguide_embed_token.swf pageUrl=http://www.iguide.to/ token=#ed%h0#w18623jsda6523lDGD
+
+#EXTINF:0,HBO 
+http://best-shqip-iptv.blogdns.com/stream/hboadria/Zyrija-Jusufi0603/jusufizyrija0603
+
+#EXTINF:0,HBO 
+http://best-shqip-iptv.blogdns.com/stream/hbocomedy/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,MBC 2 
 http://63.237.48.3/ios/MBC2/MBC2.m3u8
@@ -113,31 +122,31 @@ http://63.237.48.23/ios/MBC_MAX/MBC_MAX.m3u8
 0
 
 #EXTINF:0,Pink Action 2
-0
+http://best-shqip-iptv.blogdns.com/stream/pinkaction2/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,Pink Action 3
-0
+http://best-shqip-iptv.blogdns.com/stream/pinkaction3/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,Pink Classic
 0
 
 #EXTINF:0,Pink Comedy
-0
+http://best-shqip-iptv.blogdns.com/stream/PinkComedy/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,Pink Horror
-0
+http://best-shqip-iptv.blogdns.com/stream/pinkhoror/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,Pink M
-0
+http://best-shqip-iptv.blogdns.com/stream/PinkM/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,Pink Movies 1
 0
 
 #EXTINF:0,Pink Movies 2
-0
+http://best-shqip-iptv.blogdns.com/stream/pinkmovie2/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,Pink Movies 3
-0
+http://best-shqip-iptv.blogdns.com/stream/pinkmovie3/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,Pink Horror
 0
@@ -146,13 +155,7 @@ http://63.237.48.23/ios/MBC_MAX/MBC_MAX.m3u8
 0
 
 #EXTINF:0,SciFi
-0
-
-#EXTINF:0,Showtime 
-http://93.174.95.125:1935/edge/_definst_/bwbop58ixz281wv/playlist.m3u8?wowzasessionid=1419875151
-
-#EXTINF:0,Showtime 
-http://93.174.95.125:1935/edge/_definst_/s53jbkmyldngbks/playlist.m3u8?wowzasessionid=1419873587
+http://best-shqip-iptv.blogdns.com/stream/scifi/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,Showtime 
 http://80.80.160.168/live/7/live.m3u8
@@ -182,7 +185,7 @@ http://80.80.160.168/live/7/live.m3u8
 0
 
 #EXTINF:0,Sky Movies Premiere 
-0
+http://136.243.12.170/sky_moviespremiere_gb.m3u8?bandwidth=956&token=64d72c0aa1b059d2492bec590e0e729d&user=35430&playlistlength=25&os=browser
 
 #EXTINF:0,Sky Movies Premiere+
 0
@@ -217,10 +220,13 @@ http://113.160.49.34/lives/origin03/moviehd.isml/moviehd-2096k.m3u8
 #EXTINF:0,TV 1000 
 http://194.44.229.77:777/udp/237.1.238.17:1234
 
-#EXTINF:0,TV 1000 Action
+#EXTINF:0,TV 1000 
+http://best-shqip-iptv.blogdns.com/stream/tv1000/Zyrija-Jusufi0603/jusufizyrija0603
+
+#EXTINF:0,TV 1000 Action 
 http://195.78.244.219:10000/udp/239.0.3.27:1234
 
-#EXTINF:0,TV 1000 Action
+#EXTINF:0,TV 1000 Action 
 http://194.44.229.77:777/udp/237.1.238.18:1234
 
 

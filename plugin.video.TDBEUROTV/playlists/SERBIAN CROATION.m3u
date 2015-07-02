@@ -11,6 +11,9 @@ http://www.nasatv.eu:80/live?channelId=111&uid=5&deviceUser=amer&devicePass=amer
 rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
 
 #EXTINF:0,Al Jazeera Balkan 
+http://best-shqip-iptv.blogdns.com/stream/AlJazeeraBalkans/Zyrija-Jusufi0603/jusufizyrija0603
+
+#EXTINF:0,Al Jazeera Balkan 
 http://www.nasatv.eu:80/live?channelId=50&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,ATV
@@ -22,11 +25,17 @@ http://www.nasatv.eu:80/live?channelId=106&uid=5&deviceUser=amer&devicePass=amer
 #EXTINF:0,B92 
 http://stream.b92.net:7999/tv-b92.ogg
 
+#EXTINF:0,B92 
+http://best-shqip-iptv.blogdns.com/stream/b92/Zyrija-Jusufi0603/jusufizyrija0603
+
 #EXTINF:0,BKTV
 0
 
 #EXTINF:0,Bn Sat
 http://www.nasatv.eu:80/live?channelId=75&uid=5&deviceUser=amer&devicePass=amer
+
+#EXTINF:0,Bn Sat
+http://best-shqip-iptv.blogdns.com/stream/bnsat/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,CETV
 http://213.81.153.221:8080/cetv
@@ -35,13 +44,16 @@ http://213.81.153.221:8080/cetv
 0
 
 #EXTINF:0,CMC
-0
+http://best-shqip-iptv.blogdns.com/stream/cmc/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,DMC
 0
 
 #EXTINF:0,DM SAT
 http://www.nasatv.eu:80/live?channelId=49&uid=5&deviceUser=amer&devicePass=amer
+
+#EXTINF:0,DM SAT
+http://best-shqip-iptv.blogdns.com/stream/dmsat/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,DUGA
 0
@@ -53,13 +65,13 @@ rtmp://rtmp.elektrika.cz/live/myStream.sdp
 http://www.nasatv.eu:80/live?channelId=45&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,Grand Narodna
-0
+http://best-shqip-iptv.blogdns.com/stream/grandtv/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,Hayat Folk
 http://www.nasatv.eu:80/live?channelId=46&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,Hayat Plus
-0
+http://best-shqip-iptv.blogdns.com/stream/hayatbih/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,Hema 
 mms://77.238.209.50:1234
@@ -70,11 +82,17 @@ mms://77.238.209.50:1234
 #EXTINF:0,HRT 1 
 http://213.5.58.58:1935/hrt_live/smil:hrt1.smil/nesto.m3u8
 
+#EXTINF:0,HRT 1 
+http://best-shqip-iptv.blogdns.com/stream/hrt1/Zyrija-Jusufi0603/jusufizyrija0603
+
 #EXTINF:0,HRT 2 
 http://213.5.58.58:1935/hrt_live/smil:hrt2.smil/nesto.m3u8
 
 #EXTINF:0,HRT 2 
 http://www.nasatv.eu:80/live?channelId=3&uid=5&deviceUser=amer&devicePass=amer
+
+#EXTINF:0,HRT 2 
+http://best-shqip-iptv.blogdns.com/stream/hrt2/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,HRT 3 
 http://213.5.58.58:1935/hrt_live/smil:hrt3.smil/nesto.m3u8
@@ -82,8 +100,14 @@ http://213.5.58.58:1935/hrt_live/smil:hrt3.smil/nesto.m3u8
 #EXTINF:0,HRT 3 
 http://www.nasatv.eu:80/live?channelId=83&uid=5&deviceUser=amer&devicePass=amer
 
+#EXTINF:0,HRT 3 
+http://best-shqip-iptv.blogdns.com/stream/hrt3/Zyrija-Jusufi0603/jusufizyrija0603
+
 #EXTINF:0,HRT 4 
 http://213.5.58.58:1935/hrt_live/smil:hrt4.smil/nesto.m3u8
+
+#EXTINF:0,HRT 4 
+http://best-shqip-iptv.blogdns.com/stream/hrt4/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,Iris 
 mms://62.162.58.55/TVIris
@@ -161,7 +185,7 @@ http://best.str.n1info.com:8080/stream?channel=n1hdsrb?stream=hd?u=n1info
 0
 
 #EXTINF:0,Nova TV 
-0
+http://best-shqip-iptv.blogdns.com/stream/novatv/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,Novisad 1
 0
@@ -174,6 +198,9 @@ mms://176.106.121.32:8080/
 
 #EXTINF:0,OBN 
 http://www.nasatv.eu:80/live?channelId=54&uid=5&deviceUser=amer&devicePass=amer
+
+#EXTINF:0,OBN 
+http://best-shqip-iptv.blogdns.com/stream/obn/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,OK Bambino
 0
@@ -194,10 +221,10 @@ http://www.nasatv.eu:80/live?channelId=54&uid=5&deviceUser=amer&devicePass=amer
 0
 
 #EXTINF:0,Pink 1
-0
+http://best-shqip-iptv.blogdns.com/stream/pink/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,Pink 2
-0
+http://best-shqip-iptv.blogdns.com/stream/pink2/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,Pink 3
 0
@@ -206,13 +233,13 @@ http://www.nasatv.eu:80/live?channelId=54&uid=5&deviceUser=amer&devicePass=amer
 0
 
 #EXTINF:0,Pink Action 2
-0
+http://best-shqip-iptv.blogdns.com/stream/pinkaction2/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,Pink Action 3
-0
+http://best-shqip-iptv.blogdns.com/stream/pinkaction3/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,Pink BH
-0
+http://best-shqip-iptv.blogdns.com/stream/pinkbih/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,Pink Classic
 0
@@ -221,7 +248,7 @@ http://www.nasatv.eu:80/live?channelId=54&uid=5&deviceUser=amer&devicePass=amer
 0
 
 #EXTINF:0,Pink Extra
-0
+http://best-shqip-iptv.blogdns.com/stream/pinkextra/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,Pink Family
 0
@@ -230,16 +257,16 @@ http://www.nasatv.eu:80/live?channelId=54&uid=5&deviceUser=amer&devicePass=amer
 0
 
 #EXTINF:0,Pink Film
-0
+http://best-shqip-iptv.blogdns.com/stream/pinkfilm/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,Pink Folk 1
-0
+http://best-shqip-iptv.blogdns.com/stream/pinkfolk/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,Pink Folk 2
-0
+http://best-shqip-iptv.blogdns.com/stream/PinkFolk2/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,Pink Horror
-0
+http://best-shqip-iptv.blogdns.com/stream/pinkhoror/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,Pink Kids
 0
@@ -248,19 +275,19 @@ http://www.nasatv.eu:80/live?channelId=54&uid=5&deviceUser=amer&devicePass=amer
 0
 
 #EXTINF:0,Pink Live
-0
+http://best-shqip-iptv.blogdns.com/stream/pinklive/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,Pink M
-0
+http://best-shqip-iptv.blogdns.com/stream/PinkM/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,Pink Movies 1
 0
 
 #EXTINF:0,Pink Movies 2
-0
+http://best-shqip-iptv.blogdns.com/stream/pinkmovie2/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,Pink Movies 3
-0
+http://best-shqip-iptv.blogdns.com/stream/pinkmovie3/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,Pink Music 1
 0
@@ -269,7 +296,7 @@ http://www.nasatv.eu:80/live?channelId=54&uid=5&deviceUser=amer&devicePass=amer
 0
 
 #EXTINF:0,Pink Music 3
-0
+http://best-shqip-iptv.blogdns.com/stream/PinkMusic3/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,Pink Music 4
 0
@@ -284,16 +311,16 @@ http://www.nasatv.eu:80/live?channelId=54&uid=5&deviceUser=amer&devicePass=amer
 0
 
 #EXTINF:0,Pink Pedia
-0
+http://best-shqip-iptv.blogdns.com/stream/pinkpedia/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,Pink Plus
-0
+http://best-shqip-iptv.blogdns.com/stream/PinkPlus/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,Pink Premium
-0
+http://best-shqip-iptv.blogdns.com/stream/pinkpremium/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,Pink Reality
-0
+http://best-shqip-iptv.blogdns.com/stream/pinkreality/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,Pink Serije
 0
@@ -302,7 +329,7 @@ http://www.nasatv.eu:80/live?channelId=54&uid=5&deviceUser=amer&devicePass=amer
 0
 
 #EXTINF:0,Pink Soap
-0
+http://best-shqip-iptv.blogdns.com/stream/PinkSoap/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,Pink Style
 0
@@ -314,13 +341,13 @@ http://www.nasatv.eu:80/live?channelId=54&uid=5&deviceUser=amer&devicePass=amer
 0
 
 #EXTINF:0,Pink World
-0
+http://best-shqip-iptv.blogdns.com/stream/PinkWorld/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,Pink World Cinema
 0
 
 #EXTINF:0,Pink Zabava
-0
+http://best-shqip-iptv.blogdns.com/stream/pinkzabava/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,Planet TV
 rtsp://origin.biokoda.tv/live/mbit-planet?k=planettv-public
@@ -359,10 +386,10 @@ http://www.nasatv.eu:80/live?channelId=14&uid=5&deviceUser=amer&devicePass=amer
 http://www.nasatv.eu:80/live?channelId=15&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,RTL Kockica
-0
+http://best-shqip-iptv.blogdns.com/stream/RtlKockica/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,RTL Televizija
-0
+http://best-shqip-iptv.blogdns.com/stream/rtl/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,RTL Plus
 0

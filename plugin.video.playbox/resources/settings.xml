@@ -1,0 +1,8 @@
+<settings>
+<category label="Settings">
+    <setting id="kidmode" type="bool" label="Enable Kids Mode" default="false"/>
+	<setting id="auto-view" type="bool" label="Enable Automatic View" default="false"/>
+	<setting id="default" type="number" label="Default" default="50" enable="!eq(-1,false)"/>
+	<setting id="movies" type="number" label="Movie Link View" default="500" enable="!eq(-1,false)"/>
+</category>
+</settings>

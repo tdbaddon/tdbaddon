@@ -53,7 +53,8 @@ rtmp://stream.smcloud.net/live2/eska_rock/eska_rock_720p
 rtmp://stream.smcloud.net/live2/eska_rock/eska_rock_480p
 
 #EXTINF:0,Gothic Rock TV 
-http://149.11.34.6:1935/live/gotica.stream/playlist.m3u8 
+0
+
 #EXTINF:0,Heart TV 
 http://ooyalahd2-f.akamaihd.net/i/globalradio02_delivery@156522/master.m3u8
 
@@ -65,6 +66,9 @@ rtmp://91.201.78.3:1935/live/jazzhd
 
 #EXTINF:0,MTV 
 rtmp://83.218.202.202/live swfUrl=http://webtv.md/swf/WebTV.swf playpath=wt_mtv.stream
+
+#EXTINF:0,MTV 
+http://best-shqip-iptv.blogdns.com/stream/mtvadria/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,MTV Dance 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVDANCE/variant.m3u8

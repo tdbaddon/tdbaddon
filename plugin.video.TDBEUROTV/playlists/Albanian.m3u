@@ -26,6 +26,9 @@ rtmp://188.138.17.8:1935/albuk/albuk+.stream
 0
 
 #EXTINF:0,Al Jazeera Balkan 
+http://best-shqip-iptv.blogdns.com/stream/AlJazeeraBalkans/Zyrija-Jusufi0603/jusufizyrija0603
+
+#EXTINF:0,Al Jazeera Balkan 
 rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
 
 #EXTINF:0,Alsat M 
@@ -48,6 +51,9 @@ rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
 
 #EXTINF:0,B92 
 http://stream.b92.net:7999/tv-b92.ogg
+
+#EXTINF:0,B92 
+http://best-shqip-iptv.blogdns.com/stream/b92/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,Balkan TV
 rtmp://yayin.tvdunyasi.tv/live/balkanrtv

@@ -17,7 +17,10 @@ http://93.174.95.125:1935/edge/_definst_/oeiigxxv1gbeqq9/playlist.m3u8?wowzasess
 0
 
 #EXTINF:0,AXN 
-0
+http://best-shqip-iptv.blogdns.com/stream/axn/Zyrija-Jusufi0603/jusufizyrija0603
+
+#EXTINF:0,AXN 
+http://best-shqip-iptv.blogdns.com/stream/axnspin/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,BabyTV 
 http://hlsstr03.svc.iptv.rt.ru/hls/CH_BABYTV/bw480000/variant.m3u8?version=2
@@ -56,9 +59,6 @@ http://hls.svc.moyo.tv/hls/CH_CARTOON/variant.m3u8?version=2
 http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD28_W_250.sdp/playlist.m3u8
 
 #EXTINF:0,Cartoon Network 
-http://194.44.229.77:777/udp/237.1.239.97:1234
-
-#EXTINF:0,Cartoon Network 
 http://54.255.155.24:1935//Live/_definst_/sweetbcha1novD28_W_150.sdp/playlist.m3u8
 
 #EXTINF:0,Cbeebies
@@ -80,7 +80,7 @@ http://93.174.95.125:1935/edge/_definst_/vp4q2gonwzh2dku/chunklist.m3u8?wowzases
 rtmp://54.85.197.21:1935/live/news live=1 timeout=15
 
 #EXTINF:0,Comedy Central 
-http://188.138.9.228:8022
+0
 
 #EXTINF:0,CTV Edmonton
 http://198.179.31.198/live/2053.high.stream/2053.high.stream/index.m3u8
@@ -95,7 +95,7 @@ http://198.179.31.198/live/2056.high.stream/2056.high.stream/index.m3u8
 http://198.179.31.198/live/2062.high.stream/2062.high.stream/index.m3u8
 
 #EXTINF:0,CW 
-http://93.174.95.125:1935/edge/_definst_/qvvkvojlano9hnj/playlist.m3u8?wowzasessionid=1419903868
+0
 
 #EXTINF:0,Disney Channel 
 0
@@ -128,18 +128,18 @@ http://pebbles124-lh.akamaihd.net/i/film4_1@137790/master.m3u8|X-Forwarded-For=8
 http://93.174.95.125:1935/edge/_definst_/qc6xkzf4h48bz2e/playlist.m3u8?wowzasessionid=1419873022
 
 #EXTINF:0,Fox Crime
-0
+http://best-shqip-iptv.blogdns.com/stream/foxcrime/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,Fox Life 
-http://194.44.229.77:777/udp/237.1.239.74:1234
+http://best-shqip-iptv.blogdns.com/stream/foxlife/Zyrija-Jusufi0603/jusufizyrija0603
 
-#EXTINF:0,Fox TV 
+#EXTINF:0,Fox TV A
 rtmp://rtmp.zerocast.tv/goLive/ playpath=9pxGCtP3aEnJYgoBFFH8 swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 pageUrl=http://zerocast.tv/embed token=OOG17t.x#K9Vh#|
 
-#EXTINF:0,Fox TV 
+#EXTINF:0,Fox TV B
 http://93.174.95.125:1935/edge/_definst_/yuu6p5oaa1x4a1p/playlist.m3u8?wowzasessionid=1419906680
 
-#EXTINF:0,Fox TV 
+#EXTINF:0,Fox TV C
 http://194.44.229.77:777/udp/237.1.239.72:1234
 
 #EXTINF:0,FX
@@ -151,26 +151,17 @@ http://207.223.2.93/s/dtjsEC/77l1KA_G_5P1?feed=DEV%20Live%20Stream%20Feed/playli
 #EXTINF:0,Global TV Halifax 
 http://link.theplatform.com/s/dtjsEC/77l1KA_G_5P1?feed=DEV%20Live%20Stream%20Feed/playlist.m3u8
 
-#EXTINF:0,Global TV Halifax 
-http://link.theplatform.com/s/dtjsEC/77l1KA_G_5P1?feed=DEV%20Live%20Stream%20Feed 
-
 #EXTINF:0,Global TV Toronto 
 http://207.223.2.93/s/dtjsEC/hdSH3iztz_j_?feed=DEV%20Live%20Stream%20Feed/playlist.m3u8
 
 #EXTINF:0,Global TV Toronto 
 http://link.theplatform.com/s/dtjsEC/hdSH3iztz_j_?feed=DEV%20Live%20Stream%20Feed/playlist.m3u8
-
-#EXTINF:0,Global TV Toronto 
-http://link.theplatform.com/s/dtjsEC/hdSH3iztz_j_?feed=DEV%20Live%20Stream%20Feed
  
 #EXTINF:0,Global TV Vancouver 
 http://207.223.2.93/s/dtjsEC/EqBPGYLY6fEx?feed=DEV%20Live%20Stream%20Feed/playlist.m3u8
 
 #EXTINF:0,Global TV Vancouver 
 http://link.theplatform.com/s/dtjsEC/EqBPGYLY6fEx?feed=DEV%20Live%20Stream%20Feed/playlist.m3u8
-
-#EXTINF:0,Global TV Vancouver 
-http://link.theplatform.com/s/dtjsEC/EqBPGYLY6fEx?feed=DEV%20Live%20Stream 
 
 #EXTINF:0,Hallmark Channel 
 http://93.174.95.125:1935/edge/_definst_/v4ynnryunsoxzbq/playlist.m3u8?wowzasessionid=1419874236
@@ -190,8 +181,17 @@ http://ios.streamserver01.com:8080/ShowcaseTV/mystream.m3u8
 #EXTINF:0,ITV 1 
 http://82.135.224.134:80/udp/239.100.3.6:1234
 
+#EXTINF:0,ITV 1 
+http://78.129.175.72/live/itvbe/itvbe.m3u8
+
+#EXTINF:0,ITV 1 
+http://144.76.3.83/itv1_gb.m3u8?bandwidth=956&token=ef343f63c395c6ffaf389d2810848ff7&user=35430&playlistlength=25&os=browser
+
 #EXTINF:0,ITV 2 
 http://78.129.175.72/live/itv2/itv2.m3u8
+
+#EXTINF:0,ITV 2 
+http://204.107.27.136/live/67.low.stream/67.low.stream/index.m3u8
 
 #EXTINF:0,ITV 3 
 http://212.250.46.35:4252/bysid/9605
@@ -203,7 +203,7 @@ http://212.250.46.35:4252/bysid/9605
 rtmp://jtvmedia.jtv.com:1975/live playpath=live6 swfUrl=http://demandware.edgesuite.net/aaby_prd/on/demandware.static/Sites-jtv-Site/-/default/v1410110388581/swf/flashMediaPlayer/StrobeMediaPlayback.swf live=1 pageUrl=http://www.jtv.com/on/demandware.store/Sites-jtv-Site/default/LiveViewer-Show
 
 #EXTINF:0,Jim Jam 
-http://194.44.229.77:777/udp/237.1.239.96:1234
+0
 
 #EXTINF:0,Lifetime Network 
 http://93.174.95.125:1935/edge/_definst_/7b2gr554gyyth8e/playlist.m3u8?wowzasessionid=1419879018
@@ -212,7 +212,7 @@ http://93.174.95.125:1935/edge/_definst_/7b2gr554gyyth8e/playlist.m3u8?wowzasess
 http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
 
 #EXTINF:0,More4 
-0
+http://78.129.175.72/live/more4/more4.m3u8
 
 #EXTINF:0,My9
 http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
@@ -233,13 +233,13 @@ http://194.44.229.77:777/udp/237.1.239.14:1234
 0
 
 #EXTINF:0,OWN Network 
-http://93.174.95.125:1935/edge/_definst_/uehgy5htiasffj3/playlist.m3u8?wowzasessionid=1419878658
+0
 
 #EXTINF:0,PBS 
-rtmp://128.104.144.134/WisconsinChannel/mystream
+0
 
 #EXTINF:0,Showtime
-http://93.174.95.125:1935/edge/_definst_/bwbop58ixz281wv/chunklist.m3u8?wowzasessionid=1419875151
+0
 
 #EXTINF:0,Sky 1 
 0
@@ -292,6 +292,9 @@ http://194.44.229.77:777/udp/237.1.238.13:1234
 #EXTINF:0,TLC 
 http://194.44.229.77:777/udp/237.1.239.23:1234
 
+#EXTINF:0,TLC 
+http://best-shqip-iptv.blogdns.com/stream/Tlc/Zyrija-Jusufi0603/jusufizyrija0603
+
 #EXTINF:0,TNT 
 http://93.174.95.125:1935/edge/_definst_/7uz4als3nigi0j3/playlist.m3u8?wowzasessionid=1420124827
 
@@ -317,7 +320,7 @@ http://93.174.95.125:1935/edge/_definst_/7yxirr4046nk5ca/playlist.m3u8?wowzasess
 http://93.174.95.125:1935/edge/_definst_/h5eovaj1jeegluq/playlist.m3u8?wowzasessionid=1420249300
 
 #EXTINF:0,Vernnissage TV 
-http://149.11.34.6:1935/live/vernissagetv.stream/hasbahca.m3u8
+0
 
 #EXTINF:0,Victoria Secret TV
 http://stream02.yamgo.com/iPhone/HLS_TS/broadcast/victorias_secret_angels-tablet.3gp/victorias_secret_angels-tablet.3gp-mr648k.m3u8

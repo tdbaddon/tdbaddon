@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.video.roggerstream" name="Rogger Stream" version="1.1.8" provider-name="Rogger, Cleiton Leonel Creton">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="defaut.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <language>en</language>
+    <platform>all</platform>
+    <summary lang="en">Lista de canais IPTV by Rogger</summary>
+    <description lang="en">Assista a vários canais transmitidos pela internet diretamente no Kodi</description>
+	<platform>all</platform>
+  </extension>
+</addon>
