@@ -199,26 +199,42 @@ def GetStreamLinks(url,iconimage,name):
         name=name.replace('GGVIDEO','GOOGLEVIDEO')
         if ('720p' in name) or ('1080' in name):
             name=name.replace('720p','[COLOR green]720P[/COLOR]').replace('1080p','[COLOR green]1080P[/COLOR]')
-        addDir(name,url,200,iconimage,'')    
-    
+        addDir(name,url,200,iconimage,'')
 
+        
+    
+def OPEN_URLS(url):
+    req = urllib2.Request(url,headers={'User-Agent':'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.130 Safari/537.36'})
+    con = urllib2.urlopen( req )
+    link= con.read()
+    return link
+
+
+def anime(url):
+    link=OPEN_URLS(url.replace('at/t','at/nw'))
+    match=re.compile('_url = "(.+?)"').findall(link)[0]
+    return urllib.unquote(match)
     
 def PLAY_STREAM(name,url,iconimage,page):
     STREAM=GetStream(url)
     
     if 'google' in STREAM:
         STREAM_URL=STREAM
+
+    elif 'ANIME' in name:
+        STREAM_URL=anime(STREAM)
+        
     else:
         import urlresolver
         STREAM=STREAM.replace('/mobile','').replace('?id=','?v=').replace('video.php','embed.php')
         if '<IFRAME SRC=' in STREAM:
             STREAM=re.compile('<IFRAME SRC="(.+?)"').findall(STREAM)[0]
         STREAM_URL=urlresolver.resolve(STREAM)
-        
+      
     liz = xbmcgui.ListItem(name, iconImage='DefaultVideo.png', thumbnailImage=iconimage)
     liz.setInfo(type='Video', infoLabels={'Title':page})
     liz.setProperty("IsPlayable","true")
-    liz.setPath(STREAM)
+    liz.setPath(STREAM_URL)
     xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
 
 

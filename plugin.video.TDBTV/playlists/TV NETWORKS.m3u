@@ -79,6 +79,12 @@ http://93.174.95.125:1935/edge/_definst_/vp4q2gonwzh2dku/chunklist.m3u8?wowzases
 #EXTINF:0,CHCH Ontario 
 rtmp://54.85.197.21:1935/live/news live=1 timeout=15
 
+#EXTINF:0,City TV Toronto
+http://btflash-lh.akamaihd.net/i/BTTOFLASH_live@120219/master.m3u8
+
+#EXTINF:0,City TV Vancouver
+http://btflash-lh.akamaihd.net/i/BTVANFLASH_live@120224/master.m3u8
+
 #EXTINF:0,Comedy Central 
 0
 
@@ -133,13 +139,10 @@ http://best-shqip-iptv.blogdns.com/stream/foxcrime/Zyrija-Jusufi0603/jusufizyrij
 #EXTINF:0,Fox Life 
 http://best-shqip-iptv.blogdns.com/stream/foxlife/Zyrija-Jusufi0603/jusufizyrija0603
 
-#EXTINF:0,Fox TV A
+#EXTINF:0,Fox TV 
 rtmp://rtmp.zerocast.tv/goLive/ playpath=9pxGCtP3aEnJYgoBFFH8 swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 pageUrl=http://zerocast.tv/embed token=OOG17t.x#K9Vh#|
 
-#EXTINF:0,Fox TV B
-http://93.174.95.125:1935/edge/_definst_/yuu6p5oaa1x4a1p/playlist.m3u8?wowzasessionid=1419906680
-
-#EXTINF:0,Fox TV C
+#EXTINF:0,Fox TV 
 http://194.44.229.77:777/udp/237.1.239.72:1234
 
 #EXTINF:0,FX
