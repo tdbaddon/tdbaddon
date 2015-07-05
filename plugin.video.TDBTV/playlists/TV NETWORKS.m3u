@@ -10,17 +10,17 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mp4
 #EXTINF:0,ABC 
 http://93.174.95.125:1935/edge/_definst_/nz7l9vc5nv1og7b/playlist.m3u8?wowzasessionid=1419880374&xs=_we_Mzcxamx1aXJsamNzamVufDE0MTk5MTYzNzR8NzIuMjcuMjE0LjMzfDU0YTFhN2I2MzUxMWJ8ZDU3ODc0MTUyMWE0YTMyODdmZjdkYzJiMTYyZmY0MDA1YzM4NjdkYQ%20timeout=10
 
+#EXTINF:0,ABC 
+http://93.174.95.125:1935/edge/_definst_/nz7l9vc5nv1og7b/playlist.m3u8?wowzasessionid=1419880374
+
 #EXTINF:0,ABC Family
 http://93.174.95.125:1935/edge/_definst_/oeiigxxv1gbeqq9/playlist.m3u8?wowzasessionid=1420170560
 
 #EXTINF:0,AMC 
+http://80.77.52.6:3917/udp/226.0.3.5:12345
+
+#EXTINF:0,AXN 
 0
-
-#EXTINF:0,AXN 
-http://best-shqip-iptv.blogdns.com/stream/axn/Zyrija-Jusufi0603/jusufizyrija0603
-
-#EXTINF:0,AXN 
-http://best-shqip-iptv.blogdns.com/stream/axnspin/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,BabyTV 
 http://hlsstr03.svc.iptv.rt.ru/hls/CH_BABYTV/bw480000/variant.m3u8?version=2
@@ -34,11 +34,14 @@ http://82.135.224.134:80/udp/239.100.3.2:1234
 #EXTINF:0,BBC 2 
 http://82.135.224.134:80/udp/239.100.3.3:1234
 
+#EXTINF:0,BBC 2 
+http://82.135.224.134:80/udp/239.100.3.3:1234
+
 #EXTINF:0,BBC Entertainment 
 0
 
 #EXTINF:0,BET 
-0
+http://93.174.95.125:1935/edge/_definst_/kexkxje3nqi6dtl/playlist.m3u8?wowzasessionid=1419880467
 
 #EXTINF:0,BIO 
 0
@@ -48,6 +51,9 @@ http://hlsstr02.svc.iptv.rt.ru/hls/CH_BOOMERANG/variant.m3u8
 
 #EXTINF:0,Bravo 
 0
+
+#EXTINF:0,Cartoon Network 
+http://80.77.52.6:3917/udp/226.0.3.2:12345
 
 #EXTINF:0,Cartoon Network 
 http://5.128.118.163:7777/udp/239.1.3.3:1234
@@ -74,16 +80,16 @@ http://93.174.95.125:1935/edge/_definst_/vp4q2gonwzh2dku/chunklist.m3u8?wowzases
 0
 
 #EXTINF:0,CBS Reality 
-0
+http://80.77.52.6:3917/udp/226.0.3.6:12345
 
 #EXTINF:0,CHCH Ontario 
 rtmp://54.85.197.21:1935/live/news live=1 timeout=15
 
 #EXTINF:0,City TV Toronto
-http://btflash-lh.akamaihd.net/i/BTTOFLASH_live@120219/master.m3u8
+0
 
 #EXTINF:0,City TV Vancouver
-http://btflash-lh.akamaihd.net/i/BTVANFLASH_live@120224/master.m3u8
+0
 
 #EXTINF:0,Comedy Central 
 0
@@ -104,7 +110,7 @@ http://198.179.31.198/live/2062.high.stream/2062.high.stream/index.m3u8
 0
 
 #EXTINF:0,Disney Channel 
-0
+http://93.174.95.125:1935/edge/_definst_/2tag4dzgwof5ma2/playlist.m3u8?wowzasessionid=1420170412
 
 #EXTINF:0,Disney Junior 
 0
@@ -124,45 +130,42 @@ http://pebbles124-lh.akamaihd.net/i/e4_1@137789/master.m3u8|X-Forwarded-For=85.5
 #EXTINF:0,Fashion TV 
 http://hls.novotelecom.ru/streaming/fashion/tvrec/playlist.m3u8
 
+#EXTINF:0,Fashion TV 
+http://80.77.52.6:3917/udp/226.0.1.42:12345
+
 #EXTINF:0,Film4 
 http://pebbles124-lh.akamaihd.net/i/film4_1@137790/master.m3u8|X-Forwarded-For=85.5.87.218
 
 #EXTINF:0,Fine Living Network 
-0
+http://80.77.52.6:3917/udp/226.0.7.24:12345
 
 #EXTINF:0,Food Network 
 http://93.174.95.125:1935/edge/_definst_/qc6xkzf4h48bz2e/playlist.m3u8?wowzasessionid=1419873022
 
 #EXTINF:0,Fox Crime
-http://best-shqip-iptv.blogdns.com/stream/foxcrime/Zyrija-Jusufi0603/jusufizyrija0603
+0
 
 #EXTINF:0,Fox Life 
-http://best-shqip-iptv.blogdns.com/stream/foxlife/Zyrija-Jusufi0603/jusufizyrija0603
+http://80.77.52.6:3917/udp/226.0.7.16:12345
+
+#EXTINF:0,Fox TV 
+http://194.44.229.77:777/udp/237.1.239.72:1234
 
 #EXTINF:0,Fox TV 
 rtmp://rtmp.zerocast.tv/goLive/ playpath=9pxGCtP3aEnJYgoBFFH8 swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 pageUrl=http://zerocast.tv/embed token=OOG17t.x#K9Vh#|
 
 #EXTINF:0,Fox TV 
-http://194.44.229.77:777/udp/237.1.239.72:1234
+http://80.77.52.6:3917/udp/226.0.7.13:12345
 
 #EXTINF:0,FX
 0
 
 #EXTINF:0,Global TV Halifax 
-http://207.223.2.93/s/dtjsEC/77l1KA_G_5P1?feed=DEV%20Live%20Stream%20Feed/playlist.m3u8
-
-#EXTINF:0,Global TV Halifax 
 http://link.theplatform.com/s/dtjsEC/77l1KA_G_5P1?feed=DEV%20Live%20Stream%20Feed/playlist.m3u8
-
-#EXTINF:0,Global TV Toronto 
-http://207.223.2.93/s/dtjsEC/hdSH3iztz_j_?feed=DEV%20Live%20Stream%20Feed/playlist.m3u8
 
 #EXTINF:0,Global TV Toronto 
 http://link.theplatform.com/s/dtjsEC/hdSH3iztz_j_?feed=DEV%20Live%20Stream%20Feed/playlist.m3u8
  
-#EXTINF:0,Global TV Vancouver 
-http://207.223.2.93/s/dtjsEC/EqBPGYLY6fEx?feed=DEV%20Live%20Stream%20Feed/playlist.m3u8
-
 #EXTINF:0,Global TV Vancouver 
 http://link.theplatform.com/s/dtjsEC/EqBPGYLY6fEx?feed=DEV%20Live%20Stream%20Feed/playlist.m3u8
 
@@ -170,7 +173,7 @@ http://link.theplatform.com/s/dtjsEC/EqBPGYLY6fEx?feed=DEV%20Live%20Stream%20Fee
 http://93.174.95.125:1935/edge/_definst_/v4ynnryunsoxzbq/playlist.m3u8?wowzasessionid=1419874236
 
 #EXTINF:0,HGTV 
-0
+http://93.174.95.125:1935/edge/_definst_/gj65q2rg18tpmut/playlist.m3u8?wowzasessionid=1419811602
 
 #EXTINF:0,Home Shopping Network 
 rtsp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:420p500kB31
@@ -180,9 +183,6 @@ rtmp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_ playpath=mp4:468p500kB
 
 #EXTINF:0,Irish TV 
 http://ios.streamserver01.com:8080/ShowcaseTV/mystream.m3u8
-
-#EXTINF:0,ITV 1 
-http://82.135.224.134:80/udp/239.100.3.6:1234
 
 #EXTINF:0,ITV 1 
 http://78.129.175.72/live/itvbe/itvbe.m3u8
@@ -206,10 +206,10 @@ http://212.250.46.35:4252/bysid/9605
 rtmp://jtvmedia.jtv.com:1975/live playpath=live6 swfUrl=http://demandware.edgesuite.net/aaby_prd/on/demandware.static/Sites-jtv-Site/-/default/v1410110388581/swf/flashMediaPlayer/StrobeMediaPlayback.swf live=1 pageUrl=http://www.jtv.com/on/demandware.store/Sites-jtv-Site/default/LiveViewer-Show
 
 #EXTINF:0,Jim Jam 
-0
+http://80.77.52.6:3917/udp/226.0.3.8:12345
 
 #EXTINF:0,Lifetime Network 
-http://93.174.95.125:1935/edge/_definst_/7b2gr554gyyth8e/playlist.m3u8?wowzasessionid=1419879018
+0
 
 #EXTINF:0,London Live 
 http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
@@ -227,7 +227,7 @@ http://93.174.95.125:1935/edge/_definst_/kjgkefh6la1di6g/playlist.m3u8?wowzasess
 0
 
 #EXTINF:0,Nick Jr 
-0
+http://80.77.52.6:3917/udp/226.0.3.18:12345
 
 #EXTINF:0,Nickelodeon 
 http://194.44.229.77:777/udp/237.1.239.14:1234
@@ -296,7 +296,7 @@ http://194.44.229.77:777/udp/237.1.238.13:1234
 http://194.44.229.77:777/udp/237.1.239.23:1234
 
 #EXTINF:0,TLC 
-http://best-shqip-iptv.blogdns.com/stream/Tlc/Zyrija-Jusufi0603/jusufizyrija0603
+http://80.77.52.6:3917/udp/226.0.3.20:12345
 
 #EXTINF:0,TNT 
 http://93.174.95.125:1935/edge/_definst_/7uz4als3nigi0j3/playlist.m3u8?wowzasessionid=1420124827
@@ -305,7 +305,7 @@ http://93.174.95.125:1935/edge/_definst_/7uz4als3nigi0j3/playlist.m3u8?wowzasess
 rtmp://208.53.180.218/ctv playpath=tom swfUrl=http://www.carolineoliveira.com.br/swf/player.swf live=1 pageUrl=http://carolineoliveira.com.br/tvamigos/tomejerry.html
 
 #EXTINF:0,Tru TV 
-http://93.174.95.125:1935/edge/_definst_/uhnr4161ybioa5w/playlist.m3u8?wowzasessionid=1420124955 
+0
 
 #EXTINF:0,True Drama
 0
@@ -342,11 +342,5 @@ http://stream02.yamgo.com/iPhone/HLS_TS/broadcast/victorias_secret_angels-tablet
 
 #EXTINF:0,Yes!
 0
-
-
-
-
-
-
 
 

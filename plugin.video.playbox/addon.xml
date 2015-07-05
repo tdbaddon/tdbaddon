@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.playbox" name="PlayBox HD" version="0.0.3" provider-name="Mikey1234">
+<addon id="plugin.video.playbox" name="PlayBox HD" version="0.0.6" provider-name="Mikey1234">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
    <import addon="script.module.urlresolver" version="0.0.1"/>

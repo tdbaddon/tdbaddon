@@ -164,7 +164,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
-<addon id="plugin.video.playbox" name="PlayBox HD" version="0.0.3" provider-name="Mikey1234">
+<addon id="plugin.video.playbox" name="PlayBox HD" version="0.0.6" provider-name="Mikey1234">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
    <import addon="script.module.urlresolver" version="0.0.1"/>
@@ -304,7 +304,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="2.68"
+       version="2.69"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>

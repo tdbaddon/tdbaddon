@@ -4,10 +4,8 @@ import json
 
 
 ADDON = xbmcaddon.Addon(id='plugin.video.playbox')
+art= "%s/art/"%ADDON.getAddonInfo("path")
 
-
-from lib import pyaes as pyaes
-import base64
 
 API='http://playboxhd.com/api/box?'
 
@@ -19,6 +17,9 @@ else:
 
     
 def GetStream(url):
+    from lib import pyaes as pyaes
+    import base64
+
     decrypter = pyaes.Decrypter(pyaes.AESModeOfOperationCBC(base64.urlsafe_b64decode('cXdlcnR5dWlvcGFzZGZnaGprbHp4YzEyMzQ1Njc4OTA='), '\0' * 16))
     url = base64.decodestring(url)
     url = decrypter.feed(url) + decrypter.feed()
@@ -26,7 +27,7 @@ def GetStream(url):
 
 
 def CATEGORIES():
-            
+    addDir('Search','movie',8,art+'search.png','')            
     addDir('Movies','movie',1,'','')
     addDir('Tv Shows','show',1,'','')
     addDir('Cartoons','cartoon',1,'','')
@@ -58,7 +59,7 @@ def GetContent(url):
         iconimage=field['poster']
         addDir(name,url,3,iconimage,'')
         
-    addDir('Next Page >>',new_url,2,'','1')
+    addDir('[COLOR blue][B]Next Page >>[/B][/COLOR]',new_url,2,art+'nextpage.png','1')
     setView('movies', 'movies')
 
 
@@ -78,6 +79,28 @@ def Genre(url):
         
 
     setView('movies', 'default')    
+
+def SEARCHPLAYBOX(url):
+    search_entered = ''
+    keyboard = xbmc.Keyboard(search_entered, 'Search PlayBox')
+    keyboard.doModal()
+    if keyboard.isConfirmed():
+        search_entered = keyboard.getText() .replace(' ','+')    
+    new_url = API+'type=search&os=Android&v=2.0.1&k=0&keyword=%s' % search_entered
+
+    
+    try:link = json.loads(OPEN_URL(new_url))
+    except:return PlayBoxFucker()
+
+
+    data=link['data']
+    for field in data['films']:
+        name=field['title'].encode('utf8')
+        url=str(field['id'])
+        iconimage=field['poster']
+        addDir(name,url,3,iconimage,'')
+
+    setView('movies', 'movies')
 
 
 def TodayList(url):
@@ -111,7 +134,7 @@ def TodayListGetContent(url):
         iconimage=field['poster']
         addDir(name,url,3,iconimage,'')
         
-    addDir('Next Page >>',new_url,2,'','1')
+    addDir('[COLOR blue][B]Next Page >>[/B][/COLOR]',new_url,2,art+'nextpage.png','1')
     setView('movies', 'movies')    
     
 
@@ -132,7 +155,7 @@ def GetNextPageContent(url,iconimage,page):
         iconimage=field['poster']
         addDir(name,url,3,iconimage,'')
         
-    addDir('Next Page >>',new_url,2,iconimage,str(PAGE))     
+    addDir('[COLOR blue][B]Next Page >>[/B][/COLOR]',new_url,2,art+'nextpage.png',str(PAGE))     
     setView('movies', 'movies')
     
 def PlayBoxFucker():
@@ -148,7 +171,8 @@ def OPEN_URL(url):
     return utils.GetHTML(url)
 
 
-def GetDetail(url,iconimage,name):
+def GetDetail(name,url,iconimage):
+    
     NAME=name
     ID=url
     
@@ -162,7 +186,7 @@ def GetDetail(url,iconimage,name):
         for field in data:
             name=field['title'].encode('utf8')
             url=str(field['id'])
-            addDir(name,url,4,iconimage,'')
+            addDir(name.replace('E0','E'),url,4,iconimage,NAME + ' '+name.replace('E0','E'))
     else:
         for field in data:
             ID=str(field['id'])
@@ -181,11 +205,11 @@ def GetDetail(url,iconimage,name):
             name=name.replace('GGVIDEO','GOOGLEVIDEO')
             if ('720p' in name) or ('1080' in name):
                 name=name.replace('720p','[COLOR green]720P[/COLOR]').replace('1080p','[COLOR green]1080P[/COLOR]')         
-            addDir(name,url,200,iconimage,'')
+            addDir(name,url,200,iconimage,str(NAME))
 
    
-def GetStreamLinks(url,iconimage,name):
-    NAME=name
+def GetStreamLinks(url,iconimage,name,page):
+    NAME=page
     new_url = 'http://playboxhd.com/api/box?type=stream&id=%s&os=Android' % url
 
     try:link = json.loads(OPEN_URL(new_url))
@@ -199,7 +223,7 @@ def GetStreamLinks(url,iconimage,name):
         name=name.replace('GGVIDEO','GOOGLEVIDEO')
         if ('720p' in name) or ('1080' in name):
             name=name.replace('720p','[COLOR green]720P[/COLOR]').replace('1080p','[COLOR green]1080P[/COLOR]')
-        addDir(name,url,200,iconimage,'')
+        addDir(name,url,200,iconimage,NAME)
 
         
     
@@ -210,14 +234,27 @@ def OPEN_URLS(url):
     return link
 
 
+def nowvideo(url):
+    link=OPEN_URLS(url)
+    match=re.compile('<source src="(.+?)"').findall(link)[0]
+    return match
+
+
 def anime(url):
     link=OPEN_URLS(url.replace('at/t','at/nw'))
     match=re.compile('_url = "(.+?)"').findall(link)[0]
     return urllib.unquote(match)
+
+
+def thevideos(url):
+    link=OPEN_URLS(url)
+    match=re.compile('file:"(.+?)"').findall(link)
+    last=len(match)-1
+    return match[last]
     
 def PLAY_STREAM(name,url,iconimage,page):
     STREAM=GetStream(url)
-    
+    print STREAM
     if 'google' in STREAM:
         STREAM_URL=STREAM
 
@@ -226,10 +263,16 @@ def PLAY_STREAM(name,url,iconimage,page):
         
     else:
         import urlresolver
-        STREAM=STREAM.replace('/mobile','').replace('?id=','?v=').replace('video.php','embed.php')
+        #STREAM=STREAM.replace('/mobile','').replace('?id=','?v=').replace('video.php','embed.php')
+        
         if '<IFRAME SRC=' in STREAM:
             STREAM=re.compile('<IFRAME SRC="(.+?)"').findall(STREAM)[0]
-        STREAM_URL=urlresolver.resolve(STREAM)
+        if 'nowvideo' in STREAM:
+            STREAM_URL=  nowvideo(STREAM)
+        elif 'thevideos.tv' in STREAM:
+            STREAM_URL=  thevideos(STREAM)            
+        else:    
+            STREAM_URL=urlresolver.resolve(STREAM)
       
     liz = xbmcgui.ListItem(name, iconImage='DefaultVideo.png', thumbnailImage=iconimage)
     liz.setInfo(type='Video', infoLabels={'Title':page})
@@ -320,37 +363,41 @@ print "IconImage: "+str(iconimage)
         
 #these are the modes which tells the plugin where to go
 if mode==None or url==None or len(url)<1:
-        print ""
+        
         CATEGORIES()
        
 elif mode==1:
-        print ""+url
+        
         GetContent(url)
 
 elif mode==2:
-        print ""+url
+        
         GetNextPageContent(url,iconimage,page)
 
 elif mode==3:
-        print ""+url
-        GetDetail(url,iconimage,page)
+        
+        GetDetail(name,url,iconimage)
 
 elif mode==4:
-        print ""+url
-        GetStreamLinks(url,iconimage,name)
+      
+        GetStreamLinks(url,iconimage,name,page)
 
 elif mode==5:
-        print ""+url
+       
         TodayList(url)
 
 
 elif mode==6:
-        print ""+url
+        
         TodayListGetContent(url)
 
 elif mode==7:
-        print ""+url
-        Genre(url)          
+        
+        Genre(url)
+
+elif mode==8:
+        
+        SEARCHPLAYBOX(url)         
         
 elif mode==200:
 

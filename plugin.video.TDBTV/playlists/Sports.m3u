@@ -4,11 +4,12 @@
 #EXTINF:0,How to change AUDIO LANGUAGE
 http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mp4
 
-#EXTINF:0,Bein Sport1 
-http://streamindo.ddns.net/jhos/beib1_2/streamindo/playlist.m3u8
 
 #EXTINF:0,Bein Sport1 
-http://streamindo.ddns.net/jhos/beib1_3/streamindo/playlist.m3u8
+rtmp://180.250.29.12:1935/jhos/beib1_5?b?b*t$
+
+#EXTINF:0,Bein Sport1 
+http://streamindo.ddns.net/jhos/beib1_2/streamindo/playlist.m3u8
 
 #EXTINF:0,Bein Sport2 
 rtmp://180.250.29.12:1935/jhos/beib2_5?b?b*t$
@@ -44,16 +45,25 @@ http://87.245.214.43/streaming/futbol/16/tvrec/playlist.m3u8
 http://80.80.160.168/live/6/live.m3u8
 
 #EXTINF:0,ESPN 
+http://93.174.95.125:1935/edge/_definst_/xoaaohmeuajfeyf/playlist.m3u8?wowzasessionid=1419879934
+
+#EXTINF:0,ESPN 
 rtmp://141.255.160.202:1935/stream/ playpath=1Kq68GX6Kc.stream swfUrl=http://thecdn.04stream.com/p/ooolo1.swf pageUrl=http://www.04stream.com/ebb.php?adsp=other&width=600&height=460&st=24g3z5b4d4t4w3x2x4h5n244z294u2u28424w2u2w2t223f4&adx=&stream=54y2n5i57494y264d4k544b4v2a494n244v4n4y2w2i304c4x4l5t22433y234y2x2p2t274y2z32363y3q2x4y5b4e4f3v3c4t4i2k4j4v5k474n33574a414p4h4z33456t226c4n424r2p2z294b434h5233314y2k5b4a4j5u24494j5s244v264338444d4y2z264b494m56434t2y3s2p224r2p2o2&sooor=NA==&str=is&ok=&cat=2&link=1&idom=www.gofeed2all.eu token=%ZZri(nKa@#Z
 
 #EXTINF:0,ESPN 2 
-0
+http://93.174.95.125:1935/edge/_definst_/5hd19kwxef5b59o/playlist.m3u8?wowzasessionid=1420123722
+
+#EXTINF:0,Eurosport 1 
+http://80.77.52.6:3917/udp/226.0.3.21:12345
 
 #EXTINF:0,Eurosport 1 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_EUROSPORT/variant.m3u8
 
 #EXTINF:0,Eurosport 1 
 http://194.44.229.77:777/udp/237.1.239.19:1234
+
+#EXTINF:0,Eurosport 1 
+http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_1800.m3u8
 
 #EXTINF:0,Eurosport 2 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_EUROSPORT2/variant.m3u8?version=2 
@@ -215,7 +225,7 @@ http://113.160.49.34/lives/origin03/starsportsd.isml/starsportsd-1096k.m3u8
 0
 
 #EXTINF:0,TSN 2 
-http://195.154.227.38:1935/Iive/tsn2lsh/playlist.m3u8
+0
 
 #EXTINF:0,TSN 3 
 0
@@ -224,7 +234,7 @@ http://195.154.227.38:1935/Iive/tsn2lsh/playlist.m3u8
 0
 
 #EXTINF:0,TSN 5 
-http://195.154.227.38:1935/Iive/tsn5lsh/playlist.m3u8
+0
 
 #EXTINF:0,Viasat Golf 
 0
