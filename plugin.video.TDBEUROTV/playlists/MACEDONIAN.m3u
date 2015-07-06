@@ -10,12 +10,6 @@ http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/a1-strumica/playlist
 #EXTINF:0,Al Jazeera Balkan 
 rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
 
-#EXTINF:0,Al Jazeera Balkan 
-http://best-shqip-iptv.blogdns.com/stream/AlJazeeraBalkans/Zyrija-Jusufi0603/jusufizyrija0603
-
-#EXTINF:0,Alfa 
-http://www.nasatv.eu:80/live?channelId=111&uid=5&deviceUser=amer&devicePass=amer
-
 #EXTINF:0,Alfa 
 http://fms.zulu.mk:1935/zulu/alfa_2/playlist.m3u8
 
@@ -36,9 +30,6 @@ rtsp://fms.zulu.mk:554/zulu/alsat_2
 
 #EXTINF:0,B92 
 http://stream.b92.net:7999/tv-b92.ogg
-
-#EXTINF:0,B92 
-http://best-shqip-iptv.blogdns.com/stream/b92/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,Balkan TV
 rtmp://yayin.tvdunyasi.tv/live/balkanrtv
@@ -77,16 +68,13 @@ http://88.212.10.27:81/streams/joj.m3u8
 0
 
 #EXTINF:0,K1 Veles
-http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/k1-tv-veles/playlist.m3u8
+0
 
 #EXTINF:0,Kanal 21 
 mms://62.162.58.55/TVkanal21
 
-#EXTINF:0,K3 Kumanovo
+#EXTINF:0,K3 Kumanovo 
 http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/k3-tv-kumanovo/chunklist.m3u8
-
-#EXTINF:0,K3 Kumanovo
-http://www.nasatv.eu:80/live?channelId=53&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,Kanal 5 
 http://fms.zulu.mk:1935/zulu/kanal5_1/playlist.m3u8
@@ -124,17 +112,17 @@ http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video
 #EXTINF:0,Mpt 2 
 http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video_id/3548/token/bd0b11a4f8d05cc0bffe589f55909615/chunklist_w787058205_b1196000.m3u8
 
-#EXTINF:0,Nasha TV
+#EXTINF:0,Nasha TV 
 http://fms.zulu.mk:1935/zulu/nashatv_1/playlist.m3u8
 
-#EXTINF:0,Nasha TV
+#EXTINF:0,Nasha TV 
 http://fms.zulu.mk:1935/zulu/nashatv_2/playlist.m3u8
+
+#EXTINF:0,OBN 
+0
 
 #EXTINF:0,Ohrid 02
 http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/o2-tv-ohrid/playlist.m3u8
-
-#EXTINF:0,OBN 
-http://www.nasatv.eu:80/live?channelId=54&uid=5&deviceUser=amer&devicePass=amer
 
 #EXTINF:0,Pop Brio 
 0

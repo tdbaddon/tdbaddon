@@ -8,19 +8,13 @@ http://mail.tv4e.gr:1935/live/myStream.sdp/playlist.m3u8
 http://alfakanali-lh.akamaihd.net/i/live_1@90368/master.m3u8
 
 #EXTINF:0,Ant1 
-http://wow.ant1.gr:1935/live/smil:mavani.smil/playlist.m3u8
-
-#EXTINF:0,Ant1 
-http://wow.ant1.gr:1935/live/_definst_/ant1tv1711video/playlist.m3u8?wowzasessionid=1155125647
+0
 
 #EXTINF:0,Ant1 Cyprus
 rtmp://46.21.53.171/iwohttporigin/mp4:livestream
 
-#EXTINF:0,Art Channel
-0
-
 #EXTINF:0,Astra TV
-http://www.astratv.gr:8090/hls/livestream/index.m3u8
+0
 
 #EXTINF:0,Axeloos TV
 0
@@ -38,28 +32,22 @@ http://streamer-cache.grnet.gr/parliament/parltv.sdp/master.m3u8
 0
 
 #EXTINF:0,CY Sports
-http://mlivenews.istoikona.net/cysports.isml/manifest(format=m3u8-aapl).m3u8
+0
 
 #EXTINF:0,Delta TV
-mms://ams01.egihosting.com/989630
+0
+
+#EXTINF:0,Diktyo TV
+0
 
 #EXTINF:0,Dion TV
 0
 
-#EXTINF:0,Diktyo TV
-http://iphone-streaming.ustream.tv/uhls/2785459/streams/live/iphone/playlist.m3u8
-
 #EXTINF:0,Diras TV 
 0
 
-#EXTINF:0,Disney Channel
-0
-
-#EXTINF:0,Disney Jr
-0
-
 #EXTINF:0,DR TV
-http://xdrtvhellasx.api.channel.livestream.com/3.0/playlist.m3u8
+0
 
 #EXTINF:0,E TV 
 rtmp://213.16.167.187:1935/live/mpegts_256.stream live=1 timeout=10
@@ -74,7 +62,7 @@ rtmp://fml.68FC.edgecastcdn.net/2068FC/elladatv swfUrl=http://www.elladatv.gr/sc
 http://206.222.31.146/ellinikos
 
 #EXTINF:0,Ena TV 
-http://ec2-54-162-205-148.compute-1.amazonaws.com:1935/live/ecb164fa0418d5d59af852da28d376a3/playlist.m3u8
+0
 
 #EXTINF:0,ET3
 http://live2.ertopen.com/live2/e600/playlist.m3u8
@@ -86,9 +74,6 @@ http://live2.ertopen.com/live2/e600/playlist.m3u8
 rtmp://213.16.167.186/live/mpegts_256.stream
 
 #EXTINF:0,Extra 
-rtmp://213.16.167.186:1935/live/mpegts_256.stream
-
-#EXTINF:0,Extra 3 
 rtmp://213.16.167.186:1935/live/mpegts_256.stream
 
 #EXTINF:0,Flash TV
@@ -104,7 +89,7 @@ http://wpso.com:200/tv48
 rtmp://176.9.123.140:1935/leveltgp/leveltgp live=1 timeout=10
 
 #EXTINF:0,Ionian Channel
-rtmp://stream8.upg.gr:1935/live/stream
+0
 
 #EXTINF:0,Infinity Cinema
 http://wpc.68FC.edgecastcdn.net/8068FC/INFINITY/m3u8/cinema.m3u8
@@ -152,7 +137,7 @@ http://xmaxtvdigitalx.api.channel.livestream.com/3.0/playlist.m3u8
 http://megahdlive1-f.akamaihd.net/i/live_1@105260/master.m3u8
 
 #EXTINF:0,Mega Cyprus
-http://mlivenews.istoikona.net/livenews.isml/manifest(format=m3u8-aapl).m3u8
+0
 
 #EXTINF:0,Nea TV
 0
@@ -200,13 +185,13 @@ rtmp://media.patrisnews.com:1935/patris/tvstream live=1 timeout=10
 0
 
 #EXTINF:0,R Channel
-http://xrodopi_tvx.api.channel.livestream.com/3.0/playlist.m3u8
+0
 
 #EXTINF:0,Rik Sat 
 0
 
 #EXTINF:0,Samiaki TV
-rtmp://91.121.107.131/samiaki/samiaki live=1
+0
 
 #EXTINF:0,SBC
 http://xsbcgrx.api.channel.livestream.com/3.0/playlist.m3u8
@@ -218,7 +203,7 @@ http://81.21.47.74/hls/live.m3u8
 http://iphone.skai.gr.edgesuite.net/iphone_iphone.m3u8
 
 #EXTINF:0,Star TV 
-http://radiofeeds1.mediabox.gr/startv?MSWMExt=.asf
+0
 
 #EXTINF:0,Syros TV
 http://176.9.123.140:1935/msg116s/msg116s/playlist.m3u8
@@ -240,13 +225,4 @@ http://178.62.176.153:1935/TV100/myStream/playlist.m3u8
 
 #EXTINF:0,Zougla TV 
 http://zouglahd-f.akamaihd.net/i/zougla_1@56341/master.m3u8
-
-
-
-
-
-
-
-
-
 

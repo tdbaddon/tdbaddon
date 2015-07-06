@@ -9,10 +9,10 @@ rtmp://wms.shared.streamshow.it:80/videocalabria playpath=videocalabria swfUrl=h
 rtsp://77.72.196.214:8554/live/mp4:AltoAdigeTV
 
 #EXTINF:0,Brescia Live TV
-http://wms.shared.streamshow.it/brescialivetv/brescialivetv/chunklist_w957914602.m3u8
+0
 
 #EXTINF:0,Canale 2
-http://wms.iptv.4wardstream.net/canale2iptv/canale2iptv/chunklist_w585511673.m3u8
+0
 
 #EXTINF:0,Canale 7
 http://fms.shared.streamshow.it/canale7/canale7/sansar.m3u8
@@ -22,9 +22,6 @@ rtmp://msh0193.stream.seeweb.it/live// playpath=stream00.sdp swfUrl=http://p.jwp
 
 #EXTINF:0,Cielo
 http://skyianywhere2-i.akamaihd.net/hls/live/216865/cielo/stream2/streamPlaylist.m3u8
-
-#EXTINF:0,Fano TV
-0
 
 #EXTINF:0,History Lab
 rtmp://wma10.fluidstream.net/HistoryLab playpath=livestream swfUrl=http://www.radioetv.it/modules/mod_hllive/jw/player58l.swf pageUrl=http://www.radioetv.it/history-lab live=1 timeout=10
@@ -44,9 +41,6 @@ http://wms.shared.streamshow.it/lucaniatv/lucaniatv/playlist.m3u8
 #EXTINF:0,Onda TV
 rtmp://live.streamcaster.net/ondatv_live/ playpath=ondatv swfUrl=http://www.flashwebtown.com/mediaplayer/mediaplayer.swf pageUrl=http://www.ondatv.it/ live=1
 
-#EXTINF:0,Orler TV
-
-
 #EXTINF:0,Piu Blu
 rtmp://ondemand.superstreaming.it/piublu playpath=piublu.sdp
 
@@ -57,7 +51,7 @@ rtmp://wowza1.top-ix.org/quartaretetv/ playpath=quartareteweb
 http://212.162.68.163/Rai_Gulp
 
 #EXTINF:0,Rai Premium
-mmsh://212.162.68.163:80/Rai_Premium?MSWMExt.asf
+0
 
 #EXTINF:0,Rai Scuola
 mmsh://212.162.68.163:80/Rai_Scuola?MSWMExt.asf
@@ -119,9 +113,6 @@ http://wms.shared.streamshow.it/tsn/tsn_mobile/playlist.m3u8
 #EXTINF:0,Tele Sondrio
 http://wms.shared.streamshow.it/tsn2/tsn2/playlist.m3u8
 
-#EXTINF:0,Tele Studiomo
-
-
 #EXTINF:0,Telecitta
 rtmp://stream.telepadova.com/live/ playpath=tv1
 
@@ -154,11 +145,4 @@ http://ftp.tiscali.it/francescovernata/TVUNO/monoscopioTvUNOint-1.wmv
 
 #EXTINF:0,Vera TV
 http://wms.shared.streamshow.it/veratv/veratv/playlist.m3u8
-
-
-
-
-
-
-
 

@@ -2,7 +2,7 @@
 
 
 #EXTINF:0,A1 Report 
-rtmp://66.55.93.204/livepkgr/a1stream?adbe-live-event=a1report
+0
 
 #EXTINF:0,ABC News
 0
@@ -16,17 +16,11 @@ http://str105mb.setplex.net:1935/str2iosmd5/7ios_agontv_34536544/playlist.m3u8
 #EXTINF:0,Alb UK 
 rtmp://188.138.17.8:1935/albuk/albuk.stream
 
-#EXTINF:0,Alb UK 
-rtmp://188.138.17.8:1935/albuk/albuk+.stream
-
 #EXTINF:0,Alb Plus
 0
 
 #EXTINF:0,Albanian Screen
 0
-
-#EXTINF:0,Al Jazeera Balkan 
-http://best-shqip-iptv.blogdns.com/stream/AlJazeeraBalkans/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,Al Jazeera Balkan 
 rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
@@ -44,16 +38,13 @@ rtmp://fms.zulu.mk:554/zulu playpath=alsat_2 swfUrl=http://on.net.mk/player/play
 0
 
 #EXTINF:0,Art Kanal
-rtmp://82.114.65.202/live/rrokumtv.flv swfUrl=http://tv24.al/shqiptv/css/player.swf live=1
+0
 
 #EXTINF:0,ATV
 rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
 
 #EXTINF:0,B92 
 http://stream.b92.net:7999/tv-b92.ogg
-
-#EXTINF:0,B92 
-http://best-shqip-iptv.blogdns.com/stream/b92/Zyrija-Jusufi0603/jusufizyrija0603
 
 #EXTINF:0,Balkan TV
 rtmp://yayin.tvdunyasi.tv/live/balkanrtv
@@ -74,9 +65,6 @@ http://81.7.13.162/hls/channelone/index.m3u8
 0
 
 #EXTINF:0,Dasma TV
-0
-
-#EXTINF:0,Disney Channel
 0
 
 #EXTINF:0,ERA 
@@ -142,7 +130,7 @@ rtmp://91.82.85.44/live/konyhatv
 #EXTINF:0,Kopliku TV 
 0
 
-#EXTINF:0,Mpt 1 
+#EXTINF:0,MPT 1 
 http://mrt.cdn.spectar.tv:1935/mrt-edge/_definst_/mrt1-sat/chunklist_w103032136.m3u8
 
 #EXTINF:0,MPT 1 
@@ -179,16 +167,7 @@ rtsp://origin.biokoda.tv/live/mbit-planet?k=planettv-public
 0
 
 #EXTINF:0,Rokum TV 
-rtmp://82.114.65.202/live/rrokumtv
-
-#EXTINF:0,Rokum TV 
-rtmp://82.114.65.202/live/ playpath=rrokumtv swfUrl=http://albaniaplus.info/player.swf live=1 pageUrl=http://albaniaplus.info/Rrokumtv.html
-
-#EXTINF:0,RTK1 
-rtmp://wowza.rtkit.com/live playpath=livestream swfUrl=http://www.aulona.de/player.swf?backcolor=000000&frontcolor=0xffffff&streamer=rtmp://wowza.rtkit.com/live&file=livestream&logo=&stretching=exactfit&autostart=true live=1 pageUrl=http://albhd.tk/tv/rtk.html
-
-#EXTINF:0,RTK1 
-rtmp://wowza.rtkit.com/live/livestream
+0
 
 #EXTINF:0,RTK1 
 http://wowza.rtkit.com:1935/live/livestream/chunklist.m3u8?wowzasessionid=491913886
@@ -200,13 +179,13 @@ http://wowza.rtkit.com:1935/live/livestream/chunklist.m3u8?wowzasessionid=491913
 0
 
 #EXTINF:0,Super Sport 1 
-http://81.7.13.162/hls/ss1/index.m3u8
+0
 
 #EXTINF:0,Super Sport 2 
-http://81.7.13.162/hls/ss2/index.m3u8
+0
 
 #EXTINF:0,Super Sport 3
-http://81.7.13.162/hls/ss3/index.m3u8
+0
 
 #EXTINF:0,Super Sport 4
 0

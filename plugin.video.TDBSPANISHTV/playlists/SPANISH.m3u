@@ -1,65 +1,59 @@
 #EXTM3U
 
 
-#EXTINF:0,Andina TV
-http://edge-31-us.edge.mdstrm.com/live/smil:c23b8a0a21d215482b4c2703e47f675a/playlist.m3u8
-
 #EXTINF:0,Alfa TV
 rtsp://streamer1.streamhost.org:1935/salive/GMIalfah
 
-#EXTINF:0,America TV
+#EXTINF:0,America TV 
 http://ooyalahd2-f.akamaihd.net/i/americatv_delivery@25405/index_1728_av-p.m3u8
 
-#EXTINF:0,America TV
+#EXTINF:0,America TV 
 http://live-edge01.telecentro.net.ar/live/amrchd-720/playlist.m3u8
 
-#EXTINF:0,America TV
+#EXTINF:0,America TV 
 http://live-edge01.telecentro.net.ar/live/amrchd-360/playlist.m3u8
 
-#EXTINF:0,America TV
+#EXTINF:0,America TV 
 http://live-edge01.telecentro.net.ar/live/amrchd-180/playlist.m3u8
+
+#EXTINF:0,Andina TV
+http://edge-31-us.edge.mdstrm.com/live/smil:c23b8a0a21d215482b4c2703e47f675a/playlist.m3u8
 
 #EXTINF:0,Antena Latina
 http://ss6.domint.net:1962/al_edge/antena/playlist.m3u8
 
 #EXTINF:0,Aragon TV 
-http://149.11.34.6:1935/live/aragontv.stream/vcx7.m3u8#MegaIPTVArgentina
+0
 
 #EXTINF:0,Arica TV
 http://wow2.cl.digitalproserver.com/aricatv/aricatvvivo/aricatv.smil/chunklist_w725671068_b848000.m3u8
 
-#EXTINF:0,Az Corazon
-http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT00NzkmbGFuPTImcm93cz05OSZzZXNzaW9uPXdxbTE3a2hoMWFicTY3Zw==&f=.m3u8
+#EXTINF:0,Az Corazon 
+0
 
-#EXTINF:0,Azteca Deportes
+#EXTINF:0,Azteca Deportes 
 http://aztecalive-lh.akamaihd.net/i/0sa0dg2r9_1@167681/index_1_av-p.m3u8
 
-#EXTINF:0,Azteca Deportes
+#EXTINF:0,Azteca Deportes 
 http://aztecalive-lh.akamaihd.net/i/0sa0dg2r9_1@167681/index_2_av-p.m3u8
 
-#EXTINF:0,Azteca Deportes
+#EXTINF:0,Azteca Deportes 
 http://aztecalive-lh.akamaihd.net/i/0sa0dg2r9_1@167681/index_3_av-b.m3u8?sd=10&rebase=on
 
 #EXTINF:0,Azteca Honduras
 http://aztecalive-lh.akamaihd.net/i/142kvpq0l_1@67741/master.m3u8
 
-#EXTINF:0,Azteca Noticias
+#EXTINF:0,Azteca Noticias 
 http://urtmpkal-f.akamaihd.net/i/077zoqxzy_1@130091/index_3_av-p.m3u8#MegaIPTVArgentina
 
-#EXTINF:0,Azteca Noticias
-http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0wMDQmbGFuPTImcm93cz05OSZzZXNzaW9uPXdxbTE3a2hoMWFicTY3Zw==&f=.m3u8
-
-#EXTINF:0,Azteca Siete
+#EXTINF:0,Azteca Siete 
 http://38.104.228.230:1938/info7/info7_512/playlist.m3u8
 
-#EXTINF:0,Azteca Siete
-http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0wMDcmbGFuPTImcm93cz05OSZzZXNzaW9uPXdxbTE3a2hoMWFicTY3Zw==&f=.m3u8
-
 #EXTINF:0,Bandamax
-http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT00NDkmbGFuPTImcm93cz05OSZzZXNzaW9uPXdxbTE3a2hoMWFicTY3Zw==&f=.m3u8
+0
 
 #EXTINF:0,Cadena 3
-http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0wNzMmbGFuPTImcm93cz05OSZzZXNzaW9uPXdxbTE3a2hoMWFicTY3Zw==&f=.m3u8
+0
 
 #EXTINF:0,Campus TV
 http://wow2.cl.digitalproserver.com/campustv/campustvvivo/campustv.smil/chunklist_w662421777_b848000.m3u8
@@ -73,56 +67,29 @@ http://190.57.237.214/live/canal.m3u8
 #EXTINF:0,Canal 2 
 rtmp://video.crearchile.com:8080/live/mp4:canal2.mp4
 
-#EXTINF:0,Canal 2
+#EXTINF:0,Canal 2 
 rtmp://201.219.100.30:1935/telpintv/ttv.stream_720p
 
-#EXTINF:0,Canal 2
+#EXTINF:0,Canal 2 
 http://mek4.mekstream.com/teleantillas/live3/hasbahca.m3u8
 
-#EXTINF:-0,Canal 4
-rtmp://streaming.wirenetserver.com.ar/canal4/live_1
-
-#EXTINF:0,Canal 5 
-rtmp://v1.streaminglatinoamerica.com/canal5/canal5
-
-#EXTINF:0,Canal 5 
-http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0wNDkmbGFuPTImcm93cz05OSZzZXNzaW9uPXdxbTE3a2hoMWFicTY3Zw==&f=.m3u8
-
-#EXTINF:0,Canal 5
-rtmp://c5n.stweb.tv:1935/c5n/live
-
-#EXTINF:0,Canal 6
-rtmp://k3.usastreams.com:1935/cana6/cana6
-
-#EXTINF:0,Canal 7
-http://ecuadortv_livehd-lh.akamaihd.net/i/0n0xzqt3o_1@323283/master.m3u8#alxvill
-
-#EXTINF:0,Canal 7
-http://72.46.226.61/live01/canal71/playlist.m3u8#MegaIPTVArgentina
-
-#EXTINF:0,Canal 7
-http://74.63.97.188:1935/gpacifico4/videogpacifico4/chunklist_w1774114891.m3u8?
-
-#EXTINF:0,Canal 9
-http://ionlive1-lh.akamaihd.net/i/canal9_1@125365/master.m3u8
-
-#EXTINF:0,Canal 9
-http://xcanal9saltax.api.channel.livestream.com/3.0/playlist.m3u8
-
-#EXTINF:0,Canal 26
+#EXTINF:0,Canal 26 
 http://live-edge01.telecentro.net.ar/live/26hd-720/playlist.m3u8
 
-#EXTINF:0,Canal 26
+#EXTINF:0,Canal 26 
 http://live-edge01.telecentro.net.ar/live/26hd-360/playlist.m3u8
 
-#EXTINF:0,Canal 26
+#EXTINF:0,Canal 26 
 http://live-edge01.telecentro.net.ar/live/26hd-180/playlist.m3u8
 
-#EXTINF:0,Canal 27
+#EXTINF:0,Canal 27 
 http://cdn.siscompnetwork.com:1935/app/canal27.sdp/playlist.m3u8
 
 #EXTINF:0,Canal 28
 0
+
+#EXTINF:-0,Canal 4
+rtmp://streaming.wirenetserver.com.ar/canal4/live_1
 
 #EXTINF:0,Canal 41
 rtmp://painel.serveron.com.br/8172/8172
@@ -130,20 +97,41 @@ rtmp://painel.serveron.com.br/8172/8172
 #EXTINF:0,Canal 42
 rtmp://k3.usastreams.com:1935/canal42/canal42
 
-#EXTINF:0,Canal 79
+#EXTINF:0,Canal 5 
+rtmp://v1.streaminglatinoamerica.com/canal5/canal5
+
+#EXTINF:0,Canal 5 
+rtmp://c5n.stweb.tv:1935/c5n/live
+
+#EXTINF:0,Canal 6
+rtmp://k3.usastreams.com:1935/cana6/cana6
+
+#EXTINF:0,Canal 7 
+http://ecuadortv_livehd-lh.akamaihd.net/i/0n0xzqt3o_1@323283/master.m3u8#alxvill
+
+#EXTINF:0,Canal 7 
+http://72.46.226.61/live01/canal71/playlist.m3u8#MegaIPTVArgentina
+
+#EXTINF:0,Canal 7 
+http://74.63.97.188:1935/gpacifico4/videogpacifico4/chunklist_w1774114891.m3u8?
+
+#EXTINF:0,Canal 79 
 rtmp://painel.serveron.com.br:1935/8162/8162
 
-#EXTINF:0,Canal 79
+#EXTINF:0,Canal 79 
 rtmp://painel.serveron.com.br:1935/8168/8168
 
-#EXTINF:0,Canal Once 
-http://www.oncetvmexicolive.tv:1935/livepkgr2/smil:int.smil/playlist.m3u8
+#EXTINF:0,Canal 9 
+http://ionlive1-lh.akamaihd.net/i/canal9_1@125365/master.m3u8
 
-#EXTINF:0,Canal Once 
-http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0wNjImbGFuPTImcm93cz05OSZzZXNzaW9uPXdxbTE3a2hoMWFicTY3Zw==&f=.m3u8
+#EXTINF:0,Canal 9 
+http://xcanal9saltax.api.channel.livestream.com/3.0/playlist.m3u8
 
 #EXTINF:0,Canal Capital
 http://cdns840stu1010.multistream.net/canalcapitallive/amlst:live/master.m3u8
+
+#EXTINF:0,Canal Once 
+http://www.oncetvmexicolive.tv:1935/livepkgr2/smil:int.smil/playlist.m3u8
 
 #EXTINF:0,Canal Rural 
 rtsp://streamrural.cmd.com.ar:554/liverural/crural/rural1
@@ -167,34 +155,34 @@ http://38.96.148.216:1935/live/canelatv/playlist.m3u8
 http://187.237.253.94:8134/hls-live/livepkgr/_definst_/liveevent.m3u8
 
 #EXTINF:0,Casa
-http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0xODImbGFuPTImcm93cz05OSZzZXNzaW9uPXdxbTE3a2hoMWFicTY3Zw==&f=.m3u8
+0
 
 #EXTINF:0,CDN 37
 http://108.168.206.90:1935/cdn/cdn/playlist.m3u8
 
 #EXTINF:0,Cine Canal
-http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0zNTAmbGFuPTImcm93cz05OSZzZXNzaW9uPXdxbTE3a2hoMWFicTY3Zw==&f=.m3u8
+0
 
 #EXTINF:0,Cine Canal+
-http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0zMDkmbGFuPTImcm93cz05OSZzZXNzaW9uPXdxbTE3a2hoMWFicTY3Zw==&f=.m3u8
+0
+
+#EXTINF:0,Color Vision 
+0
 
 #EXTINF:0,Colosal TV
 rtmp://k3.usastreams.com:1935/colosaltv1/colosaltv1
 
-#EXTINF:0,Color Vision
-http://ss7.domint.net:2048/cvis_str/color/playlist.m3u8
-
-#EXTINF:0,CristoVision
+#EXTINF:0,CristoVision 
 http://cdns840stu1010.multistream.net/cristovisionlive/amlst:live/playlist_b300000_w2000349639.m3u8
 
 #EXTINF:0,CTNI
 http://184.164.158.202:1936/48/smil:48.smil/playlist.m3u8
 
 #EXTINF:0,De Pelicula
-http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0zMjYmbGFuPTImcm93cz05OSZzZXNzaW9uPXdxbTE3a2hoMWFicTY3Zw==&f=.m3u8
+0
 
 #EXTINF:0,Distrito Comedia
-http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0xNzQmbGFuPTImcm93cz05OSZzZXNzaW9uPXdxbTE3a2hoMWFicTY3Zw==&f=.m3u8
+0
 
 #EXTINF:0,Ecotel TV
 rtmp://enhd.co:1935/ecoteltv/ecoteltv
@@ -202,41 +190,35 @@ rtmp://enhd.co:1935/ecoteltv/ecoteltv
 #EXTINF:0,Efekto TV
 http://grupomac-lh.akamaihd.net/i/004rss0k8_1@301782/index_3_av-b.m3u8?sd=10&rebase=on
 
-#EXTINF:0,El Trece
+#EXTINF:0,El Trece 
 http://live-edge01.telecentro.net.ar:1935/live/13hd-720/playlist.m3u8
 
-#EXTINF:0,El Trece
+#EXTINF:0,El Trece 
 http://live-edge01.telecentro.net.ar/live/13hd-360/playlist.m3u8
 
-#EXTINF:0,El Trece
+#EXTINF:0,El Trece 
 http://live-edge01.telecentro.net.ar/live/13hd-180/playlist.m3u8
 
 #EXTINF:0,ESNE TV
 http://198.154.228.82:1935/live/esnetv/playlist.m3u8
 
-#EXTINF:0,Foro TV
+#EXTINF:0,Foro TV 
 http://185417-f.akamaihd.net/i/n0tf0r0_1@81283/index_1200_av-b.m3u8
 
-#EXTINF:0,Foro TV
-http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0wNDUmbGFuPTImcm93cz05OSZzZXNzaW9uPXdxbTE3a2hoMWFicTY3Zw==&f=.m3u8
-
-#EXTINF:0,Gala TV
+#EXTINF:0,Gala TV 
 http://rightbrainmedia.mpl.miisolutions.net/rightbrainmedia-live-244/_definst_/mp4:GalaTVCancun/playlist.m3u8?
-
-#EXTINF:0,Gala TV
-http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0wNTcmbGFuPTImcm93cz05OSZzZXNzaW9uPXdxbTE3a2hoMWFicTY3Zw==&f=.m3u8
 
 #EXTINF:0,Galicia
 http://media3.crtvg.es/live/tvga/.m3u8
 
 #EXTINF:0,Glitz
-http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0xNjYmbGFuPTImcm93cz05OSZzZXNzaW9uPXdxbTE3a2hoMWFicTY3Zw==&f=.m3u8
+0
 
 #EXTINF:0,Golden HD
-http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0zMTgmbGFuPTImcm93cz05OSZzZXNzaW9uPXdxbTE3a2hoMWFicTY3Zw==&f=.m3u8
+0
 
 #EXTINF:0,Gourmet
-http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0xNjEmbGFuPTImcm93cz05OSZzZXNzaW9uPXdxbTE3a2hoMWFicTY3Zw==&f=.m3u8
+0
 
 #EXTINF:0,Guatevision TV
 http://bravo967.sysvirtuales.com/live/stream1.sdp/playlist.m3u8
@@ -259,14 +241,14 @@ rtmp://teledifusion.tv:1935/levantetvlive/levantetvlive
 #EXTINF:0,Mas Milenio
 0
 
-#EXTINF:0,Mega TV
+#EXTINF:0,Mega TV 
 http://edge-11-mvstr.edge.mdstrm.com/live/smil:db6a38a0a2bffd96d01965c4d975b9fb/playlist_b400.m3u8
 
-#EXTINF:0,Mega TV
+#EXTINF:0,Mega TV 
 http://edge-61-cl.edge.mdstrm.com/live/smil:db6a38a0a2bffd96d01965c4d975b9fb/playlist.m3u8?
 
 #EXTINF:0,Mexico Travel Channel
-http://cdns840stu1010.multistream.net/mtchlive/amlst:live/chunklist_b900000.m3u8
+0
 
 #EXTINF:0,Multi Show
 0
@@ -289,11 +271,8 @@ http://www.oncetvmexicolive.tv:1935/livepkgr2/smil:int.smil/playlist.m3u8
 #EXTINF:0,Orbe 21
 http://urtmpkal-f.akamaihd.net/i/1b6mj17sk_1@308700/master.m3u8
 
-#EXTINF:0,Proyecto 40
+#EXTINF:0,Proyecto 40 
 http://tvaz-pd.kaltura.com.edgesuite.net/p/461031/sp/46103100/serveFlavor/entryId/0_08wdjxfl/v/1/flavorId/0_8j06e5nk/forceproxy/true/name/a.mp4
-
-#EXTINF:0,Proyecto 40
-http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0wNjkmbGFuPTImcm93cz05OSZzZXNzaW9uPXdxbTE3a2hoMWFicTY3Zw==&f=.m3u8
 
 #EXTINF:0,RPC TV
 http://live.rpctv.com/rpctv/tm.smil/playlist.m3u8
@@ -307,18 +286,6 @@ mms://stream.tangocity.com.ar/tangocity
 #EXTINF:0,STV Rioja
 mms://87.106.208.121/stv
 
-#EXTINF:0,Telearagua
-http://edge.wms28.lorini.net/telearagua/telearagua1/playlist.m3u8
-
-#EXTINF:0,Telefe
-http://live-edge01.telecentro.net.ar/live/tlfhd-720/playlist.m3u8
-
-#EXTINF:0,Telefe
-http://live-edge01.telecentro.net.ar/live/tlfhd-360/playlist.m3u8
-
-#EXTINF:0,Telefe
-http://live-edge01.telecentro.net.ar/live/tlfhd-180/playlist.m3u8
-
 #EXTINF:0,Tele Amiga
 http://cdns840stu1010.multistream.net/teleamigalive/amlst:live/canalesdelpueblotv.m3u8?MegaIPTVArgentina
 
@@ -328,23 +295,35 @@ rtmp://cdn8.iviplanet.com/Telecuracao/myStream.sdp
 #EXTINF:0,Tele Junin
 rtmp://65.254.42.234/telejunin/telejunin
 
-#EXTINF:0,Telemetro
-http://live.telemetro.com/telemetro/tm.smil/playlist.m3u8
-
 #EXTINF:0,Tele Uno TV
 rtmp://k3.usastreams.com:1935/tvuno1/tvuno1
+
+#EXTINF:0,Telearagua
+http://edge.wms28.lorini.net/telearagua/telearagua1/playlist.m3u8
 
 #EXTINF:0,TeleCaribe
 http://cdns840stu1010.multistream.net/telecaribelive/amlst:live/master.m3u8
 
+#EXTINF:0,Telefe 
+http://live-edge01.telecentro.net.ar/live/tlfhd-720/playlist.m3u8
+
+#EXTINF:0,Telefe 
+http://live-edge01.telecentro.net.ar/live/tlfhd-360/playlist.m3u8
+
+#EXTINF:0,Telefe c
+http://live-edge01.telecentro.net.ar/live/tlfhd-180/playlist.m3u8
+
 #EXTINF:0,Teleformula
-http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0wODEmbGFuPTImcm93cz05OSZzZXNzaW9uPXdxbTE3a2hoMWFicTY3Zw==&f=.m3u8
+0
 
 #EXTINF:0,Telehit
-http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT00MzMmbGFuPTImcm93cz05OSZzZXNzaW9uPXdxbTE3a2hoMWFicTY3Zw==&f=.m3u8
+0
+
+#EXTINF:0,Telemetro
+http://live.telemetro.com/telemetro/tm.smil/playlist.m3u8
 
 #EXTINF:0,Telemundo
-http://199.168.116.12:1935/app/chivass_69s-channel/.m3u8?
+0
 
 #EXTINF:0,TeleSur TV
 http://cdn2.telesur.ultrabase.net/livecf/telesurLive/chunklist.m3u8
@@ -352,11 +331,11 @@ http://cdn2.telesur.ultrabase.net/livecf/telesurLive/chunklist.m3u8
 #EXTINF:0,Televisa Musica
 http://186.155.200.118:1935/live/telemusica/playlist.m3u8
 
-#EXTINF:0,TINovelas
-http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0xODUmbGFuPTImcm93cz05OSZzZXNzaW9uPXdxbTE3a2hoMWFicTY3Zw==&f=.m3u8
+#EXTINF:0,TINN
+0
 
-#EXTINF:0,TIIN
-http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0yMzQmbGFuPTImcm93cz05OSZzZXNzaW9uPXdxbTE3a2hoMWFicTY3Zw==&f=.m3u8
+#EXTINF:0,TINovelas
+0
 
 #EXTINF:0,TiVa
 http://live-h1.frontlayer.net/fl729845/live/live.m3u8?wowzasessionid=1243637292
@@ -367,11 +346,8 @@ http://live-h1.frontlayer.net/fl729845/live/live.m3u8?wowzasessionid=1243637292
 #EXTINF:0,Travel TV
 rtmp://87.106.219.140/live/myStream_2
 
-#EXTINF:0,Trece
+#EXTINF:0,Trece 
 http://aztecalive-lh.akamaihd.net/i/0oxnvzh8a_1@175671/index_1_av-b.m3u8
-
-#EXTINF:0,Trece
-http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0wMTgmbGFuPTImcm93cz05OSZzZXNzaW9uPXdxbTE3a2hoMWFicTY3Zw==&f=.m3u8
 
 #EXTINF:0,TV Chile
 http://edge-61-cl.edge.mdstrm.com/tvn-live/_definst_/smil:285a5c6dade574d5f111419c85c6cf17/chunklist_b800000.m3u8
@@ -382,17 +358,17 @@ rtmp://50.7.98.234/rtv/videortv
 #EXTINF:0,TV Noticias 10
 rtmp://87.106.220.67/live/myStream_2
 
-#EXTINF:0,TV Publica
+#EXTINF:0,TV Publica 
 http://live-edge01.telecentro.net.ar/live/tvphd-720/playlist.m3u8
 
-#EXTINF:0,TV Publica
+#EXTINF:0,TV Publica 
 http://live-edge01.telecentro.net.ar/live/tvphd-360/playlist.m3u8
 
-#EXTINF:0,TV Publica
+#EXTINF:0,TV Publica 
 http://live-edge01.telecentro.net.ar/live/tvphd-180/playlist.m3u8
 
 #EXTINF:0,TV Rionegrina
-rtmp://198.50.154.40/live/live15
+0
 
 #EXTINF:0,TV Senado
 http://senadortmp.janus.cl/senadotv/senado600/HasBahCa.m3u8
@@ -413,7 +389,7 @@ http://xtvocanal23x.api.channel.livestream.com/3.0/playlist.m3u8
 rtmp://ecuastream.net:1935/UCSGHQ/UCSGHQ
 
 #EXTINF:0,Unicable
-http://200.38.126.38:8081/TPMHLSWeb/M3U8LiveFile?a=Zm9ybWF0PTEmcHJvZmlsZT0xMjImbGFuPTImcm93cz05OSZzZXNzaW9uPXdxbTE3a2hoMWFicTY3Zw==&f=.m3u8
+0
 
 #EXTINF:0,UNO TV
 http://ooyalahd2-f.akamaihd.net/i/UnoTV02_delivery@122617/master.m3u8

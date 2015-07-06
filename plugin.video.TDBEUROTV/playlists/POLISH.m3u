@@ -2,7 +2,7 @@
 
 
 #EXTINF:0,24
-http://212.79.96.134:8015/
+0
 
 #EXTINF:0,4fun TV
 rtmp://edge4.popler.tv:1935/publishlive?play=123452/4funtv live=1 swfUrl=http://images.popler.tv/player/flowplayer.commercial.swf pageUrl=http://www.popler.tv/live/4funtv
@@ -56,49 +56,34 @@ http://itv.net.pl/video1.asx
 http://wtk.live-ext.e96-jw.insyscd.net/lechtv.smil/playlist.m3u8
 
 #EXTINF:0,Noe Zive
-http://212.79.96.134:8017/
+0
 
 #EXTINF:0,Nova TV
-http://212.79.96.134:8003/
-
-#EXTINF:0,Nova Cinema
-http://212.79.96.134:8020/
+0
 
 #EXTINF:0,Nova Cinema
 http://gojo.jksw.cz:8020/?by_HasBahCa
 
 #EXTINF:0,Nova Sport 5
-http://212.79.96.134:8023/
+0
 
 #EXTINF:0,O1
-http://212.79.96.134:8001/
-
-#EXTINF:0,O1
-http://gojo.jksw.cz:8001/?by_HasBahCa
+0
 
 #EXTINF:0,O2
-http://212.79.96.134:8002/
-
-#EXTINF:0,O2
-http://gojo.jksw.cz:8002/?by_HasBahCa
+0
 
 #EXTINF:0,O24
-http://212.79.96.134:8015/
-
-#EXTINF:0,O24
-http://gojo.jksw.cz:8015/?by_HasBahCa
-
-#EXTINF:0,OD
-http://212.79.96.134:8005/
-
-#EXTINF:0,Ocko
-http://212.79.96.134:8016/
+0
 
 #EXTINF:0,Ocko
 http://gojo.jksw.cz:8016/?by_HasBahCa
 
 #EXTINF:0,Ocko Gold
-http://212.79.96.134:8012/
+0
+
+#EXTINF:0,OD
+0
 
 #EXTINF:0,Polo TV
 rtmp://stream.smcloud.net/live/polotv
@@ -113,25 +98,16 @@ rtmp://rtmp.goodcast.me:1935/liverepeater/_definst_/303487
 http://95.215.233.11:4022/udp/239.255.2.1:1234
 
 #EXTINF:0,Polsat Sport
-rtmp://rtmp.goodcast.me:1935/liverepeater/_definst_/303051
-
-#EXTINF:0,Polsat Sport
 http://95.215.233.11:4022/udp/239.255.2.8:1234
-
-#EXTINF:0,Prima
-http://212.79.96.134:8004/
 
 #EXTINF:0,Prima
 http://gojo.jksw.cz:8004/?by_HasBahCa
 
 #EXTINF:0,Prima Cool
-http://212.79.96.134:8021/
+0
 
 #EXTINF:0,Prima Love
-http://212.79.96.134:8019/
-
-#EXTINF:0,Prima Zoom
-http://212.79.96.134:8011/
+0
 
 #EXTINF:0,Prima Zoom
 http://gojo.jksw.cz:8011/?by_HasBahCa
@@ -149,7 +125,7 @@ rtmp://87.98.237.131/rtlubuska/rtl
 0
 
 #EXTINF:0,Slagr TV
-http://212.79.96.134:8013/
+0
 
 #EXTINF:0,Superstacja
 0
@@ -162,9 +138,6 @@ http://212.79.96.134:8013/
 
 #EXTINF:0,TV 6
 0
-
-#EXTINF:0,TV Barrandow
-http://212.79.96.134:8022/
 
 #EXTINF:0,TV Barrandow
 http://gojo.jksw.cz:8022/?by_HasBahCa
@@ -186,9 +159,6 @@ http://trwamtv.live.e96-jw.insyscd.net/trwamtv.smil/playlist.m3u8
 
 #EXTINF:0,TVK
 0
-
-#EXTINF:0,TVN
-rtmp://rtmp.goodcast.me:1935/liverepeater/_definst_/302426
 
 #EXTINF:0,TVN
 http://95.215.233.11:4022/udp/239.255.2.2:1234
