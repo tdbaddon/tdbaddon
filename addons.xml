@@ -434,8 +434,34 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 	</extension>
 </addon>
 
+<addon id="script.rawmaintenance"
+       name="Raw Maintenance"
+       version="0.1.4"
+       provider-name="Foreverska|Gombeek|Raw Media">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>executable</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <platform>all</platform>
+    <summary>Raw Maintinance</summary>
+    <description>
+	Your one stop tool for maintaining your device.
+	For support please visit www.no-issue.ca
+	Thank you to raw-media.ca for sponsoring the development of this add-on.
+    </description>
+    <language></language>
+    <license></license>
+    <source></source>
+    <forum></forum>
+    <website></website>
+  </extension>
+</addon>
+
 <addon id="script.xbmcbackup"
-    name="TDB-Backup" version="10.04" provider-name="TDB">
+    name="TDB-Backup" version="10.05" provider-name="TDB">
   <requires>
     <import addon="xbmc.python" version="2.19.0"/>
     <import addon="script.module.httplib2" version="0.8.0" />
