@@ -1,8 +1,13 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="script.xbmcbackup"
-    name="TDB-Backup" version="10.03" provider-name="TDB">
+    name="TDB-Backup" version="10.04" provider-name="TDB">
   <requires>
     <import addon="xbmc.python" version="2.19.0"/>
+    <import addon="script.module.httplib2" version="0.8.0" />
+    <import addon="script.module.oauth2client" version="1.4.7" />
+    <import addon="script.module.uritemplate" version="0.6" />
+    <import addon="script.module.yaml" version="3.11"/>
+    <import addon="script.module.googleapi" version="1.4.0" />
   </requires>
   <extension point="xbmc.python.script" library="default.py"> 
      <provides>executable</provides> 
@@ -10,9 +15,9 @@
   <extension point="xbmc.service" library="scheduler.py" start="startup" />
   <extension point="xbmc.addon.metadata">
     <summary lang="en">Backup and restore your Kodi database and configuration files in the event of a crash or file corruption.</summary>
-    <summary lang="en_US">Backup and restore your database and configuration files in the event of a crash or file corruption.</summary>
+    <summary lang="en_US">Backup and restore your XBMC database and configuration files in the event of a crash or file corruption.</summary>
     <description lang="en">Ever hosed your Kodi configuration and wished you'd had a backup? Now you can with one easy click. You can export your database, playlist, thumbnails, addons and other configuration details to any source writeable by XBMC or directly to Dropbox cloud storage. Backups can be run on demand or via a scheduler. </description>
-    <description lang="en_US">Ever hosed your configuration and wished you'd had a backup? Now you can with one easy click. You can export your database, playlist, thumbnails, addons and other configuration details to any source writeable by Kodi or directly to Dropbox cloud storage. Backups can be run on demand or via a scheduler. </description>
+    <description lang="en_US">Ever hosed your XBMC configuration and wished you'd had a backup? Now you can with one easy click. You can export your database, playlist, thumbnails, addons and other configuration details to any source writeable by Kodi or directly to Dropbox cloud storage. Backups can be run on demand or via a scheduler. </description>
     <language></language>
     <platform>all</platform>
     <license></license>
