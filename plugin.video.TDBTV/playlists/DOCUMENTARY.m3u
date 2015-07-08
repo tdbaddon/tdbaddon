@@ -88,6 +88,9 @@ http://hls.svc.moyo.tv/hls/CH_NATGEOWILD/variant.m3u8?version=2
 #EXTINF:0,Nat Geo Wild 
 http://194.44.229.77:777/udp/237.1.239.21:1234
 
+#EXTINF:-0,Nat Geo Wild 
+http://80.77.52.6:3917/udp/226.0.3.23:12345
+
 #EXTINF:0,National Geographic 
 http://hls.svc.moyo.tv/hls/CH_NATGEO/variant.m3u8?version=2
 

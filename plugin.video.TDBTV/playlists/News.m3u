@@ -94,6 +94,9 @@ http://hlsstr02.svc.iptv.rt.ru/hls/CH_FRANCE24/variant.m3u8?b?b*t$
 #EXTINF:0,France 24 
 http://80.77.52.6:3917/udp/226.0.1.33:12345
 
+#EXTINF:-0,France 24
+http://80.77.52.6:3917/udp/226.0.1.34:12345
+
 #EXTINF:0,HLN
 0
 

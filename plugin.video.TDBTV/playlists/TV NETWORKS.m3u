@@ -112,6 +112,9 @@ http://198.179.31.198/live/2062.high.stream/2062.high.stream/index.m3u8
 #EXTINF:0,Disney Channel 
 http://93.174.95.125:1935/edge/_definst_/2tag4dzgwof5ma2/playlist.m3u8?wowzasessionid=1420170412
 
+#EXTINF:0,Disney Channel 
+http://136.243.12.170/disney_channel_gb.m3u8
+
 #EXTINF:0,Disney Junior 
 0
 
@@ -130,8 +133,17 @@ http://pebbles124-lh.akamaihd.net/i/e4_1@137789/master.m3u8|X-Forwarded-For=85.5
 #EXTINF:0,Fashion TV 
 http://hls.novotelecom.ru/streaming/fashion/tvrec/playlist.m3u8
 
+#EXTINF:-0,Fashion TV
+http://80.77.52.6:3917/udp/226.0.1.41:12345
+
 #EXTINF:0,Fashion TV 
 http://80.77.52.6:3917/udp/226.0.1.42:12345
+
+#EXTINF:0,Fashion TV 
+http://80.77.52.6:3917/udp/226.0.1.10:12345
+
+#EXTINF:0,Fashion TV 
+http://80.77.52.6:3917/udp/226.0.1.61:12345
 
 #EXTINF:0,Film4 
 http://pebbles124-lh.akamaihd.net/i/film4_1@137790/master.m3u8|X-Forwarded-For=85.5.87.218
@@ -232,6 +244,9 @@ http://80.77.52.6:3917/udp/226.0.3.18:12345
 #EXTINF:0,Nickelodeon 
 http://194.44.229.77:777/udp/237.1.239.14:1234
 
+#EXTINF:0,Nickelodeon 
+http://136.243.12.170/nickelodeon_gb.m3u8
+
 #EXTINF:0,NickNight 
 0
 
@@ -245,7 +260,7 @@ http://194.44.229.77:777/udp/237.1.239.14:1234
 0
 
 #EXTINF:0,Sky 1 
-0
+http://136.243.12.170/sky_one_gb.m3u8
 
 #EXTINF:0,Sky 2
 0
