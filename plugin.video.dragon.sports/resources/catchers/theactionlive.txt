@@ -1,0 +1,25 @@
+item_info_name=title
+item_info_from=@PARAM1@
+item_info_build=TheActionLive - %s
+
+item_info_name=pageUrl
+item_info_from=@PARAM1@
+item_info_build=http://theactionlive.com/livegame.php?id=%s&width=630&height=480&stretching=
+
+item_info_name=tmp1
+item_info_from=pageUrl
+item_info_convert=getInfo('%s','.*id=['"]([^"']+).*','@REFERER@','id')
+item_info_build=%s
+
+item_info_name=playUrl
+item_info_from=http://biggestplayer.me/stream.php?id=' + id + '&width=600&height=450
+item_info_build=%s
+
+item_info_name=tmp2
+item_info_from=playUrl
+item_info_convert=getInfo('%s','.*file=([^&]+)&amp;streamer=([^&]+)&.*','http://theactionlive.com','file|rtmp')
+item_info_build=%s
+
+item_info_name=url
+item_info_from=rtmp + ' playpath=' + file + ' swfUrl=http://static.surk.tv/atdedead.swf live=1 token=#atd%#$ZH timeout=14 swfVfy=1 pageUrl=' + playUrl
+item_info_build=%s

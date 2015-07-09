@@ -1,0 +1,7 @@
+item_info_name=title
+item_info_from=@PARAM1@
+item_info_build=Streamup - %s
+
+item_info_name=url
+item_info_from=@PARAM1@
+item_info_build=plugin://plugin.video.streamup/?mode=PlayStreamUP&url=/rooms/%s/plugins/video/show?autoplayAudio=true

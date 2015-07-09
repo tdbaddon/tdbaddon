@@ -1,0 +1,15 @@
+Version 4.5.4.1 (05/25/15)
+*	Fixed iLive to a point, Next Page button broken
+*	Fixed WWE Network and brought back TSN to TSN Go
+
+
+Version 4.5.2.1	(03/05/15)
+*	Fixed Sports List B (hopefully for a while)
+*	Sports List A still toast
+
+Version 3.0.0	(11/06/14)
+*	Replaced my custom list of TV channels with more reliable scrapers.
+*	Added HQZone
+*	Fixed Wrestling and MMA Replays
+*	Added new sources
+*	Added Favourites function

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="repository.torrentrelease.info" name="TorrentRelease Repo" version="1.0.0.2" provider-name="TorrentRelease">
+	<extension point="xbmc.addon.repository" name="TorrentRelease">
+		<info compressed="false">http://kodi.torrentrelease.info/addons.xml</info>
+		<checksum>http://kodi.torrentrelease.info/addons.xml.md5</checksum>
+		<datadir zip="true">http://kodi.torrentrelease.info/addons</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Repo for TorrentRelease</summary>
+		<description>Repo for TorrentRelease</description>
+		<platform>all</platform>
+	</extension>
+</addon>

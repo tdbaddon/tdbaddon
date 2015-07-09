@@ -1,0 +1,19 @@
+#LWP-Cookies-2.0
+Set-Cookie3: __cfduid=dceba79b09aaba0821b08c5718a6f25021436480670; path="/"; domain=".castalba.tv"; path_spec; domain_dot; expires="2016-07-08 22:24:30Z"; HttpOnly=None; version=0
+Set-Cookie3: uc_session=ZpZkC9mWBFpdPfVyEMKxeDom1NyAM4tGQGRjbN9wBrDIvcZrhryeuxwrZGagtjNm; path="/"; domain=".dropboxusercontent.com"; path_spec; secure; discard; httponly=None; version=0
+Set-Cookie3: __cfduid=d88a3a760c3e3760e6e51d77116c466a01436480736; path="/"; domain=".ibrod.tv"; path_spec; domain_dot; expires="2016-07-08 22:25:36Z"; HttpOnly=None; version=0
+Set-Cookie3: CookieDirectiveAcceptance="4f510adf6828c51508177d1d55afee2f7beed8edi%3A255%3B"; path="/"; domain=".locatetv.com"; path_spec; domain_dot; expires="2017-07-08 22:30:28Z"; version=0
+Set-Cookie3: ab_group_undertone_20140902="556bd30b97cd90d9b378037669a4581cff115fe2s%3A7%3A%22group_a%22%3B"; path="/"; domain=".locatetv.com"; path_spec; domain_dot; expires="2017-07-08 22:30:28Z"; version=0
+Set-Cookie3: tinyCLR="2015-07-09"; path="/"; domain=".tinyurl.com"; path_spec; domain_dot; expires="2016-07-08 22:24:11Z"; version=0
+Set-Cookie3: tinyUUID=59ef4903b5efad21b426d838; path="/"; domain=".tinyurl.com"; path_spec; domain_dot; expires="2016-07-08 22:24:11Z"; version=0
+Set-Cookie3: __cfduid=d0fe2fc1e5687aa939fba7588b417aa2f1436480747; path="/"; domain=".zerocast.tv"; path_spec; domain_dot; expires="2016-07-08 22:25:47Z"; HttpOnly=None; version=0
+Set-Cookie3: PHPSESSID=4jrb1l0nvfkuih0of8n8bmm0a4; path="/"; domain="castalba.tv"; path_spec; discard; version=0
+Set-Cookie3: PHPSESSID=p6l1aomfjqu22hu7agddf2qm07; path="/"; domain="www.filmon.com"; path_spec; discard; version=0
+Set-Cookie3: lang=en; path="/"; domain="www.filmon.com"; path_spec; expires="2015-08-08 22:25:18Z"; version=0
+Set-Cookie3: PHPSESSID=jdqmgnpavfoqkt66hj1khad9h2; path="/"; domain="www.ibrod.tv"; path_spec; discard; version=0
+Set-Cookie3: PHPSESSID=c137ad88920b4e98989e9b2315ba7fe4; path="/"; domain="www.locatetv.com"; path_spec; discard; version=0
+Set-Cookie3: _putpat_session="BAh7B0kiD3Nlc3Npb25faWQGOgZFVEkiJWY3YWJkMGMxMTJhNGYxMzhmMmI2YjlkZThkMzg1ZTAwBjsAVEkiC2J1c3RlcgY7AEZJIh0zMGRiMGRmNTVmZjM3ZThjNzJkZGE0NmYGOwBG--85212befce6912ee3a9c8661538ceb8385d83ee3"; path="/"; domain="www.putpat.tv"; path_spec; discard; HttpOnly=None; version=0
+Set-Cookie3: permanent_session_id=985df05b052f547e01917d7066211449eff5d0c6; path="/"; domain="www.putpat.tv"; path_spec; expires="2035-07-09 22:27:51Z"; version=0
+Set-Cookie3: PHPSESSID=753itsmsc8m8tbab4h8dik67e5; path="/"; domain="www.streamlive.to"; path_spec; discard; version=0
+Set-Cookie3: ccode=CA; path="/"; domain="www.streamlive.to"; path_spec; expires="2015-07-09 23:28:14Z"; version=0
+Set-Cookie3: seeon68963=1; path="/"; domain="www.streamlive.to"; path_spec; expires="2015-07-09 22:38:14Z"; version=0

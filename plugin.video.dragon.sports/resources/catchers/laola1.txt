@@ -1,0 +1,35 @@
+item_info_name=tmp
+item_info_from=@PARAM1@
+item_info_convert=parseText('%s','.*streamid=([^&]+).*partnerid=([^&]+).*portalid=([^&]+).*','sid|pid|paid')
+item_info_build=%s
+
+item_info_name=title
+item_info_from=sid
+item_info_build=Laola1 - %s
+
+item_info_name=pageUrl
+item_info_from=http://www.laola1.tv/server/hd_video.php?play=' + sid + '&partner=' + pid + '&portal=' + paid +
+item_info_convert=getInfo('%s','.*<url>([^<]+).*','@REFERER@')
+item_info_build=%s
+
+
+item_info_name=tmp2
+item_info_from=pageUrl
+item_info_convert=getInfo('%s','.*httpBase" content="([^'"]+).*video src="([^'"]+).*','http://www.laola1.tv','rtmp|file.tmp')
+item_info_build=%s
+
+item_info_name=file
+item_info_from=file.tmp
+item_info_convert=replace('%s','&amp;','&')
+item_info_build=%s
+
+item_info_name=url
+item_info_from=rtmp + file + 
+item_info_build=%s
+
+
+
+
+#item_info_name=pageUrl
+#item_info_from=@PARAM1@ + '.xml?t=.smil&partnerid=1&streamid=' + @PARAM1@
+#item_info_build=http://streamaccess.unas.tv/hdflash/1/hdlaola1_%s

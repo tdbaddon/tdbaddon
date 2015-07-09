@@ -1,0 +1,29 @@
+item_info_name=channelid
+item_info_from=@PARAM1@
+#item_info_convert=debug
+item_info_convert=parseText('%s','.*cid=([^&]+)')
+item_info_build=%s
+
+item_info_name=title
+item_info_from=channelid
+item_info_build=UStream2 - %s
+
+#item_info_name=swf
+#item_info_from=@PARAM1@
+#item_info_convert=getInfo('%s','.*movie:\s*"([^"]+)".*)
+#item_info_build=%s
+
+#item_info_name=rtmp
+#item_info_from=channelid
+#item_info_convert=getInfo('http://cdngw.ustream.tv/Viewer/getStream/1/%s.amf','.*(rtmp://.+?)\/\W.*')
+#item_info_build=%s
+
+#item_info_name=file
+#item_info_from=channelid
+#item_info_convert=getInfo('http://cdngw.ustream.tv/Viewer/getStream/1/%s.amf','.*?streamName\W\W\W(.+?)[/]*\W.*)
+#item_info_build=%s
+
+item_info_name=url
+#item_info_from=rtmp + ' playpath=' + file + ' swfUrl=http://static-cdn1.ustream.tv/swf/live/viewer.rsl:410.swf live=true timeout=15 swfVfy=true pageUrl=' + @PARAM1@
+item_info_from=http://iphone-streaming.ustream.tv/uhls/' + channelid + '/streams/live/iphone/playlist.m3u8
+item_info_build=%s

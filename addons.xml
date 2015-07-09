@@ -45,6 +45,27 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
     </extension>
 </addon>
 
+<addon
+  id="plugin.video.dragon.sports"
+  version="4.5.4.2"
+  name="Dragon Streams"
+  provider-name="Unknown">
+  <requires>
+   <import addon="xbmc.python" version="2.1.0"/>
+   <import addon="script.common.plugin.cache" version="0.9.1"/>
+  </requires>
+  <extension
+    point="xbmc.python.pluginsource"
+    library="default.py">
+   <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>Play a variety of quality streams on your DragonBox</summary>
+    <description>** No streams are hosted by DragonBox, Dragon Streams or any affiliates of those mentioned.</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
 <addon id="plugin.video.gClone" name="gClone" version="1.1.2" provider-name="NVTTeam">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0"/>
@@ -437,6 +458,19 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 <description>Download and Install Addons</description>
 <platform>all</platform>
 </extension>
+</addon>
+
+<addon id="repository.torrentrelease.info" name="TorrentRelease Repo" version="1.0.0.2" provider-name="TorrentRelease">
+	<extension point="xbmc.addon.repository" name="TorrentRelease">
+		<info compressed="false">http://kodi.torrentrelease.info/addons.xml</info>
+		<checksum>http://kodi.torrentrelease.info/addons.xml.md5</checksum>
+		<datadir zip="true">http://kodi.torrentrelease.info/addons</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Repo for TorrentRelease</summary>
+		<description>Repo for TorrentRelease</description>
+		<platform>all</platform>
+	</extension>
 </addon>
 
 <addon id="rogger.repository" name="rogger repository" version="0.0.2" provider-name="rogger2">
