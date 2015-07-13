@@ -13,6 +13,9 @@ http://194.44.229.77:777/udp/237.1.239.18:1234
 #EXTINF:0,Animal Planet 
 http://80.77.52.6:3917/udp/226.0.3.19:12345
 
+#EXTINF:0,Animal Planet 
+http://151.80.99.34:56088/live/test/test/253.ts
+
 #EXTINF:0,Crime Investigation 
 0
 
@@ -28,11 +31,14 @@ http://80.80.160.168/live/8/live.m3u8
 #EXTINF:0,Discovery Channel 
 http://80.77.52.6:3917/udp/226.0.3.17:12345
 
+#EXTINF:0,Discovery Channel 
+http://151.80.99.34:56088/live/test/test/252.ts
+
 #EXTINF:0,Discovery History 
-0
+http://151.80.99.34:56088/live/test/test/255.ts
 
 #EXTINF:0,Discovery Home and Health
-0
+http://151.80.99.34:56088/live/test/test/256.ts
 
 #EXTINF:0,Discovery Investigation 
 http://80.80.160.168/live/5/live.m3u8
@@ -40,14 +46,23 @@ http://80.80.160.168/live/5/live.m3u8
 #EXTINF:0,Discovery Investigation 
 http://93.174.95.125:1935/edge/_definst_/yjma618cibkqxeo/chunklist.m3u8?wowzasessionid=1420168729
 
+#EXTINF:0,Discovery Investigation
+http://188.191.36.18:8000/invdiscovery
+
 #EXTINF:0,Discovery Investigation 
 http://80.77.52.6:3917/udp/226.0.3.1:12345
 
-#EXTINF:0,Discovery Science 
-http://80.80.160.168/live/9/live.m3u8
+#EXTINF:0,Discovery Investigation 
+http://151.80.99.34:56088/live/test/test/258.ts
 
 #EXTINF:0,Discovery Science 
 http://80.77.52.6:3917/udp/226.0.3.4:12345
+
+#EXTINF:0,Discovery Science 
+http://188.191.36.18:8000/discoveryscience
+
+#EXTINF:0,Discovery Science 
+http://151.80.99.34:56088/live/test/test/254.ts
 
 #EXTINF:0,Discovery Showcase
 0
@@ -56,13 +71,16 @@ http://80.77.52.6:3917/udp/226.0.3.4:12345
 0
 
 #EXTINF:0,Discovery Turbo 
-0
+http://151.80.99.34:56088/live/test/test/257.ts
 
 #EXTINF:0,Discovery World 
 http://80.77.52.6:3917/udp/226.0.3.3:12345
 
 #EXTINF:0,History Channel 
 http://93.174.95.125:1935/edge/_definst_/dhp0rpd116qyyj6/playlist.m3u8?wowzasessionid=1419874554
+
+#EXTINF:0,History Channel 
+http://188.191.36.18:8000/historyhd
 
 #EXTINF:0,History Channel 
 https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8?hdnea=ip=174.113.30.187~st=1427694727~exp=1427695327~acl=/i/*~id=a86de0c2-ad09-4469-9a63-6ebbc1bba4d3~hmac=ac144089000bdd16f6916c517ce3e6e04813d4de11ac16839ad468a977ec80b1
@@ -88,11 +106,17 @@ http://hls.svc.moyo.tv/hls/CH_NATGEOWILD/variant.m3u8?version=2
 #EXTINF:0,Nat Geo Wild 
 http://194.44.229.77:777/udp/237.1.239.21:1234
 
-#EXTINF:-0,Nat Geo Wild 
+#EXTINF:0,Nat Geo Wild 
 http://80.77.52.6:3917/udp/226.0.3.23:12345
+
+#EXTINF:0,Nat Geo Wild 
+http://188.191.36.18:8000/natgeowildhd
 
 #EXTINF:0,National Geographic 
 http://hls.svc.moyo.tv/hls/CH_NATGEO/variant.m3u8?version=2
+
+#EXTINF:0,National Geographic 
+http://188.191.36.18:8000/natgeohd
 
 #EXTINF:0,National Geographic 
 http://185.5.40.101/hls/session-10326907gnZKxnzwfY/CH_NATGEO/variant.m3u8?version=2 

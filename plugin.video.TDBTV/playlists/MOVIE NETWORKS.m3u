@@ -50,7 +50,7 @@ http://113.160.49.34/lives/origin03/cinemaxsd.isml/cinemaxsd-1096k.m3u8
 0
 
 #EXTINF:0,Fox Movies 
-0
+http://185.5.222.227:4242/bysid/5608
 
 #EXTINF:0,FX HD 
 0
@@ -63,6 +63,9 @@ http://113.160.49.34/lives/origin03/hbohd.isml/hbohd-2096k.m3u8
 
 #EXTINF:0,HBO 
 http://93.174.95.125:1935/edge/_definst_/z28ie9oqoku4qoy/playlist.m3u8?wowzasessionid=1419879571
+
+#EXTINF:0,HBO 
+http://93.174.95.125:1935/edge/_definst_/qzbbu26gcvjxksz/playlist.m3u8?wowzasessionid=1419907309
 
 #EXTINF:0,HBO 
 rtmp://94.102.49.207/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to/player/secure_player_iguide_token.swf live=1 pageUrl=http://www.iguide.to/view/1/watch-live-HBO-channel-for-free token=#ed%h0#w18623jsda6523lDGDVe
@@ -152,43 +155,43 @@ http://63.237.48.23/ios/MBC_MAX/MBC_MAX.m3u8
 http://80.80.160.168/live/7/live.m3u8
 
 #EXTINF:0,Sky Movies Action 
-0
+http://151.80.99.34:56088/live/test/test/186.ts
 
 #EXTINF:0,Sky Movies Atlantic
-0
+http://151.80.99.34:56088/live/test/test/183.ts
 
 #EXTINF:0,Sky Movies Comedy
-0
+http://151.80.99.34:56088/live/test/test/187.ts
 
 #EXTINF:0,Sky Movies Crime
-0
+http://151.80.99.34:56088/live/test/test/193.ts
 
 #EXTINF:0,Sky Movies Disney
-0
+http://151.80.99.34:56088/live/test/test/190.ts
 
 #EXTINF:0,Sky Movies Drama
-0
+http://151.80.99.34:56088/live/test/test/194.ts
 
 #EXTINF:0,Sky Movies Family
-0
+http://151.80.99.34:56088/live/test/test/191.ts
 
 #EXTINF:0,Sky Movies Horrors
-0
+http://151.80.99.34:56088/live/test/test/195.ts
 
 #EXTINF:0,Sky Movies Premiere 
 http://136.243.12.170/sky_moviespremiere_gb.m3u8?bandwidth=956&token=64d72c0aa1b059d2492bec590e0e729d&user=35430&playlistlength=25&os=browser
 
 #EXTINF:0,Sky Movies Premiere+
-0
+http://151.80.99.34:56088/live/test/test/192.ts
 
 #EXTINF:0,Sky Movies SciFi 
-0
+http://151.80.99.34:56088/live/test/test/188.ts
 
 #EXTINF:0,Sky Movies Select 
-0
+http://151.80.99.34:56088/live/test/test/189.ts
 
 #EXTINF:0,Sky Movies Superheros 
-0
+http://151.80.99.34:56088/live/test/test/185.ts
 
 #EXTINF:0,Sony Movie Channel
 0
@@ -200,7 +203,7 @@ http://113.160.49.34/lives/origin03/moviehd.isml/moviehd-2096k.m3u8
 0
 
 #EXTINF:0,TCM 
-0
+http://151.80.99.34:56088/live/test/test/265.ts
 
 #EXTINF:0,True Movies 1
 0

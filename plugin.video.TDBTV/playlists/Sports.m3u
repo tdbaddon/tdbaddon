@@ -24,22 +24,19 @@ http://bigten247.cdnak.bigtenhd.neulion.com/nlds/btn2go/btnnetwork/as/live/btnne
 0
 
 #EXTINF:0,BT Sport 1 
-0
+rtmp://80.82.64.140:443/liverepeater playpath=11 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
+
+#EXTINF:0,BT Sport 1 
+rtmp://80.82.64.140:443/liverepeater playpath=38 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
 
 #EXTINF:0,BT Sport 2 
-0
+rtmp://80.82.64.140:443/liverepeater playpath=36 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
 
 #EXTINF:0,Chelsea TV
 http://87.245.214.43/streaming/futbol/16/tvrec/playlist.m3u8
 
-#EXTINF:0,CTH Stadium 1
-0
-
-#EXTINF:0,CTH Stadium 2
-0
-
-#EXTINF:0,CTH Stadium 3 
-0
+#EXTINF:0,Chelsea TV
+http://151.80.99.34:56088/live/test/test/269.ts
 
 #EXTINF:0,ESPN 
 http://80.80.160.168/live/6/live.m3u8
@@ -60,6 +57,9 @@ http://80.77.52.6:3917/udp/226.0.3.21:12345
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_EUROSPORT/variant.m3u8
 
 #EXTINF:0,Eurosport 1 
+http://151.80.99.34:56088/live/test/test/272.ts
+
+#EXTINF:0,Eurosport 1 
 http://194.44.229.77:777/udp/237.1.239.19:1234
 
 #EXTINF:0,Eurosport 1 
@@ -67,6 +67,9 @@ http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_18
 
 #EXTINF:0,Eurosport 2 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_EUROSPORT2/variant.m3u8?version=2 
+
+#EXTINF:0,Eurosport 2 
+http://151.80.99.34:56088/live/test/test/273.ts
 
 #EXTINF:0,Eurosport 2 
 http://194.44.229.77:777/udp/237.1.239.13:1234
@@ -84,9 +87,6 @@ http://113.160.49.34/lives/origin03/foxhd.isml/foxhd-2096k.m3u8
 0
 
 #EXTINF:0,Fox Sports News 
-0
-
-#EXTINF:0,Horse and Country 
 0
 
 #EXTINF:0,LFC TV
@@ -122,46 +122,46 @@ rtmp://edge1.everyon.tv/etv1sb/pld613
 #EXTINF:0,Outdoor Channel 
 rtmp://edge1.everyon.tv/etv1sb/phd613
 
-#EXTINF:0,PAC Sports Arizona 
+#EXTINF:0,PAC 12 Arizona 
 http://xrxs.net/video/live-p12ariz-1164.m3u8
 
-#EXTINF:0,PAC Sports Arizona HD
+#EXTINF:0,PAC 12 Arizona HD
 http://xrxs.net/video/live-p12ariz-4728.m3u8
 
-#EXTINF:0,PAC Sports Bay Area 
+#EXTINF:0,PAC 12 Bay Area 
 http://xrxs.net/video/live-p12baya-1164.m3u8
 
-#EXTINF:0,PAC Sports Bay Area HD
+#EXTINF:0,PAC 12 Bay Area HD
 http://www.xrxs.net/video/live-p12baya-4728.m3u8
 
-#EXTINF:0,PAC Sports LA 
+#EXTINF:0,PAC 12 LA 
 http://xrxs.net/video/live-p12losa-1164.m3u8?
  
-#EXTINF:0,PAC Sports LA HD
+#EXTINF:0,PAC 12 LA HD
 http://xrxs.net/video/live-p12losa-4728.m3u8?
 
-#EXTINF:0,PAC Sports National 
+#EXTINF:0,PAC 12 National 
 http://xrxs.net/video/live-p12netw-1164.m3u8
  
-#EXTINF:0,PAC Sports National HD
+#EXTINF:0,PAC 12 National HD
 http://xrxs.net/video/live-p12netw-2328.m3u8
 
-#EXTINF:0,PAC Sports Mountain 
+#EXTINF:0,PAC 12 Mountain 
 http://www.xrxs.net/video/live-p12moun-1164.m3u8
 
-#EXTINF:0,PAC Sports Mountain HD
+#EXTINF:0,PAC 12 Mountain HD
 http://xrxs.net/video/live-p12moun-4728.m3u8
 
-#EXTINF:0,PAC Sports Oregon 
+#EXTINF:0,PAC 12 Oregon 
 http://xrxs.net/video/live-p12oreg-1164.m3u8
 
-#EXTINF:0,PAC Sports Oregon HD
+#EXTINF:0,PAC 12 Oregon HD
 http://xrxs.net/video/live-p12oreg-4728.m3u8
 
-#EXTINF:0,PAC Sports Washington 
+#EXTINF:0,PAC 12 Washington 
 http://xrxs.net/video/live-p12wash-1164.m3u8
  
-#EXTINF:0,PAC Sports Washington HD
+#EXTINF:0,PAC 12 Washington HD
 http://xrxs.net/video/live-p12wash-4728.m3u8
 
 #EXTINF:0,Porsche Channel
@@ -179,23 +179,47 @@ mms://100automoto.tv/channel_porsche
 #EXTINF:0,Sky Sports 1 
 http://144.76.3.83/sky_sports1gb.m3u8?bandwidth=956&token=205e6dc135bf9e7fe3da60d6ba052211&user=35430&playlistlength=25&os=browser
 
+#EXTINF:0,Sky Sports 1 
+rtmp://80.82.64.140:443/liverepeater playpath=1 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
+
+#EXTINF:0,Sky Sports 1 
+http://151.80.99.34:56088/live/test/test/197.ts
+
+#EXTINF:0,Sky Sports 1 
+rtmp://50.7.67.78:1935/graham/ss1
+
 #EXTINF:0,Sky Sports 2 
-0
+rtmp://80.82.64.140:443/liverepeater playpath=2 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
+
+#EXTINF:0,Sky Sports 2 
+rtmp://50.7.67.78:1935/graham/ss2
+
+#EXTINF:0,Sky Sports 2 
+http://151.80.99.34:56088/live/test/test/198.ts
 
 #EXTINF:0,Sky Sports 3 
-0
+http://151.80.99.34:56088/live/test/test/199.ts
+
+#EXTINF:0,Sky Sports 3 
+rtmp://50.7.67.78:1935/graham/ss3
 
 #EXTINF:0,Sky Sports 4 
-0
+raw=rtmp://80.82.64.140:443/liverepeater playpath=4 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
+
+#EXTINF:0,Sky Sports 4 
+rtmp://50.7.67.78:1935/graham/ss4
+
+#EXTINF:0,Sky Sports 4
+http://151.80.99.34:56088/live/test/test/200.ts
 
 #EXTINF:0,Sky Sports 5 
-0
+rtmp://80.82.64.140:443/liverepeater playpath=5 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
 
 #EXTINF:0,Sky Sports F1 
-0
+http://151.80.99.34:56088/live/test/test/202.ts
 
 #EXTINF:0,Sky Sports News 
-0
+http://151.80.99.34:56088/live/test/test/267.ts
 
 #EXTINF:0,Sportsnet 360
 http://nlds187.cdnak.neulion.com/nlds/sportsnetnow/sn_360/as/live/sn_360_hd_ipad.m3u8
@@ -243,7 +267,7 @@ http://113.160.49.34/lives/origin03/starsportsd.isml/starsportsd-1096k.m3u8
 http://194.44.229.77:777/udp/237.1.238.9:1234
 
 #EXTINF:0,WWE Network 
-0
+rtmp://80.82.64.140:443/liverepeater playpath=13 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
 
 #EXTINF:0,XTreme Sports 
 0
