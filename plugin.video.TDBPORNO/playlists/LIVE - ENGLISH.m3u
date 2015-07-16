@@ -8,9 +8,6 @@ http://wowza1.videos.movile.com:8080/live/smil:adulto_1.smil/playlist.m3u8
 http://wowza1.videos.movile.com:8080/live/smil:adulto_1.smil/media-b1100000_2400.m3u8
 
 #EXTINF:0,ADULT CHANNEL 
-http://wowza1.videos.movile.com:8080/live/smil:adultopremium_1.smil/playlist.m3u8
-
-#EXTINF:0,ADULT CHANNEL 
 http://210.200.79.26:1935/live/aracity03/playlist.m3u8
 
 #EXTINF:0,ADULT CHANNEL 
@@ -34,21 +31,6 @@ http://hlsstr04.svc.iptv.rt.ru/hls/CH_BLUEHUSTLER/variant.m3u8?version=2
 #EXTINF:0,BRASILEIRINHAS 
 http://62.210.82.241:8081/brasileirinhas/brasileirinhas/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9NS8yMC8yMDE1IDEyOjE5OjE2IEFNJmhhc2hfdmFsdWU9ZDlXWkZjUlc4RTVINGZjRkcxNlNDUT09JnZhbGlkbWludXRlcz0zMDA=
 
-#EXTINF:0,BRASILEIRINHAS 
-http://94.23.117.92:8000/live/sonia/sonia/357.ts
-
-#EXTINF:0,BRASILEIRINHAS 
-http://94.23.117.92:8000/live/sonia/sonia/358.ts
-
-#EXTINF:0,BRASILEIRINHAS 
-http://94.23.117.92:8000/live/sonia/sonia/359.ts
-
-#EXTINF:0,BRASILEIRINHAS 
-http://94.23.117.92:8000/live/sonia/sonia/360.ts
-
-#EXTINF:0,BRASILEIRINHAS 
-http://94.23.117.92:8000/live/sonia/sonia/361.ts
-
 #EXTINF:0,BRAZZERS TV EUROPE 
 http://hlsstr01.svc.iptv.rt.ru/hls/CH_BRAZZERSTV/variant.m3u8?version=2
 
@@ -62,7 +44,7 @@ rtmp://edge2.everyon.tv/etv2sb/phd772
 rtmp://edge2.everyon.tv/etv2sb/pld772
 
 #EXTINF:0,CENTOX CENTO 
-http://151.80.99.34:56088/live/test1/test1/142.ts
+0
 
 #EXTINF:0,DORCEL TV HD
 0
@@ -71,7 +53,7 @@ http://151.80.99.34:56088/live/test1/test1/142.ts
 http://62.210.82.241:8081/sexzonehd/sexzonehd/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9NS8yMC8yMDE1IDEyOjIwOjQzIEFNJmhhc2hfdmFsdWU9bXdZbnIwM2V4NE5jNXY4YnpNb2dtZz09JnZhbGlkbWludXRlcz0zMDA=
 
 #EXTINF:0,DREAMGIRLS NETWORK
-http://188.93.18.237:1935/tv/3460/playlist.m3u8
+0
 
 #EXTINF:0,EROTIC TV 
 0
@@ -83,7 +65,7 @@ http://188.93.18.237:1935/tv/3460/playlist.m3u8
 0
 
 #EXTINF:0,EXOTICA TV 
-http://151.80.99.34:56088/live/test1/test1/140.ts
+0
 
 #EXTINF:0,FRENCHLOVER 
 0
@@ -92,7 +74,7 @@ http://151.80.99.34:56088/live/test1/test1/140.ts
 http://46.249.213.93/iPhone/HLS_TS/broadcast/hotshots-tablet.3gp/hotshots-tablet.3gp-mr649k.m3u8
 
 #EXTINF:0,HUSTLER HD 
-http://151.80.99.34:56088/live/test1/test1/138.ts
+0
 
 #EXTINF:0,HUSTLER TV 
 0
@@ -107,13 +89,10 @@ http://151.80.99.34:56088/live/test1/test1/138.ts
 rtmp://109.71.162.112:1935/live/sd.jasminchannel.stream
 
 #EXTINF:0,MIAMI TV 
-rtmp://74.208.69.207/live/miamitvhd
-
-#EXTINF:0,MIAMI TV 
 http://k4.usastreams.com:1935/miamitv/miamitv/chunklist_w128908539.m3u8
 
 #EXTINF:0,NUBILE FILMS 
-http://188.165.220.116:8081/live/33/playlist.m3u8 
+0
 
 #EXTINF:0,NUART 
 0
@@ -125,22 +104,19 @@ http://hlsstr01.svc.iptv.rt.ru/hls/CH_OLALA/variant.m3u8
 http://hlsstr04.svc.iptv.rt.ru/hls/CH_OLALA/variant.m3u8?version=2
 
 #EXTINF:0,O LA LA 
-http://94.23.117.92:8000/live/sonia/sonia/242.ts
-
-#EXTINF:0,O LA LA 
 http://185.5.40.101/hls/session-4677617QfHCCZsLqE/CH_OLALA/bw1758000/variant.m3u8?version=1
 
 #EXTINF:0,Passie XXX
-http://publish.thewebstream.co:1935/leved/_definst_/passiexxx/playlist.m3u8
+0
 
 #EXTINF:0,PENTHOUSE
-http://145.255.200.18:4022/udp/224.10.20.31:5000
+0
 
 #EXTINF:0,PINK EROTIC 
 0
 
 #EXTINF:0,PINKO TV
-http://151.80.99.34:56088/live/test1/test1/146.ts
+0
 
 #EXTINF:0,PLAYBOY SPICE 
 rtmp://edge2.everyon.tv/etv2sb/phd499
@@ -157,8 +133,11 @@ http://hlsstr02.svc.iptv.rt.ru/hls/CH_PLAYBOY/variant.m3u8
 #EXTINF:-0,PLAYBOY TV 
 http://f1.mnogo-tv.com/ott-tv/1167/1433972580/7e5b62bec54ebc00c7ac295d5629e790/hls/PLboi/index.m3u8
 
+#EXTINF:-0,PLAYBOY TV 
+http://80.77.52.6:3917/udp/226.0.7.32:12345
+
 #EXTINF:0,PLATINUM TV 
-http://151.80.99.34:56088/live/test1/test1/145.ts
+0
 
 #EXTINF:0,PRIVATE 
 http://178.33.126.213:1935/leved/privateCom/.m3u8
@@ -167,7 +146,7 @@ http://178.33.126.213:1935/leved/privateCom/.m3u8
 0
 
 #EXTINF:0,REDLIGHT PREMIUM 
-http://151.80.99.34:56088/live/test1/test1/137.ts
+0
 
 #EXTINF:0,REDTUBE
 0
@@ -181,17 +160,17 @@ http://hlsstr02.svc.iptv.rt.ru/hls/CH_RUSSIANNIGHT/variant.m3u8?version=2
 #EXTINF:0,RUSSIAN NIGHT 
 http://46.61.226.19/hls/CH_RUSSIANNIGHT/bw1500000/variant.m3u8?version=2
 
+#EXTINF:0,RUSSIAN NIGHT 
+http://80.77.52.6:3917/udp/226.0.3.27:12345
+
 #EXTINF:0,RUSSIAN NIGHT CLUB TV 
 0
 
 #EXTINF:0,SATISFACTION HD 
 rtmp://main2sb.everyon.tv:1935/etv2sb/_definst_/pld499
 
-#EXTINF:0,SATISFACTION HD 
-http://151.80.99.34:56088/live/test1/test1/139.ts
-
 #EXTINF:0,SCT 
-http://151.80.99.34:56088/live/test1/test1/144.ts
+0
 
 #EXTINF:0,SEX ED 
 0
@@ -200,7 +179,7 @@ http://151.80.99.34:56088/live/test1/test1/144.ts
 0
 
 #EXTINF:0,SEXT SENSO
-http://151.80.99.34:56088/live/test1/test1/143.ts
+0
 
 #EXTINF:0,SEXYHOT 
 0
@@ -220,10 +199,10 @@ http://151.80.99.34:56088/live/test1/test1/143.ts
 #EXTINF:0,X DESIRE 
 0
 
-#EXTINF:0,XXL
+#EXTINF:0,XXL 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_XXL/variant.m3u8
 
-#EXTINF:0,XXL
+#EXTINF:0,XXL 
 http://hlsstr01.svc.iptv.rt.ru/hls/CH_XXL/variant.m3u8?version=2
 
 #EXTINF:0,XXX 
@@ -243,10 +222,3 @@ http://199.195.195.108:32006
 
 #EXTINF:0,YOU DIVA 
 http://46.249.213.87/iPhone/HLS_TS/broadcast/you_diva-iphone.3gp.m3u8
-
-
-
-
-
-
-
