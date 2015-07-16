@@ -1,23 +1,11 @@
 ﻿#EXTM3U
 
-
 #EXTINF:0,How to change AUDIO LANGUAGE
 http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mp4
+---------------------------------------------------------------------------------------------------------------
 
 #EXTINF:0,Cinemax 
 http://113.160.49.34/lives/origin03/cinemaxsd.isml/cinemaxsd-1096k.m3u8
-
-#EXTINF:0,Cinestar Action & Thriller 
-0
-
-#EXTINF:0,Cinestar Premiere 1 
-0
-
-#EXTINF:0,Cinestar Premiere 2 
-0
-
-#EXTINF:0,Cinestar TV 
-0
 
 #EXTINF:0,CMore Action
 0
@@ -34,9 +22,6 @@ http://113.160.49.34/lives/origin03/cinemaxsd.isml/cinemaxsd-1096k.m3u8
 #EXTINF:0,CMore Series
 0
 
-#EXTINF:0,Film Zone
-0
-
 #EXTINF:0,Fox 1 
 0
 
@@ -50,16 +35,10 @@ http://113.160.49.34/lives/origin03/cinemaxsd.isml/cinemaxsd-1096k.m3u8
 0
 
 #EXTINF:0,Fox Movies 
-http://185.5.222.227:4242/bysid/5608
+0
 
 #EXTINF:0,FX HD 
 0
-
-#EXTINF:0,Golden Edge 
-0
-
-#EXTINF:0,HBO 
-http://113.160.49.34/lives/origin03/hbohd.isml/hbohd-2096k.m3u8
 
 #EXTINF:0,HBO 
 http://93.174.95.125:1935/edge/_definst_/z28ie9oqoku4qoy/playlist.m3u8?wowzasessionid=1419879571
@@ -80,36 +59,6 @@ http://63.237.48.3/ios/MBC2/MBC2.m3u8
 http://63.237.48.23/ios/MBC_MAX/MBC_MAX.m3u8
 
 #EXTINF:0,MGM 
-0
-
-#EXTINF:0,Movies 24/7
-0
-
-#EXTINF:0,Movies 4 Men
-0
-
-#EXTINF:0,OSN Action
-
-
-#EXTINF:0,OSN Action 2
-0
-
-#EXTINF:0,OSN Box Office 1
-0
-
-#EXTINF:0,OSN Drama
-0
-
-#EXTINF:0,OSN Kids
-0
-
-#EXTINF:0,OSN On Demand
-0
-
-#EXTINF:0,OSN Movies
-0
-
-#EXTINF:0,Paramount Channel
 0
 
 #EXTINF:0,Pink Action 1
@@ -148,50 +97,47 @@ http://63.237.48.23/ios/MBC_MAX/MBC_MAX.m3u8
 #EXTINF:0,Pink Western
 0
 
-#EXTINF:0,SciFi
+#EXTINF:0,Showtime 
 0
 
-#EXTINF:0,Showtime 
-http://80.80.160.168/live/7/live.m3u8
-
 #EXTINF:0,Sky Movies Action 
-http://151.80.99.34:56088/live/test/test/186.ts
+http://bg-sofia.hls.unistream.tv/317/play?key=53ef522659a58
 
 #EXTINF:0,Sky Movies Atlantic
-http://151.80.99.34:56088/live/test/test/183.ts
+0
 
 #EXTINF:0,Sky Movies Comedy
-http://151.80.99.34:56088/live/test/test/187.ts
+http://bg-sofia.hls.unistream.tv/313/play?key=53ef522659a58
 
 #EXTINF:0,Sky Movies Crime
-http://151.80.99.34:56088/live/test/test/193.ts
+0
 
 #EXTINF:0,Sky Movies Disney
-http://151.80.99.34:56088/live/test/test/190.ts
+0
 
 #EXTINF:0,Sky Movies Drama
-http://151.80.99.34:56088/live/test/test/194.ts
+http://bg-sofia.hls.unistream.tv/316/play?key=53ef522659a58
 
 #EXTINF:0,Sky Movies Family
-http://151.80.99.34:56088/live/test/test/191.ts
+http://bg-sofia.hls.unistream.tv/318/play?key=53ef522659a58
 
 #EXTINF:0,Sky Movies Horrors
-http://151.80.99.34:56088/live/test/test/195.ts
+http://bg-sofia.hls.unistream.tv/315/play?key=53ef522659a58
 
 #EXTINF:0,Sky Movies Premiere 
-http://136.243.12.170/sky_moviespremiere_gb.m3u8?bandwidth=956&token=64d72c0aa1b059d2492bec590e0e729d&user=35430&playlistlength=25&os=browser
+http://bg-sofia.hls.unistream.tv/312/play?key=53ef522659a58
 
 #EXTINF:0,Sky Movies Premiere+
-http://151.80.99.34:56088/live/test/test/192.ts
+0
 
 #EXTINF:0,Sky Movies SciFi 
-http://151.80.99.34:56088/live/test/test/188.ts
+http://bg-sofia.hls.unistream.tv/314/play?key=53ef522659a58
 
 #EXTINF:0,Sky Movies Select 
-http://151.80.99.34:56088/live/test/test/189.ts
+0
 
 #EXTINF:0,Sky Movies Superheros 
-http://151.80.99.34:56088/live/test/test/185.ts
+0
 
 #EXTINF:0,Sony Movie Channel
 0
@@ -203,7 +149,7 @@ http://113.160.49.34/lives/origin03/moviehd.isml/moviehd-2096k.m3u8
 0
 
 #EXTINF:0,TCM 
-http://151.80.99.34:56088/live/test/test/265.ts
+0
 
 #EXTINF:0,True Movies 1
 0
@@ -216,10 +162,3 @@ http://194.44.229.77:777/udp/237.1.238.17:1234
 
 #EXTINF:0,TV 1000 Action 
 http://194.44.229.77:777/udp/237.1.238.18:1234
-
-
-
-
-
-
-

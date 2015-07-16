@@ -73,6 +73,9 @@ rtmp://83.218.202.202/live swfUrl=http://webtv.md/swf/WebTV.swf playpath=wt_mtv.
 #EXTINF:0,MTV 
 http://93.174.95.125:1935/edge/_definst_/d2z1vc4ahrl6x26/playlist.m3u8?wowzasessionid=1420171062
 
+#EXTINF:0,MTV 
+http://bg-sofia.hls.unistream.tv/324/play?key=53ef522659a58
+
 #EXTINF:0,MTV Dance 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVDANCE/variant.m3u8
 
@@ -84,6 +87,9 @@ http://80.77.52.6:3917/udp/226.0.7.17:12345
 
 #EXTINF:0,MTV Hits 
 http://194.44.229.77:777/udp/237.1.238.1:1234
+
+#EXTINF:0,MTV Hits 
+http://bg-sofia.hls.unistream.tv/323/play?key=53ef522659a58
 
 #EXTINF:0,MTV Live 
 http://46.61.226.18/hls/CH_C03_MTVLIVEHD/bw3000000/variant.m3u8?version=2
@@ -132,6 +138,9 @@ http://93.174.95.125:1935/edge/_definst_/oeiigxxv1gbeqq9/manifest.m3u8?wowzasess
 
 #EXTINF:0,VH1 
 http://194.44.229.77:777/udp/237.1.239.20:1234
+
+#EXTINF:0,VH1 
+http://bg-sofia.hls.unistream.tv/321/play?key=53ef522659a58
 
 #EXTINF:0,VH1 Classics
 http://92.50.181.6/tv/1282/index.m3u8

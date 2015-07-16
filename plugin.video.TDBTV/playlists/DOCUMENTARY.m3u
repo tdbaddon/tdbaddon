@@ -1,8 +1,8 @@
 ﻿#EXTM3U
 
-
 #EXTINF:0,How to change AUDIO LANGUAGE
 http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mp4
+---------------------------------------------------------------------------------------------------------------
 
 #EXTINF:0,Animal Planet 
 http://80.80.160.168/live/1/live.m3u8
@@ -14,13 +14,7 @@ http://194.44.229.77:777/udp/237.1.239.18:1234
 http://80.77.52.6:3917/udp/226.0.3.19:12345
 
 #EXTINF:0,Animal Planet 
-http://151.80.99.34:56088/live/test/test/253.ts
-
-#EXTINF:0,Crime Investigation 
-0
-
-#EXTINF:0,Da Vinci Learning
-0
+http://bg-sofia.hls.unistream.tv/335/play?key=53ef522659a58
 
 #EXTINF:0,Discovery Channel 
 http://93.174.95.125:1935/edge/_definst_/ishyd3sopok3p27/playlist.m3u8?wowzasessionid=1419872569
@@ -32,13 +26,13 @@ http://80.80.160.168/live/8/live.m3u8
 http://80.77.52.6:3917/udp/226.0.3.17:12345
 
 #EXTINF:0,Discovery Channel 
-http://151.80.99.34:56088/live/test/test/252.ts
+http://bg-sofia.hls.unistream.tv/332/play?key=53ef522659a58
 
 #EXTINF:0,Discovery History 
-http://151.80.99.34:56088/live/test/test/255.ts
+http://bg-sofia.hls.unistream.tv/333/play?key=53ef522659a58
 
-#EXTINF:0,Discovery Home and Health
-http://151.80.99.34:56088/live/test/test/256.ts
+#EXTINF:0,Discovery H&H
+0
 
 #EXTINF:0,Discovery Investigation 
 http://80.80.160.168/live/5/live.m3u8
@@ -46,14 +40,14 @@ http://80.80.160.168/live/5/live.m3u8
 #EXTINF:0,Discovery Investigation 
 http://93.174.95.125:1935/edge/_definst_/yjma618cibkqxeo/chunklist.m3u8?wowzasessionid=1420168729
 
-#EXTINF:0,Discovery Investigation
+#EXTINF:0,Discovery Investigation 
 http://188.191.36.18:8000/invdiscovery
 
 #EXTINF:0,Discovery Investigation 
 http://80.77.52.6:3917/udp/226.0.3.1:12345
 
 #EXTINF:0,Discovery Investigation 
-http://151.80.99.34:56088/live/test/test/258.ts
+http://bg-sofia.hls.unistream.tv/342/play?key=53ef522659a58
 
 #EXTINF:0,Discovery Science 
 http://80.77.52.6:3917/udp/226.0.3.4:12345
@@ -62,22 +56,19 @@ http://80.77.52.6:3917/udp/226.0.3.4:12345
 http://188.191.36.18:8000/discoveryscience
 
 #EXTINF:0,Discovery Science 
-http://151.80.99.34:56088/live/test/test/254.ts
-
-#EXTINF:0,Discovery Showcase
-0
-
-#EXTINF:0,Discovery Theater 
-0
+http://bg-sofia.hls.unistream.tv/334/play?key=53ef522659a58
 
 #EXTINF:0,Discovery Turbo 
-http://151.80.99.34:56088/live/test/test/257.ts
+0
 
 #EXTINF:0,Discovery World 
 http://80.77.52.6:3917/udp/226.0.3.3:12345
 
 #EXTINF:0,History Channel 
 http://93.174.95.125:1935/edge/_definst_/dhp0rpd116qyyj6/playlist.m3u8?wowzasessionid=1419874554
+
+#EXTINF:0,History Channel 
+http://194.44.229.77:777/udp/237.1.238.12:1234
 
 #EXTINF:0,History Channel 
 http://188.191.36.18:8000/historyhd
@@ -89,13 +80,10 @@ https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8?hdnea=ip=174.113.
 http://link.theplatform.com/s/dtjsEC/chjdYJxKb44V?manifest=m3u&feed=History%20Live%20Stream%20Feed
 
 #EXTINF:0,History Channel 
-http://194.44.229.77:777/udp/237.1.238.12:1234
+http://bg-sofia.hls.unistream.tv/338/play?key=53ef522659a58
 
 #EXTINF:0,NASA TV 
 http://nasatv-lh.akamaihd.net/i/NASA_101@319270/master.m3u8 
-
-#EXTINF:0,Nat Geo People 
-0
 
 #EXTINF:0,Nat Geo Wild 
 http://185.5.40.101/hls/session-37473uCyyxurSfw/CH_NATGEOWILD/variant.m3u8?version=2
@@ -116,22 +104,25 @@ http://188.191.36.18:8000/natgeowildhd
 http://hls.svc.moyo.tv/hls/CH_NATGEO/variant.m3u8?version=2
 
 #EXTINF:0,National Geographic 
-http://188.191.36.18:8000/natgeohd
-
-#EXTINF:0,National Geographic 
 http://185.5.40.101/hls/session-10326907gnZKxnzwfY/CH_NATGEO/variant.m3u8?version=2 
-
-#EXTINF:0,National Geographic 
-http://194.44.229.77:777/udp/237.1.238.10:1234
 
 #EXTINF:0,National Geographic 
 http://194.44.229.77:777/udp/237.1.239.22:1234
 
 #EXTINF:0,National Geographic 
+http://80.77.52.6:3917/udp/226.0.3.24:12345
+
+#EXTINF:0,National Geographic 
+http://188.191.36.18:8000/natgeohd
+
+#EXTINF:0,National Geographic 
+http://194.44.229.77:777/udp/237.1.238.10:1234
+
+#EXTINF:0,National Geographic 
 http://80.77.52.6:3917/udp/226.0.3.23:12345
 
 #EXTINF:0,National Geographic 
-http://80.77.52.6:3917/udp/226.0.3.24:12345
+http://bg-sofia.hls.unistream.tv/336/play?key=53ef522659a58
 
 #EXTINF:0,Planet Green
 http://80.80.160.168/live/4/live.m3u8

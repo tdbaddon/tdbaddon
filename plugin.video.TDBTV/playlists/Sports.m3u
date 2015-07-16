@@ -1,20 +1,19 @@
 ﻿#EXTM3U
 
-
 #EXTINF:0,How to change AUDIO LANGUAGE
 http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mp4
+---------------------------------------------------------------------------------------------------------------
 
-
-#EXTINF:0,Bein Sport1 
+#EXTINF:0,Bein Sport 1 
 rtmp://180.250.29.12:1935/jhos/beib1_5?b?b*t$
 
-#EXTINF:0,Bein Sport1 
+#EXTINF:0,Bein Sport 1 
 http://streamindo.ddns.net/jhos/beib1_2/streamindo/playlist.m3u8
 
-#EXTINF:0,Bein Sport2 
+#EXTINF:0,Bein Sport 2 
 rtmp://180.250.29.12:1935/jhos/beib2_5?b?b*t$
 
-#EXTINF:0,Bein Sport2 
+#EXTINF:0,Bein Sport 2 
 http://streamindo.ddns.net/jhos/beib2_2/streamindo/playlist.m3u8
 
 #EXTINF:0,Big Ten Network 
@@ -29,14 +28,17 @@ rtmp://80.82.64.140:443/liverepeater playpath=11 pageUrl=http://popeoftheplayers
 #EXTINF:0,BT Sport 1 
 rtmp://80.82.64.140:443/liverepeater playpath=38 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
 
+#EXTINF:0,BT Sport 1 
+http://bg-sofia.hls.unistream.tv/453/play?key=53ef522659a58
+
 #EXTINF:0,BT Sport 2 
 rtmp://80.82.64.140:443/liverepeater playpath=36 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
 
-#EXTINF:0,Chelsea TV
-http://87.245.214.43/streaming/futbol/16/tvrec/playlist.m3u8
+#EXTINF:0,BT Sport 2 
+http://bg-sofia.hls.unistream.tv/454/play?key=53ef522659a58
 
-#EXTINF:0,Chelsea TV
-http://151.80.99.34:56088/live/test/test/269.ts
+#EXTINF:0,Chelsea TV 
+http://87.245.214.43/streaming/futbol/16/tvrec/playlist.m3u8
 
 #EXTINF:0,ESPN 
 http://80.80.160.168/live/6/live.m3u8
@@ -47,6 +49,9 @@ http://93.174.95.125:1935/edge/_definst_/xoaaohmeuajfeyf/playlist.m3u8?wowzasess
 #EXTINF:0,ESPN 
 rtmp://141.255.160.202:1935/stream/ playpath=1Kq68GX6Kc.stream swfUrl=http://thecdn.04stream.com/p/ooolo1.swf pageUrl=http://www.04stream.com/ebb.php?adsp=other&width=600&height=460&st=24g3z5b4d4t4w3x2x4h5n244z294u2u28424w2u2w2t223f4&adx=&stream=54y2n5i57494y264d4k544b4v2a494n244v4n4y2w2i304c4x4l5t22433y234y2x2p2t274y2z32363y3q2x4y5b4e4f3v3c4t4i2k4j4v5k474n33574a414p4h4z33456t226c4n424r2p2z294b434h5233314y2k5b4a4j5u24494j5s244v264338444d4y2z264b494m56434t2y3s2p224r2p2o2&sooor=NA==&str=is&ok=&cat=2&link=1&idom=www.gofeed2all.eu token=%ZZri(nKa@#Z
 
+#EXTINF:0,ESPN 
+http://bg-sofia.hls.unistream.tv/340/play?key=53ef522659a58
+
 #EXTINF:0,ESPN 2 
 http://93.174.95.125:1935/edge/_definst_/5hd19kwxef5b59o/playlist.m3u8?wowzasessionid=1420123722
 
@@ -54,25 +59,25 @@ http://93.174.95.125:1935/edge/_definst_/5hd19kwxef5b59o/playlist.m3u8?wowzasess
 http://80.77.52.6:3917/udp/226.0.3.21:12345
 
 #EXTINF:0,Eurosport 1 
+http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_1800.m3u8
+
+#EXTINF:0,Eurosport 1 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_EUROSPORT/variant.m3u8
 
 #EXTINF:0,Eurosport 1 
-http://151.80.99.34:56088/live/test/test/272.ts
+http://bg-sofia.hls.unistream.tv/326/play?key=53ef522659a58
 
 #EXTINF:0,Eurosport 1 
 http://194.44.229.77:777/udp/237.1.239.19:1234
-
-#EXTINF:0,Eurosport 1 
-http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_1800.m3u8
 
 #EXTINF:0,Eurosport 2 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_EUROSPORT2/variant.m3u8?version=2 
 
 #EXTINF:0,Eurosport 2 
-http://151.80.99.34:56088/live/test/test/273.ts
+http://194.44.229.77:777/udp/237.1.239.13:1234
 
 #EXTINF:0,Eurosport 2 
-http://194.44.229.77:777/udp/237.1.239.13:1234
+http://bg-sofia.hls.unistream.tv/325/play?key=53ef522659a58
 
 #EXTINF:0,Eurosport News 
 http://hlsstr04.svc.iptv.rt.ru/hls/CH_EUROSPORTNEWS/variant.m3u8 
@@ -171,37 +176,25 @@ mms://100automoto.tv/channel_porsche
 0
 
 #EXTINF:0,Racing UK 
-0
+http://bg-sofia.hls.unistream.tv/341/play?key=53ef522659a58
 
 #EXTINF:0,Setanta Sports 
-0
-
-#EXTINF:0,Sky Sports 1 
-http://144.76.3.83/sky_sports1gb.m3u8?bandwidth=956&token=205e6dc135bf9e7fe3da60d6ba052211&user=35430&playlistlength=25&os=browser
+http://bg-sofia.hls.unistream.tv/358/play?key=53ef522659a58
 
 #EXTINF:0,Sky Sports 1 
 rtmp://80.82.64.140:443/liverepeater playpath=1 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
 
 #EXTINF:0,Sky Sports 1 
-http://151.80.99.34:56088/live/test/test/197.ts
-
-#EXTINF:0,Sky Sports 1 
-rtmp://50.7.67.78:1935/graham/ss1
+http://bg-sofia.hls.unistream.tv/319/play?key=53ef522659a58
 
 #EXTINF:0,Sky Sports 2 
 rtmp://80.82.64.140:443/liverepeater playpath=2 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
 
 #EXTINF:0,Sky Sports 2 
-rtmp://50.7.67.78:1935/graham/ss2
-
-#EXTINF:0,Sky Sports 2 
-http://151.80.99.34:56088/live/test/test/198.ts
+http://bg-sofia.hls.unistream.tv/344/play?key=53ef522659a58
 
 #EXTINF:0,Sky Sports 3 
-http://151.80.99.34:56088/live/test/test/199.ts
-
-#EXTINF:0,Sky Sports 3 
-rtmp://50.7.67.78:1935/graham/ss3
+http://bg-sofia.hls.unistream.tv/351/play?key=53ef522659a58
 
 #EXTINF:0,Sky Sports 4 
 raw=rtmp://80.82.64.140:443/liverepeater playpath=4 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
@@ -209,17 +202,17 @@ raw=rtmp://80.82.64.140:443/liverepeater playpath=4 pageUrl=http://popeoftheplay
 #EXTINF:0,Sky Sports 4 
 rtmp://50.7.67.78:1935/graham/ss4
 
-#EXTINF:0,Sky Sports 4
-http://151.80.99.34:56088/live/test/test/200.ts
+#EXTINF:0,Sky Sports 4 
+http://bg-sofia.hls.unistream.tv/353/play?key=53ef522659a58
 
 #EXTINF:0,Sky Sports 5 
 rtmp://80.82.64.140:443/liverepeater playpath=5 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
 
 #EXTINF:0,Sky Sports F1 
-http://151.80.99.34:56088/live/test/test/202.ts
+http://bg-sofia.hls.unistream.tv/352/play?key=53ef522659a58
 
 #EXTINF:0,Sky Sports News 
-http://151.80.99.34:56088/live/test/test/267.ts
+http://bg-sofia.hls.unistream.tv/354/play?key=53ef522659a58
 
 #EXTINF:0,Sportsnet 360
 http://nlds187.cdnak.neulion.com/nlds/sportsnetnow/sn_360/as/live/sn_360_hd_ipad.m3u8
@@ -268,8 +261,3 @@ http://194.44.229.77:777/udp/237.1.238.9:1234
 
 #EXTINF:0,WWE Network 
 rtmp://80.82.64.140:443/liverepeater playpath=13 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
-
-#EXTINF:0,XTreme Sports 
-0
-
-

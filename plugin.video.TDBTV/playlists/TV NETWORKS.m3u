@@ -1,8 +1,8 @@
 ﻿#EXTM3U
 
-
 #EXTINF:0,How to change AUDIO LANGUAGE
 http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mp4
+---------------------------------------------------------------------------------------------------------------
 
 #EXTINF:0,A&E 
 0
@@ -10,14 +10,14 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mp4
 #EXTINF:0,ABC 
 0
 
-#EXTINF:0,ABC Family
+#EXTINF:0,ABC Family0
 http://93.174.95.125:1935/edge/_definst_/oeiigxxv1gbeqq9/playlist.m3u8?wowzasessionid=1420170560
 
 #EXTINF:0,AMC 
 http://80.77.52.6:3917/udp/226.0.3.5:12345
 
-#EXTINF:0,AXN 
-0
+#EXTINF:0,AMC 
+http://93.174.95.125:1935/edge/_definst_/z4cxm7zlfyqs65m/playlist.m3u8?wowzasessionid=1419872183
 
 #EXTINF:0,BabyTV 
 http://hlsstr03.svc.iptv.rt.ru/hls/CH_BABYTV/bw480000/variant.m3u8?version=2
@@ -28,20 +28,17 @@ http://82.135.224.134:80/udp/239.100.3.1:1234
 #EXTINF:0,BBC 1 
 http://82.135.224.134:80/udp/239.100.3.2:1234
 
-#EXTINF:0,BBC 2 
-http://82.135.224.134:80/udp/239.100.3.3:1234
+#EXTINF:0,BBC 1 
+http://bg-sofia.hls.unistream.tv/290/play?key=53ef522659a58
 
 #EXTINF:0,BBC 2 
 http://82.135.224.134:80/udp/239.100.3.3:1234
 
-#EXTINF:0,BBC Entertainment 
-0
+#EXTINF:0,BBC 2 
+http://bg-sofia.hls.unistream.tv/291/play?key=53ef522659a58
 
 #EXTINF:0,BET 
 http://93.174.95.125:1935/edge/_definst_/kexkxje3nqi6dtl/playlist.m3u8?wowzasessionid=1419880467
-
-#EXTINF:0,BIO 
-0
 
 #EXTINF:0,Boomerang 
 0
@@ -61,9 +58,6 @@ http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD28_W_250.sdp/p
 #EXTINF:0,Cartoon Network 
 http://54.255.155.24:1935//Live/_definst_/sweetbcha1novD28_W_150.sdp/playlist.m3u8
 
-#EXTINF:0,Cbeebies
-0
-
 #EXTINF:0,CBS 
 0
 
@@ -76,9 +70,6 @@ http://95.172.231.17/flashstream/stream.flv?Preset=7&aspect=16A9&ffPreset=ultraf
 #EXTINF:0,CBS Reality 
 http://80.77.52.6:3917/udp/226.0.3.6:12345
 
-#EXTINF:0,CBS Reality 
-http://95.172.231.17/flashstream/stream.flv?Preset=7&aspect=16A9&ffPreset=ultrafast&maxwidth=&maxheight=&chid=27
-
 #EXTINF:0,CHCH Ontario 
 rtmp://54.85.197.21:1935/live/news live=1 timeout=15
 
@@ -89,10 +80,7 @@ rtmp://54.85.197.21:1935/live/news live=1 timeout=15
 0
 
 #EXTINF:0,Comedy Central 
-http://151.80.99.34:56088/live/test/test/263.ts
-
-#EXTINF:0,Comedy Central 
-http://151.80.99.34:56088/live/test/test/264.ts
+http://bg-sofia.hls.unistream.tv/355/play?key=53ef522659a58
 
 #EXTINF:0,CTV Edmonton
 http://198.179.31.198/live/2053.high.stream/2053.high.stream/index.m3u8
@@ -113,15 +101,12 @@ http://198.179.31.198/live/2062.high.stream/2062.high.stream/index.m3u8
 http://93.174.95.125:1935/edge/_definst_/2tag4dzgwof5ma2/playlist.m3u8?wowzasessionid=1420170412
 
 #EXTINF:0,Disney Channel 
-http://136.243.12.170/disney_channel_gb.m3u8
+http://bg-sofia.hls.unistream.tv/328/play?key=53ef522659a58
 
 #EXTINF:0,Disney Junior 
 0
 
 #EXTINF:0,Disney XD 
-0
-
-#EXTINF:0,Duck TV 
 0
 
 #EXTINF:0,E! 
@@ -130,26 +115,26 @@ http://136.243.12.170/disney_channel_gb.m3u8
 #EXTINF:0,E4
 http://pebbles124-lh.akamaihd.net/i/e4_1@137789/master.m3u8|X-Forwarded-For=85.5.87.218
 
+#EXTINF:0,E4
+http://bg-sofia.hls.unistream.tv/346/play?key=53ef522659a58
+
 #EXTINF:0,Fashion TV 
 http://hls.novotelecom.ru/streaming/fashion/tvrec/playlist.m3u8
 
 #EXTINF:0,Fashion TV 
 http://80.77.52.6:3917/udp/226.0.1.42:12345
 
-#EXTINF:0,Fashion TV 
-http://80.77.52.6:3917/udp/226.0.1.61:12345
-
 #EXTINF:0,Film4 
 http://pebbles124-lh.akamaihd.net/i/film4_1@137790/master.m3u8|X-Forwarded-For=85.5.87.218
+
+#EXTINF:0,Film4 
+http://bg-sofia.hls.unistream.tv/293/play?key=53ef522659a58
 
 #EXTINF:0,Fine Living Network 
 http://80.77.52.6:3917/udp/226.0.7.24:12345
 
 #EXTINF:0,Food Network 
 http://93.174.95.125:1935/edge/_definst_/qc6xkzf4h48bz2e/playlist.m3u8?wowzasessionid=1419873022
-
-#EXTINF:0,Food Network 
-http://95.172.231.17/flashstream/stream.flv?Preset=7&aspect=16A9&ffPreset=ultrafast&maxwidth=&maxheight=&chid=32
 
 #EXTINF:0,Fox Crime
 0
@@ -162,9 +147,6 @@ rtmp://rtmp.zerocast.tv/goLive/ playpath=9pxGCtP3aEnJYgoBFFH8 swfUrl=http://p.jw
 
 #EXTINF:0,Fox TV 
 http://80.77.52.6:3917/udp/226.0.7.13:12345
-
-#EXTINF:0,Fox TV 
-http://151.80.99.34:56088/live/test/test/262.ts
 
 #EXTINF:0,FX
 0
@@ -197,7 +179,7 @@ http://ios.streamserver01.com:8080/ShowcaseTV/mystream.m3u8
 http://78.129.175.72/live/itvbe/itvbe.m3u8
 
 #EXTINF:0,ITV 1 
-http://144.76.3.83/itv1_gb.m3u8?bandwidth=956&token=ef343f63c395c6ffaf389d2810848ff7&user=35430&playlistlength=25&os=browser
+http://bg-sofia.hls.unistream.tv/287/play?key=53ef522659a58
 
 #EXTINF:0,ITV 2 
 http://78.129.175.72/live/itv2/itv2.m3u8
@@ -208,8 +190,11 @@ http://204.107.27.136/live/67.low.stream/67.low.stream/index.m3u8
 #EXTINF:0,ITV 3 
 http://212.250.46.35:4252/bysid/9605
 
+#EXTINF:0,ITV 3 
+http://bg-sofia.hls.unistream.tv/292/play?key=53ef522659a58
+
 #EXTINF:0,ITV 4 
-0
+http://bg-sofia.hls.unistream.tv/289/play?key=53ef522659a58
 
 #EXTINF:0,Jewelry Television
 rtmp://jtvmedia.jtv.com:1975/live playpath=live6 swfUrl=http://demandware.edgesuite.net/aaby_prd/on/demandware.static/Sites-jtv-Site/-/default/v1410110388581/swf/flashMediaPlayer/StrobeMediaPlayback.swf live=1 pageUrl=http://www.jtv.com/on/demandware.store/Sites-jtv-Site/default/LiveViewer-Show
@@ -218,7 +203,7 @@ rtmp://jtvmedia.jtv.com:1975/live playpath=live6 swfUrl=http://demandware.edgesu
 http://80.77.52.6:3917/udp/226.0.3.8:12345
 
 #EXTINF:0,Lifetime Network 
-http://151.80.99.34:56088/live/test/test/260.ts
+0
 
 #EXTINF:0,London Live 
 http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
@@ -233,16 +218,13 @@ http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
 http://93.174.95.125:1935/edge/_definst_/kjgkefh6la1di6g/playlist.m3u8?wowzasessionid=1419879103
 
 #EXTINF:0,Nick 
-0
+http://bg-sofia.hls.unistream.tv/329/play?key=53ef522659a58
 
 #EXTINF:0,Nick Jr 
 http://80.77.52.6:3917/udp/226.0.3.18:12345
 
 #EXTINF:0,Nickelodeon 
 http://194.44.229.77:777/udp/237.1.239.14:1234
-
-#EXTINF:0,Nickelodeon 
-http://136.243.12.170/nickelodeon_gb.m3u8
 
 #EXTINF:0,NickNight 
 0
@@ -257,13 +239,13 @@ http://136.243.12.170/nickelodeon_gb.m3u8
 0
 
 #EXTINF:0,Sky 1 
-http://136.243.12.170/sky_one_gb.m3u8
+http://bg-sofia.hls.unistream.tv/327/play?key=53ef522659a58
 
 #EXTINF:0,Sky 2
-0
+http://bg-sofia.hls.unistream.tv/345/play?key=53ef522659a58
 
 #EXTINF:0,Sky Arts 1 
-http://151.80.99.34:56088/live/test/test/261.ts
+0
 
 #EXTINF:0,Sky Arts 2 
 0
@@ -276,15 +258,6 @@ http://151.80.99.34:56088/live/test/test/261.ts
 
 #EXTINF:0,Spike TV 
 http://95.172.231.17/flashstream/stream.flv?Preset=7&aspect=16A9&ffPreset=ultrafast&maxwidth=&maxheight=&chid=26
-
-#EXTINF:0,Star World 
-0
-
-#EXTINF:0,Studio Universal 
-0
-
-#EXTINF:0,Sundance Channel 
-0
 
 #EXTINF:0,Syfy 
 http://93.174.95.125:1935/edge/_definst_/oepz9q5oivflbcw/playlist.m3u8?wowzasessionid=1419878403
@@ -302,12 +275,6 @@ http://93.174.95.125:1935/edge/_definst_/iugceoy4o6ljhck/playlist.m3u8?wowzasess
 http://80.80.160.168/live/2/live.m3u8
 
 #EXTINF:0,TLC 
-http://188.191.36.18:8000/tlchd
-
-#EXTINF:0,TLC 
-http://151.80.99.34:56088/live/test/test/259.ts
-
-#EXTINF:0,TLC 
 http://80.77.52.6:3917/udp/226.0.3.20:12345
 
 #EXTINF:0,TLC 
@@ -317,7 +284,7 @@ http://194.44.229.77:777/udp/237.1.239.23:1234
 http://194.44.229.77:777/udp/237.1.238.13:1234
 
 #EXTINF:0,TNT 
-http://93.174.95.125:1935/edge/_definst_/7uz4als3nigi0j3/playlist.m3u8?wowzasessionid=1420124827
+0
 
 #EXTINF:0,Tom & Jerry Show 
 rtmp://208.53.180.218/ctv playpath=tom swfUrl=http://www.carolineoliveira.com.br/swf/player.swf live=1 pageUrl=http://carolineoliveira.com.br/tvamigos/tomejerry.html
@@ -340,25 +307,8 @@ http://95.172.231.17/flashstream/stream.flv?Preset=7&aspect=16A9&ffPreset=ultraf
 #EXTINF:0,USA Network 
 http://93.174.95.125:1935/edge/_definst_/h5eovaj1jeegluq/playlist.m3u8?wowzasessionid=1420249300
 
-#EXTINF:0,Vernnissage TV 
-0
-
 #EXTINF:0,Victoria Secret TV
 http://stream02.yamgo.com/iPhone/HLS_TS/broadcast/victorias_secret_angels-tablet.3gp/victorias_secret_angels-tablet.3gp-mr648k.m3u8
 
 #EXTINF:0,Warner Brothers 
 0
-
-#EXTINF:0,WBCQ TV
-0
-
-#EXTINF:0,Wobi 
-0
-
-#EXTINF:0,WPIX 11
-0
-
-#EXTINF:0,Yes!
-0
-
-
