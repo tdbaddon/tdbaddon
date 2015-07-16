@@ -1,0 +1,50 @@
+V3.1
+update for XBMC Gotham compatibility and completely re-vamped this add-on making it much easier, faster and cleaner for the end user.
+
+v3.0.28
+updated description
+
+v3.0.25
+added kids zone
+
+v3.0.24
+updated logos
+
+v3.0.23
+updated logos
+
+v3.0.22
+updated logos
+
+v3.0.21
+updated info
+
+v3.0.20
+added info button
+
+v3.0.19
+changed fanart
+
+v3.0.18
+added radio logos
+
+v3.0.17
+added radio
+
+v3.0.16
+added series logos
+
+v3.0.15
+added more logos
+
+v3.0.14
+something went wrong, rolling back
+
+v3.0.10
+trying icons
+
+v3.0.9
+added movies
+
+v3.0.8
+Initial Release

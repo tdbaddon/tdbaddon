@@ -91,10 +91,7 @@ rtmp://stream.smcloud.net/live/polotv
 #EXTINF:0,Polo TV
 rtmp://stream.smcloud.net/live/polotv swfUrl=http://polotv.pl/thrdparty/flowplayer/flowplayer.rtmp-3.1.4.swf pageUrl=http://polotv.pl/player
 
-#EXTINF:0,Polsat
-rtmp://rtmp.goodcast.me:1935/liverepeater/_definst_/303487
-
-#EXTINF:0,Polsat
+#EXTINF:0,Polsat 
 http://95.215.233.11:4022/udp/239.255.2.1:1234
 
 #EXTINF:0,Polsat Sport
@@ -119,7 +116,7 @@ http://gojo.jksw.cz:8011/?by_HasBahCa
 http://213.81.153.221:8080/galanta
 
 #EXTINF:0,RTV Lubuska
-rtmp://87.98.237.131/rtlubuska/rtl
+0
 
 #EXTINF:0,SAT 1
 0
@@ -143,7 +140,7 @@ rtmp://87.98.237.131/rtlubuska/rtl
 http://gojo.jksw.cz:8022/?by_HasBahCa
 
 #EXTINF:0,TV Narew
-mms://93.105.142.26:2525/
+0
 
 #EXTINF:0,TV Republika
 http://republikatv.live.e96-jw.insyscd.net/republikatv.smil/chunklist.m3u8
@@ -186,9 +183,3 @@ http://94.246.169.19/ttv_hls/live_270p/index.m3u8
 
 #EXTINF:0,WTK 
 http://wtk.live-ext.e96-jw.insyscd.net/wtk.smil/playlist.m3u8
-
-
-
-
-
-

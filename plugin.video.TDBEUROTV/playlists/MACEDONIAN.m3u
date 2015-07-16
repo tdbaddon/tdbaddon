@@ -1,9 +1,6 @@
 ﻿#EXTM3U
 
 
-#EXTINF:0,24 Sata
-mms://62.162.58.55/24vesti
-
 #EXTINF:0,A1 Strumica
 http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/a1-strumica/playlist.m3u8
 
@@ -71,16 +68,13 @@ http://88.212.10.27:81/streams/joj.m3u8
 0
 
 #EXTINF:0,Kanal 21 
-mms://62.162.58.55/TVkanal21
+0
 
 #EXTINF:0,K3 Kumanovo 
 http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/k3-tv-kumanovo/chunklist.m3u8
 
 #EXTINF:0,Kanal 5 
 http://fms.zulu.mk:1935/zulu/kanal5_1/playlist.m3u8
-
-#EXTINF:0,Kanal 5 
-mms://live.kanal5.com.mk/kanal5
 
 #EXTINF:0,Kanal 5 Plus 
 http://fms.zulu.mk:1935/zulu/kanal5plus_1/playlist.m3u8
@@ -124,9 +118,6 @@ http://fms.zulu.mk:1935/zulu/nashatv_2/playlist.m3u8
 #EXTINF:0,Ohrid 02
 http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/o2-tv-ohrid/playlist.m3u8
 
-#EXTINF:0,Pop Brio 
-0
-
 #EXTINF:0,RTS
 mmsh://rts.videostreaming.rs/rts
 
@@ -135,9 +126,6 @@ http://fms.zulu.mk:554/zulu/sitel_1/playlist_b125000_w1132785237.m3u8
 
 #EXTINF:0,Sitel 
 http://fms.zulu.mk:1935/zulu/sitel_2/playlist.m3u8
-
-#EXTINF:0,Sitel 
-rtsp://fms.zulu.mk:554/zulu/sitel_2
 
 #EXTINF:0,Sitel 3 
 http://fms.zulu.mk:554/zulu/sitel3_1/playlist_b125000_w1132785237.m3u8
@@ -163,18 +151,9 @@ http://fms.zulu.mk:554/zulu/telma_1/playlist_b125000_w1132785237.m3u8
 #EXTINF:0,Telma 
 http://fms.zulu.mk:1935/zulu/telma_2/playlist.m3u8
 
-#EXTINF:0,Telma 
-rtsp://fms.zulu.mk:554/zulu/telma_2
-
 #EXTINF:0,Ultra Tetovo
 http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/ultra-tv-tetovo/chunklist.m3u8 
 
 #EXTINF:0,Vesti 24
 mms://62.162.58.55/24vesti
-
-
-
-
-
-
 

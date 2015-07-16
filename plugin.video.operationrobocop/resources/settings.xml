@@ -1,0 +1,11 @@
+<settings>
+  <category label="General">
+    <setting id="save_location" type="folder"  label="Select location for downloads." default=""/>
+    <setting id="use_thumb" type="bool" label="Use miniatures as Fanart" default="false" />
+    <setting id="add_playlist" type="bool" label="Show channels with multiple links as a list" default="false"/>
+    <setting id="debug" type="bool" label="Enable Add-on Debugging" default="false"/>
+  </category>
+  <category label="Tu Iptv">
+    <setting id="browse_tuiptv" type="bool" label="Add Robocop Operation" default="true"/>
+  </category>
+</settings>

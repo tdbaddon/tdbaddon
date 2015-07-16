@@ -24,7 +24,7 @@ http://live.khmer.be:1935/live/BayonNews/HasBahCa.m3u8
 0
 
 #EXTINF:0,CAT Channel
-rtmp://61.19.18.238/live/web1stream
+0
 
 #EXTINF:0,Chalermkrung TV
 http://symphony.live-s.cdn.bitgravity.com/cdn-live/_definst_/symphony/live/feed04/playlist.m3u8

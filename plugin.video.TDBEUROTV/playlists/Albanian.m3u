@@ -4,20 +4,11 @@
 #EXTINF:0,A1 Report 
 0
 
-#EXTINF:0,ABC News
-0
-
 #EXTINF:0,Agon Channel 
 http://str105mb.setplex.net:1935/str2iosmd5/7ios_agontv_34536544/playlist.m3u8
 
-#EXTINF:0,Alb Info
-0
-
 #EXTINF:0,Alb UK 
 rtmp://188.138.17.8:1935/albuk/albuk.stream
-
-#EXTINF:0,Alb Plus
-0
 
 #EXTINF:0,Albanian Screen
 0
@@ -31,15 +22,6 @@ rtmp://fms.zulu.mk/zulu/ playpath=alsat_2 swfUrl=http://on.net.mk/jwp/jwplayer.f
 #EXTINF:0,Alsat M 
 rtmp://fms.zulu.mk:554/zulu playpath=alsat_2 swfUrl=http://on.net.mk/player/player5.swf live=1 pageUrl=http://shqip1.altervista.org/tvlive/alsat_m.html
 
-#EXTINF:0,Amol
-0
-
-#EXTINF:0,Apollon 
-0
-
-#EXTINF:0,Art Kanal
-0
-
 #EXTINF:0,ATV
 rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
 
@@ -50,70 +32,31 @@ http://stream.b92.net:7999/tv-b92.ogg
 rtmp://yayin.tvdunyasi.tv/live/balkanrtv
 
 #EXTINF:0,Bangbang
-0
+http://balkanstream.com/stream/bangbang/mx001/qW79215FRE
 
 #EXTINF:0,Blue Sky
-0
-
-#EXTINF:0,Cegrani Media
 0
 
 #EXTINF:0,Channel One
 http://81.7.13.162/hls/channelone/index.m3u8
 
 #EXTINF:0,Cufo TV
-0
-
-#EXTINF:0,Dasma TV
-0
+http://balkanstream.com/stream/BIG.BR.2-CufoTV/mx001/qW79215FRE
 
 #EXTINF:0,ERA 
 http://217.16.82.6:1935/zulu//era_2/simpletvmaclinkleri.m3u8
 
-#EXTINF:0,Film Aksion 
-0
-
-#EXTINF:0,Film Drame 
-0
-
-#EXTINF:0,Film Dy
-0
-
-#EXTINF:0,Film Hits 
-0
-
-#EXTINF:0,Film Komedi 
-0
-
-#EXTINF:0,Film Nje
-0
-
-#EXTINF:0,Film Plus
-0
-
-#EXTINF:0,Film Thriller 
-0
-
 #EXTINF:0,Folk Plus
-0
-
-#EXTINF:0,Grad Lebane
 0
 
 #EXTINF:0,Hema TV
 mms://77.238.209.50:1234
 
-#EXTINF:0,Iliret 
-0
-
 #EXTINF:0,Jug TV 
 0
 
-#EXTINF:0,Kanal 3
-0
-
 #EXTINF:0,Kanal 7
-0
+http://balkanstream.com/stream/kanal7/mx001/qW79215FRE
 
 #EXTINF:0,Klan Kosova 
 0
@@ -154,17 +97,11 @@ mms://176.106.121.32:8080/
 #EXTINF:0,Ora News
 http://81.7.13.162/hls/oranews/index.m3u8
 
-#EXTINF:0,Pannon TV
-0
-
 #EXTINF:0,Party TV
 0
 
 #EXTINF:0,Planet TV
 rtsp://origin.biokoda.tv/live/mbit-planet?k=planettv-public
-
-#EXTINF:0,Popullore 21
-0
 
 #EXTINF:0,Rokum TV 
 0
@@ -172,23 +109,17 @@ rtsp://origin.biokoda.tv/live/mbit-planet?k=planettv-public
 #EXTINF:0,RTK1 
 http://wowza.rtkit.com:1935/live/livestream/chunklist.m3u8?wowzasessionid=491913886
 
-#EXTINF:0,RTV 21
-0
-
-#EXTINF:0,Sot7
-0
-
 #EXTINF:0,Super Sport 1 
-0
+http://balkanstream.com/stream/supersport1/mx001/qW79215FRE
 
 #EXTINF:0,Super Sport 2 
-0
+http://balkanstream.com/stream/supersport2/mx001/qW79215FRE
 
 #EXTINF:0,Super Sport 3
-0
+http://balkanstream.com/stream/supersport3/mx001/qW79215FRE
 
 #EXTINF:0,Super Sport 4
-0
+http://balkanstream.com/stream/supersport4/mx001/qW79215FRE
 
 #EXTINF:0,Supersonic TV
 rtmp://str103.setplex.net:1935/228/stv_online
@@ -213,14 +144,4 @@ rtmp://live.vizionplus.tv/live//livestream3
 
 #EXTINF:0,Vizion Plus 
 rtmp://live.vizionplus.tv/live//livestream2
-
-
-
-
-
-
-
-
-
-
 

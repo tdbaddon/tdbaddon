@@ -65,9 +65,6 @@ http://74.63.97.188:1935/gpacifico2/videogpacifico2/chunklist_w609004457.m3u8
 http://190.57.237.214/live/canal.m3u8
 
 #EXTINF:0,Canal 2 
-rtmp://video.crearchile.com:8080/live/mp4:canal2.mp4
-
-#EXTINF:0,Canal 2 
 rtmp://201.219.100.30:1935/telpintv/ttv.stream_720p
 
 #EXTINF:0,Canal 2 
@@ -131,7 +128,7 @@ http://xcanal9saltax.api.channel.livestream.com/3.0/playlist.m3u8
 http://cdns840stu1010.multistream.net/canalcapitallive/amlst:live/master.m3u8
 
 #EXTINF:0,Canal Once 
-http://www.oncetvmexicolive.tv:1935/livepkgr2/smil:int.smil/playlist.m3u8
+0
 
 #EXTINF:0,Canal Rural 
 rtsp://streamrural.cmd.com.ar:554/liverural/crural/rural1
@@ -184,10 +181,10 @@ http://184.164.158.202:1936/48/smil:48.smil/playlist.m3u8
 #EXTINF:0,Distrito Comedia
 0
 
-#EXTINF:0,Ecotel TV
+#EXTINF:0,Ecotel TV 
 rtmp://enhd.co:1935/ecoteltv/ecoteltv
 
-#EXTINF:0,Efekto TV
+#EXTINF:0,Efekto TV 
 http://grupomac-lh.akamaihd.net/i/004rss0k8_1@301782/index_3_av-b.m3u8?sd=10&rebase=on
 
 #EXTINF:0,El Trece 
@@ -203,7 +200,7 @@ http://live-edge01.telecentro.net.ar/live/13hd-180/playlist.m3u8
 http://198.154.228.82:1935/live/esnetv/playlist.m3u8
 
 #EXTINF:0,Foro TV 
-http://185417-f.akamaihd.net/i/n0tf0r0_1@81283/index_1200_av-b.m3u8
+0
 
 #EXTINF:0,Gala TV 
 http://rightbrainmedia.mpl.miisolutions.net/rightbrainmedia-live-244/_definst_/mp4:GalaTVCancun/playlist.m3u8?
@@ -260,13 +257,13 @@ http://edge-61-cl.edge.mdstrm.com/live/smil:db6a38a0a2bffd96d01965c4d975b9fb/pla
 rtmp://87.106.232.7/live/myStream_2
 
 #EXTINF:0,Noso TV
-rtmp://panchito13.flashmediacast.com:2087/live/livestream
+0
 
 #EXTINF:0,Novedades TV
 0
 
 #EXTINF:0,Once TV
-http://www.oncetvmexicolive.tv:1935/livepkgr2/smil:int.smil/playlist.m3u8
+0
 
 #EXTINF:0,Orbe 21
 http://urtmpkal-f.akamaihd.net/i/1b6mj17sk_1@308700/master.m3u8
@@ -310,7 +307,7 @@ http://live-edge01.telecentro.net.ar/live/tlfhd-720/playlist.m3u8
 #EXTINF:0,Telefe 
 http://live-edge01.telecentro.net.ar/live/tlfhd-360/playlist.m3u8
 
-#EXTINF:0,Telefe c
+#EXTINF:0,Telefe 
 http://live-edge01.telecentro.net.ar/live/tlfhd-180/playlist.m3u8
 
 #EXTINF:0,Teleformula
