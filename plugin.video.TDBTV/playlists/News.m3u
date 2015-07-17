@@ -46,6 +46,9 @@ http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/cnbc_eu/ls_satlink/b_,264,528,82
 #EXTINF:0,CNBC 
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/cnbc_eu/ls_satlink/b_828.m3u8
 
+#EXTINF:0,CNBC 
+http://bg-sofia.hls.unistream.tv/302/play?m3u8
+
 #EXTINF:0,CNN 
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/cnn/ls_satlink/b_,264,528,828,.m3u8
 

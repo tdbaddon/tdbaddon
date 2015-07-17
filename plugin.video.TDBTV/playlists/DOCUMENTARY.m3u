@@ -100,11 +100,17 @@ http://80.77.52.6:3917/udp/226.0.3.23:12345
 #EXTINF:0,Nat Geo Wild 
 http://188.191.36.18:8000/natgeowildhd
 
+#EXTINF:0,Nat Geo Wild 
+http://bg-sofia.hls.unistream.tv/337/play?m3u8
+
 #EXTINF:0,National Geographic 
 http://hls.svc.moyo.tv/hls/CH_NATGEO/variant.m3u8?version=2
 
 #EXTINF:0,National Geographic 
 http://185.5.40.101/hls/session-10326907gnZKxnzwfY/CH_NATGEO/variant.m3u8?version=2 
+
+#EXTINF:0,National Geographic 
+http://93.174.95.125:1935/edge/_definst_/qzsfigd1y3bgbhs/playlist.m3u8?wowzasessionid=1420249412
 
 #EXTINF:0,National Geographic 
 http://194.44.229.77:777/udp/237.1.239.22:1234
@@ -137,10 +143,10 @@ http://80.80.160.168/live/3/live.m3u8
 http://194.44.229.77:777/udp/237.1.238.14:1234
 
 #EXTINF:0,Viasat Explorer 
-0
+http://195.78.244.219:10000/udp/239.0.3.30:1234
 
 #EXTINF:0,Viasat History 
-0
+http://195.78.244.219:10000/udp/239.0.3.31:1234
 
 #EXTINF:0,Viasat Nature 
 http://194.44.229.77:777/udp/237.1.238.19:1234

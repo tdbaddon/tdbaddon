@@ -20,7 +20,7 @@ http://streamindo.ddns.net/jhos/beib2_2/streamindo/playlist.m3u8
 http://bigten247.cdnak.bigtenhd.neulion.com/nlds/btn2go/btnnetwork/as/live/btnnetwork_hd_3000.m3u8
 
 #EXTINF:0,Box Nation 
-0
+http://bg-sofia.hls.unistream.tv/456/play?m3u8
 
 #EXTINF:0,BT Sport 1 
 rtmp://80.82.64.140:443/liverepeater playpath=11 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
@@ -173,7 +173,7 @@ http://xrxs.net/video/live-p12wash-4728.m3u8
 mms://100automoto.tv/channel_porsche
 
 #EXTINF:0,Premier Sports 
-0
+http://bg-sofia.hls.unistream.tv/398/play?m3u8
 
 #EXTINF:0,Racing UK 
 http://bg-sofia.hls.unistream.tv/341/play?key=53ef522659a58
@@ -254,7 +254,7 @@ http://113.160.49.34/lives/origin03/starsportsd.isml/starsportsd-1096k.m3u8
 0
 
 #EXTINF:0,Viasat Golf 
-0
+http://hlsstr04.svc.iptv.rt.ru/hls/CH_C06_VIASATGOLFHD/variant.m3u8
 
 #EXTINF:0,Viasat Sport
 http://194.44.229.77:777/udp/237.1.238.9:1234

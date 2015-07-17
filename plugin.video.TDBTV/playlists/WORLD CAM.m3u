@@ -47,7 +47,10 @@ http://video1.earthcam.com/fecnetwork/eclasvegas.flv/hasbahca.m3u8
 http://video1.earthcam.com:1935/fecnetwork/moscowHD1.flv/hasbahca.m3u8
 
 #EXTINF:0,NASA ISS 
-0
+http://iphone-streaming.ustream.tv/uhls/17074538/streams/live/iphone/playlist.m3u8
+
+#EXTINF:0,NASA ISS 
+http://iphone-streaming.ustream.tv/uhls/9408562/streams/live/iphone/playlist.m3u8
 
 #EXTINF:0,Niagra Falls 
 rtsp://video1.earthcam.com/fecnetwork/4559.flv

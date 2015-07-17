@@ -22,17 +22,26 @@ http://87.239.31.232/hls/230.3.4.169.sd.stream.m3u8?b?b*t$
 #EXTINF:0,Deluxe Music 
 rtmp://flash1.ipercast.net/deluxemusic.tv/mp4:staging/120131-love-lounge-catchup.mp4.mp4
 
+#EXTINF:0,Djing Animation 
+http://www.djing.com/tv/a-05.m3u8
+
+#EXTINF:0,Djing Classics 
+http://www.djing.com/tv/i-05.m3u8
+
+#EXTINF:0,Djing Club Hits 
+http://cdn.djing.com/tv/h-05.m3u8
+
 #EXTINF:0,Djing Hot Tracks 
 http://www.djing.com/tv/hothothot.m3u8
 
 #EXTINF:0,Djing Ibiza
 http://www.djing.com/tv/d-04.m3u8
 
-#EXTINF:0,Djing UnderGround
-http://www.djing.com/tv/u-04.m3u8
-
 #EXTINF:0,Djing TV 
 http://www.djing.com/tv/05.m3u8
+
+#EXTINF:0,Djing UnderGround
+http://www.djing.com/tv/u-04.m3u8
 
 #EXTINF:0,Eska Best 
 rtmp://stream.smcloud.net/live2/best/best_720p
@@ -103,6 +112,9 @@ http://194.44.229.77:777/udp/237.1.239.73:1234
 #EXTINF:0,MTV Rocks 
 http://80.77.52.6:3917/udp/226.0.7.15:12345
 
+#EXTINF:0,MTV Summer
+http://bg-sofia.hls.unistream.tv/322/play?m3u8
+
 #EXTINF:0,MusicVoxTV 
 rtmp://stream.smcloud.net/live2/vox/vox_720p
 
@@ -144,6 +156,9 @@ http://bg-sofia.hls.unistream.tv/321/play?key=53ef522659a58
 
 #EXTINF:0,VH1 Classics
 http://92.50.181.6/tv/1282/index.m3u8
+
+#EXTINF:0,VH1 Classics
+http://hlsstr02.svc.iptv.rt.ru/hls/CH_VH1CLASSIC/variant.m3u8
 
 #EXTINF:0,VH1 Shuffle
 0
