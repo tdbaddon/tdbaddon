@@ -104,7 +104,11 @@ mms://176.106.121.32:8080/
 0
 
 #EXTINF:0,Pink 1
-0
+http://edge1.volim.tv/live/pink.stream/playlist.m3u8?hash=49c26f175dcc3d897eef6ae7f4f321106f09fe39
+
+#EXTINF:0,Pink 1
+http://edge1.volim.tv/live/pink.stream/playlist.m3u8?hash=5234dc000f5075ea1e1666165ba699ca6817b6c4
+
 
 #EXTINF:0,Pink 2
 0

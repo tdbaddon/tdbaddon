@@ -1,0 +1,136 @@
+﻿#EXTM3U
+
+#EXTINF:0,Antenna 5 Skopje 
+http://217.115.140.23:8000/antenna5.mp3
+
+#EXTINF:0,Antenna 5 Skopje 
+http://ss1.mk.checast.com:9000/live?1437241919156.aac
+
+#EXTINF:0,City Radio Skopje 
+http://ss1.mk.checast.com:21306/48.aac
+
+#EXTINF:0,City Radio Skopje 
+rtmp://off.net.mk/radio/city.stream
+
+#EXTINF:0,Club FM Skopje 
+http://ss1.mk.checast.com:21308/48.aac
+
+#EXTINF:0,Club FM Skopje 
+rtmp://off.net.mk/radio/club.stream
+
+#EXTINF:0,Kanal 77 Bitola 
+rtmp://off.net.mk/radio/kanal77.stream
+
+#EXTINF:0,Kanal 77 Bitola 
+http://ss1.mk.checast.com:9002/128.mp3?1437242048887.mp3
+
+#EXTINF:0,Metropolis FM Skopje
+http://217.115.140.23:8000/metropolis.mp3
+
+#EXTINF:0,Metropolis FM Skopje
+http://94.23.62.189:6064/;.mp3?1437241999499.mp3
+
+#EXTINF:0,Ohrid 24
+http://ss1.mk.checast.com:21090/live
+
+#EXTINF:0,Radio 105 Bombarder Bitola 
+http://radio105.makbots.com:21010/
+
+#EXTINF:0,Radio 105 Bombarder Bitola 
+http://streaming.makbots.com:21010/;
+
+#EXTINF:0,Radio 105 Bombarder Bitola 
+http://radio105.makbots.com:21010/;?1437245345024.mp3 
+
+#EXTINF:0,Radio 106 Bitola 
+http://ss1.mk.checast.com:21100/live?1437243979579.aac 
+
+#EXTINF:0,Radio 2 Skopje 
+http://217.115.140.23:8001/radio2
+
+#EXTINF:0,Radio 2 Skopje 
+http://ss1.mk.checast.com:9000/radio2.aac?1437243094128.aac 
+
+#EXTINF:0,Radio Akord kichevo
+http://ss1.mk.checast.com:9000/akord.aac?1437245466683.aac 
+
+#EXTINF:0,Radio Bubamara Skopje 
+http://217.16.69.17:8000/bubamara.mp3
+
+#EXTINF:0,Radio Bubamara Skopje 
+http://217.16.69.17:8000/bubamara.mp3?1437243915410.mp3 
+
+#EXTINF:0,Radio Bravo Kumanovo
+http://80.77.157.10:8000/
+
+#EXTINF:0,Radio Bravo Kumanovo
+http://ss1.mk.checast.com:9000/bravo.mp3?1437243453002.mp3 
+
+#EXTINF:0,Radio Bubamara Skopje 
+rtmp://off.net.mk/radio/bubamara.stream
+
+#EXTINF:0,Radio Fortuna Skopje 
+http://50.7.129.122:8497/;?1420340858258.mp3
+
+#EXTINF:0,Radio Fortuna Skopje 
+rtmp://off.net.mk/radio/fortuna.stream
+
+#EXTINF:0,Radio Galaxy Kavadarci
+http://ss1.mk.checast.com:21130/live?1437244565079.aac 
+
+#EXTINF:0,Radio Holidej Prilep
+http://213.135.181.14:8000/;?1437245979490.mp3 
+
+#EXTINF:0,Radio Kometa Gostivar
+http://ss1.mk.checast.com:21070/48.aac
+
+#EXTINF:0,Radio Kometa Gostivar
+http://ss1.mk.checast.com:21070/48.aac?1437244407221.aac 
+
+#EXTINF:0,Radio Kavadarci
+http://217.115.140.23:8010/kavadarci
+
+#EXTINF:0,Radio Kavadarci 
+http://ss1.mk.checast.com:9000/kavadarci?1437244927604.mp3 
+
+#EXTINF:0,Radio Lakosta Vinica
+http://ss1.mk.checast.com:21076/live?1437244729484.aac 
+
+#EXTINF:0,Radio Lav Ohrid
+http://ss1.mk.checast.com:21080/live?1420340085574.aac
+
+#EXTINF:0,Radio Lav Ohrid 
+http://ss1.mk.checast.com:21080/live?1437245071768.aac 
+
+#EXTINF:0,Radio Medison Kicevo
+http://ss1.mk.checast.com:21300/live?1420340187325.aac
+
+#EXTINF:0,Radio Medison Kicevo 
+http://ss1.mk.checast.com:21300/live?1437245249659.aac
+ 
+#EXTINF:0,Radio Meff Prilep
+http://5.35.251.86:18002/;
+
+#EXTINF:0,Radio Meff Prilep 
+http://ss1.mk.checast.com:18002/;?1437245205237.mp3 
+
+#EXTINF:0,Radio Ohrid
+http://ss1.mk.checast.com:21074/live?1437245610120.aac 
+
+#EXTINF:0,Radio Rosa Skopje 
+rtmp://off.net.mk/radio/rosa.stream
+
+#EXTINF:0,Radio Valandovo
+http://ss1.mk.checast.com:21078/128.mp3?1437246142825.mp3 
+
+#EXTINF:0,Skaj Radio
+http://ss1.mk.checast.com:21030/32.aac?1437244247364.aac 
+
+#EXTINF:0,Sky Radio Skopje
+http://ss1.mk.checast.com:21304/48.aac
+
+#EXTINF:0,Time FM Gevgelija
+http://ss1.mk.checast.com:21102/live
+
+#EXTINF:0,Zona M1 Skopje 
+rtmp://off.net.mk/radio/zonam1.stream
