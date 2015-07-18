@@ -510,8 +510,8 @@ dc={
 "radio ohrid" : "824",
 "radio holidej prilep" : "825",
 "radio valandovo" : "826",
-"0000000000000000000000000" : "827",
-"0000000000000000000000000" : "828",
+"how to update super favourites" : "827",
+"how to get latest addons" : "828",
 "0000000000000000000000000" : "829",
 "0000000000000000000000000" : "830",
 }

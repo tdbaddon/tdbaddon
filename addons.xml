@@ -289,7 +289,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 <addon id="plugin.video.TDBEUROTV"
        name="TDB EURO TV"
-       version="1.74"
+       version="1.75"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -308,7 +308,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 <addon id="plugin.video.TDBPORNO"
        name="TDB PORNO"
-       version="1.53"
+       version="1.54"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -327,7 +327,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 <addon id="plugin.video.TDBRADIO"
        name="TDB RADIO"
-       version="1.14"
+       version="1.15"
        provider-name="TDB">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -345,7 +345,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 <addon id="plugin.video.TDBSPANISHTV"
        name="TDB SPANISH TV"
-       version="1.17"
+       version="1.18"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -364,7 +364,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="2.74"
+       version="2.75"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -454,15 +454,17 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 	</extension>
 </addon>
 
-<addon id="repository.shadowcrew" name="ShadowCrew" version="2.0.0" provider-name="ShadowCrew">
-	<extension point="xbmc.addon.repository" name="ShadowCrew Repository">
-		<info compressed="false">http://shadowcrew.info/shadows/addons.xml</info>
-		<checksum>http://shadowcrew.info/shadows/addons.xml.md5</checksum>
-		<datadir zip="true">http://shadowcrew.info/shadows/zips</datadir>
+<addon id="repository.rawmaintenance" name="Raw Media's Kodi Add-ons" version="0.1.1" provider-name="Raw Media">
+	<extension point="xbmc.addon.repository" name="Raw Media's Kodi Add-on Repository">
+		<dir>
+			<info compressed="false">http://raw.github.com/rawmedia/raw_maintenance/master/rawmaintenance_repo/addons.xml</info>
+			<checksum>http://raw.github.com/rawmedia/raw_maintenance/master/rawmaintenance_repo/addons.xml.md5</checksum>
+			<datadir zip="true">http://raw.github.com/rawmedia/raw_maintenance/master/rawmaintenance_repo/</datadir>
+		</dir>
 	</extension>
 	<extension point="xbmc.addon.metadata">
-    <summary lang="en"> Join us at http://robinhoodgroup-tv.info/community/index.php</summary>
-    <description lang="en">Special Thank you to Hakamac, Metal Kettle and Xunity</description>
+		<summary lang="en">Install Add-ons from Raw Media</summary>
+		<description lang="en">Download and install add-ons from Raw Media repository.</description>
 		<platform>all</platform>
 	</extension>
 </addon>
