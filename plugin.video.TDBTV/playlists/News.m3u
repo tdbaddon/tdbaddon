@@ -46,9 +46,6 @@ http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/cnbc_eu/ls_satlink/b_,264,528,82
 #EXTINF:0,CNBC 
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/cnbc_eu/ls_satlink/b_828.m3u8
 
-#EXTINF:0,CNBC 
-http://bg-sofia.hls.unistream.tv/302/play?m3u8
-
 #EXTINF:0,CNN 
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/cnn/ls_satlink/b_,264,528,828,.m3u8
 
@@ -76,9 +73,6 @@ http://www.metafilegenerator.de/DWelle/tv-asia/ios/master.m3u8
 #EXTINF:0,DW 
 http://80.77.52.6:3917/udp/226.0.1.17:12345
 
-#EXTINF:0,eNCA
-0
-
 #EXTINF:0,Euro News 
 http://wpc.c1a9.edgecastcdn.net:80/hls-live/20C1A9/euronews_en/ls_satlink/b_828.m3u8
 
@@ -97,11 +91,8 @@ http://hlsstr02.svc.iptv.rt.ru/hls/CH_FRANCE24/variant.m3u8?b?b*t$
 #EXTINF:0,France 24 
 http://80.77.52.6:3917/udp/226.0.1.33:12345
 
-#EXTINF:-0,France 24
+#EXTINF:-0,France 24 
 http://80.77.52.6:3917/udp/226.0.1.34:12345
-
-#EXTINF:0,HLN
-0
 
 #EXTINF:0,i24 News 
 http://bcoveliveios-i.akamaihd.net/hls/live/215102/master_english/398/master.m3u8?b?b*t$
@@ -131,16 +122,10 @@ rtmp://mtv.fms-01.visionip.tv/live/mtv-ptv-live-25f-16x9-SDh
 http://37.58.85.156/rlo001/ngrp:rlo001.stream_all/playlist.m3u8
 
 #EXTINF:0,RT News 
-http://odna.octoshape.net/f3f5m2v4/cds/ch4_720p/playlist.m3u8
-
-#EXTINF:0,RT News 
-http://odna.octoshape.net/f3f5m2v4/cds/ch4_320p/blizznow.m3u8
+0
 
 #EXTINF:0,Sky News 
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/skynews/ls_satlink/b_828.m3u8?b?b*t$
-
-#EXTINF:0,Sky News 
-http://bg-sofia.hls.unistream.tv/343/play?key=53ef522659a58
 
 #EXTINF:0,The Weather Channel
 0

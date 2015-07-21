@@ -271,7 +271,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
-<addon id="plugin.video.roggerstream" name="Rogger Stream" version="1.1.8" provider-name="Rogger, Cleiton Leonel Creton">
+<addon id="plugin.video.roggerstream" name="Rogger Stream" version="1.1.9" provider-name="Rogger, Cleiton Leonel Creton">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
   </requires>
@@ -289,7 +289,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 <addon id="plugin.video.TDBEUROTV"
        name="TDB EURO TV"
-       version="1.75"
+       version="1.76"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -364,7 +364,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="2.75"
+       version="2.76"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -382,7 +382,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   <extension point="xbmc.service" library="service.py" start="login" />
 </addon>
 
-<addon id="plugin.video.zeus" name="[COLOR black].[/COLOR][COLOR yellow]ZEUS VIDEO[/COLOR]" version="1.0.2" provider-name="ZEUS">
+<addon id="plugin.video.zeus" name="[COLOR black].[/COLOR][COLOR yellow]ZEUS VIDEO[/COLOR]" version="1.0.4" provider-name="ZEUS">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.t0mm0.common" version="2.0.0"/>
@@ -491,6 +491,19 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 	<extension point="xbmc.addon.metadata">
 		<summary>Repo for TorrentRelease</summary>
 		<description>Repo for TorrentRelease</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="repository.zeus" name="[COLOR black].[/COLOR][COLOR yellow]ZEUS [/COLOR][COLOR white]Repository[/COLOR]" version="1.1.0" provider-name="ZEUS">
+	<extension point="xbmc.addon.repository" name="[COLOR black].[/COLOR][COLOR yellow]ZEUS [/COLOR][COLOR white]Repository[/COLOR]">
+        <info compressed="false">http://repo.zeusrepo.com/addons.xml</info>
+		<checksum>http://repo.zeusrepo.com/addons.xml.md5</checksum>
+		<datadir zip="true">http://repo.zeusrepo.com/zips</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>ZEUS KODI XBMC ADDON From Hakamac</summary>
+		<description>For Support and news go to http://zeus.video</description>
 		<platform>all</platform>
 	</extension>
 </addon>

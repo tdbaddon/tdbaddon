@@ -109,9 +109,8 @@ http://edge1.volim.tv/live/pink.stream/playlist.m3u8?hash=49c26f175dcc3d897eef6a
 #EXTINF:0,Pink 1
 http://edge1.volim.tv/live/pink.stream/playlist.m3u8?hash=5234dc000f5075ea1e1666165ba699ca6817b6c4
 
-
 #EXTINF:0,Pink 2
-0
+http://balkanstream.com/stream/pink2/rajko/rajko
 
 #EXTINF:0,Pink 3
 0
@@ -120,22 +119,22 @@ http://edge1.volim.tv/live/pink.stream/playlist.m3u8?hash=5234dc000f5075ea1e1666
 0
 
 #EXTINF:0,Pink Action 2
-0
+http://balkanstream.com/stream/pinkaction2/rajko/rajko
 
 #EXTINF:0,Pink Action 3
-0
+http://balkanstream.com/stream/pinkaction3/rajko/rajko
 
 #EXTINF:0,Pink BH
-0
+http://balkanstream.com/stream/pinkbih/rajko/rajko
 
 #EXTINF:0,Pink Classic
 0
 
 #EXTINF:0,Pink Comedy
-0
+http://balkanstream.com/stream/PinkComedy/rajko/rajko
 
 #EXTINF:0,Pink Extra
-0
+http://balkanstream.com/stream/pinkextra/rajko/rajko
 
 #EXTINF:0,Pink Family
 0
@@ -144,46 +143,46 @@ http://edge1.volim.tv/live/pink.stream/playlist.m3u8?hash=5234dc000f5075ea1e1666
 0
 
 #EXTINF:0,Pink Film
-0
+http://balkanstream.com/stream/pinkfilm/rajko/rajko
 
 #EXTINF:0,Pink Folk 1
-0
+http://balkanstream.com/stream/pinkfolk/rajko/rajko
 
 #EXTINF:0,Pink Folk 2
-0
+http://balkanstream.com/stream/pinkfolk2/rajko/rajko
 
 #EXTINF:0,Pink Horror
-0
+http://balkanstream.com/stream/pinkhoror/rajko/rajko
 
 #EXTINF:0,Pink Kids
-0
+http://balkanstream.com/stream/PinkKids/rajko/rajko
 
 #EXTINF:0,Pink Kuvar
 0
 
 #EXTINF:0,Pink Live
-0
+http://balkanstream.com/stream/pinklive/rajko/rajko
 
 #EXTINF:0,Pink M
-0
+http://balkanstream.com/stream/PinkM/rajko/rajko
 
 #EXTINF:0,Pink Movies 1
 0
 
 #EXTINF:0,Pink Movies 2
-0
+http://balkanstream.com/stream/pinkmovie2/rajko/rajko
 
 #EXTINF:0,Pink Movies 3
-0
+http://balkanstream.com/stream/pinkmovie3/rajko/rajko
 
 #EXTINF:0,Pink Music 1
-0
+http://server4.balkantvmedia.com:8080/Pink_Music?u=user1382:p=Q67XzqHY
 
 #EXTINF:0,Pink Music 2
 0
 
 #EXTINF:0,Pink Music 3
-0
+http://balkanstream.com/stream/PinkMusic3/rajko/rajko
 
 #EXTINF:0,Pink Music 4
 0
@@ -192,22 +191,22 @@ http://edge1.volim.tv/live/pink.stream/playlist.m3u8?hash=5234dc000f5075ea1e1666
 0
 
 #EXTINF:0,Pink N Roll
-0
+http://balkanstream.com/stream/PinkandRoll/rajko/rajko
 
 #EXTINF:0,Pink Nostalgia
 0
 
 #EXTINF:0,Pink Pedia
-0
+http://balkanstream.com/stream/pinkpedia/rajko/rajko
 
 #EXTINF:0,Pink Plus
-0
+http://balkanstream.com/stream/PinkPlus/rajko/rajko
 
 #EXTINF:0,Pink Premium
-0
+http://balkanstream.com/stream/pinkpremium/rajko/rajko
 
 #EXTINF:0,Pink Reality
-0
+http://balkanstream.com/stream/pinkreality/rajko/rajko
 
 #EXTINF:0,Pink Serije
 0
@@ -216,7 +215,7 @@ http://edge1.volim.tv/live/pink.stream/playlist.m3u8?hash=5234dc000f5075ea1e1666
 0
 
 #EXTINF:0,Pink Soap
-0
+http://balkanstream.com/stream/PinkSoap/rajko/rajko
 
 #EXTINF:0,Pink Style
 0
@@ -228,13 +227,13 @@ http://edge1.volim.tv/live/pink.stream/playlist.m3u8?hash=5234dc000f5075ea1e1666
 0
 
 #EXTINF:0,Pink World
-0
+http://balkanstream.com/stream/PinkWorld/rajko/rajko
 
 #EXTINF:0,Pink World Cinema
 0
 
 #EXTINF:0,Pink Zabava
-0
+http://balkanstream.com/stream/pinkzabava/rajko/rajko
 
 #EXTINF:0,Planet TV
 rtsp://origin.biokoda.tv/live/mbit-planet?k=planettv-public

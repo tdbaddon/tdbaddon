@@ -61,29 +61,17 @@ rtmp://stream.smcloud.net/live2/eska_rock/eska_rock_720p
 #EXTINF:0,Eska Rock 
 rtmp://stream.smcloud.net/live2/eska_rock/eska_rock_480p
 
-#EXTINF:0,Gothic Rock TV 
-0
-
 #EXTINF:0,Heart TV 
 http://ooyalahd2-f.akamaihd.net/i/globalradio02_delivery@156522/master.m3u8
 
 #EXTINF:0,Ibiza on TV 
 http://46.249.213.87/iPhone/broadcast/ibizaontv-tablet.3gp/ibizaontv-tablet.3gp-mr648k.m3u8?trackingid=3391380000&os=desktop
 
-#EXTINF:0,Jazz 
-rtmp://91.201.78.3:1935/live/jazzhd
-
 #EXTINF:0,Kiss TV
 rtmp://tst.es.flash.glb.ipercast.net/tst.es-live/live
 
 #EXTINF:0,MTV 
-rtmp://83.218.202.202/live swfUrl=http://webtv.md/swf/WebTV.swf playpath=wt_mtv.stream
-
-#EXTINF:0,MTV 
 http://93.174.95.125:1935/edge/_definst_/d2z1vc4ahrl6x26/playlist.m3u8?wowzasessionid=1420171062
-
-#EXTINF:0,MTV 
-http://bg-sofia.hls.unistream.tv/324/play?key=53ef522659a58
 
 #EXTINF:0,MTV Dance 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVDANCE/variant.m3u8
@@ -91,14 +79,11 @@ http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVDANCE/variant.m3u8
 #EXTINF:0,MTV Hits 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVHITS/variant.m3u8
 
-#EXTINF:0,MTV Hits
+#EXTINF:0,MTV Hits 
 http://80.77.52.6:3917/udp/226.0.7.17:12345
 
 #EXTINF:0,MTV Hits 
 http://194.44.229.77:777/udp/237.1.238.1:1234
-
-#EXTINF:0,MTV Hits 
-http://bg-sofia.hls.unistream.tv/323/play?key=53ef522659a58
 
 #EXTINF:0,MTV Live 
 http://46.61.226.18/hls/CH_C03_MTVLIVEHD/bw3000000/variant.m3u8?version=2
@@ -107,13 +92,10 @@ http://46.61.226.18/hls/CH_C03_MTVLIVEHD/bw3000000/variant.m3u8?version=2
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVROCKS/variant.m3u8
 
 #EXTINF:0,MTV Rocks 
-http://194.44.229.77:777/udp/237.1.239.73:1234
-
-#EXTINF:0,MTV Rocks 
 http://80.77.52.6:3917/udp/226.0.7.15:12345
 
 #EXTINF:0,MTV Summer
-http://bg-sofia.hls.unistream.tv/322/play?m3u8
+0
 
 #EXTINF:0,MusicVoxTV 
 rtmp://stream.smcloud.net/live2/vox/vox_720p
@@ -124,14 +106,8 @@ rtmp://stream.smcloud.net/live2/vox/vox_480p
 #EXTINF:0,Radio Monte Carlo 
 rtmp://fms.105.net/live/rmc1
 
-#EXTINF:0,Real Jamaica TV
-0
-
 #EXTINF:0,Rock 66 
 http://mediatv2.topix.it/24RockOne66
-
-#EXTINF:0,Stage TV
-0
 
 #EXTINF:0,Vevo Hits 
 http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch2/06/prog_index.m3u8
@@ -151,23 +127,9 @@ http://93.174.95.125:1935/edge/_definst_/oeiigxxv1gbeqq9/manifest.m3u8?wowzasess
 #EXTINF:0,VH1 
 http://194.44.229.77:777/udp/237.1.239.20:1234
 
-#EXTINF:0,VH1 
-http://bg-sofia.hls.unistream.tv/321/play?key=53ef522659a58
-
-#EXTINF:0,VH1 Classics
-http://92.50.181.6/tv/1282/index.m3u8
-
-#EXTINF:0,VH1 Classics
+#EXTINF:0,VH1 Classics 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_VH1CLASSIC/variant.m3u8
-
-#EXTINF:0,VH1 Shuffle
-0
 
 #EXTINF:0,Virgin TV 
 rtmp://fms.105.net:1935/live/virgin2
-
-
-
-
-
 

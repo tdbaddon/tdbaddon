@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-ZeusStreamVersion = "V1.0.2"
-ZeusStreamDate = "01/06/2015 13:00hrs GMT"
+ZeusStreamVersion = "V1.0.4"
+ZeusStreamDate = "21/07/2015 23:00hrs GMT"
 
 '''
     ZEUS Add-on
@@ -42,10 +42,9 @@ localizedString = Addon.getLocalizedString
 
 LocalisedReplay = 'aHR0cDovL2xpdmVmb290YmFsbHZpZGVvLmNvbS8='
 Raw = base64.decodestring('aHR0cDovL3Bhc3RlYmluLmNvbS9yYXcucGhwP2k9')
-ZeusAlpha = 'http://zeusrepo.com/alpha/central.php?link='
+
 ZeusLink = 'http://zeusrepo.com/'
 LibDBLink = base64.decodestring('aHR0cDovL2ltdmRiLmNvbS8=')
-ZeusHome = str(base64.decodestring('aHR0cDovL3pldXMudmlkZW8vdXBkYXRlcy9ob21lLnBocA=='))
 EvoUrl = 'http://aaarepo.xyz/evo/'
 ZeusGraphic = 'http://s6.postimg.org/eki7prtlt/1home.png'
 ZeusPNG = 'http://s6.postimg.org/mhl2gyyld/homepage.png'
@@ -69,7 +68,7 @@ icon = Addon.getAddonInfo('icon')
 addonDir = Addon.getAddonInfo('path').decode("utf-8")
 libDir = os.path.join(addonDir, 'resources', 'lib')
 sys.path.insert(0, libDir)
-
+osstat = os.path.getsize(os.path.join(addonDir, 'default.py'))
 trans_table = ''.join( [chr(i) for i in range(128)] + [' '] * 128 )
 datapath = xbmc.translatePath(Addon.getAddonInfo('profile'))
 cookie_path = os.path.join(datapath, 'cookies')
@@ -80,8 +79,11 @@ if os.path.exists(cookie_path) == False:
 	
 import common
 
+ZeusLocoNum = 'http://zeusrepo.com/alpha/loconum.php?stat='+str(osstat)+'&num='
+ZeusAlpha = 'http://zeusrepo.com/alpha/central.php?stat='+str(osstat)+'&link='
 metaget = metahandlers.MetaData(preparezip=False)
 metaset = 'true'
+LocoNum = 'Blank'
 Freeview_url = 'http://www.filmon.com/' 
 session_url = 'http://www.filmon.com/api/init/'
 addon_data_dir = os.path.join(xbmc.translatePath("special://userdata/addon_data" ).decode("utf-8"), AddonID)
@@ -109,9 +111,9 @@ def Categories():
     VersionDate = GetCompile('VERSIONDATE')
     if VersionDate != ZeusStreamDate:
        UpdateMe()
-   
+		
     AddDir("[COLOR white][B] "+ZeusStreamVersion+" [/B][/COLOR]", "Update" ,98, ZeusGraphic)
-    links = ZeusGetContent(ZeusHome)
+    links = ZeusGetContent(GetCompile('ZEUSHOME'))
     if links.find('ZEUSMENU') < 1:
         links = 'I:"0" A:"Cannot Connect" B:"[COLOR yellow][B]*SERVER DOWN*[/B][/COLOR]" C:"'+ZeusGraphic+'"'
 		   
@@ -125,8 +127,7 @@ def Categories():
         icon = regex_from_to(a, 'C:"', '"')
         AddDir('[COLOR white][B]'+name+'[/B][/COLOR]',url, mode, icon)
 		     
-    SetViewThumbnail() 
-    
+    SetViewThumbnail()    
 
 def Navi_Playlist(url):
 # for individual navi stream only where the listmaker agrees.
@@ -551,9 +552,10 @@ def UFCScrape(url):
     c=0
     for a in all_videos:
         vurl = regex_from_to(a, 'button" href="', '" target="')
-        c=c+1
-        title = "[COLOR gold] Source ["+str(c)+"] [/COLOR]" + regex_from_to(a, 'blank">', '</a>')
-        AddDir(title,vurl,16,iconimage)
+        if 'protect.cgi' not in vurl:
+            c=c+1
+            title = "[COLOR gold] Source ["+str(c)+"] [/COLOR]" + regex_from_to(a, 'blank">', '</a>')
+            AddDir(title,vurl,16,iconimage)
 
 def StreamUFC(name,url,thumb):
     name2 = name
@@ -910,7 +912,7 @@ def XMLRead500(url):
 		
     try: links = net.http_GET(StreamlistURL + url).content
     except: return
-    print StreamlistURL + url
+
     links = links.encode('ascii', 'ignore').decode('ascii')
 
     if url[:4].lower() == "evo-":
@@ -1064,7 +1066,31 @@ def FindFirstPattern(text,pattern):
         result = ""
 
     return result
+
+def LookLocoNum():
+    LocoNum = ''
+    LocoFile = os.path.join(libDir, 'loconum')
+
+    try:
+        f = open(LocoFile,'r')
+        LocoLink = f.read()
+        LocoNum = regex_from_to(LocoLink, '{', '}')
+        f.close()
+    except:
+        pass
+    Lockitin = '&extra=' + urllib.quote_plus(addonDir)
+    if LocoNum == '':
+       LocoNum = ZeusGetContent(ZeusLocoNum+'blank'+Lockitin)
+    else:
+       LocoNum = ZeusGetContent(ZeusLocoNum+LocoNum+Lockitin)
+
+    f = open(LocoFile, 'w')
+    f.write('{'+LocoNum+'}') 
+    f.close()
 	
+
+ 
+		
 def FullMatches(url):
     custurlreplay = str(base64.decodestring(LocalisedReplay))
     link = ZeusGetContent(custurlreplay+url)
@@ -1938,13 +1964,13 @@ def UpdateMe():
 
     import repobuild
     repobuild.UpdateRepo()
-       
+    #LookLocoNum()
     xbmc.executebuiltin("UpdateLocalAddons")
     xbmc.executebuiltin("UpdateAddonRepos")
     dp.update(100)       
     dp.close()
-       
-    xbmcgui.Dialog().ok('Zeus Video Updated', 'A reboot may be required', '   ', 'Support News & updates go to http://zeus.video')
+           
+    xbmcgui.Dialog().ok('Zeus Video Updated', 'A reboot may be required. ', 'If you want Zeus to continue', 'Donate as little as $2 at http://zeus.video')
 	
 def RemoveFavorties(url):
 	list = common.ReadList(favoritesFile) 
@@ -2026,12 +2052,17 @@ def PlayURLResolver(name,url,iconimage):
                     resolver = k['url']
                     break
         else:
-            resolver = resolved        
+            resolver = resolved       
         playsetresolved(resolver,name,iconimage)
     else: 
         xbmc.executebuiltin("XBMC.Notification(ZEUS VIDEO,This host is not supported or resolver is broken::,10000)")  
 
 def playsetresolved(url,name,iconimage):
+    if 'channel.php' in url:
+        url = url + '&hash='
+        url = url + GetCompile('HASH')
+		
+	
     liz = xbmcgui.ListItem(name, iconImage=iconimage)
     liz.setInfo(type='Video', infoLabels={'Title':name})
     liz.setProperty("IsPlayable","true")
@@ -2043,7 +2074,7 @@ def playsetresolved(url,name,iconimage):
         pass
 
      
-    if '[COLOR lime]' in name:
+    if '[COLOR lime]' in name and 'channel.php' not in url:
         name = name.replace("[COLOR lime]","").replace("[/COLOR]","")
         xbmc.sleep(20000)
         if xbmc.Player().isPlaying():
@@ -2088,7 +2119,7 @@ def setView(content, viewType):
         xbmcplugin.setContent(int(sys.argv[1]), content)
 
     xbmc.executebuiltin("Container.SetViewMode(true)")	
-	
+
 def get_params():
 	param = []
 	paramstring = sys.argv[2]
@@ -2300,8 +2331,11 @@ elif mode == 810:
 elif mode == 900:
 	ReportFaultDiag()
 
+xbmcplugin.endOfDirectory(int(sys.argv[1]))	
 
 
-xbmcplugin.endOfDirectory(int(sys.argv[1]))		
+
+	
+	
 
 # h@k@M@c Code

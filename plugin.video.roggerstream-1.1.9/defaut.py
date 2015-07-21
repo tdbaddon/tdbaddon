@@ -21,7 +21,7 @@ from BeautifulSoup import BeautifulSoup
 h = HTMLParser.HTMLParser()
 
 
-versao = '1.1.8'
+versao = '1.1.9'
 addon_id = 'plugin.video.roggerstream'
 selfAddon = xbmcaddon.Addon(id=addon_id)
 addonfolder = selfAddon.getAddonInfo('path')
@@ -35,7 +35,8 @@ fanart = addonfolder + '/fanart.png'
 def  menus():        		
 	dialog = xbmcgui.Dialog()
 	dialog.ok("ROGGER STREAM", "          Assistam a vários canais IPTV do Brasil e do mundo !!!")
-	addDir('ROGGER STREAM','-',3,'http://todanovidade.com.br/wp-content/gallery/tv-gratis/tv-gratis-13.jpg')
+	addDir('ROGGER STREAM','-',3,'http://i.imgur.com/y22MB94.jpg')
+	
 	
 	
 
@@ -43,6 +44,7 @@ def  categorias():
 	addDir('CANAIS ABERTOS DO BRASIL','https://copy.com/Nlyj6xxWlRFKdinh?download=1',6,'https://copy.com/JvvK4Iw39ofK1rPF')
 	addDir('FUTEBOL AO VIVO','https://copy.com/xUo6eMRYOiVevL2h?download=1',6,'https://copy.com/NPRaZORymdG0FxJ1')
 	addDir('TV PAGA BRASIL','-',5,'https://copy.com/VVF8ouCl1Ghkjum8')
+	addDir('STREAMS DO YOUTUBE','https://copy.com/8QZD9AQuv4Lchd2M?download=1',10,'http://i.imgur.com/fKCIAxx.jpg')
 	addDir('SÉRIES E DESENHOS 24 HORAS','https://copy.com/nEagWXhOC1s7dlyO?download=1',6,'https://copy.com/SzKOJlBKxIfEuHnp')
 	addDir('CAÇA E PESCA','https://copy.com/b6uCi8jKTmq24wLy?download=1',6,'https://copy.com/Igk8UorSxdbG4xnE')
 	addDir('CANAIS LATINOS','https://copy.com/tapliy8nIaKSLDQq?download=1',6,'https://copy.com/wPVtPygtxuY0P1xl')
@@ -64,7 +66,38 @@ def  categorias_tv_paga_brasil():
 	addDir('NOTÍCIAS','https://copy.com/r19WdvfFW4xP7h7Q?download=1',6,'https://copy.com/9wy1vGvZAAbP2Gus')
 	addDir('RELIGIOSOS','https://copy.com/S6Jm2vh2DYJDTEwJ?download=1',6,'https://copy.com/uzJEAXOCWzCUv2up')
 	addDir('VARIEDADES','https://copy.com/DUKhtoZqYdjklcOa?download=1',6,'https://copy.com/pqAXz2FWGHwAIAfU')	
+
 	
+###############################################################FKav####################################################
+def gethtml(url):
+    req = urllib2.Request(url)
+    req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
+    response = urllib2.urlopen(req)
+    link = response.read()
+    soup = BeautifulSoup(link)
+    return soup
+
+def player_youtube(url):
+    #mera correção feita por Cleiton Leonel Creton!!!
+	xbmcPlayer = xbmc.Player()
+        xbmcPlayer.play('plugin://plugin.video.youtube/play/?video_id=' +url)
+		
+def listar_videostxt(url):
+      for line in urllib2.urlopen(url).readlines():
+            params = line.split(',')
+            try:
+                  nome = params[0]
+                  print 'Nome: ' + nome
+                  img = params[1].replace(' http','http')
+                  print 'Img: ' + img
+                  rtmp = params[2]
+                  print 'Link: ' + rtmp
+                  addDir(nome,rtmp,11,img,False)
+            except:
+                  pass
+      xbmc.executebuiltin("Container.SetViewMode(500)")
+		
+##########################################################################################################################	
 	
 def listar_canais(url):
       for line in urllib2.urlopen(url).readlines():
@@ -113,7 +146,7 @@ def addDir(name,url,mode,iconimage,pasta=True,total=1):
 	liz.setProperty('fanart_image', fanart)
 	ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=pasta,totalItems=total)
 	return ok
-	
+
 	
 ############################################################################################################
 #                                               GET PARAMS                                                 #
@@ -192,9 +225,10 @@ elif mode==6:
 	print ""
 	listar_canais(url)
 
-	
-
-	
+elif mode==10: 
+	listar_videostxt(url)
+elif mode==11:
+	player_youtube(url)	
 
 
 	
