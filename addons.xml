@@ -575,7 +575,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
-<addon id="skin.TDBTouched-K" version="10.00" name="TDB Touched Kodi" provider-name="TDB">
+<addon id="skin.TDBTouched-K" version="1.03" name="TDB Touched Kodi" provider-name="TDB">
 	<requires>
 		<import addon="xbmc.gui" version="5.9.0"/>
 	</requires>
