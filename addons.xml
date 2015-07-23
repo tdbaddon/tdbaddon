@@ -113,6 +113,25 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 	</extension>
 </addon>
 
+<addon
+  id="plugin.video.HTVonline"
+  version="0.0.7"
+  name="[COLOR ffff0000]H[/COLOR][COLOR ff32cd32]T[/COLOR][COLOR ff0000ff]V[/COLOR][COLOR ffffffff]online[/COLOR]"
+  provider-name="traitravinh">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0" optional="true"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource"
+            library="htvonline.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>Watch liveTV</summary>
+    <description>Watch liveTV</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
 <addon id="plugin.video.kodipopcorntime" name="KODI Popcorn Time" version="0.6.3" provider-name="Diblo">
     <requires>
         <import addon="xbmc.python" version="2.19.0"/>
@@ -130,6 +149,24 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
         <summary><![CDATA[KODI Popcorn Time: Immediately steam movies in KODI.]]></summary>
         <description><![CDATA[With KODI Popcorn Time you can search for movies that you can see immediately in KODI.]]></description>
     </extension>
+</addon>
+
+<addon id="plugin.video.mdfubar" name=".F.U.B.A.R." version="1.0.4" provider-name="Mucky Duck">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+	<import addon="script.module.urlresolver"  version="2.1.2"/>
+	<import addon="script.module.addon.common" />
+	<import addon="repository.mdrepo" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en"></summary>
+    <description lang="en"></description>
+	<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon</disclaimer>
+    <platform>all</platform>
+  </extension>
 </addon>
 
 <addon id="plugin.video.MegaReBorn"
@@ -459,6 +496,20 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 	<extension point="xbmc.addon.metadata">
 		<summary>New and old stuff from me, Get it here, TOTALXBMC DO NOT HAVE THE OK TO INCLUDE MY SHIT[CR]ON THE TOTALINSTALLER(Read hub installer).</summary>
 		<description>New and old stuff from me, Get it here, TOTALXBMC DO NOT HAVE THE OK TO INCLUDE MY SHIT[CR]ON THE TOTALINSTALLER(Read hub installer).</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="repository.mdrepo" name="Mucky Ducks Repo" version="1.0.1" provider-name="Mucky Duck">
+	<extension point="xbmc.addon.repository" name="Mucky Ducks Repo">
+		<info compressed="false">https://raw.githubusercontent.com/mucky-duck/mdrepo/master/addons.xml</info>
+		<checksum>https://raw.githubusercontent.com/mucky-duck/mdrepo/master/addons.xml.md5</checksum>
+		<datadir zip="true">https://raw.githubusercontent.com/mucky-duck/mdrepo/master/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Mucky Ducks Repo</summary>
+		<description>Download And Install Addons Developed By Mucky Duck And Various Other Developers </description>
+		<disclaimer>The owners and submitters to this repository do not host or distribute any of the content displayed by these addons nor do they have any affiliation with the content providers.</disclaimer>
 		<platform>all</platform>
 	</extension>
 </addon>

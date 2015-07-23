@@ -1,0 +1,12 @@
+v1.0.3
+added the allcinemamovies.com site
+
+v1.0.2
+added extra sections to 
+filmovizija
+
+v1.0.1
+fixed fail to install
+
+v1.0.0
+Initial Release
