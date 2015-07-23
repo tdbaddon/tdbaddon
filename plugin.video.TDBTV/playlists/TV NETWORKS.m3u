@@ -127,6 +127,8 @@ http://80.77.52.6:3917/udp/226.0.7.16:12345
 #EXTINF:0,Fox TV 
 http://80.77.52.6:3917/udp/226.0.7.13:12345
 
+#EXTINF:0,Fox TV 
+http://hlsstr02.svc.iptv.rt.ru/hls/CH_C02_FOXHD/bw2000000/variant.m3u8?version=2 
 #EXTINF:0,FX
 0
 
