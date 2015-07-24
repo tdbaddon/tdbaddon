@@ -11,7 +11,7 @@ http://113.160.49.34/lives/origin03/cinemaxsd.isml/cinemaxsd-1096k.m3u8
 0
 
 #EXTINF:0,CMore Emotion
-http://wpc.e803.mucdn.net/80E803/Scam/hls/Cine_Emotion_HD.m3u8
+0
 
 #EXTINF:0,CMore First
 http://188.138.9.228:8024
@@ -35,10 +35,13 @@ http://188.138.9.228:8021
 0
 
 #EXTINF:0,Fox Movies 
-http://balkanstream.com/stream/foxmovies/rajko/rajko
+0
 
 #EXTINF:0,FX HD 
 0
+
+#EXTINF:0,HBO 
+http://93.174.95.125:1935/edge/_definst_/qzbbu26gcvjxksz/playlist.m3u8?wowzasessionid=1419907309
 
 #EXTINF:0,HBO 
 rtmp://94.102.49.207/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to/player/secure_player_iguide_token.swf live=1 pageUrl=http://www.iguide.to/view/1/watch-live-HBO-channel-for-free token=#ed%h0#w18623jsda6523lDGDVe
@@ -47,10 +50,10 @@ rtmp://94.102.49.207/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to
 rtmp://89.248.168.57/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to/player/secure_player_iguide_embed_token.swf pageUrl=http://www.iguide.to/ token=#ed%h0#w18623jsda6523lDGD
 
 #EXTINF:0,HBO 
-http://50.7.207.114:80/sinema2?lives/origin03/hbohd.isml/hbohd-2096k
+rtmp://89.248.168.57:1935/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to/player/secure_player_iguide_token.swf live=1 pageUrl=http://www.iguide.to/view/1/HBO token=#ed%h0#w18623jsda6523lDGDve
 
 #EXTINF:0,HBO 
-rtmp://89.248.168.57:1935/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to/player/secure_player_iguide_token.swf live=1 pageUrl=http://www.iguide.to/view/1/HBO token=#ed%h0#w18623jsda6523lDGDve
+http://50.7.207.114:80/sinema2?lives/origin03/hbohd.isml/hbohd-2096k
 
 #EXTINF:0,MBC 2 
 http://63.237.48.3/ios/MBC2/MBC2.m3u8
@@ -60,6 +63,21 @@ http://63.237.48.23/ios/MBC_MAX/MBC_MAX.m3u8
 
 #EXTINF:0,MGM 
 0
+
+#EXTINF:0,OMN COMEDY 2
+http://185.27.237.105:8082/TV0021
+
+#EXTINF:0,OMN FIRST
+http://185.27.237.105:8082/TV0083
+
+#EXTINF:0,OMN KIDS
+http://185.27.237.105:8082/TV0053
+
+#EXTINF:0,OMN MOVIES 1
+http://185.27.237.105:8082/TV0054
+
+#EXTINF:0,OMN PREMIERE
+http://185.27.237.105:8082/TV0024
 
 #EXTINF:0,Pink Action 1
 0
@@ -74,22 +92,22 @@ http://balkanstream.com/stream/pinkaction3/rajko/rajko
 0
 
 #EXTINF:0,Pink Comedy
-http://balkanstream.com/stream/PinkComedy/rajko/rajko
+0
 
 #EXTINF:0,Pink Horror
-http://balkanstream.com/stream/pinkhoror/rajko/rajko
+0
 
 #EXTINF:0,Pink M
-http://balkanstream.com/stream/PinkM/rajko/rajko
+0
 
 #EXTINF:0,Pink Movies 1
 0
 
 #EXTINF:0,Pink Movies 2
-http://balkanstream.com/stream/pinkmovie2/rajko/rajko
+0
 
 #EXTINF:0,Pink Movies 3
-http://balkanstream.com/stream/pinkmovie3/rajko/rajko
+0
 
 #EXTINF:0,Pink Horror
 0
@@ -125,7 +143,7 @@ http://balkanstream.com/stream/pinkmovie3/rajko/rajko
 0
 
 #EXTINF:0,Sky Movies Premiere 
-http://zeusrepo.com/alpha/channel.php?link=sky_mov_premiere&hash=fjhdUlc9F2 
+0
 
 #EXTINF:0,Sky Movies Premiere+
 0
@@ -145,11 +163,14 @@ http://zeusrepo.com/alpha/channel.php?link=sky_mov_premiere&hash=fjhdUlc9F2
 #EXTINF:0,Star Movies 
 http://113.160.49.34/lives/origin03/moviehd.isml/moviehd-2096k.m3u8
 
+#EXTINF:0,Star Movies 
+http://185.27.237.105:8082/TV0056
+
 #EXTINF:0,SYFY Movie Channel 
 0
 
 #EXTINF:0,TCM 
-0
+http://185.27.237.105:8082/TV0082
 
 #EXTINF:0,True Movies 1
 0

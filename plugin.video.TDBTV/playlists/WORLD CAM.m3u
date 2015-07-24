@@ -28,9 +28,6 @@ http://video1.earthcam.com:1935/fecnetwork/4338.flv/hasbahca.m3u8
 #EXTINF:0,Elephant Safari Indonesia 
 http://video1.earthcam.com:1935/fecnetwork/4337.flv/hasbahca.m3u8
 
-#EXTINF:0,Fish Tank 
-rtmp://80.93.53.88:1935/live/channel_3
-
 #EXTINF:0,Fort Lauderdale Florida
 http://video1.earthcam.com/fecnetwork/windjammerHD2.flv/HasBahCa.m3u8
 
@@ -39,9 +36,6 @@ http://video1.earthcam.com/fecnetwork/lacitytours1.flv/hasbahca.m3u8
 
 #EXTINF:0,Las Vegas Nevada 
 http://video1.earthcam.com/fecnetwork/eclasvegas.flv/hasbahca.m3u8
-
-#EXTINF:0,Lax Airport
-0
 
 #EXTINF:0,Moscow Skyline
 http://video1.earthcam.com:1935/fecnetwork/moscowHD1.flv/hasbahca.m3u8
@@ -69,9 +63,6 @@ http://video1.earthcam.com/fecnetwork/hdtimes11.flv/hasbahca.m3u8
 
 #EXTINF:0,Panda Cam Atlanta Georgia
 http://video1.earthcam.com/fecnetwork/pandacam.flv/HasBahCa.m3u8
-
-#EXTINF:0,Paterson Falls New Jersey
-0
 
 #EXTINF:0,San Francisco Alcatraz
 http://video1.earthcam.com/fecnetwork/6603.flv/hasbahca.m3u8

@@ -80,27 +80,21 @@ http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVDANCE/variant.m3u8
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVHITS/variant.m3u8
 
 #EXTINF:0,MTV Hits 
-http://80.77.52.6:3917/udp/226.0.7.17:12345
-
-#EXTINF:0,MTV Hits 
 http://194.44.229.77:777/udp/237.1.238.1:1234
 
 #EXTINF:0,MTV Live 
-http://46.61.226.18/hls/CH_C03_MTVLIVEHD/bw3000000/variant.m3u8?version=2
+0
 
 #EXTINF:0,MTV Rocks 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVROCKS/variant.m3u8
 
-#EXTINF:0,MTV Rocks 
-http://80.77.52.6:3917/udp/226.0.7.15:12345
-
 #EXTINF:0,MTV Summer
 0
 
-#EXTINF:0,MusicVoxTV 
+#EXTINF:0,MusicVoxTV a
 rtmp://stream.smcloud.net/live2/vox/vox_720p
 
-#EXTINF:0,MusicVoxTV 
+#EXTINF:0,MusicVoxTV b
 rtmp://stream.smcloud.net/live2/vox/vox_480p
 
 #EXTINF:0,Radio Monte Carlo 
@@ -123,9 +117,6 @@ http://hlsstr02.svc.iptv.rt.ru/hls/CH_VH1EUROPEAN/variant.m3u8
 
 #EXTINF:0,VH1 
 http://93.174.95.125:1935/edge/_definst_/oeiigxxv1gbeqq9/manifest.m3u8?wowzasessionid=1420170560
-
-#EXTINF:0,VH1 
-http://194.44.229.77:777/udp/237.1.239.20:1234
 
 #EXTINF:0,VH1 Classics 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_VH1CLASSIC/variant.m3u8

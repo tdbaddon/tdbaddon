@@ -14,22 +14,16 @@ http://93.174.95.125:1935/edge/_definst_/nz7l9vc5nv1og7b/playlist.m3u8?wowzasess
 http://93.174.95.125:1935/edge/_definst_/oeiigxxv1gbeqq9/playlist.m3u8?wowzasessionid=1420170560
 
 #EXTINF:0,AMC 
-http://80.77.52.6:3917/udp/226.0.3.5:12345
-
-#EXTINF:0,AMC 
 http://93.174.95.125:1935/edge/_definst_/z4cxm7zlfyqs65m/playlist.m3u8?wowzasessionid=1419872183
 
 #EXTINF:0,BabyTV 
 http://hlsstr03.svc.iptv.rt.ru/hls/CH_BABYTV/bw480000/variant.m3u8?version=2
 
 #EXTINF:0,BBC 1 
-http://82.135.224.134:80/udp/239.100.3.1:1234
-
-#EXTINF:0,BBC 1 
-http://82.135.224.134:80/udp/239.100.3.2:1234
+0
 
 #EXTINF:0,BBC 2 
-http://82.135.224.134:80/udp/239.100.3.3:1234
+0
 
 #EXTINF:0,BET 
 http://93.174.95.125:1935/edge/_definst_/kexkxje3nqi6dtl/playlist.m3u8?wowzasessionid=1419880467
@@ -41,12 +35,6 @@ http://93.174.95.125:1935/edge/_definst_/kexkxje3nqi6dtl/playlist.m3u8?wowzasess
 0
 
 #EXTINF:0,Cartoon Network 
-http://80.77.52.6:3917/udp/226.0.3.2:12345
-
-#EXTINF:0,Cartoon Network 
-http://hls.svc.moyo.tv/hls/CH_CARTOON/variant.m3u8?version=2
-
-#EXTINF:0,Cartoon Network 
 http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD28_W_250.sdp/playlist.m3u8
 
 #EXTINF:0,Cartoon Network 
@@ -56,11 +44,10 @@ http://54.255.155.24:1935//Live/_definst_/sweetbcha1novD28_W_150.sdp/playlist.m3
 http://93.174.95.125:1935/edge/_definst_/vp4q2gonwzh2dku/chunklist.m3u8?wowzasessionid=1419872048
 
 #EXTINF:0,CBS Action 
-http://95.172.231.17/flashstream/stream.flv?Preset=7&aspect=16A9&ffPreset=ultrafast&maxwidth=&maxheight=&chid=28
+0
 
 #EXTINF:0,CBS Drama 
-http://37.187.172.168:8080/cbs_drama_5Hw8cLBSNn/index.m3u8 #EXTINF:0,CBS Reality 
-http://80.77.52.6:3917/udp/226.0.3.6:12345
+0
 
 #EXTINF:0,CHCH Ontario 
 rtmp://54.85.197.21:1935/live/news live=1 timeout=15
@@ -72,7 +59,8 @@ rtmp://54.85.197.21:1935/live/news live=1 timeout=15
 0
 
 #EXTINF:0,Comedy Central 
-http://37.187.172.168:8080/comedy_central_znSpOLTINf/index.m3u8 
+0
+
 #EXTINF:0,CTV Edmonton
 http://198.179.31.198/live/2053.high.stream/2053.high.stream/index.m3u8
 
@@ -91,6 +79,9 @@ http://198.179.31.198/live/2062.high.stream/2062.high.stream/index.m3u8
 #EXTINF:0,Disney Channel 
 http://93.174.95.125:1935/edge/_definst_/2tag4dzgwof5ma2/playlist.m3u8?wowzasessionid=1420170412
 
+#EXTINF:0,Disney Channel 
+http://185.27.237.105:8082/TV0110
+
 #EXTINF:0,Disney Junior 
 0
 
@@ -106,29 +97,28 @@ http://pebbles124-lh.akamaihd.net/i/e4_1@137789/master.m3u8|X-Forwarded-For=85.5
 #EXTINF:0,Fashion TV 
 http://hls.novotelecom.ru/streaming/fashion/tvrec/playlist.m3u8
 
-#EXTINF:0,Fashion TV 
-http://80.77.52.6:3917/udp/226.0.1.42:12345
-
 #EXTINF:0,Film4 
 http://pebbles124-lh.akamaihd.net/i/film4_1@137790/master.m3u8|X-Forwarded-For=85.5.87.218
 
 #EXTINF:0,Fine Living Network 
-http://80.77.52.6:3917/udp/226.0.7.24:12345
+0
 
 #EXTINF:0,Food Network 
 http://93.174.95.125:1935/edge/_definst_/qc6xkzf4h48bz2e/playlist.m3u8?wowzasessionid=1419873022
 
 #EXTINF:0,Fox Crime
-http://balkanstream.com/stream/foxcrime/rajko/rajko
+0
 
 #EXTINF:0,Fox Life 
-http://80.77.52.6:3917/udp/226.0.7.16:12345
+0
 
-#EXTINF:0,Fox TV 
-http://80.77.52.6:3917/udp/226.0.7.13:12345
 
 #EXTINF:0,Fox TV 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_C02_FOXHD/bw2000000/variant.m3u8?version=2 
+
+#EXTINF:0,Fox TV 
+rtmp://rtmp.zerocast.tv/goLive/ playpath=9pxGCtP3aEnJYgoBFFH8 swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 pageUrl=http://zerocast.tv/embed token=OOG17t.x#K9Vh#|
+
 #EXTINF:0,FX
 0
 
@@ -157,25 +147,25 @@ rtmp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:468p500kB31?b?b*t$
 http://ios.streamserver01.com:8080/ShowcaseTV/mystream.m3u8
 
 #EXTINF:0,ITV 1 
-http://37.187.172.168:8080/itv_1_Fz3DL1AqKw/index.m3u8 
+0
+
 #EXTINF:0,ITV 2 
 http://204.107.27.136/live/67.low.stream/67.low.stream/index.m3u8
 
 #EXTINF:0,ITV 3 
 http://204.107.27.136/live/26.low.stream/26.low.stream/index.m3u8 
-#EXTINF:0,ITV 3 
-http://212.250.46.35:4252/bysid/9605
 
 #EXTINF:0,ITV 4 
 http://204.107.27.136/live/101.low.stream/101.low.stream/index.m3u8 
+
 #EXTINF:0,Jewelry Television
 rtmp://jtvmedia.jtv.com:1975/live playpath=live6 swfUrl=http://demandware.edgesuite.net/aaby_prd/on/demandware.static/Sites-jtv-Site/-/default/v1410110388581/swf/flashMediaPlayer/StrobeMediaPlayback.swf live=1 pageUrl=http://www.jtv.com/on/demandware.store/Sites-jtv-Site/default/LiveViewer-Show
 
 #EXTINF:0,Jim Jam 
-http://80.77.52.6:3917/udp/226.0.3.8:12345
+0
 
 #EXTINF:0,Lifetime Network 
-0
+http://93.174.95.125:1935/edge/_definst_/7b2gr554gyyth8e/playlist.m3u8?wowzasessionid=1419879018
 
 #EXTINF:0,London Live 
 http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
@@ -193,7 +183,7 @@ http://93.174.95.125:1935/edge/_definst_/kjgkefh6la1di6g/playlist.m3u8?wowzasess
 0
 
 #EXTINF:0,Nick Jr 
-http://80.77.52.6:3917/udp/226.0.3.18:12345
+0
 
 #EXTINF:0,Nickelodeon 
 http://194.44.229.77:777/udp/237.1.239.14:1234
@@ -205,11 +195,12 @@ http://194.44.229.77:777/udp/237.1.239.14:1234
 0
 
 #EXTINF:0,PBS 
-http://37.187.172.168:8080/pbs_america_dhkLlHGOIs/index.m3u8 
-#EXTINF:0,Showtime
+0
+
+#EXTINF:0,Showtime 
 http://93.174.95.125:1935/edge/_definst_/bwbop58ixz281wv/chunklist.m3u8?wowzasessionid=1419875151
 
-#EXTINF:0,Showtime
+#EXTINF:0,Showtime 
 http://80.80.160.168/live/7/live.m3u8
 
 #EXTINF:0,Sky 1 
@@ -239,28 +230,22 @@ http://93.174.95.125:1935/edge/_definst_/oepz9q5oivflbcw/playlist.m3u8?wowzasess
 #EXTINF:0,TBS 
 http://93.174.95.125:1935/edge/_definst_/jh8nj062bqbsxdh/playlist.m3u8?wowzasessionid=1419878319
 
-#EXTINF:0,TSC
-http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/master.m3u8?b?b*t$ 
+#EXTINF:0,TBS 
+rtmp://rtmp.zerocast.tv/goLive/RhMi9RdAAt7fpq8H3qZh swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 pageUrl=http://zerocast.tv/embed token=OOG17t.x#K9Vh#|
 
-#EXTINF:0,TLC 
-http://93.174.95.125:1935/edge/_definst_/iugceoy4o6ljhck/playlist.m3u8?wowzasessionid=1419907929
+#EXTINF:0,TSC 
+http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/master.m3u8?b?b*t$ 
 
 #EXTINF:0,TLC 
 http://80.80.160.168/live/2/live.m3u8
 
 #EXTINF:0,TLC 
-http://80.77.52.6:3917/udp/226.0.3.20:12345
-
-#EXTINF:0,TLC 
 http://194.44.229.77:777/udp/237.1.239.23:1234
-
-#EXTINF:0,TLC 
-http://194.44.229.77:777/udp/237.1.238.13:1234
 
 #EXTINF:0,TNT 
 http://93.174.95.125:1935/edge/_definst_/7uz4als3nigi0j3/playlist.m3u8?wowzasessionid=1420124827
 
-#EXTINF:0,Tom & Jerry Show 
+#EXTINF:0,Tom & Jerry TV
 rtmp://208.53.180.218/ctv playpath=tom swfUrl=http://www.carolineoliveira.com.br/swf/player.swf live=1 pageUrl=http://carolineoliveira.com.br/tvamigos/tomejerry.html
 
 #EXTINF:0,Tru TV 
@@ -270,7 +255,7 @@ rtmp://208.53.180.218/ctv playpath=tom swfUrl=http://www.carolineoliveira.com.br
 0
 
 #EXTINF:0,True Entertainment 
-http://95.172.231.17/flashstream/stream.flv?Preset=7&aspect=16A9&ffPreset=ultrafast&maxwidth=&maxheight=&chid=20
+0
 
 #EXTINF:0,TV Land 
 0

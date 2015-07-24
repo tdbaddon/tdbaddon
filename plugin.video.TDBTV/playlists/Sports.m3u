@@ -22,6 +22,9 @@ rtmp://80.82.64.140:443/liverepeater playpath=11 pageUrl=http://popeoftheplayers
 #EXTINF:0,BT Sport 1 
 rtmp://80.82.64.140:443/liverepeater playpath=38 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
 
+#EXTINF:0,BT Sport 1 
+http://usa.01.cdnstreams.in:8081/view/ch08/playlist.m3u8
+
 #EXTINF:0,BT Sport 2 
 rtmp://80.82.64.140:443/liverepeater playpath=36 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
 
@@ -42,9 +45,6 @@ rtmp://141.255.160.202:1935/stream/ playpath=1Kq68GX6Kc.stream swfUrl=http://the
 
 #EXTINF:0,ESPN 2 
 http://93.174.95.125:1935/edge/_definst_/5hd19kwxef5b59o/playlist.m3u8?wowzasessionid=1420123722
-
-#EXTINF:0,Eurosport 1 
-http://80.77.52.6:3917/udp/226.0.3.21:12345
 
 #EXTINF:0,Eurosport 1 
 http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_1800.m3u8
@@ -155,12 +155,16 @@ http://xrxs.net/video/live-p12wash-4728.m3u8
 mms://100automoto.tv/channel_porsche
 
 #EXTINF:0,Premier Sports 
-http://37.187.172.168:8080/premier_sports_HOZtdDu9rL/index.m3u8 
+0
+
 #EXTINF:0,Racing UK 
 rtmp://31.220.0.195:80/live playpath=racinguks pageUrl=http://www.reytv.co timeout=13 token=%Zrey(nKa@#Z
 
 #EXTINF:0,Setanta Sports 
 0
+
+#EXTINF:0,Sky Sports 1 
+http://usa.01.cdnstreams.in:8081/view/ch06/playlist.m3u8
 
 #EXTINF:0,Sky Sports 1 
 rtmpe://134.19.185.206:1935/livedge playpath=mamahdsky1 swfUrl=http://player.hdcast.org/_.swf pageUrl=http://www.hdcast.org/embedlive1.php?u=mamahdsky1&vw=680&vh=490&domain=mamahd.com token=Fo5_n0w?U.rA6l3-70w47ch
@@ -172,10 +176,13 @@ rtmpe://134.19.185.206:1935/livedge playpath=sskys1  swfUrl=http://player.hdcast
 rtmp://80.82.64.140:443/liverepeater playpath=33 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
 
 #EXTINF:0,Sky Sports 2 
-rtmpe://134.19.185.206:1935/livedge playpath=sskys2  swfUrl=http://player.hdcast.org/_.swf pageUrl=http://www.hdcast.org/embedlive4.php?u=sskysn&vw=640&vh=400&domain=www.streamhd.eu token=Fo5_n0w?U.rA6l3-70w47ch
+http://usa.01.cdnstreams.in:8081/view/ch07/playlist.m3u8
 
 #EXTINF:0,Sky Sports 2 
-rtmp://80.82.64.140:443/liverepeater playpath=2 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
+rtmpe://134.19.185.206:1935/livedge playpath=sskys2  swfUrl=http://player.hdcast.org/_.swf pageUrl=http://www.hdcast.org/embedlive4.php?u=sskysn&vw=640&vh=400&domain=www.streamhd.eu token=Fo5_n0w?U.rA6l3-70w47ch
+
+#EXTINF:0,Sky Sports 3 
+http://usa.01.cdnstreams.in:8081/view/ch15/playlist.m3u8
 
 #EXTINF:0,Sky Sports 3 
 rtmp://80.82.64.140:443/liverepeater playpath=3 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
@@ -187,13 +194,16 @@ rtmpe://134.19.185.206:1935/livedge playpath=mamahdsky3 swfUrl=http://player.hdc
 rtmp://31.220.0.195:80/live playpath=ky3 pageUrl=http://www.reytv.co/embed.php?live=ky3&vw=620&vh=490 token=%Zrey(nKa@#Z
 
 #EXTINF:0,Sky Sports 4 
+http://usa.01.cdnstreams.in:8081/view/ch16/playlist.m3u8
+
+#EXTINF:0,Sky Sports 4 
 rtmpe://134.19.185.206:1935/livedge playpath=mamahdsky4 swfUrl=http://player.hdcast.org/_.swf pageUrl=http://www.hdcast.org/embedlive1.php?u=mamahdsky4&vw=680&vh=490&domain=mamahd.com token=Fo5_n0w?U.rA6l3-70w47ch
 
 #EXTINF:0,Sky Sports 4 
-rtmp://80.82.64.140:443/liverepeater playpath=4 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
-
-#EXTINF:0,Sky Sports 4 
 rtmpe://134.19.185.206:1935/livedge playpath=sskys4  swfUrl=http://player.hdcast.org/_.swf pageUrl=http://www.hdcast.org/embedlive4.php?u=sskysn&vw=640&vh=400&domain=www.streamhd.eu token=Fo5_n0w?U.rA6l3-70w47ch
+
+#EXTINF:0,Sky Sports 5 
+http://usa.01.cdnstreams.in:8081/view/ch09/playlist.m3u8
 
 #EXTINF:0,Sky Sports 5 
 rtmp://80.82.64.140:443/liverepeater playpath=5 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH

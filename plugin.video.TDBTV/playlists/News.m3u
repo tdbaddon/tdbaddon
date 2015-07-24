@@ -7,17 +7,11 @@ http://abclive.abcnews.com/i/abc_live4@136330/index_1200_av-b.m3u8
 #EXTINF:0,AlJazeera 
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/aljazeera_en/ls_satlink/b_528.m3u8%20#
 
-#EXTINF:0,AlJazeera 
-http://80.77.52.6:3917/udp/226.0.1.4:12345
-
 #EXTINF:0,BBC World News 
 http://93.184.221.133/hls-live/20C1A9/bbc_world/ls_satlink/b_828.m3u8 
 
 #EXTINF:0,BBC World News 
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/bbc_world/ls_satlink/b_828.m3u8
-
-#EXTINF:0,BBC World News 
-http://80.77.52.6:3917/udp/226.0.1.49:12345
 
 #EXTINF:0,Bloomberg TV 
 http://btv-i.akamaihd.net/hls/live/202760-b/btvusa_ios/P1/M12K.m3u8
@@ -36,9 +30,6 @@ rtmp://a.cdn.newschat.tv/edge playpath=cbc_live swfUrl=http://msnbclive.eu/playe
 
 #EXTINF:0,CCTV News 
 http://77.36.61.45:8010/CCTVNews.m3u8?
-
-#EXTINF:0,CCTV News 
-http://80.77.52.6:3917/udp/226.0.1.5:12345
 
 #EXTINF:0,CNBC 
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/cnbc_eu/ls_satlink/b_,264,528,828,.m3u8
@@ -70,9 +61,6 @@ http://bcliveuniv-lh.akamaihd.net/i/cpac1flr2014_01@51230/index_2000_av-p.m3u8
 #EXTINF:0,DW 
 http://www.metafilegenerator.de/DWelle/tv-asia/ios/master.m3u8
 
-#EXTINF:0,DW 
-http://80.77.52.6:3917/udp/226.0.1.17:12345
-
 #EXTINF:0,Euro News 
 http://wpc.c1a9.edgecastcdn.net:80/hls-live/20C1A9/euronews_en/ls_satlink/b_828.m3u8
 
@@ -87,12 +75,6 @@ http://93.174.95.125:1935/edge/_definst_/ohn58e97er36vjr/playlist.m3u8?wowzasess
 
 #EXTINF:0,France 24 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_FRANCE24/variant.m3u8?b?b*t$
-
-#EXTINF:0,France 24 
-http://80.77.52.6:3917/udp/226.0.1.33:12345
-
-#EXTINF:-0,France 24 
-http://80.77.52.6:3917/udp/226.0.1.34:12345
 
 #EXTINF:0,i24 News 
 http://bcoveliveios-i.akamaihd.net/hls/live/215102/master_english/398/master.m3u8?b?b*t$
@@ -113,7 +95,7 @@ http://93.174.95.125:1935/edge/_definst_/1ioc7taql4472xs/playlist.m3u8?wowzasess
 0
 
 #EXTINF:0,NHK World 
-http://80.77.52.6:3917/udp/226.0.1.52:12345
+0
 
 #EXTINF:0,Press TV 
 rtmp://mtv.fms-01.visionip.tv/live/mtv-ptv-live-25f-16x9-SDh
@@ -122,8 +104,7 @@ rtmp://mtv.fms-01.visionip.tv/live/mtv-ptv-live-25f-16x9-SDh
 http://37.58.85.156/rlo001/ngrp:rlo001.stream_all/playlist.m3u8
 
 #EXTINF:0,RT News 
-0
-
+http://rt-a.akamaihd.net/ch_01@325605/master.m3u8 
 #EXTINF:0,Sky News 
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/skynews/ls_satlink/b_828.m3u8?b?b*t$
 
