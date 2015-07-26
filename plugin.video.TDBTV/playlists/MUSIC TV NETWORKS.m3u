@@ -1,0 +1,126 @@
+﻿#EXTM3U
+
+
+#EXTINF:0,AKA 
+http://rrr.sz.xlcdn.com/?account=AATW&file=akanew&type=live&service=wowza&protocol=http&output=playlist.m3u8
+
+#EXTINF:0,Capital Music 
+http://ooyalahd2-f.akamaihd.net/i/globalradio01_delivery@156521/index_656_av-p.m3u8?sd=10&rebase=on
+
+#EXTINF:0,Clubland
+http://rrr.sz.xlcdn.com/?account=AATW&file=clublandtv&type=live&service=wowza&protocol=http&output=playlist.m3u8
+
+#EXTINF:0,Clubbing TV 
+http://204.107.26.252:1935/live/691.high.stream/HasBahCa.m3u8
+
+#EXTINF:0,Clubbing TV 
+http://46.249.213.87/iPhone/broadcast/clubbingtv-tablet.3gp/clubbingtv-tablet.3gp-mr648k.m3u8
+
+#EXTINF:0,Dance TV
+http://87.239.31.232/hls/230.3.4.169.sd.stream.m3u8?b?b*t$
+
+#EXTINF:0,Deluxe Music 
+rtmp://flash1.ipercast.net/deluxemusic.tv/mp4:staging/120131-love-lounge-catchup.mp4.mp4
+
+#EXTINF:0,Djing Animation 
+http://www.djing.com/tv/a-05.m3u8
+
+#EXTINF:0,Djing Classics 
+http://www.djing.com/tv/i-05.m3u8
+
+#EXTINF:0,Djing Club Hits 
+http://cdn.djing.com/tv/h-05.m3u8
+
+#EXTINF:0,Djing Hot Tracks 
+http://www.djing.com/tv/hothothot.m3u8
+
+#EXTINF:0,Djing Ibiza
+http://www.djing.com/tv/d-04.m3u8
+
+#EXTINF:0,Djing TV 
+http://www.djing.com/tv/05.m3u8
+
+#EXTINF:0,Djing UnderGround
+http://www.djing.com/tv/u-04.m3u8
+
+#EXTINF:0,Eska Best 
+rtmp://stream.smcloud.net/live2/best/best_720p
+
+#EXTINF:0,Eska Best 
+rtmp://stream.smcloud.net/live2/best/best_480p
+
+#EXTINF:0,Eska Party 
+rtmp://stream.smcloud.net/live2/eska_party/eska_party_720p
+
+#EXTINF:0,Eska Party 
+rtmp://stream.smcloud.net/live2/eska_party/eska_party_480p
+
+#EXTINF:0,Eska Rock 
+rtmp://stream.smcloud.net/live2/eska_rock/eska_rock_720p
+
+#EXTINF:0,Eska Rock 
+rtmp://stream.smcloud.net/live2/eska_rock/eska_rock_480p
+
+#EXTINF:0,Heart TV 
+http://ooyalahd2-f.akamaihd.net/i/globalradio02_delivery@156522/master.m3u8
+
+#EXTINF:0,Ibiza on TV 
+http://46.249.213.87/iPhone/broadcast/ibizaontv-tablet.3gp/ibizaontv-tablet.3gp-mr648k.m3u8?trackingid=3391380000&os=desktop
+
+#EXTINF:0,Kiss TV
+rtmp://tst.es.flash.glb.ipercast.net/tst.es-live/live
+
+#EXTINF:0,MTV 
+http://93.174.95.125:1935/edge/_definst_/d2z1vc4ahrl6x26/playlist.m3u8?wowzasessionid=1420171062
+
+#EXTINF:0,MTV Dance 
+http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVDANCE/variant.m3u8
+
+#EXTINF:0,MTV Hits 
+http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVHITS/variant.m3u8
+
+#EXTINF:0,MTV Hits 
+http://194.44.229.77:777/udp/237.1.238.1:1234
+
+#EXTINF:0,MTV Live 
+0
+
+#EXTINF:0,MTV Rocks 
+http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVROCKS/variant.m3u8
+
+#EXTINF:0,MTV Summer
+0
+
+#EXTINF:0,MusicVoxTV 
+rtmp://stream.smcloud.net/live2/vox/vox_720p
+
+#EXTINF:0,MusicVoxTV 
+rtmp://stream.smcloud.net/live2/vox/vox_480p
+
+#EXTINF:0,Radio Monte Carlo 
+rtmp://fms.105.net/live/rmc1
+
+#EXTINF:0,Rock 66 
+http://mediatv2.topix.it/24RockOne66
+
+#EXTINF:0,Vevo Hits 
+http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch2/06/prog_index.m3u8
+
+#EXTINF:0,Vevo Country 
+http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch3/06/prog_index.m3u8
+
+#EXTINF:0,Vevo Pop 
+http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/06/prog_index.m3u8
+
+#EXTINF:0,VH1 
+http://hlsstr02.svc.iptv.rt.ru/hls/CH_VH1EUROPEAN/variant.m3u8
+
+#EXTINF:0,VH1 
+http://93.174.95.125:1935/edge/_definst_/oeiigxxv1gbeqq9/manifest.m3u8?wowzasessionid=1420170560
+
+#EXTINF:0,VH1 Classics 
+http://hlsstr02.svc.iptv.rt.ru/hls/CH_VH1CLASSIC/variant.m3u8
+
+#EXTINF:0,Virgin TV 
+rtmp://fms.105.net:1935/live/virgin2
+

@@ -1,0 +1,410 @@
+﻿#EXTM3U
+
+#EXTINF:0,How to change AUDIO LANGUAGE
+http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mp4
+---------------------------------------------------------------------------------------------------------------
+
+#EXTINF:0,A&E 
+0
+
+#EXTINF:0,ABC 
+http://93.174.95.125:1935/edge/_definst_/nz7l9vc5nv1og7b/playlist.m3u8?wowzasessionid=1419880374
+
+#EXTINF:0,ABC Family
+http://93.174.95.125:1935/edge/_definst_/oeiigxxv1gbeqq9/playlist.m3u8?wowzasessionid=1420170560
+
+#EXTINF:0,AMC 
+http://93.174.95.125:1935/edge/_definst_/z4cxm7zlfyqs65m/playlist.m3u8?wowzasessionid=1419872183
+
+#EXTINF:0,BabyTV 
+http://hlsstr03.svc.iptv.rt.ru/hls/CH_BABYTV/bw480000/variant.m3u8?version=2
+
+#EXTINF:0,BBC 1 
+http://teleboy.customers.cdn.iptv.ch/4006/2290000/index.m3u8
+
+#EXTINF:0,BBC 1
+http://teleboy.customers.cdn.iptv.ch/4017/2290000/index.m3u8
+
+#EXTINF:0,BBC 2 
+http://teleboy.customers.cdn.iptv.ch/4007/2290000/index.m3u8
+
+#EXTINF:0,BBC 2 
+http://teleboy.customers.cdn.iptv.ch/4012/2290000/index.m3u8
+
+#EXTINF:0,BET 
+http://93.174.95.125:1935/edge/_definst_/kexkxje3nqi6dtl/playlist.m3u8?wowzasessionid=1419880467
+
+#EXTINF:0,Boomerang 
+0
+
+#EXTINF:0,Bravo 
+0
+
+#EXTINF:0,Cartoon Network 
+http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD28_W_250.sdp/playlist.m3u8
+
+#EXTINF:0,Cartoon Network 
+http://54.255.155.24:1935//Live/_definst_/sweetbcha1novD28_W_150.sdp/playlist.m3u8
+
+#EXTINF:0,CBS 
+http://93.174.95.125:1935/edge/_definst_/vp4q2gonwzh2dku/chunklist.m3u8?wowzasessionid=1419872048
+
+#EXTINF:0,CBS Action 
+0
+
+#EXTINF:0,CBS Drama 
+0
+
+#EXTINF:0,CBS Reality
+0
+
+#EXTINF:0,Cinemax 
+http://113.160.49.34/lives/origin03/cinemaxsd.isml/cinemaxsd-1096k.m3u8
+
+#EXTINF:0,CHCH Ontario 
+rtmp://54.85.197.21:1935/live/news live=1 timeout=15
+
+#EXTINF:0,City TV Toronto
+0
+
+#EXTINF:0,City TV Vancouver
+0
+
+#EXTINF:0,CMore Action
+0
+
+#EXTINF:0,CMore Emotion
+0
+
+#EXTINF:0,CMore First
+http://188.138.9.228:8024
+
+#EXTINF:0,CMore Hits
+http://188.138.9.228:8020
+
+#EXTINF:0,CMore Series
+http://188.138.9.228:8021
+
+#EXTINF:0,Comedy Central 
+0http://planetiptv-test.ddns.net:9088/sdtv/uktv/planet/iptv/Comedy_Central_Extra_UK?auth=test+test#
+
+#EXTINF:0,Comedy Central 
+http://planetiptv-test.ddns.net:9088/sdtv/uktv/planet/iptv/Comedy_Central_UK?auth=test+test
+
+#EXTINF:0,CTV Edmonton
+http://198.179.31.198/live/2053.high.stream/2053.high.stream/index.m3u8
+
+#EXTINF:0,CTV Lethbridge
+http://198.179.31.198/live/2059.high.stream/2059.high.stream/index.m3u8
+
+#EXTINF:0,CTV Regina
+http://198.179.31.198/live/2056.high.stream/2056.high.stream/index.m3u8
+
+#EXTINF:0,CTV Yorkton
+http://198.179.31.198/live/2062.high.stream/2062.high.stream/index.m3u8
+
+#EXTINF:0,CW 
+0
+
+#EXTINF:0,Disney Channel 
+http://93.174.95.125:1935/edge/_definst_/2tag4dzgwof5ma2/playlist.m3u8?wowzasessionid=1420170412
+
+#EXTINF:0,Disney Junior 
+0
+
+#EXTINF:0,Disney XD 
+0
+
+#EXTINF:0,E! 
+0
+
+#EXTINF:0,E4 
+http://pebbles124-lh.akamaihd.net/i/e4_1@137789/master.m3u8|X-Forwarded-For=85.5.87.218
+
+#EXTINF:0,Fashion TV 
+http://hls.novotelecom.ru/streaming/fashion/tvrec/playlist.m3u8
+
+#EXTINF:0,Film4 
+http://pebbles124-lh.akamaihd.net/i/film4_1@137790/master.m3u8|X-Forwarded-For=85.5.87.218
+
+#EXTINF:0,Film4 
+http://teleboy.customers.cdn.iptv.ch/4023/2290000/index.m3u8
+
+#EXTINF:0,Fine Living Network 
+0
+
+#EXTINF:0,Food Network 
+http://93.174.95.125:1935/edge/_definst_/qc6xkzf4h48bz2e/playlist.m3u8?wowzasessionid=1419873022
+
+#EXTINF:0,Fox 1 
+0
+
+#EXTINF:0,Fox Action Movies 
+0
+
+#EXTINF:0,Fox Cinema
+0
+
+#EXTINF:0,Fox Classics 
+0
+
+#EXTINF:0,Fox Crime
+0
+
+#EXTINF:0,Fox Life 
+0
+
+#EXTINF:0,Fox Movies 
+0
+
+#EXTINF:0,Fox TV 
+http://hlsstr02.svc.iptv.rt.ru/hls/CH_C02_FOXHD/bw2000000/variant.m3u8?version=2 
+
+#EXTINF:0,Fox TV 
+rtmp://rtmp.zerocast.tv/goLive/ playpath=9pxGCtP3aEnJYgoBFFH8 swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 pageUrl=http://zerocast.tv/embed token=OOG17t.x#K9Vh#|
+
+#EXTINF:0,FX
+0
+
+#EXTINF:0,FX HD 
+0
+
+#EXTINF:0,Global TV Halifax 
+http://link.theplatform.com/s/dtjsEC/77l1KA_G_5P1?feed=DEV%20Live%20Stream%20Feed/playlist.m3u8
+
+#EXTINF:0,Global TV Toronto 
+http://link.theplatform.com/s/dtjsEC/hdSH3iztz_j_?feed=DEV%20Live%20Stream%20Feed/playlist.m3u8
+ 
+#EXTINF:0,Global TV Vancouver 
+http://link.theplatform.com/s/dtjsEC/EqBPGYLY6fEx?feed=DEV%20Live%20Stream%20Feed/playlist.m3u8
+
+#EXTINF:0,Hallmark Channel 
+http://93.174.95.125:1935/edge/_definst_/v4ynnryunsoxzbq/playlist.m3u8?wowzasessionid=1419874236
+
+#EXTINF:0,HBO 
+http://93.174.95.125:1935/edge/_definst_/qzbbu26gcvjxksz/playlist.m3u8?wowzasessionid=1419907309
+
+#EXTINF:0,HBO 
+rtmp://94.102.49.207/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to/player/secure_player_iguide_token.swf live=1 pageUrl=http://www.iguide.to/view/1/watch-live-HBO-channel-for-free token=#ed%h0#w18623jsda6523lDGDVe
+
+#EXTINF:0,HBO 
+rtmp://89.248.168.57/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to/player/secure_player_iguide_embed_token.swf pageUrl=http://www.iguide.to/ token=#ed%h0#w18623jsda6523lDGD
+
+#EXTINF:0,HBO 
+rtmp://89.248.168.57:1935/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to/player/secure_player_iguide_token.swf live=1 pageUrl=http://www.iguide.to/view/1/HBO token=#ed%h0#w18623jsda6523lDGDve
+
+#EXTINF:0,HBO 
+http://50.7.207.114:80/sinema2?lives/origin03/hbohd.isml/hbohd-2096k
+
+#EXTINF:0,HGTV 
+http://93.174.95.125:1935/edge/_definst_/gj65q2rg18tpmut/playlist.m3u8?wowzasessionid=1419811602
+
+#EXTINF:0,HSN
+rtsp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:420p500kB31
+
+#EXTINF:0,HSN2 
+rtmp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:468p500kB31?b?b*t$ playpath=mp4:468p500kB31
+
+#EXTINF:0,Irish TV 
+http://ios.streamserver01.com:8080/ShowcaseTV/mystream.m3u8
+
+#EXTINF:0,ITV 1 
+http://teleboy.customers.cdn.iptv.ch/4004/2290000/index.m3u8
+
+#EXTINF:0,ITV 1 
+http://teleboy.customers.cdn.iptv.ch/4018/2290000/index.m3u8
+
+#EXTINF:0,ITV 2 
+http://204.107.27.136/live/67.low.stream/67.low.stream/index.m3u8
+
+#EXTINF:0,ITV 2 
+http://teleboy.customers.cdn.iptv.ch/4005/2290000/index.m3u8
+
+#EXTINF:0,ITV 3 
+http://204.107.27.136/live/26.low.stream/26.low.stream/index.m3u8 
+
+#EXTINF:0,ITV 3 
+http://teleboy.customers.cdn.iptv.ch/4025/2290000/index.m3u8
+
+#EXTINF:0,ITV 4 
+http://204.107.27.136/live/101.low.stream/101.low.stream/index.m3u8 
+
+#EXTINF:0,Jewelry Television
+rtmp://jtvmedia.jtv.com:1975/live playpath=live6 swfUrl=http://demandware.edgesuite.net/aaby_prd/on/demandware.static/Sites-jtv-Site/-/default/v1410110388581/swf/flashMediaPlayer/StrobeMediaPlayback.swf live=1 pageUrl=http://www.jtv.com/on/demandware.store/Sites-jtv-Site/default/LiveViewer-Show
+
+#EXTINF:0,Jim Jam 
+0
+
+#EXTINF:0,Lifetime Network 
+http://93.174.95.125:1935/edge/_definst_/7b2gr554gyyth8e/playlist.m3u8?wowzasessionid=1419879018
+
+#EXTINF:0,London Live 
+http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
+
+#EXTINF:0,MBC 2 
+http://63.237.48.3/ios/MBC2/MBC2.m3u8
+
+#EXTINF:0,MBC Max 
+http://63.237.48.23/ios/MBC_MAX/MBC_MAX.m3u8
+
+#EXTINF:0,MGM 
+0
+
+#EXTINF:0,More4 
+0
+
+#EXTINF:0,My9
+http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
+
+#EXTINF:0,NBC 
+http://93.174.95.125:1935/edge/_definst_/kjgkefh6la1di6g/playlist.m3u8?wowzasessionid=1419879103
+
+#EXTINF:0,Nick 
+0
+
+#EXTINF:0,Nick Jr 
+0
+
+#EXTINF:0,Nickelodeon 
+http://194.44.229.77:777/udp/237.1.239.14:1234
+
+#EXTINF:0,NickNight 
+0
+
+#EXTINF:0,OWN Network 
+0
+
+#EXTINF:0,PBS 
+0
+
+#EXTINF:0,Showtime 
+http://93.174.95.125:1935/edge/_definst_/bwbop58ixz281wv/chunklist.m3u8?wowzasessionid=1419875151
+
+#EXTINF:0,Showtime 
+http://80.80.160.168/live/7/live.m3u8
+
+#EXTINF:0,Sky 1 
+http://planetiptv-test.ddns.net:9088/sdtv/skyuk/planet/iptv/Sky_1_UK_+1?auth=test+test
+
+#EXTINF:0,Sky 2
+http://planetiptv-test.ddns.net:9088/sdtv/skyuk/planet/iptv/Sky_2_UK?auth=test+test
+
+#EXTINF:0,Sky Arts 1 
+0
+
+#EXTINF:0,Sky Arts 2 
+0
+
+#EXTINF:0,Sky Living 
+0
+
+#EXTINF:0,Sky Movies Action 
+0
+
+#EXTINF:0,Sky Movies Atlantic
+0
+
+#EXTINF:0,Sky Movies Comedy
+0
+
+#EXTINF:0,Sky Movies Crime
+0
+
+#EXTINF:0,Sky Movies Disney
+0
+
+#EXTINF:0,Sky Movies Drama
+0
+
+#EXTINF:0,Sky Movies Family
+0
+
+#EXTINF:0,Sky Movies Horrors
+0
+
+#EXTINF:0,Sky Movies Premiere 
+0
+
+#EXTINF:0,Sky Movies Premiere+
+0
+
+#EXTINF:0,Sky Movies SciFi 
+0
+
+#EXTINF:0,Sky Movies Select 
+0 
+
+#EXTINF:0,Sony TV 
+0
+
+#EXTINF:0,Sony Movie Channel
+0
+
+#EXTINF:0,Spike TV 
+http://93.174.95.125:1935/edge/_definst_/sax2mq2alpirnww/playlist.m3u8?wowzasessionid=1419878529
+
+#EXTINF:0,Star Movies 
+http://113.160.49.34/lives/origin03/moviehd.isml/moviehd-2096k.m3u8
+
+#EXTINF:0,Syfy 
+http://93.174.95.125:1935/edge/_definst_/oepz9q5oivflbcw/playlist.m3u8?wowzasessionid=1419878403
+
+#EXTINF:0,TBS 
+http://93.174.95.125:1935/edge/_definst_/jh8nj062bqbsxdh/playlist.m3u8?wowzasessionid=1419878319
+
+#EXTINF:0,TBS 
+rtmp://rtmp.zerocast.tv/goLive/RhMi9RdAAt7fpq8H3qZh swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 pageUrl=http://zerocast.tv/embed token=OOG17t.x#K9Vh#|
+
+#EXTINF:0,TCM 
+0
+
+#EXTINF:0,TSC 
+http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/master.m3u8?b?b*t$ 
+
+#EXTINF:0,TLC 
+http://80.80.160.168/live/2/live.m3u8
+
+#EXTINF:0,TLC 
+http://194.44.229.77:777/udp/237.1.239.23:1234
+
+#EXTINF:0,TNT 
+http://93.174.95.125:1935/edge/_definst_/7uz4als3nigi0j3/playlist.m3u8?wowzasessionid=1420124827
+
+#EXTINF:0,Tom & Jerry TV
+rtmp://208.53.180.218/ctv playpath=tom swfUrl=http://www.carolineoliveira.com.br/swf/player.swf live=1 pageUrl=http://carolineoliveira.com.br/tvamigos/tomejerry.html
+
+#EXTINF:0,Tru TV 
+0
+
+#EXTINF:0,True Drama
+0
+
+#EXTINF:0,True Entertainment 
+0
+
+#EXTINF:0,True Movies 1
+0
+
+#EXTINF:0,True Movies 2 
+0
+
+#EXTINF:0,TV 1000 
+http://194.44.229.77:777/udp/237.1.238.17:1234
+
+#EXTINF:0,TV 1000 Action 
+http://194.44.229.77:777/udp/237.1.238.18:1234
+
+#EXTINF:0,TV Land 
+0
+
+#EXTINF:0,Universal Channel 
+0
+
+#EXTINF:0,USA Network 
+0
+
+#EXTINF:0,Victoria Secret TV
+http://stream02.yamgo.com/iPhone/HLS_TS/broadcast/victorias_secret_angels-tablet.3gp/victorias_secret_angels-tablet.3gp-mr648k.m3u8
+
+#EXTINF:0,Warner Brothers 
+0
