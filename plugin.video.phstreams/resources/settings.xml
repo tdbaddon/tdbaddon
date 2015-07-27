@@ -1,0 +1,8 @@
+<settings>
+	<category label="MetaData">
+		<setting id="meta" type="bool" label="Enable MetaData" default="false" />
+	</category>
+	<category label="Downloads">
+		<setting id="downloadPath" type="folder" label="Downloads Folder" default="" />
+	</category>
+</settings>

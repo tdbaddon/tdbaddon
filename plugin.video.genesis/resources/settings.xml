@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+	<category label="30000">
+		<setting id="appearance" type="select" label="30001" values="-|4orbs|Clean|Embossed|GOne|Metro" default="GOne" />
+		<setting id="fanart" type="bool" label="30002" default="true" />
+		<setting type="sep" />
+		<setting id="sources_timeout_beta" type="slider" label="30003" default="10" range="10,60" option="int" />
+		<setting type="sep" />
+		<setting type="lsep" label="30004" />
+		<setting id="root_movies" type="enum" label="30005" lvalues="30006|30007|30008|30009" default="1" />
+		<setting id="trakt_user" type="text" default="" visible="false" />
+		<setting id="trakt_password" type="text" default="" visible="false" />
+		<setting id="root_episodes_trakt" type="enum" label="30010" lvalues="30011|30012|30013|30014" default="2" visible="!eq(-1,)+!eq(-2,)" />
+		<setting id="root_episodes" type="enum" label="30010" lvalues="30011|30012" default="1" visible="eq(-2,)|eq(-3,)" />
+		<setting id="root_calendar" type="enum" label="30015" lvalues="30016|30017" default="0" />
+		<setting id="sources_version" type="text" default="4.2.0" visible="false" />
+	</category>
+	<category label="30020">
+		<setting id="playback_quality" type="enum" label="30021" values="1080p|720p|HQ|MQ|LQ" default="0" />
+		<setting id="host_select" type="enum" label="30022" lvalues="30023|30024" default="1" enable="eq(6,false)" />
+		<setting type="lsep" label="30025" />
+		<setting id="playback_captcha" type="bool" label="30026" default="false" />
+		<setting id="playback_1080p_hosts" type="bool" label="30027" default="true" />
+		<setting id="playback_720p_hosts" type="bool" label="30028" default="true" />
+		<setting type="lsep" label="30029" />
+		<setting id="autoplay" type="bool" label="30030" default="false" />
+		<setting id="autoplay_library" type="bool" label="30031" default="false" />
+		<setting id="playback_auto_sd" type="bool" label="30032" default="true" />
+		<setting type="lsep" label="30033" />
+		<setting id="resume_playback" type="bool" label="30034" default="true" />
+		<setting id="playback_info" type="bool" label="30035" default="false" />
+	</category>
+	<category label="30040">
+		<setting id="alluc" type="bool" label="Alluc" default="true" />
+		<setting id="icefilms" type="bool" label="Icefilms" default="true" />
+		<setting id="primewire" type="bool" label="Primewire" default="true" />
+		<setting id="movie25" type="bool" label="Movie25" default="true" />
+		<setting id="iwatchonline" type="bool" label="Iwatchonline" default="true" />
+		<setting id="gvcenter" type="bool" label="GVcenter" default="true" />
+		<setting id="playbox" type="bool" label="PlayBox" default="true" />
+		<setting id="movietube" type="bool" label="Movietube" default="true" />
+		<setting id="moviezone" type="bool" label="Moviezone" default="true" />
+		<setting id="yify" type="bool" label="YIFY" default="true" />
+		<setting id="yifystream" type="bool" label="YIFYstream" default="true" />
+		<setting id="afdah" type="bool" label="Afdah" default="true" />
+		<setting id="pubfilm" type="bool" label="Pubfilm" default="true" />
+		<setting id="xmovies8" type="bool" label="Xmovies8" default="true" />
+		<setting id="muchmovies" type="bool" label="Muchmovies" default="true" />
+		<setting id="movienight" type="bool" label="Movienight" default="true" />
+		<setting id="movieshd" type="bool" label="MoviesHD" default="true" />
+		<setting id="vkbox" type="bool" label="VKBox" default="true" />
+		<setting id="moviestorm" type="bool" label="Moviestorm" default="true" />
+		<setting id="watchfree" type="bool" label="Watchfree" default="true" />
+		<setting id="vidics" type="bool" label="Vidics" default="true" />
+		<setting id="wso" type="bool" label="WSO" default="true" />
+		<setting id="einthusan" type="bool" label="Einthusan (India)" default="true" />
+		<setting id="furk" type="bool" label="Furk" default="false" />
+	</category>
+	<category label="30041">
+		<setting id="alluc_tv" type="bool" label="Alluc" default="true" />
+		<setting id="icefilms_tv" type="bool" label="Icefilms" default="true" />
+		<setting id="primewire_tv" type="bool" label="Primewire" default="true" />
+		<setting id="watchseries_tv" type="bool" label="Watchseries" default="true" />
+		<setting id="iwatchonline_tv" type="bool" label="Iwatchonline" default="true" />
+		<setting id="gvcenter_tv" type="bool" label="GVcenter" default="true" />
+		<setting id="playbox_tv" type="bool" label="PlayBox" default="true" />
+		<setting id="movietube_tv" type="bool" label="Movietube" default="true" />
+		<setting id="yifystream_tv" type="bool" label="YIFYstream" default="true" />
+		<setting id="ororo_tv" type="bool" label="Ororo" default="true" />
+		<setting id="vkbox_tv" type="bool" label="VKBox" default="true" />
+		<setting id="clickplay_tv" type="bool" label="Clickplay" default="true" />
+		<setting id="moviestorm_tv" type="bool" label="Moviestorm" default="true" />
+		<setting id="watchfree_tv" type="bool" label="Watchfree" default="true" />
+		<setting id="vidics_tv" type="bool" label="Vidics" default="true" />
+		<setting id="wso_tv" type="bool" label="WSO" default="true" />
+		<setting id="animeultima_tv" type="bool" label="Animeultima" default="true" />
+		<setting id="directdl_tv" type="bool" label="Directdownload" default="true" />
+		<setting id="furk_tv" type="bool" label="Furk" default="false" />
+	</category>
+	<category label="30060">
+		<setting id="hosthd1" type="select" label="30071" values="-|180upload|Clicknupload|Einthusan|Filepup|GVideo|Grifthost|Hugefiles|Ipithos|iShared|Kingfiles|Mightyupload|Movreel|Mrfile|Muchmovies|Openload|Primeshare|Promptfile|Turbovideos|Tusfiles|Uploadc|Uptobox|V-vids|VK|Videomega|Vidplay|Xfileload|YIFY|Zalaa|Zettahost" default="GVideo" />
+		<setting id="hosthd2" type="select" label="30072" values="-|180upload|Clicknupload|Einthusan|Filepup|GVideo|Grifthost|Hugefiles|Ipithos|iShared|Kingfiles|Mightyupload|Movreel|Mrfile|Muchmovies|Openload|Primeshare|Promptfile|Turbovideos|Tusfiles|Uploadc|Uptobox|V-vids|VK|Videomega|Vidplay|Xfileload|YIFY|Zalaa|Zettahost" default="VK" />
+		<setting id="hosthd3" type="select" label="30073" values="-|180upload|Clicknupload|Einthusan|Filepup|GVideo|Grifthost|Hugefiles|Ipithos|iShared|Kingfiles|Mightyupload|Movreel|Mrfile|Muchmovies|Openload|Primeshare|Promptfile|Turbovideos|Tusfiles|Uploadc|Uptobox|V-vids|VK|Videomega|Vidplay|Xfileload|YIFY|Zalaa|Zettahost" default="Videomega" />
+		<setting id="hosthd4" type="select" label="30074" values="-|180upload|Clicknupload|Einthusan|Filepup|GVideo|Grifthost|Hugefiles|Ipithos|iShared|Kingfiles|Mightyupload|Movreel|Mrfile|Muchmovies|Openload|Primeshare|Promptfile|Turbovideos|Tusfiles|Uploadc|Uptobox|V-vids|VK|Videomega|Vidplay|Xfileload|YIFY|Zalaa|Zettahost" default="Filepup" />
+		<setting id="hosthd5" type="select" label="30075" values="-|180upload|Clicknupload|Einthusan|Filepup|GVideo|Grifthost|Hugefiles|Ipithos|iShared|Kingfiles|Mightyupload|Movreel|Mrfile|Muchmovies|Openload|Primeshare|Promptfile|Turbovideos|Tusfiles|Uploadc|Uptobox|V-vids|VK|Videomega|Vidplay|Xfileload|YIFY|Zalaa|Zettahost" default="Muchmovies" />
+		<setting id="hosthd6" type="select" label="30076" values="-|180upload|Clicknupload|Einthusan|Filepup|GVideo|Grifthost|Hugefiles|Ipithos|iShared|Kingfiles|Mightyupload|Movreel|Mrfile|Muchmovies|Openload|Primeshare|Promptfile|Turbovideos|Tusfiles|Uploadc|Uptobox|V-vids|VK|Videomega|Vidplay|Xfileload|YIFY|Zalaa|Zettahost" default="YIFY" />
+		<setting id="hosthd7" type="select" label="30077" values="-|180upload|Clicknupload|Einthusan|Filepup|GVideo|Grifthost|Hugefiles|Ipithos|iShared|Kingfiles|Mightyupload|Movreel|Mrfile|Muchmovies|Openload|Primeshare|Promptfile|Turbovideos|Tusfiles|Uploadc|Uptobox|V-vids|VK|Videomega|Vidplay|Xfileload|YIFY|Zalaa|Zettahost" default="Einthusan" />
+		<setting id="hosthd8" type="select" label="30078" values="-|180upload|Clicknupload|Einthusan|Filepup|GVideo|Grifthost|Hugefiles|Ipithos|iShared|Kingfiles|Mightyupload|Movreel|Mrfile|Muchmovies|Openload|Primeshare|Promptfile|Turbovideos|Tusfiles|Uploadc|Uptobox|V-vids|VK|Videomega|Vidplay|Xfileload|YIFY|Zalaa|Zettahost" default="Movreel" />
+		<setting id="hosthd9" type="select" label="30079" values="-|180upload|Clicknupload|Einthusan|Filepup|GVideo|Grifthost|Hugefiles|Ipithos|iShared|Kingfiles|Mightyupload|Movreel|Mrfile|Muchmovies|Openload|Primeshare|Promptfile|Turbovideos|Tusfiles|Uploadc|Uptobox|V-vids|VK|Videomega|Vidplay|Xfileload|YIFY|Zalaa|Zettahost" default="180upload" />
+		<setting id="hosthd10" type="select" label="30080" values="-|180upload|Clicknupload|Einthusan|Filepup|GVideo|Grifthost|Hugefiles|Ipithos|iShared|Kingfiles|Mightyupload|Movreel|Mrfile|Muchmovies|Openload|Primeshare|Promptfile|Turbovideos|Tusfiles|Uploadc|Uptobox|V-vids|VK|Videomega|Vidplay|Xfileload|YIFY|Zalaa|Zettahost" default="Mightyupload" />
+		<setting id="hosthd11" type="select" label="30081" values="-|180upload|Clicknupload|Einthusan|Filepup|GVideo|Grifthost|Hugefiles|Ipithos|iShared|Kingfiles|Mightyupload|Movreel|Mrfile|Muchmovies|Openload|Primeshare|Promptfile|Turbovideos|Tusfiles|Uploadc|Uptobox|V-vids|VK|Videomega|Vidplay|Xfileload|YIFY|Zalaa|Zettahost" default="Clicknupload" />
+		<setting id="hosthd12" type="select" label="30082" values="-|180upload|Clicknupload|Einthusan|Filepup|GVideo|Grifthost|Hugefiles|Ipithos|iShared|Kingfiles|Mightyupload|Movreel|Mrfile|Muchmovies|Openload|Primeshare|Promptfile|Turbovideos|Tusfiles|Uploadc|Uptobox|V-vids|VK|Videomega|Vidplay|Xfileload|YIFY|Zalaa|Zettahost" default="Tusfiles" />
+		<setting id="hosthd13" type="select" label="30083" values="-|180upload|Clicknupload|Einthusan|Filepup|GVideo|Grifthost|Hugefiles|Ipithos|iShared|Kingfiles|Mightyupload|Movreel|Mrfile|Muchmovies|Openload|Primeshare|Promptfile|Turbovideos|Tusfiles|Uploadc|Uptobox|V-vids|VK|Videomega|Vidplay|Xfileload|YIFY|Zalaa|Zettahost" default="Grifthost" />
+		<setting id="hosthd14" type="select" label="30084" values="-|180upload|Clicknupload|Einthusan|Filepup|GVideo|Grifthost|Hugefiles|Ipithos|iShared|Kingfiles|Mightyupload|Movreel|Mrfile|Muchmovies|Openload|Primeshare|Promptfile|Turbovideos|Tusfiles|Uploadc|Uptobox|V-vids|VK|Videomega|Vidplay|Xfileload|YIFY|Zalaa|Zettahost" default="Openload" />
+		<setting id="hosthd15" type="select" label="30085" values="-|180upload|Clicknupload|Einthusan|Filepup|GVideo|Grifthost|Hugefiles|Ipithos|iShared|Kingfiles|Mightyupload|Movreel|Mrfile|Muchmovies|Openload|Primeshare|Promptfile|Turbovideos|Tusfiles|Uploadc|Uptobox|V-vids|VK|Videomega|Vidplay|Xfileload|YIFY|Zalaa|Zettahost" default="Uptobox" />
+		<setting id="hosthd16" type="select" label="30086" values="-|180upload|Clicknupload|Einthusan|Filepup|GVideo|Grifthost|Hugefiles|Ipithos|iShared|Kingfiles|Mightyupload|Movreel|Mrfile|Muchmovies|Openload|Primeshare|Promptfile|Turbovideos|Tusfiles|Uploadc|Uptobox|V-vids|VK|Videomega|Vidplay|Xfileload|YIFY|Zalaa|Zettahost" default="Primeshare" />
+		<setting id="hosthd17" type="select" label="30087" values="-|180upload|Clicknupload|Einthusan|Filepup|GVideo|Grifthost|Hugefiles|Ipithos|iShared|Kingfiles|Mightyupload|Movreel|Mrfile|Muchmovies|Openload|Primeshare|Promptfile|Turbovideos|Tusfiles|Uploadc|Uptobox|V-vids|VK|Videomega|Vidplay|Xfileload|YIFY|Zalaa|Zettahost" default="iShared" />
+		<setting id="hosthd18" type="select" label="30088" values="-|180upload|Clicknupload|Einthusan|Filepup|GVideo|Grifthost|Hugefiles|Ipithos|iShared|Kingfiles|Mightyupload|Movreel|Mrfile|Muchmovies|Openload|Primeshare|Promptfile|Turbovideos|Tusfiles|Uploadc|Uptobox|V-vids|VK|Videomega|Vidplay|Xfileload|YIFY|Zalaa|Zettahost" default="Vidplay" />
+		<setting id="hosthd19" type="select" label="30089" values="-|180upload|Clicknupload|Einthusan|Filepup|GVideo|Grifthost|Hugefiles|Ipithos|iShared|Kingfiles|Mightyupload|Movreel|Mrfile|Muchmovies|Openload|Primeshare|Promptfile|Turbovideos|Tusfiles|Uploadc|Uptobox|V-vids|VK|Videomega|Vidplay|Xfileload|YIFY|Zalaa|Zettahost" default="Xfileload" />
+		<setting id="hosthd20" type="select" label="30090" values="-|180upload|Clicknupload|Einthusan|Filepup|GVideo|Grifthost|Hugefiles|Ipithos|iShared|Kingfiles|Mightyupload|Movreel|Mrfile|Muchmovies|Openload|Primeshare|Promptfile|Turbovideos|Tusfiles|Uploadc|Uptobox|V-vids|VK|Videomega|Vidplay|Xfileload|YIFY|Zalaa|Zettahost" default="Mrfile" />
+	</category>
+	<category label="30061">
+		<setting id="host1" type="select" label="30071" values="-|180upload|Allmyvideos|Animeultima|Bestreams|Clicknupload|Cloudzilla|Daclips|Faststream|Fastvideo|Filehoot|Filenuke|Filepup|Gorillavid|GVideo|Grifthost|Ipithos|iShared|Mightyupload|Mooshare|Movdivx|Movpod|Movreel|Movshare|Mrfile|Nosvideo|Novamov|Nowvideo|Openload|Ororo|Played|Primeshare|Promptfile|Sharerepo|Sharesix|StageVu|Streamcloud|Streamin|Thefile|Thevideo|Turbovideos|Tusfiles|Uploadc|Uptobox|V-vids|Vidbull|Videoweed|Vidplay|Vidspot|Vidto|Vidzi|VK|Vodlocker|Xfileload|Xvidstage|Youtube|Zalaa|Zettahost" default="Ororo" />
+		<setting id="host2" type="select" label="30072" values="-|180upload|Allmyvideos|Animeultima|Bestreams|Clicknupload|Cloudzilla|Daclips|Faststream|Fastvideo|Filehoot|Filenuke|Filepup|Gorillavid|GVideo|Grifthost|Ipithos|iShared|Mightyupload|Mooshare|Movdivx|Movpod|Movreel|Movshare|Mrfile|Nosvideo|Novamov|Nowvideo|Openload|Ororo|Played|Primeshare|Promptfile|Sharerepo|Sharesix|StageVu|Streamcloud|Streamin|Thefile|Thevideo|Turbovideos|Tusfiles|Uploadc|Uptobox|V-vids|Vidbull|Videoweed|Vidplay|Vidspot|Vidto|Vidzi|VK|Vodlocker|Xfileload|Xvidstage|Youtube|Zalaa|Zettahost" default="Animeultima" />
+		<setting id="host3" type="select" label="30073" values="-|180upload|Allmyvideos|Animeultima|Bestreams|Clicknupload|Cloudzilla|Daclips|Faststream|Fastvideo|Filehoot|Filenuke|Filepup|Gorillavid|GVideo|Grifthost|Ipithos|iShared|Mightyupload|Mooshare|Movdivx|Movpod|Movreel|Movshare|Mrfile|Nosvideo|Novamov|Nowvideo|Openload|Ororo|Played|Primeshare|Promptfile|Sharerepo|Sharesix|StageVu|Streamcloud|Streamin|Thefile|Thevideo|Turbovideos|Tusfiles|Uploadc|Uptobox|V-vids|Vidbull|Videoweed|Vidplay|Vidspot|Vidto|Vidzi|VK|Vodlocker|Xfileload|Xvidstage|Youtube|Zalaa|Zettahost" default="Movreel" />
+		<setting id="host4" type="select" label="30074" values="-|180upload|Allmyvideos|Animeultima|Bestreams|Clicknupload|Cloudzilla|Daclips|Faststream|Fastvideo|Filehoot|Filenuke|Filepup|Gorillavid|GVideo|Grifthost|Ipithos|iShared|Mightyupload|Mooshare|Movdivx|Movpod|Movreel|Movshare|Mrfile|Nosvideo|Novamov|Nowvideo|Openload|Ororo|Played|Primeshare|Promptfile|Sharerepo|Sharesix|StageVu|Streamcloud|Streamin|Thefile|Thevideo|Turbovideos|Tusfiles|Uploadc|Uptobox|V-vids|Vidbull|Videoweed|Vidplay|Vidspot|Vidto|Vidzi|VK|Vodlocker|Xfileload|Xvidstage|Youtube|Zalaa|Zettahost" default="180upload" />
+		<setting id="host5" type="select" label="30075" values="-|180upload|Allmyvideos|Animeultima|Bestreams|Clicknupload|Cloudzilla|Daclips|Faststream|Fastvideo|Filehoot|Filenuke|Filepup|Gorillavid|GVideo|Grifthost|Ipithos|iShared|Mightyupload|Mooshare|Movdivx|Movpod|Movreel|Movshare|Mrfile|Nosvideo|Novamov|Nowvideo|Openload|Ororo|Played|Primeshare|Promptfile|Sharerepo|Sharesix|StageVu|Streamcloud|Streamin|Thefile|Thevideo|Turbovideos|Tusfiles|Uploadc|Uptobox|V-vids|Vidbull|Videoweed|Vidplay|Vidspot|Vidto|Vidzi|VK|Vodlocker|Xfileload|Xvidstage|Youtube|Zalaa|Zettahost" default="Mightyupload" />
+		<setting id="host6" type="select" label="30076" values="-|180upload|Allmyvideos|Animeultima|Bestreams|Clicknupload|Cloudzilla|Daclips|Faststream|Fastvideo|Filehoot|Filenuke|Filepup|Gorillavid|GVideo|Grifthost|Ipithos|iShared|Mightyupload|Mooshare|Movdivx|Movpod|Movreel|Movshare|Mrfile|Nosvideo|Novamov|Nowvideo|Openload|Ororo|Played|Primeshare|Promptfile|Sharerepo|Sharesix|StageVu|Streamcloud|Streamin|Thefile|Thevideo|Turbovideos|Tusfiles|Uploadc|Uptobox|V-vids|Vidbull|Videoweed|Vidplay|Vidspot|Vidto|Vidzi|VK|Vodlocker|Xfileload|Xvidstage|Youtube|Zalaa|Zettahost" default="Clicknupload" />
+		<setting id="host7" type="select" label="30077" values="-|180upload|Allmyvideos|Animeultima|Bestreams|Clicknupload|Cloudzilla|Daclips|Faststream|Fastvideo|Filehoot|Filenuke|Filepup|Gorillavid|GVideo|Grifthost|Ipithos|iShared|Mightyupload|Mooshare|Movdivx|Movpod|Movreel|Movshare|Mrfile|Nosvideo|Novamov|Nowvideo|Openload|Ororo|Played|Primeshare|Promptfile|Sharerepo|Sharesix|StageVu|Streamcloud|Streamin|Thefile|Thevideo|Turbovideos|Tusfiles|Uploadc|Uptobox|V-vids|Vidbull|Videoweed|Vidplay|Vidspot|Vidto|Vidzi|VK|Vodlocker|Xfileload|Xvidstage|Youtube|Zalaa|Zettahost" default="Tusfiles" />
+		<setting id="host8" type="select" label="30078" values="-|180upload|Allmyvideos|Animeultima|Bestreams|Clicknupload|Cloudzilla|Daclips|Faststream|Fastvideo|Filehoot|Filenuke|Filepup|Gorillavid|GVideo|Grifthost|Ipithos|iShared|Mightyupload|Mooshare|Movdivx|Movpod|Movreel|Movshare|Mrfile|Nosvideo|Novamov|Nowvideo|Openload|Ororo|Played|Primeshare|Promptfile|Sharerepo|Sharesix|StageVu|Streamcloud|Streamin|Thefile|Thevideo|Turbovideos|Tusfiles|Uploadc|Uptobox|V-vids|Vidbull|Videoweed|Vidplay|Vidspot|Vidto|Vidzi|VK|Vodlocker|Xfileload|Xvidstage|Youtube|Zalaa|Zettahost" default="Grifthost" />
+		<setting id="host9" type="select" label="30079" values="-|180upload|Allmyvideos|Animeultima|Bestreams|Clicknupload|Cloudzilla|Daclips|Faststream|Fastvideo|Filehoot|Filenuke|Filepup|Gorillavid|GVideo|Grifthost|Ipithos|iShared|Mightyupload|Mooshare|Movdivx|Movpod|Movreel|Movshare|Mrfile|Nosvideo|Novamov|Nowvideo|Openload|Ororo|Played|Primeshare|Promptfile|Sharerepo|Sharesix|StageVu|Streamcloud|Streamin|Thefile|Thevideo|Turbovideos|Tusfiles|Uploadc|Uptobox|V-vids|Vidbull|Videoweed|Vidplay|Vidspot|Vidto|Vidzi|VK|Vodlocker|Xfileload|Xvidstage|Youtube|Zalaa|Zettahost" default="Openload" />
+		<setting id="host10" type="select" label="30080" values="-|180upload|Allmyvideos|Animeultima|Bestreams|Clicknupload|Cloudzilla|Daclips|Faststream|Fastvideo|Filehoot|Filenuke|Filepup|Gorillavid|GVideo|Grifthost|Ipithos|iShared|Mightyupload|Mooshare|Movdivx|Movpod|Movreel|Movshare|Mrfile|Nosvideo|Novamov|Nowvideo|Openload|Ororo|Played|Primeshare|Promptfile|Sharerepo|Sharesix|StageVu|Streamcloud|Streamin|Thefile|Thevideo|Turbovideos|Tusfiles|Uploadc|Uptobox|V-vids|Vidbull|Videoweed|Vidplay|Vidspot|Vidto|Vidzi|VK|Vodlocker|Xfileload|Xvidstage|Youtube|Zalaa|Zettahost" default="Uptobox" />
+		<setting id="host11" type="select" label="30081" values="-|180upload|Allmyvideos|Animeultima|Bestreams|Clicknupload|Cloudzilla|Daclips|Faststream|Fastvideo|Filehoot|Filenuke|Filepup|Gorillavid|GVideo|Grifthost|Ipithos|iShared|Mightyupload|Mooshare|Movdivx|Movpod|Movreel|Movshare|Mrfile|Nosvideo|Novamov|Nowvideo|Openload|Ororo|Played|Primeshare|Promptfile|Sharerepo|Sharesix|StageVu|Streamcloud|Streamin|Thefile|Thevideo|Turbovideos|Tusfiles|Uploadc|Uptobox|V-vids|Vidbull|Videoweed|Vidplay|Vidspot|Vidto|Vidzi|VK|Vodlocker|Xfileload|Xvidstage|Youtube|Zalaa|Zettahost" default="Primeshare" />
+		<setting id="host12" type="select" label="30082" values="-|180upload|Allmyvideos|Animeultima|Bestreams|Clicknupload|Cloudzilla|Daclips|Faststream|Fastvideo|Filehoot|Filenuke|Filepup|Gorillavid|GVideo|Grifthost|Ipithos|iShared|Mightyupload|Mooshare|Movdivx|Movpod|Movreel|Movshare|Mrfile|Nosvideo|Novamov|Nowvideo|Openload|Ororo|Played|Primeshare|Promptfile|Sharerepo|Sharesix|StageVu|Streamcloud|Streamin|Thefile|Thevideo|Turbovideos|Tusfiles|Uploadc|Uptobox|V-vids|Vidbull|Videoweed|Vidplay|Vidspot|Vidto|Vidzi|VK|Vodlocker|Xfileload|Xvidstage|Youtube|Zalaa|Zettahost" default="iShared" />
+		<setting id="host13" type="select" label="30083" values="-|180upload|Allmyvideos|Animeultima|Bestreams|Clicknupload|Cloudzilla|Daclips|Faststream|Fastvideo|Filehoot|Filenuke|Filepup|Gorillavid|GVideo|Grifthost|Ipithos|iShared|Mightyupload|Mooshare|Movdivx|Movpod|Movreel|Movshare|Mrfile|Nosvideo|Novamov|Nowvideo|Openload|Ororo|Played|Primeshare|Promptfile|Sharerepo|Sharesix|StageVu|Streamcloud|Streamin|Thefile|Thevideo|Turbovideos|Tusfiles|Uploadc|Uptobox|V-vids|Vidbull|Videoweed|Vidplay|Vidspot|Vidto|Vidzi|VK|Vodlocker|Xfileload|Xvidstage|Youtube|Zalaa|Zettahost" default="Vidplay" />
+		<setting id="host14" type="select" label="30084" values="-|180upload|Allmyvideos|Animeultima|Bestreams|Clicknupload|Cloudzilla|Daclips|Faststream|Fastvideo|Filehoot|Filenuke|Filepup|Gorillavid|GVideo|Grifthost|Ipithos|iShared|Mightyupload|Mooshare|Movdivx|Movpod|Movreel|Movshare|Mrfile|Nosvideo|Novamov|Nowvideo|Openload|Ororo|Played|Primeshare|Promptfile|Sharerepo|Sharesix|StageVu|Streamcloud|Streamin|Thefile|Thevideo|Turbovideos|Tusfiles|Uploadc|Uptobox|V-vids|Vidbull|Videoweed|Vidplay|Vidspot|Vidto|Vidzi|VK|Vodlocker|Xfileload|Xvidstage|Youtube|Zalaa|Zettahost" default="Xfileload" />
+		<setting id="host15" type="select" label="30085" values="-|180upload|Allmyvideos|Animeultima|Bestreams|Clicknupload|Cloudzilla|Daclips|Faststream|Fastvideo|Filehoot|Filenuke|Filepup|Gorillavid|GVideo|Grifthost|Ipithos|iShared|Mightyupload|Mooshare|Movdivx|Movpod|Movreel|Movshare|Mrfile|Nosvideo|Novamov|Nowvideo|Openload|Ororo|Played|Primeshare|Promptfile|Sharerepo|Sharesix|StageVu|Streamcloud|Streamin|Thefile|Thevideo|Turbovideos|Tusfiles|Uploadc|Uptobox|V-vids|Vidbull|Videoweed|Vidplay|Vidspot|Vidto|Vidzi|VK|Vodlocker|Xfileload|Xvidstage|Youtube|Zalaa|Zettahost" default="Mrfile" />
+		<setting id="host16" type="select" label="30086" values="-|180upload|Allmyvideos|Animeultima|Bestreams|Clicknupload|Cloudzilla|Daclips|Faststream|Fastvideo|Filehoot|Filenuke|Filepup|Gorillavid|GVideo|Grifthost|Ipithos|iShared|Mightyupload|Mooshare|Movdivx|Movpod|Movreel|Movshare|Mrfile|Nosvideo|Novamov|Nowvideo|Openload|Ororo|Played|Primeshare|Promptfile|Sharerepo|Sharesix|StageVu|Streamcloud|Streamin|Thefile|Thevideo|Turbovideos|Tusfiles|Uploadc|Uptobox|V-vids|Vidbull|Videoweed|Vidplay|Vidspot|Vidto|Vidzi|VK|Vodlocker|Xfileload|Xvidstage|Youtube|Zalaa|Zettahost" default="V-vids" />
+		<setting id="host17" type="select" label="30087" values="-|180upload|Allmyvideos|Animeultima|Bestreams|Clicknupload|Cloudzilla|Daclips|Faststream|Fastvideo|Filehoot|Filenuke|Filepup|Gorillavid|GVideo|Grifthost|Ipithos|iShared|Mightyupload|Mooshare|Movdivx|Movpod|Movreel|Movshare|Mrfile|Nosvideo|Novamov|Nowvideo|Openload|Ororo|Played|Primeshare|Promptfile|Sharerepo|Sharesix|StageVu|Streamcloud|Streamin|Thefile|Thevideo|Turbovideos|Tusfiles|Uploadc|Uptobox|V-vids|Vidbull|Videoweed|Vidplay|Vidspot|Vidto|Vidzi|VK|Vodlocker|Xfileload|Xvidstage|Youtube|Zalaa|Zettahost" default="Ipithos" />
+		<setting id="host18" type="select" label="30088" values="-|180upload|Allmyvideos|Animeultima|Bestreams|Clicknupload|Cloudzilla|Daclips|Faststream|Fastvideo|Filehoot|Filenuke|Filepup|Gorillavid|GVideo|Grifthost|Ipithos|iShared|Mightyupload|Mooshare|Movdivx|Movpod|Movreel|Movshare|Mrfile|Nosvideo|Novamov|Nowvideo|Openload|Ororo|Played|Primeshare|Promptfile|Sharerepo|Sharesix|StageVu|Streamcloud|Streamin|Thefile|Thevideo|Turbovideos|Tusfiles|Uploadc|Uptobox|V-vids|Vidbull|Videoweed|Vidplay|Vidspot|Vidto|Vidzi|VK|Vodlocker|Xfileload|Xvidstage|Youtube|Zalaa|Zettahost" default="Zettahost" />
+		<setting id="host19" type="select" label="30089" values="-|180upload|Allmyvideos|Animeultima|Bestreams|Clicknupload|Cloudzilla|Daclips|Faststream|Fastvideo|Filehoot|Filenuke|Filepup|Gorillavid|GVideo|Grifthost|Ipithos|iShared|Mightyupload|Mooshare|Movdivx|Movpod|Movreel|Movshare|Mrfile|Nosvideo|Novamov|Nowvideo|Openload|Ororo|Played|Primeshare|Promptfile|Sharerepo|Sharesix|StageVu|Streamcloud|Streamin|Thefile|Thevideo|Turbovideos|Tusfiles|Uploadc|Uptobox|V-vids|Vidbull|Videoweed|Vidplay|Vidspot|Vidto|Vidzi|VK|Vodlocker|Xfileload|Xvidstage|Youtube|Zalaa|Zettahost" default="Uploadc" />
+		<setting id="host20" type="select" label="30090" values="-|180upload|Allmyvideos|Animeultima|Bestreams|Clicknupload|Cloudzilla|Daclips|Faststream|Fastvideo|Filehoot|Filenuke|Filepup|Gorillavid|GVideo|Grifthost|Ipithos|iShared|Mightyupload|Mooshare|Movdivx|Movpod|Movreel|Movshare|Mrfile|Nosvideo|Novamov|Nowvideo|Openload|Ororo|Played|Primeshare|Promptfile|Sharerepo|Sharesix|StageVu|Streamcloud|Streamin|Thefile|Thevideo|Turbovideos|Tusfiles|Uploadc|Uptobox|V-vids|Vidbull|Videoweed|Vidplay|Vidspot|Vidto|Vidzi|VK|Vodlocker|Xfileload|Xvidstage|Youtube|Zalaa|Zettahost" default="Zalaa" />
+	</category>
+	<category label="30100">
+		<setting type="lsep" label="Trakt" />
+		<setting id="trakt_user" type="text" label="30101" default="" />
+		<setting id="trakt_password" type="text" option="hidden" label="30102" default="" />
+		<setting type="lsep" label="IMDb" />
+		<setting id="imdb_user" type="text" label="30101" default="" />
+		<setting type="lsep" label="RealDebrid" />
+		<setting id="realdedrid_user" type="text" label="30101" default="" />
+		<setting id="realdedrid_password" type="text" option="hidden" label="30102" default="" />
+		<setting type="lsep" label="Premiumize" />
+		<setting id="premiumize_user" type="text" label="ID" default="" />
+		<setting id="premiumize_password" type="text" option="hidden" label="PIN" default="" />
+		<setting type="lsep" label="Movreel" />
+		<setting id="movreel_user" type="text" label="30101" default="" />
+		<setting id="movreel_password" type="text" option="hidden" label="30102" default="" />
+		<setting type="lsep" label="Furk" />
+		<setting id="furk_user" type="text" label="30101" default="" />
+		<setting id="furk_password" type="text" option="hidden" label="30102" default="" />
+	</category>
+	<category label="30120">
+		<setting id="movie_library" type="folder" label="30122" default="special://userdata/addon_data/plugin.video.genesis/Movies" />
+		<setting id="tv_library" type="folder" label="30123" default="special://userdata/addon_data/plugin.video.genesis/TVShows" />
+		<setting type="lsep" label="30121" />
+		<setting type="sep" />
+		<setting id="service_update" type="bool" label="30124" default="true" />
+		<setting id="service_notification" type="bool" label="30125" default="true" />
+		<setting type="sep" />
+		<setting id="check_movie_link" type="bool" label="30126" default="false" />
+		<setting id="check_episode_link" type="bool" label="30127" default="false" />
+		<setting type="sep" />
+		<setting id="update_library" type="bool" label="30128" default="true" />
+		<setting id="check_library" type="bool" label="30129" default="true" />
+	</category>
+	<category label="30140">
+		<setting id="downloadPath" type="folder" label="30141" default="" />
+	</category>
+	<category label="30160">
+		<setting id="subtitles" type="bool" label="30163" default="false" />
+		<setting id="autoconvert_utf8" type="bool" label="30169" default="false" />
+		<setting type="sep" />
+		<setting id="sublang1" type="select" label="30164" values="Afrikaans|Albanian|Arabic|Armenian|Basque|Bengali|Bosnian|Breton|Bulgarian|Burmese|Catalan|Chinese|Croatian|Czech|Danish|Dutch|English|Esperanto|Estonian|Finnish|French|Galician|Georgian|German|Greek|Hebrew|Hindi|Hungarian|Icelandic|Indonesian|Italian|Japanese|Kazakh|Khmer|Korean|Latvian|Lithuanian|Luxembourgish|Macedonian|Malay|Malayalam|Manipuri|Mongolian|Montenegrin|Norwegian|Occitan|Persian|Polish|Portuguese|Portuguese(Brazil)|Romanian|Russian|Serbian|Sinhalese|Slovak|Slovenian|Spanish|Swahili|Swedish|Syriac|Tagalog|Tamil|Telugu|Thai|Turkish|Ukrainian|Urdu" enable="!eq(-2,false)" default="English" />
+		<setting id="sublang2" type="select" label="30165" values="Afrikaans|Albanian|Arabic|Armenian|Basque|Bengali|Bosnian|Breton|Bulgarian|Burmese|Catalan|Chinese|Croatian|Czech|Danish|Dutch|English|Esperanto|Estonian|Finnish|French|Galician|Georgian|German|Greek|Hebrew|Hindi|Hungarian|Icelandic|Indonesian|Italian|Japanese|Kazakh|Khmer|Korean|Latvian|Lithuanian|Luxembourgish|Macedonian|Malay|Malayalam|Manipuri|Mongolian|Montenegrin|Norwegian|Occitan|Persian|Polish|Portuguese|Portuguese(Brazil)|Romanian|Russian|Serbian|Sinhalese|Slovak|Slovenian|Spanish|Swahili|Swedish|Syriac|Tagalog|Tamil|Telugu|Thai|Turkish|Ukrainian|Urdu" enable="!eq(-3,false)" default="English" />
+		<setting type="lsep" label="[CR]" />
+		<setting type="lsep" label="30161" />
+		<setting type="lsep" label="30162" />
+	</category>
+</settings>
