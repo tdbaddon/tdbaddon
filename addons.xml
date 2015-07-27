@@ -423,7 +423,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="2.79"
+       version="2.80"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>

@@ -31,7 +31,7 @@ http://video1.earthcam.com:1935/fecnetwork/4337.flv/hasbahca.m3u8
 #EXTINF:0,Fort Lauderdale Florida
 http://video1.earthcam.com/fecnetwork/windjammerHD2.flv/HasBahCa.m3u8
 
-#EXTINF:0,LA Hollywood Blvd California 
+#EXTINF:0,Hollywood Blvd Los Angelos
 http://video1.earthcam.com/fecnetwork/lacitytours1.flv/hasbahca.m3u8
 
 #EXTINF:0,Las Vegas Nevada 
@@ -49,22 +49,10 @@ http://iphone-streaming.ustream.tv/uhls/9408562/streams/live/iphone/playlist.m3u
 #EXTINF:0,Niagra Falls 
 rtsp://video1.earthcam.com/fecnetwork/4559.flv
 
-#EXTINF:0,NY Times Square 47th and Broadway
-http://video1.earthcam.com/fecnetwork/hdtimes10.flv/hasbahca.m3u8
-
-#EXTINF:0,NY Times Square Crossroads
-http://video1.earthcam.com/fecnetwork/4717.flv/hasbahca.m3u8
-
-#EXTINF:0,NY Times Square South View 
-http://video1.earthcam.com:1935/fecnetwork/4017timessquare.flv/hasbahca.m3u8
-
-#EXTINF:0,NY Times Square Street View 
-http://video1.earthcam.com/fecnetwork/hdtimes11.flv/hasbahca.m3u8
-
 #EXTINF:0,Panda Cam Atlanta Georgia
 http://video1.earthcam.com/fecnetwork/pandacam.flv/HasBahCa.m3u8
 
-#EXTINF:0,San Francisco Alcatraz
+#EXTINF:0,San Francisco Pier and Alcatraz
 http://video1.earthcam.com/fecnetwork/6603.flv/hasbahca.m3u8
 
 #EXTINF:0,Santa Monica Beach California 
@@ -84,6 +72,18 @@ http://video1.earthcam.com:1935/fecnetwork/statueoflibertyHD.flv/hasbahca.m3u8
 
 #EXTINF:0,The Temple Bar Ireland
 http://video1.earthcam.com:1935/fecnetwork/4054.flv/hasbahca.m3u8
+
+#EXTINF:0,Times Square 47th and Broadway New York
+http://video1.earthcam.com/fecnetwork/hdtimes10.flv/hasbahca.m3u8
+
+#EXTINF:0,Times Square Crossroads New York
+http://video1.earthcam.com/fecnetwork/4717.flv/hasbahca.m3u8
+
+#EXTINF:0,Times Square South View New York
+http://video1.earthcam.com:1935/fecnetwork/4017timessquare.flv/hasbahca.m3u8
+
+#EXTINF:0,Times Square Street View New York
+http://video1.earthcam.com/fecnetwork/hdtimes11.flv/hasbahca.m3u8
 
 #EXTINF:0,Tokyo Japan
 http://video4.earthcam.com/fecnetwork/tokyo1.flv/playlist.m3u8

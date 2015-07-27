@@ -166,9 +166,6 @@ rtmp://rtmp.zerocast.tv/goLive/ playpath=9pxGCtP3aEnJYgoBFFH8 swfUrl=http://p.jw
 #EXTINF:0,FX
 0
 
-#EXTINF:0,FX HD 
-0
-
 #EXTINF:0,Global TV Halifax 
 http://link.theplatform.com/s/dtjsEC/77l1KA_G_5P1?feed=DEV%20Live%20Stream%20Feed/playlist.m3u8
 
@@ -229,7 +226,7 @@ http://teleboy.customers.cdn.iptv.ch/4025/2290000/index.m3u8
 #EXTINF:0,ITV 4 
 http://204.107.27.136/live/101.low.stream/101.low.stream/index.m3u8 
 
-#EXTINF:0,Jewelry Television
+#EXTINF:0,Jewelry TV
 rtmp://jtvmedia.jtv.com:1975/live playpath=live6 swfUrl=http://demandware.edgesuite.net/aaby_prd/on/demandware.static/Sites-jtv-Site/-/default/v1410110388581/swf/flashMediaPlayer/StrobeMediaPlayback.swf live=1 pageUrl=http://www.jtv.com/on/demandware.store/Sites-jtv-Site/default/LiveViewer-Show
 
 #EXTINF:0,Jim Jam 
@@ -258,9 +255,6 @@ http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
 
 #EXTINF:0,NBC 
 http://93.174.95.125:1935/edge/_definst_/kjgkefh6la1di6g/playlist.m3u8?wowzasessionid=1419879103
-
-#EXTINF:0,Nick 
-0
 
 #EXTINF:0,Nick Jr 
 0
@@ -337,9 +331,6 @@ http://planetiptv-test.ddns.net:9088/sdtv/skyuk/planet/iptv/Sky_2_UK?auth=test+t
 #EXTINF:0,Sony TV 
 0
 
-#EXTINF:0,Sony Movie Channel
-0
-
 #EXTINF:0,Spike TV 
 http://93.174.95.125:1935/edge/_definst_/sax2mq2alpirnww/playlist.m3u8?wowzasessionid=1419878529
 
@@ -406,5 +397,5 @@ http://194.44.229.77:777/udp/237.1.238.18:1234
 #EXTINF:0,Victoria Secret TV
 http://stream02.yamgo.com/iPhone/HLS_TS/broadcast/victorias_secret_angels-tablet.3gp/victorias_secret_angels-tablet.3gp-mr648k.m3u8
 
-#EXTINF:0,Warner Brothers 
+#EXTINF:0,WB
 0
