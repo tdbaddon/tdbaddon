@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="plugin.video.cinemaxx"
        name="cinemaxx.ro"
-       version="1.0.10"
+       version="1.0.8"
        provider-name="krysty">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
@@ -11,7 +11,7 @@
     <extension point="xbmc.addon.metadata">
 		<provides>video</provides>
         <platform>all</platform>
-		<website>https://github.com/yokrysty/krysty-xbmc</website>
+		<website>https://code.google.com/p/krysty-xbmc/</website>
         <license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
         <summary>Stream videos from www.cinemaxx.ro</summary>
         <description>Stream scene releases from the links listed on [COLOR blue]www.cinemaxx.ro[/COLOR]</description>
