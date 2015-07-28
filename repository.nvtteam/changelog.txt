@@ -1,3 +1,9 @@
+ v1.5.0
+-New updated links...
+
+ v1.1.0
+-New Look...
+
  v1.0.2
 -Fix For New Kodi Beta... 
 

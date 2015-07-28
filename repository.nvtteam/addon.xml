@@ -1,5 +1,5 @@
-<?xml version="1.0." encoding="UTF-8" standalone="yes"?>
-<addon id="repository.nvtteam" name="NVTTeam Repository" version="1.0.2" provider-name="NVTTeam">
+<?xml version="1.0.1" encoding="UTF-8" standalone="yes"?>
+<addon id="repository.nvtteam" name="NVTTeam Repository" version="1.5.0" provider-name="NVTTeam">
 	<extension point="xbmc.addon.repository" name="NVTTeam XBMC KODI Addon Repository">
 		<info compressed="false">http://raw.github.com/NVTTeam/NVTTeam-Repo/master/addons.xml</info>
 		<checksum>http://raw.github.com/NVTTeam/NVTTeam-Repo/master/addons.xml.md5</checksum>
