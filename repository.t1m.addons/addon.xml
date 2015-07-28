@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="repository.t1m.addons" name="t1m Add-on Repository" version="1.0.2" provider-name="t1m">
+<addon id="repository.t1m.addons" name="t1m Add-on Repository" version="1.0.4" provider-name="t1m">
 	<extension point="xbmc.addon.repository" name="Offical t1m Add-on Repository">
 		<info compressed="true">https://raw.github.com/learningit/repository.t1m.addons/master/addons.xml</info>
 		<checksum>https://raw.github.com/learningit/repository.t1m.addons/master/addons.xml.md5</checksum>
