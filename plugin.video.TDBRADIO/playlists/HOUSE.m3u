@@ -34,14 +34,8 @@ http://pub5.di.fm/di_house_aacplus
 #EXTINF:0,Dirty Radio 
 http://live.dirtyradio.org:80/stream
 
-#EXTINF:0,FG House Chic 
-http://87.98.215.53:80
-
 #EXTINF:0,Frisky Radio 
 http://stream.friskyradio.com:9000/frisky_mp3_hi
-
-#EXTINF:0,Global House Movement (US) 
-http://206.190.131.100:9928/
 
 #EXTINF:0,H House 
 http://r1.hirschmilch.de:9080
@@ -58,17 +52,8 @@ http://95.81.155.20/3776/nrj_3776.mp3
 #EXTINF:0,Love House FM 
 http://we-love-house.fm:8000/stream
 
-#EXTINF:0,Minimalradio (Germany) 
-http://11mediaserver.de:8000/
-
 #EXTINF:0,Proton Radio 
 http://protonradio.com:8000
-
-#EXTINF:0,Rise 989 FM 
-http://live.risefm.hu:8080/radio989
-
-#EXTINF:0,SyZ Radio (Chile) 
-http://190.114.255.93:8142/
 
 #EXTINF:0,The Blue Underground (US) 
 http://tbu.tunein.audio:4247/
@@ -78,9 +63,6 @@ http://www.tm-radio.com:8000/tribalmixes
 
 #EXTINF:0,Traxx FM Tech Minimal (Switzerland) 
 http://traxx020.ice.infomaniak.ch/traxx020-low.mp3
-
-#EXTINF:0,Turtables 24 
-http://stream.turntables24.de:9400
 
 #EXTINF:0,Uzic.CH Minimal 
 http://stream.uzic.ch:9010

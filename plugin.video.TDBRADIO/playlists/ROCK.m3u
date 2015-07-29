@@ -22,14 +22,8 @@ http://72.13.93.91/
 #EXTINF:0,Jump Rock 
 http://www.jumpradio.de/static/webchannel/jump_rock_channel_128.m3u
 
-#EXTINF:0,Metal Head Radio 
-http://208.53.138.151:8032
-
 #EXTINF:0,Metal Music
 http://rouge-metal.ice.infomaniak.ch/rouge-metal-64.aac
-
-#EXTINF:0,Radio Paradise 
-http://87.98.146.216:8000
 
 #EXTINF:0,Radio XY 
 http://live.str3am.com:2120
@@ -39,12 +33,6 @@ http://uk1-vn.mixstream.net:9866
 
 #EXTINF:0,Rocky FM 
 http://tuner.rockyfm.com:80
-
-#EXTINF:0,The Metal Mixx (US) 
-http://162.251.160.2/metalmixxhigh
-
-#EXTINF:0,Uncontrolled Noize (US) 
-http://67.213.213.137:8106/
 
 #EXTINF:0,WFKU Goth Rock (US) 
 http://server2.wfku.net/wfkugoth

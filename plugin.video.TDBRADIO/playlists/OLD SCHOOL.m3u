@@ -1,22 +1,22 @@
 ﻿#EXTM3U
 
 
-#EXTINF:0,1.FM 
+#EXTINF:0,1FM All 80s
 http://205.164.62.13:8097
 
-#EXTINF:0,181.FM Jammin 
+#EXTINF:0,181FM Jammin 
 http://uplink.duplexfx.com:8042
 
-#EXTINF:0,181.FM Old School HipHop/RnB (US) 
+#EXTINF:0,181FM Old School
 http://relay4.181.fm:14068/
 
-#EXTINF:0,181.FM Studio Classics 
+#EXTINF:0,181FM Studio Classics 
 http://relay.181.fm:8072/
 
-#EXTINF:0,ClassicFreaks (Netherlands) 
+#EXTINF:0,ClassicFreaks
 http://classicfreaks.live-streams.nl:8010/live
 
-#EXTINF:0,Dancegroove Radio (Netherlands) 
+#EXTINF:0,Dancegroove Radio
 http://server3.digital-webstream.de:12160/
 
 #EXTINF:0,DejaVu Club Classiques 
@@ -25,20 +25,20 @@ http://88.198.3.15:30100
 #EXTINF:0,Diva Funk 
 http://deevaradio.net/diva/stream/divaradio_wa.m3u
 
-#EXTINF:0,Funky Music
-http://95.81.147.20/3918/nrj_111818.mp3
-
-#EXTINF:0,GotRadio Old School (US) 
+#EXTINF:0,GotRadio Old School
 http://173.244.215.163:8580/
 
 #EXTINF:0,Jamm FM 
 http://stream.jammfm.nl:8221
 
-#EXTINF:0,Old School 99 (US) 
+#EXTINF:0,NRJ Funky
+http://95.81.147.20/3918/nrj_111818.mp3
+
+#EXTINF:0,Old School 99
 http://50.7.70.58:8546/
 
 #EXTINF:0,Soul Power FM 
 http://91.143.83.37:12000
 
-#EXTINF:0,Z Mix Classics 
-http://209.105.250.73:8206
+#EXTINF:0,ZMix 97
+http://50.7.71.219:7552

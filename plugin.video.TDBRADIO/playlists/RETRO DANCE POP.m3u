@@ -1,7 +1,6 @@
 ﻿#EXTM3U
 
 
-
 #EXTINF:0,181FM Lite 80s 
 http://108.61.73.118:8040/
 
@@ -20,9 +19,6 @@ http://95.81.147.20/4974/nrj_144050.mp3
 #EXTINF:0,Energy FM Channel 3 (UK) 
 http://streaming.radionomy.com/EnergyFMoldschoolclassics
 
-#EXTINF:0,Fantasy Radio 
-http://italo.live-streams.nl?mode=compact
-
 #EXTINF:0,Hit Station FM 
 http://46.163.124.61:9100
 
@@ -38,11 +34,11 @@ http://95.81.147.7/3797/nrj_3797.mp3
 #EXTINF:0,Pop Hits
 http://95.81.147.7/5167/nrj_110325.mp3
 
-#EXTINF:0,Puls Radio 80's 
-http://stream80.pulsradio.com:6000
-
 #EXTINF:0,Pro FM Dance 
 http://81.23.235.131:8200
+
+#EXTINF:0,Puls Radio 80's 
+http://stream80.pulsradio.com:6000
 
 #EXTINF:0,Radio Top 80 
 http://109.71.41.250:8086
@@ -61,11 +57,3 @@ http://174.37.110.72:8060
 
 #EXTINF:0,Underground 80s 
 http://voxsc1.somafm.com:8884
-
-
-
-
-
-
-
-

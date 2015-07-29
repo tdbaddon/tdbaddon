@@ -1,8 +1,11 @@
 ﻿#EXTM3U
 
 
-#EXTINF:0,1.FM Amsterdam Trance Radio 
+#EXTINF:0,1FM Amsterdam Trance Radio 
 http://205.164.62.21:7700/
+
+#EXTINF:0,AH FM Leading Trance Radio 
+http://37.59.60.156:443/
 
 #EXTINF:0,Discover Trance (UK) 
 http://chicago.discovertrance.com:9214/
@@ -15,9 +18,6 @@ http://komplex2.psyradio.org:8040/
 
 #EXTINF:0,HardBase FM (Germany) 
 http://mp3.stream.tb-group.fm/hb.mp3?
-
-#EXTINF:0,AH FM Leading Trance Radio 
-http://37.59.60.156:443/
 
 #EXTINF:0,RauteMusik FM 
 http://95.141.24.118/
@@ -33,9 +33,6 @@ http://mp3.stream.tb-group.fm/tb.mp3?
 
 #EXTINF:0,Trance FM (Netherlands) 
 http://ch01a.320.trance.fm/
-
-#EXTINF:0,TranceRadio (Switzerland) 
-http://tranceradioch.ice.infomaniak.ch/128.mp3
 
 #EXTINF:0,Vocal Trance 
 http://174.123.174.52:8100/
