@@ -58,6 +58,21 @@ http://bcliveuniv-lh.akamaihd.net/i/cpac1flr2014_01@51230/index_2000_av-p.m3u8
 #EXTINF:0,CSPAN
 0
 
+#EXTINF:0,CTV NEWS 
+http://66.51.129.171:8080/demo/index.m3u8 
+
+#EXTINF:0,CTV NEWS 
+'http://ams-lp10.9c9media.com/hls-live/livepkgr/_definst_/liveNews/News18.m3u8
+
+#EXTINF:0,CTV NEWS 
+http://ams-lp7.9c9media.com/hls-live/livepkgr/_definst_/liveNews/News28.m3u8 
+
+#EXTINF:0,CTV NEWS 
+http://ams-lp6.9c9media.com/hls-live/livepkgr/_definst_/liveNews/News38.m3u8 
+
+#EXTINF:0,CTV NEWS 
+http://ams-lp5.9c9media.com/hls-live/livepkgr/_definst_/liveNews/News48.m3u8 
+
 #EXTINF:0,DW 
 http://www.metafilegenerator.de/DWelle/tv-asia/ios/master.m3u8
 

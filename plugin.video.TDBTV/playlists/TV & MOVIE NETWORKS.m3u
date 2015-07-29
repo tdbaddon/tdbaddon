@@ -211,11 +211,17 @@ http://teleboy.customers.cdn.iptv.ch/4004/2290000/index.m3u8
 #EXTINF:0,ITV 1 
 http://teleboy.customers.cdn.iptv.ch/4018/2290000/index.m3u8
 
+#EXTINF:0,ITV 1 
+http://iptv.wssiptv.com:80/live/WSSiptv.com/he98fdui97w9769869t85/103.ts$OPT:http-user-agent=Lavf/55.19.104
+
 #EXTINF:0,ITV 2 
 http://204.107.27.136/live/67.low.stream/67.low.stream/index.m3u8
 
 #EXTINF:0,ITV 2 
 http://teleboy.customers.cdn.iptv.ch/4005/2290000/index.m3u8
+
+#EXTINF:0,ITV 2 
+http://iptv.wssiptv.com:80/live/WSSiptv.com/he98fdui97w9769869t85/104.ts$OPT:http-user-agent=Lavf/55.19.104
 
 #EXTINF:0,ITV 3 
 http://204.107.27.136/live/26.low.stream/26.low.stream/index.m3u8 
@@ -223,8 +229,14 @@ http://204.107.27.136/live/26.low.stream/26.low.stream/index.m3u8
 #EXTINF:0,ITV 3 
 http://teleboy.customers.cdn.iptv.ch/4025/2290000/index.m3u8
 
+#EXTINF:0,ITV 3 
+http://iptv.wssiptv.com:80/live/WSSiptv.com/he98fdui97w9769869t85/105.ts$OPT:http-user-agent=Lavf/55.19.104
+
 #EXTINF:0,ITV 4 
 http://204.107.27.136/live/101.low.stream/101.low.stream/index.m3u8 
+
+#EXTINF:0,ITV 4 
+http://iptv.wssiptv.com:80/live/WSSiptv.com/he98fdui97w9769869t85/106.ts$OPT:http-user-agent=Lavf/55.19.104
 
 #EXTINF:0,Jewelry TV
 rtmp://jtvmedia.jtv.com:1975/live playpath=live6 swfUrl=http://demandware.edgesuite.net/aaby_prd/on/demandware.static/Sites-jtv-Site/-/default/v1410110388581/swf/flashMediaPlayer/StrobeMediaPlayback.swf live=1 pageUrl=http://www.jtv.com/on/demandware.store/Sites-jtv-Site/default/LiveViewer-Show
@@ -293,40 +305,43 @@ http://planetiptv-test.ddns.net:9088/sdtv/skyuk/planet/iptv/Sky_2_UK?auth=test+t
 0
 
 #EXTINF:0,Sky Movies Action 
-0
+http://iptv.wssiptv.com:80/live/WSSiptv.com/he98fdui97w9769869t85/110.ts$OPT:http-user-agent=Lavf/55.19.104
 
 #EXTINF:0,Sky Movies Atlantic
-0
+http://iptv.wssiptv.com:80/live/WSSiptv.com/he98fdui97w9769869t85/98.ts$OPT:http-user-agent=Lavf/55.19.104
 
 #EXTINF:0,Sky Movies Comedy
-0
+http://iptv.wssiptv.com:80/live/WSSiptv.com/he98fdui97w9769869t85/108.ts$OPT:http-user-agent=Lavf/55.19.104
 
 #EXTINF:0,Sky Movies Crime
-0
+http://iptv.wssiptv.com:80/live/WSSiptv.com/he98fdui97w9769869t85/113.ts$OPT:http-user-agent=Lavf/55.19.104
 
 #EXTINF:0,Sky Movies Disney
 0
 
 #EXTINF:0,Sky Movies Drama
-0
+http://iptv.wssiptv.com:80/live/WSSiptv.com/he98fdui97w9769869t85/107.ts$OPT:http-user-agent=Lavf/55.19.104
 
 #EXTINF:0,Sky Movies Family
-0
+http://iptv.wssiptv.com:80/live/WSSiptv.com/he98fdui97w9769869t85/65.ts$OPT:http-user-agent=Lavf/55.19.104
 
 #EXTINF:0,Sky Movies Horrors
 0
 
+#EXTINF:0,Sky Movies Modern Greats
+http://iptv.wssiptv.com:80/live/WSSiptv.com/he98fdui97w9769869t85/109.ts$OPT:http-user-agent=Lavf/55.19.104
+
 #EXTINF:0,Sky Movies Premiere 
-0
+http://iptv.wssiptv.com:80/live/WSSiptv.com/he98fdui97w9769869t85/111.ts$OPT:http-user-agent=Lavf/55.19.104
 
 #EXTINF:0,Sky Movies Premiere+
 0
 
 #EXTINF:0,Sky Movies SciFi 
-0
+http://iptv.wssiptv.com:80/live/WSSiptv.com/he98fdui97w9769869t85/112.ts$OPT:http-user-agent=Lavf/55.19.104
 
 #EXTINF:0,Sky Movies Select 
-0 
+http://iptv.wssiptv.com:80/live/WSSiptv.com/he98fdui97w9769869t85/64.ts$OPT:http-user-agent=Lavf/55.19.104
 
 #EXTINF:0,Sony TV 
 0
@@ -351,7 +366,6 @@ rtmp://rtmp.zerocast.tv/goLive/RhMi9RdAAt7fpq8H3qZh swfUrl=http://p.jwpcdn.com/6
 
 #EXTINF:0,TSC 
 http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/master.m3u8?b?b*t$ 
-
 #EXTINF:0,TLC 
 http://80.80.160.168/live/2/live.m3u8
 
@@ -392,7 +406,7 @@ http://194.44.229.77:777/udp/237.1.238.18:1234
 0
 
 #EXTINF:0,USA Network 
-0
+http://93.174.95.125:1935/edge/_definst_/h5eovaj1jeegluq/playlist.m3u8?wowzasessionid=1420249300
 
 #EXTINF:0,Victoria Secret TV
 http://stream02.yamgo.com/iPhone/HLS_TS/broadcast/victorias_secret_angels-tablet.3gp/victorias_secret_angels-tablet.3gp-mr648k.m3u8
