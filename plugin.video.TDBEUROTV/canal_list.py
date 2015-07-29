@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 dc={
+
+"INFO" : "0000000000",
 "how to update super favourites" : "100",
 "how to get latest addons" : "101",
 "a1 report" : "1000",
@@ -44,6 +46,8 @@ dc={
 "top channel" : "1039",
 "top channel news" : "1040",
 "vizion plus" : "1041",
+
+"GREEK" : "0000000000",
 "4e tv" : "2000",
 "alpha" : "2001",
 "ant1" : "2002",
@@ -87,6 +91,8 @@ dc={
 "trt" : "2040",
 "tv 100" : "2041",
 "zougla tv" : "2042",
+
+"ITALIAN" : "0000000000",
 "8 video calabria crotone" : "3000",
 "alto adige tv" : "3001",
 "canale 7" : "3002",
@@ -134,6 +140,8 @@ dc={
 "vera tv" : "3044",
 "video brescia" : "3045",
 "videolina" : "3046",
+
+"MACEDONIAN RADIO" : "0000000000",
 "antenna 5 skopje" : "4000",
 "city radio skopje" : "4001",
 "club fm skopje" : "4002",
@@ -162,6 +170,8 @@ dc={
 "sky radio skopje" : "4025",
 "time fm gevgelija" : "4026",
 "zona m1 skopje" : "4027",
+
+"MACEDONIAN TV" : "0000000000",
 "a1 strumica" : "5000",
 "al jazeera balkan" : "5001",
 "alfa" : "5002",
@@ -200,6 +210,8 @@ dc={
 "telma" : "5035",
 "ultra tetovo" : "5036",
 "vesti 24" : "5037",
+
+"POLISH" : "0000000000",
 "24" : "6000",
 "4fun tv" : "6001",
 "asta tv" : "6002",
@@ -253,6 +265,8 @@ dc={
 "tvt" : "6050",
 "twoja tv" : "6051",
 "wtk" : "6052",
+
+"SERBIAN CROATION" : "0000000000",
 "alfa" : "7000",
 "al jazeera balkan" : "7001",
 "atv" : "7002",
@@ -344,12 +358,14 @@ dc={
 "tv cg sat" : "7088",
 "vesti 24" : "7089",
 "vizion plus" : "7090",
+
+"THAI" : "0000000000",
 "13 siam thai" : "8000",
 "amarin activ tv" : "8001",
 "an giang tv" : "8002",
 "astv" : "8003",
 "bang channel" : "8004",
-"bayyon news" : "8005",
+"bayon news" : "8005",
 "block a" : "8006",
 "cat channel" : "8007",
 "chalermkrung tv" : "8008",
