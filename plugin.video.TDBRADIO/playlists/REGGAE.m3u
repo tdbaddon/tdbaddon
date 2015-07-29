@@ -1,44 +1,44 @@
 ﻿#EXTM3U
 
 
-#EXTINF:0,1FM ReggaeTrade (Switzerland) 
+#EXTINF:0,1FM ReggaeTrade 
 http://sc1c-sjc.1.fm:7000/
 
-#EXTINF:0,Big Up Radio (US) 
-http://radio.bigupradio.com:8021/
-
-#EXTINF:0,Big Up Radio Dub (US) 
+#EXTINF:0,Big Up Radio Dub 
 http://radio.bigupradio.com:8013/
 
-#EXTINF:0,Big Up Radio Ska (US) 
-http://radio.bigupradio.com:8017/
+#EXTINF:0,Big Up Radio Lovers Rock
+http://radio.bigupradio.com:8021/
 
-#EXTINF:0,Big Up Roots Reggae (US) 
+#EXTINF:0,Big Up Radio Roots 
 http://radio.bigupradio.com:8005/
 
-#EXTINF:0,GotRadio Reggae (US) 
+#EXTINF:0,Big Up Radio Ska 
+http://radio.bigupradio.com:8017/
+
+#EXTINF:0,GotRadio Reggae 
 http://173.244.215.163:8470/
 
-#EXTINF:0,JamRockOne (Jaimaica) 
+#EXTINF:0,JamRockOne 
 http://205.186.144.137:8000/stream
 
-#EXTINF:0,RadioTunes Roots Reggae (US) 
-http://pub7.radiotunes.com/radiotunes_rootsreggae
-
-#EXTINF:0,Rastamusic Reggae Radio (Germany) 
-http://ais.rastamusic.com/rastamusic.mp3
-
-#EXTINF:0,Reggae Music
-http://rouge-reggae.ice.infomaniak.ch/rouge-reggae-64.aac
-
-#EXTINF:0,Reggae Music 2
+#EXTINF:0,NRJ Reggae 
 http://95.81.147.7/3807/nrj_3807.mp3
 
-#EXTINF:0,Reggae141 (Saint Vincent) 
-http://184.107.197.155:8002/
-
-#EXTINF:0,Reggaetron Music
+#EXTINF:0,NRJ Reggaeton 
 http://95.81.155.7/3909/nrj_155805.mp3
 
-#EXTINF:0,Scratch Radio (Canada) 
+#EXTINF:0,RadioTunes Roots Reggae 
+http://pub7.radiotunes.com/radiotunes_rootsreggae
+
+#EXTINF:0,Rastamusic Reggae Radio 
+http://ais.rastamusic.com/rastamusic.mp3
+
+#EXTINF:0,Reggae141 
+http://184.107.197.155:8002/
+
+#EXTINF:0,Rouge Reggae 
+http://rouge-reggae.ice.infomaniak.ch/rouge-reggae-64.aac
+
+#EXTINF:0,Scratch Radio 
 http://173.192.198.244:8042/

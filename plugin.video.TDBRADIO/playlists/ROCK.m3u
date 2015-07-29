@@ -1,38 +1,29 @@
 ﻿#EXTM3U
 
 
-#EXTINF:0,100 Hitz Heavy Metal (US) 
+#EXTINF:0,100 Hitz Metal 
 http://173.244.215.163:8350/
 
-#EXTINF:0,Bear Metal Radio (Switzerland) 
+#EXTINF:0,Bear Metal Radio 
 http://cloud1.stream101.com:8047/
 
-#EXTINF:0,GotRadio Metal Madness (US) 
+#EXTINF:0,GotRadio Metal Madness 
 http://173.244.215.163:8340/
 
-#EXTINF:0,HDRN Hard Drivin (US) 
+#EXTINF:0,Hard Drivin Radio
 http://djc.kicks-ass.net/harddrivinradiohigh
 
-#EXTINF:0,HotMix Radio Metal (France) 
+#EXTINF:0,HotMix Radio Metal 
 http://hotmixradio-metal.ice.infomaniak.ch/hotmixradio-metal-128.mp3
 
 #EXTINF:0,Idobi Radio 
 http://72.13.93.91/
 
-#EXTINF:0,Jump Rock 
-http://www.jumpradio.de/static/webchannel/jump_rock_channel_128.m3u
+#EXTINF:0,NRJ Rock 
+http://95.81.155.20/3811/nrj_3811.mp3
 
-#EXTINF:0,Metal Music
+#EXTINF:0,Rouge Metal 
 http://rouge-metal.ice.infomaniak.ch/rouge-metal-64.aac
 
-#EXTINF:0,Radio XY 
-http://live.str3am.com:2120
-
-#EXTINF:0,Ram FM 
-http://uk1-vn.mixstream.net:9866
-
-#EXTINF:0,Rocky FM 
-http://tuner.rockyfm.com:80
-
-#EXTINF:0,WFKU Goth Rock (US) 
+#EXTINF:0,WFKU Goth Rock 
 http://server2.wfku.net/wfkugoth

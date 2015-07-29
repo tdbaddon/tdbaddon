@@ -1,48 +1,26 @@
 ﻿#EXTM3U
 
 
-#EXTINF:0,Gangsta Rap Music
-http://95.81.147.7/4703/nrj_110456.mp3
-
-#EXTINF:0,Rap Classics
+#EXTINF:0,NRJ Classic Rap
 http://95.81.147.7/4965/nrj_135515.mp3
 
-#EXTINF:0,RnB Classics
+#EXTINF:0,NRJ Classic RNB
 http://95.81.155.7/4968/nrj_142841.mp3
 
-#EXTINF:0,RnB Hits
+#EXTINF:0,NRJ Gangsta Rap
+http://95.81.147.7/4703/nrj_110456.mp3
+
+#EXTINF:0,NRJ RNB
+http://95.81.147.20/3809/nrj_3809.mp3
+
+#EXTINF:0,NRJ RNB Hits
 http://95.81.147.7/4714/nrj_152700.mp3
 
-#EXTINF:0,RnB Music
-http://rouge-rnb.ice.infomaniak.ch/rouge-rnb-64.aac
-
-#EXTINF:0,RnB Music 2
-http://95.81.147.20/3809/nrj_3809.mp3
+#EXTINF:0,NRJ Urban Hits
+http://95.81.147.20/3825/nrj_3825.mp3
 
 #EXTINF:0,Rouge Hip Hop
 http://rouge-hiphop.ice.infomaniak.ch/rouge-hiphop-64.aac
 
-#EXTINF:0,Urban Hits
-http://95.81.147.20/3825/nrj_3825.mp3
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+#EXTINF:0,Rouge RNB
+http://rouge-rnb.ice.infomaniak.ch/rouge-rnb-64.aac
