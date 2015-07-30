@@ -4,6 +4,8 @@ dc={
 "INFO" : "0000000000",
 "how to update super favourites" : "100",
 "how to get latest addons" : "101",
+
+"ALBANIAN" : "0000000000",
 "a1 report" : "1000",
 "agon channel" : "1001",
 "alb uk" : "1002",
@@ -210,6 +212,8 @@ dc={
 "telma" : "5035",
 "ultra tetovo" : "5036",
 "vesti 24" : "5037",
+"mpt sat" : "5038",
+"mpt sat 2" : "5039",
 
 "POLISH" : "0000000000",
 "24" : "6000",

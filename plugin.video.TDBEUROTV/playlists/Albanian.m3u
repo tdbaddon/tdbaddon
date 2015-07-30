@@ -17,10 +17,16 @@ rtmp://188.138.17.8:1935/albuk/albuk.stream
 rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
 
 #EXTINF:0,Alsat M 
-rtmp://fms.zulu.mk/zulu/ playpath=alsat_2 swfUrl=http://on.net.mk/jwp/jwplayer.flash.swf live=1 pageUrl=http://on.net.mk/jwp/alsatm.html
+http://217.16.82.6:1935/zulu/alsat_1/playlist.m3u8
 
 #EXTINF:0,Alsat M 
-rtmp://fms.zulu.mk:554/zulu playpath=alsat_2 swfUrl=http://on.net.mk/player/player5.swf live=1 pageUrl=http://shqip1.altervista.org/tvlive/alsat_m.html
+http://217.16.82.6:1935/zulu/alsat_2/playlist.m3u8
+
+#EXTINF:0,Alsat M 
+http://217.16.82.6:554/zulu/alsat_1/playlist.m3u8
+
+#EXTINF:0,Alsat M 
+http://217.16.82.6:554/zulu/alsat_2/playlist.m3u8
 
 #EXTINF:0,ATV
 rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
@@ -43,8 +49,17 @@ http://81.7.13.162/hls/channelone/index.m3u8
 #EXTINF:0,Cufo TV
 http://balkanstream.com/stream/BIG.BR.2-CufoTV/mx001/qW79215FRE
 
-#EXTINF:0,ERA 
-http://217.16.82.6:1935/zulu//era_2/simpletvmaclinkleri.m3u8
+#EXTINF:0,ERA TV 
+http://217.16.82.6:1935/zulu/era_1/playlist.m3u8
+
+#EXTINF:0,ERA TV 
+http://217.16.82.6:1935/zulu/era_2/playlist.m3u8
+
+#EXTINF:0,ERA TV 
+http://217.16.82.6:554/zulu/era_1/playlist.m3u8
+
+#EXTINF:0,ERA TV 
+http://217.16.82.6:554/zulu/era_2/playlist.m3u8
 
 #EXTINF:0,Folk Plus
 0
@@ -74,19 +89,28 @@ rtmp://91.82.85.44/live/konyhatv
 0
 
 #EXTINF:0,MPT 1 
-http://mrt.cdn.spectar.tv:1935/mrt-edge/_definst_/mrt1-sat/chunklist_w103032136.m3u8
+http://217.16.82.6:1935/zulu/mtv1_1/playlist.m3u8
 
 #EXTINF:0,MPT 1 
+http://217.16.82.6:1935/zulu/mtv1_2/playlist.m3u8
+
+#EXTINF:0,MPT 1 
+http://217.16.82.6:554/zulu/mtv1_1/playlist.m3u8
+
+#EXTINF:0,MPT 1 
+http://217.16.82.6:554/zulu/mtv1_2/playlist.m3u8
+
+#EXTINF:0,MPT 2 
+http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video_id/3548/token/bd0b11a4f8d05cc0bffe589f55909615/playlist.m3u8
+
+#EXTINF:0,MPT 2 
+http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video_id/3545/token/baf3cb0ceac4e5243d63f8bf96011783/playlist.m3u8
+
+#EXTINF:0,MPT Sat 
 http://mrt.cdn.spectar.tv:1935/mrt-edge/_definst_/mrt1-sat/playlist.m3u8
 
-#EXTINF:0,MPT 1 
-http://fms.zulu.mk:1935/zulu/mtv1_1/playlist.m3u8
-
-#EXTINF:0,MPT 2 
+#EXTINF:0,MPT SAT 2 
 http://mrt.cdn.spectar.tv:1935/mrt-edge/_definst_/mrt2-sat/playlist.m3u8
-
-#EXTINF:0,MPT 2 
-http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video_id/3548/token/bd0b11a4f8d05cc0bffe589f55909615/chunklist_w787058205_b1196000.m3u8
 
 #EXTINF:0,News24
 http://66.55.93.203/hls-live/livepkgr/_definst_/news24/n24stream.m3u8
@@ -110,16 +134,16 @@ rtsp://origin.biokoda.tv/live/mbit-planet?k=planettv-public
 http://wowza.rtkit.com:1935/live/livestream/chunklist.m3u8?wowzasessionid=491913886
 
 #EXTINF:0,Super Sport 1 
-http://balkanstream.com/stream/supersport1/mx001/qW79215FRE
+0
 
 #EXTINF:0,Super Sport 2 
-http://balkanstream.com/stream/supersport2/mx001/qW79215FRE
+0
 
 #EXTINF:0,Super Sport 3
-http://balkanstream.com/stream/supersport3/mx001/qW79215FRE
+0
 
 #EXTINF:0,Super Sport 4
-http://balkanstream.com/stream/supersport4/mx001/qW79215FRE
+0
 
 #EXTINF:0,Supersonic TV
 rtmp://str103.setplex.net:1935/228/stv_online
@@ -144,4 +168,3 @@ rtmp://live.vizionplus.tv/live//livestream3
 
 #EXTINF:0,Vizion Plus 
 rtmp://live.vizionplus.tv/live//livestream2
-

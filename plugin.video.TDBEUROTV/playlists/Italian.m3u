@@ -1,7 +1,6 @@
 ﻿#EXTM3U
 
 
-
 #EXTINF:0,8 Video Calabria Crotone
 rtmp://wms.shared.streamshow.it:80/videocalabria playpath=videocalabria swfUrl=http://player.streamshow.it/flowplayer/flowplayer.commercial-3.2.18.swf pageUrl=http://player.streamshow.it/embed/videocalabria.php?height=420&width=729 live=1 timeout=10
 
@@ -154,8 +153,3 @@ rtmp://wms.shared.streamshow.it/videobrescia/videobrescia
 
 #EXTINF:0,Videolina
 rtmp://178.33.229.111/live/Videolina
-
-
-
-
-

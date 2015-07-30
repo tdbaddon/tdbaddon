@@ -2,10 +2,16 @@
 
 
 #EXTINF:0,Alfa 
-http://fms.zulu.mk:1935/zulu/alfa_2/playlist.m3u8
+http://217.16.82.6:1935/zulu/alfa_1/playlist.m3u8
 
 #EXTINF:0,Alfa 
-rtsp://fms.zulu.mk/zulu/alfa_1
+http://217.16.82.6:1935/zulu/alfa_2/playlist.m3u8
+
+#EXTINF:0,Alfa 
+http://217.16.82.6:554/zulu/alfa_1/playlist.m3u8
+
+#EXTINF:0,Alfa 
+http://217.16.82.6:554/zulu/alfa_2/playlist.m3u8
 
 #EXTINF:0,Al Jazeera Balkan 
 rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
@@ -25,8 +31,8 @@ http://213.81.153.221:8080/cetv
 #EXTINF:0,DMC
 0
 
-#EXTINF:0,DM SAT
-0
+#EXTINF:0,DM SAT 
+http://185.13.236.197:4080/udp/224.0.0.120:1246
 
 #EXTINF:0,DUGA
 0
@@ -74,7 +80,16 @@ http://88.212.10.27:81/streams/jojplus.m3u8
 0
 
 #EXTINF:0,Kanal 3
-http://edge1.volim.tv/live/kanal_3.stream/playlist.m3u8?hash=90df8700863cdf89ca0d31e74377ea58f060e02e
+0
+
+#EXTINF:0,Kanal 5 
+http://217.16.82.6:1935/zulu/kanal5_2/playlist.m3u8
+
+#EXTINF:0,Kanal 5 
+http://fms.zulu.mk:1935/zulu/kanal5_1/playlist.m3u8
+
+#EXTINF:0,Kanal 5 
+http://217.16.82.6:1935/zulu/kanal5_2/playlist.m3u8
 
 #EXTINF:0,Kanal 5 
 http://fms.zulu.mk:1935/zulu/kanal5_1/playlist.m3u8
@@ -104,13 +119,10 @@ mms://176.106.121.32:8080/
 0
 
 #EXTINF:0,Pink 1
-http://edge1.volim.tv/live/pink.stream/playlist.m3u8?hash=49c26f175dcc3d897eef6ae7f4f321106f09fe39
-
-#EXTINF:0,Pink 1
-http://edge1.volim.tv/live/pink.stream/playlist.m3u8?hash=5234dc000f5075ea1e1666165ba699ca6817b6c4
+http://edge3.volim.tv/live/pink.stream/playlist.m3u8?hash=ad2c3d8d36d3e1b1cb6a7c2b587df040c1ac6ab7
 
 #EXTINF:0,Pink 2
-http://balkanstream.com/stream/pink2/rajko/rajko
+0
 
 #EXTINF:0,Pink 3
 0
@@ -119,22 +131,22 @@ http://balkanstream.com/stream/pink2/rajko/rajko
 0
 
 #EXTINF:0,Pink Action 2
-http://balkanstream.com/stream/pinkaction2/rajko/rajko
+0
 
 #EXTINF:0,Pink Action 3
-http://balkanstream.com/stream/pinkaction3/rajko/rajko
+0
 
 #EXTINF:0,Pink BH
-http://balkanstream.com/stream/pinkbih/rajko/rajko
+0
 
 #EXTINF:0,Pink Classic
 0
 
 #EXTINF:0,Pink Comedy
-http://balkanstream.com/stream/PinkComedy/rajko/rajko
+0
 
 #EXTINF:0,Pink Extra
-http://balkanstream.com/stream/pinkextra/rajko/rajko
+0
 
 #EXTINF:0,Pink Family
 0
@@ -143,46 +155,46 @@ http://balkanstream.com/stream/pinkextra/rajko/rajko
 0
 
 #EXTINF:0,Pink Film
-http://balkanstream.com/stream/pinkfilm/rajko/rajko
+0
 
 #EXTINF:0,Pink Folk 1
-http://balkanstream.com/stream/pinkfolk/rajko/rajko
+0
 
 #EXTINF:0,Pink Folk 2
-http://balkanstream.com/stream/pinkfolk2/rajko/rajko
+0
 
 #EXTINF:0,Pink Horror
-http://balkanstream.com/stream/pinkhoror/rajko/rajko
+0
 
 #EXTINF:0,Pink Kids
-http://balkanstream.com/stream/PinkKids/rajko/rajko
+0
 
 #EXTINF:0,Pink Kuvar
 0
 
 #EXTINF:0,Pink Live
-http://balkanstream.com/stream/pinklive/rajko/rajko
+0
 
 #EXTINF:0,Pink M
-http://balkanstream.com/stream/PinkM/rajko/rajko
+0
 
 #EXTINF:0,Pink Movies 1
 0
 
 #EXTINF:0,Pink Movies 2
-http://balkanstream.com/stream/pinkmovie2/rajko/rajko
+0
 
 #EXTINF:0,Pink Movies 3
-http://balkanstream.com/stream/pinkmovie3/rajko/rajko
+0
 
 #EXTINF:0,Pink Music 1
-http://server4.balkantvmedia.com:8080/Pink_Music?u=user1382:p=Q67XzqHY
+0
 
 #EXTINF:0,Pink Music 2
 0
 
 #EXTINF:0,Pink Music 3
-http://balkanstream.com/stream/PinkMusic3/rajko/rajko
+0
 
 #EXTINF:0,Pink Music 4
 0
@@ -191,22 +203,22 @@ http://balkanstream.com/stream/PinkMusic3/rajko/rajko
 0
 
 #EXTINF:0,Pink N Roll
-http://balkanstream.com/stream/PinkandRoll/rajko/rajko
+0
 
 #EXTINF:0,Pink Nostalgia
 0
 
 #EXTINF:0,Pink Pedia
-http://balkanstream.com/stream/pinkpedia/rajko/rajko
+0
 
 #EXTINF:0,Pink Plus
-http://balkanstream.com/stream/PinkPlus/rajko/rajko
+0
 
 #EXTINF:0,Pink Premium
-http://balkanstream.com/stream/pinkpremium/rajko/rajko
+0
 
 #EXTINF:0,Pink Reality
-http://balkanstream.com/stream/pinkreality/rajko/rajko
+0
 
 #EXTINF:0,Pink Serije
 0
@@ -215,7 +227,7 @@ http://balkanstream.com/stream/pinkreality/rajko/rajko
 0
 
 #EXTINF:0,Pink Soap
-http://balkanstream.com/stream/PinkSoap/rajko/rajko
+0
 
 #EXTINF:0,Pink Style
 0
@@ -227,19 +239,19 @@ http://balkanstream.com/stream/PinkSoap/rajko/rajko
 0
 
 #EXTINF:0,Pink World
-http://balkanstream.com/stream/PinkWorld/rajko/rajko
+0
 
 #EXTINF:0,Pink World Cinema
 0
 
 #EXTINF:0,Pink Zabava
-http://balkanstream.com/stream/pinkzabava/rajko/rajko
+0
 
 #EXTINF:0,Planet TV
 rtsp://origin.biokoda.tv/live/mbit-planet?k=planettv-public
 
 #EXTINF:0,PTC
-0
+mms://rts.videostreaming.rs/rts
 
 #EXTINF:0,PTC 1
 0

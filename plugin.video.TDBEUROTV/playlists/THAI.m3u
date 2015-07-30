@@ -1,7 +1,6 @@
 ﻿#EXTM3U
 
 
-
 #EXTINF:0,13 Siam Thai
 rtmp://stream.13livetv.com:1935/rtplive/_definst_/13livetv
 
@@ -94,5 +93,3 @@ http://radio2.thaidhost.com:8888/muslimonair1/live/playlist.m3u8
 
 #EXTINF:0,Yellow TV
 rtmp://yellow.ether.tv/live/thailand/broadcast18
-
-
