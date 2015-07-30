@@ -7,15 +7,6 @@ rtsp://streamer1.streamhost.org:1935/salive/GMIalfah
 #EXTINF:0,America TV 
 http://ooyalahd2-f.akamaihd.net/i/americatv_delivery@25405/index_1728_av-p.m3u8
 
-#EXTINF:0,America TV 
-http://live-edge01.telecentro.net.ar/live/amrchd-720/playlist.m3u8
-
-#EXTINF:0,America TV 
-http://live-edge01.telecentro.net.ar/live/amrchd-360/playlist.m3u8
-
-#EXTINF:0,America TV 
-http://live-edge01.telecentro.net.ar/live/amrchd-180/playlist.m3u8
-
 #EXTINF:0,Andina TV
 http://edge-31-us.edge.mdstrm.com/live/smil:c23b8a0a21d215482b4c2703e47f675a/playlist.m3u8
 
@@ -28,7 +19,7 @@ http://ss6.domint.net:1962/al_edge/antena/playlist.m3u8
 #EXTINF:0,Arica TV
 http://wow2.cl.digitalproserver.com/aricatv/aricatvvivo/aricatv.smil/chunklist_w725671068_b848000.m3u8
 
-#EXTINF:0,Az Corazon 
+#EXTINF:0,Azteca Corazon 
 0
 
 #EXTINF:0,Azteca Deportes 
@@ -70,29 +61,8 @@ rtmp://201.219.100.30:1935/telpintv/ttv.stream_720p
 #EXTINF:0,Canal 2 
 http://mek4.mekstream.com/teleantillas/live3/hasbahca.m3u8
 
-#EXTINF:0,Canal 26 
-http://live-edge01.telecentro.net.ar/live/26hd-720/playlist.m3u8
-
-#EXTINF:0,Canal 26 
-http://live-edge01.telecentro.net.ar/live/26hd-360/playlist.m3u8
-
-#EXTINF:0,Canal 26 
-http://live-edge01.telecentro.net.ar/live/26hd-180/playlist.m3u8
-
-#EXTINF:0,Canal 27 
-http://cdn.siscompnetwork.com:1935/app/canal27.sdp/playlist.m3u8
-
-#EXTINF:0,Canal 28
-0
-
-#EXTINF:-0,Canal 4
+#EXTINF:0,Canal 4
 rtmp://streaming.wirenetserver.com.ar/canal4/live_1
-
-#EXTINF:0,Canal 41
-rtmp://painel.serveron.com.br/8172/8172
-
-#EXTINF:0,Canal 42
-rtmp://k3.usastreams.com:1935/canal42/canal42
 
 #EXTINF:0,Canal 5 
 rtmp://v1.streaminglatinoamerica.com/canal5/canal5
@@ -112,17 +82,29 @@ http://72.46.226.61/live01/canal71/playlist.m3u8#MegaIPTVArgentina
 #EXTINF:0,Canal 7 
 http://74.63.97.188:1935/gpacifico4/videogpacifico4/chunklist_w1774114891.m3u8?
 
-#EXTINF:0,Canal 79 
-rtmp://painel.serveron.com.br:1935/8162/8162
-
-#EXTINF:0,Canal 79 
-rtmp://painel.serveron.com.br:1935/8168/8168
-
 #EXTINF:0,Canal 9 
 http://ionlive1-lh.akamaihd.net/i/canal9_1@125365/master.m3u8
 
 #EXTINF:0,Canal 9 
 http://xcanal9saltax.api.channel.livestream.com/3.0/playlist.m3u8
+
+#EXTINF:0,Canal 26 
+0
+
+#EXTINF:0,Canal 27 
+http://cdn.siscompnetwork.com:1935/app/canal27.sdp/playlist.m3u8
+
+#EXTINF:0,Canal 41
+rtmp://painel.serveron.com.br/8172/8172
+
+#EXTINF:0,Canal 42
+rtmp://k3.usastreams.com:1935/canal42/canal42
+
+#EXTINF:0,Canal 79 
+rtmp://painel.serveron.com.br:1935/8162/8162
+
+#EXTINF:0,Canal 79 
+rtmp://painel.serveron.com.br:1935/8168/8168
 
 #EXTINF:0,Canal Capital
 http://cdns840stu1010.multistream.net/canalcapitallive/amlst:live/master.m3u8
@@ -185,16 +167,10 @@ http://184.164.158.202:1936/48/smil:48.smil/playlist.m3u8
 rtmp://enhd.co:1935/ecoteltv/ecoteltv
 
 #EXTINF:0,Efekto TV 
-http://grupomac-lh.akamaihd.net/i/004rss0k8_1@301782/index_3_av-b.m3u8?sd=10&rebase=on
+0
 
 #EXTINF:0,El Trece 
-http://live-edge01.telecentro.net.ar:1935/live/13hd-720/playlist.m3u8
-
-#EXTINF:0,El Trece 
-http://live-edge01.telecentro.net.ar/live/13hd-360/playlist.m3u8
-
-#EXTINF:0,El Trece 
-http://live-edge01.telecentro.net.ar/live/13hd-180/playlist.m3u8
+0
 
 #EXTINF:0,ESNE TV
 http://198.154.228.82:1935/live/esnetv/playlist.m3u8
@@ -209,12 +185,6 @@ http://rightbrainmedia.mpl.miisolutions.net/rightbrainmedia-live-244/_definst_/m
 http://media3.crtvg.es/live/tvga/.m3u8
 
 #EXTINF:0,Glitz
-0
-
-#EXTINF:0,Golden HD
-0
-
-#EXTINF:0,Gourmet
 0
 
 #EXTINF:0,Guatevision TV
@@ -271,11 +241,11 @@ http://urtmpkal-f.akamaihd.net/i/1b6mj17sk_1@308700/master.m3u8
 #EXTINF:0,Proyecto 40 
 http://tvaz-pd.kaltura.com.edgesuite.net/p/461031/sp/46103100/serveFlavor/entryId/0_08wdjxfl/v/1/flavorId/0_8j06e5nk/forceproxy/true/name/a.mp4
 
-#EXTINF:0,RPC TV
-http://live.rpctv.com/rpctv/tm.smil/playlist.m3u8
-
 #EXTINF:0,Ritmoson
 0
+
+#EXTINF:0,RPC TV
+http://live.rpctv.com/rpctv/tm.smil/playlist.m3u8
 
 #EXTINF:0,Solo Tango
 mms://stream.tangocity.com.ar/tangocity
@@ -302,13 +272,7 @@ http://edge.wms28.lorini.net/telearagua/telearagua1/playlist.m3u8
 http://cdns840stu1010.multistream.net/telecaribelive/amlst:live/master.m3u8
 
 #EXTINF:0,Telefe 
-http://live-edge01.telecentro.net.ar/live/tlfhd-720/playlist.m3u8
-
-#EXTINF:0,Telefe 
-http://live-edge01.telecentro.net.ar/live/tlfhd-360/playlist.m3u8
-
-#EXTINF:0,Telefe 
-http://live-edge01.telecentro.net.ar/live/tlfhd-180/playlist.m3u8
+0
 
 #EXTINF:0,Teleformula
 0
@@ -340,9 +304,6 @@ http://live-h1.frontlayer.net/fl729845/live/live.m3u8?wowzasessionid=1243637292
 #EXTINF:0,TotalPlay
 0
 
-#EXTINF:0,Travel TV
-rtmp://87.106.219.140/live/myStream_2
-
 #EXTINF:0,Trece 
 http://aztecalive-lh.akamaihd.net/i/0oxnvzh8a_1@175671/index_1_av-b.m3u8
 
@@ -356,13 +317,7 @@ rtmp://50.7.98.234/rtv/videortv
 rtmp://87.106.220.67/live/myStream_2
 
 #EXTINF:0,TV Publica 
-http://live-edge01.telecentro.net.ar/live/tvphd-720/playlist.m3u8
-
-#EXTINF:0,TV Publica 
-http://live-edge01.telecentro.net.ar/live/tvphd-360/playlist.m3u8
-
-#EXTINF:0,TV Publica 
-http://live-edge01.telecentro.net.ar/live/tvphd-180/playlist.m3u8
+0
 
 #EXTINF:0,TV Rionegrina
 0
@@ -389,7 +344,4 @@ rtmp://ecuastream.net:1935/UCSGHQ/UCSGHQ
 0
 
 #EXTINF:0,UNO TV
-http://ooyalahd2-f.akamaihd.net/i/UnoTV02_delivery@122617/master.m3u8
-
-
-
+0

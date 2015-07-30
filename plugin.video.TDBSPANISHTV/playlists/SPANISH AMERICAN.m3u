@@ -1,0 +1,12 @@
+﻿#EXTM3U
+
+
+#EXTINF:0,Fox 
+http://portal.rapidiptv.com:8080/live/jojo/jojo/5439.m3u8
+
+#EXTINF:0,Fox 
+http://portal.rapidiptv.com:8080/live/jojo/jojo/5442.m3u8
+
+#EXTINF:0,Nat Geo Wild 
+rtmp://80.82.78.75/pull playpath=natgeow?keys=uHz5z88ayNtjaGk4ZB-LuQ&keyt=1437915678 swfUrl=http://files.leton.tv/jwplayer.flash.swf live=1 pageUrl=http://leton.tv/player.php?streampage=natgeow&width=600&height=450
+
