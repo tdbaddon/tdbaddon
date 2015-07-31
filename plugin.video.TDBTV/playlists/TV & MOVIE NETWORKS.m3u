@@ -46,6 +46,9 @@ http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD28_W_250.sdp/p
 #EXTINF:0,Cartoon Network 
 http://54.255.155.24:1935//Live/_definst_/sweetbcha1novD28_W_150.sdp/playlist.m3u8
 
+#EXTINF:0,Cartoon Network
+http://hls.svc.moyo.tv/hls/CH_CARTOON/variant.m3u8?version=2
+
 #EXTINF:0,CBS 
 http://93.174.95.125:1935/edge/_definst_/vp4q2gonwzh2dku/chunklist.m3u8?wowzasessionid=1419872048
 
@@ -124,6 +127,9 @@ http://pebbles124-lh.akamaihd.net/i/e4_1@137789/master.m3u8|X-Forwarded-For=85.5
 #EXTINF:0,Fashion TV 
 http://hls.novotelecom.ru/streaming/fashion/tvrec/playlist.m3u8
 
+#EXTINF:0,Fashion TV 
+http://46.249.213.87/iPhone/HLS_TS/broadcast/fashiontv-tablet.3gp/fashiontv-tablet.3gp-mr648k.m3u8?trackingid=3181420000&os=desktop
+
 #EXTINF:0,Film4 
 http://pebbles124-lh.akamaihd.net/i/film4_1@137790/master.m3u8|X-Forwarded-For=85.5.87.218
 
@@ -155,13 +161,16 @@ http://93.174.95.125:1935/edge/_definst_/qc6xkzf4h48bz2e/playlist.m3u8?wowzasess
 0
 
 #EXTINF:0,Fox Movies 
-0
+http://185.5.222.227:4242/bysid/5608
 
 #EXTINF:0,Fox TV 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_C02_FOXHD/bw2000000/variant.m3u8?version=2 
 
 #EXTINF:0,Fox TV 
 rtmp://rtmp.zerocast.tv/goLive/ playpath=9pxGCtP3aEnJYgoBFFH8 swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 pageUrl=http://zerocast.tv/embed token=OOG17t.x#K9Vh#|
+
+#EXTINF:0,Fox TV 
+http://hls.svc.moyo.tv/hls/CH_FOX/variant.m3u8?version=2
 
 #EXTINF:0,FX
 0
@@ -252,6 +261,12 @@ http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
 
 #EXTINF:0,MBC 2 
 http://63.237.48.3/ios/MBC2/MBC2.m3u8
+
+#EXTINF:0,MBC 4
+http://63.237.48.23/ios/MBC_4/MBC_4.m3u8
+
+#EXTINF:0,MBC Action
+http://63.237.48.23/ios/MBC_ACTION/MBC_ACTION.m3u8
 
 #EXTINF:0,MBC Max 
 http://63.237.48.23/ios/MBC_MAX/MBC_MAX.m3u8
@@ -344,7 +359,7 @@ http://iptv.wssiptv.com:80/live/WSSiptv.com/he98fdui97w9769869t85/112.ts$OPT:htt
 http://iptv.wssiptv.com:80/live/WSSiptv.com/he98fdui97w9769869t85/64.ts$OPT:http-user-agent=Lavf/55.19.104
 
 #EXTINF:0,Sony TV 
-0
+http://hls.svc.moyo.tv/hls/CH_SCI-FI/variant.m3u8?version=2
 
 #EXTINF:0,Spike TV 
 http://93.174.95.125:1935/edge/_definst_/sax2mq2alpirnww/playlist.m3u8?wowzasessionid=1419878529
@@ -396,14 +411,20 @@ rtmp://208.53.180.218/ctv playpath=tom swfUrl=http://www.carolineoliveira.com.br
 #EXTINF:0,TV 1000 
 http://194.44.229.77:777/udp/237.1.238.17:1234
 
+#EXTINF:0,TV 1000 
+http://hls.svc.moyo.tv/hls/CH_TV1000/variant.m3u8?version=2
+
 #EXTINF:0,TV 1000 Action 
 http://194.44.229.77:777/udp/237.1.238.18:1234
+
+#EXTINF:0,TV 1000 Action
+http://hls.svc.moyo.tv/hls/CH_TV1000ACTION/variant.m3u8?version=2
 
 #EXTINF:0,TV Land 
 0
 
 #EXTINF:0,Universal Channel 
-0
+http://hls.svc.moyo.tv/hls/CH_UNIVERSAL/variant.m3u8?version=2
 
 #EXTINF:0,USA Network 
 http://93.174.95.125:1935/edge/_definst_/h5eovaj1jeegluq/playlist.m3u8?wowzasessionid=1420249300
@@ -413,3 +434,6 @@ http://stream02.yamgo.com/iPhone/HLS_TS/broadcast/victorias_secret_angels-tablet
 
 #EXTINF:0,WB
 0
+
+#EXTINF:0,World Fashion
+http://btv-net.mediacdn.ru/TVB7/wfhdeu/playlist.m3u8

@@ -4,6 +4,9 @@
 #EXTINF:0,AKA 
 http://rrr.sz.xlcdn.com/?account=AATW&file=akanew&type=live&service=wowza&protocol=http&output=playlist.m3u8
 
+#EXTINF:0,A One 
+http://hls.novotelecom.ru/streaming/aone/tvrec/playlist.m3u8
+
 #EXTINF:0,Capital Music 
 http://ooyalahd2-f.akamaihd.net/i/globalradio01_delivery@156521/index_656_av-p.m3u8?sd=10&rebase=on
 
@@ -21,6 +24,9 @@ http://87.239.31.232/hls/230.3.4.169.sd.stream.m3u8?b?b*t$
 
 #EXTINF:0,Deluxe Music 
 rtmp://flash1.ipercast.net/deluxemusic.tv/mp4:staging/120131-love-lounge-catchup.mp4.mp4
+
+#EXTINF:0,Dream TV
+http://212.224.108.80/S1/HLS_LIVE/dreamtv/1000/prog_index.m3u8
 
 #EXTINF:0,Djing Animation 
 http://www.djing.com/tv/a-05.m3u8
@@ -61,17 +67,26 @@ rtmp://stream.smcloud.net/live2/eska_rock/eska_rock_720p
 #EXTINF:0,Eska Rock 
 rtmp://stream.smcloud.net/live2/eska_rock/eska_rock_480p
 
+#EXTINF:0,Gold Tv
+http://87.248.160.8/edge/smil:goldtv/playlist.m3u8
+
 #EXTINF:0,Heart TV 
 http://ooyalahd2-f.akamaihd.net/i/globalradio02_delivery@156522/master.m3u8
 
 #EXTINF:0,Ibiza on TV 
 http://46.249.213.87/iPhone/broadcast/ibizaontv-tablet.3gp/ibizaontv-tablet.3gp-mr648k.m3u8?trackingid=3391380000&os=desktop
 
+#EXTINF:0,Ibiza on TV 
+http://stream01.yamgo.com/iPhone/HLS_TS/broadcast/ibiza_on_tv-tablet.3gp/ibiza_on_tv-tablet.3gp-mr648k.m3u8?trackingid=3041310000&os=desktop
+
 #EXTINF:0,Kiss TV
 rtmp://tst.es.flash.glb.ipercast.net/tst.es-live/live
 
 #EXTINF:0,MTV 
 http://93.174.95.125:1935/edge/_definst_/d2z1vc4ahrl6x26/playlist.m3u8?wowzasessionid=1420171062
+
+#EXTINF:0,MTV 
+rtmp://83.218.202.202/live swfUrl=http://webtv.md/swf/WebTV.swf playpath=wt_mtv.stream
 
 #EXTINF:0,MTV Dance 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVDANCE/variant.m3u8
@@ -97,11 +112,29 @@ rtmp://stream.smcloud.net/live2/vox/vox_720p
 #EXTINF:0,MusicVoxTV 
 rtmp://stream.smcloud.net/live2/vox/vox_480p
 
+#EXTINF:0,Now Thats What I Call Music
+http://rrr.sz.xlcdn.com/?account=AATW&file=nowmusic&type=live&service=wowza&protocol=http&output=playlist.m3u8
+
+#EXTINF:1,Planet Pop
+http://rrr.sz.xlcdn.com/?account=AATW&file=ppop&type=live&service=wowza&protocol=http&output=playlist.m3u8
+
+#EXTINF:0,Pop Beat
+http://stream02.yamgo.com/iPhone/HLS_TS/broadcast/pop_beat_tv-tablet.3gp/pop_beat_tv-tablet.3gp-mr648k.m3u8?trackingid=4681730000&os=desktop
+
 #EXTINF:0,Radio Monte Carlo 
 rtmp://fms.105.net/live/rmc1
 
+#EXTINF:0,Radio Monte Carlo 
+rtmp://fms.105.net:1935/live/rmc2
+
 #EXTINF:0,Rock 66 
 http://mediatv2.topix.it/24RockOne66
+
+#EXTINF:0,Trace Urban
+http://stream01.yamgo.com/iPhone/HLS_TS/broadcast/trace_tv_urban-tablet.3gp/trace_tv_urban-tablet.3gp-mr647k.m3u8?trackingid=4041670000&os=desktop
+
+#EXTINF:0,Tuba TV
+rtmp://fms.gazeta.pl/aglive/tuba_tv playpath=tuba_tv swfUrl=http://bi.gazeta.pl/im/Player.swf pageUrl=http://www.megawypas.pl/readarticle.php?article_id=358  live=true
 
 #EXTINF:0,Vevo Hits 
 http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch2/06/prog_index.m3u8
@@ -120,6 +153,9 @@ http://93.174.95.125:1935/edge/_definst_/oeiigxxv1gbeqq9/manifest.m3u8?wowzasess
 
 #EXTINF:0,VH1 Classics 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_VH1CLASSIC/variant.m3u8
+
+#EXTINF:0,VH1 Classics
+http://hls.svc.moyo.tv/hls/CH_VH1/variant.m3u8?version=2
 
 #EXTINF:0,Virgin TV 
 rtmp://fms.105.net:1935/live/virgin2

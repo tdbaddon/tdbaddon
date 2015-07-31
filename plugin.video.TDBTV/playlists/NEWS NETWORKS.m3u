@@ -110,7 +110,7 @@ http://93.174.95.125:1935/edge/_definst_/1ioc7taql4472xs/playlist.m3u8?wowzasess
 0
 
 #EXTINF:0,NHK World 
-0
+http://web-cache.stream.ne.jp/www11/nhkworld-tv/global/222714/live.m3u8
 
 #EXTINF:0,Press TV 
 rtmp://mtv.fms-01.visionip.tv/live/mtv-ptv-live-25f-16x9-SDh
@@ -120,6 +120,9 @@ http://37.58.85.156/rlo001/ngrp:rlo001.stream_all/playlist.m3u8
 
 #EXTINF:0,RT News 
 http://rt-a.akamaihd.net/ch_01@325605/master.m3u8 
+
+#EXTINF:0,RT News 
+http://rt-a.akamaihd.net/ch_04@325608/master.m3u8
 
 #EXTINF:0,Sky News 
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/skynews/ls_satlink/b_828.m3u8?b?b*t$

@@ -89,8 +89,17 @@ http://194.44.229.77:777/udp/237.1.238.14:1234
 #EXTINF:0,Viasat Explorer 
 http://195.78.244.219:10000/udp/239.0.3.30:1234
 
+#EXTINF:0,Viasat Explorer 
+http://hls.svc.moyo.tv/hls/CH_VIASATEXPLORER/variant.m3u8?version=2
+
 #EXTINF:0,Viasat History 
 http://195.78.244.219:10000/udp/239.0.3.31:1234
 
+#EXTINF:0,Viasat History 
+http://hls.svc.moyo.tv/hls/CH_VIASATHISTORY/variant.m3u8?version=2
+
 #EXTINF:0,Viasat Nature 
 http://194.44.229.77:777/udp/237.1.238.19:1234
+
+#EXTINF:0,Viasat Nature 
+http://hls.svc.moyo.tv/hls/CH_VIASATNATURE/variant.m3u8?version=2
