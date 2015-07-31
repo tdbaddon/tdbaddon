@@ -7,11 +7,17 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mp4
 #EXTINF:0,Bein Sport 1 
 http://185.56.30.127:8082/TV4012
 
+#EXTINF:0,Bein Sport 1 
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/62.m3u8
+
 #EXTINF:0,Bein Sport 2 
 0
 
 #EXTINF:0,Big Ten Network 
 http://bigten247.cdnak.bigtenhd.neulion.com/nlds/btn2go/btnnetwork/as/live/btnnetwork_hd_3000.m3u8
+
+#EXTINF:0,Big Ten Network 
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/149.m3u8
 
 #EXTINF:0,Box Nation 
 rtmpe://134.19.185.206:1935/livedge playpath=mamahdboxnation swfUrl=http://player.hdcast.org/_.swf pageUrl=http://www.hdcast.org/embedlive1.php?u=mamahdboxnation&vw=680&vh=490&domain=mamahd.com token=Fo5_n0w?U.rA6l3-70w47ch
@@ -34,8 +40,14 @@ http://iptv.wssiptv.com:80/live/WSSiptv.com/he98fdui97w9769869t85/11.ts$OPT:http
 #EXTINF:0,Chelsea TV 
 http://87.245.214.43/streaming/futbol/16/tvrec/playlist.m3u8
 
+#EXTINF:0,Chelsea TV 
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/100.m3u8
+
 #EXTINF:0,ESPN 
 http://80.80.160.168/live/6/live.m3u8
+
+#EXTINF:0,ESPN 
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/70.m3u8
 
 #EXTINF:0,ESPN 
 http://93.174.95.125:1935/edge/_definst_/xoaaohmeuajfeyf/playlist.m3u8?wowzasessionid=1419879934
@@ -76,8 +88,17 @@ http://iptv.wssiptv.com:80/live/WSSiptv.com/he98fdui97w9769869t85/13.ts$OPT:http
 #EXTINF:0,Eurosport News 
 http://hlsstr04.svc.iptv.rt.ru/hls/CH_EUROSPORTNEWS/variant.m3u8 
 
+#EXTINF:0,Fifa TV
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/113.m3u8
+
+#EXTINF:0,Fishing & Hunting
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/17.m3u8
+
 #EXTINF:0,Fox Sports 
 http://113.160.49.34/lives/origin03/foxhd.isml/foxhd-2096k.m3u8
+
+#EXTINF:0,Fox Sports 
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/66.m3u8
 
 #EXTINF:0,Fox Sports 1 
 0
@@ -109,11 +130,29 @@ http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/2596k/prog.m3u8|X-Forwarded-
 #EXTINF:0,NBC Golf 
 http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/4296k/prog.m3u8|X-Forwarded-For=209.239.112.104
 
+#EXTINF:0,NBC Golf 
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/67.m3u8
+
 #EXTINF:0,NBCSN 
 http://cdn.phoenix.intergi.com/21772/videos/3362254/video-sd.mp4?hosting_id=21772
 
+#EXTINF:0,NBCSN 
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/73.m3u8
+
+#EXTINF:0,NBCSN 
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/233.m3u8
+
 #EXTINF:0,NFL Network 
-0
+http://31.220.40.100/LiveEdge/NFLNetworkUS/playlist.m3u8?token=09ebd2b3d205c702703acc2c73bcaab0
+
+#EXTINF:0,NFL Network 
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/29.m3u8
+
+#EXTINF:0,NFL Network 
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/72.m3u8
+
+#EXTINF:0,NFL Network 
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/227.m3u8
 
 #EXTINF:0,Outdoor Channel 
 rtmp://edge1.everyon.tv/etv1sb/pld613
@@ -171,6 +210,9 @@ http://iptv.wssiptv.com:80/live/WSSiptv.com/he98fdui97w9769869t85/9.ts$OPT:http-
 
 #EXTINF:0,Racing UK 
 rtmp://31.220.0.195:80/live playpath=racinguks pageUrl=http://www.reytv.co timeout=13 token=%Zrey(nKa@#Z
+
+#EXTINF:0,Root Sports
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/40.m3u8
 
 #EXTINF:0,Setanta Sports 
 0
@@ -291,3 +333,6 @@ http://194.44.229.77:777/udp/237.1.238.9:1234
 
 #EXTINF:0,WWE Network 
 rtmp://80.82.64.140:443/liverepeater playpath=13 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
+
+#EXTINF:0,WWE Network 
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/138.m3u8

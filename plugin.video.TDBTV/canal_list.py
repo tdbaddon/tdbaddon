@@ -25,6 +25,11 @@ dc={
 "viasat explorer" : "2015",
 "viasat history" : "2016",
 "viasat nature" : "2017",
+"destination america" : "2018",
+"discovery news" : "2019",
+"ted tv" : "2020",
+"0000000000000000000000000" : "2020",
+
 
 "MUSIC TV NETWORKS" : "0000000000",
 "aka" : "3000",
@@ -68,6 +73,8 @@ dc={
 "pop beat" : "3038",
 "trace urban" : "3039",
 "tuba tv" : "3040",
+"0000000000000000000000000" : "3040",
+
 
 "NEWS NETWORKS" : "0000000000",
 "abc news" : "4000",
@@ -99,6 +106,9 @@ dc={
 "weather nation" : "4026",
 "weather network" : "4027",
 "ctv news" : "4028",
+"global news" : "4029",
+"0000000000000000000000000" : "4020",
+
 
 "SPORTS NETWORKS" : "0000000000",
 "bein sport 1" : "5000",
@@ -166,6 +176,11 @@ dc={
 "viasat golf" : "5062",
 "viasat sport" : "5063",
 "wwe network" : "5064",
+"fifa tv" : "5065",
+"fishing & hunting" : "5066",
+"root sports" : "5067",
+"0000000000000000000000000" : "5060",
+
 
 "TV & MOVIE NETWORKS" : "0000000000",
 "a&e" : "6000",
@@ -288,6 +303,15 @@ dc={
 "mbc 4" : "6117",
 "mbc action" : "6118",
 "world fashion" : "6119",
+"cbeebies" : "6120",
+"cooking channel" : "6121",
+"diy network" : "6122",
+"e!" : "6123",
+"great american country" : "6124",
+"ifc" : "6125",
+"veria living tv" : "6126",
+"0000000000000000000000000" : "6120",
+
 
 "WORLDWIDE CAMS" : "0000000000",
 "5th avenue new york" : "7000",
