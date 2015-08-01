@@ -2,9 +2,6 @@
 
 
 #EXTINF:0,ADULT CHANNEL 
-http://wowza1.videos.movile.com:8080/live/smil:adulto_1.smil/playlist.m3u8
-
-#EXTINF:0,ADULT CHANNEL 
 http://wowza1.videos.movile.com:8080/live/smil:adulto_1.smil/media-b1100000_2400.m3u8
 
 #EXTINF:0,ADULT CHANNEL 
@@ -26,13 +23,13 @@ rtmp://edge2.everyon.tv/etv2sb/phd511
 rtmp://edge2.everyon.tv/etv2sb/pld511
 
 #EXTINF:0,BLUE HUSTLER
-http://hlsstr04.svc.iptv.rt.ru/hls/CH_BLUEHUSTLER/variant.m3u8?version=2
+0
 
 #EXTINF:0,BRASILEIRINHAS 
 http://62.210.82.241:8081/brasileirinhas/brasileirinhas/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9NS8yMC8yMDE1IDEyOjE5OjE2IEFNJmhhc2hfdmFsdWU9ZDlXWkZjUlc4RTVINGZjRkcxNlNDUT09JnZhbGlkbWludXRlcz0zMDA=
 
 #EXTINF:0,BRAZZERS TV EUROPE 
-http://hlsstr01.svc.iptv.rt.ru/hls/CH_BRAZZERSTV/variant.m3u8?version=2
+0
 
 #EXTINF:0,BUNGA BUNGA 
 0
@@ -73,6 +70,9 @@ http://62.210.82.241:8081/sexzonehd/sexzonehd/playlist.m3u8?wmsAuthSign=c2VydmVy
 #EXTINF:0,HOT SHOTS
 http://46.249.213.93/iPhone/HLS_TS/broadcast/hotshots-tablet.3gp/hotshots-tablet.3gp-mr649k.m3u8
 
+#EXTINF:0,HOOOTERS CALENDER GIRLS
+http://46.249.213.93/iPhone/broadcast/hot100-tablet.3gp/hot100-tablet.3gp-mr647k.m3u8?trackingid=4541740000&os=desktop
+
 #EXTINF:0,HUSTLER HD 
 0
 
@@ -98,16 +98,10 @@ http://k4.usastreams.com:1935/miamitv/miamitv/chunklist_w128908539.m3u8
 0
 
 #EXTINF:0,O LA LA 
-http://hlsstr01.svc.iptv.rt.ru/hls/CH_OLALA/variant.m3u8
-
-#EXTINF:0,O LA LA 
-http://hlsstr04.svc.iptv.rt.ru/hls/CH_OLALA/variant.m3u8?version=2
-
-#EXTINF:0,O LA LA 
 http://185.5.40.101/hls/session-4677617QfHCCZsLqE/CH_OLALA/bw1758000/variant.m3u8?version=1
 
 #EXTINF:0,Passie XXX
-0
+http://publish.thewebstream.co:1935/leved/_definst_/passielivestream/playlist.m3u8
 
 #EXTINF:0,PENTHOUSE
 0
@@ -124,17 +118,8 @@ rtmp://edge2.everyon.tv/etv2sb/phd499
 #EXTINF:0,PLAYBOY SPICE 
 rtmp://edge2.everyon.tv/etv2sb/pld499
 
-#EXTINF:-0,PLAYBOY TV 
-http://46.61.226.21/hls/CH_PLAYBOY/variant.m3u8?version=2
-
-#EXTINF:-0,PLAYBOY TV 
-http://hlsstr02.svc.iptv.rt.ru/hls/CH_PLAYBOY/variant.m3u8
-
-#EXTINF:-0,PLAYBOY TV 
+#EXTINF:0,PLAYBOY TV 
 http://f1.mnogo-tv.com/ott-tv/1167/1433972580/7e5b62bec54ebc00c7ac295d5629e790/hls/PLboi/index.m3u8
-
-#EXTINF:-0,PLAYBOY TV 
-http://80.77.52.6:3917/udp/226.0.7.32:12345
 
 #EXTINF:0,PLATINUM TV 
 0
@@ -146,22 +131,16 @@ http://178.33.126.213:1935/leved/privateCom/.m3u8
 0
 
 #EXTINF:0,REDLIGHT PREMIUM 
-0
+rtmp://94.242.228.182/yoy/_definst_/251
+
+#EXTINF:0,REDLIGHT PREMIUM 
+http://46.181.237.75:1234/udp/239.255.42.217:1234
 
 #EXTINF:0,REDTUBE
 0
 
 #EXTINF:0,RUSSIAN NIGHT 
-http://hlsstr01.svc.iptv.rt.ru/hls/CH_RUSSIANNIGHT/variant.m3u8?version=2
-
-#EXTINF:0,RUSSIAN NIGHT 
-http://hlsstr02.svc.iptv.rt.ru/hls/CH_RUSSIANNIGHT/variant.m3u8?version=2
-
-#EXTINF:0,RUSSIAN NIGHT 
-http://46.61.226.19/hls/CH_RUSSIANNIGHT/bw1500000/variant.m3u8?version=2
-
-#EXTINF:0,RUSSIAN NIGHT 
-http://80.77.52.6:3917/udp/226.0.3.27:12345
+0
 
 #EXTINF:0,RUSSIAN NIGHT CLUB TV 
 0
@@ -199,26 +178,20 @@ rtmp://main2sb.everyon.tv:1935/etv2sb/_definst_/pld499
 #EXTINF:0,X DESIRE 
 0
 
-#EXTINF:0,XXL 
-http://hlsstr02.svc.iptv.rt.ru/hls/CH_XXL/variant.m3u8
-
-#EXTINF:0,XXL 
-http://hlsstr01.svc.iptv.rt.ru/hls/CH_XXL/variant.m3u8?version=2
-
-#EXTINF:0,XXX 
-http://199.195.195.108:32001
-
 #EXTINF:0,XXX 
 http://199.195.195.108:32003
-
-#EXTINF:0,XXX 
-http://199.195.195.108:32004
 
 #EXTINF:0,XXX 
 http://199.195.195.108:32005
 
 #EXTINF:0,XXX 
 http://199.195.195.108:32006
+
+#EXTINF:0,XXX 
+http://lb.iptvserver.tv:8080/redirect/LiveEdge/SecretsLA/playlist.m3u8?token=09ebd2b3d205c702703acc2c73bcaab0
+
+#EXTINF:0,XXX 
+mmsh://tv.webmisto.cz:7000
 
 #EXTINF:0,YOU DIVA 
 http://46.249.213.87/iPhone/HLS_TS/broadcast/you_diva-iphone.3gp.m3u8
