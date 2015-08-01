@@ -43,14 +43,14 @@ http://80.80.160.168/live/9/live.m3u8
 #EXTINF:0,Discovery World 
 http://metro.noip.me:1234/udp/239.0.0.90:1234
 
+#EXTINF:0,Flite Level TV
+rtmp://streaming.krautzer-lynn.com:1935/live/Stream4
+
 #EXTINF:0,History Channel 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/174.m3u8
 
 #EXTINF:0,History Channel 
 http://link.theplatform.com/s/dtjsEC/chjdYJxKb44V?manifest=m3u&feed=History%20Live%20Stream%20Feed
-
-#EXTINF:0,History Channel 
-http://93.174.95.125:1935/edge/_definst_/dhp0rpd116qyyj6/playlist.m3u8?wowzasessionid=1419874554
 
 #EXTINF:0,History Channel 
 https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8?hdnea=ip=174.113.30.187~st=1427694727~exp=1427695327~acl=/i/*~id=a86de0c2-ad09-4469-9a63-6ebbc1bba4d3~hmac=ac144089000bdd16f6916c517ce3e6e04813d4de11ac16839ad468a977ec80b1
@@ -91,7 +91,7 @@ http://hls.svc.moyo.tv/hls/CH_NATGEO/variant.m3u8?version=2
 #EXTINF:0,National Geographic 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/187.m3u8
 
-#EXTINF:0,Planet Green
+#EXTINF:0,Planet Green 
 http://80.80.160.168/live/4/live.m3u8
 
 #EXTINF:0,RT News Documentary 
@@ -108,9 +108,6 @@ http://194.44.229.77:777/udp/237.1.238.14:1234
 
 #EXTINF:0,Viasat Explorer 
 http://195.78.244.219:10000/udp/239.0.3.30:1234
-
-#EXTINF:0,Viasat Explorer 
-http://hls.svc.moyo.tv/hls/CH_VIASATEXPLORER/variant.m3u8?version=2
 
 #EXTINF:0,Viasat History 
 http://195.78.244.219:10000/udp/239.0.3.31:1234

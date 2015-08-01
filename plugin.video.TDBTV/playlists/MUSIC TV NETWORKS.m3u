@@ -16,9 +16,6 @@ http://rrr.sz.xlcdn.com/?account=AATW&file=clublandtv&type=live&service=wowza&pr
 #EXTINF:0,Clubbing TV 
 http://204.107.26.252:1935/live/691.high.stream/HasBahCa.m3u8
 
-#EXTINF:0,Clubbing TV 
-http://46.249.213.87/iPhone/broadcast/clubbingtv-tablet.3gp/clubbingtv-tablet.3gp-mr648k.m3u8
-
 #EXTINF:0,Dance TV
 http://87.239.31.232/hls/230.3.4.169.sd.stream.m3u8?b?b*t$
 
@@ -100,14 +97,8 @@ http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVHITS/variant.m3u8
 #EXTINF:0,MTV Hits 
 http://194.44.229.77:777/udp/237.1.238.1:1234
 
-#EXTINF:0,MTV Live 
-0
-
 #EXTINF:0,MTV Rocks 
 http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVROCKS/variant.m3u8
-
-#EXTINF:0,MTV Summer
-0
 
 #EXTINF:0,MusicVoxTV 
 rtmp://stream.smcloud.net/live2/vox/vox_720p

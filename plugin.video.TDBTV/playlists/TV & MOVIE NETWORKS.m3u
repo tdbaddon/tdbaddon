@@ -17,10 +17,7 @@ http://93.174.95.125:1935/edge/_definst_/oeiigxxv1gbeqq9/playlist.m3u8?wowzasess
 http://93.174.95.125:1935/edge/_definst_/z4cxm7zlfyqs65m/playlist.m3u8?wowzasessionid=1419872183
 
 #EXTINF:0,BabyTV 
-http://hlsstr03.svc.iptv.rt.ru/hls/CH_BABYTV/bw480000/variant.m3u8?version=2
-
-#EXTINF:0,BBC 1 
-http://teleboy.customers.cdn.iptv.ch/4006/2290000/index.m3u8
+0
 
 #EXTINF:0,BBC 1 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/134.m3u8
@@ -28,14 +25,8 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/134.m3u8
 #EXTINF:0,BBC 1 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/147.m3u8
 
-#EXTINF:0,BBC 1
-http://teleboy.customers.cdn.iptv.ch/4017/2290000/index.m3u8
-
 #EXTINF:0,BBC 2 
-http://teleboy.customers.cdn.iptv.ch/4007/2290000/index.m3u8
-
-#EXTINF:0,BBC 2 
-http://teleboy.customers.cdn.iptv.ch/4012/2290000/index.m3u8
+0
 
 #EXTINF:0,BET 
 http://93.174.95.125:1935/edge/_definst_/kexkxje3nqi6dtl/playlist.m3u8?wowzasessionid=1419880467
@@ -50,16 +41,10 @@ http://93.174.95.125:1935/edge/_definst_/kexkxje3nqi6dtl/playlist.m3u8?wowzasess
 http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD28_W_250.sdp/playlist.m3u8
 
 #EXTINF:0,Cartoon Network 
-http://54.255.155.24:1935//Live/_definst_/sweetbcha1novD28_W_150.sdp/playlist.m3u8
-
-#EXTINF:0,Cartoon Network
 http://hls.svc.moyo.tv/hls/CH_CARTOON/variant.m3u8?version=2
 
 #EXTINF:0,Cbeebies
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/6.m3u8
-
-#EXTINF:0,CBS 
-http://93.174.95.125:1935/edge/_definst_/vp4q2gonwzh2dku/chunklist.m3u8?wowzasessionid=1419872048
 
 #EXTINF:0,CBS 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/63.m3u8
@@ -91,20 +76,14 @@ rtmp://54.85.197.21:1935/live/news live=1 timeout=15
 #EXTINF:0,CMore Emotion
 0
 
-#EXTINF:0,CMore First
-http://188.138.9.228:8024
+#EXTINF:0,CMore First 
+0
 
-#EXTINF:0,CMore Hits
-http://188.138.9.228:8020
+#EXTINF:0,CMore Hits 
+0
 
-#EXTINF:0,CMore Series
-http://188.138.9.228:8021
-
-#EXTINF:0,Comedy Central 
-0http://planetiptv-test.ddns.net:9088/sdtv/uktv/planet/iptv/Comedy_Central_Extra_UK?auth=test+test#
-
-#EXTINF:0,Comedy Central 
-http://planetiptv-test.ddns.net:9088/sdtv/uktv/planet/iptv/Comedy_Central_UK?auth=test+test
+#EXTINF:0,CMore Series 
+0
 
 #EXTINF:0,Comedy Central 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/86.m3u8
@@ -194,12 +173,6 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/53.m3u8
 http://185.5.222.227:4242/bysid/5608
 
 #EXTINF:0,Fox TV 
-http://hlsstr02.svc.iptv.rt.ru/hls/CH_C02_FOXHD/bw2000000/variant.m3u8?version=2 
-
-#EXTINF:0,Fox TV 
-rtmp://rtmp.zerocast.tv/goLive/ playpath=9pxGCtP3aEnJYgoBFFH8 swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 pageUrl=http://zerocast.tv/embed token=OOG17t.x#K9Vh#|
-
-#EXTINF:0,Fox TV 
 http://hls.svc.moyo.tv/hls/CH_FOX/variant.m3u8?version=2
 
 #EXTINF:0,FX
@@ -257,39 +230,18 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/178.m3u8
 http://ios.streamserver01.com:8080/ShowcaseTV/mystream.m3u8
 
 #EXTINF:0,ITV 1 
-http://teleboy.customers.cdn.iptv.ch/4004/2290000/index.m3u8
-
-#EXTINF:0,ITV 1 
-http://teleboy.customers.cdn.iptv.ch/4018/2290000/index.m3u8
-
-#EXTINF:0,ITV 1 
-http://iptv.wssiptv.com:80/live/WSSiptv.com/he98fdui97w9769869t85/103.ts$OPT:http-user-agent=Lavf/55.19.104
+0
 
 #EXTINF:0,ITV 2 
 http://204.107.27.136/live/67.low.stream/67.low.stream/index.m3u8
 
-#EXTINF:0,ITV 2 
-http://teleboy.customers.cdn.iptv.ch/4005/2290000/index.m3u8
-
-#EXTINF:0,ITV 2 
-http://iptv.wssiptv.com:80/live/WSSiptv.com/he98fdui97w9769869t85/104.ts$OPT:http-user-agent=Lavf/55.19.104
-
 #EXTINF:0,ITV 3 
 http://204.107.27.136/live/26.low.stream/26.low.stream/index.m3u8 
-
-#EXTINF:0,ITV 3 
-http://teleboy.customers.cdn.iptv.ch/4025/2290000/index.m3u8
-
-#EXTINF:0,ITV 3 
-http://iptv.wssiptv.com:80/live/WSSiptv.com/he98fdui97w9769869t85/105.ts$OPT:http-user-agent=Lavf/55.19.104
 
 #EXTINF:0,ITV 4 
 http://204.107.27.136/live/101.low.stream/101.low.stream/index.m3u8 
 
-#EXTINF:0,ITV 4 
-http://iptv.wssiptv.com:80/live/WSSiptv.com/he98fdui97w9769869t85/106.ts$OPT:http-user-agent=Lavf/55.19.104
-
-#EXTINF:0,Jewelry TV
+#EXTINF:0,Jewelry TV 
 rtmp://jtvmedia.jtv.com:1975/live playpath=live6 swfUrl=http://demandware.edgesuite.net/aaby_prd/on/demandware.static/Sites-jtv-Site/-/default/v1410110388581/swf/flashMediaPlayer/StrobeMediaPlayback.swf live=1 pageUrl=http://www.jtv.com/on/demandware.store/Sites-jtv-Site/default/LiveViewer-Show
 
 #EXTINF:0,Jim Jam 
@@ -323,7 +275,7 @@ http://63.237.48.23/ios/MBC_MAX/MBC_MAX.m3u8
 http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
 
 #EXTINF:0,NBC 
-http://93.174.95.125:1935/edge/_definst_/kjgkefh6la1di6g/playlist.m3u8?wowzasessionid=1419879103
+0
 
 #EXTINF:0,Nick Jr 
 0
@@ -347,10 +299,10 @@ http://93.174.95.125:1935/edge/_definst_/bwbop58ixz281wv/chunklist.m3u8?wowzases
 http://80.80.160.168/live/7/live.m3u8
 
 #EXTINF:0,Sky 1 
-http://planetiptv-test.ddns.net:9088/sdtv/skyuk/planet/iptv/Sky_1_UK_+1?auth=test+test
+0
 
-#EXTINF:0,Sky 2
-http://planetiptv-test.ddns.net:9088/sdtv/skyuk/planet/iptv/Sky_2_UK?auth=test+test
+#EXTINF:0,Sky 2 
+0
 
 #EXTINF:0,Sky Arts 1 
 0
@@ -404,19 +356,13 @@ http://planetiptv-test.ddns.net:9088/sdtv/skyuk/planet/iptv/Sky_2_UK?auth=test+t
 http://hls.svc.moyo.tv/hls/CH_SCI-FI/variant.m3u8?version=2
 
 #EXTINF:0,Spike TV 
-http://93.174.95.125:1935/edge/_definst_/sax2mq2alpirnww/playlist.m3u8?wowzasessionid=1419878529
+0
 
 #EXTINF:0,Star Movies 
 http://113.160.49.34/lives/origin03/moviehd.isml/moviehd-2096k.m3u8
 
 #EXTINF:0,Syfy 
-http://93.174.95.125:1935/edge/_definst_/oepz9q5oivflbcw/playlist.m3u8?wowzasessionid=1419878403
-
-#EXTINF:0,TBS 
-http://93.174.95.125:1935/edge/_definst_/jh8nj062bqbsxdh/playlist.m3u8?wowzasessionid=1419878319
-
-#EXTINF:0,TBS 
-rtmp://rtmp.zerocast.tv/goLive/RhMi9RdAAt7fpq8H3qZh swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf live=1 pageUrl=http://zerocast.tv/embed token=OOG17t.x#K9Vh#|
+0
 
 #EXTINF:0,TBS 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/82.m3u8
@@ -426,6 +372,7 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/82.m3u8
 
 #EXTINF:0,TSC 
 http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/master.m3u8?b?b*t$ 
+
 #EXTINF:0,TLC 
 http://80.80.160.168/live/2/live.m3u8
 
@@ -438,7 +385,7 @@ http://93.174.95.125:1935/edge/_definst_/7uz4als3nigi0j3/playlist.m3u8?wowzasess
 #EXTINF:0,TNT 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/84.m3u8
 
-#EXTINF:0,Tom & Jerry TV
+#EXTINF:0,Tom & Jerry TV A
 rtmp://208.53.180.218/ctv playpath=tom swfUrl=http://www.carolineoliveira.com.br/swf/player.swf live=1 pageUrl=http://carolineoliveira.com.br/tvamigos/tomejerry.html
 
 #EXTINF:0,Tru TV 
