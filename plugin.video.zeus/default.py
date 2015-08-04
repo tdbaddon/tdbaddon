@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-ZeusStreamVersion = "V1.0.4"
-ZeusStreamDate = "21/07/2015 23:00hrs GMT"
+ZeusStreamVersion = "V1.0.5"
+ZeusStreamDate = "01/08/2015 01:00hrs GMT"
 
 '''
     ZEUS Add-on
@@ -297,6 +297,50 @@ def Hybrid_List(url):
      
     SetViewThumbnail()	
 
+def StreamLive(url):
+#    BaseURL = GetCompile('STREAM247')
+			
+    BaseURL = 'https://www.streamlive.to/channels/'
+    NextPage = url.replace('?p=4&q=','?p=5&q=')
+    NextPage = url.replace('?p=3&q=','?p=4&q=')
+    NextPage = url.replace('?p=2&q=','?p=3&q=')
+    NextPage = url.replace('?p=1&q=','?p=2&q=')
+	
+    PageSource = ZeusGetContent(BaseURL+url)
+    PageSource = regex_from_to(PageSource, '<ul class="clist clearfix">', '<strong>Page: </strong>') 
+    all_videos = regex_get_all(PageSource, '<li', '</li>')
+    AddInfoLink()	
+    ListCount = 0	
+    for a in all_videos:
+        vurl = regex_from_to(a, '<a href="', '"')
+        iconimage = regex_from_to(a, 'src="', '"')
+        name = regex_from_to(a, 'alt="', '"')
+        AddDir(name,vurl,630,iconimage)
+ 
+    AddDir('[B][COLOR white]Next Page[/COLOR][/B]', NextPage ,620,'http://s6.postimg.org/4bbyeq1ep/next.png')
+	
+    SetViewThumbnail()
+
+def StreamLiveLink(name,url,iconimage):
+    PageSource = ZeusGetContent(url)
+    print PageSource
+    if 'Question: ' in PageSource:
+       HakaMacEq = regex_from_to(PageSource, "Question: ", "=")
+       HakaMacEq = HakaMacEq.replace('x','*').replace(' ','')   
+	   
+       print(eval(HakaMacEq))
+       HakaMacEq = str(eval(HakaMacEq))
+       print url+'?captcha='+HakaMacEq
+       PageSource = ZeusGetContent(url+'?captcha='+HakaMacEq)
+       print PageSource
+	   
+    vurl = regex_from_to(PageSource, "'file': '", ".',") 
+    AddInfoLink()	
+#    vurl = vurl + '|User-Agent=Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36'
+    AddDir(name,vurl,3,iconimage,isFolder=False)
+		
+    SetViewThumbnail()
+	
 def Stream247(url):
     BaseURL = GetCompile('STREAM247')
     PageSource = ZeusGetContent(BaseURL+url)
@@ -423,62 +467,6 @@ def LaLineaLista(url):
 
     SetViewList()
 	
-def x1Channels(url):
-    url = "http://mobile.desistreams.tv/DesiStreams"+url
-    AddInfoLink()
-    try: 
-        links = net.http_GET(url).content
-    except:
-        AddDir('[COLOR red]SECTION UNDER MAINTENANCE PLEASE TRY AGAIN SHORTLY[/COLOR]','BLANK',999,'http://s5.postimg.org/sp2sjkbxj/underconstruction.png')
-        AddDir('[COLOR yellow]GO TO http://zeusrepo.com   FOR MORE INFORMATION[/COLOR]','BLANK',999,'http://s5.postimg.org/sp2sjkbxj/underconstruction.png')
-        SetViewList()
-        return
-
-    AddDir('[COLOR gold]** LINKS NOT WORKING? RELOAD THE LIST **[/COLOR]','Findus',0,ZeusGraphic)
-    AddDir('[COLOR gold]** LINKS HERE CANNOT BE USED IN FAVOURITES **[/COLOR]','Findus',0,ZeusGraphic)
-	
-    links = links.replace('\/','/')
-    Mainurl = 'http://mobile.desistreams.tv/'
-    
-    all_videos = regex_get_all(links, '{"id"', '}')
-    for a in all_videos:
-        mode = 3
-        url = regex_from_to(a, '"stream_url":"', '"')
-        name = regex_from_to(a, 'name":"', '"')
-        icon = regex_from_to(a, '"img":"', '",')
-        AddDir('[COLOR blue] '+name+' [/COLOR] Source 1' ,url, mode, Mainurl+icon, isFolder=False)
-        url = regex_from_to(a, '"stream_url2":"', '"')
-        name = regex_from_to(a, 'name":"', '"')
-        icon = regex_from_to(a, '"img":"', '",')
-        AddDir('[COLOR blue] '+name+'[/COLOR] Source 2' ,url, mode, Mainurl+icon, isFolder=False)
-        url = regex_from_to(a, '"stream_url3":"', '"')
-        name = regex_from_to(a, 'name":"', '"')
-        icon = regex_from_to(a, '"img":"', '",')
-        AddDir('[COLOR blue] '+name+'[/COLOR] Source 3' ,url, mode, Mainurl+icon, isFolder=False)
-    
-    xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_LABEL )
-    SetViewList()
-	
-def UFCSection(url):
-    link = ZeusGetContent(url)
-    nextpage = ''
-    if link.find('rel="next') > 0:
-       nextpage = regex_from_to(link, '<link rel="next" href="//', '"/>')
-	   
-    link = regex_from_to(link, '<div class="nag cf">', '<div class="loop-nav pag-nav">') 
-    all_videos = regex_get_all(link, '<div id="post', '<span class="overlay"></span>')
-    for a in all_videos:
-        title = regex_from_to(a, ' title="', '"')
-        vurl = regex_from_to(a, ' href="', '"')
-        iconimage = "http://" + regex_from_to(a, '<img src="//', '" alt=')
-        AddDir(title,vurl,15,iconimage)
-
-    if len(nextpage) > 0:
-       nextpage = 'http://' + nextpage
-       AddDir('[B][COLOR yellow]Next Page >>>[/COLOR][/B]',nextpage,9,"http://s6.postimg.org/4bbyeq1ep/next.png")
-
-    SetViewThumbnail()
-
 def VodlockerxScrape(url):
     Base_URL = GetCompile('VODLOCKERX')+ url
     link = ZeusGetContent(Base_URL)
@@ -541,7 +529,26 @@ def SearchVodlockerx():
  
     SetViewThumbnail()	
 	
-	
+
+def UFCSection(url):
+    link = ZeusGetContent(url)
+    nextpage = ''
+    if link.find('rel="next') > 0:
+       nextpage = regex_from_to(link, '<link rel="next" href="//', '"/>')
+	   
+    link = regex_from_to(link, '<div class="nag cf">', '<div class="loop-nav pag-nav">') 
+    all_videos = regex_get_all(link, '<div id="post', '<span class="overlay"></span>')
+    for a in all_videos:
+        title = regex_from_to(a, ' title="', '"')
+        vurl = regex_from_to(a, ' href="', '"')
+        iconimage = "http://" + regex_from_to(a, '<img src="//', '" alt=')
+        AddDir(title,vurl,15,iconimage)
+
+    if len(nextpage) > 0:
+       nextpage = 'http://' + nextpage
+       AddDir('[B][COLOR yellow]Next Page >>>[/COLOR][/B]',nextpage,9,"http://s6.postimg.org/4bbyeq1ep/next.png")
+
+    SetViewThumbnail()	
 	
 def UFCScrape(url):
     link = ZeusGetContent(url)
@@ -560,14 +567,7 @@ def UFCScrape(url):
 def StreamUFC(name,url,thumb):
     name2 = name
     url2 = url
-              
-    if re.search('http://pwtalk.net', url):
-       headers['Referer'] = "http://watchwrestling.ch/"
-       url_content = net.http_GET(url, headers=headers).content
-       url_content = re.sub("<!--.+?-->", " ", url_content)
-       link2 = regex_from_to(url_content, '<iframe ', '<') 
-       url = regex_from_to(link2, 'src="', '">')
-			
+		
     try:
         req = urllib2.Request(url)
         req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
@@ -603,49 +603,6 @@ def PlayYoutubeView(url):
         xbmc.executebuiltin(url)
     except:
         xbmc.executebuiltin("XBMC.Notification(ZEUS VIDEO,This host is not supported or resolver is broken::,10000)")
-
-def EVO_Private():
-    EVOFile = os.path.join(libDir,"EVOLocation.txt")
-    if not (os.path.isfile(EVOFile)):
-        xbmcgui.Dialog().ok('EVO LINK', 'No Link Entered - Please enter EVO LINK First')	
-        return
-		
-    try:
-        f = open(EVOFile,'r')
-        EVOLink = f.read()
-        EVOLink = regex_from_to(EVOLink, '{', '}')
-        f.close()
-    except:
-        xbmcgui.Dialog().ok('EVO LINK', 'No Link Entered - Please enter EVO LINK First')
-        return
-
-    StreamlistURL = ''
-    if EVOLink[:4].lower() == "evo-":
-        StreamlistURL = EvoUrl
-    elif EVOLink[:5].lower() == "chin-":
-        StreamlistURL = ZeusAlpha
-    else:
-        StreamlistURL = Raw
-	   
-    links = ''
-    try:
-        links = net.http_GET(StreamlistURL + EVOLink).content
-    except:
-        xbmcgui.Dialog().ok('EVO LINK', 'ERROR WITH THE EVO LINK PLEASE CHECK')
-        return
-		
-    links = links.encode('ascii', 'ignore').decode('ascii')
-    links = links.replace('&lt;','<').replace('&gt;','>').replace('<name>','<title>').replace('</name>','</title>').replace('</p>','\n').replace('&nbsp;','').replace('&#8221;','"').replace('&#8243;','"').replace('<!-- EVO LINK','\n').replace('END EVO -->','').replace('<p>','').replace('&#038;','&').replace('&#8211;','--').replace('<br />','').replace('&#215;','x')
-    links = links.replace('<a href="','').replace('</a>&#8220;#','"')
-    if links.find('<link>') > 0:
-        XMLRead500(EVOLink)
-    else:
-        if links.find('I:"') > 0:
-            StreamsList(EVOLink)
-        else:
-            StreamM3U(EVOLink)
-	
-
 	   
 def StreamsList(url):
     links = 'I:"0" A:"Cannot Connect" B:"[COLOR yellow][B]*OFFSHORE DOWN*[/B][/COLOR]" C:"'+ZeusGraphic+"'"
@@ -658,10 +615,6 @@ def StreamsList(url):
         StreamlistURL = Raw
 		
     links = ZeusGetContent(StreamlistURL + url)
-	
-    if url[:4].lower() == "evo-":
-       links = links.replace('&amp;','&').replace('&lt;','<').replace('&gt;','>').replace('<name>','<title>').replace('</name>','</title>').replace('</p>','\r\n').replace('&nbsp;','').replace('&#8221;','"').replace('&#8243;','"').replace('<!-- EVO LINK','\n').replace('END EVO -->','').replace('<p>','').replace('&#038;','&').replace('&#8211;','--').replace('<br />','').replace('&#215;','x')
-       links = links.replace('<a href="','').replace('</a>&#8220;#','"')	   
     SetViewLayout = "50"
 
     LayoutType = re.compile('FORMAT"(.+?)"').findall(links)
@@ -696,11 +649,7 @@ def StreamM3U(url):
         StreamlistURL = Raw
 
     links = ZeusGetContent(StreamlistURL + url)
-	
-    if url[:4].lower() == "evo-":
-        links = links.replace('&lt;','<').replace('&gt;','>').replace('<name>','<title>').replace('</name>','</title>').replace('</p>','\n').replace('&nbsp;','').replace('&#8221;','"').replace('&#8243;','"').replace('<!-- EVO LINK','\n').replace('END EVO -->','').replace('<p>','').replace('&#038;','&').replace('&#8211;','--').replace('<br />','').replace('&#215;','x')
-        links = links.replace('<a href="','').replace('</a>&#8220;#','"')
-      
+	    
     SetViewLayout = "50"
      
     LayoutType = re.compile('FORMAT"(.+?)"').findall(links)
@@ -805,35 +754,6 @@ def ChildLock():
     if len(passwordEntered) > 0 and pwd <> passwordEntered and len(pwd) > 0:
        xbmcgui.Dialog().ok('ZEUS Childlock', 'Password incorrect Childlock still active')
 
-def EVO_Link():
-#h@k@m@c
-    EVOLink = ''	
-    KeyboardMessage = 'Enter Your EVO Link (evo-xxxx)'
-    EVOFile = os.path.join(libDir,"EVOLocation.txt")
-	
-    keyboard = xbmc.Keyboard(EVOLink, KeyboardMessage)
-    keyboard.doModal()
-    if keyboard.isConfirmed():
-       EVOLink = keyboard.getText() .replace(' ','+')
-       if EVOLink == None:
-          return False
-	
-    if len(EVOLink) == 0: 
-        xbmcgui.Dialog().ok('Zeus EVO', 'No Link Entered. No action taken')
-        return	   
-
-    if len(EVOLink) > 0:
-        if os.path.isfile(EVOFile):
-            os.remove(EVOFile)
-        try:
-            f = open(EVOFile, 'w') 
-            f.write('{'+EVOLink+'}') 
-            f.close()
-        except:
-            pass
-
-    AddDir('EVO LINK SET: '+EVOLink ,'evoindex', 7, "http://s5.postimg.org/pppqafk9z/unlockaccount.png", isFolder=True)
-
 def Xham_Cats(url):
     Xham_Category = url
     PageSource = ZeusGetContent(GetCompile('HAMSTER1'))
@@ -914,12 +834,7 @@ def XMLRead500(url):
     except: return
 
     links = links.encode('ascii', 'ignore').decode('ascii')
-
-    if url[:4].lower() == "evo-":
-       links = replaceHTMLCodes(links)	
-       links = links.replace('&amp;','&').replace('&lt;','<').replace('&gt;','>').replace('<name>','<title>').replace('</name>','</title>').replace('</p>','\r\n').replace('&nbsp;','').replace('&#8221;','"').replace('&#8243;','"').replace('<!-- EVO LINK','\n').replace('END EVO -->','').replace('<p>','').replace('&#038;','&').replace('&#8211;','--').replace('<br />','').replace('&#215;','x')
-       links = links.replace('<a href="','').replace('</a>&#8220;#','"')	   
-	   
+   
     SetViewLayout = "50"
      
     LayoutType = re.compile('FORMAT"(.+?)"').findall(links)
@@ -1088,9 +1003,7 @@ def LookLocoNum():
     f.write('{'+LocoNum+'}') 
     f.close()
 	
-
- 
-		
+	
 def FullMatches(url):
     custurlreplay = str(base64.decodestring(LocalisedReplay))
     link = ZeusGetContent(custurlreplay+url)
@@ -1933,11 +1846,55 @@ def Freeview_keep_session():
     tloop = Timer(60.0, Freeview_keep_session)
     tloop.start()
 
+def ResolveIT():
+    InfoLabel = xbmc.getInfoLabel('Container.PluginName')
+    if InfoLabel[-2:] == 'us':
+       return 1
+    else:
+       return 0
+	   
 def cleanlink(link):
     data=link.replace('\u00a0',' ').replace('\u00ae','').replace('\u00e9','').replace('\u00e0','').replace('\u2013','').replace('\u00e7','').replace('\u00f1','')#
 	
     return data
 
+def x1Channels():
+    url = "http://mobile.desistreams.tv/DesiStreams/index2.php?tag=get_all_channel"
+    AddInfoLink()
+    try: 
+        links = net.http_GET(url).content
+    except:
+        AddDir('[COLOR red]SECTION UNDER MAINTENANCE PLEASE TRY AGAIN SHORTLY[/COLOR]','BLANK',999,'http://s5.postimg.org/sp2sjkbxj/underconstruction.png')
+        AddDir('[COLOR yellow]GO TO http://zeusrepo.com   FOR MORE INFORMATION[/COLOR]','BLANK',999,'http://s5.postimg.org/sp2sjkbxj/underconstruction.png')
+        SetViewList()
+        return
+
+    AddDir('[COLOR gold]** LINKS NOT WORKING? RELOAD THE LIST **[/COLOR]','Findus',0,ZeusGraphic)
+    AddDir('[COLOR gold]** LINKS HERE CANNOT BE USED IN FAVOURITES **[/COLOR]','Findus',0,ZeusGraphic)
+	
+    links = links.replace('\/','/')
+    Mainurl = 'http://mobile.desistreams.tv/'
+    
+    all_videos = regex_get_all(links, '{"id"', '}')
+    for a in all_videos:
+        mode = 3
+        url = regex_from_to(a, '"stream_url":"', '"')
+        name = regex_from_to(a, 'name":"', '"')
+        icon = regex_from_to(a, '"img":"', '",')
+        AddDir('[COLOR blue] '+name+' [/COLOR] Source 1' ,url, mode, Mainurl+icon, isFolder=False)
+        url = regex_from_to(a, '"stream_url2":"', '"')
+        name = regex_from_to(a, 'name":"', '"')
+        icon = regex_from_to(a, '"img":"', '",')
+        AddDir('[COLOR blue] '+name+'[/COLOR] Source 2' ,url, mode, Mainurl+icon, isFolder=False)
+        url = regex_from_to(a, '"stream_url3":"', '"')
+        name = regex_from_to(a, 'name":"', '"')
+        icon = regex_from_to(a, '"img":"', '",')
+        AddDir('[COLOR blue] '+name+'[/COLOR] Source 3' ,url, mode, Mainurl+icon, isFolder=False)
+    
+    xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_LABEL )
+    SetViewList()
+	
+	
 def ReportFaultDiag():
     xbmcgui.Dialog().ok('Zeus Video Support', 'For reporting faults, suggestions, general support',' ', 'or donations go to http://zeus.video')
 	
@@ -1970,7 +1927,7 @@ def UpdateMe():
     dp.update(100)       
     dp.close()
            
-    xbmcgui.Dialog().ok('Zeus Video Updated', 'A reboot may be required. ', 'If you want Zeus to continue', 'Donate as little as $2 at http://zeus.video')
+    xbmcgui.Dialog().ok('Zeus Video Updated', 'A reboot may be required. ', 'If you want the Zeus Project to continue', 'Donate as little as $2 at http://zeus.video')
 	
 def RemoveFavorties(url):
 	list = common.ReadList(favoritesFile) 
@@ -2056,13 +2013,13 @@ def PlayURLResolver(name,url,iconimage):
         playsetresolved(resolver,name,iconimage)
     else: 
         xbmc.executebuiltin("XBMC.Notification(ZEUS VIDEO,This host is not supported or resolver is broken::,10000)")  
-
+ 
 def playsetresolved(url,name,iconimage):
     if 'channel.php' in url:
-        url = url + '&hash='
-        url = url + GetCompile('HASH')
-		
-	
+        if ResolveIT() == 1:
+            url = url + '&hash='
+            url = url + GetCompile('HASH')
+    url = url.replace('channel','channelx12')
     liz = xbmcgui.ListItem(name, iconImage=iconimage)
     liz.setInfo(type='Video', infoLabels={'Title':name})
     liz.setProperty("IsPlayable","true")
@@ -2218,7 +2175,7 @@ elif mode == 33:
 elif mode == 34:
 	AddNewFavortie()
 elif mode == 35:
-    x1Channels(url)
+    x1Channels()
 elif mode == 37:	
     Stream247(url)
 elif mode == 38:	
@@ -2318,6 +2275,10 @@ elif mode == 600:
     Xham_Cats(url)
 elif mode == 610:	
 	Xham_FindLinks(url)
+elif mode == 620:
+    StreamLive(url)
+elif mode == 630:
+    StreamLiveLink(name,url,iconimage)
 elif mode == 700:	
 	GetMovies(url)
 elif mode == 710:	

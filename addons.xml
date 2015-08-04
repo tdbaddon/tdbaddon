@@ -465,7 +465,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   <extension point="xbmc.service" library="service.py" start="login" />
 </addon>
 
-<addon id="plugin.video.zeus" name="[COLOR black].[/COLOR][COLOR yellow]ZEUS VIDEO[/COLOR]" version="1.0.4" provider-name="ZEUS">
+<addon id="plugin.video.zeus" name="[COLOR black].[/COLOR][COLOR yellow]ZEUS VIDEO[/COLOR]" version="1.0.5" provider-name="ZEUS">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.t0mm0.common" version="2.0.0"/>
