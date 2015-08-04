@@ -8,13 +8,13 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mp4
 0
 
 #EXTINF:0,ABC 
-http://93.174.95.125:1935/edge/_definst_/nz7l9vc5nv1og7b/playlist.m3u8?wowzasessionid=1419880374
+0
 
 #EXTINF:0,ABC Family
-http://93.174.95.125:1935/edge/_definst_/oeiigxxv1gbeqq9/playlist.m3u8?wowzasessionid=1420170560
+0
 
 #EXTINF:0,AMC 
-http://93.174.95.125:1935/edge/_definst_/z4cxm7zlfyqs65m/playlist.m3u8?wowzasessionid=1419872183
+0
 
 #EXTINF:0,BabyTV 
 0
@@ -29,7 +29,7 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/147.m3u8
 0
 
 #EXTINF:0,BET 
-http://93.174.95.125:1935/edge/_definst_/kexkxje3nqi6dtl/playlist.m3u8?wowzasessionid=1419880467
+0
 
 #EXTINF:0,Boomerang 
 0
@@ -110,9 +110,6 @@ http://198.179.31.198/live/2062.high.stream/2062.high.stream/index.m3u8
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/65.m3u8
 
 #EXTINF:0,Disney Channel 
-http://93.174.95.125:1935/edge/_definst_/2tag4dzgwof5ma2/playlist.m3u8?wowzasessionid=1420170412
-
-#EXTINF:0,Disney Channel 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/89.m3u8
 
 #EXTINF:0,Disney Junior 
@@ -139,14 +136,8 @@ http://46.249.213.87/iPhone/HLS_TS/broadcast/fashiontv-tablet.3gp/fashiontv-tabl
 #EXTINF:0,Film4 
 http://pebbles124-lh.akamaihd.net/i/film4_1@137790/master.m3u8|X-Forwarded-For=85.5.87.218
 
-#EXTINF:0,Film4 
-http://teleboy.customers.cdn.iptv.ch/4023/2290000/index.m3u8
-
 #EXTINF:0,Fine Living Network 
 0
-
-#EXTINF:0,Food Network 
-http://93.174.95.125:1935/edge/_definst_/qc6xkzf4h48bz2e/playlist.m3u8?wowzasessionid=1419873022
 
 #EXTINF:0,Food Network 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/53.m3u8
@@ -175,7 +166,7 @@ http://185.5.222.227:4242/bysid/5608
 #EXTINF:0,Fox TV 
 http://hls.svc.moyo.tv/hls/CH_FOX/variant.m3u8?version=2
 
-#EXTINF:0,FX
+#EXTINF:0,FX 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/14.m3u8
 
 #EXTINF:0,Global TV Halifax 
@@ -191,13 +182,7 @@ http://link.theplatform.com/s/dtjsEC/EqBPGYLY6fEx?feed=DEV%20Live%20Stream%20Fee
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/172.m3u8
 
 #EXTINF:0,Hallmark Channel 
-http://93.174.95.125:1935/edge/_definst_/v4ynnryunsoxzbq/playlist.m3u8?wowzasessionid=1419874236
-
-#EXTINF:0,Hallmark Channel 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/152.m3u8
-
-#EXTINF:0,HBO 
-http://93.174.95.125:1935/edge/_definst_/qzbbu26gcvjxksz/playlist.m3u8?wowzasessionid=1419907309
 
 #EXTINF:0,HBO 
 rtmp://94.102.49.207/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to/player/secure_player_iguide_token.swf live=1 pageUrl=http://www.iguide.to/view/1/watch-live-HBO-channel-for-free token=#ed%h0#w18623jsda6523lDGDVe
@@ -212,9 +197,6 @@ rtmp://89.248.168.57:1935/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.igui
 http://50.7.207.114:80/sinema2?lives/origin03/hbohd.isml/hbohd-2096k
 
 #EXTINF:0,HGTV 
-http://93.174.95.125:1935/edge/_definst_/gj65q2rg18tpmut/playlist.m3u8?wowzasessionid=1419811602
-
-#EXTINF:0,HGTV 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/52.m3u8
 
 #EXTINF:0,HSN
@@ -223,7 +205,7 @@ rtsp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:420p500kB31
 #EXTINF:0,HSN2 
 rtmp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:468p500kB31?b?b*t$ playpath=mp4:468p500kB31
 
-#EXTINF:0,IFC
+#EXTINF:0,IFC 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/178.m3u8
 
 #EXTINF:0,Irish TV 
@@ -248,7 +230,7 @@ rtmp://jtvmedia.jtv.com:1975/live playpath=live6 swfUrl=http://demandware.edgesu
 0
 
 #EXTINF:0,Lifetime Network 
-http://93.174.95.125:1935/edge/_definst_/7b2gr554gyyth8e/playlist.m3u8?wowzasessionid=1419879018
+0
 
 #EXTINF:0,London Live 
 http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
@@ -291,9 +273,6 @@ http://194.44.229.77:777/udp/237.1.239.14:1234
 
 #EXTINF:0,PBS 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/21.m3u8
-
-#EXTINF:0,Showtime 
-http://93.174.95.125:1935/edge/_definst_/bwbop58ixz281wv/chunklist.m3u8?wowzasessionid=1419875151
 
 #EXTINF:0,Showtime 
 http://80.80.160.168/live/7/live.m3u8
@@ -380,12 +359,9 @@ http://80.80.160.168/live/2/live.m3u8
 http://194.44.229.77:777/udp/237.1.239.23:1234
 
 #EXTINF:0,TNT 
-http://93.174.95.125:1935/edge/_definst_/7uz4als3nigi0j3/playlist.m3u8?wowzasessionid=1420124827
-
-#EXTINF:0,TNT 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/84.m3u8
 
-#EXTINF:0,Tom & Jerry TV A
+#EXTINF:0,Tom & Jerry TV 
 rtmp://208.53.180.218/ctv playpath=tom swfUrl=http://www.carolineoliveira.com.br/swf/player.swf live=1 pageUrl=http://carolineoliveira.com.br/tvamigos/tomejerry.html
 
 #EXTINF:0,Tru TV 
@@ -422,10 +398,7 @@ http://hls.svc.moyo.tv/hls/CH_TV1000ACTION/variant.m3u8?version=2
 http://hls.svc.moyo.tv/hls/CH_UNIVERSAL/variant.m3u8?version=2
 
 #EXTINF:0,USA Network 
-http://93.174.95.125:1935/edge/_definst_/h5eovaj1jeegluq/playlist.m3u8?wowzasessionid=1420249300
-
-#EXTINF:0,USA Network 
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/50.m3u8
+0
 
 #EXTINF:0,Victoria Secret TV
 http://stream02.yamgo.com/iPhone/HLS_TS/broadcast/victorias_secret_angels-tablet.3gp/victorias_secret_angels-tablet.3gp-mr648k.m3u8
@@ -436,5 +409,5 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/135.m3u8
 #EXTINF:0,WB
 0
 
-#EXTINF:0,World Fashion
+#EXTINF:0,World Fashion 
 http://btv-net.mediacdn.ru/TVB7/wfhdeu/playlist.m3u8

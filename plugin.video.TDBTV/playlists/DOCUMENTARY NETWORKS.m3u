@@ -17,9 +17,6 @@ http://balkanstream.com/stream/animalplanet/rajko/rajko
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/22.m3u8
 
 #EXTINF:0,Discovery Channel 
-http://93.174.95.125:1935/edge/_definst_/ishyd3sopok3p27/playlist.m3u8?wowzasessionid=1419872569
-
-#EXTINF:0,Discovery Channel 
 http://80.80.160.168/live/8/live.m3u8
 
 #EXTINF:0,Discovery Channel 
@@ -31,7 +28,7 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/11.m3u8
 #EXTINF:0,Discovery H&H
 0
 
-#EXTINF:0,Discovery News
+#EXTINF:0,Discovery News 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/46.m3u8
 
 #EXTINF:0,Discovery Science 
@@ -41,7 +38,7 @@ http://80.80.160.168/live/9/live.m3u8
 0
 
 #EXTINF:0,Discovery World 
-http://metro.noip.me:1234/udp/239.0.0.90:1234
+0
 
 #EXTINF:0,Flite Level TV
 rtmp://streaming.krautzer-lynn.com:1935/live/Stream4
@@ -54,9 +51,6 @@ http://link.theplatform.com/s/dtjsEC/chjdYJxKb44V?manifest=m3u&feed=History%20Li
 
 #EXTINF:0,History Channel 
 https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8?hdnea=ip=174.113.30.187~st=1427694727~exp=1427695327~acl=/i/*~id=a86de0c2-ad09-4469-9a63-6ebbc1bba4d3~hmac=ac144089000bdd16f6916c517ce3e6e04813d4de11ac16839ad468a977ec80b1
-
-#EXTINF:0,Investigation Discovery 
-http://93.174.95.125:1935/edge/_definst_/yjma618cibkqxeo/chunklist.m3u8?wowzasessionid=1420168729
 
 #EXTINF:0,Investigation Discovery 
 http://80.80.160.168/live/5/live.m3u8
@@ -80,9 +74,6 @@ http://194.44.229.77:777/udp/237.1.238.10:1234
 http://194.44.229.77:777/udp/237.1.239.22:1234
 
 #EXTINF:0,National Geographic 
-http://93.174.95.125:1935/edge/_definst_/qzsfigd1y3bgbhs/playlist.m3u8?wowzasessionid=1420249412
-
-#EXTINF:0,National Geographic 
 http://185.5.40.101/hls/session-10326907gnZKxnzwfY/CH_NATGEO/variant.m3u8?version=2 
 
 #EXTINF:0,National Geographic 
@@ -97,7 +88,7 @@ http://80.80.160.168/live/4/live.m3u8
 #EXTINF:0,RT News Documentary 
 http://rt-a.akamaihd.net/ch_05@325609/master.m3u8 
 
-#EXTINF:0,Ted TV
+#EXTINF:0,Ted TV 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/88.m3u8
 
 #EXTINF:0,Travel Channel 

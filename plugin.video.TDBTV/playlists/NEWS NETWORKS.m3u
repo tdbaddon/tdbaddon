@@ -74,7 +74,7 @@ rtmp://edge1.everyon.tv/etv1sb/pld16
 0
 
 #EXTINF:0,CPAC 
-http://bcliveuniv-lh.akamaihd.net/i/cpac1flr2014_01@51230/index_2000_av-p.m3u8
+0
 
 #EXTINF:0,CSPAN
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/80.m3u8
@@ -107,16 +107,10 @@ rtsp://ewns-hls-b-stream.hexaglobe.net/rtpeuronewslive/en_vidan350_rtp.sdp?
 rtsp://ewns-hls-b-stream.hexaglobe.net/rtpeuronewslive/en_vidan750_rtp.sdp
 
 #EXTINF:0,Fox News 
-http://93.174.95.125:1935/edge/_definst_/ohn58e97er36vjr/playlist.m3u8?wowzasessionid=1420123821
-
-#EXTINF:0,Fox News 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/35.m3u8
 
 #EXTINF:0,Fox News 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/42.m3u8
-
-#EXTINF:0,France 24 
-http://hlsstr02.svc.iptv.rt.ru/hls/CH_FRANCE24/variant.m3u8?b?b*t$
 
 #EXTINF:0,France 24 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/225.m3u8
@@ -135,9 +129,6 @@ rtmp://cdn.rbm.tv:1935/rightbrainmedia-originpull-2/_definst_/247daily2
 
 #EXTINF:0,MSNBC 
 rtmp://d.cdn.newschat.tv/edge playpath=msnbc_live swfUrl=http://msnbclive.eu/player.swf live=1 pageUrl=http://www.livenewschat.eu/politics/
-
-#EXTINF:0,MSNBC 
-http://93.174.95.125:1935/edge/_definst_/1ioc7taql4472xs/playlist.m3u8?wowzasessionid=1419874712
 
 #EXTINF:0,MSNBC 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/230.m3u8

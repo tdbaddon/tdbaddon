@@ -64,8 +64,8 @@ rtmp://stream.smcloud.net/live2/eska_rock/eska_rock_720p
 #EXTINF:0,Eska Rock 
 rtmp://stream.smcloud.net/live2/eska_rock/eska_rock_480p
 
-#EXTINF:0,Gold Tv
-http://87.248.160.8/edge/smil:goldtv/playlist.m3u8
+#EXTINF:0,Gold TV 
+0
 
 #EXTINF:0,Heart TV 
 http://ooyalahd2-f.akamaihd.net/i/globalradio02_delivery@156522/master.m3u8
@@ -80,25 +80,19 @@ http://stream01.yamgo.com/iPhone/HLS_TS/broadcast/ibiza_on_tv-tablet.3gp/ibiza_o
 rtmp://tst.es.flash.glb.ipercast.net/tst.es-live/live
 
 #EXTINF:0,MTV 
-http://93.174.95.125:1935/edge/_definst_/d2z1vc4ahrl6x26/playlist.m3u8?wowzasessionid=1420171062
-
-#EXTINF:0,MTV 
 rtmp://83.218.202.202/live swfUrl=http://webtv.md/swf/WebTV.swf playpath=wt_mtv.stream
 
 #EXTINF:0,MTV 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/156.m3u8
 
 #EXTINF:0,MTV Dance 
-http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVDANCE/variant.m3u8
-
-#EXTINF:0,MTV Hits 
-http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVHITS/variant.m3u8
+0
 
 #EXTINF:0,MTV Hits 
 http://194.44.229.77:777/udp/237.1.238.1:1234
 
 #EXTINF:0,MTV Rocks 
-http://hlsstr02.svc.iptv.rt.ru/hls/CH_MTVROCKS/variant.m3u8
+0
 
 #EXTINF:0,MusicVoxTV 
 rtmp://stream.smcloud.net/live2/vox/vox_720p
@@ -140,17 +134,10 @@ http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch3/06/prog_index.m3u8
 http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/06/prog_index.m3u8
 
 #EXTINF:0,VH1 
-http://hlsstr02.svc.iptv.rt.ru/hls/CH_VH1EUROPEAN/variant.m3u8
-
-#EXTINF:0,VH1 
-http://93.174.95.125:1935/edge/_definst_/oeiigxxv1gbeqq9/manifest.m3u8?wowzasessionid=1420170560
-
-#EXTINF:0,VH1 Classics 
-http://hlsstr02.svc.iptv.rt.ru/hls/CH_VH1CLASSIC/variant.m3u8
+0
 
 #EXTINF:0,VH1 Classics
 http://hls.svc.moyo.tv/hls/CH_VH1/variant.m3u8?version=2
 
 #EXTINF:0,Virgin TV 
 rtmp://fms.105.net:1935/live/virgin2
-
