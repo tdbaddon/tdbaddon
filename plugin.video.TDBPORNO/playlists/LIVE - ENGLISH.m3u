@@ -13,6 +13,15 @@ http://199.195.195.108:32005
 #EXTINF:0,ADULT CHANNEL 
 http://199.195.195.108:32006
 
+#EXTINF:0,BABES
+http://tvservice.broke-it.net:8000/live/HDMIGiu/francia1/1120.ts
+
+#EXTINF:0,BABES
+http://tvservice.broke-it.net:8000/live/HDMIGiu/francia1/1121.ts
+
+#EXTINF:0,BABES
+http://tvservice.broke-it.net:8000/live/HDMIGiu/francia1/1122.ts
+
 #EXTINF:0,BELLA CLUB 
 rtsp://46.249.213.87/broadcast/bellaluz-tablet.3gp
 
@@ -23,16 +32,16 @@ rtmp://edge2.everyon.tv/etv2sb/phd511
 rtmp://edge2.everyon.tv/etv2sb/pld511
 
 #EXTINF:0,BLUE HUSTLER
-0
+WWW.TCOMPUTERS.CA
 
 #EXTINF:0,BRASILEIRINHAS 
 http://62.210.82.241:8081/brasileirinhas/brasileirinhas/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9NS8yMC8yMDE1IDEyOjE5OjE2IEFNJmhhc2hfdmFsdWU9ZDlXWkZjUlc4RTVINGZjRkcxNlNDUT09JnZhbGlkbWludXRlcz0zMDA=
 
 #EXTINF:0,BRAZZERS TV EUROPE 
-0
+WWW.TCOMPUTERS.CA
 
 #EXTINF:0,BUNGA BUNGA 
-0
+WWW.TCOMPUTERS.CA
 
 #EXTINF:0,BUTGO 
 rtmp://edge2.everyon.tv/etv2sb/phd772
@@ -41,31 +50,34 @@ rtmp://edge2.everyon.tv/etv2sb/phd772
 rtmp://edge2.everyon.tv/etv2sb/pld772
 
 #EXTINF:0,CENTOX CENTO 
-0
-
-#EXTINF:0,DORCEL TV HD
-0
+WWW.TCOMPUTERS.CA
 
 #EXTINF:0,DORCEL TV 
 http://62.210.82.241:8081/sexzonehd/sexzonehd/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9NS8yMC8yMDE1IDEyOjIwOjQzIEFNJmhhc2hfdmFsdWU9bXdZbnIwM2V4NE5jNXY4YnpNb2dtZz09JnZhbGlkbWludXRlcz0zMDA=
 
 #EXTINF:0,DREAMGIRLS NETWORK
-0
+WWW.TCOMPUTERS.CA
 
 #EXTINF:0,EROTIC TV 
-0
+WWW.TCOMPUTERS.CA
 
 #EXTINF:0,EROX 
-0
+WWW.TCOMPUTERS.CA
 
 #EXTINF:0,ERO XXX
-0
+WWW.TCOMPUTERS.CA
 
 #EXTINF:0,EXOTICA TV 
-0
+WWW.TCOMPUTERS.CA
 
 #EXTINF:0,FRENCHLOVER 
-0
+WWW.TCOMPUTERS.CA
+
+#EXTINF:0,HOT CLUB
+http://tvservice.broke-it.net:8000/live/HDMIGiu/francia1/1020.ts
+
+#EXTINF:0,HOT CLUB
+http://tvservice.broke-it.net:8000/live/HDMIGiu/francia1/1021.ts
 
 #EXTINF:0,HOT SHOTS
 http://46.249.213.93/iPhone/HLS_TS/broadcast/hotshots-tablet.3gp/hotshots-tablet.3gp-mr649k.m3u8
@@ -73,29 +85,32 @@ http://46.249.213.93/iPhone/HLS_TS/broadcast/hotshots-tablet.3gp/hotshots-tablet
 #EXTINF:0,HOOOTERS CALENDER GIRLS
 http://46.249.213.93/iPhone/broadcast/hot100-tablet.3gp/hot100-tablet.3gp-mr647k.m3u8?trackingid=4541740000&os=desktop
 
-#EXTINF:0,HUSTLER HD 
-0
-
 #EXTINF:0,HUSTLER TV 
-0
+WWW.TCOMPUTERS.CA
 
 #EXTINF:0,ILIVE 1
-0
+WWW.TCOMPUTERS.CA
 
 #EXTINF:0,INGILTERE 
-0
+WWW.TCOMPUTERS.CA
 
 #EXTINF:0,JASMIN TV
 rtmp://109.71.162.112:1935/live/sd.jasminchannel.stream
+
+#EXTINF:0,MAX PRIME
+http://iptvmx.ddns.net/forocable/forocable/169.ch
+
+#EXTINF:0,MAX PRIME
+http://iptvmx.ddns.net/forocable/forocable/170.ch
 
 #EXTINF:0,MIAMI TV 
 http://k4.usastreams.com:1935/miamitv/miamitv/chunklist_w128908539.m3u8
 
 #EXTINF:0,NUBILE FILMS 
-0
+WWW.TCOMPUTERS.CA
 
 #EXTINF:0,NUART 
-0
+WWW.TCOMPUTERS.CA
 
 #EXTINF:0,O LA LA 
 http://185.5.40.101/hls/session-4677617QfHCCZsLqE/CH_OLALA/bw1758000/variant.m3u8?version=1
@@ -104,13 +119,13 @@ http://185.5.40.101/hls/session-4677617QfHCCZsLqE/CH_OLALA/bw1758000/variant.m3u
 http://publish.thewebstream.co:1935/leved/_definst_/passielivestream/playlist.m3u8
 
 #EXTINF:0,PENTHOUSE
-0
+WWW.TCOMPUTERS.CA
 
 #EXTINF:0,PINK EROTIC 
-0
+WWW.TCOMPUTERS.CA
 
 #EXTINF:0,PINKO TV
-0
+WWW.TCOMPUTERS.CA
 
 #EXTINF:0,PLAYBOY SPICE 
 rtmp://edge2.everyon.tv/etv2sb/phd499
@@ -121,14 +136,20 @@ rtmp://edge2.everyon.tv/etv2sb/pld499
 #EXTINF:0,PLAYBOY TV 
 http://f1.mnogo-tv.com/ott-tv/1167/1433972580/7e5b62bec54ebc00c7ac295d5629e790/hls/PLboi/index.m3u8
 
+EXTINF:0,PLAYBOY TV 
+http://iptvmx.ddns.net/forocable/forocable/177.ch
+
 #EXTINF:0,PLATINUM TV 
-0
+WWW.TCOMPUTERS.CA
 
 #EXTINF:0,PRIVATE 
 http://178.33.126.213:1935/leved/privateCom/.m3u8
 
+#EXTINF:0,PRIVATE 
+http://tvservice.broke-it.net:8000/live/HDMIGiu/francia1/1572.ts
+
 #EXTINF:0,PURE MATURE
-0
+WWW.TCOMPUTERS.CA
 
 #EXTINF:0,REDLIGHT PREMIUM 
 rtmp://94.242.228.182/yoy/_definst_/251
@@ -136,47 +157,56 @@ rtmp://94.242.228.182/yoy/_definst_/251
 #EXTINF:0,REDLIGHT PREMIUM 
 http://46.181.237.75:1234/udp/239.255.42.217:1234
 
+#EXTINF:0,REDLIGHT PREMIUM 
+http://tvservice.broke-it.net:8000/live/HDMIGiu/francia1/2462.ts
+
 #EXTINF:0,REDTUBE
-0
+WWW.TCOMPUTERS.CA
 
 #EXTINF:0,RUSSIAN NIGHT 
-0
+WWW.TCOMPUTERS.CA
 
 #EXTINF:0,RUSSIAN NIGHT CLUB TV 
-0
+WWW.TCOMPUTERS.CA
 
 #EXTINF:0,SATISFACTION HD 
 rtmp://main2sb.everyon.tv:1935/etv2sb/_definst_/pld499
 
 #EXTINF:0,SCT 
-0
+WWW.TCOMPUTERS.CA
 
 #EXTINF:0,SEX ED 
-0
+WWW.TCOMPUTERS.CA
 
 #EXTINF:0,SEX PRIVE 
-0
+WWW.TCOMPUTERS.CA
 
-#EXTINF:0,SEXT SENSO
-0
+#EXTINF:0,SEXT 6 SENSO
+WWW.TCOMPUTERS.CA
+
+#EXTINF:0,SEXTREME
+http://iptvmx.ddns.net/forocable/forocable/177.ch
 
 #EXTINF:0,SEXYHOT 
-0
+WWW.TCOMPUTERS.CA
 
 #EXTINF:0,SUPERONE 
-0
+WWW.TCOMPUTERS.CA
 
 #EXTINF:0,TELEITALIA 
-0
+WWW.TCOMPUTERS.CA
 
 #EXTINF:0,VENUS
-0
+http://iptvmx.ddns.net/forocable/forocable/178.ch
 
 #EXTINF:0,VISIT X 
-0
+WWW.TCOMPUTERS.CA
 
 #EXTINF:0,X DESIRE 
-0
+WWW.TCOMPUTERS.CA
+
+#EXTINF:0,XTSY
+http://iptvmx.ddns.net/forocable/forocable/179.ch
 
 #EXTINF:0,XXX 
 http://199.195.195.108:32003

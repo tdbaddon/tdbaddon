@@ -1,6 +1,12 @@
 ﻿#EXTM3U
 
 
+#EXTINF:0,ASIAN XXX 
+http://199.195.195.108:32003
+
+#EXTINF:0,ASIAN XXX 
+http://59.120.43.181:8081
+
 #EXTINF:0,ASK TV
 rtmp://edge2.everyon.tv/etv2/phd1005
 
@@ -102,9 +108,3 @@ rtmp://edge2.everyon.tv/etv2sb/phd771
 
 #EXTINF:0,THE O
 rtmp://edge2.everyon.tv/etv2sb/pld771
-
-#EXTINF:0,ASIAN XXX 
-http://199.195.195.108:32003
-
-#EXTINF:0,ASIAN XXX 
-http://59.120.43.181:8081
