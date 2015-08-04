@@ -1,3 +1,6 @@
+v1.0.5
+added kodimediaportal
+
 v1.0.3
 added the allcinemamovies.com site
 

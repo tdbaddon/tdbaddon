@@ -41,7 +41,7 @@ http://urtmpkal-f.akamaihd.net/i/077zoqxzy_1@130091/index_3_av-p.m3u8#MegaIPTVAr
 http://38.104.228.230:1938/info7/info7_512/playlist.m3u8
 
 #EXTINF:0,Bandamax
-0
+http://iptvmx.ddns.net/forocable/forocable/134.ch
 
 #EXTINF:0,Cadena 3
 0
@@ -49,50 +49,89 @@ http://38.104.228.230:1938/info7/info7_512/playlist.m3u8
 #EXTINF:0,Campus TV
 http://wow2.cl.digitalproserver.com/campustv/campustvvivo/campustv.smil/chunklist_w662421777_b848000.m3u8
 
-#EXTINF:0,Canal 2 
+#EXTINF:0,Canal 02 
 http://74.63.97.188:1935/gpacifico2/videogpacifico2/chunklist_w609004457.m3u8
 
-#EXTINF:0,Canal 2 
+#EXTINF:0,Canal 02 
 http://190.57.237.214/live/canal.m3u8
 
-#EXTINF:0,Canal 2 
+#EXTINF:0,Canal 02 
 rtmp://201.219.100.30:1935/telpintv/ttv.stream_720p
 
-#EXTINF:0,Canal 2 
+#EXTINF:0,Canal 02 
 http://mek4.mekstream.com/teleantillas/live3/hasbahca.m3u8
 
-#EXTINF:0,Canal 4
+#EXTINF:0,Canal 03
+http://74.63.97.188:1935/gpacifico1/videogpacifico1/playlist.m3u8
+
+#EXTINF:0,Canal 03
+http://72.46.226.61/live01/canal31/playlist.m3u8
+
+#EXTINF:0,Canal 04
 rtmp://streaming.wirenetserver.com.ar/canal4/live_1
 
-#EXTINF:0,Canal 5 
+#EXTINF:0,Canal 04
+http://xvivatvcanal4arequipax.api.channel.livestream.com/3.0/playlist.m3u8
+
+#EXTINF:0,Canal 04
+http://185417-f.akamaihd.net/i/n0tf0r0_1@81283/index_1200_av-b.m3u8
+
+#EXTINF:0,Canal 04
+rtmp://streamlky.alsolnet.com/canal4/live
+
+#EXTINF:0,Canal 04
+http://72.46.226.61/live01/canal41/playlist.m3u8
+
+#EXTINF:0,Canal 05 
 rtmp://v1.streaminglatinoamerica.com/canal5/canal5
 
-#EXTINF:0,Canal 5 
+#EXTINF:0,Canal 05 
 rtmp://c5n.stweb.tv:1935/c5n/live
 
-#EXTINF:0,Canal 6
+#EXTINF:0,Canal 06
 rtmp://k3.usastreams.com:1935/cana6/cana6
 
-#EXTINF:0,Canal 7 
+#EXTINF:0,Canal 06
+http://antena3-aos1-apple-live.adaptive.level3.net/apple/antena3/channel02/la_sexta_hd_1548K_1280x720_main.m3u8
+
+#EXTINF:0,Canal 06
+http://72.46.226.61/live01/canal61/playlist.m3u8
+
+#EXTINF:0,Canal 06
+http://162.212.176.83:8080/canal6.stream.m3u8?
+
+#EXTINF:0,Canal 07 
 http://ecuadortv_livehd-lh.akamaihd.net/i/0n0xzqt3o_1@323283/master.m3u8#alxvill
 
-#EXTINF:0,Canal 7 
+#EXTINF:0,Canal 07 
 http://72.46.226.61/live01/canal71/playlist.m3u8#MegaIPTVArgentina
 
-#EXTINF:0,Canal 7 
+#EXTINF:0,Canal 07 
 http://74.63.97.188:1935/gpacifico4/videogpacifico4/chunklist_w1774114891.m3u8?
 
-#EXTINF:0,Canal 9 
+#EXTINF:0,Canal 09 
 http://ionlive1-lh.akamaihd.net/i/canal9_1@125365/master.m3u8
 
-#EXTINF:0,Canal 9 
+#EXTINF:0,Canal 09 
 http://xcanal9saltax.api.channel.livestream.com/3.0/playlist.m3u8
 
+#EXTINF:0,Canal 09 
+http://wow2.cl.digitalproserver.com/c9//c9.smil/playlist.m3u8?
+
 #EXTINF:0,Canal 26 
-0
+rtsp://live-edge01.telecentro.net.ar:80/live/26hd-360
+
+#EXTINF:0,Canal 26 
+rtsp://live-edge01.telecentro.net.ar:1935/live/26hd-720
 
 #EXTINF:0,Canal 27 
 http://cdn.siscompnetwork.com:1935/app/canal27.sdp/playlist.m3u8
+
+#EXTINF:0,Canal 28
+http://web.xnet.mx:1935/xnetn/canal283/playlist.m3u8
+
+#EXTINF:0,Canal 28
+http://web.xnet.mx:1935/xnetn/canal282/playlist.m3u8
 
 #EXTINF:0,Canal 41
 rtmp://painel.serveron.com.br/8172/8172
@@ -110,7 +149,10 @@ rtmp://painel.serveron.com.br:1935/8168/8168
 http://cdns840stu1010.multistream.net/canalcapitallive/amlst:live/master.m3u8
 
 #EXTINF:0,Canal Once 
-0
+http://www.oncetvmexicolive.tv:1935/livepkgr2/smil:int.smil/playlist.m3u8?
+
+#EXTINF:0,Canal Once 
+http://xcanaloncepuntadelestex.api.channel.livestream.com/3.0/playlist.m3u8
 
 #EXTINF:0,Canal Rural 
 rtsp://streamrural.cmd.com.ar:554/liverural/crural/rural1
@@ -134,7 +176,7 @@ http://38.96.148.216:1935/live/canelatv/playlist.m3u8
 http://187.237.253.94:8134/hls-live/livepkgr/_definst_/liveevent.m3u8
 
 #EXTINF:0,Casa
-0
+http://iptvmx.ddns.net/forocable/forocable/114.ch
 
 #EXTINF:0,CDN 37
 http://108.168.206.90:1935/cdn/cdn/playlist.m3u8
@@ -160,17 +202,19 @@ http://184.164.158.202:1936/48/smil:48.smil/playlist.m3u8
 #EXTINF:0,De Pelicula
 0
 
-#EXTINF:0,Distrito Comedia
-0
+#EXTINF:0,Distrito Comedia 
+http://iptvmx.ddns.net/forocable/forocable/118.ch
 
 #EXTINF:0,Ecotel TV 
 rtmp://enhd.co:1935/ecoteltv/ecoteltv
 
 #EXTINF:0,Efekto TV 
-0
+http://iptvmx.ddns.net/forocable/forocable/121.ch
 
 #EXTINF:0,El Trece 
-0
+rtsp://stream.eltrecetv.com.ar/live13/13tv/13tv1
+#EXTINF:0,El Trece 
+http://aztecalive-lh.akamaihd.net/i/0oxnvzh8a_1@175671/index_1_av-b.m3u8
 
 #EXTINF:0,ESNE TV
 http://198.154.228.82:1935/live/esnetv/playlist.m3u8
@@ -184,8 +228,8 @@ http://rightbrainmedia.mpl.miisolutions.net/rightbrainmedia-live-244/_definst_/m
 #EXTINF:0,Galicia
 http://media3.crtvg.es/live/tvga/.m3u8
 
-#EXTINF:0,Glitz
-0
+#EXTINF:0,Glitz 
+http://iptvmx.ddns.net/forocable/forocable/116.ch
 
 #EXTINF:0,Guatevision TV
 http://bravo967.sysvirtuales.com/live/stream1.sdp/playlist.m3u8
@@ -233,7 +277,7 @@ rtmp://87.106.232.7/live/myStream_2
 0
 
 #EXTINF:0,Once TV
-0
+http://www.oncetvmexicolive.tv:1935/livepkgr2/smil:int.smil/playlist.m3u8
 
 #EXTINF:0,Orbe 21
 http://urtmpkal-f.akamaihd.net/i/1b6mj17sk_1@308700/master.m3u8
@@ -283,8 +327,8 @@ http://cdns840stu1010.multistream.net/telecaribelive/amlst:live/master.m3u8
 #EXTINF:0,Telemetro
 http://live.telemetro.com/telemetro/tm.smil/playlist.m3u8
 
-#EXTINF:0,Telemundo
-0
+#EXTINF:0,Telemundo 
+http://iptvmx.ddns.net/forocable/forocable/58.ch
 
 #EXTINF:0,TeleSur TV
 http://cdn2.telesur.ultrabase.net/livecf/telesurLive/chunklist.m3u8
@@ -295,8 +339,8 @@ http://186.155.200.118:1935/live/telemusica/playlist.m3u8
 #EXTINF:0,TINN
 0
 
-#EXTINF:0,TINovelas
-0
+#EXTINF:0,TINovelas 
+http://iptvmx.ddns.net/forocable/forocable/61.ch
 
 #EXTINF:0,TiVa
 http://live-h1.frontlayer.net/fl729845/live/live.m3u8?wowzasessionid=1243637292
@@ -306,6 +350,9 @@ http://live-h1.frontlayer.net/fl729845/live/live.m3u8?wowzasessionid=1243637292
 
 #EXTINF:0,Trece 
 http://aztecalive-lh.akamaihd.net/i/0oxnvzh8a_1@175671/index_1_av-b.m3u8
+
+#EXTINF:0,Trece 
+http://cdns840stu1010.multistream.net/canaltr3celive/live-500/PAZ.m3u8
 
 #EXTINF:0,TV Chile
 http://edge-61-cl.edge.mdstrm.com/tvn-live/_definst_/smil:285a5c6dade574d5f111419c85c6cf17/chunklist_b800000.m3u8
@@ -325,8 +372,8 @@ rtmp://87.106.220.67/live/myStream_2
 #EXTINF:0,TV Senado
 http://senadortmp.janus.cl/senadotv/senado600/HasBahCa.m3u8
 
-#EXTINF:0,TVE
-0
+#EXTINF:0,TVE 
+http://iptvmx.ddns.net/forocable/forocable/324.ch
 
 #EXTINF:0,TVN 
 http://xtvncanalecx.api.channel.livestream.com/3.0/playlist.m3u8
@@ -340,8 +387,8 @@ http://xtvocanal23x.api.channel.livestream.com/3.0/playlist.m3u8
 #EXTINF:0,UCSG TV
 rtmp://ecuastream.net:1935/UCSGHQ/UCSGHQ
 
-#EXTINF:0,Unicable
-0
+#EXTINF:0,Unicable 
+http://iptvmx.ddns.net/forocable/forocable/99.ch
 
 #EXTINF:0,UNO TV
 0

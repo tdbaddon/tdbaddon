@@ -12,30 +12,47 @@ fanart = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id , '
 baseurl = 'dummy'
 net = Net()
 
+
+baseurl1 = 'http://kodimediaportal.ml/smf/index.php?board=2.0'
+
+
 #http://watch-free-movies-streaming.com/
 baseurl101 = 'http://vodlocker.tv'
-baseurl102 = 'http://alluc.com'
+baseurl102 = 'http://www.alluc.com'
 #http://movies-search-engine.com/
 #http://watch-streaming-movies.com/
 #http://wawashare.com/
+##http://stagevu.com/
+##http://online-tvseries.com/
 
-
+#http://misspremieretv.com/2014/09/
 #http://series-cravings.me/
 #http://www.tvids.net/
 #http://tvstream.ch/
 #http://geektv.me/
 #http://tvoox.com/
 #http://watchtvlinks.ag/
-
-
+########http://fullepisode.info/
 #http://hdfull.tv
 
+##http://motionempire.org/  mix of everything
+##http://crackmovies.com/
+##http://k-films.net/
+##http://sceper.ws/2015/06/ted-2-2015-1080p-hdcam-x264-ac3-mrg.html
+##http://webmaster-connect.me/2014/08/fast-n-loud-s05e01-chopped-and-dropped-model-a-part1.html
+##http://watchseries-online.ch/
+##http://watchmovies-online.ch/
 baseurl50 = 'http://www.filmovizija.in'
 #http://watchmovies-online.ch/hellboy-2004/  1080p
 #http://pandamovie.me/
 #http://tvoox.com/
 baseurl150 = 'http://www.badassmovies4u.com/'
 baseurl200 = 'http://www.allcinemamovies.com'
+##http://www.movie25.cz/
+##http://rlsbb.com/fast-n-loud-s05e01-720p-hdtv-x264-dhd/  hd bluray 1080 movies
+##http://www.newvideoz.com/
+##http://board.dailyflix.net/  forum hd links
+
 
 
 baseurl5001 = 'http://www.hack-sat.com/iptv.php'
@@ -44,9 +61,14 @@ baseurl5001 = 'http://www.hack-sat.com/iptv.php'
 baseurl5002 = 'http://iptv.filmover.com'
 baseurl5010 = 'http://www.iptvsharing.com/2015/07/sport-klub-iptv-links-m3u8.html'
 baseurl5020 = 'http://67.159.5.242/ip-1/encoded/Oi8vcGFzdGViaW4uY29tL2hxNlBKWVpS'
+baseurl5030 = 'http://free-links-iptv.blogspot.co.uk'
+
+
+
 def INDEX():
         addDir('Super Search','url',100,'','','')
         addDir('IPTV','url',5000,'','','')
+        addDir('kodimediaportal.ml',baseurl1,4000,'','','')
         addDir('www.badassmovies4u.com',baseurl150,150,'','','')
         addDir('www.filmovizija.in',baseurl150,50,'','','')
         addDir('www.allcinemamovies.com','url',200,'','','')
@@ -390,12 +412,37 @@ def BASE200TSEARCH():
 ############################################################################################################################
 
 ############################################################################################################################
+
+def KMPINDEX(url):
+        link = OPEN_URL(url)
+        match=re.compile('<span id=".+?"><a href="(.+?)">(.+?)</a></span>').findall(link)
+        for url,name in match:
+                name = name.replace('&amp;','&')
+                addDir('[COLOR white]%s[/COLOR]' %name,url,4001,'','','')
+
+
+def KMPL(url):
+        link = OPEN_URL(url)
+        try:
+                match=re.compile('&lt;item&gt;<br />&lt;title&gt;(.+?)&lt;/title&gt;<br />&lt;link&gt;(.+?)&lt;/link&gt;<br />&lt;thumbnail&gt;(.+?)&lt;/thumbnail&gt;<br />&lt;/item&gt;</div>').findall(link)
+                for name,url,thumb in match:
+                        name = name.replace('&amp;','&')
+                        addDir('[COLOR white]%s[/COLOR]' %name,url,1,thumb,'','')
+        except: pass
+
+        try:
+                match=re.compile('&lt;item&gt;<br />&lt;title&gt;(.+?)&lt;/title&gt;<br />&lt;link&gt;<a href="(.+?)" class="bbc_link" target="_blank">.+?</a>&lt;/link&gt;<br />&lt;thumbnail&gt;<a href="(.+?)" class="bbc_link" target="_blank">.+?</a>&lt;/thumbnail&gt;<br />&lt;/item&gt;').findall(link)
+                for name,url,thumb in match:
+                        name = name.replace('&amp;','&')
+                        addDir('[COLOR white]%s[/COLOR]' %name,url,1,thumb,'','')
+        except: pass
+
 ############################################################################################################################
 
 ############################################################################################################################
 
 def SS():
-        addDir('Alluc Super Search',baseurl102,102,'','','')
+        #addDir('Alluc Super Search',baseurl102,102,'','','')
         addDir('Filmovizija Search','url',105,'','','')
         addDir('Vodlocker Search',baseurl101,101,'','','')
         addDir('Allcinemamovies Search','url',106,'','','')
@@ -477,12 +524,14 @@ def IPTV():
         addDir('iptv.filmover.com',baseurl5002,5002,'','','')
         #addDir('www.iptvsharing.com/2015/07/sport-klub-iptv-links-m3u8.html',baseurl5010,5003,'','','')
         #addDir('www.iptvsharing.com/2015/07/sport-klub-iptv-links-m3u8.html',baseurl5020,5003,'','','')
+        addDir('free-links-iptv.blogspot.co.uk',baseurl5030,5030,'','','')
         
 
 def BASE5001(url):
         link = OPEN_URL(url)
         match=re.compile('#EXTINF.+?,(.+?)\n(.+?)\n').findall(link)
         for name,url in match:
+                url = url.replace('#extinf:0,','')
                 addDir('[COLOR white]%s[/COLOR]' %name,url,1,'','','')
 
 def BASE5002(url):
@@ -507,6 +556,45 @@ def BASE5002L(url):
                         addDir('[COLOR white]%s[/COLOR]' %name,'rtmp://'+url,1,'','','')
         except: pass
 
+
+def BASE5030(url):
+        link = OPEN_URL(url)
+        match=re.compile("<a href='(.+?)' title='(.+?)'>Read more &#187;</a>").findall(link)
+        match1=re.compile("<a dir='ltr' href='(.+?)'>(.+?)</a>").findall(link)
+        try:
+                for url,name in match:
+                        name = name.replace('&amp;','&')
+                        addDir('[COLOR white]%s[/COLOR]' %name,url,5031,'','','')
+        except: pass
+
+        try:
+                for url,name in match1:
+                        name = name.replace('&amp;','&')
+                        addDir('[COLOR white]%s[/COLOR]' %name,url,5030,'','','')
+        except: pass
+
+def BASE5030L(url):
+        link = OPEN_URL(url)
+        match=re.compile("\nEXTINF:.+?,(.+?)<br />\n<br />\n<a name=\'more\'></a>(.+?)<br />").findall(link)
+        match1=re.compile("#EXTINF:.+?,(.+?)<br />(.+?)<br />").findall(link)
+        match2=re.compile("(.+?),<br />(.+?)<br />").findall(link)
+        try:
+                for name,url in match:
+                        name = name.replace('&amp;','&').replace('&nbsp;','')
+                        addDir('[COLOR white]%s[/COLOR]' %name,url,1,'','','')
+        except: pass
+        
+        try:
+                for name,url in match1:
+                        name = name.replace('&amp;','&').replace('&nbsp;','')
+                        addDir('[COLOR white]%s[/COLOR]' %name,url,1,'','','')
+        except: pass
+
+        try:
+                for name,url in match2:
+                        name = name.replace('&amp;','&').replace('&nbsp;','')
+                        addDir('[COLOR white]%s[/COLOR]' %name,url,1,'','','')
+        except: pass
 ############################################################################################################################
 
 ############################################################################################################################
@@ -751,6 +839,12 @@ elif mode==209:
 elif mode==210:
         BASE200TSEARCH()
 
+elif mode==4000:
+        KMPINDEX(url)
+
+elif mode==4001:
+        KMPL(url)
+
 elif mode==5000:
         IPTV()
 
@@ -762,5 +856,11 @@ elif mode==5002:
 
 elif mode==5003:
         BASE5002L(url)
+
+elif mode==5030:
+        BASE5030(url)
+
+elif mode==5031:
+        BASE5030L(url)
         
 xbmcplugin.endOfDirectory(int(sys.argv[1]))

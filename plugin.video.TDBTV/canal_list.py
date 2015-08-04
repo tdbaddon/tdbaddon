@@ -29,6 +29,9 @@ dc={
 "discovery news" : "2019",
 "ted tv" : "2020",
 "flite level tv" : "2021",
+"american heros channel" : "2022",
+"amhq" : "2023",
+"destination network" : "2024",
 "0000000000000000000000000" : "2020",
 
 
@@ -55,7 +58,7 @@ dc={
 "mtv" : "3019",
 "mtv dance" : "3020",
 "mtv hits" : "3021",
-"0000000000000000000000000" : "3022",
+"smashhits" : "3022",
 "mtv rocks" : "3023",
 "musicvoxtv" : "3024",
 "radio monte carlo" : "3025",
@@ -167,7 +170,7 @@ dc={
 "sportsnet ontario" : "5052",
 "sportsnet world" : "5053",
 "sports tonight" : "5054",
-"0000000000000000000000000" : "5055",
+"nascar tv" : "5055",
 "star sports" : "5056",
 "tsn 1" : "5057",
 "tsn 2" : "5058",
@@ -180,6 +183,7 @@ dc={
 "fifa tv" : "5065",
 "fishing & hunting" : "5066",
 "root sports" : "5067",
+"nhl network" : "5068",
 "0000000000000000000000000" : "5060",
 
 

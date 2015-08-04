@@ -11,7 +11,7 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mp4
 0
 
 #EXTINF:0,ABC Family
-0
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/141.m3u8
 
 #EXTINF:0,AMC 
 0
@@ -265,6 +265,9 @@ http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
 #EXTINF:0,Nickelodeon 
 http://194.44.229.77:777/udp/237.1.239.14:1234
 
+#EXTINF:0,Nickelodeon 
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/97.m3u8
+
 #EXTINF:0,NickNight 
 0
 
@@ -361,6 +364,9 @@ http://194.44.229.77:777/udp/237.1.239.23:1234
 #EXTINF:0,TNT 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/84.m3u8
 
+#EXTINF:0,TNT 
+http://iptvmx.ddns.net/forocable/forocable/380.ch
+
 #EXTINF:0,Tom & Jerry TV 
 rtmp://208.53.180.218/ctv playpath=tom swfUrl=http://www.carolineoliveira.com.br/swf/player.swf live=1 pageUrl=http://carolineoliveira.com.br/tvamigos/tomejerry.html
 
@@ -407,7 +413,7 @@ http://stream02.yamgo.com/iPhone/HLS_TS/broadcast/victorias_secret_angels-tablet
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/135.m3u8
 
 #EXTINF:0,WB
-0
+http://iptvmx.ddns.net/forocable/forocable/368.ch
 
 #EXTINF:0,World Fashion 
 http://btv-net.mediacdn.ru/TVB7/wfhdeu/playlist.m3u8

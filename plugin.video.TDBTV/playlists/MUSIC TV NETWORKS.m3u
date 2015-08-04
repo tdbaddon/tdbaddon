@@ -118,6 +118,9 @@ rtmp://fms.105.net:1935/live/rmc2
 #EXTINF:0,Rock 66 
 http://mediatv2.topix.it/24RockOne66
 
+#EXTINF:0,SmashHits
+http://llnw.live.simplestream.com/coder9/coder.channels.channel2/hls/3/playlist.m3u8
+
 #EXTINF:0,Trace Urban
 http://stream01.yamgo.com/iPhone/HLS_TS/broadcast/trace_tv_urban-tablet.3gp/trace_tv_urban-tablet.3gp-mr647k.m3u8?trackingid=4041670000&os=desktop
 

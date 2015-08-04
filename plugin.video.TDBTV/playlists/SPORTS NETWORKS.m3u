@@ -40,11 +40,17 @@ http://87.245.214.43/streaming/futbol/16/tvrec/playlist.m3u8
 #EXTINF:0,Chelsea TV 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/100.m3u8
 
+#EXTINF:0,Chelsea TV 
+http://ipsat.dvrdns.org:8000/live/testo1/testo1/537.ts
+
 #EXTINF:0,ESPN 
 http://80.80.160.168/live/6/live.m3u8
 
 #EXTINF:0,ESPN 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/70.m3u8
+
+#EXTINF:0,ESPN 
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/30.m3u8
 
 #EXTINF:0,ESPN 
 rtmp://80.82.64.140:443/liverepeater playpath=12 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
@@ -97,6 +103,12 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/66.m3u8
 #EXTINF:0,LFC TV 
 rtmp://31.7.56.254:1935/stream/ playpath=0VmU1bpSNQ.stream swfUrl=http://thecdn.04stream.com/p/ooolo1.swf pageUrl=http://www.04stream.com/ebb.php?adsp=other&amp;width=600&amp;height=460&amp;st=14r3v56564k5k4q305z4n244z294u2u28424w2u2w2t223f4&amp;adx=&amp;stream=64v2e4k5d464u2u2e464w2j5u2j543n23465j4t3p294o4550535t22433y234y2x2p2t274y2z32363y3p285u5657464j455w4i2k4j4v5k474n33574a414p4h4z33456t226c4n424r2p2z294b434h5233314y2k5b4a4j5u24494j5s244v264338444d4y2z264b494m56434t2y3s2p224r2p2o2&amp;sooor=MQ==&amp;str=is&amp;ok=&amp;cat=1&amp;link=1&amp;idom=www.ifeed2all.eu token=%ZZri(nKa@#Z
 
+#EXTINF:0,LFC TV 
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/121.m3u8
+
+#EXTINF:0,LFC TV 
+http://ipsat.dvrdns.org:8000/live/testo1/testo1/536.ts
+
 #EXTINF:0,MLB 
 rtmp://31.220.0.195:80/live playpath=mlbxx swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf pageUrl=http://reytv.co/embedu.php?live=mlbxx&vw=620&vh=490 token=%Zrey(nKa@#Z
 
@@ -108,6 +120,9 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/40.m3u8
 
 #EXTINF:0,Motorsport 7
 http://motorsport.hopto.org:8080/
+
+#EXTINF:0,Nascar TV
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/69.m3u8
 
 #EXTINF:0,NBA TV 
 http://2co1.vp9.tv/chn/nba/v.m3u8
@@ -141,6 +156,12 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/72.m3u8
 
 #EXTINF:0,NFL Network 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/227.m3u8
+
+#EXTINF:0,NFL Network 
+http://iptvmx.ddns.net/forocable/forocable/319.ch
+
+#EXTINF:0,NHL Network
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/73.m3u8
 
 #EXTINF:0,Outdoor Channel 
 rtmp://edge1.everyon.tv/etv1sb/pld613
@@ -194,7 +215,7 @@ http://xrxs.net/video/live-p12wash-4728.m3u8
 mms://100automoto.tv/channel_porsche
 
 #EXTINF:0,Premier Sports 
-0
+http://ipsat.dvrdns.org:8000/live/testo1/testo1/513.ts
 
 #EXTINF:0,Racing UK 
 0
@@ -203,10 +224,10 @@ mms://100automoto.tv/channel_porsche
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/40.m3u8
 
 #EXTINF:0,Setanta Sports 
-0
+http://ipsat.dvrdns.org:8000/live/testo1/testo1/484.ts
 
 #EXTINF:0,Sky Sports 1 
-0
+http://ipsat.dvrdns.org:8000/live/testo1/testo1/548.ts
 
 #EXTINF:0,Sky Sports 2 
 0
@@ -221,7 +242,7 @@ rtmpe://134.19.185.206:1935/livedge playpath=mamahdsky3 swfUrl=http://player.hdc
 rtmp://31.220.0.195:80/live playpath=ky3 pageUrl=http://www.reytv.co/embed.php?live=ky3&vw=620&vh=490 token=%Zrey(nKa@#Z
 
 #EXTINF:0,Sky Sports 4 
-0
+http://ipsat.dvrdns.org:8000/live/testo1/testo1/545.ts
 
 #EXTINF:0,Sky Sports 5 
 rtmp://80.82.64.140:443/liverepeater playpath=5 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
@@ -231,6 +252,10 @@ rtmp://31.220.0.195:80/live playpath=ky5 pageUrl=http://www.reytv.co/embed.php?l
 
 #EXTINF:0,Sky Sports F1 
 rtmp://80.82.78.15:443/liverepeater/ playpath=35 token=#atd%#$ZH pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
+
+#EXTINF:0,Sky Sports F1 
+http://ipsat.dvrdns.org:8000/live/testo1/testo1/538.ts
+
 
 #EXTINF:0,Sky Sports News 
 0

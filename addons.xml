@@ -155,7 +155,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
     </extension>
 </addon>
 
-<addon id="plugin.video.mdfubar" name=".F.U.B.A.R." version="1.0.4" provider-name="Mucky Duck">
+<addon id="plugin.video.mdfubar" name=".F.U.B.A.R." version="1.0.6" provider-name="Mucky Duck">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.urlresolver"  version="2.1.2"/>
@@ -428,7 +428,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 <addon id="plugin.video.TDBSPANISHTV"
        name="TDB SPANISH TV"
-       version="1.19"
+       version="1.20"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -447,7 +447,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="2.85"
+       version="2.86"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
