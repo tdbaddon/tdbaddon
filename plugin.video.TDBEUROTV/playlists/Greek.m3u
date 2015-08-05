@@ -28,7 +28,7 @@ http://smooth.istoikona.net/besttv.isml/manifest(format=m3u8-aapl).m3u8
 #EXTINF:0,E TV 
 0
 
-#EXTINF:0,Ellada TV
+#EXTINF:0,Ellada TV 
 rtmp://fml.68FC.edgecastcdn.net/2068FC/elladatv swfUrl=http://www.elladatv.gr/scripts/player.swf swfVfy=1 live=1 timeout=10
 
 #EXTINF:0,Ena TV 
@@ -37,14 +37,14 @@ rtmp://fml.68FC.edgecastcdn.net/2068FC/elladatv swfUrl=http://www.elladatv.gr/sc
 #EXTINF:0,ET3
 http://live2.ertopen.com/live2/e600/playlist.m3u8
 
-#EXTINF:0,Extra
+#EXTINF:0,Extra 
 rtmp://213.16.167.186/live/mpegts_256.stream
 
 #EXTINF:0,Extra 
 rtmp://213.16.167.186:1935/live/mpegts_256.stream
 
-#EXTINF:0,Greek Cinema
-http://wpc.68FC.edgecastcdn.net/8068FC/INFINITY/m3u8/cinema.m3u8
+#EXTINF:0,Greek Cinema 
+0
 
 #EXTINF:0,Greek Voice
 http://wpso.com:200/tv48
@@ -52,8 +52,8 @@ http://wpso.com:200/tv48
 #EXTINF:0,Hellas TV
 rtmp://176.9.123.140:1935/leveltgp/leveltgp live=1 timeout=10
 
-#EXTINF:0,Infinity Cinema
-http://wpc.68FC.edgecastcdn.net/8068FC/INFINITY/m3u8/cinema.m3u8
+#EXTINF:0,Infinity Cinema 
+0
 
 #EXTINF:0,Irida 
 0
@@ -70,7 +70,7 @@ rtmp://flashcloud.mediacdn.com/live playpath=kontratv pageUrl=http://www.tvonlin
 #EXTINF:0,Kphth TV 
 http://live.cretetv.gr:1935/cretetv/myStream/playlist.m3u8
 
-#EXTINF:0,Lepanto
+#EXTINF:0,Lepanto 
 rtmp://78.129.184.15:10223/streaming/stream pageUrl=http://lepantortv.listen2myradio.com/ live=1 timeout=10
 
 #EXTINF:0,M Channel
@@ -89,7 +89,7 @@ rtmp://144.76.2.213:1935/live/livestream
 0
 
 #EXTINF:0,Mega 
-http://megahdlive1-f.akamaihd.net/i/live_1@105260/master.m3u8
+0
 
 #EXTINF:0,Mega Cyprus
 0
@@ -106,7 +106,7 @@ http://magictvbox.us:200/skai
 #EXTINF:0,Nerit 
 http://nerit2-lh.akamaihd.net/i/neritplus_1@45603/master.m3u8
 
-#EXTINF:0,Omega TV
+#EXTINF:0,Omega TV 
 rtmp://stream2.omegatv.net:1935/livepkgr/omegatv live=1 timeout=10
 
 #EXTINF:0,OPT TV
@@ -136,8 +136,8 @@ http://176.9.123.140:1935/msg116s/msg116s/playlist.m3u8
 #EXTINF:0,TRT
 http://xelladalivex.api.channel.livestream.com/3.0/playlist.m3u8
 
-#EXTINF:0,TV 100
-http://178.62.176.153:1935/TV100/myStream/playlist.m3u8
+#EXTINF:0,TV 100 
+0
 
 #EXTINF:0,Zougla TV 
 http://zouglahd-f.akamaihd.net/i/zougla_1@56341/master.m3u8

@@ -30,8 +30,8 @@ from modules.libraries import client
 
 class source:
     def __init__(self):
-        self.base_link = 'http://pubfilm.com'
-        self.base_link = client.source(self.base_link, output='geturl')
+        self.base_link = 'http://movie.pubfilmno1.com'
+        #self.base_link = client.source(self.base_link, output='geturl')
         self.search_link = '/feeds/posts/summary?alt=json&q=%s&max-results=100&callback=showResult'
 
 

@@ -23,6 +23,7 @@ import re
 import urllib
 import urlparse
 from modules.libraries import cleantitle
+from modules.libraries import cloudflare
 from modules.libraries import client
 
 
@@ -37,7 +38,8 @@ class source:
             query = urllib.quote_plus(title.replace(' ', '-').rsplit(':', 1)[0])
             query = urlparse.urljoin(self.base_link, self.search_link % query)
 
-            result = client.source(query, mobile=True)
+            result = cloudflare.source(query, mobile=True)
+
             result = client.parseDOM(result, "ul", attrs = { "class": "movies.+?" })
             result = client.parseDOM(result, "li")
 
@@ -71,7 +73,7 @@ class source:
 
     def resolve(self, url):
         try:
-            result = client.request(url, mobile=True)
+            result = cloudflare.request(url, mobile=True)
             url = client.parseDOM(result, "a", ret="href", attrs = { "data-role": "button" })
             url = [i for i in url if str('.mp4') in i][0]
             return url

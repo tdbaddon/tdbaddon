@@ -28,15 +28,16 @@ def resolve(url):
     try:
         url = url.replace('/embed-', '/')
         url = re.compile('//.+?/([\w]+)').findall(url)[0]
-        url = 'http://xvidstage.com/embed-%s.html' % url
+        url = 'http://letwatch.us/embed-%s.html' % url
 
-        result = client.request(url, mobile=True)
+        result = client.request(url)
 
         result = re.compile('(eval.*?\)\)\))').findall(result)[-1]
+        result = re.sub(r'(\',\d*,\d*,)', r';\1', result)
         result = jsunpack.unpack(result)
 
         url = client.parseDOM(result, "embed", ret="src")
-        url += re.compile("'file' *, *'(.+?)'").findall(result)
+        url += re.compile("file *: *[\'|\"](http.+?)[\'|\"]").findall(result)
         url = [i for i in url if not i.endswith('.srt')]
         url = 'http://' + url[0].split('://', 1)[-1]
 

@@ -99,6 +99,13 @@ def info():
         'captcha': False,
         'a/c': False
     }, {
+        'class': 'cloudtime',
+        'netloc': ['cloudtime.to'],
+        'host': ['Cloudtime'],
+        'quality': 'Medium',
+        'captcha': False,
+        'a/c': False
+    }, {
         'class': 'cloudzilla',
         'netloc': ['cloudzilla.to'],
         'host': ['Cloudzilla'],
@@ -118,6 +125,20 @@ def info():
     }, {
         'class': 'datemule',
         'netloc': ['datemule.com']
+    }, {
+        'class': 'divxpress',
+        'netloc': ['divxpress.com'],
+        'host': ['Divxpress'],
+        'quality': 'Medium',
+        'captcha': False,
+        'a/c': False
+    }, {
+        'class': 'exashare',
+        'netloc': ['exashare.com'],
+        'host': ['Exashare'],
+        'quality': 'Low',
+        'captcha': False,
+        'a/c': False
     }, {
         'class': 'fastvideo',
         'netloc': ['fastvideo.in', 'faststream.in'],
@@ -200,6 +221,13 @@ def info():
         'captcha': True,
         'a/c': False
     }, {
+        'class': 'letwatch',
+        'netloc': ['letwatch.us'],
+        'host': ['Letwatch'],
+        'quality': 'Medium',
+        'captcha': False,
+        'a/c': False
+    }, {
         'class': 'mailru',
         'netloc': ['mail.ru', 'my.mail.ru', 'videoapi.my.mail.ru']
     }, {
@@ -207,13 +235,6 @@ def info():
         'netloc': ['mightyupload.com'],
         'host': ['Mightyupload'],
         'quality': 'High',
-        'captcha': False,
-        'a/c': False
-    }, {
-        'class': 'mooshare',
-        'netloc': ['mooshare.biz'],
-        'host': ['Mooshare'],
-        'quality': 'Low',
         'captcha': False,
         'a/c': False
     }, {
@@ -228,13 +249,6 @@ def info():
         'netloc': ['movpod.net', 'movpod.in'],
         'host': ['Movpod'],
         'quality': 'Low',
-        'captcha': False,
-        'a/c': False
-    }, {
-        'class': 'movreel',
-        'netloc': ['movreel.com'],
-        'host': ['Movreel'],
-        'quality': 'High',
         'captcha': False,
         'a/c': False
     }, {
@@ -283,13 +297,6 @@ def info():
         'captcha': False,
         'a/c': False
     }, {
-        'class': 'played',
-        'netloc': ['played.to'],
-        'host': ['Played'],
-        'quality': 'Low',
-        'captcha': False,
-        'a/c': False
-    }, {
         'class': 'primeshare',
         'netloc': ['primeshare.tv'],
         'host': ['Primeshare'],
@@ -304,10 +311,31 @@ def info():
         'captcha': False,
         'a/c': False
     }, {
+        'class': 'putstream',
+        'netloc': ['putstream.com'],
+        'host': ['Putstream'],
+        'quality': 'Medium',
+        'captcha': False,
+        'a/c': False
+    }, {
+        'class': 'realvid',
+        'netloc': ['realvid.net'],
+        'host': ['Realvid'],
+        'quality': 'Low',
+        'captcha': False,
+        'a/c': False
+    }, {
         'class': 'sharerepo',
         'netloc': ['sharerepo.com'],
         'host': ['Sharerepo'],
         'quality': 'Low',
+        'captcha': False,
+        'a/c': False
+    }, {
+        'class': 'skyvids',
+        'netloc': ['skyvids.net'],
+        'host': ['Skyvids'],
+        'quality': 'High',
         'captcha': False,
         'a/c': False
     }, {
@@ -363,8 +391,15 @@ def info():
         'captcha': False,
         'a/c': False
     }, {
+        'class': 'up2stream',
+        'netloc': ['up2stream.com'],
+        'host': ['Up2stream'],
+        'quality': 'Medium',
+        'captcha': False,
+        'a/c': False
+    }, {
         'class': 'uploadc',
-        'netloc': ['uploadc.com', 'zalaa.com'],
+        'netloc': ['uploadc.com', 'uploadc.ch', 'zalaa.com'],
         'host': ['Uploadc', 'Zalaa'],
         'quality': 'High',
         'captcha': False,
@@ -406,10 +441,24 @@ def info():
         'class': 'videopremium',
         'netloc': ['videopremium.tv', 'videopremium.me']
     }, {
+        'class': 'videoserver',
+        'netloc': ['videoserver.biz'],
+        'host': ['Videoserver'],
+        'quality': 'Low',
+        'captcha': False,
+        'a/c': False
+    }, {
         'class': 'videoweed',
         'netloc': ['videoweed.es'],
         'host': ['Videoweed'],
         'quality': 'Low',
+        'captcha': False,
+        'a/c': False
+    }, {
+        'class': 'vidlockers',
+        'netloc': ['vidlockers.ag'],
+        'host': ['Vidlockers'],
+        'quality': 'High',
         'captcha': False,
         'a/c': False
     }, {
@@ -478,6 +527,13 @@ def info():
         'class': 'zettahost',
         'netloc': ['zettahost.tv'],
         'host': ['Zettahost'],
+        'quality': 'High',
+        'captcha': False,
+        'a/c': False
+    }, {
+        'class': 'zstream',
+        'netloc': ['zstream.to'],
+        'host': ['zStream'],
         'quality': 'High',
         'captcha': False,
         'a/c': False

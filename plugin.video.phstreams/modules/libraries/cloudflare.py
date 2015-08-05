@@ -27,16 +27,16 @@ import cache
 import client
 
 
-def request(url, timeout='30'):
+def request(url, mobile=False, timeout='30'):
     try:
         u = '%s://%s' % (urlparse.urlparse(url).scheme, urlparse.urlparse(url).netloc)
-        cookie = cache.get(cloudflare, 168, u, timeout)
+        cookie = cache.get(cloudflare, 168, u, mobile, timeout)
 
-        result = client.request(url, cookie=cookie, timeout=timeout, output='response', error=True)
+        result = client.request(url, cookie=cookie, mobile=mobile, timeout=timeout, output='response', error=True)
 
         if 'HTTP Error 503' in result[0]:
-            cookie = cache.get(cloudflare, 0, u, timeout)
-            result = client.request(url, cookie=cookie, timeout=timeout)
+            cookie = cache.get(cloudflare, 0, u, mobile, timeout)
+            result = client.request(url, cookie=cookie, mobile=mobile, timeout=timeout)
         else:
             result= result[1]
 
@@ -45,13 +45,13 @@ def request(url, timeout='30'):
         return
 
 
-def source(url, timeout='30'):
-    return request(url, timeout)
+def source(url, mobile=False, timeout='30'):
+    return request(url, mobile, timeout)
 
 
-def cloudflare(url, timeout):
+def cloudflare(url, mobile, timeout):
     try:
-        result = client.request(url, timeout=timeout, error=True)
+        result = client.request(url, mobile=mobile, timeout=timeout, error=True)
 
         jschl = re.compile('name="jschl_vc" value="(.+?)"/>').findall(result)[0]
         init = re.compile('setTimeout\(function\(\){\s*.*?.*:(.*?)};').findall(result)[0]
@@ -74,7 +74,7 @@ def cloudflare(url, timeout):
             query = '%s/cdn-cgi/l/chk_jschl?pass=%s&jschl_vc=%s&jschl_answer=%s' % (url, urllib.quote_plus(passval), jschl, answer)
             time.sleep(5)
 
-        cookie = client.request(query, timeout=timeout, output='cookie', error=True)
+        cookie = client.request(query, mobile=mobile, timeout=timeout, output='cookie', error=True)
         return cookie
     except:
         pass

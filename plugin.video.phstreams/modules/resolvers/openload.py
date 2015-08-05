@@ -19,6 +19,7 @@
 '''
 
 
+import re
 from modules.libraries import client
 
 
@@ -26,7 +27,11 @@ def resolve(url):
     try:
         result = client.request(url)
 
-        url = client.parseDOM(result, "source", ret="src", attrs = { "type": "video.+?" })[0]
+        url = re.compile('attr\s*[(]"src".+?"(.+?)"').findall(result)
+        url += client.parseDOM(result, 'source', ret='src', attrs = { 'type': 'video.+?' })
+
+        url = [i for i in url if not i == ''][0]
+        url = url.replace('\\/', '/')
         return url
     except:
         return

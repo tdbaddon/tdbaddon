@@ -24,7 +24,7 @@ import urllib
 import urlparse
 import base64
 from modules.libraries import cleantitle
-from modules.libraries import gkplugins
+from modules.libraries import pyaes
 from modules.libraries import client
 from modules.resolvers import googleplus
 from modules import resolvers
@@ -95,7 +95,11 @@ class source:
                         sources.append({'source': 'GVideo', 'quality': i['quality'], 'provider': 'Clickplay', 'url': i['url']})
 
                     url = re.compile('proxy[.]link=clickplay[*](.+?)"').findall(result)[-1]
-                    url = gkplugins.decrypter(198,128).decrypt(url,base64.urlsafe_b64decode('bW5pcUpUcUJVOFozS1FVZWpTb00='),'ECB').split('\0')[0]
+
+                    key = base64.b64decode('bW5pcUpUcUJVOFozS1FVZWpTb00=')
+                    decrypter = pyaes.Decrypter(pyaes.AESModeOfOperationECB(key + (24 - len(key)) * '\0'))
+                    url = url.decode('hex')
+                    url = decrypter.feed(url) + decrypter.feed()
 
                     if 'google' in url: source = 'GVideo'
                     elif 'vk.com' in url: source = 'VK'

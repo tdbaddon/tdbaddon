@@ -26,11 +26,11 @@ from modules.libraries import client
 def resolve(url):
     try:
         url = url.replace('/embed-', '/')
-        url = url.replace('//', '/')
-        url = re.compile('/.+?/([\w]+)').findall(url)[0]
-        url = 'http://played.to/embed-%s.html' % url
+        url = re.compile('//.+?/([\w]+)').findall(url)[0]
+        url = 'http://exashare.com/embed-%s.html' % url
 
-        result = client.request(url, mobile=True)
+        result = client.request(url)
+
         url = re.compile('file *: *"(http.+?)"').findall(result)[-1]
         return url
     except:

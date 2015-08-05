@@ -2,7 +2,7 @@
 
 
 #EXTINF:0,A1 Report 
-0
+rtmp://66.55.93.204/livepkgr/a1stream?adbe-live-event=a1report
 
 #EXTINF:0,Agon Channel 
 http://str105mb.setplex.net:1935/str2iosmd5/7ios_agontv_34536544/playlist.m3u8
@@ -28,17 +28,26 @@ http://217.16.82.6:554/zulu/alsat_1/playlist.m3u8
 #EXTINF:0,Alsat M 
 http://217.16.82.6:554/zulu/alsat_2/playlist.m3u8
 
+#EXTINF:0,Alsat M 
+http://balkanstream.com/stream/alsatm/putidoma22/udhfbu
+
 #EXTINF:0,ATV
 rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
+
+#EXTINF:0,ATV
+http://balkanstream.com/stream/atv/putidoma22/udhfbu
 
 #EXTINF:0,B92 
 http://stream.b92.net:7999/tv-b92.ogg
 
+#EXTINF:0,B92 
+http://edge3.volim.tv/live/b92.stream/playlist.m3u8?hash=ad2c3d8d36d3e1b1cb6a7c2b587df040c1ac6ab7
+
 #EXTINF:0,Balkan TV
 rtmp://yayin.tvdunyasi.tv/live/balkanrtv
 
-#EXTINF:0,Bangbang
-http://balkanstream.com/stream/bangbang/mx001/qW79215FRE
+#EXTINF:0,Bangbang 
+0
 
 #EXTINF:0,Blue Sky
 0
@@ -46,8 +55,8 @@ http://balkanstream.com/stream/bangbang/mx001/qW79215FRE
 #EXTINF:0,Channel One
 http://81.7.13.162/hls/channelone/index.m3u8
 
-#EXTINF:0,Cufo TV
-http://balkanstream.com/stream/BIG.BR.2-CufoTV/mx001/qW79215FRE
+#EXTINF:0,Cufo TV 
+0
 
 #EXTINF:0,ERA TV 
 http://217.16.82.6:1935/zulu/era_1/playlist.m3u8
@@ -64,14 +73,14 @@ http://217.16.82.6:554/zulu/era_2/playlist.m3u8
 #EXTINF:0,Folk Plus
 0
 
-#EXTINF:0,Hema TV
+#EXTINF:0,Hema TV 
 mms://77.238.209.50:1234
 
 #EXTINF:0,Jug TV 
 0
 
-#EXTINF:0,Kanal 7
-http://balkanstream.com/stream/kanal7/mx001/qW79215FRE
+#EXTINF:0,Kanal 7 
+http://balkanstream.com/stream/kanal7/putidoma22/udhfbu
 
 #EXTINF:0,Klan Kosova 
 0
@@ -115,7 +124,7 @@ http://mrt.cdn.spectar.tv:1935/mrt-edge/_definst_/mrt2-sat/playlist.m3u8
 #EXTINF:0,News24
 http://66.55.93.203/hls-live/livepkgr/_definst_/news24/n24stream.m3u8
 
-#EXTINF:0,Novosadska TV
+#EXTINF:0,Novosadska TV 
 mms://176.106.121.32:8080/
 
 #EXTINF:0,Ora News
@@ -128,7 +137,7 @@ http://81.7.13.162/hls/oranews/index.m3u8
 rtsp://origin.biokoda.tv/live/mbit-planet?k=planettv-public
 
 #EXTINF:0,Rokum TV 
-0
+rtmp://82.114.65.202/live/rrokumtv.flv swfUrl=http://tv24.al/shqiptv/css/player.swf live=1
 
 #EXTINF:0,RTK1 
 http://wowza.rtkit.com:1935/live/livestream/chunklist.m3u8?wowzasessionid=491913886
@@ -158,7 +167,7 @@ http://88.212.10.27:81/streams/stv2.m3u8?
 rtmp://str103.setplex.net:1935/228/stv_folk
 
 #EXTINF:0,Top Channel 
-0
+http://balkanstream.com/stream/topnews/putidoma22/udhfbu
 
 #EXTINF:0,Top Channel News
 0

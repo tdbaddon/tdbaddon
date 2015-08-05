@@ -21,25 +21,26 @@
 
 import re
 from modules.libraries import client
-from modules.libraries import jsunpack
 
 
 def resolve(url):
     try:
-        url = url.replace('/embed-', '/')
-        url = re.compile('//.+?/([\w]+)').findall(url)[0]
-        url = 'http://xvidstage.com/embed-%s.html' % url
+        id = re.compile('//.+?/.+?/([\w]+)').findall(url)
+        id += re.compile('//.+?/.+?v=([\w]+)').findall(url)
+        id = id[0]
 
-        result = client.request(url, mobile=True)
+        url = 'http://embed.cloudtime.to/embed.php?v=%s' % id
 
-        result = re.compile('(eval.*?\)\)\))').findall(result)[-1]
-        result = jsunpack.unpack(result)
+        result = client.request(url)
 
-        url = client.parseDOM(result, "embed", ret="src")
-        url += re.compile("'file' *, *'(.+?)'").findall(result)
-        url = [i for i in url if not i.endswith('.srt')]
-        url = 'http://' + url[0].split('://', 1)[-1]
+        key = re.compile('flashvars.filekey=(.+?);').findall(result)[-1]
+        try: key = re.compile('\s+%s="(.+?)"' % key).findall(result)[-1]
+        except: pass
 
+        url = 'http://www.cloudtime.to/api/player.api.php?key=%s&file=%s' % (key, id)
+        result = client.request(url)
+
+        url = re.compile('url=(.+?)&').findall(result)[0]
         return url
     except:
         return

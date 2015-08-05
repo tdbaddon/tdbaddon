@@ -36,7 +36,7 @@ class source:
         #self.stream_link = '/api/search/stream/?apikey=%s&count=20&from=0&getmeta=0&query=%s+lang%%3Aen+host%%3A%s'
         self.download_link = '/api/search/download/?apikey=%s&count=100&from=0&getmeta=0&query=%s+lang%%3Aen'
         self.stream_link = '/api/search/stream/?apikey=%s&count=100&from=0&getmeta=0&query=%s+lang%%3Aen'
-        self.key_link = 'OGRmNzlkYTkyMDc4MDhkNmMyOTA5Njg5MTJlMjc4Nzc='
+        self.key_link = 'NjcyMmIzMjUzMmEzMTVlMDE0YjRkYjVlMGJkMzgzMDY='
 
 
     def get_movie(self, imdb, title, year):

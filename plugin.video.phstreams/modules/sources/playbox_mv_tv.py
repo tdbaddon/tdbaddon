@@ -135,7 +135,8 @@ class source:
                     quality = i['quality'].replace('720p', 'HD')
                     if not quality in ['1080p', 'HD']: quality = 'SD'
 
-                    decrypter = pyaes.Decrypter(pyaes.AESModeOfOperationCBC(base64.urlsafe_b64decode('cXdlcnR5dWlvcGFzZGZnaGprbHp4YzEyMzQ1Njc4OTA='), '\0' * 16))
+                    key = base64.b64decode('cXdlcnR5dWlvcGFzZGZnaGprbHp4YzEyMzQ1Njc4OTA=')
+                    decrypter = pyaes.Decrypter(pyaes.AESModeOfOperationCBC(key, '\0' * 16))
                     url = base64.decodestring(i['stream'])
                     url = decrypter.feed(url) + decrypter.feed()
 

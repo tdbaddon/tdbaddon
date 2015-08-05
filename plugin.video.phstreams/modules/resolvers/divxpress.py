@@ -20,44 +20,36 @@
 
 
 import re
-import time
 import urllib
-import urllib2
-from modules.libraries import control
 from modules.libraries import client
+from modules.libraries import jsunpack
 
 
 def resolve(url):
     try:
-        user = control.setting('movreel_user')
-        password = control.setting('movreel_password')
+        url = url.replace('/embed-', '/')
+        url = re.compile('//.+?/([\w]+)').findall(url)[0]
+        url = 'http://divxpress.com/embed-%s.html' % url
 
-        login = 'http://movreel.com/login.html'
-        post = {'op': 'login', 'login': user, 'password': password, 'redirect': url}
-        post = urllib.urlencode(post)
         result = client.request(url, close=False)
-        result += client.request(login, post=post, close=False)
 
         post = {}
-        f = client.parseDOM(result, "Form", attrs = { "name": "F1" })[-1]
+        f = client.parseDOM(result, "form", attrs = { "method": "POST" })[0]
         k = client.parseDOM(f, "input", ret="name", attrs = { "type": "hidden" })
         for i in k: post.update({i: client.parseDOM(f, "input", ret="value", attrs = { "name": i })[0]})
-        post.update({'method_free': '', 'method_premium': ''})
         post = urllib.urlencode(post)
 
-        request = urllib2.Request(url, post)
+        result = client.request(url, post=post)
 
-        for i in range(0, 3):
-            try:
-                response = urllib2.urlopen(request, timeout=10)
-                result = response.read()
-                response.close()
-                url = re.compile('(<a .+?</a>)').findall(result)
-                url = [i for i in url if 'Download Link' in i][-1]
-                url = client.parseDOM(url, "a", ret="href")[0]
-                return url
-            except:
-                time.sleep(1)
+        result = re.compile('(eval.*?\)\)\))').findall(result)[-1]
+        result = jsunpack.unpack(result)
+
+        url = client.parseDOM(result, "embed", ret="src")
+        url += re.compile("'file' *, *'(.+?)'").findall(result)
+        url = [i for i in url if not i.endswith('.srt')]
+        url = 'http://' + url[0].split('://', 1)[-1]
+
+        return url
     except:
         return
 

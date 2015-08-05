@@ -20,25 +20,26 @@
 
 
 import re
+import urllib
 from modules.libraries import client
-from modules.libraries import jsunpack
 
 
 def resolve(url):
     try:
-        url = url.replace('/embed-', '/')
-        url = re.compile('//.+?/([\w]+)').findall(url)[0]
-        url = 'http://xvidstage.com/embed-%s.html' % url
+        cookie = client.request(url, output='cookie')
+        result = client.request(url, cookie=cookie, close=False)
 
-        result = client.request(url, mobile=True)
+        post = {}
+        f = client.parseDOM(result, "Form", attrs = { "method": "POST" })[0]
+        k = client.parseDOM(f, "input", ret="name", attrs = { "type": "hidden" })
+        for i in k: post.update({i: client.parseDOM(f, "input", ret="value", attrs = { "name": i })[0]})
+        post = urllib.urlencode(post)
 
-        result = re.compile('(eval.*?\)\)\))').findall(result)[-1]
-        result = jsunpack.unpack(result)
+        result = client.request(url, post=post)
 
-        url = client.parseDOM(result, "embed", ret="src")
-        url += re.compile("'file' *, *'(.+?)'").findall(result)
-        url = [i for i in url if not i.endswith('.srt')]
-        url = 'http://' + url[0].split('://', 1)[-1]
+        url = re.compile("file *: *'(http.+?)'").findall(result)
+        url += re.compile('file *: *"(http.+?)"').findall(result)
+        url = url[-1]
 
         return url
     except:

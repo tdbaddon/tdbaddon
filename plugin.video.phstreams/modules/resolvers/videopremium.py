@@ -21,6 +21,7 @@
 
 import re
 import urllib
+import urlparse
 from modules.libraries import client
 
 
@@ -36,14 +37,18 @@ def resolve(url):
         post = urllib.urlencode(post)
 
         result = client.request(url, post=post)
+        result = result.replace('\\/', '/').replace('\n', '').replace('\'', '"').replace(' ', '')
 
-        result = client.parseDOM(result, "script", attrs = { "type": ".+?" })
-        result = (''.join(result)).replace(' ','').replace('\'','"')
-        result = re.compile('file:"(http.+?m3u8)"').findall(result)
+        swfUrl = re.compile('\.embedSWF\("(.+?)"').findall(result)[0]
+        swfUrl = urlparse.urljoin(url, swfUrl)
 
-        for u in result:
-            url = client.request(u, output='geturl')
-            if not url == None: return url
+        streamer = re.compile('flashvars=.+?"file":"(.+?)"').findall(result)[0]
+
+        playpath = re.compile('flashvars=.+?p2pkey:"(.+?)"').findall(result)[0]
+
+        url = '%s playpath=%s conn=S:%s pageUrl=%s swfUrl=%s swfVfy=true timeout=20' % (streamer, playpath, playpath, url, swfUrl)
+
+        return url
     except:
         return
 

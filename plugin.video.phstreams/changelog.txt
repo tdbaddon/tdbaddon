@@ -1,8 +1,16 @@
+V2.5.3
+- Added new sources.
+- Added new resolvers.
+- Updated available sources.
+- Updated available resolvers.
+- Code cosmetics.
+
 V2.5.2
 - Updated available sources.
 - Updated available resolvers.
 - Code cosmetics.
 
+V2.5.1
 - Updated available sources.
 - Updated available resolvers.
 - Added confirmation in download manager.

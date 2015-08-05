@@ -19,27 +19,19 @@
 '''
 
 
-import re
+import urlparse
 from modules.libraries import client
-from modules.libraries import jsunpack
 
 
 def resolve(url):
     try:
-        url = url.replace('/embed-', '/')
-        url = re.compile('//.+?/([\w]+)').findall(url)[0]
-        url = 'http://xvidstage.com/embed-%s.html' % url
+        url = urlparse.urlparse(url).query
+        url = urlparse.parse_qsl(url)[0][1]
+        url = 'http://up2stream.com/view.php?ref=%s' % url
 
         result = client.request(url, mobile=True)
 
-        result = re.compile('(eval.*?\)\)\))').findall(result)[-1]
-        result = jsunpack.unpack(result)
-
-        url = client.parseDOM(result, "embed", ret="src")
-        url += re.compile("'file' *, *'(.+?)'").findall(result)
-        url = [i for i in url if not i.endswith('.srt')]
-        url = 'http://' + url[0].split('://', 1)[-1]
-
+        url = client.parseDOM(result, "source", ret="src", attrs = { "type": "video.+?" })[0]
         return url
     except:
         return

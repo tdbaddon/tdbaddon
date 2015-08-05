@@ -37,7 +37,13 @@ def resolve(url):
 
         result = re.compile('(eval.*?\)\)\))').findall(result)[-1]
         result = re.sub(r'(\',\d*,\d*,)', r';\1', result)
-        url = jsunpack.unpack(result)
+        result = jsunpack.unpack(result)
+
+        url = client.parseDOM(result, "embed", ret="src")
+        url += re.compile("file *: *[\'|\"](.+?)[\'|\"]").findall(result)
+        url = [i for i in url if not i.endswith('.srt')]
+        url = 'http://' + url[0].split('://', 1)[-1]
+
         return url
     except:
         return

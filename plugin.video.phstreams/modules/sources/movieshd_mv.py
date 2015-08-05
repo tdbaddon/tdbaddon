@@ -25,13 +25,12 @@ import urlparse
 from modules.libraries import cleantitle
 from modules.libraries import cloudflare
 from modules.libraries import client
-from modules.resolvers import openload
-from modules.resolvers import videomega
+from modules import resolvers
 
 
 class source:
     def __init__(self):
-        self.base_link = 'http://movieshd.co'
+        self.base_link = 'http://movieshd.eu'
         self.search_link = '/?s=%s'
 
 
@@ -77,7 +76,7 @@ class source:
             try:
                 url = client.parseDOM(result, "iframe", ret="src")
                 url = [i for i in url if 'openload' in i.lower()][0]
-                url = openload.resolve(url)
+                url = resolvers.request(url)
                 if url == None: raise Exception()
                 sources.append({'source': 'Openload', 'quality': quality, 'provider': 'MoviesHD', 'url': url})
             except:
@@ -87,7 +86,7 @@ class source:
                 url = re.compile('hashkey=([\w]+)').findall(result)
                 url += re.compile('ref=[\'|\"](.+?)[\'|\"]').findall(result)
                 url = 'http://videomega.tv/cdn.php?ref=%s' % url[0]
-                url = videomega.resolve(url)
+                url = resolvers.request(url)
                 if url == None: raise Exception()
                 sources.append({'source': 'Videomega', 'quality': quality, 'provider': 'MoviesHD', 'url': url})
             except:

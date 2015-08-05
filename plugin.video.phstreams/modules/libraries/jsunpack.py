@@ -20,7 +20,6 @@
 
 
 import re
-import client
 
 
 def unpack(script):
@@ -35,9 +34,7 @@ def unpack(script):
 
     sUnpacked = str(__unpack(p, a, c, k, e, d))
     sUnpacked = sUnpacked.replace('\\', '')
-
-    url = __parse(sUnpacked)
-    return url
+    return sUnpacked
 
 
 def __unpack(p, a, c, k, e, d):
@@ -54,17 +51,4 @@ def __itoa(num, radix):
         result = "0123456789abcdefghijklmnopqrstuvwxyz"[num % radix] + result
         num /= radix
     return result
-
-
-def __parse(sUnpacked):
-    url = re.compile("'file' *, *'(.+?)'").findall(sUnpacked)
-    url += re.compile("file *: *[\'|\"](.+?)[\'|\"]").findall(sUnpacked)
-    url += re.compile("playlist=(.+?)&").findall(sUnpacked)
-    url += re.compile("playlist *: *[\'|\"](.+?)[\'|\"]").findall(sUnpacked)
-    url += client.parseDOM(sUnpacked, "embed", ret="src")
-
-    url = [i for i in url if not i.endswith('.srt')]
-
-    url = 'http://' + url[-1].split('://', 1)[-1]
-    return url
 
