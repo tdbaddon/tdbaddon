@@ -1,6 +1,7 @@
 ﻿#EXTM3U
 
 
+
 #EXTINF:0,8 Video Calabria Crotone 
 rtmp://wms.shared.streamshow.it:80/videocalabria playpath=videocalabria swfUrl=http://player.streamshow.it/flowplayer/flowplayer.commercial-3.2.18.swf pageUrl=http://player.streamshow.it/embed/videocalabria.php?height=420&width=729 live=1 timeout=10
 
@@ -46,14 +47,26 @@ rtmp://fms.105.net:1935/live/rmc1
 #EXTINF:0,RAI 1
 http://origin2.live.web.tv.streamprovider.net/streams/a3be8da5ba57ddb33ada9fa8fcd53a19/index.m3u8
 
+#EXTINF:0,RAI 1
+http://212.51.156.151:3001
+
+#EXTINF:0,RAI 1
+http://81.92.105.134:5555/pl.m3u8?channel=500
+
 #EXTINF:0,RAI 2 
 http://origin2.live.web.tv.streamprovider.net/streams/84553722f218dda44aab91b4ae0c2d42/index.m3u8
+
+#EXTINF:0,RAI 2 
+http://212.51.156.151:3002
 
 #EXTINF:0,RAI 3
 http://origin2.live.web.tv.streamprovider.net/streams/2946613af1f663bb5b4164131b8c9413/index.m3u8
 
+#EXTINF:0,RAI 3
+http://212.51.156.151:3003
+
 #EXTINF:0,Rai Gulp
-0
+http://81.92.105.134:5555/pl.m3u8?channel=511
 
 #EXTINF:0,Rai Premium
 0
@@ -76,8 +89,26 @@ http://origin2.live.web.tv.streamprovider.net/streams/2946613af1f663bb5b4164131b
 #EXTINF:0,Suedtirol TV
 rtmp://77.72.196.214:8554/live/mp4:SuedtirolTV
 
+#EXTINF:0,Sky Arte
+http://212.51.148.162:2004/hdmi
+
+#EXTINF:0,Sky Calcio
+http://212.51.146.19:4000
+
+#EXTINF:0,Sky Cinema Family
+http://109.202.195.76:5005
+
+#EXTINF:0,Sky Sport 24
+http://212.51.156.151:3013
+
+#EXTINF:0,Sky Sport F1
+http://212.51.146.19:4004
+
 #EXTINF:0,Sky TG24 
 rtmp://cp49989.live.edgefcs.net:1935/live playpath=streamRM1@2564 swfUrl=http://videoplatform.sky.it/player/swf/player_v2.swf pageUrl=http://video.sky.it/news/diretta live=1 timeout=10
+
+#EXTINF:0,Sky Uno
+http://212.51.148.162:2002/hdmi
 
 #EXTINF:0,Tele 8
 http://vs2.streamcaster.net:1935/tele8_live/tele8/chunklist.m3u8

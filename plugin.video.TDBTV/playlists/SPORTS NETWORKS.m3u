@@ -127,6 +127,9 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/69.m3u8
 #EXTINF:0,NBA TV 
 http://2co1.vp9.tv/chn/nba/v.m3u8
 
+#EXTINF:0,NBA TV 
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/70.m3u8
+
 #EXTINF:0,NBC Golf 
 http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/2596k/prog.m3u8|X-Forwarded-For=209.239.112.104
 

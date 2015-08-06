@@ -154,11 +154,14 @@ mms://195.94.205.211/Trwam
 #EXTINF:0,TV Trwam
 http://trwamtv.live.e96-jw.insyscd.net/trwamtv.smil/playlist.m3u8
 
+#EXTINF:0,TV Trwam
+http://81.92.105.134:5555/pl.m3u8?channel=109
+
 #EXTINF:0,TVK
 0
 
 #EXTINF:0,TVN
-0
+rtmp://178.16.220.163:1935/live/t2vnaa
 
 #EXTINF:0,TVN Style 
 0
@@ -166,11 +169,17 @@ http://trwamtv.live.e96-jw.insyscd.net/trwamtv.smil/playlist.m3u8
 #EXTINF:0,TVP
 http://95.215.233.11:4022/udp/239.255.2.189:1234
 
+#EXTINF:0,TVP
+http://81.92.105.134:5555/pl.m3u8?channel=107
+
 #EXTINF:0,TVP 2
 http://95.215.233.11:4022/udp/239.255.2.190:1234
 
 #EXTINF:0,TVP Bialystok
 0
+
+#EXTINF:0,TVP Info
+http://81.92.105.134:5555/pl.m3u8?channel=105
 
 #EXTINF:0,TVS
 0

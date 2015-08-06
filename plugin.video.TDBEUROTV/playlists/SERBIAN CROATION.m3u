@@ -52,6 +52,9 @@ http://edge3.volim.tv/live/happy.stream/playlist.m3u8?hash=ad2c3d8d36d3e1b1cb6a7
 #EXTINF:0,Hayat Folk
 0
 
+#EXTINF:0,Hayat Music
+http://81.92.105.134:5555/pl.m3u8?channel=156
+
 #EXTINF:0,Hayat Plus
 0
 

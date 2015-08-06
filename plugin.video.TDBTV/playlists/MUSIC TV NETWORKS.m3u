@@ -103,6 +103,9 @@ rtmp://stream.smcloud.net/live2/vox/vox_480p
 #EXTINF:0,Now Thats What I Call Music
 http://rrr.sz.xlcdn.com/?account=AATW&file=nowmusic&type=live&service=wowza&protocol=http&output=playlist.m3u8
 
+#EXTINF:1,NR1 
+rtmp://mn-l.mncdn.com/birnumaramedya_live/nr1tv.sdp
+
 #EXTINF:1,Planet Pop
 http://rrr.sz.xlcdn.com/?account=AATW&file=ppop&type=live&service=wowza&protocol=http&output=playlist.m3u8
 

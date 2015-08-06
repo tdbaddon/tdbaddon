@@ -16,6 +16,9 @@ http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/bbc_world/ls_satlink/b_828.m3u8
 #EXTINF:0,BBC World News 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/30.m3u8
 
+#EXTINF:0,BBC World News 
+http://81.92.105.134:5555/pl.m3u8?channel=144
+
 #EXTINF:0,Bloomberg TV 
 http://btv-i.akamaihd.net/hls/live/202760-b/btvusa_ios/P1/M12K.m3u8
 
