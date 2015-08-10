@@ -11,11 +11,20 @@ rtsp://77.72.196.214:8554/live/mp4:AltoAdigeTV
 #EXTINF:0,Canale 7
 http://fms.shared.streamshow.it/canale7/canale7/sansar.m3u8
 
+#EXTINF:0,Canale Dieci
+rtmp://176.31.226.78/ch10live/stream1.sdp
+
 #EXTINF:0,Cbl Cinema TV 
 rtmp://msh0193.stream.seeweb.it/live// playpath=stream00.sdp swfUrl=http://p.jwpcdn.com/6/8/jwplayer.flash.swf pageUrl=http://www.cblchannel.it/public/classic-43-cbl/prova.htm live=1
 
 #EXTINF:0,Cielo
 http://skyianywhere2-i.akamaihd.net/hls/live/216865/cielo/stream2/streamPlaylist.m3u8
+
+#EXTINF:0,E TV Marche
+http://vs2.streamcaster.net:1935/etvmarche_live/etvmarche/sansar.m3u8
+
+#EXTINF:0,Fano TV
+http://live.streamcaster.net:1935/live/fanotv/sansar.m3u8
 
 #EXTINF:0,History Lab 
 rtmp://wma10.fluidstream.net/HistoryLab playpath=livestream swfUrl=http://www.radioetv.it/modules/mod_hllive/jw/player58l.swf pageUrl=http://www.radioetv.it/history-lab live=1 timeout=10
@@ -34,6 +43,9 @@ rtmp://live.streamcaster.net/ondatv_live/ playpath=ondatv swfUrl=http://www.flas
 
 #EXTINF:0,Quartarete 4 
 rtmp://wowza1.top-ix.org/quartaretetv/ playpath=quartareteweb
+
+#EXTINF:0,Quartarete Blu
+http://194.116.73.234:1935/quartaretetv2/quartaretebluweb/hasbahca.m3u8
 
 #EXTINF:0,Radio 105 TV
 rtmp://fms.105.net/live/105Test1
@@ -79,6 +91,9 @@ http://81.92.105.134:5555/pl.m3u8?channel=511
 
 #EXTINF:0,Rai Yoyo
 0
+
+#EXTINF:0,Rete 8
+http://rm-edge-4.cdn2.streamago.tv/streamagoedge/39648/36568/Rete8.m3u8
 
 #EXTINF:0,Rete 55
 0

@@ -52,6 +52,9 @@ http://s4w.deb1.scdn.smcloud.net/live/_definst_/fokustv/chunklist_w2048299294.m3
 #EXTINF:0,ITV
 http://itv.net.pl/video1.asx
 
+#EXTINF:0,ITV
+mms://194.150.185.253/ITV
+
 #EXTINF:0,Lech TV
 http://wtk.live-ext.e96-jw.insyscd.net/lechtv.smil/playlist.m3u8
 

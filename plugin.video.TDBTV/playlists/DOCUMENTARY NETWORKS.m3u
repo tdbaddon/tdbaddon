@@ -4,32 +4,29 @@
 http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mp4
 ---------------------------------------------------------------------------------------------------------------
 
-#EXTINF:0,American Heros Channel
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/143.m3u8
+#EXTINF:0,American Heros Channel 
+0
 
-#EXTINF:0,AMHQ
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/33.m3u8
+#EXTINF:0,AMHQ 
+0
 
 #EXTINF:0,Animal Planet 
 http://80.80.160.168/live/1/live.m3u8
 
 #EXTINF:0,Animal Planet 
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/142.m3u8
+http://78.30.254.27:8989/udp/239.0.0.34:4000
 
-#EXTINF:0,Animal Planet 
-http://balkanstream.com/stream/animalplanet/rajko/rajko
+#EXTINF:0,Destination America 
+0
 
-#EXTINF:0,Destination America
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/22.m3u8
-
-#EXTINF:0,Destination Network
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/237.m3u8
+#EXTINF:0,Destination Network 
+0
 
 #EXTINF:0,Discovery Channel 
 http://80.80.160.168/live/8/live.m3u8
 
 #EXTINF:0,Discovery Channel 
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/11.m3u8
+http://78.30.254.27:8989/udp/239.0.0.29:4000
 
 #EXTINF:0,Discovery History 
 0
@@ -38,22 +35,22 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/11.m3u8
 0
 
 #EXTINF:0,Discovery News 
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/46.m3u8
+0
 
 #EXTINF:0,Discovery Science 
 http://80.80.160.168/live/9/live.m3u8
+
+#EXTINF:0,Discovery Science 
+http://78.30.254.27:8989/udp/239.0.0.48:4000
 
 #EXTINF:0,Discovery Turbo 
 0
 
 #EXTINF:0,Discovery World 
-0
+http://78.30.254.27:8989/udp/239.0.0.47:4000
 
 #EXTINF:0,Flite Level TV
 rtmp://streaming.krautzer-lynn.com:1935/live/Stream4
-
-#EXTINF:0,History Channel 
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/174.m3u8
 
 #EXTINF:0,History Channel 
 http://link.theplatform.com/s/dtjsEC/chjdYJxKb44V?manifest=m3u&feed=History%20Live%20Stream%20Feed
@@ -76,6 +73,9 @@ http://hls.svc.moyo.tv/hls/CH_NATGEOWILD/variant.m3u8?version=2
 #EXTINF:0,Nat Geo Wild 
 http://194.44.229.77:777/udp/237.1.239.21:1234
 
+#EXTINF:0,Nat Geo Wild 
+http://78.30.254.27:8989/udp/239.0.0.51:4000
+
 #EXTINF:0,National Geographic 
 http://194.44.229.77:777/udp/237.1.238.10:1234
 
@@ -86,10 +86,10 @@ http://194.44.229.77:777/udp/237.1.239.22:1234
 http://185.5.40.101/hls/session-10326907gnZKxnzwfY/CH_NATGEO/variant.m3u8?version=2 
 
 #EXTINF:0,National Geographic 
-http://hls.svc.moyo.tv/hls/CH_NATGEO/variant.m3u8?version=2
+http://78.30.254.27:8989/udp/239.0.0.35:4000
 
 #EXTINF:0,National Geographic 
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/187.m3u8
+http://hls.svc.moyo.tv/hls/CH_NATGEO/variant.m3u8?version=2
 
 #EXTINF:0,Planet Green 
 http://80.80.160.168/live/4/live.m3u8
@@ -98,7 +98,7 @@ http://80.80.160.168/live/4/live.m3u8
 http://rt-a.akamaihd.net/ch_05@325609/master.m3u8 
 
 #EXTINF:0,Ted TV 
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/88.m3u8
+0
 
 #EXTINF:0,Travel Channel 
 http://80.80.160.168/live/3/live.m3u8

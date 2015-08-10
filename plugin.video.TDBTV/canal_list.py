@@ -78,7 +78,14 @@ dc={
 "trace urban" : "3039",
 "tuba tv" : "3040",
 "nr1" : "3041",
-"0000000000000000000000000" : "3040",
+"vevo pop hd" : "3042",
+"vevo hits hd" : "3043",
+"vevo country hd" : "3044",
+"1hd music" : "3045",
+"cmc" : "3046",
+"miami tv music" : "3047",
+"bmp tv" : "3048",
+"0000000000000000000000000" : "3049",
 
 
 "NEWS NETWORKS" : "0000000000",
@@ -345,5 +352,6 @@ dc={
 "times square south view new york" : "7022",
 "times square street view new york" : "7023",
 "tokyo japan" : "7024",
+"mulberry street new york" : "7025",
 
 }

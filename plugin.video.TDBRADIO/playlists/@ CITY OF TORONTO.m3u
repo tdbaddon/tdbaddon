@@ -28,6 +28,8 @@ http://live.leanstream.co/CJWFFM?blackburn_web&type=.flv&uid=93da8e01-9c2a-48c8-
 #EXTINF:0,95.9 KX 96
 http://9213.live.streamtheworld.com/CJKXFMAAC?pname=StandardPlayerV4&pversion=4.7.0-026&banners=300x250,728x90,swf,vpaid
 
+#EXTINF:0,96.3 CLASSICAL
+http://stream.classical963fm.com:8017/;stream.mp3 
 #EXTINF:0,96.6 JACK FM 
 http://cal969.akacast.akamaistream.net/7/338/80899/v1/rogers.akacast.akamaistream.net/cal969
 
