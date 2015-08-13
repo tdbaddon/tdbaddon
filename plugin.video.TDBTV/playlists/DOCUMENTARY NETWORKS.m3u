@@ -14,7 +14,10 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mp4
 http://80.80.160.168/live/1/live.m3u8
 
 #EXTINF:0,Animal Planet 
-http://78.30.254.27:8989/udp/239.0.0.34:4000
+http://80.80.160.168/live/1/500000/playlist.m3u8
+
+#EXTINF:0,Animal Planet 
+http://37.187.160.187:8000/live/ressler/skype/95.ts
 
 #EXTINF:0,Destination America 
 0
@@ -25,11 +28,8 @@ http://78.30.254.27:8989/udp/239.0.0.34:4000
 #EXTINF:0,Discovery Channel 
 http://80.80.160.168/live/8/live.m3u8
 
-#EXTINF:0,Discovery Channel 
-http://78.30.254.27:8989/udp/239.0.0.29:4000
-
 #EXTINF:0,Discovery History 
-0
+http://37.187.160.187:8000/live/ressler/skype/93.ts
 
 #EXTINF:0,Discovery H&H
 0
@@ -41,16 +41,16 @@ http://78.30.254.27:8989/udp/239.0.0.29:4000
 http://80.80.160.168/live/9/live.m3u8
 
 #EXTINF:0,Discovery Science 
-http://78.30.254.27:8989/udp/239.0.0.48:4000
+http://37.187.160.187:8000/live/ressler/skype/94.ts
 
 #EXTINF:0,Discovery Turbo 
 0
 
 #EXTINF:0,Discovery World 
-http://78.30.254.27:8989/udp/239.0.0.47:4000
+0
 
-#EXTINF:0,Flite Level TV
-rtmp://streaming.krautzer-lynn.com:1935/live/Stream4
+#EXTINF:0,Flite Level TV 
+0
 
 #EXTINF:0,History Channel 
 http://link.theplatform.com/s/dtjsEC/chjdYJxKb44V?manifest=m3u&feed=History%20Live%20Stream%20Feed
@@ -58,8 +58,17 @@ http://link.theplatform.com/s/dtjsEC/chjdYJxKb44V?manifest=m3u&feed=History%20Li
 #EXTINF:0,History Channel 
 https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8?hdnea=ip=174.113.30.187~st=1427694727~exp=1427695327~acl=/i/*~id=a86de0c2-ad09-4469-9a63-6ebbc1bba4d3~hmac=ac144089000bdd16f6916c517ce3e6e04813d4de11ac16839ad468a977ec80b1
 
+#EXTINF:0,History Channel 
+http://37.187.160.187:8000/live/ressler/skype/90.ts
+
 #EXTINF:0,Investigation Discovery 
 http://80.80.160.168/live/5/live.m3u8
+
+#EXTINF:0,Investigation Discovery 
+http://80.80.160.168/live/5/500000/playlist.m3u8
+
+#EXTINF:0,Investigation Discovery 
+http://37.187.160.187:8000/live/ressler/skype/98.ts
 
 #EXTINF:0,NASA TV 
 http://nasatv-lh.akamaihd.net/i/NASA_101@319270/master.m3u8 
@@ -74,7 +83,7 @@ http://hls.svc.moyo.tv/hls/CH_NATGEOWILD/variant.m3u8?version=2
 http://194.44.229.77:777/udp/237.1.239.21:1234
 
 #EXTINF:0,Nat Geo Wild 
-http://78.30.254.27:8989/udp/239.0.0.51:4000
+http://37.187.160.187:8000/live/ressler/skype/97.ts
 
 #EXTINF:0,National Geographic 
 http://194.44.229.77:777/udp/237.1.238.10:1234
@@ -86,13 +95,16 @@ http://194.44.229.77:777/udp/237.1.239.22:1234
 http://185.5.40.101/hls/session-10326907gnZKxnzwfY/CH_NATGEO/variant.m3u8?version=2 
 
 #EXTINF:0,National Geographic 
-http://78.30.254.27:8989/udp/239.0.0.35:4000
+http://hls.svc.moyo.tv/hls/CH_NATGEO/variant.m3u8?version=2
 
 #EXTINF:0,National Geographic 
-http://hls.svc.moyo.tv/hls/CH_NATGEO/variant.m3u8?version=2
+http://37.187.160.187:8000/live/ressler/skype/96.ts
 
 #EXTINF:0,Planet Green 
 http://80.80.160.168/live/4/live.m3u8
+
+#EXTINF:0,Planet Green 
+http://80.80.160.168/live/4/500000/playlist.m3u8
 
 #EXTINF:0,RT News Documentary 
 http://rt-a.akamaihd.net/ch_05@325609/master.m3u8 
@@ -102,6 +114,9 @@ http://rt-a.akamaihd.net/ch_05@325609/master.m3u8
 
 #EXTINF:0,Travel Channel 
 http://80.80.160.168/live/3/live.m3u8
+
+#EXTINF:0,Travel Channel 
+http://80.80.160.168/live/3/500000/playlist.m3u8
 
 #EXTINF:0,Travel Channel 
 http://194.44.229.77:777/udp/237.1.238.14:1234

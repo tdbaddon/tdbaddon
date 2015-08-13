@@ -10,10 +10,10 @@ http://rrr.sz.xlcdn.com/?account=AATW&file=akanew&type=live&service=wowza&protoc
 #EXTINF:0,A One 
 http://hls.novotelecom.ru/streaming/aone/tvrec/playlist.m3u8
 
-#EXTINF:0,BPM TV
-http://ken-cdn220-is-2.se.bptvlive.ngcdn.telstra.com:80/bp_online_bpmusic_high 
+#EXTINF:0,BPM TV 
+0
 
-#EXTINF:0,Capital Music 
+#EXTINF:0,Capital TV
 http://ooyalahd2-f.akamaihd.net/i/globalradio01_delivery@156521/index_656_av-p.m3u8?sd=10&rebase=on
 
 #EXTINF:0,Clubland
@@ -25,17 +25,14 @@ http://204.107.26.252:1935/live/691.high.stream/HasBahCa.m3u8
 #EXTINF:0,CMC
 rtmp://cmctv.flash.internapcdn.net:1935/cmctv_vitalstream_com/live_adaptive_1/CMC-TV_adaptive3 swfUrl=http://http.vitalstreamcdn.com/flashskins/V2Player.swf live=1 pageUrl=http://www.cmc-tv.com/
 
-#EXTINF:0,Dance TV
-http://87.239.31.232/hls/230.3.4.169.sd.stream.m3u8?b?b*t$
+#EXTINF:0,Dance TV 
+0
 
 #EXTINF:0,Deluxe Music 
 rtmp://flash1.ipercast.net/deluxemusic.tv/mp4:staging/120131-love-lounge-catchup.mp4.mp4
 
 #EXTINF:0,Deluxe Music 
 http://81.92.105.134:5555/pl.m3u8?channel=17
-
-#EXTINF:0,Dream TV
-http://212.224.108.80/S1/HLS_LIVE/dreamtv/1000/prog_index.m3u8
 
 #EXTINF:0,Djing Animation 
 http://www.djing.com/tv/a-05.m3u8
@@ -57,6 +54,9 @@ http://www.djing.com/tv/05.m3u8
 
 #EXTINF:0,Djing UnderGround
 http://www.djing.com/tv/u-04.m3u8
+
+#EXTINF:0,Dream TV
+http://212.224.108.80/S1/HLS_LIVE/dreamtv/1000/prog_index.m3u8
 
 #EXTINF:0,Eska Best 
 rtmp://stream.smcloud.net/live2/best/best_720p
@@ -97,11 +97,17 @@ http://74.208.152.93/music/stream3/stream.m3u8
 #EXTINF:0,MTV 
 rtmp://83.218.202.202/live swfUrl=http://webtv.md/swf/WebTV.swf playpath=wt_mtv.stream
 
+#EXTINF:0,MTV 
+http://37.187.160.187:8000/live/ressler/skype/109.ts
+
 #EXTINF:0,MTV Dance 
-0
+http://37.187.160.187:8000/live/ressler/skype/107.ts
 
 #EXTINF:0,MTV Hits 
 http://194.44.229.77:777/udp/237.1.238.1:1234
+
+#EXTINF:0,MTV Hits 
+http://37.187.160.187:8000/live/ressler/skype/108.ts
 
 #EXTINF:0,MTV Rocks 
 0
@@ -133,8 +139,8 @@ rtmp://fms.105.net:1935/live/rmc2
 #EXTINF:0,Rock 66 
 http://mediatv2.topix.it/24RockOne66
 
-#EXTINF:0,SmashHits
-http://llnw.live.simplestream.com/coder9/coder.channels.channel2/hls/3/playlist.m3u8
+#EXTINF:0,SmashHits 
+0
 
 #EXTINF:0,Trace Urban
 http://stream01.yamgo.com/iPhone/HLS_TS/broadcast/trace_tv_urban-tablet.3gp/trace_tv_urban-tablet.3gp-mr647k.m3u8?trackingid=4041670000&os=desktop
@@ -161,13 +167,10 @@ http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/04/prog_index.m3u8
 http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/06/prog_index.m3u8
 
 #EXTINF:0,VH1 
-http://78.30.254.27:8989/udp/239.0.0.58:4000
+http://37.187.160.187:8000/live/ressler/skype/110.ts
 
 #EXTINF:0,VH1 Classics
 http://hls.svc.moyo.tv/hls/CH_VH1/variant.m3u8?version=2
-
-#EXTINF:0,VH1 Classics
-http://78.30.254.27:8989/udp/239.0.0.44:4000
 
 #EXTINF:0,Virgin TV 
 rtmp://fms.105.net:1935/live/virgin2

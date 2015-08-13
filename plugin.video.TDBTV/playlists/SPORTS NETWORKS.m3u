@@ -5,7 +5,7 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mp4
 ---------------------------------------------------------------------------------------------------------------
 
 #EXTINF:0,Bein Sport 1 
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls/62.m3u8
+0
 
 #EXTINF:0,Bein Sport 2 
 0
@@ -18,12 +18,6 @@ rtmp://80.82.64.140:443/liverepeater playpath=18 pageUrl=http://popeoftheplayers
 
 #EXTINF:0,BT Sport 1 
 rtmp://80.82.64.140:443/liverepeater playpath=11 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
-
-#EXTINF:0,BT Sport 1 
-rtmp://80.82.64.140:443/liverepeater playpath=38 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
-
-#EXTINF:0,BT Sport 1 
-http://iptv.wssiptv.com:80/live/WSSiptv.com/he98fdui97w9769869t85/10.ts$OPT:http-user-agent=Lavf/55.19.104
 
 #EXTINF:0,BT Sport 2 
 rtmp://80.82.64.140:443/liverepeater playpath=36 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
@@ -74,7 +68,10 @@ http://113.160.49.34/lives/origin03/foxhd.isml/foxhd-2096k.m3u8
 http://54.177.195.82/server/play/fs1ctg/3964000/prog.m3u8?anv=1427415219896 |X-Forwarded-For=66.171.228.102
 
 #EXTINF:0,Fox Sports 2 
-http://54.177.195.82/server/play/fs1ctg/3964000/prog.m3u8?anv=1427415219896 |X-Forwarded-For=66.171.228.102
+http://54.177.195.82/server/play/fs2ctg/3964000/prog.m3u8?anv=1427415219896 |X-Forwarded-For=66.171.228.102
+
+#EXTINF:0,Fox Sports 2 
+http://89.163.146.40:8000/live/goldlocal/VZUgW2Su7u/124.ts
 
 #EXTINF:0,Fox Sports News 
 0
@@ -92,10 +89,10 @@ http://54.177.195.82/server/play/fs1ctg/3964000/prog.m3u8?anv=1427415219896 |X-F
 http://motorsport.hopto.org:8080/
 
 #EXTINF:0,Nascar TV 
-0
+http://89.163.146.40:8000/live/goldlocal/VZUgW2Su7u/127.ts
 
 #EXTINF:0,NBA TV 
-http://2co1.vp9.tv/chn/nba/v.m3u8
+0
 
 #EXTINF:0,NBC Golf 
 http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/2596k/prog.m3u8|X-Forwarded-For=209.239.112.104
@@ -114,9 +111,6 @@ rtmp://edge1.everyon.tv/etv1sb/pld613
 
 #EXTINF:0,Outdoor Channel 
 rtmp://edge1.everyon.tv/etv1sb/phd613
-
-#EXTINF:0,Outdoor Channel 
-http://78.30.254.27:8989/udp/239.0.0.41:4000
 
 #EXTINF:0,PAC 12 Arizona 
 http://xrxs.net/video/live-p12ariz-1164.m3u8
@@ -176,28 +170,25 @@ mms://100automoto.tv/channel_porsche
 0
 
 #EXTINF:0,Sky Sports 1 
-http://195.154.231.213:1935/live/skysports1lsh/playlist.m3u8
+http://89.163.146.40:8000/live/goldlocal/VZUgW2Su7u/128.ts
 
 #EXTINF:0,Sky Sports 2 
-http://195.154.231.213:1935/live/skysports2lsh/playlist.m3u8
+http://89.163.146.40:8000/live/goldlocal/VZUgW2Su7u/129.ts
 
 #EXTINF:0,Sky Sports 3 
-rtmpe://134.19.185.206:1935/livedge playpath=mamahdsky3 swfUrl=http://player.hdcast.org/_.swf pageUrl=http://www.hdcast.org/embedlive1.php?u=mamahdsky3&vw=680&vh=490&domain=mamahd.com token=Fo5_n0w?U.rA6l3-70w47ch
+0
 
 #EXTINF:0,Sky Sports 4 
-http://195.154.231.213:1935/live/skysports4lsh/playlist.m3u8
+http://89.163.146.40:8000/live/goldlocal/VZUgW2Su7u/131.ts
 
 #EXTINF:0,Sky Sports 5 
-rtmp://80.82.64.140:443/liverepeater playpath=5 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
-
-#EXTINF:0,Sky Sports 5 
-http://195.154.231.213:1935/live/skysports5lsh/playlist.m3u8
+0
 
 #EXTINF:0,Sky Sports F1 
-http://195.154.231.213:1935/live/vskysf1lsh/playlist.m3u8
+http://89.163.146.40:8000/live/goldlocal/VZUgW2Su7u/127.ts
 
 #EXTINF:0,Sky Sports News 
-0
+http://89.163.146.40:8000/live/goldlocal/VZUgW2Su7u/126.ts
 
 #EXTINF:0,Sportsnet 360
 http://nlds187.cdnak.neulion.com/nlds/sportsnetnow/sn_360/as/live/sn_360_hd_ipad.m3u8

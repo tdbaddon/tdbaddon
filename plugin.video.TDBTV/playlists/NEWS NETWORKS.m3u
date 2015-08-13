@@ -37,6 +37,9 @@ rtmp://edge1.everyon.tv/etv1sb/phd16
 #EXTINF:0,CNN 
 rtmp://edge1.everyon.tv/etv1sb/pld16
 
+#EXTINF:0,CNN 
+http://64.100.15.201/udp/239.255.2.3:10001
+
 #EXTINF:0,CP24 
 0
 
@@ -68,7 +71,7 @@ rtsp://ewns-hls-b-stream.hexaglobe.net/rtpeuronewslive/en_vidan350_rtp.sdp?
 rtsp://ewns-hls-b-stream.hexaglobe.net/rtpeuronewslive/en_vidan750_rtp.sdp
 
 #EXTINF:0,Fox News 
-0
+http://64.100.15.201/udp/239.255.2.1:10001
 
 #EXTINF:0,France 24 
 0
@@ -78,9 +81,6 @@ rtsp://ewns-hls-b-stream.hexaglobe.net/rtpeuronewslive/en_vidan750_rtp.sdp
 
 #EXTINF:0,i24 News 
 http://bcoveliveios-i.akamaihd.net/hls/live/215102/master_english/398/master.m3u8?b?b*t$
-
-#EXTINF:0,InfoWars TV 
-http://cdn.rbm.tv:1935/rightbrainmedia-originpull-2/_definst_/infowars/playlist.m3u8
 
 #EXTINF:0,InfoWars TV 
 rtmp://cdn.rbm.tv:1935/rightbrainmedia-originpull-2/_definst_/247daily2
@@ -110,7 +110,7 @@ http://rt-a.akamaihd.net/ch_01@325605/master.m3u8
 http://rt-a.akamaihd.net/ch_04@325608/master.m3u8
 
 #EXTINF:0,Sky News 
-0
+http://37.187.160.187:8000/live/ressler/skype/89.ts
 
 #EXTINF:0,The Weather Channel
 0

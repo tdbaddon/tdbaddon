@@ -37,7 +37,7 @@ dc={
 
 "MUSIC TV NETWORKS" : "0000000000",
 "aka" : "3000",
-"capital music" : "3001",
+"capital tv" : "3001",
 "clubland" : "3002",
 "clubbing tv" : "3003",
 "dance tv" : "3004",
