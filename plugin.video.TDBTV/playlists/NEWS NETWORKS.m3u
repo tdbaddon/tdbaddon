@@ -25,6 +25,9 @@ rtmp://a.cdn.newschat.tv/edge playpath=cbc_live swfUrl=http://msnbclive.eu/playe
 #EXTINF:0,CBC News Canada 
 rtmp://a.cdn.newschat.tv/edge playpath=cbc_live swfUrl=http://msnbclive.eu/player.swf pageUrl=http://www.livenewschat.eu/canada/ live=2
 
+#EXTINF:0,CBS News
+http://cbsnews-linear.mdialog.com/video_assets/cbsnews.m3u8?api_key=563b80c1ae4ce359830f572d2496a947&iu=/8264/vaw-can/mobile_web/cbsnews_mobileprocessor=https://sp.yimg.com/ib/th?id=JN.%2bZ5%2f0mrtDRvtsB4lEiRQ2Q&pid=15.1&P=0&w=300&h=300
+
 #EXTINF:0,CCTV News 
 http://77.36.61.45:8010/CCTVNews.m3u8?
 
@@ -69,6 +72,9 @@ rtsp://ewns-hls-b-stream.hexaglobe.net/rtpeuronewslive/en_vidan350_rtp.sdp?
 
 #EXTINF:0,Euro News 
 rtsp://ewns-hls-b-stream.hexaglobe.net/rtpeuronewslive/en_vidan750_rtp.sdp
+
+#EXTINF:0,Euro News 
+http://fr-par-iphone-2.cdn.hexaglobe.net/streaming/euronews_ewns/ipad_en.m3u8
 
 #EXTINF:0,Fox News 
 http://64.100.15.201/udp/239.255.2.1:10001
@@ -117,6 +123,9 @@ http://37.187.160.187:8000/live/ressler/skype/89.ts
 
 #EXTINF:0,Weather Nation
 http://kalsegsec-a.akamaihd.net:80/dc-0/m/pa-live-publish3/kLive/smil:1_oorxcge2_all.smil/chunklist_b2096000.m3u8
+
+#EXTINF:0,Weather Nation
+http://cdnapi.kaltura.com/p/931702/sp/93170200/playManifest/entryId/1_oorxcge2/format/applehttp/protocol/http/uiConfId/28428751/a.m3u8
 
 #EXTINF:0,Weather Network
 http://bcoveliveios-i.akamaihd.net/hls/live/207737/1942203455001/nat/master_Layer5.m3u8 

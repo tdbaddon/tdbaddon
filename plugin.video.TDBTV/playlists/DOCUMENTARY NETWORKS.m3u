@@ -31,6 +31,9 @@ http://80.80.160.168/live/8/live.m3u8
 #EXTINF:0,Discovery History 
 http://37.187.160.187:8000/live/ressler/skype/93.ts
 
+#EXTINF:0,Discovery History 
+http://93.184.221.133/00573D/1348/1348-0.m3u8
+
 #EXTINF:0,Discovery H&H
 0
 
@@ -60,6 +63,9 @@ https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8?hdnea=ip=174.113.
 
 #EXTINF:0,History Channel 
 http://37.187.160.187:8000/live/ressler/skype/90.ts
+
+#EXTINF:0,History Channel 
+http://4.31.30.159:9035
 
 #EXTINF:0,Investigation Discovery 
 http://80.80.160.168/live/5/live.m3u8

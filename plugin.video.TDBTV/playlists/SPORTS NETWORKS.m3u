@@ -16,6 +16,9 @@ http://bigten247.cdnak.bigtenhd.neulion.com/nlds/btn2go/btnnetwork/as/live/btnne
 #EXTINF:0,Box Nation 
 rtmp://80.82.64.140:443/liverepeater playpath=18 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
 
+#EXTINF:0,Box Nation 
+http://93.184.221.133/00573D/1222/1222-0.m3u8
+
 #EXTINF:0,BT Sport 1 
 rtmp://80.82.64.140:443/liverepeater playpath=11 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
 
@@ -92,7 +95,7 @@ http://motorsport.hopto.org:8080/
 http://89.163.146.40:8000/live/goldlocal/VZUgW2Su7u/127.ts
 
 #EXTINF:0,NBA TV 
-0
+http://4.31.30.159:9020
 
 #EXTINF:0,NBC Golf 
 http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/2596k/prog.m3u8|X-Forwarded-For=209.239.112.104
@@ -103,8 +106,11 @@ http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/4296k/prog.m3u8|X-Forwarded-
 #EXTINF:0,NBCSN 
 http://cdn.phoenix.intergi.com/21772/videos/3362254/video-sd.mp4?hosting_id=21772
 
+#EXTINF:0,NBCSN 
+http://64.100.15.201/udp/239.255.2.7:10001
+
 #EXTINF:0,NFL Network 
-0
+http://64.100.15.201/udp/239.255.2.5:10001
 
 #EXTINF:0,Outdoor Channel 
 rtmp://edge1.everyon.tv/etv1sb/pld613
@@ -209,22 +215,22 @@ rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9
 http://113.160.49.34/lives/origin03/starsportsd.isml/starsportsd-1096k.m3u8
 
 #EXTINF:0,TSN 1 
-0
+http://4.31.30.159:9082
 
 #EXTINF:0,TSN 2 
-0
+http://4.31.30.159:9083
 
 #EXTINF:0,TSN 3 
-0
+http://4.31.30.159:9084
 
 #EXTINF:0,TSN 4 
-0
+http://4.31.30.159:9085
 
 #EXTINF:0,TSN 5 
-0
+http://4.31.30.159:9086
 
 #EXTINF:0,Viasat Golf 
-0
+http://93.184.221.133/00573D/911/911-0.m3u8
 
 #EXTINF:0,Viasat Sport
 http://194.44.229.77:777/udp/237.1.238.9:1234

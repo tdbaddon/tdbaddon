@@ -5,7 +5,10 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mp4
 ---------------------------------------------------------------------------------------------------------------
 
 #EXTINF:0,A&E 
-0
+http://64.100.15.201/udp/239.255.2.6:10001
+
+#EXTINF:0,A&E 
+http://4.31.30.159:9046
 
 #EXTINF:0,ABC 
 0
@@ -14,7 +17,10 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mp4
 0
 
 #EXTINF:0,AMC 
-0
+http://64.100.15.201/udp/239.255.2.10:10001
+
+#EXTINF:0,AMC 
+http://4.31.30.159:9038
 
 #EXTINF:0,BabyTV 
 0
@@ -49,6 +55,9 @@ http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD28_W_250.sdp/p
 #EXTINF:0,Cartoon Network 
 http://hls.svc.moyo.tv/hls/CH_CARTOON/variant.m3u8?version=2
 
+#EXTINF:0,CBC TV
+http://4.31.30.159:9036
+
 #EXTINF:0,Cbeebies 
 http://37.187.160.187:8000/live/ressler/skype/129.ts
 
@@ -63,6 +72,9 @@ http://37.187.160.187:8000/live/ressler/skype/67.ts
 
 #EXTINF:0,CBS Reality 
 http://37.187.160.187:8000/live/ressler/skype/66.ts
+
+#EXTINF:0,CBS Reality 
+http://93.184.221.133/00573D/713/713-0.m3u8
 
 #EXTINF:0,Cinemax 
 http://113.160.49.34/lives/origin03/cinemaxsd.isml/cinemaxsd-1096k.m3u8
@@ -110,10 +122,10 @@ http://198.179.31.198/live/2056.high.stream/2056.high.stream/index.m3u8
 http://198.179.31.198/live/2062.high.stream/2062.high.stream/index.m3u8
 
 #EXTINF:0,CW 
-0
+http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/index_350_av-p.m3u8?
 
 #EXTINF:0,Disney Channel 
-0
+http://4.31.30.159:9002
 
 #EXTINF:0,Disney Junior 
 0
@@ -170,10 +182,13 @@ http://89.248.171.141/ts60/ch1144/index.m3u8?v=1548652116
 http://hls.svc.moyo.tv/hls/CH_FOX/variant.m3u8?version=2
 
 #EXTINF:0,FX 
-0
+http://64.100.15.201/udp/239.255.2.9:10001
 
 #EXTINF:0,Global TV Halifax 
 http://link.theplatform.com/s/dtjsEC/77l1KA_G_5P1?feed=DEV%20Live%20Stream%20Feed/playlist.m3u8
+
+#EXTINF:0,Global TV Toronto 
+http://4.31.30.159:9041
 
 #EXTINF:0,Global TV Toronto 
 http://link.theplatform.com/s/dtjsEC/hdSH3iztz_j_?feed=DEV%20Live%20Stream%20Feed/playlist.m3u8
@@ -246,6 +261,9 @@ rtmp://jtvmedia.jtv.com:1975/live playpath=live6 swfUrl=http://demandware.edgesu
 
 #EXTINF:0,London Live 
 http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
+
+#EXTINF:0,M3
+http://4.31.30.159:9031
 
 #EXTINF:0,MBC 2 
 http://63.237.48.3/ios/MBC2/MBC2.m3u8
@@ -353,7 +371,7 @@ http://37.187.160.187:8000/live/ressler/skype/81.ts
 http://hls.svc.moyo.tv/hls/CH_SCI-FI/variant.m3u8?version=2
 
 #EXTINF:0,Spike TV 
-0
+http://4.31.30.159:9009
 
 #EXTINF:0,Star Movies 
 http://113.160.49.34/lives/origin03/moviehd.isml/moviehd-2096k.m3u8
@@ -415,6 +433,9 @@ http://hls.svc.moyo.tv/hls/CH_TV1000ACTION/variant.m3u8?version=2
 #EXTINF:0,TV Land 
 0
 
+#EXTINF:0,TVO
+http://4.31.30.159:9008
+
 #EXTINF:0,Universal Channel 
 0
 
@@ -432,3 +453,6 @@ http://hls.svc.moyo.tv/hls/CH_TV1000ACTION/variant.m3u8?version=2
 
 #EXTINF:0,World Fashion 
 http://btv-net.mediacdn.ru/TVB7/wfhdeu/playlist.m3u8
+
+#EXTINF:0,YTV
+http://4.31.30.159:9001
