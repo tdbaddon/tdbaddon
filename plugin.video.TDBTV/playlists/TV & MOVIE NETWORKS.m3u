@@ -76,11 +76,20 @@ http://37.187.160.187:8000/live/ressler/skype/129.ts
 #EXTINF:0,CBS 
 http://192.99.19.98:1935/flu555/_definst_/cbs/playlist.m3u8?token=
 
+#EXTINF:0,CBS 
+http://93.184.221.133/00573D/1084/1084-0.m3u8
+
 #EXTINF:0,CBS Action 
 http://81.92.105.134:5555/pl.m3u8?channel=303&key=LBCJh8usfbaoGnucatRSQgdZxiDJLM&client=freeAllTVUser
 
+#EXTINF:0,CBS Action 
+http://93.184.221.133/00573D/711/711-0.m3u8
+
 #EXTINF:0,CBS Drama 
 http://37.187.160.187:8000/live/ressler/skype/67.ts
+
+#EXTINF:0,CBS Drama 
+http://93.184.221.133/00573D/712/712-0.m3u8
 
 #EXTINF:0,CBS Reality 
 http://37.187.160.187:8000/live/ressler/skype/66.ts
@@ -98,7 +107,7 @@ http://113.160.49.34/lives/origin03/cinemaxsd.isml/cinemaxsd-1096k.m3u8
 0
 
 #EXTINF:0,CMore Action
-0
+http://93.184.221.133/00573D/1460/1460-0.m3u8
 
 #EXTINF:0,CMore Emotion
 http://188.138.9.228:8025
@@ -114,6 +123,9 @@ http://188.138.9.228:8021
 
 #EXTINF:0,CNBC
 http://origin.live.web.tv.streamprovider.net/streams/9044496707bcc259f6cdf58eb93cbfe9_live_0_0/index.m3u8
+
+#EXTINF:0,CNBC
+http://93.184.221.133/00573D/1085/1085-0.m3u8
 
 #EXTINF:0,Comedy Central 
 http://188.138.9.228:8022
@@ -207,6 +219,9 @@ http://167.114.157.40:1935/flu555/_definst_/fox/playlist.m3u8?token=
 
 #EXTINF:0,Fox TV 
 rtmp://109.200.1.82:1935/tes/fox.stream?e607b5b743e1842ee50e1556bbf3ae42
+
+#EXTINF:0,Fox TV 
+http://93.184.221.133/00573D/1093/1093-0.m3u8
 
 #EXTINF:0,FX 
 http://64.100.15.201/udp/239.255.2.9:10001

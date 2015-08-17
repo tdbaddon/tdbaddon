@@ -67,11 +67,17 @@ http://194.44.229.77:777/udp/237.1.239.19:1234
 #EXTINF:0,Eurosport 1 
 http://iptv.wssiptv.com:80/live/WSSiptv.com/he98fdui97w9769869t85/12.ts$OPT:http-user-agent=Lavf/55.19.104
 
+#EXTINF:0,Eurosport 1 
+http://93.184.221.133/00573D/1210/1210-0.m3u8
+
 #EXTINF:0,Eurosport 2 
 http://194.44.229.77:777/udp/237.1.239.13:1234
 
 #EXTINF:0,Eurosport 2 
 http://iptv.wssiptv.com:80/live/WSSiptv.com/he98fdui97w9769869t85/13.ts$OPT:http-user-agent=Lavf/55.19.104
+
+#EXTINF:0,Eurosport 2 
+http://93.184.221.133/00573D/1211/1211-0.m3u8
 
 #EXTINF:0,Eurosport News 
 0
@@ -258,6 +264,9 @@ http://212.51.146.19:4004
 
 #EXTINF:0,Sky Sports News 
 http://89.163.146.40:8000/live/goldlocal/VZUgW2Su7u/126.ts
+
+#EXTINF:0,Sky Sports News 
+http://93.184.221.133/00573D/183/183-0.m3u8
 
 #EXTINF:0,Sportsnet 360
 http://nlds187.cdnak.neulion.com/nlds/sportsnetnow/sn_360/as/live/sn_360_hd_ipad.m3u8

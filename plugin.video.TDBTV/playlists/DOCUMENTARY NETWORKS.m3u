@@ -34,8 +34,14 @@ http://80.80.160.168/live/8/live.m3u8
 #EXTINF:0,Discovery Channel 
 http://167.114.119.209:1935/flu555/_definst_/discovery/playlist.m3u8?token=
 
+#EXTINF:0,Discovery Channel 
+http://93.184.221.133/00573D/1347/1347-0.m3u8
+
 #EXTINF:0,Discovery History 
 http://37.187.160.187:8000/live/ressler/skype/93.ts
+
+#EXTINF:0,Discovery History 
+http://93.184.221.133/00573D/1348/1348-0.m3u8
 
 #EXTINF:0,Discovery History 
 http://93.184.221.133/00573D/1348/1348-0.m3u8
@@ -132,6 +138,9 @@ http://192.99.39.240:1935/flu555/_definst_/natgeo/playlist.m3u8?token=
 
 #EXTINF:0,National Geographic 
 rtmp://109.200.1.82:1935/tes/natgeo.stream?e607b5b743e1842ee50e1556bbf3ae42
+
+#EXTINF:0,National Geographic 
+http://93.184.221.133/00573D/338/338-0.m3u8
 
 #EXTINF:0,Planet Green 
 http://80.80.160.168/live/4/live.m3u8
