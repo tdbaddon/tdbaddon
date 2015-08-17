@@ -7,8 +7,14 @@ rtmp://66.55.93.204/livepkgr/a1stream?adbe-live-event=a1report
 #EXTINF:0,Agon Channel 
 http://str105mb.setplex.net:1935/str2iosmd5/7ios_agontv_34536544/playlist.m3u8
 
+#EXTINF:0,Alb Info
+http://str105mb.setplex.net:1935/str2iosmd5/stralbinfo_2654_dfs/playlist.m3u8
+
 #EXTINF:0,Alb UK 
 rtmp://188.138.17.8:1935/albuk/albuk.stream
+
+#EXTINF:0,Alb UK 
+rtmp://188.138.17.8:1935/albuk/albuk+.stream
 
 #EXTINF:0,Albanian Screen
 0
@@ -28,14 +34,8 @@ http://217.16.82.6:554/zulu/alsat_1/playlist.m3u8
 #EXTINF:0,Alsat M 
 http://217.16.82.6:554/zulu/alsat_2/playlist.m3u8
 
-#EXTINF:0,Alsat M 
-http://balkanstream.com/stream/alsatm/putidoma22/udhfbu
-
 #EXTINF:0,ATV
 rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
-
-#EXTINF:0,ATV
-http://balkanstream.com/stream/atv/putidoma22/udhfbu
 
 #EXTINF:0,B92 
 http://stream.b92.net:7999/tv-b92.ogg
@@ -43,7 +43,7 @@ http://stream.b92.net:7999/tv-b92.ogg
 #EXTINF:0,B92 
 http://edge3.volim.tv/live/b92.stream/playlist.m3u8?hash=ad2c3d8d36d3e1b1cb6a7c2b587df040c1ac6ab7
 
-#EXTINF:0,Balkan TV
+#EXTINF:0,Balkan TV a
 rtmp://yayin.tvdunyasi.tv/live/balkanrtv
 
 #EXTINF:0,Bangbang 
@@ -80,7 +80,7 @@ mms://77.238.209.50:1234
 rtmp://84.20.77.50/live//livestream2
 
 #EXTINF:0,Kanal 7 
-http://balkanstream.com/stream/kanal7/putidoma22/udhfbu
+0
 
 #EXTINF:0,Klan Kosova 
 http://str105mb.setplex.net:1935/str2iosmd5/10ios_klankosova_56468946/playlist.m3u8
@@ -167,10 +167,13 @@ http://88.212.10.27:81/streams/stv2.m3u8?
 rtmp://str103.setplex.net:1935/228/stv_folk
 
 #EXTINF:0,Top Channel 
-http://balkanstream.com/stream/topnews/putidoma22/udhfbu
+0
 
 #EXTINF:0,Top Channel News
 0
+
+#EXTINF:0,Tring Tring
+http://185.75.56.37:8056
 
 #EXTINF:0,Vizion Plus 
 rtmp://live.vizionplus.tv/live//livestream3

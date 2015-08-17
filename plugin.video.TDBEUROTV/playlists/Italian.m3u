@@ -8,19 +8,16 @@ rtmp://wms.shared.streamshow.it:80/videocalabria playpath=videocalabria swfUrl=h
 #EXTINF:0,Alto Adige TV
 rtsp://77.72.196.214:8554/live/mp4:AltoAdigeTV
 
-#EXTINF:0,Brescia TV
-http://wms.shared.streamshow.it/brescialivetv/brescialivetv/playlist.m3u8
-
-#EXTINF:0,Brescia TV
+#EXTINF:0,Brescia TV 
 rtmp://wma07.fluidstream.net/BresciaTV playpath=livestream swfUrl=http://media.bresciaoggi.it/media/3rdparty/jwplayer/mediaplayer-5.10-licensed/player.swf pageUrl=http://www.bresciaoggi.it/publisher/647_live/section/ live=1 timeout=10
 
-#EXTINF:0,Calabria Uno TV
+#EXTINF:0,Calabria Uno TV 
 rtmp://calabria1.flashmediaserver.it:1935/livepkgr?adbe-live-event=liveevent playpath=livestream?adbe-live-event=liveevent swfUrl=http://fpdownload.adobe.com/strobe/FlashMediaPlayback_101.swf/[[DYNAMIC]]/1 live=1 pageUrl=http://www.tvdream.net/embed/calabriauno-tva/
 
 #EXTINF:0,Canale 2
 http://wms.iptv.4wardstream.net/canale2iptv/canale2iptv/playlist.m3u8
 
-#EXTINF:0,Canale 46
+#EXTINF:0,Canale 46 
 rtmp://vs2.streamcaster.net:1935/test_live playpath=canale46 swfUrl=http://www.canale46.it/scripts/FlowPlayerNet/flowplayer.commercial-3.2.15.swf pageUrl=http://www.canale46.it/portale_web/lib/archivio.aspx?canale=1&id=1 live=1 timeout=10
 
 #EXTINF:0,Canale Dieci
@@ -39,7 +36,7 @@ http://vs2.streamcaster.net:1935/etvmarche_live/etvmarche/sansar.m3u8
 http://iphone-streaming.ustream.tv/ustreamVideo/19212483/streams/live/playlist.m3u8
 
 #EXTINF:0,Extra TV 
-rtmp://msh0080.stream.seeweb.it:80/live playpath=extratv1.sdp swfUrl=http://www.extratv.it/player.swf pageUrl=http://www.extratv.it/streaming.html live=1 timeout=10
+0
 
 #EXTINF:0,Fano TV
 http://live.streamcaster.net:1935/live/fanotv/sansar.m3u8
@@ -60,9 +57,9 @@ http://la7live-lh.akamaihd.net/i/test_1@143593/master.m3u8
 http://wms.shared.streamshow.it/lucaniatv/lucaniatv/playlist.m3u8
 
 #EXTINF:0,Onda TV 
-rtmp://live.streamcaster.net/ondatv_live/ playpath=ondatv swfUrl=http://www.flashwebtown.com/mediaplayer/mediaplayer.swf pageUrl=http://www.ondatv.it/ live=1
+0
 
-#EXTINF:0,Orler TV
+#EXTINF:0,Orler TV 
 rtmp://77.92.76.135/orler/ playpath=livestream swfUrl=http://77.92.76.135/jw5/player.swf live=1 pageUrl=http://www.orler.it/streamingtv/
 
 #EXTINF:0,Quartarete 4 
@@ -83,34 +80,19 @@ rtmp://cwedge.cdcache.net/cwedge/rilive
 #EXTINF:0,Radio Montecarlo TV
 rtmp://fms.105.net:1935/live/rmc1
 
-#EXTINF:0,RAI 1
+#EXTINF:0,RAI 1 
 http://origin2.live.web.tv.streamprovider.net/streams/a3be8da5ba57ddb33ada9fa8fcd53a19/index.m3u8
-
-#EXTINF:0,RAI 1
-http://212.51.156.151:3001
-
-#EXTINF:0,RAI 1
-http://81.92.105.134:5555/pl.m3u8?channel=500
-
-#EXTINF:0,RAI 1
-http://origin2.live.web.tv.streamprovider.net/streams/a3be8da5ba57ddb33ada9fa8fcd53a19/index.m3u8#MegaIPTVArgentina
 
 #EXTINF:0,RAI 2 
 http://origin2.live.web.tv.streamprovider.net/streams/84553722f218dda44aab91b4ae0c2d42/index.m3u8
 
-#EXTINF:0,RAI 2 
-http://212.51.156.151:3002
-
-#EXTINF:0,RAI 3
-http://origin2.live.web.tv.streamprovider.net/streams/2946613af1f663bb5b4164131b8c9413/index.m3u8
-
-#EXTINF:0,RAI 3
-http://212.51.156.151:3003
+#EXTINF:0,RAI 3 
+0
 
 #EXTINF:0,RAI 5 
 http://stream12.rai.it/live/smil:rai5.smil/chunklist_b1500000.m3u8#MegaIPTVArgentina
 
-#EXTINF:0,Rai Gulp
+#EXTINF:0,Rai Gulp 
 http://81.92.105.134:5555/pl.m3u8?channel=511
 
 #EXTINF:0,Rai News 
@@ -128,7 +110,7 @@ http://origin2.live.web.tv.streamprovider.net/streams/121612976e4808528d2ba7edc4
 #EXTINF:0,Rai Yoyo
 0
 
-#EXTINF:0,REI TV
+#EXTINF:0,REI TV 
 http://iphone-streaming.ustream.tv/ustreamVideo/18166848/streams/live/playlist.m3u8
 
 #EXTINF:0,Rete 8
@@ -149,17 +131,17 @@ http://iphone-streaming.ustream.tv/ustreamVideo/4194340/streams/live/playlist.m3
 #EXTINF:0,Suedtirol TV
 rtmp://77.72.196.214:8554/live/mp4:SuedtirolTV
 
-#EXTINF:0,Sky Arte
-http://212.51.148.162:2004/hdmi
+#EXTINF:0,Sky Arte 
+0
 
-#EXTINF:0,Sky Calcio
-http://212.51.146.19:4000
+#EXTINF:0,Sky Calcio 
+0
 
-#EXTINF:0,Sky Cinema Family
-http://109.202.195.76:5005
+#EXTINF:0,Sky Cinema Family 
+0
 
-#EXTINF:0,Sky Sport 24
-http://212.51.156.151:3013
+#EXTINF:0,Sky Sport 24 
+http://212.51.156.151:3013/hdmi
 
 #EXTINF:0,Sky Sport F1
 http://212.51.146.19:4004
@@ -167,11 +149,14 @@ http://212.51.146.19:4004
 #EXTINF:0,Sky TG24 
 rtmp://cp49989.live.edgefcs.net:1935/live playpath=streamRM1@2564 swfUrl=http://videoplatform.sky.it/player/swf/player_v2.swf pageUrl=http://video.sky.it/news/diretta live=1 timeout=10
 
+#EXTINF:0,Sky TG24 
+rtmp://cp49989.live.edgefcs.net:1935/live/streamRM1@2564
+
 #EXTINF:0,Sky Uno
 http://212.51.148.162:2002/hdmi
 
-#EXTINF:0,Tele 8
-http://vs2.streamcaster.net:1935/tele8_live/tele8/chunklist.m3u8
+#EXTINF:0,Tele 8 
+0
 
 #EXTINF:0,Tele Abruzzo 
 rtmp://184.173.179.163/TeleabruzzoTV playpath=TeleabruzzoTV swfUrl=http://184.173.179.163:2000/mediacp/system/misc/flvplayer/FLVplayer_Custom.swf live=1 pageUrl=http://www.abruzzo.fm/teleabruzzoflashplayer.html
@@ -185,14 +170,20 @@ rtmp://91.121.222.160/teleboariotb/teleboario.sdp
 #EXTINF:0,Tele Diogene 
 rtmp://wms.shared.streamshow.it:80/telediogene playpath=telediogene swfUrl=http://player.streamshow.it/flowplayer/flowplayer.commercial-3.2.18.swf pageUrl=http://player.streamshow.it/embed/telediogene.php?height=338&width=448 live=1 timeout=10
 
+#EXTINF:0,Tele Diogene 
+rtmp://wms.shared.streamshow.it:1935/telediogene/telediogene
+
 #EXTINF:0,TeleDucato
 http://wms.shared.streamshow.it/teleducatopc/teleducatopc/playlist.m3u8
 
 #EXTINF:0,Tele Luna 
 rtmp://vs2.streamcaster.net:1935/test_live playpath=teleluna swfUrl=http://www.lunaset.it/scripts/FlowPlayerNet/flowplayer.commercial-3.2.15.swf pageUrl=http://www.lunaset.it/ live=1
 
-#EXTINF:0,Tele Milano
+#EXTINF:0,Tele Milano 
 rtmp://91.121.222.160/piublulombardia/ playpath=piublulombardia.sdp swfUrl=http://ondemand.superstreaming.it/telemilanocity/flowplayer.rtmp-3.1.3.swf live=1 pageUrl=http://ondemand.superstreaming.it/telemilanocity//telemilanocity.html
+
+#EXTINF:0,Tele Milano 
+http://91.121.222.160:1935/piublu/piublu.sdp/HasBahCa.m3u8
 
 #EXTINF:0,Tele Monteneve 
 http://wms.shared.streamshow.it/telemonteneve/telemonteneve/playlist.m3u8
@@ -224,7 +215,7 @@ http://wms.shared.streamshow.it/teleducatopc/teleducatopc/playlist.m3u8
 #EXTINF:0,Teleliberta 
 0
 
-#EXTINF:0,Telemolise
+#EXTINF:0,Telemolise 
 http://iphone-streaming.ustream.tv/ustreamVideo/9426995/streams/live/playlist.m3u8
 
 #EXTINF:0,Telemonteneve
@@ -260,8 +251,8 @@ http://wms.shared.streamshow.it/veratv/veratv/playlist.m3u8
 #EXTINF:0,Video Brescia
 rtmp://wms.shared.streamshow.it/videobrescia/videobrescia
 
-#EXTINF:0,Videolina
-rtmp://178.33.229.111/live/Videolina
+#EXTINF:0,Videolina 
+0
 
 #EXTINF:0,VideoRegione
 http://iphone-streaming.ustream.tv/ustreamVideo/13268884/streams/live/playlist.m3u8

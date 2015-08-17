@@ -47,9 +47,9 @@ http://4.31.30.135:1935/st3fstv/12ios_TVDUGA_2548745/playlist.m3u8?
 rtmp://rtmp.elektrika.cz/live/myStream.sdp
 
 #EXTINF:0,Grand Narodna
-http://balkanstream.com/stream/grandtv/putidoma22/udhfbu
+0
 
-#EXTINF:0,Happy
+#EXTINF:0,Happy 
 http://edge3.volim.tv/live/happy.stream/playlist.m3u8?hash=ad2c3d8d36d3e1b1cb6a7c2b587df040c1ac6ab7
 
 #EXTINF:0,Hayat Folk
@@ -124,6 +124,9 @@ http://213.81.153.221:8080/nasa
 #EXTINF:0,Mreza Zagreb
 0
 
+#EXTINF:0,N1 Info
+http://best.str.n1info.com:8080/stream?channel=n1hdsrb?stream=hd?u=n1info
+
 #EXTINF:0,NetTV Plus
 http://5.153.25.7:8080/stream/?fw=true&route=nl3_2&rule=null&sp=nettvplus&channel=nettvinfo&stream=1mb&u=&b=2&player=http
 
@@ -131,13 +134,13 @@ http://5.153.25.7:8080/stream/?fw=true&route=nl3_2&rule=null&sp=nettvplus&channe
 mms://176.106.121.32:8080/
 
 #EXTINF:0,OBN 
-http://balkanstream.com/stream/obn/putidoma22/udhfbu
+0
 
-#EXTINF:0,Palma Plus
+#EXTINF:0,Palma Plus 
 http://edge3.volim.tv/live/palma.stream/playlist.m3u8?hash=ad2c3d8d36d3e1b1cb6a7c2b587df040c1ac6ab7
 
 #EXTINF:0,Pink 1 
-0
+http://edge1.volim.tv/live/pink.stream/HasBahCa.m3u8?hash=206dc563f74bad817eb851dced9cd089b71b7a3f
 
 #EXTINF:0,Pink 2
 0
@@ -268,17 +271,20 @@ http://edge3.volim.tv/live/palma.stream/playlist.m3u8?hash=ad2c3d8d36d3e1b1cb6a7
 #EXTINF:0,Planet TV
 rtsp://origin.biokoda.tv/live/mbit-planet?k=planettv-public
 
-#EXTINF:0,Prva TV
+#EXTINF:0,Prva TV 
 http://edge3.volim.tv/live/prva.stream/playlist.m3u8?hash=ad2c3d8d36d3e1b1cb6a7c2b587df040c1ac6ab7
 
 #EXTINF:0,RTC 
 mms://rts.videostreaming.rs/rts
 
-#EXTINF:0,RTS 1
-http://edge3.volim.tv/live/rts_1.stream/playlist.m3u8?hash=ad2c3d8d36d3e1b1cb6a7c2b587df040c1ac6ab7
+#EXTINF:0,RTC 
+mmsh://195.252.113.38:80/rts?MSWMExt=.asf
+
+#EXTINF:0,RTS 1 
+http://edge1.volim.tv/live/rts_1.stream/HasBahCa.m3u8?hash=206dc563f74bad817eb851dced9cd089b71b7a3f
 
 #EXTINF:0,RTS 2
-0
+http://edge1.volim.tv/live/rts_2.stream/HasBahCa.m3u8?hash=206dc563f74bad817eb851dced9cd089b71b7a3f
 
 #EXTINF:0,RTCG Sat 
 mms://beotelmedia.beotel.net/tvcg
@@ -292,11 +298,17 @@ mms://195.252.114.172/tvcg
 #EXTINF:0,RTL 2
 0
 
-#EXTINF:0,RTRS
-http://edge3.volim.tv/live/rtrs.stream/playlist.m3u8?hash=ad2c3d8d36d3e1b1cb6a7c2b587df040c1ac6ab7
+#EXTINF:0,RTRS 
+http://edge1.volim.tv/live/rtrs.stream/HasBahCa.m3u8?hash=206dc563f74bad817eb851dced9cd089b71b7a3f
 
-#EXTINF:0,RTV 1
+#EXTINF:0,RTV 1 
 http://edge3.volim.tv/live/rtv_1.stream/playlist.m3u8?hash=ad2c3d8d36d3e1b1cb6a7c2b587df040c1ac6ab7
+
+#EXTINF:0,RTV 1 
+rtsp://212.200.255.151/rtv1
+
+#EXTINF:0,RTV 2
+rtsp://212.200.255.151/rtv2
 
 #EXTINF:0,RTV Krea
 http://213.81.153.221:8080/galanta
@@ -304,11 +316,14 @@ http://213.81.153.221:8080/galanta
 #EXTINF:0,Ruzinov
 http://213.81.153.221:8080/ruzinov
 
+#EXTINF:0,Sky Plus
+http://edge1.volim.tv/live/sky_plus.stream/HasBahCa.m3u8?hash=206dc563f74bad817eb851dced9cd089b71b7a3f
+
 #EXTINF:0,Sonce TV
 http://92.53.27.201:10000/
 
-#EXTINF:0,SOS Kanal
-http://edge3.volim.tv/live/sos.stream/playlist.m3u8?hash=ad2c3d8d36d3e1b1cb6a7c2b587df040c1ac6ab7
+#EXTINF:0,SOS Kanal 
+0
 
 #EXTINF:0,Studio B
 mms://195.252.114.172/studiob

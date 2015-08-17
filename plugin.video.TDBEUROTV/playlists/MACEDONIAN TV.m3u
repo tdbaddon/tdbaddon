@@ -31,14 +31,8 @@ http://217.16.82.6:554/zulu/alsat_1/playlist.m3u8
 #EXTINF:0,Alsat M 
 http://217.16.82.6:554/zulu/alsat_2/playlist.m3u8
 
-#EXTINF:0,Alsat M 
-http://balkanstream.com/stream/alsatm/putidoma22/udhfbu
-
 #EXTINF:0,B92 
 http://stream.b92.net:7999/tv-b92.ogg
-
-#EXTINF:0,B92 
-http://edge3.volim.tv/live/b92.stream/playlist.m3u8?hash=ad2c3d8d36d3e1b1cb6a7c2b587df040c1ac6ab7
 
 #EXTINF:0,Balkan TV
 rtmp://yayin.tvdunyasi.tv/live/balkanrtv
@@ -67,7 +61,7 @@ http://217.16.82.6:554/zulu/era_2/playlist.m3u8
 #EXTINF:0,H1 Hugo
 rtmp://hugo-iptv.zapto.org/live/h1
 
-#EXTINF:0,Hema TV
+#EXTINF:0,Hema TV 
 mms://77.238.209.50:1234
 
 #EXTINF:0,In TV
@@ -86,7 +80,7 @@ http://88.212.10.27:81/streams/joj.m3u8
 rtmp://84.20.77.50/live/livestream1
 
 #EXTINF:0,K1 Veles
-0
+http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/k1-tv-veles/chunklist.m3u8
 
 #EXTINF:0,Kanal 21 
 0
@@ -227,7 +221,7 @@ http://217.16.82.6:554/zulu/telma_1/playlist.m3u8
 http://217.16.82.6:554/zulu/telma_2/playlist.m3u8
 
 #EXTINF:0,Ultra Tetovo
-0
+http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/ultra-tv-tetovo/chunklist.m3u8
 
 #EXTINF:0,Vesti 24
 mms://62.162.58.55/24vesti

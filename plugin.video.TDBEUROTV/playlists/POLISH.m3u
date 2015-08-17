@@ -49,6 +49,9 @@ rtmp://stream.smcloud.net/live/fokustv
 #EXTINF:0,Fokus TV 
 http://s4w.deb1.scdn.smcloud.net/live/_definst_/fokustv/chunklist_w2048299294.m3u8
 
+#EXTINF:0,Fokus TV 
+rtmp://94.242.228.182/yoy/_definst_/181
+
 #EXTINF:0,ITV
 http://itv.net.pl/video1.asx
 
@@ -151,7 +154,7 @@ http://213.81.153.221:8080/galanta
 #EXTINF:0,TV Torun 
 http://217.173.176.107:1935/live/ngrp:tvk.stream_all/.m3u8
 
-#EXTINF:0,TV Trwam
+#EXTINF:0,TV Trwam 
 mms://195.94.205.211/Trwam
 
 #EXTINF:0,TV Trwam
@@ -163,17 +166,20 @@ http://81.92.105.134:5555/pl.m3u8?channel=109
 #EXTINF:0,TVK
 0
 
-#EXTINF:0,TVN
-rtmp://178.16.220.163:1935/live/t2vnaa
+#EXTINF:0,TVN 
+rtmp://94.242.228.182/yoy/_definst_/315
 
 #EXTINF:0,TVN Style 
 0
 
-#EXTINF:0,TVP
-http://95.215.233.11:4022/udp/239.255.2.189:1234
+#EXTINF:0,TVN Turbo
+rtmp://178.16.220.163:1935/live/tvnturboaa
 
 #EXTINF:0,TVP
 http://81.92.105.134:5555/pl.m3u8?channel=107
+
+#EXTINF:0,TVP 1
+http://95.215.233.11:4022/udp/239.255.2.189:1234
 
 #EXTINF:0,TVP 2
 http://95.215.233.11:4022/udp/239.255.2.190:1234
@@ -181,8 +187,14 @@ http://95.215.233.11:4022/udp/239.255.2.190:1234
 #EXTINF:0,TVP Bialystok
 0
 
+#EXTINF:0,TVP Historia
+http://95.215.233.11:4022/udp/239.255.2.9:1234
+
 #EXTINF:0,TVP Info
 http://81.92.105.134:5555/pl.m3u8?channel=105
+
+#EXTINF:0,TVP Rozrywka
+http://95.215.233.11:4022/udp/239.255.2.245:1234
 
 #EXTINF:0,TVS
 0
