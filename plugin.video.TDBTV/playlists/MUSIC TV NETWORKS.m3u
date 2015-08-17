@@ -4,6 +4,9 @@
 #EXTINF:0,1HD Music
 rtmp://109.239.142.62/live/livestream3
 
+#EXTINF:0,1HD Music
+http://195.189.238.18/streaming/firstmuz/16/hd/playlist.m3u8
+
 #EXTINF:0,AKA 
 http://rrr.sz.xlcdn.com/?account=AATW&file=akanew&type=live&service=wowza&protocol=http&output=playlist.m3u8
 

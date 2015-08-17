@@ -19,6 +19,9 @@ http://80.80.160.168/live/1/500000/playlist.m3u8
 #EXTINF:0,Animal Planet 
 http://37.187.160.187:8000/live/ressler/skype/95.ts
 
+#EXTINF:0,Animal Planet 
+http://167.114.156.29:1935/flu555/_definst_/animal/playlist.m3u8?token=
+
 #EXTINF:0,Destination America 
 0
 
@@ -27,6 +30,9 @@ http://37.187.160.187:8000/live/ressler/skype/95.ts
 
 #EXTINF:0,Discovery Channel 
 http://80.80.160.168/live/8/live.m3u8
+
+#EXTINF:0,Discovery Channel 
+http://167.114.119.209:1935/flu555/_definst_/discovery/playlist.m3u8?token=
 
 #EXTINF:0,Discovery History 
 http://37.187.160.187:8000/live/ressler/skype/93.ts
@@ -38,7 +44,7 @@ http://93.184.221.133/00573D/1348/1348-0.m3u8
 0
 
 #EXTINF:0,Discovery News 
-0
+http://164.100.49.24:8080/hls-live/livepkgr/_definst_/ddnewslive.m3u8
 
 #EXTINF:0,Discovery Science 
 http://80.80.160.168/live/9/live.m3u8
@@ -67,6 +73,12 @@ http://37.187.160.187:8000/live/ressler/skype/90.ts
 #EXTINF:0,History Channel 
 http://4.31.30.159:9035
 
+#EXTINF:0,History Channel 
+http://167.114.101.188:1935/flu555/_definst_/h2/playlist.m3u8?token=
+
+#EXTINF:0,History Channel 
+http://167.114.157.40:1935/flu555/_definst_/history/playlist.m3u8?token=
+
 #EXTINF:0,Investigation Discovery 
 http://80.80.160.168/live/5/live.m3u8
 
@@ -91,6 +103,12 @@ http://194.44.229.77:777/udp/237.1.239.21:1234
 #EXTINF:0,Nat Geo Wild 
 http://37.187.160.187:8000/live/ressler/skype/97.ts
 
+#EXTINF:0,Nat Geo Wild 
+http://167.114.101.188:1935/flu555/_definst_/natgeowild/playlist.m3u8?token=
+
+#EXTINF:0,Nat Geo Wild 
+rtmp://109.200.1.82:1935/tes/natgeowild.stream?e607b5b743e1842ee50e1556bbf3ae42
+
 #EXTINF:0,National Geographic 
 http://194.44.229.77:777/udp/237.1.238.10:1234
 
@@ -105,6 +123,15 @@ http://hls.svc.moyo.tv/hls/CH_NATGEO/variant.m3u8?version=2
 
 #EXTINF:0,National Geographic 
 http://37.187.160.187:8000/live/ressler/skype/96.ts
+
+#EXTINF:0,National Geographic 
+http://167.114.101.188:1935/flu555/_definst_/natgeo/playlist.m3u8?token=
+
+#EXTINF:0,National Geographic 
+http://192.99.39.240:1935/flu555/_definst_/natgeo/playlist.m3u8?token=
+
+#EXTINF:0,National Geographic 
+rtmp://109.200.1.82:1935/tes/natgeo.stream?e607b5b743e1842ee50e1556bbf3ae42
 
 #EXTINF:0,Planet Green 
 http://80.80.160.168/live/4/live.m3u8

@@ -25,6 +25,12 @@ rtmp://149.3.141.210:1935/tv/ttv11
 #EXTINF:0,ASIAN XXX 
 rtmp://149.3.141.210:1935/tv/ttv12
 
+#EXTINF:0,ASIAN XXX 
+http://210.200.79.26:1935/live/aracity01/playlist.m3u8
+
+#EXTINF:0,ASIAN XXX 
+http://210.200.79.26:1935/live/aracity02/playlist.m3u8
+
 #EXTINF:0,ASK TV
 rtmp://edge2.everyon.tv/etv2/phd1005
 

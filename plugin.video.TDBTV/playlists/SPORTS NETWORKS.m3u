@@ -22,11 +22,26 @@ http://93.184.221.133/00573D/1222/1222-0.m3u8
 #EXTINF:0,BT Sport 1 
 rtmp://80.82.64.140:443/liverepeater playpath=11 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
 
+#EXTINF:0,BT Sport 1 
+rtmp://109.200.1.82:1935/tes/bt1.stream?e607b5b743e1842ee50e1556bbf3ae42
+
+#EXTINF:0,BT Sport 1 
+rtmp://109.200.1.82:1935/tes/bteurope.stream?e607b5b743e1842ee50e1556bbf3ae42
+
 #EXTINF:0,BT Sport 2 
 rtmp://80.82.64.140:443/liverepeater playpath=36 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
 
+#EXTINF:0,BT Sport 2 
+rtmp://109.200.1.82:1935/tes/bt2.stream?e607b5b743e1842ee50e1556bbf3ae42
+
+#EXTINF:0,CBS Sports
+http://cbspgalivehd-lh.akamaihd.net/i/farmersday4_simulcast@92710/master.m3u8
+
 #EXTINF:0,Chelsea TV 
 http://87.245.214.43/streaming/futbol/16/tvrec/playlist.m3u8
+
+#EXTINF:0,CMore Sport
+http://188.138.9.228:8023
 
 #EXTINF:0,ESPN 
 http://80.80.160.168/live/6/live.m3u8
@@ -37,8 +52,11 @@ rtmp://80.82.64.140:443/liverepeater playpath=12 pageUrl=http://popeoftheplayers
 #EXTINF:0,ESPN 
 rtmp://141.255.160.202:1935/stream/ playpath=1Kq68GX6Kc.stream swfUrl=http://thecdn.04stream.com/p/ooolo1.swf pageUrl=http://www.04stream.com/ebb.php?adsp=other&width=600&height=460&st=24g3z5b4d4t4w3x2x4h5n244z294u2u28424w2u2w2t223f4&adx=&stream=54y2n5i57494y264d4k544b4v2a494n244v4n4y2w2i304c4x4l5t22433y234y2x2p2t274y2z32363y3q2x4y5b4e4f3v3c4t4i2k4j4v5k474n33574a414p4h4z33456t226c4n424r2p2z294b434h5233314y2k5b4a4j5u24494j5s244v264338444d4y2z264b494m56434t2y3s2p224r2p2o2&sooor=NA==&str=is&ok=&cat=2&link=1&idom=www.gofeed2all.eu token=%ZZri(nKa@#Z
 
+#EXTINF:0,ESPN 
+http://192.99.39.240:1935/flu555/_definst_/espn/playlist.m3u8?token=
+
 #EXTINF:0,ESPN 2 
-0
+http://192.99.39.240:1935/flu555/_definst_/espn2/playlist.m3u8?token=
 
 #EXTINF:0,Eurosport 1 
 http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_1800.m3u8
@@ -67,14 +85,29 @@ http://iptv.wssiptv.com:80/live/WSSiptv.com/he98fdui97w9769869t85/13.ts$OPT:http
 #EXTINF:0,Fox Sports 
 http://113.160.49.34/lives/origin03/foxhd.isml/foxhd-2096k.m3u8
 
+#EXTINF:0,Fox Sports 
+rtmp://kv2.ts33.net/sat/us012
+
+#EXTINF:0,Fox Sports 
+rtmp://kv2.ts33.net/sat/us011
+
 #EXTINF:0,Fox Sports 1 
 http://54.177.195.82/server/play/fs1ctg/3964000/prog.m3u8?anv=1427415219896 |X-Forwarded-For=66.171.228.102
+
+#EXTINF:0,Fox Sports 1 
+http://192.99.39.240:1935/flu555/_definst_/foxsports1/playlist.m3u8?token=
 
 #EXTINF:0,Fox Sports 2 
 http://54.177.195.82/server/play/fs2ctg/3964000/prog.m3u8?anv=1427415219896 |X-Forwarded-For=66.171.228.102
 
 #EXTINF:0,Fox Sports 2 
 http://89.163.146.40:8000/live/goldlocal/VZUgW2Su7u/124.ts
+
+#EXTINF:0,Fox Sports 2 
+http://192.99.39.240:1935/flu555/_definst_/foxsports2/playlist.m3u8?token=
+
+#EXTINF:0,Fox Sports 2 
+rtmp://kv2.ts33.net/sat/us301
 
 #EXTINF:0,Fox Sports News 
 0
@@ -97,20 +130,35 @@ http://89.163.146.40:8000/live/goldlocal/VZUgW2Su7u/127.ts
 #EXTINF:0,NBA TV 
 http://4.31.30.159:9020
 
+#EXTINF:0,NBA TV 
+http://192.99.39.240:1935/flu555/_definst_/nbatv/playlist.m3u8?token=
+
 #EXTINF:0,NBC Golf 
 http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/2596k/prog.m3u8|X-Forwarded-For=209.239.112.104
 
 #EXTINF:0,NBC Golf 
 http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/4296k/prog.m3u8|X-Forwarded-For=209.239.112.104
 
+#EXTINF:0,NBC Golf 
+http://167.114.156.30:1935/flu555/_definst_/golf/playlist.m3u8?token=
+
 #EXTINF:0,NBCSN 
 http://cdn.phoenix.intergi.com/21772/videos/3362254/video-sd.mp4?hosting_id=21772
+
+#EXTINF:0,NBCSN 
+http://192.99.39.240:1935/flu555/_definst_/nbcsports/playlist.m3u8?token=
 
 #EXTINF:0,NBCSN 
 http://64.100.15.201/udp/239.255.2.7:10001
 
 #EXTINF:0,NFL Network 
 http://64.100.15.201/udp/239.255.2.5:10001
+
+#EXTINF:0,NFL Network 
+http://192.99.19.98:1935/flu555/_definst_/jnfl/playlist.m3u8?token=
+
+#EXTINF:0,NHL Network
+rtmp://kv2.ts33.net/sat/us021
 
 #EXTINF:0,Outdoor Channel 
 rtmp://edge1.everyon.tv/etv1sb/pld613
@@ -164,10 +212,13 @@ http://xrxs.net/video/live-p12wash-4728.m3u8
 mms://100automoto.tv/channel_porsche
 
 #EXTINF:0,Premier Sports 
-0
+http://pies.ddns.net:8000/live/DMFB001/WtzoRFILRb/9.m3u8
+
+#EXTINF:0,Premier Sports 
+http://212.51.146.19:4009
 
 #EXTINF:0,Racing UK 
-0
+rtmp://109.200.1.82:1935/tes/racinguk.stream?e607b5b743e1842ee50e1556bbf3ae42
 
 #EXTINF:0,Root Sports 
 0
@@ -178,20 +229,32 @@ mms://100automoto.tv/channel_porsche
 #EXTINF:0,Sky Sports 1 
 http://89.163.146.40:8000/live/goldlocal/VZUgW2Su7u/128.ts
 
+#EXTINF:0,Sky Sports 1 
+rtmp://109.200.1.82:1935/tes/skysp1.stream?e607b5b743e1842ee50e1556bbf3ae42
+
 #EXTINF:0,Sky Sports 2 
 http://89.163.146.40:8000/live/goldlocal/VZUgW2Su7u/129.ts
 
 #EXTINF:0,Sky Sports 3 
-0
+rtmp://109.200.1.82:1935/tes/skysp3.stream?e607b5b743e1842ee50e1556bbf3ae42
 
 #EXTINF:0,Sky Sports 4 
 http://89.163.146.40:8000/live/goldlocal/VZUgW2Su7u/131.ts
 
+#EXTINF:0,Sky Sports 4 
+rtmp://109.200.1.82:1935/tes/skysp4.stream?e607b5b743e1842ee50e1556bbf3ae42
+
 #EXTINF:0,Sky Sports 5 
-0
+rtmp://109.200.1.82:1935/tes/skysp5.stream?e607b5b743e1842ee50e1556bbf3ae42
 
 #EXTINF:0,Sky Sports F1 
 http://89.163.146.40:8000/live/goldlocal/VZUgW2Su7u/127.ts
+
+#EXTINF:0,Sky Sports F1 
+rtmp://109.200.1.82:1935/tes/skyspf1.stream?e607b5b743e1842ee50e1556bbf3ae42
+
+#EXTINF:0,Sky Sports F1 
+http://212.51.146.19:4004
 
 #EXTINF:0,Sky Sports News 
 http://89.163.146.40:8000/live/goldlocal/VZUgW2Su7u/126.ts
@@ -214,20 +277,41 @@ rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9
 #EXTINF:0,Star Sports 
 http://113.160.49.34/lives/origin03/starsportsd.isml/starsportsd-1096k.m3u8
 
+#EXTINF:0,Tennis Channel
+http://167.114.157.40:1935/flu555/_definst_/jtennis/playlist.m3u8?token=
+
+#EXTINF:0,Trace Sports
+http://stream01.yamgo.com/iPhone/HLS_TS/broadcast/trace_tv_sports-tablet.3gp/trace_tv_sports-tablet.3gp-mr647k.m3u8?
+
 #EXTINF:0,TSN 1 
 http://4.31.30.159:9082
+
+#EXTINF:0,TSN 1 
+rtmp://109.200.1.82:1935/tes/tsn1.stream?e607b5b743e1842ee50e1556bbf3ae42
 
 #EXTINF:0,TSN 2 
 http://4.31.30.159:9083
 
+#EXTINF:0,TSN 2 
+rtmp://109.200.1.82:1935/tes/tsn2.stream?e607b5b743e1842ee50e1556bbf3ae42
+
 #EXTINF:0,TSN 3 
 http://4.31.30.159:9084
+
+#EXTINF:0,TSN 3 
+rtmp://109.200.1.82:1935/tes/tsn3.stream?e607b5b743e1842ee50e1556bbf3ae42
 
 #EXTINF:0,TSN 4 
 http://4.31.30.159:9085
 
+#EXTINF:0,TSN 4 
+rtmp://109.200.1.82:1935/tes/tsn4.stream?e607b5b743e1842ee50e1556bbf3ae42
+
 #EXTINF:0,TSN 5 
 http://4.31.30.159:9086
+
+#EXTINF:0,TSN 5 
+rtmp://109.200.1.82:1935/tes/tsn5.stream?e607b5b743e1842ee50e1556bbf3ae42
 
 #EXTINF:0,Viasat Golf 
 http://93.184.221.133/00573D/911/911-0.m3u8
