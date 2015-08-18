@@ -10,6 +10,9 @@ http://64.100.15.201/udp/239.255.2.6:10001
 #EXTINF:0,A&E 
 http://4.31.30.159:9046
 
+#EXTINF:0,A&E 
+http://142.4.216.60:1935/edge/_definst_/tuc280rbycwnsvs/playlist.m3u8?wowzasessionid=1419880467
+
 #EXTINF:0,ABC 
 http://167.114.101.188:1935/flu555/_definst_/abc/playlist.m3u8?token=
 
@@ -29,16 +32,16 @@ http://167.114.157.40:1935/flu555/_definst_/amc/playlist.m3u8?token=
 rtmp://109.200.1.82:1935/tes/babytv.stream?e607b5b743e1842ee50e1556bbf3ae42
 
 #EXTINF:0,BBC 1 
-http://81.92.105.134:5555/pl.m3u8?channel=141
+http://82.135.224.134:80/udp/239.100.3.1:1234
 
 #EXTINF:0,BBC 1 
-http://37.187.160.187:8000/live/ressler/skype/53.ts
+http://81.92.105.134:5555/pl.m3u8?channel=141
 
 #EXTINF:0,BBC 1 
 http://81.92.105.134:5555/pl.m3u8?channel=145
 
 #EXTINF:0,BBC 1 
-http://82.135.224.134:80/udp/239.100.3.1:1234
+http://37.187.160.187:8000/live/ressler/skype/53.ts
 
 #EXTINF:0,BBC 2 
 http://37.187.160.187:8000/live/ressler/skype/54.ts
@@ -109,8 +112,8 @@ http://113.160.49.34/lives/origin03/cinemaxsd.isml/cinemaxsd-1096k.m3u8
 #EXTINF:0,CMore Action
 http://93.184.221.133/00573D/1460/1460-0.m3u8
 
-#EXTINF:0,CMore Emotion
-http://188.138.9.228:8025
+#EXTINF:0,CMore Emotion 
+0
 
 #EXTINF:0,CMore First 
 0
@@ -119,16 +122,13 @@ http://188.138.9.228:8025
 0
 
 #EXTINF:0,CMore Series 
-http://188.138.9.228:8021
+0
 
 #EXTINF:0,CNBC
 http://origin.live.web.tv.streamprovider.net/streams/9044496707bcc259f6cdf58eb93cbfe9_live_0_0/index.m3u8
 
 #EXTINF:0,CNBC
 http://93.184.221.133/00573D/1085/1085-0.m3u8
-
-#EXTINF:0,Comedy Central 
-http://188.138.9.228:8022
 
 #EXTINF:0,Comedy Central 
 http://37.187.160.187:8000/live/ressler/skype/82.ts
@@ -159,6 +159,9 @@ http://167.114.119.209:1935/flu555/_definst_/wpix/playlist.m3u8?token=
 
 #EXTINF:0,Disney Channel 
 http://4.31.30.159:9002
+
+#EXTINF:0,Disney Channel 
+http://142.4.216.60:1935/edge/_definst_/2tag4dzgwof5ma2/playlist.m3u8?wowzasessionid=1420170412
 
 #EXTINF:0,Disney Junior 
 0
@@ -208,9 +211,6 @@ http://167.114.119.209:1935/flu555/_definst_/food/playlist.m3u8?token=
 #EXTINF:0,Fox Movies 
 http://185.5.222.227:4242/bysid/5608
 
-#EXTINF:0,Fox Movies 
-http://89.248.171.141/ts60/ch1144/index.m3u8?v=1548652116
-
 #EXTINF:0,Fox TV 
 http://hls.svc.moyo.tv/hls/CH_FOX/variant.m3u8?version=2
 
@@ -222,6 +222,9 @@ rtmp://109.200.1.82:1935/tes/fox.stream?e607b5b743e1842ee50e1556bbf3ae42
 
 #EXTINF:0,Fox TV 
 http://93.184.221.133/00573D/1093/1093-0.m3u8
+
+#EXTINF:0,Fox TV 
+http://142.4.216.60:1935/edge/_definst_/yuu6p5oaa1x4a1p/playlist.m3u8?wowzasessionid=1419906680
 
 #EXTINF:0,FX 
 http://64.100.15.201/udp/239.255.2.9:10001
@@ -245,7 +248,7 @@ http://link.theplatform.com/s/dtjsEC/EqBPGYLY6fEx?feed=DEV%20Live%20Stream%20Fee
 0
 
 #EXTINF:0,Hallmark Channel 
-0
+http://142.4.216.60:1935/edge/_definst_/v4ynnryunsoxzbq/playlist.m3u8?wowzasessionid=1419874236
 
 #EXTINF:0,HBO 
 rtmp://94.102.49.207/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to/player/secure_player_iguide_token.swf live=1 pageUrl=http://www.iguide.to/view/1/watch-live-HBO-channel-for-free token=#ed%h0#w18623jsda6523lDGDVe
@@ -298,6 +301,9 @@ http://204.107.27.136/live/11.low.stream/11.low.stream/index.m3u8
 #EXTINF:0,ITV 1 
 http://82.135.224.134:80/udp/239.100.3.6:1234
 
+#EXTINF:0,ITV 1 
+http://93.184.221.133/00573D/283/283-0.m3u8
+
 #EXTINF:0,ITV 2 
 http://204.107.27.136/live/67.low.stream/67.low.stream/index.m3u8
 
@@ -328,6 +334,9 @@ http://192.99.39.240:1935/flu555/_definst_/ktla/playlist.m3u8?token=
 #EXTINF:0,Lifetime Network 
 http://167.114.101.188:1935/flu555/_definst_/lmn/playlist.m3u8?token=
 
+#EXTINF:0,Lifetime Network 
+http://142.4.216.60:1935/edge/_definst_/7b2gr554gyyth8e/playlist.m3u8?wowzasessionid=1419879018
+
 #EXTINF:0,London Live 
 http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
 
@@ -345,9 +354,6 @@ http://63.237.48.23/ios/MBC_ACTION/MBC_ACTION.m3u8
 
 #EXTINF:0,MBC Max 
 http://63.237.48.23/ios/MBC_MAX/MBC_MAX.m3u8
-
-#EXTINF:0,MBC Max 
-http://89.248.171.141/ts60/ch1254/index.m3u8?v=1548652116
 
 #EXTINF:0,MGM 
 0
@@ -374,7 +380,7 @@ http://194.44.229.77:777/udp/237.1.239.14:1234
 0
 
 #EXTINF:0,OWN Network 
-0
+http://142.4.216.60:1935/edge/_definst_/uehgy5htiasffj3/playlist.m3u8?wowzasessionid=1419878658
 
 #EXTINF:0,PBS 
 0
@@ -415,13 +421,13 @@ rtmp://109.200.1.82:1935/tes/living.stream?e607b5b743e1842ee50e1556bbf3ae42
 #EXTINF:0,Sky Movies Action 
 rtmp://109.200.1.82:1935/tes/movaction.stream?e607b5b743e1842ee50e1556bbf3ae42
 
-#EXTINF:0,Sky Movies Comedy
+#EXTINF:0,Sky Movies Comedy 
 rtmp://109.200.1.82:1935/tes/movcomedy.stream?e607b5b743e1842ee50e1556bbf3ae42
 
 #EXTINF:0,Sky Movies Crime
 0
 
-#EXTINF:0,Sky Movies Disney
+#EXTINF:0,Sky Movies Disney 
 rtmp://109.200.1.82:1935/tes/movdisney.stream?e607b5b743e1842ee50e1556bbf3ae42
 
 #EXTINF:0,Sky Movies Drama
@@ -456,6 +462,9 @@ http://167.114.156.30:1935/flu555/_definst_/space/playlist.m3u8?token=
 
 #EXTINF:0,Spike TV 
 http://4.31.30.159:9009
+
+#EXTINF:0,Spike TV 
+http://142.4.216.60:1935/edge/_definst_/sax2mq2alpirnww/playlist.m3u8?wowzasessionid=1419878529
 
 #EXTINF:0,Star Movies 
 http://113.160.49.34/lives/origin03/moviehd.isml/moviehd-2096k.m3u8
@@ -516,6 +525,9 @@ rtmp://208.53.180.218/ctv playpath=tom swfUrl=http://www.carolineoliveira.com.br
 
 #EXTINF:0,Tru TV 
 http://64.100.15.201/udp/239.255.2.4:10001
+
+#EXTINF:0,Tru TV 
+http://142.4.216.60:1935/edge/_definst_/uhnr4161ybioa5w/playlist.m3u8?wowzasessionid=1420124955
 
 #EXTINF:0,True Drama
 0

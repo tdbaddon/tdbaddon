@@ -17,9 +17,6 @@ http://80.80.160.168/live/1/live.m3u8
 http://80.80.160.168/live/1/500000/playlist.m3u8
 
 #EXTINF:0,Animal Planet 
-http://37.187.160.187:8000/live/ressler/skype/95.ts
-
-#EXTINF:0,Animal Planet 
 http://167.114.156.29:1935/flu555/_definst_/animal/playlist.m3u8?token=
 
 #EXTINF:0,Destination America 
@@ -39,9 +36,6 @@ http://93.184.221.133/00573D/1347/1347-0.m3u8
 
 #EXTINF:0,Discovery History 
 http://37.187.160.187:8000/live/ressler/skype/93.ts
-
-#EXTINF:0,Discovery History 
-http://93.184.221.133/00573D/1348/1348-0.m3u8
 
 #EXTINF:0,Discovery History 
 http://93.184.221.133/00573D/1348/1348-0.m3u8
@@ -166,8 +160,8 @@ http://194.44.229.77:777/udp/237.1.238.14:1234
 #EXTINF:0,Viasat Explorer 
 http://195.78.244.219:10000/udp/239.0.3.30:1234
 
-#EXTINF:0,Viasat History 
-http://195.78.244.219:10000/udp/239.0.3.31:1234
+#EXTINF:0,Viasat Explorer 
+http://hls.svc.moyo.tv/hls/CH_VIASATEXPLORER/variant.m3u8?version=2
 
 #EXTINF:0,Viasat History 
 http://hls.svc.moyo.tv/hls/CH_VIASATHISTORY/variant.m3u8?version=2
