@@ -1,0 +1,19 @@
+v0.6.5
+- Support XBMC/KODI 13.x and later
+
+v0.6.4
+- Support Linux ARM
+- Removed Android x86 support
+
+v0.6.3
+- Improving and optimize metadata
+- Improving and optimize subtitles
+- Improving clean cache
+- Improving loading bar
+- Improvements and restructuring
+- FIX: Android issue
+- FIX: "Add to movies"
+- FIX: Subtitle caching issue
+
+v0.6.0
+- Initial release

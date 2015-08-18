@@ -83,11 +83,17 @@ rtmp://fms.105.net:1935/live/rmc1
 #EXTINF:0,RAI 1 
 http://origin2.live.web.tv.streamprovider.net/streams/a3be8da5ba57ddb33ada9fa8fcd53a19/index.m3u8
 
+#EXTINF:0,RAI 1 
+http://proffiptv.mine.nu:15003/live/tvgalaxynew1/0VbE5RQrtX/134.ts
+
 #EXTINF:0,RAI 2 
 http://origin2.live.web.tv.streamprovider.net/streams/84553722f218dda44aab91b4ae0c2d42/index.m3u8
 
+#EXTINF:0,RAI 2 
+http://proffiptv.mine.nu:15003/live/tvgalaxynew1/0VbE5RQrtX/135.ts
+
 #EXTINF:0,RAI 3 
-0
+http://proffiptv.mine.nu:15003/live/tvgalaxynew1/0VbE5RQrtX/136.ts
 
 #EXTINF:0,RAI 5 
 http://stream12.rai.it/live/smil:rai5.smil/chunklist_b1500000.m3u8#MegaIPTVArgentina
@@ -99,7 +105,7 @@ http://81.92.105.134:5555/pl.m3u8?channel=511
 http://origin2.live.web.tv.streamprovider.net/streams/121612976e4808528d2ba7edc446887c/index.m3u8
 
 #EXTINF:0,Rai Premium
-0
+http://proffiptv.mine.nu:15003/live/tvgalaxynew1/0VbE5RQrtX/532.ts
 
 #EXTINF:0,Rai Scuola
 0
@@ -132,7 +138,7 @@ http://iphone-streaming.ustream.tv/ustreamVideo/4194340/streams/live/playlist.m3
 rtmp://77.72.196.214:8554/live/mp4:SuedtirolTV
 
 #EXTINF:0,Sky Arte 
-0
+http://proffiptv.mine.nu:15003/live/tvgalaxynew1/0VbE5RQrtX/22.ts
 
 #EXTINF:0,Sky Calcio 
 0

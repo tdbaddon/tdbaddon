@@ -5,9 +5,6 @@
 http://wowza1.videos.movile.com:8080/live/smil:adulto_1.smil/media-b1100000_2400.m3u8
 
 #EXTINF:0,ADULT CHANNEL 
-http://188.165.220.116:8081/live/35/playlist.m3u8
-
-#EXTINF:0,ADULT CHANNEL 
 http://210.200.79.26:1935/live/aracity03/playlist.m3u8
 
 #EXTINF:0,ADULT CHANNEL 
@@ -62,7 +59,7 @@ rtmp://edge2.everyon.tv/etv2sb/phd772
 rtmp://edge2.everyon.tv/etv2sb/pld772
 
 #EXTINF:0,CENTO X CENTO 
-0
+http://tvi.ddns.me:8000/live/dhoha/benomrane/771.ts?tocken1234
 
 #EXTINF:0,DORCEL TV 
 http://62.210.82.241:8081/sexzonehd/sexzonehd/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9NS8yMC8yMDE1IDEyOjIwOjQzIEFNJmhhc2hfdmFsdWU9bXdZbnIwM2V4NE5jNXY4YnpNb2dtZz09JnZhbGlkbWludXRlcz0zMDA=
@@ -87,6 +84,15 @@ http://82.146.20.98:1234/udp/239.130.50.135:9001
 
 #EXTINF:0,HOT CLUB 
 http://4.31.30.159:9003
+
+#EXTINF:0,HOT CLUB 
+http://tvi.ddns.me:8000/live/dhoha/benomrane/906.ts?tocken1234
+
+#EXTINF:0,HOT CLUB 
+http://tvi.ddns.me:8000/live/dhoha/benomrane/1201.ts?tocken1234
+
+#EXTINF:0,HOT CLUB 
+http://tvi.ddns.me:8000/live/dhoha/benomrane/1346.ts?tocken1234
 
 #EXTINF:0,HOT SHOTS
 http://46.249.213.93/iPhone/HLS_TS/broadcast/hotshots-tablet.3gp/hotshots-tablet.3gp-mr649k.m3u8
@@ -122,9 +128,6 @@ http://k4.usastreams.com:1935/miamitv/miamitv/chunklist_w128908539.m3u8
 0
 
 #EXTINF:0,O LA LA 
-http://185.5.40.101/hls/session-4677617QfHCCZsLqE/CH_OLALA/bw1758000/variant.m3u8?version=1
-
-#EXTINF:0,O LA LA 
 http://4BA9EBDB07C05883:@5.159.96.170:8000/olala
 
 #EXTINF:0,PASSIE XXX
@@ -148,8 +151,8 @@ rtmp://edge2.everyon.tv/etv2sb/phd499
 #EXTINF:0,PLAYBOY SPICE 
 rtmp://edge2.everyon.tv/etv2sb/pld499
 
-#EXTINF:0,PLAYBOY TV 
-http://f1.mnogo-tv.com/ott-tv/1167/1433972580/7e5b62bec54ebc00c7ac295d5629e790/hls/PLboi/index.m3u8
+#EXTINF:0,PLAYBOY SPICE
+http://tvi.ddns.me:8000/live/dhoha/benomrane/907.ts?tocken1234
 
 EXTINF:0,PLAYBOY TV 
 http://iptvmx.ddns.net/forocable/forocable/177.ch
@@ -181,9 +184,6 @@ http://iptvchoice.zapto.org:8000/live/testrapid/3CmWLfb3kW/1341.ts
 #EXTINF:0,REDLIGHT PREMIUM 
 rtmp://94.242.228.182/yoy/_definst_/251
 
-#EXTINF:0,REDLIGHT PREMIUM 
-http://46.181.237.75:1234/udp/239.255.42.217:1234
-
 #EXTINF:0,REDTUBE
 0
 
@@ -198,9 +198,6 @@ rtmp://main2sb.everyon.tv:1935/etv2sb/_definst_/pld499
 
 #EXTINF:0,SATISFACTION HD 
 http://82.146.20.98:1234/udp/239.130.50.128:9001
-
-#EXTINF:0,SCT 
-http://109.192.117.22:8001/1:0:1:35C8:1388:13E:820000:0:0:0:
 
 #EXTINF:0,SCT 
 http://iptvchoice.zapto.org:8000/live/testrapid/3CmWLfb3kW/1490.ts
@@ -230,7 +227,7 @@ http://82.146.20.98:1234/udp/239.130.50.126:9001
 http://62.210.82.241:8081/sexhothd/sexhothd/live.m3u8
 
 #EXTINF:0,SUPERONE 
-http://balkanstream.com/stream/hustlertv/putidoma22/udhfbu
+0
 
 #EXTINF:0,TGIRLS TV
 http://82.146.20.98:1234/udp/239.130.50.127:9001
@@ -241,11 +238,14 @@ http://82.146.20.98:1234/udp/239.130.50.127:9001
 #EXTINF:0,VENUS
 http://iptvchoice.zapto.org:8000/live/testrapid/3CmWLfb3kW/2619.ts
 
+#EXTINF:0,VENUS
+http://tvi.ddns.me:8000/live/dhoha/benomrane/1199.ts?tocken1234
+
 #EXTINF:0,VISIT X 
 0
 
 #EXTINF:0,X DESIRE 
-http://balkanstream.com/stream/xxx3/putidoma22/udhfbu
+0
 
 #EXTINF:0,XTSY 
 0
@@ -261,6 +261,21 @@ rtmp://94.242.228.182/yoy/_definst_/251
 
 #EXTINF:0,XXX 
 http://4.31.30.159:9005
+
+#EXTINF:0,XXX 
+http://tvi.ddns.me:8000/live/dhoha/benomrane/782.ts?tocken1234
+
+#EXTINF:0,XXX 
+http://tvi.ddns.me:8000/live/dhoha/benomrane/780.ts?tocken1234
+
+#EXTINF:0,XXX 
+http://tvi.ddns.me:8000/live/dhoha/benomrane/783.ts?tocken1234
+
+#EXTINF:0,XXX 
+http://tvi.ddns.me:8000/live/dhoha/benomrane/773.ts?tocken1234
+
+#EXTINF:0,XXX 
+http://tvi.ddns.me:8000/live/dhoha/benomrane/770.ts?tocken1234
 
 #EXTINF:0,YOU DIVA 
 http://46.249.213.87/iPhone/HLS_TS/broadcast/you_diva-iphone.3gp.m3u8

@@ -136,9 +136,9 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
-<addon id="plugin.video.kodipopcorntime" name="KODI Popcorn Time" version="0.6.3" provider-name="Diblo">
+<addon id="plugin.video.kodipopcorntime" name="KODI Popcorn Time" version="0.6.5" provider-name="Diblo">
     <requires>
-        <import addon="xbmc.python" version="2.19.0"/>
+        <import addon="xbmc.python" version="2.14.0"/>
     </requires>
     <extension point="xbmc.python.pluginsource" library="addon.py">
         <provides>video</provides>
@@ -150,7 +150,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
         <source><![CDATA[https://github.com/Diblo/KODI-Popcorn-Time]]></source>
         <language>English</language>
         <license><![CDATA[GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007]]></license>
-        <summary><![CDATA[KODI Popcorn Time: Immediately steam movies in KODI.]]></summary>
+        <summary><![CDATA[KODI Popcorn Time: Immediately stream movies in KODI.]]></summary>
         <description><![CDATA[With KODI Popcorn Time you can search for movies that you can see immediately in KODI.]]></description>
     </extension>
 </addon>
@@ -169,40 +169,6 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
     <summary lang="en"></summary>
     <description lang="en"></description>
 	<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon</disclaimer>
-    <platform>all</platform>
-  </extension>
-</addon>
-
-<addon id="plugin.video.MegaReBorn"
-       name="Mega ReBorn"
-       version="2.1.1"
-       provider-name="Adam Fishley">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="script.module.beautifulsoup" version="3.2.1"/>
-    <import addon="script.module.simple.downloader" version="0.9.4"/>
-    <import addon="script.module.beautifulsoup4" />
-    <import addon="script.module.simple.downloader" version="0.9.4"/>
-    <import addon="script.module.requests" />
-    <import addon="script.module.httplib2" />
-    <import addon="script.module.youtube.dl" optional="true"/>
-    <import addon="plugin.video.youtube" />
-    <import addon="script.module.urlresolver" optional="true"/>
-    <import addon="script.module.simplejson" />
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-    <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en">Mega Reborn redesigned and unique with exclusive links found by me. Includes live U.S.A Channels and U.K and many more to come</summary>
-    <description lang="en">Mega Reborn is developed by one one developer Adam Fishley i have no team with me and a solo army. Thank You Robin hood for the source.
-
-	Settings instructions
-	Go to settings/configure and click defaults then add the source.
-	Consider donating for my work please :)
-
-	P.S. Special Thanks to the people who donated also Husham :)
-</description>
     <platform>all</platform>
   </extension>
 </addon>
@@ -250,41 +216,6 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 	 <source></source>
 	 <email></email>
    </extension>
-</addon>
-
-<addon id="plugin.video.nvtcartoons" name="NVT Cartoons" version="1.0.4" provider-name="NVTTeam">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="script.module.t0mm0.common" version="2.0.0"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en"></summary>
-    <description lang="en"></description>
-    <platform>all</platform>
-  </extension>
-</addon>
-
-<addon id="plugin.video.operationrobocop"
-       name="Operation Robocop"
-       version="0.1"
-       provider-name="Mark Cunningham">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="script.module.beautifulsoup" version="3.2.1"/>
-    <import addon="script.module.simple.downloader" version="0.9.4"/>
-    <import addon="script.module.simplejson" />
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-    <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary>Operation Robocop</summary>
-    <description>Visit us at Facebook https://www.facebook.com/groups/1551875625033019/?</description>
-    <platform>all</platform>
-  </extension>
 </addon>
 
 <addon id="plugin.video.phstreams" name="Phoenix" version="2.5.3" provider-name="Blazetamer, lambda">
@@ -372,7 +303,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 <addon id="plugin.video.TDBEUROTV"
        name="TDB EURO TV"
-       version="1.86"
+       version="1.87"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -391,7 +322,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 <addon id="plugin.video.TDBPORNO"
        name="TDB PORNO"
-       version="1.62"
+       version="1.63"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>

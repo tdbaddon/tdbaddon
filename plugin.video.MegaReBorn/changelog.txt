@@ -1,6 +1,0 @@
-Version 2.0
-This version is the offical version
-
-Version 2.0 - Beta
-Took most of the work by copying most of the Shani addon called iLivestream pro
-Thank you Shani, we are using this addon to help the group

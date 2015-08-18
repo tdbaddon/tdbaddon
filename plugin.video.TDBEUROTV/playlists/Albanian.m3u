@@ -47,7 +47,7 @@ http://edge3.volim.tv/live/b92.stream/playlist.m3u8?hash=ad2c3d8d36d3e1b1cb6a7c2
 rtmp://yayin.tvdunyasi.tv/live/balkanrtv
 
 #EXTINF:0,Bangbang 
-0
+http://akamai127.tibo.tv/bangbang/timeshift_rel-20.m3u8$OPT:http-user-agent=stagefright%2F1.0+%28Linux%3BAndroid+2.2%29
 
 #EXTINF:0,Blue Sky
 0
@@ -56,7 +56,7 @@ rtmp://yayin.tvdunyasi.tv/live/balkanrtv
 http://81.7.13.162/hls/channelone/index.m3u8
 
 #EXTINF:0,Cufo TV 
-0
+http://akamai127.tibo.tv/cufo/timeshift_rel-20.m3u8$OPT:http-user-agent=stagefright%2F1.0+%28Linux%3BAndroid+2.2%29
 
 #EXTINF:0,ERA TV 
 http://217.16.82.6:1935/zulu/era_1/playlist.m3u8
@@ -84,6 +84,9 @@ rtmp://84.20.77.50/live//livestream2
 
 #EXTINF:0,Klan Kosova 
 http://str105mb.setplex.net:1935/str2iosmd5/10ios_klankosova_56468946/playlist.m3u8
+
+#EXTINF:0,Klan Kosova 
+http://akamai127.tibo.tv/klan/timeshift_rel-20.m3u8$OPT:http-user-agent=stagefright%2F1.0+%28Linux%3BAndroid+2.2%29
 
 #EXTINF:0,Koha TV 
 0
@@ -143,7 +146,7 @@ rtmp://82.114.65.202/live/rrokumtv.flv swfUrl=http://tv24.al/shqiptv/css/player.
 http://wowza.rtkit.com:1935/live/livestream/chunklist.m3u8?wowzasessionid=491913886
 
 #EXTINF:0,Super Sport 1 
-0
+http://akamai127.tibo.tv/ss1/timeshift_rel-20.m3u8$OPT:http-user-agent=stagefright%2F1.0+%28Linux%3BAndroid+2.2%29
 
 #EXTINF:0,Super Sport 2 
 0
@@ -167,7 +170,7 @@ http://88.212.10.27:81/streams/stv2.m3u8?
 rtmp://str103.setplex.net:1935/228/stv_folk
 
 #EXTINF:0,Top Channel 
-0
+http://akamai127.tibo.tv/topchannel/timeshift_rel-20.m3u8$OPT:http-user-agent=stagefright%2F1.0+%28Linux%3BAndroid+2.2%29
 
 #EXTINF:0,Top Channel News
 0

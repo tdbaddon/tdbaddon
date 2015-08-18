@@ -17,15 +17,6 @@ http://199.195.195.108:32001
 http://59.120.43.181:8081
 
 #EXTINF:0,ASIAN XXX 
-http://95.211.163.54:1935/tv/3310/playlist.m3u8
-
-#EXTINF:0,ASIAN XXX 
-rtmp://149.3.141.210:1935/tv/ttv11
-
-#EXTINF:0,ASIAN XXX 
-rtmp://149.3.141.210:1935/tv/ttv12
-
-#EXTINF:0,ASIAN XXX 
 http://210.200.79.26:1935/live/aracity01/playlist.m3u8
 
 #EXTINF:0,ASIAN XXX 
