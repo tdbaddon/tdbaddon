@@ -2,8 +2,16 @@
 dc={
 
 "INFO" : "0000000000",
-"how to update super favourites" : "100",
-"how to get latest addons" : "101",
+"how to update super favourites" : "00",
+"how to get latest addons" : "01",
+"how to clean kodi temporary files" : "03",
+"how to customize kodi layout" : "04",
+
+
+
+
+
+
 
 "ALBANIAN" : "0000000000",
 "a1 report" : "1000",

@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 dc={
 "INFO" : "0000000000",
-"how to update super favourites" : "1000",
-"how to get latest addons" : "1001",
-"how to change audio language" : "1002",
-"under construction" : "1003",
+"how to update super favourites" : "00",
+"how to get latest addons" : "01",
+"how to change audio language" : "02",
+"how to clean kodi temporary files" : "03",
+"how to customize kodi layout" : "04",
+
 
 "DOCUMENTARY NETWORKS" : "0000000000",
 "animal planet" : "2000",

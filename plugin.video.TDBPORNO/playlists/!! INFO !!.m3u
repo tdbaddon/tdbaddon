@@ -1,12 +1,18 @@
 ﻿#EXTM3U
 
 #EXTINF:0,How to Update SUPER FAVOURITES
-http://www.tcomputers.ca/-sites/kodi-videos/IMPORT-NEW-FAVS.mp4
+http://www.tcomputers.ca/-sites/kodi-videos/IMPORT-NEW-FAVS.mkv
 
 #EXTINF:0,How to get latest ADDONS
-http://www.tcomputers.ca/-sites/kodi-videos/UPDATE-ADDONS.mp4
+http://www.tcomputers.ca/-sites/kodi-videos/UPDATE-ADDONS.mkv
 
 #EXTINF:0,How to change AUDIO LANGUAGE
-http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mp4
+http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
+
+#EXTINF:0,How to CLEAN KODI TEMPORARY FILES
+http://www.tcomputers.ca/-sites/kodi-videos/CLEAN-KODI.mkv
+
+#EXTINF:0,How to CUSTOMIZE KODI LAYOUT
+http://www.tcomputers.ca/-sites/kodi-videos/CUSTOMIZE-KODI.mkv
 
 
