@@ -47,16 +47,28 @@ rtmp://89.248.168.57:1935/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.igui
 http://81.92.105.134:5555/pl.m3u8?channel=95
 
 #EXTINF:0,HBO 
-http://192.99.39.240:1935/flu555/_definst_/hbocomedy/playlist.m3u8?token=
+http://167.114.119.209:1935/flu555/_definst_/hboeast/playlist.m3u8?token=
 
 #EXTINF:0,HBO 
 http://192.99.39.240:1935/flu555/_definst_/hboeast/playlist.m3u8?token=
 
 #EXTINF:0,HBO 
+http://192.99.39.240:1935/flu555/_definst_/hbocomedy/playlist.m3u8?token=
+
+#EXTINF:0,HBO 
+http://167.114.119.209:1935/flu555/_definst_/hbocomedy/playlist.m3u8?token=
+
+#EXTINF:0,HBO 
 http://192.99.39.240:1935/flu555/_definst_/hbosignature/playlist.m3u8?token=
 
 #EXTINF:0,HBO 
+http://167.114.119.209:1935/flu555/_definst_/hbosignature/playlist.m3u8?token=
+
+#EXTINF:0,HBO 
 http://192.99.39.240:1935/flu555/_definst_/hbozone/playlist.m3u8?token=
+
+#EXTINF:0,HBO 
+http://167.114.119.209:1935/flu555/_definst_/hbozone/playlist.m3u8?token=
 
 #EXTINF:0,HWD Hollywood
 http://4.31.30.159:9133
@@ -146,10 +158,10 @@ http://167.114.156.30:1935/flu555/_definst_/starzedge/playlist.m3u8?token=
 0
 
 #EXTINF:0,True Movies 1
-0
+http://84.232.5.115/liveedge/true1.stream/chunklist_w1381573437.m3u8
 
 #EXTINF:0,True Movies 2 
-0
+http://84.232.5.115/liveedge/true1.stream/chunklist_w1381573437.m3u8
 
 #EXTINF:0,TV 1000 
 http://194.44.229.77:777/udp/237.1.238.17:1234

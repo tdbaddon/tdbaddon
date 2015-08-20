@@ -43,8 +43,14 @@ http://192.99.39.240:1935/flu555/_definst_/espn/playlist.m3u8?token=
 #EXTINF:0,ESPN 
 http://142.4.216.60:1935/edge/_definst_/xoaaohmeuajfeyf/playlist.m3u8?wowzasessionid=1419879934
 
+#EXTINF:0,ESPN 
+http://167.114.119.209:1935/flu555/_definst_/espn/playlist.m3u8?token=
+
 #EXTINF:0,ESPN 2 
 http://192.99.39.240:1935/flu555/_definst_/espn2/playlist.m3u8?token=
+
+#EXTINF:0,ESPN 2 
+http://167.114.119.209:1935/flu555/_definst_/espn2/playlist.m3u8?token=
 
 #EXTINF:0,Eurosport 1 
 http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_1800.m3u8
@@ -92,6 +98,9 @@ http://54.177.195.82/server/play/fs1ctg/3964000/prog.m3u8?anv=1427415219896 |X-F
 http://192.99.39.240:1935/flu555/_definst_/foxsports1/playlist.m3u8?token=
 
 #EXTINF:0,Fox Sports 1 
+http://167.114.119.209:1935/flu555/_definst_/foxsports1/playlist.m3u8?token=
+
+#EXTINF:0,Fox Sports 1 
 http://4.31.30.159:9110
 
 #EXTINF:0,Fox Sports 2 
@@ -99,6 +108,9 @@ http://54.177.195.82/server/play/fs2ctg/3964000/prog.m3u8?anv=1427415219896 |X-F
 
 #EXTINF:0,Fox Sports 2 
 http://192.99.39.240:1935/flu555/_definst_/foxsports2/playlist.m3u8?token=
+
+#EXTINF:0,Fox Sports 2 
+http://167.114.119.209:1935/flu555/_definst_/foxsports2/playlist.m3u8?token=
 
 #EXTINF:0,Fox Sports 2 
 rtmp://kv2.ts33.net/sat/us301
@@ -135,6 +147,9 @@ http://motorsport.hopto.org:8080/
 #EXTINF:0,NBA TV 
 http://192.99.39.240:1935/flu555/_definst_/nbatv/playlist.m3u8?token=
 
+#EXTINF:0,NBA TV 
+http://167.114.119.209:1935/flu555/_definst_/nbatv/playlist.m3u8?token=
+
 #EXTINF:0,NBC Golf 
 http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/2596k/prog.m3u8|X-Forwarded-For=209.239.112.104
 
@@ -151,6 +166,9 @@ http://cdn.phoenix.intergi.com/21772/videos/3362254/video-sd.mp4?hosting_id=2177
 http://192.99.39.240:1935/flu555/_definst_/nbcsports/playlist.m3u8?token=
 
 #EXTINF:0,NBCSN 
+http://167.114.119.209:1935/flu555/_definst_/nbcsports/playlist.m3u8?token=
+
+#EXTINF:0,NBCSN 
 http://64.100.15.201/udp/239.255.2.7:10001
 
 #EXTINF:0,NBCSN 
@@ -161,6 +179,9 @@ http://64.100.15.201/udp/239.255.2.5:10001
 
 #EXTINF:0,NFL Network 
 http://192.99.19.98:1935/flu555/_definst_/jnfl/playlist.m3u8?token=
+
+#EXTINF:0,NFL Network 
+http://167.114.119.209:1935/flu555/_definst_/jnfl/playlist.m3u8?token=
 
 #EXTINF:0,NHL Network
 rtmp://kv2.ts33.net/sat/us021

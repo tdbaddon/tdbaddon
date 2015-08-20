@@ -140,6 +140,9 @@ mms://176.106.121.32:8080/
 http://edge3.volim.tv/live/palma.stream/playlist.m3u8?hash=ad2c3d8d36d3e1b1cb6a7c2b587df040c1ac6ab7
 
 #EXTINF:0,Pink 1 
+http://109.122.121.21/live/pink.stream/playlist.m3u8?hash=dee6d7e8a01316ca8d7f5f72c79e5da82d63332b
+
+#EXTINF:0,Pink 1 
 http://edge1.volim.tv/live/pink.stream/HasBahCa.m3u8?hash=206dc563f74bad817eb851dced9cd089b71b7a3f
 
 #EXTINF:0,Pink 2

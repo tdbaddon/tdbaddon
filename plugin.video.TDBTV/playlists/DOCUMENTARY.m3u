@@ -19,6 +19,9 @@ http://80.80.160.168/live/1/500000/playlist.m3u8
 #EXTINF:0,Animal Planet 
 http://167.114.156.29:1935/flu555/_definst_/animal/playlist.m3u8?token=
 
+#EXTINF:0,Animal Planet 
+http://4.31.30.159:9045
+
 #EXTINF:0,Destination America 
 0
 
@@ -79,6 +82,9 @@ http://167.114.101.188:1935/flu555/_definst_/h2/playlist.m3u8?token=
 #EXTINF:0,History Channel 
 http://167.114.157.40:1935/flu555/_definst_/history/playlist.m3u8?token=
 
+#EXTINF:0,History Channel 
+http://80.77.52.6:3719/udp/226.0.5.1:12345
+
 #EXTINF:0,Investigation Discovery 
 http://80.80.160.168/live/5/live.m3u8
 
@@ -87,6 +93,9 @@ http://80.80.160.168/live/5/500000/playlist.m3u8
 
 #EXTINF:0,Investigation Discovery 
 http://37.187.160.187:8000/live/ressler/skype/98.ts
+
+#EXTINF:0,Investigation Discovery 
+http://4.31.30.159:9074
 
 #EXTINF:0,NASA TV 
 http://nasatv-lh.akamaihd.net/i/NASA_101@319270/master.m3u8 
@@ -131,10 +140,16 @@ http://167.114.101.188:1935/flu555/_definst_/natgeo/playlist.m3u8?token=
 http://192.99.39.240:1935/flu555/_definst_/natgeo/playlist.m3u8?token=
 
 #EXTINF:0,National Geographic 
+http://167.114.119.209:1935/flu555/_definst_/natgeo/playlist.m3u8?token=
+
+#EXTINF:0,National Geographic 
 rtmp://109.200.1.82:1935/tes/natgeo.stream?e607b5b743e1842ee50e1556bbf3ae42
 
 #EXTINF:0,National Geographic 
 http://93.184.221.133/00573D/338/338-0.m3u8
+
+#EXTINF:0,National Geographic 
+http://4.31.30.159:9021
 
 #EXTINF:0,Planet Green 
 http://80.80.160.168/live/4/live.m3u8
@@ -156,6 +171,12 @@ http://80.80.160.168/live/3/500000/playlist.m3u8
 
 #EXTINF:0,Travel Channel 
 http://194.44.229.77:777/udp/237.1.238.14:1234
+
+#EXTINF:0,Travel Channel 
+http://80.77.52.6:3719/udp/226.0.5.2:12345
+
+#EXTINF:0,Travel and Escape
+http://4.31.30.159:9066
 
 #EXTINF:0,Viasat Explorer 
 http://195.78.244.219:10000/udp/239.0.3.30:1234

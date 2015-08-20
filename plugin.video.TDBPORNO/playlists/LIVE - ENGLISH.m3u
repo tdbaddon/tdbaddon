@@ -125,7 +125,7 @@ http://k4.usastreams.com:1935/miamitv/miamitv/chunklist_w128908539.m3u8
 0
 
 #EXTINF:0,NUART 
-0
+http://80.77.52.6:3719/udp/226.0.5.6:12345
 
 #EXTINF:0,O LA LA 
 http://4BA9EBDB07C05883:@5.159.96.170:8000/olala
