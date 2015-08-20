@@ -172,9 +172,6 @@ rtmp://94.242.228.182/yoy/_definst_/315
 #EXTINF:0,TVN Style 
 0
 
-#EXTINF:0,TVN Turbo
-rtmp://178.16.220.163:1935/live/tvnturboaa
-
 #EXTINF:0,TVP
 http://81.92.105.134:5555/pl.m3u8?channel=107
 

@@ -28,6 +28,9 @@ http://video1.earthcam.com:1935/fecnetwork/4338.flv/hasbahca.m3u8
 #EXTINF:0,Elephant Safari Indonesia 
 http://video1.earthcam.com:1935/fecnetwork/4337.flv/hasbahca.m3u8
 
+#EXTINF:0,Fish World
+http://4.31.30.159:9148
+
 #EXTINF:0,Fort Lauderdale Florida
 http://video1.earthcam.com/fecnetwork/windjammerHD2.flv/HasBahCa.m3u8
 

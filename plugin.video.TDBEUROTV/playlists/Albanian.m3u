@@ -43,7 +43,7 @@ http://stream.b92.net:7999/tv-b92.ogg
 #EXTINF:0,B92 
 http://edge3.volim.tv/live/b92.stream/playlist.m3u8?hash=ad2c3d8d36d3e1b1cb6a7c2b587df040c1ac6ab7
 
-#EXTINF:0,Balkan TV a
+#EXTINF:0,Balkan TV 
 rtmp://yayin.tvdunyasi.tv/live/balkanrtv
 
 #EXTINF:0,Bangbang 

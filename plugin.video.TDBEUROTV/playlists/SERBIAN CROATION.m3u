@@ -124,7 +124,7 @@ http://213.81.153.221:8080/nasa
 #EXTINF:0,Mreza Zagreb
 0
 
-#EXTINF:0,N1 Info
+#EXTINF:0,N1
 http://best.str.n1info.com:8080/stream?channel=n1hdsrb?stream=hd?u=n1info
 
 #EXTINF:0,NetTV Plus
@@ -304,20 +304,11 @@ http://edge1.volim.tv/live/rtrs.stream/HasBahCa.m3u8?hash=206dc563f74bad817eb851
 #EXTINF:0,RTV 1 
 http://edge3.volim.tv/live/rtv_1.stream/playlist.m3u8?hash=ad2c3d8d36d3e1b1cb6a7c2b587df040c1ac6ab7
 
-#EXTINF:0,RTV 1 
-rtsp://212.200.255.151/rtv1
-
-#EXTINF:0,RTV 2
-rtsp://212.200.255.151/rtv2
-
 #EXTINF:0,RTV Krea
 http://213.81.153.221:8080/galanta
 
 #EXTINF:0,Ruzinov
 http://213.81.153.221:8080/ruzinov
-
-#EXTINF:0,Sky Plus
-http://edge1.volim.tv/live/sky_plus.stream/HasBahCa.m3u8?hash=206dc563f74bad817eb851dced9cd089b71b7a3f
 
 #EXTINF:0,Sonce TV
 http://92.53.27.201:10000/
