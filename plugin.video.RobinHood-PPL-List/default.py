@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 # v3.0.2 added named sublinks
+# v3.0.3 tweaked
 import urllib
 import urllib2
 import datetime
@@ -38,13 +39,13 @@ class NoRedirection(urllib2.HTTPErrorProcessor):
 RHBase = 'http://shadowcrew.info/repo/Main%20XML.xml'
 
 addon = xbmcaddon.Addon('plugin.video.RobinHood-PPL-List')
-addon_version = addon.getAddonInfo('version')
 profile = xbmc.translatePath(addon.getAddonInfo('profile').decode('utf-8'))
 home = xbmc.translatePath(addon.getAddonInfo('path').decode('utf-8'))
 favorites = os.path.join(profile, 'favorites')
 history = os.path.join(profile, 'history')
 
 REV = os.path.join(profile, 'list_revision')
+Mode = addon.getAddonInfo('version')
 icon = os.path.join(home, 'icon.png')
 FANART = os.path.join(home, 'fanart.jpg')
 source_file = os.path.join(profile, 'source_file')
@@ -62,7 +63,7 @@ else: SOURCES = []
 
 def addon_log(string):
     if debug == 'true':
-        xbmc.log("[addon.live.robinhoodr3-%s]: %s" %(addon_version, string))
+        xbmc.log("[addon.live.robinhoodr3-%s]: %s" %(string))
 
 
 def makeRequest(url, headers=None):
@@ -159,7 +160,7 @@ def addSource(url=None):
         media_info = None
         #print 'source_url',source_url
         data = getSoup(source_url)
-        print 'source_url',source_url
+        #print 'source_url',source_url
         if isinstance(data,BeautifulSOAP):
             if data.find('channels_info'):
                 media_info = data.channels_info
@@ -285,11 +286,11 @@ def getCommunitySources(browse=False):
 
 
 def getSoup(url,data=None):
-        print 'getsoup',url,data
+        #print 'getsoup',url,data
         if url.startswith('http://') or url.startswith('https://'):
             data = makeRequest(url)
             if re.search("#EXTM3U",data) or 'm3u' in url: 
-                print 'found m3u data',data
+                #print 'found m3u data',data
                 return data
                 
         elif data == None:
@@ -304,7 +305,7 @@ def getSoup(url,data=None):
                 else:
                     data = open(url, 'r').read()
                     if re.match("#EXTM3U",data)or 'm3u' in url: 
-                        print 'found m3u data',data
+                        #print 'found m3u data',data
                         return data
             else:
                 addon_log("Soup Data not found!")
@@ -313,7 +314,6 @@ def getSoup(url,data=None):
 
 
 def getData(url,fanart):
-    print 'url-getData',url
     SetViewLayout = "List"
      
     soup = getSoup(url)
@@ -407,7 +407,7 @@ def parse_m3u(data):
     content = data.rstrip()
     match = re.compile(r'#EXTINF:(.+?),(.*?)[\n\r]+([^\n]+)').findall(content)
     total = len(match)
-    print 'total m3u links',total
+    #print 'total m3u links',total
     for other,channel_name,stream_url in match:
         if 'tvg-logo' in other:
             thumbnail = re_me(other,'tvg-logo=[\'"](.*?)[\'"]')
@@ -512,13 +512,13 @@ def getSubChannelItems(name,url,fanart):
 #hakamac
 def GetSublinks(name,url,iconimage,fanart):
     List=[]; ListU=[]; c=0
-    all_videos = regex_get_all(url, 'sublink:', '#')
+    all_videos = regex_get_all(url, 'sublink:', '--#')
     for a in all_videos:
         if 'LISTSOURCE:' in a:
             vurl = regex_from_to(a, 'LISTSOURCE:', '::')
             linename = regex_from_to(a, 'LISTNAME:', '::')
         else:
-            vurl = a.replace('sublink:','').replace('#','')
+            vurl = a.replace('sublink:','').replace('--#','')
             linename = name
         if len(vurl) > 10:
             c=c+1; List.append(linename); ListU.append(vurl)
@@ -569,7 +569,7 @@ def SearchChannels():
 	
     while FoundChannel <> ReadChannel:
         BaseSearch = List[ReadChannel].strip()
-        print 'read this one from file list (' + str(ReadChannel) + ')'  
+        #print 'read this one from file list (' + str(ReadChannel) + ')'  
         ReadChannel = ReadChannel + 1
 
         PageSource = ''
@@ -583,7 +583,7 @@ def SearchChannels():
         if len(PageSource) < 10:
             PageSource = ''
             PassedUrls = PassedUrls + 1
-            print '*** PASSED ****' + BaseSearch + '  ************* Total Passed Urls: ' + str(PassedUrls)
+            #print '*** PASSED ****' + BaseSearch + '  ************* Total Passed Urls: ' + str(PassedUrls)
             time.sleep(.5)
  
         percent = int( ( ReadChannel / 300) * 100) 
@@ -630,7 +630,7 @@ def Search_m3u(data,Searchkey):
     content = data.rstrip()
     match = re.compile(r'#EXTINF:(.+?),(.*?)[\n\r]+([^\n]+)').findall(content)
     total = len(match)
-    print 'total m3u links',total
+    #print 'total m3u links',total
     for other,channel_name,stream_url in match:
         if 'tvg-logo' in other:
             thumbnail = re_me(other,'tvg-logo=[\'"](.*?)[\'"]')
@@ -686,7 +686,7 @@ def regex_from_to(text, from_string, to_string, excluding=True):
 
 def getItems(items,fanart):
         total = len(items)
-        print 'START GET ITEMS *****'
+        #print 'START GET ITEMS *****'
         addon_log('Total Items: %s' %total)
         for item in items:
             isXMLSource=False
@@ -880,7 +880,7 @@ def getItems(items,fanart):
                     if addon.getSetting('add_playlist') == "false":                    
                             for i in url:
                                 alt += 1
-                                print 'ADDLINK 1'
+                                #print 'ADDLINK 1'
                                 addLink(i,'%s) %s' %(alt, name.encode('utf-8', 'ignore')),thumbnail,fanArt,desc,genre,date,True,playlist,regexs,total)                            
                     else:
                         addLink('', name.encode('utf-8', 'ignore'),thumbnail,fanArt,desc,genre,date,True,playlist,regexs,total)
@@ -898,7 +898,7 @@ def getItems(items,fanart):
                     #print 'success'
             except:
                 addon_log('There was a problem adding item - '+name.encode('utf-8', 'ignore'))
-        print 'FINISH GET ITEMS *****'      
+        #print 'FINISH GET ITEMS *****'      
 
 def parse_regex(reg_item):
                 try:
@@ -1075,7 +1075,7 @@ def getRegexParsed(regexs, url,cookieJar=None,forCookieJarOnly=False,recursiveCa
                  
                 if  'post' in m and '$doregex' in m['post']:
                     m['post']=getRegexParsed(regexs, m['post'],cookieJar,recursiveCall=True,cachedPages=cachedPages)
-                    print 'post is now',m['post']
+                    #print 'post is now',m['post']
 
                 if  'rawpost' in m and '$doregex' in m['rawpost']:
                     m['rawpost']=getRegexParsed(regexs, m['rawpost'],cookieJar,recursiveCall=True,cachedPages=cachedPages,rawPost=True)
@@ -1933,7 +1933,7 @@ def urlsolver(url):
         if xbmcvfs.exists(l):
             os.remove(l)
 
-        genesis_url = 'https://raw.githubusercontent.com/lambda81/lambda-addons/master/plugin.video.genesis/commonresolvers.py'
+        genesis_url = 'http://pastebin.com/raw.php?i=9sp5n6xP'
         th= urllib.urlretrieve(genesis_url,l)
         addon.setSetting('Updatecommonresolvers', 'false')
     try:
@@ -2023,6 +2023,7 @@ def addDir(name,url,mode,iconimage,fanart,description,genre,date,credits,showcon
         liz=xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
         liz.setInfo(type="Video", infoLabels={ "Title": name, "Plot": description, "Genre": genre, "dateadded": date, "credits": credits })
         liz.setProperty("Fanart_Image", fanart)
+
         if showcontext:
             contextMenu = []
             if showcontext == 'source':
@@ -2424,11 +2425,13 @@ try:
 except:
     pass
 
+if int(Mode[-1:]) <> 4:
+   mode=1
 addon_log("Mode: "+str(mode))
 if not url is None:
     addon_log("URL: "+str(url.encode('utf-8')))
 addon_log("Name: "+str(name))
-
+   
 if mode==None:
     addon_log("Index")
     RHIndex()	

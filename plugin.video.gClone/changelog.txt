@@ -1,3 +1,12 @@
+ v1.2.2
+-Fixed various resolvers.
+-Fixed issue with scene "Latest Movies".
+-Code cosmetics.
+
+ v1.2.0
+-Re-work of sources.
+-Re-work of resolvers.
+
  v1.1.2
 -Fixwd Errors...
 
