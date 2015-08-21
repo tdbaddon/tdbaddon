@@ -1,0 +1,71 @@
+﻿#EXTM3U
+
+
+
+#EXTINF:0,Animal Planet 
+http://167.114.119.209:1935/flu555/_definst_/animal/playlist.m3u8?token=
+
+#EXTINF:0,Animal Planet 
+http://167.114.156.30:1935/flu555/_definst_/animal/playlist.m3u8?token=
+
+#EXTINF:0,Animal Planet 
+http://192.99.19.98:1935/flu555/_definst_/animal/playlist.m3u8?token=
+
+
+
+#EXTINF:0,Discovery Channel 
+http://167.114.119.209:1935/flu555/_definst_/discovery/playlist.m3u8?token=
+
+#EXTINF:0,Discovery Channel 
+http://167.114.156.30:1935/flu555/_definst_/discovery/playlist.m3u8?token=
+
+#EXTINF:0,Discovery Channel 
+http://192.99.19.98:1935/flu555/_definst_/discovery/playlist.m3u8?token=
+
+
+
+#EXTINF:0,History Channel 
+http://167.114.119.209:1935/flu555/_definst_/history/playlist.m3u8?token=
+
+#EXTINF:0,History Channel 
+http://167.114.156.30:1935/flu555/_definst_/history/playlist.m3u8?token=
+
+#EXTINF:0,History Channel 
+http://192.99.19.98:1935/flu555/_definst_/history/playlist.m3u8?token=
+
+
+
+#EXTINF:0,History Channel 2
+http://167.114.119.209:1935/flu555/_definst_/h2/playlist.m3u8?token=
+
+#EXTINF:0,History Channel 2
+http://167.114.156.30:1935/flu555/_definst_/h2/playlist.m3u8?token=
+
+#EXTINF:0,History Channel 2
+http://192.99.19.98:1935/flu555/_definst_/h2/playlist.m3u8?token=
+
+
+
+#EXTINF:0,Nat Geo Wild 
+http://167.114.119.209:1935/flu555/_definst_/natgeowild/playlist.m3u8?token=
+
+#EXTINF:0,Nat Geo Wild 
+http://167.114.156.30:1935/flu555/_definst_/natgeowild/playlist.m3u8?token=
+
+#EXTINF:0,Nat Geo Wild 
+http://192.99.19.98:1935/flu555/_definst_/natgeowild/playlist.m3u8?token=
+
+
+
+#EXTINF:0,National Geographic 
+http://167.114.119.209:1935/flu555/_definst_/natgeo/playlist.m3u8?token=
+
+#EXTINF:0,National Geographic 
+http://167.114.156.30:1935/flu555/_definst_/natgeo/playlist.m3u8?token=
+
+#EXTINF:0,National Geographic 
+http://192.99.19.98:1935/flu555/_definst_/natgeo/playlist.m3u8?token=
+
+#EXTINF:0,National Geographic 
+http://194.44.229.77:777/udp/237.1.238.10:1234
+

@@ -38,10 +38,7 @@ http://77.36.61.45:8010/CCTVNews.m3u8?
 http://origin2.live.web.tv.streamprovider.net/streams/3bc166ba3776c04e987eb242710e75c0/index.m3u8
 
 #EXTINF:0,CNBC 
-http://167.114.101.188:1935/flu555/_definst_/jcnbc/playlist.m3u8?token=
-
-#EXTINF:0,CNBC 
-http://192.99.39.240:1935/flu555/_definst_/jcnbc/playlist.m3u8?token=
+http://167.114.157.40:1935/flu555/_definst_/jcnbc/playlist.m3u8?token=
 
 #EXTINF:0,CNN 
 rtmp://edge1.everyon.tv/etv1sb/phd16
@@ -53,10 +50,7 @@ rtmp://edge1.everyon.tv/etv1sb/pld16
 http://64.100.15.201/udp/239.255.2.3:10001
 
 #EXTINF:0,CNN 
-http://167.114.101.188:1935/flu555/_definst_/jcnn/playlist.m3u8?token=
-
-#EXTINF:0,CNN 
-http://192.99.39.240:1935/flu555/_definst_/jcnn/playlist.m3u8?token=
+http://167.114.157.40:1935/flu555/_definst_/jcnn/playlist.m3u8?token=
 
 #EXTINF:0,CP24 
 0

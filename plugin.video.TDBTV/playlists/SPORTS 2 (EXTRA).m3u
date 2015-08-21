@@ -1,0 +1,99 @@
+﻿#EXTM3U
+
+
+
+#EXTINF:0,ESPN 
+http://167.114.119.209:1935/flu555/_definst_/espn/playlist.m3u8?token=
+
+#EXTINF:0,ESPN 
+http://167.114.156.30:1935/flu555/_definst_/espn/playlist.m3u8?token=
+
+#EXTINF:0,ESPN 
+http://192.99.19.98:1935/flu555/_definst_/espn/playlist.m3u8?token=
+
+
+#EXTINF:0,ESPN 2 
+http://167.114.119.209:1935/flu555/_definst_/espn2/playlist.m3u8?token=
+
+#EXTINF:0,ESPN 2 
+http://167.114.156.30:1935/flu555/_definst_/espn2/playlist.m3u8?token=
+
+#EXTINF:0,ESPN 2 
+http://192.99.19.98:1935/flu555/_definst_/espn2/playlist.m3u8?token=
+
+
+#EXTINF:0,Fox Sports 1 
+http://167.114.119.209:1935/flu555/_definst_/foxsports1/playlist.m3u8?token=
+
+#EXTINF:0,Fox Sports 1 
+http://167.114.156.30:1935/flu555/_definst_/foxsports1/playlist.m3u8?token=
+
+#EXTINF:0,Fox Sports 1 
+http://192.99.19.98:1935/flu555/_definst_/foxsports1/playlist.m3u8?token=
+
+
+#EXTINF:0,Fox Sports 2 
+http://167.114.119.209:1935/flu555/_definst_/foxsports2/playlist.m3u8?token=
+
+#EXTINF:0,Fox Sports 2 
+http://167.114.156.30:1935/flu555/_definst_/foxsports2/playlist.m3u8?token=
+
+#EXTINF:0,Fox Sports 2 
+http://192.99.19.98:1935/flu555/_definst_/foxsports2/playlist.m3u8?token=
+
+
+#EXTINF:0,NBA TV 
+http://167.114.119.209:1935/flu555/_definst_/nbatv/playlist.m3u8?token=
+
+#EXTINF:0,NBA TV 
+http://167.114.156.30:1935/flu555/_definst_/nbatv/playlist.m3u8?token=
+
+#EXTINF:0,NBA TV 
+http://192.99.19.98:1935/flu555/_definst_/nbatv/playlist.m3u8?token=
+
+
+#EXTINF:0,NBC Golf 
+http://167.114.119.209:1935/flu555/_definst_/golf/playlist.m3u8?token=
+
+#EXTINF:0,NBC Golf 
+http://167.114.156.30:1935/flu555/_definst_/golf/playlist.m3u8?token=
+
+#EXTINF:0,NBC Golf 
+http://192.99.19.98:1935/flu555/_definst_/golf/playlist.m3u8?token=
+
+
+
+#EXTINF:0,NBCSN 
+http://167.114.119.209:1935/flu555/_definst_/nbcsports/playlist.m3u8?token=
+
+#EXTINF:0,NBCSN 
+http://167.114.156.30:1935/flu555/_definst_/nbcsports/playlist.m3u8?token=
+
+#EXTINF:0,NBCSN 
+http://192.99.19.98:1935/flu555/_definst_/nbcsports/playlist.m3u8?token=
+
+
+
+#EXTINF:0,NFL Network 
+http://167.114.119.209:1935/flu555/_definst_/jnfl/playlist.m3u8?token=
+
+#EXTINF:0,NFL Network 
+http://167.114.156.30:1935/flu555/_definst_/jnfl/playlist.m3u8?token=
+
+#EXTINF:0,NFL Network 
+http://192.99.19.98:1935/flu555/_definst_/jnfl/playlist.m3u8?token=
+
+
+
+#EXTINF:0,Tennis Channel
+http://167.114.119.209:1935/flu555/_definst_/jtennis/playlist.m3u8?token=
+
+#EXTINF:0,Tennis Channel
+http://167.114.156.30:1935/flu555/_definst_/jtennis/playlist.m3u8?token=
+
+#EXTINF:0,Tennis Channel
+http://192.99.19.98:1935/flu555/_definst_/jtennis/playlist.m3u8?token=
+
+
+
+

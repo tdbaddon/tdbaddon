@@ -1,0 +1,282 @@
+﻿#EXTM3U
+
+
+
+#EXTINF:0,ABC 
+http://167.114.119.209:1935/flu555/_definst_/abc/playlist.m3u8?token=
+
+#EXTINF:0,ABC 
+http://167.114.156.30:1935/flu555/_definst_/abc/playlist.m3u8?token=
+
+#EXTINF:0,ABC 
+http://192.99.19.98:1935/flu555/_definst_/abc/playlist.m3u8?token=
+
+
+#EXTINF:0,AMC 
+http://167.114.119.209:1935/flu555/_definst_/amc/playlist.m3u8?token=
+
+#EXTINF:0,AMC 
+http://167.114.156.30:1935/flu555/_definst_/amc/playlist.m3u8?token=
+
+#EXTINF:0,AMC 
+http://192.99.19.98:1935/flu555/_definst_/amc/playlist.m3u8?token=
+
+
+#EXTINF:0,BET 
+http://167.114.119.209:1935/flu555/_definst_/bet/playlist.m3u8?token=
+
+#EXTINF:0,BET 
+http://167.114.156.30:1935/flu555/_definst_/bet/playlist.m3u8?token=
+
+#EXTINF:0,BET 
+http://192.99.19.98:1935/flu555/_definst_/bet/playlist.m3u8?token=
+
+
+#EXTINF:0,Bravo 
+http://167.114.119.209:1935/flu555/_definst_/jbravo/playlist.m3u8?token=
+
+#EXTINF:0,Bravo 
+http://192.99.19.98:1935/flu555/_definst_/jbravo/playlist.m3u8?token=
+
+
+#EXTINF:0,CBS 
+http://167.114.119.209:1935/flu555/_definst_/cbs/playlist.m3u8?token=
+
+#EXTINF:0,CBS 
+http://167.114.156.30:1935/flu555/_definst_/cbs/playlist.m3u8?token=
+
+#EXTINF:0,CBS 
+http://192.99.19.98:1935/flu555/_definst_/cbs/playlist.m3u8?token=
+
+
+#EXTINF:0,Comedy Central 
+http://167.114.119.209:1935/flu555/_definst_/comedycentral/playlist.m3u8?token=
+
+#EXTINF:0,Comedy Central 
+http://167.114.156.30:1935/flu555/_definst_/comedycentral/playlist.m3u8?token=
+
+#EXTINF:0,Comedy Central 
+http://192.99.19.98:1935/flu555/_definst_/comedycentral/playlist.m3u8?token=
+
+
+#EXTINF:0,Cooking Channel 
+http://167.114.119.209:1935/flu555/_definst_/cookingchannel/playlist.m3u8?token=
+
+#EXTINF:0,Cooking Channel 
+http://167.114.156.30:1935/flu555/_definst_/cookingchannel/playlist.m3u8?token=
+
+#EXTINF:0,Cooking Channel 
+http://192.99.19.98:1935/flu555/_definst_/cookingchannel/playlist.m3u8?token=
+
+
+#EXTINF:0,CW 
+http://167.114.119.209:1935/flu555/_definst_/wpix/playlist.m3u8?token=
+
+#EXTINF:0,CW 
+http://167.114.156.30:1935/flu555/_definst_/wpix/playlist.m3u8?token=
+
+#EXTINF:0,CW 
+http://192.99.19.98:1935/flu555/_definst_/wpix/playlist.m3u8?token=
+
+
+#EXTINF:0,Disney XD 
+http://167.114.119.209:1935/flu555/_definst_/disneyxd/playlist.m3u8?token=
+
+#EXTINF:0,Disney XD 
+http://167.114.156.30:1935/flu555/_definst_/disneyxd/playlist.m3u8?token=
+
+#EXTINF:0,Disney XD 
+http://192.99.19.98:1935/flu555/_definst_/disneyxd/playlist.m3u8?token=
+
+
+#EXTINF:0,DIY Network 
+http://167.114.119.209:1935/flu555/_definst_/diy/playlist.m3u8?token=
+
+#EXTINF:0,DIY Network 
+http://167.114.156.30:1935/flu555/_definst_/diy/playlist.m3u8?token=
+
+#EXTINF:0,DIY Network 
+http://192.99.19.98:1935/flu555/_definst_/diy/playlist.m3u8?token=
+
+
+#EXTINF:0,E! 
+http://167.114.119.209:1935/flu555/_definst_/e/playlist.m3u8?token=
+
+#EXTINF:0,E! 
+http://167.114.156.30:1935/flu555/_definst_/e/playlist.m3u8?token=
+
+#EXTINF:0,E! 
+http://192.99.19.98:1935/flu555/_definst_/e/playlist.m3u8?token=
+
+
+#EXTINF:0,Food Network 
+http://167.114.119.209:1935/flu555/_definst_/food/playlist.m3u8?token=
+
+#EXTINF:0,Food Network 
+http://167.114.156.30:1935/flu555/_definst_/food/playlist.m3u8?token=
+
+#EXTINF:0,Food Network 
+http://192.99.19.98:1935/flu555/_definst_/food/playlist.m3u8?token=
+
+
+#EXTINF:0,Fox TV 
+http://167.114.119.209:1935/flu555/_definst_/fox/playlist.m3u8?token=
+
+#EXTINF:0,Fox TV 
+http://167.114.156.30:1935/flu555/_definst_/fox/playlist.m3u8?token=
+
+#EXTINF:0,Fox TV 
+http://192.99.19.98:1935/flu555/_definst_/fox/playlist.m3u8?token=
+
+
+#EXTINF:0,FX 
+http://167.114.119.209:1935/flu555/_definst_/fx/playlist.m3u8?token=
+
+#EXTINF:0,FX 
+http://167.114.156.30:1935/flu555/_definst_/fx/playlist.m3u8?token=
+
+#EXTINF:0,FX 
+http://192.99.19.98:1935/flu555/_definst_/fx/playlist.m3u8?token=
+
+
+#EXTINF:0,HGTV 
+http://167.114.119.209:1935/flu555/_definst_/jhgtv/playlist.m3u8?token=
+
+#EXTINF:0,HGTV 
+http://167.114.156.30:1935/flu555/_definst_/jhgtv/playlist.m3u8?token=
+
+#EXTINF:0,HGTV 
+http://192.99.19.98:1935/flu555/_definst_/jhgtv/playlist.m3u8?token=
+
+
+#EXTINF:0,KTLA
+http://167.114.119.209:1935/flu555/_definst_/ktla/playlist.m3u8?token=
+
+#EXTINF:0,KTLA
+http://167.114.156.30:1935/flu555/_definst_/ktla/playlist.m3u8?token=
+
+#EXTINF:0,KTLA
+http://192.99.19.98:1935/flu555/_definst_/ktla/playlist.m3u8?token=
+
+
+#EXTINF:0,Lifetime Network 
+http://167.114.119.209:1935/flu555/_definst_/lmn/playlist.m3u8?token=
+
+#EXTINF:0,Lifetime Network 
+http://167.114.156.30:1935/flu555/_definst_/lmn/playlist.m3u8?token=
+
+#EXTINF:0,Lifetime Network 
+http://192.99.19.98:1935/flu555/_definst_/lmn/playlist.m3u8?token=
+
+
+#EXTINF:0,NBC 
+http://167.114.119.209:1935/flu555/_definst_/nbc/playlist.m3u8?token=
+
+#EXTINF:0,NBC 
+http://167.114.156.30:1935/flu555/_definst_/nbc/playlist.m3u8?token=
+
+#EXTINF:0,NBC 
+http://192.99.19.98:1935/flu555/_definst_/nbc/playlist.m3u8?token=
+
+
+#EXTINF:0,Nick
+http://167.114.119.209:1935/flu555/_definst_/nick/playlist.m3u8?token=
+
+#EXTINF:0,Nick
+http://167.114.156.30:1935/flu555/_definst_/nick/playlist.m3u8?token=
+
+#EXTINF:0,Nick
+http://192.99.19.98:1935/flu555/_definst_/nick/playlist.m3u8?token=
+
+
+#EXTINF:0,Nick Jr 
+http://167.114.119.209:1935/flu555/_definst_/nick/playlist.m3u8?token=
+
+#EXTINF:0,Nick Jr 
+http://167.114.156.30:1935/flu555/_definst_/nick/playlist.m3u8?token=
+
+#EXTINF:0,Nick Jr 
+http://192.99.19.98:1935/flu555/_definst_/nick/playlist.m3u8?token=
+
+
+#EXTINF:0,Showcase
+http://167.114.119.209:1935/flu555/_definst_/showcase/playlist.m3u8?token=
+
+#EXTINF:0,Showcase
+http://167.114.156.30:1935/flu555/_definst_/showcase/playlist.m3u8?token=
+
+#EXTINF:0,Showcase
+http://192.99.19.98:1935/flu555/_definst_/showcase/playlist.m3u8?token=
+
+
+#EXTINF:0,Space
+http://167.114.119.209:1935/flu555/_definst_/space/playlist.m3u8?token=
+
+#EXTINF:0,Space
+http://167.114.156.30:1935/flu555/_definst_/space/playlist.m3u8?token=
+
+#EXTINF:0,Space
+http://192.99.19.98:1935/flu555/_definst_/space/playlist.m3u8?token=
+
+
+#EXTINF:0,Syfy 
+http://167.114.119.209:1935/flu555/_definst_/syfy/playlist.m3u8?token=
+
+#EXTINF:0,Syfy 
+http://167.114.156.30:1935/flu555/_definst_/syfy/playlist.m3u8?token=
+
+#EXTINF:0,Syfy 
+http://192.99.19.98:1935/flu555/_definst_/syfy/playlist.m3u8?token=
+
+
+#EXTINF:0,TBS 
+http://167.114.119.209:1935/flu555/_definst_/tbs/playlist.m3u8?token=
+
+#EXTINF:0,TBS 
+http://167.114.156.30:1935/flu555/_definst_/tbs/playlist.m3u8?token=
+
+#EXTINF:0,TBS 
+http://192.99.19.98:1935/flu555/_definst_/tbs/playlist.m3u8?token=
+
+
+#EXTINF:0,Teletoon
+http://167.114.119.209:1935/flu555/_definst_/teletoon/playlist.m3u8?token=
+
+#EXTINF:0,Teletoon
+http://167.114.156.30:1935/flu555/_definst_/teletoon/playlist.m3u8?token=
+
+#EXTINF:0,Teletoon
+http://192.99.19.98:1935/flu555/_definst_/teletoon/playlist.m3u8?token=
+
+
+#EXTINF:0,TLC 
+http://167.114.119.209:1935/flu555/_definst_/jtlc/playlist.m3u8?token=
+
+#EXTINF:0,TLC 
+http://167.114.156.30:1935/flu555/_definst_/jtlc/playlist.m3u8?token=
+
+#EXTINF:0,TLC 
+http://192.99.19.98:1935/flu555/_definst_/jtlc/playlist.m3u8?token=
+
+
+#EXTINF:0,TNT 
+http://167.114.119.209:1935/flu555/_definst_/tnt/playlist.m3u8?token=
+
+#EXTINF:0,TNT 
+http://167.114.156.30:1935/flu555/_definst_/tnt/playlist.m3u8?token=
+
+#EXTINF:0,TNT 
+http://192.99.19.98:1935/flu555/_definst_/tnt/playlist.m3u8?token=
+
+
+#EXTINF:0,USA Network 
+http://167.114.119.209:1935/flu555/_definst_/usa/playlist.m3u8?token=
+
+#EXTINF:0,USA Network 
+http://167.114.156.30:1935/flu555/_definst_/usa/playlist.m3u8?token=
+
+#EXTINF:0,USA Network 
+http://192.99.19.98:1935/flu555/_definst_/usa/playlist.m3u8?token=
+
+
+
