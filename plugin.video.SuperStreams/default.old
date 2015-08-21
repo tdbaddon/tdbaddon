@@ -1,0 +1,264 @@
+import urllib,urllib2,sys,re,xbmcplugin,xbmcgui,xbmcaddon,xbmc,os,json,base64,xbmcvfs
+import urlparse
+import random
+import socket, sys, os, json
+import xbmc, xbmcplugin, xbmcaddon, xbmcgui, xbmcvfs
+import json
+import os
+import re
+import sys
+
+
+
+base_url = sys.argv[0]
+addon_handle = int(sys.argv[1])
+args = urlparse.parse_qs(sys.argv[2][1:])
+
+from addon.common.addon import Addon
+from metahandler import metahandlers
+
+addon_id = 'plugin.video.cloudtv'
+addon = Addon(addon_id, sys.argv)
+Addon = xbmcaddon.Addon(addon_id)
+
+
+cookie_path = os.path.join( xbmc.translatePath( addon.get_profile()), 'cookies' )
+cookie_jar = os.path.join( cookie_path , 'cookiejar.lwp')
+
+try:
+    os.makedirs(os.path.dirname(cookie_jar))
+except OSError:
+    pass
+
+sourceSite = 'http://ccloudus.github.io/'
+
+
+AddonID ='plugin.video.cloudtv'
+fanart = xbmc.translatePath(os.path.join('special://home/addons/' + AddonID , 'fanart.jpg'))
+icon = xbmc.translatePath(os.path.join('special://home/addons/' + AddonID, 'icon.png'))
+    
+def menu():
+    addDir('Select a Veetle Stream','http://ccloudus.github.io//ch/v/10',99999999,icon,fanart)
+    addDir('Sport Programma Overzicht Vandaag','http://www.ikkijkonline.nl',99999997,icon,fanart)
+    addLink('UK Turk Twitter Feed','url',1000,'http://www.metalkettle.co/UKTurk/thumbs/twitter.jpg',fanart)
+     
+    
+
+
+def WisselzSched(url):
+    link = open_url(url)
+    print link
+    match=re.compile('<td class=\"text-left\"><a  href=\"(.+?)\">(.+?)</a',re.DOTALL).findall(link)
+    for stream, name in match:
+        name = " (" + name + ")"
+        strUrl = 'plugin://plugin.video.cloudtv/none'
+        intern = getLinkByName(stream)
+        addLink(name,intern,intern,icon,fanart)
+
+def WisselzProgramma(url):
+    link = Get_url(url)
+    match=re.compile('<td width=\'60\'>(.+?)</td><td>(.+?)</td><td width=\'80\'><a href=\'/streams/(.+?)\'>',re.DOTALL).findall(link)
+    for tijd, name, stream in match:
+        name = tijd + " - " + name + " (Stream" + stream +")"
+        strUrl = 'plugin://plugin.video.cloudtv/none'
+        intern = getLinkByName(stream)
+        addLink(name,intern,intern,icon,fanart)
+
+
+
+
+
+
+def getLinkByName(stream) :
+    compare = stream[0:3].lower()
+    if compare == (stream) :
+        site = (stream)
+    else :
+        site = (stream)
+    return site
+    
+
+
+   
+
+def GetWisselzStream(name,stream):
+    print stream + "stream print"
+    streamUrl = findStream(stream)
+    veetleUrl = 'http://x.co/otach04'
+    playlist = xbmc.PlayList(1)
+    playlist.clear()
+    listitem = xbmcgui.ListItem(name + " - " + url, iconImage=icon, thumbnailImage=icon)
+    listitem.setInfo("Video", {"Title":name})
+    listitem.setProperty('mimetype', 'video/x-msvideo')
+    listitem.setProperty('IsPlayable', 'true')
+    playlist.add(veetleUrl,listitem)
+    xbmcPlayer = xbmc.Player(xbmc.PLAYER_CORE_AUTO)
+    xbmcPlayer.play(playlist)
+
+def addMenuItem(strName, strUrl, bIsPlayable='true', icon=None, fanart=None):
+    li = xbmcgui.ListItem(strName)
+    if not icon is None :
+        iconPath = icon
+        li = xbmcgui.ListItem(label=strName, iconImage=iconPath, thumbnailImage=iconPath)
+    else :
+        li = xbmcgui.ListItem(strName)
+    if not fanart is None :
+        fanartimg = fanart
+        li.setProperty('fanart_image',fanartimg)
+    #li.setProperty('IsPlayable', bIsPlayable)
+    li.addContextMenuItems([ ('Vernieuwen...', 'Container.Refresh') ])
+    xbmcplugin.addDirectoryItem(handle=addon_handle, url=sys.argv[0]+'?play='+strUrl+'&streamName='+strName, listitem=li)
+
+
+
+def findStream(page) :
+    page1 = Get_url("http://www.wisselz.com/?stream=" + page)
+    page1content = getBaseEncodedString(page1)
+    streamUrl = page1content
+    return streamUrl
+
+def getBaseEncodedString(url):
+    _regex_getM3u = re.compile("http://(.*?)/flv/(.*?)/1.flv", re.DOTALL)
+    streamId = _regex_getM3u.search(url).group(2)
+    return streamId
+
+
+
+                               
+def Get_url(url):
+        req = urllib2.Request(url)
+        req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
+        response = urllib2.urlopen(req)
+        link=response.read()
+        link = link.replace('\r','').replace('\t','').replace('&nbsp;','').replace('\'','')
+        response.close()
+        return link
+
+
+    
+def Play():  
+    ok=True
+    liz=xbmcgui.ListItem(name, iconImage=icon,thumbnailImage=icon); liz.setInfo( type="Video", infoLabels={ "Title": name } )
+    ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=url,listitem=liz)
+    xbmc.Player().play('http://x.co/otach32')
+    return ok
+
+def addLink(name,url,mode,iconimage,fanart,description=''):
+        u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&description="+str(description)
+        ok=True
+        liz=xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
+        liz.setInfo( type="Video", infoLabels={ "Title": name, 'plot': description } )
+        liz.setProperty('fanart_image', fanart)
+        ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=False)
+        return ok
+
+def addDir(name,url,mode,iconimage,fanart,description=''):
+        u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&description="+str(description)
+        ok=True
+        liz=xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
+        liz.setInfo( type="Video", infoLabels={ "Title": name, 'plot': description } )
+        liz.setProperty('fanart_image', fanart)
+        ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
+        return ok
+
+
+
+
+def getSourceUrl(name):
+    url = getUrlByName(name)
+    return url
+
+
+
+
+def TWITTER():
+        text = ''
+        twit = 'https://script.google.com/macros/s/AKfycbyBcUa5TlEQudk6Y_0o0ZubnmhGL_-b7Up8kQt11xgVwz3ErTo/exec?588677963413065728'
+        link = open_url(twit)
+        link = link.replace('/n','')
+        link = link.decode('utf-8').encode('utf-8').replace('&#39;','\'').replace('&#10;',' - ').replace('&#x2026;','')
+        match=re.compile("<title>(.+?)</title>.+?<pubDate>(.+?)</pubDate>",re.DOTALL).findall(link)[1:]
+        for status, dte in match:
+            try:
+                            status = status.decode('ascii', 'ignore')
+            except:
+                            status = status.decode('utf-8','ignore')
+            dte = dte[:-15]
+            status = status.replace('&amp;','')
+            dte = '[COLOR blue][B]'+dte+'[/B][/COLOR]'
+            text = text+dte+'\n'+status+'\n'+'\n'
+        showText('[COLOR blue][B]@uk_turk[/B][/COLOR]', text)
+
+def showText(heading, text):
+    id = 10147
+    xbmc.executebuiltin('ActivateWindow(%d)' % id)
+    xbmc.sleep(100)
+    win = xbmcgui.Window(id)
+    retry = 50
+    while (retry > 0):
+        try:
+            xbmc.sleep(10)
+            retry -= 1
+            win.getControl(1).setLabel(heading)
+            win.getControl(5).setText(text)
+            return
+        except:
+            pass
+
+def open_url(url):
+        req = urllib2.Request(url)
+        req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
+        response = urllib2.urlopen(req)
+        link=response.read()
+        link = link.replace('\r','').replace('\t','').replace('&nbsp;','').replace('\'','')
+        response.close()
+        return link
+
+
+
+
+def get_params():
+        param=[]
+        paramstring=sys.argv[2]
+        if len(paramstring)>=2:
+                params=sys.argv[2]
+                cleanedparams=params.replace('?','')
+                if (params[len(params)-1]=='/'):
+                        params=params[0:len(params)-2]
+                pairsofparams=cleanedparams.split('&')
+                param={}
+                for i in range(len(pairsofparams)):
+                        splitparams={}
+                        splitparams=pairsofparams[i].split('=')
+                        if (len(splitparams))==2:
+                                param[splitparams[0]]=splitparams[1]    
+        return param
+           
+params=get_params()
+url=None
+name=None
+mode=None
+iconimage=None
+description=None
+
+try:url=urllib.unquote_plus(params["url"])
+except:pass
+try:name=urllib.unquote_plus(params["name"])
+except:pass
+try:mode=int(params["mode"])
+except:pass
+try:iconimage=urllib.unquote_plus(params["iconimage"])
+except:pass
+print "Mode: "+str(mode);print "URL: "+str(url);print "Name: "+str(name);print "IconImage: "+str(iconimage)
+
+if mode==None or url==None or len(url)<1:menu()
+elif mode==99999999:WisselzSched(url)
+elif mode==99999997:WisselzProgramma(url)
+elif mode==1000:Play()
+elif mode== mode :GetWisselzStream(name,url)
+
+
+
+
+
+xbmcplugin.endOfDirectory(int(sys.argv[1]))

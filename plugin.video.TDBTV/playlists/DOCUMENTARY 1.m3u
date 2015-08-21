@@ -69,9 +69,11 @@ http://80.80.160.168/live/9/live.m3u8
 #EXTINF:0,Discovery World 
 0
 
+#EXTINF:0,Docubox
+http://204.107.27.136/live/1624.high.stream/1624.high.stream/index.m3u8
+
 #EXTINF:0,Flite Level TV 
 0
-
 
 
 #EXTINF:0,History Channel 
@@ -111,6 +113,8 @@ http://80.80.160.168/live/5/live.m3u8
 #EXTINF:0,NASA TV 
 http://nasatv-lh.akamaihd.net/i/NASA_101@319270/master.m3u8 
 
+#EXTINF:0,NASA TV 
+http://198.179.31.198/live/330.low.stream/330.low.stream/index.m3u8
 
 
 #EXTINF:0,Nat Geo Wild 

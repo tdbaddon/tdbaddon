@@ -22,11 +22,17 @@ http://93.184.221.133/00573D/1222/1222-0.m3u8
 #EXTINF:0,BT Sport 1 
 rtmp://109.200.1.82:1935/tes/bteurope.stream?e607b5b743e1842ee50e1556bbf3ae42
 
+#EXTINF:0,BT Sport 1 
+rtmp://80.82.64.140:443/liverepeater playpath=7 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
+
 #EXTINF:0,BT Sport 2 
 rtmp://109.200.1.82:1935/tes/bt2.stream?e607b5b743e1842ee50e1556bbf3ae42
 
 #EXTINF:0,CBS Sports 
 http://cbspgalivehd-lh.akamaihd.net/i/farmersday4_simulcast@92710/master.m3u8
+
+#EXTINF:0,Chelsea TV
+http://37.187.149.103:8000/live/9f1617ad80c3059c/c327ea13c0d02f57/138.m3u8
 
 #EXTINF:0,Chelsea TV 
 http://87.245.214.43/streaming/futbol/16/tvrec/playlist.m3u8
@@ -55,22 +61,11 @@ http://192.99.39.240:1935/flu555/_definst_/espn2/playlist.m3u8?token=
 http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_1800.m3u8
 
 #EXTINF:0,Eurosport 1 
-http://194.44.229.77:777/udp/237.1.239.19:1234
-
-#EXTINF:0,Eurosport 1 
-http://iptv.wssiptv.com:80/live/WSSiptv.com/he98fdui97w9769869t85/12.ts$OPT:http-user-agent=Lavf/55.19.104
-
-#EXTINF:0,Eurosport 1 
-http://93.184.221.133/00573D/1210/1210-0.m3u8
+rtmp://80.82.64.140:443/liverepeater playpath=39 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
 
 #EXTINF:0,Eurosport 2 
-http://194.44.229.77:777/udp/237.1.239.13:1234
+rtmp://80.82.64.140:443/liverepeater playpath=10 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
 
-#EXTINF:0,Eurosport 2 
-http://iptv.wssiptv.com:80/live/WSSiptv.com/he98fdui97w9769869t85/13.ts$OPT:http-user-agent=Lavf/55.19.104
-
-#EXTINF:0,Eurosport 2 
-http://93.184.221.133/00573D/1211/1211-0.m3u8
 
 #EXTINF:0,Eurosport News 
 0
@@ -157,9 +152,6 @@ http://192.99.39.240:1935/flu555/_definst_/nbatv/playlist.m3u8?token=
 http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/2596k/prog.m3u8|X-Forwarded-For=209.239.112.104
 
 #EXTINF:0,NBC Golf 
-http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/4296k/prog.m3u8|X-Forwarded-For=209.239.112.104
-
-#EXTINF:0,NBC Golf 
 http://167.114.101.188:1935/flu555/_definst_/golf/playlist.m3u8?token=
 
 #EXTINF:0,NBC Golf 
@@ -167,13 +159,10 @@ http://192.99.39.240:1935/flu555/_definst_/golf/playlist.m3u8?token=
 
 
 #EXTINF:0,NBCSN 
-http://cdn.phoenix.intergi.com/21772/videos/3362254/video-sd.mp4?hosting_id=21772
+http://tvenbcsn-i.Akamaihd.net/hls/live/218235/nbcsnx/4296k/prog.m3u8|X-Forwarded-For=66.171.228.102
 
 #EXTINF:0,NBCSN 
-rtmp://kv2.ts33.net/sat/us152
-
-#EXTINF:0,NBCSN 
-http://64.100.15.201/udp/239.255.2.7:10001
+http://tvenbcsn-i.Akamaihd.net/hls/live/218235/nbcsnx/2596k/prog.m3u8|X-Forwarded-For=66.171.228.102
 
 #EXTINF:0,NBCSN 
 http://167.114.101.188:1935/flu555/_definst_/nbcsports/playlist.m3u8?token=
@@ -250,7 +239,7 @@ http://xrxs.net/video/live-p12wash-4728.m3u8
 mms://100automoto.tv/channel_porsche
 
 #EXTINF:0,Premier Sports 
-http://pies.ddns.net:8000/live/DMFB001/WtzoRFILRb/9.m3u8
+rtmp://109.200.1.82:1935/tes/premier.stream?e607b5b743e1842ee50e1556bbf3ae42
 
 #EXTINF:0,Premier Sports 
 http://212.51.146.19:4009
@@ -264,26 +253,50 @@ rtmp://109.200.1.82:1935/tes/racinguk.stream?e607b5b743e1842ee50e1556bbf3ae42
 #EXTINF:0,Setanta Sports 
 http://80.77.52.6:3719/udp/230.0.4.1:12345
 
+#EXTINF:0,Setanta Sports
+rtmp://109.200.1.82:1935/tes/setanta.stream?e607b5b743e1842ee50e1556bbf3ae42
+
 #EXTINF:0,Sky Sports 1 
-0
+rtmp://80.82.64.140:443/liverepeater playpath=1 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
+
+#EXTINF:0,Sky Sports 1 
+rtmp://109.200.1.82:1935/tes/skysp1.stream?e607b5b743e1842ee50e1556bbf3ae42
 
 #EXTINF:0,Sky Sports 2 
-0
+rtmp://80.82.64.140:443/liverepeater playpath=2 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
+
+#EXTINF:0,Sky Sports 2 
+rtmp://109.200.1.82:1935/tes/skysp2.stream?e607b5b743e1842ee50e1556bbf3ae42
 
 #EXTINF:0,Sky Sports 3 
-0
+rtmp://80.82.64.140:443/liverepeater playpath=3 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
+
+#EXTINF:0,Sky Sports 3 
+rtmp://109.200.1.82:1935/tes/skysp3.stream?e607b5b743e1842ee50e1556bbf3ae42
 
 #EXTINF:0,Sky Sports 4 
-0
+rtmp://80.82.64.140:443/liverepeater playpath=4 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
+
+#EXTINF:0,Sky Sports 4 
+rtmp://109.200.1.82:1935/tes/skysp4.stream?e607b5b743e1842ee50e1556bbf3ae42
 
 #EXTINF:0,Sky Sports 5 
-0
+rtmp://80.82.64.140:443/liverepeater playpath=5 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
+
+#EXTINF:0,Sky Sports 5 
+rtmp://109.200.1.82:1935/tes/skysp5.stream?e607b5b743e1842ee50e1556bbf3ae42
+
+#EXTINF:0,Sky Sports F1 
+rtmp://80.82.64.140:443/liverepeater playpath=35 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
 
 #EXTINF:0,Sky Sports F1 
 http://212.51.146.19:4004
 
 #EXTINF:0,Sky Sports News 
 http://93.184.221.133/00573D/183/183-0.m3u8
+
+#EXTINF:0,Sky Sports News 
+rtmp://109.200.1.82:1935/tes/skyspnews.stream?e607b5b743e1842ee50e1556bbf3ae42
 
 #EXTINF:0,Sportsnet 360 
 0
@@ -353,3 +366,6 @@ http://93.184.221.133/00573D/837/837-0.m3u8
 
 #EXTINF:0,WWE Network 
 rtmp://80.82.64.140:443/liverepeater playpath=13 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
+
+#EXTINF:0,WWE Network 
+rtmp://80.82.78.85:443/liverepeater playpath=13 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH

@@ -5,7 +5,7 @@
 http://abclive.abcnews.com/i/abc_live4@136330/index_1200_av-b.m3u8
 
 #EXTINF:0,AlJazeera 
-0
+http://198.179.31.198/live/3044.low.stream/3044.low.stream/index.m3u8
 
 #EXTINF:0,BBC World News 
 http://81.92.105.134:5555/pl.m3u8?channel=144

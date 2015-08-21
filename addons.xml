@@ -332,6 +332,21 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
+<addon id="plugin.video.SuperStreams" name="SuperStreams" version="2.1.0" provider-name="SuperStreams">
+<requires>
+    <import addon="xbmc.python" version="2.1.0" />
+</requires>
+<extension point="xbmc.python.pluginsource" library="default.py">
+		<provides>video</provides>
+	</extension>
+	<extension  point="xbmc.addon.metadata">
+		<summary lang="nl">SuperStreams voor XBMC / KODI!</summary>
+		<description lang="nl">Met deze addon is het mogelijk om sport streams te bekijken in XBMC / KODI.</description>
+		<platform>all</platform>
+		<website></website>
+	</extension>
+</addon>
+
 <addon id="plugin.video.TDBEUROTV"
        name="TDB EURO TV"
        version="1.90"
@@ -409,7 +424,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="2.98"
+       version="2.99"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
