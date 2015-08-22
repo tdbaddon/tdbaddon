@@ -10,21 +10,11 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 #EXTINF:0,AMHQ 
 0
 
-
-
-#EXTINF:0,Animal Planet 
-http://4.31.30.159:9045
-
 #EXTINF:0,Animal Planet 
 http://80.80.160.168/live/1/live.m3u8
 
 #EXTINF:0,Animal Planet 
 http://167.114.101.188:1935/flu555/_definst_/animal/playlist.m3u8?token=
-
-#EXTINF:0,Animal Planet 
-http://192.99.39.240:1935/flu555/_definst_/animal/playlist.m3u8?token=
-
-
 
 #EXTINF:0,Destination America 
 0
@@ -35,24 +25,11 @@ http://192.99.39.240:1935/flu555/_definst_/animal/playlist.m3u8?token=
 #EXTINF:0,Discovery History 
 0
 
-
-
 #EXTINF:0,Discovery Channel 
 http://80.80.160.168/live/8/live.m3u8
 
 #EXTINF:0,Discovery Channel 
-http://93.184.221.133/00573D/1347/1347-0.m3u8
-
-#EXTINF:0,Discovery Channel 
 http://167.114.101.188:1935/flu555/_definst_/discovery/playlist.m3u8?token=
-
-#EXTINF:0,Discovery Channel 
-http://192.99.39.240:1935/flu555/_definst_/discovery/playlist.m3u8?token=
-
-
-
-#EXTINF:0,Discovery History 
-http://93.184.221.133/00573D/1348/1348-0.m3u8
 
 #EXTINF:0,Discovery H&H
 0
@@ -75,7 +52,6 @@ http://204.107.27.136/live/1624.high.stream/1624.high.stream/index.m3u8
 #EXTINF:0,Flite Level TV 
 0
 
-
 #EXTINF:0,History Channel 
 https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8?hdnea=ip=174.113.30.187~st=1427694727~exp=1427695327~acl=/i/*~id=a86de0c2-ad09-4469-9a63-6ebbc1bba4d3~hmac=ac144089000bdd16f6916c517ce3e6e04813d4de11ac16839ad468a977ec80b1
 
@@ -86,76 +62,37 @@ http://link.theplatform.com/s/dtjsEC/chjdYJxKb44V?manifest=m3u&feed=History%20Li
 http://4.31.30.159:9035
 
 #EXTINF:0,History Channel 
-http://37.187.160.187:8000/live/ressler/skype/90.ts
-
-#EXTINF:0,History Channel 
 http://80.77.52.6:3719/udp/226.0.5.1:12345
 
 #EXTINF:0,History Channel 
 http://167.114.101.188:1935/flu555/_definst_/history/playlist.m3u8?token=
 
-#EXTINF:0,History Channel 
-http://192.99.39.240:1935/flu555/_definst_/history/playlist.m3u8?token=
-
-
-
 #EXTINF:0,History Channel 2
 http://167.114.101.188:1935/flu555/_definst_/h2/playlist.m3u8?token=
-
-#EXTINF:0,History Channel 2
-http://192.99.39.240:1935/flu555/_definst_/h2/playlist.m3u8?token=
-
-
 
 #EXTINF:0,Investigation Discovery 
 http://80.80.160.168/live/5/live.m3u8
 
-#EXTINF:0,NASA TV 
+#EXTINF:0,Nasa TV 
 http://nasatv-lh.akamaihd.net/i/NASA_101@319270/master.m3u8 
 
-#EXTINF:0,NASA TV 
+#EXTINF:0,Nasa TV 
 http://198.179.31.198/live/330.low.stream/330.low.stream/index.m3u8
-
-
-#EXTINF:0,Nat Geo Wild 
-http://hls.svc.moyo.tv/hls/CH_NATGEOWILD/variant.m3u8?version=2
-
-#EXTINF:0,Nat Geo Wild 
-http://37.187.160.187:8000/live/ressler/skype/97.ts
-
-#EXTINF:0,Nat Geo Wild 
-rtmp://109.200.1.82:1935/tes/natgeowild.stream?e607b5b743e1842ee50e1556bbf3ae42
 
 #EXTINF:0,Nat Geo Wild 
 http://167.114.101.188:1935/flu555/_definst_/natgeowild/playlist.m3u8?token=
 
 #EXTINF:0,Nat Geo Wild 
-http://192.99.39.240:1935/flu555/_definst_/natgeowild/playlist.m3u8?token=
-
-#EXTINF:0,Nat Geo Wild 
 http://194.44.229.77:777/udp/237.1.239.21:1234
-
-
-
-#EXTINF:0,National Geographic 
-http://37.187.160.187:8000/live/ressler/skype/96.ts
-
-#EXTINF:0,National Geographic 
-http://93.184.221.133/00573D/338/338-0.m3u8
-
-#EXTINF:0,National Geographic 
-rtmp://109.200.1.82:1935/tes/natgeo.stream?e607b5b743e1842ee50e1556bbf3ae42
 
 #EXTINF:0,National Geographic 
 http://167.114.101.188:1935/flu555/_definst_/natgeo/playlist.m3u8?token=
 
 #EXTINF:0,National Geographic 
-http://192.99.39.240:1935/flu555/_definst_/natgeo/playlist.m3u8?token=
-
-#EXTINF:0,National Geographic 
 http://194.44.229.77:777/udp/237.1.239.22:1234
 
-
+#EXTINF:0,National Geographic 
+http://194.44.229.77:777/udp/237.1.238.10:1234
 
 #EXTINF:0,Planet Green 
 http://80.80.160.168/live/4/live.m3u8
@@ -166,8 +103,6 @@ http://rt-a.akamaihd.net/ch_05@325609/master.m3u8
 #EXTINF:0,Ted TV 
 0
 
-
-
 #EXTINF:0,Travel Channel 
 http://80.80.160.168/live/3/live.m3u8
 
@@ -176,8 +111,6 @@ http://194.44.229.77:777/udp/237.1.238.14:1234
 
 #EXTINF:0,Travel Channel 
 http://80.77.52.6:3719/udp/226.0.5.2:12345
-
-
 
 #EXTINF:0,Travel and Escape
 http://4.31.30.159:9066

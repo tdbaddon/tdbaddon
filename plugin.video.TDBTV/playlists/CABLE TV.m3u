@@ -7,14 +7,8 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 #EXTINF:0,A&E 
 http://4.31.30.159:9039
 
-#EXTINF:0,A&E 
-http://64.100.15.201/udp/239.255.2.6:10001
-
 #EXTINF:0,ABC 
 http://167.114.101.188:1935/flu555/_definst_/abc/playlist.m3u8?token=
-
-#EXTINF:0,ABC 
-http://192.99.39.240:1935/flu555/_definst_/abc/playlist.m3u8?token=
 
 #EXTINF:0,ABC Family 
 0
@@ -24,9 +18,6 @@ http://4.31.30.159:9038
 
 #EXTINF:0,AMC 
 http://167.114.101.188:1935/flu555/_definst_/amc/playlist.m3u8?token=
-
-#EXTINF:0,AMC 
-http://192.99.39.240:1935/flu555/_definst_/amc/playlist.m3u8?token=
 
 #EXTINF:0,AXN
 http://4.31.30.159:9157
@@ -38,22 +29,13 @@ http://4.31.30.159:9158
 0
 
 #EXTINF:0,BBC 1 
-http://37.187.160.187:8000/live/ressler/skype/53.ts
-
-#EXTINF:0,BBC 1 
 http://82.135.224.134:80/udp/239.100.3.1:1234
-
-#EXTINF:0,BBC 2 
-http://37.187.160.187:8000/live/ressler/skype/54.ts
 
 #EXTINF:0,BBC 2 
 http://82.135.224.134/udp/239.100.3.3:1234
 
 #EXTINF:0,BET 
 http://167.114.101.188:1935/flu555/_definst_/bet/playlist.m3u8?token=
-
-#EXTINF:0,BET 
-http://192.99.39.240:1935/flu555/_definst_/bet/playlist.m3u8?token=
 
 #EXTINF:0,Boomerang 
 0
@@ -63,9 +45,6 @@ http://64.100.15.201/udp/239.255.2.8:10001
 
 #EXTINF:0,Bravo 
 http://167.114.101.188:1935/flu555/_definst_/jbravo/playlist.m3u8?token=
-
-#EXTINF:0,Bravo 
-http://192.99.39.240:1935/flu555/_definst_/jbravo/playlist.m3u8?token=
 
 #EXTINF:0,Cartoon Network 
 http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD28_W_250.sdp/playlist.m3u8
@@ -77,31 +56,19 @@ http://5.128.118.163:7777/udp/239.1.3.3:1234
 http://4.31.30.159:9036
 
 #EXTINF:0,Cbeebies 
-http://37.187.160.187:8000/live/ressler/skype/129.ts
-
-#EXTINF:0,CBS 
-http://93.184.221.133/00573D/1084/1084-0.m3u8
+0
 
 #EXTINF:0,CBS 
 http://167.114.101.188:1935/flu555/_definst_/cbs/playlist.m3u8?token=
 
-#EXTINF:0,CBS 
-http://192.99.39.240:1935/flu555/_definst_/cbs/playlist.m3u8?token=
-
 #EXTINF:0,CBS Action 
-http://93.184.221.133/00573D/711/711-0.m3u8
+0
 
 #EXTINF:0,CBS Drama 
-http://37.187.160.187:8000/live/ressler/skype/67.ts
-
-#EXTINF:0,CBS Drama 
-http://93.184.221.133/00573D/712/712-0.m3u8
+0
 
 #EXTINF:0,CBS Reality 
-http://37.187.160.187:8000/live/ressler/skype/66.ts
-
-#EXTINF:0,CBS Reality 
-http://93.184.221.133/00573D/713/713-0.m3u8
+0
 
 #EXTINF:0,City TV Toronto
 0
@@ -112,23 +79,11 @@ http://93.184.221.133/00573D/713/713-0.m3u8
 #EXTINF:0,CNBC
 http://origin.live.web.tv.streamprovider.net/streams/9044496707bcc259f6cdf58eb93cbfe9_live_0_0/index.m3u8
 
-#EXTINF:0,CNBC
-http://93.184.221.133/00573D/1085/1085-0.m3u8
-
-#EXTINF:0,Comedy Central 
-http://37.187.160.187:8000/live/ressler/skype/82.ts
-
 #EXTINF:0,Comedy Central 
 http://167.114.101.188:1935/flu555/_definst_/comedycentral/playlist.m3u8?token=
 
-#EXTINF:0,Comedy Central 
-http://192.99.39.240:1935/flu555/_definst_/comedycentral/playlist.m3u8?token=
-
 #EXTINF:0,Cooking Channel 
 http://167.114.101.188:1935/flu555/_definst_/cookingchannel/playlist.m3u8?token=
-
-#EXTINF:0,Cooking Channel 
-http://192.99.39.240:1935/flu555/_definst_/cookingchannel/playlist.m3u8?token=
 
 #EXTINF:0,CTV Edmonton
 http://198.179.31.198/live/2053.high.stream/2053.high.stream/index.m3u8
@@ -146,9 +101,6 @@ http://198.179.31.198/live/2062.high.stream/2062.high.stream/index.m3u8
 http://167.114.101.188:1935/flu555/_definst_/wpix/playlist.m3u8?token=
 
 #EXTINF:0,CW 
-http://192.99.39.240:1935/flu555/_definst_/wpix/playlist.m3u8?token=
-
-#EXTINF:0,CW 
 http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/index_350_av-p.m3u8?
 
 #EXTINF:0,Disney Channel 
@@ -160,35 +112,20 @@ http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/index_350_av-p.m3u8?
 #EXTINF:0,Disney XD 
 http://167.114.101.188:1935/flu555/_definst_/disneyxd/playlist.m3u8?token=
 
-#EXTINF:0,Disney XD 
-http://192.99.39.240:1935/flu555/_definst_/disneyxd/playlist.m3u8?token=
-
 #EXTINF:0,DIY Network 
 http://167.114.101.188:1935/flu555/_definst_/diy/playlist.m3u8?token=
-
-#EXTINF:0,DIY Network 
-http://192.99.39.240:1935/flu555/_definst_/diy/playlist.m3u8?token=
-
-#EXTINF:0,E! 
-http://4.31.30.159:9011
 
 #EXTINF:0,E! 
 http://167.114.101.188:1935/flu555/_definst_/e/playlist.m3u8?token=
 
-#EXTINF:0,E! 
-http://192.99.39.240:1935/flu555/_definst_/e/playlist.m3u8?token=
-
 #EXTINF:0,E4 
-http://37.187.160.187:8000/live/ressler/skype/63.ts
+0
 
 #EXTINF:0,Family Channel 
 0
 
 #EXTINF:0,Fashion TV 
 http://46.249.213.87/iPhone/HLS_TS/broadcast/fashiontv-tablet.3gp/fashiontv-tablet.3gp-mr648k.m3u8?trackingid=3181420000&os=desktop
-
-#EXTINF:0,Film4 
-0
 
 #EXTINF:0,Fine Living Network 
 0
@@ -198,9 +135,6 @@ http://4.31.30.159:9028
 
 #EXTINF:0,Food Network 
 http://167.114.101.188:1935/flu555/_definst_/food/playlist.m3u8?token=
-
-#EXTINF:0,Food Network 
-http://192.99.39.240:1935/flu555/_definst_/food/playlist.m3u8?token=
 
 #EXTINF:0,Fox 1 
 0
@@ -212,25 +146,10 @@ http://192.99.39.240:1935/flu555/_definst_/food/playlist.m3u8?token=
 0
 
 #EXTINF:0,Fox TV 
-rtmp://109.200.1.82:1935/tes/fox.stream?e607b5b743e1842ee50e1556bbf3ae42
-
-#EXTINF:0,Fox TV 
-http://93.184.221.133/00573D/1093/1093-0.m3u8
-
-#EXTINF:0,Fox TV 
 http://167.114.101.188:1935/flu555/_definst_/fox/playlist.m3u8?token=
-
-#EXTINF:0,Fox TV 
-http://192.99.39.240:1935/flu555/_definst_/fox/playlist.m3u8?token=
-
-#EXTINF:0,FX 
-http://64.100.15.201/udp/239.255.2.9:10001
 
 #EXTINF:0,FX 
 http://167.114.101.188:1935/flu555/_definst_/fx/playlist.m3u8?token=
-
-#EXTINF:0,FX 
-http://192.99.39.240:1935/flu555/_definst_/fx/playlist.m3u8?token=
 
 #EXTINF:0,Global TV Halifax 
 http://link.theplatform.com/s/dtjsEC/77l1KA_G_5P1?feed=DEV%20Live%20Stream%20Feed/playlist.m3u8
@@ -251,13 +170,7 @@ http://link.theplatform.com/s/dtjsEC/EqBPGYLY6fEx?feed=DEV%20Live%20Stream%20Fee
 0
 
 #EXTINF:0,HGTV 
-http://64.100.15.201/udp/239.255.2.6:10001
-
-#EXTINF:0,HGTV 
 http://167.114.101.188:1935/flu555/_definst_/jhgtv/playlist.m3u8?token=
-
-#EXTINF:0,HGTV 
-http://192.99.39.240:1935/flu555/_definst_/jhgtv/playlist.m3u8?token=
 
 #EXTINF:0,HSN
 rtsp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:420p500kB31
@@ -272,31 +185,16 @@ rtmp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:468p500kB31?b?b*t$
 http://ios.streamserver01.com:8080/ShowcaseTV/mystream.m3u8
 
 #EXTINF:0,ITV 1 
-http://37.187.160.187:8000/live/ressler/skype/55.ts
-
-#EXTINF:0,ITV 1 
 http://82.135.224.134:80/udp/239.100.3.6:1234
-
-#EXTINF:0,ITV 1 
-http://93.184.221.133/00573D/283/283-0.m3u8
 
 #EXTINF:0,ITV 1 
 http://204.107.27.136/live/11.low.stream/11.low.stream/index.m3u8
 
 #EXTINF:0,ITV 2 
-http://37.187.160.187:8000/live/ressler/skype/58.ts
-
-#EXTINF:0,ITV 2 
 http://204.107.27.136/live/67.low.stream/67.low.stream/index.m3u8
 
 #EXTINF:0,ITV 3 
-http://37.187.160.187:8000/live/ressler/skype/59.ts
-
-#EXTINF:0,ITV 3 
 http://204.107.27.136/live/26.low.stream/26.low.stream/index.m3u8 
-
-#EXTINF:0,ITV 4 
-http://37.187.160.187:8000/live/ressler/skype/60.ts
 
 #EXTINF:0,ITV 4 
 http://204.107.27.136/live/101.low.stream/101.low.stream/index.m3u8 
@@ -310,14 +208,8 @@ rtmp://jtvmedia.jtv.com:1975/live playpath=live6 swfUrl=http://demandware.edgesu
 #EXTINF:0,KTLA
 http://167.114.101.188:1935/flu555/_definst_/ktla/playlist.m3u8?token=
 
-#EXTINF:0,KTLA
-http://192.99.39.240:1935/flu555/_definst_/ktla/playlist.m3u8?token=
-
 #EXTINF:0,Lifetime Network 
 http://167.114.101.188:1935/flu555/_definst_/lmn/playlist.m3u8?token=
-
-#EXTINF:0,Lifetime Network 
-http://192.99.39.240:1935/flu555/_definst_/lmn/playlist.m3u8?token=
 
 #EXTINF:0,London Live 
 http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
@@ -326,7 +218,7 @@ http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
 http://4.31.30.159:9031
 
 #EXTINF:0,More4 
-http://37.187.160.187:8000/live/ressler/skype/64.ts
+0
 
 #EXTINF:0,My9
 http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
@@ -340,14 +232,8 @@ http://192.99.39.240:1935/flu555/_definst_/nbc/playlist.m3u8?token=
 #EXTINF:0,Nick
 http://167.114.101.188:1935/flu555/_definst_/nick/playlist.m3u8?token=
 
-#EXTINF:0,Nick
-http://192.99.39.240:1935/flu555/_definst_/nick/playlist.m3u8?token=
-
 #EXTINF:0,Nick Jr 
 http://167.114.101.188:1935/flu555/_definst_/nick/playlist.m3u8?token=
-
-#EXTINF:0,Nick Jr 
-http://192.99.39.240:1935/flu555/_definst_/nick/playlist.m3u8?token=
 
 #EXTINF:0,Nickelodeon 
 http://194.44.229.77:777/udp/237.1.239.14:1234
@@ -359,7 +245,7 @@ http://194.44.229.77:777/udp/237.1.239.14:1234
 0
 
 #EXTINF:0,OMNI
-http://4.31.30.159:9062
+0
 
 #EXTINF:0,PBS 
 0
@@ -367,44 +253,29 @@ http://4.31.30.159:9062
 #EXTINF:0,Showcase
 http://167.114.101.188:1935/flu555/_definst_/showcase/playlist.m3u8?token=
 
-#EXTINF:0,Showcase
-http://192.99.39.240:1935/flu555/_definst_/showcase/playlist.m3u8?token=
-
 #EXTINF:0,Showtime 
 http://80.80.160.168/live/7/live.m3u8
 
 #EXTINF:0,Sky 1 
-http://37.187.160.187:8000/live/ressler/skype/77.ts
+0
 
 #EXTINF:0,Sky 2 
-http://37.187.160.187:8000/live/ressler/skype/79.ts
+0
 
 #EXTINF:0,Sky Arts 1 
-http://37.187.160.187:8000/live/ressler/skype/102.ts
-
-#EXTINF:0,Sky Arts 1 
-rtmp://109.200.1.82:1935/tes/sky1.stream?e607b5b743e1842ee50e1556bbf3ae42
+0
 
 #EXTINF:0,Sky Arts 2 
-rtmp://109.200.1.82:1935/tes/sky2.stream?e607b5b743e1842ee50e1556bbf3ae42
+0
 
 #EXTINF:0,Sky Atlantic 
-http://37.187.160.187:8000/live/ressler/skype/81.ts
-
-#EXTINF:0,Sky Atlantic 
-rtmp://109.200.1.82:1935/tes/atlantic.stream?e607b5b743e1842ee50e1556bbf3ae42
+0
 
 #EXTINF:0,Sky Living 
-http://37.187.160.187:8000/live/ressler/skype/80.ts
-
-#EXTINF:0,Sky Living 
-rtmp://109.200.1.82:1935/tes/living.stream?e607b5b743e1842ee50e1556bbf3ae42
+0
 
 #EXTINF:0,Space
 http://167.114.101.188:1935/flu555/_definst_/space/playlist.m3u8?token=
-
-#EXTINF:0,Space
-http://192.99.39.240:1935/flu555/_definst_/space/playlist.m3u8?token=
 
 #EXTINF:0,Spike TV 
 http://4.31.30.159:9009
@@ -416,49 +287,25 @@ http://188.138.9.228:8001
 http://188.138.9.228:8002
 
 #EXTINF:0,Syfy 
-rtmp://109.200.1.82:1935/tes/syfy.stream?e607b5b743e1842ee50e1556bbf3ae42
-
-#EXTINF:0,Syfy 
 http://167.114.101.188:1935/flu555/_definst_/syfy/playlist.m3u8?token=
-
-#EXTINF:0,Syfy 
-http://192.99.39.240:1935/flu555/_definst_/syfy/playlist.m3u8?token=
 
 #EXTINF:0,TBS 
 http://167.114.101.188:1935/flu555/_definst_/tbs/playlist.m3u8?token=
 
-#EXTINF:0,TBS 
-http://192.99.39.240:1935/flu555/_definst_/tbs/playlist.m3u8?token=
-
 #EXTINF:0,Teletoon
 http://167.114.101.188:1935/flu555/_definst_/teletoon/playlist.m3u8?token=
-
-#EXTINF:0,Teletoon
-http://192.99.39.240:1935/flu555/_definst_/teletoon/playlist.m3u8?token=
 
 #EXTINF:0,TLC 
 http://80.80.160.168/live/2/live.m3u8
 
 #EXTINF:0,TLC 
-rtmp://109.200.1.82:1935/tes/tlc.stream?e607b5b743e1842ee50e1556bbf3ae42
-
-#EXTINF:0,TLC 
 http://192.99.39.240:1935/flu555/_definst_/jtlc/playlist.m3u8?token=
-
-#EXTINF:0,TLC 
-http://167.114.101.188:1935/flu555/_definst_/jtlc/playlist.m3u8?token=
 
 #EXTINF:0,TLC 
 http://194.44.229.77:777/udp/237.1.239.23:1234
 
 #EXTINF:0,TNT 
-http://64.100.15.201/udp/239.255.2.2:10001
-
-#EXTINF:0,TNT 
 http://167.114.101.188:1935/flu555/_definst_/tnt/playlist.m3u8?token=
-
-#EXTINF:0,TNT 
-http://192.99.39.240:1935/flu555/_definst_/tnt/playlist.m3u8?token=
 
 #EXTINF:0,Tom & Jerry TV 
 rtmp://208.53.180.218/ctv playpath=tom swfUrl=http://www.carolineoliveira.com.br/swf/player.swf live=1 pageUrl=http://carolineoliveira.com.br/tvamigos/tomejerry.html
@@ -470,10 +317,7 @@ http://4.31.30.159:9091
 http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/master.m3u8?b?b*t$ 
 
 #EXTINF:0,Tru TV 
-http://64.100.15.201/udp/239.255.2.4:10001
-
-#EXTINF:0,Tru TV 
-http://142.4.216.60:1935/edge/_definst_/uhnr4161ybioa5w/playlist.m3u8?wowzasessionid=1420124955
+0
 
 #EXTINF:0,True Drama
 0
@@ -492,9 +336,6 @@ http://4.31.30.159:9008
 
 #EXTINF:0,USA Network 
 http://167.114.101.188:1935/flu555/_definst_/usa/playlist.m3u8?token=
-
-#EXTINF:0,USA Network 
-http://192.99.39.240:1935/flu555/_definst_/usa/playlist.m3u8?token=
 
 #EXTINF:0,Veria Living TV 
 0
