@@ -68,7 +68,7 @@ http://167.114.101.188:1935/flu555/_definst_/hbozone/playlist.m3u8?token=
 http://192.99.39.240:1935/flu555/_definst_/hbozone/playlist.m3u8?token=
 
 #EXTINF:0,HWD Hollywood 
-0
+http://4.31.30.159:9133
 
 #EXTINF:0,MGM 
 0

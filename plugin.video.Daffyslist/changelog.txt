@@ -1,0 +1,5 @@
+[b]1.0[/b] 21/08/15
+- First stage of live release.
+
+[b]1.0[/b] 22/08/15
+- Fixed a possible Bug.

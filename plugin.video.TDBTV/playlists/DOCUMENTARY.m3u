@@ -11,10 +11,10 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 0
 
 #EXTINF:0,Animal Planet 
-http://80.80.160.168/live/1/live.m3u8
+http://167.114.101.188:1935/flu555/_definst_/animal/playlist.m3u8?token=
 
 #EXTINF:0,Animal Planet 
-http://167.114.101.188:1935/flu555/_definst_/animal/playlist.m3u8?token=
+http://80.80.160.168/live/1/live.m3u8
 
 #EXTINF:0,Destination America 
 0
@@ -26,10 +26,11 @@ http://167.114.101.188:1935/flu555/_definst_/animal/playlist.m3u8?token=
 0
 
 #EXTINF:0,Discovery Channel 
-http://80.80.160.168/live/8/live.m3u8
+http://167.114.101.188:1935/flu555/_definst_/discovery/playlist.m3u8?token=
 
 #EXTINF:0,Discovery Channel 
-http://167.114.101.188:1935/flu555/_definst_/discovery/playlist.m3u8?token=
+http://80.80.160.168/live/8/live.m3u8
+
 
 #EXTINF:0,Discovery H&H
 0
@@ -53,6 +54,12 @@ http://204.107.27.136/live/1624.high.stream/1624.high.stream/index.m3u8
 0
 
 #EXTINF:0,History Channel 
+http://167.114.101.188:1935/flu555/_definst_/history/playlist.m3u8?token=
+
+#EXTINF:0,History Channel 
+http://128.0.87.254:8000/udp/239.239.239.12:1234
+
+#EXTINF:0,History Channel 
 https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8?hdnea=ip=174.113.30.187~st=1427694727~exp=1427695327~acl=/i/*~id=a86de0c2-ad09-4469-9a63-6ebbc1bba4d3~hmac=ac144089000bdd16f6916c517ce3e6e04813d4de11ac16839ad468a977ec80b1
 
 #EXTINF:0,History Channel 
@@ -63,9 +70,6 @@ http://4.31.30.159:9035
 
 #EXTINF:0,History Channel 
 http://80.77.52.6:3719/udp/226.0.5.1:12345
-
-#EXTINF:0,History Channel 
-http://167.114.101.188:1935/flu555/_definst_/history/playlist.m3u8?token=
 
 #EXTINF:0,History Channel 2
 http://167.114.101.188:1935/flu555/_definst_/h2/playlist.m3u8?token=
@@ -111,6 +115,9 @@ http://194.44.229.77:777/udp/237.1.238.14:1234
 
 #EXTINF:0,Travel Channel 
 http://80.77.52.6:3719/udp/226.0.5.2:12345
+
+#EXTINF:0,Travel Channel 
+http://128.0.87.254:8000/udp/239.239.239.13:1234
 
 #EXTINF:0,Travel and Escape
 http://4.31.30.159:9066

@@ -71,7 +71,7 @@ http://167.114.101.188:1935/flu555/_definst_/cbs/playlist.m3u8?token=
 0
 
 #EXTINF:0,City TV Toronto
-0
+http://4.31.30.159:9010
 
 #EXTINF:0,City TV Vancouver
 0
@@ -118,11 +118,14 @@ http://167.114.101.188:1935/flu555/_definst_/diy/playlist.m3u8?token=
 #EXTINF:0,E! 
 http://167.114.101.188:1935/flu555/_definst_/e/playlist.m3u8?token=
 
+#EXTINF:0,E! 
+http://4.31.30.159:9011
+
 #EXTINF:0,E4 
 0
 
 #EXTINF:0,Family Channel 
-0
+http://4.31.30.159:9002
 
 #EXTINF:0,Fashion TV 
 http://46.249.213.87/iPhone/HLS_TS/broadcast/fashiontv-tablet.3gp/fashiontv-tablet.3gp-mr648k.m3u8?trackingid=3181420000&os=desktop
@@ -273,6 +276,9 @@ http://80.80.160.168/live/7/live.m3u8
 
 #EXTINF:0,Sky Living 
 0
+
+#EXTINF:0,Slice
+http://4.31.30.159:9090
 
 #EXTINF:0,Space
 http://167.114.101.188:1935/flu555/_definst_/space/playlist.m3u8?token=

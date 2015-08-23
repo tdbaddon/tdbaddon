@@ -2,7 +2,7 @@
 
 
 #EXTINF:0,ADULT CHANNEL 
-http://wowza1.videos.movile.com:8080/live/smil:adulto_1.smil/media-b1100000_2400.m3u8
+http://wowza1.videos.movile.com:8080/live/smil:adulto_1.smil/playlist.m3u8
 
 #EXTINF:0,ADULT CHANNEL 
 http://210.200.79.26:1935/live/aracity03/playlist.m3u8
@@ -106,6 +106,9 @@ http://82.146.20.98:1234/udp/239.130.50.132:9001
 #EXTINF:0,HUSTLER TV 
 http://62.210.82.241:8081/hustlertv/hustlertv/live.m3u8
 
+#EXTINF:0,HUSTLER TV 
+http://128.0.87.254:8000/udp/239.239.239.41:1234
+
 #EXTINF:0,ILIVE 1
 0
 
@@ -162,6 +165,9 @@ http://62.210.82.241:8081/pboytv/pboytv/live.m3u8
 
 EXTINF:0,PLAYBOY TV 
 http://4.31.30.159:9006
+
+EXTINF:0,PLAYBOY TV 
+http://128.0.87.254:8000/udp/239.239.239.11:1234
 
 #EXTINF:0,PLATINUM TV 
 http://iptvchoice.zapto.org:8000/live/testrapid/3CmWLfb3kW/2631.ts

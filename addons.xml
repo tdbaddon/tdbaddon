@@ -79,6 +79,42 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
+<addon id="plugin.video.Daffyslist"
+       name="Daffys iptv/VOD list BETA"
+       version="1.0.1"
+       provider-name="Daffyslist">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+	<import addon="script.module.t0mm0.common" version="2.0.0"/>
+    <import addon="script.module.beautifulsoup" version="3.2.1"/>
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.beautifulsoup4" />
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.requests" />
+    <import addon="script.module.httplib2" />
+    <import addon="script.module.youtube.dl" optional="true"/>
+    <import addon="plugin.video.youtube" version="3.0.0"/>
+    <import addon="script.module.urlresolver" optional="true"/>
+    <import addon="script.module.simplejson" />
+    <import addon="script.common.plugin.cache" version="2.5.2"/>
+    <import addon="script.module.metahandler" version="2.5.1"/>
+
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>All the best from Daffyslist</summary>
+    <description>My lists iv collected together of iptv links and movies, i will update links when i have time.
+	I host most of the links but have no control over streaming or buffering issues!! I can remove and or update most!!
+	I have added cCloudTv as they update regular, also used Diavoletto Tv as they update everyday too Thanks to those guys:)
+	Want your list adding here? get intouch...
+Thats all Folks
+    </description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
 <addon
   id="plugin.video.dragon.sports"
   version="4.5.4.2"
@@ -316,7 +352,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
-<addon id="plugin.video.roggerstream" name="Rogger Stream" version="1.1.9" provider-name="Rogger, Cleiton Leonel Creton">
+<addon id="plugin.video.roggerstream" name="Rogger Stream" version="2.0.0" provider-name="Rogger, Cleiton Leonel Creton">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
   </requires>
@@ -329,6 +365,37 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
     <summary lang="en">Lista de canais IPTV by Rogger</summary>
     <description lang="en">Assista a vários canais transmitidos pela internet diretamente no Kodi</description>
 	<platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.video.SportsLiveTv"
+       name="Sports Live Tv"
+       version="1.0.0"
+       provider-name="KodiTVGuy">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+	<import addon="script.module.t0mm0.common" version="2.0.0"/>
+    <import addon="script.module.beautifulsoup" version="3.2.1"/>
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.beautifulsoup4" />
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.requests" />
+    <import addon="script.module.httplib2" />
+    <import addon="script.module.youtube.dl" optional="true"/>
+    <import addon="plugin.video.youtube" version="3.0.0"/>
+    <import addon="script.module.urlresolver" optional="true"/>
+    <import addon="script.module.simplejson" />
+    <import addon="script.common.plugin.cache" version="2.5.2"/>
+    <import addon="script.module.metahandler" version="2.5.1"/>
+
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en"> Enjoy </summary>
+    <description lang="en">Thanks to Husham for helping me with this addon</description>
+    <platform>all</platform>
   </extension>
 </addon>
 
@@ -368,7 +435,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 <addon id="plugin.video.TDBPORNO"
        name="TDB PORNO"
-       version="1.66"
+       version="1.67"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -424,7 +491,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="3.00"
+       version="3.01"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -594,6 +661,20 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 <description>Download and Install Addons</description>
 <platform>all</platform>
 </extension>
+</addon>
+
+<addon id="repository.team.expat" name="Team eXpat Repository" version="1.0.0" provider-name="Team-eXpat">
+	<extension point="xbmc.addon.repository" name="Demonstration Add-on Repository">
+		<info compressed="false">http://raw.github.com/teamexpat/team.expat/master/addons.xml</info>
+		<checksum>http://raw.github.com/teamexpat/team.expat/master/addons.xml.md5</checksum>
+		<datadir zip="true">http://raw.github.com/teamexpat/team.expat/master/repo/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Team eXpat Addon</summary>
+		<description>Build Addon Installer</description>
+		<disclaimer></disclaimer>
+		<platform>all</platform>
+	</extension>
 </addon>
 
 <addon id="repository.torrentrelease.info" name="TorrentRelease Repo" version="1.0.0.2" provider-name="TorrentRelease">

@@ -14,13 +14,13 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 http://bigten247.cdnak.bigtenhd.neulion.com/nlds/btn2go/btnnetwork/as/live/btnnetwork_hd_3000.m3u8
 
 #EXTINF:0,Box Nation 
-0
+http://servprjsmartv.mine.nu:8000/live/persianshare/shkfyhpne/1571.m3u8
 
 #EXTINF:0,BT Sport 1 
 rtmp://80.82.64.140:443/liverepeater playpath=7 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
 
 #EXTINF:0,BT Sport 2 
-0
+http://servprjsmartv.mine.nu:8000/live/persianshare/shkfyhpne/1574.m3u8
 
 #EXTINF:0,CBS Sports 
 http://cbspgalivehd-lh.akamaihd.net/i/farmersday4_simulcast@92710/master.m3u8
@@ -145,6 +145,9 @@ http://167.114.101.188:1935/flu555/_definst_/jnfl/playlist.m3u8?token=
 #EXTINF:0,NFL Network 
 http://192.99.39.240:1935/flu555/_definst_/jnfl/playlist.m3u8?token=
 
+#EXTINF:0,NFL Network 
+http://nflsvgatlgame3-i.akamaihd.net/hls/live/223175/NFL_Mobile/2015Mobile_NFLN_200k.m3u8
+
 #EXTINF:0,NHL Network
 rtmp://kv2.ts33.net/sat/us021
 
@@ -200,7 +203,7 @@ http://xrxs.net/video/live-p12wash-4728.m3u8
 mms://100automoto.tv/channel_porsche
 
 #EXTINF:0,Premier Sports 
-0
+http://servprjsmartv.mine.nu:8000/live/persianshare/shkfyhpne/1602.m3u8
 
 #EXTINF:0,Racing UK 
 0
@@ -209,28 +212,46 @@ mms://100automoto.tv/channel_porsche
 0
 
 #EXTINF:0,Setanta Sports 
-0
+http://servprjsmartv.mine.nu:8000/live/persianshare/shkfyhpne/1610.m3u8
 
 #EXTINF:0,Sky Sports 1 
 rtmp://80.82.64.140:443/liverepeater playpath=1 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
 
+#EXTINF:0,Sky Sports 1 
+http://servprjsmartv.mine.nu:8000/live/persianshare/shkfyhpne/1625.m3u8
+
 #EXTINF:0,Sky Sports 2 
 rtmp://80.82.64.140:443/liverepeater playpath=2 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
+
+#EXTINF:0,Sky Sports 2 
+http://servprjsmartv.mine.nu:8000/live/persianshare/shkfyhpne/1626.m3u8
 
 #EXTINF:0,Sky Sports 3 
 rtmp://80.82.64.140:443/liverepeater playpath=3 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
 
+#EXTINF:0,Sky Sports 3 
+http://servprjsmartv.mine.nu:8000/live/persianshare/shkfyhpne/1627.m3u8
+
 #EXTINF:0,Sky Sports 4 
 rtmp://80.82.64.140:443/liverepeater playpath=4 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
+
+#EXTINF:0,Sky Sports 4 
+http://servprjsmartv.mine.nu:8000/live/persianshare/shkfyhpne/1628.m3u8
 
 #EXTINF:0,Sky Sports 5 
 rtmp://80.82.64.140:443/liverepeater playpath=5 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
 
+#EXTINF:0,Sky Sports 5 
+http://servprjsmartv.mine.nu:8000/live/persianshare/shkfyhpne/1629.m3u8
+
 #EXTINF:0,Sky Sports F1 
 rtmp://80.82.64.140:443/liverepeater playpath=35 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
 
+#EXTINF:0,Sky Sports F1 
+http://servprjsmartv.mine.nu:8000/live/persianshare/shkfyhpne/1630.m3u8
+
 #EXTINF:0,Sky Sports News 
-0
+http://servprjsmartv.mine.nu:8000/live/persianshare/shkfyhpne/1533.m3u8
 
 #EXTINF:0,Sportsnet 360 
 0
