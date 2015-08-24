@@ -109,6 +109,12 @@ http://62.210.82.241:8081/hustlertv/hustlertv/live.m3u8
 #EXTINF:0,HUSTLER TV 
 http://128.0.87.254:8000/udp/239.239.239.41:1234
 
+#EXTINF:0,HUSTLER TV 
+http://185.73.239.23:8000/live/testrapid/3CmWLfb3kW/1478.ts
+
+#EXTINF:0,HUSTLER TV 
+http://213.95.47.104:8080/btv_00188/
+
 #EXTINF:0,ILIVE 1
 0
 
@@ -190,6 +196,9 @@ http://iptvchoice.zapto.org:8000/live/testrapid/3CmWLfb3kW/1341.ts
 #EXTINF:0,REDLIGHT PREMIUM 
 rtmp://94.242.228.182/yoy/_definst_/251
 
+#EXTINF:0,REDLIGHT PREMIUM 
+http://213.95.47.104:8080/btv_00190/
+
 #EXTINF:0,REDTUBE
 0
 
@@ -218,7 +227,7 @@ http://82.146.20.98:1234/udp/239.130.50.129:9001
 0
 
 #EXTINF:0,SEX PRIVE 
-0
+http://62.210.83.180:8081/brasileirinhas/brasileirinhas/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9OC8yNC8yMDE1IDY6NTQ6MTcgUE0maGFzaF92YWx1ZT02YUt5MldJU3I5ZmtWWmtRT3RMZmt3PT0mdmFsaWRtaW51dGVzPTMwMA==
 
 #EXTINF:0,SEX ZONE
 http://62.210.82.241:8081/sexzonehd/sexzonehd/live.m3u8
@@ -267,6 +276,9 @@ rtmp://94.242.228.182/yoy/_definst_/251
 
 #EXTINF:0,XXX 
 http://4.31.30.159:9005
+
+#EXTINF:0,XXX 
+http://213.95.47.104:8080/btv_00192/
 
 #EXTINF:0,XXX 
 http://tvi.ddns.me:8000/live/dhoha/benomrane/782.ts?tocken1234

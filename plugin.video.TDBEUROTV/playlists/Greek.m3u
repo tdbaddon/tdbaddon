@@ -4,6 +4,9 @@
 #EXTINF:0,4E TV 
 http://mail.tv4e.gr:1935/live/myStream.sdp/playlist.m3u8
 
+#EXTINF:0,4E TV 
+http://185.73.239.23:8000/live/testrapid/3CmWLfb3kW/1022.ts
+
 #EXTINF:0,Aigaio
 http://xaigaiotelevisionx.api.channel.livestream.com/3.0/playlist.m3u8
 
@@ -11,7 +14,7 @@ http://xaigaiotelevisionx.api.channel.livestream.com/3.0/playlist.m3u8
 http://alfakanali-lh.akamaihd.net/i/live_1@90368/master.m3u8
 
 #EXTINF:0,Ant1 
-0
+http://185.73.239.23:8000/live/testrapid/3CmWLfb3kW/67.ts
 
 #EXTINF:0,Ant1 Cyprus
 rtmp://46.21.53.171/iwohttporigin/mp4:livestream
@@ -20,7 +23,7 @@ rtmp://46.21.53.171/iwohttporigin/mp4:livestream
 0
 
 #EXTINF:0,Best TV 
-0
+http://185.73.239.23:8000/live/testrapid/3CmWLfb3kW/1034.ts
 
 #EXTINF:0,BlueSky TV
 0
@@ -57,6 +60,9 @@ rtmp://213.16.167.186/live/mpegts_256.stream
 
 #EXTINF:0,Extra 
 rtmp://213.16.167.186:1935/live/mpegts_256.stream
+
+#EXTINF:0,Extra 
+http://185.73.239.23:8000/live/testrapid/3CmWLfb3kW/1049.ts
 
 #EXTINF:0,FOS TV
 http://wm1.gmlogic.com/ch-patra?ovpsv=2.3.1.0
@@ -126,6 +132,9 @@ http://nerit2-lh.akamaihd.net/i/neritplus_1@45603/master.m3u8
 
 #EXTINF:0,Omega TV 
 rtmp://stream2.omegatv.net:1935/livepkgr/omegatv live=1 timeout=10
+
+#EXTINF:0,Omega TV 
+http://185.73.239.23:8000/live/testrapid/3CmWLfb3kW/1066.ts
 
 #EXTINF:0,OPT TV
 rtmp://media.patrisnews.com:1935/patris/tvstream live=1 timeout=10

@@ -148,11 +148,26 @@ http://wowza.rtkit.com:1935/live/livestream/chunklist.m3u8?wowzasessionid=491913
 #EXTINF:0,Super Sport 1 
 http://akamai127.tibo.tv/ss1/timeshift_rel-20.m3u8$OPT:http-user-agent=stagefright%2F1.0+%28Linux%3BAndroid+2.2%29
 
+#EXTINF:0,Super Sport 1 
+http://tvim.vdtapp.com/tvim/supersport1.m3u8
+
+#EXTINF:0,Super Sport 1 
+http://81.7.13.162/hls/ss1/index.m3u8
+
 #EXTINF:0,Super Sport 2 
-0
+http://tvim.vdtapp.com/tvim/supersport2.m3u8
+
+#EXTINF:0,Super Sport 2 
+http://81.7.13.162/hls/ss2/index.m3u8
+
+#EXTINF:0,Super Sport 2 
+http://185.73.239.23:8000/live/testrapid/3CmWLfb3kW/1204.ts
 
 #EXTINF:0,Super Sport 3
-0
+http://81.7.13.162/hls/ss3/index.m3u8
+
+#EXTINF:0,Super Sport 3
+http://185.73.239.23:8000/live/testrapid/3CmWLfb3kW/1205.ts
 
 #EXTINF:0,Super Sport 4
 0
@@ -171,6 +186,12 @@ rtmp://str103.setplex.net:1935/228/stv_folk
 
 #EXTINF:0,Top Channel 
 http://akamai127.tibo.tv/topchannel/timeshift_rel-20.m3u8$OPT:http-user-agent=stagefright%2F1.0+%28Linux%3BAndroid+2.2%29
+
+#EXTINF:0,Top Channel 
+http://tvim.vdtapp.com/tvim/tchannel.m3u8
+
+#EXTINF:0,Top Channel 
+http://185.73.239.23:8000/live/testrapid/3CmWLfb3kW/1263.ts
 
 #EXTINF:0,Top Channel News
 0

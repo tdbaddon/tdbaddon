@@ -134,7 +134,7 @@ http://5.153.25.7:8080/stream/?fw=true&route=nl3_2&rule=null&sp=nettvplus&channe
 mms://176.106.121.32:8080/
 
 #EXTINF:0,OBN 
-0
+http://185.73.239.23:8000/live/testrapid/3CmWLfb3kW/1754.ts
 
 #EXTINF:0,Palma Plus 
 http://edge3.volim.tv/live/palma.stream/playlist.m3u8?hash=ad2c3d8d36d3e1b1cb6a7c2b587df040c1ac6ab7
@@ -188,7 +188,7 @@ http://edge1.volim.tv/live/pink.stream/HasBahCa.m3u8?hash=206dc563f74bad817eb851
 0
 
 #EXTINF:0,Pink Horror
-0
+http://185.73.239.23:8000/live/testrapid/3CmWLfb3kW/1559.ts
 
 #EXTINF:0,Pink Kids
 0
@@ -203,13 +203,13 @@ http://edge1.volim.tv/live/pink.stream/HasBahCa.m3u8?hash=206dc563f74bad817eb851
 0
 
 #EXTINF:0,Pink Movies 1
-0
+http://185.73.239.23:8000/live/testrapid/3CmWLfb3kW/1571.ts
 
 #EXTINF:0,Pink Movies 2
-0
+http://185.73.239.23:8000/live/testrapid/3CmWLfb3kW/1564.ts
 
 #EXTINF:0,Pink Movies 3
-0
+http://185.73.239.23:8000/live/testrapid/3CmWLfb3kW/1561.ts
 
 #EXTINF:0,Pink Music 1
 0
@@ -260,7 +260,7 @@ http://edge1.volim.tv/live/pink.stream/HasBahCa.m3u8?hash=206dc563f74bad817eb851
 0
 
 #EXTINF:0,Pink Western
-0
+http://185.73.239.23:8000/live/testrapid/3CmWLfb3kW/1558.ts
 
 #EXTINF:0,Pink World
 0
