@@ -34,9 +34,6 @@ rtmp://cmctv.flash.internapcdn.net:1935/cmctv_vitalstream_com/live_adaptive_1/CM
 #EXTINF:0,Deluxe Music 
 rtmp://flash1.ipercast.net/deluxemusic.tv/mp4:staging/120131-love-lounge-catchup.mp4.mp4
 
-#EXTINF:0,Deluxe Music 
-http://81.92.105.134:5555/pl.m3u8?channel=17
-
 #EXTINF:0,Djing Animation 
 http://www.djing.com/tv/a-05.m3u8
 
@@ -100,20 +97,11 @@ http://74.208.152.93/music/stream3/stream.m3u8
 #EXTINF:0,MTV 
 rtmp://83.218.202.202/live swfUrl=http://webtv.md/swf/WebTV.swf playpath=wt_mtv.stream
 
-#EXTINF:0,MTV 
-http://37.187.160.187:8000/live/ressler/skype/109.ts
-
-#EXTINF:0,MTV 
-http://93.184.221.133/00573D/1345/1345-0.m3u8
-
 #EXTINF:0,MTV Dance 
-http://37.187.160.187:8000/live/ressler/skype/107.ts
+0
 
 #EXTINF:0,MTV Hits 
 http://194.44.229.77:777/udp/237.1.238.1:1234
-
-#EXTINF:0,MTV Hits 
-http://37.187.160.187:8000/live/ressler/skype/108.ts
 
 #EXTINF:0,MTV Rocks 
 0
@@ -127,7 +115,7 @@ rtmp://stream.smcloud.net/live2/vox/vox_480p
 #EXTINF:0,Now Thats What I Call Music
 http://rrr.sz.xlcdn.com/?account=AATW&file=nowmusic&type=live&service=wowza&protocol=http&output=playlist.m3u8
 
-#EXTINF:0,NR1 
+#EXTINF:0,NR1 a
 rtmp://mn-l.mncdn.com/birnumaramedya_live/nr1tv.sdp
 
 #EXTINF:1,Planet Pop
@@ -173,10 +161,10 @@ http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/04/prog_index.m3u8
 http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/06/prog_index.m3u8
 
 #EXTINF:0,VH1 
-http://37.187.160.187:8000/live/ressler/skype/110.ts
+0
 
-#EXTINF:0,VH1 Classics
-http://hls.svc.moyo.tv/hls/CH_VH1/variant.m3u8?version=2
+#EXTINF:0,VH1 Classics 
+0
 
 #EXTINF:0,Virgin TV 
 rtmp://fms.105.net:1935/live/virgin2

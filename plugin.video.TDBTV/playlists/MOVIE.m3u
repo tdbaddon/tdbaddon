@@ -40,35 +40,20 @@ http://185.5.222.227:4242/bysid/5608
 #EXTINF:0,HBO 
 rtmp://94.102.49.207/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to/player/secure_player_iguide_token.swf live=1 pageUrl=http://www.iguide.to/view/1/watch-live-HBO-channel-for-free token=#ed%h0#w18623jsda6523lDGDVe
 
-#EXTINF:0,HBO 
-rtmp://89.248.168.57/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to/player/secure_player_iguide_embed_token.swf pageUrl=http://www.iguide.to/ token=#ed%h0#w18623jsda6523lDGD
-
 #EXTINF:0,HBO East
-http://167.114.101.188:1935/flu555/_definst_/hboeast/playlist.m3u8?token=
-
-#EXTINF:0,HBO East
-http://192.99.39.240:1935/flu555/_definst_/hboeast/playlist.m3u8?token=
+0
 
 #EXTINF:0,HBO Comedy
-http://167.114.101.188:1935/flu555/_definst_/hbocomedy/playlist.m3u8?token=
-
-#EXTINF:0,HBO Comedy
-http://192.99.39.240:1935/flu555/_definst_/hbocomedy/playlist.m3u8?token=
+0
 
 #EXTINF:0,HBO Signature
-http://167.114.101.188:1935/flu555/_definst_/hbosignature/playlist.m3u8?token=
-
-#EXTINF:0,HBO Signature
-http://192.99.39.240:1935/flu555/_definst_/hbosignature/playlist.m3u8?token=
+0
 
 #EXTINF:0,HBO Zone
-http://167.114.101.188:1935/flu555/_definst_/hbozone/playlist.m3u8?token=
-
-#EXTINF:0,HBO Zone
-http://192.99.39.240:1935/flu555/_definst_/hbozone/playlist.m3u8?token=
+0
 
 #EXTINF:0,HWD Hollywood 
-http://4.31.30.159:9133
+0
 
 #EXTINF:0,MGM 
 0
@@ -116,22 +101,13 @@ http://4.31.30.159:9133
 0
 
 #EXTINF:0,Starz Cinema
-http://167.114.101.188:1935/flu555/_definst_/starzcinema/playlist.m3u8?token=
-
-#EXTINF:0,Starz Cinema
-http://192.99.39.240:1935/flu555/_definst_/starzcinema/playlist.m3u8?token=
+0
 
 #EXTINF:0,Starz East
-http://167.114.101.188:1935/flu555/_definst_/starzeast/playlist.m3u8?token=
-
-#EXTINF:0,Starz East
-http://192.99.39.240:1935/flu555/_definst_/starzeast/playlist.m3u8?token=
+0
 
 #EXTINF:0,Starz Edge
-http://167.114.101.188:1935/flu555/_definst_/starzedge/playlist.m3u8?token=
-
-#EXTINF:0,Starz Edge
-http://192.99.39.240:1935/flu555/_definst_/starzedge/playlist.m3u8?token=
+0
 
 #EXTINF:0,TCM 
 0
