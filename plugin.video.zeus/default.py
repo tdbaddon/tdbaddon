@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-ZeusStreamVersion = "V1.0.5"
-ZeusStreamDate = "01/08/2015 01:00hrs GMT"
+ZeusStreamVersion = "V1.0.6"
+ZeusStreamDate = "21/08/2015 10:00hrs GMT"
 
 '''
     ZEUS Add-on
@@ -787,9 +787,7 @@ def Xham_Cats(url):
 
 def Xham_FindLinks(url):
     PageSource = ZeusGetContent(url)
-    NextPage = FindFirstPattern( PageSource ,"</a><a href='/channels/([^\&]+)' class='last") + "#'>"
-    all_NextPages = regex_get_all(NextPage, "</a><a href='", "'>")
-
+    NextPageUrl = regex_from_to(PageSource, '<link rel="next" href="', '">')
     PageSource = regex_from_to(PageSource,"id='vListTop'>", "<div id='adBottom'>")
     PageSource = RemoveBitsMovie(PageSource)
     all_links = regex_get_all(PageSource, "<div class='video'>", "</div>")
@@ -805,20 +803,15 @@ def Xham_FindLinks(url):
         
         url = Xham_Stream(vurl)
         AddDir(title,url,3,iconimage,isFolder=False)
-		
-    if len(NextPage) > 0:
-        for a in all_NextPages:
-            if a.find('#') > 0:
-               url = regex_from_to(a, "<a href='", "#'>")
-               url = 'http://xhamster.com' + url
-               AddDir('[B][COLOR yellow]Next Page >>>[/COLOR][/B]',url,610,"http://s6.postimg.org/4bbyeq1ep/next.png")
+	
+    if len(NextPageUrl) > 10:
+        AddDir('[B][COLOR yellow]Next Page >>>[/COLOR][/B]',NextPageUrl,610,"http://s6.postimg.org/4bbyeq1ep/next.png")
 
     SetViewThumbnail()
 			   
 def Xham_Stream(url):
     PageSource = ZeusGetContent(url)
-    PageSource = regex_from_to(PageSource,"type='video/mp4' file=", '"')
-    PageSource = PageSource[1:]
+    PageSource = regex_from_to(PageSource,"file: '", "',")
     return PageSource
 	
 def XMLRead500(url):
@@ -900,6 +893,7 @@ def YouTube_List(url):
         url = 'https://www.youtube.com/user/' + url + '/videos'
 		
     link = ZeusGetContent(url)
+
     AddInfoLink()
     all_videos = regex_get_all(link, '<h3 class="yt-lockup-title">', '</span></h3>')
     for a in all_videos:
@@ -936,10 +930,9 @@ def Channel_Scraper(url):
     link = ZeusGetContent(url)
     Count = 0
     
-    link = regex_from_to(link, '<a href="http://www.google.com/settings/ads"', '<div class="branded-page-v2-secondary-col">')
     all_videos = regex_get_all(link, GetCompile('CHANNELL1'), GetCompile('CHANNELR1'))
     for a in all_videos:
-        name = regex_from_to(a, 'title="', '"').replace("&amp;","&")
+        name = regex_from_to(a, 'dir="ltr">', '</a><span').replace("&amp;","&")
         name = replaceHTMLCodes(name)
         video_id = regex_from_to(a, 'href="', '"').replace("&amp;","&")
         video_id = video_id[9:]
@@ -1848,10 +1841,11 @@ def Freeview_keep_session():
 
 def ResolveIT():
     InfoLabel = xbmc.getInfoLabel('Container.PluginName')
-    if InfoLabel[-2:] == 'us':
-       return 1
-    else:
-       return 0
+    print 'Label Hakamac >> ' + InfoLabel + '   ' + InfoLabel[-4:]
+#    if InfoLabel[-2:] == 'us' or InfoLabel[-4:] == 'cbox':
+    return 1
+#    else:
+#       return 0
 	   
 def cleanlink(link):
     data=link.replace('\u00a0',' ').replace('\u00ae','').replace('\u00e9','').replace('\u00e0','').replace('\u2013','').replace('\u00e7','').replace('\u00f1','')#
@@ -2018,8 +2012,8 @@ def playsetresolved(url,name,iconimage):
     if 'channel.php' in url:
         if ResolveIT() == 1:
             url = url + '&hash='
-            url = url + GetCompile('HASH')
-    url = url.replace('channel','channelx12')
+            url = url + GetCompile('HASHx14')
+    url = url.replace('channel.php','channelx14.php') 
     liz = xbmcgui.ListItem(name, iconImage=iconimage)
     liz.setInfo(type='Video', infoLabels={'Title':name})
     liz.setProperty("IsPlayable","true")
