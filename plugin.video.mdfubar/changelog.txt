@@ -1,3 +1,9 @@
+v1.0.8
+added pandamovie.me
+
+v1.0.7
+added two more sources ultra-vid.com and documentaryaddict.com which requires vimeo and youtube addons to be installed to play the streams also started adding metadata 
+
 v1.0.5
 added kodimediaportal
 

@@ -1,16 +1,22 @@
-import urllib,urllib2,re,xbmcplugin,xbmcgui,xbmc,xbmcaddon,os
+import urllib,re,xbmcplugin,xbmcgui,xbmc,xbmcaddon,os
 import urlresolver
+import requests
 from t0mm0.common.addon import Addon
 from t0mm0.common.net import Net
+from metahandler import metahandlers
 
 #F.U.B.A.R - By Mucky Duck (07/2015)
 
 addon_id='plugin.video.mdfubar'
+selfAddon = xbmcaddon.Addon(id=addon_id)
 art = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id + '/resources/art/'))
 icon = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
 fanart = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id , 'fanart.jpg'))
 baseurl = 'dummy'
 net = Net()
+metaset = selfAddon.getSetting('enable_meta')
+metaget = metahandlers.MetaData(preparezip=False)
+User_Agent = 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.89 Safari/537.36'
 
 
 baseurl1 = 'http://kodimediaportal.ml/smf/index.php?board=2.0'
@@ -25,6 +31,11 @@ baseurl102 = 'http://www.alluc.com'
 ##http://stagevu.com/
 ##http://online-tvseries.com/
 
+
+baseurl350 = 'http://documentaryaddict.com/'
+
+
+
 #http://misspremieretv.com/2014/09/
 #http://series-cravings.me/
 #http://www.tvids.net/
@@ -34,7 +45,32 @@ baseurl102 = 'http://www.alluc.com'
 #http://watchtvlinks.ag/
 ########http://fullepisode.info/
 #http://hdfull.tv
+##http://movies.documentaryvideosworld.com/
+##https://www3.iconcerts.com
+##https://www.reddit.com/r/fullconcerts/
+##http://music.naij.com/
+##https://www.youtube.com/playlist?list=PLD6BF044AE5B386D2
+##https://www.itstream.tv/play/NDIyMjc=
+##http://www.veoh.com/
+##https://www.youtube.com/channel/UCAsanw03kzGRhAG4AvjVA_Q/playlists?sort=dd&view=1
+##https://www.youtube.com/playlist?list=PL0vM4tWpymIU4bVBv9XJG26Tbz33KB7Rs
+##https://www.youtube.com/playlist?list=PLR8X0-qEtOCf8aeA-6bEBHNNwZv0GqvyZ
+##https://www.youtube.com/user/TheRealConcertKing/playlists?view=1&sort=dd real concert king
+##https://www.youtube.com/user/GreenDayConcerts/playlists green day
 
+
+
+
+
+
+##http://luv-movies.com/
+##http://primeflicks.me/ looks like vodx
+##http://funtastic-vids.com/ hd movies
+##http://free-on-line.org/ hd movies
+##http://putlocker.tn/
+##http://www.movie25.cz/
+##http://worldfree4uk.com/
+##http://www.vumoo.me/
 ##http://motionempire.org/  mix of everything
 ##http://crackmovies.com/
 ##http://k-films.net/
@@ -42,18 +78,18 @@ baseurl102 = 'http://www.alluc.com'
 ##http://webmaster-connect.me/2014/08/fast-n-loud-s05e01-chopped-and-dropped-model-a-part1.html
 ##http://watchseries-online.ch/
 ##http://watchmovies-online.ch/
-baseurl50 = 'http://www.filmovizija.in'
 #http://watchmovies-online.ch/hellboy-2004/  1080p
-#http://pandamovie.me/
 #http://tvoox.com/
-baseurl150 = 'http://www.badassmovies4u.com/'
-baseurl200 = 'http://www.allcinemamovies.com'
 ##http://www.movie25.cz/
 ##http://rlsbb.com/fast-n-loud-s05e01-720p-hdtv-x264-dhd/  hd bluray 1080 movies
 ##http://www.newvideoz.com/
 ##http://board.dailyflix.net/  forum hd links
-
-
+baseurl50 = 'http://www.filmovizija.in'
+baseurl150 = 'http://www.badassmovies4u.com/'
+baseurl200 = 'http://www.allcinemamovies.com'
+baseurl250 = 'http://moviesearth.net'
+baseurl300 = 'http://ultra-vid.com'
+baseurl400 = 'http://pandamovie.me'
 
 baseurl5001 = 'http://www.hack-sat.com/iptv.php'
 #baseurl5001 = 'http://select-pedia.com/tutos/tag/sport/'
@@ -66,30 +102,37 @@ baseurl5030 = 'http://free-links-iptv.blogspot.co.uk'
 
 
 def INDEX():
-        addDir('Super Search','url',100,'','','')
-        addDir('IPTV','url',5000,'','','')
-        addDir('kodimediaportal.ml',baseurl1,4000,'','','')
-        addDir('www.badassmovies4u.com',baseurl150,150,'','','')
-        addDir('www.filmovizija.in',baseurl150,50,'','','')
-        addDir('www.allcinemamovies.com','url',200,'','','')
+        addDir('[COLOR cyan]ultra-vid.com[/COLOR]',baseurl300,300,art+'ultra.png',art+'f1.jpg','')
+        addDir('[COLOR cyan]pandamovie.me[/COLOR]','url',400,art+'panda.png',art+'f1.jpg','')
+        addDir('[COLOR cyan]www.badassmovies4u.com[/COLOR]',baseurl150,150,art+'bad.png',art+'f1.jpg','')
+        addDir('[COLOR cyan]documentaryaddict.com[/COLOR]',baseurl350,350,art+'da.png',art+'f1.jpg','')
+        #addDir('[COLOR cyan]moviesearth.net[/COLOR]','url',250,'',art+'f1.jpg','')
+        addDir('[COLOR cyan]www.filmovizija.in[/COLOR]',baseurl150,50,'',art+'f1.jpg','')
+        addDir('[COLOR cyan]www.allcinemamovies.com[/COLOR]','url',200,'',art+'f1.jpg','')
+        addDir('[COLOR cyan]kodimediaportal.ml[/COLOR]',baseurl1,4000,'',art+'f1.jpg','')
+        addDir('[COLOR cyan]Super Search[/COLOR]','url',100,'',art+'f1.jpg','')
+        addDir('[COLOR cyan]IPTV[/COLOR]','url',5000,'',art+'f1.jpg','')
+        
+        
 
 ############################################################################################################################
 
 ############################################################################################################################
 
 def BASE50(url):
-        addDir('NEW',baseurl50,51,'','','')
-        addDir('TOP 20',baseurl50,54,'','','')
-        addDir('MOVIE GENRE',baseurl50+'/browse-movies-videos-1-date.html',56,'','','')
-        addDir('TV SHOWS',baseurl50+'/tvshows.html',58,'','','')
-        addDir('DOCUMENTARY',baseurl50+'/browse-Documentary-videos-1-date.html',57,'','','')
-        addDir('ANIMATED',baseurl50+'/browse-animated-videos-1-date.html',57,'','','')
-        addDir('SEARCH TV','url',60,'','','')
-        addDir('SEARCH MOVIES','url',61,'','','')
+        addDir('[COLOR cyan]NEW[/COLOR]',baseurl50,51,'',art+'f1.jpg','')
+        addDir('[COLOR cyan]TOP 20[/COLOR]',baseurl50,54,'',art+'f1.jpg','')
+        addDir('[COLOR cyan]MOVIE GENRE[/COLOR]',baseurl50+'/browse-movies-videos-1-date.html',56,'',art+'f1.jpg','')
+        addDir('[COLOR cyan]TV SHOWS[/COLOR]',baseurl50+'/tvshows.html',58,'',art+'f1.jpg','')
+        addDir('[COLOR cyan]DOCUMENTARY[/COLOR]',baseurl50+'/browse-Documentary-videos-1-date.html',57,'',art+'f1.jpg','')
+        addDir('[COLOR cyan]ANIMATED[/COLOR]',baseurl50+'/browse-animated-videos-1-date.html',57,'',art+'f1.jpg','')
+        addDir('[COLOR cyan]SEARCH TV[/COLOR]','url',60,'',art+'f1.jpg','')
+        addDir('[COLOR cyan]SEARCH MOVIES[/COLOR]','url',61,'',art+'f1.jpg','')
         
 
 def BASE50MINDEX(url):
         link = OPEN_URL(url)
+        link = link.encode('ascii', 'ignore')
         match=re.compile('<div class="item"><a href="(.+?)"><img src="(.+?)" alt="(.+?)" .+?</div>(.+?)<.+?>').findall(link)
         for url,icon,name,dis, in match:
                 name = name.replace('&amp;','&')
@@ -98,6 +141,7 @@ def BASE50MINDEX(url):
 
 def BASE50MHOSTS(url,iconimage):
         link = OPEN_URL(url)
+        link = link.encode('ascii', 'ignore')
         match=re.compile('<h9>.+?</h9></td>\n<td width="90" style=".+?"><span class="fullm"><a href="(.+?)" title="(.+?)" target="_blank">Watch here</a>').findall(link)
         for url,name in match:
                 name = name.replace('&amp;','&').replace('Movie - ','')
@@ -106,6 +150,7 @@ def BASE50MHOSTS(url,iconimage):
 
 def BASE50MFINAL(url,iconimage):
         link = OPEN_URL(url)
+        link = link.encode('ascii', 'ignore')
         match=re.compile('<input type="button" value="Click Here to Play" onclick="location.href=\'(.+?)\'" style="color: #232323;width:220px;height:40px;vertical-align:top;font-size:20px;text-align:center;margin:3px;font-weight:bold;">').findall(link)
         for url in match:
                 addDir('[COLOR white]%s[/COLOR]' %name,url,1,iconimage,'','')
@@ -113,6 +158,7 @@ def BASE50MFINAL(url,iconimage):
 
 def BASE50TOP(url):
         link = OPEN_URL(url)
+        link = link.encode('ascii', 'ignore')
         match=re.compile('<li class=""><a href="(.+?)">(.+?)</a></li>').findall(link)
         for url,name in match:
                 ok = 'topvideos'
@@ -122,6 +168,7 @@ def BASE50TOP(url):
 
 def BASE50TOPL(url):
         link = OPEN_URL(url)
+        link = link.encode('ascii', 'ignore')
         match=re.compile('.+?</a></div><a href="(.+?)"><img src="(.+?)" alt="(.+?)"  class="tinythumb1" width="53" height="40" align="left" border="1" />').findall(link)
         for url,icon,name in match:
                 addDir('[COLOR white]%s[/COLOR]' %name,url,52,icon,'','')
@@ -129,6 +176,7 @@ def BASE50TOPL(url):
 
 def BASE50GENRE(url):
         link = OPEN_URL(url)
+        link = link.encode('ascii', 'ignore')
         match=re.compile('<li><a href="(.+?)" title="(.+?)"><div id="tsuper"><span>.+?</span></div><img src=(.+?)></a></li>').findall(link)
         for url,name,icon in match:
                 addDir('[COLOR white]%s[/COLOR]' %name,url,57,icon,'','')
@@ -136,6 +184,7 @@ def BASE50GENRE(url):
 
 def BASE50GENREL(url):
         link = OPEN_URL(url)
+        link = link.encode('ascii', 'ignore')
         match=re.compile('</td><tr><.+?><a href="(.+?)"><img src="(.+?)" alt=".+?"  class="tinythumb1" width="53" height="40" align="left" border="1" /></a></td><td class="yrr" style="line-height:15px;"><div id="nssl"><a href=".+?">(.+?)</a>').findall(link)
         for url,icon,name in match:
                 addDir('[COLOR white]%s[/COLOR]' %name,url,52,icon,'','')
@@ -148,6 +197,7 @@ def BASE50GENREL(url):
 
 def BASE50TV(url):
         link = OPEN_URL(url)
+        link = link.encode('ascii', 'ignore')
         match=re.compile("<div class='globalblocks'>&bull; <a href='(.+?)'>(.+?)</a></div>").findall(link)
         for url,name in match:
                 addDir('[COLOR white]%s[/COLOR]' %name,baseurl50+'/'+url,59,'','','')
@@ -155,6 +205,7 @@ def BASE50TV(url):
 
 def BASE50TVSEA(url):
         link = OPEN_URL(url)
+        link = link.encode('ascii', 'ignore')
         match=re.compile("<div class='epi'><a href='(.+?)'><span style='.+?'>(.+?)</span><span id='.+?'>(.+?)</span>.+?<span class='airdate'>(.+?)</span>").findall(link)
         for url,name,lin,air in match:
                 lin = lin.replace('L',' Links')
@@ -172,6 +223,7 @@ def BASE50TVSEARCH():
                         url = baseurl50+'/search1.php?keywords='+search+'&btn=Search&ser=528&subs=&lks=&rfrom=0&rto=0&gfrom=0&gto=0&gns='
                         print url
                         link = OPEN_URL(url)
+                        link = link.encode('ascii', 'ignore')
                         match=re.compile('</td><tr><.+?><a href="(.+?)"><img src="(.+?)" alt=".+?"  class="tinythumb1" width="53" height="40" align="left" border="1" /></a></td><td class="yrr" style="line-height:15px;"><div id="nssl"><a href=".+?">(.+?)</a>').findall(link)
                         for url,icon,name in match:
                                 addDir('[COLOR white]%s[/COLOR]' %name,url,52,icon,'','')
@@ -194,6 +246,7 @@ def BASE50MSEARCH():
                         url = baseurl50+'/search1.php?keywords='+search+'&ser=506&subs=&lks=&rfrom=0&rto=0&gfrom=0&gto=0&gns=&btn=Search'
                         print url
                         link = OPEN_URL(url)
+                        link = link.encode('ascii', 'ignore')
                         match=re.compile('</td><tr><.+?><a href="(.+?)"><img src="(.+?)" alt=".+?"  class="tinythumb1" width="53" height="40" align="left" border="1" /></a></td><td class="yrr" style="line-height:15px;"><div id="nssl"><a href=".+?">(.+?)</a>').findall(link)
                         for url,icon,name in match:
                                 addDir('[COLOR white]%s[/COLOR]' %name,url,52,icon,'','')
@@ -213,55 +266,57 @@ def BASE50MSEARCH():
 ############################################################################################################################
 
 def BADASS(url):
-        addDir('All-Sports',baseurl150+'/forumdisplay.php?19-All-Sports',151,'','','')
-        addDir('Pay-Per-View-Free',baseurl150+'/forumdisplay.php?6-Pay-Per-View-Free',151,'','','')
-        addDir('Horror-Movies-And-More-Section',baseurl150+'/forumdisplay.php?21-Horror-Movies-And-More-Section',151,'','','')
-        addDir('Documentaries',baseurl150+'/forumdisplay.php?14-Documentaries',151,'','','')
-        addDir('TV-Shows-New-Seasons',baseurl150+'/forumdisplay.php?11-TV-Shows-New-Seasons',151,'','','')
-        addDir('Animation',baseurl150+'/forumdisplay.php?15-Animation',151,'','','')
-        addDir('2015-2014-Movies',baseurl150+'/forumdisplay.php?3-2015-2014-Movies',151,'','','')
-        addDir('2013-2010',baseurl150+'/forumdisplay.php?7-2013-2010',151,'','','')
-        addDir('2009-2000',baseurl150+'/forumdisplay.php?8-2009-2000',151,'','','')
-        addDir('90s-and-Older',baseurl150+'/forumdisplay.php?9-90s-and-Older',151,'','','')
-        addDir('Badass-Movie-Boxsets',baseurl150+'/forumdisplay.php?20-Badass-Movie-Boxsets',151,'','','')
-        addDir('Music-and-Concerts',baseurl150+'/forumdisplay.php?10-Music-and-Concerts',151,'','','')
-        addDir('Foreign-Movies',baseurl150+'/forumdisplay.php?22-Foreign-Movies',151,'','','')
+        addDir('[COLOR cyan]All-Sports[/COLOR]',baseurl150+'/forumdisplay.php?19-All-Sports',151,art+'bad.png',art+'f1.jpg','')
+        addDir('[COLOR cyan]Pay-Per-View-Free[/COLOR]',baseurl150+'/forumdisplay.php?6-Pay-Per-View-Free',151,art+'bad.png',art+'f1.jpg','')
+        addDir('[COLOR cyan]Horror-Movies-And-More-Section[/COLOR]',baseurl150+'/forumdisplay.php?21-Horror-Movies-And-More-Section',151,art+'bad.png',art+'f1.jpg','')
+        addDir('[COLOR cyan]Documentaries[/COLOR]',baseurl150+'/forumdisplay.php?14-Documentaries',151,art+'bad.png',art+'f1.jpg','')
+        #addDir('TV-Shows-New-Seasons',baseurl150+'/forumdisplay.php?11-TV-Shows-New-Seasons',151,art+'badi.png',art+'f1.jpg','')
+        addDir('[COLOR cyan]Animation[/COLOR]',baseurl150+'/forumdisplay.php?15-Animation',151,art+'bad.png',art+'f1.jpg','')
+        addDir('[COLOR cyan]2015-2014-Movies[/COLOR]',baseurl150+'/forumdisplay.php?3-2015-2014-Movies',151,art+'bad.png',art+'f1.jpg','')
+        addDir('[COLOR cyan]2013-2010[/COLOR]',baseurl150+'/forumdisplay.php?7-2013-2010',151,art+'bad.png',art+'f1.jpg','')
+        addDir('[COLOR cyan]2009-2000[/COLOR]',baseurl150+'/forumdisplay.php?8-2009-2000',151,art+'bad.png',art+'f1.jpg','')
+        addDir('[COLOR cyan]90s-and-Older[/COLOR]',baseurl150+'/forumdisplay.php?9-90s-and-Older',151,art+'bad.png',art+'f1.jpg','')
+        addDir('[COLOR cyan]Badass-Movie-Boxsets[/COLOR]',baseurl150+'/forumdisplay.php?20-Badass-Movie-Boxsets',151,art+'bad.png',art+'f1.jpg','')
+        addDir('[COLOR cyan]Music-and-Concerts[/COLOR]',baseurl150+'/forumdisplay.php?10-Music-and-Concerts',151,art+'bad.png',art+'f1.jpg','')
+        addDir('[COLOR cyan]Foreign-Movies[/COLOR]',baseurl150+'/forumdisplay.php?22-Foreign-Movies',151,art+'bad.png',art+'f1.jpg','')
         
 def BADASSINDEX(url):
         try:
                 link = OPEN_URL(url)
                 match=re.compile('<a class="title" href="(.+?)" id=".+?">(.+?)</a>').findall(link)
+                items = len(match)
                 for url,name in match:
                         name = name.replace('&amp;','&')
-                        addDir('[COLOR white]%s[/COLOR]' %name,baseurl150+url,152,'','','')
+                        addDir2(name,baseurl150+url,152,'',items)
         except:
                 xbmc.executebuiltin("XBMC.Notification([COLOR gold][B]SORRY FORUM DOWN[/B][/COLOR],,7000,"")")
         try:
-                match=re.compile('<span class="prev_next"><a rel="next" href="(.+?)" title="(.+?)">').findall(link)
-                for url,name in match:
-                        addDir('[COLOR white]%s[/COLOR]' %name,baseurl150+url,151,'','','')
+                url=re.compile('<span class="prev_next"><a rel="next" href="(.+?)" title=".+?">').findall(link)
+                url = url[0]
+                name=re.compile('<span class="prev_next"><a rel="next" href=".+?" title="(.+?)">').findall(link)
+                name = name[0]
+                addDir('[COLOR cyan]%s[/COLOR]' %name,baseurl150+url,151,art+'bad.png',art+'f1.jpg','')
         except: pass
        	
 
 def BADASSLINKS(url,name):
         print url
         link = OPEN_URL(url)
-        #iconimage = re.compile('<div style="text-align: center;"><img src="(.+?)" border="0" alt="" />').findall(link)
-        match = re.compile('<a href="(.+?)" target="_blank">(.+?)</a><br />').findall(link)
+        match = re.compile('<a href="(.+?)" target="_blank">.+?</a><br />').findall(link)
         match1 = re.compile('<IFRAME SRC="(.+?)" .+?></IFRAME>').findall(link)
         match2 = re.compile('<iframe src="(.+?)" .+?></iframe>').findall(link)
         try:
                 for url in match1:
-                        addDir('[COLOR white]%s[/COLOR]' %name,url,1,'','','')
+                        addDir2(name,url,1,'',len(match))
         except: pass
         try:
                 for url in match2:
-                        addDir('[COLOR white]%s[/COLOR]' %name,url,1,'','','')
+                        addDir2(name,url,1,'',len(match))
         except: pass
-        for name,url in match:
+        for url in match:
                 nono = 'www.imdb.com'
                 if nono not in url:
-                        addDir('[COLOR white]%s[/COLOR]' %name,url,1,'','','')
+                        addDir2(name,url,1,'',len(match))
 
 
 ############################################################################################################################
@@ -272,17 +327,17 @@ def BADASSLINKS(url,name):
 ############################################################################################################################        
 
 def BASE200():
-        addDir('Newest Movies',baseurl200+'/movies',201,'','','')
-        addDir('Popular Movies',baseurl200+'/movies/popular',201,'','','')
-        addDir('Movies By IMDB Rating',baseurl200+'/movies/imdb_rating',201,'','','')
-        addDir('Movies Genre',baseurl200,204,'','','')
-        addDir('Movies ABC',baseurl200+'/movies/abc',201,'','','')
-        addDir('Newest TV Shows',baseurl200+'/tv-shows',201,'','','')
-        addDir('TV Shows By IMDB Rating',baseurl200+'/tv-shows/imdb_rating',201,'','','')
-        addDir('TV Shows Genre',baseurl200,205,'','','')
-        addDir('TV Shows ABC',baseurl200+'/tv-shows/abc',201,'','','')
-        addDir('Search Movies','url',209,'','','')
-        addDir('Search TV','url',210,'','','')
+        addDir('[COLOR cyan]Newest Movies[/COLOR]',baseurl200+'/movies',201,'',art+'f1.jpg','')
+        addDir('[COLOR cyan]Popular Movies[/COLOR]',baseurl200+'/movies/popular',201,'',art+'f1.jpg','')
+        addDir('[COLOR cyan]Movies By IMDB Rating[/COLOR]',baseurl200+'/movies/imdb_rating',201,'',art+'f1.jpg','')
+        addDir('[COLOR cyan]Movies Genre[/COLOR]',baseurl200,204,'',art+'f1.jpg','')
+        addDir('[COLOR cyan]Movies ABC[/COLOR]',baseurl200+'/movies/abc',201,'',art+'f1.jpg','')
+        addDir('[COLOR cyan]Newest TV Shows[/COLOR]',baseurl200+'/tv-shows',201,'',art+'f1.jpg','')
+        addDir('[COLOR cyan]TV Shows By IMDB Rating[/COLOR]',baseurl200+'/tv-shows/imdb_rating',201,'',art+'f1.jpg','')
+        addDir('[COLOR cyan]TV Shows Genre[/COLOR]',baseurl200,205,'',art+'f1.jpg','')
+        addDir('[COLOR cyan]TV Shows ABC[/COLOR]',baseurl200+'/tv-shows/abc',201,'',art+'f1.jpg','')
+        addDir('[COLOR cyan]Search Movies[/COLOR]','url',209,'',art+'f1.jpg','')
+        addDir('[COLOR cyan]Search TV[/COLOR]','url',210,'',art+'f1.jpg','')
         
 def BASE200INDEX(url):
         try:
@@ -299,9 +354,8 @@ def BASE200INDEX(url):
                 xbmc.executebuiltin("XBMC.Notification([COLOR gold][B]SORRY SITE DOWN[/B][/COLOR],,7000,"")")
 
         try:
-                match=re.compile('<li><a href="(.+?)".+?>&raquo;</a></li>').findall(link)
-                for url in match:
-                        addDir('[COLOR maroon]Next Page>>>[/COLOR]',url,201,'','','')
+                url=re.compile('<li><a href="(.+?)".+?>&raquo;</a></li>').findall(link)[-1]
+                addDir('[COLOR maroon]Next Page>>>[/COLOR]',url,201,'','','')
         except: pass
 
 
@@ -413,12 +467,387 @@ def BASE200TSEARCH():
 
 ############################################################################################################################
 
+def BASE250():
+        addDir('Genre',baseurl250,251,'','','')
+
+
+def BASE250GENRE(url):
+        link = OPEN_URL(url)
+        match=re.compile('<li id=".+?" class=".+?"><a href="(.+?)">(.+?)</a></li>').findall(link)
+        for url,name in match:
+                name = name.replace('&amp;','&').replace("&#8217;","'").replace('&#8211;','-')
+                cat = '/category/'
+                if cat in url:
+                        addDir('[COLOR white]%s[/COLOR]' %name,url,252,'','','')
+
+
+
+def BASE250INDEX(url):
+        try:
+                link = OPEN_URL(url)
+                match=re.compile('<a href="(.+?)" title="(.+?)">').findall(link)
+                items = len(match)
+                for url,name in match:
+                        name = name.replace('&amp;','&').replace("&#8217;","'").replace('&#8211;','-')
+                        addDir2(name,url,253,'',items)
+                        print url
+        except:
+                xbmc.executebuiltin("XBMC.Notification([COLOR gold][B]SORRY SITE DOWN[/B][/COLOR],,7000,"")")
+
+        try:
+                match=re.compile("<a rel='.+?' class='.+?' href='(.+?)'>(.+?)</a>").findall(link)
+                for url,name in match:
+                        addDir('[COLOR maroon]Page %s >>>[/COLOR]' %name,url,252,'','','')
+        except: pass
+
+
+
+def BASE250L(url):
+        link = OPEN_URL(url)
+        match=re.compile('<iframe src="(.+?)".+?></iframe>').findall(link)
+        for url in match:
+                req = urllib2.Request(url)
+                req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
+                streamlink = urlresolver.resolve(urllib2.urlopen(req).url)
+                print streamlink
+                url = streamlink
+                ok=True
+                liz=xbmcgui.ListItem(name, iconImage=icon,thumbnailImage=icon); liz.setInfo( type="Video", infoLabels={ "Title": name } )
+                ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=str(url),listitem=liz)
+                xbmc.Player().play(streamlink,liz,False)
+
+
+
+############################################################################################################################
+
+############################################################################################################################
+
+
+
+def BASE300():
+        addDir('[COLOR cyan]New Movies[/COLOR]',baseurl300+'/category/new-release/',301,art+'ultra.png',art+'f1.jpg','')
+        addDir('[COLOR cyan]New on BluRay[/COLOR]',baseurl300+'/category/new-on-bluray/',301,art+'ultra.png',art+'f1.jpg','')
+        addDir('[COLOR cyan]Search[/COLOR]','url',303,art+'ultra.png',art+'f1.jpg','')
+        #addDir('In Theaters',baseurl300+'/in-theaters/',301,'','','')
+        addDir('[COLOR cyan]Action[/COLOR]',baseurl300+'/category/movies/action/',301,art+'ultra.png',art+'f1.jpg','')
+        addDir('[COLOR cyan]Adventure[/COLOR]',baseurl300+'/category/adventure/',301,art+'ultra.png',art+'f1.jpg','')
+        addDir('[COLOR cyan]Animation[/COLOR]',baseurl300+'/category/movies/animation/',301,art+'ultra.png',art+'f1.jpg','')
+        addDir('[COLOR cyan]Bollywood[/COLOR]',baseurl300+'/category/movies/hindi/',301,art+'ultra.png',art+'f1.jpg','')
+        addDir('[COLOR cyan]Chick Flicks[/COLOR]',baseurl300+'/category/movies/rom-com/',301,art+'ultra.png',art+'f1.jpg','')
+        addDir('[COLOR cyan]Comedy[/COLOR]',baseurl300+'/category/movies/comedy/',301,art+'ultra.png',art+'f1.jpg','')
+        addDir('[COLOR cyan]Crime[/COLOR]',baseurl300+'/category/movies/crime/',301,art+'ultra.png',art+'f1.jpg','')
+        addDir('[COLOR cyan]Documentaries[/COLOR]',baseurl300+'/category/movies/documentary/',301,art+'ultra.png',art+'f1.jpg','')
+        addDir('[COLOR cyan]Drama[/COLOR]',baseurl300+'/category/movies/drama/',301,art+'ultra.png',art+'f1.jpg','')
+        addDir('[COLOR cyan]Family[/COLOR]',baseurl300+'/category/movies/family/',301,art+'ultra.png',art+'f1.jpg','')
+        addDir('[COLOR cyan]Fantasy[/COLOR]',baseurl300+'/category/movies/fantasy/',301,art+'ultra.png',art+'f1.jpg','')
+        addDir('[COLOR cyan]Foreign[/COLOR]',baseurl300+'/category/foreign/',301,art+'ultra.png',art+'f1.jpg','')
+        addDir('[COLOR cyan]Horror[/COLOR]',baseurl300+'/category/movies/horror/',301,art+'ultra.png',art+'f1.jpg','')
+        addDir('[COLOR cyan]Romance[/COLOR]',baseurl300+'/category/movies/romance-movies/',301,art+'ultra.png',art+'f1.jpg','')
+        addDir('[COLOR cyan]Sci-Fi[/COLOR]',baseurl300+'/category/movies/sci-fi/',301,art+'ultra.png',art+'f1.jpg','')
+        addDir('[COLOR cyan]Super Hero[/COLOR]',baseurl300+'/category/superhero/',301,art+'ultra.png',art+'f1.jpg','')
+        addDir('[COLOR cyan]Thriller[/COLOR]',baseurl300+'/category/movies/thriller/',301,art+'ultra.png',art+'f1.jpg','')
+        addDir('[COLOR cyan]War[/COLOR]',baseurl300+'/category/movies/action/war/',301,art+'ultra.png',art+'f1.jpg','')
+        addDir('[COLOR cyan]Western[/COLOR]',baseurl300+'/category/movies/action/western-action/',301,art+'ultra.png',art+'f1.jpg','')
+        addDir('[COLOR cyan]WWE / UFC[/COLOR]',baseurl300+'/category/ufc/',301,art+'ultra.png',art+'f1.jpg','')
+
+
+        
+        
+
+def BASE300INDEX(url):
+        try:
+                link = OPEN_URL(url)
+                link = link.encode('ascii', 'ignore')
+                match=re.compile('<span class="itemdets"> <a href="(.+?)" title="(.+?)"> </span>').findall(link)
+                items = len(match)
+                for url,name in match:
+                        name = name.replace('&#038;','&').replace("&#8217;","'").replace('&#8211;','-').replace('( BluRay ) ','').replace('( BluRay added ) ','').replace('NEW> ','').replace('( ENGLISH ) ','').replace('( HDTS ) ','').replace('( BLURAY added) ','')
+                        addDir2(name,url,302,'',items)
+
+        except:
+                xbmc.executebuiltin("XBMC.Notification([COLOR gold][B]SORRY SITE DOWN[/B][/COLOR],,7000,"")")
+        try:
+                match=re.compile('<a class="next page-numbers" href="(.+?)">(.+?)</a>').findall(link)
+                name = name.replace(' \xc2\xbb','')
+                for url, name in match:
+                        addDir('[COLOR cyan]%s[/COLOR]' %name,url,301,art+'ultra.png',art+'f1.jpg','')
+        except: pass
+
+
+def BASE300L(url,name):
+        link = OPEN_URL(url)
+        link = link.encode('ascii', 'ignore')
+        match=re.compile('<p style="text-align: center;"><a href="(.+?)" target="_blank" rel="nofollow">').findall(link)
+        qual=re.compile('<strong>(.+?)</strong>').findall(link)[-1]
+        qual = qual.replace('<em>','').replace('</em>','')
+        items = len(match)
+        addLink('[B][COLOR cyan]%s[/COLOR][/B]' %qual,'url','','','','')                
+        for url in match:
+                addDir2(name,url,1,'',items)
+        try:
+                match=re.compile('<iframe.+?="(.+?)".+?></iframe>').findall(link)   
+                items = len(match)
+                for url in match:
+                        addDir2(name,url,1,'',items)
+        except: pass
+        try:
+                match=re.compile('<IFRAME.+?="(.+?)".+?></IFRAME>').findall(link)   
+                items = len(match)
+                for url in match:
+                        addDir2(name,url,1,'',items)
+        except: pass
+        try:
+                match=re.compile('<p><a href="(.+?)".+?>.+?</a></p>').findall(link)   
+                items = len(match)
+                for url in match:
+                        addDir2(name,url,1,'',items)
+        except: pass
+
+
+
+def BASE300SEARCH():
+        try:
+                keyb = xbmc.Keyboard('', 'Ultra-Vid')
+                keyb.doModal()
+                if (keyb.isConfirmed()):
+                        search = keyb.getText().replace(' ','+')
+                        #encode=urllib.quote(search)
+                        #print encode
+                        url = baseurl300+'/?s='+search
+                        print url
+                        try:
+                                link = OPEN_URL(url)
+                                link = link.encode('ascii', 'ignore')
+                                match=re.compile('<span class="itemdets"> <a href="(.+?)" title="(.+?)"> </span>').findall(link)
+                                items = len(match)
+                                for url,name in match:
+                                        name = name.replace('&#038;','&').replace("&#8217;","'").replace('&#8211;','-').replace('( BluRay ) ','').replace('( BluRay added ) ','').replace('NEW> ','').replace('( ENGLISH ) ','')
+                                        addDir2(name,url,302,'',items)
+
+                        except:
+                                xbmc.executebuiltin("XBMC.Notification([COLOR gold][B]SORRY SITE DOWN[/B][/COLOR],,7000,"")")
+                        try:
+                                match=re.compile('<a class="next page-numbers" href="(.+?)">(.+?)</a>').findall(link)
+                                name = name.replace(' \xc2\xbb','')
+                                for url, name in match:
+                                        addDir('[COLOR cyan]%s[/COLOR]' %name,url,301,art+'ultra.png',art+'f1.jpg','')
+                        except: pass
+        except:
+                xbmc.executebuiltin("XBMC.Notification([COLOR gold][B]SORRY NO MATCHES FOUND[/B][/COLOR],,7000,"")")
+        
+
+
+############################################################################################################################
+############################################################################################################################
+
+
+
+
+def BASE350(url):
+        link = OPEN_URL(url)
+        link = link.encode('ascii', 'ignore').decode('ascii')
+        try:
+                dis=re.compile('<p class="lead margin-none">(.+?)</p>').findall(link)[0]
+                dis = dis.replace('<em>','').replace('</em>','').replace('Now part of ','').replace('<span style="color:#a8a8a8">','').replace('</span>','').replace('<strong>','').replace('</strong>','').replace('<a href="#top100highestrated" onclick="_gaq.push([\'_trackEvent\', \'Best Docos\', \'Clicked Highest Rated Link\', \'Went to Highest Rated\']);">','').replace('</a>','').replace('<h3><i class="icon-uniF12C"></i> Here\'s the 100 Most Viewed</h3>','')
+                addLink('[COLOR cyan]%s[/COLOR]' %dis,'url','',art+'da.png',art+'f2.jpg','')
+        except: pass
+        addDir('[COLOR white]Top[/COLOR]',baseurl350+'best',351,art+'da.png',art+'f2.jpg','')
+        addDir('[COLOR white]List All[/COLOR]',baseurl350+'list-all-documentaries',351,art+'da.png',art+'f2.jpg','')
+        addDir('[COLOR white]Random[/COLOR]',baseurl350+'random-docos',351,art+'da.png',art+'f2.jpg','')
+        all_videos = regex_get_all(link, '<li class="">', '</a>')
+        for a in all_videos:
+                name = regex_from_to(a, '<span itemprop="genre">', '</span>')
+                url = regex_from_to(a, 'href="', '"').replace("&amp;","&")
+                nono = ['best','best#top100highestrated']
+                if name not in url:
+                        addDir('[COLOR white]%s[/COLOR]' %name,baseurl350+url,351,art+'da.png',art+'f2.jpg','')
+
+
+
+
+def BASE350INDEX(url):
+        link = OPEN_URL(url)
+        link = link.encode('ascii', 'ignore').decode('ascii')
+        all_videos = regex_get_all(link, '<div class="col-md-3" style="margin-top: 12px;">', '</div> </div>')
+        try:
+                dis=re.compile('<div class="widget-body"> <p class="margin-none">(.+?)</p> </div>').findall(link)[0]
+                dis = dis.replace('<em>','').replace('</em>','').replace('<span style="color:#a8a8a8">','').replace('</span>','').replace('<strong>','').replace('</strong>','').replace('<a href="#top100highestrated" onclick="_gaq.push([\'_trackEvent\', \'Best Docos\', \'Clicked Highest Rated Link\', \'Went to Highest Rated\']);">','').replace('</a>','').replace('<h3><i class="icon-uniF12C"></i> Here\'s the 100 Most Viewed</h3>','')
+                addLink('[COLOR cyan]%s[/COLOR]' %dis,'url','',art+'da.png',art+'f2.jpg','')
+        except: pass
+        for a in all_videos:
+                name = regex_from_to(a, 'title="', '"').replace("&amp;","&")
+                url = regex_from_to(a, 'href="', '"').replace("&amp;","&")
+                icon = regex_from_to(a, 'data-src ="', '"').replace("&amp;","&")
+                description = regex_from_to(a, '<p>', '</p>')
+                name = name.replace('&#39;',"'")
+                name = name.replace('&quot;','"')
+                url = url.replace('../','').replace('./','').replace("&amp;","&")
+                addDir('[COLOR white]%s[/COLOR]' %name,baseurl350+url,352,icon,icon,description)
+        try:
+                url=re.compile(" <a href='(.+?)'.+?> .+? </a>").findall(link)[-1]
+                url = url.replace('./','').replace('../','')
+                url = url.replace("&amp;","&")
+                addDir('[COLOR cyan]Next Page[/COLOR]',baseurl350+url,351,art+'da.png',art+'f2.jpg','')
+        except: pass
+        setView('movies', 'movie-view')
+
+
+
+
+def BASE350L(name,url,iconimage):
+        link = OPEN_URL(url)
+        link = link.encode('ascii', 'ignore')
+        match=re.compile('<embed src="(.+?)".+?></embed>').findall(link)
+        for url in match:
+                url = url.replace('http://www.youtube.com/v/','plugin://plugin.video.youtube/play/?video_id=').replace('http://vimeo.com/moogaloop.swf?clip_id=','plugin://plugin.video.vimeo/play/?video_id=')
+                url = url.replace('../','').replace("&amp;","&")
+                addDir(name,url,1,iconimage,'','')
+
+
+
+
+############################################################################################################################
+############################################################################################################################
+
+
+
+
+def BASE400():
+        addDir('[COLOR cyan]List Movies[/COLOR]',baseurl400+'/list-movies',401,art+'panda.png',art+'f1.jpg','')
+        addDir('[COLOR cyan]Featured Movies[/COLOR]',baseurl400+'/watch-featured-movies-online-free',401,art+'panda.png',art+'f1.jpg','')
+        addDir('[COLOR cyan]HD Movies[/COLOR]',baseurl400+'/watch-hd-movies-online-free',401,art+'panda.png',art+'f1.jpg','')
+        addDir('[COLOR cyan]Popular Movies Of All Time[/COLOR]',baseurl400+'/popular-movies',401,art+'panda.png',art+'f1.jpg','')
+        addDir('[COLOR cyan]Movies popular in the last 24 hours[/COLOR]',baseurl400+'/popular-movies-in-last-24-hours',401,art+'panda.png',art+'f1.jpg','')
+        addDir('[COLOR cyan]Movies popular in the last 7 days[/COLOR]',baseurl400+'/popular-movies-last-7-days',401,art+'panda.png',art+'f1.jpg','')
+        addDir('[COLOR cyan]Movies popular in the last 30 days[/COLOR]',baseurl400+'/popular-movies-in-last-30-days',401,art+'panda.png',art+'f1.jpg','')
+        addDir('[COLOR cyan]Movies By Genre[/COLOR]',baseurl400,403,art+'panda.png',art+'f1.jpg','')
+        addDir('[COLOR cyan]Movies By Year[/COLOR]',baseurl400,404,art+'panda.png',art+'f1.jpg','')
+        addDir('[COLOR cyan]Search Movies[/COLOR]',baseurl400,405,art+'panda.png',art+'f1.jpg','')
+
+
+
+
+def BASE400INDEX(url):
+        link = OPEN_URL(url)
+        all_videos = regex_get_all(link, '<div class="item cf item-post">', '</a><.+?></div></div>')
+        try:
+                pageno=re.compile('<div id="content_home_tv"><.+?>(.+?)<.+?></div><div class="qgitborder"></div>').findall(link)[0]
+                addLink('[COLOR cyan]%s[/COLOR]' %pageno,'url','',art+'panda.png',art+'f1.jpg','')
+        except: pass
+        try:
+                pageno=re.compile("<div class='wp-pagenavi'> <span class='pages'>(.+?)</span>").findall(link)[0]
+                addLink('[COLOR cyan]%s[/COLOR]' %pageno,'url','',art+'panda.png',art+'f1.jpg','')
+        except: pass
+        for a in all_videos:
+                #qual = regex_from_to(a, '<span class="', '"').replace('long_min_source_','')
+                name = regex_from_to(a, '<a class="clip-link" title="', '"').replace("&#038;","&").replace('&#8217;',"'").replace('&#8211;',"-").replace('&#8216;',"`")
+                url = regex_from_to(a, '<a class="clip-link" title=".+?"  href="', '"')
+                items = len(all_videos)
+                addDir2(name,url,402,'',items)
+        try:
+                pageno=re.compile("<div class='wp-pagenavi'> <span class='pages'>(.+?)</span>").findall(link)[0]
+                addLink('[COLOR cyan]%s[/COLOR]' %pageno,'url','',art+'panda.png',art+'f1.jpg','')
+        except: pass
+        try:
+                url=re.compile('<a class="nextpostslink" rel="next" href="(.+?)">&raquo;</a>').findall(link)[0]
+                addDir('[COLOR cyan]Next Page>>>[/COLOR]',url,401,art+'panda.png',art+'f1.jpg','')
+        except: pass
+        setView('movies', 'movie-view')
+
+
+
+def BASE400L(name,url,iconimage):
+        link = OPEN_URL(url)
+        url=re.compile('<span class=".+?"><a title=".+?" href="(.+?)".+?>.+?</a></li>').findall(link)[0]
+        items = len(name)
+        addDir2(name,url,1,'',items)
+        all_videos = regex_get_all(link, '<span class=".+?">', '</a></li>')
+        for a in all_videos:
+                #name = regex_from_to(a, 'title="', '"').replace("&#038;","&").replace('&#8217;',"'")
+                url = regex_from_to(a, 'href="', '"')
+                items = len(all_videos)
+                nono = 'http://pandamovie.me/'
+                if nono not in url:
+                        addDir2(name,url,1,'',items)
+
+
+
+def BASE400GENRE(url):
+        link = OPEN_URL(url)
+        match=re.compile('<li><a title="(.+?)" href="(.+?)">.+?</a></li>').findall(link)
+        for name,url in match:
+                ok = '-movies-online-free'
+                if ok in url:
+                        print url
+                        addDir('[COLOR cyan]%s[/COLOR]' %name,url,401,art+'panda.png',art+'f1.jpg','')
+
+
+
+def BASE400YEAR(url):
+        link = OPEN_URL(url)
+        match=re.compile('<li><a title="(.+?)" href="(.+?)">.+?</a></li>').findall(link)
+        for name,url in match:
+                ok = 'watch-movies-of- '
+                if ok in url:
+                        print url
+                        addDir('[COLOR cyan]%s[/COLOR]' %name,url,401,art+'panda.png',art+'f1.jpg','')
+
+
+
+def BASE400SEARCH(url):
+        try:
+                keyb = xbmc.Keyboard('', 'Search PandaMovies')
+                keyb.doModal()
+                if (keyb.isConfirmed()):
+                        search = keyb.getText().replace(' ','+')
+                        #encode=urllib.quote(search)
+                        #print encode
+                        url = baseurl400+'/?s='+search
+                        print url
+                        link = OPEN_URL(url)
+                        all_videos = regex_get_all(link, '<div class="item cf item-post">', '</a><.+?></div></div>')
+                        try:
+                                pageno=re.compile('<div id="content_home_tv"><.+?>(.+?)<.+?></div><div class="qgitborder"></div>').findall(link)[0]
+                                addLink('[COLOR cyan]%s[/COLOR]' %pageno,'url','',art+'panda.png',art+'f1.jpg','')
+                        except: pass
+                        try:
+                                pageno=re.compile("<div class='wp-pagenavi'> <span class='pages'>(.+?)</span>").findall(link)[0]
+                                addLink('[COLOR cyan]%s[/COLOR]' %pageno,'url','',art+'panda.png',art+'f1.jpg','')
+                        except: pass
+                        for a in all_videos:
+                                #qual = regex_from_to(a, '<span class="', '"').replace('long_min_source_','')
+                                name = regex_from_to(a, '<a class="clip-link" title="', '"').replace("&#038;","&").replace('&#8217;',"'").replace('&#8211;',"-")
+                                url = regex_from_to(a, '<a class="clip-link" title=".+?"  href="', '"')
+                                items = len(all_videos)
+                                addDir2(name,url,402,'',items)
+                        try:
+                                pageno=re.compile("<div class='wp-pagenavi'> <span class='pages'>(.+?)</span>").findall(link)[0]
+                                addLink('[COLOR cyan]%s[/COLOR]' %pageno,'url','',art+'panda.png',art+'f1.jpg','')
+                        except: pass
+                        try:
+                                url=re.compile('<a class="nextpostslink" rel="next" href="(.+?)">&raquo;</a>').findall(link)[0]
+                                addDir('[COLOR cyan]Next Page>>>[/COLOR]',url,401,art+'panda.png',art+'f1.jpg','')
+                        except: pass
+                        setView('movies', 'movie-view')
+        except:
+                xbmc.executebuiltin("XBMC.Notification([COLOR gold][B]SORRY NO MATCHES FOUND[/B][/COLOR],,7000,"")")
+
+
+
+
+
+############################################################################################################################
+############################################################################################################################
+
+
+
+
 def KMPINDEX(url):
         link = OPEN_URL(url)
         match=re.compile('<span id=".+?"><a href="(.+?)">(.+?)</a></span>').findall(link)
         for url,name in match:
                 name = name.replace('&amp;','&')
-                addDir('[COLOR white]%s[/COLOR]' %name,url,4001,'','','')
+                addDir('[COLOR cyan]%s[/COLOR]' %name,url,4001,'',art+'f1.jpg','')
 
 
 def KMPL(url):
@@ -427,14 +856,14 @@ def KMPL(url):
                 match=re.compile('&lt;item&gt;<br />&lt;title&gt;(.+?)&lt;/title&gt;<br />&lt;link&gt;(.+?)&lt;/link&gt;<br />&lt;thumbnail&gt;(.+?)&lt;/thumbnail&gt;<br />&lt;/item&gt;</div>').findall(link)
                 for name,url,thumb in match:
                         name = name.replace('&amp;','&')
-                        addDir('[COLOR white]%s[/COLOR]' %name,url,1,thumb,'','')
+                        addDir('[COLOR cyan]%s[/COLOR]' %name,url,1,thumb,'','')
         except: pass
 
         try:
                 match=re.compile('&lt;item&gt;<br />&lt;title&gt;(.+?)&lt;/title&gt;<br />&lt;link&gt;<a href="(.+?)" class="bbc_link" target="_blank">.+?</a>&lt;/link&gt;<br />&lt;thumbnail&gt;<a href="(.+?)" class="bbc_link" target="_blank">.+?</a>&lt;/thumbnail&gt;<br />&lt;/item&gt;').findall(link)
                 for name,url,thumb in match:
                         name = name.replace('&amp;','&')
-                        addDir('[COLOR white]%s[/COLOR]' %name,url,1,thumb,'','')
+                        addDir('[COLOR cyan]%s[/COLOR]' %name,url,1,thumb,'','')
         except: pass
 
 ############################################################################################################################
@@ -443,19 +872,22 @@ def KMPL(url):
 
 def SS():
         #addDir('Alluc Super Search',baseurl102,102,'','','')
-        addDir('Filmovizija Search','url',105,'','','')
-        addDir('Vodlocker Search',baseurl101,101,'','','')
-        addDir('Allcinemamovies Search','url',106,'','','')
+        addDir('[COLOR cyan]Ultra-Vid Search[/COLOR]','url',303,'',art+'f1.jpg','')
+        addDir('[COLOR cyan]PandaMovie Search[/COLOR]',baseurl400,405,art+'panda.png',art+'f1.jpg','')
+        addDir('[COLOR cyan]Filmovizija Search[/COLOR]','url',105,'',art+'f1.jpg','')
+        addDir('[COLOR cyan]Vodlocker Search[/COLOR]',baseurl101,101,'',art+'f1.jpg','')
+        addDir('[COLOR cyan]Allcinemamovies Search[/COLOR]','url',106,'',art+'f1.jpg','')
+        
         
         
 def FILMOVSEARCH():
-        addDir('Filmovizija TV Search','url',60,'','','')
-        addDir('Filmovizija Movie Movie Search','url',61,'','','')
+        addDir('[COLOR cyan]Filmovizija TV Search[/COLOR]','url',60,'',art+'f1.jpg','')
+        addDir('[COLOR cyan]Filmovizija Movie Movie Search[/COLOR]','url',61,'',art+'f1.jpg','')
 
 
 def ALLCINSEARCH():
-        addDir('Allcinemamovies TV Search','url',210,'','','')
-        addDir('Allcinemamovies Search','url',209,'','','')
+        addDir('[COLOR cyan]Allcinemamovies TV Search[/COLOR]','url',210,'',art+'f1.jpg','')
+        addDir('[COLOR cyan]Allcinemamovies Search[/COLOR]','url',209,'',art+'f1.jpg','')
 
 
 def VODLOCKERSEARCH(url):
@@ -469,7 +901,7 @@ def VODLOCKERSEARCH(url):
                 match=re.compile('<a href=".+?">(.+?)</a> <br>  <span style="font-size: 13px">.+?</span> \n  <br>\n<span style="font-size: 13px;color:grey;">(.+?)</span>').findall(net.http_GET(url).content) 
                 for name,url in match:
                         url = url.replace('   ','')
-                        addDir('[B][COLOR yellow]%s[/COLOR][/B]' %name,url,1,'','','')
+                        addDir('[B[COLOR cyan]%s[/COLOR][/B]' %name,url,1,'',art+'f1.jpg','')
                         
 
 
@@ -496,13 +928,13 @@ def ALLUCRESULTS(url,name):
         for url,name in match:
                 nono = 'Video On Demand'
                 if nono not in name:
-                        addDir('[B][COLOR yellow]%s[/COLOR][/B]' %name,baseurl102+url,104,'','','')
+                        addDir('[B][COLOR yellow]%s[/COLOR][/B]' %name,baseurl102+url,104,'',art+'f1.jpg','')
                         print url
         try:
                 match=re.compile('<li><a href="(.+?)" rel=.+?>(.+?)</a></li>').findall(link)
                 
                 for url,name in match:
-                        addDir('[B][COLOR yellow]%s Page[/COLOR][/B]' %name,baseurl102+url,103,'','','')
+                        addDir('[B][COLOR yellow]%s Page[/COLOR][/B]' %name,baseurl102+url,103,'',art+'f1.jpg','')
         except: pass
 
 
@@ -520,19 +952,20 @@ def ALLUCLINK(url):
 ############################################################################################################################
 
 def IPTV():
-        addDir('www.hack-sat.com',baseurl5001,5001,'','','')
-        addDir('iptv.filmover.com',baseurl5002,5002,'','','')
+        addDir('[COLOR cyan]www.hack-sat.com',baseurl5001,5001,'',art+'f1.jpg','')
+        addDir('[COLOR cyan]iptv.filmover.com',baseurl5002,5002,'',art+'f1.jpg','')
         #addDir('www.iptvsharing.com/2015/07/sport-klub-iptv-links-m3u8.html',baseurl5010,5003,'','','')
         #addDir('www.iptvsharing.com/2015/07/sport-klub-iptv-links-m3u8.html',baseurl5020,5003,'','','')
-        addDir('free-links-iptv.blogspot.co.uk',baseurl5030,5030,'','','')
+        addDir('[COLOR cyan]free-links-iptv.blogspot.co.uk',baseurl5030,5030,'',art+'f1.jpg','')
         
 
 def BASE5001(url):
         link = OPEN_URL(url)
+        link = link.encode('ascii', 'ignore')
         match=re.compile('#EXTINF.+?,(.+?)\n(.+?)\n').findall(link)
         for name,url in match:
                 url = url.replace('#extinf:0,','')
-                addDir('[COLOR white]%s[/COLOR]' %name,url,1,'','','')
+                addDir('[COLOR cyan]%s[/COLOR]' %name,url,1,'',art+'f1.jpg','')
 
 def BASE5002(url):
         link = OPEN_URL(url)
@@ -540,7 +973,7 @@ def BASE5002(url):
         for url,name in match:
                 ok = 'xbmc'
                 if ok in url:
-                        addDir('[COLOR white]%s[/COLOR]' %name,url,5003,'','','')
+                        addDir('[COLOR cyan]%s[/COLOR]' %name,url,5003,'',art+'f1.jpg','')
 
 def BASE5002L(url):
         link = OPEN_URL(url)
@@ -548,12 +981,12 @@ def BASE5002L(url):
         match1=re.compile('#EXTINF:.+?,(.+?) rtmp://(.+?) ').findall(link)
         try:
                 for name,url in match:
-                        addDir('[COLOR white]%s[/COLOR]' %name,'http://'+url,1,'','','')
+                        addDir('[COLOR cyan]%s[/COLOR]' %name,'http://'+url,1,'',art+'f1.jpg','')
         except: pass
 
         try:
                 for name,url in match1:
-                        addDir('[COLOR white]%s[/COLOR]' %name,'rtmp://'+url,1,'','','')
+                        addDir('[COLOR cyan]%s[/COLOR]' %name,'rtmp://'+url,1,'',art+'f1.jpg','')
         except: pass
 
 
@@ -564,13 +997,13 @@ def BASE5030(url):
         try:
                 for url,name in match:
                         name = name.replace('&amp;','&')
-                        addDir('[COLOR white]%s[/COLOR]' %name,url,5031,'','','')
+                        addDir('[COLOR cyan]%s[/COLOR]' %name,url,5031,'',art+'f1.jpg','')
         except: pass
 
         try:
                 for url,name in match1:
                         name = name.replace('&amp;','&')
-                        addDir('[COLOR white]%s[/COLOR]' %name,url,5030,'','','')
+                        addDir('[COLOR cyan]%s[/COLOR]' %name,url,5030,'',art+'f1.jpg','')
         except: pass
 
 def BASE5030L(url):
@@ -581,19 +1014,19 @@ def BASE5030L(url):
         try:
                 for name,url in match:
                         name = name.replace('&amp;','&').replace('&nbsp;','')
-                        addDir('[COLOR white]%s[/COLOR]' %name,url,1,'','','')
+                        addDir('[COLOR cyan]%s[/COLOR]' %name,url,1,'',art+'f1.jpg','')
         except: pass
         
         try:
                 for name,url in match1:
                         name = name.replace('&amp;','&').replace('&nbsp;','')
-                        addDir('[COLOR white]%s[/COLOR]' %name,url,1,'','','')
+                        addDir('[COLOR cyan]%s[/COLOR]' %name,url,1,'',art+'f1.jpg','')
         except: pass
 
         try:
                 for name,url in match2:
                         name = name.replace('&amp;','&').replace('&nbsp;','')
-                        addDir('[COLOR white]%s[/COLOR]' %name,url,1,'','','')
+                        addDir('[COLOR cyan]%s[/COLOR]' %name,url,1,'',art+'f1.jpg','')
         except: pass
 ############################################################################################################################
 
@@ -601,6 +1034,37 @@ def BASE5030L(url):
 ############################################################################################################################
 
 ############################################################################################################################
+
+
+
+
+def regex_from_to(text, from_string, to_string, excluding=True):
+        if excluding:
+                try: r = re.search("(?i)" + from_string + "([\S\s]+?)" + to_string, text).group(1)
+                except: r = ''
+        else:
+                try: r = re.search("(?i)(" + from_string + "[\S\s]+?" + to_string + ")", text).group(1)
+                except: r = ''
+        return r
+
+
+
+
+def regex_get_all(text, start_with, end_with):
+        r = re.findall("(?i)(" + start_with + "[\S\s]+?" + end_with + ")", text)
+        return r
+
+
+
+def PLAYTUBE(url):
+        try:
+                url = "PlayMedia(plugin://plugin.video.youtube/play/?video_id="+url+")"
+                xbmc.executebuiltin(url)
+        except:
+                xbmc.executebuiltin("XBMC.Notification([COLOR gold][B]SORRY LINK DOWN[/B][/COLOR],,7000,"")")
+
+            
+
 
 def RESOLVE(name,url):
     url1 = urlresolver.resolve(url)
@@ -655,6 +1119,43 @@ def addDir(name,url,mode,iconimage,fanart,description):
 
 
 
+def addDir2(name,url,mode,iconimage,itemcount):
+        if metaset=='true':
+                splitName=name.partition('(')
+                simplename=""
+                simpleyear=""
+                if len(splitName)>0:
+                        simplename=splitName[0]
+                        simpleyear=splitName[2].partition(')')
+                if len(simpleyear)>0:
+                        simpleyear=simpleyear[0]
+                meta = metaget.get_meta('movie', simplename ,simpleyear)
+                u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&site="+str(site)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)
+                ok=True
+                liz=xbmcgui.ListItem(name, iconImage=meta['cover_url'], thumbnailImage=meta['cover_url'])
+                liz.setInfo( type="Video", infoLabels= meta )
+                contextMenuItems = []
+                contextMenuItems.append(('Movie Information', 'XBMC.Action(Info)'))
+                liz.addContextMenuItems(contextMenuItems, replaceItems=False)
+                if not meta['backdrop_url'] == '': liz.setProperty('fanart_image', meta['backdrop_url'])
+                else: liz.setProperty('fanart_image', fanart)
+                if mode==1:
+                        liz.setProperty("IsPlayable","true")
+                        ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=False,totalItems=itemcount)
+                else:
+                        ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True,totalItems=itemcount)
+                return ok
+        else:
+                u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&site="+str(site)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)
+                ok=True
+                liz=xbmcgui.ListItem(name, iconImage=icon, thumbnailImage=icon)
+                liz.setInfo( type="Video", infoLabels={ "Title": name } )
+                liz.setProperty('fanart_image', fanart)
+                ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=isFolder)
+                return ok
+
+
+
 def addLink(name,url,mode,iconimage,fanart,description=''):
         #u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&description="+str(description)
         ok=True
@@ -666,12 +1167,11 @@ def addLink(name,url,mode,iconimage,fanart,description=''):
 
 
 def OPEN_URL(url):
-        req = urllib2.Request(url)
-        req.add_header('User-Agent' , "Magic Browser")
-        response = urllib2.urlopen(req)
-        link=response.read()
-        response.close()
-        return link
+    headers = {}
+    name = ''
+    headers['User-Agent'] = User_Agent
+    link = requests.get(url, headers=headers).text
+    return link
 
 def setView(content, viewType):
         ''' Why recode whats allready written and works well,
@@ -710,7 +1210,7 @@ name=None
 mode=None
 iconimage=None
 description=None
-
+site=None
 
 try:
         url=urllib.unquote_plus(params["url"])
@@ -739,6 +1239,9 @@ if mode==None or url==None or len(url)<1:
 
 elif mode==1:
         RESOLVE(name,url)
+
+elif mode==2:
+        PLAYTUBE(url)
 
 elif mode==50:
         BASE50(url)
@@ -838,6 +1341,57 @@ elif mode==209:
 
 elif mode==210:
         BASE200TSEARCH()
+
+elif mode==250:
+        BASE250()
+
+elif mode==251:
+        BASE250GENRE(url)
+
+elif mode==252:
+        BASE250INDEX(url)
+
+elif mode==253:
+        BASE250L(url)
+
+elif mode==300:
+        BASE300()
+
+elif mode==301:
+        BASE300INDEX(url)
+
+elif mode==302:
+        BASE300L(url,name)
+
+elif mode==303:
+        BASE300SEARCH()
+
+elif mode==350:
+        BASE350(url)
+
+elif mode==351:
+        BASE350INDEX(url)
+
+elif mode==352:
+        BASE350L(name,url,iconimage)
+
+elif mode==400:
+        BASE400()
+
+elif mode==401:
+        BASE400INDEX(url)
+
+elif mode==402:
+        BASE400L(name,url,iconimage)
+
+elif mode==403:
+        BASE400GENRE(url)
+
+elif mode==404:
+        BASE400YEAR(url)
+
+elif mode==405:
+        BASE400SEARCH(url)
 
 elif mode==4000:
         KMPINDEX(url)

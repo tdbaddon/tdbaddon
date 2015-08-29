@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.mdfubar" name=".F.U.B.A.R." version="1.0.6" provider-name="Mucky Duck">
+<addon id="plugin.video.mdfubar" name=".F.U.B.A.R." version="1.0.8" provider-name="Mucky Duck">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.urlresolver"  version="2.1.2"/>
 	<import addon="script.module.addon.common" />
+	<import addon="script.module.requests" />
+	<import addon="script.module.metahandler" version="2.5.1"/>
 	<import addon="repository.mdrepo" />
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
         <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary lang="en"></summary>
+    <summary lang="en">A Variety Of Streaming Sources From The Net</summary>
     <description lang="en"></description>
 	<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon</disclaimer>
     <platform>all</platform>
