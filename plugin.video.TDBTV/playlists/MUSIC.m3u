@@ -1,7 +1,7 @@
 ﻿#EXTM3U
 
 
-#EXTINF:0,1HD Music
+#EXTINF:0,1HD Music 
 rtmp://109.239.142.62/live/livestream3
 
 #EXTINF:0,1HD Music
@@ -91,17 +91,29 @@ http://stream01.yamgo.com/iPhone/HLS_TS/broadcast/ibiza_on_tv-tablet.3gp/ibiza_o
 #EXTINF:0,Kiss TV
 rtmp://tst.es.flash.glb.ipercast.net/tst.es-live/live
 
-#EXTINF:0,Miami TV Music
-http://74.208.152.93/music/stream3/stream.m3u8
+#EXTINF:0,Miami TV Music 
+0
 
 #EXTINF:0,MTV 
 rtmp://83.218.202.202/live swfUrl=http://webtv.md/swf/WebTV.swf playpath=wt_mtv.stream
+
+#EXTINF:0,MTV 
+http://37.187.160.187:8000/live/ressler/skype/107.ts
+
+#EXTINF:0,MTV
+http://37.187.160.187:8000/live/ressler/skype/109.ts
 
 #EXTINF:0,MTV Dance 
 0
 
 #EXTINF:0,MTV Hits 
 http://194.44.229.77:777/udp/237.1.238.1:1234
+
+#EXTINF:0,MTV Hits 
+http://37.187.149.103:8000/live/07951db8aa7cbd43/34abd2d0ce65538f/75.m3u8?token=uz6qP4oobvt_uHy8wFoYSQ&e=1439941315&u=33901&channel=
+
+#EXTINF:0,MTV Hits 
+http://37.187.160.187:8000/live/ressler/skype/108.ts
 
 #EXTINF:0,MTV Rocks 
 0
@@ -115,7 +127,7 @@ rtmp://stream.smcloud.net/live2/vox/vox_480p
 #EXTINF:0,Now Thats What I Call Music
 http://rrr.sz.xlcdn.com/?account=AATW&file=nowmusic&type=live&service=wowza&protocol=http&output=playlist.m3u8
 
-#EXTINF:0,NR1 a
+#EXTINF:0,NR1 
 rtmp://mn-l.mncdn.com/birnumaramedya_live/nr1tv.sdp
 
 #EXTINF:1,Planet Pop
@@ -161,7 +173,7 @@ http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/04/prog_index.m3u8
 http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/06/prog_index.m3u8
 
 #EXTINF:0,VH1 
-0
+http://37.187.160.187:8000/live/ressler/skype/110.ts
 
 #EXTINF:0,VH1 Classics 
 0

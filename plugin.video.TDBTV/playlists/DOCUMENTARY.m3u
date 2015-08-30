@@ -20,10 +20,13 @@ http://80.80.160.168/live/1/live.m3u8
 0
 
 #EXTINF:0,Discovery History 
-0
+http://37.187.149.103:8000/live/07951db8aa7cbd43/34abd2d0ce65538f/67.m3u8?token=uz6qP4oobvt_uHy8wFoYSQ&e=1439941315&u=33901&channel=
 
 #EXTINF:0,Discovery Channel 
 http://80.80.160.168/live/8/live.m3u8
+
+#EXTINF:0,Discovery Channel 
+http://37.187.149.103:8000/live/07951db8aa7cbd43/34abd2d0ce65538f/65.m3u8?token=uz6qP4oobvt_uHy8wFoYSQ&e=1439941315&u=33901&channel=
 
 
 #EXTINF:0,Discovery H&H
@@ -36,13 +39,13 @@ http://80.80.160.168/live/8/live.m3u8
 http://80.80.160.168/live/9/live.m3u8
 
 #EXTINF:0,Discovery Turbo 
-0
+http://37.187.149.103:8000/live/07951db8aa7cbd43/34abd2d0ce65538f/68.m3u8?token=uz6qP4oobvt_uHy8wFoYSQ&e=1439941315&u=33901&channel=
 
 #EXTINF:0,Discovery World 
 0
 
-#EXTINF:0,Docubox
-http://204.107.27.136/live/1624.high.stream/1624.high.stream/index.m3u8
+#EXTINF:0,Docubox 
+0
 
 #EXTINF:0,Flite Level TV 
 0
@@ -71,11 +74,17 @@ http://nasatv-lh.akamaihd.net/i/NASA_101@319270/master.m3u8
 #EXTINF:0,Nat Geo Wild 
 http://194.44.229.77:777/udp/237.1.239.21:1234
 
+#EXTINF:0,Nat Geo Wild 
+http://37.187.160.187:8000/live/ressler/skype/97.ts
+
 #EXTINF:0,National Geographic 
 http://194.44.229.77:777/udp/237.1.239.22:1234
 
 #EXTINF:0,National Geographic 
 http://194.44.229.77:777/udp/237.1.238.10:1234
+
+#EXTINF:0,National Geographic 
+http://37.187.160.187:8000/live/ressler/skype/96.ts
 
 #EXTINF:0,Planet Green 
 http://80.80.160.168/live/4/live.m3u8

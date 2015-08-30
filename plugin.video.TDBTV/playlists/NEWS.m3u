@@ -5,7 +5,7 @@
 http://abclive.abcnews.com/i/abc_live4@136330/index_1200_av-b.m3u8
 
 #EXTINF:0,AlJazeera 
-http://198.179.31.198/live/3044.low.stream/3044.low.stream/index.m3u8
+0
 
 #EXTINF:0,BBC World News 
 0
@@ -42,9 +42,6 @@ rtmp://edge1.everyon.tv/etv1sb/pld16
 
 #EXTINF:0,CNN 
 http://64.100.15.201/udp/239.255.2.3:10001
-
-#EXTINF:0,CNN 
-http://4.31.30.159:9056
 
 #EXTINF:0,CP24 
 0
@@ -122,7 +119,7 @@ http://rt-a.akamaihd.net/ch_04@325608/master.m3u8
 http://80.77.52.6:3719/udp/226.0.5.13:12345
 
 #EXTINF:0,Sky News 
-0
+http://37.187.160.187:8000/live/ressler/skype/89.ts
 
 #EXTINF:0,The Weather Channel
 0
@@ -133,5 +130,5 @@ http://kalsegsec-a.akamaihd.net:80/dc-0/m/pa-live-publish3/kLive/smil:1_oorxcge2
 #EXTINF:0,Weather Nation
 http://cdnapi.kaltura.com/p/931702/sp/93170200/playManifest/entryId/1_oorxcge2/format/applehttp/protocol/http/uiConfId/28428751/a.m3u8
 
-#EXTINF:0,Weather Network
-http://bcoveliveios-i.akamaihd.net/hls/live/207737/1942203455001/nat/master_Layer5.m3u8 
+#EXTINF:0,Weather Network 
+0

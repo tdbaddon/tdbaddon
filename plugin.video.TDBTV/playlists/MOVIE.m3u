@@ -77,7 +77,7 @@ rtmp://94.102.49.207/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to
 0
 
 #EXTINF:0,Sky Movies Horrors 
-0
+http://37.187.149.103:8000/live/07951db8aa7cbd43/34abd2d0ce65538f/52.m3u8?token=uz6qP4oobvt_uHy8wFoYSQ&e=1439941315&u=33901&channel=
 
 #EXTINF:0,Sky Movies Modern Greats 
 0
@@ -110,7 +110,7 @@ rtmp://94.102.49.207/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to
 0
 
 #EXTINF:0,TCM 
-0
+http://37.187.149.103:8000/live/07951db8aa7cbd43/34abd2d0ce65538f/142.m3u8?token=uz6qP4oobvt_uHy8wFoYSQ&e=1439941315&u=33901&channel=
 
 #EXTINF:0,True Movies 1 
 0
