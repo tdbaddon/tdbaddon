@@ -1,3 +1,8 @@
+V2.5.4
+- Updated available sources.
+- Updated available resolvers.
+- Code cosmetics.
+
 V2.5.3
 - Added new sources.
 - Added new resolvers.

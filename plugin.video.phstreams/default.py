@@ -65,95 +65,100 @@ except:
 
 
 if action == None:
-    from modules.indexers import phstreams
+    from resources.lib.indexers import phstreams
     phstreams.getCategory()
 
 elif action == 'dmode' or action == 'ndmode':
-    from modules.indexers import phstreams
+    from resources.lib.indexers import phstreams
     phstreams.getDirectory(name, url, audio, image, fanart, playable, content)
 
 elif action == 'subDirectory':
-    from modules.indexers import phstreams
+    from resources.lib.indexers import phstreams
     phstreams.subDirectory(name, url, audio, image, fanart, playable, tvshow, content)
 
 elif action == 'search':
-    from modules.indexers import phstreams
+    from resources.lib.indexers import phstreams
     phstreams.getSearch()
 
 elif action == 'searchDirectory':
-    from modules.indexers import phstreams
+    from resources.lib.indexers import phstreams
     phstreams.searchDirectory()
 
 elif action == 'searchDirectory2':
-    from modules.indexers import phstreams
+    from resources.lib.indexers import phstreams
     phstreams.searchDirectory(url)
 
 elif action == 'clearSearch':
-    from modules.indexers import phstreams
+    from resources.lib.indexers import phstreams
     phstreams.clearSearch()
 
 elif action == 'resolveUrl':
-    from modules.indexers import phstreams
+    from resources.lib.indexers import phstreams
     phstreams.resolveUrl(name, url, audio, image, fanart, playable, content)
 
 elif action == 'openDialog':
-    from modules.libraries import phdialogs
+    from resources.lib.libraries import phdialogs
     phdialogs.openDialog(url,audio)
 
 elif action == 'openSettings':
-    from modules.libraries import control
+    from resources.lib.libraries import control
     control.openSettings()
 
 elif action == 'addView':
-    from modules.libraries import views
+    from resources.lib.libraries import views
     views.addView(content)
 
 elif action == 'downloader':
-    from modules.libraries import downloader
+    from resources.lib.libraries import downloader
     downloader.downloader()
 
 elif action == 'addDownload':
-    from modules.libraries import downloader
+    from resources.lib.libraries import downloader
     downloader.addDownload(name,url,image)
 
 elif action == 'removeDownload':
-    from modules.libraries import downloader
+    from resources.lib.libraries import downloader
     downloader.removeDownload(url)
 
 elif action == 'startDownload':
-    from modules.libraries import downloader
+    from resources.lib.libraries import downloader
     downloader.startDownload()
 
 elif action == 'startDownloadThread':
-    from modules.libraries import downloader
+    from resources.lib.libraries import downloader
     downloader.startDownloadThread()
 
 elif action == 'stopDownload':
-    from modules.libraries import downloader
+    from resources.lib.libraries import downloader
     downloader.stopDownload()
 
 elif action == 'statusDownload':
-    from modules.libraries import downloader
+    from resources.lib.libraries import downloader
     downloader.statusDownload()
 
 elif action == 'trailer':
-    from modules.libraries import trailer
+    from resources.lib.libraries import trailer
     trailer.trailer().play(name)
 
+elif action == 'clearCache':
+    from resources.lib.libraries import cache
+    cache.clear()
 
 elif action == 'nhlDirectory':
-    from modules.indexers import nhlcom
+    from resources.lib.indexers import nhlcom
     nhlcom.nhlDirectory()
 
 elif action == 'nhlArchives':
-    from modules.indexers import nhlcom
+    from resources.lib.indexers import nhlcom
     nhlcom.nhlArchives()
 
 elif action == 'nhlStreams':
-    from modules.indexers import nhlcom
+    from resources.lib.indexers import nhlcom
     nhlcom.nhlStreams(name,url)
 
 elif action == 'nhlResolve':
-    from modules.indexers import nhlcom
+    from resources.lib.indexers import nhlcom
     nhlcom.nhlResolve(url)
+
+
 

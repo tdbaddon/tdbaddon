@@ -1,8 +1,10 @@
 <settings>
-	<category label="MetaData">
-		<setting id="meta" type="bool" label="Enable MetaData" default="false" />
-	</category>
-	<category label="Downloads">
-		<setting id="downloadPath" type="folder" label="Downloads Folder" default="" />
+	<category label="30715">
+		<setting type="lsep" label="30716" />
+		<setting id="meta" type="bool" label="30717" default="false" />
+		<setting type="lsep" label="30718" />
+		<setting label="30719" type="action" action="RunPlugin(plugin://plugin.video.phstreams/?action=clearCache)" />
+		<setting type="lsep" label="30721" />
+		<setting id="downloadPath" type="folder" label="30720" default="" />
 	</category>
 </settings>

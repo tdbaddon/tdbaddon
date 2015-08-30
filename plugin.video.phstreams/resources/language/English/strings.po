@@ -1,0 +1,136 @@
+# Addon Name: Phoenix
+# Addon id: plugin.video.phstreams
+# Addon Provider: Phoenix
+msgid ""
+msgstr ""
+"Project-Id-Version: Phoenix\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Language-Team: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: en\n"
+
+
+msgctxt "#30701"
+msgid "Settings"
+msgstr ""
+
+msgctxt "#30702"
+msgid "Search"
+msgstr ""
+
+msgctxt "#30703"
+msgid "Clear History"
+msgstr ""
+
+msgctxt "#30704"
+msgid "Link"
+msgstr ""
+
+msgctxt "#30705"
+msgid "Unplayable stream"
+msgstr ""
+
+msgctxt "#30706"
+msgid "Discover Great Streaming Playlists!"
+msgstr ""
+
+msgctxt "#30707"
+msgid "[COLOR gold]Watch Trailer[/COLOR]"
+msgstr ""
+
+msgctxt "#30708"
+msgid "[COLOR gold]Movie Information[/COLOR]"
+msgstr ""
+
+msgctxt "#30709"
+msgid "[COLOR gold]TV Show Information[/COLOR]"
+msgstr ""
+
+msgctxt "#30710"
+msgid "[COLOR gold]Episode Information[/COLOR]"
+msgstr ""
+
+msgctxt "#30711"
+msgid "[COLOR gold]Set Movies view[/COLOR]"
+msgstr ""
+
+msgctxt "#30712"
+msgid "[COLOR gold]Set TV Shows view[/COLOR]"
+msgstr ""
+
+msgctxt "#30713"
+msgid "[COLOR gold]Set Seasons view[/COLOR]"
+msgstr ""
+
+msgctxt "#30714"
+msgid "[COLOR gold]Set Episodes view[/COLOR]"
+msgstr ""
+
+msgctxt "#30715"
+msgid "General"
+msgstr ""
+
+msgctxt "#30716"
+msgid "MetaData"
+msgstr ""
+
+msgctxt "#30717"
+msgid "Enable MetaData"
+msgstr ""
+
+msgctxt "#30718"
+msgid "Cache"
+msgstr ""
+
+msgctxt "#30719"
+msgid "Clear cache..."
+msgstr ""
+
+msgctxt "#30720"
+msgid "Path"
+msgstr ""
+
+msgctxt "#30721"
+msgid "Downloads"
+msgstr ""
+
+msgctxt "#30722"
+msgid "[COLOR gold]Download item[/COLOR]"
+msgstr ""
+
+msgctxt "#30751"
+msgid "[COLOR red]Archived Games[/COLOR]"
+msgstr ""
+
+msgctxt "#30752"
+msgid "[COLOR gold]Live Games , Requires some modifications to get working visit forum.[/COLOR]"
+msgstr ""
+
+msgctxt "#30753"
+msgid "[COLOR gold]If list returns BLANK, Feed is not up yet.[/COLOR]"
+msgstr ""
+
+msgctxt "#30754"
+msgid "[COLOR red]Feed not available yet[/COLOR]"
+msgstr ""
+
+msgctxt "#30755"
+msgid "Pick A Bandwidth"
+msgstr ""
+
+msgctxt "#30401"
+msgid "Are you sure?"
+msgstr ""
+
+msgctxt "#30402"
+msgid "Process Complete"
+msgstr ""
+
+msgctxt "#30491"
+msgid "This View is now Default"
+msgstr ""
+
