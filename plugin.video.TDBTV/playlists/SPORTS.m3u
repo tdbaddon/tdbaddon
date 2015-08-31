@@ -5,20 +5,16 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 ---------------------------------------------------------------------------------------------------------------
 
 #EXTINF:0,Bein Sport 1 
-0
-
+http://37.59.17.46/live/EsYys7tk6HyQqJpsJLZQFA/1441009513/27137969c5378da92990cf03958714ea.m3u8 
 #EXTINF:0,Bein Sport 2 
-0
-
-#EXTINF:0,Big Ten Network 
+http://192.99.19.181/live/96hvXWP6lMAXRM02wQJJpw/1441009498/6e0e2fa36b7255599158fcd2116fc097.m3u8 #EXTINF:0,Big Ten Network 
 http://bigten247.cdnak.bigtenhd.neulion.com/nlds/btn2go/btnnetwork/as/live/btnnetwork_hd_3000.m3u8
 
 #EXTINF:0,Box Nation 
 http://37.187.149.103:8000/live/07951db8aa7cbd43/34abd2d0ce65538f/194.m3u8?token=uz6qP4oobvt_uHy8wFoYSQ&e=1439941315&u=33901&channel=
 
 #EXTINF:0,BT Sport 1 
-0
-
+http://37.59.17.46/live/3bufBzQed6kelGJdyhD7Gg/1441009345/feb9c19124327ffd2bae3c97249ea40e.m3u8 
 #EXTINF:0,BT Sport 2 
 http://servprjsmartv.mine.nu:8000/live/persianshare/shkfyhpne/1574.m3u8
 
@@ -185,8 +181,7 @@ http://xrxs.net/video/live-p12wash-4728.m3u8
 mms://100automoto.tv/channel_porsche
 
 #EXTINF:0,Premier Sports 
-0
-
+http://37.59.17.46/live/rkZeKPGnrBApAIff5phbuQ/1441009459/2d18f483dbcf20bf0cc41b916f026d6b.m3u8 
 #EXTINF:0,Racing UK 
 http://37.187.149.103:8000/live/07951db8aa7cbd43/34abd2d0ce65538f/93.m3u8?token=uz6qP4oobvt_uHy8wFoYSQ&e=1439941315&u=33901&channel=
 
@@ -227,8 +222,7 @@ rtmp://80.82.78.85:443/liverepeater playpath=4 pageUrl=http://popeoftheplayers.e
 http://servprjsmartv.mine.nu:8000/live/persianshare/shkfyhpne/1629.m3u8
 
 #EXTINF:0,Sky Sports F1 
-0
-
+http://37.59.17.46/live/L8Ik7fSoXc8hvcxiZqinUw/1441009383/343b4b2909705b5f5babe196c05c7895.m3u8 
 #EXTINF:0,Sky Sports News 
 http://servprjsmartv.mine.nu:8000/live/persianshare/shkfyhpne/1533.m3u8
 
@@ -236,14 +230,12 @@ http://servprjsmartv.mine.nu:8000/live/persianshare/shkfyhpne/1533.m3u8
 0
 
 #EXTINF:0,Sportsnet One 
-0
-
+http://192.99.19.181/live/jwJ8ZpeuT055MyzQyzfaKg/1441009570/a2b655b0f54f8fdd0c5640acbf1378a3.m3u8 
 #EXTINF:0,Sportsnet Ontario 
 0
 
 #EXTINF:0,Sportsnet World 
-0
-
+http://37.59.17.46/live/5KlxKfrbSaYt4Q-Df18DKw/1441009551/ac090b774d01536fce7dc4e4a08abf25.m3u8 
 #EXTINF:0,Sports Tonight 
 rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9-HD
 
@@ -254,8 +246,7 @@ rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9
 http://stream01.yamgo.com/iPhone/HLS_TS/broadcast/trace_tv_sports-tablet.3gp/trace_tv_sports-tablet.3gp-mr647k.m3u8?
 
 #EXTINF:0,TSN 1 
-0
-
+http://192.99.19.181/live/byY6MagQHPZUriMnJlWXGQ/1441009585/40beacf01f852160e0d3cf1d962449e6.m3u8 
 #EXTINF:0,TSN 2 
 0
 

@@ -8,7 +8,7 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 http://4.31.30.159:9039
 
 #EXTINF:0,ABC 
-0
+http://37.59.17.46/live/8N0VSemG22zKiBVMJ8-Aeg/1441004902/900150983cd24fb0d6963f7d28e17f72.m3u8
 
 #EXTINF:0,ABC Family 
 0
@@ -28,9 +28,13 @@ http://4.31.30.159:9158
 #EXTINF:0,BBC 1 
 http://82.135.224.134:80/udp/239.100.3.1:1234
 
+#EXTINF:0,BBC 1 
+http://178.18.30.109:8081/liverepeater/196515/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9OC8zMS8yMDE1IDY6MDk6NDMgQU0maGFzaF92YWx1ZT16V3h4TnBhMCsxckJxSjFiNGRKTW1BPT0mdmFsaWRtaW51dGVzPTQ= 
 #EXTINF:0,BBC 2 
 http://82.135.224.134/udp/239.100.3.3:1234
 
+#EXTINF:0,BBC 2 
+http://178.18.30.114:8081/liverepeater/197787/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9OC8zMS8yMDE1IDY6MTA6NTIgQU0maGFzaF92YWx1ZT1pYzJTTTJjaTZZSUdjMEFxYWVpSUxBPT0mdmFsaWRtaW51dGVzPTQ= 
 #EXTINF:0,BET 
 0
 
@@ -50,8 +54,7 @@ http://4.31.30.159:9036
 0
 
 #EXTINF:0,CBS 
-0
-
+http://192.99.19.181/live/2_2OXZ0W0l86cg-LrQzTXg/1441008491/250c51527f347066847969f002be67a2.m3u8 
 #EXTINF:0,CBS Action 
 0
 
@@ -91,6 +94,8 @@ http://37.187.149.103:8000/live/07951db8aa7cbd43/34abd2d0ce65538f/135.m3u8?token
 #EXTINF:0,CW 
 http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/index_350_av-p.m3u8?
 
+#EXTINF:0,CW 
+http://192.99.19.181/live/4F-2toosWr0jYmC68x93qg/1441008600/d61960e75b1a90a23ebfb02f0bb46678.m3u8 
 #EXTINF:0,Disney Channel 
 http://37.187.149.103:8000/live/07951db8aa7cbd43/34abd2d0ce65538f/107.m3u8?token=uz6qP4oobvt_uHy8wFoYSQ&e=1439941315&u=33901&channel=
 
@@ -133,6 +138,8 @@ http://4.31.30.159:9028
 #EXTINF:0,Fox TV 
 http://185.5.222.227:4242/bysid/5603
 
+#EXTINF:0,Fox TV 
+http://192.99.19.181/live/VKtQQ6lmMqIcORLJ436U8A/1441008627/1cbdb8043b37c7c9ca83582f9218c8b4.m3u8 
 #EXTINF:0,FX 
 0
 
@@ -205,6 +212,8 @@ http://37.187.160.187:8000/live/ressler/skype/64.ts
 #EXTINF:0,My9
 http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
 
+#EXTINF:0,My9
+http://37.59.17.46/live/fPgV1YHCJjlMs6INSNAXlw/1441008677/4397651acecc7cb7f088a352b0308936.m3u8 
 #EXTINF:0,NBC 
 0
 

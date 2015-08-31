@@ -5,10 +5,9 @@
 http://abclive.abcnews.com/i/abc_live4@136330/index_1200_av-b.m3u8
 
 #EXTINF:0,AlJazeera 
-0
-
+http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/aljazeera_en/ls_satlink/b_,828,528,264,.m3u8 
 #EXTINF:0,BBC World News 
-0
+http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/bbc_world/ls_satlink/b_,828,528,264,.m3u8 
 
 #EXTINF:0,Bloomberg TV 
 http://btv-i.akamaihd.net/hls/live/202760-b/btvusa_ios/P1/M12K.m3u8
@@ -50,8 +49,7 @@ http://64.100.15.201/udp/239.255.2.3:10001
 http://bcliveuniv-lh.akamaihd.net/i/cpac1eng2014_01@119330/index_2000_av-p.m3u8
 
 #EXTINF:0,CSPAN 
-0
-
+http://cspan1-lh.akamaihd.net/i/cspan1_1@304727/master.m3u8 
 #EXTINF:0,CTV NEWS 
 http://66.51.129.171:8080/demo/index.m3u8 
 
@@ -83,9 +81,10 @@ http://64.100.15.201/udp/239.255.2.1:10001
 0
 
 #EXTINF:0,France 24 
-0
+http://37.59.17.46/live/El9CSLQt7f3D74WpWtrrxg/1441009093/799ba4ba150df4b98eac68c63273ac04.m3u8 
 
-#EXTINF:0,Global News 
+#EXTINF:0,France 24 
+http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/france24_en/ls_satlink/b_,828,528,264,.m3u8 #EXTINF:0,Global News 
 0
 
 #EXTINF:0,i24 News 
