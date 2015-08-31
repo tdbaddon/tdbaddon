@@ -13,6 +13,9 @@ http://217.16.82.6:554/zulu/alfa_1/playlist.m3u8
 #EXTINF:0,Alfa 
 http://217.16.82.6:554/zulu/alfa_2/playlist.m3u8
 
+#EXTINF:0,Alfa 
+http://balkanstream.com/stream/mkalfa/mip001/25hsK6Sa9l$OPT:network-caching=4500
+
 #EXTINF:0,Al Jazeera Balkan 
 rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
 
@@ -105,6 +108,9 @@ http://217.16.82.6:1935/zulu/kanal5_2/playlist.m3u8
 
 #EXTINF:0,Kanal 5 
 http://fms.zulu.mk:1935/zulu/kanal5_1/playlist.m3u8
+
+#EXTINF:0,Kanal 5 
+http://balkanstream.com/stream/mkkanal5/mip001/25hsK6Sa9l$OPT:network-caching=4500
 
 #EXTINF:0,Kanal 21
 0

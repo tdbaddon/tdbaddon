@@ -77,10 +77,10 @@ mms://62.162.58.54:8080
 http://88.212.10.27:81/streams/joj.m3u8
 
 #EXTINF:0,Jug TV 
-rtmp://84.20.77.50/live/livestream1
+0
 
 #EXTINF:0,K1 Veles
-http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/k1-tv-veles/chunklist.m3u8
+0
 
 #EXTINF:0,Kanal 21 
 0
@@ -139,11 +139,11 @@ http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video
 #EXTINF:0,MPT 2 
 http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video_id/3545/token/baf3cb0ceac4e5243d63f8bf96011783/playlist.m3u8
 
-#EXTINF:0,MPT Sat 
-http://mrt.cdn.spectar.tv:1935/mrt-edge/_definst_/mrt1-sat/playlist.m3u8
-
 #EXTINF:0,MPT SAT 2 
 http://mrt.cdn.spectar.tv:1935/mrt-edge/_definst_/mrt2-sat/playlist.m3u8
+
+#EXTINF:0,MPT Sat 
+http://mrt.cdn.spectar.tv:1935/mrt-edge/_definst_/mrt1-sat/playlist.m3u8
 
 #EXTINF:0,Nasha TV 
 http://217.16.82.6:1935/zulu/nashatv_1/playlist.m3u8
@@ -158,7 +158,7 @@ http://217.16.82.6:554/zulu/nashatv_1/playlist.m3u8
 http://217.16.82.6:554/zulu/nashatv_2/playlist.m3u8
 
 #EXTINF:0,OBN 
-0
+http://5.196.14.179:2502/live_tv_channels_on_sipragezabava.com
 
 #EXTINF:0,Ohrid 02
 http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/o2-tv-ohrid/playlist.m3u8
@@ -193,9 +193,6 @@ http://217.16.82.6:554/zulu/sitel3_2/playlist.m3u8
 #EXTINF:0,Sonce TV
 http://92.53.27.201:10000/
 
-#EXTINF:0,STV Folk
-0
-
 #EXTINF:0,Sutel TV 
 http://217.16.82.6:1935/zulu/shutel_1/playlist.m3u8
 
@@ -224,4 +221,4 @@ http://217.16.82.6:554/zulu/telma_2/playlist.m3u8
 http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/ultra-tv-tetovo/chunklist.m3u8
 
 #EXTINF:0,Vesti 24
-mms://62.162.58.55/24vesti
+http://24vesti.com.mk/sites/dnevnik/Vesti_VB6.flv 

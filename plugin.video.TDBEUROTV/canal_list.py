@@ -264,7 +264,6 @@ dc={
 "sitel" : "5030",
 "sitel 3" : "5031",
 "sonce tv" : "5032",
-"stv folk" : "5033",
 "sutel tv" : "5034",
 "telma" : "5035",
 "ultra tetovo" : "5036",
