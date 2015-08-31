@@ -579,6 +579,19 @@ Thats all Folks
   </extension>
 </addon>
 
+<addon id="repository.ah" name="AH Add-on repository" version="1.0" provider-name="AddonHacker">
+	<extension point="xbmc.addon.repository" name="AH Add-on repository">
+		<info compressed="false">https://raw.githubusercontent.com/addonhacker/ah-repo/master/addons.xml</info>
+		<checksum>https://raw.githubusercontent.com/addonhacker/ah-repo/master/addons.xml.md5</checksum>
+		<datadir zip="true">https://raw.githubusercontent.com/addonhacker/ah-repo/master/repo</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Install Add-ons from AH Add-on Repository</summary>
+		<description>Video plug-ins for Kodi</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
 <addon id="repository.aj-addons" name="aj add-ons (new look)" version="1.0.1" provider-name="ajdeveloped">
 	<extension point="xbmc.addon.repository" name="AJ ADD-ONs (NEW LOOK)">
 		<info compressed="false">http://apple-tv2-xbmc.googlecode.com/svn/trunk/AddonsNewLookRepo/addons.xml</info>

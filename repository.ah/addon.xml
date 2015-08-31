@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="repository.ah" name="AH Add-on repository" version="1.0" provider-name="AddonHacker">
+	<extension point="xbmc.addon.repository" name="AH Add-on repository">
+		<info compressed="false">https://raw.githubusercontent.com/addonhacker/ah-repo/master/addons.xml</info>
+		<checksum>https://raw.githubusercontent.com/addonhacker/ah-repo/master/addons.xml.md5</checksum>
+		<datadir zip="true">https://raw.githubusercontent.com/addonhacker/ah-repo/master/repo</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Install Add-ons from AH Add-on Repository</summary>
+		<description>Video plug-ins for Kodi</description>
+		<platform>all</platform>
+	</extension>
+</addon>
