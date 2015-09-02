@@ -424,7 +424,6 @@ dc={
 "sonce tv" : "7084",
 "stv1" : "7085",
 "stv2" : "7086",
-"stv folk" : "7087",
 "rtcg sat" : "7088",
 "vesti 24" : "7089",
 "vizion plus" : "7090",

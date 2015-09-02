@@ -110,7 +110,7 @@ rtmp://144.76.2.213:1935/live/livestream
 0
 
 #EXTINF:0,Max
-0
+http://206.222.31.146/maxtv
 
 #EXTINF:0,Mega 
 http://megahdlive1-f.akamaihd.net/i/live_1@105260/master.m3u8

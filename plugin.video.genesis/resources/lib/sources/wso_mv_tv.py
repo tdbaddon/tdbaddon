@@ -30,12 +30,13 @@ class source:
     def __init__(self):
         self.base_link = 'http://watchmovies-online.ch'
         self.tvbase_link = 'http://watchseries-online.ch'
-        self.search_link = '/?s=%s'
+        self.tvsearch_link = 'https://www.google.com/search?q=allintitle:%s&sitesearch=watchseries-online.ch'
+        self.moviesearch_link = '/?s=%s'
 
 
     def get_movie(self, imdb, title, year):
         try:
-            query = self.search_link % (urllib.quote_plus(title))
+            query = self.moviesearch_link % (urllib.quote_plus(title))
             query = urlparse.urljoin(self.base_link, query)
 
             result = client.source(query)
@@ -74,21 +75,23 @@ class source:
             title = url
             hdlr = 'S%02dE%02d' % (int(season), int(episode))
 
-            query = self.search_link % (urllib.quote_plus('%s "%s"' % (title, hdlr)))
-            query = urlparse.urljoin(self.tvbase_link, query)
+            query = self.tvsearch_link % (urllib.quote_plus('"%s %s"' % (title, hdlr)))
 
             result = client.source(query)
-            result = client.parseDOM(result, 'header', attrs = {'class': "post-title"})
 
-            title = cleantitle.tv(title)
+            tvshowtitle = cleantitle.tv(title)
+
+            result = client.parseDOM(result, 'h3', attrs = {'class': '.+?'})
             result = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a')) for i in result]
-            result = [(i[0][0], i[1][0]) for i in result if len(i[0]) > 0 and len(i[1]) > 0]
-            result = [(i[0], re.compile('(.+?) (S\d*E\d*)').findall(i[1])) for i in result]
-            result = [(i[0], i[1][0][0], i[1][0][1]) for i in result if len(i[1]) > 0]
-            result = [i for i in result if title == cleantitle.tv(i[1])]
-            result = [i[0] for i in result if hdlr == i[2]][0]
+            result = [(i[0][0], i[1][-1]) for i in result if len(i[0]) > 0 and len(i[1]) > 0]
 
-            url = result.replace(self.tvbase_link, '')
+            result = [(i[0], re.compile('(^Watch Full "|^Watch |)(.+?) %s' % hdlr).findall(i[1])) for i in result]
+            result = [(i[0], i[1][0][-1]) for i in result if len(i[1]) > 0]
+            result = [i for i in result if tvshowtitle == cleantitle.tv(i[1])]
+            result = [i[0] for i in result][-1]
+
+            try: url = re.compile('//.+?(/.+)').findall(result)[0]
+            except: url = result
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
             return url

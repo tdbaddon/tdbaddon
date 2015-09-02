@@ -17,16 +17,22 @@ http://4.31.30.159:9039
 http://4.31.30.159:9038
 
 #EXTINF:0,AXN 
-0
+http://proxiiptv.dyndns.tv:8000/live/dejan/dejan/280.m3u8
 
 #EXTINF:0,BabyTV 
-0
+http://proxiiptv.dyndns.tv:8000/live/dejan/dejan/403.m3u8
 
 #EXTINF:0,BBC 1 
 http://82.135.224.134:80/udp/239.100.3.1:1234
 
+#EXTINF:0,BBC 1 
+http://37.187.160.187:8000/live/ressler/skype/53.m3u8
+
 #EXTINF:0,BBC 2 
 http://82.135.224.134/udp/239.100.3.3:1234
+
+#EXTINF:0,BBC 2 
+http://37.187.160.187:8000/live/ressler/skype/54.m3u8
 
 #EXTINF:0,BET 
 0
@@ -44,7 +50,7 @@ http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD28_W_250.sdp/p
 http://4.31.30.159:9036
 
 #EXTINF:0,Cbeebies 
-0
+http://37.187.160.187:8000/live/ressler/skype/129.m3u8
 
 #EXTINF:0,CBS 
 0
@@ -53,10 +59,10 @@ http://4.31.30.159:9036
 0
 
 #EXTINF:0,CBS Drama 
-0
+http://37.187.160.187:8000/live/ressler/skype/67.m3u8
 
 #EXTINF:0,CBS Reality 
-0
+http://37.187.160.187:8000/live/ressler/skype/66.m3u8
 
 #EXTINF:0,City TV Toronto 
 http://4.31.30.159:9010
@@ -68,7 +74,7 @@ http://4.31.30.159:9010
 http://origin.live.web.tv.streamprovider.net/streams/9044496707bcc259f6cdf58eb93cbfe9_live_0_0/index.m3u8
 
 #EXTINF:0,Comedy Central 
-0
+http://37.187.160.187:8000/live/ressler/skype/82.m3u8
 
 #EXTINF:0,Cooking Channel
 0
@@ -102,6 +108,9 @@ http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/index_350_av-p.m3u8?
 
 #EXTINF:0,E! 
 http://4.31.30.159:9011
+
+#EXTINF:0,E! 
+http://proxiiptv.dyndns.tv:8000/live/dejan/dejan/276.m3u8
 
 #EXTINF:0,E4 
 0
@@ -167,16 +176,16 @@ rtmp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:468p500kB31?b?b*t$
 http://ios.streamserver01.com:8080/ShowcaseTV/mystream.m3u8
 
 #EXTINF:0,ITV 1 
-0
+http://37.187.160.187:8000/live/ressler/skype/55.m3u8
 
 #EXTINF:0,ITV 2 
-0
+http://37.187.160.187:8000/live/ressler/skype/58.m3u8
 
 #EXTINF:0,ITV 3 
-0
+http://37.187.160.187:8000/live/ressler/skype/59.m3u8
 
 #EXTINF:0,ITV 4 
-0
+http://37.187.160.187:8000/live/ressler/skype/60.m3u8
 
 #EXTINF:0,JTV 
 rtmp://jtvmedia.jtv.com:1975/live playpath=live6 swfUrl=http://demandware.edgesuite.net/aaby_prd/on/demandware.static/Sites-jtv-Site/-/default/v1410110388581/swf/flashMediaPlayer/StrobeMediaPlayback.swf live=1 pageUrl=http://www.jtv.com/on/demandware.store/Sites-jtv-Site/default/LiveViewer-Show
@@ -197,7 +206,7 @@ http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
 0
 
 #EXTINF:0,More4 
-0
+http://37.187.160.187:8000/live/ressler/skype/64.m3u8
 
 #EXTINF:0,My9
 http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
@@ -233,25 +242,22 @@ http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
 http://80.80.160.168/live/7/live.m3u8
 
 #EXTINF:0,Sky 1 
-0
-
-#EXTINF:0,Sky 1 
-0
+http://37.187.160.187:8000/live/ressler/skype/77.m3u8
 
 #EXTINF:0,Sky 2 
-0
+http://37.187.160.187:8000/live/ressler/skype/79.m3u8
 
 #EXTINF:0,Sky Arts 1 
-0
+http://37.187.160.187:8000/live/ressler/skype/102.m3u8
 
 #EXTINF:0,Sky Arts 2 
 0
 
 #EXTINF:0,Sky Atlantic 
-0
+http://37.187.160.187:8000/live/ressler/skype/81.m3u8
 
 #EXTINF:0,Sky Living 
-0
+http://37.187.160.187:8000/live/ressler/skype/80.m3u8
 
 #EXTINF:0,Slice 
 0

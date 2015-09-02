@@ -35,7 +35,7 @@ http://92.60.234.98:8081
 http://213.81.153.221:8080/cetv
 
 #EXTINF:0,CMC
-0
+http://proxiiptv.dyndns.tv:8000/live/dejan/dejan/456.m3u8
 
 #EXTINF:0,DMC
 0
@@ -50,19 +50,19 @@ http://4.31.30.135:1935/st3fstv/12ios_TVDUGA_2548745/playlist.m3u8?
 rtmp://rtmp.elektrika.cz/live/myStream.sdp
 
 #EXTINF:0,Grand Narodna
-0
+http://proxiiptv.dyndns.tv:8000/live/dejan/dejan/457.m3u8
 
 #EXTINF:0,Happy 
 http://edge3.volim.tv/live/happy.stream/playlist.m3u8?hash=ad2c3d8d36d3e1b1cb6a7c2b587df040c1ac6ab7
 
 #EXTINF:0,Hayat Folk
-0
+http://proxiiptv.dyndns.tv:8000/live/dejan/dejan/357.m3u8
 
 #EXTINF:0,Hayat Music
 http://81.92.105.134:5555/pl.m3u8?channel=156
 
 #EXTINF:0,Hayat Plus
-0
+http://proxiiptv.dyndns.tv:8000/live/dejan/dejan/356.m3u8
 
 #EXTINF:0,Hema 
 mms://77.238.209.50:1234
@@ -95,7 +95,7 @@ rtmp://84.20.77.50/live/livestream1
 0
 
 #EXTINF:0,Kanal 3
-0
+http://edge1.volim.tv/live/kanal_3.stream/playlist.m3u8?hash=90df8700863cdf89ca0d31e74377ea58f060e02e
 
 #EXTINF:0,Kanal 5 
 http://217.16.82.6:1935/zulu/kanal5_2/playlist.m3u8
@@ -152,16 +152,16 @@ http://109.122.121.21/live/pink.stream/playlist.m3u8?hash=dee6d7e8a01316ca8d7f5f
 http://edge1.volim.tv/live/pink.stream/HasBahCa.m3u8?hash=206dc563f74bad817eb851dced9cd089b71b7a3f
 
 #EXTINF:0,Pink 2
-0
+http://edge1.volim.tv/live/pink.stream/playlist.m3u8?hash=90df8700863cdf89ca0d31e74377ea58f060e02e
 
 #EXTINF:0,Pink 3
-0
+http://www.nasatv.eu:80/live?channelId=24&uid=7&deviceUser=dm800&devicePass=dm800
 
 #EXTINF:0,Pink Action 1
-0
+http://www.nasatv.eu:80/live?channelId=64&uid=7&deviceUser=dm800&devicePass=dm800
 
 #EXTINF:0,Pink Action 2
-0
+http://www.nasatv.eu:80/live?channelId=25&uid=7&deviceUser=dm800&devicePass=dm800
 
 #EXTINF:0,Pink Action 3
 0
@@ -170,61 +170,73 @@ http://edge1.volim.tv/live/pink.stream/HasBahCa.m3u8?hash=206dc563f74bad817eb851
 0
 
 #EXTINF:0,Pink Classic
-0
+http://www.nasatv.eu:80/live?channelId=80&uid=7&deviceUser=dm800&devicePass=dm800
 
 #EXTINF:0,Pink Comedy
-0
+http://www.nasatv.eu:80/live?channelId=4&uid=7&deviceUser=dm800&devicePass=dm800
 
 #EXTINF:0,Pink Extra
-0
+http://www.nasatv.eu:80/live?channelId=70&uid=7&deviceUser=dm800&devicePass=dm800
 
 #EXTINF:0,Pink Family
-0
+http://www.nasatv.eu:80/live?channelId=65&uid=7&deviceUser=dm800&devicePass=dm800
 
 #EXTINF:0,Pink Fashion
-0
+http://www.nasatv.eu:80/live?channelId=58&uid=7&deviceUser=dm800&devicePass=dm800
 
 #EXTINF:0,Pink Film
-0
+http://www.nasatv.eu:80/live?channelId=63&uid=7&deviceUser=dm800&devicePass=dm800
 
 #EXTINF:0,Pink Folk 1
 0
 
 #EXTINF:0,Pink Folk 2
-0
+http://www.nasatv.eu:80/live?channelId=69&uid=7&deviceUser=dm800&devicePass=dm800
 
 #EXTINF:0,Pink Horror
 http://185.73.239.23:8000/live/testrapid/3CmWLfb3kW/1559.ts
 
+#EXTINF:0,Pink Horror
+http://www.nasatv.eu:80/live?channelId=31&uid=7&deviceUser=dm800&devicePass=dm800
+
 #EXTINF:0,Pink Kids
-0
+http://www.nasatv.eu:80/live?channelId=61&uid=7&deviceUser=dm800&devicePass=dm800
 
 #EXTINF:0,Pink Kuvar
-0
+http://www.nasatv.eu:80/live?channelId=114&uid=7&deviceUser=dm800&devicePass=dm800
 
 #EXTINF:0,Pink Live
-0
+http://www.nasatv.eu:80/live?channelId=36&uid=7&deviceUser=dm800&devicePass=dm800
 
 #EXTINF:0,Pink M
-0
+http://www.nasatv.eu:80/live?channelId=71&uid=7&deviceUser=dm800&devicePass=dm800
 
 #EXTINF:0,Pink Movies 1
 http://185.73.239.23:8000/live/testrapid/3CmWLfb3kW/1571.ts
 
+#EXTINF:0,Pink Movies 1
+http://www.nasatv.eu:80/live?channelId=82&uid=7&deviceUser=dm800&devicePass=dm800
+
 #EXTINF:0,Pink Movies 2
 http://185.73.239.23:8000/live/testrapid/3CmWLfb3kW/1564.ts
+
+#EXTINF:0,Pink Movies 2
+http://www.nasatv.eu:80/live?channelId=27&uid=7&deviceUser=dm800&devicePass=dm800
 
 #EXTINF:0,Pink Movies 3
 http://185.73.239.23:8000/live/testrapid/3CmWLfb3kW/1561.ts
 
+#EXTINF:0,Pink Movies 3
+http://www.nasatv.eu:80/live?channelId=28&uid=7&deviceUser=dm800&devicePass=dm800
+
 #EXTINF:0,Pink Music 1
-0
+http://www.nasatv.eu:80/live?channelId=81&uid=7&deviceUser=dm800&devicePass=dm800
 
 #EXTINF:0,Pink Music 2
 0
 
 #EXTINF:0,Pink Music 3
-0
+http://www.nasatv.eu:80/live?channelId=35&uid=7&deviceUser=dm800&devicePass=dm800
 
 #EXTINF:0,Pink Music 4
 0
@@ -236,31 +248,31 @@ http://185.73.239.23:8000/live/testrapid/3CmWLfb3kW/1561.ts
 0
 
 #EXTINF:0,Pink Nostalgia
-0
+http://www.nasatv.eu:80/live?channelId=52&uid=7&deviceUser=dm800&devicePass=dm800
 
 #EXTINF:0,Pink Pedia
-0
+http://www.nasatv.eu:80/live?channelId=33&uid=7&deviceUser=dm800&devicePass=dm800
 
 #EXTINF:0,Pink Plus
-0
+http://www.nasatv.eu:80/live?channelId=29&uid=7&deviceUser=dm800&devicePass=dm800
 
 #EXTINF:0,Pink Premium
-0
+http://www.nasatv.eu:80/live?channelId=5&uid=7&deviceUser=dm800&devicePass=dm800
 
 #EXTINF:0,Pink Reality
-0
+http://www.nasatv.eu:80/live?channelId=34&uid=7&deviceUser=dm800&devicePass=dm800
 
 #EXTINF:0,Pink Serije
-0
+http://www.nasatv.eu:80/live?channelId=113&uid=7&deviceUser=dm800&devicePass=dm800
 
 #EXTINF:0,Pink Show
-0
+http://www.nasatv.eu:80/live?channelId=116&uid=7&deviceUser=dm800&devicePass=dm800
 
 #EXTINF:0,Pink Soap
-0
+http://www.nasatv.eu:80/live?channelId=32&uid=7&deviceUser=dm800&devicePass=dm800
 
 #EXTINF:0,Pink Style
-0
+http://www.nasatv.eu:80/live?channelId=57&uid=7&deviceUser=dm800&devicePass=dm800
 
 #EXTINF:0,Pink Super Kids
 0
@@ -268,14 +280,17 @@ http://185.73.239.23:8000/live/testrapid/3CmWLfb3kW/1561.ts
 #EXTINF:0,Pink Western
 http://185.73.239.23:8000/live/testrapid/3CmWLfb3kW/1558.ts
 
+#EXTINF:0,Pink Western
+http://www.nasatv.eu:80/live?channelId=56&uid=7&deviceUser=dm800&devicePass=dm800
+
 #EXTINF:0,Pink World
-0
+http://www.nasatv.eu:80/live?channelId=6&uid=7&deviceUser=dm800&devicePass=dm800
 
 #EXTINF:0,Pink World Cinema
-0
+http://www.nasatv.eu:80/live?channelId=112&uid=7&deviceUser=dm800&devicePass=dm800
 
 #EXTINF:0,Pink Zabava
-0
+http://www.nasatv.eu:80/live?channelId=62&uid=7&deviceUser=dm800&devicePass=dm800
 
 #EXTINF:0,Planet TV
 rtsp://origin.biokoda.tv/live/mbit-planet?k=planettv-public
@@ -302,10 +317,10 @@ mms://beotelmedia.beotel.net/tvcg
 mms://195.252.114.172/tvcg
 
 #EXTINF:0,RTL 1
-0
+http://proxiiptv.dyndns.tv:8000/live/dejan/dejan/378.m3u8
 
 #EXTINF:0,RTL 2
-0
+http://proxiiptv.dyndns.tv:8000/live/dejan/dejan/248.m3u8
 
 #EXTINF:0,RTRS 
 http://edge1.volim.tv/live/rtrs.stream/HasBahCa.m3u8?hash=206dc563f74bad817eb851dced9cd089b71b7a3f
@@ -323,7 +338,7 @@ http://213.81.153.221:8080/ruzinov
 http://92.53.27.201:10000/
 
 #EXTINF:0,SOS Kanal 
-0
+http://www.nasatv.eu:80/live?channelId=20&uid=7&deviceUser=dm800&devicePass=dm800
 
 #EXTINF:0,Studio B
 mms://195.252.114.172/studiob
@@ -333,9 +348,6 @@ http://88.212.10.27:81/streams/stv1.m3u8
 
 #EXTINF:0,STV2
 http://88.212.10.27:81/streams/stv2.m3u8
-
-#EXTINF:0,STV Folk
-0
 
 #EXTINF:0,Vesti 24
 mms://62.162.58.55/24vesti

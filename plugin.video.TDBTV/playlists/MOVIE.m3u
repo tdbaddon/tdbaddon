@@ -62,34 +62,34 @@ rtmp://94.102.49.207/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to
 0
 
 #EXTINF:0,Sky Movies Comedy 
-0
+http://37.187.160.187:8000/live/ressler/skype/118.m3u8
 
 #EXTINF:0,Sky Movies Crime 
-0
+http://37.187.160.187:8000/live/ressler/skype/119.m3u8
 
 #EXTINF:0,Sky Movies Disney 
 0
 
 #EXTINF:0,Sky Movies Drama 
-0
+http://37.187.160.187:8000/live/ressler/skype/120.m3u8
 
 #EXTINF:0,Sky Movies Family 
-0
+http://37.187.160.187:8000/live/ressler/skype/116.m3u8
 
 #EXTINF:0,Sky Movies Horrors 
-0
+http://37.187.160.187:8000/live/ressler/skype/121.m3u8
 
 #EXTINF:0,Sky Movies Modern Greats 
 0
 
 #EXTINF:0,Sky Movies Premiere 
-0
+http://37.187.160.187:8000/live/ressler/skype/115.m3u8
 
 #EXTINF:0,Sky Movies Premiere+
 0
 
 #EXTINF:0,Sky Movies SciFi 
-0
+http://37.187.160.187:8000/live/ressler/skype/121.m3u8
 
 #EXTINF:0,Sky Movies Select 
 0

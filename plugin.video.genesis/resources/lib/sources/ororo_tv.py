@@ -19,7 +19,7 @@
 '''
 
 
-import re,urllib,urlparse,base64
+import re,urllib,urlparse,base64,datetime
 
 from resources.lib.libraries import cleantitle
 from resources.lib.libraries import client
@@ -28,7 +28,7 @@ from resources.lib.libraries import client
 class source:
     def __init__(self):
         self.base_link = 'http://ororo.tv'
-        self.headers = {'User-Agent' : 'Linux / Firefox 29: Mozilla/5.0 (X11; Linux x86_64; rv:29.0) Gecko/20100101 Firefox/29.0'}
+        self.headers = {'User-Agent' : 'Mozilla/%s' % datetime.datetime.now().strftime('%Y%m%d%H%M%S')}
         self.key_link = base64.urlsafe_b64decode('dXNlciU1QnBhc3N3b3JkJTVEPWMyNjUxMzU2JnVzZXIlNUJlbWFpbCU1RD1jMjY1MTM1NiU0MGRyZHJiLmNvbQ==')
         self.sign_link = 'http://ororo.tv/users/sign_in'
 

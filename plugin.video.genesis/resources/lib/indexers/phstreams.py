@@ -20,15 +20,13 @@
 '''
 
 
-import re
-import sys
-import urllib
-import urlparse
-import threading
+import re,sys,urllib,urlparse
+
 from resources.lib.libraries import cache
 from resources.lib.libraries import cachemeta
 from resources.lib.libraries import control
 from resources.lib.libraries import client
+from resources.lib.libraries import workers
 from resources.lib.libraries import views
 
 
@@ -40,9 +38,9 @@ def getCategory():
     getDirectory('0', phLink, '0', '0', '0', '0', '0', close=False)
 
     addCategoryItem('NHL', 'nhlDirectory', 'hockey.jpg')
-    addCategoryItem('Settings', 'openSettings', 'settings.png')
-    addCategoryItem('Downloads', 'downloader', 'downloader.png')
-    addCategoryItem('Search', 'search', 'search.png')
+    addCategoryItem(control.lang(30701).encode('utf-8'), 'openSettings', 'settings.png')
+    addCategoryItem(control.lang(30721).encode('utf-8'), 'downloader', 'downloader.png')
+    addCategoryItem(control.lang(30702).encode('utf-8'), 'search', 'search.png')
 
     endCategory()
 
@@ -354,15 +352,15 @@ def subDirectory(name, url, audio, image, fanart, playable, tvshow, content):
 
     for i in range(0, len(match)):
         url = match[i]
-        label = '%s Link %s' % (name, str(i+1))
+        label = '%s %s %s' % (name, control.lang(30704).encode('utf-8'), str(i+1))
         addDirectoryItem(label, url, 'resolveUrl', image, image, fanart, '0', content, data, isFolder=False)
 
     control.directory(int(sys.argv[1]), cacheToDisc=True)
 
 
 def getSearch():
-    addDirectoryItem('Search...', '0', 'searchDirectory', '0', '0', '0', '0', '0', {})
-    addDirectoryItem('Clear History', '0', 'clearSearch', '0', '0', '0', '0', '0', {})
+    addDirectoryItem('%s...' % control.lang(30702).encode('utf-8'), '0', 'searchDirectory', '0', '0', '0', '0', '0', {})
+    addDirectoryItem(control.lang(30703).encode('utf-8'), '0', 'clearSearch', '0', '0', '0', '0', '0', {})
 
     try:
         def search(): return
@@ -378,7 +376,7 @@ def getSearch():
 
 def searchDirectory(query=None):
     if (query == None or query == ''):
-        keyboard = control.keyboard('', 'Search')
+        keyboard = control.keyboard('', control.lang(30702).encode('utf-8'))
         keyboard.doModal()
         if not (keyboard.isConfirmed()): return
         query = keyboard.getText()
@@ -402,7 +400,7 @@ def searchDirectory(query=None):
     servers = [phSearch % i for i in servers if not 'mecca' in i]
 
     threads = []
-    for server in servers: threads.append(Thread(worker, server))
+    for server in servers: threads.append(workers.Thread(worker, server))
     [i.start() for i in threads]
     [i.join() for i in threads]
 
@@ -412,7 +410,7 @@ def searchDirectory(query=None):
     urls = sum(urls, [])
 
     threads = []
-    for url in urls: threads.append(Thread(worker, url))
+    for url in urls: threads.append(workers.Thread(worker, url))
     [i.start() for i in threads]
     [i.join() for i in threads]
 
@@ -555,7 +553,7 @@ def resolveUrl(name, url, audio, image, fanart, playable, content):
                 url = sorted(url, key=lambda k: k['quality'])
                 for i in url: i.update((k, '720p') for k, v in i.iteritems() if v == 'HD')
                 for i in url: i.update((k, '480p') for k, v in i.iteritems() if v == 'SD')
-                q = [i['quality'].upper() for i in url]
+                q = ['[B]%s[/B] | %s' % (i['source'].upper(), i['quality'].upper()) for i in url]
                 u = [i['url'] for i in url]
                 select = control.selectDialog(q)
                 if select == -1: return
@@ -565,6 +563,7 @@ def resolveUrl(name, url, audio, image, fanart, playable, content):
 
 
         from resources.lib import resolvers
+        host = (urlparse.urlparse(url).netloc).rsplit('.', 1)[0].rsplit('.')[-1]
         url = resolvers.request(url)
 
         if type(url) == list and len(url) == 1:
@@ -574,7 +573,7 @@ def resolveUrl(name, url, audio, image, fanart, playable, content):
             url = sorted(url, key=lambda k: k['quality'])
             for i in url: i.update((k, '720p') for k, v in i.iteritems() if v == 'HD')
             for i in url: i.update((k, '480p') for k, v in i.iteritems() if v == 'SD')
-            q = [i['quality'].upper() for i in url]
+            q = ['[B]%s[/B] | %s' % (host.upper(), i['quality'].upper()) for i in url]
             u = [i['url'] for i in url]
             select = control.selectDialog(q)
             if select == -1: return
@@ -582,7 +581,7 @@ def resolveUrl(name, url, audio, image, fanart, playable, content):
 
         if url == None: raise Exception()
     except:
-        return control.infoDialog('Unplayable stream')
+        return control.infoDialog(control.lang(30705).encode('utf-8'))
         pass
 
 
@@ -598,8 +597,8 @@ def resolveUrl(name, url, audio, image, fanart, playable, content):
 
 
 def addCategoryItem(name, action, image, isFolder=True):
-    u = sys.argv[0]+"?action="+str(action)
-    image = control.addonInfo('path') + '/art/' + image
+    u = '%s?action=%s' % (sys.argv[0], str(action))
+    image = control.addonInfo('path') + '/resources/media/phstreams/' + image
     item = control.item(name, iconImage=image, thumbnailImage=image)
     item.addContextMenuItems([], replaceItems=False)
     item.setProperty('Fanart_Image', control.addonInfo('fanart'))
@@ -618,47 +617,47 @@ def addDirectoryItem(name, url, action, image, image2, fanart, audio, content, d
 
     sysaddon = sys.argv[0]
 
-    u=sysaddon+"?name="+urllib.quote_plus(name)+"&url="+urllib.quote_plus(url)+"&audio="+urllib.quote_plus(audio)+"&image="+urllib.quote_plus(image)+"&fanart="+urllib.quote_plus(fanart)+"&playable="+urllib.quote_plus(playable)+"&tvshow="+str(tvshow)+"&content="+str(content)+"&action="+str(action)
+    u = '%s?name=%s&url=%s&audio=%s&image=%s&fanart=%s&playable=%s&tvshow=%s&content=%s&action=%s' % (sysaddon, urllib.quote_plus(name), urllib.quote_plus(url), urllib.quote_plus(audio), urllib.quote_plus(image), urllib.quote_plus(fanart), urllib.quote_plus(playable), str(tvshow), str(content), str(action))
 
     cm = []
 
     if content in ['movies', 'tvshows']:
         data.update({'trailer': '%s?action=trailer&name=%s' % (sysaddon, urllib.quote_plus(name))})
-        cm.append(('[COLOR gold]Watch Trailer[/COLOR]', 'RunPlugin(%s?action=trailer&name=%s)' % (sysaddon, urllib.quote_plus(name))))
+        cm.append((control.lang(30707).encode('utf-8'), 'RunPlugin(%s?action=trailer&name=%s)' % (sysaddon, urllib.quote_plus(name))))
 
     if not 'plot' in data:
-        data.update({'plot': 'Discover Great Streaming Playlists!'})
+        data.update({'plot': control.lang(30706).encode('utf-8')})
 
 
     if content == 'movies':
-        cm.append(('[COLOR gold]Movie Information[/COLOR]', 'XBMC.Action(Info)'))
+        cm.append((control.lang(30708).encode('utf-8'), 'XBMC.Action(Info)'))
     elif content in ['tvshows', 'seasons']:
-        cm.append(('[COLOR gold]TV Show Information[/COLOR]', 'XBMC.Action(Info)'))
+        cm.append((control.lang(30709).encode('utf-8'), 'XBMC.Action(Info)'))
     elif content == 'episodes':
-        cm.append(('[COLOR gold]Episode Information[/COLOR]', 'XBMC.Action(Info)'))
+        cm.append((control.lang(30710).encode('utf-8'), 'XBMC.Action(Info)'))
 
 
     if content == 'movies' and not isFolder == True:
         downloadFile = name
         try: downloadFile = '%s (%s)' % (data['title'], data['year'])
         except: pass
-        cm.append(('[COLOR gold]Download This File[/COLOR]', 'RunPlugin(%s?action=addDownload&name=%s&url=%s&image=%s)' % (sysaddon, urllib.quote_plus(downloadFile), urllib.quote_plus(url), urllib.quote_plus(image))))
+        cm.append((control.lang(30722).encode('utf-8'), 'RunPlugin(%s?action=addDownload&name=%s&url=%s&image=%s)' % (sysaddon, urllib.quote_plus(downloadFile), urllib.quote_plus(url), urllib.quote_plus(image))))
 
     elif content == 'episodes' and not isFolder == True:
         downloadFile = name
         try: downloadFile = '%s S%02dE%02d' % (data['tvshowtitle'], int(data['season']), int(data['episode']))
         except: pass
-        cm.append(('[COLOR gold]Download This File[/COLOR]', 'RunPlugin(%s?action=addDownload&name=%s&url=%s&image=%s)' % (sysaddon, urllib.quote_plus(downloadFile), urllib.quote_plus(url), urllib.quote_plus(image))))
+        cm.append((control.lang(30722).encode('utf-8'), 'RunPlugin(%s?action=addDownload&name=%s&url=%s&image=%s)' % (sysaddon, urllib.quote_plus(downloadFile), urllib.quote_plus(url), urllib.quote_plus(image))))
 
 
     if content == 'movies':
-        cm.append(('[COLOR gold]Set Movies view[/COLOR]', 'RunPlugin(%s?action=addView&content=movies)' % sysaddon))
+        cm.append((control.lang(30711).encode('utf-8'), 'RunPlugin(%s?action=addView&content=movies)' % sysaddon))
     elif content == 'tvshows':
-        cm.append(('[COLOR gold]Set TV Shows view[/COLOR]', 'RunPlugin(%s?action=addView&content=tvshows)' % sysaddon))
+        cm.append((control.lang(30712).encode('utf-8'), 'RunPlugin(%s?action=addView&content=tvshows)' % sysaddon))
     elif content == 'seasons':
-        cm.append(('[COLOR gold]Set Seasons view[/COLOR]', 'RunPlugin(%s?action=addView&content=seasons)' % sysaddon))
+        cm.append((control.lang(30713).encode('utf-8'), 'RunPlugin(%s?action=addView&content=seasons)' % sysaddon))
     elif content == 'episodes':
-        cm.append(('[COLOR gold]Set Episodes view[/COLOR]', 'RunPlugin(%s?action=addView&content=episodes)' % sysaddon))
+        cm.append((control.lang(30714).encode('utf-8'), 'RunPlugin(%s?action=addView&content=episodes)' % sysaddon))
 
 
     item = control.item(name, iconImage='DefaultFolder.png', thumbnailImage=image)
@@ -725,12 +724,4 @@ def cleaneptitle(tvshow, name):
     except:
         return
 
-
-class Thread(threading.Thread):
-    def __init__(self, target, *args):
-        self._target = target
-        self._args = args
-        threading.Thread.__init__(self)
-    def run(self):
-        self._target(*self._args)
 

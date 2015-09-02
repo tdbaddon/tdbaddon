@@ -1,4 +1,15 @@
 ------------------------
+Genesis v5.0.1 (2-Sep-15)
+------------------------
+
+- Fixed issue with Trakt Progress.
+- Added Croatian, Greek and Portuguese translations.
+- Updated available sources.
+- Updated available resolvers.
+- Code cosmetics.
+
+
+------------------------
 Genesis v5.0.0 (28-Aug-15)
 ------------------------
 

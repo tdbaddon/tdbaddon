@@ -11,10 +11,10 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 0
 
 #EXTINF:0,Box Nation 
-0
+http://stream-full.selfip.com:8000/live/facebook/facebook/347.ts
 
 #EXTINF:0,BT Sport 1 
-0
+http://stream-full.selfip.com:8000/live/facebook/facebook/83.ts
 
 #EXTINF:0,BT Sport 2 
 0
@@ -170,13 +170,13 @@ mms://100automoto.tv/channel_porsche
 0
 
 #EXTINF:0,Sky Sports 1 
-0
+http://stream-full.selfip.com:8000/live/facebook/facebook/102.ts
 
 #EXTINF:0,Sky Sports 2 
-0
+http://stream-full.selfip.com:8000/live/facebook/facebook/103.ts
 
 #EXTINF:0,Sky Sports 3 
-0
+http://stream-full.selfip.com:8000/live/facebook/facebook/104.ts
 
 #EXTINF:0,Sky Sports 4 
 0
@@ -212,19 +212,19 @@ rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9
 http://stream01.yamgo.com/iPhone/HLS_TS/broadcast/trace_tv_sports-tablet.3gp/trace_tv_sports-tablet.3gp-mr647k.m3u8?
 
 #EXTINF:0,TSN 1 
-0
+http://stream-full.selfip.com:8000/live/facebook/facebook/303.ts
 
 #EXTINF:0,TSN 2 
-0
+http://stream-full.selfip.com:8000/live/facebook/facebook/304.ts
 
 #EXTINF:0,TSN 3 
-0
+http://stream-full.selfip.com:8000/live/facebook/facebook/305.ts
 
 #EXTINF:0,TSN 4 
-0
+http://stream-full.selfip.com:8000/live/facebook/facebook/306.ts
 
 #EXTINF:0,TSN 5 
-0
+http://stream-full.selfip.com:8000/live/facebook/facebook/307.ts
 
 #EXTINF:0,Viasat Golf 
 0

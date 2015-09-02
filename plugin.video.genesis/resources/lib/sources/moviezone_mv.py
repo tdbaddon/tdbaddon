@@ -29,6 +29,8 @@ from resources.lib.resolvers import googleplus
 class source:
     def __init__(self):
         self.base_link = 'http://www.hdmoviezone.net'
+        self.cookie_link = 'http://gl.hdmoviezone.net/getimage.php'
+        self.stream_link = 'http://gl.hdmoviezone.net/hdmzgl.php'
         self.search_link = '/feed/?s=%s'
 
 
@@ -69,18 +71,16 @@ class source:
             post = re.compile('movie_player_file *= *"(.+?)"').findall(result)[0]
             post = urllib.urlencode({'url': post})
 
-            url = client.parseDOM(result, 'script', ret='src', attrs = {'type': '.+?'})[0]
-            url = client.source(url)
-            url = url.replace('\n','')
-            url = re.compile('getServerHost.+?return\s+"(.+?)"').findall(url)[0]
+            cookie = client.source(self.cookie_link, output='cookie', close=False)
 
-            headers = {'Host': 'hdmoviezone.net',
-            'Connection': 'keep-alive',
+            headers = {'Host': 'gl.hdmoviezone.net',
             'Accept': 'text/html, */*; q=0.01',
             'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-            'Origin': self.base_link }
+            'Origin': 'http://www.hdmoviezone.net',
+            'Cookie': cookie}
 
-            result = client.source(url, post=post, headers=headers)
+            result = client.source(self.stream_link, post=post, headers=headers)
+
             result = json.loads(result)
             result = result['content']
 
@@ -108,4 +108,5 @@ class source:
             return url
         except:
             return
+
 

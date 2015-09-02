@@ -942,10 +942,6 @@ msgctxt "#30893"
 msgid "Priority 13"
 msgstr ""
 
-msgctxt "#3089"
-msgid "Priority 1"
-msgstr ""
-
 msgctxt "#30894"
 msgid "Priority 14"
 msgstr ""

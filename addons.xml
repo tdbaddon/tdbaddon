@@ -161,7 +161,7 @@ Thats all Folks
 	</extension>
 </addon>
 
-<addon id="plugin.video.genesis" name="Genesis" version="5.0.0" provider-name="lambda">
+<addon id="plugin.video.genesis" name="Genesis" version="5.0.1" provider-name="lambda">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.requests" version="1.0.0" />
@@ -459,7 +459,7 @@ Thats all Folks
 
 <addon id="plugin.video.TDBEUROTV"
        name="TDB EURO TV"
-       version="1.92"
+       version="1.93"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -534,7 +534,7 @@ Thats all Folks
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="3.05"
+       version="3.06"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>

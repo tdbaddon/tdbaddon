@@ -20,13 +20,8 @@
 '''
 
 
-import re
-import os
-import sys
-import urllib
-import json
-import datetime
-import subprocess
+import re,os,sys,urllib,json,datetime,subprocess
+
 from jars import FuckNeulionClient
 from resources.lib.libraries import control
 from resources.lib.libraries import client
@@ -35,7 +30,7 @@ import xbmc
 
 addonPath = control.addonPath
 addonFanart = control.addonInfo('fanart')
-addonIcon = os.path.join(addonPath, 'art/hockey.jpg')
+addonIcon = os.path.join(addonPath, 'resources/media/nhlcom/hockey.jpg')
 jarFile = os.path.join(addonPath, 'jars/FuckNeulionV2.jar')
 
 
@@ -49,9 +44,9 @@ def nhlDirectory():
     items = json.loads(result)
     items = sorted(items, key=lambda k: k['est'])
 
-    addDirectoryItem('[COLOR red]Archived Games Click Here[/COLOR]', 'Archived', 'nhlArchives', '0', '0')
-    addDirectoryItem('[COLOR gold]Live Games , Requires some modifications to get working visit forum.[/COLOR]', '0', '0', '0', '0')
-    addDirectoryItem('[COLOR gold]If list returns BLANK, Feed is not up yet.[/COLOR]', '0', '0', '0', '0')
+    addDirectoryItem(control.lang(30751).encode('utf-8'), 'Archived', 'nhlArchives', '0', '0')
+    addDirectoryItem(control.lang(30752).encode('utf-8'), '0', '0', '0', '0')
+    addDirectoryItem(control.lang(30753).encode('utf-8'), '0', '0', '0', '0')
 
     for item in items:
         try:
@@ -71,7 +66,6 @@ def nhlDirectory():
 
 
 def nhlArchives():
-
     dt = procTimezone(5)
     datex = int(dt.strftime('%Y%m%d'))
 
@@ -158,7 +152,7 @@ def nhlStreams(name, url):
         for i in l2: addDirectoryItem(i['name'], i['url'], 'nhlResolve', i['image'], '0', isFolder=False)
 
     if l1 == [] and l2 == []:
-        return control.infoDialog('[COLOR red]Feed not available yet[/COLOR]', name, addonIcon)
+        return control.infoDialog(control.lang(30754).encode('utf-8'), name, addonIcon)
 
     endDirectory()
 
@@ -183,7 +177,7 @@ def nhlResolve(url):
 
         q = [i[0] for i in result]
         u = [i[1] for i in result]
-        select = control.selectDialog(q, 'Pick A Bandwidth')
+        select = control.selectDialog(q, control.lang(30755).encode('utf-8'))
         if select == -1: return
         url = u[select]
 
@@ -248,7 +242,7 @@ def addDirectoryItem(name, url, action, image, fanart, isFolder=True):
     if image == '0': image = addonIcon
     if fanart == '0': fanart = addonFanart
 
-    u=sys.argv[0]+"?name="+urllib.quote_plus(name)+"&url="+urllib.quote_plus(url)+"&image="+urllib.quote_plus(image)+"&fanart="+urllib.quote_plus(fanart)+"&action="+str(action)
+    u = '%s?name=%s&url=%s&image=%s&fanart=%s&action=%s' % (sys.argv[0], urllib.quote_plus(name), urllib.quote_plus(url), urllib.quote_plus(image), urllib.quote_plus(fanart), str(action))
 
     item = control.item(name, iconImage=image, thumbnailImage=image)
     item.setInfo(type='Video', infoLabels = {'title': name})
@@ -287,4 +281,5 @@ def procTimezone(h, dt=0):
         dt = dt - datetime.timedelta(hours = int(dtd))
 
     return dt
+
 

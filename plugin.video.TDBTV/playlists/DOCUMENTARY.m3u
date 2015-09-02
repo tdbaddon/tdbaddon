@@ -13,6 +13,9 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 #EXTINF:0,Animal Planet 
 http://80.80.160.168/live/1/live.m3u8
 
+#EXTINF:0,Animal Planet 
+http://proxiiptv.dyndns.tv:8000/live/dejan/dejan/272.m3u8
+
 #EXTINF:0,Destination America 
 0
 
@@ -20,7 +23,7 @@ http://80.80.160.168/live/1/live.m3u8
 0
 
 #EXTINF:0,Discovery History 
-0
+http://37.187.160.187:8000/live/ressler/skype/93.m3u8
 
 #EXTINF:0,Discovery Channel 
 http://80.80.160.168/live/8/live.m3u8
@@ -33,6 +36,9 @@ http://80.80.160.168/live/8/live.m3u8
 
 #EXTINF:0,Discovery Science 
 http://80.80.160.168/live/9/live.m3u8
+
+#EXTINF:0,Discovery Science
+http://37.187.160.187:8000/live/ressler/skype/94.m3u8
 
 #EXTINF:0,Discovery Turbo 
 0
@@ -55,11 +61,17 @@ http://link.theplatform.com/s/dtjsEC/chjdYJxKb44V?manifest=m3u&feed=History%20Li
 #EXTINF:0,History Channel 
 http://4.31.30.159:9035
 
+#EXTINF:0,History Channel 
+http://37.187.160.187:8000/live/ressler/skype/90.m3u8
+
 #EXTINF:0,History Channel 2
 0
 
 #EXTINF:0,Investigation Discovery 
 http://80.80.160.168/live/5/live.m3u8
+
+#EXTINF:0,Investigation Discovery 
+http://37.187.160.187:8000/live/ressler/skype/98.m3u8
 
 #EXTINF:0,Nasa TV 
 http://nasatv-lh.akamaihd.net/i/NASA_101@319270/master.m3u8 
@@ -67,11 +79,17 @@ http://nasatv-lh.akamaihd.net/i/NASA_101@319270/master.m3u8
 #EXTINF:0,Nat Geo Wild 
 http://194.44.229.77:777/udp/237.1.239.21:1234
 
+#EXTINF:0,Nat Geo Wild 
+http://37.187.160.187:8000/live/ressler/skype/97.m3u8
+
 #EXTINF:0,National Geographic 
 http://194.44.229.77:777/udp/237.1.239.22:1234
 
 #EXTINF:0,National Geographic 
 http://194.44.229.77:777/udp/237.1.238.10:1234
+
+#EXTINF:0,National Geographic 
+http://37.187.160.187:8000/live/ressler/skype/96.m3u8
 
 #EXTINF:0,Planet Green 
 http://80.80.160.168/live/4/live.m3u8
