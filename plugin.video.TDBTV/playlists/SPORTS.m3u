@@ -5,21 +5,19 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 ---------------------------------------------------------------------------------------------------------------
 
 #EXTINF:0,Bein Sport 1 
-http://37.59.17.46/live/EsYys7tk6HyQqJpsJLZQFA/1441009513/27137969c5378da92990cf03958714ea.m3u8 
+0
+
 #EXTINF:0,Bein Sport 2 
-http://192.99.19.181/live/96hvXWP6lMAXRM02wQJJpw/1441009498/6e0e2fa36b7255599158fcd2116fc097.m3u8 #EXTINF:0,Big Ten Network 
-http://bigten247.cdnak.bigtenhd.neulion.com/nlds/btn2go/btnnetwork/as/live/btnnetwork_hd_3000.m3u8
+0
 
 #EXTINF:0,Box Nation 
-http://37.187.149.103:8000/live/07951db8aa7cbd43/34abd2d0ce65538f/194.m3u8?token=uz6qP4oobvt_uHy8wFoYSQ&e=1439941315&u=33901&channel=
+0
 
 #EXTINF:0,BT Sport 1 
-http://37.59.17.46/live/3bufBzQed6kelGJdyhD7Gg/1441009345/feb9c19124327ffd2bae3c97249ea40e.m3u8 
-#EXTINF:0,BT Sport 2 
-http://servprjsmartv.mine.nu:8000/live/persianshare/shkfyhpne/1574.m3u8
+0
 
 #EXTINF:0,BT Sport 2 
-http://37.187.149.103:8000/live/07951db8aa7cbd43/34abd2d0ce65538f/94.m3u8?token=uz6qP4oobvt_uHy8wFoYSQ&e=1439941315&u=33901&channel=
+0
 
 #EXTINF:0,CBS Sports 
 http://cbspgalivehd-lh.akamaihd.net/i/farmersday4_simulcast@92710/master.m3u8
@@ -27,32 +25,20 @@ http://cbspgalivehd-lh.akamaihd.net/i/farmersday4_simulcast@92710/master.m3u8
 #EXTINF:0,Chelsea TV 
 http://87.245.214.43/streaming/futbol/16/tvrec/playlist.m3u8
 
-#EXTINF:0,Chelsea TV 
-http://37.187.149.103:8000/live/07951db8aa7cbd43/34abd2d0ce65538f/138.m3u8?token=uz6qP4oobvt_uHy8wFoYSQ&e=1439941315&u=33901&channel=
-
 #EXTINF:0,CMore Sport 
 0
 
 #EXTINF:0,ESPN 
 http://80.80.160.168/live/6/live.m3u8
 
-#EXTINF:0,ESPN 
-http://37.187.149.103:8000/live/07951db8aa7cbd43/34abd2d0ce65538f/146.m3u8?token=uz6qP4oobvt_uHy8wFoYSQ&e=1439941315&u=33901&channel=
-
 #EXTINF:0,Eurosport 1 
 http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_1800.m3u8
 
 #EXTINF:0,Eurosport 1 
-rtmp://80.82.64.140:443/liverepeater playpath=39 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
-
-#EXTINF:0,Eurosport 1 
-rtmp://80.82.78.85:443/liverepeater playpath=39 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
+rtmp://181.214.35.7:19350/live/ playpath=wrLnq7XIjCGM swfUrl=http://www.letgo.tv/jwplayer.flash.swf live=1 pageUrl=http://www.letgo.tv/embed.php?channel=231&vw=650&vh=400
 
 #EXTINF:0,Eurosport 2 
-rtmp://80.82.64.140:443/liverepeater playpath=10 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
-
-#EXTINF:0,Eurosport 2 
-http://37.187.149.103:8000/live/07951db8aa7cbd43/34abd2d0ce65538f/134.m3u8?token=uz6qP4oobvt_uHy8wFoYSQ&e=1439941315&u=33901&channel=
+0
 
 #EXTINF:0,Eurosport News 
 0
@@ -61,13 +47,10 @@ http://37.187.149.103:8000/live/07951db8aa7cbd43/34abd2d0ce65538f/134.m3u8?token
 0
 
 #EXTINF:0,Fishing & Hunting 
-http://31.130.21.128:81/udp/238.1.2.171:1234
+0
 
 #EXTINF:0,Fox Sports 
-rtmp://kv2.ts33.net/sat/us012
-
-#EXTINF:0,Fox Sports 
-rtmp://kv2.ts33.net/sat/us011
+0
 
 #EXTINF:0,Fox Sports 1 
 http://54.177.195.82/server/play/fs1ctg/3964000/prog.m3u8?anv=1427415219896 |X-Forwarded-For=66.171.228.102
@@ -112,28 +95,22 @@ http://4.31.30.159:9134
 http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/2596k/prog.m3u8|X-Forwarded-For=209.239.112.104
 
 #EXTINF:0,NBCSN 
+http://tvenbcsn-i.Akamaihd.net/hls/live/218235/nbcsnx/2596k/prog.m3u8|X-Forwarded-For=66.171.228.102
+
+#EXTINF:0,NBCSN 
 http://tvenbcsn-i.Akamaihd.net/hls/live/218235/nbcsnx/4296k/prog.m3u8|X-Forwarded-For=66.171.228.102
 
 #EXTINF:0,NBCSN 
-http://tvenbcsn-i.Akamaihd.net/hls/live/218235/nbcsnx/2596k/prog.m3u8|X-Forwarded-For=66.171.228.102
-
-#EXTINF:0,NBCSN
 http://cdn.phoenix.intergi.com/21772/videos/3362254/video-sd.mp4?hosting_id=21772
 
-#EXTINF:0,NBCSN 
-http://64.100.15.201/udp/239.255.2.7:10001
-
-#EXTINF:0,NFL Network
+#EXTINF:0,NFL Network 
 http://64.100.15.201/udp/239.255.2.5:10001
 
 #EXTINF:0,NHL Network
 0
 
 #EXTINF:0,Outdoor Channel 
-rtmp://edge1.everyon.tv/etv1sb/pld613
-
-#EXTINF:0,Outdoor Channel 
-rtmp://edge1.everyon.tv/etv1sb/phd613
+0
 
 #EXTINF:0,PAC 12 Arizona 
 http://xrxs.net/video/live-p12ariz-1164.m3u8
@@ -181,63 +158,52 @@ http://xrxs.net/video/live-p12wash-4728.m3u8
 mms://100automoto.tv/channel_porsche
 
 #EXTINF:0,Premier Sports 
-http://37.59.17.46/live/rkZeKPGnrBApAIff5phbuQ/1441009459/2d18f483dbcf20bf0cc41b916f026d6b.m3u8 
+0
+
 #EXTINF:0,Racing UK 
-http://37.187.149.103:8000/live/07951db8aa7cbd43/34abd2d0ce65538f/93.m3u8?token=uz6qP4oobvt_uHy8wFoYSQ&e=1439941315&u=33901&channel=
+0
 
 #EXTINF:0,Root Sports 
 0
 
 #EXTINF:0,Setanta Sports 
-http://servprjsmartv.mine.nu:8000/live/persianshare/shkfyhpne/1610.m3u8
-
-#EXTINF:0,Setanta Sports 
-http://37.187.149.103:8000/live/07951db8aa7cbd43/34abd2d0ce65538f/70.m3u8?token=uz6qP4oobvt_uHy8wFoYSQ&e=1439941315&u=33901&channel=
+0
 
 #EXTINF:0,Sky Sports 1 
-http://servprjsmartv.mine.nu:8000/live/persianshare/shkfyhpne/1625.m3u8
-
-#EXTINF:0,Sky Sports 1 
-rtmp://80.82.78.85:443/liverepeater playpath=2 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
+0
 
 #EXTINF:0,Sky Sports 2 
-rtmp://80.82.64.140:443/liverepeater playpath=2 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
-
-#EXTINF:0,Sky Sports 2 
-http://servprjsmartv.mine.nu:8000/live/persianshare/shkfyhpne/1626.m3u8
-
-#EXTINF:0,Sky Sports 2 
-rtmp://80.82.78.85:443/liverepeater playpath=2 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
+0
 
 #EXTINF:0,Sky Sports 3 
 0
 
 #EXTINF:0,Sky Sports 4 
-rtmp://80.82.64.140:443/liverepeater playpath=4 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
-
-#EXTINF:0,Sky Sports 4 
-rtmp://80.82.78.85:443/liverepeater playpath=4 pageUrl=http://popeoftheplayers.eu/ token=#atd%#$ZH
+0
 
 #EXTINF:0,Sky Sports 5 
-http://servprjsmartv.mine.nu:8000/live/persianshare/shkfyhpne/1629.m3u8
+0
 
 #EXTINF:0,Sky Sports F1 
-http://37.59.17.46/live/L8Ik7fSoXc8hvcxiZqinUw/1441009383/343b4b2909705b5f5babe196c05c7895.m3u8 
+0
+
 #EXTINF:0,Sky Sports News 
-http://servprjsmartv.mine.nu:8000/live/persianshare/shkfyhpne/1533.m3u8
+0
+
+#EXTINF:0,Sports Tonight 
+rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9-HD
 
 #EXTINF:0,Sportsnet 360 
 0
 
 #EXTINF:0,Sportsnet One 
-http://192.99.19.181/live/jwJ8ZpeuT055MyzQyzfaKg/1441009570/a2b655b0f54f8fdd0c5640acbf1378a3.m3u8 
+0
+
 #EXTINF:0,Sportsnet Ontario 
 0
 
 #EXTINF:0,Sportsnet World 
-http://37.59.17.46/live/5KlxKfrbSaYt4Q-Df18DKw/1441009551/ac090b774d01536fce7dc4e4a08abf25.m3u8 
-#EXTINF:0,Sports Tonight 
-rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9-HD
+0
 
 #EXTINF:0,Tennis Channel
 0
@@ -246,7 +212,8 @@ rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9
 http://stream01.yamgo.com/iPhone/HLS_TS/broadcast/trace_tv_sports-tablet.3gp/trace_tv_sports-tablet.3gp-mr647k.m3u8?
 
 #EXTINF:0,TSN 1 
-http://192.99.19.181/live/byY6MagQHPZUriMnJlWXGQ/1441009585/40beacf01f852160e0d3cf1d962449e6.m3u8 
+0
+
 #EXTINF:0,TSN 2 
 0
 
@@ -259,8 +226,8 @@ http://192.99.19.181/live/byY6MagQHPZUriMnJlWXGQ/1441009585/40beacf01f852160e0d3
 #EXTINF:0,TSN 5 
 0
 
-#EXTINF:0,Viasat Golf
-http://37.187.149.103:8000/live/07951db8aa7cbd43/34abd2d0ce65538f/40.m3u8?token=uz6qP4oobvt_uHy8wFoYSQ&e=1439941315&u=33901&channel=
+#EXTINF:0,Viasat Golf 
+0
 
 #EXTINF:0,Viasat Sport
 http://194.44.229.77:777/udp/237.1.238.9:1234

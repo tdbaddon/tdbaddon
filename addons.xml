@@ -497,7 +497,7 @@ Thats all Folks
 
 <addon id="plugin.video.TDBRADIO"
        name="TDB RADIO"
-       version="1.23"
+       version="1.24"
        provider-name="TDB">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -534,7 +534,7 @@ Thats all Folks
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="3.04"
+       version="3.05"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>

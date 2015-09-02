@@ -8,7 +8,7 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 http://4.31.30.159:9039
 
 #EXTINF:0,ABC 
-http://37.59.17.46/live/8N0VSemG22zKiBVMJ8-Aeg/1441004902/900150983cd24fb0d6963f7d28e17f72.m3u8
+0
 
 #EXTINF:0,ABC Family 
 0
@@ -16,11 +16,8 @@ http://37.59.17.46/live/8N0VSemG22zKiBVMJ8-Aeg/1441004902/900150983cd24fb0d6963f
 #EXTINF:0,AMC 
 http://4.31.30.159:9038
 
-#EXTINF:0,AXN
-http://4.31.30.159:9157
-
-#EXTINF:0,AXN
-http://4.31.30.159:9158
+#EXTINF:0,AXN 
+0
 
 #EXTINF:0,BabyTV 
 0
@@ -28,13 +25,9 @@ http://4.31.30.159:9158
 #EXTINF:0,BBC 1 
 http://82.135.224.134:80/udp/239.100.3.1:1234
 
-#EXTINF:0,BBC 1 
-http://178.18.30.109:8081/liverepeater/196515/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9OC8zMS8yMDE1IDY6MDk6NDMgQU0maGFzaF92YWx1ZT16V3h4TnBhMCsxckJxSjFiNGRKTW1BPT0mdmFsaWRtaW51dGVzPTQ= 
 #EXTINF:0,BBC 2 
 http://82.135.224.134/udp/239.100.3.3:1234
 
-#EXTINF:0,BBC 2 
-http://178.18.30.114:8081/liverepeater/197787/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9OC8zMS8yMDE1IDY6MTA6NTIgQU0maGFzaF92YWx1ZT1pYzJTTTJjaTZZSUdjMEFxYWVpSUxBPT0mdmFsaWRtaW51dGVzPTQ= 
 #EXTINF:0,BET 
 0
 
@@ -42,7 +35,7 @@ http://178.18.30.114:8081/liverepeater/197787/playlist.m3u8?wmsAuthSign=c2VydmVy
 0
 
 #EXTINF:0,Bravo 
-http://64.100.15.201/udp/239.255.2.8:10001
+0
 
 #EXTINF:0,Cartoon Network 
 http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD28_W_250.sdp/playlist.m3u8
@@ -54,7 +47,8 @@ http://4.31.30.159:9036
 0
 
 #EXTINF:0,CBS 
-http://192.99.19.181/live/2_2OXZ0W0l86cg-LrQzTXg/1441008491/250c51527f347066847969f002be67a2.m3u8 
+0
+
 #EXTINF:0,CBS Action 
 0
 
@@ -62,7 +56,7 @@ http://192.99.19.181/live/2_2OXZ0W0l86cg-LrQzTXg/1441008491/250c51527f3470668479
 0
 
 #EXTINF:0,CBS Reality 
-http://37.187.149.103:8000/live/07951db8aa7cbd43/34abd2d0ce65538f/143.m3u8?token=uz6qP4oobvt_uHy8wFoYSQ&e=1439941315&u=33901&channel=
+0
 
 #EXTINF:0,City TV Toronto 
 http://4.31.30.159:9010
@@ -74,7 +68,7 @@ http://4.31.30.159:9010
 http://origin.live.web.tv.streamprovider.net/streams/9044496707bcc259f6cdf58eb93cbfe9_live_0_0/index.m3u8
 
 #EXTINF:0,Comedy Central 
-http://37.187.149.103:8000/live/07951db8aa7cbd43/34abd2d0ce65538f/135.m3u8?token=uz6qP4oobvt_uHy8wFoYSQ&e=1439941315&u=33901&channel=
+0
 
 #EXTINF:0,Cooking Channel
 0
@@ -94,10 +88,8 @@ http://37.187.149.103:8000/live/07951db8aa7cbd43/34abd2d0ce65538f/135.m3u8?token
 #EXTINF:0,CW 
 http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/index_350_av-p.m3u8?
 
-#EXTINF:0,CW 
-http://192.99.19.181/live/4F-2toosWr0jYmC68x93qg/1441008600/d61960e75b1a90a23ebfb02f0bb46678.m3u8 
 #EXTINF:0,Disney Channel 
-http://37.187.149.103:8000/live/07951db8aa7cbd43/34abd2d0ce65538f/107.m3u8?token=uz6qP4oobvt_uHy8wFoYSQ&e=1439941315&u=33901&channel=
+0
 
 #EXTINF:0,Disney Junior 
 0
@@ -138,8 +130,6 @@ http://4.31.30.159:9028
 #EXTINF:0,Fox TV 
 http://185.5.222.227:4242/bysid/5603
 
-#EXTINF:0,Fox TV 
-http://192.99.19.181/live/VKtQQ6lmMqIcORLJ436U8A/1441008627/1cbdb8043b37c7c9ca83582f9218c8b4.m3u8 
 #EXTINF:0,FX 
 0
 
@@ -162,7 +152,7 @@ http://link.theplatform.com/s/dtjsEC/EqBPGYLY6fEx?feed=DEV%20Live%20Stream%20Fee
 0
 
 #EXTINF:0,HGTV 
-http://64.100.15.201/udp/239.255.2.6:10001
+0
 
 #EXTINF:0,HSN
 rtsp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:420p500kB31
@@ -180,13 +170,13 @@ http://ios.streamserver01.com:8080/ShowcaseTV/mystream.m3u8
 0
 
 #EXTINF:0,ITV 2 
-http://37.187.160.187:8000/live/ressler/skype/58.ts
+0
 
 #EXTINF:0,ITV 3 
-http://37.187.160.187:8000/live/ressler/skype/59.ts
+0
 
 #EXTINF:0,ITV 4 
-http://37.187.160.187:8000/live/ressler/skype/60.ts
+0
 
 #EXTINF:0,JTV 
 rtmp://jtvmedia.jtv.com:1975/live playpath=live6 swfUrl=http://demandware.edgesuite.net/aaby_prd/on/demandware.static/Sites-jtv-Site/-/default/v1410110388581/swf/flashMediaPlayer/StrobeMediaPlayback.swf live=1 pageUrl=http://www.jtv.com/on/demandware.store/Sites-jtv-Site/default/LiveViewer-Show
@@ -207,13 +197,11 @@ http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
 0
 
 #EXTINF:0,More4 
-http://37.187.160.187:8000/live/ressler/skype/64.ts
+0
 
 #EXTINF:0,My9
 http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
 
-#EXTINF:0,My9
-http://37.59.17.46/live/fPgV1YHCJjlMs6INSNAXlw/1441008677/4397651acecc7cb7f088a352b0308936.m3u8 
 #EXTINF:0,NBC 
 0
 
@@ -224,7 +212,7 @@ http://37.59.17.46/live/fPgV1YHCJjlMs6INSNAXlw/1441008677/4397651acecc7cb7f088a3
 0
 
 #EXTINF:0,Nickelodeon 
-http://194.44.229.77:777/udp/237.1.239.14:1234
+0
 
 #EXTINF:0,NickNight 
 0
@@ -245,34 +233,28 @@ http://194.44.229.77:777/udp/237.1.239.14:1234
 http://80.80.160.168/live/7/live.m3u8
 
 #EXTINF:0,Sky 1 
-http://37.187.149.103:8000/live/07951db8aa7cbd43/34abd2d0ce65538f/136.m3u8?token=uz6qP4oobvt_uHy8wFoYSQ&e=1439941315&u=33901&channel=
+0
 
 #EXTINF:0,Sky 1 
-http://37.187.160.187:8000/live/ressler/skype/77.ts
+0
 
 #EXTINF:0,Sky 2 
-http://37.187.149.103:8000/live/07951db8aa7cbd43/34abd2d0ce65538f/137.m3u8?token=uz6qP4oobvt_uHy8wFoYSQ&e=1439941315&u=33901&channel=
-
-#EXTINF:0,Sky 2 
-http://37.187.160.187:8000/live/ressler/skype/79.ts
+0
 
 #EXTINF:0,Sky Arts 1 
-http://37.187.160.187:8000/live/ressler/skype/102.ts
+0
 
 #EXTINF:0,Sky Arts 2 
 0
 
 #EXTINF:0,Sky Atlantic 
-http://37.187.149.103:8000/live/07951db8aa7cbd43/34abd2d0ce65538f/132.m3u8?token=uz6qP4oobvt_uHy8wFoYSQ&e=1439941315&u=33901&channel=
-
-#EXTINF:0,Sky Atlantic 
-http://37.187.160.187:8000/live/ressler/skype/81.ts
+0
 
 #EXTINF:0,Sky Living 
-http://37.187.160.187:8000/live/ressler/skype/80.ts
+0
 
-#EXTINF:0,Slice
-http://4.31.30.159:9090
+#EXTINF:0,Slice 
+0
 
 #EXTINF:0,Space 
 0
@@ -302,19 +284,20 @@ http://80.80.160.168/live/2/live.m3u8
 http://194.44.229.77:777/udp/237.1.239.23:1234
 
 #EXTINF:0,TNT 
-http://64.100.15.201/udp/239.255.2.2:10001
+0
 
 #EXTINF:0,Tom & Jerry TV 
 rtmp://208.53.180.218/ctv playpath=tom swfUrl=http://www.carolineoliveira.com.br/swf/player.swf live=1 pageUrl=http://carolineoliveira.com.br/tvamigos/tomejerry.html
 
-#EXTINF:0,Treehouse TV
-http://4.31.30.159:9091
+#EXTINF:0,Treehouse TV 
+0
+
+#EXTINF:0,Tru TV 
+0
 
 #EXTINF:0,TSC 
 http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/master.m3u8?b?b*t$ 
 
-#EXTINF:0,Tru TV 
-http://64.100.15.201/udp/239.255.2.4:10001
 
 #EXTINF:0,True Drama
 0

@@ -29,7 +29,7 @@ http://us2.ah.fm/
 http://87.230.53.17:9000
 
 #EXTINF:0,Dance Radio
-http://www.play.cz/radio/danceradio192.mp3.m3u
+0
 
 #EXTINF:0,Electro Radio
 http://www.electroradio.ch/stream.m3u
@@ -44,7 +44,7 @@ http://radiofg.impek.com/fg
 http://stream.funradio.sk:8000/dance128.mp3
 
 #EXTINF:0,Fusion Radio Chicago 
-http://launch.fusionchicago.com:8004
+0
 
 #EXTINF:0,Kick FM 
 http://live.kickfm.eu:8000
@@ -80,7 +80,7 @@ http://serv.radiosfera.pl:7084
 http://178.33.232.230:8005/
 
 #EXTINF:0,RauteMusik FM Club
-http://club-high.rautemusik.fm/
+0
 
 #EXTINF:0,Rouge Dance
 http://rouge-dance.ice.infomaniak.ch/rouge-dance-64.aac
@@ -95,4 +95,4 @@ http://89.223.45.5:8000/ices
 http://loadbalancing.topradio.be/topradio.mp3
 
 #EXTINF:0,WunschRadio Dance
-http://mp3.dance.wunschradio.de/wunschradio-dance.mp3
+0
