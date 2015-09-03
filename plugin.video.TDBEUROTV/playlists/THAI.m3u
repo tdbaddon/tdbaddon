@@ -1,7 +1,7 @@
 ﻿#EXTM3U
 
 
-#EXTINF:0,13 Siam Thai
+#EXTINF:0,13 Siam Thai 
 rtmp://stream.13livetv.com:1935/rtplive/_definst_/13livetv
 
 #EXTINF:0,Amarin Activ TV
@@ -10,40 +10,43 @@ http://s2.live14.com/stream/5195e80fe1ed0/playlist.m3u8
 #EXTINF:0,An Giang TV
 0
 
-#EXTINF:0,ASTV
+#EXTINF:0,ASTV 
 http://202.170.127.178:1935/dcinode001/astvtotv.sdp/playlist.m3u8
 
 #EXTINF:0,Bang Channel
 http://210.1.60.208:1935/live/bang.sdp/chunklist.m3u8
 
-#EXTINF:0,Bayon News
-http://live.khmer.be:1935/live/BayonNews/HasBahCa.m3u8
+#EXTINF:0,Bayon News 
+0
 
 #EXTINF:0,Block A
-0
+http://live2.netdesignhost.com/blockatvlive/blockatvlive/playlist.m3u8
+
+#EXTINF:0,Blue Sky
+rtmp://live.blueskychannel.tv:1935/ app=bluesky_live playpath=myStream swfUrl=http://fpdownload.adobe.com/strobe/FlashMediaPlayback_101.swf?rnd=4%2F%5B%5BDYNAMIC%5D%5D%2F1&amp;autoplay=1&amp;wmode=opaque&amp;autoHideControlBar=true&amp;streamType=live&amp;autoPlay=true&amp;scaleMode=stretch&amp;allowfullscreen=true&amp;allowscriptaccess=always&amp;src=rtmp://live.blueskychannel.tv/bluesky_live/myStream/[[DYNAMIC]]/1 pageUrl=http://fpdownload.adobe.com/strobe/FlashMediaPlayback_101.swf?rnd=4%2F%5B%5BDYNAMIC%5D%5D%2F1&amp;autoplay=1&amp;wmode=opaque&amp;autoHideControlBar=true&amp;streamType=live&amp;autoPlay=true&amp;scaleMode=stretch&amp;allowfullscreen=true&amp;allowscriptaccess=always&amp;src=rtmp://live.blueskychannel.tv/bluesky_live/myStream live=true timeout=15
 
 #EXTINF:0,CAT Channel
-0
+rtmp://61.19.18.238/live/web1stream
 
 #EXTINF:0,Chalermkrung TV
 http://symphony.live-s.cdn.bitgravity.com/cdn-live/_definst_/symphony/live/feed04/playlist.m3u8
 
-#EXTINF:0,Channel 3
+#EXTINF:0,Channel 3 
 rtmp://58.97.57.152/live playpath=ch43 swfUrl=http://www.one2hd.com/swfs/mediaPlayer/mediaPlayer.swf pageUrl=http://www.one2hd.com/
 
-#EXTINF:0,Channel 3
+#EXTINF:0,Channel 3 
 rtmp://58.97.57.152/live playpath=ch41 swfUrl=http://www.one2hd.com/swfs/mediaPlayer/mediaPlayer.swf pageUrl=http://www.one2hd.com/
 
-#EXTINF:0,Channel 5
+#EXTINF:0,Channel 5 
 http://203.151.133.100:1935/live/ch5_1/playlist.m3u8
 
-#EXTINF:0,Channel 5
+#EXTINF:0,Channel 5 
 rtmp://58.97.57.152/live playpath=ch42 swfUrl=http://www.one2hd.com/swfs/mediaPlayer/mediaPlayer.swf pageUrl=http://www.one2hd.com/
 
-#EXTINF:0,Channel 7
+#EXTINF:0,Channel 7 
 rtmp://58.97.57.152/live playpath=ch72 swfUrl=http://www.one2hd.com/swfs/mediaPlayer/mediaPlayer.swf pageUrl=http://www.one2hd.com/
 
-#EXTINF:0,Channel 7
+#EXTINF:0,Channel 7 
 rtmp://58.97.57.152/live playpath=ch14 swfUrl=http://www.one2hd.com/swfs/mediaPlayer/mediaPlayer.swf pageUrl=http://www.one2hd.com/
 
 #EXTINF:0,Channel 8 
@@ -64,28 +67,37 @@ rtmp://202.44.53.116:1935/live/daradaily
 #EXTINF:0,M Channel
 http://www.m-channel.com:1935/live/m320.sdp/playlist.m3u8
 
-#EXTINF:0,Malimar Music
-http://dalorigin00.malimarcdn.com:1935/ftaorigin/_definst_/MalimarMHD.sdp/playlist.m3u8
+#EXTINF:0,Malimar Music 
+0
 
-#EXTINF:0,Now 26
+#EXTINF:0,NBT
+rtmp://202.43.34.236/11 playpath=s1 swfUrl=http://www.stat.or.th/player5.10/player.swf pageUrl=http://www.stat.or.th/ live=true timeout=15
+
+#EXTINF:0,Now 26 
 rtmp://58.97.57.152/live playpath=ch32 swfUrl=http://www.one2hd.com/swfs/mediaPlayer/mediaPlayer.swf pageUrl=http://www.one2hd.com/
 
-#EXTINF:0,Police TV
-0
+#EXTINF:0,Police TV 
+http://live.netdesignhost.com:1935/policetvlive/policetvlive/playlist.m3u8
 
 #EXTINF:0,Sabaidee TV
 rtsp://202.142.207.150:1935/live/livesabaidee1
 
-#EXTINF:0,Sabaidee TV
+#EXTINF:0,Sabaidee TV 
 rtmp://202.142.207.150/live//livesabaidee1
 
-#EXTINF:0,TVK
-http://live.khmer.be:1935/live/TVK/HasBahCa.m3u8
+#EXTINF:0,TGN
+http://61.91.12.34:1935/live/smil:tgnadaptive.smil/playlist.m3u8
+
+#EXTINF:0,TVK 
+0
+
+#EXTINF:0,V Like TV
+http://vlike.live.co.th:1935/vlike/live/playlist.m3u8
 
 #EXTINF:0,White Channel
 0
 
-#EXTINF:0,Yaak TV
+#EXTINF:0,Yaak TV 
 rtmp://202.142.207.150/live/liveyaaktv1
 
 #EXTINF:0,Yateem TV

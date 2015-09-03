@@ -4,9 +4,6 @@
 #EXTINF:0,4E TV 
 http://mail.tv4e.gr:1935/live/myStream.sdp/playlist.m3u8
 
-#EXTINF:0,4E TV 
-http://185.73.239.23:8000/live/testrapid/3CmWLfb3kW/1022.ts
-
 #EXTINF:0,Aigaio
 http://xaigaiotelevisionx.api.channel.livestream.com/3.0/playlist.m3u8
 
@@ -23,7 +20,7 @@ rtmp://46.21.53.171/iwohttporigin/mp4:livestream
 0
 
 #EXTINF:0,Best TV 
-http://185.73.239.23:8000/live/testrapid/3CmWLfb3kW/1034.ts
+0
 
 #EXTINF:0,BlueSky TV
 0
@@ -31,8 +28,8 @@ http://185.73.239.23:8000/live/testrapid/3CmWLfb3kW/1034.ts
 #EXTINF:0,Creta
 rtmp://94.23.218.186:1935/cretatv/cretatv
 
-#EXTINF:0,Delta
-mms://ams01.egihosting.com/989630
+#EXTINF:0,Delta 
+0
 
 #EXTINF:0,Dion TV
 0
@@ -49,10 +46,10 @@ rtmp://fml.68FC.edgecastcdn.net/2068FC/elladatv swfUrl=http://www.elladatv.gr/sc
 #EXTINF:0,Ena TV 
 0
 
-#EXTINF:0,Epirus TV
-http://xepirustv1livex.api.channel.livestream.com/3.0/playlist.m3u8
+#EXTINF:0,Epirus TV 
+0
 
-#EXTINF:0,ET3
+#EXTINF:0,ET3 
 http://live2.ertopen.com/live2/e600/playlist.m3u8
 
 #EXTINF:0,Extra 
@@ -60,9 +57,6 @@ rtmp://213.16.167.186/live/mpegts_256.stream
 
 #EXTINF:0,Extra 
 rtmp://213.16.167.186:1935/live/mpegts_256.stream
-
-#EXTINF:0,Extra 
-http://185.73.239.23:8000/live/testrapid/3CmWLfb3kW/1049.ts
 
 #EXTINF:0,FOS TV
 http://wm1.gmlogic.com/ch-patra?ovpsv=2.3.1.0
@@ -80,7 +74,7 @@ rtmp://176.9.123.140:1935/leveltgp/leveltgp live=1 timeout=10
 0
 
 #EXTINF:0,Irida 
-mms://212.251.44.111:27030
+0
 
 #EXTINF:0,Kontra 
 rtmp://flashcloud.mediacdn.com:1935/live/kontratv
@@ -133,11 +127,8 @@ http://nerit2-lh.akamaihd.net/i/neritplus_1@45603/master.m3u8
 #EXTINF:0,Omega TV 
 rtmp://stream2.omegatv.net:1935/livepkgr/omegatv live=1 timeout=10
 
-#EXTINF:0,Omega TV 
-http://185.73.239.23:8000/live/testrapid/3CmWLfb3kW/1066.ts
-
-#EXTINF:0,OPT TV
-rtmp://media.patrisnews.com:1935/patris/tvstream live=1 timeout=10
+#EXTINF:0,OPT TV 
+0
 
 #EXTINF:0,R Channel
 http://xrodopi_tvx.api.channel.livestream.com/3.0/playlist.m3u8
@@ -164,10 +155,10 @@ http://4.31.30.145:9080/
 http://176.9.123.140:1935/msg116s/msg116s/playlist.m3u8
 
 #EXTINF:0,TRT 
-http://xelladalivex.api.channel.livestream.com/3.0/playlist.m3u8
+0
 
 #EXTINF:0,TV 100 
-http://176.9.123.140:1935/msg116s/msg116s/playlist.m3u8
+0
 
 #EXTINF:0,Zougla TV 
 http://zouglahd-f.akamaihd.net/i/zougla_1@56341/master.m3u8

@@ -5,7 +5,7 @@
 rtmp://66.55.93.204/livepkgr/a1stream?adbe-live-event=a1report
 
 #EXTINF:0,Agon Channel 
-http://str105mb.setplex.net:1935/str2iosmd5/7ios_agontv_34536544/playlist.m3u8
+0
 
 #EXTINF:0,Alb Info
 http://str105mb.setplex.net:1935/str2iosmd5/stralbinfo_2654_dfs/playlist.m3u8
@@ -43,9 +43,6 @@ rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
 #EXTINF:0,B92 
 http://stream.b92.net:7999/tv-b92.ogg
 
-#EXTINF:0,B92 
-http://edge3.volim.tv/live/b92.stream/playlist.m3u8?hash=ad2c3d8d36d3e1b1cb6a7c2b587df040c1ac6ab7
-
 #EXTINF:0,Balkan TV 
 rtmp://yayin.tvdunyasi.tv/live/balkanrtv
 
@@ -76,11 +73,8 @@ http://217.16.82.6:554/zulu/era_1/playlist.m3u8
 #EXTINF:0,ERA TV 
 http://217.16.82.6:554/zulu/era_2/playlist.m3u8
 
-#EXTINF:0,Folk Plus
-http://str105mb.setplex.net:1935/str2iosmd5/7ios_folkplus_34564765/playlist.m3u8
-
-#EXTINF:0,Folk Plus
-http://balkanstream.com/stream/folkplus/mip001/25hsK6Sa9l$OPT:network-caching=4500
+#EXTINF:0,Folk Plus 
+0
 
 #EXTINF:0,Hema TV 
 mms://77.238.209.50:1234
@@ -92,13 +86,7 @@ rtmp://84.20.77.50/live//livestream2
 0
 
 #EXTINF:0,Klan Kosova 
-http://str105mb.setplex.net:1935/str2iosmd5/10ios_klankosova_56468946/playlist.m3u8
-
-#EXTINF:0,Klan Kosova 
-http://akamai127.tibo.tv/klan/timeshift_rel-20.m3u8$OPT:http-user-agent=stagefright%2F1.0+%28Linux%3BAndroid+2.2%29
-
-#EXTINF:0,Klan Kosova 
-http://balkanstream.com/stream/klankosova/mip001/25hsK6Sa9l$OPT:network-caching=4500
+0
 
 #EXTINF:0,Koha TV 
 0
@@ -158,28 +146,13 @@ rtmp://82.114.65.202/live/rrokumtv.flv swfUrl=http://tv24.al/shqiptv/css/player.
 http://wowza.rtkit.com:1935/live/livestream/chunklist.m3u8?wowzasessionid=491913886
 
 #EXTINF:0,Super Sport 1 
-http://akamai127.tibo.tv/ss1/timeshift_rel-20.m3u8$OPT:http-user-agent=stagefright%2F1.0+%28Linux%3BAndroid+2.2%29
-
-#EXTINF:0,Super Sport 1 
-http://tvim.vdtapp.com/tvim/supersport1.m3u8
-
-#EXTINF:0,Super Sport 1 
-http://81.7.13.162/hls/ss1/index.m3u8
-
-#EXTINF:0,Super Sport 2 
-http://tvim.vdtapp.com/tvim/supersport2.m3u8
+0
 
 #EXTINF:0,Super Sport 2 
 http://81.7.13.162/hls/ss2/index.m3u8
 
-#EXTINF:0,Super Sport 2 
-http://185.73.239.23:8000/live/testrapid/3CmWLfb3kW/1204.ts
-
-#EXTINF:0,Super Sport 3
-http://81.7.13.162/hls/ss3/index.m3u8
-
-#EXTINF:0,Super Sport 3
-http://185.73.239.23:8000/live/testrapid/3CmWLfb3kW/1205.ts
+#EXTINF:0,Super Sport 3 
+0
 
 #EXTINF:0,Super Sport 4
 0
@@ -197,16 +170,7 @@ http://88.212.10.27:81/streams/stv2.m3u8?
 rtmp://str103.setplex.net:1935/228/stv_folk
 
 #EXTINF:0,Top Channel 
-http://akamai127.tibo.tv/topchannel/timeshift_rel-20.m3u8$OPT:http-user-agent=stagefright%2F1.0+%28Linux%3BAndroid+2.2%29
-
-#EXTINF:0,Top Channel 
-http://tvim.vdtapp.com/tvim/tchannel.m3u8
-
-#EXTINF:0,Top Channel 
-http://185.73.239.23:8000/live/testrapid/3CmWLfb3kW/1263.ts
-
-#EXTINF:0,Top Channel 
-http://balkanstream.com/stream/topchanel/mip001/25hsK6Sa9l$OPT:network-caching=4500
+0
 
 #EXTINF:0,Top Channel News
 0
