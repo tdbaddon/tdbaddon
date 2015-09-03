@@ -1,7 +1,0 @@
-[
-    {
-        "url": "http://mystreams.fr.mu/80E803/enco35-cp/hls/m3u8/canphd38917199.m3u8", 
-        "image": "http://s6.postimg.org/eki7prtlt/1home.png", 
-        "name": "[COLOR lime]#A:-1 CANAL [/COLOR]        Played : 1148 Times"
-    }
-]
