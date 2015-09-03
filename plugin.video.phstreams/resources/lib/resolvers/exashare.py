@@ -27,7 +27,7 @@ def resolve(url):
     try:
         url = url.replace('/embed-', '/')
         url = re.compile('//.+?/([\w]+)').findall(url)[0]
-        url = 'http://exashare.com/embed-%s.html' % url
+        url = 'http://dowed.info/embed-%s-800x500.html' % url
 
         result = client.request(url)
 

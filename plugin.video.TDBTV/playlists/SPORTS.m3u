@@ -5,10 +5,16 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 ---------------------------------------------------------------------------------------------------------------
 
 #EXTINF:0,Bein Sport 1 
-0
+http://lihattv.toh.info/jhos/beib1_3/-/playlist.m3u8
+
+#EXTINF:0,Bein Sport 1 
+http://lihattv.toh.info/jhos/beib1_5/-/playlist.m3u8
 
 #EXTINF:0,Bein Sport 2 
-0
+http://lihattv.toh.info/jhos/beib2_3/-/playlist.m3u8
+
+#EXTINF:0,Bein Sport 2 
+http://lihattv.toh.info/jhos/beib2_5/-/playlist.m3u8
 
 #EXTINF:0,Box Nation 
 http://stream-full.selfip.com:8000/live/facebook/facebook/347.ts
@@ -37,8 +43,11 @@ http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_18
 #EXTINF:0,Eurosport 1 
 rtmp://181.214.35.7:19350/live/ playpath=wrLnq7XIjCGM swfUrl=http://www.letgo.tv/jwplayer.flash.swf live=1 pageUrl=http://www.letgo.tv/embed.php?channel=231&vw=650&vh=400
 
+#EXTINF:0,Eurosport 1 
+http://91.193.124.5:8000/eurosport
+
 #EXTINF:0,Eurosport 2 
-0
+http://91.193.124.5:8000/eurosport2
 
 #EXTINF:0,Eurosport News 
 0
@@ -83,10 +92,10 @@ mms://100automoto.tv/channel_mercedes
 http://4.31.30.159:9134
 
 #EXTINF:0,Motorsport 7 
-0
+http://motorsport.hopto.org:8080/
 
 #EXTINF:0,Nascar TV 
-0
+mms://100automoto.tv/100livesport
 
 #EXTINF:0,NBA TV 
 0
@@ -110,7 +119,7 @@ http://64.100.15.201/udp/239.255.2.5:10001
 0
 
 #EXTINF:0,Outdoor Channel 
-0
+http://lihattv.wha.la/jhos/outdoor/-/playlist.m3u8
 
 #EXTINF:0,PAC 12 Arizona 
 http://xrxs.net/video/live-p12ariz-1164.m3u8

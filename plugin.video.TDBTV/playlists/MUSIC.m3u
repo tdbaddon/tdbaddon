@@ -116,7 +116,7 @@ http://37.187.149.103:8000/live/07951db8aa7cbd43/34abd2d0ce65538f/75.m3u8?token=
 http://37.187.160.187:8000/live/ressler/skype/108.ts
 
 #EXTINF:0,MTV Rocks 
-0
+http://fe-nw.svc.iptv.rt.ru/hls/CH_C01_MTVROCKS/variant.m3u8?version=2
 
 #EXTINF:0,MusicVoxTV 
 rtmp://stream.smcloud.net/live2/vox/vox_720p
@@ -180,3 +180,6 @@ http://37.187.160.187:8000/live/ressler/skype/110.ts
 
 #EXTINF:0,Virgin TV 
 rtmp://fms.105.net:1935/live/virgin2
+
+#EXTINF:0,Virgin TV 
+http://wow01.105.net/live/virgin1/.m3u8

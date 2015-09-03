@@ -22,6 +22,9 @@ http://proxiiptv.dyndns.tv:8000/live/dejan/dejan/280.m3u8
 #EXTINF:0,BabyTV 
 http://proxiiptv.dyndns.tv:8000/live/dejan/dejan/403.m3u8
 
+#EXTINF:0,BabyTV 
+http://fe-mos.svc.iptv.rt.ru/hls/CH_C01_BABYTV/variant.m3u8?version=2
+
 #EXTINF:0,BBC 1 
 http://82.135.224.134:80/udp/239.100.3.1:1234
 
@@ -46,11 +49,20 @@ http://37.187.160.187:8000/live/ressler/skype/54.m3u8
 #EXTINF:0,Cartoon Network 
 http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD28_W_250.sdp/playlist.m3u8
 
+#EXTINF:0,Cartoon Network 
+http://5.128.118.163:7777/udp/239.1.3.3:1234
+
+#EXTINF:0,Cartoon Network 
+http://185.13.236.197:4080/udp/224.0.0.120:1244
+
 #EXTINF:0,CBC TV
 http://4.31.30.159:9036
 
 #EXTINF:0,Cbeebies 
 http://37.187.160.187:8000/live/ressler/skype/129.m3u8
+
+#EXTINF:0,Cbeebies 
+http://82.135.224.134:80/udp/239.100.3.5:1234
 
 #EXTINF:0,CBS 
 0
@@ -112,6 +124,9 @@ http://4.31.30.159:9011
 #EXTINF:0,E! 
 http://proxiiptv.dyndns.tv:8000/live/dejan/dejan/276.m3u8
 
+#EXTINF:0,E2
+http://origin.live.web.tv.streamprovider.net/streams/5dac5e87d17d40f5bca18d2b211a4dd2_live_0_0/index.m3u8
+
 #EXTINF:0,E4 
 0
 
@@ -134,10 +149,13 @@ http://4.31.30.159:9028
 0
 
 #EXTINF:0,Fox Life 
-0
+http://fe-sth.svc.iptv.rt.ru/hls/CH_C04_FOXLIFE/variant.m3u8?version=2
 
 #EXTINF:0,Fox TV 
 http://185.5.222.227:4242/bysid/5603
+
+#EXTINF:0,Fox TV 
+http://fe-sth.svc.iptv.rt.ru/hls/CH_C06_FOX/variant.m3u8?version=2
 
 #EXTINF:0,FX 
 0
@@ -218,7 +236,7 @@ http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
 0
 
 #EXTINF:0,Nick Jr 
-0
+http://185.13.236.197:4080/udp/224.0.0.120:1240
 
 #EXTINF:0,Nickelodeon 
 0
@@ -288,6 +306,9 @@ http://80.80.160.168/live/2/live.m3u8
 
 #EXTINF:0,TLC 
 http://194.44.229.77:777/udp/237.1.239.23:1234
+
+#EXTINF:0,TLC 
+http://fe-sth.svc.iptv.rt.ru/hls/CH_C02_TLC/variant.m3u8?version=2
 
 #EXTINF:0,TNT 
 0

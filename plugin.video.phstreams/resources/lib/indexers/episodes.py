@@ -849,7 +849,7 @@ class episodes:
                 tvrage = re.sub('[^0-9]', '', str(tvrage))
                 tvrage = tvrage.encode('utf-8')
 
-                items.append({'imdb': imdb, 'tmdb': tmdb, 'tvdb': tvdb, 'tvrage': tvrage, 'tvshowtitle': tvshowtitle, 'season': season, 'episode': episode})
+                items.append({'imdb': imdb, 'tmdb': tmdb, 'tvdb': tvdb, 'tvrage': tvrage, 'tvshowtitle': tvshowtitle, 'year': year, 'season': season, 'episode': episode})
             except:
                 pass
 
@@ -903,7 +903,7 @@ class episodes:
                 tvshowtitle = i['tvshowtitle']
                 imdb, tmdb, tvdb, tvrage = i['imdb'], i['tmdb'], i['tvdb'], i['tvrage']
 
-                year = re.compile('(\d{4})').findall(premiered)[-1]
+                year = i['year']
                 try: year = year.encode('utf-8')
                 except: pass
 

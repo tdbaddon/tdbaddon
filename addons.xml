@@ -304,7 +304,7 @@ Thats all Folks
    </extension>
 </addon>
 
-<addon id="plugin.video.phstreams" name="Phoenix" version="2.5.4" provider-name="Blazetamer, lambda">
+<addon id="plugin.video.phstreams" name="Phoenix" version="2.5.5" provider-name="Blazetamer, lambda">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.pyxbmct" version="1.1.4" />
@@ -534,7 +534,7 @@ Thats all Folks
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="3.06"
+       version="3.07"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
