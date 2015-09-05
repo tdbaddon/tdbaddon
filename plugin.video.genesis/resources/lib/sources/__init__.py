@@ -43,6 +43,7 @@ class sources:
 
     def play(self, name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date, url):
         try:
+            if imdb == '0': imdb = '0000000'
             imdb = 'tt' + re.sub('[^0-9]', '', str(imdb))
 
             content = 'movie' if tvshowtitle == None else 'episode'
@@ -87,6 +88,7 @@ class sources:
 
     def addItem(self, name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date, meta):
         try:
+            if imdb == '0': imdb = '0000000'
             imdb = 'tt' + re.sub('[^0-9]', '', str(imdb))
 
             content = 'movie' if tvshowtitle == None else 'episode'

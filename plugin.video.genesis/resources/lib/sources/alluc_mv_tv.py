@@ -19,8 +19,9 @@
 '''
 
 
-import re,urllib,urlparse,json,base64
+import re,urllib,urlparse,json
 
+from resources.lib.libraries import control
 from resources.lib.libraries import cleantitle
 from resources.lib.libraries import client
 from resources.lib import resolvers
@@ -29,15 +30,18 @@ from resources.lib import resolvers
 class source:
     def __init__(self):
         self.base_link = 'https://www.alluc.com'
-        #self.download_link = '/api/search/download/?apikey=%s&count=20&from=0&getmeta=0&query=%s+lang%%3Aen+host%%3A%s'
-        #self.stream_link = '/api/search/stream/?apikey=%s&count=20&from=0&getmeta=0&query=%s+lang%%3Aen+host%%3A%s'
-        self.download_link = '/api/search/download/?apikey=%s&count=100&from=0&getmeta=0&query=%s+lang%%3Aen'
-        self.stream_link = '/api/search/stream/?apikey=%s&count=100&from=0&getmeta=0&query=%s+lang%%3Aen'
-        self.key_link = 'NjcyMmIzMjUzMmEzMTVlMDE0YjRkYjVlMGJkMzgzMDY='
+        self.user = control.setting('alluc_user')
+        self.password = control.setting('alluc_password')
+        #self.download_link = '/api/search/download/?user=%s&password=%s&count=20&from=0&getmeta=0&query=%s+lang%%3Aen+host%%3A%s'
+        #self.stream_link = '/api/search/stream/?user=%s&password=%s&count=20&from=0&getmeta=0&query=%s+lang%%3Aen+host%%3A%s'
+        self.download_link = '/api/search/download/?user=%s&password=%s&count=100&from=0&getmeta=0&query=%s+lang%%3Aen'
+        self.stream_link = '/api/search/stream/?user=%s&password=%s&count=100&from=0&getmeta=0&query=%s+lang%%3Aen'
 
 
     def get_movie(self, imdb, title, year):
         try:
+            if (self.user == '' or self.password == ''): raise Exception()
+
             url = '%s %s' % (title, year)
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
@@ -48,6 +52,8 @@ class source:
 
     def get_show(self, imdb, tvdb, tvshowtitle, year):
         try:
+            if (self.user == '' or self.password == ''): raise Exception()
+
             url = tvshowtitle
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
@@ -58,6 +64,8 @@ class source:
 
     def get_episode(self, url, imdb, tvdb, title, date, season, episode):
         try:
+            if (self.user == '' or self.password == ''): raise Exception()
+
             if url == None: return
 
             url = '%s S%02dE%02d' % (url, int(season), int(episode))
@@ -74,18 +82,19 @@ class source:
 
             if url == None: return sources
 
-            headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; rv:34.0) Gecko/20110101 Firefox/34.0'}
-            #params = (base64.urlsafe_b64decode(self.key_link), urllib.quote_plus(url), urllib.quote_plus(','.join(locDict)))
-            params = (base64.urlsafe_b64decode(self.key_link), urllib.quote_plus(url))
+            if (self.user == '' or self.password == ''): raise Exception()
+
+            #params = (urllib.quote_plus(self.user), urllib.quote_plus(self.password), urllib.quote_plus(url), urllib.quote_plus(','.join(locDict)))
+            params = (urllib.quote_plus(self.user), urllib.quote_plus(self.password), urllib.quote_plus(url))
 
             links = []
 
             q = urlparse.urljoin(self.base_link, self.download_link % params)
-            try: links += json.loads(client.source(q, headers=headers))['result']
+            try: links += json.loads(client.source(q))['result']
             except: pass
 
             q = urlparse.urljoin(self.base_link, self.stream_link % params)
-            try: links += json.loads(client.source(q, headers=headers))['result']
+            try: links += json.loads(client.source(q))['result']
             except: pass
 
             title, hdlr = re.compile('(.+?) (\d{4}|S\d*E\d*)$').findall(url)[0]
@@ -168,4 +177,7 @@ class source:
             return url
         except:
             return
+
+
+
 

@@ -129,6 +129,9 @@
 		<setting id="trakt_password" type="text" option="hidden" label="30913" default="" />
 		<setting type="lsep" label="IMDb" />
 		<setting id="imdb_user" type="text" label="30911" default="" />
+		<setting type="lsep" label="Alluc (accounts.alluc.com)" />
+		<setting id="alluc_user" type="text" label="30911" default="" />
+		<setting id="alluc_password" type="text" option="hidden" label="30913" default="" />
 		<setting type="lsep" label="RealDebrid" />
 		<setting id="realdedrid_user" type="text" label="30911" default="" />
 		<setting id="realdedrid_password" type="text" option="hidden" label="30913" default="" />

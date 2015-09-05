@@ -19,8 +19,8 @@
 '''
 
 
-import re,urllib,urlparse,base64,datetime
-
+import re,urllib,urlparse,base64,random,datetime
+ 
 from resources.lib.libraries import cleantitle
 from resources.lib.libraries import client
 
@@ -28,7 +28,9 @@ from resources.lib.libraries import client
 class source:
     def __init__(self):
         self.base_link = 'http://ororo.tv'
-        self.headers = {'User-Agent' : 'Mozilla/%s' % datetime.datetime.now().strftime('%Y%m%d%H%M%S')}
+        self.random = random.choice('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
+        self.datetime = datetime.datetime.now().strftime('%Y%m%d%H%M%S')
+        self.headers = {'User-Agent' : '%s%s' % (self.random, self.datetime)}
         self.key_link = base64.urlsafe_b64decode('dXNlciU1QnBhc3N3b3JkJTVEPWMyNjUxMzU2JnVzZXIlNUJlbWFpbCU1RD1jMjY1MTM1NiU0MGRyZHJiLmNvbQ==')
         self.sign_link = 'http://ororo.tv/users/sign_in'
 

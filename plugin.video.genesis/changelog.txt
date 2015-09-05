@@ -1,4 +1,24 @@
 ------------------------
+Genesis v5.0.2 (5-Sep-15)
+------------------------
+
+- Tweaked favourites.
+- Tweaked tv show search.
+- Tweaked movie and tv show listings.
+- Fixed issue with missing tv shows.
+- Fixed issue with season and episode listings.
+- Added Dutch and Hebrew translations.
+- Fixed Alluc source.
+- NOTE: Alluc requires an account, create an account at http://accounts.alluc.com
+- NOTE: Don't forget to add your account in the addon's settings.
+- Fixed Icefilms source.
+- NOTE: Icefilms source shows ice ads before playback starts.
+- NOTE: Don't forget that you can disable the source.
+- Updated available sources.
+- Code cosmetics.
+
+
+------------------------
 Genesis v5.0.1 (2-Sep-15)
 ------------------------
 
