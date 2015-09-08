@@ -1,8 +1,8 @@
 #EXTM3U
 
 
-#EXTINF:0,Alfa TV
-rtsp://streamer1.streamhost.org:1935/salive/GMIalfah
+#EXTINF:0,Alfa TV 
+0
 
 #EXTINF:0,America TV 
 http://ooyalahd2-f.akamaihd.net/i/americatv_delivery@25405/index_1728_av-p.m3u8
@@ -14,7 +14,7 @@ http://edge-31-us.edge.mdstrm.com/live/smil:c23b8a0a21d215482b4c2703e47f675a/pla
 http://ss6.domint.net:1962/al_edge/antena/playlist.m3u8
 
 #EXTINF:0,Aragon TV 
-0
+rtmp://aragontvlivefs.fplive.net/aragontvlive-live/stream_normal_abt
 
 #EXTINF:0,Arica TV
 http://wow2.cl.digitalproserver.com/aricatv/aricatvvivo/aricatv.smil/chunklist_w725671068_b848000.m3u8
@@ -42,11 +42,13 @@ http://38.104.228.230:1938/info7/info7_512/playlist.m3u8
 
 #EXTINF:0,Bandamax 
 http://201.161.59.4/bandamax.isml/QualityLevels(1692000)/manifest(format=m3u8-aapl).m3u8 
+
 #EXTINF:0,C5N 
 rtmp://server3.stweb.tv./c5n/live_baja
 
-#EXTINF:0,Cadena 3
+#EXTINF:0,Cadena 3 
 http://201.161.59.3/cadena3.isml/manifest(format=m3u8-aapl).m3u8 
+
 #EXTINF:0,Campus TV
 http://wow2.cl.digitalproserver.com/campustv/campustvvivo/campustv.smil/chunklist_w662421777_b848000.m3u8
 
@@ -114,22 +116,19 @@ rtsp://live-edge01.telecentro.net.ar:1935/live/26hd-720
 http://cdn.siscompnetwork.com:1935/app/canal27.sdp/playlist.m3u8
 
 #EXTINF:0,Canal 28 
-0
+http://web.xnet.mx:1935/xnetn/canal283/playlist.m3u8
 
 #EXTINF:0,Canal 41
 rtmp://painel.serveron.com.br/8172/8172
 
 #EXTINF:0,Canal 42 
-0
+rtmp://k3.usastreams.com:1935/canal42/canal42
 
 #EXTINF:0,Canal 79 
 rtmp://painel.serveron.com.br:1935/8168/8168
 
 #EXTINF:0,Canal Capital
 http://cdns840stu1010.multistream.net/canalcapitallive/amlst:live/master.m3u8
-
-#EXTINF:0,Canal Once 
-http://www.oncetvmexicolive.tv:1935/livepkgr2/smil:int.smil/playlist.m3u8?
 
 #EXTINF:0,Canal Once 
 http://xcanaloncepuntadelestex.api.channel.livestream.com/3.0/playlist.m3u8
@@ -155,7 +154,7 @@ http://38.96.148.216:1935/live/canelatv/playlist.m3u8
 #EXTINF:0,Capital 21
 http://187.237.253.94:8134/hls-live/livepkgr/_definst_/liveevent.m3u8
 
-#EXTINF:0,CDN 37
+#EXTINF:0,CDN 37 
 http://108.168.206.90:1935/cdn/cdn/playlist.m3u8
 
 #EXTINF:0,Cine Canal
@@ -209,9 +208,6 @@ http://edge-11-mvstr.edge.mdstrm.com/live/smil:db6a38a0a2bffd96d01965c4d975b9fb/
 http://edge-61-cl.edge.mdstrm.com/live/smil:db6a38a0a2bffd96d01965c4d975b9fb/playlist.m3u8?
 
 #EXTINF:0,Multimedios
-http://brightcove03-f.akamaihd.net/multimedios_tv_612k@55732?file=ChelTV_m3u8
-
-#EXTINF:0,Multimedios
 http://brightcovelive-i.akamaihd.net/hls/live/200018/bcplay-live/Multi/Multimedios.m3u8
 
 #EXTINF:0,Nazareno TV 
@@ -220,8 +216,8 @@ rtmp://87.106.232.7/live/myStream_2
 #EXTINF:0,Ocho TV
 http://201.130.193.150:1935/codecsys/smil:ocho.smil/master.m3u8
 
-#EXTINF:0,Once TV
-http://www.oncetvmexicolive.tv:1935/livepkgr2/smil:int.smil/playlist.m3u8
+#EXTINF:0,Once TV 
+0
 
 #EXTINF:0,Orbe 21
 http://urtmpkal-f.akamaihd.net/i/1b6mj17sk_1@308700/master.m3u8
@@ -250,8 +246,8 @@ rtmp://65.254.42.234/telejunin/telejunin
 #EXTINF:0,Tele Uno TV
 rtmp://k3.usastreams.com:1935/tvuno1/tvuno1
 
-#EXTINF:0,Telearagua
-http://edge.wms28.lorini.net/telearagua/telearagua1/playlist.m3u8
+#EXTINF:0,Telearagua 
+0
 
 #EXTINF:0,TeleCaribe
 http://cdns840stu1010.multistream.net/telecaribelive/amlst:live/master.m3u8
@@ -261,6 +257,7 @@ http://live.telemetro.com/telemetro/tm.smil/playlist.m3u8
 
 #EXTINF:0,Telemundo 
 http://iphone-streaming.ustream.tv/uhls/20720323/streams/live/iphone/playlist.m3u8? 
+
 #EXTINF:0,TeleSur TV
 http://cdn2.telesur.ultrabase.net/livecf/telesurLive/chunklist.m3u8
 

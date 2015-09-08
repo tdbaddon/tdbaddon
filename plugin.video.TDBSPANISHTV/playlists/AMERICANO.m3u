@@ -2,25 +2,13 @@
 
 
 #EXTINF:0,A&E
-http://79.145.129.130:4022/udp/239.0.0.38:8208
+0
 
 #EXTINF:0,AMC
-http://79.145.129.130:4022/udp/239.0.0.8:8208
-
-#EXTINF:0,AMC
-http://79.145.129.130:4022/udp/239.0.9.132:8208
+0
 
 #EXTINF:0,AXN
-http://79.145.129.130:4022/udp/239.0.0.14:8208
-
-#EXTINF:0,AXN
-http://79.145.129.130:4022/udp/239.0.9.131:8208
-
-#EXTINF:0,AXN
-http://79.145.129.130:4022/udp/239.0.0.62:8208
-
-#EXTINF:0,AXN
-http://79.145.129.130:4022/udp/239.0.5.79:8208
+0
 
 #EXTINF:0,Aym Sports
 0
@@ -29,7 +17,7 @@ http://79.145.129.130:4022/udp/239.0.5.79:8208
 0
 
 #EXTINF:0,Bloomberg
-http://79.145.129.130:4022/udp/239.0.0.29:8208
+0
 
 #EXTINF:0,Boomerang
 0
@@ -41,19 +29,13 @@ http://79.145.129.130:4022/udp/239.0.0.29:8208
 0
 
 #EXTINF:0,Comedy Central
-http://79.145.129.130:4022/udp/239.0.0.68:8208
-
-#EXTINF:0,Comedy Central
-http://79.145.129.130:4022/udp/239.0.0.174:8208
+0
 
 #EXTINF:0,Creebies
 0
 
 #EXTINF:0,Discovery Channel
-http://79.145.129.130:4022/udp/239.0.0.21:8208
-
-#EXTINF:0,Discovery Channel
-http://79.145.129.130:4022/udp/239.0.5.77:8208
+0
 
 #EXTINF:0,Discovery Civilization
 0
@@ -77,16 +59,13 @@ http://79.145.129.130:4022/udp/239.0.5.77:8208
 0
 
 #EXTINF:0,Disney Channel
-http://79.145.129.130:4022/udp/239.0.0.64:8208
-
-#EXTINF:0,Disney Channel
-http://79.145.129.130:4022/udp/239.0.0.173:8208
+0
 
 #EXTINF:0,Disney JR
-http://79.145.129.130:4022/udp/239.0.0.10:8208
+0
 
 #EXTINF:0,Disney XD
-http://79.145.129.130:4022/udp/239.0.0.11:8208
+0
 
 #EXTINF:0,E!
 0
@@ -107,10 +86,7 @@ http://79.145.129.130:4022/udp/239.0.0.11:8208
 0
 
 #EXTINF:0,Fox
-http://79.145.129.130:4022/udp/239.0.0.74:8208
-
-#EXTINF:0,Fox
-http://79.145.129.130:4022/udp/239.0.9.134:8208
+0
 
 #EXTINF:0,Fox 1
 0
@@ -128,10 +104,7 @@ http://79.145.129.130:4022/udp/239.0.9.134:8208
 0
 
 #EXTINF:0,Fox Life
-http://79.145.129.130:4022/udp/239.0.0.112:8208
-
-#EXTINF:0,Fox Life
-http://79.145.129.130:4022/udp/239.0.5.86:8208
+0
 
 #EXTINF:0,Fox Movies
 0
@@ -152,13 +125,13 @@ http://79.145.129.130:4022/udp/239.0.5.86:8208
 0
 
 #EXTINF:0,History Channel
-http://79.145.129.130:4022/udp/239.0.0.19:8208
+0
 
 #EXTINF:0,Lifetime
 0
 
 #EXTINF:0,MTV Music
-http://79.145.129.130:4022/udp/239.0.0.211:8208
+0
 
 #EXTINF:0,MTV Hits
 0
@@ -167,31 +140,24 @@ http://79.145.129.130:4022/udp/239.0.0.211:8208
 0
 
 #EXTINF:0,National Geographic Channel
-http://79.145.129.130:4022/udp/239.0.0.103:8208
-
-#EXTINF:0,National Geographic Channel
-http://79.145.129.130:4022/udp/239.0.5.78:8208
+0
 
 #EXTINF:0,Nat Geo Wild
-http://79.145.129.130:4022/udp/239.0.0.89:8208
-
-#EXTINF:0,Nat Geo Wild
-http://79.145.129.130:4022/udp/239.0.9.136:8208
-
+0
 #EXTINF:0,Nick
 0
 
 #EXTINF:0,Nick JR
-http://79.145.129.130:4022/udp/239.0.0.115:8208
+0
 
 #EXTINF:0,Nickelodeon
-http://79.145.129.130:4022/udp/239.0.0.69:8208
+0
 
 #EXTINF:0,Nicktoons
 0
 
 #EXTINF:0,Paramount Channel
-http://79.145.129.130:4022/udp/239.0.0.90:8208
+0
 
 #EXTINF:0,PX TV
 0
@@ -203,10 +169,7 @@ http://79.145.129.130:4022/udp/239.0.0.90:8208
 0
 
 #EXTINF:0,Sundance
-http://79.145.129.130:4022/udp/239.0.0.102:8208
-
-#EXTINF:0,Sundance
-http://79.145.129.130:4022/udp/239.0.5.72:8208
+0
 
 #EXTINF:0,Star Sports
 0
@@ -215,28 +178,19 @@ http://79.145.129.130:4022/udp/239.0.5.72:8208
 0
 
 #EXTINF:0,SYFY
-http://79.145.129.130:4022/udp/239.0.0.111:8208
-
-#EXTINF:0,SYFY
-http://79.145.129.130:4022/udp/239.0.5.75:8208
+0
 
 #EXTINF:0,TBS
 0
 
 #EXTINF:0,TCM
-http://79.145.129.130:4022/udp/239.0.6.5:8208
-
-#EXTINF:0,TCM
-http://79.145.129.130:4022/udp/239.0.5.89:8208
+0
 
 #EXTINF:0,TLC
 0
 
 #EXTINF:0,TNT
-http://79.145.129.130:4022/udp/239.0.0.44:8208
-
-#EXTINF:0,TNT
-http://79.145.129.130:4022/udp/239.0.5.87:8208
+0
 
 #EXTINF:0,Tooncast
 0
