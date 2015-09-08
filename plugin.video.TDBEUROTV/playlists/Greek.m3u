@@ -4,6 +4,9 @@
 #EXTINF:0,4E TV 
 http://mail.tv4e.gr:1935/live/myStream.sdp/playlist.m3u8
 
+#EXTINF:0,Axeloos TV
+http://srv.viiideo.gr:1935/axeloos/live/playlist.m3u8
+
 #EXTINF:0,Aigaio
 http://xaigaiotelevisionx.api.channel.livestream.com/3.0/playlist.m3u8
 
@@ -11,22 +14,31 @@ http://xaigaiotelevisionx.api.channel.livestream.com/3.0/playlist.m3u8
 http://alfakanali-lh.akamaihd.net/i/live_1@90368/master.m3u8
 
 #EXTINF:0,Ant1 
-http://185.73.239.23:8000/live/testrapid/3CmWLfb3kW/67.ts
+http://antennatv-lh.akamaihd.net/i/live_1@329667/master.m3u8
 
 #EXTINF:0,Ant1 Cyprus
 rtmp://46.21.53.171/iwohttporigin/mp4:livestream
 
 #EXTINF:0,Astra TV
-0
+http://www.astratv.gr:8090/hls/livestream.m3u8 
 
 #EXTINF:0,Best TV 
-0
+http://smooth.istoikona.net/besttv.isml/manifest(format=m3u8-aapl).m3u8 
+
+#EXTINF:0,Boyah TV
+http://streamer-cache.grnet.gr/parliament/parltv.sdp/master.m3u8 
 
 #EXTINF:0,BlueSky TV
-0
+http://88.198.238.44:1935/live/bluesky/playlist.m3u8 
 
 #EXTINF:0,Creta
 rtmp://94.23.218.186:1935/cretatv/cretatv
+
+#EXTINF:0,Creta
+rtmp://live.cretetv.gr/cretetv/myStream
+
+#EXTINF:0,Creta
+http://srv.viiideo.gr:1935/tvcreta/live/playlist.m3u8 
 
 #EXTINF:0,Delta 
 0
@@ -38,7 +50,7 @@ rtmp://94.23.218.186:1935/cretatv/cretatv
 http://xdrtvhellasx.api.channel.livestream.com/3.0/playlist.m3u8
 
 #EXTINF:0,E TV 
-0
+http://mgrouphdlive4-f.akamaihd.net/i/live_1@324569/master.m3u8
 
 #EXTINF:0,Ellada TV 
 rtmp://fml.68FC.edgecastcdn.net/2068FC/elladatv swfUrl=http://www.elladatv.gr/scripts/player.swf swfVfy=1 live=1 timeout=10
@@ -47,7 +59,7 @@ rtmp://fml.68FC.edgecastcdn.net/2068FC/elladatv swfUrl=http://www.elladatv.gr/sc
 0
 
 #EXTINF:0,Epirus TV 
-0
+http://xepirustv1livex.api.channel.livestream.com/3.0/playlist.m3u8
 
 #EXTINF:0,ET3 
 http://live2.ertopen.com/live2/e600/playlist.m3u8
@@ -66,6 +78,9 @@ http://wm1.gmlogic.com/ch-patra?ovpsv=2.3.1.0
 
 #EXTINF:0,Greek Voice
 http://wpso.com:200/tv48
+
+#EXTINF:0,Greek Voice
+http://iphone-streaming.ustream.tv/ustreamVideo/1989576/streams/live/playlist.m3u8 
 
 #EXTINF:0,Hellas TV
 rtmp://176.9.123.140:1935/leveltgp/leveltgp live=1 timeout=10
@@ -87,6 +102,9 @@ rtmp://flashcloud.mediacdn.com/live playpath=kontratv pageUrl=http://www.tvonlin
 
 #EXTINF:0,Kphth TV 
 http://live.cretetv.gr:1935/cretetv/myStream/playlist.m3u8
+
+#EXTINF:0,Kydon TV
+http://iphone-streaming.ustream.tv/ustreamVideo/9461248/streams/live/playlist.m3u8 
 
 #EXTINF:0,Lepanto 
 0
@@ -110,19 +128,25 @@ http://206.222.31.146/maxtv
 http://megahdlive1-f.akamaihd.net/i/live_1@105260/master.m3u8
 
 #EXTINF:0,Mega Cyprus
-0
+http://smooth2.istoikona.net:1935/live/livenews%202/playlist.m3u8 
 
 #EXTINF:0,Nea TV
+http://srv.viiideo.gr:1935/neatv/live/playlist.m3u8 
+
+#EXTINF:0,N Cinema 
 0
 
-#EXTINF:0,N Cinema
-http://xnaturatv1x.api.channel.livestream.com/3.0/playlist.m3u8
+#EXTINF:0,Nea
+0
 
 #EXTINF:0,Nerit 
 http://magictvbox.us:200/skai
 
 #EXTINF:0,Nerit 
 http://nerit2-lh.akamaihd.net/i/neritplus_1@45603/master.m3u8
+
+#EXTINF:0,Nerit Plus
+http://nerit2-lh.akamaihd.net/i/neritplus_1@121149/master.m3u8 
 
 #EXTINF:0,Omega TV 
 rtmp://stream2.omegatv.net:1935/livepkgr/omegatv live=1 timeout=10
@@ -135,6 +159,9 @@ http://xrodopi_tvx.api.channel.livestream.com/3.0/playlist.m3u8
 
 #EXTINF:0,Rik Sat 
 0
+
+#EXTINF:0,Samiaki TV
+rtmp://94.23.218.186/samiaki/samiaki
 
 #EXTINF:0,SBC
 http://xsbcgrx.api.channel.livestream.com/3.0/playlist.m3u8
@@ -151,14 +178,15 @@ http://radiofeeds1.mediabox.gr/startv?MSWMExt=.asf
 #EXTINF:0,Star TV 
 http://4.31.30.145:9080/
 
-#EXTINF:0,Syros TV
-http://176.9.123.140:1935/msg116s/msg116s/playlist.m3u8
+#EXTINF:0,Syros TV 
+0
 
 #EXTINF:0,TRT 
-0
+http://xelladalivex.api.channel.livestream.com/3.0/playlist.m3u8 
 
 #EXTINF:0,TV 100 
-0
+http://178.62.176.153:1935/TV100/myStream/playlist.m3u8 
 
 #EXTINF:0,Zougla TV 
 http://zouglahd-f.akamaihd.net/i/zougla_1@56341/master.m3u8
+

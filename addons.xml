@@ -459,7 +459,7 @@ Thats all Folks
 
 <addon id="plugin.video.TDBEUROTV"
        name="TDB EURO TV"
-       version="1.94"
+       version="1.95"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -478,7 +478,7 @@ Thats all Folks
 
 <addon id="plugin.video.TDBPORNO"
        name="TDB PORNO"
-       version="1.69"
+       version="1.71"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -497,7 +497,7 @@ Thats all Folks
 
 <addon id="plugin.video.TDBRADIO"
        name="TDB RADIO"
-       version="1.24"
+       version="1.25"
        provider-name="TDB">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -534,7 +534,7 @@ Thats all Folks
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="3.08"
+       version="3.10"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -692,7 +692,7 @@ Thats all Folks
 </extension>
 </addon>
 
-<addon id="repository.team.expat" name="Team eXpat Repository" version="1.0.1" provider-name="Team-eXpat">
+<addon id="repository.team.expat" name="Team eXpat Repository" version="1.0.5" provider-name="Team-eXpat">
 	<extension point="xbmc.addon.repository" name="Demonstration Add-on Repository">
 		<info compressed="false">http://raw.github.com/teamexpat/team.expat/master/addons.xml</info>
 		<checksum>http://raw.github.com/teamexpat/team.expat/master/addons.xml.md5</checksum>

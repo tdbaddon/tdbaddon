@@ -5,7 +5,7 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 ---------------------------------------------------------------------------------------------------------------
 
 #EXTINF:0,A&E 
-http://4.31.30.159:9039
+0
 
 #EXTINF:0,ABC 
 0
@@ -14,10 +14,10 @@ http://4.31.30.159:9039
 0
 
 #EXTINF:0,AMC 
-http://4.31.30.159:9038
+0
 
 #EXTINF:0,AXN 
-http://proxiiptv.dyndns.tv:8000/live/dejan/dejan/280.m3u8
+0
 
 #EXTINF:0,BabyTV 
 http://proxiiptv.dyndns.tv:8000/live/dejan/dejan/403.m3u8
@@ -28,14 +28,8 @@ http://fe-mos.svc.iptv.rt.ru/hls/CH_C01_BABYTV/variant.m3u8?version=2
 #EXTINF:0,BBC 1 
 http://82.135.224.134:80/udp/239.100.3.1:1234
 
-#EXTINF:0,BBC 1 
-http://37.187.160.187:8000/live/ressler/skype/53.m3u8
-
 #EXTINF:0,BBC 2 
 http://82.135.224.134/udp/239.100.3.3:1234
-
-#EXTINF:0,BBC 2 
-http://37.187.160.187:8000/live/ressler/skype/54.m3u8
 
 #EXTINF:0,BET 
 0
@@ -55,14 +49,11 @@ http://5.128.118.163:7777/udp/239.1.3.3:1234
 #EXTINF:0,Cartoon Network 
 http://185.13.236.197:4080/udp/224.0.0.120:1244
 
-#EXTINF:0,CBC TV
-http://4.31.30.159:9036
+#EXTINF:0,CBC TV 
+0
 
 #EXTINF:0,Cbeebies 
-http://37.187.160.187:8000/live/ressler/skype/129.m3u8
-
-#EXTINF:0,Cbeebies 
-http://82.135.224.134:80/udp/239.100.3.5:1234
+0
 
 #EXTINF:0,CBS 
 0
@@ -71,13 +62,13 @@ http://82.135.224.134:80/udp/239.100.3.5:1234
 0
 
 #EXTINF:0,CBS Drama 
-http://37.187.160.187:8000/live/ressler/skype/67.m3u8
+0
 
 #EXTINF:0,CBS Reality 
-http://37.187.160.187:8000/live/ressler/skype/66.m3u8
+0
 
 #EXTINF:0,City TV Toronto 
-http://4.31.30.159:9010
+0
 
 #EXTINF:0,City TV Vancouver
 0
@@ -86,7 +77,7 @@ http://4.31.30.159:9010
 http://origin.live.web.tv.streamprovider.net/streams/9044496707bcc259f6cdf58eb93cbfe9_live_0_0/index.m3u8
 
 #EXTINF:0,Comedy Central 
-http://37.187.160.187:8000/live/ressler/skype/82.m3u8
+0
 
 #EXTINF:0,Cooking Channel
 0
@@ -119,16 +110,13 @@ http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/index_350_av-p.m3u8?
 0
 
 #EXTINF:0,E! 
-http://4.31.30.159:9011
-
-#EXTINF:0,E! 
 http://proxiiptv.dyndns.tv:8000/live/dejan/dejan/276.m3u8
 
 #EXTINF:0,E2
 http://origin.live.web.tv.streamprovider.net/streams/5dac5e87d17d40f5bca18d2b211a4dd2_live_0_0/index.m3u8
 
 #EXTINF:0,E4 
-0
+http://pebbles124-lh.akamaihd.net/i/e4_1@137789/master.m3u8|X-Forwarded-For=85.5.87.218
 
 #EXTINF:0,Family Channel 
 0
@@ -140,13 +128,13 @@ http://46.249.213.87/iPhone/HLS_TS/broadcast/fashiontv-tablet.3gp/fashiontv-tabl
 0
 
 #EXTINF:0,Food Network 
-http://4.31.30.159:9028
+0
 
 #EXTINF:0,Fox 1 
 0
 
 #EXTINF:0,Fox Crime
-0
+http://tvdofuturo2.dyndns.tv:8000/live/lucia/lucia1/86.ts
 
 #EXTINF:0,Fox Life 
 http://fe-sth.svc.iptv.rt.ru/hls/CH_C04_FOXLIFE/variant.m3u8?version=2
@@ -162,9 +150,6 @@ http://fe-sth.svc.iptv.rt.ru/hls/CH_C06_FOX/variant.m3u8?version=2
 
 #EXTINF:0,Global TV Halifax 
 http://link.theplatform.com/s/dtjsEC/77l1KA_G_5P1?feed=DEV%20Live%20Stream%20Feed/playlist.m3u8
-
-#EXTINF:0,Global TV Toronto 
-http://4.31.30.159:9041
 
 #EXTINF:0,Global TV Toronto 
 http://link.theplatform.com/s/dtjsEC/hdSH3iztz_j_?feed=DEV%20Live%20Stream%20Feed/playlist.m3u8
@@ -194,16 +179,16 @@ rtmp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:468p500kB31?b?b*t$
 http://ios.streamserver01.com:8080/ShowcaseTV/mystream.m3u8
 
 #EXTINF:0,ITV 1 
-http://37.187.160.187:8000/live/ressler/skype/55.m3u8
+http://82.135.224.134/udp/239.100.3.6:1234
 
 #EXTINF:0,ITV 2 
-http://37.187.160.187:8000/live/ressler/skype/58.m3u8
+0
 
 #EXTINF:0,ITV 3 
-http://37.187.160.187:8000/live/ressler/skype/59.m3u8
+0
 
 #EXTINF:0,ITV 4 
-http://37.187.160.187:8000/live/ressler/skype/60.m3u8
+0
 
 #EXTINF:0,JTV 
 rtmp://jtvmedia.jtv.com:1975/live playpath=live6 swfUrl=http://demandware.edgesuite.net/aaby_prd/on/demandware.static/Sites-jtv-Site/-/default/v1410110388581/swf/flashMediaPlayer/StrobeMediaPlayback.swf live=1 pageUrl=http://www.jtv.com/on/demandware.store/Sites-jtv-Site/default/LiveViewer-Show
@@ -224,7 +209,7 @@ http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
 0
 
 #EXTINF:0,More4 
-http://37.187.160.187:8000/live/ressler/skype/64.m3u8
+0
 
 #EXTINF:0,My9
 http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
@@ -257,25 +242,25 @@ http://185.13.236.197:4080/udp/224.0.0.120:1240
 0
 
 #EXTINF:0,Showtime 
-http://80.80.160.168/live/7/live.m3u8
+0
 
 #EXTINF:0,Sky 1 
-http://37.187.160.187:8000/live/ressler/skype/77.m3u8
+http://xtv.satarabia.com:80/live/testy9098/testy9098/193.ts
 
 #EXTINF:0,Sky 2 
-http://37.187.160.187:8000/live/ressler/skype/79.m3u8
+0
 
 #EXTINF:0,Sky Arts 1 
-http://37.187.160.187:8000/live/ressler/skype/102.m3u8
+0
 
 #EXTINF:0,Sky Arts 2 
 0
 
 #EXTINF:0,Sky Atlantic 
-http://37.187.160.187:8000/live/ressler/skype/81.m3u8
+0
 
 #EXTINF:0,Sky Living 
-http://37.187.160.187:8000/live/ressler/skype/80.m3u8
+0
 
 #EXTINF:0,Slice 
 0
@@ -300,9 +285,6 @@ http://188.138.9.228:8002
 
 #EXTINF:0,Teletoon 
 0
-
-#EXTINF:0,TLC 
-http://80.80.160.168/live/2/live.m3u8
 
 #EXTINF:0,TLC 
 http://194.44.229.77:777/udp/237.1.239.23:1234
@@ -335,8 +317,8 @@ http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/master.m3u8?b?b*t
 #EXTINF:0,TV Land 
 0
 
-#EXTINF:0,TVO
-http://4.31.30.159:9008
+#EXTINF:0,TVO 
+0
 
 #EXTINF:0,Universal Channel 
 0

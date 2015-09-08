@@ -17,10 +17,10 @@ http://lihattv.toh.info/jhos/beib2_3/-/playlist.m3u8
 http://lihattv.toh.info/jhos/beib2_5/-/playlist.m3u8
 
 #EXTINF:0,Box Nation 
-http://stream-full.selfip.com:8000/live/facebook/facebook/347.ts
+0
 
 #EXTINF:0,BT Sport 1 
-http://stream-full.selfip.com:8000/live/facebook/facebook/83.ts
+0
 
 #EXTINF:0,BT Sport 2 
 0
@@ -35,13 +35,10 @@ http://87.245.214.43/streaming/futbol/16/tvrec/playlist.m3u8
 0
 
 #EXTINF:0,ESPN 
-http://80.80.160.168/live/6/live.m3u8
+0
 
 #EXTINF:0,Eurosport 1 
 http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_1800.m3u8
-
-#EXTINF:0,Eurosport 1 
-rtmp://181.214.35.7:19350/live/ playpath=wrLnq7XIjCGM swfUrl=http://www.letgo.tv/jwplayer.flash.swf live=1 pageUrl=http://www.letgo.tv/embed.php?channel=231&vw=650&vh=400
 
 #EXTINF:0,Eurosport 1 
 http://91.193.124.5:8000/eurosport
@@ -59,16 +56,10 @@ http://91.193.124.5:8000/eurosport2
 0
 
 #EXTINF:0,Fox Sports 
-0
+http://209.133.208.178:1935/app/max13a258s-channel/playlist.m3u8
 
 #EXTINF:0,Fox Sports 1 
 http://54.177.195.82/server/play/fs1ctg/3964000/prog.m3u8?anv=1427415219896 |X-Forwarded-For=66.171.228.102
-
-#EXTINF:0,Fox Sports 2 
-http://4.31.30.159:9111
-
-#EXTINF:0,Fox Sports 2 
-rtmp://kv2.ts33.net/sat/us301
 
 #EXTINF:0,Fox Sports 2 
 http://54.177.195.82/server/play/fs2ctg/3964000/prog.m3u8?anv=1427415219896 |X-Forwarded-For=66.171.228.102
@@ -89,7 +80,7 @@ mms://100automoto.tv/channel_mercedes
 0
 
 #EXTINF:0,Motors TV 
-http://4.31.30.159:9134
+0
 
 #EXTINF:0,Motorsport 7 
 http://motorsport.hopto.org:8080/
@@ -103,6 +94,12 @@ mms://100automoto.tv/100livesport
 #EXTINF:0,NBC Golf 
 http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/2596k/prog.m3u8|X-Forwarded-For=209.239.112.104
 
+#EXTINF:0,NBC Golf 
+http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/4296k/prog.m3u8|X-Forwarded-For=209.239.112.104
+
+#EXTINF:0,NBC Golf 
+http://xtv.satarabia.com:80/live/testy9098/testy9098/472.ts
+
 #EXTINF:0,NBCSN 
 http://tvenbcsn-i.Akamaihd.net/hls/live/218235/nbcsnx/2596k/prog.m3u8|X-Forwarded-For=66.171.228.102
 
@@ -112,8 +109,14 @@ http://tvenbcsn-i.Akamaihd.net/hls/live/218235/nbcsnx/4296k/prog.m3u8|X-Forwarde
 #EXTINF:0,NBCSN 
 http://cdn.phoenix.intergi.com/21772/videos/3362254/video-sd.mp4?hosting_id=21772
 
+#EXTINF:0,NBCSN 
+http://209.133.208.178:1935/app/max10a257s-channel/playlist.m3u8
+
+#EXTINF:0,NBCSN 
+rtmp://181.214.35.7:19350/live/ playpath=rODW52xUtR9o swfUrl=http://www.letgo.tv/jwplayer.flash.swf live=1 pageUrl=http://www.letgo.tv/embed.php?channel=223&vw=650&vh=400
+
 #EXTINF:0,NFL Network 
-http://64.100.15.201/udp/239.255.2.5:10001
+0
 
 #EXTINF:0,NHL Network
 0
@@ -179,19 +182,19 @@ mms://100automoto.tv/channel_porsche
 0
 
 #EXTINF:0,Sky Sports 1 
-http://stream-full.selfip.com:8000/live/facebook/facebook/102.ts
+http://207.244.71.174:8081/origin/SS1HD/playlist.m3u8
 
 #EXTINF:0,Sky Sports 2 
-http://stream-full.selfip.com:8000/live/facebook/facebook/103.ts
+http://207.244.71.174:8081/origin/SS2HD/chunks.m3u8
 
 #EXTINF:0,Sky Sports 3 
-http://stream-full.selfip.com:8000/live/facebook/facebook/104.ts
+http://207.244.71.174:8081/origin/SS3HD/playlist.m3u8
 
 #EXTINF:0,Sky Sports 4 
-0
+http://207.244.71.174:8081/origin/SS4HD/playlist.m3u8
 
 #EXTINF:0,Sky Sports 5 
-0
+http://207.244.71.174:8081/origin/SS5HD/playlist.m3u8
 
 #EXTINF:0,Sky Sports F1 
 0
@@ -221,19 +224,19 @@ rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9
 http://stream01.yamgo.com/iPhone/HLS_TS/broadcast/trace_tv_sports-tablet.3gp/trace_tv_sports-tablet.3gp-mr647k.m3u8?
 
 #EXTINF:0,TSN 1 
-http://stream-full.selfip.com:8000/live/facebook/facebook/303.ts
+0
 
 #EXTINF:0,TSN 2 
-http://stream-full.selfip.com:8000/live/facebook/facebook/304.ts
+0
 
 #EXTINF:0,TSN 3 
-http://stream-full.selfip.com:8000/live/facebook/facebook/305.ts
+0
 
 #EXTINF:0,TSN 4 
-http://stream-full.selfip.com:8000/live/facebook/facebook/306.ts
+0
 
 #EXTINF:0,TSN 5 
-http://stream-full.selfip.com:8000/live/facebook/facebook/307.ts
+0
 
 #EXTINF:0,Viasat Golf 
 0

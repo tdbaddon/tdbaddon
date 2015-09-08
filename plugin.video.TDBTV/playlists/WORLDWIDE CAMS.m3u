@@ -10,6 +10,9 @@ http://video1.earthcam.com/fecnetwork/AbbeyRoadHD1.flv/hasbahca.m3u8
 #EXTINF:0,Atlantis Palm Dubai
 http://video1.earthcam.com:1935/fecnetwork/5868.flv/hasbahca.m3u8
 
+#EXTINF:0,Bitola Macedonia
+mms://62.162.58.55/KameraBitola
+
 #EXTINF:0,Bourbon Street New Orleans 
 http://video1.earthcam.com/fecnetwork/4280.flv/hasbahca.m3u8
 
@@ -36,6 +39,9 @@ http://video1.earthcam.com/fecnetwork/windjammerHD2.flv/HasBahCa.m3u8
 
 #EXTINF:0,Hollywood Blvd Los Angelos
 http://video1.earthcam.com/fecnetwork/lacitytours1.flv/hasbahca.m3u8
+
+#EXTINF:0,Kocani Macedonia
+mms://62.162.58.55/KameraKocani
 
 #EXTINF:0,Las Vegas Nevada 
 http://video1.earthcam.com/fecnetwork/eclasvegas.flv/hasbahca.m3u8
@@ -79,6 +85,12 @@ http://iphone-streaming.ustream.tv/uhls/14812707/streams/live/iphone/playlist.m3
 #EXTINF:0,Statue of Liberty New York
 http://video1.earthcam.com:1935/fecnetwork/statueoflibertyHD.flv/hasbahca.m3u8
 
+#EXTINF:0,Stip Macedonia
+mms://62.162.58.55/KameraStip
+
+#EXTINF:0,Strumica Macedonia
+mms://62.162.58.55/KameraStrumica
+
 #EXTINF:0,The Temple Bar Ireland
 http://video1.earthcam.com:1935/fecnetwork/4054.flv/hasbahca.m3u8
 
@@ -96,3 +108,6 @@ http://video1.earthcam.com/fecnetwork/hdtimes11.flv/hasbahca.m3u8
 
 #EXTINF:0,Tokyo Japan
 http://video4.earthcam.com/fecnetwork/tokyo1.flv/playlist.m3u8
+
+#EXTINF:0,Veles Macedonia
+mms://62.162.58.55/KameraVeles

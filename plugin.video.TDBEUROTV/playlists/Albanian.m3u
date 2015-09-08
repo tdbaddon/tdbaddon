@@ -2,7 +2,7 @@
 
 
 #EXTINF:0,A1 Report 
-rtmp://66.55.93.204/livepkgr/a1stream?adbe-live-event=a1report
+0
 
 #EXTINF:0,Agon Channel 
 0
@@ -22,29 +22,8 @@ rtmp://188.138.17.8:1935/albuk/albuk+.stream
 #EXTINF:0,Al Jazeera Balkan 
 rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
 
-#EXTINF:0,Alsat M 
-http://217.16.82.6:1935/zulu/alsat_1/playlist.m3u8
-
-#EXTINF:0,Alsat M 
-http://217.16.82.6:1935/zulu/alsat_2/playlist.m3u8
-
-#EXTINF:0,Alsat M 
-http://217.16.82.6:554/zulu/alsat_1/playlist.m3u8
-
-#EXTINF:0,Alsat M 
-http://217.16.82.6:554/zulu/alsat_2/playlist.m3u8
-
-#EXTINF:0,Alsat M 
-http://balkanstream.com/stream/alsatm/mip001/25hsK6Sa9l$OPT:network-caching=4500
-
 #EXTINF:0,ATV
 rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
-
-#EXTINF:0,B92 
-http://stream.b92.net:7999/tv-b92.ogg
-
-#EXTINF:0,Balkan TV 
-rtmp://yayin.tvdunyasi.tv/live/balkanrtv
 
 #EXTINF:0,Bangbang 
 http://akamai127.tibo.tv/bangbang/timeshift_rel-20.m3u8$OPT:http-user-agent=stagefright%2F1.0+%28Linux%3BAndroid+2.2%29
@@ -52,32 +31,17 @@ http://akamai127.tibo.tv/bangbang/timeshift_rel-20.m3u8$OPT:http-user-agent=stag
 #EXTINF:0,Bangbang 
 http://balkanstream.com/stream/bangbang/mip001/25hsK6Sa9l$OPT:network-caching=4500
 
-#EXTINF:0,Blue Sky
+#EXTINF:0,Channel One 
 0
-
-#EXTINF:0,Channel One
-http://81.7.13.162/hls/channelone/index.m3u8
 
 #EXTINF:0,Cufo TV 
 http://akamai127.tibo.tv/cufo/timeshift_rel-20.m3u8$OPT:http-user-agent=stagefright%2F1.0+%28Linux%3BAndroid+2.2%29
 
-#EXTINF:0,ERA TV 
-http://217.16.82.6:1935/zulu/era_1/playlist.m3u8
-
-#EXTINF:0,ERA TV 
-http://217.16.82.6:1935/zulu/era_2/playlist.m3u8
-
-#EXTINF:0,ERA TV 
-http://217.16.82.6:554/zulu/era_1/playlist.m3u8
-
-#EXTINF:0,ERA TV 
-http://217.16.82.6:554/zulu/era_2/playlist.m3u8
+#EXTINF:0,Cufo TV 
+http://error.sytes.net:21000/iptvlinks/iptvlinks.com/43.ch
 
 #EXTINF:0,Folk Plus 
 0
-
-#EXTINF:0,Hema TV 
-mms://77.238.209.50:1234
 
 #EXTINF:0,Jug TV 
 rtmp://84.20.77.50/live//livestream2
@@ -98,45 +62,18 @@ rtmp://84.20.77.50/live//livestream2
 rtmp://91.82.85.44/live/konyhatv
 
 #EXTINF:0,Kopliku TV 
-http://str105mb.setplex.net:1935/str2iosmd5/tvkop3542121/playlist.m3u8
-
-#EXTINF:0,MPT 1 
-http://217.16.82.6:1935/zulu/mtv1_1/playlist.m3u8
-
-#EXTINF:0,MPT 1 
-http://217.16.82.6:1935/zulu/mtv1_2/playlist.m3u8
-
-#EXTINF:0,MPT 1 
-http://217.16.82.6:554/zulu/mtv1_1/playlist.m3u8
-
-#EXTINF:0,MPT 1 
-http://217.16.82.6:554/zulu/mtv1_2/playlist.m3u8
-
-#EXTINF:0,MPT 2 
-http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video_id/3548/token/bd0b11a4f8d05cc0bffe589f55909615/playlist.m3u8
-
-#EXTINF:0,MPT 2 
-http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video_id/3545/token/baf3cb0ceac4e5243d63f8bf96011783/playlist.m3u8
-
-#EXTINF:0,MPT Sat 
-http://mrt.cdn.spectar.tv:1935/mrt-edge/_definst_/mrt1-sat/playlist.m3u8
-
-#EXTINF:0,MPT SAT 2 
-http://mrt.cdn.spectar.tv:1935/mrt-edge/_definst_/mrt2-sat/playlist.m3u8
+0
 
 #EXTINF:0,News24
 http://66.55.93.203/hls-live/livepkgr/_definst_/news24/n24stream.m3u8
 
-#EXTINF:0,Novosadska TV 
-mms://176.106.121.32:8080/
+#EXTINF:0,News24
+http://error.sytes.net:21000/iptvlinks/iptvlinks.com/26.ch
 
-#EXTINF:0,Ora News
+#EXTINF:0,Ora News 
 http://81.7.13.162/hls/oranews/index.m3u8
 
-#EXTINF:0,Party TV
-0
-
-#EXTINF:0,Planet TV
+#EXTINF:0,Planet TV 
 rtsp://origin.biokoda.tv/live/mbit-planet?k=planettv-public
 
 #EXTINF:0,Rokum TV 
@@ -144,18 +81,6 @@ rtmp://82.114.65.202/live/rrokumtv.flv swfUrl=http://tv24.al/shqiptv/css/player.
 
 #EXTINF:0,RTK1 
 http://wowza.rtkit.com:1935/live/livestream/chunklist.m3u8?wowzasessionid=491913886
-
-#EXTINF:0,Super Sport 1 
-0
-
-#EXTINF:0,Super Sport 2 
-http://81.7.13.162/hls/ss2/index.m3u8
-
-#EXTINF:0,Super Sport 3 
-0
-
-#EXTINF:0,Super Sport 4
-0
 
 #EXTINF:0,Supersonic TV
 rtmp://str103.setplex.net:1935/228/stv_online

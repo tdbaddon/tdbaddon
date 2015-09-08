@@ -11,31 +11,13 @@ rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazee
 http://217.16.82.6:1935/zulu/alfa_1/playlist.m3u8
 
 #EXTINF:0,Alfa 
-http://217.16.82.6:1935/zulu/alfa_2/playlist.m3u8
-
-#EXTINF:0,Alfa 
 http://217.16.82.6:554/zulu/alfa_1/playlist.m3u8
-
-#EXTINF:0,Alfa 
-http://217.16.82.6:554/zulu/alfa_2/playlist.m3u8
 
 #EXTINF:0,Alsat M 
 http://217.16.82.6:1935/zulu/alsat_1/playlist.m3u8
 
 #EXTINF:0,Alsat M 
-http://217.16.82.6:1935/zulu/alsat_2/playlist.m3u8
-
-#EXTINF:0,Alsat M 
 http://217.16.82.6:554/zulu/alsat_1/playlist.m3u8
-
-#EXTINF:0,Alsat M 
-http://217.16.82.6:554/zulu/alsat_2/playlist.m3u8
-
-#EXTINF:0,B92 
-http://stream.b92.net:7999/tv-b92.ogg
-
-#EXTINF:0,Balkan TV
-rtmp://yayin.tvdunyasi.tv/live/balkanrtv
 
 #EXTINF:0,BTR 
 0
@@ -43,20 +25,11 @@ rtmp://yayin.tvdunyasi.tv/live/balkanrtv
 #EXTINF:0,Cegrani Media
 0
 
-#EXTINF:0,Duga Plus
-http://w10.streamgb.com:1935/dugaplus/dugaplus/playlist.m3u8
-
 #EXTINF:0,ERA TV 
 http://217.16.82.6:1935/zulu/era_1/playlist.m3u8
 
 #EXTINF:0,ERA TV 
-http://217.16.82.6:1935/zulu/era_2/playlist.m3u8
-
-#EXTINF:0,ERA TV 
 http://217.16.82.6:554/zulu/era_1/playlist.m3u8
-
-#EXTINF:0,ERA TV 
-http://217.16.82.6:554/zulu/era_2/playlist.m3u8
 
 #EXTINF:0,H1 Hugo
 rtmp://hugo-iptv.zapto.org/live/h1
@@ -65,19 +38,13 @@ rtmp://hugo-iptv.zapto.org/live/h1
 mms://77.238.209.50:1234
 
 #EXTINF:0,In TV
-0
+rtsp://streamus.intv.mk:1935/live/intv
 
 #EXTINF:0,Iris 
 mms://62.162.58.55/TVIris
 
 #EXTINF:0,Iris 
 mms://62.162.58.54:8080
-
-#EXTINF:0,Joj TV 
-http://88.212.10.27:81/streams/joj.m3u8
-
-#EXTINF:0,Jug TV 
-0
 
 #EXTINF:0,K1 Veles
 0
@@ -89,28 +56,16 @@ http://88.212.10.27:81/streams/joj.m3u8
 http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/k3-tv-kumanovo/chunklist.m3u8
 
 #EXTINF:0,Kanal 5 
-http://217.16.82.6:1935/zulu/kanal5_2/playlist.m3u8
-
-#EXTINF:0,Kanal 5 
 http://fms.zulu.mk:1935/zulu/kanal5_1/playlist.m3u8
 
 #EXTINF:0,Kanal 5 
 http://217.16.82.6:1935/zulu/kanal5_2/playlist.m3u8
-
-#EXTINF:0,Kanal 5 
-http://fms.zulu.mk:1935/zulu/kanal5_1/playlist.m3u8
 
 #EXTINF:0,Kanal 5 Plus 
 http://217.16.82.6:1935/zulu/kanal5plus_1/playlist.m3u8
 
 #EXTINF:0,Kanal 5 Plus 
-http://217.16.82.6:1935/zulu/kanal5plus_2/playlist.m3u8
-
-#EXTINF:0,Kanal 5 Plus 
 http://217.16.82.6:554/zulu/kanal5plus_1/playlist.m3u8
-
-#EXTINF:0,Kanal 5 Plus 
-http://217.16.82.6:554/zulu/kanal5plus_2/playlist.m3u8
 
 #EXTINF:0,Kanal 8
 mms://62.162.58.55/TVkanal8
@@ -121,17 +76,20 @@ http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/kplus-tv-stip/chunkl
 #EXTINF:0,Mega TV Bitola
 http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/hdtv-mega-bitola/chunklist.m3u8
 
+#EXTINF:0,MPT
+http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video_id/3545/token/8febec7104673322148fdc392d604973/playlist.m3u8
+
+#EXTINF:0,MPT 1 
+http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video_id/3551/token/8febec7104673322148fdc392d604973/playlist.m3u8
+
 #EXTINF:0,MPT 1 
 http://217.16.82.6:1935/zulu/mtv1_1/playlist.m3u8
 
 #EXTINF:0,MPT 1 
-http://217.16.82.6:1935/zulu/mtv1_2/playlist.m3u8
-
-#EXTINF:0,MPT 1 
 http://217.16.82.6:554/zulu/mtv1_1/playlist.m3u8
 
-#EXTINF:0,MPT 1 
-http://217.16.82.6:554/zulu/mtv1_2/playlist.m3u8
+#EXTINF:0,MPT 2 
+http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video_id/3548/token/9a9e4915833e8e611b2902b144852a92/playlist.m3u8
 
 #EXTINF:0,MPT 2 
 http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video_id/3548/token/bd0b11a4f8d05cc0bffe589f55909615/playlist.m3u8
@@ -139,56 +97,32 @@ http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video
 #EXTINF:0,MPT 2 
 http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video_id/3545/token/baf3cb0ceac4e5243d63f8bf96011783/playlist.m3u8
 
-#EXTINF:0,MPT SAT 2 
-http://mrt.cdn.spectar.tv:1935/mrt-edge/_definst_/mrt2-sat/playlist.m3u8
-
 #EXTINF:0,MPT Sat 
 http://mrt.cdn.spectar.tv:1935/mrt-edge/_definst_/mrt1-sat/playlist.m3u8
+
+#EXTINF:0,MPT Sat 2 
+http://mrt.cdn.spectar.tv:1935/mrt-edge/_definst_/mrt2-sat/playlist.m3u8
 
 #EXTINF:0,Nasha TV 
 http://217.16.82.6:1935/zulu/nashatv_1/playlist.m3u8
 
 #EXTINF:0,Nasha TV 
-http://217.16.82.6:1935/zulu/nashatv_2/playlist.m3u8
-
-#EXTINF:0,Nasha TV 
 http://217.16.82.6:554/zulu/nashatv_1/playlist.m3u8
-
-#EXTINF:0,Nasha TV 
-http://217.16.82.6:554/zulu/nashatv_2/playlist.m3u8
-
-#EXTINF:0,OBN 
-http://5.196.14.179:2502/live_tv_channels_on_sipragezabava.com
 
 #EXTINF:0,Ohrid 02
 http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/o2-tv-ohrid/playlist.m3u8
-
-#EXTINF:0,RTS
-mmsh://rts.videostreaming.rs/rts
 
 #EXTINF:0,Sitel 
 http://217.16.82.6:1935/zulu/sitel_1/playlist.m3u8
 
 #EXTINF:0,Sitel 
-http://217.16.82.6:1935/zulu/sitel_2/playlist.m3u8
-
-#EXTINF:0,Sitel 
 http://217.16.82.6:554/zulu/sitel_1/playlist.m3u8
-
-#EXTINF:0,Sitel 
-http://217.16.82.6:554/zulu/sitel_2/playlist.m3u8
 
 #EXTINF:0,Sitel 3 
 http://217.16.82.6:1935/zulu/sitel3_1/playlist.m3u8
 
 #EXTINF:0,Sitel 3 
-http://217.16.82.6:1935/zulu/sitel3_2/playlist.m3u8
-
-#EXTINF:0,Sitel 3 
 http://217.16.82.6:554/zulu/sitel3_1/playlist.m3u8
-
-#EXTINF:0,Sitel 3 
-http://217.16.82.6:554/zulu/sitel3_2/playlist.m3u8
 
 #EXTINF:0,Sonce TV
 http://92.53.27.201:10000/
@@ -197,28 +131,42 @@ http://92.53.27.201:10000/
 http://217.16.82.6:1935/zulu/shutel_1/playlist.m3u8
 
 #EXTINF:0,Sutel TV 
-http://217.16.82.6:1935/zulu/shutel_2/playlist.m3u8
-
-#EXTINF:0,Sutel TV 
 http://217.16.82.6:554/zulu/shutel_1/playlist.m3u8
-
-#EXTINF:0,Sutel TV 
-http://217.16.82.6:554/zulu/shutel_2/playlist.m3u8
 
 #EXTINF:0,Telma 
 http://217.16.82.6:1935/zulu/telma_1/playlist.m3u8
 
 #EXTINF:0,Telma 
-http://217.16.82.6:1935/zulu/telma_2/playlist.m3u8
-
-#EXTINF:0,Telma 
 http://217.16.82.6:554/zulu/telma_1/playlist.m3u8
-
-#EXTINF:0,Telma 
-http://217.16.82.6:554/zulu/telma_2/playlist.m3u8
 
 #EXTINF:0,Ultra Tetovo
 http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/ultra-tv-tetovo/chunklist.m3u8
 
 #EXTINF:0,Vesti 24
-http://24vesti.com.mk/sites/dnevnik/Vesti_VB6.flv 
+http://24vesti.com.mk/sites/dnevnik/Vesti_VB6.flv 
+
+#EXTINF:0,Vesti 24
+http://62.162.58.55/24vesti
+
+#EXTINF:0,Vesti Sitel
+http://stream.sitel.com.mk/sites/default/files/manual_upload/dnevnik/dnevnik.mp4
+
+#EXTINF:0,Vesti Telma
+http://telma.mk/sites/default/files/vesti_6_sep_1830.mp4
+
+----------------------- CAMS
+
+#EXTINF:0,Bitola Macedonia
+mms://62.162.58.55/KameraBitola
+
+#EXTINF:0,Kocani Macedonia
+mms://62.162.58.55/KameraKocani
+
+#EXTINF:0,Stip Macedonia
+mms://62.162.58.55/KameraStip
+
+#EXTINF:0,Strumica Macedonia
+mms://62.162.58.55/KameraStrumica
+
+#EXTINF:0,Veles Macedonia
+mms://62.162.58.55/KameraVeles

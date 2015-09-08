@@ -167,7 +167,7 @@ http://trwamtv.live.e96-jw.insyscd.net/trwamtv.smil/playlist.m3u8
 0
 
 #EXTINF:0,TVP 
-0
+http://95.215.233.11:4022/udp/239.255.2.7:1234?id=1087&user=walid_F1Je5Z&pass=r0PfyXfO&mac=CC:3A:61:B7:2A:98
 
 #EXTINF:0,TVP 1
 http://95.215.233.11:4022/udp/239.255.2.189:1234
