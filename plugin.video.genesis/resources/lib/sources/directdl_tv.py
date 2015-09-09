@@ -21,6 +21,7 @@
 
 import re,urllib,urlparse,json,base64
 
+from resources.lib.libraries import control
 from resources.lib.libraries import cleantitle
 from resources.lib.libraries import client
 from resources.lib import resolvers
@@ -59,6 +60,8 @@ class source:
             sources = []
 
             if url == None: return sources
+
+            if (control.setting('realdedrid_user') == '' and control.setting('premiumize_user') == ''): raise Exception()
 
             query = base64.urlsafe_b64decode(self.search_link) + urllib.quote_plus(url)
             query = urlparse.urljoin(self.base_link, query)

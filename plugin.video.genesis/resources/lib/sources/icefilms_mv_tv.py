@@ -45,7 +45,7 @@ class source:
             query = self.moviesearch_link % query
 
             result = ''
-            links = [self.link_1, self.link_2]
+            links = [self.link_1]
             for base_link in links:
                 result = client.source(urlparse.urljoin(base_link, query), headers=self.headers)
                 if 'Donate' in str(result): break
@@ -72,7 +72,7 @@ class source:
             query = self.tvsearch_link % query
 
             result = ''
-            links = [self.link_1, self.link_2]
+            links = [self.link_1]
             for base_link in links:
                 result = client.source(urlparse.urljoin(base_link, query), headers=self.headers)
                 if 'Donate' in str(result): break
@@ -97,7 +97,7 @@ class source:
             if url == None: return
 
             result = ''
-            links = [self.link_1, self.link_2]
+            links = [self.link_1]
             for base_link in links:
                 result = client.source(urlparse.urljoin(base_link, url), headers=self.headers)
                 if 'Donate' in str(result): break
@@ -124,7 +124,7 @@ class source:
             url = self.video_link % t
 
             result = ''
-            links = [self.link_1, self.link_2]
+            links = [self.link_1]
             for base_link in links:
                 result = client.source(urlparse.urljoin(base_link, url), headers=self.headers)
                 if 'ripdiv' in str(result): break
@@ -197,19 +197,19 @@ class source:
             ref = self.video_link % query['t'][0]
 
             url = urlparse.urlparse(url).path
-            url += '?s=%s&t=%s&app_id=Genesis503' % (query['id'][0], query['t'][0])
+            url += '?s=%s&t=%s&app_id=Genesis504' % (query['id'][0], query['t'][0])
 
-            links = [self.link_1, self.link_2]
+            links = [self.link_1]
             for base_link in links:
                 referer = urlparse.urljoin(base_link, ref)
                 cookie = client.request(referer, output='cookie')
                 result = client.request(urlparse.urljoin(base_link, url), post=post, referer=referer, cookie=cookie)
                 if 'com_iceplayer' in str(result): break
 
+            self.img_parser(image, referer)
+
             url = urlparse.parse_qs(urlparse.urlparse(result).query)['url'][0]
             url = resolvers.request(url)
-
-            if not url == None: self.img_parser(image, referer)
 
             return url
         except:
@@ -222,7 +222,7 @@ class source:
 
             d = control.windowDialog
 
-            result = client.request(image, referer=referer)
+            result = client.request(image, referer=referer, close=False)
 
             for match in re.finditer("<img\s+src='([^']+)'\s+width='(\d+)'\s+height='(\d+)'", result):
                 img_url, width, height = match.groups()
@@ -240,11 +240,9 @@ class source:
 
             control.dialog.ok(control.addonInfo('name'), str('Continue to Video'), '')
 
-            '''
             match = re.search("href='([^']+)", result)
             if match and random.randint(0, 100) < 5:
                 client.request(match.group(1))
-            '''
 
             try: d.removeControl(f) ; d.close()
             except: return

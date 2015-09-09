@@ -1,4 +1,16 @@
 ------------------------
+Genesis v5.0.4 (9-Sep-15)
+------------------------
+
+- Tweaked Icefilms source.
+- Tweaked DirectDownload source.
+- Tweaked resolvers.
+- Added German translation.
+- Updated Hebrew translation.
+- Code cosmetics.
+
+
+------------------------
 Genesis v5.0.3 (8-Sep-15)
 ------------------------
 
