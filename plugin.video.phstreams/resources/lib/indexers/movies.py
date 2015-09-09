@@ -148,27 +148,26 @@ class movies:
     def favourites(self):
         try:
             items = favourites.getFavourites('movies')
+            self.list = [i[1] for i in items]
 
-            for imdb, title, year, poster in items:
-                try:
-                    try: title = title.encode('utf-8')
-                    except: pass
-                    try: title = eval(title)
-                    except: pass
-                    try: year = year.encode('utf-8')
-                    except: pass
-                    imdb = 'tt' + re.sub('[^0-9]', '', imdb)
-                    name = '%s (%s)' % (title, year)
-
-                    self.list.append({'title': title, 'originaltitle': title, 'year': year, 'premiered': '0', 'studio': '0', 'genre': '0', 'duration': '0', 'rating': '0', 'votes': '0', 'mpaa': '0', 'director': '0', 'writer': '0', 'cast': '0', 'plot': '0', 'tagline': '0', 'name': name, 'code': imdb, 'imdb': imdb, 'tmdb': '0', 'tvdb': '0', 'tvrage': '0', 'poster': poster, 'banner': poster, 'fanart': '0'})
-                except:
-                    pass
+            for i in self.list:
+                if not 'name' in i: i['name'] = '%s (%s)' % (i['title'], i['year'])
+                try: i['title'] = i['title'].encode('utf-8')
+                except: pass
+                try: i['name'] = i['name'].encode('utf-8')
+                except: pass
+                if not 'duration' in i: i['duration'] = '0'
+                if not 'imdb' in i: i['imdb'] = '0'
+                if not 'tmdb' in i: i['tmdb'] = '0'
+                if not 'tvdb' in i: i['tvdb'] = '0'
+                if not 'tvrage' in i: i['tvrage'] = '0'
+                if not 'poster' in i: i['poster'] = '0'
+                if not 'banner' in i: i['banner'] = '0'
+                if not 'fanart' in i: i['fanart'] = '0'
 
             self.worker()
             self.list = sorted(self.list, key=lambda k: k['title'])
             self.movieDirectory(self.list)
-
-            favourites.alterFavourites('movies', self.list)
         except:
             return
 

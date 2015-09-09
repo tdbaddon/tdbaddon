@@ -43,6 +43,7 @@ class sources:
 
     def play(self, name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date, url):
         try:
+            if imdb == '0': imdb = '0000000'
             imdb = 'tt' + re.sub('[^0-9]', '', str(imdb))
 
             content = 'movie' if tvshowtitle == None else 'episode'
@@ -87,6 +88,7 @@ class sources:
 
     def addItem(self, name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date, meta):
         try:
+            if imdb == '0': imdb = '0000000'
             imdb = 'tt' + re.sub('[^0-9]', '', str(imdb))
 
             content = 'movie' if tvshowtitle == None else 'episode'
@@ -202,7 +204,7 @@ class sources:
             for source in sourceDict: threads.append(workers.Thread(self.getEpisodeSource, title, year, imdb, tvdb, season, episode, tvshowtitle, date, re.sub('_mv_tv$|_mv$|_tv$', '', source), __import__(source, globals(), locals(), [], -1).source()))
 
 
-        try: timeout = int(control.setting('sources_timeout_beta'))
+        try: timeout = int(control.setting('sources_timeout_15'))
         except: timeout = 10
 
 

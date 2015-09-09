@@ -55,6 +55,7 @@ class tvshows:
         self.tvdb_info_link = 'http://thetvdb.com/api/%s/series/%s/%s.xml' % (self.tvdb_key, '%s', self.info_lang)
         self.tmdb_by_imdb = 'http://api.themoviedb.org/3/find/%s?api_key=%s&external_source=imdb_id' % ('%s', self.tmdb_key)
         self.tvdb_by_imdb = 'http://thetvdb.com/api/GetSeriesByRemoteID.php?imdbid=%s'
+        self.imdb_by_query = 'http://www.omdbapi.com/?t=%s&y=%s'
         self.tmdb_image = 'http://image.tmdb.org/t/p/original'
         self.tmdb_poster = 'http://image.tmdb.org/t/p/w500'
         self.tvdb_image = 'http://thetvdb.com/banners/'
@@ -62,7 +63,6 @@ class tvshows:
         self.persons_link = 'http://api.themoviedb.org/3/search/person?api_key=%s&query=%s&include_adult=false&page=1' % (self.tmdb_key, '%s')
         self.genres_link = 'http://api.themoviedb.org/3/genre/tv/list?api_key=%s&language=%s' % (self.tmdb_key, self.info_lang)
 
-        self.search_link = 'http://api.themoviedb.org/3/search/tv?api_key=%s&query=%s'
         self.popular_link = 'http://api.themoviedb.org/3/tv/popular?api_key=%s&page=1'
         self.airing_link = 'http://api.themoviedb.org/3/tv/airing_today?api_key=%s&page=1'
         self.premiere_link = 'http://api.themoviedb.org/3/discover/tv?api_key=%s&first_air_date.gte=%s&first_air_date.lte=%s&page=1' % ('%s', self.year_date, self.today_date)
@@ -75,6 +75,7 @@ class tvshows:
         self.year_link = 'http://api.themoviedb.org/3/discover/tv?api_key=%s&first_air_date_year=%s&air_date.lte=%s&page=1' % ('%s', '%s', self.today_date)
         self.trending_link = 'http://api-v2launch.trakt.tv/shows/trending?limit=20&page=1'
 
+        self.search_link = 'https://api-v2launch.trakt.tv/search?type=show&query=%s'
         self.traktlists_link = 'http://api-v2launch.trakt.tv/users/%s/lists' % self.trakt_user
         self.traktlist_link = 'http://api-v2launch.trakt.tv/users/%s/lists/%s/items' % (self.trakt_user, '%s')
         self.traktcollection_link = 'http://api-v2launch.trakt.tv/users/%s/collection/shows' % self.trakt_user
@@ -128,26 +129,27 @@ class tvshows:
     def favourites(self):
         try:
             items = favourites.getFavourites('tvshows')
+            self.list = [i[1] for i in items]
 
-            for imdb, title, year, poster in items:
-                try:
-                    try: title = title.encode('utf-8')
-                    except: pass
-                    try: title = eval(title)
-                    except: pass
-                    try: year = year.encode('utf-8')
-                    except: pass
-                    imdb = 'tt' + re.sub('[^0-9]', '', imdb)
-
-                    self.list.append({'title': title, 'originaltitle': title, 'year': year, 'premiered': '0', 'studio': '0', 'genre': '0', 'duration': '0', 'rating': '0', 'votes': '0', 'mpaa': '0', 'cast': '0', 'plot': '0', 'name': title, 'code': imdb, 'imdb': imdb, 'tmdb': '0', 'tvdb': '0', 'tvrage': '0', 'poster': poster, 'banner': '0', 'fanart': '0'})
-                except:
-                    pass
+            for i in self.list:
+                if not 'name' in i: i['name'] = i['title']
+                try: i['title'] = i['title'].encode('utf-8')
+                except: pass
+                try: i['name'] = i['name'].encode('utf-8')
+                except: pass
+                if not 'year' in i: i['year'] = '0'
+                if not 'duration' in i: i['duration'] = '0'
+                if not 'imdb' in i: i['imdb'] = '0'
+                if not 'tmdb' in i: i['tmdb'] = '0'
+                if not 'tvdb' in i: i['tvdb'] = '0'
+                if not 'tvrage' in i: i['tvrage'] = '0'
+                if not 'poster' in i: i['poster'] = '0'
+                if not 'banner' in i: i['banner'] = '0'
+                if not 'fanart' in i: i['fanart'] = '0'
 
             self.worker()
             self.list = sorted(self.list, key=lambda k: k['title'])
             self.tvshowDirectory(self.list)
-
-            favourites.alterFavourites('tvshows', self.list)
         except:
             return
 
@@ -163,8 +165,8 @@ class tvshows:
 
             if (self.query == None or self.query == ''): return
 
-            url = self.search_link % ('%s', urllib.quote_plus(self.query))
-            self.list = cache.get(self.tmdb_list, 0, url)
+            url = self.search_link % urllib.quote_plus(self.query)
+            self.list = cache.get(self.trakt_list, 0, url)
 
             self.worker()
             self.tvshowDirectory(self.list)
@@ -430,8 +432,8 @@ class tvshows:
                 tvrage = tvrage.encode('utf-8')
 
                 imdb = item['ids']['imdb']
-                if imdb == None or imdb == '': raise Exception()
-                imdb = 'tt' + re.sub('[^0-9]', '', str(imdb))
+                if imdb == None or imdb == '': imdb = '0'
+                else: imdb = 'tt' + re.sub('[^0-9]', '', str(imdb))
                 imdb = imdb.encode('utf-8')
 
                 tvdb = item['ids']['tvdb']
@@ -460,19 +462,22 @@ class tvshows:
                 fanart = fanart.rsplit('?', 1)[0]
                 fanart = fanart.encode('utf-8')
 
-                premiered = item['first_aired']
+                try: premiered = item['first_aired']
+                except: premiered = '0'
                 try: premiered = re.compile('(\d{4}-\d{2}-\d{2})').findall(premiered)[0]
                 except: premiered = '0'
                 premiered = premiered.encode('utf-8')
 
-                studio = item['network']
+                try: studio = item['network']
+                except: studio = '0'
                 if studio == None: studio = '0'
                 studio = studio.encode('utf-8')
 
-                genre = item['genres']
+                try: genre = item['genres']
+                except: genre = '0'
                 genre = [i.title() for i in genre]
                 if genre == []: genre = '0'
-                genre = " / ".join(genre)
+                genre = ' / '.join(genre)
                 genre = genre.encode('utf-8')
 
                 try: duration = str(item['runtime'])
@@ -492,11 +497,13 @@ class tvshows:
                 if votes == None: votes = '0'
                 votes = votes.encode('utf-8')
 
-                mpaa = item['certification']
+                try: mpaa = item['certification']
+                except: mpaa = '0'
                 if mpaa == None: mpaa = '0'
                 mpaa = mpaa.encode('utf-8')
 
-                plot = item['overview']
+                try: plot = item['overview']
+                except: plot = '0'
                 if plot == None: plot = '0'
                 plot = client.replaceHTMLCodes(plot)
                 plot = plot.encode('utf-8')
@@ -657,8 +664,7 @@ class tvshows:
             [i.start() for i in threads]
             [i.join() for i in threads]
 
-        self.list = [i for i in self.list if not i['imdb'] == '0']
-        self.list = [i for i in self.list if not i['tvdb'] == '0']
+        #self.list = [i for i in self.list if not i['tvdb'] == '0']
 
         if len(self.meta) > 0: metacache.insert(self.meta)
 
@@ -712,9 +718,9 @@ class tvshows:
             elif not imdb == '0':
                 url = self.tmdb_by_imdb % imdb
                 result = client.request(url, timeout='10')
+                result = json.loads(result)
 
-                tmdb = json.loads(result)
-                tmdb = tmdb['tv_results'][0]['id']
+                tmdb = result['tv_results'][0]['id']
                 if tmdb == '' or tmdb == None: tmdb = '0'
                 tmdb = re.sub('[^0-9]', '', str(tmdb))
                 tmdb = tmdb.encode('utf-8')
@@ -760,6 +766,24 @@ class tvshows:
             if not tvdb == '0':
                 url = self.tvdb_info_link % tvdb
                 item2 = client.request(url, timeout='10')
+
+                if imdb == '0':
+                    try: imdb = client.parseDOM(item2, 'IMDB_ID')[0]
+                    except: pass
+                    if imdb == '': imdb = '0'
+                    imdb = imdb.encode('utf-8')
+                    self.list[i].update({'imdb': imdb})
+
+
+            if imdb == '0':
+                url = self.imdb_by_query % (urllib.quote_plus(self.list[i]['title']), self.list[i]['year'])
+                item3 = client.request(url, timeout='10')
+                item3 = json.loads(item3)
+                imdb = item3['imdbID']
+                if imdb == None or imdb == '' or imdb == 'N/A': imdb = '0'
+                else: imdb = 'tt' + re.sub('[^0-9]', '', str(imdb))
+                imdb = imdb.encode('utf-8')
+                self.list[i].update({'imdb': imdb})
 
 
             try: poster = item['poster_path']
@@ -990,7 +1014,7 @@ class tvshows:
                 elif action.startswith('tvSearch'):
                     cm.append((control.lang(30237).encode('utf-8'), 'RunPlugin(%s?action=addFavourite&meta=%s&query=0&content=tvshows)' % (sysaddon, sysmeta)))
                 else:
-                    if not imdb in favitems: cm.append((control.lang(30237).encode('utf-8'), 'RunPlugin(%s?action=addFavourite&meta=%s&content=tvshows)' % (sysaddon, sysmeta)))
+                    if not imdb in favitems and not tvdb in favitems: cm.append((control.lang(30237).encode('utf-8'), 'RunPlugin(%s?action=addFavourite&meta=%s&content=tvshows)' % (sysaddon, sysmeta)))
                     else: cm.append((control.lang(30238).encode('utf-8'), 'RunPlugin(%s?action=deleteFavourite&meta=%s&content=tvshows)' % (sysaddon, sysmeta)))
 
                 cm.append((control.lang(30239).encode('utf-8'), 'RunPlugin(%s?action=tvshowToLibrary&tvshowtitle=%s&year=%s&imdb=%s&tmdb=%s&tvdb=%s&tvrage=%s)' % (sysaddon, systitle, year, imdb, tmdb, tvdb, tvrage)))

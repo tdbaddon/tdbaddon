@@ -33,24 +33,11 @@ def getFavourites(content):
         dbcon = database.connect(control.favouritesFile)
         dbcur = dbcon.cursor()
         dbcur.execute("SELECT * FROM %s" % content)
-        match = dbcur.fetchall()
-        match = [eval(i[1].encode('utf-8')) for i in match]
-        match = [(i['imdb'], i['title'], i['year'], i['poster']) for i in match]
+        items = dbcur.fetchall()
+        items = [(i[0].encode('utf-8'), eval(i[1].encode('utf-8'))) for i in items]
     except:
-        match = []
-    try:
-        dbcon = database.connect(control.databaseFile)
-        dbcur = dbcon.cursor()
-        content2 = 'Movie' if content == 'movies' else 'TV Show'
-        dbcur.execute("SELECT * FROM favourites WHERE video_type ='%s'" % content2)
-        match2 = dbcur.fetchall()
-        match2 = [(i[0], i[2], i[3], i[6]) for i in match2]
-    except:
-        match2 = []
+        items = []
 
-
-    items = match + match2 ; seen = set()
-    items = [i for i in items if i[0] not in seen and not seen.add(i[0])]
     return items
 
 
@@ -58,12 +45,15 @@ def addFavourite(meta, content, query):
     try:
         item = dict()
         meta = json.loads(meta)
-        imdb = item['imdb'] = meta['imdb']
+        try: id = meta['imdb']
+        except: id = meta['tvdb']
+
         if 'title' in meta: title = item['title'] = meta['title']
         if 'tvshowtitle' in meta: title = item['title'] = meta['tvshowtitle']
         if 'year' in meta: item['year'] = meta['year']
         if 'poster' in meta: item['poster'] = meta['poster']
         if 'fanart' in meta: item['fanart'] = meta['fanart']
+        if 'imdb' in meta: item['imdb'] = meta['imdb']
         if 'tmdb' in meta: item['tmdb'] = meta['tmdb']
         if 'tvdb' in meta: item['tvdb'] = meta['tvdb']
         if 'tvrage' in meta: item['tvrage'] = meta['tvrage']
@@ -72,8 +62,8 @@ def addFavourite(meta, content, query):
         dbcon = database.connect(control.favouritesFile)
         dbcur = dbcon.cursor()
         dbcur.execute("CREATE TABLE IF NOT EXISTS %s (""id TEXT, ""items TEXT, ""UNIQUE(id)"");" % content)
-        dbcur.execute("DELETE FROM %s WHERE id = '%s'" % (content, imdb))
-        dbcur.execute("INSERT INTO %s Values (?, ?)" % content, (imdb, repr(item)))
+        dbcur.execute("DELETE FROM %s WHERE id = '%s'" % (content, id))
+        dbcur.execute("INSERT INTO %s Values (?, ?)" % content, (id, repr(item)))
         dbcon.commit()
 
         if query == None: control.refresh()
@@ -85,54 +75,22 @@ def addFavourite(meta, content, query):
 def deleteFavourite(meta, content):
     try:
         meta = json.loads(meta)
-        imdb = meta['imdb']
         if 'title' in meta: title = meta['title']
         if 'tvshowtitle' in meta: title = meta['tvshowtitle']
 
         try:
             dbcon = database.connect(control.favouritesFile)
             dbcur = dbcon.cursor()
-            dbcur.execute("DELETE FROM %s WHERE id = '%s'" % (content, imdb))
-            dbcon.commit()
-        except:
-            pass
-        try:
-            dbcon = database.connect(control.databaseFile)
-            dbcur = dbcon.cursor()
-            dbcur.execute("DELETE FROM favourites WHERE imdb_id = '%s'" % imdb)
+            try: dbcur.execute("DELETE FROM %s WHERE id = '%s'" % (content, meta['imdb']))
+            except: pass
+            try: dbcur.execute("DELETE FROM %s WHERE id = '%s'" % (content, meta['tvdb']))
+            except: pass
             dbcon.commit()
         except:
             pass
 
         control.refresh()
         control.infoDialog(control.lang(30412).encode('utf-8'), heading=title)
-    except:
-        return
-
-
-def alterFavourites(content, favourites):
-    try:
-        dbcon = database.connect(control.databaseFile)
-        dbcur = dbcon.cursor()
-        dbcon2 = database.connect(control.favouritesFile)
-        dbcur2 = dbcon2.cursor()
-        dbcur2.execute("CREATE TABLE IF NOT EXISTS %s (""id TEXT, ""items TEXT, ""UNIQUE(id)"");" % content)
-    except:
-        return
-
-    for i in favourites:
-        try:
-            dbcur.execute("DELETE FROM favourites WHERE imdb_id = '%s'" % i['imdb'])
-        except:
-            pass
-        try:
-            dbcur2.execute("INSERT INTO %s Values (?, ?)" % content, (i['imdb'], repr({'title': i['title'], 'year': i['year'], 'imdb': i['imdb'], 'tmdb': i['tmdb'], 'tvdb': i['tvdb'], 'tvrage': i['tvrage'], 'poster': i['poster'], 'fanart': i['fanart']})))
-        except:
-            pass
-
-    try:
-        dbcon.commit()
-        dbcon2.commit()
     except:
         return
 

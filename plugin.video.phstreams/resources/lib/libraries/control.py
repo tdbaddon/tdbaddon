@@ -54,6 +54,8 @@ progressDialog = xbmcgui.DialogProgress()
 
 windowDialog = xbmcgui.WindowDialog()
 
+button = xbmcgui.ControlButton
+
 image = xbmcgui.ControlImage
 
 keyboard = xbmc.Keyboard

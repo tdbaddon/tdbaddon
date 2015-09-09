@@ -197,7 +197,7 @@ class source:
             ref = self.video_link % query['t'][0]
 
             url = urlparse.urlparse(url).path
-            url += '?s=%s&t=%s&app_id=Genesis' % (query['id'][0], query['t'][0])
+            url += '?s=%s&t=%s&app_id=Genesis503' % (query['id'][0], query['t'][0])
 
             links = [self.link_1, self.link_2]
             for base_link in links:
@@ -219,30 +219,32 @@ class source:
     def img_parser(self, image, referer):
         try:
             if not image.startswith('http:'): image = 'http:' + image
+
+            d = control.windowDialog
+
             result = client.request(image, referer=referer)
 
-            image, width, height = re.compile("<img\s+src='([^']+)'\s+width='(\d+)'\s+height='(\d+)'").findall(result)[0]
-            click = re.compile("href='([^']+)").findall(result)[0]
+            for match in re.finditer("<img\s+src='([^']+)'\s+width='(\d+)'\s+height='(\d+)'", result):
+                img_url, width, height = match.groups()
+                img_url = client.replaceHTMLCodes(img_url)
+                width = int(width)
+                height = int(height)
+                if width > 0 and height > 0:
+                    left = (1280 - width) / 2
+                    f = control.image(left, 0, width, height, img_url)
+                    d.addControl(f)
+                else:
+                    client.request(img_url, referer=image, close=False)
 
-            image = client.replaceHTMLCodes(image)
-            image = image.encode('utf-8')
-
-            width, height = int(width), int(height)
-            left = (1280 - width) / 2
-
-            if width <= 0 or height <= 0: raise Exception()
-
-            f = control.image(left,0,width,height, image)
-            d = control.windowDialog
-            d.addControl(f)
             d.show()
-
-            client.request(image, referer=referer)
 
             control.dialog.ok(control.addonInfo('name'), str('Continue to Video'), '')
 
-            if random.randint(0, 100) < 5:
-                client.request(click, referer=referer)
+            '''
+            match = re.search("href='([^']+)", result)
+            if match and random.randint(0, 100) < 5:
+                client.request(match.group(1))
+            '''
 
             try: d.removeControl(f) ; d.close()
             except: return

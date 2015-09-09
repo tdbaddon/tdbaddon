@@ -30,7 +30,7 @@ from resources.lib import resolvers
 class source:
     def __init__(self):
         self.base_link = 'https://yify-streaming.com'
-        self.proxy_link = 'https://proxy-de.hide.me/go.php?b=20&u='
+        self.proxy_link = 'https://proxy-us.hide.me/go.php?b=20&u='
         self.moviesearch_link = '/?cat=5%2C14%2C10%2C3&s='
         self.tvsearch_link = '/?cat=2&s='
 

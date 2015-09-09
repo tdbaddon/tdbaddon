@@ -38,6 +38,7 @@ def resolve(url):
 
         url = re.compile("file *: *'(http.+?)'").findall(result)
         url += re.compile('file *: *"(http.+?)"').findall(result)
+        url = [i for i in url if not i.endswith('.srt')]
         url = url[-1]
 
         return url

@@ -84,9 +84,9 @@ class seasons:
             if tvdb == '0' and not imdb == '0':
                 url = self.tmdb_by_imdb % imdb
                 result = client.request(url, timeout='10')
+                result = json.loads(result)
 
-                tmdb = json.loads(result)
-                tmdb = tmdb['tv_results'][0]['id']
+                tmdb = result['tv_results'][0]['id']
                 if tmdb == '' or tmdb == None: tmdb = '0'
                 tmdb = re.sub('[^0-9]', '', str(tmdb))
                 tmdb = tmdb.encode('utf-8')
@@ -113,9 +113,9 @@ class seasons:
             if tmdb == '0' and not imdb == '0':
                 url = self.tmdb_by_imdb % imdb
                 result = client.request(url, timeout='10')
+                result = json.loads(result)
 
-                tmdb = json.loads(result)
-                tmdb = tmdb['tv_results'][0]['id']
+                tmdb = result['tv_results'][0]['id']
                 if tmdb == '' or tmdb == None: tmdb = '0'
                 tmdb = re.sub('[^0-9]', '', str(tmdb))
                 tmdb = tmdb.encode('utf-8')
@@ -124,12 +124,14 @@ class seasons:
             if tmdb == '0' and not tvdb == '0':
                 url = self.tmdb_by_tvdb % tvdb
                 result = client.request(url, timeout='10')
+                result = json.loads(result)
 
-                tmdb = json.loads(result)
-                tmdb = tmdb['tv_results'][0]['id']
+                tmdb = result['tv_results'][0]['id']
                 if tmdb == '' or tmdb == None: tmdb = '0'
                 tmdb = re.sub('[^0-9]', '', str(tmdb))
                 tmdb = tmdb.encode('utf-8')
+
+
 
             if tmdb == '0': raise Exception()
 
@@ -193,8 +195,9 @@ class seasons:
             if not poster == '0': poster = self.tmdb_poster + poster
             if poster == '0':
                 try: poster = client.parseDOM(item2, 'poster')[0]
-                except: poster = '0'
-                if not poster == '0': poster = self.tvdb_image + poster
+                except: poster = ''
+                if not poster == '': poster = self.tvdb_image + poster
+                else: poster = '0'
             poster = client.replaceHTMLCodes(poster)
             poster = poster.encode('utf-8')
 
@@ -211,8 +214,9 @@ class seasons:
             if not fanart == '0': fanart = self.tmdb_image + fanart
             if fanart == '0':
                 try: fanart = client.parseDOM(item2, 'fanart')[0]
-                except: fanart = '0'
-                if not fanart == '0': fanart = self.tvdb_image + fanart
+                except: fanart = ''
+                if not fanart == '': fanart = self.tvdb_image + fanart
+                else: fanart = '0'
             fanart = client.replaceHTMLCodes(fanart)
             fanart = fanart.encode('utf-8')
 
@@ -488,7 +492,7 @@ class seasons:
                 if traktMode == True:
                     cm.append((control.lang(30265).encode('utf-8'), 'RunPlugin(%s?action=traktManager&name=%s&tvdb=%s&content=tvshow)' % (sysaddon, sysname, tvdb)))
 
-                if not imdb in favitems: cm.append((control.lang(30266).encode('utf-8'), 'RunPlugin(%s?action=addFavourite&meta=%s&content=tvshows)' % (sysaddon, sysmeta)))
+                if not imdb in favitems and not tvdb in favitems: cm.append((control.lang(30266).encode('utf-8'), 'RunPlugin(%s?action=addFavourite&meta=%s&content=tvshows)' % (sysaddon, sysmeta)))
                 else: cm.append((control.lang(30267).encode('utf-8'), 'RunPlugin(%s?action=deleteFavourite&meta=%s&content=tvshows)' % (sysaddon, sysmeta)))
 
                 cm.append((control.lang(30268).encode('utf-8'), 'RunPlugin(%s?action=tvshowToLibrary&tvshowtitle=%s&year=%s&imdb=%s&tmdb=%s&tvdb=%s&tvrage=%s)' % (sysaddon, systitle, year, imdb, tmdb, tvdb, tvrage)))
@@ -622,7 +626,7 @@ class episodes:
             [i.start() for i in threads]
             [i.join() for i in threads]
 
-            self.list = [i for i in self.list if i['imdb'] in favitems]
+            self.list = [i for i in self.list if i['imdb'] in favitems or i['tvdb'] in favitems]
             self.list = sorted(self.list, key=lambda k: k['premiered'], reverse=True)
 
             self.episodeDirectory(self.list)
@@ -693,8 +697,8 @@ class episodes:
                 except: pass
 
                 imdb = item['show']['ids']['imdb']
-                if imdb == None or imdb == '': raise Exception()
-                imdb = 'tt' + re.sub('[^0-9]', '', str(imdb))
+                if imdb == None or imdb == '': imdb = '0'
+                else: imdb = 'tt' + re.sub('[^0-9]', '', str(imdb))
                 imdb = imdb.encode('utf-8')
 
                 tvdb = item['show']['ids']['tvdb']
@@ -928,6 +932,7 @@ class episodes:
                 try: fanart = client.parseDOM(item2, 'fanart')[0]
                 except: fanart = ''
                 if not fanart == '': fanart = self.tvdb_image + fanart
+                else: fanart = '0'
                 fanart = client.replaceHTMLCodes(fanart)
                 fanart = fanart.encode('utf-8')
 
@@ -1195,7 +1200,7 @@ class episodes:
                 if traktMode == True:
                     cm.append((control.lang(30265).encode('utf-8'), 'RunPlugin(%s?action=traktManager&name=%s&tvdb=%s&content=tvshow)' % (sysaddon, sysname, tvdb)))
 
-                if not imdb in favitems: cm.append((control.lang(30266).encode('utf-8'), 'RunPlugin(%s?action=addFavourite&meta=%s&content=tvshows)' % (sysaddon, sysmeta)))
+                if not imdb in favitems and not tvdb in favitems: cm.append((control.lang(30266).encode('utf-8'), 'RunPlugin(%s?action=addFavourite&meta=%s&content=tvshows)' % (sysaddon, sysmeta)))
                 else: cm.append((control.lang(30267).encode('utf-8'), 'RunPlugin(%s?action=deleteFavourite&meta=%s&content=tvshows)' % (sysaddon, sysmeta)))
 
                 cm.append((control.lang(30268).encode('utf-8'), 'RunPlugin(%s?action=tvshowToLibrary&tvshowtitle=%s&year=%s&imdb=%s&tmdb=%s&tvdb=%s&tvrage=%s)' % (sysaddon, systitle, year, imdb, tmdb, tvdb, tvrage)))

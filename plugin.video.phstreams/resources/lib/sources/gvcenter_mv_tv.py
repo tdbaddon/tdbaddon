@@ -31,35 +31,80 @@ from resources.lib.resolvers import googleplus
 class source:
     def __init__(self):
         self.base_link = 'http://www.gearscenter.com'
-        self.search_link = '/gold-server/gapiandroid205/?option=search&page=1&total=0&block=0&q=%s'
-        self.content_link = '/gold-server/gapiandroid205/?option=content&id=%s'
-        self.source_link = '/gold-server/gapiandroid205/?option=filmcontent&cataid=0&id=%s'
-        self.data_key = 'M2FiYWFkMjE2NDYzYjc0MQ=='
-        self.film_key = 'MmIyYTNkNTNkYzdiZjQyNw=='
+        self.config_link = '/gold-server/gapiandroid206/?option=config'
+        self.search_link = '/gold-server/gapiandroid206/?option=search&q=%s&page=1&total=0&block=0'
+        self.content_link = '/gold-server/gapiandroid206/?option=content&id=%s&sid=%s'
+        self.source_link = '/gold-server/gapiandroid206/?option=filmcontent&id=%s&cataid=%s&sid=%s'
 
-        self.headers = {'User-Agent': 'Apache-HttpClient/UNAVAILABLE (java 1.4)'}
+        self.last_call = 0
+        self.__request(self.base_link + self.config_link)
+
+        self.vc = urllib.quote_plus(str(206).encode('utf-8'))
+        self.vn = urllib.quote_plus('2.0.6')
+        self.pn = hashlib.md5('com.gamena.funboxhd').hexdigest().upper()
+        self.film_key = hashlib.md5(self.vc + self.vn + self.pn).hexdigest()[0:16]
 
 
-    def __extra(self):
+    def __request(self, url, post=None):
+        try:
+            now = str(int(time.time()))
+
+            headers = {'User-Agent': 'Apache-HttpClient/UNAVAILABLE (java 1.4)'}
+
+            url += self.__extra(now)
+
+            while time.time() - self.last_call < 2: time.sleep(.25)
+
+            result = client.source(url, post=post, headers=headers)
+
+            self.last_call = time.time()
+
+            key = hashlib.md5(now).hexdigest()[0:16]
+
+            result = json.loads(result)
+
+            result = self.__decrypt(key, base64.b64decode(result['data']))
+            return result
+        except:
+            return
+
+
+    def __extra(self, now):
         ANDROID_LEVELS = {'22': '5.1', '21': '5.0', '19': '4.4.4', '18': '4.3.0', '17': '4.2.0', '16': '4.1.0', '15': '4.0.4', '14': '4.0.2', '13': '3.2.0'}
         COUNTRIES = ['US', 'GB', 'CA', 'DK', 'MX', 'ES', 'JP', 'CN', 'DE', 'GR']
-        EXTRA_URL = ('&os=android&version=2.0.5&versioncode=205&param_1=F2EF57A9374977FD431ECAED984BA7A2&'
-             'deviceid=%s&param_3=7326c76a03066b39e2a0b1dc235c351c&param_4=%s'
-             '&param_5=%s&token=%s&time=%s&devicename=Google-Nexus-%s-%s')
+        EXTRA_URL = ('&os=android&version=2.0.6&versioncode=206&param_1=EA2C2D2240456D78B2CCE8148B10A674'
+             '&deviceid=%s&param_3=0685257cd8bc8108d550c4e948aebf2f&param_4=%s'
+             '&param_5=%s&token=%s&time=%s&devicename=Google-Nexus-%s-%s'
+             '&sm=%s&si=%s&extra_1=%s&extra_2=%s&extra_3=%s')
+        URL_KEY = base64.b64decode('RzRtM2wwZnRfczNjcjN0MA==')
 
-        now = str(int(time.time()))
+        token = hashlib.md5(now).hexdigest()
         build = random.choice(ANDROID_LEVELS.keys())
-        device_id = hashlib.md5(str(random.randint(0, sys.maxint))).hexdigest()
         country = random.choice(COUNTRIES)
-        return EXTRA_URL % (device_id, country, country.lower(), hashlib.md5(now).hexdigest(), now, build, ANDROID_LEVELS[build])
+        device_id = '000000000000000'
+        sm = hashlib.md5(str(random.randint(0, 1000))).hexdigest()
+        si = hashlib.md5('catoon_206').hexdigest()
+        ex_1 = hashlib.md5(str(now) + sm).hexdigest()
+        ex_2 = urllib.quote_plus(hashlib.md5(str(now) + si).hexdigest())
+        ex_3 = sm[0:5] + hashlib.md5(device_id).hexdigest()[2:7]
+        ex_3 = urllib.quote_plus(base64.encodestring(self.__encrypt(URL_KEY, ex_3)))
+        url = EXTRA_URL % (device_id, country, country.lower(), token, now, build, ANDROID_LEVELS[build], sm, si, ex_1, ex_2, ex_3)
+        return url
 
 
     def __decrypt(self, key, txt):
         try:
-            key = base64.b64decode(key)
             decrypter = pyaes.Decrypter(pyaes.AESModeOfOperationECB(key))
-            txt = base64.decodestring(txt)
             txt = decrypter.feed(txt) + decrypter.feed()
+            return txt
+        except:
+            return
+
+
+    def __encrypt(self, key, txt):
+        try:
+            encrypter = pyaes.Encrypter(pyaes.AESModeOfOperationECB(key))
+            txt = encrypter.feed(txt) + encrypter.feed()
             return txt
         except:
             return
@@ -68,11 +113,8 @@ class source:
     def get_movie(self, imdb, title, year):
         try:
             query = urlparse.urljoin(self.base_link, self.search_link % (urllib.quote_plus(title)))
-            query += self.__extra()
 
-            result = client.source(query, headers=self.headers)
-            result = json.loads(result)
-            result = self.__decrypt(self.data_key, result['data'])
+            result = self.__request(query)
             result = json.loads(result)
             result = result['categories']
 
@@ -93,11 +135,8 @@ class source:
     def get_show(self, imdb, tvdb, tvshowtitle, year):
         try:
             query = urlparse.urljoin(self.base_link, self.search_link % (urllib.quote_plus(tvshowtitle)))
-            query += self.__extra()
 
-            result = client.source(query, headers=self.headers)
-            result = json.loads(result)
-            result = self.__decrypt(self.data_key, result['data'])
+            result = self.__request(query)
             result = json.loads(result)
             result = result['categories']
 
@@ -133,14 +172,11 @@ class source:
 
             if url == None: return sources
 
-            query = re.compile('(\d*)').findall(url)[0]
-            query = urlparse.urljoin(self.base_link, self.content_link % query)
-            query += self.__extra()
+            id = re.compile('(\d*)').findall(url)[0]
+            sid = hashlib.md5('content%scthd' % id).hexdigest()
+            query = urlparse.urljoin(self.base_link, self.content_link % (id, sid))
 
-            time.sleep(1.5)
-            result = client.source(query, headers=self.headers)
-            result = json.loads(result)
-            result = self.__decrypt(self.data_key, result['data'])
+            result = self.__request(query)
             result = json.loads(result)
             result = result['listvideos']
 
@@ -154,16 +190,15 @@ class source:
 
             for l in links[:3]:
                 try:
-                    url = urlparse.urljoin(self.base_link, self.source_link % l)
-                    url += self.__extra()
+                    sid = hashlib.md5('%s%scthd' % (l, id)).hexdigest()
 
-                    time.sleep(1.5)
-                    url = client.source(url, headers=self.headers)
-                    url = json.loads(url)
+                    url = urlparse.urljoin(self.base_link, self.source_link % (l, id, sid))
 
-                    url = self.__decrypt(self.data_key, url['data'])
-                    url = json.loads(url)['videos']
-                    url = [self.__decrypt(self.film_key, i['film_link']) for i in url]
+                    result = self.__request(url)
+                    result = json.loads(result)
+
+                    url = result['videos']
+                    url = [self.__decrypt(self.film_key, base64.b64decode(i['film_link'])) for i in url]
 
                     url = '#'.join(url)
                     url = url.split('#')
@@ -189,4 +224,5 @@ class source:
             return url
         except:
             return
+
 

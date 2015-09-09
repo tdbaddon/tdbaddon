@@ -19,8 +19,9 @@
 '''
 
 
-import re,urllib,urlparse,base64,random,datetime
- 
+import re,urllib,urlparse
+
+from resources.lib.libraries import control
 from resources.lib.libraries import cleantitle
 from resources.lib.libraries import client
 
@@ -28,19 +29,19 @@ from resources.lib.libraries import client
 class source:
     def __init__(self):
         self.base_link = 'http://ororo.tv'
-        self.random = random.choice('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
-        self.datetime = datetime.datetime.now().strftime('%Y%m%d%H%M%S')
-        self.headers = {'User-Agent' : '%s%s' % (self.random, self.datetime)}
-        self.key_link = base64.urlsafe_b64decode('dXNlciU1QnBhc3N3b3JkJTVEPWMyNjUxMzU2JnVzZXIlNUJlbWFpbCU1RD1jMjY1MTM1NiU0MGRyZHJiLmNvbQ==')
         self.sign_link = 'http://ororo.tv/users/sign_in'
+        self.user = control.setting('ororo_user')
+        self.password = control.setting('ororo_password')
+        self.post = {'user[email]': self.user, 'user[password]': self.password, 'user[remember_me]': 1}
+        self.post = urllib.urlencode(self.post)
 
 
     def get_show(self, imdb, tvdb, tvshowtitle, year):
         try:
-            result = client.source(self.base_link, headers=self.headers)
-            if not "'index show'" in result:
-                cookie = client.source(self.sign_link, headers=self.headers, post=self.key_link, output='cookie')
-                result = client.source(self.base_link, headers=self.headers, cookie=cookie)
+            result = client.source(self.base_link)
+            if not "'index show'" in str(result) and not (self.user == '' or self.password == ''):
+                cookie = client.source(self.sign_link, post=self.post, output='cookie')
+                result = client.source(self.base_link, cookie=cookie)
 
             result = client.parseDOM(result, 'div', attrs = {'class': 'index show'})
             result = [(client.parseDOM(i, 'a', attrs = {'class': 'name'})[0], client.parseDOM(i, 'span', attrs = {'class': 'value'})[0], client.parseDOM(i, 'a', ret='href')[0]) for i in result]
@@ -65,10 +66,10 @@ class source:
 
             url = urlparse.urljoin(self.base_link, url)
 
-            result = client.source(url, headers=self.headers)
-            if not 'menu season-tabs' in result:
-                cookie = client.source(self.sign_link, headers=self.headers, post=self.key_link, output='cookie')
-                result = client.source(url, headers=self.headers, cookie=cookie)
+            result = client.source(url)
+            if not 'menu season-tabs' in str(result) and not (self.user == '' or self.password == ''):
+                cookie = client.source(self.sign_link, post=self.post, output='cookie')
+                result = client.source(url, cookie=cookie)
 
             result = client.parseDOM(result, 'a', ret='data-href', attrs = {'href': '#%01d-%01d' % (int(season), int(episode))})[0]
 
@@ -100,10 +101,10 @@ class source:
 
     def resolve(self, url):
         try:
-            result = client.request(url, headers=self.headers)
-            if not 'my_video' in result:
-                cookie = client.request(self.sign_link, headers=self.headers, post=self.key_link, output='cookie')
-                result = client.request(url, headers=self.headers, cookie=cookie)
+            result = client.request(url)
+            if not 'my_video' in str(result) and not (self.user == '' or self.password == ''):
+                cookie = client.request(self.sign_link, post=self.post, output='cookie')
+                result = client.request(url, cookie=cookie)
 
             url = None
             try: url = client.parseDOM(result, 'source', ret='src', attrs = {'type': 'video/webm'})[0]
@@ -114,7 +115,7 @@ class source:
             if url == None: return
             url = urlparse.urljoin(self.base_link, url)
 
-            url = '%s|User-Agent=%s&Cookie=%s' % (url, urllib.quote_plus(self.headers['User-Agent']), urllib.quote_plus('video=true'))
+            url = '%s|User-Agent=%s&Cookie=%s' % (url, urllib.quote_plus(client.agent()), urllib.quote_plus('video=true'))
 
             return url
         except:

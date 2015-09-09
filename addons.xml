@@ -161,7 +161,7 @@ Thats all Folks
 	</extension>
 </addon>
 
-<addon id="plugin.video.genesis" name="Genesis" version="5.0.2" provider-name="lambda">
+<addon id="plugin.video.genesis" name="Genesis" version="5.0.3" provider-name="lambda">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.requests" version="1.0.0" />
@@ -304,7 +304,7 @@ Thats all Folks
    </extension>
 </addon>
 
-<addon id="plugin.video.phstreams" name="Phoenix" version="2.5.5" provider-name="Blazetamer, lambda">
+<addon id="plugin.video.phstreams" name="Phoenix" version="2.5.6" provider-name="Blazetamer, lambda">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.pyxbmct" version="1.1.4" />

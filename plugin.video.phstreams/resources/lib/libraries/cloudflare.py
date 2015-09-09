@@ -43,7 +43,7 @@ def request(url, mobile=False, timeout='30'):
         return
 
 
-def source(url, mobile=False, timeout='5'):
+def source(url, mobile=False, timeout='30'):
     return request(url, mobile, timeout)
 
 

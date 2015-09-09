@@ -1,4 +1,17 @@
 ------------------------
+Genesis v5.0.3 (8-Sep-15)
+------------------------
+
+- Added Megabox source.
+- Updated available sources.
+- NOTE: Ororo in some areas may need an account, create an account at http://ororo.tv
+- NOTE: Don't forget to add your account in the addon's settings.
+- Tweaked default timeout of sources to 15 seconds.
+- Updated available resolvers.
+- Code cosmetics.
+
+
+------------------------
 Genesis v5.0.2 (5-Sep-15)
 ------------------------
 
