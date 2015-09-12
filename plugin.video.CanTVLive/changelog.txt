@@ -1,0 +1,38 @@
+[b]1.9.5[/b]
+Fixed CBC News and CTV Channels(require Filmon.tv addon from kinkin
+
+[b]1.9.4[/b]
+Links updated. Added Teletoon. Playercorefactory method removed and replaced by P2P streams. [B]P2P-Streams[/B] addon required for sports channels. Make sure it is properly configured for your system. More Info: http://tinyurl.com/p2pstreamsconfig
+Bonus channels updated. These links come and go, enjoy while you can.
+
+[b]1.8[/b]
+Repaired many channel links. Added new CTV News and 4 City TV channels. Sports channel sources changed.
+
+[b]1.7[/b]
+- Repaired broken TSN links. Added SN World & SN1. 
+These require an external player setup. For mor info, go to http://kodi.wiki/view/External_players
+- Removed CP24, CTV News and RDS Channels  - Bell now requires sign in for this service.
+
+[b]1.6[/b]
+- Repaired broken links, Weather Network is now national feed
+
+[b]1.5[/b]
+- Added Weather Network HD and ARTE (French)
+
+[b]1.4[/b]
+- Added Argent (French), LCN News (French)
+- Updated CTV Edmonton, Yorkton, Lethbridge and Regina
+
+[b]1.3[/b]
+- Added TVA Sports (French)
+
+[b]1.2[/b]
+- Added History (Canada) HD
+
+
+[b]1.1[/b]
+- Initial release
+
+
+[b]1.0[/b]
+- Initial test release
