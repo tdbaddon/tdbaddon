@@ -34,7 +34,7 @@ class NoRedirection(urllib2.HTTPErrorProcessor):
        return response
    https_response = http_response
        
-CIBase = 'https://github.com/Daffy81/plugin.video.daffyslist-1.0/raw/master/daffyslist.xml'
+CIBase = 'http://www.daffyslist.com/lists/daffyslist.xml'
 
 addon = xbmcaddon.Addon('plugin.video.Daffyslist')
 addon_version = addon.getAddonInfo('version')

@@ -21,6 +21,7 @@
 
 import re,urllib,urlparse
 
+from resources.lib.libraries import client
 from resources.lib.resolvers import realdebrid
 from resources.lib.resolvers import premiumize
 
@@ -53,7 +54,9 @@ def request(url):
 
         try: h = dict(urlparse.parse_qsl(r.rsplit('|', 1)[1]))
         except: h = dict('')
-        h.update({'Referer': url, 'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; rv:34.0) Gecko/20100101 Firefox/34.0'})
+
+        if not 'User-Agent' in h: h['User-Agent'] = client.agent()
+        if not 'Referer' in h: h['Referer'] = url
 
         r = '%s|%s' % (r.split('|')[0], urllib.urlencode(h))
         return r

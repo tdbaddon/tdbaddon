@@ -30,7 +30,8 @@ from resources.lib import resolvers
 class source:
     def __init__(self):
         self.base_link = 'https://yify-streaming.com'
-        self.proxy_link = 'https://proxy-us.hide.me/go.php?b=20&u='
+        #self.proxy_link = 'https://proxy-us.hide.me/go.php?b=20&u='
+        self.proxy_link = 'https://www.fireproxyfox.com/index.php?hl=3c1&q='
         self.moviesearch_link = '/?cat=5%2C14%2C10%2C3&s='
         self.tvsearch_link = '/?cat=2&s='
 
@@ -40,7 +41,7 @@ class source:
             query = urlparse.urljoin(self.base_link, self.moviesearch_link + urllib.quote_plus(title))
 
             result = cloudflare.source(query)
-            if result == None: result = cloudflare.source(self.proxy_link + urllib.quote_plus(query))
+            if result == None: result = client.source(self.proxy_link + urllib.quote_plus(query))
 
             r = client.parseDOM(result, 'li', attrs = {'class': 'first element.+?'})
             r += client.parseDOM(result, 'li', attrs = {'class': 'element.+?'})
@@ -57,7 +58,7 @@ class source:
             result = [i[0] for i in result if any(x in i[1] for x in years)][0]
 
             url = client.replaceHTMLCodes(result)
-            try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['u'][0]
+            try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['q'][0]
             except: pass
             url = urlparse.urlparse(url).path
             url = url.encode('utf-8')
@@ -87,7 +88,7 @@ class source:
             query = urlparse.urljoin(self.base_link, self.tvsearch_link + urllib.quote_plus(query))
 
             result = cloudflare.source(query)
-            if result == None: result = cloudflare.source(self.proxy_link + urllib.quote_plus(query))
+            if result == None: result = client.source(self.proxy_link + urllib.quote_plus(query))
 
             r = client.parseDOM(result, 'li', attrs = {'class': 'first element.+?'})
             r += client.parseDOM(result, 'li', attrs = {'class': 'element.+?'})
@@ -102,7 +103,7 @@ class source:
             result = [i[0] for i in result if tvshowtitle == cleantitle.tv(i[1])][0]
 
             url = client.replaceHTMLCodes(result)
-            try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['u'][0]
+            try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['q'][0]
             except: pass
             url = urlparse.urlparse(url).path
             url = url.encode('utf-8')
@@ -124,12 +125,12 @@ class source:
 
 
             if result == None:
-                result = cloudflare.source(self.proxy_link + urllib.quote_plus(url))
+                result = client.source(self.proxy_link + urllib.quote_plus(url))
  
                 r = client.parseDOM(result, 'a', ret='href')
                 r = [client.replaceHTMLCodes(i) for i in r]
                 r = [urlparse.parse_qs(urlparse.urlparse(i).query) for i in r]
-                r = [i['u'][0] for i in r if 'u' in i and len(i['u']) > 0]
+                r = [i['q'][0] for i in r if 'q' in i and len(i['q']) > 0]
 
 
             r = [client.replaceHTMLCodes(i) for i in r]
@@ -151,15 +152,15 @@ class source:
             try:
                 url = [i for i in r if 'p=shtml' in i][0]
 
-                u = client.source(url)
-                if u == None: u = client.source(self.proxy_link + urllib.quote_plus(url))
+                uri = client.source(url)
+                if uri == None: uri = client.source(self.proxy_link + urllib.quote_plus(url))
 
-                try: sources.append({'source': 'GVideo', 'quality': '1080p', 'provider': 'YIFYstream', 'url': [i for i in client.parseDOM(u, 'source', ret='src', attrs = {'data-res': '1080'}) if 'google' in i][0]})
+                try: sources.append({'source': 'GVideo', 'quality': '1080p', 'provider': 'YIFYstream', 'url': [i for i in client.parseDOM(uri, 'source', ret='src', attrs = {'data-res': '1080'}) if 'google' in i][0]})
                 except: pass
-                try: sources.append({'source': 'GVideo', 'quality': 'HD', 'provider': 'YIFYstream', 'url': [i for i in client.parseDOM(u, 'source', ret='src', attrs = {'data-res': '720'}) if 'google' in i][0]})
+                try: sources.append({'source': 'GVideo', 'quality': 'HD', 'provider': 'YIFYstream', 'url': [i for i in client.parseDOM(uri, 'source', ret='src', attrs = {'data-res': '720'}) if 'google' in i][0]})
                 except: pass
-                try: sources.append({'source': 'GVideo', 'quality': 'SD', 'provider': 'YIFYstream', 'url': [i for i in client.parseDOM(u, 'source', ret='src', attrs = {'data-res': '480'}) if 'google' in i][0]})
-                except: sources.append({'source': 'GVideo', 'quality': 'SD', 'provider': 'YIFYstream', 'url': [i for i in client.parseDOM(u, 'source', ret='src', attrs = {'data-res': '360'}) if 'google' in i][0]})
+                try: sources.append({'source': 'GVideo', 'quality': 'SD', 'provider': 'YIFYstream', 'url': [i for i in client.parseDOM(uri, 'source', ret='src', attrs = {'data-res': '480'}) if 'google' in i][0]})
+                except: sources.append({'source': 'GVideo', 'quality': 'SD', 'provider': 'YIFYstream', 'url': [i for i in client.parseDOM(uri, 'source', ret='src', attrs = {'data-res': '360'}) if 'google' in i][0]})
             except:
                 pass
 
@@ -174,7 +175,7 @@ class source:
                 pass
 
             for i in range(0, len(sources)):
-                try: sources[i].update({'url': urlparse.parse_qs(urlparse.urlparse(sources[i]['url']).query)['u'][0]}) 
+                try: sources[i].update({'url': urlparse.parse_qs(urlparse.urlparse(sources[i]['url']).query)['q'][0]}) 
                 except: pass
 
             return sources

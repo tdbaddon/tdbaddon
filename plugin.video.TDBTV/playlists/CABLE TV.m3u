@@ -8,25 +8,22 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 0
 
 #EXTINF:0,ABC 
-0
+rtmpe://179.43.188.15:1935/goLive playpath=rGCi7bg0Qxvs8q7Sl13l swfUrl=http://p.jwpcdn.com/6/11/jwplayer.flash.swf flashver=WIN/16,0,0,305 timeout=15 live=1swfVfy=1 pageUrl=http://zerocast.tv/ token=OOG17t.x#K9Vh#|
 
 #EXTINF:0,ABC Family 
 0
 
 #EXTINF:0,AMC 
-0
+http://j.mp/ZCH_C06_MGM_sly
 
 #EXTINF:0,AXN 
-0
-
-#EXTINF:0,BabyTV 
-http://proxiiptv.dyndns.tv:8000/live/dejan/dejan/403.m3u8
+http://lag2.tv-mobile.org/prgd.m3u8
 
 #EXTINF:0,BabyTV 
 http://fe-mos.svc.iptv.rt.ru/hls/CH_C01_BABYTV/variant.m3u8?version=2
 
 #EXTINF:0,BBC 1 
-http://82.135.224.134:80/udp/239.100.3.1:1234
+0
 
 #EXTINF:0,BBC 2 
 http://82.135.224.134/udp/239.100.3.3:1234
@@ -35,7 +32,7 @@ http://82.135.224.134/udp/239.100.3.3:1234
 0
 
 #EXTINF:0,Boomerang 
-0
+http://fe-sth.svc.iptv.rt.ru/hls/CH_C05_BOOMERANG/variant.m3u8?version=2
 
 #EXTINF:0,Bravo 
 0
@@ -48,6 +45,9 @@ http://5.128.118.163:7777/udp/239.1.3.3:1234
 
 #EXTINF:0,Cartoon Network 
 http://185.13.236.197:4080/udp/224.0.0.120:1244
+
+#EXTINF:0,Cartoon Network 
+http://fe-sth.svc.iptv.rt.ru/hls/CH_C05_CARTOONNETWORK/variant.m3u8?version=2
 
 #EXTINF:0,CBC TV 
 0
@@ -73,11 +73,11 @@ http://185.13.236.197:4080/udp/224.0.0.120:1244
 #EXTINF:0,City TV Vancouver
 0
 
-#EXTINF:0,CNBC
-http://origin.live.web.tv.streamprovider.net/streams/9044496707bcc259f6cdf58eb93cbfe9_live_0_0/index.m3u8
+#EXTINF:0,CNBC 
+0
 
 #EXTINF:0,Comedy Central 
-0
+http://188.138.9.228:8022
 
 #EXTINF:0,Cooking Channel
 0
@@ -110,10 +110,10 @@ http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/index_350_av-p.m3u8?
 0
 
 #EXTINF:0,E! 
-http://proxiiptv.dyndns.tv:8000/live/dejan/dejan/276.m3u8
+http://201.161.59.6/e.isml/QualityLevels(1928000)/manifest(format=m3u8-aapl).m3u8?
 
-#EXTINF:0,E2
-http://origin.live.web.tv.streamprovider.net/streams/5dac5e87d17d40f5bca18d2b211a4dd2_live_0_0/index.m3u8
+#EXTINF:0,E2 
+0
 
 #EXTINF:0,E4 
 http://pebbles124-lh.akamaihd.net/i/e4_1@137789/master.m3u8|X-Forwarded-For=85.5.87.218
@@ -133,8 +133,8 @@ http://46.249.213.87/iPhone/HLS_TS/broadcast/fashiontv-tablet.3gp/fashiontv-tabl
 #EXTINF:0,Fox 1 
 0
 
-#EXTINF:0,Fox Crime
-http://tvdofuturo2.dyndns.tv:8000/live/lucia/lucia1/86.ts
+#EXTINF:0,Fox Crime 
+0
 
 #EXTINF:0,Fox Life 
 http://fe-sth.svc.iptv.rt.ru/hls/CH_C04_FOXLIFE/variant.m3u8?version=2
@@ -179,7 +179,7 @@ rtmp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:468p500kB31?b?b*t$
 http://ios.streamserver01.com:8080/ShowcaseTV/mystream.m3u8
 
 #EXTINF:0,ITV 1 
-http://82.135.224.134/udp/239.100.3.6:1234
+http://82.135.224.134:80/udp/239.100.3.6:1234
 
 #EXTINF:0,ITV 2 
 0
@@ -194,7 +194,7 @@ http://82.135.224.134/udp/239.100.3.6:1234
 rtmp://jtvmedia.jtv.com:1975/live playpath=live6 swfUrl=http://demandware.edgesuite.net/aaby_prd/on/demandware.static/Sites-jtv-Site/-/default/v1410110388581/swf/flashMediaPlayer/StrobeMediaPlayback.swf live=1 pageUrl=http://www.jtv.com/on/demandware.store/Sites-jtv-Site/default/LiveViewer-Show
 
 #EXTINF:0,Jim Jam 
-0
+http://fe-mos.svc.iptv.rt.ru/hls/CH_C04_JIMJAM/variant.m3u8?version=2
 
 #EXTINF:0,KTLA 
 0
@@ -223,8 +223,11 @@ http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
 #EXTINF:0,Nick Jr 
 http://185.13.236.197:4080/udp/224.0.0.120:1240
 
+#EXTINF:0,Nick JR
+http://fe-sib.svc.iptv.rt.ru/hls/CH_C02_NICKJUNIOR/variant.m3u8?version=2
+
 #EXTINF:0,Nickelodeon 
-0
+http://fe-sth.svc.iptv.rt.ru/hls/CH_C03_NICKELODEON/variant.m3u8?version=2
 
 #EXTINF:0,NickNight 
 0
@@ -245,7 +248,7 @@ http://185.13.236.197:4080/udp/224.0.0.120:1240
 0
 
 #EXTINF:0,Sky 1 
-http://xtv.satarabia.com:80/live/testy9098/testy9098/193.ts
+0
 
 #EXTINF:0,Sky 2 
 0
@@ -270,12 +273,6 @@ http://xtv.satarabia.com:80/live/testy9098/testy9098/193.ts
 
 #EXTINF:0,Spike TV 
 0
-
-#EXTINF:0,SVT 1
-http://188.138.9.228:8001
-
-#EXTINF:0,SVT 2
-http://188.138.9.228:8002
 
 #EXTINF:0,Syfy 
 0

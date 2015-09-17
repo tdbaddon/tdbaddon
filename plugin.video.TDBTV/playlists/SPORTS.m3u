@@ -23,7 +23,7 @@ http://lihattv.toh.info/jhos/beib2_5/-/playlist.m3u8
 0
 
 #EXTINF:0,BT Sport 2 
-0
+http://bit.ly/1FdZXZh
 
 #EXTINF:0,CBS Sports 
 http://cbspgalivehd-lh.akamaihd.net/i/farmersday4_simulcast@92710/master.m3u8
@@ -32,7 +32,7 @@ http://cbspgalivehd-lh.akamaihd.net/i/farmersday4_simulcast@92710/master.m3u8
 http://87.245.214.43/streaming/futbol/16/tvrec/playlist.m3u8
 
 #EXTINF:0,CMore Sport 
-0
+http://188.138.9.228:8023
 
 #EXTINF:0,ESPN 
 0
@@ -41,10 +41,10 @@ http://87.245.214.43/streaming/futbol/16/tvrec/playlist.m3u8
 http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_1800.m3u8
 
 #EXTINF:0,Eurosport 1 
-http://91.193.124.5:8000/eurosport
+http://fe-sth.svc.iptv.rt.ru/hls/CH_C06_EUROSPORT/variant.m3u8?version=2
 
 #EXTINF:0,Eurosport 2 
-http://91.193.124.5:8000/eurosport2
+http://fe-ural.svc.iptv.rt.ru/hls/CH_C04_EUROSPORT2/variant.m3u8?version=2
 
 #EXTINF:0,Eurosport News 
 0
@@ -56,13 +56,19 @@ http://91.193.124.5:8000/eurosport2
 0
 
 #EXTINF:0,Fox Sports 
-http://209.133.208.178:1935/app/max13a258s-channel/playlist.m3u8
+rtmp://kv2.ts33.net/sat/us012
 
-#EXTINF:0,Fox Sports 1 
-http://54.177.195.82/server/play/fs1ctg/3964000/prog.m3u8?anv=1427415219896 |X-Forwarded-For=66.171.228.102
+#EXTINF:0,Fox Sports 
+rtmp://kv2.ts33.net/sat/us021
+
+#EXTINF:0,Fox Sports 
+rtmp://kv2.ts33.net/sat/us011
+
+#EXTINF:0,Fox Sports 1
+http://bit.ly/1Klt2hb
 
 #EXTINF:0,Fox Sports 2 
-http://54.177.195.82/server/play/fs2ctg/3964000/prog.m3u8?anv=1427415219896 |X-Forwarded-For=66.171.228.102
+0
 
 #EXTINF:0,Fox Sports News 
 0
@@ -92,31 +98,28 @@ mms://100automoto.tv/100livesport
 0
 
 #EXTINF:0,NBC Golf 
-http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/2596k/prog.m3u8|X-Forwarded-For=209.239.112.104
-
-#EXTINF:0,NBC Golf 
 http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/4296k/prog.m3u8|X-Forwarded-For=209.239.112.104
 
 #EXTINF:0,NBC Golf 
-http://xtv.satarabia.com:80/live/testy9098/testy9098/472.ts
+http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/2596k/prog.m3u8|X-Forwarded-For=209.239.112.104
 
-#EXTINF:0,NBCSN 
-http://tvenbcsn-i.Akamaihd.net/hls/live/218235/nbcsnx/2596k/prog.m3u8|X-Forwarded-For=66.171.228.102
+#EXTINF:0,NBC Golf 
+http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/1896k/prog.m3u8|X-Forwarded-For=66.171.228.102
 
 #EXTINF:0,NBCSN 
 http://tvenbcsn-i.Akamaihd.net/hls/live/218235/nbcsnx/4296k/prog.m3u8|X-Forwarded-For=66.171.228.102
 
 #EXTINF:0,NBCSN 
+http://tvenbcsn-i.Akamaihd.net/hls/live/218235/nbcsnx/2596k/prog.m3u8|X-Forwarded-For=66.171.228.102
+
+#EXTINF:0,NBCSN 
+http://tvenbcsn-i.Akamaihd.net/hls/live/218235/nbcsnx/1896k/prog.m3u8|X-Forwarded-For=66.171.228.102
+
+#EXTINF:0,NBCSN 
 http://cdn.phoenix.intergi.com/21772/videos/3362254/video-sd.mp4?hosting_id=21772
 
-#EXTINF:0,NBCSN 
-http://209.133.208.178:1935/app/max10a257s-channel/playlist.m3u8
-
-#EXTINF:0,NBCSN 
-rtmp://181.214.35.7:19350/live/ playpath=rODW52xUtR9o swfUrl=http://www.letgo.tv/jwplayer.flash.swf live=1 pageUrl=http://www.letgo.tv/embed.php?channel=223&vw=650&vh=400
-
 #EXTINF:0,NFL Network 
-0
+http://nflioslivesvg2-i.akamaihd.net/hls/live/221521/nflioslive/2015HackerNow_w99d9.m3u8
 
 #EXTINF:0,NHL Network
 0
@@ -133,20 +136,20 @@ http://xrxs.net/video/live-p12ariz-4728.m3u8
 #EXTINF:0,PAC 12 Bay Area 
 http://xrxs.net/video/live-p12baya-1164.m3u8
 
-#EXTINF:0,PAC 12 Bay Area HD
-http://www.xrxs.net/video/live-p12baya-4728.m3u8
+#EXTINF:0,PAC 12 Bay Area HD 
+0
 
 #EXTINF:0,PAC 12 LA 
-http://xrxs.net/video/live-p12losa-1164.m3u8?
+0
  
-#EXTINF:0,PAC 12 LA HD
-http://xrxs.net/video/live-p12losa-4728.m3u8?
+#EXTINF:0,PAC 12 LA HD 
+0
 
 #EXTINF:0,PAC 12 National 
 http://xrxs.net/video/live-p12netw-1164.m3u8
  
-#EXTINF:0,PAC 12 National HD
-http://xrxs.net/video/live-p12netw-2328.m3u8
+#EXTINF:0,PAC 12 National HD 
+http://xrxs.net/video/live-p12netw-4728.m3u8
 
 #EXTINF:0,PAC 12 Mountain 
 http://www.xrxs.net/video/live-p12moun-1164.m3u8
@@ -163,17 +166,17 @@ http://xrxs.net/video/live-p12oreg-4728.m3u8
 #EXTINF:0,PAC 12 Washington 
 http://xrxs.net/video/live-p12wash-1164.m3u8
  
-#EXTINF:0,PAC 12 Washington HD
-http://xrxs.net/video/live-p12wash-4728.m3u8
+#EXTINF:0,PAC 12 Washington HD 
+0
 
 #EXTINF:0,Porsche Channel
 mms://100automoto.tv/channel_porsche
 
 #EXTINF:0,Premier Sports 
-0
+http://bit.ly/1JaLGHN
 
-#EXTINF:0,Racing UK 
-0
+#EXTINF:0,Racing UK
+http://bit.ly/1KQSFgw
 
 #EXTINF:0,Root Sports 
 0
@@ -182,22 +185,40 @@ mms://100automoto.tv/channel_porsche
 0
 
 #EXTINF:0,Sky Sports 1 
-http://207.244.71.174:8081/origin/SS1HD/playlist.m3u8
+http://bit.ly/1FLqms5
+
+#EXTINF:0,Sky Sports 1 
+rtmpe://134.19.185.220:1935/livedge playpath=sskys1 swfUrl=http://player.hdcast.org/_.swf pageurl=http://www.hdcast.org/embedlive4.php?u=sskys1&vw=640&vh=400&domain=www.streamhd.eu token=Fo5_n0w?U.rA6l3-70w47ch timeout=5
 
 #EXTINF:0,Sky Sports 2 
-http://207.244.71.174:8081/origin/SS2HD/chunks.m3u8
+http://bit.ly/1Y9Y6ek
 
 #EXTINF:0,Sky Sports 3 
-http://207.244.71.174:8081/origin/SS3HD/playlist.m3u8
+rtmp://93.174.93.196/live playpath=sss3 swfUrl=http://www.yocast.tv/myplayer/jwplayer.flash.swf live=1 pageUrl=http://www.yocast.tv/embed.php?live=sss3&vw=600&vh=450
+
+#EXTINF:0,Sky Sports 3 
+http://bit.ly/1OufKoF
+
+#EXTINF:0,Sky Sports 3 
+http://01e6.vp9.tv/chn/sks3/v.m3u8
 
 #EXTINF:0,Sky Sports 4 
-http://207.244.71.174:8081/origin/SS4HD/playlist.m3u8
+http://bit.ly/1Qg58IE
+
+#EXTINF:0,Sky Sports 4 
+rtmpe://134.19.185.220:1935/livedge playpath=sskys4 swfUrl=http://player.hdcast.org/_.swf pageurl=http://www.hdcast.org/embedlive4.php?u=sskys1&vw=640&vh=400&domain=www.streamhd.eu token=Fo5_n0w?U.rA6l3-70w47ch timeout=5
+
+#EXTINF:0,Sky Sports 4 
+rtmpe://134.19.185.220:1935/livedge playpath=mamahdsky4 swfUrl=http://player.hdcast.org/_.swf pageUrl=http://www.hdcast.org/embedlive1.php?u=mamahdskysports4&vw=680&vh=490&domain=mamahd.com token=Fo5_n0w?U.rA6l3-70w47ch
 
 #EXTINF:0,Sky Sports 5 
-http://207.244.71.174:8081/origin/SS5HD/playlist.m3u8
+rtmpe://134.19.185.220:1935/livedge playpath=sskys5 swfUrl=http://player.hdcast.org/_.swf pageurl=http://www.hdcast.org/embedlive4.php?u=sskys1&vw=640&vh=400&domain=www.streamhd.eu token=Fo5_n0w?U.rA6l3-70w47ch timeout=5
+
+#EXTINF:0,Sky Sports 5 
+rtmp://93.174.93.196/live playpath=sss5 swfUrl=http://www.yocast.tv/myplayer/jwplayer.flash.swf live=1 pageUrl=http://www.yocast.tv/embed.php?live=sss5&vw=600&vh=450
 
 #EXTINF:0,Sky Sports F1 
-0
+rtmp://93.174.93.196/live playpath=sssf1 swfUrl=http://www.yocast.tv/myplayer/jwplayer.flash.swf live=1 pageUrl=http://www.yocast.tv/embed.php?live=sssf1&vw=600&vh=450
 
 #EXTINF:0,Sky Sports News 
 0
@@ -224,7 +245,10 @@ rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9
 http://stream01.yamgo.com/iPhone/HLS_TS/broadcast/trace_tv_sports-tablet.3gp/trace_tv_sports-tablet.3gp-mr647k.m3u8?
 
 #EXTINF:0,TSN 1 
-0
+http://bit.ly/1LftMtt
+
+#EXTINF:0,TSN 1 
+http://109.236.91.191:8000//streaming/clients_live.php?username=belkhirabdou1&password=belkhirabdou1&stream=2641&extension=ts&hash=a10926e934ec6b0c06dba61f458fe8d0&time=1442473433&external_device=
 
 #EXTINF:0,TSN 2 
 0

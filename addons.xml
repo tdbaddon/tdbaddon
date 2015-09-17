@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addons>
-<addon id="plugin.audio.dipremium" name="DI Premium" version="1.1" provider-name="NVTTeam">
+<addon id="plugin.audio.dipremium" name="DI Premium" version="1.2" provider-name="NVTTeam">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
   </requires>
@@ -48,7 +48,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
-<addon id="plugin.video.CanTVLive" name="CanTVLive" version="1.9.5" provider-name="podgod">
+<addon id="plugin.video.CanTVLive" name="CanTVLive" version="1.9.6" provider-name="podgod">
   <requires>
     <import addon="xbmc.python" version="2.1.0" />
   </requires>
@@ -96,7 +96,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 <addon id="plugin.video.Daffyslist"
        name="Daffys iptv/VOD list"
-       version="1.0.2"
+       version="1.0.4"
        provider-name="Daffyslist">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -120,9 +120,8 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
   <extension point="xbmc.addon.metadata">
     <summary>All the best from Daffyslist</summary>
-    <description>My lists iv collected together of iptv links and movies, i will update links when i have time.
+    <description>lists of iptv sports movies and more, i will update links when i have time.
 	I host most of the links but have no control over streaming or buffering issues!! I can remove and or update most!!
-	I have added cCloudTv as they update regular, also used Diavoletto Tv as they update everyday too Thanks to those guys:)
 	Want your list adding here? get intouch...
 Thats all Folks
     </description>
@@ -176,7 +175,7 @@ Thats all Folks
 	</extension>
 </addon>
 
-<addon id="plugin.video.genesis" name="Genesis" version="5.0.4" provider-name="lambda">
+<addon id="plugin.video.genesis" name="Genesis" version="5.0.5" provider-name="lambda">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.requests" version="1.0.0" />
@@ -274,6 +273,27 @@ Thats all Folks
   </extension>
 </addon>
 
+<addon id="plugin.video.movieshd" name="Movies HD" version="2.0.1" provider-name="MetalKettle">
+  <requires>
+    <import addon="script.module.simplejson" version="3.3.0"/>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.t0mm0.common" version="2.0.0"/>
+    <import addon="plugin.video.youtube" version="3.0.0"/>
+    <import addon="script.module.urlresolver"  version="2.1.2"/>
+    <import addon="script.common.plugin.cache" version="2.5.2"/>
+    <import addon="script.module.metahandler" version="2.5.1"/>
+    <import addon="script.module.addon.common" version="2.0.0"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en"></summary>
+    <description lang="en"></description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
 <addon id="plugin.video.moviesxl" version="1.0.1" name="Movies XL" provider-name="Mr Entertainment">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
@@ -290,6 +310,26 @@ Thats all Folks
         <platform>all</platform>
         <disclaimer lang="en"></disclaimer>
     </extension>
+</addon>
+
+<addon id="plugin.video.moviexk" name="Movies XK" version="1.0.3" provider-name="MetalKettle">
+  <requires>
+    <import addon="script.module.simplejson" version="3.3.0"/>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.t0mm0.common" version="2.0.0"/>
+    <import addon="plugin.video.youtube" version="3.0.0"/>
+    <import addon="script.module.urlresolver"  version="2.1.2"/>
+    <import addon="script.common.plugin.cache" version="2.5.2"/>
+    <import addon="script.module.metahandler" version="2.5.1"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en"></summary>
+    <description lang="en"></description>
+    <platform>all</platform>
+  </extension>
 </addon>
 
 <addon
@@ -319,7 +359,7 @@ Thats all Folks
    </extension>
 </addon>
 
-<addon id="plugin.video.phstreams" name="Phoenix" version="2.5.6" provider-name="Blazetamer, lambda">
+<addon id="plugin.video.phstreams" name="Phoenix" version="2.5.7" provider-name="Blazetamer, lambda">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.pyxbmct" version="1.1.4" />
@@ -386,7 +426,7 @@ Thats all Folks
   </extension>
 </addon>
 
-<addon id="plugin.video.roggerstream" name="Rogger Stream" version="2.0.0" provider-name="Rogger, Cleiton Leonel Creton">
+<addon id="plugin.video.roggerstream" name="Rogger Stream" version="2.0.1" provider-name="Rogger, Cleiton Leonel Creton">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
   </requires>
@@ -549,7 +589,7 @@ Thats all Folks
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="3.10"
+       version="3.11"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -649,6 +689,19 @@ Thats all Folks
 	<extension point="xbmc.addon.metadata">
 		<summary>Install my Addons</summary>
 		<description>Download and Install Addons from NVTTeam Repository</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="repository.podgod" name="podgod repo" version="1.6" provider-name="podgod">
+	<extension point="xbmc.addon.repository" name="PodGod Addon Repository">
+		<info compressed="false">http://podgod.mtlfreetv.com/Podgod/repo/addons.xml</info>
+		<checksum>http://podgod.mtlfreetv.com/Podgod/repo/addons.xml.md5</checksum>
+		<datadir zip="true">http://podgod.mtlfreetv.com/Podgod/repo/zips</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Install My Addons</summary>
+		<description>Download and install addons from podgod!</description>
 		<platform>all</platform>
 	</extension>
 </addon>

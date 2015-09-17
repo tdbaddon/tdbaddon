@@ -4,7 +4,7 @@ import urllib,urllib2,sys,re,xbmcplugin,xbmcgui,xbmcaddon,xbmc,os,json,base64
 addon       = xbmcaddon.Addon()
 addonname   = addon.getAddonInfo('name')
  
-line1 = '[B]P2P-Streams[/B] addon required for sports channels'
+line1 = '[B]P2P-Streams[/B] addon required for some sports channels'
 line2 = 'More Info: http://tinyurl.com/p2pstreamsconfig'
 line3 = 'CTV Channels require Filmon.TV from kinkin repo'
 
@@ -77,11 +77,20 @@ add_video_item('http://ams-lp5.9c9media.com/hls-live/livepkgr/_definst_/liveNews
 add_video_item('http://nlds187.cdnak.neulion.com/nlds/sportsnetnow/sn_360/as/live/sn_360_hd_ipad.m3u8',{ 'title': '[COLOR red]SportsNet 360 HD[/COLOR]'}, '%s/sportsnet_360.png' % _icondir)
 add_video_item('plugin://plugin.video.p2p-streams/?url=http://content.torrent-tv.ru/13094.acelive&mode=1&name=SportsNet+HD',{ 'title': 'SportsNet HD'}, '%s/sportsnet_one.png' % _icondir)
 add_video_item('plugin://plugin.video.p2p-streams/?url=http://content.torrent-tv.ru/13028.acelive&mode=1&name=SportsNet+World+HD',{ 'title': 'SportsNet World HD'}, '%s/sportsnet_world.png' % _icondir)
-add_video_item('plugin://plugin.video.p2p-streams/?url=http://content.torrent-tv.ru/13091.acelive&mode=1&name=TSN+1+HD',{ 'title': 'TSN 1 HD'}, '%s/tsn_1.png' % _icondir)
-add_video_item('plugin://plugin.video.p2p-streams/?url=http://content.torrent-tv.ru/13092.acelive&mode=1&name=TSN+2+HD',{ 'title': 'TSN 2 HD'}, '%s/tsn_2.png' % _icondir)
-add_video_item('plugin://plugin.video.p2p-streams/?url=http://content.torrent-tv.ru/13093.acelive&mode=1&name=TSN+3+HD',{ 'title': 'TSN 3 HD'}, '%s/tsn_3.png' % _icondir)
-add_video_item('plugin://plugin.video.p2p-streams/?url=http://content.torrent-tv.ru/13096.acelive&mode=1&name=TSN+4+HD',{ 'title': 'TSN 4 HD'}, '%s/tsn_4.png' % _icondir)
-add_video_item('plugin://plugin.video.p2p-streams/?url=http://content.torrent-tv.ru/13097.acelive&mode=1&name=TSN+5+HD',{ 'title': 'TSN 5 HD'}, '%s/tsn_5.png' % _icondir)
+add_video_item('http://37.187.248.101:8080/tsn1.stream/index.m3u8?77d8ab64d554b6ed44472cd55ec3d065',{ 'title': 'TSN 1 HD'}, '%s/tsn_1.png' % _icondir)
+add_video_item('plugin://plugin.video.p2p-streams/?url=http://content.torrent-tv.ru/13091.acelive&mode=1&name=TSN+1+HD',{ 'title': 'TSN 1 HD (P2P)'}, '%s/tsn_1.png' % _icondir)
+
+add_video_item('http://37.187.248.101:8080/tsn2.stream/index.m3u8?77d8ab64d554b6ed44472cd55ec3d065',{ 'title': 'TSN 2 HD'}, '%s/tsn_2.png' % _icondir)
+add_video_item('plugin://plugin.video.p2p-streams/?url=http://content.torrent-tv.ru/13092.acelive&mode=1&name=TSN+2+HD',{ 'title': 'TSN 2 HD(P2P)'}, '%s/tsn_2.png' % _icondir)
+
+add_video_item('http://37.187.248.101:8080/tsn3.stream/index.m3u8?77d8ab64d554b6ed44472cd55ec3d065',{ 'title': 'TSN 3 HD'}, '%s/tsn_3.png' % _icondir)
+add_video_item('plugin://plugin.video.p2p-streams/?url=http://content.torrent-tv.ru/13093.acelive&mode=1&name=TSN+3+HD',{ 'title': 'TSN 3 HD(P2P)'}, '%s/tsn_3.png' % _icondir)
+
+add_video_item('http://37.187.248.101:8080/tsn4.stream/index.m3u8?77d8ab64d554b6ed44472cd55ec3d065',{ 'title': 'TSN 4 HD'}, '%s/tsn_4.png' % _icondir)
+add_video_item('plugin://plugin.video.p2p-streams/?url=http://content.torrent-tv.ru/13096.acelive&mode=1&name=TSN+4+HD',{ 'title': 'TSN 4 HD(P2P)'}, '%s/tsn_4.png' % _icondir)
+
+add_video_item('http://37.187.248.101:8080/tsn5.stream/index.m3u8?77d8ab64d554b6ed44472cd55ec3d065',{ 'title': 'TSN 5 HD'}, '%s/tsn_5.png' % _icondir)
+add_video_item('plugin://plugin.video.p2p-streams/?url=http://content.torrent-tv.ru/13097.acelive&mode=1&name=TSN+5+HD',{ 'title': 'TSN 5 HD(P2P)'}, '%s/tsn_5.png' % _icondir)
 
 # French
 add_video_item('http://hdflash_1-lh.akamaihd.net/i/cancbft_1@95875/index_1200_av-p.m3u8',{ 'title': 'CANCBFT (CBC French) HD'}, '%s/CBFT.png' % _icondir)

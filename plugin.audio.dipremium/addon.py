@@ -270,7 +270,7 @@ li = xbmcgui.ListItem('UMF Radio', iconImage='http://api.audioaddict.com/v1/asse
 xbmcplugin.addDirectoryItem(handle=addon_handle, url=url, listitem=li)
 
 url = 'http://goo.gl/FpzkBK'
-li = xbmcgui.ListItem('Underground Techno', iconImage='http://api.audioaddict.com/v1/assets/image/de8a86031fd9b112ca9ace584bc98e7f.jpg', thumbnailImage='http://api.audioaddict.com/v1/assets/image/de8a86031fd9b112ca9ace584bc98e7f.jpg')
+li = xbmcgui.ListItem('Underground Techno', iconImage='http://api.audioaddict.com/v1/assets/image/cfaee945340928dd2250e731efda8e6c.png', thumbnailImage='http://api.audioaddict.com/v1/assets/image/cfaee945340928dd2250e731efda8e6c.png')
 xbmcplugin.addDirectoryItem(handle=addon_handle, url=url, listitem=li)
 
 url = 'http://goo.gl/qLs0Oj'

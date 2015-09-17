@@ -33,7 +33,6 @@ def resolve(url):
         result = client.request(url, mobile=True)
 
         result = re.compile('(eval.*?\)\)\))').findall(result)[-1]
-        result = re.sub(r'(\',\d*,\d*,)', r';\1', result)
         result = jsunpack.unpack(result)
 
         url = client.parseDOM(result, 'embed', ret='src')

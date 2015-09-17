@@ -23,22 +23,19 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 0
 
 #EXTINF:0,Film4 
+http://pebbles124-lh.akamaihd.net/i/film4_1@137790/master.m3u8|X-Forwarded-For=85.5.87.218
+
+#EXTINF:0,FilmBox
+http://lag1.tv-mobile.org/prgw.m3u8
+
+#EXTINF:0,Film Aksion 
 0
 
-#EXTINF:0,Film Aksion
-http://94.100.31.242:8183/hls/xz3126/index.m3u8
+#EXTINF:0,Film Hits 
+0
 
-#EXTINF:0,Film Aksion
-http://error.sytes.net:21000/iptvlinks/iptvlinks.com/49.ch
-
-#EXTINF:0,Film Hits
-http://94.100.31.242:8183/hls/film1/index.m3u8
-
-#EXTINF:0,Film Nje
-http://94.100.31.242:8183/hls/film3/index.m3u8
-
-#EXTINF:0,Film Nje
-http://error.sytes.net:21000/iptvlinks/iptvlinks.com/50.ch
+#EXTINF:0,Film Nje 
+0
 
 #EXTINF:0,Fox Action Movies 
 0
@@ -50,10 +47,10 @@ http://error.sytes.net:21000/iptvlinks/iptvlinks.com/50.ch
 0
 
 #EXTINF:0,Fox Movies 
-http://185.5.222.227:4242/bysid/5608
+http://38.99.146.36:7777/FoxMovies_HD.m3u8
 
 #EXTINF:0,HBO 
-rtmp://94.102.49.207/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to/player/secure_player_iguide_token.swf live=1 pageUrl=http://www.iguide.to/view/1/watch-live-HBO-channel-for-free token=#ed%h0#w18623jsda6523lDGDVe
+rtmp://94.102.49.207/iguide%20playpath=0bf02qe6msgtu4s%20swfUrl=http://www.iguide.to/player/secure_player_iguide_token.swf%20live=1%20pageUrl=http://www.iguide.to/view/1/watch-live-HBO-channel-for-free%20token=#ed%h0#w18623jsda6523lDGDVe
 
 #EXTINF:0,HBO East
 0
@@ -73,8 +70,11 @@ rtmp://94.102.49.207/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to
 #EXTINF:0,MGM 
 0
 
+#EXTINF:0,Paramount Channel
+http://188.17.143.39/hls/CH_C01_PARAMOUNTCHANNEL/variant.m3u8?version=2
+
 #EXTINF:0,Sky Movies Action 
-http://www.nasatv.eu:80/live?channelId=136&uid=7&deviceUser=dm800&devicePass=dm800
+0
 
 #EXTINF:0,Sky Movies Comedy 
 0
@@ -127,8 +127,17 @@ http://fe-sth.svc.iptv.rt.ru/hls/CH_C04_SET/variant.m3u8?version=2
 #EXTINF:0,TCM 
 0
 
+#EXTINF:0,Tring Comedy
+http://tring-amd-live.tring.tv/out/u/78_139.m3u8
+
+#EXTINF:0,Tring Fantasy 
+http://tring-amd-live.tring.tv/out/u/92_146.m3u8
+
+#EXTINF:0,Tring Max 
+http://tring-amd-live.tring.tv/out/u/94_130.m3u8
+
 #EXTINF:0,True Movies 1 
-http://xtv.satarabia.com:80/live/testy9098/testy9098/36.ts
+0
 
 #EXTINF:0,True Movies 2 
 0

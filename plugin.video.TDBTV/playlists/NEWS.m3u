@@ -16,6 +16,9 @@ http://xtv.satarabia.com:80/live/testy9098/testy9098/218.ts
 #EXTINF:0,BBC World News 
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/bbc_world/ls_satlink/b_,828,528,264,.m3u8 
 
+#EXTINF:0,BBC World News 
+http://fe-mos.svc.iptv.rt.ru/hls/CH_C04_BBCWORLDNEWS/variant.m3u8?version=2
+
 #EXTINF:0,Bloomberg TV 
 http://btv-i.akamaihd.net/hls/live/202760-b/btvusa_ios/P1/M12K.m3u8
 
@@ -24,6 +27,9 @@ http://cdn3.videos.bloomberg.com/btv/us/master.m3u8
 
 #EXTINF:0,Bloomberg News 
 http://x4012c4000.edge.core-cdn.net/40000mb/live/4012hbbtv/bloomberg.ts
+
+#EXTINF:0,Bloomberg News 
+http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/bloomberg/ls_satlink/b_828.m3u8
 
 #EXTINF:0,CBC News Canada 
 rtmp://a.cdn.newschat.tv/edge playpath=cbc_live swfUrl=http://msnbclive.eu/player.swf pageUrl=http://www.livenewschat.eu/canada/ live=1

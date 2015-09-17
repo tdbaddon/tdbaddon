@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.CanTVLive" name="CanTVLive" version="1.9.5" provider-name="podgod">
+<addon id="plugin.video.CanTVLive" name="CanTVLive" version="1.9.6" provider-name="podgod">
   <requires>
     <import addon="xbmc.python" version="2.1.0" />
   </requires>

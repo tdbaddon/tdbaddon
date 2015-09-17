@@ -1,3 +1,6 @@
+ v1.2
+-Update Cannels and Thumbnails...
+
  v1.1
 -Updated All Channels...
 

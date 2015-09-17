@@ -107,8 +107,6 @@ dc={
 "showcase" : "6132",
 "space" : "6133",
 "sky atlantic" : "6135",
-"svt 1" : "6136",
-"svt 2" : "6137",
 "cnbc" : "6138",
 "axn" : "6139",
 "teletoon" : "6140",

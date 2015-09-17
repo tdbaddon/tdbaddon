@@ -11,13 +11,19 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 0
 
 #EXTINF:0,Animal Planet 
-http://proxiiptv.dyndns.tv:8000/live/dejan/dejan/272.m3u8
+http://fe-sth.svc.iptv.rt.ru/hls/CH_C03_ANIMALPLANET/variant.m3u8?version=2
+
+#EXTINF:0,Animal Planet 
+http://j.mp/ZCH_C03_ANIMALPLANET_sly
 
 #EXTINF:0,Destination America 
 0
 
 #EXTINF:0,Destination Network 
 0
+
+#EXTINF:0,Discovery Channel
+http://fe-sth.svc.iptv.rt.ru/hls/CH_C05_DISCOVERYCHANNEL/variant.m3u8?version=2
 
 #EXTINF:0,Discovery History 
 0
@@ -30,6 +36,9 @@ http://proxiiptv.dyndns.tv:8000/live/dejan/dejan/272.m3u8
 
 #EXTINF:0,Discovery Science 
 http://lag2.tv-mobile.org/prgi.m3u8
+
+#EXTINF:0,Discovery Science 
+http://fe-dv.svc.iptv.rt.ru/hls/CH_C03_DISCOVERYSCIENCE/variant.m3u8?version=2
 
 #EXTINF:0,Discovery Turbo 
 0
@@ -53,10 +62,13 @@ http://link.theplatform.com/s/dtjsEC/chjdYJxKb44V?manifest=m3u&feed=History%20Li
 0
 
 #EXTINF:0,Investigation Discovery 
-0
+http://fe-mos.svc.iptv.rt.ru/hls/CH_C02_DISCOVERYINVESTIGATION/variant.m3u8?version=2
 
 #EXTINF:0,Nasa TV 
 http://nasatv-lh.akamaihd.net/i/NASA_101@319270/master.m3u8 
+
+#EXTINF:0,Nasa TV 
+http://iphone-streaming.ustream.tv/uhls/6540154/streams/live/iphone/playlist.m3u8
 
 #EXTINF:0,Nat Geo Wild 
 http://194.44.229.77:777/udp/237.1.239.21:1234
@@ -64,11 +76,17 @@ http://194.44.229.77:777/udp/237.1.239.21:1234
 #EXTINF:0,Nat Geo Wild 
 http://185.13.236.197:4080/udp/224.0.0.120:1237
 
+#EXTINF:0,Nat Geo Wild 
+http://lag2.tv-mobile.org/prgg.m3u8
+
 #EXTINF:0,National Geographic 
 http://194.44.229.77:777/udp/237.1.239.22:1234
 
 #EXTINF:0,National Geographic 
 http://194.44.229.77:777/udp/237.1.238.10:1234
+
+#EXTINF:0,National Geographic 
+http://fe-sth.svc.iptv.rt.ru/hls/CH_C01_NATGEO/variant.m3u8?version=2
 
 #EXTINF:0,Planet Green 
 0
@@ -91,12 +109,21 @@ http://195.78.244.219:10000/udp/239.0.3.30:1234
 #EXTINF:0,Viasat Explorer
 http://195.78.244.219:10000/udp/239.0.3.31:1234
 
+#EXTINF:0,Viasat Explore 
+http://fe-sth.svc.iptv.rt.ru/hls/CH_C02_VIASATEXPLORER/variant.m3u8?version=2
+
 #EXTINF:0,Viasat History 
-0
+http://195.78.244.219:10000/udp/239.0.3.31:1234
+
+#EXTINF:0,Viasat History 
+http://fe-sth.svc.iptv.rt.ru/hls/CH_C02_VIASATHISTORY/variant.m3u8?version=2
 
 #EXTINF:0,Viasat Nature 
 http://194.44.229.77:777/udp/237.1.238.19:1234
 
 #EXTINF:0,Viasat Nature
 http://195.78.244.219:10000/udp/239.0.3.28:1234
+
+#EXTINF:0,Viasat Nature 
+http://fe-dv.svc.iptv.rt.ru/hls/CH_C01_VIASATNATURE/variant.m3u8?version=2
 

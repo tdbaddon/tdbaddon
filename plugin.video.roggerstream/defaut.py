@@ -21,7 +21,7 @@ from BeautifulSoup import BeautifulSoup
 h = HTMLParser.HTMLParser()
 
 
-versao = '2.0.0'
+versao = '2.0.1'
 addon_id = 'plugin.video.roggerstream'
 selfAddon = xbmcaddon.Addon(id=addon_id)
 addonfolder = selfAddon.getAddonInfo('path')
@@ -45,6 +45,7 @@ def  categorias():
 	addDir('FUTEBOL AO VIVO','https://copy.com/xUo6eMRYOiVevL2h?download=1',6,'https://copy.com/NPRaZORymdG0FxJ1')
 	addDir('FUTEBOL AO VIVO (YOUTUBE)','https://copy.com/8QZD9AQuv4Lchd2M?download=1',10,'http://i.imgur.com/SAEuWPw.jpg')
 	addDir('TV PAGA BRASIL','-',5,'https://copy.com/VVF8ouCl1Ghkjum8')
+	addDir('PROGRAMAS DA BAND AO VIVO','https://copy.com/LUbu11FOacRUEw4O?download=1',6,'http://i.imgur.com/Mxyc9jj.png')
 	addDir('SÉRIES E DESENHOS 24 HORAS','https://copy.com/nEagWXhOC1s7dlyO?download=1',6,'https://copy.com/SzKOJlBKxIfEuHnp')
 	addDir('CAÇA E PESCA','https://copy.com/b6uCi8jKTmq24wLy?download=1',6,'https://copy.com/Igk8UorSxdbG4xnE')
 	addDir('CANAIS LATINOS','https://copy.com/tapliy8nIaKSLDQq?download=1',6,'https://copy.com/wPVtPygtxuY0P1xl')

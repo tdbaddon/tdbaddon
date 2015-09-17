@@ -1,4 +1,19 @@
 ------------------------
+Genesis v5.0.5 (12-Sep-15)
+------------------------
+
+- Added Beinmovie source.
+- Added Dizilab source.
+- Added Dizimag source.
+- Added TVrelease source.
+- Removed Moviezone source.
+- Removed Clickplay source.
+- Updated available sources.
+- Updated available resolvers.
+- Code cosmetics.
+
+
+------------------------
 Genesis v5.0.4 (9-Sep-15)
 ------------------------
 

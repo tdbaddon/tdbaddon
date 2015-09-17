@@ -7,3 +7,8 @@
 1.0.2 - 26/08/15
 - Out of beta.
 
+1.0.3 - 13/09/15
+- Moved to new server
+
+1.0.4 - 13/09/15
+- Fixed a possible Bug.

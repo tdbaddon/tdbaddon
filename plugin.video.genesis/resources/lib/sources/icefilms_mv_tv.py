@@ -197,7 +197,7 @@ class source:
             ref = self.video_link % query['t'][0]
 
             url = urlparse.urlparse(url).path
-            url += '?s=%s&t=%s&app_id=Genesis504' % (query['id'][0], query['t'][0])
+            url += '?s=%s&t=%s&app_id=Genesis505' % (query['id'][0], query['t'][0])
 
             links = [self.link_1]
             for base_link in links:
@@ -242,7 +242,10 @@ class source:
 
             match = re.search("href='([^']+)", result)
             if match and random.randint(0, 100) < 5:
+                result = client.request(match.group(1), close=False)
+                match = re.search("location=decode\('([^']+)", result)
                 client.request(match.group(1))
+
 
             try: d.removeControl(f) ; d.close()
             except: return

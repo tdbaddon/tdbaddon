@@ -21,6 +21,7 @@
 
 import re
 from resources.lib.libraries import client
+from resources.lib.libraries import jsunpack
 
 
 def resolve(url):
@@ -49,9 +50,17 @@ def resolve(url):
             '__': "t",
         }
 
+
+        url = url.replace('/f/', '/embed/')
+
         result = client.request(url)
 
-        result = re.search('<script[^>]*>\s*(O=.*?)</script>', result, re.DOTALL).group(1)
+        result = re.search('>\s*(eval\(function.*?)</script>', result, re.DOTALL).group(1)
+
+        result = jsunpack.unpack(result)
+        result = result.replace('\\\\', '\\')
+
+        result = re.search('(O=.*?)(?:$|</script>)', result, re.DOTALL).group(1)
         result = re.search('O\.\$\(O\.\$\((.*?)\)\(\)\)\(\);', result)
 
         s1 = result.group(1)
