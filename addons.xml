@@ -240,34 +240,6 @@ Thats all Folks
   </extension>
 </addon>
 
-<addon id="plugin.video.icefilms"
-       name="Icefilms"
-       version="1.9.1"
-       provider-name="Eldorado (originator: anarchintosh)">
-    <requires>
-        <import addon="xbmc.python" version="2.1.0"/>
-        <import addon="script.module.simplejson" version="3.3.0"/>
-        <import addon="script.module.elementtree" />
-        <import addon="script.module.beautifulsoup" />
-        <import addon="script.module.metahandler" version="2.5.1" />
-        <import addon="script.module.addon.common" version="2.0.0" />
-        <import addon="script.module.axel.downloader" version="0.2.1" />
-        <!--import addon="script.module.pyxbmct" version="1.1.2" /-->
-        <import addon="script.common.plugin.cache" />
-    </requires>
-    <extension point="xbmc.python.pluginsource"
-               library="default.py">
-        <provides>video</provides>
-    </extension>
-    <extension point="xbmc.addon.metadata">
-        <platform>all</platform>
-        <summary>Stream and download scene releases from the links listed on Icefilms.info</summary>
-        <description>Visit www.tvaddons.ag for support.
-
-Turns your XBMC into an instant free on-demand media-center. Stream and download to your library DVD and HD720p quality videos. Browse and search the library of over 77,000 videos with metadata and posters. Never experience the frustration of dead video links!</description>
-    </extension>
-</addon>
-
 <addon
   id="plugin.video.imdb.trailers"
   version="2.0.7"
@@ -574,7 +546,7 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
 
 <addon id="plugin.video.TDBEUROTV"
        name="TDB EURO TV"
-       version="1.96"
+       version="1.97"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -593,7 +565,7 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
 
 <addon id="plugin.video.TDBPORNO"
        name="TDB PORNO"
-       version="1.72"
+       version="1.73"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -649,7 +621,7 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="3.12"
+       version="3.13"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -723,19 +695,6 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
 		<summary></summary>
 		<description>Download and install addons by Mr Entertainment</description>
 		<disclaimer>By using this, you take reponsibility for anything that happens. Some parts of this addon may not be legal in your country - please check with your local laws before installing. I take no responsibility for any problems this plugin might in any way shape or form. This is project is for a LEARNING EXPERIANCE.</disclaimer>
-		<platform>all</platform>
-	</extension>
-</addon>
-
-<addon id="repository.googlecode.anarchintosh-projects" name="anarchintosh addons" version="1.0.1" provider-name="anarchintosh">
-	<extension point="xbmc.addon.repository" name="anarchintosh add-on repository">
-		<info compressed="false">http://anarchintosh-projects.googlecode.com/svn/addons/addons.xml</info>
-		<checksum>http://anarchintosh-projects.googlecode.com/svn/addons/addons.xml.md5</checksum>
-		<datadir zip="true">http://anarchintosh-projects.googlecode.com/svn/addons</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>Install Addons from http://anarchintosh-projects.googlecode.com</summary>
-		<description>Download and install addons from anarchintosh repository.</description>
 		<platform>all</platform>
 	</extension>
 </addon>

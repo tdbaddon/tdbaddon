@@ -35,7 +35,7 @@ http://vs2.streamcaster.net:1935/etvmarche_live/etvmarche/sansar.m3u8
 http://iphone-streaming.ustream.tv/ustreamVideo/19212483/streams/live/playlist.m3u8
 
 #EXTINF:0,Extra TV 
-0
+http://k3.usastreams.com:1935/canal42/canal42/live.m3u8
 
 #EXTINF:0,Fano TV
 http://live.streamcaster.net:1935/live/fanotv/sansar.m3u8
@@ -74,7 +74,7 @@ http://194.116.73.234:1935/quartaretetv2/quartaretebluweb/hasbahca.m3u8
 rtmp://fms.105.net/live/105Test1
 
 #EXTINF:0,Radio Italia TV 
-0
+http://cwedge.cdcache.net:1935/cwedge/rilive/livestream.m3u8
 
 #EXTINF:0,Radio Montecarlo TV
 rtmp://fms.105.net:1935/live/rmc1
@@ -86,28 +86,28 @@ http://origin2.live.web.tv.streamprovider.net/streams/a3be8da5ba57ddb33ada9fa8fc
 http://origin2.live.web.tv.streamprovider.net/streams/84553722f218dda44aab91b4ae0c2d42/index.m3u8
 
 #EXTINF:0,RAI 3 
-0
+http://origin2.live.web.tv.streamprovider.net:80/streams/2946613af1f663bb5b4164131b8c9413/index.m3u8
 
 #EXTINF:0,RAI 5 
 http://stream12.rai.it/live/smil:rai5.smil/chunklist_b1500000.m3u8#MegaIPTVArgentina
 
 #EXTINF:0,Rai Gulp 
-0
+http://raisgeo.dyndns.tv:8000/live/Ok/Ok/198.ts
 
 #EXTINF:0,Rai News 
 http://origin2.live.web.tv.streamprovider.net/streams/121612976e4808528d2ba7edc446887c/index.m3u8
 
 #EXTINF:0,Rai Premium 
-0
+http://raisgeo.dyndns.tv:8000/live/Ok/Ok/1300.ts
 
 #EXTINF:0,Rai Scuola
 0
 
 #EXTINF:0,Rai Storia
-0
+http://raisgeo.dyndns.tv:8000/live/Ok/Ok/156.ts
 
 #EXTINF:0,Rai Yoyo
-0
+http://raisgeo.dyndns.tv:8000/live/Ok/Ok/197.ts
 
 #EXTINF:0,REI TV 
 http://iphone-streaming.ustream.tv/ustreamVideo/18166848/streams/live/playlist.m3u8
@@ -125,16 +125,28 @@ rtmp://flash3.ipercast.net/teleunica.tv-live/livestream1
 0
 
 #EXTINF:0,Sardegnauno 
-0
+http://94.32.101.11:1935/sardegna1/live1.stream/livestream.m3u8
 
 #EXTINF:0,Suedtirol TV
 rtmp://77.72.196.214:8554/live/mp4:SuedtirolTV
 
 #EXTINF:0,Sky Arte 
-0
+http://raisgeo.dyndns.tv:8000/live/Ok/Ok/177.ts
 
 #EXTINF:0,Sky Calcio 
-0
+http://raisgeo.dyndns.tv:8000/live/Ok/Ok/126.ts
+
+#EXTINF:0,Sky Calcio 
+http://raisgeo.dyndns.tv:8000/live/Ok/Ok/128.ts
+
+#EXTINF:0,Sky Calcio 
+http://raisgeo.dyndns.tv:8000/live/Ok/Ok/130.ts
+
+#EXTINF:0,Sky Calcio 
+http://raisgeo.dyndns.tv:8000/live/Ok/Ok/134.ts
+
+#EXTINF:0,Sky Calcio 
+http://raisgeo.dyndns.tv:8000/live/Ok/Ok/1302.ts
 
 #EXTINF:0,Sky Cinema Family 
 0
@@ -151,8 +163,11 @@ rtmp://cp49989.live.edgefcs.net:1935/live playpath=streamRM1@2564 swfUrl=http://
 #EXTINF:0,Sky TG24 
 rtmp://cp49989.live.edgefcs.net:1935/live/streamRM1@2564
 
+#EXTINF:0,Sky TG24 
+http://raisgeo.dyndns.tv:8000/live/Ok/Ok/201.ts
+
 #EXTINF:0,Sky Uno 
-0
+http://raisgeo.dyndns.tv:8000/live/Ok/Ok/109.ts
 
 #EXTINF:0,Tele 8 
 0

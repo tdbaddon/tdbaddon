@@ -16,6 +16,9 @@ rtmpe://179.43.188.15:1935/goLive playpath=rGCi7bg0Qxvs8q7Sl13l swfUrl=http://p.
 #EXTINF:0,AMC 
 http://j.mp/ZCH_C06_MGM_sly
 
+#EXTINF:0,AMC 
+http://fe-nw.svc.iptv.rt.ru/hls/CH_C06_MGM/variant.m3u8?version=2
+
 #EXTINF:0,AXN 
 http://lag2.tv-mobile.org/prgd.m3u8
 
@@ -82,6 +85,9 @@ http://fe-sth.svc.iptv.rt.ru/hls/CH_C05_CARTOONNETWORK/variant.m3u8?version=2
 #EXTINF:0,Comedy Central 
 http://188.138.9.228:8022
 
+#EXTINF:0,Comedy Central 
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/86.m3u8
+
 #EXTINF:0,Cooking Channel
 0
 
@@ -100,6 +106,9 @@ http://188.138.9.228:8022
 #EXTINF:0,CW 
 http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/index_350_av-p.m3u8?
 
+#EXTINF:0,CW 
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/65.m3u8
+
 #EXTINF:0,Disney Channel 
 0
 
@@ -113,7 +122,7 @@ http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/index_350_av-p.m3u8?
 0
 
 #EXTINF:0,E! 
-http://201.161.59.6/e.isml/QualityLevels(1928000)/manifest(format=m3u8-aapl).m3u8?
+0
 
 #EXTINF:0,E2 
 0
@@ -135,6 +144,9 @@ http://j.mp/ZCH_C04_FASHIONTV_sly
 
 #EXTINF:0,Food Network 
 http://j.mp/ZCH_C05_FOOD_sly
+
+#EXTINF:0,Food Network 
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/53.m3u8
 
 #EXTINF:0,Fox 1 
 0
@@ -176,10 +188,10 @@ http://link.theplatform.com/s/dtjsEC/EqBPGYLY6fEx?feed=DEV%20Live%20Stream%20Fee
 0
 
 #EXTINF:0,Hallmark Channel 
-0
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/152.m3u8
 
 #EXTINF:0,HGTV 
-0
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/52.m3u8
 
 #EXTINF:0,HSN
 rtsp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:420p500kB31
@@ -233,7 +245,7 @@ http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
 0
 
 #EXTINF:0,Nick 
-0
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/97.m3u8
 
 #EXTINF:0,Nick Jr 
 http://185.13.236.197:4080/udp/224.0.0.120:1240
@@ -305,7 +317,7 @@ http://62.183.106.70:8802/hls/CH_C03_NICKELODEON/variant.m3u8?version=2
 0
 
 #EXTINF:0,TBS 
-0
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/83.m3u8
 
 #EXTINF:0,Teletoon 
 0
@@ -354,7 +366,7 @@ http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/master.m3u8?b?b*t
 0
 
 #EXTINF:0,Veria Living TV 
-0
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/135.m3u8
 
 #EXTINF:0,Victoria Secret TV 
 http://stream02.yamgo.com/iPhone/HLS_TS/broadcast/victorias_secret_angels-tablet.3gp/victorias_secret_angels-tablet.3gp-mr648k.m3u8

@@ -5,7 +5,7 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 ---------------------------------------------------------------------------------------------------------------
 
 #EXTINF:0,American Heros Channel 
-0
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/143.m3u8
 
 #EXTINF:0,AMHQ 
 0
@@ -15,6 +15,9 @@ http://fe-sth.svc.iptv.rt.ru/hls/CH_C03_ANIMALPLANET/variant.m3u8?version=2
 
 #EXTINF:0,Animal Planet 
 http://j.mp/ZCH_C03_ANIMALPLANET_sly
+
+#EXTINF:0,Animal Planet 
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/142.m3u8
 
 #EXTINF:0,Destination America 
 0
@@ -28,6 +31,9 @@ http://fe-sth.svc.iptv.rt.ru/hls/CH_C05_DISCOVERYCHANNEL/variant.m3u8?version=2
 #EXTINF:0,Discovery Channel
 http://j.mp/ZCH_C05_DISCOVERYCHANNEL_sly
 
+#EXTINF:0,Discovery Channel
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/11.m3u8
+
 #EXTINF:0,Discovery History 
 0
 
@@ -35,7 +41,7 @@ http://j.mp/ZCH_C05_DISCOVERYCHANNEL_sly
 0
 
 #EXTINF:0,Discovery News 
-0
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/46.m3u8
 
 #EXTINF:0,Discovery Science 
 http://lag2.tv-mobile.org/prgi.m3u8
@@ -55,6 +61,9 @@ http://fe-dv.svc.iptv.rt.ru/hls/CH_C03_DISCOVERYSCIENCE/variant.m3u8?version=2
 #EXTINF:0,Flite Level TV 
 0
 
+#EXTINF:0,Genesis Science Network
+http://genesis.tulix.tv:1935/live/Stream1/playlist.m3u8
+
 #EXTINF:0,History Channel 
 https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8?hdnea=ip=174.113.30.187~st=1427694727~exp=1427695327~acl=/i/*~id=a86de0c2-ad09-4469-9a63-6ebbc1bba4d3~hmac=ac144089000bdd16f6916c517ce3e6e04813d4de11ac16839ad468a977ec80b1
 
@@ -69,6 +78,9 @@ http://j.mp/ZCH_C05_HISTORY_sly
 
 #EXTINF:0,Investigation Discovery 
 http://fe-mos.svc.iptv.rt.ru/hls/CH_C02_DISCOVERYINVESTIGATION/variant.m3u8?version=2
+
+#EXTINF:0,Investigation Discovery 
+http://j.mp/TInvestigation_Discovery_sly
 
 #EXTINF:0,Nasa TV 
 http://nasatv-lh.akamaihd.net/i/NASA_101@319270/master.m3u8 
@@ -99,6 +111,9 @@ http://fe-sth.svc.iptv.rt.ru/hls/CH_C01_NATGEO/variant.m3u8?version=2
 
 #EXTINF:0,National Geographic 
 http://j.mp/ZCH_C01_NATGEO_sly
+
+#EXTINF:0,National Geographic 
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/187.m3u8
 
 #EXTINF:0,Planet Green 
 0
@@ -141,4 +156,7 @@ http://195.78.244.219:10000/udp/239.0.3.28:1234
 
 #EXTINF:0,Viasat Nature 
 http://fe-dv.svc.iptv.rt.ru/hls/CH_C01_VIASATNATURE/variant.m3u8?version=2
+
+#EXTINF:0,Viasat Nature 
+http://lag2.tv-mobile.org/prgj.m3u8
 

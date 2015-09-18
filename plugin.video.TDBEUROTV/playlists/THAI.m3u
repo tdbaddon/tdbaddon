@@ -19,7 +19,7 @@ http://210.1.60.208:1935/live/bang.sdp/chunklist.m3u8
 #EXTINF:0,Bayon News 
 0
 
-#EXTINF:0,Block 
+#EXTINF:0,Block A
 http://live2.netdesignhost.com/blockatvlive/blockatvlive/playlist.m3u8
 
 #EXTINF:0,Blue Sky
