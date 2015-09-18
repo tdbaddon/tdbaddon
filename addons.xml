@@ -332,33 +332,6 @@ Thats all Folks
   </extension>
 </addon>
 
-<addon
-    id="plugin.video.mutttsnutz"
-    name="The Mutts Nuts"
-    version="1000.000.004q"
-    provider-name="__Jas0npc__, modded by OpenELEQ for iSearch compatibility">
-   <requires>
-     <import addon="xbmc.python" version="2.1.0"/>
-	 <import addon="script.module.addon.common" version="2.0.0" />
-	 <import addon="script.module.metahandler" version="2.6.0" />
-   </requires>
-   <extension point="xbmc.python.pluginsource" library="default.py" >
-	 <provides>video</provides>
-   </extension>
-   <extension point="xbmc.python.module" library="lib" />
-   <extension point="xbmc.addon.metadata">
-	 <summary lang="en">Been Asked So Many Times, Where Can I Get The Mutt's Nut's[CR]. So HERE is an early RELEASE, SO many people WANT it NOW,[CR]JUST be AWARE that this IS A PRERELEASE,[CR]So YOU WILL GET ERRORS IN SOME PLACES.[CR]IT CAN be put anywhere apart from TOTALXXXX,MY CRAP my CHOICE.</summary>
-	 <description lang="en"></description>
-	 <platform></platform>
-     <language></language>
-	 <license></license>
-	 <forum></forum>
-	 <website></website>
-	 <source></source>
-	 <email></email>
-   </extension>
-</addon>
-
 <addon id="plugin.video.phstreams" name="Phoenix" version="2.5.7" provider-name="Blazetamer, lambda">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
@@ -439,30 +412,6 @@ Thats all Folks
     <summary lang="en">Lista de canais IPTV by Rogger</summary>
     <description lang="en">Assista a vários canais transmitidos pela internet diretamente no Kodi</description>
 	<platform>all</platform>
-  </extension>
-</addon>
-
-<addon id="plugin.video.SLatina" name="[COLOR gold]Señal[/COLOR][COLOR blue]Latina[/COLOR]" version="4.0.0" provider-name="SL">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="script.module.beautifulsoup" version="3.2.1"/>
-    <import addon="script.module.simple.downloader" version="0.9.4"/>
-    <import addon="script.module.beautifulsoup4" />
-    <import addon="script.module.simple.downloader" version="0.9.4"/>
-    <import addon="script.module.requests" />
-    <import addon="script.module.httplib2" />
-    <import addon="script.module.youtube.dl" optional="true"/>
-    <import addon="plugin.video.youtube" />
-    <import addon="script.module.urlresolver" optional="true"/>
-    <import addon="script.module.simplejson" />
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-    <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary>Lista de canales IPTV by Señal Latina</summary>
-<description lang="en">Canales transmitidos por internet y recopilados por Señal Latina y sus colaborades</description>
-    <platform>all</platform>
   </extension>
 </addon>
 
@@ -653,19 +602,6 @@ Thats all Folks
 	</extension>
 </addon>
 
-<addon id="repository.jas0npc" name="__Jas0npc__ Repository" version="1.0.5" provider-name="Jas0npc">
-	<extension point="xbmc.addon.repository" name="__Jas0npc__ Addon Repository">
-		<info compressed="false">http://raw.github.com/jas0npc/repo/master/addons/addons.xml</info>
-		<checksum>http://raw.github.com/jas0npc/repo/master/addons/addons.xml.md5</checksum>
-		<datadir zip="true">http://raw.github.com/jas0npc/repo/master/addons/</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>New and old stuff from me, Get it here, TOTALXBMC DO NOT HAVE THE OK TO INCLUDE MY SHIT[CR]ON THE TOTALINSTALLER(Read hub installer).</summary>
-		<description>New and old stuff from me, Get it here, TOTALXBMC DO NOT HAVE THE OK TO INCLUDE MY SHIT[CR]ON THE TOTALINSTALLER(Read hub installer).</description>
-		<platform>all</platform>
-	</extension>
-</addon>
-
 <addon id="repository.mdrepo" name="Mucky Ducks Repo" version="1.0.1" provider-name="Mucky Duck">
 	<extension point="xbmc.addon.repository" name="Mucky Ducks Repo">
 		<info compressed="false">https://raw.githubusercontent.com/mucky-duck/mdrepo/master/addons.xml</info>
@@ -770,19 +706,6 @@ Thats all Folks
 		<summary>Team eXpat Addon</summary>
 		<description>Build Addon Installer</description>
 		<disclaimer></disclaimer>
-		<platform>all</platform>
-	</extension>
-</addon>
-
-<addon id="repository.torrentrelease.info" name="TorrentRelease Repo" version="1.0.0.2" provider-name="TorrentRelease">
-	<extension point="xbmc.addon.repository" name="TorrentRelease">
-		<info compressed="false">http://kodi.torrentrelease.info/addons.xml</info>
-		<checksum>http://kodi.torrentrelease.info/addons.xml.md5</checksum>
-		<datadir zip="true">http://kodi.torrentrelease.info/addons</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>Repo for TorrentRelease</summary>
-		<description>Repo for TorrentRelease</description>
 		<platform>all</platform>
 	</extension>
 </addon>

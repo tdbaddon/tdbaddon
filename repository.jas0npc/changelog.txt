@@ -1,2 +1,0 @@
-[B]v 1.0.2(Tuesday, 17 February 2015)[/B]
-	Added Icon and Fanart, Nothing Else.
