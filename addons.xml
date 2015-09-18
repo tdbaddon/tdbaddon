@@ -495,6 +495,40 @@ Thats all Folks
   </extension>
 </addon>
 
+<addon id="plugin.video.streamstormtv"
+       name="StreamStormTV"
+       version="1.0.2"
+       provider-name="Stream Storm TV">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+	<import addon="script.module.t0mm0.common" version="2.0.0"/>
+    <import addon="script.module.beautifulsoup" version="3.2.1"/>
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.beautifulsoup4" />
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.requests" />
+    <import addon="script.module.httplib2" />
+    <import addon="script.module.youtube.dl" optional="true"/>
+    <import addon="plugin.video.youtube" version="3.0.0"/>
+    <import addon="script.module.urlresolver" optional="true"/>
+    <import addon="script.module.simplejson" />
+    <import addon="script.common.plugin.cache" version="2.5.2"/>
+    <import addon="script.module.metahandler" version="2.5.1"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>Live Streaming TV Made Easy.</summary>
+    <description>
+	[COLOR white]We [COLOR red]DO NOT[/COLOR] own or host any of the content found in this directory. All streams are mirrored from external servers. We will try our best to keep all streams up to date[/COLOR]
+	[COLOR yellowgreen]Paypal Donations: [COLOR blue]streamstormtv@gmail.com[/COLOR]
+
+    </description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
 <addon id="plugin.video.SuperStreams" name="SuperStreams" version="2.1.0" provider-name="SuperStreams">
 <requires>
     <import addon="xbmc.python" version="2.1.0" />
@@ -646,6 +680,25 @@ Thats all Folks
 	</extension>
 </addon>
 
+<addon id="repository.eldorado" name="Eldorado's XBMC Addons" version="2.0.2" provider-name="eldorado">
+	<extension point="xbmc.addon.repository" name="Eldorado's XBMC Addon Repository">
+		<info compressed="false">http://raw.github.com/Eldorados/eldorado-xbmc-addons/master/addons.xml</info>
+		<checksum>http://raw.github.com/Eldorados/eldorado-xbmc-addons/master/addons.xml.md5</checksum>
+		<datadir zip="true">http://raw.github.com/Eldorados/eldorado-xbmc-addons/master/repo/</datadir>
+		<dir>
+			<info compressed="false">https://offshoregit.com/Eldorado/xbmc-addons/raw/master/addons.xml</info>
+			<checksum>https://offshoregit.com/Eldorado/xbmc-addons/raw/master/addons.xml.md5</checksum>
+			<datadir zip="true">https://offshoregit.com/Eldorado/xbmc-addons/raw/master/repo/</datadir>
+		</dir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Install Eldorado's Addons</summary>
+		<forum>http://forums.tvaddons.ag/forums/23-ELDORADO-S-XBMC-ADDONS</forum>
+		<description>Download and install addons by Eldorado</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
 <addon id="repository.entertainmentrepo" name="The Entertainment Repository" version="1.1" provider-name="Mr Entertainment">
 	<extension point="xbmc.addon.repository" name="Entertainment Addons Repository">
         <dir>
@@ -661,19 +714,6 @@ Thats all Folks
 		<summary></summary>
 		<description>Download and install addons by Mr Entertainment</description>
 		<disclaimer>By using this, you take reponsibility for anything that happens. Some parts of this addon may not be legal in your country - please check with your local laws before installing. I take no responsibility for any problems this plugin might in any way shape or form. This is project is for a LEARNING EXPERIANCE.</disclaimer>
-		<platform>all</platform>
-	</extension>
-</addon>
-
-<addon id="repository.googlecode.anarchintosh-projects" name="anarchintosh addons" version="1.0.1" provider-name="anarchintosh">
-	<extension point="xbmc.addon.repository" name="anarchintosh add-on repository">
-		<info compressed="false">http://anarchintosh-projects.googlecode.com/svn/addons/addons.xml</info>
-		<checksum>http://anarchintosh-projects.googlecode.com/svn/addons/addons.xml.md5</checksum>
-		<datadir zip="true">http://anarchintosh-projects.googlecode.com/svn/addons</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>Install Addons from http://anarchintosh-projects.googlecode.com</summary>
-		<description>Download and install addons from anarchintosh repository.</description>
 		<platform>all</platform>
 	</extension>
 </addon>
@@ -797,6 +837,19 @@ Thats all Folks
 	<extension point="xbmc.addon.metadata">
     <summary lang="en"> Join us at http://rh-project.info/</summary>
     <description lang="en">Special Thank you to Hakamac, Metal Kettle and Xunity</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="repository.streamstormtv" name="streamstorm repo" version="1.0.2" provider-name="streamstormtvrepo">
+	<extension point="xbmc.addon.repository" name="streamstorm Addon Repository">
+		<info compressed="false">https://raw.githubusercontent.com/streamstormtv/streamstormtvrepo/master/addons.xml</info>
+		<checksum>https://raw.githubusercontent.com/streamstormtv/streamstormtvrepo/master/addons.xml.md5</checksum>
+		<datadir zip="true">https://raw.githubusercontent.com/streamstormtv/streamstormtvrepo/master/zips</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Stream Storm Addon Repo</summary>
+		<description>Addons brought to you by StreamStormTV</description>
 		<platform>all</platform>
 	</extension>
 </addon>

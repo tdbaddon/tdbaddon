@@ -1,0 +1,6 @@
+[B]Version 1.0.1[/B]
+- Add Fanart - Permanent server
+
+
+[B]Version 1.0[/B]
+- Initial release

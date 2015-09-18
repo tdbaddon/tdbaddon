@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="repository.streamstormtv" name="streamstorm repo" version="1.0.2" provider-name="streamstormtvrepo">
+	<extension point="xbmc.addon.repository" name="streamstorm Addon Repository">
+		<info compressed="false">https://raw.githubusercontent.com/streamstormtv/streamstormtvrepo/master/addons.xml</info>
+		<checksum>https://raw.githubusercontent.com/streamstormtv/streamstormtvrepo/master/addons.xml.md5</checksum>
+		<datadir zip="true">https://raw.githubusercontent.com/streamstormtv/streamstormtvrepo/master/zips</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Stream Storm Addon Repo</summary>
+		<description>Addons brought to you by StreamStormTV</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
