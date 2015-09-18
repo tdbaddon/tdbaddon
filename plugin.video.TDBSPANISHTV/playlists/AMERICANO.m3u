@@ -23,10 +23,13 @@
 0
 
 #EXTINF:0,Cartoon Network
-0
+http://201.161.59.6/cartoonnetwork.isml/manifest(format=m3u8-aapl).m3u8
 
-#EXTINF:0,Cinemax 1
-0
+#EXTINF:0,Cartoon Network
+http://201.161.59.6/cartoonnetwork.isml/QualityLevels(1815000)/manifest(format=m3u8-aapl).m3u8?
+
+#EXTINF:0,Cinemax 
+http://201.161.59.7/cinemax.isml/manifest(format=m3u8-aapl).m3u8
 
 #EXTINF:0,Comedy Central
 0
@@ -62,31 +65,31 @@
 0
 
 #EXTINF:0,Disney JR
-0
+http://201.161.59.4/disneyxd.isml/manifest(format=m3u8-aapl).m3u8
 
 #EXTINF:0,Disney XD
-0
+http://201.161.59.4/disneyxd.isml/QualityLevels(1815000)/manifest(format=m3u8-aapl).m3u8?
 
 #EXTINF:0,E!
 0
 
 #EXTINF:0,ESPN
-0
-
-#EXTINF:0,ESPN
-0
+http://201.161.59.3/espn.isml/QualityLevels(1928000)/manifest(format=m3u8-aapl).m3u8?
 
 #EXTINF:0,ESPN 2
-0
+http://201.161.59.4/espn2.isml/QualityLevels(1928000)/manifest(format=m3u8-aapl).m3u8?
 
 #EXTINF:0,ESPN 3
-0
+http://201.161.59.4/espn3.isml/QualityLevels(1928000)/manifest(format=m3u8-aapl).m3u8?
 
 #EXTINF:0,Film Zone
 0
 
 #EXTINF:0,Fox
-0
+http://201.161.59.6/fox.isml/QualityLevels(1828000)/manifest(format=m3u8-aapl).m3u8?
+
+#EXTINF:0,Fox
+http://201.161.59.6/fox.isml/manifest(format=m3u8-aapl).m3u8
 
 #EXTINF:0,Fox 1
 0
@@ -104,16 +107,16 @@
 0
 
 #EXTINF:0,Fox Life
-0
+http://201.161.59.7/foxlife.isml/QualityLevels(1815000)/manifest(format=m3u8-aapl).m3u8?
 
 #EXTINF:0,Fox Movies
 0
 
 #EXTINF:0,Fox Sports 
-0
+http://201.161.59.6/foxsports.isml/QualityLevels(1703000)/manifest(format=m3u8-aapl).m3u8?
 
 #EXTINF:0,Fox Sports 2
-0
+http://201.161.59.4/foxsportsplus.isml/QualityLevels(1703000)/manifest(format=m3u8-aapl).m3u8?
 
 #EXTINF:0,FX
 0
@@ -122,13 +125,13 @@
 0
 
 #EXTINF:0,Golden Edge
-0
+http://201.161.59.4/golden.isml/manifest(format=m3u8-aapl).m3u8
 
 #EXTINF:0,History Channel
-0
+http://201.161.59.3/h2.isml/QualityLevels(1817984)/manifest(format=m3u8-aapl).m3u8?
 
 #EXTINF:0,Lifetime
-0
+http://201.161.59.7/lifetime.isml/QualityLevels(1815000)/manifest(format=m3u8-aapl).m3u8?
 
 #EXTINF:0,MTV Music
 0
@@ -140,12 +143,13 @@
 0
 
 #EXTINF:0,National Geographic Channel
-0
+http://201.161.59.3/natgeo.isml/QualityLevels(1928000)/manifest(format=m3u8-aapl).m3u8?
 
 #EXTINF:0,Nat Geo Wild
 0
+
 #EXTINF:0,Nick
-0
+http://201.161.59.6/nick.isml/manifest(format=m3u8-aapl).m3u8
 
 #EXTINF:0,Nick JR
 0
@@ -163,10 +167,10 @@
 0
 
 #EXTINF:0,Sony
-0
+http://201.161.59.6/sony.isml/manifest(format=m3u8-aapl).m3u8
 
 #EXTINF:0,Space
-0
+http://201.161.59.7/space.isml/manifest(format=m3u8-aapl).m3u8
 
 #EXTINF:0,Sundance
 0
@@ -178,7 +182,7 @@
 0
 
 #EXTINF:0,SYFY
-0
+http://201.161.59.4/syfy.isml/manifest(format=m3u8-aapl).m3u8
 
 #EXTINF:0,TBS
 0
@@ -208,8 +212,8 @@
 0
 
 #EXTINF:0,Warner Brothers
-0
+http://201.161.59.6/warner.isml/manifest(format=m3u8-aapl).m3u8
 
 #EXTINF:0,Wobi
-0
+http://201.161.59.4/wobi.isml/QualityLevels(1928000)/manifest(format=m3u8-aapl).m3u8?
 

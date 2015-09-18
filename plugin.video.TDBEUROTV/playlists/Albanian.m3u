@@ -2,7 +2,7 @@
 
 
 #EXTINF:0,A1 Report 
-0
+http://tring-amd-live.tring.tv/out/u/65_53.m3u8
 
 #EXTINF:0,Agon Channel 
 0
@@ -26,19 +26,13 @@ rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazee
 rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
 
 #EXTINF:0,Bangbang 
-http://akamai127.tibo.tv/bangbang/timeshift_rel-20.m3u8$OPT:http-user-agent=stagefright%2F1.0+%28Linux%3BAndroid+2.2%29
-
-#EXTINF:0,Bangbang 
-http://balkanstream.com/stream/bangbang/mip001/25hsK6Sa9l$OPT:network-caching=4500
+0
 
 #EXTINF:0,Channel One 
 0
 
 #EXTINF:0,Cufo TV 
-http://akamai127.tibo.tv/cufo/timeshift_rel-20.m3u8$OPT:http-user-agent=stagefright%2F1.0+%28Linux%3BAndroid+2.2%29
-
-#EXTINF:0,Cufo TV 
-http://error.sytes.net:21000/iptvlinks/iptvlinks.com/43.ch
+0
 
 #EXTINF:0,Folk Plus 
 0
@@ -50,7 +44,7 @@ rtmp://84.20.77.50/live//livestream2
 0
 
 #EXTINF:0,Klan Kosova 
-0
+http://tring-amd-live.tring.tv/out/u/58_23.m3u8
 
 #EXTINF:0,Koha TV 
 0
@@ -67,9 +61,6 @@ rtmp://91.82.85.44/live/konyhatv
 #EXTINF:0,News24
 http://66.55.93.203/hls-live/livepkgr/_definst_/news24/n24stream.m3u8
 
-#EXTINF:0,News24
-http://error.sytes.net:21000/iptvlinks/iptvlinks.com/26.ch
-
 #EXTINF:0,Ora News 
 http://81.7.13.162/hls/oranews/index.m3u8
 
@@ -80,7 +71,7 @@ rtsp://origin.biokoda.tv/live/mbit-planet?k=planettv-public
 rtmp://82.114.65.202/live/rrokumtv.flv swfUrl=http://tv24.al/shqiptv/css/player.swf live=1
 
 #EXTINF:0,RTK1 
-http://wowza.rtkit.com:1935/live/livestream/chunklist.m3u8?wowzasessionid=491913886
+0
 
 #EXTINF:0,Supersonic TV
 rtmp://str103.setplex.net:1935/228/stv_online
@@ -95,7 +86,7 @@ http://88.212.10.27:81/streams/stv2.m3u8?
 rtmp://str103.setplex.net:1935/228/stv_folk
 
 #EXTINF:0,Top Channel 
-0
+http://tring-amd-live.tring.tv/out/u/55_12.m3u8
 
 #EXTINF:0,Top Channel News
 0
@@ -107,4 +98,7 @@ http://185.75.56.37:8056
 rtmp://live.vizionplus.tv/live//livestream3
 
 #EXTINF:0,Vizion Plus 
-rtmp://live.vizionplus.tv/live//livestream2
+http://tring-amd-live.tring.tv/out/u/53_9.m3u8
+
+#EXTINF:0,Vizion Plus 
+http://tring-amd-live.tring.tv/out/u/105_9.m3u8

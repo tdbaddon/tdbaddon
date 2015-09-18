@@ -1,8 +1,8 @@
 ﻿#EXTM3U
 
 
-#EXTINF:0,A1 Strumica
-http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/a1-strumica/playlist.m3u8
+#EXTINF:0,A1 Strumica 
+0
 
 #EXTINF:0,Al Jazeera Balkan 
 rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
@@ -37,8 +37,8 @@ rtmp://hugo-iptv.zapto.org/live/h1
 #EXTINF:0,Hema TV 
 mms://77.238.209.50:1234
 
-#EXTINF:0,In TV
-rtsp://streamus.intv.mk:1935/live/intv
+#EXTINF:0,In TV 
+0
 
 #EXTINF:0,Iris 
 mms://62.162.58.55/TVIris
@@ -152,7 +152,7 @@ http://62.162.58.55/24vesti
 http://stream.sitel.com.mk/sites/default/files/manual_upload/dnevnik/dnevnik.mp4
 
 #EXTINF:0,Vesti Telma
-http://telma.mk/sites/default/files/vesti_6_sep_1830.mp4
+0
 
 ----------------------- CAMS
 

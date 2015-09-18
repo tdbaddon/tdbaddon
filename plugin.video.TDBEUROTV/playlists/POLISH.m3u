@@ -167,25 +167,25 @@ http://trwamtv.live.e96-jw.insyscd.net/trwamtv.smil/playlist.m3u8
 0
 
 #EXTINF:0,TVP 
-http://95.215.233.11:4022/udp/239.255.2.7:1234?id=1087&user=walid_F1Je5Z&pass=r0PfyXfO&mac=CC:3A:61:B7:2A:98
+0
 
-#EXTINF:0,TVP 1
-http://95.215.233.11:4022/udp/239.255.2.189:1234
+#EXTINF:0,TVP 1 
+0
 
-#EXTINF:0,TVP 2
-http://95.215.233.11:4022/udp/239.255.2.190:1234
+#EXTINF:0,TVP 2 
+0
 
 #EXTINF:0,TVP Bialystok
 0
 
-#EXTINF:0,TVP Historia
-http://95.215.233.11:4022/udp/239.255.2.9:1234
+#EXTINF:0,TVP Historia 
+0
 
 #EXTINF:0,TVP Info 
 0
 
-#EXTINF:0,TVP Rozrywka
-http://95.215.233.11:4022/udp/239.255.2.245:1234
+#EXTINF:0,TVP Rozrywka 
+0
 
 #EXTINF:0,TVS
 0

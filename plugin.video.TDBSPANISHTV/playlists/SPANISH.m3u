@@ -14,7 +14,7 @@ http://edge-31-us.edge.mdstrm.com/live/smil:c23b8a0a21d215482b4c2703e47f675a/pla
 http://ss6.domint.net:1962/al_edge/antena/playlist.m3u8
 
 #EXTINF:0,Aragon TV 
-rtmp://aragontvlivefs.fplive.net/aragontvlive-live/stream_normal_abt
+0
 
 #EXTINF:0,Arica TV
 http://wow2.cl.digitalproserver.com/aricatv/aricatvvivo/aricatv.smil/chunklist_w725671068_b848000.m3u8
@@ -41,7 +41,7 @@ http://urtmpkal-f.akamaihd.net/i/077zoqxzy_1@130091/index_3_av-p.m3u8
 http://38.104.228.230:1938/info7/info7_512/playlist.m3u8
 
 #EXTINF:0,Bandamax 
-http://201.161.59.4/bandamax.isml/QualityLevels(1692000)/manifest(format=m3u8-aapl).m3u8 
+0
 
 #EXTINF:0,C5N 
 rtmp://server3.stweb.tv./c5n/live_baja
@@ -49,7 +49,7 @@ rtmp://server3.stweb.tv./c5n/live_baja
 #EXTINF:0,Cadena 3 
 http://201.161.59.3/cadena3.isml/manifest(format=m3u8-aapl).m3u8 
 
-#EXTINF:0,Campus TV
+#EXTINF:0,Campus TV 
 http://wow2.cl.digitalproserver.com/campustv/campustvvivo/campustv.smil/chunklist_w662421777_b848000.m3u8
 
 #EXTINF:0,Canal 02 
@@ -61,9 +61,6 @@ http://mek4.mekstream.com/teleantillas/live3/hasbahca.m3u8
 #EXTINF:0,Canal 03
 http://74.63.97.188:1935/gpacifico1/videogpacifico1/playlist.m3u8
 
-#EXTINF:0,Canal 03
-http://72.46.226.61/live01/canal31/playlist.m3u8
-
 #EXTINF:0,Canal 04 
 rtmp://streaming.wirenetserver.com.ar/canal4/live_1
 
@@ -73,7 +70,7 @@ http://xvivatvcanal4arequipax.api.channel.livestream.com/3.0/playlist.m3u8
 #EXTINF:0,Canal 04
 http://185417-f.akamaihd.net/i/n0tf0r0_1@81283/index_1200_av-b.m3u8
 
-#EXTINF:0,Canal 04
+#EXTINF:0,Canal 04 
 http://72.46.226.61/live01/canal41/playlist.m3u8
 
 #EXTINF:0,Canal 05 
@@ -85,7 +82,7 @@ rtmp://c5n.stweb.tv:1935/c5n/live
 #EXTINF:0,Canal 06
 http://antena3-aos1-apple-live.adaptive.level3.net/apple/antena3/channel02/la_sexta_hd_1548K_1280x720_main.m3u8
 
-#EXTINF:0,Canal 06
+#EXTINF:0,Canal 06 
 http://72.46.226.61/live01/canal61/playlist.m3u8
 
 #EXTINF:0,Canal 07 
@@ -116,7 +113,7 @@ rtsp://live-edge01.telecentro.net.ar:1935/live/26hd-720
 http://cdn.siscompnetwork.com:1935/app/canal27.sdp/playlist.m3u8
 
 #EXTINF:0,Canal 28 
-http://web.xnet.mx:1935/xnetn/canal283/playlist.m3u8
+0
 
 #EXTINF:0,Canal 41
 rtmp://painel.serveron.com.br/8172/8172
@@ -131,7 +128,7 @@ rtmp://painel.serveron.com.br:1935/8168/8168
 http://cdns840stu1010.multistream.net/canalcapitallive/amlst:live/master.m3u8
 
 #EXTINF:0,Canal Once 
-http://xcanaloncepuntadelestex.api.channel.livestream.com/3.0/playlist.m3u8
+0
 
 #EXTINF:0,Canal Rural 
 rtsp://streamrural.cmd.com.ar:554/liverural/crural/rural1
@@ -145,8 +142,8 @@ rtsp://streamrural.cmd.com.ar:554/liverural/crural/rural3
 #EXTINF:0,Canal Tro
 http://cdns840stu1010.multistream.net/canaltro2live/amlst:live/canalesdelpueblotv.m3u8?iks61.channel26
 
-#EXTINF:0,Canal U
-http://xcanalutvx.api.channel.livestream.com/3.0/playlist.m3u8
+#EXTINF:0,Canal U 
+0
 
 #EXTINF:0,Canela TV
 http://38.96.148.216:1935/live/canelatv/playlist.m3u8
@@ -172,8 +169,9 @@ http://cdns840stu1010.multistream.net/cristovisionlive/amlst:live/playlist_b3000
 #EXTINF:0,CTNI
 http://184.164.158.202:1936/48/smil:48.smil/playlist.m3u8
 
-#EXTINF:0,De Pelicula
+#EXTINF:0,De Pelicula 
 http://201.161.59.7/depelicula.isml/QualityLevels(1928000)/manifest(format=m3u8-aapl).m3u8 
+
 #EXTINF:0,El Trece 
 rtsp://stream.eltrecetv.com.ar/live13/13tv/13tv1
 
@@ -229,7 +227,7 @@ http://tvaz-pd.kaltura.com.edgesuite.net/p/461031/sp/46103100/serveFlavor/entryI
 http://live.rpctv.com/rpctv/tm.smil/playlist.m3u8
 
 #EXTINF:0,Solo Tango 
-mms://stream.tangocity.com.ar/tangocity
+0
 
 #EXTINF:0,STV Rioja
 mms://87.106.208.121/stv
@@ -279,6 +277,9 @@ rtmp://50.7.98.234/rtv/videortv
 #EXTINF:0,TV Noticias 10
 rtmp://87.106.220.67/live/myStream_2
 
+#EXTINF:0,TV Novelas
+http://201.161.59.6/tlnovelas.isml/QualityLevels(1815000)/manifest(format=m3u8-aapl).m3u8?
+
 #EXTINF:0,TV Publica 
 http://live-edge01.telecentro.net.ar/live/tvphd-180/playlist.m3u8
 
@@ -288,5 +289,9 @@ http://xtvncanalecx.api.channel.livestream.com/3.0/playlist.m3u8
 #EXTINF:0,TVN 
 http://edge-61-cl.edge.mdstrm.com/tvn-live/_definst_/smil:7cb6048ff45cb5cdf7f5fed828597fd1/chunklist_b500000.m3u8
 
+#EXTINF:0,UniCable
+http://201.161.59.6/unicable.isml/QualityLevels(1815000)/manifest(format=m3u8-aapl).m3u8?
+
 #EXTINF:0,UNO TV
 rtmp://k3.usastreams.com:1935/tvuno1/tvuno1
+

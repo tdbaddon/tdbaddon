@@ -7,8 +7,8 @@ http://mail.tv4e.gr:1935/live/myStream.sdp/playlist.m3u8
 #EXTINF:0,Axeloos TV
 http://srv.viiideo.gr:1935/axeloos/live/playlist.m3u8
 
-#EXTINF:0,Aigaio
-http://xaigaiotelevisionx.api.channel.livestream.com/3.0/playlist.m3u8
+#EXTINF:0,Aigaio 
+0
 
 #EXTINF:0,Alpha 
 http://alfakanali-lh.akamaihd.net/i/live_1@90368/master.m3u8
@@ -41,13 +41,13 @@ rtmp://live.cretetv.gr/cretetv/myStream
 http://srv.viiideo.gr:1935/tvcreta/live/playlist.m3u8 
 
 #EXTINF:0,Delta 
-0
+mms://deltatv1.dyndns.org:1194
 
 #EXTINF:0,Dion TV
 0
 
-#EXTINF:0,DR TV
-http://xdrtvhellasx.api.channel.livestream.com/3.0/playlist.m3u8
+#EXTINF:0,DR TV 
+0
 
 #EXTINF:0,E TV 
 http://mgrouphdlive4-f.akamaihd.net/i/live_1@324569/master.m3u8
@@ -56,7 +56,7 @@ http://mgrouphdlive4-f.akamaihd.net/i/live_1@324569/master.m3u8
 rtmp://fml.68FC.edgecastcdn.net/2068FC/elladatv swfUrl=http://www.elladatv.gr/scripts/player.swf swfVfy=1 live=1 timeout=10
 
 #EXTINF:0,Ena TV 
-0
+http://wpc.68fc.edgecastcdn.net/hls-live/2068FC/ena-channel-live/video/video.m3u8
 
 #EXTINF:0,Epirus TV 
 http://xepirustv1livex.api.channel.livestream.com/3.0/playlist.m3u8
@@ -79,11 +79,11 @@ http://wm1.gmlogic.com/ch-patra?ovpsv=2.3.1.0
 #EXTINF:0,Greek Voice
 http://wpso.com:200/tv48
 
-#EXTINF:0,Greek Voice
+#EXTINF:0,Greek Voice 
 http://iphone-streaming.ustream.tv/ustreamVideo/1989576/streams/live/playlist.m3u8 
 
-#EXTINF:0,Hellas TV
-rtmp://176.9.123.140:1935/leveltgp/leveltgp live=1 timeout=10
+#EXTINF:0,Hellas TV 
+0
 
 #EXTINF:0,Infinity Cinema 
 0
@@ -103,7 +103,7 @@ rtmp://flashcloud.mediacdn.com/live playpath=kontratv pageUrl=http://www.tvonlin
 #EXTINF:0,Kphth TV 
 http://live.cretetv.gr:1935/cretetv/myStream/playlist.m3u8
 
-#EXTINF:0,Kydon TV
+#EXTINF:0,Kydon TV 
 http://iphone-streaming.ustream.tv/ustreamVideo/9461248/streams/live/playlist.m3u8 
 
 #EXTINF:0,Lepanto 
@@ -133,35 +133,32 @@ http://smooth2.istoikona.net:1935/live/livenews%202/playlist.m3u8
 #EXTINF:0,Nea TV
 http://srv.viiideo.gr:1935/neatv/live/playlist.m3u8 
 
+#EXTINF:0,Nea TV
+http://srv.viiideo.gr:1935/neatv/live/playlist.m3u8
+
 #EXTINF:0,N Cinema 
 0
-
-#EXTINF:0,Nea
-0
-
-#EXTINF:0,Nerit 
-http://magictvbox.us:200/skai
 
 #EXTINF:0,Nerit 
 http://nerit2-lh.akamaihd.net/i/neritplus_1@45603/master.m3u8
 
-#EXTINF:0,Nerit Plus
+#EXTINF:0,Nerit Plus 
 http://nerit2-lh.akamaihd.net/i/neritplus_1@121149/master.m3u8 
 
 #EXTINF:0,Omega TV 
-rtmp://stream2.omegatv.net:1935/livepkgr/omegatv live=1 timeout=10
+0
 
 #EXTINF:0,OPT TV 
 0
 
-#EXTINF:0,R Channel
-http://xrodopi_tvx.api.channel.livestream.com/3.0/playlist.m3u8
-
-#EXTINF:0,Rik Sat 
+#EXTINF:0,R Channel 
 0
 
-#EXTINF:0,Samiaki TV
-rtmp://94.23.218.186/samiaki/samiaki
+#EXTINF:0,Rik Sat 
+http://cdnvideo.webvideocore.net/livenl/out_2xtqzyrq6gysc48ko0cs/index.m3u8
+
+#EXTINF:0,Samiaki TV 
+0
 
 #EXTINF:0,SBC
 http://xsbcgrx.api.channel.livestream.com/3.0/playlist.m3u8
@@ -182,10 +179,10 @@ http://4.31.30.145:9080/
 0
 
 #EXTINF:0,TRT 
-http://xelladalivex.api.channel.livestream.com/3.0/playlist.m3u8 
+0
 
 #EXTINF:0,TV 100 
-http://178.62.176.153:1935/TV100/myStream/playlist.m3u8 
+0
 
 #EXTINF:0,Zougla TV 
 http://zouglahd-f.akamaihd.net/i/zougla_1@56341/master.m3u8

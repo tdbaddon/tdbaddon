@@ -514,7 +514,7 @@ Thats all Folks
 
 <addon id="plugin.video.TDBEUROTV"
        name="TDB EURO TV"
-       version="1.95"
+       version="1.96"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -533,7 +533,7 @@ Thats all Folks
 
 <addon id="plugin.video.TDBPORNO"
        name="TDB PORNO"
-       version="1.71"
+       version="1.72"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -570,7 +570,7 @@ Thats all Folks
 
 <addon id="plugin.video.TDBSPANISHTV"
        name="TDB SPANISH TV"
-       version="1.26"
+       version="1.27"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>

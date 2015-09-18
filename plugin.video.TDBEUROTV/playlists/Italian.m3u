@@ -47,7 +47,7 @@ rtmp://wma10.fluidstream.net/HistoryLab playpath=livestream swfUrl=http://www.ra
 rtmp://wms.shared.streamshow.it:80/jotv playpath=jotv swfUrl=http://player.streamshow.it/flowplayer/flowplayer.commercial-3.2.18.swf pageUrl=http://player.streamshow.it/embed/jotv.php?height=170&width=300 live=1 timeout=10
 
 #EXTINF:0,Juwelo TV 
-rtmp://85.214.72.27/juwelo_it playpath=juwelo_it1 swfUrl=http://www.streamcompany-player.de/player.swf live=1 pageUrl=http://www.streamcompany-player.de/liveplayer.htm?c:hd506x310:sv1:juwelo_it,juwelo_it%i
+0
 
 #EXTINF:0,LA7
 http://la7live-lh.akamaihd.net/i/test_1@143593/master.m3u8
@@ -59,7 +59,7 @@ http://wms.shared.streamshow.it/lucaniatv/lucaniatv/playlist.m3u8
 0
 
 #EXTINF:0,Orler TV 
-rtmp://77.92.76.135/orler/ playpath=livestream swfUrl=http://77.92.76.135/jw5/player.swf live=1 pageUrl=http://www.orler.it/streamingtv/
+0
 
 #EXTINF:0,Quartarete 4 
 rtmp://wowza1.top-ix.org/quartaretetv/ playpath=quartareteweb
@@ -86,7 +86,7 @@ http://origin2.live.web.tv.streamprovider.net/streams/a3be8da5ba57ddb33ada9fa8fc
 http://origin2.live.web.tv.streamprovider.net/streams/84553722f218dda44aab91b4ae0c2d42/index.m3u8
 
 #EXTINF:0,RAI 3 
-http://4.31.30.159:9081
+0
 
 #EXTINF:0,RAI 5 
 http://stream12.rai.it/live/smil:rai5.smil/chunklist_b1500000.m3u8#MegaIPTVArgentina
@@ -122,7 +122,7 @@ http://rm-edge-4.cdn2.streamago.tv/streamagoedge/39648/36568/Rete8.m3u8
 rtmp://flash3.ipercast.net/teleunica.tv-live/livestream1
 
 #EXTINF:0,RTI 
-http://iphone-streaming.ustream.tv/ustreamVideo/4194340/streams/live/playlist.m3u8
+0
 
 #EXTINF:0,Sardegnauno 
 0
@@ -250,7 +250,7 @@ rtmp://wms.shared.streamshow.it/videobrescia/videobrescia
 #EXTINF:0,Videolina 
 rtmp://178.33.229.111/live/Videolina
 
-#EXTINF:0,VideoRegione
+#EXTINF:0,VideoRegione 
 http://iphone-streaming.ustream.tv/ustreamVideo/13268884/streams/live/playlist.m3u8
 
 
