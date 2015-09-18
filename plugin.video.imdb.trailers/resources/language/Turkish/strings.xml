@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<strings>
+  <!-- Title -->
+  <string id="30000">IMDb Trailers</string>
+
+  <!-- Settings -->
+  <string id="30001">Video Kalitesi</string>
+  <string id="30020">CouchPotato'yu Etkinleştir</string>
+  <string id="30021">CouchPotato IP:</string>
+  <string id="30022">CouchPotato Bağlantı Noktası:</string>
+  <string id="30023">CouchPotato Kullanıcı Adı:</string>
+  <string id="30024">CouchPotato Parola:</string>
+  <string id="30025">Sadece CouchPotatoServer (V2) destekleniyor</string>
+  
+  <!-- Settings Categories-->
+  <string id="30301">Genel</string>
+  <string id="30304">CouchPotato</string>
+  
+  <!-- Context Menu & Messages -->
+  <string id="30104">Yetki Verilmemiş. Lütfen kullanıcı adını ve parolayı kontrol edin.</string>
+  <string id="30105">Bilinmeyen Hata!</string>
+  <string id="30108">CouchPotato'ya ekle</string>
+  <string id="30109">CouchPotato'ya başarıyla eklendi!</string>
+  <string id="30110">CouchPotato'ya eklenirken bir hata oluştu!</string>
+
+  <!-- Directory -->
+  <string id="30201">Yeni Fragmanlar</string>
+  <string id="30202">Popüler Fragmanlar</string>
+  <string id="30203">Popüler Filmler</string>
+  <string id="30204">Daha Fazla...</string>
+</strings>
