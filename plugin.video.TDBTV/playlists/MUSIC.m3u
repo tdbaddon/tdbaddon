@@ -112,6 +112,9 @@ http://37.187.149.103:8000/live/07951db8aa7cbd43/34abd2d0ce65538f/75.m3u8?token=
 #EXTINF:0,MTV Rocks 
 http://fe-nw.svc.iptv.rt.ru/hls/CH_C01_MTVROCKS/variant.m3u8?version=2
 
+#EXTINF:0,MTV Rocks 
+http://j.mp/ZCH_C01_MTVROCKS_sly
+
 #EXTINF:0,MusicVoxTV 
 rtmp://stream.smcloud.net/live2/vox/vox_720p
 

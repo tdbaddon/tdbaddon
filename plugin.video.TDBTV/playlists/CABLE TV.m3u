@@ -34,6 +34,9 @@ http://82.135.224.134/udp/239.100.3.3:1234
 #EXTINF:0,Boomerang 
 http://fe-sth.svc.iptv.rt.ru/hls/CH_C05_BOOMERANG/variant.m3u8?version=2
 
+#EXTINF:0,Boomerang 
+http://j.mp/ZCH_C05_BOOMERANG_sly
+
 #EXTINF:0,Bravo 
 0
 
@@ -124,11 +127,14 @@ http://pebbles124-lh.akamaihd.net/i/e4_1@137789/master.m3u8|X-Forwarded-For=85.5
 #EXTINF:0,Fashion TV 
 http://46.249.213.87/iPhone/HLS_TS/broadcast/fashiontv-tablet.3gp/fashiontv-tablet.3gp-mr648k.m3u8?trackingid=3181420000&os=desktop
 
+#EXTINF:0,Fashion TV 
+http://j.mp/ZCH_C04_FASHIONTV_sly
+
 #EXTINF:0,Fine Living Network 
 0
 
 #EXTINF:0,Food Network 
-0
+http://j.mp/ZCH_C05_FOOD_sly
 
 #EXTINF:0,Fox 1 
 0
@@ -139,11 +145,20 @@ http://46.249.213.87/iPhone/HLS_TS/broadcast/fashiontv-tablet.3gp/fashiontv-tabl
 #EXTINF:0,Fox Life 
 http://fe-sth.svc.iptv.rt.ru/hls/CH_C04_FOXLIFE/variant.m3u8?version=2
 
+#EXTINF:0,Fox Life 
+http://j.mp/ZCH_C04_FOXLIFE_sly
+
 #EXTINF:0,Fox TV 
 http://185.5.222.227:4242/bysid/5603
 
 #EXTINF:0,Fox TV 
 http://fe-sth.svc.iptv.rt.ru/hls/CH_C06_FOX/variant.m3u8?version=2
+
+#EXTINF:0,Fox TV 
+http://j.mp/ZCH_C06_FOX_sly
+
+#EXTINF:0,Fox TV 
+http://j.mp/ZCH_C02_FOXHD_sly
 
 #EXTINF:0,FX 
 0
@@ -223,11 +238,23 @@ http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
 #EXTINF:0,Nick Jr 
 http://185.13.236.197:4080/udp/224.0.0.120:1240
 
-#EXTINF:0,Nick JR
+#EXTINF:0,Nick Jr 
 http://fe-sib.svc.iptv.rt.ru/hls/CH_C02_NICKJUNIOR/variant.m3u8?version=2
+
+#EXTINF:0,Nick Jr 
+http://j.mp/ZCH_C02_NICKJUNIOR_sly
+
+#EXTINF:0,Nick Jr 
+http://88.147.129.135/hls/CH_C02_NICKJUNIOR/variant.m3u8?version=2
 
 #EXTINF:0,Nickelodeon 
 http://fe-sth.svc.iptv.rt.ru/hls/CH_C03_NICKELODEON/variant.m3u8?version=2
+
+#EXTINF:0,Nickelodeon 
+http://j.mp/ZCH_C01_NICKELODEONHD_sly
+
+#EXTINF:0,Nickelodeon 
+http://62.183.106.70:8802/hls/CH_C03_NICKELODEON/variant.m3u8?version=2
 
 #EXTINF:0,NickNight 
 0
@@ -288,6 +315,9 @@ http://194.44.229.77:777/udp/237.1.239.23:1234
 
 #EXTINF:0,TLC 
 http://fe-sth.svc.iptv.rt.ru/hls/CH_C02_TLC/variant.m3u8?version=2
+
+#EXTINF:0,TLC 
+http://j.mp/ZCH_C02_TLC_sly
 
 #EXTINF:0,TNT 
 0

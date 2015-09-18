@@ -25,6 +25,9 @@ http://j.mp/ZCH_C03_ANIMALPLANET_sly
 #EXTINF:0,Discovery Channel
 http://fe-sth.svc.iptv.rt.ru/hls/CH_C05_DISCOVERYCHANNEL/variant.m3u8?version=2
 
+#EXTINF:0,Discovery Channel
+http://j.mp/ZCH_C05_DISCOVERYCHANNEL_sly
+
 #EXTINF:0,Discovery History 
 0
 
@@ -58,6 +61,9 @@ https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8?hdnea=ip=174.113.
 #EXTINF:0,History Channel 
 http://link.theplatform.com/s/dtjsEC/chjdYJxKb44V?manifest=m3u&feed=History%20Live%20Stream%20Feed
 
+#EXTINF:0,History Channel 
+http://j.mp/ZCH_C05_HISTORY_sly
+
 #EXTINF:0,History Channel 2
 0
 
@@ -79,6 +85,9 @@ http://185.13.236.197:4080/udp/224.0.0.120:1237
 #EXTINF:0,Nat Geo Wild 
 http://lag2.tv-mobile.org/prgg.m3u8
 
+#EXTINF:0,Nat Geo Wild 
+http://j.mp/ZCH_C03_NATGEOWILDHD_sly
+
 #EXTINF:0,National Geographic 
 http://194.44.229.77:777/udp/237.1.239.22:1234
 
@@ -87,6 +96,9 @@ http://194.44.229.77:777/udp/237.1.238.10:1234
 
 #EXTINF:0,National Geographic 
 http://fe-sth.svc.iptv.rt.ru/hls/CH_C01_NATGEO/variant.m3u8?version=2
+
+#EXTINF:0,National Geographic 
+http://j.mp/ZCH_C01_NATGEO_sly
 
 #EXTINF:0,Planet Green 
 0
@@ -109,8 +121,11 @@ http://195.78.244.219:10000/udp/239.0.3.30:1234
 #EXTINF:0,Viasat Explorer
 http://195.78.244.219:10000/udp/239.0.3.31:1234
 
-#EXTINF:0,Viasat Explore 
+#EXTINF:0,Viasat Explorer
 http://fe-sth.svc.iptv.rt.ru/hls/CH_C02_VIASATEXPLORER/variant.m3u8?version=2
+
+#EXTINF:0,Viasat Explorer
+http://j.mp/ZCH_C02_VIASATEXPLORER_sly
 
 #EXTINF:0,Viasat History 
 http://195.78.244.219:10000/udp/239.0.3.31:1234
