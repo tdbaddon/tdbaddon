@@ -1,14 +1,3 @@
-[B]v1.12.0(Friday, 11 September 2015):[/B]
-  - Small update to help fix Ice Ads
-
-[B]v1.11.0(Tuesday, 8 September 2015):[/B]
-  - Fixed syntax error with MySQL table creation
-  - Added referrer when grabbing Icefilms ads to ensure impressions are hit
-
-[B]v1.10.0(Wednesday, 2 September 2015):[/B]
-  - Fixed final source link scraping
-  - Added test for Icefilms advertisements - this displays a quick ad from the Icefilms site to support them, this is testing how the system works, will be changed as we progress
-  
 [B]v1.9.1(Monday, 24 August 2015):[/B]
   - Again fixed issue with getting final source link, Icefilms site keeps changing
   

@@ -242,7 +242,7 @@ Thats all Folks
 
 <addon id="plugin.video.icefilms"
        name="Icefilms"
-       version="1.12.0"
+       version="1.9.1"
        provider-name="Eldorado (originator: anarchintosh)">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>

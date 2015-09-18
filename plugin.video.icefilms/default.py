@@ -117,7 +117,7 @@ ICEFILMS_URL = addon.get_setting('icefilms-url')
 if not ICEFILMS_URL.endswith("/"):
     ICEFILMS_URL = ICEFILMS_URL + "/"
 
-ICEFILMS_AJAX = ICEFILMS_URL+'membersonly/components/com_iceplayer/video.phpAjaxResp.php?s=%s&t=%s&app_id=if_' + addon.get_version()
+ICEFILMS_AJAX = ICEFILMS_URL+'membersonly/components/com_iceplayer/video.phpAjaxResp.php?s=%s&t=%s'
 ICEFILMS_AJAX_REFER = 'http://www.icefilms.info/membersonly/components/com_iceplayer/video.php?h=374&w=631&vid=%s&img='
 ICEFILMS_REFERRER = 'http://www.icefilms.info'
 USER_AGENT = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.72 Safari/537.36'
@@ -1468,11 +1468,6 @@ def LOADMIRRORS(url):
       
     html = GetURL(mirrorpageurl, save_cookie = True)
 
-    #Show Ice Ad's
-    match = re.search('<iframe[^>]*src="([^"]+)', html)
-    if match:
-        show_ice_ad(urllib.quote(match.group(1)), mirrorpageurl)
-    
     #string for all text under hd720p border
     defcat = re.compile('<div class=ripdiv><b>(.+?)</b>(.+?)</div>').findall(html)
     for media_type, scrape in defcat:
@@ -1607,12 +1602,10 @@ def SOURCE(page, sources, source_tag, ice_meta=None):
 
     args = {}
 
-    match = re.search('lastChild\.value="([^"]+)"(?:\s*\+\s*"([^"]+))?', page)
-    args['sec'] = ''.join(match.groups(''))
+    match = re.search('lastChild\.value="([^"]+)"\s*\+\s*"([^"]+)', page)
+    args['sec'] = match.group(1) + match.group(2)
     args['t'] = re.search('"&t=([^"]+)",', page).group(1)
-    args['s'] = re.search('(?:\s+|,)s\s*=(\d+)', page).group(1)
-    args['m'] = re.search('(?:\s+|,)m\s*=(\d+)', page).group(1)
-    
+
     #add cached source
     vidname=cache.get('videoname')
     dlDir = Get_Path("noext", "", "")
@@ -1641,61 +1634,7 @@ def SOURCE(page, sources, source_tag, ice_meta=None):
         PART(sources, number, host, args, source_tag, ice_meta)
     setView(None, 'default-view')
 
-    
-def show_ice_ad(ad_url, referrer):
 
-    try:
-
-        headers = {'Referer': referrer}
-         
-        # Import PyXBMCt module.
-        import pyxbmct.addonwindow as pyxbmct
-             
-        # Create a window instance.
-        window = pyxbmct.AddonDialogWindow('Icefilms Advertisement')
-        # Set the window width, height, rows, columns.
-        window.setGeometry(450, 250, 6, 4)
-        
-        if not ad_url.startswith('http:'): ad_url = 'http:' + ad_url
-        addon.log('Found Ice advertisement url: %s' % ad_url)
-        html = net.http_GET(ad_url, headers=headers).content
-        for match in re.finditer("<img\s+src='([^']+)'\s+width='(\d+)'\s+height='(\d+)'", html):
-            img_url, width, height = match.groups()
-            addon.log('Ice advertisement image url: %s' % img_url)
-            width = int(width)
-            height = int(height)
-            if width > 0 and height > 0:
-
-                # Ad image
-                image = pyxbmct.Image(img_url)
-                window.placeControl(image, 0, 0, rowspan=4, columnspan=4)                   
-            else:
-                temp = net.http_GET(img_url, headers=headers).content
-               
-        # Create a button.
-        button = pyxbmct.Button('Close')
-        # Place the button on the window grid.
-        window.placeControl(button, 5, 1, columnspan=2)
-        # Set initial focus on the button.
-        window.setFocus(button)
-        # Connect the button to a function.
-        window.connect(button, window.close)
-        # Connect a key action to a function.
-        window.connect(pyxbmct.ACTION_NAV_BACK, window.close)
-        # Show the created window.
-        window.doModal()                
-
-        match = re.search("href='([^']+)", html)
-        if match and random.randint(0, 100) < 5:
-            addon.log('Ice advertisement - performing click on ad: %s' % match.group(1))
-            html = net.http_GET(match.group(1)).content
-            match = re.search("location=decode\('([^']+)", html)
-            if match:
-                html = net.http_GET(match.group(1)).content
-    finally:
-        window.close()
-
-            
 def GetURL(url, params = None, referrer = ICEFILMS_REFERRER, use_cookie = False, save_cookie = False, use_cache=True):
     addon.log('GetUrl: ' + url)
     addon.log('params: ' + repr(params))
@@ -1967,10 +1906,13 @@ def GetSource():
         'cap': ' ',
         'sec': addon.queries.get('sec', ''),
         't': t,
-        'id': id,
-        'm' : int(addon.queries.get('m', '')) + random.randrange(20, 500),
-        's' : int(addon.queries.get('s', '')) + random.randrange(2, 500)
+        'id': id
     } 
+   
+    m = random.randrange(100, 300)
+    s = random.randrange(5, 50) * -1
+    params['m'] = m
+    params['s'] = s
     
     body = GetURL(ICEFILMS_AJAX % (id, t), params = params, referrer = ICEFILMS_AJAX_REFER % t, use_cookie=True, use_cache=False)
     addon.log('GetSource Response: %s' % body)
