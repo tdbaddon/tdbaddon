@@ -605,6 +605,20 @@ Thats all Folks
   <extension point="xbmc.service" library="service.py" start="login" />
 </addon>
 
+<addon id="repository.addonscriptorde-beta" name="AddonScriptorDE's Testing Repo" version="1.0.1" provider-name="AddonScriptorDE">
+	<extension point="xbmc.addon.repository" name="AddonScriptorDE's Testing Repo">
+		<info compressed="false">http://addonscriptorde-beta-repo.googlecode.com/svn/trunk/addons.xml</info>
+		<checksum>http://addonscriptorde-beta-repo.googlecode.com/svn/trunk/addons.xml.md5</checksum>
+		<datadir zip="false">http://addonscriptorde-beta-repo.googlecode.com/svn/trunk/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Add-ons and updates that are not (yet) available via the xbmc.org repo</summary>
+		<description>Add-ons and updates that are not (yet) available via the xbmc.org repo</description>
+		<disclaimer></disclaimer>
+		<platform>all</platform>
+	</extension>
+</addon>
+
 <addon id="repository.ah" name="AH Add-on repository" version="1.0" provider-name="AddonHacker">
 	<extension point="xbmc.addon.repository" name="AH Add-on repository">
 		<info compressed="false">https://raw.githubusercontent.com/addonhacker/ah-repo/master/addons.xml</info>
@@ -647,6 +661,74 @@ Thats all Folks
 		<summary></summary>
 		<description>Download and install addons by Mr Entertainment</description>
 		<disclaimer>By using this, you take reponsibility for anything that happens. Some parts of this addon may not be legal in your country - please check with your local laws before installing. I take no responsibility for any problems this plugin might in any way shape or form. This is project is for a LEARNING EXPERIANCE.</disclaimer>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="repository.googlecode.anarchintosh-projects" name="anarchintosh addons" version="1.0.1" provider-name="anarchintosh">
+	<extension point="xbmc.addon.repository" name="anarchintosh add-on repository">
+		<info compressed="false">http://anarchintosh-projects.googlecode.com/svn/addons/addons.xml</info>
+		<checksum>http://anarchintosh-projects.googlecode.com/svn/addons/addons.xml.md5</checksum>
+		<datadir zip="true">http://anarchintosh-projects.googlecode.com/svn/addons</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Install Addons from http://anarchintosh-projects.googlecode.com</summary>
+		<description>Download and install addons from anarchintosh repository.</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+	<addon
+        id="repository.imaxpo"
+        name="iMaxpo's Repository"
+        version="1.4.3"
+        provider-name="iMaxpo">
+		<extension point="xbmc.addon.repository" name="iMaxpo's addon repository">
+			<info compressed="false">https://raw.github.com/luftreich/imaxpo.xbmc/master/addons.xml</info>
+			<checksum>https://raw.github.com/luftreich/imaxpo.xbmc/master/addons.xml.md5</checksum>
+			<datadir zip="true">https://raw.github.com/luftreich/imaxpo.xbmc/master/plugin_zips</datadir>
+		</extension>
+		<extension point="xbmc.addon.metadata">
+			<summary lang="en">iMaxpo's Addon Repository</summary>
+            <description lang="en">[COLOR red]If automatic update failed !!! Please download and install the newest repository ZIP file from https://github.com/luftreich/imaxpo.xbmc/[CR]tree/master/plugin_zips/repository.imaxpo/[/COLOR]</description>
+            <disclaimer lang="en">For bugs, requests or general questions contact iMaxpo on the iMaxpo forum.</disclaimer>
+            <platform>all</platform>
+			<license>GNU GENERAL PUBLIC LICENSE. Version 3, June 2007</license>
+            <language>en</language>
+            <forum>http://www.imaxpo.com/forums/</forum>
+            <website>http://www.imaxpo.com/</website>
+            <email></email>
+            <source>https://raw.github.com/luftreich/imaxpo.xbmc/master/repository.imaxpo</source>
+		</extension>
+	</addon>
+
+<addon id="repository.Kinkin" name="Kinkins REPO" version="1.4" provider-name="Kinkin">
+	<extension point="xbmc.addon.repository" name="Kinkin Addon Repository">
+		<info compressed="false">https://offshoregit.com/kinkin-xbmc-repository/addons.xml</info>
+		<checksum>https://offshoregit.com/kinkin-xbmc-repository/addons.xml.md5</checksum>
+		<datadir zip="true">https://offshoregit.com/kinkin-xbmc-repository/zips</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Install Kinkins Addons</summary>
+		<description>Install addons by Kinkin</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="repository.lambda" name="lambda Add-on repository" version="1.1.0" provider-name="lambda">
+	<extension point="xbmc.addon.repository" name="lambda Add-on repository">
+		<dir>
+			<info compressed="false">http://raw.github.com/lambda81/lambda-repo/master/addons.xml</info>
+			<checksum>http://raw.github.com/lambda81/lambda-repo/master/addons.xml.md5</checksum>
+			<datadir zip="true">http://raw.github.com/lambda81/lambda-repo/master/</datadir>
+		</dir>
+		<info compressed="false">https://offshoregit.com/lambda81/lambda-repo/addons.xml</info>
+		<checksum>https://offshoregit.com/lambda81/lambda-repo/addons.xml.md5</checksum>
+		<datadir zip="true">https://offshoregit.com/lambda81/lambda-repo/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">Install Add-ons from lambda</summary>
+		<description lang="en">Download and install add-ons from lambda repository.</description>
 		<platform>all</platform>
 	</extension>
 </addon>
@@ -759,6 +841,20 @@ Thats all Folks
 	</extension>
 </addon>
 
+<addon id="repository.thec0de" name="gr33ksRepo" version="1.0.0" provider-name="Gr33k">
+	<extension point="xbmc.addon.repository" name="c0de Repo">
+       <info>http://kodi.thec0de.com/kodi.git/addons.xml</info>
+       <checksum>http://kodi.thec0de.com/kodi.git/addons.xml.md5</checksum>
+       <datadir zip="true">http://kodi.thec0de.com/kodi.git/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>thec0de Repo</summary>
+		<description>Download and Install The BEST Add-Ons for Kodi out there!</description>
+		<disclaimer>I made none of these - Just repost from Kodi Forums - Use at your own discretion. I am not responsible for what you do with this stuff.</disclaimer>
+		<platform>all</platform>
+	</extension>
+</addon>
+
 <addon id="repository.traitravinh" name="TraiTraVinh's Testing Repo" version="1.0" provider-name="traitravinh">
 	<extension point="xbmc.addon.repository" name="TraiTraVinh's Testing Repo">
 		<info compressed="false">https://raw.github.com/traitravinh/traitravinh.repository.xbmc/master/addons.xml</info>
@@ -768,6 +864,34 @@ Thats all Folks
 	<extension point="xbmc.addon.metadata">
 		<summary>Testing repo</summary>
 		<description>Testing repo</description>
+		<disclaimer></disclaimer>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="repository.xbmcadult" name="XBMC-Adult Addons" version="1.0.6" provider-name="xbmc-adult">
+	<extension point="xbmc.addon.repository" name="XBMC Adult Addons">
+		<info compressed="false">http://raw.github.com/xbmc-adult/xbmc-adult/ghmaster/addons.xml</info>
+		<checksum>http://raw.github.com/xbmc-adult/xbmc-adult/ghmaster/addons.xml.md5</checksum>
+		<datadir zip="true">http://raw.github.com/xbmc-adult/xbmc-adult/ghmaster</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>XBMC Addons for Adults Only</summary>
+		<description>This repository contains addons that are for adults only. You may only view the contents of this repository if you are at least 18 years of age, or at least the age of majority in the jurisdiction where you reside or from which you access this content.</description>
+		<disclaimer>The owners and submitters to this repository do not host or distribute any of the content displayed by these addons nor do they have any affiliation with the content providers.</disclaimer>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="repository.riostv" name="Mauricio repository" version="0.0.2" provider-name="Mauricio">
+	<extension point="xbmc.addon.repository" name="Mauricio Add-on Repository">
+		<info compressed="false">http://raw.github.com/xmbcrios/riostv/master/addons.xml</info>
+		<checksum>http://raw.github.com/xmbcrios/riostv/master/addons.xml.md5</checksum>
+		<datadir zip="true">http://raw.github.com/xmbcrios/riostv/master/repo/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Mauricio Addon</summary>
+		<description>Official Repository Riostv</description>
 		<disclaimer></disclaimer>
 		<platform>all</platform>
 	</extension>
