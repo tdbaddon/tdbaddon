@@ -16,14 +16,17 @@ http://lihattv.toh.info/jhos/beib2_3/-/playlist.m3u8
 #EXTINF:0,Bein Sport 2 
 http://lihattv.toh.info/jhos/beib2_5/-/playlist.m3u8
 
+#EXTINF:0,Big Ten Network
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/149.m3u8
+
 #EXTINF:0,Box Nation 
-0
+http://178.18.31.62:8081/liverepeater/201775/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9OS8yMC8yMDE1IDExOjU1OjE3IFBNJmhhc2hfdmFsdWU9bUVESWtmbjF6c2g0NXl2UHRZY3ZMQT09JnZhbGlkbWludXRlcz00
 
 #EXTINF:0,BT Sport 1 
 0
 
 #EXTINF:0,BT Sport 2 
-0
+rtmpe://134.19.185.252:1935/livedge/mamahdbtsport2
 
 #EXTINF:0,CBS Sports 
 http://cbspgalivehd-lh.akamaihd.net/i/farmersday4_simulcast@92710/master.m3u8
@@ -59,7 +62,7 @@ http://fe-mos.svc.iptv.rt.ru/hls/CH_C06_EURONEWS/variant.m3u8?version=2
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/113.m3u8
 
 #EXTINF:0,Fishing & Hunting 
-0
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/17.m3u8
 
 #EXTINF:0,Fox Sports 
 rtmp://kv2.ts33.net/sat/us012
@@ -83,22 +86,28 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/75.m3u8
 http://208.92.36.158/ipad/live/nba_ipad_1240.m3u8
 
 #EXTINF:0,LFC TV 
-0
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/121.m3u8
 
 #EXTINF:0,Mercedes TV
 mms://100automoto.tv/channel_mercedes
 
 #EXTINF:0,MLB 
-0
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/40.m3u8
 
 #EXTINF:0,Motors TV 
 http://fe-mos.svc.iptv.rt.ru/hls/CH_C06_MOTORSTV/variant.m3u8?version=2
+
+#EXTINF:0,Motors TV
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/47.m3u8
 
 #EXTINF:0,Motorsport 7 
 http://motorsport.hopto.org:8080/
 
 #EXTINF:0,Nascar TV 
 mms://100automoto.tv/100livesport
+
+#EXTINF:0,Nascar TV 
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/66.m3u8
 
 #EXTINF:0,NBA TV 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/70.m3u8
@@ -130,8 +139,14 @@ http://cdn.phoenix.intergi.com/21772/videos/3362254/video-sd.mp4?hosting_id=2177
 #EXTINF:0,NFL Network 
 http://nflioslivesvg2-i.akamaihd.net/hls/live/221521/nflioslive/2015HackerNow_w99d9.m3u8
 
+#EXTINF:0,NFL Network 
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/227.m3u8
+
+#EXTINF:0,NFL Network 
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/72.m3u8
+
 #EXTINF:0,NHL Network
-0
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/233.m3u8
 
 #EXTINF:0,Outdoor Channel 
 http://j.mp/ZCH_C01_OUTDOORCHANNELHD_sly
@@ -148,29 +163,38 @@ http://j.mp/ZCH_C05_OUTDOORCHANNEL_sly
 #EXTINF:0,PAC 12 Bay Area 
 http://xrxs.net/video/live-p12baya-1164.m3u8
 
+#EXTINF:0,PAC 12 Bay Area 
+http://xrxs.net/video/live-p12baya-2328.m3u8
+
 #EXTINF:0,PAC 12 Bay Area HD 
-0
+http://xrxs.net/video/live-p12baya-4728.m3u8?
 
 #EXTINF:0,PAC 12 LA 
-0
- 
-#EXTINF:0,PAC 12 LA HD 
+http://xrxs.net/video/live-p12losa-2328.m3u8
+
+#EXTINF:0,PAC 12 LA HD
 0
 
 #EXTINF:0,PAC 12 National 
 http://xrxs.net/video/live-p12netw-1164.m3u8
  
 #EXTINF:0,PAC 12 National HD 
-0
+http://xrxs.net/video/live-p12netw-2328.m3u8
 
 #EXTINF:0,PAC 12 Mountain 
-http://www.xrxs.net/video/live-p12moun-1164.m3u8
+http://xrxs.net/video/live-p12moun-1164.m3u8
+
+#EXTINF:0,PAC 12 Mountain 
+http://xrxs.net/video/live-p12moun-2328.m3u8
 
 #EXTINF:0,PAC 12 Mountain HD
 http://xrxs.net/video/live-p12moun-4728.m3u8
 
 #EXTINF:0,PAC 12 Oregon 
 http://xrxs.net/video/live-p12oreg-1164.m3u8
+
+#EXTINF:0,PAC 12 Oregon 
+http://xrxs.net/video/live-p12oreg-2328.m3u8
 
 #EXTINF:0,PAC 12 Oregon HD
 http://xrxs.net/video/live-p12oreg-4728.m3u8
@@ -200,7 +224,7 @@ mms://100automoto.tv/channel_porsche
 rtmpe://134.19.185.220:1935/livedge playpath=sskys1 swfUrl=http://player.hdcast.org/_.swf pageurl=http://www.hdcast.org/embedlive4.php?u=sskys1&vw=640&vh=400&domain=www.streamhd.eu token=Fo5_n0w?U.rA6l3-70w47ch timeout=5
 
 #EXTINF:0,Sky Sports 2 
-0
+rtmpe://134.19.185.252:1935/livedge/mamahdsky2
 
 #EXTINF:0,Sky Sports 3 
 0
@@ -210,6 +234,9 @@ rtmpe://134.19.185.220:1935/livedge playpath=sskys1 swfUrl=http://player.hdcast.
 
 #EXTINF:0,Sky Sports 5 
 rtmpe://134.19.185.220:1935/livedge playpath=sskys5 swfUrl=http://player.hdcast.org/_.swf pageurl=http://www.hdcast.org/embedlive4.php?u=sskys1&vw=640&vh=400&domain=www.streamhd.eu token=Fo5_n0w?U.rA6l3-70w47ch timeout=5
+
+#EXTINF:0,Sky Sports 5 
+rtmpe://134.19.185.252:1935/livedge/mamahdsky5
 
 #EXTINF:0,Sky Sports F1 
 0
@@ -239,7 +266,7 @@ rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9
 http://stream01.yamgo.com/iPhone/HLS_TS/broadcast/trace_tv_sports-tablet.3gp/trace_tv_sports-tablet.3gp-mr647k.m3u8?
 
 #EXTINF:0,TSN 1 
-0
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/68.m3u8
 
 #EXTINF:0,TSN 2 
 0

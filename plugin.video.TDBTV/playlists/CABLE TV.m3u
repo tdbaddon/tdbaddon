@@ -25,8 +25,20 @@ http://lag2.tv-mobile.org/prgd.m3u8
 #EXTINF:0,BabyTV 
 http://fe-mos.svc.iptv.rt.ru/hls/CH_C01_BABYTV/variant.m3u8?version=2
 
+#EXTINF:0,BabyTV 
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/150.m3u8
+
+#EXTINF:0,BabyTV 
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/146.m3u8
+
+#EXTINF:0,BabyTV
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/231.m3u8
+
 #EXTINF:0,BBC 1 
-0
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/134.m3u8
+
+#EXTINF:0,BBC 1 
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/147.m3u8
 
 #EXTINF:0,BBC 2 
 http://82.135.224.134/udp/239.100.3.3:1234
@@ -52,11 +64,14 @@ http://185.13.236.197:4080/udp/224.0.0.120:1244
 #EXTINF:0,Cartoon Network 
 http://fe-sth.svc.iptv.rt.ru/hls/CH_C05_CARTOONNETWORK/variant.m3u8?version=2
 
+#EXTINF:0,Cartoon Network 
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/4.m3u8
+
 #EXTINF:0,CBC TV 
 0
 
 #EXTINF:0,Cbeebies 
-0
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/6.m3u8
 
 #EXTINF:0,CBS 
 0
@@ -104,10 +119,10 @@ http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/index_350_av-p.m3u8?
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/65.m3u8
 
 #EXTINF:0,Disney Channel 
-0
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/89.m3u8
 
 #EXTINF:0,Disney Junior 
-0
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/13.m3u8
 
 #EXTINF:0,Disney XD 
 0
@@ -272,7 +287,7 @@ http://62.183.106.70:8802/hls/CH_C03_NICKELODEON/variant.m3u8?version=2
 0
 
 #EXTINF:0,PBS 
-0
+http://37.187.248.101:8080/pbsamerica.stream/index.m3u8
 
 #EXTINF:0,Showcase 
 0

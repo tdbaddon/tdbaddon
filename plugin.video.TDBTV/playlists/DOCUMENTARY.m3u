@@ -8,7 +8,7 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/143.m3u8
 
 #EXTINF:0,AMHQ 
-0
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/33.m3u8
 
 #EXTINF:0,Animal Planet 
 http://fe-sth.svc.iptv.rt.ru/hls/CH_C03_ANIMALPLANET/variant.m3u8?version=2
@@ -20,7 +20,7 @@ http://j.mp/ZCH_C03_ANIMALPLANET_sly
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/142.m3u8
 
 #EXTINF:0,Destination America 
-0
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/22.m3u8
 
 #EXTINF:0,Destination Network 
 0
@@ -33,6 +33,9 @@ http://j.mp/ZCH_C05_DISCOVERYCHANNEL_sly
 
 #EXTINF:0,Discovery Channel
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/11.m3u8
+
+#EXTINF:0,Discovery Channel
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/60.m3u8
 
 #EXTINF:0,Discovery History 
 0
@@ -102,6 +105,9 @@ http://j.mp/ZCH_C01_NATGEO_sly
 
 #EXTINF:0,National Geographic 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/187.m3u8
+
+#EXTINF:0,National Geographic 
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/96.m3u8
 
 #EXTINF:0,Planet Green 
 0
