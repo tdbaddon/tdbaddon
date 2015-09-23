@@ -47,10 +47,7 @@ http://lag1.tv-mobile.org/prgw.m3u8
 0
 
 #EXTINF:0,Fox Movies 
-http://38.99.146.36:7777/FoxMovies_HD.m3u8
-
-#EXTINF:0,HBO 
-rtmp://94.102.49.207/iguide%20playpath=0bf02qe6msgtu4s%20swfUrl=http://www.iguide.to/player/secure_player_iguide_token.swf%20live=1%20pageUrl=http://www.iguide.to/view/1/watch-live-HBO-channel-for-free%20token=#ed%h0#w18623jsda6523lDGDVe
+0
 
 #EXTINF:0,HBO 
 http://bit.ly:80/IPTVGlobal-hbo?live.m3u8
@@ -158,13 +155,7 @@ http://tring-amd-live.tring.tv/out/u/79_127.m3u8
 0
 
 #EXTINF:0,TV 1000 
-http://194.44.229.77:777/udp/237.1.238.17:1234
-
-#EXTINF:0,TV 1000 
 http://195.78.244.219:10000/udp/239.0.3.29:1234
-
-#EXTINF:0,TV 1000 Action 
-http://194.44.229.77:777/udp/237.1.238.18:1234
 
 #EXTINF:0,TV 1000 Action 
 http://fe-sth.svc.iptv.rt.ru/hls/CH_C04_TV1000ACTION/variant.m3u8?version=2

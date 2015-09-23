@@ -22,7 +22,7 @@
 import re,urlparse,json
 
 from resources.lib.libraries import client
-from resources.lib.resolvers import googleplus
+from resources.lib import resolvers
 
 
 class source:
@@ -70,7 +70,7 @@ class source:
             season = '%02d' % int(season)
             episode = '%02d' % int(episode)
 
-            result = [(i['slug'], i['title']) for i in result]
+            result = [(i['slug'], i['long_title']) for i in result]
             result = [(i[0], re.compile('(\d*)$').findall(i[1])) for i in result]
             result = [(i[0], i[1][0]) for i in result if len(i[1]) > 0]
             result = [i[0] for i in result if season == i[1]][0]
@@ -90,6 +90,8 @@ class source:
             if url == None: return sources
 
             query = urlparse.urlparse(url).query
+            try: query = '%02d' % int(re.compile('E(\d*)$').findall(query)[0])
+            except: query = ''
 
             url = urlparse.urljoin(self.base_link, url)
 
@@ -97,14 +99,16 @@ class source:
 
             result = client.parseDOM(result, 'select', attrs = {'id': 'myDropdown'})[0]
             result = zip(client.parseDOM(result, 'option', ret='value'), client.parseDOM(result, 'option'))
-            result = [i[0] for i in result if query == i[1] or  query == ''][0]
+            result = [i[0] for i in result if query.endswith(i[1]) or query == ''][0]
 
             url = urlparse.urljoin(self.base_link, result)
 
             url = client.source(url, output='geturl')
             if not 'google' in url: raise Exception()
 
-            url = googleplus.tag(url)
+            url = url.split('get_video_info')[0]
+            url = resolvers.request(url)
+
             for i in url: sources.append({'source': 'GVideo', 'quality': i['quality'], 'provider': 'MVsnap', 'url': i['url']})
 
             return sources
@@ -122,4 +126,5 @@ class source:
             return url
         except:
             return
+
 

@@ -199,7 +199,7 @@ Thats all Folks
 	</extension>
 </addon>
 
-<addon id="plugin.video.genesis" name="Genesis" version="5.0.5" provider-name="lambda">
+<addon id="plugin.video.genesis" name="Genesis" version="5.0.6" provider-name="lambda">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.requests" version="1.0.0" />
@@ -621,7 +621,7 @@ Thats all Folks
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="3.13"
+       version="3.14"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -754,7 +754,7 @@ Thats all Folks
 	</extension>
 </addon>
 
-<addon id="repository.mdrepo" name="Mucky Ducks Repo" version="1.0.1" provider-name="Mucky Duck">
+<addon id="repository.mdrepo" name="Mucky Ducks Repo" version="1.0.2" provider-name="Mucky Duck">
 	<extension point="xbmc.addon.repository" name="Mucky Ducks Repo">
 		<info compressed="false">https://raw.githubusercontent.com/mucky-duck/mdrepo/master/addons.xml</info>
 		<checksum>https://raw.githubusercontent.com/mucky-duck/mdrepo/master/addons.xml.md5</checksum>

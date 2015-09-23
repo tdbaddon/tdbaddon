@@ -25,7 +25,7 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/142.m3u8
 #EXTINF:0,Destination Network 
 0
 
-#EXTINF:0,Discovery Channel
+#EXTINF:0,Discovery Channel 
 http://fe-sth.svc.iptv.rt.ru/hls/CH_C05_DISCOVERYCHANNEL/variant.m3u8?version=2
 
 #EXTINF:0,Discovery Channel
@@ -89,22 +89,10 @@ http://nasatv-lh.akamaihd.net/i/NASA_101@319270/master.m3u8
 http://iphone-streaming.ustream.tv/uhls/6540154/streams/live/iphone/playlist.m3u8
 
 #EXTINF:0,Nat Geo Wild 
-http://194.44.229.77:777/udp/237.1.239.21:1234
-
-#EXTINF:0,Nat Geo Wild 
 http://185.13.236.197:4080/udp/224.0.0.120:1237
 
 #EXTINF:0,Nat Geo Wild 
 http://lag2.tv-mobile.org/prgg.m3u8
-
-#EXTINF:0,Nat Geo Wild 
-http://j.mp/ZCH_C03_NATGEOWILDHD_sly
-
-#EXTINF:0,National Geographic 
-http://194.44.229.77:777/udp/237.1.239.22:1234
-
-#EXTINF:0,National Geographic 
-http://194.44.229.77:777/udp/237.1.238.10:1234
 
 #EXTINF:0,National Geographic 
 http://fe-sth.svc.iptv.rt.ru/hls/CH_C01_NATGEO/variant.m3u8?version=2
@@ -147,9 +135,6 @@ http://195.78.244.219:10000/udp/239.0.3.31:1234
 
 #EXTINF:0,Viasat History 
 http://fe-sth.svc.iptv.rt.ru/hls/CH_C02_VIASATHISTORY/variant.m3u8?version=2
-
-#EXTINF:0,Viasat Nature 
-http://194.44.229.77:777/udp/237.1.238.19:1234
 
 #EXTINF:0,Viasat Nature
 http://195.78.244.219:10000/udp/239.0.3.28:1234

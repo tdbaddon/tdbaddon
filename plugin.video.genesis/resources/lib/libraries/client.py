@@ -95,7 +95,7 @@ def request(url, close=True, error=False, proxy=None, post=None, headers=None, m
         return
 
 
-def source(url, close=True, error=False, proxy=None, post=None, headers=None, mobile=False, referer=None, cookie=None, output='', timeout='5'):
+def source(url, close=True, error=False, proxy=None, post=None, headers=None, mobile=False, referer=None, cookie=None, output='', timeout='15'):
     return request(url, close, error, proxy, post, headers, mobile, referer, cookie, output, timeout)
 
 

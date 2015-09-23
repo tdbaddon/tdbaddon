@@ -204,8 +204,8 @@ class sources:
             for source in sourceDict: threads.append(workers.Thread(self.getEpisodeSource, title, year, imdb, tvdb, season, episode, tvshowtitle, date, re.sub('_mv_tv$|_mv$|_tv$', '', source), __import__(source, globals(), locals(), [], -1).source()))
 
 
-        try: timeout = int(control.setting('sources_timeout_15'))
-        except: timeout = 10
+        try: timeout = int(control.setting('sources_timeout_20'))
+        except: timeout = 20
 
 
         [i.start() for i in threads]
@@ -446,27 +446,28 @@ class sources:
         elif playback_quality == '4':
             self.sources = [i for i in self.sources if not i['quality'] in ['1080p', 'HD'] and i['source'] in self.hostlqDict]
 
-        try: playback_captcha = control.setting('playback_captcha')
+        try: playback_captcha = control.setting('playback_captcha_hosts')
         except: playback_captcha = 'false'
 
-        try: playback_1080p_hosts = control.setting('playback_1080p_hosts')
-        except: playback_1080p_hosts = 'true'
+        try: playback_1080p = control.setting('playback_1080p_hosts')
+        except: playback_1080p = 'true'
 
-        try: playback_720p_hosts = control.setting('playback_720p_hosts')
-        except: playback_720p_hosts = 'true'
+        try: playback_720p = control.setting('playback_720p_hosts')
+        except: playback_720p = 'true'
 
         if playback_captcha == 'false':
             self.sources = [i for i in self.sources if not i['source'] in self.hostcapDict]
 
-        if playback_1080p_hosts == 'false':
+        if playback_1080p == 'false':
             self.sources = [i for i in self.sources if not (i['quality'] == '1080p' and i['source'] in self.hosthdDict and not i['source'] in self.rdDict + self.pzDict)]
 
-        if playback_720p_hosts == 'false':
+        if playback_720p == 'false':
             self.sources = [i for i in self.sources if not (i['quality'] == 'HD' and i['source'] in self.hosthdDict and not i['source'] in self.rdDict + self.pzDict)]
 
         for i in range(len(self.sources)):
             s = self.sources[i]['source'].lower()
             p = self.sources[i]['provider']
+            p = re.sub('v\d*$', '', p)
 
             q = self.sources[i]['quality']
             if q == 'SD' and s in self.hostmqDict: q = 'MQ'
@@ -556,7 +557,7 @@ class sources:
 
         self.sources = [i for i in self.sources if not (i['quality'] in ['1080p', 'HD'] and i['source'] in self.hosthdDict and not i['source'] in self.rdDict + self.pzDict)]
 
-        self.sources = [i for i in self.sources if not i['source'] in ['furk', 'vk']]
+        self.sources = [i for i in self.sources if not i['source'] in ['easynews', 'furk', 'vk']]
 
         if control.setting("playback_auto_sd") == 'true':
             self.sources = [i for i in self.sources if not i['quality'] in ['1080p', 'HD']]

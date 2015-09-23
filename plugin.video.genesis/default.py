@@ -318,6 +318,13 @@ elif action == 'service':
     from resources.lib.libraries import libtools
     libtools.libepisodes().service()
 
+elif action == 'resolve':
+    from resources.lib.sources import sources
+    from resources.lib.libraries import control
+    url = sources().sourcesResolve(url, provider)
+    control.addItem(handle=int(sys.argv[1]), url=url, listitem=control.item(name))
+    control.directory(int(sys.argv[1]))
+
 elif action == 'play':
     from resources.lib.sources import sources
     sources().play(name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date, url)

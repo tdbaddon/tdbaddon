@@ -1,4 +1,29 @@
 ------------------------
+Genesis v5.0.6 (19-Sep-15)
+------------------------
+
+- Added Filmikz source.
+- Added Moviefarsi source.
+- Added MovieTV source.
+- Added Onlinemovies source.
+- Added Movietube source.
+- Added Dizigold source.
+- Added Easynews source.
+- NOTE: Easynews is a usenet source.
+- NOTE: Enable it and add your account in the addon's settings.
+- Extended Muchmovies source to tv shows.
+- Extended Xmovies source to tv shows.
+- Removed PlayBox source.
+- Updated available sources.
+- Updated available resolvers.
+- Tweaked default timeout of sources.
+- Tweaked requests timeout.
+- Added French translation.
+- Updated Hebrew translation.
+- Code cosmetics.
+
+
+------------------------
 Genesis v5.0.5 (12-Sep-15)
 ------------------------
 

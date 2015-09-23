@@ -35,9 +35,6 @@ http://82.135.224.134/udp/239.100.3.3:1234
 0
 
 #EXTINF:0,Boomerang 
-http://fe-sth.svc.iptv.rt.ru/hls/CH_C05_BOOMERANG/variant.m3u8?version=2
-
-#EXTINF:0,Boomerang 
 http://j.mp/ZCH_C05_BOOMERANG_sly
 
 #EXTINF:0,Bravo 
@@ -81,9 +78,6 @@ http://fe-sth.svc.iptv.rt.ru/hls/CH_C05_CARTOONNETWORK/variant.m3u8?version=2
 
 #EXTINF:0,CNBC 
 0
-
-#EXTINF:0,Comedy Central 
-http://188.138.9.228:8022
 
 #EXTINF:0,Comedy Central 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/86.m3u8
@@ -323,13 +317,10 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/83.m3u8
 0
 
 #EXTINF:0,TLC 
-http://194.44.229.77:777/udp/237.1.239.23:1234
+http://j.mp/ZCH_C02_TLC_sly
 
 #EXTINF:0,TLC 
 http://fe-sth.svc.iptv.rt.ru/hls/CH_C02_TLC/variant.m3u8?version=2
-
-#EXTINF:0,TLC 
-http://j.mp/ZCH_C02_TLC_sly
 
 #EXTINF:0,TNT 
 0
