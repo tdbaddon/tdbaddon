@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<addon id="plugin.video.moviesxl" version="1.0.1" name="Movies XL" provider-name="Mr Entertainment">
+<addon id="plugin.video.moviesxl" version="1.0.2" name="Movies XL" provider-name="Mr Entertainment">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
         <import addon="script.module.TheYid.common" version="0.1.1"/>

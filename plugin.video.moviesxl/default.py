@@ -62,7 +62,7 @@ def GetLinks1(url):
         html = net.http_GET(url).content
         listitem = GetMediaInfo(html)
         content = html
-        match1 = re.compile('file: "(.+?)"').findall(content)
+        match1 = re.compile('<source src="(.+?)"').findall(content)
         listitem = GetMediaInfo(content)
         for url in match1:
                 addon.add_directory({'mode': 'PlayVideo1', 'url': url, 'listitem': listitem}, {'title':  'Load Stream'}, img=IconPath + 'watch.png', fanart= 'http://www.htbackdrops.org/v2/albums/userpics/10097/orig_oefg_kino_im_kesselhaus.jpg')
