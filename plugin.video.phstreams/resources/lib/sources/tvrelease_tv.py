@@ -19,11 +19,14 @@
 '''
 
 
-import re,urllib,urlparse,datetime
+import re,urllib,urlparse
 
 from resources.lib.libraries import control
 from resources.lib.libraries import cleantitle
 from resources.lib.libraries import client
+from resources.lib.resolvers import hugefiles
+from resources.lib.resolvers import uploadrocket
+from resources.lib.resolvers import uptobox
 from resources.lib import resolvers
 
 
@@ -70,8 +73,6 @@ class source:
 
             result = client.parseDOM(result, 'table', attrs = {'class': 'posts_table'})
 
-            dt = int(datetime.datetime.now().strftime('%Y%m%d'))
-
             title, hdlr = re.compile('(.+?) (S\d*E\d*)$').findall(url)[0]
             title = cleantitle.tv(title)
             hdlr = [hdlr]
@@ -80,10 +81,6 @@ class source:
 
             for i in result:
                 try:
-                    date = re.compile('(\d{4}-\d{2}-\d{2})').findall(i)[-1]
-                    date = re.sub('[^0-9]', '', str(date))
-                    if (abs(dt - int(date)) < 100) == False: raise Exception()
-
                     name = client.parseDOM(i, 'a')[-1]
                     name = client.replaceHTMLCodes(name)
 
@@ -137,7 +134,13 @@ class source:
                             host = host.rsplit('.', 1)[0].split('.', 1)[-1]
                             host = host.strip().lower()
 
-                            if not host in hosthdDict: raise Exception()
+                            if not host in ['uptobox', 'hugefiles', 'uploadrocket']: raise Exception()
+
+                            if host == 'hugefiles': check = hugefiles.check(url)
+                            elif host == 'uploadrocket': check = uploadrocket.check(url)
+                            elif host == 'uptobox': check = uptobox.check(url)
+
+                            if check == False: raise Exception()
 
                             sources.append({'source': host, 'quality': 'HD', 'provider': 'TVrelease', 'url': url, 'info': i['info']})
                         except:

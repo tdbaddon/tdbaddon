@@ -29,24 +29,31 @@ class source:
     def __init__(self):
         self.base_link = 'http://yify.tv'
         self.search_link = '/wp-admin/admin-ajax.php'
+        self.search_link2 = '?s=%s'
         self.pk_link = '/player/pk/pk/plugins/player_p2.php'
 
 
     def get_movie(self, imdb, title, year):
         try:
-            query = urlparse.urljoin(self.base_link, self.search_link)
-            post = urllib.urlencode({'action': 'ajaxy_sf', 'sf_value': title})
+            query = self.search_link2 % (urllib.quote_plus(title))
+            query = urlparse.urljoin(self.base_link, query)
 
-            result = client.source(query, post=post)
-            result = result.replace('&#8211;','-').replace('&#8217;','\'')
-            result = json.loads(result)
-            result = result['post']['all']
+            for i in range(5):
+                result = client.source(query, close=False)
+                if not result == None: break
+
+            result = client.parseDOM(result, 'section', attrs = {'id': 'contentrea'})[0]
 
             title = cleantitle.movie(title)
-            result = [i['post_link'] for i in result if title == cleantitle.movie(i['post_title'])][0]
+            years = ['%s' % str(year), '%s' % str(int(year)+1), '%s' % str(int(year)-1)]
 
-            check = client.source(result)
-            if not str(imdb) in check: raise Exception()
+            result = zip(client.parseDOM(result, 'a', ret='href'), client.parseDOM(result, 'a'))
+            result = [(i[0], re.compile('(^Watch Full "|^Watch |)(.+? \d{4})').findall(i[1])) for i in result]
+            result = [(i[0], i[1][0][-1]) for i in result if len(i[1]) > 0]
+            result = [(i[0], re.compile('(.+?) (\d{4})$').findall(i[1])) for i in result]
+            result = [(i[0], i[1][0][0], i[1][0][1]) for i in result if len(i[1]) > 0]
+            result = [i for i in result if any(x in i[2] for x in years)]
+            result = [i[0] for i in result if title == cleantitle.movie(i[1])][0]
 
             try: url = re.compile('//.+?(/.+)').findall(result)[0]
             except: url = result
@@ -65,7 +72,10 @@ class source:
 
             base = urlparse.urljoin(self.base_link, url)
 
-            result = client.source(base)
+            for i in range(5):
+                result = client.source(base, close=False)
+                if not result == None: break
+
             result = client.parseDOM(result, 'script', attrs = {'type': 'text/javascript'})
             result = ''.join(result)
 
@@ -76,7 +86,11 @@ class source:
                 try:
                     url = urlparse.urljoin(self.base_link, self.pk_link)
                     post = urllib.urlencode({'url': i, 'fv': '16'})
-                    result = client.source(url, post=post)
+
+                    for i in range(5):
+                        result = client.source(url, post=post)
+                        if not result == None: break
+
                     result = json.loads(result)
 
                     try: sources.append({'source': 'GVideo', 'quality': '1080p', 'provider': 'YIFY', 'url': [i['url'] for i in result if i['width'] == 1920 and 'google' in i['url']][0]})
@@ -98,6 +112,8 @@ class source:
 
     def resolve(self, url):
         try:
+            if not 'google' in url: return url
+
             if url.startswith('stack://'): return url
 
             url = client.request(url, output='geturl')
@@ -106,4 +122,5 @@ class source:
             return url
         except:
             return
+
 

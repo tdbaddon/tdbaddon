@@ -22,12 +22,12 @@
 import re,urlparse,json
 
 from resources.lib.libraries import client
-from resources.lib.resolvers import googleplus
+from resources.lib import resolvers
 
 
 class source:
     def __init__(self):
-        self.base_link = 'http://mvsnap.com/'
+        self.base_link = 'http://mvsnap.com'
         self.search_link = '/v1/api/search?query=%s'
 
 
@@ -70,7 +70,7 @@ class source:
             season = '%02d' % int(season)
             episode = '%02d' % int(episode)
 
-            result = [(i['slug'], i['title']) for i in result]
+            result = [(i['slug'], i['long_title']) for i in result]
             result = [(i[0], re.compile('(\d*)$').findall(i[1])) for i in result]
             result = [(i[0], i[1][0]) for i in result if len(i[1]) > 0]
             result = [i[0] for i in result if season == i[1]][0]
@@ -90,6 +90,8 @@ class source:
             if url == None: return sources
 
             query = urlparse.urlparse(url).query
+            try: query = '%02d' % int(re.compile('E(\d*)$').findall(query)[0])
+            except: query = ''
 
             url = urlparse.urljoin(self.base_link, url)
 
@@ -97,14 +99,23 @@ class source:
 
             result = client.parseDOM(result, 'select', attrs = {'id': 'myDropdown'})[0]
             result = zip(client.parseDOM(result, 'option', ret='value'), client.parseDOM(result, 'option'))
-            result = [i[0] for i in result if query == i[1] or  query == ''][0]
+            result = [i[0] for i in result if i[1].endswith(query) or query == ''][0]
+
+            direct = re.compile('(.+)[|](.+?)[,]').findall(result)
+
+            if len(direct) > 0:
+                quality = 'HD' if 'hd' in direct[0][0].lower()  else 'SD'
+                sources.append({'source': 'GVideo', 'quality': quality, 'provider': 'MVsnap', 'url': direct[0][1]})
+                return sources
 
             url = urlparse.urljoin(self.base_link, result)
 
             url = client.source(url, output='geturl')
             if not 'google' in url: raise Exception()
 
-            url = googleplus.tag(url)
+            url = url.split('get_video_info')[0]
+            url = resolvers.request(url)
+
             for i in url: sources.append({'source': 'GVideo', 'quality': i['quality'], 'provider': 'MVsnap', 'url': i['url']})
 
             return sources
@@ -122,4 +133,5 @@ class source:
             return url
         except:
             return
+
 

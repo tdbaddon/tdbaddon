@@ -118,21 +118,23 @@ class sources:
 
             for i in self.sources:
                 try:
-                    url, source, provider = i['url'], i['label'], i['provider']
+                    url, label, provider = i['url'], i['label'], i['provider']
 
-                    sysname, sysurl, sysimage, syssource, sysprovider = urllib.quote_plus(name), urllib.quote_plus(url), urllib.quote_plus(poster), urllib.quote_plus(source), urllib.quote_plus(provider)
+                    sysname, sysurl, sysimage, sysprovider = urllib.quote_plus(name), urllib.quote_plus(url), urllib.quote_plus(poster), urllib.quote_plus(provider)
 
-                    query = 'action=playItem&content=%s&name=%s&imdb=%s&tvdb=%s&url=%s&source=%s&provider=%s' % (content, sysname, imdb, tvdb, sysurl, syssource, sysprovider)
+                    syssource = urllib.quote_plus(json.dumps([i]))
+
+                    query = 'action=playItem&content=%s&name=%s&imdb=%s&tvdb=%s&source=%s' % (content, sysname, imdb, tvdb, syssource)
 
                     cm = []
                     cm.append((control.lang(30504).encode('utf-8'), 'RunPlugin(%s?action=queueItem)' % sysaddon))
-                    #cm.append((control.lang(30505).encode('utf-8'), 'RunPlugin(%s?action=addDownload&name=%s&url=%s&image=%s&provider=%s)' % (sysaddon, sysname, sysurl, sysimage, sysprovider)))
+                    cm.append((control.lang(30505).encode('utf-8'), 'RunPlugin(%s?action=download&name=%s&image=%s&url=%s&provider=%s)' % (sysaddon, sysname, sysimage, sysurl, sysprovider)))
                     cm.append((infoMenu, 'Action(Info)'))
                     cm.append((control.lang(30506).encode('utf-8'), 'RunPlugin(%s?action=refresh)' % sysaddon))
                     cm.append((control.lang(30507).encode('utf-8'), 'RunPlugin(%s?action=openSettings)' % sysaddon))
                     cm.append((control.lang(30508).encode('utf-8'), 'RunPlugin(%s?action=openPlaylist)' % sysaddon))
 
-                    item = control.item(label=source, iconImage='DefaultVideo.png', thumbnailImage=thumb)
+                    item = control.item(label=label, iconImage='DefaultVideo.png', thumbnailImage=thumb)
                     try: item.setArt({'poster': poster, 'tvshow.poster': poster, 'season.poster': poster, 'banner': banner, 'tvshow.banner': banner, 'season.banner': banner})
                     except: pass
                     item.setInfo(type='Video', infoLabels = meta)
@@ -150,18 +152,51 @@ class sources:
             pass
 
 
-    def playItem(self, content, name, imdb, tvdb, url, source, provider):
+    def playItem(self, content, name, imdb, tvdb, source):
         try:
-            url = self.sourcesResolve(url, provider)
-            if url == None: raise Exception()
+            next = []
+            prev = []
 
-            if control.setting('playback_info') == 'true':
-                control.infoDialog(source, heading=name)
+            for i in range(1,1000000):
+                try:
+                    u = control.infoLabel('ListItem(%s).FolderPath' % str(i))
+                    u = json.loads(dict(urlparse.parse_qsl(u.replace('?','')))['source'])[0]
+                    next.append(u)
+                except:
+                    break
+            for i in range(-1000000,0)[::-1]:
+                try:
+                    u = control.infoLabel('ListItem(%s).FolderPath' % str(i))
+                    u = json.loads(dict(urlparse.parse_qsl(u.replace('?','')))['source'])[0]
+                    prev.append(u)
+                except:
+                    break
 
-            from resources.lib.libraries.player import player
-            player().run(content, name, url, imdb, tvdb)
+            items = json.loads(source)
 
-            return url
+            source, quality = items[0]['source'], items[0]['quality']
+            items = [i for i in items+next+prev if i['quality'] == quality and i['source'] == source]
+            items += [i for i in next+prev if i['quality'] == quality and not i['source'] == source]
+            items = items[:30]
+
+
+            for i in items:
+                try:
+                    url = self.sourcesResolve(i['url'], i['provider'])
+                    if url == None: raise Exception()
+
+                    if control.setting('playback_info') == 'true':
+                        control.infoDialog(i['label'], heading=name)
+
+                    from resources.lib.libraries.player import player
+                    player().run(content, name, url, imdb, tvdb)
+
+                    return url
+                except:
+                    pass
+
+            raise Exception()
+
         except:
             control.infoDialog(control.lang(30501).encode('utf-8'))
             pass
@@ -204,8 +239,8 @@ class sources:
             for source in sourceDict: threads.append(workers.Thread(self.getEpisodeSource, title, year, imdb, tvdb, season, episode, tvshowtitle, date, re.sub('_mv_tv$|_mv$|_tv$', '', source), __import__(source, globals(), locals(), [], -1).source()))
 
 
-        try: timeout = int(control.setting('sources_timeout_15'))
-        except: timeout = 10
+        try: timeout = int(control.setting('sources_timeout_40'))
+        except: timeout = 40
 
 
         [i.start() for i in threads]
@@ -446,27 +481,28 @@ class sources:
         elif playback_quality == '4':
             self.sources = [i for i in self.sources if not i['quality'] in ['1080p', 'HD'] and i['source'] in self.hostlqDict]
 
-        try: playback_captcha = control.setting('playback_captcha')
+        try: playback_captcha = control.setting('playback_captcha_hosts')
         except: playback_captcha = 'false'
 
-        try: playback_1080p_hosts = control.setting('playback_1080p_hosts')
-        except: playback_1080p_hosts = 'true'
+        try: playback_1080p = control.setting('playback_1080p_hosts')
+        except: playback_1080p = 'true'
 
-        try: playback_720p_hosts = control.setting('playback_720p_hosts')
-        except: playback_720p_hosts = 'true'
+        try: playback_720p = control.setting('playback_720p_hosts')
+        except: playback_720p = 'true'
 
         if playback_captcha == 'false':
             self.sources = [i for i in self.sources if not i['source'] in self.hostcapDict]
 
-        if playback_1080p_hosts == 'false':
+        if playback_1080p == 'false':
             self.sources = [i for i in self.sources if not (i['quality'] == '1080p' and i['source'] in self.hosthdDict and not i['source'] in self.rdDict + self.pzDict)]
 
-        if playback_720p_hosts == 'false':
+        if playback_720p == 'false':
             self.sources = [i for i in self.sources if not (i['quality'] == 'HD' and i['source'] in self.hosthdDict and not i['source'] in self.rdDict + self.pzDict)]
 
         for i in range(len(self.sources)):
             s = self.sources[i]['source'].lower()
             p = self.sources[i]['provider']
+            p = re.sub('v\d*$', '', p)
 
             q = self.sources[i]['quality']
             if q == 'SD' and s in self.hostmqDict: q = 'MQ'
@@ -534,19 +570,33 @@ class sources:
 
     def sourcesDialog(self):
         try:
-            l = '00 | [B]%s[/B]' % control.lang(30509).encode('utf-8').upper()
-            sourceList = [l] ; urlList = [''] ; providerList = ['']
+            sources = [{'label': '00 | [B]%s[/B]' % control.lang(30509).encode('utf-8').upper()}] + self.sources
 
-            for i in self.sources:
-                sourceList.append(i['label']) ; urlList.append(i['url']) ; providerList.append(i['provider'])
+            labels = [i['label'] for i in sources]
 
-            select = control.selectDialog(sourceList)
+            select = control.selectDialog(labels)
             if select == 0: return self.sourcesDirect()
             if select == -1: return 'close://'
 
-            url = self.sourcesResolve(urlList[select], providerList[select])
-            self.selectedSource = self.sources[select-1]['label']
-            return url
+            items = [self.sources[select-1]]
+
+            source, quality = items[0]['source'], items[0]['quality']
+            next = [y for x,y in enumerate(self.sources) if x >= select]
+            prev = [y for x,y in enumerate(self.sources) if x < select][::-1]
+            items = [i for i in items+next+prev if i['quality'] == quality and i['source'] == source]
+            items += [i for i in next+prev if i['quality'] == quality and not i['source'] == source]
+            items = items[:30]
+
+            for i in items:
+                try:
+                    url = self.sourcesResolve(i['url'], i['provider'])
+                    if url == None: raise Exception()
+
+                    self.selectedSource = i['label']
+                    return url
+                except:
+                    pass
+
         except:
             return
 
@@ -556,7 +606,7 @@ class sources:
 
         self.sources = [i for i in self.sources if not (i['quality'] in ['1080p', 'HD'] and i['source'] in self.hosthdDict and not i['source'] in self.rdDict + self.pzDict)]
 
-        self.sources = [i for i in self.sources if not i['source'] in ['furk', 'vk']]
+        self.sources = [i for i in self.sources if not i['source'] in ['easynews', 'furk', 'vk']]
 
         if control.setting("playback_auto_sd") == 'true':
             self.sources = [i for i in self.sources if not i['quality'] in ['1080p', 'HD']]

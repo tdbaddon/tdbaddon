@@ -19,88 +19,52 @@
 '''
 
 
-import re,urllib
+import re,urllib,json,time
 from resources.lib.libraries import client
-from resources.lib.libraries import jsunpack
+from resources.lib.libraries import captcha
 
 
 def resolve(url):
     try:
-        O = {
-            '___': 0,
-            '$$$$': "f",
-            '__$': 1,
-            '$_$_': "a",
-            '_$_': 2,
-            '$_$$': "b",
-            '$$_$': "d",
-            '_$$': 3,
-            '$$$_': "e",
-            '$__': 4,
-            '$_$': 5,
-            '$$__': "c",
-            '$$_': 6,
-            '$$$': 7,
-            '$___': 8,
-            '$__$': 9,
-            '$_': "constructor",
-            '$$': "return",
-            '_$': "o",
-            '_': "u",
-            '__': "t",
-        }
+        if check(url) == False: return
 
+        id = re.compile('//.+?/(?:embed|f)/([0-9a-zA-Z-_]+)').findall(url)[0]
 
-        url = url.replace('/f/', '/embed/')
+        url = 'https://api.openload.io/1/file/dlticket?file=%s' % id
 
-        html = client.request(url)
+        result = client.request(url)
+        result = json.loads(result)
 
+        cap = result['result']['captcha_url']
 
-        packed_data = re.search('>\s*(eval\s*\(function.*?)\s*</script>', html, re.DOTALL).group(1)
+        if not cap == None: cap = captcha.keyboard(cap)
 
-        new_str = re.search("decodeURIComponent\('(.*?)'\)", packed_data).group(1)
+        time.sleep(result['result']['wait_time'])
 
-        new_str = urllib.unquote(new_str)
-        packed_data = re.sub('decodeURIComponent\(.*?\)', "'%s'" % (new_str), packed_data)
+        url = 'https://api.openload.io/1/file/dl?file=%s&ticket=%s' % (id, result['result']['ticket'])
 
-        split_str, delim = re.search(',\s*\((.*?)\)\.split\([\'"](.*?)[\'"]\)', packed_data).groups()
+        if not cap == None:
+            url += '&captcha_response=%s' % urllib.quote(cap)
 
+        result = client.request(url)
+        result = json.loads(result)
 
-        new_split_str = eval(split_str)
-        new_split_str = new_split_str.replace(delim, '|')
-
-        packed_data = re.sub(',\s*\(.*?\)\.split\(.*?\)', ", '%s'.split('%s')" % (new_split_str, '|'), packed_data)
-
-        html = jsunpack.unpack(packed_data)
-
-        html = html.replace('\\\\', '\\')
-
-        html = re.search('o\.\$\(o\.\$\((.*?)\)\(\)\)\(\);', html)
-
-
-        s1 = html.group(1)
-        s1 = s1.replace(' ', '')
-        s1 = s1.replace('(![]+"")', 'false')
-        s3 = ''
-        for s2 in s1.split('+'):
-            if s2.startswith('o.'):
-                s3 += str(O[s2[2:]])
-            elif '[' in s2 and ']' in s2:
-                key = s2[s2.find('[') + 3:-1]
-                s3 += s2[O[key]]
-            else:
-                s3 += s2[1:-1]
-
-        s3 = s3.replace('\\\\', '\\')
-        s3 = s3.decode('unicode_escape')
-        s3 = s3.replace('\\/', '/')
-        s3 = s3.replace('\\\\"', '"')
-        s3 = s3.replace('\\"', '"')
-
-
-        url = re.search('<source.+?src="([^"]+)', s3).group(1)
+        url = result['result']['url'] + '?mime=true'
         return url
     except:
         return
+
+
+def check(url):
+    try:
+        id = re.compile('//.+?/(?:embed|f)/([0-9a-zA-Z-_]+)').findall(url)[0]
+        url = 'https://openload.co/embed/%s/' % id
+
+        result = client.request(url)
+        if result == None: return False
+        if '>We are sorry!<' in result: return False
+        return True
+    except:
+        return False
 
 

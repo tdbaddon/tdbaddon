@@ -19,7 +19,7 @@
 '''
 
 
-import re,urllib
+import re,urllib,time
 from resources.lib.libraries import client
 from resources.lib.libraries import captcha
 
@@ -28,6 +28,8 @@ def resolve(url):
     try:
         result = client.request(url)
 
+        if '>File Not Found<' in result: raise Exception()
+
         post = {}
         f = client.parseDOM(result, 'Form', attrs = {'action': ''})
         k = client.parseDOM(f, 'input', ret='name', attrs = {'type': 'hidden'})
@@ -35,7 +37,7 @@ def resolve(url):
         post.update({'method_free': 'Free Download'})
         post = urllib.urlencode(post)
 
-        result = client.request(url, post=post)
+        result = client.request(url, post=post, close=False)
 
         post = {}
         f = client.parseDOM(result, 'Form', attrs = {'action': '' })
@@ -46,7 +48,12 @@ def resolve(url):
         except: pass
         post = urllib.urlencode(post)
 
-        result = client.request(url, post=post)
+        for i in range(0, 10):
+            try:
+                result = client.request(url, post=post, close=False)
+                if not '>File Download Link Generated<' in result: raise Exception()
+            except:
+                time.sleep(1)
 
         url = client.parseDOM(result, 'a', ret='onClick')
         url = [i for i in url if i.startswith('window.open')][0]
@@ -54,4 +61,5 @@ def resolve(url):
         return url
     except:
         return
+
 

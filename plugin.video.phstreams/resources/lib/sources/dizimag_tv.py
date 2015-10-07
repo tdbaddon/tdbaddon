@@ -79,50 +79,49 @@ class source:
 
             if url == None: return sources
 
-            s, e = re.compile('/(.+?)/(\d+)').findall(url)[0]
-
             sources_url = urlparse.urljoin(self.base_link, url)
 
             result = client.source(sources_url)
 
-            links = client.parseDOM(result, 'a', ret='onclick', attrs = {'class': 'alterlink'})
+            links = client.parseDOM(result, 'a', ret='href', attrs = {'class': 'alterlink'})
+            links = [i for i in links if not i.endswith('=0')]
 
             for link in links:
                 try:
-                    b = re.compile('(\d+)').findall(link)[0]
+                    url = sources_url + link
 
-                    host = re.compile("'(.+?)'").findall(link)[0]
+                    result = client.source(url, close=False)
+                    result = re.compile('<script[^>]*>(.*?)</script>', re.DOTALL).findall(result)
+                    result = [re.compile('var\s+kaynaklar\s*=\s*\[([^]]+)').findall(i) for i in result]
+                    result = [i[0] for i in result if len(i) > 0]
+                    result = [re.compile('file\s*:\s*"([^"]+)"\s*,\s*label\s*:\s*"(\d+)p?"').findall(i) for i in result]
+                    result = [i for i in result if len(i) > 0][0]
 
-                    if host == 'Roosy':
-                        type = host
-                        a = 'awQa5s14d5s6s12s'
-                        dmg = self.vdmg_link
-                    else:
-                        url = urlparse.urljoin(self.base_link, self.give_link)
-                        post = urllib.urlencode({'i': b, 'n': host, 'p': 0})
-                        result = client.source(url, post=post, headers=self.headers, close=False)
-                        result = json.loads(result)
+                    try: 
+                        url = [i for i in result if not 'google' in i[0]]
+                        url = [('%s|User-Agent=%s&Referer=%s' % (i[0].decode('unicode_escape'), urllib.quote_plus(client.agent()), urllib.quote_plus(sources_url)), i[1]) for i in url]
 
-                        type = result['p']['tur']
-                        a = result['p']['c']
-                        dmg = self.idmg_link
+                        try: sources.append({'source': 'Dizimag', 'quality': '1080p', 'provider': 'Dizimag', 'url': [i[0] for i in url if i[1] == '1080'][0]})
+                        except: pass
+                        try: sources.append({'source': 'Dizimag', 'quality': 'HD', 'provider': 'Dizimag', 'url': [i[0] for i in url if i[1] == '720'][0]})
+                        except: pass
+                        try: sources.append({'source': 'Dizimag', 'quality': 'SD', 'provider': 'Dizimag', 'url': [i[0] for i in url if i[1] == '480'][0]})
+                        except: sources.append({'source': 'Dizimag', 'quality': 'SD', 'provider': 'Dizimag', 'url': [i[0] for i in url if i[1] == '360'][0]})
+                    except:
+                        pass
 
-                    url = dmg % (type, a, b, s, e, int(time.time() * 1000))
-                    url = urlparse.urljoin(self.base_link, url)
+                    try: 
+                        url = [i for i in result if 'google' in i[0]]
 
-                    result = client.source(url, headers=self.headers, close=False)
-                    result = result.replace('\n', '')
+                        try: sources.append({'source': 'GVideo', 'quality': '1080p', 'provider': 'Dizimag', 'url': [i[0] for i in url if i[1] == '1080'][0]})
+                        except: pass
+                        try: sources.append({'source': 'GVideo', 'quality': 'HD', 'provider': 'Dizimag', 'url': [i[0] for i in url if i[1] == '720'][0]})
+                        except: pass
+                        try: sources.append({'source': 'GVideo', 'quality': 'SD', 'provider': 'Dizimag', 'url': [i[0] for i in url if i[1] == '480'][0]})
+                        except: sources.append({'source': 'GVideo', 'quality': 'SD', 'provider': 'Dizimag', 'url': [i[0] for i in url if i[1] == '360'][0]})
+                    except:
+                        pass
 
-                    url = re.compile('(var\s+kaynaklar\s*=\s*.+)').findall(result)[0]
-                    url = re.compile('file *: *"(.+?)".+?label *: *"(.+?)"').findall(url)
-                    url = [('%s|User-Agent=%s&Referer=%s' % (i[0].decode('unicode_escape'), urllib.quote_plus(client.agent()), urllib.quote_plus(sources_url)), i[1]) for i in url]
-
-                    try: sources.append({'source': 'Dizimag', 'quality': '1080p', 'provider': 'Dizimag', 'url': [i[0] for i in url if i[1] == '1080p'][0]})
-                    except: pass
-                    try: sources.append({'source': 'Dizimag', 'quality': 'HD', 'provider': 'Dizimag', 'url': [i[0] for i in url if i[1] == '720p'][0]})
-                    except: pass
-                    try: sources.append({'source': 'Dizimag', 'quality': 'SD', 'provider': 'Dizimag', 'url': [i[0] for i in url if i[1] == '480p'][0]})
-                    except: sources.append({'source': 'Dizimag', 'quality': 'SD', 'provider': 'Dizimag', 'url': [i[0] for i in url if i[1] == '360p'][0]})
                 except:
                     pass
 
@@ -132,7 +131,15 @@ class source:
 
 
     def resolve(self, url):
-        return url
+        try:
+            if not 'google' in url: return url
+            if url.startswith('stack://'): return url
 
+            url = client.request(url, output='geturl')
+            if 'requiressl=yes' in url: url = url.replace('http://', 'https://')
+            else: url = url.replace('https://', 'http://')
+            return url
+        except:
+            return
 
 

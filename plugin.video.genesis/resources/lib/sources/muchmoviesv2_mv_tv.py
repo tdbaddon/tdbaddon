@@ -22,6 +22,7 @@
 import re,urllib,urlparse
 
 from resources.lib.libraries import cleantitle
+from resources.lib.libraries import cloudflare
 from resources.lib.libraries import client
 
 
@@ -36,7 +37,7 @@ class source:
             query = self.search_link % urllib.quote(title)
             query = urlparse.urljoin(self.base_link, query)
 
-            result = client.source(query)
+            result = cloudflare.source(query)
 
             title = cleantitle.movie(title)
             years = ['%s' % str(year), '%s' % str(int(year)+1), '%s' % str(int(year)-1)]
@@ -74,7 +75,7 @@ class source:
             query = self.search_link % urllib.quote(tvshowtitle)
             query = urlparse.urljoin(self.base_link, query)
 
-            result = client.source(query)
+            result = cloudflare.source(query)
 
             tvshowtitle = cleantitle.tv(tvshowtitle)
             season = '%01d' % int(season)
@@ -116,7 +117,7 @@ class source:
             url = urlparse.urljoin(self.base_link, url)
             url = urlparse.urljoin(url, 'watching.html')
 
-            result = client.source(url)
+            result = cloudflare.source(url)
 
             try: quality = client.parseDOM(result, 'span', attrs = {'class': 'quality'})[0]
             except: quality = 'HD'
@@ -150,7 +151,7 @@ class source:
         try:
             idx = int(re.compile('/(\d+)').findall(url)[-1])
 
-            result = client.request(url)
+            result = cloudflare.request(url)
 
             url = client.parseDOM(result, 'item')[idx]
             url = re.compile("file *= *[\'|\"](.+?)[\'|\"]").findall(url)

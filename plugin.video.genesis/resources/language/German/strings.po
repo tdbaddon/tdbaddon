@@ -2,13 +2,15 @@
 # Addon id: plugin.video.genesis
 # Addon Provider: Genesis
 # Translators:
-# Christian Klippel <ck@atelier-klippel.de>, 2015
+# Translators:
+# Christian Klippel, 2015
+# lambda81, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Genesis\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2015-09-09 16:18+0000\n"
-"Last-Translator: lambda81 <lambda.xbmc.addons@gmail.com>\n"
+"PO-Revision-Date: 2015-09-24 00:26+0000\n"
+"Last-Translator: lambda81\n"
 "Language-Team: German (http://www.transifex.com/tv-addons/genesis/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -244,6 +246,18 @@ msgctxt "#30097"
 msgid "Favourite TV"
 msgstr "Lieblings-TV"
 
+msgctxt "#30098"
+msgid "Downloads"
+msgstr "Downloads"
+
+msgctxt "#30099"
+msgid "Movies"
+msgstr "Filme"
+
+msgctxt "#30100"
+msgid "TV"
+msgstr "TV"
+
 msgctxt "#30111"
 msgid "[B]SETTINGS[/B] : General"
 msgstr "[B]EINSTELLUNGEN[/B] : Allgemein"
@@ -287,6 +301,10 @@ msgstr "[B]GENESIS[/B] : Zwischenspeiver leeren..."
 msgctxt "#30121"
 msgid "[B]GENESIS[/B] : Library"
 msgstr "[B]GENESIS[/B] : Bibliothek"
+
+msgctxt "#30122"
+msgid "[B]GENESIS[/B] : Downloads"
+msgstr "[B]GENESIS[/B] : Downloads"
 
 msgctxt "#30131"
 msgid "[B]LIBRARY[/B] : Settings"
@@ -1057,3 +1075,15 @@ msgstr "Hauptsprache"
 msgctxt "#30946"
 msgid "Secondary Language"
 msgstr "Nebensprache"
+
+msgctxt "#30950"
+msgid "Downloads"
+msgstr "Downloads"
+
+msgctxt "#30951"
+msgid "Movies"
+msgstr "Filme"
+
+msgctxt "#30952"
+msgid "TV"
+msgstr "TV"

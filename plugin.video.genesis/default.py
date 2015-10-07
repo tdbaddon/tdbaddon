@@ -130,6 +130,10 @@ elif action == 'myNavigator':
     from resources.lib.indexers import navigator
     navigator.navigator().genesis()
 
+elif action == 'downloadNavigator':
+    from resources.lib.indexers import navigator
+    navigator.navigator().downloads()
+
 elif action == 'toolNavigator':
     from resources.lib.indexers import navigator
     navigator.navigator().tools()
@@ -300,7 +304,7 @@ elif action == 'movieToLibrary':
 
 elif action == 'moviesToLibrary':
     from resources.lib.libraries import libtools
-    libtools.libmovies().range(url, query)
+    libtools.libmovies().range(url)
 
 elif action == 'tvshowToLibrary':
     from resources.lib.libraries import libtools
@@ -308,7 +312,7 @@ elif action == 'tvshowToLibrary':
 
 elif action == 'tvshowsToLibrary':
     from resources.lib.libraries import libtools
-    libtools.libtvshows().range(url, query)
+    libtools.libtvshows().range(url)
 
 elif action == 'updateLibrary':
     from resources.lib.libraries import libtools
@@ -325,6 +329,12 @@ elif action == 'resolve':
     control.addItem(handle=int(sys.argv[1]), url=url, listitem=control.item(name))
     control.directory(int(sys.argv[1]))
 
+elif action == 'download':
+    from resources.lib.sources import sources
+    from resources.lib.libraries import simpledownloader
+    url = sources().sourcesResolve(url, provider)
+    simpledownloader.download(name, image, url)
+
 elif action == 'play':
     from resources.lib.sources import sources
     sources().play(name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date, url)
@@ -335,7 +345,7 @@ elif action == 'sources':
 
 elif action == 'playItem':
     from resources.lib.sources import sources
-    sources().playItem(content, name, imdb, tvdb, url, source, provider)
+    sources().playItem(content, name, year, imdb, tvdb, source)
 
 elif action == 'alterSources':
     from resources.lib.sources import sources

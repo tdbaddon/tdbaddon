@@ -19,70 +19,27 @@
 '''
 
 
-import re
+import re,json,time
 from resources.lib.libraries import client
-from resources.lib.libraries import jsunpack
 
 
 def resolve(url):
     try:
-        O = {
-            '___': 0,
-            '$$$$': "f",
-            '__$': 1,
-            '$_$_': "a",
-            '_$_': 2,
-            '$_$$': "b",
-            '$$_$': "d",
-            '_$$': 3,
-            '$$$_': "e",
-            '$__': 4,
-            '$_$': 5,
-            '$$__': "c",
-            '$$_': 6,
-            '$$$': 7,
-            '$___': 8,
-            '$__$': 9,
-            '$_': "constructor",
-            '$$': "return",
-            '_$': "o",
-            '_': "u",
-            '__': "t",
-        }
+        id = re.compile('//.+?/(?:embed|f)/([0-9a-zA-Z-_]+)').findall(url)[0]
 
-
-        url = url.replace('/f/', '/embed/')
+        url = 'https://api.openload.io/1/file/dlticket?file=%s' % id
 
         result = client.request(url)
+        result = json.loads(result)
 
-        result = re.search('>\s*(eval\(function.*?)</script>', result, re.DOTALL).group(1)
+        time.sleep(result['result']['wait_time'])
 
-        result = jsunpack.unpack(result)
-        result = result.replace('\\\\', '\\')
+        url = 'https://api.openload.io/1/file/dl?file=%s&ticket=%s' % (id, result['result']['ticket'])
 
-        result = re.search('(O=.*?)(?:$|</script>)', result, re.DOTALL).group(1)
-        result = re.search('O\.\$\(O\.\$\((.*?)\)\(\)\)\(\);', result)
+        result = client.request(url)
+        result = json.loads(result)
 
-        s1 = result.group(1)
-        s1 = s1.replace(' ', '')
-        s1 = s1.replace('(![]+"")', 'false')
-        s3 = ''
-        for s2 in s1.split('+'):
-            if s2.startswith('O.'):
-                s3 += str(O[s2[2:]])
-            elif '[' in s2 and ']' in s2:
-                key = s2[s2.find('[') + 3:-1]
-                s3 += s2[O[key]]
-            else:
-                s3 += s2[1:-1]
-
-        s3 = s3.replace('\\\\', '\\')
-        s3 = s3.decode('unicode_escape')
-        s3 = s3.replace('\\/', '/')
-        s3 = s3.replace('\\\\"', '"')
-        s3 = s3.replace('\\"', '"')
-
-        url = re.search('<source\s+src="([^"]+)', s3).group(1)
+        url = result['result']['url'] + '?mime=true'
         return url
     except:
         return

@@ -27,7 +27,7 @@ from resources.lib import resolvers
 
 class source:
     def __init__(self):
-        self.base_link = 'http://mvsnap.com/'
+        self.base_link = 'http://mvsnap.com'
         self.search_link = '/v1/api/search?query=%s'
 
 
@@ -99,7 +99,14 @@ class source:
 
             result = client.parseDOM(result, 'select', attrs = {'id': 'myDropdown'})[0]
             result = zip(client.parseDOM(result, 'option', ret='value'), client.parseDOM(result, 'option'))
-            result = [i[0] for i in result if query.endswith(i[1]) or query == ''][0]
+            result = [i[0] for i in result if i[1].endswith(query) or query == ''][0]
+
+            direct = re.compile('(.+)[|](.+?)[,]').findall(result)
+
+            if len(direct) > 0:
+                quality = 'HD' if 'hd' in direct[0][0].lower()  else 'SD'
+                sources.append({'source': 'GVideo', 'quality': quality, 'provider': 'MVsnap', 'url': direct[0][1]})
+                return sources
 
             url = urlparse.urljoin(self.base_link, result)
 

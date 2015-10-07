@@ -30,8 +30,12 @@ def resolve(url):
 
         result = client.request(url)
 
-        url = client.parseDOM(result, 'source', ret='src', attrs = {'type': 'video.+?'})[0]
+        #url = client.parseDOM(result, 'source', ret='src', attrs = {'type': 'video.+?'})[0]
+        url = re.compile('type *: *[\'|\"]video/.+?[\'|\"].+?src *: *[\'|\"](.+?)[\'|\"]').findall(result)[0]
+
         return url
     except:
         return
+
+
 

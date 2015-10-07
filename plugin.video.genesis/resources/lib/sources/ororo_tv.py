@@ -29,7 +29,9 @@ from resources.lib.libraries import client
 class source:
     def __init__(self):
         self.base_link = 'http://ororo.tv'
-        self.sign_link = 'http://ororo.tv/users/sign_in'
+        self.sign_link = 'http://ororo.tv/en/users/sign_in'
+        self.cookie = None
+        self.lang_cookie = 'locale=en; nl=true'
         self.user = control.setting('ororo_user')
         self.password = control.setting('ororo_password')
         self.post = {'user[email]': self.user, 'user[password]': self.password, 'user[remember_me]': 1}
@@ -38,10 +40,12 @@ class source:
 
     def get_show(self, imdb, tvdb, tvshowtitle, year):
         try:
-            result = client.source(self.base_link)
+            url = self.base_link
+            result = client.source(url, cookie=self.lang_cookie)
+
             if not "'index show'" in str(result) and not (self.user == '' or self.password == ''):
-                cookie = client.source(self.sign_link, post=self.post, output='cookie')
-                result = client.source(self.base_link, cookie=cookie)
+                if self.cookie == None: self.cookie = client.source(self.sign_link, post=self.post, cookie=self.lang_cookie, output='cookie')
+                result = client.source(url, cookie='%s; %s' % (self.cookie, self.lang_cookie))
 
             result = client.parseDOM(result, 'div', attrs = {'class': 'index show'})
             result = [(client.parseDOM(i, 'a', attrs = {'class': 'name'})[0], client.parseDOM(i, 'span', attrs = {'class': 'value'})[0], client.parseDOM(i, 'a', ret='href')[0]) for i in result]
@@ -66,10 +70,11 @@ class source:
 
             url = urlparse.urljoin(self.base_link, url)
 
-            result = client.source(url)
+            result = client.source(url, cookie=self.lang_cookie)
+
             if not 'menu season-tabs' in str(result) and not (self.user == '' or self.password == ''):
-                cookie = client.source(self.sign_link, post=self.post, output='cookie')
-                result = client.source(url, cookie=cookie)
+                if self.cookie == None: self.cookie = client.source(self.sign_link, post=self.post, cookie=self.lang_cookie, output='cookie')
+                result = client.source(url, cookie='%s; %s' % (self.cookie, self.lang_cookie))
 
             result = client.parseDOM(result, 'a', ret='data-href', attrs = {'href': '#%01d-%01d' % (int(season), int(episode))})[0]
 
@@ -101,10 +106,11 @@ class source:
 
     def resolve(self, url):
         try:
-            result = client.request(url)
+            result = client.request(url, cookie=self.lang_cookie)
+
             if not 'my_video' in str(result) and not (self.user == '' or self.password == ''):
-                cookie = client.request(self.sign_link, post=self.post, output='cookie')
-                result = client.request(url, cookie=cookie)
+                if self.cookie == None: self.cookie = client.request(self.sign_link, post=self.post, cookie=self.lang_cookie, output='cookie')
+                result = client.request(url, cookie='%s; %s' % (self.cookie, self.lang_cookie))
 
             url = None
             try: url = client.parseDOM(result, 'source', ret='src', attrs = {'type': 'video/webm'})[0]
@@ -120,4 +126,5 @@ class source:
             return url
         except:
             return
+
 

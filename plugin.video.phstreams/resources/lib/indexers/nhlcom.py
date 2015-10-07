@@ -44,9 +44,10 @@ def nhlDirectory():
     items = json.loads(result)
     items = sorted(items, key=lambda k: k['est'])
 
-    addDirectoryItem(control.lang(30751).encode('utf-8'), 'Archived', 'nhlArchives', '0', '0')
-    addDirectoryItem(control.lang(30752).encode('utf-8'), '0', '0', '0', '0')
+    addDirectoryItem(control.lang(30751).encode('utf-8'), 'Scoreboard', 'nhlScoreboard', '0', '0')
+    addDirectoryItem(control.lang(30752).encode('utf-8'), 'Archived', 'nhlArchives', '0', '0')
     addDirectoryItem(control.lang(30753).encode('utf-8'), '0', '0', '0', '0')
+    addDirectoryItem(control.lang(30754).encode('utf-8'), '0', '0', '0', '0')
 
     for item in items:
         try:
@@ -56,6 +57,51 @@ def nhlDirectory():
 
             est = procTimezone(5, est)
             name = '%s at %s  [COLOR gold](%s)[/COLOR]  [COLOR red](%s)[/COLOR]' % (item['a'], item['h'], est.strftime('%H:%M'), est.strftime('%Y-%m-%d'))
+            url = str(item['id'])
+
+            addDirectoryItem(name, url, 'nhlStreams', '0', '0')
+        except:
+            pass
+
+    endDirectory()
+
+
+def nhlScoreboard():
+    dt = procTimezone(5)
+    datex = int(dt.strftime('%Y%m%d'))
+
+    url = 'http://live.nhl.com/GameData/Scoreboard.json'
+
+    result = client.request(url)
+
+    items = json.loads(result)
+    items = items['games']
+
+    for item in items:
+        try:
+            est = item['longStartTime']
+            est = re.compile('(\d{2})/(\d{2})/(\d{4}) (.+)').findall(est)[0]
+            est = '%s%s%s %s' % (est[2], est[0], est[1], est[3])
+
+            item.update({'est': est})
+        except:
+            pass
+
+    items = sorted(items, key=lambda k: k['est'])[::-1]
+
+    for item in items:
+        try:
+            try: est = datetime.datetime.strptime(item['est'], '%Y%m%d %H:%M:%S')
+            except: est = re.findall('(\d{4})(\d{2})(\d{2}) (\d*:\d*)', item['est'])[0]
+
+            try: date = int(est.strftime('%Y%m%d'))
+            except: date = int(est[0]+est[1]+est[2])
+
+            if not date <= datex: raise Exception()
+
+            try: name = '%s at %s  [COLOR gold](%s)[/COLOR]  [COLOR red](%s)[/COLOR]' % (item['awayTeamName'], item['homeTeamName'], (procTimezone(5, est)).strftime('%H:%M'), (procTimezone(5, est)).strftime('%Y-%m-%d'))
+            except: name = '%s at %s  [COLOR gold](%s)[/COLOR]  [COLOR red](%s-%s-%s)[/COLOR]' % (item['awayTeamName'], item['homeTeamName'], est[3], est[0], est[1], est[2])
+
             url = str(item['id'])
 
             addDirectoryItem(name, url, 'nhlStreams', '0', '0')
@@ -77,12 +123,17 @@ def nhlArchives():
 
     for item in items:
         try:
-            est = datetime.datetime.strptime(item['est'], '%Y%m%d %H:%M:%S')
-            date = int(est.strftime('%Y%m%d'))
+            try: est = datetime.datetime.strptime(item['est'], '%Y%m%d %H:%M:%S')
+            except: est = re.findall('(\d{4})(\d{2})(\d{2}) (\d*:\d*)', item['est'])[0]
+
+            try: date = int(est.strftime('%Y%m%d'))
+            except: date = int(est[0]+est[1]+est[2])
+
             if not date <= datex: raise Exception()
 
-            est = procTimezone(5, est)
-            name = '%s at %s  [COLOR gold](%s)[/COLOR]  [COLOR red](%s)[/COLOR]' % (item['a'], item['h'], est.strftime('%H:%M'), est.strftime('%Y-%m-%d'))
+            try: name = '%s at %s  [COLOR gold](%s)[/COLOR]  [COLOR red](%s)[/COLOR]' % (item['a'], item['h'], (procTimezone(5, est)).strftime('%H:%M'), (procTimezone(5, est)).strftime('%Y-%m-%d'))
+            except: name = '%s at %s  [COLOR gold](%s)[/COLOR]  [COLOR red](%s-%s-%s)[/COLOR]' % (item['a'], item['h'], est[3], est[0], est[1], est[2])
+
             url = str(item['id'])
 
             addDirectoryItem(name, url, 'nhlStreams', '0', '0')
@@ -152,7 +203,7 @@ def nhlStreams(name, url):
         for i in l2: addDirectoryItem(i['name'], i['url'], 'nhlResolve', i['image'], '0', isFolder=False)
 
     if l1 == [] and l2 == []:
-        return control.infoDialog(control.lang(30754).encode('utf-8'), name, addonIcon)
+        return control.infoDialog(control.lang(30755).encode('utf-8'), name, addonIcon)
 
     endDirectory()
 
@@ -177,7 +228,7 @@ def nhlResolve(url):
 
         q = [i[0] for i in result]
         u = [i[1] for i in result]
-        select = control.selectDialog(q, control.lang(30755).encode('utf-8'))
+        select = control.selectDialog(q, control.lang(30756).encode('utf-8'))
         if select == -1: return
         url = u[select]
 

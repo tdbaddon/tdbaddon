@@ -20,7 +20,7 @@ User_Agent = 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, li
 
 
 baseurl1 = 'http://kodimediaportal.ml/smf/index.php?board=2.0'
-
+baseurl2 = 'https://www.youtube.com'
 
 #http://watch-free-movies-streaming.com/
 baseurl101 = 'http://vodlocker.tv'
@@ -33,7 +33,7 @@ baseurl102 = 'http://www.alluc.com'
 
 
 baseurl350 = 'http://documentaryaddict.com/'
-
+baseurl450 = 'http://concert.ga'
 
 
 #http://misspremieretv.com/2014/09/
@@ -57,11 +57,12 @@ baseurl350 = 'http://documentaryaddict.com/'
 ##https://www.youtube.com/playlist?list=PLR8X0-qEtOCf8aeA-6bEBHNNwZv0GqvyZ
 ##https://www.youtube.com/user/TheRealConcertKing/playlists?view=1&sort=dd real concert king
 ##https://www.youtube.com/user/GreenDayConcerts/playlists green day
-
-
-
-
-
+##http://abelgaloismuse.blogspot.co.uk/p/concerts-full.html
+baseurl500 = 'http://newsoapcity.blogspot.co.uk'
+baseurl510 = 'http://uksoapshare.blogspot.co.uk'
+##http://tvlog.link/ benders
+##http://tv-show-online.sx/
+##http://www.cbc.ca/
 
 ##http://luv-movies.com/
 ##http://primeflicks.me/ looks like vodx
@@ -98,6 +99,10 @@ baseurl5002 = 'http://iptv.filmover.com'
 baseurl5010 = 'http://www.iptvsharing.com/2015/07/sport-klub-iptv-links-m3u8.html'
 baseurl5020 = 'http://67.159.5.242/ip-1/encoded/Oi8vcGFzdGViaW4uY29tL2hxNlBKWVpS'
 baseurl5030 = 'http://free-links-iptv.blogspot.co.uk'
+##http://www.iptvsportt.com/
+##http://www.ramalin.com/
+##http://iptvplaylists.com/category/m3u/
+
 
 
 
@@ -106,6 +111,9 @@ def INDEX():
         addDir('[COLOR cyan]pandamovie.me[/COLOR]','url',400,art+'panda.png',art+'f1.jpg','')
         addDir('[COLOR cyan]www.badassmovies4u.com[/COLOR]',baseurl150,150,art+'bad.png',art+'f1.jpg','')
         addDir('[COLOR cyan]documentaryaddict.com[/COLOR]',baseurl350,350,art+'da.png',art+'f1.jpg','')
+        addDir('[COLOR cyan]newsoapcity.blogspot.co.uk[/COLOR]',baseurl500,500,art+'wls.png',art+'f1.jpg','')
+        addDir('[COLOR cyan]uksoapshare.blogspot.co.uk[/COLOR]',baseurl510,510,art+'wls',art+'f1.jpg','')
+        #addDir('[COLOR cyan]Concerts[/COLOR]','url',3,art+'concert.png',art+'f1.jpg','')
         #addDir('[COLOR cyan]moviesearth.net[/COLOR]','url',250,'',art+'f1.jpg','')
         addDir('[COLOR cyan]www.filmovizija.in[/COLOR]',baseurl150,50,'',art+'f1.jpg','')
         addDir('[COLOR cyan]www.allcinemamovies.com[/COLOR]','url',200,'',art+'f1.jpg','')
@@ -114,7 +122,10 @@ def INDEX():
         addDir('[COLOR cyan]IPTV[/COLOR]','url',5000,'',art+'f1.jpg','')
         
         
-
+def CONINDEX():
+        #addDir('[COLOR cyan]#Concert[/COLOR]',baseurl450+'/channel/UCAsanw03kzGRhAG4AvjVA_Q/playlists?sort=dd&view=1',451,'',art+'f1.jpg','')
+        addDir('[COLOR cyan]concert.ga[/COLOR]','url',450,art+'concert.png',art+'f1.jpg','')
+        #addDir('[COLOR cyan]HD Movies[/COLOR]',baseurl400+'/watch-hd-movies-online-free',401,'',art+'f1.jpg','')
 ############################################################################################################################
 
 ############################################################################################################################
@@ -697,7 +708,7 @@ def BASE350INDEX(url):
 def BASE350L(name,url,iconimage):
         link = OPEN_URL(url)
         link = link.encode('ascii', 'ignore')
-        match=re.compile('<embed src="(.+?)".+?></embed>').findall(link)
+        match=re.compile("<meta content='(.+?)' itemprop='embedUrl'>").findall(link)
         for url in match:
                 url = url.replace('http://www.youtube.com/v/','plugin://plugin.video.youtube/play/?video_id=').replace('http://vimeo.com/moogaloop.swf?clip_id=','plugin://plugin.video.vimeo/play/?video_id=')
                 url = url.replace('../','').replace("&amp;","&")
@@ -778,7 +789,6 @@ def BASE400GENRE(url):
         for name,url in match:
                 ok = '-movies-online-free'
                 if ok in url:
-                        print url
                         addDir('[COLOR cyan]%s[/COLOR]' %name,url,401,art+'panda.png',art+'f1.jpg','')
 
 
@@ -787,9 +797,8 @@ def BASE400YEAR(url):
         link = OPEN_URL(url)
         match=re.compile('<li><a title="(.+?)" href="(.+?)">.+?</a></li>').findall(link)
         for name,url in match:
-                ok = 'watch-movies-of- '
+                ok = 'watch-movies-of-'
                 if ok in url:
-                        print url
                         addDir('[COLOR cyan]%s[/COLOR]' %name,url,401,art+'panda.png',art+'f1.jpg','')
 
 
@@ -832,6 +841,139 @@ def BASE400SEARCH(url):
         except:
                 xbmc.executebuiltin("XBMC.Notification([COLOR gold][B]SORRY NO MATCHES FOUND[/B][/COLOR],,7000,"")")
 
+
+
+
+
+############################################################################################################################
+############################################################################################################################
+
+
+
+
+def BASE450():
+        addDir('[COLOR cyan]Recently Added[/COLOR]',baseurl450+'?so=rav',451,art+'concert.png',art+'f1.jpg','')
+        addDir('[COLOR cyan]Most Viewed[/COLOR]',baseurl450+'?so=mvv',451,art+'concert.png',art+'f1.jpg','')
+        addDir('[COLOR cyan]Top Rated[/COLOR]',baseurl450+'?so=trv',451,art+'concert.png',art+'f1.jpg','')
+        addDir('[COLOR cyan]Search[/COLOR]',baseurl450+'?so=trv',451,art+'concert.png',art+'f1.jpg','')
+
+
+
+
+def BASE450INDEX(url):
+        link = OPEN_URL(url)
+        link = link.encode('ascii', 'ignore').decode('ascii')
+        all_videos = regex_get_all(link, '<div class="video">', '<div class="stats">')
+        try:
+                dis=re.compile('<h1 id="page_title">\n(.+?)</h1>').findall(link)[0]
+                addLink('[COLOR cyan]%s[/COLOR]' %dis,'url','',art+'concert.png',art+'f4.jpg','')
+        except: pass
+        for a in all_videos:
+                name = regex_from_to(a, 'title="', '"').replace("&amp;","&").replace('&#39;',"'").replace('&quot;','"').replace('&#8230;','...')
+                name = name.replace('&#8211;','-').replace('&#8212;','--').replace("&#8217;","'").replace('&#8220;','"').replace('&#8221;','"')
+                url = regex_from_to(a, 'href="', '"').replace("&amp;","&")
+                icon = regex_from_to(a, '<img src="', '"').replace("&amp;","&")
+                description = regex_from_to(a, '<p>', '</p>').replace("&amp;","&").replace('&#39;',"'").replace('&quot;','"').replace('&#8230;','...')
+                description = description.replace('&#8211;','-').replace('&#8212;','--').replace("&#8217;","'").replace('&#8220;','"').replace('&#8221;','"')
+                addDir('[COLOR white]%s[/COLOR]' %name,url,452,icon,icon,description)
+        try:
+                current=re.compile('<div class="pagination"><span>(.+?)</span>').findall(link)[0]
+                addLink('[COLOR cyan]%s[/COLOR]' %current,'url','',art+'concert.png',art+'f4.jpg','')
+        except: pass
+        try:
+                nextp=re.compile('<a class="next page-numbers" href="(.+?)">').findall(link)[0]
+                addDir('[COLOR cyan]Next Page>>>[/COLOR]',nextp,451,art+'concert.png',art+'f4.jpg','')
+                match=re.compile("<a class='page-numbers' href='(.+?)'>(.+?)</a>").findall(link)
+                for url, name in match:
+                      addDir('[COLOR cyan]Page %s[/COLOR]' %name,url,451,art+'concert.png',art+'f4.jpg','')  
+        except: pass
+        setView('movies', 'movie-view')
+
+
+
+def BASE450L(name,url,description):
+        link = OPEN_URL(url)
+        link = link.encode('ascii', 'ignore').decode('ascii')
+        url=re.compile('<iframe .+?src="(.+?)".+?>').findall(link)[0]
+        url = url.replace('http://www.youtube.com/embed/','plugin://plugin.video.youtube/play/?video_id=')
+        if 'youtube' in url:
+                url = url.replace('http://www.youtube.com/embed/','plugin://plugin.video.youtube/play/?video_id=')
+                addDir(name,url,1,'','','')
+                print url
+        else:
+                url = urlresolver.resolve(url)
+                ok=True
+                liz=xbmcgui.ListItem(name, iconImage=icon,thumbnailImage=icon); liz.setInfo( type="Video", infoLabels={ "Title": name } )
+                ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=str(url),listitem=liz)
+                xbmc.Player().play(str(url),liz,False)
+
+
+
+
+############################################################################################################################
+############################################################################################################################
+
+
+
+
+def BASE500(url):
+        link = OPEN_URL(url)
+        link = link.encode('ascii', 'ignore').decode('ascii')
+        match=re.compile("<a dir='ltr' href='(.+?)'>(.+?)</a>").findall(link)
+        for url, name in match:
+                if 'Days' not in name:
+                        icon = art+name+'.jpg'
+                        addDir('[COLOR cyan]%s[/COLOR]' %name,url,501,icon,art+'f1.jpg','')
+        xbmc.executebuiltin("Container.SetViewMode(500)")
+
+
+
+def BASE500INDEX(url):
+        link = OPEN_URL(url)
+        link = link.encode('ascii', 'ignore').decode('ascii')
+        all_videos = regex_get_all(link, '<div style="text-align: left;">', '</h2>')
+        for a in all_videos:
+                name = regex_from_to(a, "<a href='.+?'>", "</a>").replace("&amp;","&").replace('&#39;',"'").replace('&quot;','"').replace('&#8230;','...')
+                name = name.replace('&#8211;','-').replace('&#8212;','--').replace("&#8217;","'").replace('&#8220;','"').replace('&#8221;','"')
+                name = name.replace('Watch Online','').replace('HD','')
+                url = regex_from_to(a, '<iframe .+?src="', '"></iframe>').replace("&amp;","&")
+                icon = regex_from_to(a, '<img .+?src="', '"').replace("&amp;","&")
+                addDir('[COLOR white]%s[/COLOR]' %name,url,1,icon,fanart,'')
+        try:
+                nextp=re.compile("<a class='blog-pager-older-link' href='(.+?)'").findall(link)[0]
+                addDir('[COLOR cyan]Next Page>>>[/COLOR]',nextp,501,art+'wls.png',art+'f1.jpg','')
+        except: pass
+        xbmc.executebuiltin("Container.SetViewMode(500)")
+
+
+
+
+def BASE510(url):
+        link = OPEN_URL(url)
+        link = link.encode('ascii', 'ignore').decode('ascii')
+        match=re.compile("<a dir='ltr' href='(.+?)'>(.+?)</a>").findall(link)
+        for url, name in match:
+                try:
+                        link = OPEN_URL(url)
+                        icon = re.compile("<meta content=\'(.+?)\' itemprop=\'image_url\'/>\n<meta content=\'.+?\' itemprop=\'blogId\'/>").findall(link)[0] 
+                        addDir('[COLOR cyan]%s[/COLOR]' %name,url,511,icon,art+'f1.jpg','')
+                except: pass
+
+
+
+
+def BASE510L(url,iconimage):
+        link = OPEN_URL(url)
+        link = link.encode('ascii', 'ignore').decode('ascii')
+        match=re.compile('<a href="(.+?)" target=_blank>(.+?)</a><br />').findall(link)
+        for url, name in match:
+                if 'cloudy' in url:
+                        name = name.replace('.x264','').replace('-SS.mp4','')
+                        addDir('[COLOR white]%s[/COLOR]' %name,url,1,iconimage,art+'f1.jpg','')
+        try:
+                nextp=re.compile("<a class='blog-pager-older-link' href='(.+?)'").findall(link)[0]
+                addDir('[COLOR cyan]Next Page>>>[/COLOR]',nextp,511,art+'wls.png',art+'f1.jpg','')
+        except: pass
 
 
 
@@ -952,11 +1094,11 @@ def ALLUCLINK(url):
 ############################################################################################################################
 
 def IPTV():
-        addDir('[COLOR cyan]www.hack-sat.com',baseurl5001,5001,'',art+'f1.jpg','')
-        addDir('[COLOR cyan]iptv.filmover.com',baseurl5002,5002,'',art+'f1.jpg','')
+        addDir('[COLOR cyan]www.hack-sat.com[/COLOR]',baseurl5001,5001,'',art+'f1.jpg','')
+        addDir('[COLOR cyan]iptv.filmover.com[/COLOR]',baseurl5002,5002,'',art+'f1.jpg','')
         #addDir('www.iptvsharing.com/2015/07/sport-klub-iptv-links-m3u8.html',baseurl5010,5003,'','','')
         #addDir('www.iptvsharing.com/2015/07/sport-klub-iptv-links-m3u8.html',baseurl5020,5003,'','','')
-        addDir('[COLOR cyan]free-links-iptv.blogspot.co.uk',baseurl5030,5030,'',art+'f1.jpg','')
+        addDir('[COLOR cyan]free-links-iptv.blogspot.co.uk[/COLOR]',baseurl5030,5030,'',art+'f1.jpg','')
         
 
 def BASE5001(url):
@@ -1151,7 +1293,11 @@ def addDir2(name,url,mode,iconimage,itemcount):
                 liz=xbmcgui.ListItem(name, iconImage=icon, thumbnailImage=icon)
                 liz.setInfo( type="Video", infoLabels={ "Title": name } )
                 liz.setProperty('fanart_image', fanart)
-                ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=isFolder)
+                if mode==1:
+                        liz.setProperty("IsPlayable","true")
+                        ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=False,totalItems=itemcount)
+                else:
+                        ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True,totalItems=itemcount)
                 return ok
 
 
@@ -1242,6 +1388,9 @@ elif mode==1:
 
 elif mode==2:
         PLAYTUBE(url)
+
+elif mode==3:
+        CONINDEX()
 
 elif mode==50:
         BASE50(url)
@@ -1392,6 +1541,27 @@ elif mode==404:
 
 elif mode==405:
         BASE400SEARCH(url)
+
+elif mode==450:
+        BASE450()
+
+elif mode==451:
+        BASE450INDEX(url)
+
+elif mode==452:
+        BASE450L(name,url,description)
+
+elif mode==500:
+        BASE500(url)
+
+elif mode==501:
+        BASE500INDEX(url)
+
+elif mode==510:
+        BASE510(url)
+
+elif mode==511:
+        BASE510L(url,iconimage)
 
 elif mode==4000:
         KMPINDEX(url)

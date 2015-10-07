@@ -1,1056 +1,1104 @@
 # Addon Name: Genesis
 # Addon id: plugin.video.genesis
 # Addon Provider: Genesis
+# Translators:
+# Translators:
+# Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: Genesis\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Language-Team: English\n"
+"PO-Revision-Date: 2015-10-05 02:21+0000\n"
+"Last-Translator: lambda81\n"
+"Language-Team: English (http://www.transifex.com/tv-addons/genesis/language/en/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Language: en\n"
-
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgctxt "#30001"
 msgid "Movies"
-msgstr ""
+msgstr "Movies"
 
 msgctxt "#30002"
 msgid "TV Shows"
-msgstr ""
+msgstr "TV Shows"
 
 msgctxt "#30003"
 msgid "Channels"
-msgstr ""
+msgstr "Channels"
 
 msgctxt "#30004"
 msgid "My Genesis"
-msgstr ""
+msgstr "My Genesis"
 
 msgctxt "#30005"
 msgid "Latest Movies"
-msgstr ""
+msgstr "Latest Movies"
 
 msgctxt "#30006"
 msgid "Latest Episodes"
-msgstr ""
+msgstr "Latest Episodes"
 
 msgctxt "#30007"
 msgid "TV Calendar"
-msgstr ""
+msgstr "TV Calendar"
 
 msgctxt "#30008"
 msgid "Tools"
-msgstr ""
+msgstr "Tools"
 
 msgctxt "#30009"
 msgid "Search"
-msgstr ""
+msgstr "Search"
 
 msgctxt "#30021"
 msgid "Genres"
-msgstr ""
+msgstr "Genres"
 
 msgctxt "#30022"
 msgid "Year"
-msgstr ""
+msgstr "Year"
 
 msgctxt "#30023"
 msgid "People"
-msgstr ""
+msgstr "People"
 
 msgctxt "#30024"
 msgid "Certificates"
-msgstr ""
+msgstr "Certificates"
 
 msgctxt "#30025"
 msgid "Featured"
-msgstr ""
+msgstr "Featured"
 
 msgctxt "#30026"
 msgid "People Watching"
-msgstr ""
+msgstr "People Watching"
 
 msgctxt "#30027"
 msgid "Most Popular"
-msgstr ""
+msgstr "Most Popular"
 
 msgctxt "#30028"
 msgid "Most Voted"
-msgstr ""
+msgstr "Most Voted"
 
 msgctxt "#30029"
 msgid "Box Office"
-msgstr ""
+msgstr "Box Office"
 
 msgctxt "#30030"
 msgid "Oscar Winners"
-msgstr ""
+msgstr "Oscar Winners"
 
 msgctxt "#30031"
 msgid "In Theaters"
-msgstr ""
+msgstr "In Theaters"
 
 msgctxt "#30032"
 msgid "Latest Movies"
-msgstr ""
+msgstr "Latest Movies"
 
 msgctxt "#30033"
 msgid "Favourites"
-msgstr ""
+msgstr "Favourites"
 
 msgctxt "#30034"
 msgid "People Search"
-msgstr ""
+msgstr "People Search"
 
 msgctxt "#30035"
 msgid "Search"
-msgstr ""
+msgstr "Search"
 
 msgctxt "#30051"
 msgid "Genres"
-msgstr ""
+msgstr "Genres"
 
 msgctxt "#30052"
 msgid "Year"
-msgstr ""
+msgstr "Year"
 
 msgctxt "#30053"
 msgid "Networks"
-msgstr ""
+msgstr "Networks"
 
 msgctxt "#30054"
 msgid "People Watching"
-msgstr ""
+msgstr "People Watching"
 
 msgctxt "#30055"
 msgid "Most Popular"
-msgstr ""
+msgstr "Most Popular"
 
 msgctxt "#30056"
 msgid "Airing today"
-msgstr ""
+msgstr "Airing today"
 
 msgctxt "#30057"
 msgid "Returning TV Shows"
-msgstr ""
+msgstr "Returning TV Shows"
 
 msgctxt "#30058"
 msgid "New TV Shows"
-msgstr ""
+msgstr "New TV Shows"
 
 msgctxt "#30059"
 msgid "Highly Rated"
-msgstr ""
+msgstr "Highly Rated"
 
 msgctxt "#30060"
 msgid "Most Voted"
-msgstr ""
+msgstr "Most Voted"
 
 msgctxt "#30061"
 msgid "TV Calendar"
-msgstr ""
+msgstr "TV Calendar"
 
 msgctxt "#30062"
 msgid "Latest Episodes"
-msgstr ""
+msgstr "Latest Episodes"
 
 msgctxt "#30063"
 msgid "Favourite Episodes"
-msgstr ""
+msgstr "Favourite Episodes"
 
 msgctxt "#30064"
 msgid "Favourites"
-msgstr ""
+msgstr "Favourites"
 
 msgctxt "#30065"
 msgid "People Search"
-msgstr ""
+msgstr "People Search"
 
 msgctxt "#30066"
 msgid "Search"
-msgstr ""
+msgstr "Search"
 
 msgctxt "#30081"
 msgid "[B]TRAKT[/B] : Collection"
-msgstr ""
+msgstr "[B]TRAKT[/B] : Collection"
 
 msgctxt "#30082"
 msgid "[B]TRAKT[/B] : Watchlist"
-msgstr ""
+msgstr "[B]TRAKT[/B] : Watchlist"
 
 msgctxt "#30083"
 msgid "[B]TRAKT[/B] : Featured"
-msgstr ""
+msgstr "[B]TRAKT[/B] : Featured"
 
 msgctxt "#30084"
 msgid "[B]TRAKT[/B] : Ratings"
-msgstr ""
+msgstr "[B]TRAKT[/B] : Ratings"
 
 msgctxt "#30085"
 msgid "[B]TRAKT[/B] : TV Collection"
-msgstr ""
+msgstr "[B]TRAKT[/B] : TV Collection"
 
 msgctxt "#30086"
 msgid "[B]TRAKT[/B] : TV Watchlist"
-msgstr ""
+msgstr "[B]TRAKT[/B] : TV Watchlist"
 
 msgctxt "#30087"
 msgid "[B]TRAKT[/B] : TV Featured"
-msgstr ""
+msgstr "[B]TRAKT[/B] : TV Featured"
 
 msgctxt "#30088"
 msgid "[B]TRAKT[/B] : TV Ratings"
-msgstr ""
+msgstr "[B]TRAKT[/B] : TV Ratings"
 
 msgctxt "#30089"
 msgid "[B]TRAKT[/B] : Progress"
-msgstr ""
+msgstr "[B]TRAKT[/B] : Progress"
 
 msgctxt "#30090"
 msgid "[B]TRAKT[/B] : Episodes"
-msgstr ""
+msgstr "[B]TRAKT[/B] : Episodes"
 
 msgctxt "#30091"
 msgid "[B]IMDB[/B] : Watchlist"
-msgstr ""
+msgstr "[B]IMDB[/B] : Watchlist"
 
 msgctxt "#30092"
 msgid "[B]IMDB[/B] : TV Watchlist"
-msgstr ""
+msgstr "[B]IMDB[/B] : TV Watchlist"
 
 msgctxt "#30093"
 msgid "Movie Lists"
-msgstr ""
+msgstr "Movie Lists"
 
 msgctxt "#30094"
 msgid "TV Show Lists"
-msgstr ""
+msgstr "TV Show Lists"
 
 msgctxt "#30095"
 msgid "Favourite Movies"
-msgstr ""
+msgstr "Favourite Movies"
 
 msgctxt "#30096"
 msgid "Favourite Episodes"
-msgstr ""
+msgstr "Favourite Episodes"
 
 msgctxt "#30097"
 msgid "Favourite TV"
-msgstr ""
+msgstr "Favourite TV"
+
+msgctxt "#30098"
+msgid "Downloads"
+msgstr "Downloads"
+
+msgctxt "#30099"
+msgid "Movies"
+msgstr "Movies"
+
+msgctxt "#30100"
+msgid "TV"
+msgstr "TV"
 
 msgctxt "#30111"
 msgid "[B]SETTINGS[/B] : General"
-msgstr ""
+msgstr "[B]SETTINGS[/B] : General"
 
 msgctxt "#30112"
 msgid "[B]SETTINGS[/B] : Accounts"
-msgstr ""
+msgstr "[B]SETTINGS[/B] : Accounts"
 
 msgctxt "#30113"
 msgid "[B]SETTINGS[/B] : Playback"
-msgstr ""
+msgstr "[B]SETTINGS[/B] : Playback"
 
 msgctxt "#30114"
 msgid "[B]SETTINGS[/B] : Subtitles"
-msgstr ""
+msgstr "[B]SETTINGS[/B] : Subtitles"
 
 msgctxt "#30115"
 msgid "[B]SOURCES[/B] : Movies"
-msgstr ""
+msgstr "[B]SOURCES[/B] : Movies"
 
 msgctxt "#30116"
 msgid "[B]SOURCES[/B] : TV"
-msgstr ""
+msgstr "[B]SOURCES[/B] : TV"
 
 msgctxt "#30117"
 msgid "[B]HOSTS[/B] : HD Priority"
-msgstr ""
+msgstr "[B]HOSTS[/B] : HD Priority"
 
 msgctxt "#30118"
 msgid "[B]HOSTS[/B] : SD Priority"
-msgstr ""
+msgstr "[B]HOSTS[/B] : SD Priority"
 
 msgctxt "#30119"
 msgid "[B]GENESIS[/B] : Clear sources..."
-msgstr ""
+msgstr "[B]GENESIS[/B] : Clear sources..."
 
 msgctxt "#30120"
 msgid "[B]GENESIS[/B] : Clear cache..."
-msgstr ""
+msgstr "[B]GENESIS[/B] : Clear cache..."
 
 msgctxt "#30121"
 msgid "[B]GENESIS[/B] : Library"
-msgstr ""
+msgstr "[B]GENESIS[/B] : Library"
+
+msgctxt "#30122"
+msgid "[B]GENESIS[/B] : Downloads"
+msgstr "[B]GENESIS[/B] : Downloads"
 
 msgctxt "#30131"
 msgid "[B]LIBRARY[/B] : Settings"
-msgstr ""
+msgstr "[B]LIBRARY[/B] : Settings"
 
 msgctxt "#30132"
 msgid "[B]GENESIS[/B] : Update folders..."
-msgstr ""
+msgstr "[B]GENESIS[/B] : Update folders..."
 
 msgctxt "#30133"
 msgid "[B]GENESIS[/B] : Movie folder..."
-msgstr ""
+msgstr "[B]GENESIS[/B] : Movie folder..."
 
 msgctxt "#30134"
 msgid "[B]GENESIS[/B] : TV folder..."
-msgstr ""
+msgstr "[B]GENESIS[/B] : TV folder..."
 
 msgctxt "#30135"
 msgid "[B]TRAKT[/B] : Import Collection..."
-msgstr ""
+msgstr "[B]TRAKT[/B] : Import Collection..."
 
 msgctxt "#30136"
 msgid "[B]TRAKT[/B] : Import Watchlist..."
-msgstr ""
+msgstr "[B]TRAKT[/B] : Import Watchlist..."
 
 msgctxt "#30137"
 msgid "[B]TRAKT[/B] : Import TV Collection..."
-msgstr ""
+msgstr "[B]TRAKT[/B] : Import TV Collection..."
 
 msgctxt "#30138"
 msgid "[B]TRAKT[/B] : Import TV Watchlist..."
-msgstr ""
+msgstr "[B]TRAKT[/B] : Import TV Watchlist..."
 
 msgctxt "#30139"
 msgid "[B]IMDB[/B] : Import Watchlist..."
-msgstr ""
+msgstr "[B]IMDB[/B] : Import Watchlist..."
 
 msgctxt "#30140"
 msgid "[B]IMDB[/B] : Import TV Watchlist..."
-msgstr ""
+msgstr "[B]IMDB[/B] : Import TV Watchlist..."
 
 msgctxt "#30151"
 msgid "Movies"
-msgstr ""
+msgstr "Movies"
 
 msgctxt "#30152"
 msgid "TV Shows"
-msgstr ""
+msgstr "TV Shows"
 
 msgctxt "#30153"
 msgid "People (Movies)"
-msgstr ""
+msgstr "People (Movies)"
 
 msgctxt "#30154"
 msgid "People (TV)"
-msgstr ""
+msgstr "People (TV)"
 
 msgctxt "#30191"
 msgid "Add to Library"
-msgstr ""
+msgstr "Add to Library"
 
 msgctxt "#30201"
 msgid "Search"
-msgstr ""
+msgstr "Search"
 
 msgctxt "#30202"
 msgid "Queue item"
-msgstr ""
+msgstr "Queue item"
 
 msgctxt "#30203"
 msgid "Auto-play"
-msgstr ""
+msgstr "Auto-play"
 
 msgctxt "#30204"
 msgid "Play using..."
-msgstr ""
+msgstr "Play using..."
 
 msgctxt "#30205"
 msgid "Movie information"
-msgstr ""
+msgstr "Movie information"
 
 msgctxt "#30206"
 msgid "Mark as watched"
-msgstr ""
+msgstr "Mark as watched"
 
 msgctxt "#30207"
 msgid "Mark as unwatched"
-msgstr ""
+msgstr "Mark as unwatched"
 
 msgctxt "#30208"
 msgid "Trakt Manager"
-msgstr ""
+msgstr "Trakt Manager"
 
 msgctxt "#30209"
 msgid "Add to favourites"
-msgstr ""
+msgstr "Add to favourites"
 
 msgctxt "#30210"
 msgid "Remove from favourites"
-msgstr ""
+msgstr "Remove from favourites"
 
 msgctxt "#30211"
 msgid "Add to Library"
-msgstr ""
+msgstr "Add to Library"
 
 msgctxt "#30212"
 msgid "Set Movies view"
-msgstr ""
+msgstr "Set Movies view"
 
 msgctxt "#30213"
 msgid "[I]Next Page[/I]"
-msgstr ""
+msgstr "[I]Next Page[/I]"
 
 msgctxt "#30231"
 msgid "Search"
-msgstr ""
+msgstr "Search"
 
 msgctxt "#30232"
 msgid "Queue item"
-msgstr ""
+msgstr "Queue item"
 
 msgctxt "#30233"
 msgid "TV show information"
-msgstr ""
+msgstr "TV show information"
 
 msgctxt "#30234"
 msgid "Mark as watched"
-msgstr ""
+msgstr "Mark as watched"
 
 msgctxt "#30235"
 msgid "Mark as unwatched"
-msgstr ""
+msgstr "Mark as unwatched"
 
 msgctxt "#30236"
 msgid "Trakt Manager"
-msgstr ""
+msgstr "Trakt Manager"
 
 msgctxt "#30237"
 msgid "Add to favourites"
-msgstr ""
+msgstr "Add to favourites"
 
 msgctxt "#30238"
 msgid "Remove from favourites"
-msgstr ""
+msgstr "Remove from favourites"
 
 msgctxt "#30239"
 msgid "Add to Library"
-msgstr ""
+msgstr "Add to Library"
 
 msgctxt "#30240"
 msgid "Set TV Shows view"
-msgstr ""
+msgstr "Set TV Shows view"
 
 msgctxt "#30241"
 msgid "[I]Next Page[/I]"
-msgstr ""
+msgstr "[I]Next Page[/I]"
 
 msgctxt "#30261"
 msgid "Queue item"
-msgstr ""
+msgstr "Queue item"
 
 msgctxt "#30262"
 msgid "TV show information"
-msgstr ""
+msgstr "TV show information"
 
 msgctxt "#30263"
 msgid "Mark as watched"
-msgstr ""
+msgstr "Mark as watched"
 
 msgctxt "#30264"
 msgid "Mark as unwatched"
-msgstr ""
+msgstr "Mark as unwatched"
 
 msgctxt "#30265"
 msgid "Trakt Manager"
-msgstr ""
+msgstr "Trakt Manager"
 
 msgctxt "#30266"
 msgid "Add to favourites"
-msgstr ""
+msgstr "Add to favourites"
 
 msgctxt "#30267"
 msgid "Remove from favourites"
-msgstr ""
+msgstr "Remove from favourites"
 
 msgctxt "#30268"
 msgid "Add to Library"
-msgstr ""
+msgstr "Add to Library"
 
 msgctxt "#30269"
 msgid "Set Seasons view"
-msgstr ""
+msgstr "Set Seasons view"
 
 msgctxt "#30270"
 msgid "Auto-play"
-msgstr ""
+msgstr "Auto-play"
 
 msgctxt "#30271"
 msgid "Play using..."
-msgstr ""
+msgstr "Play using..."
 
 msgctxt "#30272"
 msgid "Episode information"
-msgstr ""
+msgstr "Episode information"
 
 msgctxt "#30273"
 msgid "Set Episodes view"
-msgstr ""
+msgstr "Set Episodes view"
 
 msgctxt "#30291"
 msgid "Auto-play"
-msgstr ""
+msgstr "Auto-play"
 
 msgctxt "#30292"
 msgid "Play using..."
-msgstr ""
+msgstr "Play using..."
 
 msgctxt "#30293"
 msgid "Information"
-msgstr ""
+msgstr "Information"
 
 msgctxt "#30294"
 msgid "Refresh"
-msgstr ""
+msgstr "Refresh"
 
 msgctxt "#30295"
 msgid "Add-on settings"
-msgstr ""
+msgstr "Add-on settings"
 
 msgctxt "#30296"
 msgid "Now playing..."
-msgstr ""
+msgstr "Now playing..."
 
 msgctxt "#30401"
 msgid "Are you sure?"
-msgstr ""
+msgstr "Are you sure?"
 
 msgctxt "#30402"
 msgid "Process Complete"
-msgstr ""
+msgstr "Process Complete"
 
 msgctxt "#30411"
 msgid "Added to Favourites"
-msgstr ""
+msgstr "Added to Favourites"
 
 msgctxt "#30412"
 msgid "Removed from Favourites"
-msgstr ""
+msgstr "Removed from Favourites"
 
 msgctxt "#30421"
 msgid "Adding to library..."
-msgstr ""
+msgstr "Adding to library..."
 
 msgctxt "#30422"
 msgid "Updating TV shows..."
-msgstr ""
+msgstr "Updating TV shows..."
 
 msgctxt "#30423"
 msgid "Process Complete"
-msgstr ""
+msgstr "Process Complete"
 
 msgctxt "#30425"
 msgid "Are you sure?"
-msgstr ""
+msgstr "Are you sure?"
 
 msgctxt "#30451"
 msgid "Getting information"
-msgstr ""
+msgstr "Getting information"
 
 msgctxt "#30461"
 msgid "Resume from"
-msgstr ""
+msgstr "Resume from"
 
 msgctxt "#30462"
 msgid "Start from beginning"
-msgstr ""
+msgstr "Start from beginning"
 
 msgctxt "#30463"
 msgid "Resume"
-msgstr ""
+msgstr "Resume"
 
 msgctxt "#30464"
 msgid "Loaded in"
-msgstr ""
+msgstr "Loaded in"
 
 msgctxt "#30465"
 msgid "seconds"
-msgstr ""
+msgstr "seconds"
 
 msgctxt "#30471"
 msgid "Trakt Manager"
-msgstr ""
+msgstr "Trakt Manager"
 
 msgctxt "#30472"
 msgid "Add to Collection"
-msgstr ""
+msgstr "Add to Collection"
 
 msgctxt "#30473"
 msgid "Remove from Collection"
-msgstr ""
+msgstr "Remove from Collection"
 
 msgctxt "#30474"
 msgid "Add to Watchlist"
-msgstr ""
+msgstr "Add to Watchlist"
 
 msgctxt "#30475"
 msgid "Remove from Watchlist"
-msgstr ""
+msgstr "Remove from Watchlist"
 
 msgctxt "#30476"
 msgid "Add to new List"
-msgstr ""
+msgstr "Add to new List"
 
 msgctxt "#30477"
 msgid "Add to"
-msgstr ""
+msgstr "Add to"
 
 msgctxt "#30478"
 msgid "Remove from"
-msgstr ""
+msgstr "Remove from"
 
 msgctxt "#30491"
 msgid "This View is now Default"
-msgstr ""
+msgstr "This View is now Default"
 
 msgctxt "#30501"
 msgid "No stream available"
-msgstr ""
+msgstr "No stream available"
 
 msgctxt "#30502"
 msgid "Movie information"
-msgstr ""
+msgstr "Movie information"
 
 msgctxt "#30503"
 msgid "Episode information"
-msgstr ""
+msgstr "Episode information"
 
 msgctxt "#30504"
 msgid "Queue item"
-msgstr ""
+msgstr "Queue item"
 
 msgctxt "#30505"
 msgid "Download item"
-msgstr ""
+msgstr "Download item"
 
 msgctxt "#30506"
 msgid "Refresh sources"
-msgstr ""
+msgstr "Refresh sources"
 
 msgctxt "#30507"
 msgid "Add-on settings"
-msgstr ""
+msgstr "Add-on settings"
 
 msgctxt "#30508"
 msgid "Now playing..."
-msgstr ""
+msgstr "Now playing..."
 
 msgctxt "#30509"
 msgid "Auto-play"
-msgstr ""
+msgstr "Auto-play"
 
 msgctxt "#30510"
 msgid "Are you sure?"
-msgstr ""
+msgstr "Are you sure?"
 
 msgctxt "#30511"
 msgid "Process Complete"
-msgstr ""
+msgstr "Process Complete"
+
+msgctxt "#30512"
+msgid "Time elapsed"
+msgstr "Time elapsed"
+
+msgctxt "#30513"
+msgid "seconds"
+msgstr "seconds"
+
+msgctxt "#30514"
+msgid "Remaining sources"
+msgstr "Remaining sources"
+
+msgctxt "#30515"
+msgid "Loading sources"
+msgstr "Loading sources"
 
 msgctxt "#30521"
 msgid "Monday"
-msgstr ""
+msgstr "Monday"
 
 msgctxt "#30522"
 msgid "Tuesday"
-msgstr ""
+msgstr "Tuesday"
 
 msgctxt "#30523"
 msgid "Wednesday"
-msgstr ""
+msgstr "Wednesday"
 
 msgctxt "#30524"
 msgid "Thursday"
-msgstr ""
+msgstr "Thursday"
 
 msgctxt "#30525"
 msgid "Friday"
-msgstr ""
+msgstr "Friday"
 
 msgctxt "#30526"
 msgid "Saturday"
-msgstr ""
+msgstr "Saturday"
 
 msgctxt "#30527"
 msgid "Sunday"
-msgstr ""
+msgstr "Sunday"
 
 msgctxt "#30528"
 msgid "January"
-msgstr ""
+msgstr "January"
 
 msgctxt "#30529"
 msgid "February"
-msgstr ""
+msgstr "February"
 
 msgctxt "#30530"
 msgid "March"
-msgstr ""
+msgstr "March"
 
 msgctxt "#30531"
 msgid "April"
-msgstr ""
+msgstr "April"
 
 msgctxt "#30532"
 msgid "May"
-msgstr ""
+msgstr "May"
 
 msgctxt "#30533"
 msgid "June"
-msgstr ""
+msgstr "June"
 
 msgctxt "#30534"
 msgid "July"
-msgstr ""
+msgstr "July"
 
 msgctxt "#30535"
 msgid "August"
-msgstr ""
+msgstr "August"
 
 msgctxt "#30536"
 msgid "September"
-msgstr ""
+msgstr "September"
 
 msgctxt "#30537"
 msgid "October"
-msgstr ""
+msgstr "October"
 
 msgctxt "#30538"
 msgid "November"
-msgstr ""
+msgstr "November"
 
 msgctxt "#30539"
 msgid "December"
-msgstr ""
+msgstr "December"
 
 msgctxt "#30800"
 msgid "General"
-msgstr ""
+msgstr "General"
 
 msgctxt "#30801"
 msgid "Appearance"
-msgstr ""
+msgstr "Appearance"
 
 msgctxt "#30802"
 msgid "Enable Fanart"
-msgstr ""
+msgstr "Enable Fanart"
 
 msgctxt "#30803"
 msgid "Info Language"
-msgstr ""
+msgstr "Info Language"
 
 msgctxt "#30804"
 msgid "Sources Timeout"
-msgstr ""
+msgstr "Sources Timeout"
 
 msgctxt "#30805"
 msgid "Main menu"
-msgstr ""
+msgstr "Main menu"
 
 msgctxt "#30806"
 msgid "Latest Movies"
-msgstr ""
+msgstr "Latest Movies"
 
 msgctxt "#30807"
 msgid "Disabled"
-msgstr ""
+msgstr "Disabled"
 
 msgctxt "#30808"
 msgid "Default"
-msgstr ""
+msgstr "Default"
 
 msgctxt "#30809"
 msgid "Featured"
-msgstr ""
+msgstr "Featured"
 
 msgctxt "#30810"
 msgid "People Watching"
-msgstr ""
+msgstr "People Watching"
 
 msgctxt "#30811"
 msgid "Latest Episodes"
-msgstr ""
+msgstr "Latest Episodes"
 
 msgctxt "#30812"
 msgid "Disabled"
-msgstr ""
+msgstr "Disabled"
 
 msgctxt "#30813"
 msgid "Default"
-msgstr ""
+msgstr "Default"
 
 msgctxt "#30814"
 msgid "Favourites"
-msgstr ""
+msgstr "Favourites"
 
 msgctxt "#30815"
 msgid "Trakt Progress"
-msgstr ""
+msgstr "Trakt Progress"
 
 msgctxt "#30816"
 msgid "Trakt Episodes"
-msgstr ""
+msgstr "Trakt Episodes"
 
 msgctxt "#30817"
 msgid "TV Calendar"
-msgstr ""
+msgstr "TV Calendar"
 
 msgctxt "#30818"
 msgid "Disabled"
-msgstr ""
+msgstr "Disabled"
 
 msgctxt "#30819"
 msgid "Enabled"
-msgstr ""
+msgstr "Enabled"
 
 msgctxt "#30830"
 msgid "Playback"
-msgstr ""
+msgstr "Playback"
 
 msgctxt "#30831"
 msgid "Max Quality"
-msgstr ""
+msgstr "Max Quality"
 
 msgctxt "#30832"
 msgid "Host selection"
-msgstr ""
+msgstr "Host selection"
 
 msgctxt "#30833"
 msgid "Dialog"
-msgstr ""
+msgstr "Dialog"
 
 msgctxt "#30834"
 msgid "Directory"
-msgstr ""
+msgstr "Directory"
 
 msgctxt "#30835"
 msgid "File Hosting Filters"
-msgstr ""
+msgstr "File Hosting Filters"
 
 msgctxt "#30836"
 msgid "Hosters with captchas"
-msgstr ""
+msgstr "Hosters with captchas"
 
 msgctxt "#30837"
 msgid "Hosters with 1080p files"
-msgstr ""
+msgstr "Hosters with 1080p files"
 
 msgctxt "#30838"
 msgid "Hosters with 720p files"
-msgstr ""
+msgstr "Hosters with 720p files"
 
 msgctxt "#30839"
 msgid "Auto-play"
-msgstr ""
+msgstr "Auto-play"
 
 msgctxt "#30840"
 msgid "Auto-play"
-msgstr ""
+msgstr "Auto-play"
 
 msgctxt "#30841"
 msgid "Auto-play (Library)"
-msgstr ""
+msgstr "Auto-play (Library)"
 
 msgctxt "#30842"
 msgid "Force SD playback in Auto-play"
-msgstr ""
+msgstr "Force SD playback in Auto-play"
 
 msgctxt "#30843"
 msgid "When playback starts..."
-msgstr ""
+msgstr "When playback starts..."
 
 msgctxt "#30844"
 msgid "Resume Playback"
-msgstr ""
+msgstr "Resume Playback"
 
 msgctxt "#30845"
 msgid "Playback Info"
-msgstr ""
+msgstr "Playback Info"
 
 msgctxt "#30860"
 msgid "Movies"
-msgstr ""
+msgstr "Movies"
 
 msgctxt "#30861"
 msgid "TV"
-msgstr ""
+msgstr "TV"
 
 msgctxt "#30870"
 msgid "HD Hosts"
-msgstr ""
+msgstr "HD Hosts"
 
 msgctxt "#30871"
 msgid "SD Hosts"
-msgstr ""
+msgstr "SD Hosts"
 
 msgctxt "#30881"
 msgid "Priority 1"
-msgstr ""
+msgstr "Priority 1"
 
 msgctxt "#30882"
 msgid "Priority 2"
-msgstr ""
+msgstr "Priority 2"
 
 msgctxt "#30883"
 msgid "Priority 3"
-msgstr ""
+msgstr "Priority 3"
 
 msgctxt "#30884"
 msgid "Priority 4"
-msgstr ""
+msgstr "Priority 4"
 
 msgctxt "#30885"
 msgid "Priority 5"
-msgstr ""
+msgstr "Priority 5"
 
 msgctxt "#30886"
 msgid "Priority 6"
-msgstr ""
+msgstr "Priority 6"
 
 msgctxt "#30887"
 msgid "Priority 7"
-msgstr ""
+msgstr "Priority 7"
 
 msgctxt "#30888"
 msgid "Priority 8"
-msgstr ""
+msgstr "Priority 8"
 
 msgctxt "#30889"
 msgid "Priority 9"
-msgstr ""
+msgstr "Priority 9"
 
 msgctxt "#30890"
 msgid "Priority 10"
-msgstr ""
+msgstr "Priority 10"
 
 msgctxt "#30891"
 msgid "Priority 11"
-msgstr ""
+msgstr "Priority 11"
 
 msgctxt "#30892"
 msgid "Priority 12"
-msgstr ""
+msgstr "Priority 12"
 
 msgctxt "#30893"
 msgid "Priority 13"
-msgstr ""
+msgstr "Priority 13"
 
 msgctxt "#30894"
 msgid "Priority 14"
-msgstr ""
+msgstr "Priority 14"
 
 msgctxt "#30895"
 msgid "Priority 15"
-msgstr ""
+msgstr "Priority 15"
 
 msgctxt "#30896"
 msgid "Priority 16"
-msgstr ""
+msgstr "Priority 16"
 
 msgctxt "#30897"
 msgid "Priority 17"
-msgstr ""
+msgstr "Priority 17"
 
 msgctxt "#30898"
 msgid "Priority 18"
-msgstr ""
+msgstr "Priority 18"
 
 msgctxt "#30899"
 msgid "Priority 19"
-msgstr ""
+msgstr "Priority 19"
 
 msgctxt "#30900"
 msgid "Priority 20"
-msgstr ""
+msgstr "Priority 20"
 
 msgctxt "#30910"
 msgid "Accounts"
-msgstr ""
+msgstr "Accounts"
 
 msgctxt "#30911"
 msgid "User"
-msgstr ""
+msgstr "User"
 
 msgctxt "#30912"
 msgid "Email"
-msgstr ""
+msgstr "Email"
 
 msgctxt "#30913"
 msgid "Password"
-msgstr ""
+msgstr "Password"
 
 msgctxt "#30920"
 msgid "Library"
-msgstr ""
+msgstr "Library"
 
 msgctxt "#30921"
-msgid "Genesis folders will be imported to library if they are added to media sources."
-msgstr ""
+msgid ""
+"Genesis folders will be imported to library if they are added to media "
+"sources."
+msgstr "Genesis folders will be imported to library if they are added to media sources."
 
 msgctxt "#30922"
 msgid "Movies"
-msgstr ""
+msgstr "Movies"
 
 msgctxt "#30923"
 msgid "TV"
-msgstr ""
+msgstr "TV"
 
 msgctxt "#30924"
 msgid "Auto update TV Shows"
-msgstr ""
+msgstr "Auto update TV Shows"
 
 msgctxt "#30925"
 msgid "Show notifications during update"
-msgstr ""
+msgstr "Show notifications during update"
 
 msgctxt "#30926"
 msgid "Update library after adding content"
-msgstr ""
+msgstr "Update library after adding content"
 
 msgctxt "#30927"
 msgid "Avoid creating duplicate content"
-msgstr ""
+msgstr "Avoid creating duplicate content"
 
 msgctxt "#30928"
 msgid "Check movie before adding it"
-msgstr ""
+msgstr "Check movie before adding it"
 
 msgctxt "#30929"
 msgid "Check first episode of season before adding it"
-msgstr ""
+msgstr "Check first episode of season before adding it"
 
 msgctxt "#30940"
 msgid "Subtitles"
-msgstr ""
+msgstr "Subtitles"
 
 msgctxt "#30941"
 msgid "Subtitles could be unavailable or out of sync."
-msgstr ""
+msgstr "Subtitles could be unavailable or out of sync."
 
 msgctxt "#30942"
 msgid "In that case use your own subtitles."
-msgstr ""
+msgstr "In that case use your own subtitles."
 
 msgctxt "#30943"
 msgid "Enable subtitles"
-msgstr ""
+msgstr "Enable subtitles"
 
 msgctxt "#30944"
 msgid "Convert subtitles to UTF-8"
-msgstr ""
+msgstr "Convert subtitles to UTF-8"
 
 msgctxt "#30945"
 msgid "Primary Language"
-msgstr ""
+msgstr "Primary Language"
 
 msgctxt "#30946"
 msgid "Secondary Language"
-msgstr ""
+msgstr "Secondary Language"
 
+msgctxt "#30950"
+msgid "Downloads"
+msgstr "Downloads"
+
+msgctxt "#30951"
+msgid "Movies"
+msgstr "Movies"
+
+msgctxt "#30952"
+msgid "TV"
+msgstr "TV"

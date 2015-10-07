@@ -67,8 +67,8 @@ def request(url):
 def info():
     return [{
         'class': '',
-        'netloc': ['bitshare.com', 'filefactory.com', 'k2s.cc', 'oboom.com', 'rapidgator.net', 'uploaded.net'],
-        'host': ['Bitshare', 'Filefactory', 'K2S', 'Oboom', 'Rapidgator', 'Uploaded'],
+        'netloc': ['oboom.com', 'rapidgator.net', 'uploaded.net'],
+        'host': ['Oboom', 'Rapidgator', 'Uploaded'],
         'quality': 'High',
         'captcha': False,
         'a/c': True
@@ -238,10 +238,10 @@ def info():
     }, {
         'class': 'mightyupload',
         'netloc': ['mightyupload.com'],
-        'host': ['Mightyupload'],
-        'quality': 'High',
-        'captcha': False,
-        'a/c': False
+        #'host': ['Mightyupload'],
+        #'quality': 'High',
+        #'captcha': False,
+        #'a/c': False
     }, {
         'class': 'movdivx',
         'netloc': ['movdivx.com'],
@@ -276,10 +276,10 @@ def info():
     }, {
         'class': 'nosvideo',
         'netloc': ['nosvideo.com'],
-        'host': ['Nosvideo'],
-        'quality': 'Low',
-        'captcha': False,
-        'a/c': False
+        #'host': ['Nosvideo'],
+        #'quality': 'Low',
+        #'captcha': False,
+        #'a/c': False
     }, {
         'class': 'novamov',
         'netloc': ['novamov.com'],
@@ -410,6 +410,13 @@ def info():
         'captcha': False,
         'a/c': False
     }, {
+        'class': 'uploadrocket',
+        'netloc': ['uploadrocket.net'],
+        'host': ['Uploadrocket'],
+        'quality': 'High',
+        'captcha': True,
+        'a/c': False
+    }, {
         'class': 'uptobox',
         'netloc': ['uptobox.com'],
         'host': ['Uptobox'],
@@ -446,13 +453,6 @@ def info():
         'class': 'videopremium',
         'netloc': ['videopremium.tv', 'videopremium.me']
     }, {
-        'class': 'videoserver',
-        'netloc': ['videoserver.biz'],
-        'host': ['Videoserver'],
-        'quality': 'Low',
-        'captcha': False,
-        'a/c': False
-    }, {
         'class': 'videoweed',
         'netloc': ['videoweed.es'],
         'host': ['Videoweed'],
@@ -463,13 +463,6 @@ def info():
         'class': 'vidlockers',
         'netloc': ['vidlockers.ag'],
         'host': ['Vidlockers'],
-        'quality': 'High',
-        'captcha': False,
-        'a/c': False
-    }, {
-        'class': 'vidplay',
-        'netloc': ['vidplay.net'],
-        'host': ['Vidplay'],
         'quality': 'High',
         'captcha': False,
         'a/c': False

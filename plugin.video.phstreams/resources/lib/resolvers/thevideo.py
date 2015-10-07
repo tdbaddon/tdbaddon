@@ -32,9 +32,9 @@ def resolve(url):
         result = client.request(url)
         result = result.replace('\n','')
 
-        url = re.compile("'sources' *: *(\[.+?\])").findall(result)[-1]
-        url = ast.literal_eval(url)
-        url = url[-1]['file']
+        url = re.compile("sources *: *(\[.+?\])").findall(result)[-1]
+        url = re.compile('file *: *[\'|\"](.+?)[\'|\"]').findall(url)[-1]
+
         return url
     except:
         return

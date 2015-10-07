@@ -2,13 +2,15 @@
 # Addon id: plugin.video.genesis
 # Addon Provider: Genesis
 # Translators:
-# Natko <natko_maniac@hotmail.com>, 2015
+# Translators:
+# lambda81, 2015
+# Natko, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Genesis\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2015-09-02 12:48+0000\n"
-"Last-Translator: lambda81 <lambda.xbmc.addons@gmail.com>\n"
+"PO-Revision-Date: 2015-09-23 23:39+0000\n"
+"Last-Translator: lambda81\n"
 "Language-Team: Croatian (http://www.transifex.com/tv-addons/genesis/language/hr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -244,6 +246,18 @@ msgctxt "#30097"
 msgid "Favourite TV"
 msgstr "Omiljene TV Serije"
 
+msgctxt "#30098"
+msgid "Downloads"
+msgstr "Preuzimanja"
+
+msgctxt "#30099"
+msgid "Movies"
+msgstr "Filmovi"
+
+msgctxt "#30100"
+msgid "TV"
+msgstr "TV Serije"
+
 msgctxt "#30111"
 msgid "[B]SETTINGS[/B] : General"
 msgstr "[B]POSTAVKE[/B] : Općenito"
@@ -287,6 +301,10 @@ msgstr "[B]GENESIS[/B] : Očisti cache..."
 msgctxt "#30121"
 msgid "[B]GENESIS[/B] : Library"
 msgstr "[B]GENESIS[/B] : Zbirka"
+
+msgctxt "#30122"
+msgid "[B]GENESIS[/B] : Downloads"
+msgstr "[B]GENESIS[/B] : Preuzimanja"
 
 msgctxt "#30131"
 msgid "[B]LIBRARY[/B] : Settings"
@@ -1057,3 +1075,15 @@ msgstr "Primarni jezik"
 msgctxt "#30946"
 msgid "Secondary Language"
 msgstr "Sekundarni jezik"
+
+msgctxt "#30950"
+msgid "Downloads"
+msgstr "Preuzimanja"
+
+msgctxt "#30951"
+msgid "Movies"
+msgstr "Filmovi"
+
+msgctxt "#30952"
+msgid "TV"
+msgstr "TV Serije"

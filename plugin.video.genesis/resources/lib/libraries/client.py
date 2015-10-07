@@ -22,7 +22,7 @@
 import re,sys,urllib2,HTMLParser
 
 
-def request(url, close=True, error=False, proxy=None, post=None, headers=None, mobile=False, referer=None, cookie=None, output='', timeout='30'):
+def request(url, close=True, error=False, proxy=None, post=None, headers=None, mobile=False, safe=False, referer=None, cookie=None, output='', timeout='30'):
     try:
         handlers = []
         if not proxy == None:
@@ -79,14 +79,21 @@ def request(url, close=True, error=False, proxy=None, post=None, headers=None, m
             for c in cookies: result.append('%s=%s' % (c.name, c.value))
             result = "; ".join(result)
         elif output == 'response':
-            result = (str(response), response.read())
+            if safe == True:
+                result = (str(response), response.read(224 * 1024))
+            else:
+                result = (str(response), response.read())
         elif output == 'chunk':
             content = int(response.headers['Content-Length'])
+            if content < (2048 * 1024): return
             result = response.read(16 * 1024)
         elif output == 'geturl':
             result = response.geturl()
         else:
-            result = response.read()
+            if safe == True:
+                result = response.read(224 * 1024)
+            else:
+                result = response.read()
         if close == True:
             response.close()
 
@@ -95,8 +102,8 @@ def request(url, close=True, error=False, proxy=None, post=None, headers=None, m
         return
 
 
-def source(url, close=True, error=False, proxy=None, post=None, headers=None, mobile=False, referer=None, cookie=None, output='', timeout='15'):
-    return request(url, close, error, proxy, post, headers, mobile, referer, cookie, output, timeout)
+def source(url, close=True, error=False, proxy=None, post=None, headers=None, mobile=False, safe=False, referer=None, cookie=None, output='', timeout='30'):
+    return request(url, close, error, proxy, post, headers, mobile, safe, referer, cookie, output, timeout)
 
 
 def parseDOM(html, name=u"", attrs={}, ret=False):

@@ -1,4 +1,99 @@
 ------------------------
+Genesis v5.1.0 (5-Oct-15)
+------------------------
+
+- [COLOR orange]NOTE: Genesis is a free addon and it will always be a free addon.[/COLOR]
+- [COLOR orange]NOTE: Anyone that tells you otherwise is trying to steal your money.[/COLOR]
+
+- [COLOR orange]NOTE: I have no plans to stop Genesis development any time soon.[/COLOR]
+- [COLOR orange]NOTE: If that ever changes it would be announced by me on the www.tvaddons.ag forum.[/COLOR]
+- [COLOR orange]NOTE: Not via other anonymous people on the internet.[/COLOR]
+
+- Re-work of library integration.
+- NOTE: Creation of strm files has changed (added years in titles).
+- NOTE: You will have to re-build TV shows which use this addon in library.
+- NOTE: These changes apply to Isengard or higher!
+- Fixed issues with metadata from strm files.
+- Added progress dialog in sources search.
+- Re-work of sources loading.
+- Tweaked playback actions.
+- Added Bulgarian metadata info.
+- Updated available sources.
+- Updated translations.
+- Code cosmetics.
+
+
+------------------------
+Genesis v5.0.9 (30-Sep-15)
+------------------------
+
+- [COLOR orange]NOTE: Genesis is a free addon and it will always be a free addon.[/COLOR]
+- [COLOR orange]NOTE: Anyone that tells you otherwise is trying to steal your money.[/COLOR]
+
+- [COLOR orange]NOTE: I have no plans to stop Genesis development any time soon.[/COLOR]
+- [COLOR orange]NOTE: If that ever changes it would be announced by me on the www.tvaddons.ag forum.[/COLOR]
+- [COLOR orange]NOTE: Not via other anonymous people on the internet.[/COLOR]
+
+- Fixed more issues with smart play.
+- Added progress dialog in smart play.
+- Fixed issue with Dizigold source.
+- Fixed issue with Filmikz source.
+- Code cosmetics.
+
+
+------------------------
+Genesis v5.0.8 (28-Sep-15)
+------------------------
+
+- [COLOR orange]NOTE: Genesis is a free addon and it will always be a free addon.[/COLOR]
+- [COLOR orange]NOTE: Anyone that tells you otherwise is trying to steal your money.[/COLOR]
+
+- [COLOR orange]NOTE: I have no plans to stop Genesis development any time soon.[/COLOR]
+- [COLOR orange]NOTE: If that ever changes it would be announced by me on the www.tvaddons.ag forum.[/COLOR]
+- [COLOR orange]NOTE: Not via other anonymous people on the internet.[/COLOR]
+
+- Fixed issue with MoviesHD source.
+- Fixed issue with Onlinemovies source.
+- Fixed issue with Yifystream source.
+- Fixed issue with Yify source.
+- Fixed issue with Dizimag source.
+- Fixed issue with Openload resolver.
+- Optimized smart play for low end devices.
+- Downloader: Fixed issue with invalid characters.
+- Added Romanian translation.
+- Updated translations.
+- Code cosmetics.
+
+
+------------------------
+Genesis v5.0.7 (25-Sep-15)
+------------------------
+
+- [COLOR orange]NOTE: Genesis is a free addon and it will always be a free addon.[/COLOR]
+- [COLOR orange]NOTE: Anyone that tells you otherwise is trying to steal your money.[/COLOR]
+
+- [COLOR orange]NOTE: I have no plans to stop Genesis development any time soon.[/COLOR]
+- [COLOR orange]NOTE: If that ever changes it would be announced by me on the www.tvaddons.ag forum.[/COLOR]
+- [COLOR orange]NOTE: Not via other anonymous people on the internet.[/COLOR]
+
+- Added smart play feature.
+- NOTE: Smart play detects deleted streams from filehosts.
+- NOTE: It bypasses them and finds a working stream of the same filehost.
+
+- Re-added simple downloading support (thx 2 spoyser).
+- NOTE: Downloading will change again in future.
+- NOTE: A seperate addon will be used for downloading from Genesis.
+- NOTE: You can access your downloaded content from My Genesis section.
+
+- Updated available sources.
+- Updated available resolvers.
+- Tweaked default timeout of sources.
+- Tweaked requests timeout.
+- Updated translations.
+- Code cosmetics.
+
+
+------------------------
 Genesis v5.0.6 (19-Sep-15)
 ------------------------
 

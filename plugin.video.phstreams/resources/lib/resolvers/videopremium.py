@@ -20,12 +20,13 @@
 
 
 import re,urllib,urlparse
+from resources.lib.libraries import cloudflare
 from resources.lib.libraries import client
 
 
 def resolve(url):
     try:
-        result = client.request(url)
+        result = cloudflare.request(url)
 
         post = {}
         f = client.parseDOM(result, 'Form', attrs = {'action': '' })
@@ -34,7 +35,7 @@ def resolve(url):
         post.update({'method_free': 'Watch Free!'})
         post = urllib.urlencode(post)
 
-        result = client.request(url, post=post)
+        result = cloudflare.request(url, post=post)
         result = result.replace('\\/', '/').replace('\n', '').replace('\'', '"').replace(' ', '')
 
         swfUrl = re.compile('\.embedSWF\("(.+?)"').findall(result)[0]
@@ -49,4 +50,5 @@ def resolve(url):
         return url
     except:
         return
+
 

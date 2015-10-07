@@ -39,10 +39,15 @@ class source:
 
             result = client.source(query)
 
+            result = client.parseDOM(result, 'div', attrs = {'class': 'movies_content'})[0]
+
             tvshowtitle = cleantitle.tv(tvshowtitle)
 
-            result = zip(client.parseDOM(result, 'a', {'class': 'underilne'}, 'href'), client.parseDOM(result, 'a', {'class': 'underilne'}))
+            result = re.compile('(<li>.+?</li>)').findall(result)
+            result = [re.compile('href="(.+?)">(.+?)<').findall(i) for i in result]
+            result = [i[0] for i in result if len(i) > 0]
             result = [i[0] for i in result if tvshowtitle == cleantitle.tv(i[1])][0]
+
             check = urlparse.urljoin(self.base_link, result)
             check = client.source(check)
             if not str(imdb) in check: raise Exception()

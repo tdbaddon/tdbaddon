@@ -46,3 +46,17 @@ def resolve(url):
     except:
         return
 
+
+def check(url):
+    try:
+        result = client.request(url)
+        if result == None: return False
+
+        result = client.parseDOM(result, 'span', attrs = {'class': 'para_title'})
+        if any('File not found' in x for x in result): raise Exception()
+
+        return True
+    except:
+        return False
+
+

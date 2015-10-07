@@ -61,6 +61,10 @@ class navigator:
 
         self.endDirectory()
 
+        from resources.lib.libraries import cache
+        from resources.lib.libraries import changelog
+        cache.get(changelog.get, 600000000, control.addonInfo('version'), table='changelog')
+
 
     def movies(self):
         self.addDirectoryItem(30021, 'movieGenres', 'movieGenres.jpg', 'DefaultMovies.png')
@@ -128,6 +132,23 @@ class navigator:
         self.addDirectoryItem(30096, 'episodeFavourites', 'tvFavourites.jpg', 'DefaultTVShows.png')
         self.addDirectoryItem(30097, 'tvFavourites', 'tvFavourites.jpg', 'DefaultTVShows.png')
 
+        movie_downloads = control.setting('movie_downloads')
+        tv_downloads = control.setting('tv_downloads')
+        if len(control.listDir(movie_downloads)[0]) > 0 or len(control.listDir(tv_downloads)[0]) > 0:
+            self.addDirectoryItem(30098, 'downloadNavigator', 'downloads.jpg', 'DefaultFolder.png')
+
+        self.endDirectory()
+
+
+    def downloads(self):
+        movie_downloads = control.setting('movie_downloads')
+        tv_downloads = control.setting('tv_downloads')
+
+        if len(control.listDir(movie_downloads)[0]) > 0:
+            self.addDirectoryItem(30099, movie_downloads, 'movies.jpg', 'DefaultMovies.png', isAction=False)
+        if len(control.listDir(tv_downloads)[0]) > 0:
+            self.addDirectoryItem(30100, tv_downloads, 'tvshows.jpg', 'DefaultTVShows.png', isAction=False)
+
         self.endDirectory()
 
 
@@ -135,13 +156,14 @@ class navigator:
         self.addDirectoryItem(30111, 'openSettings&query=0.0', 'settings.jpg', 'DefaultAddonProgram.png')
         self.addDirectoryItem(30112, 'openSettings&query=6.1', 'settings.jpg', 'DefaultAddonProgram.png')
         self.addDirectoryItem(30113, 'openSettings&query=1.0', 'settings.jpg', 'DefaultAddonProgram.png')
-        self.addDirectoryItem(30114, 'openSettings&query=8.0', 'settings.jpg', 'DefaultAddonProgram.png')
+        self.addDirectoryItem(30114, 'openSettings&query=9.0', 'settings.jpg', 'DefaultAddonProgram.png')
         self.addDirectoryItem(30115, 'openSettings&query=2.0', 'settings.jpg', 'DefaultAddonProgram.png')
         self.addDirectoryItem(30116, 'openSettings&query=3.0', 'settings.jpg', 'DefaultAddonProgram.png')
         self.addDirectoryItem(30117, 'openSettings&query=4.0', 'settings.jpg', 'DefaultAddonProgram.png')
         self.addDirectoryItem(30118, 'openSettings&query=5.0', 'settings.jpg', 'DefaultAddonProgram.png')
         self.addDirectoryItem(30119, 'clearSources', 'cache.jpg', 'DefaultAddonProgram.png')
         self.addDirectoryItem(30120, 'clearCache', 'cache.jpg', 'DefaultAddonProgram.png')
+        self.addDirectoryItem(30122, 'openSettings&query=8.0', 'settings.jpg', 'DefaultAddonProgram.png')
         self.addDirectoryItem(30121, 'libtoolNavigator', 'tools.jpg', 'DefaultAddonProgram.png')
 
         self.endDirectory()
@@ -154,14 +176,14 @@ class navigator:
         self.addDirectoryItem(30134, control.setting('tv_library'), 'tvshows.jpg', 'DefaultTVShows.png', isAction=False)
 
         if traktMode == True:
-            self.addDirectoryItem(30135, 'moviesToLibrary&url=traktcollection&query=tool', 'moviesTraktcollection.jpg', 'DefaultMovies.png')
-            self.addDirectoryItem(30136, 'moviesToLibrary&url=traktwatchlist&query=tool', 'moviesTraktwatchlist.jpg', 'DefaultMovies.png')
-            self.addDirectoryItem(30137, 'tvshowsToLibrary&url=traktcollection&query=tool', 'tvshowsTraktcollection.jpg', 'DefaultTVShows.png')
-            self.addDirectoryItem(30138, 'tvshowsToLibrary&url=traktwatchlist&query=tool', 'tvshowsTraktwatchlist.jpg', 'DefaultTVShows.png')
+            self.addDirectoryItem(30135, 'moviesToLibrary&url=traktcollection', 'moviesTraktcollection.jpg', 'DefaultMovies.png')
+            self.addDirectoryItem(30136, 'moviesToLibrary&url=traktwatchlist', 'moviesTraktwatchlist.jpg', 'DefaultMovies.png')
+            self.addDirectoryItem(30137, 'tvshowsToLibrary&url=traktcollection', 'tvshowsTraktcollection.jpg', 'DefaultTVShows.png')
+            self.addDirectoryItem(30138, 'tvshowsToLibrary&url=traktwatchlist', 'tvshowsTraktwatchlist.jpg', 'DefaultTVShows.png')
 
         if imdbMode == True:
-            self.addDirectoryItem(30139, 'moviesToLibrary&url=imdbwatchlist&query=tool', 'moviesImdbwatchlist.jpg', 'DefaultMovies.png')
-            self.addDirectoryItem(30140, 'tvshowsToLibrary&url=imdbwatchlist&query=tool', 'tvshowsImdbwatchlist.jpg', 'DefaultTVShows.png')
+            self.addDirectoryItem(30139, 'moviesToLibrary&url=imdbwatchlist', 'moviesImdbwatchlist.jpg', 'DefaultMovies.png')
+            self.addDirectoryItem(30140, 'tvshowsToLibrary&url=imdbwatchlist', 'tvshowsImdbwatchlist.jpg', 'DefaultTVShows.png')
 
         self.endDirectory()
 

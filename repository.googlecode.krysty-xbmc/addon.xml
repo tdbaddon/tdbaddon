@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="repository.googlecode.krysty-xbmc" name="krysty-xbmc addons" version="1.0.4" provider-name="krysty">
+	<extension point="xbmc.addon.repository" name="krysty-xbmc add-on repository">
+		<info compressed="false">https://raw.githubusercontent.com/yokrysty/krysty-xbmc/master/addons/addons.xml</info>
+		<checksum>https://raw.githubusercontent.com/yokrysty/krysty-xbmc/master/addons/addons.xml.md5</checksum>
+		<datadir zip="true">https://github.com/yokrysty/krysty-xbmc/tree/master/addons</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Install Addons from https://github.com/yokrysty/krysty-xbmc</summary>
+		<description>Download and install addons for Kodi (formerly known as XBMC).</description>
+		<platform>all</platform>
+	</extension>
+</addon>

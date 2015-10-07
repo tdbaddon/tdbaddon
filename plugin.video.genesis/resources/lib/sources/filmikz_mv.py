@@ -19,8 +19,14 @@
 '''
 
 
-import re,urllib,urlparse,base64
+import os,re,urllib,zipfile,StringIO,urlparse,datetime,base64
 
+try:
+    from sqlite3 import dbapi2 as database
+except:
+    from pysqlite2 import dbapi2 as database
+
+from resources.lib.libraries import control
 from resources.lib.libraries import cleantitle
 from resources.lib.libraries import client
 from resources.lib import resolvers
@@ -29,26 +35,35 @@ from resources.lib import resolvers
 class source:
     def __init__(self):
         self.base_link = 'http://filmikz.ch'
-        self.search_link = '/index.php?search=%s&image.x=0&image.y=0'
+        self.data_link = 'aHR0cHM6Ly9vZmZzaG9yZWdpdC5jb20vbGFtYmRhODEvZGF0YWJhc2VzL2ZpbG1pa3ouemlw'
+
 
 
     def get_movie(self, imdb, title, year):
         try:
-            query = self.search_link % (urllib.quote_plus(title))
-            query = urlparse.urljoin(self.base_link, query)
+            data = os.path.join(control.dataPath, 'filmikz.db')
 
-            result = client.source(query)
-            result = client.parseDOM(result, 'td', attrs = {'class': 'movieText'})
+            download = True
+
+            try: download = abs(datetime.datetime.fromtimestamp(os.path.getmtime(data)) - (datetime.datetime.now())) > datetime.timedelta(days=7)
+            except: pass
+
+            if download == True:
+                result = client.source(base64.b64decode(self.data_link))
+                zip = zipfile.ZipFile(StringIO.StringIO(result))
+                zip.extractall(control.dataPath)
+                zip.close()
+
+            dbcon = database.connect(data)
+            dbcur = dbcon.cursor()
+
+            dbcur.execute("SELECT * FROM movies WHERE year = '%s'" % year)
+            result = dbcur.fetchone()
+            result = eval(result[1].encode('utf-8'))
 
             title = cleantitle.movie(title)
-            years = ['%s' % str(year), '%s' % str(int(year)+1), '%s' % str(int(year)-1)]
 
-            result = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'strong')) for i in result]
-            result = [(i[0][0], i[1][0]) for i in result if len(i[0]) > 0 and len(i[1]) > 0]
-            result = [(i[0], re.compile('(.+?) [(](\d{4})[)]').findall(i[1])) for i in result]
-            result = [(i[0], i[1][0][0], i[1][0][1]) for i in result if len(i[1]) > 0]
-            result = [i for i in result if title == cleantitle.movie(i[1])]
-            result = [i[0] for i in result if any(x in i[2] for x in years)][0]
+            result = [i[0] for i in result if title == cleantitle.movie(i[1])][0]
 
             try: url = re.compile('//.+?(/.+)').findall(result)[0]
             except: url = result

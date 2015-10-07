@@ -61,8 +61,8 @@ class libmovies:
 
             if self.check_setting == 'true':
                 from resources.lib.sources import sources
-                src = sources().getSources(name, title, year, imdb, tmdb, '0', '0', None, None, None, '0', None)
-                if not len(src) > 0: raise Exception()
+                src = sources().checkSources(name, title, year, imdb, tmdb, '0', '0', None, None, None, '0', None)
+                if src == False: raise Exception()
 
             self.strmFile({'name': name, 'title': title, 'year': year, 'imdb': imdb, 'tmdb': tmdb})
         except:
@@ -77,9 +77,8 @@ class libmovies:
             control.execute('UpdateLibrary(video)')
 
 
-    def range(self, url, query):
-        if query == 'tool':
-            return xbmc.executebuiltin('RunPlugin(%s?action=moviesToLibrary&url=%s)' % (sys.argv[0], urllib.quote_plus(url)))
+    def range(self, url):
+        control.idle()
 
         yes = control.yesnoDialog(control.lang(30425).encode('utf-8'), '', '')
         if not yes: return
@@ -143,6 +142,8 @@ class libtvshows:
     def __init__(self):
         self.library_folder = os.path.join(control.transPath(control.setting('tv_library')),'')
 
+        self.version = control.version()
+
         self.check_setting = control.setting('check_episode_link') or 'false'
         self.library_setting = control.setting('update_library') or 'true'
         self.dupe_setting = control.setting('check_library') or 'true'
@@ -194,14 +195,14 @@ class libtvshows:
                     if i['episode'] == '1':
                         self.block = True
                         from resources.lib.sources import sources
-                        src = sources().getSources(i['name'], i['title'], i['year'], i['imdb'], i['tmdb'], i['tvdb'], i['tvrage'], i['season'], i['episode'], i['tvshowtitle'], i['alter'], i['date'])
-                        if len(src) > 0: self.block = False
+                        src = sources().checkSources(i['name'], i['title'], i['year'], i['imdb'], i['tmdb'], i['tvdb'], i['tvrage'], i['season'], i['episode'], i['tvshowtitle'], i['alter'], i['date'])
+                        if src == True: self.block = False
                     if self.block == True: raise Exception()
 
                 if int(self.date) <= int(re.sub('[^0-9]', '', str(i['date']))):
                     from resources.lib.sources import sources
-                    src = sources().getSources(i['name'], i['title'], i['year'], i['imdb'], i['tmdb'], i['tvdb'], i['tvrage'], i['season'], i['episode'], i['tvshowtitle'], i['alter'], i['date'])
-                    if not len(src) > 0: raise Exception()
+                    src = sources().checkSources(i['name'], i['title'], i['year'], i['imdb'], i['tmdb'], i['tvdb'], i['tvrage'], i['season'], i['episode'], i['tvshowtitle'], i['alter'], i['date'])
+                    if src == False: raise Exception()
 
                 self.strmFile(i)
             except:
@@ -216,9 +217,8 @@ class libtvshows:
             control.execute('UpdateLibrary(video)')
 
 
-    def range(self, url, query):
-        if query == 'tool':
-            return xbmc.executebuiltin('RunPlugin(%s?action=tvshowsToLibrary&url=%s)' % (sys.argv[0], urllib.quote_plus(url)))
+    def range(self, url):
+        control.idle()
 
         yes = control.yesnoDialog(control.lang(30425).encode('utf-8'), '', '')
         if not yes: return
@@ -252,8 +252,13 @@ class libtvshows:
             episodename, episodetitle = urllib.quote_plus(name), urllib.quote_plus(title)
             systitle, syspremiered = urllib.quote_plus(tvshowtitle), urllib.quote_plus(date)
 
-            transname = name.translate(None, '\/:*?"<>|').strip('.')
-            transtitle = tvshowtitle.translate(None, '\/:*?"<>|').strip('.')
+            if self.version >= 15:
+                transname = '%s (%s) S%02dE%02d' % (tvshowtitle.translate(None, '\/:*?"<>|'), year, int(season), int(episode))
+                transtitle = '%s (%s)' % (tvshowtitle.translate(None, '\/:*?"<>|'), year)
+            else:
+                transname = name.translate(None, '\/:*?"<>|').strip('.')
+                transtitle = tvshowtitle.translate(None, '\/:*?"<>|').strip('.')
+
             transseason = 'Season %s' % season.translate(None, '\/:*?"<>|').strip('.')
 
             content = '%s?action=play&name=%s&title=%s&year=%s&imdb=%s&tmdb=%s&tvdb=%s&tvrage=%s&season=%s&episode=%s&tvshowtitle=%s&alter=%s&date=%s' % (sys.argv[0], episodename, episodetitle, year, imdb, tmdb, tvdb, tvrage, season, episode, systitle, alter, syspremiered)
@@ -309,9 +314,8 @@ class libepisodes:
         self.infoDialog = False
 
 
-    def update(self, query, info='true'):
-        if query == 'tool':
-            return xbmc.executebuiltin('RunPlugin(%s?action=updateLibrary)' % sys.argv[0])
+    def update(self, query=None, info='true'):
+        if not query == None: control.idle()
 
         try:
             items = []
@@ -431,8 +435,8 @@ class libepisodes:
 
                     if int(self.date) <= int(re.sub('[^0-9]', '', str(i['date']))):
                         from resources.lib.sources import sources
-                        src = sources().getSources(i['name'], i['title'], i['year'], i['imdb'], i['tmdb'], i['tvdb'], i['tvrage'], i['season'], i['episode'], i['tvshowtitle'], i['alter'], i['date'])
-                        if not len(src) > 2: raise Exception()
+                        src = sources().checkSources(i['name'], i['title'], i['year'], i['imdb'], i['tmdb'], i['tvdb'], i['tvrage'], i['season'], i['episode'], i['tvshowtitle'], i['alter'], i['date'])
+                        if src == False: raise Exception()
 
                     libtvshows().strmFile(i)
                 except:

@@ -238,10 +238,10 @@ def info():
     }, {
         'class': 'mightyupload',
         'netloc': ['mightyupload.com'],
-        'host': ['Mightyupload'],
-        'quality': 'High',
-        'captcha': False,
-        'a/c': False
+        #'host': ['Mightyupload'],
+        #'quality': 'High',
+        #'captcha': False,
+        #'a/c': False
     }, {
         'class': 'movdivx',
         'netloc': ['movdivx.com'],
@@ -276,10 +276,10 @@ def info():
     }, {
         'class': 'nosvideo',
         'netloc': ['nosvideo.com'],
-        'host': ['Nosvideo'],
-        'quality': 'Low',
-        'captcha': False,
-        'a/c': False
+        #'host': ['Nosvideo'],
+        #'quality': 'Low',
+        #'captcha': False,
+        #'a/c': False
     }, {
         'class': 'novamov',
         'netloc': ['novamov.com'],
@@ -297,10 +297,10 @@ def info():
     }, {
         'class': 'openload',
         'netloc': ['openload.io', 'openload.co'],
-        #'host': ['Openload'],
-        #'quality': 'High',
-        #'captcha': False,
-        #'a/c': False
+        'host': ['Openload'],
+        'quality': 'High',
+        'captcha': True,
+        'a/c': False
     }, {
         'class': 'primeshare',
         'netloc': ['primeshare.tv'],

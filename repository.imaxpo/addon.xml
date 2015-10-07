@@ -2,7 +2,7 @@
 	<addon 
         id="repository.imaxpo" 
         name="iMaxpo's Repository" 
-        version="1.4.3"
+        version="1.4.4"
         provider-name="iMaxpo">
 		<extension point="xbmc.addon.repository" name="iMaxpo's addon repository">
 			<info compressed="false">https://raw.github.com/luftreich/imaxpo.xbmc/master/addons.xml</info>

@@ -103,22 +103,26 @@ msgid "[COLOR gold]Download item[/COLOR]"
 msgstr ""
 
 msgctxt "#30751"
-msgid "[COLOR red]Archived Games[/COLOR]"
+msgid "[COLOR red]Scoreboard[/COLOR]"
 msgstr ""
 
 msgctxt "#30752"
-msgid "[COLOR gold]Live Games , Requires some modifications to get working visit forum.[/COLOR]"
+msgid "[COLOR red]Archived Games[/COLOR]"
 msgstr ""
 
 msgctxt "#30753"
-msgid "[COLOR gold]If list returns BLANK, Feed is not up yet.[/COLOR]"
+msgid "[COLOR gold]Live Games , Requires some modifications to get working visit forum.[/COLOR]"
 msgstr ""
 
 msgctxt "#30754"
-msgid "[COLOR red]Feed not available yet[/COLOR]"
+msgid "[COLOR gold]If list returns BLANK, Feed is not up yet.[/COLOR]"
 msgstr ""
 
 msgctxt "#30755"
+msgid "[COLOR red]Feed not available yet[/COLOR]"
+msgstr ""
+
+msgctxt "#30756"
 msgid "Pick A Bandwidth"
 msgstr ""
 
