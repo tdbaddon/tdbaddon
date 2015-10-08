@@ -5,19 +5,13 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 ---------------------------------------------------------------------------------------------------------------
 
 #EXTINF:0,American Heros Channel 
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/143.m3u8
+0
 
 #EXTINF:0,AMHQ 
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/33.m3u8
+0
 
 #EXTINF:0,Animal Planet 
-http://fe-sth.svc.iptv.rt.ru/hls/CH_C03_ANIMALPLANET/variant.m3u8?version=2
-
-#EXTINF:0,Animal Planet 
-http://j.mp/ZCH_C03_ANIMALPLANET_sly
-
-#EXTINF:0,Animal Planet 
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/142.m3u8
+0
 
 #EXTINF:0,Destination America 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/22.m3u8
@@ -26,16 +20,7 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/22.m3u8
 0
 
 #EXTINF:0,Discovery Channel 
-http://fe-sth.svc.iptv.rt.ru/hls/CH_C05_DISCOVERYCHANNEL/variant.m3u8?version=2
-
-#EXTINF:0,Discovery Channel
-http://j.mp/ZCH_C05_DISCOVERYCHANNEL_sly
-
-#EXTINF:0,Discovery Channel
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/11.m3u8
-
-#EXTINF:0,Discovery Channel
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/60.m3u8
 
 #EXTINF:0,Discovery History 
 0
@@ -48,9 +33,6 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/46.m3u8
 
 #EXTINF:0,Discovery Science 
 http://lag2.tv-mobile.org/prgi.m3u8
-
-#EXTINF:0,Discovery Science 
-http://fe-dv.svc.iptv.rt.ru/hls/CH_C03_DISCOVERYSCIENCE/variant.m3u8?version=2
 
 #EXTINF:0,Discovery Turbo 
 0
@@ -80,9 +62,6 @@ http://j.mp/ZCH_C05_HISTORY_sly
 0
 
 #EXTINF:0,Investigation Discovery 
-http://fe-mos.svc.iptv.rt.ru/hls/CH_C02_DISCOVERYINVESTIGATION/variant.m3u8?version=2
-
-#EXTINF:0,Investigation Discovery 
 http://j.mp/TInvestigation_Discovery_sly
 
 #EXTINF:0,Nasa TV 
@@ -92,19 +71,7 @@ http://nasatv-lh.akamaihd.net/i/NASA_101@319270/master.m3u8
 http://iphone-streaming.ustream.tv/uhls/6540154/streams/live/iphone/playlist.m3u8
 
 #EXTINF:0,Nat Geo Wild 
-http://185.13.236.197:4080/udp/224.0.0.120:1237
-
-#EXTINF:0,Nat Geo Wild 
 http://lag2.tv-mobile.org/prgg.m3u8
-
-#EXTINF:0,National Geographic 
-http://fe-sth.svc.iptv.rt.ru/hls/CH_C01_NATGEO/variant.m3u8?version=2
-
-#EXTINF:0,National Geographic 
-http://j.mp/ZCH_C01_NATGEO_sly
-
-#EXTINF:0,National Geographic 
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/187.m3u8
 
 #EXTINF:0,National Geographic 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/96.m3u8
@@ -127,26 +94,14 @@ http://rt-a.akamaihd.net/ch_05@325609/master.m3u8
 #EXTINF:0,Viasat Explorer 
 http://195.78.244.219:10000/udp/239.0.3.30:1234
 
-#EXTINF:0,Viasat Explorer
-http://195.78.244.219:10000/udp/239.0.3.31:1234
-
-#EXTINF:0,Viasat Explorer
-http://fe-sth.svc.iptv.rt.ru/hls/CH_C02_VIASATEXPLORER/variant.m3u8?version=2
-
-#EXTINF:0,Viasat Explorer
-http://j.mp/ZCH_C02_VIASATEXPLORER_sly
-
-#EXTINF:0,Viasat History 
+#EXTINF:0,Viasat Explorer 
 http://195.78.244.219:10000/udp/239.0.3.31:1234
 
 #EXTINF:0,Viasat History 
-http://fe-sth.svc.iptv.rt.ru/hls/CH_C02_VIASATHISTORY/variant.m3u8?version=2
-
-#EXTINF:0,Viasat Nature
-http://195.78.244.219:10000/udp/239.0.3.28:1234
+http://195.78.244.219:10000/udp/239.0.3.31:1234
 
 #EXTINF:0,Viasat Nature 
-http://fe-dv.svc.iptv.rt.ru/hls/CH_C01_VIASATNATURE/variant.m3u8?version=2
+http://195.78.244.219:10000/udp/239.0.3.28:1234
 
 #EXTINF:0,Viasat Nature 
 http://lag2.tv-mobile.org/prgj.m3u8

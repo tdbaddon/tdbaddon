@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="plugin.video.RobinHood-PPL-List"
        name="RobinHood-Project"
-       version="3.0.4"
+       version="3.0.5"
        provider-name="Shadow Crew">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -24,7 +24,7 @@
     <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary lang="en"> Join us at http://robinhoodgroup-tv.info/community/index.php</summary>
+    <summary lang="en"> Join us at http://www.rh-project.info/</summary>
     <description lang="en">Special Thank you to Hakamac For all his support. 
 	This is just the Start.</description>
     <platform>all</platform>

@@ -5,37 +5,28 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 ---------------------------------------------------------------------------------------------------------------
 
 #EXTINF:0,Bein Sport 1 
-http://lihattv.toh.info/jhos/beib1_3/-/playlist.m3u8
-
-#EXTINF:0,Bein Sport 1 
-http://lihattv.toh.info/jhos/beib1_5/-/playlist.m3u8
+0
 
 #EXTINF:0,Bein Sport 2 
-http://lihattv.toh.info/jhos/beib2_3/-/playlist.m3u8
-
-#EXTINF:0,Bein Sport 2 
-http://lihattv.toh.info/jhos/beib2_5/-/playlist.m3u8
+0
 
 #EXTINF:0,Big Ten Network
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/149.m3u8
+0
 
 #EXTINF:0,Box Nation 
-http://178.18.31.62:8081/liverepeater/201775/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9OS8yMC8yMDE1IDExOjU1OjE3IFBNJmhhc2hfdmFsdWU9bUVESWtmbjF6c2g0NXl2UHRZY3ZMQT09JnZhbGlkbWludXRlcz00
+0
 
 #EXTINF:0,BT Sport 1 
 0
 
 #EXTINF:0,BT Sport 2 
-rtmpe://134.19.185.252:1935/livedge/mamahdbtsport2
+0
 
 #EXTINF:0,CBS Sports 
 http://cbspgalivehd-lh.akamaihd.net/i/farmersday4_simulcast@92710/master.m3u8
 
 #EXTINF:0,Chelsea TV 
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/100.m3u8
-
-#EXTINF:0,Chelsea TV 
-http://87.245.214.43/streaming/futbol/16/tvrec/playlist.m3u8
+0
 
 #EXTINF:0,CMore Sport 
 0
@@ -47,16 +38,13 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/70.m3u8
 http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_1800.m3u8
 
 #EXTINF:0,Eurosport 1 
-http://fe-sth.svc.iptv.rt.ru/hls/CH_C06_EUROSPORT/variant.m3u8?version=2
-
-#EXTINF:0,Eurosport 1 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/85.m3u8
 
 #EXTINF:0,Eurosport 2 
-http://fe-ural.svc.iptv.rt.ru/hls/CH_C04_EUROSPORT2/variant.m3u8?version=2
+0
 
 #EXTINF:0,Eurosport News 
-http://fe-mos.svc.iptv.rt.ru/hls/CH_C06_EURONEWS/variant.m3u8?version=2
+0
 
 #EXTINF:0,Fifa TV 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/113.m3u8
@@ -65,13 +53,7 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/113.m3u8
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/17.m3u8
 
 #EXTINF:0,Fox Sports 
-rtmp://kv2.ts33.net/sat/us012
-
-#EXTINF:0,Fox Sports 
-rtmp://kv2.ts33.net/sat/us021
-
-#EXTINF:0,Fox Sports 
-rtmp://kv2.ts33.net/sat/us011
+0
 
 #EXTINF:0,Fox Sports 1
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/75.m3u8
@@ -95,19 +77,13 @@ mms://100automoto.tv/channel_mercedes
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/40.m3u8
 
 #EXTINF:0,Motors TV 
-http://fe-mos.svc.iptv.rt.ru/hls/CH_C06_MOTORSTV/variant.m3u8?version=2
-
-#EXTINF:0,Motors TV
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/47.m3u8
+0
 
 #EXTINF:0,Motorsport 7 
 http://motorsport.hopto.org:8080/
 
 #EXTINF:0,Nascar TV 
 mms://100automoto.tv/100livesport
-
-#EXTINF:0,Nascar TV 
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/66.m3u8
 
 #EXTINF:0,NBA TV 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/70.m3u8
@@ -125,34 +101,16 @@ http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/1896k/prog.m3u8|X-Forwarded-
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/67.m3u8
 
 #EXTINF:0,NBCSN 
-http://tvenbcsn-i.Akamaihd.net/hls/live/218235/nbcsnx/4296k/prog.m3u8|X-Forwarded-For=66.171.228.102
-
-#EXTINF:0,NBCSN 
-http://tvenbcsn-i.Akamaihd.net/hls/live/218235/nbcsnx/2596k/prog.m3u8|X-Forwarded-For=66.171.228.102
-
-#EXTINF:0,NBCSN 
-http://tvenbcsn-i.Akamaihd.net/hls/live/218235/nbcsnx/1896k/prog.m3u8|X-Forwarded-For=66.171.228.102
-
-#EXTINF:0,NBCSN 
 http://cdn.phoenix.intergi.com/21772/videos/3362254/video-sd.mp4?hosting_id=21772
 
 #EXTINF:0,NFL Network 
 http://nflioslivesvg2-i.akamaihd.net/hls/live/221521/nflioslive/2015HackerNow_w99d9.m3u8
 
-#EXTINF:0,NFL Network 
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/227.m3u8
-
-#EXTINF:0,NFL Network 
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/72.m3u8
-
-#EXTINF:0,NHL Network
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/233.m3u8
+#EXTINF:0,NHL Network 
+0
 
 #EXTINF:0,Outdoor Channel 
 http://j.mp/ZCH_C01_OUTDOORCHANNELHD_sly
-
-#EXTINF:0,Outdoor Channel 
-http://j.mp/ZCH_C05_OUTDOORCHANNEL_sly
 
 #EXTINF:0,PAC 12 Arizona 
 0
@@ -167,7 +125,7 @@ http://xrxs.net/video/live-p12baya-1164.m3u8
 http://xrxs.net/video/live-p12baya-2328.m3u8
 
 #EXTINF:0,PAC 12 Bay Area HD 
-http://xrxs.net/video/live-p12baya-4728.m3u8?
+0
 
 #EXTINF:0,PAC 12 LA 
 http://xrxs.net/video/live-p12losa-2328.m3u8
@@ -193,11 +151,8 @@ http://xrxs.net/video/live-p12moun-4728.m3u8
 #EXTINF:0,PAC 12 Oregon 
 http://xrxs.net/video/live-p12oreg-1164.m3u8
 
-#EXTINF:0,PAC 12 Oregon 
-http://xrxs.net/video/live-p12oreg-2328.m3u8
-
 #EXTINF:0,PAC 12 Oregon HD
-http://xrxs.net/video/live-p12oreg-4728.m3u8
+0
 
 #EXTINF:0,PAC 12 Washington 
 0
@@ -221,19 +176,16 @@ mms://100automoto.tv/channel_porsche
 0
 
 #EXTINF:0,Sky Sports 1 
-rtmpe://134.19.185.220:1935/livedge playpath=sskys1 swfUrl=http://player.hdcast.org/_.swf pageurl=http://www.hdcast.org/embedlive4.php?u=sskys1&vw=640&vh=400&domain=www.streamhd.eu token=Fo5_n0w?U.rA6l3-70w47ch timeout=5
+0
 
 #EXTINF:0,Sky Sports 2 
-rtmpe://134.19.185.252:1935/livedge/mamahdsky2
+0
 
 #EXTINF:0,Sky Sports 3 
 0
 
 #EXTINF:0,Sky Sports 4 
 0
-
-#EXTINF:0,Sky Sports 5 
-rtmpe://134.19.185.220:1935/livedge playpath=sskys5 swfUrl=http://player.hdcast.org/_.swf pageurl=http://www.hdcast.org/embedlive4.php?u=sskys1&vw=640&vh=400&domain=www.streamhd.eu token=Fo5_n0w?U.rA6l3-70w47ch timeout=5
 
 #EXTINF:0,Sky Sports 5 
 rtmpe://134.19.185.252:1935/livedge/mamahdsky5
@@ -287,4 +239,4 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/68.m3u8
 0
 
 #EXTINF:0,WWE Network 
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/138.m3u8
+0

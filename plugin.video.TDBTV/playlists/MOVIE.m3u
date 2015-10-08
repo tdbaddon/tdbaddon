@@ -23,7 +23,7 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 0
 
 #EXTINF:0,Film4 
-http://pebbles124-lh.akamaihd.net/i/film4_1@137790/master.m3u8|X-Forwarded-For=85.5.87.218
+0
 
 #EXTINF:0,FilmBox
 http://lag1.tv-mobile.org/prgw.m3u8
@@ -116,7 +116,7 @@ http://188.17.143.39/hls/CH_C01_PARAMOUNTCHANNEL/variant.m3u8?version=2
 0
 
 #EXTINF:0,Sony TV 
-http://fe-sth.svc.iptv.rt.ru/hls/CH_C04_SET/variant.m3u8?version=2
+0
 
 #EXTINF:0,Star Movies 
 0
@@ -134,19 +134,19 @@ http://fe-sth.svc.iptv.rt.ru/hls/CH_C04_SET/variant.m3u8?version=2
 0
 
 #EXTINF:0,Tring Comedy
-http://tring-amd-live.tring.tv/out/u/78_139.m3u8
+0
 
 #EXTINF:0,Tring Fantasy 
-http://tring-amd-live.tring.tv/out/u/92_146.m3u8
+0
 
 #EXTINF:0,Tring Life
-http://tring-amd-live.tring.tv/out/u/93_134.m3u8
+0
 
 #EXTINF:0,Tring Max 
-http://tring-amd-live.tring.tv/out/u/94_130.m3u8
+0
 
 #EXTINF:0,Tring Super
-http://tring-amd-live.tring.tv/out/u/79_127.m3u8
+0
 
 #EXTINF:0,True Movies 1 
 0
@@ -158,7 +158,4 @@ http://tring-amd-live.tring.tv/out/u/79_127.m3u8
 http://195.78.244.219:10000/udp/239.0.3.29:1234
 
 #EXTINF:0,TV 1000 Action 
-http://fe-sth.svc.iptv.rt.ru/hls/CH_C04_TV1000ACTION/variant.m3u8?version=2
-
-#EXTINF:0,TV 1000 Action 
-http://193.194.107.10:4022/udp/225.1.8.107:4001
+0

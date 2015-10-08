@@ -2,16 +2,13 @@
 
 
 #EXTINF:0,1HD Music 
-rtmp://109.239.142.62/live/livestream3
-
-#EXTINF:0,1HD Music
-http://195.189.238.18/streaming/firstmuz/16/hd/playlist.m3u8
+0
 
 #EXTINF:0,AKA 
 http://rrr.sz.xlcdn.com/?account=AATW&file=akanew&type=live&service=wowza&protocol=http&output=playlist.m3u8
 
 #EXTINF:0,A One 
-http://hls.novotelecom.ru/streaming/aone/tvrec/playlist.m3u8
+0
 
 #EXTINF:0,BPM TV 
 0
@@ -20,7 +17,7 @@ http://hls.novotelecom.ru/streaming/aone/tvrec/playlist.m3u8
 http://ooyalahd2-f.akamaihd.net/i/globalradio01_delivery@156521/index_656_av-p.m3u8?sd=10&rebase=on
 
 #EXTINF:0,Clubland
-http://rrr.sz.xlcdn.com/?account=AATW&file=clublandtv&type=live&service=wowza&protocol=http&output=playlist.m3u8
+0
 
 #EXTINF:0,Clubbing TV 
 http://204.107.26.252:1935/live/691.high.stream/HasBahCa.m3u8
@@ -98,16 +95,13 @@ http://74.208.152.93/music/stream3/stream.m3u8
 0
 
 #EXTINF:0,MTV Dance 
-http://fe-mos.svc.iptv.rt.ru/hls/CH_C06_MTVDANCE/variant.m3u8?version=2
+0
 
 #EXTINF:0,MTV Hits 
-http://fe-mos.svc.iptv.rt.ru/hls/CH_C02_MTVHITS/variant.m3u8?version=2
+0
 
 #EXTINF:0,MTV Rocks 
-http://fe-nw.svc.iptv.rt.ru/hls/CH_C01_MTVROCKS/variant.m3u8?version=2
-
-#EXTINF:0,MTV Rocks 
-http://j.mp/ZCH_C01_MTVROCKS_sly
+0
 
 #EXTINF:0,MusicVoxTV 
 rtmp://stream.smcloud.net/live2/vox/vox_720p
@@ -116,7 +110,7 @@ rtmp://stream.smcloud.net/live2/vox/vox_720p
 rtmp://stream.smcloud.net/live2/vox/vox_480p
 
 #EXTINF:0,Now Thats What I Call Music
-http://rrr.sz.xlcdn.com/?account=AATW&file=nowmusic&type=live&service=wowza&protocol=http&output=playlist.m3u8
+0
 
 #EXTINF:0,NR1 
 rtmp://mn-l.mncdn.com/birnumaramedya_live/nr1tv.sdp
@@ -137,7 +131,7 @@ rtmp://fms.105.net:1935/live/rmc2
 http://mediatv2.topix.it/24RockOne66
 
 #EXTINF:0,SmashHits 
-http://llnw.live.simplestream.com/coder9/coder.channels.channel2/hls/3/playlist.m3u8
+0
 
 #EXTINF:0,Trace Urban
 http://stream01.yamgo.com/iPhone/HLS_TS/broadcast/trace_tv_urban-tablet.3gp/trace_tv_urban-tablet.3gp-mr647k.m3u8?trackingid=4041670000&os=desktop
@@ -164,10 +158,10 @@ http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/04/prog_index.m3u8
 http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/06/prog_index.m3u8
 
 #EXTINF:0,VH1 
-http://37.187.160.187:8000/live/ressler/skype/110.ts
+0
 
 #EXTINF:0,VH1 Classics 
-http://fe-mos.svc.iptv.rt.ru/hls/CH_C03_VH1CLASSIC/variant.m3u8?version=2
+0
 
 #EXTINF:0,Virgin TV 
 rtmp://fms.105.net:1935/live/virgin2
