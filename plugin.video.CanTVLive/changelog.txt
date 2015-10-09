@@ -1,3 +1,6 @@
+[b]2.0[/b]
+Changed look and code to make updates easier, removed dead links, added/fixed links. Added live games to sports
+
 [b]1.9.6[/b]
 Updated TSN links
 

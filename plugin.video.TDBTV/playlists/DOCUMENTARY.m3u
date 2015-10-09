@@ -22,8 +22,14 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/22.m3u8
 #EXTINF:0,Discovery Channel 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/11.m3u8
 
+#EXTINF:0,Discovery Channel 
+http://stream-full.selfip.com:8000/live/jack/jack/559.ts
+
+#EXTINF:0,Discovery Channel 
+http://lag2.tv-mobile.org:22637/udp/231.1.1.20:1234
+
 #EXTINF:0,Discovery History 
-0
+http://cric.dynns.com:1935/iptv/DiscoveryHistory/playlist.m3u8
 
 #EXTINF:0,Discovery H&H
 0
@@ -38,7 +44,7 @@ http://lag2.tv-mobile.org/prgi.m3u8
 0
 
 #EXTINF:0,Discovery World 
-0
+http://193.194.107.10:4022/udp/225.1.5.102:4001
 
 #EXTINF:0,Docubox 
 0
@@ -58,6 +64,9 @@ http://link.theplatform.com/s/dtjsEC/chjdYJxKb44V?manifest=m3u&feed=History%20Li
 #EXTINF:0,History Channel 
 http://j.mp/ZCH_C05_HISTORY_sly
 
+#EXTINF:0,History Channel 
+http://lag2.tv-mobile.org:22637/udp/225.0.2.6:20000
+
 #EXTINF:0,History Channel 2
 0
 
@@ -73,8 +82,20 @@ http://iphone-streaming.ustream.tv/uhls/6540154/streams/live/iphone/playlist.m3u
 #EXTINF:0,Nat Geo Wild 
 http://lag2.tv-mobile.org/prgg.m3u8
 
+#EXTINF:0,Nat Geo Wild 
+http://88.84.223.214:1212/udp/234.5.2.114:1234
+
 #EXTINF:0,National Geographic 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/96.m3u8
+
+#EXTINF:0,National Geographic 
+http://stream-full.selfip.com:8000/live/jack/jack/563.ts
+
+#EXTINF:0,National Geographic 
+http://88.84.223.214:1212/udp/234.5.2.128:1234
+
+#EXTINF:0,National Geographic 
+http://lag2.tv-mobile.org:22637/udp/231.1.2.31:1234
 
 #EXTINF:0,Planet Green 
 0

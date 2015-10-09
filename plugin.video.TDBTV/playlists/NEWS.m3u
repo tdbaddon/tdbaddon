@@ -50,6 +50,9 @@ rtmp://edge1.everyon.tv/etv1sb/pld16
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/5.m3u8
 
 #EXTINF:0,CNN 
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/186.m3u8
+
+#EXTINF:0,CNN 
 http://lag2.tv-mobile.org/prgo.m3u8
 
 #EXTINF:0,CP24 

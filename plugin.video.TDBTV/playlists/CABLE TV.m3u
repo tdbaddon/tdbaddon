@@ -19,11 +19,20 @@ rtmpe://179.43.188.15:1935/goLive playpath=rGCi7bg0Qxvs8q7Sl13l swfUrl=http://p.
 #EXTINF:0,AXN 
 http://lag2.tv-mobile.org/prgd.m3u8
 
+#EXTINF:0,AXN 
+http://lag2.tv-mobile.org:22637/udp/224.156.69.162:5000
+
+#EXTINF:0,AXN 
+http://lag2.tv-mobile.org:22637/udp/224.156.69.161:5000
+
 #EXTINF:0,BabyTV 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/150.m3u8
 
 #EXTINF:0,BBC 1 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/134.m3u8
+
+#EXTINF:0,BBC 1 
+http://5.196.82.222:8000/live/test1/test1/1.m3u8
 
 #EXTINF:0,BBC 2 
 http://82.135.224.134/udp/239.100.3.3:1234
@@ -35,7 +44,7 @@ http://82.135.224.134/udp/239.100.3.3:1234
 http://j.mp/ZCH_C05_BOOMERANG_sly
 
 #EXTINF:0,Bravo 
-0
+http://stream-full.selfip.com:8000/live/jack/jack/562.ts
 
 #EXTINF:0,Cartoon Network 
 http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD28_W_250.sdp/playlist.m3u8
@@ -46,6 +55,9 @@ http://5.128.118.163:7777/udp/239.1.3.3:1234
 #EXTINF:0,Cartoon Network 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/4.m3u8
 
+#EXTINF:0,Cartoon Network 
+http://stream-full.selfip.com:8000/live/jack/jack/388.ts
+
 #EXTINF:0,CBC TV 
 0
 
@@ -53,7 +65,7 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/4.m3u8
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/6.m3u8
 
 #EXTINF:0,CBS 
-0
+http://stream-full.selfip.com:8000/live/jack/jack/574.ts
 
 #EXTINF:0,CBS Action 
 0
@@ -62,7 +74,7 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/6.m3u8
 0
 
 #EXTINF:0,CBS Reality 
-0
+http://78.30.254.43:8989/udp/239.0.0.91:4000
 
 #EXTINF:0,City TV Toronto 
 0
@@ -75,6 +87,9 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/6.m3u8
 
 #EXTINF:0,Comedy Central 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/86.m3u8
+
+#EXTINF:0,Comedy Central 
+http://lag2.tv-mobile.org:22637/udp/231.2.2.26:1234
 
 #EXTINF:0,Cooking Channel
 0
@@ -113,7 +128,7 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/13.m3u8
 0
 
 #EXTINF:0,E2 
-0
+http://origin.live.web.tv.streamprovider.net/streams/5dac5e87d17d40f5bca18d2b211a4dd2_live_0_0/index.m3u8
 
 #EXTINF:0,E4 
 0
@@ -125,13 +140,16 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/13.m3u8
 http://46.249.213.87/iPhone/HLS_TS/broadcast/fashiontv-tablet.3gp/fashiontv-tablet.3gp-mr648k.m3u8?trackingid=3181420000&os=desktop
 
 #EXTINF:0,Fine Living Network 
-0
+http://lag2.tv-mobile.org:22637/udp/239.255.247.61:30000
 
 #EXTINF:0,Food Network 
 http://j.mp/ZCH_C05_FOOD_sly
 
 #EXTINF:0,Food Network 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/53.m3u8
+
+#EXTINF:0,Food Network 
+http://5.196.82.222:8000/live/test1/test1/28.m3u8
 
 #EXTINF:0,Fox 1 
 0
@@ -147,6 +165,9 @@ http://185.5.222.227:4242/bysid/5603
 
 #EXTINF:0,Fox TV 
 http://j.mp/ZCH_C02_FOXHD_sly
+
+#EXTINF:0,Fox TV 
+http://stream-full.selfip.com:8000/live/jack/jack/576.ts
 
 #EXTINF:0,FX 
 0
@@ -197,13 +218,13 @@ http://ios.streamserver01.com:8080/ShowcaseTV/mystream.m3u8
 rtmp://jtvmedia.jtv.com:1975/live playpath=live6 swfUrl=http://demandware.edgesuite.net/aaby_prd/on/demandware.static/Sites-jtv-Site/-/default/v1410110388581/swf/flashMediaPlayer/StrobeMediaPlayback.swf live=1 pageUrl=http://www.jtv.com/on/demandware.store/Sites-jtv-Site/default/LiveViewer-Show
 
 #EXTINF:0,Jim Jam 
-0
+http://78.30.254.43:8989/udp/239.0.0.192:4000
 
 #EXTINF:0,KTLA 
 0
 
 #EXTINF:0,Lifetime Network 
-0
+http://stream-full.selfip.com:8000/live/jack/jack/560.ts
 
 #EXTINF:0,London Live 
 http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
@@ -218,7 +239,7 @@ http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
 http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
 
 #EXTINF:0,NBC 
-0
+http://stream-full.selfip.com:8000/live/jack/jack/577.ts
 
 #EXTINF:0,Nick 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/97.m3u8
@@ -228,6 +249,9 @@ http://j.mp/ZCH_C02_NICKJUNIOR_sly
 
 #EXTINF:0,Nick Jr 
 http://88.147.129.135/hls/CH_C02_NICKJUNIOR/variant.m3u8?version=2
+
+#EXTINF:0,Nick Jr 
+http://j.mp/ZCH_C02_NICKJUNIOR_sly
 
 #EXTINF:0,Nickelodeon 
 0
@@ -251,7 +275,7 @@ http://88.147.129.135/hls/CH_C02_NICKJUNIOR/variant.m3u8?version=2
 0
 
 #EXTINF:0,Sky 1 
-0
+http://5.196.82.222:8000/live/test1/test1/26.m3u8
 
 #EXTINF:0,Sky 2 
 0
@@ -263,10 +287,10 @@ http://88.147.129.135/hls/CH_C02_NICKJUNIOR/variant.m3u8?version=2
 0
 
 #EXTINF:0,Sky Atlantic 
-0
+http://5.196.82.222:8000/live/test1/test1/29.m3u8
 
 #EXTINF:0,Sky Living 
-0
+http://5.196.82.222:8000/live/test1/test1/28.m3u8
 
 #EXTINF:0,Slice 
 0
@@ -287,10 +311,10 @@ http://88.147.129.135/hls/CH_C02_NICKJUNIOR/variant.m3u8?version=2
 0
 
 #EXTINF:0,TLC 
-0
+http://lag2.tv-mobile.org:22637/udp/231.1.1.21:1234
 
 #EXTINF:0,TNT 
-0
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/84.m3u8
 
 #EXTINF:0,Tom & Jerry TV 
 rtmp://208.53.180.218/ctv playpath=tom swfUrl=http://www.carolineoliveira.com.br/swf/player.swf live=1 pageUrl=http://carolineoliveira.com.br/tvamigos/tomejerry.html

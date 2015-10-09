@@ -92,7 +92,7 @@ rtmp://tst.es.flash.glb.ipercast.net/tst.es-live/live
 http://74.208.152.93/music/stream3/stream.m3u8
 
 #EXTINF:0,MTV 
-0
+http://cric.dynns.com:1935/iptv/MTVBase/playlist.m3u8
 
 #EXTINF:0,MTV Dance 
 0
@@ -101,7 +101,7 @@ http://74.208.152.93/music/stream3/stream.m3u8
 0
 
 #EXTINF:0,MTV Rocks 
-0
+http://78.30.254.43:8989/udp/239.0.0.143:4000
 
 #EXTINF:0,MusicVoxTV 
 rtmp://stream.smcloud.net/live2/vox/vox_720p

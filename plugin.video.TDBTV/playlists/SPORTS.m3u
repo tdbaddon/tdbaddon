@@ -11,16 +11,28 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 0
 
 #EXTINF:0,Big Ten Network
-0
+http://bigten247.cdnak.bigtenhd.neulion.com/nlds/btn2go/btnnetwork/as/live/btnnetwork_hd_3000.m3u8
 
 #EXTINF:0,Box Nation 
 0
 
 #EXTINF:0,BT Sport 1 
-0
+http://5.196.82.222:8000/live/test1/test1/20.m3u8
+
+#EXTINF:0,BT Sport 1 
+rtmpe://134.19.185.252:1935/livedge/mamahdbtsport1
+
+#EXTINF:0,BT Sport 1 
+rtmpe://134.19.185.252:1935/livedge/mamahdbteu
 
 #EXTINF:0,BT Sport 2 
-0
+http://5.196.82.222:8000/live/test1/test1/21.m3u8
+
+#EXTINF:0,BT Sport 2 
+rtmpe://134.19.185.252:1935/livedge/mamahdbtsport2
+
+#EXTINF:0,BT Sport 2 
+http://195.154.226.186:1935/livepp7/btsports2lsh/playlist.m3u8
 
 #EXTINF:0,CBS Sports 
 http://cbspgalivehd-lh.akamaihd.net/i/farmersday4_simulcast@92710/master.m3u8
@@ -30,6 +42,9 @@ http://cbspgalivehd-lh.akamaihd.net/i/farmersday4_simulcast@92710/master.m3u8
 
 #EXTINF:0,CMore Sport 
 0
+
+#EXTINF:0,ESPN 
+http://5.196.82.222:8000/live/test1/test1/22.m3u8
 
 #EXTINF:0,ESPN 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/70.m3u8
@@ -58,8 +73,17 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/17.m3u8
 #EXTINF:0,Fox Sports 1
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/75.m3u8
 
+#EXTINF:0,Fox Sports 1
+http://stream-full.selfip.com:8000/live/jack/jack/308.ts
+
+#EXTINF:0,Fox Sports 1
+rtmp://kv2.ts33.net/sat/us011
+
+#EXTINF:0,Fox Sports 1
+rtmp://kv2.ts33.net/sat/us012
+
 #EXTINF:0,Fox Sports 2 
-0
+http://stream-full.selfip.com:8000/live/jack/jack/309.ts
 
 #EXTINF:0,Fox Sports News 
 0
@@ -106,8 +130,20 @@ http://cdn.phoenix.intergi.com/21772/videos/3362254/video-sd.mp4?hosting_id=2177
 #EXTINF:0,NFL Network 
 http://nflioslivesvg2-i.akamaihd.net/hls/live/221521/nflioslive/2015HackerNow_w99d9.m3u8
 
+#EXTINF:0,NFL Network 
+http://nflsvglagame1-i.akamaihd.net/hls/live/223206/NFL_Mobile/2015Mobile_NFLN_2000k.m3u8
+
+#EXTINF:0,NFL Network 
+http://nflsvgatlgame3-i.akamaihd.net/hls/live/223175-b/NFL_Mobile/2015Mobile_NFLN_2000k.m3u8
+
+#EXTINF:0,NFL Network 
+http://stream-full.selfip.com:8000/live/jack/jack/578.ts
+
+#EXTINF:0,NFL Network 
+http://nflioslivesvg2-i.akamaihd.net/hls/live/221521/nflioslive/2015HackerNow_w99d9.m3u8
+
 #EXTINF:0,NHL Network 
-0
+http://208.92.36.158/ipad/live/nba_ipad_1240.m3u8
 
 #EXTINF:0,Outdoor Channel 
 http://j.mp/ZCH_C01_OUTDOORCHANNELHD_sly
@@ -131,7 +167,7 @@ http://xrxs.net/video/live-p12baya-2328.m3u8
 http://xrxs.net/video/live-p12losa-2328.m3u8
 
 #EXTINF:0,PAC 12 LA HD
-0
+http://xrxs.net/video/live-p12losa-4728.m3u8
 
 #EXTINF:0,PAC 12 National 
 http://xrxs.net/video/live-p12netw-1164.m3u8
@@ -152,7 +188,7 @@ http://xrxs.net/video/live-p12moun-4728.m3u8
 http://xrxs.net/video/live-p12oreg-1164.m3u8
 
 #EXTINF:0,PAC 12 Oregon HD
-0
+http://xrxs.net/video/live-p12oreg-4728.m3u8
 
 #EXTINF:0,PAC 12 Washington 
 0
@@ -164,7 +200,7 @@ http://xrxs.net/video/live-p12oreg-1164.m3u8
 mms://100automoto.tv/channel_porsche
 
 #EXTINF:0,Premier Sports 
-0
+http://195.154.226.186:1935/livepp7/vpremsplsh/playlist.m3u8
 
 #EXTINF:0,Racing UK 
 0
@@ -176,22 +212,25 @@ mms://100automoto.tv/channel_porsche
 0
 
 #EXTINF:0,Sky Sports 1 
-0
+http://5.196.82.222:8000/live/test1/test1/11.m3u8
 
 #EXTINF:0,Sky Sports 2 
-0
+http://5.196.82.222:8000/live/test1/test1/12.m3u8
 
 #EXTINF:0,Sky Sports 3 
-0
+http://5.196.82.222:8000/live/test1/test1/13.m3u8
 
 #EXTINF:0,Sky Sports 4 
-0
+http://5.196.82.222:8000/live/test1/test1/14.m3u8
+
+#EXTINF:0,Sky Sports 5 
+http://5.196.82.222:8000/live/test1/test1/15.m3u8
 
 #EXTINF:0,Sky Sports 5 
 rtmpe://134.19.185.252:1935/livedge/mamahdsky5
 
 #EXTINF:0,Sky Sports F1 
-0
+rtmpe://134.19.185.252:1935/livedge/mamahdskysportsf1
 
 #EXTINF:0,Sky Sports News 
 0
@@ -203,34 +242,52 @@ rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9
 0
 
 #EXTINF:0,Sportsnet One 
-0
+rtmp://31.220.2.148:1935/live/_definst_/sprt1
 
 #EXTINF:0,Sportsnet Ontario 
-0
+rtmp://31.220.2.148:1935/live/_definst_/ontario
 
 #EXTINF:0,Sportsnet World 
-0
+rtmp://31.220.2.148:1935/live/_definst_/world
 
 #EXTINF:0,Tennis Channel
-0
+http://stream-full.selfip.com:8000/live/jack/jack/561.ts
 
 #EXTINF:0,Trace Sports
 http://stream01.yamgo.com/iPhone/HLS_TS/broadcast/trace_tv_sports-tablet.3gp/trace_tv_sports-tablet.3gp-mr647k.m3u8?
 
 #EXTINF:0,TSN 1 
+http://50.7.136.90:8000/live/cE3F6zHYyO/BDG94XRC7l/83.m3u8
+
+#EXTINF:0,TSN 1 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/68.m3u8
 
+#EXTINF:0,TSN 1 
+http://stream-full.selfip.com:8000/live/jack/jack/303.ts
+
 #EXTINF:0,TSN 2 
-0
+http://50.7.136.90:8000/live/cE3F6zHYyO/BDG94XRC7l/84.m3u8
+
+#EXTINF:0,TSN 2 
+http://stream-full.selfip.com:8000/live/jack/jack/304.ts
 
 #EXTINF:0,TSN 3 
-0
+http://50.7.136.90:8000/live/cE3F6zHYyO/BDG94XRC7l/85.m3u8
+
+#EXTINF:0,TSN 3 
+http://stream-full.selfip.com:8000/live/jack/jack/305.ts
 
 #EXTINF:0,TSN 4 
-0
+http://50.7.136.90:8000/live/cE3F6zHYyO/BDG94XRC7l/86.m3u8
+
+#EXTINF:0,TSN 4 
+http://stream-full.selfip.com:8000/live/jack/jack/306.ts
 
 #EXTINF:0,TSN 5 
-0
+http://50.7.136.90:8000/live/cE3F6zHYyO/BDG94XRC7l/87.m3u8
+
+#EXTINF:0,TSN 5 
+http://stream-full.selfip.com:8000/live/jack/jack/307.ts
 
 #EXTINF:0,Viasat Golf 
 0
