@@ -1,18 +1,24 @@
-import urllib,urllib2,re,xbmcplugin,xbmcgui,urlresolver,sys,xbmc,xbmcaddon,os,random,urlparse
+import urllib,urllib2,re,xbmcplugin,xbmcgui,urlresolver,sys,xbmc,xbmcaddon,os,random,urlparse,client,json,time,captcha,cf,net
 from t0mm0.common.addon import Addon
 from metahandler import metahandlers
+net = net.Net()
 
 addon_id = 'plugin.video.movieshd'
 selfAddon = xbmcaddon.Addon(id=addon_id)
 datapath= xbmc.translatePath(selfAddon.getAddonInfo('profile'))
-metaget = metahandlers.MetaData(preparezip=False)
 addon = Addon(addon_id, sys.argv)
 fanart = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id , 'fanart.jpg'))
 icon = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
 artpath = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id + '/resources/art/'))
 metaset = selfAddon.getSetting('enable_meta')
+try:os.mkdir(datapath)
+except:pass
+file_var = open(xbmc.translatePath(os.path.join(datapath, 'cookie.lwp')), "a")
+cookie_file = os.path.join(os.path.join(datapath,''), 'cookie.lwp')
+base = 'http://movieshd.eu'
 
 def CATEGORIES():
+        open_url(base)
         addDir2('Featured','http://movieshd.eu/movies/category/featured',1,icon,'',fanart)
         addDir2('Recently Added','http://movieshd.eu/?filtre=date&cat=0',1,icon,'',fanart)
         addDir2('Most Viewed','http://movieshd.eu/?display=tube&filtre=views',1,icon,'',fanart)
@@ -60,7 +66,15 @@ def TWITTER():
             dte = '[COLOR blue][B]'+dte+'[/B][/COLOR]'
             text = text+dte+'\n'+status+'\n'+'\n'
         showText('@movieshd_co', text)
-
+        
+def cleanHex(text):
+    def fixup(m):
+        text = m.group(0)
+        if text[:3] == "&#x": return unichr(int(text[3:-1], 16)).encode('utf-8')
+        else: return unichr(int(text[2:-1])).encode('utf-8')
+    try :return re.sub("(?i)&#\w+;", fixup, text.decode('ISO-8859-1').encode('utf-8'))
+    except:return re.sub("(?i)&#\w+;", fixup, text.encode("ascii", "ignore").encode('utf-8'))
+    
 def GETMOVIES(url,name):
         link = open_url(url)
         match=re.compile('<img src=".+?" alt=".+?" title="(.+?)"/><a href="(.+?)"').findall(link)
@@ -121,9 +135,7 @@ def SEARCH():
 def PLAYLINK(name,url,iconimage):
     link = open_url(url)
     olurl=re.compile('<p><iframe src="(.+?)"').findall(link)[0]
-    print olurl
     stream_url=resolve(olurl)
-    print stream_url
     ok=True
     liz=xbmcgui.ListItem(name, iconImage=icon,thumbnailImage=icon); liz.setInfo( type="Video", infoLabels={ "Title": name } )
     ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=url,listitem=liz)
@@ -131,56 +143,35 @@ def PLAYLINK(name,url,iconimage):
 
 def resolve(url):
         # Thanks to Lambda for the resolver :)
-        O = {
-            '___': 0,
-            '$$$$': "f",
-            '__$': 1,
-            '$_$_': "a",
-            '_$_': 2,
-            '$_$$': "b",
-            '$$_$': "d",
-            '_$$': 3,
-            '$$$_': "e",
-            '$__': 4,
-            '$_$': 5,
-            '$$__': "c",
-            '$$_': 6,
-            '$$$': 7,
-            '$___': 8,
-            '$__$': 9,
-            '$_': "constructor",
-            '$$': "return",
-            '_$': "o",
-            '_': "u",
-            '__': "t",
-        }
-        url = url.replace('/f/', '/embed/')
-        import client,jsunpack
+   try:
+        if check(url) == False: return
+        id = re.compile('//.+?/(?:embed|f)/([0-9a-zA-Z-_]+)').findall(url)[0]
+        url = 'https://api.openload.io/1/file/dlticket?file=%s' % id
         result = client.request(url)
-        result = re.search('>\s*(eval\(function.*?)</script>', result, re.DOTALL).group(1)
-        result = jsunpack.unpack(result)
-        result = result.replace('\\\\', '\\')
-        result = re.search('(O=.*?)(?:$|</script>)', result, re.DOTALL).group(1)
-        result = re.search('O\.\$\(O\.\$\((.*?)\)\(\)\)\(\);', result)
-        s1 = result.group(1)
-        s1 = s1.replace(' ', '')
-        s1 = s1.replace('(![]+"")', 'false')
-        s3 = ''
-        for s2 in s1.split('+'):
-            if s2.startswith('O.'):
-                s3 += str(O[s2[2:]])
-            elif '[' in s2 and ']' in s2:
-                key = s2[s2.find('[') + 3:-1]
-                s3 += s2[O[key]]
-            else:
-                s3 += s2[1:-1]
-        s3 = s3.replace('\\\\', '\\')
-        s3 = s3.decode('unicode_escape')
-        s3 = s3.replace('\\/', '/')
-        s3 = s3.replace('\\\\"', '"')
-        s3 = s3.replace('\\"', '"')
-        url = re.search('<source\s+src="([^"]+)', s3).group(1)
+        result = json.loads(result)
+        cap = result['result']['captcha_url']
+        if not cap == None: cap = captcha.keyboard(cap)
+        time.sleep(result['result']['wait_time'])
+        url = 'https://api.openload.io/1/file/dl?file=%s&ticket=%s' % (id, result['result']['ticket'])
+        if not cap == None:
+            url += '&captcha_response=%s' % urllib.quote(cap)
+        result = client.request(url)
+        result = json.loads(result)
+        url = result['result']['url'] + '?mime=true'
         return url
+   except:
+        return
+
+def check(url):
+    try:
+        id = re.compile('//.+?/(?:embed|f)/([0-9a-zA-Z-_]+)').findall(url)[0]
+        url = 'https://openload.co/embed/%s/' % id
+        result = client.request(url)
+        if result == None: return False
+        if '>We are sorry!<' in result: return False
+        return True
+    except:
+        return False
 
 def get_params():
         param=[]
@@ -219,7 +210,8 @@ def addDir(name,url,mode,iconimage,itemcount,isFolder=False):
                 simpleyear=splitName[2].partition(')')
             if len(simpleyear)>0:
                 simpleyear=simpleyear[0]
-            meta = metaget.get_meta('movie', simplename ,simpleyear)
+            mg = metahandlers.MetaData()
+            meta = mg.get_meta('movie', name=simplename ,year=simpleyear)
             u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&site="+str(site)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)
             ok=True
             liz=xbmcgui.ListItem(name, iconImage=meta['cover_url'], thumbnailImage=iconimage)
@@ -267,21 +259,32 @@ def showText(heading, text):
             pass
         
 def open_url(url):
-        req = urllib2.Request(url)
-        req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
-        response = urllib2.urlopen(req)
-        link=response.read()
-        link = link.replace('\n','')
-        link = link.decode('utf-8').encode('utf-8').replace('&#39;','\'').replace('&#10;',' - ').replace('&#x2026;','')
-        response.close()
-        return link
-                
+        try:
+            net.set_cookies(cookie_file)
+            link = cleanHex(net.http_GET(url).content)
+            link = link.replace('\n','').replace('  ','')
+            return link
+        except:
+          try:
+            cf.solve(url,cookie_file,wait=True)
+            net.set_cookies(cookie_file)
+            link = cleanHex(net.http_GET(url).content)
+            link = link.replace('\n','').replace('  ','')
+            return link
+          except:
+            cf.solve(url,cookie_file,wait=True)
+            net.set_cookies(cookie_file)
+            link = cleanHex(net.http_GET(url).content)
+            link = link.replace('\n','').replace('  ','')
+            return link  
+
 def cleanHex(text):
     def fixup(m):
         text = m.group(0)
         if text[:3] == "&#x": return unichr(int(text[3:-1], 16)).encode('utf-8')
         else: return unichr(int(text[2:-1])).encode('utf-8')
-    return re.sub("(?i)&#\w+;", fixup, text.decode('ISO-8859-1').encode('utf-8'))
+    try :return re.sub("(?i)&#\w+;", fixup, text.decode('ISO-8859-1').encode('utf-8'))
+    except:return re.sub("(?i)&#\w+;", fixup, text.encode("ascii", "ignore").encode('utf-8'))
 
 def setView(content, viewType):
     if content:
