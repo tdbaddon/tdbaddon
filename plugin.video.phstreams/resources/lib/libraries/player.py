@@ -32,22 +32,25 @@ class player(xbmc.Player):
         xbmc.Player.__init__(self)
 
 
-    def run(self, content, name, url, imdb, tvdb):
+    def run(self, content, name, url, year, imdb, tvdb, meta):
 
         if control.window.getProperty('PseudoTVRunning') == 'True':
-            return control.resolve(int(sys.argv[1]), True, control.item(path=url))
+            return control.player.play(url, control.item(path=url))
 
-        self.getVideoInfo(content, name, imdb, tvdb)
+        self.getVideoInfo(content, name, year, imdb, tvdb)
 
-        if self.folderPath.startswith('plugin://'):
-            control.resolve(int(sys.argv[1]), True, control.item(path=url))
+        if self.folderPath.startswith('plugin://') and not meta == None:
+            poster, thumb, meta = self.getMeta(meta)
         else:
             poster, thumb, meta = self.getLibraryMeta()
-            item = control.item(path=url, iconImage='DefaultVideo.png', thumbnailImage=thumb)
-            item.setInfo(type='Video', infoLabels = meta)
-            try: item.setArt({'poster': poster, 'tvshow.poster': poster, 'season.poster': poster})
-            except: pass
-            control.resolve(int(sys.argv[1]), True, item)
+
+        item = control.item(path=url, iconImage='DefaultVideo.png', thumbnailImage=thumb)
+        item.setInfo(type='Video', infoLabels = meta)
+        try: item.setArt({'poster': poster, 'tvshow.poster': poster, 'season.poster': poster})
+        except: pass
+        item.setProperty('Video', 'true')
+        item.setProperty('IsPlayable', 'true')
+        control.player.play(url, item)
 
         for i in range(0, 240):
             if self.isPlayingVideo(): break
@@ -62,12 +65,12 @@ class player(xbmc.Player):
         time.sleep(5)
 
 
-    def getVideoInfo(self, content, name, imdb, tvdb):
+    def getVideoInfo(self, content, name, year, imdb, tvdb):
         try:
             self.loadingTime = time.time()
             self.totalTime = 0 ; self.currentTime = 0
             self.folderPath = control.infoLabel('Container.FolderPath')
-            self.name = name ; self.content = content
+            self.name = name ; self.year = year ; self.content = content
             self.file = self.name + '.strm'
             self.file = self.file.translate(None, '\/:*?"<>|').strip('.')
             self.imdb = 'tt' + imdb if imdb.isdigit() else imdb
@@ -77,10 +80,11 @@ class player(xbmc.Player):
 
         try:
             if self.content == 'movie':
-                self.title, self.year = re.compile('(.+?) [(](\d{4})[)]$').findall(self.name)[0]
+                self.title = re.compile('(.+?) [(]\d{4}[)]$').findall(self.name)[0]
             elif self.content == 'episode':
-                self.show, self.season, self.episode = re.compile('(.+?) S(\d*)E(\d*)$').findall(self.name)[0]
+                self.tvshowtitle, self.season, self.episode = re.compile('(.+?) S(\d*)E(\d*)$').findall(self.name)[0]
                 self.season, self.episode = '%01d' % int(self.season), '%01d' % int(self.episode)
+                self.file2 = '%s (%s) S%02dE%02d.strm' % (self.tvshowtitle.translate(None, '\/:*?"<>|'), self.year, int(self.season), int(self.episode))
         except:
             pass
 
@@ -105,6 +109,21 @@ class player(xbmc.Player):
             pass
 
 
+    def getMeta(self, meta):
+        try:
+            meta = json.loads(meta)
+
+            poster = meta['poster'] if 'poster' in meta else '0'
+            thumb = meta['thumb'] if 'thumb' in meta else poster
+
+            if poster == '0': poster = control.addonPoster()
+
+            return (poster, thumb, meta)
+        except:
+            poster, thumb, meta = '', '', {'title': self.name}
+            return (poster, thumb, meta)
+
+
     def getLibraryMeta(self):
         try:
             if self.content == 'movie':
@@ -113,20 +132,38 @@ class player(xbmc.Player):
                 meta = json.loads(meta)['result']['movies']
                 meta = [i for i in meta if i['file'].endswith(self.file)][0]
 
+                for k, v in meta.iteritems():
+                    if type(v) == list:
+                        try: meta[k] = str(' / '.join([i.encode('utf-8') for i in v]))
+                        except: meta[k] = ''
+                    else:
+                        try: meta[k] = str(v.encode('utf-8'))
+                        except: meta[k] = str(v)
+
                 self.DBID = meta['movieid'] ; poster = thumb = meta['thumbnail']
 
-                meta = {'title': meta['title'], 'originaltitle': meta['originaltitle'], 'year': meta['year'], 'genre': str(' / '.join(meta['genre'])), 'studio' : str(' / '.join(meta['studio'])), 'country' : str(' / '.join(meta['country'])), 'duration' : meta['runtime'], 'rating': meta['rating'], 'votes': meta['votes'], 'mpaa': meta['mpaa'], 'director': str(' / '.join(meta['director'])), 'writer': str(' / '.join(meta['writer'])), 'plot': meta['plot'], 'plotoutline': meta['plotoutline'], 'tagline': meta['tagline']}
+                meta = {'title': meta['title'], 'originaltitle': meta['originaltitle'], 'year': meta['year'], 'genre': meta['genre'], 'studio' : meta['studio'], 'country' : meta['country'], 'duration' : meta['runtime'], 'rating': meta['rating'], 'votes': meta['votes'], 'mpaa': meta['mpaa'], 'director': meta['director'], 'writer': meta['writer'], 'plot': meta['plot'], 'plotoutline': meta['plotoutline'], 'tagline': meta['tagline']}
 
 
             elif self.content == 'episode':
                 meta = control.jsonrpc('{"jsonrpc": "2.0", "method": "VideoLibrary.GetEpisodes", "params": {"filter":{"and": [{"field": "season", "operator": "is", "value": "%s"}, {"field": "episode", "operator": "is", "value": "%s"}]}, "properties": ["title", "season", "episode", "showtitle", "firstaired", "runtime", "rating", "director", "writer", "plot", "thumbnail", "file"]}, "id": 1}' % (self.season, self.episode))
                 meta = unicode(meta, 'utf-8', errors='ignore')
                 meta = json.loads(meta)['result']['episodes']
-                meta = [i for i in meta if i['file'].endswith(self.file)][0]
+                match = [i for i in meta if i['file'].endswith(self.file2)]
+                match += [i for i in meta if i['file'].endswith(self.file)]
+                meta = match[0]
+
+                for k, v in meta.iteritems():
+                    if type(v) == list:
+                        try: meta[k] = str(' / '.join([i.encode('utf-8') for i in v]))
+                        except: meta[k] = ''
+                    else:
+                        try: meta[k] = str(v.encode('utf-8'))
+                        except: meta[k] = str(v)
 
                 self.DBID = meta['episodeid'] ; thumb = meta['thumbnail'] ; showtitle = meta['showtitle']
 
-                meta = {'title': meta['title'], 'season' : meta['season'], 'episode': meta['episode'], 'tvshowtitle': meta['showtitle'], 'premiered' : meta['firstaired'], 'duration' : meta['runtime'], 'rating': meta['rating'], 'director': str(' / '.join(meta['director'])), 'writer': str(' / '.join(meta['writer'])), 'plot': meta['plot']}
+                meta = {'title': meta['title'], 'season' : meta['season'], 'episode': meta['episode'], 'tvshowtitle': meta['showtitle'], 'premiered' : meta['firstaired'], 'duration' : meta['runtime'], 'rating': meta['rating'], 'director': meta['director'], 'writer': meta['writer'], 'plot': meta['plot']}
 
                 poster = control.jsonrpc('{"jsonrpc": "2.0", "method": "VideoLibrary.GetTVShows", "params": {"filter": {"field": "title", "operator": "is", "value": "%s"}, "properties": ["thumbnail"]}, "id": 1}' % showtitle)
                 poster = unicode(poster, 'utf-8', errors='ignore')
@@ -172,8 +209,8 @@ class player(xbmc.Player):
             try:
                 from metahandler import metahandlers
                 metaget = metahandlers.MetaData(preparezip=False)
-                metaget.get_meta('tvshow', self.show, imdb_id=self.imdb)
-                metaget.get_episode_meta(self.show, self.imdb, self.season, self.episode)
+                metaget.get_meta('tvshow', self.tvshowtitle, imdb_id=self.imdb)
+                metaget.get_episode_meta(self.tvshowtitle, self.imdb, self.season, self.episode)
                 metaget.change_watched(self.content, '', self.imdb, season=self.season, episode=self.episode, year='', watched=7)
             except:
                 pass
@@ -218,12 +255,6 @@ class player(xbmc.Player):
 
 
     def onPlayBackEnded(self):
-        try:
-            bookmarks.deleteBookmark(self.name, self.imdb)
-        except:
-            pass
-        try:
-            self.setWatchedStatus()
-        except:
-            pass
+        self.onPlayBackStopped()
+
 

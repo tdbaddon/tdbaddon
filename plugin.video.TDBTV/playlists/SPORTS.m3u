@@ -149,10 +149,10 @@ http://208.92.36.158/ipad/live/nba_ipad_1240.m3u8
 http://j.mp/ZCH_C01_OUTDOORCHANNELHD_sly
 
 #EXTINF:0,PAC 12 Arizona 
-0
+http://xrxs.net/video/live-p12ariz-1164.m3u8
 
 #EXTINF:0,PAC 12 Arizona HD 
-0
+http://xrxs.net/video/live-p12ariz-4728.m3u8
 
 #EXTINF:0,PAC 12 Bay Area 
 http://xrxs.net/video/live-p12baya-1164.m3u8
@@ -191,10 +191,10 @@ http://xrxs.net/video/live-p12oreg-1164.m3u8
 http://xrxs.net/video/live-p12oreg-4728.m3u8
 
 #EXTINF:0,PAC 12 Washington 
-0
+http://xrxs.net/video/live-p12wash-1164.m3u8
  
 #EXTINF:0,PAC 12 Washington HD 
-0
+http://xrxs.net/video/live-p12wash-4728.m3u8
 
 #EXTINF:0,Porsche Channel
 mms://100automoto.tv/channel_porsche
@@ -214,14 +214,26 @@ http://195.154.226.186:1935/livepp7/vpremsplsh/playlist.m3u8
 #EXTINF:0,Sky Sports 1 
 http://5.196.82.222:8000/live/test1/test1/11.m3u8
 
+#EXTINF:0,Sky Sports 1 
+http://195.154.226.186:1935/livepp7/skysports1lsh/playlist.m3u8
+
 #EXTINF:0,Sky Sports 2 
 http://5.196.82.222:8000/live/test1/test1/12.m3u8
+
+#EXTINF:0,Sky Sports 2 
+http://195.154.226.186:1935/livepp7/skysports2lsh/playlist.m3u8
 
 #EXTINF:0,Sky Sports 3 
 http://5.196.82.222:8000/live/test1/test1/13.m3u8
 
+#EXTINF:0,Sky Sports 3 
+http://195.154.226.186:1935/livepp7/skysports3lsh/playlist.m3u8
+
 #EXTINF:0,Sky Sports 4 
 http://5.196.82.222:8000/live/test1/test1/14.m3u8
+
+#EXTINF:0,Sky Sports 4 
+http://195.154.226.186:1935/livepp7/skysports4lsh/playlist.m3u8
 
 #EXTINF:0,Sky Sports 5 
 http://5.196.82.222:8000/live/test1/test1/15.m3u8
@@ -231,6 +243,9 @@ rtmpe://134.19.185.252:1935/livedge/mamahdsky5
 
 #EXTINF:0,Sky Sports F1 
 rtmpe://134.19.185.252:1935/livedge/mamahdskysportsf1
+
+#EXTINF:0,Sky Sports F1 
+http://195.154.226.186:1935/livepp7/vskysf1lsh/playlist.m3u8
 
 #EXTINF:0,Sky Sports News 
 0
@@ -257,34 +272,16 @@ http://stream-full.selfip.com:8000/live/jack/jack/561.ts
 http://stream01.yamgo.com/iPhone/HLS_TS/broadcast/trace_tv_sports-tablet.3gp/trace_tv_sports-tablet.3gp-mr647k.m3u8?
 
 #EXTINF:0,TSN 1 
-http://50.7.136.90:8000/live/cE3F6zHYyO/BDG94XRC7l/83.m3u8
-
-#EXTINF:0,TSN 1 
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/68.m3u8
-
-#EXTINF:0,TSN 1 
 http://stream-full.selfip.com:8000/live/jack/jack/303.ts
-
-#EXTINF:0,TSN 2 
-http://50.7.136.90:8000/live/cE3F6zHYyO/BDG94XRC7l/84.m3u8
 
 #EXTINF:0,TSN 2 
 http://stream-full.selfip.com:8000/live/jack/jack/304.ts
 
 #EXTINF:0,TSN 3 
-http://50.7.136.90:8000/live/cE3F6zHYyO/BDG94XRC7l/85.m3u8
-
-#EXTINF:0,TSN 3 
 http://stream-full.selfip.com:8000/live/jack/jack/305.ts
 
 #EXTINF:0,TSN 4 
-http://50.7.136.90:8000/live/cE3F6zHYyO/BDG94XRC7l/86.m3u8
-
-#EXTINF:0,TSN 4 
 http://stream-full.selfip.com:8000/live/jack/jack/306.ts
-
-#EXTINF:0,TSN 5 
-http://50.7.136.90:8000/live/cE3F6zHYyO/BDG94XRC7l/87.m3u8
 
 #EXTINF:0,TSN 5 
 http://stream-full.selfip.com:8000/live/jack/jack/307.ts

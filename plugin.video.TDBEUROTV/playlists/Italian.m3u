@@ -8,7 +8,7 @@ rtmp://wms.shared.streamshow.it:80/videocalabria playpath=videocalabria swfUrl=h
 rtsp://77.72.196.214:8554/live/mp4:AltoAdigeTV
 
 #EXTINF:0,Brescia TV 
-rtmp://wma07.fluidstream.net/BresciaTV playpath=livestream swfUrl=http://media.bresciaoggi.it/media/3rdparty/jwplayer/mediaplayer-5.10-licensed/player.swf pageUrl=http://www.bresciaoggi.it/publisher/647_live/section/ live=1 timeout=10
+0
 
 #EXTINF:0,Calabria Uno TV 
 rtmp://calabria1.flashmediaserver.it:1935/livepkgr?adbe-live-event=liveevent playpath=livestream?adbe-live-event=liveevent swfUrl=http://fpdownload.adobe.com/strobe/FlashMediaPlayback_101.swf/[[DYNAMIC]]/1 live=1 pageUrl=http://www.tvdream.net/embed/calabriauno-tva/
@@ -23,7 +23,7 @@ rtmp://vs2.streamcaster.net:1935/test_live playpath=canale46 swfUrl=http://www.c
 rtmp://176.31.226.78/ch10live/stream1.sdp
 
 #EXTINF:0,Cbl Cinema TV 
-rtmp://msh0193.stream.seeweb.it/live// playpath=stream00.sdp swfUrl=http://p.jwpcdn.com/6/8/jwplayer.flash.swf pageUrl=http://www.cblchannel.it/public/classic-43-cbl/prova.htm live=1
+0
 
 #EXTINF:0,Cielo
 http://skyianywhere2-i.akamaihd.net/hls/live/216865/cielo/stream2/streamPlaylist.m3u8
@@ -32,13 +32,13 @@ http://skyianywhere2-i.akamaihd.net/hls/live/216865/cielo/stream2/streamPlaylist
 http://vs2.streamcaster.net:1935/etvmarche_live/etvmarche/sansar.m3u8
 
 #EXTINF:0,Esperia TV 
-http://iphone-streaming.ustream.tv/ustreamVideo/19212483/streams/live/playlist.m3u8
+0
 
 #EXTINF:0,Extra TV 
 http://k3.usastreams.com:1935/canal42/canal42/live.m3u8
 
 #EXTINF:0,Fano TV
-http://live.streamcaster.net:1935/live/fanotv/sansar.m3u8
+0
 
 #EXTINF:0,History Lab 
 rtmp://wma10.fluidstream.net/HistoryLab playpath=livestream swfUrl=http://www.radioetv.it/modules/mod_hllive/jw/player58l.swf pageUrl=http://www.radioetv.it/history-lab live=1 timeout=10
@@ -53,7 +53,7 @@ rtmp://wms.shared.streamshow.it:80/jotv playpath=jotv swfUrl=http://player.strea
 http://la7live-lh.akamaihd.net/i/test_1@143593/master.m3u8
 
 #EXTINF:0,Lucania TV
-http://wms.shared.streamshow.it/lucaniatv/lucaniatv/playlist.m3u8
+0
 
 #EXTINF:0,Onda TV 
 0
@@ -92,22 +92,22 @@ http://origin2.live.web.tv.streamprovider.net:80/streams/2946613af1f663bb5b41641
 http://stream12.rai.it/live/smil:rai5.smil/chunklist_b1500000.m3u8#MegaIPTVArgentina
 
 #EXTINF:0,Rai Gulp 
-http://raisgeo.dyndns.tv:8000/live/Ok/Ok/198.ts
+http://finalmente.hopto.org:8000/live/croci/croci/791.ts
 
 #EXTINF:0,Rai News 
 http://origin2.live.web.tv.streamprovider.net/streams/121612976e4808528d2ba7edc446887c/index.m3u8
 
 #EXTINF:0,Rai Premium 
-http://raisgeo.dyndns.tv:8000/live/Ok/Ok/1300.ts
+http://finalmente.hopto.org:8000/live/croci/croci/781.ts
 
 #EXTINF:0,Rai Scuola
 0
 
 #EXTINF:0,Rai Storia
-http://raisgeo.dyndns.tv:8000/live/Ok/Ok/156.ts
+0
 
 #EXTINF:0,Rai Yoyo
-http://raisgeo.dyndns.tv:8000/live/Ok/Ok/197.ts
+http://finalmente.hopto.org:8000/live/croci/croci/790.ts
 
 #EXTINF:0,REI TV 
 http://iphone-streaming.ustream.tv/ustreamVideo/18166848/streams/live/playlist.m3u8
@@ -131,43 +131,25 @@ http://94.32.101.11:1935/sardegna1/live1.stream/livestream.m3u8
 rtmp://77.72.196.214:8554/live/mp4:SuedtirolTV
 
 #EXTINF:0,Sky Arte 
-http://raisgeo.dyndns.tv:8000/live/Ok/Ok/177.ts
+0
 
 #EXTINF:0,Sky Calcio 
-http://raisgeo.dyndns.tv:8000/live/Ok/Ok/126.ts
-
-#EXTINF:0,Sky Calcio 
-http://raisgeo.dyndns.tv:8000/live/Ok/Ok/128.ts
-
-#EXTINF:0,Sky Calcio 
-http://raisgeo.dyndns.tv:8000/live/Ok/Ok/130.ts
-
-#EXTINF:0,Sky Calcio 
-http://raisgeo.dyndns.tv:8000/live/Ok/Ok/134.ts
-
-#EXTINF:0,Sky Calcio 
-http://raisgeo.dyndns.tv:8000/live/Ok/Ok/1302.ts
+http://finalmente.hopto.org:8000/live/croci/croci/419.ts
 
 #EXTINF:0,Sky Cinema Family 
-0
+http://finalmente.hopto.org:8000/live/croci/croci/327.ts
 
 #EXTINF:0,Sky Sport 24 
 0
 
 #EXTINF:0,Sky Sport F1 
-0
+http://finalmente.hopto.org:8000/live/croci/croci/412.ts
 
 #EXTINF:0,Sky TG24 
 rtmp://cp49989.live.edgefcs.net:1935/live playpath=streamRM1@2564 swfUrl=http://videoplatform.sky.it/player/swf/player_v2.swf pageUrl=http://video.sky.it/news/diretta live=1 timeout=10
 
-#EXTINF:0,Sky TG24 
-rtmp://cp49989.live.edgefcs.net:1935/live/streamRM1@2564
-
-#EXTINF:0,Sky TG24 
-http://raisgeo.dyndns.tv:8000/live/Ok/Ok/201.ts
-
-#EXTINF:0,Sky Uno 
-http://raisgeo.dyndns.tv:8000/live/Ok/Ok/109.ts
+#EXTINF:0,Sky Uno
+0
 
 #EXTINF:0,Tele 8 
 0
@@ -196,9 +178,6 @@ rtmp://vs2.streamcaster.net:1935/test_live playpath=teleluna swfUrl=http://www.l
 #EXTINF:0,Tele Milano 
 rtmp://91.121.222.160/piublulombardia/ playpath=piublulombardia.sdp swfUrl=http://ondemand.superstreaming.it/telemilanocity/flowplayer.rtmp-3.1.3.swf live=1 pageUrl=http://ondemand.superstreaming.it/telemilanocity//telemilanocity.html
 
-#EXTINF:0,Tele Milano 
-http://91.121.222.160:1935/piublu/piublu.sdp/HasBahCa.m3u8
-
 #EXTINF:0,Tele Monteneve 
 http://wms.shared.streamshow.it/telemonteneve/telemonteneve/playlist.m3u8
 
@@ -212,7 +191,7 @@ rtmp://wms.shared.streamshow.it:80/telepavia playpath=telepavia swfUrl=http://pl
 http://fms.shared.streamshow.it:1935/telepavia/telepavia/hasbahca.m3u8
 
 #EXTINF:0,Tele SanRemo
-http://wms.shared.streamshow.it/telesanremo/telesanremo/playlist.m3u8#MegaIPTVArgentina
+0
 
 #EXTINF:0,Tele Sondrio 
 0

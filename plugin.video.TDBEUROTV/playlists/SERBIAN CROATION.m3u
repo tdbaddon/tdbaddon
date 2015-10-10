@@ -10,9 +10,6 @@ rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
 #EXTINF:0,B92 
 http://stream.b92.net:7999/tv-b92.ogg
 
-#EXTINF:0,B92 
-http://edge3.volim.tv/live/b92.stream/playlist.m3u8?hash=ad2c3d8d36d3e1b1cb6a7c2b587df040c1ac6ab7
-
 #EXTINF:0,Balkan TV
 rtmp://yayin.tvdunyasi.tv/live/balkanrtv
 
@@ -32,7 +29,7 @@ http://213.81.153.221:8080/cetv
 http://185.13.236.197:4080/udp/224.0.0.120:1246
 
 #EXTINF:0,DUGA
-http://4.31.30.135:1935/st3fstv/12ios_TVDUGA_2548745/playlist.m3u8?
+0
 
 #EXTINF:0,Elektrika TV
 rtmp://rtmp.elektrika.cz/live/myStream.sdp
@@ -68,16 +65,16 @@ http://213.5.58.58:1935/hrt_live/smil:hrt3.smil/nesto.m3u8
 http://213.5.58.58:1935/hrt_live/smil:hrt4.smil/nesto.m3u8
 
 #EXTINF:0,Joj
-http://88.212.10.27:81/streams/joj.m3u8
+0
 
 #EXTINF:0,Joj Plus
-http://88.212.10.27:81/streams/jojplus.m3u8
+0
 
 #EXTINF:0,Jugoton
 0
 
 #EXTINF:0,Kanal 3 
-http://edge1.volim.tv/live/kanal_3.stream/playlist.m3u8?hash=90df8700863cdf89ca0d31e74377ea58f060e02e
+0
 
 #EXTINF:0,Kanal 21
 0
@@ -110,13 +107,13 @@ mms://176.106.121.32:8080/
 0
 
 #EXTINF:0,Palma Plus 
-http://edge3.volim.tv/live/palma.stream/playlist.m3u8?hash=ad2c3d8d36d3e1b1cb6a7c2b587df040c1ac6ab7
+0
 
 #EXTINF:0,Planet TV
-rtsp://origin.biokoda.tv/live/mbit-planet?k=planettv-public
+0
 
 #EXTINF:0,Prva TV 
-http://edge3.volim.tv/live/prva.stream/playlist.m3u8?hash=ad2c3d8d36d3e1b1cb6a7c2b587df040c1ac6ab7
+0
 
 #EXTINF:0,RTC 
 0
@@ -134,16 +131,16 @@ mms://195.252.114.172/tvcg
 0
 
 #EXTINF:0,RTRS 
-http://edge1.volim.tv/live/rtrs.stream/HasBahCa.m3u8?hash=206dc563f74bad817eb851dced9cd089b71b7a3f
+0
 
 #EXTINF:0,RTS 
 0
 
 #EXTINF:0,RTS 1 
-http://edge1.volim.tv/live/rts_1.stream/HasBahCa.m3u8?hash=206dc563f74bad817eb851dced9cd089b71b7a3f
+0
 
 #EXTINF:0,RTS 2 
-http://edge1.volim.tv/live/rts_2.stream/HasBahCa.m3u8?hash=206dc563f74bad817eb851dced9cd089b71b7a3f
+0
 
 #EXTINF:0,RTV 1 
 0
@@ -167,7 +164,7 @@ mms://195.252.114.172/studiob
 http://88.212.10.27:81/streams/stv1.m3u8
 
 #EXTINF:0,STV2
-http://88.212.10.27:81/streams/stv2.m3u8
+0
 
 #EXTINF:0,Vesti 24
 mms://62.162.58.55/24vesti

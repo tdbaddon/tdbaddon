@@ -1106,7 +1106,7 @@ class movies:
                 sysmeta = urllib.quote_plus(json.dumps(meta))
 
 
-                url = '%s?action=play&name=%s&title=%s&year=%s&imdb=%s&tmdb=%s&t=%s' % (sysaddon, sysname, systitle, year, imdb, tmdb, self.systime)
+                url = '%s?action=play&name=%s&title=%s&year=%s&imdb=%s&tmdb=%s&meta=%s&t=%s' % (sysaddon, sysname, systitle, year, imdb, tmdb, sysmeta, self.systime)
                 sysurl = urllib.quote_plus(url)
 
                 if isFolder == True:
@@ -1166,7 +1166,7 @@ class movies:
 
                 item.setInfo(type='Video', infoLabels = meta)
                 item.setProperty('Video', 'true')
-                item.setProperty('IsPlayable', 'true')
+                #item.setProperty('IsPlayable', 'true')
                 item.addContextMenuItems(cm, replaceItems=True)
                 control.addItem(handle=int(sys.argv[1]), url=url, listitem=item, isFolder=isFolder)
             except:

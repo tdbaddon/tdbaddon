@@ -146,11 +146,13 @@ class seasons:
         try:
             if tvdb == '0': raise Exception()
 
-            url = self.tvdb_info_link % (tvdb, lang)
+            tvdb_lang = re.sub('bg', 'en', lang)
+
+            url = self.tvdb_info_link % (tvdb, tvdb_lang)
             data = urllib2.urlopen(url, timeout=30).read()
 
             zip = zipfile.ZipFile(StringIO.StringIO(data))
-            result = zip.read('%s.xml' % lang)
+            result = zip.read('%s.xml' % tvdb_lang)
             artwork = zip.read('banners.xml')
             zip.close()
 
@@ -158,10 +160,10 @@ class seasons:
             dupe = re.compile('[***]Duplicate (\d*)[***]').findall(dupe)
             if len(dupe) > 0:
                 tvdb = str(dupe[0]).encode('utf-8')
-                url = self.tvdb_info_link % (tvdb, lang)
+                url = self.tvdb_info_link % (tvdb, tvdb_lang)
                 data = urllib2.urlopen(url, timeout=30).read()
                 zip = zipfile.ZipFile(StringIO.StringIO(data))
-                result = zip.read('%s.xml' % lang)
+                result = zip.read('%s.xml' % tvdb_lang)
                 artwork = zip.read('banners.xml')
                 zip.close()
 
@@ -860,11 +862,13 @@ class episodes:
 
         def items_list(i):
             try:
-                url = self.tvdb_info_link % (i['tvdb'], lang)
+                tvdb_lang = re.sub('bg', 'en', lang)
+
+                url = self.tvdb_info_link % (i['tvdb'], tvdb_lang)
                 data = urllib2.urlopen(url, timeout=10).read()
 
                 zip = zipfile.ZipFile(StringIO.StringIO(data))
-                result = zip.read('%s.xml' % lang)
+                result = zip.read('%s.xml' % tvdb_lang)
                 artwork = zip.read('banners.xml')
                 zip.close()
 
@@ -1157,7 +1161,7 @@ class episodes:
                 sysmeta = urllib.quote_plus(json.dumps(meta))
 
 
-                url = '%s?action=play&name=%s&title=%s&year=%s&imdb=%s&tmdb=%s&tvdb=%s&tvrage=%s&season=%s&episode=%s&tvshowtitle=%s&alter=%s&date=%s&t=%s' % (sysaddon, episodename, episodetitle, year, imdb, tmdb, tvdb, tvrage, season, episode, systitle, alter, syspremiered, self.systime)
+                url = '%s?action=play&name=%s&title=%s&year=%s&imdb=%s&tmdb=%s&tvdb=%s&tvrage=%s&season=%s&episode=%s&tvshowtitle=%s&alter=%s&date=%s&meta=%s&t=%s' % (sysaddon, episodename, episodetitle, year, imdb, tmdb, tvdb, tvrage, season, episode, systitle, alter, syspremiered, sysmeta, self.systime)
                 sysurl = urllib.quote_plus(url)
 
                 if isFolder == True:
@@ -1220,7 +1224,7 @@ class episodes:
 
                 item.setInfo(type='Video', infoLabels = meta)
                 item.setProperty('Video', 'true')
-                item.setProperty('IsPlayable', 'true')
+                #item.setProperty('IsPlayable', 'true')
                 item.setProperty('resumetime',str(0))
                 item.setProperty('totaltime',str(1))
                 item.addContextMenuItems(cm, replaceItems=True)

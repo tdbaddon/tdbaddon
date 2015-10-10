@@ -55,6 +55,9 @@ mms://62.162.58.54:8080
 #EXTINF:0,K3 Kumanovo 
 http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/k3-tv-kumanovo/chunklist.m3u8
 
+#EXTINF:0,K Plus Stip
+http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/kplus-tv-stip/chunklist.m3u8 
+
 #EXTINF:0,Kanal 5 
 http://fms.zulu.mk:1935/zulu/kanal5_1/playlist.m3u8
 
@@ -69,9 +72,6 @@ http://217.16.82.6:554/zulu/kanal5plus_1/playlist.m3u8
 
 #EXTINF:0,Kanal 8
 mms://62.162.58.55/TVkanal8
-
-#EXTINF:0,K Plus Stip
-http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/kplus-tv-stip/chunklist.m3u8 
 
 #EXTINF:0,Mega TV Bitola
 http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/hdtv-mega-bitola/chunklist.m3u8
@@ -110,7 +110,7 @@ http://217.16.82.6:1935/zulu/nashatv_1/playlist.m3u8
 http://217.16.82.6:554/zulu/nashatv_1/playlist.m3u8
 
 #EXTINF:0,Ohrid 02
-http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/o2-tv-ohrid/playlist.m3u8
+0
 
 #EXTINF:0,Sitel 
 http://217.16.82.6:1935/zulu/sitel_1/playlist.m3u8

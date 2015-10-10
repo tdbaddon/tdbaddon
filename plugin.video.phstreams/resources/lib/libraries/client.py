@@ -85,6 +85,7 @@ def request(url, close=True, error=False, proxy=None, post=None, headers=None, m
                 result = (str(response), response.read())
         elif output == 'chunk':
             content = int(response.headers['Content-Length'])
+            if content < (2048 * 1024): return
             result = response.read(16 * 1024)
         elif output == 'geturl':
             result = response.geturl()

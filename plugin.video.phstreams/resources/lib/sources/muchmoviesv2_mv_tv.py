@@ -117,6 +117,8 @@ class source:
             url = urlparse.urljoin(self.base_link, url)
             url = urlparse.urljoin(url, 'watching.html')
 
+            referer = url
+
             result = cloudflare.source(url)
 
             try: quality = client.parseDOM(result, 'span', attrs = {'class': 'quality'})[0]
@@ -127,20 +129,25 @@ class source:
 
             url = re.compile('var\s+url_playlist *= *"(.+?)"').findall(result)[0]
 
+            result = client.parseDOM(result, 'div', attrs = {'class': 'les-content'})
+            result = zip(client.parseDOM(result, 'a', ret='onclick'), client.parseDOM(result, 'a'))
+            result = [(i[0], re.compile('(\d+)').findall(i[1])) for i in result]
+            result = [(i[0], '%01d' % int(i[1][0])) for i in result if len(i[1]) > 0]
+            result = [(i[0], i[1]) for i in result]
+            result = [(re.compile('(\d+)').findall(i[0]), i[1]) for i in result]
+            result = [('%s/%s/%s' % (url, i[0][0], i[0][1]), i[1]) for i in result]
+
+
             if len(content) == 0:
-                url = '%s/0/0' % url
+                url = [i[0] for i in result]
             else:
                 episode = '%01d' % int(episode)
-                result = client.parseDOM(result, 'div', attrs = {'class': 'les-content'})
-                result = zip(client.parseDOM(result, 'a', ret='onclick'), client.parseDOM(result, 'a'))
-                result = [(i[0], re.compile('(\d+)').findall(i[1])) for i in result]
-                result = [(i[0], '%01d' % int(i[1][0])) for i in result if len(i[1]) > 0]
-                result = [i[0] for i in result if episode == i[1]][0]
-                result = re.compile('(\d+)').findall(result)
-                url = '%s/%s/%s' % (url, result[0], result[1])
+                url = [i[0] for i in result if episode == i[1]]
 
 
-            sources.append({'source': 'Muchmovies', 'quality': quality, 'provider': 'Muchmoviesv2', 'url': url})
+            url = ['%s|User-Agent=%s&Referer=%s' % (i, urllib.quote_plus(client.agent()), urllib.quote_plus(referer)) for i in url]
+
+            for u in url: sources.append({'source': 'Muchmovies', 'quality': quality, 'provider': 'Muchmoviesv2', 'url': u})
 
             return sources
         except:
@@ -149,6 +156,8 @@ class source:
 
     def resolve(self, url):
         try:
+            url, headers = url.split('|')
+
             idx = int(re.compile('/(\d+)').findall(url)[-1])
 
             result = cloudflare.request(url)
@@ -165,7 +174,7 @@ class source:
                 else: url = url.replace('https://', 'http://')
 
             else:
-                url = '%s|User-Agent=%s' % (url, urllib.quote_plus(client.agent()))
+                url = '%s|%s' % (url, headers)
 
             return url
         except:

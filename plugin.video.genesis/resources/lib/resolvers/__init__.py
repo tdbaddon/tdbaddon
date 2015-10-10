@@ -302,6 +302,9 @@ def info():
         'captcha': True,
         'a/c': False
     }, {
+        'class': 'p2pcast',
+        'netloc': ['p2pcast.tv']
+    }, {
         'class': 'primeshare',
         'netloc': ['primeshare.tv'],
         'host': ['Primeshare'],
@@ -329,6 +332,9 @@ def info():
         'quality': 'Low',
         'captcha': False,
         'a/c': False
+    }, {
+        'class': 'sawlive',
+        'netloc': ['sawlive.tv']
     }, {
         'class': 'sharerepo',
         'netloc': ['sharerepo.com'],

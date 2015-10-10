@@ -3,13 +3,14 @@
 # Addon Provider: Genesis
 # Translators:
 # Translators:
+# Translators:
 # lambda81, 2015
 # Mike Bike, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Genesis\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2015-09-27 01:45+0000\n"
+"PO-Revision-Date: 2015-10-10 13:01+0000\n"
 "Last-Translator: lambda81\n"
 "Language-Team: Dutch (http://www.transifex.com/tv-addons/genesis/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -673,6 +674,22 @@ msgstr "Weet u het zeker?"
 msgctxt "#30511"
 msgid "Process Complete"
 msgstr "Voortgang Compleet"
+
+msgctxt "#30512"
+msgid "Time elapsed"
+msgstr "Tijd Verstreken"
+
+msgctxt "#30513"
+msgid "seconds"
+msgstr "Seconden"
+
+msgctxt "#30514"
+msgid "Remaining sources"
+msgstr "Overige bronnen"
+
+msgctxt "#30515"
+msgid "Loading sources"
+msgstr "Laden van Bronnen"
 
 msgctxt "#30521"
 msgid "Monday"

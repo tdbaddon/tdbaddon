@@ -176,14 +176,14 @@ class navigator:
         self.addDirectoryItem(30134, control.setting('tv_library'), 'tvshows.jpg', 'DefaultTVShows.png', isAction=False)
 
         if traktMode == True:
-            self.addDirectoryItem(30135, 'moviesToLibrary&url=traktcollection&query=tool', 'moviesTraktcollection.jpg', 'DefaultMovies.png')
-            self.addDirectoryItem(30136, 'moviesToLibrary&url=traktwatchlist&query=tool', 'moviesTraktwatchlist.jpg', 'DefaultMovies.png')
-            self.addDirectoryItem(30137, 'tvshowsToLibrary&url=traktcollection&query=tool', 'tvshowsTraktcollection.jpg', 'DefaultTVShows.png')
-            self.addDirectoryItem(30138, 'tvshowsToLibrary&url=traktwatchlist&query=tool', 'tvshowsTraktwatchlist.jpg', 'DefaultTVShows.png')
+            self.addDirectoryItem(30135, 'moviesToLibrary&url=traktcollection', 'moviesTraktcollection.jpg', 'DefaultMovies.png')
+            self.addDirectoryItem(30136, 'moviesToLibrary&url=traktwatchlist', 'moviesTraktwatchlist.jpg', 'DefaultMovies.png')
+            self.addDirectoryItem(30137, 'tvshowsToLibrary&url=traktcollection', 'tvshowsTraktcollection.jpg', 'DefaultTVShows.png')
+            self.addDirectoryItem(30138, 'tvshowsToLibrary&url=traktwatchlist', 'tvshowsTraktwatchlist.jpg', 'DefaultTVShows.png')
 
         if imdbMode == True:
-            self.addDirectoryItem(30139, 'moviesToLibrary&url=imdbwatchlist&query=tool', 'moviesImdbwatchlist.jpg', 'DefaultMovies.png')
-            self.addDirectoryItem(30140, 'tvshowsToLibrary&url=imdbwatchlist&query=tool', 'tvshowsImdbwatchlist.jpg', 'DefaultTVShows.png')
+            self.addDirectoryItem(30139, 'moviesToLibrary&url=imdbwatchlist', 'moviesImdbwatchlist.jpg', 'DefaultMovies.png')
+            self.addDirectoryItem(30140, 'tvshowsToLibrary&url=imdbwatchlist', 'tvshowsImdbwatchlist.jpg', 'DefaultTVShows.png')
 
         self.endDirectory()
 

@@ -21,6 +21,9 @@
 
 import sys,pkgutil,re,json,urllib,urlparse,datetime,time
 
+try: import xbmc
+except: pass
+
 try:
     from sqlite3 import dbapi2 as database
 except:
@@ -41,8 +44,13 @@ class sources:
         self.sources = [] ; self.sourcesDictionary()
 
 
-    def play(self, name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date, url):
+    def play(self, name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date, meta, url):
         try:
+            if not control.infoLabel('Container.FolderPath').startswith('plugin://'):
+                control.playlist.clear()
+                control.resolve(int(sys.argv[1]), True, control.item(path=None))
+                control.execute('Dialog.Close(okdialog)')
+
             if imdb == '0': imdb = '0000000'
             imdb = 'tt' + re.sub('[^0-9]', '', str(imdb))
 
@@ -50,8 +58,8 @@ class sources:
 
             self.sources = self.getSources(name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date)
             if self.sources == []: raise Exception()
-            self.sources = self.sourcesFilter()
 
+            self.sources = self.sourcesFilter()
 
             if control.window.getProperty('PseudoTVRunning') == 'True':
                 url = self.sourcesDirect()
@@ -77,13 +85,17 @@ class sources:
             if control.setting('playback_info') == 'true':
                 control.infoDialog(self.selectedSource, heading=name)
 
+            try: self.progressDialog.close()
+            except: pass
+
+            control.sleep(200)
+
             from resources.lib.libraries.player import player
-            player().run(content, name, url, imdb, tvdb)
+            player().run(content, name, url, year, imdb, tvdb, meta)
 
             return url
         except:
             control.infoDialog(control.lang(30501).encode('utf-8'))
-            pass
 
 
     def addItem(self, name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date, meta):
@@ -95,11 +107,18 @@ class sources:
 
             self.sources = self.getSources(name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date)
             if self.sources == []: raise Exception()
+   
+            try: self.progressDialog.update(0, control.lang(30515).encode('utf-8'), str(' '))
+            except: pass
+
             self.sources = self.sourcesFilter()
 
-            meta = json.loads(meta)
-
             infoMenu = control.lang(30502).encode('utf-8') if content == 'movie' else control.lang(30503).encode('utf-8')
+
+            sysmeta = urllib.quote_plus(meta)
+            sysaddon = sys.argv[0]
+
+            meta = json.loads(meta)
 
             poster = meta['poster'] if 'poster' in meta else '0'
             banner = meta['banner'] if 'banner' in meta else '0'
@@ -114,17 +133,20 @@ class sources:
             if control.setting('fanart') == 'true' and not fanart == '0': pass
             else: fanart = control.addonFanart()
 
-            sysaddon = sys.argv[0]
-
-            for i in self.sources:
+            for i in range(len(self.sources)):
                 try:
-                    url, label, provider = i['url'], i['label'], i['provider']
+                    self.progressDialog.update(int((100 / float(len(self.sources))) * i))
+
+                    url, label, provider = self.sources[i]['url'], self.sources[i]['label'], self.sources[i]['provider']
 
                     sysname, sysurl, sysimage, sysprovider = urllib.quote_plus(name), urllib.quote_plus(url), urllib.quote_plus(poster), urllib.quote_plus(provider)
 
-                    syssource = urllib.quote_plus(json.dumps([i]))
+                    syssource = urllib.quote_plus(json.dumps([self.sources[i]]))
 
-                    query = 'action=playItem&content=%s&name=%s&imdb=%s&tvdb=%s&source=%s' % (content, sysname, imdb, tvdb, syssource)
+                    if i == 0:
+                        query = 'action=playItem&content=%s&name=%s&year=%s&imdb=%s&tvdb=%s&source=%s&meta=%s' % (content, sysname, year, imdb, tvdb, syssource, sysmeta)
+                    else:
+                        query = 'action=playItem&content=%s&name=%s&year=%s&imdb=%s&tvdb=%s&source=%s' % (content, sysname, year, imdb, tvdb, syssource)
 
                     cm = []
                     cm.append((control.lang(30504).encode('utf-8'), 'RunPlugin(%s?action=queueItem)' % sysaddon))
@@ -140,34 +162,45 @@ class sources:
                     item.setInfo(type='Video', infoLabels = meta)
                     if not fanart == None: item.setProperty('Fanart_Image', fanart)
                     item.setProperty('Video', 'true')
-                    item.setProperty('IsPlayable', 'true')
+                    #item.setProperty('IsPlayable', 'true')
                     item.addContextMenuItems(cm, replaceItems=True)
                     control.addItem(handle=int(sys.argv[1]), url='%s?%s' % (sysaddon, query), listitem=item, isFolder=False)
                 except:
                     pass
 
             control.directory(int(sys.argv[1]), cacheToDisc=True)
+            try: self.progressDialog.close()
+            except: pass
         except:
             control.infoDialog(control.lang(30501).encode('utf-8'))
-            pass
+            try: self.progressDialog.close()
+            except: pass
 
 
-    def playItem(self, content, name, imdb, tvdb, source):
+    def playItem(self, content, name, year, imdb, tvdb, source):
         try:
-            next = []
-            prev = []
+            next = [] ; prev = [] ; total = []
+            meta = None
 
-            for i in range(1,1000000):
+            for i in range(1,10000):
                 try:
                     u = control.infoLabel('ListItem(%s).FolderPath' % str(i))
-                    u = json.loads(dict(urlparse.parse_qsl(u.replace('?','')))['source'])[0]
+                    if u in total: raise Exception()
+                    total.append(u)
+                    u = dict(urlparse.parse_qsl(u.replace('?','')))
+                    if 'meta' in u: meta = u['meta']
+                    u = json.loads(u['source'])[0]
                     next.append(u)
                 except:
                     break
-            for i in range(-1000000,0)[::-1]:
+            for i in range(-10000,0)[::-1]:
                 try:
                     u = control.infoLabel('ListItem(%s).FolderPath' % str(i))
-                    u = json.loads(dict(urlparse.parse_qsl(u.replace('?','')))['source'])[0]
+                    if u in total: raise Exception()
+                    total.append(u)
+                    u = dict(urlparse.parse_qsl(u.replace('?','')))
+                    if 'meta' in u: meta = u['meta']
+                    u = json.loads(u['source'])[0]
                     prev.append(u)
                 except:
                     break
@@ -175,25 +208,51 @@ class sources:
             items = json.loads(source)
 
             source, quality = items[0]['source'], items[0]['quality']
-            items = [i for i in items+next+prev if i['quality'] == quality and i['source'] == source]
-            items += [i for i in next+prev if i['quality'] == quality and not i['source'] == source]
-            items = items[:30]
+            items = [i for i in items+next+prev if i['quality'] == quality and i['source'] == source][:10]
+            items += [i for i in next+prev if i['quality'] == quality and not i['source'] == source][:10]
 
+            self.progressDialog = control.progressDialog
+            self.progressDialog.create(control.addonInfo('name'), '')
+            self.progressDialog.update(0)
 
-            for i in items:
+            block = None
+
+            for i in range(len(items)):
                 try:
-                    url = self.sourcesResolve(i['url'], i['provider'])
-                    if url == None: raise Exception()
+                    self.progressDialog.update(int((100 / float(len(items))) * i), str(items[i]['label']), str(' '))
+
+                    if items[i]['source'] == block: raise Exception()
+
+                    w = workers.Thread(self.sourcesResolve, items[i]['url'], items[i]['provider'])
+                    w.start()
+
+                    for x in range(0, 15 * 2):
+                        if self.progressDialog.iscanceled(): return self.progressDialog.close()
+                        if xbmc.abortRequested == True: return sys.exit()
+                        if w.is_alive() == False: break
+                        time.sleep(0.5)
+
+                    if w.is_alive() == True: block = items[i]['source']
+
+                    if self.url == None: raise Exception()
+
+                    try: self.progressDialog.close()
+                    except: pass
+
+                    control.sleep(200)
 
                     if control.setting('playback_info') == 'true':
-                        control.infoDialog(i['label'], heading=name)
+                        control.infoDialog(items[i]['label'], heading=name)
 
                     from resources.lib.libraries.player import player
-                    player().run(content, name, url, imdb, tvdb)
+                    player().run(content, name, self.url, year, imdb, tvdb, meta)
 
-                    return url
+                    return self.url
                 except:
                     pass
+
+            try: self.progressDialog.close()
+            except: pass
 
             raise Exception()
 
@@ -219,9 +278,80 @@ class sources:
             try: sourceDict = [(i, control.setting(re.sub('_mv_tv$|_mv$|_tv$', '', i) + '_tv')) for i in sourceDict]
             except: sourceDict = [(i, 'true') for i in sourceDict]
 
+        threads = []
 
-        global global_sources
-        global_sources = []
+        control.makeFile(control.dataPath)
+        self.sourceFile = control.sourcescacheFile
+
+        sourceDict = [i[0] for i in sourceDict if i[1] == 'true']
+
+        if content == 'movie':
+            title = cleantitle.normalize(title)
+            for source in sourceDict: threads.append(workers.Thread(self.getMovieSource, title, year, imdb, re.sub('_mv_tv$|_mv$|_tv$', '', source), __import__(source, globals(), locals(), [], -1).source()))
+        else:
+            tvshowtitle = cleantitle.normalize(tvshowtitle)
+            season, episode = alterepisode.alterepisode().get(imdb, tmdb, tvdb, tvrage, season, episode, alter, title, date)
+            for source in sourceDict: threads.append(workers.Thread(self.getEpisodeSource, title, year, imdb, tvdb, season, episode, tvshowtitle, date, re.sub('_mv_tv$|_mv$|_tv$', '', source), __import__(source, globals(), locals(), [], -1).source()))
+
+
+        try: timeout = int(control.setting('sources_timeout_40'))
+        except: timeout = 40
+
+        [i.start() for i in threads]
+
+        control.idle()
+
+        sourceLabel = [re.sub('_mv_tv$|_mv$|_tv$', '', i) for i in sourceDict]
+        sourceLabel = [re.sub('v\d+$', '', i).upper() for i in sourceLabel]
+
+
+        self.progressDialog = control.progressDialog
+        self.progressDialog.create(control.addonInfo('name'), '')
+        self.progressDialog.update(0)
+
+        string1 = control.lang(30512).encode('utf-8')
+        string2 = control.lang(30513).encode('utf-8')
+        string3 = control.lang(30514).encode('utf-8')
+
+        for i in range(0, timeout * 2):
+            try:
+                if xbmc.abortRequested == True: return sys.exit()
+
+                try: info = [sourceLabel[int(re.sub('[^0-9]', '', str(x.getName()))) - 1] for x in threads if x.is_alive() == True]
+                except: info = []
+
+                if len(info) > 5: info = len(info)
+
+                self.progressDialog.update(int((100 / float(len(threads))) * len([x for x in threads if x.is_alive() == False])), str('%s: %s %s' % (string1, int(i * 0.5), string2)), str('%s: %s' % (string3, str(info).translate(None, "[]'"))))
+
+                if self.progressDialog.iscanceled():
+                    self.progressDialog.close() ; break
+
+                is_alive = [x.is_alive() for x in threads]
+                if all(x == False for x in is_alive): break
+                time.sleep(0.5)
+            except:
+                pass
+
+        return self.sources
+
+
+    def checkSources(self, name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date):
+        sourceDict = []
+        for package, name, is_pkg in pkgutil.walk_packages(__path__): sourceDict.append((name, is_pkg))
+        sourceDict = [i[0] for i in sourceDict if i[1] == False]
+
+        content = 'movie' if tvshowtitle == None else 'episode'
+
+
+        if content == 'movie':
+            sourceDict = [i for i in sourceDict if i.endswith(('_mv', '_mv_tv'))]
+            try: sourceDict = [(i, control.setting(re.sub('_mv_tv$|_mv$|_tv$', '', i))) for i in sourceDict]
+            except: sourceDict = [(i, 'true') for i in sourceDict]
+        else:
+            sourceDict = [i for i in sourceDict if i.endswith(('_tv', '_mv_tv'))]
+            try: sourceDict = [(i, control.setting(re.sub('_mv_tv$|_mv$|_tv$', '', i) + '_tv')) for i in sourceDict]
+            except: sourceDict = [(i, 'true') for i in sourceDict]
 
         threads = []
 
@@ -242,25 +372,22 @@ class sources:
         try: timeout = int(control.setting('sources_timeout_40'))
         except: timeout = 40
 
-
         [i.start() for i in threads]
-        #[i.join() for i in threads] ; self.sources = global_sources ; return self.sources
-
 
         for i in range(0, timeout * 2):
-            is_alive = [x.is_alive() for x in threads]
-            if all(x == False for x in is_alive): break
-            time.sleep(0.5)
+            try:
+                if xbmc.abortRequested == True: return sys.exit()
 
-        for i in range(0, 5 * 2):
-            is_alive = len([i for i in threads if i.is_alive() == True])
-            if is_alive < 10: break
-            time.sleep(0.5)
+                if len(self.sources) >= 10: break
 
+                is_alive = [x.is_alive() for x in threads]
+                if all(x == False for x in is_alive): break
+                time.sleep(0.5)
+            except:
+                pass
 
-        self.sources = global_sources
-
-        return self.sources
+        if len(self.sources) >= 10: return True
+        else: return False
 
 
     def getMovieSource(self, title, year, imdb, source, call):
@@ -281,7 +408,7 @@ class sources:
             update = abs(t2 - t1) > 60
             if update == False:
                 sources = json.loads(match[4])
-                return global_sources.extend(sources)
+                return self.sources.extend(sources)
         except:
             pass
 
@@ -306,7 +433,7 @@ class sources:
             sources = []
             sources = call.get_sources(url, self.hosthdfullDict, self.hostsdfullDict, self.hostlocDict)
             if sources == None: sources = []
-            global_sources.extend(sources)
+            self.sources.extend(sources)
             dbcur.execute("DELETE FROM rel_src WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, imdb, '', ''))
             dbcur.execute("INSERT INTO rel_src Values (?, ?, ?, ?, ?, ?)", (source, imdb, '', '', json.dumps(sources), datetime.datetime.now().strftime("%Y-%m-%d %H:%M")))
             dbcon.commit()
@@ -332,7 +459,7 @@ class sources:
             update = abs(t2 - t1) > 60
             if update == False:
                 sources = json.loads(match[4])
-                return global_sources.extend(sources)
+                return self.sources.extend(sources)
         except:
             pass
 
@@ -375,7 +502,7 @@ class sources:
             sources = []
             sources = call.get_sources(ep_url, self.hosthdfullDict, self.hostsdfullDict, self.hostlocDict)
             if sources == None: sources = []
-            global_sources.extend(sources)
+            self.sources.extend(sources)
             dbcur.execute("DELETE FROM rel_src WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, imdb, season, episode))
             dbcur.execute("INSERT INTO rel_src Values (?, ?, ?, ?, ?, ?)", (source, imdb, season, episode, json.dumps(sources), datetime.datetime.now().strftime("%Y-%m-%d %H:%M")))
             dbcon.commit()
@@ -389,34 +516,15 @@ class sources:
             if setting == 'false': url += '&url=direct://'
             else: url += '&url=dialog://'
 
-            meta = json.loads(meta)
-
-            poster = meta['poster'] if 'poster' in meta else '0'
-            banner = meta['banner'] if 'banner' in meta else '0'
-            thumb = meta['thumb'] if 'thumb' in meta else poster
-            fanart = meta['fanart'] if 'fanart' in meta else '0'
-
-            if poster == '0': poster = control.addonPoster()
-            if banner == '0' and poster == '0': banner = control.addonBanner()
-            elif banner == '0': banner = poster
-            if thumb == '0' and fanart == '0': thumb = control.addonFanart()
-            elif thumb == '0': thumb = fanart
-
-            playlist = control.playlist
-            playlist.clear()
-            item = control.item(label='', iconImage=thumb, thumbnailImage=thumb)
-            try: item.setArt({'poster': poster, 'tvshow.poster': poster, 'season.poster': poster, 'banner': banner, 'tvshow.banner': banner, 'season.banner': banner})
-            except: pass
-            item.setInfo(type='Video', infoLabels = meta)
-            item.setProperty('Video', 'true')
-            item.setProperty('IsPlayable', 'true')
-            control.player.play(url, item)
+            control.execute('RunPlugin(%s)' % url)
         except:
             pass
 
 
     def clearSources(self):
         try:
+            control.idle()
+
             yes = control.yesnoDialog(control.lang(30510).encode('utf-8'), '', '')
             if not yes: return
 
@@ -561,8 +669,9 @@ class sources:
             try: headers = dict(urlparse.parse_qsl(url.rsplit('|', 1)[1]))
             except: headers = dict('')
 
-            result = client.request(url.split('|')[0], headers=headers, output='chunk', timeout='30')
+            result = client.request(url.split('|')[0], headers=headers, output='chunk', timeout='20')
             if result == None: raise Exception()
+            self.url = url
             return url
         except:
             return
@@ -580,20 +689,42 @@ class sources:
 
             items = [self.sources[select-1]]
 
-            source, quality = items[0]['source'], items[0]['quality']
             next = [y for x,y in enumerate(self.sources) if x >= select]
             prev = [y for x,y in enumerate(self.sources) if x < select][::-1]
-            items = [i for i in items+next+prev if i['quality'] == quality and i['source'] == source]
-            items += [i for i in next+prev if i['quality'] == quality and not i['source'] == source]
-            items = items[:30]
 
-            for i in items:
+            source, quality = items[0]['source'], items[0]['quality']
+            items = [i for i in items+next+prev if i['quality'] == quality and i['source'] == source][:10]
+            items += [i for i in next+prev if i['quality'] == quality and not i['source'] == source][:10]
+
+            self.progressDialog = control.progressDialog
+            self.progressDialog.create(control.addonInfo('name'), '')
+            self.progressDialog.update(0)
+
+            block = None
+
+            for i in range(len(items)):
                 try:
-                    url = self.sourcesResolve(i['url'], i['provider'])
-                    if url == None: raise Exception()
+                    self.progressDialog.update(int((100 / float(len(items))) * i), str(items[i]['label']), str(' '))
 
-                    self.selectedSource = i['label']
-                    return url
+                    if items[i]['source'] == block: raise Exception()
+
+                    w = workers.Thread(self.sourcesResolve, items[i]['url'], items[i]['provider'])
+                    w.start()
+
+                    for x in range(0, 15 * 2):
+                        if self.progressDialog.iscanceled(): return self.progressDialog.close()
+
+                        if xbmc.abortRequested == True: return sys.exit()
+                        if w.is_alive() == False: break
+                        time.sleep(0.5)
+
+                    if w.is_alive() == True: block = items[i]['source']
+
+                    if self.url == None: raise Exception()
+
+                    self.selectedSource = items[i]['label']
+
+                    return self.url
                 except:
                     pass
 
@@ -613,13 +744,22 @@ class sources:
 
         u = None
 
-        for i in self.sources:
+        self.progressDialog = control.progressDialog
+        self.progressDialog.create(control.addonInfo('name'), '')
+        self.progressDialog.update(0)
+
+        for i in range(len(self.sources)):
             try:
-                url = self.sourcesResolve(i['url'], i['provider'])
+                self.progressDialog.update(int((100 / float(len(self.sources))) * i), str(self.sources[i]['label']), str(' '))
+                if self.progressDialog.iscanceled(): return self.progressDialog.close()
+
+                if xbmc.abortRequested == True: return sys.exit()
+
+                url = self.sourcesResolve(self.sources[i]['url'], self.sources[i]['provider'])
                 if url == None: raise Exception()
                 if u == None: u = url
 
-                self.selectedSource = i['label']
+                self.selectedSource = self.sources[i]['label']
                 return url
             except:
                 pass

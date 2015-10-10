@@ -24,6 +24,7 @@ import re,urllib,urlparse,base64,random
 from resources.lib.libraries import cleantitle
 from resources.lib.libraries import cloudflare
 from resources.lib.libraries import client
+from resources.lib.resolvers import openload
 from resources.lib import resolvers
 
 
@@ -197,8 +198,7 @@ class source:
                 url = [i for i in r if 'p=open' in i][0]
                 url = urlparse.parse_qs(urlparse.urlparse(i).query)['i'][0]
                 url = 'https://openload.io/f/%s' % url
-                url = resolvers.request(url)
-                if url == None: raise Exception()
+                if openload.check(url) == False: raise Exception()
                 sources.append({'source': 'Openload', 'quality': 'HD', 'provider': 'YIFYstream', 'url': url})
             except:
                 pass
@@ -216,7 +216,8 @@ class source:
 
     def resolve(self, url):
         try:
-            if not 'google' in url: return url
+            if not 'google' in url:
+                return resolvers.request(url)
 
             if url.startswith('stack://'): return url
 

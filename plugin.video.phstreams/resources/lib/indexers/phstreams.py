@@ -20,7 +20,7 @@
 '''
 
 
-import re,sys,urllib,urlparse
+import os,re,sys,urllib,urlparse
 
 from resources.lib.libraries import cache
 from resources.lib.libraries import cachemeta
@@ -32,6 +32,7 @@ from resources.lib.libraries import views
 
 phLink = 'http://mecca.watchkodi.com/phstreams.xml'
 phSearch = 'http://%s/search/search.xml'
+phTest = 'testings.xml'
 
 
 def getCategory():
@@ -42,11 +43,22 @@ def getCategory():
     addCategoryItem(control.lang(30721).encode('utf-8'), 'downloader', 'downloader.png')
     addCategoryItem(control.lang(30702).encode('utf-8'), 'search', 'search.png')
 
+    if phTest in control.listDir(control.dataPath)[1]:
+        addCategoryItem('Testings', 'localDirectory', 'home.png')
+
     endCategory()
 
 
-def getDirectory(name, url, audio, image, fanart, playable, content, close=True):
-    result = cache.get(client.request, 0, url)
+def localDirectory():
+    getDirectory('0', os.path.join(control.dataPath, phTest), '0', '0', '0', '0', '0', local=True)
+
+
+def getDirectory(name, url, audio, image, fanart, playable, content, close=True, local=False):
+    if local == True:
+        f = control.openFile(url) ; result = f.read() ; f.close()
+    else:
+        result = cache.get(client.request, 0, url)
+
     result = str(result).replace('\r','').replace('\n','').replace('\t','').replace('&nbsp;','')
 
     try: fanart = re.findall('<fanart>(.+?)</fanart>', result)[0]

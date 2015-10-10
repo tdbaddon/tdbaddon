@@ -105,7 +105,7 @@ class source:
 
             if len(direct) > 0:
                 quality = 'HD' if 'hd' in direct[0][0].lower()  else 'SD'
-                sources.append({'source': 'GVideo', 'quality': quality, 'provider': 'MVsnap', 'url': direct[0][1]})
+                sources.append({'source': 'MVsnap', 'quality': quality, 'provider': 'MVsnap', 'url': direct[0][1]})
                 return sources
 
             url = urlparse.urljoin(self.base_link, result)

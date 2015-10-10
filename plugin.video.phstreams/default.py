@@ -76,6 +76,10 @@ elif action == 'subDirectory':
     from resources.lib.indexers import phstreams
     phstreams.subDirectory(name, url, audio, image, fanart, playable, tvshow, content)
 
+elif action == 'localDirectory':
+    from resources.lib.indexers import phstreams
+    phstreams.localDirectory()
+
 elif action == 'search':
     from resources.lib.indexers import phstreams
     phstreams.getSearch()

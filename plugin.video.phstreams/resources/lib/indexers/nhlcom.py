@@ -38,7 +38,7 @@ def nhlDirectory():
     dt = procTimezone(5)
     datex = int(dt.strftime('%Y%m%d'))
 
-    url = 'http://live.nhl.com/GameData/SeasonSchedule-20142015.json'
+    url = 'http://live.nhl.com/GameData/SeasonSchedule-20152016.json'
     result = client.request(url)
 
     items = json.loads(result)
@@ -115,7 +115,7 @@ def nhlArchives():
     dt = procTimezone(5)
     datex = int(dt.strftime('%Y%m%d'))
 
-    url = 'http://live.nhl.com/GameData/SeasonSchedule-20142015.json'
+    url = 'http://live.nhl.com/GameData/SeasonSchedule-20152016.json'
     result = client.request(url)
 
     items = json.loads(result)

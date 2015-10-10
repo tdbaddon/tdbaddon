@@ -1161,7 +1161,7 @@ class episodes:
                 sysmeta = urllib.quote_plus(json.dumps(meta))
 
 
-                url = '%s?action=play&name=%s&title=%s&year=%s&imdb=%s&tmdb=%s&tvdb=%s&tvrage=%s&season=%s&episode=%s&tvshowtitle=%s&alter=%s&date=%s&t=%s' % (sysaddon, episodename, episodetitle, year, imdb, tmdb, tvdb, tvrage, season, episode, systitle, alter, syspremiered, self.systime)
+                url = '%s?action=play&name=%s&title=%s&year=%s&imdb=%s&tmdb=%s&tvdb=%s&tvrage=%s&season=%s&episode=%s&tvshowtitle=%s&alter=%s&date=%s&meta=%s&t=%s' % (sysaddon, episodename, episodetitle, year, imdb, tmdb, tvdb, tvrage, season, episode, systitle, alter, syspremiered, sysmeta, self.systime)
                 sysurl = urllib.quote_plus(url)
 
                 if isFolder == True:
@@ -1224,7 +1224,7 @@ class episodes:
 
                 item.setInfo(type='Video', infoLabels = meta)
                 item.setProperty('Video', 'true')
-                item.setProperty('IsPlayable', 'true')
+                #item.setProperty('IsPlayable', 'true')
                 item.setProperty('resumetime',str(0))
                 item.setProperty('totaltime',str(1))
                 item.addContextMenuItems(cm, replaceItems=True)

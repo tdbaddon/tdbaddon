@@ -1,4 +1,24 @@
 ------------------------
+Genesis v5.1.1 (10-Oct-15)
+------------------------
+
+- [COLOR orange]NOTE: Genesis is a free addon and it will always be a free addon.[/COLOR]
+- [COLOR orange]NOTE: Anyone that tells you otherwise is trying to steal your money.[/COLOR]
+
+- [COLOR orange]NOTE: I have no plans to stop Genesis development any time soon.[/COLOR]
+- [COLOR orange]NOTE: If that ever changes it would be announced by me on the www.tvaddons.ag forum.[/COLOR]
+- [COLOR orange]NOTE: Not via other anonymous people on the internet.[/COLOR]
+
+- Re-work of progress dialogs.
+- Tweaked movie and episode listings.
+- Tweaked playback actions.
+- Updated available sources.
+- Updated available resolvers.
+- Updated translations.
+- Code cosmetics.
+
+
+------------------------
 Genesis v5.1.0 (5-Oct-15)
 ------------------------
 

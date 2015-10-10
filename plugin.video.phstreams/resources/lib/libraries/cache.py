@@ -91,6 +91,8 @@ def get(function, timeout, *args, **table):
 
 def clear(table=None):
     try:
+        control.idle()
+
         if table == None: table = ['rel_list', 'rel_lib']
         elif not type(table) == list: table = [table]
 

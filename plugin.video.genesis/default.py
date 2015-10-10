@@ -337,7 +337,7 @@ elif action == 'download':
 
 elif action == 'play':
     from resources.lib.sources import sources
-    sources().play(name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date, url)
+    sources().play(name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date, meta, url)
 
 elif action == 'sources':
     from resources.lib.sources import sources

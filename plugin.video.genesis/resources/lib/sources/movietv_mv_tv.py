@@ -28,19 +28,22 @@ except:
 
 from resources.lib.libraries import control
 from resources.lib.libraries import cleantitle
-from resources.lib.libraries import cloudflare
 from resources.lib.libraries import client
 
 
 class source:
     def __init__(self):
         self.base_link = 'http://movietv.to'
-        self.data_link = 'aHR0cHM6Ly9vZmZzaG9yZWdpdC5jb20vbGFtYmRhODEvZGF0YWJhc2VzL21vdmlldHYuemlw'
+        self.data_link = 'aHR0cHM6Ly9vZmZzaG9yZWdpdC5jb20vbGFtYmRhODEvZGF0YWJhc2VzL21vdmlldHYyLnppcA=='
 
 
     def get_movie(self, imdb, title, year):
         try:
             data = os.path.join(control.dataPath, 'movietv.db')
+            try: control.deleteFile(data)
+            except: pass
+
+            data = os.path.join(control.dataPath, 'movietv2.db')
 
             download = True
 
@@ -61,8 +64,10 @@ class source:
             result = eval(result[1].encode('utf-8'))
 
             title = cleantitle.movie(title)
+            years = ['%s' % str(year), '%s' % str(int(year)+1), '%s' % str(int(year)-1)]
 
-            result = [i[0] for i in result if title == cleantitle.movie(i[1])][0]
+            result = [i for i in result if title == cleantitle.movie(i[2])]
+            result = [i[0] for i in result if any(x in i[3] for x in years)][0]
 
             try: url = re.compile('//.+?(/.+)').findall(result)[0]
             except: url = result
@@ -76,6 +81,10 @@ class source:
     def get_show(self, imdb, tvdb, tvshowtitle, year):
         try:
             data = os.path.join(control.dataPath, 'movietv.db')
+            try: control.deleteFile(data)
+            except: pass
+
+            data = os.path.join(control.dataPath, 'movietv2.db')
 
             download = True
 
@@ -96,8 +105,10 @@ class source:
             result = eval(result[1].encode('utf-8'))
 
             tvshowtitle = cleantitle.tv(tvshowtitle)
+            years = ['%s' % str(year), '%s' % str(int(year)+1), '%s' % str(int(year)-1)]
 
-            result = [i[0] for i in result if tvshowtitle == cleantitle.tv(i[1])][0]
+            result = [i for i in result if tvshowtitle == cleantitle.tv(i[2])]
+            result = [i[0] for i in result if any(x in i[3] for x in years)][0]
 
             try: url = re.compile('//.+?(/.+)').findall(result)[0]
             except: url = result
@@ -129,25 +140,49 @@ class source:
 
             if url == None: return sources
 
-            content = re.compile('(.+?)\?S\d*E\d*$').findall(url)
-
-            try: url, season, episode = re.compile('(.+?)\?S(\d*)E(\d*)$').findall(url)[0]
+            data = os.path.join(control.dataPath, 'movietv.db')
+            try: control.deleteFile(data)
             except: pass
 
-            url = urlparse.urljoin(self.base_link, url)
+            data = os.path.join(control.dataPath, 'movietv2.db')
 
-            result = cloudflare.source(url, safe=True, timeout='10', headers={'Referer': 'http://movietv.to/'})
+            download = True
+
+            try: download = abs(datetime.datetime.fromtimestamp(os.path.getmtime(data)) - (datetime.datetime.now())) > datetime.timedelta(days=7)
+            except: pass
+
+            if download == True:
+                result = client.source(base64.b64decode(self.data_link))
+                zip = zipfile.ZipFile(StringIO.StringIO(result))
+                zip.extractall(control.dataPath)
+                zip.close()
+
+            dbcon = database.connect(data)
+            dbcur = dbcon.cursor()
+
+
+            content = re.compile('(.+?)\?S\d*E\d*$').findall(url)
+
+            try: url, handler = re.compile('(.+?)\?(S\d*E\d*)$').findall(url)[0]
+            except: pass
 
             if len(content) == 0:
-                u = client.parseDOM(result, 'source', ret='src', attrs = {'type': 'video.+?'})[0]
-            else:
-                u = re.compile('playSeries\((\d+),(%01d),(%01d)\)' % (int(season), int(episode))).findall(result)[0]
-                u = '/series/getLink?id=%s&s=%s&e=%s' % (u[0], u[1], u[2])
-                u = urlparse.urljoin(self.base_link, u)
-                u = cloudflare.source(u, safe=True, timeout='10', headers={'X-Requested-With': 'XMLHttpRequest', 'Referer': url})
-                u = json.loads(u)['url']
+                dbcur.execute("SELECT * FROM movies")
+                result = dbcur.fetchall()
+                result = [eval(i[1].encode('utf-8')) for i in result]
+                result = sum(result, [])
+                result = [i for i in result if i[0] == url][0]
 
-            url = '%s|User-Agent=%s&Referer=%s' % (u, urllib.quote_plus(client.agent()), urllib.quote_plus(url))
+            else:
+                dbcur.execute("SELECT * FROM tvshows")
+                result = dbcur.fetchall()
+                result = [eval(i[1].encode('utf-8')) for i in result]
+                result = sum(result, [])
+                result = [i for i in result if i[0] == url]
+                result = [i for i in result if i[4] == handler][0]
+
+
+            url = '%s|User-Agent=%s&Referer=%s' % (result[1], urllib.quote_plus(client.agent()), urllib.quote_plus(urlparse.urljoin(self.base_link, result[0])))
 
             sources.append({'source': 'MovieTV', 'quality': 'HD', 'provider': 'MovieTV', 'url': url})
 

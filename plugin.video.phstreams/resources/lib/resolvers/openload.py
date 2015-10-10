@@ -19,12 +19,15 @@
 '''
 
 
-import re,json,time
+import re,urllib,json,time
 from resources.lib.libraries import client
+from resources.lib.libraries import captcha
 
 
 def resolve(url):
     try:
+        if check(url) == False: return
+
         id = re.compile('//.+?/(?:embed|f)/([0-9a-zA-Z-_]+)').findall(url)[0]
 
         url = 'https://api.openload.io/1/file/dlticket?file=%s' % id
@@ -32,9 +35,16 @@ def resolve(url):
         result = client.request(url)
         result = json.loads(result)
 
+        cap = result['result']['captcha_url']
+
+        if not cap == None: cap = captcha.keyboard(cap)
+
         time.sleep(result['result']['wait_time'])
 
         url = 'https://api.openload.io/1/file/dl?file=%s&ticket=%s' % (id, result['result']['ticket'])
+
+        if not cap == None:
+            url += '&captcha_response=%s' % urllib.quote(cap)
 
         result = client.request(url)
         result = json.loads(result)
@@ -43,5 +53,18 @@ def resolve(url):
         return url
     except:
         return
+
+
+def check(url):
+    try:
+        id = re.compile('//.+?/(?:embed|f)/([0-9a-zA-Z-_]+)').findall(url)[0]
+        url = 'https://openload.co/embed/%s/' % id
+
+        result = client.request(url)
+        if result == None: return False
+        if '>We are sorry!<' in result: return False
+        return True
+    except:
+        return False
 
 

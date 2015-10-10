@@ -87,12 +87,10 @@ def _replacestrings(source):
 class Unbaser(object):
     """Functor for a given base. Will efficiently convert
     strings to natural numbers."""
-    ALPHABET  = {
-        52 : '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOP',
-        54 : '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQR',
-        62 : '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
-        95 : (' !"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-              '[\]^_`abcdefghijklmnopqrstuvwxyz{|}~')
+    ALPHABET = {
+        62: '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
+        95: (' !"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+             '[\]^_`abcdefghijklmnopqrstuvwxyz{|}~')
     }
     
     def __init__(self, base):
@@ -102,10 +100,13 @@ class Unbaser(object):
         if 2 <= base <= 36:
             self.unbase = lambda string: int(string, base)
         else:
+            if base < 62:
+                self.ALPHABET[base] = self.ALPHABET[62][0:base]
+            elif base < 95:
+                self.ALPHABET[base] = self.ALPHABET[95][0:base]
             # Build conversion dictionary cache
             try:
-                self.dictionary = dict((cipher, index) for
-                    index, cipher in enumerate(self.ALPHABET[base]))
+                self.dictionary = dict((cipher, index) for index, cipher in enumerate(self.ALPHABET[base]))
             except KeyError:
                 raise TypeError('Unsupported base encoding.')
 

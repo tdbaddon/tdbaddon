@@ -112,13 +112,14 @@ class source:
 
     def resolve(self, url):
         try:
-            if not 'google' in url: return url
+            if 'google' in url:
+                url = client.request(url, output='geturl')
+                if 'requiressl=yes' in url: url = url.replace('http://', 'https://')
+                else: url = url.replace('https://', 'http://')
 
-            if url.startswith('stack://'): return url
+            else:
+                url = '%s|User-Agent=%s' % (url, urllib.quote_plus(client.agent()))
 
-            url = client.request(url, output='geturl')
-            if 'requiressl=yes' in url: url = url.replace('http://', 'https://')
-            else: url = url.replace('https://', 'http://')
             return url
         except:
             return

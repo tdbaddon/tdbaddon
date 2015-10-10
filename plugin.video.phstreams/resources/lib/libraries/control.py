@@ -162,8 +162,22 @@ def selectDialog(list, heading=addonInfo('name')):
     return dialog.select(heading, list)
 
 
+def version():
+    num = ''
+    try: version = addon('xbmc.addon').getAddonInfo('version')
+    except: version = '999'
+    for i in version:
+        if i.isdigit(): num += i
+        else: break
+    return int(num)
+
+
 def refresh():
     return execute('Container.Refresh')
+
+
+def idle():
+    return execute('Dialog.Close(busydialog)')
 
 
 def queueItem():
@@ -176,6 +190,7 @@ def openPlaylist():
 
 def openSettings(query=None, id=addonInfo('id')):
     try:
+        idle()
         execute('Addon.OpenSettings(%s)' % id)
         if query == None: raise Exception()
         c, f = query.split('.')
@@ -183,4 +198,5 @@ def openSettings(query=None, id=addonInfo('id')):
         execute('SetFocus(%i)' % (int(f) + 200))
     except:
         return
+
 

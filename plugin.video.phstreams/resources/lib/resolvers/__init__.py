@@ -299,8 +299,11 @@ def info():
         'netloc': ['openload.io', 'openload.co'],
         'host': ['Openload'],
         'quality': 'High',
-        'captcha': False,
+        'captcha': True,
         'a/c': False
+    }, {
+        'class': 'p2pcast',
+        'netloc': ['p2pcast.tv']
     }, {
         'class': 'primeshare',
         'netloc': ['primeshare.tv'],
@@ -329,6 +332,9 @@ def info():
         'quality': 'Low',
         'captcha': False,
         'a/c': False
+    }, {
+        'class': 'sawlive',
+        'netloc': ['sawlive.tv']
     }, {
         'class': 'sharerepo',
         'netloc': ['sharerepo.com'],

@@ -32,22 +32,25 @@ class player(xbmc.Player):
         xbmc.Player.__init__(self)
 
 
-    def run(self, content, name, url, year, imdb, tvdb):
+    def run(self, content, name, url, year, imdb, tvdb, meta):
 
         if control.window.getProperty('PseudoTVRunning') == 'True':
-            return control.resolve(int(sys.argv[1]), True, control.item(path=url))
+            return control.player.play(url, control.item(path=url))
 
         self.getVideoInfo(content, name, year, imdb, tvdb)
 
-        if self.folderPath.startswith('plugin://'):
-            control.resolve(int(sys.argv[1]), True, control.item(path=url))
+        if self.folderPath.startswith('plugin://') and not meta == None:
+            poster, thumb, meta = self.getMeta(meta)
         else:
             poster, thumb, meta = self.getLibraryMeta()
-            item = control.item(path=url, iconImage='DefaultVideo.png', thumbnailImage=thumb)
-            item.setInfo(type='Video', infoLabels = meta)
-            try: item.setArt({'poster': poster, 'tvshow.poster': poster, 'season.poster': poster})
-            except: pass
-            control.resolve(int(sys.argv[1]), True, item)
+
+        item = control.item(path=url, iconImage='DefaultVideo.png', thumbnailImage=thumb)
+        item.setInfo(type='Video', infoLabels = meta)
+        try: item.setArt({'poster': poster, 'tvshow.poster': poster, 'season.poster': poster})
+        except: pass
+        item.setProperty('Video', 'true')
+        item.setProperty('IsPlayable', 'true')
+        control.player.play(url, item)
 
         for i in range(0, 240):
             if self.isPlayingVideo(): break
@@ -104,6 +107,21 @@ class player(xbmc.Player):
                 control.window.setProperty('script.trakt.ids', json.dumps({'tvdb': self.tvdb}))
         except:
             pass
+
+
+    def getMeta(self, meta):
+        try:
+            meta = json.loads(meta)
+
+            poster = meta['poster'] if 'poster' in meta else '0'
+            thumb = meta['thumb'] if 'thumb' in meta else poster
+
+            if poster == '0': poster = control.addonPoster()
+
+            return (poster, thumb, meta)
+        except:
+            poster, thumb, meta = '', '', {'title': self.name}
+            return (poster, thumb, meta)
 
 
     def getLibraryMeta(self):

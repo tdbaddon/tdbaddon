@@ -222,7 +222,7 @@ Thats all Folks
 	</extension>
 </addon>
 
-<addon id="plugin.video.genesis" name="Genesis" version="5.1.0" provider-name="lambda">
+<addon id="plugin.video.genesis" name="Genesis" version="5.1.1" provider-name="lambda">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.requests" version="1.0.0" />
@@ -404,7 +404,7 @@ Thats all Folks
   </extension>
 </addon>
 
-<addon id="plugin.video.phstreams" name="Phoenix" version="2.5.8" provider-name="Blazetamer, lambda">
+<addon id="plugin.video.phstreams" name="Phoenix" version="2.5.9" provider-name="Blazetamer, lambda">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.pyxbmct" version="1.1.4" />
@@ -569,7 +569,7 @@ Thats all Folks
 
 <addon id="plugin.video.TDBEUROTV"
        name="TDB EURO TV"
-       version="1.98"
+       version="1.99"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -588,7 +588,7 @@ Thats all Folks
 
 <addon id="plugin.video.TDBPORNO"
        name="TDB PORNO"
-       version="1.74"
+       version="1.75"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -644,7 +644,7 @@ Thats all Folks
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="3.17"
+       version="3.19"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>

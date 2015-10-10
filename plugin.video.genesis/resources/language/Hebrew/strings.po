@@ -3,14 +3,16 @@
 # Addon Provider: Genesis
 # Translators:
 # Translators:
+# Translators:
 # Itay Mizi, 2015
+# lambda81, 2015
 # lambda81, 2015
 # lidor malich, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Genesis\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2015-09-23 23:21+0000\n"
+"PO-Revision-Date: 2015-10-10 13:02+0000\n"
 "Last-Translator: lambda81\n"
 "Language-Team: Hebrew (http://www.transifex.com/tv-addons/genesis/language/he/)\n"
 "MIME-Version: 1.0\n"
@@ -281,11 +283,11 @@ msgstr "[B]מקור[/B] :סרטים"
 
 msgctxt "#30116"
 msgid "[B]SOURCES[/B] : TV"
-msgstr "[B]מקור[/B] :סדרות"
+msgstr "[B]מקור[/B]: סדרות "
 
 msgctxt "#30117"
 msgid "[B]HOSTS[/B] : HD Priority"
-msgstr "[B]שרת[/B] :שרת אחסון HD"
+msgstr " HD אחסון  : [B]שרת[/B]"
 
 msgctxt "#30118"
 msgid "[B]HOSTS[/B] : SD Priority"
@@ -674,6 +676,22 @@ msgstr "האם אתה בטוח?"
 msgctxt "#30511"
 msgid "Process Complete"
 msgstr "התהליך הושלם"
+
+msgctxt "#30512"
+msgid "Time elapsed"
+msgstr "זמן שעבר"
+
+msgctxt "#30513"
+msgid "seconds"
+msgstr "שניות"
+
+msgctxt "#30514"
+msgid "Remaining sources"
+msgstr "מקורות שנשארו"
+
+msgctxt "#30515"
+msgid "Loading sources"
+msgstr "טוען מקורות"
 
 msgctxt "#30521"
 msgid "Monday"

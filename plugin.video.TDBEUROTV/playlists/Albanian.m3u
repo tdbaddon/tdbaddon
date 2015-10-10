@@ -59,13 +59,13 @@ rtmp://91.82.85.44/live/konyhatv
 0
 
 #EXTINF:0,News24
-http://66.55.93.203/hls-live/livepkgr/_definst_/news24/n24stream.m3u8
+0
 
 #EXTINF:0,Ora News 
 http://81.7.13.162/hls/oranews/index.m3u8
 
 #EXTINF:0,Planet TV 
-rtsp://origin.biokoda.tv/live/mbit-planet?k=planettv-public
+0
 
 #EXTINF:0,Rokum TV 
 rtmp://82.114.65.202/live/rrokumtv.flv swfUrl=http://tv24.al/shqiptv/css/player.swf live=1
@@ -73,26 +73,23 @@ rtmp://82.114.65.202/live/rrokumtv.flv swfUrl=http://tv24.al/shqiptv/css/player.
 #EXTINF:0,RTK1 
 0
 
-#EXTINF:0,Supersonic TV
-rtmp://str103.setplex.net:1935/228/stv_online
-
 #EXTINF:0,STV 
 http://88.212.10.27:81/streams/stv1.m3u8?
-
-#EXTINF:0,STV 
-http://88.212.10.27:81/streams/stv2.m3u8?
 
 #EXTINF:0,STV Folk
 rtmp://str103.setplex.net:1935/228/stv_folk
 
+#EXTINF:0,Supersonic TV
+rtmp://str103.setplex.net:1935/228/stv_online
+
 #EXTINF:0,Top Channel 
-http://tring-amd-live.tring.tv/out/u/55_12.m3u8
+0
 
 #EXTINF:0,Top Channel News
 0
 
 #EXTINF:0,Tring Tring
-http://185.75.56.37:8056
+0
 
 #EXTINF:0,Vizion Plus 
 rtmp://live.vizionplus.tv/live//livestream3

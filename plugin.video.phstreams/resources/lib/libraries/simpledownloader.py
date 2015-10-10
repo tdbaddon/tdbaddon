@@ -43,6 +43,7 @@ def download(name, image, url):
     url = url.split('|')[0]
 
     content = re.compile('(.+?)\sS(\d*)E\d*$').findall(name)
+    transname = name.translate(None, '\/:*?"<>|').strip('.')
     levels =['../../../..', '../../..', '../..', '..']
 
     if len(content) == 0:
@@ -52,7 +53,7 @@ def download(name, image, url):
             try: control.makeFile(os.path.abspath(os.path.join(dest, level)))
             except: pass
         control.makeFile(dest)
-        dest = os.path.join(dest, name)
+        dest = os.path.join(dest, transname)
         control.makeFile(dest)
     else:
         dest = control.setting('tv_downloads')
@@ -61,14 +62,15 @@ def download(name, image, url):
             try: control.makeFile(os.path.abspath(os.path.join(dest, level)))
             except: pass
         control.makeFile(dest)
-        dest = os.path.join(dest, content[0][0])
+        transtvshowtitle = content[0][0].translate(None, '\/:*?"<>|').strip('.')
+        dest = os.path.join(dest, transtvshowtitle)
         control.makeFile(dest)
         dest = os.path.join(dest, 'Season %01d' % int(content[0][1]))
         control.makeFile(dest)
 
     ext = os.path.splitext(urlparse.urlparse(url).path)[1][1:]
     if not ext in ['mp4', 'mkv', 'flv', 'avi', 'mpg']: ext = 'mp4'
-    dest = os.path.join(dest, name + '.' + ext)
+    dest = os.path.join(dest, transname + '.' + ext)
 
     sysheaders = urllib.quote_plus(json.dumps(headers))
 

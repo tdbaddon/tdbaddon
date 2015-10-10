@@ -3,13 +3,15 @@
 # Addon Provider: Genesis
 # Translators:
 # Translators:
+# Translators:
 # Mafarricos, 2015
+# Helder, 2015
 # lambda81, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Genesis\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2015-09-23 23:36+0000\n"
+"PO-Revision-Date: 2015-10-10 13:03+0000\n"
 "Last-Translator: lambda81\n"
 "Language-Team: Portuguese (http://www.transifex.com/tv-addons/genesis/language/pt/)\n"
 "MIME-Version: 1.0\n"
@@ -673,6 +675,22 @@ msgstr "Tem certeza?"
 msgctxt "#30511"
 msgid "Process Complete"
 msgstr "Processo Terminado"
+
+msgctxt "#30512"
+msgid "Time elapsed"
+msgstr "Tempo Decorrido"
+
+msgctxt "#30513"
+msgid "seconds"
+msgstr "Segundos"
+
+msgctxt "#30514"
+msgid "Remaining sources"
+msgstr "Fontes Restantes"
+
+msgctxt "#30515"
+msgid "Loading sources"
+msgstr "Carregando Fontes"
 
 msgctxt "#30521"
 msgid "Monday"
