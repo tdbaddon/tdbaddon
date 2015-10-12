@@ -607,7 +607,7 @@ Thats all Folks
 
 <addon id="plugin.video.TDBRADIO"
        name="TDB RADIO"
-       version="1.25"
+       version="1.26"
        provider-name="TDB">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>

@@ -80,7 +80,7 @@ http://serv.radiosfera.pl:7084
 http://178.33.232.230:8005/
 
 #EXTINF:0,RauteMusik FM Club
-0
+http://95.141.24.8:80/;stream.nsv
 
 #EXTINF:0,Rouge Dance
 http://rouge-dance.ice.infomaniak.ch/rouge-dance-64.aac
