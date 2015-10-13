@@ -72,6 +72,37 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
+<addon id="plugin.video.bassleaks"
+       name="bassleaks"
+       version="1.0.03"
+       provider-name="Bass Controller">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+	<import addon="script.module.t0mm0.common" version="2.0.0"/>
+    <import addon="script.module.beautifulsoup" version="3.2.1"/>
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.beautifulsoup4" />
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.requests" />
+    <import addon="script.module.httplib2" />
+    <import addon="script.module.youtube.dl" optional="true"/>
+    <import addon="plugin.video.youtube" version="3.0.0"/>
+    <import addon="script.module.urlresolver" optional="true"/>
+    <import addon="script.module.simplejson" />
+    <import addon="script.common.plugin.cache" version="2.5.2"/>
+    <import addon="script.module.metahandler" version="2.5.1"/>
+
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="bassleaksworks.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en"> Enjoy Bass leaks</summary>
+    <description lang="en">You can reach BaseController on twitter @bassleaks</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
 <addon id="plugin.video.CanTVLive" name="CanTVLive" version="2.0.2" provider-name="podgod">
   <requires>
     <import addon="xbmc.python" version="2.1.0" />
@@ -518,13 +549,9 @@ Thats all Folks
   </extension>
 </addon>
 
-<addon id="plugin.video.streamstormtv"
-       name="StreamStormTV"
-       version="1.0.2"
-       provider-name="Stream Storm TV">
+<addon id="plugin.video.Stallion-IPTV" name="Stallion-IPTV" version="2.1" provider-name="Luis Padron">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
-	<import addon="script.module.t0mm0.common" version="2.0.0"/>
     <import addon="script.module.beautifulsoup" version="3.2.1"/>
     <import addon="script.module.simple.downloader" version="0.9.4"/>
     <import addon="script.module.beautifulsoup4" />
@@ -532,22 +559,16 @@ Thats all Folks
     <import addon="script.module.requests" />
     <import addon="script.module.httplib2" />
     <import addon="script.module.youtube.dl" optional="true"/>
-    <import addon="plugin.video.youtube" version="3.0.0"/>
+    <import addon="plugin.video.youtube" />
     <import addon="script.module.urlresolver" optional="true"/>
     <import addon="script.module.simplejson" />
-    <import addon="script.common.plugin.cache" version="2.5.2"/>
-    <import addon="script.module.metahandler" version="2.5.1"/>
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
     <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary>Live Streaming TV Made Easy.</summary>
-    <description>
-	[COLOR white]We [COLOR red]DO NOT[/COLOR] own or host any of the content found in this directory. All streams are mirrored from external servers. We will try our best to keep all streams up to date[/COLOR]
-	[COLOR yellowgreen]Paypal Donations: [COLOR blue]streamstormtv@gmail.com[/COLOR]
-
-    </description>
+    <summary>[COLOR red]Stallion[/COLOR][COLOR blue]IPTV[/COLOR]basado en LivetreamsPro by Shani  </summary>
+    <description lang="en">[COLOR cyan][B]Stallion-IPTV, el mejor sistema IPTV para tu hogar[/B][/COLOR]</description>
     <platform>all</platform>
   </extension>
 </addon>
@@ -569,7 +590,7 @@ Thats all Folks
 
 <addon id="plugin.video.TDBEUROTV"
        name="TDB EURO TV"
-       version="1.99"
+       version="2.00"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -644,7 +665,7 @@ Thats all Folks
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="3.19"
+       version="3.20"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>

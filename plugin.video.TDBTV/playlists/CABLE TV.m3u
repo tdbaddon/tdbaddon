@@ -34,8 +34,14 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/134.m3u8
 #EXTINF:0,BBC 1 
 http://5.196.82.222:8000/live/test1/test1/1.m3u8
 
+#EXTINF:0,BBC 1 
+http://stream.balticbox.tv:8080/HDBBC1/mono.m3u8?token=asg!1dkhasg!54754
+
 #EXTINF:0,BBC 2 
 http://82.135.224.134/udp/239.100.3.3:1234
+
+#EXTINF:0,BBC 2 
+http://stream.balticbox.tv:8080/HDBBC2/mono.m3u8?token=asg!1dkhasg!54754
 
 #EXTINF:0,BET 
 0
@@ -58,6 +64,9 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/4.m3u8
 #EXTINF:0,Cartoon Network 
 http://stream-full.selfip.com:8000/live/jack/jack/388.ts
 
+#EXTINF:0,Cartoon Network 
+http://stream.balticbox.tv:8080/CARUK/mono.m3u8?token=asg!1dkhasg!54754
+
 #EXTINF:0,CBC TV 
 0
 
@@ -76,6 +85,9 @@ http://stream-full.selfip.com:8000/live/jack/jack/574.ts
 #EXTINF:0,CBS Reality 
 http://78.30.254.43:8989/udp/239.0.0.91:4000
 
+#EXTINF:0,CBS Reality
+http://stream.balticbox.tv:8080/CBSReality/mono.m3u8?token=asg!1dkhasg!54754
+
 #EXTINF:0,City TV Toronto 
 0
 
@@ -90,6 +102,9 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/86.m3u8
 
 #EXTINF:0,Comedy Central 
 http://lag2.tv-mobile.org:22637/udp/231.2.2.26:1234
+
+#EXTINF:0,Comedy Central 
+http://stream.balticbox.tv:8080/CmdyXtr/mono.m3u8?token=asg!1dkhasg!54754
 
 #EXTINF:0,Cooking Channel
 0
@@ -115,8 +130,14 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/65.m3u8
 #EXTINF:0,Disney Channel 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/89.m3u8
 
+#EXTINF:0,Disney Channel 
+http://stream.balticbox.tv:8080/Disney/mono.m3u8?token=asg!1dkhasg!54754
+
 #EXTINF:0,Disney Junior 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/13.m3u8
+
+#EXTINF:0,Disney Junior 
+http://stream.balticbox.tv:8080/DIJR/mono.m3u8?token=asg!1dkhasg!54754
 
 #EXTINF:0,Disney XD 
 0
@@ -203,16 +224,16 @@ rtmp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:468p500kB31?b?b*t$
 http://ios.streamserver01.com:8080/ShowcaseTV/mystream.m3u8
 
 #EXTINF:0,ITV 1 
-0
+http://stream.balticbox.tv:8080/ITV1/mono.m3u8?token=asg!1dkhasg!54754
 
 #EXTINF:0,ITV 2 
-0
+http://stream.balticbox.tv:8080/ITV2/mono.m3u8?token=asg!1dkhasg!54754
 
 #EXTINF:0,ITV 3 
-0
+http://stream.balticbox.tv:8080/ITV3/mono.m3u8?token=asg!1dkhasg!54754
 
 #EXTINF:0,ITV 4 
-0
+http://stream.balticbox.tv:8080/ITV4/mono.m3u8?token=asg!1dkhasg!54754
 
 #EXTINF:0,JTV 
 rtmp://jtvmedia.jtv.com:1975/live playpath=live6 swfUrl=http://demandware.edgesuite.net/aaby_prd/on/demandware.static/Sites-jtv-Site/-/default/v1410110388581/swf/flashMediaPlayer/StrobeMediaPlayback.swf live=1 pageUrl=http://www.jtv.com/on/demandware.store/Sites-jtv-Site/default/LiveViewer-Show
@@ -277,8 +298,11 @@ http://j.mp/ZCH_C02_NICKJUNIOR_sly
 #EXTINF:0,Sky 1 
 http://5.196.82.222:8000/live/test1/test1/26.m3u8
 
+#EXTINF:0,Sky 1
+http://stream.balticbox.tv:8080/Sky1/mono.m3u8?token=asg!1dkhasg!54754
+
 #EXTINF:0,Sky 2 
-0
+http://stream.balticbox.tv:8080/Sky2/mono.m3u8?token=asg!1dkhasg!54754
 
 #EXTINF:0,Sky Arts 1 
 0
@@ -288,6 +312,9 @@ http://5.196.82.222:8000/live/test1/test1/26.m3u8
 
 #EXTINF:0,Sky Atlantic 
 http://5.196.82.222:8000/live/test1/test1/29.m3u8
+
+#EXTINF:0,Sky Atlantic 
+http://stream.balticbox.tv:8080/SkyAtl/mono.m3u8?token=asg!1dkhasg!54754
 
 #EXTINF:0,Sky Living 
 http://5.196.82.222:8000/live/test1/test1/28.m3u8

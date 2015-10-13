@@ -50,6 +50,9 @@ http://lag1.tv-mobile.org/prgw.m3u8
 0
 
 #EXTINF:0,HBO 
+http://master.nika.rs.ba:80/live?channelId=39&uid=66&deviceUser=besplatno&devicePass=besplatno
+
+#EXTINF:0,HBO 
 http://bit.ly:80/IPTVGlobal-hbo?live.m3u8
 
 #EXTINF:0,HBO 
@@ -63,6 +66,9 @@ http://lag2.tv-mobile.org/prgp.m3u8
 
 #EXTINF:0,HBO Comedy
 http://stream-full.selfip.com:8000/live/jack/jack/572.ts
+
+#EXTINF:0,HBO Comedy
+http://master.nika.rs.ba:80/live?channelId=40&uid=66&deviceUser=besplatno&devicePass=besplatno
 
 #EXTINF:0,HBO Signature
 0
@@ -80,40 +86,40 @@ http://stream-full.selfip.com:8000/live/jack/jack/572.ts
 http://188.17.143.39/hls/CH_C01_PARAMOUNTCHANNEL/variant.m3u8?version=2
 
 #EXTINF:0,Sky Movies Action 
-0
+http://stream.balticbox.tv:8080/SkyAction/mono.m3u8?token=asg!1dkhasg!54754
 
 #EXTINF:0,Sky Movies Comedy 
-0
+http://stream.balticbox.tv:8080/SkyComedy/mono.m3u8?token=asg!1dkhasg!54754
 
 #EXTINF:0,Sky Movies Crime 
-0
+http://stream.balticbox.tv:8080/SkyCrime/mono.m3u8?token=asg!1dkhasg!54754
 
 #EXTINF:0,Sky Movies Disney 
-0
+http://stream.balticbox.tv:8080/SkyDisney/mono.m3u8?token=asg!1dkhasg!54754
 
 #EXTINF:0,Sky Movies Drama 
-0
+http://stream.balticbox.tv:8080/SkyDrama/mono.m3u8?token=asg!1dkhasg!54754
 
 #EXTINF:0,Sky Movies Family 
-0
+http://stream.balticbox.tv:8080/SkyFamily/mono.m3u8?token=asg!1dkhasg!54754
 
 #EXTINF:0,Sky Movies Horrors 
 0
 
 #EXTINF:0,Sky Movies Modern Greats 
-0
+http://stream.balticbox.tv:8080/SkyGreats/mono.m3u8?token=asg!1dkhasg!54754
 
 #EXTINF:0,Sky Movies Premiere 
-0
+http://stream.balticbox.tv:8080/SkyPremiere/mono.m3u8?token=asg!1dkhasg!54754
 
 #EXTINF:0,Sky Movies Premiere+
 0
 
 #EXTINF:0,Sky Movies SciFi 
-0
+http://stream.balticbox.tv:8080/SkySci/mono.m3u8?token=asg!1dkhasg!54754
 
 #EXTINF:0,Sky Movies Select 
-0
+http://stream.balticbox.tv:8080/SkySelect/mono.m3u8?token=asg!1dkhasg!54754
 
 #EXTINF:0,Sony TV 
 0
@@ -131,7 +137,7 @@ http://188.17.143.39/hls/CH_C01_PARAMOUNTCHANNEL/variant.m3u8?version=2
 0
 
 #EXTINF:0,TCM 
-0
+http://stream.balticbox.tv:8080/TCMUK/mono.m3u8?token=asg!1dkhasg!54754
 
 #EXTINF:0,Tring Comedy
 0

@@ -5,22 +5,22 @@
 0
 
 #EXTINF:0,Pink 2 
-0
+http://master.nika.rs.ba:80/live?channelId=56&uid=66&deviceUser=besplatno&devicePass=besplatno
 
 #EXTINF:0,Pink 3 
 0
 
 #EXTINF:0,Pink Action 1 
-0
+http://master.nika.rs.ba:80/live?channelId=57&uid=66&deviceUser=besplatno&devicePass=besplatno
 
 #EXTINF:0,Pink Action 2 
-0
+http://master.nika.rs.ba:80/live?channelId=58&uid=66&deviceUser=besplatno&devicePass=besplatno
 
 #EXTINF:0,Pink Action 3
 0
 
 #EXTINF:0,Pink BH
-0
+http://master.nika.rs.ba:80/live?channelId=55&uid=66&deviceUser=besplatno&devicePass=besplatno
 
 #EXTINF:0,Pink Classic 
 0
@@ -29,7 +29,7 @@
 0
 
 #EXTINF:0,Pink Extra 
-0
+http://master.nika.rs.ba:80/live?channelId=60&uid=66&deviceUser=besplatno&devicePass=besplatno
 
 #EXTINF:0,Pink Family 
 0
@@ -38,7 +38,7 @@
 0
 
 #EXTINF:0,Pink Film 
-0
+http://master.nika.rs.ba:80/live?channelId=61&uid=66&deviceUser=besplatno&devicePass=besplatno
 
 #EXTINF:0,Pink Folk 1
 0
@@ -47,7 +47,7 @@
 0
 
 #EXTINF:0,Pink Horror 
-0
+http://master.nika.rs.ba:80/live?channelId=58&uid=66&deviceUser=besplatno&devicePass=besplatno
 
 #EXTINF:0,Pink Kids 
 0
@@ -62,13 +62,13 @@
 0
 
 #EXTINF:0,Pink Movies 1 
-0
+http://master.nika.rs.ba:80/live?channelId=62&uid=66&deviceUser=besplatno&devicePass=besplatno
 
 #EXTINF:0,Pink Movies 2 
-0
+http://master.nika.rs.ba:80/live?channelId=63&uid=66&deviceUser=besplatno&devicePass=besplatno
 
 #EXTINF:0,Pink Movies 3 
-0
+http://master.nika.rs.ba:80/live?channelId=65&uid=66&deviceUser=besplatno&devicePass=besplatno
 
 #EXTINF:0,Pink Music 1 
 0
@@ -95,7 +95,7 @@
 0
 
 #EXTINF:0,Pink Plus 
-0
+http://master.nika.rs.ba:80/live?channelId=64&uid=66&deviceUser=besplatno&devicePass=besplatno
 
 #EXTINF:0,Pink Premium 
 0
