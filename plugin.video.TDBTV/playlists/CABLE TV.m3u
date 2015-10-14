@@ -76,6 +76,10 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/6.m3u8
 #EXTINF:0,CBS 
 http://stream-full.selfip.com:8000/live/jack/jack/574.ts
 
+#EXTINF:0,CBS 
+http://185.63.252.131:1935/liveedge/Ger61uLQ4fedzvjRjrB7/playlist.m3u8?wmsAuthSign=$doregex[m3u8]
+
+
 #EXTINF:0,CBS Action 
 0
 
@@ -88,11 +92,14 @@ http://78.30.254.43:8989/udp/239.0.0.91:4000
 #EXTINF:0,CBS Reality
 http://stream.balticbox.tv:8080/CBSReality/mono.m3u8?token=asg!1dkhasg!54754
 
+#EXTINF:0,City TV Calgary
+http://btflash-lh.akamaihd.net/i/BTCALFLASH_live@120221/master.m3u8
+
 #EXTINF:0,City TV Toronto 
 0
 
 #EXTINF:0,City TV Vancouver
-0
+http://btflash-lh.akamaihd.net/i/BTVANFLASH_live@120224/master.m3u8
 
 #EXTINF:0,CNBC 
 0

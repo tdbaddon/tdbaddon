@@ -53,6 +53,9 @@ http://stream.balticbox.tv:8080/Chls/mono.m3u8?token=asg!1dkhasg!54754
 0
 
 #EXTINF:0,ESPN 
+http://192.99.147.19:5808/espnhdguys/playlist.m3u8
+
+#EXTINF:0,ESPN 
 http://5.196.82.222:8000/live/test1/test1/22.m3u8
 
 #EXTINF:0,ESPN 
