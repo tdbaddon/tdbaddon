@@ -85,12 +85,9 @@ class source:
             for i in links:
                 try:
                     url = urlparse.urljoin(self.base_link, self.pk_link)
-                    post = urllib.urlencode({'url': i, 'fv': '16'})
+                    post = urllib.urlencode({'url': i, 'fv': '19', 'sou': 'pic'})
 
-                    for i in range(5):
-                        result = client.source(url, post=post)
-                        if not result == None: break
-
+                    result = client.source(url, post=post, referer=base)
                     result = json.loads(result)
 
                     try: sources.append({'source': 'GVideo', 'quality': '1080p', 'provider': 'YIFY', 'url': [i['url'] for i in result if i['width'] == 1920 and 'google' in i['url']][0]})

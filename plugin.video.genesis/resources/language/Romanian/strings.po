@@ -3,12 +3,14 @@
 # Addon Provider: Genesis
 # Translators:
 # Translators:
+# Translators:
 # Cojocaru Nicolae - Gheorhe, 2015
+# lambda81, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Genesis\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2015-09-28 03:36+0000\n"
+"PO-Revision-Date: 2015-10-14 02:49+0000\n"
 "Last-Translator: lambda81\n"
 "Language-Team: Romanian (http://www.transifex.com/tv-addons/genesis/language/ro/)\n"
 "MIME-Version: 1.0\n"
@@ -75,11 +77,11 @@ msgstr "Recomandate"
 
 msgctxt "#30026"
 msgid "People Watching"
-msgstr "La ce se uita lumea"
+msgstr "Cele mai vizionate"
 
 msgctxt "#30027"
 msgid "Most Popular"
-msgstr "Cele mai indragite"
+msgstr "Cele mai populare"
 
 msgctxt "#30028"
 msgid "Most Voted"
@@ -127,11 +129,11 @@ msgstr "Retele"
 
 msgctxt "#30054"
 msgid "People Watching"
-msgstr "Persoane care "
+msgstr "Cele mai vizionate"
 
 msgctxt "#30055"
 msgid "Most Popular"
-msgstr "Cele mai indragite"
+msgstr "Cele mai populare"
 
 msgctxt "#30056"
 msgid "Airing today"
@@ -673,6 +675,22 @@ msgctxt "#30511"
 msgid "Process Complete"
 msgstr "Operatiune finalizata"
 
+msgctxt "#30512"
+msgid "Time elapsed"
+msgstr "Timp scurs"
+
+msgctxt "#30513"
+msgid "seconds"
+msgstr "secunde"
+
+msgctxt "#30514"
+msgid "Remaining sources"
+msgstr "Surse ramase"
+
+msgctxt "#30515"
+msgid "Loading sources"
+msgstr "Incarcare surse"
+
 msgctxt "#30521"
 msgid "Monday"
 msgstr "Luni"
@@ -791,7 +809,7 @@ msgstr "Recomandate"
 
 msgctxt "#30810"
 msgid "People Watching"
-msgstr "Persoane care "
+msgstr "Cele mai vizionate"
 
 msgctxt "#30811"
 msgid "Latest Episodes"

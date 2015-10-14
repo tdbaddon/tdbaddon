@@ -172,41 +172,6 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
-<addon id="plugin.video.Daffyslist"
-       name="Daffys iptv/VOD list"
-       version="1.0.4"
-       provider-name="Daffyslist">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-	<import addon="script.module.t0mm0.common" version="2.0.0"/>
-    <import addon="script.module.beautifulsoup" version="3.2.1"/>
-    <import addon="script.module.simple.downloader" version="0.9.4"/>
-    <import addon="script.module.beautifulsoup4" />
-    <import addon="script.module.simple.downloader" version="0.9.4"/>
-    <import addon="script.module.requests" />
-    <import addon="script.module.httplib2" />
-    <import addon="script.module.youtube.dl" optional="true"/>
-    <import addon="plugin.video.youtube" version="3.0.0"/>
-    <import addon="script.module.urlresolver" optional="true"/>
-    <import addon="script.module.simplejson" />
-    <import addon="script.common.plugin.cache" version="2.5.2"/>
-    <import addon="script.module.metahandler" version="2.5.1"/>
-
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-    <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary>All the best from Daffyslist</summary>
-    <description>lists of iptv sports movies and more, i will update links when i have time.
-	I host most of the links but have no control over streaming or buffering issues!! I can remove and or update most!!
-	Want your list adding here? get intouch...
-Thats all Folks
-    </description>
-    <platform>all</platform>
-  </extension>
-</addon>
-
 <addon
   id="plugin.video.dragon.sports"
   version="4.5.4.2"
@@ -253,7 +218,7 @@ Thats all Folks
 	</extension>
 </addon>
 
-<addon id="plugin.video.genesis" name="Genesis" version="5.1.1" provider-name="lambda">
+<addon id="plugin.video.genesis" name="Genesis" version="5.1.2" provider-name="lambda">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.requests" version="1.0.0" />
@@ -354,24 +319,6 @@ Thats all Folks
     <summary lang="en">A Variety Of Streaming Sources From The Net</summary>
     <description lang="en"></description>
 	<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon</disclaimer>
-    <platform>all</platform>
-  </extension>
-</addon>
-
-<addon id="plugin.video.mobdro"
-	name="Mobdro"
-	version="1.0"
-	provider-name="AddonHacker">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="plugin.video.youtube" version="3.0.0"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-    <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en">Mobdro</summary>
-    <description lang="en">Watch Mobdro content</description>
     <platform>all</platform>
   </extension>
 </addon>

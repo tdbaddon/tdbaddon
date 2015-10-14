@@ -1,4 +1,24 @@
 ------------------------
+Genesis v5.1.2 (14-Oct-15)
+------------------------
+
+- [COLOR orange]NOTE: Genesis is a free addon and it will always be a free addon.[/COLOR]
+- [COLOR orange]NOTE: Anyone that tells you otherwise is trying to steal your money.[/COLOR]
+- [COLOR orange]NOTE: Visit www.tvaddons.ag for support.[/COLOR]
+
+- Fixed issues with progress dialogs.
+- Tweaked playback actions.
+- Fixed issue with Onlinemovies source.
+- Fixed issue with Primewire source.
+- Fixed issue with Yifystream source.
+- Fixed issue with Yify source.
+- Updated available resolvers.
+- Added Danish translation.
+- Updated translations.
+- Code cosmetics.
+
+
+------------------------
 Genesis v5.1.1 (10-Oct-15)
 ------------------------
 

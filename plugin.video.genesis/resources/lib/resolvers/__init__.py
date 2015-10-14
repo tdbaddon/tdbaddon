@@ -87,6 +87,13 @@ def info():
         'captcha': False,
         'a/c': False
     }, {
+        'class': 'allvid',
+        'netloc': ['allvid.ch'],
+        'host': ['Allvid'],
+        'quality': 'High',
+        'captcha': False,
+        'a/c': False
+    }, {
         'class': 'bestreams',
         'netloc': ['bestreams.net'],
         'host': ['Bestreams'],
@@ -234,7 +241,7 @@ def info():
         'a/c': False
     }, {
         'class': 'mailru',
-        'netloc': ['mail.ru', 'my.mail.ru', 'videoapi.my.mail.ru']
+        'netloc': ['mail.ru', 'my.mail.ru', 'videoapi.my.mail.ru', 'api.video.mail.ru']
     }, {
         'class': 'mightyupload',
         'netloc': ['mightyupload.com'],

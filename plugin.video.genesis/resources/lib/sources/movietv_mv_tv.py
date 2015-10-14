@@ -182,7 +182,7 @@ class source:
                 result = [i for i in result if i[4] == handler][0]
 
 
-            url = '%s|User-Agent=%s&Referer=%s' % (result[1], urllib.quote_plus(client.agent()), urllib.quote_plus(urlparse.urljoin(self.base_link, result[0])))
+            url = '%s|User-Agent=%s&Referer=%s' % (result[1], urllib.quote_plus('Mozilla/5.0 (Windows NT 10.0; WOW64; rv:41.0) Gecko/20100101 Firefox/41.0'), urllib.quote_plus(urlparse.urljoin(self.base_link, result[0])))
 
             sources.append({'source': 'MovieTV', 'quality': 'HD', 'provider': 'MovieTV', 'url': url})
 

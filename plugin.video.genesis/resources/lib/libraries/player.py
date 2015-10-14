@@ -223,6 +223,11 @@ class player(xbmc.Player):
 
 
     def onPlayBackStarted(self):
+        for i in range(0, 200):
+            if control.condVisibility('Window.IsActive(busydialog)') == 1: control.idle()
+            else: break
+            control.sleep(100)
+
         if control.setting('playback_info') == 'true':
             elapsedTime = '%s %s %s' % (control.lang(30464).encode('utf-8'), int((time.time() - self.loadingTime)), control.lang(30465).encode('utf-8'))
             control.infoDialog(elapsedTime, heading=self.name)
