@@ -1,0 +1,21 @@
+item_info_name=title
+item_info_from=@PARAM1@
+item_info_build=UltraCast - %s
+
+item_info_name=pageUrl
+item_info_from=@PARAM1@
+item_info_build=http://www.ultracast.me/player.php?width=646&height=450&id=%s
+
+item_info_name=flashvars
+item_info_from=pageUrl
+item_info_convert=getInfo('%s','.*streamer:\s*["'][^'"]+?(live[^'"]+)["'],file:\s*["']([^'"]+)["'].*token:\s*["']([^'"]+)["'].*','@REFERER@','rtmp|file|tok')
+item_info_build=%s
+
+item_info_name=token
+item_info_from=tok
+item_info_convert=quote(%s)
+item_info_build=%s
+
+item_info_name=url
+item_info_from=rtmp://edge.ultracast.me:1935/live/ app='+rtmp+' playpath='+file+' swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf token='+token+' flashver=WIN\2019,0,0,185 live=1 timeout=15 swfVfy=1 pageUrl=' + pageUrl
+item_info_build=%s
