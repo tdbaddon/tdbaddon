@@ -49,12 +49,10 @@ def fetch(items, lang):
             item = eval(match[4].encode('utf-8'))
             item = dict((k,v) for k, v in item.iteritems() if not v == '0')
 
-            if items[i]['poster'] == '0' or 'imdb.com' in items[i]['poster']:
-                try: items[i].update({'poster': item['poster']})
-                except: pass
-            if items[i]['banner'] == '0':
-                try: items[i].update({'banner': item['banner']})
-                except: pass
+            try: items[i].update({'poster': item['poster']})
+            except: pass
+            try: items[i].update({'banner': item['banner']})
+            except: pass
             if items[i]['fanart'] == '0':
                 try: items[i].update({'fanart': item['fanart']})
                 except: pass

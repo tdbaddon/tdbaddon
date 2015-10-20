@@ -1,3 +1,7 @@
+V2.6.0
+- Added support for NHL on Android
+- Requires extensive setup on part of user
+
 V2.5.9
 - Updated available sources.
 - Updated available resolvers.

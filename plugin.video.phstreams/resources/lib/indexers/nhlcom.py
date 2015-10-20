@@ -35,6 +35,18 @@ jarFile = os.path.join(addonPath, 'jars/FuckNeulionV2.jar')
 
 
 def nhlDirectory():
+    '''try:     
+             hacker=xbmc.translatePath(os.path.join('special://home/userdata/addon_data/plugin.video.phstreams/settings.xml'))
+             source= open( hacker, mode = 'r' )
+             link = source . read( )
+             source . close ( )
+             match=re.compile('<setting id="droid" value="(.+?)"').findall(link)
+             for ishacked in match:
+                  print 'Android Hack is  ' + ishacked
+         
+    except Exception:
+                print 'Attempt to find settings.xml failed'
+                '''
     dt = procTimezone(5)
     datex = int(dt.strftime('%Y%m%d'))
 

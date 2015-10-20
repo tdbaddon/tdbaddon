@@ -49,7 +49,7 @@ class sources:
             if not control.infoLabel('Container.FolderPath').startswith('plugin://'):
                 control.playlist.clear()
 
-            control.resolve(int(sys.argv[1]), True, control.item(path=None))
+            control.resolve(int(sys.argv[1]), True, control.item(path=''))
             control.execute('Dialog.Close(okdialog)')
 
             if imdb == '0': imdb = '0000000'
@@ -180,7 +180,7 @@ class sources:
 
     def playItem(self, content, name, year, imdb, tvdb, source):
         try:
-            control.resolve(int(sys.argv[1]), True, control.item(path=None))
+            control.resolve(int(sys.argv[1]), True, control.item(path=''))
             control.execute('Dialog.Close(okdialog)')
 
             next = [] ; prev = [] ; total = []
@@ -230,11 +230,23 @@ class sources:
                     w = workers.Thread(self.sourcesResolve, items[i]['url'], items[i]['provider'])
                     w.start()
 
-                    for x in range(0, 15 * 2):
+                    m = ''
+
+                    for x in range(3600):
+                        if self.progressDialog.iscanceled(): return self.progressDialog.close()
+                        if xbmc.abortRequested == True: return sys.exit()
+                        k = control.condVisibility('Window.IsActive(virtualkeyboard)')
+                        if k: m += '1'; m = m[-1]
+                        if (w.is_alive() == False or x > 30) and not k: break
+                        time.sleep(0.5)
+
+                    for x in range(30):
+                        if m == '': break
                         if self.progressDialog.iscanceled(): return self.progressDialog.close()
                         if xbmc.abortRequested == True: return sys.exit()
                         if w.is_alive() == False: break
                         time.sleep(0.5)
+
 
                     if w.is_alive() == True: block = items[i]['source']
 
@@ -718,13 +730,23 @@ class sources:
                     w = workers.Thread(self.sourcesResolve, items[i]['url'], items[i]['provider'])
                     w.start()
 
-                    for x in range(0, 15 * 2):
-                        if self.progressDialog.iscanceled(): break
+                    m = ''
 
+                    for x in range(3600):
+                        if self.progressDialog.iscanceled(): return self.progressDialog.close()
                         if xbmc.abortRequested == True: return sys.exit()
+                        k = control.condVisibility('Window.IsActive(virtualkeyboard)')
+                        if k: m += '1'; m = m[-1]
+                        if (w.is_alive() == False or x > 30) and not k: break
+                        time.sleep(0.5)
 
+                    for x in range(30):
+                        if m == '': break
+                        if self.progressDialog.iscanceled(): return self.progressDialog.close()
+                        if xbmc.abortRequested == True: return sys.exit()
                         if w.is_alive() == False: break
                         time.sleep(0.5)
+
 
                     if w.is_alive() == True: block = items[i]['source']
 
@@ -797,6 +819,11 @@ class sources:
         try: self.hostlocDict = [i.lower() for i in reduce(lambda x, y: x+y, self.hostlocDict)]
         except: pass
         self.hostlocDict = [x for y,x in enumerate(self.hostlocDict) if x not in self.hostlocDict[:y]]
+
+        self.hostdirhdDict = [i['netloc'] for i in resolvers.info() if 'quality' in i and i['quality'] == 'High' and 'captcha' in i and i['captcha'] == False and 'a/c' in i and i['a/c'] == False]
+        try: self.hostdirhdDict = [i.lower().rsplit('.', 1)[0] for i in reduce(lambda x, y: x+y, self.hostdirhdDict)]
+        except: pass
+        self.hostdirhdDict = [x for y,x in enumerate(self.hostdirhdDict) if x not in self.hostdirhdDict[:y]]
 
         self.hostprDict = [i['host'] for i in hosts if i['a/c'] == True]
         try: self.hostprDict = [i.lower() for i in reduce(lambda x, y: x+y, self.hostprDict)]

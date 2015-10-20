@@ -20,7 +20,8 @@
 '''
 
 
-import urlparse,sys
+import urlparse,sys, xbmcaddon
+settings = xbmcaddon.Addon(id='plugin.video.phstreams')
 params = dict(urlparse.parse_qsl(sys.argv[2].replace('?','')))
 
 
@@ -148,25 +149,47 @@ elif action == 'clearCache':
     from resources.lib.libraries import cache
     cache.clear()
 
-elif action == 'nhlDirectory':
-    from resources.lib.indexers import nhlcom
-    nhlcom.nhlDirectory()
+    ######
 
+elif action == 'nhlDirectory':
+    if settings.getSetting('droid') == 'false':
+        from resources.lib.indexers import nhlcom
+        nhlcom.nhlDirectory()
+    else:
+        from resources.lib.indexers import nhldroid
+        nhldroid.nhlDirectory()
+        
 elif action == 'nhlScoreboard':
-    from resources.lib.indexers import nhlcom
-    nhlcom.nhlScoreboard()
+    if settings.getSetting('droid') == 'false':
+        from resources.lib.indexers import nhlcom
+        nhlcom.nhlScoreboard()
+    else:
+        from resources.lib.indexers import nhldroid
+        nhldroid.nhlScoreboard()
 
 elif action == 'nhlArchives':
-    from resources.lib.indexers import nhlcom
-    nhlcom.nhlArchives()
+    if settings.getSetting('droid') == 'false':
+        from resources.lib.indexers import nhlcom
+        nhlcom.nhlArchives()
+    else:
+        from resources.lib.indexers import nhldroid
+        nhldroid.nhlArchives()
 
 elif action == 'nhlStreams':
-    from resources.lib.indexers import nhlcom
-    nhlcom.nhlStreams(name,url)
+    if settings.getSetting('droid') == 'false':
+        from resources.lib.indexers import nhlcom
+        nhlcom.nhlStreams(name,url)
+    else:
+        from resources.lib.indexers import nhldroid
+        nhldroid.nhlStreams(name,url)
 
 elif action == 'nhlResolve':
-    from resources.lib.indexers import nhlcom
-    nhlcom.nhlResolve(url)
+    if settings.getSetting('droid') == 'false':
+        from resources.lib.indexers import nhlcom
+        nhlcom.nhlResolve(url)
+    else:
+        from resources.lib.indexers import nhldroid
+        nhldroid.nhlResolve(url)
 
 
 

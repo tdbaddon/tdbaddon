@@ -34,7 +34,7 @@ class NoRedirection(urllib2.HTTPErrorProcessor):
        return response
    https_response = http_response
        
-HushamBase = 'https://raw.githubusercontent.com/basscontroller/bassiptv/master/iptv/UPDATED.M3U'
+HushamBase = 'https://raw.githubusercontent.com/basscontroller/bassiptv/master/iptv/IPTVLIST1.M3U'
 
 addon = xbmcaddon.Addon('plugin.video.bassleaks')
 addon_version = addon.getAddonInfo('version')

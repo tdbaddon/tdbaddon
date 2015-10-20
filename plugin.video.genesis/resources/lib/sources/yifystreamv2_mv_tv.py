@@ -31,8 +31,8 @@ from resources.lib import resolvers
 class source:
     def __init__(self):
         self.base_link = 'http://yify-streaming.com'
-        self.moviesearch_link = '/?cat=7%2C6%2C2&s='
-        self.tvsearch_link = '/?cat=3&s='
+        self.tvbase_link = 'http://tv.yify-streaming.com'
+        self.search_link = '/?s='
 
 
     def __proxy(self):
@@ -63,7 +63,7 @@ class source:
 
     def get_movie(self, imdb, title, year):
         try:
-            query = urlparse.urljoin(self.base_link, self.moviesearch_link + urllib.quote_plus(title))
+            query = urlparse.urljoin(self.base_link, self.search_link + urllib.quote_plus(title))
 
             result = cloudflare.source(query)
 
@@ -110,7 +110,7 @@ class source:
             if url == None: return
 
             query = '%s S%02dE%02d' % (url, int(season), int(episode))
-            query = urlparse.urljoin(self.base_link, self.tvsearch_link + urllib.quote_plus(query))
+            query = urlparse.urljoin(self.tvbase_link, self.search_link + urllib.quote_plus(query))
 
             result = cloudflare.source(query)
 
@@ -148,7 +148,10 @@ class source:
 
             if url == None: return sources
 
-            url = urlparse.urljoin(self.base_link, url)
+            content = re.compile('(s\d+e\d+)').findall(url)
+
+            if len(content) == 0: url = urlparse.urljoin(self.base_link, url)
+            else: url = urlparse.urljoin(self.tvbase_link, url)
 
             result = cloudflare.source(url)
 

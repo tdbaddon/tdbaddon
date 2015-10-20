@@ -1,4 +1,25 @@
 ------------------------
+Genesis v5.1.3 (19-Oct-15)
+------------------------
+
+- [COLOR orange]NOTE: Genesis is a free addon and it will always be a free addon.[/COLOR]
+- [COLOR orange]NOTE: Anyone that tells you otherwise is trying to steal your money.[/COLOR]
+- [COLOR orange]NOTE: Visit www.tvaddons.ag for support.[/COLOR]
+
+- Fixed issue with playback in older versions.
+- Fixed issue with captcha keyboard in smart play.
+- Added "Browse Seasons" option in episode listings.
+- Prefer local posters when available.
+- Added Dizibox source.
+- Added Oneclickwatch source.
+- Removed GVcenter, MegaBox and VKBox sources.
+- Updated available sources.
+- Updated available resolvers.
+- Updated translations.
+- Code cosmetics.
+
+
+------------------------
 Genesis v5.1.2 (14-Oct-15)
 ------------------------
 

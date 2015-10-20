@@ -513,6 +513,10 @@ msgctxt "#30273"
 msgid "Set Episodes view"
 msgstr "Set Episodes view"
 
+msgctxt "#30274"
+msgid "Browse Seasons"
+msgstr "Browse Seasons"
+
 msgctxt "#30291"
 msgid "Auto-play"
 msgstr "Auto-play"

@@ -19,9 +19,10 @@
 '''
 
 
-import re,urllib,urlparse
+import re,urllib,urlparse,time
 
-from resources.lib.libraries import control
+from resources.lib.libraries import client
+from resources.lib.libraries import workers
 from resources.lib.libraries import cleantitle
 from resources.lib.libraries import client
 from resources.lib.resolvers import hugefiles
@@ -61,9 +62,9 @@ class source:
 
     def get_sources(self, url, hosthdDict, hostDict, locDict):
         try:
-            sources = []
+            self.sources = []
 
-            if url == None: return sources
+            if url == None: return self.sources
 
             query = url.replace('\'', '').replace('.', ' ')
             query = re.sub('\s+',' ',query)
@@ -99,7 +100,7 @@ class source:
                     fmt = re.split('\.|\(|\)|\[|\]|\s|\-', fmt)
                     fmt = [x.lower() for x in fmt]
 
-                    if '1080p' in fmt: raise Exception()
+                    if not '720p' in fmt: raise Exception()
 
                     info = ''
                     size = client.parseDOM(i, 'td')
@@ -115,42 +116,53 @@ class source:
                 except:
                     pass
 
-            for i in links[::-1][:2]:
+
+            threads = []
+            for i in links[::-1][:2]: threads.append(workers.Thread(self.check, i))
+            [i.start() for i in threads]
+            for i in range(0, 30 * 2):
+                is_alive = [x.is_alive() for x in threads]
+                if all(x == False for x in is_alive): break
+                time.sleep(0.5)
+
+
+            return self.sources
+        except:
+            return self.sources
+
+
+    def check(self, i):
+        try:
+            result = client.source(i['url'])
+            result = client.parseDOM(result, 'td', attrs = {'class': 'td_cols'})[0]
+            result = result.split('"td_heads"')
+            result = client.parseDOM(result, 'a', ret='href')
+
+            for url in result:
                 try:
-                    result = client.source(i['url'])
-                    result = client.parseDOM(result, 'td', attrs = {'class': 'td_cols'})[0]
-                    result = result.split('"td_heads"')
-                    result = client.parseDOM(result, 'a', ret='href')
+                    if 'go4up.com' in url:
+                        url = re.compile('//.+?/.+?/([\w]+)').findall(url)[0]
+                        url = client.source(self.go4up_link_2 % url)
+                        url = client.parseDOM(url, 'div', attrs = {'id': 'linklist'})[0]
+                        url = client.parseDOM(url, 'a', ret='href')[0]
 
-                    for url in result:
-                        try:
-                            if 'go4up.com' in url:
-                                url = re.compile('//.+?/.+?/([\w]+)').findall(url)[0]
-                                url = client.source(self.go4up_link_2 % url)
-                                url = client.parseDOM(url, 'div', attrs = {'id': 'linklist'})[0]
-                                url = client.parseDOM(url, 'a', ret='href')[0]
+                    host = urlparse.urlparse(url).netloc
+                    host = host.rsplit('.', 1)[0].split('.', 1)[-1]
+                    host = host.strip().lower()
 
-                            host = urlparse.urlparse(url).netloc
-                            host = host.rsplit('.', 1)[0].split('.', 1)[-1]
-                            host = host.strip().lower()
+                    if not host in ['uptobox', 'hugefiles', 'uploadrocket']: raise Exception()
 
-                            if not host in ['uptobox', 'hugefiles', 'uploadrocket']: raise Exception()
+                    if host == 'hugefiles': check = hugefiles.check(url)
+                    elif host == 'uploadrocket': check = uploadrocket.check(url)
+                    elif host == 'uptobox': check = uptobox.check(url)
 
-                            if host == 'hugefiles': check = hugefiles.check(url)
-                            elif host == 'uploadrocket': check = uploadrocket.check(url)
-                            elif host == 'uptobox': check = uptobox.check(url)
+                    if check == False: raise Exception()
 
-                            if check == False: raise Exception()
-
-                            sources.append({'source': host, 'quality': 'HD', 'provider': 'TVrelease', 'url': url, 'info': i['info']})
-                        except:
-                            pass
+                    self.sources.append({'source': host, 'quality': 'HD', 'provider': 'TVrelease', 'url': url, 'info': i['info']})
                 except:
                     pass
-
-            return sources
         except:
-            return sources
+            pass
 
 
     def resolve(self, url):

@@ -796,7 +796,7 @@ class tvshows:
                 if not poster == '0': poster = self.tvdb_image + poster
             poster = client.replaceHTMLCodes(poster)
             poster = poster.encode('utf-8')
-            if not poster == '0' and self.list[i]['poster'] == '0': self.list[i].update({'poster': poster})
+            if not poster == '0': self.list[i].update({'poster': poster})
 
 
             try: banner = client.parseDOM(item2, 'banner')[0]

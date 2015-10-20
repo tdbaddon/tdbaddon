@@ -115,6 +115,13 @@ def info():
         'captcha': False,
         'a/c': False
     }, {
+        'class': 'cloudyvideos',
+        'netloc': ['cloudyvideos.com'],
+        #'host': ['Cloudyvideos'],
+        'quality': 'High',
+        'captcha': False,
+        'a/c': False
+    }, {
         'class': 'cloudzilla',
         'netloc': ['cloudzilla.to'],
         'host': ['Cloudzilla'],
@@ -197,7 +204,7 @@ def info():
     }, {
         'class': 'grifthost',
         'netloc': ['grifthost.com'],
-        'host': ['Grifthost'],
+        #'host': ['Grifthost'],
         'quality': 'High',
         'captcha': False,
         'a/c': False
@@ -245,10 +252,10 @@ def info():
     }, {
         'class': 'mightyupload',
         'netloc': ['mightyupload.com'],
-        #'host': ['Mightyupload'],
-        #'quality': 'High',
-        #'captcha': False,
-        #'a/c': False
+        'host': ['Mightyupload'],
+        'quality': 'High',
+        'captcha': False,
+        'a/c': False
     }, {
         'class': 'movdivx',
         'netloc': ['movdivx.com'],
@@ -284,9 +291,9 @@ def info():
         'class': 'nosvideo',
         'netloc': ['nosvideo.com'],
         #'host': ['Nosvideo'],
-        #'quality': 'Low',
-        #'captcha': False,
-        #'a/c': False
+        'quality': 'Low',
+        'captcha': False,
+        'a/c': False
     }, {
         'class': 'novamov',
         'netloc': ['novamov.com'],
@@ -461,7 +468,11 @@ def info():
         'a/c': False
     }, {
         'class': 'videomega',
-        'netloc': ['videomega.tv']
+        'netloc': ['videomega.tv'],
+        #'host': ['Videomega'],
+        'quality': 'High',
+        'captcha': False,
+        'a/c': False
     }, {
         'class': 'videopremium',
         'netloc': ['videopremium.tv', 'videopremium.me']
@@ -549,4 +560,5 @@ def info():
         'captcha': False,
         'a/c': False
     }]
+
 

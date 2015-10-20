@@ -4,12 +4,13 @@
 # Translators:
 # Translators:
 # Translators:
+# Translators:
 # lambda81, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Genesis\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2015-10-05 02:38+0000\n"
+"PO-Revision-Date: 2015-10-16 13:49+0000\n"
 "Last-Translator: lambda81\n"
 "Language-Team: Greek (http://www.transifex.com/tv-addons/genesis/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -513,6 +514,10 @@ msgstr "Πληροφορίες επεισοδίου"
 msgctxt "#30273"
 msgid "Set Episodes view"
 msgstr "Ορισμός προβολής Επεισοδίων"
+
+msgctxt "#30274"
+msgid "Browse Seasons"
+msgstr "Μετάβαση στους κύκλους"
 
 msgctxt "#30291"
 msgid "Auto-play"

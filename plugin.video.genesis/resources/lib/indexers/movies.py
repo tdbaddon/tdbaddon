@@ -952,7 +952,7 @@ class movies:
             if poster == '' or poster == None: poster = '0'
             if not poster == '0': poster = '%s%s' % (self.tmdb_poster, poster)
             poster = poster.encode('utf-8')
-            if not poster == '0' and (self.list[i]['poster'] == '0' or 'imdb.com' in self.list[i]['poster']): self.list[i].update({'poster': poster})
+            if not poster == '0': self.list[i].update({'poster': poster})
 
             fanart = item['backdrop_path']
             if fanart == '' or fanart == None: fanart = '0'

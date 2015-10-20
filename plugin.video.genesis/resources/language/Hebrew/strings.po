@@ -4,6 +4,7 @@
 # Translators:
 # Translators:
 # Translators:
+# Translators:
 # Itay Mizi, 2015
 # lambda81, 2015
 # lambda81, 2015
@@ -12,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Genesis\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2015-10-11 17:30+0000\n"
-"Last-Translator: lidor malich\n"
+"PO-Revision-Date: 2015-10-18 17:05+0000\n"
+"Last-Translator: Tomer meirov\n"
 "Language-Team: Hebrew (http://www.transifex.com/tv-addons/genesis/language/he/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -183,7 +184,7 @@ msgstr "חיפוש"
 
 msgctxt "#30081"
 msgid "[B]TRAKT[/B] : Collection"
-msgstr " אוסף: [B]TRAKT[/B]"
+msgstr "אוסף:[B]TRAKT[/B] "
 
 msgctxt "#30082"
 msgid "[B]TRAKT[/B] : Watchlist"
@@ -199,7 +200,7 @@ msgstr "רייטינג:[B]TRAKT[/B]"
 
 msgctxt "#30085"
 msgid "[B]TRAKT[/B] : TV Collection"
-msgstr "לוח שנה:[B]TRAKT[/B]"
+msgstr "אוסף סדרות:[B]TRAKT[/B]"
 
 msgctxt "#30086"
 msgid "[B]TRAKT[/B] : TV Watchlist"
@@ -516,6 +517,10 @@ msgstr "מידע על הפרק"
 msgctxt "#30273"
 msgid "Set Episodes view"
 msgstr "הגדר פרקים להצגה"
+
+msgctxt "#30274"
+msgid "Browse Seasons"
+msgstr "עיון בעונות"
 
 msgctxt "#30291"
 msgid "Auto-play"

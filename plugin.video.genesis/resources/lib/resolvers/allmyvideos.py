@@ -19,7 +19,7 @@
 '''
 
 
-import re
+import re,urllib
 from resources.lib.libraries import client
 
 
@@ -27,10 +27,20 @@ def resolve(url):
     try:
         url = url.replace('/embed-', '/')
         url = re.compile('//.+?/([\w]+)').findall(url)[0]
-        url = 'http://allmyvideos.net/embed-%s.html' % url
+        page = 'http://allmyvideos.net/%s' % url
 
-        result = client.request(url, mobile=True)
+        result = client.request(page, close=False)
+
+        post = {}
+        f = client.parseDOM(result, 'form', attrs = {'action': ''})
+        k = client.parseDOM(f, 'input', ret='name', attrs = {'type': 'hidden'})
+        for i in k: post.update({i: client.parseDOM(f, 'input', ret='value', attrs = {'name': i})[0]})
+        post = urllib.urlencode(post)
+
+        result = client.request(page, post=post)
+
         url = re.compile('"file" *: *"(http.+?)"').findall(result)[-1]
+        url += '&direct=false&ua=false'
         return url
     except:
         return

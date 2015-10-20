@@ -35,6 +35,7 @@ class source:
     def __init__(self):
         self.base_link = 'http://movietv.to'
         self.data_link = 'aHR0cHM6Ly9vZmZzaG9yZWdpdC5jb20vbGFtYmRhODEvZGF0YWJhc2VzL21vdmlldHYyLnppcA=='
+        self.extra_link = 'aHR0cDovL2p1c3RwYXN0ZS5pdC9vYzVj'
 
 
     def get_movie(self, imdb, title, year):
@@ -182,7 +183,7 @@ class source:
                 result = [i for i in result if i[4] == handler][0]
 
 
-            url = '%s|User-Agent=%s&Referer=%s' % (result[1], urllib.quote_plus('Mozilla/5.0 (Windows NT 10.0; WOW64; rv:41.0) Gecko/20100101 Firefox/41.0'), urllib.quote_plus(urlparse.urljoin(self.base_link, result[0])))
+            url = '%s|Referer=%s' % (result[1], urllib.quote_plus(urlparse.urljoin(self.base_link, result[0])))
 
             sources.append({'source': 'MovieTV', 'quality': 'HD', 'provider': 'MovieTV', 'url': url})
 
@@ -192,6 +193,16 @@ class source:
 
 
     def resolve(self, url):
-        return url
+        try:
+            result = client.source(base64.b64decode(self.extra_link))
+
+            extra = client.parseDOM(result, 'p')
+            extra = [i for i in extra if 'User-Agent=' in i][0]
+            extra = client.replaceHTMLCodes(extra)
+
+            url += extra
+            return url
+        except:
+            return
 
 

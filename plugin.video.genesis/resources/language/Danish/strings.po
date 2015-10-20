@@ -4,13 +4,14 @@
 # Translators:
 # Translators:
 # Translators:
+# Translators:
 # Michael, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: Genesis\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2015-10-14 02:33+0000\n"
-"Last-Translator: lambda81\n"
+"PO-Revision-Date: 2015-10-17 11:07+0000\n"
+"Last-Translator: Michael\n"
 "Language-Team: Danish (http://www.transifex.com/tv-addons/genesis/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -513,6 +514,10 @@ msgstr "Information om Afsnit "
 msgctxt "#30273"
 msgid "Set Episodes view"
 msgstr "Sæt Afsnit layout"
+
+msgctxt "#30274"
+msgid "Browse Seasons"
+msgstr "Gennemse Sæsoner"
 
 msgctxt "#30291"
 msgid "Auto-play"
