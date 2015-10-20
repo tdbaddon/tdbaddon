@@ -11,10 +11,10 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 0
 
 #EXTINF:0,Animal Planet 
-http://stream.balticbox.tv:8080/ANIUK/mono.m3u8?token=asg!1dkhasg!54754
+http://78.30.254.43:8989/udp/239.0.0.34:4000
 
 #EXTINF:0,Animal Planet 
-http://master.nika.rs.ba:80/live?channelId=03&uid=66&deviceUser=besplatno&devicePass=besplatno
+http://78.30.254.43:8989/udp/239.0.0.129:4000
 
 #EXTINF:0,Destination America 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/22.m3u8
@@ -23,25 +23,10 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/22.m3u8
 0
 
 #EXTINF:0,Discovery Channel 
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/11.m3u8
-
-#EXTINF:0,Discovery Channel 
-http://stream-full.selfip.com:8000/live/jack/jack/559.ts
-
-#EXTINF:0,Discovery Channel 
-http://lag2.tv-mobile.org:22637/udp/231.1.1.20:1234
-
-#EXTINF:0,Discovery Channel 
-http://stream.balticbox.tv:8080/DIS1/mono.m3u8?token=asg!1dkhasg!54754
-
-#EXTINF:0,Discovery Channel 
-http://master.nika.rs.ba:80/live?channelId=24&uid=66&deviceUser=besplatno&devicePass=besplatno
+http://78.30.254.43:8989/udp/239.0.0.29:4000
 
 #EXTINF:0,Discovery History 
-http://cric.dynns.com:1935/iptv/DiscoveryHistory/playlist.m3u8
-
-#EXTINF:0,Discovery History 
-http://stream.balticbox.tv:8080/DISHist/mono.m3u8?token=asg!1dkhasg!54754
+0
 
 #EXTINF:0,Discovery H&H
 0
@@ -50,13 +35,10 @@ http://stream.balticbox.tv:8080/DISHist/mono.m3u8?token=asg!1dkhasg!54754
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/46.m3u8
 
 #EXTINF:0,Discovery Science 
-http://lag2.tv-mobile.org/prgi.m3u8
-
-#EXTINF:0,Discovery Science 
-http://stream.balticbox.tv:8080/DISS/mono.m3u8?token=asg!1dkhasg!54754
+0
 
 #EXTINF:0,Discovery Turbo 
-http://stream.balticbox.tv:8080/DISTurbo/mono.m3u8?token=asg!1dkhasg!54754
+http://78.30.254.43:8989/udp/239.0.0.47:4000
 
 #EXTINF:0,Discovery World 
 http://193.194.107.10:4022/udp/225.1.5.102:4001
@@ -77,25 +59,13 @@ https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8?hdnea=ip=174.113.
 http://link.theplatform.com/s/dtjsEC/chjdYJxKb44V?manifest=m3u&feed=History%20Live%20Stream%20Feed
 
 #EXTINF:0,History Channel 
-http://j.mp/ZCH_C05_HISTORY_sly
-
-#EXTINF:0,History Channel 
-http://lag2.tv-mobile.org:22637/udp/225.0.2.6:20000
-
-#EXTINF:0,History Channel 
-http://master.nika.rs.ba:80/live?channelId=41&uid=66&deviceUser=besplatno&devicePass=besplatno
+http://78.30.254.43:8989/udp/239.0.1.160:4000
 
 #EXTINF:0,History Channel 2
 0
 
 #EXTINF:0,Investigation Discovery 
-http://j.mp/TInvestigation_Discovery_sly
-
-#EXTINF:0,Investigation Discovery 
-http://stream.balticbox.tv:8080/IDUK/mono.m3u8?token=asg!1dkhasg!54754
-
-#EXTINF:0,Investigation Discovery 
-http://master.nika.rs.ba:80/live?channelId=23&uid=66&deviceUser=besplatno&devicePass=besplatno
+http://78.30.254.43:8989/udp/239.0.0.136:4000
 
 #EXTINF:0,Nasa TV 
 http://nasatv-lh.akamaihd.net/i/NASA_101@319270/master.m3u8 
@@ -104,28 +74,25 @@ http://nasatv-lh.akamaihd.net/i/NASA_101@319270/master.m3u8
 http://iphone-streaming.ustream.tv/uhls/6540154/streams/live/iphone/playlist.m3u8
 
 #EXTINF:0,Nat Geo Wild 
-http://lag2.tv-mobile.org/prgg.m3u8
-
-#EXTINF:0,Nat Geo Wild 
 http://88.84.223.214:1212/udp/234.5.2.114:1234
 
 #EXTINF:0,National Geographic 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/96.m3u8
 
 #EXTINF:0,National Geographic 
-http://stream-full.selfip.com:8000/live/jack/jack/563.ts
-
-#EXTINF:0,National Geographic 
 http://88.84.223.214:1212/udp/234.5.2.128:1234
 
 #EXTINF:0,National Geographic 
-http://lag2.tv-mobile.org:22637/udp/231.1.2.31:1234
+http://88.84.223.214:1212/udp/234.5.2.114:1234
 
 #EXTINF:0,National Geographic 
-http://master.nika.rs.ba:80/live?channelId=51&uid=66&deviceUser=besplatno&devicePass=besplatno
+http://78.30.254.43:8989/udp/239.0.0.35:4000
+
+#EXTINF:0,National Geographic 
+http://193.106.211.2:1234/udp/225.1.5.106:4001
 
 #EXTINF:0,Nova
-http://master.nika.rs.ba:80/live?channelId=52&uid=66&deviceUser=besplatno&devicePass=besplatno
+0
 
 #EXTINF:0,Planet Green 
 0
@@ -140,7 +107,7 @@ http://rt-a.akamaihd.net/ch_05@325609/master.m3u8
 0
 
 #EXTINF:0,Travel Channel 
-http://stream.balticbox.tv:8080/TRAUK/mono.m3u8?token=asg!1dkhasg!54754
+0
 
 #EXTINF:0,Viasat Explorer 
 http://195.78.244.219:10000/udp/239.0.3.30:1234
@@ -153,7 +120,4 @@ http://195.78.244.219:10000/udp/239.0.3.31:1234
 
 #EXTINF:0,Viasat Nature 
 http://195.78.244.219:10000/udp/239.0.3.28:1234
-
-#EXTINF:0,Viasat Nature 
-http://lag2.tv-mobile.org/prgj.m3u8
 

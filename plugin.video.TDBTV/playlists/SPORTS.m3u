@@ -5,31 +5,25 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 ---------------------------------------------------------------------------------------------------------------
 
 #EXTINF:0,Bein Sport 1 
-0
+http://iptvchoice.zapto.org:8000/live/grkaveman96@yahoo.com/CMKDKLtTp6/3575.ts
 
 #EXTINF:0,Bein Sport 2 
 0
 
-#EXTINF:0,Big Ten Network
-http://bigten247.cdnak.bigtenhd.neulion.com/nlds/btn2go/btnnetwork/as/live/btnnetwork_hd_3000.m3u8
+#EXTINF:0,Big Ten Network 
+0
 
 #EXTINF:0,Box Nation 
-http://stream.balticbox.tv:8080/BOX/mono.m3u8?token=asg!1dkhasg!54754
+0
 
 #EXTINF:0,BT Sport 1 
 http://5.196.82.222:8000/live/test1/test1/20.m3u8
 
 #EXTINF:0,BT Sport 1 
-rtmpe://134.19.185.252:1935/livedge/mamahdbtsport1
+rtmp://80.82.65.162/live playpath=vbt1 swfUrl=http://www.yocast.tv/myplayer/jwplayer.flash.swf live=1 pageUrl=http://www.yocast.tv/embed.php?live=vbt1&vw=620&vh=490
 
 #EXTINF:0,BT Sport 1 
-rtmpe://134.19.185.252:1935/livedge/mamahdbteu
-
-#EXTINF:0,BT Sport 1 
-http://stream.balticbox.tv:8080/BTSp1/mono.m3u8?token=asg!1dkhasg!54754
-
-#EXTINF:0,BT Sport 1 
-http://stream.balticbox.tv:8080/BTSpeur/mono.m3u8?token=asg!1dkhasg!54754
+http://195.154.226.186:1935/lol/bteulsh/playlist.m3u8
 
 #EXTINF:0,BT Sport 2 
 http://5.196.82.222:8000/live/test1/test1/21.m3u8
@@ -38,73 +32,67 @@ http://5.196.82.222:8000/live/test1/test1/21.m3u8
 rtmpe://134.19.185.252:1935/livedge/mamahdbtsport2
 
 #EXTINF:0,BT Sport 2 
-http://195.154.226.186:1935/livepp7/btsports2lsh/playlist.m3u8
-
-#EXTINF:0,BT Sport 2 
-http://stream.balticbox.tv:8080/BTSp2/mono.m3u8?token=asg!1dkhasg!54754
+http://195.154.226.186:1935/lol/btsports2lsh/playlist.m3u8
 
 #EXTINF:0,CBS Sports 
-http://cbspgalivehd-lh.akamaihd.net/i/farmersday4_simulcast@92710/master.m3u8
+0
 
 #EXTINF:0,Chelsea TV 
-http://stream.balticbox.tv:8080/Chls/mono.m3u8?token=asg!1dkhasg!54754
+0
 
 #EXTINF:0,CMore Sport 
 0
 
 #EXTINF:0,ESPN 
-http://192.99.147.19:5808/espnhdguys/playlist.m3u8
-
-#EXTINF:0,ESPN 
 http://5.196.82.222:8000/live/test1/test1/22.m3u8
 
 #EXTINF:0,ESPN 
-http://stream.balticbox.tv:8080/BTSespn/mono.m3u8?token=asg!1dkhasg!54754
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/70.m3u8
 
 #EXTINF:0,ESPN 
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/70.m3u8
+rtmp://89.248.174.121/live playpath=gjyj swfUrl=http://www.yocast.tv/myplayer/jwplayer.flash.swf live=1 pageUrl=http://www.yocast.tv/embed.php?live=gjyj&vw=620&vh=490
+
+#EXTINF:0,ESPN 
+http://195.154.226.186:1935/lol/espnuklsh/playlist.m3u8
+
+#EXTINF:0,ESPN 
+http://iptvchoice.zapto.org:8000/live/grkaveman96@yahoo.com/CMKDKLtTp6/1360.ts
 
 #EXTINF:0,Eurosport 1 
 http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_1800.m3u8
 
 #EXTINF:0,Eurosport 1 
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/85.m3u8
+http://195.154.226.186:1935/lol/vesplsh/playlist.m3u8
 
 #EXTINF:0,Eurosport 1 
-http://stream.balticbox.tv:8080/EUUK/mono.m3u8?token=asg!1dkhasg!54754
+http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/85.m3u8
 
 #EXTINF:0,Eurosport 2 
-http://stream.balticbox.tv:8080/EU2UK/mono.m3u8?token=asg!1dkhasg!54754
+http://195.154.226.186:1935/lol/vesp2lsh/playlist.m3u8
+
+#EXTINF:0,Eurosport 2 
+rtmp://185.53.90.42/live playpath=xxeuro2 swfUrl=http://www.yocast.tv/myplayer/jwplayer.flash.swf live=1 pageUrl=http://www.yocast.tv/embed.php?live=xxeuro2&vw=620&vh=490
+
+#EXTINF:0,Eurosport 2 
+rtmp://93.174.93.196/live playpath=xxeuro2 swfUrl=http://www.yocast.tv/myplayer/jwplayer.flash.swf live=1 pageUrl=http://www.yocast.tv/embed.php?live=xxeuro2&vw=620&vh=490
 
 #EXTINF:0,Eurosport News 
 0
 
 #EXTINF:0,Fifa TV 
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/113.m3u8
+0
 
 #EXTINF:0,Fishing & Hunting 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/17.m3u8
 
-#EXTINF:0,Fishing & Hunting 
-http://master.nika.rs.ba:80/live?channelId=47&uid=66&deviceUser=besplatno&devicePass=besplatno
-
 #EXTINF:0,Fox Sports 
 0
 
-#EXTINF:0,Fox Sports 1
+#EXTINF:0,Fox Sports 1 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/75.m3u8
 
-#EXTINF:0,Fox Sports 1
-http://stream-full.selfip.com:8000/live/jack/jack/308.ts
-
-#EXTINF:0,Fox Sports 1
-rtmp://kv2.ts33.net/sat/us011
-
-#EXTINF:0,Fox Sports 1
-rtmp://kv2.ts33.net/sat/us012
-
 #EXTINF:0,Fox Sports 2 
-http://stream-full.selfip.com:8000/live/jack/jack/309.ts
+http://iptvchoice.zapto.org:8000/live/grkaveman96@yahoo.com/CMKDKLtTp6/3111.ts
 
 #EXTINF:0,Fox Sports News 
 0
@@ -113,10 +101,7 @@ http://stream-full.selfip.com:8000/live/jack/jack/309.ts
 http://208.92.36.158/ipad/live/nba_ipad_1240.m3u8
 
 #EXTINF:0,LFC TV 
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/121.m3u8
-
-#EXTINF:0,LFC TV 
-http://stream.balticbox.tv:8080/LFCTV/mono.m3u8?token=asg!1dkhasg!54754
+0
 
 #EXTINF:0,Mercedes TV
 mms://100automoto.tv/channel_mercedes
@@ -125,7 +110,7 @@ mms://100automoto.tv/channel_mercedes
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/40.m3u8
 
 #EXTINF:0,Motors TV 
-http://stream.balticbox.tv:8080/MOTUK/mono.m3u8?token=asg!1dkhasg!54754
+0
 
 #EXTINF:0,Motorsport 7 
 http://motorsport.hopto.org:8080/
@@ -134,7 +119,7 @@ http://motorsport.hopto.org:8080/
 mms://100automoto.tv/100livesport
 
 #EXTINF:0,NBA TV 
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/70.m3u8
+http://iptvchoice.zapto.org:8000/live/grkaveman96@yahoo.com/CMKDKLtTp6/3153.ts
 
 #EXTINF:0,NBC Golf 
 http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/4296k/prog.m3u8|X-Forwarded-For=209.239.112.104
@@ -144,9 +129,6 @@ http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/2596k/prog.m3u8|X-Forwarded-
 
 #EXTINF:0,NBC Golf 
 http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/1896k/prog.m3u8|X-Forwarded-For=66.171.228.102
-
-#EXTINF:0,NBC Golf 
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/67.m3u8
 
 #EXTINF:0,NBCSN 
 http://cdn.phoenix.intergi.com/21772/videos/3362254/video-sd.mp4?hosting_id=21772
@@ -159,9 +141,6 @@ http://nflsvglagame1-i.akamaihd.net/hls/live/223206/NFL_Mobile/2015Mobile_NFLN_2
 
 #EXTINF:0,NFL Network 
 http://nflsvgatlgame3-i.akamaihd.net/hls/live/223175-b/NFL_Mobile/2015Mobile_NFLN_2000k.m3u8
-
-#EXTINF:0,NFL Network 
-http://stream-full.selfip.com:8000/live/jack/jack/578.ts
 
 #EXTINF:0,NFL Network 
 http://nflioslivesvg2-i.akamaihd.net/hls/live/221521/nflioslive/2015HackerNow_w99d9.m3u8
@@ -224,76 +203,64 @@ http://xrxs.net/video/live-p12wash-4728.m3u8
 mms://100automoto.tv/channel_porsche
 
 #EXTINF:0,Premier Sports 
-http://195.154.226.186:1935/livepp7/vpremsplsh/playlist.m3u8
-
-#EXTINF:0,Premier Sports 
-http://stream.balticbox.tv:8080/PRMSP/mono.m3u8?token=asg!1dkhasg!54754
+http://195.154.226.186:1935/lol/vpremsplsh/playlist.m3u8
 
 #EXTINF:0,Racing UK 
-http://stream.balticbox.tv:8080/RACUK/mono.m3u8?token=asg!1dkhasg!54754
+0
 
 #EXTINF:0,Root Sports 
 0
 
 #EXTINF:0,Setanta Sports 
-http://stream.balticbox.tv:8080/SETIRL/mono.m3u8?token=asg!1dkhasg!54754
+0
 
 #EXTINF:0,Sky Sports 1 
 http://5.196.82.222:8000/live/test1/test1/11.m3u8
 
 #EXTINF:0,Sky Sports 1 
-http://195.154.226.186:1935/livepp7/skysports1lsh/playlist.m3u8
-
-#EXTINF:0,Sky Sports 1 
-http://stream.balticbox.tv:8080/SkySP1/mono.m3u8?token=asg!1dkhasg!54754
+http://195.154.226.186:1935/lol/skysports1lsh/playlist.m3u8
 
 #EXTINF:0,Sky Sports 2 
 http://5.196.82.222:8000/live/test1/test1/12.m3u8
 
 #EXTINF:0,Sky Sports 2 
-http://195.154.226.186:1935/livepp7/skysports2lsh/playlist.m3u8
+http://195.154.226.186:1935/lol/skysports2lsh/playlist.m3u8
 
 #EXTINF:0,Sky Sports 2 
-http://stream.balticbox.tv:8080/SkySP2/mono.m3u8?token=asg!1dkhasg!54754
+rtmp://80.82.65.162/live playpath=vskys2 swfUrl=http://www.yocast.tv/myplayer/jwplayer.flash.swf live=1 pageUrl=http://www.yocast.tv/embed.php?live=vskys2&vw=620&vh=490
 
 #EXTINF:0,Sky Sports 3 
 http://5.196.82.222:8000/live/test1/test1/13.m3u8
 
 #EXTINF:0,Sky Sports 3 
-http://195.154.226.186:1935/livepp7/skysports3lsh/playlist.m3u8
+http://195.154.226.186:1935/lol/skysports3lsh/playlist.m3u8
 
-#EXTINF:0,Sky Sports 3
-http://stream.balticbox.tv:8080/SkySP3/mono.m3u8?token=asg!1dkhasg!54754
+#EXTINF:0,Sky Sports 3 
+rtmp://80.82.65.162/live playpath=vskys3 swfUrl=http://www.yocast.tv/myplayer/jwplayer.flash.swf live=1 pageUrl=http://www.yocast.tv/embed.php?live=vskys3&vw=620&vh=490
 
 #EXTINF:0,Sky Sports 4 
 http://5.196.82.222:8000/live/test1/test1/14.m3u8
 
 #EXTINF:0,Sky Sports 4 
-http://195.154.226.186:1935/livepp7/skysports4lsh/playlist.m3u8
+rtmp://80.82.65.162/live playpath=vskys4 swfUrl=http://www.yocast.tv/myplayer/jwplayer.flash.swf live=1 pageUrl=http://www.yocast.tv/embed.php?live=vskys4&vw=620&vh=490
 
 #EXTINF:0,Sky Sports 4 
-http://stream.balticbox.tv:8080/SkySP4/mono.m3u8?token=asg!1dkhasg!54754
+http://195.154.226.186:1935/lol/skysports4lsh/playlist.m3u8
 
 #EXTINF:0,Sky Sports 5 
 http://5.196.82.222:8000/live/test1/test1/15.m3u8
 
 #EXTINF:0,Sky Sports 5 
-rtmpe://134.19.185.252:1935/livedge/mamahdsky5
+http://195.154.226.186:1935/lol/skysports5lsh/playlist.m3u8
 
-#EXTINF:0,Sky Sports 5
-http://stream.balticbox.tv:8080/SkySP5/mono.m3u8?token=asg!1dkhasg!54754
-
-#EXTINF:0,Sky Sports F1 
-rtmpe://134.19.185.252:1935/livedge/mamahdskysportsf1
+#EXTINF:0,Sky Sports 5 
+rtmp://80.82.65.162/live playpath=vskys5 swfUrl=http://www.yocast.tv/myplayer/jwplayer.flash.swf live=1 pageUrl=http://www.yocast.tv/embed.php?live=vskys5&vw=620&vh=490
 
 #EXTINF:0,Sky Sports F1 
-http://195.154.226.186:1935/livepp7/vskysf1lsh/playlist.m3u8
-
-#EXTINF:0,Sky Sports F1
-http://stream.balticbox.tv:8080/SkySPf1/mono.m3u8?token=asg!1dkhasg!54754
+http://195.154.226.186:1935/lol/vskysf1lsh/playlist.m3u8
 
 #EXTINF:0,Sky Sports News 
-http://stream.balticbox.tv:8080/SKYSPNEWS/mono.m3u8?token=asg!1dkhasg!54754
+0
 
 #EXTINF:0,Sports Tonight 
 rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9-HD
@@ -302,37 +269,55 @@ rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9
 0
 
 #EXTINF:0,Sportsnet One 
-rtmp://31.220.2.148:1935/live/_definst_/sprt1
+0
 
 #EXTINF:0,Sportsnet Ontario 
-rtmp://31.220.2.148:1935/live/_definst_/ontario
+0
 
 #EXTINF:0,Sportsnet World 
-rtmp://31.220.2.148:1935/live/_definst_/world
+0
 
-#EXTINF:0,Tennis Channel
-http://stream-full.selfip.com:8000/live/jack/jack/561.ts
+#EXTINF:0,Tennis Channel 
+0
 
 #EXTINF:0,Trace Sports
 http://stream01.yamgo.com/iPhone/HLS_TS/broadcast/trace_tv_sports-tablet.3gp/trace_tv_sports-tablet.3gp-mr647k.m3u8?
 
 #EXTINF:0,TSN 1 
-http://stream-full.selfip.com:8000/live/jack/jack/303.ts
+http://iptvchoice.zapto.org:8000/live/grkaveman96@yahoo.com/CMKDKLtTp6/717.ts
+
+#EXTINF:0,TSN 1 
+https://hec.su/bOzg
 
 #EXTINF:0,TSN 2 
-http://stream-full.selfip.com:8000/live/jack/jack/304.ts
+http://02e4.vp9.tv/chn/tsn2/v.m3u8
+
+#EXTINF:0,TSN 2 
+https://hec.su/bOzh
+
+#EXTINF:0,TSN 2 
+http://iptvchoice.zapto.org:8000/live/grkaveman96@yahoo.com/CMKDKLtTp6/718.ts
 
 #EXTINF:0,TSN 3 
-http://stream-full.selfip.com:8000/live/jack/jack/305.ts
+0
 
 #EXTINF:0,TSN 4 
-http://stream-full.selfip.com:8000/live/jack/jack/306.ts
+http://02e4.vp9.tv/chn/tsn4/v.m3u8
+
+#EXTINF:0,TSN 4
+http://iptvchoice.zapto.org:8000/live/grkaveman96@yahoo.com/CMKDKLtTp6/720.ts
+
+#EXTINF:0,TSN 4
+https://hec.su/bOzl
 
 #EXTINF:0,TSN 5 
-http://stream-full.selfip.com:8000/live/jack/jack/307.ts
+http://iptvchoice.zapto.org:8000/live/grkaveman96@yahoo.com/CMKDKLtTp6/844.ts
+
+#EXTINF:0,TSN 5 
+https://hec.su/bOzp
 
 #EXTINF:0,Viasat Golf 
-http://stream.balticbox.tv:8080/VSGOLF/mono.m3u8?token=asg!1dkhasg!54754
+0
 
 #EXTINF:0,Viasat Sport 
 0
