@@ -1,3 +1,6 @@
+V2.6.1
+- Quick fix for Mac error on newer platforms for NHL
+
 V2.6.0
 - Added support for NHL on Android
 - Requires extensive setup on part of user

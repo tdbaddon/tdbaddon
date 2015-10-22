@@ -57,6 +57,12 @@ def run_proxy_hack(game_id, team_type):
              match=re.compile('<setting id="droid" value="(.+?)"').findall(link)
              for ishacked in match:
                print 'Android Hack is  ' + ishacked
+
+               if ishacked == ' true':
+                   print "WE ARE USING THE ANDROID HACK"
+               if ishacked == "false":
+                   print "WE ARE NOT USING THE ANDROID HACK"
+                   
         ##END ATTEMPT TO READ SETTINGS##
              if ishacked == 'true':
                     success  = 'HOUSTON, WE HAVE LIFT OFF.'
