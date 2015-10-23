@@ -8,7 +8,7 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 0
 
 #EXTINF:0,ABC 
-0
+http://j.mp/jkfdoi54
 
 #EXTINF:0,ABC Family 
 0
@@ -22,6 +22,9 @@ http://78.30.254.43:8989/udp/239.0.0.89:4000
 #EXTINF:0,AMC 
 http://alturl.com/w2w2q
 
+#EXTINF:0,AMC 
+http://j.mp/kjdiueiuj4398
+
 #EXTINF:0,AXN 
 0
 
@@ -34,11 +37,14 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/134.m3u8
 #EXTINF:0,BBC 1 
 http://5.196.82.222:8000/live/test1/test1/1.m3u8
 
-#EXTINF:0,BBC 2 
-0
+#EXTINF:0,BBC 1 
+http://j.mp/DSLKELKJ4398498
+
+#EXTINF:0,BBC 1 
+http://j.mp/klj90
 
 #EXTINF:0,BBC 2 
-0
+http://j.mp/kljoi999
 
 #EXTINF:0,BET 
 0
@@ -55,6 +61,9 @@ http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD28_W_250.sdp/p
 #EXTINF:0,Cartoon Network 
 http://185.13.236.197:4080/udp/224.0.0.120:1244
 
+#EXTINF:0,Cartoon Network 
+http://j.mp/xzku9324
+
 #EXTINF:0,CBC TV 
 0
 
@@ -64,6 +73,9 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/6.m3u8
 #EXTINF:0,CBS 
 http://185.63.252.131:1935/liveedge/Ger61uLQ4fedzvjRjrB7/playlist.m3u8?wmsAuthSign=$doregex[m3u8]
 
+
+#EXTINF:0,CBS 
+http://j.mp/kk3l54586
 
 #EXTINF:0,CBS Action 
 0
@@ -78,7 +90,7 @@ http://78.30.254.43:8989/udp/239.0.0.91:4000
 0
 
 #EXTINF:0,City TV Toronto 
-0
+http://j.mp/cityyhh
 
 #EXTINF:0,City TV Vancouver
 http://btflash-lh.akamaihd.net/i/BTVANFLASH_live@120224/master.m3u8
@@ -110,11 +122,20 @@ http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/index_350_av-p.m3u8?
 #EXTINF:0,CW 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/65.m3u8
 
+#EXTINF:0,CW 
+http://j.mp/dslkdskl43
+
 #EXTINF:0,Disney Channel 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/89.m3u8
 
+#EXTINF:0,Disney Channel 
+http://j.mp/dsklfdlk43983298
+
 #EXTINF:0,Disney Junior 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/13.m3u8
+
+#EXTINF:0,Disney Junior 
+http://j.mp/dsjkewj98
 
 #EXTINF:0,Disney XD 
 0
@@ -129,7 +150,7 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/13.m3u8
 http://origin.live.web.tv.streamprovider.net/streams/5dac5e87d17d40f5bca18d2b211a4dd2_live_0_0/index.m3u8
 
 #EXTINF:0,E4 
-0
+http://j.mp/jkhiu899809
 
 #EXTINF:0,Family Channel 
 0
@@ -163,6 +184,12 @@ http://j.mp/ZCH_C02_FOXHD_sly
 
 #EXTINF:0,Fox TV 
 http://78.30.254.43:8989/udp/239.0.0.141:4000
+
+#EXTINF:0,Fox TV 
+http://j.mp/sadfirju453930245
+
+#EXTINF:0,Fox TV 
+http://j.mp/vnxmaskdjutyue728597
 
 #EXTINF:0,FX 
 0
@@ -201,7 +228,7 @@ http://ios.streamserver01.com:8080/ShowcaseTV/mystream.m3u8
 0
 
 #EXTINF:0,ITV 2 
-0
+http://j.mp/kdskdsk3984384
 
 #EXTINF:0,ITV 3 
 0
@@ -219,7 +246,7 @@ http://78.30.254.43:8989/udp/239.0.0.192:4000
 0
 
 #EXTINF:0,Lifetime Network 
-0
+http://j.mp/dlkdskl33kl33
 
 #EXTINF:0,London Live 
 http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
@@ -228,7 +255,7 @@ http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
 0
 
 #EXTINF:0,More4 
-0
+http://j.mp/jkhy87687
 
 #EXTINF:0,My9
 http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
@@ -242,11 +269,14 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/97.m3u8
 #EXTINF:0,Nick Jr 
 http://78.30.254.43:8989/udp/239.0.1.88:4000
 
+#EXTINF:0,Nick Jr
+http://j.mp/dskj329898
+
 #EXTINF:0,Nickelodeon 
-0
+http://j.mp/djkdskj3989843
 
 #EXTINF:0,NickNight 
-0
+http://j.mp/ddskij4984398
 
 #EXTINF:0,OMNI 
 0
@@ -261,10 +291,13 @@ http://78.30.254.43:8989/udp/239.0.1.88:4000
 0
 
 #EXTINF:0,Showtime 
-0
+http://j.mp/klsalk3lk34
 
 #EXTINF:0,Sky 1 
 http://5.196.82.222:8000/live/test1/test1/26.m3u8
+
+#EXTINF:0,Sky 1 
+http://j.mp/reoitowri
 
 #EXTINF:0,Sky 2 
 0
@@ -277,6 +310,9 @@ http://5.196.82.222:8000/live/test1/test1/26.m3u8
 
 #EXTINF:0,Sky Atlantic 
 http://5.196.82.222:8000/live/test1/test1/29.m3u8
+
+#EXTINF:0,Sky Atlantic 
+http://j.mp/dslkfj43q
 
 #EXTINF:0,Sky Living 
 http://5.196.82.222:8000/live/test1/test1/28.m3u8
@@ -294,16 +330,19 @@ http://5.196.82.222:8000/live/test1/test1/28.m3u8
 0
 
 #EXTINF:0,TBS 
-0
+http://j.mp/kjdsfj4984398
 
 #EXTINF:0,Teletoon 
 0
 
 #EXTINF:0,TLC 
-0
+http://j.mp/ksoi3298329832
 
 #EXTINF:0,TNT 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/84.m3u8
+
+#EXTINF:0,TNT
+http://j.mp/dkjdsk4984398
 
 #EXTINF:0,TNT 
 http://iptvchoice.zapto.org:8000/live/grkaveman96@yahoo.com/CMKDKLtTp6/3553.ts
@@ -337,7 +376,7 @@ http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/master.m3u8?b?b*t
 0
 
 #EXTINF:0,USA Network 
-0
+http://j.mp/kdjvioewrj43
 
 #EXTINF:0,Veria Living TV 
 0

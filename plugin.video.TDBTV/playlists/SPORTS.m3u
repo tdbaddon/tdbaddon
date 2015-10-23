@@ -14,10 +14,10 @@ http://iptvchoice.zapto.org:8000/live/grkaveman96@yahoo.com/CMKDKLtTp6/3575.ts
 0
 
 #EXTINF:0,Box Nation 
-0
+http://j.mp/ldjf403q895
 
 #EXTINF:0,BT Sport 1 
-http://5.196.82.222:8000/live/test1/test1/20.m3u8
+http://j.mp/djsj3858473
 
 #EXTINF:0,BT Sport 1 
 rtmp://80.82.65.162/live playpath=vbt1 swfUrl=http://www.yocast.tv/myplayer/jwplayer.flash.swf live=1 pageUrl=http://www.yocast.tv/embed.php?live=vbt1&vw=620&vh=490
@@ -26,7 +26,7 @@ rtmp://80.82.65.162/live playpath=vbt1 swfUrl=http://www.yocast.tv/myplayer/jwpl
 http://195.154.226.186:1935/lol/bteulsh/playlist.m3u8
 
 #EXTINF:0,BT Sport 2 
-http://5.196.82.222:8000/live/test1/test1/21.m3u8
+http://j.mp/4357676hgsfd
 
 #EXTINF:0,BT Sport 2 
 rtmpe://134.19.185.252:1935/livedge/mamahdbtsport2
@@ -35,7 +35,7 @@ rtmpe://134.19.185.252:1935/livedge/mamahdbtsport2
 http://195.154.226.186:1935/lol/btsports2lsh/playlist.m3u8
 
 #EXTINF:0,CBS Sports 
-0
+http://j.mp/idsofajw34835
 
 #EXTINF:0,Chelsea TV 
 0
@@ -86,10 +86,22 @@ rtmp://93.174.93.196/live playpath=xxeuro2 swfUrl=http://www.yocast.tv/myplayer/
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/17.m3u8
 
 #EXTINF:0,Fox Sports 
-0
+http://ftve1100-i.akamaihd.net/hls/live/217047/fcsp/3964k/prog.m3u8|X-Forwarded-For=13.107.25.55
+
+#EXTINF:0,Fox Sports 
+http://ftve1100-i.akamaihd.net/hls/live/217045/fcsa/3964k/prog.m3u8|X-Forwarded-For=13.107.25.55
+
+#EXTINF:0,Fox Sports 
+http://ftve1100-i.akamaihd.net/hls/live/217046/fcsc/3964k/prog.m3u8|X-Forwarded-For=13.107.25.55
+
+#EXTINF:0,Fox Sports 1 
+http://j.mp/kjdsf4389
 
 #EXTINF:0,Fox Sports 1 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/75.m3u8
+
+#EXTINF:0,Fox Sports 2 
+http://j.mp/mnlk88
 
 #EXTINF:0,Fox Sports 2 
 http://iptvchoice.zapto.org:8000/live/grkaveman96@yahoo.com/CMKDKLtTp6/3111.ts
@@ -131,7 +143,16 @@ http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/2596k/prog.m3u8|X-Forwarded-
 http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/1896k/prog.m3u8|X-Forwarded-For=66.171.228.102
 
 #EXTINF:0,NBCSN 
+http://j.mp/kjnkjiuyi8
+
+#EXTINF:0,NBCSN 
 http://cdn.phoenix.intergi.com/21772/videos/3362254/video-sd.mp4?hosting_id=21772
+
+#EXTINF:0,NFL Network 
+http://nflsvglagame1-i.akamaihd.net/hls/live/223206/NFL_Mobile/2015Mobile_NFLN_5000k.m3u8
+
+#EXTINF:0,NFL Network 
+http://nflioslivesvg2-i.akamaihd.net/hls/live/221521/nflioslive/2015HackerNow_w99d9.m3u8
 
 #EXTINF:0,NFL Network 
 http://nflioslivesvg2-i.akamaihd.net/hls/live/221521/nflioslive/2015HackerNow_w99d9.m3u8
@@ -144,6 +165,9 @@ http://nflsvgatlgame3-i.akamaihd.net/hls/live/223175-b/NFL_Mobile/2015Mobile_NFL
 
 #EXTINF:0,NFL Network 
 http://nflioslivesvg2-i.akamaihd.net/hls/live/221521/nflioslive/2015HackerNow_w99d9.m3u8
+
+#EXTINF:0,NHL Network 
+http://j.mp/klmdsiujk43984
 
 #EXTINF:0,NHL Network 
 http://208.92.36.158/ipad/live/nba_ipad_1240.m3u8
@@ -212,16 +236,16 @@ http://195.154.226.186:1935/lol/vpremsplsh/playlist.m3u8
 0
 
 #EXTINF:0,Setanta Sports 
-0
+http://j.mp/llklkdoi4985
 
 #EXTINF:0,Sky Sports 1 
-http://5.196.82.222:8000/live/test1/test1/11.m3u8
+http://j.mp/jhvukj
 
 #EXTINF:0,Sky Sports 1 
 http://195.154.226.186:1935/lol/skysports1lsh/playlist.m3u8
 
 #EXTINF:0,Sky Sports 2 
-http://5.196.82.222:8000/live/test1/test1/12.m3u8
+http://j.mp/kjhiu676y
 
 #EXTINF:0,Sky Sports 2 
 http://195.154.226.186:1935/lol/skysports2lsh/playlist.m3u8
@@ -230,7 +254,7 @@ http://195.154.226.186:1935/lol/skysports2lsh/playlist.m3u8
 rtmp://80.82.65.162/live playpath=vskys2 swfUrl=http://www.yocast.tv/myplayer/jwplayer.flash.swf live=1 pageUrl=http://www.yocast.tv/embed.php?live=vskys2&vw=620&vh=490
 
 #EXTINF:0,Sky Sports 3 
-http://5.196.82.222:8000/live/test1/test1/13.m3u8
+http://j.mp/dwkoi
 
 #EXTINF:0,Sky Sports 3 
 http://195.154.226.186:1935/lol/skysports3lsh/playlist.m3u8
@@ -239,7 +263,7 @@ http://195.154.226.186:1935/lol/skysports3lsh/playlist.m3u8
 rtmp://80.82.65.162/live playpath=vskys3 swfUrl=http://www.yocast.tv/myplayer/jwplayer.flash.swf live=1 pageUrl=http://www.yocast.tv/embed.php?live=vskys3&vw=620&vh=490
 
 #EXTINF:0,Sky Sports 4 
-http://5.196.82.222:8000/live/test1/test1/14.m3u8
+http://j.mp/cskfre76tr7
 
 #EXTINF:0,Sky Sports 4 
 rtmp://80.82.65.162/live playpath=vskys4 swfUrl=http://www.yocast.tv/myplayer/jwplayer.flash.swf live=1 pageUrl=http://www.yocast.tv/embed.php?live=vskys4&vw=620&vh=490
@@ -248,7 +272,7 @@ rtmp://80.82.65.162/live playpath=vskys4 swfUrl=http://www.yocast.tv/myplayer/jw
 http://195.154.226.186:1935/lol/skysports4lsh/playlist.m3u8
 
 #EXTINF:0,Sky Sports 5 
-http://5.196.82.222:8000/live/test1/test1/15.m3u8
+http://j.mp/23985kds
 
 #EXTINF:0,Sky Sports 5 
 http://195.154.226.186:1935/lol/skysports5lsh/playlist.m3u8
@@ -259,23 +283,26 @@ rtmp://80.82.65.162/live playpath=vskys5 swfUrl=http://www.yocast.tv/myplayer/jw
 #EXTINF:0,Sky Sports F1 
 http://195.154.226.186:1935/lol/vskysf1lsh/playlist.m3u8
 
+#EXTINF:0,Sky Sports F1 
+http://j.mp/ewiuy54
+
 #EXTINF:0,Sky Sports News 
-0
+http://j.mp/lfdknvk4
 
 #EXTINF:0,Sports Tonight 
 rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9-HD
 
 #EXTINF:0,Sportsnet 360 
-0
+http://j.mp/jgfd578
 
 #EXTINF:0,Sportsnet One 
-0
+http://j.mp/ejdjdej3u
 
 #EXTINF:0,Sportsnet Ontario 
 0
 
 #EXTINF:0,Sportsnet World 
-0
+http://j.mp/kjlkjl67
 
 #EXTINF:0,Tennis Channel 
 0
@@ -286,35 +313,26 @@ http://stream01.yamgo.com/iPhone/HLS_TS/broadcast/trace_tv_sports-tablet.3gp/tra
 #EXTINF:0,TSN 1 
 http://iptvchoice.zapto.org:8000/live/grkaveman96@yahoo.com/CMKDKLtTp6/717.ts
 
-#EXTINF:0,TSN 1 
-https://hec.su/bOzg
+#EXTINF:0,TSN 2 
+http://j.mp/eiur48745
 
 #EXTINF:0,TSN 2 
 http://02e4.vp9.tv/chn/tsn2/v.m3u8
 
 #EXTINF:0,TSN 2 
-https://hec.su/bOzh
-
-#EXTINF:0,TSN 2 
 http://iptvchoice.zapto.org:8000/live/grkaveman96@yahoo.com/CMKDKLtTp6/718.ts
 
 #EXTINF:0,TSN 3 
-0
+http://j.mp/euwiry98
 
 #EXTINF:0,TSN 4 
 http://02e4.vp9.tv/chn/tsn4/v.m3u8
 
-#EXTINF:0,TSN 4
-http://iptvchoice.zapto.org:8000/live/grkaveman96@yahoo.com/CMKDKLtTp6/720.ts
-
-#EXTINF:0,TSN 4
-https://hec.su/bOzl
+#EXTINF:0,TSN 5 
+http://j.mp/34875uhf
 
 #EXTINF:0,TSN 5 
 http://iptvchoice.zapto.org:8000/live/grkaveman96@yahoo.com/CMKDKLtTp6/844.ts
-
-#EXTINF:0,TSN 5 
-https://hec.su/bOzp
 
 #EXTINF:0,Viasat Golf 
 0

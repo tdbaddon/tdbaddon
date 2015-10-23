@@ -5,7 +5,7 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 ---------------------------------------------------------------------------------------------------------------
 
 #EXTINF:0,Cinemax 
-0
+http://j.mp/klsjd3209
 
 #EXTINF:0,CMore Action 
 0
@@ -49,29 +49,38 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 #EXTINF:0,Fox Movies 
 0
 
-#EXTINF:0,HBO 
+#EXTINF:0,HBO a
 http://bit.ly:80/IPTVGlobal-hbo?live.m3u8
 
-#EXTINF:0,HBO 
+#EXTINF:0,HBO b
 http://37.203.209.34:443/mobile/flash20/live.m3u8
 
-#EXTINF:0,HBO 
+#EXTINF:0,HBO c
 rtmp://94.102.49.207/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to/player/secure_player_iguide_token.swf live=1 pageUrl=http://www.iguide.to/view/1/watch-live-HBO-channel-for-free token=#ed%h0#w18623jsda6523lDGDVe
 
-#EXTINF:0,HBO 
+#EXTINF:0,HBO d
 rtmp://www1.iguide.to:1935/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to/player/secure_player_iguide_token.swf live=1 pageUrl=http://www.iguide.to/view/1/HBO token=#ed%h0#w18623jsda6523lDGDve
 
 #EXTINF:0,HBO East
-0
+http://j.mp/iefhrea9843
+
+#EXTINF:0,HBO West
+http://j.mp/dh3457d
+
+#EXTINF:0,HBO 2 West
+http://j.mp/vnxn327
 
 #EXTINF:0,HBO Comedy 
-0
+http://j.mp/dlksjfq09843
+
+#EXTINF:0,HBO Family
+http://j.mp/jsadkhfu43y
 
 #EXTINF:0,HBO Signature
-0
+http://j.mp/ksadjf3i
 
 #EXTINF:0,HBO Zone
-0
+http://j.mp/dlksjfr9889
 
 #EXTINF:0,HWD Hollywood 
 0
@@ -83,31 +92,31 @@ rtmp://www1.iguide.to:1935/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.igu
 http://188.17.143.39/hls/CH_C01_PARAMOUNTCHANNEL/variant.m3u8?version=2
 
 #EXTINF:0,Sky Movies Action 
-0
+http://j.mp/fdgh456
 
 #EXTINF:0,Sky Movies Comedy 
-0
+http://j.mp/saoieoi436
 
 #EXTINF:0,Sky Movies Crime 
-0
+http://j.mp/eriut598
 
 #EXTINF:0,Sky Movies Disney 
-0
+http://j.mp/dscfiro5u3948feoid
 
 #EXTINF:0,Sky Movies Drama 
-0
+http://j.mp/cvcxi43587
 
 #EXTINF:0,Sky Movies Family 
-0
+http://j.mp/kjsdfhoi32q4u58943fire
 
 #EXTINF:0,Sky Movies Horrors 
-0
+http://j.mp/dsoi4weu2398q
 
 #EXTINF:0,Sky Movies Modern Greats 
-0
+http://j.mp/cxzvia458
 
 #EXTINF:0,Sky Movies Premiere 
-0
+http://j.mp/dsoir389
 
 #EXTINF:0,Sky Movies Premiere+
 0
@@ -116,7 +125,7 @@ http://188.17.143.39/hls/CH_C01_PARAMOUNTCHANNEL/variant.m3u8?version=2
 0
 
 #EXTINF:0,Sky Movies Select 
-0
+http://j.mp/sae3248r
 
 #EXTINF:0,Sony TV 
 0
