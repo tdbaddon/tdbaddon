@@ -29,7 +29,7 @@ def resolve(url):
         id += re.compile('//.+?/.+?v=([\w]+)').findall(url)
         id = id[0]
 
-        url = 'http://embed.nowvideo.eu/embed.php?v=%s' % id
+        url = 'http://embed.nowvideo.sx/embed.php?v=%s' % id
 
         result = client.request(url)
 
@@ -37,7 +37,7 @@ def resolve(url):
         try: key = re.compile('\s+%s="(.+?)"' % key).findall(result)[-1]
         except: pass
 
-        url = 'http://www.nowvideo.eu/api/player.api.php?key=%s&file=%s' % (key, id)
+        url = 'http://www.nowvideo.sx/api/player.api.php?key=%s&file=%s' % (key, id)
         result = client.request(url)
 
         url = re.compile('url=(.+?)&').findall(result)[0]

@@ -40,35 +40,8 @@ class source:
             url = re.sub(r'[^a-zA-Z0-9\s]+', ' ', url).lower().strip()
             url = re.sub('\s\s+' , ' ', url)
             url = url.replace(' ' , '-')
-            url = '%s/%s-%s/' % (self.base_link, url, year)
+            url = '/%s-%s/' % (url, year)
 
-            result = cloudflare.source(url)
-            result = client.parseDOM(result, 'iframe', ret='src')
-            result = [i for i in result if any(x in i for x in ['videomega', 'openload'])][0]
-            result = url
-
-            '''
-            query = self.search_link % (urllib.quote_plus(title))
-            query = urlparse.urljoin(self.base_link, query)
-
-            result = cloudflare.source(query)
-
-            title = cleantitle.movie(title)
-            years = ['%s' % str(year), '%s' % str(int(year)+1), '%s' % str(int(year)-1)]
-
-            result = client.parseDOM(result, 'li', attrs = {'class': 'border.+?'})
-            result = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a')) for i in result]
-            result = [(i[0][0], i[1][0]) for i in result if len(i[0]) > 0 and len(i[1]) > 0]
-            result = [(i[0], client.parseDOM(i[1], 'span')) for i in result]
-            result = [(i[0], i[1][0]) for i in result if len(i[1]) > 0]
-            result = [(i[0], re.compile('(.+)[\.|\(|\[|\s](\d{4})[\.|\)|\]|\s|]').findall(i[1])) for i in result]
-            result = [(i[0], i[1][0][0].strip(), i[1][0][1]) for i in result if len(i[1]) > 0]
-            result = [i for i in result if any(x in i[2] for x in years)]
-            result = [i[0] for i in result if title == cleantitle.movie(i[1])][0]
-            '''
-
-            try: url = re.compile('//.+?(/.+)').findall(result)[0]
-            except: url = result
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
             return url

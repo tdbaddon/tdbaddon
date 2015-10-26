@@ -35,18 +35,6 @@ jarFile = os.path.join(addonPath, 'jars/FuckNeulionV2.jar')
 
 
 def nhlDirectory():
-    '''try:     
-             hacker=xbmc.translatePath(os.path.join('special://home/userdata/addon_data/plugin.video.phstreams/settings.xml'))
-             source= open( hacker, mode = 'r' )
-             link = source . read( )
-             source . close ( )
-             match=re.compile('<setting id="droid" value="(.+?)"').findall(link)
-             for ishacked in match:
-                  print 'Android Hack is  ' + ishacked
-         
-    except Exception:
-                print 'Attempt to find settings.xml failed'
-                '''
     dt = procTimezone(5)
     datex = int(dt.strftime('%Y%m%d'))
 
@@ -222,6 +210,8 @@ def nhlStreams(name, url):
 
 def nhlResolve(url):
     try:
+        setSettings()
+
         try: url, selectGame, side = re.compile('(.+?)x0xe(.+?)x0xe(.+?)$').findall(url)[0]
         except: selectGame, side = None, None
 
@@ -259,21 +249,30 @@ class player(xbmc.Player):
         if selectGame == None or side == None:
             return control.resolve(int(sys.argv[1]), True, control.item(path=url))
 
-        command = ['java','-jar',jarFile,selectGame,side]
 
-        startupinfo = None
-        if os.name == 'nt':
-            startupinfo = subprocess.STARTUPINFO()
-            startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+        if not control.setting('droid') == 'true':
 
-        self.process = subprocess.Popen(command,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            startupinfo=startupinfo)
+            command = ['java','-jar',jarFile,selectGame,side]
 
-        if os.name == 'posix':
-            success = False
-            success, output = FuckNeulionClient.request_proxy_hack(selectGame,side)
+            startupinfo = None
+            if os.name == 'nt':
+                startupinfo = subprocess.STARTUPINFO()
+                startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+
+            self.process = subprocess.Popen(command,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                startupinfo=startupinfo)
+
+            if os.name == 'posix':
+                success = False
+                success, output = FuckNeulionClient.request_proxy_hack(selectGame,side)
+
+        else:
+
+            if os.name == 'posix':
+                success = False
+
 
         control.sleep(1000)
 
@@ -344,5 +343,27 @@ def procTimezone(h, dt=0):
         dt = dt - datetime.timedelta(hours = int(dtd))
 
     return dt
+
+
+def setSettings():
+    try:
+        control.makeFile(control.dataPath)
+
+        settingsFile = control.settingsFile
+
+        file = control.openFile(settingsFile) ; read = file.read().splitlines() ; file.close()
+
+        write = unicode( '<settings>' + '\n', 'UTF-8' )
+        for line in read:
+            if len(re.findall('<settings>', line)) > 0: continue
+            elif len(re.findall('</settings>', line)) > 0: continue
+            write += unicode(line.rstrip() + '\n', 'UTF-8')
+
+        if not 'id="droid"' in write: write += unicode('    <setting id="droid" value="false" />' + '\n', 'UTF-8')
+        write += unicode('</settings>' + '\n', 'UTF-8')
+
+        file = control.openFile(settingsFile, 'w') ; file.write(str(write)) ; file.close()
+    except:
+        return
 
 

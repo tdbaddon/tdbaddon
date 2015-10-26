@@ -19,7 +19,7 @@
 '''
 
 
-import re,urllib,urlparse,json,time
+import re,urllib,urlparse
 
 from resources.lib.libraries import cleantitle
 from resources.lib.libraries import client
@@ -30,10 +30,6 @@ class source:
     def __init__(self):
         self.base_link = 'http://dizimag.co'
         self.headers = {'X-Requested-With' : 'XMLHttpRequest'}
-
-        self.give_link = '/service/givevideo'
-        self.vdmg_link = '/service/vdmg?type=%s&a=%s&b=1%s&s=%s&e=%s&_=%s'
-        self.idmg_link = '/service/idmg?type=%s&a=%s&b=1%s&s=%s&e=%s&_=%s'
 
 
     def dizimag_shows(self):

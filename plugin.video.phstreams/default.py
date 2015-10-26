@@ -20,8 +20,7 @@
 '''
 
 
-import urlparse,sys, xbmcaddon
-settings = xbmcaddon.Addon(id='plugin.video.phstreams')
+import urlparse,sys
 params = dict(urlparse.parse_qsl(sys.argv[2].replace('?','')))
 
 
@@ -149,47 +148,25 @@ elif action == 'clearCache':
     from resources.lib.libraries import cache
     cache.clear()
 
-    ######
 
 elif action == 'nhlDirectory':
-    if settings.getSetting('droid') == 'false':
-        from resources.lib.indexers import nhlcom
-        nhlcom.nhlDirectory()
-    else:
-        from resources.lib.indexers import nhldroid
-        nhldroid.nhlDirectory()
+    from resources.lib.indexers import nhlcom
+    nhlcom.nhlDirectory()
         
 elif action == 'nhlScoreboard':
-    if settings.getSetting('droid') == 'false':
-        from resources.lib.indexers import nhlcom
-        nhlcom.nhlScoreboard()
-    else:
-        from resources.lib.indexers import nhldroid
-        nhldroid.nhlScoreboard()
+    from resources.lib.indexers import nhlcom
+    nhlcom.nhlScoreboard()
 
 elif action == 'nhlArchives':
-    if settings.getSetting('droid') == 'false':
-        from resources.lib.indexers import nhlcom
-        nhlcom.nhlArchives()
-    else:
-        from resources.lib.indexers import nhldroid
-        nhldroid.nhlArchives()
+    from resources.lib.indexers import nhlcom
+    nhlcom.nhlArchives()
 
 elif action == 'nhlStreams':
-    if settings.getSetting('droid') == 'false':
-        from resources.lib.indexers import nhlcom
-        nhlcom.nhlStreams(name,url)
-    else:
-        from resources.lib.indexers import nhldroid
-        nhldroid.nhlStreams(name,url)
+    from resources.lib.indexers import nhlcom
+    nhlcom.nhlStreams(name,url)
 
 elif action == 'nhlResolve':
-    if settings.getSetting('droid') == 'false':
-        from resources.lib.indexers import nhlcom
-        nhlcom.nhlResolve(url)
-    else:
-        from resources.lib.indexers import nhldroid
-        nhldroid.nhlResolve(url)
-
+    from resources.lib.indexers import nhlcom
+    nhlcom.nhlResolve(url)
 
 

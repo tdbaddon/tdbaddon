@@ -48,8 +48,9 @@ class sources:
         try:
             if not control.infoLabel('Container.FolderPath').startswith('plugin://'):
                 control.playlist.clear()
-                control.resolve(int(sys.argv[1]), True, control.item(path=None))
-                control.execute('Dialog.Close(okdialog)')
+
+            control.resolve(int(sys.argv[1]), True, control.item(path=''))
+            control.execute('Dialog.Close(okdialog)')
 
             if imdb == '0': imdb = '0000000'
             imdb = 'tt' + re.sub('[^0-9]', '', str(imdb))
@@ -85,9 +86,6 @@ class sources:
             if control.setting('playback_info') == 'true':
                 control.infoDialog(self.selectedSource, heading=name)
 
-            try: self.progressDialog.close()
-            except: pass
-
             control.sleep(200)
 
             from resources.lib.libraries.player import player
@@ -107,9 +105,10 @@ class sources:
 
             self.sources = self.getSources(name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date)
             if self.sources == []: raise Exception()
-   
-            try: self.progressDialog.update(0, control.lang(30515).encode('utf-8'), str(' '))
-            except: pass
+
+            self.progressDialog = control.progressDialog
+            self.progressDialog.create(control.addonInfo('name'), '')
+            self.progressDialog.update(0, control.lang(30515).encode('utf-8'), str(' '))
 
             self.sources = self.sourcesFilter()
 
@@ -135,6 +134,8 @@ class sources:
 
             for i in range(len(self.sources)):
                 try:
+                    if self.progressDialog.iscanceled(): break
+
                     self.progressDialog.update(int((100 / float(len(self.sources))) * i))
 
                     url, label, provider = self.sources[i]['url'], self.sources[i]['label'], self.sources[i]['provider']
@@ -179,6 +180,9 @@ class sources:
 
     def playItem(self, content, name, year, imdb, tvdb, source):
         try:
+            control.resolve(int(sys.argv[1]), True, control.item(path=''))
+            control.execute('Dialog.Close(okdialog)')
+
             next = [] ; prev = [] ; total = []
             meta = None
 
@@ -226,11 +230,23 @@ class sources:
                     w = workers.Thread(self.sourcesResolve, items[i]['url'], items[i]['provider'])
                     w.start()
 
-                    for x in range(0, 15 * 2):
+                    m = ''
+
+                    for x in range(3600):
+                        if self.progressDialog.iscanceled(): return self.progressDialog.close()
+                        if xbmc.abortRequested == True: return sys.exit()
+                        k = control.condVisibility('Window.IsActive(virtualkeyboard)')
+                        if k: m += '1'; m = m[-1]
+                        if (w.is_alive() == False or x > 30) and not k: break
+                        time.sleep(0.5)
+
+                    for x in range(30):
+                        if m == '': break
                         if self.progressDialog.iscanceled(): return self.progressDialog.close()
                         if xbmc.abortRequested == True: return sys.exit()
                         if w.is_alive() == False: break
                         time.sleep(0.5)
+
 
                     if w.is_alive() == True: block = items[i]['source']
 
@@ -324,14 +340,15 @@ class sources:
 
                 self.progressDialog.update(int((100 / float(len(threads))) * len([x for x in threads if x.is_alive() == False])), str('%s: %s %s' % (string1, int(i * 0.5), string2)), str('%s: %s' % (string3, str(info).translate(None, "[]'"))))
 
-                if self.progressDialog.iscanceled():
-                    self.progressDialog.close() ; break
+                if self.progressDialog.iscanceled(): break
 
                 is_alive = [x.is_alive() for x in threads]
                 if all(x == False for x in is_alive): break
                 time.sleep(0.5)
             except:
                 pass
+
+        self.progressDialog.close()
 
         return self.sources
 
@@ -704,6 +721,8 @@ class sources:
 
             for i in range(len(items)):
                 try:
+                    if self.progressDialog.iscanceled(): break
+
                     self.progressDialog.update(int((100 / float(len(items))) * i), str(items[i]['label']), str(' '))
 
                     if items[i]['source'] == block: raise Exception()
@@ -711,25 +730,41 @@ class sources:
                     w = workers.Thread(self.sourcesResolve, items[i]['url'], items[i]['provider'])
                     w.start()
 
-                    for x in range(0, 15 * 2):
-                        if self.progressDialog.iscanceled(): return self.progressDialog.close()
+                    m = ''
 
+                    for x in range(3600):
+                        if self.progressDialog.iscanceled(): return self.progressDialog.close()
+                        if xbmc.abortRequested == True: return sys.exit()
+                        k = control.condVisibility('Window.IsActive(virtualkeyboard)')
+                        if k: m += '1'; m = m[-1]
+                        if (w.is_alive() == False or x > 30) and not k: break
+                        time.sleep(0.5)
+
+                    for x in range(30):
+                        if m == '': break
+                        if self.progressDialog.iscanceled(): return self.progressDialog.close()
                         if xbmc.abortRequested == True: return sys.exit()
                         if w.is_alive() == False: break
                         time.sleep(0.5)
+
 
                     if w.is_alive() == True: block = items[i]['source']
 
                     if self.url == None: raise Exception()
 
                     self.selectedSource = items[i]['label']
+                    self.progressDialog.close()
 
                     return self.url
                 except:
                     pass
 
+            try: self.progressDialog.close()
+            except: pass
+
         except:
-            return
+            try: self.progressDialog.close()
+            except: pass
 
 
     def sourcesDirect(self):
@@ -750,8 +785,9 @@ class sources:
 
         for i in range(len(self.sources)):
             try:
+                if self.progressDialog.iscanceled(): break
+
                 self.progressDialog.update(int((100 / float(len(self.sources))) * i), str(self.sources[i]['label']), str(' '))
-                if self.progressDialog.iscanceled(): return self.progressDialog.close()
 
                 if xbmc.abortRequested == True: return sys.exit()
 
@@ -760,9 +796,14 @@ class sources:
                 if u == None: u = url
 
                 self.selectedSource = self.sources[i]['label']
+                self.progressDialog.close()
+
                 return url
             except:
                 pass
+
+        try: self.progressDialog.close()
+        except: pass
 
         return u
 
@@ -778,6 +819,11 @@ class sources:
         try: self.hostlocDict = [i.lower() for i in reduce(lambda x, y: x+y, self.hostlocDict)]
         except: pass
         self.hostlocDict = [x for y,x in enumerate(self.hostlocDict) if x not in self.hostlocDict[:y]]
+
+        self.hostdirhdDict = [i['netloc'] for i in resolvers.info() if 'quality' in i and i['quality'] == 'High' and 'captcha' in i and i['captcha'] == False and 'a/c' in i and i['a/c'] == False]
+        try: self.hostdirhdDict = [i.lower().rsplit('.', 1)[0] for i in reduce(lambda x, y: x+y, self.hostdirhdDict)]
+        except: pass
+        self.hostdirhdDict = [x for y,x in enumerate(self.hostdirhdDict) if x not in self.hostdirhdDict[:y]]
 
         self.hostprDict = [i['host'] for i in hosts if i['a/c'] == True]
         try: self.hostprDict = [i.lower() for i in reduce(lambda x, y: x+y, self.hostprDict)]

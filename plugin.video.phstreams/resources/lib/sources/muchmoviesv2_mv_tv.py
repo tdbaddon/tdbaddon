@@ -162,7 +162,8 @@ class source:
 
             result = cloudflare.request(url)
 
-            url = client.parseDOM(result, 'item')[idx]
+            url = client.parseDOM(result, 'item')
+            url = [i for i in url if not 'youtube.com' in i and not '>Intro<' in i][idx]
             url = re.compile("file *= *[\'|\"](.+?)[\'|\"]").findall(url)
             url = [i for i in url if not i.endswith('.srt')][0]
             url = client.replaceHTMLCodes(url)

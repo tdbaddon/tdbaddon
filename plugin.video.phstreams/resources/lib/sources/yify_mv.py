@@ -77,7 +77,16 @@ class source:
                 if not result == None: break
 
             result = client.parseDOM(result, 'script', attrs = {'type': 'text/javascript'})
-            result = ''.join(result)
+            result = [i for i in result if 'parametros;' in i][0]
+            result = 'function' + result.split('function', 1)[-1]
+            result = result.rsplit('parametros;', 1)[0] + 'parametros;'
+
+
+            from resources.lib.libraries import js2py
+
+            result = js2py.evaljs.eval_js(result)
+            result = str(result)
+
 
             links = re.compile('pic=([^&]+)').findall(result)
             links = [x for y,x in enumerate(links) if x not in links[:y]]
@@ -85,12 +94,9 @@ class source:
             for i in links:
                 try:
                     url = urlparse.urljoin(self.base_link, self.pk_link)
-                    post = urllib.urlencode({'url': i, 'fv': '16'})
+                    post = urllib.urlencode({'url': i, 'fv': '16', 'sou': 'pic'})
 
-                    for i in range(5):
-                        result = client.source(url, post=post)
-                        if not result == None: break
-
+                    result = client.source(url, post=post, referer=base)
                     result = json.loads(result)
 
                     try: sources.append({'source': 'GVideo', 'quality': '1080p', 'provider': 'YIFY', 'url': [i['url'] for i in result if i['width'] == 1920 and 'google' in i['url']][0]})

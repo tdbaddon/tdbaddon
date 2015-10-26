@@ -19,7 +19,7 @@
 '''
 
 
-import re,urllib,urlparse,base64,datetime
+import re,urllib,urlparse,base64
 
 from resources.lib.libraries import cleantitle
 from resources.lib.libraries import client
@@ -31,11 +31,11 @@ class source:
         self.base_link = 'http://www.primewire.ag'
         self.key_link = '/index.php?search'
         self.link_1 = 'http://www.primewire.ag'
-        self.link_2 = 'http://translate.googleusercontent.com/translate_c?anno=2&hl=en&sl=mt&tl=en&u=http://www.primewire.ag'
-        self.link_3 = 'https://primewire.unblocked.pw'
+        self.link_2 = 'http://www.primewire.org'
+        self.link_3 = 'http://www.primewire.is'
         self.moviesearch_link = '/index.php?search_keywords=%s&key=%s&search_section=1'
         self.tvsearch_link = '/index.php?search_keywords=%s&key=%s&search_section=2'
-        self.headers = {'User-Agent' : 'Mozilla/%s' % datetime.datetime.now().strftime('%Y%m%d%H%M%S')}
+        self.headers = {'Connection' : 'keep-alive'}
 
 
     def get_movie(self, imdb, title, year):

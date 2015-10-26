@@ -34,6 +34,8 @@ def resolve(url):
 
         result = client.request(page, referer=referer)
 
+
+
         unpacked = ''
         packed = result.split('\n')
         for i in packed: 
@@ -41,11 +43,24 @@ def resolve(url):
             except: pass
         result += unpacked
         result = urllib.unquote_plus(result)
+        result = re.sub('\s\s+', ' ', result)
+
+        var = re.compile('var\s(.+?)\s*=\s*\'(.+?)\'').findall(result)
+        for i in range(100):
+            for v in var: result = result.replace("' %s '" % v[0], v[1]).replace("'%s'" % v[0], v[1])
+
 
         result = re.compile('<iframe(.+?)</iframe>').findall(result)[-1]
 
-        url = re.compile('src\s*=\s*[\'|\"](.+?)[\'|\"].+?[\'|\"](.+?)[\'|\"]').findall(result)[0]
-        url = '/'.join(url)
+
+
+        url = re.compile('src\s*=\s*[\'|\"](.+?)[\'|\"].+?[\'|\"](.+?)[\'|\"]').findall(result)
+        if len(url) == 0: url = re.compile('src\s*=\s*[\'|\"](.+?)[\'|\"](.+?)[\'|\"]').findall(result)
+        if len(url) == 0: url = re.compile('src\s*=\s*[\'|\"](.+?)[\'|\"]').findall(result)
+
+        url = '/'.join([i.strip('/') for i in url])
+
+
 
         result = client.request(url, referer=referer)
 

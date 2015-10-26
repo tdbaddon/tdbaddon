@@ -102,6 +102,14 @@ msgctxt "#30722"
 msgid "[COLOR gold]Download item[/COLOR]"
 msgstr ""
 
+msgctxt "#30723"
+msgid "NHL"
+msgstr ""
+
+msgctxt "#30724"
+msgid "Use Android Hack"
+msgstr ""
+
 msgctxt "#30751"
 msgid "[COLOR red]Scoreboard[/COLOR]"
 msgstr ""
