@@ -26,16 +26,13 @@ rtmp://46.21.53.171/iwohttporigin/mp4:livestream
 http://www.astratv.gr:8090/hls/livestream.m3u8 
 
 #EXTINF:0,Best TV 
-http://smooth.istoikona.net/besttv.isml/manifest(format=m3u8-aapl).m3u8 
+0
 
 #EXTINF:0,BlueSky TV
 http://88.198.238.44:1935/live/bluesky/playlist.m3u8 
 
 #EXTINF:0,Boyah TV
 http://streamer-cache.grnet.gr/parliament/parltv.sdp/master.m3u8 
-
-#EXTINF:0,Creta
-rtmp://94.23.218.186:1935/cretatv/cretatv
 
 #EXTINF:0,Creta
 rtmp://live.cretetv.gr/cretetv/myStream
@@ -56,10 +53,10 @@ mms://deltatv1.dyndns.org:1194
 http://mgrouphdlive4-f.akamaihd.net/i/live_1@324569/master.m3u8
 
 #EXTINF:0,Ellada TV 
-rtmp://fml.68FC.edgecastcdn.net/2068FC/elladatv swfUrl=http://www.elladatv.gr/scripts/player.swf swfVfy=1 live=1 timeout=10
+0
 
 #EXTINF:0,Ena TV 
-http://wpc.68fc.edgecastcdn.net/hls-live/2068FC/ena-channel-live/video/video.m3u8
+0
 
 #EXTINF:0,Epirus TV 
 http://xepirustv1livex.api.channel.livestream.com/3.0/playlist.m3u8
@@ -133,8 +130,8 @@ http://206.222.31.146/maxtv
 #EXTINF:0,Mega 
 http://megahdlive1-f.akamaihd.net/i/live_1@105260/master.m3u8
 
-#EXTINF:0,Mega Cyprus
-http://smooth2.istoikona.net:1935/live/livenews%202/playlist.m3u8 
+#EXTINF:0,Mega Cyprus 
+0
 
 #EXTINF:0,Messinia TV
 rtmp://176.9.123.140:1935/messinia/messinia

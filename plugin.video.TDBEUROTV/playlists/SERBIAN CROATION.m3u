@@ -10,16 +10,13 @@ rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
 #EXTINF:0,B92 
 http://stream.b92.net:7999/tv-b92.ogg
 
-#EXTINF:0,B92 
-http://master.nika.rs.ba:80/live?channelId=11&uid=66&deviceUser=besplatno&devicePass=besplatno
-
 #EXTINF:0,Balkan TV
 rtmp://yayin.tvdunyasi.tv/live/balkanrtv
 
 #EXTINF:0,Belle Amie TV
 http://92.60.234.98:8081
 
-#EXTINF:0,CETV
+#EXTINF:0,CETV 
 http://213.81.153.221:8080/cetv
 
 #EXTINF:0,CMC 
@@ -29,19 +26,16 @@ http://213.81.153.221:8080/cetv
 0
 
 #EXTINF:0,DM SAT 
-http://185.13.236.197:4080/udp/224.0.0.120:1246
+0
 
-#EXTINF:0,DM SAT 
-http://master.nika.rs.ba:80/live?channelId=26&uid=66&deviceUser=besplatno&devicePass=besplatno
-
-#EXTINF:0,DUGA
-http://master.nika.rs.ba:80/live?channelId=27&uid=66&deviceUser=besplatno&devicePass=besplatno
+#EXTINF:0,DUGA 
+0
 
 #EXTINF:0,Elektrika TV
 rtmp://rtmp.elektrika.cz/live/myStream.sdp
 
 #EXTINF:0,Grand Narodna 
-http://master.nika.rs.ba:80/live?channelId=34&uid=66&deviceUser=besplatno&devicePass=besplatno
+0
 
 #EXTINF:0,Happy 
 0
@@ -53,10 +47,7 @@ http://master.nika.rs.ba:80/live?channelId=34&uid=66&deviceUser=besplatno&device
 0
 
 #EXTINF:0,Hayat Plus 
-http://master.nika.rs.ba:80/live?channelId=38&uid=66&deviceUser=besplatno&devicePass=besplatno
-
-#EXTINF:0,Hayat Plus 
-http://master.nika.rs.ba:80/live?channelId=36&uid=66&deviceUser=besplatno&devicePass=besplatno
+0
 
 #EXTINF:0,Hema 
 mms://77.238.209.50:1234
@@ -64,14 +55,8 @@ mms://77.238.209.50:1234
 #EXTINF:0,HRT 1 
 http://213.5.58.58:1935/hrt_live/smil:hrt1.smil/nesto.m3u8
 
-#EXTINF:0,HRT 1 
-http://master.nika.rs.ba:80/live?channelId=42&uid=66&deviceUser=besplatno&devicePass=besplatno
-
 #EXTINF:0,HRT 2 
 http://213.5.58.58:1935/hrt_live/smil:hrt2.smil/nesto.m3u8
-
-#EXTINF:0,HRT 2 
-http://master.nika.rs.ba:80/live?channelId=43&uid=66&deviceUser=besplatno&devicePass=besplatno
 
 #EXTINF:0,HRT 3 
 http://213.5.58.58:1935/hrt_live/smil:hrt3.smil/nesto.m3u8
@@ -119,7 +104,7 @@ http://best.str.n1info.com:8080/stream?channel=n1hdsrb?stream=hd?u=n1info
 mms://176.106.121.32:8080/
 
 #EXTINF:0,OBN 
-http://master.nika.rs.ba:80/live?channelId=54&uid=66&deviceUser=besplatno&devicePass=besplatno
+0
 
 #EXTINF:0,Palma Plus 
 0
@@ -140,19 +125,19 @@ mms://beotelmedia.beotel.net/tvcg
 mms://195.252.114.172/tvcg
 
 #EXTINF:0,RTL 1 
-http://master.nika.rs.ba:80/live?channelId=68&uid=66&deviceUser=besplatno&devicePass=besplatno
+0
 
 #EXTINF:0,RTL 2 
-http://master.nika.rs.ba:80/live?channelId=71&uid=66&deviceUser=besplatno&devicePass=besplatno
+0
 
 #EXTINF:0,RTRS 
-http://master.nika.rs.ba:80/live?channelId=72&uid=66&deviceUser=besplatno&devicePass=besplatno
+0
 
 #EXTINF:0,RTS 
 0
 
 #EXTINF:0,RTS 1 
-http://master.nika.rs.ba:80/live?channelId=73&uid=66&deviceUser=besplatno&devicePass=besplatno
+0
 
 #EXTINF:0,RTS 2 
 0
@@ -166,7 +151,7 @@ http://213.81.153.221:8080/galanta
 #EXTINF:0,Ruzinov
 http://213.81.153.221:8080/ruzinov
 
-#EXTINF:0,Sonce TV
+#EXTINF:0,Sonce TV 
 http://92.53.27.201:10000/
 
 #EXTINF:0,SOS Kanal 

@@ -2,7 +2,7 @@
 
 
 #EXTINF:0,ASIAN XXX 
-http://210.200.79.26:1935/live/aracity02/playlist.m3u8
+0
 
 #EXTINF:0,ASK TV 
 rtmp://main2.everyon.tv:1935/etv2/_definst_/pld1005
@@ -26,7 +26,7 @@ rtmp://main2sb.everyon.tv:1935/etv2sb/_definst_/pld992
 rtmp://main2sb.everyon.tv:1935/etv2sb/_definst_/pld968
 
 #EXTINF:0,FETISH WOMEN
-rtmp://main2sb.everyon.tv:1935/etv2sb/_definst_/phd968
+rtmp://edge2.everyon.tv/etv2sb/phd968
 
 #EXTINF:0,GIRL TV
 rtmp://main2sb.everyon.tv:1935/etv2sb/_definst_/pld501
@@ -37,32 +37,41 @@ rtmp://main2sb.everyon.tv:1935/etv2sb/_definst_/phd501
 #EXTINF:0,GIRL TV
 rtmp://edge2.everyon.tv/etv2sb/pld501
 
+#EXTINF:0,GIRL TV
+rtmp://edge2.everyon.tv/etv2sb/phd501
+
+#EXTINF:0,GIRL TV
+http://edge2.everyon.tv:1935/etv2sb/phd501/HasBahCa.m3u8
+
 #EXTINF:0,J HOT GIRL 
 rtmp://main2sb.everyon.tv:1935/etv2sb/_definst_/pld0059
 
 #EXTINF:0,J HOT GIRL
 rtmp://main2sb.everyon.tv:1935/etv2sb/_definst_/phd0059
 
-#EXTINF:0,J HOT GIRL
+#EXTINF:0,JAV TV
 http://edge2.everyon.tv/etv2/pld1003/ukturk.m3u8
-
-#EXTINF:0,JAV TV
-rtmp://edge2.everyon.tv/etv2/phd1003
-
-#EXTINF:0,JAV TV
-rtmp://edge2.everyon.tv/etv2/pld1003
 
 #EXTINF:0,LIVETING TV 
 rtmp://main2sb.everyon.tv:1935/etv2sb/_definst_/pld0064
 
 #EXTINF:0,OHDEOK 942
-rtmp://edge2.everyon.tv/etv2sb/pld993
-
-#EXTINF:0,OHDEOK 942
 rtmp://main2sb.everyon.tv:1935/etv2sb/_definst_/pld993
 
+#EXTINF:0,OKADAI
+http://edge2.everyon.tv/etv2/pld1003/HasBahCa.m3u8
+
+#EXTINF:0,OKADAI
+http://edge2.everyon.tv:1935/etv2/phd1003/HasBahCa.m3u8
+
+#EXTINF:0,OKADAI
+rtmp://edge2.everyon.tv/etv2/pld1003
+
 #EXTINF:0,PARADISE 1008
-0
+rtmp://edge2.everyon.tv/etv2/pld1008
+
+#EXTINF:0,PARADISE 1008
+rtmp://edge2.everyon.tv/etv2/phd1008
 
 #EXTINF:0,PINK 
 rtmp://main2sb.everyon.tv:1935/etv2sb/_definst_/pld0062
@@ -83,16 +92,13 @@ rtmp://main2sb.everyon.tv:1935/etv2sb/_definst_/phd0060
 rtmp://main2sb.everyon.tv:1935/etv2sb/_definst_/pld61
 
 #EXTINF:0,SEX TV
-rtmp://main2sb.everyon.tv:1935/etv2sb/_definst_/phd61
-
-#EXTINF:0,SEX TV
 rtmp://edge2.everyon.tv/etv2sb/phd61
 
 #EXTINF:0,SEX TV
-rtmp://edge2.everyon.tv/etv2sb/pld61
+rtmp://main2sb.everyon.tv:1935/etv2sb/_definst_/phd61
 
 #EXTINF:0,SEX TV
-http://edge2.everyon.tv:1935/etv2sb/phd61/paz.m3u8
+http://edge2.everyon.tv:1935/etv2sb/phd61/HasBahCa.m3u8
 
 #EXTINF:0,THE O 
 rtmp://main2sb.everyon.tv:1935/etv2sb/_definst_/pld0771

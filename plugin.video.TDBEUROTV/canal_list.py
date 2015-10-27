@@ -114,7 +114,7 @@ dc={
 "0000000000000000000000000" : "2060",
 
 "ITALIAN" : "0000000000",
-"8 video calabria crotone" : "3000",
+"8 video calabria" : "3000",
 "alto adige tv" : "3001",
 "canale 7" : "3002",
 "cbl cinema tv" : "3003",
@@ -381,7 +381,7 @@ dc={
 "pink western" : "9040",
 "pink world" : "9041",
 "pink world cinema" : "9042",
-"pink zabava" : "904",
+"pink zabava" : "9044",
 
 
 "SERBIAN CROATION" : "0000000000",

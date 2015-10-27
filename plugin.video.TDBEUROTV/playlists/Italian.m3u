@@ -1,7 +1,7 @@
 ﻿#EXTM3U
 
 
-#EXTINF:0,8 Video Calabria Crotone 
+#EXTINF:0,8 Video Calabria 
 rtmp://wms.shared.streamshow.it:80/videocalabria playpath=videocalabria swfUrl=http://player.streamshow.it/flowplayer/flowplayer.commercial-3.2.18.swf pageUrl=http://player.streamshow.it/embed/videocalabria.php?height=420&width=729 live=1 timeout=10
 
 #EXTINF:0,Alto Adige TV
@@ -13,8 +13,8 @@ rtsp://77.72.196.214:8554/live/mp4:AltoAdigeTV
 #EXTINF:0,Calabria Uno TV 
 rtmp://calabria1.flashmediaserver.it:1935/livepkgr?adbe-live-event=liveevent playpath=livestream?adbe-live-event=liveevent swfUrl=http://fpdownload.adobe.com/strobe/FlashMediaPlayback_101.swf/[[DYNAMIC]]/1 live=1 pageUrl=http://www.tvdream.net/embed/calabriauno-tva/
 
-#EXTINF:0,Canale 2
-http://wms.iptv.4wardstream.net/canale2iptv/canale2iptv/playlist.m3u8
+#EXTINF:0,Canale 2 
+0
 
 #EXTINF:0,Canale 46 
 rtmp://vs2.streamcaster.net:1935/test_live playpath=canale46 swfUrl=http://www.canale46.it/scripts/FlowPlayerNet/flowplayer.commercial-3.2.15.swf pageUrl=http://www.canale46.it/portale_web/lib/archivio.aspx?canale=1&id=1 live=1 timeout=10
@@ -76,17 +76,17 @@ rtmp://fms.105.net/live/105Test1
 #EXTINF:0,Radio Italia TV 
 http://cwedge.cdcache.net:1935/cwedge/rilive/livestream.m3u8
 
-#EXTINF:0,Radio Montecarlo TV
+#EXTINF:0,Radio Montecarlo TV 
 rtmp://fms.105.net:1935/live/rmc1
 
 #EXTINF:0,RAI 1 
 http://origin2.live.web.tv.streamprovider.net/streams/a3be8da5ba57ddb33ada9fa8fcd53a19/index.m3u8
 
 #EXTINF:0,RAI 2 
-http://origin2.live.web.tv.streamprovider.net/streams/84553722f218dda44aab91b4ae0c2d42/index.m3u8
+0
 
 #EXTINF:0,RAI 3 
-http://origin2.live.web.tv.streamprovider.net:80/streams/2946613af1f663bb5b4164131b8c9413/index.m3u8
+0
 
 #EXTINF:0,RAI 5 
 http://stream12.rai.it/live/smil:rai5.smil/chunklist_b1500000.m3u8#MegaIPTVArgentina
@@ -106,11 +106,11 @@ http://finalmente.hopto.org:8000/live/croci/croci/781.ts
 #EXTINF:0,Rai Storia
 0
 
-#EXTINF:0,Rai Yoyo
-http://finalmente.hopto.org:8000/live/croci/croci/790.ts
+#EXTINF:0,Rai Yoyo 
+0
 
 #EXTINF:0,REI TV 
-http://iphone-streaming.ustream.tv/ustreamVideo/18166848/streams/live/playlist.m3u8
+0
 
 #EXTINF:0,Rete 8
 http://rm-edge-4.cdn2.streamago.tv/streamagoedge/39648/36568/Rete8.m3u8
@@ -223,7 +223,7 @@ http://xtirrenosatx.api.channel.livestream.com/3.0/playlist.m3u8
 #EXTINF:0,Trentino TV 
 rtmp://77.72.196.214:8554/live playpath=TrentinoTV
 
-#EXTINF:0,TRM TV
+#EXTINF:0,TRM TV 
 http://flash.streamingmedia.it:1935/TRM/livestream/hasbahca.m3u8
 
 #EXTINF:0,TRM TV 
@@ -238,7 +238,7 @@ http://ftp.tiscali.it/francescovernata/TVUNO/monoscopioTvUNOint-1.wmv
 #EXTINF:0,Vera TV
 http://wms.shared.streamshow.it/veratv/veratv/playlist.m3u8
 
-#EXTINF:0,Video Brescia
+#EXTINF:0,Video Brescia 
 rtmp://wms.shared.streamshow.it/videobrescia/videobrescia
 
 #EXTINF:0,Videolina 

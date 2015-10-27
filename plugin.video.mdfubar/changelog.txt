@@ -1,3 +1,9 @@
+v1.1.1
+fixed badassmovies4u scraper
+changed pandamovie to new domain and fixed scraper
+changed filmovizija to new domain and fixed the newest movies scraper
+added iptvapps.blogspot.co.uk to the iptv section
+
 v1.0.8
 added pandamovie.me
 

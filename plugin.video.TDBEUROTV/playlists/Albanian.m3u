@@ -2,10 +2,13 @@
 
 
 #EXTINF:0,A1 Report 
-http://tring-amd-live.tring.tv/out/u/65_53.m3u8
+0
 
 #EXTINF:0,Agon Channel 
 0
+
+#EXTINF:0,Al Jazeera Balkan 
+rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
 
 #EXTINF:0,Alb Info
 http://str105mb.setplex.net:1935/str2iosmd5/stralbinfo_2654_dfs/playlist.m3u8
@@ -19,9 +22,6 @@ rtmp://188.138.17.8:1935/albuk/albuk+.stream
 #EXTINF:0,Albanian Screen
 0
 
-#EXTINF:0,Al Jazeera Balkan 
-rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
-
 #EXTINF:0,ATV
 rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
 
@@ -29,7 +29,7 @@ rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
 0
 
 #EXTINF:0,Channel One 
-http://tring-amd-live.tring.tv/out/u/64_50.m3u8
+0
 
 #EXTINF:0,Cufo TV 
 0
@@ -44,7 +44,7 @@ rtmp://84.20.77.50/live//livestream2
 0
 
 #EXTINF:0,Klan Kosova 
-http://tring-amd-live.tring.tv/out/u/58_23.m3u8
+0
 
 #EXTINF:0,Koha TV 
 0
@@ -71,7 +71,7 @@ http://81.7.13.162/hls/oranews/index.m3u8
 rtmp://82.114.65.202/live/rrokumtv.flv swfUrl=http://tv24.al/shqiptv/css/player.swf live=1
 
 #EXTINF:0,RTK1 
-0
+http://akamai127.tibo.tv/rtk/timeshift_rel-20.m3u8$OPT:http-user-agent=stagefright%2F1.0+%28Linux%3BAndroid+2.2%29
 
 #EXTINF:0,STV 
 http://88.212.10.27:81/streams/stv1.m3u8?
@@ -94,8 +94,4 @@ rtmp://str103.setplex.net:1935/228/stv_online
 #EXTINF:0,Vizion Plus 
 rtmp://live.vizionplus.tv/live//livestream3
 
-#EXTINF:0,Vizion Plus 
-http://tring-amd-live.tring.tv/out/u/53_9.m3u8
 
-#EXTINF:0,Vizion Plus 
-http://tring-amd-live.tring.tv/out/u/105_9.m3u8
