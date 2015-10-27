@@ -11,10 +11,7 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 0
 
 #EXTINF:0,Animal Planet 
-http://78.30.254.43:8989/udp/239.0.0.34:4000
-
-#EXTINF:0,Animal Planet 
-http://78.30.254.43:8989/udp/239.0.0.129:4000
+0
 
 #EXTINF:0,Destination America 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/22.m3u8
@@ -23,7 +20,7 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/22.m3u8
 0
 
 #EXTINF:0,Discovery Channel 
-http://78.30.254.43:8989/udp/239.0.0.29:4000
+0
 
 #EXTINF:0,Discovery History 
 0
@@ -38,10 +35,10 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/46.m3u8
 0
 
 #EXTINF:0,Discovery Turbo 
-http://78.30.254.43:8989/udp/239.0.0.47:4000
+0
 
 #EXTINF:0,Discovery World 
-http://193.194.107.10:4022/udp/225.1.5.102:4001
+0
 
 #EXTINF:0,Docubox 
 0
@@ -58,14 +55,8 @@ https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8?hdnea=ip=174.113.
 #EXTINF:0,History Channel 
 http://link.theplatform.com/s/dtjsEC/chjdYJxKb44V?manifest=m3u&feed=History%20Live%20Stream%20Feed
 
-#EXTINF:0,History Channel 
-http://78.30.254.43:8989/udp/239.0.1.160:4000
-
 #EXTINF:0,History Channel 2
 0
-
-#EXTINF:0,Investigation Discovery 
-http://78.30.254.43:8989/udp/239.0.0.136:4000
 
 #EXTINF:0,Investigation Discovery 
 http://j.mp/ygyuyugyu676756
@@ -93,9 +84,6 @@ http://88.84.223.214:1212/udp/234.5.2.128:1234
 
 #EXTINF:0,National Geographic 
 http://88.84.223.214:1212/udp/234.5.2.114:1234
-
-#EXTINF:0,National Geographic 
-http://78.30.254.43:8989/udp/239.0.0.35:4000
 
 #EXTINF:0,National Geographic 
 http://193.106.211.2:1234/udp/225.1.5.106:4001

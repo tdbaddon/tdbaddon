@@ -70,7 +70,7 @@ http://ams-lp6.9c9media.com/hls-live/livepkgr/_definst_/liveNews/News38.m3u8
 #EXTINF:0,CTV NEWS 
 http://ams-lp5.9c9media.com/hls-live/livepkgr/_definst_/liveNews/News48.m3u8 
 
-#EXTINF:0,DW a
+#EXTINF:0,DW 
 http://www.metafilegenerator.de/DWelle/tv-asia/ios/master.m3u8
 
 #EXTINF:0,Euro News 
@@ -82,7 +82,7 @@ rtsp://ewns-hls-b-stream.hexaglobe.net/rtpeuronewslive/en_vidan750_rtp.sdp
 #EXTINF:0,Euro News 
 http://fr-par-iphone-2.cdn.hexaglobe.net/streaming/euronews_ewns/ipad_en.m3u8
 
-#EXTINF:0,Fox News a
+#EXTINF:0,Fox News 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/35.m3u8
 
 #EXTINF:0,France 24 

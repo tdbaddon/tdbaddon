@@ -92,16 +92,16 @@ rtmp://tst.es.flash.glb.ipercast.net/tst.es-live/live
 http://74.208.152.93/music/stream3/stream.m3u8
 
 #EXTINF:0,MTV 
-http://78.30.254.43:8989/udp/239.0.0.196:4000
+http://j.mp/TMTV_Viet_sly
 
 #EXTINF:0,MTV Dance 
-http://78.30.254.43:8989/udp/239.0.0.80:4000
+0
 
 #EXTINF:0,MTV Hits 
-http://78.30.254.43:8989/udp/239.0.0.205:4000
+0
 
 #EXTINF:0,MTV Rocks 
-http://78.30.254.43:8989/udp/239.0.0.143:4000
+http://lag3.tv-mobile.org/prgc.m3u8
 
 #EXTINF:0,MusicVoxTV 
 rtmp://stream.smcloud.net/live2/vox/vox_720p
@@ -161,7 +161,7 @@ http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/06/prog_index.m3u8
 0
 
 #EXTINF:0,VH1 Classics 
-http://78.30.254.43:8989/udp/239.0.0.44:4000
+0
 
 #EXTINF:0,Virgin TV 
 rtmp://fms.105.net:1935/live/virgin2

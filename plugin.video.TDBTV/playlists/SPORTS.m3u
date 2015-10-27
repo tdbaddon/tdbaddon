@@ -4,11 +4,32 @@
 http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 ---------------------------------------------------------------------------------------------------------------
 
+#EXTINF:0,Astro Super Sport 1
+http://185.63.252.176/live/antenasportucl1/playlist.m3u8
+
+#EXTINF:0,Astro Super Sport 2
+http://185.63.252.176/live/antenasportucl2/playlist.m3u8
+
+#EXTINF:0,Astro Super Sport 3
+http://185.63.252.176/live/antenasportucl3/playlist.m3u8
+
+#EXTINF:0,Astro Super Sport 4
+http://185.63.252.176/live/antenasportucl4/playlist.m3u8
+
 #EXTINF:0,Bein Sport 1 
 http://iptvchoice.zapto.org:8000/live/grkaveman96@yahoo.com/CMKDKLtTp6/3575.ts
 
+#EXTINF:0,Bein Sport 1 
+http://180.250.29.12/jhos/beib1_3/1424681872/playlist.m3u8
+
+#EXTINF:0,Bein Sport 1 
+http://180.250.29.12/jhos/beib1_5/1424681872/playlist.m3u8
+
 #EXTINF:0,Bein Sport 2 
-0
+http://180.250.29.12/jhos/beib2_3/1424681986/playlist.m3u8
+
+#EXTINF:0,Bein Sport 2 
+http://180.250.29.12/jhos/beib2_5/1424681986/playlist.m3u8
 
 #EXTINF:0,Big Ten Network 
 0
@@ -19,23 +40,11 @@ http://j.mp/ldjf403q895
 #EXTINF:0,BT Sport 1 
 http://j.mp/djsj3858473
 
-#EXTINF:0,BT Sport 1 
-rtmp://80.82.65.162/live playpath=vbt1 swfUrl=http://www.yocast.tv/myplayer/jwplayer.flash.swf live=1 pageUrl=http://www.yocast.tv/embed.php?live=vbt1&vw=620&vh=490
-
-#EXTINF:0,BT Sport 1 
-http://195.154.226.186:1935/lol/bteulsh/playlist.m3u8
-
 #EXTINF:0,BT Sport 2 
 http://j.mp/4357676hgsfd
 
-#EXTINF:0,BT Sport 2 
-rtmpe://134.19.185.252:1935/livedge/mamahdbtsport2
-
-#EXTINF:0,BT Sport 2 
-http://195.154.226.186:1935/lol/btsports2lsh/playlist.m3u8
-
 #EXTINF:0,CBS Sports 
-http://j.mp/idsofajw34835
+0
 
 #EXTINF:0,Chelsea TV 
 0
@@ -44,37 +53,16 @@ http://j.mp/idsofajw34835
 0
 
 #EXTINF:0,ESPN 
-http://5.196.82.222:8000/live/test1/test1/22.m3u8
-
-#EXTINF:0,ESPN 
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/70.m3u8
-
-#EXTINF:0,ESPN 
-rtmp://89.248.174.121/live playpath=gjyj swfUrl=http://www.yocast.tv/myplayer/jwplayer.flash.swf live=1 pageUrl=http://www.yocast.tv/embed.php?live=gjyj&vw=620&vh=490
-
-#EXTINF:0,ESPN 
-http://195.154.226.186:1935/lol/espnuklsh/playlist.m3u8
-
-#EXTINF:0,ESPN 
 http://iptvchoice.zapto.org:8000/live/grkaveman96@yahoo.com/CMKDKLtTp6/1360.ts
 
 #EXTINF:0,Eurosport 1 
 http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_1800.m3u8
 
 #EXTINF:0,Eurosport 1 
-http://195.154.226.186:1935/lol/vesplsh/playlist.m3u8
-
-#EXTINF:0,Eurosport 1 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/85.m3u8
 
 #EXTINF:0,Eurosport 2 
-http://195.154.226.186:1935/lol/vesp2lsh/playlist.m3u8
-
-#EXTINF:0,Eurosport 2 
-rtmp://185.53.90.42/live playpath=xxeuro2 swfUrl=http://www.yocast.tv/myplayer/jwplayer.flash.swf live=1 pageUrl=http://www.yocast.tv/embed.php?live=xxeuro2&vw=620&vh=490
-
-#EXTINF:0,Eurosport 2 
-rtmp://93.174.93.196/live playpath=xxeuro2 swfUrl=http://www.yocast.tv/myplayer/jwplayer.flash.swf live=1 pageUrl=http://www.yocast.tv/embed.php?live=xxeuro2&vw=620&vh=490
+0
 
 #EXTINF:0,Eurosport News 
 0
@@ -83,7 +71,7 @@ rtmp://93.174.93.196/live playpath=xxeuro2 swfUrl=http://www.yocast.tv/myplayer/
 0
 
 #EXTINF:0,Fishing & Hunting 
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/17.m3u8
+0
 
 #EXTINF:0,Fox Sports 
 http://ftve1100-i.akamaihd.net/hls/live/217047/fcsp/3964k/prog.m3u8|X-Forwarded-For=13.107.25.55
@@ -103,9 +91,6 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/75.m3u8
 #EXTINF:0,Fox Sports 2 
 http://j.mp/mnlk88
 
-#EXTINF:0,Fox Sports 2 
-http://iptvchoice.zapto.org:8000/live/grkaveman96@yahoo.com/CMKDKLtTp6/3111.ts
-
 #EXTINF:0,Fox Sports News 
 0
 
@@ -119,7 +104,7 @@ http://208.92.36.158/ipad/live/nba_ipad_1240.m3u8
 mms://100automoto.tv/channel_mercedes
 
 #EXTINF:0,MLB 
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/40.m3u8
+0
 
 #EXTINF:0,Motors TV 
 0
@@ -188,7 +173,7 @@ http://xrxs.net/video/live-p12baya-1164.m3u8
 http://xrxs.net/video/live-p12baya-2328.m3u8
 
 #EXTINF:0,PAC 12 Bay Area HD 
-0
+http://xrxs.net/video/live-p12baya-4728.m3u8
 
 #EXTINF:0,PAC 12 LA 
 http://xrxs.net/video/live-p12losa-2328.m3u8
@@ -223,11 +208,11 @@ http://xrxs.net/video/live-p12wash-1164.m3u8
 #EXTINF:0,PAC 12 Washington HD 
 http://xrxs.net/video/live-p12wash-4728.m3u8
 
-#EXTINF:0,Porsche Channel
+#EXTINF:0,Porsche Channel 
 mms://100automoto.tv/channel_porsche
 
 #EXTINF:0,Premier Sports 
-http://195.154.226.186:1935/lol/vpremsplsh/playlist.m3u8
+0
 
 #EXTINF:0,Racing UK 
 0
@@ -242,49 +227,28 @@ http://j.mp/llklkdoi4985
 http://j.mp/jhvukj
 
 #EXTINF:0,Sky Sports 1 
-http://195.154.226.186:1935/lol/skysports1lsh/playlist.m3u8
+http://195.154.226.186:1935/liveedge/skysports1lsh/playlist.m3u8
 
 #EXTINF:0,Sky Sports 2 
 http://j.mp/kjhiu676y
 
-#EXTINF:0,Sky Sports 2 
-http://195.154.226.186:1935/lol/skysports2lsh/playlist.m3u8
-
-#EXTINF:0,Sky Sports 2 
-rtmp://80.82.65.162/live playpath=vskys2 swfUrl=http://www.yocast.tv/myplayer/jwplayer.flash.swf live=1 pageUrl=http://www.yocast.tv/embed.php?live=vskys2&vw=620&vh=490
-
 #EXTINF:0,Sky Sports 3 
-http://j.mp/dwkoi
-
-#EXTINF:0,Sky Sports 3 
-http://195.154.226.186:1935/lol/skysports3lsh/playlist.m3u8
-
-#EXTINF:0,Sky Sports 3 
-rtmp://80.82.65.162/live playpath=vskys3 swfUrl=http://www.yocast.tv/myplayer/jwplayer.flash.swf live=1 pageUrl=http://www.yocast.tv/embed.php?live=vskys3&vw=620&vh=490
+http://195.154.226.186:1935/liveedge/skysports3lsh/playlist.m3u8
 
 #EXTINF:0,Sky Sports 4 
-http://j.mp/cskfre76tr7
-
-#EXTINF:0,Sky Sports 4 
-rtmp://80.82.65.162/live playpath=vskys4 swfUrl=http://www.yocast.tv/myplayer/jwplayer.flash.swf live=1 pageUrl=http://www.yocast.tv/embed.php?live=vskys4&vw=620&vh=490
-
-#EXTINF:0,Sky Sports 4 
-http://195.154.226.186:1935/lol/skysports4lsh/playlist.m3u8
+http://195.154.226.186:1935/liveedge/skysports4lsh/playlist.m3u8
 
 #EXTINF:0,Sky Sports 5 
 http://j.mp/23985kds
 
 #EXTINF:0,Sky Sports 5 
-http://195.154.226.186:1935/lol/skysports5lsh/playlist.m3u8
-
-#EXTINF:0,Sky Sports 5 
-rtmp://80.82.65.162/live playpath=vskys5 swfUrl=http://www.yocast.tv/myplayer/jwplayer.flash.swf live=1 pageUrl=http://www.yocast.tv/embed.php?live=vskys5&vw=620&vh=490
-
-#EXTINF:0,Sky Sports F1 
-http://195.154.226.186:1935/lol/vskysf1lsh/playlist.m3u8
+http://195.154.226.186:1935/liveedge/skysports5lsh/playlist.m3u8
 
 #EXTINF:0,Sky Sports F1 
 http://j.mp/ewiuy54
+
+#EXTINF:0,Sky Sports F1 
+http://195.154.226.186:1935/liveedge/vskysf1lsh/playlist.m3u8
 
 #EXTINF:0,Sky Sports News 
 http://j.mp/lfdknvk4
@@ -296,13 +260,13 @@ rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9
 http://j.mp/jgfd578
 
 #EXTINF:0,Sportsnet One 
-http://j.mp/ejdjdej3u
+0
 
 #EXTINF:0,Sportsnet Ontario 
 0
 
 #EXTINF:0,Sportsnet World 
-http://j.mp/kjlkjl67
+0
 
 #EXTINF:0,Tennis Channel 
 0
@@ -314,25 +278,16 @@ http://stream01.yamgo.com/iPhone/HLS_TS/broadcast/trace_tv_sports-tablet.3gp/tra
 http://iptvchoice.zapto.org:8000/live/grkaveman96@yahoo.com/CMKDKLtTp6/717.ts
 
 #EXTINF:0,TSN 2 
-http://j.mp/eiur48745
-
-#EXTINF:0,TSN 2 
-http://02e4.vp9.tv/chn/tsn2/v.m3u8
-
-#EXTINF:0,TSN 2 
 http://iptvchoice.zapto.org:8000/live/grkaveman96@yahoo.com/CMKDKLtTp6/718.ts
 
 #EXTINF:0,TSN 3 
-http://j.mp/euwiry98
+0
 
 #EXTINF:0,TSN 4 
 http://02e4.vp9.tv/chn/tsn4/v.m3u8
 
 #EXTINF:0,TSN 5 
-http://j.mp/34875uhf
-
-#EXTINF:0,TSN 5 
-http://iptvchoice.zapto.org:8000/live/grkaveman96@yahoo.com/CMKDKLtTp6/844.ts
+0
 
 #EXTINF:0,Viasat Golf 
 0

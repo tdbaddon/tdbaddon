@@ -5,7 +5,7 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 ---------------------------------------------------------------------------------------------------------------
 
 #EXTINF:0,Cinemax 
-http://j.mp/klsjd3209
+0
 
 #EXTINF:0,CMore Action 
 0
@@ -49,38 +49,38 @@ http://j.mp/klsjd3209
 #EXTINF:0,Fox Movies 
 0
 
-#EXTINF:0,HBO a
+#EXTINF:0,HBO 
 http://bit.ly:80/IPTVGlobal-hbo?live.m3u8
 
-#EXTINF:0,HBO b
+#EXTINF:0,HBO 
 http://37.203.209.34:443/mobile/flash20/live.m3u8
 
-#EXTINF:0,HBO c
+#EXTINF:0,HBO 
 rtmp://94.102.49.207/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to/player/secure_player_iguide_token.swf live=1 pageUrl=http://www.iguide.to/view/1/watch-live-HBO-channel-for-free token=#ed%h0#w18623jsda6523lDGDVe
 
-#EXTINF:0,HBO d
+#EXTINF:0,HBO 
 rtmp://www1.iguide.to:1935/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to/player/secure_player_iguide_token.swf live=1 pageUrl=http://www.iguide.to/view/1/HBO token=#ed%h0#w18623jsda6523lDGDve
 
 #EXTINF:0,HBO East
-http://j.mp/iefhrea9843
+0
 
 #EXTINF:0,HBO West
-http://j.mp/dh3457d
+0
 
-#EXTINF:0,HBO 2 West
-http://j.mp/vnxn327
+#EXTINF:0,HBO 2 West 
+0
 
 #EXTINF:0,HBO Comedy 
-http://j.mp/dlksjfq09843
+0
 
 #EXTINF:0,HBO Family
-http://j.mp/jsadkhfu43y
+0
 
-#EXTINF:0,HBO Signature
-http://j.mp/ksadjf3i
+#EXTINF:0,HBO Signature 
+0
 
-#EXTINF:0,HBO Zone
-http://j.mp/dlksjfr9889
+#EXTINF:0,HBO Zone 
+0
 
 #EXTINF:0,HWD Hollywood 
 0
@@ -92,31 +92,31 @@ http://j.mp/dlksjfr9889
 http://188.17.143.39/hls/CH_C01_PARAMOUNTCHANNEL/variant.m3u8?version=2
 
 #EXTINF:0,Sky Movies Action 
-http://j.mp/fdgh456
+0
 
 #EXTINF:0,Sky Movies Comedy 
-http://j.mp/saoieoi436
+0
 
 #EXTINF:0,Sky Movies Crime 
-http://j.mp/eriut598
+0
 
 #EXTINF:0,Sky Movies Disney 
-http://j.mp/dscfiro5u3948feoid
+0
 
 #EXTINF:0,Sky Movies Drama 
-http://j.mp/cvcxi43587
+0
 
 #EXTINF:0,Sky Movies Family 
-http://j.mp/kjsdfhoi32q4u58943fire
+0
 
 #EXTINF:0,Sky Movies Horrors 
-http://j.mp/dsoi4weu2398q
+0
 
 #EXTINF:0,Sky Movies Modern Greats 
-http://j.mp/cxzvia458
+0
 
 #EXTINF:0,Sky Movies Premiere 
-http://j.mp/dsoir389
+0
 
 #EXTINF:0,Sky Movies Premiere+
 0
@@ -125,7 +125,7 @@ http://j.mp/dsoir389
 0
 
 #EXTINF:0,Sky Movies Select 
-http://j.mp/sae3248r
+0
 
 #EXTINF:0,Sony TV 
 0
