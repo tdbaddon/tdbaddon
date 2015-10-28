@@ -218,7 +218,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 	</extension>
 </addon>
 
-<addon id="plugin.video.genesis" name="Genesis" version="5.1.3" provider-name="lambda">
+<addon id="plugin.video.genesis" name="Genesis" version="5.1.4" provider-name="lambda">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.requests" version="1.0.0" />
