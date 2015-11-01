@@ -50,12 +50,6 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 0
 
 #EXTINF:0,HBO 
-http://bit.ly:80/IPTVGlobal-hbo?live.m3u8
-
-#EXTINF:0,HBO 
-http://37.203.209.34:443/mobile/flash20/live.m3u8
-
-#EXTINF:0,HBO 
 rtmp://94.102.49.207/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to/player/secure_player_iguide_token.swf live=1 pageUrl=http://www.iguide.to/view/1/watch-live-HBO-channel-for-free token=#ed%h0#w18623jsda6523lDGDVe
 
 #EXTINF:0,HBO 

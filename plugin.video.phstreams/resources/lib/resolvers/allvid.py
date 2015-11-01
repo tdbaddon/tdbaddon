@@ -19,27 +19,36 @@
 '''
 
 
-import re,base64
+import re
 from resources.lib.libraries import client
+from resources.lib.libraries import jsunpack
 
 
 def resolve(url):
     try:
         url = url.replace('/embed-', '/')
         url = re.compile('//.+?/([\w]+)').findall(url)[0]
+        url = 'http://allvid.ch/embed-%s.html' % url
 
-        u = 'http://nosvideo.com/vj/video.php?u=%s&w=&h=530' % url
+        result = client.request(url)
 
-        r = 'http://nosvideo.com/%s' % url
-        r = client.request(r, referer='', close=False)
-        r = client.parseDOM(r, 'a', ret='href', attrs = {'class': 'btn.+?'})[0]
+        r = re.compile('file\s*:\s*"(.+?)".+?label\s*:\s*"(\d+)"').findall(result)
 
-        result = client.request(u, referer=r)
+        if len(r) == 0:
+            r = re.compile('(eval.*?\)\)\))').findall(result)[-1]
+            r = jsunpack.unpack(r)
+            r = re.compile('file\s*:\s*"(.+?)".+?label\s*:\s*"(\d+)"').findall(r)
 
-        url = re.compile('var\stracker\s*=\s*[\'|\"](.+?)[\'|\"]').findall(result)[0]
-        url = base64.b64decode(url)
+        url = []
+        try: url.append({'quality': '1080p', 'url': [i[0] for i in r if int(i[1]) >= 1080][0]})
+        except: pass
+        try: url.append({'quality': 'HD', 'url': [i[0] for i in r if 720 <= int(i[1]) < 1080][0]})
+        except: pass
+        try: url.append({'quality': 'SD', 'url': [i[0] for i in r if int(i[1]) < 720][0]})
+        except: pass
 
-        return url
+        return url[0]['url']
     except:
         return
+
 

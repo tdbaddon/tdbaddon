@@ -19,27 +19,31 @@
 '''
 
 
-import re,base64
+import re,urlparse,base64
 from resources.lib.libraries import client
 
 
 def resolve(url):
     try:
-        url = url.replace('/embed-', '/')
-        url = re.compile('//.+?/([\w]+)').findall(url)[0]
+        try: referer = urlparse.parse_qs(urlparse.urlparse(url).query)['referer'][0]
+        except: referer = url
 
-        u = 'http://nosvideo.com/vj/video.php?u=%s&w=&h=530' % url
+        page = urlparse.parse_qs(urlparse.urlparse(url).query)['a'][0]
+        page = 'http://zerocast.tv/embed.php?a=%s&id=&width=640&height=480&autostart=true&strech=exactfit' % page
 
-        r = 'http://nosvideo.com/%s' % url
-        r = client.request(r, referer='', close=False)
-        r = client.parseDOM(r, 'a', ret='href', attrs = {'class': 'btn.+?'})[0]
+        result = client.request(page, referer=referer)
 
-        result = client.request(u, referer=r)
+        result = client.request(page, referer=referer, close=False)
+        result = re.compile('url\s*=\s*"(.*?)"').findall(result)[0]
+        result = base64.b64decode(result)
 
-        url = re.compile('var\stracker\s*=\s*[\'|\"](.+?)[\'|\"]').findall(result)[0]
-        url = base64.b64decode(url)
+        chunk = client.request(result)
+        chunk = re.compile('(chunklist_.+)').findall(chunk)[0]
+
+        url = result.split('.m3u8')[0].rsplit('/', 1)[0] + '/' + chunk
 
         return url
     except:
         return
+
 

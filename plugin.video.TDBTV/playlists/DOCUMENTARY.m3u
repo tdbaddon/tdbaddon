@@ -11,7 +11,10 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 0
 
 #EXTINF:0,Animal Planet 
-0
+http://alturl.com/pp7iv
+
+#EXTINF:0,Animal Planet 
+http://bit.do/bkWAA
 
 #EXTINF:0,Destination America 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/22.m3u8
@@ -20,7 +23,7 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/22.m3u8
 0
 
 #EXTINF:0,Discovery Channel 
-0
+http://bit.do/bkWBV
 
 #EXTINF:0,Discovery History 
 0
@@ -55,11 +58,20 @@ https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8?hdnea=ip=174.113.
 #EXTINF:0,History Channel 
 http://link.theplatform.com/s/dtjsEC/chjdYJxKb44V?manifest=m3u&feed=History%20Live%20Stream%20Feed
 
+#EXTINF:0,History Channel 
+http://alturl.com/d8v77
+
 #EXTINF:0,History Channel 2
 0
 
 #EXTINF:0,Investigation Discovery 
 http://j.mp/ygyuyugyu676756
+
+#EXTINF:0,Investigation Discovery 
+http://alturl.com/iw2zt
+
+#EXTINF:0,Investigation Discovery 
+http://bit.do/bkWLj
 
 #EXTINF:0,Nasa TV 
 http://nasatv-lh.akamaihd.net/i/NASA_101@319270/master.m3u8 
@@ -80,13 +92,16 @@ http://88.84.223.214:1212/udp/234.5.2.114:1234
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/96.m3u8
 
 #EXTINF:0,National Geographic 
-http://88.84.223.214:1212/udp/234.5.2.128:1234
-
-#EXTINF:0,National Geographic 
 http://88.84.223.214:1212/udp/234.5.2.114:1234
 
 #EXTINF:0,National Geographic 
+http://88.84.223.214:1212/udp/234.5.2.128:1234
+
+#EXTINF:0,National Geographic 
 http://193.106.211.2:1234/udp/225.1.5.106:4001
+
+#EXTINF:0,National Geographic 
+http://alturl.com/varun
 
 #EXTINF:0,Nova
 0
@@ -95,7 +110,7 @@ http://193.106.211.2:1234/udp/225.1.5.106:4001
 0
 
 #EXTINF:0,RT News Documentary 
-http://rt-a.akamaihd.net/ch_05@325609/master.m3u8 
+0
 
 #EXTINF:0,Ted TV 
 0

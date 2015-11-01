@@ -19,27 +19,28 @@
 '''
 
 
-import re,base64
+import re,urlparse
 from resources.lib.libraries import client
 
 
 def resolve(url):
     try:
-        url = url.replace('/embed-', '/')
-        url = re.compile('//.+?/([\w]+)').findall(url)[0]
+        try: page = re.compile('//.+?/(?:channel)/([0-9a-zA-Z-_]+)').findall(url)[0]
+        except: pass
+        try: page = urlparse.parse_qs(urlparse.urlparse(url).query)['cid'][0]
+        except: pass
 
-        u = 'http://nosvideo.com/vj/video.php?u=%s&w=&h=530' % url
+        page = 'http://castalba.tv/channel/%s' % page
 
-        r = 'http://nosvideo.com/%s' % url
-        r = client.request(r, referer='', close=False)
-        r = client.parseDOM(r, 'a', ret='href', attrs = {'class': 'btn.+?'})[0]
+        result = client.request(page, referer='http://castalba.tv', close=False)
 
-        result = client.request(u, referer=r)
+        strm = re.compile("'streamer'\s*:\s*'(.+?)'").findall(result)[0]
+        file = re.compile("'file'\s*:\s*'(.+?)'").findall(result)[0]
+        swf = re.compile("'flashplayer'\s*:\s*\"(.+?)\"").findall(result)[0]
 
-        url = re.compile('var\stracker\s*=\s*[\'|\"](.+?)[\'|\"]').findall(result)[0]
-        url = base64.b64decode(url)
-
+        url = '%s playpath=%s swfUrl=%s pageUrl=%s swfVfy=1 live=1 timeout=20' % (strm, file, swf, page)
         return url
     except:
         return
+
 

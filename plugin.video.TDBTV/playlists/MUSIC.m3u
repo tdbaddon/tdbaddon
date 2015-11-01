@@ -94,6 +94,12 @@ http://74.208.152.93/music/stream3/stream.m3u8
 #EXTINF:0,MTV 
 http://j.mp/TMTV_Viet_sly
 
+#EXTINF:0,MTV 
+http://bit.do/bkWAM
+
+#EXTINF:0,MTV 
+http://188.17.143.39/hls/CH_C03_MTV/variant.m3u8?version=2
+
 #EXTINF:0,MTV Dance 
 0
 

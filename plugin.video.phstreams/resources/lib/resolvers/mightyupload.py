@@ -33,7 +33,7 @@ def resolve(url):
         result = client.request(url, mobile=True)
 
         url = re.compile("file *: *'(.+?)'").findall(result)
-        if len(url) > 0: return url[0]
+        if len(url) > 0 and url[0].startswith('http'): return url[0]
 
         result = re.compile('(eval.*?\)\)\))').findall(result)[-1]
         result = jsunpack.unpack(result)

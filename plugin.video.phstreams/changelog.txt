@@ -1,3 +1,7 @@
+V2.6.3
+- Updated available sources.
+- Updated available resolvers.
+
 V2.6.2
 - Updated available sources.
 - Updated available resolvers.

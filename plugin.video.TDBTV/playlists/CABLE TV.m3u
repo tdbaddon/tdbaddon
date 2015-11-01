@@ -14,16 +14,13 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 0
 
 #EXTINF:0,AMC 
-http://alturl.com/f4yit
+0
 
 #EXTINF:0,AXN 
 0
 
 #EXTINF:0,BabyTV 
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/150.m3u8
-
-#EXTINF:0,BBC 1 
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/134.m3u8
+0
 
 #EXTINF:0,BBC 1 
 http://j.mp/DSLKELKJ4398498
@@ -46,14 +43,12 @@ http://j.mp/klj90
 #EXTINF:0,Cartoon Network 
 http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD28_W_250.sdp/playlist.m3u8
 
-#EXTINF:0,Cartoon Network 
-http://j.mp/xzku9324
 
 #EXTINF:0,CBC TV 
 0
 
 #EXTINF:0,Cbeebies 
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/6.m3u8
+0
 
 #EXTINF:0,CBS 
 0
@@ -65,7 +60,7 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/6.m3u8
 0
 
 #EXTINF:0,CBS Reality 
-0
+http://bit.do/bkWAZ
 
 #EXTINF:0,City TV Calgary
 0
@@ -73,11 +68,11 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/6.m3u8
 #EXTINF:0,City TV Toronto 
 0
 
-#EXTINF:0,City TV Vancouver
-http://btflash-lh.akamaihd.net/i/BTVANFLASH_live@120224/master.m3u8
+#EXTINF:0,City TV Vancouver 
+0
 
 #EXTINF:0,CNBC 
-0
+http://origin.live.web.tv.streamprovider.net/streams/9044496707bcc259f6cdf58eb93cbfe9_live_0_0/index.m3u8
 
 #EXTINF:0,Comedy Central 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/86.m3u8
@@ -101,9 +96,6 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/86.m3u8
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/65.m3u8
 
 #EXTINF:0,Disney Channel 
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/89.m3u8
-
-#EXTINF:0,Disney Channel 
 http://j.mp/dsklfdlk43983298
 
 #EXTINF:0,Disney Junior 
@@ -119,7 +111,7 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/13.m3u8
 0
 
 #EXTINF:0,E2 
-0
+http://origin.live.web.tv.streamprovider.net/streams/5dac5e87d17d40f5bca18d2b211a4dd2_live_0_0/index.m3u8
 
 #EXTINF:0,E4 
 0
@@ -146,13 +138,10 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/53.m3u8
 0
 
 #EXTINF:0,Fox TV 
-http://j.mp/ZCH_C02_FOXHD_sly
-
-#EXTINF:0,Fox TV 
 http://j.mp/sadfirju453930245
 
 #EXTINF:0,Fox TV 
-http://j.mp/vnxmaskdjutyue728597
+0
 
 #EXTINF:0,FX 
 0
@@ -200,7 +189,10 @@ http://ios.streamserver01.com:8080/ShowcaseTV/mystream.m3u8
 0
 
 #EXTINF:0,Jim Jam 
-0
+https://hec.su/bPeg
+
+#EXTINF:0,Jim Jam 
+http://alturl.com/udxku
 
 #EXTINF:0,JTV 
 rtmp://jtvmedia.jtv.com:1975/live playpath=live6 swfUrl=http://demandware.edgesuite.net/aaby_prd/on/demandware.static/Sites-jtv-Site/-/default/v1410110388581/swf/flashMediaPlayer/StrobeMediaPlayback.swf live=1 pageUrl=http://www.jtv.com/on/demandware.store/Sites-jtv-Site/default/LiveViewer-Show
@@ -235,8 +227,11 @@ http://78.30.254.43:8989/udp/239.0.1.88:4000
 #EXTINF:0,Nick Jr
 http://j.mp/dskj329898
 
+#EXTINF:0,Nick Jr
+http://alturl.com/o6uuz
+
 #EXTINF:0,Nickelodeon 
-0
+http://alturl.com/fqqg6
 
 #EXTINF:0,NickNight 
 http://j.mp/ddskij4984398

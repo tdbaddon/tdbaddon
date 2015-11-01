@@ -4,17 +4,6 @@
 http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 ---------------------------------------------------------------------------------------------------------------
 
-#EXTINF:0,Astro Super Sport 1
-http://185.63.252.176/live/antenasportucl1/playlist.m3u8
-
-#EXTINF:0,Astro Super Sport 2
-http://185.63.252.176/live/antenasportucl2/playlist.m3u8
-
-#EXTINF:0,Astro Super Sport 3
-http://185.63.252.176/live/antenasportucl3/playlist.m3u8
-
-#EXTINF:0,Astro Super Sport 4
-http://185.63.252.176/live/antenasportucl4/playlist.m3u8
 
 #EXTINF:0,Bein Sport 1 
 http://iptvchoice.zapto.org:8000/live/grkaveman96@yahoo.com/CMKDKLtTp6/3575.ts
@@ -41,7 +30,7 @@ http://j.mp/ldjf403q895
 http://j.mp/djsj3858473
 
 #EXTINF:0,BT Sport 2 
-http://j.mp/4357676hgsfd
+0
 
 #EXTINF:0,CBS Sports 
 0
@@ -55,6 +44,9 @@ http://j.mp/4357676hgsfd
 #EXTINF:0,ESPN 
 http://iptvchoice.zapto.org:8000/live/grkaveman96@yahoo.com/CMKDKLtTp6/1360.ts
 
+#EXTINF:0,ESPN 
+http://195.154.226.186:1935/liveedge/espnuklsh/playlist.m3u8
+
 #EXTINF:0,Eurosport 1 
 http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_1800.m3u8
 
@@ -62,7 +54,7 @@ http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_18
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/85.m3u8
 
 #EXTINF:0,Eurosport 2 
-0
+rtmp://89.248.169.50/live playpath=vbt2  swfUrl=http://www.yocast.tv/myplayer/jwplayer.flash.swf live=1 pageUrl=http://www.yocast.tv/embed.php?live=wskys5&vw=600&vh=450
 
 #EXTINF:0,Eurosport News 
 0
@@ -81,9 +73,6 @@ http://ftve1100-i.akamaihd.net/hls/live/217045/fcsa/3964k/prog.m3u8|X-Forwarded-
 
 #EXTINF:0,Fox Sports 
 http://ftve1100-i.akamaihd.net/hls/live/217046/fcsc/3964k/prog.m3u8|X-Forwarded-For=13.107.25.55
-
-#EXTINF:0,Fox Sports 1 
-http://j.mp/kjdsf4389
 
 #EXTINF:0,Fox Sports 1 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/75.m3u8
@@ -212,7 +201,7 @@ http://xrxs.net/video/live-p12wash-4728.m3u8
 mms://100automoto.tv/channel_porsche
 
 #EXTINF:0,Premier Sports 
-0
+http://195.154.226.186:1935/liveedge/vpremsplsh/playlist.m3u8
 
 #EXTINF:0,Racing UK 
 0
@@ -229,20 +218,29 @@ http://j.mp/jhvukj
 #EXTINF:0,Sky Sports 1 
 http://195.154.226.186:1935/liveedge/skysports1lsh/playlist.m3u8
 
+#EXTINF:0,Sky Sports 1 
+http://cds.a3g6t8m9.hwcdn.net/caliveorigin/skysports1.stream/playlist.m3u8
+
 #EXTINF:0,Sky Sports 2 
 http://j.mp/kjhiu676y
+
+#EXTINF:0,Sky Sports 2 
+http://cds.a3g6t8m9.hwcdn.net/caliveorigin/skysports2.stream/playlist.m3u8
+
+#EXTINF:0,Sky Sports 3 
+http://cds.a3g6t8m9.hwcdn.net/caliveorigin/skysports3.stream/playlist.m3u8
 
 #EXTINF:0,Sky Sports 3 
 http://195.154.226.186:1935/liveedge/skysports3lsh/playlist.m3u8
 
 #EXTINF:0,Sky Sports 4 
+http://cds.a3g6t8m9.hwcdn.net/caliveorigin/skysports4.stream/playlist.m3u8
+
+#EXTINF:0,Sky Sports 4 
 http://195.154.226.186:1935/liveedge/skysports4lsh/playlist.m3u8
 
 #EXTINF:0,Sky Sports 5 
-http://j.mp/23985kds
-
-#EXTINF:0,Sky Sports 5 
-http://195.154.226.186:1935/liveedge/skysports5lsh/playlist.m3u8
+0
 
 #EXTINF:0,Sky Sports F1 
 http://j.mp/ewiuy54
@@ -257,7 +255,7 @@ http://j.mp/lfdknvk4
 rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9-HD
 
 #EXTINF:0,Sportsnet 360 
-http://j.mp/jgfd578
+0
 
 #EXTINF:0,Sportsnet One 
 0
@@ -281,7 +279,7 @@ http://iptvchoice.zapto.org:8000/live/grkaveman96@yahoo.com/CMKDKLtTp6/717.ts
 http://iptvchoice.zapto.org:8000/live/grkaveman96@yahoo.com/CMKDKLtTp6/718.ts
 
 #EXTINF:0,TSN 3 
-0
+
 
 #EXTINF:0,TSN 4 
 http://02e4.vp9.tv/chn/tsn4/v.m3u8
