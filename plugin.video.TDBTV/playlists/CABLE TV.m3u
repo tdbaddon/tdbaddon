@@ -31,6 +31,15 @@ http://j.mp/klj90
 #EXTINF:0,BBC 2 
 0
 
+#EXTINF:0,BBC Entertainment
+http://200.76.77.237/LIVE/H01/CANAL253/PROFILE02.m3u8?supertvlat=%2F.ts
+
+#EXTINF:0,BBC Entertainment
+http://200.76.77.237/LIVE/H01/CANAL253/PROFILE03.m3u8?supertvlat=%2F.ts
+
+#EXTINF:0,BBC Entertainment
+http://200.76.77.237/LIVE/H01/CANAL253/PROFILE05.m3u8?supertvlat=%2F.ts
+
 #EXTINF:0,BET 
 0
 

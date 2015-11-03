@@ -110,7 +110,13 @@ http://alturl.com/varun
 0
 
 #EXTINF:0,RT News Documentary 
-0
+http://rt-a.akamaihd.net/ch_05@325609/master.m3u8
+
+#EXTINF:0,RT News Documentary 
+http://rt-a.akamaihd.net/ch_05@325609/480p.m3u8
+
+#EXTINF:0,RT News Documentary 
+http://rt-a.akamaihd.net/ch_05@325609/720p.m3u8
 
 #EXTINF:0,Ted TV 
 0

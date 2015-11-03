@@ -2,175 +2,202 @@
 
 
 #EXTINF:0,A&E
-0
+http://200.76.77.237/LIVE/H01/CANAL211/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,AMC
-0
+http://200.76.77.237/LIVE/H01/CANAL490/PROFILE03.m3u8?supertvlat=%2F.ts
+
+#EXTINF:0,AMC
+http://200.76.77.237/LIVE/H01/CANAL444/PROFILE03.m3u8?supertvlat=%2F.ts
+
+#EXTINF:0,Animal Planet
+http://200.76.77.237/LIVE/H01/CANAL373/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,AXN
-0
+http://200.76.77.237/LIVE/H01/CANAL213/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Aym Sports
-0
+http://200.76.77.237/LIVE/H01/CANAL576/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,BBC Entertainment
 0
 
 #EXTINF:0,Bloomberg
-0
+http://200.76.77.237/LIVE/H01/CANAL324/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Boomerang
 0
 
 #EXTINF:0,Cartoon Network
-0
+http://200.76.77.237/LIVE/H01/CANAL320/PROFILE03.m3u8?supertvlat=%2F.ts
 
-#EXTINF:0,Cartoon Network
-0
+#EXTINF:0,Cbeebies
+http://200.76.77.237/LIVE/H01/CANAL305/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Cinemax 
-0
+http://200.76.77.237/LIVE/H01/CANAL481/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Comedy Central
-0
-
-#EXTINF:0,Creebies
-0
+http://200.76.77.237/LIVE/H01/CANAL217/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Discovery Channel
-0
+http://200.76.77.237/LIVE/H01/CANAL371/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Discovery Civilization
-0
+http://200.76.77.237/LIVE/H01/CANAL382/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Discovery Home & Health
-0
+http://200.76.77.237/LIVE/H01/CANAL374/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Discovery Investigation 
 0
 
 #EXTINF:0,Discovery Kids
-0
+http://200.76.77.237/LIVE/H01/CANAL381/PROFILE03.m3u8?supertvlat=%2F.ts
+
+#EXTINF:0,Discovery Kids
+http://200.76.77.237/LIVE/H01/CANAL303/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Discovery Science
 0
 
 #EXTINF:0,Discovery Theater
-0
+http://200.76.77.237/LIVE/H01/CANAL351/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Discovery Turbo
-0
+http://200.76.77.237/LIVE/H01/CANAL383/PROFILE03.m3u8?supertvlat=%2F.ts
+
+#EXTINF:0,Discovery World
+http://200.76.77.237/LIVE/H01/CANAL356/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Disney Channel
-0
+http://200.76.77.237/LIVE/H01/CANAL312/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Disney JR
-0
+http://200.76.77.237/LIVE/H01/CANAL308/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Disney XD
-0
+http://200.76.77.237/LIVE/H01/CANAL322/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,E!
-0
+http://200.76.77.237/LIVE/H01/CANAL255/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,ESPN
-0
+http://200.76.77.237/LIVE/H01/CANAL558/PROFILE03.m3u8?supertvlat=%2F.ts
+
+#EXTINF:0,ESPN
+http://200.76.77.237/LIVE/H01/CANAL516/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,ESPN 2
-0
+http://200.76.77.237/LIVE/H01/CANAL561/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,ESPN 3
-0
+http://200.76.77.237/LIVE/H01/CANAL520/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Film Zone
-0
+http://200.76.77.237/LIVE/H01/CANAL440/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Fox
-0
+http://200.76.77.237/LIVE/H01/CANAL251/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Fox
-0
+http://200.76.77.237/LIVE/H01/CANAL201/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Fox 1
-0
+http://200.76.77.237/LIVE/H01/CANAL415/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Fox Action Movies
-0
+http://200.76.77.237/LIVE/H01/CANAL416/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Fox Cinema
-0
+http://200.76.77.237/LIVE/H01/CANAL421/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Fox Classics
-0
+http://200.76.77.237/LIVE/H01/CANAL424/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Fox Family Movies
-0
+http://200.76.77.237/LIVE/H01/CANAL417/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Fox Life
-0
+http://200.76.77.237/LIVE/H01/CANAL271/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Fox Movies
 0
 
 #EXTINF:0,Fox Sports 
-0
+http://200.76.77.237/LIVE/H01/CANAL522/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Fox Sports 2
-0
+http://200.76.77.237/LIVE/H01/CANAL527/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,FX
-0
+http://200.76.77.237/LIVE/H01/CANAL258/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,FXHD
-0
+http://200.76.77.237/LIVE/H01/CANAL209/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Golden Edge
-0
+http://200.76.77.237/LIVE/H01/CANAL436/PROFILE03.m3u8?supertvlat=%2F.ts
+
+#EXTINF:0,Gourmet
+http://200.76.77.237/LIVE/H01/CANAL268/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,History Channel
-0
+http://200.76.77.237/LIVE/H01/CANAL353/PROFILE03.m3u8?supertvlat=%2F.ts
+
+#EXTINF:0,HMX
+http://200.76.77.237/LIVE/H01/CANAL169/PROFILE03.m3u8?supertvlat=%2F.ts
+
+#EXTINF:0,Investigation Discovery
+http://200.76.77.237/LIVE/H01/CANAL263/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Lifetime
-0
+http://200.76.77.237/LIVE/H01/CANAL379/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,MTV Music
-0
+http://200.76.77.237/LIVE/H01/CANAL726/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,MTV Hits
-0
+http://200.76.77.237/LIVE/H01/CANAL727/PROFILE03.m3u8?supertvlat=%2F.ts
 
-#EXTINF:0,MTV Live
-0
+#EXTINF:0,MTV 
+http://200.76.77.237/LIVE/H01/CANAL701/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,National Geographic Channel
-0
+http://200.76.77.237/LIVE/H01/CANAL377/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Nat Geo Wild
-0
+http://200.76.77.237/LIVE/H01/CANAL355/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Nick
-0
+http://200.76.77.237/LIVE/H01/CANAL317/PROFILE03.m3u8?supertvlat=%2F.ts
+
+#EXTINF:0,Nick
+http://200.76.77.237/LIVE/H01/CANAL315/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Nick JR
-0
+http://200.76.77.237/LIVE/H01/CANAL310/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Nickelodeon
 0
 
 #EXTINF:0,Nicktoons
-0
+http://200.76.77.237/LIVE/H01/CANAL314/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Paramount Channel
 0
 
 #EXTINF:0,PX TV
-0
+http://200.76.77.237/LIVE/H01/CANAL528/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Sony
-0
+http://200.76.77.237/LIVE/H01/CANAL203/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Space
-0
+http://200.76.77.237/LIVE/H01/CANAL445/PROFILE03.m3u8?supertvlat=%2F.ts
+
+#EXTINF:0,Space
+http://200.76.77.237/LIVE/H01/CANAL491/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Sundance
 0
@@ -179,41 +206,50 @@
 0
 
 #EXTINF:0,Studio Universal
-0
+http://200.76.77.237/LIVE/H01/CANAL492/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,SYFY
-0
+http://200.76.77.237/LIVE/H01/CANAL257/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,TBS
-0
+http://200.76.77.237/LIVE/H01/CANAL273/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,TCM
-0
+http://200.76.77.237/LIVE/H01/CANAL496/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,TLC
-0
+http://200.76.77.237/LIVE/H01/CANAL386/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,TNT
-0
+http://200.76.77.237/LIVE/H01/CANAL482/PROFILE03.m3u8?supertvlat=%2F.ts
+
+#EXTINF:0,TNT
+http://200.76.77.237/LIVE/H01/CANAL435/PROFILE03.m3u8?supertvlat=%2F.ts
+
+#EXTINF:0,TNT
+http://200.76.77.237/LIVE/H01/CANAL266/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Tooncast
-0
+http://200.76.77.237/LIVE/H01/CANAL328/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Tru TV
-0
+http://200.76.77.237/LIVE/H01/CANAL215/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Universal Channel
-0
+http://200.76.77.237/LIVE/H01/CANAL256/PROFILE03.m3u8?supertvlat=%2F.ts
+
+#EXTINF:0,Universal Channel
+http://200.76.77.237/LIVE/H01/CANAL207/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,VH1
-0
+http://200.76.77.237/LIVE/H01/CANAL703/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,VH1 Classics
-0
+http://200.76.77.237/LIVE/H01/CANAL728/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Warner Brothers
-0
+http://200.76.77.237/LIVE/H01/CANAL205/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Wobi
-0
+http://200.76.77.237/LIVE/H01/CANAL387/PROFILE03.m3u8?supertvlat=%2F.ts
 

@@ -7,6 +7,9 @@ http://abclive.abcnews.com/i/abc_live4@136330/index_1200_av-b.m3u8
 #EXTINF:0,AlJazeera 
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/aljazeera_en/ls_satlink/b_,828,528,264,.m3u8
 
+#EXTINF:0,AlJazeera 
+rtmp://aljazeeraflashlivefs.fplive.net:1935/aljazeeraflashlive-live/aljazeera_eng_high
+
 #EXTINF:0,BBC World News 
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/bbc_world/ls_satlink/b_,828,528,264,.m3u8 
 
@@ -15,6 +18,18 @@ http://btv-i.akamaihd.net/hls/live/202760-b/btvusa_ios/P1/M12K.m3u8
 
 #EXTINF:0,Bloomberg TV 
 http://cdn3.videos.bloomberg.com/btv/us/master.m3u8
+
+#EXTINF:0,Bloomberg TV 
+http://btvuk-i.akamaihd.net/hls/live/203321/btvuk_ios/P1/M18K.m3u8
+
+#EXTINF:0,Bloomberg TV 
+http://200.76.77.237/LIVE/H01/CANAL610/PROFILE02.m3u8?supertvlat=%2F.ts
+
+#EXTINF:0,Bloomberg TV 
+http://200.76.77.237/LIVE/H01/CANAL610/PROFILE03.m3u8?supertvlat=%2F.ts
+
+#EXTINF:0,Bloomberg TV 
+http://200.76.77.237/LIVE/H01/CANAL610/PROFILE05.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Bloomberg News 
 http://x4012c4000.edge.core-cdn.net/40000mb/live/4012hbbtv/bloomberg.ts
@@ -50,7 +65,7 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/186.m3u8
 0
 
 #EXTINF:0,CPAC 
-0
+http://bcliveuniv-lh.akamaihd.net/i/cpac1eng2014_01@119330/index_2000_av-p.m3u8
 
 #EXTINF:0,CSPAN 
 http://cspan1-lh.akamaihd.net/i/cspan1_1@304727/master.m3u8 
@@ -72,6 +87,9 @@ http://ams-lp5.9c9media.com/hls-live/livepkgr/_definst_/liveNews/News48.m3u8
 
 #EXTINF:0,DW 
 http://www.metafilegenerator.de/DWelle/tv-asia/ios/master.m3u8
+
+#EXTINF:0,DW 
+http://www.metafilegenerator.de/DWelle/tv-latinoamerica/ios/master.m3u8
 
 #EXTINF:0,Euro News 
 rtsp://ewns-hls-b-stream.hexaglobe.net/rtpeuronewslive/en_vidan350_rtp.sdp?
@@ -106,6 +124,9 @@ rtmp://d.cdn.newschat.tv/edge playpath=msnbc_live swfUrl=http://msnbclive.eu/pla
 #EXTINF:0,NHK World 
 http://web-cache.stream.ne.jp/www11/nhkworld-tv/global/222714/live.m3u8
 
+#EXTINF:0,NHK World 
+http://nhkwglobal-i.akamaihd.net/hls/live/222714/nhkwglobal/index_1180.m3u8
+
 #EXTINF:0,Press TV 
 rtmp://mtv.fms-01.visionip.tv/live/mtv-ptv-live-25f-16x9-SDh
 
@@ -116,7 +137,19 @@ http://37.58.85.156/rlo001/ngrp:rlo001.stream_all/playlist.m3u8
 http://rt-a.akamaihd.net/ch_01@325605/master.m3u8 
 
 #EXTINF:0,RT News 
+http://rt-a.akamaihd.net/ch_01@325605/480p.m3u8
+
+#EXTINF:0,RT News 
+http://rt-a.akamaihd.net/ch_01@325605/720p.m3u8
+
+#EXTINF:0,RT News 
 http://rt-a.akamaihd.net/ch_04@325608/master.m3u8
+
+#EXTINF:0,RT News 
+http://rt-a.akamaihd.net/ch_04@325608/480p.m3u8
+
+#EXTINF:0,RT News 
+http://rt-a.akamaihd.net/ch_04@325608/720p.m3u8
 
 #EXTINF:0,Sky News 
 http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/skynews/ls_satlink/b_828.m3u8
