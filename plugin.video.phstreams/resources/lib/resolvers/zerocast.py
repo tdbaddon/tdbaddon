@@ -37,12 +37,14 @@ def resolve(url):
         result = re.compile('url\s*=\s*"(.*?)"').findall(result)[0]
         result = base64.b64decode(result)
 
-        chunk = client.request(result)
-        chunk = re.compile('(chunklist_.+)').findall(chunk)[0]
+        if result.startswith('rtmp'):
+            return '%s pageUrl=%s live=1 timeout=20' % (result, page)
 
-        url = result.split('.m3u8')[0].rsplit('/', 1)[0] + '/' + chunk
+        elif '.m3u8' in result:
+            chunk = client.request(result)
+            chunk = re.compile('(chunklist_.+)').findall(chunk)[0]
+            return result.split('.m3u8')[0].rsplit('/', 1)[0] + '/' + chunk
 
-        return url
     except:
         return
 

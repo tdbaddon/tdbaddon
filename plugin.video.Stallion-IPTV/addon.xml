@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.Stallion-IPTV" name="Stallion-IPTV" version="2.1" provider-name="Luis Padron">
+<addon id="plugin.video.Stallion-IPTV" name="Stallion-IPTV" version="2.2" provider-name="Stallion-IPTV">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.beautifulsoup" version="3.2.1"/>
@@ -17,8 +17,9 @@
     <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary>[COLOR red]Stallion[/COLOR][COLOR blue]IPTV[/COLOR]basado en LivetreamsPro by Shani  </summary>
-    <description lang="en">[COLOR cyan][B]Stallion-IPTV, el mejor sistema IPTV para tu hogar[/B][/COLOR]</description>
+    <summary>[COLOR yellow]Stallion[/COLOR][COLOR blue]IPTV[/COLOR]basado en LivetreamsPro by Shani  </summary>
+    <description lang="en">[COLOR green][B]Stallion-IPTV, Best IPTV [/B][/COLOR]</description>
     <platform>all</platform>
   </extension>
 </addon>
+

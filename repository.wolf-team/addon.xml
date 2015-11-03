@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="repository.wolf-team" name="Wolf-Team official Repo" version="1.3" provider-name="WolfTeam">
+	<extension point="xbmc.addon.repository" name="Wolf-Team official Repo">
+		<info compressed="false">https://svn.code.sf.net/u/teamwolf/code/addons/addons.xml</info>
+		<checksum>https://svn.code.sf.net/u/teamwolf/code/addons/addons.xml.md5</checksum>
+		<datadir zip="true">https://svn.code.sf.net/u/teamwolf/code/addons</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Wolf-Team official Repo</summary>
+		<description>Instala los Addons de Wolf, repositorio creado por KodiMexico https://kodimexico.wordpress.com</description>
+		<platform>all</platform>
+	</extension>
+</addon>

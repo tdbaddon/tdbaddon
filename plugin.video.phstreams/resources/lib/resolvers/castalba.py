@@ -34,6 +34,10 @@ def resolve(url):
 
         result = client.request(page, referer='http://castalba.tv', close=False)
 
+        m3u8 = re.compile("'(http.+?\.m3u.+?)'").findall(result)
+        m3u8 = [i for i in m3u8 if '.m3u8' in i]
+        if len(m3u8) > 0: return m3u8[0]
+
         strm = re.compile("'streamer'\s*:\s*'(.+?)'").findall(result)[0]
         file = re.compile("'file'\s*:\s*'(.+?)'").findall(result)[0]
         swf = re.compile("'flashplayer'\s*:\s*\"(.+?)\"").findall(result)[0]

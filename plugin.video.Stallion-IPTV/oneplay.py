@@ -19,7 +19,7 @@
 
 import urllib
 import base64
-import re
+import re,urllib2,cookielib
 
 
 def decode(r):
@@ -280,8 +280,6 @@ def func_h(n, f):
     return a,o
 
 def decrypt(val,key):    
-
-
     f= decode(val);
     c=f[8:16]
     k=func_u(key);
@@ -333,4 +331,49 @@ def getCaptchaUrl(page_data):
         img_url='http://oneplay.tv/embed/'+img_url
     print 'catcha url',img_url
     return img_url
+def getUrl(url, cookieJar=None,post=None, timeout=20, headers=None, returnResponse=False, noredirect=False):
 
+    cookie_handler = urllib2.HTTPCookieProcessor(cookieJar)
+    opener = urllib2.build_opener(cookie_handler, urllib2.HTTPBasicAuthHandler(), urllib2.HTTPHandler())
+#    opener = urllib2.install_opener(opener)
+    
+    req = urllib2.Request(url)
+    req.add_header('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36')
+    if headers:
+        for h,hv in headers:
+            req.add_header(h,hv)
+
+    response = opener.open(req,post,timeout=timeout)
+    if returnResponse: return response
+    link=response.read()
+    response.close()
+    return link;
+    
+def decrypt_oneplaypage(page_url, cookieJar):
+    if page_url.startswith("http"):
+        page_data= getUrl(page_url,cookieJar)
+    else:
+        page_data=page_url
+#    print page_data
+    patt='\$\(document\)\[(.*?\])'
+    myvar=''
+    var_dec='myvar='+re.findall(patt,page_data)[0]
+#    print var_dec
+    exec(var_dec)
+#    print myvar
+    data='';key=''
+    for i in range(len(myvar)):
+        if len(myvar[i])>100: data=myvar[i];#
+        if len(myvar[i])==10: key=myvar[i]
+        
+   # print myvar[1],myvar[3]
+    s=decrypt (data,key)
+    print s
+    return s
+
+#print decrypt_oneplaypage('http://oneplay.tv/embed/?i=94&n=VH1&w=100%&h=480' ,None)
+#print decrypt("U2FsdGVkX19zHnMuwv6Wdv8ap6pV/ZMTPd5y2B0B3WZ3N1YDS+9e3aqW/6vue+AjizICMLtuQJ2JUgYygfhQ4gRvcukV444ns3HvnpYRQ2Oy3Bse5k+NgRDAorrdZpLMQjyZIfdIhJVdIi0PeGTqGcwxAfGdaFYLc6aQNctw/6wFnCfF4VYkjEK+DK/3D0tyln8k+VmsQXZ1B4+W7sWYTsHhLUwZgErXwpfRrdJ2aWh8P+/u7vroK1Gj6DADKePq/f4dSEDZL41lSpjy21h0RIZznrk9mONDfAEpuvKxyLtXIlVVnikHXSU4jK26YP7aYIei6SciPrhU3XHmxerF95lGUWyw7tMRMxwk8kZ+6CqrpiCjjfjCXvYW68VlBOdBYKXB00HxZiNFpcNwKJ5NjUmY2SgzPmsIbfWy3dyHca68diVog8+BgSYRMPbUX8VFPGiqbC+WLMofb+JpfztQul0WLP913p27uE6Rnvwcj9xRe8Log0iRWEk885clRnerE6Czumbn2PgN/5tczOX3qG2I4uU48Zymh3ckK0pxml6Gx6mD5g4eFHubharIpD6D8D3mtZo4oiPvgB3xYZQqIZKjqbn6gkPsPQMZP1Y1+fNHALpPCAKlnSCR1wJ2ekZRatuPI0ud8+nqoIN4+HhCTQixLXdZQPPAdX5vrDyGWz8TDZTNIjas1nkg/eAhCXruQgbnP/5KpFQqmJOCY//MPhbLmWgLne8+Eu294DbPTlXyiIa70D70sjLv7M1QB0snBFUeOvZlSTqPbWOpwDxBrRLBChTG8VPYdwwZNuOAGJfpK3M+8tReRYQ5iujc5FeF/0hDDEPHPthSfrKSPmQOdw==","lnYKqHhwrA")
+
+    
+    
+    
