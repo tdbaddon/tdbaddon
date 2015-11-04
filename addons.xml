@@ -576,7 +576,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 <addon id="plugin.video.TDBMOVIES"
        name="TDB MOVIES"
-       version="1.00"
+       version="1.01"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
