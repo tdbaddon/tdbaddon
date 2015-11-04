@@ -574,6 +574,26 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
+<addon id="plugin.video.TDBMOVIES"
+       name="TDB MOVIES"
+       version="1.00"
+       provider-name="TDB">
+<requires>
+<import addon="xbmc.python" version="2.1.0"/>
+</requires>
+<extension point="xbmc.python.pluginsource"
+            library="default.py">
+<provides>video</provides>
+</extension>
+<extension point="xbmc.addon.metadata">
+<summary>TDB MOVIES</summary>
+<description>Live Streaming TV</description>
+<disclaimer>The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
+    <platform>all</platform>
+  </extension>
+  <extension point="xbmc.service" library="service.py" start="login" />
+</addon>
+
 <addon id="plugin.video.TDBPORNO"
        name="TDB PORNO"
        version="1.76"
