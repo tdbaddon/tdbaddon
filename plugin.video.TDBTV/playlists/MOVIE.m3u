@@ -7,6 +7,12 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 #EXTINF:0,Cinemax 
 0
 
+#EXTINF:0,CineStarTV Premiere 1
+http://minitv.noip.me:8000/live/dragana/dragana/2.ts
+
+#EXTINF:0,CineStarTV Premiere 2
+http://minitv.noip.me:8000/live/dragana/dragana/254.ts
+
 #EXTINF:0,CMore Action 
 0
 
@@ -47,13 +53,16 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 0
 
 #EXTINF:0,Fox Movies 
-0
+http://minitv.noip.me:8000/live/dragana/dragana/159.ts
 
 #EXTINF:0,HBO 
 rtmp://94.102.49.207/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to/player/secure_player_iguide_token.swf live=1 pageUrl=http://www.iguide.to/view/1/watch-live-HBO-channel-for-free token=#ed%h0#w18623jsda6523lDGDVe
 
 #EXTINF:0,HBO 
 rtmp://www1.iguide.to:1935/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to/player/secure_player_iguide_token.swf live=1 pageUrl=http://www.iguide.to/view/1/HBO token=#ed%h0#w18623jsda6523lDGDve
+
+#EXTINF:0,HBO Adria
+http://minitv.noip.me:8000/live/dragana/dragana/53.ts
 
 #EXTINF:0,HBO East
 0
@@ -65,7 +74,7 @@ rtmp://www1.iguide.to:1935/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.igu
 0
 
 #EXTINF:0,HBO Comedy 
-0
+http://minitv.noip.me:8000/live/dragana/dragana/54.ts
 
 #EXTINF:0,HBO Family
 0
@@ -86,22 +95,22 @@ rtmp://www1.iguide.to:1935/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.igu
 http://188.17.143.39/hls/CH_C01_PARAMOUNTCHANNEL/variant.m3u8?version=2
 
 #EXTINF:0,Sky Movies Action 
-0
+http://s02.zone4tv.net:80/live?channelId=1306&uid=2233&deviceUser=omer1&devicePass=omer1
 
 #EXTINF:0,Sky Movies Comedy 
 0
 
 #EXTINF:0,Sky Movies Crime 
-0
+http://s02.zone4tv.net:80/live?channelId=1305&uid=2233&deviceUser=omer1&devicePass=omer1
 
 #EXTINF:0,Sky Movies Disney 
-0
+http://s02.zone4tv.net:80/live?channelId=1307&uid=2233&deviceUser=omer1&devicePass=omer1
 
 #EXTINF:0,Sky Movies Drama 
 0
 
 #EXTINF:0,Sky Movies Family 
-0
+http://s02.zone4tv.net:80/live?channelId=1304&uid=2233&deviceUser=omer1&devicePass=omer1
 
 #EXTINF:0,Sky Movies Horrors 
 0
@@ -119,7 +128,7 @@ http://188.17.143.39/hls/CH_C01_PARAMOUNTCHANNEL/variant.m3u8?version=2
 0
 
 #EXTINF:0,Sky Movies Select 
-0
+http://s02.zone4tv.net:80/live?channelId=1302&uid=2233&deviceUser=omer1&devicePass=omer1
 
 #EXTINF:0,Sony TV 
 0

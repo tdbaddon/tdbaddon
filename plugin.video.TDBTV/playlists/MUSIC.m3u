@@ -107,15 +107,6 @@ http://200.76.77.237/LIVE/H01/CANAL726/PROFILE03.m3u8?supertvlat=%2F.ts
 http://200.76.77.237/LIVE/H01/CANAL726/PROFILE05.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,MTV 
-http://200.76.77.237/LIVE/H01/CANAL701/PROFILE02.m3u8?supertvlat=%2F.ts
-
-#EXTINF:0,MTV 
-http://200.76.77.237/LIVE/H01/CANAL701/PROFILE03.m3u8?supertvlat=%2F.ts
-
-#EXTINF:0,MTV 
-http://200.76.77.237/LIVE/H01/CANAL701/PROFILE05.m3u8?supertvlat=%2F.ts
-
-#EXTINF:0,MTV 
 http://j.mp/TMTV_Viet_sly
 
 #EXTINF:0,MTV 
@@ -123,6 +114,15 @@ http://bit.do/bkWAM
 
 #EXTINF:0,MTV 
 http://188.17.143.39/hls/CH_C03_MTV/variant.m3u8?version=2
+
+#EXTINF:0,MTV Live
+http://200.76.77.237/LIVE/H01/CANAL701/PROFILE02.m3u8?supertvlat=%2F.ts
+
+#EXTINF:0,MTV Live
+http://200.76.77.237/LIVE/H01/CANAL701/PROFILE03.m3u8?supertvlat=%2F.ts
+
+#EXTINF:0,MTV Live
+http://200.76.77.237/LIVE/H01/CANAL701/PROFILE05.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,MTV Dance 
 0

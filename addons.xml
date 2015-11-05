@@ -448,7 +448,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
-<addon id="plugin.video.roggerstream" name="Rogger Stream" version="2.0.5" provider-name="Rogger, Cleiton Leonel Creton">
+<addon id="plugin.video.roggerstream" name="Rogger Stream" version="2.0.7" provider-name="Rogger, Cleiton Leonel Creton">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
   </requires>
@@ -557,7 +557,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 <addon id="plugin.video.TDBEUROTV"
        name="TDB EURO TV"
-       version="2.03"
+       version="2.04"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -596,7 +596,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 <addon id="plugin.video.TDBPORNO"
        name="TDB PORNO"
-       version="1.76"
+       version="1.77"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -652,7 +652,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="3.26"
+       version="3.27"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -999,6 +999,20 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 		<disclaimer>The owners and submitters to this repository do not host or distribute any of the content displayed by these addons nor do they have any affiliation with the content providers.</disclaimer>
 		<platform>all</platform>
 	</extension>
+</addon>
+
+<addon id="repository.xunitytalk" name=".[COLOR blue]X[/COLOR]unity[COLOR blue]T[/COLOR]alk Repository" version="1.0.8" provider-name=".[COLOR blue]X[/COLOR]unity[COLOR blue]T[/COLOR]alk">
+	<extension point="xbmc.addon.repository" name="Mikey1234 Addon Repository">
+		<info compressed="false">http://xty.me/xunitytalk/addons/addons.xml</info>
+		<checksum>http://xty.me/xunitytalk/addons/addons.xml.md5</checksum>
+		<datadir zip="true">http://xty.me/xunitytalk/addons</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>The Best Third Party Addons for XBMC, .[COLOR blue]X[/COLOR]unity[COLOR blue]T[/COLOR]alk</summary>
+		<description>The Best Third Party Addons for XBMC, .[COLOR blue]X[/COLOR]unity[COLOR blue]T[/COLOR]alk</description>
+		<platform>all</platform>
+	</extension>
+
 </addon>
 
 <addon id="rogger.repository" name="rogger repository" version="0.0.2" provider-name="rogger2">

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="plugin.video.TDBEUROTV"
        name="TDB EURO TV"
-       version="2.03"
+       version="2.04"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>

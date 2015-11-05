@@ -1,3 +1,14 @@
 Addon Criado  em 21/05/2015
 
-versão de teste v.0.0.1
+-Versao de teste v.0.0.1
+                   
+				   
+				   
+				   
+	            VERSAO ATUALIZADA 2.0.6			   
+				   
+				   
+-Versao atualizada,correcao de bugs,melhoras no desenpenho...
+-Canais Master free rodando com wauthSign automaticamente resolvido...
+-Series e desenhos 24hrs...
+

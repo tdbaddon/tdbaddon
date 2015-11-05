@@ -4,14 +4,53 @@
 #EXTINF:0,Al Jazeera Balkan 
 rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
 
+#EXTINF:0,Arena Sport 1 
+http://minitv.noip.me:8000/live/dragana/dragana/46.ts
+
+#EXTINF:0,Arena Sport 1 
+http://s02.zone4tv.net:80/live?channelId=295&uid=2233&deviceUser=omer1&devicePass=omer1
+
+#EXTINF:0,Arena Sport 2 
+http://minitv.noip.me:8000/live/dragana/dragana/47.ts
+
+#EXTINF:0,Arena Sport 2 
+http://s02.zone4tv.net:80/live?channelId=296&uid=2233&deviceUser=omer1&devicePass=omer1
+
+#EXTINF:0,Arena Sport 3 
+http://minitv.noip.me:8000/live/dragana/dragana/40.ts
+
+#EXTINF:0,Arena Sport 3 
+http://s02.zone4tv.net:80/live?channelId=297&uid=2233&deviceUser=omer1&devicePass=omer1
+
+#EXTINF:0,Arena Sport 4 
+http://minitv.noip.me:8000/live/dragana/dragana/48.ts
+
+#EXTINF:0,Arena Sport 4 
+http://s02.zone4tv.net:80/live?channelId=298&uid=2233&deviceUser=omer1&devicePass=omer1
+
+#EXTINF:0,Arena Sport 5 
+http://minitv.noip.me:8000/live/dragana/dragana/263.ts
+
+#EXTINF:0,Arena Sport 5 
+http://s02.zone4tv.net:80/live?channelId=299&uid=2233&deviceUser=omer1&devicePass=omer1
+
 #EXTINF:0,ATV
 rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
+
+#EXTINF:0,ATV
+http://minitv.noip.me:8000/live/dragana/dragana/33.ts
 
 #EXTINF:0,B92 
 http://stream.b92.net:7999/tv-b92.ogg
 
+#EXTINF:0,B92 
+http://minitv.noip.me:8000/live/dragana/dragana/157.ts
+
 #EXTINF:0,Balkan TV
 rtmp://yayin.tvdunyasi.tv/live/balkanrtv
+
+#EXTINF:0,BN Sat
+http://minitv.noip.me:8000/live/dragana/dragana/30.ts
 
 #EXTINF:0,Belle Amie TV
 http://92.60.234.98:8081
@@ -20,7 +59,7 @@ http://92.60.234.98:8081
 http://213.81.153.221:8080/cetv
 
 #EXTINF:0,CMC 
-0
+http://minitv.noip.me:8000/live/dragana/dragana/64.ts
 
 #EXTINF:0,DMC
 0
@@ -29,16 +68,16 @@ http://213.81.153.221:8080/cetv
 0
 
 #EXTINF:0,DUGA 
-0
+http://minitv.noip.me:8000/live/dragana/dragana/181.ts
 
 #EXTINF:0,Elektrika TV
 rtmp://rtmp.elektrika.cz/live/myStream.sdp
 
-#EXTINF:0,Grand Narodna 
-0
+#EXTINF:0,Grand 
+http://minitv.noip.me:8000/live/dragana/dragana/5.ts
 
 #EXTINF:0,Happy 
-0
+http://minitv.noip.me:8000/live/dragana/dragana/176.ts
 
 #EXTINF:0,Hayat Folk 
 0
@@ -49,20 +88,35 @@ rtmp://rtmp.elektrika.cz/live/myStream.sdp
 #EXTINF:0,Hayat Plus 
 0
 
+#EXTINF:0,Hayatovci
+http://minitv.noip.me:8000/live/dragana/dragana/320.ts
+
 #EXTINF:0,Hema 
 mms://77.238.209.50:1234
 
 #EXTINF:0,HRT 1 
 http://213.5.58.58:1935/hrt_live/smil:hrt1.smil/nesto.m3u8
 
+#EXTINF:0,HRT 1 
+http://minitv.noip.me:8000/live/dragana/dragana/16.ts
+
 #EXTINF:0,HRT 2 
 http://213.5.58.58:1935/hrt_live/smil:hrt2.smil/nesto.m3u8
+
+#EXTINF:0,HRT 2 
+http://minitv.noip.me:8000/live/dragana/dragana/43.ts
 
 #EXTINF:0,HRT 3 
 http://213.5.58.58:1935/hrt_live/smil:hrt3.smil/nesto.m3u8
 
+#EXTINF:0,HRT 3 
+http://minitv.noip.me:8000/live/dragana/dragana/179.ts
+
 #EXTINF:0,HRT 4 
 http://213.5.58.58:1935/hrt_live/smil:hrt4.smil/nesto.m3u8
+
+#EXTINF:0,HRT 4 
+http://minitv.noip.me:8000/live/dragana/dragana/182.ts
 
 #EXTINF:0,Joj
 0
@@ -97,14 +151,20 @@ http://213.81.153.221:8080/nasa
 #EXTINF:0,N1 
 http://best.str.n1info.com:8080/stream?channel=n1hdsrb?stream=hd?u=n1info
 
+#EXTINF:0,N1
+http://minitv.noip.me:8000/live/dragana/dragana/184.ts
+
 #EXTINF:0,NetTV Plus 
 0
+
+#EXTINF:0,Nova TV
+http://minitv.noip.me:8000/live/dragana/dragana/3.ts
 
 #EXTINF:0,Novosadska TV 
 mms://176.106.121.32:8080/
 
 #EXTINF:0,OBN 
-0
+http://minitv.noip.me:8000/live/dragana/dragana/321.ts
 
 #EXTINF:0,Palma Plus 
 0
@@ -113,7 +173,7 @@ mms://176.106.121.32:8080/
 0
 
 #EXTINF:0,Prva TV 
-0
+http://minitv.noip.me:8000/live/dragana/dragana/36.ts
 
 #EXTINF:0,RTC 
 0
@@ -124,20 +184,20 @@ mms://beotelmedia.beotel.net/tvcg
 #EXTINF:0,RTCG Sat 
 mms://195.252.114.172/tvcg
 
-#EXTINF:0,RTL 1 
-0
+#EXTINF:0,RTL
+http://minitv.noip.me:8000/live/dragana/dragana/7.ts
 
 #EXTINF:0,RTL 2 
-0
+http://minitv.noip.me:8000/live/dragana/dragana/76.ts
 
 #EXTINF:0,RTRS 
-0
+http://minitv.noip.me:8000/live/dragana/dragana/37.ts
 
 #EXTINF:0,RTS 
-0
+http://minitv.noip.me:8000/live/dragana/dragana/325.ts
 
 #EXTINF:0,RTS 1 
-0
+http://minitv.noip.me:8000/live/dragana/dragana/94.ts
 
 #EXTINF:0,RTS 2 
 0

@@ -44,7 +44,7 @@ http://k3.usastreams.com:1935/canal42/canal42/live.m3u8
 rtmp://wma10.fluidstream.net/HistoryLab playpath=livestream swfUrl=http://www.radioetv.it/modules/mod_hllive/jw/player58l.swf pageUrl=http://www.radioetv.it/history-lab live=1 timeout=10
 
 #EXTINF:0,Jo TV 
-rtmp://wms.shared.streamshow.it:80/jotv playpath=jotv swfUrl=http://player.streamshow.it/flowplayer/flowplayer.commercial-3.2.18.swf pageUrl=http://player.streamshow.it/embed/jotv.php?height=170&width=300 live=1 timeout=10
+0
 
 #EXTINF:0,Juwelo TV 
 0

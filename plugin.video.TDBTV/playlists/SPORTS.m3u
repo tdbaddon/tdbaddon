@@ -9,6 +9,9 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 http://iptvchoice.zapto.org:8000/live/grkaveman96@yahoo.com/CMKDKLtTp6/3575.ts
 
 #EXTINF:0,Bein Sport 1 
+http://yiptv4-live.hls.adaptive.level3.net/yiptv4/beinengov/04.m3u8
+
+#EXTINF:0,Bein Sport 1 
 http://180.250.29.12/jhos/beib1_3/1424681872/playlist.m3u8
 
 #EXTINF:0,Bein Sport 1 
@@ -20,17 +23,23 @@ http://180.250.29.12/jhos/beib2_3/1424681986/playlist.m3u8
 #EXTINF:0,Bein Sport 2 
 http://180.250.29.12/jhos/beib2_5/1424681986/playlist.m3u8
 
+#EXTINF:0,Bein Sport 3
+http://180.250.29.12/jhos/beib3_3/1421536739/playlist.m3u8
+
+#EXTINF:0,Bein Sport 3
+http://180.250.29.12/jhos/beib3_5/1421536739/playlist.m3u8
+
 #EXTINF:0,Big Ten Network 
 0
 
 #EXTINF:0,Box Nation 
-http://j.mp/ldjf403q895
+0
 
 #EXTINF:0,BT Sport 1 
-http://j.mp/djsj3858473
+http://s02.zone4tv.net:80/live?channelId=307&uid=2233&deviceUser=omer1&devicePass=omer1
 
 #EXTINF:0,BT Sport 2 
-0
+http://s02.zone4tv.net:80/live?channelId=308&uid=2233&deviceUser=omer1&devicePass=omer1
 
 #EXTINF:0,CBS Sports 
 0
@@ -48,13 +57,13 @@ http://iptvchoice.zapto.org:8000/live/grkaveman96@yahoo.com/CMKDKLtTp6/1360.ts
 http://195.154.226.186:1935/liveedge/espnuklsh/playlist.m3u8
 
 #EXTINF:0,Eurosport 1 
-http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_1800.m3u8
+http://78.30.254.27:8989/udp/239.0.0.195:4000
 
 #EXTINF:0,Eurosport 1 
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/85.m3u8
+http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_1800.m3u8
 
 #EXTINF:0,Eurosport 2 
-rtmp://89.248.169.50/live playpath=vbt2  swfUrl=http://www.yocast.tv/myplayer/jwplayer.flash.swf live=1 pageUrl=http://www.yocast.tv/embed.php?live=wskys5&vw=600&vh=450
+0
 
 #EXTINF:0,Eurosport News 
 0
@@ -78,7 +87,7 @@ http://ftve1100-i.akamaihd.net/hls/live/217046/fcsc/3964k/prog.m3u8|X-Forwarded-
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/75.m3u8
 
 #EXTINF:0,Fox Sports 2 
-http://j.mp/mnlk88
+0
 
 #EXTINF:0,Fox Sports News 
 0
@@ -105,6 +114,9 @@ http://motorsport.hopto.org:8080/
 mms://100automoto.tv/100livesport
 
 #EXTINF:0,NBA TV 
+http://s02.zone4tv.net:80/live?channelId=306&uid=2233&deviceUser=omer1&devicePass=omer1
+
+#EXTINF:0,NBA TV 
 http://iptvchoice.zapto.org:8000/live/grkaveman96@yahoo.com/CMKDKLtTp6/3153.ts
 
 #EXTINF:0,NBC Golf 
@@ -117,31 +129,28 @@ http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/2596k/prog.m3u8|X-Forwarded-
 http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/1896k/prog.m3u8|X-Forwarded-For=66.171.228.102
 
 #EXTINF:0,NBCSN 
-http://j.mp/kjnkjiuyi8
-
-#EXTINF:0,NBCSN 
 http://cdn.phoenix.intergi.com/21772/videos/3362254/video-sd.mp4?hosting_id=21772
 
-#EXTINF:0,NFL Network 
-http://nflsvglagame1-i.akamaihd.net/hls/live/223206/NFL_Mobile/2015Mobile_NFLN_5000k.m3u8
-
-#EXTINF:0,NFL Network 
+#EXTINF:0,NFL Live
 http://nflioslivesvg2-i.akamaihd.net/hls/live/221521/nflioslive/2015HackerNow_w99d9.m3u8
 
 #EXTINF:0,NFL Network 
-http://nflioslivesvg2-i.akamaihd.net/hls/live/221521/nflioslive/2015HackerNow_w99d9.m3u8
+http://nflsvglagame1-i.akamaihd.net/hls/live/223206/NFL_Mobile/2015Mobile_NFLN_1000k.m3u8
 
 #EXTINF:0,NFL Network 
 http://nflsvglagame1-i.akamaihd.net/hls/live/223206/NFL_Mobile/2015Mobile_NFLN_2000k.m3u8
 
 #EXTINF:0,NFL Network 
+http://nflsvglagame1-i.akamaihd.net/hls/live/223206/NFL_Mobile/2015Mobile_NFLN_5000k.m3u8
+
+#EXTINF:0,NFL Network 
+http://nflsvgatlgame3-i.akamaihd.net/hls/live/223175-b/NFL_Mobile/2015Mobile_NFLN_1000k.m3u8
+
+#EXTINF:0,NFL Network 
 http://nflsvgatlgame3-i.akamaihd.net/hls/live/223175-b/NFL_Mobile/2015Mobile_NFLN_2000k.m3u8
 
 #EXTINF:0,NFL Network 
-http://nflioslivesvg2-i.akamaihd.net/hls/live/221521/nflioslive/2015HackerNow_w99d9.m3u8
-
-#EXTINF:0,NHL Network 
-http://j.mp/klmdsiujk43984
+http://nflsvgatlgame3-i.akamaihd.net/hls/live/223175-b/NFL_Mobile/2015Mobile_NFLN_5000k.m3u8
 
 #EXTINF:0,NHL Network 
 http://208.92.36.158/ipad/live/nba_ipad_1240.m3u8
@@ -210,10 +219,7 @@ http://195.154.226.186:1935/liveedge/vpremsplsh/playlist.m3u8
 0
 
 #EXTINF:0,Setanta Sports 
-http://j.mp/llklkdoi4985
-
-#EXTINF:0,Sky Sports 1 
-http://j.mp/jhvukj
+0
 
 #EXTINF:0,Sky Sports 1 
 http://195.154.226.186:1935/liveedge/skysports1lsh/playlist.m3u8
@@ -222,10 +228,10 @@ http://195.154.226.186:1935/liveedge/skysports1lsh/playlist.m3u8
 http://cds.a3g6t8m9.hwcdn.net/caliveorigin/skysports1.stream/playlist.m3u8
 
 #EXTINF:0,Sky Sports 2 
-http://j.mp/kjhiu676y
+http://cds.a3g6t8m9.hwcdn.net/caliveorigin/skysports2.stream/playlist.m3u8
 
 #EXTINF:0,Sky Sports 2 
-http://cds.a3g6t8m9.hwcdn.net/caliveorigin/skysports2.stream/playlist.m3u8
+http://s02.zone4tv.net:80/live?channelId=1310&uid=2233&deviceUser=omer1&devicePass=omer1
 
 #EXTINF:0,Sky Sports 3 
 http://cds.a3g6t8m9.hwcdn.net/caliveorigin/skysports3.stream/playlist.m3u8
@@ -233,23 +239,32 @@ http://cds.a3g6t8m9.hwcdn.net/caliveorigin/skysports3.stream/playlist.m3u8
 #EXTINF:0,Sky Sports 3 
 http://195.154.226.186:1935/liveedge/skysports3lsh/playlist.m3u8
 
+#EXTINF:0,Sky Sports 3 
+http://s02.zone4tv.net:80/live?channelId=1311&uid=2233&deviceUser=omer1&devicePass=omer1
+
 #EXTINF:0,Sky Sports 4 
 http://cds.a3g6t8m9.hwcdn.net/caliveorigin/skysports4.stream/playlist.m3u8
 
 #EXTINF:0,Sky Sports 4 
 http://195.154.226.186:1935/liveedge/skysports4lsh/playlist.m3u8
 
-#EXTINF:0,Sky Sports 5 
-0
+#EXTINF:0,Sky Sports 4 
+http://s02.zone4tv.net:80/live?channelId=303&uid=2233&deviceUser=omer1&devicePass=omer1
 
-#EXTINF:0,Sky Sports F1 
-http://j.mp/ewiuy54
+#EXTINF:0,Sky Sports 4 
+http://minitv.noip.me:8000/live/dragana/dragana/185.ts
+
+#EXTINF:0,Sky Sports 5 
+http://s02.zone4tv.net:80/live?channelId=1312&uid=2233&deviceUser=omer1&devicePass=omer1
 
 #EXTINF:0,Sky Sports F1 
 http://195.154.226.186:1935/liveedge/vskysf1lsh/playlist.m3u8
 
+#EXTINF:0,Sky Sports F1 
+http://s02.zone4tv.net:80/live?channelId=1308&uid=2233&deviceUser=omer1&devicePass=omer1
+
 #EXTINF:0,Sky Sports News 
-http://j.mp/lfdknvk4
+0
 
 #EXTINF:0,Sports Tonight 
 rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9-HD
@@ -291,7 +306,7 @@ http://02e4.vp9.tv/chn/tsn4/v.m3u8
 0
 
 #EXTINF:0,Viasat Sport 
-0
+http://109.254.88.12:81/udp/238.1.1.113:1234
 
 #EXTINF:0,WWE Network 
 0

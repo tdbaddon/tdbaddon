@@ -20,13 +20,10 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 0
 
 #EXTINF:0,BabyTV 
+http://minitv.noip.me:8000/live/dragana/dragana/83.ts
+
+#EXTINF:0,BBC 1 
 0
-
-#EXTINF:0,BBC 1 
-http://j.mp/DSLKELKJ4398498
-
-#EXTINF:0,BBC 1 
-http://j.mp/klj90
 
 #EXTINF:0,BBC 2 
 0
@@ -69,7 +66,7 @@ http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD28_W_250.sdp/p
 0
 
 #EXTINF:0,CBS Reality 
-http://bit.do/bkWAZ
+0
 
 #EXTINF:0,City TV Calgary
 0
@@ -105,7 +102,7 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/86.m3u8
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/65.m3u8
 
 #EXTINF:0,Disney Channel 
-http://j.mp/dsklfdlk43983298
+http://minitv.noip.me:8000/live/dragana/dragana/226.ts
 
 #EXTINF:0,Disney Junior 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/13.m3u8
@@ -117,7 +114,7 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/13.m3u8
 0
 
 #EXTINF:0,E! 
-0
+http://minitv.noip.me:8000/live/dragana/dragana/329.ts
 
 #EXTINF:0,E2 
 http://origin.live.web.tv.streamprovider.net/streams/5dac5e87d17d40f5bca18d2b211a4dd2_live_0_0/index.m3u8
@@ -141,13 +138,10 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/53.m3u8
 0
 
 #EXTINF:0,Fox Crime 
-0
+http://minitv.noip.me:8000/live/dragana/dragana/142.ts
 
 #EXTINF:0,Fox Life 
-0
-
-#EXTINF:0,Fox TV 
-http://j.mp/sadfirju453930245
+http://minitv.noip.me:8000/live/dragana/dragana/137.ts
 
 #EXTINF:0,Fox TV 
 0
@@ -198,10 +192,7 @@ http://ios.streamserver01.com:8080/ShowcaseTV/mystream.m3u8
 0
 
 #EXTINF:0,Jim Jam 
-https://hec.su/bPeg
-
-#EXTINF:0,Jim Jam 
-http://alturl.com/udxku
+0
 
 #EXTINF:0,JTV 
 rtmp://jtvmedia.jtv.com:1975/live playpath=live6 swfUrl=http://demandware.edgesuite.net/aaby_prd/on/demandware.static/Sites-jtv-Site/-/default/v1410110388581/swf/flashMediaPlayer/StrobeMediaPlayback.swf live=1 pageUrl=http://www.jtv.com/on/demandware.store/Sites-jtv-Site/default/LiveViewer-Show
@@ -233,17 +224,11 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/97.m3u8
 #EXTINF:0,Nick Jr 
 http://78.30.254.43:8989/udp/239.0.1.88:4000
 
-#EXTINF:0,Nick Jr
-http://j.mp/dskj329898
-
-#EXTINF:0,Nick Jr
-http://alturl.com/o6uuz
-
 #EXTINF:0,Nickelodeon 
-http://alturl.com/fqqg6
+0
 
 #EXTINF:0,NickNight 
-http://j.mp/ddskij4984398
+0
 
 #EXTINF:0,OMNI 
 0
@@ -258,10 +243,10 @@ http://j.mp/ddskij4984398
 0
 
 #EXTINF:0,Showtime 
-http://j.mp/klsalk3lk34
+0
 
 #EXTINF:0,Sky 1 
-http://j.mp/reoitowri
+0
 
 #EXTINF:0,Sky 2 
 0
@@ -273,7 +258,7 @@ http://j.mp/reoitowri
 0
 
 #EXTINF:0,Sky Atlantic 
-http://j.mp/dslkfj43q
+0
 
 #EXTINF:0,Sky Living 
 0
@@ -297,7 +282,7 @@ http://j.mp/dslkfj43q
 0
 
 #EXTINF:0,TLC 
-0
+http://minitv.noip.me:8000/live/dragana/dragana/291.ts
 
 #EXTINF:0,TNT 
 0
@@ -331,7 +316,7 @@ http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/master.m3u8?b?b*t
 0
 
 #EXTINF:0,USA Network 
-http://j.mp/kdjvioewrj43
+0
 
 #EXTINF:0,Veria Living TV 
 0

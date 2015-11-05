@@ -50,7 +50,7 @@ mms://deltatv1.dyndns.org:1194
 0
 
 #EXTINF:0,E TV 
-http://mgrouphdlive4-f.akamaihd.net/i/live_1@324569/master.m3u8
+0
 
 #EXTINF:0,Ellada TV 
 0
@@ -60,6 +60,12 @@ http://mgrouphdlive4-f.akamaihd.net/i/live_1@324569/master.m3u8
 
 #EXTINF:0,Epirus TV 
 http://xepirustv1livex.api.channel.livestream.com/3.0/playlist.m3u8
+
+#EXTINF:0,EPT 1
+http://wpso.com:200/tv48
+
+#EXTINF:0,EPT 1
+http://iphone-streaming.ustream.tv/ustreamVideo/1989576/streams/live/playlist.m3u8 
 
 #EXTINF:0,EPT 3 
 http://ert3-lh.akamaihd.net/i/live_1@329807/master.m3u8
@@ -75,12 +81,6 @@ http://wm1.gmlogic.com/ch-patra?ovpsv=2.3.1.0
 
 #EXTINF:0,Greek Cinema 
 0
-
-#EXTINF:0,Greek Voice 
-http://wpso.com:200/tv48
-
-#EXTINF:0,Greek Voice 
-http://iphone-streaming.ustream.tv/ustreamVideo/1989576/streams/live/playlist.m3u8 
 
 #EXTINF:0,Hellas TV 
 0
@@ -164,10 +164,7 @@ http://stream2.omegatv.net/hls-live/livepkgr/_definst_/liveevent/omegatv.m3u8
 http://cdnvideo.webvideocore.net/livenl/out_2xtqzyrq6gysc48ko0cs/index.m3u8
 
 #EXTINF:0,Samiaki TV 
-http://94.23.218.186:1935/samiaki/samiaki/playlist.m3u8
-
-#EXTINF:0,Samiaki TV 
-rtmp://94.23.218.186/samiaki/samiaki live=1 timeout=10
+0
 
 #EXTINF:0,SBC
 http://xsbcgrx.api.channel.livestream.com/3.0/playlist.m3u8
