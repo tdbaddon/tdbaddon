@@ -33,7 +33,7 @@ http://180.250.29.12/jhos/beib3_5/1421536739/playlist.m3u8
 0
 
 #EXTINF:0,Box Nation 
-0
+rtmpe://134.19.185.244:1935/livedge/mamahdboxnation playPath=mamahdboxnation swfUrl=http://player.hdcast.org/jws/jwplayer.flash.swf flashver=WIN/2018,0,0,232 token=SECURET0KEN#yw%.?()@W! timeout=15 live=true swfVfy=1 pageUrl=http://www.hdcast.org/embedlive1.php?u=mamahdboxnation&amp;vw=854&amp;vh=480
 
 #EXTINF:0,BT Sport 1 
 http://s02.zone4tv.net:80/live?channelId=307&uid=2233&deviceUser=omer1&devicePass=omer1
@@ -86,6 +86,9 @@ http://ftve1100-i.akamaihd.net/hls/live/217046/fcsc/3964k/prog.m3u8|X-Forwarded-
 #EXTINF:0,Fox Sports 1 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/75.m3u8
 
+#EXTINF:0,Fox Sports 1 
+rtmp://www1.iguide.to/iguide playpath=ourpk0w2g6jjly1 swfUrl=http://cdn.iguide.to/player/secure_player_iguide_embed_token.swf pageUrl=http://www.iguide.to/embedplayer_new.php?width=650&height=400&channel=30410&autoplay=true flashver=WIN\2019,0,0,185 live=1 token=#ed%h0#w18623jsda6523lDGD
+
 #EXTINF:0,Fox Sports 2 
 0
 
@@ -105,7 +108,10 @@ mms://100automoto.tv/channel_mercedes
 0
 
 #EXTINF:0,Motors TV 
-0
+rtmp://31.220.2.149:80/live playpath=motors swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf pageUrl=http://yotv.co/embedu.php?live=motors&vw=620&vh=490 live=1 token=%Zrey(nKa@#Z timeout=10
+
+#EXTINF:0,Motors TV 
+rtmp://31.220.2.149:80/live/ playpath=motors token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://yotv.co
 
 #EXTINF:0,Motorsport 7 
 http://motorsport.hopto.org:8080/
@@ -206,6 +212,9 @@ http://xrxs.net/video/live-p12wash-1164.m3u8
 #EXTINF:0,PAC 12 Washington HD 
 http://xrxs.net/video/live-p12wash-4728.m3u8
 
+#EXTINF:0,Poker Central
+http://ooyalahd2-f.akamaihd.net/i/crtv01_delivery@329705/index_1164_av-b.m3u8
+
 #EXTINF:0,Porsche Channel 
 mms://100automoto.tv/channel_porsche
 
@@ -264,7 +273,7 @@ http://195.154.226.186:1935/liveedge/vskysf1lsh/playlist.m3u8
 http://s02.zone4tv.net:80/live?channelId=1308&uid=2233&deviceUser=omer1&devicePass=omer1
 
 #EXTINF:0,Sky Sports News 
-0
+rtmp://199.195.195.100:1935/stream/ playpath=1KnYJyfnK5.stream swfUrl=http://thecdn.04stream.com/p/ooolo1.swf live=1 pageUrl=http://www.04stream.com/ebb.php?adsp=ttother&k=m898n170yp5910l8496ob5910b597pn170h570oq898u1562id8496g170sq565q9629uq898u1562id8496g170sa450o597pd8496g170s&width=600&height=460&st=v45465n4w574x2s2f436q24693u594u3c4p4m484o2s243b444840374t2t28403q2s2r264&adx=&stream=h5t2b4n5i5l5t284c4i5y2c4x29453n2x4k5u3a3f4w21374f476w226d3j4i5y313c3j4l5q2y34323z3r2a4b43474v2x24434q244o2x4c4q3l4v5v2x2p243x46476o4n4e5z313q4m484j283x5i4p5d4h20524o5i5z5r5l2o2x5z3n204o2b4b4v264d41354r2b423d4o5o54334a4y2m5z2940374e4z2a4w2z25474a4j5m534p2o234z3n204o204&sooor=NQ==&str=is&ok=&cat=1&link=1&idom=/magellan
 
 #EXTINF:0,Sports Tonight 
 rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9-HD
@@ -273,7 +282,7 @@ rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9
 0
 
 #EXTINF:0,Sportsnet One 
-0
+rtmp://31.220.2.149:80/live playpath=sprt1 swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf pageUrl=http://yotv.co/embedu.php?live=sprt1&vw=620&vh=490 token=%Zrey(nKa@#Z
 
 #EXTINF:0,Sportsnet Ontario 
 0
@@ -290,8 +299,14 @@ http://stream01.yamgo.com/iPhone/HLS_TS/broadcast/trace_tv_sports-tablet.3gp/tra
 #EXTINF:0,TSN 1 
 http://iptvchoice.zapto.org:8000/live/grkaveman96@yahoo.com/CMKDKLtTp6/717.ts
 
+#EXTINF:0,TSN 1 
+rtmp://31.220.2.149:80/live/ playpath=ts1 token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://yotv.co
+
 #EXTINF:0,TSN 2 
 http://iptvchoice.zapto.org:8000/live/grkaveman96@yahoo.com/CMKDKLtTp6/718.ts
+
+#EXTINF:0,TSN 2 
+rtmp://31.220.2.149:80/live/ playpath=tsnx2 token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://yotv.co
 
 #EXTINF:0,TSN 3 
 
@@ -308,5 +323,8 @@ http://02e4.vp9.tv/chn/tsn4/v.m3u8
 #EXTINF:0,Viasat Sport 
 http://109.254.88.12:81/udp/238.1.1.113:1234
 
+#EXTINF:0,VS Versus 
+http://208.92.36.158/ipad/live/nba_ipad_1240.m3u8
+
 #EXTINF:0,WWE Network 
-0
+rtmp://80.82.70.155/live playpath=ddwwenw swfUrl=http://www.yocast.tv/myplayer/jwplayer.flash.swf pageUrl=http://www.yocast.tv/embed.php?live=ddwwenw&vw=620&vh=490 live=1 token=%Zrey(nKa@#Z

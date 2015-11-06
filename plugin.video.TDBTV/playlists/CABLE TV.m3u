@@ -14,7 +14,7 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 0
 
 #EXTINF:0,AMC 
-0
+http://193.106.211.2:1234/udp/225.1.8.112:4001
 
 #EXTINF:0,AXN 
 0
@@ -23,7 +23,7 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 http://minitv.noip.me:8000/live/dragana/dragana/83.ts
 
 #EXTINF:0,BBC 1 
-0
+http://82.135.224.134:80/udp/239.100.3.1:1234
 
 #EXTINF:0,BBC 2 
 0
@@ -68,14 +68,11 @@ http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD28_W_250.sdp/p
 #EXTINF:0,CBS Reality 
 0
 
-#EXTINF:0,City TV Calgary
-0
-
 #EXTINF:0,City TV Toronto 
 0
 
 #EXTINF:0,City TV Vancouver 
-0
+
 
 #EXTINF:0,CNBC 
 http://origin.live.web.tv.streamprovider.net/streams/9044496707bcc259f6cdf58eb93cbfe9_live_0_0/index.m3u8
@@ -135,7 +132,13 @@ http://origin.live.web.tv.streamprovider.net/streams/5dac5e87d17d40f5bca18d2b211
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/53.m3u8
 
 #EXTINF:0,Fox 1 
-0
+http://200.76.77.237/LIVE/H01/CANAL415/PROFILE02.m3u8?supertvlat=%2F.ts
+
+#EXTINF:0,Fox 1 
+http://200.76.77.237/LIVE/H01/CANAL415/PROFILE03.m3u8?supertvlat=%2F.ts
+
+#EXTINF:0,Fox 1 
+http://200.76.77.237/LIVE/H01/CANAL415/PROFILE05.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Fox Crime 
 http://minitv.noip.me:8000/live/dragana/dragana/142.ts
@@ -148,6 +151,9 @@ http://minitv.noip.me:8000/live/dragana/dragana/137.ts
 
 #EXTINF:0,FX 
 0
+
+#EXTINF:0,FXHD 
+http://103.245.167.28/tot/2e0e4b05aa6e428593f3b45b710045b7.m3u8
 
 #EXTINF:0,Global TV Halifax 
 http://link.theplatform.com/s/dtjsEC/77l1KA_G_5P1?feed=DEV%20Live%20Stream%20Feed/playlist.m3u8
@@ -273,7 +279,7 @@ http://78.30.254.43:8989/udp/239.0.1.88:4000
 0
 
 #EXTINF:0,Syfy 
-0
+http://103.245.167.28/tot/71f197de056e499a85265c03b44bdab1.m3u8
 
 #EXTINF:0,TBS 
 0
@@ -299,7 +305,6 @@ http://minitv.noip.me:8000/live/dragana/dragana/291.ts
 #EXTINF:0,TSC 
 http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/master.m3u8?b?b*t$ 
 
-
 #EXTINF:0,True Drama
 0
 
@@ -313,7 +318,7 @@ http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/master.m3u8?b?b*t
 0
 
 #EXTINF:0,Universal Channel 
-0
+http://103.245.167.28/tot/a7105ed1bb0a44bba1f4f71f2352b892.m3u8
 
 #EXTINF:0,USA Network 
 0
@@ -325,7 +330,13 @@ http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/master.m3u8?b?b*t
 http://stream02.yamgo.com/iPhone/HLS_TS/broadcast/victorias_secret_angels-tablet.3gp/victorias_secret_angels-tablet.3gp-mr648k.m3u8
 
 #EXTINF:0,WB 
-0
+http://200.76.77.237/LIVE/H01/CANAL205/PROFILE02.m3u8?supertvlat=%2F.ts
+
+#EXTINF:0,WB 
+http://200.76.77.237/LIVE/H01/CANAL205/PROFILE03.m3u8?supertvlat=%2F.ts
+
+#EXTINF:0,WB 
+http://200.76.77.237/LIVE/H01/CANAL205/PROFILE05.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,World Fashion 
 http://btv-net.mediacdn.ru/TVB7/wfhdeu/playlist.m3u8

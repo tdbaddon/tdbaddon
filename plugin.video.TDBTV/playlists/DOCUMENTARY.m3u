@@ -16,6 +16,9 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 #EXTINF:0,Crime & Investigation
 http://minitv.noip.me:8000/live/dragana/dragana/326.ts
 
+#EXTINF:0,Crime & Investigation 
+http://103.245.167.28/tot/9961a963920f45f4bc0d81c3e478b334.m3u8
+
 #EXTINF:0,Destination America 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/22.m3u8
 
