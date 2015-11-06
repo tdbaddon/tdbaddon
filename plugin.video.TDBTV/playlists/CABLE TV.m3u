@@ -123,7 +123,10 @@ http://origin.live.web.tv.streamprovider.net/streams/5dac5e87d17d40f5bca18d2b211
 0
 
 #EXTINF:0,Fashion TV 
-0
+http://stream-ec.vty.dailymotion.com/01/dm/1/x2b0bb9/live.isml/events(live-1446700581)/live-audio=128000-video=1891000.m3u8
+
+#EXTINF:0,Fashion TV 
+http://stream-ec.vty.dailymotion.com/01/dm/1/x2b0bb9/live.isml/events(live-1446700581)/live-audio=128000-video=894000.m3u8
 
 #EXTINF:0,Fine Living Network 
 0
