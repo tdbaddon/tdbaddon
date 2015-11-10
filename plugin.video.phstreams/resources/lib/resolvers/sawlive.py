@@ -48,7 +48,7 @@ def resolve(url):
         var = re.compile('var\s(.+?)\s*=\s*\'(.+?)\'').findall(result)
         for i in range(100):
             for v in var: result = result.replace("' %s '" % v[0], v[1]).replace("'%s'" % v[0], v[1])
-
+            for v in var: result = result.replace("' unescape(%s) '" % v[0], v[1].replace('%u',r'\u').decode('unicode-escape')).replace("'unescape(%s)'" % v[0], v[1].replace('%u',r'\u').decode('unicode-escape'))
 
         result = re.compile('<iframe(.+?)</iframe>').findall(result)[-1]
 

@@ -45,18 +45,20 @@ def resolve(url):
             try:
                 result = client.request(page, post=post, close=False)
 
-                url = re.compile("file *: *'(.+?)'").findall(result)
+                unpacked = ''
+                packed = result.split('\n')
+                for i in packed: 
+                    try: unpacked += jsunpack.unpack(i)
+                    except: unpacked += i
+                result = re.sub('\s\s+', ' ', unpacked)
 
-                if len(url) == 0:
-                    result = re.compile('(eval.*?\)\)\))').findall(result)
-                    result = [i for i in result if '|download|' in i][0]
-                    result = jsunpack.unpack(result)
-                    url = client.parseDOM(result, 'embed', ret='src')
-                    url += re.compile("file *: *[\'|\"](.+?)[\'|\"]").findall(result)
-
+                url = client.parseDOM(result, 'embed', ret='src')
+                url += re.compile("file *: *[\'|\"](.+?)[\'|\"]").findall(result)
+                url = [i for i in url if '://' in i]
                 url = [i for i in url if not i.endswith('.srt')]
                 url = 'http://' + url[0].split('://', 1)[-1]
                 return url
+
             except:
                 time.sleep(1)
 

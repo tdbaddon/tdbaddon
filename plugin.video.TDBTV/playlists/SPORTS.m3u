@@ -6,40 +6,22 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 
 
 #EXTINF:0,Bein Sport 1 
-http://iptvchoice.zapto.org:8000/live/grkaveman96@yahoo.com/CMKDKLtTp6/3575.ts
-
-#EXTINF:0,Bein Sport 1 
 http://yiptv4-live.hls.adaptive.level3.net/yiptv4/beinengov/04.m3u8
 
-#EXTINF:0,Bein Sport 1 
-http://180.250.29.12/jhos/beib1_3/1424681872/playlist.m3u8
-
-#EXTINF:0,Bein Sport 1 
-http://180.250.29.12/jhos/beib1_5/1424681872/playlist.m3u8
-
-#EXTINF:0,Bein Sport 2 
-http://180.250.29.12/jhos/beib2_3/1424681986/playlist.m3u8
-
-#EXTINF:0,Bein Sport 2 
-http://180.250.29.12/jhos/beib2_5/1424681986/playlist.m3u8
-
-#EXTINF:0,Bein Sport 3
-http://180.250.29.12/jhos/beib3_3/1421536739/playlist.m3u8
-
-#EXTINF:0,Bein Sport 3
-http://180.250.29.12/jhos/beib3_5/1421536739/playlist.m3u8
+#EXTINF:0,Bein Sport 2
+0
 
 #EXTINF:0,Big Ten Network 
 0
 
 #EXTINF:0,Box Nation 
-rtmpe://134.19.185.244:1935/livedge/mamahdboxnation playPath=mamahdboxnation swfUrl=http://player.hdcast.org/jws/jwplayer.flash.swf flashver=WIN/2018,0,0,232 token=SECURET0KEN#yw%.?()@W! timeout=15 live=true swfVfy=1 pageUrl=http://www.hdcast.org/embedlive1.php?u=mamahdboxnation&amp;vw=854&amp;vh=480
+0
 
 #EXTINF:0,BT Sport 1 
-http://s02.zone4tv.net:80/live?channelId=307&uid=2233&deviceUser=omer1&devicePass=omer1
+0
 
 #EXTINF:0,BT Sport 2 
-http://s02.zone4tv.net:80/live?channelId=308&uid=2233&deviceUser=omer1&devicePass=omer1
+0
 
 #EXTINF:0,CBS Sports 
 0
@@ -49,9 +31,6 @@ http://s02.zone4tv.net:80/live?channelId=308&uid=2233&deviceUser=omer1&devicePas
 
 #EXTINF:0,CMore Sport 
 0
-
-#EXTINF:0,ESPN 
-http://iptvchoice.zapto.org:8000/live/grkaveman96@yahoo.com/CMKDKLtTp6/1360.ts
 
 #EXTINF:0,ESPN 
 http://195.154.226.186:1935/liveedge/espnuklsh/playlist.m3u8
@@ -86,9 +65,6 @@ http://ftve1100-i.akamaihd.net/hls/live/217046/fcsc/3964k/prog.m3u8|X-Forwarded-
 #EXTINF:0,Fox Sports 1 
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/75.m3u8
 
-#EXTINF:0,Fox Sports 1 
-rtmp://www1.iguide.to/iguide playpath=ourpk0w2g6jjly1 swfUrl=http://cdn.iguide.to/player/secure_player_iguide_embed_token.swf pageUrl=http://www.iguide.to/embedplayer_new.php?width=650&height=400&channel=30410&autoplay=true flashver=WIN\2019,0,0,185 live=1 token=#ed%h0#w18623jsda6523lDGD
-
 #EXTINF:0,Fox Sports 2 
 0
 
@@ -120,10 +96,7 @@ http://motorsport.hopto.org:8080/
 mms://100automoto.tv/100livesport
 
 #EXTINF:0,NBA TV 
-http://s02.zone4tv.net:80/live?channelId=306&uid=2233&deviceUser=omer1&devicePass=omer1
-
-#EXTINF:0,NBA TV 
-http://iptvchoice.zapto.org:8000/live/grkaveman96@yahoo.com/CMKDKLtTp6/3153.ts
+0
 
 #EXTINF:0,NBC Golf 
 http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/4296k/prog.m3u8|X-Forwarded-For=209.239.112.104
@@ -239,17 +212,11 @@ http://cds.a3g6t8m9.hwcdn.net/caliveorigin/skysports1.stream/playlist.m3u8
 #EXTINF:0,Sky Sports 2 
 http://cds.a3g6t8m9.hwcdn.net/caliveorigin/skysports2.stream/playlist.m3u8
 
-#EXTINF:0,Sky Sports 2 
-http://s02.zone4tv.net:80/live?channelId=1310&uid=2233&deviceUser=omer1&devicePass=omer1
-
 #EXTINF:0,Sky Sports 3 
 http://cds.a3g6t8m9.hwcdn.net/caliveorigin/skysports3.stream/playlist.m3u8
 
 #EXTINF:0,Sky Sports 3 
 http://195.154.226.186:1935/liveedge/skysports3lsh/playlist.m3u8
-
-#EXTINF:0,Sky Sports 3 
-http://s02.zone4tv.net:80/live?channelId=1311&uid=2233&deviceUser=omer1&devicePass=omer1
 
 #EXTINF:0,Sky Sports 4 
 http://cds.a3g6t8m9.hwcdn.net/caliveorigin/skysports4.stream/playlist.m3u8
@@ -258,19 +225,13 @@ http://cds.a3g6t8m9.hwcdn.net/caliveorigin/skysports4.stream/playlist.m3u8
 http://195.154.226.186:1935/liveedge/skysports4lsh/playlist.m3u8
 
 #EXTINF:0,Sky Sports 4 
-http://s02.zone4tv.net:80/live?channelId=303&uid=2233&deviceUser=omer1&devicePass=omer1
-
-#EXTINF:0,Sky Sports 4 
 http://minitv.noip.me:8000/live/dragana/dragana/185.ts
 
 #EXTINF:0,Sky Sports 5 
-http://s02.zone4tv.net:80/live?channelId=1312&uid=2233&deviceUser=omer1&devicePass=omer1
+http://cds.a3g6t8m9.hwcdn.net/caliveorigin/skysports5.stream/chunklist.m3u8
 
 #EXTINF:0,Sky Sports F1 
 http://195.154.226.186:1935/liveedge/vskysf1lsh/playlist.m3u8
-
-#EXTINF:0,Sky Sports F1 
-http://s02.zone4tv.net:80/live?channelId=1308&uid=2233&deviceUser=omer1&devicePass=omer1
 
 #EXTINF:0,Sky Sports News 
 rtmp://199.195.195.100:1935/stream/ playpath=1KnYJyfnK5.stream swfUrl=http://thecdn.04stream.com/p/ooolo1.swf live=1 pageUrl=http://www.04stream.com/ebb.php?adsp=ttother&k=m898n170yp5910l8496ob5910b597pn170h570oq898u1562id8496g170sq565q9629uq898u1562id8496g170sa450o597pd8496g170s&width=600&height=460&st=v45465n4w574x2s2f436q24693u594u3c4p4m484o2s243b444840374t2t28403q2s2r264&adx=&stream=h5t2b4n5i5l5t284c4i5y2c4x29453n2x4k5u3a3f4w21374f476w226d3j4i5y313c3j4l5q2y34323z3r2a4b43474v2x24434q244o2x4c4q3l4v5v2x2p243x46476o4n4e5z313q4m484j283x5i4p5d4h20524o5i5z5r5l2o2x5z3n204o2b4b4v264d41354r2b423d4o5o54334a4y2m5z2940374e4z2a4w2z25474a4j5m534p2o234z3n204o204&sooor=NQ==&str=is&ok=&cat=1&link=1&idom=/magellan
@@ -297,19 +258,13 @@ rtmp://31.220.2.149:80/live playpath=sprt1 swfUrl=http://p.jwpcdn.com/6/12/jwpla
 http://stream01.yamgo.com/iPhone/HLS_TS/broadcast/trace_tv_sports-tablet.3gp/trace_tv_sports-tablet.3gp-mr647k.m3u8?
 
 #EXTINF:0,TSN 1 
-http://iptvchoice.zapto.org:8000/live/grkaveman96@yahoo.com/CMKDKLtTp6/717.ts
-
-#EXTINF:0,TSN 1 
 rtmp://31.220.2.149:80/live/ playpath=ts1 token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://yotv.co
-
-#EXTINF:0,TSN 2 
-http://iptvchoice.zapto.org:8000/live/grkaveman96@yahoo.com/CMKDKLtTp6/718.ts
 
 #EXTINF:0,TSN 2 
 rtmp://31.220.2.149:80/live/ playpath=tsnx2 token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://yotv.co
 
 #EXTINF:0,TSN 3 
-
+0
 
 #EXTINF:0,TSN 4 
 http://02e4.vp9.tv/chn/tsn4/v.m3u8

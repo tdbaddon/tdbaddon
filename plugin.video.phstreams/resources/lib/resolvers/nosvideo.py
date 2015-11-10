@@ -36,8 +36,9 @@ def resolve(url):
 
         result = client.request(u, referer=r)
 
-        url = re.compile('var\stracker\s*=\s*[\'|\"](.+?)[\'|\"]').findall(result)[0]
-        url = base64.b64decode(url)
+        url = re.compile('var\stracker\s*=\s*[\'|\"](.+?)[\'|\"]').findall(result)
+        url += re.compile("tracker *: *[\'|\"](.+?)[\'|\"]").findall(result)
+        url = base64.b64decode(url[0])
 
         return url
     except:

@@ -353,6 +353,13 @@ def info():
         'class': 'sawlive',
         'netloc': ['sawlive.tv']
     }, {
+        'class': 'shared2',
+        'netloc': ['shared2.me'],
+        'host': ['Shared2'],
+        'quality': 'High',
+        'captcha': False,
+        'a/c': False
+    }, {
         'class': 'sharerepo',
         'netloc': ['sharerepo.com'],
         'host': ['Sharerepo'],

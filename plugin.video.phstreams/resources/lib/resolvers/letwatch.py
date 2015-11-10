@@ -32,8 +32,12 @@ def resolve(url):
 
         result = client.request(url)
 
-        result = re.compile('(eval.*?\)\)\))').findall(result)[-1]
-        result = jsunpack.unpack(result)
+        unpacked = ''
+        packed = result.split('\n')
+        for i in packed: 
+            try: unpacked += jsunpack.unpack(i)
+            except: unpacked += i
+        result = re.sub('\s\s+', ' ', unpacked)
 
         url = client.parseDOM(result, 'embed', ret='src')
         url += re.compile("file *: *[\'|\"](http.+?)[\'|\"]").findall(result)

@@ -20,7 +20,7 @@ from BeautifulSoup import BeautifulStoneSoup, BeautifulSoup, BeautifulSOAP
 from BeautifulSoup import BeautifulSoup
 h = HTMLParser.HTMLParser()
 
-versao = '2.0.7'
+versao = '3.0.1'
 addon_id = 'plugin.video.roggerstream'
 selfAddon = xbmcaddon.Addon(id=addon_id)
 addonfolder = selfAddon.getAddonInfo('path')
@@ -113,7 +113,7 @@ def listar_categorias():
 		url = canal.a["href"]
 		iconimage = canal.img["src"]
 		addDir("[B]"+titulo.encode('utf-8')+"[/B]",url,8,iconimage)
-        xbmcplugin.setContent(int(sys.argv[1]), 'movies')
+        xbmcplugin.setContent(int(sys.argv[1]), 'episodies')
 	xbmc.executebuiltin('Container.SetViewMode(500)')	
 	
 def canais_master(name,url,iconimage):
@@ -125,7 +125,7 @@ def canais_master(name,url,iconimage):
 		url = canal.a["href"]
 		iconimage = canal.img["src"]
 		addDir("[B]"+titulo.encode('utf-8')+"[/B]",url,10,iconimage,False)
-        xbmcplugin.setContent(int(sys.argv[1]), 'movies')
+        xbmcplugin.setContent(int(sys.argv[1]), 'episodies')
 	xbmc.executebuiltin('Container.SetViewMode(500)')
 		
 def series_e_desenhos_24hrs():
@@ -234,7 +234,7 @@ def addDir(name,url,mode,iconimage,pasta=True,total=1,plot=''):
 	u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&iconimage="+urllib.quote_plus(iconimage)
 	ok=True
 	liz=xbmcgui.ListItem(name, iconImage="iconimage", thumbnailImage=iconimage)
-	liz.setProperty('fanart_image', iconimage)
+	liz.setProperty('fanart_image', fanart)
 	liz.setInfo(type="Video", infoLabels={"Title": name, "Plot": plot})
 	contextMenuItems = []
 	contextMenuItems.append(('Movie Information', 'XBMC.Action(Info)'))

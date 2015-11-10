@@ -28,6 +28,9 @@ http://204.107.26.252:1935/live/691.high.stream/HasBahCa.m3u8
 #EXTINF:0,CMC 
 rtmp://cmctv.flash.internapcdn.net:1935/cmctv_vitalstream_com/live_adaptive_1/CMC-TV_adaptive3 swfUrl=http://http.vitalstreamcdn.com/flashskins/V2Player.swf live=1 pageUrl=http://www.cmc-tv.com/
 
+#EXTINF:0,City
+http://nodeb.gocaster.net:1935/CGL/_definst_/mp4:TODAYFM_TEST2/live.m3u8
+
 #EXTINF:0,Dance TV 
 0
 
@@ -98,6 +101,12 @@ rtmp://tst.es.flash.glb.ipercast.net/tst.es-live/live
 http://74.208.152.93/music/stream3/stream.m3u8
 
 #EXTINF:0,MTV 
+http://188.17.143.39/hls/CH_C03_MTV/variant.m3u8?version=2
+
+#EXTINF:0,MTV 
+http://ott.orion.rs:1935/livelowedge2/mtvadria.stream/playlist.m3u8?v=1&k=0&token=112f0b5ffe04810bbd7b27a81631a956cf2a64ab2aa76af0d155612ba3756c9e&ak=78820&time=1446892988400
+
+#EXTINF:0,MTV 
 http://200.76.77.237/LIVE/H01/CANAL726/PROFILE02.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,MTV 
@@ -105,15 +114,6 @@ http://200.76.77.237/LIVE/H01/CANAL726/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,MTV 
 http://200.76.77.237/LIVE/H01/CANAL726/PROFILE05.m3u8?supertvlat=%2F.ts
-
-#EXTINF:0,MTV 
-http://j.mp/TMTV_Viet_sly
-
-#EXTINF:0,MTV 
-http://bit.do/bkWAM
-
-#EXTINF:0,MTV 
-http://188.17.143.39/hls/CH_C03_MTV/variant.m3u8?version=2
 
 #EXTINF:0,MTV Live
 http://200.76.77.237/LIVE/H01/CANAL701/PROFILE02.m3u8?supertvlat=%2F.ts
@@ -169,7 +169,6 @@ http://mediatv2.topix.it/24RockOne66
 #EXTINF:0,Si TV
 http://hd.worldkast.com:1935/8436/8436/playlist.m3u8
 
-
 #EXTINF:0,SmashHits 
 0
 
@@ -177,7 +176,7 @@ http://hd.worldkast.com:1935/8436/8436/playlist.m3u8
 http://stream01.yamgo.com/iPhone/HLS_TS/broadcast/trace_tv_urban-tablet.3gp/trace_tv_urban-tablet.3gp-mr647k.m3u8?trackingid=4041670000&os=desktop
 
 #EXTINF:0,Tuba TV
-rtmp://fms.gazeta.pl/aglive/tuba_tv playpath=tuba_tv swfUrl=http://bi.gazeta.pl/im/Player.swf pageUrl=http://www.megawypas.pl/readarticle.php?article_id=358  live=true
+0
 
 #EXTINF:0,Vevo Hits 
 http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch2/04/prog_index.m3u8
@@ -214,9 +213,6 @@ http://200.76.77.237/LIVE/H01/CANAL728/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,VH1 Classics 
 http://200.76.77.237/LIVE/H01/CANAL728/PROFILE05.m3u8?supertvlat=%2F.ts
-
-#EXTINF:0,VH1
-http://cz.wownet.ro:8024|X-Forwarded-For=81.17.18.50
 
 #EXTINF:0,Virgin TV 
 rtmp://fms.105.net:1935/live/virgin2

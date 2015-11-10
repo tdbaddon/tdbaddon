@@ -19,21 +19,17 @@
 '''
 
 
-import urlparse
+import re
 from resources.lib.libraries import client
 
 
 def resolve(url):
     try:
-        url = urlparse.urlparse(url).query
-        url = urlparse.parse_qsl(url)[0][1]
-        url = 'http://videomega.tv/cdn.php?ref=%s' % url
+        url = url.replace('/play/', '/frame/')
 
-        result = client.request(url, mobile=True)
-
-        url = client.parseDOM(result, 'source', ret='src', attrs = {'type': 'video.+?'})[0]
-
-        if 'videomega.' in url: return url
+        result = client.request(url)
+        url = re.compile('path *: *"(http.+?)"').findall(result)[-1]
+        return url
     except:
         return
 

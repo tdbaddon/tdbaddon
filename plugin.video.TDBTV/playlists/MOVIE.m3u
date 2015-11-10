@@ -56,7 +56,13 @@ http://200.76.77.237/LIVE/H01/CANAL416/PROFILE05.m3u8?supertvlat=%2F.ts
 0
 
 #EXTINF:0,Fox Classics 
-0
+http://200.76.77.237/LIVE/H01/CANAL424/PROFILE02.m3u8?supertvlat=%2F.ts
+
+#EXTINF:0,Fox Classics 
+http://200.76.77.237/LIVE/H01/CANAL424/PROFILE03.m3u8?supertvlat=%2F.ts
+
+#EXTINF:0,Fox Classics 
+http://200.76.77.237/LIVE/H01/CANAL424/PROFILE05.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Fox Movies 
 http://minitv.noip.me:8000/live/dragana/dragana/159.ts
@@ -69,6 +75,15 @@ http://200.76.77.237/LIVE/H01/CANAL417/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Fox Movies 
 http://200.76.77.237/LIVE/H01/CANAL417/PROFILE05.m3u8?supertvlat=%2F.ts
+
+#EXTINF:0,Golden Edge
+http://200.76.77.237/LIVE/H01/CANAL484/PROFILE02.m3u8?supertvlat=%2F.ts
+
+#EXTINF:0,Golden Edge
+http://200.76.77.237/LIVE/H01/CANAL484/PROFILE03.m3u8?supertvlat=%2F.ts
+
+#EXTINF:0,Golden Edge
+http://200.76.77.237/LIVE/H01/CANAL484/PROFILE05.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,HBO 
 rtmp://94.102.49.207/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to/player/secure_player_iguide_token.swf live=1 pageUrl=http://www.iguide.to/view/1/watch-live-HBO-channel-for-free token=#ed%h0#w18623jsda6523lDGDVe
@@ -108,28 +123,28 @@ rtmp://94.102.49.207/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to
 0
 
 #EXTINF:0,MGM 
-0
+http://82.135.224.134:88/udp/239.255.1.137:1234
 
 #EXTINF:0,Paramount Channel 
 http://188.17.143.39/hls/CH_C01_PARAMOUNTCHANNEL/variant.m3u8?version=2
 
 #EXTINF:0,Sky Movies Action 
-http://s02.zone4tv.net:80/live?channelId=1306&uid=2233&deviceUser=omer1&devicePass=omer1
+0
 
 #EXTINF:0,Sky Movies Comedy 
-0
+http://82.135.224.134:88/udp/239.255.1.139:1234
 
 #EXTINF:0,Sky Movies Crime 
-http://s02.zone4tv.net:80/live?channelId=1305&uid=2233&deviceUser=omer1&devicePass=omer1
+http://82.135.224.134:88/udp/239.255.1.141:1234
 
 #EXTINF:0,Sky Movies Disney 
-http://s02.zone4tv.net:80/live?channelId=1307&uid=2233&deviceUser=omer1&devicePass=omer1
-
-#EXTINF:0,Sky Movies Drama 
 0
 
+#EXTINF:0,Sky Movies Drama 
+http://82.135.224.134:88/udp/239.255.1.142:1234
+
 #EXTINF:0,Sky Movies Family 
-http://s02.zone4tv.net:80/live?channelId=1304&uid=2233&deviceUser=omer1&devicePass=omer1
+0
 
 #EXTINF:0,Sky Movies Horrors 
 0
@@ -138,7 +153,7 @@ http://s02.zone4tv.net:80/live?channelId=1304&uid=2233&deviceUser=omer1&devicePa
 0
 
 #EXTINF:0,Sky Movies Premiere 
-0
+http://82.135.224.134:88/udp/239.255.1.129:1234
 
 #EXTINF:0,Sky Movies Premiere+
 0
@@ -147,7 +162,7 @@ http://s02.zone4tv.net:80/live?channelId=1304&uid=2233&deviceUser=omer1&devicePa
 0
 
 #EXTINF:0,Sky Movies Select 
-http://s02.zone4tv.net:80/live?channelId=1302&uid=2233&deviceUser=omer1&devicePass=omer1
+0
 
 #EXTINF:0,Sony TV 
 0

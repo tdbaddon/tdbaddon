@@ -5,7 +5,7 @@
 0
 
 #EXTINF:0,24
-0
+rtmp://144.76.154.14/live/tvn24
 
 #EXTINF:0,Asta TV
 0
@@ -164,25 +164,28 @@ http://trwamtv.live.e96-jw.insyscd.net/trwamtv.smil/playlist.m3u8
 0
 
 #EXTINF:0,TVN 
-0
+rtmp://144.76.154.14/live/tvn
 
 #EXTINF:0,TVN Style 
-0
+rtmp://144.76.154.14/live/tvnstyle
+
+#EXTINF:0,TVN Turbo
+rtmp://144.76.154.14/live/tvnturbo
 
 #EXTINF:0,TVP 
 0
 
 #EXTINF:0,TVP 1 
-0
+rtmp://85.10.208.218/live/jedynka1
 
 #EXTINF:0,TVP 2 
-0
+rtmp://178.16.220.163/live/Tvp2
 
 #EXTINF:0,TVP Bialystok
 0
 
 #EXTINF:0,TVP Historia 
-0
+rtmp://178.16.220.163/live/thistory
 
 #EXTINF:0,TVP Info 
 0
@@ -191,7 +194,7 @@ http://trwamtv.live.e96-jw.insyscd.net/trwamtv.smil/playlist.m3u8
 0
 
 #EXTINF:0,TVS
-0
+rtmp://144.76.154.14/live/tvpseriale
 
 #EXTINF:0,TVT
 0

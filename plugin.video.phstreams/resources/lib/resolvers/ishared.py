@@ -21,13 +21,34 @@
 
 import re
 from resources.lib.libraries import client
+from resources.lib.libraries import jsunpack
 
 
 def resolve(url):
     try:
+        url = url.replace('/video/', '/embed/')
+
         result = client.request(url)
-        url = re.compile('path *: *"(http.+?)"').findall(result)[-1]
-        return url
+
+        unpacked = ''
+        packed = result.split('\n')
+        for i in packed: 
+            try: unpacked += jsunpack.unpack(i)
+            except: pass
+        result += unpacked
+        result = re.sub('\s\s+', ' ', result)
+
+        var = re.compile('var\s(.+?)\s*=\s*\'(.+?)\'').findall(result)
+        for i in range(100):
+            for v in var: result = result.replace("' %s '" % v[0], v[1]).replace("'%s'" % v[0], v[1])
+
+        url = re.compile('sources\s*:\s*\[.+?file\s*:\s*(.+?)\s*\,').findall(result)[0]
+        var = re.compile('var\s+%s\s*=\s*\'(.+?)\'' % url).findall(result)
+        if len(var) > 0: url = var[0].strip()
+
+        if url.startswith('http'): return url 
     except:
         return
+
+
 

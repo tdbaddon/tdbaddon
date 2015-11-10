@@ -16,6 +16,15 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 #EXTINF:0,AMC 
 http://193.106.211.2:1234/udp/225.1.8.112:4001
 
+#EXTINF:0,AMC 
+http://200.76.77.237/LIVE/H01/CANAL444/PROFILE02.m3u8?supertvlat=%2F.ts
+
+#EXTINF:0,AMC 
+http://200.76.77.237/LIVE/H01/CANAL444/PROFILE03.m3u8?supertvlat=%2F.ts
+
+#EXTINF:0,AMC 
+http://200.76.77.237/LIVE/H01/CANAL444/PROFILE05.m3u8?supertvlat=%2F.ts
+
 #EXTINF:0,AXN 
 0
 
@@ -284,6 +293,9 @@ http://78.30.254.43:8989/udp/239.0.1.88:4000
 #EXTINF:0,Syfy 
 http://103.245.167.28/tot/71f197de056e499a85265c03b44bdab1.m3u8
 
+#EXTINF:0,Syfy 
+http://82.135.224.134:88/udp/239.255.1.128:1234
+
 #EXTINF:0,TBS 
 0
 
@@ -294,7 +306,13 @@ http://103.245.167.28/tot/71f197de056e499a85265c03b44bdab1.m3u8
 http://minitv.noip.me:8000/live/dragana/dragana/291.ts
 
 #EXTINF:0,TNT 
-0
+http://200.76.77.237/LIVE/H01/CANAL266/PROFILE02.m3u8?supertvlat=%2F.ts
+
+#EXTINF:0,TNT 
+http://200.76.77.237/LIVE/H01/CANAL266/PROFILE03.m3u8?supertvlat=%2F.ts
+
+#EXTINF:0,TNT 
+http://200.76.77.237/LIVE/H01/CANAL266/PROFILE05.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Tom & Jerry TV 
 0
@@ -340,6 +358,15 @@ http://200.76.77.237/LIVE/H01/CANAL205/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,WB 
 http://200.76.77.237/LIVE/H01/CANAL205/PROFILE05.m3u8?supertvlat=%2F.ts
+
+#EXTINF:0,Wobi
+http://200.76.77.237/LIVE/H01/CANAL387/PROFILE02.m3u8?supertvlat=%2F.ts
+
+#EXTINF:0,Wobi
+http://200.76.77.237/LIVE/H01/CANAL387/PROFILE03.m3u8?supertvlat=%2F.ts
+
+#EXTINF:0,Wobi
+http://200.76.77.237/LIVE/H01/CANAL387/PROFILE05.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,World Fashion 
 http://btv-net.mediacdn.ru/TVB7/wfhdeu/playlist.m3u8

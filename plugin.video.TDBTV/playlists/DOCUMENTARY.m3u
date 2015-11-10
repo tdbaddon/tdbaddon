@@ -28,9 +28,6 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/22.m3u8
 #EXTINF:0,Discovery Channel 
 http://bit.do/bkWBV
 
-#EXTINF:0,Discovery Channel 
-http://minitv.noip.me:8000/live/dragana/dragana/13.ts
-
 #EXTINF:0,Discovery History 
 0
 
@@ -131,14 +128,8 @@ http://rt-a.akamaihd.net/ch_05@325609/720p.m3u8
 http://minitv.noip.me:8000/live/dragana/dragana/327.ts
 
 #EXTINF:0,Viasat Explorer 
-http://195.78.244.219:10000/udp/239.0.3.30:1234
-
-#EXTINF:0,Viasat Explorer 
-http://195.78.244.219:10000/udp/239.0.3.31:1234
+0
 
 #EXTINF:0,Viasat History 
-http://195.78.244.219:10000/udp/239.0.3.31:1234
-
-#EXTINF:0,Viasat Nature 
-http://195.78.244.219:10000/udp/239.0.3.28:1234
+0
 

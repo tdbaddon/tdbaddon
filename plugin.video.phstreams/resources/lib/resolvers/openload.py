@@ -30,7 +30,7 @@ def resolve(url):
 
         id = re.compile('//.+?/(?:embed|f)/([0-9a-zA-Z-_]+)').findall(url)[0]
 
-        url = 'https://api.openload.io/1/file/dlticket?file=%s' % id
+        url = 'https://api.openload.co/1/file/dlticket?file=%s' % id
 
         result = client.request(url)
         result = json.loads(result)
@@ -41,7 +41,7 @@ def resolve(url):
 
         time.sleep(result['result']['wait_time'])
 
-        url = 'https://api.openload.io/1/file/dl?file=%s&ticket=%s' % (id, result['result']['ticket'])
+        url = 'https://api.openload.co/1/file/dl?file=%s&ticket=%s' % (id, result['result']['ticket'])
 
         if not cap == None:
             url += '&captcha_response=%s' % urllib.quote(cap)
@@ -58,11 +58,14 @@ def resolve(url):
 def check(url):
     try:
         id = re.compile('//.+?/(?:embed|f)/([0-9a-zA-Z-_]+)').findall(url)[0]
-        url = 'https://openload.co/embed/%s/' % id
+
+        url = 'https://api.openload.co/1/file/info?file=%s' % id
 
         result = client.request(url)
-        if result == None: return False
-        if '>We are sorry!<' in result: return False
+        result = json.loads(result)
+
+        status = result['result']['%s' % id]['status']
+        if str(status) == '404': return False
         return True
     except:
         return False

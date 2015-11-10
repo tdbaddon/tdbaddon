@@ -31,7 +31,14 @@ def resolve(url):
 
         result = client.request(pageUrl, referer=url)
 
-        url = re.compile('[\'|\"](http.+?\.m3u8.+?)[\'|\"]').findall(result)[0]
+        x = re.compile('/file\s*: \s*[\'|\"](.+?)[\'|\"]').findall(result)
+
+        url = re.compile('file\s*: \s*[\'|\"](.+?)[\'|\"]').findall(result)
+        url = [i for i in url if not i in x]
+        url = [i for i in url if 'rtmp' in i or  'm3u8' in i][0]
+
+        if url.startswith('rtmp'): url += ' live=1 timeout=15'
+
         return url
     except:
         return

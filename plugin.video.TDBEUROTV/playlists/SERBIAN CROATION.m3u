@@ -46,11 +46,17 @@ http://stream.b92.net:7999/tv-b92.ogg
 #EXTINF:0,B92 
 http://minitv.noip.me:8000/live/dragana/dragana/157.ts
 
+#EXTINF:0,B92 
+http://ott.orion.rs:1935/livelowedge2/b92.stream/playlist.m3u8?v=1&k=0&token=b3a0e293358a126265ec586fe300279669beddcdcb656d308a12f0365c092efd&ak=78820&time=1446892988400
+
 #EXTINF:0,Balkan TV
 rtmp://yayin.tvdunyasi.tv/live/balkanrtv
 
 #EXTINF:0,BN Sat
 http://minitv.noip.me:8000/live/dragana/dragana/30.ts
+
+#EXTINF:0,BN Sat
+http://ott.orion.rs:1935/livelowedge/bn.stream/playlist.m3u8?v=1&k=0&token=81a5415e13b8cde076cffaa8a91e0a89b260e8861eb6e94fc4688fd27f3c8c7d&ak=78820&time=1446892988400
 
 #EXTINF:0,Belle Amie TV
 http://92.60.234.98:8081
@@ -65,7 +71,7 @@ http://minitv.noip.me:8000/live/dragana/dragana/64.ts
 0
 
 #EXTINF:0,DM SAT 
-0
+http://ott.orion.rs:1935/livelowedge/dmsat.stream/playlist.m3u8?v=1&k=0&token=5207a52723b847c9b4766d4b9d93406b2dc3873bd5f9a7e5dbd0dc4ded6c11e2&ak=78820&time=1446892988400
 
 #EXTINF:0,DUGA 
 http://minitv.noip.me:8000/live/dragana/dragana/181.ts
@@ -78,6 +84,9 @@ http://minitv.noip.me:8000/live/dragana/dragana/5.ts
 
 #EXTINF:0,Happy 
 http://minitv.noip.me:8000/live/dragana/dragana/176.ts
+
+#EXTINF:0,Happy 
+http://46.234.123.89:1935/livelowedge2/happy.stream/playlist.m3u8?v=1&k=0&token=db4892cb59ae3252aba164995f89f3df52bbb4837d1d7d1f7b6acf54007cb40f&ak=77134&time=1446027158737
 
 #EXTINF:0,Hayat Folk 
 0
@@ -128,7 +137,7 @@ http://minitv.noip.me:8000/live/dragana/dragana/182.ts
 0
 
 #EXTINF:0,Kanal 3 
-0
+http://ott.orion.rs:1935/livelowedge/kanal3.stream/playlist.m3u8?v=1&k=0&token=dd76b1e8387b3757f72242cf058b9d8dfffab6381218a6bf5238daca026bca04&ak=78820&time=1446892988400
 
 #EXTINF:0,Kanal 21
 0
@@ -160,6 +169,9 @@ http://minitv.noip.me:8000/live/dragana/dragana/184.ts
 #EXTINF:0,Nova TV
 http://minitv.noip.me:8000/live/dragana/dragana/3.ts
 
+#EXTINF:0,Nova TV
+http://ott.orion.rs:1935/livelowedge/nova.stream/playlist.m3u8?v=1&k=0&token=a22d74006db2619c43968a9dbec40518b5e8a3dd1c49c8e938c6a7257d6a30c8&ak=78820&time=1446892988400
+
 #EXTINF:0,Novosadska TV 
 mms://176.106.121.32:8080/
 
@@ -174,6 +186,9 @@ http://minitv.noip.me:8000/live/dragana/dragana/321.ts
 
 #EXTINF:0,Prva TV 
 http://minitv.noip.me:8000/live/dragana/dragana/36.ts
+
+#EXTINF:0,Prva TV 
+http://ott.orion.rs:1935/livelowedge2/prva.stream/playlist.m3u8?v=1&k=0&token=cad74ba39edf76778b3413dabbaeb22d10146befc0ca84c197da01bdc63304de&ak=78820&time=1446892988400
 
 #EXTINF:0,RTC 
 0
@@ -199,8 +214,20 @@ http://minitv.noip.me:8000/live/dragana/dragana/325.ts
 #EXTINF:0,RTS 1 
 http://minitv.noip.me:8000/live/dragana/dragana/94.ts
 
+#EXTINF:0,RTS 1 
+http://46.234.123.89:1935/livelowedge2/rts1.stream/playlist.m3u8?v=1&k=0&token=e70a3c1e7fa5598f9e8b91fac2eec05dc1feab78728dd3c4001718e588644619&ak=77134&time=1446027158737
+
+#EXTINF:0,RTS 1 
+http://ott.orion.rs:1935/livelowedge2/rts1.stream/playlist.m3u8?v=1&k=0&token=d9e63f90739b45622fe81449801298a012d43ae3deb1db3588d967c56a0bfa13&ak=78820&time=1446892988400
+
 #EXTINF:0,RTS 2 
-0
+http://46.234.123.89:1935/livelowedge2/rts2.stream/playlist.m3u8?v=1&k=0&token=e3d5bd6d615fb1087d5a4e84bfecfcb23b6cd66338515d94f73916527efc0099&ak=77134&time=1446027158737
+
+#EXTINF:0,RTS 2 
+http://ott.orion.rs:1935/livelowedge2/rts2.stream/playlist.m3u8?v=1&k=0&token=a5cc98cdb8d507e72f1f743f81bdb8fb84b7905d44e714e5ec59f902a31d7850&ak=78820&time=1446892988400
+
+#EXTINF:0,RTS 3 
+http://ott.orion.rs:1935/livelowedge/rts3.stream/playlist.m3u8?v=1&k=0&token=d3d5cbc12179d51ce4cf0a8c5ad97fafe37f9d278d25068e8772b767687fb6cf&ak=78820&time=1446892988400
 
 #EXTINF:0,RTV 1 
 0

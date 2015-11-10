@@ -1,3 +1,6 @@
+V2.6.5
+- Updated available resolvers.
+
 V2.6.4
 - Updated available resolvers.
 - Updated NHL jar for blackouts.

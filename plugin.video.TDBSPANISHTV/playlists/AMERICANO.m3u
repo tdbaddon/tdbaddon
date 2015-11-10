@@ -20,13 +20,16 @@ http://200.76.77.237/LIVE/H01/CANAL213/PROFILE03.m3u8?supertvlat=%2F.ts
 http://200.76.77.237/LIVE/H01/CANAL576/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,BBC Entertainment
-0
+http://200.76.77.237/LIVE/H01/CANAL253/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Bloomberg
 http://200.76.77.237/LIVE/H01/CANAL324/PROFILE03.m3u8?supertvlat=%2F.ts
 
+#EXTINF:0,Bloomberg TV 
+http://200.76.77.237/LIVE/H01/CANAL610/PROFILE03.m3u8?supertvlat=%2F.ts
+
 #EXTINF:0,Boomerang
-0
+http://200.76.77.237/LIVE/H01/CANAL324/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Cartoon Network
 http://200.76.77.237/LIVE/H01/CANAL320/PROFILE03.m3u8?supertvlat=%2F.ts
@@ -50,7 +53,7 @@ http://200.76.77.237/LIVE/H01/CANAL382/PROFILE03.m3u8?supertvlat=%2F.ts
 http://200.76.77.237/LIVE/H01/CANAL374/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Discovery Investigation 
-0
+http://200.76.77.237/LIVE/H01/CANAL263/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Discovery Kids
 http://200.76.77.237/LIVE/H01/CANAL381/PROFILE03.m3u8?supertvlat=%2F.ts
@@ -59,7 +62,7 @@ http://200.76.77.237/LIVE/H01/CANAL381/PROFILE03.m3u8?supertvlat=%2F.ts
 http://200.76.77.237/LIVE/H01/CANAL303/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Discovery Science
-0
+http://200.76.77.237/LIVE/H01/CANAL381/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Discovery Theater
 http://200.76.77.237/LIVE/H01/CANAL351/PROFILE03.m3u8?supertvlat=%2F.ts
@@ -72,6 +75,9 @@ http://200.76.77.237/LIVE/H01/CANAL356/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Disney Channel
 http://200.76.77.237/LIVE/H01/CANAL312/PROFILE03.m3u8?supertvlat=%2F.ts
+
+#EXTINF:0,Disney Channel
+http://82.135.224.134:88/udp/239.255.1.190:1234
 
 #EXTINF:0,Disney JR
 http://200.76.77.237/LIVE/H01/CANAL308/PROFILE03.m3u8?supertvlat=%2F.ts
@@ -115,14 +121,20 @@ http://200.76.77.237/LIVE/H01/CANAL421/PROFILE03.m3u8?supertvlat=%2F.ts
 #EXTINF:0,Fox Classics
 http://200.76.77.237/LIVE/H01/CANAL424/PROFILE03.m3u8?supertvlat=%2F.ts
 
+#EXTINF:0,Fox Comedy
+http://82.135.224.134:88/udp/239.255.1.98:1234
+
 #EXTINF:0,Fox Family Movies
 http://200.76.77.237/LIVE/H01/CANAL417/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Fox Life
 http://200.76.77.237/LIVE/H01/CANAL271/PROFILE03.m3u8?supertvlat=%2F.ts
 
+#EXTINF:0,Fox Life
+http://82.135.224.134:88/udp/239.255.1.95:1234
+
 #EXTINF:0,Fox Movies
-0
+http://200.76.77.237/LIVE/H01/CANAL417/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Fox Sports 
 http://200.76.77.237/LIVE/H01/CANAL522/PROFILE03.m3u8?supertvlat=%2F.ts
@@ -138,6 +150,9 @@ http://200.76.77.237/LIVE/H01/CANAL209/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Golden Edge
 http://200.76.77.237/LIVE/H01/CANAL436/PROFILE03.m3u8?supertvlat=%2F.ts
+
+#EXTINF:0,Golden Edge
+http://200.76.77.237/LIVE/H01/CANAL484/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Gourmet
 http://200.76.77.237/LIVE/H01/CANAL268/PROFILE03.m3u8?supertvlat=%2F.ts
@@ -203,7 +218,7 @@ http://200.76.77.237/LIVE/H01/CANAL491/PROFILE03.m3u8?supertvlat=%2F.ts
 0
 
 #EXTINF:0,Star Sports
-0
+http://200.76.77.237/LIVE/H01/CANAL52/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Studio Universal
 http://200.76.77.237/LIVE/H01/CANAL492/PROFILE03.m3u8?supertvlat=%2F.ts
@@ -219,6 +234,9 @@ http://200.76.77.237/LIVE/H01/CANAL496/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,TLC
 http://200.76.77.237/LIVE/H01/CANAL386/PROFILE03.m3u8?supertvlat=%2F.ts
+
+#EXTINF:0,TLC
+http://200.76.77.237/LIVE/H01/CANAL356/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,TNT
 http://200.76.77.237/LIVE/H01/CANAL482/PROFILE03.m3u8?supertvlat=%2F.ts
