@@ -20,7 +20,7 @@ from BeautifulSoup import BeautifulStoneSoup, BeautifulSoup, BeautifulSOAP
 from BeautifulSoup import BeautifulSoup
 h = HTMLParser.HTMLParser()
 
-versao = '3.0.1'
+versao = '3.0.2'
 addon_id = 'plugin.video.roggerstream'
 selfAddon = xbmcaddon.Addon(id=addon_id)
 addonfolder = selfAddon.getAddonInfo('path')
@@ -48,11 +48,11 @@ def  categorias():
 	addDir('[B]SERIES E DESENHOS [COLOR blue] 24hrs [/COLOR][/B]','-',9,'https://copy.com/KwIFEqNxxBlnSEjL?download=1')	
 	addDir('[B]TV PAGA BRASIL[/B]','-',3,'https://copy.com/VVF8ouCl1Ghkjum8')
 	addDir('[B]PROGRAMAS DA BAND AO VIVO[/B]','https://copy.com/LUbu11FOacRUEw4O?download=1',4,'http://i.imgur.com/Mxyc9jj.png')
-	addDir('[B]WEBCAMS BR[/B]','https://copy.com/nEagWXhOC1s7dlyO?download=1',4,'https://copy.com/dPj2J9AzaExumsnE')
+	addDir('[B]WEBCAMS BRASIL[/B]','https://copy.com/nEagWXhOC1s7dlyO?download=1',4,'https://copy.com/dPj2J9AzaExumsnE')
 	addDir('[B]CAÇA E PESCA[/B]','https://copy.com/b6uCi8jKTmq24wLy?download=1',4,'https://copy.com/Igk8UorSxdbG4xnE')
 	addDir('[B]CANAIS LATINOS[/B]','https://copy.com/tapliy8nIaKSLDQq?download=1',4,'https://copy.com/wPVtPygtxuY0P1xl')
 	addDir('[B]CANAIS DE PORTUGAL[/B]','https://copy.com/unoGFK2bL8ZJ0iHD?download=1',4,'https://copy.com/HwP6Xpia6GNQvWsi')
-	addDir('[B]WEBCAMS[/B]','https://copy.com/Ywh4MnZQqy2R7M8P?download=1',4,'https://copy.com/dPj2J9AzaExumsnE')
+	addDir('[B]WEBCAMS MUNDO[/B]','https://copy.com/Ywh4MnZQqy2R7M8P?download=1',4,'https://copy.com/dPj2J9AzaExumsnE')
 	addDir('[B]CANAIS [COLOR blue] HD [/COLOR][/B]','https://copy.com/VMoOgU8UDvAgfjv0?download=1',4,'https://copy.com/WB68NrrmvjxdH1pJ')
 	addDir('[B]MÚSICAS E VIDEOCLIPES[/B]','https://copy.com/1cvRyOdMSOCSBH70?download=1',4,'https://copy.com/stpjErgehf9hPtwW')
 	addDir('[B]ESPORTES INTERNACIONAIS[/B]','https://copy.com/bIIpBHwFbXMXOBBB?download=1',4,'https://copy.com/pUGvpVMDpoY09PcA')
@@ -252,14 +252,14 @@ def get_wms():
 	return wms	
 	
 def gettoken():
-    for line in urllib2.urlopen(base64.b64decode('aHR0cDovL21vdmllbWV0YWRhZG9zLnRrL2FwcHMvc2VjdXJldG9rZW4ucGhw')).readlines():
-        params = line.split(',')
+    for line in urllib2.urlopen(base64.b64decode('aHR0cDovL21vdmllbWV0YWRhZG9zLnRrL2FwcHMvc2VjdXJldG9rZW4ucGhw')):
+        params = line.split('')
         try:
-		    securetoken = params[0]
+		    securetoken = params[1]
 		    print 'Nome: ' + securetoken
         except:
             pass
-    return securetoken	
+    return securetoken
 
 ############################################################################################################
 #                                               GET PARAMS                                                 #
