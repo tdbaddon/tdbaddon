@@ -91,6 +91,9 @@ rtmp://94.102.49.207/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to
 #EXTINF:0,HBO 
 rtmp://www1.iguide.to:1935/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to/player/secure_player_iguide_token.swf live=1 pageUrl=http://www.iguide.to/view/1/HBO token=#ed%h0#w18623jsda6523lDGDve
 
+#EXTINF:0,HBO 
+http://lb.iptvserver.tv:8080/redirect/LiveEdge/HBOLASD/playlist.m3u8?token=6aa85b5e33cb27a1cfbeb42beb29429a
+
 #EXTINF:0,HBO Adria
 http://minitv.noip.me:8000/live/dragana/dragana/53.ts
 
@@ -114,7 +117,7 @@ rtmp://94.102.49.207/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to
 <link>rtmp://89.248.168.57:1935/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to/player/secure_player_iguide_token.swf live=1 pageUrl=http://www.iguide.to/view/1/HBO token=#ed%h0#w18623jsda6523lDGDve
 
 #EXTINF:0,HBO Signature 
-0
+http://lb.iptvserver.tv:8080/redirect/LiveEdge/HBOSignatureLASD/playlist.m3u8?token=e0522ea2a75a7b94c87b098bcb556be4
 
 #EXTINF:0,HBO Zone 
 0
@@ -123,7 +126,7 @@ rtmp://94.102.49.207/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to
 0
 
 #EXTINF:0,MGM 
-http://82.135.224.134:88/udp/239.255.1.137:1234
+0
 
 #EXTINF:0,Paramount Channel 
 http://188.17.143.39/hls/CH_C01_PARAMOUNTCHANNEL/variant.m3u8?version=2
@@ -132,16 +135,16 @@ http://188.17.143.39/hls/CH_C01_PARAMOUNTCHANNEL/variant.m3u8?version=2
 0
 
 #EXTINF:0,Sky Movies Comedy 
-http://82.135.224.134:88/udp/239.255.1.139:1234
+0
 
 #EXTINF:0,Sky Movies Crime 
-http://82.135.224.134:88/udp/239.255.1.141:1234
+0
 
 #EXTINF:0,Sky Movies Disney 
 0
 
 #EXTINF:0,Sky Movies Drama 
-http://82.135.224.134:88/udp/239.255.1.142:1234
+0
 
 #EXTINF:0,Sky Movies Family 
 0
@@ -153,7 +156,7 @@ http://82.135.224.134:88/udp/239.255.1.142:1234
 0
 
 #EXTINF:0,Sky Movies Premiere 
-http://82.135.224.134:88/udp/239.255.1.129:1234
+0
 
 #EXTINF:0,Sky Movies Premiere+
 0

@@ -79,8 +79,8 @@ http://video4.earthcam.com/fecnetwork/sedonawebcam.flv/playlist.m3u8
 #EXTINF:0,Sedona Red Rock Arizona 
 http://video1.earthcam.com/fecnetwork/5805.flv/HasBahCa.m3u8
 
-#EXTINF:0,Shark Tank
-http://iphone-streaming.ustream.tv/uhls/14812707/streams/live/iphone/playlist.m3u8 
+#EXTINF:0,Shark Tank 
+0
 
 #EXTINF:0,Statue of Liberty New York
 http://video1.earthcam.com:1935/fecnetwork/statueoflibertyHD.flv/hasbahca.m3u8
@@ -97,8 +97,8 @@ http://video1.earthcam.com:1935/fecnetwork/4054.flv/hasbahca.m3u8
 #EXTINF:0,Times Square 47th and Broadway New York
 http://video1.earthcam.com/fecnetwork/hdtimes10.flv/hasbahca.m3u8
 
-#EXTINF:0,Times Square Crossroads New York
-http://video1.earthcam.com/fecnetwork/4717.flv/hasbahca.m3u8
+#EXTINF:0,Times Square Crossroads New York 
+0
 
 #EXTINF:0,Times Square South View New York
 http://video1.earthcam.com:1935/fecnetwork/4017timessquare.flv/hasbahca.m3u8
@@ -109,5 +109,5 @@ http://video1.earthcam.com/fecnetwork/hdtimes11.flv/hasbahca.m3u8
 #EXTINF:0,Tokyo Japan
 http://video4.earthcam.com/fecnetwork/tokyo1.flv/playlist.m3u8
 
-#EXTINF:0,Veles Macedonia
+#EXTINF:0,Veles Macedonia 
 mms://62.162.58.55/KameraVeles
