@@ -34,8 +34,6 @@ from resources.lib.libraries import alterepisode
 from resources.lib.libraries import cleantitle
 from resources.lib.libraries import client
 from resources.lib.libraries import workers
-from resources.lib.resolvers import realdebrid
-from resources.lib.resolvers import premiumize
 from resources.lib import resolvers
 
 
@@ -809,48 +807,20 @@ class sources:
 
 
     def sourcesDictionary(self):
-        hosts = resolvers.info()
-        hosts = [i for i in hosts if 'host' in i]
+        self.rdDict = []
+        self.pzDict = []
 
-        self.rdDict = realdebrid.getHosts()
-        self.pzDict = premiumize.getHosts()
+        self.hostlocDict = self.hostdirhdDict = resolvers.hosthqDict()
 
-        self.hostlocDict = [i['netloc'] for i in hosts if i['quality'] == 'High' and i['captcha'] == False]
-        try: self.hostlocDict = [i.lower() for i in reduce(lambda x, y: x+y, self.hostlocDict)]
-        except: pass
-        self.hostlocDict = [x for y,x in enumerate(self.hostlocDict) if x not in self.hostlocDict[:y]]
+        self.hostprDict = [i.rsplit('.', 1)[0] for i in resolvers.hostprDict()]
 
-        self.hostdirhdDict = [i['netloc'] for i in resolvers.info() if 'quality' in i and i['quality'] == 'High' and 'captcha' in i and i['captcha'] == False and 'a/c' in i and i['a/c'] == False]
-        try: self.hostdirhdDict = [i.lower().rsplit('.', 1)[0] for i in reduce(lambda x, y: x+y, self.hostdirhdDict)]
-        except: pass
-        self.hostdirhdDict = [x for y,x in enumerate(self.hostdirhdDict) if x not in self.hostdirhdDict[:y]]
+        self.hostcapDict = [i.rsplit('.', 1)[0] for i in resolvers.hostcapDict()]
 
-        self.hostprDict = [i['host'] for i in hosts if i['a/c'] == True]
-        try: self.hostprDict = [i.lower() for i in reduce(lambda x, y: x+y, self.hostprDict)]
-        except: pass
-        self.hostprDict = [x for y,x in enumerate(self.hostprDict) if x not in self.hostprDict[:y]]
+        self.hosthqDict = self.hosthdDict = [i.rsplit('.', 1)[0] for i in resolvers.hosthqDict()]
 
-        self.hostcapDict = [i['host'] for i in hosts if i['captcha'] == True]
-        try: self.hostcapDict = [i.lower() for i in reduce(lambda x, y: x+y, self.hostcapDict)]
-        except: pass
-        self.hostcapDict = [i for i in self.hostcapDict if not i in self.rdDict + self.pzDict]
+        self.hostmqDict = [i.rsplit('.', 1)[0] for i in resolvers.hostmqDict()]
 
-        self.hosthdDict = [i['host'] for i in hosts if i['quality'] == 'High' and i['a/c'] == False and i['captcha'] == False]
-        self.hosthdDict += [i['host'] for i in hosts if i['quality'] == 'High' and i['a/c'] == False and i['captcha'] == True]
-        try: self.hosthdDict = [i.lower() for i in reduce(lambda x, y: x+y, self.hosthdDict)]
-        except: pass
-
-        self.hosthqDict = [i['host'] for i in hosts if i['quality'] == 'High' and i['a/c'] == False and i['captcha'] == False]
-        try: self.hosthqDict = [i.lower() for i in reduce(lambda x, y: x+y, self.hosthqDict)]
-        except: pass
-
-        self.hostmqDict = [i['host'] for i in hosts if i['quality'] == 'Medium' and i['a/c'] == False and i['captcha'] == False]
-        try: self.hostmqDict = [i.lower() for i in reduce(lambda x, y: x+y, self.hostmqDict)]
-        except: pass
-
-        self.hostlqDict = [i['host'] for i in hosts if i['quality'] == 'Low' and i['a/c'] == False and i['captcha'] == False]
-        try: self.hostlqDict = [i.lower() for i in reduce(lambda x, y: x+y, self.hostlqDict)]
-        except: pass
+        self.hostlqDict = [i.rsplit('.', 1)[0] for i in resolvers.hostlqDict()]
 
         self.hostsdfullDict = self.hostprDict + self.hosthqDict + self.hostmqDict + self.hostlqDict
 

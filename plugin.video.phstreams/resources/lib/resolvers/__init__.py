@@ -19,125 +19,284 @@
 '''
 
 
-import re,urllib,urlparse
+import re,urllib,urlparse,json
 
+from resources.lib.libraries import cache
+from resources.lib.libraries import control
 from resources.lib.libraries import client
-from resources.lib.resolvers import realdebrid
-from resources.lib.resolvers import premiumize
 
 
-def request(url):
+def request(url, debrid=''):
     try:
+        u = url
+
         if '</regex>' in url:
             import regex ; url = regex.resolve(url)
-
-        rd = realdebrid.resolve(url)
-        if not rd == None: return rd
-        pz = premiumize.resolve(url)
-        if not pz == None: return pz
 
         if url.startswith('rtmp'):
             if len(re.compile('\s*timeout=(\d*)').findall(url)) == 0: url += ' timeout=10'
             return url
 
-        u = urlparse.urlparse(url).netloc
-        u = u.replace('www.', '').replace('embed.', '')
-        u = u.lower()
+        if not debrid == '': return debridResolver(url, debrid)
 
-        r = [i['class'] for i in info() if u in i['netloc']][0]
+        n = (urlparse.urlparse(url).netloc).lower() ; n = re.sub('www\d+\.|www\.|embed\.', '', n)
+
+        try: url = re.compile('://(http.+)').findall(url)[0]
+        except: pass
+
+        r = [i['class'] for i in info() if n in i['netloc']][0]
         r = __import__(r, globals(), locals(), [], -1)
         r = r.resolve(url)
 
         if r == None: return r
-        elif type(r) == list: return r
-        elif not r.startswith('http'): return r
 
-        try: h = dict(urlparse.parse_qsl(r.rsplit('|', 1)[1]))
-        except: h = dict('')
+        elif type(r) == list:
+            for i in range(0, len(r)): r[i].update({'url': parser(r[i]['url'], url)})
 
-        if not 'User-Agent' in h: h['User-Agent'] = client.agent()
-        if not 'Referer' in h: h['Referer'] = url
+        elif r.startswith('http'): r = parser(r, url)
 
-        r = '%s|%s' % (r.split('|')[0], urllib.urlencode(h))
         return r
     except:
+        return u
+
+
+def parser(url, referer):
+    if url == None: return
+
+    try: headers = dict(urlparse.parse_qsl(url.rsplit('|', 1)[1]))
+    except: headers = dict('')
+
+    if not 'User-Agent' in headers: headers['User-Agent'] = client.agent()
+    if not 'Referer' in headers: headers['Referer'] = referer
+
+    url = '%s|%s' % (url.split('|')[0], urllib.urlencode(headers))
+    return url
+
+
+
+def rdDict():
+    try:
+        user, password = [(i['user'], i['pass']) for i in debridCredentials() if i['debrid'] == 'realdebrid' and not (i['user'] == '' or i['pass'] == '')][0]
+        url = 'http://real-debrid.com/api/hosters.php'
+        result = cache.get(client.request, 24, url)
+        hosts = json.loads('[%s]' % result)
+        hosts = [i.lower() for i in hosts]
+        return hosts
+    except:
+        return []
+
+
+def pzDict():
+    try:
+        user, password = [(i['user'], i['pass']) for i in debridCredentials() if i['debrid'] == 'premiumize' and not (i['user'] == '' or i['pass'] == '')][0]
+        url = 'http://api.premiumize.me/pm-api/v1.php?method=hosterlist&params[login]=%s&params[pass]=%s' % (user, password)
+        result = cache.get(client.request, 24, url)
+        hosts = json.loads(result)['result']['hosterlist']
+        hosts = [i.lower() for i in hosts]
+        return hosts
+    except:
+        return []
+
+
+def adDict():
+    try:
+        user, password = [(i['user'], i['pass']) for i in debridCredentials() if i['debrid'] == 'alldebrid' and not (i['user'] == '' or i['pass'] == '')][0]
+        url = 'http://alldebrid.com/api.php?action=get_host'
+        result = cache.get(client.request, 24, url)
+        hosts = json.loads('[%s]' % result)
+        hosts = [i.lower() for i in hosts]
+        return hosts
+    except:
+        return []
+
+
+def rpDict():
+    try:
+        user, password = [(i['user'], i['pass']) for i in debridCredentials() if i['debrid'] == 'rpnet' and not (i['user'] == '' or i['pass'] == '')][0]
+        url = 'http://premium.rpnet.biz/hoster2.json'
+        result = cache.get(client.request, 24, url)
+        result = json.loads(result)
+        hosts = result['supported']
+        hosts = [i.lower() for i in hosts]
+        return hosts
+    except:
+        return []
+
+
+def debridCredentials():
+    return [{
+        'debrid': 'realdebrid',
+        'user': control.setting('realdedrid_user'),
+        'pass': control.setting('realdedrid_password')
+    }, {
+        'debrid': 'premiumize',
+        'user': control.setting('premiumize_user'),
+        'pass': control.setting('premiumize_password')
+    }, {
+        'debrid': 'alldebrid',
+        'user': control.setting('alldebrid_user'),
+        'pass': control.setting('alldebrid_password')
+    }, {
+        'debrid': 'rpnet',
+        'user': control.setting('rpnet_user'),
+        'pass': control.setting('rpnet_password')
+    }]
+
+
+def debridResolver(url, debrid):
+    url = url.replace('filefactory.com/stream/', 'filefactory.com/file/')
+
+    try:
+        if not debrid == 'realdebrid': raise Exception()
+        user, password = [(i['user'], i['pass']) for i in debridCredentials() if i['debrid'] == 'realdebrid' and not (i['user'] == '' or i['pass'] == '')][0]
+
+        login_data = urllib.urlencode({'user': user, 'pass': password})
+        login_link = 'http://real-debrid.com/ajax/login.php?%s' % login_data
+        result = client.request(login_link, close=False)
+        result = json.loads(result)
+        error = result['error']
+        if not error == 0: raise Exception()
+        cookie = result['cookie']
+
+        url = 'http://real-debrid.com/ajax/unrestrict.php?link=%s' % urllib.quote_plus(url)
+        result = client.request(url, cookie=cookie, close=False)
+        result = json.loads(result)
+        url = result['generated_links'][0][-1]
+        url = '%s|Cookie=%s' % (url, urllib.quote_plus(cookie))
         return url
+    except:
+        pass
+
+    try:
+        if not debrid == 'premiumize': raise Exception()
+        user, password = [(i['user'], i['pass']) for i in debridCredentials() if i['debrid'] == 'premiumize' and not (i['user'] == '' or i['pass'] == '')][0]
+
+        url = 'http://api.premiumize.me/pm-api/v1.php?method=directdownloadlink&params[login]=%s&params[pass]=%s&params[link]=%s' % (user, password, urllib.quote_plus(url))
+        result = client.request(url, close=False)
+        url = json.loads(result)['result']['location']
+        return url
+    except:
+        pass
+
+    try:
+        if not debrid == 'alldebrid': raise Exception()
+        user, password = [(i['user'], i['pass']) for i in debridCredentials() if i['debrid'] == 'alldebrid' and not (i['user'] == '' or i['pass'] == '')][0]
+
+        login_data = urllib.urlencode({'action': 'login', 'login_login': user, 'login_password': password})
+        login_link = 'http://alldebrid.com/register/?%s' % login_data
+        cookie = client.request(login_link, output='cookie', close=False)
+
+        url = 'http://www.alldebrid.com/service.php?link=%s' % urllib.quote_plus(url)
+        result = client.request(url, cookie=cookie, close=False)
+        url = client.parseDOM(result, 'a', ret='href', attrs = {'class': 'link_dl'})[0]
+        url = client.replaceHTMLCodes(url)
+        url = '%s|Cookie=%s' % (url, urllib.quote_plus(cookie))
+        return url
+    except:
+        pass
+
+    try:
+        if not debrid == 'rpnet': raise Exception()
+        user, password = [(i['user'], i['pass']) for i in debridCredentials() if i['debrid'] == 'rpnet' and not (i['user'] == '' or i['pass'] == '')][0]
+
+        login_data = urllib.urlencode({'username': user, 'password': password, 'action': 'generate', 'links': url})
+        login_link = 'http://premium.rpnet.biz/client_api.php?%s' % login_data
+        result = client.request(login_link, close=False)
+        result = json.loads(result)
+        url = result['links'][0]['generated']
+        return url
+    except:
+        return
+
+
+
+def hostDict():
+    d = [i['netloc'] for i in info()]
+    try: d = [i.lower() for i in reduce(lambda x, y: x+y, d)]
+    except: pass
+    return [x for y,x in enumerate(d) if x not in d[:y]]
+
+
+def hosthqDict():
+    d = [i['netloc'] for i in info() if 'quality' in i and i['quality'] == 'High']
+    try: d = [i.lower() for i in reduce(lambda x, y: x+y, d)]
+    except: pass
+    return [x for y,x in enumerate(d) if x not in d[:y]]
+
+
+def hostmqDict():
+    d = [i['netloc'] for i in info() if 'quality' in i and i['quality'] == 'Medium']
+    try: d = [i.lower() for i in reduce(lambda x, y: x+y, d)]
+    except: pass
+    return [x for y,x in enumerate(d) if x not in d[:y]]
+
+
+def hostlqDict():
+    d = [i['netloc'] for i in info() if 'quality' in i and i['quality'] == 'Low']
+    try: d = [i.lower() for i in reduce(lambda x, y: x+y, d)]
+    except: pass
+    return [x for y,x in enumerate(d) if x not in d[:y]]
+
+
+def hostcapDict():
+    d = [i['netloc'] for i in info() if 'captcha' in i and i['captcha'] == True]
+    try: d = [i.lower() for i in reduce(lambda x, y: x+y, d)]
+    except: pass
+    return [x for y,x in enumerate(d) if x not in d[:y]]
+
+
+def hostprDict():
+    d = [i['netloc'] for i in info() if 'class' in i and i['class'] == '']
+    try: d = [i.lower() for i in reduce(lambda x, y: x+y, d)]
+    except: pass
+    return [x for y,x in enumerate(d) if x not in d[:y]]
+
 
 
 def info():
     return [{
         'class': '',
-        'netloc': ['oboom.com', 'rapidgator.net', 'uploaded.net'],
-        'host': ['Oboom', 'Rapidgator', 'Uploaded'],
-        'quality': 'High',
-        'captcha': False,
-        'a/c': True
+        'netloc': ['oboom.com', 'rapidgator.net', 'rg.to', 'uploaded.net', 'uploaded.to', 'ul.to', 'filefactory.com'],
+        'quality': 'High'
     }, {
         'class': '_180upload',
         'netloc': ['180upload.com'],
-        'host': ['180upload'],
-        'quality': 'High',
-        'captcha': False,
-        'a/c': False
+        'quality': 'High'
     }, {
         'class': 'allmyvideos',
         'netloc': ['allmyvideos.net'],
-        'host': ['Allmyvideos'],
-        'quality': 'Medium',
-        'captcha': False,
-        'a/c': False
+        'quality': 'Medium'
     }, {
         'class': 'allvid',
         'netloc': ['allvid.ch'],
-        'host': ['Allvid'],
-        'quality': 'High',
-        'captcha': False,
-        'a/c': False
+        'quality': 'High'
     }, {
         'class': 'bestreams',
         'netloc': ['bestreams.net'],
-        'host': ['Bestreams'],
-        'quality': 'Low',
-        'captcha': False,
-        'a/c': False
+        'quality': 'Low'
     }, {
         'class': 'castalba',
         'netloc': ['castalba.tv']
     }, {
         'class': 'clicknupload',
-        'netloc': ['clicknupload.com'],
-        'host': ['Clicknupload'],
-        'quality': 'High',
-        'captcha': False,
-        'a/c': False
+        'netloc': ['clicknupload.me', 'clicknupload.com'],
+        'quality': 'High'
     }, {
         'class': 'cloudtime',
         'netloc': ['cloudtime.to'],
-        'host': ['Cloudtime'],
-        'quality': 'Medium',
-        'captcha': False,
-        'a/c': False
+        'quality': 'Medium'
     }, {
         'class': 'cloudyvideos',
         'netloc': ['cloudyvideos.com'],
-        #'host': ['Cloudyvideos'],
-        'quality': 'High',
-        'captcha': False,
-        'a/c': False
+        'quality': 'High'
     }, {
         'class': 'cloudzilla',
         'netloc': ['cloudzilla.to'],
-        'host': ['Cloudzilla'],
-        'quality': 'Medium',
-        'captcha': False,
-        'a/c': False
+        'quality': 'Medium'
     }, {
         'class': 'daclips',
         'netloc': ['daclips.in'],
-        'host': ['Daclips'],
-        'quality': 'Low',
-        'captcha': False,
-        'a/c': False
+        'quality': 'Low'
     }, {
         'class': 'dailymotion',
         'netloc': ['dailymotion.com']
@@ -147,38 +306,23 @@ def info():
     }, {
         'class': 'divxpress',
         'netloc': ['divxpress.com'],
-        'host': ['Divxpress'],
-        'quality': 'Medium',
-        'captcha': False,
-        'a/c': False
+        'quality': 'Medium'
     }, {
         'class': 'exashare',
         'netloc': ['exashare.com'],
-        'host': ['Exashare'],
-        'quality': 'Low',
-        'captcha': False,
-        'a/c': False
+        'quality': 'Low'
     }, {
         'class': 'fastvideo',
         'netloc': ['fastvideo.in', 'faststream.in', 'rapidvideo.ws'],
-        'host': ['Fastvideo', 'Faststream'],
-        'quality': 'Low',
-        'captcha': False,
-        'a/c': False
+        'quality': 'Low'
     }, {
         'class': 'filehoot',
         'netloc': ['filehoot.com'],
-        'host': ['Filehoot'],
-        'quality': 'Low',
-        'captcha': False,
-        'a/c': False
+        'quality': 'Low'
     }, {
         'class': 'filenuke',
         'netloc': ['filenuke.com', 'sharesix.com'],
-        'host': ['Filenuke', 'Sharesix'],
-        'quality': 'Low',
-        'captcha': False,
-        'a/c': False
+        'quality': 'Low'
     }, {
         'class': 'filmon',
         'netloc': ['filmon.com']
@@ -200,266 +344,160 @@ def info():
     }, {
         'class': 'gorillavid',
         'netloc': ['gorillavid.com', 'gorillavid.in'],
-        'host': ['Gorillavid'],
-        'quality': 'Low',
-        'captcha': False,
-        'a/c': False
+        'quality': 'Low'
     }, {
         'class': 'grifthost',
         'netloc': ['grifthost.com'],
-        #'host': ['Grifthost'],
-        'quality': 'High',
-        'captcha': False,
-        'a/c': False
+        'quality': 'High'
     }, {
         'class': 'hdcast',
         'netloc': ['hdcast.me']
     }, {
         'class': 'hugefiles',
         'netloc': ['hugefiles.net'],
-        'host': ['Hugefiles'],
         'quality': 'High',
-        'captcha': True,
-        'a/c': False
+        'captcha': True
     }, {
         'class': 'ipithos',
         'netloc': ['ipithos.to'],
-        'host': ['Ipithos'],
-        'quality': 'High',
-        'captcha': False,
-        'a/c': False
+        'quality': 'High'
     }, {
         'class': 'ishared',
         'netloc': ['ishared.eu'],
-        'host': ['iShared'],
-        'quality': 'High',
-        'captcha': False,
-        'a/c': False
-    }, {
-        'class': 'kingfiles',
-        'netloc': ['kingfiles.net'],
-        'host': ['Kingfiles'],
-        'quality': 'High',
-        'captcha': True,
-        'a/c': False
+        'quality': 'High'
     }, {
         'class': 'letwatch',
         'netloc': ['letwatch.us'],
-        'host': ['Letwatch'],
-        'quality': 'Medium',
-        'captcha': False,
-        'a/c': False
+        'quality': 'Medium'
     }, {
         'class': 'mailru',
         'netloc': ['mail.ru', 'my.mail.ru', 'videoapi.my.mail.ru', 'api.video.mail.ru']
     }, {
         'class': 'mightyupload',
         'netloc': ['mightyupload.com'],
-        'host': ['Mightyupload'],
-        'quality': 'High',
-        'captcha': False,
-        'a/c': False
+        'quality': 'High'
     }, {
         'class': 'movdivx',
         'netloc': ['movdivx.com'],
-        'host': ['Movdivx'],
-        'quality': 'Low',
-        'captcha': False,
-        'a/c': False
+        'quality': 'Low'
     }, {
         'class': 'movpod',
         'netloc': ['movpod.net', 'movpod.in'],
-        'host': ['Movpod'],
-        'quality': 'Low',
-        'captcha': False,
-        'a/c': False
+        'quality': 'Low'
     }, {
         'class': 'movshare',
         'netloc': ['movshare.net'],
-        'host': ['Movshare'],
-        'quality': 'Low',
-        'captcha': False,
-        'a/c': False
+        'quality': 'Low'
     }, {
         'class': 'mrfile',
         'netloc': ['mrfile.me'],
-        'host': ['Mrfile'],
-        'quality': 'High',
-        'captcha': False,
-        'a/c': False
+        'quality': 'High'
     }, {
         'class': 'mybeststream',
         'netloc': ['mybeststream.xyz']
     }, {
         'class': 'nosvideo',
         'netloc': ['nosvideo.com'],
-        #'host': ['Nosvideo'],
-        'quality': 'Low',
-        'captcha': False,
-        'a/c': False
+        'quality': 'Low'
     }, {
         'class': 'novamov',
         'netloc': ['novamov.com'],
-        'host': ['Novamov'],
-        'quality': 'Low',
-        'captcha': False,
-        'a/c': False
+        'quality': 'Low'
     }, {
         'class': 'nowvideo',
         'netloc': ['nowvideo.eu', 'nowvideo.sx'],
-        'host': ['Nowvideo'],
-        'quality': 'Low',
-        'captcha': False,
-        'a/c': False
+        'quality': 'Low'
     }, {
         'class': 'openload',
         'netloc': ['openload.io', 'openload.co'],
-        'host': ['Openload'],
         'quality': 'High',
-        'captcha': True,
-        'a/c': False
+        'captcha': True
     }, {
         'class': 'p2pcast',
         'netloc': ['p2pcast.tv']
     }, {
         'class': 'primeshare',
         'netloc': ['primeshare.tv'],
-        'host': ['Primeshare'],
-        'quality': 'High',
-        'captcha': False,
-        'a/c': False
+        'quality': 'High'
     }, {
         'class': 'promptfile',
         'netloc': ['promptfile.com'],
-        'host': ['Promptfile'],
-        'quality': 'High',
-        'captcha': False,
-        'a/c': False
+        'quality': 'High'
     }, {
         'class': 'putstream',
         'netloc': ['putstream.com'],
-        'host': ['Putstream'],
-        'quality': 'Medium',
-        'captcha': False,
-        'a/c': False
+        'quality': 'Medium'
     }, {
         'class': 'realvid',
         'netloc': ['realvid.net'],
-        'host': ['Realvid'],
-        'quality': 'Low',
-        'captcha': False,
-        'a/c': False
+        'quality': 'Low'
     }, {
         'class': 'sawlive',
         'netloc': ['sawlive.tv']
     }, {
         'class': 'shared2',
         'netloc': ['shared2.me'],
-        'host': ['Shared2'],
-        'quality': 'High',
-        'captcha': False,
-        'a/c': False
+        'quality': 'High'
     }, {
         'class': 'sharerepo',
         'netloc': ['sharerepo.com'],
-        'host': ['Sharerepo'],
-        'quality': 'Low',
-        'captcha': False,
-        'a/c': False
+        'quality': 'Low'
     }, {
         'class': 'skyvids',
         'netloc': ['skyvids.net'],
-        'host': ['Skyvids'],
-        'quality': 'High',
-        'captcha': False,
-        'a/c': False
+        'quality': 'High'
     }, {
         'class': 'speedvideo',
         'netloc': ['speedvideo.net']
     }, {
         'class': 'stagevu',
         'netloc': ['stagevu.com'],
-        'host': ['StageVu'],
-        'quality': 'Low',
-        'captcha': False,
-        'a/c': False
+        'quality': 'Low'
     }, {
         'class': 'streamcloud',
         'netloc': ['streamcloud.eu'],
-        'host': ['Streamcloud'],
-        'quality': 'Medium',
-        'captcha': False,
-        'a/c': False
+        'quality': 'Medium'
     }, {
         'class': 'streamin',
         'netloc': ['streamin.to'],
-        'host': ['Streamin'],
-        'quality': 'Medium',
-        'captcha': False,
-        'a/c': False
+        'quality': 'Medium'
     }, {
         'class': 'thefile',
         'netloc': ['thefile.me'],
-        'host': ['Thefile'],
-        'quality': 'Low',
-        'captcha': False,
-        'a/c': False
+        'quality': 'Low'
     }, {
         'class': 'thevideo',
         'netloc': ['thevideo.me'],
-        'host': ['Thevideo'],
-        'quality': 'Low',
-        'captcha': False,
-        'a/c': False
+        'quality': 'Low'
     }, {
         'class': 'turbovideos',
         'netloc': ['turbovideos.net'],
-        'host': ['Turbovideos'],
-        'quality': 'High',
-        'captcha': False,
-        'a/c': False
+        'quality': 'High'
     }, {
         'class': 'tusfiles',
         'netloc': ['tusfiles.net'],
-        'host': ['Tusfiles'],
-        'quality': 'High',
-        'captcha': False,
-        'a/c': False
+        'quality': 'High'
     }, {
         'class': 'up2stream',
         'netloc': ['up2stream.com'],
-        'host': ['Up2stream'],
-        'quality': 'Medium',
-        'captcha': False,
-        'a/c': False
+        'quality': 'Medium'
     }, {
         'class': 'uploadc',
         'netloc': ['uploadc.com', 'uploadc.ch', 'zalaa.com'],
-        'host': ['Uploadc', 'Zalaa'],
-        'quality': 'High',
-        'captcha': False,
-        'a/c': False
+        'quality': 'High'
     }, {
         'class': 'uploadrocket',
         'netloc': ['uploadrocket.net'],
-        'host': ['Uploadrocket'],
         'quality': 'High',
-        'captcha': True,
-        'a/c': False
+        'captcha': True
     }, {
         'class': 'uptobox',
         'netloc': ['uptobox.com'],
-        'host': ['Uptobox'],
-        'quality': 'High',
-        'captcha': False,
-        'a/c': False
+        'quality': 'High'
     }, {
         'class': 'v_vids',
         'netloc': ['v-vids.com'],
-        'host': ['V-vids'],
-        'quality': 'High',
-        'captcha': False,
-        'a/c': False
+        'quality': 'High'
     }, {
         'class': 'vaughnlive',
         'netloc': ['vaughnlive.tv', 'breakers.tv', 'instagib.tv', 'vapers.tv']
@@ -472,55 +510,34 @@ def info():
     }, {
         'class': 'vidbull',
         'netloc': ['vidbull.com'],
-        'host': ['Vidbull'],
-        'quality': 'Low',
-        'captcha': False,
-        'a/c': False
+        'quality': 'Low'
     }, {
         'class': 'videomega',
         'netloc': ['videomega.tv'],
-        #'host': ['Videomega'],
-        'quality': 'High',
-        'captcha': False,
-        'a/c': False
+        'quality': 'High'
     }, {
         'class': 'videopremium',
         'netloc': ['videopremium.tv', 'videopremium.me']
     }, {
         'class': 'videoweed',
         'netloc': ['videoweed.es'],
-        'host': ['Videoweed'],
-        'quality': 'Low',
-        'captcha': False,
-        'a/c': False
+        'quality': 'Low'
     }, {
         'class': 'vidlockers',
         'netloc': ['vidlockers.ag'],
-        'host': ['Vidlockers'],
-        'quality': 'High',
-        'captcha': False,
-        'a/c': False
+        'quality': 'High'
     }, {
         'class': 'vidspot',
         'netloc': ['vidspot.net'],
-        'host': ['Vidspot'],
-        'quality': 'Medium',
-        'captcha': False,
-        'a/c': False
+        'quality': 'Medium'
     }, {
         'class': 'vidto',
         'netloc': ['vidto.me'],
-        'host': ['Vidto'],
-        'quality': 'Medium',
-        'captcha': False,
-        'a/c': False
+        'quality': 'Medium'
     }, {
         'class': 'vidzi',
         'netloc': ['vidzi.tv'],
-        'host': ['Vidzi'],
-        'quality': 'Low',
-        'captcha': False,
-        'a/c': False
+        'quality': 'Low'
     }, {
         'class': 'vimeo',
         'netloc': ['vimeo.com']
@@ -530,48 +547,26 @@ def info():
     }, {
         'class': 'vodlocker',
         'netloc': ['vodlocker.com'],
-        'host': ['Vodlocker'],
-        'quality': 'Low',
-        'captcha': False,
-        'a/c': False
-    }, {
-        'class': 'xfileload',
-        'netloc': ['xfileload.com'],
-        'host': ['Xfileload'],
-        'quality': 'High',
-        'captcha': True,
-        'a/c': False
+        'quality': 'Low'
     }, {
         'class': 'xvidstage',
         'netloc': ['xvidstage.com'],
-        'host': ['Xvidstage'],
-        'quality': 'Medium',
-        'captcha': False,
-        'a/c': False
+        'quality': 'Medium'
     }, {
         'class': 'youtube',
         'netloc': ['youtube.com'],
-        'host': ['Youtube'],
-        'quality': 'Medium',
-        'captcha': False,
-        'a/c': False
+        'quality': 'Medium'
     }, {
         'class': 'zerocast',
         'netloc': ['zerocast.tv']
     }, {
         'class': 'zettahost',
         'netloc': ['zettahost.tv'],
-        'host': ['Zettahost'],
-        'quality': 'High',
-        'captcha': False,
-        'a/c': False
+        'quality': 'High'
     }, {
         'class': 'zstream',
         'netloc': ['zstream.to'],
-        'host': ['zStream'],
-        'quality': 'High',
-        'captcha': False,
-        'a/c': False
+        'quality': 'High'
     }]
 
 

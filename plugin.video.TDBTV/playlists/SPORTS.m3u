@@ -33,7 +33,7 @@ http://yiptv4-live.hls.adaptive.level3.net/yiptv4/beinengov/04.m3u8
 0
 
 #EXTINF:0,ESPN 
-http://195.154.226.186:1935/liveedge/espnuklsh/playlist.m3u8
+rtmp://80.82.65.162/live playpath=despnuk swfUrl=http://www.yocast.tv/myplayer/jwplayer.flash.swf live=1 pageUrl=http://www.yocast.tv/embed.php?live=vskys1&vw=620&vh=490
 
 #EXTINF:0,Eurosport 1 
 http://78.30.254.27:8989/udp/239.0.0.195:4000
@@ -237,10 +237,13 @@ rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9
 rtmp://31.220.2.149:80/live playpath=sprt1 swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf pageUrl=http://yotv.co/embedu.php?live=sprt1&vw=620&vh=490 token=%Zrey(nKa@#Z
 
 #EXTINF:0,Sportsnet Ontario 
-0
+rtmp://31.220.2.149:80/live/ playpath=ontario token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://yotv.co
+
+#EXTINF:0,Sportsnet Ontario 
+rtmp://31.220.2.149:80/live playpath=ontario swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf live=1 pageUrl=http://yotv.co/embedu.php?live=world&vw=620&vh=490 token=%Zrey(nKa@#Z
 
 #EXTINF:0,Sportsnet World 
-0
+rtmp://31.220.2.149:80/live/ playpath=world token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://yotv.co
 
 #EXTINF:0,Tennis Channel 
 0
@@ -249,10 +252,10 @@ rtmp://31.220.2.149:80/live playpath=sprt1 swfUrl=http://p.jwpcdn.com/6/12/jwpla
 http://stream01.yamgo.com/iPhone/HLS_TS/broadcast/trace_tv_sports-tablet.3gp/trace_tv_sports-tablet.3gp-mr647k.m3u8?
 
 #EXTINF:0,TSN 1 
-0
+rtmp://31.220.2.149:80/live/ playpath=ts1 token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://yotv.co
 
 #EXTINF:0,TSN 2 
-0
+rtmp://31.220.2.149:80/live/ playpath=tsnx2 token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://yotv.co
 
 #EXTINF:0,TSN 3 
 0

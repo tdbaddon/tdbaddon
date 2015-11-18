@@ -30,13 +30,8 @@ def resolve(url):
 
         result = client.request(url)
         result = json.loads(result)
-        u = result['request']['files']['h264']
 
-        url = None
-        try: url = u['hd']['url']
-        except: pass
-        try: url = u['sd']['url']
-        except: pass
+        url = result['request']['files']['progressive'][0]['url']
 
         return url
     except:

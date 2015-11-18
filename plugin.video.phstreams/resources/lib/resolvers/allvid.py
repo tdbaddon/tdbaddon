@@ -47,7 +47,7 @@ def resolve(url):
         try: url.append({'quality': 'SD', 'url': [i[0] for i in r if int(i[1]) < 720][0]})
         except: pass
 
-        return url[0]['url']
+        return url
     except:
         return
 

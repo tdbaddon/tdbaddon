@@ -26,14 +26,13 @@ from resources.lib.libraries import jsunpack
 
 def resolve(url):
     try:
-        page = re.compile('//.+?/(?:embed|v)/([0-9a-zA-Z-_]+)').findall(url)[0]
-        page = 'http://sawlive.tv/embed/%s' % page
+        page = re.compile('//(.+?)/(?:embed|v)/([0-9a-zA-Z-_]+)').findall(url)[0]
+        page = 'http://%s/embed/%s' % (page[0], page[1])
 
         try: referer = urlparse.parse_qs(urlparse.urlparse(url).query)['referer'][0]
         except: referer = page
 
         result = client.request(page, referer=referer)
-
 
 
         unpacked = ''
@@ -45,27 +44,33 @@ def resolve(url):
         result = urllib.unquote_plus(result)
         result = re.sub('\s\s+', ' ', result)
 
+
+        url = client.parseDOM(result, 'iframe', ret='src')[-1]
+        url = url.replace(' ', '')
+
         var = re.compile('var\s(.+?)\s*=\s*\'(.+?)\'').findall(result)
         for i in range(100):
-            for v in var: result = result.replace("' %s '" % v[0], v[1]).replace("'%s'" % v[0], v[1])
-            for v in var: result = result.replace("' unescape(%s) '" % v[0], v[1].replace('%u',r'\u').decode('unicode-escape')).replace("'unescape(%s)'" % v[0], v[1].replace('%u',r'\u').decode('unicode-escape'))
+            for v in var: url = url.replace("'%s'" % v[0], v[1])
+            for v in var: url = url.replace("(%s)" % v[0], "(%s)" % v[1])
 
-        result = re.compile('<iframe(.+?)</iframe>').findall(result)[-1]
-
-
-
-        url = re.compile('src\s*=\s*[\'|\"](.+?)[\'|\"].+?[\'|\"](.+?)[\'|\"]').findall(result)
-        if len(url) == 0: url = re.compile('src\s*=\s*[\'|\"](.+?)[\'|\"](.+?)[\'|\"]').findall(result)
-        if len(url) == 0: url = re.compile('src\s*=\s*[\'|\"](.+?)[\'|\"]').findall(result)
-
-        url = '/'.join([i.strip('/') for i in url])
-
+        url = re.sub(r"'unescape\((.+?)\)'", r'\1', url)
+        url = re.sub(r"'(.+?)'", r'\1', url)
 
 
         result = client.request(url, referer=referer)
 
-        strm = re.compile("'streamer'.+?'(.+?)'").findall(result)[0]
         file = re.compile("'file'.+?'(.+?)'").findall(result)[0]
+
+        try:
+            if not file.startswith('http'): raise Exception()
+            url = client.request(file, output='geturl')
+            if not '.m3u8' in url: raise Exception()
+            url += '|%s' % urllib.urlencode({'User-Agent': client.agent(), 'Referer': file})
+            return url
+        except:
+            pass
+
+        strm = re.compile("'streamer'.+?'(.+?)'").findall(result)[0]
         swf = re.compile("SWFObject\('(.+?)'").findall(result)[0]
 
         url = '%s playpath=%s swfUrl=%s pageUrl=%s live=1 timeout=30' % (strm, file, swf, url)

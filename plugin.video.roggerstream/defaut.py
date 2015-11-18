@@ -20,7 +20,7 @@ from BeautifulSoup import BeautifulStoneSoup, BeautifulSoup, BeautifulSOAP
 from BeautifulSoup import BeautifulSoup
 h = HTMLParser.HTMLParser()
 
-versao = '3.0.2'
+versao = '3.0.3'
 addon_id = 'plugin.video.roggerstream'
 selfAddon = xbmcaddon.Addon(id=addon_id)
 addonfolder = selfAddon.getAddonInfo('path')
@@ -238,7 +238,6 @@ def addDir(name,url,mode,iconimage,pasta=True,total=1,plot=''):
 	liz.setInfo(type="Video", infoLabels={"Title": name, "Plot": plot})
 	contextMenuItems = []
 	contextMenuItems.append(('Movie Information', 'XBMC.Action(Info)'))
-	liz.addContextMenuItems(contextMenuItems, replaceItems=True)
 	ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=pasta,totalItems=total)
 	return ok	
 	

@@ -26,6 +26,8 @@ from resources.lib.libraries import captcha
 
 def resolve(url):
     try:
+        url = url.replace('clicknupload.com', 'clicknupload.me')
+
         result = client.request(url)
 
         if '>File Not Found<' in result: raise Exception()

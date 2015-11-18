@@ -32,6 +32,9 @@ def resolve(url):
 
         result = client.request(page, referer=referer)
 
+        token = client.request('http://p2pcast.tv/getToken.php', referer=page, headers={'User-Agent': client.agent(), 'X-Requested-With': 'XMLHttpRequest'})
+        try: token = re.compile('[\'|\"]token[\'|\"]\s*:\s*[\'|\"](.+?)[\'|\"]').findall(token)[0]
+        except: token = ''
 
         try:
             swf = re.compile('src\s*=[\'|\"](.+?player.+?\.js)[\'|\"]').findall(result)[0]
@@ -42,8 +45,8 @@ def resolve(url):
 
 
         url = re.compile('url\s*=\s*[\'|\"](.+?)[\'|\"]').findall(result)[0]
-        url = base64.b64decode(url)
-        url = '%s|User-Agent=%s&Referer=%s' % (url, urllib.quote_plus(client.agent()), urllib.quote_plus(swf))
+        url = base64.b64decode(url) + token
+        url += '|%s' % urllib.urlencode({'User-Agent': client.agent(), 'Referer': swf})
 
         return url
     except:

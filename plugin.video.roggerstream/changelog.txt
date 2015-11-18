@@ -1,12 +1,14 @@
-			   
-	            VERSAO ATUALIZADA 2.0.6			   
-				   
-				   
+VERSAO 3.0.3
+*Adicionada a possibilidade de favoritar os canais da categoria BRTV, para usar em conjunto com addons que precisam dessa funcao, como o tv guide por exemplo.
+
+VERSAO 3.0.2
+*Correcao da categoria BRTV...			   
+
+VERSAO ATUALIZADA 2.0.6			   			   
 *Versao atualizada,correcao de bugs,melhoras no desempenho...
 *Canais Master free rodando com wmsauthSign automaticamente resolvido...
 *Series e desenhos 24hrs...
 
-VERSAO 3.0.2
-*Correcao da categoria BRTV...
+
 
 

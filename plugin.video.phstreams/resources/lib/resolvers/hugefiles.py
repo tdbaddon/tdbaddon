@@ -26,6 +26,8 @@ from resources.lib.libraries import captcha
 
 def resolve(url):
     try:
+        u = url
+
         result = client.request(url)
 
         post = {}
@@ -37,9 +39,17 @@ def resolve(url):
         post.update(captcha.request(result))
         post = urllib.urlencode(post)
 
-        result = client.request(url, post=post)
+        result = client.request(url, post=post, close=False)
 
-        url = re.compile('fileUrl\s*=\s*[\'|\"](.+?)[\'|\"]').findall(result)[0]
+        post = {}
+        f = client.parseDOM(result, 'Form', attrs = {'action': '' })
+        f += client.parseDOM(result, 'form', attrs = {'action': '' })
+        k = client.parseDOM(f, 'input', ret='name', attrs = {'type': 'hidden'})
+        for i in k: post.update({i: client.parseDOM(f, 'input', ret='value', attrs = {'name': i})[0]})
+        post = urllib.urlencode(post)
+
+        url = client.request(url, post=post, output='geturl')
+        if u in url or url in u : return
         return url
     except:
         return

@@ -351,7 +351,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
-<addon id="plugin.video.phstreams" name="Phoenix" version="2.6.5" provider-name="Blazetamer, lambda">
+<addon id="plugin.video.phstreams" name="Phoenix" version="2.6.8" provider-name="Blazetamer, lambda">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.pyxbmct" version="1.1.4" />
@@ -448,7 +448,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
-<addon id="plugin.video.roggerstream" name="Rogger Stream" version="3.0.2" provider-name="Rogger, Cleiton Leonel Creton e Filipe Carvalho">
+<addon id="plugin.video.roggerstream" name="Rogger Stream" version="3.0.3" provider-name="Rogger, Cleiton Leonel Creton e Filipe Carvalho">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
   </requires>
@@ -652,7 +652,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="3.31"
+       version="3.32"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
