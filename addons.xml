@@ -576,7 +576,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 <addon id="plugin.video.TDBMOVIES"
        name="TDB MOVIES"
-       version="1.03"
+       version="1.04"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -652,7 +652,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="3.32"
+       version="3.33"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>

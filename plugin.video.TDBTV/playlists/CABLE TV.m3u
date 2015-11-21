@@ -14,9 +14,6 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 0
 
 #EXTINF:0,AMC 
-http://193.106.211.2:1234/udp/225.1.8.112:4001
-
-#EXTINF:0,AMC 
 http://200.76.77.237/LIVE/H01/CANAL444/PROFILE02.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,AMC 
@@ -87,7 +84,7 @@ http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD28_W_250.sdp/p
 http://origin.live.web.tv.streamprovider.net/streams/9044496707bcc259f6cdf58eb93cbfe9_live_0_0/index.m3u8
 
 #EXTINF:0,Comedy Central 
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/86.m3u8
+0
 
 #EXTINF:0,Cooking Channel
 0
@@ -105,13 +102,13 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/86.m3u8
 0
 
 #EXTINF:0,CW 
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/65.m3u8
+0
 
 #EXTINF:0,Disney Channel 
-http://minitv.noip.me:8000/live/dragana/dragana/226.ts
+0
 
 #EXTINF:0,Disney Junior 
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/13.m3u8
+0
 
 #EXTINF:0,Disney XD 
 0
@@ -132,16 +129,19 @@ http://origin.live.web.tv.streamprovider.net/streams/5dac5e87d17d40f5bca18d2b211
 0
 
 #EXTINF:0,Fashion TV 
-http://stream-ec.vty.dailymotion.com/01/dm/1/x2b0bb9/live.isml/events(live-1446700581)/live-audio=128000-video=1891000.m3u8
+http://204.107.27.250/live/21.low.stream/playlist.m3u8?id=638e649080cdcfd6b4eeba9bcca5a93766bd2f38c4c6c67a5e74d3ed3ba4c287d29d919b6387ea7d39e84a1f9587055cd290e94f3fbb7dc4ebd069b1f732757d8ff46ecce9c5e281bf3e61201253ac283f26654cb328d4a3e98a1bd5514ccb9c2c3341f19856cb60ef347194726ad8391a65cc5ba1b42f78278f78502a1b570bf2e87764fb1924f4843d3ba3c4296cdc5d715bfc5015f3e3
 
 #EXTINF:0,Fashion TV 
-http://stream-ec.vty.dailymotion.com/01/dm/1/x2b0bb9/live.isml/events(live-1446700581)/live-audio=128000-video=894000.m3u8
+http://204.107.27.250/live/21.low.stream/playlist.m3u8?id=638e649080cdcfd6b4eeba9bcca5a93766bd2f38c4c6c67a5e74d3ed3ba4c287d29d919b6387ea7d39e84a1f9587055cd290e94f3fbb7dc4ebd069b1f732757d8ff46ecce9c5e281bf3e61201253ac283f26654cb328d4a3e98a1bd5514ccb9c2c3341f19856cb60ef347194726ad8391a65cc5ba1b42f78278f78502a1b570bf2e87764fb1924f4843d3ba3c4296cdc5d715bfc5015f3e3
+
+#EXTINF:0,Fashion TV 
+http://stream-ak-2.vty.dailymotion.com/03/dm/1/x2b0bb9/live.isml/events(live-1448010158)/live-audio=128000-video=1891000.m3u8
 
 #EXTINF:0,Fine Living Network 
 0
 
 #EXTINF:0,Food Network 
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/53.m3u8
+0
 
 #EXTINF:0,Fox 1 
 http://200.76.77.237/LIVE/H01/CANAL415/PROFILE02.m3u8?supertvlat=%2F.ts
@@ -153,10 +153,10 @@ http://200.76.77.237/LIVE/H01/CANAL415/PROFILE03.m3u8?supertvlat=%2F.ts
 http://200.76.77.237/LIVE/H01/CANAL415/PROFILE05.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Fox Crime 
-http://minitv.noip.me:8000/live/dragana/dragana/142.ts
+http://103.245.167.28/tot/a7105ed1bb0a44bba1f4f71f2352b892.m3u8
 
 #EXTINF:0,Fox Life 
-http://minitv.noip.me:8000/live/dragana/dragana/137.ts
+0
 
 #EXTINF:0,Fox TV 
 0
@@ -165,7 +165,7 @@ http://minitv.noip.me:8000/live/dragana/dragana/137.ts
 0
 
 #EXTINF:0,FXHD 
-http://103.245.167.28/tot/2e0e4b05aa6e428593f3b45b710045b7.m3u8
+0
 
 #EXTINF:0,Global TV Halifax 
 http://link.theplatform.com/s/dtjsEC/77l1KA_G_5P1?feed=DEV%20Live%20Stream%20Feed/playlist.m3u8
@@ -180,10 +180,10 @@ http://link.theplatform.com/s/dtjsEC/EqBPGYLY6fEx?feed=DEV%20Live%20Stream%20Fee
 0
 
 #EXTINF:0,Hallmark Channel 
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/152.m3u8
+0
 
 #EXTINF:0,HGTV 
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/52.m3u8
+0
 
 #EXTINF:0,HSN 
 rtsp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:420p500kB31
@@ -240,7 +240,7 @@ http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
 http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/97.m3u8
 
 #EXTINF:0,Nick Jr 
-http://78.30.254.43:8989/udp/239.0.1.88:4000
+0
 
 #EXTINF:0,Nickelodeon 
 0
@@ -293,6 +293,9 @@ http://78.30.254.43:8989/udp/239.0.1.88:4000
 #EXTINF:0,Syfy 
 http://103.245.167.28/tot/71f197de056e499a85265c03b44bdab1.m3u8
 
+#EXTINF:0,Syfy 
+http://103.245.167.28/tot/2e0e4b05aa6e428593f3b45b710045b7.m3u8
+
 #EXTINF:0,TBS 
 0
 
@@ -336,7 +339,7 @@ http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/master.m3u8?b?b*t
 0
 
 #EXTINF:0,Universal Channel 
-http://103.245.167.28/tot/a7105ed1bb0a44bba1f4f71f2352b892.m3u8
+0
 
 #EXTINF:0,USA Network 
 0

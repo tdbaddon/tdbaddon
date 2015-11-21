@@ -28,9 +28,6 @@ http://x4012c4000.edge.core-cdn.net/40000mb/live/4012hbbtv/bloomberg.ts
 #EXTINF:0,CBC News Canada 
 rtmp://a.cdn.newschat.tv/edge playpath=cbc_live swfUrl=http://msnbclive.eu/player.swf pageUrl=http://www.livenewschat.eu/canada/ live=1
 
-#EXTINF:0,CBC News Canada 
-rtmp://a.cdn.newschat.tv/edge playpath=cbc_live swfUrl=http://msnbclive.eu/player.swf pageUrl=http://www.livenewschat.eu/canada/ live=2
-
 #EXTINF:0,CBS News
 http://cbsnews-linear.mdialog.com/video_assets/cbsnews.m3u8?api_key=563b80c1ae4ce359830f572d2496a947&iu=/8264/vaw-can/mobile_web/cbsnews_mobileprocessor=https://sp.yimg.com/ib/th?id=JN.%2bZ5%2f0mrtDRvtsB4lEiRQ2Q&pid=15.1&P=0&w=300&h=300
 
@@ -46,9 +43,6 @@ rtmp://edge1.everyon.tv/etv1sb/phd16
 #EXTINF:0,CNN 
 rtmp://edge1.everyon.tv/etv1sb/pld16
 
-#EXTINF:0,CNN 
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/186.m3u8
-
 #EXTINF:0,CP24 
 0
 
@@ -57,9 +51,6 @@ http://bcliveuniv-lh.akamaihd.net/i/cpac1eng2014_01@119330/index_2000_av-p.m3u8
 
 #EXTINF:0,CSPAN 
 http://cspan1-lh.akamaihd.net/i/cspan1_1@304727/master.m3u8 
-
-#EXTINF:0,CSPAN 
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/80.m3u8
 
 #EXTINF:0,CTV NEWS 
 http://66.51.129.171:8080/demo/index.m3u8 
@@ -89,7 +80,7 @@ rtsp://ewns-hls-b-stream.hexaglobe.net/rtpeuronewslive/en_vidan750_rtp.sdp
 http://fr-par-iphone-2.cdn.hexaglobe.net/streaming/euronews_ewns/ipad_en.m3u8
 
 #EXTINF:0,Fox News 
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/35.m3u8
+0
 
 #EXTINF:0,France 24 
 0

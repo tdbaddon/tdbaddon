@@ -6,7 +6,7 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 
 
 #EXTINF:0,Bein Sport 1 
-http://yiptv4-live.hls.adaptive.level3.net/yiptv4/beinengov/04.m3u8
+0
 
 #EXTINF:0,Bein Sport 2
 0
@@ -36,9 +36,6 @@ http://yiptv4-live.hls.adaptive.level3.net/yiptv4/beinengov/04.m3u8
 rtmp://80.82.65.162/live playpath=despnuk swfUrl=http://www.yocast.tv/myplayer/jwplayer.flash.swf live=1 pageUrl=http://www.yocast.tv/embed.php?live=vskys1&vw=620&vh=490
 
 #EXTINF:0,Eurosport 1 
-http://78.30.254.27:8989/udp/239.0.0.195:4000
-
-#EXTINF:0,Eurosport 1 
 http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_1800.m3u8
 
 #EXTINF:0,Eurosport 2 
@@ -63,7 +60,7 @@ http://ftve1100-i.akamaihd.net/hls/live/217045/fcsa/3964k/prog.m3u8|X-Forwarded-
 http://ftve1100-i.akamaihd.net/hls/live/217046/fcsc/3964k/prog.m3u8|X-Forwarded-For=13.107.25.55
 
 #EXTINF:0,Fox Sports 1 
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/75.m3u8
+0
 
 #EXTINF:0,Fox Sports 2 
 0
@@ -84,10 +81,7 @@ mms://100automoto.tv/channel_mercedes
 0
 
 #EXTINF:0,Motors TV 
-rtmp://31.220.2.149:80/live playpath=motors swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf pageUrl=http://yotv.co/embedu.php?live=motors&vw=620&vh=490 live=1 token=%Zrey(nKa@#Z timeout=10
-
-#EXTINF:0,Motors TV 
-rtmp://31.220.2.149:80/live/ playpath=motors token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://yotv.co
+0
 
 #EXTINF:0,Motorsport 7 
 http://motorsport.hopto.org:8080/
@@ -126,34 +120,31 @@ http://nflsvglagame1-i.akamaihd.net/hls/live/223206/NFL_Mobile/2015Mobile_NFLN_5
 http://208.92.36.158/ipad/live/nba_ipad_1240.m3u8
 
 #EXTINF:0,Outdoor Channel 
-http://j.mp/ZCH_C01_OUTDOORCHANNELHD_sly
+0
 
 #EXTINF:0,PAC 12 Arizona 
 http://xrxs.net/video/live-p12ariz-1164.m3u8
 
 #EXTINF:0,PAC 12 Arizona HD 
-http://xrxs.net/video/live-p12ariz-4728.m3u8
+0
 
 #EXTINF:0,PAC 12 Bay Area 
-http://xrxs.net/video/live-p12baya-1164.m3u8
-
-#EXTINF:0,PAC 12 Bay Area 
-http://xrxs.net/video/live-p12baya-2328.m3u8
+0
 
 #EXTINF:0,PAC 12 Bay Area HD 
-http://xrxs.net/video/live-p12baya-4728.m3u8
+0
 
 #EXTINF:0,PAC 12 LA 
-http://xrxs.net/video/live-p12losa-2328.m3u8
+0
 
-#EXTINF:0,PAC 12 LA HD
-http://xrxs.net/video/live-p12losa-4728.m3u8
+#EXTINF:0,PAC 12 LA HD 
+0
 
 #EXTINF:0,PAC 12 National 
 http://xrxs.net/video/live-p12netw-1164.m3u8
  
 #EXTINF:0,PAC 12 National HD 
-http://xrxs.net/video/live-p12netw-2328.m3u8
+0
 
 #EXTINF:0,PAC 12 Mountain 
 http://xrxs.net/video/live-p12moun-1164.m3u8
@@ -174,7 +165,7 @@ http://xrxs.net/video/live-p12oreg-4728.m3u8
 http://xrxs.net/video/live-p12wash-1164.m3u8
  
 #EXTINF:0,PAC 12 Washington HD 
-http://xrxs.net/video/live-p12wash-4728.m3u8
+0
 
 #EXTINF:0,Poker Central
 http://ooyalahd2-f.akamaihd.net/i/crtv01_delivery@329705/index_1164_av-b.m3u8
@@ -183,7 +174,7 @@ http://ooyalahd2-f.akamaihd.net/i/crtv01_delivery@329705/index_1164_av-b.m3u8
 mms://100automoto.tv/channel_porsche
 
 #EXTINF:0,Premier Sports 
-http://195.154.226.186:1935/liveedge/vpremsplsh/playlist.m3u8
+0
 
 #EXTINF:0,Racing UK 
 0
@@ -195,40 +186,28 @@ http://195.154.226.186:1935/liveedge/vpremsplsh/playlist.m3u8
 0
 
 #EXTINF:0,Sky Sports 1 
-http://195.154.226.186:1935/liveedge/skysports1lsh/playlist.m3u8
-
-#EXTINF:0,Sky Sports 1 
-http://cds.a3g6t8m9.hwcdn.net/caliveorigin/skysports1.stream/playlist.m3u8
+0
 
 #EXTINF:0,Sky Sports 2 
-http://cds.a3g6t8m9.hwcdn.net/caliveorigin/skysports2.stream/playlist.m3u8
+0
 
 #EXTINF:0,Sky Sports 3 
-http://cds.a3g6t8m9.hwcdn.net/caliveorigin/skysports3.stream/playlist.m3u8
-
-#EXTINF:0,Sky Sports 3 
-http://195.154.226.186:1935/liveedge/skysports3lsh/playlist.m3u8
+0
 
 #EXTINF:0,Sky Sports 4 
-http://cds.a3g6t8m9.hwcdn.net/caliveorigin/skysports4.stream/playlist.m3u8
-
-#EXTINF:0,Sky Sports 4 
-http://195.154.226.186:1935/liveedge/skysports4lsh/playlist.m3u8
-
-#EXTINF:0,Sky Sports 4 
-http://minitv.noip.me:8000/live/dragana/dragana/185.ts
+0
 
 #EXTINF:0,Sky Sports 5 
-http://cds.a3g6t8m9.hwcdn.net/caliveorigin/skysports5.stream/chunklist.m3u8
+0
 
 #EXTINF:0,Sky Sports F1 
-http://195.154.226.186:1935/liveedge/vskysf1lsh/playlist.m3u8
+0
 
 #EXTINF:0,Sky Sports News 
 0
 
 #EXTINF:0,Sports Tonight 
-rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9-HD
+0
 
 #EXTINF:0,Sportsnet 360 
 0
@@ -276,4 +255,4 @@ http://109.254.88.12:81/udp/238.1.1.113:1234
 http://208.92.36.158/ipad/live/nba_ipad_1240.m3u8
 
 #EXTINF:0,WWE Network 
-rtmp://80.82.70.155/live playpath=ddwwenw swfUrl=http://www.yocast.tv/myplayer/jwplayer.flash.swf pageUrl=http://www.yocast.tv/embed.php?live=ddwwenw&vw=620&vh=490 live=1 token=%Zrey(nKa@#Z
+0

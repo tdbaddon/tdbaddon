@@ -10,7 +10,7 @@ http://rrr.sz.xlcdn.com/?account=AATW&file=akanew&type=live&service=wowza&protoc
 #EXTINF:0,A One 
 0
 
-#EXTINF:0,Beatz TV
+#EXTINF:0,Beatz TV 
 http://rtmp.infomaniak.ch/livecast/beats_1/playlist.m3u8
 
 #EXTINF:0,BPM TV 
@@ -44,7 +44,7 @@ http://www.djing.com/tv/a-05.m3u8
 http://www.djing.com/tv/i-05.m3u8
 
 #EXTINF:0,Djing Club Hits 
-http://cdn.djing.com/tv/h-05.m3u8
+0
 
 #EXTINF:0,Djing Dancefloor 
 http://djing.com/tv/dancefloor.m3u8
@@ -101,12 +101,6 @@ rtmp://tst.es.flash.glb.ipercast.net/tst.es-live/live
 http://74.208.152.93/music/stream3/stream.m3u8
 
 #EXTINF:0,MTV 
-http://188.17.143.39/hls/CH_C03_MTV/variant.m3u8?version=2
-
-#EXTINF:0,MTV 
-http://ott.orion.rs:1935/livelowedge2/mtvadria.stream/playlist.m3u8?v=1&k=0&token=112f0b5ffe04810bbd7b27a81631a956cf2a64ab2aa76af0d155612ba3756c9e&ak=78820&time=1446892988400
-
-#EXTINF:0,MTV 
 http://200.76.77.237/LIVE/H01/CANAL726/PROFILE02.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,MTV 
@@ -121,7 +115,7 @@ http://200.76.77.237/LIVE/H01/CANAL701/PROFILE02.m3u8?supertvlat=%2F.ts
 #EXTINF:0,MTV Live
 http://200.76.77.237/LIVE/H01/CANAL701/PROFILE03.m3u8?supertvlat=%2F.ts
 
-#EXTINF:0,MTV Live
+#EXTINF:0,MTV Live 
 http://200.76.77.237/LIVE/H01/CANAL701/PROFILE05.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,MTV Dance 
