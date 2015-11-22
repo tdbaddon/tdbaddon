@@ -71,12 +71,12 @@ http://81.7.13.162/hls/oranews/index.m3u8
 rtmp://82.114.65.202/live/rrokumtv.flv swfUrl=http://tv24.al/shqiptv/css/player.swf live=1
 
 #EXTINF:0,RTK1 
-http://akamai127.tibo.tv/rtk/timeshift_rel-20.m3u8$OPT:http-user-agent=stagefright%2F1.0+%28Linux%3BAndroid+2.2%29
+0
 
 #EXTINF:0,STV 
 http://88.212.10.27:81/streams/stv1.m3u8?
 
-#EXTINF:0,STV Folk
+#EXTINF:0,STV Folk 
 rtmp://str103.setplex.net:1935/228/stv_folk
 
 #EXTINF:0,Supersonic TV

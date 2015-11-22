@@ -28,19 +28,22 @@ def resolve(url):
     try:
         url = url.replace('/embed-', '/')
         url = re.compile('//.+?/([\w]+)').findall(url)[0]
-        url = 'http://rapidvideo.ws/embed-%s.html' % url
+        url = 'http://vid.ag/embed-%s.html' % url
 
         result = client.request(url, mobile=True)
 
         result = re.compile('(eval.*?\)\)\))').findall(result)[-1]
         result = jsunpack.unpack(result)
 
-        url = client.parseDOM(result, 'embed', ret='src')
-        url += re.compile("file *: *[\'|\"](.+?)[\'|\"]").findall(result)
-        url = [i for i in url if not i.endswith('.srt')]
-        url = 'http://' + url[0].split('://', 1)[-1]
+        result = re.compile('sources *: *\[.+?\]').findall(result)[-1]
+        result = re.compile('file *: *"(http.+?)"').findall(result)
 
-        return url
+        url = [i for i in result if '.m3u8' in i]
+        if len(url) > 0: return url[0]
+
+        url = [i for i in result if not '.m3u8' in i]
+        if len(url) > 0: return url[0]
     except:
         return
+
 

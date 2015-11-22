@@ -7,14 +7,8 @@
 #EXTINF:0,Pink 1 
 http://minitv.noip.me:8000/live/dragana/dragana/21.ts
 
-#EXTINF:0,Pink 1 
-http://ott.orion.rs:1935/livelowedge/pink.stream/playlist.m3u8?v=1&k=0&token=32956e04e6b468bb3cb92ae3b24166b17c197655ac810f3d1be858c616e49870&ak=78820&time=1446892988400
-
 #EXTINF:0,Pink 2 
 http://minitv.noip.me:8000/live/dragana/dragana/175.ts
-
-#EXTINF:0,Pink 2 
-http://ott.orion.rs:1935/livelowedge/pink2.stream/playlist.m3u8?v=1&k=0&token=6e6d1cf7238e3653bfe3459bf6032181e1c01c92a972eb273ea0adbfcc55a389&ak=78820&time=1446892988400
 
 #EXTINF:0,Pink 3 
 0
@@ -31,20 +25,17 @@ http://minitv.noip.me:8000/live/dragana/dragana/26.ts
 #EXTINF:0,Pink BH
 http://minitv.noip.me:8000/live/dragana/dragana/23.ts
 
-#EXTINF:0,Pink BH
-http://ott.orion.rs:1935/livelowedge/pinkbh.stream/playlist.m3u8?v=1&k=0&token=d942f383ce7f5fc395a90e3179dc0d4974bcaa49bf69cab45d961792d7e746c1&ak=78820&time=1446892988400
-
 #EXTINF:0,Pink Classic 
 0
 
 #EXTINF:0,Pink Comedy 
 http://minitv.noip.me:8000/live/dragana/dragana/41.ts
 
-#EXTINF:0,Pink Crime & Mystery
-http://minitv.noip.me:8000/live/dragana/dragana/25.ts
+#EXTINF:0,Pink Crime & Mystery 
+0
 
 #EXTINF:0,Pink Extra 
-http://ott.orion.rs:1935/livelowedge/pinkextra.stream/playlist.m3u8?v=1&k=0&token=6c7cebdb8099e4cefca1ea09303e6f1ee808d97ad4790bb99fb8050494d3dea2&ak=78820&time=1446892988400
+0
 
 #EXTINF:0,Pink Family 
 0
@@ -57,9 +48,6 @@ http://minitv.noip.me:8000/live/dragana/dragana/60.ts
 
 #EXTINF:0,Pink Folk 1
 http://minitv.noip.me:8000/live/dragana/dragana/187.ts
-
-#EXTINF:0,Pink Folk 1
-http://ott.orion.rs:1935/livelowedge/pinkfolk.stream/playlist.m3u8?v=1&k=0&token=8e004c75a877580777c89cd28ee0083be6a994705703f03831b84936b8a2e57b&ak=78820&time=1446892988400
 
 #EXTINF:0,Pink Folk 2 
 http://minitv.noip.me:8000/live/dragana/dragana/169.ts
@@ -77,7 +65,7 @@ http://minitv.noip.me:8000/live/dragana/dragana/171.ts
 0
 
 #EXTINF:0,Pink M 
-http://ott.orion.rs:1935/livelowedge/pinkm.stream/playlist.m3u8?v=1&k=0&token=685599042ded7e22cfd9f46d8f7f5d1b800a336a19d83bb5d267475a735b39c5&ak=78820&time=1446892988400
+0
 
 #EXTINF:0,Pink Movies 1 
 0
@@ -110,19 +98,19 @@ http://ott.orion.rs:1935/livelowedge/pinkm.stream/playlist.m3u8?v=1&k=0&token=68
 0
 
 #EXTINF:0,Pink Pedia 
-http://ott.orion.rs:1935/livelowedge/pinkpedia.stream/playlist.m3u8?v=1&k=0&token=4707080807fec86a7e25e706d345e9b3ce8492ad7d013ea7a4d88eb2ededdbbd&ak=78820&time=1446892988400
+0
 
 #EXTINF:0,Pink Plus 
-http://ott.orion.rs:1935/livelowedge/pinkplus.stream/playlist.m3u8?v=1&k=0&token=402836638198f2c48d5d84a233e54cd57e8037249d19229d5ef73270290b55f4&ak=78820&time=1446892988400
+0
 
 #EXTINF:0,Pink Premium 
-http://ott.orion.rs:1935/livelowedge/pinkpremium.stream/playlist.m3u8?v=1&k=0&token=16ccda5678dca6e95fba71cbe3d832b263fad33b7edbddc3923f8bd4d8272c9d&ak=78820&time=1446892988400
+0
 
 #EXTINF:0,Pink Reality 
 http://minitv.noip.me:8000/live/dragana/dragana/174.ts
 
 #EXTINF:0,Pink Reality 
-http://ott.orion.rs:1935/livelowedge/pinkreality.stream/playlist.m3u8?v=1&k=0&token=d13c727b0379a70c357183e218906256721bcb4e95152ae81124949b68ba82b3&ak=78820&time=1446892988400
+0
 
 #EXTINF:0,Pink Romance
 http://minitv.noip.me:8000/live/dragana/dragana/173.ts
@@ -131,16 +119,13 @@ http://minitv.noip.me:8000/live/dragana/dragana/173.ts
 http://minitv.noip.me:8000/live/dragana/dragana/167.ts
 
 #EXTINF:0,Pink Serije 
-http://ott.orion.rs:1935/livelowedge/pinkserije.stream/playlist.m3u8?v=1&k=0&token=cc36f47cfe2979df4f8f734c008d82babd50b55609977319fa12b991c9938e7e&ak=78820&time=1446892988400
+0
 
 #EXTINF:0,Pink Show 
 0
 
 #EXTINF:0,Pink Soap 
 http://minitv.noip.me:8000/live/dragana/dragana/166.ts
-
-#EXTINF:0,Pink Soap 
-http://ott.orion.rs:1935/livelowedge/pinksoap.stream/playlist.m3u8?v=1&k=0&token=ec3f938401f2facba58bf120a1bafb9250b1f0e8e80f8e224d48eea67dc3715c&ak=78820&time=1446892988400
 
 #EXTINF:0,Pink Style 
 0
@@ -158,7 +143,7 @@ http://minitv.noip.me:8000/live/dragana/dragana/15.ts
 http://minitv.noip.me:8000/live/dragana/dragana/117.ts
 
 #EXTINF:0,Pink World Cinema 
-http://ott.orion.rs:1935/livelowedge/pinkworldcinema.stream/playlist.m3u8?v=1&k=0&token=b622295bae87f0382249e08ef517928608e09bdb4db9a9e45c692e2aa69f7c0b&ak=78820&time=1446892988400
+0
 
 #EXTINF:0,Pink Zabava 
 http://hdrtv-team.dyndns.tv:8000/live/gatto/gatto/100.ts

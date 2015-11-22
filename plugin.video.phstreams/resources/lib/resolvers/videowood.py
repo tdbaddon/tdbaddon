@@ -21,18 +21,26 @@
 
 import re
 from resources.lib.libraries import client
+from resources.lib.libraries import jsunpack
 
 
 def resolve(url):
     try:
-        url = url.replace('/embed-', '/')
-        url = re.compile('//.+?/([\w]+)').findall(url)[0]
-        url = 'http://putstream.com/embed-%s.html' % url
+        url = re.compile('//.+?/(?:video|embed)/([0-9a-zA-Z-_]+)').findall(url)[0]
+        url = 'http://videowood.tv/embed/%s' % url
 
         result = client.request(url)
 
-        url = re.compile('file *: *"(http.+?)"').findall(result)[-1]
+        result = re.compile('(eval.*?)\n').findall(result)[-1]
+        result = jsunpack.unpack(result)
+
+        url = client.parseDOM(result, 'embed', ret='src')
+        url += re.compile("[\'|\"]file[\'|\"] *: *[\'|\"](.+?)[\'|\"]").findall(result)
+        url = [i.replace('\\', '') for i in url if not i.endswith(('.srt', '.png', '.jpg'))]
+        url = 'http://' + url[0].split('://', 1)[-1]
+
         return url
     except:
         return
+
 

@@ -32,10 +32,15 @@ def request(url, debrid=''):
 
         if '</regex>' in url:
             import regex ; url = regex.resolve(url)
+            if not url == None: u = url
 
         if url.startswith('rtmp'):
             if len(re.compile('\s*timeout=(\d*)').findall(url)) == 0: url += ' timeout=10'
             return url
+
+        if url.startswith('$base64'):
+            import base64 ; url = base64.b64decode(re.compile('\$base64\[(.+?)\]$').findall(url)[0])
+            if not url == None: u = url
 
         if not debrid == '': return debridResolver(url, debrid)
 
@@ -144,10 +149,10 @@ def debridCredentials():
 
 
 def debridResolver(url, debrid):
-    url = url.replace('filefactory.com/stream/', 'filefactory.com/file/')
+    u = url.replace('filefactory.com/stream/', 'filefactory.com/file/')
 
     try:
-        if not debrid == 'realdebrid': raise Exception()
+        if not debrid == 'realdebrid' and not debrid == True: raise Exception()
         user, password = [(i['user'], i['pass']) for i in debridCredentials() if i['debrid'] == 'realdebrid' and not (i['user'] == '' or i['pass'] == '')][0]
 
         login_data = urllib.urlencode({'user': user, 'pass': password})
@@ -158,7 +163,7 @@ def debridResolver(url, debrid):
         if not error == 0: raise Exception()
         cookie = result['cookie']
 
-        url = 'http://real-debrid.com/ajax/unrestrict.php?link=%s' % urllib.quote_plus(url)
+        url = 'http://real-debrid.com/ajax/unrestrict.php?link=%s' % urllib.quote_plus(u)
         result = client.request(url, cookie=cookie, close=False)
         result = json.loads(result)
         url = result['generated_links'][0][-1]
@@ -168,10 +173,10 @@ def debridResolver(url, debrid):
         pass
 
     try:
-        if not debrid == 'premiumize': raise Exception()
+        if not debrid == 'premiumize' and not debrid == True: raise Exception()
         user, password = [(i['user'], i['pass']) for i in debridCredentials() if i['debrid'] == 'premiumize' and not (i['user'] == '' or i['pass'] == '')][0]
 
-        url = 'http://api.premiumize.me/pm-api/v1.php?method=directdownloadlink&params[login]=%s&params[pass]=%s&params[link]=%s' % (user, password, urllib.quote_plus(url))
+        url = 'http://api.premiumize.me/pm-api/v1.php?method=directdownloadlink&params[login]=%s&params[pass]=%s&params[link]=%s' % (user, password, urllib.quote_plus(u))
         result = client.request(url, close=False)
         url = json.loads(result)['result']['location']
         return url
@@ -179,14 +184,14 @@ def debridResolver(url, debrid):
         pass
 
     try:
-        if not debrid == 'alldebrid': raise Exception()
+        if not debrid == 'alldebrid' and not debrid == True: raise Exception()
         user, password = [(i['user'], i['pass']) for i in debridCredentials() if i['debrid'] == 'alldebrid' and not (i['user'] == '' or i['pass'] == '')][0]
 
         login_data = urllib.urlencode({'action': 'login', 'login_login': user, 'login_password': password})
         login_link = 'http://alldebrid.com/register/?%s' % login_data
         cookie = client.request(login_link, output='cookie', close=False)
 
-        url = 'http://www.alldebrid.com/service.php?link=%s' % urllib.quote_plus(url)
+        url = 'http://www.alldebrid.com/service.php?link=%s' % urllib.quote_plus(u)
         result = client.request(url, cookie=cookie, close=False)
         url = client.parseDOM(result, 'a', ret='href', attrs = {'class': 'link_dl'})[0]
         url = client.replaceHTMLCodes(url)
@@ -196,10 +201,10 @@ def debridResolver(url, debrid):
         pass
 
     try:
-        if not debrid == 'rpnet': raise Exception()
+        if not debrid == 'rpnet' and not debrid == True: raise Exception()
         user, password = [(i['user'], i['pass']) for i in debridCredentials() if i['debrid'] == 'rpnet' and not (i['user'] == '' or i['pass'] == '')][0]
 
-        login_data = urllib.urlencode({'username': user, 'password': password, 'action': 'generate', 'links': url})
+        login_data = urllib.urlencode({'username': user, 'password': password, 'action': 'generate', 'links': u})
         login_link = 'http://premium.rpnet.biz/client_api.php?%s' % login_data
         result = client.request(login_link, close=False)
         result = json.loads(result)
@@ -256,7 +261,7 @@ def hostprDict():
 def info():
     return [{
         'class': '',
-        'netloc': ['oboom.com', 'rapidgator.net', 'rg.to', 'uploaded.net', 'uploaded.to', 'ul.to', 'filefactory.com'],
+        'netloc': ['oboom.com', 'rapidgator.net', 'rg.to', 'uploaded.net', 'uploaded.to', 'ul.to', 'filefactory.com', 'nitroflare.com', 'turbobit.net'],
         'quality': 'High'
     }, {
         'class': '_180upload',
@@ -310,10 +315,6 @@ def info():
     }, {
         'class': 'exashare',
         'netloc': ['exashare.com'],
-        'quality': 'Low'
-    }, {
-        'class': 'fastvideo',
-        'netloc': ['fastvideo.in', 'faststream.in', 'rapidvideo.ws'],
         'quality': 'Low'
     }, {
         'class': 'filehoot',
@@ -396,9 +397,13 @@ def info():
         'class': 'mybeststream',
         'netloc': ['mybeststream.xyz']
     }, {
+        'class': 'neodrive',
+        'netloc': ['neodrive.co'],
+        'quality': 'Medium'
+    }, {
         'class': 'nosvideo',
-        'netloc': ['nosvideo.com'],
-        'quality': 'Low'
+        'netloc': ['nosvideo.com', 'noslocker.com'],
+        'quality': 'High'
     }, {
         'class': 'novamov',
         'netloc': ['novamov.com'],
@@ -424,14 +429,6 @@ def info():
         'netloc': ['promptfile.com'],
         'quality': 'High'
     }, {
-        'class': 'putstream',
-        'netloc': ['putstream.com'],
-        'quality': 'Medium'
-    }, {
-        'class': 'realvid',
-        'netloc': ['realvid.net'],
-        'quality': 'Low'
-    }, {
         'class': 'sawlive',
         'netloc': ['sawlive.tv']
     }, {
@@ -442,10 +439,6 @@ def info():
         'class': 'sharerepo',
         'netloc': ['sharerepo.com'],
         'quality': 'Low'
-    }, {
-        'class': 'skyvids',
-        'netloc': ['skyvids.net'],
-        'quality': 'High'
     }, {
         'class': 'speedvideo',
         'netloc': ['speedvideo.net']
@@ -464,15 +457,11 @@ def info():
     }, {
         'class': 'thefile',
         'netloc': ['thefile.me'],
-        'quality': 'Low'
+        'quality': 'High'
     }, {
         'class': 'thevideo',
         'netloc': ['thevideo.me'],
         'quality': 'Low'
-    }, {
-        'class': 'turbovideos',
-        'netloc': ['turbovideos.net'],
-        'quality': 'High'
     }, {
         'class': 'tusfiles',
         'netloc': ['tusfiles.net'],
@@ -508,9 +497,17 @@ def info():
         'class': 'veetle',
         'netloc': ['veetle.com']
     }, {
+        'class': 'vidag',
+        'netloc': ['vid.ag'],
+        'quality': 'Medium'
+    }, {
         'class': 'vidbull',
         'netloc': ['vidbull.com'],
         'quality': 'Low'
+    }, {
+        'class': 'vidce',
+        'netloc': ['vidce.tv'],
+        'quality': 'High'
     }, {
         'class': 'videomega',
         'netloc': ['videomega.tv'],
@@ -522,6 +519,10 @@ def info():
         'class': 'videoweed',
         'netloc': ['videoweed.es'],
         'quality': 'Low'
+    }, {
+        'class': 'videowood',
+        'netloc': ['videowood.tv'],
+        'quality': 'High'
     }, {
         'class': 'vidlockers',
         'netloc': ['vidlockers.ag'],
@@ -537,7 +538,7 @@ def info():
     }, {
         'class': 'vidzi',
         'netloc': ['vidzi.tv'],
-        'quality': 'Low'
+        'quality': 'High'
     }, {
         'class': 'vimeo',
         'netloc': ['vimeo.com']

@@ -124,8 +124,8 @@ http://217.16.82.6:1935/zulu/sitel3_1/playlist.m3u8
 #EXTINF:0,Sitel 3 
 http://217.16.82.6:554/zulu/sitel3_1/playlist.m3u8
 
-#EXTINF:0,Sonce TV
-http://92.53.27.201:10000/
+#EXTINF:0,Sonce TV 
+0
 
 #EXTINF:0,Sutel TV 
 http://217.16.82.6:1935/zulu/shutel_1/playlist.m3u8
@@ -145,7 +145,7 @@ http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/ultra-tv-tetovo/chun
 #EXTINF:0,Vesti 24
 http://24vesti.com.mk/sites/dnevnik/Vesti_VB6.flv 
 
-#EXTINF:0,Vesti 24
+#EXTINF:0,Vesti 24 
 http://62.162.58.55/24vesti
 
 #EXTINF:0,Vesti Sitel

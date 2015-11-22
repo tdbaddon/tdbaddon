@@ -4,8 +4,8 @@
 #EXTINF:0,4fun TV 
 0
 
-#EXTINF:0,24
-rtmp://144.76.154.14/live/tvn24
+#EXTINF:0,24 
+0
 
 #EXTINF:0,Asta TV
 0
@@ -58,32 +58,32 @@ mms://194.150.185.253/ITV
 #EXTINF:0,Lech TV
 http://wtk.live-ext.e96-jw.insyscd.net/lechtv.smil/playlist.m3u8
 
-#EXTINF:0,Noe Zive
-http://cz.wownet.ro:8017|X-Forwarded-For=81.17.18.50
+#EXTINF:0,Noe Zive 
+0
 
-#EXTINF:0,Nova TV
-http://cz.wownet.ro:8003|X-Forwarded-For=81.17.18.50
+#EXTINF:0,Nova Cinema 
+0
 
-#EXTINF:0,Nova Cinema
-http://cz.wownet.ro:8020|X-Forwarded-For=81.17.18.50
+#EXTINF:0,Nova TV 
+0
 
 #EXTINF:0,Nova Sport 5
 0
 
-#EXTINF:0,O1
-http://cz.wownet.ro:8001|X-Forwarded-For=81.17.18.50
+#EXTINF:0,O1 
+0
 
-#EXTINF:0,O2
-http://cz.wownet.ro:8002|X-Forwarded-For=81.17.18.50
+#EXTINF:0,O2 
+0
 
-#EXTINF:0,O24
-http://cz.wownet.ro:8015|X-Forwarded-For=81.17.18.50
+#EXTINF:0,O24 
+0
 
-#EXTINF:0,Ocko
-http://cz.wownet.ro:8016|X-Forwarded-For=81.17.18.50
+#EXTINF:0,Ocko 
+0
 
-#EXTINF:0,Ocko Gold
-http://cz.wownet.ro:8012|X-Forwarded-For=81.17.18.50
+#EXTINF:0,Ocko Gold 
+0
 
 #EXTINF:0,OD
 0
@@ -91,29 +91,23 @@ http://cz.wownet.ro:8012|X-Forwarded-For=81.17.18.50
 #EXTINF:0,Polo TV
 rtmp://stream.smcloud.net/live/polotv
 
-#EXTINF:0,Polo TV 
-rtmp://stream.smcloud.net/live/polotv swfUrl=http://polotv.pl/thrdparty/flowplayer/flowplayer.rtmp-3.1.4.swf pageUrl=http://polotv.pl/player
-
 #EXTINF:0,Polsat 
 0
 
-#EXTINF:0,Polsat Sport
-http://cz.wownet.ro:8014|X-Forwarded-For=81.17.18.50
+#EXTINF:0,Polsat Sport 
+0
 
-#EXTINF:0,Prima
-http://cz.wownet.ro:8004|X-Forwarded-For=81.17.18.50
+#EXTINF:0,Prima 
+0
 
-#EXTINF:0,Prima Cool
-http://cz.wownet.ro:8019|X-Forwarded-For=81.17.18.50
-
-#EXTINF:0,Prima Cool
-http://cz.wownet.ro:8021|X-Forwarded-For=81.17.18.50
+#EXTINF:0,Prima Cool 
+0
 
 #EXTINF:0,Prima Love
 0
 
-#EXTINF:0,Prima Zoom
-http://cz.wownet.ro:8011|X-Forwarded-For=81.17.18.50
+#EXTINF:0,Prima Zoom 
+0
 
 #EXTINF:0,Rela Pohoda
 0
@@ -127,8 +121,8 @@ http://213.81.153.221:8080/galanta
 #EXTINF:0,SAT 1
 0
 
-#EXTINF:0,Slagr TV
-http://cz.wownet.ro:8013|X-Forwarded-For=81.17.18.5
+#EXTINF:0,Slagr TV 
+0
 
 #EXTINF:0,Superstacja
 0
@@ -164,28 +158,28 @@ http://trwamtv.live.e96-jw.insyscd.net/trwamtv.smil/playlist.m3u8
 0
 
 #EXTINF:0,TVN 
-rtmp://144.76.154.14/live/tvn
+0
 
 #EXTINF:0,TVN Style 
-rtmp://144.76.154.14/live/tvnstyle
+0
 
-#EXTINF:0,TVN Turbo
-rtmp://144.76.154.14/live/tvnturbo
+#EXTINF:0,TVN Turbo 
+0
 
 #EXTINF:0,TVP 
 0
 
 #EXTINF:0,TVP 1 
-rtmp://85.10.208.218/live/jedynka1
+0
 
 #EXTINF:0,TVP 2 
-rtmp://178.16.220.163/live/Tvp2
+0
 
 #EXTINF:0,TVP Bialystok
 0
 
 #EXTINF:0,TVP Historia 
-rtmp://178.16.220.163/live/thistory
+0
 
 #EXTINF:0,TVP Info 
 0
@@ -193,8 +187,8 @@ rtmp://178.16.220.163/live/thistory
 #EXTINF:0,TVP Rozrywka 
 0
 
-#EXTINF:0,TVS
-rtmp://144.76.154.14/live/tvpseriale
+#EXTINF:0,TVS 
+0
 
 #EXTINF:0,TVT
 0

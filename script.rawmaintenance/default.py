@@ -58,6 +58,17 @@ def setupAnalytics():
     uuidFile.close()
 
     analytics = GATracker.GAconnection("UA-36482713-5", userID)
+    
+#######################################################################
+#                           NEWS
+#######################################################################
+
+def NewsText():
+    global analytics
+    analytics.sendEvent("MainMenu", "News")
+    
+    dialog = xbmcgui.Dialog()
+    dialog.ok("Raw Maintenance", "News from our sponsor:", "November 27 Black Friday Sale at www.raw-media.ca\nUse promo code \"rmkodi\" for 20 percent off.")
 
 
 #######################################################################
@@ -107,7 +118,8 @@ def mainMenu():
     analytics.sendPageView("RawMaintenenance","mainmenu","main")
     xbmc.executebuiltin("Container.SetViewMode(500)")
     addDir('Maintenance','url', 5,os.path.join(mediaPath, "maintenance.png"))
-    addDir('News', 'url', 4,os.path.join(mediaPath, "news.png"))
+    addItem('News', 'url', 4,os.path.join(mediaPath, "news.png"))
+    addItem('Support', 'url', 6, os.path.join(mediaPath, "support.png"))
     
 def maintMenu():
     analytics.sendPageView("RawMaintenenance","maintenance","maint")
@@ -343,6 +355,15 @@ def purgePackages():
                 dialog = xbmcgui.Dialog()
                 dialog.ok("Raw Maintenance", "No Packages to Purge")
 
+#######################################################################
+#                       Support
+#######################################################################
+def SupportText():
+    global analytics
+    analytics.sendEvent("MainMenu", "Support")
+    
+    dialog = xbmcgui.Dialog()
+    dialog.ok("Raw Maintenance", "Log into http://www.no-issue.ca for support", "Follow No-Issue on Twitter @Gombeek or Youtube youtube.com/gombeek", "Also Raw Media Instigram @iloveitraw or Twitter @iloveitraw")
 
 #######################################################################
 #						START MAIN
@@ -380,11 +401,13 @@ elif mode==3:
 		purgePackages()
         
 elif mode==4:
-        rssStartup()
-        rssMenu()
+        NewsText()
         
 elif mode==5:
         maintMenu()
+
+elif mode==6:
+        SupportText()
         
 elif mode >= 50:
         rssShowStory(mode)

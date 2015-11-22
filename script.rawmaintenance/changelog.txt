@@ -10,3 +10,11 @@
 	This is simply to give us an idea of which features are used the 
 	most by which platforms so that we can best focus our development 
 	time to bring the community the best possible software.
+
+0.1.5
+
+- News placeholder
+
+0.1.6
+
+- Fixed script error 
