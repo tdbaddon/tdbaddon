@@ -596,7 +596,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 <addon id="plugin.video.TDBPORNO"
        name="TDB PORNO"
-       version="1.78"
+       version="1.79"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
