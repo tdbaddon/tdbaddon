@@ -4,7 +4,7 @@ item_info_build=PrivateStream - %s
 
 item_info_name=pageUrl
 item_info_from=@PARAM1@
-item_info_build=http://privatestream.tv/player?streamname=%s
+item_info_build=http://privatestream.tv/player?streamname=%s&width=630&height=510
 
 item_info_name=tmp
 item_info_from=pageUrl

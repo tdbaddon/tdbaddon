@@ -3,12 +3,12 @@
 import re
 
 def findall(data,regex):
-    p_reg = re.compile(regex, re.IGNORECASE + re.DOTALL + re.MULTILINE + re.UNICODE)
+    p_reg = re.compile(regex, re.DOTALL + re.MULTILINE + re.UNICODE)
     result = p_reg.findall(data)
     return result
 
 def parseTextToGroups(txt, regex):
-    p = re.compile(regex, re.IGNORECASE + re.DOTALL + re.MULTILINE + re.UNICODE)
+    p = re.compile(regex, re.DOTALL + re.MULTILINE + re.UNICODE)
     m = p.match(txt)
     if m:
         return m.groups()

@@ -479,7 +479,7 @@ class Parser(object):
                                     if t.find('\'') != -1:
                                         src = src + t.strip('\'')
                                     else:
-                                        src = src + tmp[t]
+                                        src = src + (tmp[t] or '')
                             elif info.src.__contains__('||'):
                                 variables = info.src.split('||')
                                 src = firstNonEmpty(tmp, variables)

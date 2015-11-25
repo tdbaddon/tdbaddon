@@ -18,6 +18,11 @@ item_info_from=pageUrl
 item_info_convert=getInfo('%s','.*?id="[^'"]+" value="([^'"]{15,130})".*?id="[^'"]+" value="([^'"]+).*?id="[^'"]+" value="([^'"]+).*','@REFERER@','alt_ssx1|alt_ssx4|alt_tk')
 item_info_build=%s
 
+item_info_name=ad
+item_info_from=pageUrl
+item_info_convert=parseText('%s','(http://[^/]+).*')
+item_info_build=%s
+
 item_info_name=tkUrl
 item_info_from=tk || alt_tk
 item_info_convert=decodeBase64
@@ -58,6 +63,11 @@ item_info_from=pageUrl
 item_info_convert=getInfo('%s','.*?var\s*\w+\s*=\s*"([^'"]{5,70})".*?var\s*\w+\s*=\s*"([^'"]+).*','@REFERER@','var_ssx1|var_ssx4')
 item_info_build=%s
 
+item_info_name=adc
+item_info_from=ad
+item_info_convert=getInfo('%s/adorika.php','.','@pageUrl@')
+item_info_build=%s
+
 item_info_name=alt_file
 item_info_from=alt_ssx1 || var_ssx1
 item_info_convert=decodeBase64
@@ -83,5 +93,5 @@ item_info_from=file.tmp || alt_file
 item_info_build=%s
 
 item_info_name=url
-item_info_from=rtmp + ' app=' + app + ' playpath=' + file + ' swfUrl=http://www.businessapp1.pw/jwplayer5/addplayer/jwplayer.flash.swf live=true flashver=WIN\2019,0,0,185 token=@@stop-stole@@ timeout=15 pageUrl=' + pageUrl
+item_info_from=rtmp + ' app=' + app + ' playpath=' + file + ' swfUrl=http://www.businessapp1.pw/jwplayer5/addplayer/jwplayer.flash.swf live=true flashver=WIN\2019,0,0,226 token=@@stop-stole@@ timeout=15 pageUrl=' + pageUrl
 item_info_build=%s

@@ -4,7 +4,7 @@ item_info_build=MeGom - %s
 
 item_info_name=pageUrl
 item_info_from=@PARAM1@
-item_info_build=http://distro.megom.tv/player-inside.php?id=%s
+item_info_build=http://distro.megom.tv/player-inside.php?id=%s&width=640&height=385
 
 item_info_name=tmp
 item_info_from=pageUrl

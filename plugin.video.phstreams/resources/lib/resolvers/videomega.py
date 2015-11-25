@@ -19,8 +19,9 @@
 '''
 
 
-import urlparse
+import re,urlparse
 from resources.lib.libraries import client
+from resources.lib.libraries import jsunpack
 
 
 def resolve(url):
@@ -29,11 +30,21 @@ def resolve(url):
         url = urlparse.parse_qsl(url)[0][1]
         url = 'http://videomega.tv/cdn.php?ref=%s' % url
 
-        result = client.request(url, mobile=True)
+        result = client.request(url)
 
-        url = client.parseDOM(result, 'source', ret='src', attrs = {'type': 'video.+?'})[0]
+        unpacked = ''
+        packed = result.split('\n')
+        for i in packed: 
+            try: unpacked += jsunpack.unpack(i)
+            except: unpacked += i
+        result = unpacked
+        result = re.sub('\s\s+', ' ', result)
 
-        if 'videomega.' in url: return url
+        url = re.compile('"video".+?"src"\s*\,\s*"(.+?)"').findall(result)
+        url += client.parseDOM(result, 'source', ret='src', attrs = {'type': 'video.+?'})
+        url = url[0]
+
+        return url
     except:
         return
 

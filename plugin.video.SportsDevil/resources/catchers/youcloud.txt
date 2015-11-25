@@ -4,7 +4,7 @@ item_info_build=YouCloud - %s
 
 item_info_name=pageUrl
 item_info_from=@PARAM1@
-item_info_build=http://youcloud.tv/player?streamname=%s
+item_info_build=http://youcloud.tv/player?streamname=%s&width=640&height=385
 
 item_info_name=tmp
 item_info_from=pageUrl

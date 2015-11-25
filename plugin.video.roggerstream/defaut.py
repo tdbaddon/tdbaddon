@@ -20,7 +20,7 @@ from BeautifulSoup import BeautifulStoneSoup, BeautifulSoup, BeautifulSOAP
 from BeautifulSoup import BeautifulSoup
 h = HTMLParser.HTMLParser()
 
-versao = '3.0.3'
+versao = '3.0.5'
 addon_id = 'plugin.video.roggerstream'
 selfAddon = xbmcaddon.Addon(id=addon_id)
 addonfolder = selfAddon.getAddonInfo('path')
@@ -251,14 +251,11 @@ def get_wms():
 	return wms	
 	
 def gettoken():
-    for line in urllib2.urlopen(base64.b64decode('aHR0cDovL21vdmllbWV0YWRhZG9zLnRrL2FwcHMvc2VjdXJldG9rZW4ucGhw')):
-        params = line.split('')
-        try:
-		    securetoken = params[1]
-		    print 'Nome: ' + securetoken
-        except:
-            pass
-    return securetoken
+	req = urllib2.Request(base64.b64decode('aHR0cHM6Ly9jb3B5LmNvbS9LYjNSdnY4WnZIQmpOYVZsP2Rvd25sb2FkPTE='))
+	response = urllib2.urlopen(req)
+	token=response.read()
+	response.close()
+	return token	
 
 ############################################################################################################
 #                                               GET PARAMS                                                 #

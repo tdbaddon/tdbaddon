@@ -24,7 +24,7 @@ def findPHP(data, streamId):
     regex = "document.write\('.*?src=['\"]*(.*?.(?:php|html)[^&\"]*).*?['\" ]*.*?\)"
     php = regexUtils.findall(data, regex)
     if php:
-        return re.sub(r"\'\+\s*(?:f*id|ch)\s*\+\'", "%s" % streamId,php[0])
+        return re.sub(r"\'\+\s*(?:[fc]*id|ch)\s*\+\'", "%s" % streamId,php[0])
     
     regex = "document.write\('.*?src=['\"]*(.*?(?:f*id|ch)\s*\+'\.html*).*?['\" ]*.*?\)"
     html = regexUtils.findall(data, regex)
@@ -218,7 +218,7 @@ def findVideoFrameLink(page, data):
     if m:
         return urlparse.urljoin(urllib.unquote(page), m[0]).strip()
     
-    m = regexUtils.findall(data, '<a href="([^"]+)" target="_blank"><img src="[^"]+" height="450" width="600" longdesc="[^"]+"/></a>')
+    m = regexUtils.findall(data, '<a href="([^"]+)" target="_blank"><img src="[^"]+" height="\d+" width="\d+" longdesc="[^"]+"/></a>')
     if m:
         return urlparse.urljoin(urllib.unquote(page), m[0]).strip()
         
