@@ -72,37 +72,6 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
-<addon id="plugin.video.bassleaks"
-       name="bassleaks"
-       version="1.0.06"
-       provider-name="Bass Controller">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-	<import addon="script.module.t0mm0.common" version="2.0.0"/>
-    <import addon="script.module.beautifulsoup" version="3.2.1"/>
-    <import addon="script.module.simple.downloader" version="0.9.4"/>
-    <import addon="script.module.beautifulsoup4" />
-    <import addon="script.module.simple.downloader" version="0.9.4"/>
-    <import addon="script.module.requests" />
-    <import addon="script.module.httplib2" />
-    <import addon="script.module.youtube.dl" optional="true"/>
-    <import addon="plugin.video.youtube" version="3.0.0"/>
-    <import addon="script.module.urlresolver" optional="true"/>
-    <import addon="script.module.simplejson" />
-    <import addon="script.common.plugin.cache" version="2.5.2"/>
-    <import addon="script.module.metahandler" version="2.5.1"/>
-
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="bassleaksworks.py">
-    <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en"> Enjoy Bass leaks</summary>
-    <description lang="en">You can reach BaseController on twitter @bassleaks</description>
-    <platform>all</platform>
-  </extension>
-</addon>
-
 <addon id="plugin.video.CanTVLive" name="CanTVLive" version="2.0.2" provider-name="podgod">
   <requires>
     <import addon="xbmc.python" version="2.1.0" />
@@ -137,27 +106,6 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   <extension point="xbmc.addon.metadata">
     <summary lang="en"></summary>
     <description lang="en"></description>
-    <platform>all</platform>
-  </extension>
-</addon>
-
-<addon
-  id="plugin.video.dragon.sports"
-  version="4.5.4.2"
-  name="Dragon Streams"
-  provider-name="Unknown">
-  <requires>
-   <import addon="xbmc.python" version="2.1.0"/>
-   <import addon="script.common.plugin.cache" version="0.9.1"/>
-  </requires>
-  <extension
-    point="xbmc.python.pluginsource"
-    library="default.py">
-   <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary>Play a variety of quality streams on your DragonBox</summary>
-    <description>** No streams are hosted by DragonBox, Dragon Streams or any affiliates of those mentioned.</description>
     <platform>all</platform>
   </extension>
 </addon>
@@ -270,26 +218,6 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
         <summary><![CDATA[KODI Popcorn Time: Immediately stream movies in KODI.]]></summary>
         <description><![CDATA[With KODI Popcorn Time you can search for movies that you can see immediately in KODI.]]></description>
     </extension>
-</addon>
-
-<addon id="plugin.video.mdfubar" name=".F.U.B.A.R." version="1.1.1" provider-name="Mucky Duck">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-	<import addon="script.module.urlresolver"  version="2.1.2"/>
-	<import addon="script.module.addon.common" />
-	<import addon="script.module.requests" />
-	<import addon="script.module.metahandler" version="2.5.1"/>
-	<import addon="repository.mdrepo" />
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en">A Variety Of Streaming Sources From The Net</summary>
-    <description lang="en"></description>
-	<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon</disclaimer>
-    <platform>all</platform>
-  </extension>
 </addon>
 
 <addon id="plugin.video.movieshd" name="Movies HD" version="2.0.4" provider-name="MetalKettle">
@@ -485,37 +413,6 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
-<addon id="plugin.video.SportsLiveTv"
-       name="Sports Live Tv"
-       version="1.0.1"
-       provider-name="KodiTVGuy">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-	<import addon="script.module.t0mm0.common" version="2.0.0"/>
-    <import addon="script.module.beautifulsoup" version="3.2.1"/>
-    <import addon="script.module.simple.downloader" version="0.9.4"/>
-    <import addon="script.module.beautifulsoup4" />
-    <import addon="script.module.simple.downloader" version="0.9.4"/>
-    <import addon="script.module.requests" />
-    <import addon="script.module.httplib2" />
-    <import addon="script.module.youtube.dl" optional="true"/>
-    <import addon="plugin.video.youtube" version="3.0.0"/>
-    <import addon="script.module.urlresolver" optional="true"/>
-    <import addon="script.module.simplejson" />
-    <import addon="script.common.plugin.cache" version="2.5.2"/>
-    <import addon="script.module.metahandler" version="2.5.1"/>
-
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-    <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en"> Enjoy </summary>
-    <description lang="en">Thanks to Husham for helping me with this addon</description>
-    <platform>all</platform>
-  </extension>
-</addon>
-
 <addon id="plugin.video.Stallion-IPTV" name="Stallion-IPTV" version="2.2" provider-name="Stallion-IPTV">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -538,21 +435,6 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
     <description lang="en">[COLOR green][B]Stallion-IPTV, Best IPTV [/B][/COLOR]</description>
     <platform>all</platform>
   </extension>
-</addon>
-
-<addon id="plugin.video.SuperStreams" name="SuperStreams" version="2.1.0" provider-name="SuperStreams">
-<requires>
-    <import addon="xbmc.python" version="2.1.0" />
-</requires>
-<extension point="xbmc.python.pluginsource" library="default.py">
-		<provides>video</provides>
-	</extension>
-	<extension  point="xbmc.addon.metadata">
-		<summary lang="nl">SuperStreams voor XBMC / KODI!</summary>
-		<description lang="nl">Met deze addon is het mogelijk om sport streams te bekijken in XBMC / KODI.</description>
-		<platform>all</platform>
-		<website></website>
-	</extension>
 </addon>
 
 <addon id="plugin.video.TDBEUROTV"
@@ -652,7 +534,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="3.33"
+       version="3.34"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>

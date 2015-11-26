@@ -8,10 +8,10 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 0
 
 #EXTINF:0,CineStarTV Premiere 1
-http://minitv.noip.me:8000/live/dragana/dragana/2.ts
+0
 
 #EXTINF:0,CineStarTV Premiere 2
-http://minitv.noip.me:8000/live/dragana/dragana/254.ts
+0
 
 #EXTINF:0,CMore Action 
 0
@@ -63,9 +63,6 @@ http://200.76.77.237/LIVE/H01/CANAL424/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Fox Classics 
 http://200.76.77.237/LIVE/H01/CANAL424/PROFILE05.m3u8?supertvlat=%2F.ts
-
-#EXTINF:0,Fox Movies 
-http://minitv.noip.me:8000/live/dragana/dragana/159.ts
 
 #EXTINF:0,Fox Movies 
 http://200.76.77.237/LIVE/H01/CANAL417/PROFILE02.m3u8?supertvlat=%2F.ts

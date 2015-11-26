@@ -13,8 +13,8 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 #EXTINF:0,Animal Planet 
 0
 
-#EXTINF:0,Crime & Investigation
-http://minitv.noip.me:8000/live/dragana/dragana/326.ts
+#EXTINF:0,Crime & Investigation 
+http://103.245.167.28/tot/9961a963920f45f4bc0d81c3e478b334.m3u8
 
 #EXTINF:0,Destination America 
 0
@@ -59,7 +59,7 @@ https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8?hdnea=ip=174.113.
 http://link.theplatform.com/s/dtjsEC/chjdYJxKb44V?manifest=m3u&feed=History%20Live%20Stream%20Feed
 
 #EXTINF:0,History Channel 
-http://minitv.noip.me:8000/live/dragana/dragana/6.ts
+https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8?hdnea=ip=173.34.67.21~st=1448574469~exp=1448575069~acl=/i/History_1@156885*~id=e0ac8c7f-b7ae-431f-998a-d87493df48b7~hmac=1bf4b5f4382fd3f887da82e7bc44d93e3d92152b0d873acded129cad627e231e
 
 #EXTINF:0,History Channel 2
 0
@@ -83,13 +83,10 @@ http://iphone-streaming.ustream.tv/uhls/6540154/streams/live/iphone/playlist.m3u
 0
 
 #EXTINF:0,National Geographic 
-http://88.84.223.214:1212/udp/234.5.2.128:1234
+http://78.26.128.94:8000/udp/225.1.1.56:1234
 
 #EXTINF:0,National Geographic 
-http://alturl.com/varun
-
-#EXTINF:0,National Geographic 
-http://minitv.noip.me:8000/live/dragana/dragana/58.ts
+http://193.106.211.2:1234/udp/225.1.5.106:4001
 
 #EXTINF:0,Nova
 0
@@ -113,11 +110,15 @@ http://rt-a.akamaihd.net/ch_05@325609/720p.m3u8
 0
 
 #EXTINF:0,Travel Channel 
-http://minitv.noip.me:8000/live/dragana/dragana/327.ts
+http://78.26.128.94:8000/udp/225.1.1.234:1234
 
 #EXTINF:0,Viasat Explorer 
 0
 
 #EXTINF:0,Viasat History 
-0
+http://78.26.128.94:8000/udp/225.1.1.249:1234
+
+#EXTINF:0,Viasat Nature 
+http://78.26.128.94:8000/udp/225.1.1.251:1234
+
 

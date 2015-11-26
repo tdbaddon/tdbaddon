@@ -8,7 +8,7 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 0
 
 #EXTINF:0,ABC 
-0
+http://89.248.172.57:1935/edge/_definst_/371jluirljcsjen/playlist.m3u8?wowzasessionid=1127509920
 
 #EXTINF:0,ABC Family 
 0
@@ -22,6 +22,9 @@ http://200.76.77.237/LIVE/H01/CANAL444/PROFILE03.m3u8?supertvlat=%2F.ts
 #EXTINF:0,AMC 
 http://200.76.77.237/LIVE/H01/CANAL444/PROFILE05.m3u8?supertvlat=%2F.ts
 
+#EXTINF:0,AMC 
+http://89.248.172.57:1935/edge/_definst_/7pctmre0zfwsc24/playlist.m3u8?wowzasessionid=380018938
+
 #EXTINF:0,AXN 
 0
 
@@ -29,10 +32,10 @@ http://200.76.77.237/LIVE/H01/CANAL444/PROFILE05.m3u8?supertvlat=%2F.ts
 0
 
 #EXTINF:0,BBC 1 
-0
+http://204.107.27.199/live/14.low.stream/playlist.m3u8?id=0ad5aac39bb13fbeb79e39ec5bcb0fa1b1f07fbd2c86cffdd9f85aebaaf908377b8db852248e2fbc604d2d76d49ffdca13a2a7e14e10dd75a1c5386c0529f59c806cacc2af77431b72c394ff1367ddce15e62325b5ab9a6b837a28780b92f633224e0996da726b12420f79200b3838cf9e434908c5432bcacc0d682d421e84699209ac951044f68eff44b213702693172c5fa4a8114d2ae2
 
 #EXTINF:0,BBC 2 
-0
+http://204.107.27.199/live/25.low.stream/playlist.m3u8?id=0ad5aac39bb13fbed48e7c33b40d21d144def18ca6c5cdddb6dcd6a2a8b71a69698e849c8a94b125363b51ca10c87899e4591f9f6336705f6d1b746246eb93f91cc7e7540f22c7ee864bbeb133cede3d4a58af54aeaae9515bb745bc19da1eb5fc8ab08129065a45ce1544a2a24bb5a2045e2787c3ff68eabf6d2bd148e9ab6ed4cca08d920e621304718cfb0ae2eb5b10aa105a033b03a7
 
 #EXTINF:0,BBC Entertainment
 http://200.76.77.237/LIVE/H01/CANAL253/PROFILE02.m3u8?supertvlat=%2F.ts
@@ -74,11 +77,14 @@ http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD28_W_250.sdp/p
 #EXTINF:0,CBS Reality 
 0
 
+#EXTINF:0,CHCH Ontario
+http://54.85.197.21:1935/live/news/playlist.m3u8
+
 #EXTINF:0,City TV Toronto 
 0
 
 #EXTINF:0,City TV Vancouver 
-
+http://btflash-lh.akamaihd.net/i/BTVANFLASH_live@120224/master.m3u8
 
 #EXTINF:0,CNBC 
 http://origin.live.web.tv.streamprovider.net/streams/9044496707bcc259f6cdf58eb93cbfe9_live_0_0/index.m3u8
@@ -117,25 +123,19 @@ http://origin.live.web.tv.streamprovider.net/streams/9044496707bcc259f6cdf58eb93
 0
 
 #EXTINF:0,E! 
-http://minitv.noip.me:8000/live/dragana/dragana/329.ts
+0
 
 #EXTINF:0,E2 
 http://origin.live.web.tv.streamprovider.net/streams/5dac5e87d17d40f5bca18d2b211a4dd2_live_0_0/index.m3u8
 
 #EXTINF:0,E4 
-0
+http://stream02.yamgo.com/iPhone/HLS_TS/broadcast/victorias_secret_angels-tablet.3gp/victorias_secret_angels-tablet.3gp-mr648k.m3u8
 
 #EXTINF:0,Family Channel 
 0
 
 #EXTINF:0,Fashion TV 
-http://204.107.27.250/live/21.low.stream/playlist.m3u8?id=638e649080cdcfd6b4eeba9bcca5a93766bd2f38c4c6c67a5e74d3ed3ba4c287d29d919b6387ea7d39e84a1f9587055cd290e94f3fbb7dc4ebd069b1f732757d8ff46ecce9c5e281bf3e61201253ac283f26654cb328d4a3e98a1bd5514ccb9c2c3341f19856cb60ef347194726ad8391a65cc5ba1b42f78278f78502a1b570bf2e87764fb1924f4843d3ba3c4296cdc5d715bfc5015f3e3
-
-#EXTINF:0,Fashion TV 
-http://204.107.27.250/live/21.low.stream/playlist.m3u8?id=638e649080cdcfd6b4eeba9bcca5a93766bd2f38c4c6c67a5e74d3ed3ba4c287d29d919b6387ea7d39e84a1f9587055cd290e94f3fbb7dc4ebd069b1f732757d8ff46ecce9c5e281bf3e61201253ac283f26654cb328d4a3e98a1bd5514ccb9c2c3341f19856cb60ef347194726ad8391a65cc5ba1b42f78278f78502a1b570bf2e87764fb1924f4843d3ba3c4296cdc5d715bfc5015f3e3
-
-#EXTINF:0,Fashion TV 
-http://stream-ak-2.vty.dailymotion.com/03/dm/1/x2b0bb9/live.isml/events(live-1448010158)/live-audio=128000-video=1891000.m3u8
+0
 
 #EXTINF:0,Fine Living Network 
 0
@@ -155,6 +155,9 @@ http://200.76.77.237/LIVE/H01/CANAL415/PROFILE05.m3u8?supertvlat=%2F.ts
 #EXTINF:0,Fox Crime 
 http://103.245.167.28/tot/a7105ed1bb0a44bba1f4f71f2352b892.m3u8
 
+#EXTINF:0,Fox Crime 
+http://103.245.167.28/tot/71f197de056e499a85265c03b44bdab1.m3u8
+
 #EXTINF:0,Fox Life 
 0
 
@@ -170,9 +173,12 @@ http://103.245.167.28/tot/a7105ed1bb0a44bba1f4f71f2352b892.m3u8
 #EXTINF:0,Global TV Halifax 
 http://link.theplatform.com/s/dtjsEC/77l1KA_G_5P1?feed=DEV%20Live%20Stream%20Feed/playlist.m3u8
 
+#EXTINF:0,Global TV Halifax 
+https://glblvhalifax-lh.akamaihd.net/i/glblvHalifax_1@119843/master.m3u8?__b__=900&hdnea=ip=99.18.68.202~st=1434307535~exp=1434308135~acl=/i/*~id=17e92158-bbde-4665-a37c-817c97c7569c~hmac=1afe142fae8d05bad8895371e0834b246ce53e26af2bd6090227741f043668bd
+
 #EXTINF:0,Global TV Toronto 
 http://link.theplatform.com/s/dtjsEC/hdSH3iztz_j_?feed=DEV%20Live%20Stream%20Feed/playlist.m3u8
- 
+
 #EXTINF:0,Global TV Vancouver 
 http://link.theplatform.com/s/dtjsEC/EqBPGYLY6fEx?feed=DEV%20Live%20Stream%20Feed/playlist.m3u8
 
@@ -237,7 +243,7 @@ http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
 0
 
 #EXTINF:0,Nick 
-http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/97.m3u8
+0
 
 #EXTINF:0,Nick Jr 
 0
@@ -256,6 +262,18 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/97.m3u8
 
 #EXTINF:0,PBS 
 0
+
+#EXTINF:0,QVC 
+http://llnw.live.qvc.simplestream.com/hera/remote/qvcuk_primary_sdi1/3/prog_index.m3u8
+
+#EXTINF:0,QVC 
+http://llnw.live.qvc.simplestream.com/hera/remote/qvcuk_primary_sdi2/3/prog_index.m3u8
+
+#EXTINF:0,QVC 
+http://llnw.live.qvc.simplestream.com/hera/remote/qvcuk_primary_sdi6/3/prog_index.m3u8
+
+#EXTINF:0,QVC 
+http://llnw.live.qvc.simplestream.com/hera/remote/qvcuk_primary_sdi8/3/prog_index.m3u8
 
 #EXTINF:0,Showcase 
 0
@@ -291,9 +309,6 @@ http://tv-tikilive-hls-live.hls.adaptive.level3.net/hls2/97.m3u8
 0
 
 #EXTINF:0,Syfy 
-http://103.245.167.28/tot/71f197de056e499a85265c03b44bdab1.m3u8
-
-#EXTINF:0,Syfy 
 http://103.245.167.28/tot/2e0e4b05aa6e428593f3b45b710045b7.m3u8
 
 #EXTINF:0,TBS 
@@ -326,11 +341,11 @@ http://200.76.77.237/LIVE/H01/CANAL266/PROFILE05.m3u8?supertvlat=%2F.ts
 #EXTINF:0,TSC 
 http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/master.m3u8?b?b*t$ 
 
-#EXTINF:0,True Drama
-0
+#EXTINF:0,True Drama 
+http://37.187.248.101:8080/truedram.stream/playlist.m3u8
 
 #EXTINF:0,True Entertainment 
-0
+http://37.187.248.101:8080/trueent.stream/playlist.m3u8
 
 #EXTINF:0,TV Land 
 0

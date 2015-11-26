@@ -35,6 +35,12 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 #EXTINF:0,ESPN 
 rtmp://80.82.65.162/live playpath=despnuk swfUrl=http://www.yocast.tv/myplayer/jwplayer.flash.swf live=1 pageUrl=http://www.yocast.tv/embed.php?live=vskys1&vw=620&vh=490
 
+#EXTINF:0,ESPN 
+http://89.248.172.57:1935/edge/_definst_/jn73dbbe4tdu03z/playlist.m3u8?wowzasessionid=1301414617
+
+#EXTINF:0,ESPN 2
+0
+
 #EXTINF:0,Eurosport 1 
 http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_1800.m3u8
 
@@ -108,13 +114,10 @@ http://cdn.phoenix.intergi.com/21772/videos/3362254/video-sd.mp4?hosting_id=2177
 http://nflioslivesvg2-i.akamaihd.net/hls/live/221521/nflioslive/2015HackerNow_w99d9.m3u8
 
 #EXTINF:0,NFL Network 
-http://nflsvglagame1-i.akamaihd.net/hls/live/223206/NFL_Mobile/2015Mobile_NFLN_1000k.m3u8
+http://nflioslivesvg2-i.akamaihd.net/hls/live/221521/nflioslive/2015HackerNow_w99d9.m3u8
 
 #EXTINF:0,NFL Network 
-http://nflsvglagame1-i.akamaihd.net/hls/live/223206/NFL_Mobile/2015Mobile_NFLN_2000k.m3u8
-
-#EXTINF:0,NFL Network 
-http://nflsvglagame1-i.akamaihd.net/hls/live/223206/NFL_Mobile/2015Mobile_NFLN_5000k.m3u8
+http://89.248.172.57:1935/edge/_definst_/n1dv2of13iqam3u/playlist.m3u8?wowzasessionid=1998190402
 
 #EXTINF:0,NHL Network 
 http://208.92.36.158/ipad/live/nba_ipad_1240.m3u8
@@ -132,13 +135,16 @@ http://xrxs.net/video/live-p12ariz-1164.m3u8
 0
 
 #EXTINF:0,PAC 12 Bay Area HD 
-0
+http://xrxs.net/video/live-p12baya-4728.m3u8?
+
+#EXTINF:0,PAC 12 Bay Area HD 
+http://pac12hd2-lh.akamaihd.net/i/p12baya_delivery@132837/index_4728_av-p.m3u8?
 
 #EXTINF:0,PAC 12 LA 
-0
+http://xrxs.net/video/live-p12losa-1164.m3u8
 
 #EXTINF:0,PAC 12 LA HD 
-0
+http://xrxs.net/video/live-p12losa-4728.m3u8?
 
 #EXTINF:0,PAC 12 National 
 http://xrxs.net/video/live-p12netw-1164.m3u8
@@ -165,7 +171,7 @@ http://xrxs.net/video/live-p12oreg-4728.m3u8
 http://xrxs.net/video/live-p12wash-1164.m3u8
  
 #EXTINF:0,PAC 12 Washington HD 
-0
+http://xrxs.net/video/live-p12wash-4728.m3u8?
 
 #EXTINF:0,Poker Central
 http://ooyalahd2-f.akamaihd.net/i/crtv01_delivery@329705/index_1164_av-b.m3u8
