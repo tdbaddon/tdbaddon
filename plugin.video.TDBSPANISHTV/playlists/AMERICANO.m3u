@@ -76,9 +76,6 @@ http://200.76.77.237/LIVE/H01/CANAL356/PROFILE03.m3u8?supertvlat=%2F.ts
 #EXTINF:0,Disney Channel
 http://200.76.77.237/LIVE/H01/CANAL312/PROFILE03.m3u8?supertvlat=%2F.ts
 
-#EXTINF:0,Disney Channel
-http://82.135.224.134:88/udp/239.255.1.190:1234
-
 #EXTINF:0,Disney JR
 http://200.76.77.237/LIVE/H01/CANAL308/PROFILE03.m3u8?supertvlat=%2F.ts
 
@@ -121,17 +118,11 @@ http://200.76.77.237/LIVE/H01/CANAL421/PROFILE03.m3u8?supertvlat=%2F.ts
 #EXTINF:0,Fox Classics
 http://200.76.77.237/LIVE/H01/CANAL424/PROFILE03.m3u8?supertvlat=%2F.ts
 
-#EXTINF:0,Fox Comedy
-http://82.135.224.134:88/udp/239.255.1.98:1234
-
 #EXTINF:0,Fox Family Movies
 http://200.76.77.237/LIVE/H01/CANAL417/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Fox Life
 http://200.76.77.237/LIVE/H01/CANAL271/PROFILE03.m3u8?supertvlat=%2F.ts
-
-#EXTINF:0,Fox Life
-http://82.135.224.134:88/udp/239.255.1.95:1234
 
 #EXTINF:0,Fox Movies
 http://200.76.77.237/LIVE/H01/CANAL417/PROFILE03.m3u8?supertvlat=%2F.ts

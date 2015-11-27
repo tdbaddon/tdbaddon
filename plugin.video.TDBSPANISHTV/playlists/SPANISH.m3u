@@ -8,10 +8,10 @@ http://streamer1.streamhost.org:1935/salive/GMIalfah/livestream.m3u8
 http://ooyalahd2-f.akamaihd.net/i/americatv_delivery@25405/index_1728_av-p.m3u8
 
 #EXTINF:0,Andina TV
-http://edge-31-us.edge.mdstrm.com/live/smil:c23b8a0a21d215482b4c2703e47f675a/playlist.m3u8
+0
 
 #EXTINF:0,Antena Latina
-http://ss6.domint.net:1962/al_edge/antena/playlist.m3u8
+0
 
 #EXTINF:0,Aragon TV 
 0
@@ -208,9 +208,6 @@ http://200.76.77.237/LIVE/H01/CANAL102/PROFILE03.m3u8?supertvlat=%2F.ts
 #EXTINF:0,Foro TV 
 http://200.76.77.237/LIVE/H01/CANAL104/PROFILE03.m3u8?supertvlat=%2F.ts
 
-#EXTINF:0,Foro TV 
-http://185417-f.akamaihd.net/i/n0tf0r0_1@81283/index_1200_av-b.m3u8
-
 #EXTINF:0,Gala TV
 http://200.76.77.237/LIVE/H01/CANAL109/PROFILE03.m3u8?supertvlat=%2F.ts
 
@@ -317,7 +314,7 @@ http://cdns840stu1010.multistream.net/telecaribelive/amlst:live/master.m3u8
 http://live.telemetro.com/telemetro/tm.smil/playlist.m3u8
 
 #EXTINF:0,Telemundo 
-http://iphone-streaming.ustream.tv/uhls/20720323/streams/live/iphone/playlist.m3u8? 
+0
 
 #EXTINF:0,TeleSur TV 
 0
@@ -329,7 +326,7 @@ http://186.155.200.118:1935/live/telemusica/playlist.m3u8
 http://200.76.77.237/LIVE/H01/CANAL325/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,TiVa
-http://live-h1.frontlayer.net/fl729845/live/live.m3u8?wowzasessionid=1243637292
+0
 
 #EXTINF:0,Totalplay
 http://200.76.77.237/LIVE/H01/CANAL1/PROFILE03.m3u8?supertvlat=%2F.ts
@@ -362,7 +359,7 @@ rtmp://50.7.98.234/rtv/videortv
 rtmp://87.106.220.67/live/myStream_2
 
 #EXTINF:0,TV Novelas 
-0http://200.76.77.237/LIVE/H01/CANAL275/PROFILE03.m3u8?supertvlat=%2F.ts
+0
 
 #EXTINF:0,TV Publica 
 0

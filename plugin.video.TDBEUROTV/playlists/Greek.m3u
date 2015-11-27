@@ -73,9 +73,6 @@ http://ert3-lh.akamaihd.net/i/live_1@329807/master.m3u8
 #EXTINF:0,Extra 
 rtmp://213.16.167.186/live/mpegts_256.stream
 
-#EXTINF:0,Extra 
-rtmp://213.16.167.186:1935/live/mpegts_256.stream
-
 #EXTINF:0,FOS TV
 http://wm1.gmlogic.com/ch-patra?ovpsv=2.3.1.0
 
@@ -185,7 +182,7 @@ http://radiofeeds1.mediabox.gr/startv?MSWMExt=.asf
 http://4.31.30.145:9080/
 
 #EXTINF:0,Syros TV 
-0
+http://176.9.123.140:1935/msg116s/msg116s/playlist.m3u8
 
 #EXTINF:0,TRT 
 http://xelladalivex.api.channel.livestream.com/3.0/playlist.m3u8

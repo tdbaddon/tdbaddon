@@ -2,10 +2,7 @@
 
 
 #EXTINF:0,Antenna 5 Skopje 
-http://217.115.140.23:8000/antenna5.mp3
-
-#EXTINF:0,Antenna 5 Skopje 
-http://ss1.mk.checast.com:9000/live?1437241919156.aac
+0
 
 #EXTINF:0,City Radio Skopje 
 http://ss1.mk.checast.com:21306/48.aac
@@ -46,20 +43,11 @@ http://ss1.mk.checast.com:21100/live?1437243979579.aac
 #EXTINF:0,Radio 2 Skopje 
 http://217.115.140.23:8001/radio2
 
-#EXTINF:0,Radio 2 Skopje 
-http://ss1.mk.checast.com:9000/radio2.aac?1437243094128.aac 
-
 #EXTINF:0,Radio Akord kichevo
 http://ss1.mk.checast.com:9000/akord.aac?1437245466683.aac 
 
 #EXTINF:0,Radio Bubamara Skopje 
 http://217.16.69.17:8000/bubamara.mp3
-
-#EXTINF:0,Radio Bubamara Skopje 
-http://217.16.69.17:8000/bubamara.mp3?1437243915410.mp3 
-
-#EXTINF:0,Radio Bubamara Skopje 
-rtmp://off.net.mk/radio/bubamara.stream
 
 #EXTINF:0,Radio Bravo Kumanovo
 http://80.77.157.10:8000/
