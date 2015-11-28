@@ -883,7 +883,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 	</extension>
 </addon>
 
-<addon id="repository.xunitytalk" name=".[COLOR blue]X[/COLOR]unity[COLOR blue]T[/COLOR]alk Repository" version="1.0.8" provider-name=".[COLOR blue]X[/COLOR]unity[COLOR blue]T[/COLOR]alk">
+<addon id="repository.xunitytalk" name=".[COLOR blue]X[/COLOR]unity[COLOR blue]T[/COLOR]alk Repository" version="1.1.0" provider-name=".[COLOR blue]X[/COLOR]unity[COLOR blue]T[/COLOR]alk">
 	<extension point="xbmc.addon.repository" name="Mikey1234 Addon Repository">
 		<info compressed="false">http://xty.me/xunitytalk/addons/addons.xml</info>
 		<checksum>http://xty.me/xunitytalk/addons/addons.xml.md5</checksum>
@@ -894,7 +894,6 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 		<description>The Best Third Party Addons for XBMC, .[COLOR blue]X[/COLOR]unity[COLOR blue]T[/COLOR]alk</description>
 		<platform>all</platform>
 	</extension>
-
 </addon>
 
 <addon id="rogger.repository" name="rogger repository" version="0.0.2" provider-name="rogger2">
