@@ -8,7 +8,7 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 0
 
 #EXTINF:0,ABC 
-http://89.248.172.57:1935/edge/_definst_/371jluirljcsjen/playlist.m3u8?wowzasessionid=1127509920
+0
 
 #EXTINF:0,ABC Family 
 0
@@ -22,9 +22,6 @@ http://200.76.77.237/LIVE/H01/CANAL444/PROFILE03.m3u8?supertvlat=%2F.ts
 #EXTINF:0,AMC 
 http://200.76.77.237/LIVE/H01/CANAL444/PROFILE05.m3u8?supertvlat=%2F.ts
 
-#EXTINF:0,AMC 
-http://89.248.172.57:1935/edge/_definst_/7pctmre0zfwsc24/playlist.m3u8?wowzasessionid=380018938
-
 #EXTINF:0,AXN 
 0
 
@@ -32,10 +29,10 @@ http://89.248.172.57:1935/edge/_definst_/7pctmre0zfwsc24/playlist.m3u8?wowzasess
 0
 
 #EXTINF:0,BBC 1 
-http://204.107.27.199/live/14.low.stream/playlist.m3u8?id=0ad5aac39bb13fbeb79e39ec5bcb0fa1b1f07fbd2c86cffdd9f85aebaaf908377b8db852248e2fbc604d2d76d49ffdca13a2a7e14e10dd75a1c5386c0529f59c806cacc2af77431b72c394ff1367ddce15e62325b5ab9a6b837a28780b92f633224e0996da726b12420f79200b3838cf9e434908c5432bcacc0d682d421e84699209ac951044f68eff44b213702693172c5fa4a8114d2ae2
+0
 
 #EXTINF:0,BBC 2 
-http://204.107.27.199/live/25.low.stream/playlist.m3u8?id=0ad5aac39bb13fbed48e7c33b40d21d144def18ca6c5cdddb6dcd6a2a8b71a69698e849c8a94b125363b51ca10c87899e4591f9f6336705f6d1b746246eb93f91cc7e7540f22c7ee864bbeb133cede3d4a58af54aeaae9515bb745bc19da1eb5fc8ab08129065a45ce1544a2a24bb5a2045e2787c3ff68eabf6d2bd148e9ab6ed4cca08d920e621304718cfb0ae2eb5b10aa105a033b03a7
+0
 
 #EXTINF:0,BBC Entertainment
 http://200.76.77.237/LIVE/H01/CANAL253/PROFILE02.m3u8?supertvlat=%2F.ts
@@ -135,13 +132,13 @@ http://stream02.yamgo.com/iPhone/HLS_TS/broadcast/victorias_secret_angels-tablet
 0
 
 #EXTINF:0,Fashion TV 
-0
+http://edgeb.streaming.sk/fashiontv/fashiontv.stream/playlist.m3u8
 
 #EXTINF:0,Fine Living Network 
 0
 
 #EXTINF:0,Food Network 
-0
+http://llnw.live.simplestream.com/coder2/coder.channels.channel2/hls/3/playlist.m3u8
 
 #EXTINF:0,Fox 1 
 http://200.76.77.237/LIVE/H01/CANAL415/PROFILE02.m3u8?supertvlat=%2F.ts
@@ -153,10 +150,7 @@ http://200.76.77.237/LIVE/H01/CANAL415/PROFILE03.m3u8?supertvlat=%2F.ts
 http://200.76.77.237/LIVE/H01/CANAL415/PROFILE05.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Fox Crime 
-http://103.245.167.28/tot/a7105ed1bb0a44bba1f4f71f2352b892.m3u8
-
-#EXTINF:0,Fox Crime 
-http://103.245.167.28/tot/71f197de056e499a85265c03b44bdab1.m3u8
+0
 
 #EXTINF:0,Fox Life 
 0
@@ -309,7 +303,7 @@ http://llnw.live.qvc.simplestream.com/hera/remote/qvcuk_primary_sdi8/3/prog_inde
 0
 
 #EXTINF:0,Syfy 
-http://103.245.167.28/tot/2e0e4b05aa6e428593f3b45b710045b7.m3u8
+0
 
 #EXTINF:0,TBS 
 0
@@ -318,7 +312,7 @@ http://103.245.167.28/tot/2e0e4b05aa6e428593f3b45b710045b7.m3u8
 0
 
 #EXTINF:0,TLC 
-http://minitv.noip.me:8000/live/dragana/dragana/291.ts
+0
 
 #EXTINF:0,TNT 
 http://200.76.77.237/LIVE/H01/CANAL266/PROFILE02.m3u8?supertvlat=%2F.ts

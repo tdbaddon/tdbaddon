@@ -1,0 +1,24 @@
+24.12.2014 - v2.1.0
+	- Favoriten hinzugefügt
+	- auf i18n umgestellt
+
+29.07.2014 - v2.0.0
+	- von NamedPipes auf LocalProxy umgestellt
+	- alle Kategorien außer Group Shows stehen nun zur Verfügung
+	- Playliste von http auf https umgestellt
+	- Fehlermeldung wenn Actor beim Start offline ist
+	- Timeout bei fehlerhaften Stream auf ca.10 Sekunden gekürzt
+	- Aufzeichnemodus implementiert
+	- Streamstart optimiert 
+	
+15.03.2014 - v1.0.3
+	- ChunkPlayer "instability_stop" eingefügt
+
+24.01.2014 - v1.0.2
+	- ChunkPlayer optimiert
+
+11.01.2014 - v1.0.1
+	- kleine Anpassungen
+
+04.01.2014 - v1.0.0
+	- Veröffentlichung des AddOns

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<strings>
+	
+	<!-- addon.py -->
+    <string id="30110">Kategorien</string>
+    <string id="30115">Favoriten</string>
+    <string id="30120">Aufzeichnungen</string>
+    
+    <string id="30130">Featured</string>
+    <string id="30135">Weiblich</string>
+    <string id="30140">Männlich</string>
+    <string id="30145">Paar</string>
+    <string id="30150">Transsexuell</string>
+    
+    <string id="30160">Nächste Seite</string>
+    
+    <string id="30170">Chaturbate - Favorit hinzufügen</string>
+    <string id="30175">Chaturbate - Favorit entfernen</string>
+    
+    <!-- ChunkPlayer -->
+    <string id="30180">Darsteller ist offline</string> 
+    <string id="30185">'%s' steht nicht mehr zur Verfügung!</string>
+    
+</strings>

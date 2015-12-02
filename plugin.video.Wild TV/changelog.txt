@@ -1,0 +1,10 @@
+[B]1.0.1[/B]
+-Latest News pop up message added
+-Youtube Playlist support added 
+
+
+
+[B]1.0.0[/B]
+-Added Launched
+
+

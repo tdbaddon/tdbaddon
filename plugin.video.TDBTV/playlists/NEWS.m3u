@@ -31,7 +31,7 @@ http://x4012c4000.edge.core-cdn.net/40000mb/live/4012hbbtv/bloomberg.ts
 #EXTINF:0,CBC News Canada 
 rtmp://a.cdn.newschat.tv/edge playpath=cbc_live swfUrl=http://msnbclive.eu/player.swf pageUrl=http://www.livenewschat.eu/canada/ live=1
 
-#EXTINF:0,CBS News
+#EXTINF:0,CBS News 
 http://cbsnewshd-lh.akamaihd.net/i/CBSN_2@199302/index_4000_av-b.m3u8?sd=10&rebase=on
 
 #EXTINF:0,CBS News
@@ -71,9 +71,6 @@ http://ams-lp6.9c9media.com/hls-live/livepkgr/_definst_/liveNews/News38.m3u8
 http://ams-lp5.9c9media.com/hls-live/livepkgr/_definst_/liveNews/News48.m3u8 
 
 #EXTINF:0,DW 
-http://www.metafilegenerator.de/DWelle/tv-asia/ios/master.m3u8
-
-#EXTINF:0,DW 
 http://www.metafilegenerator.de/DWelle/tv-latinoamerica/ios/master.m3u8
 
 #EXTINF:0,Euro News 
@@ -87,9 +84,6 @@ http://fr-par-iphone-2.cdn.hexaglobe.net/streaming/euronews_ewns/ipad_en.m3u8
 
 #EXTINF:0,Fox News 
 http://bcoveliveios-i.akamaihd.net/hls/live/207145/374678397001/KTVU_NEWSCAST/KTVU_NEWSCAST_1800.m3u8
-
-#EXTINF:0,Fox News 
-http://103.245.167.28/tot/1e2041858ca543fa90ec95d28197e907.m3u8
 
 #EXTINF:0,France 24 
 http://f24hls-i.akamaihd.net/hls/live/221192/F24_FR_LO_HLS/master.m3u8
@@ -107,7 +101,7 @@ http://bcoveliveios-i.akamaihd.net/hls/live/215102/master_english/398/master.m3u
 rtmp://d.cdn.newschat.tv/edge playpath=msnbc_live swfUrl=http://msnbclive.eu/player.swf live=1 pageUrl=http://www.livenewschat.eu/politics/
 
 #EXTINF:0,NBC News 
-http://89.248.172.57:1935/edge/_definst_/s5whw37nl7weedp/playlist.m3u8?wowzasessionid=1235847184
+0
 
 #EXTINF:0,NHK World 
 http://web-cache.stream.ne.jp/www11/nhkworld-tv/global/222714/live.m3u8
@@ -152,4 +146,4 @@ http://kalsegsec-a.akamaihd.net:80/dc-0/m/pa-live-publish3/kLive/smil:1_oorxcge2
 http://cdnapi.kaltura.com/p/931702/sp/93170200/playManifest/entryId/1_oorxcge2/format/applehttp/protocol/http/uiConfId/28428751/a.m3u8
 
 #EXTINF:0,Weather Network 
-http://bcoveliveios-i.akamaihd.net/hls/live/207737/1942203455001/nat/master_Layer5.m3u8
+0

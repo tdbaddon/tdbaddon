@@ -14,7 +14,7 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 0
 
 #EXTINF:0,Crime & Investigation 
-http://103.245.167.28/tot/9961a963920f45f4bc0d81c3e478b334.m3u8
+0
 
 #EXTINF:0,Destination America 
 0
@@ -84,9 +84,6 @@ http://iphone-streaming.ustream.tv/uhls/6540154/streams/live/iphone/playlist.m3u
 
 #EXTINF:0,National Geographic 
 http://78.26.128.94:8000/udp/225.1.1.56:1234
-
-#EXTINF:0,National Geographic 
-http://193.106.211.2:1234/udp/225.1.5.106:4001
 
 #EXTINF:0,Nova
 0

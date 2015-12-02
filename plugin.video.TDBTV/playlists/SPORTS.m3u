@@ -18,10 +18,10 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 0
 
 #EXTINF:0,BT Sport 1 
-0
+rtmp://176.31.231.25:1935/goLive/_definst_/ibrodtv26_fwfns7fs
 
 #EXTINF:0,BT Sport 2 
-0
+rtmp://176.31.231.25:1935/goLive/_definst_/ibrodtv27_8hps6ods
 
 #EXTINF:0,CBS Sports 
 0
@@ -35,9 +35,6 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 #EXTINF:0,ESPN 
 rtmp://80.82.65.162/live playpath=despnuk swfUrl=http://www.yocast.tv/myplayer/jwplayer.flash.swf live=1 pageUrl=http://www.yocast.tv/embed.php?live=vskys1&vw=620&vh=490
 
-#EXTINF:0,ESPN 
-http://89.248.172.57:1935/edge/_definst_/jn73dbbe4tdu03z/playlist.m3u8?wowzasessionid=1301414617
-
 #EXTINF:0,ESPN 2
 0
 
@@ -45,7 +42,7 @@ http://89.248.172.57:1935/edge/_definst_/jn73dbbe4tdu03z/playlist.m3u8?wowzasess
 http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_1800.m3u8
 
 #EXTINF:0,Eurosport 2 
-0
+rtmp://176.31.231.25:1935/goLive/_definst_/ibrodtv29_2cmdoz6c
 
 #EXTINF:0,Eurosport News 
 0
@@ -57,13 +54,7 @@ http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_18
 0
 
 #EXTINF:0,Fox Sports 
-http://ftve1100-i.akamaihd.net/hls/live/217047/fcsp/3964k/prog.m3u8|X-Forwarded-For=13.107.25.55
-
-#EXTINF:0,Fox Sports 
-http://ftve1100-i.akamaihd.net/hls/live/217045/fcsa/3964k/prog.m3u8|X-Forwarded-For=13.107.25.55
-
-#EXTINF:0,Fox Sports 
-http://ftve1100-i.akamaihd.net/hls/live/217046/fcsc/3964k/prog.m3u8|X-Forwarded-For=13.107.25.55
+0
 
 #EXTINF:0,Fox Sports 1 
 0
@@ -116,9 +107,6 @@ http://nflioslivesvg2-i.akamaihd.net/hls/live/221521/nflioslive/2015HackerNow_w9
 #EXTINF:0,NFL Network 
 http://nflioslivesvg2-i.akamaihd.net/hls/live/221521/nflioslive/2015HackerNow_w99d9.m3u8
 
-#EXTINF:0,NFL Network 
-http://89.248.172.57:1935/edge/_definst_/n1dv2of13iqam3u/playlist.m3u8?wowzasessionid=1998190402
-
 #EXTINF:0,NHL Network 
 http://208.92.36.158/ipad/live/nba_ipad_1240.m3u8
 
@@ -129,10 +117,10 @@ http://208.92.36.158/ipad/live/nba_ipad_1240.m3u8
 http://xrxs.net/video/live-p12ariz-1164.m3u8
 
 #EXTINF:0,PAC 12 Arizona HD 
-0
+http://pac12hd2-lh.akamaihd.net/i/p12ariz_delivery@132836/master.m3u8
 
 #EXTINF:0,PAC 12 Bay Area 
-0
+http://pac12hd2-lh.akamaihd.net/i/p12baya_delivery@132837/master.m3u8
 
 #EXTINF:0,PAC 12 Bay Area HD 
 http://xrxs.net/video/live-p12baya-4728.m3u8?
@@ -180,7 +168,7 @@ http://ooyalahd2-f.akamaihd.net/i/crtv01_delivery@329705/index_1164_av-b.m3u8
 mms://100automoto.tv/channel_porsche
 
 #EXTINF:0,Premier Sports 
-0
+rtmp://176.31.231.25:1935/goLive/_definst_/ibrodtv30_xdjbv8no
 
 #EXTINF:0,Racing UK 
 0
@@ -192,19 +180,19 @@ mms://100automoto.tv/channel_porsche
 0
 
 #EXTINF:0,Sky Sports 1 
-0
+rtmp://176.31.231.25:1935/goLive/_definst_/ibrodtv21_6vhudlq8
 
 #EXTINF:0,Sky Sports 2 
-0
+rtmp://176.31.231.25:1935/goLive/_definst_/ibrodtv22_j5p1mted
 
 #EXTINF:0,Sky Sports 3 
-0
+rtmp://176.31.231.25:1935/goLive/_definst_/ibrodtv23_5px3ntfs
 
 #EXTINF:0,Sky Sports 4 
-0
+rtmp://176.31.231.25:1935/goLive/_definst_/ibrodtv24_f84rdmkk
 
 #EXTINF:0,Sky Sports 5 
-0
+rtmp://176.31.231.25:1935/goLive/_definst_/ibrodtv25_wt250ssk
 
 #EXTINF:0,Sky Sports F1 
 0
@@ -222,13 +210,10 @@ mms://100automoto.tv/channel_porsche
 rtmp://31.220.2.149:80/live playpath=sprt1 swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf pageUrl=http://yotv.co/embedu.php?live=sprt1&vw=620&vh=490 token=%Zrey(nKa@#Z
 
 #EXTINF:0,Sportsnet Ontario 
-rtmp://31.220.2.149:80/live/ playpath=ontario token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://yotv.co
-
-#EXTINF:0,Sportsnet Ontario 
-rtmp://31.220.2.149:80/live playpath=ontario swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf live=1 pageUrl=http://yotv.co/embedu.php?live=world&vw=620&vh=490 token=%Zrey(nKa@#Z
+0
 
 #EXTINF:0,Sportsnet World 
-rtmp://31.220.2.149:80/live/ playpath=world token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://yotv.co
+0
 
 #EXTINF:0,Tennis Channel 
 0
@@ -246,7 +231,7 @@ rtmp://31.220.2.149:80/live/ playpath=tsnx2 token=%Zrey(nKa@#Z swfUrl=http://p.j
 0
 
 #EXTINF:0,TSN 4 
-http://02e4.vp9.tv/chn/tsn4/v.m3u8
+0
 
 #EXTINF:0,TSN 5 
 0
@@ -255,7 +240,7 @@ http://02e4.vp9.tv/chn/tsn4/v.m3u8
 0
 
 #EXTINF:0,Viasat Sport 
-http://109.254.88.12:81/udp/238.1.1.113:1234
+0
 
 #EXTINF:0,VS Versus 
 http://208.92.36.158/ipad/live/nba_ipad_1240.m3u8

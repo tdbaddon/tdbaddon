@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="xxtrucoxx-repo" name="XxTRUCOxX repository" version="0.0.1" provider-name="XxTRUCOxX">
+	<extension point="xbmc.addon.repository" name="XxTRUCOxX Add-on Repository">
+		<info compressed="false">http://raw.github.com/AiWABR/xxtrucoxx-repo/master/addons.xml</info>
+		<checksum>http://raw.github.com/AiWABR/xxtrucoxx-repo/master/addons.xml.md5</checksum>
+		<datadir zip="true">http://raw.github.com/AiWABR/xxtrucoxx-repo/master/repo/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>XxTRUCOxX Addon Repository</summary>
+		<description>Watch Porn Online</description>
+		<disclaimer></disclaimer>
+		<platform>all</platform>
+	</extension>
+</addon>

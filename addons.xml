@@ -110,6 +110,23 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
+<addon id="plugin.video.chaturbate" name="Chaturbate" version="2.1.0" provider-name="LivingOn">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="addon.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="de">Chaturbate</summary>
+    <description lang="de">Der Name sagt alles!</description>
+    <disclaimer lang="de">Diese Software steht unter der GNU General Public License version 2[CR][CR]Copyright (c) 2014 by LivingOn &lt;LivingOn@xmail.net&gt;</disclaimer>
+    <description lang="en">The name says it all!</description>
+    <disclaimer lang="en">This software is licensed under the GNU General Public License version 2[CR][CR]Copyright (c) 2014 by &lt;LivingOn@xmail.net&gt;</disclaimer>
+    <platform>all</platform>
+  </extension>
+</addon>
+
 <addon id="plugin.video.gClone" name="gClone" version="1.2.2" provider-name="NVTTeam">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0"/>
@@ -157,86 +174,56 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 	</extension>
 </addon>
 
-<addon
-  id="plugin.video.HTVonline"
-  version="0.0.7"
-  name="[COLOR ffff0000]H[/COLOR][COLOR ff32cd32]T[/COLOR][COLOR ff0000ff]V[/COLOR][COLOR ffffffff]online[/COLOR]"
-  provider-name="traitravinh">
+<addon id="plugin.video.hgtv.canada"
+       name="HGTV Canada"
+       version="1.0.5"
+       provider-name="t1m">
   <requires>
-    <import addon="xbmc.python" version="2.1.0" optional="true"/>
+    <import addon="xbmc.python" version="2.1.0"/>
   </requires>
   <extension point="xbmc.python.pluginsource"
-            library="htvonline.py">
+            library="default.py">
         <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary>Watch liveTV</summary>
-    <description>Watch liveTV</description>
+    <summary lang="en">HGTV Canada Video Addon</summary>
+    <description lang="en">Play videos from the HGTV Canada Network</description>
+    <disclaimer lang="en">Feel free to use this script. For information visit the wiki.</disclaimer>
     <platform>all</platform>
+    <language>en</language>
+    <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+    <forum>http://forum.kodi.tv/showthread.php?tid=232755</forum>
+    <website>www.hgtv.ca</website>
+    <email></email>
+    <source>https://github.com/learningit/plugin.video.hgtv.canada/</source>
   </extension>
 </addon>
 
-<addon
-  id="plugin.video.imdb.trailers"
-  version="2.0.7"
-  name="IMDb Trailers"
-  provider-name="queeup">
+<addon id="plugin.video.MoneySports"
+       name="MoneySports"
+       version="1.0.2"
+       provider-name="Legends">
   <requires>
-    <import addon="xbmc.python"
-            version="2.1.0"/>
-    <import addon="script.module.simplejson"
-            version="2.0.10"/>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.beautifulsoup" version="3.2.1"/>
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.beautifulsoup4" />
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.requests" />
+    <import addon="script.module.httplib2" />
+    <import addon="script.module.youtube.dl" optional="true"/>
+    <import addon="plugin.video.youtube" />
+    <import addon="script.module.urlresolver" optional="true"/>
+    <import addon="script.module.simplejson" />
   </requires>
-  <extension point="xbmc.python.pluginsource"
-             library="addon.py">
+  <extension point="xbmc.python.pluginsource" library="default.py">
     <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary>IMDb Trailers video add-on</summary>
-    <summary lang="tr">IMDb Fragmanları video eklentisi</summary>
-    <description>Watch movie trailers available on IMDb.</description>
-    <description lang="tr">IMDb'de bulunan film fragmanlarını izle.</description>
-    <license>WTFPL</license>
-    <platform>all</platform>
-  </extension>
-</addon>
-
-<addon id="plugin.video.kodipopcorntime" name="KODI Popcorn Time" version="0.6.5" provider-name="Diblo">
-    <requires>
-        <import addon="xbmc.python" version="2.14.0"/>
-    </requires>
-    <extension point="xbmc.python.pluginsource" library="addon.py">
-        <provides>video</provides>
-    </extension>
-    <extension point="xbmc.addon.metadata">
-        <platform>all</platform>
-        <website><![CDATA[https://github.com/Diblo/KODI-Popcorn-Time]]></website>
-        <forum></forum>
-        <source><![CDATA[https://github.com/Diblo/KODI-Popcorn-Time]]></source>
-        <language>English</language>
-        <license><![CDATA[GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007]]></license>
-        <summary><![CDATA[KODI Popcorn Time: Immediately stream movies in KODI.]]></summary>
-        <description><![CDATA[With KODI Popcorn Time you can search for movies that you can see immediately in KODI.]]></description>
-    </extension>
-</addon>
-
-<addon id="plugin.video.movieshd" name="Movies HD" version="2.0.4" provider-name="MetalKettle">
-  <requires>
-    <import addon="script.module.simplejson" version="3.3.0"/>
-    <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="script.module.t0mm0.common" version="2.0.0"/>
-    <import addon="plugin.video.youtube" version="3.0.0"/>
-    <import addon="script.module.urlresolver"  version="2.1.2"/>
-    <import addon="script.common.plugin.cache" version="2.5.2"/>
-    <import addon="script.module.metahandler" version="2.5.1"/>
-    <import addon="script.module.addon.common" version="2.0.0"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en"></summary>
-    <description lang="en"></description>
+    <summary>The only add-on you need for all your sport needs...</summary>
+    <description>
+            The only add-on you need for all your sport needs...
+    </description>
     <platform>all</platform>
   </extension>
 </addon>
@@ -299,21 +286,6 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 	</extension>
 </addon>
 
-<addon id="plugin.video.playbox" name="PlayBox HD" version="0.0.6" provider-name="Mikey1234">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-   <import addon="script.module.urlresolver" version="0.0.1"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en">PlayBox HD</summary>
-    <description lang="en">Watch All Your Favourite Movies Tv Shows Kids Cartoons With PlayBox HD</description>
-    <platform>all</platform>
-  </extension>
-</addon>
-
 <addon id="plugin.video.ProjectCypher"
        name="ProjectCypherTV"
        version="1.0.2"
@@ -340,38 +312,6 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   <extension point="xbmc.addon.metadata">
     <summary>Live SD and HD TV channels</summary>
     <description>General disclaimer: Project Cypher takes no responsibility for the content or reliability of the feeds. Project Cypher [B]Does Not[/B] host any of the feeds or Streams. [B]PLEXUS[/B] addon is required for P2P (Torrent) sports channels. Make sure it is properly configured for your system. Most of the Code from this addon was taken from many other addons but used under the GNU GENERAL PUBLIC LICENSE Version 2, June 1991</description>
-    <platform>all</platform>
-  </extension>
-</addon>
-
-<addon id="plugin.video.RobinHood-PPL-List"
-       name="RobinHood-Project"
-       version="3.0.5"
-       provider-name="Shadow Crew">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-	<import addon="script.module.t0mm0.common" version="2.0.0"/>
-    <import addon="script.module.beautifulsoup" version="3.2.1"/>
-    <import addon="script.module.simple.downloader" version="0.9.4"/>
-    <import addon="script.module.beautifulsoup4" />
-    <import addon="script.module.simple.downloader" version="0.9.4"/>
-    <import addon="script.module.requests" />
-    <import addon="script.module.httplib2" />
-    <import addon="script.module.youtube.dl" optional="true"/>
-    <import addon="plugin.video.youtube" version="3.0.0"/>
-    <import addon="script.module.urlresolver" optional="true"/>
-    <import addon="script.module.simplejson" />
-    <import addon="script.common.plugin.cache" version="2.5.2"/>
-    <import addon="script.module.metahandler" version="2.5.1"/>
-
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-    <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en"> Join us at http://www.rh-project.info/</summary>
-    <description lang="en">Special Thank you to Hakamac For all his support.
-	This is just the Start.</description>
     <platform>all</platform>
   </extension>
 </addon>
@@ -534,7 +474,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="3.34"
+       version="3.35"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -552,6 +492,39 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   <extension point="xbmc.service" library="service.py" start="login" />
 </addon>
 
+<addon id="plugin.video.Wild TV"
+       name="[COLOR yellow]Wild TV[/COLOR]"
+       version="1.0.1"
+       provider-name="KodiLand-Thomas B/Pi Kodi">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+	<import addon="script.module.t0mm0.common" version="2.0.0"/>
+    <import addon="script.module.beautifulsoup" version="3.2.1"/>
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.beautifulsoup4" />
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.requests" />
+    <import addon="script.module.httplib2" />
+    <import addon="script.module.youtube.dl" optional="true"/>
+    <import addon="plugin.video.youtube" version="3.0.0"/>
+    <import addon="script.module.urlresolver" optional="true"/>
+    <import addon="script.module.simplejson" />
+    <import addon="script.common.plugin.cache" version="2.5.2"/>
+    <import addon="script.module.metahandler" version="2.5.1"/>
+
+
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="xyz.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">KodiLand Addon</summary>
+    <description lang="en">Live TV/Sport, Movies , TV Shows , Radio
+For support tweet us @kodiland</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
 <addon id="repository.addonscriptorde-beta" name="AddonScriptorDE's Testing Repo" version="1.0.1" provider-name="AddonScriptorDE">
 	<extension point="xbmc.addon.repository" name="AddonScriptorDE's Testing Repo">
 		<info compressed="false">http://addonscriptorde-beta-repo.googlecode.com/svn/trunk/addons.xml</info>
@@ -562,19 +535,6 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 		<summary>Add-ons and updates that are not (yet) available via the xbmc.org repo</summary>
 		<description>Add-ons and updates that are not (yet) available via the xbmc.org repo</description>
 		<disclaimer></disclaimer>
-		<platform>all</platform>
-	</extension>
-</addon>
-
-<addon id="repository.ah" name="AH Add-on repository" version="1.0" provider-name="AddonHacker">
-	<extension point="xbmc.addon.repository" name="AH Add-on repository">
-		<info compressed="false">https://raw.githubusercontent.com/addonhacker/ah-repo/master/addons.xml</info>
-		<checksum>https://raw.githubusercontent.com/addonhacker/ah-repo/master/addons.xml.md5</checksum>
-		<datadir zip="true">https://raw.githubusercontent.com/addonhacker/ah-repo/master/repo</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>Install Add-ons from AH Add-on Repository</summary>
-		<description>Video plug-ins for Kodi</description>
 		<platform>all</platform>
 	</extension>
 </addon>
@@ -680,18 +640,21 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 	</extension>
 </addon>
 
-<addon id="repository.mdrepo" name="Mucky Ducks Repo" version="1.0.2" provider-name="Mucky Duck">
-	<extension point="xbmc.addon.repository" name="Mucky Ducks Repo">
-		<info compressed="false">https://raw.githubusercontent.com/mucky-duck/mdrepo/master/addons.xml</info>
-		<checksum>https://raw.githubusercontent.com/mucky-duck/mdrepo/master/addons.xml.md5</checksum>
-		<datadir zip="true">https://raw.githubusercontent.com/mucky-duck/mdrepo/master/</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>Mucky Ducks Repo</summary>
-		<description>Download And Install Addons Developed By Mucky Duck And Various Other Developers </description>
-		<disclaimer>The owners and submitters to this repository do not host or distribute any of the content displayed by these addons nor do they have any affiliation with the content providers.</disclaimer>
-		<platform>all</platform>
-	</extension>
+    <addon id="repository.legends" name=".[COLOR blue]L[/COLOR][COLOR white]egends[/COLOR]-repo" version="1.0.0" provider-name="Dragon">
+        <requires>
+            <import addon="xbmc.addon" version="12.0.0"/>
+        </requires>
+        <extension point="xbmc.addon.repository" name=".[COLOR blue]L[/COLOR][COLOR white]egends[/COLOR]-repo">
+            <info compressed="false">http://4legends.co.uk/Legends/addons.xml</info>
+            <checksum>http://legends.x10.mx/repo/addons.xml.md5</checksum>
+            <datadir zip="true">http://4legends.co.uk/Legends/</datadir>
+            <hashes>false</hashes>
+        </extension>
+        <extension point="xbmc.addon.metadata">
+            <summary>We Fly High and NEVER Fall....</summary>
+            <description>Only The Best</description>
+            <platform>all</platform>
+    </extension>
 </addon>
 
 <addon id="repository.metalkettle" name="MetalKettles Addon Repository" version="1.6.2" provider-name="MetalKettle">
@@ -762,32 +725,6 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 	</extension>
 </addon>
 
-<addon id="repository.shadowcrew" name="ShadowCrew" version="5.0.0" provider-name="ShadowCrew">
-	<extension point="xbmc.addon.repository" name="ShadowCrew Repository">
-		<info compressed="false">http://shadowsrepo.info/repo/addons.xml</info>
-		<checksum>http://shadowsrepo.info/repo/addons.xml.md5</checksum>
-		<datadir zip="true">http://shadowsrepo.info/repo/zips</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-    <summary lang="en"> Join us at http://rh-project.info/</summary>
-    <description lang="en">Special Thank you to Hakamac, Metal Kettle and Xunity</description>
-		<platform>all</platform>
-	</extension>
-</addon>
-
-<addon id="repository.streamstormtv" name="streamstorm repo" version="1.0.2" provider-name="streamstormtvrepo">
-	<extension point="xbmc.addon.repository" name="streamstorm Addon Repository">
-		<info compressed="false">https://raw.githubusercontent.com/streamstormtv/streamstormtvrepo/master/addons.xml</info>
-		<checksum>https://raw.githubusercontent.com/streamstormtv/streamstormtvrepo/master/addons.xml.md5</checksum>
-		<datadir zip="true">https://raw.githubusercontent.com/streamstormtv/streamstormtvrepo/master/zips</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>Stream Storm Addon Repo</summary>
-		<description>Addons brought to you by StreamStormTV</description>
-		<platform>all</platform>
-	</extension>
-</addon>
-
 <addon id="repository.t1m.addons" name="t1m Add-on Repository" version="1.0.4" provider-name="t1m">
 	<extension point="xbmc.addon.repository" name="Offical t1m Add-on Repository">
 		<info compressed="true">https://raw.github.com/learningit/repository.t1m.addons/master/addons.xml</info>
@@ -812,20 +749,6 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 <description>Download and Install Addons</description>
 <platform>all</platform>
 </extension>
-</addon>
-
-<addon id="repository.team.expat" name="Team eXpat Repository" version="1.0.6" provider-name="Team-eXpat">
-	<extension point="xbmc.addon.repository" name="Demonstration Add-on Repository">
-		<info compressed="false">http://raw.github.com/teamexpat/team.expat/master/addons.xml</info>
-		<checksum>http://raw.github.com/teamexpat/team.expat/master/addons.xml.md5</checksum>
-		<datadir zip="true">http://raw.github.com/teamexpat/team.expat/master/repo/</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>Team eXpat Addon</summary>
-		<description>Build Addon Installer</description>
-		<disclaimer></disclaimer>
-		<platform>all</platform>
-	</extension>
 </addon>
 
 <addon id="repository.thec0de" name="gr33ksRepo" version="1.0.0" provider-name="Gr33k">
@@ -1343,4 +1266,18 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
                 <website>https://superrepo.org/</website>
                 </extension>
                 </addon>
+
+<addon id="xxtrucoxx-repo" name="XxTRUCOxX repository" version="0.0.1" provider-name="XxTRUCOxX">
+	<extension point="xbmc.addon.repository" name="XxTRUCOxX Add-on Repository">
+		<info compressed="false">http://raw.github.com/AiWABR/xxtrucoxx-repo/master/addons.xml</info>
+		<checksum>http://raw.github.com/AiWABR/xxtrucoxx-repo/master/addons.xml.md5</checksum>
+		<datadir zip="true">http://raw.github.com/AiWABR/xxtrucoxx-repo/master/repo/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>XxTRUCOxX Addon Repository</summary>
+		<description>Watch Porn Online</description>
+		<disclaimer></disclaimer>
+		<platform>all</platform>
+	</extension>
+</addon>
 </addons>

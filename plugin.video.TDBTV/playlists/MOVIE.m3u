@@ -200,7 +200,7 @@ rtmp://www1.iguide.to:1935/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.igu
 0
 
 #EXTINF:0,TV 1000 
-http://195.78.244.219:10000/udp/239.0.3.29:1234
+0
 
 #EXTINF:0,TV 1000 Action 
-http://195.78.244.219:10000/udp/239.0.3.27:1234
+0
