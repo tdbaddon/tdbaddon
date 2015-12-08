@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="plugin.video.Wild TV"
-       name="[COLOR yellow]Wild TV[/COLOR]"
+       name="Wild TV"
        version="1.0.1"
        provider-name="KodiLand-Thomas B/Pi Kodi">
   <requires>
