@@ -493,7 +493,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 </addon>
 
 <addon id="plugin.video.Wild TV"
-       name="Wild TV"
+       name="[COLOR yellow]Wild TV[/COLOR]"
        version="1.0.1"
        provider-name="KodiLand-Thomas B/Pi Kodi">
   <requires>
