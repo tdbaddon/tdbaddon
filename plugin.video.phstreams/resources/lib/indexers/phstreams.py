@@ -31,6 +31,7 @@ from resources.lib.libraries import views
 
 
 phLink = 'http://mecca.watchkodi.com/phstreams.xml'
+phNews = 'http://mecca.watchkodi.com/news.xml'
 phSearch = 'http://%s/search/search.xml'
 phTest = 'testings.xml'
 
@@ -38,13 +39,14 @@ phTest = 'testings.xml'
 def getCategory():
     getDirectory('0', phLink, '0', '0', '0', '0', '0', close=False)
 
+    addCategoryItem('VinMan FM', 'radioDirectory', 'radios.png')
     addCategoryItem('NHL', 'nhlDirectory', 'hockey.jpg')
+    addCategoryItem('News Updates', 'dmode&url=%s' % phNews, 'news.gif')
     addCategoryItem(control.lang(30701).encode('utf-8'), 'openSettings', 'settings.png')
     addCategoryItem(control.lang(30721).encode('utf-8'), 'downloader', 'downloader.png')
     addCategoryItem(control.lang(30702).encode('utf-8'), 'search', 'search.png')
 
-    if phTest in control.listDir(control.dataPath)[1]:
-        addCategoryItem('Testings', 'localDirectory', 'home.png')
+    if phTest in control.listDir(control.dataPath)[1]: addCategoryItem('Testings', 'localDirectory', 'home.png')
 
     endCategory()
 
@@ -132,7 +134,7 @@ def getDirectory(name, url, audio, image, fanart, playable, content, close=True,
 
     special = re.compile('<name>([^<]+)</name><link>([^<]+)</link><thumbnail>([^<]+)</thumbnail><mode>([^<]+)</mode>').findall(result)
     for name, url, image, action in special:
-        addDirectoryItem(name, url, action, image, image, fanart, '0', '0', {})
+        if not url == phNews: addDirectoryItem(name, url, action, image, image, fanart, '0', '0', {})
 
 
 

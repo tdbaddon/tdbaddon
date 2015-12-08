@@ -266,7 +266,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
-<addon id="plugin.video.phstreams" name="Phoenix" version="2.6.91" provider-name="Blazetamer, lambda">
+<addon id="plugin.video.phstreams" name="Phoenix" version="2.7.0" provider-name="Blazetamer, lambda">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.pyxbmct" version="1.1.4" />
@@ -379,7 +379,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 <addon id="plugin.video.TDBEUROTV"
        name="TDB EURO TV"
-       version="2.07"
+       version="2.08"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -418,7 +418,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 <addon id="plugin.video.TDBPORNO"
        name="TDB PORNO"
-       version="1.79"
+       version="1.80"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -474,7 +474,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="3.35"
+       version="3.36"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>

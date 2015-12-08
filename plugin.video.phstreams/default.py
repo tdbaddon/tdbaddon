@@ -149,6 +149,27 @@ elif action == 'clearCache':
     cache.clear()
 
 
+elif action == 'radioDirectory':
+    from resources.lib.indexers import phradios
+    phradios.radioDirectory()
+
+elif action == 'radioResolve':
+    from resources.lib.indexers import phradios
+    phradios.radioResolve(name, url, image)
+
+elif action == 'radio1fm':
+    from resources.lib.indexers import phradios
+    phradios.radio1fm(image, fanart)
+
+elif action == 'radio181fm':
+    from resources.lib.indexers import phradios
+    phradios.radio181fm(image, fanart)
+
+elif action == 'radiotunes':
+    from resources.lib.indexers import phradios
+    phradios.radiotunes(image, fanart)
+
+
 elif action == 'nhlDirectory':
     from resources.lib.indexers import nhlcom
     nhlcom.nhlDirectory()

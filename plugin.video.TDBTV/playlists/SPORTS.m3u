@@ -33,7 +33,7 @@ rtmp://176.31.231.25:1935/goLive/_definst_/ibrodtv27_8hps6ods
 0
 
 #EXTINF:0,ESPN 
-rtmp://80.82.65.162/live playpath=despnuk swfUrl=http://www.yocast.tv/myplayer/jwplayer.flash.swf live=1 pageUrl=http://www.yocast.tv/embed.php?live=vskys1&vw=620&vh=490
+0
 
 #EXTINF:0,ESPN 2
 0
@@ -180,19 +180,31 @@ rtmp://176.31.231.25:1935/goLive/_definst_/ibrodtv30_xdjbv8no
 0
 
 #EXTINF:0,Sky Sports 1 
-rtmp://176.31.231.25:1935/goLive/_definst_/ibrodtv21_6vhudlq8
+0
 
 #EXTINF:0,Sky Sports 2 
 rtmp://176.31.231.25:1935/goLive/_definst_/ibrodtv22_j5p1mted
 
+#EXTINF:0,Sky Sports 2 
+rtmp://80.82.70.210/live playpath=phuddhuss2 swfUrl=http://www.yocast.tv/myplayer/jwplayer.flash.swf live=1 pageUrl=http://www.yocast.tv/embed.php?live=phuddhuss2&vw=620&vh=490
+
 #EXTINF:0,Sky Sports 3 
 rtmp://176.31.231.25:1935/goLive/_definst_/ibrodtv23_5px3ntfs
+
+#EXTINF:0,Sky Sports 3 
+rtmp://80.82.78.3/live playpath=phuddhuss3 swfUrl=http://www.yocast.tv/myplayer/jwplayer.flash.swf live=1 pageUrl=http://www.yocast.tv/embed.php?live=phuddhuss3&vw=620&vh=490
 
 #EXTINF:0,Sky Sports 4 
 rtmp://176.31.231.25:1935/goLive/_definst_/ibrodtv24_f84rdmkk
 
+#EXTINF:0,Sky Sports 4 
+rtmp://80.82.70.194/live playpath=phuddhuss4 swfUrl=http://www.yocast.tv/myplayer/jwplayer.flash.swf live=1 pageUrl=http://www.yocast.tv/embed.php?live=phuddhuss4&vw=620&vh=490
+
 #EXTINF:0,Sky Sports 5 
 rtmp://176.31.231.25:1935/goLive/_definst_/ibrodtv25_wt250ssk
+
+#EXTINF:0,Sky Sports 5 
+rtmp://89.248.174.38/live playpath=phuddhuss5 swfUrl=http://www.yocast.tv/myplayer/jwplayer.flash.swf live=1 pageUrl=http://www.yocast.tv/embed.php?live=phuddhuss5&vw=620&vh=490
 
 #EXTINF:0,Sky Sports F1 
 0

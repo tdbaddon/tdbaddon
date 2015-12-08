@@ -81,10 +81,10 @@ http://54.85.197.21:1935/live/news/playlist.m3u8
 0
 
 #EXTINF:0,City TV Vancouver 
-http://btflash-lh.akamaihd.net/i/BTVANFLASH_live@120224/master.m3u8
+0
 
 #EXTINF:0,CNBC 
-http://origin.live.web.tv.streamprovider.net/streams/9044496707bcc259f6cdf58eb93cbfe9_live_0_0/index.m3u8
+0
 
 #EXTINF:0,Comedy Central 
 0
@@ -312,7 +312,7 @@ http://llnw.live.qvc.simplestream.com/hera/remote/qvcuk_primary_sdi8/3/prog_inde
 0
 
 #EXTINF:0,TLC 
-0
+http://origin.live.web.tv.streamprovider.net/streams/9044496707bcc259f6cdf58eb93cbfe9_live_0_0/index.m3u8
 
 #EXTINF:0,TNT 
 http://200.76.77.237/LIVE/H01/CANAL266/PROFILE02.m3u8?supertvlat=%2F.ts
@@ -336,10 +336,10 @@ http://200.76.77.237/LIVE/H01/CANAL266/PROFILE05.m3u8?supertvlat=%2F.ts
 http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/master.m3u8?b?b*t$ 
 
 #EXTINF:0,True Drama 
-http://37.187.248.101:8080/truedram.stream/playlist.m3u8
+0
 
 #EXTINF:0,True Entertainment 
-http://37.187.248.101:8080/trueent.stream/playlist.m3u8
+0
 
 #EXTINF:0,TV Land 
 0

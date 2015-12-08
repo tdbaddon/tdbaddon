@@ -32,9 +32,6 @@ http://x4012c4000.edge.core-cdn.net/40000mb/live/4012hbbtv/bloomberg.ts
 rtmp://a.cdn.newschat.tv/edge playpath=cbc_live swfUrl=http://msnbclive.eu/player.swf pageUrl=http://www.livenewschat.eu/canada/ live=1
 
 #EXTINF:0,CBS News 
-http://cbsnewshd-lh.akamaihd.net/i/CBSN_2@199302/index_4000_av-b.m3u8?sd=10&rebase=on
-
-#EXTINF:0,CBS News
 http://cbsnews-linear.mdialog.com/video_assets/cbsnews.m3u8?api_key=563b80c1ae4ce359830f572d2496a947&iu=/8264/vaw-can/mobile_web/cbsnews_mobileprocessor=https://sp.yimg.com/ib/th?id=JN.%2bZ5%2f0mrtDRvtsB4lEiRQ2Q&pid=15.1&P=0&w=300&h=300
 
 #EXTINF:0,CCTV News 
@@ -44,10 +41,7 @@ http://77.36.61.45:8010/CCTVNews.m3u8?
 http://origin2.live.web.tv.streamprovider.net/streams/3bc166ba3776c04e987eb242710e75c0/index.m3u8
 
 #EXTINF:0,CNN 
-rtmp://edge1.everyon.tv/etv1sb/phd16
-
-#EXTINF:0,CNN 
-rtmp://edge1.everyon.tv/etv1sb/pld16
+0
 
 #EXTINF:0,CP24 
 0
@@ -83,7 +77,7 @@ rtsp://ewns-hls-b-stream.hexaglobe.net/rtpeuronewslive/en_vidan750_rtp.sdp
 http://fr-par-iphone-2.cdn.hexaglobe.net/streaming/euronews_ewns/ipad_en.m3u8
 
 #EXTINF:0,Fox News 
-http://bcoveliveios-i.akamaihd.net/hls/live/207145/374678397001/KTVU_NEWSCAST/KTVU_NEWSCAST_1800.m3u8
+0
 
 #EXTINF:0,France 24 
 http://f24hls-i.akamaihd.net/hls/live/221192/F24_FR_LO_HLS/master.m3u8

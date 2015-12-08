@@ -309,10 +309,6 @@ def info():
         'class': 'datemule',
         'netloc': ['datemule.com']
     }, {
-        'class': 'divxpress',
-        'netloc': ['divxpress.com'],
-        'quality': 'Medium'
-    }, {
         'class': 'exashare',
         'netloc': ['exashare.com'],
         'quality': 'Low'
@@ -390,10 +386,6 @@ def info():
         'netloc': ['movshare.net'],
         'quality': 'Low'
     }, {
-        'class': 'mrfile',
-        'netloc': ['mrfile.me'],
-        'quality': 'High'
-    }, {
         'class': 'mybeststream',
         'netloc': ['mybeststream.xyz']
     }, {
@@ -470,6 +462,10 @@ def info():
         'class': 'up2stream',
         'netloc': ['up2stream.com'],
         'quality': 'Medium'
+    }, {
+        'class': 'uploadaf',
+        'netloc': ['upload.af'],
+        'quality': 'High'
     }, {
         'class': 'uploadc',
         'netloc': ['uploadc.com', 'uploadc.ch', 'zalaa.com'],
