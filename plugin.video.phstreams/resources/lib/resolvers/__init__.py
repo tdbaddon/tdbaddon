@@ -19,7 +19,7 @@
 '''
 
 
-import re,urllib,urlparse,json
+import re,urllib,urlparse,json,time
 
 from resources.lib.libraries import cache
 from resources.lib.libraries import control
@@ -81,10 +81,10 @@ def parser(url, referer):
 
 def rdDict():
     try:
-        user, password = [(i['user'], i['pass']) for i in debridCredentials() if i['debrid'] == 'realdebrid' and not (i['user'] == '' or i['pass'] == '')][0]
-        url = 'http://real-debrid.com/api/hosters.php'
+        if '' in debridCredentials()['realdebrid'].values(): raise Exception()
+        url = 'http://api.real-debrid.com/rest/1.0/hosts/domains'
         result = cache.get(client.request, 24, url)
-        hosts = json.loads('[%s]' % result)
+        hosts = json.loads(result)
         hosts = [i.lower() for i in hosts]
         return hosts
     except:
@@ -93,7 +93,8 @@ def rdDict():
 
 def pzDict():
     try:
-        user, password = [(i['user'], i['pass']) for i in debridCredentials() if i['debrid'] == 'premiumize' and not (i['user'] == '' or i['pass'] == '')][0]
+        if '' in debridCredentials()['premiumize'].values(): raise Exception()
+        user, password = debridCredentials()['premiumize']['user'], debridCredentials()['premiumize']['pass']
         url = 'http://api.premiumize.me/pm-api/v1.php?method=hosterlist&params[login]=%s&params[pass]=%s' % (user, password)
         result = cache.get(client.request, 24, url)
         hosts = json.loads(result)['result']['hosterlist']
@@ -105,7 +106,7 @@ def pzDict():
 
 def adDict():
     try:
-        user, password = [(i['user'], i['pass']) for i in debridCredentials() if i['debrid'] == 'alldebrid' and not (i['user'] == '' or i['pass'] == '')][0]
+        if '' in debridCredentials()['alldebrid'].values(): raise Exception()
         url = 'http://alldebrid.com/api.php?action=get_host'
         result = cache.get(client.request, 24, url)
         hosts = json.loads('[%s]' % result)
@@ -117,7 +118,7 @@ def adDict():
 
 def rpDict():
     try:
-        user, password = [(i['user'], i['pass']) for i in debridCredentials() if i['debrid'] == 'rpnet' and not (i['user'] == '' or i['pass'] == '')][0]
+        if '' in debridCredentials()['rpnet'].values(): raise Exception()
         url = 'http://premium.rpnet.biz/hoster2.json'
         result = cache.get(client.request, 24, url)
         result = json.loads(result)
@@ -128,24 +129,76 @@ def rpDict():
         return []
 
 
+def rdAuthorize():
+    try:
+        CLIENT_ID = 'MUQMIQX6YWDSU'
+        USER_AGENT = 'URLResolver for Kodi'
+
+        headers = {'User-Agent': USER_AGENT}
+        url = 'http://api.real-debrid.com/oauth/v2/device/code?client_id=%s&new_credentials=yes' % (CLIENT_ID)
+        result = client.request(url, headers=headers)
+        result = json.loads(result)
+        verification_url = 'Go to URL: %s' % (result['verification_url'])
+        user_code = 'When prompted enter: %s' % (result['user_code'])
+        device_code = result['device_code']
+        interval = result['interval']
+
+        progressDialog = control.progressDialog
+        progressDialog.create('RealDebrid', verification_url, user_code)
+
+        for i in range(0, 3600):
+            try:
+                if progressDialog.iscanceled(): break
+                time.sleep(1)
+                if not float(i) % interval == 0: raise Exception()
+                url = 'https://api.real-debrid.com/oauth/v2/device/credentials?client_id=%s&code=%s' % (CLIENT_ID, device_code)
+                result = client.request(url, headers=headers, error=True)
+                result = json.loads(result)
+                if 'client_secret' in result: break
+            except:
+                pass
+
+        try: progressDialog.close()
+        except: pass
+
+        id, secret = result['client_id'], result['client_secret'] 
+
+        url = 'https://api.real-debrid.com/oauth/v2/token'
+        post = urllib.urlencode({'client_id': id, 'client_secret': secret, 'code': device_code, 'grant_type': 'http://oauth.net/grant_type/device/1.0'})
+
+        result = client.request(url, post=post, headers=headers)
+        result = json.loads(result)
+
+        token, refresh = result['access_token'], result['refresh_token']
+
+        control.setSetting(id='realdebrid_id', value=id)
+        control.setSetting(id='realdebrid_secret', value=secret)
+        control.setSetting(id='realdebrid_token', value=token)
+        control.setSetting(id='realdebrid_refresh', value=refresh)
+    except:
+        return
+
+
 def debridCredentials():
-    return [{
-        'debrid': 'realdebrid',
-        'user': control.setting('realdedrid_user'),
-        'pass': control.setting('realdedrid_password')
-    }, {
-        'debrid': 'premiumize',
+    return {
+        'realdebrid': {
+        'id': control.setting('realdebrid_id'),
+        'secret': control.setting('realdebrid_secret'),
+        'token': control.setting('realdebrid_token'),
+        'refresh': control.setting('realdebrid_refresh')
+    },
+        'premiumize': {
         'user': control.setting('premiumize_user'),
         'pass': control.setting('premiumize_password')
-    }, {
-        'debrid': 'alldebrid',
+    },
+        'alldebrid': {
         'user': control.setting('alldebrid_user'),
         'pass': control.setting('alldebrid_password')
-    }, {
-        'debrid': 'rpnet',
+    },
+        'rpnet': {
         'user': control.setting('rpnet_user'),
         'pass': control.setting('rpnet_password')
-    }]
+    }}
 
 
 def debridResolver(url, debrid):
@@ -153,28 +206,40 @@ def debridResolver(url, debrid):
 
     try:
         if not debrid == 'realdebrid' and not debrid == True: raise Exception()
-        user, password = [(i['user'], i['pass']) for i in debridCredentials() if i['debrid'] == 'realdebrid' and not (i['user'] == '' or i['pass'] == '')][0]
 
-        login_data = urllib.urlencode({'user': user, 'pass': password})
-        login_link = 'http://real-debrid.com/ajax/login.php?%s' % login_data
-        result = client.request(login_link, close=False)
-        result = json.loads(result)
-        error = result['error']
-        if not error == 0: raise Exception()
-        cookie = result['cookie']
+        credentials = debridCredentials()['realdebrid']
+        if '' in credentials.values(): raise Exception()
+        id, secret, token, refresh = credentials['id'], credentials['secret'], credentials['token'], credentials['refresh']
 
-        url = 'http://real-debrid.com/ajax/unrestrict.php?link=%s' % urllib.quote_plus(u)
-        result = client.request(url, cookie=cookie, close=False)
+        USER_AGENT = 'URLResolver for Kodi'
+
+        post = urllib.urlencode({'link': url})
+        headers = {'Authorization': 'Bearer %s' % token, 'User-Agent': USER_AGENT}
+        url = 'http://api.real-debrid.com/rest/1.0/unrestrict/link'
+
+        result = client.request(url, post=post, headers=headers, error=True)
         result = json.loads(result)
-        url = result['generated_links'][0][-1]
-        url = '%s|Cookie=%s' % (url, urllib.quote_plus(cookie))
+
+        if 'error' in result and result['error'] == 'bad_token':
+            result = client.request('https://api.real-debrid.com/oauth/v2/token', post=urllib.urlencode({'client_id': id, 'client_secret': secret, 'code': refresh, 'grant_type': 'http://oauth.net/grant_type/device/1.0'}), headers={'User-Agent': USER_AGENT}, error=True)
+            result = json.loads(result)
+            if 'error' in result: return
+
+            headers['Authorization'] = 'Bearer %s' % result['access_token']
+            result = client.request(url, post=post, headers=headers)
+            result = json.loads(result)
+
+        url = result['download']
         return url
     except:
         pass
 
     try:
         if not debrid == 'premiumize' and not debrid == True: raise Exception()
-        user, password = [(i['user'], i['pass']) for i in debridCredentials() if i['debrid'] == 'premiumize' and not (i['user'] == '' or i['pass'] == '')][0]
+
+        credentials = debridCredentials()['premiumize']
+        if '' in credentials.values(): raise Exception()
+        user, password = credentials['user'], credentials['pass']
 
         url = 'http://api.premiumize.me/pm-api/v1.php?method=directdownloadlink&params[login]=%s&params[pass]=%s&params[link]=%s' % (user, password, urllib.quote_plus(u))
         result = client.request(url, close=False)
@@ -185,7 +250,10 @@ def debridResolver(url, debrid):
 
     try:
         if not debrid == 'alldebrid' and not debrid == True: raise Exception()
-        user, password = [(i['user'], i['pass']) for i in debridCredentials() if i['debrid'] == 'alldebrid' and not (i['user'] == '' or i['pass'] == '')][0]
+
+        credentials = debridCredentials()['alldebrid']
+        if '' in credentials.values(): raise Exception()
+        user, password = credentials['user'], credentials['pass']
 
         login_data = urllib.urlencode({'action': 'login', 'login_login': user, 'login_password': password})
         login_link = 'http://alldebrid.com/register/?%s' % login_data
@@ -202,7 +270,10 @@ def debridResolver(url, debrid):
 
     try:
         if not debrid == 'rpnet' and not debrid == True: raise Exception()
-        user, password = [(i['user'], i['pass']) for i in debridCredentials() if i['debrid'] == 'rpnet' and not (i['user'] == '' or i['pass'] == '')][0]
+
+        credentials = debridCredentials()['rpnet']
+        if '' in credentials.values(): raise Exception()
+        user, password = credentials['user'], credentials['pass']
 
         login_data = urllib.urlencode({'username': user, 'password': password, 'action': 'generate', 'links': u})
         login_link = 'http://premium.rpnet.biz/client_api.php?%s' % login_data

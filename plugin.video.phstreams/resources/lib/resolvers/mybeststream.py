@@ -27,15 +27,19 @@ from resources.lib.libraries import unwise
 def resolve(url):
     try:
         referer = urlparse.parse_qs(urlparse.urlparse(url).query)['referer'][0]
+
+        page = urlparse.parse_qs(urlparse.urlparse(url).query)['id'][0]
+        page = 'http://mybeststream.xyz/?id=%s' % page
+
         page = url.replace(referer, '').replace('&referer=', '').replace('referer=', '')
 
         result = client.request(url, referer=referer)
-        result = re.compile("}[(]('.+?' *, *'.+?' *, *'.+?' *, *'.+?')[)]").findall(result)[-1]
+        result = re.compile("}[(]('.+?' *, *'.+?' *, *'.+?' *, *'.+?')[)]").findall(result)[0]
         result = unwise.execute(result)
 
-        strm = re.compile("file *: *[\'|\"](.+?)[\'|\"]").findall(result)
-        strm = [i for i in strm if i.startswith('rtmp')][0]
-        url = '%s pageUrl=%s live=1 timeout=10' % (strm, page)
+        path = re.compile("hestia\s*:\s*[\'|\"](.+?)[\'|\"]").findall(result)[0]
+
+        url = 'rtmpe://l.mybeststream.xyz/r/%s pageUrl=%s swfUrl=http://mybeststream.xyz/jwplayer.flash.swf swfsize=61916 swfhash=e54728508e787f43cd472ef9ba2e514e2eca3f0679b3782206a3808b8d89b164 token=c.r.e.a.t.e.S.t. swfVfy=1 live=1 timeout=15' % (path, page)
         return url
     except:
         return
