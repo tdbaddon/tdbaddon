@@ -37,11 +37,17 @@ http://cbsnews-linear.mdialog.com/video_assets/cbsnews.m3u8?api_key=563b80c1ae4c
 #EXTINF:0,CCTV News 
 http://77.36.61.45:8010/CCTVNews.m3u8?
 
+#EXTINF:0,CCTV News 
+http://origin2.live.web.tv.streamprovider.net/streams/877ba7a57aa68fd898b838f58d51a69f/index.m3u8
+
+#EXTINF:0,CCTV News 
+http://128.104.128.176:8080/udp/239.1.1.204:2000?live786
+
 #EXTINF:0,CNBC 
 http://origin2.live.web.tv.streamprovider.net/streams/3bc166ba3776c04e987eb242710e75c0/index.m3u8
 
 #EXTINF:0,CNN 
-0
+http://128.104.128.176:8080/udp/239.1.1.78:3078?live786
 
 #EXTINF:0,CP24 
 0
@@ -51,6 +57,9 @@ http://bcliveuniv-lh.akamaihd.net/i/cpac1eng2014_01@119330/index_2000_av-p.m3u8
 
 #EXTINF:0,CSPAN 
 http://cspan1-lh.akamaihd.net/i/cspan1_1@304727/master.m3u8 
+
+#EXTINF:0,CSPAN 
+http://128.104.128.176:8080/udp/239.1.1.94:3094?live786
 
 #EXTINF:0,CTV NEWS 
 http://66.51.129.171:8080/demo/index.m3u8 
@@ -131,7 +140,7 @@ http://rt-a.akamaihd.net/ch_04@325608/720p.m3u8
 0
 
 #EXTINF:0,The Weather Channel
-0
+http://128.104.128.176:8080/udp/239.1.1.82:3082?live786
 
 #EXTINF:0,Weather Nation 
 http://kalsegsec-a.akamaihd.net:80/dc-0/m/pa-live-publish3/kLive/smil:1_oorxcge2_all.smil/chunklist_b2096000.m3u8

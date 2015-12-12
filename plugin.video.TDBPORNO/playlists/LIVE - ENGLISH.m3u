@@ -98,6 +98,9 @@ http://4BA9EBDB07C05883:@5.159.96.170:8000/olala
 http://publish.thewebstream.co:1935/leved/_definst_/passielivestream/playlist.m3u8
 
 #EXTINF:0,PASSIE XXX 
+http://178.33.126.213:1935/leved/passielivestream/chunklist.m3u8
+
+#EXTINF:0,PASSIE XXX 
 http://q.gs/9830047/sex3todokodi
 
 #EXTINF:0,PENTHOUSE
@@ -113,13 +116,13 @@ http://q.gs/9830047/sex3todokodi
 rtmp://main2sb.everyon.tv:1935/etv2sb/_definst_/pld499
 
 #EXTINF:0,PLAYBOY TV 
-0
+http://s2.edem.tv/iptv/9L8CB92DQXEXG9/527/index.m3u8
 
 #EXTINF:0,PLATINUM TV 
 0
 
 #EXTINF:0,PRIVATE 
-0
+http://178.33.126.213:1935/leved/privateCom/.m3u8
 
 #EXTINF:0,PURE MATURE
 0
@@ -217,6 +220,11 @@ http://ipsatpro.com:8000/live/daniel/daniel/579.ts
 #EXTINF:0,XXX 
 http://ipsatpro.com:8000/live/daniel/daniel/578.ts
 
+#EXTINF:0,XXX 
+http://videohttp2.porndig.com/videos/2014/05/54101_20140508.smil/chunklist_b730000.m3u8
+
+#EXTINF:0,XXX 
+http://videohttp2.porndig.com/videos/2014/06/56349_20140630.smil/chunklist_b730000.m3u8
 
 #EXTINF:0,YOU DIVA 
 http://46.249.213.87/iPhone/HLS_TS/broadcast/you_diva-iphone.3gp.m3u8

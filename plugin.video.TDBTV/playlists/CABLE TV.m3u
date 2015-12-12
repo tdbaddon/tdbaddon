@@ -8,7 +8,7 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 0
 
 #EXTINF:0,ABC 
-0
+http://128.104.128.176:8080/udp/239.1.1.86:3086?live786
 
 #EXTINF:0,ABC Family 
 0
@@ -29,10 +29,10 @@ http://200.76.77.237/LIVE/H01/CANAL444/PROFILE05.m3u8?supertvlat=%2F.ts
 0
 
 #EXTINF:0,BBC 1 
-0
+http://skyiptv.ddns.net:8000/live/shima/shima/109.m3u8
 
 #EXTINF:0,BBC 2 
-0
+http://skyiptv.ddns.net:8000/live/shima/shima/108.m3u8
 
 #EXTINF:0,BBC Entertainment
 http://200.76.77.237/LIVE/H01/CANAL253/PROFILE02.m3u8?supertvlat=%2F.ts
@@ -44,7 +44,7 @@ http://200.76.77.237/LIVE/H01/CANAL253/PROFILE03.m3u8?supertvlat=%2F.ts
 http://200.76.77.237/LIVE/H01/CANAL253/PROFILE05.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,BET 
-0
+http://128.104.128.176:8080/udp/239.1.1.96:3096?live786
 
 #EXTINF:0,Boomerang 
 0
@@ -63,7 +63,7 @@ http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD28_W_250.sdp/p
 0
 
 #EXTINF:0,CBS 
-0
+http://128.104.128.176:8080/udp/239.1.1.84:3084?live786
 
 #EXTINF:0,CBS Action 
 0
@@ -72,7 +72,7 @@ http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD28_W_250.sdp/p
 0
 
 #EXTINF:0,CBS Reality 
-0
+http://bit.ly/1HUs69k
 
 #EXTINF:0,CHCH Ontario
 http://54.85.197.21:1935/live/news/playlist.m3u8
@@ -111,10 +111,10 @@ http://54.85.197.21:1935/live/news/playlist.m3u8
 0
 
 #EXTINF:0,Disney Junior 
-0
+http://skyiptv.ddns.net:8000/live/shima/shima/96.m3u8
 
 #EXTINF:0,Disney XD 
-0
+http://skyiptv.ddns.net:8000/live/shima/shima/97.m3u8
 
 #EXTINF:0,DIY Network 
 0
@@ -140,6 +140,9 @@ http://edgeb.streaming.sk/fashiontv/fashiontv.stream/playlist.m3u8
 #EXTINF:0,Food Network 
 http://llnw.live.simplestream.com/coder2/coder.channels.channel2/hls/3/playlist.m3u8
 
+#EXTINF:0,Food Network 
+http://skyiptv.ddns.net:8000/live/shima/shima/147.m3u8
+
 #EXTINF:0,Fox 1 
 http://200.76.77.237/LIVE/H01/CANAL415/PROFILE02.m3u8?supertvlat=%2F.ts
 
@@ -153,10 +156,10 @@ http://200.76.77.237/LIVE/H01/CANAL415/PROFILE05.m3u8?supertvlat=%2F.ts
 0
 
 #EXTINF:0,Fox Life 
-0
+http://balkanstream.com/stream/foxlife/sead/sead
 
 #EXTINF:0,Fox TV 
-0
+http://128.104.128.176:8080/udp/239.1.1.88:3088?live786
 
 #EXTINF:0,FX 
 0
@@ -183,7 +186,7 @@ http://link.theplatform.com/s/dtjsEC/EqBPGYLY6fEx?feed=DEV%20Live%20Stream%20Fee
 0
 
 #EXTINF:0,HGTV 
-0
+http://128.104.128.176:8080/udp/239.1.1.80:3080?live786
 
 #EXTINF:0,HSN 
 rtsp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:420p500kB31
@@ -198,10 +201,16 @@ rtmp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:468p500kB31?b?b*t$
 http://ios.streamserver01.com:8080/ShowcaseTV/mystream.m3u8
 
 #EXTINF:0,ITV 1 
-0
+http://skyiptv.ddns.net:8000/live/shima/shima/143.m3u8
+
+#EXTINF:0,ITV 1 
+http://136.243.67.134:8000/live/skype/play.iptv/227.ts
 
 #EXTINF:0,ITV 2 
-0
+http://skyiptv.ddns.net:8000/live/shima/shima/142.m3u8
+
+#EXTINF:0,ITV 2 
+http://136.243.67.134:8000/live/skype/play.iptv/226.ts
 
 #EXTINF:0,ITV 3 
 0
@@ -228,25 +237,25 @@ http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
 0
 
 #EXTINF:0,More4 
-0
+http://skyiptv.ddns.net:8000/live/shima/shima/139.m3u8
 
 #EXTINF:0,My9 
 http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
 
 #EXTINF:0,NBC 
-0
+http://128.104.128.176:8080/udp/239.1.1.90:3090?live786
 
 #EXTINF:0,Nick 
-0
+http://skyiptv.ddns.net:8000/live/shima/shima/135.m3u8
 
 #EXTINF:0,Nick Jr 
-0
+http://bit.ly/1HUtl8h
 
 #EXTINF:0,Nickelodeon 
-0
+http://skyiptv.ddns.net:8000/live/shima/shima/136.m3u8
 
 #EXTINF:0,NickNight 
-0
+http://top-iptv.zapto.org:8000/live/walid/walid/631.m3u8
 
 #EXTINF:0,OMNI 
 0
@@ -255,7 +264,7 @@ http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
 0
 
 #EXTINF:0,PBS 
-0
+http://128.104.128.176:8080/udp/239.1.1.92:3092?live786
 
 #EXTINF:0,QVC 
 http://llnw.live.qvc.simplestream.com/hera/remote/qvcuk_primary_sdi1/3/prog_index.m3u8
@@ -276,13 +285,13 @@ http://llnw.live.qvc.simplestream.com/hera/remote/qvcuk_primary_sdi8/3/prog_inde
 0
 
 #EXTINF:0,Sky 1 
-0
+http://skyiptv.ddns.net:8000/live/shima/shima/129.m3u8
 
 #EXTINF:0,Sky 2 
-0
+http://skyiptv.ddns.net:8000/live/shima/shima/120.m3u8
 
 #EXTINF:0,Sky Arts 1 
-0
+http://skyiptv.ddns.net:8000/live/shima/shima/131.m3u8
 
 #EXTINF:0,Sky Arts 2 
 0

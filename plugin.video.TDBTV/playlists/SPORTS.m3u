@@ -6,22 +6,58 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 
 
 #EXTINF:0,Bein Sport 1 
-0
+http://180.250.29.22:80/jhos/beib1_4/playlist.m3u8
+
+#EXTINF:0,Bein Sport 1 
+http://180.250.29.22:80/jhos/beib1_5/playlist.m3u8
 
 #EXTINF:0,Bein Sport 2
-0
+http://180.250.29.22:80/jhos/beib2_4/playlist.m3u8
+
+#EXTINF:0,Bein Sport 2
+http://180.250.29.22:80/jhos/beib2_5/playlist.m3u8
+
+#EXTINF:0,Bein Sport 3
+http://180.250.29.22:80/jhos/beib3_4/playlist.m3u8
+
+#EXTINF:0,Bein Sport 3
+http://180.250.29.22:80/jhos/beib3_5/playlist.m3u8
 
 #EXTINF:0,Big Ten Network 
 0
 
 #EXTINF:0,Box Nation 
-0
+http://skyiptv.ddns.net:8000/live/shima/shima/105.m3u8
 
 #EXTINF:0,BT Sport 1 
 rtmp://176.31.231.25:1935/goLive/_definst_/ibrodtv26_fwfns7fs
 
+#EXTINF:0,BT Sport 1 
+http://skyiptv.ddns.net:8000/live/shima/shima/104.m3u8
+
+#EXTINF:0,BT Sport 1 
+http://02e4.vp9.tv/chn/btsu1/v.m3u8
+
+#EXTINF:0,BT Sport 1 
+http://136.243.67.134:8000/live/skype/play.iptv/236.ts
+
+#EXTINF:0,BT Sport 1 
+http://136.243.67.134:8000/live/skype/play.iptv/235.ts
+
 #EXTINF:0,BT Sport 2 
 rtmp://176.31.231.25:1935/goLive/_definst_/ibrodtv27_8hps6ods
+
+#EXTINF:0,BT Sport 2 
+http://skyiptv.ddns.net:8000/live/shima/shima/103.m3u8
+
+#EXTINF:0,BT Sport 2 
+http://02e4.vp9.tv/chn/btsu2/v.m3u8
+
+#EXTINF:0,BT Sport 2 
+http://136.243.67.134:8000/live/skype/play.iptv/234.ts
+
+#EXTINF:0,BT Sport 2 
+http://136.243.67.134:8000/live/skype/play.iptv/233.ts
 
 #EXTINF:0,CBS Sports 
 0
@@ -33,7 +69,7 @@ rtmp://176.31.231.25:1935/goLive/_definst_/ibrodtv27_8hps6ods
 0
 
 #EXTINF:0,ESPN 
-0
+http://skyiptv.ddns.net:8000/live/shima/shima/92.m3u8
 
 #EXTINF:0,ESPN 2
 0
@@ -41,8 +77,20 @@ rtmp://176.31.231.25:1935/goLive/_definst_/ibrodtv27_8hps6ods
 #EXTINF:0,Eurosport 1 
 http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_1800.m3u8
 
+#EXTINF:0,Eurosport 1 
+http://skyiptv.ddns.net:8000/live/shima/shima/91.m3u8
+
+#EXTINF:0,Eurosport 1 
+http://136.243.67.134:8000/live/skype/play.iptv/230.ts
+
 #EXTINF:0,Eurosport 2 
 rtmp://176.31.231.25:1935/goLive/_definst_/ibrodtv29_2cmdoz6c
+
+#EXTINF:0,Eurosport 2 
+http://skyiptv.ddns.net:8000/live/shima/shima/90.m3u8
+
+#EXTINF:0,Eurosport 2 
+http://136.243.67.134:8000/live/skype/play.iptv/229.ts
 
 #EXTINF:0,Eurosport News 
 0
@@ -170,6 +218,9 @@ mms://100automoto.tv/channel_porsche
 #EXTINF:0,Premier Sports 
 rtmp://176.31.231.25:1935/goLive/_definst_/ibrodtv30_xdjbv8no
 
+#EXTINF:0,Premier Sports 
+http://skyiptv.ddns.net:8000/live/shima/shima/128.m3u8
+
 #EXTINF:0,Racing UK 
 0
 
@@ -180,7 +231,10 @@ rtmp://176.31.231.25:1935/goLive/_definst_/ibrodtv30_xdjbv8no
 0
 
 #EXTINF:0,Sky Sports 1 
-0
+http://skyiptv.ddns.net:8000/live/shima/shima/128.m3u8
+
+#EXTINF:0,Sky Sports 1 
+http://136.243.67.134:8000/live/skype/play.iptv/222.ts
 
 #EXTINF:0,Sky Sports 2 
 rtmp://176.31.231.25:1935/goLive/_definst_/ibrodtv22_j5p1mted
@@ -188,11 +242,20 @@ rtmp://176.31.231.25:1935/goLive/_definst_/ibrodtv22_j5p1mted
 #EXTINF:0,Sky Sports 2 
 rtmp://80.82.70.210/live playpath=phuddhuss2 swfUrl=http://www.yocast.tv/myplayer/jwplayer.flash.swf live=1 pageUrl=http://www.yocast.tv/embed.php?live=phuddhuss2&vw=620&vh=490
 
+#EXTINF:0,Sky Sports 2 
+http://skyiptv.ddns.net:8000/live/shima/shima/126.m3u8
+
+#EXTINF:0,Sky Sports 2 
+http://136.243.67.134:8000/live/skype/play.iptv/221.ts
+
 #EXTINF:0,Sky Sports 3 
 rtmp://176.31.231.25:1935/goLive/_definst_/ibrodtv23_5px3ntfs
 
 #EXTINF:0,Sky Sports 3 
 rtmp://80.82.78.3/live playpath=phuddhuss3 swfUrl=http://www.yocast.tv/myplayer/jwplayer.flash.swf live=1 pageUrl=http://www.yocast.tv/embed.php?live=phuddhuss3&vw=620&vh=490
+
+#EXTINF:0,Sky Sports 3 
+http://136.243.67.134:8000/live/skype/play.iptv/220.ts
 
 #EXTINF:0,Sky Sports 4 
 rtmp://176.31.231.25:1935/goLive/_definst_/ibrodtv24_f84rdmkk
@@ -200,17 +263,35 @@ rtmp://176.31.231.25:1935/goLive/_definst_/ibrodtv24_f84rdmkk
 #EXTINF:0,Sky Sports 4 
 rtmp://80.82.70.194/live playpath=phuddhuss4 swfUrl=http://www.yocast.tv/myplayer/jwplayer.flash.swf live=1 pageUrl=http://www.yocast.tv/embed.php?live=phuddhuss4&vw=620&vh=490
 
+#EXTINF:0,Sky Sports 4 
+http://skyiptv.ddns.net:8000/live/shima/shima/124.m3u8
+
+#EXTINF:0,Sky Sports 4 
+http://136.243.67.134:8000/live/skype/play.iptv/219.ts
+
 #EXTINF:0,Sky Sports 5 
 rtmp://176.31.231.25:1935/goLive/_definst_/ibrodtv25_wt250ssk
 
 #EXTINF:0,Sky Sports 5 
 rtmp://89.248.174.38/live playpath=phuddhuss5 swfUrl=http://www.yocast.tv/myplayer/jwplayer.flash.swf live=1 pageUrl=http://www.yocast.tv/embed.php?live=phuddhuss5&vw=620&vh=490
 
+#EXTINF:0,Sky Sports 5 
+http://skyiptv.ddns.net:8000/live/shima/shima/123.m3u8
+
+#EXTINF:0,Sky Sports 5 
+http://136.243.67.134:8000/live/skype/play.iptv/218.ts
+
 #EXTINF:0,Sky Sports F1 
-0
+http://skyiptv.ddns.net:8000/live/shima/shima/122.m3u8
+
+#EXTINF:0,Sky Sports F1 
+http://136.243.67.134:8000/live/skype/play.iptv/216.ts
 
 #EXTINF:0,Sky Sports News 
-0
+http://skyiptv.ddns.net:8000/live/shima/shima/121.m3u8
+
+#EXTINF:0,Sky Sports News 
+http://136.243.67.134:8000/live/skype/play.iptv/217.ts
 
 #EXTINF:0,Sports Tonight 
 0
@@ -252,7 +333,7 @@ rtmp://31.220.2.149:80/live/ playpath=tsnx2 token=%Zrey(nKa@#Z swfUrl=http://p.j
 0
 
 #EXTINF:0,Viasat Sport 
-0
+http://109.254.88.12:81/udp/238.1.1.113:1234
 
 #EXTINF:0,VS Versus 
 http://208.92.36.158/ipad/live/nba_ipad_1240.m3u8
