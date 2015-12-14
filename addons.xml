@@ -730,17 +730,23 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 	</extension>
 </addon>
 
-<addon id="repository.tdbaddon" name="TDB REPO" version="1.01" provider-name="tdbaddon">
-<extension point="xbmc.addon.repository" name="TDB Addon Repository">
-<info compressed="false">http://github.com/tdbaddon/tdbaddon/raw/master/addons.xml</info>
-<checksum>http://github.com/tdbaddon/tdbaddon/raw/master/addons.xml.md5</checksum>
-<datadir zip="true">http://github.com/tdbaddon/tdbaddon/raw/master/zips</datadir>
-</extension>
-<extension point="xbmc.addon.metadata">
-<summary>Wisely choose you Must!</summary>
-<description>Download and Install Addons</description>
-<platform>all</platform>
-</extension>
+<addon id="repository.tdbaddon" name="TDB REPO" version="1.02" provider-name="TDB">
+	<extension point="xbmc.addon.repository" name="TDB Addon Repository">
+        <dir>
+	      <info compressed="false">http://github.com/tdbaddon/tdbaddon/raw/master/addons.xml</info>
+	      <checksum>http://github.com/tdbaddon/tdbaddon/raw/master/addons.xml.md5</checksum>
+	      <datadir zip="true">http://github.com/tdbaddon/tdbaddon/raw/master/zips</datadir>
+        </dir>
+        <info compressed="false">https://raw.github.com/TheYid/My-Repo/master/addons.xml</info>
+        <checksum>https://raw.github.com/TheYid/My-Repo/master/addons.xml.md5</checksum>
+        <datadir zip="true">https://raw.github.com/TheYid/My-Repo/master/zips</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary></summary>
+		<description>Wisely choose you Must!</description>
+		<disclaimer>By using this, you take reponsibility for anything that happens. Some parts of this addon may not be legal in your country - please check with your local laws before installing. I take no responsibility for any problems this plugin might in any way shape or form. This is project is for a LEARNING EXPERIANCE.</disclaimer>
+		<platform>all</platform>
+	</extension>
 </addon>
 
 <addon id="repository.thec0de" name="gr33ksRepo" version="1.0.0" provider-name="Gr33k">
