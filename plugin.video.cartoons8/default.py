@@ -21,22 +21,22 @@ def CATEGORIES():
 	addDir('Top OVAs','http://cartoons8.tv/search/page/1?s=ova',9,icon,fanart)
 	addDir('Top Dubbed Anime','http://cartoons8.tv/search/page/1?s=dubbed',9,icon,fanart)
 	addDir('Top Subbed Anime','http://cartoons8.tv/search/page/1?s=subbed',9,icon,fanart)
+	addDir('Cartoon List','http://cartoons8.co/list/page/1',5,icon,fanart)
+
 	addDir('Most Viewed','http://cartoons8.tv/most-viewed/page/1',1,icon,fanart)
 	addDir('New','http://cartoons8.tv/new/page/1',1,icon,fanart)
 	addDir('Genres','http://cartoons8.tv',6,icon,fanart)
 	addDir('TV Series','http://cartoons8.tv/series/page/1',1,icon,fanart)
-	addDir('Anime','http://cartoons8.tv/anime/page/1',1,icon,fanart)
+        addDir('Anime','http://cartoons8.tv/anime/page/1',1,icon,fanart)
 	addDir('Latest Updates','http://cartoons8.tv/latestupdate/page/1',4,icon,fanart)
         addDir('Search','http://cartoons8.tv',8,icon,fanart) 
       
-
 def GETMOVIES(url,name):
         pagenum = url.split('page/')
         curpage = int(pagenum[1])
         nextpage = curpage + 1
         nextpageurl = pagenum[0]+'page/'+str(nextpage)
         link = open_url(url)
-        link=link.replace('\n','').replace('  ','')
         match=re.compile('<div class="thumbs"><a href="(.+?)"><img alt=".+?" title="(.+?)" src="(.+?)" /></a></div>').findall(link)
         for url, name, iconimage in match:
                 name = cleanHex(name)
@@ -45,17 +45,10 @@ def GETMOVIES(url,name):
                 addDir('Next >> Page '+str(nextpage),nextpageurl,1,icon,fanart)
         except: pass
 
-def cleanHex(text):
-    def fixup(m):
-        text = m.group(0)
-        if text[:3] == "&#x": return unichr(int(text[3:-1], 16)).encode('utf-8')
-        else: return unichr(int(text[2:-1])).encode('utf-8')
-    try :return re.sub("(?i)&#\w+;", fixup, text.decode('ISO-8859-1').encode('utf-8'))
-    except:return re.sub("(?i)&#\w+;", fixup, text.encode("ascii", "ignore").encode('utf-8'))               
-
 def GETEPISODES(url,name,iconimage):
         link = open_url(url)
-        match=re.compile('<atitle="(.+?)" href="(.+?)">.+?</a>',re.DOTALL).findall(link)       
+        match=re.compile('<atitle="(.+?)" href="(.+?)">.+?</a>',re.DOTALL).findall(link)
+        match=list(reversed(match))
         for name, url in match:
                 name = cleanHex(name)
                 addLink(name,url,100,iconimage,fanart)
@@ -67,8 +60,7 @@ def GETLATEST(url,name):
         nextpage = curpage + 1
         nextpageurl = pagenum[0]+'page/'+str(nextpage)
         link = open_url(url)
-        link=link.replace('\n','').replace('  ','')
-        match=re.compile('<a style="float: left" title="" href=".+?">(.+?)</a><span style="float: right; margin-right: 30px;"><a href="(.+?)">(.+?)</a></span>').findall(link)
+        match=re.compile('<a style="float: left" title="" href=".+?">(.+?)&nbsp;.+?<a class="cartoon_ep" href="(.+?)">(.+?)</a></span>').findall(link)
         for name, url, episode in match:
                 name = cleanHex(name)+' - '+episode
                 addLink(name,url,100,icon,fanart)
@@ -83,8 +75,7 @@ def GETFULL(url,name):
         nextpage = curpage + 1
         nextpageurl = pagenum[0]+'page/'+str(nextpage)
         link = open_url(url)
-        link=link.replace('\n','').replace('  ','')
-        match=re.compile('<a style="float: left" title="" href="(.+?)"> (.+?) </a>').findall(link)
+        match=re.compile('<a style="float: left" title="" href="(.+?)">(.+?)</a>').findall(link)
         for url, name in match:
                 addDir(name,url,2,iconimage,fanart)
         try:
@@ -106,8 +97,7 @@ def GETCUSTCAT(url):
         nextpage = curpage + 1
         nextpageurl = pagenum[0]+'page/'+str(nextpage)+'?s='+str(search[1])
         link = open_url(url)
-        link=link.replace('\n','').replace('  ','')
-        match=re.compile('<img src="(.+?)" /></a></div><div class="info"><a href="(.+?)"><span class="title">(.+?)</span>').findall(link)
+        match=re.compile('<img src="(.+?)".+?<a href="(.+?)".+?"title">(.+?)</span>',re.DOTALL).findall(link)
         for iconimage,url, name in match:
                 addDir(name,url,2,iconimage,fanart)
 	try:
@@ -117,12 +107,11 @@ def GETCUSTCAT(url):
 def GETGENREMOVIES(url):
 	pagenum = url
         link = open_url(url)
-        link=link.replace('\n','').replace('  ','')
-        match=re.compile('<img src="(.+?)" /></a></div><div class="info"><a href="(.+?)"><span class="title">(.+?)</span>').findall(link)
+        match=re.compile('<img src="(.+?)".+?<a href="(.+?)".+?"title">(.+?)</span>',re.DOTALL).findall(link)
         for iconimage,url, name in match:
-                addDir(name,url,2,iconimage,fanart)  
+                addDir(name,url,2,iconimage,fanart)  #
 	try:
-                addDir('Next >> Page 2',pagenum+'/'+'2',10,icon,fanart)
+               addDir('Next >> Page 2',pagenum+'/'+'2',10,icon,fanart)
         except: pass
 
 def GETGENRENEXT(url):
@@ -131,8 +120,7 @@ def GETGENRENEXT(url):
 	nextpage = curpage + 1
 	nextpageurl = 'http://cartoons8.tv/genres/'+str(pagenum[4])+'/'+str(nextpage)
         link = open_url(url)
-        link=link.replace('\n','').replace('  ','')
-        match=re.compile('<img src="(.+?)" /></a></div><div class="info"><a href="(.+?)"><span class="title">(.+?)</span>').findall(link)
+        match=re.compile('<img src="(.+?)".+?<a href="(.+?)".+?"title">(.+?)</span>',re.DOTALL).findall(link)
         for iconimage,url, name in match:
                 addDir(name,url,2,iconimage,fanart)  
 	try:
@@ -147,10 +135,8 @@ def SEARCH():
         search_entered = keyboard.getText().replace(' ','+')
     if len(search_entered)>1:
         url = 'http://cartoons8.tv/search/page/1?s='+ search_entered
-        link = open_url(url)
         GETCUSTCAT(url)
         
-
 def PLAYLINK(name,url):
         link = open_url(url)
         posturl = re.compile('url: "(.+?)",').findall(link)[0]
@@ -221,7 +207,14 @@ def open_url(url):
             link = link.replace('\n','').replace('  ','')
             return link  
 
-
+def cleanHex(text):
+    def fixup(m):
+        text = m.group(0)
+        if text[:3] == "&#x": return unichr(int(text[3:-1], 16)).encode('utf-8')
+        else: return unichr(int(text[2:-1])).encode('utf-8')
+    try :return re.sub("(?i)&#\w+;", fixup, text.decode('ISO-8859-1').encode('utf-8'))
+    except:return re.sub("(?i)&#\w+;", fixup, text.encode("ascii", "ignore").encode('utf-8'))
+    
 def setView(content, viewType):
     if content:
         xbmcplugin.setContent(int(sys.argv[1]), content)

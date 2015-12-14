@@ -95,7 +95,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
-<addon id="plugin.video.cartoons8" name="Cartoons8" version="1.0.9" provider-name="MetalKettle">
+<addon id="plugin.video.cartoons8" name="Cartoons8" version="1.0.10" provider-name="MetalKettle">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.t0mm0.common" version="2.0.0"/>
@@ -228,7 +228,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
-<addon id="plugin.video.moviesxl" version="1.0.2" name="Movies XL" provider-name="Mr Entertainment">
+<addon id="plugin.video.moviesxl" version="1.0.4" name="Movies XL" provider-name="Mr Entertainment">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
         <import addon="script.module.TheYid.common" version="0.1.1"/>
@@ -287,8 +287,8 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 </addon>
 
 <addon id="plugin.video.ProjectCypher"
-       name="ProjectCypherTV"
-       version="1.0.2"
+       name="ProjectCypher"
+       version="2.0.1"
        provider-name="Cypher">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -311,7 +311,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
   <extension point="xbmc.addon.metadata">
     <summary>Live SD and HD TV channels</summary>
-    <description>General disclaimer: Project Cypher takes no responsibility for the content or reliability of the feeds. Project Cypher [B]Does Not[/B] host any of the feeds or Streams. [B]PLEXUS[/B] addon is required for P2P (Torrent) sports channels. Make sure it is properly configured for your system. Most of the Code from this addon was taken from many other addons but used under the GNU GENERAL PUBLIC LICENSE Version 2, June 1991</description>
+    <description>General disclaimer: Project Cypher takes no responsibility for the content or reliability of the feeds. Project Cypher [B]Does Not[/B] host any of the feeds or Streams. Most of the Code from this addon was taken from many other addons but used under the GNU GENERAL PUBLIC LICENSE Version 2, June 1991</description>
     <platform>all</platform>
   </extension>
 </addon>
@@ -545,16 +545,16 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
-<addon id="repository.entertainmentrepo" name="The Entertainment Repository" version="1.1" provider-name="Mr Entertainment">
+<addon id="repository.entertainmentrepo" name="The Entertainment Repository" version="1.5" provider-name="Mr Entertainment">
 	<extension point="xbmc.addon.repository" name="Entertainment Addons Repository">
         <dir>
-	      <info compressed="false">https://raw.github.com/MrEntertainment/EntertainmentREPO/master/addons.xml</info>
-	      <checksum>https://raw.github.com/MrEntertainment/EntertainmentREPO/master/addons.xml.md5</checksum>
-	      <datadir zip="true">https://raw.github.com/MrEntertainment/EntertainmentREPO/master/zips</datadir>
+	      <info compressed="false">https://raw.githubusercontent.com/MrEntertainment/backupREPO/master/addons.xml</info>
+	      <checksum>https://raw.githubusercontent.com/MrEntertainment/backupREPO/master/addons.xml.md5</checksum>
+	      <datadir zip="true">https://raw.githubusercontent.com/MrEntertainment/backupREPO/master/zips</datadir>
         </dir>
-        <info compressed="false">https://raw.github.com/TheYid/My-Repo/master/addons.xml</info>
-        <checksum>https://raw.github.com/TheYid/My-Repo/master/addons.xml.md5</checksum>
-        <datadir zip="true">https://raw.github.com/TheYid/My-Repo/master/zips</datadir>
+        <info compressed="false">https://raw.githubusercontent.com/TheYid/My-Repo/master/addons.xml</info>
+        <checksum>https://raw.githubusercontent.com/TheYid/My-Repo/master/addons.xml.md5</checksum>
+        <datadir zip="true">https://raw.githubusercontent.com/TheYid/My-Repo/master/zips</datadir>
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<summary></summary>

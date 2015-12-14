@@ -63,7 +63,7 @@ if os.path.exists(favorites)==True:
     FAV = open(favorites).read()
 else: FAV = []
 
-SOURCES = [{"url": "http://projectcypher.x10.mx/KODI/IPTV/projectcypher0.xml", "fanart": "http://projectcypher.x10.mx/KODI/IPTV/back.jpg", "genre": "Sports", "date": "30.09.2015", "credits": "ProjectCypher", "thumbnail": "http://projectcypher.x10.mx/KODI/IPTV/icon2.png"}]
+SOURCES = [{"url": "http://bit.ly/1OL3h0G", "fanart": "http://repo.run/cypher/images/back.jpg", "genre": "Sports", "date": "30.09.2015", "credits": "ProjectCypher", "thumbnail": "http://repo.run/cypher/images/icon2.png"}]
 
     
 """
@@ -74,7 +74,7 @@ else: SOURCES = []
 
 def addon_log(string):
     if debug == 'true':
-        xbmc.log("[addon.video.projectcyiptv-%s]: %s" %(addon_version, string))
+        xbmc.log("[addon.video.projectcypher-%s]: %s" %(addon_version, string))
 
 
 def makeRequest(url, headers=None):

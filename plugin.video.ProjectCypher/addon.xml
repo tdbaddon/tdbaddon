@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="plugin.video.ProjectCypher"
-       name="ProjectCypherTV"
-       version="1.0.2"
+       name="ProjectCypher"
+       version="2.0.1"
        provider-name="Cypher">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -24,7 +24,7 @@
   </extension>
   <extension point="xbmc.addon.metadata">
     <summary>Live SD and HD TV channels</summary>
-    <description>General disclaimer: Project Cypher takes no responsibility for the content or reliability of the feeds. Project Cypher [B]Does Not[/B] host any of the feeds or Streams. [B]PLEXUS[/B] addon is required for P2P (Torrent) sports channels. Make sure it is properly configured for your system. Most of the Code from this addon was taken from many other addons but used under the GNU GENERAL PUBLIC LICENSE Version 2, June 1991</description>
+    <description>General disclaimer: Project Cypher takes no responsibility for the content or reliability of the feeds. Project Cypher [B]Does Not[/B] host any of the feeds or Streams. Most of the Code from this addon was taken from many other addons but used under the GNU GENERAL PUBLIC LICENSE Version 2, June 1991</description>
     <platform>all</platform>
   </extension>
 </addon>
