@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<addon id="repository.bbtsip.tv" name="[COLOR yellowgreen]B[/COLOR][COLOR dodgerblue]B[/COLOR]T[COLOR orangered]S[/COLOR] - Repo" version="0.0.7" provider-name="BBTS">
+  <requires>
+    <import addon="xbmc.addon" version="12.0.0" />
+  </requires>
+    <extension point="xbmc.addon.repository" name="BBTS Repo">     
+      <info compressed="false">http://repo.bbtsip.tv/repo/addons.xml</info>
+      <checksum>http://repo.bbtsip.tv/repo/addons.xml.md5</checksum>
+      <datadir zip="true">http://repo.bbtsip.tv/repo/addons/</datadir>
+      <hashes>true</hashes>
+    </extension>
+      <extension point="xbmc.addon.metadata">
+        <summary lang="en">The [COLOR yellowgreen]B[/COLOR][COLOR dodgerblue]B[/COLOR][COLOR white]T[/COLOR][COLOR orangered]S[/COLOR] Repository...</summary>
+		<summary lang="he">[COLOR yellowgreen]B[/COLOR][COLOR dodgerblue]B[/COLOR][COLOR white]T[/COLOR][COLOR orangered]S [/COLOR]מאגר ההרחבות של</summary>
+        <description lang="en">Download and install add-ons from the [COLOR yellowgreen]B[/COLOR][COLOR dodgerblue]B[/COLOR][COLOR white]T[/COLOR][COLOR orangered]S[/COLOR] Repository, Plugin by @koderdude.</description>
+		<description lang="he">[COLOR yellowgreen]B[/COLOR][COLOR dodgerblue]B[/COLOR][COLOR white]T[/COLOR][COLOR orangered]S [/COLOR]הורידו והתיקנו את הרחבות ממאגר
+תוסף על ידי koderdude@.</description>
+        <disclaimer lang="en">This Repository is maintained by the [COLOR yellowgreen]B[/COLOR][COLOR dodgerblue]B[/COLOR][COLOR white]T[/COLOR][COLOR orangered]S[/COLOR] community and our generator fetches indexs from multiple sources from around the web. We accept no responsibility for the following content, streams and or media. [COLOR yellowgreen]B[/COLOR][COLOR dodgerblue]B[/COLOR][COLOR white]T[/COLOR][COLOR orangered]S[/COLOR] does not host or stream any of the content displayed on this add-on.</disclaimer>
+		 <disclaimer lang="he">מאגר זה מתוחזק על ידי קהילת והמחולל שלנו מביאים את האנידקסים ממקורות מרובים מרחבי האינטרנט.
+אנו לא מקבלים שום אחריות לתכנים הבאים, שידורים חיים או תוכן בכל צורה שלא יהיה.
+אנו לא מארחים או משדרים את התוכן שמוצג על-ידי התוסף.</disclaimer>
+        <platform>all</platform>
+    <website>http://repo.bbtsip.tv/</website>
+  </extension>   
+</addon>

@@ -520,6 +520,31 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 	</extension>
 </addon>
 
+<addon id="repository.bbtsip.tv" name="[COLOR yellowgreen]B[/COLOR][COLOR dodgerblue]B[/COLOR]T[COLOR orangered]S[/COLOR] - Repo" version="0.0.7" provider-name="BBTS">
+  <requires>
+    <import addon="xbmc.addon" version="12.0.0" />
+  </requires>
+    <extension point="xbmc.addon.repository" name="BBTS Repo">
+      <info compressed="false">http://repo.bbtsip.tv/repo/addons.xml</info>
+      <checksum>http://repo.bbtsip.tv/repo/addons.xml.md5</checksum>
+      <datadir zip="true">http://repo.bbtsip.tv/repo/addons/</datadir>
+      <hashes>true</hashes>
+    </extension>
+      <extension point="xbmc.addon.metadata">
+        <summary lang="en">The [COLOR yellowgreen]B[/COLOR][COLOR dodgerblue]B[/COLOR][COLOR white]T[/COLOR][COLOR orangered]S[/COLOR] Repository...</summary>
+		<summary lang="he">[COLOR yellowgreen]B[/COLOR][COLOR dodgerblue]B[/COLOR][COLOR white]T[/COLOR][COLOR orangered]S [/COLOR]מאגר ההרחבות של</summary>
+        <description lang="en">Download and install add-ons from the [COLOR yellowgreen]B[/COLOR][COLOR dodgerblue]B[/COLOR][COLOR white]T[/COLOR][COLOR orangered]S[/COLOR] Repository, Plugin by @koderdude.</description>
+		<description lang="he">[COLOR yellowgreen]B[/COLOR][COLOR dodgerblue]B[/COLOR][COLOR white]T[/COLOR][COLOR orangered]S [/COLOR]הורידו והתיקנו את הרחבות ממאגר
+תוסף על ידי koderdude@.</description>
+        <disclaimer lang="en">This Repository is maintained by the [COLOR yellowgreen]B[/COLOR][COLOR dodgerblue]B[/COLOR][COLOR white]T[/COLOR][COLOR orangered]S[/COLOR] community and our generator fetches indexs from multiple sources from around the web. We accept no responsibility for the following content, streams and or media. [COLOR yellowgreen]B[/COLOR][COLOR dodgerblue]B[/COLOR][COLOR white]T[/COLOR][COLOR orangered]S[/COLOR] does not host or stream any of the content displayed on this add-on.</disclaimer>
+		 <disclaimer lang="he">מאגר זה מתוחזק על ידי קהילת והמחולל שלנו מביאים את האנידקסים ממקורות מרובים מרחבי האינטרנט.
+אנו לא מקבלים שום אחריות לתכנים הבאים, שידורים חיים או תוכן בכל צורה שלא יהיה.
+אנו לא מארחים או משדרים את התוכן שמוצג על-ידי התוסף.</disclaimer>
+        <platform>all</platform>
+    <website>http://repo.bbtsip.tv/</website>
+  </extension>
+</addon>
+
 <addon id="repository.entertainmentrepo" name="The Entertainment Repository" version="1.1" provider-name="Mr Entertainment">
 	<extension point="xbmc.addon.repository" name="Entertainment Addons Repository">
         <dir>
@@ -705,23 +730,17 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 	</extension>
 </addon>
 
-<addon id="repository.tdbaddon" name="TDB REPO" version="1.02" provider-name="tdbaddon">
-	<extension point="xbmc.addon.repository" name="TDB Addon Repository">
-        <dir>
-	      <info compressed="false">http://github.com/tdbaddon/tdbaddon/raw/master/addons.xml</info>
-	      <checksum>http://github.com/tdbaddon/tdbaddon/raw/master/addons.xml.md5</checksum>
-	      <datadir zip="true">http://github.com/tdbaddon/tdbaddon/raw/master/zips</datadir>
-        </dir>
-        <info compressed="false">http://github.com/tdbaddon/tdbaddon/raw/master/addons.xml</info>
-        <checksum>http://github.com/tdbaddon/tdbaddon/raw/master/addons.xml.md5</checksum>
-        <datadir zip="true">http://github.com/tdbaddon/tdbaddon/raw/master/zips</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary></summary>
-		<description>Wisely choose you Must!</description>
-		<disclaimer>By using this, you take reponsibility for anything that happens. Some parts of this addon may not be legal in your country - please check with your local laws before installing. I take no responsibility for any problems this plugin might in any way shape or form. This is project is for a LEARNING EXPERIANCE.</disclaimer>
-		<platform>all</platform>
-	</extension>
+<addon id="repository.tdbaddon" name="TDB REPO" version="1.01" provider-name="tdbaddon">
+<extension point="xbmc.addon.repository" name="TDB Addon Repository">
+<info compressed="false">http://github.com/tdbaddon/tdbaddon/raw/master/addons.xml</info>
+<checksum>http://github.com/tdbaddon/tdbaddon/raw/master/addons.xml.md5</checksum>
+<datadir zip="true">http://github.com/tdbaddon/tdbaddon/raw/master/zips</datadir>
+</extension>
+<extension point="xbmc.addon.metadata">
+<summary>Wisely choose you Must!</summary>
+<description>Download and Install Addons</description>
+<platform>all</platform>
+</extension>
 </addon>
 
 <addon id="repository.thec0de" name="gr33ksRepo" version="1.0.0" provider-name="Gr33k">
@@ -734,6 +753,19 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 		<summary>thec0de Repo</summary>
 		<description>Download and Install The BEST Add-Ons for Kodi out there!</description>
 		<disclaimer>I made none of these - Just repost from Kodi Forums - Use at your own discretion. I am not responsible for what you do with this stuff.</disclaimer>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="repository.TheYid" name="TheYid's REPO" version="2.0" provider-name="tcz009 AKA TheYid">
+	<extension point="xbmc.addon.repository" name="TheYid Addon Repository">
+		<info compressed="false">https://raw.github.com/TheYid/My-Repo/master/addons.xml</info>
+		<checksum>https://raw.github.com/TheYid/My-Repo/master/addons.xml.md5</checksum>
+		<datadir zip="true">https://raw.github.com/TheYid/My-Repo/master/zips</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Install TheYid's repo and Addons</summary>
+		<description>install addons from tcz009 AKA TheYid .......For OFFICIAL Support please Visit www.tvaddons.ag or follow me on Twitter @TheYid009 If you enjoy my addons and would like to donate please goto http://forums.tvaddons.ag/forums/146-THEYID-REPO and thanks for the support</description>
 		<platform>all</platform>
 	</extension>
 </addon>

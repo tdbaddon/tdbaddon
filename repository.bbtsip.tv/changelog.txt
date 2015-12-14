@@ -1,0 +1,20 @@
+[B]december 9 2015[/B]
+0.0.7:text lang=he for part of repo
+
+[B]november 30 2015[/B]
+0.0.6: edit text info
+
+[B]october 1 2015[/B]
+0.0.5: New Home
+
+[B]February 10 2015[/B]
+0.0.4: text New
+
+[B]February 7 2015[/B]
+0.0.3: New repo build
+
+[B]January 13 2015[/B]
+0.0.2: Update Icons
+
+[B]January 10 2015[/B]
+0.0.1: Initial Version
