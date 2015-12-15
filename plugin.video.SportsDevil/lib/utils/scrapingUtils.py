@@ -194,8 +194,10 @@ def findVideoFrameLink(page, data):
                     else:
                         width = int(m[0])
                     if width > minwidth:
-                        m = regexUtils.findall(iframe[0], '[\'"\s]src=["\']*\s*([^>"\' ]+)\s*[>"\']*')
+                        m = regexUtils.findall(iframe[0], '[\'"\s]+src\s*=\s*["\']*\s*([^>"\' ]+)\s*[>"\']*')
                         if m:
+                            if 'premiertv' in page:
+                                page = page+'/'
                             return urlparse.urljoin(urllib.unquote(page), m[0]).strip()
 
 
@@ -214,7 +216,7 @@ def findVideoFrameLink(page, data):
                             return urlparse.urljoin(urllib.unquote(page), m[0]).strip()
 
     # Alternative 2 (Frameset)
-    m = regexUtils.findall(data, '<FRAMESET[^>]+100%[^>]+>\s*<FRAME[^>]+src="([^"]+)"')
+    m = regexUtils.findall(data, '<(?:FRAMESET|frameset)[^>]+100%[^>]+>\s*<(?:FRAME|frame)[^>]+src="([^"]+)"')
     if m:
         return urlparse.urljoin(urllib.unquote(page), m[0]).strip()
     

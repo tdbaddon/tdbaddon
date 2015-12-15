@@ -1,0 +1,4 @@
+Genesis Lazarus v4.8.5 (01-Aug-15)
+
+Modified original code of lambda just to allow people to use the download option again.
+I take no credit for any of the code of the original Genesis add-on released by lambda.
