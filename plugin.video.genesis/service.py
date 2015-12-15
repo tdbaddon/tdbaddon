@@ -19,4 +19,4 @@
 '''
 
 import xbmc
-xbmc.executebuiltin('RunPlugin(plugin://plugin.video.genesis/?action=service)')
+xbmc.executebuiltin('RunPlugin(plugin://plugin.video.genesislazarus/?action=service)')
