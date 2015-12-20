@@ -25,6 +25,8 @@ from resources.lib.libraries import client
 
 def resolve(url):
     try:
+        headers = '|%s' % urllib.urlencode({'User-Agent': client.agent(), 'Referer': url})
+
         result = client.request(url)
 
         post = {}
@@ -40,7 +42,7 @@ def resolve(url):
                 url = [i for i in url if 'button_upload' in i][0]
                 url = client.parseDOM(url, 'a', ret='href')[0]
                 url = ['http' + i for i in url.split('http') if 'uptobox.com' in i][0]
-                return url
+                return url + headers
             except:
                 time.sleep(1)
     except:

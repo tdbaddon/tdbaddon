@@ -25,6 +25,8 @@ from resources.lib.libraries import client
 
 def resolve(url):
     try:
+        headers = '|%s' % urllib.urlencode({'User-Agent': client.agent(), 'Referer': url})
+
         fid = url.replace('/embed-', '/')
         fid = re.compile('//.+?/([\w]+)').findall(fid)[0]
 
@@ -55,6 +57,7 @@ def resolve(url):
         url = re.compile('(<a\s.+?</a>)').findall(url)
         url = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a')) for i in url]
         url = [i[0][0] for i in url if len(i[0]) > 0 and len(i[1]) > 0 and 'download.png' in i[1][0]][0]
+        url += headers
 
         return url
     except:

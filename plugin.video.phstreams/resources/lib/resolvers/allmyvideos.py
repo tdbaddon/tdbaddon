@@ -25,6 +25,8 @@ from resources.lib.libraries import client
 
 def resolve(url):
     try:
+        headers = '|%s' % urllib.urlencode({'User-Agent': client.agent(), 'Referer': url})
+
         url = url.replace('/embed-', '/')
         url = re.compile('//.+?/([\w]+)').findall(url)[0]
         url = 'http://allmyvideos.net/%s' % url
@@ -41,6 +43,7 @@ def resolve(url):
 
         url = re.compile('"file" *: *"(http.+?)"').findall(result)[-1]
         url = '%s?%s&direct=false&ua=false' % (url.split('?')[0], urlparse.urlparse(url).query)
+        url += headers
         return url
     except:
         return

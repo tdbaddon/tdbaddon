@@ -19,13 +19,15 @@
 '''
 
 
-import re
+import re,urllib
 from resources.lib.libraries import client
 from resources.lib.libraries import jsunpack
 
 
 def resolve(url):
     try:
+        headers = '|%s' % urllib.urlencode({'User-Agent': client.agent(), 'Referer': url})
+
         url = url.replace('/video/', '/embed/')
 
         result = client.request(url)
@@ -45,10 +47,10 @@ def resolve(url):
         url = re.compile('sources\s*:\s*\[.+?file\s*:\s*(.+?)\s*\,').findall(result)[0]
         var = re.compile('var\s+%s\s*=\s*\'(.+?)\'' % url).findall(result)
         if len(var) > 0: url = var[0].strip()
+        url += headers
 
         if url.startswith('http'): return url 
     except:
         return
-
 
 

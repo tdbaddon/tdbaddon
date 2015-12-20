@@ -25,6 +25,8 @@ from resources.lib.libraries import client
 
 def resolve(url):
     try:
+        headers = '|%s' % urllib.urlencode({'User-Agent': client.agent(), 'Referer': url})
+
         cookie = client.request(url, output='cookie')
         result = client.request(url, cookie=cookie, close=False)
 
@@ -39,7 +41,7 @@ def resolve(url):
         url = re.compile("file *: *'(http.+?)'").findall(result)
         url += re.compile('file *: *"(http.+?)"').findall(result)
         url = [i for i in url if not i.endswith('.srt')]
-        url = url[-1]
+        url = url[-1] + headers
 
         return url
     except:

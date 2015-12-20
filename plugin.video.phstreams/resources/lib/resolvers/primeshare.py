@@ -19,16 +19,22 @@
 '''
 
 
+import urllib
 from resources.lib.libraries import client
 
 
 def resolve(url):
     try:
+        headers = '|%s' % urllib.urlencode({'User-Agent': client.agent(), 'Referer': url})
+
         result = client.request(url, mobile=True)
 
         url = client.parseDOM(result, 'video')[0]
         url = client.parseDOM(url, 'source', ret='src', attrs = {'type': '.+?'})[0]
+        url += headers
+
         return url
     except:
         return
+
 

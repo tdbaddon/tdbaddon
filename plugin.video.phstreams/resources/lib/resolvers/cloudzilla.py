@@ -19,16 +19,21 @@
 '''
 
 
-import re
+import re,urllib
 from resources.lib.libraries import client
 
 
 def resolve(url):
-        try:
-            url = url.replace('/share/file/', '/embed/')
-            result = client.request(url)
-            url = re.compile('var\s+vurl *= *"(http.+?)"').findall(result)[0]
-            return url
-        except:
-            return
+    try:
+        headers = '|%s' % urllib.urlencode({'User-Agent': client.agent(), 'Referer': url})
+
+        url = url.replace('/share/file/', '/embed/')
+        result = client.request(url)
+
+        url = re.compile('var\s+vurl *= *"(http.+?)"').findall(result)[0]
+        url += headers
+        return url
+    except:
+        return
+
 

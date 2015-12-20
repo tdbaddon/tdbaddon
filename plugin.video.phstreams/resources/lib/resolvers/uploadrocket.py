@@ -26,6 +26,8 @@ from resources.lib.libraries import captcha
 
 def resolve(url):
     try:
+        headers = '|%s' % urllib.urlencode({'User-Agent': client.agent(), 'Referer': url})
+
         result = client.request(url)
         result = result.decode('iso-8859-1').encode('utf-8')
 
@@ -50,6 +52,8 @@ def resolve(url):
         result = result.decode('iso-8859-1').encode('utf-8')
 
         url = client.parseDOM(result, 'a', ret='href', attrs = {'onclick': 'DL.+?'})[0]
+        url += headers
+
         return url
     except:
         return

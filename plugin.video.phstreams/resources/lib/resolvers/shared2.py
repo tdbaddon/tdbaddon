@@ -19,17 +19,22 @@
 '''
 
 
-import re
+import re,urllib
 from resources.lib.libraries import client
 
 
 def resolve(url):
     try:
+        headers = '|%s' % urllib.urlencode({'User-Agent': client.agent(), 'Referer': url})
+
         url = url.replace('/play/', '/frame/')
 
         result = client.request(url)
         url = re.compile('path *: *"(http.+?)"').findall(result)[-1]
+        url += headers
+
         return url
     except:
         return
+
 

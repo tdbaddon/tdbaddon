@@ -19,12 +19,14 @@
 '''
 
 
-import urlparse
+import urllib,urlparse
 from resources.lib.libraries import client
 
 
 def resolve(url):
     try:
+        headers = '|%s' % urllib.urlencode({'User-Agent': client.agent(), 'Referer': url})
+
         url = urlparse.urlparse(url).query
         url = urlparse.parse_qsl(url)[0][1]
         url = 'http://up2stream.com/view.php?ref=%s' % url
@@ -32,7 +34,10 @@ def resolve(url):
         result = client.request(url, mobile=True)
 
         url = client.parseDOM(result, 'source', ret='src', attrs = {'type': 'video.+?'})[0]
+        url += headers
+
         return url
     except:
         return
+
 

@@ -19,17 +19,21 @@
 '''
 
 
-import re
+import re,urllib
 from resources.lib.libraries import client
 
 
 def resolve(url):
     try:
+        headers = '|%s' % urllib.urlencode({'User-Agent': client.agent(), 'Referer': url})
+
         url = url.replace('/share/file/', '/embed/')
 
         result = client.request(url)
 
         url = re.compile('var\s+.+?url\s*=\s*[\'|\"](.+?)[\'|\"]').findall(result)[-1]
+        url += headers
+
         return url
     except:
         return

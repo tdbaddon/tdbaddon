@@ -19,12 +19,14 @@
 '''
 
 
-import re
+import re,urllib
 from resources.lib.libraries import client
 
 
 def resolve(url):
     try:
+        headers = '|%s' % urllib.urlencode({'User-Agent': client.agent(), 'Referer': url})
+
         url = re.compile('//.+?/.+?/([\w]+)').findall(url)[0]
         url = 'http://www.filepup.net/play/%s' % url
 
@@ -32,10 +34,10 @@ def resolve(url):
 
         #url = client.parseDOM(result, 'source', ret='src', attrs = {'type': 'video.+?'})[0]
         url = re.compile('type *: *[\'|\"]video/.+?[\'|\"].+?src *: *[\'|\"](.+?)[\'|\"]').findall(result)[0]
+        url += headers
 
         return url
     except:
         return
-
 
 

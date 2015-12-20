@@ -19,12 +19,14 @@
 '''
 
 
-import re,base64
+import re,urllib,base64
 from resources.lib.libraries import client
 
 
 def resolve(url):
     try:
+        headers = '|%s' % urllib.urlencode({'User-Agent': client.agent(), 'Referer': url})
+
         url = url.replace('/embed-', '/')
         url = re.compile('//.+?/([\w]+)').findall(url)[0]
         url = 'http://speedvideo.net/embed-%s.html' % url
@@ -37,7 +39,10 @@ def resolve(url):
 
         url = a[:int(c)] + a[(int(c) + 10):]
         url = base64.urlsafe_b64decode(url)
+        url += headers
+
         return url
     except:
         return
+
 

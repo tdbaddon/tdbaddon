@@ -26,6 +26,8 @@ from resources.lib.libraries import jsunpack
 
 def resolve(url):
     try:
+        headers = '|%s' % urllib.urlencode({'User-Agent': client.agent(), 'Referer': url})
+
         result = client.request(url, mobile=True, close=False)
 
         try:
@@ -50,12 +52,13 @@ def resolve(url):
                 result = re.compile('file *: *"(http.+?)"').findall(result)
 
                 url = [i for i in result if '.m3u8' in i]
-                if len(url) > 0: return url[0]
+                if len(url) > 0: return url[0] + headers
 
                 url = [i for i in result if not '.m3u8' in i]
-                if len(url) > 0: return '%s|Referer=%s' % (url[0], urllib.quote_plus('http://vidzi.tv/nplayer/jwplayer.flash.swf'))
+                if len(url) > 0: return url[0] + headers
             except:
                 time.sleep(1)
     except:
         return
+
 

@@ -26,6 +26,8 @@ from resources.lib.libraries import captcha
 
 def resolve(url):
     try:
+        headers = '|%s' % urllib.urlencode({'User-Agent': client.agent(), 'Referer': url})
+
         url = url.replace('clicknupload.com', 'clicknupload.me')
 
         result = client.request(url)
@@ -60,6 +62,7 @@ def resolve(url):
         url = client.parseDOM(result, 'a', ret='onClick')
         url = [i for i in url if i.startswith('window.open')][0]
         url = re.compile('[\'|\"](.+?)[\'|\"]').findall(url)[0]
+        url += headers
         return url
     except:
         return

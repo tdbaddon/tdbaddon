@@ -25,6 +25,8 @@ from resources.lib.libraries import client
 
 def resolve(url):
     try:
+        headers = '|%s' % urllib.urlencode({'User-Agent': client.agent(), 'Referer': url})
+
         result = client.request(url, close=False)
 
         if '>File Not Found<' in result: raise Exception()
@@ -40,6 +42,8 @@ def resolve(url):
         result = client.request(url, post=post)
 
         url = client.parseDOM(result, 'a', ret='href', attrs = {'class': 'downloadbtn.+?'})[0]
+        url += headers
+
         return url
     except:
         return

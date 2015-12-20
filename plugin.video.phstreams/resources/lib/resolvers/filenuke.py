@@ -19,12 +19,14 @@
 '''
 
 
-import re,urlparse
+import re,urllib,urlparse
 from resources.lib.libraries import client
 
 
 def resolve(url):
     try:
+        headers = '|%s' % urllib.urlencode({'User-Agent': client.agent(), 'Referer': url})
+
         result = client.request(url, close=False)
 
         f = client.parseDOM(result, 'a', ret='href', attrs = {'id': 'go-next'})[0]
@@ -33,7 +35,9 @@ def resolve(url):
         result = client.request(f)
 
         url = re.compile("var\s+lnk\d* *= *'(http.+?)'").findall(result)[0]
+        url += headers
         return url
     except:
         return
+
 

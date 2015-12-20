@@ -53,7 +53,7 @@ def resolve(url):
             for v in var: url = url.replace("'%s'" % v[0], v[1])
             for v in var: url = url.replace("(%s)" % v[0], "(%s)" % v[1])
 
-        url = re.sub(r"'unescape\((.+?)\)'", r'\1', url)
+        url = re.sub(r"'.+?\((.+?)\)'", r'\1', url)
         url = re.sub(r"'(.+?)'", r'\1', url)
 
 

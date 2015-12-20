@@ -19,13 +19,15 @@
 '''
 
 
-import re
+import re,urllib
 from resources.lib.libraries import client
 from resources.lib.libraries import jsunpack
 
 
 def resolve(url):
     try:
+        headers = '|%s' % urllib.urlencode({'User-Agent': client.agent(), 'Referer': url})
+
         url = url.replace('/embed-', '/')
         url = re.compile('//.+?/([\w]+)').findall(url)[0]
         url = 'http://allvid.ch/embed-%s.html' % url
@@ -40,11 +42,11 @@ def resolve(url):
             r = re.compile('file\s*:\s*"(.+?)".+?label\s*:\s*"(\d+)"').findall(r)
 
         url = []
-        try: url.append({'quality': '1080p', 'url': [i[0] for i in r if int(i[1]) >= 1080][0]})
+        try: url.append({'quality': '1080p', 'url': [i[0] + headers for i in r if int(i[1]) >= 1080][0]})
         except: pass
-        try: url.append({'quality': 'HD', 'url': [i[0] for i in r if 720 <= int(i[1]) < 1080][0]})
+        try: url.append({'quality': 'HD', 'url': [i[0] + headers for i in r if 720 <= int(i[1]) < 1080][0]})
         except: pass
-        try: url.append({'quality': 'SD', 'url': [i[0] for i in r if int(i[1]) < 720][0]})
+        try: url.append({'quality': 'SD', 'url': [i[0] + headers for i in r if int(i[1]) < 720][0]})
         except: pass
 
         return url

@@ -19,12 +19,14 @@
 '''
 
 
-import re,base64
+import re,urllib,base64
 from resources.lib.libraries import client
 
 
 def resolve(url):
     try:
+        headers = '|%s' % urllib.urlencode({'User-Agent': client.agent(), 'Referer': url})
+
         url = url.replace('/embed-', '/')
         url = re.compile('//.+?/([\w]+)').findall(url)[0]
 
@@ -39,8 +41,10 @@ def resolve(url):
         url = re.compile('var\stracker\s*=\s*[\'|\"](.+?)[\'|\"]').findall(result)
         url += re.compile("tracker *: *[\'|\"](.+?)[\'|\"]").findall(result)
         url = base64.b64decode(url[0])
+        url += headers
 
         return url
     except:
         return
+
 

@@ -19,12 +19,14 @@
 '''
 
 
-import re
+import re,urllib
 from resources.lib.libraries import client
 
 
 def resolve(url):
     try:
+        headers = '|%s' % urllib.urlencode({'User-Agent': client.agent(), 'Referer': url})
+
         id = re.compile('//.+?/.+?/([\w]+)').findall(url)
         id += re.compile('//.+?/.+?v=([\w]+)').findall(url)
         id = id[0]
@@ -41,7 +43,10 @@ def resolve(url):
         result = client.request(url)
 
         url = re.compile('url=(.+?)&').findall(result)[0]
+        url += headers
+
         return url
     except:
         return
+
 

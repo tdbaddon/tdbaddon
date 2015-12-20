@@ -27,12 +27,17 @@ from resources.lib.libraries import client
 
 def request(url, post=None, headers=None, mobile=False, safe=False, timeout='30'):
     try:
-        u = '%s://%s' % (urlparse.urlparse(url).scheme, urlparse.urlparse(url).netloc)
-        cookie = cache.get(cloudflare, 168, u, post, headers, mobile, safe, timeout)
+        try: headers.update(headers)
+        except: headers = {}
 
+        if not 'User-Agent' in headers: headers['User-Agent'] = client.agent()
+
+        u = '%s://%s' % (urlparse.urlparse(url).scheme, urlparse.urlparse(url).netloc)
+
+        cookie = cache.get(cloudflare, 168, u, post, headers, mobile, safe, timeout)
         result = client.request(url, cookie=cookie, post=post, headers=headers, mobile=mobile, safe=safe, timeout=timeout, output='response', error=True)
 
-        if 'HTTP Error 503' in result[0]:
+        if result[0] == '503':
             cookie = cache.get(cloudflare, 0, u, post, headers, mobile, safe, timeout)
             result = client.request(url, cookie=cookie, post=post, headers=headers, mobile=mobile, safe=safe, timeout=timeout)
         else:

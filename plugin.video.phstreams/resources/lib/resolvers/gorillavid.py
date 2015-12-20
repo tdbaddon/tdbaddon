@@ -19,12 +19,14 @@
 '''
 
 
-import re,urllib2
+import re,urllib,urllib2
 from resources.lib.libraries import client
 
 
 def resolve(url):
     try:
+        headers = '|%s' % urllib.urlencode({'User-Agent': client.agent(), 'Referer': url})
+
         url = url.replace('/embed-', '/')
         url = re.compile('//.+?/([\w]+)').findall(url)[0]
         url = 'http://gorillavid.in/embed-%s.html' % url
@@ -38,8 +40,10 @@ def resolve(url):
 
         type = str(response.info()["Content-Type"])
         if type == 'text/html': raise Exception()
+        url += headers
 
         return url
     except:
         return
+
 

@@ -49,33 +49,14 @@ def request(url, debrid=''):
         try: url = re.compile('://(http.+)').findall(url)[0]
         except: pass
 
-        r = [i['class'] for i in info() if n in i['netloc']][0]
-        r = __import__(r, globals(), locals(), [], -1)
+        r = [i['class'] for i in info() if n in i['netloc']]
+        r += [i['class'] for i in info2() if n in i['netloc']]
+        r = __import__(r[0], globals(), locals(), [], -1)
         r = r.resolve(url)
-
-        if r == None: return r
-
-        elif type(r) == list:
-            for i in range(0, len(r)): r[i].update({'url': parser(r[i]['url'], url)})
-
-        elif r.startswith('http'): r = parser(r, url)
 
         return r
     except:
         return u
-
-
-def parser(url, referer):
-    if url == None: return
-
-    try: headers = dict(urlparse.parse_qsl(url.rsplit('|', 1)[1]))
-    except: headers = dict('')
-
-    if not 'User-Agent' in headers: headers['User-Agent'] = client.agent()
-    if not 'Referer' in headers: headers['Referer'] = referer
-
-    url = '%s|%s' % (url.split('|')[0], urllib.urlencode(headers))
-    return url
 
 
 
@@ -395,6 +376,9 @@ def info():
         'class': 'filmon',
         'netloc': ['filmon.com']
     }, {
+        'class': 'finecast',
+        'netloc': ['finecast.tv']
+    }, {
         'class': 'filepup',
         'netloc': ['filepup.net']
     }, {
@@ -476,6 +460,10 @@ def info():
         'netloc': ['nowvideo.eu', 'nowvideo.sx'],
         'quality': 'Low'
     }, {
+        'class': 'odnoklassniki',
+        'netloc': ['ok.ru', 'odnoklassniki.ru'],
+        'quality': 'High'
+    }, {
         'class': 'openload',
         'netloc': ['openload.io', 'openload.co'],
         'quality': 'High',
@@ -517,10 +505,6 @@ def info():
         'class': 'streamin',
         'netloc': ['streamin.to'],
         'quality': 'Medium'
-    }, {
-        'class': 'thefile',
-        'netloc': ['thefile.me'],
-        'quality': 'High'
     }, {
         'class': 'thevideo',
         'netloc': ['thevideo.me'],
@@ -621,6 +605,9 @@ def info():
         'netloc': ['xvidstage.com'],
         'quality': 'Medium'
     }, {
+        'class': 'yocast',
+        'netloc': ['yocast.tv']
+    }, {
         'class': 'youtube',
         'netloc': ['youtube.com'],
         'quality': 'Medium'
@@ -635,6 +622,13 @@ def info():
         'class': 'zstream',
         'netloc': ['zstream.to'],
         'quality': 'High'
+    }]
+
+
+def info2():
+    return [{
+        'class': 'watch1080',
+        'netloc': ['watch1080p.com', 'sefilmdk.com']
     }]
 
 

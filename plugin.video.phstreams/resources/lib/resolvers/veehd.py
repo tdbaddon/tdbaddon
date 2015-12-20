@@ -25,6 +25,8 @@ from resources.lib.libraries import client
 
 def resolve(url):
     try:
+        headers = '|%s' % urllib.urlencode({'User-Agent': client.agent(), 'Referer': url})
+
         result = client.request(url, close=False)
         result = result.replace('\n','')
 
@@ -43,7 +45,10 @@ def resolve(url):
         url += re.compile('src *= *"([^"]+(?:divx|avi))"').findall(result)
         url += re.compile('"url" *: *"(.+?)"').findall(result)
         url = urllib.unquote(url[0])
+        url += headers
+
         return url
     except:
         return
+
 

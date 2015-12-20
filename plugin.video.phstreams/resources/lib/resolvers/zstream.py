@@ -19,12 +19,14 @@
 '''
 
 
-import re
+import re,urllib
 from resources.lib.libraries import client
 
 
 def resolve(url):
     try:
+        headers = '|%s' % urllib.urlencode({'User-Agent': client.agent(), 'Referer': url})
+
         url = url.replace('/embed-', '/')
         url = re.compile('//.+?/([\w]+)').findall(url)[0]
         url = 'http://zstream.to/embed-%s.html' % url
@@ -33,8 +35,10 @@ def resolve(url):
 
         url = re.compile('file *: *"(http.+?)"').findall(result)
         url = [i for i in url if not i.endswith('.srt')][-1]
+        url += headers
 
         return url
     except:
         return
+
 

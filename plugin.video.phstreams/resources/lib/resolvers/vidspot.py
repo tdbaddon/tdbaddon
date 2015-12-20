@@ -19,12 +19,14 @@
 '''
 
 
-import re,urlparse
+import re,urllib,urlparse
 from resources.lib.libraries import client
 
 
 def resolve(url):
     try:
+        headers = '|%s' % urllib.urlencode({'User-Agent': client.agent(), 'Referer': url})
+
         url = url.replace('/embed-', '/')
         url = re.compile('//.+?/([\w]+)').findall(url)[0]
         url = 'http://vidspot.net/embed-%s.html' % url
@@ -35,7 +37,10 @@ def resolve(url):
         query = urlparse.urlparse(url).query
         url = url[:url.find('?')]
         url = '%s?%s&direct=false' % (url, query)
+        url += headers
+
         return url
     except:
         return
+
 

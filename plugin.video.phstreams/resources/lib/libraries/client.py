@@ -19,7 +19,9 @@
 '''
 
 
-import re,sys,urllib2,HTMLParser
+import re,sys,urllib2,urlparse,HTMLParser,random
+
+from resources.lib.libraries import cache
 
 
 def request(url, close=True, error=False, proxy=None, post=None, headers=None, mobile=False, safe=False, referer=None, cookie=None, output='', timeout='30'):
@@ -51,13 +53,14 @@ def request(url, close=True, error=False, proxy=None, post=None, headers=None, m
         if 'User-Agent' in headers:
             pass
         elif not mobile == True:
-            headers['User-Agent'] = 'Mozilla/5.0 (compatible, MSIE 11, Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko'
+            #headers['User-Agent'] = agent()
+            headers['User-Agent'] = cache.get(randomagent, 1)
         else:
             headers['User-Agent'] = 'Apple-iPhone/701.341'
         if 'referer' in headers:
             pass
         elif referer == None:
-            headers['referer'] = url
+            headers['referer'] = '%s://%s/' % (urlparse.urlparse(url).scheme, urlparse.urlparse(url).netloc)
         else:
             headers['referer'] = referer
         if not 'Accept-Language' in headers:
@@ -80,9 +83,9 @@ def request(url, close=True, error=False, proxy=None, post=None, headers=None, m
             result = "; ".join(result)
         elif output == 'response':
             if safe == True:
-                result = (str(response), response.read(224 * 1024))
+                result = (str(response.code), response.read(224 * 1024))
             else:
-                result = (str(response), response.read())
+                result = (str(response.code), response.read())
         elif output == 'chunk':
             content = int(response.headers['Content-Length'])
             if content < (2048 * 1024): return
@@ -219,7 +222,23 @@ def replaceHTMLCodes(txt):
     return txt
 
 
+def randomagent():
+    BR_VERS = [
+        ['%s.0' % i for i in xrange(18, 43)],
+        ['37.0.2062.103', '37.0.2062.120', '37.0.2062.124', '38.0.2125.101', '38.0.2125.104', '38.0.2125.111', '39.0.2171.71', '39.0.2171.95', '39.0.2171.99', '40.0.2214.93', '40.0.2214.111',
+         '40.0.2214.115', '42.0.2311.90', '42.0.2311.135', '42.0.2311.152', '43.0.2357.81', '43.0.2357.124', '44.0.2403.155', '44.0.2403.157', '45.0.2454.101', '45.0.2454.85', '46.0.2490.71',
+         '46.0.2490.80', '46.0.2490.86', '47.0.2526.73', '47.0.2526.80'],
+        ['11.0']]
+    WIN_VERS = ['Windows NT 10.0', 'Windows NT 7.0', 'Windows NT 6.3', 'Windows NT 6.2', 'Windows NT 6.1', 'Windows NT 6.0', 'Windows NT 5.1', 'Windows NT 5.0']
+    FEATURES = ['; WOW64', '; Win64; IA64', '; Win64; x64', '']
+    RAND_UAS = ['Mozilla/5.0 ({win_ver}{feature}; rv:{br_ver}) Gecko/20100101 Firefox/{br_ver}',
+                'Mozilla/5.0 ({win_ver}{feature}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{br_ver} Safari/537.36',
+                'Mozilla/5.0 ({win_ver}{feature}; Trident/7.0; rv:{br_ver}) like Gecko']
+    index = random.randrange(len(RAND_UAS))
+    return RAND_UAS[index].format(win_ver=random.choice(WIN_VERS), feature=random.choice(FEATURES), br_ver=random.choice(BR_VERS[index]))
+
+
 def agent():
-    return 'Mozilla/5.0 (compatible, MSIE 11, Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko'
+    return 'Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko'
 
 

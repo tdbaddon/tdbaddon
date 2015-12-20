@@ -19,20 +19,28 @@
 '''
 
 
-import re
+import re,urlparse
 from resources.lib.libraries import client
 
 
 def resolve(url):
     try:
-        url = url.replace('/embed-', '/')
-        url = re.compile('//.+?/([\w]+)').findall(url)[0]
-        url = 'http://thefile.me/plugins/mediaplayer/site/_embed.php?u=%s' % url
+        page = urlparse.parse_qs(urlparse.urlparse(url).query)['u'][0]
+        page = 'http://www.finecast.tv/embed4.php?u=%s&vw=640&vh=450' % page
 
-        result = client.request(url, mobile=True)
+        try: referer = urlparse.parse_qs(urlparse.urlparse(url).query)['referer'][0]
+        except: referer = page
 
-        url = re.compile('file *: *"(http.+?)"').findall(result)[-1]
+        result = client.request(page, referer=referer)
+
+        t = re.compile("var t\s*=\s*'(.+?)';").findall(result)[0]
+        m = re.compile("var m\s*=\s*'(.+?)';").findall(result)[0]
+
+        streamer = re.compile('file\s*:\s*\'(.+?)\'').findall(result)[0]
+
+        url = streamer + "%s playpath=%s swfUrl=http://www.finecast.tv/player6/jwplayer.flash.swf flashver=WIN\\2019,0,0,185 live=1 timeout=15 swfVfy=1 pageUrl=http://www.finecast.tv/" % (t,m)
         return url
     except:
-        return
+       return
+
 

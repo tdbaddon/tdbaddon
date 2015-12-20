@@ -28,6 +28,8 @@ def resolve(url):
     try:
         if check(url) == False: return
 
+        headers = '|%s' % urllib.urlencode({'User-Agent': client.agent(), 'Referer': url})
+
         id = re.compile('//.+?/(?:embed|f)/([0-9a-zA-Z-_]+)').findall(url)[0]
 
         url = 'https://api.openload.co/1/file/dlticket?file=%s' % id
@@ -50,6 +52,8 @@ def resolve(url):
         result = json.loads(result)
 
         url = result['result']['url'] + '?mime=true'
+        url += headers
+
         return url
     except:
         return

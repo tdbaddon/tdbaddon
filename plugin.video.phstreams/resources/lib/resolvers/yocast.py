@@ -19,21 +19,26 @@
 '''
 
 
-import re,urllib
+import re,urlparse
 from resources.lib.libraries import client
 
 
 def resolve(url):
     try:
-        headers = '|%s' % urllib.urlencode({'User-Agent': client.agent(), 'Referer': url})
+        referer = urlparse.parse_qs(urlparse.urlparse(url).query)['referer'][0]
 
-        url = url.replace('/embed-', '/')
-        url = re.compile('//.+?/([\w]+)').findall(url)[0]
-        url = 'http://bestreams.net/embed-%s.html' % url
+        page = urlparse.parse_qs(urlparse.urlparse(url).query)['live'][0]
+        page = 'http://www.yocast.tv/embedcr.php?live=%s&vw=640&vh=360' % page
 
-        result = client.request(url, mobile=True)
-        url = re.compile('file *: *"(http.+?)"').findall(result)[-1]
-        url += headers
+        result = client.request(page, referer=referer)
+
+        streamer = re.compile('streamer\s*:\s*[\'|\"](.+?)[\'|\"]').findall(result)[0]
+
+        file = re.compile('file\s*:\s*[\'|\"](.+?)[\'|\"]').findall(result)[0]
+        file = file.rsplit('.', 1)[0]
+
+        url = '%s playpath=%s pageUrl=%s swfUrl=http://www.yocast.tv/myplayer/jwplayer.flash.swf live=1 timeout=15' % (streamer, file, page)
+
         return url
     except:
         return

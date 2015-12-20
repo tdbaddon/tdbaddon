@@ -26,6 +26,8 @@ from resources.lib.libraries import jsunpack
 
 def resolve(url):
     try:
+        headers = '|%s' % urllib.urlencode({'User-Agent': client.agent(), 'Referer': url})
+
         url = re.compile('//.+?/([\w]+)').findall(url)[0]
         url = 'http://180upload.com/embed-%s.html' % url
 
@@ -46,8 +48,10 @@ def resolve(url):
         url += re.compile("'file' *, *'(.+?)'").findall(result)
         url = [i for i in url if not i.endswith('.srt')]
         url = 'http://' + url[0].split('://', 1)[-1]
+        url += headers
 
         return url
     except:
         return
+
 

@@ -25,6 +25,8 @@ from resources.lib.libraries import client
 
 def resolve(url):
     try:
+        headers = '|%s' % urllib.urlencode({'User-Agent': client.agent(), 'Referer': url})
+
         result = client.request(url)
 
         post = {}
@@ -37,7 +39,10 @@ def resolve(url):
         result = client.request(url, post=post)
 
         url = client.parseDOM(result, 'a', ret='href', attrs = {'id': 'downloadbutton'})[0]
+        url += headers
+
         return url
     except:
         return
+
 

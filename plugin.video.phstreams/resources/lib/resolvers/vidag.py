@@ -19,13 +19,15 @@
 '''
 
 
-import re
+import re,urllib
 from resources.lib.libraries import client
 from resources.lib.libraries import jsunpack
 
 
 def resolve(url):
     try:
+        headers = '|%s' % urllib.urlencode({'User-Agent': client.agent(), 'Referer': url})
+
         url = url.replace('/embed-', '/')
         url = re.compile('//.+?/([\w]+)').findall(url)[0]
         url = 'http://vid.ag/embed-%s.html' % url
@@ -39,10 +41,10 @@ def resolve(url):
         result = re.compile('file *: *"(http.+?)"').findall(result)
 
         url = [i for i in result if '.m3u8' in i]
-        if len(url) > 0: return url[0]
+        if len(url) > 0: return url[0] + headers
 
         url = [i for i in result if not '.m3u8' in i]
-        if len(url) > 0: return url[0]
+        if len(url) > 0: return url[0] + headers
     except:
         return
 

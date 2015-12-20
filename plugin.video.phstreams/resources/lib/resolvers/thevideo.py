@@ -19,12 +19,14 @@
 '''
 
 
-import re,ast
+import re,urllib,ast
 from resources.lib.libraries import client
 
 
 def resolve(url):
     try:
+        headers = '|%s' % urllib.urlencode({'User-Agent': client.agent(), 'Referer': url})
+
         url = url.replace('/embed-', '/')
         url = re.compile('//.+?/([\w]+)').findall(url)[0]
         url = 'http://thevideo.me/embed-%s.html' % url
@@ -34,8 +36,10 @@ def resolve(url):
 
         url = re.compile("sources *: *(\[.+?\])").findall(result)[-1]
         url = re.compile('file *: *[\'|\"](.+?)[\'|\"]').findall(url)[-1]
+        url += headers
 
         return url
     except:
         return
+
 

@@ -25,6 +25,8 @@ from resources.lib.libraries import client
 
 def resolve(url):
     try:
+        headers = '|%s' % urllib.urlencode({'User-Agent': client.agent(), 'Referer': url})
+
         url = re.compile('//.+?/([\w]+)').findall(url)[0]
         url = 'http://streamcloud.eu/%s' % url
  
@@ -40,7 +42,10 @@ def resolve(url):
         result = client.request(url, post=post)
 
         url = re.compile('file *: *"(http.+?)"').findall(result)[-1]
+        url += headers
+
         return url
     except:
         return
+
 

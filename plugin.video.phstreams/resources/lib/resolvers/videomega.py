@@ -19,13 +19,15 @@
 '''
 
 
-import re,urlparse
+import re,urllib,urlparse
 from resources.lib.libraries import client
 from resources.lib.libraries import jsunpack
 
 
 def resolve(url):
     try:
+        headers = '|%s' % urllib.urlencode({'User-Agent': client.agent(), 'Referer': url})
+
         url = urlparse.urlparse(url).query
         url = urlparse.parse_qsl(url)[0][1]
         url = 'http://videomega.tv/cdn.php?ref=%s' % url
@@ -42,9 +44,10 @@ def resolve(url):
 
         url = re.compile('"video".+?"src"\s*\,\s*"(.+?)"').findall(result)
         url += client.parseDOM(result, 'source', ret='src', attrs = {'type': 'video.+?'})
-        url = url[0]
+        url = url[0] + headers
 
         return url
     except:
         return
+
 

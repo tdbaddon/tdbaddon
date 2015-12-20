@@ -19,20 +19,32 @@
 '''
 
 
-import re
+import re,urllib,urlparse
 from resources.lib.libraries import client
 
 
 def resolve(url):
     try:
-        url = url.replace('/embed-', '/')
-        url = re.compile('//.+?/([\w]+)').findall(url)[0]
-        url = 'http://dowed.info/embed-%s-800x500.html' % url
+        headers = '|%s' % urllib.urlencode({'User-Agent': client.agent(), 'Referer': url})
+
+        video = url.replace('/embed-', '/')
+        video = re.compile('//.+?/([\w]+)').findall(video)[0]
+
+        url = 'http://exashare.com/embed-%s.html' % video
+
+        result = client.request(url)
+
+        netloc = client.parseDOM(result, 'iframe', ret='src')[0]
+        netloc = urlparse.urlparse(netloc).netloc
+
+        url = 'http://%s/embed-%s.html' % (netloc, video)
 
         result = client.request(url)
 
         url = re.compile('file *: *"(http.+?)"').findall(result)[-1]
+        url += headers
         return url
     except:
         return
+
 

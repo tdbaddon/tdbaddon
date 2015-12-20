@@ -19,19 +19,24 @@
 '''
 
 
-import re
+import re,urllib
 from resources.lib.libraries import client
 
 
 def resolve(url):
     try:
+        headers = '|%s' % urllib.urlencode({'User-Agent': client.agent(), 'Referer': url})
+
         url = url.replace('/embed-', '/')
         url = re.compile('//.+?/([\w]+)').findall(url)[0]
         url = 'http://streamin.to/embed-%s.html' % url
 
         result = client.request(url, mobile=True)
         url = re.compile("file *: *[\'|\"](http.+?)[\'|\"]").findall(result)[-1]
+        url += headers
+
         return url
     except:
         return
+
 

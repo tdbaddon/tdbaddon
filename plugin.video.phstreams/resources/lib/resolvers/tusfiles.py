@@ -19,13 +19,15 @@
 '''
 
 
-import re,urlparse
+import re,urllib,urlparse
 from resources.lib.libraries import client
 from resources.lib.libraries import jsunpack
 
 
 def resolve(url):
     try:
+        headers = '|%s' % urllib.urlencode({'User-Agent': client.agent(), 'Referer': url})
+
         result = client.request(url)
 
         result = re.compile('(eval.*?\)\)\))').findall(result)[-1]
@@ -37,8 +39,10 @@ def resolve(url):
         url = 'http://' + url[0].split('://', 1)[-1]
 
         url = url.replace(':%s' % urlparse.urlparse(url).port, '')
+        url += headers
 
         return url
     except:
         return
+
 

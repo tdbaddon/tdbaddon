@@ -19,7 +19,7 @@
 '''
 
 
-import re,json,urllib
+import re,urllib,json
 import requests
 
 
@@ -47,4 +47,5 @@ def resolve(url):
         return url
     except:
         return
+
 

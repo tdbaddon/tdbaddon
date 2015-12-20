@@ -26,6 +26,8 @@ from resources.lib.libraries import captcha
 
 def resolve(url):
     try:
+        headers = '|%s' % urllib.urlencode({'User-Agent': client.agent(), 'Referer': url})
+
         u = url
 
         result = client.request(url)
@@ -50,7 +52,7 @@ def resolve(url):
 
         url = client.request(url, post=post, output='geturl')
         if u in url or url in u : return
-        return url
+        return url + headers
     except:
         return
 

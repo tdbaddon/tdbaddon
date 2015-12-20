@@ -19,12 +19,14 @@
 '''
 
 
-import re
+import re,urllib
 from resources.lib.libraries import client
 
 
 def resolve(url):
     try:
+        headers = '|%s' % urllib.urlencode({'User-Agent': client.agent(), 'Referer': url})
+
         url = url.replace('/embed-', '/')
         url = re.compile('//.+?/([\w]+)').findall(url)[0]
         url = 'http://vodlocker.com/embed-%s.html' % url
@@ -33,7 +35,10 @@ def resolve(url):
 
         url = re.compile('[\'|\"](http.+?[\w]+)[\'|\"]').findall(result)
         url = [i for i in url if i.endswith(('.mp4', '.mkv', '.flv', '.avi'))][0]
+        url += headers
+
         return url
     except:
         return
+
 
