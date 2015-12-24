@@ -405,6 +405,9 @@ def info():
         'class': 'hdcast',
         'netloc': ['hdcast.me']
     }, {
+        'class': 'hdcastorg',
+        'netloc': ['hdcast.org']
+    }, {
         'class': 'hugefiles',
         'netloc': ['hugefiles.net'],
         'quality': 'High',
@@ -505,6 +508,9 @@ def info():
         'class': 'streamin',
         'netloc': ['streamin.to'],
         'quality': 'Medium'
+    }, {
+        'class': 'streamup',
+        'netloc': ['streamup.com']
     }, {
         'class': 'thevideo',
         'netloc': ['thevideo.me'],

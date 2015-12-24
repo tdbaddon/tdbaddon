@@ -38,8 +38,8 @@ phTest = 'testings.xml'
 
 def getCategory():
     getDirectory('0', phLink, '0', '0', '0', '0', '0', close=False)
-
     addCategoryItem('VinMan FM', 'radioDirectory', 'radios.png')
+    addCategoryItem('Cartoon Crazy','CartoonDirectory','cartoon.png')
     addCategoryItem('NHL', 'nhlDirectory', 'hockey.jpg')
     addCategoryItem('News Updates', 'dmode&url=%s' % phNews, 'news.gif')
     addCategoryItem(control.lang(30701).encode('utf-8'), 'openSettings', 'settings.png')

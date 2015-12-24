@@ -25,23 +25,24 @@ from resources.lib.libraries import client
 
 def resolve(url):
     try:
-        page = urlparse.parse_qs(urlparse.urlparse(url).query)['u'][0]
-        page = 'http://www.finecast.tv/embed4.php?u=%s&vw=640&vh=450' % page
+        url = (urlparse.urlparse(url).path).split('/')[1]
+        url = 'https://streamup.com/%s/embeds/video' % url
 
-        try: referer = urlparse.parse_qs(urlparse.urlparse(url).query)['referer'][0]
-        except: referer = page
+        result = client.request(url)
 
-        result = client.request(page, referer=referer)
+        url = re.compile('"(.+?\.m3u8)"').findall(result)[0]
+        url = url.rsplit('"', 1)[-1]
 
-        var = re.compile('var\s(.+?)\s*=\s*\'(.+?)\'').findall(result)
-        for i in range(100):
-            for v in var: result = result.replace("'+%s+'" % v[0], "'+%s+'" % v[1])
-            for v in var: result = result.replace("'+%s" % v[0], "'+%s" % v[1])
+        channel = re.compile('channelName\s*:\s*"(.+?)"').findall(result)[0]
+        channel = [i for i in url.split('/') if channel in i][0]
 
-        result = re.sub('("|\'|\,|\+)', '', result)
+        streamer = re.compile('url\s*:\s*"(.+?)"').findall(result)[0]
+        streamer += channel
+        streamer = client.request(streamer)
 
-        url = re.compile('file\s*:\s*(.+?)\n').findall(result)
-        url = [i for i in url if '.m3u8' in i][0]
+        url = 'http://%s/%s' % (streamer, url)
+        url = urlparse.urljoin(url, urlparse.urlparse(url).path.replace('//','/'))
+
         return url
     except:
        return

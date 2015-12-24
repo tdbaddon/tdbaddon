@@ -68,7 +68,7 @@ def NewsText():
     analytics.sendEvent("MainMenu", "News")
     
     dialog = xbmcgui.Dialog()
-    dialog.ok("Raw Maintenance", "News from our sponsor:", "November 27 Black Friday Sale at www.raw-media.ca\nUse promo code \"rmkodi\" for 20 percent off.")
+    dialog.ok("Raw Maintenance", "News from our sponsor:", "Merry Christmas and Happy New Year!")
 
 
 #######################################################################
@@ -207,7 +207,7 @@ def clearCache():
             if file_count > 0:
 
                 dialog = xbmcgui.Dialog()
-                if dialog.yesno("Delete XBMC Cache Files", str(file_count) + " files found", "Do you want to delete them?"):
+                if dialog.yesno("Delete Kodi Cache Files", str(file_count) + " files found", "Do you want to delete them?"):
                 
                     for f in files:
                         try:
@@ -329,7 +329,7 @@ def deleteThumbnails():
     text13 = os.path.join(databasePath,"Textures13.db")
     os.unlink(text13)
         
-    dialog.ok("Restart XBMC", "Please restart XBMC to rebuild thumbnail library")
+    dialog.ok("Restart Kodi", "Please restart Kodi to rebuild thumbnail library")
         
 def purgePackages():
     global analytics
@@ -363,7 +363,7 @@ def SupportText():
     analytics.sendEvent("MainMenu", "Support")
     
     dialog = xbmcgui.Dialog()
-    dialog.ok("Raw Maintenance", "Log into http://www.no-issue.ca for support", "Follow No-Issue on Twitter @Gombeek or Youtube youtube.com/gombeek", "Also Raw Media Instigram @iloveitraw or Twitter @iloveitraw")
+    dialog.ok("Raw Maintenance", "Log into http://www.no-issue.ca for support", "Follow No-Issue on Twitter @Gombeek or Youtube youtube.com/gombeek", "Raw Media Instagram @iloveitraw or Twitter @iloveitraw")
 
 #######################################################################
 #						START MAIN

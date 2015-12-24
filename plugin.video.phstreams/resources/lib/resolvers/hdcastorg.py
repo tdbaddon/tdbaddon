@@ -26,22 +26,19 @@ from resources.lib.libraries import client
 def resolve(url):
     try:
         page = urlparse.parse_qs(urlparse.urlparse(url).query)['u'][0]
-        page = 'http://www.finecast.tv/embed4.php?u=%s&vw=640&vh=450' % page
+        page = 'http://www.hdcast.org/embedlive2.php?u=%s&vw=670&vh=390' % page
 
         try: referer = urlparse.parse_qs(urlparse.urlparse(url).query)['referer'][0]
         except: referer = page
 
         result = client.request(page, referer=referer)
 
-        var = re.compile('var\s(.+?)\s*=\s*\'(.+?)\'').findall(result)
-        for i in range(100):
-            for v in var: result = result.replace("'+%s+'" % v[0], "'+%s+'" % v[1])
-            for v in var: result = result.replace("'+%s" % v[0], "'+%s" % v[1])
+        streamer = re.compile('file\s*:\s*\'(.+?)\'').findall(result)[0]
 
-        result = re.sub('("|\'|\,|\+)', '', result)
+        token = 'SECURET0KEN#yw%.?()@W!'
 
-        url = re.compile('file\s*:\s*(.+?)\n').findall(result)
-        url = [i for i in url if '.m3u8' in i][0]
+        url = '%s swfUrl=http://player.hdcast.org/jws/jwplayer.flash.swf pageUrl=%s token=%s swfVfy=1 live=1 timeout=15' % (streamer, page, token)
+
         return url
     except:
        return

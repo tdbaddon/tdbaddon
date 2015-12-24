@@ -174,8 +174,32 @@ elif action == 'Kickinradio':
 
 elif action == 'Kickinradiocats':
     from resources.lib.indexers import phradios
-    phradios.Kickinradiocats(url, image, fanart)    
-    
+    phradios.Kickinradiocats(url, image, fanart)
+
+elif action == 'CartoonDirectory':
+    from resources.lib.indexers import phtoons
+    phtoons.CartoonDirectory()
+   
+elif action == 'CartoonCrazy':
+    from resources.lib.indexers import phtoons
+    phtoons.CartoonCrazy(image, fanart)
+
+elif action == 'CCsearch':
+    from resources.lib.indexers import phtoons
+    phtoons.CCsearch(url, image, fanart)
+
+elif action == 'CCcat':
+    from resources.lib.indexers import phtoons
+    phtoons.CCcat(url, image, fanart)
+
+elif action == 'CCpart':
+    from resources.lib.indexers import phtoons
+    phtoons.CCpart(url, image, fanart)
+
+elif action == 'CCstream':
+    from resources.lib.indexers import phtoons
+    phtoons.CCstream(url)
+
 elif action == 'nhlDirectory':
     from resources.lib.indexers import nhlcom
     nhlcom.nhlDirectory()
