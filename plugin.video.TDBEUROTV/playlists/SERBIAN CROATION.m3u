@@ -74,16 +74,16 @@ http://213.81.153.221:8080/cetv
 mms://77.238.209.50:1234
 
 #EXTINF:0,HRT 1 
-http://213.5.58.58:1935/hrt_live/smil:hrt1.smil/nesto.m3u8
+0
 
 #EXTINF:0,HRT 2 
-http://213.5.58.58:1935/hrt_live/smil:hrt2.smil/nesto.m3u8
+0
 
 #EXTINF:0,HRT 3 
-http://213.5.58.58:1935/hrt_live/smil:hrt3.smil/nesto.m3u8
+0
 
 #EXTINF:0,HRT 4 
-http://213.5.58.58:1935/hrt_live/smil:hrt4.smil/nesto.m3u8
+0
 
 #EXTINF:0,Joj
 0

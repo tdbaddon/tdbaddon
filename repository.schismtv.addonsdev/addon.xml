@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="repository.schismtv.addonsdev" name="SchisM Addons Repository" version="1.2.0" provider-name="SchisM">
+	<extension point="xbmc.addon.repository" name="SchisM TV Repository">
+		<info compressed="false">https://raw.github.com/schismtv/addonsrepo/master/addons.xml</info>
+		<checksum>https://raw.github.com/schismtv/addonsrepo/master/addons.xml.md5</checksum>
+		<datadir zip="true">https://raw.github.com/schismtv/addonsrepo/master</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Install SchisM Addons</summary>
+		<description>Download and install addons from SchisM</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+

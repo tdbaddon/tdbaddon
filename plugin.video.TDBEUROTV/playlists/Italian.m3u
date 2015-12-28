@@ -212,7 +212,7 @@ rtmp://184.173.179.163/TeleabruzzoTV playpath=TeleabruzzoTV swfUrl=http://184.17
 rtmp://wma07.fluidstream.net/TeleArena playpath=livestream swfUrl=http://media.larena.it/media/3rdparty/jwplayer/mediaplayer-5.10-licensed/player.swf pageUrl=http://tv-online.in/tele-arena-verona-live live=1 timeout=10
 
 #EXTINF:0,Tele Boario
-rtmp://91.121.222.160/teleboariotb/teleboario.sdp
+0
 
 #EXTINF:0,Tele Diogene 
 rtmp://wms.shared.streamshow.it:80/telediogene playpath=telediogene swfUrl=http://player.streamshow.it/flowplayer/flowplayer.commercial-3.2.18.swf pageUrl=http://player.streamshow.it/embed/telediogene.php?height=338&width=448 live=1 timeout=10
@@ -222,9 +222,6 @@ rtmp://wms.shared.streamshow.it:1935/telediogene/telediogene
 
 #EXTINF:0,Tele Diogene 
 http://wms.shared.streamshow.it:1935/telediogene/telediogene/live.m3u8
-
-#EXTINF:0,TeleDucato
-http://wms.shared.streamshow.it/teleducatopc/teleducatopc/playlist.m3u8
 
 #EXTINF:0,Tele Luna 
 rtmp://vs2.streamcaster.net:1935/test_live playpath=teleluna swfUrl=http://www.lunaset.it/scripts/FlowPlayerNet/flowplayer.commercial-3.2.15.swf pageUrl=http://www.lunaset.it/ live=1

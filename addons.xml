@@ -242,6 +242,28 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
+<addon id="plugin.video.mdniter" name="niter" version="1.0.1" provider-name="Mucky Duck">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+	<import addon="script.module.addon.common" />
+	<import addon="script.module.metahandler" version="2.5.1"/>
+	<import addon="script.module.requests" />
+	<import addon="repository.mdrepo" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Stream Movies From The niter.co WebSite</summary>
+    <description lang="en">Stream Movies From The niter.co WebSite</description>
+	<disclaimer lang="en">
+	The author does not host or distribute any of the content displayed by this addon
+	or have any affiliation with the website owners.
+	</disclaimer>
+    <platform>all</platform>
+  </extension>
+</addon>
+
 <addon id="plugin.video.MoneySports"
        name="MoneySports"
        version="1.0.2"
@@ -289,7 +311,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
     </extension>
 </addon>
 
-<addon id="plugin.video.moviexk" name="Movies XK" version="1.0.3" provider-name="MetalKettle">
+<addon id="plugin.video.moviexk" name="Movies XK" version="1.0.4" provider-name="MetalKettle">
   <requires>
     <import addon="script.module.simplejson" version="3.3.0"/>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -444,7 +466,7 @@ Enjoy
 
 <addon id="plugin.video.TDBEUROTV"
        name="TDB EURO TV"
-       version="2.10"
+       version="2.11"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -797,6 +819,19 @@ Enjoy
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<summary>Install My Addons</summary>
+		<description>Download and install addons from SchisM</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="repository.schismtv.addonsdev" name="SchisM Addons Repository" version="1.2.0" provider-name="SchisM">
+	<extension point="xbmc.addon.repository" name="SchisM TV Repository">
+		<info compressed="false">https://raw.github.com/schismtv/addonsrepo/master/addons.xml</info>
+		<checksum>https://raw.github.com/schismtv/addonsrepo/master/addons.xml.md5</checksum>
+		<datadir zip="true">https://raw.github.com/schismtv/addonsrepo/master</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Install SchisM Addons</summary>
 		<description>Download and install addons from SchisM</description>
 		<platform>all</platform>
 	</extension>

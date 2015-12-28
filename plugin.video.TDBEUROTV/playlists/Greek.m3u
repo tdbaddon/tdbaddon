@@ -107,7 +107,7 @@ http://live.cretetv.gr:1935/cretetv/myStream/playlist.m3u8
 0
 
 #EXTINF:0,Lepanto 
-http://78.129.184.15:33102/streaming/stream/playlist.m3u8
+0
 
 #EXTINF:0,M Channel
 http://stream.maktv.gr/i/live_1@332903/master.m3u8
@@ -161,7 +161,7 @@ http://stream2.omegatv.net/hls-live/livepkgr/_definst_/liveevent/omegatv.m3u8
 0
 
 #EXTINF:0,Rik Sat 
-http://cdnvideo.webvideocore.net/livenl/out_2xtqzyrq6gysc48ko0cs/index.m3u8
+0
 
 #EXTINF:0,Samiaki TV 
 http://94.23.218.186:1935/samiaki/samiaki/playlist.m3u8
