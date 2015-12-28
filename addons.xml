@@ -461,26 +461,6 @@ Enjoy
   </extension>
 </addon>
 
-<addon id="plugin.video.TDBMOVIES"
-       name="TDB MOVIES"
-       version="1.05"
-       provider-name="TDB">
-<requires>
-<import addon="xbmc.python" version="2.1.0"/>
-</requires>
-<extension point="xbmc.python.pluginsource"
-            library="default.py">
-<provides>video</provides>
-</extension>
-<extension point="xbmc.addon.metadata">
-<summary>TDB MOVIES</summary>
-<description>Live Streaming TV</description>
-<disclaimer>The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
-    <platform>all</platform>
-  </extension>
-  <extension point="xbmc.service" library="service.py" start="login" />
-</addon>
-
 <addon id="plugin.video.TDBPORNO"
        name="TDB PORNO"
        version="1.81"
@@ -539,7 +519,7 @@ Enjoy
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="3.37"
+       version="3.38"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>

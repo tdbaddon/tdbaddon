@@ -11,7 +11,7 @@ http://wxintribune-lh.akamaihd.net/i/WXINTribune_1@120151/master.m3u8
 rtmp://aljazeeraflashlivefs.fplive.net:1935/aljazeeraflashlive-live/aljazeera_eng_high
 
 #EXTINF:0,BBC World News 
-0 
+0
 
 #EXTINF:0,Bloomberg TV 
 http://btv-i.akamaihd.net/hls/live/202760-b/btvusa_ios/P1/M12K.m3u8
@@ -95,13 +95,13 @@ http://f24hls-i.akamaihd.net/hls/live/221192/F24_FR_LO_HLS/master.m3u8
 0
 
 #EXTINF:0,i24 News 
-http://bcoveliveios-i.akamaihd.net/hls/live/215102/master_english/398/master.m3u8?b?b*t$
+0
 
 #EXTINF:0,InfoWars TV 
 0
 
 #EXTINF:0,MSNBC 
-rtmp://d.cdn.newschat.tv/edge playpath=msnbc_live swfUrl=http://msnbclive.eu/player.swf live=1 pageUrl=http://www.livenewschat.eu/politics/
+0
 
 #EXTINF:0,NBC News 
 0

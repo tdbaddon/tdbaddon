@@ -11,10 +11,10 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 0
 
 #EXTINF:0,Animal Planet 
-http://skyiptv.ddns.net:8000/live/shima/shima/111.m3u8
+0
 
 #EXTINF:0,Crime & Investigation 
-0
+http://foro:cable@24.139.177.135:9981/stream/channelid/778962059?ticket=20991006E4622390E3E04B153CAFD8A2E2DC94A3&profile=pass
 
 #EXTINF:0,Destination America 
 0
@@ -26,7 +26,7 @@ http://skyiptv.ddns.net:8000/live/shima/shima/111.m3u8
 0
 
 #EXTINF:0,Discovery History 
-http://skyiptv.ddns.net:8000/live/shima/shima/100.m3u8
+0
 
 #EXTINF:0,Discovery H&H
 0
@@ -35,7 +35,11 @@ http://skyiptv.ddns.net:8000/live/shima/shima/100.m3u8
 0
 
 #EXTINF:0,Discovery Science 
-http://skyiptv.ddns.net:8000/live/shima/shima/98.m3u8
+0
+
+#EXTINF:0,Discovery Science 
+http://109.226.222.161:4022/udp/239.255.4.250:1234
+
 
 #EXTINF:0,Discovery Turbo 
 0
@@ -61,17 +65,14 @@ http://link.theplatform.com/s/dtjsEC/chjdYJxKb44V?manifest=m3u&feed=History%20Li
 #EXTINF:0,History Channel 
 https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8?hdnea=ip=173.34.67.21~st=1448574469~exp=1448575069~acl=/i/History_1@156885*~id=e0ac8c7f-b7ae-431f-998a-d87493df48b7~hmac=1bf4b5f4382fd3f887da82e7bc44d93e3d92152b0d873acded129cad627e231e
 
-#EXTINF:0,History Channel 
-http://skyiptv.ddns.net:8000/live/shima/shima/145.m3u8
-
 #EXTINF:0,History Channel 2
 0
 
 #EXTINF:0,Investigation Discovery 
-http://skyiptv.ddns.net:8000/live/shima/shima/99.m3u8
+http://31.130.77.96:4022/udp/233.26.198.155:5000
 
 #EXTINF:0,Investigation Discovery 
-http://skyiptv.ddns.net:8000/live/shima/shima/144.m3u8
+https://hec.su/b1UT
 
 #EXTINF:0,Nasa TV 
 http://nasatv-lh.akamaihd.net/i/NASA_101@319270/master.m3u8 
@@ -86,13 +87,11 @@ http://nasatv-lh.akamaihd.net/i/NASA_103@319271/master.m3u8
 http://iphone-streaming.ustream.tv/uhls/6540154/streams/live/iphone/playlist.m3u8
 
 #EXTINF:0,Nat Geo Wild 
-http://skyiptv.ddns.net:8000/live/shima/shima/137.m3u8
+0
 
 #EXTINF:0,National Geographic 
-http://78.26.128.94:8000/udp/225.1.1.56:1234
+http://109.226.222.161:4022/udp/239.255.4.30:1234
 
-#EXTINF:0,National Geographic 
-http://skyiptv.ddns.net:8000/live/shima/shima/138.m3u8
 
 #EXTINF:0,Nova
 0
@@ -116,19 +115,15 @@ http://rt-a.akamaihd.net/ch_05@325609/720p.m3u8
 0
 
 #EXTINF:0,Travel Channel 
-http://78.26.128.94:8000/udp/225.1.1.234:1234
+0
 
 #EXTINF:0,Viasat Explorer 
 0
 
 #EXTINF:0,Viasat History 
-http://78.26.128.94:8000/udp/225.1.1.249:1234
-
-#EXTINF:0,Viasat History 
-http://balkanstream.com/stream/viasathistory/sead/sead
+0
 
 #EXTINF:0,Viasat Nature 
-http://78.26.128.94:8000/udp/225.1.1.251:1234
+0
 
-#EXTINF:0,Viasat Nature 
-http://balkanstream.com/stream/viasatnature/sead/sead
+

@@ -29,10 +29,10 @@ http://200.76.77.237/LIVE/H01/CANAL444/PROFILE05.m3u8?supertvlat=%2F.ts
 0
 
 #EXTINF:0,BBC 1 
-http://skyiptv.ddns.net:8000/live/shima/shima/109.m3u8
+0
 
 #EXTINF:0,BBC 2 
-http://skyiptv.ddns.net:8000/live/shima/shima/108.m3u8
+0
 
 #EXTINF:0,BBC Entertainment
 http://200.76.77.237/LIVE/H01/CANAL253/PROFILE02.m3u8?supertvlat=%2F.ts
@@ -47,14 +47,13 @@ http://200.76.77.237/LIVE/H01/CANAL253/PROFILE05.m3u8?supertvlat=%2F.ts
 http://128.104.128.176:8080/udp/239.1.1.96:3096?live786
 
 #EXTINF:0,Boomerang 
-0
+http://77.120.118.235:8085
 
 #EXTINF:0,Bravo 
 0
 
 #EXTINF:0,Cartoon Network 
 http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD28_W_250.sdp/playlist.m3u8
-
 
 #EXTINF:0,CBC TV 
 0
@@ -73,6 +72,9 @@ http://128.104.128.176:8080/udp/239.1.1.84:3084?live786
 
 #EXTINF:0,CBS Reality 
 http://bit.ly/1HUs69k
+
+#EXTINF:0,CBS Reality 
+http://slynet.8nio.com/2/cbsreality_sly.m3u8
 
 #EXTINF:0,CHCH Ontario
 http://54.85.197.21:1935/live/news/playlist.m3u8
@@ -111,10 +113,10 @@ http://54.85.197.21:1935/live/news/playlist.m3u8
 0
 
 #EXTINF:0,Disney Junior 
-http://skyiptv.ddns.net:8000/live/shima/shima/96.m3u8
+0
 
 #EXTINF:0,Disney XD 
-http://skyiptv.ddns.net:8000/live/shima/shima/97.m3u8
+0
 
 #EXTINF:0,DIY Network 
 0
@@ -123,7 +125,7 @@ http://skyiptv.ddns.net:8000/live/shima/shima/97.m3u8
 0
 
 #EXTINF:0,E2 
-http://origin.live.web.tv.streamprovider.net/streams/5dac5e87d17d40f5bca18d2b211a4dd2_live_0_0/index.m3u8
+0
 
 #EXTINF:0,E4 
 http://stream02.yamgo.com/iPhone/HLS_TS/broadcast/victorias_secret_angels-tablet.3gp/victorias_secret_angels-tablet.3gp-mr648k.m3u8
@@ -140,9 +142,6 @@ http://edgeb.streaming.sk/fashiontv/fashiontv.stream/playlist.m3u8
 #EXTINF:0,Food Network 
 http://llnw.live.simplestream.com/coder2/coder.channels.channel2/hls/3/playlist.m3u8
 
-#EXTINF:0,Food Network 
-http://skyiptv.ddns.net:8000/live/shima/shima/147.m3u8
-
 #EXTINF:0,Fox 1 
 http://200.76.77.237/LIVE/H01/CANAL415/PROFILE02.m3u8?supertvlat=%2F.ts
 
@@ -151,6 +150,9 @@ http://200.76.77.237/LIVE/H01/CANAL415/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Fox 1 
 http://200.76.77.237/LIVE/H01/CANAL415/PROFILE05.m3u8?supertvlat=%2F.ts
+
+#EXTINF:0,Fox 1 
+http://iptvcanales.com/xw/cable.php?canal=86&player=playlist.m3u8
 
 #EXTINF:0,Fox Crime 
 0
@@ -201,16 +203,10 @@ rtmp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:468p500kB31?b?b*t$
 http://ios.streamserver01.com:8080/ShowcaseTV/mystream.m3u8
 
 #EXTINF:0,ITV 1 
-http://skyiptv.ddns.net:8000/live/shima/shima/143.m3u8
-
-#EXTINF:0,ITV 1 
-http://136.243.67.134:8000/live/skype/play.iptv/227.ts
+0
 
 #EXTINF:0,ITV 2 
-http://skyiptv.ddns.net:8000/live/shima/shima/142.m3u8
-
-#EXTINF:0,ITV 2 
-http://136.243.67.134:8000/live/skype/play.iptv/226.ts
+0
 
 #EXTINF:0,ITV 3 
 0
@@ -219,7 +215,7 @@ http://136.243.67.134:8000/live/skype/play.iptv/226.ts
 0
 
 #EXTINF:0,Jim Jam 
-0
+http://77.120.118.235:8089
 
 #EXTINF:0,JTV 
 rtmp://jtvmedia.jtv.com:1975/live playpath=live6 swfUrl=http://demandware.edgesuite.net/aaby_prd/on/demandware.static/Sites-jtv-Site/-/default/v1410110388581/swf/flashMediaPlayer/StrobeMediaPlayback.swf live=1 pageUrl=http://www.jtv.com/on/demandware.store/Sites-jtv-Site/default/LiveViewer-Show
@@ -237,7 +233,7 @@ http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
 0
 
 #EXTINF:0,More4 
-http://skyiptv.ddns.net:8000/live/shima/shima/139.m3u8
+0
 
 #EXTINF:0,My9 
 http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
@@ -246,13 +242,13 @@ http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
 http://128.104.128.176:8080/udp/239.1.1.90:3090?live786
 
 #EXTINF:0,Nick 
-http://skyiptv.ddns.net:8000/live/shima/shima/135.m3u8
+0
 
 #EXTINF:0,Nick Jr 
-http://bit.ly/1HUtl8h
+0
 
 #EXTINF:0,Nickelodeon 
-http://skyiptv.ddns.net:8000/live/shima/shima/136.m3u8
+0
 
 #EXTINF:0,NickNight 
 http://top-iptv.zapto.org:8000/live/walid/walid/631.m3u8
@@ -285,19 +281,19 @@ http://llnw.live.qvc.simplestream.com/hera/remote/qvcuk_primary_sdi8/3/prog_inde
 0
 
 #EXTINF:0,Sky 1 
-http://skyiptv.ddns.net:8000/live/shima/shima/129.m3u8
+0
 
 #EXTINF:0,Sky 2 
-http://skyiptv.ddns.net:8000/live/shima/shima/120.m3u8
+0
 
 #EXTINF:0,Sky Arts 1 
-http://skyiptv.ddns.net:8000/live/shima/shima/131.m3u8
+0
 
 #EXTINF:0,Sky Arts 2 
 0
 
 #EXTINF:0,Sky Atlantic 
-0
+http://top-iptv.zapto.org:8000/live/walid/walid/545.m3u8
 
 #EXTINF:0,Sky Living 
 0
@@ -321,7 +317,7 @@ http://skyiptv.ddns.net:8000/live/shima/shima/131.m3u8
 0
 
 #EXTINF:0,TLC 
-http://origin.live.web.tv.streamprovider.net/streams/9044496707bcc259f6cdf58eb93cbfe9_live_0_0/index.m3u8
+http://188.113.128.45:8000/udp/239.192.5.37:6085
 
 #EXTINF:0,TNT 
 http://200.76.77.237/LIVE/H01/CANAL266/PROFILE02.m3u8?supertvlat=%2F.ts
@@ -337,6 +333,9 @@ http://200.76.77.237/LIVE/H01/CANAL266/PROFILE05.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Treehouse TV 
 0
+
+#EXTINF:0,Tru TV 
+http://llnw.live.simplestream.com/coder5/coder.channels.channel2/hls/4/playlist.m3u8
 
 #EXTINF:0,Tru TV 
 0
@@ -357,7 +356,13 @@ http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/master.m3u8?b?b*t
 0
 
 #EXTINF:0,Universal Channel 
-0
+http://200.76.77.237/LIVE/H01/CANAL207/PROFILE02.m3u8?-1332/1499-20150816T153535.ts
+
+#EXTINF:0,Universal Channel 
+http://200.76.77.237/LIVE/H01/CANAL207/PROFILE03.m3u8?-1332/1499-20150816T153535.ts
+
+#EXTINF:0,Universal Channel 
+http://200.76.77.237/LIVE/H01/CANAL207/PROFILE05.m3u8?-1332/1499-20150816T153535.ts
 
 #EXTINF:0,USA Network 
 0
