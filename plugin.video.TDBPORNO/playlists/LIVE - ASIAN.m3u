@@ -5,58 +5,70 @@
 0
 
 #EXTINF:0,ASK TV 
-rtmp://main2.everyon.tv:1935/etv2/_definst_/pld1005
+rtmp://edge2.everyon.tv/etv2/pld1005
 
 #EXTINF:0,ASK TV 
-rtmp://main2.everyon.tv:1935/etv2/_definst_/phd1005
+rtmp://edge2.everyon.tv/etv2/phd1005
+
+#EXTINF:0,BEST PUBLIC 
+rtmp://edge2.everyon.tv/etv2sb/pld10991
+
+#EXTINF:0,BEST PUBLIC 
+rtmp://edge2.everyon.tv/etv2sb/phd10991
 
 #EXTINF:0,DELIGHT EMPIRE 
-rtmp://main2sb.everyon.tv:1935/etv2sb/_definst_/pld0063
+rtmp://edge2.everyon.tv/etv2sb/pld10063
 
 #EXTINF:0,DELIGHT EMPIRE 
-rtmp://main2sb.everyon.tv:1935/etv2sb/_definst_/phd0063
+rtmp://edge2.everyon.tv/etv2sb/phd10063
 
-#EXTINF:0,FETISH WOMEN
-rtmp://main2sb.everyon.tv:1935/etv2sb/_definst_/pld991
+#EXTINF:0,FETISH WOMEN 
+rtmp://edge2.everyon.tv/etv2sb/pld10992
 
-#EXTINF:0,FETISH WOMEN
-rtmp://main2sb.everyon.tv:1935/etv2sb/_definst_/pld992
+#EXTINF:0,FETISH WOMEN 
+rtmp://edge2.everyon.tv/etv2sb/pld10992
 
-#EXTINF:0,FETISH WOMEN
-rtmp://main2sb.everyon.tv:1935/etv2sb/_definst_/pld968
+#EXTINF:0,FETISH WOMEN 
+rtmp://edge2.everyon.tv/etv2sb/phd10968
 
-#EXTINF:0,FETISH WOMEN
-rtmp://edge2.everyon.tv/etv2sb/phd968
+#EXTINF:0,FETISH WOMEN 
+rtmp://edge2.everyon.tv/etv2sb/phd10968
 
-#EXTINF:0,GIRL TV
-rtmp://main2sb.everyon.tv:1935/etv2sb/_definst_/pld501
+#EXTINF:0,GIRL TV 
+rtmp://edge2.everyon.tv/etv2sb/pld10501
 
-#EXTINF:0,GIRL TV
-rtmp://main2sb.everyon.tv:1935/etv2sb/_definst_/phd501
+#EXTINF:0,GIRL TV 
+rtmp://edge2.everyon.tv/etv2sb/phd10501
 
-#EXTINF:0,GIRL TV
-rtmp://edge2.everyon.tv/etv2sb/pld501
+#EXTINF:0,J HONEY TV
+rtmp://edge1.everyon.tv/etv1sb/pld10928
 
-#EXTINF:0,GIRL TV
-rtmp://edge2.everyon.tv/etv2sb/phd501
-
-#EXTINF:0,GIRL TV
-http://edge2.everyon.tv:1935/etv2sb/phd501/HasBahCa.m3u8
+#EXTINF:0,J HONEY TV
+rtmp://edge1.everyon.tv/etv1sb/phd10928
 
 #EXTINF:0,J HOT GIRL 
-rtmp://main2sb.everyon.tv:1935/etv2sb/_definst_/pld0059
+rtmp://edge2.everyon.tv/etv2sb/pLd10059
 
-#EXTINF:0,J HOT GIRL
-rtmp://main2sb.everyon.tv:1935/etv2sb/_definst_/phd0059
+#EXTINF:0,J HOT GIRL 
+rtmp://edge2.everyon.tv/etv2sb/phd10059
 
 #EXTINF:0,JAV TV
-http://edge2.everyon.tv/etv2/pld1003/ukturk.m3u8
+rtmp://edge2.everyon.tv/etv2/pLd1003
+
+#EXTINF:0,JAV TV
+rtmp://edge2.everyon.tv/etv2/phd1003
 
 #EXTINF:0,LIVETING TV 
-rtmp://main2sb.everyon.tv:1935/etv2sb/_definst_/pld0064
+rtmp://edge2.everyon.tv/etv2sb/pld10064
+
+#EXTINF:0,LIVETING TV 
+rtmp://edge2.everyon.tv/etv2sb/phd10064
 
 #EXTINF:0,OHDEOK 942
-rtmp://main2sb.everyon.tv:1935/etv2sb/_definst_/pld993
+rtmp://edge2.everyon.tv/etv2sb/pld10993
+
+#EXTINF:0,OHDEOK 942
+rtmp://edge2.everyon.tv/etv2sb/phd10993
 
 #EXTINF:0,OKADAI
 http://edge2.everyon.tv/etv2/pld1003/HasBahCa.m3u8
@@ -74,35 +86,32 @@ rtmp://edge2.everyon.tv/etv2/pld1008
 rtmp://edge2.everyon.tv/etv2/phd1008
 
 #EXTINF:0,PINK 
-rtmp://main2sb.everyon.tv:1935/etv2sb/_definst_/pld0062
+rtmp://edge2.everyon.tv/etv2sb/pld10062
 
 #EXTINF:0,PINK 
-rtmp://main2sb.everyon.tv:1935/etv2sb/_definst_/phd0062
+rtmp://edge2.everyon.tv/etv2sb/phd10062
 
-#EXTINF:0,PLAYY 769
-0
+#EXTINF:0,PLAYY 
+rtmp://edge2.everyon.tv/etv2sb/pld10769
+
+#EXTINF:0,PLAYY 
+rtmp://edge2.everyon.tv/etv2sb/phd10769
 
 #EXTINF:0,RED ON 
-rtmp://main2sb.everyon.tv:1935/etv2sb/_definst_/pld0060
+rtmp://edge2.everyon.tv/etv2sb/pld10060
 
 #EXTINF:0,RED ON 
-rtmp://main2sb.everyon.tv:1935/etv2sb/_definst_/phd0060
+rtmp://edge2.everyon.tv/etv2sb/phd10060
 
-#EXTINF:0,SEX TV
-rtmp://main2sb.everyon.tv:1935/etv2sb/_definst_/pld61
+#EXTINF:0,SEX TV 
+rtmp://edge2.everyon.tv/etv2sb/pld10061
 
-#EXTINF:0,SEX TV
-rtmp://edge2.everyon.tv/etv2sb/phd61
-
-#EXTINF:0,SEX TV
-rtmp://main2sb.everyon.tv:1935/etv2sb/_definst_/phd61
-
-#EXTINF:0,SEX TV
-http://edge2.everyon.tv:1935/etv2sb/phd61/HasBahCa.m3u8
+#EXTINF:0,SEX TV 
+rtmp://edge2.everyon.tv/etv2sb/phd10061
 
 #EXTINF:0,THE O 
-rtmp://main2sb.everyon.tv:1935/etv2sb/_definst_/pld0771
+rtmp://edge2.everyon.tv/etv2sb/pld10771
 
 #EXTINF:0,THE O 
-rtmp://main2sb.everyon.tv:1935/etv2sb/_definst_/phd0771
+rtmp://edge2.everyon.tv/etv2sb/phd10771
 

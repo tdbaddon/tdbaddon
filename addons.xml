@@ -485,7 +485,7 @@ Enjoy
 
 <addon id="plugin.video.TDBPORNO"
        name="TDB PORNO"
-       version="1.81"
+       version="1.82"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
