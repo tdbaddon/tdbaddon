@@ -140,7 +140,7 @@ http://top-iptv.zapto.org:8000/live/walid/walid/544.m3u8
 http://top-iptv.zapto.org:8000/live/walid/walid/648.m3u8
 
 #EXTINF:0,Sky Movies Drama 
-0
+http://top-iptv.zapto.org:8000/live/walid/walid/543.m3u8
 
 #EXTINF:0,Sky Movies Family 
 http://top-iptv.zapto.org:8000/live/walid/walid/541.m3u8
@@ -158,7 +158,7 @@ http://top-iptv.zapto.org:8000/live/walid/walid/539.m3u8
 0
 
 #EXTINF:0,Sky Movies SciFi 
-0
+http://top-iptv.zapto.org:8000/live/walid/walid/540.m3u8
 
 #EXTINF:0,Sky Movies Select 
 0
@@ -182,7 +182,7 @@ http://top-iptv.zapto.org:8000/live/walid/walid/565.m3u8
 0
 
 #EXTINF:0,TCM 
-0
+http://astreamatik.selfip.com:8000/live/smart/smart/1412.m3u8
 
 #EXTINF:0,Tring Comedy
 0

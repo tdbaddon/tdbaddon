@@ -59,7 +59,7 @@ rtmp://edge2.everyon.tv/etv2sb/phd10772
 0
 
 #EXTINF:0,HOT CLUB 
-0
+http://62.210.107.58:8000/live/mirko/mirko/173.ts
 
 #EXTINF:0,HOT SHOTS 
 http://46.249.213.93/iPhone/HLS_TS/broadcast/hotshots-tablet.3gp/hotshots-tablet.3gp-mr649k.m3u8
@@ -92,13 +92,16 @@ rtmp://edge1.everyon.tv/etv1sb/pld10766
 rtmp://edge1.everyon.tv/etv1sb/phd10766
 
 #EXTINF:0,NUART 
-0
+http://91.204.214.106:23261/stolen/325e/colors.dmg
 
 #EXTINF:0,NUBILE FILMS 
 0
 
 #EXTINF:0,O LA LA 
 http://4BA9EBDB07C05883:@5.159.96.170:8000/olala
+
+#EXTINF:0,O LA LA 
+http://46.48.74.39:81//udp/239.255.2.90:1234
 
 #EXTINF:0,PASSIE XXX 
 http://publish.thewebstream.co:1935/leved/_definst_/passielivestream/playlist.m3u8
@@ -108,6 +111,15 @@ http://178.33.126.213:1935/leved/passielivestream/chunklist.m3u8
 
 #EXTINF:0,PASSIE XXX 
 http://q.gs/9830047/sex3todokodi
+
+#EXTINF:0,PASSIE XXX 
+http://62.210.107.58:8000/live/mirko/mirko/175.ts
+
+#EXTINF:0,PASSIE XXX 
+http://62.210.107.58:8000/live/mirko/mirko/177.ts
+
+#EXTINF:0,PASSIE XXX 
+http://178.33.126.213:1935/leved/passielivestream/media_5696.ts?wowzasessionid=1799630741
 
 #EXTINF:0,PENTHOUSE
 rtmp://edge1.everyon.tv/etv1sb/pld10927
@@ -136,11 +148,17 @@ rtmp://edge1.everyon.tv/etv1sb/phd10497
 #EXTINF:0,PLAYBOY TV 
 http://s2.edem.tv/iptv/9L8CB92DQXEXG9/527/index.m3u8
 
+#EXTINF:0,PLAYBOY TV 
+http://81.1.184.253:54321/udp/234.5.2.247:1234
+
 #EXTINF:0,PLATINUM TV 
 0
 
 #EXTINF:0,PRIVATE 
 http://178.33.126.213:1935/leved/privateCom/.m3u8
+
+#EXTINF:0,PRIVATE 
+http://publish.thewebstream.co:1935/leved/_definst_/privateCom/playlist.m3u8
 
 #EXTINF:0,PURE MATURE
 0
@@ -158,7 +176,7 @@ http://178.33.126.213:1935/leved/privateCom/.m3u8
 0
 
 #EXTINF:0,SATISFACTION HD 
-0
+http://178.33.126.213:1935/bsx24/mpegts1.stream/.m3u8
 
 #EXTINF:0,SCT 
 0
@@ -197,7 +215,7 @@ http://178.33.126.213:1935/leved/privateCom/.m3u8
 0
 
 #EXTINF:0,WOW GIRLS 
-0
+http://188.165.220.116:8081/live2/48/playlist.m3u8
 
 #EXTINF:0,X DESIRE 
 0
@@ -213,6 +231,9 @@ http://videohttp2.porndig.com/videos/2014/05/54101_20140508.smil/chunklist_b7300
 
 #EXTINF:0,XXX 
 http://videohttp2.porndig.com/videos/2014/06/56349_20140630.smil/chunklist_b730000.m3u8
+
+#EXTINF:0,XXX 
+http://188.165.220.116:8081/live/73/playlist.m3u8
 
 #EXTINF:0,YOU DIVA 
 http://46.249.213.87/iPhone/HLS_TS/broadcast/you_diva-iphone.3gp.m3u8

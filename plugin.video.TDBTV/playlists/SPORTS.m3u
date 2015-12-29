@@ -27,7 +27,7 @@ http://180.250.29.22:80/jhos/beib3_5/playlist.m3u8
 0
 
 #EXTINF:0,Box Nation 
-0
+http://astreamatik.selfip.com:8000/live/smart/smart/1984.m3u8
 
 #EXTINF:0,BT Sport 1 
 http://02e4.vp9.tv/chn/btsu1/v.m3u8
@@ -42,7 +42,7 @@ http://02e4.vp9.tv/chn/btsu2/v.m3u8
 0
 
 #EXTINF:0,CMore Sport 
-0
+http://91.204.214.106:23201/stolen/253c/xenixos.7z
 
 #EXTINF:0,ESPN 
 rtmp://31.220.2.149:80/live/ playpath=espnusa token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://yotv.co
@@ -53,8 +53,11 @@ rtmp://31.220.2.149:80/live/ playpath=espnusa token=%Zrey(nKa@#Z swfUrl=http://p
 #EXTINF:0,Eurosport 1 
 http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_1800.m3u8
 
+#EXTINF:0,Eurosport 1 
+http://skyiptv.ddns.net:8000/live/edi/edi/91.m3u8
+
 #EXTINF:0,Eurosport 2 
-0
+http://skyiptv.ddns.net:8000/live/edi/edi/90.m3u8
 
 #EXTINF:0,Eurosport News 
 0
@@ -183,7 +186,7 @@ mms://100automoto.tv/channel_porsche
 0
 
 #EXTINF:0,Racing UK 
-0
+http://top-iptv.zapto.org:8000/live/walid/walid/633.m3u8
 
 #EXTINF:0,Root Sports 
 0
@@ -192,25 +195,25 @@ mms://100automoto.tv/channel_porsche
 0
 
 #EXTINF:0,Sky Sports 1 
-0
+http://top-iptv.zapto.org:8000/live/walid/walid/536.m3u8
 
 #EXTINF:0,Sky Sports 2 
-0
+http://top-iptv.zapto.org:8000/live/walid/walid/535.m3u8
 
 #EXTINF:0,Sky Sports 3 
-0
+http://top-iptv.zapto.org:8000/live/walid/walid/534.m3u8
 
 #EXTINF:0,Sky Sports 4 
-0
+http://top-iptv.zapto.org:8000/live/walid/walid/533.m3u8
 
 #EXTINF:0,Sky Sports 5 
-0
+http://top-iptv.zapto.org:8000/live/walid/walid/532.m3u8
 
 #EXTINF:0,Sky Sports F1 
 0
 
 #EXTINF:0,Sky Sports News 
-0
+http://bit.do/bFWQk
 
 #EXTINF:0,Sports Tonight 
 0
