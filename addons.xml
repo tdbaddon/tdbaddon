@@ -522,7 +522,7 @@ Enjoy
 
 <addon id="plugin.video.TDBSPANISHTV"
        name="TDB SPANISH TV"
-       version="1.31"
+       version="1.32"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -797,6 +797,21 @@ Enjoy
 	</extension>
 </addon>
 
+<addon id="repository.RenegadesTV" name="RenegadesTV Add-on repository" version="1.1.0" provider-name="RenegadesTV">
+	<extension point="xbmc.addon.repository" name="RenegadesTV Add-on repository">
+		<dir>
+			<info compressed="false">http://maybe.sharktech.co.uk/addons.xml</info>
+			<checksum>http://maybe.sharktech.co.uk/addons.xml.md5</checksum>
+			<datadir zip="true">http://maybe.sharktech.co.uk/</datadir>
+		</dir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">Install Add-ons from RenegadesTV</summary>
+		<description lang="en">Download and install add-ons from RenegadesTV repository.</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
 <addon id="repository.riostv" name="Mauricio repository" version="0.0.2" provider-name="Mauricio">
 	<extension point="xbmc.addon.repository" name="Mauricio Add-on Repository">
 		<info compressed="false">http://raw.github.com/xmbcrios/riostv/master/addons.xml</info>
@@ -807,19 +822,6 @@ Enjoy
 		<summary>Mauricio Addon</summary>
 		<description>Official Repository Riostv</description>
 		<disclaimer></disclaimer>
-		<platform>all</platform>
-	</extension>
-</addon>
-
-<addon id="repository.schismtv.addons" name="SchisM TV Repository" version="1.19.3" provider-name="SchisM">
-	<extension point="xbmc.addon.repository" name="SchisM TV Repository">
-		<info compressed="false">https://raw.github.com/schismtv/buildrepo/master/addons.xml</info>
-		<checksum>https://raw.github.com/schismtv/buildrepo/master/addons.xml.md5</checksum>
-		<datadir zip="true">https://raw.github.com/schismtv/buildrepo/master</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>Install My Addons</summary>
-		<description>Download and install addons from SchisM</description>
 		<platform>all</platform>
 	</extension>
 </addon>

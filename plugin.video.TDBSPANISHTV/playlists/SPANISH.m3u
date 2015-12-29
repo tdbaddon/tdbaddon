@@ -44,6 +44,9 @@ http://urtmpkal-f.akamaihd.net/i/077zoqxzy_1@130091/index_3_av-p.m3u8
 http://200.76.77.237/LIVE/H01/CANAL107/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Azteca Siete 
+http://200.76.77.237/LIVE/H01/CANAL7/PROFILE03.m3u8?supertvlat=%2F.ts
+
+#EXTINF:0,Azteca Siete 
 http://38.104.228.230:1938/info7/info7_512/playlist.m3u8
 
 #EXTINF:0,Bandamax 
@@ -70,9 +73,6 @@ http://74.63.97.188:1935/gpacifico1/videogpacifico1/playlist.m3u8
 #EXTINF:0,Canal 04 
 rtmp://streaming.wirenetserver.com.ar/canal4/live_1
 
-#EXTINF:0,Canal 04
-http://185417-f.akamaihd.net/i/n0tf0r0_1@81283/index_1200_av-b.m3u8
-
 #EXTINF:0,Canal 04 
 http://72.46.226.61/live01/canal41/playlist.m3u8
 
@@ -85,23 +85,14 @@ rtmp://v1.streaminglatinoamerica.com/canal5/canal5
 #EXTINF:0,Canal 05 
 rtmp://c5n.stweb.tv:1935/c5n/live
 
-#EXTINF:0,Canal 05 
-http://162.212.176.83:8080/canal5.stream.m3u8
-
 #EXTINF:0,Canal 06 
 http://72.46.226.61/live01/canal61/playlist.m3u8
-
-#EXTINF:0,Canal 06 
-rtmp://k3.usastreams.com:1935/cana6/cana6
 
 #EXTINF:0,Canal 07 
 http://ecuadortv_livehd-lh.akamaihd.net/i/0n0xzqt3o_1@323283/master.m3u8#alxvill
 
 #EXTINF:0,Canal 07 
 http://72.46.226.61/live01/canal71/playlist.m3u8#MegaIPTVArgentina
-
-#EXTINF:0,Canal 07 
-http://k3.usastreams.com:1935/cana7/cana7/playlist.m3u8
 
 #EXTINF:0,Canal 07 
 http://74.63.97.188:1935/gpacifico4/videogpacifico4/chunklist_w1774114891.m3u8?
@@ -114,9 +105,6 @@ http://xcanal9saltax.api.channel.livestream.com/3.0/playlist.m3u8
 
 #EXTINF:0,Canal 09 
 http://wow2.cl.digitalproserver.com/c9//c9.smil/playlist.m3u8?
-
-#EXTINF:0,Canal 09 
-rtmp://k3.usastreams.com:1935/canal9/canal9
 
 #EXTINF:0,Canal 26 
 rtsp://live-edge01.telecentro.net.ar:80/live/26hd-360
@@ -184,7 +172,7 @@ rtmp://k3.usastreams.com:1935/colosaltv1/colosaltv1
 #EXTINF:0,CristoVision 
 http://cdns840stu1010.multistream.net/cristovisionlive/amlst:live/playlist_b300000_w2000349639.m3u8
 
-#EXTINF:0,CTNI
+#EXTINF:0,CTNI 
 http://184.164.158.202:1936/48/smil:48.smil/playlist.m3u8
 
 #EXTINF:0,De Pelicula 
@@ -340,22 +328,19 @@ http://200.76.77.237/LIVE/H01/CANAL23/PROFILE03.m3u8?supertvlat=%2F.ts
 #EXTINF:0,Trece 
 http://aztecalive-lh.akamaihd.net/i/0oxnvzh8a_1@175671/index_1_av-b.m3u8
 
-#EXTINF:0,Trece 
-http://cdns840stu1010.multistream.net/canaltr3celive/live-500/PAZ.m3u8
-
 #EXTINF:0,TVE
 http://200.76.77.237/LIVE/H01/CANAL651/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,TV Chile
 http://edge-61-cl.edge.mdstrm.com/tvn-live/_definst_/smil:285a5c6dade574d5f111419c85c6cf17/chunklist_b800000.m3u8
 
-#EXTINF:0,TV Chile
+#EXTINF:0,TV Chile 
 http://tvn-vod.mdstrm.com/liveedge/tvnelemental.smil/master.m3u8
 
 #EXTINF:0,TV MAS
 rtmp://50.7.98.234/rtv/videortv
 
-#EXTINF:0,TV Noticias 10
+#EXTINF:0,TV Noticias 10 
 rtmp://87.106.220.67/live/myStream_2
 
 #EXTINF:0,TV Novelas 
