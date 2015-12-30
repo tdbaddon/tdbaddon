@@ -243,9 +243,9 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
-<addon id="plugin.video.IPTV 2016"
+<addon id="plugin.video.IPTV2016"
        name="IPTV 2016"
-       version="Version 1.0"
+       version="1.0"
        provider-name="Archivo Colectivo">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
