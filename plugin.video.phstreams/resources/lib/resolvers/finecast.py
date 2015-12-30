@@ -1,49 +1,47 @@
 # -*- coding: utf-8 -*-
 
-'''
-    Genesis Add-on
-    Copyright (C) 2015 lambda
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-'''
-
-
-import re,urlparse
+import re,urlparse,urllib
 from resources.lib.libraries import client
-
+from resources.lib.libraries import jsunpack
 
 def resolve(url):
     try:
-        page = urlparse.parse_qs(urlparse.urlparse(url).query)['u'][0]
-        page = 'http://www.finecast.tv/embed4.php?u=%s&vw=640&vh=450' % page
+        try:
+            referer = urlparse.parse_qs(urlparse.urlparse(url).query)['referer'][0]
+        except:
+            referer=url
+        id = urlparse.parse_qs(urlparse.urlparse(url).query)['u'][0]
+        url = 'http://www.finecast.tv/embed4.php?u=%s&vw=640&vh=450'%id
+        result = client.request(url, referer=referer)
+        unpacked = ''
+        packed = result.split('\n')
+        for i in packed: 
+            try: unpacked += jsunpack.unpack(i)
+            except: pass
+        result += unpacked
+        result=result.replace('"+"','+').replace('+"','+').replace('"+','+')
+        var = re.compile('var\s(.+?)\s*=\s*(?:\'|\"|\s*)(.+?)(?:\'|\"|\s*);').findall(result)
+        result = re.sub(r"'(.+?)'", r'\1', result)
 
-        try: referer = urlparse.parse_qs(urlparse.urlparse(url).query)['referer'][0]
-        except: referer = page
+        rtmp=re.findall('file:\s*(.+?),',result)[0]
+        m3u8=re.findall('file:\s*(.+?),',result)[1]
+        
+        #url = m3u8 + '|%s' % urllib.urlencode({'User-Agent': client.agent(), 'Referer': referer})
+        url = rtmp + ' swfUrl=http://www.finecast.tv/player6/jwplayer.flash.swf flashver=WIN\2019,0,0,185 live=1 timeout=14 swfVfy=1 pageUrl=http://www.finecast.tv/'
 
-        result = client.request(page, referer=referer)
-
-        var = re.compile('var\s(.+?)\s*=\s*\'(.+?)\'').findall(result)
         for i in range(100):
-            for v in var: result = result.replace("'+%s+'" % v[0], "'+%s+'" % v[1])
-            for v in var: result = result.replace("'+%s" % v[0], "'+%s" % v[1])
-
-        result = re.sub('("|\'|\,|\+)', '', result)
-
-        url = re.compile('file\s*:\s*(.+?)\n').findall(result)
-        url = [i for i in url if '.m3u8' in i][0]
+            for v in var: result = result.replace('+%s+' % v[0], v[1])
+            for v in var: result = result.replace('%s+' % v[0], v[1])
+            for v in var: result = result.replace('+%s' % v[0], v[1])
+        var = re.compile('var\s(.+?)\s*=\s*(?:\'|\"|\s*)(.+?)(?:\'|\"|\s*);').findall(result)
+        for i in range(100):
+            for v in var: url = url.replace('+%s+' % v[0], v[1])
+            for v in var: url = url.replace('%s+' % v[0], v[1])
+            for v in var: url = url.replace('+%s' % v[0], v[1])
+        
         return url
     except:
-       return
+        return
 
 

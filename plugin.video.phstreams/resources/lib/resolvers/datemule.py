@@ -19,7 +19,7 @@
 '''
 
 
-import re,urllib
+import re,urllib,urlparse
 from resources.lib.libraries import cloudflare
 from resources.lib.libraries import client
 
@@ -29,8 +29,15 @@ def resolve(url):
         headers = '|%s' % urllib.urlencode({'User-Agent': client.agent(), 'Referer': url})
 
         result = cloudflare.request(url, mobile=True)
-        url = re.compile('file *: *"(http.+?)"').findall(result)[0]
-        url += headers
+
+        result = re.compile('file *: *"(http.+?)"').findall(result)
+
+        result = [(i, urlparse.urlparse(i).path) for i in result]
+        result = [i for i in result if not i[1].endswith('.mpd')]
+
+        url = [i for i in result if i[1].endswith('.m3u8')]
+        url += [i for i in result if not i[1].endswith('.m3u8')]
+        url = url[0][0] + headers
 
         return url
     except:

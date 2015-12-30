@@ -27,11 +27,12 @@ def resolve(url):
     try:
         id = re.compile('#(\d*)').findall(url)[0]
 
-        result = client.request(url)
+        result = client.request(url, headers={'User-Agent': client.agent()})
+
         result = re.search('feedPreload:\s*(.*}]}})},', result, re.DOTALL).group(1)
         result = json.loads(result)['feed']['entry']
 
-        if len(result) > 1: result = [i for i in result if str(id) in i['streamIds'][0]][0]
+        if len(result) > 1: result = [i for i in result if str(id) in i['link'][0]['href']][0]
         elif len(result) == 1: result = result[0]
 
         result = result['media']['content']

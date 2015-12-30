@@ -25,7 +25,8 @@ from resources.lib.libraries import client
 
 def resolve(url):
     try:
-        result = client.request(url)
+        result = client.request(url, headers={'User-Agent': client.agent()})
+
         result = result.replace('\r','').replace('\n','').replace('\t','')
 
         u = re.compile('"\d*/\d*x\d*.+?","(.+?)"').findall(result)[0]

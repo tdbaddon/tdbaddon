@@ -1,3 +1,6 @@
+V2.7.4
+- Updated available resolvers.
+
 V2.7.3
 - Added cartoons section.
 - Updated available sources.

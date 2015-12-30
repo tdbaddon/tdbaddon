@@ -223,6 +223,45 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
+<addon id="plugin.video.hulubox" name="HuluBox" version="1.0.0" provider-name="MetalKettle">
+  <requires>
+    <import addon="script.module.simplejson" version="3.3.0"/>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.t0mm0.common" version="2.0.0"/>
+    <import addon="plugin.video.youtube" version="3.0.0"/>
+    <import addon="script.module.urlresolver"  version="2.1.2"/>
+    <import addon="script.common.plugin.cache" version="2.5.2"/>
+    <import addon="script.module.metahandler" version="2.5.1"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en"></summary>
+    <description lang="en"></description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.video.IPTV 2016"
+       name="IPTV 2016"
+       version="Version 1.0"
+       provider-name="Archivo Colectivo">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="addon.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>Name of addon</summary>
+    <description>
+Para darle la bienvenida al año, este addon funcionando al 100%.
+    </description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
 <addon id="plugin.video.md123movies" name="123Movies" version="1.0.5" provider-name="Mucky Duck">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -331,7 +370,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
-<addon id="plugin.video.phstreams" name="Phoenix" version="2.7.3" provider-name="Blazetamer, lambda">
+<addon id="plugin.video.phstreams" name="Phoenix" version="2.7.4" provider-name="Blazetamer, lambda">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.pyxbmct" version="1.1.4" />
@@ -610,6 +649,19 @@ Enjoy
         <platform>all</platform>
     <website>http://repo.bbtsip.tv/</website>
   </extension>
+</addon>
+
+<addon id="repository.communityrepo" name="The Community Repository" version="1.7" provider-name="The @KodiCommunity Team">
+	<extension point="xbmc.addon.repository" name="The Community Repository">
+		<info compressed="false">http://cloud.appnettv.com/Kodienthusiast/privateuse/RepoPlugins/addons.xml</info>
+		<checksum>http://cloud.appnettv.com/Kodienthusiast/privateuse/RepoPlugins/addons.xml.md5</checksum>
+		<datadir zip="true">http://cloud.appnettv.com/Kodienthusiast/privateuse/RepoPlugins/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>@Kodicommunity Repository</summary>
+		<description>", we bring you "The Community Repository" for all things from the @kodicommunity team currently hold skins and community wizards" massive thanks to appnetv for hosting the repo and also a special thanks to these guys @nathancrumpler1 (crumplestein) @kodicommunity @xeditz @dickothegeordie @hmemar #itonlygetsbetter @kodienthusiasts @nathancrumpler1 @kodicommunity</description>
+		<platform>all</platform>
+	</extension>
 </addon>
 
 <addon id="repository.entertainmentrepo" name="The Entertainment Repository" version="1.5" provider-name="Mr Entertainment">

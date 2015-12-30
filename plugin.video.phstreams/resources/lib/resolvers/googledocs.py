@@ -28,7 +28,8 @@ def resolve(url):
         url = url.split('/preview', 1)[0]
         url = url.replace('drive.google.com', 'docs.google.com')
 
-        result = client.request(url)
+        result = client.request(url, headers={'User-Agent': client.agent()})
+
         result = re.compile('"fmt_stream_map",(".+?")').findall(result)[0]
 
         u = json.loads(result)

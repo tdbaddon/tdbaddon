@@ -19,21 +19,23 @@
 '''
 
 
-import re,urlparse
+import re,urllib,urlparse
 from resources.lib.libraries import client
 
 
 def resolve(url):
     try:
-        id = (urlparse.urlparse(url).path).split('/')[-1]
+        result = client.source(url, headers={'User-Agent': client.agent()})
 
-        result = client.request(url)
+        id = (urlparse.urlparse(url).path).split('/')[-1]
         result = result.replace('\r','').replace('\n','').replace('\t','')
         result = result.split('"%s"' % id)[-1].split(']]')[0]
 
-        result = re.compile('\d*,\d*,\d*,"(.+?)"').findall(result)
-        result = [i.replace('\\u003d','=').replace('\\u0026','&') for i in result][::-1]
-        result = sum([tag(i) for i in result], [])
+        result = result.replace('\\u003d','=').replace('\\u0026','&')
+        result = re.compile('url=(.+?)&').findall(result)
+        result = [urllib.unquote(i) for i in result]
+
+        result = [tag(i)[0] for i in result]
 
         url = []
         try: url += [[i for i in result if i['quality'] == '1080p'][0]]

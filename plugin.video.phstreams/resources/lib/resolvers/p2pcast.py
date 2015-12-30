@@ -32,14 +32,20 @@ def resolve(url):
 
         result = client.request(page, referer=referer)
 
-        token = client.request('http://p2pcast.tv/getToken.php', referer=page, headers={'User-Agent': client.agent(), 'X-Requested-With': 'XMLHttpRequest'})
-        try: token = re.compile('[\'|\"]token[\'|\"]\s*:\s*[\'|\"](.+?)[\'|\"]').findall(token)[0]
-        except: token = ''
+        js = re.compile('src\s*=\s*[\'|\"](.+?player.+?\.js)[\'|\"]').findall(result)[-1]
+        js = client.request(js)
 
         try:
-            swf = re.compile('src\s*=[\'|\"](.+?player.+?\.js)[\'|\"]').findall(result)[0]
-            swf = client.request(swf)
-            swf = re.compile('flashplayer\s*:\s*[\'|\"](.+?)[\'|\"]').findall(swf)[0]
+            token = re.findall('[\'|\"](.+?\.php)[\'|\"]',js)[-1]
+            token = urlparse.urljoin('http://p2pcast.tv', token)
+            token = client.request(token, referer=page, headers={'User-Agent': client.agent(), 'X-Requested-With': 'XMLHttpRequest'})
+            token = re.compile('[\'|\"]token[\'|\"]\s*:\s*[\'|\"](.+?)[\'|\"]').findall(token)[0]
+        except:
+            token = ''
+
+
+        try:
+            swf = re.compile('flashplayer\s*:\s*[\'|\"](.+?)[\'|\"]').findall(js)[-1]
         except:
             swf = 'http://cdn.p2pcast.tv/jwplayer.flash.swf'
 
