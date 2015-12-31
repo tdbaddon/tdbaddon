@@ -243,21 +243,20 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
-<addon id="plugin.video.IPTV2016"
-       name="IPTV 2016"
-       version="1.0"
-       provider-name="Archivo Colectivo">
+<addon id="plugin.video.kontor"
+	   name="Kontor"
+	   version="1.0.1"
+	   provider-name="pcd@xtrend-alliance">
   <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
+        <import addon="script.module.youtube.dl" version="15.318.0"/>
   </requires>
-  <extension point="xbmc.python.pluginsource" library="addon.py">
-    <provides>video</provides>
+  <extension point="xbmc.python.pluginsource"
+			 library="default.py">
+    	<provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary>Name of addon</summary>
-    <description>
-Para darle la bienvenida al año, este addon funcionando al 100%.
-    </description>
+    <summary>Videos from Youtube Kontor </summary>
+    <description>Adult(18+) Videos from Youtube Kontor</description>
     <platform>all</platform>
   </extension>
 </addon>
@@ -596,6 +595,26 @@ Enjoy
     <platform>all</platform>
   </extension>
   <extension point="xbmc.service" library="service.py" start="login" />
+</addon>
+
+<addon id="plugin.video.xmovies8" name="XMovies8" version="1.1.1" provider-name="MetalKettle">
+  <requires>
+    <import addon="script.module.simplejson" version="3.3.0"/>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.t0mm0.common" version="2.0.0"/>
+    <import addon="plugin.video.youtube" version="3.0.0"/>
+    <import addon="script.module.urlresolver"  version="2.1.2"/>
+    <import addon="script.common.plugin.cache" version="2.5.2"/>
+    <import addon="script.module.metahandler" version="2.5.1"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en"></summary>
+    <description lang="en"></description>
+    <platform>all</platform>
+  </extension>
 </addon>
 
 <addon id="repository.addonscriptorde-beta" name="AddonScriptorDE's Testing Repo" version="1.0.1" provider-name="AddonScriptorDE">
@@ -987,6 +1006,21 @@ Enjoy
 		<summary>The Best Third Party Addons for XBMC, .[COLOR blue]X[/COLOR]unity[COLOR blue]T[/COLOR]alk</summary>
 		<description>The Best Third Party Addons for XBMC, .[COLOR blue]X[/COLOR]unity[COLOR blue]T[/COLOR]alk</description>
 		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="repository.xxxadultxbmc" name="AdultXBMC.com Add-on Repository" version="1.0.0" provider-name="adultxbmc.com">
+	<extension point="xbmc.addon.repository" name="AdultXBMC.com Add-on Repository">
+		<info compressed="false">https://offshoregit.com/adultxbmc/raw/master/addons.xml</info>
+		<checksum>https://offshoregit.com/adultxbmc/raw/master/addons.xml.md5</checksum>
+		<datadir zip="true">https://offshoregit.com/adultxbmc/raw/master/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Adult Content for Kodi from High Quality Sources Only</summary>
+		<description>Collection of Adult Addons for Kodi by Various Developers</description>
+		<platform>all</platform>
+                <forum>http://www.adultxbmc.com</forum>
+                <website>http://www.adultxbmc.com</website>
 	</extension>
 </addon>
 
