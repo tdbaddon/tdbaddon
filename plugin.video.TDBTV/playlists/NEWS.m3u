@@ -13,6 +13,9 @@ rtmp://aljazeeraflashlivefs.fplive.net:1935/aljazeeraflashlive-live/aljazeera_en
 #EXTINF:0,BBC World News 
 http://origin2.live.web.tv.streamprovider.net/streams/61fbfc6d840110226aa9127d5edfc2bb/index.m3u8
 
+#EXTINF:0,BBC World News 
+http://top-iptv.zapto.org:8000/live/walid/walid/572.m3u8
+
 #EXTINF:0,Bloomberg TV 
 http://btv-i.akamaihd.net/hls/live/202760-b/btvusa_ios/P1/M12K.m3u8
 
@@ -32,6 +35,9 @@ http://x4012c4000.edge.core-cdn.net/40000mb/live/4012hbbtv/bloomberg.ts
 rtmp://a.cdn.newschat.tv/edge playpath=cbc_live swfUrl=http://msnbclive.eu/player.swf pageUrl=http://www.livenewschat.eu/canada/ live=1
 
 #EXTINF:0,CBS News 
+http://128.104.128.176:8080/udp/239.1.1.21:3100
+
+#EXTINF:0,CBS News 
 http://cbsnews-linear.mdialog.com/video_assets/cbsnews.m3u8?api_key=563b80c1ae4ce359830f572d2496a947&iu=/8264/vaw-can/mobile_web/cbsnews_mobileprocessor=https://sp.yimg.com/ib/th?id=JN.%2bZ5%2f0mrtDRvtsB4lEiRQ2Q&pid=15.1&P=0&w=300&h=300
 
 #EXTINF:0,CCTV News 
@@ -41,13 +47,19 @@ http://77.36.61.45:8010/CCTVNews.m3u8?
 http://origin2.live.web.tv.streamprovider.net/streams/877ba7a57aa68fd898b838f58d51a69f/index.m3u8
 
 #EXTINF:0,CCTV News 
-http://128.104.128.176:8080/udp/239.1.1.204:2000?live786
+http://128.104.128.176:8080/udp/239.1.1.204:2000
 
 #EXTINF:0,CNBC 
 http://origin2.live.web.tv.streamprovider.net/streams/3bc166ba3776c04e987eb242710e75c0/index.m3u8
 
+#EXTINF:0,CNBC 
+http://top-iptv.zapto.org:8000/live/walid/walid/638.m3u8
+
 #EXTINF:0,CNN 
 http://128.104.128.176:8080/udp/239.1.1.78:3078?live786
+
+#EXTINF:0,CNN 
+http://top-iptv.zapto.org:8000/live/walid/walid/637.m3u8
 
 #EXTINF:0,CP24 
 0
@@ -59,10 +71,7 @@ http://bcliveuniv-lh.akamaihd.net/i/cpac1eng2014_01@119330/index_2000_av-p.m3u8
 http://cspan1-lh.akamaihd.net/i/cspan1_1@304727/master.m3u8 
 
 #EXTINF:0,CSPAN 
-http://128.104.128.176:8080/udp/239.1.1.94:3094?live786
-
-#EXTINF:0,CTV NEWS 
-http://66.51.129.171:8080/demo/index.m3u8 
+http://128.104.128.176:8080/udp/239.1.1.94:3094
 
 #EXTINF:0,CTV NEWS 
 http://ams-lp7.9c9media.com/hls-live/livepkgr/_definst_/liveNews/News28.m3u8 
@@ -75,6 +84,9 @@ http://ams-lp5.9c9media.com/hls-live/livepkgr/_definst_/liveNews/News48.m3u8
 
 #EXTINF:0,DW 
 http://www.metafilegenerator.de/DWelle/tv-latinoamerica/ios/master.m3u8
+
+#EXTINF:0,DW 
+http://128.104.128.176:8080/udp/239.1.1.213:2213
 
 #EXTINF:0,Euro News 
 rtsp://ewns-hls-b-stream.hexaglobe.net/rtpeuronewslive/en_vidan350_rtp.sdp?
@@ -141,6 +153,9 @@ http://rt-a.akamaihd.net/ch_04@325608/720p.m3u8
 
 #EXTINF:0,The Weather Channel
 http://128.104.128.176:8080/udp/239.1.1.82:3082?live786
+
+#EXTINF:0,The Weather Channel
+http://128.104.128.176:8080/udp/239.1.1.82:3082
 
 #EXTINF:0,Weather Nation 
 http://kalsegsec-a.akamaihd.net:80/dc-0/m/pa-live-publish3/kLive/smil:1_oorxcge2_all.smil/chunklist_b2096000.m3u8

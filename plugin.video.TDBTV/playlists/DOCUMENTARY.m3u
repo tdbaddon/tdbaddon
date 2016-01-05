@@ -14,19 +14,28 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 0
 
 #EXTINF:0,Crime & Investigation 
-http://foro:cable@24.139.177.135:9981/stream/channelid/778962059?ticket=20991006E4622390E3E04B153CAFD8A2E2DC94A3&profile=pass
+0
 
 #EXTINF:0,Destination America 
 0
 
 #EXTINF:0,Destination Network 
-0
+http://top-iptv.zapto.org:8000/live/walid/walid/551.m3u8
 
 #EXTINF:0,Discovery Channel 
-0
+http://top-iptv.zapto.org:8000/live/walid/walid/668.m3u8
 
 #EXTINF:0,Discovery History 
 http://bit.do/bFWeV
+
+#EXTINF:0,Discovery History 
+http://top-iptv.zapto.org:8000/live/walid/walid/561.m3u8
+
+#EXTINF:0,Discovery History 
+http://top-iptv.zapto.org:8000/live/walid/walid/562.m3u8
+
+#EXTINF:0,Discovery History 
+http://skyiptv.ddns.net:8000/live/edi/edi/100.m3u8
 
 #EXTINF:0,Discovery H&H
 0
@@ -35,10 +44,10 @@ http://bit.do/bFWeV
 0
 
 #EXTINF:0,Discovery Science 
-0
+http://109.226.222.161:4022/udp/239.255.4.250:1234
 
 #EXTINF:0,Discovery Science 
-http://109.226.222.161:4022/udp/239.255.4.250:1234
+http://skyiptv.ddns.net:8000/live/edi/edi/98.m3u8
 
 
 #EXTINF:0,Discovery Turbo 
@@ -54,7 +63,7 @@ http://109.226.222.161:4022/udp/239.255.4.250:1234
 0
 
 #EXTINF:0,Genesis Science Network
-http://genesis.tulix.tv:1935/live/Stream1/playlist.m3u8
+0
 
 #EXTINF:0,History Channel 
 https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8?hdnea=ip=174.113.30.187~st=1427694727~exp=1427695327~acl=/i/*~id=a86de0c2-ad09-4469-9a63-6ebbc1bba4d3~hmac=ac144089000bdd16f6916c517ce3e6e04813d4de11ac16839ad468a977ec80b1
@@ -69,10 +78,10 @@ https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8?hdnea=ip=173.34.6
 0
 
 #EXTINF:0,Investigation Discovery 
-http://31.130.77.96:4022/udp/233.26.198.155:5000
+https://hec.su/b1UT
 
 #EXTINF:0,Investigation Discovery 
-https://hec.su/b1UT
+http://top-iptv.zapto.org:8000/live/walid/walid/560.m3u8
 
 #EXTINF:0,Nasa TV 
 http://nasatv-lh.akamaihd.net/i/NASA_101@319270/master.m3u8 
@@ -87,11 +96,16 @@ http://nasatv-lh.akamaihd.net/i/NASA_103@319271/master.m3u8
 http://iphone-streaming.ustream.tv/uhls/6540154/streams/live/iphone/playlist.m3u8
 
 #EXTINF:0,Nat Geo Wild 
-http://astreamatik.selfip.com:8000/live/smart/smart/1416.m3u8
+0
 
 #EXTINF:0,National Geographic 
 http://109.226.222.161:4022/udp/239.255.4.30:1234
 
+#EXTINF:0,National Geographic 
+http://cdn.step-tv.com:8000/live/SON/SON/312.ts
+
+#EXTINF:0,National Geographic 
+http://skyiptv.ddns.net:8000/live/edi/edi/138.m3u8
 
 #EXTINF:0,Nova
 0

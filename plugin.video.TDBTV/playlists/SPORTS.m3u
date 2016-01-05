@@ -27,25 +27,49 @@ http://180.250.29.22:80/jhos/beib3_5/playlist.m3u8
 0
 
 #EXTINF:0,Box Nation 
-http://astreamatik.selfip.com:8000/live/smart/smart/1984.m3u8
+http://top-iptv.zapto.org:8000/live/walid/walid/557.m3u8
+
+#EXTINF:0,Box Nation 
+http://cdn.step-tv.com:8000/live/SON/SON/280.ts
 
 #EXTINF:0,BT Sport 1 
 http://02e4.vp9.tv/chn/btsu1/v.m3u8
 
+#EXTINF:0,BT Sport 1 
+http://top-iptv.zapto.org:8000/live/walid/walid/614.m3u8
+
+#EXTINF:0,BT Sport 1 
+http://top-iptv.zapto.org:8000/live/walid/walid/550.m3u8
+
+#EXTINF:0,BT Sport 1 
+http://skyiptv.ddns.net:8000/live/edi/edi/104.m3u8
+
+#EXTINF:0,BT Sport 1 
+http://skyiptv.ddns.net:8000/live/edi/edi/97.m3u8
+
+#EXTINF:0,BT Sport 1 
+http://cdn.step-tv.com:8000/live/SON/SON/278.ts
+
 #EXTINF:0,BT Sport 2 
-http://02e4.vp9.tv/chn/btsu2/v.m3u8
+http://top-iptv.zapto.org:8000/live/walid/walid/549.m3u8
+
+#EXTINF:0,BT Sport 2 
+http://top-iptv.zapto.org:8000/live/walid/walid/614.m3u8
+
+#EXTINF:0,BT Sport 2 
+http://skyiptv.ddns.net:8000/live/edi/edi/103.m3u8
 
 #EXTINF:0,CBS Sports 
 0
 
 #EXTINF:0,Chelsea TV 
-0
+http://cdn.step-tv.com:8000/live/SON/SON/1918.ts
 
 #EXTINF:0,CMore Sport 
 http://91.204.214.106:23201/stolen/253c/xenixos.7z
 
 #EXTINF:0,ESPN 
-rtmp://31.220.2.149:80/live/ playpath=espnusa token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://yotv.co
+http://31.220.40.116:80/LiveEdge/ESPNUS/playlist.m3u8?token=47b1d594a9cb082f56da5a46f913c3e0
 
 #EXTINF:0,ESPN 2
 0
@@ -56,8 +80,20 @@ http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_18
 #EXTINF:0,Eurosport 1 
 http://skyiptv.ddns.net:8000/live/edi/edi/91.m3u8
 
+#EXTINF:0,Eurosport 1 
+http://top-iptv.zapto.org:8000/live/walid/walid/547.m3u8
+
+#EXTINF:0,Eurosport 1 
+http://cdn.step-tv.com:8000/live/SON/SON/278.ts
+
 #EXTINF:0,Eurosport 2 
 http://skyiptv.ddns.net:8000/live/edi/edi/90.m3u8
+
+#EXTINF:0,Eurosport 2 
+http://top-iptv.zapto.org:8000/live/walid/walid/547.m3u8
+
+#EXTINF:0,Eurosport 2 
+http://cdn.step-tv.com:8000/live/SON/SON/277.ts
 
 #EXTINF:0,Eurosport News 
 0
@@ -73,6 +109,9 @@ http://skyiptv.ddns.net:8000/live/edi/edi/90.m3u8
 
 #EXTINF:0,Fox Sports 1 
 rtmp://31.220.2.149:80/live playpath=foxx1 swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf pageUrl=http://yotv.co/embedu.php?live=foxx1&vw=620&vh=490 live=1 token=%Zrey(nKa@#Z
+
+#EXTINF:0,Fox Sports 1 
+http://skyiptv.ddns.net:8000/live/edi/edi/226.m3u8
 
 #EXTINF:0,Fox Sports 2 
 0
@@ -93,7 +132,7 @@ mms://100automoto.tv/channel_mercedes
 0
 
 #EXTINF:0,Motors TV 
-0
+http://top-iptv.zapto.org:8000/live/walid/walid/665.m3u8
 
 #EXTINF:0,Motorsport 7 
 http://motorsport.hopto.org:8080/
@@ -192,16 +231,28 @@ http://top-iptv.zapto.org:8000/live/walid/walid/633.m3u8
 0
 
 #EXTINF:0,Setanta Sports 
-0
+http://top-iptv.zapto.org:8000/live/walid/walid/567.m3u8
 
 #EXTINF:0,Sky Sports 1 
 http://top-iptv.zapto.org:8000/live/walid/walid/536.m3u8
+
+#EXTINF:0,Sky Sports 1 
+http://top-iptv.zapto.org:8000/live/walid/walid/628.m3u8
+
+#EXTINF:0,Sky Sports 1 
+http://skyiptv.ddns.net:8000/live/edi/edi/123.m3u8
 
 #EXTINF:0,Sky Sports 2 
 http://top-iptv.zapto.org:8000/live/walid/walid/535.m3u8
 
 #EXTINF:0,Sky Sports 3 
 http://top-iptv.zapto.org:8000/live/walid/walid/534.m3u8
+
+#EXTINF:0,Sky Sports 3 
+http://top-iptv.zapto.org:8000/live/walid/walid/629.m3u8
+
+#EXTINF:0,Sky Sports 3 
+http://cdn.step-tv.com:8000/live/SON/SON/273.ts
 
 #EXTINF:0,Sky Sports 4 
 http://top-iptv.zapto.org:8000/live/walid/walid/533.m3u8
@@ -210,10 +261,16 @@ http://top-iptv.zapto.org:8000/live/walid/walid/533.m3u8
 http://top-iptv.zapto.org:8000/live/walid/walid/532.m3u8
 
 #EXTINF:0,Sky Sports F1 
-0
+http://top-iptv.zapto.org:8000/live/walid/walid/553.m3u8
+
+#EXTINF:0,Sky Sports F1 
+http://cdn.step-tv.com:8000/live/SON/SON/272.ts
 
 #EXTINF:0,Sky Sports News 
 http://bit.do/bFWQk
+
+#EXTINF:0,Sky Sports News 
+http://top-iptv.zapto.org:8000/live/walid/walid/532.m3u8
 
 #EXTINF:0,Sports Tonight 
 0
@@ -237,7 +294,13 @@ rtmp://185.63.255.60:80/live playpath=ontrio swfUrl=http://p.jwpcdn.com/6/12/jwp
 http://stream01.yamgo.com/iPhone/HLS_TS/broadcast/trace_tv_sports-tablet.3gp/trace_tv_sports-tablet.3gp-mr647k.m3u8?
 
 #EXTINF:0,TSN 1 
+http://skyiptv.ddns.net:8000/live/edi/edi/223.m3u8
+
+#EXTINF:0,TSN 1 
 rtmp://31.220.2.149:80/live/ playpath=ts1 token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://yotv.co
+
+#EXTINF:0,TSN 2 
+http://skyiptv.ddns.net:8000/live/edi/edi/224.m3u8
 
 #EXTINF:0,TSN 2 
 rtmp://31.220.2.149:80/live/ playpath=tsnx2 token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://yotv.co

@@ -32,7 +32,7 @@ http://200.76.77.237/LIVE/H01/CANAL444/PROFILE05.m3u8?supertvlat=%2F.ts
 0
 
 #EXTINF:0,BBC 2 
-0
+http://cdn.step-tv.com:8000/live/SON/SON/317.ts
 
 #EXTINF:0,BBC Entertainment
 http://200.76.77.237/LIVE/H01/CANAL253/PROFILE02.m3u8?supertvlat=%2F.ts
@@ -46,6 +46,9 @@ http://200.76.77.237/LIVE/H01/CANAL253/PROFILE05.m3u8?supertvlat=%2F.ts
 #EXTINF:0,BET 
 http://128.104.128.176:8080/udp/239.1.1.96:3096?live786
 
+#EXTINF:0,BET 
+http://128.104.128.176:8080/udp/239.1.1.96:3096
+
 #EXTINF:0,Boomerang 
 http://77.120.118.235:8085
 
@@ -55,29 +58,47 @@ http://77.120.118.235:8085
 #EXTINF:0,Cartoon Network 
 http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD28_W_250.sdp/playlist.m3u8
 
+#EXTINF:0,Cartoon Network 
+http://top-iptv.zapto.org:8000/live/walid/walid/556.m3u8
+
 #EXTINF:0,CBC TV 
 0
 
 #EXTINF:0,Cbeebies 
-0
+http://top-iptv.zapto.org:8000/live/walid/walid/570.m3u8
+
+#EXTINF:0,Cbeebies 
+http://skyiptv.ddns.net:8000/live/edi/edi/107.m3u8
 
 #EXTINF:0,CBS 
 http://128.104.128.176:8080/udp/239.1.1.84:3084?live786
+
+#EXTINF:0,CBS 
+http://128.104.128.176:8080/udp/239.1.1.90:3090
 
 #EXTINF:0,CBS Action 
 0
 
 #EXTINF:0,CBS Drama 
-0
+http://top-iptv.zapto.org:8000/live/walid/walid/620.m3u8
 
-#EXTINF:0,CBS Reality 
-http://bit.ly/1HUs69k
+#EXTINF:0,CBS Drama 
+http://cdn.step-tv.com:8000/live/SON/SON/1398.ts
 
 #EXTINF:0,CBS Reality 
 http://slynet.8nio.com/2/cbsreality_sly.m3u8
 
+#EXTINF:0,CBS Reality 
+http://top-iptv.zapto.org:8000/live/walid/walid/554.m3u8
+
+#EXTINF:0,CBS Reality 
+http://top-iptv.zapto.org:8000/live/walid/walid/646.m3u8
+
+#EXTINF:0,CBS Reality 
+http://top-iptv.zapto.org:8000/live/walid/walid/569.m3u8
+
 #EXTINF:0,CHCH Ontario
-http://54.85.197.21:1935/live/news/playlist.m3u8
+rtmp://54.85.197.21:1935/live
 
 #EXTINF:0,City TV Toronto 
 0
@@ -112,8 +133,14 @@ http://54.85.197.21:1935/live/news/playlist.m3u8
 #EXTINF:0,Disney Channel 
 http://bit.do/bFWjY
 
+#EXTINF:0,Disney Channel 
+http://skyiptv.ddns.net:8000/live/edi/edi/96.m3u8
+
 #EXTINF:0,Disney Junior 
-0
+http://top-iptv.zapto.org:8000/live/walid/walid/558.m3u8
+
+#EXTINF:0,Disney Junior 
+http://cdn.step-tv.com:8000/live/SON/SON/286.ts
 
 #EXTINF:0,Disney XD 
 0
@@ -130,6 +157,9 @@ http://bit.do/bFWjY
 #EXTINF:0,E4 
 http://stream02.yamgo.com/iPhone/HLS_TS/broadcast/victorias_secret_angels-tablet.3gp/victorias_secret_angels-tablet.3gp-mr648k.m3u8
 
+#EXTINF:0,E4 
+http://top-iptv.zapto.org:8000/live/walid/walid/636.m3u8
+
 #EXTINF:0,Family Channel 
 0
 
@@ -141,6 +171,9 @@ http://edgeb.streaming.sk/fashiontv/fashiontv.stream/playlist.m3u8
 
 #EXTINF:0,Food Network 
 http://llnw.live.simplestream.com/coder2/coder.channels.channel2/hls/3/playlist.m3u8
+
+#EXTINF:0,Food Network
+http://top-iptv.zapto.org:8000/live/walid/walid/635.m3u8
 
 #EXTINF:0,Fox 1 
 http://200.76.77.237/LIVE/H01/CANAL415/PROFILE02.m3u8?supertvlat=%2F.ts
@@ -158,10 +191,13 @@ http://iptvcanales.com/xw/cable.php?canal=86&player=playlist.m3u8
 0
 
 #EXTINF:0,Fox Life 
-http://balkanstream.com/stream/foxlife/sead/sead
+0
 
 #EXTINF:0,Fox TV 
 http://128.104.128.176:8080/udp/239.1.1.88:3088?live786
+
+#EXTINF:0,Fox TV 
+http://128.104.128.176:8080/udp/239.1.1.88:3088
 
 #EXTINF:0,FX 
 0
@@ -188,7 +224,10 @@ http://link.theplatform.com/s/dtjsEC/EqBPGYLY6fEx?feed=DEV%20Live%20Stream%20Fee
 0
 
 #EXTINF:0,HGTV 
-http://128.104.128.176:8080/udp/239.1.1.80:3080?live786
+0
+
+#EXTINF:0,HLN
+http://128.104.128.176:8080/udp/239.1.1.80:3080
 
 #EXTINF:0,HSN 
 rtsp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:420p500kB31
@@ -203,16 +242,19 @@ rtmp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:468p500kB31?b?b*t$
 http://ios.streamserver01.com:8080/ShowcaseTV/mystream.m3u8
 
 #EXTINF:0,ITV 1 
-0
+http://top-iptv.zapto.org:8000/live/walid/walid/645.m3u8
+
+#EXTINF:0,ITV 1 
+http://skyiptv.ddns.net:8000/live/edi/edi/143.m3u8
 
 #EXTINF:0,ITV 2 
-0
+http://skyiptv.ddns.net:8000/live/edi/edi/142.m3u8
 
 #EXTINF:0,ITV 3 
-0
+http://top-iptv.zapto.org:8000/live/walid/walid/643.m3u8
 
 #EXTINF:0,ITV 4 
-0
+http://cdn.step-tv.com:8000/live/SON/SON/320.ts
 
 #EXTINF:0,Jim Jam 
 http://77.120.118.235:8089
@@ -244,11 +286,14 @@ http://128.104.128.176:8080/udp/239.1.1.90:3090?live786
 #EXTINF:0,Nick 
 http://top-iptv.zapto.org:8000/live/walid/walid/617.m3u8
 
+#EXTINF:0,Nick 
+http://top-iptv.zapto.org:8000/live/walid/walid/631.m3u8
+
 #EXTINF:0,Nick Jr 
 0
 
 #EXTINF:0,Nickelodeon 
-0
+http://cdn.step-tv.com:8000/live/SON/SON/288.ts
 
 #EXTINF:0,NickNight 
 http://top-iptv.zapto.org:8000/live/walid/walid/631.m3u8
@@ -260,7 +305,7 @@ http://top-iptv.zapto.org:8000/live/walid/walid/631.m3u8
 0
 
 #EXTINF:0,PBS 
-http://128.104.128.176:8080/udp/239.1.1.92:3092?live786
+http://128.104.128.176:8080/udp/239.1.1.92:3092
 
 #EXTINF:0,QVC 
 http://llnw.live.qvc.simplestream.com/hera/remote/qvcuk_primary_sdi1/3/prog_index.m3u8
@@ -283,8 +328,17 @@ http://llnw.live.qvc.simplestream.com/hera/remote/qvcuk_primary_sdi8/3/prog_inde
 #EXTINF:0,Sky 1 
 http://top-iptv.zapto.org:8000/live/walid/walid/639.m3u8
 
+#EXTINF:0,Sky 1 
+http://cdn.step-tv.com:8000/live/SON/SON/289.ts
+
 #EXTINF:0,Sky 2 
 http://skyiptv.ddns.net:8000/live/edi/edi/100.m3u8
+
+#EXTINF:0,Sky 2 
+http://skyiptv.ddns.net:8000/live/edi/edi/120.m3u8
+
+#EXTINF:0,Sky 2 
+http://cdn.step-tv.com:8000/live/SON/SON/285.ts
 
 #EXTINF:0,Sky Arts 1 
 0
@@ -294,6 +348,12 @@ http://skyiptv.ddns.net:8000/live/edi/edi/100.m3u8
 
 #EXTINF:0,Sky Atlantic 
 http://top-iptv.zapto.org:8000/live/walid/walid/545.m3u8
+
+#EXTINF:0,Sky Atlantic 
+http://top-iptv.zapto.org:8000/live/walid/walid/753.m3u8
+
+#EXTINF:0,Sky Atlantic 
+http://cdn.step-tv.com:8000/live/SON/SON/306.ts
 
 #EXTINF:0,Sky Living 
 0
@@ -344,7 +404,7 @@ http://llnw.live.simplestream.com/coder5/coder.channels.channel2/hls/4/playlist.
 http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/master.m3u8?b?b*t$ 
 
 #EXTINF:0,True Drama 
-0
+http://31.220.40.108:80/LiveEdge/truedrama.stream/playlist.m3u8?token=7ef5c3db78a925357e4567f454d62fff
 
 #EXTINF:0,True Entertainment 
 0

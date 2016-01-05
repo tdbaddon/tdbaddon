@@ -460,8 +460,8 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 <addon id="plugin.video.StalkerTv"
        name="StalkerTv"
-       version="3.0"
-       provider-name="KodiLover and Kraz">
+       version="7.0"
+       provider-name="KodiLover and KrAz">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
   </requires>
@@ -471,8 +471,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   <extension point="xbmc.addon.metadata">
     <summary>StalkerTv</summary>
     <description>
-This is my third attempt at an iptv stalker clone and this is Kraz first attempt to make a iptv stalker clone
-Enjoy
+This is my third attempt to make a iptv stalker clone and this is KrAz's second attempt to make a IPTV stalker clone Enjoy
     </description>
     <platform>all</platform>
   </extension>
@@ -579,7 +578,7 @@ Enjoy
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="3.39"
+       version="3.40"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -967,6 +966,23 @@ Enjoy
 		<description>install addons from tcz009 AKA TheYid .......For OFFICIAL Support please Visit www.tvaddons.ag or follow me on Twitter @TheYid009 If you enjoy my addons and would like to donate please goto http://forums.tvaddons.ag/forums/146-THEYID-REPO and thanks for the support</description>
 		<platform>all</platform>
 	</extension>
+</addon>
+
+    <addon id="repository.ufo-repo" name="UFO" version="0.1.3" provider-name="krAZ">
+        <requires>
+            <import addon="xbmc.addon" version="12.0.0"/>
+        </requires>
+        <extension point="xbmc.addon.repository" name="UFO">
+            <info compressed="false">https://raw.github.com/krazinabox/UFO-IPTV/master/_repo/addons.xml</info>
+            <checksum>https://raw.github.com/krazinabox/UFO-IPTV/master/_repo/addons.xml.md5</checksum>
+            <datadir zip="true">https://raw.github.com/krazinabox/UFO-IPTV/master/_repo/</datadir>
+            <hashes>false</hashes>
+        </extension>
+        <extension point="xbmc.addon.metadata">
+            <summary>Install My Addons</summary>
+            <description>Download and install addons from KrAz!</description>
+            <platform>all</platform>
+    </extension>
 </addon>
 
 <addon id="repository.wolf-team" name="Wolf-Team official Repo" version="2.0" provider-name="WolfTeam">

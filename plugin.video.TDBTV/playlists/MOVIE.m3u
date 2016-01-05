@@ -4,6 +4,12 @@
 http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 ---------------------------------------------------------------------------------------------------------------
 
+#EXTINF:0,5 StarMax
+0
+
+#EXTINF:0,Action Max
+0
+
 #EXTINF:0,Cinemax 
 0
 
@@ -26,6 +32,12 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
 0
 
 #EXTINF:0,CMore Series 
+0
+
+#EXTINF:0,Encore
+0
+
+#EXTINF:0,Encore Action
 0
 
 #EXTINF:0,Film4 
@@ -67,6 +79,9 @@ http://200.76.77.237/LIVE/H01/CANAL424/PROFILE03.m3u8?supertvlat=%2F.ts
 #EXTINF:0,Fox Classics 
 http://200.76.77.237/LIVE/H01/CANAL424/PROFILE05.m3u8?supertvlat=%2F.ts
 
+#EXTINF:0,Fox Comedy
+0
+
 #EXTINF:0,Fox Movies 
 http://200.76.77.237/LIVE/H01/CANAL417/PROFILE02.m3u8?supertvlat=%2F.ts
 
@@ -95,12 +110,9 @@ rtmp://www1.iguide.to:1935/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.igu
 0
 
 #EXTINF:0,HBO East
-0
+http://lb.iptvserver.tv:8080/redirect/LiveEdge/HBOEastUS/playlist.m3u8
 
-#EXTINF:0,HBO West
-0
-
-#EXTINF:0,HBO 2 West 
+#EXTINF:0,HBO East 2
 0
 
 #EXTINF:0,HBO Comedy 
@@ -115,17 +127,35 @@ rtmp://www1.iguide.to:1935/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.igu
 #EXTINF:0,HBO Signature 
 0
 
+#EXTINF:0,HBO West
+0
+
+#EXTINF:0,HBO West 2
+0
+
 #EXTINF:0,HBO Zone 
 0
 
 #EXTINF:0,HWD Hollywood 
-http://195.244.40.135:8000/play/a01j
+0
 
 #EXTINF:0,MGM 
 0
 
 #EXTINF:0,Paramount Channel 
 http://188.113.128.45:8000/udp/239.192.4.31:6085
+
+#EXTINF:0,Showtime Beyond
+0
+
+#EXTINF:0,Showtime Extra
+0
+
+#EXTINF:0,Showtime Showcase
+0
+
+#EXTINF:0,Showtime West
+0
 
 #EXTINF:0,Sky Movies Action 
 0
@@ -140,34 +170,37 @@ http://top-iptv.zapto.org:8000/live/walid/walid/544.m3u8
 http://top-iptv.zapto.org:8000/live/walid/walid/648.m3u8
 
 #EXTINF:0,Sky Movies Drama 
-http://top-iptv.zapto.org:8000/live/walid/walid/543.m3u8
+0
 
 #EXTINF:0,Sky Movies Family 
 http://top-iptv.zapto.org:8000/live/walid/walid/541.m3u8
 
 #EXTINF:0,Sky Movies Horrors 
-0
+http://cdn.step-tv.com:8000/live/SON/SON/290.ts
 
 #EXTINF:0,Sky Movies Modern Greats 
 http://top-iptv.zapto.org:8000/live/walid/walid/539.m3u8
 
+#EXTINF:0,Sky Movies Modern Greats 
+http://cdn.step-tv.com:8000/live/SON/SON/295.ts
+
 #EXTINF:0,Sky Movies Premiere 
-0
+http://cdn.step-tv.com:8000/live/SON/SON/293.ts
 
 #EXTINF:0,Sky Movies Premiere+
-0
+http://skyiptv.ddns.net:8000/live/edi/edi/130.m3u8
 
 #EXTINF:0,Sky Movies SciFi 
 http://top-iptv.zapto.org:8000/live/walid/walid/540.m3u8
 
+#EXTINF:0,Sky Movies SciFi 
+http://top-iptv.zapto.org:8000/live/walid/walid/565.m3u8
+
 #EXTINF:0,Sky Movies Select 
 0
 
-#EXTINF:0,Sky Movies Star Wars
-http://top-iptv.zapto.org:8000/live/walid/walid/565.m3u8
-
 #EXTINF:0,Sony TV 
-0
+http://31.220.40.118:80/LiveEdge/SonyMovieChannelUS/playlist.m3u8?token=1e827ce046d165ec11d1950c9f66ce2f
 
 #EXTINF:0,Star Movies 
 0
@@ -181,8 +214,17 @@ http://top-iptv.zapto.org:8000/live/walid/walid/565.m3u8
 #EXTINF:0,Starz Edge
 0
 
+#EXTINF:0,Starz in Black
+0
+
+#EXTINF:0,Studio Universal
+0
+
 #EXTINF:0,TCM 
-http://astreamatik.selfip.com:8000/live/smart/smart/1412.m3u8
+http://31.220.41.103:80/LiveEdge/TCMUS/playlist.m3u8?token=32d2938dbca3b5f25dc0bf4465269e0e
+
+#EXTINF:0,The Movie Channel
+0
 
 #EXTINF:0,Tring Comedy
 0
@@ -200,10 +242,13 @@ http://astreamatik.selfip.com:8000/live/smart/smart/1412.m3u8
 0
 
 #EXTINF:0,True Movies 1 
-0
+http://top-iptv.zapto.org:8000/live/walid/walid/563.m3u8
 
 #EXTINF:0,True Movies 2 
-0
+http://top-iptv.zapto.org:8000/live/walid/walid/564.m3u8
+
+#EXTINF:0,True Movies 2 
+http://cdn.step-tv.com:8000/live/SON/SON/1399.ts
 
 #EXTINF:0,TV 1000 
 http://195.78.244.219:10000/udp/239.0.3.29:1234
