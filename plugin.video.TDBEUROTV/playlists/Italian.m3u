@@ -28,6 +28,9 @@ rtmp://vs2.streamcaster.net:1935/test_live playpath=canale46 swfUrl=http://www.c
 #EXTINF:0,Cielo
 http://skyianywhere2-i.akamaihd.net/hls/live/216865/cielo/stream2/streamPlaylist.m3u8
 
+#EXTINF:0,Cielo
+http://top-iptv.zapto.org:8000/live/walid/walid/642.m3u8
+
 #EXTINF:0,E TV Marche
 http://vs2.streamcaster.net:1935/etvmarche_live/etvmarche/sansar.m3u8
 
@@ -39,6 +42,9 @@ http://k3.usastreams.com:1935/canal42/canal42/live.m3u8
 
 #EXTINF:0,Fano TV
 0
+
+#EXTINF:0,Giallo
+http://213.136.90.30:8000/live/christop/christop/9223.ts
 
 #EXTINF:0,History Lab 
 rtmp://wma10.fluidstream.net/HistoryLab playpath=livestream swfUrl=http://www.radioetv.it/modules/mod_hllive/jw/player58l.swf pageUrl=http://www.radioetv.it/history-lab live=1 timeout=10
@@ -85,11 +91,23 @@ rtmp://fms.105.net:1935/live/rmc1
 #EXTINF:0,RAI 1 
 http://origin2.live.web.tv.streamprovider.net/streams/a3be8da5ba57ddb33ada9fa8fcd53a19/index.m3u8
 
+#EXTINF:0,RAI 1 
+http://213.136.90.30:8000/live/christop/christop/9231.ts
+
 #EXTINF:0,RAI 2 
 http://origin2.live.web.tv.streamprovider.net/streams/84553722f218dda44aab91b4ae0c2d42/index.m3u8
 
+#EXTINF:0,RAI 2 
+http://213.136.90.30:8000/live/christop/christop/9232.ts
+
 #EXTINF:0,RAI 3 
 http://origin2.live.web.tv.streamprovider.net/streams/2946613af1f663bb5b4164131b8c9413/index.m3u8
+
+#EXTINF:0,RAI 4
+http://213.136.90.30:8000/live/christop/christop/9234.ts
+
+#EXTINF:0,RAI 3 
+http://213.136.90.30:8000/live/christop/christop/9233.ts
 
 #EXTINF:0,RAI 5 
 http://stream12.rai.it/live/smil:rai5.smil/chunklist_b1500000.m3u8#MegaIPTVArgentina
@@ -100,11 +118,20 @@ http://stream12.rai.it:80/live/rai5.smil/chunklist_b400000.m3u8
 #EXTINF:0,RAI 5 
 http://stream12.rai.it:80/live/rai5_android.smil/chunklist_b400000.m3u8
 
+#EXTINF:0,RAI 5 
+http://213.136.90.30:8000/live/christop/christop/9224.ts
+
+#EXTINF:0,Radio Italia TV 
+http://213.136.90.30:8000/live/christop/christop/9206.ts
+
 #EXTINF:0,Rai Gulp 
-0
+http://213.136.90.30:8000/live/christop/christop/9228.ts
 
 #EXTINF:0,Rai Movie
 http://stream10.rai.it/italy/smil:raimovie.smil/playlist.m3u8
+
+#EXTINF:0,Rai Movie
+http://top-iptv.zapto.org:8000/live/walid/walid/508.m3u8
 
 #EXTINF:0,Rai Movie
 http://stream10.rai.it:80/italy/raimovie.smil/chunklist_b1200000.m3u8
@@ -115,6 +142,9 @@ http://stream10.rai.it:80/italy/raimovie.smil/chunklist_b1500000.m3u8
 #EXTINF:0,Rai Movie
 http://stream10.rai.it:80/italy/raimovie.smil/chunklist_b1800000.m3u8
 
+#EXTINF:0,Rai Movie
+http://213.136.90.30:8000/live/christop/christop/9225.ts
+
 #EXTINF:0,Rai News 
 http://origin2.live.web.tv.streamprovider.net/streams/121612976e4808528d2ba7edc446887c/index.m3u8
 
@@ -124,8 +154,11 @@ http://live.cdn.streamago.tv:1935/streamagoedge/1917/810/livestream.m3u8
 #EXTINF:0,Rai News 
 http://api.iptv.ink/pl.m3u8?ch=87768641
 
+#EXTINF:0,Rai News 
+http://213.136.90.30:8000/live/christop/christop/9226.ts
+
 #EXTINF:0,Rai Premium 
-0
+http://213.136.90.30:8000/live/christop/christop/9227.ts
 
 #EXTINF:0,Rai Scuola
 0
@@ -135,6 +168,9 @@ http://api.iptv.ink/pl.m3u8?ch=87768641
 
 #EXTINF:0,Rai Yoyo 
 http://stream10.rai.it:80/italy/raiyoyo.smil/chunklist_b1200000.m3u8
+
+#EXTINF:0,Rai Yoyo 
+http://213.136.90.30:8000/live/christop/christop/9201.ts
 
 #EXTINF:0,REI TV 
 0
@@ -161,13 +197,13 @@ http://94.32.101.11:1935/sardegna1/live1.stream/livestream.m3u8
 0
 
 #EXTINF:0,Sky Calcio 
-0
+http://213.136.90.30:8000/live/christop/christop/9212.ts
 
 #EXTINF:0,Sky Cinema Family 
 0
 
 #EXTINF:0,Sky Sport 24 
-0
+http://213.136.90.30:8000/live/christop/christop/9222.ts
 
 #EXTINF:0,Sky Sport F1 
 0
@@ -183,6 +219,9 @@ http://skyianywhere2-i.akamaihd.net:80/hls/live/200275/tg24/stream6/streamPlayli
 
 #EXTINF:0,Sky TG24 
 http://skyianywhere2-i.akamaihd.net:80/hls/live/200275/tg24/stream5/streamPlaylist.m3u8
+
+#EXTINF:0,Sky TG24 
+http://213.136.90.30:8000/live/christop/christop/9221.ts
 
 #EXTINF:0,Sky Uno
 0

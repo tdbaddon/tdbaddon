@@ -1,7 +1,7 @@
 ﻿#EXTM3U
 
-#EXTINF:0,How to change AUDIO LANGUAGE
-http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
+#EXTINF:0,HOW TO CHANGE AUDIO LANGUAGE
+http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mp4
 ---------------------------------------------------------------------------------------------------------------
 
 #EXTINF:0,American Heros Channel 
@@ -37,6 +37,9 @@ http://top-iptv.zapto.org:8000/live/walid/walid/562.m3u8
 #EXTINF:0,Discovery History 
 http://skyiptv.ddns.net:8000/live/edi/edi/100.m3u8
 
+#EXTINF:0,Discovery History 
+http://skyiptv.ddns.net:8000/live/alb/alb/100.m3u8
+
 #EXTINF:0,Discovery H&H
 0
 
@@ -48,6 +51,9 @@ http://109.226.222.161:4022/udp/239.255.4.250:1234
 
 #EXTINF:0,Discovery Science 
 http://skyiptv.ddns.net:8000/live/edi/edi/98.m3u8
+
+#EXTINF:0,Discovery Science 
+http://skyiptv.ddns.net:8000/live/alb/alb/98.m3u8
 
 
 #EXTINF:0,Discovery Turbo 

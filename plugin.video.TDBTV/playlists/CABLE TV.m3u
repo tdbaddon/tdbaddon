@@ -1,7 +1,7 @@
 ﻿#EXTM3U
 
-#EXTINF:0,How to change AUDIO LANGUAGE
-http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
+#EXTINF:0,HOW TO CHANGE AUDIO LANGUAGE
+http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mp4
 ---------------------------------------------------------------------------------------------------------------
 
 #EXTINF:0,A&E 
@@ -110,7 +110,7 @@ rtmp://54.85.197.21:1935/live
 0
 
 #EXTINF:0,Comedy Central 
-0
+http://skyiptv.ddns.net:8000/live/alb/alb/754.m3u8
 
 #EXTINF:0,Cooking Channel
 0
@@ -136,11 +136,17 @@ http://bit.do/bFWjY
 #EXTINF:0,Disney Channel 
 http://skyiptv.ddns.net:8000/live/edi/edi/96.m3u8
 
+#EXTINF:0,Disney Channel 
+http://skyiptv.ddns.net:8000/live/alb/alb/97.m3u8
+
 #EXTINF:0,Disney Junior 
 http://top-iptv.zapto.org:8000/live/walid/walid/558.m3u8
 
 #EXTINF:0,Disney Junior 
 http://cdn.step-tv.com:8000/live/SON/SON/286.ts
+
+#EXTINF:0,Disney Junior 
+http://skyiptv.ddns.net:8000/live/alb/alb/96.m3u8
 
 #EXTINF:0,Disney XD 
 0
@@ -149,7 +155,7 @@ http://cdn.step-tv.com:8000/live/SON/SON/286.ts
 0
 
 #EXTINF:0,E! 
-0
+http://213.136.90.30:8000/live/christop/christop/9278.ts
 
 #EXTINF:0,E2 
 0
@@ -247,11 +253,20 @@ http://top-iptv.zapto.org:8000/live/walid/walid/645.m3u8
 #EXTINF:0,ITV 1 
 http://skyiptv.ddns.net:8000/live/edi/edi/143.m3u8
 
+#EXTINF:0,ITV 1 
+http://skyiptv.ddns.net:8000/live/alb/alb/143.m3u8
+
 #EXTINF:0,ITV 2 
 http://skyiptv.ddns.net:8000/live/edi/edi/142.m3u8
 
+#EXTINF:0,ITV 2 
+http://skyiptv.ddns.net:8000/live/alb/alb/142.m3u8
+
 #EXTINF:0,ITV 3 
 http://top-iptv.zapto.org:8000/live/walid/walid/643.m3u8
+
+#EXTINF:0,ITV 3 
+http://skyiptv.ddns.net:8000/live/alb/alb/141.m3u8
 
 #EXTINF:0,ITV 4 
 http://cdn.step-tv.com:8000/live/SON/SON/320.ts
@@ -275,7 +290,7 @@ http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
 0
 
 #EXTINF:0,More4 
-0
+http://skyiptv.ddns.net:8000/live/alb/alb/139.m3u8
 
 #EXTINF:0,My9 
 http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
@@ -289,11 +304,17 @@ http://top-iptv.zapto.org:8000/live/walid/walid/617.m3u8
 #EXTINF:0,Nick 
 http://top-iptv.zapto.org:8000/live/walid/walid/631.m3u8
 
+#EXTINF:0,Nick 
+http://skyiptv.ddns.net:8000/live/alb/alb/136.m3u8
+
 #EXTINF:0,Nick Jr 
 0
 
 #EXTINF:0,Nickelodeon 
 http://cdn.step-tv.com:8000/live/SON/SON/288.ts
+
+#EXTINF:0,Nickelodeon 
+http://skyiptv.ddns.net:8000/live/alb/alb/135.m3u8
 
 #EXTINF:0,NickNight 
 http://top-iptv.zapto.org:8000/live/walid/walid/631.m3u8
@@ -340,8 +361,14 @@ http://skyiptv.ddns.net:8000/live/edi/edi/120.m3u8
 #EXTINF:0,Sky 2 
 http://cdn.step-tv.com:8000/live/SON/SON/285.ts
 
+#EXTINF:0,Sky 2 
+http://skyiptv.ddns.net:8000/live/alb/alb/120.m3u8
+
 #EXTINF:0,Sky Arts 1 
-0
+http://skyiptv.ddns.net:8000/live/alb/alb/131.m3u8
+
+#EXTINF:0,Sky Arts 1 
+http://skyiptv.ddns.net:8000/live/alb/alb/129.m3u8
 
 #EXTINF:0,Sky Arts 2 
 0

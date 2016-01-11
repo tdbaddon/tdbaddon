@@ -35,10 +35,16 @@ rtmp://edge2.everyon.tv/etv2sb/pLd10772
 rtmp://edge2.everyon.tv/etv2sb/phd10772
 
 #EXTINF:0,CENTO X CENTO 
-0
+http://selling-team.net:8000/live/ali/ali/6282.m3u8
 
 #EXTINF:0,DORCEL TV 
-0
+http://selling-team.net:8000/live/ali/ali/1273.m3u8
+
+#EXTINF:0,DORCEL TV 
+http://selling-team.net:8000/live/ali/ali/1368.m3u8
+
+#EXTINF:0,DORCEL TV 
+http://213.136.90.30:8000/live/christop/christop/9220.ts
 
 #EXTINF:0,DREAMGIRLS NETWORK
 0
@@ -50,10 +56,10 @@ rtmp://edge2.everyon.tv/etv2sb/phd10772
 0
 
 #EXTINF:0,ERO XXX
-0
+http://91.204.214.106:23371/stolen/025/duqu
 
 #EXTINF:0,EXOTICA TV 
-0
+http://selling-team.net:8000/live/ali/ali/6283.m3u8
 
 #EXTINF:0,FRENCHLOVER 
 0
@@ -61,14 +67,20 @@ rtmp://edge2.everyon.tv/etv2sb/phd10772
 #EXTINF:0,HOT CLUB 
 http://62.210.107.58:8000/live/mirko/mirko/173.ts
 
+#EXTINF:0,HOT CLUB 
+http://selling-team.net:8000/live/ali/ali/608.m3u8
+
 #EXTINF:0,HOT SHOTS 
 http://46.249.213.93/iPhone/HLS_TS/broadcast/hotshots-tablet.3gp/hotshots-tablet.3gp-mr649k.m3u8
+
+#EXTINF:0,HOT SHOTS 
+http://46.249.213.93/iPhone/broadcast/hotshots-tablet.3gp.m3u8
 
 #EXTINF:0,HOOTERS CALENDER GIRLS 
 0
 
 #EXTINF:0,HUSTLER TV 
-0
+http://selling-team.net:8000/live/ali/ali/1775.m3u8
 
 #EXTINF:0,ILIVE 1
 http://46.105.116.159:1935/iptv_cellcast_24/livestream1/player.m3u8
@@ -122,6 +134,9 @@ http://62.210.107.58:8000/live/mirko/mirko/177.ts
 http://178.33.126.213:1935/leved/passielivestream/media_5696.ts?wowzasessionid=1799630741
 
 #EXTINF:0,PENTHOUSE
+http://selling-team.net:8000/live/ali/ali/2543.m3u8
+
+#EXTINF:0,PENTHOUSE
 rtmp://edge1.everyon.tv/etv1sb/pld10927
 
 #EXTINF:0,PENTHOUSE
@@ -131,13 +146,16 @@ rtmp://edge1.everyon.tv/etv1sb/phd10927
 0
 
 #EXTINF:0,PINKO TV 
-0
+http://selling-team.net:8000/live/ali/ali/6284.m3u8
 
 #EXTINF:0,PLAYBOY SPICE 
 rtmp://edge2.everyon.tv/etv2sb/pld10499
 
 #EXTINF:0,PLAYBOY SPICE 
 rtmp://edge2.everyon.tv/etv2sb/phd10499
+
+#EXTINF:0,PLAYBOY TV 
+http://selling-team.net:8000/live/ali/ali/1773.m3u8
 
 #EXTINF:0,PLAYBOY TV 
 rtmp://edge1.everyon.tv/etv1sb/pld10497
@@ -160,17 +178,23 @@ http://178.33.126.213:1935/leved/privateCom/.m3u8
 #EXTINF:0,PRIVATE 
 http://publish.thewebstream.co:1935/leved/_definst_/privateCom/playlist.m3u8
 
+#EXTINF:0,PRIVATE 
+http://selling-team.net:8000/live/ali/ali/2260.m3u8
+
+#EXTINF:0,PRIVATE 
+http://213.136.90.30:8000/live/christop/christop/9217.ts
+
 #EXTINF:0,PURE MATURE
 0
 
 #EXTINF:0,REDLIGHT PREMIUM 
-0
+http://selling-team.net:8000/live/ali/ali/1364.m3u8
 
 #EXTINF:0,REDTUBE
 0
 
 #EXTINF:0,RUSSIAN NIGHT 
-0
+http://selling-team.net:8000/live/ali/ali/2544.m3u8
 
 #EXTINF:0,RUSSIAN NIGHT CLUB TV 
 0
@@ -191,7 +215,7 @@ http://178.33.126.213:1935/bsx24/mpegts1.stream/.m3u8
 0
 
 #EXTINF:0,SEXT 6 SENSO 
-0
+http://selling-team.net:8000/live/ali/ali/6285.m3u8
 
 #EXTINF:0,SEXTREME 
 0
@@ -203,7 +227,7 @@ http://178.33.126.213:1935/bsx24/mpegts1.stream/.m3u8
 0
 
 #EXTINF:0,TGIRLS TV 
-0
+http://selling-team.net:8000/live/ali/ali/6286.m3u8
 
 #EXTINF:0,TELEITALIA 
 0
@@ -225,6 +249,9 @@ http://188.165.220.116:8081/live2/48/playlist.m3u8
 
 #EXTINF:0,XXL
 0
+
+#EXTINF:0,XXX 
+http://selling-team.net:8000/live/ali/ali/2546.m3u8
 
 #EXTINF:0,XXX 
 http://videohttp2.porndig.com/videos/2014/05/54101_20140508.smil/chunklist_b730000.m3u8

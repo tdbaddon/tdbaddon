@@ -64,9 +64,6 @@ http://wpc.68fc.edgecastcdn.net/hls-live/2068FC/ena-channel-live/video/video.m3u
 #EXTINF:0,Epirus TV 
 http://xepirustv1livex.api.channel.livestream.com/3.0/playlist.m3u8
 
-#EXTINF:0,EPT 1
-http://wpso.com:200/tv48
-
 #EXTINF:0,EPT 1 
 http://iphone-streaming.ustream.tv/ustreamVideo/1989576/streams/live/playlist.m3u8 
 
@@ -113,7 +110,7 @@ http://live.cretetv.gr:1935/cretetv/myStream/playlist.m3u8
 http://stream.maktv.gr/i/live_1@332903/master.m3u8
 
 #EXTINF:0,Mad Music Hits
-mmsh://wpso.com:200/music
+0
 
 #EXTINF:0,Mad TV 
 rtmp://144.76.2.213:1935/live/livestream

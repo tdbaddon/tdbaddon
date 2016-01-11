@@ -67,12 +67,13 @@ def resolve(url):
             if not '.m3u8' in url: raise Exception()
             url += '|%s' % urllib.urlencode({'User-Agent': client.agent(), 'Referer': file})
             return url
+            
         except:
             pass
 
         strm = re.compile("'streamer'.+?'(.+?)'").findall(result)[0]
         swf = re.compile("SWFObject\('(.+?)'").findall(result)[0]
-
+        
         url = '%s playpath=%s swfUrl=%s pageUrl=%s live=1 timeout=30' % (strm, file, swf, url)
         return url
     except:

@@ -20,7 +20,7 @@ from BeautifulSoup import BeautifulStoneSoup, BeautifulSoup, BeautifulSOAP
 from BeautifulSoup import BeautifulSoup
 h = HTMLParser.HTMLParser()
 
-versao = '3.0.5'
+versao = '3.0.6'
 addon_id = 'plugin.video.roggerstream'
 selfAddon = xbmcaddon.Addon(id=addon_id)
 addonfolder = selfAddon.getAddonInfo('path')
@@ -57,6 +57,7 @@ def  categorias():
 	addDir('[B]MÚSICAS E VIDEOCLIPES[/B]','https://copy.com/1cvRyOdMSOCSBH70?download=1',4,'https://copy.com/stpjErgehf9hPtwW')
 	addDir('[B]ESPORTES INTERNACIONAIS[/B]','https://copy.com/bIIpBHwFbXMXOBBB?download=1',4,'https://copy.com/pUGvpVMDpoY09PcA')
 	addDir('[B]RÁDIOS[/B]','https://copy.com/znUclLey0qF30gSd?download=1',4,'https://copy.com/fuDnLrM1Am7VNtmT')
+	addDir('[B]CANAIS ITALIANOS[/B]','https://copy.com/8HphQbrUevxz2OgR?download=1',4,'https://copy.com/61JSYlrWYxnSosTJ')
 	
 def  categorias_tv_paga_brasil():
 	addDir('[B]DOCUMENTÁRIOS[/B]','https://copy.com/u3fZuJaCSqXQUNuk?download=1',4,'https://copy.com/9KLabSgitalsvYkg')

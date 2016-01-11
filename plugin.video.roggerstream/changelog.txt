@@ -1,3 +1,6 @@
+VERSAO 3.0.6
+*Adicionada categoria de canais Italianos
+
 VERSAO 3.0.3
 *Adicionada a possibilidade de favoritar os canais da categoria BRTV, para usar em conjunto com addons que precisam dessa funcao, como o tv guide por exemplo.
 

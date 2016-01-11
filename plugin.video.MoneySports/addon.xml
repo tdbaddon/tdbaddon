@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="plugin.video.MoneySports"
        name="MoneySports"
-       version="1.0.2"
-       provider-name="Legends">
+       version="2.0.1"
+       provider-name="Mark Money">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.beautifulsoup" version="3.2.1"/>
@@ -22,7 +22,7 @@
   <extension point="xbmc.addon.metadata">
     <summary>The only add-on you need for all your sport needs...</summary>
     <description>
-            The only add-on you need for all your sport needs...
+            The only add-on you need for all your sport needs... Supported By The Legends
     </description>
     <platform>all</platform>
   </extension>

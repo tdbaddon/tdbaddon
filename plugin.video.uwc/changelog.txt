@@ -1,0 +1,301 @@
+[B]Version 1.0.63[/B]
+Added: ParadiseHill
+Fixed: PornTrex categories
+
+
+[B]Version 1.0.62[/B]
+Added: TubePornClassic (by request)
+Changed: Moved HDzog to scenes and 'Play from here' support for HDzog
+
+
+[B]Version 1.0.61[/B]
+Added: HDzog (anton40)
+Added: Cat3Movie (anton40)
+Changed: Improved FlashX url detection, so FlashX videos from PornKino works
+
+
+[B]Version 1.0.60[/B]
+Fixed: Better handling when the cookie file gets corrupted
+Changed: Again, the logo...this is the last time for a while :)
+
+
+[B]Version 1.0.59[/B]
+Fixed: libogski.com, rebranded to thepornation.com (Fr33m1nd)
+Added: Playporn & Pornkino (Fr33m1nd)
+Added: Justporn.to (anton40)
+
+
+[B]Version 1.0.58[/B]
+Fixed: OpenLoad
+
+
+[B]Version 1.0.57[/B]
+Fixed: HQPorner, noticed it sometimes needed a referer
+Changed: Small improvement finding a working Videomega link
+
+
+[B]Version 1.0.56[/B]
+Fixed: HQPorner, Todayporn
+
+
+[B]Version 1.0.55[/B]
+Fixed: Annoying dialog bug when you start a video
+
+
+[B]Version 1.0.54[/B]
+Fixed: OpenLoad playback
+Added: Streams (beta), a lot of streams from all around the internet, some work...some not.
+
+
+[B]Version 1.0.53[/B]
+Changed: Addon logo to png, and a smaller size
+
+
+[B]Version 1.0.52[/B]
+Added: Chaturbate in a new Webcams & Streams section
+Fixed: Streampleasure, hqporner, porntrex
+Changed: Addon logo, it's less adult and more universal now ;)
+
+
+[B]Version 1.0.51[/B]
+Added: Xtasie
+Added: StreamPleasure (it's also in the One List)
+Fixed: TodayPorn
+Fixed: OpenLoad playback
+Fixed: Nudeflix Categories
+
+
+[B]Version 1.0.50[/B]
+Fixed: StreamXXX fix from Fr33m1nd
+Fixed: Pornaq video's from VK
+Fixed: Beeq
+Fixed: Nudeflix
+Changed: Multiple Openload video's support for StreamXXX
+
+
+[B]Version 1.0.49[/B]
+Changed: oops, forgot to include another bug fix
+Changed: New logo
+Changed: Few site logo resizes
+
+
+[B]Version 1.0.48[/B]
+Fixed: Videomega playback due to refactoring playvideo()
+Added: javHDonline (credits to Fr33m1nd)
+Added: YourFreeTube
+
+
+[B]Version 1.0.47[/B]
+Added: Videomegaporn & StreamXXX (credits to Fr33m1nd)
+Added: Flyflv host for HQPorner
+Added: Nowvideo host for Pornhive
+
+
+[B]Version 1.0.46[/B]
+Added: HQPorner
+
+
+[B]Version 1.0.45[/B]
+Added: PelisxPorno & XvideoSpanish (credits to Fr33m1nd)
+Added: Progress dialog while loading videos from pornAQ/porn00
+Changed: Getting videos from VK, no more 'Too many requests' dialog
+
+
+[B]Version 1.0.44[/B]
+Fixed: FlashX video playback
+
+
+[B]Version 1.0.43[/B]
+Added: Libogski (credits to Fr33m1nd)
+Added: Support for VK videohost for Pornaq and Porn00
+
+
+[B]Version 1.0.42[/B]
+Added: ElReyX (credits to Fr33m1nd)
+
+
+[B]Version 1.0.41[/B]
+Fixed: PornTrex, double listing
+Fixed: Porn00, video playback
+
+
+[B]Version 1.0.40[/B]
+Oops, forgot to the unicode chars with utils.py
+
+
+[B]Version 1.0.39[/B]
+Fixed: PornTrex
+
+
+[B]Version 1.0.38[/B]
+Fixed: OpenLoad is fixed again (for how long?)
+Fixed: Porn00 playback
+Added: OpenLoad as supported host for Pornhive
+
+
+[B]Version 1.0.37[/B]
+Fixed: Yet another fix for OpenLoad
+
+
+[B]Version 1.0.36[/B]
+Added: Dutch tube sites (sextube.nl, milf.nl and porntube.nl)
+
+
+[B]Version 1.0.35[/B]
+Fixed: Another fix for OpenLoad
+
+
+[B]Version 1.0.34[/B]
+Fixed: Openload videos are working again
+
+
+[B]Version 1.0.33[/B]
+Fixed: Small fix for Porn00 and PornAQ
+
+
+[B]Version 1.0.32[/B]
+Added: A new 'Tubes' section, for tube-like sites. First one is todayporn.com
+
+
+[B]Version 1.0.31[/B]
+Added: By request, you can now browse watchxxxfree, pornaq, porn00 and porntrex together in one list
+Changed: Downloading dialog shows more info: filesize, how much is downloaded and an ETA
+
+
+[B]Version 1.0.30[/B]
+Changed: New way of downloading video's, it's not in the background anymore...it should work better
+Fixed: Getting video's from PornAQ and Porn00, it also supports the videos hosted on docs.google.com
+
+
+[B]Version 1.0.29[/B]
+Added: 'Play from here' support for Beeg, now you can watch all 300 videos per page at once :)
+
+
+[B]Version 1.0.28[/B]
+Fixed: Fix for downloading with Pornaq/Porn00
+Fixed: Due to site changes on Beeg, new way to pick the highest video quality (tnx hstegeman)
+
+
+[B]Version 1.0.27[/B]
+Fixed: Fix for downloading videos from sites other than watchxxfree and xtheatre
+
+
+[B]Version 1.0.26[/B]
+Added: Directly open your download folder (if set). Unfortunately, it doesn't go back to the addon.
+Fixed: FlashX videos (again)
+
+
+[B]Version 1.0.25[/B]
+Added: Download function for the videos (in contextmenu). It uses the Simple Downloader addon.
+
+
+[B]Version 1.0.24[/B]
+Fixed: FlashX videos
+
+
+[B]Version 1.0.23[/B]
+Fixed: OpenLoad videos are working again
+Changed: Always get the highest quality video for Beeg
+
+
+[B]Version 1.0.22[/B]
+Added: Beeg (video gets weird when skipped)
+Added: Streamin.to for Watchxxxfree (beta)
+Fixed: Fix for Porn00 that would crash the addon
+
+
+[B]Version 1.0.21[/B]
+Fixed: Quick (lazy) fix for the latest Porn00 videos
+
+
+[B]Version 1.0.20[/B]
+Fixed: OpenLoad videos
+
+
+[B]Version 1.0.19[/B]
+Added: Search for Pornhive and a message for unsupported videosites
+
+
+[B]Version 1.0.18[/B]
+Added: New movie site, Pornhive
+Changed: Moved all the sites to their own individual python file
+
+
+[B]Version 1.0.17[/B]
+Fixed: Some videos on xtheatre are split in 2 on videomega, it now asks which one to play
+
+
+[B]Version 1.0.16[/B]
+Added: Search for the latest additions: Porntrex, PornAQ and Porn00
+Fixed: Pagination for PornAQ and Porn00
+
+
+[B]Version 1.0.15[/B]
+Added: New video site, Porn00
+
+
+[B]Version 1.0.14[/B]
+Added: New video site, PornAQ
+
+
+[B]Version 1.0.13[/B]
+Added: New video site, Porntrex
+Added: Images for the various video sites
+
+
+[B]Version 1.0.12[/B]
+Fixed: Another fix for the OpenLoad video's
+
+
+[B]Version 1.0.11[/B]
+Fixed: Quick fix for the OpenLoad video's
+
+
+[B]Version 1.0.10[/B]
+Fixed: Movies 2 -> Categories -> 2 worded categories
+
+
+[B]Version 1.0.9[/B]
+Added: Categories for 'Movies 2'
+Fixed: Movies due to site changes
+
+
+[B]Version 1.0.8[/B]
+Added: Another movies source, not finished yet but the main list works 
+
+
+[B]Version 1.0.7[/B]
+Fixed: A  bug in the regex for the Movies, when browsing a categorie
+
+
+[B]Version 1.0.6[/B]
+Added: Descriptions for Scenes and Movies (by request)
+Put the view in 'Media Info 2' (Confluence) to show them
+
+
+[B]Version 1.0.5[/B]
+Fixed: Searching works again
+Fixed: Better videomega recognition
+
+
+[B]Version 1.0.4[/B]
+Added: Sorting for Scens and Movies
+Added: Setting to skip asking for a videohost (default=off)
+
+
+[B]Version 1.0.3[/B]
+Added: Top Pornstars for Scenes
+
+
+[B]Version 1.0.2[/B]
+Added: Search for Scenes and Movies
+Added: A to Z Hentai list, censored and uncensored
+
+
+[B]Version 1.0.1[/B]
+Fixed: Pagination - Thanks to 'hstegeman'
+Fixed: Better regex for Videomega host
+
+
+[B]Version 1.0.0[/B]
+Initial public release

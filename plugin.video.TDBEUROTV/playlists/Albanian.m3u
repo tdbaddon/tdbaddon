@@ -16,9 +16,6 @@ http://str105mb.setplex.net:1935/str2iosmd5/stralbinfo_2654_dfs/playlist.m3u8
 #EXTINF:0,Alb UK 
 rtmp://188.138.17.8:1935/albuk/albuk.stream
 
-#EXTINF:0,Alb UK 
-rtmp://188.138.17.8:1935/albuk/albuk+.stream
-
 #EXTINF:0,Albanian Screen
 0
 
@@ -38,7 +35,7 @@ rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
 0
 
 #EXTINF:0,Jug TV 
-0
+rtmp://84.20.77.50/live/livestream1
 
 #EXTINF:0,Kanal 7 
 0
@@ -65,13 +62,16 @@ rtmp://91.82.85.44/live/konyhatv
 http://81.7.13.162/hls/oranews/index.m3u8
 
 #EXTINF:0,Planet TV 
-0
+http://skyiptv.ddns.net:8000/live/edi/edi/353.m3u8
 
 #EXTINF:0,Rokum TV 
 rtmp://82.114.65.202/live/rrokumtv.flv swfUrl=http://tv24.al/shqiptv/css/player.swf live=1
 
 #EXTINF:0,RTK1 
-0
+http://skyiptv.ddns.net:8000/live/edi/edi/352.m3u8
+
+#EXTINF:0,RTK1 
+rtmp://wowza.rtkit.com/live/livestream
 
 #EXTINF:0,STV 
 http://88.212.10.27:81/streams/stv1.m3u8?
@@ -94,4 +94,5 @@ rtmp://str103.setplex.net:1935/228/stv_online
 #EXTINF:0,Vizion Plus 
 rtmp://live.vizionplus.tv/live//livestream3
 
-
+#EXTINF:0,Vizion Plus 
+http://skyiptv.ddns.net:8000/live/edi/edi/503.m3u8

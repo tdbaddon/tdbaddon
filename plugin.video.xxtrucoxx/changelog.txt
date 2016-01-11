@@ -1,0 +1,2 @@
+﻿[B]Version 1.0.6 (26/06/2015):[/B]
+Adicionado Seção Filmes.

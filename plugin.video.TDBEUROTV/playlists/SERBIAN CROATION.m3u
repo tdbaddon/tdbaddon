@@ -80,7 +80,7 @@ mms://77.238.209.50:1234
 0
 
 #EXTINF:0,HRT 3 
-0
+http://skyiptv.ddns.net:8000/live/edi/edi/506.m3u8
 
 #EXTINF:0,HRT 4 
 0
@@ -134,7 +134,7 @@ mms://176.106.121.32:8080/
 0
 
 #EXTINF:0,Planet TV
-0
+http://skyiptv.ddns.net:8000/live/edi/edi/353.m3u8
 
 #EXTINF:0,Prva TV 
 0

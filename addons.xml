@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addons>
-<addon id="plugin.audio.dipremium" name="DI Premium" version="1.2" provider-name="NVTTeam">
+<addon id="plugin.audio.dipremium" name="DI Premium" version="2.0" provider-name="NVTTeam">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
   </requires>
@@ -125,6 +125,60 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
     <disclaimer lang="en">This software is licensed under the GNU General Public License version 2[CR][CR]Copyright (c) 2014 by &lt;LivingOn@xmail.net&gt;</disclaimer>
     <platform>all</platform>
   </extension>
+</addon>
+
+<addon id="plugin.video.dclip"
+	   name="Dclip"
+	   version="1.0.1"
+	   provider-name=" ">
+  <extension point="xbmc.python.pluginsource"
+			 library="default.py">
+    	<provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>Adult(18+) videos from Deviantclip.com</summary>
+    <description>Adult(18+) videos from Deviantclip.com</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.video.eporner"
+	   name="Eporner"
+	   version="1.0.1"
+	   provider-name="pcd">
+  <requires>
+        <import addon="script.module.youtube.dl" version="15.318.0"/>
+  </requires>
+
+  <extension point="xbmc.python.pluginsource"
+			 library="default.py">
+    	<provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>Adult(18+) videos from eporner.com</summary>
+    <description>Adult(18+) videos from eporner.com</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.video.fantasticc"
+       name="Fantasti.cc"
+       version="2.3.22"
+       provider-name="xbmc-adult">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0"/>
+        <import addon="script.module.pil"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource"
+               library="default.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <platform>all</platform>
+        <license>GPL 2.0</license>
+        <summary lang="en">Fantasti.cc -  Browse videos from a site that aggregates the best porn videos online using the votes of users as the deciding factor</summary>
+        <description lang="en">Browse collections (user designed categories) as well as the most popular videos today/week/month as decided by the users of the site</description>
+    </extension>
 </addon>
 
 <addon id="plugin.video.gClone" name="gClone" version="1.2.2" provider-name="NVTTeam">
@@ -261,7 +315,25 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
-<addon id="plugin.video.md123movies" name="123Movies" version="1.0.5" provider-name="Mucky Duck">
+<addon id="plugin.video.lubetube"
+       name="Lubetube (Adult)"
+       version="1.16"
+       provider-name="xbmc-adult">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource"
+            library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>Thousands of Free Streaming Porn videos! Updated every day. Lube Tube is the youtube of free porn.</summary>
+    <description>Thousands of Free Streaming Porn videos! Updated every day. Lube Tube is the youtube of free porn.</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.video.md123movies" name="123Movies" version="1.0.7" provider-name="Mucky Duck">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.urlresolver"  version="2.1.2"/>
@@ -304,8 +376,8 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 <addon id="plugin.video.MoneySports"
        name="MoneySports"
-       version="1.0.2"
-       provider-name="Legends">
+       version="2.0.1"
+       provider-name="Mark Money">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.beautifulsoup" version="3.2.1"/>
@@ -325,8 +397,23 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   <extension point="xbmc.addon.metadata">
     <summary>The only add-on you need for all your sport needs...</summary>
     <description>
-            The only add-on you need for all your sport needs...
+            The only add-on you need for all your sport needs... Supported By The Legends
     </description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.video.motherless"
+	   name="motherless"
+	   version="1.0.2"
+	   provider-name=" ">
+  <extension point="xbmc.python.pluginsource"
+			 library="default.py">
+    	<provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>Adult(18+) videos from motherless.com</summary>
+    <description>Adult(18+) videos from motherless.com</description>
     <platform>all</platform>
   </extension>
 </addon>
@@ -369,7 +456,22 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
-<addon id="plugin.video.phstreams" name="Phoenix" version="2.7.4" provider-name="Blazetamer, lambda">
+<addon id="plugin.video.oxo"
+	   name="Oxo"
+	   version="1.0.1"
+	   provider-name="pcd@xtrend-alliance">
+  <extension point="xbmc.python.pluginsource"
+			 library="default.py">
+    	<provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>Adult(18+) videos from OxoTube.co</summary>
+    <description>Adult(18+) videos from OxoTube.com</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.video.phstreams" name="Phoenix" version="2.7.5" provider-name="Blazetamer, lambda, VinMan_JSV">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.pyxbmct" version="1.1.4" />
@@ -419,7 +521,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
-<addon id="plugin.video.roggerstream" name="Rogger Stream" version="3.0.5" provider-name="Rogger, Cleiton Leonel Creton e Filipe Carvalho">
+<addon id="plugin.video.roggerstream" name="Rogger Stream" version="3.0.6" provider-name="Rogger, Cleiton Leonel Creton e Filipe Carvalho">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
   </requires>
@@ -503,7 +605,7 @@ This is my third attempt to make a iptv stalker clone and this is KrAz's second 
 
 <addon id="plugin.video.TDBEUROTV"
        name="TDB EURO TV"
-       version="2.11"
+       version="2.12"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -522,7 +624,7 @@ This is my third attempt to make a iptv stalker clone and this is KrAz's second 
 
 <addon id="plugin.video.TDBPORNO"
        name="TDB PORNO"
-       version="1.83"
+       version="1.84"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -541,7 +643,7 @@ This is my third attempt to make a iptv stalker clone and this is KrAz's second 
 
 <addon id="plugin.video.TDBRADIO"
        name="TDB RADIO"
-       version="1.26"
+       version="1.27"
        provider-name="TDB">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -559,7 +661,7 @@ This is my third attempt to make a iptv stalker clone and this is KrAz's second 
 
 <addon id="plugin.video.TDBSPANISHTV"
        name="TDB SPANISH TV"
-       version="1.32"
+       version="1.33"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -578,7 +680,7 @@ This is my third attempt to make a iptv stalker clone and this is KrAz's second 
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="3.40"
+       version="3.41"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -594,6 +696,68 @@ This is my third attempt to make a iptv stalker clone and this is KrAz's second 
     <platform>all</platform>
   </extension>
   <extension point="xbmc.service" library="service.py" start="login" />
+</addon>
+
+<addon id="plugin.video.uwc"
+       name="Ultimate Whitecream"
+       version="1.0.63"
+       provider-name="mortael">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource"
+               library="default.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <platform>all</platform>
+        <license>GPL 2.0</license>
+        <summary lang="en">Watch [COLOR red][B]ADULT[/B][/COLOR] Movies with Ultimate WhiteCream</summary>
+        <description lang="en">Watch [COLOR red][B]ADULT[/B][/COLOR] Movies with Ultimate WhiteCream</description>
+		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
+    </extension>
+</addon>
+
+<addon
+  id="plugin.video.videodevil"
+  version="1.7.123"
+  name="VideoDevil"
+  provider-name="xbmc-adult">
+  <requires>
+   <import addon="xbmc.python" version="2.1.0"/>
+  </requires>
+  <extension
+    point="xbmc.python.pluginsource"
+    library="default.py">
+   <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>Play videos from different adult streaming sites</summary>
+    <description>This addon plays videos from YouPorn, Tube8, Boysfood, MoviesAnd, PornoTube, xHamster, KeezMovies and some other adult streaming sites. It contains explicit adult material. You may only view this addon if you are at least 18 years of age, or at least the age of majority in the jurisdiction where you reside or from which you access this content. If you do not meet these requirements, then you do not have permission to use this addon.</description>
+    <disclaimer>The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.video.wildfire"
+	   name="Wildfire"
+	   version="1.0.1"
+	   provider-name="pcd">
+  <requires>
+  	<import addon="xbmc.python" version="2.1.0"/>
+  	<import addon="script.module.urlresolver"  />
+  	<import addon="script.module.t0mm0.common" />
+  </requires>
+
+  <extension point="xbmc.python.pluginsource"
+			 library="default.py">
+    	<provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>Adult(18+) videos from wildfireporn.com</summary>
+    <description>Adult(18+) videos from wildfireporn.com</description>
+    <platform>all</platform>
+  </extension>
 </addon>
 
 <addon id="plugin.video.xmovies8" name="XMovies8" version="1.1.1" provider-name="MetalKettle">
@@ -614,6 +778,35 @@ This is my third attempt to make a iptv stalker clone and this is KrAz's second 
     <description lang="en"></description>
     <platform>all</platform>
   </extension>
+</addon>
+
+<addon
+    id="plugin.video.xxtrucoxx"
+    name="XxTRUCOxX"
+    version="1.0.6"
+    provider-name="XxTRUCOxX">
+   <requires>
+     <import addon="xbmc.python" version="2.1.0"/>
+	 <import addon="script.module.urlresolver"  version="2.8.0"/>
+	 <import addon="script.module.addon.common" version="2.0.0" />
+	 <import addon="script.module.metahandler"  version="0.0.1"/>
+	 <import addon="script.common.plugin.cache"/>
+   </requires>
+   <extension point="xbmc.python.pluginsource" library="plugin.py" >
+	 <provides>video</provides>
+   </extension>
+   <extension point="xbmc.python.module" library="lib" />
+   <extension point="xbmc.addon.metadata">
+	 <summary lang="pt">Assista videos e filmes [COLOR red][B]ADULTOS[/COLOR][/B] encodado e upado por XxTRUCOxX.</summary>
+	 <description lang="pt">Assista videos e filmes [COLOR red][B]ADULTOS[/COLOR][/B] encodado e upado por XxTRUCOxX. Atualizado diariamente!</description>
+	 <platform></platform>
+     <language></language>
+	 <license></license>
+	 <forum></forum>
+	 <website></website>
+	 <source></source>
+	 <email></email>
+   </extension>
 </addon>
 
 <addon id="repository.addonscriptorde-beta" name="AddonScriptorDE's Testing Repo" version="1.0.1" provider-name="AddonScriptorDE">
@@ -714,7 +907,7 @@ This is my third attempt to make a iptv stalker clone and this is KrAz's second 
 	</extension>
 </addon>
 
-<addon id="repository.HalowTV" name="  [COLOR lime][B]HALOW [/COLOR][COLOR white]Repository[/B][/COLOR]" version="2.2.9" provider-name="HalowRepo">
+<addon id="repository.HalowTV" name="  [COLOR lime][B]HALOW [/COLOR][COLOR white]Repository[/B][/COLOR]" version="3.0.0" provider-name="HalowRepo">
 	<extension point="xbmc.addon.repository" name="  [COLOR lime][B]Halow[/COLOR][COLOR white]Repository[/B][/COLOR]">
         <info compressed="false">https://raw.githubusercontent.com/HalowTV/HalowTV/master/zips/addons.xml</info>
 		<checksum>https://raw.githubusercontent.com/HalowTV/HalowTV/master/zips/addons.xml.md5</checksum>
@@ -968,8 +1161,7 @@ This is my third attempt to make a iptv stalker clone and this is KrAz's second 
 	</extension>
 </addon>
 
-    <addon id="repository.ufo-repo" name="UFO" version="0.1.3" provider-name="krAZ">
-        <requires>
+    <addon id="repository.ufo-repo" name="[COLOR lightgreen]UFO[/COLOR]" version="0.1.4" provider-name="krAZ">        <requires>
             <import addon="xbmc.addon" version="12.0.0"/>
         </requires>
         <extension point="xbmc.addon.repository" name="UFO">
@@ -1012,11 +1204,11 @@ This is my third attempt to make a iptv stalker clone and this is KrAz's second 
 	</extension>
 </addon>
 
-<addon id="repository.xunitytalk" name=".[COLOR blue]X[/COLOR]unity[COLOR blue]T[/COLOR]alk Repository" version="1.1.0" provider-name=".[COLOR blue]X[/COLOR]unity[COLOR blue]T[/COLOR]alk">
+<addon id="repository.xunitytalk" name=".[COLOR blue]X[/COLOR]unity[COLOR blue]T[/COLOR]alk Repository" version="1.1.1" provider-name=".[COLOR blue]X[/COLOR]unity[COLOR blue]T[/COLOR]alk">
 	<extension point="xbmc.addon.repository" name="Mikey1234 Addon Repository">
-		<info compressed="false">http://xty.me/xunitytalk/addons/addons.xml</info>
-		<checksum>http://xty.me/xunitytalk/addons/addons.xml.md5</checksum>
-		<datadir zip="true">http://xty.me/xunitytalk/addons</datadir>
+		<info compressed="false">http://xtyrepo.me/xunitytalk/addons/addons.xml</info>
+		<checksum>http://xtyrepo.me/xunitytalk/addons/addons.xml.md5</checksum>
+		<datadir zip="true">http://xtyrepo.me/xunitytalk/addons</datadir>
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<summary>The Best Third Party Addons for XBMC, .[COLOR blue]X[/COLOR]unity[COLOR blue]T[/COLOR]alk</summary>

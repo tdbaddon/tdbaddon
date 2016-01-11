@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.video.eporner"
+	   name="Eporner"
+	   version="1.0.1"
+	   provider-name="pcd">
+  <requires>
+        <import addon="script.module.youtube.dl" version="15.318.0"/>
+  </requires>	   
+	   
+  <extension point="xbmc.python.pluginsource"
+			 library="default.py">
+    	<provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>Adult(18+) videos from eporner.com</summary>
+    <description>Adult(18+) videos from eporner.com</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+
+
+

@@ -200,6 +200,25 @@ elif action == 'CCstream':
     from resources.lib.indexers import phtoons
     phtoons.CCstream(url)
 
+elif action == 'AnimeCrazy':
+    from resources.lib.indexers import phtoons
+    phtoons.AnimeCrazy(image, fanart)
+
+elif action == 'ACsearch':
+    from resources.lib.indexers import phtoons
+    phtoons.ACsearch(url, image, fanart)
+
+elif action == 'ACcat':
+    from resources.lib.indexers import phtoons
+    phtoons.ACcat(url, image, fanart)
+
+elif action == 'ACpart':
+    from resources.lib.indexers import phtoons
+    phtoons.ACpart(url, image, fanart)
+
+elif action == 'ACstream':
+    from resources.lib.indexers import phtoons
+    phtoons.ACstream(url)
 elif action == 'nhlDirectory':
     from resources.lib.indexers import nhlcom
     nhlcom.nhlDirectory()

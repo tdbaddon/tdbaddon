@@ -1,7 +1,7 @@
 ﻿#EXTM3U
 
-#EXTINF:0,How to change AUDIO LANGUAGE
-http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mkv
+#EXTINF:0,HOW TO CHANGE AUDIO LANGUAGE
+http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mp4
 ---------------------------------------------------------------------------------------------------------------
 
 #EXTINF:0,5 StarMax
@@ -178,6 +178,9 @@ http://top-iptv.zapto.org:8000/live/walid/walid/541.m3u8
 #EXTINF:0,Sky Movies Horrors 
 http://cdn.step-tv.com:8000/live/SON/SON/290.ts
 
+#EXTINF:0,Sky Movies Horrors 
+http://skyiptv.ddns.net:8000/live/alb/alb/130.m3u8
+
 #EXTINF:0,Sky Movies Modern Greats 
 http://top-iptv.zapto.org:8000/live/walid/walid/539.m3u8
 
@@ -244,11 +247,17 @@ http://31.220.41.103:80/LiveEdge/TCMUS/playlist.m3u8?token=32d2938dbca3b5f25dc0b
 #EXTINF:0,True Movies 1 
 http://top-iptv.zapto.org:8000/live/walid/walid/563.m3u8
 
+#EXTINF:0,True Movies 1 
+http://skyiptv.ddns.net:8000/live/alb/alb/117.m3u8
+
 #EXTINF:0,True Movies 2 
 http://top-iptv.zapto.org:8000/live/walid/walid/564.m3u8
 
 #EXTINF:0,True Movies 2 
 http://cdn.step-tv.com:8000/live/SON/SON/1399.ts
+
+#EXTINF:0,True Movies 2 
+http://skyiptv.ddns.net:8000/live/alb/alb/682.m3u8
 
 #EXTINF:0,TV 1000 
 http://195.78.244.219:10000/udp/239.0.3.29:1234

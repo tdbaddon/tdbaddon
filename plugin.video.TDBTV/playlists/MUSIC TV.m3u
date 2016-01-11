@@ -19,6 +19,9 @@ http://rtmp.infomaniak.ch/livecast/beats_1/playlist.m3u8
 #EXTINF:0,Capital TV
 http://ooyalahd2-f.akamaihd.net/i/globalradio01_delivery@156521/index_656_av-p.m3u8?sd=10&rebase=on
 
+#EXTINF:0,Capital TV
+http://213.136.90.30:8000/live/christop/christop/9202.ts
+
 #EXTINF:0,Clubland
 0
 
@@ -136,6 +139,12 @@ http://200.76.77.237/LIVE/H01/CANAL726/PROFILE05.m3u8?supertvlat=%2F.ts
 #EXTINF:0,MTV 
 http://origin2.voronezh.ertelecom.ru/content/private/s147213/d3720264/r183857sd2500000/efe4541060c00fccc01e8c068fce4f5ab911d969/playlist.m3u8
 
+#EXTINF:0,MTV 
+http://213.136.90.30:8000/live/christop/christop/9219.ts
+
+#EXTINF:0,MTV 
+http://213.136.90.30:8000/live/christop/christop/9219.ts
+
 #EXTINF:0,MTV Live
 http://200.76.77.237/LIVE/H01/CANAL701/PROFILE02.m3u8?supertvlat=%2F.ts
 
@@ -189,6 +198,9 @@ rtsp://5.196.138.6:1935/live/nrjbelgique_360p
 
 #EXTINF:0,Pop Beat 
 0
+
+#EXTINF:0,R101 The Music
+http://213.136.90.30:8000/live/christop/christop/9202.ts
 
 #EXTINF:0,Radio Monte Carlo 
 rtmp://fms.105.net/live/rmc1

@@ -39,18 +39,16 @@ def resolve(url):
         result = client.request(url)
 
         url = client.parseDOM(result, 'iframe', ret='src')
-        if len(url) > 0: return openload.resolve(url[0])
+        if len(url) > 0: return resolvers.request(url[0], debrid)
 
         result = re.compile("\('(.+?)'\)").findall(result)[0]
         result = base64.b64decode(result)
 
-        url = client.parseDOM(result, 'source', ret='src', attrs = {'data-res': quality})
-        url += client.parseDOM(result, 'source', ret='src', attrs = {'data-res': '.+?'})
-        url = url[0]
+        result = re.compile('(\d*p)="([^"]+)"').findall(result)
 
-        url = client.request(url, output='geturl')
-        if 'requiressl=yes' in url: url = url.replace('http://', 'https://')
-        else: url = url.replace('https://', 'http://')
+        url = [i for i in result if i[0].upper() == quality]
+        if len(url) > 0: url = url[0][1]
+        else: url = result[0][1]
 
         return url
     except:

@@ -509,6 +509,10 @@ def info():
         'netloc': ['streamin.to'],
         'quality': 'Medium'
     }, {
+        'class': 'streamlive',
+        'netloc': ['streamlive.to'],
+        'quality': 'Medium'
+    }, {
         'class': 'streamup',
         'netloc': ['streamup.com']
     }, {

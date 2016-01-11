@@ -21,7 +21,7 @@
 
 
 import xbmc
-import re,sys,urllib,urlparse,base64
+import re,sys,urllib,urlparse,base64,urllib2
 from resources.lib.libraries import control
 from resources.lib.libraries import client
 from resources.lib.libraries import cloudflare
@@ -32,6 +32,7 @@ mediaPath = control.addonInfo('path') + '/resources/media/phtoons/'
 
 def CartoonDirectory():
     addDirectoryItem('Cartoon Crazy', 'CartoonCrazy', '0', mediaPath+'CartoonCrazy-icon.png', mediaPath+'CartoonCrazy-fanart.jpg')
+    addDirectoryItem('Anime Crazy','AnimeCrazy', '0', mediaPath+'Anime-icon.png', mediaPath+'Anime-fanart.jpg')
     endCategory()
 
 
@@ -198,6 +199,146 @@ def CCstream(url):
         else:
             url = url[0]['u']
 
+        player().run(url)
+    except:
+        return
+
+# ANIME CRAZY    
+def AnimeCrazy(image, fanart):
+    thumb = mediaPath+'ACsearch.png'
+    try:
+        url = 'http://cartoons8.co/list/'
+        result = client.request(url)
+        items = client.parseDOM(result, 'div', attrs={'class': 'r_Content'})[0]
+        items = client.parseDOM(items, 'li')
+        
+        
+    except:
+        return
+    addDirectoryItem('[B]SEARCH[/B]','ACsearch',thumb, image, fanart, '')
+    for item in items:
+        
+        url = client.parseDOM(item, 'a', ret='href')[0]
+        url = client.replaceHTMLCodes(url)
+        url = url.encode('utf-8')
+      
+        name =client.parseDOM(item, 'a')[0]
+        name = name.replace('\n','').replace(' ','').upper()
+        name = client.replaceHTMLCodes(name)
+        
+        name = name.encode('utf-8')
+        addDirectoryItem(name, 'ACcat', image, image, fanart, url+'/?filter=newest&req=anime')
+        
+    endDirectory()    
+    
+    
+
+def ACcat(url, image, fanart):   
+
+    try:
+        result = client.request(url)
+        items = client.parseDOM(result, 'div', attrs={'class': 'content-box'})
+        items = client.parseDOM(items, 'li', attrs={'class': 'list_ct'})
+       
+    except:
+        return
+
+    for item in items:
+        try:
+            name = client.parseDOM(item, 'span', attrs={'class': 'title'})[0]
+            name = '[B]'+name+'[/B]'
+            name = client.replaceHTMLCodes(name)
+            name = name.encode('utf-8')
+            
+            url = client.parseDOM(item, 'a', ret='href')[0]
+            url = client.replaceHTMLCodes(url)
+            url = url.encode('utf-8')
+            
+            thumb = client.parseDOM(item, 'img',ret='src')[0]
+            thumb = thumb.encode('utf-8')
+        
+            addDirectoryItem(name, 'ACpart', thumb, image, fanart, url)
+            
+        except:
+            pass
+    
+    
+    thumb= mediaPath+'Anime-next.jpg'
+    try:
+        pager = client.parseDOM(result, 'div', attrs={'class': 'pageNav'})
+        next = client.parseDOM(pager, 'a')
+        number = len(next)
+        url = client.parseDOM(pager, 'a', ret='href')[number-1]
+        next = next[number-1].encode('utf-8')
+        if next == '&raquo;'or next == '2':addDirectoryItem('[I]NEXT[/I]', 'ACcat', thumb, image, fanart, url)
+        
+    except:
+        pass
+    
+    movieCategory()
+
+
+def ACsearch(url, image, fanart):
+    keyboard = control.keyboard('', control.lang(30702).encode('utf-8'))
+    keyboard.setHeading('CARTOON SEARCH')
+    keyboard.doModal()
+    if not keyboard.isConfirmed(): return
+
+    search = keyboard.getText()
+    search = re.sub(r'\W+|\s+','-', search)
+    if search == '': return
+
+    url = 'http://cartoons8.co/search/?s='+search
+    url = url.encode('utf-8')
+   
+    
+    ACcat(url, image, fanart)
+
+
+def ACpart(url, image, fanart):
+    try:
+       
+        result = client.request(url)
+
+        items = client.parseDOM(result, 'table', attrs={'class': 'listing'})
+        items = client.parseDOM(items, 'td')
+        items = zip(client.parseDOM(items, 'a', ret='href'), client.parseDOM(items, 'a'))
+
+        if len(items) == 1: return ACstream(items[0][0])
+    except:
+        return
+
+    for item in items[::-1]:
+        try:
+            name = item[1]
+            name = name.replace('\n', '').replace('  ','')
+            name = client.replaceHTMLCodes(name)
+            name = name.encode('utf-8')
+
+            url = item[0]
+            url = client.replaceHTMLCodes(url)
+            url = url.encode('utf-8')
+            print url
+            addDirectoryItem(name,'ACstream',image,image,fanart,url)
+        except:
+            pass
+
+    episodeCategory()
+
+
+def ACstream(url):
+    try:
+        control.idle()
+        result = client.request(url)
+        stage1 = re.compile('url: "(.+?)",').findall(result)[0]
+        stage1 = stage1.encode('utf-8')
+        stage2 = re.compile("data: '(.+?)',").findall(result)[0] 
+        results = urllib2.Request(stage1,stage2)
+        results.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36')
+        response = urllib2.urlopen(results)
+        link=response.read()
+        response.close()
+        url = re.compile('<a href="(.+?)" target="_blank" rel="nofollow">.+?</a>').findall(link)[-1]
         player().run(url)
     except:
         return
