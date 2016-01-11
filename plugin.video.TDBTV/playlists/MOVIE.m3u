@@ -161,10 +161,13 @@ http://188.113.128.45:8000/udp/239.192.4.31:6085
 0
 
 #EXTINF:0,Sky Movies Action 
-0
+http://iptv80.ddns.net:9070/live/karimos/skype88/169.ts
 
 #EXTINF:0,Sky Movies Comedy 
 http://top-iptv.zapto.org:8000/live/walid/walid/544.m3u8
+
+#EXTINF:0,Sky Movies Comedy 
+http://iptv80.ddns.net:9070/live/karimos/skype88/173.ts
 
 #EXTINF:0,Sky Movies Crime 
 0
@@ -172,11 +175,17 @@ http://top-iptv.zapto.org:8000/live/walid/walid/544.m3u8
 #EXTINF:0,Sky Movies Disney 
 http://top-iptv.zapto.org:8000/live/walid/walid/648.m3u8
 
+#EXTINF:0,Sky Movies Disney 
+http://iptv80.ddns.net:9070/live/karimos/skype88/172.ts
+
 #EXTINF:0,Sky Movies Drama 
 0
 
 #EXTINF:0,Sky Movies Family 
 http://top-iptv.zapto.org:8000/live/walid/walid/541.m3u8
+
+#EXTINF:0,Sky Movies Family 
+http://iptv80.ddns.net:9070/live/karimos/skype88/171.ts
 
 #EXTINF:0,Sky Movies Horrors 
 http://cdn.step-tv.com:8000/live/SON/SON/290.ts
@@ -190,8 +199,14 @@ http://top-iptv.zapto.org:8000/live/walid/walid/539.m3u8
 #EXTINF:0,Sky Movies Modern Greats 
 http://cdn.step-tv.com:8000/live/SON/SON/295.ts
 
+#EXTINF:0,Sky Movies Modern Greats 
+http://iptv80.ddns.net:9070/live/karimos/skype88/174.ts
+
 #EXTINF:0,Sky Movies Premiere 
 http://cdn.step-tv.com:8000/live/SON/SON/293.ts
+
+#EXTINF:0,Sky Movies Premiere 
+http://iptv80.ddns.net:9070/live/karimos/skype88/168.ts
 
 #EXTINF:0,Sky Movies Premiere+
 http://skyiptv.ddns.net:8000/live/edi/edi/130.m3u8
@@ -202,8 +217,20 @@ http://top-iptv.zapto.org:8000/live/walid/walid/540.m3u8
 #EXTINF:0,Sky Movies SciFi 
 http://top-iptv.zapto.org:8000/live/walid/walid/565.m3u8
 
+#EXTINF:0,Sky Movies SciFi 
+http://iptv80.ddns.net:9070/live/karimos/skype88/170.ts
+
 #EXTINF:0,Sky Movies Select 
-0
+http://iptv80.ddns.net:9070/live/karimos/skype88/181.ts
+
+#EXTINF:0,Sky Movies Select 
+http://iptv80.ddns.net:9070/live/karimos/skype88/177.ts
+
+#EXTINF:0,Sky Movies Showcase
+http://iptv80.ddns.net:9070/live/karimos/skype88/176.ts
+
+#EXTINF:0,Sky Movies Thriller
+http://iptv80.ddns.net:9070/live/karimos/skype88/175.ts
 
 #EXTINF:0,Sony TV 
 http://31.220.40.118:80/LiveEdge/SonyMovieChannelUS/playlist.m3u8?token=1e827ce046d165ec11d1950c9f66ce2f
@@ -228,6 +255,9 @@ http://31.220.40.118:80/LiveEdge/SonyMovieChannelUS/playlist.m3u8?token=1e827ce0
 
 #EXTINF:0,TCM 
 http://31.220.41.103:80/LiveEdge/TCMUS/playlist.m3u8?token=32d2938dbca3b5f25dc0bf4465269e0e
+
+#EXTINF:0,TCM 
+http://iptv80.ddns.net:9070/live/karimos/skype88/190.ts
 
 #EXTINF:0,The Movie Channel
 0

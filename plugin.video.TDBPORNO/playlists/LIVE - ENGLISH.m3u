@@ -25,6 +25,12 @@ rtsp://46.249.213.87/broadcast/bellaluz-tablet.3gp
 #EXTINF:0,BRAZZERS TV 
 http://4BA9EBDB07C05883:@5.159.96.170:8000/brazzers
 
+#EXTINF:0,BRAZZERS TV 
+http://tvservice.webhop.me:80/live/vera/vera/1122.ts
+
+#EXTINF:0,BRAZZERS TV
+http://www.t12v.com:8000/live/luca/luca/771.ts
+
 #EXTINF:0,BUNGA BUNGA 
 0
 
@@ -71,13 +77,55 @@ http://selling-team.net:8000/live/ali/ali/6283.m3u8
 http://87.246.0.134:59349/tv_EXOTICA_TV
 
 #EXTINF:0,FRENCHLOVER 
-0
+http://37.235.216.255:4000/udp/225.50.70.7:1234
 
 #EXTINF:0,HOT CLUB 
 http://62.210.107.58:8000/live/mirko/mirko/173.ts
 
 #EXTINF:0,HOT CLUB 
 http://selling-team.net:8000/live/ali/ali/608.m3u8
+
+#EXTINF:0,HOT CLUB 
+http://tvservice.webhop.me:80/live/vera/vera/1000.ts
+
+#EXTINF:0,HOT CLUB 
+http://tvservice.webhop.me:80/live/vera/vera/1020.ts
+
+#EXTINF:0,HOT CLUB 
+http://tvservice.webhop.me:80/live/vera/vera/1021.ts
+
+#EXTINF:0,HOT CLUB 
+http://tvservice.webhop.me:80/live/vera/vera/1022.ts
+
+#EXTINF:0,HOT CLUB 
+http://tvservice.webhop.me:80/live/vera/vera/1120.ts
+
+#EXTINF:0,HOT CLUB 
+http://tvservice.webhop.me:80/live/vera/vera/1121.ts
+
+#EXTINF:0,HOT CLUB 
+http://ultra-iptv.best-tv.us:13884/live/Maresc/Maresc123/347.ts
+
+#EXTINF:0,HOT CLUB 
+http://ultra-iptv.best-tv.us:13884/live/Maresc/Maresc123/348.ts
+
+#EXTINF:0,HOT CLUB 
+http://ultra-iptv.best-tv.us:13884/live/Maresc/Maresc123/349.ts
+
+#EXTINF:0,HOT CLUB 
+http://ultra-iptv.best-tv.us:13884/live/Maresc/Maresc123/350.ts
+
+#EXTINF:0,HOT CLUB 
+http://ultra-iptv.best-tv.us:13884/live/Maresc/Maresc123/351.ts
+
+#EXTINF:0,HOT CLUB 
+http://ultra-iptv.best-tv.us:13884/live/Maresc/Maresc123/352.ts
+
+#EXTINF:0,HOT CLUB 
+http://ultra-iptv.best-tv.us:13884/live/Maresc/Maresc123/353.ts
+
+#EXTINF:0,HOT CLUB 
+http://ultra-iptv.best-tv.us:13884/live/Maresc/Maresc123/354.ts
 
 #EXTINF:0,HOT SHOTS 
 http://46.249.213.93/iPhone/HLS_TS/broadcast/hotshots-tablet.3gp/hotshots-tablet.3gp-mr649k.m3u8
@@ -91,6 +139,12 @@ http://46.249.213.93/iPhone/broadcast/hotshots-tablet.3gp.m3u8
 #EXTINF:0,HUSTLER TV 
 http://selling-team.net:8000/live/ali/ali/1775.m3u8
 
+#EXTINF:0,HUSTLER TV 
+http://tvservice.webhop.me:80/live/vera/vera/3199.ts
+
+#EXTINF:0,HUSTLER TV 
+http://www.t12v.com:8000/live/luca/luca/772.ts
+
 #EXTINF:0,ILIVE 1
 http://46.105.116.159:1935/iptv_cellcast_24/livestream1/player.m3u8
 
@@ -99,6 +153,9 @@ http://46.105.116.159:1935/iptv_cellcast_24/livestream1/player.m3u8
 
 #EXTINF:0,JASMIN TV
 rtmp://109.71.162.112:1935/live/sd.jasminchannel.stream
+
+#EXTINF:0,JASMIN TV
+http://www.t12v.com:8000/live/luca/luca/1198.ts
 
 #EXTINF:0,MAX PRIME 
 0
@@ -181,6 +238,9 @@ http://s2.edem.tv/iptv/9L8CB92DQXEXG9/527/index.m3u8
 #EXTINF:0,PLAYBOY TV 
 http://81.1.184.253:54321/udp/234.5.2.247:1234
 
+#EXTINF:0,PLAYBOY TV 
+http://tvservice.webhop.me:80/live/vera/vera/3788.ts
+
 #EXTINF:0,PLATINUM TV 
 0
 
@@ -196,6 +256,12 @@ http://selling-team.net:8000/live/ali/ali/2260.m3u8
 #EXTINF:0,PRIVATE 
 http://213.136.90.30:8000/live/christop/christop/9217.ts
 
+#EXTINF:0,PRIVATE 
+http://tvservice.webhop.me:80/live/vera/vera/2637.ts
+
+#EXTINF:0,PRIVATE 
+http://www.t12v.com:8000/live/luca/luca/1202.ts
+
 #EXTINF:0,PURE MATURE
 0
 
@@ -204,6 +270,9 @@ http://selling-team.net:8000/live/ali/ali/1364.m3u8
 
 #EXTINF:0,REDLIGHT PREMIUM 
 http://87.246.0.134:59349/tv_Redlight
+
+#EXTINF:0,REDLIGHT PREMIUM 
+http://tvservice.webhop.me:80/live/vera/vera/3200.ts
 
 #EXTINF:0,REDTUBE
 0
@@ -245,7 +314,7 @@ http://87.246.0.134:59349/tv_SCT_7
 0
 
 #EXTINF:0,SUPERONE 
-0
+http://www.t12v.com:8000/live/luca/luca/1197.ts
 
 #EXTINF:0,TGIRLS TV 
 http://selling-team.net:8000/live/ali/ali/6286.m3u8
@@ -273,6 +342,9 @@ http://87.246.0.134:59349/tv_SCT_4
 
 #EXTINF:0,XXL
 http://87.246.0.134:59349/tv_XXL
+
+#EXTINF:0,XXX 
+http://37.235.216.255:4000/udp/225.50.70.8:1234
 
 #EXTINF:0,XXX 
 http://selling-team.net:8000/live/ali/ali/2546.m3u8

@@ -166,6 +166,9 @@ http://skyiptv.ddns.net:8000/live/alb/alb/96.m3u8
 #EXTINF:0,E! 
 http://213.136.90.30:8000/live/christop/christop/9278.ts
 
+#EXTINF:0,E! 
+http://tvservice.webhop.me:80/live/mazzilli/mazzilli/2900.ts
+
 #EXTINF:0,E2 
 0
 

@@ -260,11 +260,26 @@ http://skyiptv.ddns.net:8000/live/edi/edi/123.m3u8
 #EXTINF:0,Sky Sports 1 
 http://skyiptv.ddns.net:8000/live/alb/alb/127.m3u8
 
+#EXTINF:0,Sky Sports 1 
+http://iptv80.ddns.net:9070/live/karimos/skype88/196.ts
+
+#EXTINF:0,Sky Sports 1 
+http://iptv80.ddns.net:9070/live/karimos/skype88/191.ts
+
+#EXTINF:0,Sky Sports 1 
+http://iptvkosova.dyndns.tv:8000/live/exchange/iptv/776.m3u8
+
 #EXTINF:0,Sky Sports 2 
 http://top-iptv.zapto.org:8000/live/walid/walid/535.m3u8
 
 #EXTINF:0,Sky Sports 2 
 http://skyiptv.ddns.net:8000/live/alb/alb/126.m3u8
+
+#EXTINF:0,Sky Sports 2 
+http://iptv80.ddns.net:9070/live/karimos/skype88/192.ts
+
+#EXTINF:0,Sky Sports 2 
+http://iptvkosova.dyndns.tv:8000/live/exchange/iptv/777.m3u8
 
 #EXTINF:0,Sky Sports 3 
 http://top-iptv.zapto.org:8000/live/walid/walid/534.m3u8
@@ -276,7 +291,13 @@ http://top-iptv.zapto.org:8000/live/walid/walid/629.m3u8
 http://cdn.step-tv.com:8000/live/SON/SON/273.ts
 
 #EXTINF:0,Sky Sports 3 
+http://iptvkosova.dyndns.tv:8000/live/exchange/iptv/778.m3u8
+
+#EXTINF:0,Sky Sports 3 
 http://skyiptv.ddns.net:8000/live/alb/alb/125.m3u8
+
+#EXTINF:0,Sky Sports 3 
+http://iptv80.ddns.net:9070/live/karimos/skype88/193.ts
 
 #EXTINF:0,Sky Sports 4 
 http://top-iptv.zapto.org:8000/live/walid/walid/533.m3u8
@@ -284,11 +305,20 @@ http://top-iptv.zapto.org:8000/live/walid/walid/533.m3u8
 #EXTINF:0,Sky Sports 4 
 http://skyiptv.ddns.net:8000/live/alb/alb/124.m3u8
 
+#EXTINF:0,Sky Sports 4 
+http://iptv80.ddns.net:9070/live/karimos/skype88/194.ts
+
 #EXTINF:0,Sky Sports 5 
 http://top-iptv.zapto.org:8000/live/walid/walid/532.m3u8
 
 #EXTINF:0,Sky Sports 5 
 http://skyiptv.ddns.net:8000/live/alb/alb/123.m3u8
+
+#EXTINF:0,Sky Sports 5 
+http://iptv80.ddns.net:9070/live/karimos/skype88/195.ts
+
+#EXTINF:0,Sky Sports 5 
+http://iptvkosova.dyndns.tv:8000/live/exchange/iptv/860.m3u8
 
 #EXTINF:0,Sky Sports F1 
 http://top-iptv.zapto.org:8000/live/walid/walid/553.m3u8

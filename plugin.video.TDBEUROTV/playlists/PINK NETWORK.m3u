@@ -5,19 +5,28 @@
 0
 
 #EXTINF:0,Pink 1 
-0
+http://iptv80.ddns.net:9070/live/karimos/skype88/280.ts
 
 #EXTINF:0,Pink 2 
 http://212.200.125.10:9450/450
 
+#EXTINF:0,Pink 2 
+http://iptv80.ddns.net:9070/live/karimos/skype88/279.ts
+
 #EXTINF:0,Pink 3 
 http://212.200.125.10:9444/444
+
+#EXTINF:0,Pink 3 
+http://iptv80.ddns.net:9070/live/karimos/skype88/278.ts
 
 #EXTINF:0,Pink Action 1 
 http://skyiptv.ddns.net:8000/live/edi/edi/393.m3u8
 
 #EXTINF:0,Pink Action 1 
 http://212.200.125.10:9445/445
+
+#EXTINF:0,Pink Action 1 
+http://iptv80.ddns.net:9070/live/karimos/skype88/277.ts
 
 #EXTINF:0,Pink Action 2 
 0
@@ -26,7 +35,7 @@ http://212.200.125.10:9445/445
 0
 
 #EXTINF:0,Pink BH
-0
+http://iptv80.ddns.net:9070/live/karimos/skype88/276.ts
 
 #EXTINF:0,Pink Classic 
 http://212.200.125.10:9432/432
@@ -35,7 +44,10 @@ http://212.200.125.10:9432/432
 http://skyiptv.ddns.net:8000/live/edi/edi/346.m3u8
 
 #EXTINF:0,Pink Crime & Mystery 
-0
+http://iptv80.ddns.net:9070/live/karimos/skype88/275.ts
+
+#EXTINF:0,Pink Crime & Mystery 
+http://212.200.77.2:5033/udp/239.5.5.3:2003
 
 #EXTINF:0,Pink Extra 
 0
@@ -52,6 +64,9 @@ http://212.200.125.10:9447/447
 #EXTINF:0,Pink Folk 1
 http://skyiptv.ddns.net:8000/live/edi/edi/385.m3u8
 
+#EXTINF:0,Pink Folk 1
+http://iptv80.ddns.net:9070/live/karimos/skype88/273.ts
+
 #EXTINF:0,Pink Folk 2 
 0
 
@@ -61,8 +76,11 @@ http://212.200.125.10:9425/425
 #EXTINF:0,Pink Horror 
 http://skyiptv.ddns.net:8000/live/edi/edi/341.m3u8
 
+#EXTINF:0,Pink Horror 
+http://iptv80.ddns.net:9070/live/karimos/skype88/272.ts
+
 #EXTINF:0,Pink Kids 
-0
+http://iptv80.ddns.net:9070/live/karimos/skype88/271.ts
 
 #EXTINF:0,Pink Kuvar 
 http://212.200.125.10:9441/441
@@ -71,7 +89,7 @@ http://212.200.125.10:9441/441
 0
 
 #EXTINF:0,Pink M 
-0
+http://iptv80.ddns.net:9070/live/karimos/skype88/270.ts
 
 #EXTINF:0,Pink Movies 1 
 0
@@ -107,22 +125,22 @@ http://212.200.125.10:9448/448
 http://212.200.125.10:9426/426
 
 #EXTINF:0,Pink Pedia 
-0
+http://iptv80.ddns.net:9070/live/karimos/skype88/269.ts
 
 #EXTINF:0,Pink Plus 
 0
 
 #EXTINF:0,Pink Premium 
-0
+http://212.200.77.2:5033/udp/239.5.5.1:2003
 
 #EXTINF:0,Pink Reality 
-0
+http://iptv80.ddns.net:9070/live/karimos/skype88/268.ts
 
 #EXTINF:0,Pink Romance
-0
+http://iptv80.ddns.net:9070/live/karimos/skype88/267.ts
 
 #EXTINF:0,Pink SciFi & Fantasy
-0
+http://iptv80.ddns.net:9070/live/karimos/skype88/266.ts
 
 #EXTINF:0,Pink Serije 
 http://212.200.125.10:9438/438
@@ -140,10 +158,16 @@ http://212.200.125.10:9433/433
 http://212.200.125.10:9442/442
 
 #EXTINF:0,Pink Thriller
-0
+http://212.200.77.2:5033/udp/239.5.5.2:2003
 
 #EXTINF:0,Pink Western 
 http://212.200.125.10:9431/431
+
+#EXTINF:0,Pink Western 
+http://iptv80.ddns.net:9070/live/karimos/skype88/274.ts
+
+#EXTINF:0,Pink Western 
+http://iptv80.ddns.net:9070/live/karimos/skype88/265.ts
 
 #EXTINF:0,Pink World 
 0
@@ -152,7 +176,7 @@ http://212.200.125.10:9431/431
 http://212.200.125.10:9439/439
 
 #EXTINF:0,Pink Zabava 
-0
+http://iptv80.ddns.net:9070/live/karimos/skype88/263.ts
 
 
 
