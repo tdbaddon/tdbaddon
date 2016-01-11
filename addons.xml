@@ -297,25 +297,6 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
-<addon id="plugin.video.IPTV 2016"
-       name="IPTV 2016"
-       version="Version 1.0"
-       provider-name="Archivo Colectivo">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="addon.py">
-    <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary>Name of addon</summary>
-    <description>
-Para darle la bienvenida al año, este addon funcionando al 100%.
-    </description>
-    <platform>all</platform>
-  </extension>
-</addon>
-
 <addon id="plugin.video.kontor"
 	   name="Kontor"
 	   version="1.0.1"
@@ -385,6 +366,28 @@ Para darle la bienvenida al año, este addon funcionando al 100%.
   <extension point="xbmc.addon.metadata">
     <summary lang="en">Stream Movies From The niter.co WebSite</summary>
     <description lang="en">Stream Movies From The niter.co WebSite</description>
+	<disclaimer lang="en">
+	The author does not host or distribute any of the content displayed by this addon
+	or have any affiliation with the website owners.
+	</disclaimer>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.video.mdpubfilm" name="PubFilm" version="1.0.1" provider-name="Mucky Duck">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+	<import addon="script.module.addon.common" />
+	<import addon="script.module.metahandler" version="2.5.1"/>
+	<import addon="script.module.requests" />
+	<import addon="repository.mdrepo" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Stream Movies And TV-Shows From pubfilm.com</summary>
+    <description lang="en">Stream Movies And TV-Shows From pubfilm.com</description>
 	<disclaimer lang="en">
 	The author does not host or distribute any of the content displayed by this addon
 	or have any affiliation with the website owners.
@@ -756,6 +759,26 @@ This is my third attempt to make a iptv stalker clone and this is KrAz's second 
     <disclaimer>The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
     <platform>all</platform>
   </extension>
+</addon>
+
+<addon id="plugin.video.watch4free" name="Watch4[COLOR lime]free[/COLOR]" version="2.2.0" provider-name="SchisM">
+ <requires>
+	<import addon="script.module.simplejson" version="3.3.0"/>
+	<import addon="xbmc.python" version="2.1.0"/>
+	<import addon="script.module.t0mm0.common" version="2.0.0"/>
+
+	<import addon="script.module.urlresolver"  version="2.1.2"/>
+	<import addon="script.common.plugin.cache" version="2.5.2"/>
+	<import addon="script.module.metahandler" version="2.5.1"/>
+ </requires>
+ <extension point="xbmc.python.pluginsource" library="default.py">
+	<provides>video</provides>
+ </extension>
+ <extension point="xbmc.addon.metadata">
+	<summary lang="en">Play huge selections of Movies and TV Shows</summary>
+	<description lang="en">Credits to MK for the base of the addon</description>
+	<platform>all</platform>
+ </extension>
 </addon>
 
 <addon id="plugin.video.wildfire"
