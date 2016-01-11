@@ -432,6 +432,10 @@ def info():
         'netloc': ['mightyupload.com'],
         'quality': 'High'
     }, {
+        'class': 'miplayer',
+        'netloc': ['miplayer.net'],
+        'quality': 'High'
+    }, {    
         'class': 'movdivx',
         'netloc': ['movdivx.com'],
         'quality': 'Low'
@@ -485,7 +489,7 @@ def info():
     }, {
         'class': 'sawlive',
         'netloc': ['sawlive.tv']
-    }, {
+    }, {        
         'class': 'shared2',
         'netloc': ['shared2.me'],
         'quality': 'High'

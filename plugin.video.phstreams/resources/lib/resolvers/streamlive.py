@@ -3,9 +3,24 @@ import urllib,re
 from resources.lib.libraries import client
 
 def resolve(url):
+    test = 'http://www.streamlive.to'
+    html = client.request(test)
+    html=html.replace('\r','').replace('\n','').replace('\t','').replace('&nbsp;','').replace("\/",'/')
+    question = re.findall('<br />(.+?)<br /><br />',html)
+    words = question[0].split(': ')
+    try:    
+        if str(len(words))=='3':
+            answer = question[0].split(': ')[2]
+            data_solved = urllib.urlencode({'captcha' : answer,
+                                            'submit' : 'Enter'})
+        else:
+            pass
+    except:
+        raise
+        
     try:
         
-        html = client.request(url)
+        html = client.request(url,data_solved)
         html=html.replace('\r','').replace('\n','').replace('\t','').replace('&nbsp;','').replace("\/",'/')
         playpath = re.compile('file: "(.+?)\.flv"').findall(html)[0]
         token_url = re.compile('getJSON\("(.+?)"').findall(html)[0]
@@ -24,8 +39,11 @@ def resolve(url):
         
         url = rtmp[0]+ ' app=edge/?xs='+app[1]+' playpath='+playpath+' swfUrl=http://www.streamlive.to/ads/streamlive.swf pageUrl='+url+' token='+token
         return url
-    
         
     except:
         return
 
+
+
+    
+    

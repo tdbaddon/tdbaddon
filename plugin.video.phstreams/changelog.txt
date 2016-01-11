@@ -1,3 +1,6 @@
+V2.7.6
+- Updates available resolvers.
+
 V2.7.5
 - Added Anime in cartoon section.
 - Updates available resolvers.

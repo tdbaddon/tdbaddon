@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+
+<strings>
+    <string id="30000">Name</string>
+    <string id="30001">Url</string>
+    <string id="30002">Mac</string>
+    <string id="30008">Custom Mac Address</string>
+    
+     <string id="30009">Send Serial Number</string>
+     <string id="30014">Custom Serial</string>
+     <string id="30010">Serial Number</string>
+     <string id="30011">Device Id</string>
+     <string id="30012">Device Id2</string>
+     <string id="30013">Signature</string>
+    
+
+    <string id="30006">Password</string>
+    <string id="30007">Enable</string>
+    
+    <string id="32001">Portal</string>
+    <string id="32002">Parental</string>
+    
+    <string id="33001">Portal 1</string>
+    <string id="33002">Portal 2</string>
+    <string id="33003">Portal 3</string>
+    
+    <string id="33004">M3U Server</string>
+    <string id="30015">Enable</string>
+    <string id="30016">Start</string>
+    <string id="30017">Port</string>
+    <string id="30018">Stop</string>
+</strings>
+

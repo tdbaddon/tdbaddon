@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.video.IPTV 2016"
+       name="IPTV 2016"
+       version="Version 1.0"
+       provider-name="Archivo Colectivo">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="addon.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>Name of addon</summary>
+    <description>
+Para darle la bienvenida al año, este addon funcionando al 100%.
+    </description>
+    <platform>all</platform>
+  </extension>
+</addon>

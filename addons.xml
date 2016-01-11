@@ -297,6 +297,25 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
+<addon id="plugin.video.IPTV 2016"
+       name="IPTV 2016"
+       version="Version 1.0"
+       provider-name="Archivo Colectivo">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="addon.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>Name of addon</summary>
+    <description>
+Para darle la bienvenida al año, este addon funcionando al 100%.
+    </description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
 <addon id="plugin.video.kontor"
 	   name="Kontor"
 	   version="1.0.1"
@@ -471,7 +490,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
-<addon id="plugin.video.phstreams" name="Phoenix" version="2.7.5" provider-name="Blazetamer, lambda, VinMan_JSV">
+<addon id="plugin.video.phstreams" name="Phoenix" version="2.7.6" provider-name="Blazetamer, lambda, VinMan_JSV">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.pyxbmct" version="1.1.4" />
