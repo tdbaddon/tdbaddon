@@ -87,6 +87,9 @@ https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8?hdnea=ip=173.34.6
 https://hec.su/b1UT
 
 #EXTINF:0,Investigation Discovery 
+http://212.200.125.9:8173/173
+
+#EXTINF:0,Investigation Discovery 
 http://top-iptv.zapto.org:8000/live/walid/walid/560.m3u8
 
 #EXTINF:0,Nasa TV 
@@ -141,7 +144,7 @@ http://rt-a.akamaihd.net/ch_05@325609/720p.m3u8
 0
 
 #EXTINF:0,Viasat History 
-0
+http://212.200.125.9:9415/415
 
 #EXTINF:0,Viasat Nature 
 0

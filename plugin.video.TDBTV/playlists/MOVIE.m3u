@@ -14,7 +14,7 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mp4
 0
 
 #EXTINF:0,CineStarTV Premiere 1
-0
+http://212.200.125.6:8224/224
 
 #EXTINF:0,CineStarTV Premiere 2
 0
@@ -90,6 +90,9 @@ http://200.76.77.237/LIVE/H01/CANAL417/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Fox Movies 
 http://200.76.77.237/LIVE/H01/CANAL417/PROFILE05.m3u8?supertvlat=%2F.ts
+
+#EXTINF:0,Fox Movies
+http://212.200.125.6:8233/233
 
 #EXTINF:0,Golden Edge
 http://200.76.77.237/LIVE/H01/CANAL484/PROFILE02.m3u8?supertvlat=%2F.ts
@@ -261,6 +264,9 @@ http://skyiptv.ddns.net:8000/live/alb/alb/682.m3u8
 
 #EXTINF:0,TV 1000 
 http://195.78.244.219:10000/udp/239.0.3.29:1234
+
+#EXTINF:0,TV 1000 
+http://212.200.125.9:9416/416
 
 #EXTINF:0,TV 1000 Action 
 http://195.78.244.219:10000/udp/239.0.3.27:1234

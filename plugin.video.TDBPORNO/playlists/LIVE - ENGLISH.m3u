@@ -37,6 +37,9 @@ rtmp://edge2.everyon.tv/etv2sb/phd10772
 #EXTINF:0,CENTO X CENTO 
 http://selling-team.net:8000/live/ali/ali/6282.m3u8
 
+#EXTINF:0,CENTO X CENTO 
+http://87.246.0.134:59349/tv_SCT_6
+
 #EXTINF:0,DORCEL TV 
 http://selling-team.net:8000/live/ali/ali/1273.m3u8
 
@@ -45,6 +48,9 @@ http://selling-team.net:8000/live/ali/ali/1368.m3u8
 
 #EXTINF:0,DORCEL TV 
 http://213.136.90.30:8000/live/christop/christop/9220.ts
+
+#EXTINF:0,DORCEL TV 
+http://87.246.0.134:59349/tv_Dorcel_TV
 
 #EXTINF:0,DREAMGIRLS NETWORK
 0
@@ -60,6 +66,9 @@ http://91.204.214.106:23371/stolen/025/duqu
 
 #EXTINF:0,EXOTICA TV 
 http://selling-team.net:8000/live/ali/ali/6283.m3u8
+
+#EXTINF:0,EXOTICA TV 
+http://87.246.0.134:59349/tv_EXOTICA_TV
 
 #EXTINF:0,FRENCHLOVER 
 0
@@ -133,6 +142,9 @@ http://62.210.107.58:8000/live/mirko/mirko/177.ts
 #EXTINF:0,PASSIE XXX 
 http://178.33.126.213:1935/leved/passielivestream/media_5696.ts?wowzasessionid=1799630741
 
+#EXTINF:0,PASSIE XXX 
+http://87.246.0.134:59349/tv_SCT_HQ
+
 #EXTINF:0,PENTHOUSE
 http://selling-team.net:8000/live/ali/ali/2543.m3u8
 
@@ -190,6 +202,9 @@ http://213.136.90.30:8000/live/christop/christop/9217.ts
 #EXTINF:0,REDLIGHT PREMIUM 
 http://selling-team.net:8000/live/ali/ali/1364.m3u8
 
+#EXTINF:0,REDLIGHT PREMIUM 
+http://87.246.0.134:59349/tv_Redlight
+
 #EXTINF:0,REDTUBE
 0
 
@@ -201,6 +216,9 @@ http://selling-team.net:8000/live/ali/ali/2544.m3u8
 
 #EXTINF:0,SATISFACTION HD 
 http://178.33.126.213:1935/bsx24/mpegts1.stream/.m3u8
+
+#EXTINF:0,SATISFACTION HD 
+http://87.246.0.134:59349/tv_SCT_HD
 
 #EXTINF:0,SCT 
 0
@@ -216,6 +234,9 @@ http://178.33.126.213:1935/bsx24/mpegts1.stream/.m3u8
 
 #EXTINF:0,SEXT 6 SENSO 
 http://selling-team.net:8000/live/ali/ali/6285.m3u8
+
+#EXTINF:0,SEXT 6 SENSO 
+http://87.246.0.134:59349/tv_SCT_7
 
 #EXTINF:0,SEXTREME 
 0
@@ -248,7 +269,10 @@ http://188.165.220.116:8081/live2/48/playlist.m3u8
 0
 
 #EXTINF:0,XXL
-0
+http://87.246.0.134:59349/tv_SCT_4
+
+#EXTINF:0,XXL
+http://87.246.0.134:59349/tv_XXL
 
 #EXTINF:0,XXX 
 http://selling-team.net:8000/live/ali/ali/2546.m3u8

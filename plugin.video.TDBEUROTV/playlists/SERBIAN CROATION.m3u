@@ -38,7 +38,7 @@ http://92.60.234.98:8081
 http://213.81.153.221:8080/cetv
 
 #EXTINF:0,CMC 
-0
+http://212.200.125.6:8234/234
 
 #EXTINF:0,DMC
 0
@@ -56,7 +56,7 @@ http://213.81.153.221:8080/cetv
 0
 
 #EXTINF:0,Happy 
-0
+http://212.200.125.7:8217/217
 
 #EXTINF:0,Hayat Folk 
 0
@@ -137,7 +137,7 @@ mms://176.106.121.32:8080/
 http://skyiptv.ddns.net:8000/live/edi/edi/353.m3u8
 
 #EXTINF:0,Prva TV 
-0
+http://212.200.125.7:8215/215
 
 #EXTINF:0,RTC 
 0
@@ -149,10 +149,10 @@ mms://beotelmedia.beotel.net/tvcg
 mms://195.252.114.172/tvcg
 
 #EXTINF:0,RTL
-0
+http://212.200.125.6:8236/236
 
 #EXTINF:0,RTL 2 
-0
+http://212.200.125.6:8238/238
 
 #EXTINF:0,RTRS 
 0
@@ -161,7 +161,7 @@ mms://195.252.114.172/tvcg
 0
 
 #EXTINF:0,RTS 1 
-0
+http://212.200.125.7:8210/210
 
 #EXTINF:0,RTS 2 
 0
@@ -186,6 +186,9 @@ http://92.53.27.201:10000/
 
 #EXTINF:0,Studio B
 mms://195.252.114.172/studiob
+
+#EXTINF:0,Studio B
+http://212.200.125.7:8218/218
 
 #EXTINF:0,STV1 
 http://88.212.10.27:81/streams/stv1.m3u8

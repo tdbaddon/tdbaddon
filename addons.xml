@@ -605,7 +605,7 @@ This is my third attempt to make a iptv stalker clone and this is KrAz's second 
 
 <addon id="plugin.video.TDBEUROTV"
        name="TDB EURO TV"
-       version="2.12"
+       version="2.13"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -624,7 +624,7 @@ This is my third attempt to make a iptv stalker clone and this is KrAz's second 
 
 <addon id="plugin.video.TDBPORNO"
        name="TDB PORNO"
-       version="1.84"
+       version="1.85"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -680,7 +680,7 @@ This is my third attempt to make a iptv stalker clone and this is KrAz's second 
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="3.41"
+       version="3.42"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>

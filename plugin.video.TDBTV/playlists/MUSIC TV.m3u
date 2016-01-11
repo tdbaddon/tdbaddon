@@ -202,6 +202,9 @@ rtsp://5.196.138.6:1935/live/nrjbelgique_360p
 #EXTINF:0,R101 The Music
 http://213.136.90.30:8000/live/christop/christop/9202.ts
 
+#EXTINF:0,R101 The Music
+http://213.136.90.30:8000/live/christop/christop/9203.ts
+
 #EXTINF:0,Radio Monte Carlo 
 rtmp://fms.105.net/live/rmc1
 

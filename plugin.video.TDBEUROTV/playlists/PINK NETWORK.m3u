@@ -8,13 +8,16 @@
 0
 
 #EXTINF:0,Pink 2 
-0
+http://212.200.125.10:9450/450
 
 #EXTINF:0,Pink 3 
-0
+http://212.200.125.10:9444/444
 
 #EXTINF:0,Pink Action 1 
 http://skyiptv.ddns.net:8000/live/edi/edi/393.m3u8
+
+#EXTINF:0,Pink Action 1 
+http://212.200.125.10:9445/445
 
 #EXTINF:0,Pink Action 2 
 0
@@ -26,7 +29,7 @@ http://skyiptv.ddns.net:8000/live/edi/edi/393.m3u8
 0
 
 #EXTINF:0,Pink Classic 
-0
+http://212.200.125.10:9432/432
 
 #EXTINF:0,Pink Comedy 
 http://skyiptv.ddns.net:8000/live/edi/edi/346.m3u8
@@ -38,19 +41,22 @@ http://skyiptv.ddns.net:8000/live/edi/edi/346.m3u8
 0
 
 #EXTINF:0,Pink Family 
-0
+http://212.200.125.10:9449/449
 
 #EXTINF:0,Pink Fashion 
-0
+http://212.200.125.10:9424/424
 
 #EXTINF:0,Pink Film 
-0
+http://212.200.125.10:9447/447
 
 #EXTINF:0,Pink Folk 1
 http://skyiptv.ddns.net:8000/live/edi/edi/385.m3u8
 
 #EXTINF:0,Pink Folk 2 
 0
+
+#EXTINF:0,Pink Hits
+http://212.200.125.10:9425/425
 
 #EXTINF:0,Pink Horror 
 http://skyiptv.ddns.net:8000/live/edi/edi/341.m3u8
@@ -59,7 +65,7 @@ http://skyiptv.ddns.net:8000/live/edi/edi/341.m3u8
 0
 
 #EXTINF:0,Pink Kuvar 
-0
+http://212.200.125.10:9441/441
 
 #EXTINF:0,Pink Live 
 0
@@ -77,7 +83,7 @@ http://skyiptv.ddns.net:8000/live/edi/edi/341.m3u8
 0
 
 #EXTINF:0,Pink Music 1 
-0
+http://212.200.125.10:9448/448
 
 #EXTINF:0,Pink Music 2
 0
@@ -96,6 +102,9 @@ http://skyiptv.ddns.net:8000/live/edi/edi/341.m3u8
 
 #EXTINF:0,Pink Nostalgia 
 0
+
+#EXTINF:0,Pink Parada
+http://212.200.125.10:9426/426
 
 #EXTINF:0,Pink Pedia 
 0
@@ -116,31 +125,31 @@ http://skyiptv.ddns.net:8000/live/edi/edi/341.m3u8
 0
 
 #EXTINF:0,Pink Serije 
-0
+http://212.200.125.10:9438/438
 
 #EXTINF:0,Pink Show 
-0
+http://212.200.125.10:9440/440
 
 #EXTINF:0,Pink Soap 
 0
 
 #EXTINF:0,Pink Style 
-0
+http://212.200.125.10:9433/433
 
 #EXTINF:0,Pink Super Kids
-0
+http://212.200.125.10:9442/442
 
 #EXTINF:0,Pink Thriller
 0
 
 #EXTINF:0,Pink Western 
-0
+http://212.200.125.10:9431/431
 
 #EXTINF:0,Pink World 
 0
 
 #EXTINF:0,Pink World Cinema 
-0
+http://212.200.125.10:9439/439
 
 #EXTINF:0,Pink Zabava 
 0

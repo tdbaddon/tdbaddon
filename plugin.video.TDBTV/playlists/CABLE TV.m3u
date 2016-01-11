@@ -22,6 +22,9 @@ http://200.76.77.237/LIVE/H01/CANAL444/PROFILE03.m3u8?supertvlat=%2F.ts
 #EXTINF:0,AMC 
 http://200.76.77.237/LIVE/H01/CANAL444/PROFILE05.m3u8?supertvlat=%2F.ts
 
+#EXTINF:0,AMC 
+http://212.200.125.9:8175/175
+
 #EXTINF:0,AXN 
 0
 
@@ -51,6 +54,9 @@ http://128.104.128.176:8080/udp/239.1.1.96:3096
 
 #EXTINF:0,Boomerang 
 http://77.120.118.235:8085
+
+#EXTINF:0,Boomerang 
+http://212.200.125.6:8223/223
 
 #EXTINF:0,Bravo 
 0
@@ -134,6 +140,9 @@ http://skyiptv.ddns.net:8000/live/alb/alb/754.m3u8
 http://bit.do/bFWjY
 
 #EXTINF:0,Disney Channel 
+http://212.200.125.5:8199/199
+
+#EXTINF:0,Disney Channel 
 http://skyiptv.ddns.net:8000/live/edi/edi/96.m3u8
 
 #EXTINF:0,Disney Channel 
@@ -194,16 +203,19 @@ http://200.76.77.237/LIVE/H01/CANAL415/PROFILE05.m3u8?supertvlat=%2F.ts
 http://iptvcanales.com/xw/cable.php?canal=86&player=playlist.m3u8
 
 #EXTINF:0,Fox Crime 
-0
+http://212.200.125.6:8226/226
 
 #EXTINF:0,Fox Life 
-0
+http://212.200.125.6:8225/225
 
 #EXTINF:0,Fox TV 
 http://128.104.128.176:8080/udp/239.1.1.88:3088?live786
 
 #EXTINF:0,Fox TV 
 http://128.104.128.176:8080/udp/239.1.1.88:3088
+
+#EXTINF:0,Fox TV 
+http://212.200.125.6:8232/232
 
 #EXTINF:0,FX 
 0
@@ -315,6 +327,9 @@ http://cdn.step-tv.com:8000/live/SON/SON/288.ts
 
 #EXTINF:0,Nickelodeon 
 http://skyiptv.ddns.net:8000/live/alb/alb/135.m3u8
+
+#EXTINF:0,Nickelodeon 
+http://212.200.125.6:8230/230
 
 #EXTINF:0,NickNight 
 http://top-iptv.zapto.org:8000/live/walid/walid/631.m3u8
