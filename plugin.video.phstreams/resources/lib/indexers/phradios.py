@@ -23,6 +23,7 @@
 import re,sys,urllib,urlparse
 from resources.lib.libraries import control
 from resources.lib.libraries import client
+from resources.lib.indexers import phhuddle
 
 mediaPath = control.addonInfo('path') + '/resources/media/phradios/'
 base_url = sys.argv[0]
@@ -32,7 +33,6 @@ args = urlparse.parse_qs(sys.argv[2][1:])
 def radioDirectory():
     addCategoryItem('1FM', 'radio1fm', '1fm-icon.png', '1fm-fanart.jpg')
     addCategoryItem('181FM', 'radio181fm', '181fm-icon.png', '181fm-fanart.jpg')
-    addCategoryItem('RadioTunes', 'radiotunes', 'radiotunes-icon.png', 'radiotunes-fanart.jpg')
     addCategoryItem('KickinRadio','Kickinradio', 'Kickin-icon.png', 'Kickin-fanart.jpg')
     endCategory()
 
@@ -107,39 +107,6 @@ def radio181fm(image, fanart):
     endDirectory()
 
 
-def radiotunes(image, fanart):
-    try:
-        url = 'http://radiotunes.com/channels'
-
-        result = client.request(url)
-        result = client.parseDOM(result, 'ul', attrs={'id': 'channel-nav'})[0]
-        items = client.parseDOM(result, 'li')
-    except:
-        pass
-
-    for item in items:
-        try:
-            name = client.parseDOM(item, 'span')[0]
-            name = client.replaceHTMLCodes(name)
-            name = name.encode('utf-8')
-
-            url = client.parseDOM(item, 'a', ret='href')[0]
-            url = url.replace('/', '')
-            url = 'http://pub7.radiotunes.com:80/radiotunes_%s_aac' % url
-            url = client.replaceHTMLCodes(url)
-            url = url.encode('utf-8')
-
-            thumb = client.parseDOM(item, 'img', ret='src')[0]
-            thumb = thumb.rsplit('?', 1)[0]
-            if thumb.startswith('//'): thumb = 'http:%s' % thumb
-            thumb = client.replaceHTMLCodes(thumb)
-            thumb = thumb.encode('utf-8')
-
-            addDirectoryItem(name, url, thumb, image, fanart)
-        except:
-            pass
-
-    endDirectory()
 
 
 def Kickinradio(image, fanart):
@@ -177,7 +144,7 @@ def Kickinradiocats(url, image, fanart):
     stream = client.parseDOM(stations, 'samp')
     streams = zip(station,stream)
 
-    #addCategoryItem('[B][I]'+cat+'[/B][/I]','',image,fanart)
+    addCategoryItem('[B][I]'+cat+'[/B][/I]','phhuddle.Play_Main',image,fanart)
     
      
     for CHAN,STREAM in streams:

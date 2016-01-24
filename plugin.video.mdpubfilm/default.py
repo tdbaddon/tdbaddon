@@ -38,7 +38,7 @@ def INDEX(url):
         all_videos = regex_get_all(link, '<div class="recent-item">', '<p class="post-meta">')
         items = len(all_videos)
         for a in all_videos:
-                name = regex_from_to(a, '<h3 class="post-box-title"><a href=".+?" rel="bookmark">', '</a>')
+                name = regex_from_to(a, '<h3 class="post-box-title"><a href=".+?" rel="bookmark">', '</a>').replace(' &#8211; Full (HD)','')
                 name = addon.unescape(name)
                 name = name.encode('ascii', 'ignore').decode('ascii')
                 qualep = regex_from_to(a, '<div class="f_tag">', '<')
@@ -67,7 +67,7 @@ def INDEX2(url):
         all_videos = regex_get_all(link, '<div class="recent-item">', '<p class="post-meta">')
         items = len(all_videos)
         for a in all_videos:
-                name = regex_from_to(a, '<h3 class="post-box-title"><a href=".+?" rel="bookmark">', '</a>')
+                name = regex_from_to(a, '<h3 class="post-box-title"><a href=".+?" rel="bookmark">', '</a>').replace(' &#8211; Full (HD)','')
                 name = addon.unescape(name)
                 name = name.encode('ascii', 'ignore').decode('ascii')
                 qualep = regex_from_to(a, '<div class="f_tag">', '<')

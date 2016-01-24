@@ -33,37 +33,31 @@ def resolve(url):
         except: referer = page
 
         result = client.request(page, referer=referer)
-
-
+        
         unpacked = ''
         packed = result.split('\n')
+        
         for i in packed: 
             try: unpacked += jsunpack.unpack(i)
             except: pass
         result += unpacked
         result = urllib.unquote_plus(result)
+        
         result = re.sub('\s\s+', ' ', result)
-
-
         url = client.parseDOM(result, 'iframe', ret='src')[-1]
-        url = url.replace(' ', '')
-
-        var = re.compile('var\s(.+?)\s*=\s*\'(.+?)\'').findall(result)
-        for i in range(100):
-            for v in var: url = url.replace("'%s'" % v[0], v[1])
-            for v in var: url = url.replace("(%s)" % v[0], "(%s)" % v[1])
-
-        url = re.sub(r"'.+?\((.+?)\)'", r'\1', url)
-        url = re.sub(r"'(.+?)'", r'\1', url)
-
-
+        url = url.replace(' ', '').split("'")[0]
+        ch = re.compile('ch=""(.+?)""').findall(str(result))
+        ch = ch[0].replace(' ','')
+        sw = re.compile(" sw='(.+?)'").findall(str(result))
+        url = url+'/'+ch+'/'+sw[0]
+       
         result = client.request(url, referer=referer)
-
         file = re.compile("'file'.+?'(.+?)'").findall(result)[0]
-
+        print file
         try:
             if not file.startswith('http'): raise Exception()
             url = client.request(file, output='geturl')
+            print url
             if not '.m3u8' in url: raise Exception()
             url += '|%s' % urllib.urlencode({'User-Agent': client.agent(), 'Referer': file})
             return url

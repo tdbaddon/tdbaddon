@@ -489,6 +489,9 @@ def info():
     }, {
         'class': 'sawlive',
         'netloc': ['sawlive.tv']
+    }, {
+        'class': 'shadownet',
+        'netloc': ['sdw-net.co']
     }, {        
         'class': 'shared2',
         'netloc': ['shared2.me'],

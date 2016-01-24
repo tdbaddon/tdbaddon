@@ -110,6 +110,14 @@ msgctxt "#30724"
 msgid "Use Android Hack"
 msgstr ""
 
+msgctxt "#30730"
+msgid "Huddle Up Sport's"
+msgstr ""
+
+msgctxt "#30731"
+msgid "Display Game Scores"
+msgstr ""
+
 msgctxt "#30751"
 msgid "[COLOR red]Scoreboard[/COLOR]"
 msgstr ""

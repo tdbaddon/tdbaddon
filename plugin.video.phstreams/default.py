@@ -219,6 +219,43 @@ elif action == 'ACpart':
 elif action == 'ACstream':
     from resources.lib.indexers import phtoons
     phtoons.ACstream(url)
+
+elif action == 'HuddleDirectory':
+    from resources.lib.indexers import phhuddle
+    phhuddle.HuddleDirectory()
+
+elif action == 'Huddle_Main':
+    from resources.lib.indexers import phhuddle
+    phhuddle.Huddle_Main(url, image, fanart)
+
+elif action == 'Archive_Main':
+    from resources.lib.indexers import phhuddle
+    phhuddle.Archive_Main(url, image, fanart)
+
+elif action == 'Play_Main':
+    from resources.lib.indexers import phhuddle
+    phhuddle.Play_Main(url)
+
+elif action == 'NBANFL_ARC':
+    from resources.lib.indexers import phhuddle
+    phhuddle.NBANFL_ARC(url, image, fanart)
+
+elif action == 'NHL_ARC':
+    from resources.lib.indexers import phhuddle
+    phhuddle.NHL_ARC(url, image, fanart)
+
+elif action == 'Huddle_Sites':
+    from resources.lib.indexers import phhuddle
+    phhuddle.Huddle_Sites(url, image, fanart)
+
+elif action == 'NBANFL_Stream':
+    from resources.lib.indexers import phhuddle
+    phhuddle.NBANFL_Stream(url, image, fanart)
+
+elif action == 'NHL_Stream':
+    from resources.lib.indexers import phhuddle
+    phhuddle.NHL_Stream(url)
+    
 elif action == 'nhlDirectory':
     from resources.lib.indexers import nhlcom
     nhlcom.nhlDirectory()

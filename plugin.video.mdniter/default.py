@@ -1,4 +1,5 @@
 import urllib,re,xbmcplugin,xbmcgui,xbmc,xbmcaddon,os
+import urlresolver
 import requests
 from addon.common.addon import Addon
 from addon.common.net import Net
@@ -90,7 +91,7 @@ def PEOPLE(url):
                 for url,name in match:
                     if 'page=' in url:
                             if '&' not in name:
-                                addDir('[B][COLOR cyan]Page %s[/COLOR][/B]' %name,url,1,icon,fanart,'')
+                                addDir('[B][COLOR cyan]Page %s[/COLOR][/B]' %name,url,2,icon,fanart,'')
         except: pass
         setView('movies', 'movie-view')
 
@@ -110,17 +111,21 @@ def PINDEX(url):
                 for url,name in match:
                     if 'page=' in url:
                             if '&' not in name:
-                                addDir('[B][COLOR cyan]Page %s[/COLOR][/B]' %name,url,1,icon,fanart,'')
+                                addDir('[B][COLOR cyan]Page %s[/COLOR][/B]' %name,url,6,icon,fanart,'')
         except: pass
         setView('movies', 'movie-view')
 
 
 
 def LINK(url):
+        url1 = url
         link = OPEN_URL(url)
-        RequestURL = 'http://niter.co/player/pk/pk/plugins/player_p2.php'
         try:
-                form_data={'url': re.search(r'ic=(.*?)&',link,re.I).group(1)}
+                RequestURL = 'http://niter.co/player/pk/pk/plugins/player_p2.php'
+                try:
+                        form_data={'url': re.search(r'ic=(.*?)&',link,re.I).group(1)}
+                except:
+                        form_data={'url': re.search(r'ic=(.*?)<',link,re.I).group(1)}
                 headers = {'host': 'niter.co', 'content-type':'application/x-www-form-urlencoded; charset=UTF-8',
                            'origin':'http://niter.co', 'referer': url,
                            'user-agent': User_Agent,'x-requested-with':'XMLHttpRequest'}
@@ -133,12 +138,68 @@ def LINK(url):
                 liz.setPath(url)
                 xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
         except:
-                url = re.compile('"label":".*?","file":"(.*?)"').findall(r)[0]
+                pass
+        try:
+                try:
+                        url = re.findall(r'emb=(.*?)"', str(link), re.I|re.DOTALL)[-1]
+                except:
+                        url = re.findall(r'emb=(.*?)<', str(link), re.I|re.DOTALL)[-1]
+                url = urlresolver.resolve(url)
+                #url = url+'|User-Agent='+User_Agent+'&Referer='+url1
+                #print url
                 liz = xbmcgui.ListItem(name, iconImage='DefaultVideo.png', thumbnailImage=iconimage)
                 liz.setInfo(type='Video', infoLabels={'Title':description})
                 liz.setProperty("IsPlayable","true")
-                liz.setPath(url)
+                liz.setPath(str(url))
                 xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
+        except: pass
+        try:
+                try:
+                        RequestURL = re.search(r'&emb=(.*?)&',link,re.I).group(1)
+                except:
+                        RequestURL = re.search(r'&emb=(.*?)<',link,re.I).group(1)
+                video_id = re.split(r'ef=', RequestURL, re.I)[1]
+                form_data={'ref:': video_id}
+                headers = {'host': 'up2stream.com','referer': url, 'user-agent': User_Agent,}
+                r = requests.get(RequestURL, data=form_data, headers=headers).text
+                try:
+                        match = re.compile("\,.*?'(.*?)'\.split\('\|'\)").findall(r)[0]
+                        try:
+                                url_part = re.compile("15,15,\'(.*?)\|").findall(r)[0]
+                        except:
+                                url_part = re.compile("16,16,\'(.*?)\|").findall(r)[0]
+                        try:
+                                hash_id = re.split(r"15,15,", str(match), re.I)[1]
+                        except:
+                                hash_id = re.split(r"16,16,", str(match), re.I)[1]
+                        try:
+                                hash_id2 = re.split(r"\|cdn\|http\|src\|video\|attr\|vizplay\|org\|", str(hash_id), re.I)[1]
+                        except:
+                                hash_id2 = re.split(r"\|cdn\|vizplay\|http\|src\|video\|attr\|org\|v\|hash\|.*?\|", str(hash_id), re.I)[1]
+    
+                        try:
+                                url_part2 = re.split(r"\|hash\|st\|mp4\|v\|", str(hash_id2), re.I)[0]
+                        except:
+                                url_part2 = re.split(r"\|st\|", str(hash_id2), re.I)[0]
+                        try:
+                                hash_id3 = re.split(r"\|hash\|st\|mp4\|v\|", str(hash_id2), re.I)[1]
+                        except:
+                                hash_id3 = re.split(r"\|st\|", str(hash_id2), re.I)[1]
+                        url_part3 = re.split(r"\|", str(hash_id3), re.I)[0]
+                        try:
+                                url_part4 = re.split(r"\|mp4\|", str(hash_id3), re.I)[1]
+                        except:
+                                url_part4 = re.split(r"\|", str(hash_id3), re.I)[1]
+                        url = 'http://'+url_part+'.cdn.vizplay.org/v/'+url_part3+'.mp4?st='+url_part2+'&hash='+url_part4
+                        print url
+                        liz = xbmcgui.ListItem(name, iconImage='DefaultVideo.png', thumbnailImage=iconimage)
+                        liz.setInfo(type='Video', infoLabels={'Title':description})
+                        liz.setProperty("IsPlayable","true")
+                        liz.setPath(url)
+                        xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
+                except:pass
+        except:pass
+        
 
 
 

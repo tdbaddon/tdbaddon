@@ -1,9 +1,22 @@
+V2.7.9
+-Added WWE and SOCCER in Huddle
+-Fixed connection issues Huddle
+
+V2.7.8
+- Added MMA to Huddle
+- Updated available resolvers.
+- RadioTunes - site changes(disabled)
+
+V2.7.7
+- Added Huddle Up Sports
+- Updated available resolvers.
+
 V2.7.6
-- Updates available resolvers.
+- Updated available resolvers.
 
 V2.7.5
 - Added Anime in cartoon section.
-- Updates available resolvers.
+- Updated available resolvers.
 
 V2.7.4
 - Updated available resolvers.

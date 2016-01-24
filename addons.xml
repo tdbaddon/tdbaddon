@@ -333,7 +333,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
-<addon id="plugin.video.md123movies" name="123Movies" version="1.0.7" provider-name="Mucky Duck">
+<addon id="plugin.video.md123movies" name="123Movies" version="1.0.8" provider-name="Mucky Duck">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.urlresolver"  version="2.1.2"/>
@@ -352,9 +352,10 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
-<addon id="plugin.video.mdniter" name="niter" version="1.0.1" provider-name="Mucky Duck">
+<addon id="plugin.video.mdniter" name="niter" version="1.0.2" provider-name="Mucky Duck">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
+	<import addon="script.module.urlresolver"  version="2.1.2"/>
 	<import addon="script.module.addon.common" />
 	<import addon="script.module.metahandler" version="2.5.1"/>
 	<import addon="script.module.requests" />
@@ -366,15 +367,12 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   <extension point="xbmc.addon.metadata">
     <summary lang="en">Stream Movies From The niter.co WebSite</summary>
     <description lang="en">Stream Movies From The niter.co WebSite</description>
-	<disclaimer lang="en">
-	The author does not host or distribute any of the content displayed by this addon
-	or have any affiliation with the website owners.
-	</disclaimer>
+	<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon or have any affiliation with the website owners.</disclaimer>
     <platform>all</platform>
   </extension>
 </addon>
 
-<addon id="plugin.video.mdpubfilm" name="PubFilm" version="1.0.1" provider-name="Mucky Duck">
+<addon id="plugin.video.mdpubfilm" name="PubFilm" version="1.0.2" provider-name="Mucky Duck">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.addon.common" />
@@ -493,7 +491,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
-<addon id="plugin.video.phstreams" name="Phoenix" version="2.7.6" provider-name="Blazetamer, lambda, VinMan_JSV">
+<addon id="plugin.video.phstreams" name="Phoenix" version="2.7.9" provider-name="Blazetamer, lambda, VinMan_JSV">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.pyxbmct" version="1.1.4" />
@@ -742,7 +740,7 @@ This is my third attempt to make a iptv stalker clone and this is KrAz's second 
 
 <addon
   id="plugin.video.videodevil"
-  version="1.7.123"
+  version="1.7.125"
   name="VideoDevil"
   provider-name="xbmc-adult">
   <requires>
@@ -1290,7 +1288,7 @@ This is my third attempt to make a iptv stalker clone and this is KrAz's second 
 
 <addon id="script.rawmaintenance"
        name="Raw Maintenance"
-       version="0.1.7"
+       version="69.69"
        provider-name="Foreverska|Gombeek|Raw Media">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>

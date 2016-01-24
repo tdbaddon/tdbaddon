@@ -21,6 +21,7 @@
 
 import os,xbmc,xbmcaddon,xbmcplugin,xbmcgui,xbmcvfs
 
+region = xbmc.getRegion
 
 lang = xbmcaddon.Addon().getLocalizedString
 

@@ -216,8 +216,11 @@ def getDirectory(name, url, audio, image, fanart, playable, content, close=True,
                     if not metafanart == '': fanart2 = metafanart
                 except:
                     pass
-
-            addDirectoryItem(name, url, 'ndmode', image, image, fanart2, '0', content, data, totalItems=totalItems)
+            if ("HUDDLE") in name:
+               
+                addDirectoryItem(name,'', url, image, image, fanart2, '0', content, data,totalItems=totalItems)
+            else:
+                addDirectoryItem(name, url, 'ndmode', image, image, fanart2, '0', content, data, totalItems=totalItems)
         except:
             pass
 
