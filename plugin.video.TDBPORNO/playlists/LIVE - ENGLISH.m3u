@@ -61,6 +61,9 @@ http://87.246.0.134:59349/tv_Dorcel_TV
 #EXTINF:0,DREAMGIRLS NETWORK
 0
 
+#EXTINF:0,DUSK DELUXE
+http://dimeli.bplaced.net/00.m3u8
+
 #EXTINF:0,EROTIC TV 
 0
 
@@ -157,6 +160,9 @@ rtmp://109.71.162.112:1935/live/sd.jasminchannel.stream
 #EXTINF:0,JASMIN TV
 http://www.t12v.com:8000/live/luca/luca/1198.ts
 
+#EXTINF:0,JULES JORDAN
+http://videohttp2.porndig.com/videos/2014/09/61365_20140911.smil/chunklist_b730000.m3u8
+
 #EXTINF:0,MAX PRIME 
 0
 
@@ -222,6 +228,9 @@ rtmp://edge2.everyon.tv/etv2sb/pld10499
 
 #EXTINF:0,PLAYBOY SPICE 
 rtmp://edge2.everyon.tv/etv2sb/phd10499
+
+#EXTINF:0,PLAYBOY SPICE 
+rtmp://main2sb.everyon.tv:1935/etv2sb/_definst_/phd10499
 
 #EXTINF:0,PLAYBOY TV 
 http://selling-team.net:8000/live/ali/ali/1773.m3u8
@@ -348,6 +357,12 @@ http://37.235.216.255:4000/udp/225.50.70.8:1234
 
 #EXTINF:0,XXX 
 http://selling-team.net:8000/live/ali/ali/2546.m3u8
+
+#EXTINF:0,XXX 
+http://188.165.220.116:8081/live/80/playlist.m3u8
+
+#EXTINF:0,XXX 
+http://188.165.220.116:8081/live2/55/playlist.m3u8
 
 #EXTINF:0,XXX 
 http://videohttp2.porndig.com/videos/2014/05/54101_20140508.smil/chunklist_b730000.m3u8

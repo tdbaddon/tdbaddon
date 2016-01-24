@@ -62,13 +62,10 @@ rtmp://91.82.85.44/live/konyhatv
 http://81.7.13.162/hls/oranews/index.m3u8
 
 #EXTINF:0,Planet TV 
-http://skyiptv.ddns.net:8000/live/edi/edi/353.m3u8
+0
 
 #EXTINF:0,Rokum TV 
 rtmp://82.114.65.202/live/rrokumtv.flv swfUrl=http://tv24.al/shqiptv/css/player.swf live=1
-
-#EXTINF:0,RTK1 
-http://skyiptv.ddns.net:8000/live/edi/edi/352.m3u8
 
 #EXTINF:0,RTK1 
 rtmp://wowza.rtkit.com/live/livestream
@@ -93,6 +90,3 @@ rtmp://str103.setplex.net:1935/228/stv_online
 
 #EXTINF:0,Vizion Plus 
 rtmp://live.vizionplus.tv/live//livestream3
-
-#EXTINF:0,Vizion Plus 
-http://skyiptv.ddns.net:8000/live/edi/edi/503.m3u8

@@ -5,28 +5,16 @@
 0
 
 #EXTINF:0,Pink 1 
-http://iptv80.ddns.net:9070/live/karimos/skype88/280.ts
+0
 
 #EXTINF:0,Pink 2 
-http://212.200.125.10:9450/450
-
-#EXTINF:0,Pink 2 
-http://iptv80.ddns.net:9070/live/karimos/skype88/279.ts
+http://luckyiptv.ddns.net:23000/live/fausto/fausto/3483.ts
 
 #EXTINF:0,Pink 3 
-http://212.200.125.10:9444/444
-
-#EXTINF:0,Pink 3 
-http://iptv80.ddns.net:9070/live/karimos/skype88/278.ts
+http://luckyiptv.ddns.net:23000/live/fausto/fausto/3446.ts
 
 #EXTINF:0,Pink Action 1 
-http://skyiptv.ddns.net:8000/live/edi/edi/393.m3u8
-
-#EXTINF:0,Pink Action 1 
-http://212.200.125.10:9445/445
-
-#EXTINF:0,Pink Action 1 
-http://iptv80.ddns.net:9070/live/karimos/skype88/277.ts
+0
 
 #EXTINF:0,Pink Action 2 
 0
@@ -35,61 +23,55 @@ http://iptv80.ddns.net:9070/live/karimos/skype88/277.ts
 0
 
 #EXTINF:0,Pink BH
-http://iptv80.ddns.net:9070/live/karimos/skype88/276.ts
+http://luckyiptv.ddns.net:23000/live/fausto/fausto/3445.ts
 
 #EXTINF:0,Pink Classic 
-http://212.200.125.10:9432/432
-
-#EXTINF:0,Pink Comedy 
-http://skyiptv.ddns.net:8000/live/edi/edi/346.m3u8
-
-#EXTINF:0,Pink Crime & Mystery 
-http://iptv80.ddns.net:9070/live/karimos/skype88/275.ts
-
-#EXTINF:0,Pink Crime & Mystery 
-http://212.200.77.2:5033/udp/239.5.5.3:2003
-
-#EXTINF:0,Pink Extra 
 0
 
+#EXTINF:0,Pink Comedy 
+0
+
+#EXTINF:0,Pink Crime & Mystery 
+http://luckyiptv.ddns.net:23000/live/fausto/fausto/3455.ts
+
+#EXTINF:0,Pink Extra 
+http://luckyiptv.ddns.net:23000/live/fausto/fausto/3431.ts
+
 #EXTINF:0,Pink Family 
-http://212.200.125.10:9449/449
+0
 
 #EXTINF:0,Pink Fashion 
-http://212.200.125.10:9424/424
+0
 
 #EXTINF:0,Pink Film 
-http://212.200.125.10:9447/447
+http://luckyiptv.ddns.net:23000/live/fausto/fausto/3482.ts
 
 #EXTINF:0,Pink Folk 1
-http://skyiptv.ddns.net:8000/live/edi/edi/385.m3u8
+http://luckyiptv.ddns.net:23000/live/fausto/fausto/3481.ts
 
 #EXTINF:0,Pink Folk 1
-http://iptv80.ddns.net:9070/live/karimos/skype88/273.ts
+http://luckyiptv.ddns.net:23000/live/fausto/fausto/3444.ts
 
 #EXTINF:0,Pink Folk 2 
 0
 
 #EXTINF:0,Pink Hits
-http://212.200.125.10:9425/425
+0
 
 #EXTINF:0,Pink Horror 
-http://skyiptv.ddns.net:8000/live/edi/edi/341.m3u8
-
-#EXTINF:0,Pink Horror 
-http://iptv80.ddns.net:9070/live/karimos/skype88/272.ts
+http://luckyiptv.ddns.net:23000/live/fausto/fausto/3480.ts
 
 #EXTINF:0,Pink Kids 
-http://iptv80.ddns.net:9070/live/karimos/skype88/271.ts
+http://luckyiptv.ddns.net:23000/live/fausto/fausto/3479.ts
 
 #EXTINF:0,Pink Kuvar 
-http://212.200.125.10:9441/441
+0
 
 #EXTINF:0,Pink Live 
 0
 
 #EXTINF:0,Pink M 
-http://iptv80.ddns.net:9070/live/karimos/skype88/270.ts
+0
 
 #EXTINF:0,Pink Movies 1 
 0
@@ -101,7 +83,7 @@ http://iptv80.ddns.net:9070/live/karimos/skype88/270.ts
 0
 
 #EXTINF:0,Pink Music 1 
-http://212.200.125.10:9448/448
+http://luckyiptv.ddns.net:23000/live/fausto/fausto/3430.ts
 
 #EXTINF:0,Pink Music 2
 0
@@ -122,61 +104,52 @@ http://212.200.125.10:9448/448
 0
 
 #EXTINF:0,Pink Parada
-http://212.200.125.10:9426/426
-
-#EXTINF:0,Pink Pedia 
-http://iptv80.ddns.net:9070/live/karimos/skype88/269.ts
-
-#EXTINF:0,Pink Plus 
 0
 
+#EXTINF:0,Pink Pedia 
+http://luckyiptv.ddns.net:23000/live/fausto/fausto/3429.ts
+
+#EXTINF:0,Pink Plus 
+http://luckyiptv.ddns.net:23000/live/fausto/fausto/3477.ts
+
 #EXTINF:0,Pink Premium 
-http://212.200.77.2:5033/udp/239.5.5.1:2003
+http://luckyiptv.ddns.net:23000/live/fausto/fausto/3476.ts
 
 #EXTINF:0,Pink Reality 
-http://iptv80.ddns.net:9070/live/karimos/skype88/268.ts
+http://luckyiptv.ddns.net:23000/live/fausto/fausto/3475.ts
 
 #EXTINF:0,Pink Romance
-http://iptv80.ddns.net:9070/live/karimos/skype88/267.ts
+http://luckyiptv.ddns.net:23000/live/fausto/fausto/3474.ts
 
 #EXTINF:0,Pink SciFi & Fantasy
-http://iptv80.ddns.net:9070/live/karimos/skype88/266.ts
+0
 
 #EXTINF:0,Pink Serije 
-http://212.200.125.10:9438/438
+0
 
 #EXTINF:0,Pink Show 
-http://212.200.125.10:9440/440
+0
 
 #EXTINF:0,Pink Soap 
 0
 
 #EXTINF:0,Pink Style 
-http://212.200.125.10:9433/433
-
-#EXTINF:0,Pink Super Kids
-http://212.200.125.10:9442/442
-
-#EXTINF:0,Pink Thriller
-http://212.200.77.2:5033/udp/239.5.5.2:2003
-
-#EXTINF:0,Pink Western 
-http://212.200.125.10:9431/431
-
-#EXTINF:0,Pink Western 
-http://iptv80.ddns.net:9070/live/karimos/skype88/274.ts
-
-#EXTINF:0,Pink Western 
-http://iptv80.ddns.net:9070/live/karimos/skype88/265.ts
-
-#EXTINF:0,Pink World 
 0
 
+#EXTINF:0,Pink Super Kids
+0
+
+#EXTINF:0,Pink Thriller
+0
+
+#EXTINF:0,Pink Western 
+0
+
+#EXTINF:0,Pink World 
+http://luckyiptv.ddns.net:23000/live/fausto/fausto/3469.ts
+
 #EXTINF:0,Pink World Cinema 
-http://212.200.125.10:9439/439
+0
 
 #EXTINF:0,Pink Zabava 
-http://iptv80.ddns.net:9070/live/karimos/skype88/263.ts
-
-
-
+http://luckyiptv.ddns.net:23000/live/fausto/fausto/3428.ts

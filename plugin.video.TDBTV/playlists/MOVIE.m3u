@@ -11,10 +11,13 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mp4
 0
 
 #EXTINF:0,Cinemax 
-0
+http://luckyiptv.ddns.net:23000/live/fausto/fausto/3437.ts
+
+#EXTINF:0,Cinemax 
+http://luckyiptv.ddns.net:23000/live/fausto/fausto/3486.ts
 
 #EXTINF:0,CineStarTV Premiere 1
-http://212.200.125.6:8224/224
+http://luckyiptv.ddns.net:23000/live/fausto/fausto/3465.ts
 
 #EXTINF:0,CineStarTV Premiere 2
 0
@@ -41,7 +44,7 @@ http://212.200.125.6:8224/224
 0
 
 #EXTINF:0,Film4 
-0
+http://198.179.30.108/live/13.high.stream/playlist.m3u8?id=0ad5aac39bb13fbe070dc75b8151939dce1331fbafeb9d8e43cd0b34375fea40fbfb037b9388f231b3faed7dbaf03bf207d764c7666c998eef2177c71f4b9a7ebe475c3af95f7278b8151b09950dc63b7b358b8bfed822692fd948cdf84bc3fe7753db7b5626dcd6621f7dce1a48898da259b98ab6f4746cae8afccdc48cae53e938aee5271c998136231bf66f85dd6fb264ccbca2a2a406
 
 #EXTINF:0,FilmBox 
 0
@@ -63,9 +66,6 @@ http://200.76.77.237/LIVE/H01/CANAL416/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Fox Action Movies 
 http://200.76.77.237/LIVE/H01/CANAL416/PROFILE05.m3u8?supertvlat=%2F.ts
-
-#EXTINF:0,Fox Action Movies 
-http://iptvcanales.com/xw/cable.php?canal=87&player=playlist.m3u8
 
 #EXTINF:0,Fox Cinema
 0
@@ -94,6 +94,12 @@ http://200.76.77.237/LIVE/H01/CANAL417/PROFILE05.m3u8?supertvlat=%2F.ts
 #EXTINF:0,Fox Movies
 http://212.200.125.6:8233/233
 
+#EXTINF:0,Fox Movies
+http://luckyiptv.ddns.net:23000/live/fausto/fausto/3461.ts
+
+#EXTINF:0,Fox Movies
+http://top-iptv.zapto.org:8000/live/walid/walid/554.m3u8
+
 #EXTINF:0,Golden Edge
 http://200.76.77.237/LIVE/H01/CANAL484/PROFILE02.m3u8?supertvlat=%2F.ts
 
@@ -104,22 +110,19 @@ http://200.76.77.237/LIVE/H01/CANAL484/PROFILE03.m3u8?supertvlat=%2F.ts
 http://200.76.77.237/LIVE/H01/CANAL484/PROFILE05.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,HBO 
-rtmp://94.102.49.207/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to/player/secure_player_iguide_token.swf live=1 pageUrl=http://www.iguide.to/view/1/watch-live-HBO-channel-for-free token=#ed%h0#w18623jsda6523lDGDVe
-
-#EXTINF:0,HBO 
-rtmp://www1.iguide.to:1935/iguide playpath=0bf02qe6msgtu4s swfUrl=http://www.iguide.to/player/secure_player_iguide_token.swf live=1 pageUrl=http://www.iguide.to/view/1/HBO token=#ed%h0#w18623jsda6523lDGDve
+http://st02.brn03.iptv.czechbone.net:8083/120-tv-pc.m3u8
 
 #EXTINF:0,HBO Adria
-0
+http://luckyiptv.ddns.net:23000/live/fausto/fausto/3459.ts
 
 #EXTINF:0,HBO East
-http://lb.iptvserver.tv:8080/redirect/LiveEdge/HBOEastUS/playlist.m3u8
+0
 
 #EXTINF:0,HBO East 2
 0
 
 #EXTINF:0,HBO Comedy 
-0
+http://luckyiptv.ddns.net:23000/live/fausto/fausto/3451.ts
 
 #EXTINF:0,HBO Family
 0
@@ -146,7 +149,7 @@ http://lb.iptvserver.tv:8080/redirect/LiveEdge/HBOEastUS/playlist.m3u8
 0
 
 #EXTINF:0,Paramount Channel 
-http://188.113.128.45:8000/udp/239.192.4.31:6085
+0
 
 #EXTINF:0,Showtime Beyond
 0
@@ -161,82 +164,52 @@ http://188.113.128.45:8000/udp/239.192.4.31:6085
 0
 
 #EXTINF:0,Sky Movies Action 
-http://iptv80.ddns.net:9070/live/karimos/skype88/169.ts
+0
 
 #EXTINF:0,Sky Movies Comedy 
-http://top-iptv.zapto.org:8000/live/walid/walid/544.m3u8
-
-#EXTINF:0,Sky Movies Comedy 
-http://iptv80.ddns.net:9070/live/karimos/skype88/173.ts
+0
 
 #EXTINF:0,Sky Movies Crime 
 0
 
 #EXTINF:0,Sky Movies Disney 
-http://top-iptv.zapto.org:8000/live/walid/walid/648.m3u8
-
-#EXTINF:0,Sky Movies Disney 
-http://iptv80.ddns.net:9070/live/karimos/skype88/172.ts
+0
 
 #EXTINF:0,Sky Movies Drama 
 0
 
 #EXTINF:0,Sky Movies Family 
-http://top-iptv.zapto.org:8000/live/walid/walid/541.m3u8
-
-#EXTINF:0,Sky Movies Family 
-http://iptv80.ddns.net:9070/live/karimos/skype88/171.ts
+0
 
 #EXTINF:0,Sky Movies Horrors 
-http://cdn.step-tv.com:8000/live/SON/SON/290.ts
-
-#EXTINF:0,Sky Movies Horrors 
-http://skyiptv.ddns.net:8000/live/alb/alb/130.m3u8
+0
 
 #EXTINF:0,Sky Movies Modern Greats 
-http://top-iptv.zapto.org:8000/live/walid/walid/539.m3u8
-
-#EXTINF:0,Sky Movies Modern Greats 
-http://cdn.step-tv.com:8000/live/SON/SON/295.ts
-
-#EXTINF:0,Sky Movies Modern Greats 
-http://iptv80.ddns.net:9070/live/karimos/skype88/174.ts
+0
 
 #EXTINF:0,Sky Movies Premiere 
-http://cdn.step-tv.com:8000/live/SON/SON/293.ts
-
-#EXTINF:0,Sky Movies Premiere 
-http://iptv80.ddns.net:9070/live/karimos/skype88/168.ts
+0
 
 #EXTINF:0,Sky Movies Premiere+
-http://skyiptv.ddns.net:8000/live/edi/edi/130.m3u8
+0
 
 #EXTINF:0,Sky Movies SciFi 
-http://top-iptv.zapto.org:8000/live/walid/walid/540.m3u8
-
-#EXTINF:0,Sky Movies SciFi 
-http://top-iptv.zapto.org:8000/live/walid/walid/565.m3u8
-
-#EXTINF:0,Sky Movies SciFi 
-http://iptv80.ddns.net:9070/live/karimos/skype88/170.ts
+0
 
 #EXTINF:0,Sky Movies Select 
-http://iptv80.ddns.net:9070/live/karimos/skype88/181.ts
-
-#EXTINF:0,Sky Movies Select 
-http://iptv80.ddns.net:9070/live/karimos/skype88/177.ts
+0
 
 #EXTINF:0,Sky Movies Showcase
-http://iptv80.ddns.net:9070/live/karimos/skype88/176.ts
+0
 
 #EXTINF:0,Sky Movies Thriller
-http://iptv80.ddns.net:9070/live/karimos/skype88/175.ts
+0
 
 #EXTINF:0,Sony TV 
 http://31.220.40.118:80/LiveEdge/SonyMovieChannelUS/playlist.m3u8?token=1e827ce046d165ec11d1950c9f66ce2f
 
 #EXTINF:0,Star Movies 
-0
+http://112.197.2.135:1935/colive/C001_HD_4/chunklist.m3u8
 
 #EXTINF:0,Starz Cinema
 0
@@ -254,10 +227,7 @@ http://31.220.40.118:80/LiveEdge/SonyMovieChannelUS/playlist.m3u8?token=1e827ce0
 0
 
 #EXTINF:0,TCM 
-http://31.220.41.103:80/LiveEdge/TCMUS/playlist.m3u8?token=32d2938dbca3b5f25dc0bf4465269e0e
-
-#EXTINF:0,TCM 
-http://iptv80.ddns.net:9070/live/karimos/skype88/190.ts
+0
 
 #EXTINF:0,The Movie Channel
 0
@@ -280,23 +250,11 @@ http://iptv80.ddns.net:9070/live/karimos/skype88/190.ts
 #EXTINF:0,True Movies 1 
 http://top-iptv.zapto.org:8000/live/walid/walid/563.m3u8
 
-#EXTINF:0,True Movies 1 
-http://skyiptv.ddns.net:8000/live/alb/alb/117.m3u8
-
 #EXTINF:0,True Movies 2 
 http://top-iptv.zapto.org:8000/live/walid/walid/564.m3u8
 
-#EXTINF:0,True Movies 2 
-http://cdn.step-tv.com:8000/live/SON/SON/1399.ts
-
-#EXTINF:0,True Movies 2 
-http://skyiptv.ddns.net:8000/live/alb/alb/682.m3u8
-
 #EXTINF:0,TV 1000 
 http://195.78.244.219:10000/udp/239.0.3.29:1234
-
-#EXTINF:0,TV 1000 
-http://212.200.125.9:9416/416
 
 #EXTINF:0,TV 1000 Action 
 http://195.78.244.219:10000/udp/239.0.3.27:1234

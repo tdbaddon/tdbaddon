@@ -220,7 +220,6 @@ def Huddle_Sites(url, image, fanart):
                                         urls.append(url)          
                         elif 'giostreams' in el:
                                 url = Giostreams(el)
-                                print url
                                 if url and url not in urls:
                                         addDirectoryItem('Giostreams.eu', 'Play_Main', image, image, fanart, url)
                                         urls.append(url)                
@@ -422,13 +421,13 @@ def sawresolve(url):
         
 def GetStreamup(channel):
         city = 'lax'
-        switch = ['01-'+city, '02-'+city, '-cdn', '03-'+city, '04-'+city, '05-'+city, ',06-lax', '07-lax', '08-lax', '09-lax']
+        switch = ['-cdn', '06-lax', '07-lax', '08-lax', '09-lax']
         serv = random.choice(switch)
 	try:
 		req = client.request('https://api.streamup.com/v1/channels/'+channel)
 		chan = json.loads(req)
 		if chan['channel']['live']:
-			return 'https://video'+serv+'.streamup.com/app/'+chan['channel']['capitalized_slug'].lower()+'/playlist.m3u8?timeout=30&autostart=true'
+			return 'https://video'+serv+'.streamup.com/app/'+chan['channel']['capitalized_slug'].lower()+'/playlist.m3u8'
 	except:
 		return None	
 

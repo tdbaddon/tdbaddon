@@ -1,0 +1,26 @@
+[b]1.4.2[/b]
+- server change
+[b]1.4.1[/b]
+- Small bug fix to repair Top 10 channels. Thanks to Coder Alpha
+[b]1.4.0[/b]
+- Fixed a bug that allowed adult channels to appear in the search, despite being disabled in settings
+[b]1.3.9[/b]
+- small code changes/fixes
+[b]1.3.8[/b]
+- Small maintenance update to clean up some code and repair categories that were changed on the website
+[b]1.3.7[/b]
+- Lifestyle, Non-English and Adult categories added (Adult needs to be enabled in settings)
+- Fixed a bug that limited results. You should see many more channels now, especially in the OnDemand and Entertainment sections
+- updated icon/fanart
+[b]1.3.6[/b]
+- Categories now supported
+[b]1.3.3[/b]
+- cCloud TV is back, source updated and search function added
+[b]1.3[/b]
+- source updated
+[b]1.2[/b]
+- source updated
+[b]1.1[/b]
+- bug fix to repair some channels that wouldn't load
+[b]1.0[/b]
+- Initial test release

@@ -50,7 +50,7 @@ http://213.136.90.30:8000/live/christop/christop/9223.ts
 rtmp://wma10.fluidstream.net/HistoryLab playpath=livestream swfUrl=http://www.radioetv.it/modules/mod_hllive/jw/player58l.swf pageUrl=http://www.radioetv.it/history-lab live=1 timeout=10
 
 #EXTINF:0,Jo TV 
-http://fms.shared.streamshow.it:1935/jotv/jotv/livestream.m3u8
+0
 
 #EXTINF:0,Juwelo TV 
 0
@@ -89,34 +89,16 @@ rtmp://fms.105.net/live/105Test1
 rtmp://fms.105.net:1935/live/rmc1
 
 #EXTINF:0,RAI 1 
-http://origin2.live.web.tv.streamprovider.net/streams/a3be8da5ba57ddb33ada9fa8fcd53a19/index.m3u8
-
-#EXTINF:0,RAI 1 
 http://213.136.90.30:8000/live/christop/christop/9231.ts
-
-#EXTINF:0,RAI 2 
-http://origin2.live.web.tv.streamprovider.net/streams/84553722f218dda44aab91b4ae0c2d42/index.m3u8
 
 #EXTINF:0,RAI 2 
 http://213.136.90.30:8000/live/christop/christop/9232.ts
 
 #EXTINF:0,RAI 3 
-http://origin2.live.web.tv.streamprovider.net/streams/2946613af1f663bb5b4164131b8c9413/index.m3u8
+http://213.136.90.30:8000/live/christop/christop/9233.ts
 
 #EXTINF:0,RAI 4
 http://213.136.90.30:8000/live/christop/christop/9234.ts
-
-#EXTINF:0,RAI 3 
-http://213.136.90.30:8000/live/christop/christop/9233.ts
-
-#EXTINF:0,RAI 5 
-http://stream12.rai.it/live/smil:rai5.smil/chunklist_b1500000.m3u8#MegaIPTVArgentina
-
-#EXTINF:0,RAI 5 
-http://stream12.rai.it:80/live/rai5.smil/chunklist_b400000.m3u8
-
-#EXTINF:0,RAI 5 
-http://stream12.rai.it:80/live/rai5_android.smil/chunklist_b400000.m3u8
 
 #EXTINF:0,RAI 5 
 http://213.136.90.30:8000/live/christop/christop/9224.ts
@@ -127,32 +109,11 @@ http://213.136.90.30:8000/live/christop/christop/9206.ts
 #EXTINF:0,Rai Gulp 
 http://213.136.90.30:8000/live/christop/christop/9228.ts
 
-#EXTINF:0,Rai Movie
-http://stream10.rai.it/italy/smil:raimovie.smil/playlist.m3u8
-
-#EXTINF:0,Rai Movie
+#EXTINF:0,Rai Movie 
 http://top-iptv.zapto.org:8000/live/walid/walid/508.m3u8
-
-#EXTINF:0,Rai Movie
-http://stream10.rai.it:80/italy/raimovie.smil/chunklist_b1200000.m3u8
-
-#EXTINF:0,Rai Movie
-http://stream10.rai.it:80/italy/raimovie.smil/chunklist_b1500000.m3u8
-
-#EXTINF:0,Rai Movie
-http://stream10.rai.it:80/italy/raimovie.smil/chunklist_b1800000.m3u8
-
-#EXTINF:0,Rai Movie
-http://213.136.90.30:8000/live/christop/christop/9225.ts
-
-#EXTINF:0,Rai News 
-http://origin2.live.web.tv.streamprovider.net/streams/121612976e4808528d2ba7edc446887c/index.m3u8
 
 #EXTINF:0,Rai News 
 http://live.cdn.streamago.tv:1935/streamagoedge/1917/810/livestream.m3u8
-
-#EXTINF:0,Rai News 
-http://api.iptv.ink/pl.m3u8?ch=87768641
 
 #EXTINF:0,Rai News 
 http://213.136.90.30:8000/live/christop/christop/9226.ts
@@ -165,9 +126,6 @@ http://213.136.90.30:8000/live/christop/christop/9227.ts
 
 #EXTINF:0,Rai Storia
 0
-
-#EXTINF:0,Rai Yoyo 
-http://stream10.rai.it:80/italy/raiyoyo.smil/chunklist_b1200000.m3u8
 
 #EXTINF:0,Rai Yoyo 
 http://213.136.90.30:8000/live/christop/christop/9201.ts
@@ -191,7 +149,7 @@ rtmp://flash3.ipercast.net/teleunica.tv-live/livestream1
 0
 
 #EXTINF:0,Sardegnauno 
-http://94.32.101.11:1935/sardegna1/live1.stream/livestream.m3u8
+0
 
 #EXTINF:0,Sky Arte 
 0
@@ -212,9 +170,6 @@ http://213.136.90.30:8000/live/christop/christop/9222.ts
 rtmp://cp49989.live.edgefcs.net:1935/live playpath=streamRM1@2564 swfUrl=http://videoplatform.sky.it/player/swf/player_v2.swf pageUrl=http://video.sky.it/news/diretta live=1 timeout=10
 
 #EXTINF:0,Sky TG24 
-rtmp://cp49989.live.edgefcs.net:1935/live/streamRM1@2564
-
-#EXTINF:0,Sky TG24 
 http://skyianywhere2-i.akamaihd.net:80/hls/live/200275/tg24/stream6/streamPlaylist.m3u8
 
 #EXTINF:0,Sky TG24 
@@ -229,20 +184,20 @@ http://213.136.90.30:8000/live/christop/christop/9221.ts
 #EXTINF:0,Suedtirol TV 
 0
 
-#EXTINF:0,Super TV
+#EXTINF:0,Super TV 
 http://wms.shared.streamshow.it:1935/supertv/supertv_mobile/live.m3u8
 
-#EXTINF:0,Super TV
+#EXTINF:0,Super TV 
 http://fms.shared.streamshow.it:1935/supertv/supertv/live.m3u8
 
-#EXTINF:0,Super TV
+#EXTINF:0,Super TV 
 http://wms.shared.streamshow.it:1935/supertv/supertv/live.m3u8
 
-#EXTINF:0,Super TV
+#EXTINF:0,Super TV 
 http://fms.shared.streamshow.it:1935/supertv/supertv_mobile/live.m3u8
 
 #EXTINF:0,Tele 8 
-0
+http://video2.kronopress.com:1935/tele8_live/tele8/playlist.m3u8
 
 #EXTINF:0,Tele Abruzzo 
 rtmp://184.173.179.163/TeleabruzzoTV playpath=TeleabruzzoTV swfUrl=http://184.173.179.163:2000/mediacp/system/misc/flvplayer/FLVplayer_Custom.swf live=1 pageUrl=http://www.abruzzo.fm/teleabruzzoflashplayer.html
@@ -274,10 +229,10 @@ http://wms.shared.streamshow.it:1935/telemarket/telemarket/live.m3u8
 #EXTINF:0,Tele Milano 
 rtmp://91.121.222.160/piublulombardia/ playpath=piublulombardia.sdp swfUrl=http://ondemand.superstreaming.it/telemilanocity/flowplayer.rtmp-3.1.3.swf live=1 pageUrl=http://ondemand.superstreaming.it/telemilanocity//telemilanocity.html
 
-#EXTINF:0,Tele Milano
+#EXTINF:0,Tele Milano 
 http://91.121.222.160:1935/piublu/piublu.sdp/live.m3u8
 
-#EXTINF:0,Tele Milano
+#EXTINF:0,Tele Milano 
 http://91.121.222.160:1935/piublu/piublu.sdp/HasBahCa.m3u8
 
 #EXTINF:0,Tele Monteneve 
@@ -347,7 +302,7 @@ rtmp://flash3.ipercast.net/teleunica.tv-live/livestream1
 0
 
 #EXTINF:0,Tirreno Sat 
-http://xtirrenosatx.api.channel.livestream.com/3.0/playlist.m3u8
+0
 
 #EXTINF:0,Trentino TV 
 rtmp://77.72.196.214:8554/live playpath=TrentinoTV
@@ -389,5 +344,5 @@ http://fms.shared.streamshow.it:1935/videobrescia/videobrescia_mobile/live.m3u8
 rtmp://178.33.229.111/live/Videolina
 
 #EXTINF:0,VideoRegione 
-http://iphone-streaming.ustream.tv/ustreamVideo/13268884/streams/live/playlist.m3u8
+0
 

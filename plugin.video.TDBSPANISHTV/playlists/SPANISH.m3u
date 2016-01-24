@@ -11,7 +11,7 @@ http://ooyalahd2-f.akamaihd.net/i/americatv_delivery@25405/index_1728_av-p.m3u8
 0
 
 #EXTINF:0,Antena Latina
-0
+http://ss6.domint.net:1962/al_edge/antena/chunklist_w2059964033.m3u8
 
 #EXTINF:0,Aragon TV 
 0
@@ -46,9 +46,6 @@ http://200.76.77.237/LIVE/H01/CANAL107/PROFILE03.m3u8?supertvlat=%2F.ts
 #EXTINF:0,Azteca Siete 
 http://200.76.77.237/LIVE/H01/CANAL7/PROFILE03.m3u8?supertvlat=%2F.ts
 
-#EXTINF:0,Azteca Siete 
-http://38.104.228.230:1938/info7/info7_512/playlist.m3u8
-
 #EXTINF:0,Bandamax 
 http://200.76.77.237/LIVE/H01/CANAL732/PROFILE03.m3u8?supertvlat=%2F.ts
 
@@ -56,7 +53,7 @@ http://200.76.77.237/LIVE/H01/CANAL732/PROFILE03.m3u8?supertvlat=%2F.ts
 0
 
 #EXTINF:0,Cadena 3 
-http://200.76.77.237/LIVE/H01/CANAL143/PROFILE03.m3u8?supertvlat=%2F.ts
+0
 
 #EXTINF:0,Campus TV 
 http://wow2.cl.digitalproserver.com/campustv/campustvvivo/campustv.smil/chunklist_w662421777_b848000.m3u8
@@ -71,10 +68,7 @@ http://mek4.mekstream.com/teleantillas/live3/hasbahca.m3u8
 http://74.63.97.188:1935/gpacifico1/videogpacifico1/playlist.m3u8
 
 #EXTINF:0,Canal 04 
-rtmp://streaming.wirenetserver.com.ar/canal4/live_1
-
-#EXTINF:0,Canal 04 
-http://72.46.226.61/live01/canal41/playlist.m3u8
+0
 
 #EXTINF:0,Canal 05 
 http://200.76.77.237/LIVE/H01/CANAL105/PROFILE03.m3u8?supertvlat=%2F.ts
@@ -86,13 +80,7 @@ rtmp://v1.streaminglatinoamerica.com/canal5/canal5
 rtmp://c5n.stweb.tv:1935/c5n/live
 
 #EXTINF:0,Canal 06 
-http://72.46.226.61/live01/canal61/playlist.m3u8
-
-#EXTINF:0,Canal 07 
-http://ecuadortv_livehd-lh.akamaihd.net/i/0n0xzqt3o_1@323283/master.m3u8#alxvill
-
-#EXTINF:0,Canal 07 
-http://72.46.226.61/live01/canal71/playlist.m3u8#MegaIPTVArgentina
+0
 
 #EXTINF:0,Canal 07 
 http://74.63.97.188:1935/gpacifico4/videogpacifico4/chunklist_w1774114891.m3u8?
@@ -116,7 +104,7 @@ rtsp://live-edge01.telecentro.net.ar:1935/live/26hd-720
 0
 
 #EXTINF:0,Canal 28 
-http://200.76.77.237/LIVE/H01/CANAL143/PROFILE03.m3u8?supertvlat=%2F.ts
+0
 
 #EXTINF:0,Canal 41
 rtmp://painel.serveron.com.br/8172/8172
@@ -218,7 +206,7 @@ http://162.212.176.83:8080/hchtv.m3u8
 http://ibsatiphone.ib3tv.com/iphoneliveIB3/IB3/IB3.m3u8
 
 #EXTINF:0,Info 7 
-http://38.104.228.230:1938/info7/info7_512/playlist.m3u8?
+0
 
 #EXTINF:0,Levante TV
 rtmp://teledifusion.tv:1935/levantetvlive/levantetvlive
@@ -271,7 +259,7 @@ http://live.rpctv.com/rpctv/tm.smil/playlist.m3u8
 #EXTINF:0,STV Rioja
 mms://87.106.208.121/stv
 
-#EXTINF:0,Tele Amiga
+#EXTINF:0,Tele Amiga 
 http://cdns840stu1010.multistream.net/teleamigalive/amlst:live/canalesdelpueblotv.m3u8?MegaIPTVArgentina
 
 #EXTINF:0,Tele Amiga
@@ -296,13 +284,13 @@ rtmp://k3.usastreams.com:1935/tvuno1/tvuno1
 0
 
 #EXTINF:0,TeleCaribe 
-http://cdns840stu1010.multistream.net/telecaribelive/amlst:live/master.m3u8
+0
 
 #EXTINF:0,Telemetro
 http://live.telemetro.com/telemetro/tm.smil/playlist.m3u8
 
 #EXTINF:0,Telemundo 
-0
+http://streamup.global.ssl.fastly.net/app/telemundox2chivas_69s-stream/chunklist.m3u8
 
 #EXTINF:0,TeleSur TV 
 0

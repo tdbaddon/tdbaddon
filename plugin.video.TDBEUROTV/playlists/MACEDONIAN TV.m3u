@@ -19,9 +19,6 @@ http://217.16.82.6:1935/zulu/alsat_1/playlist.m3u8
 #EXTINF:0,Alsat M 
 http://217.16.82.6:554/zulu/alsat_1/playlist.m3u8
 
-#EXTINF:0,Alsat M 
-http://skyiptv.ddns.net:8000/live/edi/edi/349.m3u8
-
 #EXTINF:0,BTR 
 0
 
@@ -44,10 +41,7 @@ mms://77.238.209.50:1234
 0
 
 #EXTINF:0,Iris 
-mms://62.162.58.55/TVIris
-
-#EXTINF:0,Iris 
-mms://62.162.58.54:8080
+0
 
 #EXTINF:0,K1 Veles
 0
@@ -169,7 +163,7 @@ mms://62.162.58.55/KameraKocani
 mms://62.162.58.55/KameraStip
 
 #EXTINF:0,Strumica Macedonia
-mms://62.162.58.55/KameraStrumica
+0
 
 #EXTINF:0,Veles Macedonia
 0

@@ -1,0 +1,5 @@
+<settings>
+	<category label="Adult">
+		<setting id="enable_adult_section" type="bool" label="Enable Adult Section (by enabling, you confirm you are 18+)" default="false" />
+	</category>
+</settings>

@@ -14,9 +14,6 @@ rtmp://off.net.mk/radio/city.stream
 0
 
 #EXTINF:0,Kanal 77 Bitola 
-rtmp://off.net.mk/radio/kanal77.stream
-
-#EXTINF:0,Kanal 77 Bitola 
 http://ss1.mk.checast.com:9002/128.mp3?1437242048887.mp3
 
 #EXTINF:0,Metropolis FM Skopje
@@ -43,11 +40,11 @@ http://ss1.mk.checast.com:21100/live?1437243979579.aac
 #EXTINF:0,Radio 2 Skopje 
 http://217.115.140.23:8001/radio2
 
-#EXTINF:0,Radio Akord kichevo
-http://ss1.mk.checast.com:9000/akord.aac?1437245466683.aac 
+#EXTINF:0,Radio Akord kichevo 
+0
 
 #EXTINF:0,Radio Bubamara Skopje 
-http://217.16.69.17:8000/bubamara.mp3
+0
 
 #EXTINF:0,Radio Bravo Kumanovo
 http://80.77.157.10:8000/
@@ -100,8 +97,8 @@ http://5.35.251.86:18002/;
 #EXTINF:0,Radio Meff Prilep 
 http://ss1.mk.checast.com:18002/;?1437245205237.mp3 
 
-#EXTINF:0,Radio Ohrid
-http://ss1.mk.checast.com:21074/live?1437245610120.aac 
+#EXTINF:0,Radio Ohrid 
+0
 
 #EXTINF:0,Radio Rosa Skopje 
 0

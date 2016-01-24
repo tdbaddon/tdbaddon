@@ -23,22 +23,13 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mp4
 http://top-iptv.zapto.org:8000/live/walid/walid/551.m3u8
 
 #EXTINF:0,Discovery Channel 
-http://top-iptv.zapto.org:8000/live/walid/walid/668.m3u8
+http://luckyiptv.ddns.net:23000/live/fausto/fausto/3436.ts
 
 #EXTINF:0,Discovery History 
 http://bit.do/bFWeV
 
 #EXTINF:0,Discovery History 
-http://top-iptv.zapto.org:8000/live/walid/walid/561.m3u8
-
-#EXTINF:0,Discovery History 
 http://top-iptv.zapto.org:8000/live/walid/walid/562.m3u8
-
-#EXTINF:0,Discovery History 
-http://skyiptv.ddns.net:8000/live/edi/edi/100.m3u8
-
-#EXTINF:0,Discovery History 
-http://skyiptv.ddns.net:8000/live/alb/alb/100.m3u8
 
 #EXTINF:0,Discovery H&H
 0
@@ -49,18 +40,14 @@ http://skyiptv.ddns.net:8000/live/alb/alb/100.m3u8
 #EXTINF:0,Discovery Science 
 http://109.226.222.161:4022/udp/239.255.4.250:1234
 
-#EXTINF:0,Discovery Science 
-http://skyiptv.ddns.net:8000/live/edi/edi/98.m3u8
-
-#EXTINF:0,Discovery Science 
-http://skyiptv.ddns.net:8000/live/alb/alb/98.m3u8
-
+#EXTINF:0,Discovery Science
+http://200.76.77.237/LIVE/H01/CANAL381/PROFILE02.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Discovery Turbo 
 0
 
 #EXTINF:0,Discovery World 
-0
+http://200.76.77.237/LIVE/H01/CANAL356/PROFILE03.m3u8?-1332%2FParaKodi.ts
 
 #EXTINF:0,Docubox 
 0
@@ -80,14 +67,14 @@ http://link.theplatform.com/s/dtjsEC/chjdYJxKb44V?manifest=m3u&feed=History%20Li
 #EXTINF:0,History Channel 
 https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8?hdnea=ip=173.34.67.21~st=1448574469~exp=1448575069~acl=/i/History_1@156885*~id=e0ac8c7f-b7ae-431f-998a-d87493df48b7~hmac=1bf4b5f4382fd3f887da82e7bc44d93e3d92152b0d873acded129cad627e231e
 
+#EXTINF:0,History Channel 
+http://luckyiptv.ddns.net:23000/live/fausto/fausto/3458.ts
+
 #EXTINF:0,History Channel 2
 0
 
 #EXTINF:0,Investigation Discovery 
 https://hec.su/b1UT
-
-#EXTINF:0,Investigation Discovery 
-http://212.200.125.9:8173/173
 
 #EXTINF:0,Investigation Discovery 
 http://top-iptv.zapto.org:8000/live/walid/walid/560.m3u8
@@ -109,12 +96,6 @@ http://iphone-streaming.ustream.tv/uhls/6540154/streams/live/iphone/playlist.m3u
 
 #EXTINF:0,National Geographic 
 http://109.226.222.161:4022/udp/239.255.4.30:1234
-
-#EXTINF:0,National Geographic 
-http://cdn.step-tv.com:8000/live/SON/SON/312.ts
-
-#EXTINF:0,National Geographic 
-http://skyiptv.ddns.net:8000/live/edi/edi/138.m3u8
 
 #EXTINF:0,Nova
 0
@@ -138,10 +119,10 @@ http://rt-a.akamaihd.net/ch_05@325609/720p.m3u8
 0
 
 #EXTINF:0,Travel Channel 
-0
+http://204.107.27.250/live/842.high.stream/playlist.m3u8?id=0ad5aac39bb13fbe070dc75b8151939dce1331fbafeb9d8e43cd0b34375fea40fbfb037b9388f231b3faed7dbaf03bf207d764c7666c998eef2177c71f4b9a7ebe475c3af95f7278b8151b09950dc63b7b358b8bfed822692fd948cdf84bc3fe7753db7b5626dcd6621f7dce1a48898da259b98ab6f4746cae8afccdc48cae53e938aee5271c998136231bf66f85dd6fb264ccbca2a2a406
 
 #EXTINF:0,Viasat Explorer 
-0
+http://195.78.244.219:10000/udp/239.0.3.30:1234
 
 #EXTINF:0,Viasat History 
 http://212.200.125.9:9415/415
