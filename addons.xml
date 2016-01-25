@@ -507,6 +507,29 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
+<addon id="plugin.video.moviesaboutmusic"
+       name="MoviesAboutMusic.com"
+       version="1.0.0"
+       provider-name="RayW1986">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0"/>
+		<import addon="script.module.urlresolver"  version="2.1.2"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource"
+               	library="default.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <platform>all</platform>
+        <summary>Watch videos from MoviesAboutMusic.com</summary>
+        <description>Watch documentaries and feature length movies from the MoviesAboutMusic.com website.
+
+		For help or more information please visit TVADDONS.ag</description>
+		<disclaimer lang="en">The author is not responsible for the media you find in this add-on.</disclaimer>
+    </extension>
+
+</addon>
+
 <addon id="plugin.video.moviesxl" version="1.0.4" name="Movies XL" provider-name="Mr Entertainment">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
@@ -1185,6 +1208,24 @@ This is my third attempt to make a iptv stalker clone and this is KrAz's second 
 	<extension point="xbmc.addon.metadata">
 		<summary lang="en">Install Add-ons from Raw Media</summary>
 		<description lang="en">Download and install add-ons from Raw Media repository.</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="repository.rayw1986" name="RayW1986 Repo" version="2.1.0" provider-name="RayW1986">
+	<extension point="xbmc.addon.repository" name="RayW1986 Repository">
+		<dir>
+			<info compressed="false">http://raw.github.com/RayW1986/repository.rayw1986/master/addons.xml</info>
+			<checksum>http://raw.github.com/RayW1986/repository.rayw1986/master/addons.xml.md5</checksum>
+			<datadir zip="true">http://raw.github.com/RayW1986/repository.rayw1986/master/zips</datadir>
+		</dir>
+		<info compressed="false">https://offshoregit.com/rayw1986/rayw1986-repo/addons.xml</info>
+		<checksum>https://offshoregit.com/rayw1986/rayw1986-repo/addons.xml.md5</checksum>
+		<datadir zip="true">https://offshoregit.com/rayw1986/rayw1986-repo/zips</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>RayW1986's Repository</summary>
+		<description>Download and install add-ons from RayW1986's Repository.</description>
 		<platform>all</platform>
 	</extension>
 </addon>
