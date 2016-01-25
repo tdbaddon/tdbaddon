@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<strings>
+<!-- Options -->
+	<string id="30001">All</string>
+	<string id="30002">Indian</string>
+	<string id="30003">Pakistani</string>
+	<string id="30004">All</string>
+	<string id="30005">DesiRulez</string>
+	<string id="30006">Desi TV Box</string>
+	<string id="30010">Username:</string>
+	<string id="30011">Password:</string>
+	<string id="30012">Server 1</string>
+	<string id="30013">Server 2</string>
+	<string id="30014">Server 3</string>
+	<string id="30021">1080p</string>
+	<string id="30022">720p</string>
+	<string id="30023">Standard</string>
+	
+	<string id="30031">Blackie</string>
+	<string id="30032">Summer</string>
+</strings>

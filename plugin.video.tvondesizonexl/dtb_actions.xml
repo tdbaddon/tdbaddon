@@ -1,0 +1,559 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="https://code.google.com/p/apple-tv2-xbmc/xoze/ xoze.xsd"
+	xmlns="https://code.google.com/p/apple-tv2-xbmc/xoze/">
+	
+	<action id="dtb-checkCache">
+		<move module="tvshows.dtb_actions" function="check_cache" view-id="dtb-refreshView" />
+		<move module="tvshows.dtb_actions" function="refresh_cache" />
+		<move module="tvshows.dtb_actions" function="load_channels"/>
+		<move module="tvshows.dtb_actions" function="load_favorite_tv_shows" view-id="dtb-channelsView" />
+	</action>
+	
+	<action id="dtb-displayShowsList">
+		<move module="tvshows.dtb_actions" function="determine_direct_tv_channel" />
+		<move module="tvshows.dtb_actions" function="determine_live_tv_channel" />
+		<move module="tvshows.dtb_actions" function="load_tv_shows" view-id="dtb-tvShowsView" />
+	</action>
+	
+	<action id="dtb-displayFavoriteShowEpisodesList">
+		<move module="tvshows.dtb_actions" function="load_tv_shows" view-id="dtb-tvShowsView" />
+		<move module="tvshows.dtb_actions" function="load_tv_show_episodes"  view-id="dtb-tvShowEpisodesView"/>
+	</action>
+	
+	<action id="dtb-displayShowEpisodesList">
+		<move module="tvshows.dtb_actions" function="load_tv_show_episodes"  view-id="dtb-tvShowEpisodesView"/>
+	</action>
+	
+	<action id="dtb-displayDirectChannelEpisodesList">
+		<move module="tvshows.dtb_actions" function="load_direct_link_channel" view-id="dtb-tvChannelEpisodesLoadingView"/>
+		<move module="tvshows.dtb_actions" function="load_tv_show_episodes"  view-id="dtb-tvChannelEpisodesView"/>
+	</action>
+	
+	<action id="dtb-displayShowOptions">
+		<move module="tvshows.google_images" function="load_tv_show_images"  view-id="dtb-tvShowOptionsView"/>
+	</action>
+	
+	<action id="dtb-displayShowEpisodeVideosList">
+		<move module="tvshows.dtb_actions" function="determine_tv_show_episode_videos"/>
+		<move module="tvshows.dtb_actions" function="load_tv_show_episode_videos"  view-id="dtb-tvShowEpisodeVideosView"/>
+		<move module="tvshows.dtb_actions" function="load_selected_playlist_streams"  view-id="dtb-playVideosView"/>
+	</action>
+	
+	<action id="dtb-displayChannelEpisodeVideosList">
+		<move module="tvshows.dtb_actions" function="determine_tv_show_episode_videos"/>
+		<move module="tvshows.dtb_actions" function="load_tv_show_episode_videos"  view-id="dtb-tvChannelEpisodeVideosView"/>
+		<move module="tvshows.dtb_actions" function="load_selected_playlist_streams"  view-id="dtb-playChannelVideosView"/>
+	</action>
+	
+	
+	<action id="dtb-displayShowEpisodeAllVideosList">
+		<move module="tvshows.dtb_actions" function="determine_tv_show_episode_videos"/>
+		<move module="tvshows.dtb_actions" function="load_tv_show_episode_videos_list"  view-id="dtb-tvShowEpisodeVideosListView"/>
+	</action>
+	
+	<action id="dtb-displayChannelEpisodeAllVideosList">
+		<move module="tvshows.dtb_actions" function="determine_tv_show_episode_videos"/>
+		<move module="tvshows.dtb_actions" function="load_tv_show_episode_videos_list"  view-id="dtb-tvChannelEpisodeVideosListView"/>
+	</action>
+	
+	<action id="dtb-playVideos">
+		<move module="tvshows.dtb_actions" function="load_selected_video_playlist_streams"  view-id="dtb-playAllVideosView"/>
+	</action>
+	
+	<action id="dtb-playChannelVideos">
+		<move module="tvshows.dtb_actions" function="load_selected_video_playlist_streams"  view-id="dtb-playChannelAllVideosView"/>
+	</action>
+	
+	<action id="dtb-hideEpisodes">
+		<move module="tvshows.dtb_actions" function="empty_function"  view-id="dtb-tvShowEpisodesHideView"/>
+	</action>
+	
+	<action id="dtb-hideOptions">
+		<move module="tvshows.dtb_actions" function="empty_function"  view-id="dtb-tvShowOptionsHideView"/>
+	</action>
+	
+	<action id="dtb-addShowToFavorites">
+		<move module="tvshows.dtb_actions" function="add_tv_show_favorite"  view-id="dtb-tvShowOptionsHideView"/>
+	</action>
+	
+	<action id="dtb-displayRemoveFavorite">
+		<move module="tvshows.dtb_actions" function="load_remove_tv_show_favorite"  view-id="dtb-favoriteRemoveButtonView"/>
+	</action>
+	
+	<action id="dtb-hideEpisodeVideosList">
+		<move module="tvshows.dtb_actions" function="empty_function"  view-id="dtb-tvShowEpisodeVideosListHideView"/>
+	</action>
+	
+	<action id="dtb-hideChannelEpisodeVideosList">
+		<move module="tvshows.dtb_actions" function="empty_function" view-id="dtb-tvChannelEpisodeVideosListHideView"/>
+	</action>
+	
+	<action id="dtb-hideRemoveFavorite">
+		<move module="tvshows.dtb_actions" function="empty_function"  view-id="dtb-channelsViewOthers"/>
+	</action>
+	
+	<action id="dtb-removeFavorite">
+		<move module="tvshows.dtb_actions" function="remove_favorite"  view-id="dtb-channelsViewOthers"/>
+	</action>
+	
+	<action id="dtb-watchLiveChannel">
+		<move module="tvshows.dtb_actions" function="watch_live"  view-id="dtb-liveChannelView"/>
+	</action>
+	
+	<view id="dtb-channelsView" function="show_channels_view" module="tvshows.dtb_views">
+		<event function="handle_channel_selected" module="tvshows.dtb_views" action-id="dtb-displayShowsList" control-id="102" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event function="handle_channel_selected" module="tvshows.dtb_views" action-id="dtb-displayShowsList" control-id="102" intent="ACTION_SELECT_ITEM" />
+		<event function="handle_channel_selected" module="tvshows.dtb_views" action-id="dtb-displayShowsList" control-id="102" intent="ACTION_ENTER" />
+		<event function="handle_channel_selected" module="tvshows.dtb_views" action-id="dtb-displayShowsList" control-id="102" intent="ACTION_TOUCH_TAP" />
+		
+		<event function="handle_channel_selected" module="tvshows.dtb_views" action-id="dtb-displayShowsList" control-id="108" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event function="handle_channel_selected" module="tvshows.dtb_views" action-id="dtb-displayShowsList" control-id="108" intent="ACTION_SELECT_ITEM" />
+		<event function="handle_channel_selected" module="tvshows.dtb_views" action-id="dtb-displayShowsList" control-id="108" intent="ACTION_ENTER" />
+		<event function="handle_channel_selected" module="tvshows.dtb_views" action-id="dtb-displayShowsList" control-id="108" intent="ACTION_TOUCH_TAP" />
+		
+		<event function="handle_favorite_tv_show_selected" module="tvshows.dtb_views" action-id="dtb-displayFavoriteShowEpisodesList" control-id="105" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event function="handle_favorite_tv_show_selected" module="tvshows.dtb_views" action-id="dtb-displayFavoriteShowEpisodesList" control-id="105" intent="ACTION_SELECT_ITEM" />
+		<event function="handle_favorite_tv_show_selected" module="tvshows.dtb_views" action-id="dtb-displayFavoriteShowEpisodesList" control-id="105" intent="ACTION_ENTER" />
+		<event function="handle_favorite_tv_show_selected" module="tvshows.dtb_views" action-id="dtb-displayFavoriteShowEpisodesList" control-id="105" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dtb-displayRemoveFavorite" function="handle_favorite_tv_show_selected_for_remove" module="tvshows.dtb_views" control-id="105" intent="ACTION_MOUSE_RIGHT_CLICK" />
+		<event action-id="dtb-displayRemoveFavorite" function="handle_favorite_tv_show_selected_for_remove" module="tvshows.dtb_views" control-id="105" intent="ACTION_MOUSE_DOUBLE_CLICK" />
+		<event action-id="dtb-displayRemoveFavorite" function="handle_favorite_tv_show_selected_for_remove" module="tvshows.dtb_views" control-id="105" intent="ACTION_CONTEXT_MENU" />
+		<event action-id="dtb-displayRemoveFavorite" function="handle_favorite_tv_show_selected_for_remove" module="tvshows.dtb_views" control-id="105" intent="ACTION_TOUCH_LONGPRESS" />
+		
+		<event action-id="viewSourceOrEnd" control-id="10" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="viewSourceOrEnd" control-id="10" intent="ACTION_SELECT_ITEM" />
+		<event action-id="viewSourceOrEnd" control-id="10" intent="ACTION_ENTER" />
+		<event action-id="viewSourceOrEnd" control-id="10" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="viewSourceOrEnd" control-id="" intent="ACTION_PREVIOUS_MENU" />
+		<event action-id="viewSourceOrEnd" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="viewSourceOrEnd" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="viewSourceOrEnd" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+	</view>
+	
+	<view id="dtb-channelsViewOthers" function="hide_remove_favorite" module="tvshows.dtb_views">
+		<event function="handle_channel_selected" module="tvshows.dtb_views" action-id="dtb-displayShowsList" control-id="102" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event function="handle_channel_selected" module="tvshows.dtb_views" action-id="dtb-displayShowsList" control-id="102" intent="ACTION_SELECT_ITEM" />
+		<event function="handle_channel_selected" module="tvshows.dtb_views" action-id="dtb-displayShowsList" control-id="102" intent="ACTION_ENTER" />
+		<event function="handle_channel_selected" module="tvshows.dtb_views" action-id="dtb-displayShowsList" control-id="102" intent="ACTION_TOUCH_TAP" />
+		
+		<event function="handle_favorite_tv_show_selected" module="tvshows.dtb_views" action-id="dtb-displayFavoriteShowEpisodesList" control-id="105" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event function="handle_favorite_tv_show_selected" module="tvshows.dtb_views" action-id="dtb-displayFavoriteShowEpisodesList" control-id="105" intent="ACTION_SELECT_ITEM" />
+		<event function="handle_favorite_tv_show_selected" module="tvshows.dtb_views" action-id="dtb-displayFavoriteShowEpisodesList" control-id="105" intent="ACTION_ENTER" />
+		<event function="handle_favorite_tv_show_selected" module="tvshows.dtb_views" action-id="dtb-displayFavoriteShowEpisodesList" control-id="105" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dtb-displayRemoveFavorite" function="handle_favorite_tv_show_selected_for_remove" module="tvshows.dtb_views" control-id="105" intent="ACTION_MOUSE_RIGHT_CLICK" />
+		<event action-id="dtb-displayRemoveFavorite" function="handle_favorite_tv_show_selected_for_remove" module="tvshows.dtb_views" control-id="105" intent="ACTION_MOUSE_DOUBLE_CLICK" />
+		<event action-id="dtb-displayRemoveFavorite" function="handle_favorite_tv_show_selected_for_remove" module="tvshows.dtb_views" control-id="105" intent="ACTION_CONTEXT_MENU" />
+		<event action-id="dtb-displayRemoveFavorite" function="handle_favorite_tv_show_selected_for_remove" module="tvshows.dtb_views" control-id="105" intent="ACTION_TOUCH_LONGPRESS" />
+		
+		<event action-id="viewSourceOrEnd" control-id="10" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="viewSourceOrEnd" control-id="10" intent="ACTION_SELECT_ITEM" />
+		<event action-id="viewSourceOrEnd" control-id="10" intent="ACTION_ENTER" />
+		<event action-id="viewSourceOrEnd" control-id="10" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="viewSourceOrEnd" control-id="" intent="ACTION_PREVIOUS_MENU" />
+		<event action-id="viewSourceOrEnd" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="viewSourceOrEnd" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="viewSourceOrEnd" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+	</view>
+	
+	
+	<view id="dtb-liveChannelView" function="watch_live_channel" module="tvshows.dtb_views" >
+		<event function="handle_channel_selected" module="tvshows.dtb_views" action-id="dtb-displayShowsList" control-id="102" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event function="handle_channel_selected" module="tvshows.dtb_views" action-id="dtb-displayShowsList" control-id="102" intent="ACTION_SELECT_ITEM" />
+		<event function="handle_channel_selected" module="tvshows.dtb_views" action-id="dtb-displayShowsList" control-id="102" intent="ACTION_ENTER" />
+		<event function="handle_channel_selected" module="tvshows.dtb_views" action-id="dtb-displayShowsList" control-id="102" intent="ACTION_TOUCH_TAP" />
+		
+		<event function="handle_channel_selected" module="tvshows.dtb_views" action-id="dtb-displayShowsList" control-id="108" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event function="handle_channel_selected" module="tvshows.dtb_views" action-id="dtb-displayShowsList" control-id="108" intent="ACTION_SELECT_ITEM" />
+		<event function="handle_channel_selected" module="tvshows.dtb_views" action-id="dtb-displayShowsList" control-id="108" intent="ACTION_ENTER" />
+		<event function="handle_channel_selected" module="tvshows.dtb_views" action-id="dtb-displayShowsList" control-id="108" intent="ACTION_TOUCH_TAP" />
+		
+		<event function="handle_favorite_tv_show_selected" module="tvshows.dtb_views" action-id="dtb-displayFavoriteShowEpisodesList" control-id="105" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event function="handle_favorite_tv_show_selected" module="tvshows.dtb_views" action-id="dtb-displayFavoriteShowEpisodesList" control-id="105" intent="ACTION_SELECT_ITEM" />
+		<event function="handle_favorite_tv_show_selected" module="tvshows.dtb_views" action-id="dtb-displayFavoriteShowEpisodesList" control-id="105" intent="ACTION_ENTER" />
+		<event function="handle_favorite_tv_show_selected" module="tvshows.dtb_views" action-id="dtb-displayFavoriteShowEpisodesList" control-id="105" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dtb-displayRemoveFavorite" function="handle_favorite_tv_show_selected_for_remove" module="tvshows.dtb_views" control-id="105" intent="ACTION_MOUSE_RIGHT_CLICK" />
+		<event action-id="dtb-displayRemoveFavorite" function="handle_favorite_tv_show_selected_for_remove" module="tvshows.dtb_views" control-id="105" intent="ACTION_MOUSE_DOUBLE_CLICK" />
+		<event action-id="dtb-displayRemoveFavorite" function="handle_favorite_tv_show_selected_for_remove" module="tvshows.dtb_views" control-id="105" intent="ACTION_CONTEXT_MENU" />
+		<event action-id="dtb-displayRemoveFavorite" function="handle_favorite_tv_show_selected_for_remove" module="tvshows.dtb_views" control-id="105" intent="ACTION_TOUCH_LONGPRESS" />
+		
+		<event action-id="viewSourceOrEnd" control-id="10" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="viewSourceOrEnd" control-id="10" intent="ACTION_SELECT_ITEM" />
+		<event action-id="viewSourceOrEnd" control-id="10" intent="ACTION_ENTER" />
+		<event action-id="viewSourceOrEnd" control-id="10" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="viewSourceOrEnd" control-id="" intent="ACTION_PREVIOUS_MENU" />
+		<event action-id="viewSourceOrEnd" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="viewSourceOrEnd" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="viewSourceOrEnd" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+	</view>
+	
+	<view id="dtb-favoriteRemoveButtonView" function="show_remove_favorite" module="tvshows.dtb_views">
+		<event action-id="dtb-removeFavorite" control-id="106" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dtb-removeFavorite" control-id="106" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dtb-removeFavorite" control-id="106" intent="ACTION_ENTER" />
+		<event action-id="dtb-removeFavorite" control-id="106" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dtb-hideRemoveFavorite" control-id="" intent="ACTION_PREVIOUS_MENU" />
+		<event action-id="dtb-hideRemoveFavorite" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="dtb-hideRemoveFavorite" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="dtb-hideRemoveFavorite" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+		
+		<event action-id="dtb-hideRemoveFavorite" control-id="10" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dtb-hideRemoveFavorite" control-id="10" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dtb-hideRemoveFavorite" control-id="10" intent="ACTION_ENTER" />
+		<event action-id="dtb-hideRemoveFavorite" control-id="10" intent="ACTION_TOUCH_TAP" />
+	</view>
+	
+	<view id="dtb-tvShowsView" function="show_tv_shows_view" module="tvshows.dtb_views">
+		<event action-id="dtb-checkCache" control-id="" intent="ACTION_PREVIOUS_MENU" />
+		<event action-id="dtb-checkCache" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="dtb-checkCache" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="dtb-checkCache" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+		
+		<event action-id="dtb-checkCache" control-id="10" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dtb-checkCache" control-id="10" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dtb-checkCache" control-id="10" intent="ACTION_ENTER" />
+		<event action-id="dtb-checkCache" control-id="10" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dtb-displayShowEpisodesList" function="handle_tv_show_selected" module="tvshows.dtb_views" control-id="305" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dtb-displayShowEpisodesList" function="handle_tv_show_selected" module="tvshows.dtb_views" control-id="305" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dtb-displayShowEpisodesList" function="handle_tv_show_selected" module="tvshows.dtb_views" control-id="305" intent="ACTION_ENTER" />
+		<event action-id="dtb-displayShowEpisodesList" function="handle_tv_show_selected" module="tvshows.dtb_views" control-id="305" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dtb-displayShowOptions" function="handle_tv_show_selected_for_options" module="tvshows.dtb_views" control-id="305" intent="ACTION_MOUSE_RIGHT_CLICK" />
+		<event action-id="dtb-displayShowOptions" function="handle_tv_show_selected_for_options" module="tvshows.dtb_views" control-id="305" intent="ACTION_MOUSE_DOUBLE_CLICK" />
+		<event action-id="dtb-displayShowOptions" function="handle_tv_show_selected_for_options" module="tvshows.dtb_views" control-id="305" intent="ACTION_CONTEXT_MENU" />
+		<event action-id="dtb-displayShowOptions" function="handle_tv_show_selected_for_options" module="tvshows.dtb_views" control-id="305" intent="ACTION_TOUCH_LONGPRESS" />
+	</view>
+	
+	<view id="dtb-tvShowOptionsView" function="show_tv_show_options" module="tvshows.dtb_views">
+		<event action-id="dtb-hideOptions" control-id="" intent="ACTION_PREVIOUS_MENU" />
+		<event action-id="dtb-hideOptions" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="dtb-hideOptions" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="dtb-hideOptions" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+		
+		<event action-id="dtb-hideOptions" control-id="10" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dtb-hideOptions" control-id="10" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dtb-hideOptions" control-id="10" intent="ACTION_ENTER" />
+		<event action-id="dtb-hideOptions" control-id="10" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dtb-addShowToFavorites" function="handle_tv_show_favorite_selected" module="tvshows.dtb_views" control-id="901" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dtb-addShowToFavorites" function="handle_tv_show_favorite_selected" module="tvshows.dtb_views" control-id="901" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dtb-addShowToFavorites" function="handle_tv_show_favorite_selected" module="tvshows.dtb_views" control-id="901" intent="ACTION_ENTER" />
+		<event action-id="dtb-addShowToFavorites" function="handle_tv_show_favorite_selected" module="tvshows.dtb_views" control-id="901" intent="ACTION_TOUCH_TAP" />
+	</view>
+	
+	<view id="dtb-tvShowOptionsHideView" function="hide_tv_show_options" module="tvshows.dtb_views">
+		<event action-id="dtb-checkCache" control-id="" intent="ACTION_PREVIOUS_MENU" />
+		<event action-id="dtb-checkCache" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="dtb-checkCache" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="dtb-checkCache" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+		
+		<event action-id="dtb-checkCache" control-id="10" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dtb-checkCache" control-id="10" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dtb-checkCache" control-id="10" intent="ACTION_ENTER" />
+		<event action-id="dtb-checkCache" control-id="10" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dtb-displayShowEpisodesList" function="handle_tv_show_selected" module="tvshows.dtb_views" control-id="305" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dtb-displayShowEpisodesList" function="handle_tv_show_selected" module="tvshows.dtb_views" control-id="305" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dtb-displayShowEpisodesList" function="handle_tv_show_selected" module="tvshows.dtb_views" control-id="305" intent="ACTION_ENTER" />
+		<event action-id="dtb-displayShowEpisodesList" function="handle_tv_show_selected" module="tvshows.dtb_views" control-id="305" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dtb-displayShowOptions" function="handle_tv_show_selected_for_options" module="tvshows.dtb_views" control-id="305" intent="ACTION_MOUSE_RIGHT_CLICK" />
+		<event action-id="dtb-displayShowOptions" function="handle_tv_show_selected_for_options" module="tvshows.dtb_views" control-id="305" intent="ACTION_MOUSE_DOUBLE_CLICK" />
+		<event action-id="dtb-displayShowOptions" function="handle_tv_show_selected_for_options" module="tvshows.dtb_views" control-id="305" intent="ACTION_CONTEXT_MENU" />
+		<event action-id="dtb-displayShowOptions" function="handle_tv_show_selected_for_options" module="tvshows.dtb_views" control-id="305" intent="ACTION_TOUCH_LONGPRESS" />
+	</view>
+	
+	<view id="dtb-tvShowEpisodesHideView" function="hide_tv_show_episodes_view" module="tvshows.dtb_views">
+		<event action-id="dtb-checkCache" control-id="" intent="ACTION_PREVIOUS_MENU" />
+		<event action-id="dtb-checkCache" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="dtb-checkCache" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="dtb-checkCache" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+		
+		<event action-id="dtb-checkCache" control-id="10" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dtb-checkCache" control-id="10" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dtb-checkCache" control-id="10" intent="ACTION_ENTER" />
+		<event action-id="dtb-checkCache" control-id="10" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dtb-displayShowEpisodesList" function="handle_tv_show_selected" module="tvshows.dtb_views" control-id="305" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dtb-displayShowEpisodesList" function="handle_tv_show_selected" module="tvshows.dtb_views" control-id="305" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dtb-displayShowEpisodesList" function="handle_tv_show_selected" module="tvshows.dtb_views" control-id="305" intent="ACTION_ENTER" />
+		<event action-id="dtb-displayShowEpisodesList" function="handle_tv_show_selected" module="tvshows.dtb_views" control-id="305" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dtb-displayShowOptions" function="handle_tv_show_selected_for_options" module="tvshows.dtb_views" control-id="305" intent="ACTION_MOUSE_RIGHT_CLICK" />
+		<event action-id="dtb-displayShowOptions" function="handle_tv_show_selected_for_options" module="tvshows.dtb_views" control-id="305" intent="ACTION_MOUSE_DOUBLE_CLICK" />
+		<event action-id="dtb-displayShowOptions" function="handle_tv_show_selected_for_options" module="tvshows.dtb_views" control-id="305" intent="ACTION_CONTEXT_MENU" />
+		<event action-id="dtb-displayShowOptions" function="handle_tv_show_selected_for_options" module="tvshows.dtb_views" control-id="305" intent="ACTION_TOUCH_LONGPRESS" />
+	</view>
+	
+	<view id="dtb-tvShowEpisodeVideosListHideView" function="hide_tv_show_episode_videos_list_view" module="tvshows.dtb_views">
+		<event action-id="dtb-checkCache" control-id="" intent="ACTION_PREVIOUS_MENU" />
+		<event action-id="dtb-checkCache" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="dtb-checkCache" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="dtb-checkCache" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+		
+		<event action-id="dtb-checkCache" control-id="10" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dtb-checkCache" control-id="10" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dtb-checkCache" control-id="10" intent="ACTION_ENTER" />
+		<event action-id="dtb-checkCache" control-id="10" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dtb-displayShowEpisodesList" function="handle_tv_show_selected" module="tvshows.dtb_views" control-id="305" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dtb-displayShowEpisodesList" function="handle_tv_show_selected" module="tvshows.dtb_views" control-id="305" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dtb-displayShowEpisodesList" function="handle_tv_show_selected" module="tvshows.dtb_views" control-id="305" intent="ACTION_ENTER" />
+		<event action-id="dtb-displayShowEpisodesList" function="handle_tv_show_selected" module="tvshows.dtb_views" control-id="305" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dtb-displayShowOptions" function="handle_tv_show_selected_for_options" module="tvshows.dtb_views" control-id="305" intent="ACTION_MOUSE_RIGHT_CLICK" />
+		<event action-id="dtb-displayShowOptions" function="handle_tv_show_selected_for_options" module="tvshows.dtb_views" control-id="305" intent="ACTION_MOUSE_DOUBLE_CLICK" />
+		<event action-id="dtb-displayShowOptions" function="handle_tv_show_selected_for_options" module="tvshows.dtb_views" control-id="305" intent="ACTION_CONTEXT_MENU" />
+		<event action-id="dtb-displayShowOptions" function="handle_tv_show_selected_for_options" module="tvshows.dtb_views" control-id="305" intent="ACTION_TOUCH_LONGPRESS" />
+	</view>
+	
+	<view id="dtb-tvChannelEpisodeVideosListHideView" function="hide_tv_channel_episode_videos_list_view" module="tvshows.dtb_views">
+		<event action-id="dtb-checkCache" control-id="" intent="ACTION_PREVIOUS_MENU" />
+		<event action-id="dtb-checkCache" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="dtb-checkCache" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="dtb-checkCache" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+		
+		<event action-id="dtb-checkCache" control-id="10" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dtb-checkCache" control-id="10" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dtb-checkCache" control-id="10" intent="ACTION_ENTER" />
+		<event action-id="dtb-checkCache" control-id="10" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dtb-displayChannelEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="1002" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dtb-displayChannelEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="1002" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dtb-displayChannelEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="1002" intent="ACTION_ENTER" />
+		<event action-id="dtb-displayChannelEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="1002" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dtb-displayChannelEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="1002" intent="ACTION_MOUSE_RIGHT_CLICK" />
+		<event action-id="dtb-displayChannelEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="1002" intent="ACTION_MOUSE_DOUBLE_CLICK" />
+		<event action-id="dtb-displayChannelEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="1002" intent="ACTION_CONTEXT_MENU" />
+		<event action-id="dtb-displayChannelEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="1002" intent="ACTION_TOUCH_LONGPRESS" />
+	</view>
+	
+	
+	<view id="dtb-tvShowEpisodesView" function="show_tv_show_episodes_view" module="tvshows.dtb_views">
+		<event action-id="dtb-hideEpisodes" control-id="" intent="ACTION_PREVIOUS_MENU" />
+		<event action-id="dtb-hideEpisodes" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="dtb-hideEpisodes" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="dtb-hideEpisodes" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+		
+		<event action-id="dtb-hideEpisodes" control-id="10" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dtb-hideEpisodes" control-id="10" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dtb-hideEpisodes" control-id="10" intent="ACTION_ENTER" />
+		<event action-id="dtb-hideEpisodes" control-id="10" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dtb-displayShowEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="401" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dtb-displayShowEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="401" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dtb-displayShowEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="401" intent="ACTION_ENTER" />
+		<event action-id="dtb-displayShowEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="401" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dtb-displayShowEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="401" intent="ACTION_MOUSE_RIGHT_CLICK" />
+		<event action-id="dtb-displayShowEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="401" intent="ACTION_MOUSE_DOUBLE_CLICK" />
+		<event action-id="dtb-displayShowEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="401" intent="ACTION_CONTEXT_MENU" />
+		<event action-id="dtb-displayShowEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="401" intent="ACTION_TOUCH_LONGPRESS" />
+	</view>
+	
+	<view id="dtb-tvChannelEpisodesLoadingView" function="show_tv_channel_episodes_loading_view" module="tvshows.dtb_views">
+		<event action-id="dtb-checkCache" control-id="" intent="ACTION_PREVIOUS_MENU" />
+		<event action-id="dtb-checkCache" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="dtb-checkCache" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="dtb-checkCache" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+		
+		<event action-id="dtb-checkCache" control-id="10" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dtb-checkCache" control-id="10" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dtb-checkCache" control-id="10" intent="ACTION_ENTER" />
+		<event action-id="dtb-checkCache" control-id="10" intent="ACTION_TOUCH_TAP" />
+	</view>
+	
+	<view id="dtb-tvChannelEpisodesView" function="show_tv_channel_episodes_view" module="tvshows.dtb_views">
+		<event action-id="dtb-checkCache" control-id="" intent="ACTION_PREVIOUS_MENU" />
+		<event action-id="dtb-checkCache" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="dtb-checkCache" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="dtb-checkCache" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+		
+		<event action-id="dtb-checkCache" control-id="10" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dtb-checkCache" control-id="10" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dtb-checkCache" control-id="10" intent="ACTION_ENTER" />
+		<event action-id="dtb-checkCache" control-id="10" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dtb-displayChannelEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="1002" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dtb-displayChannelEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="1002" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dtb-displayChannelEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="1002" intent="ACTION_ENTER" />
+		<event action-id="dtb-displayChannelEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="1002" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dtb-displayChannelEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="1002" intent="ACTION_MOUSE_RIGHT_CLICK" />
+		<event action-id="dtb-displayChannelEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="1002" intent="ACTION_MOUSE_DOUBLE_CLICK" />
+		<event action-id="dtb-displayChannelEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="1002" intent="ACTION_CONTEXT_MENU" />
+		<event action-id="dtb-displayChannelEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="1002" intent="ACTION_TOUCH_LONGPRESS" />
+	</view>
+	
+	<view id="dtb-tvShowEpisodeVideosView" function="show_tv_show_episode_videos_view" module="tvshows.dtb_views">
+		<event action-id="dtb-hideEpisodes" control-id="" intent="ACTION_PREVIOUS_MENU" />
+		<event action-id="dtb-hideEpisodes" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="dtb-hideEpisodes" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="dtb-hideEpisodes" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+		
+		<event action-id="dtb-hideEpisodes" control-id="10" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dtb-hideEpisodes" control-id="10" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dtb-hideEpisodes" control-id="10" intent="ACTION_ENTER" />
+		<event action-id="dtb-hideEpisodes" control-id="10" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dtb-displayShowEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="401" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dtb-displayShowEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="401" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dtb-displayShowEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="401" intent="ACTION_ENTER" />
+		<event action-id="dtb-displayShowEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="401" intent="ACTION_TOUCH_TAP" />
+		<event action-id="dtb-displayShowEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="401" intent="ACTION_MOUSE_RIGHT_CLICK" />
+		<event action-id="dtb-displayShowEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="401" intent="ACTION_MOUSE_DOUBLE_CLICK" />
+		<event action-id="dtb-displayShowEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="401" intent="ACTION_CONTEXT_MENU" />
+		<event action-id="dtb-displayShowEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="401" intent="ACTION_TOUCH_LONGPRESS" />
+	</view>
+	<view id="dtb-tvChannelEpisodeVideosView" function="show_tv_show_episode_videos_view" module="tvshows.dtb_views">
+		<event action-id="dtb-checkCache" control-id="" intent="ACTION_PREVIOUS_MENU" />
+		<event action-id="dtb-checkCache" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="dtb-checkCache" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="dtb-checkCache" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+		
+		<event action-id="dtb-checkCache" control-id="10" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dtb-checkCache" control-id="10" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dtb-checkCache" control-id="10" intent="ACTION_ENTER" />
+		<event action-id="dtb-checkCache" control-id="10" intent="ACTION_TOUCH_TAP" />
+		<event action-id="dtb-displayChannelEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="1002" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dtb-displayChannelEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="1002" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dtb-displayChannelEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="1002" intent="ACTION_ENTER" />
+		<event action-id="dtb-displayChannelEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="1002" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dtb-displayChannelEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="1002" intent="ACTION_MOUSE_RIGHT_CLICK" />
+		<event action-id="dtb-displayChannelEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="1002" intent="ACTION_MOUSE_DOUBLE_CLICK" />
+		<event action-id="dtb-displayChannelEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="1002" intent="ACTION_CONTEXT_MENU" />
+		<event action-id="dtb-displayChannelEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="1002" intent="ACTION_TOUCH_LONGPRESS" />
+	</view>
+	
+	<view id="dtb-playVideosView" function="play_video_streams" module="tvshows.dtb_views">
+		<event action-id="dtb-hideEpisodes" control-id="" intent="ACTION_PREVIOUS_MENU" />
+		<event action-id="dtb-hideEpisodes" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="dtb-hideEpisodes" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="dtb-hideEpisodes" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+		
+		<event action-id="dtb-hideEpisodes" control-id="10" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dtb-hideEpisodes" control-id="10" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dtb-hideEpisodes" control-id="10" intent="ACTION_ENTER" />
+		<event action-id="dtb-hideEpisodes" control-id="10" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dtb-displayShowEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="401" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dtb-displayShowEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="401" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dtb-displayShowEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="401" intent="ACTION_ENTER" />
+		<event action-id="dtb-displayShowEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="401" intent="ACTION_TOUCH_TAP" />
+		<event action-id="dtb-displayShowEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="401" intent="ACTION_MOUSE_RIGHT_CLICK" />
+		<event action-id="dtb-displayShowEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="401" intent="ACTION_MOUSE_DOUBLE_CLICK" />
+		<event action-id="dtb-displayShowEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="401" intent="ACTION_CONTEXT_MENU" />
+		<event action-id="dtb-displayShowEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="401" intent="ACTION_TOUCH_LONGPRESS" />
+	</view>
+	
+	<view id="dtb-playChannelVideosView" function="play_video_streams" module="tvshows.dtb_views">
+		<event action-id="dtb-checkCache" control-id="" intent="ACTION_PREVIOUS_MENU" />
+		<event action-id="dtb-checkCache" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="dtb-checkCache" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="dtb-checkCache" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+		
+		<event action-id="dtb-checkCache" control-id="10" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dtb-checkCache" control-id="10" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dtb-checkCache" control-id="10" intent="ACTION_ENTER" />
+		<event action-id="dtb-checkCache" control-id="10" intent="ACTION_TOUCH_TAP" />
+		<event action-id="dtb-displayChannelEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="1002" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dtb-displayChannelEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="1002" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dtb-displayChannelEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="1002" intent="ACTION_ENTER" />
+		<event action-id="dtb-displayChannelEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="1002" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dtb-displayChannelEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="1002" intent="ACTION_MOUSE_RIGHT_CLICK" />
+		<event action-id="dtb-displayChannelEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="1002" intent="ACTION_MOUSE_DOUBLE_CLICK" />
+		<event action-id="dtb-displayChannelEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="1002" intent="ACTION_CONTEXT_MENU" />
+		<event action-id="dtb-displayChannelEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dtb_views" control-id="1002" intent="ACTION_TOUCH_LONGPRESS" />
+	</view>
+	
+	<view id="dtb-tvShowEpisodeVideosListView" function="show_tv_show_episode_videos_list_view" module="tvshows.dtb_views">
+		<event action-id="dtb-hideEpisodeVideosList" control-id="" intent="ACTION_PREVIOUS_MENU" />
+		<event action-id="dtb-hideEpisodeVideosList" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="dtb-hideEpisodeVideosList" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="dtb-hideEpisodeVideosList" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+		
+		<event action-id="dtb-hideEpisodeVideosList" control-id="10" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dtb-hideEpisodeVideosList" control-id="10" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dtb-hideEpisodeVideosList" control-id="10" intent="ACTION_ENTER" />
+		<event action-id="dtb-hideEpisodeVideosList" control-id="10" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dtb-playVideos" function="handle_tv_show_episode_video_selected" module="tvshows.dtb_views" control-id="804" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dtb-playVideos" function="handle_tv_show_episode_video_selected" module="tvshows.dtb_views" control-id="804" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dtb-playVideos" function="handle_tv_show_episode_video_selected" module="tvshows.dtb_views" control-id="804" intent="ACTION_ENTER" />
+		<event action-id="dtb-playVideos" function="handle_tv_show_episode_video_selected" module="tvshows.dtb_views" control-id="804" intent="ACTION_TOUCH_TAP" />
+	</view>
+	
+	<view id="dtb-tvChannelEpisodeVideosListView" function="show_tv_channel_episode_videos_list_view" module="tvshows.dtb_views">
+		<event action-id="dtb-hideChannelEpisodeVideosList" control-id="" intent="ACTION_PREVIOUS_MENU" />
+		<event action-id="dtb-hideChannelEpisodeVideosList" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="dtb-hideChannelEpisodeVideosList" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="dtb-hideChannelEpisodeVideosList" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+		
+		<event action-id="dtb-hideChannelEpisodeVideosList" control-id="10" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dtb-hideChannelEpisodeVideosList" control-id="10" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dtb-hideChannelEpisodeVideosList" control-id="10" intent="ACTION_ENTER" />
+		<event action-id="dtb-hideChannelEpisodeVideosList" control-id="10" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dtb-playChannelVideos" function="handle_tv_show_episode_video_selected" module="tvshows.dtb_views" control-id="804" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dtb-playChannelVideos" function="handle_tv_show_episode_video_selected" module="tvshows.dtb_views" control-id="804" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dtb-playChannelVideos" function="handle_tv_show_episode_video_selected" module="tvshows.dtb_views" control-id="804" intent="ACTION_ENTER" />
+		<event action-id="dtb-playChannelVideos" function="handle_tv_show_episode_video_selected" module="tvshows.dtb_views" control-id="804" intent="ACTION_TOUCH_TAP" />
+	</view>
+	
+	<view id="dtb-playAllVideosView" function="play_video_streams" module="tvshows.dtb_views">
+		<event action-id="dtb-hideEpisodeVideosList" control-id="" intent="ACTION_PREVIOUS_MENU" />
+		<event action-id="dtb-hideEpisodeVideosList" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="dtb-hideEpisodeVideosList" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="dtb-hideEpisodeVideosList" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+		
+		<event action-id="dtb-hideEpisodeVideosList" control-id="10" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dtb-hideEpisodeVideosList" control-id="10" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dtb-hideEpisodeVideosList" control-id="10" intent="ACTION_ENTER" />
+		<event action-id="dtb-hideEpisodeVideosList" control-id="10" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dtb-playVideos" function="handle_tv_show_episode_video_selected" module="tvshows.dtb_views" control-id="804" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dtb-playVideos" function="handle_tv_show_episode_video_selected" module="tvshows.dtb_views" control-id="804" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dtb-playVideos" function="handle_tv_show_episode_video_selected" module="tvshows.dtb_views" control-id="804" intent="ACTION_ENTER" />
+		<event action-id="dtb-playVideos" function="handle_tv_show_episode_video_selected" module="tvshows.dtb_views" control-id="804" intent="ACTION_TOUCH_TAP" />
+	</view>
+	
+	<view id="dtb-playChannelAllVideosView" function="play_video_streams" module="tvshows.dtb_views">
+		<event action-id="dtb-hideChannelEpisodeVideosList" control-id="" intent="ACTION_PREVIOUS_MENU" />
+		<event action-id="dtb-hideChannelEpisodeVideosList" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="dtb-hideChannelEpisodeVideosList" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="dtb-hideChannelEpisodeVideosList" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+		
+		<event action-id="dtb-hideChannelEpisodeVideosList" control-id="10" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dtb-hideChannelEpisodeVideosList" control-id="10" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dtb-hideChannelEpisodeVideosList" control-id="10" intent="ACTION_ENTER" />
+		<event action-id="dtb-hideChannelEpisodeVideosList" control-id="10" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dtb-playChannelVideos" function="handle_tv_show_episode_video_selected" module="tvshows.dtb_views" control-id="804" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dtb-playChannelVideos" function="handle_tv_show_episode_video_selected" module="tvshows.dtb_views" control-id="804" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dtb-playChannelVideos" function="handle_tv_show_episode_video_selected" module="tvshows.dtb_views" control-id="804" intent="ACTION_ENTER" />
+		<event action-id="dtb-playChannelVideos" function="handle_tv_show_episode_video_selected" module="tvshows.dtb_views" control-id="804" intent="ACTION_TOUCH_TAP" />
+	</view>
+
+	<view id="dtb-refreshView" function="show_refresh_view" module="tvshows.dtb_views">
+		<event action-id="viewSourceOrEnd" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="viewSourceOrEnd" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="viewSourceOrEnd" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+		<event action-id="viewSourceOrEnd" control-id="" intent="ACTION_PREVIOUS_MENU" />
+		
+		<event action-id="viewSourceOrEnd" control-id="10" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="viewSourceOrEnd" control-id="10" intent="ACTION_SELECT_ITEM" />
+		<event action-id="viewSourceOrEnd" control-id="10" intent="ACTION_ENTER" />
+		<event action-id="viewSourceOrEnd" control-id="10" intent="ACTION_TOUCH_TAP" />
+	</view>
+</actions>

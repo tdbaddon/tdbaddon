@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="https://code.google.com/p/apple-tv2-xbmc/xoze/ xoze.xsd"
+	xmlns="https://code.google.com/p/apple-tv2-xbmc/xoze/">
+	
+	<service path="resolveStream" action-id="resolveStream" module="tvshows.actions" function="set_stream_in_response"/>
+	
+	<action id="resolveStream">
+		<move  module="tvshows.actions" function="resolve_stream"/>
+	</action>
+	
+	<action id="start">
+		<move module="tvshows.actions" function="start_addon" view-id="startView" />
+	</action>
+	
+	<action id="wishBoard">
+		<move module="tvshows.actions" function="check_wish" />
+		<move module="tvshows.actions" function="display_wish" view-id="wishView"/>
+	</action>
+	
+	<action id="displaySourceList">
+		<move module="tvshows.actions" function="load_source_list" view-id="tvSourceView"  />
+	</action>
+	
+	<action id="determineSource">
+		<move module="tvshows.actions" function="determine_source" />
+	</action>
+	
+	<action id="viewSourceOrEnd">
+		<move module="tvshows.actions" function="end_menu" />
+	</action>
+
+	<action id="end">
+		<move module="tvshows.actions" function="end_addon" />
+	</action>
+	
+	<view id="tvSourceView" function="show_tv_source_view" module="tvshows.views">
+		<event function="handle_tv_source_selected" module="tvshows.views" action-id="determineSource" control-id="1202" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event function="handle_tv_source_selected" module="tvshows.views" action-id="determineSource" control-id="1202" intent="ACTION_SELECT_ITEM" />
+		<event function="handle_tv_source_selected" module="tvshows.views" action-id="determineSource" control-id="1202" intent="ACTION_ENTER" />
+		<event function="handle_tv_source_selected" module="tvshows.views" action-id="determineSource" control-id="1202" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="end" control-id="10" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="end" control-id="10" intent="ACTION_SELECT_ITEM" />
+		<event action-id="end" control-id="10" intent="ACTION_ENTER" />
+		<event action-id="end" control-id="10" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="end" control-id="" intent="ACTION_PREVIOUS_MENU" />
+		<event action-id="end" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="end" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="end" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+	</view>
+
+	<view id="startView" function="show_start_view" module="tvshows.views">
+		<event action-id="end" control-id="" intent="ACTION_PREVIOUS_MENU" />
+		<event action-id="end" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="end" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="end" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+		<event action-id="wishBoard" function="handle_init" module="tvshows.views"  control-id="" intent="INIT" />
+	</view>
+	
+	<view id="wishView" function="show_wish_view" module="tvshows.views">
+		<event action-id="end" control-id="" intent="ACTION_PREVIOUS_MENU" />
+		<event action-id="end" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="end" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="end" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+		<event function="handle_wish_closed" module="tvshows.views" action-id="displaySourceList" control-id="701" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event function="handle_wish_closed" module="tvshows.views" action-id="displaySourceList" control-id="701" intent="ACTION_SELECT_ITEM" />
+		<event function="handle_wish_closed" module="tvshows.views" action-id="displaySourceList" control-id="701" intent="ACTION_ENTER" />
+		<event function="handle_wish_closed" module="tvshows.views" action-id="displaySourceList" control-id="701" intent="ACTION_TOUCH_TAP" />
+	</view>
+
+</actions>

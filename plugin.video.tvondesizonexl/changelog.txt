@@ -1,0 +1,212 @@
+[B]Version 2.8.0[/B]
+- Use different method for google image and no required for API now.
+- Remove use of live_channel.json file.
+
+[B]Version 2.7.8[/B]
+- Fixed video parsing links
+
+[B]Version 2.7.4 - 2.7.7[/B]
+- Fixed video parsing links
+
+[B]Version 2.7.3[/B]
+- Fixed for Kodi 15
+
+[B]Version 2.7.2[/B]
+- Fixed CloudyEC links
+
+[B]Version 2.7.1[/B]
+- Fixed icon issue
+
+[B]Version 2.7.0[/B]
+- Added DesiTVBox
+
+[B]Version 2.6.9[/B]
+- Removed CloudEC, VideoSky, Videohut as cannot resolve the URL
+
+[B]Version 2.6.8[/B]
+- Fixed LetWatch and CloudEC streams
+
+[B]Version 2.6.7[/B]
+- Added Videosky and fixed Videohut links
+
+[B]Version 2.6.6[/B]
+- Added LetWatch streams
+
+[B]Version 2.6.5[/B]
+- Added ZeeQ and Sonic TV
+
+[B]Version 2.6.4[/B]
+- Added &TV
+
+[B]Version 2.6.3[/B]
+- Fixed aajtak
+
+[B]Version 2.6.2[/B]
+- Added Aajtak
+
+[B]Version 2.6.1[/B]
+- Fixed few sources
+
+[B]Version 2.6.0[/B]
+-  New Live TV section
+
+[B]Version 2.5.17[/B]
+-  Few Fixes
+
+[B]Version 2.5.15[/B]
+-  Added Zing TV, Zindagi TV
+
+[B]Version 2.5.14[/B]
+-  Added IBN7, India TV
+
+[B]Version 2.5.13[/B]
+-  Fixed sources
+
+[B]Version 2.5.12[/B]
+-  Added Epic Channel
+
+[B]Version 2.5.11[/B]
+-  Added 9xTashan
+
+[B]Version 2.5.10[/B]
+-  Fixed 9xM and 9xJalwa, Added MTunes. Added Video Tanker source, Fixed VidTo source
+
+[B]Version 2.5.9[/B]
+-  Fixed Tune.pk links. Fixed playwire logo issue
+
+[B]Version 2.5.8[/B]
+-  Fixed dailymotion links for Pakistani channels. Added new VideoHut source
+
+[B]Version 2.5.7[/B]
+-  Added Discovery Kids, Zee Anmol
+
+[B]Version 2.5.6[/B]
+-  Added WWE
+
+[B]Version 2.5.5[/B]
+- Fixed dailymotion link. 
+
+[B]Version 2.5.3 - 2.5.4[/B]
+- Fixed playwire link for movies. 
+
+[B]Version 2.5.2[/B]
+- Fixed playwire links and sony PAL, thanks to jchirag0221 for fix. 
+
+[B]Version 2.5.1[/B]
+- Fixed playwire links, thanks to jchirag0221 for fix. 
+
+[B]Version 2.5.0[/B]
+- vshare video source added for Pogo channel. 
+
+[B]Version 2.4.6 - 2.4.9[/B]
+- Cloud video source added. 
+
+[B]Version 2.4.5[/B]
+- Favorites images search fixed. 
+
+[B]Version 2.4.4[/B]
+- Preferred video source list modified: Dailymotion is on top. 
+
+[B]Version 2.4.3[/B]
+- Preferred video source list modified: Playwire is on top. 
+
+[B]Version 2.4.2[/B]
+- Lazy-Loading is made optional and disabled by default. 
+
+[B]Version 2.4.1[/B]
+- Lazy-Loading of video steaming URL: resolving streaming URL when played. 
+
+[B]Version 2.4.0[/B]
+- Added 9X channels. Major release.
+
+[B]Version 2.3.4[/B]
+- Fixed a major issue of parsing desirulez webpages.
+
+[B]Version 2.3.3[/B]
+- Rebuilt package.
+
+[B]Version 2.3.2[/B]
+- Fixed Blackie skin for add-on.
+
+[B]Version 2.3.1[/B]
+- Forgot to hide new help statement.
+
+[B]Version 2.3.0[/B]
+- Added new font independent of XBMC skin font.
+
+[B]Version 2.2.9[/B]
+- Stripped "Download" word.
+
+[B]Version 2.2.8[/B]
+- Added new theme "Summer". Can be changed using Settings.
+
+[B]Version 2.2.7[/B]
+- UI changes to enhance the clarity.
+
+[B]Version 2.2.6[/B]
+- Corrected favorites image resolution logic.
+
+[B]Version 2.2.5[/B]
+- Added Bajao from EROSNOW.com.
+
+[B]Version 2.2.4[/B]
+- Fix for high quality stream in auto play.
+
+[B]Version 2.2.3[/B]
+- Added new video stream resolvers.
+
+[B]Version 2.2.2[/B]
+- Added Movies channel.
+
+[B]Version 2.2.1[/B]
+- Added Awards & Concerts channel.
+
+[B]Version 2.2.0[/B]
+- Tweaks in UI.
+
+[B]Version 2.1.9[/B]
+- Fix for newly added video link desiserials.tv.
+- Fix for desirulez.net TV episodes pagination.
+
+[B]Version 2.1.8[/B]
+- TV Show episodes list animation removed to fix mouse issue.
+
+[B]Version 2.1.7[/B]
+- Tweaked few UI looks to make it better just for fun.
+
+[B]Version 2.1.6[/B]
+- Added finished TV Shows, enabled if set in settings.
+
+[B]Version 2.1.5[/B]
+- Added TV Show label on focused favorite.
+- Added Back button control using add-on settings.
+- New layout for REMOVE FAVORITE button.
+
+[B]Version 2.1.4[/B]
+- Added new XOZE v1.0.1 to provide support for external players.
+
+[B]Version 2.1.3[/B]
+- Added CHANNEL NAME to google images search for tv show.
+- Changed colors to suit the mood while watching TV in dim light.
+
+[B]Version 2.1.2[/B]
+- Realized better to use wraplist for FAVORITES section.
+
+[B]Version 2.1.1[/B]
+- First item is selected in fixed list of FAVORITES section.
+- Changed color to black from white in notifications.
+
+[B]Version 2.1.0[/B]
+- As per feature request received, added FAVORITES section.
+- Improved new icon by increasing font size of DESI ZONE.
+
+[B]Version 2.0.2[/B]
+- Fixed Pakistani tv show video stream link resolver.
+- Added new icon for new look.
+
+[B]Version 2.0.1[/B]
+- Small fixes to load TV Shows under Life OK.
+
+[B]Version 2.0.0[/B]
+- TV on DESI ZONE with NEW LOOK.
+- Optimized for fastest response.

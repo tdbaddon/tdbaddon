@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="https://code.google.com/p/apple-tv2-xbmc/xoze/ xoze.xsd"
+	xmlns="https://code.google.com/p/apple-tv2-xbmc/xoze/">
+	<action id="dtf-checkCache">
+		<move module="tvshows.dtf_actions" function="coming_soon" view-id="dtf-soonView" />
+	</action>
+	<!-- 
+	<action id="dtf-checkCache">
+		<move module="tvshows.dtf_actions" function="check_cache" view-id="dtf-refreshView" />
+		<move module="tvshows.dtf_actions" function="refresh_cache" />
+		<move module="tvshows.dtf_actions" function="load_channels" view-id="dtf-channelsView" />
+	</action> -->
+	
+	<action id="dtf-displayShowsList">
+		<move module="tvshows.dtf_actions" function="load_tv_shows" view-id="dtf-tvShowsView" />
+	</action>
+	
+	
+	<view id="dtf-channelsView" function="show_channels_view" module="tvshows.dtf_views">
+		<event function="handle_channel_selected" module="tvshows.dtf_views" action-id="dtf-displayShowsList" control-id="102" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event function="handle_channel_selected" module="tvshows.dtf_views" action-id="dtf-displayShowsList" control-id="102" intent="ACTION_SELECT_ITEM" />
+		<event function="handle_channel_selected" module="tvshows.dtf_views" action-id="dtf-displayShowsList" control-id="102" intent="ACTION_ENTER" />
+		<event function="handle_channel_selected" module="tvshows.dtf_views" action-id="dtf-displayShowsList" control-id="102" intent="ACTION_TOUCH_TAP" />
+		<event action-id="end" control-id="" intent="ACTION_PREVIOUS_MENU" />
+		<event action-id="end" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="end" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="end" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+	</view>
+	
+	<view id="dtf-tvShowsView" function="show_tv_shows_view" module="tvshows.dtf_views">
+		<event action-id="determineSource" control-id="" intent="ACTION_PREVIOUS_MENU" />
+		<event action-id="determineSource" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="determineSource" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="determineSource" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+		<event action-id="dtf-displayShowEpisodesList" function="handle_tv_show_selected" module="tvshows.dtf_views" control-id="305" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dtf-displayShowEpisodesList" function="handle_tv_show_selected" module="tvshows.dtf_views" control-id="305" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dtf-displayShowEpisodesList" function="handle_tv_show_selected" module="tvshows.dtf_views" control-id="305" intent="ACTION_ENTER" />
+		<event action-id="dtf-displayShowEpisodesList" function="handle_tv_show_selected" module="tvshows.dtf_views" control-id="305" intent="ACTION_TOUCH_TAP" />
+	</view>
+	
+	<view id="dtf-refreshView" function="show_refresh_view" module="tvshows.dtf_views">
+		<event action-id="end" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="end" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="end" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+		<event action-id="end" control-id="" intent="ACTION_PREVIOUS_MENU" />
+	</view>
+	
+	<view id="dtf-soonView" function="show_soon_view" module="tvshows.dtf_views">
+		<event action-id="end" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="end" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="end" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+		<event action-id="end" control-id="" intent="ACTION_PREVIOUS_MENU" />
+	</view>
+</actions>

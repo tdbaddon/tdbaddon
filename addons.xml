@@ -465,7 +465,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 <addon id="plugin.video.MoneySports"
        name="MoneySports"
-       version="2.0.1"
+       version="2.0.3"
        provider-name="Mark Money">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -672,25 +672,6 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
-<addon id="plugin.video.StalkerTv"
-       name="StalkerTv"
-       version="7.0"
-       provider-name="KodiLover and KrAz">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="addon.py">
-    <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary>StalkerTv</summary>
-    <description>
-This is my third attempt to make a iptv stalker clone and this is KrAz's second attempt to make a IPTV stalker clone Enjoy
-    </description>
-    <platform>all</platform>
-  </extension>
-</addon>
-
 <addon id="plugin.video.Stallion-IPTV" name="Stallion-IPTV" version="2.2" provider-name="Stallion-IPTV">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -808,6 +789,42 @@ This is my third attempt to make a iptv stalker clone and this is KrAz's second 
     <platform>all</platform>
   </extension>
   <extension point="xbmc.service" library="service.py" start="login" />
+</addon>
+
+<addon id="plugin.video.tvondesizonexl" name="TV on DESI ZONE" version="2.8.0"
+	provider-name="ajdeveloped/jchirag">
+	<requires>
+		<import addon="xbmc.python" version="2.1.0" />
+		<import addon="script.module.simplejson" />
+		<import addon="script.module.beautifulsoup" />
+		<import addon="script.module.elementtree" />
+		<import addon="script.module.urlresolver" />
+	</requires>
+	<extension point="xbmc.python.script" library="main.py">
+	<provides>video</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Watch Indian TV videos as seen on desirulez.net</summary>
+		<description>Watch Indian TV videos as seen on desirulez.net</description>
+		<disclaimer>This addon makes no warranties, expressed or implied, and
+			hereby disclaims and negates all other warranties, including without
+			limitation, implied warranties or conditions of merchantability,
+			fitness for a particular purpose, or non-infringement of intellectual
+			property or other violation of rights. Further, TV on DESI ZONE addon
+			does not warrant or make any representations concerning the accuracy,
+			likely results, or reliability of the use of the materials on the
+			Internet web site where from data is retrieved or otherwise relating
+			to such materials or on any sites linked to this addon. Videos are
+			basically links from video-hosting website that are having full rights to
+			remove such access to video if required. Videos are nor owned or uploaded by
+			ajdeveloped, the addon parses the content of a website and hows it in form
+			of lists. The websites that are parsed by this add-on are not owned or maintained by
+			ajdeveloped. This addon acts like a browser not content(video or link) provider.
+		</disclaimer>
+		<forum>http://forums.tvaddons.ag/general-video-addon-discussion/35987-tv-desizone-aj-addons-look.html</forum>
+		<platform>all</platform>
+		<license>GNU GPL v3</license>
+	</extension>
 </addon>
 
 <addon id="plugin.video.uwc"
@@ -975,11 +992,11 @@ This is my third attempt to make a iptv stalker clone and this is KrAz's second 
 	</extension>
 </addon>
 
-<addon id="repository.aj-addons" name="aj add-ons (new look)" version="1.0.1" provider-name="ajdeveloped">
+<addon id="repository.aj-addons" name="aj add-ons (new look)" version="2.0.1" provider-name="ajdeveloped">
 	<extension point="xbmc.addon.repository" name="AJ ADD-ONs (NEW LOOK)">
-		<info compressed="false">http://apple-tv2-xbmc.googlecode.com/svn/trunk/AddonsNewLookRepo/addons.xml</info>
-			<checksum>http://apple-tv2-xbmc.googlecode.com/svn/trunk/AddonsNewLookRepo/addons.xml.md5</checksum>
-			<datadir zip="true">http://apple-tv2-xbmc.googlecode.com/svn/trunk/AddonsNewLookRepo/</datadir>
+		<info compressed="false">http://offshoregit.com/ajdeveloped/addons.xml</info>
+			<checksum>http://offshoregit.com/ajdeveloped/addons.xml.md5</checksum>
+			<datadir zip="true">http://offshoregit.com/ajdeveloped/</datadir>
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<summary>Install AJ ADD-ONs with new look and fastest of all.</summary>

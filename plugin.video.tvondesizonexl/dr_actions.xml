@@ -1,0 +1,559 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="https://code.google.com/p/apple-tv2-xbmc/xoze/ xoze.xsd"
+	xmlns="https://code.google.com/p/apple-tv2-xbmc/xoze/">
+	
+	<action id="dr-checkCache">
+		<move module="tvshows.dr_actions" function="check_cache" view-id="dr-refreshView" />
+		<move module="tvshows.dr_actions" function="refresh_cache" />
+		<move module="tvshows.dr_actions" function="load_channels"/>
+		<move module="tvshows.dr_actions" function="load_favorite_tv_shows" view-id="dr-channelsView" />
+	</action>
+	
+	<action id="dr-displayShowsList">
+		<move module="tvshows.dr_actions" function="determine_direct_tv_channel" />
+		<move module="tvshows.dr_actions" function="determine_live_tv_channel" />
+		<move module="tvshows.dr_actions" function="load_tv_shows" view-id="dr-tvShowsView" />
+	</action>
+	
+	<action id="dr-displayFavoriteShowEpisodesList">
+		<move module="tvshows.dr_actions" function="load_tv_shows" view-id="dr-tvShowsView" />
+		<move module="tvshows.dr_actions" function="load_tv_show_episodes"  view-id="dr-tvShowEpisodesView"/>
+	</action>
+	
+	<action id="dr-displayShowEpisodesList">
+		<move module="tvshows.dr_actions" function="load_tv_show_episodes"  view-id="dr-tvShowEpisodesView"/>
+	</action>
+	
+	<action id="dr-displayDirectChannelEpisodesList">
+		<move module="tvshows.dr_actions" function="load_direct_link_channel" view-id="dr-tvChannelEpisodesLoadingView"/>
+		<move module="tvshows.dr_actions" function="load_tv_show_episodes"  view-id="dr-tvChannelEpisodesView"/>
+	</action>
+	
+	<action id="dr-displayShowOptions">
+		<move module="tvshows.google_images" function="load_tv_show_images"  view-id="dr-tvShowOptionsView"/>
+	</action>
+	
+	<action id="dr-displayShowEpisodeVideosList">
+		<move module="tvshows.dr_actions" function="determine_tv_show_episode_videos"/>
+		<move module="tvshows.dr_actions" function="load_tv_show_episode_videos"  view-id="dr-tvShowEpisodeVideosView"/>
+		<move module="tvshows.dr_actions" function="load_selected_playlist_streams"  view-id="dr-playVideosView"/>
+	</action>
+	
+	<action id="dr-displayChannelEpisodeVideosList">
+		<move module="tvshows.dr_actions" function="determine_tv_show_episode_videos"/>
+		<move module="tvshows.dr_actions" function="load_tv_show_episode_videos"  view-id="dr-tvChannelEpisodeVideosView"/>
+		<move module="tvshows.dr_actions" function="load_selected_playlist_streams"  view-id="dr-playChannelVideosView"/>
+	</action>
+	
+	
+	<action id="dr-displayShowEpisodeAllVideosList">
+		<move module="tvshows.dr_actions" function="determine_tv_show_episode_videos"/>
+		<move module="tvshows.dr_actions" function="load_tv_show_episode_videos_list"  view-id="dr-tvShowEpisodeVideosListView"/>
+	</action>
+	
+	<action id="dr-displayChannelEpisodeAllVideosList">
+		<move module="tvshows.dr_actions" function="determine_tv_show_episode_videos"/>
+		<move module="tvshows.dr_actions" function="load_tv_show_episode_videos_list"  view-id="dr-tvChannelEpisodeVideosListView"/>
+	</action>
+	
+	<action id="dr-playVideos">
+		<move module="tvshows.dr_actions" function="load_selected_video_playlist_streams"  view-id="dr-playAllVideosView"/>
+	</action>
+	
+	<action id="dr-playChannelVideos">
+		<move module="tvshows.dr_actions" function="load_selected_video_playlist_streams"  view-id="dr-playChannelAllVideosView"/>
+	</action>
+	
+	<action id="dr-hideEpisodes">
+		<move module="tvshows.dr_actions" function="empty_function"  view-id="dr-tvShowEpisodesHideView"/>
+	</action>
+	
+	<action id="dr-hideOptions">
+		<move module="tvshows.dr_actions" function="empty_function"  view-id="dr-tvShowOptionsHideView"/>
+	</action>
+	
+	<action id="dr-addShowToFavorites">
+		<move module="tvshows.dr_actions" function="add_tv_show_favorite"  view-id="dr-tvShowOptionsHideView"/>
+	</action>
+	
+	<action id="dr-displayRemoveFavorite">
+		<move module="tvshows.dr_actions" function="load_remove_tv_show_favorite"  view-id="dr-favoriteRemoveButtonView"/>
+	</action>
+	
+	<action id="dr-hideEpisodeVideosList">
+		<move module="tvshows.dr_actions" function="empty_function"  view-id="dr-tvShowEpisodeVideosListHideView"/>
+	</action>
+	
+	<action id="dr-hideChannelEpisodeVideosList">
+		<move module="tvshows.dr_actions" function="empty_function" view-id="dr-tvChannelEpisodeVideosListHideView"/>
+	</action>
+	
+	<action id="dr-hideRemoveFavorite">
+		<move module="tvshows.dr_actions" function="empty_function"  view-id="dr-channelsViewOthers"/>
+	</action>
+	
+	<action id="dr-removeFavorite">
+		<move module="tvshows.dr_actions" function="remove_favorite"  view-id="dr-channelsViewOthers"/>
+	</action>
+	
+	<action id="dr-watchLiveChannel">
+		<move module="tvshows.dr_actions" function="watch_live"  view-id="dr-liveChannelView"/>
+	</action>
+	
+	<view id="dr-channelsView" function="show_channels_view" module="tvshows.dr_views">
+		<event function="handle_channel_selected" module="tvshows.dr_views" action-id="dr-displayShowsList" control-id="102" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event function="handle_channel_selected" module="tvshows.dr_views" action-id="dr-displayShowsList" control-id="102" intent="ACTION_SELECT_ITEM" />
+		<event function="handle_channel_selected" module="tvshows.dr_views" action-id="dr-displayShowsList" control-id="102" intent="ACTION_ENTER" />
+		<event function="handle_channel_selected" module="tvshows.dr_views" action-id="dr-displayShowsList" control-id="102" intent="ACTION_TOUCH_TAP" />
+		
+		<event function="handle_channel_selected" module="tvshows.dr_views" action-id="dr-displayShowsList" control-id="108" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event function="handle_channel_selected" module="tvshows.dr_views" action-id="dr-displayShowsList" control-id="108" intent="ACTION_SELECT_ITEM" />
+		<event function="handle_channel_selected" module="tvshows.dr_views" action-id="dr-displayShowsList" control-id="108" intent="ACTION_ENTER" />
+		<event function="handle_channel_selected" module="tvshows.dr_views" action-id="dr-displayShowsList" control-id="108" intent="ACTION_TOUCH_TAP" />
+		
+		<event function="handle_favorite_tv_show_selected" module="tvshows.dr_views" action-id="dr-displayFavoriteShowEpisodesList" control-id="105" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event function="handle_favorite_tv_show_selected" module="tvshows.dr_views" action-id="dr-displayFavoriteShowEpisodesList" control-id="105" intent="ACTION_SELECT_ITEM" />
+		<event function="handle_favorite_tv_show_selected" module="tvshows.dr_views" action-id="dr-displayFavoriteShowEpisodesList" control-id="105" intent="ACTION_ENTER" />
+		<event function="handle_favorite_tv_show_selected" module="tvshows.dr_views" action-id="dr-displayFavoriteShowEpisodesList" control-id="105" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dr-displayRemoveFavorite" function="handle_favorite_tv_show_selected_for_remove" module="tvshows.dr_views" control-id="105" intent="ACTION_MOUSE_RIGHT_CLICK" />
+		<event action-id="dr-displayRemoveFavorite" function="handle_favorite_tv_show_selected_for_remove" module="tvshows.dr_views" control-id="105" intent="ACTION_MOUSE_DOUBLE_CLICK" />
+		<event action-id="dr-displayRemoveFavorite" function="handle_favorite_tv_show_selected_for_remove" module="tvshows.dr_views" control-id="105" intent="ACTION_CONTEXT_MENU" />
+		<event action-id="dr-displayRemoveFavorite" function="handle_favorite_tv_show_selected_for_remove" module="tvshows.dr_views" control-id="105" intent="ACTION_TOUCH_LONGPRESS" />
+		
+		<event action-id="viewSourceOrEnd" control-id="10" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="viewSourceOrEnd" control-id="10" intent="ACTION_SELECT_ITEM" />
+		<event action-id="viewSourceOrEnd" control-id="10" intent="ACTION_ENTER" />
+		<event action-id="viewSourceOrEnd" control-id="10" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="viewSourceOrEnd" control-id="" intent="ACTION_PREVIOUS_MENU" />
+		<event action-id="viewSourceOrEnd" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="viewSourceOrEnd" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="viewSourceOrEnd" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+	</view>
+	
+	<view id="dr-channelsViewOthers" function="hide_remove_favorite" module="tvshows.dr_views">
+		<event function="handle_channel_selected" module="tvshows.dr_views" action-id="dr-displayShowsList" control-id="102" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event function="handle_channel_selected" module="tvshows.dr_views" action-id="dr-displayShowsList" control-id="102" intent="ACTION_SELECT_ITEM" />
+		<event function="handle_channel_selected" module="tvshows.dr_views" action-id="dr-displayShowsList" control-id="102" intent="ACTION_ENTER" />
+		<event function="handle_channel_selected" module="tvshows.dr_views" action-id="dr-displayShowsList" control-id="102" intent="ACTION_TOUCH_TAP" />
+		
+		<event function="handle_favorite_tv_show_selected" module="tvshows.dr_views" action-id="dr-displayFavoriteShowEpisodesList" control-id="105" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event function="handle_favorite_tv_show_selected" module="tvshows.dr_views" action-id="dr-displayFavoriteShowEpisodesList" control-id="105" intent="ACTION_SELECT_ITEM" />
+		<event function="handle_favorite_tv_show_selected" module="tvshows.dr_views" action-id="dr-displayFavoriteShowEpisodesList" control-id="105" intent="ACTION_ENTER" />
+		<event function="handle_favorite_tv_show_selected" module="tvshows.dr_views" action-id="dr-displayFavoriteShowEpisodesList" control-id="105" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dr-displayRemoveFavorite" function="handle_favorite_tv_show_selected_for_remove" module="tvshows.dr_views" control-id="105" intent="ACTION_MOUSE_RIGHT_CLICK" />
+		<event action-id="dr-displayRemoveFavorite" function="handle_favorite_tv_show_selected_for_remove" module="tvshows.dr_views" control-id="105" intent="ACTION_MOUSE_DOUBLE_CLICK" />
+		<event action-id="dr-displayRemoveFavorite" function="handle_favorite_tv_show_selected_for_remove" module="tvshows.dr_views" control-id="105" intent="ACTION_CONTEXT_MENU" />
+		<event action-id="dr-displayRemoveFavorite" function="handle_favorite_tv_show_selected_for_remove" module="tvshows.dr_views" control-id="105" intent="ACTION_TOUCH_LONGPRESS" />
+		
+		<event action-id="viewSourceOrEnd" control-id="10" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="viewSourceOrEnd" control-id="10" intent="ACTION_SELECT_ITEM" />
+		<event action-id="viewSourceOrEnd" control-id="10" intent="ACTION_ENTER" />
+		<event action-id="viewSourceOrEnd" control-id="10" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="viewSourceOrEnd" control-id="" intent="ACTION_PREVIOUS_MENU" />
+		<event action-id="viewSourceOrEnd" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="viewSourceOrEnd" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="viewSourceOrEnd" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+	</view>
+	
+	
+	<view id="dr-liveChannelView" function="watch_live_channel" module="tvshows.dr_views" >
+		<event function="handle_channel_selected" module="tvshows.dr_views" action-id="dr-displayShowsList" control-id="102" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event function="handle_channel_selected" module="tvshows.dr_views" action-id="dr-displayShowsList" control-id="102" intent="ACTION_SELECT_ITEM" />
+		<event function="handle_channel_selected" module="tvshows.dr_views" action-id="dr-displayShowsList" control-id="102" intent="ACTION_ENTER" />
+		<event function="handle_channel_selected" module="tvshows.dr_views" action-id="dr-displayShowsList" control-id="102" intent="ACTION_TOUCH_TAP" />
+		
+		<event function="handle_channel_selected" module="tvshows.dr_views" action-id="dr-displayShowsList" control-id="108" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event function="handle_channel_selected" module="tvshows.dr_views" action-id="dr-displayShowsList" control-id="108" intent="ACTION_SELECT_ITEM" />
+		<event function="handle_channel_selected" module="tvshows.dr_views" action-id="dr-displayShowsList" control-id="108" intent="ACTION_ENTER" />
+		<event function="handle_channel_selected" module="tvshows.dr_views" action-id="dr-displayShowsList" control-id="108" intent="ACTION_TOUCH_TAP" />
+		
+		<event function="handle_favorite_tv_show_selected" module="tvshows.dr_views" action-id="dr-displayFavoriteShowEpisodesList" control-id="105" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event function="handle_favorite_tv_show_selected" module="tvshows.dr_views" action-id="dr-displayFavoriteShowEpisodesList" control-id="105" intent="ACTION_SELECT_ITEM" />
+		<event function="handle_favorite_tv_show_selected" module="tvshows.dr_views" action-id="dr-displayFavoriteShowEpisodesList" control-id="105" intent="ACTION_ENTER" />
+		<event function="handle_favorite_tv_show_selected" module="tvshows.dr_views" action-id="dr-displayFavoriteShowEpisodesList" control-id="105" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dr-displayRemoveFavorite" function="handle_favorite_tv_show_selected_for_remove" module="tvshows.dr_views" control-id="105" intent="ACTION_MOUSE_RIGHT_CLICK" />
+		<event action-id="dr-displayRemoveFavorite" function="handle_favorite_tv_show_selected_for_remove" module="tvshows.dr_views" control-id="105" intent="ACTION_MOUSE_DOUBLE_CLICK" />
+		<event action-id="dr-displayRemoveFavorite" function="handle_favorite_tv_show_selected_for_remove" module="tvshows.dr_views" control-id="105" intent="ACTION_CONTEXT_MENU" />
+		<event action-id="dr-displayRemoveFavorite" function="handle_favorite_tv_show_selected_for_remove" module="tvshows.dr_views" control-id="105" intent="ACTION_TOUCH_LONGPRESS" />
+		
+		<event action-id="viewSourceOrEnd" control-id="10" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="viewSourceOrEnd" control-id="10" intent="ACTION_SELECT_ITEM" />
+		<event action-id="viewSourceOrEnd" control-id="10" intent="ACTION_ENTER" />
+		<event action-id="viewSourceOrEnd" control-id="10" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="viewSourceOrEnd" control-id="" intent="ACTION_PREVIOUS_MENU" />
+		<event action-id="viewSourceOrEnd" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="viewSourceOrEnd" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="viewSourceOrEnd" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+	</view>
+	
+	<view id="dr-favoriteRemoveButtonView" function="show_remove_favorite" module="tvshows.dr_views">
+		<event action-id="dr-removeFavorite" control-id="106" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dr-removeFavorite" control-id="106" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dr-removeFavorite" control-id="106" intent="ACTION_ENTER" />
+		<event action-id="dr-removeFavorite" control-id="106" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dr-hideRemoveFavorite" control-id="" intent="ACTION_PREVIOUS_MENU" />
+		<event action-id="dr-hideRemoveFavorite" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="dr-hideRemoveFavorite" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="dr-hideRemoveFavorite" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+		
+		<event action-id="dr-hideRemoveFavorite" control-id="10" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dr-hideRemoveFavorite" control-id="10" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dr-hideRemoveFavorite" control-id="10" intent="ACTION_ENTER" />
+		<event action-id="dr-hideRemoveFavorite" control-id="10" intent="ACTION_TOUCH_TAP" />
+	</view>
+	
+	<view id="dr-tvShowsView" function="show_tv_shows_view" module="tvshows.dr_views">
+		<event action-id="dr-checkCache" control-id="" intent="ACTION_PREVIOUS_MENU" />
+		<event action-id="dr-checkCache" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="dr-checkCache" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="dr-checkCache" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+		
+		<event action-id="dr-checkCache" control-id="10" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dr-checkCache" control-id="10" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dr-checkCache" control-id="10" intent="ACTION_ENTER" />
+		<event action-id="dr-checkCache" control-id="10" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dr-displayShowEpisodesList" function="handle_tv_show_selected" module="tvshows.dr_views" control-id="305" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dr-displayShowEpisodesList" function="handle_tv_show_selected" module="tvshows.dr_views" control-id="305" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dr-displayShowEpisodesList" function="handle_tv_show_selected" module="tvshows.dr_views" control-id="305" intent="ACTION_ENTER" />
+		<event action-id="dr-displayShowEpisodesList" function="handle_tv_show_selected" module="tvshows.dr_views" control-id="305" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dr-displayShowOptions" function="handle_tv_show_selected_for_options" module="tvshows.dr_views" control-id="305" intent="ACTION_MOUSE_RIGHT_CLICK" />
+		<event action-id="dr-displayShowOptions" function="handle_tv_show_selected_for_options" module="tvshows.dr_views" control-id="305" intent="ACTION_MOUSE_DOUBLE_CLICK" />
+		<event action-id="dr-displayShowOptions" function="handle_tv_show_selected_for_options" module="tvshows.dr_views" control-id="305" intent="ACTION_CONTEXT_MENU" />
+		<event action-id="dr-displayShowOptions" function="handle_tv_show_selected_for_options" module="tvshows.dr_views" control-id="305" intent="ACTION_TOUCH_LONGPRESS" />
+	</view>
+	
+	<view id="dr-tvShowOptionsView" function="show_tv_show_options" module="tvshows.dr_views">
+		<event action-id="dr-hideOptions" control-id="" intent="ACTION_PREVIOUS_MENU" />
+		<event action-id="dr-hideOptions" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="dr-hideOptions" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="dr-hideOptions" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+		
+		<event action-id="dr-hideOptions" control-id="10" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dr-hideOptions" control-id="10" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dr-hideOptions" control-id="10" intent="ACTION_ENTER" />
+		<event action-id="dr-hideOptions" control-id="10" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dr-addShowToFavorites" function="handle_tv_show_favorite_selected" module="tvshows.dr_views" control-id="901" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dr-addShowToFavorites" function="handle_tv_show_favorite_selected" module="tvshows.dr_views" control-id="901" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dr-addShowToFavorites" function="handle_tv_show_favorite_selected" module="tvshows.dr_views" control-id="901" intent="ACTION_ENTER" />
+		<event action-id="dr-addShowToFavorites" function="handle_tv_show_favorite_selected" module="tvshows.dr_views" control-id="901" intent="ACTION_TOUCH_TAP" />
+	</view>
+	
+	<view id="dr-tvShowOptionsHideView" function="hide_tv_show_options" module="tvshows.dr_views">
+		<event action-id="dr-checkCache" control-id="" intent="ACTION_PREVIOUS_MENU" />
+		<event action-id="dr-checkCache" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="dr-checkCache" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="dr-checkCache" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+		
+		<event action-id="dr-checkCache" control-id="10" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dr-checkCache" control-id="10" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dr-checkCache" control-id="10" intent="ACTION_ENTER" />
+		<event action-id="dr-checkCache" control-id="10" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dr-displayShowEpisodesList" function="handle_tv_show_selected" module="tvshows.dr_views" control-id="305" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dr-displayShowEpisodesList" function="handle_tv_show_selected" module="tvshows.dr_views" control-id="305" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dr-displayShowEpisodesList" function="handle_tv_show_selected" module="tvshows.dr_views" control-id="305" intent="ACTION_ENTER" />
+		<event action-id="dr-displayShowEpisodesList" function="handle_tv_show_selected" module="tvshows.dr_views" control-id="305" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dr-displayShowOptions" function="handle_tv_show_selected_for_options" module="tvshows.dr_views" control-id="305" intent="ACTION_MOUSE_RIGHT_CLICK" />
+		<event action-id="dr-displayShowOptions" function="handle_tv_show_selected_for_options" module="tvshows.dr_views" control-id="305" intent="ACTION_MOUSE_DOUBLE_CLICK" />
+		<event action-id="dr-displayShowOptions" function="handle_tv_show_selected_for_options" module="tvshows.dr_views" control-id="305" intent="ACTION_CONTEXT_MENU" />
+		<event action-id="dr-displayShowOptions" function="handle_tv_show_selected_for_options" module="tvshows.dr_views" control-id="305" intent="ACTION_TOUCH_LONGPRESS" />
+	</view>
+	
+	<view id="dr-tvShowEpisodesHideView" function="hide_tv_show_episodes_view" module="tvshows.dr_views">
+		<event action-id="dr-checkCache" control-id="" intent="ACTION_PREVIOUS_MENU" />
+		<event action-id="dr-checkCache" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="dr-checkCache" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="dr-checkCache" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+		
+		<event action-id="dr-checkCache" control-id="10" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dr-checkCache" control-id="10" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dr-checkCache" control-id="10" intent="ACTION_ENTER" />
+		<event action-id="dr-checkCache" control-id="10" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dr-displayShowEpisodesList" function="handle_tv_show_selected" module="tvshows.dr_views" control-id="305" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dr-displayShowEpisodesList" function="handle_tv_show_selected" module="tvshows.dr_views" control-id="305" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dr-displayShowEpisodesList" function="handle_tv_show_selected" module="tvshows.dr_views" control-id="305" intent="ACTION_ENTER" />
+		<event action-id="dr-displayShowEpisodesList" function="handle_tv_show_selected" module="tvshows.dr_views" control-id="305" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dr-displayShowOptions" function="handle_tv_show_selected_for_options" module="tvshows.dr_views" control-id="305" intent="ACTION_MOUSE_RIGHT_CLICK" />
+		<event action-id="dr-displayShowOptions" function="handle_tv_show_selected_for_options" module="tvshows.dr_views" control-id="305" intent="ACTION_MOUSE_DOUBLE_CLICK" />
+		<event action-id="dr-displayShowOptions" function="handle_tv_show_selected_for_options" module="tvshows.dr_views" control-id="305" intent="ACTION_CONTEXT_MENU" />
+		<event action-id="dr-displayShowOptions" function="handle_tv_show_selected_for_options" module="tvshows.dr_views" control-id="305" intent="ACTION_TOUCH_LONGPRESS" />
+	</view>
+	
+	<view id="dr-tvShowEpisodeVideosListHideView" function="hide_tv_show_episode_videos_list_view" module="tvshows.dr_views">
+		<event action-id="dr-checkCache" control-id="" intent="ACTION_PREVIOUS_MENU" />
+		<event action-id="dr-checkCache" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="dr-checkCache" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="dr-checkCache" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+		
+		<event action-id="dr-checkCache" control-id="10" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dr-checkCache" control-id="10" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dr-checkCache" control-id="10" intent="ACTION_ENTER" />
+		<event action-id="dr-checkCache" control-id="10" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dr-displayShowEpisodesList" function="handle_tv_show_selected" module="tvshows.dr_views" control-id="305" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dr-displayShowEpisodesList" function="handle_tv_show_selected" module="tvshows.dr_views" control-id="305" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dr-displayShowEpisodesList" function="handle_tv_show_selected" module="tvshows.dr_views" control-id="305" intent="ACTION_ENTER" />
+		<event action-id="dr-displayShowEpisodesList" function="handle_tv_show_selected" module="tvshows.dr_views" control-id="305" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dr-displayShowOptions" function="handle_tv_show_selected_for_options" module="tvshows.dr_views" control-id="305" intent="ACTION_MOUSE_RIGHT_CLICK" />
+		<event action-id="dr-displayShowOptions" function="handle_tv_show_selected_for_options" module="tvshows.dr_views" control-id="305" intent="ACTION_MOUSE_DOUBLE_CLICK" />
+		<event action-id="dr-displayShowOptions" function="handle_tv_show_selected_for_options" module="tvshows.dr_views" control-id="305" intent="ACTION_CONTEXT_MENU" />
+		<event action-id="dr-displayShowOptions" function="handle_tv_show_selected_for_options" module="tvshows.dr_views" control-id="305" intent="ACTION_TOUCH_LONGPRESS" />
+	</view>
+	
+	<view id="dr-tvChannelEpisodeVideosListHideView" function="hide_tv_channel_episode_videos_list_view" module="tvshows.dr_views">
+		<event action-id="dr-checkCache" control-id="" intent="ACTION_PREVIOUS_MENU" />
+		<event action-id="dr-checkCache" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="dr-checkCache" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="dr-checkCache" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+		
+		<event action-id="dr-checkCache" control-id="10" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dr-checkCache" control-id="10" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dr-checkCache" control-id="10" intent="ACTION_ENTER" />
+		<event action-id="dr-checkCache" control-id="10" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dr-displayChannelEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="1002" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dr-displayChannelEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="1002" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dr-displayChannelEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="1002" intent="ACTION_ENTER" />
+		<event action-id="dr-displayChannelEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="1002" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dr-displayChannelEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="1002" intent="ACTION_MOUSE_RIGHT_CLICK" />
+		<event action-id="dr-displayChannelEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="1002" intent="ACTION_MOUSE_DOUBLE_CLICK" />
+		<event action-id="dr-displayChannelEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="1002" intent="ACTION_CONTEXT_MENU" />
+		<event action-id="dr-displayChannelEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="1002" intent="ACTION_TOUCH_LONGPRESS" />
+	</view>
+	
+	
+	<view id="dr-tvShowEpisodesView" function="show_tv_show_episodes_view" module="tvshows.dr_views">
+		<event action-id="dr-hideEpisodes" control-id="" intent="ACTION_PREVIOUS_MENU" />
+		<event action-id="dr-hideEpisodes" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="dr-hideEpisodes" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="dr-hideEpisodes" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+		
+		<event action-id="dr-hideEpisodes" control-id="10" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dr-hideEpisodes" control-id="10" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dr-hideEpisodes" control-id="10" intent="ACTION_ENTER" />
+		<event action-id="dr-hideEpisodes" control-id="10" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dr-displayShowEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="401" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dr-displayShowEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="401" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dr-displayShowEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="401" intent="ACTION_ENTER" />
+		<event action-id="dr-displayShowEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="401" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dr-displayShowEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="401" intent="ACTION_MOUSE_RIGHT_CLICK" />
+		<event action-id="dr-displayShowEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="401" intent="ACTION_MOUSE_DOUBLE_CLICK" />
+		<event action-id="dr-displayShowEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="401" intent="ACTION_CONTEXT_MENU" />
+		<event action-id="dr-displayShowEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="401" intent="ACTION_TOUCH_LONGPRESS" />
+	</view>
+	
+	<view id="dr-tvChannelEpisodesLoadingView" function="show_tv_channel_episodes_loading_view" module="tvshows.dr_views">
+		<event action-id="dr-checkCache" control-id="" intent="ACTION_PREVIOUS_MENU" />
+		<event action-id="dr-checkCache" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="dr-checkCache" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="dr-checkCache" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+		
+		<event action-id="dr-checkCache" control-id="10" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dr-checkCache" control-id="10" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dr-checkCache" control-id="10" intent="ACTION_ENTER" />
+		<event action-id="dr-checkCache" control-id="10" intent="ACTION_TOUCH_TAP" />
+	</view>
+	
+	<view id="dr-tvChannelEpisodesView" function="show_tv_channel_episodes_view" module="tvshows.dr_views">
+		<event action-id="dr-checkCache" control-id="" intent="ACTION_PREVIOUS_MENU" />
+		<event action-id="dr-checkCache" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="dr-checkCache" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="dr-checkCache" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+		
+		<event action-id="dr-checkCache" control-id="10" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dr-checkCache" control-id="10" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dr-checkCache" control-id="10" intent="ACTION_ENTER" />
+		<event action-id="dr-checkCache" control-id="10" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dr-displayChannelEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="1002" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dr-displayChannelEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="1002" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dr-displayChannelEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="1002" intent="ACTION_ENTER" />
+		<event action-id="dr-displayChannelEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="1002" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dr-displayChannelEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="1002" intent="ACTION_MOUSE_RIGHT_CLICK" />
+		<event action-id="dr-displayChannelEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="1002" intent="ACTION_MOUSE_DOUBLE_CLICK" />
+		<event action-id="dr-displayChannelEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="1002" intent="ACTION_CONTEXT_MENU" />
+		<event action-id="dr-displayChannelEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="1002" intent="ACTION_TOUCH_LONGPRESS" />
+	</view>
+	
+	<view id="dr-tvShowEpisodeVideosView" function="show_tv_show_episode_videos_view" module="tvshows.dr_views">
+		<event action-id="dr-hideEpisodes" control-id="" intent="ACTION_PREVIOUS_MENU" />
+		<event action-id="dr-hideEpisodes" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="dr-hideEpisodes" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="dr-hideEpisodes" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+		
+		<event action-id="dr-hideEpisodes" control-id="10" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dr-hideEpisodes" control-id="10" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dr-hideEpisodes" control-id="10" intent="ACTION_ENTER" />
+		<event action-id="dr-hideEpisodes" control-id="10" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dr-displayShowEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="401" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dr-displayShowEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="401" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dr-displayShowEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="401" intent="ACTION_ENTER" />
+		<event action-id="dr-displayShowEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="401" intent="ACTION_TOUCH_TAP" />
+		<event action-id="dr-displayShowEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="401" intent="ACTION_MOUSE_RIGHT_CLICK" />
+		<event action-id="dr-displayShowEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="401" intent="ACTION_MOUSE_DOUBLE_CLICK" />
+		<event action-id="dr-displayShowEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="401" intent="ACTION_CONTEXT_MENU" />
+		<event action-id="dr-displayShowEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="401" intent="ACTION_TOUCH_LONGPRESS" />
+	</view>
+	<view id="dr-tvChannelEpisodeVideosView" function="show_tv_show_episode_videos_view" module="tvshows.dr_views">
+		<event action-id="dr-checkCache" control-id="" intent="ACTION_PREVIOUS_MENU" />
+		<event action-id="dr-checkCache" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="dr-checkCache" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="dr-checkCache" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+		
+		<event action-id="dr-checkCache" control-id="10" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dr-checkCache" control-id="10" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dr-checkCache" control-id="10" intent="ACTION_ENTER" />
+		<event action-id="dr-checkCache" control-id="10" intent="ACTION_TOUCH_TAP" />
+		<event action-id="dr-displayChannelEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="1002" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dr-displayChannelEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="1002" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dr-displayChannelEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="1002" intent="ACTION_ENTER" />
+		<event action-id="dr-displayChannelEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="1002" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dr-displayChannelEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="1002" intent="ACTION_MOUSE_RIGHT_CLICK" />
+		<event action-id="dr-displayChannelEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="1002" intent="ACTION_MOUSE_DOUBLE_CLICK" />
+		<event action-id="dr-displayChannelEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="1002" intent="ACTION_CONTEXT_MENU" />
+		<event action-id="dr-displayChannelEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="1002" intent="ACTION_TOUCH_LONGPRESS" />
+	</view>
+	
+	<view id="dr-playVideosView" function="play_video_streams" module="tvshows.dr_views">
+		<event action-id="dr-hideEpisodes" control-id="" intent="ACTION_PREVIOUS_MENU" />
+		<event action-id="dr-hideEpisodes" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="dr-hideEpisodes" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="dr-hideEpisodes" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+		
+		<event action-id="dr-hideEpisodes" control-id="10" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dr-hideEpisodes" control-id="10" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dr-hideEpisodes" control-id="10" intent="ACTION_ENTER" />
+		<event action-id="dr-hideEpisodes" control-id="10" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dr-displayShowEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="401" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dr-displayShowEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="401" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dr-displayShowEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="401" intent="ACTION_ENTER" />
+		<event action-id="dr-displayShowEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="401" intent="ACTION_TOUCH_TAP" />
+		<event action-id="dr-displayShowEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="401" intent="ACTION_MOUSE_RIGHT_CLICK" />
+		<event action-id="dr-displayShowEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="401" intent="ACTION_MOUSE_DOUBLE_CLICK" />
+		<event action-id="dr-displayShowEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="401" intent="ACTION_CONTEXT_MENU" />
+		<event action-id="dr-displayShowEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="401" intent="ACTION_TOUCH_LONGPRESS" />
+	</view>
+	
+	<view id="dr-playChannelVideosView" function="play_video_streams" module="tvshows.dr_views">
+		<event action-id="dr-checkCache" control-id="" intent="ACTION_PREVIOUS_MENU" />
+		<event action-id="dr-checkCache" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="dr-checkCache" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="dr-checkCache" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+		
+		<event action-id="dr-checkCache" control-id="10" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dr-checkCache" control-id="10" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dr-checkCache" control-id="10" intent="ACTION_ENTER" />
+		<event action-id="dr-checkCache" control-id="10" intent="ACTION_TOUCH_TAP" />
+		<event action-id="dr-displayChannelEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="1002" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dr-displayChannelEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="1002" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dr-displayChannelEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="1002" intent="ACTION_ENTER" />
+		<event action-id="dr-displayChannelEpisodeVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="1002" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dr-displayChannelEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="1002" intent="ACTION_MOUSE_RIGHT_CLICK" />
+		<event action-id="dr-displayChannelEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="1002" intent="ACTION_MOUSE_DOUBLE_CLICK" />
+		<event action-id="dr-displayChannelEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="1002" intent="ACTION_CONTEXT_MENU" />
+		<event action-id="dr-displayChannelEpisodeAllVideosList" function="handle_tv_show_episode_selected" module="tvshows.dr_views" control-id="1002" intent="ACTION_TOUCH_LONGPRESS" />
+	</view>
+	
+	<view id="dr-tvShowEpisodeVideosListView" function="show_tv_show_episode_videos_list_view" module="tvshows.dr_views">
+		<event action-id="dr-hideEpisodeVideosList" control-id="" intent="ACTION_PREVIOUS_MENU" />
+		<event action-id="dr-hideEpisodeVideosList" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="dr-hideEpisodeVideosList" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="dr-hideEpisodeVideosList" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+		
+		<event action-id="dr-hideEpisodeVideosList" control-id="10" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dr-hideEpisodeVideosList" control-id="10" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dr-hideEpisodeVideosList" control-id="10" intent="ACTION_ENTER" />
+		<event action-id="dr-hideEpisodeVideosList" control-id="10" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dr-playVideos" function="handle_tv_show_episode_video_selected" module="tvshows.dr_views" control-id="804" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dr-playVideos" function="handle_tv_show_episode_video_selected" module="tvshows.dr_views" control-id="804" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dr-playVideos" function="handle_tv_show_episode_video_selected" module="tvshows.dr_views" control-id="804" intent="ACTION_ENTER" />
+		<event action-id="dr-playVideos" function="handle_tv_show_episode_video_selected" module="tvshows.dr_views" control-id="804" intent="ACTION_TOUCH_TAP" />
+	</view>
+	
+	<view id="dr-tvChannelEpisodeVideosListView" function="show_tv_channel_episode_videos_list_view" module="tvshows.dr_views">
+		<event action-id="dr-hideChannelEpisodeVideosList" control-id="" intent="ACTION_PREVIOUS_MENU" />
+		<event action-id="dr-hideChannelEpisodeVideosList" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="dr-hideChannelEpisodeVideosList" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="dr-hideChannelEpisodeVideosList" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+		
+		<event action-id="dr-hideChannelEpisodeVideosList" control-id="10" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dr-hideChannelEpisodeVideosList" control-id="10" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dr-hideChannelEpisodeVideosList" control-id="10" intent="ACTION_ENTER" />
+		<event action-id="dr-hideChannelEpisodeVideosList" control-id="10" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dr-playChannelVideos" function="handle_tv_show_episode_video_selected" module="tvshows.dr_views" control-id="804" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dr-playChannelVideos" function="handle_tv_show_episode_video_selected" module="tvshows.dr_views" control-id="804" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dr-playChannelVideos" function="handle_tv_show_episode_video_selected" module="tvshows.dr_views" control-id="804" intent="ACTION_ENTER" />
+		<event action-id="dr-playChannelVideos" function="handle_tv_show_episode_video_selected" module="tvshows.dr_views" control-id="804" intent="ACTION_TOUCH_TAP" />
+	</view>
+	
+	<view id="dr-playAllVideosView" function="play_video_streams" module="tvshows.dr_views">
+		<event action-id="dr-hideEpisodeVideosList" control-id="" intent="ACTION_PREVIOUS_MENU" />
+		<event action-id="dr-hideEpisodeVideosList" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="dr-hideEpisodeVideosList" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="dr-hideEpisodeVideosList" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+		
+		<event action-id="dr-hideEpisodeVideosList" control-id="10" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dr-hideEpisodeVideosList" control-id="10" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dr-hideEpisodeVideosList" control-id="10" intent="ACTION_ENTER" />
+		<event action-id="dr-hideEpisodeVideosList" control-id="10" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dr-playVideos" function="handle_tv_show_episode_video_selected" module="tvshows.dr_views" control-id="804" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dr-playVideos" function="handle_tv_show_episode_video_selected" module="tvshows.dr_views" control-id="804" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dr-playVideos" function="handle_tv_show_episode_video_selected" module="tvshows.dr_views" control-id="804" intent="ACTION_ENTER" />
+		<event action-id="dr-playVideos" function="handle_tv_show_episode_video_selected" module="tvshows.dr_views" control-id="804" intent="ACTION_TOUCH_TAP" />
+	</view>
+	
+	<view id="dr-playChannelAllVideosView" function="play_video_streams" module="tvshows.dr_views">
+		<event action-id="dr-hideChannelEpisodeVideosList" control-id="" intent="ACTION_PREVIOUS_MENU" />
+		<event action-id="dr-hideChannelEpisodeVideosList" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="dr-hideChannelEpisodeVideosList" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="dr-hideChannelEpisodeVideosList" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+		
+		<event action-id="dr-hideChannelEpisodeVideosList" control-id="10" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dr-hideChannelEpisodeVideosList" control-id="10" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dr-hideChannelEpisodeVideosList" control-id="10" intent="ACTION_ENTER" />
+		<event action-id="dr-hideChannelEpisodeVideosList" control-id="10" intent="ACTION_TOUCH_TAP" />
+		
+		<event action-id="dr-playChannelVideos" function="handle_tv_show_episode_video_selected" module="tvshows.dr_views" control-id="804" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="dr-playChannelVideos" function="handle_tv_show_episode_video_selected" module="tvshows.dr_views" control-id="804" intent="ACTION_SELECT_ITEM" />
+		<event action-id="dr-playChannelVideos" function="handle_tv_show_episode_video_selected" module="tvshows.dr_views" control-id="804" intent="ACTION_ENTER" />
+		<event action-id="dr-playChannelVideos" function="handle_tv_show_episode_video_selected" module="tvshows.dr_views" control-id="804" intent="ACTION_TOUCH_TAP" />
+	</view>
+
+	<view id="dr-refreshView" function="show_refresh_view" module="tvshows.dr_views">
+		<event action-id="viewSourceOrEnd" control-id="" intent="ACTION_NAV_BACK" />
+		<event action-id="viewSourceOrEnd" control-id="" intent="ACTION_PARENT_DIR" />
+		<event action-id="viewSourceOrEnd" control-id="" intent="ACTION_TOUCH_TAP_TEN" />
+		<event action-id="viewSourceOrEnd" control-id="" intent="ACTION_PREVIOUS_MENU" />
+		
+		<event action-id="viewSourceOrEnd" control-id="10" intent="ACTION_MOUSE_LEFT_CLICK" />
+		<event action-id="viewSourceOrEnd" control-id="10" intent="ACTION_SELECT_ITEM" />
+		<event action-id="viewSourceOrEnd" control-id="10" intent="ACTION_ENTER" />
+		<event action-id="viewSourceOrEnd" control-id="10" intent="ACTION_TOUCH_TAP" />
+	</view>
+</actions>

@@ -1,0 +1,9 @@
+<fonts>
+	<font name="SkiaLight18" filename="Skia.ttf" size="18" style="Regular Light" />
+	<font name="SkiaLight24" filename="Skia.ttf" size="24" style="Regular Light" />
+	<font name="SkiaLightExtended34" filename="Skia.ttf" size="34"
+		style="Regular Light Extended" />
+	<font name="Skia26" filename="Skia.ttf" size="26" style="Regular" />
+	<font name="SkiaExtended40" filename="Skia.ttf" size="40"
+		style="Regular Extended" />
+</fonts>
