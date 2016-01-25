@@ -11,7 +11,10 @@ http://wxintribune-lh.akamaihd.net/i/WXINTribune_1@120151/master.m3u8
 rtmp://aljazeeraflashlivefs.fplive.net:1935/aljazeeraflashlive-live/aljazeera_eng_high
 
 #EXTINF:0,BBC World News 
-0
+http://204.107.27.137/live/27.low.stream/playlist.m3u8?id=0ad5aac39bb13fbef577a7cafb63c503062201bb6d3f0525c20e6277f70704709e14247fcd9f60107d0ef4d0ff7bf428f5dbf5ad8e5d4cb35e6a36c8516441f9bd445a417879f605a50e3a8444d98fd14e6e29b6e848a9a9a29378ec30ff03b1e69c1dbaaf1602681aa38fa697afd7d432919ecb2e28681c09f50977ed7335dbd3fd32643b7c951b23be5416e8304155eb7534c1e5664dd1
+
+#EXTINF:0,BBC World News 
+http://origin2.voronezh.ertelecom.ru/content/private/s147213/d3720264/r971567sd2000000/4dc056d69c5791101b1c85419bce537a665e6eb2/track_2_1200/playlist.m3u8
 
 #EXTINF:0,Bloomberg TV 
 http://btv-i.akamaihd.net/hls/live/202760-b/btvusa_ios/P1/M12K.m3u8
@@ -32,7 +35,7 @@ http://x4012c4000.edge.core-cdn.net/40000mb/live/4012hbbtv/bloomberg.ts
 0
 
 #EXTINF:0,CBS News 
-0
+http://cbsnews-linear.mdialog.com/video_assets/cbsnews.m3u8?api_key=563b80c1ae4ce359830f572d2496a947&iu=/8264/vaw-can/mobile_web/cbsnews_mobile
 
 #EXTINF:0,CCTV News 
 0
@@ -42,6 +45,12 @@ http://origin2.live.web.tv.streamprovider.net/streams/3bc166ba3776c04e987eb24271
 
 #EXTINF:0,CNN 
 http://top-iptv.zapto.org:8000/live/walid/walid/637.m3u8
+
+#EXTINF:0,CNN 
+http://edge1.everyon.tv/etv1sb/phd16/chunklist_w1519714347.m3u8
+
+#EXTINF:0,CNN 
+http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD177_W_150.sdp/media_7419.m3u8
 
 #EXTINF:0,CP24 
 0
@@ -54,6 +63,9 @@ http://cspan1-lh.akamaihd.net/i/cspan1_1@304727/master.m3u8
 
 #EXTINF:0,CSPAN 
 http://128.104.128.176:8080/udp/239.1.1.94:3094
+
+#EXTINF:0,CSPAN 
+http://bcliveuniv-lh.akamaihd.net/i/cpac1flr2014_01@51230/index_2000_av-p.m3u8
 
 #EXTINF:0,CTV NEWS 
 http://ams-lp7.9c9media.com/hls-live/livepkgr/_definst_/liveNews/News28.m3u8 

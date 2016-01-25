@@ -23,7 +23,13 @@ http://200.76.77.237/LIVE/H01/CANAL444/PROFILE03.m3u8?supertvlat=%2F.ts
 http://200.76.77.237/LIVE/H01/CANAL444/PROFILE05.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,AXN 
-0
+http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/12087.ts
+
+#EXTINF:0,AXN Black
+http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/12088.ts
+
+#EXTINF:0,AXN White
+http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/12086.ts
 
 #EXTINF:0,BabyTV 
 0
@@ -69,6 +75,9 @@ http://top-iptv.zapto.org:8000/live/walid/walid/620.m3u8
 
 #EXTINF:0,CBS Drama 
 http://204.107.27.137/live/1805.high.stream/playlist.m3u8?id=0ad5aac39bb13fbe070dc75b8151939dce1331fbafeb9d8e43cd0b34375fea40fbfb037b9388f231b3faed7dbaf03bf207d764c7666c998eef2177c71f4b9a7ebe475c3af95f7278b8151b09950dc63b7b358b8bfed822692fd948cdf84bc3fe7753db7b5626dcd6621f7dce1a48898da259b98ab6f4746cae8afccdc48cae53e938aee5271c998136231bf66f85dd6fb264ccbca2a2a406
+
+#EXTINF:0,CBS Reality 
+http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/12077.ts
 
 #EXTINF:0,CBS Reality 
 http://top-iptv.zapto.org:8000/live/walid/walid/554.m3u8
@@ -133,6 +142,12 @@ http://cdn.step-tv.com:8000/live/SON/SON/286.ts
 #EXTINF:0,E! 
 http://213.136.90.30:8000/live/christop/christop/9278.ts
 
+#EXTINF:0,E! 
+http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/12091.ts
+
+#EXTINF:0,E! 
+http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/12071.ts
+
 #EXTINF:0,E2 
 0
 
@@ -181,8 +196,14 @@ http://luckyiptv.ddns.net:23000/live/fausto/fausto/3462.ts
 #EXTINF:0,Fox Life 
 http://luckyiptv.ddns.net:23000/live/fausto/fausto/3453.ts
 
+#EXTINF:0,Fox Life 
+http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/12066.ts
+
 #EXTINF:0,Fox TV 
 http://luckyiptv.ddns.net:23000/live/fausto/fausto/3463.ts
+
+#EXTINF:0,Fox TV 
+http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/12067.ts
 
 #EXTINF:0,FX 
 0

@@ -122,7 +122,7 @@ http://213.136.90.30:8000/live/christop/christop/9226.ts
 http://213.136.90.30:8000/live/christop/christop/9227.ts
 
 #EXTINF:0,Rai Scuola
-0
+http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/2496.ts
 
 #EXTINF:0,Rai Storia
 0
@@ -152,19 +152,19 @@ rtmp://flash3.ipercast.net/teleunica.tv-live/livestream1
 0
 
 #EXTINF:0,Sky Arte 
-0
+http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/2524.ts
 
 #EXTINF:0,Sky Calcio 
 http://213.136.90.30:8000/live/christop/christop/9212.ts
 
 #EXTINF:0,Sky Cinema Family 
-0
+http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/3237.ts
 
 #EXTINF:0,Sky Sport 24 
 http://213.136.90.30:8000/live/christop/christop/9222.ts
 
 #EXTINF:0,Sky Sport F1 
-0
+http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/2479.ts
 
 #EXTINF:0,Sky TG24 
 rtmp://cp49989.live.edgefcs.net:1935/live playpath=streamRM1@2564 swfUrl=http://videoplatform.sky.it/player/swf/player_v2.swf pageUrl=http://video.sky.it/news/diretta live=1 timeout=10
@@ -179,7 +179,7 @@ http://skyianywhere2-i.akamaihd.net:80/hls/live/200275/tg24/stream5/streamPlayli
 http://213.136.90.30:8000/live/christop/christop/9221.ts
 
 #EXTINF:0,Sky Uno
-0
+http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/3808.ts
 
 #EXTINF:0,Suedtirol TV 
 0

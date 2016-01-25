@@ -25,6 +25,9 @@ http://top-iptv.zapto.org:8000/live/walid/walid/551.m3u8
 #EXTINF:0,Discovery Channel 
 http://luckyiptv.ddns.net:23000/live/fausto/fausto/3436.ts
 
+#EXTINF:0,Discovery Channel 
+http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/12074.ts
+
 #EXTINF:0,Discovery History 
 http://bit.do/bFWeV
 
@@ -70,6 +73,9 @@ https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8?hdnea=ip=173.34.6
 #EXTINF:0,History Channel 
 http://luckyiptv.ddns.net:23000/live/fausto/fausto/3458.ts
 
+#EXTINF:0,History Channel 
+http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/12081.ts
+
 #EXTINF:0,History Channel 2
 0
 
@@ -92,10 +98,13 @@ http://nasatv-lh.akamaihd.net/i/NASA_103@319271/master.m3u8
 http://iphone-streaming.ustream.tv/uhls/6540154/streams/live/iphone/playlist.m3u8
 
 #EXTINF:0,Nat Geo Wild 
-0
+http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/12060.ts
 
 #EXTINF:0,National Geographic 
 http://109.226.222.161:4022/udp/239.255.4.30:1234
+
+#EXTINF:0,National Geographic 
+http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/12059.ts
 
 #EXTINF:0,Nova
 0
