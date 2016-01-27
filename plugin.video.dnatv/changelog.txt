@@ -1,0 +1,23 @@
+2.0.6
+Fixed Error Notification
+
+2.0.5
+Multi-click fix
+
+2.0.4
+Added One Click Launch of DNA TV GUIDE
+Added DNA TV Clear Cache
+Added KODI Clear Cache
+Minor Settings Modifications
+
+2.0.3
+Overhauling
+
+2.0.2
+Test Release
+
+2.0.1 
+Test Release
+
+1.0.0
+Initial Release

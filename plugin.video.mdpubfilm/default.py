@@ -22,12 +22,11 @@ net = Net()
 
 
 def CAT():
-        #addDir('[B][COLOR white]Search[/COLOR][/B]','url',7,icon,fanart,'')
-        addDir('[B][COLOR white]Search[/COLOR][/B]','url',8,icon,fanart,'')
         addDir('[B][COLOR white]Newley Added[/COLOR][/B]',baseurl2+'/tag/new-added',1,icon,fanart,'')
+        addDir('[B][COLOR white]Genre/Year[/COLOR][/B]',baseurl2,5,icon,fanart,'')
+        addDir('[B][COLOR white]Search[/COLOR][/B]','url',8,icon,fanart,'')
         addDir('[B][COLOR white]Movies[/COLOR][/B]',baseurl2+'/tag/movies',1,icon,fanart,'')
         addDir('[B][COLOR white]Series[/COLOR][/B]',baseurl2+'/tag/series',2,icon,fanart,'')
-        addDir('[B][COLOR white]Genre/Year[/COLOR][/B]',baseurl2,5,icon,fanart,'')
 
 
 
@@ -38,7 +37,7 @@ def INDEX(url):
         all_videos = regex_get_all(link, '<div class="recent-item">', '<p class="post-meta">')
         items = len(all_videos)
         for a in all_videos:
-                name = regex_from_to(a, '<h3 class="post-box-title"><a href=".+?" rel="bookmark">', '</a>').replace(' &#8211; Full (HD)','')
+                name = regex_from_to(a, '<h3 class="post-box-title"><a href=".+?" rel="bookmark">', '</a>').replace(' &#8211; Full (HD)','').replace('Seaosn','Season')
                 name = addon.unescape(name)
                 name = name.encode('ascii', 'ignore').decode('ascii')
                 qualep = regex_from_to(a, '<div class="f_tag">', '<')
@@ -67,7 +66,7 @@ def INDEX2(url):
         all_videos = regex_get_all(link, '<div class="recent-item">', '<p class="post-meta">')
         items = len(all_videos)
         for a in all_videos:
-                name = regex_from_to(a, '<h3 class="post-box-title"><a href=".+?" rel="bookmark">', '</a>').replace(' &#8211; Full (HD)','')
+                name = regex_from_to(a, '<h3 class="post-box-title"><a href=".+?" rel="bookmark">', '</a>').replace(' &#8211; Full (HD)','').replace('Seaosn','Season')
                 name = addon.unescape(name)
                 name = name.encode('ascii', 'ignore').decode('ascii')
                 qualep = regex_from_to(a, '<div class="f_tag">', '<')
@@ -264,7 +263,7 @@ def addDir(name,url,mode,iconimage,fanart,description):
 
 def addDir2(name,url,mode,iconimage,itemcount):
         name = name.replace('[B][COLOR white]','').replace('[/COLOR][/B]','')
-        if 'season' not in url:
+        if ': Season' not in name:
                 year = name[-4:]
                 year = year.replace(' ','')
                 name = name[:-4]
@@ -280,8 +279,10 @@ def addDir2(name,url,mode,iconimage,itemcount):
                         season=splitName[2]
                         year = name[-4:]
                         year = year.replace(' ','')
+                        print year
                         name = name[:-5]
-                print season
+                        print name
+                print year
                 meta = metaget.get_meta('tvshow',name=name,year=year)
                 name = '[B][COLOR white]' + name + '[/COLOR][/B]' + ' [I][COLOR red]' + '[' + season + ']' + '[/COLOR][/I]'
                 meta['title'] = name

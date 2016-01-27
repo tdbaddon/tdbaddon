@@ -1,7 +1,7 @@
 ﻿#EXTM3U
 
 #EXTINF:0,HOW TO CHANGE AUDIO LANGUAGE
-http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mp4
+http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 ---------------------------------------------------------------------------------------------------------------
 
 
@@ -9,7 +9,7 @@ http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mp4
 0
 
 #EXTINF:0,Bein Sport 2
-0
+http://62.210.162.88:80/live/uk_sport80/154325012016/903.tshttp://62.210.162.88:80/live/uk_sport80/154325012016/903.ts
 
 #EXTINF:0,Bein Sport 3
 http://lihattv.toh.info/jhos/beib3.m3u8
@@ -37,6 +37,9 @@ http://top-iptv.zapto.org:8000/live/walid/walid/549.m3u8
 
 #EXTINF:0,ESPN 
 http://85.25.43.84:8000/live/UhWJi6MLyr/j4P7LhzKVz/836.ts
+
+#EXTINF:0,ESPN 
+http://62.210.162.88:80/live/uk_sport80/154325012016/904.ts
 
 #EXTINF:0,ESPN 2
 0
@@ -147,7 +150,7 @@ http://xrxs.net/video/live-p12losa-4728.m3u8?
 http://xrxs.net/video/live-p12netw-1164.m3u8
  
 #EXTINF:0,PAC 12 National HD 
-0
+http://xrxs.net/video/live-p12netw-2328.m3u8
 
 #EXTINF:0,PAC 12 Mountain 
 http://xrxs.net/video/live-p12moun-1164.m3u8
@@ -171,7 +174,7 @@ http://xrxs.net/video/live-p12wash-1164.m3u8
 http://xrxs.net/video/live-p12wash-4728.m3u8?
 
 #EXTINF:0,Poker Central
-0
+http://ooyalahd2-f.akamaihd.net/i/crtv01_delivery@329705/index_1164_av-b.m3u8
 
 #EXTINF:0,Porsche Channel 
 mms://100automoto.tv/channel_porsche

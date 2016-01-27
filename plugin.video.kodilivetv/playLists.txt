@@ -1,0 +1,63 @@
+[
+    {
+        "url": "http://kodilive.eu/iptv/raw2.php?l=it", 
+        "name": 10020
+    }, 
+    {
+        "url": "http://kodilive.eu/iptv/raw2.php?l=fr", 
+        "name": 10021
+    }, 
+    {
+        "url": "http://kodilive.eu/iptv/raw2.php?l=de", 
+        "name": 10022
+    }, 
+    {
+        "url": "http://kodilive.eu/iptv/raw2.php?l=en", 
+        "name": 10023
+    }, 
+    {
+        "url": "http://kodilive.eu/iptv/raw2.php?l=tr", 
+        "name": 10024
+    }, 
+    {
+        "url": "http://kodilive.eu/iptv/raw2.php?l=es", 
+        "name": 10025
+    }, 
+    {
+        "url": "http://kodilive.eu/iptv/raw2.php?l=pt", 
+        "name": 10026
+    }, 
+    {
+        "url": "http://kodilive.eu/iptv/raw2.php?l=ru", 
+        "name": 10027
+    },
+    {
+        "url": "http://kodilive.eu/iptv/raw2.php?l=ro", 
+        "name": 10029
+    },
+    {
+        "url": "http://kodilive.eu/iptv/raw2.php?l=gr", 
+        "name": 10030
+    },
+    {
+        "url": "http://kodilive.eu/iptv/raw2.php?l=ar", 
+        "name": 10031
+    }, 
+    {
+        "url": "http://kodilive.eu/iptv/raw2.php?l=mu", 
+        "name": 10028
+    },
+    {
+        "url": "http://kodilive.eu/iptv/regionali.php", 
+        "name":10050
+    },
+    {
+        "url": "http://kodilive.eu/iptv/res/radioit2.m3u", 
+        "name":10070
+    },
+    {
+        "url": "http://kodilive.eu/iptv/res/mediaset2.m3u", 
+        "name":10051
+    }
+    
+]

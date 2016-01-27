@@ -1,7 +1,7 @@
 ﻿#EXTM3U
 
 #EXTINF:0,HOW TO CHANGE AUDIO LANGUAGE
-http://www.tcomputers.ca/-sites/kodi-videos/CHANGE-AUDIO.mp4
+http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 ---------------------------------------------------------------------------------------------------------------
 
 #EXTINF:0,A&E 
@@ -37,8 +37,14 @@ http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/12086.ts
 #EXTINF:0,BBC 1 
 http://198.179.30.109/live/14.high.stream/playlist.m3u8?id=0ad5aac39bb13fbe070dc75b8151939dce1331fbafeb9d8e43cd0b34375fea40fbfb037b9388f231b3faed7dbaf03bf207d764c7666c998eef2177c71f4b9a7ebe475c3af95f7278b8151b09950dc63b7b358b8bfed822692fd948cdf84bc3fe7753db7b5626dcd6621f7dce1a48898da259b98ab6f4746cae8afccdc48cae53e938aee5271c998136231bf66f85dd6fb264ccbca2a2a406
 
+#EXTINF:0,BBC 1 
+http://62.65.140.214:80/session/c8b065da-c39b-11e5-b2d2-005056bc06d1/nvnv5a/2/4017/index.m3u8?token=fca897863ddfc6d1efe2f7169f693132_1453837355_1453837355&p=127|X-Forwarded-For=85.6.47.237
+
 #EXTINF:0,BBC 2 
 http://198.179.30.109/live/25.high.stream/playlist.m3u8?id=0ad5aac39bb13fbe070dc75b8151939dce1331fbafeb9d8e43cd0b34375fea40fbfb037b9388f231b3faed7dbaf03bf207d764c7666c998eef2177c71f4b9a7ebe475c3af95f7278b8151b09950dc63b7b358b8bfed822692fd948cdf84bc3fe7753db7b5626dcd6621f7dce1a48898da259b98ab6f4746cae8afccdc48cae53e938aee5271c998136231bf66f85dd6fb264ccbca2a2a406
+
+#EXTINF:0,BBC 2 
+http://62.65.140.219:80/session/c916963e-c39b-11e5-b33a-005056bc49ac/nvnv5a/2/4012/index.m3u8?token=f1ae27e8676c30af008f4a9fdf902f97_1453837356_1453837356&p=127|X-Forwarded-For=85.3.136.166
 
 #EXTINF:0,BBC Entertainment
 http://200.76.77.237/LIVE/H01/CANAL253/PROFILE05.m3u8?supertvlat=%2F.ts
@@ -220,6 +226,9 @@ https://glblvhalifax-lh.akamaihd.net/i/glblvHalifax_1@119843/master.m3u8?__b__=9
 #EXTINF:0,Global TV Toronto 
 http://link.theplatform.com/s/dtjsEC/hdSH3iztz_j_?feed=DEV%20Live%20Stream%20Feed/playlist.m3u8
 
+#EXTINF:0,Global TV Toronto 
+https://glblvestu-f.akamaihd.net/i/glblvestu_1@78149/master.m3u8?__b__=900&hdnea=ip=99.18.68.202~st=1434303944~exp=1434304544~acl=/i/*~id=3f0edb02-c4e5-4596-8950-4331b8ce1baf~hmac=4acbecb511f7c3beaf085123ab9097c7a6acbd5d857fd4cefbfdfb733b666f57
+
 #EXTINF:0,Global TV Vancouver 
 http://link.theplatform.com/s/dtjsEC/EqBPGYLY6fEx?feed=DEV%20Live%20Stream%20Feed/playlist.m3u8
 
@@ -259,17 +268,26 @@ http://198.179.30.108/live/11.high.stream/playlist.m3u8?id=0ad5aac39bb13fbe070dc
 #EXTINF:0,ITV 1 
 http://204.107.27.137/live/1817.high.stream/playlist.m3u8?id=0ad5aac39bb13fbe070dc75b8151939dce1331fbafeb9d8e43cd0b34375fea40fbfb037b9388f231b3faed7dbaf03bf207d764c7666c998eef2177c71f4b9a7ebe475c3af95f7278b8151b09950dc63b7b358b8bfed822692fd948cdf84bc3fe7753db7b5626dcd6621f7dce1a48898da259b98ab6f4746cae8afccdc48cae53e938aee5271c998136231bf66f85dd6fb264ccbca2a2a406
 
+#EXTINF:0,ITV 1 
+http://62.65.140.213:80/session/d6b82474-c39b-11e5-ab6f-005056bc06d1/nvnv5a/2/4018/index.m3u8?token=312e6b0b7e4a784bafd914772b566de3_1453837378_1453837378&p=127|X-Forwarded-For=85.5.20.126
+
 #EXTINF:0,ITV 2 
 http://198.179.30.108/live/67.high.stream/playlist.m3u8?id=0ad5aac39bb13fbe070dc75b8151939dce1331fbafeb9d8e43cd0b34375fea40fbfb037b9388f231b3faed7dbaf03bf207d764c7666c998eef2177c71f4b9a7ebe475c3af95f7278b8151b09950dc63b7b358b8bfed822692fd948cdf84bc3fe7753db7b5626dcd6621f7dce1a48898da259b98ab6f4746cae8afccdc48cae53e938aee5271c998136231bf66f85dd6fb264ccbca2a2a406
 
 #EXTINF:0,ITV 2 
 http://204.107.27.137/live/1820.high.stream/playlist.m3u8?id=0ad5aac39bb13fbe070dc75b8151939dce1331fbafeb9d8e43cd0b34375fea40fbfb037b9388f231b3faed7dbaf03bf207d764c7666c998eef2177c71f4b9a7ebe475c3af95f7278b8151b09950dc63b7b358b8bfed822692fd948cdf84bc3fe7753db7b5626dcd6621f7dce1a48898da259b98ab6f4746cae8afccdc48cae53e938aee5271c998136231bf66f85dd6fb264ccbca2a2a406
 
+#EXTINF:0,ITV 2 
+http://62.65.140.215:80/session/d733c6c4-c39b-11e5-9f2b-005056bc1a52/nvnv5a/2/4005/index.m3u8?token=547c0d9b064e546129cb329d02d50356_1453837379_1453837379&p=127|X-Forwarded-For=85.6.50.159
+
 #EXTINF:0,ITV 3 
 http://198.179.30.108/live/26.high.stream/playlist.m3u8?id=0ad5aac39bb13fbe070dc75b8151939dce1331fbafeb9d8e43cd0b34375fea40fbfb037b9388f231b3faed7dbaf03bf207d764c7666c998eef2177c71f4b9a7ebe475c3af95f7278b8151b09950dc63b7b358b8bfed822692fd948cdf84bc3fe7753db7b5626dcd6621f7dce1a48898da259b98ab6f4746cae8afccdc48cae53e938aee5271c998136231bf66f85dd6fb264ccbca2a2a406
 
 #EXTINF:0,ITV 3 
 http://204.107.27.137/live/1823.high.stream/playlist.m3u8?id=0ad5aac39bb13fbe070dc75b8151939dce1331fbafeb9d8e43cd0b34375fea40fbfb037b9388f231b3faed7dbaf03bf207d764c7666c998eef2177c71f4b9a7ebe475c3af95f7278b8151b09950dc63b7b358b8bfed822692fd948cdf84bc3fe7753db7b5626dcd6621f7dce1a48898da259b98ab6f4746cae8afccdc48cae53e938aee5271c998136231bf66f85dd6fb264ccbca2a2a406
+
+#EXTINF:0,ITV 3 
+http://62.65.140.150:80/session/d78fba4c-c39b-11e5-a406-005056bc06d1/nvnv5a/2/4025/index.m3u8?token=5b939959b35bf4b99fb8a3aaaa2b7966_1453837380_1453837380&p=127|X-Forwarded-For=85.4.186.115
 
 #EXTINF:0,ITV 4 
 http://198.179.30.108/live/101.high.stream/playlist.m3u8?id=0ad5aac39bb13fbe070dc75b8151939dce1331fbafeb9d8e43cd0b34375fea40fbfb037b9388f231b3faed7dbaf03bf207d764c7666c998eef2177c71f4b9a7ebe475c3af95f7278b8151b09950dc63b7b358b8bfed822692fd948cdf84bc3fe7753db7b5626dcd6621f7dce1a48898da259b98ab6f4746cae8afccdc48cae53e938aee5271c998136231bf66f85dd6fb264ccbca2a2a406

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<strings>
+	<string id="10001">Add a new list</string>
+	<string id="10002">Select playlist source</string>
+	<string id="10003">Favorites</string>
+	<string id="10004">List name</string>
+	<string id="10005">List URL</string>
+	<string id="10006">Choose list</string>
+	<string id="10007">already in playlists</string>
+	<string id="10008">Remove from Kodi Live TV</string>
+	<string id="10009">Add to Kodi Live TV favorites</string>
+	<string id="10010">Remove from Kodi Live TV favorites</string>
+	<string id="10011">is already in favorites</string>
+	<string id="10012">added to favorites</string>
+	<string id="10013">Add a new channel</string>
+	<string id="10014">Channel name</string>
+	<string id="10015">Channel URL</string>
+	<string id="10016">New remote-list</string>
+	<string id="10017">New local-list</string>
+        
+        <string id="10020">Italian</string>
+        <string id="10021">French</string>
+        <string id="10022">German</string>
+        <string id="10023">English</string>
+        <string id="10024">Turkish</string>
+        <string id="10025">Spanish</string>
+        <string id="10026">Portuguese</string>
+        <string id="10027">Russian/Ukrainan</string>
+        <string id="10028">Music</string>
+        <string id="10029">Romanian</string>
+        <string id="10030">Greek</string>
+        <string id="10031">Arabic</string>
+        <string id="10050">Italian regional channels</string>
+        <string id="10070">Italian Radio</string>
+        
+        <string id="10100">All Channels</string>
+	
+	<string id="10101">Write XML Advancedsettings</string>
+	<string id="10102">Delete Favourites file</string>
+        <string id="10103">Restore XML Advancedsettings</string>
+        <string id="10104">Delete XML Advancedsettings</string>
+</strings>

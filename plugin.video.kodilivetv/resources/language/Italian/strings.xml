@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<strings>
+	<string id="10001">Aggiungi una nuova lista</string>
+	<string id="10002">Seleziona sorgente lista</string>
+	<string id="10003">Favoriti</string>
+	<string id="10004">Nome Lista</string>
+	<string id="10005">URL Lista</string>
+	<string id="10006">Scegli una lista</string>
+	<string id="10007">è già nella lista</string>
+	<string id="10008">Rimuovi da Kodi Live TV</string>
+	<string id="10009">Aggiungi ai favoriti di Kodi Live TV</string>
+	<string id="10010">Rimuovi dai favoriti di Kodi Live TV</string>
+	<string id="10011">è già nei favoriti</string>
+	<string id="10012">aggiunto ai favoriti</string>
+	<string id="10013">Aggiungi un nuovo canale</string>
+	<string id="10014">Nome canale</string>
+	<string id="10015">URL canale</string>
+	<string id="10016">Nuova lista remota</string>
+	<string id="10017">Nuova lista locale</string>
+        
+        <string id="10020">Italiano</string>
+        <string id="10021">Francese</string>
+        <string id="10022">Tedesco</string>
+        <string id="10023">Inglese</string>
+        <string id="10024">Turco</string>
+        <string id="10025">Spagnolo</string>
+        <string id="10026">Portoghese</string>
+        <string id="10027">Russo/Ucraino</string>
+        <string id="10028">Musica</string>
+        <string id="10029">Rumeno</string>
+        <string id="10030">Greco</string>
+        <string id="10031">Arabo</string>
+        <string id="10050">TV Regionali Italiane</string>
+        <string id="10051">Mediaset (Italian IP only)</string>
+        <string id="10070">Radio italiane</string>
+        
+        <string id="10100">Tutti i canali</string>
+        
+	
+	<string id="10101">Scrivi il file XML Advancedsettings</string>
+	<string id="10102">Cancella il file dei favoriti</string>
+        <string id="10103">Ripristina il file XML Advancedsettings</string>
+        <string id="10104">Cancella il file XML Advancedsettings</string>
+</strings>
