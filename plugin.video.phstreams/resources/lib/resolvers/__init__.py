@@ -381,7 +381,7 @@ def info():
     }, {
         'class': 'filepup',
         'netloc': ['filepup.net']
-    }, {
+    }, {    
         'class': 'googledocs',
         'netloc': ['docs.google.com', 'drive.google.com']
     }, {
@@ -508,6 +508,9 @@ def info():
         'netloc': ['stagevu.com'],
         'quality': 'Low'
     }, {
+        'class': 'stream4free',
+        'netloc': ['stream4free.pro', 'stream4free.eu']
+    }, {    
         'class': 'streamcloud',
         'netloc': ['streamcloud.eu'],
         'quality': 'Medium'
@@ -634,6 +637,10 @@ def info():
     }, {
         'class': 'zettahost',
         'netloc': ['zettahost.tv'],
+        'quality': 'High'
+    }, {
+        'class': 'zoptv',
+        'netloc': ['zoptv.com', 'iptvlinks.tk'],
         'quality': 'High'
     }, {
         'class': 'zstream',

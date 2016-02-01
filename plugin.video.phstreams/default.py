@@ -20,7 +20,7 @@
 '''
 
 
-import urlparse,sys
+import urlparse,sys,re
 params = dict(urlparse.parse_qsl(sys.argv[2].replace('?','')))
 
 
@@ -164,9 +164,19 @@ elif action == 'radio181fm':
     from resources.lib.indexers import phradios
     phradios.radio181fm(image, fanart)
 
-elif action == 'radiotunes':
-    from resources.lib.indexers import phradios
-    phradios.radiotunes(image, fanart)
+elif ('HH') in action:
+    from resources.lib.libraries import control
+    mediaPath = control.addonInfo('path') + '/resources/lib/indexers/phhuddle.py'
+    print action
+    file = open(mediaPath, 'r')
+    getter = file.read()
+    file.close()
+    list = re.findall('(HH.+?\(url\))', getter)
+    for item in list:
+        test = 'phhuddle.'+ item
+        if item[:-5] == action:
+            from resources.lib.indexers import phhuddle
+            exec test       
 
 elif action == 'Kickinradio':
     from resources.lib.indexers import phradios

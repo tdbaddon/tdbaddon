@@ -45,8 +45,8 @@ def resolve(url):
                 result = client.request(url, post=post, mobile=True, close=False)
                 result = result.replace('\n','')
 
-                result = re.compile('(eval.*?\)\)\))').findall(result)[-1]
-                result = jsunpack.unpack(result)
+                try: result = jsunpack.unpack(re.compile('(eval.*?\)\)\))').findall(result)[-1])
+                except: pass
 
                 result = re.compile('sources *: *\[.+?\]').findall(result)[-1]
                 result = re.compile('file *: *"(http.+?)"').findall(result)

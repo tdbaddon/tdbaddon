@@ -25,39 +25,39 @@
 ### Thanks to Gerikss for the structure of code
 ### Ported to Phoenix by VinMan_JSV 2016
 
-import random
+
 import cookielib, calendar, time, json, xbmc
 import re,sys,urllib,urlparse,base64,urllib2
 from resources.lib.libraries import control
 from resources.lib.libraries import client
 from datetime import datetime, timedelta
-from resources.lib.libraries import jsunpack
+from resources.lib.resolvers import sawlive
 
-mediaPath = control.addonInfo('path') + '/resources/media/phhuddle/'
+
 display_status = 'true'
 display_start_time = 'true'
-logos ={'nba': mediaPath+'nba.png',
-        'nhl': mediaPath+'nhl.png',
-        'nfl': mediaPath+'nfl.png',
-        'mlb': mediaPath+'mlb.png',
-        'MMA': mediaPath+'mma.png',
-        'Soccer': mediaPath+'soccer.png',
-        'WWE': mediaPath+'wwe.png'}
-back = {'nba':mediaPath+'NBA-Globe.jpg',
-        'nhl':mediaPath+'NHL.jpg',
-        'nfl':mediaPath+'NFL.jpg',
-        'MMA':mediaPath+'mma.jpg',
-        'Soccer': mediaPath+'soccer.jpg',
-        'WWE': mediaPath+'wwe.jpg'}
+logos ={'nba': 'http://s16.postimg.org/q701239gl/nba.png',
+        'nhl': 'http://s22.postimg.org/je1f082b5/nhl.png',
+        'nfl': 'http://s22.postimg.org/5s0p7okoh/nfl.png',
+        'mlb': 'http://s22.postimg.org/o2ccyal69/mlb.png',
+        'MMA': 'http://s22.postimg.org/vwcyjosz5/mma.png',
+        'Soccer': 'http://s22.postimg.org/g8gta0jox/soccer.png',
+        'WWE': 'http://s22.postimg.org/6du9hj54h/wwe.png'}
+back = {'nba':'http://s22.postimg.org/wed5wnovl/NBA_Globe.jpg',
+        'nhl':'http://s22.postimg.org/4gsxz7p2p/NHL.jpg',
+        'nfl':'http://s22.postimg.org/sw1609nzl/NFL.jpg',
+        'MMA':'http://s22.postimg.org/k8nym9a5t/mma.jpg',
+        'Soccer': 'http://s22.postimg.org/3v3z33u0h/soccer.jpg',
+        'WWE': 'http://s22.postimg.org/4aju9v5bl/wwe.jpg'}
 def HuddleDirectory():
-    addDirectoryItem('[COLOR=FF00FF00][B] NHL  [/B][/COLOR]','Huddle_Main', '0', mediaPath+'nhl.png', mediaPath+'Huddle-fanart.jpg',url='nhl')
-    addDirectoryItem('[COLOR=FF00FF00][B] NBA  [/B][/COLOR]','Huddle_Main', '0', mediaPath+'nba.png', mediaPath+'Huddle-fanart.jpg',url='nba')
-    addDirectoryItem('[COLOR=FF00FF00][B] NFL  [/B][/COLOR]','Huddle_Main', '0', mediaPath+'nfl.png', mediaPath+'Huddle-fanart.jpg',url='nfl')
-    addDirectoryItem('[COLOR=FF00FF00][B] MLB - COMING SOON [/B][/COLOR]','Play_Main', '0', mediaPath+'icon.png', mediaPath+'Huddle-fanart.jpg',url='mlb')
-    addDirectoryItem('[COLOR=FF00FF00][B] MMA  [/B][/COLOR]', 'Huddle_Sites', '0', mediaPath+'mma.png', mediaPath+'Huddle-fanart.jpg',url='MMA')
-    addDirectoryItem('[COLOR=FF00FF00][B] SOCCER  [/B][/COLOR]', 'Huddle_Sites', '0', mediaPath+'soccer.png', mediaPath+'Huddle-fanart.jpg',url='Soccer')
-    addDirectoryItem('[COLOR=FF00FF00][B] WWE  [/B][/COLOR]', 'Huddle_Sites', '0', mediaPath+'wwe.png', mediaPath+'Huddle-fanart.jpg',url='WWE')
-    addDirectoryItem('[COLOR=FFFFFF00][B] ARCHIVE [/COLOR][/B]', 'Archive_Main', '0', mediaPath+'archive.png', mediaPath+'Huddle-fanart.jpg','')
+    addDirectoryItem('[COLOR=FF00FF00][B] NHL  [/B][/COLOR]','Huddle_Main', '0', 'http://s22.postimg.org/je1f082b5/nhl.png', 'http://s22.postimg.org/gb0owuncd/Huddle_fanart.jpg',url='nhl')
+    addDirectoryItem('[COLOR=FF00FF00][B] NBA  [/B][/COLOR]','Huddle_Main', '0', 'http://s16.postimg.org/q701239gl/nba.png', 'http://s22.postimg.org/gb0owuncd/Huddle_fanart.jpg',url='nba')
+    addDirectoryItem('[COLOR=FF00FF00][B] NFL  [/B][/COLOR]','Huddle_Main', '0', 'http://s22.postimg.org/5s0p7okoh/nfl.png', 'http://s22.postimg.org/gb0owuncd/Huddle_fanart.jpg',url='nfl')
+    addDirectoryItem('[COLOR=FF00FF00][B] MLB - COMING SOON [/B][/COLOR]','Play_Main', '0', 'http://s22.postimg.org/o2ccyal69/mlb.png', 'http://s22.postimg.org/gb0owuncd/Huddle_fanart.jpg',url='mlb')
+    addDirectoryItem('[COLOR=FF00FF00][B] MMA  [/B][/COLOR]', 'Huddle_Sites', '0', 'http://s22.postimg.org/vwcyjosz5/mma.png', 'http://s22.postimg.org/gb0owuncd/Huddle_fanart.jpg',url='MMA')
+    addDirectoryItem('[COLOR=FF00FF00][B] SOCCER  [/B][/COLOR]', 'Huddle_Sites', '0', 'http://s22.postimg.org/g8gta0jox/soccer.png', 'http://s22.postimg.org/gb0owuncd/Huddle_fanart.jpg',url='Soccer')
+    addDirectoryItem('[COLOR=FF00FF00][B] WWE  [/B][/COLOR]', 'Huddle_Sites', '0', 'http://s22.postimg.org/6du9hj54h/wwe.png', 'http://s22.postimg.org/gb0owuncd/Huddle_fanart.jpg',url='WWE')
+    addDirectoryItem('[COLOR=FFFFFF00][B] ARCHIVE [/COLOR][/B]', 'Archive_Main', '0', 'http://s20.postimg.org/ea1tzp0ct/archive.png', 'http://s22.postimg.org/gb0owuncd/Huddle_fanart.jpg','')
     endCategory()
 
 
@@ -130,7 +130,6 @@ def Huddle_Main(url, image, fanart):
                 if control.setting('display_score')=='true':
                         title = title+'[COLOR=FF00FFFF]'+score+'[/COLOR]'
                 url = murl+ '|'+home +'vs'+away
-                print url
                 addDirectoryItem(title, 'Huddle_Sites', image, image, fanart, url)	
         else:
             addDirectoryItem("[COLOR=FFFF0000]No playable links...Try Later![/COLOR]", 'Play_Main', image, image, fanart)
@@ -141,7 +140,6 @@ def Huddle_Main(url, image, fanart):
     
 
 def Huddle_Sites(url, image, fanart):
-    print url
     try:
         
             if not ('MMA') in url and not ('Soccer') in url and not ('WWE')in url and not ('match') in url and not ('fight') in url and not ('wwe') in url:            
@@ -168,6 +166,9 @@ def Huddle_Sites(url, image, fanart):
             else:pass                
             if url =="MMA" or url == "Soccer" or url == "WWE":
                     fanart = back[url]
+                    low = url.lower()
+                    if url == "Soccer": low = "thread"
+                    if url =="WWE": low ="thread"
                     link = 'https://www.reddit.com/r/'+url+'Streams/'
                     T = 0
                     try:
@@ -175,13 +176,15 @@ def Huddle_Sites(url, image, fanart):
                         result = client.parseDOM(html, 'p', attrs={'class': 'title'})
                         channel = client.parseDOM(result, 'a', ret='href')  
                         for item in channel:
-                                if ('match') in item or ('game') in item or ('fight') in item or ('wwe') in item or ('event') in item:
+                                if ('match') in item or ('game') in item or ('fight') in item or ('mma') in item or ('event') in item or ('wwe') in item:
                                     url = 'https://www.reddit.com/'+item
+                                    url = url.replace('com//', 'com/')
                                     try:
-                                        title = item.split('thread')[1].replace('_',' ').upper()[:-1]
+                                        title = item.split(low)[1].replace('_',' ').upper()[:-1]
                                     except:
+                                        
                                         title = item
-                                    if not ('comment') in title and not  ('http') in title:
+                                    if not ('comment') in title and not ('http') in title:
                                         T = T + 1
                                         addDirectoryItem("[COLOR=FFFF0000]"+title+"[/COLOR]", 'Huddle_Sites', image, image, fanart,url)
                                     else:
@@ -191,7 +194,7 @@ def Huddle_Sites(url, image, fanart):
                     endDirectory()
             else:pass
                    
-            if ('soccer') in url or ('fight') in url or ('wwe') in url or ('match') in url or ('event') in url:link = url       
+            if ('soccer') in url or ('fight') in url or ('wwe') in url or ('match') in url or ('event') in url or ('mma') in url:link = url       
             if link:
                 T = 0
                 html = client.request(link)
@@ -203,113 +206,107 @@ def Huddle_Sites(url, image, fanart):
                 for el in content:
                                                 
                         if 'blabseal.com' in el:
-                                url = Blabseal(el)
+                                url = (el)
                                 if url and url not in urls:
-                                        addDirectoryItem('Blabseal.com', 'Play_Main',image, image,fanart, url)
+                                        addDirectoryItem('Blabseal.com', 'HHBlabseal',image, image,fanart, url)
                                         urls.append(url)
-                        
                         elif '1apps.com' in el:
-                                url = Oneapp(el)
+                                url = (el)
                                 if url and url not in urls:
-                                        addDirectoryItem('Oneapp', 'Play_Main',image, image,fanart, url)
+                                        addDirectoryItem('Oneapp', 'HHOneapp',image, image,fanart, url)
                                         urls.append(url)
                         elif 'youtu' in el and 'channel' not in el and 'list' not in el:
-                                url = GetYoutube(el)
+                                url = el
                                 if url and url not in urls:
-                                        addDirectoryItem('Youtube.com', 'Play_Main',image, image,fanart, url)
+                                        addDirectoryItem('Youtube.com', 'HHGetYoutube',image, image,fanart, url)
                                         urls.append(url)          
                         elif 'giostreams' in el:
-                                url = Giostreams(el)
+                                url = (el)
                                 if url and url not in urls:
-                                        addDirectoryItem('Giostreams.eu', 'Play_Main', image, image, fanart, url)
+                                        addDirectoryItem('Giostreams.eu', 'HHGiostreams', image, image, fanart, url)
                                         urls.append(url)                
                         elif 'freecast.in' in el:
-                                url = Freecastin(el)
+                                url = (el)
                                 if url and url not in urls:
-                                        addDirectoryItem('Freecast.in', 'Play_Main',image, image,fanart, url)
+                                        addDirectoryItem('Freecast.in', 'HHFreecastin',image, image,fanart, url)
                                         urls.append(url)                
                         elif 'streamboat.tv' in el:
-                                url = Streambot(el)
+                                url = (el)
                                 if url and url not in urls:
-                                        addDirectoryItem('Streamboat.tv', 'Play_Main',image, image,fanart, url)
+                                        addDirectoryItem('Streamboat.tv', 'HHStreambot',image, image,fanart, url)
                                         urls.append(url)
                         elif 'nbastream.net' in el:
-                                url = Nbanhlstreams(el)
+                                url = (el)
                                 if url and url not in urls:
-                                        addDirectoryItem('Nbastream.net', 'Play_Main',image, image,fanart, url)
+                                        addDirectoryItem('Nbastream.net', 'HHNbanhlstreams',image, image,fanart, url)
                                         urls.append(url)
                         elif 'nhlstream.net' in el:
-                                url = Nbanhlstreams(el)
+                                url =(el)
                                 if url and url not in urls:
-                                        addDirectoryItem('Nhlstream.net', 'Play_Main',image, image,fanart, url)
+                                        addDirectoryItem('Nhlstream.net', 'HHNbanhlstreams',image, image,fanart, url)
                                         urls.append(url)
                         elif 'livenflstream.net' in el:
-                                url = Nbanhlstreams(el)
+                                url = (el)
                                 if url and url not in urls:
-                                        addDirectoryItem('Livenflstream.net', 'Play_Main',image, image,fanart, url)
+                                        addDirectoryItem('Livenflstream.net', 'HHNbanhlstreams',image, image,fanart, url)
                                         urls.append(url)
                         elif 'streamendous' in el:
-                                url = tester(el)
+                                url = (el)
                                 if url and url not in urls:
-                                        addDirectoryItem('Streamendous', 'Play_Main',image, image, fanart, url)
+                                        addDirectoryItem('Streamendous', 'HHtester',image, image, fanart, url)
                                         urls.append(url)                
                         elif 'fs.anvato.net' in el:
-                                url = Getanvato(el)
+                                url = (el)
                                 if url and url not in urls:
-                                        addDirectoryItem('Fox ToGo (US IP Only)', 'Play_Main',image, image,fanart, url)
+                                        addDirectoryItem('Fox ToGo (US IP Only)', 'HHGetanvato',image, image,fanart, url)
                                         urls.append(url)               
                         elif 'streamsarena.eu' in el:
-                                url = Streamarena(el)
+                                url = (el)
                                 if url and url not in urls:
-                                        addDirectoryItem('Streamsarena.eu', 'Play_Main',image, image,fanart, url)
+                                        addDirectoryItem('Streamsarena.eu', 'HHStreamarena',image, image,fanart, url)
                                         urls.append(url)              
                         elif 'streamup.com' in el and 'm3u8' not in el:
-                                url = GetStreamup(el.split('/')[3])
+                                url = el
                                 if url and url not in urls:
-                                        addDirectoryItem('Streamup.com', 'Play_Main',image, image,fanart, url)
+                                        addDirectoryItem('Streamup.com', 'HHGetStreamup',image, image,fanart, url)
                                         urls.append(url)
                         elif 'torula' in el:
-                                url = Torula(el)
+                                url = (el)
                                 if url and url not in urls:
-                                        addDirectoryItem('Torula.us', 'Play_Main',image, image,fanart, url)
+                                        addDirectoryItem('Torula.us', 'HHTorula',image, image,fanart, url)
                                         urls.append(url)
                         elif 'gstreams.tv' in el:
-                                url = Gstreams(el)
+                                url = (el)
                                 if url and url not in urls:
-                                        addDirectoryItem('Gstreams.tv', 'Play_Main',image, image,fanart, url)
+                                        addDirectoryItem('Gstreams.tv', 'HHGstreams',image, image,fanart, url)
                                         urls.append(url)
                         elif 'nfl-watch.com/live/watch' in el or 'nfl-watch.com/live/-watch' in el or 'nfl-watch.com/live/nfl-network' in el:
-                                url = Nflwatch(el)
+                                url = (el)
                                 if url and url not in urls:
-                                        addDirectoryItem('Nfl-watch.com', 'Play_Main',image, image,fanart, url)
+                                        addDirectoryItem('Nfl-watch.com', 'HHNflwatch',image, image,fanart, url)
                                         urls.append(url)
                         elif 'ducking.xyz' in el:
-                                url = Ducking(el)
+                                url = (el)
                                 if url and url not in urls:
-                                        addDirectoryItem('Ducking.xyz', 'Play_Main',image, image,fanart, url)
+                                        addDirectoryItem('Ducking.xyz', 'HHDucking',image, image,fanart, url)
                                         urls.append(url)
                         elif 'streamandme' in el:
-                                url = Streamandme(el)
+                                url = (el)
                                 if url and url not in urls:
-                                        addDirectoryItem('Streamandme', 'Play_Main',image, image,fanart, url)
+                                        addDirectoryItem('Streamandme', 'HHStreamandme',image, image,fanart, url)
                                         urls.append(url)
                         elif 'mursol.moonfruit.com' in el:
-                                url = Moonfruit(el)
+                                url = (el)
                                 if url and url not in urls:
-                                        addDirectoryItem('Moonfruit', 'Play_Main',image, image,fanart, url)
+                                        addDirectoryItem('Moonfruit', 'HHMoonfruit',image, image,fanart, url)
                                         urls.append(url)
                         elif 'm3u8' in el and 'room' not in el and 'anvato' not in el and 'turner.com' not in el:
                                 url = el
                                 if url and url not in urls:
                                         addDirectoryItem('M3U8 stream', 'Play_Main',image, image,fanart, url)
                                         urls.append(url)        
-                        
-                for el in cont:
-                        if '101livesportsvideos.com' in el and 'SD' not in el and 'ace' not in el:
-                                url = Livesports101(el)
-                                if url and url not in urls:
-                                        addDirectoryItem('101livesportsvideos.com', 'Play_Main',image, image,fanart, url)
-                                        urls.append(url)
+                      
+                
                 for el in ct:
                         if 'turner.com' in el and el not in urls:
                                 try:
@@ -323,11 +320,13 @@ def Huddle_Sites(url, image, fanart):
             else:
                
                 addDirectoryItem("[COLOR=FFFF0000]Could not find playable link[/COLOR]", 'Play_Main', image, image, fanart)
+            
             endDirectory()
+           
     except:
         pass
     
-def tester(url):
+def HHtester(url):
     try:
         html = client.request(url)
         req = client.parseDOM(html, 'iframe', attrs={'id': 'player'},ret='src')
@@ -338,170 +337,139 @@ def tester(url):
         link = re.compile('src="(.+?)"').findall(str(html))
         for item in link:
             if ('sawlive') in item:
-                url = sawresolve(item)
-                return url
+                url = sawlive.resolve(item)
+                Play_Main(url)
             else:pass
-        return None
+        
     except:
-        return None
+            return None
   
 
     
-def Giostreams(url):
-    try:  
+def HHGiostreams(url):
+    try:    
         req = client.request(url)
-        result = client.parseDOM(req, 'iframe', ret='src')[0]  
+        result = client.parseDOM(req, 'iframe', ret='src')[0]
+        if ('astream') in result:
+            req = client.request(result)
+            result = client.parseDOM(req, 'script', attrs={'type': 'text/javascript'})[0]
+            filer = re.compile('fid="(.+?)"; v_width=(.+?); v_height=(.+?);').findall(result)
+            fid = filer[0][0]
+            v_width = filer[0][1] 
+            v_height = filer[0][2]
+            js = re.findall('src="(.+?)"',req)[0]
+            test = str(js)
+            req = client.request(js)
+            ans = re.findall('src=(.+?) ><',req)[0]
+            if '+' in ans:
+                test = ans.replace('fid', fid)
+                test = test.replace('v_width', v_width).replace('v_height', v_height).replace("'",'').replace('+','')
+            req = client.request(test)
+            token = re.findall("'token', '(.+?)'",req)[0]
+            JS = re.findall('getJSON\("(.+?)",',req)[0]
+            req = client.request(JS)
+            jsl = json.loads(req)
+            url = jsl['rtmp'] +' playpath='+jsl['streamname'] + ' swfUrl=http://www.castup.tv/player/plr.swf live=1 pageUrl='+test+ ' token='+token +' timeout=15'
+            Play_Main(url)
+        else:pass
         this = client.request(result)
         link = re.compile('src="(.+?)"').findall(str(this))[0]
+        print link
         if ('sawlive') in link:
-            link = sawresolve(link)
-            return link
-        else:pass
-        return None
-            
+            link = sawlive.resolve(link)
+            print link
+            Play_Main(link)    
+        else:pass     
     except:
         return None
-    
 
-
-def sawresolve(url):
-    try:
-        page = re.compile('//(.+?)/(?:embed|v)/([0-9a-zA-Z-_]+)').findall(url)[0]
-        page = 'http://%s/embed/%s' % (page[0], page[1])
-
-        try: referer = urlparse.parse_qs(urlparse.urlparse(url).query)['referer'][0]
-        except: referer = page
-
-        result = client.request(page, referer=referer)
+       
         
-        unpacked = ''
-        packed = result.split('\n')
-        
-        for i in packed: 
-            try: unpacked += jsunpack.unpack(i)
-            except: pass
-        result += unpacked
-        result = urllib.unquote_plus(result)
-        
-        result = re.sub('\s\s+', ' ', result)
-        url = client.parseDOM(result, 'iframe', ret='src')[-1]
-        url = url.replace(' ', '').split("'")[0]
-        ch = re.compile('ch=""(.+?)""').findall(str(result))
-        
-        ch = ch[0].replace(' ','')
-        sw = re.compile(" sw='(.+?)'").findall(str(result))
-        url = url+'/'+ch+'/'+sw[0]
-        try:
-            url = url.replace('watch//', 'watch/')
-        except:pass
-             
-        result = client.request(url, referer=referer)
-        file = re.compile("'file'.+?'(.+?)'").findall(result)[0]
-        print file
-        try:
-            if not file.startswith('http'): raise Exception()
-            url = client.request(file, output='geturl')
-            if not '.m3u8' in url: raise Exception()
-            url += '|%s' % urllib.urlencode({'User-Agent': client.agent(), 'Referer': file})
-            
-            return url            
-        except:
-            pass
-
-        strm = re.compile("'streamer'.+?'(.+?)'").findall(result)[0]
-        print strm.decode('utf-8')
-        swf = re.compile("SWFObject\('(.+?)'").findall(result)[0]
-        
-        url = '%s playpath=%s swfUrl=%s pageUrl=%s live=1 timeout=40' % (strm, file, swf, url)
-        
-        return url
-    except:
-        return None
-        
-        
-def GetStreamup(channel):
-        city = 'lax'
-        switch = ['-cdn', '06-lax', '07-lax', '08-lax', '09-lax']
-        serv = random.choice(switch)
+def HHGetStreamup(channel):
+       
 	try:
 		req = client.request('https://api.streamup.com/v1/channels/'+channel)
 		chan = json.loads(req)
+		print chan
 		if chan['channel']['live']:
-			return 'https://video'+serv+'.streamup.com/app/'+chan['channel']['capitalized_slug'].lower()+'/playlist.m3u8'
-	except:
-		return None	
+                        videoId = chan['channel']['capitalized_slug'].lower()
+                        html = client.request('https://lancer.streamup.com/api/redirect/'+videoId)
+                        link = 'https://'+html+'/app/'+videoId+'/playlist.m3u8'
+                        Play_Main(link)
 
-def GetYoutube(url):
+	except:
+		return 	
+
+def HHGetYoutube(url):
 	try:
 		regex = (r'(https?://)?(www\.)?(youtube|youtu|youtube-nocookie)\.(com|be)/(watch\?v=|embed/|v/|.+\?v=)?([^&=%\?]{11})')
 		youtube_regex_match = re.match(regex, url)
 		videoId = youtube_regex_match.group(6)
 		link = 'plugin://plugin.video.youtube/?action=play_video&videoid=' + videoId
-		return link
-	except:
-		return None
+		Play_Main(link)
 		
-def Getanvato(url):
+	except:
+		return 
+		
+def HHGetanvato(url):
 	try:
 		if 'master' in url:
 			return url
 		else:	 
 			lst = url.split('/')
 			link = url.replace(lst[len(lst)-2],'4028k')
-			return link
+			Play_Main(link)
 	except:
-		return None
+		return 
 		
-def Astream(url):
+def HHAstream(url):
 	try:
 		if ('master') in url:
-			return url
+			Play_Main(url)
+			return
 		else:	 
 			lst = url.split('/')
 			link = url.replace(lst[len(lst)-2],'4028k')
-			return link
+			Play_Main(link)
 	except:
-		return None
+		return 
 		
-def Blabseal(url):
+def HHBlabseal(url):
 	try:
 		html = client.request(url)
 		block_content = client.parseDOM(html, "iframe", attrs={"name": "thebox"}, ret="src")[0]
-		link = GetYoutube(block_content)
-		return link
+		HHGetYoutube(block_content)
 	except:
-		return None
+		return 
 		
 
 		
-def Oneapp(url):
+def HHOneapp(url):
 	try:
 		html = client.request(url)
 		block_content = client.parseDOM(html, "iframe", ret="src")[0]
-		link = GetYoutube(block_content)
-		return link
+		HHGetYoutube(block_content)
 	except:
-		return None
+		return 
 		
-def Torula(url):
+def HHTorula(url):
 	try:
 		html = client.request(url)
 		block_content = client.parseDOM(html, "input", attrs={"id": "vlc"}, ret="value")[0]
 		link = block_content
-		return link
+		Play_Main(link)
 	except:
-		return None
+		return 
 
-def Freecastin(url):
+def HHFreecastin(url):
 	try:
 		html = client.request(url)
 		block_content = client.parseDOM(html, "iframe", attrs={"width": "100%"}, ret="src")[0]
-		link = GetYoutube(block_content)
-		return link
+		HHGetYoutube(block_content)
 	except:
-		return None
+		return 
 		
-def Streambot(url):
+def HHStreambot(url):
 	try:
 		cookieJar = cookielib.CookieJar()
 		opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cookieJar), urllib2.HTTPHandler())
@@ -528,11 +496,11 @@ def Streambot(url):
 		connection.close()
 		block_content = client.parseDOM(html, "source", attrs={"type": "application/x-mpegURL"}, ret="src")[0]
 		link = block_content
-		return link
+                Play_Main(link)
 	except:
-		return None
+		return 
 
-def Nbanhlstreams(url):
+def HHNbanhlstreams(url):
 	try:
 		if 'nba' in url:
 			URL = 'http://www.nbastream.net/'
@@ -546,22 +514,20 @@ def Nbanhlstreams(url):
 		link = client.parseDOM(html, "iframe",  ret="src")[0]
 		if 'streamup' in link:
 			channel = link.split('/')[3]
-			link = GetStreamup(channel)
-			return link
+			HHGetStreamup(channel)
 	except:
-		return None
+		return 
 		
-def Streamandme(url):
+def HHStreamandme(url):
 	try:
 		html = client.request(url)
 		link = client.parseDOM(html, "iframe",  ret="src")[0]
 		channel = link.split('/')[3]
-		link = GetStreamup(channel)
-		return link
+		HHGetStreamup(channel)
 	except:
-		return None
+		return 
 
-def Gstreams(url):
+def HHGstreams(url):
 	try:
 		html = client.request(url)
 		link = client.parseDOM(html, "iframe",  ret="src")[0]
@@ -570,18 +536,16 @@ def Gstreams(url):
 			link = html.split('https://')[1]
 			link = link.split("'")[0]
 			link = 'https://' + link 
-			return link
+			Play_Main(link)
 		elif 'streamup.com' in link:
 			channel = link.split('/')[3]
-			link = GetStreamup(channel)
-			return link
+			HHGetStreamup(channel)
 		elif 'youtu' in link:
-			link = GetYoutube(link)
-			return link
+			HHGetYoutube(link)
 	except:
 		return None
 		
-def Moonfruit(url):
+def HHMoonfruit(url):
 	try:
 		cookieJar = cookielib.CookieJar()
 		opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cookieJar), urllib2.HTTPHandler())
@@ -605,20 +569,19 @@ def Moonfruit(url):
 		link = client.parseDOM(html, "iframe",  ret="src")[0]
 		if 'streamup.com' in link:
 			channel = link.split('/')[4]
-			link = GetStreamup(channel)
-			return link
+			HHGetStreamup(channel)
 	except:
-		return None
+		return 
 
-def Nflwatch(url):
+def HHNflwatch(url):
 	try:
 		html = client.request(url)
 		links = client.parseDOM(html, "iframe",  ret="src")
 		for link in links:
 			if 'streamup' in link:
 				channel = link.split('/')[3]
-				link = GetStreamup(channel)
-				return link
+				HHGetStreamup(channel)
+				
 			else:
 				continue
 		if 'p2pcast.tv' in html:
@@ -643,11 +606,11 @@ def Nflwatch(url):
 			tkn = js['token']
 			link = link+tkn
 			link = link + '|User-Agent='+agent+'&Referer='+url
-			return link
+			Play_Main(link)
 	except:
-		return None
+		return 
 
-def Ducking(url):
+def HHDucking(url):
 	try:
 		request = urllib2.Request('http://www.ducking.xyz/kvaak/stream/basu.php')
 		request.add_header('Referer', 'www.ducking.xyz/kvaak/')
@@ -656,12 +619,11 @@ def Ducking(url):
 		html = response.read()
 		link = client.parseDOM(html, "iframe", ret="src")[0]
 		channel = link.split('/')[3]
-		link = GetStreamup(channel)
-		return link
+		HHGetStreamup(channel)
 	except:
-		return None
+		return 
 		
-def Streamarena(url):
+def HHStreamarena(url):
 	try:
 		html = client.request(url)
 		link = client.parseDOM(html, "iframe",  ret="src")[1]
@@ -669,46 +631,18 @@ def Streamarena(url):
 		html  = client.request(link)
 		link = client.parseDOM(html, "iframe",  ret="src")[0]
 		channel = link.split('/')[3]
-		link = GetStreamup(channel)
-		return link
+		HHGetStreamup(channel)
 	except:
-		return None
+		return 
 		
-def Livesports101(url):
-	try:
-		url = url.split('</strong>')[0]
-		url = 'http://101'+url.split('101')[1]
-		html = client.request(url)
-		block_content = client.parseDOM(html, "meta", attrs={"property": "og:description"}, ret="content")
-		for el in block_content:
-			if 'youtube.com' in el:
-				link = GetYoutube(block_content)
-				return link
-			elif 'streamboat.tv' in el:
-				link = el
-				link = link.split('http://')[1]
-				link = link.split("'")[0]
-				link = 'http://' + link 
-				return link
-			elif 'streamup' in el:
-				link = el
-				link = link.split('https://')[1]
-				link = link.split("'")[0]
-				link = 'https://' + link 
-				return link
-		block_content = client.parseDOM(html, "embed", attrs={"id": "vlcp"}, ret="target")[0]
-		if 'streamboat' in block_content or 'streamup' in block_content:
-			link = block_content
-			return link
-	except:
-		return None
+
       
 
 def Archive_Main(url, image, fanart):
-    addDirectoryItem('[COLOR=FFFFFF00][B] NHL Archive [/B][/COLOR]','NHL_ARC', '0', mediaPath+'nhl.png', mediaPath+'Huddle-fanart.jpg', url="nhlarch")
-    addDirectoryItem('[COLOR=FFFFFF00][B] NBA Archive [/B][/COLOR]','NBANFL_ARC', '0', mediaPath+'nba.png', mediaPath+'Huddle-fanart.jpg', url="nbaarch")
-    addDirectoryItem('[COLOR=FFFFFF00][B] NFL Archive [/B][/COLOR]','NBANFL_ARC', '0', mediaPath+'nfl.png', mediaPath+'Huddle-fanart.jpg', url="nflarch")
-    addDirectoryItem('[COLOR=FFFFFF00][B] MLB Archive - COMING SOON [/B][/COLOR]','Play_Main', '0', mediaPath+'icon.png', mediaPath+'Huddle-fanart.jpg', url="mlbarch")
+    addDirectoryItem('[COLOR=FFFFFF00][B] NHL Archive [/B][/COLOR]','NHL_ARC', '0', 'http://s22.postimg.org/je1f082b5/nhl.png', 'http://s22.postimg.org/gb0owuncd/Huddle_fanart.jpg', url="nhlarch")
+    addDirectoryItem('[COLOR=FFFFFF00][B] NBA Archive [/B][/COLOR]','NBANFL_ARC', '0', 'http://s16.postimg.org/q701239gl/nba.png', 'http://s22.postimg.org/gb0owuncd/Huddle_fanart.jpg', url="nbaarch")
+    addDirectoryItem('[COLOR=FFFFFF00][B] NFL Archive [/B][/COLOR]','NBANFL_ARC', '0', 'http://s22.postimg.org/5s0p7okoh/nfl.png', 'http://s22.postimg.org/gb0owuncd/Huddle_fanart.jpg', url="nflarch")
+    addDirectoryItem('[COLOR=FFFFFF00][B] MLB Archive - COMING SOON [/B][/COLOR]','Play_Main', '0', 'http://s22.postimg.org/o2ccyal69/mlb.png', 'http://s22.postimg.org/gb0owuncd/Huddle_fanart.jpg', url="mlbarch")
     
     endCategory()
 
@@ -801,14 +735,13 @@ def NHL_Stream(url):
         html = client.request(url)
         js = json.loads(html)
         url = js['video_balancer']['m3u8']
-        player().run(url)
+        Play_Main(url)
     except:
-        pass
+        return
     
 def Play_Main(url):
+    
     try:
-        control.idle()
-        
         player().run(url)
     except:
         return

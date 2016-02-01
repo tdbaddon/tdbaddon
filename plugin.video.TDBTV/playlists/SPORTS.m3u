@@ -8,23 +8,29 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 #EXTINF:0,Bein Sport 1 
 0
 
-#EXTINF:0,Bein Sport 2
-http://62.210.162.88:80/live/uk_sport80/154325012016/903.tshttp://62.210.162.88:80/live/uk_sport80/154325012016/903.ts
+#EXTINF:0,Bein Sport 2 
+0
 
 #EXTINF:0,Bein Sport 3
-http://lihattv.toh.info/jhos/beib3.m3u8
+0
 
 #EXTINF:0,Big Ten Network 
 0
 
 #EXTINF:0,Box Nation 
-http://top-iptv.zapto.org:8000/live/walid/walid/557.m3u8
-
-#EXTINF:0,BT Sport 1 
 0
 
+#EXTINF:0,BT Sport 1 
+http://bit.do/iptvsportt-BT1
+
+#EXTINF:0,BT Sport 1 
+http://www.t12v.com:8000/live/jerry/jerry/1118.ts
+
 #EXTINF:0,BT Sport 2 
-http://top-iptv.zapto.org:8000/live/walid/walid/549.m3u8
+http://bit.do/iptvsportt-BT2
+
+#EXTINF:0,BT Sport 2 
+http://www.t12v.com:8000/live/jerry/jerry/1117.ts
 
 #EXTINF:0,CBS Sports 
 0
@@ -36,10 +42,7 @@ http://top-iptv.zapto.org:8000/live/walid/walid/549.m3u8
 0
 
 #EXTINF:0,ESPN 
-http://85.25.43.84:8000/live/UhWJi6MLyr/j4P7LhzKVz/836.ts
-
-#EXTINF:0,ESPN 
-http://62.210.162.88:80/live/uk_sport80/154325012016/904.ts
+http://www.t12v.com:8000/live/jerry/jerry/1059.ts
 
 #EXTINF:0,ESPN 2
 0
@@ -47,14 +50,8 @@ http://62.210.162.88:80/live/uk_sport80/154325012016/904.ts
 #EXTINF:0,Eurosport 1 
 http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_1800.m3u8
 
-#EXTINF:0,Eurosport 1 
-http://top-iptv.zapto.org:8000/live/walid/walid/547.m3u8
-
 #EXTINF:0,Eurosport 2 
-http://top-iptv.zapto.org:8000/live/walid/walid/547.m3u8
-
-#EXTINF:0,Eurosport 2 
-http://luckyiptv.ddns.net:23000/live/fausto/fausto/3435.ts
+0
 
 #EXTINF:0,Eurosport News 
 0
@@ -72,7 +69,7 @@ http://luckyiptv.ddns.net:23000/live/fausto/fausto/3435.ts
 0
 
 #EXTINF:0,Fox Sports 2 
-0
+http://bit.do/iptvsportt-fox2
 
 #EXTINF:0,Fox Sports News 
 0
@@ -117,7 +114,7 @@ http://cdn.phoenix.intergi.com/21772/videos/3362254/video-sd.mp4?hosting_id=2177
 0
 
 #EXTINF:0,NFL Network 
-http://nflioslivesvg2-i.akamaihd.net/hls/live/221521/nflioslive/2015HackerNow_w99d9.m3u8
+0
 
 #EXTINF:0,NHL Network 
 http://208.92.36.158/ipad/live/nba_ipad_1240.m3u8
@@ -183,40 +180,34 @@ mms://100automoto.tv/channel_porsche
 0
 
 #EXTINF:0,Racing UK 
-http://top-iptv.zapto.org:8000/live/walid/walid/633.m3u8
+0
 
 #EXTINF:0,Root Sports 
 0
 
 #EXTINF:0,Setanta Sports 
-http://167.114.41.215:8080/espnuk_raf/espnuk_raf/index.m3u8
+0
 
 #EXTINF:0,Sky Sports 1 
-http://top-iptv.zapto.org:8000/live/walid/walid/628.m3u8
+0
 
 #EXTINF:0,Sky Sports 2 
-http://top-iptv.zapto.org:8000/live/walid/walid/535.m3u8
+0
 
 #EXTINF:0,Sky Sports 3 
-http://top-iptv.zapto.org:8000/live/walid/walid/534.m3u8
-
-#EXTINF:0,Sky Sports 3 
-http://top-iptv.zapto.org:8000/live/walid/walid/629.m3u8
+0
 
 #EXTINF:0,Sky Sports 4 
-http://top-iptv.zapto.org:8000/live/walid/walid/533.m3u8
+0
 
 #EXTINF:0,Sky Sports 5 
-http://top-iptv.zapto.org:8000/live/walid/walid/532.m3u8
+0
 
 #EXTINF:0,Sky Sports F1 
-http://top-iptv.zapto.org:8000/live/walid/walid/553.m3u8
+0
 
 #EXTINF:0,Sky Sports News 
-http://bit.do/bFWQk
-
-#EXTINF:0,Sky Sports News 
-http://top-iptv.zapto.org:8000/live/walid/walid/532.m3u8
+0
 
 #EXTINF:0,Sports Tonight 
 rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9-SD

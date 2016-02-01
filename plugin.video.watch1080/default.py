@@ -107,7 +107,8 @@ def PLAYLINK(name,url,iconimage):
         link = open_url(url)
         try:
                 url=re.compile("window.atob\('(.+?)'\)\)").findall(link)[0]
-                data=base64.b64decode(url)
+                content=base64.b64decode(url)
+                data=base64.b64decode(content)
                 url=re.compile("<source src='(.+?)'").findall(data)[0]
         except:
                 try:

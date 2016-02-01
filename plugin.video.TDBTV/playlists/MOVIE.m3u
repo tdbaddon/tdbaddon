@@ -11,13 +11,10 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 0
 
 #EXTINF:0,Cinemax 
-http://luckyiptv.ddns.net:23000/live/fausto/fausto/3437.ts
+0
 
-#EXTINF:0,Cinemax 
-http://luckyiptv.ddns.net:23000/live/fausto/fausto/3486.ts
-
-#EXTINF:0,CineStarTV Premiere 1
-http://luckyiptv.ddns.net:23000/live/fausto/fausto/3465.ts
+#EXTINF:0,CineStarTV Premiere 1 
+0
 
 #EXTINF:0,CineStarTV Premiere 2
 0
@@ -44,10 +41,7 @@ http://luckyiptv.ddns.net:23000/live/fausto/fausto/3465.ts
 0
 
 #EXTINF:0,Film4 
-http://198.179.30.108/live/13.high.stream/playlist.m3u8?id=0ad5aac39bb13fbe070dc75b8151939dce1331fbafeb9d8e43cd0b34375fea40fbfb037b9388f231b3faed7dbaf03bf207d764c7666c998eef2177c71f4b9a7ebe475c3af95f7278b8151b09950dc63b7b358b8bfed822692fd948cdf84bc3fe7753db7b5626dcd6621f7dce1a48898da259b98ab6f4746cae8afccdc48cae53e938aee5271c998136231bf66f85dd6fb264ccbca2a2a406
-
-#EXTINF:0,Film4 
-http://62.65.140.155:80/session/d2e43586-c39b-11e5-8e1b-005056bc1a52/nvnv5a/2/4023/index.m3u8?token=836a3459cb63b730127f9355a00c854d_1453837372_1453837372&p=127|X-Forwarded-For=85.0.32.169
+http://www.t12v.com:8000/live/jerry/jerry/1714.ts
 
 #EXTINF:0,FilmBox 
 0
@@ -94,15 +88,6 @@ http://200.76.77.237/LIVE/H01/CANAL417/PROFILE03.m3u8?supertvlat=%2F.ts
 #EXTINF:0,Fox Movies 
 http://200.76.77.237/LIVE/H01/CANAL417/PROFILE05.m3u8?supertvlat=%2F.ts
 
-#EXTINF:0,Fox Movies
-http://212.200.125.6:8233/233
-
-#EXTINF:0,Fox Movies
-http://luckyiptv.ddns.net:23000/live/fausto/fausto/3461.ts
-
-#EXTINF:0,Fox Movies
-http://top-iptv.zapto.org:8000/live/walid/walid/554.m3u8
-
 #EXTINF:0,Golden Edge
 http://200.76.77.237/LIVE/H01/CANAL484/PROFILE02.m3u8?supertvlat=%2F.ts
 
@@ -113,10 +98,10 @@ http://200.76.77.237/LIVE/H01/CANAL484/PROFILE03.m3u8?supertvlat=%2F.ts
 http://200.76.77.237/LIVE/H01/CANAL484/PROFILE05.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,HBO 
-http://st02.brn03.iptv.czechbone.net:8083/120-tv-pc.m3u8
+0
 
-#EXTINF:0,HBO Adria
-http://luckyiptv.ddns.net:23000/live/fausto/fausto/3459.ts
+#EXTINF:0,HBO Adria 
+0
 
 #EXTINF:0,HBO East
 0
@@ -125,7 +110,7 @@ http://luckyiptv.ddns.net:23000/live/fausto/fausto/3459.ts
 0
 
 #EXTINF:0,HBO Comedy 
-http://luckyiptv.ddns.net:23000/live/fausto/fausto/3451.ts
+0
 
 #EXTINF:0,HBO Family
 0
@@ -208,8 +193,8 @@ http://77.76.140.251/prgp.m3u8
 #EXTINF:0,Sky Movies Thriller
 0
 
-#EXTINF:0,Sony TV 
-http://31.220.40.118:80/LiveEdge/SonyMovieChannelUS/playlist.m3u8?token=1e827ce046d165ec11d1950c9f66ce2f
+#EXTINF:0,Sony TV a
+0
 
 #EXTINF:0,Star Movies 
 http://112.197.2.135:1935/colive/C001_HD_4/chunklist.m3u8
@@ -251,16 +236,13 @@ http://112.197.2.135:1935/colive/C001_HD_4/chunklist.m3u8
 0
 
 #EXTINF:0,True Movies 1 
-http://top-iptv.zapto.org:8000/live/walid/walid/563.m3u8
+0
 
 #EXTINF:0,True Movies 2 
-http://top-iptv.zapto.org:8000/live/walid/walid/564.m3u8
+0
 
 #EXTINF:0,TV 1000 
 http://195.78.244.219:10000/udp/239.0.3.29:1234
-
-#EXTINF:0,TV 1000 
-http://82.76.249.81/digiedge2/tv1000ehq/index.m3u8?is=43&src=digi-online.ro&t=00000000000000000000000000000000
 
 #EXTINF:0,TV 1000 Action 
 http://195.78.244.219:10000/udp/239.0.3.27:1234

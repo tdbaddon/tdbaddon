@@ -7,7 +7,7 @@
 #EXTINF:0,Abbey Road England
 http://video1.earthcam.com/fecnetwork/AbbeyRoadHD1.flv/hasbahca.m3u8
 
-#EXTINF:0,Atlantis Palm Dubai
+#EXTINF:0,Atlantis Palm Dubai 
 http://video1.earthcam.com:1935/fecnetwork/5868.flv/hasbahca.m3u8
 
 #EXTINF:0,Bitola Macedonia
@@ -37,7 +37,7 @@ http://video1.earthcam.com:1935/fecnetwork/4337.flv/hasbahca.m3u8
 #EXTINF:0,Fort Lauderdale Florida
 http://video1.earthcam.com/fecnetwork/windjammerHD2.flv/HasBahCa.m3u8
 
-#EXTINF:0,Hollywood Blvd Los Angelos
+#EXTINF:0,Hollywood Blvd Los Angelos 
 http://video1.earthcam.com/fecnetwork/lacitytours1.flv/hasbahca.m3u8
 
 #EXTINF:0,Kocani Macedonia
@@ -64,8 +64,8 @@ http://iphone-streaming.ustream.tv/uhls/9408562/streams/live/iphone/playlist.m3u
 #EXTINF:0,Niagra Falls 
 0
 
-#EXTINF:0,Panda Cam Atlanta Georgia
-http://video1.earthcam.com/fecnetwork/pandacam.flv/HasBahCa.m3u8
+#EXTINF:0,Panda Cam Atlanta Georgia 
+0
 
 #EXTINF:0,San Francisco Pier and Alcatraz
 http://video1.earthcam.com/fecnetwork/6603.flv/hasbahca.m3u8
@@ -91,7 +91,7 @@ mms://62.162.58.55/KameraStip
 #EXTINF:0,Strumica Macedonia
 mms://62.162.58.55/KameraStrumica
 
-#EXTINF:0,The Temple Bar Ireland
+#EXTINF:0,The Temple Bar Ireland 
 http://video1.earthcam.com:1935/fecnetwork/4054.flv/hasbahca.m3u8
 
 #EXTINF:0,Times Square 47th and Broadway New York

@@ -31,9 +31,6 @@ http://204.107.26.252:1935/live/691.high.stream/HasBahCa.m3u8
 #EXTINF:0,CMC 
 rtmp://cmctv.flash.internapcdn.net:1935/cmctv_vitalstream_com/live_adaptive_1/CMC-TV_adaptive3 swfUrl=http://http.vitalstreamcdn.com/flashskins/V2Player.swf live=1 pageUrl=http://www.cmc-tv.com/
 
-#EXTINF:0,CMC 
-http://luckyiptv.ddns.net:23000/live/fausto/fausto/3464.ts
-
 #EXTINF:0,City
 http://nodeb.gocaster.net:1935/CGL/_definst_/mp4:TODAYFM_TEST2/live.m3u8
 
@@ -73,7 +70,7 @@ http://www.djing.com/tv/hothothot.m3u8
 #EXTINF:0,Djing Ibiza
 http://www.djing.com/tv/d-03.m3u8
 
-#EXTINF:0,Djing Ibiza HD
+#EXTINF:0,Djing Ibiza HD 
 http://www.djing.com/tv/d-05.m3u8
 
 #EXTINF:0,Djing Ibiza HD
@@ -85,7 +82,7 @@ http://www.djing.com/tv/05.m3u8
 #EXTINF:0,Djing UnderGround
 http://www.djing.com/tv/u-03.m3u8
 
-#EXTINF:0,Djing UnderGround HD
+#EXTINF:0,Djing UnderGround HD 
 http://www.djing.com/tv/u-05.m3u8
 
 #EXTINF:0,Djing UnderGround HD
@@ -125,7 +122,7 @@ http://ooyalahd2-f.akamaihd.net/i/globalradio02_delivery@156522/master.m3u8
 rtmp://tst.es.flash.glb.ipercast.net/tst.es-live/live
 
 #EXTINF:0,Miami TV Music 
-http://74.208.152.93/music/stream3/stream.m3u8
+0
 
 #EXTINF:0,MTV 
 http://200.76.77.237/LIVE/H01/CANAL726/PROFILE02.m3u8?supertvlat=%2F.ts
@@ -139,13 +136,7 @@ http://200.76.77.237/LIVE/H01/CANAL726/PROFILE05.m3u8?supertvlat=%2F.ts
 #EXTINF:0,MTV 
 http://origin2.voronezh.ertelecom.ru/content/private/s147213/d3720264/r183857sd2500000/efe4541060c00fccc01e8c068fce4f5ab911d969/playlist.m3u8
 
-#EXTINF:0,MTV 
-http://213.136.90.30:8000/live/christop/christop/9219.ts
-
-#EXTINF:0,MTV 
-http://213.136.90.30:8000/live/christop/christop/9219.ts
-
-#EXTINF:0,MTV Live
+#EXTINF:0,MTV Live 
 http://200.76.77.237/LIVE/H01/CANAL701/PROFILE02.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,MTV Live
@@ -211,7 +202,7 @@ http://hd.worldkast.com:1935/8436/8436/playlist.m3u8
 #EXTINF:0,SmashHits 
 0
 
-#EXTINF:0,Trace Urban
+#EXTINF:0,Trace Urban 
 http://stream01.yamgo.com/iPhone/HLS_TS/broadcast/trace_tv_urban-tablet.3gp/trace_tv_urban-tablet.3gp-mr647k.m3u8?trackingid=4041670000&os=desktop
 
 #EXTINF:0,Tuba TV

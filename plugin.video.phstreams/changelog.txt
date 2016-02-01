@@ -1,3 +1,10 @@
+V2.8.2
+-updated available resolvers
+
+V2.8.1
+-reworked Huddle 
+-updated resolvers
+
 V2.8.0
 -added randomizer for Huddle
 

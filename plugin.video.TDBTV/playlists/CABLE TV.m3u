@@ -23,28 +23,22 @@ http://200.76.77.237/LIVE/H01/CANAL444/PROFILE03.m3u8?supertvlat=%2F.ts
 http://200.76.77.237/LIVE/H01/CANAL444/PROFILE05.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,AXN 
-http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/12087.ts
-
-#EXTINF:0,AXN Black
-http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/12088.ts
-
-#EXTINF:0,AXN White
-http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/12086.ts
+0
 
 #EXTINF:0,BabyTV 
 0
 
 #EXTINF:0,BBC 1 
-http://198.179.30.109/live/14.high.stream/playlist.m3u8?id=0ad5aac39bb13fbe070dc75b8151939dce1331fbafeb9d8e43cd0b34375fea40fbfb037b9388f231b3faed7dbaf03bf207d764c7666c998eef2177c71f4b9a7ebe475c3af95f7278b8151b09950dc63b7b358b8bfed822692fd948cdf84bc3fe7753db7b5626dcd6621f7dce1a48898da259b98ab6f4746cae8afccdc48cae53e938aee5271c998136231bf66f85dd6fb264ccbca2a2a406
-
-#EXTINF:0,BBC 1 
-http://62.65.140.214:80/session/c8b065da-c39b-11e5-b2d2-005056bc06d1/nvnv5a/2/4017/index.m3u8?token=fca897863ddfc6d1efe2f7169f693132_1453837355_1453837355&p=127|X-Forwarded-For=85.6.47.237
+0
 
 #EXTINF:0,BBC 2 
-http://198.179.30.109/live/25.high.stream/playlist.m3u8?id=0ad5aac39bb13fbe070dc75b8151939dce1331fbafeb9d8e43cd0b34375fea40fbfb037b9388f231b3faed7dbaf03bf207d764c7666c998eef2177c71f4b9a7ebe475c3af95f7278b8151b09950dc63b7b358b8bfed822692fd948cdf84bc3fe7753db7b5626dcd6621f7dce1a48898da259b98ab6f4746cae8afccdc48cae53e938aee5271c998136231bf66f85dd6fb264ccbca2a2a406
+0
 
-#EXTINF:0,BBC 2 
-http://62.65.140.219:80/session/c916963e-c39b-11e5-b33a-005056bc49ac/nvnv5a/2/4012/index.m3u8?token=f1ae27e8676c30af008f4a9fdf902f97_1453837356_1453837356&p=127|X-Forwarded-For=85.3.136.166
+#EXTINF:0,BBC Entertainment 
+http://200.76.77.237/LIVE/H01/CANAL253/PROFILE02.m3u8?supertvlat=%2F.ts
+
+#EXTINF:0,BBC Entertainment 
+http://200.76.77.237/LIVE/H01/CANAL253/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,BBC Entertainment
 http://200.76.77.237/LIVE/H01/CANAL253/PROFILE05.m3u8?supertvlat=%2F.ts
@@ -62,10 +56,10 @@ http://77.120.118.235:8085
 http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD28_W_250.sdp/playlist.m3u8
 
 #EXTINF:0,Cartoon Network 
-http://top-iptv.zapto.org:8000/live/walid/walid/556.m3u8
+http://54.255.155.24:1935//Live/_definst_/sweetbcha1novD28_W_150.sdp/playlist.m3u8
 
 #EXTINF:0,CBC TV 
-http://192.99.201.121:1935/eu2/cbc.stream/default.m3u8
+0
 
 #EXTINF:0,Cbeebies 
 0
@@ -74,28 +68,13 @@ http://192.99.201.121:1935/eu2/cbc.stream/default.m3u8
 0
 
 #EXTINF:0,CBS Action 
-http://198.179.30.110/live/1952.high.stream/playlist.m3u8?id=0ad5aac39bb13fbe070dc75b8151939dce1331fbafeb9d8e43cd0b34375fea40fbfb037b9388f231b3faed7dbaf03bf207d764c7666c998eef2177c71f4b9a7ebe475c3af95f7278b8151b09950dc63b7b358b8bfed822692fd948cdf84bc3fe7753db7b5626dcd6621f7dce1a48898da259b98ab6f4746cae8afccdc48cae53e938aee5271c998136231bf66f85dd6fb264ccbca2a2a406
+0
 
 #EXTINF:0,CBS Drama 
-http://top-iptv.zapto.org:8000/live/walid/walid/620.m3u8
-
-#EXTINF:0,CBS Drama 
-http://204.107.27.137/live/1805.high.stream/playlist.m3u8?id=0ad5aac39bb13fbe070dc75b8151939dce1331fbafeb9d8e43cd0b34375fea40fbfb037b9388f231b3faed7dbaf03bf207d764c7666c998eef2177c71f4b9a7ebe475c3af95f7278b8151b09950dc63b7b358b8bfed822692fd948cdf84bc3fe7753db7b5626dcd6621f7dce1a48898da259b98ab6f4746cae8afccdc48cae53e938aee5271c998136231bf66f85dd6fb264ccbca2a2a406
+0
 
 #EXTINF:0,CBS Reality 
-http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/12077.ts
-
-#EXTINF:0,CBS Reality 
-http://top-iptv.zapto.org:8000/live/walid/walid/554.m3u8
-
-#EXTINF:0,CBS Reality 
-http://top-iptv.zapto.org:8000/live/walid/walid/646.m3u8
-
-#EXTINF:0,CBS Reality 
-http://top-iptv.zapto.org:8000/live/walid/walid/569.m3u8
-
-#EXTINF:0,CBS Reality 
-http://204.107.27.137/live/1808.high.stream/playlist.m3u8?id=0ad5aac39bb13fbe070dc75b8151939dce1331fbafeb9d8e43cd0b34375fea40fbfb037b9388f231b3faed7dbaf03bf207d764c7666c998eef2177c71f4b9a7ebe475c3af95f7278b8151b09950dc63b7b358b8bfed822692fd948cdf84bc3fe7753db7b5626dcd6621f7dce1a48898da259b98ab6f4746cae8afccdc48cae53e938aee5271c998136231bf66f85dd6fb264ccbca2a2a406
+http://www.t12v.com:8000/live/jerry/jerry/1715.ts
 
 #EXTINF:0,CHCH Ontario
 0
@@ -134,10 +113,7 @@ http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/index_350_av-p.m3u8?
 http://212.200.125.5:8199/199
 
 #EXTINF:0,Disney Junior 
-http://top-iptv.zapto.org:8000/live/walid/walid/558.m3u8
-
-#EXTINF:0,Disney Junior 
-http://cdn.step-tv.com:8000/live/SON/SON/286.ts
+0
 
 #EXTINF:0,Disney XD 
 0
@@ -146,22 +122,13 @@ http://cdn.step-tv.com:8000/live/SON/SON/286.ts
 0
 
 #EXTINF:0,E! 
-http://213.136.90.30:8000/live/christop/christop/9278.ts
-
-#EXTINF:0,E! 
-http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/12091.ts
-
-#EXTINF:0,E! 
-http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/12071.ts
+0
 
 #EXTINF:0,E2 
 0
 
 #EXTINF:0,E4 
-http://top-iptv.zapto.org:8000/live/walid/walid/636.m3u8
-
-#EXTINF:0,E4 
-http://204.107.27.137/live/65.high.stream/playlist.m3u8?id=0ad5aac39bb13fbe070dc75b8151939dce1331fbafeb9d8e43cd0b34375fea40fbfb037b9388f231b3faed7dbaf03bf207d764c7666c998eef2177c71f4b9a7ebe475c3af95f7278b8151b09950dc63b7b358b8bfed822692fd948cdf84bc3fe7753db7b5626dcd6621f7dce1a48898da259b98ab6f4746cae8afccdc48cae53e938aee5271c998136231bf66f85dd6fb264ccbca2a2a406
+0
 
 #EXTINF:0,Family Channel 
 0
@@ -173,16 +140,7 @@ http://edgeb.streaming.sk/fashiontv/fashiontv.stream/playlist.m3u8
 0
 
 #EXTINF:0,Food Network 
-http://204.107.27.137/live/20.high.stream/playlist.m3u8?id=0ad5aac39bb13fbe070dc75b8151939dce1331fbafeb9d8e43cd0b34375fea40fbfb037b9388f231b3faed7dbaf03bf207d764c7666c998eef2177c71f4b9a7ebe475c3af95f7278b8151b09950dc63b7b358b8bfed822692fd948cdf84bc3fe7753db7b5626dcd6621f7dce1a48898da259b98ab6f4746cae8afccdc48cae53e938aee5271c998136231bf66f85dd6fb264ccbca2a2a406
-
-#EXTINF:0,Food Network
-http://204.107.27.137/live/1829.high.stream/playlist.m3u8?id=0ad5aac39bb13fbe070dc75b8151939dce1331fbafeb9d8e43cd0b34375fea40fbfb037b9388f231b3faed7dbaf03bf207d764c7666c998eef2177c71f4b9a7ebe475c3af95f7278b8151b09950dc63b7b358b8bfed822692fd948cdf84bc3fe7753db7b5626dcd6621f7dce1a48898da259b98ab6f4746cae8afccdc48cae53e938aee5271c998136231bf66f85dd6fb264ccbca2a2a406
-
-#EXTINF:0,Food Network 
 http://llnw.live.simplestream.com/coder2/coder.channels.channel2/hls/3/playlist.m3u8
-
-#EXTINF:0,Food Network
-http://top-iptv.zapto.org:8000/live/walid/walid/635.m3u8
 
 #EXTINF:0,Fox 1 
 http://200.76.77.237/LIVE/H01/CANAL415/PROFILE02.m3u8?supertvlat=%2F.ts
@@ -193,23 +151,11 @@ http://200.76.77.237/LIVE/H01/CANAL415/PROFILE03.m3u8?supertvlat=%2F.ts
 #EXTINF:0,Fox 1 
 http://200.76.77.237/LIVE/H01/CANAL415/PROFILE05.m3u8?supertvlat=%2F.ts
 
-#EXTINF:0,Fox 1 
-http://iptvcanales.com/xw/cable.php?canal=86&player=playlist.m3u8
-
 #EXTINF:0,Fox Crime 
-http://luckyiptv.ddns.net:23000/live/fausto/fausto/3462.ts
+0
 
 #EXTINF:0,Fox Life 
-http://luckyiptv.ddns.net:23000/live/fausto/fausto/3453.ts
-
-#EXTINF:0,Fox Life 
-http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/12066.ts
-
-#EXTINF:0,Fox TV 
-http://luckyiptv.ddns.net:23000/live/fausto/fausto/3463.ts
-
-#EXTINF:0,Fox TV 
-http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/12067.ts
+0
 
 #EXTINF:0,FX 
 0
@@ -260,40 +206,16 @@ rtmp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:468p500kB31?b?b*t$
 http://ios.streamserver01.com:8080/ShowcaseTV/mystream.m3u8
 
 #EXTINF:0,ITV 1 
-http://top-iptv.zapto.org:8000/live/walid/walid/645.m3u8
-
-#EXTINF:0,ITV 1 
-http://198.179.30.108/live/11.high.stream/playlist.m3u8?id=0ad5aac39bb13fbe070dc75b8151939dce1331fbafeb9d8e43cd0b34375fea40fbfb037b9388f231b3faed7dbaf03bf207d764c7666c998eef2177c71f4b9a7ebe475c3af95f7278b8151b09950dc63b7b358b8bfed822692fd948cdf84bc3fe7753db7b5626dcd6621f7dce1a48898da259b98ab6f4746cae8afccdc48cae53e938aee5271c998136231bf66f85dd6fb264ccbca2a2a406
-
-#EXTINF:0,ITV 1 
-http://204.107.27.137/live/1817.high.stream/playlist.m3u8?id=0ad5aac39bb13fbe070dc75b8151939dce1331fbafeb9d8e43cd0b34375fea40fbfb037b9388f231b3faed7dbaf03bf207d764c7666c998eef2177c71f4b9a7ebe475c3af95f7278b8151b09950dc63b7b358b8bfed822692fd948cdf84bc3fe7753db7b5626dcd6621f7dce1a48898da259b98ab6f4746cae8afccdc48cae53e938aee5271c998136231bf66f85dd6fb264ccbca2a2a406
-
-#EXTINF:0,ITV 1 
-http://62.65.140.213:80/session/d6b82474-c39b-11e5-ab6f-005056bc06d1/nvnv5a/2/4018/index.m3u8?token=312e6b0b7e4a784bafd914772b566de3_1453837378_1453837378&p=127|X-Forwarded-For=85.5.20.126
+0
 
 #EXTINF:0,ITV 2 
-http://198.179.30.108/live/67.high.stream/playlist.m3u8?id=0ad5aac39bb13fbe070dc75b8151939dce1331fbafeb9d8e43cd0b34375fea40fbfb037b9388f231b3faed7dbaf03bf207d764c7666c998eef2177c71f4b9a7ebe475c3af95f7278b8151b09950dc63b7b358b8bfed822692fd948cdf84bc3fe7753db7b5626dcd6621f7dce1a48898da259b98ab6f4746cae8afccdc48cae53e938aee5271c998136231bf66f85dd6fb264ccbca2a2a406
-
-#EXTINF:0,ITV 2 
-http://204.107.27.137/live/1820.high.stream/playlist.m3u8?id=0ad5aac39bb13fbe070dc75b8151939dce1331fbafeb9d8e43cd0b34375fea40fbfb037b9388f231b3faed7dbaf03bf207d764c7666c998eef2177c71f4b9a7ebe475c3af95f7278b8151b09950dc63b7b358b8bfed822692fd948cdf84bc3fe7753db7b5626dcd6621f7dce1a48898da259b98ab6f4746cae8afccdc48cae53e938aee5271c998136231bf66f85dd6fb264ccbca2a2a406
-
-#EXTINF:0,ITV 2 
-http://62.65.140.215:80/session/d733c6c4-c39b-11e5-9f2b-005056bc1a52/nvnv5a/2/4005/index.m3u8?token=547c0d9b064e546129cb329d02d50356_1453837379_1453837379&p=127|X-Forwarded-For=85.6.50.159
+0
 
 #EXTINF:0,ITV 3 
-http://198.179.30.108/live/26.high.stream/playlist.m3u8?id=0ad5aac39bb13fbe070dc75b8151939dce1331fbafeb9d8e43cd0b34375fea40fbfb037b9388f231b3faed7dbaf03bf207d764c7666c998eef2177c71f4b9a7ebe475c3af95f7278b8151b09950dc63b7b358b8bfed822692fd948cdf84bc3fe7753db7b5626dcd6621f7dce1a48898da259b98ab6f4746cae8afccdc48cae53e938aee5271c998136231bf66f85dd6fb264ccbca2a2a406
-
-#EXTINF:0,ITV 3 
-http://204.107.27.137/live/1823.high.stream/playlist.m3u8?id=0ad5aac39bb13fbe070dc75b8151939dce1331fbafeb9d8e43cd0b34375fea40fbfb037b9388f231b3faed7dbaf03bf207d764c7666c998eef2177c71f4b9a7ebe475c3af95f7278b8151b09950dc63b7b358b8bfed822692fd948cdf84bc3fe7753db7b5626dcd6621f7dce1a48898da259b98ab6f4746cae8afccdc48cae53e938aee5271c998136231bf66f85dd6fb264ccbca2a2a406
-
-#EXTINF:0,ITV 3 
-http://62.65.140.150:80/session/d78fba4c-c39b-11e5-a406-005056bc06d1/nvnv5a/2/4025/index.m3u8?token=5b939959b35bf4b99fb8a3aaaa2b7966_1453837380_1453837380&p=127|X-Forwarded-For=85.4.186.115
+0
 
 #EXTINF:0,ITV 4 
-http://198.179.30.108/live/101.high.stream/playlist.m3u8?id=0ad5aac39bb13fbe070dc75b8151939dce1331fbafeb9d8e43cd0b34375fea40fbfb037b9388f231b3faed7dbaf03bf207d764c7666c998eef2177c71f4b9a7ebe475c3af95f7278b8151b09950dc63b7b358b8bfed822692fd948cdf84bc3fe7753db7b5626dcd6621f7dce1a48898da259b98ab6f4746cae8afccdc48cae53e938aee5271c998136231bf66f85dd6fb264ccbca2a2a406
-
-#EXTINF:0,ITV 4 
-http://204.107.27.137/live/1826.high.stream/playlist.m3u8?id=0ad5aac39bb13fbe070dc75b8151939dce1331fbafeb9d8e43cd0b34375fea40fbfb037b9388f231b3faed7dbaf03bf207d764c7666c998eef2177c71f4b9a7ebe475c3af95f7278b8151b09950dc63b7b358b8bfed822692fd948cdf84bc3fe7753db7b5626dcd6621f7dce1a48898da259b98ab6f4746cae8afccdc48cae53e938aee5271c998136231bf66f85dd6fb264ccbca2a2a406
+0
 
 #EXTINF:0,Jim Jam 
 http://77.120.118.235:8089
@@ -314,7 +236,7 @@ http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
 0
 
 #EXTINF:0,More4 
-http://204.107.27.137/live/97.high.stream/playlist.m3u8?id=0ad5aac39bb13fbe070dc75b8151939dce1331fbafeb9d8e43cd0b34375fea40fbfb037b9388f231b3faed7dbaf03bf207d764c7666c998eef2177c71f4b9a7ebe475c3af95f7278b8151b09950dc63b7b358b8bfed822692fd948cdf84bc3fe7753db7b5626dcd6621f7dce1a48898da259b98ab6f4746cae8afccdc48cae53e938aee5271c998136231bf66f85dd6fb264ccbca2a2a406
+0
 
 #EXTINF:0,My9 
 http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
@@ -323,10 +245,7 @@ http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
 0
 
 #EXTINF:0,Nick 
-http://top-iptv.zapto.org:8000/live/walid/walid/617.m3u8
-
-#EXTINF:0,Nick 
-http://top-iptv.zapto.org:8000/live/walid/walid/631.m3u8
+0
 
 #EXTINF:0,Nick Jr 
 0
@@ -335,7 +254,7 @@ http://top-iptv.zapto.org:8000/live/walid/walid/631.m3u8
 0
 
 #EXTINF:0,NickNight 
-http://top-iptv.zapto.org:8000/live/walid/walid/631.m3u8
+0
 
 #EXTINF:0,OMNI 
 0
@@ -472,7 +391,7 @@ http://200.76.77.237/LIVE/H01/CANAL387/PROFILE02.m3u8?supertvlat=%2F.ts
 #EXTINF:0,Wobi
 http://200.76.77.237/LIVE/H01/CANAL387/PROFILE03.m3u8?supertvlat=%2F.ts
 
-#EXTINF:0,Wobi
+#EXTINF:0,Wobi 
 http://200.76.77.237/LIVE/H01/CANAL387/PROFILE05.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,World Fashion 

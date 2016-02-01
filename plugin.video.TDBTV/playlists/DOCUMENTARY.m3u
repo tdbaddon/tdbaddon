@@ -11,7 +11,7 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 0
 
 #EXTINF:0,Animal Planet 
-http://top-iptv.zapto.org:8000/live/walid/walid/560.m3u8
+0
 
 #EXTINF:0,Crime & Investigation 
 0
@@ -20,19 +20,13 @@ http://top-iptv.zapto.org:8000/live/walid/walid/560.m3u8
 0
 
 #EXTINF:0,Destination Network 
-http://top-iptv.zapto.org:8000/live/walid/walid/551.m3u8
+0
 
 #EXTINF:0,Discovery Channel 
-http://luckyiptv.ddns.net:23000/live/fausto/fausto/3436.ts
-
-#EXTINF:0,Discovery Channel 
-http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/12074.ts
+http://www.t12v.com:8000/live/jerry/jerry/1046.ts
 
 #EXTINF:0,Discovery History 
-http://bit.do/bFWeV
-
-#EXTINF:0,Discovery History 
-http://top-iptv.zapto.org:8000/live/walid/walid/562.m3u8
+http://www.t12v.com:8000/live/jerry/jerry/1076.ts
 
 #EXTINF:0,Discovery H&H
 0
@@ -73,17 +67,14 @@ http://link.theplatform.com/s/dtjsEC/chjdYJxKb44V?manifest=m3u&feed=History%20Li
 #EXTINF:0,History Channel 
 https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8?hdnea=ip=173.34.67.21~st=1448574469~exp=1448575069~acl=/i/History_1@156885*~id=e0ac8c7f-b7ae-431f-998a-d87493df48b7~hmac=1bf4b5f4382fd3f887da82e7bc44d93e3d92152b0d873acded129cad627e231e
 
-#EXTINF:0,History Channel 
-http://luckyiptv.ddns.net:23000/live/fausto/fausto/3458.ts
-
-#EXTINF:0,History Channel 
-http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/12081.ts
-
 #EXTINF:0,History Channel 2
 0
 
 #EXTINF:0,Investigation Discovery 
 https://hec.su/b1UT
+
+#EXTINF:0,Investigation Discovery 
+http://www.t12v.com:8000/live/jerry/jerry/1037.ts
 
 #EXTINF:0,Nasa TV 
 http://nasatv-lh.akamaihd.net/i/NASA_101@319270/master.m3u8 
@@ -98,19 +89,10 @@ http://nasatv-lh.akamaihd.net/i/NASA_103@319271/master.m3u8
 http://iphone-streaming.ustream.tv/uhls/6540154/streams/live/iphone/playlist.m3u8
 
 #EXTINF:0,Nat Geo Wild 
-http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/12060.ts
-
-#EXTINF:0,Nat Geo Wild 
-http://82.76.249.81/digiedge2/nationalgeographicwildehq/index.m3u8?is=33&src=digi-online.ro&t=00000000000000000000000000000000
+0
 
 #EXTINF:0,National Geographic 
 http://109.226.222.161:4022/udp/239.255.4.30:1234
-
-#EXTINF:0,National Geographic 
-http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/12059.ts
-
-#EXTINF:0,National Geographic 
-http://82.76.249.81/digiedge2/nationalgeographicehq/index.m3u8?is=19&src=digi-online.ro&t=00000000000000000000000000000000
 
 #EXTINF:0,Nova
 0
@@ -137,25 +119,13 @@ http://rt.ashttp14.visionip.tv/live/rt-doc-live-HD/playlist.m3u8
 0
 
 #EXTINF:0,Travel Channel 
-http://204.107.27.250/live/842.high.stream/playlist.m3u8?id=0ad5aac39bb13fbe070dc75b8151939dce1331fbafeb9d8e43cd0b34375fea40fbfb037b9388f231b3faed7dbaf03bf207d764c7666c998eef2177c71f4b9a7ebe475c3af95f7278b8151b09950dc63b7b358b8bfed822692fd948cdf84bc3fe7753db7b5626dcd6621f7dce1a48898da259b98ab6f4746cae8afccdc48cae53e938aee5271c998136231bf66f85dd6fb264ccbca2a2a406
-
-#EXTINF:0,Travel Channel 
-http://82.76.249.81/digiedge2/travelchannelehq/index.m3u8?is=21&src=digi-online.ro&t=00000000000000000000000000000000
+0
 
 #EXTINF:0,Viasat Explorer 
 http://195.78.244.219:10000/udp/239.0.3.30:1234
 
-#EXTINF:0,Viasat Explorer 
-http://82.76.249.81/digiedge2/viasatexplorerehq/index.m3u8?is=40&src=digi-online.ro&t=00000000000000000000000000000000
-
 #EXTINF:0,Viasat History 
-http://212.200.125.9:9415/415
-
-#EXTINF:0,Viasat History 
-http://82.76.249.81/digiedge2/viasathistoryehq/index.m3u8?is=41&src=digi-online.ro&t=00000000000000000000000000000000
-
-#EXTINF:0,Viasat Nature 
-http://82.76.249.81/digiedge2/viasatnatureehq/index.m3u8?is=42&src=digi-online.ro&t=00000000000000000000000000000000
+0
 
 #EXTINF:0,Viasat Nature 
 http://77.76.140.251/prgj.m3u8
