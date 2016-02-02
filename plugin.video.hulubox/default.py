@@ -1,13 +1,20 @@
-import urllib,urllib2,re,xbmcplugin,xbmcgui,urlresolver,sys,xbmc,xbmcaddon,os,urlparse
+import urllib,urllib2,re,xbmcplugin,xbmcgui,urlresolver,sys,xbmc,xbmcaddon,os,urlparse,cf,net
 from t0mm0.common.addon import Addon
 from metahandler import metahandlers
 
+net = net.Net()
 addon_id = 'plugin.video.hulubox'
 selfAddon = xbmcaddon.Addon(id=addon_id)
 addon = Addon(addon_id, sys.argv)
 fanart = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id , 'fanart.jpg'))
 icon = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
 metaset = selfAddon.getSetting('enable_meta')
+datapath= xbmc.translatePath(selfAddon.getAddonInfo('profile'))
+try:os.mkdir(datapath)
+except:pass
+file_var = open(xbmc.translatePath(os.path.join(datapath, 'cookie.lwp')), "a")
+cookie_file = os.path.join(os.path.join(datapath,''), 'cookie.lwp')
+
 
 def CATEGORIES():
         addDir2('Recently Added','http://www.hulubox.com/category/all/',1,icon,fanart)
@@ -35,8 +42,9 @@ def YEARS():
 def GETMOVIES(url,name):
         metaset = selfAddon.getSetting('enable_meta')
         link = open_url(url)
-        match=re.compile('title="(.+?)" href="(.+?)">').findall(link)
+        match=re.compile('title="(.+?)" href="(.+?)">').findall(link)[2:][:-1]
         for name,url in match:
+            if not 'malink' in name:    
                 name=cleanHex(name)
                 if metaset=='false':
                         addLink(name,url,100,icon,fanart)
@@ -54,7 +62,8 @@ def cleanHex(text):
         text = m.group(0)
         if text[:3] == "&#x": return unichr(int(text[3:-1], 16)).encode('utf-8')
         else: return unichr(int(text[2:-1])).encode('utf-8')
-    return re.sub("(?i)&#\w+;", fixup, text.decode('ISO-8859-1').encode('utf-8'))
+    try :return re.sub("(?i)&#\w+;", fixup, text.decode('ISO-8859-1').encode('utf-8'))
+    except:return re.sub("(?i)&#\w+;", fixup, text.encode("ascii", "ignore").encode('utf-8'))
 
 def SEARCH():
     search_entered =''
@@ -69,12 +78,12 @@ def SEARCH():
 
 def PLAYLINK(name,url,iconimage):
         link = open_url(url)
-        url=re.compile('<script type="text/javascript" src="(.+?)"></script>').findall(link)[0]
-        stream_url=urlresolver.resolve(url)
+        stream_url=re.compile('src="(.+?)"').findall(link)[4]
+        url = urlresolver.resolve(stream_url)
         ok=True
         liz=xbmcgui.ListItem(name, iconImage=icon,thumbnailImage=icon); liz.setInfo( type="Video", infoLabels={ "Title": name } )
         ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=url,listitem=liz)
-        xbmc.Player ().play(stream_url, liz, False)
+        xbmc.Player ().play(url, liz, False)
 
 def get_params():
         param=[]
@@ -108,7 +117,6 @@ def addLink(name,url,mode,iconimage,fanart,description=''):
         liz=xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
         liz.setProperty('fanart_image', fanart)
         liz.setInfo( type="Video", infoLabels={ "Title": name, 'plot': description } )
-        liz.setProperty("IsPlayable","true")
         ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=False)
         return ok
 
@@ -146,12 +154,9 @@ def addDir(name,url,mode,iconimage,itemcount,isFolder=False):
             return ok
         
 def open_url(url):
-    req = urllib2.Request(url)
-    req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
-    response = urllib2.urlopen(req)
-    link=response.read()
-    response.close()
-    return link
+       link = cleanHex(net.http_GET(url).content)
+       link = link.replace('\n','').replace('  ','')
+       return link
 
 def setView(content, viewType):
     if content:

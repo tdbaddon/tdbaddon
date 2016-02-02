@@ -1,3 +1,6 @@
+V2.8.3
+-updated resolvers
+
 V2.8.2
 -updated available resolvers
 
