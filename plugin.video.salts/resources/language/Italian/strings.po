@@ -1,0 +1,382 @@
+# Addon Name: SALTS
+# Addon id: plugin.video.salts
+# Addon Provider: TV Addons
+# Translators:
+# theloca95 <iloca95@gmail.com>, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: SALTS\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2016-01-09 08:29+0000\n"
+"Last-Translator: tknorris\n"
+"Language-Team: Italian (http://www.transifex.com/tv-addons/salts/language/it/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: it\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgctxt "#30000"
+msgid "Movies"
+msgstr "Film"
+
+msgctxt "#30001"
+msgid "TV Shows"
+msgstr "Serie TV"
+
+msgctxt "#30002"
+msgid "Movie"
+msgstr "Film"
+
+msgctxt "#30003"
+msgid "TV Show"
+msgstr "Serie TV"
+
+msgctxt "#30004"
+msgid "Settings"
+msgstr "Impostazioni"
+
+msgctxt "#30007"
+msgid "Add-on Settings"
+msgstr "Impostazioni Add-on"
+
+msgctxt "#30016"
+msgid "My %s Collection"
+msgstr "La Mia Collezione di %s"
+
+msgctxt "#30017"
+msgid "My Favorites"
+msgstr "I Miei Preferiti"
+
+msgctxt "#30018"
+msgid "My Subscriptions"
+msgstr "Le Mie Iscrizioni"
+
+msgctxt "#30019"
+msgid "My Watchlist"
+msgstr "La Mia Watchlist"
+
+msgctxt "#30020"
+msgid "My Lists"
+msgstr "Le Mie Liste"
+
+msgctxt "#30021"
+msgid "Other Lists"
+msgstr "Altre Liste"
+
+msgctxt "#30022"
+msgid "My Next Episodes"
+msgstr "I Miei Prossimi Episodi"
+
+msgctxt "#30023"
+msgid "My Calendar"
+msgstr "Il Mio Calendario"
+
+msgctxt "#30024"
+msgid "General Calendar"
+msgstr "Calendario Generale"
+
+msgctxt "#30025"
+msgid "Premiere Calendar"
+msgstr "Calendario Premiere"
+
+msgctxt "#30026"
+msgid "Search"
+msgstr "Cerca"
+
+msgctxt "#30027"
+msgid "Recent Searches"
+msgstr "Ricerche Recenti"
+
+msgctxt "#30028"
+msgid "Saved Searches"
+msgstr "Ricerche Salvate"
+
+msgctxt "#30029"
+msgid "Force Refresh"
+msgstr "Forza Aggiornamento"
+
+msgctxt "#30030"
+msgid "Clear All %s"
+msgstr "Pulisci Tutti %s"
+
+msgctxt "#30031"
+msgid "Forcing Refresh"
+msgstr "Forzando l'Aggiornento"
+
+msgctxt "#30032"
+msgid "Force Refresh Complete"
+msgstr "Aggiornamento Forzato Completato"
+
+msgctxt "#30033"
+msgid "Enable All Scrapers"
+msgstr "Abilita Tutti Gli Scrapers"
+
+msgctxt "#30034"
+msgid "Disable All Scrapers"
+msgstr "Disabilita Tutti Gli Scrapers"
+
+msgctxt "#30035"
+msgid "Enable Scraper"
+msgstr "Abilita Scraper"
+
+msgctxt "#30036"
+msgid "Disable Scraper"
+msgstr "Disabilita Scraper"
+
+msgctxt "#30037"
+msgid "Move Up"
+msgstr "Sposta Sù"
+
+msgctxt "#30038"
+msgid "Move Down"
+msgstr "Sposta Giù"
+
+msgctxt "#30040"
+msgid "Enter New Position (1 - %s)"
+msgstr "Inserisci Nuova Posizione (1 - %s)"
+
+msgctxt "#30041"
+msgid "Set Default %s View"
+msgstr "Imposta Vista %s Predefinita"
+
+msgctxt "#30043"
+msgid "Import"
+msgstr "Importa"
+
+msgctxt "#30049"
+msgid "Go Back"
+msgstr "Indietro"
+
+msgctxt "#30050"
+msgid "Continue"
+msgstr "Continua"
+
+msgctxt "#30058"
+msgid "Remove List"
+msgstr "Rimuovi Lista"
+
+msgctxt "#30059"
+msgid "Rename List"
+msgstr "Rinomina Lista"
+
+msgctxt "#30064"
+msgid "Browse Seasons"
+msgstr "Esplora Stagioni TV"
+
+msgctxt "#30070"
+msgid "Save Search"
+msgstr "Salva Ricerca"
+
+msgctxt "#30072"
+msgid "Delete Search"
+msgstr "Elimina Ricerca"
+
+msgctxt "#30086"
+msgid "Manual Search"
+msgstr "Ricerca Manuale"
+
+msgctxt "#30096"
+msgid "TV"
+msgstr "TV"
+
+msgctxt "#30102"
+msgid "Keep"
+msgstr "Mantieni"
+
+msgctxt "#30103"
+msgid "Delete"
+msgstr "Elimina"
+
+msgctxt "#30111"
+msgid "Export"
+msgstr "Esporta"
+
+msgctxt "#30112"
+msgid "Export Failed"
+msgstr "Esportazione Fallita"
+
+msgctxt "#30116"
+msgid "Import"
+msgstr "Importa"
+
+msgctxt "#30117"
+msgid "Import Failed"
+msgstr "Importazione Fallita"
+
+msgctxt "#30119"
+msgid "Subscribe"
+msgstr "Iscriviti"
+
+msgctxt "#30122"
+msgid "Next Page"
+msgstr "Pagina Successiva"
+
+msgctxt "#30136"
+msgid "Remove from Collection"
+msgstr "Rimuovi dalla Collezione"
+
+msgctxt "#30137"
+msgid "Add to Collection"
+msgstr "Aggiungi alla Collezione"
+
+msgctxt "#30138"
+msgid "Add to List"
+msgstr "Aggiungi alla Lista"
+
+msgctxt "#30139"
+msgid "Add to Library"
+msgstr "Aggiungi alla Libreria"
+
+msgctxt "#30156"
+msgid "Start from beginning"
+msgstr "Parti dall'inizio"
+
+msgctxt "#30157"
+msgid "Resume"
+msgstr "Riprendi"
+
+msgctxt "#30167"
+msgid "Authorize"
+msgstr "Autorizza"
+
+msgctxt "#30169"
+msgid "No Thanks"
+msgstr "No Grazie"
+
+msgctxt "#30174"
+msgid "Enabled"
+msgstr "Abilitato"
+
+msgctxt "#30177"
+msgid "Username"
+msgstr "Username"
+
+msgctxt "#30178"
+msgid "Password"
+msgstr "Password"
+
+msgctxt "#30184"
+msgid "Season"
+msgstr "Stagione"
+
+msgctxt "#30185"
+msgid "DISABLED"
+msgstr "DISABILITATO"
+
+msgctxt "#30186"
+msgid "Search"
+msgstr "Cerca"
+
+msgctxt "#30187"
+msgid "Watched"
+msgstr "Visto"
+
+msgctxt "#30188"
+msgid "Unwatched"
+msgstr "Non visto"
+
+msgctxt "#30189"
+msgid "Updating"
+msgstr "Aggiornado"
+
+msgctxt "#30512"
+msgid "24 Hour"
+msgstr "24 ore"
+
+msgctxt "#30513"
+msgid "12 Hour"
+msgstr "12 ore"
+
+msgctxt "#30516"
+msgid "Title"
+msgstr "Titolo"
+
+msgctxt "#30517"
+msgid "Year"
+msgstr "Anno"
+
+msgctxt "#30519"
+msgid "Title"
+msgstr "Titolo"
+
+msgctxt "#30545"
+msgid "General"
+msgstr "Generale"
+
+msgctxt "#30546"
+msgid "User Interface"
+msgstr "Interfaccia Utente"
+
+msgctxt "#30548"
+msgid "Use HTTPS"
+msgstr "Usa HTTPS"
+
+msgctxt "#30589"
+msgid "Window"
+msgstr "Finestra"
+
+msgctxt "#30590"
+msgid "Background"
+msgstr "Sfondo"
+
+msgctxt "#30606"
+msgid "Quality"
+msgstr "Qualità"
+
+msgctxt "#30607"
+msgid "Views"
+msgstr "Visualizzazioni"
+
+msgctxt "#30610"
+msgid "Best to Worst"
+msgstr "Dal Migliore al Peggiore"
+
+msgctxt "#30611"
+msgid "Worst to Best"
+msgstr "Dal Peggiore al Migliore"
+
+msgctxt "#30615"
+msgid "Enable Subtitles"
+msgstr "Abilita sottotitoli"
+
+msgctxt "#30617"
+msgid "Subtitle Language"
+msgstr "Lingua Sottotitoli"
+
+msgctxt "#30624"
+msgid "    Address"
+msgstr "Indirizzo"
+
+msgctxt "#30625"
+msgid "    Port"
+msgstr "Porta"
+
+msgctxt "#30626"
+msgid "    Username"
+msgstr "    Username"
+
+msgctxt "#30627"
+msgid "    Password"
+msgstr "    Password"
+
+msgctxt "#30628"
+msgid "    Database"
+msgstr "    Database"
+
+msgctxt "#30634"
+msgid "Subtitles"
+msgstr "Sottotitoli"
+
+msgctxt "#30635"
+msgid "Database"
+msgstr "Database"
+
+msgctxt "#30636"
+msgid "Most Recent"
+msgstr "Più Recente"
+
+msgctxt "#30651"
+msgid "All"
+msgstr "Tutti"
+

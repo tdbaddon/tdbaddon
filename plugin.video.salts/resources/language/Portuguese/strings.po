@@ -1,0 +1,303 @@
+# Addon Name: SALTS
+# Addon id: plugin.video.salts
+# Addon Provider: TV Addons
+# Translators:
+# Mafarricos <MafaStudios@gmail.com>, 2015
+# discave <discavehb@live.com>, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: SALTS\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2016-01-09 08:29+0000\n"
+"Last-Translator: tknorris\n"
+"Language-Team: Portuguese (http://www.transifex.com/tv-addons/salts/language/pt/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: pt\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgctxt "#30000"
+msgid "Movies"
+msgstr "Filmes"
+
+msgctxt "#30001"
+msgid "TV Shows"
+msgstr "Séries"
+
+msgctxt "#30002"
+msgid "Movie"
+msgstr "Filme"
+
+msgctxt "#30003"
+msgid "TV Show"
+msgstr "Série"
+
+msgctxt "#30004"
+msgid "Settings"
+msgstr "Configurações"
+
+msgctxt "#30006"
+msgid "Url Resolver Settings"
+msgstr "Definições URL Resolver"
+
+msgctxt "#30007"
+msgid "Add-on Settings"
+msgstr "Configurações do add-on"
+
+msgctxt "#30008"
+msgid "Auto-Configure SALTS"
+msgstr "Configurar automaticamente o SALTS"
+
+msgctxt "#30009"
+msgid "Authorize SALTS to access my trakt.tv account"
+msgstr "Autorizar SALTS para aceder à minha conta trakt.tv"
+
+msgctxt "#30013"
+msgid "Popular %s"
+msgstr "Popular %s"
+
+msgctxt "#30014"
+msgid "Recently Updated %s"
+msgstr "Actualizados Recentemente %s"
+
+msgctxt "#30015"
+msgid "Recommended %s"
+msgstr "Recomendados %s"
+
+msgctxt "#30016"
+msgid "My %s Collection"
+msgstr "Minha %s Colecção"
+
+msgctxt "#30017"
+msgid "My Favorites"
+msgstr "Meus Favoritos"
+
+msgctxt "#30018"
+msgid "My Subscriptions"
+msgstr "Minhas Subscrições"
+
+msgctxt "#30019"
+msgid "My Watchlist"
+msgstr "Minhas Watchlists"
+
+msgctxt "#30020"
+msgid "My Lists"
+msgstr "Minhas Listas"
+
+msgctxt "#30021"
+msgid "Other Lists"
+msgstr "Outras Listas"
+
+msgctxt "#30022"
+msgid "My Next Episodes"
+msgstr "Os meus próximos episódios"
+
+msgctxt "#30023"
+msgid "My Calendar"
+msgstr "Meu Calendário"
+
+msgctxt "#30024"
+msgid "General Calendar"
+msgstr "Calendário Geral"
+
+msgctxt "#30025"
+msgid "Premiere Calendar"
+msgstr "Calendário de Estreias"
+
+msgctxt "#30026"
+msgid "Search"
+msgstr "Pesquisar"
+
+msgctxt "#30027"
+msgid "Recent Searches"
+msgstr "Pesquisas Recentes"
+
+msgctxt "#30028"
+msgid "Saved Searches"
+msgstr "Pesquisas Guardadas"
+
+msgctxt "#30029"
+msgid "Force Refresh"
+msgstr "Forçar a refrescar"
+
+msgctxt "#30030"
+msgid "Clear All %s"
+msgstr "Limpar Todas %s"
+
+msgctxt "#30037"
+msgid "Move Up"
+msgstr "Mover para Cima"
+
+msgctxt "#30038"
+msgid "Move Down"
+msgstr "Mover para Baixo"
+
+msgctxt "#30039"
+msgid "Move To..."
+msgstr "Mover Para..."
+
+msgctxt "#30043"
+msgid "Import"
+msgstr "Importar"
+
+msgctxt "#30050"
+msgid "Continue"
+msgstr "Continuar"
+
+msgctxt "#30064"
+msgid "Browse Seasons"
+msgstr "Procurar temporadas"
+
+msgctxt "#30086"
+msgid "Manual Search"
+msgstr "Procura Manual"
+
+msgctxt "#30088"
+msgid "Enter Search"
+msgstr "Insira Procura"
+
+msgctxt "#30096"
+msgid "TV"
+msgstr "TV"
+
+msgctxt "#30097"
+msgid "Marked as %s"
+msgstr "Marcado como %s"
+
+msgctxt "#30102"
+msgid "Keep"
+msgstr "Guardar"
+
+msgctxt "#30103"
+msgid "Delete"
+msgstr "Apagar"
+
+msgctxt "#30109"
+msgid "Export Successful"
+msgstr "Exportado com Sucesso"
+
+msgctxt "#30111"
+msgid "Export"
+msgstr "Exportar"
+
+msgctxt "#30112"
+msgid "Export Failed"
+msgstr "Falha na Exportação"
+
+msgctxt "#30113"
+msgid "Select Import File"
+msgstr "Seleccione Ficheiro a Importar"
+
+msgctxt "#30114"
+msgid "Import Success"
+msgstr "Importado com Sucesso"
+
+msgctxt "#30116"
+msgid "Import"
+msgstr "Importar"
+
+msgctxt "#30117"
+msgid "Import Failed"
+msgstr "Falha na Importação"
+
+msgctxt "#30118"
+msgid "Remove from List"
+msgstr "Removido da Lista"
+
+msgctxt "#30122"
+msgid "Next Page"
+msgstr "Próxima Página"
+
+msgctxt "#30123"
+msgid "Previous Week"
+msgstr "Semana Anterior"
+
+msgctxt "#30124"
+msgid "Next Week"
+msgstr "Próxima Semana"
+
+msgctxt "#30125"
+msgid "Mark as Unwatched"
+msgstr "Marcar como Não Visto"
+
+msgctxt "#30126"
+msgid "Mark as Watched"
+msgstr "Marcar como Visto"
+
+msgctxt "#30127"
+msgid "Rate on trakt.tv"
+msgstr "Avaliar em trakt.tv"
+
+msgctxt "#30129"
+msgid "Unavailable"
+msgstr "Indisponível"
+
+msgctxt "#30132"
+msgid "Show Information"
+msgstr "Mostrar Informação"
+
+msgctxt "#30138"
+msgid "Add to List"
+msgstr "Adicionar à Lista"
+
+msgctxt "#30139"
+msgid "Add to Library"
+msgstr "Adicionar à Biblioteca"
+
+msgctxt "#30144"
+msgid "Play Trailer"
+msgstr "Ver Trailer"
+
+msgctxt "#30151"
+msgid "Keep Enabled"
+msgstr "Continuar Activo"
+
+msgctxt "#30152"
+msgid "Disable It"
+msgstr "Desactivar"
+
+msgctxt "#30155"
+msgid "Resume from %s"
+msgstr "Resumir de %s"
+
+msgctxt "#30156"
+msgid "Start from beginning"
+msgstr "Recomeçar de Inicio"
+
+msgctxt "#30157"
+msgid "Resume"
+msgstr "Resumir"
+
+msgctxt "#30158"
+msgid "Downloading: %s..."
+msgstr "Em Download: %s"
+
+msgctxt "#30159"
+msgid "Download Complete: %s"
+msgstr "Download Completo: %s"
+
+msgctxt "#30160"
+msgid "Error (%s) during download: %s"
+msgstr "Erro (%s) durante o download: %s"
+
+msgctxt "#30169"
+msgid "No Thanks"
+msgstr "Não, obrigado"
+
+msgctxt "#30174"
+msgid "Enabled"
+msgstr "Activar"
+
+msgctxt "#30177"
+msgid "Username"
+msgstr "Utilizador"
+
+msgctxt "#30178"
+msgid "Password"
+msgstr "Password"
+
+msgctxt "#30184"
+msgid "Season"
+msgstr "Temporada"
+

@@ -1,0 +1,654 @@
+# Addon Name: SALTS
+# Addon id: plugin.video.salts
+# Addon Provider: TV Addons
+# Translators:
+# Maiko Koumpou <maiko77@pathfinder.gr>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: SALTS\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2016-01-09 08:29+0000\n"
+"Last-Translator: tknorris\n"
+"Language-Team: Greek (http://www.transifex.com/tv-addons/salts/language/el/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: el\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgctxt "#30000"
+msgid "Movies"
+msgstr "Ταινίες"
+
+msgctxt "#30001"
+msgid "TV Shows"
+msgstr "Σειρές"
+
+msgctxt "#30002"
+msgid "Movie"
+msgstr "Ταινία"
+
+msgctxt "#30003"
+msgid "TV Show"
+msgstr "Σειρά"
+
+msgctxt "#30004"
+msgid "Settings"
+msgstr "Ρυθμίσεις"
+
+msgctxt "#30005"
+msgid "Scraper Sort Order"
+msgstr "Ταξινόμηση Scraper"
+
+msgctxt "#30006"
+msgid "Url Resolver Settings"
+msgstr " Url Resolver Ρυθμίσεις"
+
+msgctxt "#30007"
+msgid "Add-on Settings"
+msgstr "Ρυθμίσεις Πρόσθετου"
+
+msgctxt "#30008"
+msgid "Auto-Configure SALTS"
+msgstr "Αυτόματη Ρύθμιση SALTS"
+
+msgctxt "#30009"
+msgid "Authorize SALTS to access my trakt.tv account"
+msgstr "Εξουσιοδότηση SALTS για να αποκτήσετε πρόσβαση στο λογαριασμό σας trakt.tv"
+
+msgctxt "#30010"
+msgid "Set Default Views"
+msgstr "Ορίστε Προεπιλεγμένες Προβολές"
+
+msgctxt "#30011"
+msgid "Remove Cached Url(s)"
+msgstr "Κατάργηση Cache Url(s)"
+
+msgctxt "#30012"
+msgid "Trending %s"
+msgstr "Τάσεις %s"
+
+msgctxt "#30013"
+msgid "Popular %s"
+msgstr "Δημοφιλής %s"
+
+msgctxt "#30014"
+msgid "Recently Updated %s"
+msgstr "Πρόσφατα ενημερωμένα %s"
+
+msgctxt "#30015"
+msgid "Recommended %s"
+msgstr "Προτεινόμενα %s"
+
+msgctxt "#30016"
+msgid "My %s Collection"
+msgstr "Η Συλλογή μου %s"
+
+msgctxt "#30017"
+msgid "My Favorites"
+msgstr "Τα Αγαπημένα μου"
+
+msgctxt "#30018"
+msgid "My Subscriptions"
+msgstr "Οι Συνδρομές μου"
+
+msgctxt "#30019"
+msgid "My Watchlist"
+msgstr "Η Watchlist μου"
+
+msgctxt "#30020"
+msgid "My Lists"
+msgstr "Οι Λίστες μου"
+
+msgctxt "#30021"
+msgid "Other Lists"
+msgstr "Άλλες λίστες"
+
+msgctxt "#30022"
+msgid "My Next Episodes"
+msgstr "Τα Επόμενα Επεισόδια Μου"
+
+msgctxt "#30023"
+msgid "My Calendar"
+msgstr "Το ημερολόγιό μου"
+
+msgctxt "#30024"
+msgid "General Calendar"
+msgstr "Ημερολόγιο Γενικά"
+
+msgctxt "#30025"
+msgid "Premiere Calendar"
+msgstr "Ημερολόγιο Πρεμιέρων"
+
+msgctxt "#30026"
+msgid "Search"
+msgstr "Αναζήτηση"
+
+msgctxt "#30027"
+msgid "Recent Searches"
+msgstr "Πρόσφατες Αναζητήσεις"
+
+msgctxt "#30028"
+msgid "Saved Searches"
+msgstr "Αποθηκευμένες αναζητήσεις"
+
+msgctxt "#30030"
+msgid "Clear All %s"
+msgstr "Απαλοιφή όλων %s"
+
+msgctxt "#30032"
+msgid "Force Refresh Complete"
+msgstr "Ολοκλήρωση Επιβολής Ανανέωσης"
+
+msgctxt "#30033"
+msgid "Enable All Scrapers"
+msgstr "Ενεργοποίηση όλων των Scrapers"
+
+msgctxt "#30034"
+msgid "Disable All Scrapers"
+msgstr "Απενεργοποίηση όλων των Scrapers"
+
+msgctxt "#30035"
+msgid "Enable Scraper"
+msgstr "Ενεργοποίηση Scraper"
+
+msgctxt "#30036"
+msgid "Disable Scraper"
+msgstr "Απενεργοποίηση Scraper"
+
+msgctxt "#30037"
+msgid "Move Up"
+msgstr "Μετακίνηση επάνω"
+
+msgctxt "#30038"
+msgid "Move Down"
+msgstr "Μετακίνηση Κάτω"
+
+msgctxt "#30039"
+msgid "Move To..."
+msgstr "Μετακίνηση σε..."
+
+msgctxt "#30040"
+msgid "Enter New Position (1 - %s)"
+msgstr "Εισάγετε Νέα Θέση (1 - %s)"
+
+msgctxt "#30041"
+msgid "Set Default %s View"
+msgstr "Ορισμός Προεπιλεγμένων Προβολών %s"
+
+msgctxt "#30042"
+msgid "Set a view then select this item to set the default %s view"
+msgstr "Ορίστε μια Προβολή, στη συνέχεια, επιλέξτε αυτό το στοιχείο %s για να ορίσετε την προεπιλεγμένη"
+
+msgctxt "#30043"
+msgid "Import"
+msgstr "Εισαγωγή"
+
+msgctxt "#30044"
+msgid "%s View Set to: %s"
+msgstr "%s Δείτε Ρύθμιση για: %s"
+
+msgctxt "#30045"
+msgid "Delete [B][COLOR red]ENTIRE[/COLOR][/B] Url Cache"
+msgstr "Διαγραφή [B][COLOR red]ENTIRE[/COLOR][/B] Url Cache"
+
+msgctxt "#30046"
+msgid "This will set some settings to values that have been found to"
+msgstr "Αυτό θα δημιουργήσει ορισμένες ρυθμίσεις για τις τιμές που έχουν βρεθεί"
+
+msgctxt "#30049"
+msgid "Go Back"
+msgstr "Πίσω"
+
+msgctxt "#30050"
+msgid "Continue"
+msgstr "Συνεχίστε"
+
+msgctxt "#30051"
+msgid "Auto-configure Complete"
+msgstr "Αυτόματη ρύθμιση Ολοκληρώθηκε"
+
+msgctxt "#30052"
+msgid "Set as Favorites List"
+msgstr "Ορισμός ως λίστα αγαπημένων"
+
+msgctxt "#30053"
+msgid "Set as Subscription List"
+msgstr "Ορισμός ως λίστας συνδρομών"
+
+msgctxt "#30054"
+msgid "Import from Collection"
+msgstr "Εισαγωγή από Συλλογή"
+
+msgctxt "#30055"
+msgid "Add another user's list"
+msgstr "Προσθέστε λίστα άλλου χρήστη"
+
+msgctxt "#30056"
+msgid "Copy to My List"
+msgstr "Αντιγραφή στη Λίστα μου"
+
+msgctxt "#30057"
+msgid "Add more from %s"
+msgstr "Προσθήκη περισσότερων από %s"
+
+msgctxt "#30058"
+msgid "Remove List"
+msgstr "Κατάργηση Λίστας"
+
+msgctxt "#30059"
+msgid "Rename List"
+msgstr "Μετονομασία Λίστας"
+
+msgctxt "#30060"
+msgid "Enter the new name (blank to reset)"
+msgstr "Πληκτρολογήστε το νέο όνομα (blank to reset)"
+
+msgctxt "#30061"
+msgid "Enter username of list owner"
+msgstr "Πληκτρολογήστε το όνομα του ιδιοκτήτη της λίστας"
+
+msgctxt "#30062"
+msgid "List Does Not Exist: %s"
+msgstr "Δεν υπάρχει η λίστα: %s"
+
+msgctxt "#30064"
+msgid "Browse Seasons"
+msgstr "Μετάβαση στους κύκλους"
+
+msgctxt "#30070"
+msgid "Save Search"
+msgstr "Αποθήκευση αναζήτησης"
+
+msgctxt "#30071"
+msgid "Remove from Recent"
+msgstr "Αφαιρέση από τα Πρόσφατα"
+
+msgctxt "#30072"
+msgid "Delete Search"
+msgstr "Διαγραφή Αναζήτησης"
+
+msgctxt "#30080"
+msgid "Choose your stream"
+msgstr "Επιλέξτε ροή σας"
+
+msgctxt "#30086"
+msgid "Manual Search"
+msgstr "Χειροκίνητη Αναζήτηση"
+
+msgctxt "#30088"
+msgid "Enter Search"
+msgstr "Εισάγετε Αναζήτηση"
+
+msgctxt "#30091"
+msgid "Input TVShow ID"
+msgstr "Εισαγωγή TVShow ID"
+
+msgctxt "#30092"
+msgid "Item Added to Collection"
+msgstr "Στοιχεία που προστέθηκαν στη συλλογή"
+
+msgctxt "#30093"
+msgid "Item Removed from Collection"
+msgstr "Στοιχεία που αφαιρέθηκαν από συλλογή"
+
+msgctxt "#30094"
+msgid "Item Added to List"
+msgstr "Στοιχεία που προστέθηκαν σε Λιστα"
+
+msgctxt "#30102"
+msgid "Keep"
+msgstr "Διατήρηση"
+
+msgctxt "#30103"
+msgid "Delete"
+msgstr "Διαγραφή"
+
+msgctxt "#30109"
+msgid "Export Successful"
+msgstr "Εξαγωγή επιτυχής"
+
+msgctxt "#30111"
+msgid "Export"
+msgstr "Εξαγωγή"
+
+msgctxt "#30112"
+msgid "Export Failed"
+msgstr "Η Εξαγωγή απέτυχε"
+
+msgctxt "#30113"
+msgid "Select Import File"
+msgstr "Επιλέξτε Αρχείο για Εισαγωγή"
+
+msgctxt "#30114"
+msgid "Import Success"
+msgstr "Εισαγωγή επιτυχής"
+
+msgctxt "#30116"
+msgid "Import"
+msgstr "Εισαγωγή"
+
+msgctxt "#30117"
+msgid "Import Failed"
+msgstr "Αποτυχία εισαγωγής"
+
+msgctxt "#30118"
+msgid "Remove from List"
+msgstr "Κατάργηση από τη λίστα"
+
+msgctxt "#30119"
+msgid "Subscribe"
+msgstr "Εγγραφή"
+
+msgctxt "#30122"
+msgid "Next Page"
+msgstr "Επόμενη σελίδα"
+
+msgctxt "#30123"
+msgid "Previous Week"
+msgstr "Προηγούμενη Εβδομάδα"
+
+msgctxt "#30124"
+msgid "Next Week"
+msgstr "Επόμενη Εβδομάδα"
+
+msgctxt "#30128"
+msgid "Set as Season View"
+msgstr "Ορισμός ως Σεζόν Προβολή"
+
+msgctxt "#30129"
+msgid "Unavailable"
+msgstr "Μη διαθέσιμο"
+
+msgctxt "#30130"
+msgid "Select Source"
+msgstr "Επιλέξτε Πηγή"
+
+msgctxt "#30131"
+msgid "Download Source"
+msgstr "Λήψη Πηγής"
+
+msgctxt "#30132"
+msgid "Show Information"
+msgstr "Δείτε Πληροφορίες"
+
+msgctxt "#30137"
+msgid "Add to Collection"
+msgstr "Προσθήκη σε συλλογή"
+
+msgctxt "#30138"
+msgid "Add to List"
+msgstr "Προσθήκη σε λίστα"
+
+msgctxt "#30139"
+msgid "Add to Library"
+msgstr "Προσθήκη στη Βιβλιοθήκη"
+
+msgctxt "#30145"
+msgid "Pick a list"
+msgstr "Διαλέξτε μια λίστα"
+
+msgctxt "#30157"
+msgid "Resume"
+msgstr "Επανεκκίνηση"
+
+msgctxt "#30168"
+msgid "Remind Me Later"
+msgstr "Υπενθύμιση αργότερα"
+
+msgctxt "#30169"
+msgid "No Thanks"
+msgstr "Όχι ευχαριστώ"
+
+msgctxt "#30174"
+msgid "Enabled"
+msgstr "Ενεργοποιήθηκε"
+
+msgctxt "#30177"
+msgid "Username"
+msgstr "Όνομα χρήστη"
+
+msgctxt "#30178"
+msgid "Password"
+msgstr "Κωδικός "
+
+msgctxt "#30180"
+msgid "Automatically Select"
+msgstr "Αυτόματη Επιλογή"
+
+msgctxt "#30183"
+msgid "No Sources Found"
+msgstr "Δεν βρέθηκαν Πηγές"
+
+msgctxt "#30184"
+msgid "Season"
+msgstr "Κύκλος"
+
+msgctxt "#30185"
+msgid "DISABLED"
+msgstr "ΑΠΕΝΕΡΓΟΠΟΙΗΜΕΝΟ"
+
+msgctxt "#30186"
+msgid "Search"
+msgstr "Αναζήτηση"
+
+msgctxt "#30189"
+msgid "Updating"
+msgstr "Ενημέρωση"
+
+msgctxt "#30215"
+msgid "Delete Bookmark"
+msgstr "Διαγραφή σελιδοδείκτη"
+
+msgctxt "#30231"
+msgid "Auto-Play"
+msgstr "Αυτόματη αναπαραγωγή"
+
+msgctxt "#30516"
+msgid "Title"
+msgstr "Τίτλος"
+
+msgctxt "#30517"
+msgid "Year"
+msgstr "Έτος"
+
+msgctxt "#30518"
+msgid "Activity"
+msgstr "Δραστηριότητα"
+
+msgctxt "#30519"
+msgid "Title"
+msgstr "Τίτλος"
+
+msgctxt "#30524"
+msgid "Show Trending"
+msgstr "Εμφάνιση Τάσεις"
+
+msgctxt "#30525"
+msgid "Show Popular"
+msgstr "Εμφάνιση δημοφιλών"
+
+msgctxt "#30526"
+msgid "Show Recently Updated"
+msgstr "Εμφάνιση Πρόσφατα Ενημερωμένα"
+
+msgctxt "#30527"
+msgid "Show Recommended"
+msgstr "Εμφάνιση Προτεινόμενων"
+
+msgctxt "#30538"
+msgid "Show Friends"
+msgstr "Εμφάνιση Φίλων"
+
+msgctxt "#30540"
+msgid "Default Views"
+msgstr "Προεπιλεγμένες Προβολές"
+
+msgctxt "#30545"
+msgid "General"
+msgstr "Γενικά"
+
+msgctxt "#30546"
+msgid "User Interface"
+msgstr "Περιβάλλον χρήστη"
+
+msgctxt "#30548"
+msgid "Use HTTPS"
+msgstr "Χρήση HTTPS"
+
+msgctxt "#30558"
+msgid "TV Show Folder"
+msgstr "Φάκελος Σειρων"
+
+msgctxt "#30559"
+msgid "Movie Folder"
+msgstr "Φάκελος Ταινιών "
+
+msgctxt "#30568"
+msgid "Show Notifications?"
+msgstr "Εμφάνιση ειδοποιήσεων;"
+
+msgctxt "#30569"
+msgid "Include Movies?"
+msgstr "Συμπεριλάβετε ταινίες;"
+
+msgctxt "#30571"
+msgid "Source Management"
+msgstr "Διαχείριση Πηγής"
+
+msgctxt "#30572"
+msgid "Auto-Play Sources"
+msgstr "Αυτόματη αναπαραγωγή Πηγών"
+
+msgctxt "#30573"
+msgid "    Source Selection Method"
+msgstr "Μέθοδος Επιλογής Πηγών "
+
+msgctxt "#30574"
+msgid "Show Download Option"
+msgstr "Εμφάνιση Δυνατότητας Λήψης"
+
+msgctxt "#30575"
+msgid "    Show Download Progress"
+msgstr "Δείτε την πρόοδο της λήψης"
+
+msgctxt "#30576"
+msgid "    TV Show Download Folder"
+msgstr "Φάκελος Λήψης Σειρας"
+
+msgctxt "#30577"
+msgid "    Movie Download Folder"
+msgstr "Φάκελος Λήψης Ταινίας"
+
+msgctxt "#30589"
+msgid "Window"
+msgstr "Παράθυρο"
+
+msgctxt "#30590"
+msgid "Background"
+msgstr "Φόντο"
+
+msgctxt "#30592"
+msgid "Sort Sources"
+msgstr "Ταξινόμηση Πηγών "
+
+msgctxt "#30604"
+msgid "None"
+msgstr "Κανένα"
+
+msgctxt "#30605"
+msgid "Source"
+msgstr "Πηγή"
+
+msgctxt "#30606"
+msgid "Quality"
+msgstr "Ποιότητα"
+
+msgctxt "#30607"
+msgid "Views"
+msgstr "Προβολές"
+
+msgctxt "#30610"
+msgid "Best to Worst"
+msgstr "Καλύτερο σε Χειρότερο"
+
+msgctxt "#30611"
+msgid "Worst to Best"
+msgstr "Χειρότερο σε Καλύτερο"
+
+msgctxt "#30615"
+msgid "Enable Subtitles"
+msgstr "Ενεργοποίηση υπότιτλων"
+
+msgctxt "#30617"
+msgid "Subtitle Language"
+msgstr "Γλώσσα υπότιτλων"
+
+msgctxt "#30621"
+msgid "Subtitle Download Folder"
+msgstr "Φάκελο Λήψης Υπότιτλου"
+
+msgctxt "#30624"
+msgid "    Address"
+msgstr "Διεύθυνση"
+
+msgctxt "#30625"
+msgid "    Port"
+msgstr "Θύρα"
+
+msgctxt "#30626"
+msgid "    Username"
+msgstr "Όνομα χρήστη"
+
+msgctxt "#30627"
+msgid "    Password"
+msgstr "Κωδικός"
+
+msgctxt "#30628"
+msgid "    Database"
+msgstr "    Βάση Δεδομένων"
+
+msgctxt "#30634"
+msgid "Subtitles"
+msgstr "Υπότιτλοι"
+
+msgctxt "#30635"
+msgid "Database"
+msgstr "Βάση Δεδομένων"
+
+msgctxt "#30636"
+msgid "Most Recent"
+msgstr "Πρόσφατα"
+
+msgctxt "#30637"
+msgid "Highest Quality"
+msgstr "Υψηλότερη Ποιότητα"
+
+msgctxt "#30643"
+msgid "Recently Added"
+msgstr "Προστέθηκε Πρόσφατα"
+
+msgctxt "#30651"
+msgid "All"
+msgstr "Όλα"
+
+msgctxt "#30662"
+msgid "High"
+msgstr "Υψηλή"
+
+msgctxt "#30663"
+msgid "Medium"
+msgstr "Μεσαία"
+
+msgctxt "#30664"
+msgid "Low"
+msgstr "Χαμηλή "
+
+msgctxt "#30667"
+msgid "Continue"
+msgstr "Συνεχίστε"
+
+msgctxt "#30668"
+msgid "Cancel"
+msgstr "Ακύρωση"
+

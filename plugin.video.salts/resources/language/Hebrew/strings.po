@@ -1,0 +1,624 @@
+# Addon Name: SALTS
+# Addon id: plugin.video.salts
+# Addon Provider: TV Addons
+# Translators:
+# lidor malich <lidormalich@gmail.com>, 2015
+# Michael strat <Mstrat37@gmail.com>, 2015
+# Vella <vellama@gmail.com>, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: SALTS\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2016-01-09 08:29+0000\n"
+"Last-Translator: tknorris\n"
+"Language-Team: Hebrew (http://www.transifex.com/tv-addons/salts/language/he/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: he\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgctxt "#30000"
+msgid "Movies"
+msgstr "סרטים"
+
+msgctxt "#30001"
+msgid "TV Shows"
+msgstr "סדרות"
+
+msgctxt "#30002"
+msgid "Movie"
+msgstr "סרט"
+
+msgctxt "#30003"
+msgid "TV Show"
+msgstr "סדרה"
+
+msgctxt "#30004"
+msgid "Settings"
+msgstr "הגדרות"
+
+msgctxt "#30005"
+msgid "Scraper Sort Order"
+msgstr "מיון סדר חיפוש"
+
+msgctxt "#30006"
+msgid "Url Resolver Settings"
+msgstr "הגדרות כתובת רשת"
+
+msgctxt "#30007"
+msgid "Add-on Settings"
+msgstr "הגדרות תוסף"
+
+msgctxt "#30008"
+msgid "Auto-Configure SALTS"
+msgstr "הגדר אוטומטית SALTS"
+
+msgctxt "#30009"
+msgid "Authorize SALTS to access my trakt.tv account"
+msgstr " אשר SALTS גישה לחשבון trakt.tv"
+
+msgctxt "#30010"
+msgid "Set Default Views"
+msgstr "הגדר צפייה ברירת מחדל"
+
+msgctxt "#30011"
+msgid "Remove Cached Url(s)"
+msgstr "הסר מטמון Url(s)"
+
+msgctxt "#30012"
+msgid "Trending %s"
+msgstr "נצפים %s"
+
+msgctxt "#30013"
+msgid "Popular %s"
+msgstr "פופולרי %s"
+
+msgctxt "#30014"
+msgid "Recently Updated %s"
+msgstr "עודכן לאחרונה %s"
+
+msgctxt "#30015"
+msgid "Recommended %s"
+msgstr "מומלצים %s"
+
+msgctxt "#30016"
+msgid "My %s Collection"
+msgstr "אוסף %s שלי"
+
+msgctxt "#30017"
+msgid "My Favorites"
+msgstr "מועדפים שלי"
+
+msgctxt "#30018"
+msgid "My Subscriptions"
+msgstr "מנויים שלי"
+
+msgctxt "#30019"
+msgid "My Watchlist"
+msgstr "רשימת צפייה"
+
+msgctxt "#30020"
+msgid "My Lists"
+msgstr "הרשימות שלי"
+
+msgctxt "#30021"
+msgid "Other Lists"
+msgstr "רשימות אחרות"
+
+msgctxt "#30022"
+msgid "My Next Episodes"
+msgstr "הפרק הבא שלי"
+
+msgctxt "#30023"
+msgid "My Calendar"
+msgstr "לוח שנה שלי"
+
+msgctxt "#30024"
+msgid "General Calendar"
+msgstr "לוח שנה כללי"
+
+msgctxt "#30025"
+msgid "Premiere Calendar"
+msgstr "לוח שנה ראשי"
+
+msgctxt "#30026"
+msgid "Search"
+msgstr "חפש"
+
+msgctxt "#30027"
+msgid "Recent Searches"
+msgstr "חיפושים אחרונים"
+
+msgctxt "#30028"
+msgid "Saved Searches"
+msgstr "חיפושים שמורים"
+
+msgctxt "#30029"
+msgid "Force Refresh"
+msgstr "רענן"
+
+msgctxt "#30030"
+msgid "Clear All %s"
+msgstr "נקה הכל (%s)"
+
+msgctxt "#30031"
+msgid "Forcing Refresh"
+msgstr "מרענן"
+
+msgctxt "#30032"
+msgid "Force Refresh Complete"
+msgstr "תהליך רענון הושלם"
+
+msgctxt "#30033"
+msgid "Enable All Scrapers"
+msgstr "אפשר איסוף נתונים"
+
+msgctxt "#30034"
+msgid "Disable All Scrapers"
+msgstr "חסום איסוף נתונים"
+
+msgctxt "#30035"
+msgid "Enable Scraper"
+msgstr "אפשר את אוסף הנתונים"
+
+msgctxt "#30036"
+msgid "Disable Scraper"
+msgstr "חסום את אוסף הנתונים"
+
+msgctxt "#30037"
+msgid "Move Up"
+msgstr "עבור מעלה"
+
+msgctxt "#30038"
+msgid "Move Down"
+msgstr "עבור מטה"
+
+msgctxt "#30039"
+msgid "Move To..."
+msgstr "עבור ל..."
+
+msgctxt "#30040"
+msgid "Enter New Position (1 - %s)"
+msgstr "הזן מיקום חדש (1 - %s)"
+
+msgctxt "#30041"
+msgid "Set Default %s View"
+msgstr "הגדר תצוגה ברירת מחדל"
+
+msgctxt "#30042"
+msgid "Set a view then select this item to set the default %s view"
+msgstr "הגדר צורה ובחר פריט זה לקביעת תצוגה ברירת מחדל %s"
+
+msgctxt "#30043"
+msgid "Import"
+msgstr "ייבא"
+
+msgctxt "#30044"
+msgid "%s View Set to: %s"
+msgstr "אחוזי תצוגה מוגדרים ל: אחוזים"
+
+msgctxt "#30046"
+msgid "This will set some settings to values that have been found to"
+msgstr "כאן יוגדרו כמה ערכים אשר נמצאו"
+
+msgctxt "#30047"
+msgid "be effective. The following settings will be changed:"
+msgstr "אפקטיביים. ההגדרה הבאה תשונה."
+
+msgctxt "#30049"
+msgid "Go Back"
+msgstr "עבור לקודם"
+
+msgctxt "#30050"
+msgid "Continue"
+msgstr "המשך"
+
+msgctxt "#30051"
+msgid "Auto-configure Complete"
+msgstr "תהליך הגדרה אוטומטית הושלם"
+
+msgctxt "#30052"
+msgid "Set as Favorites List"
+msgstr "הגדר כרשימת מועדפים"
+
+msgctxt "#30053"
+msgid "Set as Subscription List"
+msgstr "הגדר כרשימת מנויים"
+
+msgctxt "#30054"
+msgid "Import from Collection"
+msgstr "ייבא מאוסף"
+
+msgctxt "#30055"
+msgid "Add another user's list"
+msgstr "הוסף רשימת משתמש אחר"
+
+msgctxt "#30056"
+msgid "Copy to My List"
+msgstr "העתק לרשימה שלי"
+
+msgctxt "#30057"
+msgid "Add more from %s"
+msgstr "הוסף מ-%s"
+
+msgctxt "#30058"
+msgid "Remove List"
+msgstr "הסר רשימה"
+
+msgctxt "#30059"
+msgid "Rename List"
+msgstr "שנה שם רשימה"
+
+msgctxt "#30060"
+msgid "Enter the new name (blank to reset)"
+msgstr "הזן שם חדש (הזן רווח לשם ריק)"
+
+msgctxt "#30061"
+msgid "Enter username of list owner"
+msgstr "הזן שם משתמש של בעל הרשימה"
+
+msgctxt "#30062"
+msgid "List Does Not Exist: %s"
+msgstr "רשימה לא קיימת: %s"
+
+msgctxt "#30063"
+msgid "Progress Timeouts: %s/%s"
+msgstr "התקדמות מושהית: %s/%s"
+
+msgctxt "#30064"
+msgid "Browse Seasons"
+msgstr "עיין בעונות הסדרה"
+
+msgctxt "#30066"
+msgid "Clean-Up Subscriptions"
+msgstr "נקה את רשימת המנויים"
+
+msgctxt "#30067"
+msgid "Pick a list to use for Subscriptions"
+msgstr "בחר רשימה לשימוש במנויים"
+
+msgctxt "#30068"
+msgid "Pick a list to use for Favorites"
+msgstr "בחר רשימה לשימוש במועדפים"
+
+msgctxt "#30069"
+msgid "Blank Searches are not allowed"
+msgstr "חיפושים ריקים אינם מורשים"
+
+msgctxt "#30070"
+msgid "Save Search"
+msgstr "שמור חיפוש"
+
+msgctxt "#30071"
+msgid "Remove from Recent"
+msgstr "הסר מאחרונים"
+
+msgctxt "#30072"
+msgid "Delete Search"
+msgstr "מחק חיפוש"
+
+msgctxt "#30073"
+msgid "Recent %s Searches Cleared"
+msgstr "%s חיפושים אחרונים הוסרו"
+
+msgctxt "#30074"
+msgid "Saved %s Searches Cleared"
+msgstr "%s חיפושים שמורים הוסרו"
+
+msgctxt "#30075"
+msgid "Scraper Timeouts: %s/%s"
+msgstr "איסוף נתונים מושהה:  %s/%s"
+
+msgctxt "#30076"
+msgid "No Useable Sources Found%s"
+msgstr "לא נמצאו מקורות שמישים %s"
+
+msgctxt "#30077"
+msgid "Choose a subtitle to download"
+msgstr "בחר כיתוביות להורדה"
+
+msgctxt "#30078"
+msgid "Link Resolve Failed: %s"
+msgstr "חיבור לקישור נכשל: %s"
+
+msgctxt "#30079"
+msgid "All sources failed to play"
+msgstr "כשלה הפעלת כל המקורות"
+
+msgctxt "#30080"
+msgid "Choose your stream"
+msgstr "בחר את ההזרמה שלך"
+
+msgctxt "#30081"
+msgid "Set Related Url"
+msgstr "הגדר קישור שייך"
+
+msgctxt "#30082"
+msgid "Received result from: %s"
+msgstr "קבל תוצאות מ: %s"
+
+msgctxt "#30083"
+msgid "Url To Change (%s)"
+msgstr "קישור לשינוי (%s)"
+
+msgctxt "#30084"
+msgid "Related %s url at %s"
+msgstr "קישור קשור %s  ב-%s"
+
+msgctxt "#30086"
+msgid "Manual Search"
+msgstr "חיפוש ידני"
+
+msgctxt "#30087"
+msgid "Select Related"
+msgstr "בחר את השייך"
+
+msgctxt "#30088"
+msgid "Enter Search"
+msgstr "הזן חיפוש"
+
+msgctxt "#30089"
+msgid "Scraper does not support searching"
+msgstr "אוסף הנתונים אינו תומך בחיפוש"
+
+msgctxt "#30092"
+msgid "Item Added to Collection"
+msgstr "הפריט התווסף לאוסף"
+
+msgctxt "#30093"
+msgid "Item Removed from Collection"
+msgstr "הפריט הוסר מהאוסף"
+
+msgctxt "#30094"
+msgid "Item Added to List"
+msgstr "הפריט התווסף לרשימה"
+
+msgctxt "#30095"
+msgid "List Copied: (A:%s/E:%s/S:%s)"
+msgstr "הרשימה הועתקה:  (A:%s/E:%s/S:%s)"
+
+msgctxt "#30096"
+msgid "TV"
+msgstr "טלויזיה"
+
+msgctxt "#30097"
+msgid "Marked as %s"
+msgstr "סומן כ%s"
+
+msgctxt "#30098"
+msgid "Updating Subscriptions..."
+msgstr "מעדכן מנויים"
+
+msgctxt "#30099"
+msgid "Next Update in %0.1f hours"
+msgstr "העדכון הבא בעוד %0.1f שעות"
+
+msgctxt "#30100"
+msgid "Are you sure you want to delete the url cache?"
+msgstr "למחוק את המטמון של הקישור? "
+
+msgctxt "#30101"
+msgid "This will slow things down until all urls are re-cached"
+msgstr "הדבר יאט את הפעילות עד שיבנה מטמון הקישור מחדש"
+
+msgctxt "#30102"
+msgid "Keep"
+msgstr "שמור"
+
+msgctxt "#30103"
+msgid "Delete"
+msgstr "מחק"
+
+msgctxt "#30104"
+msgid "Flush web cache"
+msgstr "ריקון מטמון האינטרנט"
+
+msgctxt "#30105"
+msgid "DB Reset Successful"
+msgstr "איפוס בסיס הנתונים בוצע בהצלחה"
+
+msgctxt "#30107"
+msgid "Select Export Directory"
+msgstr "בחר תיקייה ליצוא"
+
+msgctxt "#30108"
+msgid "Enter Export Filename"
+msgstr "הזן שם קובץ ליצוא"
+
+msgctxt "#30109"
+msgid "Export Successful"
+msgstr "היצוא בוצע בהצלחה"
+
+msgctxt "#30110"
+msgid "Exported to %s"
+msgstr "ייצוא ל- %s"
+
+msgctxt "#30111"
+msgid "Export"
+msgstr "יצוא"
+
+msgctxt "#30112"
+msgid "Export Failed"
+msgstr "היצוא נכשל"
+
+msgctxt "#30113"
+msgid "Select Import File"
+msgstr "בחר קובץ ליבוא"
+
+msgctxt "#30114"
+msgid "Import Success"
+msgstr "היבוא בוצע בהצלחה"
+
+msgctxt "#30115"
+msgid "Imported from %s"
+msgstr "יובא מ-%s"
+
+msgctxt "#30116"
+msgid "Import"
+msgstr "ייבא"
+
+msgctxt "#30117"
+msgid "Import Failed"
+msgstr "היבוא נכשל"
+
+msgctxt "#30118"
+msgid "Remove from List"
+msgstr "הסר מהרשימה"
+
+msgctxt "#30119"
+msgid "Subscribe"
+msgstr "הרשם"
+
+msgctxt "#30120"
+msgid "Require Aired Only?"
+msgstr "מבקש רק מה ששודר?"
+
+msgctxt "#30121"
+msgid "Require Page Only?"
+msgstr "מבקש רק עמוד?"
+
+msgctxt "#30122"
+msgid "Next Page"
+msgstr "עמוד הבא"
+
+msgctxt "#30123"
+msgid "Previous Week"
+msgstr "שבוע קודם"
+
+msgctxt "#30124"
+msgid "Next Week"
+msgstr "שבוע הבא"
+
+msgctxt "#30125"
+msgid "Mark as Unwatched"
+msgstr "סמן כלא נצפה"
+
+msgctxt "#30126"
+msgid "Mark as Watched"
+msgstr "סמן כנצפה"
+
+msgctxt "#30127"
+msgid "Rate on trakt.tv"
+msgstr "דרג ב-trakt.tv"
+
+msgctxt "#30128"
+msgid "Set as Season View"
+msgstr "הגדר כעונה שנצפתה"
+
+msgctxt "#30129"
+msgid "Unavailable"
+msgstr "לא זמין"
+
+msgctxt "#30130"
+msgid "Select Source"
+msgstr "בחר מקור"
+
+msgctxt "#30131"
+msgid "Download Source"
+msgstr "הורד מקור"
+
+msgctxt "#30132"
+msgid "Show Information"
+msgstr "הצג מידע"
+
+msgctxt "#30133"
+msgid "Add Show to List"
+msgstr "הוסף את הפרק לרשימה"
+
+msgctxt "#30136"
+msgid "Remove from Collection"
+msgstr "הסר מהאוסף"
+
+msgctxt "#30137"
+msgid "Add to Collection"
+msgstr "הוסף לאוסף"
+
+msgctxt "#30138"
+msgid "Add to List"
+msgstr "הוסף לרשימה"
+
+msgctxt "#30139"
+msgid "Add to Library"
+msgstr "הוסף לספריה"
+
+msgctxt "#30141"
+msgid "Use Default episode matching"
+msgstr "השתמש בהתאמת פרק ברירת מחדל"
+
+msgctxt "#30142"
+msgid "Use Episode Title matching"
+msgstr "השתמש בהתאמת שם פרק"
+
+msgctxt "#30143"
+msgid "Set Related Url (Search)"
+msgstr "הגדר קישור שייך (חיפוש)"
+
+msgctxt "#30144"
+msgid "Play Trailer"
+msgstr "הצג טריילר"
+
+msgctxt "#30145"
+msgid "Pick a list"
+msgstr "בחר רשימה"
+
+msgctxt "#30146"
+msgid "No Lists exist for user: %s"
+msgstr "למשתמש s% אין רשימות"
+
+msgctxt "#30147"
+msgid "Scraper Automatically Disabled"
+msgstr "איסוף נתונים אוטומטי לא פעיל"
+
+msgctxt "#30151"
+msgid "Keep Enabled"
+msgstr "שמור מופעל"
+
+msgctxt "#30152"
+msgid "Disable It"
+msgstr "השבת"
+
+msgctxt "#30153"
+msgid "Trakt Bookmark Exists"
+msgstr "קיים סימניות TRAKT"
+
+msgctxt "#30158"
+msgid "Downloading: %s..."
+msgstr "מוריד %s...."
+
+msgctxt "#30159"
+msgid "Download Complete: %s"
+msgstr "הורדה הושלמה %s"
+
+msgctxt "#30167"
+msgid "Authorize"
+msgstr "לאשר"
+
+msgctxt "#30168"
+msgid "Remind Me Later"
+msgstr "הזכר לי מאוחר יותר"
+
+msgctxt "#30169"
+msgid "No Thanks"
+msgstr "לא תודה"
+
+msgctxt "#30174"
+msgid "Enabled"
+msgstr "מופעל"
+
+msgctxt "#30177"
+msgid "Username"
+msgstr "שם משתמש"
+
+msgctxt "#30178"
+msgid "Password"
+msgstr "סיסמא"
+
+msgctxt "#30184"
+msgid "Season"
+msgstr "עונה"
+
+msgctxt "#30186"
+msgid "Search"
+msgstr "חפש"
+

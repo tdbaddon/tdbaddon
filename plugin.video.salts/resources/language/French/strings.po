@@ -1,0 +1,30 @@
+# Addon Name: SALTS
+# Addon id: plugin.video.salts
+# Addon Provider: TV Addons
+# Translators:
+# Pierre-Luc Filiatrault <pierre_luc_filiatrault@hotmail.com>, 2015
+msgid ""
+msgstr ""
+"Project-Id-Version: SALTS\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2016-01-09 08:29+0000\n"
+"Last-Translator: tknorris\n"
+"Language-Team: French (http://www.transifex.com/tv-addons/salts/language/fr/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: fr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgctxt "#30020"
+msgid "My Lists"
+msgstr "Mon Liste"
+
+msgctxt "#30064"
+msgid "Browse Seasons"
+msgstr "Consulter les saisons"
+
+msgctxt "#30184"
+msgid "Season"
+msgstr "Saison"
+

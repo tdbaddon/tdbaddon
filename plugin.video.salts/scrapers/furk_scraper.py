@@ -1,0 +1,216 @@
+"""
+    SALTS XBMC Addon
+    Copyright (C) 2014 tknorris
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+"""
+import scraper
+import urllib
+import urlparse
+import json
+import re
+import xml.etree.ElementTree as ET
+from salts_lib import kodi
+from salts_lib import log_utils
+from salts_lib.trans_utils import i18n
+from salts_lib.constants import VIDEO_TYPES
+from salts_lib.constants import FORCE_NO_MATCH
+from salts_lib.constants import QUALITIES
+
+BASE_URL = 'http://www.furk.net'
+SEARCH_URL = '/api/plugins/metasearch'
+LOGIN_URL = '/api/login/login'
+
+class Furk_Scraper(scraper.Scraper):
+    base_url = BASE_URL
+
+    def __init__(self, timeout=scraper.DEFAULT_TIMEOUT):
+        self.timeout = timeout
+        self.base_url = kodi.get_setting('%s-base_url' % (self.get_name()))
+        self.username = kodi.get_setting('%s-username' % (self.get_name()))
+        self.password = kodi.get_setting('%s-password' % (self.get_name()))
+        self.max_results = int(kodi.get_setting('%s-result_limit' % (self.get_name())))
+
+    @classmethod
+    def provides(cls):
+        return frozenset([VIDEO_TYPES.MOVIE, VIDEO_TYPES.EPISODE])
+
+    @classmethod
+    def get_name(cls):
+        return 'Furk.net'
+
+    def resolve_link(self, link):
+        playlist = super(Furk_Scraper, self)._http_get(link, cache_limit=.5)
+        root = ET.fromstring(playlist)
+        location = root.find('.//{http://xspf.org/ns/0/}location')
+        if location is not None:
+            return location.text
+
+    def format_source_label(self, item):
+        label = '[%s] %s' % (item['quality'], item['host'])
+        if 'size' in item:
+            label += ' (%s)' % (item['size'])
+        if 'extra' in item:
+            label += ' [%s]' % (item['extra'])
+        return label
+
+    def get_sources(self, video):
+        hosters = []
+        source_url = self.get_url(video)
+        if source_url and source_url != FORCE_NO_MATCH:
+            params = urlparse.parse_qs(urlparse.urlparse(source_url).query)
+            if 'title' in params:
+                query = params['title'][0]
+                if video.video_type == VIDEO_TYPES.MOVIE:
+                    if 'year' in params: query += ' %s' % (params['year'][0])
+                else:
+                    sxe = ''
+                    if 'season' in params:
+                        sxe = 'S%02d' % (int(params['season'][0]))
+                    if 'episode' in params:
+                        sxe += 'E%02d' % (int(params['episode'][0]))
+                    if sxe: query = '%s %s' % (query, sxe)
+                query = urllib.quote_plus(query)
+                query_url = '/search?query=%s' % (query)
+                hosters = self.__get_links(query_url, video)
+                if not hosters and video.video_type == VIDEO_TYPES.EPISODE and params['air_date'][0]:
+                    query = urllib.quote_plus('%s %s' % (params['title'][0], params['air_date'][0].replace('-', '.')))
+                    query_url = '/search?query=%s' % (query)
+                    hosters = self.__get_links(query_url, video)
+
+        return hosters
+    
+    def __get_links(self, url, video):
+        hosters = []
+        search_url = urlparse.urljoin(self.base_url, SEARCH_URL)
+        query = self.__translate_search(url)
+        result = self._http_get(search_url, data=query, allow_redirect=False, cache_limit=.5)
+        if 'files' in result:
+            for item in result['files']:
+                checks = [False] * 6
+                if 'type' not in item or item['type'].upper() != 'VIDEO': checks[0] = True
+                if 'is_ready' in item and item['is_ready'] != '1': checks[1] = True
+                if 'av_result' in item and item['av_result'] in ['warning', 'infected']: checks[2] = True
+                if 'video_info' not in item: checks[3] = True
+                if 'video_info' in item and item['video_info'] and not re.search('#0:(?:0|1)(?:\(eng\)|\(und\))?:\s*Audio:', item['video_info']): checks[4] = True
+                if video.video_type == VIDEO_TYPES.EPISODE:
+                    sxe = '[. ][Ss]%02d[Ee]%02d[. ]' % (int(video.season), int(video.episode))
+                    if not re.search(sxe, item['name']):
+                        if video.ep_airdate:
+                            airdate_pattern = '[. ]%s[. ]%02d[. ]%02d[. ]' % (video.ep_airdate.year, video.ep_airdate.month, video.ep_airdate.day)
+                            if not re.search(airdate_pattern, item['name']): checks[5] = True
+                    
+                if any(checks):
+                    log_utils.log('Furk.net result excluded: %s - |%s|' % (checks, item['name']), log_utils.LOGDEBUG)
+                    continue
+                
+                match = re.search('(\d{3,})\s?x\s?(\d{3,})', item['video_info'])
+                if match:
+                    width, _ = match.groups()
+                    quality = self._width_get_quality(width)
+                else:
+                    if video.video_type == VIDEO_TYPES.MOVIE:
+                        _, _, height, _ = self._parse_movie_link(item['name'])
+                        quality = self._height_get_quality(height)
+                    elif video.video_type == VIDEO_TYPES.EPISODE:
+                        _, _, _, height, _ = self._parse_episode_link(item['name'])
+                        if int(height) > -1:
+                            quality = self._height_get_quality(height)
+                        else:
+                            quality = QUALITIES.HIGH
+                    else:
+                        quality = QUALITIES.HIGH
+                    
+                stream_url = item['url_pls']
+                host = self._get_direct_hostname(stream_url)
+                hoster = {'multi-part': False, 'class': self, 'views': None, 'url': stream_url, 'rating': None, 'host': host, 'quality': quality, 'direct': True}
+                hoster['size'] = self.__format_size(int(item['size']), 'B')
+                hoster['extra'] = item['name']
+                hosters.append(hoster)
+        return hosters
+    
+    def get_url(self, video):
+        url = None
+        self.create_db_connection()
+        result = self.db_connection.get_related_url(video.video_type, video.title, video.year, self.get_name(), video.season, video.episode)
+        if result:
+            url = result[0][0]
+            log_utils.log('Got local related url: |%s|%s|%s|%s|%s|' % (video.video_type, video.title, video.year, self.get_name(), url))
+        else:
+            if video.video_type == VIDEO_TYPES.MOVIE:
+                query = 'title=%s&year=%s' % (urllib.quote_plus(video.title), video.year)
+            else:
+                query = 'title=%s&season=%s&episode=%s&air_date=%s' % (urllib.quote_plus(video.title), video.season, video.episode, video.ep_airdate)
+            url = '/search?%s' % (query)
+            self.db_connection.set_related_url(video.video_type, video.title, video.year, self.get_name(), url)
+        return url
+
+    def search(self, video_type, title, year):
+        return []
+
+    @classmethod
+    def get_settings(cls):
+        settings = super(Furk_Scraper, cls).get_settings()
+        settings = cls._disable_sub_check(settings)
+        name = cls.get_name()
+        settings.append('         <setting id="%s-username" type="text" label="     %s" default="" visible="eq(-4,true)"/>' % (name, i18n('username')))
+        settings.append('         <setting id="%s-password" type="text" label="     %s" option="hidden" default="" visible="eq(-5,true)"/>' % (name, i18n('password')))
+        settings.append('         <setting id="%s-result_limit" label="     %s" type="slider" default="10" range="10,100" option="int" visible="eq(-6,true)"/>' % (name, i18n('result_limit')))
+        return settings
+
+    def _http_get(self, url, data=None, retry=True, allow_redirect=True, cache_limit=8):
+        if not self.username or not self.password:
+            return {}
+        
+        result = super(Furk_Scraper, self)._http_get(url, data=data, allow_redirect=allow_redirect, cache_limit=cache_limit)
+        if result:
+            try:
+                js_result = json.loads(result)
+            except ValueError:
+                if 'msg_key=session_invalid' in result:
+                    log_utils.log('Logging in for url (%s) (Session Expired)' % (url), log_utils.LOGDEBUG)
+                    self.__login()
+                    js_result = self._http_get(url, data=data, retry=False, allow_redirect=allow_redirect, cache_limit=0)
+                else:
+                    log_utils.log('Invalid JSON returned: %s: %s' % (url, result), log_utils.LOGWARNING)
+                    js_result = {}
+            else:
+                if js_result['status'] == 'error':
+                    if retry and js_result['error'] == 'access denied':
+                        log_utils.log('Logging in for url (%s)' % (url), log_utils.LOGDEBUG)
+                        self.__login()
+                        js_result = self._http_get(url, data=data, retry=False, allow_redirect=allow_redirect, cache_limit=0)
+                    else:
+                        log_utils.log('Error received from furk.net (%s)' % (js_result['error']), log_utils.LOGWARNING)
+            
+            return js_result
+        
+    def __login(self):
+        url = urlparse.urljoin(self.base_url, LOGIN_URL)
+        data = {'login': self.username, 'pwd': self.password}
+        result = self._http_get(url, data=data, cache_limit=0)
+        if result['status'] != 'ok':
+            raise Exception('furk.net login failed: %s' % (result.get('error', 'Unknown Error')))
+    
+    def __translate_search(self, url):
+        query = {'sort': 'relevance', 'filter': 'all', 'moderated': 'yes', 'offset': 0, 'limit': self.max_results, 'match': 'all'}
+        query['q'] = urllib.quote_plus(urlparse.parse_qs(urlparse.urlparse(url).query)['query'][0])
+        return query
+    
+    def __format_size(self, num, suffix='B'):
+        for unit in ['', 'K', 'M', 'G', 'T', 'P', 'E', 'Z']:
+            if abs(num) < 1024.0:
+                return "%3.1f%s%s" % (num, unit, suffix)
+            num /= 1024.0
+        return "%.1f%s%s" % (num, 'Y', suffix)
