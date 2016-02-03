@@ -168,11 +168,9 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
         <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary lang="de">Chaturbate</summary>
-    <description lang="de">Der Name sagt alles!</description>
-    <disclaimer lang="de">Diese Software steht unter der GNU General Public License version 2[CR][CR]Copyright (c) 2014 by LivingOn &lt;LivingOn@xmail.net&gt;</disclaimer>
-    <description lang="en">The name says it all!</description>
-    <disclaimer lang="en">This software is licensed under the GNU General Public License version 2[CR][CR]Copyright (c) 2014 by &lt;LivingOn@xmail.net&gt;</disclaimer>
+    <summary lang="en">Adult(18+) from Chaturbate</summary>
+    <description lang="en"></description>
+    <disclaimer lang="en"></disclaimer>
     <platform>all</platform>
   </extension>
 </addon>
@@ -243,8 +241,8 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
     <extension point="xbmc.addon.metadata">
         <platform>all</platform>
         <license>GPL 2.0</license>
-        <summary lang="en">Fantasti.cc -  Browse videos from a site that aggregates the best porn videos online using the votes of users as the deciding factor</summary>
-        <description lang="en">Browse collections (user designed categories) as well as the most popular videos today/week/month as decided by the users of the site</description>
+        <summary lang="en">Adult(18+) from Fantasti.cc</summary>
+        <description lang="en"></description>
     </extension>
 </addon>
 
@@ -409,13 +407,13 @@ http://kodilive.eu</description>
         <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary>Thousands of Free Streaming Porn videos! Updated every day. Lube Tube is the youtube of free porn.</summary>
-    <description>Thousands of Free Streaming Porn videos! Updated every day. Lube Tube is the youtube of free porn.</description>
+    <summary>Adult(18+) from LubeTube</summary>
+    <description></description>
     <platform>all</platform>
   </extension>
 </addon>
 
-<addon id="plugin.video.md123movies" name="123Movies" version="1.0.8" provider-name="Mucky Duck">
+<addon id="plugin.video.md123movies" name="123Movies" version="1.1.0" provider-name="Mucky Duck">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.urlresolver"  version="2.1.2"/>
@@ -531,7 +529,7 @@ http://kodilive.eu</description>
   </extension>
   <extension point="xbmc.addon.metadata">
     <summary>Adult(18+) videos from motherless.com</summary>
-    <description>Adult(18+) videos from motherless.com</description>
+    <description></description>
     <platform>all</platform>
   </extension>
 </addon>
@@ -607,7 +605,7 @@ http://kodilive.eu</description>
   </extension>
   <extension point="xbmc.addon.metadata">
     <summary>Adult(18+) videos from OxoTube.co</summary>
-    <description>Adult(18+) videos from OxoTube.com</description>
+    <description></description>
     <platform>all</platform>
   </extension>
 </addon>
@@ -802,7 +800,7 @@ http://kodilive.eu</description>
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="3.49"
+       version="3.50"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -870,8 +868,8 @@ http://kodilive.eu</description>
     <extension point="xbmc.addon.metadata">
         <platform>all</platform>
         <license>GPL 2.0</license>
-        <summary lang="en">Watch [COLOR red][B]ADULT[/B][/COLOR] Movies with Ultimate WhiteCream</summary>
-        <description lang="en">Watch [COLOR red][B]ADULT[/B][/COLOR] Movies with Ultimate WhiteCream</description>
+        <summary lang="en">Adult(18+) </summary>
+        <description lang="en"></description>
 		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
     </extension>
 </addon>
@@ -890,8 +888,8 @@ http://kodilive.eu</description>
    <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary>Play videos from different adult streaming sites</summary>
-    <description>This addon plays videos from YouPorn, Tube8, Boysfood, MoviesAnd, PornoTube, xHamster, KeezMovies and some other adult streaming sites. It contains explicit adult material. You may only view this addon if you are at least 18 years of age, or at least the age of majority in the jurisdiction where you reside or from which you access this content. If you do not meet these requirements, then you do not have permission to use this addon.</description>
+  <summary lang="en">Adult(18+) </summary>
+    <description></description>
     <disclaimer>The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
     <platform>all</platform>
   </extension>
@@ -953,7 +951,7 @@ http://kodilive.eu</description>
   </extension>
   <extension point="xbmc.addon.metadata">
     <summary>Adult(18+) videos from wildfireporn.com</summary>
-    <description>Adult(18+) videos from wildfireporn.com</description>
+    <description></description>
     <platform>all</platform>
   </extension>
 </addon>
@@ -995,8 +993,8 @@ http://kodilive.eu</description>
    </extension>
    <extension point="xbmc.python.module" library="lib" />
    <extension point="xbmc.addon.metadata">
-	 <summary lang="pt">Assista videos e filmes [COLOR red][B]ADULTOS[/COLOR][/B] encodado e upado por XxTRUCOxX.</summary>
-	 <description lang="pt">Assista videos e filmes [COLOR red][B]ADULTOS[/COLOR][/B] encodado e upado por XxTRUCOxX. Atualizado diariamente!</description>
+  <summary lang="en">Adult(18+) </summary>
+	 <description lang="pt"></description>
 	 <platform></platform>
      <language></language>
 	 <license></license>

@@ -16,8 +16,8 @@
    </extension>
    <extension point="xbmc.python.module" library="lib" />
    <extension point="xbmc.addon.metadata">
-	 <summary lang="pt">Assista videos e filmes [COLOR red][B]ADULTOS[/COLOR][/B] encodado e upado por XxTRUCOxX.</summary>
-	 <description lang="pt">Assista videos e filmes [COLOR red][B]ADULTOS[/COLOR][/B] encodado e upado por XxTRUCOxX. Atualizado diariamente!</description>
+  <summary lang="en">Adult(18+) </summary>
+	 <description lang="pt"></description>
 	 <platform></platform>
      <language></language>
 	 <license></license>

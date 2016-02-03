@@ -7,11 +7,9 @@
         <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary lang="de">Chaturbate</summary>
-    <description lang="de">Der Name sagt alles!</description>
-    <disclaimer lang="de">Diese Software steht unter der GNU General Public License version 2[CR][CR]Copyright (c) 2014 by LivingOn &lt;LivingOn@xmail.net&gt;</disclaimer>
-    <description lang="en">The name says it all!</description>
-    <disclaimer lang="en">This software is licensed under the GNU General Public License version 2[CR][CR]Copyright (c) 2014 by &lt;LivingOn@xmail.net&gt;</disclaimer>
+    <summary lang="en">Adult(18+) from Chaturbate</summary>
+    <description lang="en"></description>
+    <disclaimer lang="en"></disclaimer>
     <platform>all</platform>
   </extension>
 </addon>

@@ -51,7 +51,7 @@ http://www.t12v.com:8000/live/jerry/jerry/1059.ts
 http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_1800.m3u8
 
 #EXTINF:0,Eurosport 2 
-0
+http://playnicetv.tk:2052/live/martinhope/hdbfhwir/5824.ts
 
 #EXTINF:0,Eurosport News 
 0
@@ -111,7 +111,7 @@ http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/1896k/prog.m3u8|X-Forwarded-
 http://cdn.phoenix.intergi.com/21772/videos/3362254/video-sd.mp4?hosting_id=21772
 
 #EXTINF:0,NFL Live
-0
+http://playnicetv.tk:2052/live/martinhope/hdbfhwir/5924.ts
 
 #EXTINF:0,NFL Network 
 0
@@ -189,25 +189,25 @@ mms://100automoto.tv/channel_porsche
 0
 
 #EXTINF:0,Sky Sports 1 
-0
+http://80.243.189.26:8182/sportshd/sky1/index.m3u8
 
 #EXTINF:0,Sky Sports 2 
-0
+http://80.243.189.26:8182/sportshd/sky2/index.m3u8
 
 #EXTINF:0,Sky Sports 3 
-0
+http://80.243.189.26:8182/sportshd/sky3/index.m3u8
 
 #EXTINF:0,Sky Sports 4 
-0
+http://80.243.189.26:8182/sportshd/sky4/index.m3u8
 
 #EXTINF:0,Sky Sports 5 
-0
+http://80.243.189.26:8182/sportshd/sky5/index.m3u8
 
 #EXTINF:0,Sky Sports F1 
-0
+http://80.243.189.26:8182/sportshd/skf1/index.m3u8
 
 #EXTINF:0,Sky Sports News 
-0
+http://80.243.189.26:8182/sportshd/skynews/index.m3u8
 
 #EXTINF:0,Sports Tonight 
 rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9-SD
