@@ -80,9 +80,7 @@ def PLAYLINK(name,url,iconimage):
         link = open_url(url)
         stream_url=re.compile('src="(.+?)"').findall(link)[4]
         url = urlresolver.resolve(stream_url)
-        ok=True
         liz=xbmcgui.ListItem(name, iconImage=icon,thumbnailImage=icon); liz.setInfo( type="Video", infoLabels={ "Title": name } )
-        ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=url,listitem=liz)
         xbmc.Player ().play(url, liz, False)
 
 def get_params():

@@ -11,7 +11,7 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 0
 
 #EXTINF:0,Cinemax 
-0
+http://77.76.140.251/prgb.m3u8
 
 #EXTINF:0,CineStarTV Premiere 1 
 0
@@ -107,7 +107,7 @@ http://200.76.77.237/LIVE/H01/CANAL484/PROFILE05.m3u8?supertvlat=%2F.ts
 http://playnicetv.tk:2052/live/martinhope/hdbfhwir/5950.ts
 
 #EXTINF:0,HBO East 2
-0
+http://st02.brn03.iptv.czechbone.net:8083/120-tv-pc.m3u8
 
 #EXTINF:0,HBO Comedy 
 0
@@ -198,6 +198,9 @@ http://playnicetv.tk:2052/live/martinhope/hdbfhwir/5922.ts
 
 #EXTINF:0,Star Movies 
 http://112.197.2.135:1935/colive/C001_HD_4/chunklist.m3u8
+
+#EXTINF:0,Star Movies 
+http://77.76.140.251/prgc.m3u8
 
 #EXTINF:0,Starz Cinema
 0
