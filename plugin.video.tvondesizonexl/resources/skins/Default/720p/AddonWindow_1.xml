@@ -5,6 +5,7 @@
 		<posy>0</posy>
 	</coordinates>
 
+	<backgroundcolor>0xFF040404</backgroundcolor>
 	<controls>
 		<control type="image" id="1">
 			<posx>0</posx>
@@ -12,7 +13,7 @@
 			<width>1280</width>
 			<height>720</height>
 			<visible>true</visible>
-			<texture>summer_bg.png</texture>
+			<texture>Red.jpg</texture>
 			<aspectratio>stretch</aspectratio>
 		</control>
 		<control type="button" id="10">

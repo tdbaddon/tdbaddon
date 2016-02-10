@@ -7,6 +7,8 @@ from xoze.snapvideo import VideoHost, Video, STREAM_QUAL_SD
 from xoze.utils import http, encoders
 import re
 
+VIDEO_HOST_NAME = 'PlayU'
+
 def getVideoHost():
     video_host = VideoHost()
     video_host.set_icon('http://playu.net/img/logo2-new-res-sm2.png')

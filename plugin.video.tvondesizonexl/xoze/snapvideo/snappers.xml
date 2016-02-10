@@ -241,7 +241,7 @@
 
 	<snapper module="xoze.snapvideo.Playwire" function="retrieveVideoInfo"
 		enabled="true" desc="www.playwire.com video hosting website">
-		<video-id regex="playwire.com/(.+?)\.json" />
+		<video-id regex="playwire.com/videos/(.+?)/" />
 	</snapper>
 
 	<snapper module="xoze.snapvideo.Mega" function="retrieveVideoInfo"

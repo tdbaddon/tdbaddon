@@ -18,3 +18,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with XOZE.  If not, see <http://www.gnu.org/licenses/>.
 '''
+try:
+    import ssl
+    ssl._create_default_https_context = ssl._create_unverified_context
+except:
+    #do nothing
+    print 'ssl verified context available'

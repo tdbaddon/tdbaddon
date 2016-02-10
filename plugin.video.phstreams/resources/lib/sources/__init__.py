@@ -558,29 +558,6 @@ class sources:
     def sourcesFilter(self):
         self.sourcesReset()
 
-        try: customhdDict = [control.setting('hosthd50001'), control.setting('hosthd50002'), control.setting('hosthd50003'), control.setting('hosthd50004'), control.setting('hosthd50005'), control.setting('hosthd50006'), control.setting('hosthd50007'), control.setting('hosthd50008'), control.setting('hosthd50009'), control.setting('hosthd50010'), control.setting('hosthd50011'), control.setting('hosthd50012'), control.setting('hosthd50013'), control.setting('hosthd50014'), control.setting('hosthd50015'), control.setting('hosthd50016'), control.setting('hosthd50017'), control.setting('hosthd50018'), control.setting('hosthd50019'), control.setting('hosthd50020')]
-        except: customhdDict = []
-        try: customsdDict = [control.setting('host50001'), control.setting('host50002'), control.setting('host50003'), control.setting('host50004'), control.setting('host50005'), control.setting('host50006'), control.setting('host50007'), control.setting('host50008'), control.setting('host50009'), control.setting('host50010'), control.setting('host50011'), control.setting('host50012'), control.setting('host50013'), control.setting('host50014'), control.setting('host50015'), control.setting('host50016'), control.setting('host50017'), control.setting('host50018'), control.setting('host50019'), control.setting('host50020')]
-        except: customsdDict = []
-
-        hd_rank = []
-        hd_rank += [i for i in self.rdDict if i in self.hostprDict + self.hosthdDict]
-        hd_rank += [i for i in self.pzDict if i in self.hostprDict + self.hosthdDict]
-        hd_rank += customhdDict
-        hd_rank += [i['source'] for i in self.sources if i['quality'] in ['1080p', 'HD'] and not i['source'] in customhdDict + self.hostprDict + self.hosthdDict]
-        hd_rank += self.hosthdDict
-        hd_rank = [i.lower() for i in hd_rank]
-        hd_rank = [x for y,x in enumerate(hd_rank) if x not in hd_rank[:y]]
-
-        sd_rank = []
-        sd_rank += [i for i in self.rdDict if i in self.hostprDict + self.hosthqDict]
-        sd_rank += [i for i in self.pzDict if i in self.hostprDict + self.hosthqDict]
-        sd_rank += customsdDict
-        sd_rank += [i['source'] for i in self.sources if i['quality'] == 'SD' and not i['source'] in customsdDict + self.hostprDict + self.hosthqDict + self.hostmqDict + self.hostlqDict]
-        sd_rank += self.hosthqDict + self.hostmqDict + self.hostlqDict
-        sd_rank = [i.lower() for i in sd_rank]
-        sd_rank = [x for y,x in enumerate(sd_rank) if x not in sd_rank[:y]]
-
         for i in range(len(self.sources)): self.sources[i]['source'] = self.sources[i]['source'].lower()
         self.sources = sorted(self.sources, key=lambda k: k['source'])
 
@@ -592,53 +569,18 @@ class sources:
         if len(filter) < 10: filter += [i for i in self.sources if i['quality'] == 'CAM']
         self.sources = filter
 
-        try: playback_quality = control.setting('playback_quality')
-        except: playback_quality = '0'
-
-        if playback_quality == '1':
-            self.sources = [i for i in self.sources if not i['quality'] == '1080p']
-        elif playback_quality == '2':
-            self.sources = [i for i in self.sources if not i['quality'] in ['1080p', 'HD']]
-        elif playback_quality == '3':
-            self.sources = [i for i in self.sources if not i['quality'] in ['1080p', 'HD'] and i['source'] in self.hostmqDict + self.hostlqDict]
-        elif playback_quality == '4':
-            self.sources = [i for i in self.sources if not i['quality'] in ['1080p', 'HD'] and i['source'] in self.hostlqDict]
-
-        try: playback_captcha = control.setting('playback_captcha_hosts')
-        except: playback_captcha = 'false'
-
-        try: playback_1080p = control.setting('playback_1080p_hosts')
-        except: playback_1080p = 'true'
-
-        try: playback_720p = control.setting('playback_720p_hosts')
-        except: playback_720p = 'true'
-
-        if playback_captcha == 'false':
-            self.sources = [i for i in self.sources if not i['source'] in self.hostcapDict]
-
-        if playback_1080p == 'false':
-            self.sources = [i for i in self.sources if not (i['quality'] == '1080p' and i['source'] in self.hosthdDict and not i['source'] in self.rdDict + self.pzDict)]
-
-        if playback_720p == 'false':
-            self.sources = [i for i in self.sources if not (i['quality'] == 'HD' and i['source'] in self.hosthdDict and not i['source'] in self.rdDict + self.pzDict)]
-
         for i in range(len(self.sources)):
             s = self.sources[i]['source'].lower()
             p = self.sources[i]['provider']
             p = re.sub('v\d*$', '', p)
 
             q = self.sources[i]['quality']
-            if q == 'SD' and s in self.hostmqDict: q = 'MQ'
-            elif q == 'SD' and s in self.hostlqDict: q = 'LQ'
-            elif q == 'SD': q = 'HQ'
 
             try: d = self.sources[i]['info']
             except: d = ''
             if not d == '': d = ' | [I]%s [/I]' % d
 
-            if s in self.rdDict: label = '%02d | [B]realdebrid[/B] | ' % int(i+1)
-            elif s in self.pzDict: label = '%02d | [B]premiumize[/B] | ' % int(i+1)
-            else: label = '%02d | [B]%s[/B] | ' % (int(i+1), p)
+            label = '%02d | [B]%s[/B] | ' % (int(i+1), p)
 
             if q in ['1080p', 'HD']: label += '%s%s | [B][I]%s [/I][/B]' % (s, d, q)
             else: label += '%s%s | [I]%s [/I]' % (s, d, q)
@@ -646,27 +588,6 @@ class sources:
             self.sources[i]['label'] = label.upper()
 
         return self.sources
-
-
-    def sourcesReset(self):
-        try:
-            if control.setting('hosthd1') == '': return
-
-            settingsFile = control.settingsFile
-            file = control.openFile(settingsFile) ; read = file.read().splitlines() ; file.close()
-
-            write = unicode( '<settings>' + '\n', 'UTF-8' )
-            for line in read:
-                if len(re.findall('<settings>', line)) > 0: continue
-                elif len(re.findall('</settings>', line)) > 0: continue
-                elif len(re.findall('id="(host|hosthd)500\d*"', line)) > 0: pass
-                elif len(re.findall('id="(host|hosthd)\d*"', line)) > 0: continue
-                write += unicode(line.rstrip() + '\n', 'UTF-8')
-            write += unicode('</settings>' + '\n', 'UTF-8')
-
-            file = control.openFile(settingsFile, 'w') ; file.write(str(write)) ; file.close()
-        except:
-            return
 
 
     def sourcesResolve(self, url, provider):
@@ -766,15 +687,6 @@ class sources:
 
 
     def sourcesDirect(self):
-        self.sources = [i for i in self.sources if not i['source'] in self.hostcapDict]
-
-        self.sources = [i for i in self.sources if not (i['quality'] in ['1080p', 'HD'] and i['source'] in self.hosthdDict and not i['source'] in self.rdDict + self.pzDict)]
-
-        self.sources = [i for i in self.sources if not i['source'] in ['easynews', 'furk', 'vk']]
-
-        if control.setting("playback_auto_sd") == 'true':
-            self.sources = [i for i in self.sources if not i['quality'] in ['1080p', 'HD']]
-
         u = None
 
         self.progressDialog = control.progressDialog
@@ -807,23 +719,24 @@ class sources:
 
 
     def sourcesDictionary(self):
-        self.rdDict = []
-        self.pzDict = []
+        try:
+            import urlresolver.plugnplay
+            self.resolvers = urlresolver.plugnplay.man.implementors(urlresolver.UrlResolver)
+            self.resolvers = [i for i in self.resolvers if not '*' in i.domains]
+        except:
+            self.resolvers = []
 
-        self.hostlocDict = self.hostdirhdDict = resolvers.hosthqDict()
+        try:
+            self.hostDict = [i.domains for i in self.resolvers]
+            self.hostDict = [i.lower() for i in reduce(lambda x, y: x+y, self.hostDict)]
+            self.hostDict = [x for y,x in enumerate(self.hostDict) if x not in self.hostDict[:y]]
+        except:
+            self.hostDict = []
 
-        self.hostprDict = [i.rsplit('.', 1)[0] for i in resolvers.hostprDict()]
+        self.hostlocDict = self.hostDict
 
-        self.hostcapDict = [i.rsplit('.', 1)[0] for i in resolvers.hostcapDict()]
+        self.hostsdfullDict = [i.rsplit('.', 1)[0] for i in self.hostDict]
 
-        self.hosthqDict = self.hosthdDict = [i.rsplit('.', 1)[0] for i in resolvers.hosthqDict()]
-
-        self.hostmqDict = [i.rsplit('.', 1)[0] for i in resolvers.hostmqDict()]
-
-        self.hostlqDict = [i.rsplit('.', 1)[0] for i in resolvers.hostlqDict()]
-
-        self.hostsdfullDict = self.hostprDict + self.hosthqDict + self.hostmqDict + self.hostlqDict
-
-        self.hosthdfullDict = self.hostprDict + self.hosthdDict
+        self.hosthdfullDict = [i.rsplit('.', 1)[0] for i in self.hostDict]
 
 

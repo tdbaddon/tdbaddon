@@ -19,20 +19,24 @@ You should have received a copy of the GNU General Public License
 along with XOZE.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
-from xoze.context import AddonContext, SnapVideo
-from xoze.snapvideo import WatchVideo2US, VideoWeed, CloudEC, LetWatch
-from xoze.utils import file, http, jsonfile
-from xoze.utils.cache import CacheManager
-from xoze.utils.http import HttpClient
-import BeautifulSoup
 import base64
 import logging
 import pickle
 import re
 import time
 import urllib
-import xbmc # @UnresolvedImport
-import xbmcgui # @UnresolvedImport
+
+import BeautifulSoup
+
+import xbmc  # @UnresolvedImport
+import xbmcgui  # @UnresolvedImport
+from xoze.context import AddonContext, SnapVideo
+from xoze.snapvideo import WatchVideo2US, VideoWeed, CloudEC, LetWatch, PlayU, \
+    Playwire
+from xoze.utils import file, http, jsonfile
+from xoze.utils.cache import CacheManager
+from xoze.utils.http import HttpClient
+
 
 DIRECT_CHANNELS = {"Awards & Concerts":{"iconimage":"Awards.jpg",
                    "channelType": "IND",
@@ -41,70 +45,31 @@ DIRECT_CHANNELS = {"Awards & Concerts":{"iconimage":"Awards.jpg",
                    "channelType": "IND",
                    "tvshow_episodes_url": "/forums/20-Latest-Exclusive-Movie-HQ"}}
  
-LIVE_CHANNELS = {"Mtunes":{"iconimage":"http://www.lyngsat-logo.com/logo/tv/mm/m_tunes_hd.png",
-                           "channelType": "IND",
-                           "channelUrl": "http://hlshinextra-lh.akamaihd.net/i/ams4_mtunes@124572/index_1100_av-b.m3u8"},
+LIVE_CHANNELS = {"MTunes":{"iconimage":"http://www.lyngsat-logo.com/logo/tv/mm/m_tunes_hd.png",
+                        "channelType": "IND",
+                        "channelUrl": "http://akamaihd.wowzahls12.yuppcdn.net/live/mtunes/chunklist.m3u8|User-Agent=Apache"},
+                 "Music India":{"iconimage":"http://www.lyngsat-logo.com/logo/tv/mm/music_india.png",
+                        "channelType": "IND",
+                        "channelUrl": "http://akamaihd.wowzahls12.yuppcdn.net/live/musicindia/chunklist.m3u8|User-Agent=Apache"},
                  "9XM":{"iconimage":"http://www.lyngsat-logo.com/logo/tv/num/9x_music.png",
-                         "channelType": "IND",
-                         "channelUrl": "http://d2ckk42trw29cy.cloudfront.net/9xmedia/ngrp:9xmusic_all/playlist.m3u8"},        
-                 "9XTashan":{"iconimage":"http://www.lyngsat-logo.com/logo/tv/num/9x_tashan.png",
+                        "channelType": "IND",
+                        "channelUrl": "http://d2ckk42trw29cy.cloudfront.net/9xmedia/ngrp:9xmusic_all/playlist.m3u8"},
+                 "9X Jalwa":{"iconimage":"http://www.lyngsat-logo.com/logo/tv/num/9x_jalwa.png",
                              "channelType": "IND",
-                             "channelUrl": "http://d2ckk42trw29cy.cloudfront.net/9xmedia/ngrp:9xtashan_all/playlist.m3u8"},
-                 "9XJalwa":{"iconimage":"http://www.lyngsat-logo.com/logo/tv/num/9x_jalwa.png",
-                            "channelType": "IND",
-                            "channelUrl": "http://d2ckk42trw29cy.cloudfront.net/9xmedia/ngrp:9xjalwa_all/playlist.m3u8"},
-                 "9XJhakaas":{"iconimage":"http://www.lyngsat-logo.com/logo/tv/num/9x_jhakaas.png",
+                             "channelUrl": "http://dls96d52aauuo.cloudfront.net/9xmedia/ngrp:9xjalwa_all/playlist.m3u8"},
+                 "9x Tashan":{"iconimage":"http://www.lyngsat-logo.com/logo/tv/num/9x_tashan.png",
                               "channelType": "IND",
-                              "channelUrl": "http://d2ckk42trw29cy.cloudfront.net/9xmedia/ngrp:9xjhakaas_all/playlist.m3u8"},                         
+                              "channelUrl": "http://dhkvssi8he6y9.cloudfront.net/9xmedia/ngrp:9xtashan_all/playlist.m3u8"},
+                 "9x Jhakaas":{"iconimage":"http://www.lyngsat-logo.com/logo/tv/num/9x_jhakaas.png",
+                              "channelType": "IND",
+                              "channelUrl": "http://d20rca8w7x9af9.cloudfront.net/9xmedia/ngrp:9xjhakaas_all/playlist.m3u8"},
                  "IBN7": {"iconimage":"http://www.lyngsat-logo.com/logo/tv/ii/ibn7.png",
                           "channelType": "IND",
                           "channelUrl": "http://ibn7_hls-lh.akamaihd.net/i/ibn7_hls_n_1@174951/index_3_av-b.m3u8?sd=10&play-only=backup&rebase=on"},
                  "India TV": {"iconimage":"http://www.lyngsat-logo.com/logo/tv/ii/india_tv_in.png",
                               "channelType": "IND",
-                              "channelUrl": "http://indiatvnews-lh.akamaihd.net/i/ITV_1@199237/master.m3u8"},
-                 "Aajtak": {"iconimage":"http://www.lyngsat-logo.com/logo/tv/aa/aaj_tak.png",
-                            "channelType": "IND",
-                            "channelUrl": "plugin://plugin.video.youtube/?action=play_video&videoid=Bt6ui2JNxXM"},
-                 "TV9 Gujarati": {"iconimage":"http://www.lyngsat-logo.com/logo/tv/tt/tv9_gujarat.png",
-                                  "channelType": "IND",
-                                  "channelUrl": "plugin://plugin.video.youtube/?action=play_video&videoid=dKKk02BKgAs"},
-                 "TV9 Telugu": {"iconimage":"http://www.lyngsat-logo.com/logo/tv/tt/tv9_telugu.png",
-                                "channelType": "IND",
-                                "channelUrl": "plugin://plugin.video.youtube/?action=play_video&videoid=u7rMts6zxaY"},
-                 "TV9 Marathi": {"iconimage":"https://yt3.ggpht.com/-81C2aZ0_jIA/AAAAAAAAAAI/AAAAAAAAAAA/zFrTDdrOdxc/s900-c-k-no/photo.jpg",
-                                 "channelType": "IND",
-                                 "channelUrl": "plugin://plugin.video.youtube/?action=play_video&videoid=hJZpKy_sLkI"},
-                 "CNBC TV18": {"iconimage":"http://www.lyngsat-logo.com/logo/tv/cc/cnbc_tv18.png",
-                               "channelType": "IND",
-                               "channelUrl": "rtsp://web18.live-s.cdn.bitgravity.com/cdn-live-b3/_definst_/web18/live/pub08"},
-                 "Vevo Music": {"iconimage":"http://koditips.com/wp-content/uploads/2015/06/VEVO-Android-App-For-Music.png",
-                                "channelType": "IND",
-                                "channelUrl": "http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/03/prog_index.m3u8"},
-                 "Joo Music": {"iconimage":"http://www.lyngsat-logo.com/logo/tv/jj/joo_music_pk.png",
-                               "channelType": "IND",
-                               "channelUrl": "http://wowzacontrol.com:1935/8038/8038/playlist.m3u8"},
-                 "Zee Classic": {"iconimage":"http://www.lyngsat-logo.com/logo/tv/zz/zee_classic_in.png",
-                                 "channelType": "IND",
-                                 "channelUrl": "http://stream.zeefamily.tv/zeeclassic/index.m3u8"},
-                 "Zee TV": {"iconimage":"http://www.lyngsat-logo.com/logo/tv/zz/zee_tv_in_hd.png",
-                            "channelType": "IND",
-                            "channelUrl": "http://stream.zeefamily.tv/zeetvhdus/index.m3u8"},
-                 "Zee Cinema": {"iconimage":"http://www.lyngsat-logo.com/logo/tv/zz/zee_cinema_asia.png",
-                                "channelType": "IND",
-                                "channelUrl": "http://stream.zeefamily.tv/zeecinemaInternational/index.m3u8"},
-                 "And TV": {"iconimage":"http://www.lyngsat-logo.com/logo/tv/aa/and_tv_in.png",
-                            "channelType": "IND",
-                            "channelUrl": "http://stream.zeefamily.tv/andtvhd/index.m3u8"},
-                 "Zee News": {"iconimage":"http://www.lyngsat-logo.com/logo/tv/zz/zee_news_in.png",
-                              "channelType": "IND",
-                              "channelUrl": "http://stream.zeefamily.tv/zeenews/index.m3u8"},
-                 "Zing TV": {"iconimage":"http://www.lyngsat-logo.com/logo/tv/zz/zee_zing_asia.png",
-                             "channelType": "IND",
-                             "channelUrl": "http://stream.zeefamily.tv/zing/index.m3u8"},
-                 "Zee Smile": {"iconimage":"http://www.lyngsat-logo.com/logo/tv/zz/zee_smile.png",
-                               "channelType": "IND",
-                               "channelUrl": "http://stream.zeefamily.tv/zeesmile/index.m3u8"}              
-                }
+                              "channelUrl": "http://indiatvnews-lh.akamaihd.net/i/ITV_1@199237/master.m3u8"}                          
+                 }
 
 BASE_WSITE_URL = base64.b64decode('aHR0cDovL3d3dy5kZXNpdHZib3gubWU=')
     
@@ -425,7 +390,7 @@ def remove_favorite(req_attrib, modelMap):
     logging.getLogger().debug('remove tv show favorite...')
     favorite = CacheManager().get('selected_favorite')
     favorite_thumb = CacheManager().get('selected_favorite_thumb')
-    favorites = CacheManager().get('dtb_tv_favorites')
+    favorites = CacheManager().get('tv_favorites')
     if favorites is None:
         favorites = {}
     elif favorites.has_key(favorite):
@@ -742,7 +707,7 @@ def _retrieve_video_links_(req_attrib, modelMap):
                     try:
                         __prepareVideoLink__(video_link)
                     except Exception, e:
-                        logging.getLogger().error(e)
+                        logging.getLogger().exception(e)
                         video_hosting_info = SnapVideo().findVideoHostingInfo(video_link['videoLink'])
                         if video_hosting_info is None or video_hosting_info.get_name() == 'UrlResolver by t0mm0':
                             raise
@@ -799,12 +764,12 @@ def __prepareVideoLink__(video_link):
         if re.search('dm(\d*).php', video_url, flags=re.I) or ((re.search('([a-z]*).tv/', video_url, flags=re.I) or re.search('([a-z]*).net/', video_url, flags=re.I) or re.search('([a-z]*).com/', video_url, flags=re.I) or re.search('([a-z]*).me/', video_url, flags=re.I)) and not video_id.isdigit() and re.search('dailymotion', video_source, flags=re.I)):
             new_video_url = 'http://www.dailymotion.com/embed/video/' + video_id + '&'                    
         elif re.search('(flash.php|fp.php|wire.php|pw.php)', video_url, flags=re.I) or ((re.search('([a-z]*).tv/', video_url, flags=re.I) or re.search('([a-z]*).net/', video_url, flags=re.I) or re.search('([a-z]*).com/', video_url, flags=re.I) or re.search('([a-z]*).me/', video_url, flags=re.I)) and video_id.isdigit() and re.search('flash', video_source, flags=re.I)):
-            new_video_url = 'http://config.playwire.com/videos/v2/' + video_id + '/player.json'            
-        elif re.search('playu.php', video_url, flags=re.I):
+            new_video_url = 'http://config.playwire.com/videos/' + video_id + '/'            
+        elif re.search('playu.php', video_url, flags=re.I) or re.search('playu', video_source, flags=re.I):
             new_video_url = 'http://playu.net/embed-' + video_id + '-540x304.html'
-        elif re.search('watchvideo.php', video_url, flags=re.I):
+        elif re.search('watchvideo.php', video_url, flags=re.I) or re.search('watchvideo', video_source, flags=re.I):
             new_video_url = 'http://watchvideo2.us/embed-' + video_id + '-540x304.html'
-        elif re.search('idowatch.php', video_url, flags=re.I):
+        elif re.search('idowatch.php', video_url, flags=re.I) or re.search('idowatch', video_source, flags=re.I):
             new_video_url = 'http://idowatch.net/embed-' + video_id + '-520x400.html'
         elif re.search('tvlogy', video_source, flags=re.I):
             new_video_url = 'http://tvlogy.com/watch.php?v=' + video_id + '&'
@@ -868,7 +833,7 @@ def __parseDesiHomeUrl__(video_url):
     return video_link
 
 
-PREFERRED_DIRECT_PLAY_ORDER = [LetWatch.VIDEO_HOST_NAME, WatchVideo2US.VIDEO_HOSTING_NAME, CloudEC.VIDEO_HOST_NAME]
+PREFERRED_DIRECT_PLAY_ORDER = [Playwire.VIDEO_HOSTING_NAME, LetWatch.VIDEO_HOST_NAME, WatchVideo2US.VIDEO_HOSTING_NAME, PlayU.VIDEO_HOST_NAME]
 
 def __findPlayNowStream__(new_items):
 #     if AddonContext().get_addon().getSetting('autoplayback') == 'false':
@@ -894,14 +859,14 @@ def __findPlayNowStream__(new_items):
                 if item.getProperty('isHD') == 'true' and selectedIndex is not None:
                     hdSelected = True
                     
-                if ((source_name == CloudEC.VIDEO_HOST_NAME or source_name == VideoWeed.VIDEO_HOST_NAME) and backupSource is None):
+                if ((source_name == PlayU.VIDEO_HOST_NAME or source_name == VideoWeed.VIDEO_HOST_NAME) and backupSource is None):
                     logging.getLogger().debug("Added to backup plan: %s" % source_name)
                     backupSource = item
                     backupSourceName = source_name
                     
             except ValueError:
                 logging.getLogger().debug("Exception for source : %s" % source_name)
-                if source_name == CloudEC.VIDEO_HOST_NAME and (backupSource is None or backupSourceName != CloudEC.VIDEO_HOST_NAME):
+                if source_name == PlayU.VIDEO_HOST_NAME and (backupSource is None or backupSourceName != PlayU.VIDEO_HOST_NAME):
                     logging.getLogger().debug("Added to backup plan: %s" % source_name)
                     backupSource = item
                     backupSourceName = source_name

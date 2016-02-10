@@ -20,7 +20,7 @@
 '''
 
 
-import os,re,sys,urllib,urlparse
+import os,re,sys,base64,urllib,urlparse
 
 from resources.lib.libraries import cache
 from resources.lib.libraries import cachemeta
@@ -60,6 +60,10 @@ def getDirectory(name, url, audio, image, fanart, playable, content, close=True,
         f = control.openFile(url) ; result = f.read() ; f.close()
     else:
         result = cache.get(client.request, 0, url)
+
+    try: r = base64.b64decode(result)
+    except: r = ''
+    if '</' in r: result = r
 
     result = str(result).replace('\r','').replace('\n','').replace('\t','').replace('&nbsp;','')
 
@@ -408,7 +412,8 @@ def searchDirectory(query=None):
 
     global global_search ; global_search = []
 
-    def worker(url): global_search.append(str(client.request(url)))
+    def worker(url):
+        global_search.append(str(client.request(url)))
 
     servers = client.request(phLink)
     servers = str(servers).replace('\n','')
@@ -421,7 +426,15 @@ def searchDirectory(query=None):
     [i.start() for i in threads]
     [i.join() for i in threads]
 
-    urls = global_search ; global_search = []
+    urls = []
+    for i in global_search:
+        try: r = base64.b64decode(i)
+        except: r = ''
+        if '</' in r: urls += [r]
+        else: urls += [i]
+
+    global_search = []
+
     urls = [str(i).replace('\n','') for i in urls]
     urls = [re.findall('<link>(.+?)</link>', i)[:30] for i in urls]
     urls = sum(urls, [])
@@ -431,7 +444,14 @@ def searchDirectory(query=None):
     [i.start() for i in threads]
     [i.join() for i in threads]
 
-    links = global_search ; global_search = []
+    links = []
+    for i in global_search:
+        try: r = base64.b64decode(i)
+        except: r = ''
+        if '</' in r: links += [r]
+        else: links += [i]
+
+    global_search = []
 
     for link in links:
         try:

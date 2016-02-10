@@ -3,10 +3,11 @@ Created on Nov 21, 2012
 
 @author: ajju
 '''
-from xoze.snapvideo import VideoHost, Video, STREAM_QUAL_HD_720
+from xoze.snapvideo import VideoHost, Video, STREAM_QUAL_LOW, \
+    STREAM_QUAL_SD
 from xoze.utils import http
 import logging
-import re
+
 try:
     import json
 except ImportError:
@@ -26,28 +27,34 @@ def retrieveVideoInfo(video_id):
     video.set_video_host(getVideoHost())
     video.set_id(video_id)
     try:
-        video_link = 'http://config.playwire.com/' + str(video_id) + '.json'
+        video_link = 'https://config.playwire.com/videos/v2/%s/zeus.json' % str(video_id)
+        logging.debug('get video info: ' + video_link)
         html = http.HttpClient().get_html_content(url=video_link)
         jsonObj = json.loads(html)
-        logging.getLogger().debug(jsonObj)
-        img_link = str(jsonObj['poster'])
-        video_link = str(jsonObj['src'])
-        logging.debug('get video info: ' + video_link)
-        video_info = re.compile('config.playwire.com/(.+?)/videos/v2/(.+?)/manifest.f4m').findall(video_link)[0]
+        img_link = str(jsonObj['content']['poster'])
+        video_link = str(jsonObj['content']['media']['f4m'])
+        name = str(jsonObj['settings']['title'])
+        logging.getLogger().debug('video info ' + str(video_link))
         
-        logging.getLogger().debug('video_serial_no ' + str(video_info))
- 
-        video_link = 'http://cdn.phoenix.intergi.com/' + video_info[0] + '/videos/' + video_info[1] + '/video-sd.mp4?hosting_id=' + video_info[0]
-        logging.getLogger().debug('video_link ' + str(video_link))
-
+        soup = http.HttpClient().get_beautiful_soup(url=video_link)
+        baseurl = soup.findChild('baseurl')
+        logging.getLogger().debug(str(baseurl.text))
+        medias = soup.findChildren('media')
+        for mediaInfo in medias:
+            video_link = str(baseurl.text) + '/' + mediaInfo['url']
+            logging.getLogger().debug(video_link)
+            if mediaInfo['bitrate'] == '1200':
+                video.add_stream_link(STREAM_QUAL_SD, video_link)
+            else:
+                video.add_stream_link(STREAM_QUAL_LOW, video_link)
+        
         video.set_stopped(False)
         video.set_thumb_image(img_link)
-        video.set_name("PLAYWIRE Video")
-        if re.search(r'\Artmp', video_link):
-            video.add_stream_link(STREAM_QUAL_HD_720, video_link)
-        else:
-            video.add_stream_link(STREAM_QUAL_HD_720, video_link)
-    except:
+        video.set_name(name)
+        
+    except Exception, e:
+        logging.getLogger().error(e)
         video.set_stopped(True)
     return video
 
+print retrieveVideoInfo('4521893')

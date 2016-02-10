@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.tvondesizonexl" name="TV on DESI ZONE" version="2.8.0"
+<addon id="plugin.video.tvondesizonexl" name="TV on DESI ZONE" version="2.8.5"
 	provider-name="ajdeveloped/jchirag">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
@@ -29,7 +29,6 @@
 			of lists. The websites that are parsed by this add-on are not owned or maintained by
 			ajdeveloped. This addon acts like a browser not content(video or link) provider.
 		</disclaimer>
-		<forum>http://forums.tvaddons.ag/general-video-addon-discussion/35987-tv-desizone-aj-addons-look.html</forum>
 		<platform>all</platform>
 		<license>GNU GPL v3</license>
 	</extension>

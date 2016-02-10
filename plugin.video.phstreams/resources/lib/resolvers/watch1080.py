@@ -21,7 +21,6 @@
 
 import re,urlparse,base64
 from resources.lib.libraries import client
-from resources.lib.resolvers import openload
 
 
 def resolve(url):
@@ -41,8 +40,11 @@ def resolve(url):
         url = client.parseDOM(result, 'iframe', ret='src')
         if len(url) > 0: return resolvers.request(url[0], debrid)
 
-        result = re.compile("\('(.+?)'\)").findall(result)[0]
-        result = base64.b64decode(result)
+        count = len(re.findall('window\.atob', result))
+        result = re.compile("window\.atob\('([^']+)").findall(result)[0]
+
+        for i in xrange(count):
+            result = base64.decodestring(result)
 
         result = re.compile('(\d*p)="([^"]+)"').findall(result)
 

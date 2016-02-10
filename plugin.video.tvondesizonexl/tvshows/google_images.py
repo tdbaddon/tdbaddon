@@ -27,6 +27,12 @@ import urlparse
 import xbmcgui  # @UnresolvedImport
 from xoze.utils import http
 
+try:
+    import ssl
+    ssl._create_default_https_context = ssl._create_unverified_context
+except:
+    #do nothing
+    print 'ssl verified context available'
 
 def cUConvert(m): return unichr(int(m.group(1)))
 def cTConvert(m): return unichr(htmlentitydefs.name2codepoint.get(m.group(1), 32))

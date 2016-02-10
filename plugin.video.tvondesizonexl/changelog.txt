@@ -1,6 +1,20 @@
+[B]Version 2.8.5[/B]
+- Fixed SSL issue for other devices
+
+[B]Version 2.8.4[/B]
+- Fixed SSL issue related to ATV 4
+
+[B]Version 2.8.3[/B]
+- Added new live channels
+
+[B]Version 2.8.2[/B]
+- Corrected snapvideo streams
+
+[B]Version 2.8.1[/B]
+- Corrected remove fav for DTB
+
 [B]Version 2.8.0[/B]
-- Use different method for google image and no required for API now.
-- Remove use of live_channel.json file.
+- Merged code with jChirag
 
 [B]Version 2.7.8[/B]
 - Fixed video parsing links

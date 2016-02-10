@@ -94,9 +94,9 @@ def LINK(url):
         r = requests.get(RequestURL, headers=headers)
         r = requests.get(RequestURL, headers=headers, cookies=r.cookies)
         try:
-                url = re.compile('"src":"(.*?)","res":.*?,"type":"video/mp4"').findall(str(r.text))[-1]
+                url = re.compile('"url":"(.*?)"').findall(str(r.text))[-1]
         except:
-                url = re.compile('"src":"(.*?)","res":.*?,"type":"video/mp4"').findall(str(r.text))[0]
+                url = re.compile('"url":"(.*?)"').findall(str(r.text))[0]
         liz = xbmcgui.ListItem(name, iconImage='DefaultVideo.png', thumbnailImage=iconimage)
         liz.setInfo(type='Video', infoLabels={'Title':description})
         liz.setProperty("IsPlayable","true")
@@ -111,7 +111,7 @@ def SEARCH():
         keyb.doModal()
         if (keyb.isConfirmed()):
                 search = keyb.getText().replace(' ','+')
-                url = baseurl+'/search?key='+search
+                url = baseurl+'/arama?q='+search
                 INDEX(url)
 
 

@@ -342,7 +342,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
-<addon id="plugin.video.hulubox" name="HuluBox" version="1.0.8" provider-name="MetalKettle">
+<addon id="plugin.video.hulubox" name="HuluBox" version="1.0.10" provider-name="MetalKettle">
   <requires>
     <import addon="script.module.simplejson" version="3.3.0"/>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -445,7 +445,7 @@ http://kodilive.eu</description>
   </extension>
 </addon>
 
-<addon id="plugin.video.mdhdmovie14" name="HD-Movie14" version="1.0.1" provider-name="Mucky Duck">
+<addon id="plugin.video.mdhdmovie14" name="HD-Movie14" version="1.0.2" provider-name="Mucky Duck">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.addon.common" />
@@ -644,12 +644,13 @@ http://kodilive.eu</description>
   </extension>
 </addon>
 
-<addon id="plugin.video.phstreams" name="Phoenix" version="2.8.3" provider-name="Blazetamer, lambda, VinMan_JSV">
+<addon id="plugin.video.phstreams" name="Phoenix" version="2.8.5" provider-name="Blazetamer, lambda, VinMan_JSV">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.pyxbmct" version="1.1.4" />
 		<import addon="script.module.requests" version="1.1.0" />
-		<import addon="script.module.metahandler" version="2.3.1" />
+		<import addon="script.module.urlresolver" version="2.10.11"/>
+		<import addon="script.module.metahandler" version="1.0.0" />
 		<import addon="plugin.video.youtube" optional="true" />
 	</requires>
 	<extension point="xbmc.python.pluginsource" library="default.py">
@@ -872,7 +873,7 @@ http://kodilive.eu</description>
   <extension point="xbmc.service" library="service.py" start="login" />
 </addon>
 
-<addon id="plugin.video.tvondesizonexl" name="TV on DESI ZONE" version="2.8.0"
+<addon id="plugin.video.tvondesizonexl" name="TV on DESI ZONE" version="2.8.5"
 	provider-name="ajdeveloped/jchirag">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
@@ -902,7 +903,6 @@ http://kodilive.eu</description>
 			of lists. The websites that are parsed by this add-on are not owned or maintained by
 			ajdeveloped. This addon acts like a browser not content(video or link) provider.
 		</disclaimer>
-		<forum>http://forums.tvaddons.ag/general-video-addon-discussion/35987-tv-desizone-aj-addons-look.html</forum>
 		<platform>all</platform>
 		<license>GNU GPL v3</license>
 	</extension>
@@ -1073,11 +1073,11 @@ http://kodilive.eu</description>
 	</extension>
 </addon>
 
-<addon id="repository.aj-addons" name="aj add-ons (new look)" version="2.0.1" provider-name="ajdeveloped">
-	<extension point="xbmc.addon.repository" name="AJ ADD-ONs (NEW LOOK)">
-		<info compressed="false">http://offshoregit.com/ajdeveloped/addons.xml</info>
-			<checksum>http://offshoregit.com/ajdeveloped/addons.xml.md5</checksum>
-			<datadir zip="true">http://offshoregit.com/ajdeveloped/</datadir>
+<addon id="repository.aj-addons" name="aj add-ons" version="2.1.0" provider-name="ajdeveloped">
+	<extension point="xbmc.addon.repository" name="AJ ADD-ONs">
+		<info compressed="false">https://offshoregit.com/ajaddons/prod/repo/addons.xml</info>
+			<checksum>https://offshoregit.com/ajaddons/prod/repo/addons.xml.md5</checksum>
+			<datadir zip="true">https://offshoregit.com/ajaddons/prod/repo/</datadir>
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<summary>Install AJ ADD-ONs with new look and fastest of all.</summary>

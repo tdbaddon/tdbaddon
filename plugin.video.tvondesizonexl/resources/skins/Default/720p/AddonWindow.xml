@@ -7,6 +7,15 @@
 	<!-- <defaultcontrol always="false">102</defaultcontrol> -->
 	<backgroundcolor>0xFF040404</backgroundcolor>
 	<controls>
+		<control type="image" id="1">
+			<posx>0</posx>
+			<posy>0</posy>
+			<width>1280</width>
+			<height>720</height>
+			<visible>true</visible>
+			<texture>Red.jpg</texture>
+			<aspectratio>stretch</aspectratio>
+		</control>
 			<control type="button" id="10">
 			      <posx>1240</posx>
 			      <posy>2</posy>
@@ -533,7 +542,7 @@
 						<label>$INFO[ListItem.Label]</label>
 						<align>left</align>
 						<aligny>center</aligny>
-						<textcolor>0xFF007AFF</textcolor>
+						<textcolor>0xFF040404</textcolor>
 					</control>
 				</focusedlayout>
 			</control>
