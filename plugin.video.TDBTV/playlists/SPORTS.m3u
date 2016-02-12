@@ -21,28 +21,16 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 0
 
 #EXTINF:0,BT Sport 1 
-http://bit.do/iptvsportt-BT1
-
-#EXTINF:0,BT Sport 1 
-http://www.t12v.com:8000/live/jerry/jerry/1118.ts
-
-#EXTINF:0,BT Sport 1 
-http://02e4.vp9.tv/chn/btsu1/v.m3u8
-
-#EXTINF:0,BT Sport 2 
-http://bit.do/iptvsportt-BT2
+0
 
 #EXTINF:0,BT Sport 2 
 http://www.t12v.com:8000/live/jerry/jerry/1117.ts
-
-#EXTINF:0,BT Sport 2 
-http://02e4.vp9.tv/chn/btsu2/v.m3u8
 
 #EXTINF:0,CBS Sports 
 0
 
 #EXTINF:0,Chelsea TV 
-http://bit.ly/1XmNaMz
+0
 
 #EXTINF:0,CMore Sport 
 0
@@ -66,9 +54,6 @@ http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_18
 http://169.45.89.106:1935/app/vesplsh/playlist.m3u8
 
 #EXTINF:0,Eurosport 2 
-http://playnicetv.tk:2052/live/martinhope/hdbfhwir/5824.ts
-
-#EXTINF:0,Eurosport 2 
 http://169.45.89.106:1935/app/vesp2lsh/playlist.m3u8
 
 #EXTINF:0,Eurosport News 
@@ -81,13 +66,13 @@ http://169.45.89.106:1935/app/vesp2lsh/playlist.m3u8
 0
 
 #EXTINF:0,Fox Sports 
-0
+http://motorsport.hopto.org:8080/
 
 #EXTINF:0,Fox Sports 1 
 0
 
 #EXTINF:0,Fox Sports 2 
-http://bit.do/iptvsportt-fox2
+0
 
 #EXTINF:0,Fox Sports News 
 0
@@ -108,7 +93,7 @@ mms://100automoto.tv/channel_mercedes
 0
 
 #EXTINF:0,Motorsport 7 
-http://motorsport.hopto.org:8080/
+0
 
 #EXTINF:0,Nascar TV 
 mms://100automoto.tv/100livesport
@@ -117,19 +102,19 @@ mms://100automoto.tv/100livesport
 0
 
 #EXTINF:0,NBC Golf 
-http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/4296k/prog.m3u8|X-Forwarded-For=209.239.112.104
+http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/1896k/prog.m3u8|X-Forwarded-For=66.171.228.102
 
-#EXTINF:0,NBC Golf 
+#EXTINF:0,NBC Golf HD
 http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/2596k/prog.m3u8|X-Forwarded-For=209.239.112.104
 
-#EXTINF:0,NBC Golf 
-http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/1896k/prog.m3u8|X-Forwarded-For=66.171.228.102
+#EXTINF:0,NBC Golf HD
+http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/4296k/prog.m3u8|X-Forwarded-For=209.239.112.104
 
 #EXTINF:0,NBCSN 
 http://cdn.phoenix.intergi.com/21772/videos/3362254/video-sd.mp4?hosting_id=21772
 
-#EXTINF:0,NFL Live
-http://playnicetv.tk:2052/live/martinhope/hdbfhwir/5924.ts
+#EXTINF:0,NFL Live 
+0
 
 #EXTINF:0,NFL Network 
 0
@@ -144,22 +129,28 @@ http://208.92.36.158/ipad/live/nba_ipad_1240.m3u8
 http://xrxs.net/video/live-p12ariz-1164.m3u8
 
 #EXTINF:0,PAC 12 Arizona HD 
+http://xrxs.net/video/live-p12ariz-4728.m3u8
+
+#EXTINF:0,PAC 12 Arizona HD 
 http://pac12hd2-lh.akamaihd.net/i/p12ariz_delivery@132836/master.m3u8
 
 #EXTINF:0,PAC 12 Bay Area 
-http://pac12hd2-lh.akamaihd.net/i/p12baya_delivery@132837/master.m3u8
+http://xrxs.net/video/live-p12baya-1164.m3u8
 
 #EXTINF:0,PAC 12 Bay Area HD 
 http://xrxs.net/video/live-p12baya-4728.m3u8?
 
 #EXTINF:0,PAC 12 Bay Area HD 
-http://pac12hd2-lh.akamaihd.net/i/p12baya_delivery@132837/index_4728_av-p.m3u8?
+http://pac12hd2-lh.akamaihd.net/i/p12baya_delivery@132837/master.m3u8
 
 #EXTINF:0,PAC 12 LA 
 http://xrxs.net/video/live-p12losa-1164.m3u8
 
 #EXTINF:0,PAC 12 LA HD 
 http://xrxs.net/video/live-p12losa-4728.m3u8?
+
+#EXTINF:0,PAC 12 LA HD 
+http://pac12hd2-lh.akamaihd.net/i/p12losa_delivery@132838/master.m3u8
 
 #EXTINF:0,PAC 12 National 
 http://xrxs.net/video/live-p12netw-1164.m3u8
@@ -176,11 +167,17 @@ http://xrxs.net/video/live-p12moun-2328.m3u8
 #EXTINF:0,PAC 12 Mountain HD
 http://xrxs.net/video/live-p12moun-4728.m3u8
 
+#EXTINF:0,PAC 12 Mountain HD
+http://pac12hd2-lh.akamaihd.net/i/p12moun_delivery@132839/master.m3u8
+
 #EXTINF:0,PAC 12 Oregon 
 http://xrxs.net/video/live-p12oreg-1164.m3u8
 
 #EXTINF:0,PAC 12 Oregon HD
 http://xrxs.net/video/live-p12oreg-4728.m3u8
+
+#EXTINF:0,PAC 12 Oregon HD
+http://pac12hd2-lh.akamaihd.net/i/p12oreg_delivery@132835/master.m3u8
 
 #EXTINF:0,PAC 12 Washington 
 http://xrxs.net/video/live-p12wash-1164.m3u8
@@ -207,40 +204,25 @@ http://169.45.89.106:1935/app/vpremsplsh/playlist.m3u8
 0
 
 #EXTINF:0,Sky Sports 1 
-http://80.243.189.26:8182/sportshd/sky1/index.m3u8
-
-#EXTINF:0,Sky Sports 1
 http://169.45.89.106:1935/app/skysports1lsh/playlist.m3u8
-
-#EXTINF:0,Sky Sports 2 
-http://80.243.189.26:8182/sportshd/sky2/index.m3u8
 
 #EXTINF:0,Sky Sports 2 
 http://169.45.89.106:1935/app/skysports2lsh/playlist.m3u8
 
 #EXTINF:0,Sky Sports 3 
-http://80.243.189.26:8182/sportshd/sky3/index.m3u8
-
-#EXTINF:0,Sky Sports 3 
 http://169.45.89.106:1935/app/skysports3lsh/playlist.m3u8
-
-#EXTINF:0,Sky Sports 4 
-http://80.243.189.26:8182/sportshd/sky4/index.m3u8
 
 #EXTINF:0,Sky Sports 4 
 http://169.45.89.106:1935/app/skysports4lsh/playlist.m3u8
 
 #EXTINF:0,Sky Sports 5 
-http://80.243.189.26:8182/sportshd/sky5/index.m3u8
-
-#EXTINF:0,Sky Sports 5 
 http://169.45.89.106:1935/app/skysports5lsh/playlist.m3u8
 
 #EXTINF:0,Sky Sports F1 
-http://80.243.189.26:8182/sportshd/skf1/index.m3u8
+0
 
 #EXTINF:0,Sky Sports News 
-http://80.243.189.26:8182/sportshd/skynews/index.m3u8
+0
 
 #EXTINF:0,Sports Tonight 
 rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9-SD
@@ -291,10 +273,10 @@ rtmp://31.220.2.149:80/live/ playpath=tsnx2 token=%Zrey(nKa@#Z swfUrl=http://p.j
 0
 
 #EXTINF:0,Viasat Sport 
-http://alturl.com/8wi4k
+0
 
 #EXTINF:0,VS Versus 
 http://208.92.36.158/ipad/live/nba_ipad_1240.m3u8
 
 #EXTINF:0,WWE Network 
-rtmp://94.102.56.157/live/ playpath=wwe swfUrl=http://cast4u.tv/jwplayer/jwplayer.flash.swf pageUrl=http://www.cast4u.tv/embed.php?live=wwe&vw=620&vh=490
+0

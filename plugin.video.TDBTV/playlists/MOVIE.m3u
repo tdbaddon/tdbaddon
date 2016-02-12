@@ -11,7 +11,7 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 0
 
 #EXTINF:0,Cinemax 
-http://77.76.140.251/prgb.m3u8
+0
 
 #EXTINF:0,CineStarTV Premiere 1 
 0
@@ -41,7 +41,7 @@ http://77.76.140.251/prgb.m3u8
 0
 
 #EXTINF:0,Film4 
-http://www.t12v.com:8000/live/jerry/jerry/1714.ts
+0
 
 #EXTINF:0,FilmBox 
 0
@@ -56,46 +56,22 @@ http://www.t12v.com:8000/live/jerry/jerry/1714.ts
 0
 
 #EXTINF:0,Fox Action Movies 
-http://200.76.77.237/LIVE/H01/CANAL416/PROFILE02.m3u8?supertvlat=%2F.ts
-
-#EXTINF:0,Fox Action Movies 
-http://200.76.77.237/LIVE/H01/CANAL416/PROFILE03.m3u8?supertvlat=%2F.ts
-
-#EXTINF:0,Fox Action Movies 
-http://200.76.77.237/LIVE/H01/CANAL416/PROFILE05.m3u8?supertvlat=%2F.ts
+0
 
 #EXTINF:0,Fox Cinema
 0
 
 #EXTINF:0,Fox Classics 
-http://200.76.77.237/LIVE/H01/CANAL424/PROFILE02.m3u8?supertvlat=%2F.ts
-
-#EXTINF:0,Fox Classics 
-http://200.76.77.237/LIVE/H01/CANAL424/PROFILE03.m3u8?supertvlat=%2F.ts
-
-#EXTINF:0,Fox Classics 
-http://200.76.77.237/LIVE/H01/CANAL424/PROFILE05.m3u8?supertvlat=%2F.ts
+0
 
 #EXTINF:0,Fox Comedy
 0
 
 #EXTINF:0,Fox Movies 
-http://200.76.77.237/LIVE/H01/CANAL417/PROFILE02.m3u8?supertvlat=%2F.ts
-
-#EXTINF:0,Fox Movies 
-http://200.76.77.237/LIVE/H01/CANAL417/PROFILE03.m3u8?supertvlat=%2F.ts
-
-#EXTINF:0,Fox Movies 
-http://200.76.77.237/LIVE/H01/CANAL417/PROFILE05.m3u8?supertvlat=%2F.ts
+0
 
 #EXTINF:0,Golden Edge
-http://200.76.77.237/LIVE/H01/CANAL484/PROFILE02.m3u8?supertvlat=%2F.ts
-
-#EXTINF:0,Golden Edge
-http://200.76.77.237/LIVE/H01/CANAL484/PROFILE03.m3u8?supertvlat=%2F.ts
-
-#EXTINF:0,Golden Edge
-http://200.76.77.237/LIVE/H01/CANAL484/PROFILE05.m3u8?supertvlat=%2F.ts
+0
 
 #EXTINF:0,HBO 
 0
@@ -104,10 +80,10 @@ http://200.76.77.237/LIVE/H01/CANAL484/PROFILE05.m3u8?supertvlat=%2F.ts
 0
 
 #EXTINF:0,HBO East
-http://playnicetv.tk:2052/live/martinhope/hdbfhwir/5950.ts
+0
 
 #EXTINF:0,HBO East 2
-http://st02.brn03.iptv.czechbone.net:8083/120-tv-pc.m3u8
+0
 
 #EXTINF:0,HBO Comedy 
 0
@@ -116,7 +92,7 @@ http://st02.brn03.iptv.czechbone.net:8083/120-tv-pc.m3u8
 0
 
 #EXTINF:0,HBO Plus 
-http://77.76.140.251/prgp.m3u8
+0
 
 #EXTINF:0,HBO Signature 
 0
@@ -149,7 +125,7 @@ http://77.76.140.251/prgp.m3u8
 0
 
 #EXTINF:0,Showtime West
-http://playnicetv.tk:2052/live/martinhope/hdbfhwir/5922.ts
+0
 
 #EXTINF:0,Sky Movies Action 
 0
@@ -199,9 +175,6 @@ http://playnicetv.tk:2052/live/martinhope/hdbfhwir/5922.ts
 #EXTINF:0,Star Movies 
 http://112.197.2.135:1935/colive/C001_HD_4/chunklist.m3u8
 
-#EXTINF:0,Star Movies 
-http://77.76.140.251/prgc.m3u8
-
 #EXTINF:0,Starz Cinema
 0
 
@@ -245,7 +218,7 @@ http://77.76.140.251/prgc.m3u8
 0
 
 #EXTINF:0,TV 1000 
-http://195.78.244.219:10000/udp/239.0.3.29:1234
+0
 
 #EXTINF:0,TV 1000 Action 
-http://195.78.244.219:10000/udp/239.0.3.27:1234
+0

@@ -8,25 +8,16 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 0
 
 #EXTINF:0,ABC 
-http://playnicetv.tk:2052/live/martinhope/hdbfhwir/5731.ts
+0
 
 #EXTINF:0,ABC Family 
-http://playnicetv.tk:2052/live/martinhope/hdbfhwir/5732.ts
+0
 
 #EXTINF:0,AMC
-http://46.40.5.99:8000/mgm_720
-
-#EXTINF:0,AMC 
-http://200.76.77.237/LIVE/H01/CANAL444/PROFILE02.m3u8?supertvlat=%2F.ts
-
-#EXTINF:0,AMC 
-http://200.76.77.237/LIVE/H01/CANAL444/PROFILE03.m3u8?supertvlat=%2F.ts
-
-#EXTINF:0,AMC 
-http://200.76.77.237/LIVE/H01/CANAL444/PROFILE05.m3u8?supertvlat=%2F.ts
+0
 
 #EXTINF:0,AXN 
-http://77.76.140.251/prgd.m3u8
+0
 
 #EXTINF:0,BabyTV 
 0
@@ -38,13 +29,7 @@ http://77.76.140.251/prgd.m3u8
 0
 
 #EXTINF:0,BBC Entertainment 
-http://200.76.77.237/LIVE/H01/CANAL253/PROFILE02.m3u8?supertvlat=%2F.ts
-
-#EXTINF:0,BBC Entertainment 
-http://200.76.77.237/LIVE/H01/CANAL253/PROFILE03.m3u8?supertvlat=%2F.ts
-
-#EXTINF:0,BBC Entertainment
-http://200.76.77.237/LIVE/H01/CANAL253/PROFILE05.m3u8?supertvlat=%2F.ts
+0
 
 #EXTINF:0,BET 
 0
@@ -146,13 +131,7 @@ http://edgeb.streaming.sk/fashiontv/fashiontv.stream/playlist.m3u8
 http://llnw.live.simplestream.com/coder2/coder.channels.channel2/hls/3/playlist.m3u8
 
 #EXTINF:0,Fox 1 
-http://200.76.77.237/LIVE/H01/CANAL415/PROFILE02.m3u8?supertvlat=%2F.ts
-
-#EXTINF:0,Fox 1 
-http://200.76.77.237/LIVE/H01/CANAL415/PROFILE03.m3u8?supertvlat=%2F.ts
-
-#EXTINF:0,Fox 1 
-http://200.76.77.237/LIVE/H01/CANAL415/PROFILE05.m3u8?supertvlat=%2F.ts
+0
 
 #EXTINF:0,Fox Crime 
 0
@@ -177,9 +156,6 @@ https://glblvhalifax-lh.akamaihd.net/i/glblvHalifax_1@119843/master.m3u8?__b__=9
 
 #EXTINF:0,Global TV Toronto 
 http://link.theplatform.com/s/dtjsEC/hdSH3iztz_j_?feed=DEV%20Live%20Stream%20Feed/playlist.m3u8
-
-#EXTINF:0,Global TV Toronto 
-https://glblvestu-f.akamaihd.net/i/glblvestu_1@78149/master.m3u8?__b__=900&hdnea=ip=99.18.68.202~st=1434303944~exp=1434304544~acl=/i/*~id=3f0edb02-c4e5-4596-8950-4331b8ce1baf~hmac=4acbecb511f7c3beaf085123ab9097c7a6acbd5d857fd4cefbfdfb733b666f57
 
 #EXTINF:0,Global TV Vancouver 
 http://link.theplatform.com/s/dtjsEC/EqBPGYLY6fEx?feed=DEV%20Live%20Stream%20Feed/playlist.m3u8
@@ -314,7 +290,7 @@ http://llnw.live.qvc.simplestream.com/hera/remote/qvcuk_primary_sdi8/3/prog_inde
 0
 
 #EXTINF:0,Spike TV 
-http://playnicetv.tk:2052/live/martinhope/hdbfhwir/5921.ts
+0
 
 #EXTINF:0,Syfy 
 0
@@ -326,16 +302,10 @@ http://playnicetv.tk:2052/live/martinhope/hdbfhwir/5921.ts
 0
 
 #EXTINF:0,TLC 
-http://77.76.140.251:22637/udp/231.1.1.21:1234
+0
 
 #EXTINF:0,TNT 
-http://200.76.77.237/LIVE/H01/CANAL266/PROFILE02.m3u8?supertvlat=%2F.ts
-
-#EXTINF:0,TNT 
-http://200.76.77.237/LIVE/H01/CANAL266/PROFILE03.m3u8?supertvlat=%2F.ts
-
-#EXTINF:0,TNT 
-http://200.76.77.237/LIVE/H01/CANAL266/PROFILE05.m3u8?supertvlat=%2F.ts
+0
 
 #EXTINF:0,Tom & Jerry TV 
 0
@@ -365,13 +335,7 @@ http://llnw.live.simplestream.com/coder5/coder.channels.channel2/hls/4/playlist.
 0
 
 #EXTINF:0,Universal Channel 
-http://200.76.77.237/LIVE/H01/CANAL207/PROFILE02.m3u8?-1332/1499-20150816T153535.ts
-
-#EXTINF:0,Universal Channel 
-http://200.76.77.237/LIVE/H01/CANAL207/PROFILE03.m3u8?-1332/1499-20150816T153535.ts
-
-#EXTINF:0,Universal Channel 
-http://200.76.77.237/LIVE/H01/CANAL207/PROFILE05.m3u8?-1332/1499-20150816T153535.ts
+0
 
 #EXTINF:0,USA Network 
 0
@@ -383,22 +347,10 @@ http://200.76.77.237/LIVE/H01/CANAL207/PROFILE05.m3u8?-1332/1499-20150816T153535
 0
 
 #EXTINF:0,WB 
-http://200.76.77.237/LIVE/H01/CANAL205/PROFILE02.m3u8?supertvlat=%2F.ts
-
-#EXTINF:0,WB 
-http://200.76.77.237/LIVE/H01/CANAL205/PROFILE03.m3u8?supertvlat=%2F.ts
-
-#EXTINF:0,WB 
-http://200.76.77.237/LIVE/H01/CANAL205/PROFILE05.m3u8?supertvlat=%2F.ts
+0
 
 #EXTINF:0,Wobi
-http://200.76.77.237/LIVE/H01/CANAL387/PROFILE02.m3u8?supertvlat=%2F.ts
-
-#EXTINF:0,Wobi
-http://200.76.77.237/LIVE/H01/CANAL387/PROFILE03.m3u8?supertvlat=%2F.ts
-
-#EXTINF:0,Wobi 
-http://200.76.77.237/LIVE/H01/CANAL387/PROFILE05.m3u8?supertvlat=%2F.ts
+0
 
 #EXTINF:0,World Fashion 
 http://btv-net.mediacdn.ru/TVB7/wfhdeu/playlist.m3u8

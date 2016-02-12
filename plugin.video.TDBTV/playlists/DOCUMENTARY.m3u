@@ -37,9 +37,6 @@ http://109.226.222.161:4022/udp/239.255.4.175:1234
 #EXTINF:0,Discovery Science 
 http://109.226.222.161:4022/udp/239.255.4.250:1234
 
-#EXTINF:0,Discovery Science 
-http://77.76.140.251/prgi.m3u8
-
 #EXTINF:0,Discovery Turbo 
 0
 
@@ -65,10 +62,10 @@ http://link.theplatform.com/s/dtjsEC/chjdYJxKb44V?manifest=m3u&feed=History%20Li
 https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8?hdnea=ip=173.34.67.21~st=1448574469~exp=1448575069~acl=/i/History_1@156885*~id=e0ac8c7f-b7ae-431f-998a-d87493df48b7~hmac=1bf4b5f4382fd3f887da82e7bc44d93e3d92152b0d873acded129cad627e231e
 
 #EXTINF:0,History Channel 2
-http://playnicetv.tk:2052/live/martinhope/hdbfhwir/5946.ts
+0
 
 #EXTINF:0,Investigation Discovery 
-https://hec.su/b1UT
+0
 
 #EXTINF:0,Nasa TV 
 http://nasatv-lh.akamaihd.net/i/NASA_101@319270/master.m3u8 
@@ -121,9 +118,6 @@ http://46.40.5.99:8000/viasat_explorer_720
 
 #EXTINF:0,Viasat History 
 http://46.40.5.99:8000/viasat_history_720
-
-#EXTINF:0,Viasat Nature 
-http://77.76.140.251/prgj.m3u8
 
 #EXTINF:0,Viasat Nature 
 http://46.40.5.99:8000/viasat_nature_720

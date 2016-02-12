@@ -5,7 +5,7 @@
 http://rtmp.one.by:1300/
 
 #EXTINF:0,AKA 
-http://rrr.sz.xlcdn.com/?account=AATW&file=akanew&type=live&service=wowza&protocol=http&output=playlist.m3u8
+0
 
 #EXTINF:0,A One 
 0
@@ -16,11 +16,8 @@ http://rtmp.infomaniak.ch/livecast/beats_1/playlist.m3u8
 #EXTINF:0,BPM TV 
 0
 
-#EXTINF:0,Capital TV
+#EXTINF:0,Capital TV 
 http://ooyalahd2-f.akamaihd.net/i/globalradio01_delivery@156521/index_656_av-p.m3u8?sd=10&rebase=on
-
-#EXTINF:0,Capital TV
-http://213.136.90.30:8000/live/christop/christop/9202.ts
 
 #EXTINF:0,Clubland
 0
@@ -29,7 +26,7 @@ http://213.136.90.30:8000/live/christop/christop/9202.ts
 http://204.107.26.252:1935/live/691.high.stream/HasBahCa.m3u8
 
 #EXTINF:0,CMC 
-rtmp://cmctv.flash.internapcdn.net:1935/cmctv_vitalstream_com/live_adaptive_1/CMC-TV_adaptive3 swfUrl=http://http.vitalstreamcdn.com/flashskins/V2Player.swf live=1 pageUrl=http://www.cmc-tv.com/
+0
 
 #EXTINF:0,City
 http://nodeb.gocaster.net:1935/CGL/_definst_/mp4:TODAYFM_TEST2/live.m3u8
@@ -58,15 +55,6 @@ http://www.djing.com/tv/i-05.m3u8
 #EXTINF:0,Djing Classics HD
 http://www.iptvsaga.com/play/tv3/0090.m3u8
 
-#EXTINF:0,Djing Club Hits 
-0
-
-#EXTINF:0,Djing Dancefloor 
-http://djing.com/tv/dancefloor.m3u8
-
-#EXTINF:0,Djing Hot Tracks 
-http://www.djing.com/tv/hothothot.m3u8
-
 #EXTINF:0,Djing Ibiza
 http://www.djing.com/tv/d-03.m3u8
 
@@ -92,22 +80,22 @@ http://www.iptvsaga.com/play/tv3/0087.m3u8
 http://212.224.108.80/S1/HLS_LIVE/dreamtv/1000/prog_index.m3u8
 
 #EXTINF:0,Eska Best 
-rtmp://stream.smcloud.net/live2/best/best_720p
-
-#EXTINF:0,Eska Best 
 rtmp://stream.smcloud.net/live2/best/best_480p
 
-#EXTINF:0,Eska Party 
-rtmp://stream.smcloud.net/live2/eska_party/eska_party_720p
+#EXTINF:0,Eska Best HD
+rtmp://stream.smcloud.net/live2/best/best_720p
 
 #EXTINF:0,Eska Party 
 rtmp://stream.smcloud.net/live2/eska_party/eska_party_480p
 
-#EXTINF:0,Eska Rock 
-rtmp://stream.smcloud.net/live2/eska_rock/eska_rock_720p
+#EXTINF:0,Eska Party HD
+rtmp://stream.smcloud.net/live2/eska_party/eska_party_720p
 
 #EXTINF:0,Eska Rock 
 rtmp://stream.smcloud.net/live2/eska_rock/eska_rock_480p
+
+#EXTINF:0,Eska Rock HD
+rtmp://stream.smcloud.net/live2/eska_rock/eska_rock_720p
 
 #EXTINF:0,Gold TV 
 0
@@ -125,46 +113,25 @@ rtmp://tst.es.flash.glb.ipercast.net/tst.es-live/live
 0
 
 #EXTINF:0,MTV 
-http://200.76.77.237/LIVE/H01/CANAL726/PROFILE02.m3u8?supertvlat=%2F.ts
-
-#EXTINF:0,MTV 
-http://200.76.77.237/LIVE/H01/CANAL726/PROFILE03.m3u8?supertvlat=%2F.ts
-
-#EXTINF:0,MTV 
-http://200.76.77.237/LIVE/H01/CANAL726/PROFILE05.m3u8?supertvlat=%2F.ts
-
-#EXTINF:0,MTV 
 http://origin2.voronezh.ertelecom.ru/content/private/s147213/d3720264/r183857sd2500000/efe4541060c00fccc01e8c068fce4f5ab911d969/playlist.m3u8
-
-#EXTINF:0,MTV Live 
-http://200.76.77.237/LIVE/H01/CANAL701/PROFILE02.m3u8?supertvlat=%2F.ts
-
-#EXTINF:0,MTV Live
-http://200.76.77.237/LIVE/H01/CANAL701/PROFILE03.m3u8?supertvlat=%2F.ts
-
-#EXTINF:0,MTV Live 
-http://200.76.77.237/LIVE/H01/CANAL701/PROFILE05.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,MTV Dance 
 0
 
 #EXTINF:0,MTV Hits 
-http://200.76.77.237/LIVE/H01/CANAL727/PROFILE02.m3u8?supertvlat=%2F.ts
+0
 
-#EXTINF:0,MTV Hits 
-http://200.76.77.237/LIVE/H01/CANAL727/PROFILE03.m3u8?supertvlat=%2F.ts
-
-#EXTINF:0,MTV Hits
-http://200.76.77.237/LIVE/H01/CANAL727/PROFILE05.m3u8?supertvlat=%2F.ts
+#EXTINF:0,MTV Live 
+0
 
 #EXTINF:0,MTV Rocks 
 http://217.147.40.118:8080/udp/233.97.20.155:1234
 
 #EXTINF:0,MusicVoxTV 
-rtmp://stream.smcloud.net/live2/vox/vox_720p
-
-#EXTINF:0,MusicVoxTV 
 rtmp://stream.smcloud.net/live2/vox/vox_480p
+
+#EXTINF:0,MusicVoxTV HD
+rtmp://stream.smcloud.net/live2/vox/vox_720p
 
 #EXTINF:0,Now Thats What I Call Music
 0
@@ -182,10 +149,7 @@ rtsp://5.196.138.6:1935/live/nrjbelgique_360p
 0
 
 #EXTINF:0,R101 The Music
-http://213.136.90.30:8000/live/christop/christop/9202.ts
-
-#EXTINF:0,R101 The Music
-http://213.136.90.30:8000/live/christop/christop/9203.ts
+0
 
 #EXTINF:0,Radio Monte Carlo 
 rtmp://fms.105.net/live/rmc1
@@ -236,25 +200,10 @@ http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/06/prog_index.m3u8
 http://www.iptvsaga.com/play/tv3/0006.m3u8
 
 #EXTINF:0,VH1 
-http://200.76.77.237/LIVE/H01/CANAL703/PROFILE02.m3u8?supertvlat=%2F.ts
-
-#EXTINF:0,VH1 
-http://200.76.77.237/LIVE/H01/CANAL703/PROFILE03.m3u8?supertvlat=%2F.ts
-
-#EXTINF:0,VH1 
-http://200.76.77.237/LIVE/H01/CANAL703/PROFILE05.m3u8?supertvlat=%2F.ts
-
-#EXTINF:0,VH1 
 http://origin2.tomsk.ertelecom.ru/content/private/s147213/d3720264/r183860sd2000000/a7e4d34646b475190d0c99a717f7478a546958ed/track_2_1200/playlist.m3u8
 
 #EXTINF:0,VH1 Classics 
-http://200.76.77.237/LIVE/H01/CANAL728/PROFILE02.m3u8?supertvlat=%2F.ts
-
-#EXTINF:0,VH1 Classics 
-http://200.76.77.237/LIVE/H01/CANAL728/PROFILE03.m3u8?supertvlat=%2F.ts
-
-#EXTINF:0,VH1 Classics 
-http://200.76.77.237/LIVE/H01/CANAL728/PROFILE05.m3u8?supertvlat=%2F.ts
+0
 
 #EXTINF:0,Virgin TV 
 rtmp://fms.105.net:1935/live/virgin2
