@@ -14,7 +14,7 @@ http://srv.viiideo.gr:1935/axeloos/live/playlist.m3u8
 http://xaigaiotelevisionx.api.channel.livestream.com/3.0/playlist.m3u8
 
 #EXTINF:0,Alpha 
-http://alfakanali-lh.akamaihd.net/i/live_1@90368/master.m3u8
+0
 
 #EXTINF:0,Ant1 
 http://antennatv-lh.akamaihd.net/i/live_1@329667/master.m3u8
@@ -173,7 +173,7 @@ http://81.21.47.74/hls/live.m3u8
 http://iphone.skai.gr.edgesuite.net/iphone_iphone.m3u8
 
 #EXTINF:0,Star TV 
-http://radiofeeds1.mediabox.gr/startv?MSWMExt=.asf
+0
 
 #EXTINF:0,Syros TV 
 http://176.9.123.140:1935/msg116s/msg116s/playlist.m3u8

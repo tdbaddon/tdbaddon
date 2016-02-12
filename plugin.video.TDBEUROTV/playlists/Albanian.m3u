@@ -23,7 +23,7 @@ rtmp://188.138.17.8:1935/albuk/albuk.stream
 rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
 
 #EXTINF:0,Bangbang 
-http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/8892.ts
+0
 
 #EXTINF:0,Channel One 
 0
@@ -35,13 +35,13 @@ http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/8892.ts
 0
 
 #EXTINF:0,Jug TV 
-rtmp://84.20.77.50/live/livestream1
+0
 
 #EXTINF:0,Kanal 7 
 0
 
 #EXTINF:0,Klan Kosova 
-http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/8878.ts
+0
 
 #EXTINF:0,Koha TV 
 0
@@ -80,13 +80,13 @@ http://88.212.10.27:81/streams/stv1.m3u8?
 rtmp://str103.setplex.net:1935/228/stv_online
 
 #EXTINF:0,Top Channel 
-http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/8865.ts
+0
 
 #EXTINF:0,Top Channel News
 0
 
 #EXTINF:0,Tring Tring
-http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/8864.ts
+0
 
 #EXTINF:0,Vizion Plus 
 rtmp://live.vizionplus.tv/live//livestream3

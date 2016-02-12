@@ -5,7 +5,7 @@
 rtmp://wms.shared.streamshow.it:80/videocalabria playpath=videocalabria swfUrl=http://player.streamshow.it/flowplayer/flowplayer.commercial-3.2.18.swf pageUrl=http://player.streamshow.it/embed/videocalabria.php?height=420&width=729 live=1 timeout=10
 
 #EXTINF:0,Alto Adige TV
-rtsp://77.72.196.214:8554/live/mp4:AltoAdigeTV
+0
 
 #EXTINF:0,Brescia TV 
 0
@@ -26,12 +26,6 @@ rtmp://vs2.streamcaster.net:1935/test_live playpath=canale46 swfUrl=http://www.c
 0
 
 #EXTINF:0,Cielo
-http://skyianywhere2-i.akamaihd.net/hls/live/216865/cielo/stream2/streamPlaylist.m3u8
-
-#EXTINF:0,Cielo
-http://top-iptv.zapto.org:8000/live/walid/walid/642.m3u8
-
-#EXTINF:0,Cielo
 http://62.65.140.216:80/session/dbd99bb8-c39b-11e5-bb2c-005056bc49ac/nvnv5a/2/3009/index.m3u8?token=80ff88bce9b5eb4b0b557e190baf899b_1453837387_1453837387&p=127|X-Forwarded-For=85.4.139.82
 
 #EXTINF:0,E TV Marche
@@ -47,7 +41,7 @@ http://k3.usastreams.com:1935/canal42/canal42/live.m3u8
 0
 
 #EXTINF:0,Giallo
-http://213.136.90.30:8000/live/christop/christop/9223.ts
+0
 
 #EXTINF:0,History Lab 
 rtmp://wma10.fluidstream.net/HistoryLab playpath=livestream swfUrl=http://www.radioetv.it/modules/mod_hllive/jw/player58l.swf pageUrl=http://www.radioetv.it/history-lab live=1 timeout=10
@@ -58,11 +52,8 @@ rtmp://wma10.fluidstream.net/HistoryLab playpath=livestream swfUrl=http://www.ra
 #EXTINF:0,Juwelo TV 
 0
 
-#EXTINF:0,LA7
+#EXTINF:0,LA7 
 http://la7live-lh.akamaihd.net/i/test_1@143593/master.m3u8
-
-#EXTINF:0,LA7
-http://62.65.140.151:80/session/d98900ec-c39b-11e5-8881-005056bc49ac/nvnv5a/2/3027/index.m3u8?token=ef4584be49ba3ac773d490cd0ecafb20_1453837383_1453837383&p=127|X-Forwarded-For=85.7.92.248
 
 #EXTINF:0,Lucania TV
 0
@@ -95,46 +86,22 @@ rtmp://fms.105.net/live/105Test1
 rtmp://fms.105.net:1935/live/rmc1
 
 #EXTINF:0,RAI 1 
-http://213.136.90.30:8000/live/christop/christop/9231.ts
-
-#EXTINF:0,RAI 1 
-http://62.65.140.153:80/session/e0fe2028-c39b-11e5-a4d9-005056bc1a52/nvnv5a/2/3003/index.m3u8?token=1bdd0a7c107ecf3ca3e18633a524aaff_1453837396_1453837396&p=127|X-Forwarded-For=85.1.223.104
+0
 
 #EXTINF:0,RAI 2 
-http://213.136.90.30:8000/live/christop/christop/9232.ts
-
-#EXTINF:0,RAI 2 
-http://62.65.140.215:80/session/e1608cea-c39b-11e5-82b4-005056bc1a52/nvnv5a/2/3004/index.m3u8?token=4ad9be5c95f2738eec37dff43f0a569c_1453837396_1453837396&p=127|X-Forwarded-For=85.7.159.243
+0
 
 #EXTINF:0,RAI 3 
-http://213.136.90.30:8000/live/christop/christop/9233.ts
+0
 
-#EXTINF:0,RAI 3 
-http://62.65.140.217:80/session/e1d9e41e-c39b-11e5-b239-005056bc1a52/nvnv5a/2/3005/index.m3u8?token=cf004a7f1980349c0bae8ecb31365c9a_1453837397_1453837397&p=127|X-Forwarded-For=85.4.107.239
-
-#EXTINF:0,RAI 4
-http://213.136.90.30:8000/live/christop/christop/9234.ts
-
-#EXTINF:0,RAI 4
+#EXTINF:0,RAI 4 
 mmsh://212.162.68.163/Rai4
-
-#EXTINF:0,RAI 5 
-http://213.136.90.30:8000/live/christop/christop/9224.ts
 
 #EXTINF:0,RAI 5 
 http://b2.stream12.rai.it/live/rai5.smil/playlist.m3u8|X-Forwarded-For=2.112.0.1
 
-#EXTINF:0,Radio Italia TV 
-http://213.136.90.30:8000/live/christop/christop/9206.ts
-
-#EXTINF:0,Rai Gulp 
-http://213.136.90.30:8000/live/christop/christop/9228.ts
-
 #EXTINF:0,Rai Gulp 
 mmsh://212.162.68.163/Rai_gulp
-
-#EXTINF:0,Rai Movie 
-http://top-iptv.zapto.org:8000/live/walid/walid/508.m3u8
 
 #EXTINF:0,Rai Movie 
 http://b2everyrai-lh.akamaihd.net/i/raimovie_1@67348/master.m3u8
@@ -142,20 +109,8 @@ http://b2everyrai-lh.akamaihd.net/i/raimovie_1@67348/master.m3u8
 #EXTINF:0,Rai News 
 http://live.cdn.streamago.tv:1935/streamagoedge/1917/810/livestream.m3u8
 
-#EXTINF:0,Rai News 
-http://213.136.90.30:8000/live/christop/christop/9226.ts
-
-#EXTINF:0,Rai News 
-http://62.65.140.212:80/session/e279d3f2-c39b-11e5-a105-005056bc06d1/nvnv5a/2/3018/index.m3u8?token=d7bb558bc71dd14e027c6a6198a3a8a0_1453837398_1453837398&p=127|X-Forwarded-For=85.4.183.207
-
-#EXTINF:0,Rai Premium 
-http://213.136.90.30:8000/live/christop/christop/9227.ts
-
 #EXTINF:0,Rai Premium 
 http://originstream7.rai.it/italy/smil:raipremium.smil/chunklist_b1800000.m3u8
-
-#EXTINF:0,Rai Scuola
-http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/2496.ts
 
 #EXTINF:0,Rai Scuola
 http://originstream6.rai.it/italy/smil:raiscuola.smil/chunklist_b900000.m3u8
@@ -164,10 +119,7 @@ http://originstream6.rai.it/italy/smil:raiscuola.smil/chunklist_b900000.m3u8
 mmsh://212.162.68.163/rai_storia
 
 #EXTINF:0,Rai Yoyo 
-http://213.136.90.30:8000/live/christop/christop/9201.ts
-
-#EXTINF:0,Rai Yoyo 
-http://originstream5.rai.it/italy/smil:raiyoyo.smil/chunklist_b900000.m3u8
+0
 
 #EXTINF:0,REI TV 
 0
@@ -191,19 +143,19 @@ rtmp://flash3.ipercast.net/teleunica.tv-live/livestream1
 0
 
 #EXTINF:0,Sky Arte 
-http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/2524.ts
+0
 
 #EXTINF:0,Sky Calcio 
-http://213.136.90.30:8000/live/christop/christop/9212.ts
+0
 
 #EXTINF:0,Sky Cinema Family 
-http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/3237.ts
+0
 
 #EXTINF:0,Sky Sport 24 
-http://213.136.90.30:8000/live/christop/christop/9222.ts
+0
 
 #EXTINF:0,Sky Sport F1 
-http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/2479.ts
+0
 
 #EXTINF:0,Sky TG24 
 rtmp://cp49989.live.edgefcs.net:1935/live playpath=streamRM1@2564 swfUrl=http://videoplatform.sky.it/player/swf/player_v2.swf pageUrl=http://video.sky.it/news/diretta live=1 timeout=10
@@ -214,11 +166,8 @@ http://skyianywhere2-i.akamaihd.net:80/hls/live/200275/tg24/stream6/streamPlayli
 #EXTINF:0,Sky TG24 
 http://skyianywhere2-i.akamaihd.net:80/hls/live/200275/tg24/stream5/streamPlaylist.m3u8
 
-#EXTINF:0,Sky TG24 
-http://213.136.90.30:8000/live/christop/christop/9221.ts
-
 #EXTINF:0,Sky Uno
-http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/3808.ts
+0
 
 #EXTINF:0,Suedtirol TV 
 0
@@ -227,13 +176,7 @@ http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/3808.ts
 http://wms.shared.streamshow.it:1935/supertv/supertv_mobile/live.m3u8
 
 #EXTINF:0,Super TV 
-http://fms.shared.streamshow.it:1935/supertv/supertv/live.m3u8
-
-#EXTINF:0,Super TV 
 http://wms.shared.streamshow.it:1935/supertv/supertv/live.m3u8
-
-#EXTINF:0,Super TV 
-http://fms.shared.streamshow.it:1935/supertv/supertv_mobile/live.m3u8
 
 #EXTINF:0,Tele 8 
 http://video2.kronopress.com:1935/tele8_live/tele8/playlist.m3u8
@@ -275,9 +218,6 @@ http://91.121.222.160:1935/piublu/piublu.sdp/live.m3u8
 http://91.121.222.160:1935/piublu/piublu.sdp/HasBahCa.m3u8
 
 #EXTINF:0,Tele Monteneve 
-http://wms.shared.streamshow.it/telemonteneve/telemonteneve/playlist.m3u8
-
-#EXTINF:0,Tele Monteneve 
 http://wms.shared.streamshow.it/telemonteneve3/telemonteneve3/playlist.m3u8
 
 #EXTINF:0,Tele Monteneve 
@@ -287,30 +227,18 @@ http://fms.shared.streamshow.it:1935/telemonteneve/telemonteneve/live.m3u8
 rtmp://wms.shared.streamshow.it:80/telepavia playpath=telepavia swfUrl=http://player.streamshow.it/flowplayer/flowplayer.commercial-3.2.18.swf pageUrl=http://player.streamshow.it/embed/telepavia_2.php?width=640&height=360 live=1
 
 #EXTINF:0,Tele Pavia 
-http://fms.shared.streamshow.it:1935/telepavia/telepavia/hasbahca.m3u8
-
-#EXTINF:0,Tele Pavia 
-http://fms.shared.streamshow.it:1935/telepavia/telepavia/live.m3u8
-
-#EXTINF:0,Tele Pavia 
-rtmp://fms.shared.streamshow.it:1935/telepavia//telepavia
-
-#EXTINF:0,Tele Pavia 
 http://wms.shared.streamshow.it:1935/telepavia/telepavia/live.m3u8
 
 #EXTINF:0,Tele SanRemo
 0
 
 #EXTINF:0,Tele Sondrio 
-http://fms.shared.streamshow.it:1935/telestudiomo/telestudiomo/live.m3u8
-
-#EXTINF:0,Tele Sondrio 
 http://wms.shared.streamshow.it:1935/telestudiomo/telestudiomo/live.m3u8
 
-#EXTINF:0,Tele Sondrio
+#EXTINF:0,Tele Sondrio 
 http://wms.shared.streamshow.it:1935/tsn/tsn/live.m3u8
 
-#EXTINF:0,Tele Sondrio
+#EXTINF:0,Tele Sondrio 
 http://wms.shared.streamshow.it:1935/tsn2/tsn2/live.m3u8
 
 #EXTINF:0,Telecitta 
@@ -318,12 +246,6 @@ rtmp://stream.telepadova.com/live/ playpath=tv1
 
 #EXTINF:0,Teleducato 
 http://wms.shared.streamshow.it/teleducatopc/teleducatopc/playlist.m3u8
-
-#EXTINF:0,Teleducato 
-http://fms.shared.streamshow.it:1935/teleducatopc/teleducatopc/live.m3u8
-
-#EXTINF:0,Teleducato 
-http://fms.shared.streamshow.it:1935/teleducatopr/teleducatopr/live.m3u8
 
 #EXTINF:0,Teleliberta 
 0
@@ -344,7 +266,7 @@ rtmp://flash3.ipercast.net/teleunica.tv-live/livestream1
 0
 
 #EXTINF:0,Trentino TV 
-rtmp://77.72.196.214:8554/live playpath=TrentinoTV
+0
 
 #EXTINF:0,TRM TV 
 http://flash.streamingmedia.it:1935/TRM/livestream/hasbahca.m3u8
@@ -356,28 +278,16 @@ rtmp://flash.streamingmedia.it/TRM playpath=livestream swfUrl=http://flash.strea
 http://ftp.tiscali.it/francescovernata/TVUNO/monoscopioTvUNOint-1.wmv
 
 #EXTINF:0,TVRS TV 
-http://fms.shared.streamshow.it:1935/tvrs/tvrs/live.m3u8
-
-#EXTINF:0,TVRS TV 
 http://wms.shared.streamshow.it:1935/tvrs/tvrs/live.m3u8
 
-#EXTINF:0,Vera TV
+#EXTINF:0,Vera TV 
 http://wms.shared.streamshow.it/veratv/veratv/playlist.m3u8
-
-#EXTINF:0,Vera TV
-http://fms.shared.streamshow.it:1935/veratv/veratv/live.m3u8
 
 #EXTINF:0,Video Brescia 
 rtmp://wms.shared.streamshow.it/videobrescia/videobrescia
 
 #EXTINF:0,Video Brescia 
-http://fms.shared.streamshow.it:1935/videobrescia/videobrescia/live.m3u8
-
-#EXTINF:0,Video Brescia 
 http://wms.shared.streamshow.it:1935/videobrescia/videobrescia/live.m3u8
-
-#EXTINF:0,Video Brescia 
-http://fms.shared.streamshow.it:1935/videobrescia/videobrescia_mobile/live.m3u8
 
 #EXTINF:0,Videolina 
 rtmp://178.33.229.111/live/Videolina

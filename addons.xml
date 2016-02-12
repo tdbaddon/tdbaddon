@@ -780,7 +780,7 @@ http://kodilive.eu</description>
 
 <addon id="plugin.video.TDBEUROTV"
        name="TDB EURO TV"
-       version="2.19"
+       version="2.20"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>

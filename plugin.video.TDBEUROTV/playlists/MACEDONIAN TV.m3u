@@ -14,10 +14,7 @@ http://217.16.82.6:1935/zulu/alfa_1/playlist.m3u8
 http://217.16.82.6:554/zulu/alfa_1/playlist.m3u8
 
 #EXTINF:0,Alsat M 
-http://217.16.82.6:1935/zulu/alsat_1/playlist.m3u8
-
-#EXTINF:0,Alsat M 
-http://217.16.82.6:554/zulu/alsat_1/playlist.m3u8
+0
 
 #EXTINF:0,BTR 
 0
@@ -26,10 +23,7 @@ http://217.16.82.6:554/zulu/alsat_1/playlist.m3u8
 0
 
 #EXTINF:0,ERA TV 
-http://217.16.82.6:1935/zulu/era_1/playlist.m3u8
-
-#EXTINF:0,ERA TV 
-http://217.16.82.6:554/zulu/era_1/playlist.m3u8
+0
 
 #EXTINF:0,H1 Hugo
 0
@@ -62,10 +56,7 @@ http://fms.zulu.mk:1935/zulu/kanal5_1/playlist.m3u8
 http://217.16.82.6:1935/zulu/kanal5_2/playlist.m3u8
 
 #EXTINF:0,Kanal 5 Plus 
-http://217.16.82.6:1935/zulu/kanal5plus_1/playlist.m3u8
-
-#EXTINF:0,Kanal 5 Plus 
-http://217.16.82.6:554/zulu/kanal5plus_1/playlist.m3u8
+0
 
 #EXTINF:0,Kanal 8
 mms://62.162.58.55/TVkanal8
@@ -101,10 +92,7 @@ http://mrt.cdn.spectar.tv:1935/mrt-edge/_definst_/mrt1-sat/playlist.m3u8
 http://mrt.cdn.spectar.tv:1935/mrt-edge/_definst_/mrt2-sat/playlist.m3u8
 
 #EXTINF:0,Nasha TV 
-http://217.16.82.6:1935/zulu/nashatv_1/playlist.m3u8
-
-#EXTINF:0,Nasha TV 
-http://217.16.82.6:554/zulu/nashatv_1/playlist.m3u8
+0
 
 #EXTINF:0,Ohrid 02
 0
@@ -116,19 +104,13 @@ http://217.16.82.6:1935/zulu/sitel_1/playlist.m3u8
 http://217.16.82.6:554/zulu/sitel_1/playlist.m3u8
 
 #EXTINF:0,Sitel 3 
-http://217.16.82.6:1935/zulu/sitel3_1/playlist.m3u8
-
-#EXTINF:0,Sitel 3 
-http://217.16.82.6:554/zulu/sitel3_1/playlist.m3u8
+0
 
 #EXTINF:0,Sonce TV 
 0
 
 #EXTINF:0,Sutel TV 
-http://217.16.82.6:1935/zulu/shutel_1/playlist.m3u8
-
-#EXTINF:0,Sutel TV 
-http://217.16.82.6:554/zulu/shutel_1/playlist.m3u8
+0
 
 #EXTINF:0,Telma 
 http://217.16.82.6:1935/zulu/telma_1/playlist.m3u8

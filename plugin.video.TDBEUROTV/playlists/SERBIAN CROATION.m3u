@@ -5,28 +5,25 @@
 rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
 
 #EXTINF:0,Arena Sport 1 
-http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/3422.ts
+0
 
 #EXTINF:0,Arena Sport 2 
-http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/3421.ts
+0
 
 #EXTINF:0,Arena Sport 3 
-http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/3419.ts
+0
 
 #EXTINF:0,Arena Sport 4 
-http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/3424.ts
+0
 
 #EXTINF:0,Arena Sport 5 
-http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/3423.ts
+0
 
 #EXTINF:0,ATV
 rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
 
 #EXTINF:0,B92 
 http://stream.b92.net:7999/tv-b92.ogg
-
-#EXTINF:0,B92 
-http://luckyiptv.ddns.net:23000/live/fausto/fausto/3487.ts
 
 #EXTINF:0,Balkan TV
 0
@@ -41,7 +38,7 @@ http://92.60.234.98:8081
 http://213.81.153.221:8080/cetv
 
 #EXTINF:0,CMC 
-http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/3464.ts
+0
 
 #EXTINF:0,DMC
 0
@@ -56,7 +53,7 @@ http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/3464.ts
 0
 
 #EXTINF:0,Grand 
-http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/3452.ts
+0
 
 #EXTINF:0,Happy 
 0
@@ -68,7 +65,7 @@ http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/3452.ts
 0
 
 #EXTINF:0,Hayat Plus 
-http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/3433.ts
+0
 
 #EXTINF:0,Hayatovci
 0
@@ -76,17 +73,20 @@ http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/3433.ts
 #EXTINF:0,Hema 
 mms://77.238.209.50:1234
 
+#EXTINF:0,Hronka
+0
+
 #EXTINF:0,HRT 1 
-http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/3450.ts
+0
 
 #EXTINF:0,HRT 2 
-http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/3449.ts
+0
 
 #EXTINF:0,HRT 3 
-http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/3448.ts
+0
 
 #EXTINF:0,HRT 4 
-http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/3432.ts
+0
 
 #EXTINF:0,Joj
 0
@@ -125,7 +125,7 @@ http://213.81.153.221:8080/nasa
 0
 
 #EXTINF:0,Nova TV
-http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/3447.ts
+0
 
 #EXTINF:0,Novosadska TV 
 mms://176.106.121.32:8080/
@@ -140,10 +140,10 @@ mms://176.106.121.32:8080/
 0
 
 #EXTINF:0,Prva TV 
-http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/3443.ts
+0
 
 #EXTINF:0,RTC 
-http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/3440.ts
+0
 
 #EXTINF:0,RTCG Sat 
 mms://beotelmedia.beotel.net/tvcg
@@ -152,10 +152,10 @@ mms://beotelmedia.beotel.net/tvcg
 mms://195.252.114.172/tvcg
 
 #EXTINF:0,RTL
-http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/3442.ts
+0
 
 #EXTINF:0,RTL 2 
-http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/3441.ts
+0
 
 #EXTINF:0,RTRS 
 0
@@ -164,10 +164,7 @@ http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/3441.ts
 0
 
 #EXTINF:0,RTS 1 
-http://212.200.125.7:8210/210
-
-#EXTINF:0,RTS 1 
-http://luckyiptv.ddns.net:23000/live/massimiliano/massimiliano/3440.ts
+0
 
 #EXTINF:0,RTS 2 
 0
@@ -190,11 +187,8 @@ http://92.53.27.201:10000/
 #EXTINF:0,SOS Kanal 
 0
 
-#EXTINF:0,Studio B
+#EXTINF:0,Studio B 
 mms://195.252.114.172/studiob
-
-#EXTINF:0,Studio B
-http://212.200.125.7:8218/218
 
 #EXTINF:0,STV1 
 http://88.212.10.27:81/streams/stv1.m3u8
