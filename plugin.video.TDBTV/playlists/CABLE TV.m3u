@@ -20,7 +20,7 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 0
 
 #EXTINF:0,BabyTV 
-0
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/94.ts
 
 #EXTINF:0,BBC 1 
 0
@@ -45,6 +45,9 @@ http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD28_W_250.sdp/p
 
 #EXTINF:0,Cartoon Network 
 http://54.255.155.24:1935//Live/_definst_/sweetbcha1novD28_W_150.sdp/playlist.m3u8
+
+#EXTINF:0,Cartoon Network 
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/89.ts
 
 #EXTINF:0,CBC TV 
 0
@@ -77,7 +80,7 @@ http://www.t12v.com:8000/live/jerry/jerry/1715.ts
 0
 
 #EXTINF:0,Comedy Central 
-0
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/54.ts
 
 #EXTINF:0,Cooking Channel
 0
@@ -100,11 +103,14 @@ http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/index_350_av-p.m3u8?
 #EXTINF:0,Disney Channel 
 http://212.200.125.5:8199/199
 
+#EXTINF:0,Disney Channel 
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/125.ts
+
 #EXTINF:0,Disney Junior 
-0
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/127.ts
 
 #EXTINF:0,Disney XD 
-0
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/99.ts
 
 #EXTINF:0,DIY Network 
 0
@@ -116,7 +122,7 @@ http://212.200.125.5:8199/199
 0
 
 #EXTINF:0,E4 
-0
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/88.ts
 
 #EXTINF:0,Family Channel 
 0
@@ -130,6 +136,9 @@ http://edgeb.streaming.sk/fashiontv/fashiontv.stream/playlist.m3u8
 #EXTINF:0,Food Network 
 http://llnw.live.simplestream.com/coder2/coder.channels.channel2/hls/3/playlist.m3u8
 
+#EXTINF:0,Food Network 
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/111.ts
+
 #EXTINF:0,Fox 1 
 0
 
@@ -141,6 +150,9 @@ http://46.40.5.99:8000/foxlife_720
 
 #EXTINF:0,Fox TV
 http://46.40.5.99:8000/fox_720
+
+#EXTINF:0,Fox TV
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/90.ts
 
 #EXTINF:0,FX 
 0
@@ -230,10 +242,10 @@ http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
 0
 
 #EXTINF:0,Nick Jr 
-0
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/92.ts
 
 #EXTINF:0,Nickelodeon 
-0
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/93.ts
 
 #EXTINF:0,NickNight 
 0
@@ -266,7 +278,7 @@ http://llnw.live.qvc.simplestream.com/hera/remote/qvcuk_primary_sdi8/3/prog_inde
 0
 
 #EXTINF:0,Sky 1 
-0
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/45.ts
 
 #EXTINF:0,Sky 2 
 0
@@ -278,7 +290,10 @@ http://llnw.live.qvc.simplestream.com/hera/remote/qvcuk_primary_sdi8/3/prog_inde
 0
 
 #EXTINF:0,Sky Atlantic 
-0
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/44.ts
+
+#EXTINF:0,Sky Atlantic 
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/123.ts
 
 #EXTINF:0,Sky Living 
 0
@@ -335,7 +350,7 @@ http://llnw.live.simplestream.com/coder5/coder.channels.channel2/hls/4/playlist.
 0
 
 #EXTINF:0,Universal Channel 
-0
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/124.ts
 
 #EXTINF:0,USA Network 
 0

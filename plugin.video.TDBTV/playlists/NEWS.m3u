@@ -44,6 +44,12 @@ http://cbsnews-linear.mdialog.com/video_assets/cbsnews.m3u8?api_key=563b80c1ae4c
 http://edge1.everyon.tv/etv1sb/phd16/chunklist_w1519714347.m3u8
 
 #EXTINF:0,CNN 
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/113.ts
+
+#EXTINF:0,CNN 
+http://89.163.148.31:8000/live/aytac/aytac/2750.m3u8
+
+#EXTINF:0,CNN 
 http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD177_W_150.sdp/media_7419.m3u8
 
 #EXTINF:0,CP24 
@@ -129,6 +135,9 @@ http://rt-a.akamaihd.net/ch_04@325608/480p.m3u8
 
 #EXTINF:0,RT News 
 http://rt-a.akamaihd.net/ch_04@325608/720p.m3u8
+
+#EXTINF:0,RT News 
+http://rt.ashttp14.visionip.tv/live/rt-global-live-HD/playlist.m3u8
 
 #EXTINF:0,Sky News 
 0

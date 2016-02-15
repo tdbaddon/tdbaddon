@@ -18,13 +18,16 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 0
 
 #EXTINF:0,Box Nation 
-0
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/19.ts
 
 #EXTINF:0,BT Sport 1 
-0
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/9.ts
 
 #EXTINF:0,BT Sport 2 
 http://www.t12v.com:8000/live/jerry/jerry/1117.ts
+
+#EXTINF:0,BT Sport 2 
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/10.ts
 
 #EXTINF:0,CBS Sports 
 0
@@ -44,6 +47,9 @@ rtmp://31.220.2.149:80/live/ playpath=espnusa token=%Zrey(nKa@#Z swfUrl=http://p
 #EXTINF:0,ESPN 
 rtmp://185.63.255.60:80/live playpath=espnusa swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf pageUrl=http://yotv.co/embedu.php?live=espnusa&vw=620&vh=490 live=1 token=%Zrey(nKa@#Z
 
+#EXTINF:0,ESPN 
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/8.ts
+
 #EXTINF:0,ESPN 2
 0
 
@@ -53,8 +59,14 @@ http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_18
 #EXTINF:0,Eurosport 1 
 http://169.45.89.106:1935/app/vesplsh/playlist.m3u8
 
+#EXTINF:0,Eurosport 1 
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/12.ts
+
 #EXTINF:0,Eurosport 2 
 http://169.45.89.106:1935/app/vesp2lsh/playlist.m3u8
+
+#EXTINF:0,Eurosport 2 
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/13.ts
 
 #EXTINF:0,Eurosport News 
 0
@@ -90,7 +102,7 @@ mms://100automoto.tv/channel_mercedes
 0
 
 #EXTINF:0,Motors TV 
-0
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/86.ts
 
 #EXTINF:0,Motorsport 7 
 0
@@ -194,35 +206,53 @@ mms://100automoto.tv/channel_porsche
 #EXTINF:0,Premier Sports 
 http://169.45.89.106:1935/app/vpremsplsh/playlist.m3u8
 
+#EXTINF:0,Premier Sports 
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/14.ts
+
 #EXTINF:0,Racing UK 
-0
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/15.ts
 
 #EXTINF:0,Root Sports 
 0
 
 #EXTINF:0,Setanta Sports 
-0
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/16.ts
 
 #EXTINF:0,Sky Sports 1 
 http://169.45.89.106:1935/app/skysports1lsh/playlist.m3u8
 
+#EXTINF:0,Sky Sports 1 
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/1.ts
+
 #EXTINF:0,Sky Sports 2 
 http://169.45.89.106:1935/app/skysports2lsh/playlist.m3u8
+
+#EXTINF:0,Sky Sports 2 
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/2.ts
 
 #EXTINF:0,Sky Sports 3 
 http://169.45.89.106:1935/app/skysports3lsh/playlist.m3u8
 
+#EXTINF:0,Sky Sports 3 
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/3.ts
+
 #EXTINF:0,Sky Sports 4 
 http://169.45.89.106:1935/app/skysports4lsh/playlist.m3u8
+
+#EXTINF:0,Sky Sports 4 
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/4.ts
 
 #EXTINF:0,Sky Sports 5 
 http://169.45.89.106:1935/app/skysports5lsh/playlist.m3u8
 
+#EXTINF:0,Sky Sports 5 
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/5.ts
+
 #EXTINF:0,Sky Sports F1 
-0
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/6.ts
 
 #EXTINF:0,Sky Sports News 
-0
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/7.ts
 
 #EXTINF:0,Sports Tonight 
 rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9-SD

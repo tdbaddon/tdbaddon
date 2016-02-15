@@ -41,7 +41,7 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 0
 
 #EXTINF:0,Film4 
-0
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/52.ts
 
 #EXTINF:0,FilmBox 
 0
@@ -128,46 +128,46 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 0
 
 #EXTINF:0,Sky Movies Action 
-0
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/41.ts
 
 #EXTINF:0,Sky Movies Comedy 
-0
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/43.ts
 
 #EXTINF:0,Sky Movies Crime 
 0
 
 #EXTINF:0,Sky Movies Disney 
-0
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/96.ts
 
 #EXTINF:0,Sky Movies Drama 
-0
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/96.ts
 
 #EXTINF:0,Sky Movies Family 
-0
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/40.ts
 
 #EXTINF:0,Sky Movies Horrors 
-0
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/37.ts
 
 #EXTINF:0,Sky Movies Modern Greats 
-0
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/39.ts
 
 #EXTINF:0,Sky Movies Premiere 
-0
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/36.ts
 
 #EXTINF:0,Sky Movies Premiere+
-0
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/35.ts
 
 #EXTINF:0,Sky Movies SciFi 
-0
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/34.ts
 
 #EXTINF:0,Sky Movies Select 
-0
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/33.ts
 
 #EXTINF:0,Sky Movies Showcase
-0
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/100.ts
 
 #EXTINF:0,Sky Movies Thriller
-0
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/42.ts
 
 #EXTINF:0,Sony TV a
 0
@@ -215,7 +215,10 @@ http://112.197.2.135:1935/colive/C001_HD_4/chunklist.m3u8
 0
 
 #EXTINF:0,True Movies 2 
-0
+http://89.163.148.31:8000/live/aytac/aytac/2755.m3u8
+
+#EXTINF:0,True Movies 2 
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/56.ts
 
 #EXTINF:0,TV 1000 
 0

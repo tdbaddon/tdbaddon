@@ -115,11 +115,14 @@ rtmp://tst.es.flash.glb.ipercast.net/tst.es-live/live
 #EXTINF:0,MTV 
 http://origin2.voronezh.ertelecom.ru/content/private/s147213/d3720264/r183857sd2500000/efe4541060c00fccc01e8c068fce4f5ab911d969/playlist.m3u8
 
+#EXTINF:0,MTV 
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/117.ts
+
 #EXTINF:0,MTV Dance 
 0
 
 #EXTINF:0,MTV Hits 
-0
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/118.ts
 
 #EXTINF:0,MTV Live 
 0
@@ -201,6 +204,9 @@ http://www.iptvsaga.com/play/tv3/0006.m3u8
 
 #EXTINF:0,VH1 
 http://origin2.tomsk.ertelecom.ru/content/private/s147213/d3720264/r183860sd2000000/a7e4d34646b475190d0c99a717f7478a546958ed/track_2_1200/playlist.m3u8
+
+#EXTINF:0,VH1 
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/115.ts
 
 #EXTINF:0,VH1 Classics 
 0

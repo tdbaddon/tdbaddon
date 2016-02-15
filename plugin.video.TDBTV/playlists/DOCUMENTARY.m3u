@@ -23,10 +23,10 @@ http://109.226.222.161:4022/udp/239.255.4.175:1234
 0
 
 #EXTINF:0,Discovery Channel 
-0
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/104.ts
 
 #EXTINF:0,Discovery History 
-0
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/105.ts
 
 #EXTINF:0,Discovery H&H
 0
@@ -38,7 +38,7 @@ http://109.226.222.161:4022/udp/239.255.4.175:1234
 http://109.226.222.161:4022/udp/239.255.4.250:1234
 
 #EXTINF:0,Discovery Turbo 
-0
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/107.ts
 
 #EXTINF:0,Discovery World 
 0
@@ -61,11 +61,14 @@ http://link.theplatform.com/s/dtjsEC/chjdYJxKb44V?manifest=m3u&feed=History%20Li
 #EXTINF:0,History Channel 
 https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8?hdnea=ip=173.34.67.21~st=1448574469~exp=1448575069~acl=/i/History_1@156885*~id=e0ac8c7f-b7ae-431f-998a-d87493df48b7~hmac=1bf4b5f4382fd3f887da82e7bc44d93e3d92152b0d873acded129cad627e231e
 
+#EXTINF:0,History Channel 
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/109.ts
+
 #EXTINF:0,History Channel 2
 0
 
 #EXTINF:0,Investigation Discovery 
-0
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/103.ts
 
 #EXTINF:0,Nasa TV 
 http://nasatv-lh.akamaihd.net/i/NASA_101@319270/master.m3u8 
@@ -79,12 +82,17 @@ http://nasatv-lh.akamaihd.net/i/NASA_102@319272/master.m3u8
 #EXTINF:0,Nasa TV 
 http://nasatv-lh.akamaihd.net/i/NASA_103@319271/master.m3u8
 
-
 #EXTINF:0,Nat Geo Wild 
 0
 
 #EXTINF:0,National Geographic 
 http://109.226.222.161:4022/udp/239.255.4.30:1234
+
+#EXTINF:0,National Geographic 
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/102.ts
+
+#EXTINF:0,National Geographic 
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/101.ts
 
 #EXTINF:0,Nova
 0
@@ -104,6 +112,9 @@ http://rt-a.akamaihd.net/ch_05@325609/720p.m3u8
 #EXTINF:0,RT News Documentary 
 http://rt.ashttp14.visionip.tv/live/rt-doc-live-HD/playlist.m3u8
 
+#EXTINF:0,RT News Documentary 
+http://rt-a.akamaihd.net/ch_05@325609/720p.m3u8
+
 #EXTINF:0,Ted TV 
 0
 
@@ -112,6 +123,9 @@ http://rt.ashttp14.visionip.tv/live/rt-doc-live-HD/playlist.m3u8
 
 #EXTINF:0,Travel Channel 
 http://46.40.5.99:8000/travel_720
+
+#EXTINF:0,Travel Channel 
+http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/110.ts
 
 #EXTINF:0,Viasat Explorer 
 http://46.40.5.99:8000/viasat_explorer_720
