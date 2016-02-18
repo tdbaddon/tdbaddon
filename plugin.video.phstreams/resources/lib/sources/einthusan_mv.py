@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Genesis Add-on
-    Copyright (C) 2015 lambda
+    Exodus Add-on
+    Copyright (C) 2016 lambda
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -21,46 +21,51 @@
 
 import re,urllib,urlparse,json
 
-from resources.lib.libraries import cleantitle
-from resources.lib.libraries import client
+from resources.lib.modules import cleantitle
+from resources.lib.modules import client
 
 
 class source:
     def __init__(self):
+        self.domains = ['einthusan.com']
         self.base_link = 'http://www.einthusan.com'
-        self.search_link = '/search/?search_query=%s&lang=%s'
+        self.search_link = '/webservice/filters.php'
+        self.movie_link = '/webservice/movie.php?id=%s'
 
 
-    def get_movie(self, imdb, title, year):
+    def movie(self, imdb, title, year):
         try:
-            search = 'http://www.omdbapi.com/?i=%s' % imdb
-            search = client.source(search)
-            search = json.loads(search)
-            country = [i.strip() for i in search['Country'].split(',')]
-            if not 'India' in country: return
+            langMap = {'hi':'hindi', 'ta':'tamil', 'te':'telugu', 'ml':'malayalam', 'kn':'kannada', 'bn':'bengali', 'mr':'marathi', 'pa':'punjabi'}
 
-            languages = ['hindi', 'tamil', 'telugu', 'malayalam']
-            language = [i.strip().lower() for i in search['Language'].split(',')]
-            language = [i for i in language if any(x == i for x in languages)][0]
+            lang = 'http://www.imdb.com/title/%s/' % imdb
+            lang = client.source(lang)
+            lang = re.findall('href\s*=\s*[\'|\"](.+?)[\'|\"]', lang)
+            lang = [i for i in lang if '/language/' in i]
+            lang = [i.split('/language/')[-1].split('?')[0].lower() for i in lang]
+            lang = [i for i in lang if any(x == i for x in langMap.keys())]
+            lang = langMap[lang[0]]
 
-            query = self.search_link % (urllib.quote_plus(title), language)
-            query = urlparse.urljoin(self.base_link, query)
+            url = urlparse.urljoin(self.base_link, self.search_link)
+            post = urllib.urlencode({'search': title, 'lang': lang})
 
-            result = client.source(query)
-            result = client.parseDOM(result, 'div', attrs = {'class': 'search-category'})
-            result = [i for i in result if 'Movies' in client.parseDOM(i, 'p')[0]][0]
-            result = client.parseDOM(result, 'li')
+            result = client.source(url, post=post)
+            result = json.loads(result)['results'][:2]
+            result = [urlparse.urljoin(self.base_link, self.movie_link % i) for i in result]
 
-            title = cleantitle.movie(title)
-            years = ['(%s)' % str(year), '(%s)' % str(int(year)+1), '(%s)' % str(int(year)-1)]
-            result = [(client.parseDOM(i, 'a', ret='href')[0], client.parseDOM(i, 'a')[0]) for i in result]
-            r = [i for i in result if any(x in i[1] for x in years)]
-            if not len(r) == 0: result = r
-            result = [i[0] for i in result if title == cleantitle.movie(i[1])][0]
+            title = cleantitle.get(title)
+            years = ['%s' % str(year), '%s' % str(int(year)+1), '%s' % str(int(year)-1)]
 
-            try: url = re.compile('//.+?(/.+)').findall(result)[0]
-            except: url = result
-            url = url.replace('../', '/')
+            url = None
+
+            info = json.loads(client.source(result[0]))
+            if title == cleantitle.get(info['movie']) and any(x in str(info['year']) for x in years): url = info['movie_id']
+
+            if url == None: info = json.loads(client.source(result[1]))
+            if title == cleantitle.get(info['movie']) and any(x in str(info['year']) for x in years): url = info['movie_id']
+
+            if url == None: return
+
+            url = str(url)
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
             return url
@@ -68,24 +73,25 @@ class source:
             return
 
 
-    def get_sources(self, url, hosthdDict, hostDict, locDict):
+    def sources(self, url, hostDict, hostprDict):
         try:
             sources = []
 
             if url == None: return sources
 
-            url = urlparse.urljoin(self.base_link, url)
-            sources.append({'source': 'Einthusan', 'quality': 'HD', 'provider': 'Einthusan', 'url': url})
+            try: import xbmc ; ip = xbmc.getIPAddress()
+            except: ip = 'London'
+
+            url = 'http://cdn.einthusan.com/geturl/%s/hd/%s/' % (url, ip)
+            url = client.request(url)
+
+            sources.append({'source': 'einthusan', 'quality': 'HD', 'provider': 'Einthusan', 'url': url, 'direct': True, 'debridonly': False})
             return sources
         except:
             return sources
 
 
     def resolve(self, url):
-        try:
-            result = client.request(url)
-            url = re.compile("'file': '(.+?)'").findall(result)[0]
-            return url
-        except:
-            return
+        return url
+
 

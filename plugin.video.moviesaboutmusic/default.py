@@ -1,5 +1,5 @@
 '''
-    All Wrestling Add-on
+    MoviesAboutMusic.com Add-on
     Copyright (C) 2016 RayW1986
 
     This program is free software: you can redistribute it and/or modify
@@ -28,11 +28,17 @@ fanart = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.mov
 art = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.moviesaboutmusic/resources/art', ''))
 main_url = 'http://moviesaboutmusic.com/?cat='
 
+addon_id = xbmcaddon.Addon().getAddonInfo('id')
+selfAddon = xbmcaddon.Addon(id=addon_id)
+enable_auto_view = selfAddon.getSetting('enable_auto_view')
+view_mode_id = selfAddon.getSetting('view_mode_id')
+
 def CATEGORIES():
         addDirMain('Documentaries',main_url+'69',1,art+'docs.png')
         addDirMain('Feature Films',main_url+'133',1,art+'films.png')
         addDirMain('Genres','http://moviesaboutmusic.com/',3,art+'genres.png')
         addDirMain('Decades','http://moviesaboutmusic.com/',4,art+'decades.png')
+        addDirMain('Recently Added','http://moviesaboutmusic.com/blog/',1,art+'recent.png')
 		
 def	getVideos(url):
     find_url=url.find('?')
@@ -51,23 +57,28 @@ def	getVideos(url):
     
     for entry in matches:
        
-        title = plugintools.find_single_match(entry,'href=".+?" rel=".+?" title="(.+?)">').replace('&#8211;','-').replace("&#8217;","'")
+        title = plugintools.find_single_match(entry,'href=".+?" rel=".+?" title="(.+?)">').replace('&#8211;','-').replace("&#8217;","'").replace("&#8216;","'")
         ytID = plugintools.find_single_match(entry,'src="https://www.youtube.com/embed/(.+?)\?feature=')
         thumbnail = 'http://i.ytimg.com/vi/'+ytID+'/hqdefault.jpg'
         url = 'plugin://plugin.video.youtube/play/?video_id='+ytID
-        fanart = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.moviesaboutmusic', 'fanart.jpg'))
+        fanart = 'http://i.ytimg.com/vi/'+ytID+'/hqdefault.jpg'
+        plot = plugintools.find_single_match(entry,'<p>(.+?)</p>').replace('&#8211;','-').replace("&#8217;","'").replace("&#8216;","'").replace('&#8220;','"').replace('&#8221;','"')
 
-        plugintools.add_item( action="play" , title=title , url=url , fanart=fanart , thumbnail=thumbnail , folder=True )
+        plugintools.add_item( action="play" , title=title , url=url , fanart=fanart , plot=plot , thumbnail=thumbnail , folder=True )
 		
     for entry in nextpage:
        
         name = 'Next Page'
         iconimage = art+'nextpage.png'
-        url = plugintools.find_single_match(entry,'http(.+?)"').replace(':\/\/moviesaboutmusic.com\/?','http://moviesaboutmusic.com/?')
+        geturl = plugintools.find_single_match(entry,'http(.+?)"').replace('\/','/')
+        url = 'http'+geturl
 
         addDirMain(name,url,1,iconimage)
 		
-		#addDirMain(name,url,3,iconimage)
+    if enable_auto_view=='true':
+        xbmc.executebuiltin('Container.SetViewMode(%d)' % int(view_mode_id))
+    else:
+        pass
 
 def	getGenres(url):
     find_url=url.find('?')

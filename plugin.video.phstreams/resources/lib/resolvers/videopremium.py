@@ -20,8 +20,11 @@
 
 
 import re,urllib,urlparse
-from resources.lib.libraries import cloudflare
-from resources.lib.libraries import client
+from resources.lib.modules import cloudflare
+from resources.lib.modules import client
+
+
+domains = ['videopremium.tv', 'videopremium.me']
 
 
 def resolve(url):

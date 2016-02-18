@@ -1,6 +1,9 @@
-from resources.lib.libraries import client
-from resources.lib.libraries import cloudflare
+from resources.lib.modules import client
+from resources.lib.modules import cloudflare
 import re,sys,urllib,urlparse,base64,urllib2
+
+
+domains = ['stream4free.pro', 'stream4free.eu']
 
 
 def resolve(url):

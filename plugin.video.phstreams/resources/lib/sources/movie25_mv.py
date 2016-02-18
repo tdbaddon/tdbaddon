@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Genesis Add-on
-    Copyright (C) 2015 lambda
+    Exodus Add-on
+    Copyright (C) 2016 lambda
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,47 +19,64 @@
 '''
 
 
-import re,urllib,urlparse
+import re,urllib,urlparse,base64
 
-from resources.lib.libraries import cleantitle
-from resources.lib.libraries import cloudflare
-from resources.lib.libraries import client
-from resources.lib import resolvers
+from resources.lib.modules import cleantitle
+from resources.lib.modules import client
+from resources.lib.modules import proxy
 
 
 class source:
     def __init__(self):
-        self.base_link = 'http://www.movie25.ag'
-        self.search_link = '/search.php?key=%s'
+        self.domains = ['movie25.hk']
+        self.base_link = 'http://movie25.hk'
+        self.search_link = 'http://movie25.hk/search.php?key=%s'
 
 
-    def get_movie(self, imdb, title, year):
+    def request(self, url, check):
+        try:
+            result = client.source(url)
+            if check in str(result): return result.decode('iso-8859-1').encode('utf-8')
+
+            result = client.source(proxy.get() + urllib.quote_plus(url))
+            if check in str(result): return result.decode('iso-8859-1').encode('utf-8')
+
+            result = client.source(proxy.get() + urllib.quote_plus(url))
+            if check in str(result): return result.decode('iso-8859-1').encode('utf-8')
+        except:
+            return
+
+
+    def movie(self, imdb, title, year):
         try:
             query = self.search_link % urllib.quote_plus(title)
             query = urlparse.urljoin(self.base_link, query)
 
-            result = cloudflare.source(query)
-
-            result = result.decode('iso-8859-1').encode('utf-8')
+            result = self.request(query, 'movie_table')
             result = client.parseDOM(result, 'div', attrs = {'class': 'movie_table'})
 
-            title = cleantitle.movie(title)
+            title = cleantitle.get(title)
             years = ['(%s)' % str(year), '(%s)' % str(int(year)+1), '(%s)' % str(int(year)-1)]
-            result = [(client.parseDOM(i, 'a', ret='href')[0], client.parseDOM(i, 'a', ret='title')[1]) for i in result]
-            result = [i for i in result if title == cleantitle.movie(i[1])]
-            result = [i[0] for i in result if any(x in i[1] for x in years)][0]
+
+            result = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', ret='title')) for i in result]
+            result = [(i[0][0], i[1][1]) for i in result if len(i[0]) > 0 and len(i[1]) > 0]
+            result = [i for i in result if any(x in i[1] for x in years)]
+            result = [i[0] for i in result if title == cleantitle.get(i[1])][0]
 
             url = client.replaceHTMLCodes(result)
+            try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['q'][0]
+            except: pass
             try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['u'][0]
             except: pass
             url = urlparse.urlparse(url).path
+            url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
             return url
         except:
             return
 
 
-    def get_sources(self, url, hosthdDict, hostDict, locDict):
+    def sources(self, url, hostDict, hostprDict):
         try:
             sources = []
 
@@ -67,9 +84,7 @@ class source:
 
             url = urlparse.urljoin(self.base_link, url)
 
-            result = cloudflare.source(url)
-
-            result = result.decode('iso-8859-1').encode('utf-8')
+            result = self.request(url, 'Links - Quality')
             result = result.replace('\n','')
 
             quality = re.compile('>Links - Quality(.+?)<').findall(result)[0]
@@ -79,22 +94,26 @@ class source:
             else: quality = 'SD'
 
             links = client.parseDOM(result, 'div', attrs = {'id': 'links'})[0]
-            links = client.parseDOM(links, 'ul')
+            links = links.split('link_name')
 
             for i in links:
                 try:
-                    host = client.parseDOM(i, 'li', attrs = {'id': 'link_name'})[-1]
-                    host = host.strip().lower()
+                    url = client.parseDOM(i, 'a', ret='href')[0]
+                    try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['u'][0]
+                    except: pass
+                    try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['q'][0]
+                    except: pass
+                    url = urlparse.parse_qs(urlparse.urlparse(url).query)['url'][0]
+                    url = base64.b64decode(url)
+                    url = client.replaceHTMLCodes(url)
+                    url = url.encode('utf-8')
+
+                    host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(url.strip().lower()).netloc)[0]
                     if not host in hostDict: raise Exception()
                     host = client.replaceHTMLCodes(host)
                     host = host.encode('utf-8')
 
-                    url = client.parseDOM(i, 'a', ret='href')[0]
-                    url = client.replaceHTMLCodes(url)
-                    url = urlparse.urljoin(self.base_link, url)
-                    url = url.encode('utf-8')
-
-                    sources.append({'source': host, 'quality': quality, 'provider': 'Movie25', 'url': url})
+                    sources.append({'source': host, 'quality': quality, 'provider': 'Movie25', 'url': url, 'direct': False, 'debridonly': False})
                 except:
                     pass
 
@@ -104,19 +123,6 @@ class source:
 
 
     def resolve(self, url):
-        try:
-            result = cloudflare.request(url)
-            result = result.decode('iso-8859-1').encode('utf-8')
+        return url
 
-            url = client.parseDOM(result, 'div', attrs = {'id': 'showvideo'})[0]
-            url = url.replace('<IFRAME', '<iframe').replace(' SRC=', ' src=')
-            url = client.parseDOM(url, 'iframe', ret='src')[0]
-            url = client.replaceHTMLCodes(url)
-            try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['url'][0]
-            except: pass
-
-            url = resolvers.request(url)
-            return url
-        except:
-            return
 

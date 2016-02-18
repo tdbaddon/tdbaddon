@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Genesis Add-on
-    Copyright (C) 2015 lambda
+    Exodus Add-on
+    Copyright (C) 2016 lambda
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -21,38 +21,37 @@
 
 import re,urllib,urlparse,random
 
-from resources.lib.libraries import cleantitle
-from resources.lib.libraries import client
-from resources.lib.resolvers import googleplus
+from resources.lib.modules import cleantitle
+from resources.lib.modules import client
 
 
 class source:
     def __init__(self):
+        self.domains = ['afdah.org', 'xmovies8.org', 'putlockerhd.co']
         self.base_link_1 = 'https://afdah.org'
         self.base_link_2 = 'https://xmovies8.org'
+        self.base_link_3 = 'https://putlockerhd.co'
         self.search_link = '/results?q=%s'
-        self.info_link = '/video_info'
 
 
-    def get_movie(self, imdb, title, year):
+    def movie(self, imdb, title, year):
         try:
-            self.base_link = random.choice([self.base_link_1, self.base_link_2])
+            self.base_link = random.choice([self.base_link_1, self.base_link_2, self.base_link_3])
 
             query = self.search_link % (urllib.quote_plus(title))
             query = urlparse.urljoin(self.base_link, query)
 
             result = client.source(query)
 
-            result = client.parseDOM(result, 'div', attrs = {'class': 'cell_container'})
-
-            title = cleantitle.movie(title)
+            title = cleantitle.get(title)
             years = ['%s' % str(year), '%s' % str(int(year)+1), '%s' % str(int(year)-1)]
 
+            result = client.parseDOM(result, 'div', attrs = {'class': 'cell_container'})
             result = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', ret='title')) for i in result]
             result = [(i[0][0], i[1][0]) for i in result if len(i[0]) > 0 and len(i[1]) > 0]
             result = [(i[0], re.compile('(.+?) [(](\d{4})[)]').findall(i[1])) for i in result]
             result = [(i[0], i[1][0][0], i[1][0][1]) for i in result if len(i[1]) > 0]
-            result = [i for i in result if title == cleantitle.movie(i[1])]
+            result = [i for i in result if title == cleantitle.get(i[1])]
             result = [i[0] for i in result if any(x in i[2] for x in years)][0]
 
             try: url = re.compile('//.+?(/.+)').findall(result)[0]
@@ -64,30 +63,34 @@ class source:
             return
 
 
-    def get_sources(self, url, hosthdDict, hostDict, locDict):
+    def sources(self, url, hostDict, hostprDict):
         try:
             sources = []
 
             if url == None: return sources
 
-            self.base_link = random.choice([self.base_link_1, self.base_link_2])
+            self.base_link = random.choice([self.base_link_1, self.base_link_2, self.base_link_3])
+            self.base_link = self.base_link_1
 
-            url = urlparse.urljoin(self.base_link, url)
+            referer = urlparse.urljoin(self.base_link, url)
 
-            result = client.source(url)
+            headers = {'X-Requested-With': 'XMLHttpRequest'}
 
-            video_id = re.compile('video_id *= *[\'|\"](.+?)[\'|\"]').findall(result)[0]
-            post = urllib.urlencode({'video_id': video_id})
+            post = urlparse.parse_qs(urlparse.urlparse(referer).query).values()[0][0]
+            post = urllib.urlencode({'v': post})
 
-            result = client.source(urlparse.urljoin(self.base_link, self.info_link), post=post)
+            url = urlparse.urljoin(self.base_link, '/video_info/iframe')
 
-            u = [i for i in result.split('&') if 'google' in i][0]
-            u = urllib.unquote_plus(u)
-            u = [urllib.unquote_plus(i.split('|')[-1]) for i in u.split(',')]
-            u = [googleplus.tag(i)[0] for i in u]
-            u = [i for i in u if i['quality'] in ['1080p', 'HD']]
+            result = client.source(url, post=post, headers=headers, referer=referer)
 
-            for i in u: sources.append({'source': 'GVideo', 'quality': i['quality'], 'provider': 'Afdah', 'url': i['url']})
+            result = re.compile('"(\d+)"\s*:\s*"([^"]+)').findall(result)
+            result = [(urllib.unquote(i[1].split('url=')[-1]), i[0])  for i in result]
+
+            links = [(i[0], '1080p') for i in result if int(i[1]) >= 1080]
+            links += [(i[0], 'HD') for i in result if 720 <= int(i[1]) < 1080]
+            links += [(i[0], 'SD') for i in result if 480 <= int(i[1]) < 720]
+
+            for i in links: sources.append({'source': 'gvideo', 'quality': i[1], 'provider': 'Afdah', 'url': i[0], 'direct': True, 'debridonly': False})
 
             return sources
         except:
@@ -96,14 +99,11 @@ class source:
 
     def resolve(self, url):
         try:
-            if url.startswith('stack://'): return url
-
             url = client.request(url, output='geturl')
             if 'requiressl=yes' in url: url = url.replace('http://', 'https://')
             else: url = url.replace('https://', 'http://')
             return url
         except:
             return
-
 
 

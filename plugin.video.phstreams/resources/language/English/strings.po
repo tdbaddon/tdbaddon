@@ -110,6 +110,14 @@ msgctxt "#30724"
 msgid "Use Android Hack"
 msgstr ""
 
+msgctxt "#30725"
+msgid "Add-on settings"
+msgstr ""
+
+msgctxt "#30726"
+msgid "Opening stream"
+msgstr ""
+
 msgctxt "#30730"
 msgid "Huddle Up Sport's"
 msgstr ""

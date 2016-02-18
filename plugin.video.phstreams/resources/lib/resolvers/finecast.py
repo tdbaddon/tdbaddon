@@ -2,8 +2,11 @@
 
 
 import re,urlparse,urllib,random
-from resources.lib.libraries import client
-from resources.lib.libraries import jsunpack
+from resources.lib.modules import client
+from resources.lib.modules import jsunpack
+
+
+domains = ['finecast.tv']
 
 
 def resolve(url):

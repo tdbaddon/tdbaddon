@@ -37,10 +37,6 @@ try:
 except:
     url = '0'
 try:
-    playable = params['playable']
-except:
-    playable = '0'
-try:
     content = params['content']
 except:
     content = '0'
@@ -70,11 +66,11 @@ if action == None:
 
 elif action == 'dmode' or action == 'ndmode':
     from resources.lib.indexers import phstreams
-    phstreams.getDirectory(name, url, audio, image, fanart, playable, content)
+    phstreams.getDirectory(name, url, audio, image, fanart, content)
 
 elif action == 'subDirectory':
     from resources.lib.indexers import phstreams
-    phstreams.subDirectory(name, url, audio, image, fanart, playable, tvshow, content)
+    phstreams.subDirectory(name, url, audio, image, fanart, tvshow, content)
 
 elif action == 'localDirectory':
     from resources.lib.indexers import phstreams
@@ -98,54 +94,54 @@ elif action == 'clearSearch':
 
 elif action == 'resolveUrl':
     from resources.lib.indexers import phstreams
-    phstreams.resolveUrl(name, url, audio, image, fanart, playable, content)
+    phstreams.resolveUrl(url)
 
 elif action == 'openDialog':
-    from resources.lib.libraries import phdialogs
+    from resources.lib.modules import phdialogs
     phdialogs.openDialog(url,audio)
 
 elif action == 'openSettings':
-    from resources.lib.libraries import control
+    from resources.lib.modules import control
     control.openSettings()
 
 elif action == 'addView':
-    from resources.lib.libraries import views
+    from resources.lib.modules import views
     views.addView(content)
 
 elif action == 'downloader':
-    from resources.lib.libraries import downloader
+    from resources.lib.modules import downloader
     downloader.downloader()
 
 elif action == 'addDownload':
-    from resources.lib.libraries import downloader
+    from resources.lib.modules import downloader
     downloader.addDownload(name,url,image)
 
 elif action == 'removeDownload':
-    from resources.lib.libraries import downloader
+    from resources.lib.modules import downloader
     downloader.removeDownload(url)
 
 elif action == 'startDownload':
-    from resources.lib.libraries import downloader
+    from resources.lib.modules import downloader
     downloader.startDownload()
 
 elif action == 'startDownloadThread':
-    from resources.lib.libraries import downloader
+    from resources.lib.modules import downloader
     downloader.startDownloadThread()
 
 elif action == 'stopDownload':
-    from resources.lib.libraries import downloader
+    from resources.lib.modules import downloader
     downloader.stopDownload()
 
 elif action == 'statusDownload':
-    from resources.lib.libraries import downloader
+    from resources.lib.modules import downloader
     downloader.statusDownload()
 
 elif action == 'trailer':
-    from resources.lib.libraries import trailer
+    from resources.lib.modules import trailer
     trailer.trailer().play(name)
 
 elif action == 'clearCache':
-    from resources.lib.libraries import cache
+    from resources.lib.modules import cache
     cache.clear()
 
 elif action == 'radioDirectory':
@@ -165,7 +161,7 @@ elif action == 'radio181fm':
     phradios.radio181fm(image, fanart)
 
 elif ('HH') in action:
-    from resources.lib.libraries import control
+    from resources.lib.modules import control
     mediaPath = control.addonInfo('path') + '/resources/lib/indexers/phhuddle.py'
     print action
     file = open(mediaPath, 'r')

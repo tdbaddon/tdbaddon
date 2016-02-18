@@ -28,8 +28,8 @@
 
 import cookielib, calendar, time, json, xbmc
 import re,sys,urllib,urlparse,base64,urllib2
-from resources.lib.libraries import control
-from resources.lib.libraries import client
+from resources.lib.modules import control
+from resources.lib.modules import client
 from datetime import datetime, timedelta
 from resources.lib.resolvers import sawlive
 

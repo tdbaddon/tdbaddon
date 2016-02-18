@@ -20,8 +20,11 @@
 
 
 import re,urllib,urlparse,base64
-from resources.lib.libraries import client
-from resources.lib.libraries import jsunpack
+from resources.lib.modules import client
+from resources.lib.modules import jsunpack
+
+
+domains = ['sawlive.tv']
 
 
 def resolve(url):

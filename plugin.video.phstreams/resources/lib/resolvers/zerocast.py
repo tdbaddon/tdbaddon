@@ -20,7 +20,10 @@
 
 
 import re,urlparse,base64,urllib
-from resources.lib.libraries import client
+from resources.lib.modules import client
+
+
+domains = ['zerocast.tv']
 
 
 def resolve(url):

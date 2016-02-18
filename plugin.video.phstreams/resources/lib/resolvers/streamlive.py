@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 import urllib,re
-from resources.lib.libraries import client
+from resources.lib.modules import client
+
+
+domains = ['streamlive.to']
+
 
 def resolve(url):
     try:

@@ -20,7 +20,10 @@
 
 
 import re,urlparse,json
-from resources.lib.libraries import client
+from resources.lib.modules import client
+
+
+domains = ['veetle.com']
 
 
 def resolve(url):

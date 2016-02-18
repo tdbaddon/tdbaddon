@@ -20,7 +20,11 @@
 
 
 import re,urllib,urlparse,json
-from resources.lib.libraries import client
+from resources.lib.modules import client
+import xbmcgui
+
+
+domains = ['google.com']
 
 
 def resolve(url):
@@ -93,13 +97,25 @@ def resolve(url):
         url = []
         try: url += [[i for i in result if i['quality'] == '1080p'][0]]
         except: pass
-        try: url += [[i for i in result if i['quality'] == 'HD'][0]]
+        try: url += [[i for i in result if i['quality'] == '720p'][0]]
         except: pass
-        try: url += [[i for i in result if i['quality'] == 'SD'][0]]
+        try: url += [[i for i in result if i['quality'] == '480p'][0]]
+        except: pass
+        try: url += [[i for i in result if i['quality'] == '360p'][0]]
+        except: pass
+        try: url += [[i for i in result if i['quality'] == '240p'][0]]
         except: pass
 
-        if url == []: return
-        return url
+        if len(url) == 0:
+            return
+        elif len(url) == 1:
+            return url[0]['url']
+        else:
+            q = ['GoogleVideo - %s' % i['quality'] for i in url]
+            u = [i['url'] for i in url]
+            select = xbmcgui.Dialog().select('Choose a linkz', q)
+            if select == -1: return
+            return u[select]
     except:
         return
 
@@ -113,13 +129,13 @@ def tag(url):
     if quality in ['37', '137', '299', '96', '248', '303', '46']:
         return [{'quality': '1080p', 'url': url}]
     elif quality in ['22', '84', '136', '298', '120', '95', '247', '302', '45', '102']:
-        return [{'quality': 'HD', 'url': url}]
+        return [{'quality': '720p', 'url': url}]
     elif quality in ['35', '44', '135', '244', '94']:
-        return [{'quality': 'SD', 'url': url}]
+        return [{'quality': '480p', 'url': url}]
     elif quality in ['18', '34', '43', '82', '100', '101', '134', '243', '93']:
-        return [{'quality': 'SD', 'url': url}]
+        return [{'quality': '360p', 'url': url}]
     elif quality in ['5', '6', '36', '83', '133', '242', '92', '132']:
-        return [{'quality': 'SD', 'url': url}]
+        return [{'quality': '240p', 'url': url}]
     else:
         return []
 

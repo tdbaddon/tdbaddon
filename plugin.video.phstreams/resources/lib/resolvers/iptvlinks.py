@@ -1,16 +1,13 @@
-from resources.lib.libraries import client
-from resources.lib.libraries import cloudflare
+from resources.lib.modules import client
+from resources.lib.modules import cloudflare
 import re,sys,urllib,urlparse,base64,urllib2
 
 
+domains = ['iptvlinks.tk']
+
+
 def resolve(url):
-    
-
-  
-
     try:
-        
-
         result = cloudflare.request(url)
        
         items = client.parseDOM(result, 'video', attrs={'id': 'player'})
@@ -21,8 +18,7 @@ def resolve(url):
             url='http://www.iptvlinks.tk/'+items
         else:
             url='http://www.iptvlinks.tk'+items
-        
-        print url        
+     
         return url
     except:
         return None

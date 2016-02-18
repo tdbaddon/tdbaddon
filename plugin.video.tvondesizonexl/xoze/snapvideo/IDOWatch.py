@@ -5,6 +5,7 @@ Created on Dec 24, 2011
 '''
 from xoze.snapvideo import VideoHost, Video, STREAM_QUAL_SD
 from xoze.utils import http, encoders
+import urllib2
 import re
 
 def getVideoHost():
@@ -20,10 +21,13 @@ def retrieveVideoInfo(video_id):
     video.set_id(video_id)
     try:
         video_info_link = 'http://idowatch.net/embed-' + str(video_id) + '-520x400.html'
-        html = http.HttpClient().get_html_content(url=video_info_link)
-        video_link = None
+        req = urllib2.Request(video_info_link)
+        req.add_header('User-Agent', 'Mozilla/5.0 (iPad; CPU OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A334 Safari/7534.48.3')
+        response = urllib2.urlopen(req)
+        html=response.read()
+
         paramSet = re.compile("return p\}\(\'(.+?)\',(\d+),(\d+),\'(.+?)\'").findall(html)
-        print paramSet
+
         if len(paramSet) > 0:
             video_info_link = encoders.parse_packed_value(paramSet[0][0], int(paramSet[0][1]), int(paramSet[0][2]), paramSet[0][3].split('|')).replace('\\', '').replace('"', '\'')
             

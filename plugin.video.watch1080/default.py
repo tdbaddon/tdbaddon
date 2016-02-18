@@ -1,16 +1,21 @@
-import urllib,urllib2,re,xbmcplugin,xbmcgui,urlresolver,sys,xbmc,xbmcaddon,os,urlparse,base64
+import urllib,urllib2,re,xbmcplugin,xbmcgui,urlresolver,sys,xbmc,xbmcaddon,os,urlparse,base64,net,cf
 from t0mm0.common.addon import Addon
 from metahandler import metahandlers
-
+net = net.Net()
 addon_id = 'plugin.video.watch1080'
 addon_name = 'Watch 1080p'
 selfAddon = xbmcaddon.Addon(id=addon_id)
+datapath= xbmc.translatePath(selfAddon.getAddonInfo('profile'))
 addon = Addon(addon_id, sys.argv)
 fanart = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id , 'fanart.jpg'))
 icon = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
 nextp = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'next.png'))
 metaset = selfAddon.getSetting('enable_meta')
 addon = Addon(addon_id, sys.argv)
+try:os.mkdir(datapath)
+except:pass
+file_var = open(xbmc.translatePath(os.path.join(datapath, 'cookie.lwp')), "a")
+cookie_file = os.path.join(os.path.join(datapath,''), 'cookie.lwp')
 
 def CATEGORIES():
         addDir2('New Movie Releases','http://watch1080p.com/list/film/',1,icon,fanart)
@@ -106,9 +111,10 @@ def PLAYLINK(name,url,iconimage):
         url=re.compile('src="(.+?)" style').findall(link)[0]
         link = open_url(url)
         try:
-                url=re.compile("window.atob\('(.+?)'\)\)").findall(link)[0]
-                content=base64.b64decode(url)
-                data=base64.b64decode(content)
+                data=re.compile("window.atob\('(.+?)'\)\)").findall(link)[0]
+                data=base64.b64decode(data)
+                data=base64.b64decode(data)
+                data=base64.b64decode(data)
                 url=re.compile("<source src='(.+?)'").findall(data)[0]
         except:
                 try:
@@ -204,12 +210,21 @@ def addDir(name,url,mode,iconimage,itemcount,isFolder=False):
             return ok
         
 def open_url(url):
-    req = urllib2.Request(url)
-    req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36 Edge/12.0')
-    response = urllib2.urlopen(req)
-    link=response.read()
-    response.close()
-    return link
+        try:
+            net.set_cookies(cookie_file)
+            link = net.http_GET(url).content
+            return link
+        except:
+          try:
+            cf.solve(url,cookie_file,wait=True)
+            net.set_cookies(cookie_file)
+            link = net.http_GET(url).content
+            return link
+          except:
+            cf.solve(url,cookie_file,wait=True)
+            net.set_cookies(cookie_file)
+            link = net.http_GET(url).content
+            return link 
 
 def setView(content, viewType):
     if content:

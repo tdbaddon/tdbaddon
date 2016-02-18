@@ -20,7 +20,10 @@
 
 
 import re,urllib,urlparse,base64
-from resources.lib.libraries import client
+from resources.lib.modules import client
+
+
+domains = ['p2pcast.tv']
 
 
 def resolve(url):

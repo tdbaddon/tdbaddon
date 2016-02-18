@@ -1,0 +1,18 @@
+<settings>
+	
+	<category label="AutoView">
+		<setting id="auto-view" type="bool" label="Enable Automatic View" default="false"/>
+		<setting id="show-view" type="labelenum" label="Choose View" values="Info|Info2|Info3|Fanart|Big list|Poster Wrap" default="Info2" enable="!eq(-1,false)+!eq(-2,false)"/>
+		<setting id="default-view" type="number" label="Default View" default="500" enable="!eq(-2,false)"/>
+	</category>
+	
+	<category label="Update">
+		<setting type="lsep" label="When You Click Check For Updates It will Appear As If Nothing Happened"/>
+		<setting type="lsep" label="If Their Is Any Available Updates You Will See The Appropiate Notifications"/>
+		<setting label="   [COLOR red]Click Here To Check For Updates For All Your Addons&Repos[/COLOR]" type="action" action="UpdateAddonRepos"/>
+	</category>
+	
+	<category label="TV-Shows">
+		<setting id="enable_shows" type="bool" label="Enable TV-Shows" default="false"/>
+	</category>
+</settings>

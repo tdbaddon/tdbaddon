@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Genesis Add-on
-    Copyright (C) 2015 lambda
+    Exodus Add-on
+    Copyright (C) 2016 lambda
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,41 +19,28 @@
 '''
 
 
-import re,urllib,urlparse
+import re,urlparse
 
-from resources.lib.libraries import cleantitle
-from resources.lib.libraries import cloudflare
-from resources.lib.libraries import client
-from resources.lib.resolvers import googleplus
+from resources.lib.modules import cloudflare
+from resources.lib.modules import client
+from resources.lib.modules import cache
 
 
 class source:
     def __init__(self):
+        self.domains = ['dizilab.com']
         self.base_link = 'http://dizilab.com'
-        self.search_link = '/arsiv?limit=&tur=&orderby=&ulke=&order=&yil=&dizi_adi=%s'
+        self.search_link = '/diziler.xml'
 
 
-    def get_show(self, imdb, tvdb, tvshowtitle, year):
+    def tvshow(self, imdb, tvdb, tvshowtitle, year):
         try:
-            query = self.search_link % (urllib.quote_plus(tvshowtitle))
-            query = urlparse.urljoin(self.base_link, query)
+            result = cache.get(self.dizilab_tvcache, 120)
 
-            result = cloudflare.source(query)
-            result = client.parseDOM(result, 'div', attrs = {'class': 'tv-series-single'})
+            result = [i[0] for i in result if imdb == i[1]][0]
 
-            tvshowtitle = cleantitle.tv(tvshowtitle)
-            years = ['%s' % str(year), '%s' % str(int(year)+1), '%s' % str(int(year)-1)]
-
-            result = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', {'class': 'title'}), re.compile('<span>\s*(\d{4})\s*</span>').findall(i)) for i in result]
-            result = [(i[0][0], i[1][0], i[2][0]) for i in result if len(i[0]) > 0 and len(i[1]) > 0 and len(i[2]) > 0]
-            result = [(i[0], re.compile('([^>]+)$').findall(i[1]), i[2]) for i in result]
-            result = [(i[0], i[1][0], i[2]) for i in result if len(i[1]) > 0]
-
-            result = [i for i in result if tvshowtitle == cleantitle.tv(i[1])]
-            result = [i[0] for i in result if any(x in i[2] for x in years)][0]
-
-            try: url = re.compile('//.+?(/.+)').findall(result)[0]
-            except: url = result
+            url = urlparse.urljoin(self.base_link, result)
+            url = urlparse.urlparse(url).path
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
             return url
@@ -61,26 +48,31 @@ class source:
             return
 
 
-    def get_episode(self, url, imdb, tvdb, title, date, season, episode):
+    def dizilab_tvcache(self):
         try:
-            if url == None: return
-
-            url = urlparse.urljoin(self.base_link, url)
+            url = urlparse.urljoin(self.base_link, self.search_link)
 
             result = cloudflare.source(url)
-            result = client.parseDOM(result, 'a', ret='href')
-            result = [i for i in result if '/sezon-%01d/bolum-%01d' % (int(season), int(episode)) in i][0]
+            result = client.parseDOM(result, 'dizi')
+            result = [(client.parseDOM(i, 'url'), client.parseDOM(i, 'imdb')) for i in result]
+            result = [(i[0][0], i[1][0]) for i in result if len(i[0]) > 0 and len(i[1]) > 0]
+            result = [(re.sub('http.+?//.+?/','/', i[0]), i[1]) for i in result]
 
-            try: url = re.compile('//.+?(/.+)').findall(result)[0]
-            except: url = result
-            url = client.replaceHTMLCodes(url)
-            url = url.encode('utf-8')
-            return url
+            return result
         except:
             return
 
 
-    def get_sources(self, url, hosthdDict, hostDict, locDict):
+    def episode(self, url, imdb, tvdb, title, premiered, season, episode):
+        if url == None: return
+
+        url = '%s/sezon-%01d/bolum-%01d' % (url, int(season), int(episode))
+        url = client.replaceHTMLCodes(url)
+        url = url.encode('utf-8')
+        return url
+
+
+    def sources(self, url, hostDict, hostprDict):
         try:
             sources = []
 
@@ -89,16 +81,13 @@ class source:
             url = urlparse.urljoin(self.base_link, url)
 
             result = cloudflare.source(url)
+            result = re.compile('"?file"?\s*:\s*"([^"]+)"\s*,\s*"?label"?\s*:\s*"(\d+)p?"').findall(result)
 
-            links = re.compile('file\s*:\s*"(.+?)"').findall(result)
-            links = [i for i in links if 'google' in i]
+            links = [(i[0], '1080p') for i in result if int(i[1]) >= 1080]
+            links += [(i[0], 'HD') for i in result if 720 <= int(i[1]) < 1080]
+            links += [(i[0], 'SD') for i in result if 480 <= int(i[1]) < 720]
 
-            for link in links:
-                try:
-                    i = googleplus.tag(link)[0]
-                    sources.append({'source': 'GVideo', 'quality': i['quality'], 'provider': 'Dizilab', 'url': i['url']})
-                except:
-                    pass
+            for i in links: sources.append({'source': 'gvideo', 'quality': i[1], 'provider': 'Dizilab', 'url': i[0], 'direct': True, 'debridonly': False})
 
             return sources
         except:
@@ -107,12 +96,11 @@ class source:
 
     def resolve(self, url):
         try:
-            if url.startswith('stack://'): return url
-
             url = client.request(url, output='geturl')
             if 'requiressl=yes' in url: url = url.replace('http://', 'https://')
             else: url = url.replace('https://', 'http://')
             return url
         except:
             return
+
 

@@ -2,8 +2,10 @@
 
 
 import re,urlparse,urllib
-from resources.lib.libraries import client
+from resources.lib.modules import client
 
+
+domains = ['sdw-net.co']
 
 
 def resolve(url):

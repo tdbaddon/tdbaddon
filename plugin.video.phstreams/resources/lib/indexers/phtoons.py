@@ -22,9 +22,9 @@
 
 import xbmc
 import re,sys,urllib,urlparse,base64,urllib2
-from resources.lib.libraries import control
-from resources.lib.libraries import client
-from resources.lib.libraries import cloudflare
+from resources.lib.modules import control
+from resources.lib.modules import client
+from resources.lib.modules import cloudflare
 
 
 mediaPath = control.addonInfo('path') + '/resources/media/phtoons/'

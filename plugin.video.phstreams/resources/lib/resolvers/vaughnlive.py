@@ -20,7 +20,10 @@
 
 
 import re,urlparse
-from resources.lib.libraries import client
+from resources.lib.modules import client
+
+
+domains = ['vaughnlive.tv', 'breakers.tv', 'instagib.tv', 'vapers.tv']
 
 
 def resolve(url):

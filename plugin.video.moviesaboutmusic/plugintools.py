@@ -25,7 +25,6 @@ import urllib2
 import re
 import sys, os
 
-
 fanart = xbmc.translatePath(os.path.join('special://home/addons/plugin.video.moviesaboutmusic', 'fanart.jpg'))
 
 module_log_enabled = False
@@ -103,6 +102,7 @@ def add_item( action="" , title="" , plot="" , url="" , thumbnail="" , fanart=""
     listitem = xbmcgui.ListItem( title.replace("&amp;","&"), iconImage="DefaultVideo.png", thumbnailImage=thumbnail )
     listitem.setInfo( "video", { "Title" : title, "FileName" : title, "Plot" : plot } )
     listitem.setProperty('fanart_image', fanart)
+    xbmcplugin.setContent(int(sys.argv[1]), 'movies')
     
     if url.startswith("plugin://"):
         itemurl = url

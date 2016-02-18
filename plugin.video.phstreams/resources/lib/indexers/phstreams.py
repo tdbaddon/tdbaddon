@@ -20,14 +20,15 @@
 '''
 
 
-import os,re,sys,base64,urllib,urlparse
+import os,re,sys,base64,urllib,urlparse,random
+import xbmc
 
-from resources.lib.libraries import cache
-from resources.lib.libraries import cachemeta
-from resources.lib.libraries import control
-from resources.lib.libraries import client
-from resources.lib.libraries import workers
-from resources.lib.libraries import views
+from resources.lib.modules import cache
+from resources.lib.modules import cachemeta
+from resources.lib.modules import control
+from resources.lib.modules import client
+from resources.lib.modules import workers
+from resources.lib.modules import views
 
 
 phLink = 'http://mecca.watchkodi.com/phstreams.xml'
@@ -37,7 +38,7 @@ phTest = 'testings.xml'
 
 
 def getCategory():
-    getDirectory('0', phLink, '0', '0', '0', '0', '0', close=False)
+    getDirectory('0', phLink, '0', '0', '0', '0', close=False)
     addCategoryItem('VinMan FM', 'radioDirectory', 'radios.png')
     addCategoryItem('Cartoon Crazy','CartoonDirectory','cartoon.png')
     addCategoryItem('NHL', 'nhlDirectory', 'hockey.jpg')
@@ -52,10 +53,10 @@ def getCategory():
 
 
 def localDirectory():
-    getDirectory('0', os.path.join(control.dataPath, phTest), '0', '0', '0', '0', '0', local=True)
+    getDirectory('0', os.path.join(control.dataPath, phTest), '0', '0', '0', '0', local=True)
 
 
-def getDirectory(name, url, audio, image, fanart, playable, content, close=True, local=False):
+def getDirectory(name, url, audio, image, fanart, content, close=True, local=False):
     if local == True:
         f = control.openFile(url) ; result = f.read() ; f.close()
     else:
@@ -311,7 +312,7 @@ def getDirectory(name, url, audio, image, fanart, playable, content, close=True,
     endDirectory(content, close)
 
 
-def subDirectory(name, url, audio, image, fanart, playable, tvshow, content):
+def subDirectory(name, url, audio, image, fanart, tvshow, content):
     match = re.compile('<sublink>(.+?)</sublink>').findall(url)
     if len(match) == 0: return
 
@@ -558,79 +559,174 @@ def clearSearch():
     control.refresh()
 
 
-def resolveUrl(name, url, audio, image, fanart, playable, content):
+def resolveUrl(url, direct=True):
     try:
-        if '.f4m'in url:
-            label = cleantitle(name)
-            ext = url.split('?')[0].split('&')[0].split('|')[0].rsplit('.')[-1].replace('/', '').lower()
-            if not ext == 'f4m': raise Exception()
-            from resources.lib.libraries.f4mproxy.F4mProxy import f4mProxyHelper
-            return f4mProxyHelper().playF4mLink(url, label, None, None,'',image)
-
-
-        #legacy issue, will be removed later
-        if 'afdah.org' in url and not '</source>' in url: url += '<source>afdah</source>'
-
-        if '</source>' in url:
-            source = re.compile('<source>(.+?)</source>').findall(url)[0]
-            url = re.compile('(.+?)<source>').findall(url)[0]
-
-            for i in ['_mv', '_tv', '_mv_tv']:
-                try: call = __import__('resources.lib.sources.%s%s' % (source, i), globals(), locals(), ['object'], -1).source()
-                except: pass
-
-            from resources.lib import sources ; d = sources.sources()
-
-            url = call.get_sources(url, d.hosthdfullDict, d.hostsdfullDict, d.hostlocDict)
-
-            if type(url) == list and len(url) == 1:
-                url = url[0]['url']
-
-            elif type(url) == list:
-                url = sorted(url, key=lambda k: k['quality'])
-                for i in url: i.update((k, '720p') for k, v in i.iteritems() if v == 'HD')
-                for i in url: i.update((k, '480p') for k, v in i.iteritems() if v == 'SD')
-                q = ['[B]%s[/B] | %s' % (i['source'].upper(), i['quality'].upper()) for i in url]
-                u = [i['url'] for i in url]
-                select = control.selectDialog(q)
-                if select == -1: return
-                url = u[select]
-
-            url = call.resolve(url)
-
-
-        from resources.lib import resolvers
-        host = (urlparse.urlparse(url).netloc).rsplit('.', 1)[0].rsplit('.')[-1]
-        url = resolvers.request(url)
-
-        if type(url) == list and len(url) == 1:
-            url = url[0]['url']
-
-        elif type(url) == list:
-            url = sorted(url, key=lambda k: k['quality'])
-            for i in url: i.update((k, '720p') for k, v in i.iteritems() if v == 'HD')
-            for i in url: i.update((k, '480p') for k, v in i.iteritems() if v == 'SD')
-            q = ['[B]%s[/B] | %s' % (host.upper(), i['quality'].upper()) for i in url]
-            u = [i['url'] for i in url]
-            select = control.selectDialog(q)
-            if select == -1: return
-            url = u[select]
-
-        if url == None: raise Exception()
+        dialog = None
+        dialog = control.progressDialog
+        dialog.create(control.addonInfo('name'), control.lang(30726).encode('utf-8'))
+        dialog.update(0)
     except:
-        return control.infoDialog(control.lang(30705).encode('utf-8'))
+        pass
+
+    try:
+        if not '</regex>' in url: raise Exception()
+        from resources.lib.modules import regex
+        u = regex.resolve(url)
+        if not u == None: url = u
+    except:
         pass
 
 
-    if playable == 'true':
-        item = control.item(path=url)
-        return control.resolve(int(sys.argv[1]), True, item)
-    else:
-        label = cleantitle(name)
-        item = control.item(path=url, iconImage=image, thumbnailImage=image)
-        item.setInfo( type='Video', infoLabels = {'title': label} )
-        control.playlist.clear()
+    try:
+        if not '.f4m'in url: raise Exception()
+        ext = url.split('?')[0].split('&')[0].split('|')[0].rsplit('.')[-1].replace('/', '').lower()
+        if not ext == 'f4m': raise Exception()
+        from resources.lib.modules.f4mproxy.F4mProxy import f4mProxyHelper
+        f4mlabel = cleantitle(control.infoLabel('listitem.label'))
+        f4micon = control.infoLabel('listitem.icon')
+        return f4mProxyHelper().playF4mLink(url, f4mlabel, None, None, '', f4micon)
+    except:
+        pass
+
+
+    try:
+        if not url.startswith('rtmp'): raise Exception()
+        if len(re.compile('\s*timeout=(\d*)').findall(url)) == 0: url += ' timeout=10'
+        return playItem(url, dialog)
+    except:
+        pass
+
+
+    try:
+        url = url.split('<source>')[0]
+
+        domain = '.'.join((urlparse.urlparse(url).netloc).split('.')[-2:]).lower()
+
+        s = []
+        path = os.path.join(control.addonInfo('path'), 'resources', 'lib', 'sources')
+        for d in os.listdir(path):
+            try: s += [(d, re.findall('self\.domains\s*=\s*\[(.+?)\]', open(os.path.join(path, d), 'r').read())[0].split(','))]
+            except: pass
+        s = [(i[0], [x.replace('\'', '').replace('\"', '').strip() for x in i[1]]) for i in s]
+        s = [i[0].replace('.py', '') for i in s if domain in i[1]]
+        if len(s) > 0: direct = False
+
+        import urlresolver
+        hostDict = urlresolver.plugnplay.man.implementors(urlresolver.UrlResolver)
+        hostDict = [i.domains for i in hostDict]
+        hostDict = [i for i in hostDict if not '*' in i]
+        hostDict = [i.lower() for i in reduce(lambda x, y: x+y, hostDict)]
+        hostDict = [x for y,x in enumerate(hostDict) if x not in hostDict[:y]]
+
+        hostcapDict = ['hugefiles.net', 'kingfiles.net', 'openload.io', 'openload.co']
+
+        call = __import__('resources.lib.sources.%s' % s[0], globals(), locals(), ['object'], -1).source()
+
+        sources = call.sources(url, hostDict, hostDict)
+
+        random.shuffle(sources)
+
+        filter = []
+        filter += [i for i in sources if i['direct'] == True]
+        filter += [i for i in sources if i['direct'] == False]
+        sources = filter
+
+        filter = []
+        filter += [i for i in sources if i['quality'] == '1080p' and not i['source'].lower() in hostcapDict]
+        filter += [i for i in sources if i['quality'] == '1080p' and i['source'].lower() in hostcapDict]
+        filter += [i for i in sources if i['quality'] == 'HD' and not i['source'].lower() in hostcapDict]
+        filter += [i for i in sources if i['quality'] == 'HD' and i['source'].lower() in hostcapDict]
+        filter += [i for i in sources if i['quality'] == 'SD' and not i['source'].lower() in hostcapDict]
+        filter += [i for i in sources if i['quality'] == 'SCR' and not i['source'].lower() in hostcapDict]
+        filter += [i for i in sources if i['quality'] == 'CAM' and not i['source'].lower() in hostcapDict]
+        sources = filter
+
+        try: dialog.update(50, control.lang(30726).encode('utf-8'), str(' '))
+        except: pass
+
+        u = None
+
+        for i in range(len(sources)):
+            try:
+                try:
+                    if dialog.iscanceled(): break
+                    if xbmc.abortRequested == True: return sys.exit()
+                except:
+                    pass
+
+                url = call.resolve(sources[i]['url'])
+                if url == None: raise Exception()
+
+                if not sources[i]['direct'] == True:
+                    url = urlresolver.HostedMediaFile(url=sources[i]['url']).resolve()
+
+                if url == False: raise Exception()
+
+                u = url ; break
+            except:
+                pass
+
+        if not u == None: return playItem(u, dialog)
+    except:
+        pass
+
+
+    try:
+        import urlresolver
+        if urlresolver.HostedMediaFile(url).valid_url() == True: direct = False
+        u = urlresolver.HostedMediaFile(url=url).resolve()
+        if not u == False: return playItem(u, dialog)
+    except:
+        pass
+
+
+    try:
+        domain = '.'.join((urlparse.urlparse(url).netloc).split('.')[-2:]).lower()
+
+        s = []
+        path = os.path.join(control.addonInfo('path'), 'resources', 'lib', 'resolvers')
+        for d in os.listdir(path):
+            try: s += [(d, re.findall('domains\s*=\s*\[(.+?)\]', open(os.path.join(path, d), 'r').read())[0].split(','))]
+            except: pass
+        s = [(i[0], [x.replace('\'', '').replace('\"', '').strip() for x in i[1]]) for i in s]
+        s = [i[0].replace('.py', '') for i in s if domain in i[1]]
+        if len(s) > 0: direct = False
+
+        u = __import__('resources.lib.resolvers.%s' % s[0], globals(), locals(), ['object'], -1).resolve(url)
+
+        if not u == None: return playItem(u, dialog)
+    except:
+        pass
+
+
+    if direct == True: return playItem(url, dialog)
+
+
+    try: dialog.close()
+    except: pass
+
+    return control.infoDialog(control.lang(30705).encode('utf-8'))
+
+
+def playItem(url, dialog=None):
+    try:
+        try: dialog.close()
+        except: pass
+
+        meta = {}
+        for i in ['title', 'originaltitle', 'tvshowtitle', 'year', 'season', 'episode', 'genre', 'rating', 'votes', 'director', 'writer', 'plot', 'tagline']:
+            try: meta[i] = control.infoLabel('listitem.%s' % i)
+            except: pass
+        meta['title'] = cleantitle(meta['title'])
+        meta = dict((k,v) for k, v in meta.iteritems() if not v == '')
+        if not 'title' in meta: meta['title'] = cleantitle(control.infoLabel('listitem.label'))
+        icon = control.infoLabel('listitem.icon')
+
+        item = control.item(path=url, iconImage=icon, thumbnailImage=icon)
+        item.setInfo(type='Video', infoLabels = meta)
         control.player.play(url, item)
+    except:
+        pass
 
 
 def addCategoryItem(name, action, image, isFolder=True):
@@ -649,12 +745,9 @@ def addDirectoryItem(name, url, action, image, image2, fanart, audio, content, d
 
     if not str(fanart).lower().startswith('http'): fanart = control.addonInfo('fanart')
 
-    if content in ['movies', 'episodes']: playable = 'true'
-    else: playable = 'false'
-
     sysaddon = sys.argv[0]
 
-    u = '%s?name=%s&url=%s&audio=%s&image=%s&fanart=%s&playable=%s&tvshow=%s&content=%s&action=%s' % (sysaddon, urllib.quote_plus(name), urllib.quote_plus(url), urllib.quote_plus(audio), urllib.quote_plus(image), urllib.quote_plus(fanart), urllib.quote_plus(playable), str(tvshow), str(content), str(action))
+    u = '%s?name=%s&url=%s&audio=%s&image=%s&fanart=%s&tvshow=%s&content=%s&action=%s' % (sysaddon, urllib.quote_plus(name), urllib.quote_plus(url), urllib.quote_plus(audio), urllib.quote_plus(image), urllib.quote_plus(fanart), str(tvshow), str(content), str(action))
 
     cm = []
 
@@ -697,12 +790,18 @@ def addDirectoryItem(name, url, action, image, image2, fanart, audio, content, d
         cm.append((control.lang(30714).encode('utf-8'), 'RunPlugin(%s?action=addView&content=episodes)' % sysaddon))
 
 
+    if content in ['movies', 'episodes']:
+        replaceItems = True
+        cm.append((control.lang(30725).encode('utf-8'), 'RunPlugin(%s?action=openSettings)' % sysaddon))
+    else:
+        replaceItems = False
+
+
     item = control.item(name, iconImage='DefaultFolder.png', thumbnailImage=image)
     try: item.setArt({'poster': image2, 'tvshow.poster': image2, 'season.poster': image2, 'banner': image, 'tvshow.banner': image, 'season.banner': image})
     except: pass
-    item.addContextMenuItems(cm, replaceItems=False)
+    item.addContextMenuItems(cm, replaceItems=replaceItems)
     item.setProperty('Fanart_Image', fanart)
-    if playable == 'true': item.setProperty('IsPlayable', 'true')
     item.setInfo(type='Video', infoLabels=data)
 
     control.addItem(handle=int(sys.argv[1]),url=u,listitem=item,totalItems=totalItems,isFolder=isFolder)

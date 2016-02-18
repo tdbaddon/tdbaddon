@@ -20,8 +20,11 @@
 
 
 import re,urlparse
-from resources.lib.libraries import client
-from resources.lib.libraries import unwise
+from resources.lib.modules import client
+from resources.lib.modules import unwise
+
+
+domains = ['mybeststream.xyz']
 
 
 def resolve(url):

@@ -2,7 +2,11 @@
 
 
 import re,urlparse,base64
-from resources.lib.libraries import client
+from resources.lib.modules import client
+
+
+domains = ['miplayer.net']
+
 
 def resolve(url):
     try:

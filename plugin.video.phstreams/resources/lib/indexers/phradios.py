@@ -21,8 +21,8 @@
 
 
 import re,sys,urllib,urlparse
-from resources.lib.libraries import control
-from resources.lib.libraries import client
+from resources.lib.modules import control
+from resources.lib.modules import client
 from resources.lib.indexers import phhuddle
 
 mediaPath = control.addonInfo('path') + '/resources/media/phradios/'
