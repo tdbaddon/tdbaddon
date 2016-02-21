@@ -22,7 +22,6 @@
 import re,urllib,urlparse,json,base64
 
 from resources.lib.modules import cleantitle
-from resources.lib.modules import pyaes
 from resources.lib.modules import cloudflare
 from resources.lib.modules import client
 from resources.lib.modules import directstream
@@ -30,8 +29,8 @@ from resources.lib.modules import directstream
 
 class source:
     def __init__(self):
-        self.domains = ['tunemovie.is']
-        self.base_link = 'http://tunemovie.is'
+        self.domains = ['tunemovie.tv']
+        self.base_link = 'http://tunemovie.tv'
         self.search_link = 'aHR0cHM6Ly93d3cuZ29vZ2xlYXBpcy5jb20vY3VzdG9tc2VhcmNoL3YxZWxlbWVudD9rZXk9QUl6YVN5Q1ZBWGlVelJZc01MMVB2NlJ3U0cxZ3VubU1pa1R6UXFZJnJzej1maWx0ZXJlZF9jc2UmbnVtPTEwJmhsPWVuJmN4PTAwMDc0NjAzOTU3ODI1MDQ0NTkzNTo5bGprdnZqMng0aSZnb29nbGVob3N0PXd3dy5nb29nbGUuY29tJnE9JXM='
 
 
@@ -63,53 +62,50 @@ class source:
             return
 
 
-    def _gkdecrypt(self, key, str):
-        try:
-            key += (24 - len(key)) * '\0'
-            decrypter = pyaes.Decrypter(pyaes.AESModeOfOperationECB(key))
-            str = decrypter.feed(str.decode('hex')) + decrypter.feed()
-            str = str.split('\0', 1)[0]
-            return str
-        except:
-            return
-
-
     def sources(self, url, hostDict, hostprDict):
         try:
             sources = []
 
             if url == None: return sources
 
-            url = urlparse.urljoin(self.base_link, url)
+            referer = urlparse.urljoin(self.base_link, url)
 
-            result = cloudflare.source(url)
+            result = cloudflare.source(referer)
 
-            links = client.parseDOM(result, 'div', attrs = {'class': 'server_line.+?'})
+            links = client.parseDOM(result, 'div', attrs = {'class': '[^"]*server_line[^"]*'})
 
             for link in links:
                 try:
                     host = client.parseDOM(link, 'p', attrs = {'class': 'server_servername'})[0]
                     host = host.strip().lower().split(' ')[-1]
 
-                    url = client.parseDOM(link, 'a', ret='href')[0]
-                    url = client.replaceHTMLCodes(url)
-                    url = urlparse.urljoin(self.base_link, url)
-                    url = url.encode('utf-8')
+                    headers = {'X-Requested-With': 'XMLHttpRequest', 'Referer': referer}
 
-                    if 'google' in host:
-                        url = cloudflare.source(url)
-                        url = base64.b64decode(re.compile('decode\("(.+?)"').findall(url)[0])
-                        url = re.compile('proxy\.link=([^"&]+)').findall(url)[0]
-                        url = url.split('*', 1)[-1]
-                        url = self._gkdecrypt(base64.b64decode('Q05WTmhPSjlXM1BmeFd0UEtiOGg='), url)
-                        url = directstream.google(url)
-                        for i in url: sources.append({'source': 'gvideo', 'quality': i['quality'], 'provider': 'Tunemovie', 'url': i['url'], 'direct': True, 'debridonly': False})
+                    url = urlparse.urljoin(self.base_link, '/ip.temp/swf/plugins/ipplugins.php')
+
+                    p1 = client.parseDOM(link, 'a', ret='data-film')[0]
+                    p2 = client.parseDOM(link, 'a', ret='data-server')[0]
+                    p3 = client.parseDOM(link, 'a', ret='data-name')[0]
+                    post = {'ipplugins': 1, 'ip_film': p1, 'ip_server': p2, 'ip_name': p3}
+                    post = urllib.urlencode(post)
+
+                    if not host in ['google', 'putlocker', 'openload', 'videomega']: raise Exception()
+                    if not host in ['google', 'putlocker', 'openload']: raise Exception()
+
+                    result = cloudflare.source(url, post=post, headers=headers)
+                    result = json.loads(result)['s']
+
+                    if host in ['google', 'putlocker']:
+                        result = [i['file'] for i in result]
+                        for i in result:
+                            try: sources.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'provider': 'Tunemovie', 'url': i, 'direct': True, 'debridonly': False})
+                            except: pass
 
                     elif 'openload' in host:
-                        sources.append({'source': 'openload.co', 'quality': 'HD', 'provider': 'Tunemovie', 'url': url, 'direct': False, 'debridonly': False})
+                        sources.append({'source': 'openload.co', 'quality': 'HD', 'provider': 'Tunemovie', 'url': result, 'direct': False, 'debridonly': False})
 
-                    #elif 'videomega' in host:
-                        #sources.append({'source': 'videomega.tv', 'quality': 'HD', 'provider': 'Tunemovie', 'url': url, 'direct': False, 'debridonly': False})
+                    elif 'videomega' in host:
+                        sources.append({'source': 'videomega.tv', 'quality': 'HD', 'provider': 'Tunemovie', 'url': result, 'direct': False, 'debridonly': False})
                 except:
                     pass
 
@@ -120,15 +116,9 @@ class source:
 
     def resolve(self, url):
         try:
-            if not urlparse.urlparse(url).netloc in self.base_link:
-                url = client.request(url, output='geturl')
-                if 'requiressl=yes' in url: url = url.replace('http://', 'https://')
-                else: url = url.replace('https://', 'http://')
-
-            else:
-                result = cloudflare.request(url)
-                url = client.parseDOM(result, 'iframe', ret='src')[0]
-
+            url = client.request(url, output='geturl')
+            if 'requiressl=yes' in url: url = url.replace('http://', 'https://')
+            else: url = url.replace('https://', 'http://')
             return url
         except:
             return

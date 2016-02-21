@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Genesis Add-on
-    Copyright (C) 2015 lambda
+    Exodus Add-on
+    Copyright (C) 2016 lambda
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -67,7 +67,7 @@ def cloudflareCookie(url, post, headers, mobile, safe, timeout):
         result = client.request(url, post=post, headers=headers, mobile=mobile, safe=safe, timeout=timeout, error=True)
 
         jschl = re.compile('name="jschl_vc" value="(.+?)"/>').findall(result)[0]
-        init = re.compile('setTimeout\(function\(\){\s*.*?.*:(.*?)};').findall(result)[0]
+        init = re.compile('setTimeout\(function\(\){\s*.*?.*:(.*?)};').findall(result)[-1]
         builder = re.compile(r"challenge-form\'\);\s*(.*)a.v").findall(result)[0]
         decryptVal = parseJSString(init)
         lines = builder.split(';')

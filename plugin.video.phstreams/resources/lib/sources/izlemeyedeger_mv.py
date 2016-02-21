@@ -24,6 +24,7 @@ import re,urllib,urlparse,json,base64
 from resources.lib.modules import cleantitle
 from resources.lib.modules import cloudflare
 from resources.lib.modules import client
+from resources.lib.modules import directstream
 
 
 class source:
@@ -73,13 +74,11 @@ class source:
 
             result = cloudflare.source(result, headers={'Referer': url})
 
-            url = re.compile('"?file"?\s*:\s*"([^"]+)"\s*,\s*"?label"?\s*:\s*"(\d+)p?"').findall(result)
+            result = re.compile('"?file"?\s*:\s*"([^"]+)"').findall(result)
 
-            links = [(i[0], '1080p') for i in url if int(i[1]) >= 1080]
-            links += [(i[0], 'HD') for i in url if 720 <= int(i[1]) < 1080]
-            links += [(i[0], 'SD') for i in url if 480 <= int(i[1]) < 720]
-
-            for i in links: sources.append({'source': 'gvideo', 'quality': i[1], 'provider': 'Izlemeyedeger', 'url': i[0], 'direct': True, 'debridonly': False})
+            for i in result:
+                try: sources.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'provider': 'Izlemeyedeger', 'url': i, 'direct': True, 'debridonly': False})
+                except: pass
 
             return sources
         except:

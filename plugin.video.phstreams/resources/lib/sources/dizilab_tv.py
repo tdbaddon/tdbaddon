@@ -81,13 +81,26 @@ class source:
             url = urlparse.urljoin(self.base_link, url)
 
             result = cloudflare.source(url)
-            result = re.compile('"?file"?\s*:\s*"([^"]+)"\s*,\s*"?label"?\s*:\s*"(\d+)p?"').findall(result)
 
-            links = [(i[0], '1080p') for i in result if int(i[1]) >= 1080]
-            links += [(i[0], 'HD') for i in result if 720 <= int(i[1]) < 1080]
-            links += [(i[0], 'SD') for i in result if 480 <= int(i[1]) < 720]
+            try:
+                url = re.compile('"?file"?\s*:\s*"([^"]+)"\s*,\s*"?label"?\s*:\s*"(\d+)p?"').findall(result)
 
-            for i in links: sources.append({'source': 'gvideo', 'quality': i[1], 'provider': 'Dizilab', 'url': i[0], 'direct': True, 'debridonly': False})
+                links = [(i[0], '1080p') for i in url if int(i[1]) >= 1080]
+                links += [(i[0], 'HD') for i in url if 720 <= int(i[1]) < 1080]
+                links += [(i[0], 'SD') for i in url if 480 <= int(i[1]) < 720]
+                if not 'SD' in [i[1] for i in links]: links += [(i[0], 'SD') for i in url if 360 <= int(i[1]) < 480]
+
+                for i in links: sources.append({'source': 'gvideo', 'quality': i[1], 'provider': 'Dizilab', 'url': i[0], 'direct': True, 'debridonly': False})
+            except:
+                pass
+
+            try:
+                url = client.parseDOM(result, 'iframe', ret='src')
+                url = [i for i in url if 'openload.' in i][0]
+
+                sources.append({'source': 'openload.co', 'quality': 'HD', 'provider': 'Dizilab', 'url': url, 'direct': False, 'debridonly': False})
+            except:
+                pass
 
             return sources
         except:

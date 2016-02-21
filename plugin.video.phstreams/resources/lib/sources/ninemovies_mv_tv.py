@@ -86,11 +86,16 @@ class source:
             if url == None: return sources
 
             try:
+                result = ''
+
                 data = urlparse.parse_qs(url)
                 data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
 
                 title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
                 title = cleantitle.get(title)
+
+                try: episode = data['episode']
+                except: pass
 
                 url = cache.get(self.ninemovies_cache, 120)
 
@@ -104,17 +109,29 @@ class source:
                     url = [i for i in url if '%01d' % int(data['season']) == '%01d' % int(i[1])]
 
                 url = url[0][0]
+                url = urlparse.urljoin(self.base_link, url)
+
+                result = client.source(url)
+
+                years = re.findall('(\d{4})', data['premiered'])[0] if 'tvshowtitle' in data else data['year']
+                years = ['%s' % str(years), '%s' % str(int(years)+1), '%s' % str(int(years)-1)]
+
+                year = re.compile('<dd>(\d{4})</dd>').findall(result)[0]
+                if not year in years: return sources
             except:
                 pass
 
-            url = urlparse.urljoin(self.base_link, url)
+            try:
+                if not result == '': raise Exception()
 
-            result = client.source(url)
+                url = urlparse.urljoin(self.base_link, url)
 
-            years = re.findall('(\d{4})', data['premiered'])[0] if 'tvshowtitle' in data else data['year']
-            years = ['%s' % str(years), '%s' % str(int(years)+1), '%s' % str(int(years)-1)]
-            year = re.compile('<dd>(\d{4})</dd>').findall(result)[0]
-            if not year in years: raise Exception()
+                try: url, episode = re.compile('(.+?)\?episode=(\d*)$').findall(url)[0]
+                except: pass
+
+                result = client.source(url)
+            except:
+                pass
 
             try: quality = client.parseDOM(result, 'dd', attrs = {'class': 'quality'})[0].lower()
             except: quality = 'hd'
@@ -127,7 +144,8 @@ class source:
             result = [(i[0], re.findall('(\d+)', i[1])) for i in result]
             result = [(i[0], ''.join(i[1][:1])) for i in result]
 
-            if 'episode' in data: result = [i for i in result if '%01d' % int(i[1]) == '%01d' % int(data['episode'])]
+            try: result = [i for i in result if '%01d' % int(i[1]) == '%01d' % int(episode)]
+            except: pass
 
             links = [urllib.urlencode({'hash_id': i[0], 'referer': url}) for i in result]
 

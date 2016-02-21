@@ -1,3 +1,7 @@
+[b]1.4.3[/b]
+- Added additional servers for stability
+- Dailymotion support removed. The addon is broken and isn't included in standard Kodi distribution anymore.
+- Other code changes to fix broken channels Thanks CA
 [b]1.4.2[/b]
 - server change
 [b]1.4.1[/b]

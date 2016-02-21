@@ -18,9 +18,11 @@ file_var = open(xbmc.translatePath(os.path.join(datapath, 'cookie.lwp')), "a")
 cookie_file = os.path.join(os.path.join(datapath,''), 'cookie.lwp')
 
 def CATEGORIES():
-        addDir2('New Movie Releases','http://watch1080p.com/list/film/',1,icon,fanart)
-        addDir2('Most Viewed','http://watch1080p.com/list/film/?order=view',1,icon,fanart)
-        addDir2('Recently Added','http://watch1080p.com/list/film/?order=new',1,icon,fanart)
+        link = open_url('http://watch1080p.com')
+        urlseg=re.compile('href="(.+?)">MOVIES</a></li>',re.I).findall(link)[0]      
+        addDir2('New Movie Releases','http://watch1080p.com'+urlseg,1,icon,fanart)
+        addDir2('Most Viewed','http://watch1080p.com'+urlseg+'?order=view',1,icon,fanart)
+        addDir2('Recently Added','http://watch1080p.com'+urlseg+'?order=new',1,icon,fanart)
         addDir2('Genres','http://watch1080p.com',4,icon,fanart)
         addDir2('Countries','http://watch1080p.com',6,icon,fanart)
         addDir2('Years','http://watch1080p.com',5,icon,fanart)

@@ -150,6 +150,7 @@ class source:
             if url == None: return sources
 
             url = urlparse.urljoin(self.base_link, url)
+            url = url.replace('/watching.html', '')
 
             content = re.compile('(.+?)\?episode=\d*$').findall(url)
             content = 'movie' if len(content) == 0 else 'episode'

@@ -17,8 +17,8 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>
 """
 
-import urllib, urllib2, sys, re, os, unicodedata, cookielib
-import xbmc, xbmcgui, xbmcplugin, xbmcaddon, base64
+import urllib, urllib2, sys, re, os, random, unicodedata, cookielib, shutil
+import xbmc, xbmcgui, xbmcplugin, xbmcaddon, requests, base64
 
 plugin_handle = int(sys.argv[1])
 mysettings = xbmcaddon.Addon(id = 'plugin.video.ccloudtv')
@@ -30,17 +30,23 @@ enable_adult_section = mysettings.getSetting('enable_adult_section')
 fanart = xbmc.translatePath(os.path.join(home, 'fanart.jpg'))
 iconpath = xbmc.translatePath(os.path.join(home, 'resources/icons/'))
 icon = xbmc.translatePath(os.path.join(home, 'resources/icons/icon.png'))
+addonDir = mysettings.getAddonInfo('path').decode("utf-8")
 
 xml_regex = '<title>(.*?)</title>\s*<link>(.*?)</link>\s*<thumbnail>(.*?)</thumbnail>'
 m3u_thumb_regex = 'tvg-logo=[\'"](.*?)[\'"]'
 group_title_regex = 'group-title=[\'"](.*?)[\'"]'
 m3u_regex = '#(.+?),(.+)\s*(.+)\s*'
+eng_regex = '#(.+?),English,(.+)\s*(.+)\s*'
 adult_regex = '#(.+?)group-title="Adult",(.+)\s*(.+)\s*'
 adult_regex2 = '#(.+?)group-title="Public-Adult",(.+)\s*(.+)\s*'
 ondemand_regex = '[ON\'](.*?)[\'nd]'
 yt = 'http://www.youtube.com'
 m3u = 'WVVoU01HTkViM1pNTTBKb1l6TlNiRmx0YkhWTWJVNTJZbE01ZVZsWVkzVmpSMmgzVURKck9WUlViRWxTYXpWNVZGUmpQUT09'.decode('base64')
 text = 'http://pastebin.com/raw.php?i=Zr0Hgrbw'
+GuideDirectory = xbmc.translatePath('special://home/userdata/addon_data/script.renegadestv/')
+GuideINI = xbmc.translatePath('special://home/userdata/addon_data/script.renegadestv/addons2.ini')
+xbmcplugin.setContent(int(sys.argv[1]), 'movies')
+
 
 					
 def read_file(file):
@@ -78,24 +84,39 @@ def main():
 	if (len(List) < 1 ):		
 		mysettings.openSettings()
 		xbmc.executebuiltin("Container.Refresh")
-	#addDir('[COLOR yellow][B]cCloud TV Guide[/B][/COLOR]', 'guide', 97, '%s/guide.png'% iconpath, fanart)
+	#addDir('[COLOR yellow][B]TV Guide[/B][/COLOR]', 'guide', 97, '%s/guide.png'% iconpath, fanart)
+	#addDir('Open TV Guide/Update Channels','INI',95,'%s/guide.png'% iconpath,fanart)
+	addDir('[COLOR royalblue][B]English[/B][/COLOR]', 'english', 62, '%s/english.png'% iconpath, fanart)
 	addDir('[COLOR royalblue][B]Top 10[/B][/COLOR]', 'top10', 51, '%s/top10.png'% iconpath, fanart)
 	addDir('[COLOR royalblue][B]Sports[/B][/COLOR]', 'sports', 52, '%s/sports.png'% iconpath, fanart)
 	addDir('[COLOR royalblue][B]News[/B][/COLOR]', 'news', 53, '%s/news.png'% iconpath, fanart)
 	addDir('[COLOR royalblue][B]Documentary[/B][/COLOR]', 'documentary', 54, '%s/documentary.png'% iconpath, fanart)
 	addDir('[COLOR royalblue][B]Entertainment[/B][/COLOR]', 'entertainment', 55, '%s/entertainment.png'% iconpath, fanart)
 	addDir('[COLOR royalblue][B]Family[/B][/COLOR]', 'family', 56, '%s/family.png'% iconpath, fanart)
-	addDir('[COLOR royalblue][B]Lifestyle[/B][/COLOR]', 'lifestyle', 63, '%s/lifestyle.png'% iconpath, fanart)
 	addDir('[COLOR royalblue][B]Movies[/B][/COLOR]', 'movie', 57, '%s/movies.png'% iconpath, fanart)
 	addDir('[COLOR royalblue][B]Music[/B][/COLOR]', 'music', 58, '%s/music.png'% iconpath, fanart)
+	addDir('[COLOR royalblue][B]Lifestyle[/B][/COLOR]', 'lifestyle', 63, '%s/lifestyle.png'% iconpath, fanart)
 	addDir('[COLOR royalblue][B]On Demand Movies[/B][/COLOR]', 'ondemandmovies', 59, '%s/ondemandmovies.png'% iconpath, fanart)
 	addDir('[COLOR royalblue][B]On Demand Shows[/B][/COLOR]', 'ondemandshows', 65, '%s/ondemandshows.png'% iconpath, fanart)
 	addDir('[COLOR royalblue][B]24/7 Channels[/B][/COLOR]', '24', 60, '%s/twentyfourseven.png'% iconpath, fanart)
 	addDir('[COLOR royalblue][B]Radio[/B][/COLOR]', 'radio', 61, '%s/radio.png'% iconpath, fanart)
-	addDir('[COLOR royalblue][B]English[/B][/COLOR]', 'english', 62, '%s/english.png'% iconpath, fanart)
 	addDir('[COLOR royalblue][B]Non-English/International[/B][/COLOR]', 'international', 64,'%s/international.png'% iconpath, fanart)
 	if getSetting("enable_adult_section") == 'true':	
 		addDir('[COLOR magenta][B]Adult(18+)[/B][/COLOR]', 'adult', 98, '%s/adult.png'% iconpath, fanart)
+
+def createini():
+	if not os.path.exists(GuideDirectory):
+		dialog.ok(addon_id, 'Please makesure you have TV Guide installed and you have run it at least once then use this function to enable integration')
+		dialog.notification(addonname, 'Please install and run TV Guide at least once', xbmcgui.NOTIFICATION_ERROR );
+	
+	if os.path.exists(GuideDirectory):
+		addonsini = urllib.URLopener()
+		addonsini.retrieve("https://raw.githubusercontent.com/podgod/podgod/master/cCloud_TV_Guide/XML/combined.ini", GuideINI)
+        with open(GuideDirectory+"/addons2.ini", "a") as file:
+            file.write('https://raw.githubusercontent.com/podgod/podgod/master/cCloud_TV_Guide/XML/combined.ini\n')
+        shutil.rmtree(GuideDirectory , ignore_errors=True)
+    	xbmc.executebuiltin("RunAddon(script.renegadestv)")
+        sys.exit()
 		
 def removeAccents(s):
 	return ''.join((c for c in unicodedata.normalize('NFD', s.decode('utf-8')) if unicodedata.category(c) != 'Mn'))
@@ -310,14 +331,17 @@ def adult():
 	
 	
 def english(): 	
+	#addDir('[COLOR yellow][B]cCloud TV Guide[/B][/COLOR] - Click Here! Thanks to Renegades TV', 'guide', 97, '%s/guide.png'% iconpath, fanart)
 	try:
 		searchText = '(English)'
 		if len(List) > 0:		
 			content = make_request(List)
-			match = re.compile(m3u_regex).findall(content)
+			match = re.compile(m3u_regex).findall(content) 
+			#file.write('\n'.join(match))
 			for thumb, name, url in match:
 				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
-					m3u_playlist(name, url, thumb)	
+					m3u_playlist(name, url, thumb)
+			#outfile.write("\n".join(addontest.ini))
 	except:
 		pass
 	
@@ -690,7 +714,7 @@ def showText(heading, text):
 	    pass
 
 def guide():
-	xbmc.executebuiltin("RunAddon(script.renegadestv)")
+	xbmc.executebuiltin("RunAddon(script.ivueguide)")
 	sys.exit()
 	
 def m3u_online():		
@@ -717,9 +741,9 @@ def m3u_playlist(name, url, thumb):
 			name = 'ADULTS ONLY'.url = 'http://ignoreme.com'
 		if 'youtube.com/watch?v=' in url:
 			url = 'plugin://plugin.video.youtube/play/?video_id=%s' % (url.split('=')[-1])
-		elif 'dailymotion.com/video/' in url:
-			url = url.split('/')[-1].split('_')[0]
-			url = 'plugin://plugin.video.dailymotion_com/?mode=playVideo&url=%s' % url	
+		#elif 'dailymotion.com/video/' in url:
+		#	url = url.split('/')[-1].split('_')[0]
+		#	url = 'plugin://plugin.video.dailymotion_com/?mode=playVideo&url=%s' % url	
 		else:			
 			url = url
 		if 'tvg-logo' in thumb:				
@@ -741,9 +765,9 @@ def adult_playlist(name, url, thumb):
 	else:
 		if 'youtube.com/watch?v=' in url:
 			url = 'plugin://plugin.video.youtube/play/?video_id=%s' % (url.split('=')[-1])
-		elif 'dailymotion.com/video/' in url:
-			url = url.split('/')[-1].split('_')[0]
-			url = 'plugin://plugin.video.dailymotion_com/?mode=playVideo&url=%s' % url	
+		#elif 'dailymotion.com/video/' in url:
+		#	url = url.split('/')[-1].split('_')[0]
+		#	url = 'plugin://plugin.video.dailymotion_com/?mode=playVideo&url=%s' % url	
 		else:			
 			url = url
 		if 'tvg-logo' in thumb:				
@@ -753,11 +777,32 @@ def adult_playlist(name, url, thumb):
 			addLink(name, url, 1, icon, fanart)	
 
 def play_video(url):
+
+	if 'parser.php?surl=' in url: # case for cCloudTv redirecting parser
+		try:
+			#print 'URL: ' + str(url)
+			if '|' in url:
+				urls = url.split('|')
+				rurl = str(urls[0])
+				purl = urls[1]
+			else:
+				rurl = url
+			req = urllib2.Request(rurl)
+			res = urllib2.urlopen(req)
+			furl = res.geturl()
+			if '|' in url:
+				url = furl + '|' + purl
+			else:
+				url = furl
+			#print 'RedirectorURL: ' + str(url)
+		except:
+			pass
+			
 	media_url = url
 	item = xbmcgui.ListItem(name, path = media_url)
 	xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, item)
 	return
-
+	
 def get_params():
 	param = []
 	paramstring = sys.argv[2]
@@ -775,8 +820,15 @@ def get_params():
 				param[splitparams[0]] = splitparams[1]
 	return param
 
-List = 'YUhSMGNEb3ZMMnR2WkdrdVkyTnNaQzVwYnc9PQ=='.decode('base64') .decode('base64')
-#List = 'YUhSMGNEb3ZMM1JwYm5rdVkyTXZTMjlrYVE9PQ=='.decode('base64') .decode('base64')
+ini = 'https://raw.githubusercontent.com/podgod/podgod/master/cCloud_TV_Guide/XML/combined.ini'
+List1 = 'YUhSMGNEb3ZMMnR2WkdrdVkyTnNaQzVwYnc9PQ=='.decode('base64') .decode('base64')
+List2 = 'YUhSMGNEb3ZMM2d1WTI4dlpHSmphREF4'.decode('base64') .decode('base64')
+List3 = 'YUhSMGNEb3ZMM1JwYm5rdVkyTXZaR0pqYUc4eQ=='.decode('base64') .decode('base64')
+
+foo = [List1,List2,List3]
+List = random.choice(foo)
+	
+
 def addDir(name, url, mode, iconimage, fanart):
 	u = sys.argv[0] + "?url=" + urllib.quote_plus(url) + "&mode=" + str(mode) + "&name=" + urllib.quote_plus(name) + "&iconimage=" + urllib.quote_plus(iconimage)
 	ok = True
@@ -884,6 +936,9 @@ elif mode == 63:
 elif mode == 64:
 	international()
 	
+elif mode==95:
+    createini()
+		
 elif mode == 97:
 	guide()
 	

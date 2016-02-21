@@ -600,15 +600,15 @@ def resolveUrl(url, direct=True):
     try:
         url = url.split('<source>')[0]
 
-        domain = '.'.join((urlparse.urlparse(url).netloc).split('.')[-2:]).lower()
+        domain = (urlparse.urlparse(url).netloc).lower()
 
         s = []
         path = os.path.join(control.addonInfo('path'), 'resources', 'lib', 'sources')
         for d in os.listdir(path):
             try: s += [(d, re.findall('self\.domains\s*=\s*\[(.+?)\]', open(os.path.join(path, d), 'r').read())[0].split(','))]
             except: pass
-        s = [(i[0], [x.replace('\'', '').replace('\"', '').strip() for x in i[1]]) for i in s]
-        s = [i[0].replace('.py', '') for i in s if domain in i[1]]
+        s = [(i[0].replace('.py', ''), [x.replace('\'', '').replace('\"', '').strip() for x in i[1]]) for i in s]
+        s = [i[0] for i in s if any(x in domain for x in i[1])]
         if len(s) > 0: direct = False
 
         import urlresolver
@@ -661,6 +661,17 @@ def resolveUrl(url, direct=True):
                     url = urlresolver.HostedMediaFile(url=sources[i]['url']).resolve()
 
                 if url == False: raise Exception()
+
+                try: headers = dict(urlparse.parse_qsl(url.rsplit('|', 1)[1]))
+                except: headers = dict('')
+
+                if url.startswith('http') and '.m3u8' in url:
+                    result = client.request(url.split('|')[0], headers=headers, output='geturl', timeout='20')
+                    if result == None: raise Exception()
+
+                elif url.startswith('http'):
+                    result = client.request(url.split('|')[0], headers=headers, output='chunk', timeout='20')
+                    if result == None: raise Exception()
 
                 u = url ; break
             except:

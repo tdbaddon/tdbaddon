@@ -156,12 +156,14 @@ class source:
 
             result = client.source(url, post=post, headers=headers)
 
-            result = re.compile('"?link"?\s*:\s*"([^"]+)"\s*,\s*"?label"?\s*:\s*"(\d+)p?"').findall(result)
-            result = [(i[0].replace('\\/', '/'), i[1])  for i in result]
+            r = re.compile('"?link"?\s*:\s*"([^"]+)"\s*,\s*"?label"?\s*:\s*"(\d+)p?"').findall(result)
+            if not r: r = [(i, 480) for i in re.compile('"?link"?\s*:\s*"([^"]+)').findall(result)]
+            r = [(i[0].replace('\\/', '/'), i[1]) for i in r]
 
-            links = [(i[0], '1080p') for i in result if int(i[1]) >= 1080]
-            links += [(i[0], 'HD') for i in result if 720 <= int(i[1]) < 1080]
-            links += [(i[0], 'SD') for i in result if 480 <= int(i[1]) < 720]
+            links = [(i[0], '1080p') for i in r if int(i[1]) >= 1080]
+            links += [(i[0], 'HD') for i in r if 720 <= int(i[1]) < 1080]
+            links += [(i[0], 'SD') for i in r if 480 <= int(i[1]) < 720]
+            if not 'SD' in [i[1] for i in links]: links += [(i[0], 'SD') for i in r if 360 <= int(i[1]) < 480]
 
             for i in links: sources.append({'source': 'gvideo', 'quality': i[1], 'provider': 'Pubfilm', 'url': i[0], 'direct': True, 'debridonly': False})
 

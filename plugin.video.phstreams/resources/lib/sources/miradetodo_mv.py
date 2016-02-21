@@ -120,6 +120,7 @@ class source:
                 links += [(i[0], '1080p') for i in result if int(i[1]) >= 1080]
                 links += [(i[0], 'HD') for i in result if 720 <= int(i[1]) < 1080]
                 links += [(i[0], 'SD') for i in result if 480 <= int(i[1]) < 720]
+                if not 'SD' in [i[1] for i in links]: links += [(i[0], 'SD') for i in result if 360 <= int(i[1]) < 480]
             except:
                 pass
 
