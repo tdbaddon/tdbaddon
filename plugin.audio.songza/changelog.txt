@@ -1,0 +1,16 @@
+Version 1.1.3:
+ - Made station art work in more lists
+Version 1.1.1:
+ - Added MusicPlayer.Comment info tag for Station name
+Version 1.1.0:
+ - Added proxy capability
+Version 1.0.1:
+ - Bug fixes
+Version 1.0.0:
+ - Bug Fix: Stations repeating single song.
+ - Feature: Search stations & artists.
+ - Feature: Browse recent and personal playlists.
+ - Feature: Added settings for thumbnail storage.
+
+Version 0.0.1:
+ - Created
