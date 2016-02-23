@@ -15,16 +15,19 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import scraper
+import re
 import urllib
 import urlparse
-import re
-from salts_lib import kodi
+
 from salts_lib import dom_parser
+from salts_lib import kodi
 from salts_lib import log_utils
-from salts_lib.constants import VIDEO_TYPES
+from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
+from salts_lib.constants import VIDEO_TYPES
+import scraper
+
 
 BASE_URL = 'http://putmv.com'
 GVIDEO_NAMES = ['english sub', 'picasa']
@@ -74,9 +77,9 @@ class PutMV_Scraper(scraper.Scraper):
                     
                     for source in sources:
                         if self._get_direct_hostname(source) == 'gvideo':
-                            quality = self._gv_get_quality(source)
+                            quality = scraper_utils.gv_get_quality(source)
                         else:
-                            quality = self._get_quality(video, source, QUALITIES.HIGH)
+                            quality = scraper_utils.get_quality(video, source, QUALITIES.HIGH)
                     
                         hoster = {'multi-part': False, 'host': sources[source], 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': source, 'direct': direct}
                         hosters.append(hoster)
@@ -105,7 +108,7 @@ class PutMV_Scraper(scraper.Scraper):
         return sources
     
     def get_url(self, video):
-        return super(PutMV_Scraper, self)._default_get_url(video)
+        return self._default_get_url(video)
 
     def search(self, video_type, title, year):
         search_url = urlparse.urljoin(self.base_url, '/search/%s.html' % urllib.quote_plus(title))
@@ -126,7 +129,7 @@ class PutMV_Scraper(scraper.Scraper):
                             break
                             
                     if (not year or not match_year or year == match_year):
-                        result = {'url': self._pathify_url(url), 'title': match_title, 'year': match_year}
+                        result = {'url': scraper_utils.pathify_url(url), 'title': match_title, 'year': match_year}
                         results.append(result)
         
         return results

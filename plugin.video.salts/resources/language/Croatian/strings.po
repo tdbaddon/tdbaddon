@@ -2,14 +2,14 @@
 # Addon id: plugin.video.salts
 # Addon Provider: TV Addons
 # Translators:
-# Ante Ruić <ante.ruic@st.htnet.hr>, 2015
+# Ante Ruić <ante.ruic@st.htnet.hr>, 2015-2016
 # Natko <natko_maniac@hotmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: SALTS\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2016-01-09 08:29+0000\n"
-"Last-Translator: tknorris\n"
+"PO-Revision-Date: 2016-02-06 18:21+0000\n"
+"Last-Translator: Ante Ruić <ante.ruic@st.htnet.hr>\n"
 "Language-Team: Croatian (http://www.transifex.com/tv-addons/salts/language/hr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -67,19 +67,19 @@ msgstr "Ukloni izvore iz cache memorije"
 
 msgctxt "#30012"
 msgid "Trending %s"
-msgstr "U trendu - %s"
+msgstr "U trendu %s"
 
 msgctxt "#30013"
 msgid "Popular %s"
-msgstr "Popularno - %s"
+msgstr "Popularno %s"
 
 msgctxt "#30014"
 msgid "Recently Updated %s"
-msgstr "Nedavno dodano - %s"
+msgstr "Nedavno dodano %s"
 
 msgctxt "#30015"
 msgid "Recommended %s"
-msgstr "Preporučeno - %s"
+msgstr "Preporučeno %s"
 
 msgctxt "#30016"
 msgid "My %s Collection"
@@ -139,7 +139,7 @@ msgstr "Forsiraj osvježenje"
 
 msgctxt "#30030"
 msgid "Clear All %s"
-msgstr "Očisti sve - %s"
+msgstr "Očisti sve %s"
 
 msgctxt "#30031"
 msgid "Forcing Refresh"
@@ -183,11 +183,11 @@ msgstr "Upiši novu poziciju (1 - %s)"
 
 msgctxt "#30041"
 msgid "Set Default %s View"
-msgstr "Postavi zadani pregled - %s"
+msgstr "Postavi zadani %s Pregled"
 
 msgctxt "#30042"
 msgid "Set a view then select this item to set the default %s view"
-msgstr "Postavi pregled, a zatim označi ovu stavku za postavljanje zadanog pregleda - %s"
+msgstr "Postavi pregled, a zatim označi ovu stavku za postavljanje zadanog %s pregleda"
 
 msgctxt "#30043"
 msgid "Import"
@@ -195,7 +195,7 @@ msgstr "Uvezi"
 
 msgctxt "#30044"
 msgid "%s View Set to: %s"
-msgstr "%s - pregled postavljen na: %s"
+msgstr "%s Pregled postavljen na: %s"
 
 msgctxt "#30045"
 msgid "Delete [B][COLOR red]ENTIRE[/COLOR][/B] Url Cache"
@@ -311,11 +311,11 @@ msgstr "Ukloni pretragu"
 
 msgctxt "#30073"
 msgid "Recent %s Searches Cleared"
-msgstr "Nedavne pretrage očišćene - %s"
+msgstr "Nedavne pretrage očišćene %s"
 
 msgctxt "#30074"
 msgid "Saved %s Searches Cleared"
-msgstr "Spremljene pretrage očišćene - %s"
+msgstr "Spremljene pretrage očišćene %s"
 
 msgctxt "#30075"
 msgid "Scraper Timeouts: %s/%s"
@@ -351,7 +351,7 @@ msgstr "Prihvati rezultate s: %s"
 
 msgctxt "#30083"
 msgid "Url To Change (%s)"
-msgstr "Url za promjenu(%s)"
+msgstr "Url za promjenu (%s)"
 
 msgctxt "#30084"
 msgid "Related %s url at %s"
@@ -415,7 +415,7 @@ msgstr "Ažuriranje pretplate ..."
 
 msgctxt "#30099"
 msgid "Next Update in %0.1f hours"
-msgstr "Sljedeći Ažuriranje je u % 0,1 f sati"
+msgstr "Sljedeći Ažuriranje je u %0.1f sati"
 
 msgctxt "#30100"
 msgid "Are you sure you want to delete the url cache?"
@@ -611,7 +611,7 @@ msgstr "Izvor automatski onemogućen"
 
 msgctxt "#30148"
 msgid "[COLOR blue]%s[/COLOR]'s FL of %s is over your Failure Level threshold"
-msgstr "[BOJA plava]%s[/BOJA]'s FL od %s je preko tvoje granice pogrešnog nivoa"
+msgstr "[COLOR blue]%s[/COLOR]'s FL od %s je preko tvoje granice pogrešnog nivoa"
 
 msgctxt "#30149"
 msgid "Disabling it avoids wasting time and resources"
@@ -671,7 +671,7 @@ msgstr "Ovlastite SALTS za pristup vašem računu trakt.tv:"
 
 msgctxt "#30163"
 msgid ""
-msgstr "1) Posjeti [COLOR nebesko plava]http://trakt.tv/pin/347[/COLOR]"
+msgstr "1) Posjeti [COLOR skyblue]http://trakt.tv/pin/347[/COLOR]"
 
 msgctxt "#30164"
 msgid "2) If prompted, authorize SALTS to access your account."
@@ -799,7 +799,7 @@ msgstr "Traženje Url za: %s"
 
 msgctxt "#30195"
 msgid "'%s' added to library"
-msgstr "%s' dodaje se biblioteci"
+msgstr "'%s' dodaje se biblioteci"
 
 msgctxt "#30196"
 msgid "Add to Section Menu"
@@ -815,7 +815,7 @@ msgstr "Pozitivno ocijenjeni popisi"
 
 msgctxt "#30199"
 msgid "%s Mosts"
-msgstr "%s naj"
+msgstr "%s Naj"
 
 msgctxt "#30200"
 msgid "Most Played This Week"
@@ -927,7 +927,7 @@ msgstr "Neuspješno: [%s] %s iz %s"
 
 msgctxt "#30227"
 msgid "Scraper Timeouts: [COLOR blue]%s[/COLOR]"
-msgstr "Timeouti Scrapera: [BOJA plava]%s[/BOJA]"
+msgstr "Timeouti Scrapera: [COLOR blue]%s[/COLOR]"
 
 msgctxt "#30228"
 msgid "Reset Failures"
@@ -996,6 +996,38 @@ msgstr "Ponovno postavljanje Svih URL-ova Scraper baza na  Uobičajeno"
 msgctxt "#30244"
 msgid "Select All/None"
 msgstr "Odaberi sve/ništa"
+
+msgctxt "#30245"
+msgid "Automatically Select Best Source"
+msgstr "Automatski izaberite najbolji izvor"
+
+msgctxt "#30246"
+msgid "SALTS Database Issue Recovery"
+msgstr "Oporavak problema nastalih u SALTS bazi podataka"
+
+msgctxt "#30247"
+msgid ""
+msgstr "SALTS DB ima problem koji može biti ispravljen pomoću prisilnih migracija DB."
+
+msgctxt "#30248"
+msgid "Should SALTS attempt a DB migration?"
+msgstr "Treba li SALTS pokušati migraciju DB?"
+
+msgctxt "#30249"
+msgid "DB Migration Failed but a DB reset may succeed."
+msgstr "DB migracija nije uspjela, ali resetiranje DB možda uspije."
+
+msgctxt "#30250"
+msgid "Should SALTS attempt a DB reset?"
+msgstr "Treba li SALTS pokušati resetirati DB?"
+
+msgctxt "#30251"
+msgid "([COLOR red]***All DB data will be lost.***[/COLOR])"
+msgstr "([COLOR red]***Svi podaci DB bit će izgubljeni.***[/COLOR])"
+
+msgctxt "#30252"
+msgid "DB Reset Failed: %s"
+msgstr "DB Reset nije uspio: %s"
 
 msgctxt "#30500"
 msgid "Addon Theme"
@@ -1077,6 +1109,86 @@ msgctxt "#30519"
 msgid "Title"
 msgstr "Naslov"
 
+msgctxt "#30520"
+msgid "Most Completed"
+msgstr "Uglavnom završeno"
+
+msgctxt "#30521"
+msgid "Least Completed"
+msgstr "Najmanje završeno"
+
+msgctxt "#30522"
+msgid "Recently Aired"
+msgstr "Nedavno Emitirano"
+
+msgctxt "#30523"
+msgid "Previously Aired"
+msgstr "Prije Emitirano"
+
+msgctxt "#30524"
+msgid "Show Trending"
+msgstr "Pokaži Trendove"
+
+msgctxt "#30525"
+msgid "Show Popular"
+msgstr "Pokaži Popularno"
+
+msgctxt "#30526"
+msgid "Show Recently Updated"
+msgstr "Pokaži Nedavno ažurirani"
+
+msgctxt "#30527"
+msgid "Show Recommended"
+msgstr "Pokaži Preporučeno"
+
+msgctxt "#30528"
+msgid "Show My Collection"
+msgstr "Pokaži Moju kolekciju"
+
+msgctxt "#30529"
+msgid "Show My Favorites"
+msgstr "Pokaži Moje omiljene"
+
+msgctxt "#30530"
+msgid "Show My Subscriptions"
+msgstr "Prikaži Moje pretplate"
+
+msgctxt "#30531"
+msgid "Show My Watchlist"
+msgstr "Prikaži Moje liste praćenja"
+
+msgctxt "#30532"
+msgid "Show My Lists"
+msgstr "Pokaži Moje liste"
+
+msgctxt "#30533"
+msgid "Show Other Lists"
+msgstr "Pokaži ostale liste"
+
+msgctxt "#30534"
+msgid "Show My Next Episodes"
+msgstr "Prikaži Moje sljedeće epizode"
+
+msgctxt "#30535"
+msgid "Show My Calendar"
+msgstr "Prikaži moj kalendar"
+
+msgctxt "#30536"
+msgid "Show General Calendar"
+msgstr "Pokaži Opći kalendar"
+
+msgctxt "#30537"
+msgid "Show Premiere Calendar"
+msgstr "Pokaži Kalendar Premijera"
+
+msgctxt "#30538"
+msgid "Show Friends"
+msgstr "Pokaži prijatelje"
+
+msgctxt "#30539"
+msgid "Show Search"
+msgstr "Pokaži Pretraživanje"
+
 msgctxt "#30612"
 msgid "Base Url"
 msgstr "Bazni Url"
@@ -1088,4 +1200,8 @@ msgstr "Uključiti u provjeru postojanja stranice"
 msgctxt "#30646"
 msgid "Include Watchlist in My Next Episodes"
 msgstr "Uključi Listu gledanja u Moje sljedeće Epizode"
+
+msgctxt "#30668"
+msgid "Cancel"
+msgstr "Odustani"
 

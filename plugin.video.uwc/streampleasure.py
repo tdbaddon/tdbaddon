@@ -25,7 +25,7 @@ progress = utils.progress
 
 
 def SPMain():
-    utils.addDir('[COLOR yellow]Search[/COLOR]','http://streampleasure.com/page/1/?s=',213,'','')
+    utils.addDir('[COLOR hotpink]Search[/COLOR]','http://streampleasure.com/page/1/?s=',213,'','')
     SPList('http://streampleasure.com/page/1/?filtre=date&cat=0',1)
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
@@ -47,15 +47,15 @@ def SPList(url, page, onelist=None):
         xbmcplugin.endOfDirectory(utils.addon_handle)
 
     
-def SPSearch(url):
+def SPSearch(url, keyword=None):
     searchUrl = url
-    vq = utils._get_keyboard(heading="Searching for...")
-    if (not vq): return False, 0
-    title = urllib.quote_plus(vq)
-    title = title.replace(' ','+')
-    searchUrl = searchUrl + title
-    print "Searching URL: " + searchUrl
-    SPList(searchUrl,1)
+    if not keyword:
+        utils.searchDir(url, 213)
+    else:
+        title = keyword.replace(' ','+')
+        searchUrl = searchUrl + title
+        print "Searching URL: " + searchUrl
+        SPList(searchUrl,1)
 
 
 def SPPlayvid(url, name, download=None):

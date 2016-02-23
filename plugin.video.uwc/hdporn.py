@@ -26,15 +26,15 @@ import utils
 progress = utils.progress
 
 def PAQMain():
-    utils.addDir('[COLOR yellow]Categories[/COLOR]','http://www.pornaq.com',63,'','')
-    utils.addDir('[COLOR yellow]Search[/COLOR]','http://www.pornaq.com/page/1/?s=',68,'','')
+    utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://www.pornaq.com',63,'','')
+    utils.addDir('[COLOR hotpink]Search[/COLOR]','http://www.pornaq.com/page/1/?s=',68,'','')
     PAQList('http://www.pornaq.com/page/1/',1)
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
 def P00Main():
-    utils.addDir('[COLOR yellow]Categories[/COLOR]','http://www.porn00.org',63,'','')
-    utils.addDir('[COLOR yellow]Search[/COLOR]','http://www.porn00.org/page/1/?s=',68,'','')
+    utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://www.porn00.org',63,'','')
+    utils.addDir('[COLOR hotpink]Search[/COLOR]','http://www.porn00.org/page/1/?s=',68,'','')
     PAQList('http://www.porn00.org/page/1/',1)
     xbmcplugin.endOfDirectory(utils.addon_handle)    
 
@@ -43,10 +43,16 @@ def PAQList(url, page, onelist=None):
     if onelist:
         url = url.replace('page/1/','page/'+str(page)+'/')    
     listhtml = utils.getHtml(url, '')
-    match = re.compile('src="([^"]+)" class="attachment-primary-post-thumbnail wp-post-image".*?<a title="([^"]+)" href="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(listhtml)
-    for img, name, videopage in match:
-        name = utils.cleantext(name)
-        utils.addDownLink(name, videopage, 62, img, '')
+    if 'pornaq' in url:
+        match = re.compile(r'<h2>\s+<a title="([^"]+)" href="([^"]+)".*?src="([^"]+)" class="attachment-primary-post-thumbnail', re.DOTALL | re.IGNORECASE).findall(listhtml)
+        for name, videopage, img in match:
+            name = utils.cleantext(name)
+            utils.addDownLink(name, videopage, 62, img, '')
+    elif 'porn00' in url:
+        match = re.compile('<h2> <a title="([^"]+)" href="([^"]+)".*?src="([^"]+)" class="attachment-primary-post-thumbnail', re.DOTALL | re.IGNORECASE).findall(listhtml)
+        for name, videopage, img in match:
+            name = utils.cleantext(name)
+            utils.addDownLink(name, videopage, 62, img, '')    
     if not onelist:
         if re.search("<span class='current'>\d+?</span><span>", listhtml, re.DOTALL | re.IGNORECASE):
             npage = page + 1        
@@ -175,15 +181,15 @@ def PCat(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
-def PSearch(url):
+def PSearch(url, keyword=None):
     searchUrl = url
-    vq = utils._get_keyboard(heading="Searching for...")
-    if (not vq): return False, 0
-    title = urllib.quote_plus(vq)
-    title = title.replace(' ','+')
-    searchUrl = searchUrl + title
-    print "Searching URL: " + searchUrl
-    PAQList(searchUrl, 1)
+    if not keyword:
+        utils.searchDir(url, 68)
+    else:
+        title = keyword.replace(' ','+')
+        searchUrl = searchUrl + title
+        print "Searching URL: " + searchUrl
+        PAQList(searchUrl, 1)
 
 
 def getVK(url):

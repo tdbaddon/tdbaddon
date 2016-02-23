@@ -15,17 +15,20 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import scraper
-import urllib
-import urlparse
 import base64
 import hashlib
 import re
+import urllib
+import urlparse
+
 from salts_lib import kodi
 from salts_lib import log_utils
-from salts_lib.constants import VIDEO_TYPES
+from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
+from salts_lib.constants import VIDEO_TYPES
+import scraper
+
 
 BASE_URL = 'http://watchseries.ag'
 REAL_URL = base64.decodestring('aHR0cDovL3dzLm1n')
@@ -59,30 +62,30 @@ class WS_Scraper(scraper.Scraper):
         hosters = []
         if source_url and source_url != FORCE_NO_MATCH:
             html = self._http_get(source_url, cache_limit=.5)
-            js_result = self._parse_json(html, source_url)
+            js_result = scraper_utils.parse_json(html, source_url)
             if 'results' in js_result and '0' in js_result['results'] and 'links' in js_result['results']['0']:
                 for link in js_result['results']['0']['links']:
                     if 'lang' not in link or link['lang'].lower() == 'english':
                         host = urlparse.urlparse(link['url']).hostname
-                        hoster = {'multi-part': False, 'url': link['url'], 'class': self, 'quality': self._get_quality(video, host, QUALITIES.HIGH), 'host': host, 'rating': None, 'views': None, 'direct': False}
+                        hoster = {'multi-part': False, 'url': link['url'], 'class': self, 'quality': scraper_utils.get_quality(video, host, QUALITIES.HIGH), 'host': host, 'rating': None, 'views': None, 'direct': False}
                         hosters.append(hoster)
             
         return hosters
 
     def get_url(self, video):
-        return super(WS_Scraper, self)._default_get_url(video)
+        return self._default_get_url(video)
 
     def search(self, video_type, title, year):
         results = []
         search_url = '/search/%s/page/1' % (urllib.quote_plus(title))
         html = self._http_get(search_url, cache_limit=.25)
-        js_result = self._parse_json(html, search_url)
+        js_result = scraper_utils.parse_json(html, search_url)
         if 'results' in js_result:
             matches = [item[1] for item in sorted(js_result['results'].items(), key=lambda x:x[0])]
             for match in matches:
                 url, match_title, match_year = match['href'], match['name'], match['year']
                 if not year or not match_year or year == match_year:
-                    url = self._pathify_url(url)
+                    url = scraper_utils.pathify_url(url)
                     url = url.replace('/json', '')
                     result = {'url': url, 'title': match_title, 'year': match_year}
                     results.append(result)
@@ -91,10 +94,10 @@ class WS_Scraper(scraper.Scraper):
     def _get_episode_url(self, show_url, video):
         log_utils.log('WS Episode Url: |%s|%s|' % (show_url, str(video).decode('utf-8', 'replace')), log_utils.LOGDEBUG)
         html = self._http_get(show_url, cache_limit=2)
-        js_result = self._parse_json(html, show_url)
+        js_result = scraper_utils.parse_json(html, show_url)
         if 'results' in js_result and '0' in js_result['results'] and 'episodes' in js_result['results']['0']:
             seasons = js_result['results']['0']['episodes']
-            force_title = self._force_title(video)
+            force_title = scraper_utils.force_title(video)
             if not force_title:
                 if str(video.season) in seasons:
                     season = seasons[str(video.season)]
@@ -103,7 +106,7 @@ class WS_Scraper(scraper.Scraper):
         
                     if str(video.episode) in season:
                         url = season[str(video.episode)]['url']
-                        return self._pathify_url(url.replace('/json', ''))
+                        return scraper_utils.pathify_url(url.replace('/json', ''))
         
                 if kodi.get_setting('airdate-fallback') == 'true' and video.ep_airdate:
                     airdate_pattern = video.ep_airdate.strftime('%d/%M/%Y')
@@ -115,32 +118,32 @@ class WS_Scraper(scraper.Scraper):
                         for episode in episodes:
                             if airdate_pattern == episode['release']:
                                 url = episode['url']
-                                return self._pathify_url(url.replace('/json', ''))
+                                return scraper_utils.pathify_url(url.replace('/json', ''))
             else:
                 log_utils.log('Skipping S&E matching as title search is forced on: %s' % (video.trakt_id), log_utils.LOGDEBUG)
         
             if (force_title or kodi.get_setting('title-fallback') == 'true') and video.ep_title:
-                norm_title = self._normalize_title(video.ep_title)
+                norm_title = scraper_utils.normalize_title(video.ep_title)
                 for season in seasons:
                     if season.lower() == 'epcount': continue
                     episodes = seasons[season]
                     if isinstance(episodes, dict):
                         episodes = [episodes[key] for key in episodes]
                     for episode in episodes:
-                        if episode['name'] is not None and norm_title == self._normalize_title(episode['name']):
+                        if episode['name'] is not None and norm_title == scraper_utils.normalize_title(episode['name']):
                             url = episode['url']
-                            return self._pathify_url(url.replace('/json', ''))
+                            return scraper_utils.pathify_url(url.replace('/json', ''))
 
     @classmethod
     def get_settings(cls):
-        settings = super(WS_Scraper, cls).get_settings()
-        settings = cls._disable_sub_check(settings)
+        settings = super(cls, cls).get_settings()
+        settings = scraper_utils.disable_sub_check(settings)
         return settings
     
     def _http_get(self, url, cache_limit=8):
         url = self.__translate_url(url)
         headers = {'User-Agent': WS_USER_AGENT}
-        result = super(WS_Scraper, self)._http_get(url, headers=headers, cache_limit=cache_limit)
+        result = super(self.__class__, self)._http_get(url, headers=headers, cache_limit=cache_limit)
         result = re.sub('<script.*?</script>', '', result)
         return result
     

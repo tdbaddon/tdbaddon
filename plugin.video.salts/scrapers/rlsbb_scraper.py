@@ -15,18 +15,20 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import scraper
+import datetime
+import re
 import urllib
 import urlparse
-import re
-import datetime
-from salts_lib import kodi
-from salts_lib.trans_utils import i18n
+
 from salts_lib import dom_parser
-from salts_lib.constants import VIDEO_TYPES
+from salts_lib import kodi
+from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import SHORT_MONS
-from salts_lib.constants import QUALITIES
+from salts_lib.constants import VIDEO_TYPES
+from salts_lib.utils2 import i18n
+import scraper
+
 
 BASE_URL = 'http://rlsbb.com'
 CATEGORIES = {VIDEO_TYPES.MOVIE: '/category/movies/"', VIDEO_TYPES.EPISODE: '/category/tv-shows/"'}
@@ -77,7 +79,7 @@ class RlsBB_Scraper(scraper.Scraper):
         for match in re.finditer('href="([^"]+)', comment):
             stream_url = match.group(1)
             host = urlparse.urlparse(stream_url).hostname
-            quality = self._blog_get_quality(video, stream_url, host)
+            quality = scraper_utils.blog_get_quality(video, stream_url, host)
             sources[stream_url] = quality
         return sources
     
@@ -91,7 +93,7 @@ class RlsBB_Scraper(scraper.Scraper):
                     stream_url, hostname = match2.groups()
                     if hostname.upper() in ['TORRENT SEARCH', 'VIP FILE']: continue
                     host = urlparse.urlparse(stream_url).hostname
-                    quality = self._blog_get_quality(video, release, host)
+                    quality = scraper_utils.blog_get_quality(video, release, host)
                     sources[stream_url] = quality
         return sources
         
@@ -100,8 +102,8 @@ class RlsBB_Scraper(scraper.Scraper):
 
     @classmethod
     def get_settings(cls):
-        settings = super(RlsBB_Scraper, cls).get_settings()
-        settings = cls._disable_sub_check(settings)
+        settings = super(cls, cls).get_settings()
+        settings = scraper_utils.disable_sub_check(settings)
         name = cls.get_name()
         settings.append('         <setting id="%s-filter" type="slider" range="0,180" option="int" label="     %s" default="60" visible="eq(-4,true)"/>' % (name, i18n('filter_results_days')))
         settings.append('         <setting id="%s-select" type="enum" label="     %s" lvalues="30636|30637" default="0" visible="eq(-5,true)"/>' % (name, i18n('auto_select')))

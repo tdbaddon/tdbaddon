@@ -25,8 +25,8 @@ import utils
 progress = utils.progress
 
 def Main():
-    utils.addDir('[COLOR yellow]Categories[/COLOR]','http://www.xvideospanish.com/categorias/',133,'','')
-    utils.addDir('[COLOR yellow]Search[/COLOR]','http://www.xvideospanish.com/?s=',134,'','')
+    utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://www.xvideospanish.com/categorias/',133,'','')
+    utils.addDir('[COLOR hotpink]Search[/COLOR]','http://www.xvideospanish.com/?s=',134,'','')
     List('http://www.xvideospanish.com/')
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
@@ -37,7 +37,7 @@ def List(url):
     for videopage, img, name, runtime in match:
         name = utils.cleantext(name[7:])
         if runtime:
-            name = name + ' [COLOR blue]' + runtime + '[/COLOR]'
+            name = name + ' [COLOR deeppink]' + runtime + '[/COLOR]'
         utils.addDownLink(name, videopage, 132, img, '')
     try:
         nextp=re.compile('<a class="nextpostslink" rel="next" href="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(listhtml)
@@ -46,22 +46,22 @@ def List(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
     
-def Search(url):
+def Search(url, keyword=None):
     searchUrl = url
-    vq = utils._get_keyboard(heading="Searching for...")
-    if (not vq): return False, 0
-    title = urllib.quote_plus(vq)
-    title = title.replace(' ','+')
-    searchUrl = searchUrl + title
-    print "Searching URL: " + searchUrl
-    List(searchUrl)
+    if not keyword:
+        utils.searchDir(url, 134)
+    else:
+        title = keyword.replace(' ','+')
+        searchUrl = searchUrl + title
+        print "Searching URL: " + searchUrl
+        List(searchUrl)
 
 
 def Categories(url):
     cathtml = utils.getHtml(url, '')
     match = re.compile('data-original="([^"]+)".*?href="([^"]+)">([^<]+)<.*?strong>([^<]+)<', re.DOTALL | re.IGNORECASE).findall(cathtml)
     for img, catpage, name, videos in match:
-        name = name + ' [COLOR blue]' + videos + ' videos[/COLOR]'
+        name = name + ' [COLOR deeppink]' + videos + ' videos[/COLOR]'
         utils.addDir(name, catpage, 131, img)
     xbmcplugin.endOfDirectory(utils.addon_handle)   
 

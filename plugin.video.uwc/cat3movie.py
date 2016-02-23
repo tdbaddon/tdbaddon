@@ -25,8 +25,8 @@ import utils
 progress = utils.progress
 
 def Main():
-    utils.addDir('[COLOR yellow]Search[/COLOR]','http://cat3movie.us/?s=', 353, '', '')
-    utils.addDir('[COLOR yellow]Categories[/COLOR]','http://cat3movie.us', 354, '', '')
+    utils.addDir('[COLOR hotpink]Search[/COLOR]','http://cat3movie.us/?s=', 353, '', '')
+    utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://cat3movie.us', 354, '', '')
     List('http://cat3movie.us')
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
@@ -44,15 +44,15 @@ def List(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
     
-def Search(url):
+def Search(url, keyword=None):
     searchUrl = url
-    vq = utils._get_keyboard(heading="Searching for...")
-    if (not vq): return False, 0
-    title = urllib.quote_plus(vq)
-    title = title.replace(' ','+')
-    searchUrl = searchUrl + title
-    print "Searching URL: " + searchUrl
-    List(searchUrl)
+    if not keyword:
+        utils.searchDir(url, 353)
+    else:
+        title = keyword.replace(' ','+')
+        searchUrl = searchUrl + title
+        print "Searching URL: " + searchUrl
+        List(searchUrl)
 
 
 def Categories(url):
@@ -64,10 +64,11 @@ def Categories(url):
 
 
 def Playvid(url, name, download=None):
+    print "cat3movie::playvid " + url
     progress.create('Play video', 'Searching videofile.')
     progress.update( 10, "", "Loading video page", "" )
     html = utils.getHtml(url, '')
-    embedLinks = re.compile('<p><a href="(.+?)" rel="nofollow" target="_blank">').findall(html)
+    embedLinks = re.compile('<a href="(.+?)" rel="nofollow" target="_blank">').findall(html)
     url = ''
     for link in embedLinks:
         html = utils.getHtml(link, '')

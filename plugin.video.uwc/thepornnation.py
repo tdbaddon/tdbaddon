@@ -26,17 +26,17 @@ progress = utils.progress
 
 
 def TPNMain(url):
-    utils.addDir('[COLOR yellow]Categories[/COLOR]','http://thepornnation.com/',123,'','')
-    utils.addDir('[COLOR yellow]Search[/COLOR]','http://thepornnation.com/?s=',124,'','')
-    utils.addDir('[COLOR yellow]Movies[/COLOR]','http://thepornnation.com/category/movies/',125,'','')
+    utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://thepornempire.com/',123,'','')
+    utils.addDir('[COLOR hotpink]Search[/COLOR]','http://thepornempire.com/?s=',124,'','')
+    utils.addDir('[COLOR hotpink]Movies[/COLOR]','http://thepornempire.com/category/movies/',125,'','')
     TPNList(url)
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
 def TPNMainMovies(url):
-    utils.addDir('[COLOR yellow]Categories[/COLOR]','http://thepornnation.com/',126,'','')
-    utils.addDir('[COLOR yellow]Search[/COLOR]','http://thepornnation.com/?s=',124,'','')
-    utils.addDir('[COLOR yellow]Scenes[/COLOR]','http://thepornnation.com/category/videos/',120,'','')
+    utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://thepornempire.com/',126,'','')
+    utils.addDir('[COLOR hotpink]Search[/COLOR]','http://thepornempire.com/?s=',124,'','')
+    utils.addDir('[COLOR hotpink]Scenes[/COLOR]','http://thepornempire.com/category/videos/',120,'','')
     TPNList(url)
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
@@ -55,15 +55,15 @@ def TPNList(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
     
-def TPNSearch(url):
+def TPNSearch(url, keyword=None):
     searchUrl = url
-    vq = utils._get_keyboard(heading="Searching for...")
-    if (not vq): return False, 0
-    title = urllib.quote_plus(vq)
-    title = title.replace(' ','+')
-    searchUrl = searchUrl + title
-    print "Searching URL: " + searchUrl
-    TPNSearchList(searchUrl)
+    if not keyword:
+        utils.searchDir(url, 124)
+    else:
+        title = keyword.replace(' ','+')
+        searchUrl = searchUrl + title
+        print "Searching URL: " + searchUrl
+        TPNSearchList(searchUrl)
 
 
 def TPNSearchList(url):

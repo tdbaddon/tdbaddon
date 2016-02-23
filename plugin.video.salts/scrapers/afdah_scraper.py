@@ -15,15 +15,18 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import scraper
-import urlparse
 import re
 import string
 import urllib
+import urlparse
+
 from salts_lib import kodi
-from salts_lib.constants import VIDEO_TYPES
+from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
+from salts_lib.constants import VIDEO_TYPES
+import scraper
+
 
 BASE_URL = 'http://afdah.tv'
 
@@ -77,7 +80,7 @@ class Afdah_Scraper(scraper.Scraper):
             for match in re.finditer(pattern, html, re.I):
                 url = match.group(1)
                 host = urlparse.urlparse(url).hostname
-                hoster = {'multi-part': False, 'url': url, 'host': host, 'class': self, 'quality': self._get_quality(video, host, quality), 'rating': None, 'views': None, 'direct': False}
+                hoster = {'multi-part': False, 'url': url, 'host': host, 'class': self, 'quality': scraper_utils.get_quality(video, host, quality), 'rating': None, 'views': None, 'direct': False}
                 hosters.append(hoster)
         return hosters
 
@@ -85,8 +88,8 @@ class Afdah_Scraper(scraper.Scraper):
         hosters = []
         for match in re.finditer('file\s*:\s*"([^"]+).*?label\s*:\s*"([^"]+)', html):
             url, resolution = match.groups()
-            url += '|User-Agent=%s&Cookie=%s' % (self._get_ua(), self.__get_stream_cookies())
-            hoster = {'multi-part': False, 'url': url, 'host': self._get_direct_hostname(url), 'class': self, 'quality': self._height_get_quality(resolution), 'rating': None, 'views': None, 'direct': True}
+            url += '|User-Agent=%s&Cookie=%s' % (scraper_utils.get_ua(), self._get_stream_cookies())
+            hoster = {'multi-part': False, 'url': url, 'host': self._get_direct_hostname(url), 'class': self, 'quality': scraper_utils.height_get_quality(resolution), 'rating': None, 'views': None, 'direct': True}
             hosters.append(hoster)
         return hosters
 
@@ -97,15 +100,8 @@ class Afdah_Scraper(scraper.Scraper):
         shifted = lower_trans + lower_trans.upper()
         return plaintext.translate(string.maketrans(alphabet, shifted))
 
-    def __get_stream_cookies(self):
-        cj = self._set_cookies(self.base_url, {})
-        cookies = []
-        for cookie in cj:
-            cookies.append('%s=%s' % (cookie.name, cookie.value))
-        return urllib.quote(';'.join(cookies))
-
     def get_url(self, video):
-        return super(Afdah_Scraper, self)._default_get_url(video)
+        return self._default_get_url(video)
 
     def search(self, video_type, title, year):
         search_url = urlparse.urljoin(self.base_url, '/wp-content/themes/afdah/ajax-search.php')
@@ -116,6 +112,6 @@ class Afdah_Scraper(scraper.Scraper):
         for match in re.finditer(pattern, html, re.DOTALL | re.I):
             url, title, match_year = match.groups('')
             if not year or not match_year or year == match_year:
-                result = {'url': self._pathify_url(url), 'title': title, 'year': year}
+                result = {'url': scraper_utils.pathify_url(url), 'title': title, 'year': year}
                 results.append(result)
         return results

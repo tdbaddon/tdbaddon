@@ -15,16 +15,19 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import scraper
 import re
-import urllib2
 import urllib
+import urllib2
 import urlparse
-from salts_lib import kodi
+
 from salts_lib import dom_parser
-from salts_lib.constants import VIDEO_TYPES
+from salts_lib import kodi
+from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
+from salts_lib.constants import VIDEO_TYPES
+import scraper
+
 
 BASE_URL = 'http://www.vidics.ch'
 
@@ -46,7 +49,7 @@ class Vidics_Scraper(scraper.Scraper):
     def resolve_link(self, link):
         url = urlparse.urljoin(self.base_url, link)
         request = urllib2.Request(url)
-        request.add_header('User-Agent', self._get_ua())
+        request.add_header('User-Agent', scraper_utils.get_ua())
         request.add_unredirected_header('Host', request.get_host())
         request.add_unredirected_header('Referer', url)
         response = urllib2.urlopen(request)
@@ -69,12 +72,12 @@ class Vidics_Scraper(scraper.Scraper):
 
                 for match in re.finditer('class="movie_link.*?href="([^"]+)[^>]+>([^<]+)', fragment, re.DOTALL):
                     media_url, host = match.groups()
-                    hosters.append({'multi-part': False, 'url': media_url, 'class': self, 'quality': self._get_quality(video, host, QUALITIES.HIGH), 'host': host, 'rating': None, 'views': None, 'direct': False})
+                    hosters.append({'multi-part': False, 'url': media_url, 'class': self, 'quality': scraper_utils.get_quality(video, host, QUALITIES.HIGH), 'host': host, 'rating': None, 'views': None, 'direct': False})
 
         return hosters
 
     def get_url(self, video):
-        return super(Vidics_Scraper, self)._default_get_url(video)
+        return self._default_get_url(video)
 
     def search(self, video_type, title, year):
         if video_type == VIDEO_TYPES.MOVIE:
@@ -95,7 +98,7 @@ class Vidics_Scraper(scraper.Scraper):
                 match_year = ''
             
             if url and match_title and (not year or not match_year or year == match_year):
-                result = {'url': self._pathify_url(url[0]), 'title': match_title[0], 'year': match_year}
+                result = {'url': scraper_utils.pathify_url(url[0]), 'title': match_title[0], 'year': match_year}
                 results.append(result)
         return results
 
@@ -103,4 +106,4 @@ class Vidics_Scraper(scraper.Scraper):
         episode_pattern = 'href="(/Serie/[^-]+-Season-%s-Episode-%s)' % (video.season, video.episode)
         title_pattern = 'class="episode"\s+href="(?P<url>[^"]+).*?class="episode_title">\s*-\s*(?P<title>.*?) \('
         airdate_pattern = 'class="episode"\s+(?:style="[^"]+")?\s+href="([^"]+)(?:[^>]+>){2}[^<]+\s+\({year} {month_name} {p_day}\)'
-        return super(Vidics_Scraper, self)._default_get_episode_url(show_url, video, episode_pattern, title_pattern, airdate_pattern)
+        return self._default_get_episode_url(show_url, video, episode_pattern, title_pattern, airdate_pattern)

@@ -25,32 +25,32 @@ import utils
 progress = utils.progress
 
 def Main():
-    utils.addDir('[COLOR yellow]Categories[/COLOR]','http://streamxxx.tv/', 177, '', '')
-    utils.addDir('[COLOR yellow]Tags[/COLOR]','http://streamxxx.tv/', 173, '', '')
-    utils.addDir('[COLOR yellow]Search Overall[/COLOR]','http://streamxxx.tv/?s=', 174, '', '')
-    utils.addDir('[COLOR yellow]Search Scenes[/COLOR]','http://streamxxx.tv/?cat=1981&s=', 174, '', '')
-    utils.addDir('[COLOR yellow]Movies[/COLOR]','http://streamxxx.tv/category/movies/', 175, '', '')
-    utils.addDir('[COLOR yellow]International Movies[/COLOR]','http://streamxxx.tv/category/movies/international-movies/', 176, '', '')
+    utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://streamxxx.tv/', 177, '', '')
+    utils.addDir('[COLOR hotpink]Tags[/COLOR]','http://streamxxx.tv/', 173, '', '')
+    utils.addDir('[COLOR hotpink]Search Overall[/COLOR]','http://streamxxx.tv/?s=', 174, '', '')
+    utils.addDir('[COLOR hotpink]Search Scenes[/COLOR]','http://streamxxx.tv/?cat=1981&s=', 174, '', '')
+    utils.addDir('[COLOR hotpink]Movies[/COLOR]','http://streamxxx.tv/category/movies/', 175, '', '')
+    utils.addDir('[COLOR hotpink]International Movies[/COLOR]','http://streamxxx.tv/category/movies/international-movies/', 176, '', '')
     List('http://streamxxx.tv/category/clips/')
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
 def MainMovies():
-    utils.addDir('[COLOR yellow]Tags[/COLOR]','http://streamxxx.tv/', 173, '', '')
-    utils.addDir('[COLOR yellow]Search Overall[/COLOR]','http://streamxxx.tv/&s=', 174, '', '')
-    utils.addDir('[COLOR yellow]Search Movies[/COLOR]','http://streamxxx.tv/?cat=41&s=', 174, '', '')
-    utils.addDir('[COLOR yellow]International Movies[/COLOR]','http://streamxxx.tv/category/movies/international-movies/', 176, '', '')
-    utils.addDir('[COLOR yellow]Scenes[/COLOR]','http://streamxxx.tv/category/clips/', 170, '', '')
+    utils.addDir('[COLOR hotpink]Tags[/COLOR]','http://streamxxx.tv/', 173, '', '')
+    utils.addDir('[COLOR hotpink]Search Overall[/COLOR]','http://streamxxx.tv/&s=', 174, '', '')
+    utils.addDir('[COLOR hotpink]Search Movies[/COLOR]','http://streamxxx.tv/?cat=41&s=', 174, '', '')
+    utils.addDir('[COLOR hotpink]International Movies[/COLOR]','http://streamxxx.tv/category/movies/international-movies/', 176, '', '')
+    utils.addDir('[COLOR hotpink]Scenes[/COLOR]','http://streamxxx.tv/category/clips/', 170, '', '')
     List('http://streamxxx.tv/category/movies/')
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
 def MainInternationalMovies():
-    utils.addDir('[COLOR yellow]Tags[/COLOR]','http://streamxxx.tv/', 173, '', '')
-    utils.addDir('[COLOR yellow]Search Overall[/COLOR]','http://streamxxx.tv/?s=', 174, '', '')
-    utils.addDir('[COLOR yellow]Search International Movies[/COLOR]','http://streamxxx.tv/?cat=9&s=', 174, '', '')
-    utils.addDir('[COLOR yellow]Movies[/COLOR]','http://streamxxx.tv/category/movies/', 175, '', '')
-    utils.addDir('[COLOR yellow]Scenes[/COLOR]','http://streamxxx.tv/category/clips/', 170, '', '')
+    utils.addDir('[COLOR hotpink]Tags[/COLOR]','http://streamxxx.tv/', 173, '', '')
+    utils.addDir('[COLOR hotpink]Search Overall[/COLOR]','http://streamxxx.tv/?s=', 174, '', '')
+    utils.addDir('[COLOR hotpink]Search International Movies[/COLOR]','http://streamxxx.tv/?cat=9&s=', 174, '', '')
+    utils.addDir('[COLOR hotpink]Movies[/COLOR]','http://streamxxx.tv/category/movies/', 175, '', '')
+    utils.addDir('[COLOR hotpink]Scenes[/COLOR]','http://streamxxx.tv/category/clips/', 170, '', '')
     List('http://streamxxx.tv/category/movies/international-movies/')
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
@@ -69,15 +69,15 @@ def List(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
     
-def Search(url):
+def Search(url, keyword=None):
     searchUrl = url
-    vq = utils._get_keyboard(heading="Searching for...")
-    if (not vq): return False, 0
-    title = urllib.quote_plus(vq)
-    title = title.replace(' ','+')
-    searchUrl = searchUrl + title
-    print "Searching URL: " + searchUrl
-    List(searchUrl)
+    if not keyword:
+        utils.searchDir(url, 174)
+    else:
+        title = keyword.replace(' ','+')
+        searchUrl = searchUrl + title
+        print "Searching URL: " + searchUrl
+        List(searchUrl)
 
 
 def Categories(url):

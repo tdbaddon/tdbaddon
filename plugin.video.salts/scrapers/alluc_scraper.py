@@ -15,16 +15,19 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import scraper
 import urllib
 import urlparse
+
 from salts_lib import kodi
 from salts_lib import log_utils
-from salts_lib.trans_utils import i18n
-from salts_lib.constants import VIDEO_TYPES
+from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
 from salts_lib.constants import Q_ORDER
+from salts_lib.constants import VIDEO_TYPES
+from salts_lib.utils2 import i18n
+import scraper
+
 
 Q_LIST = [item[0] for item in sorted(Q_ORDER.items(), key=lambda x:x[1])]
 
@@ -60,7 +63,10 @@ class Alluc_Scraper(scraper.Scraper):
         return link
 
     def format_source_label(self, item):
-        return '[%s] %s' % (item['quality'], item['host'])
+        label = '[%s] %s' % (item['quality'], item['host'])
+        if 'extra' in item:
+            label += ' [%s]' % (item['extra'])
+        return label
 
     def get_sources(self, video):
         source_url = self.get_url(video)
@@ -85,7 +91,7 @@ class Alluc_Scraper(scraper.Scraper):
         for search_type in SEARCH_TYPES:
             search_url = self.__translate_search(url, search_type)
             html = self._http_get(search_url, cache_limit=.5)
-            js_result = self._parse_json(html, search_url)
+            js_result = scraper_utils.parse_json(html, search_url)
             if js_result['status'] == 'success':
                 for result in js_result['result']:
                     if len(result['hosterurls']) > 1: continue
@@ -93,10 +99,11 @@ class Alluc_Scraper(scraper.Scraper):
                     
                     stream_url = result['hosterurls'][0]['url']
                     if stream_url not in seen_urls:
-                        if self._title_check(video, result['title']):
+                        if scraper_utils.title_check(video, result['title']):
                             host = urlparse.urlsplit(stream_url).hostname
-                            quality = self._get_quality(video, host, self._get_title_quality(result['title']))
+                            quality = scraper_utils.get_quality(video, host, self._get_title_quality(result['title']))
                             hoster = {'multi-part': False, 'class': self, 'views': None, 'url': stream_url, 'rating': None, 'host': host, 'quality': quality, 'direct': False}
+                            hoster['extra'] = result['title']
                             hosters.append(hoster)
                             seen_urls.add(stream_url)
             else:
@@ -135,7 +142,7 @@ class Alluc_Scraper(scraper.Scraper):
 
     @classmethod
     def get_settings(cls):
-        settings = super(Alluc_Scraper, cls).get_settings()
+        settings = super(cls, cls).get_settings()
         name = cls.get_name()
         settings.append('         <setting id="%s-username" type="text" label="     %s" default="" visible="eq(-4,true)"/>' % (name, i18n('username')))
         settings.append('         <setting id="%s-password" type="text" label="     %s" option="hidden" default="" visible="eq(-5,true)"/>' % (name, i18n('password')))

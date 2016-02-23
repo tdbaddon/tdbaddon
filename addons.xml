@@ -342,7 +342,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
-<addon id="plugin.video.hulubox" name="HuluBox" version="1.0.10" provider-name="MetalKettle">
+<addon id="plugin.video.hulubox" name="HuluBox" version="1.0.11" provider-name="MetalKettle">
   <requires>
     <import addon="script.module.simplejson" version="3.3.0"/>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -504,7 +504,7 @@ http://kodilive.eu</description>
 
 <addon id="plugin.video.MoneySports"
        name="MoneySports"
-       version="2.0.3"
+       version="2.0.8"
        provider-name="Mark Money">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -692,7 +692,7 @@ http://kodilive.eu</description>
 </addon>
 
 <!--suppress ALL -->
-<addon id="plugin.video.salts" version="1.0.99" name="Stream All The Sources" provider-name="tknorris">
+<addon id="plugin.video.salts" version="2.0.1" name="Stream All The Sources" provider-name="tknorris">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
         <import addon="script.module.urlresolver" version="2.2.0"/>
@@ -890,7 +890,7 @@ http://kodilive.eu</description>
 
 <addon id="plugin.video.uwc"
        name="Ultimate Whitecream"
-       version="1.0.63"
+       version="1.0.91"
        provider-name="mortael">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
@@ -902,8 +902,8 @@ http://kodilive.eu</description>
     <extension point="xbmc.addon.metadata">
         <platform>all</platform>
         <license>GPL 2.0</license>
-        <summary lang="en">Adult(18+) </summary>
-        <description lang="en"></description>
+        <summary lang="en">Watch [COLOR red][B]ADULT[/B][/COLOR] Movies with Ultimate WhiteCream</summary>
+        <description lang="en">Watch [COLOR red][B]ADULT[/B][/COLOR] Movies with Ultimate WhiteCream</description>
 		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
     </extension>
 </addon>

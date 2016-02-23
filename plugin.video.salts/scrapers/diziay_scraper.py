@@ -16,19 +16,22 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import scraper
 import re
-import urlparse
 import urllib
+import urlparse
+
 from salts_lib import dom_parser
-from salts_lib import log_utils
-from salts_lib.constants import VIDEO_TYPES
-from salts_lib.constants import FORCE_NO_MATCH
-from salts_lib.constants import XHR
 from salts_lib import kodi
+from salts_lib import log_utils
+from salts_lib import scraper_utils
+from salts_lib.constants import FORCE_NO_MATCH
+from salts_lib.constants import VIDEO_TYPES
+import scraper
+
 
 BASE_URL = 'http://diziay.com'
 SEASON_URL = '/posts/filmgonder.php?action=sezongets'
+XHR = {'X-Requested-With': 'XMLHttpRequest'}
 
 class Diziay_Scraper(scraper.Scraper):
     base_url = BASE_URL
@@ -73,7 +76,7 @@ class Diziay_Scraper(scraper.Scraper):
                         subs = True
                     
                     sources = []
-                    for name, stream_url in self.__get_stream_cookies().items():
+                    for name, stream_url in self.__get_stream_cookies2().items():
                         if re.match('source_\d+p?', name):
                             sources.append(urllib.unquote(stream_url))
 
@@ -82,21 +85,21 @@ class Diziay_Scraper(scraper.Scraper):
                         
                     for source in sources:
                             if self._get_direct_hostname(source) == 'gvideo':
-                                quality = self._gv_get_quality(source)
+                                quality = scraper_utils.gv_get_quality(source)
                                 hoster = {'multi-part': False, 'host': self._get_direct_hostname(source), 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': source, 'direct': True, 'subs': subs}
                                 hosters.append(hoster)
     
         return hosters
 
-    def __get_stream_cookies(self):
+    def __get_stream_cookies2(self):
         cj = self._set_cookies(self.base_url, {})
         cookies = {}
         for cookie in cj:
-            cookies[cookie.name] =cookie.value
+            cookies[cookie.name] = cookie.value
         return cookies
 
     def get_url(self, video):
-        return super(Diziay_Scraper, self)._default_get_url(video)
+        return self._default_get_url(video)
 
     def _get_episode_url(self, show_url, video):
         url = urlparse.urljoin(self.base_url, show_url)
@@ -106,18 +109,18 @@ class Diziay_Scraper(scraper.Scraper):
             data = {'sezon_id': video.season, 'dizi_id': show_id[0], 'tip': 'dizi', 'bolumid': ''}
             episode_pattern = 'href="([^"]+/[^"]*%s-sezon-%s-bolum[^"]*)"' % (video.season, video.episode)
             title_pattern = 'href="(?P<url>[^"]*-\d+-sezon-\d+-bolum[^"]*)[^>]*>.*?class="realcuf">(?P<title>[^<]*)'
-            return super(Diziay_Scraper, self)._default_get_episode_url(SEASON_URL, video, episode_pattern, title_pattern, data=data, headers=XHR)
+            return self._default_get_episode_url(SEASON_URL, video, episode_pattern, title_pattern, data=data, headers=XHR)
 
     def search(self, video_type, title, year):
         html = self._http_get(self.base_url, cache_limit=8)
         results = []
         fragment = dom_parser.parse_dom(html, 'div', {'class': '[^"]*dizis[^"]*'})
-        norm_title = self._normalize_title(title)
+        norm_title = scraper_utils.normalize_title(title)
         if fragment:
             for match in re.finditer('href="([^"]+)[^>]*>([^<]+)', fragment[0]):
                 url, match_title = match.groups()
-                if norm_title in self._normalize_title(match_title):
-                    result = {'url': self._pathify_url(url), 'title': match_title, 'year': ''}
+                if norm_title in scraper_utils.normalize_title(match_title):
+                    result = {'url': scraper_utils.pathify_url(url), 'title': match_title, 'year': ''}
                     results.append(result)
 
         return results

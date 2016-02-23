@@ -24,8 +24,8 @@ import utils
 progress = utils.progress
 
 def YFTMain():
-    utils.addDir('[COLOR yellow]Categories[/COLOR]','http://www.yourfreetube.net/index.html',193,'','')
-    utils.addDir('[COLOR yellow]Search[/COLOR]','http://www.yourfreetube.net/search.php?keywords=',194,'','')
+    utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://www.yourfreetube.net/index.html',193,'','')
+    utils.addDir('[COLOR hotpink]Search[/COLOR]','http://www.yourfreetube.net/search.php?keywords=',194,'','')
     YFTList('http://www.yourfreetube.net/newvideos.html')
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
@@ -44,15 +44,15 @@ def YFTList(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
     
-def YFTSearch(url):
+def YFTSearch(url, keyword=None):
     searchUrl = url
-    vq = utils._get_keyboard(heading="Searching for...")
-    if (not vq): return False, 0
-    title = urllib.quote_plus(vq)
-    title = title.replace(' ','+')
-    searchUrl = searchUrl + title
-    print "Searching URL: " + searchUrl
-    YFTList(searchUrl)
+    if not keyword:
+        utils.searchDir(url, 194)
+    else:
+        title = keyword.replace(' ','+')
+        searchUrl = searchUrl + title
+        print "Searching URL: " + searchUrl
+        YFTList(searchUrl)
 
 
 def YFTCat(url):

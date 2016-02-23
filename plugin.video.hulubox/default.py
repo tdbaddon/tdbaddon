@@ -78,10 +78,18 @@ def SEARCH():
 
 def PLAYLINK(name,url,iconimage):
         link = open_url(url)
-        stream_url=re.compile('"http://videomega.tv/validatehash.php\?hashkey=(.+?)"').findall(link)[0]
-        stream_url='http://videomega.tv/validatehash.php?hashkey='+stream_url
-        url = urlresolver.resolve(stream_url)
-        url=url.replace('Mozilla/5.0 (iPhone; CPU iPhone OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5376e Safari/8536.25','Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.93 Safari/537.36')
+        if 'youlol' in link:
+                url=re.compile('<IFRAME SRC="(.+?)" FRAMEBORDER').findall(link)[0]
+                link = open_url(url)
+                url=re.compile('file:"(.+?)"').findall(link)
+                for item in url:
+                        if 'mp4' in item:url=item     
+        else:
+                stream_url=re.compile('"http://videomega.tv/validatehash.php\?hashkey=(.+?)"').findall(link)[0]
+                stream_url='http://videomega.tv/validatehash.php?hashkey='+stream_url
+                url = urlresolver.resolve(stream_url)
+                url=url.replace('Mozilla/5.0 (iPhone; CPU iPhone OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5376e Safari/8536.25','Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.93 Safari/537.36')
+
         liz=xbmcgui.ListItem(name, iconImage=icon,thumbnailImage=icon); liz.setInfo( type="Video", infoLabels={ "Title": name } )
         xbmc.Player ().play(url, liz, False)
 

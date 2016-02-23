@@ -15,17 +15,20 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import scraper
 import re
-import urlparse
-import urllib
 from string import capwords
-from salts_lib import kodi
+import urllib
+import urlparse
+
 from salts_lib import dom_parser
+from salts_lib import kodi
 from salts_lib import log_utils
-from salts_lib.constants import VIDEO_TYPES
+from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
+from salts_lib.constants import VIDEO_TYPES
+import scraper
+
 
 BASE_URL = 'http://www.streamlord.com'
 
@@ -48,7 +51,7 @@ class StreamLord_Scraper(scraper.Scraper):
         return link
 
     def format_source_label(self, item):
-        label = '[%s] %s ' % (item['quality'], item['host'])
+        label = '[%s] %s' % (item['quality'], item['host'])
         return label
 
     def get_sources(self, video):
@@ -63,19 +66,19 @@ class StreamLord_Scraper(scraper.Scraper):
                     quality = QUALITIES.HD720
                 else:
                     quality = QUALITIES.HIGH
-                stream_url = match.group(1) + '|User-Agent=%s&Referer=%s' % (self._get_ua(), urllib.quote(url))
+                stream_url = match.group(1) + '|User-Agent=%s&Referer=%s' % (scraper_utils.get_ua(), urllib.quote(url))
                 hoster = {'multi-part': False, 'host': self._get_direct_hostname(stream_url), 'class': self, 'url': stream_url, 'quality': quality, 'views': None, 'rating': None, 'direct': True}
                 hosters.append(hoster)
 
         return hosters
 
     def get_url(self, video):
-        return super(StreamLord_Scraper, self)._default_get_url(video)
+        return self._default_get_url(video)
 
     def _get_episode_url(self, show_url, video):
         episode_pattern = 'href="(episode[^"]*-[Ss]%02d[Ee]%02d-[^"]+)' % (int(video.season), int(video.episode))
         title_pattern = 'class="head".*?</span>(?P<title>.*?)</a>.*?href="(?P<url>[^"]+)'
-        return super(StreamLord_Scraper, self)._default_get_episode_url(show_url, video, episode_pattern, title_pattern)
+        return self._default_get_episode_url(show_url, video, episode_pattern, title_pattern)
         
     def search(self, video_type, title, year):
         results = []
@@ -87,15 +90,15 @@ class StreamLord_Scraper(scraper.Scraper):
         else:
             query_type = 'watch-tvshow-'
 
-        norm_title = self._normalize_title(title)
+        norm_title = scraper_utils.normalize_title(title)
         for item in dom_parser.parse_dom(html, 'div', {'class': 'item movie'}):
             match = re.search('href="(%s[^"]+)' % (query_type), item)
             if match:
                 link = match.group(1)
                 match_title = self.__make_title(link, query_type)
                 match_year = ''
-                if norm_title in self._normalize_title(match_title) and (not year or not match_year or int(year) == int(match_year)):
-                    result = {'url': self._pathify_url(link), 'title': match_title, 'year': match_year}
+                if norm_title in scraper_utils.normalize_title(match_title) and (not year or not match_year or int(year) == int(match_year)):
+                    result = {'url': scraper_utils.pathify_url(link), 'title': match_title, 'year': match_year}
                     results.append(result)
 
         return results

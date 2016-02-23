@@ -15,15 +15,18 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import scraper
+import re
 import urllib
 import urlparse
-import re
+
 from salts_lib import kodi
 from salts_lib import log_utils
-from salts_lib.constants import VIDEO_TYPES
+from salts_lib import scraper_utils
 from salts_lib.constants import QUALITIES
 from salts_lib.constants import Q_ORDER
+from salts_lib.constants import VIDEO_TYPES
+import scraper
+
 
 BASE_URL = 'https://directdownload.tv'
 SEARCH_URL = '/api?key=%s&%s&keyword=%s'
@@ -64,7 +67,7 @@ class DirectDownload_Scraper(scraper.Scraper):
         if source_url:
             url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(url, cache_limit=.5)
-            js_result = self._parse_json(html, url)
+            js_result = scraper_utils.parse_json(html, url)
             if 'error' in js_result:
                 log_utils.log('DD.tv API error: "%s" @ %s' % (js_result['error'], url), log_utils.LOGWARNING)
                 return hosters
@@ -128,8 +131,8 @@ class DirectDownload_Scraper(scraper.Scraper):
 
     @classmethod
     def get_settings(cls):
-        settings = super(DirectDownload_Scraper, cls).get_settings()
-        settings = cls._disable_sub_check(settings)
+        settings = super(cls, cls).get_settings()
+        settings = scraper_utils.disable_sub_check(settings)
         return settings
 
     def search(self, video_type, title, year):
@@ -137,14 +140,14 @@ class DirectDownload_Scraper(scraper.Scraper):
         search_url = urlparse.urljoin(self.base_url, '/search?query=')
         search_url += title
         html = self._http_get(search_url, cache_limit=.25)
-        js_result = self._parse_json(html, search_url)
+        js_result = scraper_utils.parse_json(html, search_url)
         if 'error' in js_result:
             log_utils.log('DD.tv API error: "%s" @ %s' % (js_result['error'], search_url), log_utils.LOGWARNING)
             return results
         
         for match in js_result:
             url = search_url + '&quality=%s' % match['quality']
-            result = {'url': self._pathify_url(url), 'title': match['release'], 'quality': match['quality'], 'year': ''}
+            result = {'url': scraper_utils.pathify_url(url), 'title': match['release'], 'quality': match['quality'], 'year': ''}
             results.append(result)
         return results
 
@@ -153,7 +156,7 @@ class DirectDownload_Scraper(scraper.Scraper):
             log_utils.log('Translating Search Url: %s' % (url), log_utils.LOGDEBUG)
             url = self.__translate_search(url)
 
-        return super(DirectDownload_Scraper, self)._cached_http_get(url, self.base_url, self.timeout, data=data, cache_limit=cache_limit)
+        return self._cached_http_get(url, self.base_url, self.timeout, data=data, cache_limit=cache_limit)
 
     def __translate_search(self, url):
         query = urlparse.parse_qs(urlparse.urlparse(url).query)

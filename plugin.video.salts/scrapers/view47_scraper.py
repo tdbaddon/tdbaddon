@@ -15,16 +15,19 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import scraper
+import re
+import time
 import urllib
 import urlparse
-import re
-from salts_lib import kodi
-import time
+
 from salts_lib import dom_parser
-from salts_lib.constants import VIDEO_TYPES
+from salts_lib import kodi
+from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
+from salts_lib.constants import VIDEO_TYPES
+import scraper
+
 
 BASE_URL = 'http://view47.com'
 EPID_URL = '/ip.temp/swf/plugins/ipplugins.php'
@@ -77,12 +80,12 @@ class View47_Scraper(scraper.Scraper):
                     stream_url, host = match.groups()
                     host = re.sub('-\d+$', '', host)
                     if host == 'picasa':
-                        stream_url = stream_url + '|User-Agent=%s' % (self._get_ua())
+                        stream_url = stream_url + '|User-Agent=%s' % (scraper_utils.get_ua())
                         direct = True
                         host = 'gvideo'
                         quality = QUALITIES.MEDIUM
                     else:
-                        quality = self._get_quality(video, host, QUALITIES.MEDIUM)
+                        quality = scraper_utils.get_quality(video, host, QUALITIES.MEDIUM)
                         direct = False
 
                     hosters.append({'multi-part': False, 'url': stream_url, 'class': self, 'quality': quality, 'host': host, 'rating': None, 'views': None, 'direct': direct})
@@ -90,7 +93,7 @@ class View47_Scraper(scraper.Scraper):
         return hosters
 
     def get_url(self, video):
-        return super(View47_Scraper, self)._default_get_url(video)
+        return self._default_get_url(video)
 
     def search(self, video_type, title, year):
         search_url = urlparse.urljoin(self.base_url, '/search.php?q=%s&limit=20&timestamp=%s' % (urllib.quote_plus(title), time.time()))
@@ -112,6 +115,6 @@ class View47_Scraper(scraper.Scraper):
                         match_title = match_title_year
                         match_year = ''
                     
-                    result = {'title': match_title, 'year': match_year, 'url': self._pathify_url(url)}
+                    result = {'title': match_title, 'year': match_year, 'url': scraper_utils.pathify_url(url)}
                     results.append(result)
         return results

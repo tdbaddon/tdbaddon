@@ -15,16 +15,19 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import scraper
+import base64
+import re
 import urllib
 import urlparse
-import re
-from salts_lib import kodi
-import base64
+
 from salts_lib import dom_parser
-from salts_lib.constants import VIDEO_TYPES
+from salts_lib import kodi
+from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
+from salts_lib.constants import VIDEO_TYPES
+import scraper
+
 
 BASE_URL = 'http://tunemovie.is'
 GK_KEY = base64.b64decode('Q05WTmhPSjlXM1BmeFd0UEtiOGg=')
@@ -83,10 +86,10 @@ class TuneMovie_Scraper(scraper.Scraper):
                     if 'google' in host:
                         sources = self.__get_google_links(link)
                         for source in sources:
-                            hoster = {'multi-part': False, 'url': source, 'class': self, 'quality': self._gv_get_quality(source), 'host': self._get_direct_hostname(source), 'rating': None, 'views': views, 'direct': True}
+                            hoster = {'multi-part': False, 'url': source, 'class': self, 'quality': scraper_utils.gv_get_quality(source), 'host': self._get_direct_hostname(source), 'rating': None, 'views': views, 'direct': True}
                             hosters.append(hoster)
                     else:
-                            hoster = {'multi-part': False, 'url': link, 'class': self, 'quality': self._get_quality(video, host, QUALITIES.HIGH), 'host': host, 'rating': None, 'views': views, 'direct': False}
+                            hoster = {'multi-part': False, 'url': link, 'class': self, 'quality': scraper_utils.get_quality(video, host, QUALITIES.HIGH), 'host': host, 'rating': None, 'views': views, 'direct': False}
                             hosters.append(hoster)
 
         return hosters
@@ -98,12 +101,12 @@ class TuneMovie_Scraper(scraper.Scraper):
         if match:
             match = re.search('proxy\.link=tunemovie\*([^&]+)', base64.b64decode(match.group(1)))
             if match:
-                picasa_url = self._gk_decrypt(GK_KEY, match.group(1))
+                picasa_url = scraper_utils.gk_decrypt(self.get_name(), GK_KEY, match.group(1))
                 sources = self._parse_google(picasa_url)
         return sources
 
     def get_url(self, video):
-        return super(TuneMovie_Scraper, self)._default_get_url(video)
+        return self._default_get_url(video)
 
     def search(self, video_type, title, year):
         search_url = urlparse.urljoin(self.base_url, '/search-movies/%s.html')
@@ -121,6 +124,6 @@ class TuneMovie_Scraper(scraper.Scraper):
             if match:
                 match_title, url = match.groups()
                 if not year or not match_year or year == match_year:
-                    result = {'url': self._pathify_url(url), 'title': match_title, 'year': match_year}
+                    result = {'url': scraper_utils.pathify_url(url), 'title': match_title, 'year': match_year}
                     results.append(result)
         return results

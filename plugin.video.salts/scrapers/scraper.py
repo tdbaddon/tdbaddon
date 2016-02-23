@@ -15,47 +15,39 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
+from StringIO import StringIO
 import abc
-import urllib2
-import urllib
-import urlparse
 import cookielib
-import xbmc
-from salts_lib import kodi
-import xbmcgui
+import datetime
+import gzip
 import os
 import re
-import time
-import base64
-from StringIO import StringIO
-import gzip
-import datetime
-import json
-import sys
-import random
-from salts_lib import log_utils
-from salts_lib.trans_utils import i18n
-from salts_lib import cloudflare
-from salts_lib import pyaes
-from salts_lib.db_utils import DB_Connection
-from salts_lib.constants import VIDEO_TYPES
-from salts_lib.constants import FORCE_NO_MATCH
-from salts_lib.constants import BR_VERS
-from salts_lib.constants import WIN_VERS
-from salts_lib.constants import FEATURES
-from salts_lib.constants import RAND_UAS
-from salts_lib.constants import QUALITIES
-from salts_lib.constants import HOST_Q
-from salts_lib.constants import Q_ORDER
-from salts_lib.constants import BLOG_Q_MAP
-from salts_lib.constants import SHORT_MONS
 import threading
+import time
+import urllib
+import urllib2
+import urlparse
+
+import xbmc
+import xbmcgui
+
+from salts_lib import cloudflare
+from salts_lib import kodi
+from salts_lib import log_utils
+from salts_lib import scraper_utils
+from salts_lib.constants import FORCE_NO_MATCH
+from salts_lib.constants import Q_ORDER
+from salts_lib.constants import SHORT_MONS
+from salts_lib.constants import VIDEO_TYPES
+from salts_lib.db_utils import DB_Connection
+from salts_lib.utils2 import i18n
+
 
 BASE_URL = ''
 CAPTCHA_BASE_URL = 'http://www.google.com/recaptcha/api'
 COOKIEPATH = kodi.translate_path(kodi.get_profile())
 MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-Q_LIST = [item[0] for item in sorted(Q_ORDER.items(), key=lambda x:x[1])]
+# Q_LIST = [item[0] for item in sorted(Q_ORDER.items(), key=lambda x:x[1])]
 MAX_RESPONSE = 1024 * 1024 * 2
 
 class NoRedirection(urllib2.HTTPErrorProcessor):
@@ -201,12 +193,9 @@ class Scraper(object):
         ]
 
     @classmethod
-    def _disable_sub_check(cls, settings):
-        for i in reversed(xrange(len(settings))):
-            if 'sub_check' in settings[i]:
-                settings[i] = settings[i].replace('default="true"', 'default="false"')
-        return settings
-
+    def has_proxy(cls):
+        return False
+    
     def _default_get_url(self, video):
         url = None
         self.create_db_connection()
@@ -262,7 +251,7 @@ class Scraper(object):
             data = multipart_data
 
         self.create_db_connection()
-        _, html = self.db_connection.get_cached_url(url, data, cache_limit)
+        _created, _res_header, html = self.db_connection.get_cached_url(url, data, cache_limit)
         if html:
             log_utils.log('Returning cached result for: %s' % (url), log_utils.LOGDEBUG)
             return html
@@ -270,7 +259,7 @@ class Scraper(object):
         try:
             self.cj = self._set_cookies(base_url, cookies)
             request = urllib2.Request(url, data=data)
-            request.add_header('User-Agent', self._get_ua())
+            request.add_header('User-Agent', scraper_utils.get_ua())
             request.add_header('Accept', '*/*')
             request.add_unredirected_header('Host', request.get_host())
             request.add_unredirected_header('Referer', referer)
@@ -288,8 +277,8 @@ class Scraper(object):
             response = urllib2.urlopen(request, timeout=timeout)
             self.cj.extract_cookies(response, request)
             if kodi.get_setting('cookie_debug') == 'true':
-                log_utils.log('Response Cookies: %s - %s' % (url, self.cookies_as_str(self.cj)), log_utils.LOGDEBUG)
-            self.__fix_bad_cookies()
+                log_utils.log('Response Cookies: %s - %s' % (url, scraper_utils.cookies_as_str(self.cj)), log_utils.LOGDEBUG)
+            self.cj._cookies = scraper_utils.fix_bad_cookies(self.cj._cookies)
             self.cj.save(ignore_discard=True)
             if not allow_redirect and (response.getcode() in [301, 302, 303, 307] or response.info().getheader('Refresh')):
                 if response.info().getheader('Refresh') is not None:
@@ -310,7 +299,7 @@ class Scraper(object):
                 html = response.read(MAX_RESPONSE)
         except urllib2.HTTPError as e:
             if e.code == 503 and 'cf-browser-verification' in e.read():
-                html = cloudflare.solve(url, self.cj, self._get_ua())
+                html = cloudflare.solve(url, self.cj, scraper_utils.get_ua())
                 if not html:
                     return ''
             else:
@@ -323,26 +312,13 @@ class Scraper(object):
         self.db_connection.cache_url(url, html, data)
         return html
 
-    def _get_ua(self):
-        try: last_gen = int(kodi.get_setting('last_ua_create'))
-        except: last_gen = 0
-        if not kodi.get_setting('current_ua') or last_gen < (time.time() - (7 * 24 * 60 * 60)):
-            index = random.randrange(len(RAND_UAS))
-            user_agent = RAND_UAS[index].format(win_ver=random.choice(WIN_VERS), feature=random.choice(FEATURES), br_ver=random.choice(BR_VERS[index]))
-            log_utils.log('Creating New User Agent: %s' % (user_agent), log_utils.LOGDEBUG)
-            kodi.set_setting('current_ua', user_agent)
-            kodi.set_setting('last_ua_create', str(int(time.time())))
-        else:
-            user_agent = kodi.get_setting('current_ua')
-        return user_agent
-    
     def _set_cookies(self, base_url, cookies):
         cookie_file = os.path.join(COOKIEPATH, '%s_cookies.lwp' % (self.get_name()))
         cj = cookielib.LWPCookieJar(cookie_file)
         try: cj.load(ignore_discard=True)
         except: pass
         if kodi.get_setting('cookie_debug') == 'true':
-            log_utils.log('Before Cookies: %s - %s' % (self, self.cookies_as_str(cj)), log_utils.LOGDEBUG)
+            log_utils.log('Before Cookies: %s - %s' % (self, scraper_utils.cookies_as_str(cj)), log_utils.LOGDEBUG)
         domain = urlparse.urlsplit(base_url).hostname
         for key in cookies:
             c = cookielib.Cookie(0, key, str(cookies[key]), port=None, port_specified=False, domain=domain, domain_specified=True,
@@ -351,32 +327,9 @@ class Scraper(object):
             cj.set_cookie(c)
         cj.save(ignore_discard=True)
         if kodi.get_setting('cookie_debug') == 'true':
-            log_utils.log('After Cookies: %s - %s' % (self, self.cookies_as_str(cj)), log_utils.LOGDEBUG)
+            log_utils.log('After Cookies: %s - %s' % (self, scraper_utils.cookies_as_str(cj)), log_utils.LOGDEBUG)
         return cj
 
-    def cookies_as_str(self, cj):
-        s = ''
-        c = cj._cookies
-        for domain in c:
-            s += '{%s: ' % (domain)
-            for path in c[domain]:
-                s += '{%s: ' % (path)
-                for cookie in c[domain][path]:
-                    s += '{%s=%s}' % (cookie, c[domain][path][cookie].value)
-                s += '}'
-            s += '} '
-        return s
-                    
-    def __fix_bad_cookies(self):
-        c = self.cj._cookies
-        for domain in c:
-            for path in c[domain]:
-                for key in c[domain][path]:
-                    cookie = c[domain][path][key]
-                    if cookie.expires > sys.maxint:
-                        log_utils.log('Fixing cookie expiration for %s: was: %s now: %s' % (key, cookie.expires, sys.maxint))
-                        cookie.expires = sys.maxint
-        
     def _do_recaptcha(self, key, tries=None, max_tries=None):
         challenge_url = CAPTCHA_BASE_URL + '/challenge?k=%s' % (key)
         html = self._cached_http_get(challenge_url, CAPTCHA_BASE_URL, timeout=DEFAULT_TIMEOUT, cache_limit=0)
@@ -407,12 +360,13 @@ class Scraper(object):
             url = show_url
         html = self._http_get(url, data=data, headers=headers, cache_limit=2)
         if html:
-            force_title = self._force_title(video)
+            force_title = scraper_utils.force_title(video)
 
             if not force_title:
-                match = re.search(episode_pattern, html, re.DOTALL)
-                if match:
-                    return self._pathify_url(match.group(1))
+                if episode_pattern:
+                    match = re.search(episode_pattern, html, re.DOTALL)
+                    if match:
+                        return scraper_utils.pathify_url(match.group(1))
 
                 if kodi.get_setting('airdate-fallback') == 'true' and airdate_pattern and video.ep_airdate:
                     airdate_pattern = airdate_pattern.replace('{year}', str(video.ep_airdate.year))
@@ -426,27 +380,16 @@ class Scraper(object):
 
                     match = re.search(airdate_pattern, html, re.DOTALL | re.I)
                     if match:
-                        return self._pathify_url(match.group(1))
+                        return scraper_utils.pathify_url(match.group(1))
             else:
                 log_utils.log('Skipping S&E matching as title search is forced on: %s' % (video.trakt_id), log_utils.LOGDEBUG)
 
             if (force_title or kodi.get_setting('title-fallback') == 'true') and video.ep_title and title_pattern:
-                norm_title = self._normalize_title(video.ep_title)
+                norm_title = scraper_utils.normalize_title(video.ep_title)
                 for match in re.finditer(title_pattern, html, re.DOTALL | re.I):
                     episode = match.groupdict()
-                    if norm_title == self._normalize_title(episode['title']):
-                        return self._pathify_url(episode['url'])
-
-    def _force_title(self, video):
-            trakt_str = kodi.get_setting('force_title_match')
-            trakt_list = trakt_str.split('|') if trakt_str else []
-            return str(video.trakt_id) in trakt_list
-
-    def _normalize_title(self, title):
-        new_title = title.upper()
-        new_title = re.sub('[^A-Za-z0-9]', '', new_title)
-        # log_utils.log('In title: |%s| Out title: |%s|' % (title,new_title), log_utils.LOGDEBUG)
-        return new_title
+                    if norm_title == scraper_utils.normalize_title(episode['title']):
+                        return scraper_utils.pathify_url(episode['url'])
 
     def _blog_proc_results(self, html, post_pattern, date_format, video_type, title, year):
         results = []
@@ -462,7 +405,7 @@ class Scraper(object):
                 search_date = '%s%s%s' % (search_year, search_month, search_day)
             else:
                 show_title = title
-        norm_title = self._normalize_title(show_title)
+        norm_title = scraper_utils.normalize_title(show_title)
 
         filter_days = datetime.timedelta(days=int(kodi.get_setting('%s-filter' % (self.get_name()))))
         today = datetime.date.today()
@@ -502,12 +445,12 @@ class Scraper(object):
                         match_date = '%s%s%s' % (match_year2, match_month, match_day)
                         full_title = '%s [%s]' % (match_title, extra_title)
 
-            match_norm_title = self._normalize_title(match_title)
+            match_norm_title = scraper_utils.normalize_title(match_title)
             log_utils.log('Blog Results: |%s|%s| - |%s|%s| - |%s|%s| - |%s|%s|' % (match_norm_title, norm_title, year, match_year, search_date, match_date, search_sxe, match_sxe),
                           log_utils.LOGDEBUG)
             if (match_norm_title in norm_title or norm_title in match_norm_title) and (not year or not match_year or year == match_year) \
                     and (not search_date or (search_date == match_date)) and (not search_sxe or (search_sxe == match_sxe)):
-                result = {'url': self._pathify_url(post_data['url']), 'title': full_title, 'year': match_year}
+                result = {'url': scraper_utils.pathify_url(post_data['url']), 'title': full_title, 'year': match_year}
                 results.append(result)
         return results
     
@@ -522,7 +465,7 @@ class Scraper(object):
             select = int(kodi.get_setting('%s-select' % (self.get_name())))
             if video.video_type == VIDEO_TYPES.EPISODE:
                 temp_title = re.sub('[^A-Za-z0-9 ]', '', video.title)
-                if not self._force_title(video):
+                if not scraper_utils.force_title(video):
                     search_title = '%s S%02dE%02d' % (temp_title, int(video.season), int(video.episode))
                     if isinstance(video.ep_airdate, datetime.date):
                         fallback_search = '%s %s' % (temp_title, video.ep_airdate.strftime('%Y{0}%m{0}%d'.format(delim)))
@@ -548,7 +491,7 @@ class Scraper(object):
                         match = re.search('\[(.*)\]$', result['title'])
                         if match:
                             q_str = match.group(1)
-                            quality = self._blog_get_quality(video, q_str, '')
+                            quality = scraper_utils.blog_get_quality(video, q_str, '')
                             # print 'result: |%s|%s|%s|%s|' % (result, q_str, quality, Q_ORDER[quality])
                             if Q_ORDER[quality] > best_qorder:
                                 # print 'Setting best as: |%s|%s|%s|%s|' % (result, q_str, quality, Q_ORDER[quality])
@@ -559,119 +502,6 @@ class Scraper(object):
                 self.db_connection.set_related_url(video.video_type, video.title, video.year, self.get_name(), url)
         return url
 
-    def _blog_get_quality(self, video, q_str, host):
-        """
-        Use the q_str to determine the post quality; then use the host to determine host quality
-        allow the host to drop the quality but not increase it
-        """
-        q_str.replace(video.title, '')
-        q_str.replace(str(video.year), '')
-        q_str = q_str.upper()
-
-        post_quality = None
-        for key in Q_LIST:
-            if any(q in q_str for q in BLOG_Q_MAP[key]):
-                post_quality = key
-
-        return self._get_quality(video, host, post_quality)
-
-    def _get_quality(self, video, host, base_quality=None):
-        host = host.lower()
-        # Assume movies are low quality, tv shows are high quality
-        if base_quality is None:
-            if video.video_type == VIDEO_TYPES.MOVIE:
-                quality = QUALITIES.LOW
-            else:
-                quality = QUALITIES.HIGH
-        else:
-            quality = base_quality
-
-        host_quality = None
-        if host:
-            for key in HOST_Q:
-                if any(hostname in host for hostname in HOST_Q[key]):
-                    host_quality = key
-                    break
-
-        # log_utils.log('q_str: %s, host: %s, post q: %s, host q: %s' % (q_str, host, post_quality, host_quality), log_utils.LOGDEBUG)
-        if host_quality is not None and Q_ORDER[host_quality] < Q_ORDER[quality]:
-            quality = host_quality
-
-        return quality
-
-    def _width_get_quality(self, width):
-        width = int(width)
-        if width > 1280:
-            quality = QUALITIES.HD1080
-        elif width > 800:
-            quality = QUALITIES.HD720
-        elif width > 640:
-            quality = QUALITIES.HIGH
-        elif width > 320:
-            quality = QUALITIES.MEDIUM
-        else:
-            quality = QUALITIES.LOW
-        return quality
-
-    def _height_get_quality(self, height):
-        if str(height)[-1] in ['p', 'P']:
-            height = str(height)[:-1]
-            
-        try: height = int(height)
-        except: height = 200
-        if height > 800:
-            quality = QUALITIES.HD1080
-        elif height > 480:
-            quality = QUALITIES.HD720
-        elif height >= 400:
-            quality = QUALITIES.HIGH
-        elif height > 200:
-            quality = QUALITIES.MEDIUM
-        else:
-            quality = QUALITIES.LOW
-        return quality
-
-    def _gv_get_quality(self, stream_url):
-        stream_url = urllib.unquote(stream_url)
-        if 'itag=18' in stream_url or '=m18' in stream_url:
-            return QUALITIES.MEDIUM
-        elif 'itag=22' in stream_url or '=m22' in stream_url:
-            return QUALITIES.HD720
-        elif 'itag=34' in stream_url or '=m34' in stream_url:
-            return QUALITIES.HIGH
-        elif 'itag=35' in stream_url or '=m35' in stream_url:
-            return QUALITIES.HIGH
-        elif 'itag=37' in stream_url or '=m37' in stream_url:
-            return QUALITIES.HD1080
-        elif 'itag=43' in stream_url or '=m43' in stream_url:
-            return QUALITIES.MEDIUM
-        else:
-            return QUALITIES.HIGH
-    
-    def _get_sucuri_cookie(self, html):
-        if 'sucuri_cloudproxy_js' in html:
-            match = re.search("S\s*=\s*'([^']+)", html)
-            if match:
-                s = base64.b64decode(match.group(1))
-                s = s.replace(' ', '')
-                s = re.sub('String\.fromCharCode\(([^)]+)\)', r'chr(\1)', s)
-                s = re.sub('\.slice\((\d+),(\d+)\)', r'[\1:\2]', s)
-                s = re.sub('\.charAt\(([^)]+)\)', r'[\1]', s)
-                s = re.sub('\.substr\((\d+),(\d+)\)', r'[\1:\1+\2]', s)
-                s = re.sub(';location.reload\(\);', '', s)
-                s = re.sub(r'\n', '', s)
-                s = re.sub(r'document\.cookie', 'cookie', s)
-                try:
-                    cookie = ''
-                    exec(s)
-                    match = re.match('([^=]+)=(.*)', cookie)
-                    if match:
-                        return {match.group(1): match.group(2)}
-                except Exception as e:
-                    log_utils.log('Exception during sucuri js: %s' % (e), log_utils.LOGWARNING)
-        
-        return {}
-        
     def _get_direct_hostname(self, link):
         host = urlparse.urlparse(link).hostname
         if host and any([h for h in ['google', 'picasa'] if h in host]):
@@ -688,7 +518,7 @@ class Scraper(object):
             match = re.search('return\s+(\[\[.*?)\s*}}', html, re.DOTALL)
             if match:
                 try:
-                    js = self._parse_json(match.group(1), link)
+                    js = scraper_utils.parse_json(match.group(1), link)
                     for item in js[1]:
                         vid_match = False
                         for e in item:
@@ -715,7 +545,7 @@ class Scraper(object):
                 link_id = link[i + 1:]
                 match = re.search('feedPreload:\s*(.*}]}})},', html, re.DOTALL)
                 if match:
-                    js = self._parse_json(match.group(1), link)
+                    js = scraper_utils.parse_json(match.group(1), link)
                     for item in js['feed']['entry']:
                         if item['gphoto$id'] == link_id:
                             for media in item['media']['content']:
@@ -724,101 +554,38 @@ class Scraper(object):
             else:
                 match = re.search('preload\'?:\s*(.*}})},', html, re.DOTALL)
                 if match:
-                    js = self._parse_json(match.group(1), link)
+                    js = scraper_utils.parse_json(match.group(1), link)
                     for media in js['feed']['media']['content']:
                         if media['type'].startswith('video'):
                             sources.append(media['url'].replace('%3D', '='))
 
         return sources
 
-    def _gk_decrypt(self, key, cipher_link):
-        try:
-            key += (24 - len(key)) * '\0'
-            decrypter = pyaes.Decrypter(pyaes.AESModeOfOperationECB(key))
-            plain_text = decrypter.feed(cipher_link.decode('hex'))
-            plain_text += decrypter.feed()
-            plain_text = plain_text.split('\0', 1)[0]
-        except Exception as e:
-            log_utils.log('Exception (%s) during %s gk decrypt: cipher_link: %s' % (e, self.get_name(), cipher_link), log_utils.LOGWARNING)
-            plain_text = ''
+    def _parse_gdocs(self, link):
+        urls = {}
+        html = self._http_get(link, cache_limit=.5)
+        for match in re.finditer('\[\s*"([^"]+)"\s*,\s*"([^"]+)"\s*\]', html):
+            key, value = match.groups()
+            if key == 'fmt_stream_map':
+                items = value.split(',')
+                for item in items:
+                    source_fmt, source_url = item.split('|')
+                    source_url = source_url.replace('\\u003d', '=').replace('\\u0026', '&')
+                    source_url = urllib.unquote(source_url)
+                    urls[source_url] = source_fmt
+                    
+        return urls
 
-        return plain_text
-    
-    def _parse_episode_link(self, link):
-        link = urllib.unquote(link)
-        match = re.match('(.*?)(?:\.|_| )S(\d+)(?:\.|_| )?E(\d+)(?:E\d+)*.*?(?:(?:_|\.)(\d+)p(?:_|\.))(.*)', link, re.I)
-        if match:
-            return match.groups()
-        else:
-            match = re.match('(.*?)(?:\.|_| )S(\d+)(?:\.|_| )?E(\d+)(?:E\d+)*(.*)', link, re.I)
-            if match:
-                return match.groups()[:-1] + ('480', ) + (match.groups()[-1],)  # assume no height = 480
-            else:
-                match = re.search('(?:\.|_| )(\d+)p(?:\.|_| )', link)
-                if match:
-                    return ('', '-1', '-1', match.group(1), '')
-                else:
-                    return ('', '-1', '-1', '480', '')
-    
-    def _parse_movie_link(self, link):
-        file_name = link.split('/')[-1]
-        match = re.match('(.*?)(?:(?:\.|_| )(\d{4})(?:(?:\.|_| ).*?)*)?(?:\.|_| )(\d+)p(?:\.|_| )(.*)', file_name)
-        if match:
-            return match.groups()
-        else:
-            match = re.match('', file_name)
-            return ('', '', '480', '')  # make 480p when unknown
-    
-    def _title_check(self, video, title):
-        title = self._normalize_title(title)
-        if video.video_type == VIDEO_TYPES.MOVIE:
-            return self._normalize_title(video.title) in title and (not video.year or video.year in title)
-        else:
-            sxe = 'S%02dE%02d' % (int(video.season), int(video.episode))
-            se = '%d%02d' % (int(video.season), int(video.episode))
-            try:
-                air_date = video.ep_airdate.strftime('%Y%m%d')
-            except:
-                air_date = ''
-                
-            if sxe in title:
-                show_title = title.split(sxe)[0]
-            elif air_date and air_date in title:
-                show_title = title.split(air_date)[0]
-            elif se in title:
-                show_title = title.split(se)[0]
-            else:
-                show_title = title
-            # log_utils.log('%s - %s - %s - %s - %s' % (self._normalize_title(video.title), show_title, title, sxe, air_date), log_utils.LOGDEBUG)
-            return self._normalize_title(video.title) in show_title and (sxe in title or se in title or air_date in title)
-    
-    def _pathify_url(self, url):
-        url = url.replace('\/', '/')
-        pieces = urlparse.urlparse(url)
-        if pieces.scheme:
-            strip = pieces.scheme + ':'
-        else:
-            strip = ''
-        strip += '//' + pieces.netloc
-        url = url.replace(strip, '')
-        if not url.startswith('/'): url = '/' + url
-        url = url.replace('/./', '/')
-        return url
-    
+    def _get_stream_cookies(self):
+        cj = self._set_cookies(self.base_url, {})
+        cookies = []
+        for cookie in cj:
+            cookies.append('%s=%s' % (cookie.name, cookie.value))
+        return urllib.quote(';'.join(cookies))
+
     def create_db_connection(self):
         worker_id = threading.current_thread().ident
         # create a connection if we don't have one or it was created in a different worker
         if self.db_connection is None or self.worker_id != worker_id:
             self.db_connection = DB_Connection()
             self.worker_id = worker_id
-    
-    def _parse_json(self, html, url=''):
-        if html:
-            try:
-                return json.loads(html)
-            except ValueError:
-                log_utils.log('Invalid JSON returned: %s: %s' % (html, url), log_utils.LOGWARNING)
-                return {}
-        else:
-            log_utils.log('Empty JSON object: %s: %s' % (html, url), log_utils.LOGDEBUG)
-            return {}

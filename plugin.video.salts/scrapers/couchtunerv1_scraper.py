@@ -15,14 +15,17 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import scraper
 import re
 import urlparse
-from salts_lib import kodi
+
 from salts_lib import dom_parser
-from salts_lib.constants import VIDEO_TYPES
+from salts_lib import kodi
+from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
+from salts_lib.constants import VIDEO_TYPES
+import scraper
+
 
 BASE_URL = 'http://www.couchtuner.ch'
 BASE_URL2 = 'http://www.couchtuner.city'
@@ -46,7 +49,7 @@ class CouchTunerV1_Scraper(scraper.Scraper):
         return link
 
     def format_source_label(self, item):
-        label = '[%s] %s ' % (item['quality'], item['host'])
+        label = '[%s] %s' % (item['quality'], item['host'])
         return label
 
     def get_sources(self, video):
@@ -77,32 +80,32 @@ class CouchTunerV1_Scraper(scraper.Scraper):
                 if match:
                     link = match.group(1)
                     host = urlparse.urlparse(link).hostname
-                    hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': self._get_quality(video, host, QUALITIES.HIGH), 'views': None, 'rating': None, 'url': link, 'direct': False}
+                    hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': scraper_utils.get_quality(video, host, QUALITIES.HIGH), 'views': None, 'rating': None, 'url': link, 'direct': False}
                     hosters.append(hoster)
 
         return hosters
 
     def get_url(self, video):
-        return super(CouchTunerV1_Scraper, self)._default_get_url(video)
+        return self._default_get_url(video)
 
     def _get_episode_url(self, show_url, video):
         episode_pattern = 'href="([^"]+[sS](?:eason-)?%s-[eE](?:pisode-)?%s-[^"]+)' % (video.season, video.episode)
         title_pattern = 'href="(?P<url>[^"]+season-\d+-episode-\d+-[^"]+).*?8211;\s*(?P<title>[^<]+)'
-        return super(CouchTunerV1_Scraper, self)._default_get_episode_url(show_url, video, episode_pattern, title_pattern)
+        return self._default_get_episode_url(show_url, video, episode_pattern, title_pattern)
 
     def search(self, video_type, title, year):
         show_list_url = urlparse.urljoin(self.base_url, '/tv-lists/')
         html = self._http_get(show_list_url, cache_limit=8)
         results = []
-        norm_title = self._normalize_title(title)
+        norm_title = scraper_utils.normalize_title(title)
         items = dom_parser.parse_dom(html, 'li')
         for item in items:
             match = re.search('href="([^"]+)">(.*?)</a>', item)
             if match:
                 url, match_title = match.groups()
                 match_title = match_title.replace('<strong>', '').replace('</strong>', '')
-                if norm_title in self._normalize_title(match_title):
-                    result = {'url': self._pathify_url(url), 'title': match_title, 'year': ''}
+                if norm_title in scraper_utils.normalize_title(match_title):
+                    result = {'url': scraper_utils.pathify_url(url), 'title': match_title, 'year': ''}
                     results.append(result)
 
         return results

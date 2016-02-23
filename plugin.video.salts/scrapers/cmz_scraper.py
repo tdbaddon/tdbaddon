@@ -15,14 +15,17 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import scraper
+import re
 import urllib
 import urlparse
-import re
+
 from salts_lib import kodi
-from salts_lib.constants import VIDEO_TYPES
+from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
+from salts_lib.constants import VIDEO_TYPES
+import scraper
+
 
 BASE_URL = 'http://coolmoviezone.org'
 
@@ -64,13 +67,13 @@ class CMZ_Scraper(scraper.Scraper):
             for match in re.finditer(pattern, html):
                 url = match.group(1)
                 host = urlparse.urlsplit(url).hostname
-                hoster = {'multi-part': False, 'host': host, 'url': url, 'class': self, 'rating': None, 'views': views, 'quality': self._get_quality(video, host, QUALITIES.HIGH), 'direct': False}
+                hoster = {'multi-part': False, 'host': host, 'url': url, 'class': self, 'rating': None, 'views': views, 'quality': scraper_utils.get_quality(video, host, QUALITIES.HIGH), 'direct': False}
                 hosters.append(hoster)
 
         return hosters
 
     def get_url(self, video):
-        return super(CMZ_Scraper, self)._default_get_url(video)
+        return self._default_get_url(video)
 
     def search(self, video_type, title, year):
         results = []
@@ -80,7 +83,7 @@ class CMZ_Scraper(scraper.Scraper):
         for match in re.finditer(pattern, html, re.DOTALL):
             url, match_title, match_year = match.groups()
             if not year or not match_year or year == match_year:
-                result = {'title': match_title, 'year': match_year, 'url': self._pathify_url(url)}
+                result = {'title': match_title, 'year': match_year, 'url': scraper_utils.pathify_url(url)}
                 results.append(result)
         
         return results

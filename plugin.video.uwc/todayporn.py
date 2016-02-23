@@ -29,11 +29,11 @@ import utils
 # 95 TPPornstars
 
 def TPMain():
-    utils.addDir('[COLOR yellow]Categories[/COLOR]','http://www.todayporn.com/channels/',93,'','')
-    utils.addDir('[COLOR yellow]Pornstars[/COLOR]','http://www.todayporn.com/pornstars/page1.html',95,'','')
-    utils.addDir('[COLOR yellow]Top Rated[/COLOR]','http://www.todayporn.com/top-rated/a/page1.html',91,'','')
-    utils.addDir('[COLOR yellow]Most Viewed[/COLOR]','http://www.todayporn.com/most-viewed/a/page1.html',91,'','')
-    utils.addDir('[COLOR yellow]Search[/COLOR]','http://www.todayporn.com/search/page1.html?q=',94,'','')
+    utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://www.todayporn.com/channels/',93,'','')
+    utils.addDir('[COLOR hotpink]Pornstars[/COLOR]','http://www.todayporn.com/pornstars/page1.html',95,'','')
+    utils.addDir('[COLOR hotpink]Top Rated[/COLOR]','http://www.todayporn.com/top-rated/a/page1.html',91,'','')
+    utils.addDir('[COLOR hotpink]Most Viewed[/COLOR]','http://www.todayporn.com/most-viewed/a/page1.html',91,'','')
+    utils.addDir('[COLOR hotpink]Search[/COLOR]','http://www.todayporn.com/search/page1.html?q=',94,'','')
     TPList('http://www.todayporn.com/page1.html',1)
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
@@ -45,7 +45,7 @@ def TPList(url, page):
         name = utils.cleantext(name)
         videourl = "http://www.todayporn.com" + videourl
         thumb = thumb + "1.jpg"
-        name = name + " [COLOR blue]" + duration + "[/COLOR]"
+        name = name + " [COLOR deeppink]" + duration + "[/COLOR]"
         utils.addDownLink(name, videourl, 92, thumb, '')
     if re.search('Next &raquo;</a>', listhtml, re.DOTALL | re.IGNORECASE):
         npage = page + 1        
@@ -82,7 +82,7 @@ def TPPornstars(url, page):
     pornstars = re.compile("""img" src='([^']+)'[^<]+<[^"]+"([^"]+)"[^>]+>([^<]+)<.*?total[^>]+>([^<]+)<""", re.DOTALL | re.IGNORECASE).findall(pshtml)
     for img, psurl, title, videos in pornstars:
         psurl = "http://www.todayporn.com" + psurl + "page1.html"
-        title = title + " [COLOR blue]" + videos + "[/COLOR]" 
+        title = title + " [COLOR deeppink]" + videos + "[/COLOR]" 
         utils.addDir(title, psurl, 91, img, 1)
     if re.search('Next &raquo;</a>', pshtml, re.DOTALL | re.IGNORECASE):
         npage = page + 1
@@ -91,12 +91,12 @@ def TPPornstars(url, page):
     xbmcplugin.endOfDirectory(utils.addon_handle)
     
 
-def TPSearch(url):
+def TPSearch(url, keyword=None):
     searchUrl = url
-    vq = utils._get_keyboard(heading="Searching for...")
-    if (not vq): return False, 0
-    title = urllib.quote_plus(vq)
-    title = title.replace(' ','+')
-    searchUrl = searchUrl + title + "&s=new"
-    print "Searching URL: " + searchUrl
-    TPList(searchUrl, 1)
+    if not keyword:
+        utils.searchDir(url, 94)
+    else:
+        title = keyword.replace(' ','+')
+        searchUrl = searchUrl + title + "&s=new"
+        print "Searching URL: " + searchUrl
+        TPList(searchUrl, 1)

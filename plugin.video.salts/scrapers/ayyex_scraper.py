@@ -15,15 +15,18 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import scraper
+import re
 import urllib
 import urlparse
-import re
-from salts_lib import kodi
+
 from salts_lib import dom_parser
-from salts_lib.constants import VIDEO_TYPES
+from salts_lib import kodi
+from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
+from salts_lib.constants import VIDEO_TYPES
+import scraper
+
 
 BASE_URL = 'http://ayyex.com'
 QUALITY_MAP = {'HD': QUALITIES.HD720, 'FULL HD': QUALITIES.HD1080, 'DVD': QUALITIES.MEDIUM}
@@ -63,26 +66,26 @@ class Ayyex_Scraper(scraper.Scraper):
                 for match in re.finditer('<iframe[^>]*src="([^"]+)', fragment[0], re.I):
                     stream_url = match.group(1)
                     host = urlparse.urlparse(stream_url).hostname
-                    hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': self._get_quality(video, host, QUALITIES.HIGH), 'views': None, 'rating': None, 'url': stream_url, 'direct': False}
+                    hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': scraper_utils.get_quality(video, host, QUALITIES.HIGH), 'views': None, 'rating': None, 'url': stream_url, 'direct': False}
                     hosters.append(hoster)
             
         return hosters
 
     def get_url(self, video):
-        return super(Ayyex_Scraper, self)._default_get_url(video)
+        return self._default_get_url(video)
 
     def search(self, video_type, title, year):
         results = []
         search_url = urlparse.urljoin(self.base_url, '/?s=%s')
         search_url = search_url % (urllib.quote_plus(title))
         html = self._http_get(search_url, cache_limit=.5)
-        norm_title = self._normalize_title(title)
+        norm_title = scraper_utils.normalize_title(title)
         for item in dom_parser.parse_dom(html, 'div', {'class': 'item'}):
             match = re.search('href="([^"]+).*?<h2>([^<]+).*?class="year">\s*(\d+)', item, re.DOTALL)
             if match:
                 url, match_title, match_year = match.groups('')
-                if norm_title in self._normalize_title(match_title) and (not year or not match_year or year == match_year):
-                    result = {'url': self._pathify_url(url), 'title': match_title, 'year': match_year}
+                if norm_title in scraper_utils.normalize_title(match_title) and (not year or not match_year or year == match_year):
+                    result = {'url': scraper_utils.pathify_url(url), 'title': match_title, 'year': match_year}
                     results.append(result)
                 
         return results

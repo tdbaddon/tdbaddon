@@ -28,11 +28,11 @@ sortlistxt = [addon.getLocalizedString(30022), addon.getLocalizedString(30023), 
 
 
 def XTMain():
-    utils.addDir('[COLOR yellow]Categories[/COLOR]','http://xtheatre.net/categories/',22,'','')
-    utils.addDir('[COLOR yellow]Search[/COLOR]','http://xtheatre.net/page/1/?s=',24,'','')
-    Sort = '[COLOR yellow]Current sort:[/COLOR] ' + sortlistxt[int(addon.getSetting("sortxt"))]
+    utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://xtheatre.net/categories/',22,'','')
+    utils.addDir('[COLOR hotpink]Search[/COLOR]','http://xtheatre.net/page/1/?s=',24,'','')
+    Sort = '[COLOR hotpink]Current sort:[/COLOR] ' + sortlistxt[int(addon.getSetting("sortxt"))]
     utils.addDir(Sort, '', 25, '', '')    
-    XTList('http://xtheatre.net/page/1/',1)
+    XTList('http://xtheatre.net/category/movies/page/1/',1)
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
@@ -41,28 +41,28 @@ def XTCat(url):
     match = re.compile('src="([^"]+)"[^<]+</noscript>.*?<a href="([^"]+)"[^<]+<span>([^<]+)</s.*?">([^<]+)', re.DOTALL | re.IGNORECASE).findall(cathtml)
     for img, catpage, name, videos in match:
         catpage = catpage + 'page/1/'
-        name = name + ' [COLOR blue]' + videos + '[/COLOR]'
+        name = name + ' [COLOR deeppink]' + videos + '[/COLOR]'
         utils.addDir(name, catpage, 21, img, 1)
     xbmcplugin.endOfDirectory(utils.addon_handle)
     
     
-def XTSearch(url):
+def XTSearch(url, keyword=None):
     searchUrl = url
-    vq = utils._get_keyboard(heading="Searching for...")
-    if (not vq): return False, 0
-    title = urllib.quote_plus(vq)
-    title = title.replace(' ','+')
-    searchUrl = searchUrl + title
-    print "Searching URL: " + searchUrl
-    XTList(searchUrl, 1)     
+    if not keyword:
+        utils.searchDir(url, 24)
+    else:
+        title = keyword.replace(' ','+')
+        searchUrl = searchUrl + title
+        print "Searching URL: " + searchUrl
+        XTList(searchUrl, 1)
 
 
 def XTList(url, page):
     sort = getXTSortMethod()
     if re.search('\?', url, re.DOTALL | re.IGNORECASE):
-        url = url + '&filtre=' + sort
+        url = url + '&filtre=' + sort + '&display=extract'
     else:
-        url = url + '?filtre=' + sort
+        url = url + '?filtre=' + sort + '&display=extract'
     print url
     listhtml = utils.getHtml(url, '')
     match = re.compile('src="([^"]+?)" class="attachment.*?<a href="([^"]+)" title="([^"]+)".*?<div class="right">.<p>([^<]+)</p>', re.DOTALL | re.IGNORECASE).findall(listhtml)

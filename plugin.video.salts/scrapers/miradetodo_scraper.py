@@ -15,15 +15,18 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import scraper
+import base64
+import re
 import urllib
 import urlparse
-import re
-import base64
-from salts_lib import kodi
+
 from salts_lib import dom_parser
-from salts_lib.constants import VIDEO_TYPES
+from salts_lib import kodi
+from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
+from salts_lib.constants import VIDEO_TYPES
+import scraper
+
 
 BASE_URL = 'http://miradetodo.com.ar'
 GK_KEY1 = base64.urlsafe_b64decode('QjZVTUMxUms3VFJBVU56V3hraHI=')
@@ -62,18 +65,18 @@ class MiraDetodo_Scraper(scraper.Scraper):
                 proxy_link = match.group(1)
                 proxy_link = proxy_link.split('*', 1)[-1]
                 if len(proxy_link) <= 224:
-                    picasa_url = self._gk_decrypt(GK_KEY1, proxy_link)
+                    picasa_url = scraper_utils.gk_decrypt(self.get_name(), GK_KEY1, proxy_link)
                 else:
-                    picasa_url = self._gk_decrypt(GK_KEY2, proxy_link)
+                    picasa_url = scraper_utils.gk_decrypt(self.get_name(), GK_KEY2, proxy_link)
                 if self._get_direct_hostname(picasa_url) == 'gvideo':
                     sources = self._parse_google(picasa_url)
                     for source in sources:
-                        hoster = {'multi-part': False, 'url': source, 'class': self, 'quality': self._gv_get_quality(source), 'host': self._get_direct_hostname(source), 'rating': None, 'views': None, 'direct': True}
+                        hoster = {'multi-part': False, 'url': source, 'class': self, 'quality': scraper_utils.gv_get_quality(source), 'host': self._get_direct_hostname(source), 'rating': None, 'views': None, 'direct': True}
                         hosters.append(hoster)
         return hosters
 
     def get_url(self, video):
-        return super(MiraDetodo_Scraper, self)._default_get_url(video)
+        return self._default_get_url(video)
 
     def search(self, video_type, title, year):
         search_url = urlparse.urljoin(self.base_url, '/search_result.php?search=&query=')
@@ -93,7 +96,7 @@ class MiraDetodo_Scraper(scraper.Scraper):
                     match_year = ''
 
                 if not year or not match_year or year == match_year:
-                    result = {'title': match_title, 'year': match_year, 'url': self._pathify_url(url)}
+                    result = {'title': match_title, 'year': match_year, 'url': scraper_utils.pathify_url(url)}
                     results.append(result)
 
         return results

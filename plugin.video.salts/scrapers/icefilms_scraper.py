@@ -15,18 +15,21 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import scraper
+import HTMLParser
+import random
 import re
+import string
 import urllib
 import urlparse
-import HTMLParser
-import string
+
 from salts_lib import kodi
-import random
 from salts_lib import log_utils
-from salts_lib.constants import VIDEO_TYPES
+from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
+from salts_lib.constants import VIDEO_TYPES
+import scraper
+
 
 QUALITY_MAP = {'HD 720P': QUALITIES.HD720, 'HD 720P+': QUALITIES.HD720, 'DVDRIP / STANDARD DEF': QUALITIES.HIGH, 'DVD SCREENER': QUALITIES.HIGH}
 BASE_URL = 'http://www.icefilms.info'
@@ -100,7 +103,7 @@ class IceFilms_Scraper(scraper.Scraper):
                     else:
                         quality = None
 
-                    pattern = 'onclick=\'go\((\d+)\)\'>([^<]+)(<span.*?)</a>'
+                    pattern = '''onclick='go\((\d+)\)'>([^<]+)(<span.*?)</a>'''
                     for match in re.finditer(pattern, fragment):
                         link_id, label, host_fragment = match.groups()
                         source = {'multi-part': False, 'quality': quality, 'class': self, 'label': label, 'rating': None, 'views': None, 'direct': False}
@@ -115,7 +118,7 @@ class IceFilms_Scraper(scraper.Scraper):
         return sources
 
     def get_url(self, video):
-        return super(IceFilms_Scraper, self)._default_get_url(video)
+        return self._default_get_url(video)
 
     def search(self, video_type, title, year):
         if video_type == VIDEO_TYPES.MOVIE:
@@ -137,12 +140,12 @@ class IceFilms_Scraper(scraper.Scraper):
         h = HTMLParser.HTMLParser()
         html = unicode(html, 'windows-1252')
         html = h.unescape(html)
-        norm_title = self._normalize_title(title)
+        norm_title = scraper_utils.normalize_title(title)
         pattern = 'class=star.*?href=([^>]+)>(.*?)(?:\s*\((\d+)\))?</a>'
         results = []
         for match in re.finditer(pattern, html, re.DOTALL):
             url, match_title, match_year = match.groups('')
-            if norm_title in self._normalize_title(match_title) and (not year or not match_year or year == match_year):
+            if norm_title in scraper_utils.normalize_title(match_title) and (not year or not match_year or year == match_year):
                 result = {'url': url, 'title': match_title, 'year': match_year}
                 results.append(result)
         return results
@@ -150,4 +153,4 @@ class IceFilms_Scraper(scraper.Scraper):
     def _get_episode_url(self, show_url, video):
         episode_pattern = 'href=(/ip\.php[^>]+)>%sx0?%s\s+' % (video.season, video.episode)
         title_pattern = 'class=star>\s*<a href=(?P<url>[^>]+)>(?:\d+x\d+\s+)+(?P<title>[^<]+)'
-        return super(IceFilms_Scraper, self)._default_get_episode_url(show_url, video, episode_pattern, title_pattern)
+        return self._default_get_episode_url(show_url, video, episode_pattern, title_pattern)

@@ -220,8 +220,7 @@ STRINGS = {
     'most_collected_all': 30208,
     'not_added_to_lib': 30209,
     'local_exists': 30210,
-    'scraper_location': 30211,
-    'scraper_key': 30212,
+    # 30211 & 30212 repurposed to be in settings.xml
     'trakt_on_deck': 30213,
     'on': 30214,
     'delete_bookmark': 30215,
@@ -261,5 +260,6 @@ STRINGS = {
     'rec_reset_1': 30249,
     'rec_reset_2': 30250,
     'rec_reset_3': 30251,
-    'reset_failed': 30252
+    'reset_failed': 30252,
+    'no_stream_found': 30253
 }

@@ -16,21 +16,24 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import scraper
+import random
 import re
-import urlparse
 import urllib
 import urllib2
-import time
-import random
-from salts_lib import log_utils
-from salts_lib.constants import VIDEO_TYPES
-from salts_lib.constants import FORCE_NO_MATCH
-from salts_lib.constants import XHR
+import urlparse
+
 from salts_lib import kodi
+from salts_lib import log_utils
+from salts_lib import scraper_utils
+from salts_lib import dom_parser
+from salts_lib.constants import FORCE_NO_MATCH
+from salts_lib.constants import VIDEO_TYPES
+import scraper
+
 
 BASE_URL = 'http://sezonlukdizi.com'
-SEARCH_URL = '/service/search?q=%s&_=%s'
+SEARCH_URL = '/diziler.asp?adi='
+SEASON_URL = '/ajax/dataDizi.asp'
 GET_VIDEO_URL = '/service/get_video_part'
 
 class SezonLukDizi_Scraper(scraper.Scraper):
@@ -62,7 +65,10 @@ class SezonLukDizi_Scraper(scraper.Scraper):
             return link
             
     def format_source_label(self, item):
-        return '[%s] %s' % (item['quality'], item['host'])
+        label = '[%s] %s' % (item['quality'], item['host'])
+        if 'subs' in item and item['subs']:
+            label += ' (Turkish subtitles)'
+        return label
 
     def get_sources(self, video):
         source_url = self.get_url(video)
@@ -70,84 +76,77 @@ class SezonLukDizi_Scraper(scraper.Scraper):
         if source_url and source_url != FORCE_NO_MATCH:
             page_url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(page_url, cache_limit=2)
-            
-            match1 = re.search('var\s+video_id\s*=\s*"([^"]+)', html)
-            match2 = re.search('var\s+part_name\s*=\s*"([^"]+)', html)
-            if match1 and match2:
-                video_id = match1.group(1)
-                part_name = match2.group(1)
-                
-                part_count, links = self.__get_video(video_id, part_name, 0)
-                hosters += links
-                
-                for page in xrange(1, part_count):
-                    _, links = self.__get_video(video_id, part_name, page)
-                    hosters += links
-        
-            hosters = dict((stream['url'], stream) for stream in hosters).values()
+            fragment = dom_parser.parse_dom(html, 'div', {'id': 'embed'})
+            if fragment:
+                    iframe_url = dom_parser.parse_dom(fragment[0], 'iframe', ret='src')
+                    if iframe_url:
+                        html = self._http_get(iframe_url[0], cache_limit=.25)
+                        seen_urls = {}
+                        # if captions exist, then they aren't hardcoded
+                        if re.search('kind\s*:\s*"captions"', html):
+                            subs = False
+                        else:
+                            subs = True
+                            
+                        for match in re.finditer('"?file"?\s*:\s*"([^"]+)"\s*,\s*"?label"?\s*:\s*"(\d+)p?[^"]*"', html):
+                            stream_url, height = match.groups()
+                            if stream_url not in seen_urls:
+                                seen_urls[stream_url] = True
+                                if 'v.asp' in stream_url:
+                                    stream_redirect = self._http_get(stream_url, allow_redirect=False, cache_limit=0)
+                                    if stream_redirect: stream_url = stream_redirect
+                                    
+                                stream_url += '|User-Agent=%s' % (scraper_utils.get_ua())
+                                host = self._get_direct_hostname(stream_url)
+                                if host == 'gvideo':
+                                    quality = scraper_utils.gv_get_quality(stream_url)
+                                else:
+                                    quality = scraper_utils.height_get_quality(height)
+                                hoster = {'multi-part': False, 'host': self._get_direct_hostname(stream_url), 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': True, 'subs': subs}
+                                
+                                hosters.append(hoster)
         return hosters
-
-    def __get_video(self, video_id, part_name, page):
-        hosters = []
-        part_count = 1
-        video_url = urlparse.urljoin(self.base_url, GET_VIDEO_URL)
-        data = {'video_id': video_id, 'part_name': part_name, 'page': page}
-        html = self._http_get(video_url, data=data, headers=XHR, cache_limit=.25)
-        js_result = self._parse_json(html, video_url)
-        if 'part_count' in js_result:
-            part_count = js_result['part_count']
-            
-        if 'part' in js_result and 'code' in js_result['part']:
-            hosters = self.__get_links(js_result['part']['code'])
-        return part_count, hosters
-        
-    def __get_links(self, url):
-        sources = []
-        match = re.search('src="([^"]+)', url)
-        if match:
-            url = match.group(1).replace('\\/', '/')
-            html = self._http_get(url, cache_limit=0)
-            match = re.search('<script\s+src="([^\']+)\'\+(\d+)\+\'([^\']+)', html)
-            if match:
-                page_url = ''.join(match.groups())
-                page_url += str(random.random())
-                html = self._http_get(page_url, cache_limit=0)
-                
-            for match in re.finditer('"?file"?\s*:\s*"([^"]+)"\s*,\s*"?label"?\s*:\s*"(\d+)p?"', html):
-                stream_url, height = match.groups()
-                stream_url = stream_url.replace('\\&', '&').replace('\\/', '/')
-                if 'v.asp' in stream_url and 'ok.ru' not in url:
-                    stream_redirect = self._http_get(stream_url, allow_redirect=False, cache_limit=0)
-                    if stream_redirect: stream_url = stream_redirect
-
-                if self._get_direct_hostname(stream_url) == 'gvideo':
-                    quality = self._gv_get_quality(stream_url)
-                else:
-                    quality = self._height_get_quality(height)
-                        
-                host = self._get_direct_hostname(stream_url)
-                stream_url += '|User-Agent=%s&Referer=%s' % (self._get_ua(), urllib.quote(url))
-                hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': True}
-                sources.append(hoster)
-        return sources
     
     def get_url(self, video):
-        return super(SezonLukDizi_Scraper, self)._default_get_url(video)
+        return self._default_get_url(video)
 
     def _get_episode_url(self, show_url, video):
-        episode_pattern = 'href="([^"]+(?:-|/)%s-sezon-%s-[^"]*bolum[^"]*)' % (video.season, video.episode)
-        title_pattern = 'class="episode-name"\s+href="(?P<url>[^"]+)"\s+title="(?P<title>[^"]+)'
-        return super(SezonLukDizi_Scraper, self)._default_get_episode_url(show_url, video, episode_pattern, title_pattern)
+        url = urlparse.urljoin(self.base_url, show_url)
+        html = self._http_get(url, cache_limit=1)
+        data_id = dom_parser.parse_dom(html, 'div', {'id': 'dizidetay'}, ret='data-id')
+        data_dizi = dom_parser.parse_dom(html, 'div', {'id': 'dizidetay'}, ret='data-dizi')
+        if data_id and data_dizi:
+            queries = {'sekme': 'bolumler', 'id': data_id[0], 'dizi': data_dizi[0]}
+            season_url = SEASON_URL + '?' + urllib.urlencode(queries)
+            episode_pattern = '''href=['"]([^'"]*/%s-sezon-%s-[^'"]*bolum[^'"]*)''' % (video.season, video.episode)
+            title_pattern = '''href=['"](?P<url>[^'"]+)[^>]*>(?P<title>[^<]+)'''
+            airdate_pattern = '''href=['"]([^"']+)[^>]*>[^<]*</a>\s*</td>\s*<td class="right aligned">{p_day}\.{p_month}\.{year}'''
+            result = self._default_get_episode_url(season_url, video, episode_pattern, title_pattern, airdate_pattern)
+            if result and 'javascript:;' not in result:
+                return result
 
     def search(self, video_type, title, year):
         results = []
         search_url = urlparse.urljoin(self.base_url, SEARCH_URL)
-        search_url = search_url % (urllib.quote_plus(title), str(int(time.time() * 1000)))
-        html = self._http_get(search_url, headers=XHR, cache_limit=1)
-        js_result = self._parse_json(html, search_url)
-        if js_result:
-            for item in js_result:
-                result = {'url': self._pathify_url(item['url']), 'title': item['name'], 'year': ''}
-                results.append(result)
+        search_url += urllib.quote_plus(title)
+        html = self._http_get(search_url, cache_limit=8)
+        fragment = dom_parser.parse_dom(html, 'div', {'class': '[^"]*items[^"]*'})
+        if fragment:
+            for item in dom_parser.parse_dom(fragment[0], 'div', {'class': 'item'}):
+                match_url = dom_parser.parse_dom(item, 'a', {'class': 'header'}, ret='href')
+                match_title_year = dom_parser.parse_dom(item, 'a', {'class': 'header'})
+                if match_url and match_title_year:
+                    match_url = match_url[0]
+                    match_title_year = match_title_year[0]
+                    r = re.search('(.*?)\s+\((\d{4})\)', match_title_year)
+                    if r:
+                        match_title, match_year = r.groups()
+                    else:
+                        match_title = match_title_year
+                        match_year = ''
+                    
+                    if not year or not match_year or year == match_year:
+                        result = {'url': scraper_utils.pathify_url(match_url), 'title': match_title, 'year': match_year}
+                        results.append(result)
 
         return results

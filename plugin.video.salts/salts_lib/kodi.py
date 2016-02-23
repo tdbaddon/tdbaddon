@@ -66,6 +66,9 @@ def get_plugin_url(queries):
 def end_of_directory(cache_to_disc=True):
     xbmcplugin.endOfDirectory(int(sys.argv[1]), cacheToDisc=cache_to_disc)
 
+def set_content(content):
+    xbmcplugin.setContent(int(sys.argv[1]), content)
+    
 def create_item(queries, label, thumb='', fanart='', is_folder=None, is_playable=None, total_items=0, menu_items=None, replace_menu=False):
     list_item = xbmcgui.ListItem(label, iconImage=thumb, thumbnailImage=thumb)
     add_item(queries, list_item, fanart, is_folder, is_playable, total_items, menu_items, replace_menu)

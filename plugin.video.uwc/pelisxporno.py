@@ -25,8 +25,8 @@ import utils
 progress = utils.progress
 
 def Main():
-    utils.addDir('[COLOR yellow]Categories[/COLOR]','http://www.pelisxporno.com/',143,'','')
-    utils.addDir('[COLOR yellow]Search[/COLOR]','http://www.pelisxporno.com/?s=',144,'','')
+    utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://www.pelisxporno.com/',143,'','')
+    utils.addDir('[COLOR hotpink]Search[/COLOR]','http://www.pelisxporno.com/?s=',144,'','')
     List('http://www.pelisxporno.com/')
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
@@ -44,15 +44,15 @@ def List(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
     
-def Search(url):
+def Search(url, keyword=None):
     searchUrl = url
-    vq = utils._get_keyboard(heading="Searching for...")
-    if (not vq): return False, 0
-    title = urllib.quote_plus(vq)
-    title = title.replace(' ','+')
-    searchUrl = searchUrl + title
-    print "Searching URL: " + searchUrl
-    List(searchUrl)
+    if not keyword:
+        utils.searchDir(url, 144)
+    else:
+        title = keyword.replace(' ','+')
+        searchUrl = searchUrl + title
+        print "Searching URL: " + searchUrl
+        List(searchUrl)
 
 
 def Categories(url):

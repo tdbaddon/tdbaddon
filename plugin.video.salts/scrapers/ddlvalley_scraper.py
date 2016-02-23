@@ -15,17 +15,20 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import scraper
+import datetime
+import re
 import urllib
 import urlparse
-import re
-import datetime
-from salts_lib import kodi
+
 from salts_lib import dom_parser
-from salts_lib.trans_utils import i18n
-from salts_lib.constants import VIDEO_TYPES
+from salts_lib import kodi
+from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import SHORT_MONS
+from salts_lib.constants import VIDEO_TYPES
+from salts_lib.utils2 import i18n
+import scraper
+
 
 BASE_URL = 'http://www.ddlvalley.cool'
 CATEGORIES = {VIDEO_TYPES.MOVIE: '/category/movies/', VIDEO_TYPES.TVSHOW: '/category/tv-shows/'}
@@ -61,7 +64,7 @@ class DDLValley_Scraper(scraper.Scraper):
                 for match2 in re.finditer('href="([^"]+)', match.group(1)):
                     stream_url = match2.group(1)
                     host = urlparse.urlparse(stream_url).hostname
-                    quality = self._blog_get_quality(video, stream_url, host)
+                    quality = scraper_utils.blog_get_quality(video, stream_url, host)
                     hoster = {'multi-part': False, 'host': host, 'class': self, 'views': None, 'url': stream_url, 'rating': None, 'quality': quality, 'direct': False}
                     hosters.append(hoster)
                 
@@ -72,17 +75,17 @@ class DDLValley_Scraper(scraper.Scraper):
 
     @classmethod
     def get_settings(cls):
-        settings = super(DDLValley_Scraper, cls).get_settings()
-        settings = cls._disable_sub_check(settings)
+        settings = super(cls, cls).get_settings()
+        settings = scraper_utils.disable_sub_check(settings)
         name = cls.get_name()
         settings.append('         <setting id="%s-filter" type="slider" range="0,180" option="int" label="     %s" default="60" visible="eq(-4,true)"/>' % (name, i18n('filter_results_days')))
         return settings
 
     def _get_episode_url(self, show_url, video):
         sxe = '.S%02dE%02d.' % (int(video.season), int(video.episode))
-        force_title = self._force_title(video)
+        force_title = scraper_utils.force_title(video)
         title_fallback = kodi.get_setting('title-fallback') == 'true'
-        norm_title = self._normalize_title(video.ep_title)
+        norm_title = scraper_utils.normalize_title(video.ep_title)
         try: ep_airdate = video.ep_airdate.strftime('.%Y.%m.%d.')
         except: ep_airdate = ''
         
@@ -101,12 +104,12 @@ class DDLValley_Scraper(scraper.Scraper):
                     url, title = heading
                     if not force_title:
                         if (sxe in title) or (ep_airdate and ep_airdate in title):
-                            return self._pathify_url(url)
+                            return scraper_utils.pathify_url(url)
                     else:
                         if title_fallback and norm_title:
                             match = re.search('<strong>(.*?)</strong>', post)
-                            if match and norm_title == self._normalize_title(match.group(1)):
-                                return self._pathify_url(url)
+                            if match and norm_title == scraper_utils.normalize_title(match.group(1)):
+                                return scraper_utils.pathify_url(url)
                 
             page_url = dom_parser.parse_dom(html, 'a', {'class': 'nextpostslink'}, ret='href')
     
@@ -123,13 +126,13 @@ class DDLValley_Scraper(scraper.Scraper):
                     if match:
                         show_url, match_title = match.groups()
                         if show_url not in seen_urls:
-                            result = {'url': self._pathify_url(show_url), 'title': match_title, 'year': ''}
+                            result = {'url': scraper_utils.pathify_url(show_url), 'title': match_title, 'year': ''}
                             seen_urls[show_url] = result
                             results.append(result)
         elif video_type == VIDEO_TYPES.MOVIE:
             headings = re.findall('<h2>\s*<a\s+href="([^"]+)[^>]+>(.*?)</a>', html)
             posts = dom_parser.parse_dom(html, 'div', {'id': 'post-\d+'})
-            norm_title = self._normalize_title(title)
+            norm_title = scraper_utils.normalize_title(title)
             for heading, post in zip(headings, posts):
                 if CATEGORIES[video_type] in post and not self.__too_old(post):
                     post_url, post_title = heading
@@ -141,9 +144,9 @@ class DDLValley_Scraper(scraper.Scraper):
                         full_title = match_title = post_title
                         match_year = ''
                     
-                    match_norm_title = self._normalize_title(match_title)
+                    match_norm_title = scraper_utils.normalize_title(match_title)
                     if (match_norm_title in norm_title or norm_title in match_norm_title) and (not year or not match_year or year == match_year):
-                        result = {'url': self._pathify_url(post_url), 'title': full_title, 'year': match_year}
+                        result = {'url': scraper_utils.pathify_url(post_url), 'title': full_title, 'year': match_year}
                         results.append(result)
         
         return results

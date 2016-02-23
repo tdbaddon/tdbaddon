@@ -19,7 +19,7 @@
 import urllib, urllib2, re, cookielib, os.path, sys, socket
 import xbmc, xbmcplugin, xbmcgui, xbmcaddon
 
-from jsbeautifier import beautify
+from jsunpack import unpack
 
 import utils
 
@@ -36,7 +36,7 @@ def getHC(url):
     return data
 
 def HCList(url):
-    utils.addDir('[COLOR white]A-Z List[/COLOR] [COLOR yellow]Censored & Uncensored[/COLOR]','http://www.hentaicraving.com/hentai-list/',33,'','')
+    utils.addDir('[COLOR hotpink]A-Z List[/COLOR] [COLOR white]Censored & Uncensored[/COLOR]','http://www.hentaicraving.com/hentai-list/',33,'','')
     link = utils.getHtml(url, '')
     match = re.compile("""<a href='([^']+)'><img.*?title="([^"]+)".*?src="([^"]+)".*?Description: </b> ([^<]+)<p>""", re.DOTALL | re.IGNORECASE).findall(link)
     for videourl, name, img, desc in match:
@@ -87,7 +87,7 @@ def HCPlayvid(url,name, download=None):
     else:
         progress.update( 80, "", "Loading video", "" )
         match2 = re.compile("<script type='text/javascript'>([^<]+)</sc", re.DOTALL | re.IGNORECASE).findall(urldata2)
-        res = beautify(match2[0])
+        res = unpack(match2[0])
         match3 = re.compile("file.*?(http.*?mp4)", re.DOTALL | re.IGNORECASE).findall(res)
         videourl = match3[0]
     progress.close()

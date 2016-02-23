@@ -15,14 +15,18 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import scraper
 import re
-import urlparse
-from salts_lib import kodi
 import urllib
-from salts_lib.constants import VIDEO_TYPES
+import urlparse
+
+from salts_lib import kodi
+from salts_lib import scraper_utils
+from salts_lib import log_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
+from salts_lib.constants import VIDEO_TYPES
+import scraper
+
 
 BASE_URL = 'http://streamallthis.is'
 
@@ -45,7 +49,7 @@ class Stream_Scraper(scraper.Scraper):
         return link
 
     def format_source_label(self, item):
-        label = '[%s] %s ' % (item['quality'], item['host'])
+        label = '[%s] %s' % (item['quality'], item['host'])
         return label
 
     def get_sources(self, video):
@@ -55,76 +59,52 @@ class Stream_Scraper(scraper.Scraper):
             url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(url, cache_limit=.5)
 
-            # keep pulling till we find neither a /watch iframe nor a /watch href
+            new_url = ''
             while True:
-                match = re.search('iframe\s+src="(/watch[^"]+)', html)
+                match = re.search("location.href=['\"](/watch[^\"']+)", html)
                 if match:
                     new_url = match.group(1)
                     url = urlparse.urljoin(self.base_url, new_url)
                     html = self._http_get(url, cache_limit=.5)
                 else:
-                    match = re.search("location.href='(/watch[^']+)", html)
+                    match = re.search('''<iframe[^>]*src=['"]((?!https?://streamallthis)[^'"]+)''', html)
                     if match:
                         new_url = match.group(1)
-                        url = urlparse.urljoin(self.base_url, new_url)
-                        html = self._http_get(url, cache_limit=.5)
+                        if '/watch/' in new_url:
+                            url = urlparse.urljoin(self.base_url, new_url)
+                            html = self._http_get(url, cache_limit=.5)
+                        else:
+                            url = new_url
+                            break
                     else:
+                        url = new_url
                         break
 
-            # assume we must be on the mail.ru link now
-            # TODO: Once mail.ru resolver is pushed, this code needs to be removed
-            match = re.search("iframe\s+src='([^']+)", html)
-            if match:
-                new_url = match.group(1)
-                html = self._http_get(new_url, cache_limit=.5)
-                match = re.search('metadataUrl"\s*:\s*"([^"]+)', html)
-                if match:
-                    new_url = match.group(1)
-                    html = self._http_get(new_url, cache_limit=.5)
-                    js_data = self._parse_json(html, new_url)
-                    if 'videos' in js_data:
-                        for video in js_data['videos']:
-                            stream_url = video['url'] + '|Cookie=%s' % (self.__get_stream_cookies())
-                            hoster = {'multi-part': False, 'host': self._get_direct_hostname(stream_url), 'class': self, 'url': stream_url, 'quality': self.__set_quality(video['key'][:-1]), 'views': None, 'rating': None, 'direct': True}
-                            hosters.append(hoster)
+            if url:
+                stream_url = url
+                host = urlparse.urlparse(stream_url).hostname
+                hoster = {'multi-part': False, 'host': host, 'class': self, 'url': stream_url, 'quality': QUALITIES.HIGH, 'views': None, 'rating': None, 'direct': False}
+                hosters.append(hoster)
         return hosters
 
-    def __get_stream_cookies(self):
-        cj = self._set_cookies(self.base_url, {})
-        cookies = []
-        for cookie in cj:
-            if 'mail.ru' in cookie.domain:
-                cookies.append('%s=%s' % (cookie.name, cookie.value))
-        return urllib.quote(';'.join(cookies))
-
-    def __set_quality(self, height):
-        height = int(height)
-        if height >= 720:
-            quality = QUALITIES.HD720
-        elif height >= 480:
-            quality = QUALITIES.HIGH
-        else:
-            quality = QUALITIES.MEDIUM
-        return quality
-
     def get_url(self, video):
-        return super(Stream_Scraper, self)._default_get_url(video)
+        return self._default_get_url(video)
 
     def _get_episode_url(self, show_url, video):
         episode_pattern = 'href="([^"]+s%02de%02d\.html)"\s+class="la"' % (int(video.season), int(video.episode))
-        return super(Stream_Scraper, self)._default_get_episode_url(show_url, video, episode_pattern, '')
+        return self._default_get_episode_url(show_url, video, episode_pattern, '')
 
     def search(self, video_type, title, year):
         url = urlparse.urljoin(self.base_url, '/tv-shows-list.html')
         html = self._http_get(url, cache_limit=8)
 
         results = []
-        norm_title = self._normalize_title(title)
+        norm_title = scraper_utils.normalize_title(title)
         pattern = 'href="([^"]+)"\s+class="lc">\s*(.*?)\s*<'
         for match in re.finditer(pattern, html):
             url, match_title = match.groups()
-            if norm_title in self._normalize_title(match_title):
-                result = {'url': self._pathify_url(url), 'title': match_title, 'year': ''}
+            if norm_title in scraper_utils.normalize_title(match_title):
+                result = {'url': scraper_utils.pathify_url(url), 'title': match_title, 'year': ''}
                 results.append(result)
 
         return results

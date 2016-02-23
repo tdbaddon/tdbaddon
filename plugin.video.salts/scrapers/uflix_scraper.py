@@ -15,17 +15,20 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import scraper
-import urllib
-import urlparse
 import re
 import string
-from salts_lib import kodi
+import urllib
+import urlparse
+
 from salts_lib import dom_parser
+from salts_lib import kodi
 from salts_lib import log_utils
-from salts_lib.constants import VIDEO_TYPES
+from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
+from salts_lib.constants import VIDEO_TYPES
+import scraper
+
 
 QUALITY_MAP = {'HD': QUALITIES.HIGH, 'LOW': QUALITIES.LOW}
 QUALITY_ICONS = {'fullhdbr.png': QUALITIES.HIGH, 'Blu-Ray.gif': QUALITIES.HIGH}
@@ -72,7 +75,7 @@ class UFlix_Scraper(scraper.Scraper):
                 if match:
                     quality = QUALITY_MAP.get(match.group(1).upper())
 
-            pattern = 'href="[^"]+url=([^&]+)&domain=([^"&]+).*?fa-thumbs-o-up">\s*([^<]+).*?vote_bad_embedid_\d+\'>([^<]+)'
+            pattern = '''href="[^"]+url=([^&]+)&domain=([^"&]+).*?fa-thumbs-o-up">\s*([^<]+).*?vote_bad_embedid_\d+'>([^<]+)'''
             for match in re.finditer(pattern, html, re.I | re.DOTALL):
                 url, host, up, down = match.groups()
                 up = ''.join([c for c in up if c in string.digits])
@@ -86,7 +89,7 @@ class UFlix_Scraper(scraper.Scraper):
 
                 up = int(up)
                 down = int(down)
-                source = {'multi-part': False, 'url': url, 'host': host, 'class': self, 'quality': self._get_quality(video, host, quality), 'up': up, 'down': down, 'direct': False}
+                source = {'multi-part': False, 'url': url, 'host': host, 'class': self, 'quality': scraper_utils.get_quality(video, host, quality), 'up': up, 'down': down, 'direct': False}
                 rating = up * 100 / (up + down) if (up > 0 or down > 0) else None
                 source['rating'] = rating
                 source['views'] = up + down
@@ -95,7 +98,7 @@ class UFlix_Scraper(scraper.Scraper):
         return sources
 
     def get_url(self, video):
-        return super(UFlix_Scraper, self)._default_get_url(video)
+        return self._default_get_url(video)
 
     def search(self, video_type, title, year):
         search_url = urlparse.urljoin(self.base_url, '/index.php?menu=search&query=')
@@ -120,11 +123,11 @@ class UFlix_Scraper(scraper.Scraper):
                     if match_title.endswith(' Online'): match_title = match_title.replace(' Online', '')
                     
                     if not year or not match_year or year == match_year:
-                        result = {'title': match_title, 'url': self._pathify_url(url), 'year': match_year}
+                        result = {'title': match_title, 'url': scraper_utils.pathify_url(url), 'year': match_year}
                         results.append(result)
         return results
 
     def _get_episode_url(self, show_url, video):
         episode_pattern = 'class="link"\s+href="([^"]+/show/[^"]+/season/%s/episode/%s)"' % (video.season, video.episode)
         title_pattern = 'class="link"\s+href="(?P<url>[^"]+).*?class="tv_episode_name"[^>]*>\s*(?P<title>[^<]+)'
-        return super(UFlix_Scraper, self)._default_get_episode_url(show_url, video, episode_pattern, title_pattern)
+        return self._default_get_episode_url(show_url, video, episode_pattern, title_pattern)

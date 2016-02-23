@@ -21,12 +21,10 @@ import os
 import kodi
 import random
 import json
-from utils import reset_base_url
-from trans_utils import i18n
+from utils2 import reset_base_url, i18n
 from trakt_api import Trakt_API
 from salts_lib import log_utils
 
-ICON_PATH = os.path.join(kodi.get_path(), 'icon.png')
 use_https = kodi.get_setting('use_https') == 'true'
 trakt_timeout = int(kodi.get_setting('trakt_timeout'))
 
@@ -174,18 +172,17 @@ def perform_auto_conf(responses):
 
     if responses[10]:
         tiers = ['Local', 'Furk.net', 'Premiumize.me', 'EasyNews', 'DD.tv', 'NoobRoom',
-                 ['WatchHD', 'IFlix', 'MoviesPlanet', 'CyberReel', '9Movies', '123Movies', 'niter.tv', 'ororo.tv'],
-                 ['movietv.to', 'StreamLord', 'tunemovie', 'afdah.org', 'xmovies8', 'xmovies8.v2', 'alluc.com'],
-                 ['torba.se', 'IzlemeyeDeger', 'Rainierland', 'zumvo.com', 'PutMV', 'MiraDeTodo', 'beinmovie'],
-                 ['SezonLukDizi', 'Dizimag', 'Dizilab', 'Dizigold', 'Diziay', 'Dizipas', 'OneClickTVShows', 'MovieFarsi'],
-                 ['DDLValley', 'ReleaseBB', 'MyVideoLinks.eu', 'OneClickWatch', 'RLSSource.net', 'TVRelease.Net'],
-                 ['IceFilms', 'PrimeWire', 'Flixanity', 'wso.ch', 'WatchSeries', 'UFlix.org', 'Putlocker', 'MovieHut'],
+                 ['WatchHD', 'IFlix', 'MoviesPlanet', 'TVWTVS', '9Movies', '123Movies', 'niter.tv', 'HDMovie14', 'ororo.tv'],
+                 ['StreamLord', 'CyberReel', 'MWM', 'tunemovie', 'afdah.org', 'xmovies8', 'xmovies8.v2', 'MovieXK'],
+                 ['torba.se', 'Rainierland', 'FardaDownload', 'zumvo.com', 'PutMV', 'MiraDeTodo', 'beinmovie', 'FireMoviesHD'],
+                 ['IzlemeyeDeger', 'SezonLukDizi', 'Dizimag', 'Dizilab', 'Dizigold', 'Dizibox', 'Diziay', 'Dizipas', 'OneClickTVShows'],
+                 ['DayT.se', 'DDLValley', 'ReleaseBB', 'MyVideoLinks.eu', 'OCW', 'RLSSource.net', 'TVRelease.Net', 'alluc.com'],
+                 ['IceFilms', 'WatchEpisodes', 'PrimeWire', 'SantaSeries', 'Flixanity', 'wso.ch', 'WatchSeries', 'UFlix.org', 'Putlocker'],
                  ['funtastic-vids', 'WatchFree.to', 'pftv', 'streamallthis.is', 'Movie4K', 'afdah', 'SolarMovie', 'yify-streaming'],
-                 ['CouchTunerV2', 'CouchTunerV1', 'Watch8Now', 'yshows', 'TwoMovies.us', 'iWatchOnline', 'vidics.ch', 'pubfilm'],
-                 ['OnlineMoviesIs', 'OnlineMoviesPro', 'ViewMovies', 'movie25', 'viooz.ac', 'view47', 'MoviesHD', 'wmo.ch'],
-                 ['ayyex', 'stream-tv.co', 'clickplay.to', 'MintMovies', 'MovieNight', 'cmz', 'ch131', 'filmikz.ch'],
-                 ['MovieTube', 'LosMovies', 'FilmStreaming.in', 'moviestorm.eu', 'MerDB'],
-                 'MoviesOnline7']
+                 ['MovieSub', 'MovieHut', 'CouchTunerV2', 'CouchTunerV1', 'Watch8Now', 'yshows', 'TwoMovies.us', 'iWatchOnline'],
+                 ['vidics.ch', 'pubfilm', 'OnlineMoviesIs', 'OnlineMoviesPro', 'ViewMovies', 'movie25', 'viooz.ac', 'view47', 'MoviesHD'],
+                 ['wmo.ch', 'ayyex', 'stream-tv.co', 'clickplay.to', 'MintMovies', 'MovieNight', 'cmz', 'ch131', 'filmikz.ch'],
+                 ['MovieTube', 'LosMovies', 'FilmStreaming.in', 'moviestorm.eu', 'MerDB']]
     
         sso = []
         random_sso = kodi.get_setting('random_sso') == 'true'
@@ -199,7 +196,10 @@ def perform_auto_conf(responses):
         kodi.set_setting('source_sort_order', '|'.join(sso))
     
     if responses[11]: reset_base_url()
-    kodi.set_setting('filter-unknown', 'false')
+    trigger = [False, True, False, True, False, True, True, False, True, False, False, False]
+    if all([t == r for t, r in zip(trigger, responses)]):
+        kodi.set_setting('scraper_download', 'true')
+        
     kodi.notify(msg=i18n('auto_conf_complete'))
 
 def do_auto_config():

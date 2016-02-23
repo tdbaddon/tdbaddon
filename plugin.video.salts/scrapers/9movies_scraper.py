@@ -15,22 +15,25 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import scraper
-import urllib
-import urlparse
 import re
 import time
-from salts_lib import log_utils
-from salts_lib import kodi
+import urllib
+import urlparse
+
 from salts_lib import dom_parser
-from salts_lib.constants import VIDEO_TYPES
+from salts_lib import kodi
+from salts_lib import log_utils
+from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
-from salts_lib.constants import XHR
+from salts_lib.constants import VIDEO_TYPES
+import scraper
+
 
 BASE_URL = 'http://9movies.to'
 HASH_URL = '/ajax/film/episode?hash_id=%s&f=&p=%s'
 Q_MAP = {'TS': QUALITIES.LOW, 'CAM': QUALITIES.LOW, 'HDTS': QUALITIES.LOW, 'HD 720P': QUALITIES.HD720}
+XHR = {'X-Requested-With': 'XMLHttpRequest'}
 
 class NineMovies_Scraper(scraper.Scraper):
     base_url = BASE_URL
@@ -67,19 +70,19 @@ class NineMovies_Scraper(scraper.Scraper):
                     url = urlparse.urljoin(self.base_url, HASH_URL)
                     url = url % (hash_id, now.tm_hour + now.tm_min)
                     html = self._http_get(url, headers=XHR, cache_limit=.5)
-                    js_result = self._parse_json(html, url)
+                    js_result = scraper_utils.parse_json(html, url)
                     if 'videoUrlHash' in js_result and 'grabber' in js_result:
                         query = {'flash': 1, 'json': 1, 's': now.tm_min, 'link': js_result['videoUrlHash'], '_': int(time.time())}
                         query['link'] = query['link'].replace('\/', '/')
                         grab_url = js_result['grabber'].replace('\/', '/')
                         grab_url += '?' + urllib.urlencode(query)
                         html = self._http_get(grab_url, headers=XHR, cache_limit=.5)
-                        js_result = self._parse_json(html, grab_url)
+                        js_result = scraper_utils.parse_json(html, grab_url)
                         for result in js_result:
                             if 'label' in result:
-                                quality = self._height_get_quality(result['label'])
+                                quality = scraper_utils.height_get_quality(result['label'])
                             else:
-                                quality = self._gv_get_quality(result['file'])
+                                quality = scraper_utils.gv_get_quality(result['file'])
                             sources[result['file']] = quality
                 
             for source in sources:
@@ -88,7 +91,7 @@ class NineMovies_Scraper(scraper.Scraper):
         return hosters
 
     def get_url(self, video):
-        return super(NineMovies_Scraper, self)._default_get_url(video)
+        return self._default_get_url(video)
 
     def search(self, video_type, title, year):
         search_url = urlparse.urljoin(self.base_url, '/search?keyword=%s' % (urllib.quote_plus(title)))
@@ -103,7 +106,7 @@ class NineMovies_Scraper(scraper.Scraper):
                 if match:
                     match_url, match_title = match.groups()
                     if not year or not match_year or year == match_year:
-                        result = {'title': match_title, 'year': '', 'url': self._pathify_url(match_url)}
+                        result = {'title': match_title, 'year': '', 'url': scraper_utils.pathify_url(match_url)}
                         results.append(result)
 
         return results

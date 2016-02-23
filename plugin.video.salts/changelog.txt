@@ -1,3 +1,110 @@
+[B]Version 2.0.1[/B]
+- Fix srt download path
+- Fix flixanity search
+- Update translations
+
+[B]Version 1.0.115[/B]
+- Fix sezon scraper
+- Handle no stream_url notification
+- Set content type on calendars & MNE
+- Add title info to alluc
+- Fix stream-tv scraper
+- Fix yshows scraper
+- Remove movietv.to scraper
+- Fix stupid video_type error
+- Small code fixes for XHR
+
+[B]Version 1.0.112[/B]
+- Internal Code Improvements
+- Fix sezon scraper
+
+[B]Version 1.0.111[/B]
+- Add SantaSeries scraper
+- Add WatchEpisodes scraper
+- Fix WatchHD scraper
+- Fix MovieTV scraper
+- Fix 123Movies scraper
+- Fix yify-streaming scraper
+- Improve dizibox scraper
+- Improve Rainierland scraper
+
+[B]Version 1.0.110[/B]
+- Fix rlssource scraper
+- Fix twts ep matching
+- Fix moviexk scraper
+- Improve dizipas video get
+- Fix streamallthis scraper
+- Fix xmovies8
+- Fix merdb
+- Fix afdah.org
+
+[B]Version 1.0.109[/B]
+- Add new caching method to MNE
+- Remove cache watched and collection options
+- Fix debrid sort key
+- Fix ororo scraper
+- Fix furk scraper
+- Fix merdb scraper
+- Fix twomovies scraper
+- Fix MySQL DB Migration
+- Replace default fanart with mjbxx's
+- Lots of Code cleanup
+
+[B]Version 1.0.108[/B]
+- Add MovieXK scraper
+- Add mqm scraper
+- Add MovieSub Scraper
+- Fix list sorting (requires DB re-init)
+
+[B]Version 1.0.107[/B]
+- Add tvwtvs scraper
+- Fix MovieTV scraper
+- Fix Dizibox scraper
+- Fix Dizipas scraper
+- Fix Liked List Pagination
+- Add dynamic caching for watched history; collection; and lists
+- Disable video play from SF
+- Don't allow SF to override context menu
+
+[B]Version 1.0.106[/B]
+- Fix movietv
+- Fix HDMovie14 scraper
+- Add dizibox scraper
+- Add dayt scraper
+
+[B]Version 1.0.105[/B]
+- Add HDMovie14 scraper
+- Improve Flixanity scraper
+- Replace default Movies list with Movist one
+- Add method to install themepak automatically
+
+[B]Version 1.0.104[/B]
+- Fix funtastic scraper
+- Make OCW private
+- Update translations
+
+[B]Version 1.0.103[/B]
+- Add FardaDownload scraper
+- Add FireMoviesHD scraper
+- Fix LosMovies scraper
+- Remove MoviesOnline7
+- Remove CyberReel
+
+[B]Version 1.0.102[/B]
+- Fix 123movies xml sources
+- More DB Recovery Improvements
+- Fix MySQL Key Length again
+- Remove filter sources with unknown values setting
+- Improvements on private scrapers logic
+
+[B]Version 1.0.101[/B]
+- Fix rel_url key length for MySQL 32 bit
+- Fix mvl scraper
+- Remove moviefarsi
+- Rename oneclickwatch to ocw
+- Start work to make iflix a private scraper
+- Fix WatchHD scraper
+
 [B]Version 1.0.99[/B]
 - Fix movietv.to scraper
 - Improve WatchHD scraper

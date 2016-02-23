@@ -15,20 +15,24 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import scraper
+import os
+import re
 import urllib
 import urlparse
-import re
-import xbmcvfs
-import os
-from salts_lib import log_utils
-from salts_lib import kodi
-from salts_lib import dom_parser
-from salts_lib.constants import VIDEO_TYPES
-from salts_lib.constants import FORCE_NO_MATCH
-from salts_lib.constants import XHR
-from salts_lib.constants import QUALITIES
 
+import xbmcvfs
+
+from salts_lib import dom_parser
+from salts_lib import kodi
+from salts_lib import log_utils
+from salts_lib import scraper_utils
+from salts_lib.constants import FORCE_NO_MATCH
+from salts_lib.constants import QUALITIES
+from salts_lib.constants import VIDEO_TYPES
+import scraper
+
+
+XHR = {'X-Requested-With': 'XMLHttpRequest'}
 BASE_URL = 'http://torba.se'
 BASE_URL2 = 'http://streamtorrent.tv'
 SEARCH_URL = '/search?title=%s&order=recent&_pjax=#films-pjax-container'
@@ -103,7 +107,7 @@ class TorbaSe_Scraper(scraper.Scraper):
     def __get_stream_id(self, vid_id):
         tor_url = TOR_URL % (vid_id)
         html = self._http_get(tor_url, cache_limit=.5)
-        js_data = self._parse_json(html, tor_url)
+        js_data = scraper_utils.parse_json(html, tor_url)
         if 'files' in js_data:
             for file_info in js_data['files']:
                 if 'streams' in file_info and file_info['streams']:
@@ -125,7 +129,7 @@ class TorbaSe_Scraper(scraper.Scraper):
                 match = re.search('BANDWIDTH=(\d+).*?NAME="(\d+p)', line)
                 if match:
                     bandwidth, stream_name = match.groups()
-                    quality = self._height_get_quality(stream_name)
+                    quality = scraper_utils.height_get_quality(stream_name)
             elif line.endswith('m3u8'):
                 stream_url = urlparse.urljoin(st_url, line)
                 query = {'audio_group': audio_group, 'audio_stream': audio_stream, 'stream_name': stream_name, 'bandwidth': bandwidth, 'video_stream': stream_url,
@@ -136,7 +140,7 @@ class TorbaSe_Scraper(scraper.Scraper):
         return sources
         
     def get_url(self, video):
-        return super(TorbaSe_Scraper, self)._default_get_url(video)
+        return self._default_get_url(video)
 
     def search(self, video_type, title, year):
         results = []

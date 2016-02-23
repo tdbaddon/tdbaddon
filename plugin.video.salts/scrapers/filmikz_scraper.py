@@ -15,14 +15,17 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import scraper
+import re
 import urllib
 import urlparse
-import re
+
 from salts_lib import kodi
-from salts_lib.constants import VIDEO_TYPES
+from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
+from salts_lib.constants import VIDEO_TYPES
+import scraper
+
 
 BASE_URL = 'http://filmikz.ch'
 
@@ -66,12 +69,12 @@ class Filmikz_Scraper(scraper.Scraper):
                 else:
                     quality = QUALITIES.HD720
                     seen_hosts[hoster['host']] = True
-                hoster['quality'] = self._get_quality(video, hoster['host'], quality)
+                hoster['quality'] = scraper_utils.get_quality(video, hoster['host'], quality)
                 hosters.append(hoster)
         return hosters
 
     def get_url(self, video):
-        return super(Filmikz_Scraper, self)._default_get_url(video)
+        return self._default_get_url(video)
 
     def search(self, video_type, title, year):
         search_url = urlparse.urljoin(self.base_url, '/index.php?search=%s&image.x=0&image.y=0')
@@ -103,6 +106,6 @@ class Filmikz_Scraper(scraper.Scraper):
             if match:
                 url = match.group(1)
                 if url != 'movies.php':
-                    result = {'url': self._pathify_url(url), 'title': title, 'year': year}
+                    result = {'url': scraper_utils.pathify_url(url), 'title': title, 'year': year}
                     results.append(result)
         return results

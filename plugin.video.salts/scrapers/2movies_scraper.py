@@ -15,25 +15,28 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import scraper
-import urlparse
+import random
 import re
 import time
-import random
+import urlparse
+
 from salts_lib import kodi
 from salts_lib import log_utils
-from salts_lib.constants import VIDEO_TYPES
+from salts_lib import scraper_utils
+from salts_lib.constants import BR_VERS
+from salts_lib.constants import FEATURES
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
-from salts_lib.constants import XHR
-from salts_lib.constants import BR_VERS
-from salts_lib.constants import WIN_VERS
-from salts_lib.constants import FEATURES
 from salts_lib.constants import RAND_UAS
+from salts_lib.constants import VIDEO_TYPES
+from salts_lib.constants import WIN_VERS
+import scraper
+
 
 BASE_URL = 'http://twomovies.us'
 AJAX_URL = '/Xajax/aj0001'
 LOCAL_USER_AGENT = 'SALTS for Kodi/%s' % (kodi.get_version())
+XHR = {'X-Requested-With': 'XMLHttpRequest'}
 
 class TwoMovies_Scraper(scraper.Scraper):
     base_url = BASE_URL
@@ -53,7 +56,7 @@ class TwoMovies_Scraper(scraper.Scraper):
     def resolve_link(self, link):
         url = urlparse.urljoin(self.base_url, link)
         html = self._http_get(url, cookies={'links_tos': '1'}, cache_limit=0)
-        match = re.search('<iframe[^<]+src=(?:"|\')([^"\']+)', html, re.DOTALL | re.I)
+        match = re.search('''<iframe[^<]+src=(?:"|')([^"']+)''', html, re.DOTALL | re.I)
         if match:
             return match.group(1)
         else:
@@ -69,20 +72,20 @@ class TwoMovies_Scraper(scraper.Scraper):
         source_url = self.get_url(video)
         if source_url and source_url != FORCE_NO_MATCH:
             url = urlparse.urljoin(self.base_url, source_url)
-            html = self._http_get(url, cache_limit=.5)
+            html = self._http_get(url, cache_limit=24)
             pattern = 'class="playDiv3".*?href="([^"]+).*?>(.*?)</a>'
             for match in re.finditer(pattern, html, re.DOTALL | re.I):
                 url, host = match.groups()
-                source = {'multi-part': False, 'url': self._pathify_url(url), 'host': host, 'class': self, 'quality': self._get_quality(video, host, QUALITIES.HIGH), 'rating': None, 'views': None, 'direct': False}
+                source = {'multi-part': False, 'url': scraper_utils.pathify_url(url), 'host': host, 'class': self, 'quality': scraper_utils.get_quality(video, host, QUALITIES.HIGH), 'rating': None, 'views': None, 'direct': False}
                 sources.append(source)
         return sources
 
     def get_url(self, video):
-        return super(TwoMovies_Scraper, self)._default_get_url(video)
+        return self._default_get_url(video)
 
     def search(self, video_type, title, year):
         results = []
-        html = self._http_get(self.base_url, cache_limit=.25)
+        html = self._http_get(self.base_url, cache_limit=1)
         match = re.search('xajax.config.requestURI\s*=\s*"([^"]+)', html)
         if match:
             ajax_url = match.group(1)
@@ -93,7 +96,7 @@ class TwoMovies_Scraper(scraper.Scraper):
         xjxr = str(int(time.time() * 1000))
         search_arg = 'S<![CDATA[%s]]>' % (title)
         data = {'xjxfun': 'search_suggest', 'xjxr': xjxr, 'xjxargs[]': [search_arg, 'Stitle']}
-        html = self._http_get(search_url, data=data, headers=XHR, cache_limit=1)
+        html = self._http_get(search_url, data=data, headers=XHR, cache_limit=12)
         if video_type == VIDEO_TYPES.MOVIE:
             marker = '/watch_movie/'
         else:
@@ -112,7 +115,7 @@ class TwoMovies_Scraper(scraper.Scraper):
                 match_year = ''
             
             if not year or not match_year or year == match_year:
-                result = {'url': self._pathify_url(url), 'title': match_title, 'year': match_year}
+                result = {'url': scraper_utils.pathify_url(url), 'title': match_title, 'year': match_year}
                 results.append(result)
 
         return results
@@ -121,13 +124,13 @@ class TwoMovies_Scraper(scraper.Scraper):
         episode_pattern = 'class="linkname\d*" href="([^"]+/watch_episode/[^/]+/%s/%s/)"' % (video.season, video.episode)
         title_pattern = 'class="linkname"\s+href="(?P<url>[^"]+)">Episode_\d+\s+-\s+(?P<title>[^<]+)'
         headers = {'Referer': urlparse.urljoin(self.base_url, show_url)}
-        return super(TwoMovies_Scraper, self)._default_get_episode_url(show_url, video, episode_pattern, title_pattern, headers=headers)
+        return self._default_get_episode_url(show_url, video, episode_pattern, title_pattern, headers=headers)
     
     def _http_get(self, url, cookies=None, data=None, multipart_data=None, headers=None, allow_redirect=True, cache_limit=8):
         if headers is None: headers = {}
         if 'Referer' not in headers: headers['Referer'] = urlparse.urljoin(self.base_url, '/')
         headers.update({'User-Agent': LOCAL_USER_AGENT})
-        return super(TwoMovies_Scraper, self)._http_get(url, cookies=cookies, data=data, multipart_data=multipart_data, headers=headers, allow_redirect=allow_redirect, cache_limit=cache_limit)
+        return super(self.__class__, self)._http_get(url, cookies=cookies, data=data, multipart_data=multipart_data, headers=headers, allow_redirect=allow_redirect, cache_limit=cache_limit)
 
     def __randomize_ua(self):
         index = random.randrange(len(RAND_UAS))

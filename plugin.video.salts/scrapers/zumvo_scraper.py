@@ -15,19 +15,22 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import scraper
+import re
 import urllib
 import urlparse
-import re
+
+from salts_lib import dom_parser
 from salts_lib import kodi
 from salts_lib import log_utils
-from salts_lib import dom_parser
-from salts_lib.constants import VIDEO_TYPES
+from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
 from salts_lib.constants import Q_ORDER
-from salts_lib.constants import XHR
+from salts_lib.constants import VIDEO_TYPES
+import scraper
 
+
+XHR = {'X-Requested-With': 'XMLHttpRequest'}
 BASE_URL = 'http://zumvo.so'
 QUALITY_MAP = {'HD': QUALITIES.HD1080, 'CAM': QUALITIES.MEDIUM, 'BR-RIP': QUALITIES.HD720, 'UNKNOWN': QUALITIES.MEDIUM, 'SD': QUALITIES.HIGH}
 GK_URL = '/player/gkplayerphp/plugins/gkpluginsphp.php'
@@ -86,10 +89,10 @@ class Zumvo_Scraper(scraper.Scraper):
                         headers['Referer'] = url
                         gk_url = urlparse.urljoin(src, GK_URL)
                         html = self._http_get(gk_url, data=data, headers=headers, cache_limit=.25)
-                        js_result = self._parse_json(html, gk_url)
+                        js_result = scraper_utils.parse_json(html, gk_url)
                         if 'link' in js_result and 'func' not in js_result:
                             if isinstance(js_result['link'], list):
-                                sources = dict((link['link'], self._height_get_quality(link['label'])) for link in js_result['link'])
+                                sources = dict((link['link'], scraper_utils.height_get_quality(link['label'])) for link in js_result['link'])
                             else:
                                 sources = {js_result['link']: page_quality}
                             
@@ -104,7 +107,7 @@ class Zumvo_Scraper(scraper.Scraper):
         return hosters
 
     def get_url(self, video):
-        return super(Zumvo_Scraper, self)._default_get_url(video)
+        return self._default_get_url(video)
 
     def search(self, video_type, title, year):
         search_url = urlparse.urljoin(self.base_url, '/search/')
@@ -118,14 +121,14 @@ class Zumvo_Scraper(scraper.Scraper):
             for match in re.finditer(pattern, result_fragment, re.DOTALL):
                 url, title, match_year = match.groups('')
                 if not year or not match_year or year == match_year:
-                    result = {'url': self._pathify_url(url), 'title': title, 'year': match_year}
+                    result = {'url': scraper_utils.pathify_url(url), 'title': title, 'year': match_year}
                     results.append(result)
         return results
 
     def _http_get(self, url, data=None, headers=None, cache_limit=8):
-        html = super(Zumvo_Scraper, self)._cached_http_get(url, self.base_url, self.timeout, data=data, headers=headers, cache_limit=cache_limit)
-        cookie = self._get_sucuri_cookie(html)
+        html = self._cached_http_get(url, self.base_url, self.timeout, data=data, headers=headers, cache_limit=cache_limit)
+        cookie = scraper_utils.get_sucuri_cookie(html)
         if cookie:
             log_utils.log('Setting Zumvo cookie: %s' % (cookie), log_utils.LOGDEBUG)
-            html = super(Zumvo_Scraper, self)._cached_http_get(url, self.base_url, self.timeout, cookies=cookie, data=data, headers=headers, cache_limit=0)
+            html = self._cached_http_get(url, self.base_url, self.timeout, cookies=cookie, data=data, headers=headers, cache_limit=0)
         return html

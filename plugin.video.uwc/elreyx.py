@@ -25,10 +25,10 @@ import utils
 progress = utils.progress
 
 def EXMain():
-    utils.addDir('[COLOR yellow]Categories[/COLOR]','http://elreyx.com/index1.html',113,'','')
-    utils.addDir('[COLOR yellow]Search[/COLOR]','http://elreyx.com/search-',114,'','')
-    utils.addDir('[COLOR yellow]Pornstars[/COLOR]','http://elreyx.com/index1.html',115,'','')
-    utils.addDir('[COLOR yellow]Movies[/COLOR]','http://elreyx.com/index1.html',116,'','')
+    utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://elreyx.com/index1.html',113,'','')
+    utils.addDir('[COLOR hotpink]Search[/COLOR]','http://elreyx.com/search-',114,'','')
+    utils.addDir('[COLOR hotpink]Pornstars[/COLOR]','http://elreyx.com/index1.html',115,'','')
+    utils.addDir('[COLOR hotpink]Movies[/COLOR]','http://elreyx.com/index1.html',116,'','')
     EXList('http://elreyx.com/index1.html')
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
@@ -47,15 +47,15 @@ def EXList(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
     
-def EXSearch(url):
+def EXSearch(url, keyword=None):
     searchUrl = url
-    vq = utils._get_keyboard(heading="Searching for...")
-    if (not vq): return False, 0
-    title = urllib.quote_plus(vq)
-    title = title.replace(' ','+')
-    searchUrl = searchUrl + title + ".html"
-    print "Searching URL: " + searchUrl
-    EXList(searchUrl)
+    if not keyword:
+        utils.searchDir(url, 114)
+    else:
+        title = keyword.replace(' ','+')
+        searchUrl = searchUrl + title + ".html"
+        print "Searching URL: " + searchUrl
+        EXList(searchUrl)
 
 
 def EXCat(url):

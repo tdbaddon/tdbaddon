@@ -15,16 +15,19 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import scraper
+import re
 import urllib
 import urlparse
-import re
-from salts_lib import kodi
+
 from salts_lib import dom_parser
-from salts_lib.trans_utils import i18n
-from salts_lib.constants import VIDEO_TYPES
+from salts_lib import kodi
+from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
+from salts_lib.constants import VIDEO_TYPES
+from salts_lib.utils2 import i18n
+import scraper
+
 
 BASE_URL = 'http://tv-release.net'
 QUALITY_MAP = {'MOVIES-XVID': QUALITIES.MEDIUM, 'TV-XVID': QUALITIES.HIGH, 'TV-MP4': QUALITIES.HIGH, 'TV-480P': QUALITIES.HIGH,
@@ -77,9 +80,9 @@ class TVReleaseNet_Scraper(scraper.Scraper):
                 hoster = {'multi-part': False, 'class': self, 'views': None, 'url': url, 'rating': None, 'direct': False}
                 hoster['host'] = urlparse.urlsplit(url).hostname
                 if quality is None:
-                    hoster['quality'] = self._blog_get_quality(video, q_str, hoster['host'])
+                    hoster['quality'] = scraper_utils.blog_get_quality(video, q_str, hoster['host'])
                 else:
-                    hoster['quality'] = self._get_quality(video, hoster['host'], quality)
+                    hoster['quality'] = scraper_utils.get_quality(video, hoster['host'], quality)
                 hosters.append(hoster)
 
         return hosters
@@ -89,8 +92,8 @@ class TVReleaseNet_Scraper(scraper.Scraper):
 
     @classmethod
     def get_settings(cls):
-        settings = super(TVReleaseNet_Scraper, cls).get_settings()
-        settings = cls._disable_sub_check(settings)
+        settings = super(cls, cls).get_settings()
+        settings = scraper_utils.disable_sub_check(settings)
         name = cls.get_name()
         settings.append('         <setting id="%s-filter" type="slider" range="0,180" option="int" label="     %s" default="30" visible="eq(-4,true)"/>' % (name, i18n('filter_results_days')))
         settings.append('         <setting id="%s-select" type="enum" label="     %s" lvalues="30636|30637" default="0" visible="eq(-5,true)"/>' % (name, i18n('auto_select')))

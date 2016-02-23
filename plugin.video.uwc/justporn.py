@@ -25,15 +25,15 @@ import utils
 progress = utils.progress
 
 def Main():
-    utils.addDir('[COLOR yellow]Search[/COLOR]','http://justporn.to/?s=', 244, '', '')
-    utils.addDir('[COLOR yellow]Movies[/COLOR]','http://justporn.to/category/dvdrips-full-movies/', 245, '', '')
+    utils.addDir('[COLOR hotpink]Search[/COLOR]','http://justporn.to/?s=', 244, '', '')
+    utils.addDir('[COLOR hotpink]Movies[/COLOR]','http://justporn.to/category/dvdrips-full-movies/', 245, '', '')
     List('http://justporn.to/category/scenes/')
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
 def MainMovies():
-    utils.addDir('[COLOR yellow]Search[/COLOR]','http://justporn.to/?s=', 244, '', '')
-    utils.addDir('[COLOR yellow]Scenes[/COLOR]','http://justporn.to/category/scenes/', 240, '', '')
+    utils.addDir('[COLOR hotpink]Search[/COLOR]','http://justporn.to/?s=', 244, '', '')
+    utils.addDir('[COLOR hotpink]Scenes[/COLOR]','http://justporn.to/category/scenes/', 240, '', '')
     List('http://justporn.to/category/dvdrips-full-movies/')
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
@@ -54,15 +54,15 @@ def List(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
     
-def Search(url):
+def Search(url, keyword=None):
     searchUrl = url
-    vq = utils._get_keyboard(heading="Searching for...")
-    if (not vq): return False, 0
-    title = urllib.quote_plus(vq)
-    title = title.replace(' ','+')
-    searchUrl = searchUrl + title
-    print "Searching URL: " + searchUrl
-    List(searchUrl)
+    if not keyword:
+        utils.searchDir(url, 244)
+    else:
+        title = keyword.replace(' ','+')
+        searchUrl = searchUrl + title
+        print "Searching URL: " + searchUrl
+        List(searchUrl)
 
 
 def Playvid(url, name, download=None):

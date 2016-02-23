@@ -15,15 +15,18 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import scraper
+import re
 import urllib
 import urlparse
-import re
+
 from salts_lib import kodi
 from salts_lib import log_utils
-from salts_lib.trans_utils import i18n
-from salts_lib.constants import VIDEO_TYPES
+from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
+from salts_lib.constants import VIDEO_TYPES
+from salts_lib.utils2 import i18n
+import scraper
+
 
 BASE_URL = 'http://members.easynews.com'
 SORT = 's1=relevance&s1d=-&s2=dsize&s2d=-&s3=dtime&s3d=-'
@@ -91,12 +94,12 @@ class EasyNews_Scraper(scraper.Scraper):
         hosters = []
         search_url = self.__translate_search(url)
         html = self._http_get(search_url, cache_limit=.5)
-        js_result = self._parse_json(html, search_url)
+        js_result = scraper_utils.parse_json(html, search_url)
         if 'data' in js_result:
             for item in js_result['data']:
                 post_hash, size, post_title, ext, duration = item['0'], item['4'], item['10'], item['11'], item['14']
                 checks = [False] * 6
-                if not self._title_check(video, post_title): checks[0] = True
+                if not scraper_utils.title_check(video, post_title): checks[0] = True
                 if 'alangs' in item and item['alangs'] and 'eng' not in item['alangs']: checks[1] = True
                 if re.match('^\d+s', duration) or re.match('^[0-5]m', duration): checks[2] = True
                 if 'passwd' in item and item['passwd']: checks[3] = True
@@ -108,9 +111,9 @@ class EasyNews_Scraper(scraper.Scraper):
                 
                 stream_url = urllib.quote('%s%s/%s%s' % (post_hash, ext, post_title, ext))
                 stream_url = 'http://members.easynews.com/dl/%s' % (stream_url)
-                stream_url = stream_url + '|Cookie=%s' % (self.__get_cookies())
+                stream_url = stream_url + '|Cookie=%s' % (self._get_stream_cookies())
                 host = self._get_direct_hostname(stream_url)
-                quality = self._width_get_quality(item['width'])
+                quality = scraper_utils.width_get_quality(item['width'])
                 hoster = {'multi-part': False, 'class': self, 'views': None, 'url': stream_url, 'rating': None, 'host': host, 'quality': quality, 'direct': True}
                 if size: hoster['size'] = size
                 if post_title: hoster['extra'] = post_title
@@ -138,8 +141,8 @@ class EasyNews_Scraper(scraper.Scraper):
 
     @classmethod
     def get_settings(cls):
-        settings = super(EasyNews_Scraper, cls).get_settings()
-        settings = cls._disable_sub_check(settings)
+        settings = super(cls, cls).get_settings()
+        settings = scraper_utils.disable_sub_check(settings)
         name = cls.get_name()
         settings.append('         <setting id="%s-username" type="text" label="     %s" default="" visible="eq(-4,true)"/>' % (name, i18n('username')))
         settings.append('         <setting id="%s-password" type="text" label="     %s" option="hidden" default="" visible="eq(-5,true)"/>' % (name, i18n('password')))
@@ -149,14 +152,8 @@ class EasyNews_Scraper(scraper.Scraper):
         if not self.username or not self.password:
             return ''
         
-        return super(EasyNews_Scraper, self)._cached_http_get(url, self.base_url, self.timeout, cookies=self.cookie, cache_limit=cache_limit)
+        return self._cached_http_get(url, self.base_url, self.timeout, cookies=self.cookie, cache_limit=cache_limit)
 
-    def __get_cookies(self):
-        cookies = []
-        for key in self.cookie:
-            cookies.append('%s=%s' % (key, self.cookie[key]))
-        return urllib.quote_plus(';'.join(cookies))
-        
     def __translate_search(self, url):
         query = urllib.quote_plus(urlparse.parse_qs(urlparse.urlparse(url).query)['query'][0])
         url = urlparse.urljoin(self.base_url, SEARCH_URL % (query, query))

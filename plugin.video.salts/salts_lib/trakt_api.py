@@ -17,20 +17,17 @@
 """
 import json
 import urllib2
-from urllib2 import HTTPError
 import urllib
 import socket
 import ssl
 import time
-import re
 import kodi
 import log_utils
+import utils2
 from db_utils import DB_Connection
 from constants import TRAKT_SECTIONS
 from constants import TEMP_ERRORS
 from constants import SECTIONS
-from constants import TRAKT_LIST_SORT
-from constants import TRAKT_SORT_DIR
 
 class TraktError(Exception):
     pass
@@ -77,12 +74,11 @@ class Trakt_API():
     def show_list(self, slug, section, username=None, auth=True, cached=True):
         if not username:
             username = 'me'
-            cache_limit = 0  # don't cache user's own lists at all
-            cached = False
+            cache_limit = self.__get_cache_limit('lists', 'updated_at', cached)
         else:
             cache_limit = 1  # cache other user's list for one hour
 
-        url = '/users/%s/lists/%s/items' % (self.__to_slug(username), slug)
+        url = '/users/%s/lists/%s/items' % (utils2.to_slug(username), slug)
         params = {'extended': 'full,images'}
         list_data = self.__call_trakt(url, params=params, auth=auth, cache_limit=cache_limit, cached=cached)
         return [item[item['type']] for item in list_data if item['type'] == TRAKT_SECTIONS[section][:-1]]
@@ -90,22 +86,30 @@ class Trakt_API():
     def show_watchlist(self, section):
         url = '/users/me/watchlist/%s' % (TRAKT_SECTIONS[section])
         params = {'extended': 'full,images'}
-        response = self.__call_trakt(url, params=params, cache_limit=0)
+        cache_limit = self.__get_cache_limit(TRAKT_SECTIONS[section], 'watchlisted_at', cached=True)
+        response = self.__call_trakt(url, params=params, cache_limit=cache_limit)
         return [item[TRAKT_SECTIONS[section][:-1]] for item in response]
 
     def get_list_header(self, slug, username=None, auth=True):
         if not username: username = 'me'
-        url = '/users/%s/lists/%s' % (self.__to_slug(username), slug)
+        url = '/users/%s/lists/%s' % (utils2.to_slug(username), slug)
         return self.__call_trakt(url, auth=auth)
 
     def get_lists(self, username=None):
-        if not username: username = 'me'
-        url = '/users/%s/lists' % (self.__to_slug(username))
-        return self.__call_trakt(url, cache_limit=0)
+        if not username:
+            username = 'me'
+            cache_limit = self.__get_cache_limit('lists', 'updated_at', True)
+        else:
+            cache_limit = 0
+        url = '/users/%s/lists' % (utils2.to_slug(username))
+        return self.__call_trakt(url, cache_limit=cache_limit)
 
-    def get_liked_lists(self, cached=True):
+    def get_liked_lists(self, page=None, cached=True):
         url = '/users/likes/lists'
-        return self.__call_trakt(url, cache_limit=4, cached=cached)
+        params = {'limit': self.list_size}
+        if page: params['page'] = page
+        cache_limit = self.__get_cache_limit('lists', 'liked_at', cached=cached)
+        return self.__call_trakt(url, params=params, cache_limit=cache_limit, cached=cached)
 
     def add_to_list(self, section, slug, items):
         return self.__manage_list('add', section, slug, items)
@@ -241,7 +245,9 @@ class Trakt_API():
     def get_collection(self, section, full=True, cached=True):
         url = '/users/me/collection/%s' % (TRAKT_SECTIONS[section])
         params = {'extended': 'full,images'} if full else None
-        response = self.__call_trakt(url, params=params, cached=cached)
+        media = 'movies' if section == SECTIONS.MOVIES else 'episodes'
+        cache_limit = self.__get_cache_limit(media, 'collected_at', cached)
+        response = self.__call_trakt(url, params=params, cache_limit=cache_limit, cached=cached)
         result = []
         for item in response:
             element = item[TRAKT_SECTIONS[section][:-1]]
@@ -253,22 +259,28 @@ class Trakt_API():
     def get_watched(self, section, full=False, cached=True):
         url = '/sync/watched/%s' % (TRAKT_SECTIONS[section])
         params = {'extended': 'full,images'} if full else None
-        return self.__call_trakt(url, params=params, cached=cached)
+        media = 'movies' if section == SECTIONS.MOVIES else 'episodes'
+        cache_limit = self.__get_cache_limit(media, 'watched_at', cached)
+        return self.__call_trakt(url, params=params, cache_limit=cache_limit, cached=cached)
 
     def get_history(self, section, full=False, page=None, cached=True):
         url = '/users/me/history/%s' % (TRAKT_SECTIONS[section])
         params = {'limit': self.list_size}
         if full: params.update({'extended': 'full,images'})
         if page: params['page'] = page
-        return self.__call_trakt(url, params=params, cache_limit=.25, cached=cached)
+        media = 'movies' if section == SECTIONS.MOVIES else 'episodes'
+        cache_limit = self.__get_cache_limit(media, 'watched_at', cached)
+        return self.__call_trakt(url, params=params, cache_limit=cache_limit, cached=cached)
 
-    def get_show_progress(self, show_id, full=False, hidden=False, specials=False, cached=True):
+    def get_show_progress(self, show_id, full=False, hidden=False, specials=False, cached=True, cache_limit=None):
+        if cache_limit is None:
+            cache_limit = self.__get_cache_limit('episodes', 'watched_at', cached)
         url = '/shows/%s/progress/watched' % (show_id)
         params = {}
         if full: params['extended'] = 'full,images'
         if hidden: params['hidden'] = 'true'
         if specials: params['specials'] = 'true'
-        return self.__call_trakt(url, params=params, cached=cached)
+        return self.__call_trakt(url, params=params, cache_limit=cache_limit, cached=cached)
 
     def get_hidden_progress(self, cached=True):
         url = '/users/hidden/progress_watched'
@@ -284,7 +296,7 @@ class Trakt_API():
     
     def get_user_profile(self, username=None, cached=True):
         if username is None: username = 'me'
-        url = '/users/%s' % (self.__to_slug(username))
+        url = '/users/%s' % (utils2.to_slug(username))
         return self.__call_trakt(url, cached=cached)
         
     def get_bookmarks(self, section=None, full=False):
@@ -328,6 +340,27 @@ class Trakt_API():
 
         self.__call_trakt(url, data=data, cache_limit=0)
 
+    def get_last_activity(self, media=None, activity=None):
+        url = '/sync/last_activities'
+        result = self.__call_trakt(url, cache_limit=.01)
+        if media is not None and media in result:
+            if activity is not None and activity in result[media]:
+                return result[media][activity]
+            else:
+                return result[media]
+        
+        return result
+    
+    def __get_cache_limit(self, media, activity, cached):
+        if cached:
+            activity = self.get_last_activity(media, activity)
+            cache_limit = (time.time() - utils2.iso_2_utc(activity))
+            log_utils.log('Now: %s Last: %s Last TS: %s Cache Limit: %.2fs (%.2fh)' % (time.time(), utils2.iso_2_utc(activity), activity, cache_limit, cache_limit / 60 / 60), log_utils.LOGDEBUG)
+            cache_limit = cache_limit / 60 / 60
+        else:
+            cache_limit = 0
+        return cache_limit
+        
     def __manage_list(self, action, section, slug, items):
         url = '/users/me/lists/%s/items' % (slug)
         if action == 'remove': url = url + '/remove'
@@ -367,56 +400,6 @@ class Trakt_API():
             data[TRAKT_SECTIONS[section]].append(ids)
         return data
 
-    def __title_key(self, title):
-        temp = title.upper()
-        if temp.startswith('THE '):
-            offset = 4
-        elif temp.startswith('A '):
-            offset = 2
-        elif temp.startswith('AN '):
-            offset = 3
-        else:
-            offset = 0
-        return title[offset:]
-    
-    def __released_key(self, item):
-        if 'released' in item:
-            return item['released']
-        elif 'first_aired' in item:
-            return item['first_aired']
-        else:
-            return 0
-    
-    def __to_slug(self, username):
-        username = username.strip()
-        username = username.lower()
-        username = re.sub('[^a-z0-9]', '-', username)
-        return username
-    
-    def __sort_list(self, sort_key, sort_direction, list_data):
-        log_utils.log('Sorting List: %s - %s' % (sort_key, sort_direction), log_utils.LOGDEBUG)
-        # log_utils.log(json.dumps(list_data))
-        reverse = False if sort_direction == TRAKT_SORT_DIR.ASCENDING else True
-        if sort_key == TRAKT_LIST_SORT.RANK:
-            return sorted(list_data, key=lambda x: x['rank'], reverse=reverse)
-        elif sort_key == TRAKT_LIST_SORT.RECENTLY_ADDED:
-            return sorted(list_data, key=lambda x: x['listed_at'], reverse=reverse)
-        elif sort_key == TRAKT_LIST_SORT.TITLE:
-            return sorted(list_data, key=lambda x: self.__title_key(x[x['type']].get('title', '')), reverse=reverse)
-        elif sort_key == TRAKT_LIST_SORT.RELEASE_DATE:
-            return sorted(list_data, key=lambda x: self.__released_key(x[x['type']]), reverse=reverse)
-        elif sort_key == TRAKT_LIST_SORT.RUNTIME:
-            return sorted(list_data, key=lambda x: x[x['type']].get('runtime', 0), reverse=reverse)
-        elif sort_key == TRAKT_LIST_SORT.POPULARITY:
-            return sorted(list_data, key=lambda x: x[x['type']].get('votes', 0), reverse=reverse)
-        elif sort_key == TRAKT_LIST_SORT.PERCENTAGE:
-            return sorted(list_data, key=lambda x: x[x['type']].get('rating', 0), reverse=reverse)
-        elif sort_key == TRAKT_LIST_SORT.VOTES:
-            return sorted(list_data, key=lambda x: x[x['type']].get('votes', 0), reverse=reverse)
-        else:
-            log_utils.log('Unrecognized list sort key: %s - %s' % (sort_key, sort_direction), log_utils.LOGWARNING)
-            return list_data
-    
     def __call_trakt(self, url, method=None, data=None, params=None, auth=True, cache_limit=.25, cached=True):
         res_headers = {}
         if not cached: cache_limit = 0
@@ -427,10 +410,11 @@ class Trakt_API():
         if params: url = url + '?' + urllib.urlencode(params)
 
         db_connection = DB_Connection()
-        created, cached_result = db_connection.get_cached_url(url, json_data, db_cache_limit)
+        created, cached_headers, cached_result = db_connection.get_cached_url(url, json_data, db_cache_limit)
         if cached_result and (time.time() - created) < (60 * 60 * cache_limit):
             result = cached_result
-            log_utils.log('Returning cached result for: %s' % (url), log_utils.LOGDEBUG)
+            res_headers = dict(cached_headers)
+            log_utils.log('Got cached result for: %s' % (url), log_utils.LOGDEBUG)
         else:
             auth_retry = False
             while True:
@@ -447,7 +431,7 @@ class Trakt_API():
                         result += data
                     res_headers = dict(response.info().items())
 
-                    db_connection.cache_url(url, result, json_data)
+                    db_connection.cache_url(url, result, json_data, response.info().items())
                     break
                 except (ssl.SSLError, socket.timeout) as e:
                     if cached_result:
@@ -500,7 +484,7 @@ class Trakt_API():
         try:
             js_data = json.loads(result)
             if 'x-sort-by' in res_headers and 'x-sort-how' in res_headers:
-                js_data = self.__sort_list(res_headers['x-sort-by'], res_headers['x-sort-how'], js_data)
+                js_data = utils2.sort_list(res_headers['x-sort-by'], res_headers['x-sort-how'], js_data)
         except ValueError:
             js_data = ''
             if result:

@@ -15,20 +15,24 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import scraper
+import base64
+import re
 import urllib
 import urlparse
-import re
-import base64
+
 import xbmcgui
-from salts_lib import log_utils
-from salts_lib import kodi
+
 from salts_lib import dom_parser
-from salts_lib.trans_utils import i18n
-from salts_lib.constants import VIDEO_TYPES
+from salts_lib import kodi
+from salts_lib import log_utils
+from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
 from salts_lib.constants import Q_ORDER
+from salts_lib.constants import VIDEO_TYPES
+from salts_lib.utils2 import i18n
+import scraper
+
 
 BASE_URL = 'http://watch1080p.com'
 
@@ -65,10 +69,13 @@ class WatchHD_Scraper(scraper.Scraper):
                 html = self._http_get(iframe_url[0], headers=headers, cache_limit=.5)
                 match = re.search("window\.atob\('([^']+)", html)
                 if match:
-                    html = base64.decodestring(match.group(1))
+                    func_count = len(re.findall('window\.atob', html))
+                    html = match.group(1)
+                    for _i in xrange(func_count):
+                        html = base64.decodestring(html)
                 
                 streams = []
-                for match in re.finditer('<source[^>]+src=["\']([^\'"]+)[^>]+label=[\'"]([^\'"]+)', html):
+                for match in re.finditer('''<source[^>]+src=["']([^'"]+)[^>]+label=['"]([^'"]+)''', html):
                     streams.append(match.groups())
                 
                 if len(streams) > 1:
@@ -81,8 +88,8 @@ class WatchHD_Scraper(scraper.Scraper):
                         best_q = 0
                         for stream in streams:
                             stream_url, label = stream
-                            if Q_ORDER[self._height_get_quality(label)] > best_q:
-                                best_q = Q_ORDER[self._height_get_quality(label)]
+                            if Q_ORDER[scraper_utils.height_get_quality(label)] > best_q:
+                                best_q = Q_ORDER[scraper_utils.height_get_quality(label)]
                                 best_stream = stream_url
                         
                         if best_stream:
@@ -118,21 +125,21 @@ class WatchHD_Scraper(scraper.Scraper):
                         stream_url, name = match.groups()
                         match = re.search('(\d+)', name)
                         if match:
-                            quality = self._height_get_quality(match.group(1))
+                            quality = scraper_utils.height_get_quality(match.group(1))
                         else:
                             quality = QUALITIES.HIGH
-                        stream_url += '|User-Agent=%s&Referer=%s' % (self._get_ua(), url)
+                        stream_url += '|User-Agent=%s&Referer=%s&Cookie=%s' % (scraper_utils.get_ua(), url, self._get_stream_cookies())
                         hoster = {'multi-part': False, 'host': self._get_direct_hostname(stream_url), 'class': self, 'quality': quality, 'views': views, 'rating': None, 'url': stream_url, 'direct': True}
                         hoster['title'] = title
                         hosters.append(hoster)
         return hosters
 
     def get_url(self, video):
-        return super(WatchHD_Scraper, self)._default_get_url(video)
+        return self._default_get_url(video)
 
     def search(self, video_type, title, year):
         search_url = urlparse.urljoin(self.base_url, '/search/%s' % (urllib.quote_plus(title)))
-        html = self._http_get(search_url, cache_limit=1)
+        html = self._http_get(search_url, cache_limit=.25)
         results = []
         for item in dom_parser.parse_dom(html, 'div', {'class': 'name_top'}):
             match = re.search('href="([^"]+)[^>]+>([^<]+)', item)
@@ -147,14 +154,14 @@ class WatchHD_Scraper(scraper.Scraper):
                     match_year = ''
                 
                 if not year or not match_year or year == match_year:
-                    result = {'title': match_title, 'year': '', 'url': self._pathify_url(url)}
+                    result = {'title': match_title, 'year': match_year, 'url': scraper_utils.pathify_url(url)}
                     results.append(result)
 
         return results
 
     @classmethod
     def get_settings(cls):
-        settings = super(WatchHD_Scraper, cls).get_settings()
+        settings = super(cls, cls).get_settings()
         name = cls.get_name()
         settings.append('         <setting id="%s-auto_pick" type="bool" label="    %s" default="false" visible="eq(-4,true)"/>' % (name, i18n('auto_pick')))
         return settings

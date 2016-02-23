@@ -15,13 +15,16 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import scraper
-import urlparse
 import re
-from salts_lib import kodi
+import urlparse
+
 from salts_lib import dom_parser
-from salts_lib.constants import VIDEO_TYPES
+from salts_lib import kodi
+from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
+from salts_lib.constants import VIDEO_TYPES
+import scraper
+
 
 BASE_URL = 'http://onlinemovies.is'
 
@@ -69,7 +72,7 @@ class OnlineMoviesIs_Scraper(scraper.Scraper):
                 for match in re.finditer('<iframe[^>]+src="([^"]+)', fragment[0], re.I):
                     stream_url = match.group(1)
                     host = urlparse.urlparse(stream_url).hostname
-                    hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': self._blog_get_quality(video, q_str, host), 'views': None, 'rating': None, 'url': stream_url, 'direct': False}
+                    hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': scraper_utils.blog_get_quality(video, q_str, host), 'views': None, 'rating': None, 'url': stream_url, 'direct': False}
                     match = re.search('class="views-infos">(\d+).*?class="rating">(\d+)%', html, re.DOTALL)
                     if match:
                         hoster['views'] = int(match.group(1))
@@ -79,7 +82,7 @@ class OnlineMoviesIs_Scraper(scraper.Scraper):
         return hosters
 
     def get_url(self, video):
-        return super(OnlineMoviesIs_Scraper, self)._default_get_url(video)
+        return self._default_get_url(video)
 
     def search(self, video_type, title, year):
         results = []
@@ -92,11 +95,11 @@ class OnlineMoviesIs_Scraper(scraper.Scraper):
         
         test_url = urlparse.urljoin(self.base_url, test_url)
         if self._http_get(test_url, cache_limit=1):
-            result = {'title': title, 'year': year, 'url': self._pathify_url(test_url)}
+            result = {'title': title, 'year': year, 'url': scraper_utils.pathify_url(test_url)}
             results.append(result)
 
         return results
 
     def _http_get(self, url, data=None, cache_limit=8):
         headers = {'Referer': url}
-        return super(OnlineMoviesIs_Scraper, self)._cached_http_get(url, self.base_url, self.timeout, data=data, headers=headers, cache_limit=cache_limit)
+        return self._cached_http_get(url, self.base_url, self.timeout, data=data, headers=headers, cache_limit=cache_limit)

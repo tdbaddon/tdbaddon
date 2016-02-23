@@ -21,13 +21,13 @@ import xbmc, xbmcplugin, xbmcgui, xbmcaddon
 
 import utils
 
-from jsbeautifier import beautify
+from jsunpack import unpack
 
 progress = utils.progress
 
 def PHMain():
-    utils.addDir('[COLOR yellow]Categories[/COLOR]','http://www.pornhive.tv/en/movies/all',73,'','')
-    utils.addDir('[COLOR yellow]Search[/COLOR]','http://www.pornhive.tv/en/search?title=',74,'','')
+    utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://www.pornhive.tv/en/movies/all',73,'','')
+    utils.addDir('[COLOR hotpink]Search[/COLOR]','http://www.pornhive.tv/en/search?title=',74,'','')
     PHList('http://www.pornhive.tv/en/movies/all')
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
@@ -37,6 +37,7 @@ def PHList(url):
     listhtml = utils.getHtml(url, '')
     match = re.compile('panel-img">.*?<a href="([^"]+)" title="([^"]+)".*?src="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(listhtml)
     for videopage, name, img in match:
+        name = utils.cleantext(name)
         utils.addDownLink(name, videopage, 72, img, '')
     try:
         nextp=re.compile('<a href="([^"]+)">Next', re.DOTALL | re.IGNORECASE).findall(listhtml)
@@ -45,15 +46,15 @@ def PHList(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
     
-def PHSearch(url):
+def PHSearch(url, keyword=None):
     searchUrl = url
-    vq = utils._get_keyboard(heading="Searching for...")
-    if (not vq): return False, 0
-    title = urllib.quote_plus(vq)
-    title = title.replace(' ','+')
-    searchUrl = searchUrl + title
-    print "Searching URL: " + searchUrl
-    PHList(searchUrl)
+    if not keyword:
+        utils.searchDir(url, 74)
+    else:
+        title = keyword.replace(' ','+')
+        searchUrl = searchUrl + title
+        print "Searching URL: " + searchUrl
+        PHList(searchUrl)
 
 
 def PHCat(url):
@@ -68,38 +69,53 @@ def PHCat(url):
 def PHVideo(url, name, download=None):
     progress.create('Play video', 'Searching videofile.')
     progress.update( 10, "", "Loading video page", "" )
+    Supported_hosts = ['Openload.io', 'StreamCloud', 'NowVideo', 'FlashX', 'www.flashx.tv', 'streamcloud.eu', 'streamin.to']
     videopage = utils.getHtml(url, '')
-    match = re.compile(r'<li id="link-([^"]+).*?xs-12">\s+Watch it on ([\w]+)', re.DOTALL | re.IGNORECASE).findall(videopage)
+    match = re.compile(r'<li id="link-([^"]+).*?xs-12">\s+Watch it on ([\w\.]+)', re.DOTALL | re.IGNORECASE).findall(videopage)
     if len(match) > 1:
         sites = []
+        vidurls = []
         for videourl, site in match:
-            sites.append(site)
-        site = utils.dialog.select('Select video site', sites)
-        sitename = match[site][1]
-        siteurl = match[site][0]
+            if site in Supported_hosts:
+                sites.append(site)
+                vidurls.append(videourl)
+        if len(sites) ==  1:
+            sitename = match[0][1]
+            siteurl = match[0][0]
+        else:
+            site = utils.dialog.select('Select video site', sites)
+            sitename = sites[site]
+            siteurl = vidurls[site]
     else:
         sitename = match[0][1]
         siteurl = match[0][0]
     outurl = "http://www.pornhive.tv/en/out/" + siteurl
     progress.update( 20, "", "Getting video page", "" )
-    if sitename == "StreamCloud":
+    if 'loud' in sitename:
         progress.update( 30, "", "Getting StreamCloud", "" )
         playurl = getStreamCloud(outurl)
-    elif sitename == "FlashX":
+    elif "lash" in sitename:
         progress.update( 30, "", "Getting FlashX", "" )
         playurl = getFlashX(outurl)
     elif sitename == "NowVideo":
         progress.update( 30, "", "Getting NowVideo", "" )
         playurl = getNowVideo(outurl)        
-    elif sitename == "Openload":
+    elif "Openload" in sitename:
         progress.update( 30, "", "Getting Openload", "" )
         progress.close()
-        utils.PLAYVIDEO(outurl, name)
+        utils.PLAYVIDEO(outurl, name, download)
+        return
+    elif "streamin" in sitename:
+        progress.update( 30, "", "Getting Streamin", "" )
+        streaming = utils.getHtml(outurl, '')
+        outurl=re.compile("action='([^']+)'").findall(streaming)[0]
+        progress.close()
+        utils.playvideo(outurl, name, download)
         return
     else:
         progress.close()
         utils.dialog.ok('Sorry','This host is not supported.')
-        return        
+        return
     progress.update( 90, "", "Playing video", "" )
     progress.close()
     if download == 1:
@@ -122,8 +138,9 @@ def getFlashX(url):
     flashxsrc2 = utils.getHtml2(flashxurl2[0])
     progress.update( 70, "", "Grabbing video file", "" )
     flashxjs = re.compile("<script type='text/javascript'>([^<]+)</sc", re.DOTALL | re.IGNORECASE).findall(flashxsrc2)
-    flashxujs = beautify(flashxjs[0])
-    videourl = re.compile(r'\[{\s+file: "([^"]+)",', re.DOTALL | re.IGNORECASE).findall(flashxujs)
+    try: flashxujs = unpack(flashxjs[0])
+    except: flashxujs = flashxjs[0]
+    videourl = re.compile(r'\[{\s?file:\s?"([^"]+)",', re.DOTALL | re.IGNORECASE).findall(flashxujs)
     progress.update( 80, "", "Returning video file", "" )
     videourl = videourl[0]
     return videourl

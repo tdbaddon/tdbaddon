@@ -15,15 +15,18 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import scraper
 import re
-import urlparse
 import urllib
+import urlparse
+
 from salts_lib import dom_parser
-from salts_lib import log_utils
-from salts_lib.constants import VIDEO_TYPES
-from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib import kodi
+from salts_lib import log_utils
+from salts_lib import scraper_utils
+from salts_lib.constants import FORCE_NO_MATCH
+from salts_lib.constants import VIDEO_TYPES
+import scraper
+
 
 BASE_URL = 'http://funtastic-vids.com'
 
@@ -46,7 +49,7 @@ class Funtastic_Scraper(scraper.Scraper):
         return link
 
     def format_source_label(self, item):
-        label = '[%s] %s ' % (item['quality'], item['host'])
+        label = '[%s] %s' % (item['quality'], item['host'])
         return label
 
     def get_sources(self, video):
@@ -69,14 +72,16 @@ class Funtastic_Scraper(scraper.Scraper):
             if fragment:
                 for source in dom_parser.parse_dom(fragment[0], 'iframe', ret='src'):
                     host = urlparse.urlparse(source).hostname
-                    quality = self._blog_get_quality(video, q_str, host)
+                    quality = scraper_utils.blog_get_quality(video, q_str, host)
                     hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': source, 'direct': False}
                     hosters.append(hoster)
 
-            fragment = dom_parser.parse_dom(html, 'div', {'id': 'olmt'})
-            hosters += self.__get_links(video, fragment[0])
-            fragment = dom_parser.parse_dom(html, 'div', {'id': 'dlnmt'})
-            hosters += self.__get_links(video, fragment[0])
+                fragment = dom_parser.parse_dom(html, 'div', {'id': 'olmt'})
+                if fragment:
+                    hosters += self.__get_links(video, fragment[0])
+                fragment = dom_parser.parse_dom(html, 'div', {'id': 'dlnmt'})
+                if fragment:
+                    hosters += self.__get_links(video, fragment[0])
             
             hosters = dict((stream['url'], stream) for stream in hosters).values()
         return hosters
@@ -86,18 +91,18 @@ class Funtastic_Scraper(scraper.Scraper):
         for match in re.finditer('href="([^"]+).*?<td>(.*?)</td>\s*</tr>', fragment, re.DOTALL):
             stream_url, q_str = match.groups()
             host = urlparse.urlparse(stream_url).hostname
-            quality = self._blog_get_quality(video, q_str, host)
+            quality = scraper_utils.blog_get_quality(video, q_str, host)
             hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': False}
             hosters.append(hoster)
         return hosters
     
     def get_url(self, video):
-        return super(Funtastic_Scraper, self)._default_get_url(video)
+        return self._default_get_url(video)
 
     def _get_episode_url(self, show_url, video):
         episode_pattern = 'href="([^"]+/season-%s/episode-%s-[^"]*)' % (video.season, video.episode)
         title_pattern = 'href="(?P<url>[^"]+/season-\d+/episode-\d+-[^"]*)"\s+title="[^-]*-\s*(?P<title>[^"]+)'
-        return super(Funtastic_Scraper, self)._default_get_episode_url(show_url, video, episode_pattern, title_pattern)
+        return self._default_get_episode_url(show_url, video, episode_pattern, title_pattern)
 
     def search(self, video_type, title, year):
         results = []
@@ -113,7 +118,7 @@ class Funtastic_Scraper(scraper.Scraper):
         
         for result in temp_results:
             if not year or not result['year'] or year == result['year']:
-                result['url'] = self._pathify_url(result['url'])
+                result['url'] = scraper_utils.pathify_url(result['url'])
                 results.append(result)
 
         return results

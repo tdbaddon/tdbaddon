@@ -15,15 +15,17 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import scraper
 import re
-import urllib
-import urlparse
 import time
+import urlparse
+
 from salts_lib import kodi
-from salts_lib.constants import VIDEO_TYPES
+from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
+from salts_lib.constants import VIDEO_TYPES
+import scraper
+
 
 QUALITY_MAP = {'HD': QUALITIES.HIGH, 'HDTV': QUALITIES.HIGH, 'DVD': QUALITIES.HIGH, '3D': QUALITIES.HIGH, 'CAM': QUALITIES.LOW}
 BASE_URL = 'https://www.iwatchonline.ag'
@@ -79,8 +81,8 @@ class IWatchOnline_Scraper(scraper.Scraper):
                     quality = quality.upper()
                     if age > max_age: max_age = age
                     if age < min_age: min_age = age
-                    hoster = {'multi-part': False, 'class': self, 'url': self._pathify_url(url), 'host': host, 'age': age, 'views': None, 'rating': None, 'direct': False}
-                    hoster['quality'] = self._get_quality(video, host, QUALITY_MAP.get(quality, QUALITIES.HIGH))
+                    hoster = {'multi-part': False, 'class': self, 'url': scraper_utils.pathify_url(url), 'host': host, 'age': age, 'views': None, 'rating': None, 'direct': False}
+                    hoster['quality'] = scraper_utils.get_quality(video, host, QUALITY_MAP.get(quality, QUALITIES.HIGH))
                     hosters.append(hoster)
 
                 unit = (max_age - min_age) / 100
@@ -121,7 +123,7 @@ class IWatchOnline_Scraper(scraper.Scraper):
         return age
 
     def get_url(self, video):
-        return super(IWatchOnline_Scraper, self)._default_get_url(video)
+        return self._default_get_url(video)
 
     def search(self, video_type, title, year):
         search_url = urlparse.urljoin(self.base_url, '/advance-search')
@@ -138,11 +140,11 @@ class IWatchOnline_Scraper(scraper.Scraper):
             url, title, match_year = match.groups('')
             if not year or not match_year or year == match_year:
                 url = url.replace('/episode/', '/tv-shows/')  # fix wrong url returned from search results
-                result = {'url': self._pathify_url(url), 'title': title, 'year': match_year}
+                result = {'url': scraper_utils.pathify_url(url), 'title': title, 'year': match_year}
                 results.append(result)
         return results
 
     def _get_episode_url(self, show_url, video):
         episode_pattern = 'href="([^"]+-s%02de%02d)"' % (int(video.season), int(video.episode))
         title_pattern = 'href="(?P<url>[^"]+)"><i class="icon-play-circle">.*?<td>(?P<title>[^<]+)</td>'
-        return super(IWatchOnline_Scraper, self)._default_get_episode_url(show_url, video, episode_pattern, title_pattern)
+        return self._default_get_episode_url(show_url, video, episode_pattern, title_pattern)

@@ -1026,6 +1026,10 @@ msgctxt "#30252"
 msgid "DB Reset Failed: %s"
 msgstr ""
 
+msgctxt "#30253"
+msgid "No Streamable Url Found"
+msgstr ""
+
 msgctxt "#30500"
 msgid "Addon Theme"
 msgstr ""
@@ -1240,13 +1244,8 @@ msgctxt "#30552"
 msgid "Use Trakt Bookmarks"
 msgstr ""
 
-msgctxt "#30553"
-msgid "Cache watched status"
-msgstr ""
-
-msgctxt "#30554"
-msgid "Cache Collection"
-msgstr ""
+# 30553 Removed
+# 30554 Removed
 
 msgctxt "#30555"
 msgid "Include People"
@@ -1409,9 +1408,7 @@ msgctxt "#30592"
 msgid "Sort Sources"
 msgstr ""
 
-msgctxt "#30593"
-msgid "Drop Sources with unknown sort values"
-msgstr ""
+# 30593 removed
 
 msgctxt "#30594"
 msgid "1st Sort Key"
@@ -1718,5 +1715,13 @@ msgstr ""
 
 msgctxt "#30668"
 msgid "Cancel"
+msgstr ""
+
+msgctxt "#30669"
+msgid "Select this item to Install the SALTS Themepak"
+msgstr ""
+
+msgctxt "#30670"
+msgid "Show Settings"
 msgstr ""
 

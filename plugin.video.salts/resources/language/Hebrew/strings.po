@@ -5,11 +5,12 @@
 # lidor malich <lidormalich@gmail.com>, 2015
 # Michael strat <Mstrat37@gmail.com>, 2015
 # Vella <vellama@gmail.com>, 2015
+# Yaron Shahrabani <sh.yaron@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: SALTS\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2016-01-09 08:29+0000\n"
+"PO-Revision-Date: 2016-02-03 09:48+0000\n"
 "Last-Translator: tknorris\n"
 "Language-Team: Hebrew (http://www.transifex.com/tv-addons/salts/language/he/)\n"
 "MIME-Version: 1.0\n"
@@ -52,51 +53,51 @@ msgstr "הגדרות תוסף"
 
 msgctxt "#30008"
 msgid "Auto-Configure SALTS"
-msgstr "הגדר אוטומטית SALTS"
+msgstr "הגדרת SALTS אוטומטית"
 
 msgctxt "#30009"
 msgid "Authorize SALTS to access my trakt.tv account"
-msgstr " אשר SALTS גישה לחשבון trakt.tv"
+msgstr " לאשר ל־SALTS לגשת לחשבון שלי ב־trakt.tv"
 
 msgctxt "#30010"
 msgid "Set Default Views"
-msgstr "הגדר צפייה ברירת מחדל"
+msgstr "הגדרת תצוגת בררת מחדל"
 
 msgctxt "#30011"
 msgid "Remove Cached Url(s)"
-msgstr "הסר מטמון Url(s)"
+msgstr "הסרת כתובות שמורות"
 
 msgctxt "#30012"
 msgid "Trending %s"
-msgstr "נצפים %s"
+msgstr "%s מומלצים"
 
 msgctxt "#30013"
 msgid "Popular %s"
-msgstr "פופולרי %s"
+msgstr "%s נפוצים"
 
 msgctxt "#30014"
 msgid "Recently Updated %s"
-msgstr "עודכן לאחרונה %s"
+msgstr "%s שעודכנו לאחרונה"
 
 msgctxt "#30015"
 msgid "Recommended %s"
-msgstr "מומלצים %s"
+msgstr "%s מומלצים"
 
 msgctxt "#30016"
 msgid "My %s Collection"
-msgstr "אוסף %s שלי"
+msgstr "אוסף ה%s שלי"
 
 msgctxt "#30017"
 msgid "My Favorites"
-msgstr "מועדפים שלי"
+msgstr "המועדפים שלי"
 
 msgctxt "#30018"
 msgid "My Subscriptions"
-msgstr "מנויים שלי"
+msgstr "המינויים שלי"
 
 msgctxt "#30019"
 msgid "My Watchlist"
-msgstr "רשימת צפייה"
+msgstr "רשימת הצפייה שלי"
 
 msgctxt "#30020"
 msgid "My Lists"
@@ -108,7 +109,7 @@ msgstr "רשימות אחרות"
 
 msgctxt "#30022"
 msgid "My Next Episodes"
-msgstr "הפרק הבא שלי"
+msgstr "הפרקים הבאים שלי"
 
 msgctxt "#30023"
 msgid "My Calendar"
@@ -120,11 +121,11 @@ msgstr "לוח שנה כללי"
 
 msgctxt "#30025"
 msgid "Premiere Calendar"
-msgstr "לוח שנה ראשי"
+msgstr "לוח שנה בכורות"
 
 msgctxt "#30026"
 msgid "Search"
-msgstr "חפש"
+msgstr "חיפוש"
 
 msgctxt "#30027"
 msgid "Recent Searches"
@@ -136,167 +137,179 @@ msgstr "חיפושים שמורים"
 
 msgctxt "#30029"
 msgid "Force Refresh"
-msgstr "רענן"
+msgstr "אילוץ רענון"
 
 msgctxt "#30030"
 msgid "Clear All %s"
-msgstr "נקה הכל (%s)"
+msgstr "לנקות את כל ה%s"
 
 msgctxt "#30031"
 msgid "Forcing Refresh"
-msgstr "מרענן"
+msgstr "מתבצע רענון מאולץ"
 
 msgctxt "#30032"
 msgid "Force Refresh Complete"
-msgstr "תהליך רענון הושלם"
+msgstr "תהליך הרענון הושלם"
 
 msgctxt "#30033"
 msgid "Enable All Scrapers"
-msgstr "אפשר איסוף נתונים"
+msgstr "לאפשר את כל אוספי הנתונים"
 
 msgctxt "#30034"
 msgid "Disable All Scrapers"
-msgstr "חסום איסוף נתונים"
+msgstr "לנטרל את כל אוספי נתונים"
 
 msgctxt "#30035"
 msgid "Enable Scraper"
-msgstr "אפשר את אוסף הנתונים"
+msgstr "לאפשר אוסף נתונים"
 
 msgctxt "#30036"
 msgid "Disable Scraper"
-msgstr "חסום את אוסף הנתונים"
+msgstr "לנטרל אוסף נתונים"
 
 msgctxt "#30037"
 msgid "Move Up"
-msgstr "עבור מעלה"
+msgstr "לעבור מעלה"
 
 msgctxt "#30038"
 msgid "Move Down"
-msgstr "עבור מטה"
+msgstr "לעבור מטה"
 
 msgctxt "#30039"
 msgid "Move To..."
-msgstr "עבור ל..."
+msgstr "לעבור אל…"
 
 msgctxt "#30040"
 msgid "Enter New Position (1 - %s)"
-msgstr "הזן מיקום חדש (1 - %s)"
+msgstr "נא להזין מיקום חדש (1 - %s)"
 
 msgctxt "#30041"
 msgid "Set Default %s View"
-msgstr "הגדר תצוגה ברירת מחדל"
+msgstr "הגדרת תצוגת בררת מחדל ל%s"
 
 msgctxt "#30042"
 msgid "Set a view then select this item to set the default %s view"
-msgstr "הגדר צורה ובחר פריט זה לקביעת תצוגה ברירת מחדל %s"
+msgstr "ניתן להגדיר תצוגה ולבחור בפריט זה להגדרת תצוגת בררת מחדל ל%s"
 
 msgctxt "#30043"
 msgid "Import"
-msgstr "ייבא"
+msgstr "יבוא"
 
 msgctxt "#30044"
 msgid "%s View Set to: %s"
-msgstr "אחוזי תצוגה מוגדרים ל: אחוזים"
+msgstr "תצוגת ה%s מוגדרת בתור: %s"
+
+msgctxt "#30045"
+msgid "Delete [B][COLOR red]ENTIRE[/COLOR][/B] Url Cache"
+msgstr "למחוק את [B][COLOR red]כל[/COLOR][/B] מטמון הכתובות"
 
 msgctxt "#30046"
 msgid "This will set some settings to values that have been found to"
-msgstr "כאן יוגדרו כמה ערכים אשר נמצאו"
+msgstr "פעולה זו תגדיר כמה ערכי תצורה לערכים שנמצאו"
 
 msgctxt "#30047"
 msgid "be effective. The following settings will be changed:"
-msgstr "אפקטיביים. ההגדרה הבאה תשונה."
+msgstr "יעילים. ההגדרה הבאה תשתנה:"
+
+msgctxt "#30048"
+msgid ""
+msgstr "[COLOR red]סדר אוספי הנתונים, סדר המקורות, יום התחלת היומן, תום הזמן של Trakt, תום הזמן של אוספי הנתונים, רשימת צפייה ב־MNE, בדיקה ישירה[/COLOR]"
 
 msgctxt "#30049"
 msgid "Go Back"
-msgstr "עבור לקודם"
+msgstr "לעבור לקודם"
 
 msgctxt "#30050"
 msgid "Continue"
-msgstr "המשך"
+msgstr "להמשיך"
 
 msgctxt "#30051"
 msgid "Auto-configure Complete"
-msgstr "תהליך הגדרה אוטומטית הושלם"
+msgstr "תהליך ההגדרה אוטומטית הושלם"
 
 msgctxt "#30052"
 msgid "Set as Favorites List"
-msgstr "הגדר כרשימת מועדפים"
+msgstr "הגדרה כרשימת מועדפים"
 
 msgctxt "#30053"
 msgid "Set as Subscription List"
-msgstr "הגדר כרשימת מנויים"
+msgstr "הגדרה כרשימת מנויים"
 
 msgctxt "#30054"
 msgid "Import from Collection"
-msgstr "ייבא מאוסף"
+msgstr "יבוא מאוסף"
 
 msgctxt "#30055"
 msgid "Add another user's list"
-msgstr "הוסף רשימת משתמש אחר"
+msgstr "הוספת רשימה של משתמש אחר"
 
 msgctxt "#30056"
 msgid "Copy to My List"
-msgstr "העתק לרשימה שלי"
+msgstr "העתקה לרשימה שלי"
 
 msgctxt "#30057"
 msgid "Add more from %s"
-msgstr "הוסף מ-%s"
+msgstr "הוספת עוד מ־%s"
 
 msgctxt "#30058"
 msgid "Remove List"
-msgstr "הסר רשימה"
+msgstr "הסרת רשימה"
 
 msgctxt "#30059"
 msgid "Rename List"
-msgstr "שנה שם רשימה"
+msgstr "שינוי שם לרשימה"
 
 msgctxt "#30060"
 msgid "Enter the new name (blank to reset)"
-msgstr "הזן שם חדש (הזן רווח לשם ריק)"
+msgstr "נא להזין שם חדש (או להשאיר ריק)"
 
 msgctxt "#30061"
 msgid "Enter username of list owner"
-msgstr "הזן שם משתמש של בעל הרשימה"
+msgstr "נא להזין את שם המשתמש של בעל הרשימה"
 
 msgctxt "#30062"
 msgid "List Does Not Exist: %s"
-msgstr "רשימה לא קיימת: %s"
+msgstr "הרשימה לא קיימת: %s"
 
 msgctxt "#30063"
 msgid "Progress Timeouts: %s/%s"
-msgstr "התקדמות מושהית: %s/%s"
+msgstr "תום זמן תגובה לתהליך: %s/%s"
 
 msgctxt "#30064"
 msgid "Browse Seasons"
-msgstr "עיין בעונות הסדרה"
+msgstr "עיון בעונות הסדרה"
+
+msgctxt "#30065"
+msgid "Update Subscriptions: (Next Run: [COLOR %s]%s[/COLOR])"
+msgstr "עדכון המינויים: (הצגה באה: [COLOR %s]%s[/COLOR])"
 
 msgctxt "#30066"
 msgid "Clean-Up Subscriptions"
-msgstr "נקה את רשימת המנויים"
+msgstr "ניקוי רשימת המינויים"
 
 msgctxt "#30067"
 msgid "Pick a list to use for Subscriptions"
-msgstr "בחר רשימה לשימוש במנויים"
+msgstr "נא לבחור רשימה לטובת המינויים"
 
 msgctxt "#30068"
 msgid "Pick a list to use for Favorites"
-msgstr "בחר רשימה לשימוש במועדפים"
+msgstr "נא לבחור ברשימה לטובת המועדפים"
 
 msgctxt "#30069"
 msgid "Blank Searches are not allowed"
-msgstr "חיפושים ריקים אינם מורשים"
+msgstr "אסור לבצע חיפוש עם ביטוי ריק"
 
 msgctxt "#30070"
 msgid "Save Search"
-msgstr "שמור חיפוש"
+msgstr "שמירת החיפוש"
 
 msgctxt "#30071"
 msgid "Remove from Recent"
-msgstr "הסר מאחרונים"
+msgstr "הסרה מהאחרונים"
 
 msgctxt "#30072"
 msgid "Delete Search"
-msgstr "מחק חיפוש"
+msgstr "מחיקת החיפוש"
 
 msgctxt "#30073"
 msgid "Recent %s Searches Cleared"
@@ -344,7 +357,11 @@ msgstr "קישור לשינוי (%s)"
 
 msgctxt "#30084"
 msgid "Related %s url at %s"
-msgstr "קישור קשור %s  ב-%s"
+msgstr "קישור %s תואם ב־%s"
+
+msgctxt "#30085"
+msgid "[COLOR blue]%s[/COLOR] Related Url Set"
+msgstr "רשימת כתובות שקשורות אל [COLOR blue]%s[/COLOR]"
 
 msgctxt "#30086"
 msgid "Manual Search"
@@ -352,15 +369,19 @@ msgstr "חיפוש ידני"
 
 msgctxt "#30087"
 msgid "Select Related"
-msgstr "בחר את השייך"
+msgstr "בחירת תואמים"
 
 msgctxt "#30088"
 msgid "Enter Search"
-msgstr "הזן חיפוש"
+msgstr "הזנת חיפוש"
 
 msgctxt "#30089"
 msgid "Scraper does not support searching"
 msgstr "אוסף הנתונים אינו תומך בחיפוש"
+
+msgctxt "#30090"
+msgid "Enter Rating (unrate, or 1-10)"
+msgstr "הזנת דירוג (ללא, או 1-10)"
 
 msgctxt "#30092"
 msgid "Item Added to Collection"
@@ -388,7 +409,7 @@ msgstr "סומן כ%s"
 
 msgctxt "#30098"
 msgid "Updating Subscriptions..."
-msgstr "מעדכן מנויים"
+msgstr "המינויים מתעדכנים…"
 
 msgctxt "#30099"
 msgid "Next Update in %0.1f hours"
@@ -396,43 +417,47 @@ msgstr "העדכון הבא בעוד %0.1f שעות"
 
 msgctxt "#30100"
 msgid "Are you sure you want to delete the url cache?"
-msgstr "למחוק את המטמון של הקישור? "
+msgstr "למחוק את מטמון הכתובות? "
 
 msgctxt "#30101"
 msgid "This will slow things down until all urls are re-cached"
-msgstr "הדבר יאט את הפעילות עד שיבנה מטמון הקישור מחדש"
+msgstr "פעולה זו תאט את הפעילות עד לבניית מטמון הכתובות מחדש"
 
 msgctxt "#30102"
 msgid "Keep"
-msgstr "שמור"
+msgstr "שמירה"
 
 msgctxt "#30103"
 msgid "Delete"
-msgstr "מחק"
+msgstr "מחיקה"
 
 msgctxt "#30104"
 msgid "Flush web cache"
-msgstr "ריקון מטמון האינטרנט"
+msgstr "פינוי מטמון עמודי האינטרנט"
 
 msgctxt "#30105"
 msgid "DB Reset Successful"
-msgstr "איפוס בסיס הנתונים בוצע בהצלחה"
+msgstr "איפוס מסד הנתונים בוצע בהצלחה"
+
+msgctxt "#30106"
+msgid "Reset only allowed on sqlite DBs"
+msgstr "ניתן לאפס במסדי נתונים מסוג sqlite בלבד"
 
 msgctxt "#30107"
 msgid "Select Export Directory"
-msgstr "בחר תיקייה ליצוא"
+msgstr "בחירת תיקייה לייצוא"
 
 msgctxt "#30108"
 msgid "Enter Export Filename"
-msgstr "הזן שם קובץ ליצוא"
+msgstr "הזנת שם קובץ לייצוא"
 
 msgctxt "#30109"
 msgid "Export Successful"
-msgstr "היצוא בוצע בהצלחה"
+msgstr "הייצוא בוצע בהצלחה"
 
 msgctxt "#30110"
 msgid "Exported to %s"
-msgstr "ייצוא ל- %s"
+msgstr "יוּצָא ל־%s"
 
 msgctxt "#30111"
 msgid "Export"
@@ -444,7 +469,7 @@ msgstr "היצוא נכשל"
 
 msgctxt "#30113"
 msgid "Select Import File"
-msgstr "בחר קובץ ליבוא"
+msgstr "בחירת קובץ ליבוא"
 
 msgctxt "#30114"
 msgid "Import Success"
@@ -452,11 +477,11 @@ msgstr "היבוא בוצע בהצלחה"
 
 msgctxt "#30115"
 msgid "Imported from %s"
-msgstr "יובא מ-%s"
+msgstr "יוּבָא מ־%s"
 
 msgctxt "#30116"
 msgid "Import"
-msgstr "ייבא"
+msgstr "יבוא"
 
 msgctxt "#30117"
 msgid "Import Failed"
@@ -464,19 +489,19 @@ msgstr "היבוא נכשל"
 
 msgctxt "#30118"
 msgid "Remove from List"
-msgstr "הסר מהרשימה"
+msgstr "הסרה מהרשימה"
 
 msgctxt "#30119"
 msgid "Subscribe"
-msgstr "הרשם"
+msgstr "הרשמה"
 
 msgctxt "#30120"
 msgid "Require Aired Only?"
-msgstr "מבקש רק מה ששודר?"
+msgstr "לבקש רק מה ששודר?"
 
 msgctxt "#30121"
 msgid "Require Page Only?"
-msgstr "מבקש רק עמוד?"
+msgstr "לבקש עמוד בלבד?"
 
 msgctxt "#30122"
 msgid "Next Page"
@@ -492,19 +517,19 @@ msgstr "שבוע הבא"
 
 msgctxt "#30125"
 msgid "Mark as Unwatched"
-msgstr "סמן כלא נצפה"
+msgstr "סימון כלא נצפה"
 
 msgctxt "#30126"
 msgid "Mark as Watched"
-msgstr "סמן כנצפה"
+msgstr "סימון כנצפה"
 
 msgctxt "#30127"
 msgid "Rate on trakt.tv"
-msgstr "דרג ב-trakt.tv"
+msgstr "דירוג ב־trakt.tv"
 
 msgctxt "#30128"
 msgid "Set as Season View"
-msgstr "הגדר כעונה שנצפתה"
+msgstr "הגדרה כתצוגת עונה"
 
 msgctxt "#30129"
 msgid "Unavailable"
@@ -512,55 +537,63 @@ msgstr "לא זמין"
 
 msgctxt "#30130"
 msgid "Select Source"
-msgstr "בחר מקור"
+msgstr "בחירת מקור"
 
 msgctxt "#30131"
 msgid "Download Source"
-msgstr "הורד מקור"
+msgstr "מקור להורדה"
 
 msgctxt "#30132"
 msgid "Show Information"
-msgstr "הצג מידע"
+msgstr "הצגת מידע"
 
 msgctxt "#30133"
 msgid "Add Show to List"
-msgstr "הוסף את הפרק לרשימה"
+msgstr "הוספת הסדרה לרשימה"
+
+msgctxt "#30134"
+msgid "Set Related Show Url (Search)"
+msgstr "הגדרת כתובת סדרה תואמת (חיפוש)"
+
+msgctxt "#30135"
+msgid "Set Related Url (Manual)"
+msgstr "הגדרת כתובת תואמת (ידני)"
 
 msgctxt "#30136"
 msgid "Remove from Collection"
-msgstr "הסר מהאוסף"
+msgstr "הסרה מהאוסף"
 
 msgctxt "#30137"
 msgid "Add to Collection"
-msgstr "הוסף לאוסף"
+msgstr "הוספה לאוסף"
 
 msgctxt "#30138"
 msgid "Add to List"
-msgstr "הוסף לרשימה"
+msgstr "הוספה לרשימה"
 
 msgctxt "#30139"
 msgid "Add to Library"
-msgstr "הוסף לספריה"
+msgstr "הוספה לספריה"
 
 msgctxt "#30141"
 msgid "Use Default episode matching"
-msgstr "השתמש בהתאמת פרק ברירת מחדל"
+msgstr "שימוש בבררת המחדל של התאמת פרק"
 
 msgctxt "#30142"
 msgid "Use Episode Title matching"
-msgstr "השתמש בהתאמת שם פרק"
+msgstr "שימוש בהתאמת שם פרק"
 
 msgctxt "#30143"
 msgid "Set Related Url (Search)"
-msgstr "הגדר קישור שייך (חיפוש)"
+msgstr "הגדרת קישור תואם (חיפוש)"
 
 msgctxt "#30144"
 msgid "Play Trailer"
-msgstr "הצג טריילר"
+msgstr "הצגת קדימון"
 
 msgctxt "#30145"
 msgid "Pick a list"
-msgstr "בחר רשימה"
+msgstr "בחירת רשימה"
 
 msgctxt "#30146"
 msgid "No Lists exist for user: %s"
@@ -570,25 +603,81 @@ msgctxt "#30147"
 msgid "Scraper Automatically Disabled"
 msgstr "איסוף נתונים אוטומטי לא פעיל"
 
+msgctxt "#30148"
+msgid "[COLOR blue]%s[/COLOR]'s FL of %s is over your Failure Level threshold"
+msgstr "מספר השגיאות מצד [COLOR blue]%s[/COLOR] עומד על %s ולכן חורג מסף כמות השגיאות שלך"
+
+msgctxt "#30149"
+msgid "Disabling it avoids wasting time and resources"
+msgstr "נטרול המקור עשוי לחסוך בזמן חיפוש ובמשאבים"
+
+msgctxt "#30150"
+msgid "([I]If you Keep Enabled, consider increasing scraper timeout[/I])"
+msgstr "([I]אם העדפתך היא להשאיר את המקור פעיל, מוטב להגדיל את זמן ההמתנה לתגובה[/I])"
+
 msgctxt "#30151"
 msgid "Keep Enabled"
-msgstr "שמור מופעל"
+msgstr "להשאיר פעיל"
 
 msgctxt "#30152"
 msgid "Disable It"
-msgstr "השבת"
+msgstr "להשבית"
 
 msgctxt "#30153"
 msgid "Trakt Bookmark Exists"
-msgstr "קיים סימניות TRAKT"
+msgstr "קיימת סימניית Trakt"
+
+msgctxt "#30154"
+msgid "Local Bookmark Exists"
+msgstr "קיימת סימניה מקומית"
+
+msgctxt "#30155"
+msgid "Resume from %s"
+msgstr "להמשיך מהתזמון %s"
+
+msgctxt "#30156"
+msgid "Start from beginning"
+msgstr "להתחיל מההתחלה"
+
+msgctxt "#30157"
+msgid "Resume"
+msgstr "להמשיך"
 
 msgctxt "#30158"
 msgid "Downloading: %s..."
-msgstr "מוריד %s...."
+msgstr "בהורדה: %s…"
 
 msgctxt "#30159"
 msgid "Download Complete: %s"
-msgstr "הורדה הושלמה %s"
+msgstr "הורדה הושלמה: %s"
+
+msgctxt "#30160"
+msgid "Error (%s) during download: %s"
+msgstr "אירעה שגיאה (%s) במהלך ההורדה: %s"
+
+msgctxt "#30161"
+msgid "Trakt Account Authorization"
+msgstr "אימות חשבון Trakt"
+
+msgctxt "#30162"
+msgid "To authorize SALTS to access your trakt.tv account:"
+msgstr "לאישור הגישה של SALTS אל חשבון שלך ב־trakt.tv:"
+
+msgctxt "#30163"
+msgid ""
+msgstr "1) יש לבקר בכתובת [COLOR skyblue]http://trakt.tv/pin/347[/COLOR] או לסרוק את קוד ה־QR שלהלן."
+
+msgctxt "#30164"
+msgid "2) If prompted, authorize SALTS to access your account."
+msgstr "2) אם התבקשת לכך, יש להעניק ל־SALTS אישור גישה לחשבונך."
+
+msgctxt "#30165"
+msgid "3) Enter the PIN provided in the box below."
+msgstr "3) נא להזין את מילת הצופן שסופקה בתיבה שלהלן."
+
+msgctxt "#30166"
+msgid ""
+msgstr "ניתן להשתמש ב־SALTS ללא חשבון trakt.tv, אך כדי לנצל את כל היתרונות של SALTS כדאי לך לאשר גישה לחשבון שלך ב־trakt.tv."
 
 msgctxt "#30167"
 msgid "Authorize"
@@ -596,15 +685,39 @@ msgstr "לאשר"
 
 msgctxt "#30168"
 msgid "Remind Me Later"
-msgstr "הזכר לי מאוחר יותר"
+msgstr "להזכיר לי מאוחר יותר"
 
 msgctxt "#30169"
 msgid "No Thanks"
 msgstr "לא תודה"
 
+msgctxt "#30170"
+msgid "Trakt.tv PIN Authorization Failed"
+msgstr "האימות מול Trakt.tv באמצעות קוד נכשל"
+
+msgctxt "#30171"
+msgid "You will be reminded in 24 hours"
+msgstr "תופיע תזכורת בעוד 24 שעות"
+
+msgctxt "#30172"
+msgid "Use Addon Settings later if you change your mind"
+msgstr "ניתן להשתמש בהגדרות התוסף אם בחירתך תשתנה"
+
+msgctxt "#30173"
+msgid "Trakt Authorization Complete"
+msgstr "האימות מול Trakt הושלם"
+
 msgctxt "#30174"
 msgid "Enabled"
 msgstr "מופעל"
+
+msgctxt "#30175"
+msgid "Base Url"
+msgstr "כתובת בסיס"
+
+msgctxt "#30176"
+msgid "Include in Page Existence checks?"
+msgstr "האם לכלול בבדיקות האם העמוד קיים?"
 
 msgctxt "#30177"
 msgid "Username"
@@ -612,13 +725,849 @@ msgstr "שם משתמש"
 
 msgctxt "#30178"
 msgid "Password"
-msgstr "סיסמא"
+msgstr "ססמה"
+
+msgctxt "#30179"
+msgid "Filter results older than (0=No Filter) (days)"
+msgstr "לנפות תוצאות לפני (0=ללא סינון) (בימים)"
+
+msgctxt "#30180"
+msgid "Automatically Select"
+msgstr "בחירה אוטומטית"
+
+msgctxt "#30181"
+msgid "Include Premium"
+msgstr "לכלול פרימיום"
+
+msgctxt "#30182"
+msgid "Maximum Pages"
+msgstr "מספר עמודים מרבי"
+
+msgctxt "#30183"
+msgid "No Sources Found"
+msgstr "לא נמצאו מקורות"
 
 msgctxt "#30184"
 msgid "Season"
 msgstr "עונה"
 
+msgctxt "#30185"
+msgid "DISABLED"
+msgstr "מנוטרל"
+
 msgctxt "#30186"
 msgid "Search"
-msgstr "חפש"
+msgstr "חיפוש"
+
+msgctxt "#30187"
+msgid "Watched"
+msgstr "נצפה"
+
+msgctxt "#30188"
+msgid "Unwatched"
+msgstr "לא נצפה"
+
+msgctxt "#30189"
+msgid "Updating"
+msgstr "בעדכון"
+
+msgctxt "#30190"
+msgid "Failed to create directory"
+msgstr "יצירת התיקייה נכשלה"
+
+msgctxt "#30191"
+msgid "Failed to write file"
+msgstr "כתיבת הקובץ נכשלה"
+
+msgctxt "#30192"
+msgid "Reset All Scraper Base Urls to Default"
+msgstr "איפוס כל כתובות הבסיס של אוסף הנתונים לבררת המחדל"
+
+msgctxt "#30193"
+msgid "Base Url Reset Complete"
+msgstr "איפוס כתובות הבסיס הושלם"
+
+msgctxt "#30194"
+msgid "Requesting Url for: %s"
+msgstr "בקשת כתובת עבור: %s"
+
+msgctxt "#30195"
+msgid "'%s' added to library"
+msgstr "'%s' נוסף לספרייה"
+
+msgctxt "#30198"
+msgid "Liked Lists"
+msgstr "רשימות אהובים"
+
+msgctxt "#30199"
+msgid "%s Mosts"
+msgstr "%s מובילים"
+
+msgctxt "#30200"
+msgid "Most Played This Week"
+msgstr "מובילי העניין השבוע"
+
+msgctxt "#30201"
+msgid "Most Played This Month"
+msgstr "מובילי העניין החודש"
+
+msgctxt "#30202"
+msgid "Most Played All Time"
+msgstr "מובילי העניין בכל הזמנים"
+
+msgctxt "#30203"
+msgid "Most Watched This Week"
+msgstr "מובילי הצפייה השבוע"
+
+msgctxt "#30204"
+msgid "Most Watched This Month"
+msgstr "מובילי הצפייה החודש"
+
+msgctxt "#30205"
+msgid "Most Watched All Time"
+msgstr "מובילי הצפייה בכל הזמנים"
+
+msgctxt "#30206"
+msgid "Most Collected This Week"
+msgstr "נאספו הכי הרבה השבוע"
+
+msgctxt "#30207"
+msgid "Most Collected This Month"
+msgstr "נאספו הכי הרבה החודש"
+
+msgctxt "#30208"
+msgid "Most Collected All Time"
+msgstr "נאספו הכי הרבה בכל הזמנים"
+
+msgctxt "#30209"
+msgid "%s NOT added to library (%s)"
+msgstr "%s לא נוסף לספרייה (%s)"
+
+msgctxt "#30211"
+msgid "Scraper Download Url"
+msgstr "כתובת הורדה באוסף הנתונים"
+
+msgctxt "#30212"
+msgid "Scraper Decryption Key"
+msgstr "קוד פענוח של אוסף הנתונים"
+
+msgctxt "#30213"
+msgid "Trakt On Deck"
+msgstr "בתפריט של Trakt"
+
+msgctxt "#30214"
+msgid "on"
+msgstr "בתאריך"
+
+msgctxt "#30215"
+msgid "Delete Bookmark"
+msgstr "מחיקת סימניה"
+
+msgctxt "#30216"
+msgid "Bookmark Deleted"
+msgstr "הסימניה נמחקה"
+
+msgctxt "#30218"
+msgid "Getting Sources"
+msgstr "המקורות מתקבלים"
+
+msgctxt "#30219"
+msgid "Requested Sources from: %s"
+msgstr "הוגשה בקשה לקבלת מקורות אל: %s"
+
+msgctxt "#30220"
+msgid "Received %s Sources from: %s"
+msgstr "התקבלו %s מקורות מאת: %s"
+
+msgctxt "#30221"
+msgid "Applying Source Filters"
+msgstr "מסנני המקורות מופעלים"
+
+msgctxt "#30222"
+msgid "Include Links from Comments"
+msgstr "הכללת קישורים מההערות"
+
+msgctxt "#30223"
+msgid "My Watched History"
+msgstr "היסטוריית הצפייה שלי"
+
+msgctxt "#30224"
+msgid "Trying Sources for Auto-Play"
+msgstr "מתבצע ניסיון לניגון אוטומטי של מקורות"
+
+msgctxt "#30225"
+msgid "Trying: [%s] %s from %s"
+msgstr "בניסיון: [%s] %s מתוך %s"
+
+msgctxt "#30226"
+msgid "Failed: [%s] %s from %s"
+msgstr "נכשלו: [%s] %s מתוך %s"
+
+msgctxt "#30227"
+msgid "Scraper Timeouts: [COLOR blue]%s[/COLOR]"
+msgstr "זמן ההמתנה לאוסף הנתונים: [COLOR blue]%s[/COLOR]"
+
+msgctxt "#30228"
+msgid "Reset Failures"
+msgstr "איפוס הכשלונות"
+
+msgctxt "#30229"
+msgid "Maximum Source Results"
+msgstr "מספר תוצאות המקורות המרבי"
+
+msgctxt "#30230"
+msgid "Include in My Next Episodes"
+msgstr "הכללת הפרקים הבאים שלי"
+
+msgctxt "#30231"
+msgid "Auto-Play"
+msgstr "הפעלה אוטומטית"
+
+msgctxt "#30232"
+msgid "Set Trakt.tv API timeout to 60 seconds"
+msgstr "הגדרת זמן ההמתנה ל־API של Trakt.tv למשך של 60 שניות"
+
+msgctxt "#30233"
+msgid "Set Calendar start day to Yesterday"
+msgstr "הגדרת יום תחילת לוח השנה לאתמול"
+
+msgctxt "#30234"
+msgid "Show Episode Airtime on Calendar"
+msgstr "הצגת מועדי שידור הפרקים בלוח השנה"
+
+msgctxt "#30235"
+msgid "Set Scraper timeout to 20 seconds"
+msgstr "הגדרת זמן ההמתנה לאוספי הנתונים ל־20 שניות"
+
+msgctxt "#30236"
+msgid "Include Watchlist in My Next Episodes"
+msgstr "הכללת רשימת הצפייה בפרקים הבאים שלי"
+
+msgctxt "#30237"
+msgid "Remove Deleted Direct sources from results"
+msgstr "הסרת מקורות ישירים שנמחקו מהתוצאות"
+
+msgctxt "#30238"
+msgid "Remove Unusable Indirect sources from results"
+msgstr "הסרת מקורות עקיפים בלתי שמישים מהתוצאות"
+
+msgctxt "#30239"
+msgid "Show Debrid sources in Green"
+msgstr "הצגת מקורות Debrid בירוק"
+
+msgctxt "#30240"
+msgid "No Limit on Maximum Source Results"
+msgstr "אין הגבלה על מספר תוצאות המקורות המרבי"
+
+msgctxt "#30241"
+msgid "Set Source Sort Keys to default"
+msgstr "הגדרת מפתחות מיון מקורות לבררת המחדל"
+
+msgctxt "#30242"
+msgid "Set Scraper Sort Order to default"
+msgstr "הגדרת סדר אוספי הנתונים לבררת המחדל"
+
+msgctxt "#30243"
+msgid "Reset All Scraper Base Urls to Default"
+msgstr "איפוס כל כתובות הבסיס של אוסף הנתונים לבררת המחדל"
+
+msgctxt "#30244"
+msgid "Select All/None"
+msgstr "בחירת הכול/כלום"
+
+msgctxt "#30245"
+msgid "Automatically Select Best Source"
+msgstr "בחירת המקורות הטובים ביותר אוטומטית"
+
+msgctxt "#30246"
+msgid "SALTS Database Issue Recovery"
+msgstr "התאוששות מתקלה במסד הנתונים של SALTS"
+
+msgctxt "#30247"
+msgid ""
+msgstr "במסד הנתונים של SALTS התרחשה תקלה שניתן לתקן על ידי אילוץ הגירת מסד הנתונים."
+
+msgctxt "#30248"
+msgid "Should SALTS attempt a DB migration?"
+msgstr "האם על SALTS לנסות להגר את מסד הנתונים?"
+
+msgctxt "#30249"
+msgid "DB Migration Failed but a DB reset may succeed."
+msgstr "הגירת מסד הנתונים נכשלה אך יתכן כי איפוס מסד הנתונים יצליח."
+
+msgctxt "#30250"
+msgid "Should SALTS attempt a DB reset?"
+msgstr "האם על SALTS לנסות לאפס את מסד הנתונים?"
+
+msgctxt "#30251"
+msgid "([COLOR red]***All DB data will be lost.***[/COLOR])"
+msgstr "([COLOR red]***כל נתוני מסד הנתונים יאבדו.***[/COLOR])"
+
+msgctxt "#30252"
+msgid "DB Reset Failed: %s"
+msgstr "איפוס מסד הנתונים נכשל: %s"
+
+msgctxt "#30500"
+msgid "Addon Theme"
+msgstr "ערכת העיצוב של התוסף"
+
+msgctxt "#30501"
+msgid "Authorized Trakt User"
+msgstr "משתמש Trakt מאומת"
+
+msgctxt "#30502"
+msgid "Calendar Start Day (0=Today)"
+msgstr "יום תחילת לוח השנה (0=היום)"
+
+msgctxt "#30503"
+msgid "Show air time on calendars"
+msgstr "הצגת זמן השידור בלוחות השנה"
+
+msgctxt "#30504"
+msgid "My Collection Sort Order"
+msgstr "אופן סידור האוסף שלי"
+
+msgctxt "#30505"
+msgid "My Next Episodes Sort Order"
+msgstr "אופן סידור הפרקים הבאים שלי"
+
+msgctxt "#30506"
+msgid "Show unaired episodes in My Next Episodes"
+msgstr "הצגת פרקים שעדיין לא שודרו בפרקים הבאים שלי"
+
+msgctxt "#30507"
+msgid "Show Season 0 in Seasons View"
+msgstr "הצגת עונה 0 בתצוגת העונות"
+
+msgctxt "#30508"
+msgid "Show unaired episodes in Seasons"
+msgstr "הצגת פרקים שלא שודרו בעונות"
+
+msgctxt "#30509"
+msgid "    Show an Indicator on Unaired Episodes"
+msgstr "הצגת חיווי על פרקים שלא שודרו"
+
+msgctxt "#30510"
+msgid "    Show episodes with unknown air date"
+msgstr "הצגת פרקים עם מועד שידור בלתי ידוע"
+
+msgctxt "#30511"
+msgid "Off"
+msgstr "כבוי"
+
+msgctxt "#30512"
+msgid "24 Hour"
+msgstr "24 שעות"
+
+msgctxt "#30513"
+msgid "12 Hour"
+msgstr "12 שעות"
+
+msgctxt "#30514"
+msgid "Previously Collected"
+msgstr "נאספו בעבר"
+
+msgctxt "#30515"
+msgid "Recently Collected"
+msgstr "נאספו לאחרונה"
+
+msgctxt "#30516"
+msgid "Title"
+msgstr "כותרת"
+
+msgctxt "#30517"
+msgid "Year"
+msgstr "שנה"
+
+msgctxt "#30518"
+msgid "Activity"
+msgstr "פעילות"
+
+msgctxt "#30519"
+msgid "Title"
+msgstr "כותרת"
+
+msgctxt "#30520"
+msgid "Most Completed"
+msgstr "שהושלמו הכי הרבה"
+
+msgctxt "#30521"
+msgid "Least Completed"
+msgstr "שהושלמו הכי פחות"
+
+msgctxt "#30522"
+msgid "Recently Aired"
+msgstr "שודרו לאחרונה"
+
+msgctxt "#30523"
+msgid "Previously Aired"
+msgstr "שודרו בעבר"
+
+msgctxt "#30524"
+msgid "Show Trending"
+msgstr "הצגת מומלצים"
+
+msgctxt "#30525"
+msgid "Show Popular"
+msgstr "הצגת נפוצים"
+
+msgctxt "#30526"
+msgid "Show Recently Updated"
+msgstr "הצגת עודכנו לאחרונה"
+
+msgctxt "#30527"
+msgid "Show Recommended"
+msgstr "הצגת מומלצים"
+
+msgctxt "#30528"
+msgid "Show My Collection"
+msgstr "הצגת האוסף שלי"
+
+msgctxt "#30529"
+msgid "Show My Favorites"
+msgstr "הצגת המועדפים שלי"
+
+msgctxt "#30530"
+msgid "Show My Subscriptions"
+msgstr "הצגת המינויים שלי"
+
+msgctxt "#30531"
+msgid "Show My Watchlist"
+msgstr "הצגת רשימת הצפייה שלי"
+
+msgctxt "#30532"
+msgid "Show My Lists"
+msgstr "הצגת הרשימות שלי"
+
+msgctxt "#30533"
+msgid "Show Other Lists"
+msgstr "הצגת רשימות אחרות"
+
+msgctxt "#30534"
+msgid "Show My Next Episodes"
+msgstr "הצגת הפרקים הבאים שלי"
+
+msgctxt "#30535"
+msgid "Show My Calendar"
+msgstr "הצגת לוח השנה שלי"
+
+msgctxt "#30536"
+msgid "Show General Calendar"
+msgstr "הצגת לוח שנה כללי"
+
+msgctxt "#30537"
+msgid "Show Premiere Calendar"
+msgstr "הצגת לוח שנה לבכורות"
+
+msgctxt "#30538"
+msgid "Show Friends"
+msgstr "הצגת חברים"
+
+msgctxt "#30539"
+msgid "Show Search"
+msgstr "הצגת חיפוש"
+
+msgctxt "#30540"
+msgid "Default Views"
+msgstr "תצוגות בררת מחדל"
+
+msgctxt "#30545"
+msgid "General"
+msgstr "כללי"
+
+msgctxt "#30546"
+msgid "User Interface"
+msgstr "מנשק משתמש"
+
+msgctxt "#30548"
+msgid "Use HTTPS"
+msgstr "שימוש ב־HTTPS"
+
+msgctxt "#30549"
+msgid "Trakt Timeout (seconds) (0=No Limit)"
+msgstr "זמן המתנה ל־Trakt (שניות) (0=ללא הגבלה)"
+
+msgctxt "#30550"
+msgid "Trakt Page Size"
+msgstr "גודל עמוד ב־Trakt"
+
+msgctxt "#30551"
+msgid "Pre-Test All Direct Sources"
+msgstr "יש לבדוק מראש את כל המקורות הישירים"
+
+msgctxt "#30552"
+msgid "Use Trakt Bookmarks"
+msgstr "שימוש בסימניות של Trakt"
+
+msgctxt "#30555"
+msgid "Include People"
+msgstr "לכלול אנשים"
+
+msgctxt "#30556"
+msgid "Minimum Image Size"
+msgstr "גודל התמונה המזערי"
+
+msgctxt "#30557"
+msgid "Library Integration"
+msgstr "שילוב בספרייה"
+
+msgctxt "#30558"
+msgid "TV Show Folder"
+msgstr "תיקיית הסדרות"
+
+msgctxt "#30559"
+msgid "Movie Folder"
+msgstr "תיקיית הסרטים"
+
+msgctxt "#30560"
+msgid "Automatically Update Subscriptions"
+msgstr "עדכון המינויים אוטומטית"
+
+msgctxt "#30561"
+msgid "     Update Interval (hours)"
+msgstr "מרווח בין עדכונים (שעות)"
+
+msgctxt "#30567"
+msgid "Update Library Afterward?"
+msgstr "האם לעדכן את הספרייה לאחר מכן?"
+
+msgctxt "#30568"
+msgid "Show Notifications?"
+msgstr "להציג התרעות?"
+
+msgctxt "#30569"
+msgid "Include Movies?"
+msgstr "לכלול סרטים?"
+
+msgctxt "#30570"
+msgid "Prune Ended Shows?"
+msgstr "לנפות תכניות שהסתיימו?"
+
+msgctxt "#30571"
+msgid "Source Management"
+msgstr "ניהול מקורות"
+
+msgctxt "#30572"
+msgid "Auto-Play Sources"
+msgstr "מקורות לנגינה אוטומטית"
+
+msgctxt "#30573"
+msgid "    Source Selection Method"
+msgstr "שיטת בחירת מקורות"
+
+msgctxt "#30574"
+msgid "Show Download Option"
+msgstr "הצגת אפשרות הורדה"
+
+msgctxt "#30575"
+msgid "    Show Download Progress"
+msgstr "הצגת תהליך הורדה"
+
+msgctxt "#30576"
+msgid "    TV Show Download Folder"
+msgstr "תיקיית הורדת סדרות"
+
+msgctxt "#30577"
+msgid "    Movie Download Folder"
+msgstr "תיקיית הורדת סרטים"
+
+msgctxt "#30578"
+msgid "Scraper Timeout (seconds) (0=No Limit)"
+msgstr "זמן ההמתנה לאוסף נתונים (שניות) (0=ללא הגבלה)"
+
+msgctxt "#30579"
+msgid "Maximum Source Results (0=No Limit)"
+msgstr "כמות תוצאות המקורות המרבית (0=ללא הגבלה)"
+
+msgctxt "#30580"
+msgid "Filter Out Unusable Sources"
+msgstr "ניפוי מקורות בלתי שמישים"
+
+msgctxt "#30581"
+msgid "Source Exclusion List"
+msgstr "רשימת מקורות לניפוי"
+
+msgctxt "#30587"
+msgid "    Check Frequency (requests)"
+msgstr "בדיקת תדירות (בקשות)"
+
+msgctxt "#30588"
+msgid "    Minimum Allowed Success Percentage"
+msgstr "אחוזי ההצלחה הנמוכים ביותר המותרים"
+
+msgctxt "#30589"
+msgid "Window"
+msgstr "חלון"
+
+msgctxt "#30590"
+msgid "Background"
+msgstr "רקע"
+
+msgctxt "#30591"
+msgid "Source Sorting"
+msgstr "סידור מקורות"
+
+msgctxt "#30592"
+msgid "Sort Sources"
+msgstr "סידור המקורות"
+
+msgctxt "#30594"
+msgid "1st Sort Key"
+msgstr "מפתח מיון 1"
+
+msgctxt "#30595"
+msgid "1st Sort Key Order"
+msgstr "סדר מפתח מיון 1"
+
+msgctxt "#30596"
+msgid "2nd Sort Key"
+msgstr "מפתח מיון 2"
+
+msgctxt "#30597"
+msgid "2nd Sort Key Order"
+msgstr "סדר מפתח מיון 2"
+
+msgctxt "#30598"
+msgid "3rd Sort Key"
+msgstr "מפתח מיון 3"
+
+msgctxt "#30599"
+msgid "3rd Sort Key Order"
+msgstr "סדר מפתח מיון 3"
+
+msgctxt "#30600"
+msgid "4th Sort Key"
+msgstr "מפתח מיון 4"
+
+msgctxt "#30601"
+msgid "4th Sort Key Order"
+msgstr "סדר מפתח מיון 4"
+
+msgctxt "#30602"
+msgid "5th Sort Key"
+msgstr "מפתח מיון 5"
+
+msgctxt "#30603"
+msgid "5th Sort Key Order"
+msgstr "סדר מפתח מיון 5"
+
+msgctxt "#30604"
+msgid "None"
+msgstr "ללא"
+
+msgctxt "#30605"
+msgid "Source"
+msgstr "מקור"
+
+msgctxt "#30606"
+msgid "Quality"
+msgstr "איכות"
+
+msgctxt "#30607"
+msgid "Views"
+msgstr "צפיות"
+
+msgctxt "#30608"
+msgid "Rating"
+msgstr "דירוג"
+
+msgctxt "#30609"
+msgid "Direct"
+msgstr "ישיר"
+
+msgctxt "#30610"
+msgid "Best to Worst"
+msgstr "מהטוב לרע"
+
+msgctxt "#30611"
+msgid "Worst to Best"
+msgstr "מהרע לטוב"
+
+msgctxt "#30612"
+msgid "Base Url"
+msgstr "כתובת בסיס"
+
+msgctxt "#30613"
+msgid "Include in Page Existence checks?"
+msgstr "האם לכלול בבדיקות האם העמוד קיים?"
+
+msgctxt "#30615"
+msgid "Enable Subtitles"
+msgstr "הפעלת כתוביות"
+
+msgctxt "#30616"
+msgid "Show subtitle indicators"
+msgstr "הצגת מחווני כתוביות"
+
+msgctxt "#30617"
+msgid "Subtitle Language"
+msgstr "שפת הכתוביות"
+
+msgctxt "#30618"
+msgid "Require Hearing Impaired"
+msgstr "דרישת תוספת לכבדי שמיעה"
+
+msgctxt "#30619"
+msgid "Require HD"
+msgstr "דרישת HD"
+
+msgctxt "#30620"
+msgid "Download Subtitles on playback"
+msgstr "הורדת הכתוביות עם ההרצה"
+
+msgctxt "#30621"
+msgid "Subtitle Download Folder"
+msgstr "תיקיית הורדת הכתוביות"
+
+msgctxt "#30622"
+msgid "Show Subtitles on Playback"
+msgstr "הצגת כתוביות עם ההרצה"
+
+msgctxt "#30623"
+msgid "Use a MySQL DB"
+msgstr "שימוש במסד נתונים MySQL"
+
+msgctxt "#30624"
+msgid "    Address"
+msgstr "כתובת"
+
+msgctxt "#30625"
+msgid "    Port"
+msgstr "פתחה"
+
+msgctxt "#30626"
+msgid "    Username"
+msgstr "שם משתמש"
+
+msgctxt "#30627"
+msgid "    Password"
+msgstr "ססמה"
+
+msgctxt "#30628"
+msgid "    Database"
+msgstr "מסד נתונים"
+
+msgctxt "#30629"
+msgid "    Upgrade DB during XBMC startup"
+msgstr "לשדרג את מסד הנתונים בעת הפעלת קודי"
+
+msgctxt "#30630"
+msgid "Flush webpage cache..."
+msgstr "מחיקת מטמון עמודי האינטרנט…"
+
+msgctxt "#30631"
+msgid "Reset SALTS DB ([COLOR red]SQLITE Only[/COLOR])"
+msgstr "איפוס מסד הנתונים של SALTS‏ ([COLOR red]SQLITE בלבד[/COLOR])"
+
+msgctxt "#30632"
+msgid "Export data from SALTS DB"
+msgstr "יצוא נתונים ממסד נתונים של SALTS"
+
+msgctxt "#30633"
+msgid "Import data into SALTS DB"
+msgstr "יבוא נתונים למסד נתונים של SALTS"
+
+msgctxt "#30634"
+msgid "Subtitles"
+msgstr "כתוביות"
+
+msgctxt "#30635"
+msgid "Database"
+msgstr "מסד נתונים"
+
+msgctxt "#30636"
+msgid "Most Recent"
+msgstr "העדכניים ביותר"
+
+msgctxt "#30637"
+msgid "Highest Quality"
+msgstr "האיכות הגבוהה ביותר"
+
+msgctxt "#30643"
+msgid "Recently Added"
+msgstr "נוספו לאחרונה"
+
+msgctxt "#30644"
+msgid "Previously Added"
+msgstr "נוספו בעבר"
+
+msgctxt "#30645"
+msgid "Skip movies/episodes that exist locally"
+msgstr "דילוג על סרטים/סדרות שקיימים מקומית"
+
+msgctxt "#30646"
+msgid "Include Watchlist in My Next Episodes"
+msgstr "הכללת רשימת הצפייה בפרקים הבאים שלי"
+
+msgctxt "#30647"
+msgid "Show Trakt On Deck"
+msgstr "הצגת התפריט של Trakt"
+
+msgctxt "#30651"
+msgid "All"
+msgstr "הכול"
+
+msgctxt "#30652"
+msgid "Show Debrid Supported Sources in Green"
+msgstr "הצגת מקורות תומכי Debrid בירוק"
+
+msgctxt "#30653"
+msgid "6th Sort Key"
+msgstr "מפתח מיון 6"
+
+msgctxt "#30654"
+msgid "6th Sort Key Order"
+msgstr "סדר מפתח מיון 6"
+
+msgctxt "#30655"
+msgid "Debrid"
+msgstr "Debrid"
+
+msgctxt "#30656"
+msgid "Show My Watched History"
+msgstr "הצגת היסטוריית הצפייה שלי"
+
+msgctxt "#30658"
+msgid "Mute Notifications"
+msgstr "השתקת התרעות"
+
+msgctxt "#30660"
+msgid "HD1080"
+msgstr "HD1080"
+
+msgctxt "#30661"
+msgid "HD720"
+msgstr "HD720"
+
+msgctxt "#30662"
+msgid "High"
+msgstr "גבוהה"
+
+msgctxt "#30663"
+msgid "Medium"
+msgstr "בינונית"
+
+msgctxt "#30664"
+msgid "Low"
+msgstr "מכונה"
+
+msgctxt "#30665"
+msgid "Automatically pick first matching subtitle"
+msgstr "בחירה אוטומטית של הכתוביות התואמות הראשונות"
+
+msgctxt "#30666"
+msgid "SALTS Auto Configuration"
+msgstr "הגדרה אוטומטית של SALTS"
+
+msgctxt "#30667"
+msgid "Continue"
+msgstr "להמשיך"
+
+msgctxt "#30668"
+msgid "Cancel"
+msgstr "לבטל"
+
+msgctxt "#30669"
+msgid "Select this item to Install the SALTS Themepak"
+msgstr "נא לבחור בפריט זה כדי להתקין את חבילת העיצוב של SALTS"
 

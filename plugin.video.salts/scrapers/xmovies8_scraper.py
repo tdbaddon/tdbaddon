@@ -15,19 +15,21 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import scraper
+import random
+import re
 import urllib
 import urlparse
-import re
-import random
+
+from salts_lib import dom_parser
 from salts_lib import kodi
 from salts_lib import log_utils
-from salts_lib import dom_parser
-from salts_lib.constants import VIDEO_TYPES
+from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
-from salts_lib.constants import XHR
+from salts_lib.constants import VIDEO_TYPES
+import scraper
 
-VIDEO_URL = '/video_info/html5'
+XHR = {'X-Requested-With': 'XMLHttpRequest'}
+VIDEO_URL = '/video_info/iframe'
 
 class XMovies8_Scraper(scraper.Scraper):
     def __init__(self, timeout=scraper.DEFAULT_TIMEOUT):
@@ -59,23 +61,31 @@ class XMovies8_Scraper(scraper.Scraper):
         if source_url and source_url != FORCE_NO_MATCH:
             page_url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(page_url, cache_limit=.5)
-            match = re.search('video_id\s*=\s*"([^"]+)', html)
+            match = re.search('var\s*video_id="([^"]+)', html)
             if match:
-                data = {'v': match.group(1)}
+                video_id = match.group(1)
                 url = urlparse.urljoin(self.base_url, VIDEO_URL)
+                data = {'v': video_id}
                 headers = XHR
                 headers['Referer'] = page_url
-                html = self._http_get(url, data=data, headers=headers, cache_limit=.25)
-                for match in re.finditer('<source\s+data-res="([^"]+)"\s+src="([^"]+)', html):
-                    stream_url = urlparse.urljoin(self.base_url, match.group(2)) + '|User-Agent=%s' % (self._get_ua())
-                    quality = self._height_get_quality(match.group(1))
-                    hoster = {'multi-part': False, 'host': self._get_direct_hostname(stream_url), 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': True}
-                    hosters.append(hoster)
-            
+                html = self._http_get(url, data=data, headers=headers, cache_limit=.5)
+                sources = scraper_utils.parse_json(html, url)
+                for source in sources:
+                    match = re.search('url=(.*)', sources[source])
+                    if match:
+                        stream_url = urllib.unquote(match.group(1))
+                        host = self._get_direct_hostname(stream_url)
+                        if host == 'gvideo':
+                            quality = scraper_utils.gv_get_quality(stream_url)
+                        else:
+                            quality = scraper_utils.height_get_quality(source)
+                        stream_url += '|User-Agent=%s' % (scraper_utils.get_ua())
+                        hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': True}
+                        hosters.append(hoster)
         return hosters
-
+        
     def get_url(self, video):
-        return super(XMovies8_Scraper, self)._default_get_url(video)
+        return self._default_get_url(video)
 
     def search(self, video_type, title, year):
         search_url = urlparse.urljoin(self.base_url, '/results?q=%s' % urllib.quote_plus(title))
@@ -97,13 +107,13 @@ class XMovies8_Scraper(scraper.Scraper):
                         match_year = ''
 
                 if not year or not match_year or year == match_year:
-                    result = {'url': self._pathify_url(url), 'title': match_title, 'year': match_year}
+                    result = {'url': scraper_utils.pathify_url(url), 'title': match_title, 'year': match_year}
                     results.append(result)
         return results
 
     @classmethod
     def get_settings(cls):
-        settings = super(XMovies8_Scraper, cls).get_settings()
+        settings = super(cls, cls).get_settings()
         settings.append('         <setting id="%s-default_url" type="string" visible="false"/>' % (cls.get_name()))
         return settings
 

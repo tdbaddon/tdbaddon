@@ -15,15 +15,28 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import scraper
 import re
-import urlparse
 import urllib
-from salts_lib import kodi
+import urlparse
+import json
+
 from salts_lib import dom_parser
+from salts_lib import kodi
 from salts_lib import log_utils
-from salts_lib.constants import VIDEO_TYPES
+from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
+from salts_lib.constants import VIDEO_TYPES
+import scraper
+import xml.etree.ElementTree as ET
+
+try:
+    from xml.parsers.expat import ExpatError
+except ImportError:
+    class ExpatError(Exception): pass
+try:
+    from xml.etree.ElementTree import ParseError
+except ImportError:
+    class ParseError(Exception): pass
 
 BASE_URL = 'http://dizipas.com'
 
@@ -55,59 +68,58 @@ class Dizipas_Scraper(scraper.Scraper):
         if source_url and source_url != FORCE_NO_MATCH:
             url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(url, cache_limit=.5)
-            pattern = '\$\.post\("([^"]+)"\s*,\s*\{\s*[\'"]id["\']\s*:\s*["\']([^\'"]+)'
+            pattern = '\$\.post\("([^"]+)"\s*,\s*\{(.*?)\}'
             match = re.search(pattern, html)
             if match:
-                post_url, vid_id = match.groups()
-                data = {'id': vid_id, 'type': 'new'}
+                post_url, post_data = match.groups()
+                data = self.__get_data(post_data)
                 html = self._http_get(post_url, data=data, cache_limit=.5)
-                js_result = self._parse_json(html, post_url)
+                js_result = scraper_utils.parse_json(html, post_url)
                 for key in js_result:
                     stream_url = js_result[key]
                     host = self._get_direct_hostname(stream_url)
                     if host == 'gvideo':
-                        quality = self._gv_get_quality(stream_url)
+                        quality = scraper_utils.gv_get_quality(stream_url)
                     else:
-                        quality = self._height_get_quality(key)
+                        quality = scraper_utils.height_get_quality(key)
                         
                     hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'url': stream_url, 'direct': True}
                     hosters.append(hoster)
 
         return hosters
 
+    def __get_data(self, post_data):
+        data = {}
+        post_data = re.sub('\s+|"|\'', '', post_data)
+        for element in post_data.split(','):
+            key, value = element.split(':')
+            data[key] = value
+        return data
+    
     def get_url(self, video):
-        return super(Dizipas_Scraper, self)._default_get_url(video)
+        return self._default_get_url(video)
 
     def _get_episode_url(self, show_url, video):
         episode_pattern = 'class="episode"\s+href="([^"]+/sezon-%s/bolum-%s)"' % (video.season, video.episode)
         title_pattern = 'class="episode-name"\s+href="(?P<url>[^"]+)">(?P<title>[^<]+)'
-        return super(Dizipas_Scraper, self)._default_get_episode_url(show_url, video, episode_pattern, title_pattern)
+        return self._default_get_episode_url(show_url, video, episode_pattern, title_pattern)
 
     def search(self, video_type, title, year):
-        search_url = urlparse.urljoin(self.base_url, '/arsiv?keyword=')
-        search_url += urllib.quote_plus(title)
-        html = self._http_get(search_url, cache_limit=8)
         results = []
-        for item in dom_parser.parse_dom(html, 'div', {'class': 'tv-series-single'}):
+        xml_url = urlparse.urljoin(self.base_url, '/series.xml')
+        xml = self._http_get(xml_url, cache_limit=24)
+        if xml:
+            norm_title = scraper_utils.normalize_title(title)
+            match_year = ''
             try:
-                url = re.search('href="([^"]+)', item).group(1)
-            except:
-                url = ''
-
-            try:
-                match_year = re.search('<span>\s*(\d{4})\s*</span>', item).group(1)
-            except:
-                match_year = ''
-            
-            try:
-                match_title = dom_parser.parse_dom(item, 'a', {'class': 'title'})
-                match_title = re.search('([^>]+)$', match_title[0]).group(1)
-                match_title = match_title.strip()
-            except:
-                match_title = ''
-            
-            if url and match_title and (not year or not match_year or year == match_year):
-                result = {'url': self._pathify_url(url), 'title': match_title, 'year': ''}
-                results.append(result)
+                for element in ET.fromstring(xml).findall('.//dizi'):
+                    name = element.find('adi')
+                    if name is not None and norm_title in scraper_utils.normalize_title(name.text):
+                        url = element.find('url')
+                        if url is not None and (not year or not match_year or year == match_year):
+                            result = {'url': scraper_utils.pathify_url(url.text), 'title': name.text, 'year': ''}
+                            results.append(result)
+            except (ParseError, ExpatError) as e:
+                log_utils.log('Dizilab Search Parse Error: %s' % (e), log_utils.LOGWARNING)
 
         return results

@@ -25,10 +25,10 @@ import utils
 progress = utils.progress
 
 def Main():
-    utils.addDir('[COLOR yellow]Search[/COLOR]','http://www.hdzog.com/search/?q=', 343, '', '')
-    utils.addDir('[COLOR yellow]Categories[/COLOR]','http://www.hdzog.com/categories/', 344, '', '')
-    utils.addDir('[COLOR yellow]Channels[/COLOR]','http://www.hdzog.com/channels/', 345, '', '')
-    utils.addDir('[COLOR yellow]Models[/COLOR]','http://www.hdzog.com/models/', 346, '', '')
+    utils.addDir('[COLOR hotpink]Search[/COLOR]','http://www.hdzog.com/search/?q=', 343, '', '')
+    utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://www.hdzog.com/categories/', 344, '', '')
+    utils.addDir('[COLOR hotpink]Channels[/COLOR]','http://www.hdzog.com/channels/', 345, '', '')
+    utils.addDir('[COLOR hotpink]Models[/COLOR]','http://www.hdzog.com/models/', 346, '', '')
     List('http://www.hdzog.com/new/')
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
@@ -46,15 +46,15 @@ def List(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
     
-def Search(url):
+def Search(url, keyword=None):
     searchUrl = url
-    vq = utils._get_keyboard(heading="Searching for...")
-    if (not vq): return False, 0
-    title = urllib.quote_plus(vq)
-    title = title.replace(' ','+')
-    searchUrl = searchUrl + title
-    print "Searching URL: " + searchUrl
-    List(searchUrl)
+    if not keyword:
+        utils.searchDir(url, 343)
+    else:
+        title = keyword.replace(' ','+')
+        searchUrl = searchUrl + title
+        print "Searching URL: " + searchUrl
+        List(searchUrl)
 
 
 def Categories(url):

@@ -23,17 +23,17 @@ import utils
 
 
 def HQMAIN():
-    utils.addDir('[COLOR yellow]Categories[/COLOR]','http://hqporner.com/porn-categories.php',153,'','')
-    utils.addDir('[COLOR yellow]Studios[/COLOR]','http://hqporner.com/porn-studios.php',153,'','')
-    utils.addDir('[COLOR yellow]Girls[/COLOR]','http://hqporner.com/porn-actress.php',153,'','')
-    utils.addDir('[COLOR yellow]Search[/COLOR]','http://hqporner.com/?s=',154,'','')
+    utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://hqporner.com/porn-categories.php',153,'','')
+    utils.addDir('[COLOR hotpink]Studios[/COLOR]','http://hqporner.com/porn-studios.php',153,'','')
+    utils.addDir('[COLOR hotpink]Girls[/COLOR]','http://hqporner.com/porn-actress.php',153,'','')
+    utils.addDir('[COLOR hotpink]Search[/COLOR]','http://hqporner.com/?s=',154,'','')
     HQLIST('http://hqporner.com/hdporn/1')
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
 def HQLIST(url):
     link = utils.getHtml(url, '')
-    match = re.compile('<a href="([^"]+)"[^<]+<img src="([^"]+)" alt="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(link)
+    match = re.compile('<a href="([^"]+)" class="image featured non-overlay".*?<img id="[^"]+" src="([^"]+)" alt="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(link)
     for url, img, name in match:
         name = utils.cleantext(name)    
         videourl = "http://www.hqporner.com" + url
@@ -56,15 +56,15 @@ def HQCAT(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
-def HQSEARCH(url):
+def HQSEARCH(url, keyword=None):
     searchUrl = url
-    vq = utils._get_keyboard(heading="Searching for...")
-    if (not vq): return False, 0
-    title = urllib.quote_plus(vq)
-    title = title.replace(' ','+')
-    searchUrl = searchUrl + title
-    print "Searching URL: " + searchUrl
-    HQLIST(searchUrl) 
+    if not keyword:
+        utils.searchDir(url, 154)
+    else:
+        title = keyword.replace(' ','+')
+        searchUrl = searchUrl + title
+        print "Searching URL: " + searchUrl
+        HQLIST(searchUrl)
 
 
 def HQPLAY(url, name, download=None):

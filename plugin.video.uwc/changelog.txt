@@ -1,3 +1,151 @@
+[B]Version 1.0.91[/B]
+Added: Eroticage
+
+
+[B]Version 1.0.90[/B]
+Fixed: Unplayable item bug
+Removed: javhdonline and jav720p because of questionable content
+
+
+[B]Version 1.0.89[/B]
+Fixed: Multiple keyword search for ParadiseHill
+Fixed: xxxstreams (org) videos wouldn't load on Android
+
+
+[B]Version 1.0.88[/B]
+Added: xxxstreams (org) (Anton40)
+Added: jav720p
+Added: Search for Paradisehill ;)
+
+
+[B]Version 1.0.87[/B]
+Fixed: Quick fix for OpenLoad
+
+
+[B]Version 1.0.86[/B]
+Added: xxxstreams (eu)
+Removed: jsbeautifier, now using the jsunpack module by Bstrdsmkr
+
+
+[B]Version 1.0.85[/B]
+Fixed: Streamin.to playback
+Fixed: Improved Pornhive, also added streamin.to support
+
+
+[B]Version 1.0.84[/B]
+Fixed: Videomega playback
+Fixed: Pornhive
+
+
+[B]Version 1.0.83[/B]
+Added: CzechHD
+Added: Webcam image refresh in Favorites listing
+Changed: Chaturbate listing
+
+
+[B]Version 1.0.82[/B]
+Added: You can now add/use keywords for every site with a search function
+
+
+[B]Version 1.0.81[/B]
+Changed: Cam4 rtmp url, now you can use it with an external player like VLC
+Changed: Added User-agent to Chaturbate stream
+
+
+[B]Version 1.0.80[/B]
+Added: Porndig
+Added: AbsoluPorn
+Changed: MrSexe improvements
+
+
+[B]Version 1.0.79[/B]
+Added: Option for ParadiseHill in addon settings, to play all the parts as 1 playlist
+Fixed: Cam4 fix for people not getting the cam list (I hope)
+Changed: Very small improvement in videohost detection
+
+
+[B]Version 1.0.78[/B]
+Added: Cam4
+Added: Streamcloud to utils.py for Freeomovie
+Fixed: Beeg pagination
+Changed: Chaturbate page number in Next link
+Changed: Improved Myfreecams video loading (?)
+
+
+[B]Version 1.0.77[/B]
+Added: MyFreeCams
+Fixed: Double categories in Ero-tik
+Changed: Colors in the addon are more inline with the logo
+
+
+[B]Version 1.0.76[/B]
+Fixed: Pornhub video listing
+Changed: renamed Thepornnation to ThePornEmpire
+
+
+[B]Version 1.0.75[/B]
+Added: Favorites, you can add any video to the Whitecream Favorite list from the contextmenu
+
+
+[B]Version 1.0.74[/B]
+Fixed: Beeg is back
+Changed: more categories for MrSexe
+
+
+[B]Version 1.0.73[/B]
+Added: Ero-tik
+Added: Different sections/categories for Chaturbate
+Fixed: HQPorner
+
+
+[B]Version 1.0.72[/B]
+Added: Mega3X support (for Cat3Movie)
+Fixed: Xtheatre listing
+Fixed: PornAQ listing
+
+
+[B]Version 1.0.71[/B]
+Added: MrSexe (anton40)
+
+
+[B]Version 1.0.70[/B]
+Changed: Better image cache removal for Chaturbate, now it also removes the files from the hd.
+Added: Option in the Addon settings for auto-refresh image cache on Chaturbate.
+
+
+[B]Version 1.0.69[/B]
+Fixed: HClips channel listing
+Changed: Streamin.to url handling
+Added: Chaturbate, remove cached images from textures database. Not advised, but some people requested it.
+
+
+[B]Version 1.0.68[/B]
+Fixed: Openload
+Fixed: ParadiseHill going to page 11
+Fixed: Hdclips Next page channels
+
+[B]Version 1.0.67[/B]
+Added: Pornhub (anton40)
+Fixed: Watchxxxfree
+Fixed: Some other small fixes from anton40
+
+
+[B]Version 1.0.66[/B]
+Fixed: Freeomovie (I should test the pull requests before releasing)
+
+
+[B]Version 1.0.65[/B]
+Added: Hclips (anton40)
+Added: Freeomovie (anton40)
+Fixed: porn00
+Changed: temporary disabled watchxxxfree and beeg until fixed
+
+
+[B]Version 1.0.64[/B]
+Fixed: Videomega videos
+Fixed: Videomegaporn video listing
+
+
 [B]Version 1.0.63[/B]
 Added: ParadiseHill
 Fixed: PornTrex categories

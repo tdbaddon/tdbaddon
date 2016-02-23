@@ -23,8 +23,8 @@ import utils
 
 
 def PTMain():
-    utils.addDir('[COLOR yellow]Categories[/COLOR]','http://www.porntrex.com/categories',53,'','')
-    utils.addDir('[COLOR yellow]Search[/COLOR]','http://www.porntrex.com/search?search_type=videos&page=1&search_query=',54,'','')
+    utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://www.porntrex.com/categories',53,'','')
+    utils.addDir('[COLOR hotpink]Search[/COLOR]','http://www.porntrex.com/search?search_type=videos&page=1&search_query=',54,'','')
     PTList('http://www.porntrex.com/videos?o=mr&page=1',1)
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
@@ -40,7 +40,7 @@ def PTList(url, page, onelist=None):
         else:
             hd = " "
         videopage = "http://www.porntrex.com/media/nuevo/config.php?key=" + urlid + "-1-1"
-        name = name + hd + "[COLOR blue]" + duration + "[/COLOR]"
+        name = name + hd + "[COLOR deeppink]" + duration + "[/COLOR]"
         utils.addDownLink(name, videopage, 52, img, '')
     if not onelist:
         if re.search('class="prevnext">Next', listhtml, re.DOTALL | re.IGNORECASE):
@@ -74,12 +74,12 @@ def PTCat(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
-def PTSearch(url):
+def PTSearch(url, keyword=None):
     searchUrl = url
-    vq = utils._get_keyboard(heading="Searching for...")
-    if (not vq): return False, 0
-    title = urllib.quote_plus(vq)
-    title = title.replace(' ','+')
-    searchUrl = searchUrl + title
-    print "Searching URL: " + searchUrl
-    PTList(searchUrl, 1) 
+    if not keyword:
+        utils.searchDir(url, 54)
+    else:
+        title = keyword.replace(' ','+')
+        searchUrl = searchUrl + title
+        print "Searching URL: " + searchUrl
+        PTList(searchUrl, 1)

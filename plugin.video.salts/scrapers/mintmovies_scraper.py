@@ -15,15 +15,18 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import scraper
+import re
 import urllib
 import urlparse
-import re
-from salts_lib import kodi
+
 from salts_lib import dom_parser
-from salts_lib.constants import VIDEO_TYPES
+from salts_lib import kodi
+from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
+from salts_lib.constants import VIDEO_TYPES
+import scraper
+
 
 BASE_URL = 'http://www.mintmovies.net'
 
@@ -97,7 +100,7 @@ class MintMovies_Scraper(scraper.Scraper):
 
         for stream_url in streams:
             if self._get_direct_hostname(stream_url) == 'gvideo':
-                quality = self._gv_get_quality(stream_url)
+                quality = scraper_utils.gv_get_quality(stream_url)
                 host = self._get_direct_hostname(stream_url)
                 direct = True
             else:
@@ -119,7 +122,7 @@ class MintMovies_Scraper(scraper.Scraper):
         return hosters
     
     def get_url(self, video):
-        return super(MintMovies_Scraper, self)._default_get_url(video)
+        return self._default_get_url(video)
 
     def search(self, video_type, title, year):
         search_url = urlparse.urljoin(self.base_url, '/?s=')
@@ -127,7 +130,7 @@ class MintMovies_Scraper(scraper.Scraper):
         html = self._http_get(search_url, cache_limit=.25)
         results = []
         if not re.search('Sorry, but nothing matched', html):
-            norm_title = self._normalize_title(title)
+            norm_title = scraper_utils.normalize_title(title)
             for item in dom_parser.parse_dom(html, 'li', {'class': '[^"]*box-shadow[^"]*'}):
                 match = re.search('href="([^"]+)"\s+title="([^"]+)', item)
                 if match:
@@ -141,8 +144,8 @@ class MintMovies_Scraper(scraper.Scraper):
                         match_title = match_title_year
                         match_year = ''
 
-                    if (not year or not match_year or year == match_year) and norm_title in self._normalize_title(match_title):
-                        result = {'title': match_title, 'year': match_year, 'url': self._pathify_url(url)}
+                    if (not year or not match_year or year == match_year) and norm_title in scraper_utils.normalize_title(match_title):
+                        result = {'title': match_title, 'year': match_year, 'url': scraper_utils.pathify_url(url)}
                         results.append(result)
 
         return results

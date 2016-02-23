@@ -25,17 +25,17 @@ import utils
 progress = utils.progress
 
 def Main():
-    utils.addDir('[COLOR yellow]Search[/COLOR]','http://playporn.to/?submit=Search&s=', 234, '', '')
-    utils.addDir('[COLOR yellow]Categories[/COLOR]','http://playporn.to/', 235, '', '')
-    utils.addDir('[COLOR yellow]Movies[/COLOR]','http://playporn.to/category/xxx-movie-stream/', 231, '', '')
+    utils.addDir('[COLOR hotpink]Search[/COLOR]','http://playporn.to/?submit=Search&s=', 234, '', '')
+    utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://playporn.to/', 235, '', '')
+    utils.addDir('[COLOR hotpink]Movies[/COLOR]','http://playporn.to/category/xxx-movie-stream/', 231, '', '')
     List('http://playporn.to/category/xxx-clips-scenes-stream/')
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
 def MainMovies():
-    utils.addDir('[COLOR yellow]Search[/COLOR]','http://playporn.to/?submit=Search&s=', 234, '', '')
-    utils.addDir('[COLOR yellow]Categories[/COLOR]','http://playporn.to/', 236, '', '')
-    utils.addDir('[COLOR yellow]Scenes[/COLOR]','http://playporn.to/category/xxx-clips-scenes-stream/', 230, '', '')
+    utils.addDir('[COLOR hotpink]Search[/COLOR]','http://playporn.to/?submit=Search&s=', 234, '', '')
+    utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://playporn.to/', 236, '', '')
+    utils.addDir('[COLOR hotpink]Scenes[/COLOR]','http://playporn.to/category/xxx-clips-scenes-stream/', 230, '', '')
     List('http://playporn.to/category/xxx-movie-stream/')
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
@@ -54,15 +54,15 @@ def List(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
     
-def Search(url):
+def Search(url, keyword=None):
     searchUrl = url
-    vq = utils._get_keyboard(heading="Searching for...")
-    if (not vq): return False, 0
-    title = urllib.quote_plus(vq)
-    title = title.replace(' ','+')
-    searchUrl = searchUrl + title
-    print "Searching URL: " + searchUrl
-    List(searchUrl)
+    if not keyword:
+        utils.searchDir(url, 234)
+    else:
+        title = keyword.replace(' ','+')
+        searchUrl = searchUrl + title
+        print "Searching URL: " + searchUrl
+        List(searchUrl)
 
 
 def Categories(url, index=0):

@@ -27,10 +27,10 @@ sortlistwxf = [addon.getLocalizedString(30012), addon.getLocalizedString(30013),
 
 
 def WXFMain():
-    utils.addDir('[COLOR yellow]Categories[/COLOR]','http://www.watchxxxfree.com/categories/',12,'','')
-    utils.addDir('[COLOR yellow]Search[/COLOR]','http://www.watchxxxfree.com/page/1/?s=',14,'','')
-    utils.addDir('[COLOR yellow]Top Pornstars[/COLOR]','http://www.watchxxxfree.com/top-pornstars/',15,'','')
-    Sort = '[COLOR yellow]Current sort:[/COLOR] ' + sortlistwxf[int(addon.getSetting("sortwxf"))]
+    utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://www.watchxxxfree.com/categories/',12,'','')
+    utils.addDir('[COLOR hotpink]Search[/COLOR]','http://www.watchxxxfree.com/page/1/?s=',14,'','')
+    utils.addDir('[COLOR hotpink]Top Pornstars[/COLOR]','http://www.watchxxxfree.com/top-pornstars/',15,'','')
+    Sort = '[COLOR hotpink]Current sort:[/COLOR] ' + sortlistwxf[int(addon.getSetting("sortwxf"))]
     utils.addDir(Sort, '', 16, '', '')
     WXFList('http://www.watchxxxfree.com/page/1/',1)
     xbmcplugin.endOfDirectory(utils.addon_handle)
@@ -38,10 +38,10 @@ def WXFMain():
 
 def WXFCat(url):
     cathtml = utils.getHtml(url, '')
-    match = re.compile('src="([^"]+)"[^<]+</noscript>.*?<a href="([^"]+)"[^<]+<span>([^<]+)</s.*?">([^<]+)', re.DOTALL | re.IGNORECASE).findall(cathtml)
+    match = re.compile('data-src="([^"]+)".*?<a href="([^"]+)"[^<]+<span>([^<]+)</s.*?">([^<]+)', re.DOTALL | re.IGNORECASE).findall(cathtml)
     for img, catpage, name, videos in match:
         catpage = catpage + 'page/1/'
-        name = name + ' [COLOR blue]' + videos + '[/COLOR]'
+        name = name + ' [COLOR deeppink]' + videos + '[/COLOR]'
         utils.addDir(name, catpage, 11, img, 1)
     xbmcplugin.endOfDirectory(utils.addon_handle)
     
@@ -54,15 +54,14 @@ def WXFTPS(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)    
     
     
-def WXFSearch(url):
+def WXFSearch(url, keyword=None):
     searchUrl = url
-    vq = utils._get_keyboard(heading="Searching for...")
-    if (not vq): return False, 0
-    title = urllib.quote_plus(vq)
-    title = title.replace(' ','+')
-    searchUrl = searchUrl + title
-    print "Searching URL: " + searchUrl
-    WXFList(searchUrl, 1)    
+    if not keyword:
+        utils.searchDir(url, 14)
+    else:
+        title = keyword.replace(' ','+')
+        searchUrl = searchUrl + title
+        WXFList(searchUrl, 1)
 
 
 def WXFList(url, page, onelist=None):
@@ -74,7 +73,7 @@ def WXFList(url, page, onelist=None):
     else:
         url = url + '?filtre=' + sort + '&display=extract'
     listhtml = utils.getHtml(url, '')
-    match = re.compile('src="([^"]+)"[^<]+</noscript>.*?<a href="([^"]+)" title="([^"]+)".*?<p>([^<]+)</p>', re.DOTALL | re.IGNORECASE).findall(listhtml)
+    match = re.compile('data-src="([^"]+)".*?<a href="([^"]+)" title="([^"]+)".*?<p>([^<]+)</p>', re.DOTALL | re.IGNORECASE).findall(listhtml)
     for img, videopage, name, desc in match:
         name = utils.cleantext(name)
         desc = utils.cleantext(desc)

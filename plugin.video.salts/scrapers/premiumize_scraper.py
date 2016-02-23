@@ -15,14 +15,17 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import scraper
-import urlparse
 import re
+import urlparse
+
 from salts_lib import kodi
 from salts_lib import log_utils
-from salts_lib.trans_utils import i18n
-from salts_lib.constants import VIDEO_TYPES
+from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
+from salts_lib.constants import VIDEO_TYPES
+from salts_lib.utils2 import i18n
+import scraper
+
 
 BASE_URL = 'https://www.premiumize.me'
 VIDEO_EXT = ['MKV', 'AVI', 'MP4']
@@ -69,7 +72,7 @@ class Premiumize_Scraper(scraper.Scraper):
                     for video in videos:
                         host = self._get_direct_hostname(video['url'])
                         hoster = {'multi-part': False, 'class': self, 'views': None, 'url': video['url'], 'rating': None, 'host': host, 'quality': video['quality'], 'direct': True}
-                        if 'size' in video: hoster['size'] = self.__format_size(video['size'])
+                        if 'size' in video: hoster['size'] = scraper_utils.format_size(video['size'])
                         if 'name' in video: hoster['extra'] = video['name']
                         hosters.append(hoster)
                          
@@ -84,14 +87,14 @@ class Premiumize_Scraper(scraper.Scraper):
             else:
                 if item['ext'].upper() in VIDEO_EXT and int(item['size']) > (100 * 1024 * 1024):
                     if video.video_type == VIDEO_TYPES.MOVIE:
-                        _, _, height, _ = self._parse_movie_link(item['name'])
+                        _, _, height, _ = scraper_utils.parse_movie_link(item['name'])
                     else:
-                        _, _, _, height, _ = self._parse_episode_link(item['name'])
-                    video = {'name': item['name'], 'size': item['size'], 'url': item['url'], 'quality': self._height_get_quality(height)}
+                        _, _, _, height, _ = scraper_utils.parse_episode_link(item['name'])
+                    video = {'name': item['name'], 'size': item['size'], 'url': item['url'], 'quality': scraper_utils.height_get_quality(height)}
                     videos.append(video)
                     if item['stream'] is not None:
                         if int(height) > 720: height = 720
-                        video = {'name': '(Transcode) %s' % (item['name']), 'url': item['stream'], 'quality': self._height_get_quality(height)}
+                        video = {'name': '(Transcode) %s' % (item['name']), 'url': item['stream'], 'quality': scraper_utils.height_get_quality(height)}
                         videos.append(video)
         return videos
     
@@ -118,11 +121,11 @@ class Premiumize_Scraper(scraper.Scraper):
     def _get_episode_url(self, video):
         url = urlparse.urljoin(self.base_url, '/torrent/list')
         js_data = self._http_get(url, cache_limit=0)
-        norm_title = self._normalize_title(video.title)
+        norm_title = scraper_utils.normalize_title(video.title)
         if 'torrents' in js_data:
             airdate_fallback = kodi.get_setting('airdate-fallback') == 'true' and video.ep_airdate
             show_title = ''
-            if not self._force_title(video):
+            if not scraper_utils.force_title(video):
                 for item in js_data['torrents']:
                     sxe_pattern = '(.*?)[. ][Ss]%02d[Ee]%02d[. ]' % (int(video.season), int(video.episode))
                     match = re.search(sxe_pattern, item['name'])
@@ -134,13 +137,13 @@ class Premiumize_Scraper(scraper.Scraper):
                         if match:
                             show_title = match.group(1)
                     
-                    if show_title and norm_title in self._normalize_title(show_title):
+                    if show_title and norm_title in scraper_utils.normalize_title(show_title):
                         return 'hash=%s' % (item['hash'])
                 
     def search(self, video_type, title, year):
         url = urlparse.urljoin(self.base_url, '/torrent/list')
         js_data = self._http_get(url, cache_limit=0)
-        norm_title = self._normalize_title(title)
+        norm_title = scraper_utils.normalize_title(title)
         results = []
         if 'torrents' in js_data:
             for item in js_data['torrents']:
@@ -152,7 +155,7 @@ class Premiumize_Scraper(scraper.Scraper):
                     match_title, match_year, extra = item['name'], '', ''
                 match_title = match_title.strip()
                 extra = extra.strip()
-                if norm_title in self._normalize_title(match_title) and (not year or not match_year or year == match_year):
+                if norm_title in scraper_utils.normalize_title(match_title) and (not year or not match_year or year == match_year):
                     result_title = match_title
                     if extra: result_title += ' [%s]' % (extra)
                     result = {'title': result_title, 'year': match_year, 'url': 'hash=%s' % (item['hash'])}
@@ -162,8 +165,8 @@ class Premiumize_Scraper(scraper.Scraper):
 
     @classmethod
     def get_settings(cls):
-        settings = super(Premiumize_Scraper, cls).get_settings()
-        settings = cls._disable_sub_check(settings)
+        settings = super(cls, cls).get_settings()
+        settings = scraper_utils.disable_sub_check(settings)
         name = cls.get_name()
         settings.append('         <setting id="%s-username" type="text" label="     %s" default="" visible="eq(-4,true)"/>' % (name, i18n('username')))
         settings.append('         <setting id="%s-password" type="text" label="     %s" option="hidden" default="" visible="eq(-5,true)"/>' % (name, i18n('password')))
@@ -176,16 +179,9 @@ class Premiumize_Scraper(scraper.Scraper):
         if data is None: data = {}
         data.update({'customer_id': self.username, 'pin': self.password})
         result = super(Premiumize_Scraper, self)._http_get(url, data=data, allow_redirect=allow_redirect, cache_limit=cache_limit)
-        js_result = self._parse_json(result, url)
+        js_result = scraper_utils.parse_json(result, url)
         if 'status' in js_result and js_result['status'] == 'error':
             log_utils.log('Error received from premiumize.me (%s)' % (js_result.get('message', 'Unknown Error')), log_utils.LOGWARNING)
             js_result = {}
             
         return js_result
-        
-    def __format_size(self, num, suffix='B'):
-        for unit in ['', 'K', 'M', 'G', 'T', 'P', 'E', 'Z']:
-            if abs(num) < 1024.0:
-                return "%3.1f%s%s" % (num, unit, suffix)
-            num /= 1024.0
-        return "%.1f%s%s" % (num, 'Y', suffix)
