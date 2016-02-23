@@ -8,13 +8,13 @@
 rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
 
 #EXTINF:0,Alfa 
+http://213.136.87.128:8000/live/dualcore/dualcore/4.m3u8
+
+#EXTINF:0,Alfa 
 http://217.16.82.6:1935/zulu/alfa_1/playlist.m3u8
 
 #EXTINF:0,Alfa 
 http://217.16.82.6:554/zulu/alfa_1/playlist.m3u8
-
-#EXTINF:0,Alsat M 
-0
 
 #EXTINF:0,BTR 
 0
@@ -50,6 +50,9 @@ http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/k3-tv-kumanovo/chunk
 http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/kplus-tv-stip/chunklist.m3u8 
 
 #EXTINF:0,Kanal 5 
+http://213.136.87.128:8000/live/dualcore/dualcore/2.m3u8
+
+#EXTINF:0,Kanal 5 
 http://fms.zulu.mk:1935/zulu/kanal5_1/playlist.m3u8
 
 #EXTINF:0,Kanal 5 
@@ -77,6 +80,9 @@ http://217.16.82.6:1935/zulu/mtv1_1/playlist.m3u8
 http://217.16.82.6:554/zulu/mtv1_1/playlist.m3u8
 
 #EXTINF:0,MPT 2 
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/12397.ts
+
+#EXTINF:0,MPT 2 
 http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video_id/3548/token/9a9e4915833e8e611b2902b144852a92/playlist.m3u8
 
 #EXTINF:0,MPT 2 
@@ -91,11 +97,17 @@ http://mrt.cdn.spectar.tv:1935/mrt-edge/_definst_/mrt1-sat/playlist.m3u8
 #EXTINF:0,MPT Sat 2 
 http://mrt.cdn.spectar.tv:1935/mrt-edge/_definst_/mrt2-sat/playlist.m3u8
 
+#EXTINF:0,MPT Sat 2 
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/13060.ts
+
 #EXTINF:0,Nasha TV 
 0
 
 #EXTINF:0,Ohrid 02
 0
+
+#EXTINF:0,Sitel 
+http://213.136.87.128:8000/live/dualcore/dualcore/1.m3u8
 
 #EXTINF:0,Sitel 
 http://217.16.82.6:1935/zulu/sitel_1/playlist.m3u8
@@ -111,6 +123,9 @@ http://217.16.82.6:554/zulu/sitel_1/playlist.m3u8
 
 #EXTINF:0,Sutel TV 
 0
+
+#EXTINF:0,Telma 
+http://213.136.87.128:8000/live/dualcore/dualcore/3.m3u8
 
 #EXTINF:0,Telma 
 http://217.16.82.6:1935/zulu/telma_1/playlist.m3u8

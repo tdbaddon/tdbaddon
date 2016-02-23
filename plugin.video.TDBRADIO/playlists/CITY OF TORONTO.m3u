@@ -32,16 +32,16 @@ http://9213.live.streamtheworld.com/CJKXFMAAC?pname=StandardPlayerV4&pversion=4.
 http://stream.classical963fm.com:8017/;stream.mp3 
 
 #EXTINF:0,96.6 JACK FM 
-0
-
-#EXTINF:0,97.3 BOOM 97 
-http://2893.live.streamtheworld.com/CHBMFMAAC_SC
+http://cal969.akacast.akamaistream.net/7/338/80899/v1/rogers.akacast.akamaistream.net/cal969
 
 #EXTINF:0,97.7 HTZ FM 
 0
 
+#EXTINF:0,99.7 BOOM 97 
+http://live.leanstream.co/CJOTFM-MP3?type=.mp3/;stream.mp3
+
 #EXTINF:0,98.1 CHFI 
-0
+http://tor981.akacast.akamaistream.net/7/550/80872/v1/rogers.akacast.akamaistream.net/tor981
 
 #EXTINF:0,98.7 G98 
 http://50.22.253.45:8000/ckfg-fm
@@ -62,7 +62,7 @@ http://live.leanstream.co/CFNYFM
 http://sc10.spacialnet.com:23932/
 
 #EXTINF:0,102.9 KLITE FM 
-http://cklh-mp3.akacast.akamaistream.net/7/286/102120/v1/astral.akacast.akamaistream.net/cklh-mp3
+0
 
 #EXTINF:0,103.5 Z1035 FM 
 http://ice8.securenetsystems.net/CIDC
@@ -77,13 +77,13 @@ http://ice7.securenetsystems.net/CIRR
 http://chumfm-p3.akacast.akamaistream.net/7/441/102120/v1/astral.akacast.akamaistream.net/chumfm-mp3
 
 #EXTINF:0,105.1 COUNTRY FM
-http://ckqmfm-mp3.akacast.akamaistream.net/7/282/102120/v1/astral.akacast.akamaistream.net/ckqmfm-mp3
+0
 
 #EXTINF:0,105.7 EZ ROCK 
-http://chre-mp3.akacast.akamaistream.net/7/369/102120/v1/astral.akacast.akamaistream.net/chre-mp3
+0
 
 #EXTINF:0,105.9 KICX
-http://3593.live.streamtheworld.com/CICXFMAAC?pname=StandardPlayerV4&pversion=4.7.0-026&banners=swf,vpaid
+0
 
 #EXTINF:0,106.1 MAGIC
 http://live.leanstream.co/CIMJFM-MP3?tunein

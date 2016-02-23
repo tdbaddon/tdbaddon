@@ -11,13 +11,16 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 0
 
 #EXTINF:0,Cinemax 
-0
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/3486.ts
+
+#EXTINF:0,Cinemax 
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/3437.ts
 
 #EXTINF:0,CineStarTV Premiere 1 
-0
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/3465.ts
 
 #EXTINF:0,CineStarTV Premiere 2
-0
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/3485.ts
 
 #EXTINF:0,CMore Action 
 0
@@ -41,22 +44,37 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 0
 
 #EXTINF:0,Film4 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/52.ts
+0
 
 #EXTINF:0,FilmBox 
 0
 
 #EXTINF:0,Film Aksion 
-0
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/12425.ts
+
+#EXTINF:0,Film Autor
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/12424.ts
+
+#EXTINF:0,Film Drama
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/12423.ts
 
 #EXTINF:0,Film Hits 
-0
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/12421.ts
+
+#EXTINF:0,Film Hits 
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/12420.ts
 
 #EXTINF:0,Film Nje 
-0
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/12417.ts
+
+#EXTINF:0,Film Thriller
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/12415.ts
+
+#EXTINF:0,Film Zone
+http://178.238.224.19/5858/440.m3u8
 
 #EXTINF:0,Fox Action Movies 
-0
+http://178.238.224.19/5858/416.m3u8
 
 #EXTINF:0,Fox Cinema
 0
@@ -68,16 +86,19 @@ http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/52.ts
 0
 
 #EXTINF:0,Fox Movies 
-0
+http://178.238.224.19/5858/417.m3u8
+
+#EXTINF:0,Fox Movies 
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/3461.ts
 
 #EXTINF:0,Golden Edge
-0
+http://178.238.224.19/5858/484.m3u8
 
 #EXTINF:0,HBO 
 0
 
 #EXTINF:0,HBO Adria 
-0
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/3459.ts
 
 #EXTINF:0,HBO East
 0
@@ -86,7 +107,7 @@ http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/52.ts
 0
 
 #EXTINF:0,HBO Comedy 
-0
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/3451.ts
 
 #EXTINF:0,HBO Family
 0
@@ -110,7 +131,7 @@ http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/52.ts
 0
 
 #EXTINF:0,MGM 
-0
+http://telvuehls_t02027-i.akamaihd.net/hls/live/213119/T02027-amgtv2/playlist_2.m3u8
 
 #EXTINF:0,Paramount Channel 
 0
@@ -128,48 +149,48 @@ http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/52.ts
 0
 
 #EXTINF:0,Sky Movies Action 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/41.ts
+0
 
 #EXTINF:0,Sky Movies Comedy 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/43.ts
+0
 
 #EXTINF:0,Sky Movies Crime 
 0
 
 #EXTINF:0,Sky Movies Disney 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/96.ts
+0
 
 #EXTINF:0,Sky Movies Drama 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/96.ts
+0
 
 #EXTINF:0,Sky Movies Family 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/40.ts
+0
 
 #EXTINF:0,Sky Movies Horrors 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/37.ts
+0
 
 #EXTINF:0,Sky Movies Modern Greats 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/39.ts
+0
 
 #EXTINF:0,Sky Movies Premiere 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/36.ts
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/12558.ts
 
 #EXTINF:0,Sky Movies Premiere+
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/35.ts
+0
 
 #EXTINF:0,Sky Movies SciFi 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/34.ts
+0
 
 #EXTINF:0,Sky Movies Select 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/33.ts
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/12557.ts
 
 #EXTINF:0,Sky Movies Showcase
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/100.ts
+0
 
 #EXTINF:0,Sky Movies Thriller
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/42.ts
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/12556.ts
 
-#EXTINF:0,Sony TV a
+#EXTINF:0,Sony TV 
 0
 
 #EXTINF:0,Star Movies 
@@ -200,25 +221,28 @@ http://112.197.2.135:1935/colive/C001_HD_4/chunklist.m3u8
 0
 
 #EXTINF:0,Tring Fantasy 
-0
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/12365.ts
 
 #EXTINF:0,Tring Life
-0
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/12364.ts
+
+#EXTINF:0,Tring Life
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/13020.ts
 
 #EXTINF:0,Tring Max 
-0
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/12362.ts
+
+#EXTINF:0,Tring Max 
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/13019.ts
 
 #EXTINF:0,Tring Super
 0
 
 #EXTINF:0,True Movies 1 
+http://63.237.48.23/ios/MBC2/MBC2.m3u8
+
+#EXTINF:0,True Movies 2 
 0
-
-#EXTINF:0,True Movies 2 
-http://89.163.148.31:8000/live/aytac/aytac/2755.m3u8
-
-#EXTINF:0,True Movies 2 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/56.ts
 
 #EXTINF:0,TV 1000 
 0

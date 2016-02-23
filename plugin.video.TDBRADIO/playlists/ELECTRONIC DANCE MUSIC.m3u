@@ -14,25 +14,25 @@ http://streaming.radionomy.com/100-Mix-RIWDANCEMIXCHANNEL
 http://streaming.radionomy.com/ADANCEDREAM-DanceClubbing24H
 
 #EXTINF:0,ADR FM Electronic Dance
-http://stream.adr.fm:8000/ede
+0
 
 #EXTINF:0,ADR FM Escape 
-http://stream.adr.fm:8010/escape
+0
 
 #EXTINF:0,ADR FM Daybreak
-http://stream.adr.fm:8003/
+0
 
 #EXTINF:0,AH FM Leading Trance
 http://us2.ah.fm/
 
 #EXTINF:0,Dancetime FM
-http://87.230.53.17:9000
+0
 
 #EXTINF:0,Dance Radio
 0
 
 #EXTINF:0,Electro Radio
-http://www.electroradio.ch/stream.m3u
+0
 
 #EXTINF:0,ETN Progressive 
 http://www.etn.fm/progressive-high.m3u
@@ -74,7 +74,7 @@ http://server1.danzwaves.com:8000/
 http://sc5.radioseven.se:8500
 
 #EXTINF:0,Radio Sfera 
-http://serv.radiosfera.pl:7084
+0
 
 #EXTINF:0,Radioparty 
 http://178.33.232.230:8005/

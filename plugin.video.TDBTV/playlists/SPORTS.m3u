@@ -18,28 +18,31 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 0
 
 #EXTINF:0,Box Nation 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/19.ts
+0
 
 #EXTINF:0,BT Sport 1 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/9.ts
+http://xteramcss.pointto.us:8060/live/karimos-sat/cyaWOcWhPF/15.ts
+
+#EXTINF:0,BT Sport 1 
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/12583.ts
 
 #EXTINF:0,BT Sport 2 
-http://www.t12v.com:8000/live/jerry/jerry/1117.ts
-
-#EXTINF:0,BT Sport 2 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/10.ts
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/12582.ts
 
 #EXTINF:0,CBS Sports 
 0
 
 #EXTINF:0,Chelsea TV 
-0
+http://208.92.36.158/ipad/live/nba_ipad_1240.m3u8
+
+#EXTINF:0,Chelsea TV 
+http://xteramcss.pointto.us:8060/live/karimos-sat/cyaWOcWhPF/201.ts
+
+#EXTINF:0,Chelsea TV 
+http://89.163.148.31:8000/live/pierre/pierre/2811.ts
 
 #EXTINF:0,CMore Sport 
 0
-
-#EXTINF:0,ESPN 
-http://www.t12v.com:8000/live/jerry/jerry/1059.ts
 
 #EXTINF:0,ESPN 
 rtmp://31.220.2.149:80/live/ playpath=espnusa token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://yotv.co
@@ -48,7 +51,7 @@ rtmp://31.220.2.149:80/live/ playpath=espnusa token=%Zrey(nKa@#Z swfUrl=http://p
 rtmp://185.63.255.60:80/live playpath=espnusa swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf pageUrl=http://yotv.co/embedu.php?live=espnusa&vw=620&vh=490 live=1 token=%Zrey(nKa@#Z
 
 #EXTINF:0,ESPN 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/8.ts
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/12574.ts
 
 #EXTINF:0,ESPN 2
 0
@@ -57,16 +60,10 @@ http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/8.ts
 http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_1800.m3u8
 
 #EXTINF:0,Eurosport 1 
-http://169.45.89.106:1935/app/vesplsh/playlist.m3u8
-
-#EXTINF:0,Eurosport 1 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/12.ts
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/12573.ts
 
 #EXTINF:0,Eurosport 2 
-http://169.45.89.106:1935/app/vesp2lsh/playlist.m3u8
-
-#EXTINF:0,Eurosport 2 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/13.ts
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/3435.ts
 
 #EXTINF:0,Eurosport News 
 0
@@ -75,10 +72,10 @@ http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/13.ts
 0
 
 #EXTINF:0,Fishing & Hunting 
-0
+http://cobra-iptv.noip.me:8000/live/13/13/9357.ts
 
 #EXTINF:0,Fox Sports 
-http://motorsport.hopto.org:8080/
+http://178.238.224.19/5858/522.m3u8
 
 #EXTINF:0,Fox Sports 1 
 0
@@ -102,7 +99,7 @@ mms://100automoto.tv/channel_mercedes
 0
 
 #EXTINF:0,Motors TV 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/86.ts
+0
 
 #EXTINF:0,Motorsport 7 
 0
@@ -129,7 +126,7 @@ http://cdn.phoenix.intergi.com/21772/videos/3362254/video-sd.mp4?hosting_id=2177
 0
 
 #EXTINF:0,NFL Network 
-0
+http://nflioslivesvg2-i.akamaihd.net/hls/live/221521/nflioslive/2015HackerNow_w99d9.m3u8
 
 #EXTINF:0,NHL Network 
 http://208.92.36.158/ipad/live/nba_ipad_1240.m3u8
@@ -171,13 +168,7 @@ http://xrxs.net/video/live-p12netw-1164.m3u8
 http://xrxs.net/video/live-p12netw-2328.m3u8
 
 #EXTINF:0,PAC 12 Mountain 
-http://xrxs.net/video/live-p12moun-1164.m3u8
-
-#EXTINF:0,PAC 12 Mountain 
-http://xrxs.net/video/live-p12moun-2328.m3u8
-
-#EXTINF:0,PAC 12 Mountain HD
-http://xrxs.net/video/live-p12moun-4728.m3u8
+0
 
 #EXTINF:0,PAC 12 Mountain HD
 http://pac12hd2-lh.akamaihd.net/i/p12moun_delivery@132839/master.m3u8
@@ -204,55 +195,49 @@ http://ooyalahd2-f.akamaihd.net/i/crtv01_delivery@329705/index_1164_av-b.m3u8
 mms://100automoto.tv/channel_porsche
 
 #EXTINF:0,Premier Sports 
-http://169.45.89.106:1935/app/vpremsplsh/playlist.m3u8
-
-#EXTINF:0,Premier Sports 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/14.ts
+0
 
 #EXTINF:0,Racing UK 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/15.ts
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/12563.ts
+
+#EXTINF:0,Redbull TV
+http://sacapunta.eltelon.com/channels/redbulltv/playlist.m3u8
 
 #EXTINF:0,Root Sports 
 0
 
 #EXTINF:0,Setanta Sports 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/16.ts
+http://xteramcss.pointto.us:8060/live/karimos-sat/cyaWOcWhPF/13.ts
+
+#EXTINF:0,Setanta Sports 
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/12560.ts
 
 #EXTINF:0,Sky Sports 1 
-http://169.45.89.106:1935/app/skysports1lsh/playlist.m3u8
-
-#EXTINF:0,Sky Sports 1 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/1.ts
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/12554.ts
 
 #EXTINF:0,Sky Sports 2 
-http://169.45.89.106:1935/app/skysports2lsh/playlist.m3u8
-
-#EXTINF:0,Sky Sports 2 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/2.ts
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/12553.ts
 
 #EXTINF:0,Sky Sports 3 
-http://169.45.89.106:1935/app/skysports3lsh/playlist.m3u8
+http://xteramcss.pointto.us:8060/live/karimos-sat/cyaWOcWhPF/8.ts
 
 #EXTINF:0,Sky Sports 3 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/3.ts
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/12552.ts
 
 #EXTINF:0,Sky Sports 4 
-http://169.45.89.106:1935/app/skysports4lsh/playlist.m3u8
+http://xteramcss.pointto.us:8060/live/karimos-sat/cyaWOcWhPF/9.ts
 
 #EXTINF:0,Sky Sports 4 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/4.ts
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/12551.ts
 
 #EXTINF:0,Sky Sports 5 
-http://169.45.89.106:1935/app/skysports5lsh/playlist.m3u8
-
-#EXTINF:0,Sky Sports 5 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/5.ts
+http://xteramcss.pointto.us:8060/live/karimos-sat/cyaWOcWhPF/7.ts
 
 #EXTINF:0,Sky Sports F1 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/6.ts
+0
 
 #EXTINF:0,Sky Sports News 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/7.ts
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/12548.ts
 
 #EXTINF:0,Sports Tonight 
 rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9-SD

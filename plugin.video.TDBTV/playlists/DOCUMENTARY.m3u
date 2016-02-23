@@ -13,6 +13,9 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 #EXTINF:0,Animal Planet 
 http://109.226.222.161:4022/udp/239.255.4.175:1234
 
+#EXTINF:0,Animal Planet 
+http://89.163.148.31:8000/live/pierre/pierre/2834.ts
+
 #EXTINF:0,Crime & Investigation 
 0
 
@@ -23,10 +26,10 @@ http://109.226.222.161:4022/udp/239.255.4.175:1234
 0
 
 #EXTINF:0,Discovery Channel 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/104.ts
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/12577.ts
 
 #EXTINF:0,Discovery History 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/105.ts
+http://top-iptv.zapto.org:8000/live/Aria/Aria/562.m3u8
 
 #EXTINF:0,Discovery H&H
 0
@@ -37,8 +40,11 @@ http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/105.ts
 #EXTINF:0,Discovery Science 
 http://109.226.222.161:4022/udp/239.255.4.250:1234
 
+#EXTINF:0,Discovery Theatre
+http://178.238.224.19/5858/351.m3u8
+
 #EXTINF:0,Discovery Turbo 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/107.ts
+0
 
 #EXTINF:0,Discovery World 
 0
@@ -61,14 +67,11 @@ http://link.theplatform.com/s/dtjsEC/chjdYJxKb44V?manifest=m3u&feed=History%20Li
 #EXTINF:0,History Channel 
 https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8?hdnea=ip=173.34.67.21~st=1448574469~exp=1448575069~acl=/i/History_1@156885*~id=e0ac8c7f-b7ae-431f-998a-d87493df48b7~hmac=1bf4b5f4382fd3f887da82e7bc44d93e3d92152b0d873acded129cad627e231e
 
-#EXTINF:0,History Channel 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/109.ts
-
 #EXTINF:0,History Channel 2
 0
 
 #EXTINF:0,Investigation Discovery 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/103.ts
+0
 
 #EXTINF:0,Nasa TV 
 http://nasatv-lh.akamaihd.net/i/NASA_101@319270/master.m3u8 
@@ -89,10 +92,31 @@ http://nasatv-lh.akamaihd.net/i/NASA_103@319271/master.m3u8
 http://109.226.222.161:4022/udp/239.255.4.30:1234
 
 #EXTINF:0,National Geographic 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/102.ts
+http://95.191.236.176:1234/udp/225.54.41.6:5000
 
 #EXTINF:0,National Geographic 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/101.ts
+http://92.127.226.85:1234/udp/225.54.23.54:5000
+
+#EXTINF:0,National Geographic 
+http://92.127.224.242:1234/udp/225.54.23.54:5000
+
+#EXTINF:0,National Geographic 
+http://92.127.224.153:1234/udp/225.54.23.54:5000
+
+#EXTINF:0,National Geographic 
+http://178.166.205.202:1234/udp/225.54.41.6:5000
+
+#EXTINF:0,National Geographic
+http://95.191.246.5:1234/udp/225.54.41.6:5000
+
+#EXTINF:0,National Geographic
+http://95.191.236.176:1234/udp/225.54.41.6:5000
+
+#EXTINF:0,National Geographic
+http://95.191.224.45:1234/udp/225.54.41.6:5000
+
+#EXTINF:0,National Geographic
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/3456.ts
 
 #EXTINF:0,Nova
 0
@@ -122,16 +146,13 @@ http://rt-a.akamaihd.net/ch_05@325609/720p.m3u8
 0
 
 #EXTINF:0,Travel Channel 
-http://46.40.5.99:8000/travel_720
-
-#EXTINF:0,Travel Channel 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/110.ts
+0
 
 #EXTINF:0,Viasat Explorer 
-http://46.40.5.99:8000/viasat_explorer_720
+http://195.78.244.219:10000/udp/239.0.3.30:1234
 
 #EXTINF:0,Viasat History 
-http://46.40.5.99:8000/viasat_history_720
+http://195.78.244.219:10000/udp/239.0.3.31:1234
 
 #EXTINF:0,Viasat Nature 
-http://46.40.5.99:8000/viasat_nature_720
+http://195.78.244.219:10000/udp/239.0.3.28:1234

@@ -59,32 +59,32 @@ def read_file(file):
         pass
 		
 
-def make_request(url):
+def make_request():
 	try:
-		req = urllib2.Request(url)
-		req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:19.0) Gecko/20100101 Firefox/19.0')
-		response = urllib2.urlopen(req)	  
-		link = response.read()
-		response.close()  
-		return link
-	except urllib2.URLError, e:
-		print 'We failed to open "%s".' % url
+		for server in shuffle(CCLOUDTV_SRV_URL):
+			conn = GetHttpStatusAndData(server)
+			if conn['valid']:
+				links = conn['data'].encode('utf-8')
+				return links
+	except e:
 		if hasattr(e, 'code'):
 			print 'We failed with error code - %s.' % e.code	
 		if hasattr(e, 'reason'):
 			print 'We failed to reach a server.'
 			print 'Reason: ', e.reason
+	print 'All cCloud TV servers seem to be down. Please try again in a few minutes.'
+	return None
 
 			
 def main():
 	addDir('[COLOR royalblue][B]***Latest Announcements***[/B][/COLOR]', yt, 3, '%s/announcements.png'% iconpath, fanart)
 	addDir('[COLOR red][B]Search[/B][/COLOR]', 'searchlink', 99, '%s/search.png'% iconpath, fanart)
-	if len(List) > 0:	
+	if len(CCLOUDTV_SRV_URL) > 0:	
 		addDir('[COLOR yellow][B]All Channels[/B][/COLOR]', yt, 2, '%s/allchannels.png'% iconpath, fanart)
-	if (len(List) < 1 ):		
+	if (len(CCLOUDTV_SRV_URL) < 1 ):		
 		mysettings.openSettings()
 		xbmc.executebuiltin("Container.Refresh")
-	#addDir('[COLOR yellow][B]TV Guide[/B][/COLOR]', 'guide', 97, '%s/guide.png'% iconpath, fanart)
+	addDir('[COLOR yellow][B]TV Guide[/B][/COLOR]', 'guide', 97, '%s/guide.png'% iconpath, fanart)
 	#addDir('Open TV Guide/Update Channels','INI',95,'%s/guide.png'% iconpath,fanart)
 	addDir('[COLOR royalblue][B]English[/B][/COLOR]', 'english', 62, '%s/english.png'% iconpath, fanart)
 	addDir('[COLOR royalblue][B]Top 10[/B][/COLOR]', 'top10', 51, '%s/top10.png'% iconpath, fanart)
@@ -106,7 +106,7 @@ def main():
 
 def createini():
 	if not os.path.exists(GuideDirectory):
-		dialog.ok(addon_id, 'Please makesure you have TV Guide installed and you have run it at least once then use this function to enable integration')
+		dialog.ok(addon_id, 'Please make sure you have TV Guide installed and you have run it at least once then use this function to enable integration')
 		dialog.notification(addonname, 'Please install and run TV Guide at least once', xbmcgui.NOTIFICATION_ERROR );
 	
 	if os.path.exists(GuideDirectory):
@@ -127,8 +127,8 @@ def search():
 		keyb.doModal()
 		if (keyb.isConfirmed()):
 			searchText = urllib.quote_plus(keyb.getText(), safe="%/:=&?~#+!$,;'@()*[]").replace('+', ' ')
-		if len(List) > 0:		
-			content = make_request(List)
+		if len(CCLOUDTV_SRV_URL) > 0:		
+			content = make_request()
 			match = re.compile(m3u_regex).findall(content)
 			for thumb, name, url in match:
 				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -139,8 +139,8 @@ def search():
 def sports(): 	
 	try:
 		searchText = '(Sports)'
-		if len(List) > 0:		
-			content = make_request(List)
+		if len(CCLOUDTV_SRV_URL) > 0:		
+			content = make_request()
 			match = re.compile(m3u_regex).findall(content)
 			for thumb, name, url in match:
 				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -152,8 +152,8 @@ def sports():
 def top10(): 	
 	try:
 		searchText = '(Top10)'
-		if len(List) > 0:		
-			content = make_request(List)
+		if len(CCLOUDTV_SRV_URL) > 0:		
+			content = make_request()
 			match = re.compile(m3u_regex).findall(content)
 			for thumb, name, url in match:
 				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -164,8 +164,8 @@ def top10():
 def news(): 	
 	try:
 		searchText = '(News)'
-		if len(List) > 0:		
-			content = make_request(List)
+		if len(CCLOUDTV_SRV_URL) > 0:		
+			content = make_request()
 			match = re.compile(m3u_regex).findall(content)
 			for thumb, name, url in match:
 				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -177,8 +177,8 @@ def news():
 def documentary(): 	
 	try:
 		searchText = '(Document)'
-		if len(List) > 0:		
-			content = make_request(List)
+		if len(CCLOUDTV_SRV_URL) > 0:		
+			content = make_request()
 			match = re.compile(m3u_regex).findall(content)
 			for thumb, name, url in match:
 				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -190,8 +190,8 @@ def documentary():
 def entertainment(): 	
 	try:
 		searchText = '(Entertainment)'
-		if len(List) > 0:		
-			content = make_request(List)
+		if len(CCLOUDTV_SRV_URL) > 0:		
+			content = make_request()
 			match = re.compile(m3u_regex).findall(content)
 			for thumb, name, url in match:
 				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -203,8 +203,8 @@ def entertainment():
 def family(): 	
 	try:
 		searchText = '(Family)'
-		if len(List) > 0:		
-			content = make_request(List)
+		if len(CCLOUDTV_SRV_URL) > 0:		
+			content = make_request()
 			match = re.compile(m3u_regex).findall(content)
 			for thumb, name, url in match:
 				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -217,8 +217,8 @@ def family():
 def lifestyle(): 	
 	try:
 		searchText = '(Lifestyle)'
-		if len(List) > 0:		
-			content = make_request(List)
+		if len(CCLOUDTV_SRV_URL) > 0:		
+			content = make_request()
 			match = re.compile(m3u_regex).findall(content)
 			for thumb, name, url in match:
 				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -231,8 +231,8 @@ def lifestyle():
 def movie(): 	
 	try:
 		searchText = '(Movie Channels)'
-		if len(List) > 0:		
-			content = make_request(List)
+		if len(CCLOUDTV_SRV_URL) > 0:		
+			content = make_request()
 			match = re.compile(m3u_regex).findall(content)
 			for thumb, name, url in match:
 				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -245,8 +245,8 @@ def movie():
 def music(): 	
 	try:
 		searchText = '(Music)'
-		if len(List) > 0:		
-			content = make_request(List)
+		if len(CCLOUDTV_SRV_URL) > 0:		
+			content = make_request()
 			match = re.compile(m3u_regex).findall(content)
 			for thumb, name, url in match:
 				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -258,8 +258,8 @@ def music():
 def ondemandmovies(): 	
 	try:
 		searchText = '(OnDemandMovies)'
-		if len(List) > 0:		
-			content = make_request(List)
+		if len(CCLOUDTV_SRV_URL) > 0:		
+			content = make_request()
 			match = re.compile(m3u_regex).findall(content)
 			for thumb, name, url in match:
 				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -270,8 +270,8 @@ def ondemandmovies():
 def ondemandshows(): 	
 	try:
 		searchText = '(OnDemandShows)'
-		if len(List) > 0:		
-			content = make_request(List)
+		if len(CCLOUDTV_SRV_URL) > 0:		
+			content = make_request()
 			match = re.compile(m3u_regex).findall(content)
 			for thumb, name, url in match:
 				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -284,8 +284,8 @@ def ondemandshows():
 def twentyfour7(): 	
 	try:
 		searchText = '(RandomAirTime 24/7)'
-		if len(List) > 0:		
-			content = make_request(List)
+		if len(CCLOUDTV_SRV_URL) > 0:		
+			content = make_request()
 			match = re.compile(m3u_regex).findall(content)
 			for thumb, name, url in match:
 				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -298,8 +298,8 @@ def twentyfour7():
 def radio(): 	
 	try:
 		searchText = '(Radio)'
-		if len(List) > 0:		
-			content = make_request(List)
+		if len(CCLOUDTV_SRV_URL) > 0:		
+			content = make_request()
 			match = re.compile(m3u_regex).findall(content)
 			for thumb, name, url in match:
 				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -312,14 +312,14 @@ def radio():
 def adult(): 	
 	try:
 		searchText = ('(Adult)') or ('(Public-Adult)')
-		if len(List) > 0:		
-			content = make_request(List)
+		if len(CCLOUDTV_SRV_URL) > 0:		
+			content = make_request()
 			match = re.compile(adult_regex).findall(content)
 			for thumb, name, url in match:
 				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
 					adult_playlist(name, url, thumb)	
-		if len(List) > 0:		
-			content = make_request(List)
+		if len(CCLOUDTV_SRV_URL) > 0:		
+			content = make_request()
 			match = re.compile(adult_regex2).findall(content)
 			for thumb, name, url in match:
 				if re.search(searchText, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -334,8 +334,8 @@ def english():
 	#addDir('[COLOR yellow][B]cCloud TV Guide[/B][/COLOR] - Click Here! Thanks to Renegades TV', 'guide', 97, '%s/guide.png'% iconpath, fanart)
 	try:
 		searchText = '(English)'
-		if len(List) > 0:		
-			content = make_request(List)
+		if len(CCLOUDTV_SRV_URL) > 0:		
+			content = make_request()
 			match = re.compile(m3u_regex).findall(content) 
 			#file.write('\n'.join(match))
 			for thumb, name, url in match:
@@ -349,8 +349,8 @@ def english():
 def international(): 	
 	try:
 		searchGerman = '(German)'
-		if len(List) > 0:		
-			content = make_request(List)
+		if len(CCLOUDTV_SRV_URL) > 0:		
+			content = make_request()
 			match = re.compile(m3u_regex).findall(content)
 			for thumb, name, url in match:
 				if re.search(searchGerman, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -359,8 +359,8 @@ def international():
 		pass
 	try:
 		searchSpanish = '(Spanish)'
-		if len(List) > 0:		
-			content = make_request(List)
+		if len(CCLOUDTV_SRV_URL) > 0:		
+			content = make_request()
 			match = re.compile(m3u_regex).findall(content)
 			for thumb, name, url in match:
 				if re.search(searchSpanish, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -369,8 +369,8 @@ def international():
 		pass
 	try:
 		searchFrench = '(French)'
-		if len(List) > 0:		
-			content = make_request(List)
+		if len(CCLOUDTV_SRV_URL) > 0:		
+			content = make_request()
 			match = re.compile(m3u_regex).findall(content)
 			for thumb, name, url in match:
 				if re.search(searchFrench, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -379,8 +379,8 @@ def international():
 		pass
 	try:
 		searchHindi = '(Hindi)'
-		if len(List) > 0:		
-			content = make_request(List)
+		if len(CCLOUDTV_SRV_URL) > 0:		
+			content = make_request()
 			match = re.compile(m3u_regex).findall(content)
 			for thumb, name, url in match:
 				if re.search(searchHindi, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -389,8 +389,8 @@ def international():
 		pass
 	try:
 		searchArabic = '(Arabic)'
-		if len(List) > 0:		
-			content = make_request(List)
+		if len(CCLOUDTV_SRV_URL) > 0:		
+			content = make_request()
 			match = re.compile(m3u_regex).findall(content)
 			for thumb, name, url in match:
 				if re.search(searchArabic, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -399,8 +399,8 @@ def international():
 		pass
 	try:
 		searchUrdu = '(Urdu)'
-		if len(List) > 0:		
-			content = make_request(List)
+		if len(CCLOUDTV_SRV_URL) > 0:		
+			content = make_request()
 			match = re.compile(m3u_regex).findall(content)
 			for thumb, name, url in match:
 				if re.search(searchUrdu, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -409,8 +409,8 @@ def international():
 		pass
 	try:
 		searchFarsi = '(Farsi)'
-		if len(List) > 0:		
-			content = make_request(List)
+		if len(CCLOUDTV_SRV_URL) > 0:		
+			content = make_request()
 			match = re.compile(m3u_regex).findall(content)
 			for thumb, name, url in match:
 				if re.search(searchFarsi, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -419,8 +419,8 @@ def international():
 		pass
 	try:
 		searchPortuguese = '(Portuguese)'
-		if len(List) > 0:		
-			content = make_request(List)
+		if len(CCLOUDTV_SRV_URL) > 0:		
+			content = make_request()
 			match = re.compile(m3u_regex).findall(content)
 			for thumb, name, url in match:
 				if re.search(searchPortuguese, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -429,8 +429,8 @@ def international():
 		pass
 	try:
 		searchKurdish = '(Kurdish)'
-		if len(List) > 0:		
-			content = make_request(List)
+		if len(CCLOUDTV_SRV_URL) > 0:		
+			content = make_request()
 			match = re.compile(m3u_regex).findall(content)
 			for thumb, name, url in match:
 				if re.search(searchKurdish, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -439,8 +439,8 @@ def international():
 		pass
 	try:
 		searchChinese = '(Chinese)'
-		if len(List) > 0:		
-			content = make_request(List)
+		if len(CCLOUDTV_SRV_URL) > 0:		
+			content = make_request()
 			match = re.compile(m3u_regex).findall(content)
 			for thumb, name, url in match:
 				if re.search(searchChinese, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -449,8 +449,8 @@ def international():
 		pass
 	try:
 		searchSomali = '(Somali)'
-		if len(List) > 0:		
-			content = make_request(List)
+		if len(CCLOUDTV_SRV_URL) > 0:		
+			content = make_request()
 			match = re.compile(m3u_regex).findall(content)
 			for thumb, name, url in match:
 				if re.search(searchSomali, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -459,8 +459,8 @@ def international():
 		pass
 	try:
 		searchRussian = '(Russian)'
-		if len(List) > 0:		
-			content = make_request(List)
+		if len(CCLOUDTV_SRV_URL) > 0:		
+			content = make_request()
 			match = re.compile(m3u_regex).findall(content)
 			for thumb, name, url in match:
 				if re.search(searchRussian, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -469,8 +469,8 @@ def international():
 		pass
 	try:
 		searchAfrikaans = '(Afrikaans)'
-		if len(List) > 0:		
-			content = make_request(List)
+		if len(CCLOUDTV_SRV_URL) > 0:		
+			content = make_request()
 			match = re.compile(m3u_regex).findall(content)
 			for thumb, name, url in match:
 				if re.search(searchAfrikaans, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -479,8 +479,8 @@ def international():
 		pass
 	try:
 		searchRomanian = '(Romanian)'
-		if len(List) > 0:		
-			content = make_request(List)
+		if len(CCLOUDTV_SRV_URL) > 0:		
+			content = make_request()
 			match = re.compile(m3u_regex).findall(content)
 			for thumb, name, url in match:
 				if re.search(searchRomanian, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -489,8 +489,8 @@ def international():
 		pass
 	try:
 		searchItalian = '(Italian)'
-		if len(List) > 0:		
-			content = make_request(List)
+		if len(CCLOUDTV_SRV_URL) > 0:		
+			content = make_request()
 			match = re.compile(m3u_regex).findall(content)
 			for thumb, name, url in match:
 				if re.search(searchItalian, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -499,8 +499,8 @@ def international():
 		pass
 	try:
 		searchIsraeli = '(Israeli)'
-		if len(List) > 0:		
-			content = make_request(List)
+		if len(CCLOUDTV_SRV_URL) > 0:		
+			content = make_request()
 			match = re.compile(m3u_regex).findall(content)
 			for thumb, name, url in match:
 				if re.search(searchIsraeli, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -509,8 +509,8 @@ def international():
 		pass
 	try:
 		searchGreek = '(Greek)'
-		if len(List) > 0:		
-			content = make_request(List)
+		if len(CCLOUDTV_SRV_URL) > 0:		
+			content = make_request()
 			match = re.compile(m3u_regex).findall(content)
 			for thumb, name, url in match:
 				if re.search(searchGreek, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -519,8 +519,8 @@ def international():
 		pass
 	try:
 		searchhungarian = '(Hungarian)'
-		if len(List) > 0:		
-			content = make_request(List)
+		if len(CCLOUDTV_SRV_URL) > 0:		
+			content = make_request()
 			match = re.compile(m3u_regex).findall(content)
 			for thumb, name, url in match:
 				if re.search(searchHungarian, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -529,8 +529,8 @@ def international():
 		pass
 	try:
 		searchTamil = '(Tamil)'
-		if len(List) > 0:		
-			content = make_request(List)
+		if len(CCLOUDTV_SRV_URL) > 0:		
+			content = make_request()
 			match = re.compile(m3u_regex).findall(content)
 			for thumb, name, url in match:
 				if re.search(searchTamil, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -539,8 +539,8 @@ def international():
 		pass
 	try:
 		searchMacedonian = '(Macedonian)'
-		if len(List) > 0:		
-			content = make_request(List)
+		if len(CCLOUDTV_SRV_URL) > 0:		
+			content = make_request()
 			match = re.compile(m3u_regex).findall(content)
 			for thumb, name, url in match:
 				if re.search(searchMacedonian, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -549,8 +549,8 @@ def international():
 		pass
 	try:
 		searchIndian = '(Indian)'
-		if len(List) > 0:		
-			content = make_request(List)
+		if len(CCLOUDTV_SRV_URL) > 0:		
+			content = make_request()
 			match = re.compile(m3u_regex).findall(content)
 			for thumb, name, url in match:
 				if re.search(searchIndian, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -559,8 +559,8 @@ def international():
 		pass
 	try:
 		searchCatalan = '(Catalan)'
-		if len(List) > 0:		
-			content = make_request(List)
+		if len(CCLOUDTV_SRV_URL) > 0:		
+			content = make_request()
 			match = re.compile(m3u_regex).findall(content)
 			for thumb, name, url in match:
 				if re.search(searchCatalan, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -569,8 +569,8 @@ def international():
 		pass
 	try:
 		searchJamaica = '(Jamaica)'
-		if len(List) > 0:		
-			content = make_request(List)
+		if len(CCLOUDTV_SRV_URL) > 0:		
+			content = make_request()
 			match = re.compile(m3u_regex).findall(content)
 			for thumb, name, url in match:
 				if re.search(searchJamaica, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -579,8 +579,8 @@ def international():
 		pass
 	try:
 		searchUkrainian = '(Ukrainian)'
-		if len(List) > 0:		
-			content = make_request(List)
+		if len(CCLOUDTV_SRV_URL) > 0:		
+			content = make_request()
 			match = re.compile(m3u_regex).findall(content)
 			for thumb, name, url in match:
 				if re.search(searchUkrainian, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -589,8 +589,8 @@ def international():
 		pass
 	try:
 		searchVietamese = '(Vietamese)'
-		if len(List) > 0:		
-			content = make_request(List)
+		if len(CCLOUDTV_SRV_URL) > 0:		
+			content = make_request()
 			match = re.compile(m3u_regex).findall(content)
 			for thumb, name, url in match:
 				if re.search(searchVietamese, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -599,8 +599,8 @@ def international():
 		pass
 	try:
 		searchMaltese = '(Maltese)'
-		if len(List) > 0:		
-			content = make_request(List)
+		if len(CCLOUDTV_SRV_URL) > 0:		
+			content = make_request()
 			match = re.compile(m3u_regex).findall(content)
 			for thumb, name, url in match:
 				if re.search(searchMaltese, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -609,8 +609,8 @@ def international():
 		pass
 	try:
 		searchLithuanian = '(Lithuanian)'
-		if len(List) > 0:		
-			content = make_request(List)
+		if len(CCLOUDTV_SRV_URL) > 0:		
+			content = make_request()
 			match = re.compile(m3u_regex).findall(content)
 			for thumb, name, url in match:
 				if re.search(searchLithuanian, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -619,8 +619,8 @@ def international():
 		pass
 	try:
 		searchPolish = '(Polish)'
-		if len(List) > 0:		
-			content = make_request(List)
+		if len(CCLOUDTV_SRV_URL) > 0:		
+			content = make_request()
 			match = re.compile(m3u_regex).findall(content)
 			for thumb, name, url in match:
 				if re.search(searchPolish, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -629,8 +629,8 @@ def international():
 		pass
 	try:
 		searchSlovenian = '(Slovenian)'
-		if len(List) > 0:		
-			content = make_request(List)
+		if len(CCLOUDTV_SRV_URL) > 0:		
+			content = make_request()
 			match = re.compile(m3u_regex).findall(content)
 			for thumb, name, url in match:
 				if re.search(searchSlovenian, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -639,8 +639,8 @@ def international():
 		pass
 	try:
 		searchDeutsch = '(Deutsch)'
-		if len(List) > 0:		
-			content = make_request(List)
+		if len(CCLOUDTV_SRV_URL) > 0:		
+			content = make_request()
 			match = re.compile(m3u_regex).findall(content)
 			for thumb, name, url in match:
 				if re.search(searchDeutsch, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -649,8 +649,8 @@ def international():
 		pass
 	try:
 		searchDutch = '(Dutch)'
-		if len(List) > 0:		
-			content = make_request(List)
+		if len(CCLOUDTV_SRV_URL) > 0:		
+			content = make_request()
 			match = re.compile(m3u_regex).findall(content)
 			for thumb, name, url in match:
 				if re.search(searchDutch, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -659,8 +659,8 @@ def international():
 		pass
 	try:
 		searchFilipino = '(Filipino)'
-		if len(List) > 0:		
-			content = make_request(List)
+		if len(CCLOUDTV_SRV_URL) > 0:		
+			content = make_request()
 			match = re.compile(m3u_regex).findall(content)
 			for thumb, name, url in match:
 				if re.search(searchFilipino, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -669,8 +669,8 @@ def international():
 		pass
 	try:
 		searchMandarin = '(Mandarin)'
-		if len(List) > 0:		
-			content = make_request(List)
+		if len(CCLOUDTV_SRV_URL) > 0:		
+			content = make_request()
 			match = re.compile(m3u_regex).findall(content)
 			for thumb, name, url in match:
 				if re.search(searchFilipino, removeAccents(name.replace('Đ', 'D')), re.IGNORECASE):
@@ -714,11 +714,19 @@ def showText(heading, text):
 	    pass
 
 def guide():
-	xbmc.executebuiltin("RunAddon(script.ivueguide)")
-	sys.exit()
+	dialog = xbmcgui.Dialog()
+	ret = dialog.yesno('cCloud TV Guide', '[COLOR yellow]cCloud TV[/COLOR] is now integrated with your favourite TV Guides.','This is currently in beta and not all channels are supported.','[COLOR yellow]>>>>>>>>>>>>>  Choose Your Guide Below  <<<<<<<<<<<<<[/COLOR]','iVue TV Guide','Renegades TV Guide')
+	if ret == 1:
+			xbmc.executebuiltin("RunAddon(script.renegadestv)")
+			sys.exit()
+	if ret == 0:
+			xbmc.executebuiltin("RunAddon(script.ivueguide)")
+			sys.exit()
+	else:
+			sys.exit()
 	
 def m3u_online():		
-	content = make_request(List)
+	content = make_request()
 	match = re.compile(m3u_regex).findall(content)
 	for thumb, name, url in match:
 		try:
@@ -825,9 +833,49 @@ List1 = 'YUhSMGNEb3ZMMnR2WkdrdVkyTnNaQzVwYnc9PQ=='.decode('base64') .decode('bas
 List2 = 'YUhSMGNEb3ZMM2d1WTI4dlpHSmphREF4'.decode('base64') .decode('base64')
 List3 = 'YUhSMGNEb3ZMM1JwYm5rdVkyTXZaR0pqYUc4eQ=='.decode('base64') .decode('base64')
 
-foo = [List1,List2,List3]
-List = random.choice(foo)
-	
+CCLOUDTV_SRV_URL = [List1,List2,List3]
+
+####################################################################################################
+# Gets the data and tests for a valid M3U since a 200 response code can still lead to an empty file 
+# or a different page but not our listing
+def GetHttpStatusAndData(url):
+
+	resp = {}
+	resp['valid'] = False
+	resp['data'] = ''
+	try:
+		hdr = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11',
+   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+   'Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
+   'Accept-Encoding': 'none',
+   'Accept-Language': 'en-US,en;q=0.8',
+   'Connection': 'keep-alive'}
+   
+		req = urllib2.Request(url, headers=hdr)
+		response = urllib2.urlopen(req)
+		
+		data = response.read()
+		if '#EXTM3U' in data:
+			resp['valid'] = True
+			resp['data'] = data
+
+	except urllib2.HTTPError, e:
+		pass
+
+	return resp
+
+####################################################################################################
+# Randomizes the order of items in a list
+def shuffle(mlist):
+	result = []
+	cloneList = []
+	for item in mlist:
+		cloneList.append(item)
+	for i in range(len(cloneList)):
+		element = random.choice(cloneList)
+		cloneList.remove(element)
+		result.append(element)
+	return result
 
 def addDir(name, url, mode, iconimage, fanart):
 	u = sys.argv[0] + "?url=" + urllib.quote_plus(url) + "&mode=" + str(mode) + "&name=" + urllib.quote_plus(name) + "&iconimage=" + urllib.quote_plus(iconimage)

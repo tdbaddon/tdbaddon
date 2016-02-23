@@ -11,7 +11,7 @@ http://rtmp.one.by:1300/
 0
 
 #EXTINF:0,Beatz TV 
-http://rtmp.infomaniak.ch/livecast/beats_1/playlist.m3u8
+0
 
 #EXTINF:0,BPM TV 
 0
@@ -23,7 +23,7 @@ http://ooyalahd2-f.akamaihd.net/i/globalradio01_delivery@156521/index_656_av-p.m
 0
 
 #EXTINF:0,Clubbing TV 
-http://204.107.26.252:1935/live/691.high.stream/HasBahCa.m3u8
+0
 
 #EXTINF:0,CMC 
 0
@@ -49,7 +49,7 @@ http://www.iptvsaga.com/play/tv3/0088.m3u8
 #EXTINF:0,Djing Classics 
 http://www.djing.com/tv/i-03.m3u8
 
-#EXTINF:0,Djing Classics HD
+#EXTINF:0,Djing Classics HD 
 http://www.djing.com/tv/i-05.m3u8
 
 #EXTINF:0,Djing Classics HD
@@ -110,25 +110,25 @@ http://ooyalahd2-f.akamaihd.net/i/globalradio02_delivery@156522/master.m3u8
 rtmp://tst.es.flash.glb.ipercast.net/tst.es-live/live
 
 #EXTINF:0,Miami TV Music 
-0
+http://k4.usastreams.com:1935/miamitv/miamitv/chunklist_w128908539.m3u8
+
+#EXTINF:0,Miami TV Music 
+http://74.208.152.93/music/stream3/stream.m3u8
 
 #EXTINF:0,MTV 
 http://origin2.voronezh.ertelecom.ru/content/private/s147213/d3720264/r183857sd2500000/efe4541060c00fccc01e8c068fce4f5ab911d969/playlist.m3u8
-
-#EXTINF:0,MTV 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/117.ts
 
 #EXTINF:0,MTV Dance 
 0
 
 #EXTINF:0,MTV Hits 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/118.ts
+0
 
 #EXTINF:0,MTV Live 
 0
 
 #EXTINF:0,MTV Rocks 
-http://217.147.40.118:8080/udp/233.97.20.155:1234
+http://92.50.181.6/tv/1279/index.m3u8
 
 #EXTINF:0,MusicVoxTV 
 rtmp://stream.smcloud.net/live2/vox/vox_480p
@@ -175,28 +175,28 @@ http://stream01.yamgo.com/iPhone/HLS_TS/broadcast/trace_tv_urban-tablet.3gp/trac
 #EXTINF:0,Tuba TV
 0
 
-#EXTINF:0,Vevo Hits 
-http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch2/04/prog_index.m3u8
-
-#EXTINF:0,Vevo Hits HD
-http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch2/06/prog_index.m3u8
-
-#EXTINF:0,Vevo Hits HD
-http://www.iptvsaga.com/play/tv3/0005.m3u8
-
 #EXTINF:0,Vevo Country 
 http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch3/04/prog_index.m3u8
 
-#EXTINF:0,Vevo Country HD
+#EXTINF:0,Vevo Country HD 
 http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch3/06/prog_index.m3u8
 
 #EXTINF:0,Vevo Country HD
 http://www.iptvsaga.com/play/tv3/0004.m3u8
 
+#EXTINF:0,Vevo Hits 
+http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch2/04/prog_index.m3u8
+
+#EXTINF:0,Vevo Hits HD 
+http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch2/06/prog_index.m3u8
+
+#EXTINF:0,Vevo Hits HD
+http://www.iptvsaga.com/play/tv3/0005.m3u8
+
 #EXTINF:0,Vevo Pop 
 http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/04/prog_index.m3u8
 
-#EXTINF:0,Vevo Pop HD
+#EXTINF:0,Vevo Pop HD 
 http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/06/prog_index.m3u8
 
 #EXTINF:0,Vevo Pop HD
@@ -206,10 +206,10 @@ http://www.iptvsaga.com/play/tv3/0006.m3u8
 http://origin2.tomsk.ertelecom.ru/content/private/s147213/d3720264/r183860sd2000000/a7e4d34646b475190d0c99a717f7478a546958ed/track_2_1200/playlist.m3u8
 
 #EXTINF:0,VH1 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/115.ts
+http://92.50.181.6/tv/1281/index.m3u8
 
 #EXTINF:0,VH1 Classics 
-0
+http://92.50.181.6/tv/1282/index.m3u8
 
 #EXTINF:0,Virgin TV 
 rtmp://fms.105.net:1935/live/virgin2

@@ -5,7 +5,7 @@
 http://streamer1.streamhost.org:1935/salive/GMIalfah/livestream.m3u8
 
 #EXTINF:0,America TV 
-http://ooyalahd2-f.akamaihd.net/i/americatv_delivery@25405/index_1728_av-p.m3u8
+0
 
 #EXTINF:0,Andina TV
 0
@@ -20,10 +20,10 @@ http://ss6.domint.net:1962/al_edge/antena/chunklist_w2059964033.m3u8
 http://wow2.cl.digitalproserver.com/aricatv/aricatvvivo/aricatv.smil/chunklist_w725671068_b848000.m3u8
 
 #EXTINF:0,Azteca 13
-http://aztecalive-lh.akamaihd.net/i/0oxnvzh8a_1@175671/index_1_av-b.m3u8
+http://aztecalive-lh.akamaihd.net/i/0oxnvzh8a_1@175671/index_3_av-b.m3u8
 
 #EXTINF:0,Azteca Corazon 
-http://200.76.77.237/LIVE/H01/CANAL250/PROFILE03.m3u8?supertvlat=%2F.ts
+0
 
 #EXTINF:0,Azteca Deportes 
 http://aztecalive-lh.akamaihd.net/i/0sa0dg2r9_1@167681/index_1_av-p.m3u8
@@ -35,19 +35,13 @@ http://aztecalive-lh.akamaihd.net/i/0sa0dg2r9_1@167681/index_2_av-p.m3u8
 http://aztecalive-lh.akamaihd.net/i/142kvpq0l_1@67741/master.m3u8
 
 #EXTINF:0,Azteca Noticias
-http://200.76.77.237/LIVE/H01/CANAL2/PROFILE03.m3u8?supertvlat=%2F.ts
-
-#EXTINF:0,Azteca Noticias
 http://urtmpkal-f.akamaihd.net/i/077zoqxzy_1@130091/index_3_av-p.m3u8
 
 #EXTINF:0,Azteca Siete 
-http://200.76.77.237/LIVE/H01/CANAL107/PROFILE03.m3u8?supertvlat=%2F.ts
-
-#EXTINF:0,Azteca Siete 
-http://200.76.77.237/LIVE/H01/CANAL7/PROFILE03.m3u8?supertvlat=%2F.ts
+0
 
 #EXTINF:0,Bandamax 
-http://200.76.77.237/LIVE/H01/CANAL732/PROFILE03.m3u8?supertvlat=%2F.ts
+0
 
 #EXTINF:0,C5N 
 0
@@ -59,9 +53,6 @@ http://200.76.77.237/LIVE/H01/CANAL732/PROFILE03.m3u8?supertvlat=%2F.ts
 http://wow2.cl.digitalproserver.com/campustv/campustvvivo/campustv.smil/chunklist_w662421777_b848000.m3u8
 
 #EXTINF:0,Canal 02 
-http://200.76.77.237/LIVE/H01/CANAL102/PROFILE03.m3u8?supertvlat=%2F.ts
-
-#EXTINF:0,Canal 02 
 http://mek4.mekstream.com/teleantillas/live3/hasbahca.m3u8
 
 #EXTINF:0,Canal 03 
@@ -69,9 +60,6 @@ http://74.63.97.188:1935/gpacifico1/videogpacifico1/playlist.m3u8
 
 #EXTINF:0,Canal 04 
 0
-
-#EXTINF:0,Canal 05 
-http://200.76.77.237/LIVE/H01/CANAL105/PROFILE03.m3u8?supertvlat=%2F.ts
 
 #EXTINF:0,Canal 05 
 rtmp://v1.streaminglatinoamerica.com/canal5/canal5
@@ -90,9 +78,6 @@ http://ionlive1-lh.akamaihd.net/i/canal9_1@125365/master.m3u8
 
 #EXTINF:0,Canal 09 
 http://xcanal9saltax.api.channel.livestream.com/3.0/playlist.m3u8
-
-#EXTINF:0,Canal 09 
-http://wow2.cl.digitalproserver.com/c9//c9.smil/playlist.m3u8?
 
 #EXTINF:0,Canal 26 
 rtsp://live-edge01.telecentro.net.ar:80/live/26hd-360
@@ -116,7 +101,7 @@ rtmp://k3.usastreams.com:1935/canal42/canal42
 rtmp://painel.serveron.com.br:1935/8168/8168
 
 #EXTINF:0,Canal Capital
-http://cdns840stu1010.multistream.net/canalcapitallive/amlst:live/master.m3u8
+0
 
 #EXTINF:0,Canal Once 
 http://xcanaloncepuntadelestex.api.channel.livestream.com/3.0/playlist.m3u8#
@@ -149,25 +134,25 @@ http://187.237.253.94:8134/hls-live/livepkgr/_definst_/liveevent.m3u8
 http://108.168.206.90:1935/cdn/cdn/playlist.m3u8
 
 #EXTINF:0,Cine Canal
-http://200.76.77.237/LIVE/H01/CANAL480/PROFILE03.m3u8?supertvlat=%2F.ts
+0
 
 #EXTINF:0,Cine Canal+
-http://200.76.77.237/LIVE/H01/CANAL430/PROFILE03.m3u8?supertvlat=%2F.ts
+http://178.238.224.19/5858/430.m3u8
 
 #EXTINF:0,Colosal TV
 rtmp://k3.usastreams.com:1935/colosaltv1/colosaltv1
 
 #EXTINF:0,CristoVision 
-http://cdns840stu1010.multistream.net/cristovisionlive/amlst:live/playlist_b300000_w2000349639.m3u8
+0
 
 #EXTINF:0,CTNI 
 http://184.164.158.202:1936/48/smil:48.smil/playlist.m3u8
 
 #EXTINF:0,De Pelicula 
-http://200.76.77.237/LIVE/H01/CANAL442/PROFILE03.m3u8?supertvlat=%2F.ts
+0
 
 #EXTINF:0,Distrito Comedia
-http://200.76.77.237/LIVE/H01/CANAL272/PROFILE03.m3u8?supertvlat=%2F.ts
+0
 
 #EXTINF:0,El Trece 
 rtsp://stream.eltrecetv.com.ar/live13/13tv/13tv1
@@ -176,25 +161,25 @@ rtsp://stream.eltrecetv.com.ar/live13/13tv/13tv1
 http://aztecalive-lh.akamaihd.net/i/0oxnvzh8a_1@175671/index_1_av-b.m3u8
 
 #EXTINF:0,ESNE TV
-http://198.154.228.82:1935/live/esnetv/playlist.m3u8
+0
 
 #EXTINF:0,Estrellas TV
-http://200.76.77.237/LIVE/H01/CANAL102/PROFILE03.m3u8?supertvlat=%2F.ts
+0
 
 #EXTINF:0,Foro TV 
-http://200.76.77.237/LIVE/H01/CANAL104/PROFILE03.m3u8?supertvlat=%2F.ts
+0
 
 #EXTINF:0,Gala TV
-http://200.76.77.237/LIVE/H01/CANAL109/PROFILE03.m3u8?supertvlat=%2F.ts
+0
 
 #EXTINF:0,Galicia
 http://media3.crtvg.es/live/tvga/.m3u8
 
 #EXTINF:0,Garage TV
-http://200.76.77.237/LIVE/H01/CANAL269/PROFILE03.m3u8?supertvlat=%2F.ts
+0
 
 #EXTINF:0,Glitz
-http://200.76.77.237/LIVE/H01/CANAL270/PROFILE03.m3u8?supertvlat=%2F.ts
+0
 
 #EXTINF:0,HCH
 http://4.31.30.140:1935/live/hchtvdigital/playlist.m3u8?wowzasessionid=1792561590
@@ -203,7 +188,7 @@ http://4.31.30.140:1935/live/hchtvdigital/playlist.m3u8?wowzasessionid=179256159
 http://162.212.176.83:8080/hchtv.m3u8
 
 #EXTINF:0,IB3 
-http://ibsatiphone.ib3tv.com/iphoneliveIB3/IB3/IB3.m3u8
+0
 
 #EXTINF:0,Info 7 
 0
@@ -215,10 +200,7 @@ rtmp://teledifusion.tv:1935/levantetvlive/levantetvlive
 0
 
 #EXTINF:0,Milenio
-http://200.76.77.237/LIVE/H01/CANAL603/PROFILE03.m3u8?supertvlat=%2F.ts
-
-#EXTINF:0,Multimedios
-http://200.76.77.237/LIVE/H01/CANAL167/PROFILE03.m3u8?supertvlat=%2F.ts
+0
 
 #EXTINF:0,Multimedios
 http://brightcovelive-i.akamaihd.net/hls/live/200018/bcplay-live/Multi/Multimedios.m3u8
@@ -227,10 +209,7 @@ http://brightcovelive-i.akamaihd.net/hls/live/200018/bcplay-live/Multi/Multimedi
 rtmp://87.106.232.7/live/myStream_2
 
 #EXTINF:0,Ocho TV
-http://201.130.193.150:1935/codecsys/smil:ocho.smil/master.m3u8
-
-#EXTINF:0,Once TV 
-http://200.76.77.237/LIVE/H01/CANAL111/PROFILE03.m3u8?supertvlat=%2F.ts
+0
 
 #EXTINF:0,Once TV 
 http://www.oncetvmexicolive.tv:1935/livepkgr2/smil:int.smil/playlist.m3u8
@@ -239,16 +218,13 @@ http://www.oncetvmexicolive.tv:1935/livepkgr2/smil:int.smil/playlist.m3u8
 http://urtmpkal-f.akamaihd.net/i/1b6mj17sk_1@308700/master.m3u8
 
 #EXTINF:0,Proyecto 40 
-http://200.76.77.237/LIVE/H01/CANAL140/PROFILE03.m3u8?supertvlat=%2F.ts
-
-#EXTINF:0,Proyecto 40 
-http://200.76.77.237/LIVE/H01/CANAL40/PROFILE03.m3u8?supertvlat=%2F.ts
-
-#EXTINF:0,Proyecto 40 
 http://tvaz-pd.kaltura.com.edgesuite.net/p/461031/sp/46103100/serveFlavor/entryId/0_08wdjxfl/v/1/flavorId/0_8j06e5nk/forceproxy/true/name/a.mp4
 
+#EXTINF:0,Proyecto 40 
+http://urtmpkal-f.akamaihd.net/i/05i15qzql_1@149710/index_2_av-p.m3u8
+
 #EXTINF:0,Ritmoson
-http://200.76.77.237/LIVE/H01/CANAL731/PROFILE03.m3u8?supertvlat=%2F.ts
+0
 
 #EXTINF:0,RPC TV
 http://live.rpctv.com/rpctv/tm.smil/playlist.m3u8
@@ -269,10 +245,10 @@ http://hlslive.lcdn.une.net.co/v1/AUTH_HLSLIVE/0002/tu1_1.m3u8?
 0
 
 #EXTINF:0,Teleformula
-http://200.76.77.237/LIVE/H01/CANAL161/PROFILE03.m3u8?supertvlat=%2F.ts
+0
 
 #EXTINF:0,Telehit
-http://200.76.77.237/LIVE/H01/CANAL702/PROFILE03.m3u8?supertvlat=%2F.ts
+0
 
 #EXTINF:0,Tele Junin 
 0
@@ -292,32 +268,29 @@ http://live.telemetro.com/telemetro/tm.smil/playlist.m3u8
 #EXTINF:0,Telemundo 
 http://streamup.global.ssl.fastly.net/app/telemundox2chivas_69s-stream/chunklist.m3u8
 
+#EXTINF:0,Telemundo 
+https://video05-lax.streamup.com/app/telemundox2chivas_69s-stream/playlist.m3u8
+
 #EXTINF:0,TeleSur TV 
 0
 
 #EXTINF:0,Televisa Musica 
-http://186.155.200.118:1935/live/telemusica/playlist.m3u8
+0
 
 #EXTINF:0,Tinn
-http://200.76.77.237/LIVE/H01/CANAL325/PROFILE03.m3u8?supertvlat=%2F.ts
+0
 
 #EXTINF:0,TiVa
 0
 
 #EXTINF:0,Totalplay
-http://200.76.77.237/LIVE/H01/CANAL1/PROFILE03.m3u8?supertvlat=%2F.ts
+0
 
 #EXTINF:0,Trece 
-http://200.76.77.237/LIVE/H01/CANAL113/PROFILE03.m3u8?supertvlat=%2F.ts
-
-#EXTINF:0,Trece 
-http://200.76.77.237/LIVE/H01/CANAL23/PROFILE03.m3u8?supertvlat=%2F.ts
-
-#EXTINF:0,Trece 
-http://aztecalive-lh.akamaihd.net/i/0oxnvzh8a_1@175671/index_1_av-b.m3u8
+0
 
 #EXTINF:0,TVE
-http://200.76.77.237/LIVE/H01/CANAL651/PROFILE03.m3u8?supertvlat=%2F.ts
+0
 
 #EXTINF:0,TV Chile
 http://edge-61-cl.edge.mdstrm.com/tvn-live/_definst_/smil:285a5c6dade574d5f111419c85c6cf17/chunklist_b800000.m3u8
@@ -338,20 +311,17 @@ rtmp://87.106.220.67/live/myStream_2
 0
 
 #EXTINF:0,TVN 
-http://xtvncanalecx.api.channel.livestream.com/3.0/playlist.m3u8
-
-#EXTINF:0,TVN 
 http://edge-61-cl.edge.mdstrm.com/tvn-live/_definst_/smil:7cb6048ff45cb5cdf7f5fed828597fd1/chunklist_b500000.m3u8
 
 #EXTINF:0,UniCable 
-http://200.76.77.237/LIVE/H01/CANAL218/PROFILE03.m3u8?supertvlat=%2F.ts
+0
 
 #EXTINF:0,Univision
-http://200.76.77.237/LIVE/H01/CANAL218/PROFILE03.m3u8?supertvlat=%2F.ts
+0
 
 #EXTINF:0,UNO TV
 rtmp://k3.usastreams.com:1935/tvuno1/tvuno1
 
 #EXTINF:0,UNO TV
-http://200.76.77.237/LIVE/H01/CANAL145/PROFILE03.m3u8?supertvlat=%2F.ts
+0
 

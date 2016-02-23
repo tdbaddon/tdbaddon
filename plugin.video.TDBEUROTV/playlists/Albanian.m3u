@@ -16,32 +16,65 @@ http://str105mb.setplex.net:1935/str2iosmd5/stralbinfo_2654_dfs/playlist.m3u8
 #EXTINF:0,Alb UK 
 rtmp://188.138.17.8:1935/albuk/albuk.stream
 
+#EXTINF:0,Alb UK 
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/13093.ts
+
 #EXTINF:0,Albanian Screen
 0
+
+#EXTINF:0,Alsat M 
+http://213.136.87.128:8000/live/dualcore/dualcore/5.m3u8#EXTM3U
+
+#EXTINF:0,Alsat M 
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/12439.ts
+
+#EXTINF:0,Alsat M 
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/12438.ts
+
+#EXTINF:0,Alsat M 
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/13096.ts
+
+#EXTINF:0,Alsat M 
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/13086.ts
+
+#EXTINF:0,Alsat M 
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/13095.ts
+
+#EXTINF:0,Alsat M 
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/13085.ts
 
 #EXTINF:0,ATV
 rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
 
 #EXTINF:0,Bangbang 
-0
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/12436.ts
+
+#EXTINF:0,Bangbang 
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/12416.ts
 
 #EXTINF:0,Channel One 
 0
 
 #EXTINF:0,Cufo TV 
-0
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/12433.ts
 
 #EXTINF:0,Folk Plus 
 0
 
 #EXTINF:0,Jug TV 
-0
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/12410.ts
 
 #EXTINF:0,Kanal 7 
 0
 
+#EXTINF:0,Klan 
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/12338.ts
+
 #EXTINF:0,Klan Kosova 
-0
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/12337.ts
+
+#EXTINF:0,Klan Plus
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/13063.ts
 
 #EXTINF:0,Koha TV 
 0
@@ -80,13 +113,16 @@ http://88.212.10.27:81/streams/stv1.m3u8?
 rtmp://str103.setplex.net:1935/228/stv_online
 
 #EXTINF:0,Top Channel 
-0
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/12370.ts
+
+#EXTINF:0,Top Channel 
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/13023.ts
 
 #EXTINF:0,Top Channel News
 0
 
 #EXTINF:0,Tring Tring
-0
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/12357.ts
 
 #EXTINF:0,Vizion Plus 
 rtmp://live.vizionplus.tv/live//livestream3

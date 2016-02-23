@@ -5,25 +5,28 @@
 rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
 
 #EXTINF:0,Arena Sport 1 
-0
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/3422.ts
 
 #EXTINF:0,Arena Sport 2 
 0
 
 #EXTINF:0,Arena Sport 3 
-0
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/3419.ts
 
 #EXTINF:0,Arena Sport 4 
-0
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/3420.ts
 
 #EXTINF:0,Arena Sport 5 
-0
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/3423.ts
 
 #EXTINF:0,ATV
 rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
 
 #EXTINF:0,B92 
 http://stream.b92.net:7999/tv-b92.ogg
+
+#EXTINF:0,B92 
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/3487.ts
 
 #EXTINF:0,Balkan TV
 0
@@ -38,7 +41,7 @@ http://92.60.234.98:8081
 http://213.81.153.221:8080/cetv
 
 #EXTINF:0,CMC 
-0
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/3464.ts
 
 #EXTINF:0,DMC
 0
@@ -53,16 +56,16 @@ http://213.81.153.221:8080/cetv
 0
 
 #EXTINF:0,Grand 
-0
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/3452.ts
 
 #EXTINF:0,Happy 
 0
 
 #EXTINF:0,Hayat Folk 
-0
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/3433.ts
 
 #EXTINF:0,Hayat Music 
-0
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/3484.ts
 
 #EXTINF:0,Hayat Plus 
 0
@@ -77,16 +80,16 @@ mms://77.238.209.50:1234
 0
 
 #EXTINF:0,HRT 1 
-0
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/3450.ts
 
 #EXTINF:0,HRT 2 
-0
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/3449.ts
 
 #EXTINF:0,HRT 3 
-0
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/3448.ts
 
 #EXTINF:0,HRT 4 
-0
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/3432.ts
 
 #EXTINF:0,Joj
 0
@@ -124,8 +127,11 @@ http://213.81.153.221:8080/nasa
 #EXTINF:0,NetTV Plus 
 0
 
+#EXTINF:0,News24
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/12394.ts
+
 #EXTINF:0,Nova TV
-0
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/3447.ts
 
 #EXTINF:0,Novosadska TV 
 mms://176.106.121.32:8080/
@@ -140,7 +146,7 @@ mms://176.106.121.32:8080/
 0
 
 #EXTINF:0,Prva TV 
-0
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/3443.ts
 
 #EXTINF:0,RTC 
 0
@@ -152,10 +158,10 @@ mms://beotelmedia.beotel.net/tvcg
 mms://195.252.114.172/tvcg
 
 #EXTINF:0,RTL
-0
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/3442.ts
 
 #EXTINF:0,RTL 2 
-0
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/3441.ts
 
 #EXTINF:0,RTRS 
 0
@@ -164,10 +170,10 @@ mms://195.252.114.172/tvcg
 0
 
 #EXTINF:0,RTS 1 
-0
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/3440.ts
 
 #EXTINF:0,RTS 2 
-0
+http://luckyiptv.ddns.net:23000/live/pirro/pirro/3439.ts
 
 #EXTINF:0,RTS 3 
 0
