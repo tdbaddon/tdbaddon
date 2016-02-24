@@ -1,0 +1,52 @@
+============================================
+
+KODI Mixcloud Plugin - jackyNIX
+
+============================================
+
+Contributors:
+  - jackyNIX
+  - Bochi
+  - SilentException
+  - fleshgolem
+
+============================================
+
+Current version: 2.1.3
+  - Jarvis
+  - Isengard
+  - Helix
+  - Gotham
+
+============================================
+
+Features:
+  - Account
+    - Followings
+    - Followers
+    - Favorites
+    - Listens
+    - Uploads
+    - Listen later
+    - Playlists
+  - Browse
+    - Trending
+    - Categories
+  - Search
+    - Cloudcasts
+    - Users
+  - Play cloudcasts
+    - Local resolver
+    - Offliberty resolver
+  - Thumbnails
+  - History
+    - Played cloudcasts
+    - Search
+  - Localisation
+    - English
+    - Dutch
+    - French
+    - German
+  - jackyNIX's own cloudcasts :p
+
+============================================
