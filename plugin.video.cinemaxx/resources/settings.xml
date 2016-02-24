@@ -1,6 +1,0 @@
-<settings>
-	<category label="General">
-		<setting id="enableCache" type="bool" label="Spatiul de stocare cache" default="true" visible="true"/>
-		<setting id="cacheExpire" type="slider" label="   Valabilitate cache (minute)" default="120" range="120,10,1440" option="int" enable="!eq(-1,false)"/>
-	</category>
-</settings>
