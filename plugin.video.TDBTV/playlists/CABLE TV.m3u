@@ -31,8 +31,8 @@ http://37.220.108.122:20000/2
 #EXTINF:0,BBC 1 
 http://37.220.108.122:20000/7
 
-#EXTINF:0,BBC 2 
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/12586.ts
+#EXTINF:0,BBC 1 
+http://cp.dmbshare.net:8000/live/andy/andy/2752.ts
 
 #EXTINF:0,BBC 2 
 http://37.220.108.122:20000/3
@@ -67,6 +67,9 @@ http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/89.ts
 #EXTINF:0,Cartoon Network 
 http://89.163.148.31:8000/live/pierre/pierre/2828.ts
 
+#EXTINF:0,Cartoon Network 
+http://cp.dmbshare.net:8000/live/andy/andy/2828.ts
+
 #EXTINF:0,CBC TV 
 0
 
@@ -77,7 +80,7 @@ http://89.163.148.31:8000/live/pierre/pierre/2828.ts
 0
 
 #EXTINF:0,CBS Action 
-0
+http://cp.dmbshare.net:8000/live/andy/andy/2827.ts
 
 #EXTINF:0,CBS Drama 
 http://top-iptv.zapto.org:8000/live/Aria/Aria/530.m3u8
@@ -85,8 +88,14 @@ http://top-iptv.zapto.org:8000/live/Aria/Aria/530.m3u8
 #EXTINF:0,CBS Drama 
 http://89.163.148.31:8000/live/pierre/pierre/2826.ts
 
+#EXTINF:0,CBS Drama 
+http://cp.dmbshare.net:8000/live/andy/andy/2826.ts
+
+#EXTINF:0,CBS Drama 
+http://cp.dmbshare.net:8000/live/andy/andy/2744.ts
+
 #EXTINF:0,CBS Reality 
-0
+http://cp.dmbshare.net:8000/live/andy/andy/2825.ts
 
 #EXTINF:0,CHCH Ontario
 0
@@ -105,6 +114,9 @@ http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/54.ts
 
 #EXTINF:0,Comedy Central 
 http://89.163.148.31:8000/live/pierre/pierre/2822.ts
+
+#EXTINF:0,Comedy Central 
+http://cp.dmbshare.net:8000/live/andy/andy/2822.ts
 
 #EXTINF:0,Cooking Channel
 0
@@ -128,19 +140,19 @@ http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/index_350_av-p.m3u8?
 http://212.200.125.5:8199/199
 
 #EXTINF:0,Disney Channel 
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/3454.ts
-
-#EXTINF:0,Disney Channel 
 http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/125.ts
 
 #EXTINF:0,Disney Channel 
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/12576.ts
+http://cp.dmbshare.net:8000/live/andy/andy/2815.ts
 
 #EXTINF:0,Disney Junior 
 http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/127.ts
 
 #EXTINF:0,Disney Junior 
 http://89.163.148.31:8000/live/pierre/pierre/2814.ts
+
+#EXTINF:0,Disney Junior 
+http://cp.dmbshare.net:8000/live/andy/andy/2814.ts
 
 #EXTINF:0,Disney XD 
 http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/99.ts
@@ -163,6 +175,9 @@ http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/88.ts
 #EXTINF:0,E4 
 http://37.220.108.122:20000/8
 
+#EXTINF:0,E4 
+http://cp.dmbshare.net:8000/live/andy/andy/2810.ts
+
 #EXTINF:0,Family Channel 
 0
 
@@ -178,17 +193,20 @@ http://llnw.live.simplestream.com/coder2/coder.channels.channel2/hls/3/playlist.
 #EXTINF:0,Food Network 
 http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/111.ts
 
+#EXTINF:0,Food Network 
+http://cp.dmbshare.net:8000/live/andy/andy/2804.ts
+
 #EXTINF:0,Fox 1 
 0
 
 #EXTINF:0,Fox Crime 
-0
+http://cp.dmbshare.net:8000/live/andy/andy/1758.ts
 
 #EXTINF:0,Fox Life 
 http://46.40.5.99:8000/foxlife_720
 
 #EXTINF:0,Fox Life 
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/3453.ts
+http://cp.dmbshare.net:8000/live/andy/andy/1759.ts
 
 #EXTINF:0,Fox TV
 http://46.40.5.99:8000/fox_720
@@ -200,13 +218,10 @@ http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/90.ts
 http://178.238.224.19/5858/201.m3u8
 
 #EXTINF:0,Fox TV
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/3427.ts
-
-#EXTINF:0,Fox TV
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/3463.ts
-
-#EXTINF:0,Fox TV
 http://217.199.128.114:4022/udp/235.255.1.78:5614
+
+#EXTINF:0,Fox TV
+http://cp.dmbshare.net:8000/live/andy/andy/2803.ts
 
 #EXTINF:0,FX 
 0
@@ -260,9 +275,6 @@ http://ios.streamserver01.com:8080/ShowcaseTV/mystream.m3u8
 http://xteramcss.pointto.us:8060/live/karimos-sat/cyaWOcWhPF/54.ts
 
 #EXTINF:0,ITV 1 
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/12570.ts
-
-#EXTINF:0,ITV 1 
 http://37.220.108.122:20000/14
 
 #EXTINF:0,ITV 1 
@@ -275,22 +287,16 @@ http://37.220.108.122:20000/26
 http://xteramcss.pointto.us:8060/live/karimos-sat/cyaWOcWhPF/12.ts
 
 #EXTINF:0,ITV 2 
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/12569.ts
-
-#EXTINF:0,ITV 2 
 http://37.220.108.122:20000/16
-
-#EXTINF:0,ITV 3 
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/12568.ts
 
 #EXTINF:0,ITV 3 
 http://37.220.108.122:20000/18
 
-#EXTINF:0,ITV 4 
-http://xteramcss.pointto.us:8060/live/karimos-sat/cyaWOcWhPF/56.ts
+#EXTINF:0,ITV 3 
+http://cp.dmbshare.net:8000/live/andy/andy/2786.ts
 
 #EXTINF:0,ITV 4 
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/12567.ts
+http://xteramcss.pointto.us:8060/live/karimos-sat/cyaWOcWhPF/56.ts
 
 #EXTINF:0,ITV 4 
 http://37.220.108.122:20000/17
@@ -316,6 +322,9 @@ http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
 #EXTINF:0,More4 
 http://37.220.108.122:20000/24
 
+#EXTINF:0,More4 
+http://cp.dmbshare.net:8000/live/andy/andy/2749.ts
+
 #EXTINF:0,My9 
 http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
 
@@ -323,13 +332,19 @@ http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
 0
 
 #EXTINF:0,Nick 
-0
+http://cp.dmbshare.net:8000/live/andy/andy/2748.ts
 
 #EXTINF:0,Nick Jr 
 http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/92.ts
 
+#EXTINF:0,Nick Jr 
+http://cp.dmbshare.net:8000/live/andy/andy/2791.ts
+
 #EXTINF:0,Nickelodeon 
 http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/93.ts
+
+#EXTINF:0,Nickelodeon 
+http://5.32.183.177:4080/udp/224.0.0.120:1240
 
 #EXTINF:0,NickNight 
 0
@@ -364,11 +379,14 @@ http://llnw.live.qvc.simplestream.com/hera/remote/qvcuk_primary_sdi8/3/prog_inde
 #EXTINF:0,Sky 1 
 http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/45.ts
 
+#EXTINF:0,Sky 1 
+http://cp.dmbshare.net:8000/live/andy/andy/2771.ts
+
 #EXTINF:0,Sky 2 
-0
+http://cp.dmbshare.net:8000/live/andy/andy/2759.ts
 
 #EXTINF:0,Sky Arts 1 
-0
+http://cp.dmbshare.net:8000/live/andy/andy/2785.ts
 
 #EXTINF:0,Sky Arts 2 
 0
@@ -379,11 +397,11 @@ http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/44.ts
 #EXTINF:0,Sky Atlantic 
 http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/123.ts
 
-#EXTINF:0,Sky Atlantic 
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/12559.ts
+#EXTINF:0,Sky Atlantic
+http://cp.dmbshare.net:8000/live/andy/andy/2784.ts
 
 #EXTINF:0,Sky Living 
-0
+http://cp.dmbshare.net:8000/live/andy/andy/2780.ts
 
 #EXTINF:0,Slice 
 0
@@ -395,7 +413,7 @@ http://luckyiptv.ddns.net:23000/live/pirro/pirro/12559.ts
 0
 
 #EXTINF:0,Syfy 
-0
+http://cp.dmbshare.net:8000/live/andy/andy/2740.ts
 
 #EXTINF:0,TBS 
 0

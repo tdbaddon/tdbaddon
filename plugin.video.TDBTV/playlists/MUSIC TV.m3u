@@ -118,6 +118,9 @@ http://74.208.152.93/music/stream3/stream.m3u8
 #EXTINF:0,MTV 
 http://origin2.voronezh.ertelecom.ru/content/private/s147213/d3720264/r183857sd2500000/efe4541060c00fccc01e8c068fce4f5ab911d969/playlist.m3u8
 
+#EXTINF:0,MTV 
+http://cp.dmbshare.net:8000/live/andy/andy/2817.ts
+
 #EXTINF:0,MTV Dance 
 0
 

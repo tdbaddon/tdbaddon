@@ -76,6 +76,8 @@
 		<texturedown>Select_Down.png</texturedown>
 		<textureupfocus>Select_Up.png</textureupfocus>
 		<texturedownfocus>Select_Down.png</texturedownfocus>
+		<textureupdisabled colordiffuse="40FFFFFF">Select_Up.png</textureupdisabled>
+		<texturedowndisabled colordiffuse="40FFFFFF">Select_Down.png</texturedowndisabled>
 		<align>right</align>
 		<width>33</width>
 		<height>22</height>
@@ -101,6 +103,8 @@
 		<texturedown>Select_Down.png</texturedown>
 		<textureupfocus>Select_Up.png</textureupfocus>
 		<texturedownfocus>Select_Down.png</texturedownfocus>
+		<textureupdisabled colordiffuse="40FFFFFF">Select_Up.png</textureupdisabled>
+		<texturedowndisabled colordiffuse="40FFFFFF">Select_Down.png</texturedowndisabled>
 		<font>font13</font>
 		<textcolor>white</textcolor>
 		<disabledcolor>grey3</disabledcolor>
@@ -120,6 +124,8 @@
 		<textureradioonnofocus>radiobutton-on.png</textureradioonnofocus>
 		<textureradioofffocus>radiobutton-off.png</textureradioofffocus>
 		<textureradiooffnofocus>radiobutton-off.png</textureradiooffnofocus>
+		<textureradioondisabled colordiffuse="40FFFFFF">radiobutton-on.png</textureradioondisabled>
+		<textureradiooffdisabled colordiffuse="40FFFFFF">radiobutton-off.png</textureradiooffdisabled>
 		<texturefocus>button-focus.png</texturefocus>
 		<texturenofocus>button-nofocus.png</texturenofocus>
 		<label>215</label>

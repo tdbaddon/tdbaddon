@@ -96,6 +96,10 @@ msgctxt "#31201"
 msgid "Location"
 msgstr "Lokacija"
 
+msgctxt "#31202"
+msgid "View"
+msgstr "Prikaz"
+
 msgctxt "#31300"
 msgid "Current Temp"
 msgstr "Trenutna temperatura"

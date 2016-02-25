@@ -14,6 +14,9 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 http://109.226.222.161:4022/udp/239.255.4.175:1234
 
 #EXTINF:0,Animal Planet 
+http://cp.dmbshare.net:8000/live/andy/andy/2834.ts
+
+#EXTINF:0,Animal Planet 
 http://89.163.148.31:8000/live/pierre/pierre/2834.ts
 
 #EXTINF:0,Crime & Investigation 
@@ -25,20 +28,32 @@ http://89.163.148.31:8000/live/pierre/pierre/2834.ts
 #EXTINF:0,Destination Network 
 0
 
-#EXTINF:0,Discovery Channel 
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/12577.ts
-
 #EXTINF:0,Discovery History 
 http://top-iptv.zapto.org:8000/live/Aria/Aria/562.m3u8
 
+#EXTINF:0,Discovery History 
+http://top-iptv.zapto.org:8000/live/Aria/Aria/566.m3u8
+
+#EXTINF:0,Discovery History 
+http://cp.dmbshare.net:8000/live/andy/andy/2812.ts
+
 #EXTINF:0,Discovery H&H
 0
+
+#EXTINF:0,Discovery Max
+http://cp.dmbshare.net:8000/live/andy/andy/2813.ts
 
 #EXTINF:0,Discovery News 
 0
 
 #EXTINF:0,Discovery Science 
 http://109.226.222.161:4022/udp/239.255.4.250:1234
+
+#EXTINF:0,Discovery Science 
+http://cp.dmbshare.net:8000/live/andy/andy/2819.ts
+
+#EXTINF:0,Discovery Science 
+http://cp.dmbshare.net:8000/live/andy/andy/2818.ts
 
 #EXTINF:0,Discovery Theatre
 http://178.238.224.19/5858/351.m3u8
@@ -67,8 +82,11 @@ http://link.theplatform.com/s/dtjsEC/chjdYJxKb44V?manifest=m3u&feed=History%20Li
 #EXTINF:0,History Channel 
 https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8?hdnea=ip=173.34.67.21~st=1448574469~exp=1448575069~acl=/i/History_1@156885*~id=e0ac8c7f-b7ae-431f-998a-d87493df48b7~hmac=1bf4b5f4382fd3f887da82e7bc44d93e3d92152b0d873acded129cad627e231e
 
+#EXTINF:0,History Channel 
+https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8
+
 #EXTINF:0,History Channel 2
-0
+http://cp.dmbshare.net:8000/live/andy/andy/2800.ts
 
 #EXTINF:0,Investigation Discovery 
 0
@@ -86,7 +104,7 @@ http://nasatv-lh.akamaihd.net/i/NASA_102@319272/master.m3u8
 http://nasatv-lh.akamaihd.net/i/NASA_103@319271/master.m3u8
 
 #EXTINF:0,Nat Geo Wild 
-0
+http://cp.dmbshare.net:8000/live/andy/andy/2792.ts
 
 #EXTINF:0,National Geographic 
 http://109.226.222.161:4022/udp/239.255.4.30:1234
@@ -116,7 +134,10 @@ http://95.191.236.176:1234/udp/225.54.41.6:5000
 http://95.191.224.45:1234/udp/225.54.41.6:5000
 
 #EXTINF:0,National Geographic
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/3456.ts
+http://185.47.221.123:4023/udp/239.250.2.17:1234
+
+#EXTINF:0,National Geographic
+http://cp.dmbshare.net:8000/live/andy/andy/2793.ts
 
 #EXTINF:0,Nova
 0
@@ -146,7 +167,7 @@ http://rt-a.akamaihd.net/ch_05@325609/720p.m3u8
 0
 
 #EXTINF:0,Travel Channel 
-0
+http://cp.dmbshare.net:8000/live/andy/andy/1787.ts
 
 #EXTINF:0,Viasat Explorer 
 http://195.78.244.219:10000/udp/239.0.3.30:1234

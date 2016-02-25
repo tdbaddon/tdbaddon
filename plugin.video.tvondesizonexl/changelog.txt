@@ -1,3 +1,6 @@
+[B]Version 2.8.7[/B]
+- Fixed iDoWatch
+
 [B]Version 2.8.6[/B]
 - Fixed iDoWatch
 

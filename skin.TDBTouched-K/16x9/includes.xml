@@ -6,18 +6,15 @@
 	<include file="IncludesHomeRecentlyAdded.xml" />
 	<include file="IncludesKeypad.xml" />
 
-	<!-- these are the only files that differ between 4x3Hirez and 16x9 -->
-	<include file="ViewsCommon.xml" />
-	<include file="ViewsMetaData.xml" />
-	<include file="ViewsAddonBrowser.xml" />
-	<include file="ViewsPVR.xml" />
+	<include condition="StringCompare(Skin.AspectRatio,16:9)" file="ViewsCommon.xml" />
+	<include condition="StringCompare(Skin.AspectRatio,16:9)" file="ViewsMetaData.xml" />
+	<include condition="StringCompare(Skin.AspectRatio,16:9)" file="ViewsAddonBrowser.xml" />
+	<include condition="StringCompare(Skin.AspectRatio,16:9)" file="ViewsPVR.xml" />
 
-	<!-- these are the only 5 lines in this file that differ between 4x3Hirez and 16x9 -->
-	<constant name="ScreenWidth">1706</constant>
-	<constant name="16x9Offset">213</constant>
-	<constant name="BackgroundWidth">550</constant>
-	<constant name="LabelWidth">530</constant>
-	<constant name="DialogPosition">650r</constant>
+	<include condition="StringCompare(Skin.AspectRatio,4:3)" file="ViewsCommon-4x3.xml" />
+	<include condition="StringCompare(Skin.AspectRatio,4:3)" file="ViewsMetaData-4x3.xml" />
+	<include condition="StringCompare(Skin.AspectRatio,4:3)" file="ViewsAddonBrowser-4x3.xml" />
+	<include condition="StringCompare(Skin.AspectRatio,4:3)" file="ViewsPVR-4x3.xml" />
 
 	<constant name="ScreenHeight">960</constant>
 	<constant name="FanartCrossfadeTime">500</constant>
@@ -40,12 +37,46 @@
 		<value condition="Window.IsVisible(RadioChannels) | Window.IsVisible(RadioGuide) | Window.IsVisible(RadioRecordings) | Window.IsVisible(RadioTimers) | Window.IsVisible(RadioSearch)">$LOCALIZE[31556]</value>
 	</variable>
 
+	<include name="BackgroundWidth">
+		<include condition="StringCompare(Skin.AspectRatio,16:9)">BackgroundWidth-16x9</include>
+		<include condition="StringCompare(Skin.AspectRatio,4:3)">BackgroundWidth-4x3</include>
+	</include>
+	<include name="LabelWidth">
+		<include condition="StringCompare(Skin.AspectRatio,16:9)">LabelWidth-16x9</include>
+		<include condition="StringCompare(Skin.AspectRatio,4:3)">LabelWidth-4x3</include>	
+	</include>
+	<include name="ScreenWidth">
+		<include condition="StringCompare(Skin.AspectRatio,16:9)">ScreenWidth-16x9</include>
+		<include condition="StringCompare(Skin.AspectRatio,4:3)">ScreenWidth-4x3</include>
+	</include>
+
+	<include name="BackgroundWidth-16x9">
+		<width>550</width>
+	</include>
+	<include name="BackgroundWidth-4x3">
+		<width>345</width>
+	</include>
+
+	<include name="LabelWidth-16x9">
+		<width>530</width>
+	</include>
+	<include name="LabelWidth-4x3">
+		<width>335</width>
+	</include>
+
+	<include name="ScreenWidth-16x9">
+		<width>1706</width>
+	</include>
+	<include name="ScreenWidth-4x3">
+		<width>1280</width>
+	</include>
+
 	<include name="CommonBackground">
 		<control type="image">
 			<posx>0</posx>
 			<posy>0</posy>
 			<aspectratio>scale</aspectratio>
-			<width>ScreenWidth</width>
+			<include>ScreenWidth</include>
 			<height>ScreenHeight</height>
 			<texture fallback="special://skin/background/SKINDEFAULT.jpg">special://skin/background/$INFO[Skin.CurrentTheme].jpg</texture>
 			<visible>!Skin.HasSetting(UseCustomBackground)</visible>
@@ -54,7 +85,7 @@
 			<posx>0</posx>
 			<posy>0</posy>
 			<aspectratio>scale</aspectratio>
-			<width>ScreenWidth</width>
+			<include>ScreenWidth</include>
 			<height>ScreenHeight</height>
 			<texture>$INFO[Skin.String(CustomBackground)]</texture>
 			<visible>Skin.HasSetting(UseCustomBackground)</visible>
@@ -62,21 +93,21 @@
 		<control type="videowindow">
 			<posx>0</posx>
 			<posy>0</posy>
-			<width>ScreenWidth</width>
+			<include>ScreenWidth</include>
 			<height>ScreenHeight</height>
 			<visible>!Skin.HasSetting(HideVideoBackground) + Player.HasVideo + !Window.IsVisible(TVChannels) + !Window.IsVisible(RadioChannels)</visible>
 		</control>
 		<control type="visualisation">
 			<posx>0</posx>
 			<posy>0</posy>
-			<width>ScreenWidth</width>
+			<include>ScreenWidth</include>
 			<height>ScreenHeight</height>
 			<visible>!Skin.HasSetting(HideVizBackground) + Player.HasAudio</visible>
 		</control>
 		<control type="image">
 			<posx>0</posx>
 			<posy>0</posy>
-			<width>ScreenWidth</width>
+			<include>ScreenWidth</include>
 			<height>ScreenHeight</height>
 			<texture>black.png</texture>
 			<colordiffuse>70000000</colordiffuse>
@@ -91,14 +122,14 @@
 			<control type="image">
 				<posx>0</posx>
 				<posy>100</posy>
-				<width>ScreenWidth</width>
+				<include>ScreenWidth</include>
 				<height>10</height>
 				<texture>shelf_shadow.png</texture>
 			</control>
 			<control type="image">
 				<posx>0</posx>
 				<posy>20</posy>
-				<width>ScreenWidth</width>
+				<include>ScreenWidth</include>
 				<height>80</height>
 				<texture border="0,0,0,2">header.png</texture>
 			</control>
@@ -158,7 +189,7 @@
 			<control type="image">
 				<posx>0</posx>
 				<posy>64r</posy>
-				<width>ScreenWidth</width>
+				<include>ScreenWidth</include>
 				<height>64</height>
 				<texture>floor.png</texture>
 			</control>
@@ -180,7 +211,7 @@
 		<control type="image">
 			<posx>0</posx>
 			<posy>0</posy>
-			<width>ScreenWidth</width>
+			<include>ScreenWidth</include>
 			<height>20</height>
 			<texture>black.png</texture>
 		</control>
@@ -270,12 +301,12 @@
 		<control type="image">
 			<posx>0</posx>
 			<posy>0</posy>
-			<width>ScreenWidth</width>
+			<include>ScreenWidth</include>
 			<height>ScreenHeight</height>
 			<texture>black-back.png</texture>
 			<animation effect="fade" time="400">Visible</animation>
 			<animation effect="fade" time="200">Hidden</animation>
-			<visible>Window.IsActive(ContextMenu) | Window.IsActive(MovieInformation) | Window.IsActive(MusicInformation) | Window.IsActive(SongInformation) | Window.IsActive(FileBrowser) | Window.IsActive(TextViewer) | Window.IsActive(AddonSettings) | Window.IsActive(ContentSettings) | Window.IsActive(SelectDialog) | Window.IsActive(FileStackingDialog) | Window.IsActive(MediaSource) | Window.IsActive(PictureInfo) | [Window.IsActive(NumericInput) + !Window.IsVisible(VirtualKeyboard)] | Window.IsActive(ProfileSettings) | Window.IsActive(LockSettings) | Window.IsActive(SmartPlaylistEditor) | Window.IsActive(SmartPlaylistRule) | Window.IsActive(script-RSS_Editor-rssEditor.xml) | Window.IsActive(script-RSS_Editor-setEditor.xml) | Window.IsActive(AddonInformation) | Window.IsActive(Favourites) | Window.IsActive(PictureInfo) | Window.IsActive(KaraokeLargeSelector) | Window.IsActive(SkinSettings) | Window.IsActive(Peripherals) | Window.IsActive(PeripheralSettings) | Window.IsActive(MediaFilter)</visible>
+			<visible>Window.IsActive(ContextMenu) | Window.IsActive(MovieInformation) | Window.IsActive(MusicInformation) | Window.IsActive(SongInformation) | Window.IsActive(FileBrowser) | Window.IsActive(TextViewer) | Window.IsActive(AddonSettings) | Window.IsActive(ContentSettings) | Window.IsActive(SelectDialog) | Window.IsActive(FileStackingDialog) | Window.IsActive(MediaSource) | Window.IsActive(PictureInfo) | [Window.IsActive(NumericInput) + !Window.IsVisible(VirtualKeyboard)] | Window.IsActive(ProfileSettings) | Window.IsActive(LockSettings) | Window.IsActive(SmartPlaylistEditor) | Window.IsActive(SmartPlaylistRule) | Window.IsActive(script-RSS_Editor-rssEditor.xml) | Window.IsActive(script-RSS_Editor-setEditor.xml) | Window.IsActive(AddonInformation) | Window.IsActive(Favourites) | Window.IsActive(PictureInfo) | Window.IsActive(SkinSettings) | Window.IsActive(Peripherals) | Window.IsActive(PeripheralSettings) | Window.IsActive(MediaFilter)</visible>
 		</control>
 	</include>
 	<include name="MediaWindowTitleCommons">
@@ -634,7 +665,7 @@
 			<control type="button">
 				<posx>0</posx>
 				<posy>0</posy>
-				<width>BackgroundWidth</width>
+				<include>BackgroundWidth</include>
 				<height>77</height>
 				<texturefocus border="8">IconBack.png</texturefocus>
 				<texturenofocus border="8">IconBack.png</texturenofocus>
@@ -643,7 +674,7 @@
 			<control type="fadelabel">
 				<posx>10</posx>
 				<posy>10</posy>
-				<width>LabelWidth</width>
+				<include>LabelWidth</include>
 				<height>15</height>
 				<scrollout>false</scrollout>
 				<pauseatend>3000</pauseatend>
@@ -657,7 +688,7 @@
 			<control type="fadelabel">
 				<posx>10</posx>
 				<posy>10</posy>
-				<width>LabelWidth</width>
+				<include>LabelWidth</include>
 				<height>15</height>
 				<scrollout>false</scrollout>
 				<pauseatend>3000</pauseatend>
@@ -671,7 +702,7 @@
 			<control type="fadelabel">
 				<posx>10</posx>
 				<posy>30</posy>
-				<width>LabelWidth</width>
+				<include>LabelWidth</include>
 				<height>20</height>
 				<scrollout>false</scrollout>
 				<pauseatend>3000</pauseatend>
@@ -684,7 +715,7 @@
 			<control type="fadelabel">
 				<posx>10</posx>
 				<posy>55</posy>
-				<width>LabelWidth</width>
+				<include>LabelWidth</include>
 				<height>15</height>
 				<scrollout>false</scrollout>
 				<pauseatend>3000</pauseatend>
@@ -699,7 +730,7 @@
 			<control type="fadelabel">
 				<posx>10</posx>
 				<posy>55</posy>
-				<width>LabelWidth</width>
+				<include>LabelWidth</include>
 				<height>15</height>
 				<scrollout>false</scrollout>
 				<pauseatend>3000</pauseatend>
@@ -713,7 +744,7 @@
 			<control type="fadelabel">
 				<posx>10</posx>
 				<posy>55</posy>
-				<width>LabelWidth</width>
+				<include>LabelWidth</include>
 				<height>15</height>
 				<scrollout>false</scrollout>
 				<pauseatend>3000</pauseatend>
@@ -727,7 +758,7 @@
 			<control type="fadelabel">
 				<posx>10</posx>
 				<posy>55</posy>
-				<width>LabelWidth</width>
+				<include>LabelWidth</include>
 				<height>15</height>
 				<scrollout>false</scrollout>
 				<pauseatend>3000</pauseatend>
@@ -977,7 +1008,7 @@
 				<description>Hidden button to close the sort when its focused</description>
 				<posx>0</posx>
 				<posy>0</posy>
-				<width>ScreenWidth</width>
+				<include>ScreenWidth</include>
 				<height>ScreenHeight</height>
 				<texturenofocus>-</texturenofocus>
 				<texturefocus>-</texturefocus>
@@ -1031,8 +1062,8 @@
 					<ondown>9000</ondown>
 					<itemgap>0</itemgap>
 					<include condition="Window.IsVisible(AddonBrowser)">AddonsMenu</include>
+					<include condition="Window.IsVisible(EventLog)">EventLogMenu</include>
 					<include condition="Window.IsVisible(MusicLibrary)">MusicMenu</include>
-					<include condition="Window.IsVisible(MusicFiles)">MusicFilesMenu</include>
 					<include condition="Window.IsVisible(MusicPlaylist)">MusicPlaylistMenu</include>
 					<include condition="Window.IsVisible(MusicPlaylistEditor)">MusicPlaylistEditorMenu</include>
 					<include condition="Window.IsVisible(Pictures)">PicturesMenu</include>
@@ -1094,6 +1125,33 @@
 			<label>24999</label>
 		</control>
 	</include>
+	<include name="EventLogMenu">
+		<control type="togglebutton" id="4">
+			<description>Sort asc</description>
+			<include>MenuButtonCommonValues</include>
+			<alttexturefocus>button-focus2.png</alttexturefocus>
+			<alttexturenofocus>button-nofocus.png</alttexturenofocus>
+			<label>31051</label>
+			<altlabel>31050</altlabel>
+			<usealttexture>Container.SortDirection(Ascending)</usealttexture>
+		</control>
+		<control type="button" id="21">
+			<description>Level button</description>
+			<include>MenuButtonCommonValues</include>
+			<label>-</label>
+		</control>
+		<control type="radiobutton" id ="22">
+			<description>Only show current level</description>
+			<textwidth>240</textwidth>
+			<include>MenuButtonCommonValues</include>
+			<label>-</label>
+		</control>
+		<control type="button" id="20">
+			<description>Clear button</description>
+			<include>MenuButtonCommonValues</include>
+			<label>192</label>
+		</control>
+	</include>
 	<include name="MusicMenu">
 		<control type="button" id="3">
 			<description>Sort by button</description>
@@ -1108,15 +1166,6 @@
 			<label>31051</label>
 			<altlabel>31050</altlabel>
 			<usealttexture>Container.SortDirection(Ascending)</usealttexture>
-		</control>
-		<control type="radiobutton" id="99">
-			<description>Library button</description>
-			<textwidth>240</textwidth>
-			<label>$LOCALIZE[29800]</label>
-			<onclick>Skin.Reset(MediaSubMenuVisible)</onclick>
-			<onclick>ReplaceWindow(MusicFiles)</onclick>
-			<selected>Window.IsVisible(MusicLibrary)</selected>
-			<include>MenuButtonCommonValues</include>
 		</control>
 		<control type="button" id="8">
 			<description>Search</description>
@@ -1138,38 +1187,6 @@
 			<label>589</label>
 			<include>MenuButtonCommonValues</include>
 			<onclick>Skin.Reset(MediaSubMenuVisible)</onclick>
-		</control>
-		<control type="button" id="1467">
-			<description>Current Playlist</description>
-			<include>MenuButtonCommonValues</include>
-			<label>13350</label>
-			<onclick>ActivateWindow(musicplaylist)</onclick>
-			<visible>!StringCompare(Playlist.Length(music),0)</visible>
-		</control>
-	</include>
-	<include name="MusicFilesMenu">
-		<control type="button" id="3">
-			<description>Sort by button</description>
-			<include>MenuButtonCommonValues</include>
-			<label>103</label>
-		</control>
-		<control type="togglebutton" id="4">
-			<description>Sort asc</description>
-			<include>MenuButtonCommonValues</include>
-			<alttexturefocus>button-focus2.png</alttexturefocus>
-			<alttexturenofocus>button-nofocus.png</alttexturenofocus>
-			<label>31051</label>
-			<altlabel>31050</altlabel>
-			<usealttexture>Container.SortDirection(Ascending)</usealttexture>
-		</control>
-		<control type="radiobutton" id="99">
-			<description>Library button</description>
-			<textwidth>240</textwidth>
-			<label>$LOCALIZE[29800]</label>
-			<onclick>Skin.Reset(MediaSubMenuVisible)</onclick>
-			<onclick>ReplaceWindow(MusicLibrary)</onclick>
-			<selected>Window.IsVisible(MusicLibrary)</selected>
-			<include>MenuButtonCommonValues</include>
 		</control>
 		<control type="button" id="1467">
 			<description>Current Playlist</description>
@@ -1409,7 +1426,7 @@
 		</control>
 	</include>
 	<include name="16x9_xPos_Relocation">
-		<animation effect="slide" start="0,0" end="16x9Offset,0" time="0" condition="true">conditional</animation>
+		<animation effect="slide" start="0,0" end="213,0" time="0" condition="StringCompare(Skin.AspectRatio,16:9)">conditional</animation>
 	</include>
 	<include name="Window_OpenClose_Animation">
 		<animation effect="fade" time="250">WindowOpen</animation>

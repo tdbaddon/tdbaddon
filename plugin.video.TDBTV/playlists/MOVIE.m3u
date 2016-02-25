@@ -11,16 +11,13 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 0
 
 #EXTINF:0,Cinemax 
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/3486.ts
-
-#EXTINF:0,Cinemax 
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/3437.ts
+0
 
 #EXTINF:0,CineStarTV Premiere 1 
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/3465.ts
+0
 
 #EXTINF:0,CineStarTV Premiere 2
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/3485.ts
+0
 
 #EXTINF:0,CMore Action 
 0
@@ -50,25 +47,25 @@ http://luckyiptv.ddns.net:23000/live/pirro/pirro/3485.ts
 0
 
 #EXTINF:0,Film Aksion 
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/12425.ts
+http://cp.dmbshare.net:8000/live/andy/andy/1774.ts
 
 #EXTINF:0,Film Autor
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/12424.ts
+0
+
+#EXTINF:0,Film Comedy
+http://cp.dmbshare.net:8000/live/andy/andy/1775.ts
 
 #EXTINF:0,Film Drama
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/12423.ts
+http://cp.dmbshare.net:8000/live/andy/andy/1773.ts
 
 #EXTINF:0,Film Hits 
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/12421.ts
-
-#EXTINF:0,Film Hits 
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/12420.ts
+0
 
 #EXTINF:0,Film Nje 
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/12417.ts
+http://cp.dmbshare.net:8000/live/andy/andy/1778.ts
 
 #EXTINF:0,Film Thriller
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/12415.ts
+http://cp.dmbshare.net:8000/live/andy/andy/1777.ts
 
 #EXTINF:0,Film Zone
 http://178.238.224.19/5858/440.m3u8
@@ -88,8 +85,6 @@ http://178.238.224.19/5858/416.m3u8
 #EXTINF:0,Fox Movies 
 http://178.238.224.19/5858/417.m3u8
 
-#EXTINF:0,Fox Movies 
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/3461.ts
 
 #EXTINF:0,Golden Edge
 http://178.238.224.19/5858/484.m3u8
@@ -98,7 +93,7 @@ http://178.238.224.19/5858/484.m3u8
 0
 
 #EXTINF:0,HBO Adria 
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/3459.ts
+0
 
 #EXTINF:0,HBO East
 0
@@ -107,7 +102,7 @@ http://luckyiptv.ddns.net:23000/live/pirro/pirro/3459.ts
 0
 
 #EXTINF:0,HBO Comedy 
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/3451.ts
+0
 
 #EXTINF:0,HBO Family
 0
@@ -133,6 +128,9 @@ http://luckyiptv.ddns.net:23000/live/pirro/pirro/3451.ts
 #EXTINF:0,MGM 
 http://telvuehls_t02027-i.akamaihd.net/hls/live/213119/T02027-amgtv2/playlist_2.m3u8
 
+#EXTINF:0,Moves4Men
+http://cp.dmbshare.net:8000/live/andy/andy/2795.ts
+
 #EXTINF:0,Paramount Channel 
 0
 
@@ -149,46 +147,52 @@ http://telvuehls_t02027-i.akamaihd.net/hls/live/213119/T02027-amgtv2/playlist_2.
 0
 
 #EXTINF:0,Sky Movies Action 
-0
+http://cp.dmbshare.net:8000/live/andy/andy/2778.ts
 
 #EXTINF:0,Sky Movies Comedy 
-0
+http://cp.dmbshare.net:8000/live/andy/andy/2783.ts
 
 #EXTINF:0,Sky Movies Crime 
 0
 
 #EXTINF:0,Sky Movies Disney 
-0
+http://cp.dmbshare.net:8000/live/andy/andy/2782.ts
 
 #EXTINF:0,Sky Movies Drama 
 0
 
 #EXTINF:0,Sky Movies Family 
-0
+http://cp.dmbshare.net:8000/live/andy/andy/2781.ts
+
+#EXTINF:0,Sky Movies Family 
+http://cp.dmbshare.net:8000/live/andy/andy/2743.ts
 
 #EXTINF:0,Sky Movies Horrors 
 0
 
 #EXTINF:0,Sky Movies Modern Greats 
-0
+http://cp.dmbshare.net:8000/live/andy/andy/2742.ts
 
 #EXTINF:0,Sky Movies Premiere 
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/12558.ts
+http://cp.dmbshare.net:8000/live/andy/andy/2775.ts
 
 #EXTINF:0,Sky Movies Premiere+
 0
 
 #EXTINF:0,Sky Movies SciFi 
-0
+http://cp.dmbshare.net:8000/live/andy/andy/2774.ts
+
+#EXTINF:0,Sky Movies SciFi 
+http://cp.dmbshare.net:8000/live/andy/andy/2769.ts
 
 #EXTINF:0,Sky Movies Select 
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/12557.ts
+http://cp.dmbshare.net:8000/live/andy/andy/2773.ts
 
 #EXTINF:0,Sky Movies Showcase
-0
+http://cp.dmbshare.net:8000/live/andy/andy/2741.ts
 
 #EXTINF:0,Sky Movies Thriller
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/12556.ts
+http://cp.dmbshare.net:8000/live/andy/andy/2760.ts
 
 #EXTINF:0,Sony TV 
 0
@@ -218,31 +222,28 @@ http://112.197.2.135:1935/colive/C001_HD_4/chunklist.m3u8
 0
 
 #EXTINF:0,Tring Comedy
-0
+http://cp.dmbshare.net:8000/live/andy/andy/1742.ts
 
 #EXTINF:0,Tring Fantasy 
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/12365.ts
+http://cp.dmbshare.net:8000/live/andy/andy/1744.ts
 
 #EXTINF:0,Tring Life
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/12364.ts
-
-#EXTINF:0,Tring Life
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/13020.ts
+http://cp.dmbshare.net:8000/live/andy/andy/1741.ts
 
 #EXTINF:0,Tring Max 
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/12362.ts
-
-#EXTINF:0,Tring Max 
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/13019.ts
+http://cp.dmbshare.net:8000/live/andy/andy/1739.ts
 
 #EXTINF:0,Tring Super
-0
+http://cp.dmbshare.net:8000/live/andy/andy/1740.ts
 
 #EXTINF:0,True Movies 1 
 http://63.237.48.23/ios/MBC2/MBC2.m3u8
 
+#EXTINF:0,True Movies 1 
+http://cp.dmbshare.net:8000/live/andy/andy/2756.ts
+
 #EXTINF:0,True Movies 2 
-0
+http://cp.dmbshare.net:8000/live/andy/andy/2755.ts
 
 #EXTINF:0,TV 1000 
 0

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<window id="115">
+<window>
 	<defaultcontrol>1</defaultcontrol>
 	<visible>[Player.Seeking | Player.DisplayAfterSeek | Player.Paused | Player.Forwarding | Player.Rewinding] + [Window.IsVisible(FullscreenVideo) | Window.IsVisible(Visualisation)] + ![Window.IsVisible(VideoOSD) | Window.IsVisible(MusicOSD) | Window.IsVisible(PlayerControls)]</visible>
 	<animation effect="fade" start="0" end="100" time="200">WindowOpen</animation>

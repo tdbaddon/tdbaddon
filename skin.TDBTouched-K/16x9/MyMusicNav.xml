@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<window id="502">
+<window>
 	<defaultcontrol always="true">50</defaultcontrol>
 	<allowoverlay>no</allowoverlay>
 	<views>50,500</views>
@@ -25,9 +25,9 @@
 		<include>ScrollBarCommons</include>
 		<include>MediaSubMenu</include>
 		<include name="DropdownMenu">
-			<param name="SB">500</param>
-			<param name="PB">440</param>
-			<param name="PF">422</param>
+			<param name="SB">440</param>
+			<param name="PB">380</param>
+			<param name="PF">362</param>
 		</include>
 		<include>ScrollOffsetLabel</include>
 		<include>BehindDialogFadeOut</include>

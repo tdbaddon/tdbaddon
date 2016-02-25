@@ -322,7 +322,7 @@
 				<description>Hidden button to close the sort when its focused</description>
 				<posx>0</posx>
 				<posy>0</posy>
-				<width>ScreenWidth</width>
+				<include>ScreenWidth</include>
 				<height>ScreenHeight</height>
 				<texturenofocus>-</texturenofocus>
 				<texturefocus>-</texturefocus>

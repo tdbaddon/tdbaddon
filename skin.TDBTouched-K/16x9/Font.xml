@@ -8,11 +8,6 @@
 			<size>12</size>
 		</font>
 		<font>
-			<name>font11</name>
-			<filename>Arial.ttf</filename>
-			<size>14</size>
-		</font>
-		<font>
 			<name>font12</name>
 			<filename>Arial.ttf</filename>
 			<size>16</size>
@@ -87,11 +82,6 @@
 			<name>font10</name>
 			<filename>Arial.ttf</filename>
 			<size>12</size>
-		</font>
-		<font>
-			<name>font11</name>
-			<filename>Arial.ttf</filename>
-			<size>14</size>
 		</font>
 		<font>
 			<name>font12</name>

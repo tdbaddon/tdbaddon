@@ -83,7 +83,7 @@
 			<width>70</width>
 			<height>45</height>
 			<aspectratio align="left">keep</aspectratio>
-			<texture>$INFO[ListItem.AudioChannels,flagging/audio/,.png]</texture>
+			<texture fallback="flagging/audio/0.png">$INFO[ListItem.AudioChannels,flagging/audio/,.png]</texture>
 		</control>
 	</include>
 	<include name="AspectCodecFlaggingConditions">

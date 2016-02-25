@@ -4,7 +4,7 @@
 		<control type="image">
 			<posx>0</posx>
 			<posy>0</posy>
-			<width>ScreenWidth</width>
+			<include>ScreenWidth</include>
 			<height>ScreenHeight</height>
 			<colordiffuse>BBFFFFFF</colordiffuse>
 			<texture>black-back.png</texture>
@@ -20,7 +20,7 @@
 			<control type="image">
 				<posx>0</posx>
 				<posy>0</posy>
-				<width>ScreenWidth</width>
+				<include>ScreenWidth</include>
 				<height>200</height>
 				<texture border="5">DialogBack.png</texture>
 			</control>
@@ -157,7 +157,7 @@
 			<control type="image">
 				<posx>0</posx>
 				<posy>0</posy>
-				<width>ScreenWidth</width>
+				<include>ScreenWidth</include>
 				<height>200</height>
 				<texture border="5">DialogBack.png</texture>
 			</control>
@@ -451,7 +451,7 @@
 		<control type="image">
 			<posx>0</posx>
 			<posy>20</posy>
-			<width>ScreenWidth</width>
+			<include>ScreenWidth</include>
 			<height>64</height>
 			<texture>header.png</texture>
 		</control>
@@ -615,7 +615,7 @@
 				<textureradioonnofocus>GoFullscreen.png</textureradioonnofocus>
 				<textureradioofffocus>GoFullscreen.png</textureradioofffocus>
 				<textureradiooffnofocus>GoFullscreen.png</textureradiooffnofocus>
-				<visible>!Window.IsVisible(Visualisation) + !Window.IsVisible(FullScreenVideo) + !Window.IsVisible(Karaoke)</visible>
+				<visible>!Window.IsVisible(Visualisation) + !Window.IsVisible(FullScreenVideo)</visible>
 			</control>
 			<control type="radiobutton">
 				<description>Fullscreen Button</description>
@@ -637,7 +637,7 @@
 				<textureradioonnofocus flipx="true" flipy="true">GoFullscreen.png</textureradioonnofocus>
 				<textureradioofffocus flipx="true" flipy="true">GoFullscreen.png</textureradioofffocus>
 				<textureradiooffnofocus flipx="true" flipy="true">GoFullscreen.png</textureradiooffnofocus>
-				<visible>Window.IsVisible(Visualisation) | Window.IsVisible(FullScreenVideo) + !Window.IsVisible(Karaoke)</visible>
+				<visible>Window.IsVisible(Visualisation) | Window.IsVisible(FullScreenVideo)</visible>
 			</control>
 		</control>
 		<control type="group">
@@ -669,7 +669,7 @@
 			<control type="image">
 				<posx>0</posx>
 				<posy>0</posy>
-				<width>ScreenWidth</width>
+				<include>ScreenWidth</include>
 				<height>100</height>
 				<texture>floor.png</texture>
 			</control>
@@ -694,7 +694,7 @@
 				<label>$INFO[Player.Duration(hh:mm:ss)]</label>
 			</control>
 			<control type="group">
-				<posx>16x9Offset</posx>
+				<include>16x9_xPos_Relocation</include>
 				<control type="progress">
 					<description>Progressbar</description>
 					<posx>200</posx>
@@ -853,7 +853,7 @@
 		<control type="grouplist" id="100">
 			<posx>0</posx>
 			<posy>82r</posy>
-			<width>ScreenWidth</width>
+			<include>ScreenWidth</include>
 			<align>center</align>
 			<itemgap>0</itemgap>
 			<orientation>horizontal</orientation>
@@ -1023,7 +1023,7 @@
 				<description>Hidden button to close the sort when its focused</description>
 				<posx>0</posx>
 				<posy>0</posy>
-				<width>ScreenWidth</width>
+				<include>ScreenWidth</include>
 				<height>ScreenHeight</height>
 				<texturenofocus>-</texturenofocus>
 				<texturefocus>-</texturefocus>
@@ -1037,7 +1037,7 @@
 					<posx>-30</posx>
 					<posy>-30</posy>
 					<width>380</width>
-					<height>320</height>
+					<height>400</height>
 					<texture border="30">ShadowBorder.png</texture>
 				</control>
 				<control type="button">
@@ -1045,7 +1045,7 @@
 					<posx>0</posx>
 					<posy>0</posy>
 					<width>320</width>
-					<height>260</height>
+					<height>340</height>
 					<texturefocus border="5">SubBack.png</texturefocus>
 					<texturenofocus border="5">SubBack.png</texturenofocus>
 					<onclick>noop</onclick>
@@ -1055,7 +1055,7 @@
 					<posx>10</posx>
 					<posy>10</posy>
 					<width>300</width>
-					<height>234</height>
+					<height>314</height>
 					<texture border="5">SubBack2.png</texture>
 				</control>
 				<control type="image">
@@ -1132,6 +1132,22 @@
 						<onclick>Skin.Reset(PlayerControlsSubMenuVisible)</onclick>
 						<onclick>ActivateWindow(122)</onclick>
 						<visible>Window.IsVisible(Visualisation)</visible>
+					</control>
+					<control type="button">
+						<include>ButtonCommonValues2</include>
+						<label>15047</label>
+						<onclick>Dialog.Close(MusicOSD,true)</onclick>
+						<onclick>Skin.Reset(PlayerControlsSubMenuVisible)</onclick>
+						<onclick>ActivateWindow(OSDAudioDSPSettings)</onclick>
+						<visible>system.getbool(audiooutput.dspaddonsenabled)</visible>
+					</control>
+					<control type="button">
+						<include>ButtonCommonValues2</include>
+						<label>29900</label>
+						<onclick>Dialog.Close(MusicOSD,true)</onclick>
+						<onclick>Skin.Reset(PlayerControlsSubMenuVisible)</onclick>
+						<onclick>ActivateWindow(PVRRadioRDSInfo)</onclick>
+						<visible>MusicPlayer.Content(LiveTV) + RDS.HasRadiotextPlus</visible>
 					</control>
 					<control type="image">
 						<posx>0</posx>

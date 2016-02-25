@@ -2,7 +2,7 @@
 
 '''
     Exodus Add-on
-    Copyright (C) 2016 lambda
+    Copyright (C) 2016 Exodus
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -107,7 +107,6 @@ class source:
 
             for i in links: sources.append({'source': i[2], 'quality': i[1], 'provider': 'Watchmovies', 'url': i[0], 'direct': False, 'debridonly': False})
 
-            print sources
             return sources
         except:
             return sources
@@ -117,6 +116,7 @@ class source:
         try:
             try: quality = urlparse.parse_qs(urlparse.urlparse(url).query)['quality'][0]
             except: quality = '1080P'
+            quality = re.sub('[^0-9]', '', quality)
 
             url = urlparse.urljoin(self.base_link, url)
             url = url.rsplit('?', 1)[0]
@@ -128,20 +128,24 @@ class source:
 
             result = cloudflare.request(url)
 
+            replace = re.findall("\.replace\('(.*?)'.+?'(.*?)'\)", result)
+            for i in replace:
+                try: result = result.replace(i[0], i[1])
+                except: pass
+
+            count = len(re.findall('window\.atob', result))
+            result = re.compile("window\.atob[\([]+'([^']+)").findall(result)[0]
+            for i in xrange(count):
+                try: result = base64.decodestring(result)
+                except: pass
+
             url = client.parseDOM(result, 'iframe', ret='src')
             if len(url) > 0: return url[0]
 
-            count = len(re.findall('window\.atob', result))
-            result = re.compile("window\.atob\('([^']+)").findall(result)[0]
-
-            for i in xrange(count):
-                result = base64.decodestring(result)
-
-            result = re.compile('(\d*p)="([^"]+)"').findall(result)
-
-            url = [i for i in result if i[0].upper() == quality]
-            if len(url) > 0: url = url[0][1]
-            else: url = result[0][1]
+            result = re.compile('''<source[^>]+src=["']([^'"]+)[^>]+res=['"]([^'"]+)''').findall(result)
+            url = [i for i in result if i[1] == quality]
+            if len(url) > 0: url = url[0][0]
+            else: url = result[0][0]
 
             return url
         except:

@@ -16,68 +16,44 @@ http://str105mb.setplex.net:1935/str2iosmd5/stralbinfo_2654_dfs/playlist.m3u8
 #EXTINF:0,Alb UK 
 rtmp://188.138.17.8:1935/albuk/albuk.stream
 
-#EXTINF:0,Alb UK 
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/13093.ts
-
 #EXTINF:0,Albanian Screen
 0
 
 #EXTINF:0,Alsat M 
 http://213.136.87.128:8000/live/dualcore/dualcore/5.m3u8#EXTM3U
 
-#EXTINF:0,Alsat M 
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/12439.ts
-
-#EXTINF:0,Alsat M 
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/12438.ts
-
-#EXTINF:0,Alsat M 
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/13096.ts
-
-#EXTINF:0,Alsat M 
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/13086.ts
-
-#EXTINF:0,Alsat M 
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/13095.ts
-
-#EXTINF:0,Alsat M 
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/13085.ts
-
 #EXTINF:0,ATV
 rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
 
 #EXTINF:0,Bangbang 
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/12436.ts
-
-#EXTINF:0,Bangbang 
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/12416.ts
+http://cp.dmbshare.net:8000/live/andy/andy/1745.ts
 
 #EXTINF:0,Channel One 
 0
 
 #EXTINF:0,Cufo TV 
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/12433.ts
+http://cp.dmbshare.net:8000/live/andy/andy/1771.ts
 
 #EXTINF:0,Folk Plus 
-0
+http://cp.dmbshare.net:8000/live/andy/andy/1756.ts
 
 #EXTINF:0,Jug TV 
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/12410.ts
+0
 
 #EXTINF:0,Kanal 7 
-0
+http://cp.dmbshare.net:8000/live/andy/andy/1760.ts
 
 #EXTINF:0,Klan 
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/12338.ts
+http://cp.dmbshare.net:8000/live/andy/andy/1736.ts
 
 #EXTINF:0,Klan Kosova 
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/12337.ts
+http://cp.dmbshare.net:8000/live/andy/andy/1735.ts
 
 #EXTINF:0,Klan Plus
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/13063.ts
+0
 
 #EXTINF:0,Koha TV 
-0
+http://cp.dmbshare.net:8000/live/andy/andy/1818.ts
 
 #EXTINF:0,Kohavision
 0
@@ -94,14 +70,23 @@ rtmp://91.82.85.44/live/konyhatv
 #EXTINF:0,Ora News 
 http://81.7.13.162/hls/oranews/index.m3u8
 
+#EXTINF:0,Ora News 
+http://cp.dmbshare.net:8000/live/andy/andy/1784.ts
+
 #EXTINF:0,Planet TV 
 0
 
 #EXTINF:0,Rokum TV 
 rtmp://82.114.65.202/live/rrokumtv.flv swfUrl=http://tv24.al/shqiptv/css/player.swf live=1
 
+#EXTINF:0,Rokum TV 
+http://cp.dmbshare.net:8000/live/andy/andy/1761.ts
+
 #EXTINF:0,RTK1 
 rtmp://wowza.rtkit.com/live/livestream
+
+#EXTINF:0,RTK1 
+http://cp.dmbshare.net:8000/live/andy/andy/1730.ts
 
 #EXTINF:0,STV 
 http://88.212.10.27:81/streams/stv1.m3u8?
@@ -113,16 +98,16 @@ http://88.212.10.27:81/streams/stv1.m3u8?
 rtmp://str103.setplex.net:1935/228/stv_online
 
 #EXTINF:0,Top Channel 
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/12370.ts
-
-#EXTINF:0,Top Channel 
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/13023.ts
+http://cp.dmbshare.net:8000/live/andy/andy/1734.ts
 
 #EXTINF:0,Top Channel News
-0
+http://cp.dmbshare.net:8000/live/andy/andy/1766.ts
 
 #EXTINF:0,Tring Tring
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/12357.ts
+http://cp.dmbshare.net:8000/live/andy/andy/1747.ts
 
 #EXTINF:0,Vizion Plus 
 rtmp://live.vizionplus.tv/live//livestream3
+
+
+http://cp.dmbshare.net:8000/live/andy/andy/1737.ts
