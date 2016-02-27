@@ -133,6 +133,6 @@ def solve(url,cookie_file='',wait=True):
             net.save_cookies(cookie_file)   
         return final.content
 
-        
+
 #print solve('http://cartoons8.tv','e:/hello.txt',wait=True)
 
