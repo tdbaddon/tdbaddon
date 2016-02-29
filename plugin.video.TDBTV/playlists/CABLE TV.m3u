@@ -29,9 +29,6 @@ http://89.163.148.31:8000/live/pierre/pierre/2752.ts
 http://37.220.108.122:20000/2
 
 #EXTINF:0,BBC 1 
-http://37.220.108.122:20000/7
-
-#EXTINF:0,BBC 1 
 http://cp.dmbshare.net:8000/live/andy/andy/2752.ts
 
 #EXTINF:0,BBC 2 
@@ -49,9 +46,6 @@ http://77.120.118.235:8085
 #EXTINF:0,Boomerang 
 http://89.163.148.31:8000/live/pierre/pierre/2832.ts
 
-#EXTINF:0,Boomerang 
-http://217.199.128.114:4022/udp/235.255.1.61:5474
-
 #EXTINF:0,Bravo 
 0
 
@@ -60,9 +54,6 @@ http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD28_W_250.sdp/p
 
 #EXTINF:0,Cartoon Network 
 http://54.255.155.24:1935//Live/_definst_/sweetbcha1novD28_W_150.sdp/playlist.m3u8
-
-#EXTINF:0,Cartoon Network 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/89.ts
 
 #EXTINF:0,Cartoon Network 
 http://89.163.148.31:8000/live/pierre/pierre/2828.ts
@@ -110,9 +101,6 @@ http://cp.dmbshare.net:8000/live/andy/andy/2825.ts
 0
 
 #EXTINF:0,Comedy Central 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/54.ts
-
-#EXTINF:0,Comedy Central 
 http://89.163.148.31:8000/live/pierre/pierre/2822.ts
 
 #EXTINF:0,Comedy Central 
@@ -140,22 +128,13 @@ http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/index_350_av-p.m3u8?
 http://212.200.125.5:8199/199
 
 #EXTINF:0,Disney Channel 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/125.ts
-
-#EXTINF:0,Disney Channel 
 http://cp.dmbshare.net:8000/live/andy/andy/2815.ts
-
-#EXTINF:0,Disney Junior 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/127.ts
 
 #EXTINF:0,Disney Junior 
 http://89.163.148.31:8000/live/pierre/pierre/2814.ts
 
 #EXTINF:0,Disney Junior 
 http://cp.dmbshare.net:8000/live/andy/andy/2814.ts
-
-#EXTINF:0,Disney XD 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/99.ts
 
 #EXTINF:0,Disney XD 
 http://89.163.148.31:8000/live/pierre/pierre/2815.ts
@@ -168,9 +147,6 @@ http://89.163.148.31:8000/live/pierre/pierre/2815.ts
 
 #EXTINF:0,E2 
 0
-
-#EXTINF:0,E4 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/88.ts
 
 #EXTINF:0,E4 
 http://37.220.108.122:20000/8
@@ -203,19 +179,10 @@ http://cp.dmbshare.net:8000/live/andy/andy/2804.ts
 http://cp.dmbshare.net:8000/live/andy/andy/1758.ts
 
 #EXTINF:0,Fox Life 
-http://46.40.5.99:8000/foxlife_720
-
-#EXTINF:0,Fox Life 
 http://cp.dmbshare.net:8000/live/andy/andy/1759.ts
 
 #EXTINF:0,Fox TV
-http://46.40.5.99:8000/fox_720
-
-#EXTINF:0,Fox TV
 http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/90.ts
-
-#EXTINF:0,Fox TV
-http://178.238.224.19/5858/201.m3u8
 
 #EXTINF:0,Fox TV
 http://217.199.128.114:4022/udp/235.255.1.78:5614
@@ -272,9 +239,6 @@ rtmp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:468p500kB31?b?b*t$
 http://ios.streamserver01.com:8080/ShowcaseTV/mystream.m3u8
 
 #EXTINF:0,ITV 1 
-http://xteramcss.pointto.us:8060/live/karimos-sat/cyaWOcWhPF/54.ts
-
-#EXTINF:0,ITV 1 
 http://37.220.108.122:20000/14
 
 #EXTINF:0,ITV 1 
@@ -284,9 +248,6 @@ http://37.220.108.122:20000/15
 http://37.220.108.122:20000/26
 
 #EXTINF:0,ITV 2 
-http://xteramcss.pointto.us:8060/live/karimos-sat/cyaWOcWhPF/12.ts
-
-#EXTINF:0,ITV 2 
 http://37.220.108.122:20000/16
 
 #EXTINF:0,ITV 3 
@@ -294,9 +255,6 @@ http://37.220.108.122:20000/18
 
 #EXTINF:0,ITV 3 
 http://cp.dmbshare.net:8000/live/andy/andy/2786.ts
-
-#EXTINF:0,ITV 4 
-http://xteramcss.pointto.us:8060/live/karimos-sat/cyaWOcWhPF/56.ts
 
 #EXTINF:0,ITV 4 
 http://37.220.108.122:20000/17
@@ -335,16 +293,10 @@ http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
 http://cp.dmbshare.net:8000/live/andy/andy/2748.ts
 
 #EXTINF:0,Nick Jr 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/92.ts
-
-#EXTINF:0,Nick Jr 
 http://cp.dmbshare.net:8000/live/andy/andy/2791.ts
 
 #EXTINF:0,Nickelodeon 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/93.ts
-
-#EXTINF:0,Nickelodeon 
-http://5.32.183.177:4080/udp/224.0.0.120:1240
+0
 
 #EXTINF:0,NickNight 
 0
@@ -377,9 +329,6 @@ http://llnw.live.qvc.simplestream.com/hera/remote/qvcuk_primary_sdi8/3/prog_inde
 0
 
 #EXTINF:0,Sky 1 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/45.ts
-
-#EXTINF:0,Sky 1 
 http://cp.dmbshare.net:8000/live/andy/andy/2771.ts
 
 #EXTINF:0,Sky 2 
@@ -390,12 +339,6 @@ http://cp.dmbshare.net:8000/live/andy/andy/2785.ts
 
 #EXTINF:0,Sky Arts 2 
 0
-
-#EXTINF:0,Sky Atlantic 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/44.ts
-
-#EXTINF:0,Sky Atlantic 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/123.ts
 
 #EXTINF:0,Sky Atlantic
 http://cp.dmbshare.net:8000/live/andy/andy/2784.ts
@@ -425,7 +368,7 @@ http://cp.dmbshare.net:8000/live/andy/andy/2740.ts
 0
 
 #EXTINF:0,TNT 
-http://178.238.224.19/5858/266.m3u8
+0
 
 #EXTINF:0,Tom & Jerry TV 
 0
@@ -452,7 +395,7 @@ http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/master.m3u8?b?b*t
 0
 
 #EXTINF:0,Universal Channel 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/124.ts
+0
 
 #EXTINF:0,USA Network 
 0

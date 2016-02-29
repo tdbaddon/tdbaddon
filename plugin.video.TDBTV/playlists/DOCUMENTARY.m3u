@@ -56,7 +56,7 @@ http://cp.dmbshare.net:8000/live/andy/andy/2819.ts
 http://cp.dmbshare.net:8000/live/andy/andy/2818.ts
 
 #EXTINF:0,Discovery Theatre
-http://178.238.224.19/5858/351.m3u8
+0
 
 #EXTINF:0,Discovery Turbo 
 0
@@ -112,29 +112,8 @@ http://109.226.222.161:4022/udp/239.255.4.30:1234
 #EXTINF:0,National Geographic 
 http://95.191.236.176:1234/udp/225.54.41.6:5000
 
-#EXTINF:0,National Geographic 
-http://92.127.226.85:1234/udp/225.54.23.54:5000
-
-#EXTINF:0,National Geographic 
-http://92.127.224.242:1234/udp/225.54.23.54:5000
-
-#EXTINF:0,National Geographic 
-http://92.127.224.153:1234/udp/225.54.23.54:5000
-
-#EXTINF:0,National Geographic 
-http://178.166.205.202:1234/udp/225.54.41.6:5000
-
-#EXTINF:0,National Geographic
-http://95.191.246.5:1234/udp/225.54.41.6:5000
-
 #EXTINF:0,National Geographic
 http://95.191.236.176:1234/udp/225.54.41.6:5000
-
-#EXTINF:0,National Geographic
-http://95.191.224.45:1234/udp/225.54.41.6:5000
-
-#EXTINF:0,National Geographic
-http://185.47.221.123:4023/udp/239.250.2.17:1234
 
 #EXTINF:0,National Geographic
 http://cp.dmbshare.net:8000/live/andy/andy/2793.ts
@@ -167,7 +146,7 @@ http://rt-a.akamaihd.net/ch_05@325609/720p.m3u8
 0
 
 #EXTINF:0,Travel Channel 
-http://cp.dmbshare.net:8000/live/andy/andy/1787.ts
+0
 
 #EXTINF:0,Viasat Explorer 
 http://195.78.244.219:10000/udp/239.0.3.30:1234

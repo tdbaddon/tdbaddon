@@ -112,9 +112,6 @@ rtmp://tst.es.flash.glb.ipercast.net/tst.es-live/live
 #EXTINF:0,Miami TV Music 
 http://k4.usastreams.com:1935/miamitv/miamitv/chunklist_w128908539.m3u8
 
-#EXTINF:0,Miami TV Music 
-http://74.208.152.93/music/stream3/stream.m3u8
-
 #EXTINF:0,MTV 
 http://origin2.voronezh.ertelecom.ru/content/private/s147213/d3720264/r183857sd2500000/efe4541060c00fccc01e8c068fce4f5ab911d969/playlist.m3u8
 
@@ -131,7 +128,7 @@ http://cp.dmbshare.net:8000/live/andy/andy/2817.ts
 0
 
 #EXTINF:0,MTV Rocks 
-http://92.50.181.6/tv/1279/index.m3u8
+0
 
 #EXTINF:0,MusicVoxTV 
 rtmp://stream.smcloud.net/live2/vox/vox_480p
@@ -173,7 +170,7 @@ http://hd.worldkast.com:1935/8436/8436/playlist.m3u8
 0
 
 #EXTINF:0,Trace Urban 
-http://stream01.yamgo.com/iPhone/HLS_TS/broadcast/trace_tv_urban-tablet.3gp/trace_tv_urban-tablet.3gp-mr647k.m3u8?trackingid=4041670000&os=desktop
+0
 
 #EXTINF:0,Tuba TV
 0
@@ -208,11 +205,8 @@ http://www.iptvsaga.com/play/tv3/0006.m3u8
 #EXTINF:0,VH1 
 http://origin2.tomsk.ertelecom.ru/content/private/s147213/d3720264/r183860sd2000000/a7e4d34646b475190d0c99a717f7478a546958ed/track_2_1200/playlist.m3u8
 
-#EXTINF:0,VH1 
-http://92.50.181.6/tv/1281/index.m3u8
-
 #EXTINF:0,VH1 Classics 
-http://92.50.181.6/tv/1282/index.m3u8
+0
 
 #EXTINF:0,Virgin TV 
 rtmp://fms.105.net:1935/live/virgin2

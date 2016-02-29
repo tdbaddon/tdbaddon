@@ -24,9 +24,6 @@ http://cp.dmbshare.net:8000/live/andy/andy/2831.ts
 http://cp.dmbshare.net:8000/live/andy/andy/2770.ts
 
 #EXTINF:0,BT Sport 1 
-http://xteramcss.pointto.us:8060/live/karimos-sat/cyaWOcWhPF/15.ts
-
-#EXTINF:0,BT Sport 1 
 http://02e4.vp9.tv/chn/btsu1/v.m3u8
 
 #EXTINF:0,BT Sport 2 
@@ -42,19 +39,10 @@ http://cp.dmbshare.net:8000/live/andy/andy/2829.ts
 http://208.92.36.158/ipad/live/nba_ipad_1240.m3u8
 
 #EXTINF:0,Chelsea TV 
-http://xteramcss.pointto.us:8060/live/karimos-sat/cyaWOcWhPF/201.ts
-
-#EXTINF:0,Chelsea TV 
 http://cp.dmbshare.net:8000/live/andy/andy/2811.ts
 
 #EXTINF:0,CMore Sport 
 0
-
-#EXTINF:0,ESPN 
-rtmp://31.220.2.149:80/live/ playpath=espnusa token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://yotv.co
-
-#EXTINF:0,ESPN 
-rtmp://185.63.255.60:80/live playpath=espnusa swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf pageUrl=http://yotv.co/embedu.php?live=espnusa&vw=620&vh=490 live=1 token=%Zrey(nKa@#Z
 
 #EXTINF:0,ESPN 
 http://cp.dmbshare.net:8000/live/andy/andy/2809.ts
@@ -78,10 +66,10 @@ http://cp.dmbshare.net:8000/live/andy/andy/2808.ts
 0
 
 #EXTINF:0,Fishing & Hunting 
-http://cobra-iptv.noip.me:8000/live/13/13/9357.ts
+0
 
 #EXTINF:0,Fox Sports 
-http://178.238.224.19/5858/522.m3u8
+0
 
 #EXTINF:0,Fox Sports 1 
 0
@@ -213,13 +201,7 @@ http://sacapunta.eltelon.com/channels/redbulltv/playlist.m3u8
 0
 
 #EXTINF:0,Setanta Sports 
-http://xteramcss.pointto.us:8060/live/karimos-sat/cyaWOcWhPF/13.ts
-
-#EXTINF:0,Setanta Sports 
 http://cp.dmbshare.net:8000/live/andy/andy/2796.ts
-
-#EXTINF:0,Sky Sports 1 
-http://167.114.41.215:8080/sk1_raf/sk1_raf/index.m3u8
 
 #EXTINF:0,Sky Sports 1 
 http://cp.dmbshare.net:8000/live/andy/andy/2768.ts
@@ -231,46 +213,22 @@ http://cp.dmbshare.net:8000/live/andy/andy/2767.ts
 http://37.187.24.177:80/ramzi/ramzi/852.ch
 
 #EXTINF:0,Sky Sports 2 
-http://167.114.41.215:8080/sk2_raf/sk2_raf/index.m3u8
-
-#EXTINF:0,Sky Sports 2 
 http://cp.dmbshare.net:8000/live/andy/andy/2766.ts
-
-#EXTINF:0,Sky Sports 3 
-http://xteramcss.pointto.us:8060/live/karimos-sat/cyaWOcWhPF/8.ts
-
-#EXTINF:0,Sky Sports 3 
-http://167.114.41.215:8080/sk3_raf/sk3_raf/index.m3u8
 
 #EXTINF:0,Sky Sports 3 
 http://cp.dmbshare.net:8000/live/andy/andy/2765.ts
 
 #EXTINF:0,Sky Sports 4 
-http://xteramcss.pointto.us:8060/live/karimos-sat/cyaWOcWhPF/9.ts
-
-#EXTINF:0,Sky Sports 4 
-http://167.114.41.215:8080/sk4_raf/sk4_raf/index.m3u8
-
-#EXTINF:0,Sky Sports 4 
 http://cp.dmbshare.net:8000/live/andy/andy/2764.ts
 
 #EXTINF:0,Sky Sports 5 
-http://xteramcss.pointto.us:8060/live/karimos-sat/cyaWOcWhPF/7.ts
-
-#EXTINF:0,Sky Sports 5 
 http://37.187.24.177:80/ramzi/ramzi/853.ch
-
-#EXTINF:0,Sky Sports 5 
-http://167.114.41.215:8080/sk5_raf/sk5_raf/index.m3u8
 
 #EXTINF:0,Sky Sports 5 
 http://144.76.3.83/sky_sports5gb.m3u8
 
 #EXTINF:0,Sky Sports 5 
 http://cp.dmbshare.net:8000/live/andy/andy/2763.ts
-
-#EXTINF:0,Sky Sports F1 
-http://167.114.41.215:8080/skyF1_raf/skyF1_raf/index.m3u8
 
 #EXTINF:0,Sky Sports F1 
 http://cp.dmbshare.net:8000/live/andy/andy/2762.ts

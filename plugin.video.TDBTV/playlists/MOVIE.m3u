@@ -52,10 +52,10 @@ http://cp.dmbshare.net:8000/live/andy/andy/1774.ts
 #EXTINF:0,Film Autor
 0
 
-#EXTINF:0,Film Comedy
+#EXTINF:0,Film Komedi
 http://cp.dmbshare.net:8000/live/andy/andy/1775.ts
 
-#EXTINF:0,Film Drama
+#EXTINF:0,Film Drame
 http://cp.dmbshare.net:8000/live/andy/andy/1773.ts
 
 #EXTINF:0,Film Hits 
@@ -68,10 +68,10 @@ http://cp.dmbshare.net:8000/live/andy/andy/1778.ts
 http://cp.dmbshare.net:8000/live/andy/andy/1777.ts
 
 #EXTINF:0,Film Zone
-http://178.238.224.19/5858/440.m3u8
+0
 
 #EXTINF:0,Fox Action Movies 
-http://178.238.224.19/5858/416.m3u8
+0
 
 #EXTINF:0,Fox Cinema
 0
@@ -83,11 +83,10 @@ http://178.238.224.19/5858/416.m3u8
 0
 
 #EXTINF:0,Fox Movies 
-http://178.238.224.19/5858/417.m3u8
-
+0
 
 #EXTINF:0,Golden Edge
-http://178.238.224.19/5858/484.m3u8
+0
 
 #EXTINF:0,HBO 
 0
@@ -128,7 +127,7 @@ http://178.238.224.19/5858/484.m3u8
 #EXTINF:0,MGM 
 http://telvuehls_t02027-i.akamaihd.net/hls/live/213119/T02027-amgtv2/playlist_2.m3u8
 
-#EXTINF:0,Moves4Men
+#EXTINF:0,Movies4Men
 http://cp.dmbshare.net:8000/live/andy/andy/2795.ts
 
 #EXTINF:0,Paramount Channel 
@@ -198,7 +197,7 @@ http://cp.dmbshare.net:8000/live/andy/andy/2760.ts
 0
 
 #EXTINF:0,Star Movies 
-http://112.197.2.135:1935/colive/C001_HD_4/chunklist.m3u8
+0
 
 #EXTINF:0,Starz Cinema
 0
