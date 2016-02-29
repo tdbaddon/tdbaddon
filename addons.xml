@@ -549,6 +549,24 @@ http://kodilive.eu</description>
   </extension>
 </addon>
 
+<addon id="plugin.video.mdwatchtvseries" name="Watch TV Series" version="1.1.2" provider-name="Mucky Duck">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+	<import addon="script.module.addon.common" />
+	<import addon="script.module.requests" />
+	<import addon="repository.mdrepo" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Stream content From The tvserieswatch.net WebSite</summary>
+    <description lang="en">Stream Content From The tvserieswatch.net WebSite</description>
+	<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon or have any affiliation with the website owners</disclaimer>
+    <platform>all</platform>
+  </extension>
+</addon>
+
 <addon id="plugin.video.MoneySports"
        name="MoneySports"
        version="2.0.8"
@@ -758,6 +776,30 @@ http://kodilive.eu</description>
 	</extension>
 </addon>
 
+<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2016.02.28.9" provider-name="mrknow" >
+	<requires>
+		<import addon="xbmc.python" version="2.1.0" />
+		<import addon="script.module.requests" version="1.0.0" />
+		<import addon="script.module.metahandler" optional="true" />
+		<import addon="plugin.video.youtube" optional="true" />
+
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="default.py">
+		<provides>video</provides>
+	</extension>
+	<extension point="xbmc.service" library="service.py" start="startup" />
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">Mrknow fork of ...</summary>
+		<description lang="en">Mrknow fork of ..., support https://github.com/mrknow/filmkodi/issues.</description>
+		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.
+		</disclaimer>
+		<forum>https://github.com/mrknow/filmkodi/issues</forum>
+		<source>http://filmkodi.com/repository/</source>
+		<website>http://filmkodi.com/en/wtyczka-specto-fork-genesis/</website>
+		<platform>all</platform>
+	</extension>
+</addon>
+
 <addon
   id="plugin.video.SportsDevil"
   version="201520152015.12.27.1NL"
@@ -882,7 +924,7 @@ http://kodilive.eu</description>
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="3.57"
+       version="3.58"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -898,6 +940,33 @@ http://kodilive.eu</description>
     <platform>all</platform>
   </extension>
   <extension point="xbmc.service" library="service.py" start="login" />
+</addon>
+
+<addon id="plugin.video.The-Music-Source"
+       name="The Music Source"
+       version="2.9.5"
+       provider-name="Matty/BlackDragon">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.beautifulsoup" version="3.2.1"/>
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.beautifulsoup4" />
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.requests" />
+    <import addon="script.module.httplib2" />
+    <import addon="script.module.youtube.dl" optional="true"/>
+    <import addon="plugin.video.youtube" />
+    <import addon="script.module.urlresolver" optional="true"/>
+    <import addon="script.module.simplejson" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>Music </summary>
+    <description>For the best in music this is the add-on you need.</description>
+    <platform>all</platform>
+  </extension>
 </addon>
 
 <addon id="plugin.video.tvondesizonexl" name="TV on DESI ZONE" version="2.8.7"
@@ -1134,6 +1203,20 @@ http://kodilive.eu</description>
 	</extension>
 </addon>
 
+<addon id="repository.awesome" name="Awesome repo" version="0.0.1" provider-name="Awesome">
+	<extension point="xbmc.addon.repository" name="Awesome repo">
+		<info compressed="false">http://raw.github.com/AwesomeStreams/AwesomeStreams/master/addons.xml</info>
+		<checksum>http://raw.github.com/AwesomeStreams/AwesomeStreams/master/addons.xml.md5</checksum>
+		<datadir zip="true">http://raw.github.com/AwesomeStreams/AwesomeStreams/master</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>The Official Awesome repository</summary>
+		<description>This repository contains addons with live IPTV streams.</description>
+		<disclaimer>The owners and submitters to this repository do not host or distribute any of the content displayed by these addons nor do they have any affiliation with the content providers.</disclaimer>
+		<platform>all</platform>
+	</extension>
+</addon>
+
 <addon id="repository.bbtsip.tv" name="[COLOR yellowgreen]B[/COLOR][COLOR dodgerblue]B[/COLOR]T[COLOR orangered]S[/COLOR] - Repo" version="0.0.7" provider-name="BBTS">
   <requires>
     <import addon="xbmc.addon" version="12.0.0" />
@@ -1187,6 +1270,23 @@ http://kodilive.eu</description>
 		<summary></summary>
 		<description>Download and install addons by Mr Entertainment</description>
 		<disclaimer>By using this, you take reponsibility for anything that happens. Some parts of this addon may not be legal in your country - please check with your local laws before installing. I take no responsibility for any problems this plugin might in any way shape or form. This is project is for a LEARNING EXPERIANCE.</disclaimer>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="repository.filmkodi.com" name="Filmkodi.com repository - MRKNOW" version="2.1.0" provider-name="Mrknow">
+	<extension point="xbmc.addon.repository" name="Filmkodi.com Kodi Add-on Repository">
+		<info compressed="false">http://kodi.filmkodi.com/addons.xml</info>
+		<checksum>http://kodi.filmkodi.com/addons.xml.md5</checksum>
+		<datadir zip="true">http://kodi.filmkodi.com/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">Install Add-ons  from filmkodi.com</summary>
+		<summary lang="pl">Zainstaluj wtyczki z filmkodi.com</summary>
+		<description lang="en">Add-ons from filmkodi.com (mrknow.pl) repository.</description>
+		<description lang="pl">Wtyczki z nieoficjalnego, repozytorium polskiego mrknow.pl..</description>
+		<disclaimer lang="en">Repository has non-comercial nature. Created by enthusiasts, acting in good faith.</disclaimer>
+		<disclaimer lang="pl">Zawartość repozytorium ma charakter niekomercyjny, wtyczki tworzone przez pasjonatów, .</disclaimer>
 		<platform>all</platform>
 	</extension>
 </addon>

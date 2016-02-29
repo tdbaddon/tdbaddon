@@ -23,14 +23,23 @@ http://cp.dmbshare.net:8000/live/andy/andy/2831.ts
 #EXTINF:0,Box Nation 
 http://cp.dmbshare.net:8000/live/andy/andy/2770.ts
 
+#EXTINF:0,Box Nation 
+http://ipsatpro.com:8000/live/martin1/martin1/490.ts
+
 #EXTINF:0,BT Sport 1 
 http://02e4.vp9.tv/chn/btsu1/v.m3u8
+
+#EXTINF:0,BT Sport 1 
+http://ipsatpro.com:8000/live/martin1/martin1/543.ts
 
 #EXTINF:0,BT Sport 2 
 http://02e4.vp9.tv/chn/btsu2/v.m3u8
 
 #EXTINF:0,BT Sport 2 
 http://cp.dmbshare.net:8000/live/andy/andy/2829.ts
+
+#EXTINF:0,BT Sport 2 
+http://ipsatpro.com:8000/live/martin1/martin1/542.ts
 
 #EXTINF:0,CBS Sports 
 0
@@ -40,6 +49,9 @@ http://208.92.36.158/ipad/live/nba_ipad_1240.m3u8
 
 #EXTINF:0,Chelsea TV 
 http://cp.dmbshare.net:8000/live/andy/andy/2811.ts
+
+#EXTINF:0,Chelsea TV 
+http://ipsatpro.com:8000/live/martin1/martin1/537.ts
 
 #EXTINF:0,CMore Sport 
 0
@@ -54,10 +66,13 @@ http://cp.dmbshare.net:8000/live/andy/andy/2809.ts
 http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_1800.m3u8
 
 #EXTINF:0,Eurosport 1 
+http://ipsatpro.com:8000/live/martin1/martin1/541.ts
+
+#EXTINF:0,Eurosport 1 
 http://cp.dmbshare.net:8000/live/andy/andy/2808.ts
 
 #EXTINF:0,Eurosport 2 
-0
+http://ipsatpro.com:8000/live/martin1/martin1/540.ts
 
 #EXTINF:0,Eurosport News 
 0
@@ -189,7 +204,7 @@ http://ooyalahd2-f.akamaihd.net/i/crtv01_delivery@329705/index_1164_av-b.m3u8
 mms://100automoto.tv/channel_porsche
 
 #EXTINF:0,Premier Sports 
-0
+http://ipsatpro.com:8000/live/martin1/martin1/513.ts
 
 #EXTINF:0,Racing UK 
 0
@@ -203,11 +218,20 @@ http://sacapunta.eltelon.com/channels/redbulltv/playlist.m3u8
 #EXTINF:0,Setanta Sports 
 http://cp.dmbshare.net:8000/live/andy/andy/2796.ts
 
+#EXTINF:0,Setanta Sports 
+http://ipsatpro.com:8000/live/martin1/martin1/484.ts
+
 #EXTINF:0,Sky Sports 1 
 http://cp.dmbshare.net:8000/live/andy/andy/2768.ts
 
 #EXTINF:0,Sky Sports 1 
 http://cp.dmbshare.net:8000/live/andy/andy/2767.ts
+
+#EXTINF:0,Sky Sports 1 
+http://ipsatpro.com:8000/live/martin1/martin1/533.ts
+
+#EXTINF:0,Sky Sports 1 
+http://ipsatpro.com:8000/live/martin1/martin1/548.ts
 
 #EXTINF:0,Sky Sports 2 
 http://37.187.24.177:80/ramzi/ramzi/852.ch
@@ -215,11 +239,29 @@ http://37.187.24.177:80/ramzi/ramzi/852.ch
 #EXTINF:0,Sky Sports 2 
 http://cp.dmbshare.net:8000/live/andy/andy/2766.ts
 
+#EXTINF:0,Sky Sports 2 
+http://ipsatpro.com:8000/live/martin1/martin1/532.ts
+
+#EXTINF:0,Sky Sports 2 
+http://ipsatpro.com:8000/live/martin1/martin1/547.ts
+
 #EXTINF:0,Sky Sports 3 
 http://cp.dmbshare.net:8000/live/andy/andy/2765.ts
 
+#EXTINF:0,Sky Sports 3 
+http://ipsatpro.com:8000/live/martin1/martin1/531.ts
+
+#EXTINF:0,Sky Sports 3 
+http://ipsatpro.com:8000/live/martin1/martin1/546.ts
+
 #EXTINF:0,Sky Sports 4 
 http://cp.dmbshare.net:8000/live/andy/andy/2764.ts
+
+#EXTINF:0,Sky Sports 4 
+http://ipsatpro.com:8000/live/martin1/martin1/530.ts
+
+#EXTINF:0,Sky Sports 4 
+http://ipsatpro.com:8000/live/martin1/martin1/545.ts
 
 #EXTINF:0,Sky Sports 5 
 http://37.187.24.177:80/ramzi/ramzi/853.ch
@@ -230,11 +272,23 @@ http://144.76.3.83/sky_sports5gb.m3u8
 #EXTINF:0,Sky Sports 5 
 http://cp.dmbshare.net:8000/live/andy/andy/2763.ts
 
+#EXTINF:0,Sky Sports 5 
+http://ipsatpro.com:8000/live/martin1/martin1/529.ts
+
+#EXTINF:0,Sky Sports 5 
+http://ipsatpro.com:8000/live/martin1/martin1/544.ts
+
 #EXTINF:0,Sky Sports F1 
 http://cp.dmbshare.net:8000/live/andy/andy/2762.ts
 
+#EXTINF:0,Sky Sports F1 
+http://ipsatpro.com:8000/live/martin1/martin1/539.ts
+
 #EXTINF:0,Sky Sports News 
 http://cp.dmbshare.net:8000/live/andy/andy/2761.ts
+
+#EXTINF:0,Sky Sports News 
+http://ipsatpro.com:8000/live/martin1/martin1/549.ts
 
 #EXTINF:0,Sports Tonight 
 rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9-SD

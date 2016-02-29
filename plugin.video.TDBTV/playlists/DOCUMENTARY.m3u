@@ -28,6 +28,9 @@ http://89.163.148.31:8000/live/pierre/pierre/2834.ts
 #EXTINF:0,Destination Network 
 0
 
+#EXTINF:0,Discovery Channel
+http://ipsatpro.com:8000/live/martin1/martin1/464.ts
+
 #EXTINF:0,Discovery History 
 http://top-iptv.zapto.org:8000/live/Aria/Aria/562.m3u8
 
@@ -37,11 +40,17 @@ http://top-iptv.zapto.org:8000/live/Aria/Aria/566.m3u8
 #EXTINF:0,Discovery History 
 http://cp.dmbshare.net:8000/live/andy/andy/2812.ts
 
+#EXTINF:0,Discovery History 
+http://ipsatpro.com:8000/live/martin1/martin1/491.ts
+
 #EXTINF:0,Discovery H&H
 0
 
 #EXTINF:0,Discovery Max
 http://cp.dmbshare.net:8000/live/andy/andy/2813.ts
+
+#EXTINF:0,Discovery Max
+http://ipsatpro.com:8000/live/martin1/martin1/456.ts
 
 #EXTINF:0,Discovery News 
 0
@@ -55,11 +64,14 @@ http://cp.dmbshare.net:8000/live/andy/andy/2819.ts
 #EXTINF:0,Discovery Science 
 http://cp.dmbshare.net:8000/live/andy/andy/2818.ts
 
+#EXTINF:0,Discovery Science 
+http://ipsatpro.com:8000/live/martin1/martin1/526.ts
+
 #EXTINF:0,Discovery Theatre
 0
 
 #EXTINF:0,Discovery Turbo 
-0
+http://ipsatpro.com:8000/live/martin1/martin1/465.ts
 
 #EXTINF:0,Discovery World 
 0

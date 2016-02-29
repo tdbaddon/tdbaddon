@@ -1,0 +1,9 @@
+<settings>
+	
+	<category label="AutoView">
+		<setting id="auto-view" type="bool" label="Enable Automatic View" default="true"/>
+		<setting id="tv-view" type="labelenum" label="Select View" values="Info|Info2|Info3|Fanart|Big list|Poster Wrap" default="Info2" enable="!eq(-1,false)+!eq(-2,false)"/>
+		<setting id="default-view" type="number" label="Default View" default="500" enable="!eq(-2,false)"/>
+	</category>
+
+</settings>
