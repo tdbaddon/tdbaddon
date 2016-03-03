@@ -20,56 +20,61 @@
 '''
 
 
-import re,sys,urllib,urlparse
+import re,sys,urllib,urlparse,json,base64
+
 from resources.lib.modules import control
 from resources.lib.modules import client
-from resources.lib.indexers import phhuddle
-
-mediaPath = control.addonInfo('path') + '/resources/media/phradios/'
-base_url = sys.argv[0]
-args = urlparse.parse_qs(sys.argv[2][1:])
 
 
 def radioDirectory():
-    addCategoryItem('1FM', 'radio1fm', '1fm-icon.png', '1fm-fanart.jpg')
-    addCategoryItem('181FM', 'radio181fm', '181fm-icon.png', '181fm-fanart.jpg')
-    addCategoryItem('KickinRadio','Kickinradio', 'Kickin-icon.png', 'Kickin-fanart.jpg')
+    addCategoryItem('1FM', 'radio1fm', 'http://mecca.watchkodi.com/images/1fm.png', 'http://mecca.watchkodi.com/images/1fm_fanart.jpg')
+    addCategoryItem('181FM', 'radio181fm', 'http://mecca.watchkodi.com/images/181fm.png', 'http://mecca.watchkodi.com/images/181fm_fanart.jpg')
+    addCategoryItem('KickinRadio','kickinradio', 'http://mecca.watchkodi.com/images/kickin.png', 'http://mecca.watchkodi.com/images/kickin_fanart.jpg')
     endCategory()
 
 
 def radio1fm(image, fanart):
     try:
-        url = 'http://1.fm/home/showstations?stations=showall'
+        url = 'http://rad.io/info/index/searchembeddedbroadcast?q=1%20FM&streamcontentformats=aac%2Cmp3&start=0&rows=1000'
+        result = client.request(url, headers={'User-Agent': base64.b64decode('WEJNQyBBZGRvbiBSYWRpbw==')})
 
-        result = client.request(url)
-        a = client.parseDOM(result, 'div', attrs={'class': 'staionitemcont'})
-        b = client.parseDOM(result, 'div', attrs={'class': 'contbtnrgt'})
-        items = zip(a, b)
+        index = []
+        items = json.loads(result)
     except:
         return
 
     for item in items:
         try:
-            name = client.parseDOM(item[1], 'a', ret='rel')[0]
-            name = client.replaceHTMLCodes(name)
+            name = item['name']
+            if not name.lower().startswith('1.fm'): raise Exception()
+            name = name.split('-', 1)[-1].strip().capitalize()
             name = name.encode('utf-8')
 
-            url = client.parseDOM(item[1], 'a', ret='data-scsrv')[0]
-            if not url.startswith('http'): url = 'http://%s' % url
-            url += ':%s' % client.parseDOM(item[1], 'a', ret='data-hiaac')[0]
-            url = client.replaceHTMLCodes(url)
+            url = item['id']
+            url = 'http://rad.io/info/broadcast/getbroadcastembedded?broadcast=%s' % url
             url = url.encode('utf-8')
 
-            thumb = client.parseDOM(item[0], 'img', ret='src')[0]
-            thumb = thumb.rsplit('?', 1)[0]
-            thumb = client.replaceHTMLCodes(thumb)
-            thumb = thumb.encode('utf-8')
-
-            addDirectoryItem(name, url, thumb, image, fanart)
+            index.append({'name': name, 'url': url, 'thumb': '0', 'image': image, 'fanart': fanart})
         except:
             pass
 
+    index = [i for x, i in enumerate(index) if i not in index[x+1:]]
+    index = sorted(index, key=lambda k: k['name'])
+    for i in index: addDirectoryItem(i['name'], i['url'], i['thumb'], i['image'], i['fanart'])
+
     endDirectory()
+
+
+def radio1fmResolve(url):
+    try:
+        domain = (urlparse.urlparse(url).netloc).lower()
+        if not domain == 'rad.io': return url
+
+        url = client.request(url, headers={'User-Agent': base64.b64decode('WEJNQyBBZGRvbiBSYWRpbw==')})
+        url = json.loads(url)['streamURL']
+        return url
+    except:
+        return
 
 
 def radio181fm(image, fanart):
@@ -107,99 +112,84 @@ def radio181fm(image, fanart):
     endDirectory()
 
 
-
-
-def Kickinradio(image, fanart):
+def kickinradio(image, fanart):
     try:
         url = 'https://www.internet-radio.com/stations/'
         result = client.request(url)
-        name = client.parseDOM(result, 'dt', attrs={'style': 'font-size: 22px;'})    
+        items = client.parseDOM(result, 'dt', attrs={'style': 'font-size: 22px;'})    
     except:
-        pass
-    
-    for item in name:
+        return
+
+    for item in items:
         try:
-            url = client.parseDOM(item,'a',ret="href")[0]
+            url = client.parseDOM(item, 'a', ret="href")[0]
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
 
-            addCategoryItem('[UPPERCASE][B]'+url[10:-1]+'[/UPPERCASE][/B]', 'Kickinradiocats', 'Kickin-icon.png', 'Kickin-fanart.jpg', url=url)   
+            addCategoryItem('[UPPERCASE][B]'+url[10:-1]+'[/UPPERCASE][/B]', 'kickinradiocats', image, fanart, url=url)   
         except:
             pass
 
     endDirectory()
 
 
-def Kickinradiocats(url, image, fanart):
-    url_page = url
-    url_page = url_page.replace('%2F','/')
-    url_page2 = "https://www.internet-radio.com"+url_page.encode('utf-8')
-    genres_site = client.request(str(url_page2))
-    stations = client.parseDOM(genres_site, 'div', attrs={'class': 'col-md-7'})
-    station = client.parseDOM(stations, 'h4', attrs={'class': 'text-danger'})
-    cat = client.parseDOM(stations, 'p', attrs={'class': 'lead'})[0]
-    cat = client.replaceHTMLCodes(cat)
-    cat = cat.replace('<b>','').replace('</b>','')
-    cat = cat.encode('utf-8')
-    stream = client.parseDOM(stations, 'samp')
-    streams = zip(station,stream)
+def kickinradiocats(url, image, fanart):
+    try:
+        url = urlparse.urljoin('https://www.internet-radio.com', url)
 
-    addCategoryItem('[B][I]'+cat+'[/B][/I]','phhuddle.Play_Main',image,fanart)
-    
-     
-    for CHAN,STREAM in streams:
-       CHAN = client.replaceHTMLCodes(CHAN)
-       CHAN = CHAN.encode('utf-8')
-       url = client.replaceHTMLCodes(STREAM)
-       url = url.encode('utf-8')
-       if re.search('\.m3u',url):
-           sort = url.replace('.m3u',' ')
-           sort = sort.split()
-           url = sort[1]
-           url = url.encode('utf-8')
-       else:
-           sort = url.replace('/', ' ')
-           sort = sort.split()
-           url = sort[1]+'//'+sort[2]+'/'
-           url = url.encode('utf-8')
-           pass
-       if CHAN[0:2] == '<a':
-           test = re.findall('<a href="/station/.+?">(.+?)</a>', CHAN)
-           CHAN = str(test)[2:-2]
-           CHAN = CHAN.encode('utf-8')
-       elif CHAN == '':
-           CHAN = "CHANNEL NAME UNKNOWN BUT WILL PLAY"
+        result = client.request(url)
+        result = client.parseDOM(result, 'div', attrs={'class': 'col-md-7'})
 
-       else:
-           pass
-         
-       addDirectoryItem(CHAN, url, '0', image, fanart)
-    tester1 = client.parseDOM(stations ,'ul', attrs={'class': 'pagination'})
-    if tester1:
-        if not client.parseDOM(stations, 'li', attrs={'class': 'disabled'}) or client.parseDOM(stations, 'li', attrs={'class': 'next'}):
-        
-            pages_next = client.parseDOM(tester1, 'li', attrs={'class': 'next'})
-            pages_next = client.parseDOM(pages_next, 'a', ret='href')[0]
-            if pages_next: 
-                pages_next = client.replaceHTMLCodes(pages_next).encode('utf-8')
-                pages_next = pages_next.encode('utf-8')
-                addCategoryItem('[B][I]NEXT[/I][/B]', 'Kickinradiocats', image, fanart, url=pages_next)
-            else:
-                pass
-        else:
-            pass       
-    else:
-        pass      
-    
+        a = client.parseDOM(result, 'h4', attrs={'class': 'text-danger'})
+        b = client.parseDOM(result, 'samp')
+        items = zip(a, b)
+    except:
+        return
+
+    for item in items:
+        try:
+            try: a = client.parseDOM(item[0], 'a')[0]
+            except: a = ''
+            try: b = [i for i in client.parseDOM(item[0], 'a', ret='href')[0].split('/') if not i == ''][-1]
+            except: b = ''
+            if not a == '': name = a
+            elif not b == '': name = b
+            else: name = item[0]
+            name = name.capitalize()
+            name = client.replaceHTMLCodes(name)
+            name = name.encode('utf-8')
+
+            url = item[1].split()
+            url = [i for i in url if i.startswith('http')][0]
+            url = re.sub('[0-9a-zA-Z]+\.pls(?:.+|)|\.m3u(?:.+|)', '', url)
+            url = client.replaceHTMLCodes(url)
+            url = url.encode('utf-8')
+
+            addDirectoryItem(name, url, '0', image, fanart)
+        except:
+            pass
+
+    try:
+        next = client.parseDOM(result, 'ul', attrs={'class': 'pagination'})
+        next = client.parseDOM(next, 'li', attrs={'class': 'next'})
+        next = client.parseDOM(next, 'a', ret='href')[0]
+        next = client.replaceHTMLCodes(next)
+        next = next.encode('utf-8')
+
+        addCategoryItem('[B][I]NEXT[/I][/B]', 'kickinradiocats', image, fanart, url=next)
+    except:
+        pass
+
     endDirectory()
-
 
 
 def addCategoryItem(name, action, image, fanart, url='0'):
     u = '%s?action=%s&url=%s&image=%s&fanart=%s' % (sys.argv[0], str(action), urllib.quote_plus(url), urllib.quote_plus(image), urllib.quote_plus(fanart))
-    item = control.item(name, iconImage=mediaPath+image, thumbnailImage=mediaPath+image)
+    item = control.item(name, iconImage=image, thumbnailImage=image)
+    try: item.setArt({'icon': image})
+    except: pass
     item.addContextMenuItems([], replaceItems=False)
-    item.setProperty('Fanart_Image', mediaPath+fanart)
+    item.setProperty('Fanart_Image', fanart)
     control.addItem(handle=int(sys.argv[1]),url=u,listitem=item,isFolder=True)
 
 
@@ -213,14 +203,14 @@ def addDirectoryItem(name, url, thumb, image, fanart):
 
     u = '%s?action=radioResolve&name=%s&url=%s&image=%s&fanart=%s' % (sys.argv[0], urllib.quote_plus(name), urllib.quote_plus(url), urllib.quote_plus(image), urllib.quote_plus(fanart))
 
-    if not image.startswith('http://'): image = mediaPath+image
     meta = {'title': name, 'album': name, 'artist': name, 'comment': name}
 
     item = control.item(name, iconImage=image, thumbnailImage=image)
+    try: item.setArt({'icon': image})
+    except: pass
     item.setInfo(type='Music', infoLabels = meta)
     item.addContextMenuItems([], replaceItems=False)
-    item.setProperty('Fanart_Image', mediaPath+fanart)
-    #item.setProperty('IsPlayable', 'true')
+    item.setProperty('Fanart_Image', fanart)
     control.addItem(handle=int(sys.argv[1]),url=u,listitem=item,isFolder=False)
 
 
@@ -229,9 +219,11 @@ def endDirectory():
 
 
 def radioResolve(name, url, image):
-    if not image.startswith('http://'): image = mediaPath+image
+    url = radio1fmResolve(url)
     meta = {'title': name, 'album': name, 'artist': name, 'comment': name}
     item = control.item(path=url, iconImage=image, thumbnailImage=image)
+    try: item.setArt({'icon': image})
+    except: pass
     item.setInfo(type='Music', infoLabels = meta)
     control.player.play(url, item)
 

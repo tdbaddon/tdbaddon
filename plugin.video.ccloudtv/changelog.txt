@@ -1,3 +1,5 @@
+[b]1.4.5[/b]
+- Added servers, still some random instability. If you get a blank list, just click again and it should populate
 [b]1.4.4[/b]
 - Added code to randomize servers (Thanks CA)
 - Links added for iVue and Renegades TV for upcoming EPG support

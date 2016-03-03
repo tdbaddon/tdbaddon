@@ -28,8 +28,8 @@ from resources.lib.modules import client
 
 class source:
     def __init__(self):
-        self.domains = ['watch1080p.com', 'sefilmdk.com']
-        self.base_link = 'http://watch1080p.com'
+        self.domains = [base64.b64decode('d2F0Y2gxMDgwcC5jb20='), base64.b64decode('c2VmaWxtZGsuY29t')]
+        self.base_link = base64.b64decode('aHR0cDovL3dhdGNoMTA4MHAuY29t')
         self.watch_link = '/watch/%s/'
         self.search_link = 'aHR0cHM6Ly93d3cuZ29vZ2xlYXBpcy5jb20vY3VzdG9tc2VhcmNoL3YxZWxlbWVudD9rZXk9QUl6YVN5Q1ZBWGlVelJZc01MMVB2NlJ3U0cxZ3VubU1pa1R6UXFZJnJzej1maWx0ZXJlZF9jc2UmbnVtPTEwJmhsPWVuJmN4PTAxMjg0NjI0MTAwMTc0NDgzNzMwNzpia210NWhrb3ZsZyZnb29nbGVob3N0PXd3dy5nb29nbGUuY29tJnE9JXM='
 

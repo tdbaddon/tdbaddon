@@ -92,9 +92,9 @@ elif action == 'clearSearch':
     from resources.lib.indexers import phstreams
     phstreams.clearSearch()
 
-elif action == 'resolveUrl':
+elif action == 'playItem':
     from resources.lib.indexers import phstreams
-    phstreams.resolveUrl(url)
+    phstreams.playItem(url)
 
 elif action == 'openDialog':
     from resources.lib.modules import phdialogs
@@ -160,27 +160,13 @@ elif action == 'radio181fm':
     from resources.lib.indexers import phradios
     phradios.radio181fm(image, fanart)
 
-elif ('HH') in action:
-    from resources.lib.modules import control
-    mediaPath = control.addonInfo('path') + '/resources/lib/indexers/phhuddle.py'
-    print action
-    file = open(mediaPath, 'r')
-    getter = file.read()
-    file.close()
-    list = re.findall('(HH.+?\(url\))', getter)
-    for item in list:
-        test = 'phhuddle.'+ item
-        if item[:-5] == action:
-            from resources.lib.indexers import phhuddle
-            exec test       
-
-elif action == 'Kickinradio':
+elif action == 'kickinradio':
     from resources.lib.indexers import phradios
-    phradios.Kickinradio(image, fanart)
+    phradios.kickinradio(image, fanart)
 
-elif action == 'Kickinradiocats':
+elif action == 'kickinradiocats':
     from resources.lib.indexers import phradios
-    phradios.Kickinradiocats(url, image, fanart)
+    phradios.kickinradiocats(url, image, fanart)
 
 elif action == 'CartoonDirectory':
     from resources.lib.indexers import phtoons
@@ -214,6 +200,10 @@ elif action == 'ACsearch':
     from resources.lib.indexers import phtoons
     phtoons.ACsearch(url, image, fanart)
 
+elif action == 'AClast':
+    from resources.lib.indexers import phtoons
+    phtoons.AClast(url, image, fanart)
+
 elif action == 'ACcat':
     from resources.lib.indexers import phtoons
     phtoons.ACcat(url, image, fanart)
@@ -226,42 +216,6 @@ elif action == 'ACstream':
     from resources.lib.indexers import phtoons
     phtoons.ACstream(url)
 
-elif action == 'HuddleDirectory':
-    from resources.lib.indexers import phhuddle
-    phhuddle.HuddleDirectory()
-
-elif action == 'Huddle_Main':
-    from resources.lib.indexers import phhuddle
-    phhuddle.Huddle_Main(url, image, fanart)
-
-elif action == 'Archive_Main':
-    from resources.lib.indexers import phhuddle
-    phhuddle.Archive_Main(url, image, fanart)
-
-elif action == 'Play_Main':
-    from resources.lib.indexers import phhuddle
-    phhuddle.Play_Main(url)
-
-elif action == 'NBANFL_ARC':
-    from resources.lib.indexers import phhuddle
-    phhuddle.NBANFL_ARC(url, image, fanart)
-
-elif action == 'NHL_ARC':
-    from resources.lib.indexers import phhuddle
-    phhuddle.NHL_ARC(url, image, fanart)
-
-elif action == 'Huddle_Sites':
-    from resources.lib.indexers import phhuddle
-    phhuddle.Huddle_Sites(url, image, fanart)
-
-elif action == 'NBANFL_Stream':
-    from resources.lib.indexers import phhuddle
-    phhuddle.NBANFL_Stream(url, image, fanart)
-
-elif action == 'NHL_Stream':
-    from resources.lib.indexers import phhuddle
-    phhuddle.NHL_Stream(url)
-    
 elif action == 'nhlDirectory':
     from resources.lib.indexers import nhlcom
     nhlcom.nhlDirectory()

@@ -30,7 +30,7 @@ import xbmc
 
 addonPath = control.addonPath
 addonFanart = control.addonInfo('fanart')
-addonIcon = os.path.join(addonPath, 'resources/media/nhlcom/hockey.jpg')
+addonIcon = 'http://mecca.watchkodi.com/images/hockey.jpg'
 jarFile = os.path.join(addonPath, 'jars/FuckNeulionV2.jar')
 
 

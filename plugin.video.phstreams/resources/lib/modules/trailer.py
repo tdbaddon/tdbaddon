@@ -40,8 +40,14 @@ class trailer:
             url = self.worker(name, url)
             if url == None: return
 
-            item = control.item(path=url)
-            item.setProperty('IsPlayable', 'true')
+            title = control.infoLabel('listitem.title')
+            if title == '': title = control.infoLabel('listitem.label')
+            icon = control.infoLabel('listitem.icon')
+
+            item = control.item(path=url, iconImage=icon, thumbnailImage=icon)
+            try: item.setArt({'icon': icon})
+            except: pass
+            item.setInfo(type='Video', infoLabels = {'title': title})
             control.player.play(url, item)
         except:
             pass

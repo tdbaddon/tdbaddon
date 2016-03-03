@@ -31,6 +31,7 @@ from resources.lib.modules import workers
 from resources.lib.modules import views
 
 
+artPath = control.addonInfo('path') + '/resources/media/'
 phLink = 'http://mecca.watchkodi.com/phstreams.xml'
 phNews = 'http://mecca.watchkodi.com/news.xml'
 phSearch = 'http://%s/search/search.xml'
@@ -39,15 +40,16 @@ phTest = 'testings.xml'
 
 def getCategory():
     getDirectory('0', phLink, '0', '0', '0', '0', close=False)
-    addCategoryItem('VinMan FM', 'radioDirectory', 'radios.png')
-    addCategoryItem('Cartoon Crazy','CartoonDirectory','cartoon.png')
-    addCategoryItem('NHL', 'nhlDirectory', 'hockey.jpg')
-    addCategoryItem('News Updates', 'dmode&url=%s' % phNews, 'news.gif')
-    addCategoryItem(control.lang(30701).encode('utf-8'), 'openSettings', 'settings.png')
-    addCategoryItem(control.lang(30721).encode('utf-8'), 'downloader', 'downloader.png')
-    addCategoryItem(control.lang(30702).encode('utf-8'), 'search', 'search.png')
+    addCategoryItem('Radio Crazy', 'radioDirectory', 'http://mecca.watchkodi.com/images/radios.png')
+    addCategoryItem('Cartoon Crazy','CartoonDirectory','http://mecca.watchkodi.com/images/cartoon.png')
+    addCategoryItem('NHL', 'nhlDirectory', 'http://mecca.watchkodi.com/images/hockey.jpg')
+    addCategoryItem('News Updates', 'dmode&url=%s' % phNews, artPath + 'blazetameravAni.gif')
+    addCategoryItem(control.lang(30701).encode('utf-8'), 'openSettings', artPath + 'settings.png')
+    addCategoryItem(control.lang(30721).encode('utf-8'), 'downloader', artPath + 'downloader.png')
+    addCategoryItem(control.lang(30702).encode('utf-8'), 'search', artPath + 'search.png')
 
-    if phTest in control.listDir(control.dataPath)[1]: addCategoryItem('Testings', 'localDirectory', 'home.png')
+    if phTest in control.listDir(control.dataPath)[1]:
+        addCategoryItem('Testings', 'localDirectory', artPath + 'home.png')
 
     endCategory()
 
@@ -305,7 +307,7 @@ def getDirectory(name, url, audio, image, fanart, content, close=True, local=Fal
             if 'sublink' in url:
                 addDirectoryItem(name, url, 'subDirectory', image, image2, fanart2, '0', content, data, tvshow=tvshow, totalItems=totalItems, isFolder=True)
             else:
-                addDirectoryItem(name, url, 'resolveUrl', image, image2, fanart2, '0', content, data, totalItems=totalItems, isFolder=False)
+                addDirectoryItem(name, url, 'playItem', image, image2, fanart2, '0', content, data, totalItems=totalItems, isFolder=False)
         except:
             pass
 
@@ -375,7 +377,7 @@ def subDirectory(name, url, audio, image, fanart, tvshow, content):
     for i in range(0, len(match)):
         url = match[i]
         label = '%s %s %s' % (name, control.lang(30704).encode('utf-8'), str(i+1))
-        addDirectoryItem(label, url, 'resolveUrl', image, image, fanart, '0', content, data, isFolder=False)
+        addDirectoryItem(label, url, 'playItem', image, image, fanart, '0', content, data, isFolder=False)
 
     control.directory(int(sys.argv[1]), cacheToDisc=True)
 
@@ -545,7 +547,7 @@ def searchDirectory(query=None):
                     if 'sublink' in url:
                         addDirectoryItem(name, url, 'subDirectory', image, image, fanart2, '0', content, data, isFolder=True)
                     else:
-                        addDirectoryItem(name, url, 'resolveUrl', image, image, fanart2, '0', content, data, isFolder=False)
+                        addDirectoryItem(name, url, 'playItem', image, image, fanart2, '0', content, data, isFolder=False)
                 except:
                     pass
         except:
@@ -576,23 +578,23 @@ def resolveUrl(url, direct=True):
     except:
         pass
 
-
     try:
-        if not '.f4m'in url: raise Exception()
-        ext = url.split('?')[0].split('&')[0].split('|')[0].rsplit('.')[-1].replace('/', '').lower()
-        if not ext == 'f4m': raise Exception()
-        from resources.lib.modules.f4mproxy.F4mProxy import f4mProxyHelper
-        f4mlabel = cleantitle(control.infoLabel('listitem.label'))
-        f4micon = control.infoLabel('listitem.icon')
-        return f4mProxyHelper().playF4mLink(url, f4mlabel, None, None, '', f4micon)
+        if not url.startswith('rtmp'): raise Exception()
+        if len(re.compile('\s*timeout=(\d*)').findall(url)) == 0: url += ' timeout=10'
+        try: dialog.close()
+        except: pass
+        return url
     except:
         pass
 
 
     try:
-        if not url.startswith('rtmp'): raise Exception()
-        if len(re.compile('\s*timeout=(\d*)').findall(url)) == 0: url += ' timeout=10'
-        return playItem(url, dialog)
+        if not '.m3u8'in url: raise Exception()
+        ext = url.split('?')[0].split('&')[0].split('|')[0].rsplit('.')[-1].replace('/', '').lower()
+        if not ext == 'm3u8': raise Exception()
+        try: dialog.close()
+        except: pass
+        return url
     except:
         pass
 
@@ -608,6 +610,7 @@ def resolveUrl(url, direct=True):
             try: s += [(d, re.findall('self\.domains\s*=\s*\[(.+?)\]', open(os.path.join(path, d), 'r').read())[0].split(','))]
             except: pass
         s = [(i[0].replace('.py', ''), [x.replace('\'', '').replace('\"', '').strip() for x in i[1]]) for i in s]
+        s = [(i[0], [base64.b64decode(x.split('(')[-1].rsplit(')')[0]) if 'b64decode' in x else x for x in i[1]]) for i in s]
         s = [i[0] for i in s if any(x in domain for x in i[1])]
         if len(s) > 0: direct = False
 
@@ -677,7 +680,10 @@ def resolveUrl(url, direct=True):
             except:
                 pass
 
-        if not u == None: return playItem(u, dialog)
+        if not u == None:
+            try: dialog.close()
+            except: pass
+            return u
     except:
         pass
 
@@ -686,7 +692,10 @@ def resolveUrl(url, direct=True):
         import urlresolver
         if urlresolver.HostedMediaFile(url).valid_url() == True: direct = False
         u = urlresolver.HostedMediaFile(url=url).resolve()
-        if not u == False: return playItem(u, dialog)
+        if not u == False:
+            try: dialog.close()
+            except: pass
+            return u
     except:
         pass
 
@@ -705,24 +714,26 @@ def resolveUrl(url, direct=True):
 
         u = __import__('resources.lib.resolvers.%s' % s[0], globals(), locals(), ['object'], -1).resolve(url)
 
-        if not u == None: return playItem(u, dialog)
+        if not u == None:
+            try: dialog.close()
+            except: pass
+            return u
     except:
         pass
 
 
-    if direct == True: return playItem(url, dialog)
-
+    if direct == True: return url
 
     try: dialog.close()
     except: pass
 
-    return control.infoDialog(control.lang(30705).encode('utf-8'))
-
 
 def playItem(url, dialog=None):
     try:
-        try: dialog.close()
-        except: pass
+        url = resolveUrl(url)
+
+        if url == None:
+            return control.infoDialog(control.lang(30705).encode('utf-8'))
 
         meta = {}
         for i in ['title', 'originaltitle', 'tvshowtitle', 'year', 'season', 'episode', 'genre', 'rating', 'votes', 'director', 'writer', 'plot', 'tagline']:
@@ -732,8 +743,20 @@ def playItem(url, dialog=None):
         meta = dict((k,v) for k, v in meta.iteritems() if not v == '')
         if not 'title' in meta: meta['title'] = cleantitle(control.infoLabel('listitem.label'))
         icon = control.infoLabel('listitem.icon')
+        title = meta['title']
+
+        try:
+            if not '.f4m'in url: raise Exception()
+            ext = url.split('?')[0].split('&')[0].split('|')[0].rsplit('.')[-1].replace('/', '').lower()
+            if not ext == 'f4m': raise Exception()
+            from resources.lib.modules.f4mproxy.F4mProxy import f4mProxyHelper
+            return f4mProxyHelper().playF4mLink(url, title, None, None, '', icon)
+        except:
+            pass
 
         item = control.item(path=url, iconImage=icon, thumbnailImage=icon)
+        try: item.setArt({'icon': icon})
+        except: pass
         item.setInfo(type='Video', infoLabels = meta)
         control.player.play(url, item)
     except:
@@ -742,8 +765,9 @@ def playItem(url, dialog=None):
 
 def addCategoryItem(name, action, image, isFolder=True):
     u = '%s?action=%s' % (sys.argv[0], str(action))
-    image = control.addonInfo('path') + '/resources/media/phstreams/' + image
     item = control.item(name, iconImage=image, thumbnailImage=image)
+    try: item.setArt({'icon': image})
+    except: pass
     item.addContextMenuItems([], replaceItems=False)
     item.setProperty('Fanart_Image', control.addonInfo('fanart'))
     control.addItem(handle=int(sys.argv[1]),url=u,listitem=item,isFolder=isFolder)
@@ -809,7 +833,7 @@ def addDirectoryItem(name, url, action, image, image2, fanart, audio, content, d
 
 
     item = control.item(name, iconImage='DefaultFolder.png', thumbnailImage=image)
-    try: item.setArt({'poster': image2, 'tvshow.poster': image2, 'season.poster': image2, 'banner': image, 'tvshow.banner': image, 'season.banner': image})
+    try: item.setArt({'icon': image, 'poster': image2, 'tvshow.poster': image2, 'season.poster': image2, 'banner': image, 'tvshow.banner': image, 'season.banner': image})
     except: pass
     item.addContextMenuItems(cm, replaceItems=replaceItems)
     item.setProperty('Fanart_Image', fanart)

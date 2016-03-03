@@ -91,46 +91,12 @@ def addDownload(name, url, image, provider=None):
     if name in result:
         return control.infoDialog('Item Already In Your Queue', name)
 
-    try:
-        if not provider == None:
-            from resources.lib.sources import sources
-            url = sources().sourcesResolve(url, provider)
-            if url == None: raise Exception()
+    from resources.lib.indexers import phstreams
 
+    url = phstreams.resolveUrl(url)
 
-        #legacy issue, will be removed later
-        if 'afdah.org' in url and not '</source>' in url: url += '<source>afdah</source>'
-
-        if '</source>' in url:
-            source = re.compile('<source>(.+?)</source>').findall(url)[0]
-            url = re.compile('(.+?)<source>').findall(url)[0]
-
-            for i in ['_mv', '_tv', '_mv_tv']:
-                try: call = __import__('resources.lib.sources.%s%s' % (source, i), globals(), locals(), ['object'], -1).source()
-                except: pass
-
-            from resources.lib import sources ; d = sources.sources()
-
-            url = call.get_sources(url, d.hosthdfullDict, d.hostsdfullDict, d.hostlocDict)
-
-            if type(url) == list:
-                url = sorted(url, key=lambda k: k['quality'])
-                url = url[0]['url']
-
-            url = call.resolve(url)
-
-
-        from resources.lib import resolvers
-        url = resolvers.request(url)
-
-        if type(url) == list:
-            url = sorted(url, key=lambda k: k['quality'])
-            url = url[0]['url']
-
-        if url == None: raise Exception()
-    except:
+    if url == None:
         return control.infoDialog('Unplayable stream')
-        pass
 
     try:
         u = url.split('|')[0]
@@ -139,7 +105,7 @@ def addDownload(name, url, image, provider=None):
 
         ext = os.path.splitext(urlparse.urlparse(u).path)[1][1:].lower()
         if ext == 'm3u8': raise Exception()
-        #if not ext in ['mp4', 'mkv', 'flv', 'avi', 'mpg']: ext = 'mp4'
+        if not ext in ['mp4', 'mkv', 'flv', 'avi', 'mpg']: ext = 'mp4'
         dest = name + '.' + ext
 
         req = urllib2.Request(u, headers=headers)

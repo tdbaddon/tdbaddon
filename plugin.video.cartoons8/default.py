@@ -12,24 +12,23 @@ try:os.mkdir(datapath)
 except:pass
 file_var = open(xbmc.translatePath(os.path.join(datapath, 'cookie.lwp')), "a")
 cookie_file = os.path.join(os.path.join(datapath,''), 'cookie.lwp')
-base = 'http://cartoons8.tv'
+base = 'http://cartoons8.co'
 
 def CATEGORIES():
         open_url(base)
-        addDir('Top','http://cartoons8.tv/top/page/1',1,icon,fanart)
-	addDir('Top Movies','http://cartoons8.tv/search/page/1?s=movie',9,icon,fanart)
-	addDir('Top OVAs','http://cartoons8.tv/search/page/1?s=ova',9,icon,fanart)
-	addDir('Top Dubbed Anime','http://cartoons8.tv/search/page/1?s=dubbed',9,icon,fanart)
-	addDir('Top Subbed Anime','http://cartoons8.tv/search/page/1?s=subbed',9,icon,fanart)
+        addDir('Top Cartoons','http://cartoons8.co/top/page/1',1,icon,fanart)
+	#addDir('Top Movies','http://cartoons8.co/genres/movie/page/1',7,icon,fanart)
+	addDir('Top OVAs','http://cartoons8.co/search/page/1?s=ova',9,icon,fanart)
+	addDir('Top Dubbed Anime','http://cartoons8.co/search/page/1?s=dubbed',9,icon,fanart)
+	addDir('Top Subbed Anime','http://cartoons8.co/search/page/1?s=subbed',9,icon,fanart)
 	addDir('Cartoon List','http://cartoons8.co/list/page/1',5,icon,fanart)
-
-	addDir('Most Viewed','http://cartoons8.tv/most-viewed/page/1',1,icon,fanart)
-	addDir('New','http://cartoons8.tv/new/page/1',1,icon,fanart)
-	addDir('Genres','http://cartoons8.tv',6,icon,fanart)
-	addDir('TV Series','http://cartoons8.tv/series/page/1',1,icon,fanart)
-        addDir('Anime','http://cartoons8.tv/anime/page/1',1,icon,fanart)
-	addDir('Latest Updates','http://cartoons8.tv/latestupdate/page/1',4,icon,fanart)
-        addDir('Search','http://cartoons8.tv',8,icon,fanart) 
+	addDir('Most Viewed','http://cartoons8.co/most-viewed/page/1',1,icon,fanart)
+	addDir('New','http://cartoons8.co/new/page/1',1,icon,fanart)
+	addDir('Genres','http://cartoons8.co',6,icon,fanart)
+	addDir('TV Series','http://cartoons8.co/series/page/1',1,icon,fanart)
+        addDir('Anime','http://cartoons8.co/anime/page/1',1,icon,fanart)
+	addDir('Latest Updates','http://cartoons8.co/latestupdate/page/1',4,icon,fanart)
+        addDir('Search','http://cartoons8.co',8,icon,fanart) 
       
 def GETMOVIES(url,name):
         pagenum = url.split('page/')
@@ -39,6 +38,7 @@ def GETMOVIES(url,name):
         link = open_url(url)
         match=re.compile('<div class="thumbs"><a href="(.+?)"><img alt=".+?" title="(.+?)" src="(.+?)" /></a></div>').findall(link)
         for url, name, iconimage in match:
+                iconimage=iconimage+"|User-Agent=Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36&Cookie=%s"%getCookiesString()
                 name = cleanHex(name)
                 addDir(name,url,2,iconimage,fanart)
         try:
@@ -47,12 +47,17 @@ def GETMOVIES(url,name):
 
 def GETEPISODES(url,name,iconimage):
         link = open_url(url)
-        match=re.compile('<atitle="(.+?)" href="(.+?)">.+?</a>',re.DOTALL).findall(link)
+        match=re.compile('<a  title="(.+?)" href="(.+?)">.+?</a>',re.DOTALL).findall(link)
         match=list(reversed(match))
         for name, url in match:
-                name = cleanHex(name)
-                addLink(name,url,100,iconimage,fanart)
-        if len(match)==1:PLAYLINK(name,url)
+                if len(match)==1:
+                        PLAYLINK(name,url)
+                        quit()
+                else:
+                        
+
+                        name = cleanHex(name)
+                        addLink(name,url,100,iconimage,fanart)
 
 def GETLATEST(url,name):
 	pagenum = url.split('page/')
@@ -60,6 +65,7 @@ def GETLATEST(url,name):
         nextpage = curpage + 1
         nextpageurl = pagenum[0]+'page/'+str(nextpage)
         link = open_url(url)
+        link=link.replace('\n','')
         match=re.compile('<a style="float: left" title="" href=".+?">(.+?)&nbsp;.+?<a class="cartoon_ep" href="(.+?)">(.+?)</a></span>').findall(link)
         for name, url, episode in match:
                 name = cleanHex(name)+' - '+episode
@@ -75,12 +81,14 @@ def GETFULL(url,name):
         nextpage = curpage + 1
         nextpageurl = pagenum[0]+'page/'+str(nextpage)
         link = open_url(url)
+        link=link.replace('\n','')
         match=re.compile('<a style="float: left" title="" href="(.+?)">(.+?)</a>').findall(link)
         for url, name in match:
                 addDir(name,url,2,iconimage,fanart)
         try:
                 addDir('Next >> Page '+str(nextpage),nextpageurl,5,icon,fanart)
         except: pass
+
 
 def GETGENRES(url):
         link = open_url(url)
@@ -99,6 +107,7 @@ def GETCUSTCAT(url):
         link = open_url(url)
         match=re.compile('<img src="(.+?)".+?<a href="(.+?)".+?"title">(.+?)</span>',re.DOTALL).findall(link)
         for iconimage,url, name in match:
+                iconimage=iconimage+"|User-Agent=Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36&Cookie=%s"%getCookiesString()
                 addDir(name,url,2,iconimage,fanart)
 	try:
                 addDir('Next >> Page '+str(nextpage),nextpageurl,9,icon,fanart)
@@ -109,6 +118,7 @@ def GETGENREMOVIES(url):
         link = open_url(url)
         match=re.compile('<img src="(.+?)".+?<a href="(.+?)".+?"title">(.+?)</span>',re.DOTALL).findall(link)
         for iconimage,url, name in match:
+                iconimage=iconimage+"|User-Agent=Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36&Cookie=%s"%getCookiesString()
                 addDir(name,url,2,iconimage,fanart)  #
 	try:
                addDir('Next >> Page 2',pagenum+'/'+'2',10,icon,fanart)
@@ -118,10 +128,11 @@ def GETGENRENEXT(url):
 	pagenum = url.split('/')
 	curpage = int(pagenum[5])
 	nextpage = curpage + 1
-	nextpageurl = 'http://cartoons8.tv/genres/'+str(pagenum[4])+'/'+str(nextpage)
+	nextpageurl = 'http://cartoons8.co/genres/'+str(pagenum[4])+'/'+str(nextpage)
         link = open_url(url)
         match=re.compile('<img src="(.+?)".+?<a href="(.+?)".+?"title">(.+?)</span>',re.DOTALL).findall(link)
         for iconimage,url, name in match:
+                iconimage=iconimage+"|User-Agent=Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36&Cookie=%s"%getCookiesString()
                 addDir(name,url,2,iconimage,fanart)  
 	try:
                 addDir('Next >> Page '+str(nextpage),nextpageurl,10,icon,fanart)
@@ -134,8 +145,23 @@ def SEARCH():
     if keyboard.isConfirmed():
         search_entered = keyboard.getText().replace(' ','+')
     if len(search_entered)>1:
-        url = 'http://cartoons8.tv/search/page/1?s='+ search_entered
+        url = 'http://cartoons8.co/search/page/1?s='+ search_entered
         GETCUSTCAT(url)
+
+def getCookiesString():
+    cookieString=""
+    import cookielib
+    try:
+        cookieJar = cookielib.LWPCookieJar()
+        cookieJar.load(cookie_file,ignore_discard=True)
+        #print cookieJar
+        for index, cookie in enumerate(cookieJar):
+            cookieString+=cookie.name + "=" + cookie.value +";"
+    except: 
+        import sys,traceback
+        traceback.print_exc(file=sys.stdout)
+    #print 'cookieString',cookieString
+    return cookieString
         
 def PLAYLINK(name,url):
         link = open_url(url)
@@ -150,7 +176,7 @@ def PLAYLINK(name,url):
         ok=True
         liz=xbmcgui.ListItem(name, iconImage=icon,thumbnailImage=icon); liz.setInfo( type="Video", infoLabels={ "Title": name } )
         ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=url,listitem=liz)
-        xbmc.Player ().play(stream_url, liz, False)
+        xbmc.Player ().play(stream_url+"|User-Agent=Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36&Cookie=%s"%getCookiesString(), liz, False)
 
 def get_params():
         param=[]
@@ -188,24 +214,24 @@ def addLink(name,url,mode,iconimage,fanart,description=''):
         return ok
         
 def open_url(url):
-        try:
-            net.set_cookies(cookie_file)
-            link = cleanHex(net.http_GET(url).content)
-            link = link.replace('\n','').replace('  ','')
-            return link
-        except:
-          try:
-            cf.solve(url,cookie_file,wait=True)
-            net.set_cookies(cookie_file)
-            link = cleanHex(net.http_GET(url).content)
-            link = link.replace('\n','').replace('  ','')
-            return link
-          except:
-            cf.solve(url,cookie_file,wait=True)
-            net.set_cookies(cookie_file)
-            link = cleanHex(net.http_GET(url).content)
-            link = link.replace('\n','').replace('  ','')
-            return link  
+	try:
+	    net.set_cookies(cookie_file)
+	    link = net.http_GET(url).content
+	    link = cleanHex(link)
+	    return link
+	except:
+	  try:
+	    cf.solve(url,cookie_file,wait=True)
+	    net.set_cookies(cookie_file)
+	    link = net.http_GET(url).content
+	    link = cleanHex(link)
+	    return link
+	  except:
+	    cf.solve(url,cookie_file,wait=True)
+	    net.set_cookies(cookie_file)
+	    link = net.http_GET(url).content
+	    link = cleanHex(link)
+	    return link 
 
 def cleanHex(text):
     def fixup(m):

@@ -158,7 +158,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
-<addon id="plugin.video.cartoons8" name="Cartoons8" version="1.0.10" provider-name="MetalKettle">
+<addon id="plugin.video.cartoons8" name="Cartoons8" version="1.0.11" provider-name="MetalKettle">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.t0mm0.common" version="2.0.0"/>
@@ -175,7 +175,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 <addon id="plugin.video.ccloudtv"
        name="cCloud TV"
-       version="1.4.4"
+       version="1.4.5"
        provider-name="podgod, Coder Alpha">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -195,7 +195,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
   <extension point="xbmc.addon.metadata">
     <summary>All the best from cCloud TV</summary>
-    <description>cCloud is an open source cloud based social IPTV service. It is built by the community for the community, where streaming is just a click away. Just click, play and stream yup it's that simple. Just go to http://ccloudtv.org  and enjoy:) Please report any channels that are down here http://www.tiny.cc/reportchs
+    <description>cCloud is an open source cloud based social IPTV service. It is built by the community for the community, where streaming is just a click away. Just click, play and stream. Yes, it's that simple. Just go to http://ccloudtv.org  and enjoy:) Please report any channels that are down here http://www.tiny.cc/reportchs Users can now check servers status which can be found at http://ccloudtv.org/status
     </description>
 	<license>http://www.gnu.org/licenses/</license>
     <forum>http://ccloudtv.org/forum</forum>
@@ -690,7 +690,7 @@ http://kodilive.eu</description>
   </extension>
 </addon>
 
-<addon id="plugin.video.phstreams" name="Phoenix" version="2.8.8" provider-name="Blazetamer, lambda">
+<addon id="plugin.video.phstreams" name="Phoenix" version="2.8.9" provider-name="Blazetamer">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.pyxbmct" version="1.1.4" />
@@ -1126,7 +1126,7 @@ http://kodilive.eu</description>
   </extension>
 </addon>
 
-<addon id="plugin.video.xmovies8" name="XMovies8" version="1.1.2" provider-name="MetalKettle">
+<addon id="plugin.video.xmovies8" name="XMovies8" version="1.1.3" provider-name="MetalKettle">
   <requires>
     <import addon="script.module.simplejson" version="3.3.0"/>
     <import addon="xbmc.python" version="2.1.0"/>

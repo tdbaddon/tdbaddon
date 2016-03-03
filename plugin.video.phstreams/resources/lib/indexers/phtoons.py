@@ -21,24 +21,22 @@
 
 
 import xbmc
-import re,sys,urllib,urlparse,base64,urllib2
+import re,sys,urllib,urllib2,urlparse,base64
 from resources.lib.modules import control
 from resources.lib.modules import client
 from resources.lib.modules import cloudflare
 
 
-mediaPath = control.addonInfo('path') + '/resources/media/phtoons/'
-
-
 def CartoonDirectory():
-    addDirectoryItem('Cartoon Crazy', 'CartoonCrazy', '0', mediaPath+'CartoonCrazy-icon.png', mediaPath+'CartoonCrazy-fanart.jpg')
-    addDirectoryItem('Anime Crazy','AnimeCrazy', '0', mediaPath+'Anime-icon.png', mediaPath+'Anime-fanart.jpg')
+    addDirectoryItem('Cartoon Crazy', 'CartoonCrazy', '0', 'http://mecca.watchkodi.com/images/cartoons.png', 'http://mecca.watchkodi.com/images/cartoons_fanart.jpg')
+    addDirectoryItem('Anime Crazy','AnimeCrazy', '0', 'http://mecca.watchkodi.com/images/anime.png', 'http://mecca.watchkodi.com/images/anime_fanart.jpg')
     endCategory()
+
 
 
 def CartoonCrazy(image, fanart):
 
-    addDirectoryItem('[B]SEARCH[/B]', 'CCsearch', '0', mediaPath+'CCsearch.png', fanart, '')
+    addDirectoryItem('[B]SEARCH[/B]', 'CCsearch', '0', 'http://mecca.watchkodi.com/images/cartoons_search.png', fanart, '')
 
     try:
         url = 'http://kisscartoon.me/CartoonList/'
@@ -54,7 +52,7 @@ def CartoonCrazy(image, fanart):
 
     for item in items:
         try:
-            name = '[B]'+ item[7:] +'[/B]'
+            name = item[7:].upper()
             name = client.replaceHTMLCodes(name)
             name = name.encode('utf-8')
 
@@ -164,8 +162,6 @@ def CCpart(url, image, fanart):
 
 def CCstream(url):
     try:
-        control.idle()
-
         url = urlparse.urljoin('http://kisscartoon.me', url)
 
         result = cloudflare.request(url)
@@ -189,6 +185,8 @@ def CCstream(url):
             except:
                 pass
 
+        control.idle()
+
         if len(url) > 1:
             q = [i['q'] for i in url]
             u = [i['u'] for i in url]
@@ -203,78 +201,74 @@ def CCstream(url):
     except:
         return
 
-# ANIME CRAZY    
+
+  
 def AnimeCrazy(image, fanart):
-    thumb = mediaPath+'ACsearch.png'
-    try:
-        url = 'http://cartoons8.co/list/'
-        result = client.request(url)
-        items = client.parseDOM(result, 'div', attrs={'class': 'r_Content'})[0]
-        items = client.parseDOM(items, 'li')
-        
-        
-    except:
-        return
-    addDirectoryItem('[B]SEARCH[/B]','ACsearch',thumb, image, fanart, '')
-    for item in items:
-        
-        url = client.parseDOM(item, 'a', ret='href')[0]
-        url = client.replaceHTMLCodes(url)
-        url = url.encode('utf-8')
-      
-        name =client.parseDOM(item, 'a')[0]
-        name = name.replace('\n','').replace(' ','').upper()
-        name = client.replaceHTMLCodes(name)
-        
-        name = name.encode('utf-8')
-        addDirectoryItem(name, 'ACcat', image, image, fanart, url+'/?filter=newest&req=anime')
-        
-    endDirectory()    
-    
-    
 
-def ACcat(url, image, fanart):   
+    addDirectoryItem('[B]SEARCH[/B]', 'ACsearch', '0', 'http://mecca.watchkodi.com/images/anime_search.jpg', fanart, '')
+    addDirectoryItem('[B]LATEST[/B]', 'AClast', '0', 'http://mecca.watchkodi.com/images/anime_search.jpg', fanart, '')
 
     try:
+        url = 'http://www.animedreaming.tv/genres/'
+
         result = client.request(url)
-        items = client.parseDOM(result, 'div', attrs={'class': 'content-box'})
-        items = client.parseDOM(items, 'li', attrs={'class': 'list_ct'})
-       
+
+        items = client.parseDOM(result, 'ul', attrs={'class': 'genre_page_box'})[0]
+        items = client.parseDOM(items, 'li') 
     except:
         return
 
     for item in items:
         try:
-            name = client.parseDOM(item, 'span', attrs={'class': 'title'})[0]
-            name = '[B]'+name+'[/B]'
+            name =client.parseDOM(item, 'a')[0]
+            name = name.upper()
             name = client.replaceHTMLCodes(name)
             name = name.encode('utf-8')
-            
+
             url = client.parseDOM(item, 'a', ret='href')[0]
+            url = urlparse.urljoin('http://www.animedreaming.tv', url)
+            url = url.replace(' ','%20')
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
-            
-            thumb = client.parseDOM(item, 'img',ret='src')[0]
+
+            addDirectoryItem(name, 'ACcat', image, image, fanart, url+'/?filter=newest&req=anime')
+        except:
+            pass
+
+    endDirectory()    
+    
+
+def ACcat(url, image, fanart):   
+    try:
+        result = client.request(url)
+
+        items = client.parseDOM(result, 'div', attrs={'id': 'left_content'})[0]
+        items = client.parseDOM(items, 'li')
+    except:
+        return
+
+    for item in items:
+        try:
+            name = client.parseDOM(item, 'a')[0]
+            if '>Movie<' in name: raise Exception()
+            name = re.sub('<.+?>|</.+?>|\\\\|\n', '', name).strip()
+            name = client.replaceHTMLCodes(name)
+            name = name.encode('utf-8')
+
+            url = client.parseDOM(item, 'a', ret='href')[0]
+            url = urlparse.urljoin('http://www.animedreaming.tv', url)
+            url = url.replace(' ','%20')
+            url = client.replaceHTMLCodes(url)
+            url = url.encode('utf-8')
+
+            thumb = [i for i in url.split('/') if not i == ''][-1]
+            thumb = 'http://www.animedreaming.tv/anime-images-big/%s.jpg' % thumb
             thumb = thumb.encode('utf-8')
         
             addDirectoryItem(name, 'ACpart', thumb, image, fanart, url)
-            
         except:
             pass
-    
-    
-    thumb= mediaPath+'Anime-next.jpg'
-    try:
-        pager = client.parseDOM(result, 'div', attrs={'class': 'pageNav'})
-        next = client.parseDOM(pager, 'a')
-        number = len(next)
-        url = client.parseDOM(pager, 'a', ret='href')[number-1]
-        next = next[number-1].encode('utf-8')
-        if next == '&raquo;'or next == '2':addDirectoryItem('[I]NEXT[/I]', 'ACcat', thumb, image, fanart, url)
-        
-    except:
-        pass
-    
+
     movieCategory()
 
 
@@ -285,61 +279,155 @@ def ACsearch(url, image, fanart):
     if not keyboard.isConfirmed(): return
 
     search = keyboard.getText()
-    search = re.sub(r'\W+|\s+','-', search)
+    search = re.sub(r'\W+|\s+','+', search)
     if search == '': return
 
-    url = 'http://cartoons8.co/search/?s='+search
+    url = 'http://www.animedreaming.tv/search.php?searchquery='+search
     url = url.encode('utf-8')
-   
-    
+
     ACcat(url, image, fanart)
 
 
-def ACpart(url, image, fanart):
+def AClast(url, image, fanart):   
     try:
-       
+        url = 'http://www.animedreaming.tv/latest-anime-episodes/'
+
         result = client.request(url)
 
-        items = client.parseDOM(result, 'table', attrs={'class': 'listing'})
-        items = client.parseDOM(items, 'td')
-        items = zip(client.parseDOM(items, 'a', ret='href'), client.parseDOM(items, 'a'))
-
-        if len(items) == 1: return ACstream(items[0][0])
+        items = client.parseDOM(result, 'div', attrs={'id': 'left_content'})[0]
+        items = client.parseDOM(items, 'zi')
     except:
         return
 
-    for item in items[::-1]:
+    for item in items:
         try:
-            name = item[1]
-            name = name.replace('\n', '').replace('  ','')
+            name = client.parseDOM(item, 'a')[0]
+            if '>Movie<' in name: raise Exception()
+            name = re.sub('<.+?>|</.+?>|\\\\|\n', '', name).strip()
             name = client.replaceHTMLCodes(name)
             name = name.encode('utf-8')
 
-            url = item[0]
+            url = client.parseDOM(item, 'a', ret='href')[0]
+            url = urlparse.urljoin('http://www.animedreaming.tv', url)
+            url = url.replace(' ','%20')
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
-            print url
-            addDirectoryItem(name,'ACstream',image,image,fanart,url)
+
+            thumb = client.parseDOM(item, 'img', ret='src')[0]
+            thumb = urlparse.urljoin('http://www.animedreaming.tv', thumb)
+            thumb = thumb.replace(' ','%20')
+            thumb = client.replaceHTMLCodes(thumb)
+            thumb = thumb.encode('utf-8')
+
+            addDirectoryItem(name, 'ACstream', thumb, image, fanart, url)
         except:
             pass
 
     episodeCategory()
 
 
+def ACpart(url, image, fanart):
+    try:
+        result = client.request(url)
+
+        index = []
+        items = client.parseDOM(result, 'ul', attrs={'class': 'cat_page_box'})[-1]
+        items = client.parseDOM(items, 'li')
+    except:
+        return
+
+    for item in items[::-1]:
+        try:
+            name = client.parseDOM(item, 'a')[0]
+            name = re.sub('<.+?>|</.+?>|\\\\|\n', ' ', name).strip()
+            name = re.sub('Watch$', '', name).strip()
+            name = client.replaceHTMLCodes(name)
+            name = name.encode('utf-8')
+
+            url = client.parseDOM(item, 'a', ret='href')[0]
+            url = urlparse.urljoin('http://www.animedreaming.tv', url)
+            url = url.replace(' ','%20')
+            url = client.replaceHTMLCodes(url)
+            url = url.encode('utf-8')
+
+            index.append({'name': name, 'url': url})
+        except:
+            pass
+
+    if len(index) == 1: return ACstream(index[0]['url'])
+
+    for i in index: addDirectoryItem(i['name'], 'ACstream', image, image, fanart, i['url'])
+
+    episodeCategory()
+
+
 def ACstream(url):
     try:
-        control.idle()
+        import urlresolver
+
         result = client.request(url)
-        stage1 = re.compile('url: "(.+?)",').findall(result)[0]
-        stage1 = stage1.encode('utf-8')
-        stage2 = re.compile("data: '(.+?)',").findall(result)[0] 
-        results = urllib2.Request(stage1,stage2)
-        results.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36')
-        response = urllib2.urlopen(results)
-        link=response.read()
-        response.close()
-        url = re.compile('<a href="(.+?)" target="_blank" rel="nofollow">.+?</a>').findall(link)[-1]
-        player().run(url)
+
+        items = client.parseDOM(result, 'div', attrs = {'class': 'generic-video-item'})
+        items = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'span', attrs = {'class': 'type'})) for i in items]
+        items = [(i[0][0], i[1][0].lower()) for i in items if len(i[0]) > 0 and len(i[1]) > 0]
+
+
+        host = 'veevr'
+        pattern = '(?://|\.)(veevr.com)/(?:videos|embed)/([A-Za-z0-9]+)'
+        link = 'http://veevr.com/embed/%s'
+
+        try: url = [link % re.search(pattern, result).groups()[1]]
+        except: url = []
+        try: url += [i[0] for i in items if i[1] == host]
+        except: pass
+        for i in url:
+            try:
+                if 'animedreaming.' in i: i = link % re.search(pattern, client.request(i)).groups()[1]
+
+                u = client.request(i)
+                u = client.parseDOM(u, 'source', ret='src', attrs = {'type': 'video.+?'})[-1]
+                u = client.request(u, output='geturl')
+
+                r = int(urllib2.urlopen(u, timeout=15).headers['Content-Length'])
+                if r > 1048576: return player().run(u)
+            except:
+                pass
+
+
+        host = 'mp4upload'
+        pattern = '(?://|\.)(mp4upload\.com)/(?:embed-)?([0-9a-zA-Z]+)'
+        link = 'http://www.mp4upload.com/embed-%s.html'
+
+        try: url = [link % re.search(pattern, result).groups()[1]]
+        except: url = []
+        try: url += [i[0] for i in items if i[1] == host]
+        except: pass
+        for i in url:
+            try:
+                if 'animedreaming.' in i: i = link % re.search(pattern, client.request(i)).groups()[1]
+
+                u = urlresolver.HostedMediaFile(i).resolve()
+                if not u == False: return player().run(u)
+            except:
+                pass
+
+
+        host = 'engine'
+        pattern = '(?://|\.)(auengine\.com)/embed.php\?file=([0-9a-zA-Z\-_]+)[&]*'
+        link = 'http://www.auengine.com/embed.php?file=%s'
+
+        try: url = [link % re.search(pattern, result).groups()[1]]
+        except: url = []
+        try: url += [i[0] for i in items if i[1] == host]
+        except: pass
+        for i in url:
+            try:
+                if 'animedreaming.' in i: i = link % re.search(pattern, client.request(i)).groups()[1]
+
+                u = urlresolver.HostedMediaFile(i).resolve()
+                if not u == False: return player().run(u)
+            except:
+                pass
     except:
         return
 
@@ -349,6 +437,8 @@ def addDirectoryItem(name, action, thumb, image, fanart, url='0'):
     if thumb == '0': thumb = image
     u = '%s?action=%s&url=%s&image=%s&fanart=%s' % (sys.argv[0], str(action), urllib.quote_plus(url), urllib.quote_plus(thumb), urllib.quote_plus(fanart))
     item = control.item(name, iconImage=thumb, thumbnailImage=thumb)
+    try: item.setArt({'icon': thumb})
+    except: pass
     item.addContextMenuItems([], replaceItems=False)
     item.setProperty('Fanart_Image', fanart)
     control.addItem(handle=int(sys.argv[1]),url=u,listitem=item,isFolder=True)
@@ -379,9 +469,12 @@ class player(xbmc.Player):
         xbmc.Player.__init__(self)
 
     def run(self, url):
+        control.idle()
         title = control.infoLabel('ListItem.Label')
         image = control.infoLabel('ListItem.Icon')
         item = control.item(path=url, iconImage=image, thumbnailImage=image)
+        try: item.setArt({'icon': image})
+        except: pass
         item.setInfo(type='Video', infoLabels = {'title': title})
         control.player.play(url, item)
 

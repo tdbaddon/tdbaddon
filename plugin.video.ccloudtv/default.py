@@ -831,9 +831,12 @@ def get_params():
 ini = 'https://raw.githubusercontent.com/podgod/podgod/master/cCloud_TV_Guide/XML/combined.ini'
 List1 = 'YUhSMGNEb3ZMMnR2WkdrdVkyTnNaQzVwYnc9PQ=='.decode('base64') .decode('base64')
 List2 = 'YUhSMGNEb3ZMM2d1WTI4dlpHSmphREF4'.decode('base64') .decode('base64')
-List3 = 'YUhSMGNEb3ZMM1JwYm5rdVkyTXZaR0pqYUc4eQ=='.decode('base64') .decode('base64')
+List3 = 'YUhSMGNEb3ZMMkZwYnk1alkyeHZkV1IwZGk1dmNtY3ZhMjlrYVE9PQ=='.decode('base64') .decode('base64')
+List4 = 'YUhSMGNEb3ZMMmR2TW13dWFXNXJMMnR2WkdrPQ=='.decode('base64') .decode('base64')
+List5 = 'YUhSMGNEb3ZMM051YVhBdWJHa3ZhMjlrYVE9PQ=='.decode('base64') .decode('base64')
 
-CCLOUDTV_SRV_URL = [List1,List2,List3]
+
+CCLOUDTV_SRV_URL = [List1,List2,List3,List4,List5]
 
 ####################################################################################################
 # Gets the data and tests for a valid M3U since a 200 response code can still lead to an empty file 

@@ -10,8 +10,5 @@
 	<category label="30723">
 		<setting id="droid" type="bool" label="30724" default="false" />
 	</category>
-	<category label="30730">
-		<setting id="display_score" type="bool" label="30731" default="true" />
-	</category>
 </settings>
 
