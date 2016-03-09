@@ -41,7 +41,7 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 0
 
 #EXTINF:0,Film4 
-http://ipsatpro.com:8000/live/martin1/martin1/505.ts
+0
 
 #EXTINF:0,FilmBox 
 0
@@ -148,26 +148,14 @@ http://cp.dmbshare.net:8000/live/andy/andy/2795.ts
 #EXTINF:0,Sky Movies Action 
 http://cp.dmbshare.net:8000/live/andy/andy/2778.ts
 
-#EXTINF:0,Sky Movies Action 
-http://ipsatpro.com:8000/live/martin1/martin1/511.ts
-
 #EXTINF:0,Sky Movies Comedy 
 http://cp.dmbshare.net:8000/live/andy/andy/2783.ts
 
-#EXTINF:0,Sky Movies Comedy 
-http://ipsatpro.com:8000/live/martin1/martin1/524.ts
-
 #EXTINF:0,Sky Movies Crime 
-http://ipsatpro.com:8000/live/martin1/martin1/512.ts
+0
 
 #EXTINF:0,Sky Movies Disney 
 http://cp.dmbshare.net:8000/live/andy/andy/2782.ts
-
-#EXTINF:0,Sky Movies Disney 
-http://ipsatpro.com:8000/live/martin1/martin1/516.ts
-
-#EXTINF:0,Sky Movies Drama 
-http://ipsatpro.com:8000/live/martin1/martin1/521.ts
 
 #EXTINF:0,Sky Movies Family 
 http://cp.dmbshare.net:8000/live/andy/andy/2781.ts
@@ -175,23 +163,14 @@ http://cp.dmbshare.net:8000/live/andy/andy/2781.ts
 #EXTINF:0,Sky Movies Family 
 http://cp.dmbshare.net:8000/live/andy/andy/2743.ts
 
-#EXTINF:0,Sky Movies Family 
-http://ipsatpro.com:8000/live/martin1/martin1/520.ts
-
 #EXTINF:0,Sky Movies Horrors 
 0
 
 #EXTINF:0,Sky Movies Modern Greats 
 http://cp.dmbshare.net:8000/live/andy/andy/2742.ts
 
-#EXTINF:0,Sky Movies Modern Greats
-http://ipsatpro.com:8000/live/martin1/martin1/518.ts
-
 #EXTINF:0,Sky Movies Premiere 
 http://cp.dmbshare.net:8000/live/andy/andy/2775.ts
-
-#EXTINF:0,Sky Movies Premiere 
-http://ipsatpro.com:8000/live/martin1/martin1/519.ts
 
 #EXTINF:0,Sky Movies Premiere+
 0
@@ -202,14 +181,8 @@ http://cp.dmbshare.net:8000/live/andy/andy/2774.ts
 #EXTINF:0,Sky Movies SciFi 
 http://cp.dmbshare.net:8000/live/andy/andy/2769.ts
 
-#EXTINF:0,Sky Movies SciFi 
-http://ipsatpro.com:8000/live/martin1/martin1/515.ts
-
 #EXTINF:0,Sky Movies Select 
 http://cp.dmbshare.net:8000/live/andy/andy/2773.ts
-
-#EXTINF:0,Sky Movies Select 
-http://ipsatpro.com:8000/live/martin1/martin1/517.ts
 
 #EXTINF:0,Sky Movies Showcase
 http://cp.dmbshare.net:8000/live/andy/andy/2741.ts
@@ -239,7 +212,7 @@ http://cp.dmbshare.net:8000/live/andy/andy/2760.ts
 0
 
 #EXTINF:0,TCM 
-http://ipsatpro.com:8000/live/martin1/martin1/459.ts
+0
 
 #EXTINF:0,The Movie Channel
 0
@@ -265,14 +238,8 @@ http://63.237.48.23/ios/MBC2/MBC2.m3u8
 #EXTINF:0,True Movies 1 
 http://cp.dmbshare.net:8000/live/andy/andy/2756.ts
 
-#EXTINF:0,True Movies 1 
-http://ipsatpro.com:8000/live/martin1/martin1/472.ts
-
 #EXTINF:0,True Movies 2 
 http://cp.dmbshare.net:8000/live/andy/andy/2755.ts
-
-#EXTINF:0,True Movies 2 
-http://ipsatpro.com:8000/live/martin1/martin1/534.ts
 
 #EXTINF:0,TV 1000 
 0

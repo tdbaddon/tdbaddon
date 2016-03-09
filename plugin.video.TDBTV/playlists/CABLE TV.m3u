@@ -26,19 +26,10 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 http://89.163.148.31:8000/live/pierre/pierre/2752.ts
 
 #EXTINF:0,BBC 1 
-http://ipsatpro.com:8000/live/martin1/martin1/488.ts
-
-#EXTINF:0,BBC 1 
-http://37.220.108.122:20000/2
-
-#EXTINF:0,BBC 1 
 http://cp.dmbshare.net:8000/live/andy/andy/2752.ts
 
 #EXTINF:0,BBC 2 
-http://37.220.108.122:20000/3
-
-#EXTINF:0,BBC 2 
-http://ipsatpro.com:8000/live/martin1/martin1/487.ts
+0
 
 #EXTINF:0,BBC Entertainment 
 0
@@ -67,9 +58,6 @@ http://89.163.148.31:8000/live/pierre/pierre/2828.ts
 #EXTINF:0,Cartoon Network 
 http://cp.dmbshare.net:8000/live/andy/andy/2828.ts
 
-#EXTINF:0,Cartoon Network 
-http://ipsatpro.com:8000/live/martin1/martin1/522.ts
-
 #EXTINF:0,CBC TV 
 0
 
@@ -81,9 +69,6 @@ http://ipsatpro.com:8000/live/martin1/martin1/522.ts
 
 #EXTINF:0,CBS Action 
 http://cp.dmbshare.net:8000/live/andy/andy/2827.ts
-
-#EXTINF:0,CBS Action 
-http://ipsatpro.com:8000/live/martin1/martin1/481.ts
 
 #EXTINF:0,CBS Drama 
 http://top-iptv.zapto.org:8000/live/Aria/Aria/530.m3u8
@@ -97,14 +82,8 @@ http://cp.dmbshare.net:8000/live/andy/andy/2826.ts
 #EXTINF:0,CBS Drama 
 http://cp.dmbshare.net:8000/live/andy/andy/2744.ts
 
-#EXTINF:0,CBS Drama 
-http://ipsatpro.com:8000/live/martin1/martin1/482.ts
-
 #EXTINF:0,CBS Reality 
 http://cp.dmbshare.net:8000/live/andy/andy/2825.ts
-
-#EXTINF:0,CBS Reality 
-http://ipsatpro.com:8000/live/martin1/martin1/510.ts
 
 #EXTINF:0,CHCH Ontario
 0
@@ -123,9 +102,6 @@ http://89.163.148.31:8000/live/pierre/pierre/2822.ts
 
 #EXTINF:0,Comedy Central 
 http://cp.dmbshare.net:8000/live/andy/andy/2822.ts
-
-#EXTINF:0,Comedy Central 
-http://ipsatpro.com:8000/live/martin1/martin1/462.ts
 
 #EXTINF:0,Cooking Channel
 0
@@ -151,23 +127,14 @@ http://212.200.125.5:8199/199
 #EXTINF:0,Disney Channel 
 http://cp.dmbshare.net:8000/live/andy/andy/2815.ts
 
-#EXTINF:0,Disney Channel 
-http://ipsatpro.com:8000/live/martin1/martin1/492.ts
-
 #EXTINF:0,Disney Junior 
 http://89.163.148.31:8000/live/pierre/pierre/2814.ts
 
 #EXTINF:0,Disney Junior 
 http://cp.dmbshare.net:8000/live/andy/andy/2814.ts
 
-#EXTINF:0,Disney Junior 
-http://ipsatpro.com:8000/live/martin1/martin1/494.ts
-
 #EXTINF:0,Disney XD 
 http://89.163.148.31:8000/live/pierre/pierre/2815.ts
-
-#EXTINF:0,Disney XD 
-http://ipsatpro.com:8000/live/martin1/martin1/493.ts
 
 #EXTINF:0,DIY Network 
 0
@@ -179,19 +146,13 @@ http://ipsatpro.com:8000/live/martin1/martin1/493.ts
 0
 
 #EXTINF:0,E4 
-http://37.220.108.122:20000/8
-
-#EXTINF:0,E4 
 http://cp.dmbshare.net:8000/live/andy/andy/2810.ts
-
-#EXTINF:0,E4 
-http://ipsatpro.com:8000/live/martin1/martin1/451.ts
 
 #EXTINF:0,Family Channel 
 0
 
 #EXTINF:0,Fashion TV 
-http://edgeb.streaming.sk/fashiontv/fashiontv.stream/playlist.m3u8
+0
 
 #EXTINF:0,Fine Living Network 
 0
@@ -200,13 +161,7 @@ http://edgeb.streaming.sk/fashiontv/fashiontv.stream/playlist.m3u8
 http://llnw.live.simplestream.com/coder2/coder.channels.channel2/hls/3/playlist.m3u8
 
 #EXTINF:0,Food Network 
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/111.ts
-
-#EXTINF:0,Food Network 
 http://cp.dmbshare.net:8000/live/andy/andy/2804.ts
-
-#EXTINF:0,Food Network 
-http://ipsatpro.com:8000/live/martin1/martin1/495.ts
 
 #EXTINF:0,Fox 1 
 0
@@ -216,12 +171,6 @@ http://cp.dmbshare.net:8000/live/andy/andy/1758.ts
 
 #EXTINF:0,Fox Life 
 http://cp.dmbshare.net:8000/live/andy/andy/1759.ts
-
-#EXTINF:0,Fox TV
-http://188.165.142.253:8000/live/iptv-solution/Nu82sQvDdj/90.ts
-
-#EXTINF:0,Fox TV
-http://217.199.128.114:4022/udp/235.255.1.78:5614
 
 #EXTINF:0,Fox TV
 http://cp.dmbshare.net:8000/live/andy/andy/2803.ts
@@ -275,34 +224,16 @@ rtmp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:468p500kB31?b?b*t$
 http://ios.streamserver01.com:8080/ShowcaseTV/mystream.m3u8
 
 #EXTINF:0,ITV 1 
-http://37.220.108.122:20000/14
-
-#EXTINF:0,ITV 1 
-http://37.220.108.122:20000/15
-
-#EXTINF:0,ITV 1 
-http://37.220.108.122:20000/26
-
-#EXTINF:0,ITV 1 
-http://ipsatpro.com:8000/live/martin1/martin1/471.ts
+0
 
 #EXTINF:0,ITV 2 
-http://37.220.108.122:20000/16
-
-#EXTINF:0,ITV 3 
-http://37.220.108.122:20000/18
+0
 
 #EXTINF:0,ITV 3 
 http://cp.dmbshare.net:8000/live/andy/andy/2786.ts
 
-#EXTINF:0,ITV 3 
-http://ipsatpro.com:8000/live/martin1/martin1/470.ts
-
 #EXTINF:0,ITV 4 
-http://37.220.108.122:20000/17
-
-#EXTINF:0,ITV 4 
-http://ipsatpro.com:8000/live/martin1/martin1/468.ts
+0
 
 #EXTINF:0,Jim Jam 
 http://77.120.118.235:8089
@@ -314,7 +245,7 @@ rtmp://jtvmedia.jtv.com:1975/live playpath=live6 swfUrl=http://demandware.edgesu
 0
 
 #EXTINF:0,Lifetime Network 
-http://ipsatpro.com:8000/live/martin1/martin1/476.ts
+0
 
 #EXTINF:0,London Live 
 http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
@@ -323,13 +254,7 @@ http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
 0
 
 #EXTINF:0,More4 
-http://37.220.108.122:20000/24
-
-#EXTINF:0,More4 
-http://cp.dmbshare.net:8000/live/andy/andy/2749.ts
-
-#EXTINF:0,More4 
-http://ipsatpro.com:8000/live/martin1/martin1/504.ts
+0
 
 #EXTINF:0,My9 
 http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
@@ -339,9 +264,6 @@ http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
 
 #EXTINF:0,Nick 
 http://cp.dmbshare.net:8000/live/andy/andy/2748.ts
-
-#EXTINF:0,Nick 
-http://ipsatpro.com:8000/live/martin1/martin1/503.ts
 
 #EXTINF:0,Nick Jr 
 http://cp.dmbshare.net:8000/live/andy/andy/2791.ts
@@ -382,20 +304,11 @@ http://llnw.live.qvc.simplestream.com/hera/remote/qvcuk_primary_sdi8/3/prog_inde
 #EXTINF:0,Sky 1 
 http://cp.dmbshare.net:8000/live/andy/andy/2771.ts
 
-#EXTINF:0,Sky 1 
-http://ipsatpro.com:8000/live/martin1/martin1/475.ts
-
 #EXTINF:0,Sky 2 
-http://cp.dmbshare.net:8000/live/andy/andy/2759.ts
-
-#EXTINF:0,Sky 2 
-http://ipsatpro.com:8000/live/martin1/martin1/507.ts
+0
 
 #EXTINF:0,Sky Arts 1 
 http://cp.dmbshare.net:8000/live/andy/andy/2785.ts
-
-#EXTINF:0,Sky Arts 1 
-http://ipsatpro.com:8000/live/martin1/martin1/489.ts
 
 #EXTINF:0,Sky Arts 2 
 0
@@ -403,14 +316,8 @@ http://ipsatpro.com:8000/live/martin1/martin1/489.ts
 #EXTINF:0,Sky Atlantic
 http://cp.dmbshare.net:8000/live/andy/andy/2784.ts
 
-#EXTINF:0,Sky Atlantic
-http://ipsatpro.com:8000/live/martin1/martin1/483.ts
-
 #EXTINF:0,Sky Living 
 http://cp.dmbshare.net:8000/live/andy/andy/2780.ts
-
-#EXTINF:0,Sky Living 
-http://ipsatpro.com:8000/live/martin1/martin1/502.ts
 
 #EXTINF:0,Slice 
 0
@@ -424,9 +331,6 @@ http://ipsatpro.com:8000/live/martin1/martin1/502.ts
 #EXTINF:0,Syfy 
 http://cp.dmbshare.net:8000/live/andy/andy/2740.ts
 
-#EXTINF:0,Syfy 
-http://ipsatpro.com:8000/live/martin1/martin1/538.ts
-
 #EXTINF:0,TBS 
 0
 
@@ -434,7 +338,7 @@ http://ipsatpro.com:8000/live/martin1/martin1/538.ts
 0
 
 #EXTINF:0,TLC 
-http://ipsatpro.com:8000/live/martin1/martin1/455.ts
+0
 
 #EXTINF:0,TNT 
 0

@@ -29,28 +29,16 @@ http://89.163.148.31:8000/live/pierre/pierre/2834.ts
 0
 
 #EXTINF:0,Discovery Channel
-http://ipsatpro.com:8000/live/martin1/martin1/464.ts
-
-#EXTINF:0,Discovery History 
-http://top-iptv.zapto.org:8000/live/Aria/Aria/562.m3u8
-
-#EXTINF:0,Discovery History 
-http://top-iptv.zapto.org:8000/live/Aria/Aria/566.m3u8
+0
 
 #EXTINF:0,Discovery History 
 http://cp.dmbshare.net:8000/live/andy/andy/2812.ts
-
-#EXTINF:0,Discovery History 
-http://ipsatpro.com:8000/live/martin1/martin1/491.ts
 
 #EXTINF:0,Discovery H&H
 0
 
 #EXTINF:0,Discovery Max
 http://cp.dmbshare.net:8000/live/andy/andy/2813.ts
-
-#EXTINF:0,Discovery Max
-http://ipsatpro.com:8000/live/martin1/martin1/456.ts
 
 #EXTINF:0,Discovery News 
 0
@@ -64,14 +52,11 @@ http://cp.dmbshare.net:8000/live/andy/andy/2819.ts
 #EXTINF:0,Discovery Science 
 http://cp.dmbshare.net:8000/live/andy/andy/2818.ts
 
-#EXTINF:0,Discovery Science 
-http://ipsatpro.com:8000/live/martin1/martin1/526.ts
-
 #EXTINF:0,Discovery Theatre
 0
 
 #EXTINF:0,Discovery Turbo 
-http://ipsatpro.com:8000/live/martin1/martin1/465.ts
+0
 
 #EXTINF:0,Discovery World 
 0
@@ -90,9 +75,6 @@ https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8?hdnea=ip=174.113.
 
 #EXTINF:0,History Channel 
 http://link.theplatform.com/s/dtjsEC/chjdYJxKb44V?manifest=m3u&feed=History%20Live%20Stream%20Feed
-
-#EXTINF:0,History Channel 
-https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8?hdnea=ip=173.34.67.21~st=1448574469~exp=1448575069~acl=/i/History_1@156885*~id=e0ac8c7f-b7ae-431f-998a-d87493df48b7~hmac=1bf4b5f4382fd3f887da82e7bc44d93e3d92152b0d873acded129cad627e231e
 
 #EXTINF:0,History Channel 
 https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8
@@ -120,12 +102,6 @@ http://cp.dmbshare.net:8000/live/andy/andy/2792.ts
 
 #EXTINF:0,National Geographic 
 http://109.226.222.161:4022/udp/239.255.4.30:1234
-
-#EXTINF:0,National Geographic 
-http://95.191.236.176:1234/udp/225.54.41.6:5000
-
-#EXTINF:0,National Geographic
-http://95.191.236.176:1234/udp/225.54.41.6:5000
 
 #EXTINF:0,National Geographic
 http://cp.dmbshare.net:8000/live/andy/andy/2793.ts
@@ -161,10 +137,10 @@ http://rt-a.akamaihd.net/ch_05@325609/720p.m3u8
 0
 
 #EXTINF:0,Viasat Explorer 
-http://195.78.244.219:10000/udp/239.0.3.30:1234
+0
 
 #EXTINF:0,Viasat History 
-http://195.78.244.219:10000/udp/239.0.3.31:1234
+0
 
 #EXTINF:0,Viasat Nature 
-http://195.78.244.219:10000/udp/239.0.3.28:1234
+0
