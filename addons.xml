@@ -491,10 +491,11 @@ http://kodilive.eu</description>
   </extension>
 </addon>
 
-<addon id="plugin.video.mdhdmovie14" name="HD-Movie14" version="1.0.2" provider-name="Mucky Duck">
+<addon id="plugin.video.mdhdmovie14" name="HD-Movie14" version="1.0.3" provider-name="Mucky Duck">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.addon.common" />
+	<import addon="script.module.urlresolver"  version="2.8.0"/>
 	<import addon="script.module.metahandler" version="2.5.1"/>
 	<import addon="script.module.requests" />
 	<import addon="repository.mdrepo" />
@@ -510,7 +511,7 @@ http://kodilive.eu</description>
   </extension>
 </addon>
 
-<addon id="plugin.video.mdniter" name="niter" version="1.0.2" provider-name="Mucky Duck">
+<addon id="plugin.video.mdniter" name="niter" version="1.0.3" provider-name="Mucky Duck">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.urlresolver"  version="2.1.2"/>
@@ -776,7 +777,7 @@ http://kodilive.eu</description>
 	</extension>
 </addon>
 
-<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2016.02.28.9" provider-name="mrknow" >
+<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2016.03.05.1" provider-name="mrknow" >
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.requests" version="1.0.0" />
@@ -1026,7 +1027,7 @@ http://kodilive.eu</description>
 
 <addon id="plugin.video.uwc"
        name="Ultimate Whitecream"
-       version="1.0.91"
+       version="1.0.95"
        provider-name="mortael">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
@@ -1719,7 +1720,7 @@ http://kodilive.eu</description>
   </extension>
 </addon>
 
-<addon id="skin.TDBTouched-K" version="1.04" name="TDB Touched Kodi" provider-name="TDB">
+<addon id="skin.TDBTouched-K" version="1.05" name="TDB Touched Kodi" provider-name="TDB">
 	<requires>
 		<import addon="xbmc.gui" version="5.10.0"/>
 	</requires>

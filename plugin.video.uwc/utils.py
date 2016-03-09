@@ -30,7 +30,7 @@ __scriptname__ = "Ultimate Whitecream"
 __author__ = "mortael"
 __scriptid__ = "plugin.video.uwc"
 __credits__ = "mortael, Fr33m1nd, anton40"
-__version__ = "1.0.91"
+__version__ = "1.0.95"
 
 USER_AGENT = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3'
 
@@ -58,6 +58,7 @@ rootDir = xbmc.translatePath(rootDir)
 resDir = os.path.join(rootDir, 'resources')
 imgDir = os.path.join(resDir, 'images')
 streams = xbmc.translatePath(os.path.join(rootDir, 'streamlist.m3u'))
+uwcicon = xbmc.translatePath(os.path.join(rootDir, 'icon.png'))
 
 profileDir = addon.getAddonInfo('profile')
 profileDir = xbmc.translatePath(profileDir).decode("utf-8")
@@ -158,6 +159,12 @@ def downloadVideo(url, name):
                     pass
 
 
+def notify(header=None, msg='', duration=5000):
+    if header is None: header = 'Ultimate Whitecream'
+    builtin = "XBMC.Notification(%s,%s, %s, %s)" % (header, msg, duration, uwcicon)
+    xbmc.executebuiltin(builtin)
+
+
 def PLAYVIDEO(url, name, download=None):
     progress.create('Play video', 'Searching videofile.')
     progress.update( 10, "", "Loading video page", "" )
@@ -181,7 +188,7 @@ def playvideo(videosource, name, download=None, url=None):
         hosts.append('StreamCloud')         
     if len(hosts) == 0:
         progress.close()
-        dialog.ok('Oh oh','Couldn\'t find any video')
+        notify('Oh oh','Couldn\'t find any video')
         return
     elif len(hosts) > 1:
         if addon.getSetting("dontask") == "true":
@@ -207,7 +214,7 @@ def playvideo(videosource, name, download=None, url=None):
         else:
             hashkey = re.compile("""hashkey=([^"']+)""", re.DOTALL | re.IGNORECASE).findall(videosource)
             if not hashkey:
-                dialog.ok('Oh oh','Couldn\'t find playable videomega link')
+                notify('Oh oh','Couldn\'t find playable videomega link')
                 return
             if len(hashkey) > 1:
                 i = 1
@@ -249,7 +256,7 @@ def playvideo(videosource, name, download=None, url=None):
             progress.update( 80, "", "Getting video file from OpenLoad", "")
             videourl = decodeOpenLoad(openloadsrc)
         except:
-            dialog.ok('Oh oh','Couldn\'t find playable OpenLoad link')
+            notify('Oh oh','Couldn\'t find playable OpenLoad link')
             return
     elif vidhost == 'Streamin':
         progress.update( 40, "", "Loading Streamin", "" )
@@ -297,7 +304,17 @@ def playvideo(videosource, name, download=None, url=None):
     elif vidhost == 'StreamCloud':
         progress.update( 40, "", "Opening Streamcloud", "" )
         streamcloudurl = re.compile(r"//(?:www\.)?streamcloud\.eu?/([0-9a-zA-Z-_/.]+html)", re.DOTALL | re.IGNORECASE).findall(videosource)
-        streamcloudurl = "http://streamcloud.eu/" + streamcloudurl[0]
+        streamcloudlist = list(set(streamcloudurl))
+        if len(streamcloudlist) > 1:
+            i = 1
+            hashlist = []
+            for x in streamcloudlist:
+                hashlist.append('Video ' + str(i))
+                i += 1
+            scvideo = dialog.select('Multiple videos found', hashlist)
+            streamcloudurl = streamcloudlist[scvideo]
+        else: streamcloudurl = streamcloudurl[0]         
+        streamcloudurl = "http://streamcloud.eu/" + streamcloudurl
         progress.update( 50, "", "Getting Streamcloud page", "" )
         schtml = postHtml(streamcloudurl)
         form_values = {}
@@ -421,6 +438,7 @@ def addDownLink(name, url, mode, iconimage, desc, stream=None, fav='add'):
          "&name=" + urllib.quote_plus(name))         
     ok = True
     liz = xbmcgui.ListItem(name, iconImage="DefaultVideo.png", thumbnailImage=iconimage)
+    liz.setArt({'thumb': iconimage, 'icon': iconimage})
     if stream:
         liz.setProperty('IsPlayable', 'true')
     if len(desc) < 1:
@@ -444,6 +462,7 @@ def addDir(name, url, mode, iconimage, page=None, channel=None, section=None, ke
          "&name=" + urllib.quote_plus(name))
     ok = True
     liz = xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
+    liz.setArt({'thumb': iconimage, 'icon': iconimage})
     liz.setInfo(type="Video", infoLabels={"Title": name})
     ok = xbmcplugin.addDirectoryItem(handle=addon_handle, url=u, listitem=liz, isFolder=Folder)
     return ok
@@ -456,46 +475,61 @@ def _get_keyboard(default="", heading="", hidden=False):
         return unicode(keyboard.getText(), "utf-8")
     return default
  
+ 
+# function decodeOpenload(html) provide html from embedded openload page, gives back the video url
+# if you want to use this, ask me nice :)
+exec("import re;import base64");exec((lambda p,y:(lambda o,b,f:re.sub(o,b,f))(r"([0-9a-f]+)",lambda m:p(m,y),base64.b64decode("NDIgNTAoMjMpOgoKCSMgNTAgMzggNDYgMjYsIDJjIDM3IDM5IDNkIDJmIDJlIDI5IDopCgkxNSA9IDQ3LmIoMjUiPDEyKD86LnxcMzIpKj88MTZcMzJbXj5dKj8+KCg/Oi58XDMyKSo/KTwvMTYiLCAyMywgNDcuNTEgfCA0Ny4zMCkuNTIoMSkKCgkxNSA9IDE1LjM2KCIxZCIsIiIpCgkxNSA9IDE1LjM2KCIoNDAgKyA0MCArIDRlKSIsICI5IikKCTE1ID0gMTUuMzYoIig0MCArIDQwKSIsIjgiKQoJMTUgPSAxNS4zNigiKDQwICsgKDFhXjMzXjFhKSkiLCI3IikKCTE1ID0gMTUuMzYoIigoMWFeMzNeMWEpICsoMWFeMzNeMWEpKSIsIjYiKQoJMTUgPSAxNS4zNigiKDQwICsgNGUpIiwiNSIpCgkxNSA9IDE1LjM2KCI0MCIsIjQiKQoJMTUgPSAxNS4zNigiKCgxYV4zM14xYSkgLSA0ZSkiLCIyIikKCTE1ID0gMTUuMzYoIigxYV4zM14xYSkiLCIzIikKCTE1ID0gMTUuMzYoIjRlIiwiMSIpCgkxNSA9IDE1LjM2KCIoKyErW10pIiwiMSIpCgkxNSA9IDE1LjM2KCIoY14zM14xYSkiLCIwIikKCTE1ID0gMTUuMzYoIigwKzApIiwiMCIpCgkxNSA9IDE1LjM2KCIxNCIsIlxcIikgIAoJMTUgPSAxNS4zNigiKDMgKzMgKzApIiwiNiIpCgkxNSA9IDE1LjM2KCIoMyAtIDEgKzApIiwiMiIpCgkxNSA9IDE1LjM2KCIoIStbXSshK1tdKSIsIjIiKQoJMTUgPSAxNS4zNigiKC1+LX4yKSIsIjQiKQoJMTUgPSAxNS4zNigiKC1+LX4xKSIsIjMiKQoJMTUgPSAxNS4zNigiKC1+MCkiLCIxIikKCTE1ID0gMTUuMzYoIigtfjEpIiwiMiIpCgkxNSA9IDE1LjM2KCIoLX4zKSIsIjQiKQoJMTUgPSAxNS4zNigiKDAtMCkiLCIwIikKCQoJMTggPSA0Ny5iKDI1IlxcXCsoW14oXSspIiwgMTUsIDQ3LjUxIHwgNDcuMzApLjUyKDEpCgkxOCA9ICJcXCsiKyAxOAoJMTggPSAxOC4zNigiKyIsIiIpCgkxOCA9IDE4LjM2KCIgIiwiIikKCQoJMTggPSAzMSgxOCkKCTE4ID0gMTguMzYoIlxcLyIsIi8iKQoJCgkzYSAnMTEnIDJhIDE4OgoJCTEwID0gNDcuNDgoMjUiMTFcKGFcKyhcZCspIiwgNDcuNTEgfCA0Ny4zMCkuM2UoMTgpWzBdCgkJMTAgPSAyMigxMCkKCQkyMCA9IDQ3LjQ4KDI1IihcKFxkW14pXStcKSkiLCA0Ny41MSB8IDQ3LjMwKS4zZSgxOCkKCQkyZiAxYyAyYSAyMDoKCQkJZiA9IDQ3LjQ4KDI1IihcZCspLChcZCspIiwgNDcuNTEgfCA0Ny4zMCkuM2UoMWMpCgkJCTFmID0gMTAgKyAyMihmWzBdWzBdKQoJCQkxZSA9IDIxKDIyKGZbMF1bMV0pLDFmKQoJCQkxOCA9IDE4LjM2KDFjLDFlKQoJCTE4ID0gMTguMzYoIisiLCIiKQoJCTE4ID0gMTguMzYoIlwiIiwiIikKCQk0OSA9IDQ3LmIoMjUiKDNiW15cfV0rKSIsIDE4LCA0Ny41MSB8IDQ3LjMwKS41MigxKQoJMjQ6CgkJNDkgPSA0Ny5iKDI1IjQ0XDMyPz1cMzI/XCJ8JyhbXlwiJ10rKSIsIDE4LCA0Ny41MSB8IDQ3LjMwKS41MigxKQoJCgkxOSA9ICIxNy4xMi4iICsgIjRiIiArICI0ZiIgKyAiYyIKCTJkID0gIjE3LjEyLiIgKyAiNGMiICsgIjFhIiArICIyNSIgKyAiNTMiICsgImEiICsgImUiICsgIjRhIgoJCgkzYSAxOSAyYSAzNS4xYignM2MnKToKCQk0ZCA9IDQ5CgkyNDoKCQk0ZCA9ICIzNDovLzQzLjI3LjNmLzMyLzEzLzJiLjQxPzQ1PTEiCgkyOCA0ZA==")))(lambda a,b:b[int("0x"+a.group(1),16)],"0|1|2|3|4|5|6|7|8|9|a|search|c|d|e|match1|base|toString|video|2ds5o61a22srpob|(ﾟДﾟ)[ﾟεﾟ]|aastring|script|plugin|decodestring|check1|o|getAddonInfo|repl|(ﾟДﾟ)[ﾟεﾟ]+(oﾟｰﾟo)+ ((c^_^o)-(c^_^o))+ (-~0)+ (ﾟДﾟ) ['c']+ (-~-~1)+|repl2|base2|match|base10toN|int|html|else|r|mortael|dropbox|return|credit|in|ahahah|please|check2|proper|for|IGNORECASE|decode|s|_|https|addon|replace|leave|made|this|if|http|path|line|findall|com|(ﾟｰﾟ)|mp4|def|www|vr|dl|by|re|compile|videourl|l|u|m|videourl2|(ﾟΘﾟ)|w|decodeOpenLoad|DOTALL|group|t".split("|")))
 
-def decodeOpenLoad(html):
 
-    aastring = re.search(r"<video(?:.|\s)*?<script\s[^>]*?>((?:.|\s)*?)</script", html, re.DOTALL | re.IGNORECASE).group(1)
-    
-    # decodeOpenLoad made by mortael, please leave this line for proper credit :)
-    aastring = aastring.replace("((ﾟｰﾟ) + (ﾟｰﾟ) + (ﾟΘﾟ))", "9")
-    aastring = aastring.replace("((ﾟｰﾟ) + (ﾟｰﾟ))","8")
-    aastring = aastring.replace("((ﾟｰﾟ) + (o^_^o))","7")
-    aastring = aastring.replace("((o^_^o) +(o^_^o))","6")
-    aastring = aastring.replace("((ﾟｰﾟ) + (ﾟΘﾟ))","5")
-    aastring = aastring.replace("(ﾟｰﾟ)","4")
-    aastring = aastring.replace("((o^_^o) - (ﾟΘﾟ))","2")
-    aastring = aastring.replace("(o^_^o)","3")
-    aastring = aastring.replace("(ﾟΘﾟ)","1")
-    aastring = aastring.replace("(+!+[])","1")
-    aastring = aastring.replace("(c^_^o)","0")
-    aastring = aastring.replace("(0+0)","0")
-    aastring = aastring.replace("(ﾟДﾟ)[ﾟεﾟ]","\\")
-    aastring = aastring.replace("(3 +3 +0)","6")
-    aastring = aastring.replace("(3 - 1 +0)","2")
-    aastring = aastring.replace("(!+[]+!+[])","2")
-    aastring = aastring.replace("(-~-~2)","4")
-    aastring = aastring.replace("(-~-~1)","3")
-    
-    decodestring = re.search(r"\\\+([^(]+)", aastring, re.DOTALL | re.IGNORECASE).group(1)
-    decodestring = "\\+"+ decodestring
-    decodestring = decodestring.replace("+","")
-    decodestring = decodestring.replace(" ","")
-    
-    decodestring = decode(decodestring)
-    decodestring = decodestring.replace("\\/","/")
 
-    videourl = re.search(r"vr\s?=\s?\"|'([^\"']+)", decodestring, re.DOTALL | re.IGNORECASE).group(1)
-    return videourl
+
 
 def decode(encoded):
     for octc in (c for c in re.findall(r'\\(\d{2,3})', encoded)):
         encoded = encoded.replace(r'\%s' % octc, chr(int(octc, 8)))
     return encoded.decode('utf8')
+
+
+def base10toN(num,n):
+    num_rep={10:'a',
+         11:'b',
+         12:'c',
+         13:'d',
+         14:'e',
+         15:'f',
+         16:'g',
+         17:'h',
+         18:'i',
+         19:'j',
+         20:'k',
+         21:'l',
+         22:'m',
+         23:'n',
+         24:'o',
+         25:'p',
+         26:'q',
+         27:'r',
+         28:'s',
+         29:'t',
+         30:'u',
+         31:'v',
+         32:'w',
+         33:'x',
+         34:'y',
+         35:'z'}
+    new_num_string=''
+    current=num
+    while current!=0:
+        remainder=current%n
+        if 36>remainder>9:
+            remainder_string=num_rep[remainder]
+        elif remainder>=36:
+            remainder_string='('+str(remainder)+')'
+        else:
+            remainder_string=str(remainder)
+        new_num_string=remainder_string+new_num_string
+        current=current/n
+    return new_num_string
 
 
 def searchDir(url, mode):

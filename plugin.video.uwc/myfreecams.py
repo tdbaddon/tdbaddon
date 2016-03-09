@@ -75,5 +75,5 @@ def Playvid(url, name):
             listitem.setPath(str(videourl))
             xbmcplugin.setResolvedUrl(utils.addon_handle, True, listitem)
     else:
-        utils.dialog.ok('Oh oh','Couldn\'t find a playable webcam link')
+        utils.notify('Oh oh','Couldn\'t find a playable webcam link')
 

@@ -53,7 +53,7 @@ def List():
         xbmcplugin.endOfDirectory(utils.addon_handle)
     except:
         conn.close()
-        dialog.ok('No Favorites','No Favorites found')
+        utils.notify('No Favorites','No Favorites found')
         return
 
 
@@ -61,10 +61,10 @@ def Favorites(fav,mode,name,url,img):
     if fav == "add":
         delFav(url)
         addFav(mode, name, url, img)
-        dialog.ok('Favorite added','Video added to the favorites')
+        utils.notify('Favorite added','Video added to the favorites')
     elif fav == "del":
         delFav(url)
-        dialog.ok('Favorite deleted','Video removed from the list')
+        utils.notify('Favorite deleted','Video removed from the list')
         xbmc.executebuiltin('Container.Refresh')
 
 

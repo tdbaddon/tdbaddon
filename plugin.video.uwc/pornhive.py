@@ -114,7 +114,7 @@ def PHVideo(url, name, download=None):
         return
     else:
         progress.close()
-        utils.dialog.ok('Sorry','This host is not supported.')
+        utils.notify('Sorry','This host is not supported.')
         return
     progress.update( 90, "", "Playing video", "" )
     progress.close()

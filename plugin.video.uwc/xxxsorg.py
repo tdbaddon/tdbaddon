@@ -32,12 +32,12 @@ def Main():
  
 def List(url):
     html = utils.getHtml(url, '')
-    match = re.compile('<img src="([^"]+)"/>.+?<a href="([^"]+)" class="more-link">.+?<span class="screen-reader-text">([^"]+)</span>', re.DOTALL | re.IGNORECASE).findall(html)
+    match = re.compile('<div class="entry-content">.*?<img src="([^"]+)".*?<a href="([^"]+)" class="more-link">.+?<span class="screen-reader-text">([^"]+)</span>', re.DOTALL | re.IGNORECASE).findall(html)
     for img, videopage, name in match:
         name = utils.cleantext(name)
         utils.addDownLink(name, videopage, 422, img, '')
     try:
-        nextp = re.compile('<a class="nextpostslink" rel="next" href="(.+?)">', re.DOTALL | re.IGNORECASE).findall(html)
+        nextp = re.compile('<a class="next.*?href="(.+?)">', re.DOTALL | re.IGNORECASE).findall(html)
         utils.addDir('Next Page', nextp[0], 421,'')
     except: pass
     xbmcplugin.endOfDirectory(utils.addon_handle)

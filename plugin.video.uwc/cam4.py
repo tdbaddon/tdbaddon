@@ -43,7 +43,7 @@ def clean_database(showdialog=False):
                 except: pass
             conn.execute("DELETE FROM texture WHERE url LIKE '%%%s%%';" % ".systemcdn.net")
             if showdialog:
-                utils.dialog.ok('Finished','Cam4 images cleared')
+                utils.notify('Finished','Cam4 images cleared')
     except:
         pass
 

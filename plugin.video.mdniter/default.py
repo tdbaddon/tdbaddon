@@ -4,7 +4,7 @@ import requests
 from addon.common.addon import Addon
 from addon.common.net import Net
 from metahandler import metahandlers
-
+from lib import jsunpack
 #niter Add-on Created By Mucky Duck (12/2015)
 
 User_Agent = 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.89 Safari/537.36'
@@ -120,6 +120,56 @@ def PINDEX(url):
 def LINK(url):
         url1 = url
         link = OPEN_URL(url)
+        link = link.encode('ascii', 'ignore').decode('ascii')
+        try:
+                referer = url
+                try:
+                    RequestURL = re.search(r'emb=(.*?)&',link,re.I).group(1)
+                except:
+                    RequestURL = re.search(r'emb2=(.*?)&',link,re.I).group(1)
+
+                headers = {'Host': 'videomega.tv', 'Referer': referer, 'User-Agent': User_Agent}
+                link = requests.get(RequestURL, headers=headers).content
+                if jsunpack.detect(link): #1 these 3 lines taken from urlresolver
+                    js_data = jsunpack.unpack(link) #2
+                    match = re.search('"src"\s*,\s*"([^"]+)', js_data) #3
+                headers = {'Origin': 'videomega.tv', 'Referer': link, 'User-Agent': User_Agent}
+                url = match.group(1) + '|' + urllib.urlencode(headers)
+                liz = xbmcgui.ListItem(name, iconImage='DefaultVideo.png', thumbnailImage=iconimage)
+                liz.setInfo(type='Video', infoLabels={'Title':description})
+                liz.setProperty("IsPlayable","true")
+                liz.setPath(str(url))
+                xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
+        except:pass
+        try:
+                referer = url
+                RequestURL = 'http://niter.co/player/pk/pk/plugins/player_p2.php'
+                form_data = re.findall(r'ic=.*?&em.*?&(.*?)<', str(link), re.I|re.DOTALL)[0].replace('=','_')
+                form_data={'url':form_data}
+                headers = {'host': 'niter.co', 'content-type':'application/x-www-form-urlencoded; charset=UTF-8',
+                           'origin':'http://niter.co', 'referer': referer,
+                           'user-agent': User_Agent,'x-requested-with':'XMLHttpRequest'}
+                r = requests.post(RequestURL, data=form_data, headers=headers)
+                url = re.findall(r'"url":"(.*?)"', str(r.text), re.I|re.DOTALL)[-1]
+                headers = {'Host': 't.tusfiles.net', 'Referer': referer, 'User-Agent': User_Agent}
+                url = url + '|' + urllib.urlencode(headers)
+                liz = xbmcgui.ListItem(name, iconImage='DefaultVideo.png', thumbnailImage=iconimage)
+                liz.setInfo(type='Video', infoLabels={'Title':description})
+                liz.setProperty("IsPlayable","true")
+                liz.setPath(str(url))
+                xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
+        except:pass
+        try:
+                referer = url
+                url = re.findall(r'dir=(.*?)&', str(link), re.I|re.DOTALL)[0]
+                url = url + '|Referer:' + referer + '&User-Agent:' + User_Agent
+                liz = xbmcgui.ListItem(name, iconImage='DefaultVideo.png', thumbnailImage=iconimage)
+                liz.setInfo(type='Video', infoLabels={'Title':description})
+                liz.setProperty("IsPlayable","true")
+                liz.setPath(str(url))
+                xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
+        except: pass
+        
         try:
                 RequestURL = 'http://niter.co/player/pk/pk/plugins/player_p2.php'
                 try:

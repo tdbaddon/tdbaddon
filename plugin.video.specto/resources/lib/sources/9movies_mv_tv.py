@@ -68,6 +68,7 @@ class source:
     def ninemovies_cache(self):
         try:
             url = urlparse.urljoin(self.base_link, self.search_link)
+            control.log('>>>>>>>>>>>>---------- CACHE %s' % url)
 
             result = client.source(url)
             result = result.split('>Movies and TV-Shows<')[-1]
@@ -82,15 +83,17 @@ class source:
     def get_sources(self, url, hosthdDict, hostDict, locDict):
         try:
             sources = []
-
+            control.log('>>>>>>>>>>>>---------- %s' % url)
             if url == None: return sources
 
             try:
                 data = urlparse.parse_qs(url)
                 data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
+                control.log('>>>>>>>>>>>>---------- 1 - %s' % data)
 
                 title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
                 title = cleantitle.get(title)
+                control.log('>>>>>>>>>>>>---------- 1 - %s' % title)
 
                 url = cache.get(self.ninemovies_cache, 120)
 
@@ -133,7 +136,10 @@ class source:
 
             links = [urllib.urlencode({'hash_id': i[0], 'referer': url}) for i in result]
 
-            for i in links: sources.append({'source': 'gvideo', 'quality': quality, 'provider': '9movies', 'url': i})
+            for i in links:
+                sources.append({'source': 'gvideo', 'quality': quality, 'provider': '9movies', 'url': i})
+                control.log('>>>>>>>>>>>>---------- 1001 - %s' % i)
+
 
             try:
                 if not quality == 'HD': raise Exception()

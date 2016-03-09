@@ -1,8 +1,9 @@
 import sys,urllib,re,xbmcplugin,xbmcgui,xbmc,xbmcaddon,os,json
+import urlresolver
 import requests
 from addon.common.addon import Addon
-from addon.common.net import Net
 from metahandler import metahandlers
+from resources.lib.jsbeautifier.unpackers import packer
 
 #HD-Movie14 Add-on Created By Mucky Duck (1/2016)
 
@@ -17,7 +18,6 @@ metaset = selfAddon.getSetting('enable_meta')
 con_trailer = selfAddon.getSetting('enable_trailers')
 metaget = metahandlers.MetaData()
 baseurl = 'http://hdmovie14.net'
-net = Net()
 
 
 
@@ -86,22 +86,48 @@ def EPIS(url):
 
 
 
-def LINK(url):
+def LINK(name,url,iconimage):
+        if iconimage == None:
+                iconimage = icon
         link = OPEN_URL(url)
-        print url
-        RequestURL = baseurl+re.findall(r'<ifram.*?rc="(.*?)".*?>', str(link), re.I|re.DOTALL)[-1]
+        RequestURL = baseurl+re.findall(r'<ifram.*?rc="(.*?)" .*?>', str(link), re.I|re.DOTALL)[-1]
         headers = {'host': 'hdmovie14.net', 'referer': url, 'user-agent': User_Agent}
-        r = requests.get(RequestURL, headers=headers)
-        r = requests.get(RequestURL, headers=headers, cookies=r.cookies)
-        try:
-                url = re.compile('"url":"(.*?)"').findall(str(r.text))[-1]
-        except:
-                url = re.compile('"url":"(.*?)"').findall(str(r.text))[0]
-        liz = xbmcgui.ListItem(name, iconImage='DefaultVideo.png', thumbnailImage=iconimage)
-        liz.setInfo(type='Video', infoLabels={'Title':description})
-        liz.setProperty("IsPlayable","true")
-        liz.setPath(str(url))
-        xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
+        r = requests.get(RequestURL, headers=headers).text
+        RequestALT = baseurl+re.findall(r'console.log\("(.*?)"', str(r), re.I|re.DOTALL)[0]
+        r = requests.get(RequestALT).json()
+        items = len(r)
+        for url in r:
+                if 'google' in str(url):
+                        try:
+                                url = re.findall("'url': u'(.*?)'", str(url), re.I|re.DOTALL)[-1]
+                        except:
+                                url = re.findall("'url': u'(.*?)'", str(url), re.I|re.DOTALL)[0]
+                url = url.replace('-[W]x[H]','')
+                name2 = url.replace('http://','').replace('https://','').replace('lh3.','').replace('usercontent','').partition('.')[0]
+                if metaset=='true':
+                        addDir2('[B][COLOR white]%s[/COLOR][/B]' %name,url,100,iconimage,items)
+                else:
+                        addDir('[B][COLOR white]%s[/COLOR][/B]' %name,url,100,iconimage,fanart,'')
+
+
+
+
+#def LINK(url):
+        #link = OPEN_URL(url)
+        #print url
+        #RequestURL = baseurl+re.findall(r'<ifram.*?rc="(.*?)".*?>', str(link), re.I|re.DOTALL)[-1]
+        #headers = {'host': 'hdmovie14.net', 'referer': url, 'user-agent': User_Agent}
+        #r = requests.get(RequestURL, headers=headers)
+        #r = requests.get(RequestURL, headers=headers, cookies=r.cookies)
+        #try:
+                #url = re.compile('"url":"(.*?)"').findall(str(r.text))[-1]
+        #except:
+                #url = re.compile('"url":"(.*?)"').findall(str(r.text))[0]
+        #liz = xbmcgui.ListItem(name, iconImage='DefaultVideo.png', thumbnailImage=iconimage)
+        #liz.setInfo(type='Video', infoLabels={'Title':description})
+        #liz.setProperty("IsPlayable","true")
+        #liz.setPath(str(url))
+        #xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
 
 
 
@@ -143,6 +169,49 @@ def YEAR(url):
         for name,url in match:
                 if '/year/' in url:
                         addDir('[B][COLOR white]%s[/COLOR][/B]' %name,baseurl+url,1,icon,fanart,'')
+
+
+
+
+def RESOLVE(name,url):
+        if 'thevideos.tv' in url:
+                url = thevideos(url)
+        elif 'vidlocker.xyz' in url:
+                url = vidlocker(url)
+        elif 'google' in url:
+                url = url
+        else:
+                url = urlresolver.resolve(url)
+        liz = xbmcgui.ListItem(name, iconImage='DefaultVideo.png', thumbnailImage=iconimage)
+        liz.setInfo(type='Video', infoLabels={'Title':description})
+        liz.setProperty("IsPlayable","true")
+        liz.setPath(url)
+        xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
+
+
+
+def thevideos(url):
+        link = requests.get(url).text
+        script = re.findall("<script type='text/javascript'>(.*?)</script>", str(link), re.I|re.DOTALL)[0]
+        unpack = packer.unpack(script)
+        try:
+                url = re.findall('file:"(.*?)",label:".*?0p"', str(unpack), re.I|re.DOTALL)[-1]
+        except:
+                url = re.findall('file:"(.*?)",label:".*?0p"', str(unpack), re.I|re.DOTALL)[0]
+        return url
+
+
+
+
+def vidlocker(url):
+        headers = {}
+        headers['User-Agent'] = User_Agent
+        link = requests.get(url, headers=headers, allow_redirects=False)
+        try:
+            link = re.findall(r'sources: \[\{file:"(.*?)"', str(link.text), re.I|re.DOTALL)[-1]
+        except:
+            link = re.findall(r'sources: \[\Boot{file:"(.*?)"', str(link.text), re.I|re.DOTALL)[0]
+        return link
 
 
 
@@ -194,7 +263,7 @@ def addDir(name,url,mode,iconimage,fanart,description):
         liz=xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
         liz.setInfo( type="Video", infoLabels={ "Title": name,"Plot":description} )
         liz.setProperty('fanart_image', fanart)
-        if mode==3:
+        if mode==100:
             liz.setProperty("IsPlayable","true")
             ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=False)
         else:
@@ -235,14 +304,12 @@ def addDir2(name,url,mode,iconimage,itemcount):
         liz.setInfo( type="Video", infoLabels= meta )
         contextMenuItems = []
         if meta['trailer']:
-                        contextMenuItems.append(('Play Trailer', 'XBMC.RunPlugin(%s)' % addon.build_plugin_url({'mode': 8, 'url':meta['trailer']})))
-                        #name = name+' '+' [COLOR gold][B][Trailer Available][/B][/COLOR]'
-                        #meta['title'] = name 
+                contextMenuItems.append(('Play Trailer', 'XBMC.RunPlugin(%s)' % addon.build_plugin_url({'mode': 8, 'url':meta['trailer']})))
         contextMenuItems.append(('Movie Information', 'XBMC.Action(Info)'))
         liz.addContextMenuItems(contextMenuItems, replaceItems=False)
         if not meta['backdrop_url'] == '': liz.setProperty('fanart_image', meta['backdrop_url'])
         else: liz.setProperty('fanart_image', fanart)
-        if mode==3:
+        if mode==100:
             liz.setProperty("IsPlayable","true")
             ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=False,totalItems=itemcount)
         else:
@@ -361,7 +428,7 @@ elif mode==2:
         EPIS(url)
 
 elif mode==3:
-        LINK(url)
+        LINK(name,url,iconimage)
 
 elif mode==4:
         SEARCH()
@@ -377,5 +444,8 @@ elif mode==7:
 
 elif mode == 8:
         PT(url)
+
+elif mode == 100:
+        RESOLVE(name,url)
 
 xbmcplugin.endOfDirectory(int(sys.argv[1]))

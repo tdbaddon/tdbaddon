@@ -270,9 +270,11 @@ def log(msg, level=xbmc.LOGNOTICE):
         if isinstance(msg, unicode):
             msg = msg.encode('utf-8')
 
-        xbmc.log('[SPECTO]: %s' % (msg), level)
+        #xbmc.log('[SPECTO]: %s' % (msg), level)
     except Exception as e:
-        try: xbmc.log('Logging Failure: %s' % (e), level)
+        try:
+            #xbmc.log('Logging Failure: %s' % (e), level)
+            a=1
         except: pass  # just give up
 
 def randomagent():
@@ -295,7 +297,7 @@ def googletag(url):
     quality += re.compile('=m(\d*)$').findall(url)
     try: quality = quality[0]
     except: return []
-
+    control.log('<><><><><><><><><><><><> %s <><><><><><><><><>' % quality)
     if quality in ['37', '137', '299', '96', '248', '303', '46']:
         return [{'quality': '1080p', 'url': url}]
     elif quality in ['22', '84', '136', '298', '120', '95', '247', '302', '45', '102']:

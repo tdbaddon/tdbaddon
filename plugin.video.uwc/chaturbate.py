@@ -127,7 +127,7 @@ def clean_database(showdialog=False):
                 except: pass
             conn.execute("DELETE FROM texture WHERE url LIKE '%%%s%%';" % ".highwebmedia.com")
             if showdialog:
-                utils.dialog.ok('Finished','Chaturbate images cleared')
+                utils.notify('Finished','Chaturbate images cleared')
     except:
         pass
 
@@ -151,5 +151,5 @@ def Playvid(url, name):
             listitem.setPath(str(videourl))
             xbmcplugin.setResolvedUrl(utils.addon_handle, True, listitem)
     else:
-        utils.dialog.ok('Oh oh','Couldn\'t find a playable webcam link')
+        utils.notify('Oh oh','Couldn\'t find a playable webcam link')
 

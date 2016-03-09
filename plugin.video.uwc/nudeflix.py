@@ -58,6 +58,7 @@ def NFScenes(url):
     scenecount = 1
     for img, sceneurl, desc in match:
         name = 'Scene ' + str(scenecount)
+        sceneurl = sceneurl.replace("&amp;","&")
         scenecount = scenecount + 1
         utils.addDownLink(name, sceneurl, 43, img, desc)        
     xbmcplugin.endOfDirectory(utils.addon_handle)

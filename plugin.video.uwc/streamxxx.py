@@ -28,9 +28,9 @@ def Main():
     utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://streamxxx.tv/', 177, '', '')
     utils.addDir('[COLOR hotpink]Tags[/COLOR]','http://streamxxx.tv/', 173, '', '')
     utils.addDir('[COLOR hotpink]Search Overall[/COLOR]','http://streamxxx.tv/?s=', 174, '', '')
-    utils.addDir('[COLOR hotpink]Search Scenes[/COLOR]','http://streamxxx.tv/?cat=1981&s=', 174, '', '')
-    utils.addDir('[COLOR hotpink]Movies[/COLOR]','http://streamxxx.tv/category/movies/', 175, '', '')
-    utils.addDir('[COLOR hotpink]International Movies[/COLOR]','http://streamxxx.tv/category/movies/international-movies/', 176, '', '')
+    utils.addDir('[COLOR hotpink]Search Scenes[/COLOR]','http://streamxxx.tv/?cat=2210&s=', 174, '', '')
+    utils.addDir('[COLOR hotpink]Movies[/COLOR]','http://streamxxx.tv/category/movies-xxx/', 175, '', '')
+    utils.addDir('[COLOR hotpink]International Movies[/COLOR]','http://streamxxx.tv/category/movies-xxx/international-movies/', 176, '', '')
     List('http://streamxxx.tv/category/clips/')
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
@@ -38,10 +38,10 @@ def Main():
 def MainMovies():
     utils.addDir('[COLOR hotpink]Tags[/COLOR]','http://streamxxx.tv/', 173, '', '')
     utils.addDir('[COLOR hotpink]Search Overall[/COLOR]','http://streamxxx.tv/&s=', 174, '', '')
-    utils.addDir('[COLOR hotpink]Search Movies[/COLOR]','http://streamxxx.tv/?cat=41&s=', 174, '', '')
-    utils.addDir('[COLOR hotpink]International Movies[/COLOR]','http://streamxxx.tv/category/movies/international-movies/', 176, '', '')
+    utils.addDir('[COLOR hotpink]Search Movies[/COLOR]','http://streamxxx.tv/?cat=2207&s=', 174, '', '')
+    utils.addDir('[COLOR hotpink]International Movies[/COLOR]','http://streamxxx.tv/category/movies-xxx/international-movies/', 176, '', '')
     utils.addDir('[COLOR hotpink]Scenes[/COLOR]','http://streamxxx.tv/category/clips/', 170, '', '')
-    List('http://streamxxx.tv/category/movies/')
+    List('http://streamxxx.tv/category/movies-xxx/')
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 

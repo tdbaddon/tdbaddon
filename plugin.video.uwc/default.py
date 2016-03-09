@@ -23,7 +23,7 @@ import utils, hdporn, porntrex, nudeflix, hentaicraving, watchxxxfree, xtheatre,
 import elreyx, thepornnation, xvideospanish, pelisxporno, hqporner, videomegaporn, streamxxx, yourfreetube
 import xtasie, streampleasure, chaturbate, playporn, pornkino, justporn, hdzog, cat3movie, tubepornclassic, paradisehill
 import freeomovie, hclips, pornhub, mrsexe, erotik, favorites, myfreecams, cam4, porndig, absoluporn, czechhd, xxxstreams
-import xxxsorg, eroticage
+import xxxsorg, eroticage, anybunny
 
 socket.setdefaulttimeout(60)
 
@@ -103,6 +103,7 @@ def INDEXT():
     utils.addDir('[COLOR hotpink]Porndig[/COLOR] [COLOR white]Professional[/COLOR]','http://www.porndig.com',290,os.path.join(imgDir, 'porndig.png'),'')
     utils.addDir('[COLOR hotpink]Porndig[/COLOR] [COLOR white]Amateurs[/COLOR]','http://www.porndig.com',290,os.path.join(imgDir, 'porndig.png'),'')
     utils.addDir('[COLOR hotpink]AbsoluPorn[/COLOR]','http://www.absoluporn.com/en/',300,os.path.join(imgDir, 'absoluporn.gif'),'')
+    utils.addDir('[COLOR hotpink]Anybunny[/COLOR]','http://anybunny.com/',320,os.path.join(imgDir, 'anybunny.png'),'')    
     xbmcplugin.endOfDirectory(utils.addon_handle)
     
 def INDEXW():
@@ -364,6 +365,12 @@ elif mode == 311: czechhd.List(url)
 elif mode == 312: czechhd.Playvid(url, name, download)
 elif mode == 313: czechhd.Categories(url)
 elif mode == 314: czechhd.Search(url, keyword)
+elif mode == 320: anybunny.Main()
+elif mode == 321: anybunny.List(url)
+elif mode == 322: anybunny.Playvid(url, name, download)
+elif mode == 323: anybunny.Categories(url)
+elif mode == 324: anybunny.Search(url, keyword)
+elif mode == 325: anybunny.Categories2(url)
 elif mode == 330: pornkino.Main()
 elif mode == 331: pornkino.List(url)
 elif mode == 332: pornkino.Playvid(url, name, download)
