@@ -22,7 +22,7 @@ def retrieveVideoInfo(video_id):
     video.set_video_host(getVideoHost())
     video.set_id(video_id)
     try:
-        video_link = 'http://tvlogy.com/watch.php?v=' + str(video_id)
+        video_link = 'http://tvlogy.to/watch.php?v=' + str(video_id)
         html = http.HttpClient().get_html_content(url=video_link)
         video_link = re.compile("file: '(.+?)',").findall(html)[0]
         logging.debug('get video info: ' + video_link)

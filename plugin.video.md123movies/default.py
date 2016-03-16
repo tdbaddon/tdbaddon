@@ -1,1 +1,431 @@
-exec("import re;import base64");exec((lambda p,y:(lambda o,b,f:re.sub(o,b,f))(r"([0-9a-f]+)",lambda m:p(m,y),base64.b64decode("NzQgMjksNDYsNTMsMmIsNjksOTAsZTQKNzQgNmYKZWEgMzMuYmEuMzMgNzQgYTcKZWEgMzMuYmEuZmIgNzQgZjgKCiMxM2UgMTBlIDEyNiAoMTIvMTE3KQoKNDM9J2Y5LjExMi5jMycKOGYgPSA5MC5hNyhjNz00MykKMzMgPSBhNyg0MywgMjguMTcpCjEwNSA9IDY5LjUwKGU0LmI3LmMyKCc3ZDovL2MwLzk2LycgKyA0MyArICcvZDUvMTA1LycpKQplID0gNjkuNTAoZTQuYjcuYzIoJzdkOi8vYzAvOTYvJyArIDQzLCAnZS41NycpKQoxNDUgPSA2OS41MChlNC5iNy5jMignN2Q6Ly9jMC85Ni8nICsgNDMgLCAnMTQ1LjEyZScpKQo0ZSA9ICdlZS81LjAgKGYxIDE0MyAxMC4wOyAxMGYpIGM2L2YzLjM2ICgxMGQsIDExZSAxMGIpIGYyLzQxLjAuMTFjLjg5IGZkL2YzLjM2JwpiMCA9IDhmLmM5KCdiYycpCjJkID0gJzU0Oi8vMzUuOWUnCmZiID0gZjgoKQoKM2MgMTAwKCk6CgkxMzYoJ1tiXVs4YiBkXTczIDliWy84Yl1bL2JdJywyZCsnL2MvMTA2L2MvOWQvZmUvZmUvZmUvZmUvZmUnLDEsZSwxNDUsJycpCgkxMzYoJ1tiXVs4YiBkXTczIGFiWy84Yl1bL2JdJywyZCsnL2MvMTA2L2MvYjYvZmUvZmUvZmUvZmUvZmUnLDEsZSwxNDUsJycpCgkxMzYoJ1tiXVs4YiBkXTczIGIxWy84Yl1bL2JdJywyZCsnL2MvMTA2L2MvNjgvZmUvZmUvZmUvZmUvZmUnLDEsZSwxNDUsJycpCgkxMzYoJ1tiXVs4YiBkXTEwMiBkZVsvOGJdWy9iXScsMmQrJy9jLzEwNi9jLzkxL2ZlL2ZlL2ZlL2ZlL2ZlJywxLGUsMTQ1LCcnKQoJMTM2KCdbYl1bOGIgZF1hY1svOGJdWy9iXScsMmQrJy9jLzEwNi9mZScsMTAsZSwxNDUsJycpCgkxMzYoJ1tiXVs4YiBkXWJkWy84Yl1bL2JdJywnMTNkJyw4LGUsMTQ1LCcnKQoJMTM2KCdbYl1bOGIgZF1iOVsvOGJdWy9iXScsMmQrJy9jLzEwNi9jLzExOS9mZS9mZS9mZS9mZS9mZScsMSxlLDE0NSwnJykKCTEzNignW2JdWzhiIGRdY2ZbLzhiXVsvYl0nLDJkKycvYy8xMDYvZmUnLDksZSwxNDUsJycpCgkxMzYoJ1tiXVs4YiBkXWRmWy84Yl1bL2JdJywyZCsnL2MvMTA2L2ZlJywxMSxlLDE0NSwnJykKCTNkIGIwID09ICc0Nyc6CgkJMTM2KCdbYl1bOGIgZF0xMDFbLzhiXVsvYl0nLCcxM2QnLDQsZSwxNDUsJycpCgozYyAxMDEoKToKCTEzNignW2JdWzhiIGRdNzMgOWJbLzhiXVsvYl0nLDJkKycvYy8xMDYvMWQvOWQvZmUvZmUvZmUvZmUvZmUnLDIsZSwxNDUsJycpCgkxMzYoJ1tiXVs4YiBkXTczIGFiWy84Yl1bL2JdJywyZCsnL2MvMTA2LzFkL2I2L2ZlL2ZlL2ZlL2ZlL2ZlJywyLGUsMTQ1LCcnKQoJMTM2KCdbYl1bOGIgZF03MyBiMVsvOGJdWy9iXScsMmQrJy9jLzEwNi8xZC82OC9mZS9mZS9mZS9mZS9mZScsMixlLDE0NSwnJykKCTEzNignW2JdWzhiIGRdMTAyIGRlWy84Yl1bL2JdJywyZCsnL2MvMTA2LzFkLzkxL2ZlL2ZlL2ZlL2ZlL2ZlJywyLGUsMTQ1LCcnKQoJMTM2KCdbYl1bOGIgZF1hY1svOGJdWy9iXScsMmQrJy9jLzEwNi8xZCcsMTAsZSwxNDUsJycpCgkxMzYoJ1tiXVs4YiBkXWJkWy84Yl1bL2JdJywnMTNkJyw4LGUsMTQ1LCcnKQoJMTM2KCdbYl1bOGIgZF1iOVsvOGJdWy9iXScsMmQrJy9jLzEwNi8xZC8xMTkvZmUvZmUvZmUvZmUvZmUnLDIsZSwxNDUsJycpCgkxMzYoJ1tiXVs4YiBkXWNmWy84Yl1bL2JdJywyZCsnL2MvMTA2LzFkJyw5LGUsMTQ1LCcnKQoJMTM2KCdbYl1bOGIgZF1kZlsvOGJdWy9iXScsMmQrJy9jLzEwNi8xZCcsMTEsZSwxNDUsJycpCgozYyBkMygxM2QpOgoJN2IgPSAxYygxM2QpCgk3YiA9IDdiLjQ4KCcxM2InLCAnNGEnKQoJNWY9NDYuMTQoJzxkMCA1Nj0iMTEwLWY3IiBhNT0iKC4qPykiIDEzOT0iLio/IlwxMzMuKj8xZT0iOWYiID4oLio/KTwvYTY+JykuMTQ0KDdiKSAKCTc1IDI0LDEzOSA0YiA1ZjoKCQkxMzkgPSAxMzkuOGEoJyAnLCcnKQoJCTNkICcvMWQnIDRiIDEzZDoKCQkJMjQgPSAyZCArICcvYy8xMDYvMWQvMTE5LycrMjQrJy9mZS9mZS9mZS9mZScKCQkJMTM2KCdbYl1bOGIgZF0lYTNbLzhiXVsvYl0nICUxMzksMjQsMixlLDE0NSwnJykKCQkzZToKCQkJMjQgPSAyZCArICcvYy8xMDYvYy8xMTkvJysyNCsnL2ZlL2ZlL2ZlL2ZlJwoJCQkxMzYoJ1tiXVs4YiBkXSVhM1svOGJdWy9iXScgJTEzOSwyNCwxLGUsMTQ1LCcnKQoKM2MgYWYoMTNkKToKCTdiID0gMWMoMTNkKQoJN2IgPSA3Yi40OCgnMTNiJywgJzRhJykKCTVmPTQ2LjE0KCc8ZDAgNTY9ImVmLWY3IiBhNT0iKC4qPykiIDEzOT0iLio/IlwxMzMuKj8xZT0iOWYiID4oLio/KTwvYTY+JykuMTQ0KDdiKSAKCTc1IDI0LDEzOSA0YiA1ZjoKCQkxMzkgPSAxMzkuOGEoJyAnLCcnKQoJCTNkICcvMWQnIDRiIDEzZDoKCQkJMjQgPSAyZCArICcvYy8xMDYvMWQvMTE5L2ZlLycrMjQrJy9mZS9mZS9mZScKCQkJMTM2KCdbYl1bOGIgZF0lYTNbLzhiXVsvYl0nICUxMzksMjQsMixlLDE0NSwnJykKCQkzZToKCQkJMjQgPSAyZCArICcvYy8xMDYvYy8xMTkvZmUvJysyNCsnL2ZlL2ZlL2ZlJwoJCQkxMzYoJ1tiXVs4YiBkXSVhM1svOGJdWy9iXScgJTEzOSwyNCwxLGUsMTQ1LCcnKQoKM2MgZTMoMTNkKToKCTdiID0gMWMoMTNkKQoJN2IgPSA3Yi40OCgnMTNiJywgJzRhJykKCTVmPTQ2LjE0KCdhNT0iKC4qPykiIDEzOT0iMTI1IlwxMzMuKj8+KC4qPyk8L2E2PicpLjE0NCg3YikgCgk3NSAyNCwxMzkgNGIgNWY6CgkJMTM5ID0gMTM5LjhhKCcgJywnJykKCQkzZCAnLzFkJyA0YiAxM2Q6CgkJCTI0ID0gMmQgKyAnL2MvMTA2LzFkLzExOS9mZS9mZS8nKzI0KycvZmUvZmUnCgkJCTEzNignW2JdWzhiIGRdJWEzWy84Yl1bL2JdJyAlMTM5LDI0LDIsZSwxNDUsJycpCgkJCQoJCTNlOgoJCQkyNCA9IDJkICsgJy9jLzEwNi9jLzExOS9mZS9mZS8nKzI0KycvZmUvZmUnCgkJCTEzNignW2JdWzhiIGRdJWEzWy84Yl1bL2JdJyAlMTM5LDI0LDEsZSwxNDUsJycpCgkJCQoJM2QgJy8xZCcgNGIgMTNkOgoJCTEzNignW2JdWzhiIGRdY2RbLzhiXVsvYl0nLDJkKycvYy8xMDYvMWQvMTE5L2ZlL2ZlL2M4LWU1L2ZlL2ZlJywyLGUsMTQ1LCcnKQoJM2U6CgkJMTM2KCdbYl1bOGIgZF1jZFsvOGJdWy9iXScsMmQrJy9jLzEwNi9jLzExOS9mZS9mZS9jOC1lNS9mZS9mZScsMSxlLDE0NSwnJykKCjNjIGQxKDEzZCk6Cgk3YiA9IDFjKDEzZCkKCTdiID0gN2IuNDgoJzEzYicsICc0YScpLjk0KCcxM2InKQoJMjYgPSAzMig3YiwgJzxkOSA1Nj0iZjUtYmUiPicsICc8LzEwND48L2I1PicpCgk3NSBhIDRiIDI2OgoJCTEzOSA9IDEyMShhLCAnMTQyPSInLCAnIicpLjhhKCImNWU7IiwiJiIpLjhhKCcmIzM5OycsIiciKS44YSgnJjY0OycsJyInKS44YSgnJiMzOTsnLCInIikKCQkxM2QgPSAxMjEoYSwgJzg1PSInLCAnIicpLjhhKCImNWU7IiwiJiIpCgkJZSA9IDEyMShhLCAnNzE9IicsICciJykKCQkjZDggPSAxMjEoYSwgJ2JmLTEzZD0iJywgJyInKVswXS44YSgiJjVlOyIsIiYiKS44YSgnJiMzOTsnLCInIikuOGEoJyY2NDsnLCciJykuOGEoJyYjMzk7JywiJyIpCgkJM2QgJzhkJyAxM2EgNGIgMTM5OgoJCQkxMzYoJ1tiXVs4YiBkXSVhM1svOGJdWy9iXScgJTEzOSwxM2QrJzVhLjljJywzLGUsMTQ1LCcnKQoJMTQwOgoJCTg2PTQ2LjE0KCc8MTIwIDU2PSJhMSI+PGEgODU9IiguKj8pIiBiZi0xMWItODMtZTA9Ii4qPyIgZmY9ImExIj4nKS4xNDQoN2IpWzBdCgkJMTM2KCdbYl1bOGIgZmFdZGIgZTg+Pj5bLzhiXVsvYl0nLDg2LDEsZSwxNDUsJycpCgkyYTogNGQKCTYyKCc5NScsICdiOC02OCcpCgozYyBjMSgxM2QpOgoJN2IgPSAxYygxM2QpCgk3YiA9IDdiLjQ4KCcxM2InLCAnNGEnKS45NCgnMTNiJykKCTI2ID0gMzIoN2IsICc8ZDkgNTY9ImY1LWJlIj4nLCAnPC8xMDQ+PC9iNT4nKQoJNzUgYSA0YiAyNjoKCQkxMzkgPSAxMjEoYSwgJzE0Mj0iJywgJyInKS44YSgiJjVlOyIsIiYiKS44YSgnJiMzOTsnLCInIikuOGEoJyY2NDsnLCciJykuOGEoJyYjMzk7JywiJyIpCgkJMTNkID0gMTIxKGEsICc4NT0iJywgJyInKS44YSgiJjVlOyIsIiYiKQoJCWUgPSAxMjEoYSwgJzcxPSInLCAnIicpCgkJI2Q4ID0gMTIxKGEsICc8MTE2PicsICc8LzExNj4nKS44YSgiJjVlOyIsIiYiKS44YSgnJiMzOTsnLCInIikuOGEoJyY2NDsnLCciJykuOGEoJyYjMzk7JywiJyIpCgkJM2QgJzhkJyA0YiAxMzk6CgkJCTEzNignW2JdWzhiIGRdJWEzWy84Yl1bL2JdJyAlMTM5LDEzZCsnNWEuOWMnLDYsZSwxNDUsJycpCgkxNDA6CgkJODY9NDYuMTQoJzwxMjAgNTY9ImExIj48YSA4NT0iKC4qPykiIGJmLTExYi04My1lMD0iLio/IiBmZj0iYTEiPicpLjE0NCg3YilbMF0KCQkxMzYoJ1tiXVs4YiBmYV1kYiBlOD4+PlsvOGJdWy9iXScsODYsMixlLDE0NSwnJykKCTJhOiA0ZAoJNjIoJzk1JywgJ2I4LTY4JykKCjNjIGU5KDEzZCk6Cgk3YiA9IDFjKDEzZCkKCTYwID0gNDYuMTQoJzYwPSIoLio/KSInKS4xNDQoN2IpWzBdCgk1YyA9IDQ2LjE0KCctYzc9IiguKj8pIicpLjE0NCg3YilbMF0KCTMxID0gICc1NDovLzM1LjllL2EyLzcwLycrNWMrJy8nKzYwCgk3YiA9IDFjKDMxKQoJMjYgPSAzMig3YiwgJzxhJywgJzwvYT4nKQoJNzUgYSA0YiAyNjoKCQkxMzkgPSAxMjEoYSwgJzE0Mj0iJywgJyInKS44YSgiJjVlOyIsIiYiKS44YSgnJiMzOTsnLCInIikuOGEoJyY2NDsnLCciJykuOGEoJyYjMzk7JywiJyIpCgkJNjYgPSAxMjEoYSwgJ2RhPSInLCAnIicpCgkJNGYgPSAxMjEoYSwgJ2E5LWM3PSInLCAnIicpCgkJMTNkID0gICc1NDovLzM1LjllL2EyLzc4LycrNGYrJy8nKzY2CgkJMTM2KCdbYl1bOGIgZF0lYTNbLzhiXVsvYl0nICUxMzksMTNkLDcsZSwxNDUsJycpCgk2MignOTUnLCAnYjgtNjgnKQoKM2MgZDIoMTNkKToKCTdiID0gMWMoMTNkKQoJNjAgPSA0Ni4xNCgnNjA9IiguKj8pIicpLjE0NCg3YilbMF0KCTVjID0gNDYuMTQoJy1jNz0iKC4qPykiJykuMTQ0KDdiKVswXQoJMzEgPSAgJzU0Oi8vMzUuOWUvYTIvNzAvJys1YysnLycrNjAKCTdiID0gMWMoMzEpCgk2NiA9IDQ2LjE0KGQ2J2RhPSIoLio/KSInKS4xNDQoN2IpWzBdCgk0ZiA9IDQ2LjE0KGQ2J2E5LWM3PSIoLio/KSInKS4xNDQoN2IpWzBdCgkzMSA9ICAnNTQ6Ly8zNS45ZS9hMi83OC8nKzRmKycvJys2NgoJMzggPSB7J2RkJzogJzM1LjllJywgJ2FkJzogMTNkLAoJCSAgICdlNi1jYic6NGUsJzEzZi05Mi1lMic6JzY1J30KCTdiID0gMWMoMzEpCgkxNDA6CgkJMTNkID0gNDYuMTQoJzViPSIoLio/KSInKS4xNDQoN2IpWy0xXQoJCTNkICc1NDovL2I0LicgNGIgMTNkOgoJCQkxM2QgPSA0Ni4xNCgnNWI9IiguKj8pIicpLjE0NCg3YilbLTJdCgkJCTNkICc1NDovL2I0LicgNGIgMTNkOgoJCQkJMTNkID0gNDYuMTQoJzViPSIoLio/KSInKS4xNDQoN2IpWy0zXQoJCQkJZTcgPSAyYi4yNSgxMzksIDFmPScxYi41NycsIDEzPWYpCgkJCQllNy4yZSgxZT0nM2YnLCAxOT17JzQwJzoxMzR9KQoJCQkJZTcuMTUoIjIwIiwiNDciKQoJCQkJZTcuNjMoMTNkKQoJCQkJNTMuMTYoMmYoMjguMTdbMV0pLCA0NCwgZTcpCgkJCTNlOgoJCQkJZTcgPSAyYi4yNSgxMzksIDFmPScxYi41NycsIDEzPWYpCgkJCQllNy4yZSgxZT0nM2YnLCAxOT17JzQwJzoxMzR9KQoJCQkJZTcuMTUoIjIwIiwiNDciKQoJCQkJZTcuNjMoMTNkKQoJCQkJNTMuMTYoMmYoMjguMTdbMV0pLCA0NCwgZTcpCgkJM2U6CgkJCWU3ID0gMmIuMjUoMTM5LCAxZj0nMWIuNTcnLCAxMz1mKQoJCQllNy4yZSgxZT0nM2YnLCAxOT17JzQwJzoxMzR9KQoJCQllNy4xNSgiMjAiLCI0NyIpCgkJCWU3LjYzKDEzZCkKCQkJNTMuMTYoMmYoMjguMTdbMV0pLCA0NCwgZTcpCgkyYToKCQkxM2QgPSA0Ni4xNCgnNWI9IiguKj8pIicpLjE0NCg3YilbMF0KCQllNyA9IDJiLjI1KDEzOSwgMWY9JzFiLjU3JywgMTM9ZikKCQllNy4yZSgxZT0nM2YnLCAxOT17JzQwJzoxMzR9KQoJCWU3LjE1KCIyMCIsIjQ3IikKCQllNy42MygxM2QpCgkJNTMuMTYoMmYoMjguMTdbMV0pLCA0NCwgZTcpCgozYyBiYigxM2QpOgoJMzggPSB7J2RkJzogJzM1LjllJywgJ2FkJzogMTNkLAoJCSAgICdlNi1jYic6NGUsJzEzZi05Mi1lMic6JzY1J30KCTdiID0gNmYuZjQoMTNkLCAzOD0zOCwgNWQ9N2YpLjYxCgkxNDA6CgkJMTNkID0gNDYuMTQoJzViPSIoLio/KSInKS4xNDQoN2IpWy0xXQoJCTNkICc1NDovL2I0JyA0YiAxM2Q6CgkJCTEzZCA9IDQ2LjE0KCc1Yj0iKC4qPykiJykuMTQ0KDdiKVstMl0KCQkJM2QgJzU0Oi8vYjQuJyA0YiAxM2Q6CgkJCQkxM2QgPSA0Ni4xNCgnNWI9IiguKj8pIicpLjE0NCg3YilbLS0zXQoJCQkJZTcgPSAyYi4yNSgxMzksIDFmPScxYi41NycsIDEzPWYpCgkJCQllNy4yZSgxZT0nM2YnLCAxOT17JzQwJzoxMzR9KQoJCQkJZTcuMTUoIjIwIiwiNDciKQoJCQkJZTcuNjMoMTNkKQoJCQkJNTMuMTYoMmYoMjguMTdbMV0pLCA0NCwgZTcpCgkJCTNlOgoJCQkJZTcgPSAyYi4yNSgxMzksIDFmPScxYi41NycsIDEzPWYpCgkJCQllNy4yZSgxZT0nM2YnLCAxOT17JzQwJzoxMzR9KQoJCQkJZTcuMTUoIjIwIiwiNDciKQoJCQkJZTcuNjMoMTNkKQoJCQkJNTMuMTYoMmYoMjguMTdbMV0pLCA0NCwgZTcpCgkJM2U6CgkJCWU3ID0gMmIuMjUoMTM5LCAxZj0nMWIuNTcnLCAxMz1mKQoJCQllNy4yZSgxZT0nM2YnLCAxOT17JzQwJzoxMzR9KQoJCQllNy4xNSgiMjAiLCI0NyIpCgkJCWU3LjYzKDEzZCkKCQkJNTMuMTYoMmYoMjguMTdbMV0pLCA0NCwgZTcpCgkyYToKCQkxM2QgPSA0Ni4xNCgnNWI9IiguKj8pIicpLjE0NCg3YilbMF0KCQllNyA9IDJiLjI1KDEzOSwgMWY9JzFiLjU3JywgMTM9ZikKCQllNy4yZSgxZT0nM2YnLCAxOT17JzQwJzoxMzR9KQoJCWU3LjE1KCIyMCIsIjQ3IikKCQllNy42MygxM2QpCgkJNTMuMTYoMmYoMjguMTdbMV0pLCA0NCwgZTcpIAoJCgozYyBiMigzYSwxZSk6CgkzZCAzYToKCQk0MiA9IDNhLjhhKCcgJywnKycpCgkzZToKCQk5OSA9IDY5LmRjKCcnLCAnMTI0IDRiIDExMycpCgkJOTkuZWQoKQoJCTNkICg5OS5jNSgpKToKCQkJNDIgPSA5OS5mMCgpLjhhKCcgJywnKycpCgkJCTNkIDQyID09ICcnOgoJCQkJNjkuNjcoIjEyYS5iMyhbOGIgMTJjXVtiXTExNSAxMDhbL2JdWy84Yl0sZTEgNDIsMTFmLCIrZSsiKSIpCgkJCQk0OQoJCQkzZTogNGQKCTEzZCA9IDJkKycvYy80Mi8nKzQyCgk4MSAxM2QKCTdiID0gMWMoMTNkKQoJN2IgPSA3Yi40OCgnMTNiJywgJzRhJykuOTQoJzEzYicpCgkyNiA9IDMyKDdiLCAnPGQ5IDU2PSJmNS1iZSI+JywgJzwvMTA0PjwvYjU+JykKCTc1IGEgNGIgMjY6CgkJMTM5ID0gMTIxKGEsICcxNDI9IicsICciJykuOGEoIiY1ZTsiLCImIikuOGEoJyYjMzk7JywiJyIpLjhhKCcmNjQ7JywnIicpLjhhKCcmIzM5OycsIiciKQoJCTEzZCA9IDEyMShhLCAnODU9IicsICciJykuOGEoIiY1ZTsiLCImIikKCQllID0gMTIxKGEsICc3MT0iJywgJyInKQoJCSNkOCA9IDEyMShhLCAnPDExNj4nLCAnPC8xMTY+JykuOGEoIiY1ZTsiLCImIikuOGEoJyYjMzk7JywiJyIpLjhhKCcmNjQ7JywnIicpLjhhKCcmIzM5OycsIiciKQoJCTNkICc4ZCcgNGIgMTM5OgoJCQkzZCAxZSAhPSAnMTNjJzoKCQkJCTEzNignW2JdWzhiIGRdJWEzWy84Yl1bL2JdJyAlMTM5LDEzZCsnNWEuOWMnLDYsZSwxNDUsJycpCgkJM2U6CgkJCTNkIDFlICE9ICdjJzoKCQkJCTEzNignW2JdWzhiIGRdJWEzWy84Yl1bL2JdJyAlMTM5LDEzZCsnNWEuOWMnLDMsZSwxNDUsJycpCiMgNTk6IDNhICYgMWUtNTUgKDEwMyAyNyBhNCA4OCkKCjNjIDEyMSg2MSwgNTgsIDZhLCA4Yz00NCk6CgkzZCA4YzoKCQkxNDA6IGQ2ID0gNDYuNDIoIig/MTExKSIgKyA1OCArICIoW1wxMzBcYTNdKz8pIiArIDZhLCA2MSkuY2UoMSkKCQkyYTogZDYgPSAnJwoJM2U6CgkJMTQwOiBkNiA9IDQ2LjQyKCIoPzExMSkoIiArIDU4ICsgIltcMTMwXGEzXSs/IiArIDZhICsgIikiLCA2MSkuY2UoMSkKCQkyYTogZDYgPSAnJwoJNDkgZDYKCjNjIDMyKDYxLCA4NCwgYTApOgoJZDYgPSA0Ni4xNDQoIig/MTExKSgiICsgODQgKyAiW1wxMzBcYTNdKz8iICsgYTAgKyAiKSIsIDYxKQoJNDkgZDYKCjNjIDgyKCk6Cgk4Nz1bXQoJN2M9MjguMTdbMl0KCTNkIDhlKDdjKT49MjoKCQkyMT0yOC4xN1syXQoJCTZiPTIxLjhhKCc/JywnJykKCQkzZCAoMjFbOGUoMjEpLTFdPT0nLycpOgoJCQkyMT0yMVswOjhlKDIxKS0yXQoJCTUyPTZiLmNhKCcmJykKCQk4Nz17fQoJCTc1IDExMSA0YiAxMGEoOGUoNTIpKToKCQkJM2I9e30KCQkJM2I9NTJbMTExXS5jYSgnPScpCgkJCTNkICg4ZSgzYikpPT0yOgoJCQkJODdbM2JbMF1dPTNiWzFdCgk0OSA4NwoKM2MgMTM2KDEzOSwxM2QsMjMsZiwxNDUsMTM0KToKCTExOD0yOC4xN1swXSsiPzEzZD0iKzI5LjM3KDEzZCkrIiYyMz0iK2Q0KDIzKSsiJjEzOT0iKzI5LjM3KDEzOSkrIiZmPSIrMjkuMzcoZikrIiYxMzQ9IisyOS4zNygxMzQpCglhZT00NAoJZTc9MmIuMjUoMTM5LCAxZj0iNmMuNTciLCAxMz1mKQoJZTcuMmUoIDFlPSIzZiIsIDE5PXsgIjQwIjogMTM5LCIxMWQiOjEzNH0gKQoJZTcuMTUoJzcyJywgMTQ1KQoJM2QgMjM9PTMgZjYgMjM9PTc6CgkJZTcuMTUoIjIwIiwiNDciKQoJCWFlPTUzLjQ1KDMwPTJmKDI4LjE3WzFdKSwxM2Q9MTE4LDc2PWU3LDc5PTdmKQoJM2U6CgkJYWU9NTMuNDUoMzA9MmYoMjguMTdbMV0pLDEzZD0xMTgsNzY9ZTcsNzk9NDQpCgk0OSBhZQoKM2MgZWIoMTM5LDEzZCwyMyxmLDE0NSwxMzQ9JycpOgoJIzExOD0yOC4xN1swXSsiPzEzZD0iKzI5LjM3KDEzZCkrIiYyMz0iK2Q0KDIzKSsiJjEzOT0iKzI5LjM3KDEzOSkrIiYxMzQ9IitkNCgxMzQpCgkjYWU9NDQKCWU3PTJiLjI1KDEzOSwgMWY9IjZjLjU3IiwgMTM9ZikKCWU3LjJlKCAxZT0iM2YiLCAxOT17ICI0MCI6IDEzOSwgJzEyOCc6IDEzNCB9ICkKCWU3LjE1KCc3MicsIDE0NSkKCWFlPTUzLjQ1KDMwPTJmKDI4LjE3WzFdKSwxM2Q9MTNkLDc2PWU3LDc5PTdmKQoJNDkgYWUKCjNjIDFjKDEzZCk6CgkzOCA9IHt9CgkzOFsnMTJkLTExNCddID0gNGUKCTdiID0gNmYuZjQoMTNkLCAzOD0zOCwgNWQ9N2YpLjYxCgk3YiA9IDdiLjQ4KCcxM2InLCAnNGEnKQoJNDkgN2IKCjNjIDYyKDdlLCAyMik6CgkKICAgIDNkIDdlOgoJNTMuY2MoMmYoMjguMTdbMV0pLCA3ZSkKICAgIDNkIDMzLjFhKCcxMWEtNjgnKSA9PSAnNDcnOgoKCTgxIDMzLjFhKDIyKQoJM2QgMzMuMWEoMjIpID09ICcxMjMnOgoJICAgIDkzID0gJzEyZicKCTM0IDMzLjFhKDIyKSA9PSAnMTA5JzoKCSAgICA5MyA9ICcxMzcnCgkzNCAzMy4xYSgyMikgPT0gJzEwYyc6CgkgICAgOTMgPSAnMTM4JwoJMzQgMzMuMWEoMjIpID09ICdmYyc6CgkgICAgOTMgPSAnMTMyJwoJMzQgMzMuMWEoMjIpID09ICcxMDcgMTI3JzoKCSAgICA5MyA9ICcxMzEnCgkzNCAzMy4xYSgyMikgPT0gJzEzNSAxMjInOgoJICAgIDkzID0gJzUxJwoJMzQgMjIgPT0gJ2VjLTY4JzoKCSAgICA5MyA9IDMzLjFhKDIyKQoKCTgxIDIyCgk4MSA5MwoJCgk2OS42NygiZDcuYzQoJWEzKSIgJSAoIDJmKDkzKSApICkKCiAgICA1My4xOCggMzA9MmYoIDI4LjE3WyAxIF0gKSwgMTQxPTUzLjgwICkKICAgIDUzLjE4KCAzMD0yZiggMjguMTdbIDEgXSApLCAxNDE9NTMuOTggKQogICAgNTMuMTgoIDMwPTJmKCAyOC4xN1sgMSBdICksIDE0MT01My43NyApCiAgICA1My4xOCggMzA9MmYoIDI4LjE3WyAxIF0gKSwgMTQxPTUzLjlhICkKICAgIDUzLjE4KCAzMD0yZiggMjguMTdbIDEgXSApLCAxNDE9NTMuNmUgKQogICAgNTMuMTgoIDMwPTJmKCAyOC4xN1sgMSBdICksIDE0MT01My42ZCApCiAgICA1My4xOCggMzA9MmYoIDI4LjE3WyAxIF0gKSwgMTQxPTUzLjk3ICkKICAgIDUzLjE4KCAzMD0yZiggMjguMTdbIDEgXSApLCAxNDE9NTMuN2EgKQoKMjE9ODIoKQoxM2Q9NGMKMTM5PTRjCjIzPTRjCmY9NGMKMTM0PTRjCjEyYj00YwozYT00YwoxZT00YwojIDU5OiAzYSAmIDFlLTU1IChhOCAyIGE0IDg4KQoKMTQwOgoJMTNkPTI5LjJjKDIxWyIxM2QiXSkKMmE6Cgk0ZAoxNDA6CgkxMzk9MjkuMmMoMjFbIjEzOSJdKQoyYToKCTRkCjE0MDoKCWY9MjkuMmMoMjFbImYiXSkKMmE6Cgk0ZAoxNDA6CgkyMz0yZigyMVsiMjMiXSkKMmE6Cgk0ZAoxNDA6CgkxMzQ9MjkuMmMoMjFbIjEzNCJdKQoyYToKCTRkCjE0MDoKCTNhPTI5LjJjKDIxWyIzYSJdKQoyYToKCTRkCjE0MDoKCTFlPTI5LjJjKDIxWyIxZSJdKQoyYToKCTRkCiMgNTk6IDNhICYgMWUtNTUgKGE4IDggYTQgODgpCgozZCAyMz09NGMgZjYgMTNkPT00YyBmNiA4ZSgxM2QpPDE6CgkxMDAoKQoKMzQgMjM9PTE6CglkMSgxM2QpCgozNCAyMz09MjoKCWMxKDEzZCkKCjM0IDIzPT0zOgoJZDIoMTNkKQoKMzQgMjM9PTQ6CgkxMDEoKQoKMzQgMjM9PTY6CgllOSgxM2QpCgozNCAyMz09NzoKCWJiKDEzZCkKCjM0IDIzPT04OgoJYjIoM2EsMWUpCiMgNTk6IDNhICYgMWUtNTUgKGE4IDllIDEyOSA4OCkKCjM0IDIzPT05OgoJZDMoMTNkKQoKMzQgMjM9PTEwOgoJYWYoMTNkKQoKMzQgMjM9PTExOgoJZTMoMTNkKQoKCgoKCjUzLmFhKDJmKDI4LjE3WzFdKSk=")))(lambda a,b:b[int("0x"+a.group(1),16)],"0|1|2|3|4|5|6|7|8|9|a|B|movie|white|icon|iconimage|10|11|12|thumbnailImage|compile|setProperty|setResolvedUrl|argv|addSortMethod|infoLabels|get_setting|DefaultVideo|OPEN_URL|series|type|iconImage|IsPlayable|params|viewType|mode|url2|ListItem|all_videos|27|sys|urllib|except|xbmcgui|unquote_plus|baseurl|setInfo|int|handle|request_url|regex_get_all|addon|elif|123movies|36|quote_plus|headers|39|query|splitparams|def|if|else|Video|Title|41|search|addon_id|True|addDirectoryItem|re|true|encode|return|ignore|in|None|pass|User_Agent|episode_id|translatePath|51|pairsofparams|xbmcplugin|http|parameter|class|png|from_string|OpenELEQ|watching|file|video_id|allow_redirects|amp|match|token|text|setView|setPath|quot|XMLHttpRequest|hash_id|executebuiltin|view|xbmc|to_string|cleanedparams|DefaultFolder|SORT_METHOD_VIDEO_RUNTIME|SORT_METHOD_PROGRAM_COUNT|requests|get_episodes|original|fanart_image|Most|import|for|listitem|SORT_METHOD_VIDEO_RATING|load_episode|isFolder|SORT_METHOD_MPAA_RATING|link|paramstring|special|content|False|SORT_METHOD_UNSORTED|print|get_params|pagination|start_with|href|nextp|param|above|89|replace|COLOR|excluding|Season|len|selfAddon|xbmcaddon|imdb_mark|requested|VT|decode|movies|addons|SORT_METHOD_GENRE|SORT_METHOD_LABEL|keyb|SORT_METHOD_DATE|Favorite|html|favorite|to|checkbox|end_with|next|ajax|s|lines|value|label|Addon|added|episode|endOfDirectory|Ratings|Country|referer|ok|COUNTRY|show_tv|Viewed|SEARCH|Notification|sub|span|rating|path|show|Latest|common|LINKS2|enable_shows|Search|item|data|home|INDEX2|join|md123movies|SetViewMode|isConfirmed|AppleWebKit|id|older|getSetting|split|agent|setContent|Older|group|Genre|input|INDEX|LINKS|GENRE|str|resources|r|Container|dis|div|hash|Next|Keyboard|host|IMDB|Year|page|Aborting|with|YEAR|os|2012|user|liz|Page|EPIS|from|addLink|default|doModal|Mozilla|country|getText|Windows|Chrome|537|get|ml|or|ids|Net|plugin|red|net|Fanart|Safari|all|rel|CAT|TV|Top|edited|h2|art|filter|Poster|QUERY|Info2|range|Gecko|Info3|KHTML|Mucky|WOW64|genre|i|video|Query|Agent|EMPTY|p|2015|u|latest|auto|ci|2272|Plot|like|7000|li|regex_from_to|List|Info|Type|year|Duck|Wrap|plot|line|XBMC|site|gold|User|jpg|504|S|501|508|n|description|Big|addDir|503|515|name|not|ascii|tv|url|By|x|try|sortMethod|title|NT|findall|fanart".split("|")))
+import urllib,re,xbmcplugin,xbmcgui,xbmc,xbmcaddon,os
+import requests
+from addon.common.addon import Addon
+from addon.common.net import Net
+
+#By Mucky Duck (12/2015)
+
+addon_id='plugin.video.md123movies'
+selfAddon = xbmcaddon.Addon(id=addon_id)
+addon = Addon(addon_id, sys.argv)
+art = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id + '/resources/art/'))
+icon = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
+fanart = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id , 'fanart.jpg'))
+User_Agent = 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.89 Safari/537.36'
+show_tv = selfAddon.getSetting('enable_shows')
+baseurl = 'http://123movies.to'
+net = Net()
+
+def CAT():
+	addDir('[B][COLOR white]Most Favorite[/COLOR][/B]',baseurl+'/movie/filter/movie/favorite/all/all/all/all/all',1,icon,fanart,'')
+	addDir('[B][COLOR white]Most Ratings[/COLOR][/B]',baseurl+'/movie/filter/movie/rating/all/all/all/all/all',1,icon,fanart,'')
+	addDir('[B][COLOR white]Most Viewed[/COLOR][/B]',baseurl+'/movie/filter/movie/view/all/all/all/all/all',1,icon,fanart,'')
+	addDir('[B][COLOR white]Top IMDB[/COLOR][/B]',baseurl+'/movie/filter/movie/imdb_mark/all/all/all/all/all',1,icon,fanart,'')
+	addDir('[B][COLOR white]Country[/COLOR][/B]',baseurl+'/movie/filter/all',10,icon,fanart,'')
+	addDir('[B][COLOR white]Search[/COLOR][/B]','url',8,icon,fanart,'')
+	addDir('[B][COLOR white]Latest[/COLOR][/B]',baseurl+'/movie/filter/movie/latest/all/all/all/all/all',1,icon,fanart,'')
+	addDir('[B][COLOR white]Genre[/COLOR][/B]',baseurl+'/movie/filter/all',9,icon,fanart,'')
+	addDir('[B][COLOR white]Year[/COLOR][/B]',baseurl+'/movie/filter/all',11,icon,fanart,'')
+        if show_tv == 'true':
+                addDir('[B][COLOR white]TV[/COLOR][/B]','url',4,icon,fanart,'')
+
+def TV():
+        addDir('[B][COLOR white]Most Favorite[/COLOR][/B]',baseurl+'/movie/filter/series/favorite/all/all/all/all/all',2,icon,fanart,'')
+        addDir('[B][COLOR white]Most Ratings[/COLOR][/B]',baseurl+'/movie/filter/series/rating/all/all/all/all/all',2,icon,fanart,'')
+        addDir('[B][COLOR white]Most Viewed[/COLOR][/B]',baseurl+'/movie/filter/series/view/all/all/all/all/all',2,icon,fanart,'')
+        addDir('[B][COLOR white]Top IMDB[/COLOR][/B]',baseurl+'/movie/filter/series/imdb_mark/all/all/all/all/all',2,icon,fanart,'')
+        addDir('[B][COLOR white]Country[/COLOR][/B]',baseurl+'/movie/filter/series',10,icon,fanart,'')
+        addDir('[B][COLOR white]Search[/COLOR][/B]','url',8,icon,fanart,'')
+        addDir('[B][COLOR white]Latest[/COLOR][/B]',baseurl+'/movie/filter/series/latest/all/all/all/all/all',2,icon,fanart,'')
+        addDir('[B][COLOR white]Genre[/COLOR][/B]',baseurl+'/movie/filter/series',9,icon,fanart,'')
+        addDir('[B][COLOR white]Year[/COLOR][/B]',baseurl+'/movie/filter/series',11,icon,fanart,'')
+
+def GENRE(url):
+        link = OPEN_URL(url)
+	link = link.encode('ascii', 'ignore')
+	match=re.compile('<input class="genre-ids" value="(.*?)" name=".*?"\n.*?type="checkbox" >(.*?)</label>').findall(link) 
+	for url2,name in match:
+                name = name.replace(' ','')
+                if '/series' in url:
+                        url2 = baseurl + '/movie/filter/series/latest/'+url2+'/all/all/all/all'
+                        addDir('[B][COLOR white]%s[/COLOR][/B]' %name,url2,2,icon,fanart,'')
+                else:
+                        url2 = baseurl + '/movie/filter/movie/latest/'+url2+'/all/all/all/all'
+                        addDir('[B][COLOR white]%s[/COLOR][/B]' %name,url2,1,icon,fanart,'')
+
+def COUNTRY(url):
+        link = OPEN_URL(url)
+	link = link.encode('ascii', 'ignore')
+	match=re.compile('<input class="country-ids" value="(.*?)" name=".*?"\n.*?type="checkbox" >(.*?)</label>').findall(link) 
+	for url2,name in match:
+                name = name.replace(' ','')
+                if '/series' in url:
+                        url2 = baseurl + '/movie/filter/series/latest/all/'+url2+'/all/all/all'
+                        addDir('[B][COLOR white]%s[/COLOR][/B]' %name,url2,2,icon,fanart,'')
+                else:
+                        url2 = baseurl + '/movie/filter/movie/latest/all/'+url2+'/all/all/all'
+                        addDir('[B][COLOR white]%s[/COLOR][/B]' %name,url2,1,icon,fanart,'')
+
+def YEAR(url):
+        link = OPEN_URL(url)
+	link = link.encode('ascii', 'ignore')
+	match=re.compile('value="(.*?)" name="year"\n.*?>(.*?)</label>').findall(link) 
+	for url2,name in match:
+                name = name.replace(' ','')
+                if '/series' in url:
+                        url2 = baseurl + '/movie/filter/series/latest/all/all/'+url2+'/all/all'
+                        addDir('[B][COLOR white]%s[/COLOR][/B]' %name,url2,2,icon,fanart,'')
+                        
+                else:
+                        url2 = baseurl + '/movie/filter/movie/latest/all/all/'+url2+'/all/all'
+                        addDir('[B][COLOR white]%s[/COLOR][/B]' %name,url2,1,icon,fanart,'')
+                        
+        if '/series' in url:
+                addDir('[B][COLOR white]Older[/COLOR][/B]',baseurl+'/movie/filter/series/latest/all/all/older-2012/all/all',2,icon,fanart,'')
+        else:
+                addDir('[B][COLOR white]Older[/COLOR][/B]',baseurl+'/movie/filter/movie/latest/all/all/older-2012/all/all',1,icon,fanart,'')
+
+def INDEX(url):
+	link = OPEN_URL(url)
+	link = link.encode('ascii', 'ignore').decode('ascii')
+	all_videos = regex_get_all(link, '<div class="ml-item">', '</h2></span>')
+	for a in all_videos:
+		name = regex_from_to(a, 'title="', '"').replace("&amp;","&").replace('&#39;',"'").replace('&quot;','"').replace('&#39;',"'")
+		url = regex_from_to(a, 'href="', '"').replace("&amp;","&")
+		icon = regex_from_to(a, 'original="', '"')
+		#dis = regex_from_to(a, 'data-url="', '"')[0].replace("&amp;","&").replace('&#39;',"'").replace('&quot;','"').replace('&#39;',"'")
+		if 'Season' not in name:
+			addDir('[B][COLOR white]%s[/COLOR][/B]' %name,url+'watching.html',3,icon,fanart,'')
+	try:
+		nextp=re.compile('<li class="next"><a href="(.*?)" data-ci-pagination-page=".*?" rel="next">').findall(link)[0]
+		addDir('[B][COLOR red]Next Page>>>[/COLOR][/B]',nextp,1,icon,fanart,'')
+	except: pass
+	setView('movies', 'show-view')
+
+def INDEX2(url):
+	link = OPEN_URL(url)
+	link = link.encode('ascii', 'ignore').decode('ascii')
+	all_videos = regex_get_all(link, '<div class="ml-item">', '</h2></span>')
+	for a in all_videos:
+		name = regex_from_to(a, 'title="', '"').replace("&amp;","&").replace('&#39;',"'").replace('&quot;','"').replace('&#39;',"'")
+		url = regex_from_to(a, 'href="', '"').replace("&amp;","&")
+		icon = regex_from_to(a, 'original="', '"')
+		#dis = regex_from_to(a, '<p>', '</p>').replace("&amp;","&").replace('&#39;',"'").replace('&quot;','"').replace('&#39;',"'")
+		if 'Season' in name:
+			addDir('[B][COLOR white]%s[/COLOR][/B]' %name,url+'watching.html',6,icon,fanart,'')
+	try:
+		nextp=re.compile('<li class="next"><a href="(.*?)" data-ci-pagination-page=".*?" rel="next">').findall(link)[0]
+		addDir('[B][COLOR red]Next Page>>>[/COLOR][/B]',nextp,2,icon,fanart,'')
+	except: pass
+	setView('movies', 'show-view')
+
+def EPIS(url):
+        link = OPEN_URL(url)
+	token = re.compile('token="(.*?)"').findall(link)[0]
+	video_id = re.compile('-id="(.*?)"').findall(link)[0]
+	request_url =  'http://123movies.to/ajax/get_episodes/'+video_id+'/'+token
+	link = OPEN_URL(request_url)
+	all_videos = regex_get_all(link, '<a', '</a>')
+	for a in all_videos:
+		name = regex_from_to(a, 'title="', '"').replace("&amp;","&").replace('&#39;',"'").replace('&quot;','"').replace('&#39;',"'")
+		hash_id = regex_from_to(a, 'hash="', '"')
+		episode_id = regex_from_to(a, 'episode-id="', '"')
+		url =  'http://123movies.to/ajax/load_episode/'+episode_id+'/'+hash_id
+		addDir('[B][COLOR white]%s[/COLOR][/B]' %name,url,7,icon,fanart,'')
+	setView('movies', 'show-view')
+
+def LINKS(url):
+	link = OPEN_URL(url)
+	token = re.compile('token="(.*?)"').findall(link)[0]
+	video_id = re.compile('-id="(.*?)"').findall(link)[0]
+	request_url =  'http://123movies.to/ajax/get_episodes/'+video_id+'/'+token
+	
+        
+	
+	try:
+                link = OPEN_URL(request_url)
+                all_videos = regex_get_all(link, '"server-9"', '"clearfix"')
+                for a in all_videos:
+                        print
+                        hash_id = regex_from_to(a, 'hash="', '"')
+                        episode_id = regex_from_to(a, 'episode-id="', '"')
+
+
+                        
+                        #hash_id = re.compile(r'hash="(.*?)"').findall(link)[0]
+                        #episode_id = re.compile(r'episode-id="(.*?)"').findall(link)[0]
+                        request_url =  'http://123movies.to/ajax/load_episode/'+episode_id+'/'+hash_id
+                        headers = {'host': '123movies.to', 'referer': url,
+                                   'user-agent':User_Agent,'x-requested-with':'XMLHttpRequest'}
+                        link = OPEN_URL(request_url)
+                        url = re.compile('file="(.*?)"').findall(link)[-1]
+                        if 'http://sub.' in url:
+                                url = re.compile('file="(.*?)"').findall(link)[-2]
+                                if 'http://sub.' in url:
+                                        url = re.compile('file="(.*?)"').findall(link)[-3]
+                                        liz = xbmcgui.ListItem(name, iconImage='DefaultVideo.png', thumbnailImage=iconimage)
+                                        liz.setInfo(type='Video', infoLabels={'Title':description})
+                                        liz.setProperty("IsPlayable","true")
+                                        liz.setPath(url)
+                                        xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
+                                else:
+                                        liz = xbmcgui.ListItem(name, iconImage='DefaultVideo.png', thumbnailImage=iconimage)
+                                        liz.setInfo(type='Video', infoLabels={'Title':description})
+                                        liz.setProperty("IsPlayable","true")
+                                        liz.setPath(url)
+                                        xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
+                        else:
+                                liz = xbmcgui.ListItem(name, iconImage='DefaultVideo.png', thumbnailImage=iconimage)
+                                liz.setInfo(type='Video', infoLabels={'Title':description})
+                                liz.setProperty("IsPlayable","true")
+                                liz.setPath(url)
+                                xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
+	except:
+		url = re.compile('file="(.*?)"').findall(link)[0]
+		liz = xbmcgui.ListItem(name, iconImage='DefaultVideo.png', thumbnailImage=iconimage)
+		liz.setInfo(type='Video', infoLabels={'Title':description})
+		liz.setProperty("IsPlayable","true")
+		liz.setPath(url)
+		xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
+
+def LINKS2(url):
+	headers = {'host': '123movies.to', 'referer': url,
+                   'user-agent':User_Agent,'x-requested-with':'XMLHttpRequest'}
+        link = requests.get(url, headers=headers, allow_redirects=False).text
+	try:
+                url = re.compile('file="(.*?)"').findall(link)[-1]
+                if 'http://sub' in url:
+                        url = re.compile('file="(.*?)"').findall(link)[-2]
+                        if 'http://sub.' in url:
+                                url = re.compile('file="(.*?)"').findall(link)[--3]
+                                liz = xbmcgui.ListItem(name, iconImage='DefaultVideo.png', thumbnailImage=iconimage)
+                                liz.setInfo(type='Video', infoLabels={'Title':description})
+                                liz.setProperty("IsPlayable","true")
+                                liz.setPath(url)
+                                xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
+                        else:
+                                liz = xbmcgui.ListItem(name, iconImage='DefaultVideo.png', thumbnailImage=iconimage)
+                                liz.setInfo(type='Video', infoLabels={'Title':description})
+                                liz.setProperty("IsPlayable","true")
+                                liz.setPath(url)
+                                xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
+                else:
+			liz = xbmcgui.ListItem(name, iconImage='DefaultVideo.png', thumbnailImage=iconimage)
+			liz.setInfo(type='Video', infoLabels={'Title':description})
+			liz.setProperty("IsPlayable","true")
+			liz.setPath(url)
+			xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
+        except:
+                url = re.compile('file="(.*?)"').findall(link)[0]
+                liz = xbmcgui.ListItem(name, iconImage='DefaultVideo.png', thumbnailImage=iconimage)
+                liz.setInfo(type='Video', infoLabels={'Title':description})
+                liz.setProperty("IsPlayable","true")
+                liz.setPath(url)
+                xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz) 
+	
+
+def SEARCH(query,type):
+	if query:
+		search = query.replace(' ','+')
+	else:
+		keyb = xbmc.Keyboard('', 'Type in Query')
+		keyb.doModal()
+		if (keyb.isConfirmed()):
+			search = keyb.getText().replace(' ','+')
+			if search == '':
+				xbmc.executebuiltin("XBMC.Notification([COLOR gold][B]EMPTY QUERY[/B][/COLOR],Aborting search,7000,"+icon+")")
+				return
+			else: pass
+	url = baseurl+'/movie/search/'+search
+	print url
+	link = OPEN_URL(url)
+	link = link.encode('ascii', 'ignore').decode('ascii')
+	all_videos = regex_get_all(link, '<div class="ml-item">', '</h2></span>')
+	for a in all_videos:
+		name = regex_from_to(a, 'title="', '"').replace("&amp;","&").replace('&#39;',"'").replace('&quot;','"').replace('&#39;',"'")
+		url = regex_from_to(a, 'href="', '"').replace("&amp;","&")
+		icon = regex_from_to(a, 'original="', '"')
+		#dis = regex_from_to(a, '<p>', '</p>').replace("&amp;","&").replace('&#39;',"'").replace('&quot;','"').replace('&#39;',"'")
+		if 'Season' in name:
+			if type != 'tv':
+				addDir('[B][COLOR white]%s[/COLOR][/B]' %name,url+'watching.html',6,icon,fanart,'')
+		else:
+			if type != 'movie':
+				addDir('[B][COLOR white]%s[/COLOR][/B]' %name,url+'watching.html',3,icon,fanart,'')
+# OpenELEQ: query & type-parameter (edited 27 lines above)
+
+def regex_from_to(text, from_string, to_string, excluding=True):
+	if excluding:
+		try: r = re.search("(?i)" + from_string + "([\S\s]+?)" + to_string, text).group(1)
+		except: r = ''
+	else:
+		try: r = re.search("(?i)(" + from_string + "[\S\s]+?" + to_string + ")", text).group(1)
+		except: r = ''
+	return r
+
+def regex_get_all(text, start_with, end_with):
+	r = re.findall("(?i)(" + start_with + "[\S\s]+?" + end_with + ")", text)
+	return r
+
+def get_params():
+	param=[]
+	paramstring=sys.argv[2]
+	if len(paramstring)>=2:
+		params=sys.argv[2]
+		cleanedparams=params.replace('?','')
+		if (params[len(params)-1]=='/'):
+			params=params[0:len(params)-2]
+		pairsofparams=cleanedparams.split('&')
+		param={}
+		for i in range(len(pairsofparams)):
+			splitparams={}
+			splitparams=pairsofparams[i].split('=')
+			if (len(splitparams))==2:
+				param[splitparams[0]]=splitparams[1]
+	return param
+
+def addDir(name,url,mode,iconimage,fanart,description):
+	u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&iconimage="+urllib.quote_plus(iconimage)+"&description="+urllib.quote_plus(description)
+	ok=True
+	liz=xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
+	liz.setInfo( type="Video", infoLabels={ "Title": name,"Plot":description} )
+	liz.setProperty('fanart_image', fanart)
+	if mode==3 or mode==7:
+		liz.setProperty("IsPlayable","true")
+		ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=False)
+	else:
+		ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
+	return ok
+
+def addLink(name,url,mode,iconimage,fanart,description=''):
+	#u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&description="+str(description)
+	#ok=True
+	liz=xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
+	liz.setInfo( type="Video", infoLabels={ "Title": name, 'plot': description } )
+	liz.setProperty('fanart_image', fanart)
+	ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=url,listitem=liz,isFolder=False)
+	return ok
+
+def OPEN_URL(url):
+	headers = {}
+	headers['User-Agent'] = User_Agent
+	link = requests.get(url, headers=headers, allow_redirects=False).text
+	link = link.encode('ascii', 'ignore')
+	return link
+
+def setView(content, viewType):
+        
+    if content:
+        xbmcplugin.setContent(int(sys.argv[1]), content)
+    if addon.get_setting('auto-view') == 'true':
+
+        print addon.get_setting(viewType)
+        if addon.get_setting(viewType) == 'Info':
+            VT = '504'
+        elif addon.get_setting(viewType) == 'Info2':
+            VT = '503'
+        elif addon.get_setting(viewType) == 'Info3':
+            VT = '515'
+        elif addon.get_setting(viewType) == 'Fanart':
+            VT = '508'
+        elif addon.get_setting(viewType) == 'Poster Wrap':
+            VT = '501'
+        elif addon.get_setting(viewType) == 'Big List':
+            VT = '51'
+        elif viewType == 'default-view':
+            VT = addon.get_setting(viewType)
+
+        print viewType
+        print VT
+        
+        xbmc.executebuiltin("Container.SetViewMode(%s)" % ( int(VT) ) )
+
+    xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_UNSORTED )
+    xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_LABEL )
+    xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_VIDEO_RATING )
+    xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_DATE )
+    xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_PROGRAM_COUNT )
+    xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_VIDEO_RUNTIME )
+    xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_GENRE )
+    xbmcplugin.addSortMethod( handle=int( sys.argv[ 1 ] ), sortMethod=xbmcplugin.SORT_METHOD_MPAA_RATING )
+
+params=get_params()
+url=None
+name=None
+mode=None
+iconimage=None
+description=None
+site=None
+query=None
+type=None
+# OpenELEQ: query & type-parameter (added 2 lines above)
+
+try:
+	url=urllib.unquote_plus(params["url"])
+except:
+	pass
+try:
+	name=urllib.unquote_plus(params["name"])
+except:
+	pass
+try:
+	iconimage=urllib.unquote_plus(params["iconimage"])
+except:
+	pass
+try:
+	mode=int(params["mode"])
+except:
+	pass
+try:
+	description=urllib.unquote_plus(params["description"])
+except:
+	pass
+try:
+	query=urllib.unquote_plus(params["query"])
+except:
+	pass
+try:
+	type=urllib.unquote_plus(params["type"])
+except:
+	pass
+# OpenELEQ: query & type-parameter (added 8 lines above)
+
+if mode==None or url==None or len(url)<1:
+	CAT()
+
+elif mode==1:
+	INDEX(url)
+
+elif mode==2:
+	INDEX2(url)
+
+elif mode==3:
+	LINKS(url)
+
+elif mode==4:
+	TV()
+
+elif mode==6:
+	EPIS(url)
+
+elif mode==7:
+	LINKS2(url)
+
+elif mode==8:
+	SEARCH(query,type)
+# OpenELEQ: query & type-parameter (added to line above)
+
+elif mode==9:
+	GENRE(url)
+
+elif mode==10:
+	COUNTRY(url)
+
+elif mode==11:
+	YEAR(url)
+
+
+
+
+
+xbmcplugin.endOfDirectory(int(sys.argv[1]))

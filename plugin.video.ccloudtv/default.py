@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 """
-Copyright (C) 2015 PodGod
+Copyright (C) 2016 PodGod
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -828,15 +828,13 @@ def get_params():
 				param[splitparams[0]] = splitparams[1]
 	return param
 
-ini = 'https://raw.githubusercontent.com/podgod/podgod/master/cCloud_TV_Guide/XML/combined.ini'
-List1 = 'YUhSMGNEb3ZMMnR2WkdrdVkyTnNaQzVwYnc9PQ=='.decode('base64') .decode('base64')
-List2 = 'YUhSMGNEb3ZMM2d1WTI4dlpHSmphREF4'.decode('base64') .decode('base64')
-List3 = 'YUhSMGNEb3ZMMkZwYnk1alkyeHZkV1IwZGk1dmNtY3ZhMjlrYVE9PQ=='.decode('base64') .decode('base64')
-List4 = 'YUhSMGNEb3ZMMmR2TW13dWFXNXJMMnR2WkdrPQ=='.decode('base64') .decode('base64')
-List5 = 'YUhSMGNEb3ZMM051YVhBdWJHa3ZhMjlrYVE9PQ=='.decode('base64') .decode('base64')
+ini = 'YUhSMGNEb3ZMMnR2WkdsbGNHY3VZMk5zWkM1cGJ3PT0='.decode('base64').decode('base64')
+List1 = 'YUhSMGNEb3ZMM2d1WTI4dlpHSmphREF4'.decode('base64').decode('base64')
+List2 = 'YUhSMGNEb3ZMMnR2WkdrdVkyTnNaQzVwYnc9PQ=='.decode('base64').decode('base64')
+List3 = 'YUhSMGNEb3ZMMkZwYnk1alkyeHZkV1IwZGk1dmNtY3ZhMjlrYVE9PQ=='.decode('base64').decode('base64')
+List4 = 'YUhSMGNEb3ZMMmR2TW13dWFXNXJMMnR2WkdrPQ=='.decode('base64').decode('base64')
 
-
-CCLOUDTV_SRV_URL = [List1,List2,List3,List4,List5]
+CCLOUDTV_SRV_URL = [List1,List2,List3,List4]
 
 ####################################################################################################
 # Gets the data and tests for a valid M3U since a 200 response code can still lead to an empty file 
