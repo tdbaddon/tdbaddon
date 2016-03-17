@@ -2,13 +2,10 @@
 
 
 #EXTINF:0,A1 Strumica 
-0
+http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/a1-strumica/chunklist.m3u8
 
 #EXTINF:0,Al Jazeera Balkan 
 rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
-
-#EXTINF:0,Alfa 
-http://213.136.87.128:8000/live/dualcore/dualcore/4.m3u8
 
 #EXTINF:0,Alfa 
 http://217.16.82.6:1935/zulu/alfa_1/playlist.m3u8
@@ -23,34 +20,28 @@ http://217.16.82.6:554/zulu/alfa_1/playlist.m3u8
 0
 
 #EXTINF:0,ERA TV 
-http://cp.dmbshare.net:8000/live/andy/andy/1783.ts
+0
 
 #EXTINF:0,H1 Hugo
 0
-
-#EXTINF:0,Hema TV 
-mms://77.238.209.50:1234
 
 #EXTINF:0,In TV 
 0
 
 #EXTINF:0,Iris 
-0
+http://62.162.58.55:80/TVIris
 
 #EXTINF:0,K1 Veles
+http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/k1-tv-veles/chunklist.m3u8
+
+#EXTINF:0,Kanal 3 
 0
 
 #EXTINF:0,Kanal 21 
 0
 
-#EXTINF:0,K3 Kumanovo 
-http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/k3-tv-kumanovo/chunklist.m3u8
-
 #EXTINF:0,K Plus Stip
 http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/kplus-tv-stip/chunklist.m3u8 
-
-#EXTINF:0,Kanal 5 
-http://213.136.87.128:8000/live/dualcore/dualcore/2.m3u8
 
 #EXTINF:0,Kanal 5 
 http://fms.zulu.mk:1935/zulu/kanal5_1/playlist.m3u8
@@ -59,28 +50,22 @@ http://fms.zulu.mk:1935/zulu/kanal5_1/playlist.m3u8
 http://217.16.82.6:1935/zulu/kanal5_2/playlist.m3u8
 
 #EXTINF:0,Kanal 5 Plus 
-0
+http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/kplus-tv-stip/chunklist.m3u8
 
-#EXTINF:0,Kanal 8
-mms://62.162.58.55/TVkanal8
+#EXTINF:0,Kanal 5 Plus
+http://fms.zulu.mk:1935/zulu/kanal5plus_2/playlist.m3u8
 
 #EXTINF:0,Mega TV Bitola
 http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/hdtv-mega-bitola/chunklist.m3u8
 
-#EXTINF:0,MPT
+#EXTINF:0,MPT 
 http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video_id/3545/token/8febec7104673322148fdc392d604973/playlist.m3u8
-
-#EXTINF:0,MPT 1 
-http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video_id/3551/token/8febec7104673322148fdc392d604973/playlist.m3u8
 
 #EXTINF:0,MPT 1 
 http://217.16.82.6:1935/zulu/mtv1_1/playlist.m3u8
 
 #EXTINF:0,MPT 1 
 http://217.16.82.6:554/zulu/mtv1_1/playlist.m3u8
-
-#EXTINF:0,MPT 2 
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/12397.ts
 
 #EXTINF:0,MPT 2 
 http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video_id/3548/token/9a9e4915833e8e611b2902b144852a92/playlist.m3u8
@@ -97,17 +82,11 @@ http://mrt.cdn.spectar.tv:1935/mrt-edge/_definst_/mrt1-sat/playlist.m3u8
 #EXTINF:0,MPT Sat 2 
 http://mrt.cdn.spectar.tv:1935/mrt-edge/_definst_/mrt2-sat/playlist.m3u8
 
-#EXTINF:0,MPT Sat 2 
-http://luckyiptv.ddns.net:23000/live/pirro/pirro/13060.ts
-
 #EXTINF:0,Nasha TV 
-0
+http://fms.zulu.mk:1935/zulu/nashatv_2/playlist.m3u8?wowzasessionid=263742548
 
 #EXTINF:0,Ohrid 02
-0
-
-#EXTINF:0,Sitel 
-http://213.136.87.128:8000/live/dualcore/dualcore/1.m3u8
+http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/o2-tv-ohrid/chunklist.m3u8
 
 #EXTINF:0,Sitel 
 http://217.16.82.6:1935/zulu/sitel_1/playlist.m3u8
@@ -119,13 +98,10 @@ http://217.16.82.6:554/zulu/sitel_1/playlist.m3u8
 0
 
 #EXTINF:0,Sonce TV 
-0
+http://92.53.27.201:10000/
 
 #EXTINF:0,Sutel TV 
 0
-
-#EXTINF:0,Telma 
-http://213.136.87.128:8000/live/dualcore/dualcore/3.m3u8
 
 #EXTINF:0,Telma 
 http://217.16.82.6:1935/zulu/telma_1/playlist.m3u8
@@ -138,6 +114,9 @@ http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/ultra-tv-tetovo/chun
 
 #EXTINF:0,Vesti 24
 http://24vesti.com.mk/sites/dnevnik/Vesti_VB6.flv 
+
+#EXTINF:0,Vesti 24
+http://62.162.58.55:80/24vesti
 
 #EXTINF:0,Vesti 24 
 http://62.162.58.55/24vesti

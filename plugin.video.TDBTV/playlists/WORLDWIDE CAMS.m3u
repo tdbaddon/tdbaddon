@@ -70,7 +70,7 @@ rtsp://video1.earthcam.com/fecnetwork/4559.flv
 #EXTINF:0,Panda Cam Atlanta Georgia 
 0
 
-#EXTINF:0,San Francisco Pier and Alcatraz
+#EXTINF:0,San Francisco Pier and Alcatraz 
 http://video1.earthcam.com/fecnetwork/6603.flv/hasbahca.m3u8
 
 #EXTINF:0,Santa Monica Beach California 
@@ -91,8 +91,8 @@ http://video1.earthcam.com:1935/fecnetwork/statueoflibertyHD.flv/hasbahca.m3u8
 #EXTINF:0,Stip Macedonia
 mms://62.162.58.55/KameraStip
 
-#EXTINF:0,Strumica Macedonia
-mms://62.162.58.55/KameraStrumica
+#EXTINF:0,Strumica Macedonia 
+0
 
 #EXTINF:0,The Temple Bar Ireland 
 http://video1.earthcam.com:1935/fecnetwork/4054.flv/hasbahca.m3u8
@@ -106,7 +106,7 @@ http://video1.earthcam.com/fecnetwork/4717.flv/hasbahca.m3u8
 #EXTINF:0,Times Square South View New York
 http://video1.earthcam.com:1935/fecnetwork/4017timessquare.flv/hasbahca.m3u8
 
-#EXTINF:0,Times Square Street View New York
+#EXTINF:0,Times Square Street View New York a
 http://video1.earthcam.com/fecnetwork/hdtimes11.flv/hasbahca.m3u8
 
 #EXTINF:0,Tokyo Japan

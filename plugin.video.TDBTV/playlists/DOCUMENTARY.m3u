@@ -5,22 +5,25 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 ---------------------------------------------------------------------------------------------------------------
 
 #EXTINF:0,American Heros Channel 
-0
+http://64.228.62.144:2046
 
 #EXTINF:0,AMHQ 
 0
 
 #EXTINF:0,Animal Planet 
+http://64.228.62.144:1023
+
+#EXTINF:0,Animal Planet 
 http://109.226.222.161:4022/udp/239.255.4.175:1234
 
-#EXTINF:0,Animal Planet 
-http://cp.dmbshare.net:8000/live/andy/andy/2834.ts
-
-#EXTINF:0,Animal Planet 
-http://89.163.148.31:8000/live/pierre/pierre/2834.ts
+#EXTINF:0,Biography Channel
+http://64.228.62.144:2085
 
 #EXTINF:0,Crime & Investigation 
-0
+http://64.228.62.144:2077
+
+#EXTINF:0,Cottage Life
+http://64.228.62.144:4001
 
 #EXTINF:0,Destination America 
 0
@@ -32,25 +35,19 @@ http://89.163.148.31:8000/live/pierre/pierre/2834.ts
 0
 
 #EXTINF:0,Discovery History 
-http://cp.dmbshare.net:8000/live/andy/andy/2812.ts
+0
 
 #EXTINF:0,Discovery H&H
 0
 
-#EXTINF:0,Discovery Max
-http://cp.dmbshare.net:8000/live/andy/andy/2813.ts
+#EXTINF:0,Discovery Max 
+0
 
 #EXTINF:0,Discovery News 
 0
 
 #EXTINF:0,Discovery Science 
 http://109.226.222.161:4022/udp/239.255.4.250:1234
-
-#EXTINF:0,Discovery Science 
-http://cp.dmbshare.net:8000/live/andy/andy/2819.ts
-
-#EXTINF:0,Discovery Science 
-http://cp.dmbshare.net:8000/live/andy/andy/2818.ts
 
 #EXTINF:0,Discovery Theatre
 0
@@ -64,11 +61,17 @@ http://cp.dmbshare.net:8000/live/andy/andy/2818.ts
 #EXTINF:0,Docubox 
 0
 
+#EXTINF:0,Documentary Channel
+http://64.228.62.144:4023
+
 #EXTINF:0,Flite Level TV 
 0
 
 #EXTINF:0,Genesis Science Network
 0
+
+#EXTINF:0,History Channel 
+http://64.228.62.144:1003
 
 #EXTINF:0,History Channel 
 https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8?hdnea=ip=174.113.30.187~st=1427694727~exp=1427695327~acl=/i/*~id=a86de0c2-ad09-4469-9a63-6ebbc1bba4d3~hmac=ac144089000bdd16f6916c517ce3e6e04813d4de11ac16839ad468a977ec80b1
@@ -79,11 +82,14 @@ http://link.theplatform.com/s/dtjsEC/chjdYJxKb44V?manifest=m3u&feed=History%20Li
 #EXTINF:0,History Channel 
 https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8
 
-#EXTINF:0,History Channel 2
-http://cp.dmbshare.net:8000/live/andy/andy/2800.ts
+#EXTINF:0,History Channel 2 
+0
 
 #EXTINF:0,Investigation Discovery 
-0
+http://64.228.62.144:1021
+
+#EXTINF:0,Investigation Discovery 
+http://64.228.62.144:1021
 
 #EXTINF:0,Nasa TV 
 http://nasatv-lh.akamaihd.net/i/NASA_101@319270/master.m3u8 
@@ -98,13 +104,10 @@ http://nasatv-lh.akamaihd.net/i/NASA_102@319272/master.m3u8
 http://nasatv-lh.akamaihd.net/i/NASA_103@319271/master.m3u8
 
 #EXTINF:0,Nat Geo Wild 
-http://cp.dmbshare.net:8000/live/andy/andy/2792.ts
+0
 
 #EXTINF:0,National Geographic 
 http://109.226.222.161:4022/udp/239.255.4.30:1234
-
-#EXTINF:0,National Geographic
-http://cp.dmbshare.net:8000/live/andy/andy/2793.ts
 
 #EXTINF:0,Nova
 0
@@ -131,7 +134,7 @@ http://rt-a.akamaihd.net/ch_05@325609/720p.m3u8
 0
 
 #EXTINF:0,Travel and Escape 
-0
+http://64.228.62.144:4019
 
 #EXTINF:0,Travel Channel 
 0

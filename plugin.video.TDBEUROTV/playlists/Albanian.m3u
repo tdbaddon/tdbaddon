@@ -11,7 +11,7 @@
 rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
 
 #EXTINF:0,Alb Info
-http://str105mb.setplex.net:1935/str2iosmd5/stralbinfo_2654_dfs/playlist.m3u8
+0
 
 #EXTINF:0,Alb UK 
 rtmp://188.138.17.8:1935/albuk/albuk.stream
@@ -20,40 +20,40 @@ rtmp://188.138.17.8:1935/albuk/albuk.stream
 0
 
 #EXTINF:0,Alsat M 
-http://213.136.87.128:8000/live/dualcore/dualcore/5.m3u8#EXTM3U
+#EXTINF:0,Kanal 5 Plus
 
 #EXTINF:0,ATV
 rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
 
 #EXTINF:0,Bangbang 
-http://cp.dmbshare.net:8000/live/andy/andy/1745.ts
+0
 
 #EXTINF:0,Channel One 
 0
 
 #EXTINF:0,Cufo TV 
-http://cp.dmbshare.net:8000/live/andy/andy/1771.ts
+0
 
 #EXTINF:0,Folk Plus 
-http://cp.dmbshare.net:8000/live/andy/andy/1756.ts
+0
 
 #EXTINF:0,Jug TV 
 0
 
 #EXTINF:0,Kanal 7 
-http://cp.dmbshare.net:8000/live/andy/andy/1760.ts
+0
 
 #EXTINF:0,Klan 
-http://cp.dmbshare.net:8000/live/andy/andy/1736.ts
+0
 
 #EXTINF:0,Klan Kosova 
-http://cp.dmbshare.net:8000/live/andy/andy/1735.ts
+0
 
 #EXTINF:0,Klan Plus
 0
 
 #EXTINF:0,Koha TV 
-http://cp.dmbshare.net:8000/live/andy/andy/1818.ts
+0
 
 #EXTINF:0,Kohavision
 0
@@ -70,23 +70,14 @@ rtmp://91.82.85.44/live/konyhatv
 #EXTINF:0,Ora News 
 http://81.7.13.162/hls/oranews/index.m3u8
 
-#EXTINF:0,Ora News 
-http://cp.dmbshare.net:8000/live/andy/andy/1784.ts
-
 #EXTINF:0,Planet TV 
 0
 
 #EXTINF:0,Rokum TV 
 rtmp://82.114.65.202/live/rrokumtv.flv swfUrl=http://tv24.al/shqiptv/css/player.swf live=1
 
-#EXTINF:0,Rokum TV 
-http://cp.dmbshare.net:8000/live/andy/andy/1761.ts
-
 #EXTINF:0,RTK1 
 rtmp://wowza.rtkit.com/live/livestream
-
-#EXTINF:0,RTK1 
-http://cp.dmbshare.net:8000/live/andy/andy/1730.ts
 
 #EXTINF:0,STV 
 http://88.212.10.27:81/streams/stv1.m3u8?
@@ -98,16 +89,13 @@ http://88.212.10.27:81/streams/stv1.m3u8?
 rtmp://str103.setplex.net:1935/228/stv_online
 
 #EXTINF:0,Top Channel 
-http://cp.dmbshare.net:8000/live/andy/andy/1734.ts
+0
 
 #EXTINF:0,Top Channel News
-http://cp.dmbshare.net:8000/live/andy/andy/1766.ts
+0
 
 #EXTINF:0,Tring Tring
-http://cp.dmbshare.net:8000/live/andy/andy/1747.ts
+0
 
 #EXTINF:0,Vizion Plus 
 rtmp://live.vizionplus.tv/live//livestream3
-
-
-http://cp.dmbshare.net:8000/live/andy/andy/1737.ts

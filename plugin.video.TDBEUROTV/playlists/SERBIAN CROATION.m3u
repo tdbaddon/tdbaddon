@@ -5,28 +5,25 @@
 rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
 
 #EXTINF:0,Arena Sport 1 
-http://cp.dmbshare.net:8000/live/andy/andy/1802.ts
+0
 
 #EXTINF:0,Arena Sport 2 
-http://cp.dmbshare.net:8000/live/andy/andy/1803.ts
+0
 
 #EXTINF:0,Arena Sport 3 
-http://cp.dmbshare.net:8000/live/andy/andy/1804.ts
+0
 
 #EXTINF:0,Arena Sport 4 
-http://cp.dmbshare.net:8000/live/andy/andy/1805.ts
+0
 
 #EXTINF:0,Arena Sport 5 
-http://cp.dmbshare.net:8000/live/andy/andy/1806.ts
+0
 
 #EXTINF:0,ATV
 rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
 
 #EXTINF:0,B92 
 http://stream.b92.net:7999/tv-b92.ogg
-
-#EXTINF:0,B92 
-http://cp.dmbshare.net:8000/live/andy/andy/1822.ts
 
 #EXTINF:0,Balkan TV
 0
@@ -73,17 +70,17 @@ http://213.81.153.221:8080/cetv
 #EXTINF:0,Hayatovci
 0
 
-#EXTINF:0,Hema 
+#EXTINF:0,Hema TV 
 mms://77.238.209.50:1234
 
 #EXTINF:0,Hronka
 0
 
 #EXTINF:0,HRT 1 
-http://cp.dmbshare.net:8000/live/andy/andy/1811.ts
+0
 
 #EXTINF:0,HRT 2 
-http://cp.dmbshare.net:8000/live/andy/andy/1812.ts
+0
 
 #EXTINF:0,HRT 3 
 0
@@ -100,8 +97,11 @@ http://cp.dmbshare.net:8000/live/andy/andy/1812.ts
 #EXTINF:0,Jugoton
 0
 
-#EXTINF:0,Kanal 3 
-0
+#EXTINF:0,K3 Kumanovo 
+http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/k3-tv-kumanovo/chunklist.m3u8
+
+#EXTINF:0,Kanal 8
+mms://62.162.58.55/TVkanal8
 
 #EXTINF:0,Kanal 21
 0
@@ -111,9 +111,6 @@ rtmp://91.82.85.44/live/konyhatv
 
 #EXTINF:0,KTV 
 http://213.81.153.221:8080/kezmarok
-
-#EXTINF:0,KTV 
-http://cp.dmbshare.net:8000/live/andy/andy/1732.ts
 
 #EXTINF:0,Music Box 
 http://213.81.153.221:8080/nasa
@@ -149,7 +146,7 @@ mms://176.106.121.32:8080/
 0
 
 #EXTINF:0,Prva TV 
-http://cp.dmbshare.net:8000/live/andy/andy/1817.ts
+0
 
 #EXTINF:0,RTC 
 0
@@ -161,7 +158,7 @@ mms://beotelmedia.beotel.net/tvcg
 mms://195.252.114.172/tvcg
 
 #EXTINF:0,RTL
-http://cp.dmbshare.net:8000/live/andy/andy/1813.ts
+0
 
 #EXTINF:0,RTL 2 
 0
@@ -173,10 +170,10 @@ http://cp.dmbshare.net:8000/live/andy/andy/1813.ts
 0
 
 #EXTINF:0,RTS 1 
-http://cp.dmbshare.net:8000/live/andy/andy/1815.ts
+0
 
 #EXTINF:0,RTS 2 
-http://cp.dmbshare.net:8000/live/andy/andy/1816.ts
+0
 
 #EXTINF:0,RTS 3 
 0
@@ -197,10 +194,10 @@ http://92.53.27.201:10000/
 0
 
 #EXTINF:0,Studio B 
-mms://195.252.114.172/studiob
+0
 
 #EXTINF:0,STV1 
-http://88.212.10.27:81/streams/stv1.m3u8
+0
 
 #EXTINF:0,STV2
 0

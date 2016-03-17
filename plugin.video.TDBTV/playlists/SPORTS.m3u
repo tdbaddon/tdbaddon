@@ -18,10 +18,7 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 0
 
 #EXTINF:0,Box Nation 
-http://cp.dmbshare.net:8000/live/andy/andy/2831.ts
-
-#EXTINF:0,Box Nation 
-http://cp.dmbshare.net:8000/live/andy/andy/2770.ts
+0
 
 #EXTINF:0,BT Sport 1 
 http://02e4.vp9.tv/chn/btsu1/v.m3u8
@@ -29,32 +26,23 @@ http://02e4.vp9.tv/chn/btsu1/v.m3u8
 #EXTINF:0,BT Sport 2 
 http://02e4.vp9.tv/chn/btsu2/v.m3u8
 
-#EXTINF:0,BT Sport 2 
-http://cp.dmbshare.net:8000/live/andy/andy/2829.ts
-
 #EXTINF:0,CBS Sports 
 0
 
 #EXTINF:0,Chelsea TV 
 http://208.92.36.158/ipad/live/nba_ipad_1240.m3u8
 
-#EXTINF:0,Chelsea TV 
-http://cp.dmbshare.net:8000/live/andy/andy/2811.ts
-
 #EXTINF:0,CMore Sport 
 0
 
 #EXTINF:0,ESPN 
-http://cp.dmbshare.net:8000/live/andy/andy/2809.ts
+0
 
 #EXTINF:0,ESPN 2
 0
 
 #EXTINF:0,Eurosport 1 
 http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_1800.m3u8
-
-#EXTINF:0,Eurosport 1 
-http://cp.dmbshare.net:8000/live/andy/andy/2808.ts
 
 #EXTINF:0,Eurosport News 
 0
@@ -69,7 +57,7 @@ http://cp.dmbshare.net:8000/live/andy/andy/2808.ts
 0
 
 #EXTINF:0,Fox Sports 1 
-0
+http://ooyalahd2-f.akamaihd.net/i/eslax17_delivery@349499/master.m3u8
 
 #EXTINF:0,Fox Sports 2 
 0
@@ -79,6 +67,9 @@ http://cp.dmbshare.net:8000/live/andy/andy/2808.ts
 
 #EXTINF:0,FSC
 http://208.92.36.158/ipad/live/nba_ipad_1240.m3u8
+
+#EXTINF:0,HBO Boxing
+http://64.228.62.144:1013
 
 #EXTINF:0,LFC TV 
 0
@@ -99,7 +90,7 @@ mms://100automoto.tv/channel_mercedes
 mms://100automoto.tv/100livesport
 
 #EXTINF:0,NBA TV 
-0
+http://64.228.62.144:2092
 
 #EXTINF:0,NBC Golf 
 http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/1896k/prog.m3u8|X-Forwarded-For=66.171.228.102
@@ -110,14 +101,17 @@ http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/2596k/prog.m3u8|X-Forwarded-
 #EXTINF:0,NBC Golf HD
 http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/4296k/prog.m3u8|X-Forwarded-For=209.239.112.104
 
+#EXTINF:0,NBC Golf HD
+http://64.228.62.144:4017
+
 #EXTINF:0,NBCSN 
 http://cdn.phoenix.intergi.com/21772/videos/3362254/video-sd.mp4?hosting_id=21772
 
 #EXTINF:0,NFL Live 
-0
+http://nflioslivesvg2-i.akamaihd.net/hls/live/221521/nflioslive/2015HackerNow_w99d9.m3u8
 
 #EXTINF:0,NFL Network 
-http://nflioslivesvg2-i.akamaihd.net/hls/live/221521/nflioslive/2015HackerNow_w99d9.m3u8
+0
 
 #EXTINF:0,NHL Network 
 http://208.92.36.158/ipad/live/nba_ipad_1240.m3u8
@@ -198,25 +192,22 @@ http://sacapunta.eltelon.com/channels/redbulltv/playlist.m3u8
 0
 
 #EXTINF:0,Setanta Sports 
-http://cp.dmbshare.net:8000/live/andy/andy/2796.ts
+0
 
 #EXTINF:0,Sky Sports 1 
-http://cp.dmbshare.net:8000/live/andy/andy/2768.ts
-
-#EXTINF:0,Sky Sports 1 
-http://cp.dmbshare.net:8000/live/andy/andy/2767.ts
+rtmp://lb.miplayer.net:1935/goLive/_definst_/ibrodtv21_6vhudlq8
 
 #EXTINF:0,Sky Sports 2 
 http://37.187.24.177:80/ramzi/ramzi/852.ch
 
 #EXTINF:0,Sky Sports 2 
-http://cp.dmbshare.net:8000/live/andy/andy/2766.ts
+rtmp://lb.miplayer.net:1935/goLive/_definst_/ibrodtv22_j5p1mted
 
 #EXTINF:0,Sky Sports 3 
-http://cp.dmbshare.net:8000/live/andy/andy/2765.ts
+rtmp://lb.miplayer.net:1935/goLive/_definst_/ibrodtv23_5px3ntfs
 
 #EXTINF:0,Sky Sports 4 
-http://cp.dmbshare.net:8000/live/andy/andy/2764.ts
+rtmp://lb.miplayer.net:1935/goLive/_definst_/ibrodtv24_f84rdmkk
 
 #EXTINF:0,Sky Sports 5 
 http://37.187.24.177:80/ramzi/ramzi/853.ch
@@ -225,19 +216,25 @@ http://37.187.24.177:80/ramzi/ramzi/853.ch
 http://144.76.3.83/sky_sports5gb.m3u8
 
 #EXTINF:0,Sky Sports 5 
-http://cp.dmbshare.net:8000/live/andy/andy/2763.ts
+rtmp://lb.miplayer.net:1935/goLive/_definst_/ibrodtv25_wt250ssk
 
 #EXTINF:0,Sky Sports F1 
-http://cp.dmbshare.net:8000/live/andy/andy/2762.ts
+0
 
 #EXTINF:0,Sky Sports News 
-http://cp.dmbshare.net:8000/live/andy/andy/2761.ts
+0
 
 #EXTINF:0,Sports Tonight 
 rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9-SD
 
 #EXTINF:0,Sportsnet 360 
-0
+http://64.228.62.144:1011
+
+#EXTINF:0,Sportsnet East
+http://64.228.62.144:2058
+
+#EXTINF:0,Sportsnet One 
+http://64.228.62.144:1006
 
 #EXTINF:0,Sportsnet One 
 rtmp://31.220.2.149:80/live playpath=sprt1 swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf pageUrl=http://yotv.co/embedu.php?live=sprt1&vw=620&vh=490 token=%Zrey(nKa@#Z
@@ -249,19 +246,28 @@ rtmp://185.63.255.18:80/live playpath=sprt1 swfUrl=http://p.jwpcdn.com/6/12/jwpl
 rtmp://185.63.255.60:80/live playpath=sprt1 swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf pageUrl=http://yotv.co/embedu.php?live=sprt1&vw=620&vh=490 live=1 token=%Zrey(nKa@#Z
 
 #EXTINF:0,Sportsnet Ontario 
+http://64.228.62.144:1010
+
+#EXTINF:0,Sportsnet Ontario 
 rtmp://185.63.255.60:80/live playpath=ontrio swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf pageUrl=http://yotv.co/embedu.php?live=ontrio&vw=620&vh=490 live=1 token=%Zrey(nKa@#Z
 
 #EXTINF:0,Sportsnet Ontario 
 rtmp://185.63.255.18:80/live playpath=ontrio swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf pageUrl=http://yotv.co/embedu.php?live=ontrio&vw=620&vh=490 live=1 token=%Zrey(nKa@#Z
 
+#EXTINF:0,Sportsnet Pacific
+http://64.228.62.144:1007
+
 #EXTINF:0,Sportsnet World 
-0
+http://64.228.62.144:1000
 
 #EXTINF:0,Tennis Channel 
 0
 
 #EXTINF:0,Trace Sports
-http://stream01.yamgo.com/iPhone/HLS_TS/broadcast/trace_tv_sports-tablet.3gp/trace_tv_sports-tablet.3gp-mr647k.m3u8?
+0
+
+#EXTINF:0,TSN 1 
+http://64.228.62.144:2012
 
 #EXTINF:0,TSN 1 
 rtmp://31.220.2.149:80/live/ playpath=ts1 token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://yotv.co
@@ -270,13 +276,16 @@ rtmp://31.220.2.149:80/live/ playpath=ts1 token=%Zrey(nKa@#Z swfUrl=http://p.jwp
 rtmp://31.220.2.149:80/live/ playpath=tsnx2 token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://yotv.co
 
 #EXTINF:0,TSN 3 
-0
+http://64.228.62.144:4010
+
+#EXTINF:0,TSN 3 
+http://64.228.62.144:4009
 
 #EXTINF:0,TSN 4 
-0
+http://64.228.62.144:2009
 
 #EXTINF:0,TSN 5 
-0
+http://64.228.62.144:4004
 
 #EXTINF:0,Viasat Golf 
 0
@@ -289,3 +298,6 @@ http://208.92.36.158/ipad/live/nba_ipad_1240.m3u8
 
 #EXTINF:0,WWE Network 
 0
+
+#EXTINF:0,Wild TV
+http://64.228.62.144:3006

@@ -11,7 +11,7 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 0
 
 #EXTINF:0,Cinemax 
-0
+http://77.76.140.251/prgb.m3u8
 
 #EXTINF:0,CineStarTV Premiere 1 
 0
@@ -34,8 +34,17 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 #EXTINF:0,CMore Series 
 0
 
-#EXTINF:0,Encore
-0
+#EXTINF:0,Encore 1 East
+http://64.228.62.144:1026
+
+#EXTINF:0,Encore 1 West
+http://64.228.62.144:4021
+
+#EXTINF:0,Encore 2 East
+http://64.228.62.144:1005
+
+#EXTINF:0,Encore 2 West
+http://64.228.62.144:4003
 
 #EXTINF:0,Encore Action
 0
@@ -47,25 +56,25 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 0
 
 #EXTINF:0,Film Aksion 
-http://cp.dmbshare.net:8000/live/andy/andy/1774.ts
+0
 
 #EXTINF:0,Film Autor
 0
 
-#EXTINF:0,Film Komedi
-http://cp.dmbshare.net:8000/live/andy/andy/1775.ts
+#EXTINF:0,Film Komedi 
+0
 
-#EXTINF:0,Film Drame
-http://cp.dmbshare.net:8000/live/andy/andy/1773.ts
+#EXTINF:0,Film Drame 
+0
 
 #EXTINF:0,Film Hits 
 0
 
 #EXTINF:0,Film Nje 
-http://cp.dmbshare.net:8000/live/andy/andy/1778.ts
+0
 
-#EXTINF:0,Film Thriller
-http://cp.dmbshare.net:8000/live/andy/andy/1777.ts
+#EXTINF:0,Film Thriller 
+0
 
 #EXTINF:0,Film Zone
 0
@@ -89,7 +98,7 @@ http://cp.dmbshare.net:8000/live/andy/andy/1777.ts
 0
 
 #EXTINF:0,HBO 
-0
+http://64.228.62.144:1014
 
 #EXTINF:0,HBO Adria 
 0
@@ -127,8 +136,8 @@ http://cp.dmbshare.net:8000/live/andy/andy/1777.ts
 #EXTINF:0,MGM 
 http://telvuehls_t02027-i.akamaihd.net/hls/live/213119/T02027-amgtv2/playlist_2.m3u8
 
-#EXTINF:0,Movies4Men
-http://cp.dmbshare.net:8000/live/andy/andy/2795.ts
+#EXTINF:0,Movies4Men 
+0
 
 #EXTINF:0,Paramount Channel 
 0
@@ -145,50 +154,47 @@ http://cp.dmbshare.net:8000/live/andy/andy/2795.ts
 #EXTINF:0,Showtime West
 0
 
+#EXTINF:0,Silver Screen Classics
+http://64.228.62.144:3001
+
 #EXTINF:0,Sky Movies Action 
-http://cp.dmbshare.net:8000/live/andy/andy/2778.ts
+0
 
 #EXTINF:0,Sky Movies Comedy 
-http://cp.dmbshare.net:8000/live/andy/andy/2783.ts
+0
 
 #EXTINF:0,Sky Movies Crime 
 0
 
 #EXTINF:0,Sky Movies Disney 
-http://cp.dmbshare.net:8000/live/andy/andy/2782.ts
+0
 
 #EXTINF:0,Sky Movies Family 
-http://cp.dmbshare.net:8000/live/andy/andy/2781.ts
-
-#EXTINF:0,Sky Movies Family 
-http://cp.dmbshare.net:8000/live/andy/andy/2743.ts
+0
 
 #EXTINF:0,Sky Movies Horrors 
 0
 
 #EXTINF:0,Sky Movies Modern Greats 
-http://cp.dmbshare.net:8000/live/andy/andy/2742.ts
+0
 
 #EXTINF:0,Sky Movies Premiere 
-http://cp.dmbshare.net:8000/live/andy/andy/2775.ts
+0
 
 #EXTINF:0,Sky Movies Premiere+
 0
 
 #EXTINF:0,Sky Movies SciFi 
-http://cp.dmbshare.net:8000/live/andy/andy/2774.ts
-
-#EXTINF:0,Sky Movies SciFi 
-http://cp.dmbshare.net:8000/live/andy/andy/2769.ts
+0
 
 #EXTINF:0,Sky Movies Select 
-http://cp.dmbshare.net:8000/live/andy/andy/2773.ts
+0
 
-#EXTINF:0,Sky Movies Showcase
-http://cp.dmbshare.net:8000/live/andy/andy/2741.ts
+#EXTINF:0,Sky Movies Showcase 
+0
 
-#EXTINF:0,Sky Movies Thriller
-http://cp.dmbshare.net:8000/live/andy/andy/2760.ts
+#EXTINF:0,Sky Movies Thriller 
+0
 
 #EXTINF:0,Sony TV 
 0
@@ -212,37 +218,54 @@ http://cp.dmbshare.net:8000/live/andy/andy/2760.ts
 0
 
 #EXTINF:0,TCM 
-0
+http://64.228.62.144:1012
 
-#EXTINF:0,The Movie Channel
-0
+#EXTINF:0,The Movie Channel 
+http://64.228.62.144:2068
 
-#EXTINF:0,Tring Comedy
-http://cp.dmbshare.net:8000/live/andy/andy/1742.ts
+#EXTINF:0,The Movie Channel 1 East
+http://64.228.62.144:2056
+
+#EXTINF:0,The Movie Channel 1 West
+http://64.228.62.144:2057
+
+#EXTINF:0,The Movie Channel 1 West
+http://64.228.62.144:1028
+
+#EXTINF:0,The Movie Channel 2 East
+http://64.228.62.144:1027
+
+#EXTINF:0,The Movie Channel 2 West
+http://64.228.62.144:2065
+
+#EXTINF:0,Tring Comedy 
+0
 
 #EXTINF:0,Tring Fantasy 
-http://cp.dmbshare.net:8000/live/andy/andy/1744.ts
+0
 
-#EXTINF:0,Tring Life
-http://cp.dmbshare.net:8000/live/andy/andy/1741.ts
+#EXTINF:0,Tring Life 
+0
 
 #EXTINF:0,Tring Max 
-http://cp.dmbshare.net:8000/live/andy/andy/1739.ts
+0
 
-#EXTINF:0,Tring Super
-http://cp.dmbshare.net:8000/live/andy/andy/1740.ts
-
-#EXTINF:0,True Movies 1 
-http://63.237.48.23/ios/MBC2/MBC2.m3u8
+#EXTINF:0,Tring Super 
+0
 
 #EXTINF:0,True Movies 1 
-http://cp.dmbshare.net:8000/live/andy/andy/2756.ts
+0
 
 #EXTINF:0,True Movies 2 
-http://cp.dmbshare.net:8000/live/andy/andy/2755.ts
+0
 
 #EXTINF:0,TV 1000 
 0
 
 #EXTINF:0,TV 1000 Action 
 0
+
+#EXTINF:0,W Movies
+http://64.228.62.144:2026
+
+

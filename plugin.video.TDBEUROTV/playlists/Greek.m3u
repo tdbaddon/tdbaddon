@@ -37,11 +37,8 @@ http://88.198.238.44:1935/live/bluesky/playlist.m3u8
 #EXTINF:0,Boyah TV
 http://streamer-cache.grnet.gr/parliament/parltv.sdp/master.m3u8 
 
-#EXTINF:0,Creta
+#EXTINF:0,Creta 
 rtmp://live.cretetv.gr/cretetv/myStream
-
-#EXTINF:0,Creta
-http://srv.viiideo.gr:1935/tvcreta/live/playlist.m3u8 
 
 #EXTINF:0,Delta 
 mms://deltatv1.dyndns.org:1194

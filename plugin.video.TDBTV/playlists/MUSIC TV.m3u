@@ -113,6 +113,12 @@ rtmp://tst.es.flash.glb.ipercast.net/tst.es-live/live
 http://k4.usastreams.com:1935/miamitv/miamitv/chunklist_w128908539.m3u8
 
 #EXTINF:0,MTV 
+http://64.228.62.144:2084
+
+#EXTINF:0,MTV 
+http://64.228.62.144:1004
+
+#EXTINF:0,MTV 
 http://origin2.voronezh.ertelecom.ru/content/private/s147213/d3720264/r183857sd2500000/efe4541060c00fccc01e8c068fce4f5ab911d969/playlist.m3u8
 
 #EXTINF:0,MTV 
@@ -129,6 +135,9 @@ http://cp.dmbshare.net:8000/live/andy/andy/2817.ts
 
 #EXTINF:0,MTV Rocks 
 0
+
+#EXTINF:0,Much Music
+http://64.228.62.144:1022
 
 #EXTINF:0,MusicVoxTV 
 rtmp://stream.smcloud.net/live2/vox/vox_480p

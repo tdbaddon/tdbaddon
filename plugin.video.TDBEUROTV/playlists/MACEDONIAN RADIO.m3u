@@ -17,9 +17,6 @@ rtmp://off.net.mk/radio/city.stream
 http://ss1.mk.checast.com:9002/128.mp3?1437242048887.mp3
 
 #EXTINF:0,Metropolis FM Skopje
-http://217.115.140.23:8000/metropolis.mp3
-
-#EXTINF:0,Metropolis FM Skopje
 http://94.23.62.189:6064/;.mp3?1437241999499.mp3
 
 #EXTINF:0,Ohrid 24
@@ -38,7 +35,7 @@ http://radio105.makbots.com:21010/;?1437245345024.mp3
 http://ss1.mk.checast.com:21100/live?1437243979579.aac 
 
 #EXTINF:0,Radio 2 Skopje 
-http://217.115.140.23:8001/radio2
+0
 
 #EXTINF:0,Radio Akord kichevo 
 0
@@ -71,10 +68,7 @@ http://ss1.mk.checast.com:21070/48.aac
 http://ss1.mk.checast.com:21070/48.aac?1437244407221.aac 
 
 #EXTINF:0,Radio Kavadarci
-http://217.115.140.23:8010/kavadarci
-
-#EXTINF:0,Radio Kavadarci 
-http://ss1.mk.checast.com:9000/kavadarci?1437244927604.mp3 
+0
 
 #EXTINF:0,Radio Lakosta Vinica
 http://ss1.mk.checast.com:21076/live?1437244729484.aac 
@@ -101,10 +95,10 @@ http://ss1.mk.checast.com:18002/;?1437245205237.mp3
 0
 
 #EXTINF:0,Radio Valandovo
-http://ss1.mk.checast.com:21078/128.mp3?1437246142825.mp3 
+0
 
 #EXTINF:0,Skaj Radio
-http://ss1.mk.checast.com:21030/32.aac?1437244247364.aac 
+0
 
 #EXTINF:0,Sky Radio Skopje 
 0
