@@ -35,16 +35,16 @@ http://77.76.140.251/prgb.m3u8
 0
 
 #EXTINF:0,Encore 1 East
-http://64.228.62.144:1026
+0
 
 #EXTINF:0,Encore 1 West
-http://64.228.62.144:4021
+0
 
 #EXTINF:0,Encore 2 East
-http://64.228.62.144:1005
+0
 
 #EXTINF:0,Encore 2 West
-http://64.228.62.144:4003
+0
 
 #EXTINF:0,Encore Action
 0
@@ -98,7 +98,7 @@ http://64.228.62.144:4003
 0
 
 #EXTINF:0,HBO 
-http://64.228.62.144:1014
+0
 
 #EXTINF:0,HBO Adria 
 0
@@ -155,7 +155,7 @@ http://telvuehls_t02027-i.akamaihd.net/hls/live/213119/T02027-amgtv2/playlist_2.
 0
 
 #EXTINF:0,Silver Screen Classics
-http://64.228.62.144:3001
+0
 
 #EXTINF:0,Sky Movies Action 
 0
@@ -218,25 +218,22 @@ http://64.228.62.144:3001
 0
 
 #EXTINF:0,TCM 
-http://64.228.62.144:1012
+0
 
 #EXTINF:0,The Movie Channel 
-http://64.228.62.144:2068
+0
 
 #EXTINF:0,The Movie Channel 1 East
-http://64.228.62.144:2056
+0
 
 #EXTINF:0,The Movie Channel 1 West
-http://64.228.62.144:2057
-
-#EXTINF:0,The Movie Channel 1 West
-http://64.228.62.144:1028
+0
 
 #EXTINF:0,The Movie Channel 2 East
-http://64.228.62.144:1027
+0
 
 #EXTINF:0,The Movie Channel 2 West
-http://64.228.62.144:2065
+0
 
 #EXTINF:0,Tring Comedy 
 0
@@ -266,6 +263,6 @@ http://64.228.62.144:2065
 0
 
 #EXTINF:0,W Movies
-http://64.228.62.144:2026
+0
 
 

@@ -905,7 +905,7 @@ http://kodilive.eu</description>
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="3.60"
+       version="3.61"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>

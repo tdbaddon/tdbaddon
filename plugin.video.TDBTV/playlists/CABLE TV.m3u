@@ -5,19 +5,19 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 ---------------------------------------------------------------------------------------------------------------
 
 #EXTINF:0,A&E 
-http://64.228.62.144:1020
+0
 
 #EXTINF:0,ABC 
-http://64.228.62.144:2088
+0
 
 #EXTINF:0,ABC Family 
 0
 
 #EXTINF:0,Adult Swim TV
-http://64.228.62.144:2075
+0
 
 #EXTINF:0,AMC
-http://64.228.62.144:1024
+0
 
 #EXTINF:0,AXN 
 0
@@ -28,9 +28,6 @@ http://64.228.62.144:1024
 #EXTINF:0,BBC 1 
 http://89.163.148.31:8000/live/pierre/pierre/2752.ts
 
-#EXTINF:0,BBC 1 
-http://64.228.62.144:4015
-
 #EXTINF:0,BBC 2 
 0
 
@@ -38,7 +35,7 @@ http://64.228.62.144:4015
 0
 
 #EXTINF:0,BBC Kids
-http://64.228.62.144:4014
+0
 
 #EXTINF:0,BET 
 0
@@ -47,7 +44,7 @@ http://64.228.62.144:4014
 http://77.120.118.235:8085
 
 #EXTINF:0,Bravo 
-http://64.228.62.144:4024
+0
 
 #EXTINF:0,Cartoon Network 
 http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD28_W_250.sdp/playlist.m3u8
@@ -56,25 +53,13 @@ http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD28_W_250.sdp/p
 http://54.255.155.24:1935//Live/_definst_/sweetbcha1novD28_W_150.sdp/playlist.m3u8
 
 #EXTINF:0,CBC TV 
-http://64.228.62.144:2094
-
-#EXTINF:0,CBC TV 
-http://64.228.62.144:2089
-
-#EXTINF:0,CBC TV 
-http://64.228.62.144:2011
-
-#EXTINF:0,CBC TV 
-http://64.228.62.144:4011
+0
 
 #EXTINF:0,Cbeebies 
 http://live-1183.gv2.edge.filmon.com/live/103.low.stream/1458184027606.ts
 
 #EXTINF:0,CBS 
-http://64.228.62.144:2013
-
-#EXTINF:0,CBS 
-http://64.228.62.144:2086
+0
 
 #EXTINF:0,CBS Action 
 0
@@ -86,77 +71,58 @@ http://live-1180.gv2.edge.filmon.com/live/1805.low.stream/1458183943342.ts
 http://live-1180.gv2.edge.filmon.com/live/1808.low.stream/1458183839052.ts
 
 #EXTINF:0,CHCH Ontario
-http://64.228.62.144:2045
-
-#EXTINF:0,CHCH Ontario
-http://64.228.62.144:2031
+0
 
 #EXTINF:0,City TV Toronto 
-http://64.228.62.144:2054
+0
 
 #EXTINF:0,City TV Vancouver 
 0
 
 #EXTINF:0,CMT
-http://64.228.62.144:4020
+0
 
 #EXTINF:0,CNBC 
-http://64.228.62.144:2005
-
+0
 
 #EXTINF:0,Comedy Central 
 0
 
 #EXTINF:0,Comedy Gold
-http://64.228.62.144:2000
+0
 
 #EXTINF:0,Comedy Channel
-http://64.228.62.144:4000
+0
 
 #EXTINF:0,Cosmopolitan TV
-http://64.228.62.144:2076
+0
 
 #EXTINF:0,Cooking Channel
 0
 
 #EXTINF:0,CTV Edmonton 
-http://64.228.62.144:2030
+0
 
 #EXTINF:0,CTV Lethbridge 
-http://64.228.62.144:2093
+0
 
 #EXTINF:0,CTV Regina 
-http://64.228.62.144:2066
+0
 
 #EXTINF:0,CTV Toronto
-http://64.228.62.144:2033
-
-#EXTINF:0,CTV Toronto
-http://64.228.62.144:2017
-
-#EXTINF:0,CTV Toronto
-http://64.228.62.144:2097
+0
 
 #EXTINF:0,CTV Yorkton 
-http://64.228.62.144:3000
-
-#EXTINF:0,CTV Yorkton 
-http://64.228.62.144:2097
-
-#EXTINF:0,CW 
-http://64.228.62.144:2034
+0
 
 #EXTINF:0,CW 
 http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/index_350_av-p.m3u8?
 
 #EXTINF:0,DejaView
-http://64.228.62.144:4002
+0
 
 #EXTINF:0,Disney Channel 
-http://212.200.125.5:8199/199
-
-#EXTINF:0,Disney Channel 
-http://64.228.62.144:2042
+0
 
 #EXTINF:0,Disney Junior 
 0
@@ -168,7 +134,7 @@ http://89.163.148.31:8000/live/pierre/pierre/2815.ts
 0
 
 #EXTINF:0,E! 
-http://64.228.62.144:1025
+0
 
 #EXTINF:0,E2 
 0
@@ -177,22 +143,16 @@ http://64.228.62.144:1025
 http://cp.dmbshare.net:8000/live/andy/andy/2810.ts
 
 #EXTINF:0,Family Channel 
-http://64.228.62.144:2062
-
-#EXTINF:0,Family Channel 
-http://64.228.62.144:1029
+0
 
 #EXTINF:0,Family Jr
-http://64.228.62.144:2074
+0
 
 #EXTINF:0,Fashion TV 
 0
 
 #EXTINF:0,Fine Living Network 
 0
-
-#EXTINF:0,Food Network 
-http://64.228.62.144:1018
 
 #EXTINF:0,Food Network 
 http://llnw.live.simplestream.com/coder2/coder.channels.channel2/hls/5/playlist.m3u8
@@ -210,10 +170,7 @@ http://llnw.live.simplestream.com/coder2/coder.channels.channel2/hls/3/playlist.
 0
 
 #EXTINF:0,Fox TV 
-http://64.228.62.144:2055
-
-#EXTINF:0,Fox TV 
-http://64.228.62.144:2007
+0
 
 #EXTINF:0,FX 
 0
@@ -222,10 +179,7 @@ http://64.228.62.144:2007
 0
 
 #EXTINF:0,Game TV
-http://64.228.62.144:4007
-
-#EXTINF:0,Global TV Halifax
-http://64.228.62.144:2006
+0
 
 #EXTINF:0,Global TV Halifax 
 http://link.theplatform.com/s/dtjsEC/77l1KA_G_5P1?feed=DEV%20Live%20Stream%20Feed/playlist.m3u8
@@ -234,16 +188,10 @@ http://link.theplatform.com/s/dtjsEC/77l1KA_G_5P1?feed=DEV%20Live%20Stream%20Fee
 https://glblvhalifax-lh.akamaihd.net/i/glblvHalifax_1@119843/master.m3u8?__b__=900&hdnea=ip=99.18.68.202~st=1434307535~exp=1434308135~acl=/i/*~id=17e92158-bbde-4665-a37c-817c97c7569c~hmac=1afe142fae8d05bad8895371e0834b246ce53e26af2bd6090227741f043668bd
 
 #EXTINF:0,Global TV Toronto 
-http://64.228.62.144:2024
-
-#EXTINF:0,Global TV Toronto 
 http://link.theplatform.com/s/dtjsEC/hdSH3iztz_j_?feed=DEV%20Live%20Stream%20Feed/playlist.m3u8
 
 #EXTINF:0,Global TV Toronto 
 https://glblvestu-f.akamaihd.net/i/glblvestu_1@78149/master.m3u8?__b__=900&hdnea=ip=99.18.68.202~st=1434303944~exp=1434304544~acl=/i/*~id=3f0edb02-c4e5-4596-8950-4331b8ce1baf~hmac=4acbecb511f7c3beaf085123ab9097c7a6acbd5d857fd4cefbfdfb733b666f57
-
-#EXTINF:0,Global TV Vancouver 
-http://64.228.62.144:2032
 
 #EXTINF:0,Global TV Vancouver 
 http://link.theplatform.com/s/dtjsEC/EqBPGYLY6fEx?feed=DEV%20Live%20Stream%20Feed/playlist.m3u8
@@ -255,16 +203,16 @@ https://glblvestu-f.akamaihd.net/i/glblvPSTu_1@80128/master.m3u8?__b__=900&hdnea
 0
 
 #EXTINF:0,Gusto
-http://64.228.62.144:2090
+0
 
 #EXTINF:0,Hallmark Channel 
 0
 
 #EXTINF:0,HGTV 
-http://64.228.62.144:1019
+0
 
 #EXTINF:0,HLN
-http://64.228.62.144:2082
+0
 
 #EXTINF:0,HSN 
 rtsp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:420p500kB31
@@ -273,7 +221,7 @@ rtsp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:420p500kB31
 rtmp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:468p500kB31?b?b*t$ playpath=mp4:468p500kB31
 
 #EXTINF:0,IFC 
-http://64.228.62.144:2069
+0
 
 #EXTINF:0,Irish TV 
 http://ios.streamserver01.com:8080/ShowcaseTV/mystream.m3u8
@@ -315,10 +263,10 @@ http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
 http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
 
 #EXTINF:0,NBC 
-http://64.228.62.144:2018
+0
 
 #EXTINF:0,Nick 
-http://64.228.62.144:2023
+0
 
 #EXTINF:0,Nick Jr 
 0
@@ -330,16 +278,16 @@ http://64.228.62.144:2023
 0
 
 #EXTINF:0,NTV
-http://64.228.62.144:1032
+0
 
 #EXTINF:0,OMNI 
-http://64.228.62.144:2025
+0
 
 #EXTINF:0,OWN Network 
-http://64.228.62.144:2022
+0
 
 #EXTINF:0,PBS 
-http://64.228.62.144:2019
+0
 
 #EXTINF:0,QVC 
 http://llnw.live.qvc.simplestream.com/hera/remote/qvcuk_primary_sdi1/3/prog_index.m3u8
@@ -378,10 +326,10 @@ http://llnw.live.qvc.simplestream.com/hera/remote/qvcuk_primary_sdi8/3/prog_inde
 0
 
 #EXTINF:0,Slice 
-http://64.228.62.144:2015
+0
 
 #EXTINF:0,Space 
-http://64.228.62.144:1016
+0
 
 #EXTINF:0,Spike TV 
 0
@@ -393,19 +341,19 @@ http://64.228.62.144:1016
 0
 
 #EXTINF:0,Teletoon 
-http://64.228.62.144:2014
+0
 
 #EXTINF:0,TLC 
-http://64.228.62.144:1002
+0
 
 #EXTINF:0,TNT 
-http://64.228.62.144:1030
+0
 
 #EXTINF:0,Tom & Jerry TV 
 0
 
 #EXTINF:0,Treehouse TV 
-http://64.228.62.144:2029
+0
 
 #EXTINF:0,Tru TV 
 http://llnw.live.simplestream.com/coder5/coder.channels.channel2/hls/5/playlist.m3u8
@@ -447,17 +395,14 @@ http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/master.m3u8?b?b*t
 0
 
 #EXTINF:0,W Network
-http://64.228.62.144:4005
+0
 
 #EXTINF:0,World Fashion 
 http://btv-net.mediacdn.ru/TVB7/wfhdeu/playlist.m3u8
 
 #EXTINF:0,Yes TV
-http://64.228.62.144:2091
+0
 
 #EXTINF:0,YTV 
-http://64.228.62.144:4006
-
-#EXTINF:0,YTV 
-http://64.228.62.144:4016
+0
 

@@ -11,19 +11,16 @@ http://64.228.62.144:2046
 0
 
 #EXTINF:0,Animal Planet 
-http://64.228.62.144:1023
-
-#EXTINF:0,Animal Planet 
 http://109.226.222.161:4022/udp/239.255.4.175:1234
 
 #EXTINF:0,Biography Channel
-http://64.228.62.144:2085
+0
 
 #EXTINF:0,Crime & Investigation 
-http://64.228.62.144:2077
+0
 
 #EXTINF:0,Cottage Life
-http://64.228.62.144:4001
+0
 
 #EXTINF:0,Destination America 
 0
@@ -62,7 +59,7 @@ http://109.226.222.161:4022/udp/239.255.4.250:1234
 0
 
 #EXTINF:0,Documentary Channel
-http://64.228.62.144:4023
+0
 
 #EXTINF:0,Flite Level TV 
 0
@@ -71,7 +68,7 @@ http://64.228.62.144:4023
 0
 
 #EXTINF:0,History Channel 
-http://64.228.62.144:1003
+0
 
 #EXTINF:0,History Channel 
 https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8?hdnea=ip=174.113.30.187~st=1427694727~exp=1427695327~acl=/i/*~id=a86de0c2-ad09-4469-9a63-6ebbc1bba4d3~hmac=ac144089000bdd16f6916c517ce3e6e04813d4de11ac16839ad468a977ec80b1
@@ -86,10 +83,7 @@ https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8
 0
 
 #EXTINF:0,Investigation Discovery 
-http://64.228.62.144:1021
-
-#EXTINF:0,Investigation Discovery 
-http://64.228.62.144:1021
+0
 
 #EXTINF:0,Nasa TV 
 http://nasatv-lh.akamaihd.net/i/NASA_101@319270/master.m3u8 
@@ -134,7 +128,7 @@ http://rt-a.akamaihd.net/ch_05@325609/720p.m3u8
 0
 
 #EXTINF:0,Travel and Escape 
-http://64.228.62.144:4019
+0
 
 #EXTINF:0,Travel Channel 
 0
