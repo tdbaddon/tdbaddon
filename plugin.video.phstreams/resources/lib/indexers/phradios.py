@@ -26,16 +26,25 @@ from resources.lib.modules import control
 from resources.lib.modules import client
 
 
-def radioDirectory():
-    addCategoryItem('1FM', 'radio1fm', 'http://mecca.watchkodi.com/images/1fm.png', 'http://mecca.watchkodi.com/images/1fm_fanart.jpg')
-    addCategoryItem('181FM', 'radio181fm', 'http://mecca.watchkodi.com/images/181fm.png', 'http://mecca.watchkodi.com/images/181fm_fanart.jpg')
-    addCategoryItem('KickinRadio','kickinradio', 'http://mecca.watchkodi.com/images/kickin.png', 'http://mecca.watchkodi.com/images/kickin_fanart.jpg')
+radio1fmicon = 'http://phoenixtv.offshorepastebin.com/art/radio1fm/icon.png'
+radio1fmfanart = 'http://phoenixtv.offshorepastebin.com/art/radio1fm/fanart.jpg'
+radio181fmicon = 'http://phoenixtv.offshorepastebin.com/art/radio181fm/icon.png'
+radio181fmfanart = 'http://phoenixtv.offshorepastebin.com/art/radio181fm/fanart.jpg'
+radiocasticon = 'http://phoenixtv.offshorepastebin.com/art/radiocast/icon.png'
+radiocastfanart = 'http://phoenixtv.offshorepastebin.com/art/radiocast/fanart.jpg'
+
+
+def radios():
+    addCategoryItem('1FM', 'radio1fm', radio1fmicon, radio1fmfanart)
+    addCategoryItem('181FM', 'radio181fm', radio181fmicon, radio181fmfanart)
+    addCategoryItem('Radiocast','radiocast', radiocasticon, radiocastfanart)
     endCategory()
 
 
-def radio1fm(image, fanart):
+def radio1fm():
     try:
         url = 'http://rad.io/info/index/searchembeddedbroadcast?q=1%20FM&streamcontentformats=aac%2Cmp3&start=0&rows=1000'
+
         result = client.request(url, headers={'User-Agent': base64.b64decode('WEJNQyBBZGRvbiBSYWRpbw==')})
 
         index = []
@@ -54,7 +63,7 @@ def radio1fm(image, fanart):
             url = 'http://rad.io/info/broadcast/getbroadcastembedded?broadcast=%s' % url
             url = url.encode('utf-8')
 
-            index.append({'name': name, 'url': url, 'thumb': '0', 'image': image, 'fanart': fanart})
+            index.append({'name': name, 'url': url, 'thumb': '0', 'image': radio1fmicon, 'fanart': radio1fmfanart})
         except:
             pass
 
@@ -77,7 +86,7 @@ def radio1fmResolve(url):
         return
 
 
-def radio181fm(image, fanart):
+def radio181fm():
     try:
         url = 'http://www.181.fm/index.php?p=mp3links'
 
@@ -97,11 +106,11 @@ def radio181fm(image, fanart):
             name = client.replaceHTMLCodes(name)
             name = name.encode('utf-8')
 
-            url = item
+            url = item.split('<')[0].replace(':', '/').replace('///', '://')
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
 
-            index.append({'name': name, 'url': url, 'thumb': '0', 'image': image, 'fanart': fanart})
+            index.append({'name': name, 'url': url, 'thumb': '0', 'image': radio181fmicon, 'fanart': radio181fmfanart})
         except:
             pass
 
@@ -112,7 +121,7 @@ def radio181fm(image, fanart):
     endDirectory()
 
 
-def kickinradio(image, fanart):
+def kickinradio():
     try:
         url = 'https://www.internet-radio.com/stations/'
         result = client.request(url)
@@ -126,14 +135,14 @@ def kickinradio(image, fanart):
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
 
-            addCategoryItem('[UPPERCASE][B]'+url[10:-1]+'[/UPPERCASE][/B]', 'kickinradiocats', image, fanart, url=url)   
+            addCategoryItem('[UPPERCASE]'+url[10:-1]+'[/UPPERCASE]', 'kickinradiocats', radiocasticon, radiocastfanart, url=url)   
         except:
             pass
 
     endDirectory()
 
 
-def kickinradiocats(url, image, fanart):
+def kickinradiocats(url):
     try:
         url = urlparse.urljoin('https://www.internet-radio.com', url)
 
@@ -165,7 +174,7 @@ def kickinradiocats(url, image, fanart):
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
 
-            addDirectoryItem(name, url, '0', image, fanart)
+            addDirectoryItem(name, url, '0', radiocasticon, radiocastfanart)
         except:
             pass
 
@@ -176,7 +185,7 @@ def kickinradiocats(url, image, fanart):
         next = client.replaceHTMLCodes(next)
         next = next.encode('utf-8')
 
-        addCategoryItem('[B][I]NEXT[/I][/B]', 'kickinradiocats', image, fanart, url=next)
+        addCategoryItem('[B][I]NEXT[/I][/B]', 'kickinradiocats', radiocasticon, radiocastfanart, url=next)
     except:
         pass
 
@@ -218,9 +227,11 @@ def endDirectory():
     control.directory(int(sys.argv[1]), cacheToDisc=True)
 
 
-def radioResolve(name, url, image):
+def radioResolve(url):
     url = radio1fmResolve(url)
-    meta = {'title': name, 'album': name, 'artist': name, 'comment': name}
+    title = control.infoLabel('ListItem.Label')
+    image = control.infoLabel('ListItem.Icon')
+    meta = {'title': title, 'album': title, 'artist': title, 'comment': title}
     item = control.item(path=url, iconImage=image, thumbnailImage=image)
     try: item.setArt({'icon': image})
     except: pass

@@ -21,23 +21,28 @@
 
 
 import xbmc
-import re,sys,urllib,urllib2,urlparse,base64
+import re,sys,urllib,urllib2,urlparse,random,base64
 from resources.lib.modules import control
 from resources.lib.modules import client
 from resources.lib.modules import cloudflare
+from resources.lib.modules import directstream
 
 
-def CartoonDirectory():
-    addDirectoryItem('Cartoon Crazy', 'CartoonCrazy', '0', 'http://mecca.watchkodi.com/images/cartoons.png', 'http://mecca.watchkodi.com/images/cartoons_fanart.jpg')
-    addDirectoryItem('Anime Crazy','AnimeCrazy', '0', 'http://mecca.watchkodi.com/images/anime.png', 'http://mecca.watchkodi.com/images/anime_fanart.jpg')
+cartoonArt = 'http://phoenixtv.offshorepastebin.com/art/cartoon/art%s.png'
+animeArt = 'http://phoenixtv.offshorepastebin.com/art/anime/art%s.png'
+
+
+def cartoon():
+    addDirectoryItem('Cartoon Search', 'CCsearch', '0', cartoonArt % (random.randint(1,10)), 'http://phoenixtv.offshorepastebin.com/art/cartoon/fanart.jpg')
+    addDirectoryItem('Cartoon Genres', 'CartoonCrazy', '0', cartoonArt % (random.randint(1,10)), 'http://phoenixtv.offshorepastebin.com/art/cartoon/fanart.jpg')
+    addDirectoryItem('Anime Search','ACsearch', '0', animeArt % (random.randint(1,12)), 'http://phoenixtv.offshorepastebin.com/art/anime/fanart.jpg')
+    addDirectoryItem('Anime Genres','AnimeCrazy', '0', animeArt % (random.randint(1,12)), 'http://phoenixtv.offshorepastebin.com/art/anime/fanart.jpg')
+    addDirectoryItem('Anime Latest','AClast', '0', animeArt % (random.randint(1,12)), 'http://phoenixtv.offshorepastebin.com/art/anime/fanart.jpg')
     endCategory()
 
 
 
 def CartoonCrazy(image, fanart):
-
-    addDirectoryItem('[B]SEARCH[/B]', 'CCsearch', '0', 'http://mecca.watchkodi.com/images/cartoons_search.png', fanart, '')
-
     try:
         url = 'http://kisscartoon.me/CartoonList/'
 
@@ -60,7 +65,7 @@ def CartoonCrazy(image, fanart):
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
 
-            addDirectoryItem(name, 'CCcat', image, image, fanart, url)
+            addDirectoryItem(name, 'CCcat', cartoonArt % (random.randint(1,10)), image, fanart, url)
         except:
             pass
 
@@ -104,7 +109,7 @@ def CCcat(url, image, fanart):
         next = zip(client.parseDOM(next, 'a', ret='href'), client.parseDOM(next, 'a'))
         next = [i[0] for i in next if 'Next' in i[1]][0]
 
-        addDirectoryItem('[I]NEXT[/I]', 'CCcat', image, image, fanart, next)
+        addDirectoryItem('[I]NEXT[/I]', 'CCcat', cartoonArt % (random.randint(1,10)), image, fanart, next)
     except:
         pass
 
@@ -113,7 +118,7 @@ def CCcat(url, image, fanart):
 
 def CCsearch(url, image, fanart):
     keyboard = control.keyboard('', control.lang(30702).encode('utf-8'))
-    keyboard.setHeading('CARTOON SEARCH')
+    keyboard.setHeading(control.infoLabel('ListItem.Label'))
     keyboard.doModal()
 
     if not keyboard.isConfirmed(): return
@@ -166,48 +171,21 @@ def CCstream(url):
 
         result = cloudflare.request(url)
 
+        url = []
         items = client.parseDOM(result,'select', attrs={'id':'selectQuality'}) 
         items = client.parseDOM(items, 'option', ret='value')
+        for i in items:
+            try: url.append({'q': directstream.googletag(base64.b64decode(i))[0]['quality'], 'u': base64.b64decode(i)})
+            except: pass
+        items = sorted(url, key=lambda k: k['q'])
 
-        url = []
-
-        for item in items:
-            try:
-                u = base64.b64decode(item)
-                u = u.encode('utf-8')
-
-                if u[-3:] == 'm37': q = '1080P'
-                elif u[-3:] == 'm22': q = '720P'
-                elif u[-3:] == 'm18': q = '360P'
-                else: q = 'UNKNOWN'
-
-                url.append({'q': q, 'u': u})
-            except:
-                pass
-
-        control.idle()
-
-        if len(url) > 1:
-            q = [i['q'] for i in url]
-            u = [i['u'] for i in url]
-            select = control.selectDialog(q)
-            if select == -1: return
-            url = u[select]
-
-        else:
-            url = url[0]['u']
-
-        player().run(url)
+        player().run(items[0]['u'])
     except:
         return
 
 
   
 def AnimeCrazy(image, fanart):
-
-    addDirectoryItem('[B]SEARCH[/B]', 'ACsearch', '0', 'http://mecca.watchkodi.com/images/anime_search.jpg', fanart, '')
-    addDirectoryItem('[B]LATEST[/B]', 'AClast', '0', 'http://mecca.watchkodi.com/images/anime_search.jpg', fanart, '')
-
     try:
         url = 'http://www.animedreaming.tv/genres/'
 
@@ -231,7 +209,7 @@ def AnimeCrazy(image, fanart):
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
 
-            addDirectoryItem(name, 'ACcat', image, image, fanart, url+'/?filter=newest&req=anime')
+            addDirectoryItem(name, 'ACcat', animeArt % (random.randint(1,12)), image, fanart, url+'/?filter=newest&req=anime')
         except:
             pass
 
@@ -274,7 +252,7 @@ def ACcat(url, image, fanart):
 
 def ACsearch(url, image, fanart):
     keyboard = control.keyboard('', control.lang(30702).encode('utf-8'))
-    keyboard.setHeading('CARTOON SEARCH')
+    keyboard.setHeading(control.infoLabel('ListItem.Label'))
     keyboard.doModal()
     if not keyboard.isConfirmed(): return
 
@@ -437,7 +415,8 @@ def addDirectoryItem(name, action, thumb, image, fanart, url='0'):
     if thumb == '0': thumb = image
     u = '%s?action=%s&url=%s&image=%s&fanart=%s' % (sys.argv[0], str(action), urllib.quote_plus(url), urllib.quote_plus(thumb), urllib.quote_plus(fanart))
     item = control.item(name, iconImage=thumb, thumbnailImage=thumb)
-    try: item.setArt({'icon': thumb})
+
+    try: item.setArt({'poster': thumb, 'tvshow.poster': thumb, 'season.poster': thumb, 'banner': thumb, 'tvshow.banner': thumb, 'season.banner': thumb})
     except: pass
     item.addContextMenuItems([], replaceItems=False)
     item.setProperty('Fanart_Image', fanart)

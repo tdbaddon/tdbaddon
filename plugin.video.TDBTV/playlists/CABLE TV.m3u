@@ -5,10 +5,13 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 ---------------------------------------------------------------------------------------------------------------
 
 #EXTINF:0,A&E 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/300.mpegts
+
+#EXTINF:0,A&E 
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/372.mpegts
 
 #EXTINF:0,ABC 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/9.mpegts
 
 #EXTINF:0,ABC Family 
 0
@@ -17,22 +20,55 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 0
 
 #EXTINF:0,AMC
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/373.mpegts
+
+#EXTINF:0,AMC
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/341.mpegts
+
+#EXTINF:0,AMC
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/1552.ts
 
 #EXTINF:0,AXN 
 0
 
 #EXTINF:0,BabyTV 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/401.mpegts
+
+#EXTINF:0,BabyTV 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/439.ts
 
 #EXTINF:0,BBC 1 
 http://89.163.148.31:8000/live/pierre/pierre/2752.ts
 
+#EXTINF:0,BBC 1 
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/1.mpegts
+
+#EXTINF:0,BBC 1 
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/529.mpegts
+
+#EXTINF:0,BBC 1 
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/577.mpegts
+
+#EXTINF:0,BBC 1 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/40.ts
+
+#EXTINF:0,BBC 1 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/1471.ts
+
 #EXTINF:0,BBC 2 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/576.mpegts
+
+#EXTINF:0,BBC 2 
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/2.mpegts
+
+#EXTINF:0,BBC 2 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/41.ts
+
+#EXTINF:0,BBC 2 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/1472.ts
 
 #EXTINF:0,BBC Entertainment 
-0
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/173.ts
 
 #EXTINF:0,BBC Kids
 0
@@ -44,7 +80,7 @@ http://89.163.148.31:8000/live/pierre/pierre/2752.ts
 http://77.120.118.235:8085
 
 #EXTINF:0,Bravo 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/369.mpegts
 
 #EXTINF:0,Cartoon Network 
 http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD28_W_250.sdp/playlist.m3u8
@@ -52,23 +88,38 @@ http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD28_W_250.sdp/p
 #EXTINF:0,Cartoon Network 
 http://54.255.155.24:1935//Live/_definst_/sweetbcha1novD28_W_150.sdp/playlist.m3u8
 
+#EXTINF:0,Cartoon Network 
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/50.mpegts
+
+#EXTINF:0,Cartoon Network 
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/471.mpegts
+
+#EXTINF:0,Cartoon Network 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/188.ts
+
 #EXTINF:0,CBC TV 
 0
 
 #EXTINF:0,Cbeebies 
-http://live-1183.gv2.edge.filmon.com/live/103.low.stream/1458184027606.ts
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/531.mpegts
 
 #EXTINF:0,CBS 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/137.mpegts
 
 #EXTINF:0,CBS Action 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/333.mpegts
+
+#EXTINF:0,CBS Action 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/4188.ts
 
 #EXTINF:0,CBS Drama 
-http://live-1180.gv2.edge.filmon.com/live/1805.low.stream/1458183943342.ts
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/4187.ts
+
+#EXTINF:0,CBS Drama 
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/332.mpegts
 
 #EXTINF:0,CBS Reality 
-http://live-1180.gv2.edge.filmon.com/live/1808.low.stream/1458183839052.ts
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/331.mpegts
 
 #EXTINF:0,CHCH Ontario
 0
@@ -83,10 +134,19 @@ http://live-1180.gv2.edge.filmon.com/live/1808.low.stream/1458183839052.ts
 0
 
 #EXTINF:0,CNBC 
-0
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/4249.ts
 
 #EXTINF:0,Comedy Central 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/381.mpegts
+
+#EXTINF:0,Comedy Central 
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/110.mpegts
+
+#EXTINF:0,Comedy Central 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/51.ts
+
+#EXTINF:0,Comedy Central 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/4192.ts
 
 #EXTINF:0,Comedy Gold
 0
@@ -118,29 +178,62 @@ http://live-1180.gv2.edge.filmon.com/live/1808.low.stream/1458183839052.ts
 #EXTINF:0,CW 
 http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/index_350_av-p.m3u8?
 
+#EXTINF:0,CW 
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/138.mpegts
+
 #EXTINF:0,DejaView
 0
 
 #EXTINF:0,Disney Channel 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/424.mpegts
+
+#EXTINF:0,Disney Channel 
+http://balkanstream.com/stream/Disney/amy/amy
+
+#EXTINF:0,Disney Channel 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/187.ts
+
+#EXTINF:0,Disney Channel 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/1551.ts
 
 #EXTINF:0,Disney Junior 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/207.mpegts
+
+#EXTINF:0,Disney Junior 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/190.ts
 
 #EXTINF:0,Disney XD 
 http://89.163.148.31:8000/live/pierre/pierre/2815.ts
 
+#EXTINF:0,Disney XD 
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/422.mpegts
+
+#EXTINF:0,Disney XD 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/189.ts
+
 #EXTINF:0,DIY Network 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/204.mpegts
 
 #EXTINF:0,E! 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/483.mpegts
+
+#EXTINF:0,E! 
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/468.mpegts
+
+#EXTINF:0,E! 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/1534.ts
 
 #EXTINF:0,E2 
 0
 
 #EXTINF:0,E4 
 http://cp.dmbshare.net:8000/live/andy/andy/2810.ts
+
+#EXTINF:0,E4 
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/77.mpegts
+
+#EXTINF:0,E4 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/31.ts
 
 #EXTINF:0,Family Channel 
 0
@@ -152,13 +245,22 @@ http://cp.dmbshare.net:8000/live/andy/andy/2810.ts
 0
 
 #EXTINF:0,Fine Living Network 
-0
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/4191.ts
 
 #EXTINF:0,Food Network 
 http://llnw.live.simplestream.com/coder2/coder.channels.channel2/hls/5/playlist.m3u8
 
 #EXTINF:0,Food Network 
 http://llnw.live.simplestream.com/coder2/coder.channels.channel2/hls/3/playlist.m3u8
+
+#EXTINF:0,Food Network 
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/319.mpegts
+
+#EXTINF:0,Food Network 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/301.ts
+
+#EXTINF:0,Food Network 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/740.ts
 
 #EXTINF:0,Fox 1 
 0
@@ -170,7 +272,10 @@ http://llnw.live.simplestream.com/coder2/coder.channels.channel2/hls/3/playlist.
 0
 
 #EXTINF:0,Fox TV 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/35.mpegts
+
+#EXTINF:0,Fox TV 
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/139.mpegts
 
 #EXTINF:0,FX 
 0
@@ -187,17 +292,26 @@ http://link.theplatform.com/s/dtjsEC/77l1KA_G_5P1?feed=DEV%20Live%20Stream%20Fee
 #EXTINF:0,Global TV Halifax 
 https://glblvhalifax-lh.akamaihd.net/i/glblvHalifax_1@119843/master.m3u8?__b__=900&hdnea=ip=99.18.68.202~st=1434307535~exp=1434308135~acl=/i/*~id=17e92158-bbde-4665-a37c-817c97c7569c~hmac=1afe142fae8d05bad8895371e0834b246ce53e26af2bd6090227741f043668bd
 
+#EXTINF:0,Global TV Halifax 
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/229.mpegts
+
 #EXTINF:0,Global TV Toronto 
 http://link.theplatform.com/s/dtjsEC/hdSH3iztz_j_?feed=DEV%20Live%20Stream%20Feed/playlist.m3u8
 
 #EXTINF:0,Global TV Toronto 
 https://glblvestu-f.akamaihd.net/i/glblvestu_1@78149/master.m3u8?__b__=900&hdnea=ip=99.18.68.202~st=1434303944~exp=1434304544~acl=/i/*~id=3f0edb02-c4e5-4596-8950-4331b8ce1baf~hmac=4acbecb511f7c3beaf085123ab9097c7a6acbd5d857fd4cefbfdfb733b666f57
 
+#EXTINF:0,Global TV Toronto 
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/231.mpegts
+
 #EXTINF:0,Global TV Vancouver 
 http://link.theplatform.com/s/dtjsEC/EqBPGYLY6fEx?feed=DEV%20Live%20Stream%20Feed/playlist.m3u8
 
 #EXTINF:0,Global TV Vancouver 
 https://glblvestu-f.akamaihd.net/i/glblvPSTu_1@80128/master.m3u8?__b__=900&hdnea=ip=99.18.68.202~st=1434307348~exp=1434307948~acl=/i/*~id=5a91003f-0e87-4f31-b475-5beb4de69407~hmac=8011c2346009544656a3195d1e9e03e511efc6523dab9644debf3692f630fe77
+
+#EXTINF:0,Global TV Vancouver 
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/230.mpegts
 
 #EXTINF:0,Great American Country 
 0
@@ -206,10 +320,10 @@ https://glblvestu-f.akamaihd.net/i/glblvPSTu_1@80128/master.m3u8?__b__=900&hdnea
 0
 
 #EXTINF:0,Hallmark Channel 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/298.mpegts
 
 #EXTINF:0,HGTV 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/203.mpegts
 
 #EXTINF:0,HLN
 0
@@ -227,16 +341,40 @@ rtmp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:468p500kB31?b?b*t$
 http://ios.streamserver01.com:8080/ShowcaseTV/mystream.m3u8
 
 #EXTINF:0,ITV 1 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/29.mpegts
+
+#EXTINF:0,ITV 1 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/39.ts
+
+#EXTINF:0,ITV 1 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/1480.ts
 
 #EXTINF:0,ITV 2 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/30.mpegts
+
+#EXTINF:0,ITV 2 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/26.ts
+
+#EXTINF:0,ITV 2 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/1481.ts
 
 #EXTINF:0,ITV 3 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/31.mpegts
+
+#EXTINF:0,ITV 3 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/22.ts
+
+#EXTINF:0,ITV 3 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/1482.ts
 
 #EXTINF:0,ITV 4 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/32.mpegts
+
+#EXTINF:0,ITV 4 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/25.ts
+
+#EXTINF:0,ITV 4 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/1483.ts
 
 #EXTINF:0,Jim Jam 
 http://77.120.118.235:8089
@@ -245,10 +383,10 @@ http://77.120.118.235:8089
 rtmp://jtvmedia.jtv.com:1975/live playpath=live6 swfUrl=http://demandware.edgesuite.net/aaby_prd/on/demandware.static/Sites-jtv-Site/-/default/v1410110388581/swf/flashMediaPlayer/StrobeMediaPlayback.swf live=1 pageUrl=http://www.jtv.com/on/demandware.store/Sites-jtv-Site/default/LiveViewer-Show
 
 #EXTINF:0,KTLA 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/479.mpegts
 
 #EXTINF:0,Lifetime Network 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/475.mpegts
 
 #EXTINF:0,London Live 
 http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
@@ -266,13 +404,22 @@ http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
 0
 
 #EXTINF:0,Nick 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/419.mpegts
+
+#EXTINF:0,Nick 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/4179.ts
 
 #EXTINF:0,Nick Jr 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/160.mpegts
+
+#EXTINF:0,Nick Jr 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/192.ts
 
 #EXTINF:0,Nickelodeon 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/420.mpegts
+
+#EXTINF:0,Nickelodeon 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/191.ts
 
 #EXTINF:0,NickNight 
 0
@@ -287,7 +434,7 @@ http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
 0
 
 #EXTINF:0,PBS 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/141.mpegts
 
 #EXTINF:0,QVC 
 http://llnw.live.qvc.simplestream.com/hera/remote/qvcuk_primary_sdi1/3/prog_index.m3u8
@@ -301,53 +448,80 @@ http://llnw.live.qvc.simplestream.com/hera/remote/qvcuk_primary_sdi6/3/prog_inde
 #EXTINF:0,QVC 
 http://llnw.live.qvc.simplestream.com/hera/remote/qvcuk_primary_sdi8/3/prog_index.m3u8
 
-#EXTINF:0,Showcase 
-0
+#EXTINF:0,Showtime 
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/169.mpegts
 
 #EXTINF:0,Showtime 
-0
+
 
 #EXTINF:0,Sky 1 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/71.mpegts
+
+#EXTINF:0,Sky 1 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/201.ts
 
 #EXTINF:0,Sky 2 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/72.mpegts
+
+#EXTINF:0,Sky 2 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/202.ts
 
 #EXTINF:0,Sky Arts 1 
-0
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/199.ts
 
 #EXTINF:0,Sky Arts 2 
 0
 
 #EXTINF:0,Sky Atlantic
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/92.mpegts
+
+#EXTINF:0,Sky Atlantic
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/175.ts
 
 #EXTINF:0,Sky Living 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/76.mpegts
+
+#EXTINF:0,Sky Living 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/174.ts
 
 #EXTINF:0,Slice 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/588.mpegts
 
 #EXTINF:0,Space 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/481.mpegts
 
 #EXTINF:0,Spike TV 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/482.mpegts
+
+#EXTINF:0,Spike TV 
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/338.mpegts
+
+#EXTINF:0,Spike TV 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/4177.ts
 
 #EXTINF:0,Syfy 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/101.mpegts
+
+#EXTINF:0,Syfy 
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/427.mpegts
 
 #EXTINF:0,TBS 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/335.mpegts
 
 #EXTINF:0,Teletoon 
 0
 
 #EXTINF:0,TLC 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/347.mpegts
+
+#EXTINF:0,TLC 
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/347.mpegts
+
+#EXTINF:0,TLC 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/196.ts
 
 #EXTINF:0,TNT 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/328.mpegts
 
 #EXTINF:0,Tom & Jerry TV 
 0
@@ -361,14 +535,17 @@ http://llnw.live.simplestream.com/coder5/coder.channels.channel2/hls/5/playlist.
 #EXTINF:0,Tru TV 
 http://llnw.live.simplestream.com/coder5/coder.channels.channel2/hls/2/playlist.m3u8
 
+#EXTINF:0,Tru TV 
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/238.mpegts
+
 #EXTINF:0,TSC 
 http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/master.m3u8?b?b*t$ 
 
 #EXTINF:0,True Drama 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/415.mpegts
 
 #EXTINF:0,True Entertainment 
-0
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/4196.ts
 
 #EXTINF:0,TV Land 
 0
@@ -377,10 +554,10 @@ http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/master.m3u8?b?b*t
 0
 
 #EXTINF:0,Universal Channel 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/339.mpegts
 
 #EXTINF:0,USA Network 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/428.mpegts
 
 #EXTINF:0,Veria Living TV 
 0
@@ -389,7 +566,7 @@ http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/master.m3u8?b?b*t
 0
 
 #EXTINF:0,WB 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/582.mpegts
 
 #EXTINF:0,Wobi
 0

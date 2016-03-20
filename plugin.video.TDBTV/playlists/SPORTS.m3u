@@ -18,13 +18,31 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 0
 
 #EXTINF:0,Box Nation 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/47.mpegts
 
 #EXTINF:0,BT Sport 1 
 http://02e4.vp9.tv/chn/btsu1/v.m3u8
 
+#EXTINF:0,BT Sport 1 
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/429.mpegts
+
+#EXTINF:0,BT Sport 1 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/33.ts
+
+#EXTINF:0,BT Sport 1 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/1511.ts
+
 #EXTINF:0,BT Sport 2 
 http://02e4.vp9.tv/chn/btsu2/v.m3u8
+
+#EXTINF:0,BT Sport 2 
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/432.mpegts
+
+#EXTINF:0,BT Sport 2 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/44.ts
+
+#EXTINF:0,BT Sport 2 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/1512.ts
 
 #EXTINF:0,CBS Sports 
 0
@@ -32,17 +50,32 @@ http://02e4.vp9.tv/chn/btsu2/v.m3u8
 #EXTINF:0,Chelsea TV 
 http://208.92.36.158/ipad/live/nba_ipad_1240.m3u8
 
+#EXTINF:0,Chelsea TV 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/734.ts
+
 #EXTINF:0,CMore Sport 
 0
 
 #EXTINF:0,ESPN 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/371.mpegts
+
+#EXTINF:0,ESPN 
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/273.mpegts
+
+#EXTINF:0,ESPN 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/317.ts
 
 #EXTINF:0,ESPN 2
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/466.mpegts
 
 #EXTINF:0,Eurosport 1 
 http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_1800.m3u8
+
+#EXTINF:0,Eurosport 1 
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/275.mpegts
+
+#EXTINF:0,Eurosport 2
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/60.mpegts
 
 #EXTINF:0,Eurosport News 
 0
@@ -59,6 +92,9 @@ http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_18
 #EXTINF:0,Fox Sports 1 
 http://ooyalahd2-f.akamaihd.net/i/eslax17_delivery@349499/master.m3u8
 
+#EXTINF:0,Fox Sports 1 
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/212.mpegts
+
 #EXTINF:0,Fox Sports 2 
 0
 
@@ -72,7 +108,7 @@ http://208.92.36.158/ipad/live/nba_ipad_1240.m3u8
 0
 
 #EXTINF:0,LFC TV 
-0
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/733.ts
 
 #EXTINF:0,Mercedes TV
 mms://100automoto.tv/channel_mercedes
@@ -81,7 +117,7 @@ mms://100automoto.tv/channel_mercedes
 0
 
 #EXTINF:0,Motors TV 
-0
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/1199.ts
 
 #EXTINF:0,Motorsport 7 
 0
@@ -90,7 +126,7 @@ mms://100automoto.tv/channel_mercedes
 mms://100automoto.tv/100livesport
 
 #EXTINF:0,NBA TV 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/10.mpegts
 
 #EXTINF:0,NBC Golf 
 http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/1896k/prog.m3u8|X-Forwarded-For=66.171.228.102
@@ -109,6 +145,9 @@ http://nflioslivesvg2-i.akamaihd.net/hls/live/221521/nflioslive/2015HackerNow_w9
 
 #EXTINF:0,NFL Network 
 0
+
+#EXTINF:0,NHL Network 
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/299.mpegts
 
 #EXTINF:0,NHL Network 
 http://208.92.36.158/ipad/live/nba_ipad_1240.m3u8
@@ -173,26 +212,44 @@ http://xrxs.net/video/live-p12wash-4728.m3u8?
 #EXTINF:0,Poker Central
 http://ooyalahd2-f.akamaihd.net/i/crtv01_delivery@329705/index_1164_av-b.m3u8
 
+#EXTINF:0,Poker Central
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/340.mpegts
+
 #EXTINF:0,Porsche Channel 
 mms://100automoto.tv/channel_porsche
 
 #EXTINF:0,Premier Sports 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/23.mpegts
+
+#EXTINF:0,Premier Sports 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/45.ts
 
 #EXTINF:0,Racing UK 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/261.mpegts
+
+#EXTINF:0,Racing UK 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/9.ts
 
 #EXTINF:0,Redbull TV
 http://sacapunta.eltelon.com/channels/redbulltv/playlist.m3u8
+
+#EXTINF:0,Redbull TV
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/128.mpegts
 
 #EXTINF:0,Root Sports 
 0
 
 #EXTINF:0,Setanta Sports 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/8.mpegts
+
+#EXTINF:0,Setanta Sports 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/46.ts
 
 #EXTINF:0,Sky Sports 1 
 rtmp://lb.miplayer.net:1935/goLive/_definst_/ibrodtv21_6vhudlq8
+
+#EXTINF:0,Sky Sports 1 
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/24.mpegts
 
 #EXTINF:0,Sky Sports 2 
 http://37.187.24.177:80/ramzi/ramzi/852.ch
@@ -200,11 +257,20 @@ http://37.187.24.177:80/ramzi/ramzi/852.ch
 #EXTINF:0,Sky Sports 2 
 rtmp://lb.miplayer.net:1935/goLive/_definst_/ibrodtv22_j5p1mted
 
+#EXTINF:0,Sky Sports 2 
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/25.mpegts
+
 #EXTINF:0,Sky Sports 3 
 rtmp://lb.miplayer.net:1935/goLive/_definst_/ibrodtv23_5px3ntfs
 
+#EXTINF:0,Sky Sports 3 
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/26.mpegts
+
 #EXTINF:0,Sky Sports 4 
 rtmp://lb.miplayer.net:1935/goLive/_definst_/ibrodtv24_f84rdmkk
+
+#EXTINF:0,Sky Sports 4 
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/27.mpegts
 
 #EXTINF:0,Sky Sports 5 
 http://37.187.24.177:80/ramzi/ramzi/853.ch
@@ -215,11 +281,14 @@ http://144.76.3.83/sky_sports5gb.m3u8
 #EXTINF:0,Sky Sports 5 
 rtmp://lb.miplayer.net:1935/goLive/_definst_/ibrodtv25_wt250ssk
 
+#EXTINF:0,Sky Sports 5 
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/28.mpegts
+
 #EXTINF:0,Sky Sports F1 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/64.mpegts
 
 #EXTINF:0,Sky Sports News 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/63.mpegts
 
 #EXTINF:0,Sports Tonight 
 rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9-SD
@@ -258,22 +327,43 @@ rtmp://185.63.255.18:80/live playpath=ontrio swfUrl=http://p.jwpcdn.com/6/12/jwp
 0
 
 #EXTINF:0,TSN 1 
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/342.mpegts
+
+#EXTINF:0,TSN 1 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/1031.ts
+
+#EXTINF:0,TSN 1 
 rtmp://31.220.2.149:80/live/ playpath=ts1 token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://yotv.co
+
+#EXTINF:0,TSN 2 
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/343.mpegts
+
+#EXTINF:0,TSN 2 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/1032.ts
 
 #EXTINF:0,TSN 2 
 rtmp://31.220.2.149:80/live/ playpath=tsnx2 token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://yotv.co
 
 #EXTINF:0,TSN 3 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/344.mpegts
+
+#EXTINF:0,TSN 3 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/1033.ts
 
 #EXTINF:0,TSN 4 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/345.mpegts
+
+#EXTINF:0,TSN 4 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/1034.ts
 
 #EXTINF:0,TSN 5 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/346.mpegts
+
+#EXTINF:0,TSN 5 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/1035.ts
 
 #EXTINF:0,Viasat Golf 
-0
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/4206.ts
 
 #EXTINF:0,Viasat Sport 
 0
@@ -281,8 +371,14 @@ rtmp://31.220.2.149:80/live/ playpath=tsnx2 token=%Zrey(nKa@#Z swfUrl=http://p.j
 #EXTINF:0,VS Versus 
 http://208.92.36.158/ipad/live/nba_ipad_1240.m3u8
 
+#EXTINF:0,VS Versus 
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/290.mpegts
+
 #EXTINF:0,WWE Network 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/79.mpegts
+
+#EXTINF:0,WWE Network 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/1329.ts
 
 #EXTINF:0,Wild TV
 0

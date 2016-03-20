@@ -181,16 +181,13 @@ class source:
 
             if content == 'episode': result = [i for i in result if i[3] == '%01d' % int(episode)]
 
-            links = [('movie/load_episode/%s/%s' % (i[2], i[1]), 'gvideo') for i in result if 2 <= int(i[0]) <= 11]
-
-            for i in links: sources.append({'source': i[1], 'quality': quality, 'provider': 'Onemovies', 'url': i[0], 'direct': True, 'debridonly': False})
-
             links = []
-            links += [('movie/loadEmbed/%s/%s' % (i[2], i[1]), 'openload.co') for i in result if i[0] == '14']
-            #links += [('movie/loadEmbed/%s/%s' % (i[2], i[1]), 'videomega.tv') for i in result if i[0] == '13']
-            #links += [('movie/loadEmbed/%s/%s' % (i[2], i[1]), 'videowood.tv') for i in result if i[0] == '12']
+            links += [('movie/load_episode/%s/%s' % (i[2], i[1]), True, 'gvideo') for i in result if 2 <= int(i[0]) <= 11]
+            links += [('movie/loadEmbed/%s/%s' % (i[2], i[1]), False, 'videowood.tv') for i in result if i[0] == '12']
+            #links += [('movie/loadEmbed/%s/%s' % (i[2], i[1]), False, 'videomega.tv') for i in result if i[0] == '13']
+            links += [('movie/loadEmbed/%s/%s' % (i[2], i[1]), False, 'openload.co') for i in result if i[0] == '14']
 
-            for i in links: sources.append({'source': i[1], 'quality': quality, 'provider': 'Onemovies', 'url': i[0], 'direct': False, 'debridonly': False})
+            for i in links: sources.append({'source': i[2], 'quality': quality, 'provider': 'Onemovies', 'url': i[0], 'direct': i[1], 'debridonly': False})
 
             return sources
         except:

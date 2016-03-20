@@ -90,7 +90,6 @@ class source:
                     post = urllib.urlencode(post)
 
                     if not host in ['google', 'putlocker', 'openload', 'videomega']: raise Exception()
-                    if not host in ['google', 'putlocker', 'openload']: raise Exception()
 
                     result = cloudflare.source(url, post=post, headers=headers)
                     result = json.loads(result)['s']

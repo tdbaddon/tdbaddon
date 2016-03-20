@@ -103,18 +103,24 @@ class source:
             except:
                 url = cloudflare.source(result)
                 url = urllib.unquote_plus(url.decode('string-escape'))
-                url = re.compile('"(.+?)"').findall(url)
-                url = [i for i in url if 'ok.ru' in i or 'vk.com' in i][0]
+
+                frame = client.parseDOM(url, 'iframe', ret='src')
+
+                if len(frame) > 0: url = [client.source(frame[-1], output='geturl')]
+                else: url = re.compile('"(.+?)"').findall(url)
+                url = [i for i in url if 'ok.ru' in i or 'vk.com' in i or 'openload.co' in i][0]
 
             try: url = 'http://ok.ru/video/%s' % urlparse.parse_qs(urlparse.urlparse(url).query)['mid'][0]
             except: pass
 
-            if 'ok.ru' in url: host = 'vk' ; url = directstream.odnoklassniki(url)
-            elif 'vk.com' in url: host = 'vk' ; url = directstream.vk(url)
+            if 'openload.co' in url: host = 'openload.co' ; direct = False ; url = [{'url': url, 'quality': 'HD'}]
+            elif 'ok.ru' in url: host = 'vk' ; direct = True ; url = directstream.odnoklassniki(url)
+            elif 'vk.com' in url: host = 'vk' ; direct = True ; url = directstream.vk(url)
             else: raise Exception()
 
             for i in url: sources.append({'source': host, 'quality': i['quality'], 'provider': 'Onlinedizi', 'url': i['url'], 'direct': True, 'debridonly': False})
 
+            print sources
             return sources
         except:
             return sources

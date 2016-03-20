@@ -130,14 +130,15 @@ class source:
             except: href = '.+?'
 
 
-            url = urlparse.urljoin(self.base_link, url)
-
+            url = referer = urlparse.urljoin(self.base_link, url)
             result = client.source(url, cookie='%s; %s' % (self.cookie, self.lang))
 
             url = client.parseDOM(result, 'a', ret='data-href', attrs = {'href': href})[0]
             url = urlparse.urljoin(self.base_link, url)
 
-            result = client.source(url, cookie='%s; %s' % (self.cookie, self.lang))
+            headers = self.headers
+            headers.update({'X-Requested-With': 'XMLHttpRequest'})
+            result = client.source(url, cookie='%s; %s' % (self.cookie, self.lang), referer=referer, headers=headers)
 
             headers = '|%s' % urllib.urlencode({'User-Agent': self.headers['User-Agent'], 'Cookie': str(self.cookie)})
 

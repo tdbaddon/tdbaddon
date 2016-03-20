@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Genesis Add-on
-    Copyright (C) 2015 lambda
+    Exodus Add-on
+    Copyright (C) 2016 Exodus
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -51,7 +51,7 @@ def addView(content):
             if not (label == '' or label == None): break
         record = (skin, content, str(view))
         control.makeFile(control.dataPath)
-        dbcon = database.connect(control.databaseFile)
+        dbcon = database.connect(control.viewsFile)
         dbcur = dbcon.cursor()
         dbcur.execute("CREATE TABLE IF NOT EXISTS views (""skin TEXT, ""view_type TEXT, ""view_id TEXT, ""UNIQUE(skin, view_type)"");")
         dbcur.execute("DELETE FROM views WHERE skin = '%s' AND view_type = '%s'" % (record[0], record[1]))
@@ -70,7 +70,7 @@ def setView(content, viewDict=None):
             try:
                 skin = control.skin
                 record = (skin, content)
-                dbcon = database.connect(control.databaseFile)
+                dbcon = database.connect(control.viewsFile)
                 dbcur = dbcon.cursor()
                 dbcur.execute("SELECT * FROM views WHERE skin = '%s' AND view_type = '%s'" % (record[0], record[1]))
                 view = dbcur.fetchone()

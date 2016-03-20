@@ -39,35 +39,35 @@ msgid "Discover Great Streaming Playlists!"
 msgstr ""
 
 msgctxt "#30707"
-msgid "[COLOR gold]Watch Trailer[/COLOR]"
+msgid "Watch Trailer"
 msgstr ""
 
 msgctxt "#30708"
-msgid "[COLOR gold]Movie Information[/COLOR]"
+msgid "Movie Information"
 msgstr ""
 
 msgctxt "#30709"
-msgid "[COLOR gold]TV Show Information[/COLOR]"
+msgid "TV Show Information"
 msgstr ""
 
 msgctxt "#30710"
-msgid "[COLOR gold]Episode Information[/COLOR]"
+msgid "Episode Information"
 msgstr ""
 
 msgctxt "#30711"
-msgid "[COLOR gold]Set Movies view[/COLOR]"
+msgid "Set Movies view"
 msgstr ""
 
 msgctxt "#30712"
-msgid "[COLOR gold]Set TV Shows view[/COLOR]"
+msgid "Set TV Shows view"
 msgstr ""
 
 msgctxt "#30713"
-msgid "[COLOR gold]Set Seasons view[/COLOR]"
+msgid "Set Seasons view"
 msgstr ""
 
 msgctxt "#30714"
-msgid "[COLOR gold]Set Episodes view[/COLOR]"
+msgid "Set Episodes view"
 msgstr ""
 
 msgctxt "#30715"
@@ -99,7 +99,7 @@ msgid "Downloads"
 msgstr ""
 
 msgctxt "#30722"
-msgid "[COLOR gold]Download item[/COLOR]"
+msgid "Download item"
 msgstr ""
 
 msgctxt "#30723"
@@ -107,7 +107,7 @@ msgid "NHL"
 msgstr ""
 
 msgctxt "#30724"
-msgid "Use Android Hack"
+msgid "Tweak for Android"
 msgstr ""
 
 msgctxt "#30725"
@@ -118,32 +118,44 @@ msgctxt "#30726"
 msgid "Opening stream"
 msgstr ""
 
+msgctxt "#30727"
+msgid "Accounts"
+msgstr ""
+
+msgctxt "#30728"
+msgid "User"
+msgstr ""
+
+msgctxt "#30729"
+msgid "Email"
+msgstr ""
+
 msgctxt "#30730"
-msgid "Huddle Up Sport's"
+msgid "Password"
 msgstr ""
 
 msgctxt "#30731"
-msgid "Display Game Scores"
+msgid "Please wait..."
 msgstr ""
 
 msgctxt "#30751"
-msgid "[COLOR red]Scoreboard[/COLOR]"
+msgid "Scoreboard"
 msgstr ""
 
 msgctxt "#30752"
-msgid "[COLOR red]Archived Games[/COLOR]"
+msgid "Archived Games"
 msgstr ""
 
 msgctxt "#30753"
-msgid "[COLOR gold]Live Games , Requires some modifications to get working visit forum.[/COLOR]"
+msgid "Live Games , Requires some modifications to get working visit forum."
 msgstr ""
 
 msgctxt "#30754"
-msgid "[COLOR gold]If list returns BLANK, Feed is not up yet.[/COLOR]"
+msgid "If list returns BLANK, Feed is not up yet."
 msgstr ""
 
 msgctxt "#30755"
-msgid "[COLOR red]Feed not available yet[/COLOR]"
+msgid "Feed not available yet"
 msgstr ""
 
 msgctxt "#30756"

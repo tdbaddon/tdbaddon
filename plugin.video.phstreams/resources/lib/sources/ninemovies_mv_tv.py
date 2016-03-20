@@ -29,8 +29,9 @@ from resources.lib.modules import directstream
 
 class source:
     def __init__(self):
-        self.domains = ['9movies.to']
-        self.base_link = 'http://9movies.to'
+        self.domains = ['fmovies.to']
+        self.base_link = 'http://fmovies.to'
+        self.hash_link = '/ajax/episode/info'
         self.search_link = '/sitemap'
 
 
@@ -65,15 +66,16 @@ class source:
             return
 
 
-    def ninemovies_cache(self):
+    def fmovies_cache(self):
         try:
             url = urlparse.urljoin(self.base_link, self.search_link)
 
             result = client.source(url)
-            result = result.split('>Movies and TV-Shows<')[-1]
-            result = client.parseDOM(result, 'ul', attrs = {'class': 'sub-menu'})[0]
-            result = re.compile('href="(.+?)">(.+?)<').findall(result)
+            result = re.findall('href="(.+?)">(.+?)<', result)
             result = [(re.sub('http.+?//.+?/','/', i[0]), re.sub('&#\d*;','', i[1])) for i in result]
+            result = [(i[0].split('"')[0], re.findall('(.+?)\((\d{4})\)$', i[1].strip())) for i in result]
+            result = [(i[0], i[1][0][0].strip(), i[1][0][1]) for i in result if len(i[1]) > 0]
+
             return result
         except:
             return
@@ -85,8 +87,7 @@ class source:
 
             if url == None: return sources
 
-            try:
-                result = ''
+            if not str(url).startswith('http'):
 
                 data = urlparse.parse_qs(url)
                 data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
@@ -94,46 +95,33 @@ class source:
                 title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
                 title = cleantitle.get(title)
 
+                year = re.findall('(\d{4})', data['premiered'])[0] if 'tvshowtitle' in data else data['year']
+                years = ['%s' % str(int(year)+1), '%s' % str(int(year)-1)]
+
                 try: episode = data['episode']
                 except: pass
 
-                url = cache.get(self.ninemovies_cache, 120)
+                url = cache.get(self.fmovies_cache, 120)
 
-                url = [(i[0], i[1], cleantitle.get(i[1])) for i in url]
-                url = [(i[0], i[1], i[2], re.sub('\d*$', '', i[2])) for i in url]
-                url = [i for i in url if title == i[2]] + [i for i in url if title == i[3]]
-
+                url = [i for i in url if i[2] == year] + [i for i in url if any(x in i[2] for x in years)]
                 if 'season' in data and int(data['season']) > 1:
-                    url = [(i[0], re.compile('\s+(\d*)$').findall(i[1])) for i in url]
-                    url = [(i[0], i[1][0]) for i in url if len(i[1]) > 0]
-                    url = [i for i in url if '%01d' % int(data['season']) == '%01d' % int(i[1])]
+                    url = [(i[0], re.findall('(.+?) (\d*)$', i[1])) for i in url]
+                    url = [(i[0], i[1][0][0], i[1][0][1]) for i in url if len(i[1]) > 0]
+                    url = [i for i in url if title == cleantitle.get(i[1])]
+                    url = [i for i in url if '%01d' % int(data['season']) == '%01d' % int(i[2])]
+                else:
+                    url = [i for i in url if title == cleantitle.get(i[1])]
 
                 url = url[0][0]
                 url = urlparse.urljoin(self.base_link, url)
 
-                result = client.source(url)
 
-                years = re.findall('(\d{4})', data['premiered'])[0] if 'tvshowtitle' in data else data['year']
-                years = ['%s' % str(years), '%s' % str(int(years)+1), '%s' % str(int(years)-1)]
+            try: url, episode = re.compile('(.+?)\?episode=(\d*)$').findall(url)[0]
+            except: pass
 
-                year = re.compile('<dd>(\d{4})</dd>').findall(result)[0]
-                if not year in years: return sources
-            except:
-                pass
+            result = client.source(url)
 
-            try:
-                if not result == '': raise Exception()
-
-                url = urlparse.urljoin(self.base_link, url)
-
-                try: url, episode = re.compile('(.+?)\?episode=(\d*)$').findall(url)[0]
-                except: pass
-
-                result = client.source(url)
-            except:
-                pass
-
-            try: quality = client.parseDOM(result, 'dd', attrs = {'class': 'quality'})[0].lower()
+            try: quality = client.parseDOM(result, 'span', attrs = {'class': 'quality'})[0].lower()
             except: quality = 'hd'
             if quality == 'cam' or quality == 'ts': quality = 'CAM'
             elif quality == 'hd' or 'hd ' in quality: quality = 'HD'
@@ -164,6 +152,15 @@ class source:
             return sources
 
 
+    def __get_token(self, data):
+        n = 0
+        for key in data:
+            if not key.startswith('_'):
+                for i, c in enumerate(data[key]):
+                    n += ord(c) * (i + 1990)
+        return {'_token': hex(n)[2:]}
+
+
     def resolve(self, url):
         try:
             data = urlparse.parse_qs(url)
@@ -171,23 +168,28 @@ class source:
 
             headers = {'X-Requested-With': 'XMLHttpRequest'}
 
-            now = time.localtime()
-            url = '/ajax/film/episode?hash_id=%s&f=&p=%s' % (data['hash_id'], now.tm_hour + now.tm_min)
-            url = urlparse.urljoin(self.base_link, url)
+            url = urlparse.urljoin(self.base_link, self.hash_link)
+
+            query = {'id': data['hash_id'], 'update': '0'}
+            query.update(self.__get_token(query))
+            url = url + '?' + urllib.urlencode(query)
 
             result = client.source(url, headers=headers, referer=data['referer'])
             result = json.loads(result)
 
-            grabber = {'flash': 1, 'json': 1, 's': now.tm_min, 'link': result['videoUrlHash'], '_': int(time.time())}
-            grabber = result['grabber'] + '?' + urllib.urlencode(grabber)
+            query = result['params']
+            query['mobile'] = '0'
+            query.update(self.__get_token(query))
+            grabber = result['grabber'] + '?' + urllib.urlencode(query)
 
             result = client.source(grabber, headers=headers, referer=url)
             result = json.loads(result)
+            result = result['data']
 
             url = [(re.findall('(\d+)', i['label']), i['file']) for i in result if 'label' in i and 'file' in i]
             url = [(int(i[0][0]), i[1]) for i in url if len(i[0]) > 0]
             url = sorted(url, key=lambda k: k[0])
-            url = url[-1][1]
+            url = url[-1][1].replace('%2C', ',')
 
             url = client.request(url, output='geturl')
             if 'requiressl=yes' in url: url = url.replace('http://', 'https://')

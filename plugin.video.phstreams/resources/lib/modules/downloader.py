@@ -92,11 +92,8 @@ def addDownload(name, url, image, provider=None):
         return control.infoDialog('Item Already In Your Queue', name)
 
     from resources.lib.indexers import phstreams
-
-    url = phstreams.resolveUrl(url)
-
-    if url == None:
-        return control.infoDialog('Unplayable stream')
+    url = phstreams.resolver().link(url)
+    if url == None: return
 
     try:
         u = url.split('|')[0]

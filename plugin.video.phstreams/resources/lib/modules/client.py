@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Genesis Add-on
-    Copyright (C) 2015 lambda
+    Exodus Add-on
+    Copyright (C) 2016 Exodus
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -92,6 +92,9 @@ def request(url, close=True, error=False, proxy=None, post=None, headers=None, m
             result = response.read(16 * 1024)
         elif output == 'geturl':
             result = response.geturl()
+        elif output == 'headers':
+            content = response.headers
+            return content
         else:
             if safe == True:
                 result = response.read(224 * 1024)

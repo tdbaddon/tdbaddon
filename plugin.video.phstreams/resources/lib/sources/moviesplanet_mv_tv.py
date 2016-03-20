@@ -183,7 +183,7 @@ class source:
                 pass
 
             try:
-                u = result[0][0]
+                u = a = result[0][0]
                 if not 'download.php' in u and not '.live.' in u: raise Exception()
                 o = urllib2.build_opener(NoRedirection)
                 o.addheaders = [('User-Agent', client.randomagent()), ('Cookie', cookie)]
@@ -191,6 +191,7 @@ class source:
                 try: u = r.headers['Location']
                 except: pass
                 r.close()
+                if a == u: raise Exception()
                 links += [(u, '1080p', 'cdn')]
             except:
                 pass

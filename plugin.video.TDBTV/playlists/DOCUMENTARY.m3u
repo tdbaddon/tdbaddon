@@ -13,11 +13,17 @@ http://64.228.62.144:2046
 #EXTINF:0,Animal Planet 
 http://109.226.222.161:4022/udp/239.255.4.175:1234
 
+#EXTINF:0,Animal Planet 
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/56.mpegts
+
+#EXTINF:0,Animal Planet 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/176.ts
+
 #EXTINF:0,Biography Channel
 0
 
 #EXTINF:0,Crime & Investigation 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/95.mpegts
 
 #EXTINF:0,Cottage Life
 0
@@ -29,16 +35,34 @@ http://109.226.222.161:4022/udp/239.255.4.175:1234
 0
 
 #EXTINF:0,Discovery Channel
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/414.mpegts
+
+#EXTINF:0,Discovery Channel
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/476.mpegts
+
+#EXTINF:0,Discovery Channel
+http://balkanstream.com/stream/discovery/amy/amy
+
+#EXTINF:0,Discovery Channel
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/28.ts
 
 #EXTINF:0,Discovery History 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/53.mpegts
+
+#EXTINF:0,Discovery History 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/181.ts
 
 #EXTINF:0,Discovery H&H
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/278.mpegts
+
+#EXTINF:0,Discovery H&H
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/182.ts
 
 #EXTINF:0,Discovery Max 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/317.mpegts
+
+#EXTINF:0,Discovery Max 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/1055.ts
 
 #EXTINF:0,Discovery News 
 0
@@ -46,11 +70,26 @@ http://109.226.222.161:4022/udp/239.255.4.175:1234
 #EXTINF:0,Discovery Science 
 http://109.226.222.161:4022/udp/239.255.4.250:1234
 
+#EXTINF:0,Discovery Science 
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/584.mpegts
+
+#EXTINF:0,Discovery Science 
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/54.mpegts
+
+#EXTINF:0,Discovery Science 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/180.ts
+
+#EXTINF:0,Discovery Shed
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/380.mpegts
+
 #EXTINF:0,Discovery Theatre
 0
 
 #EXTINF:0,Discovery Turbo 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/55.mpegts
+
+#EXTINF:0,Discovery Turbo 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/183.ts
 
 #EXTINF:0,Discovery World 
 0
@@ -79,11 +118,32 @@ http://link.theplatform.com/s/dtjsEC/chjdYJxKb44V?manifest=m3u&feed=History%20Li
 #EXTINF:0,History Channel 
 https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8
 
+#EXTINF:0,History Channel 
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/411.mpegts
+
+#EXTINF:0,History Channel 
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/469.mpegts
+
+#EXTINF:0,History Channel 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/184.ts
+
 #EXTINF:0,History Channel 2 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/320.mpegts
+
+#EXTINF:0,History Channel 2 
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/375.mpegts
+
+#EXTINF:0,History Channel 2 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/4184.ts
 
 #EXTINF:0,Investigation Discovery 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/51.mpegts
+
+#EXTINF:0,Investigation Discovery 
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/477.mpegts
+
+#EXTINF:0,Investigation Discovery 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/178.ts
 
 #EXTINF:0,Nasa TV 
 http://nasatv-lh.akamaihd.net/i/NASA_101@319270/master.m3u8 
@@ -97,11 +157,35 @@ http://nasatv-lh.akamaihd.net/i/NASA_102@319272/master.m3u8
 #EXTINF:0,Nasa TV 
 http://nasatv-lh.akamaihd.net/i/NASA_103@319271/master.m3u8
 
+#EXTINF:0,Nasa TV 
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/150.mpegts
+
+#EXTINF:0,Nasa TV 
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/165.mpegts
+
+#EXTINF:0,Nasa TV 
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/166.mpegts
+
 #EXTINF:0,Nat Geo Wild 
-0
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/58.mpegts
+
+#EXTINF:0,Nat Geo Wild 
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/474.mpegts
+
+#EXTINF:0,Nat Geo Wild 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/177.ts
 
 #EXTINF:0,National Geographic 
 http://109.226.222.161:4022/udp/239.255.4.30:1234
+
+#EXTINF:0,National Geographic 
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/57.mpegts
+
+#EXTINF:0,National Geographic 
+http://smashtv.ddns.net:9090/load/4afe5b80d79c/473.mpegts
+
+#EXTINF:0,National Geographic 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/434.ts
 
 #EXTINF:0,Nova
 0
@@ -131,13 +215,13 @@ http://rt-a.akamaihd.net/ch_05@325609/720p.m3u8
 0
 
 #EXTINF:0,Travel Channel 
-0
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/4059.ts
 
 #EXTINF:0,Viasat Explorer 
 0
 
 #EXTINF:0,Viasat History 
-0
+http://balkanstream.com/stream/viasathistory/amy/amy
 
 #EXTINF:0,Viasat Nature 
-0
+http://balkanstream.com/stream/viasatnature/amy/amy

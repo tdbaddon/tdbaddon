@@ -2,8 +2,7 @@
 
 '''
     Phoenix Add-on
-    Copyright (C) 2015 Blazetamer
-    Copyright (C) 2015 lambda
+    Copyright (C) 2016 Phoenix
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -29,76 +28,59 @@ try:
 except:
     action = None
 try:
+    content = params['content']
+except:
+    content = None
+try:
     name = params['name']
 except:
-    name = '0'
+    name = None
 try:
     url = params['url']
 except:
-    url = '0'
-try:
-    content = params['content']
-except:
-    content = '0'
-try:
-    tvshow = params['tvshow']
-except:
-    tvshow = '0'
-try:
-    audio = params['audio']
-except:
-    audio = '0'
+    url = None
 try:
     image = params['image']
 except:
-    image = '0'
+    image = None
 try:
     fanart = params['fanart']
 except:
-    fanart = '0'
-
+    fanart = None
 
 
 
 if action == None:
     from resources.lib.indexers import phstreams
-    phstreams.getCategory()
+    phstreams.indexer().root()
 
-elif action == 'dmode' or action == 'ndmode':
+elif action == 'directory':
     from resources.lib.indexers import phstreams
-    phstreams.getDirectory(name, url, audio, image, fanart, content)
+    phstreams.indexer().get(url)
 
-elif action == 'subDirectory':
+elif action == 'developer':
     from resources.lib.indexers import phstreams
-    phstreams.subDirectory(name, url, audio, image, fanart, tvshow, content)
+    phstreams.indexer().developer()
 
-elif action == 'localDirectory':
+elif action == 'play':
     from resources.lib.indexers import phstreams
-    phstreams.localDirectory()
+    phstreams.resolver().play(url)
+
+elif action == 'browser':
+    from resources.lib.indexers import phstreams
+    phstreams.resolver().browser(url)
 
 elif action == 'search':
     from resources.lib.indexers import phstreams
-    phstreams.getSearch()
+    phstreams.indexer().search()
 
-elif action == 'searchDirectory':
+elif action == 'addSearch':
     from resources.lib.indexers import phstreams
-    phstreams.searchDirectory()
+    phstreams.indexer().addSearch(url)
 
-elif action == 'searchDirectory2':
+elif action == 'delSearch':
     from resources.lib.indexers import phstreams
-    phstreams.searchDirectory(url)
-
-elif action == 'clearSearch':
-    from resources.lib.indexers import phstreams
-    phstreams.clearSearch()
-
-elif action == 'playItem':
-    from resources.lib.indexers import phstreams
-    phstreams.playItem(url)
-
-elif action == 'openDialog':
-    from resources.lib.modules import phdialogs
-    phdialogs.openDialog(url,audio)
+    phstreams.indexer().delSearch()
 
 elif action == 'openSettings':
     from resources.lib.modules import control
@@ -144,33 +126,33 @@ elif action == 'clearCache':
     from resources.lib.modules import cache
     cache.clear()
 
-elif action == 'radioDirectory':
+elif action == 'radios':
     from resources.lib.indexers import phradios
-    phradios.radioDirectory()
+    phradios.radios()
 
 elif action == 'radioResolve':
     from resources.lib.indexers import phradios
-    phradios.radioResolve(name, url, image)
+    phradios.radioResolve(url)
 
 elif action == 'radio1fm':
     from resources.lib.indexers import phradios
-    phradios.radio1fm(image, fanart)
+    phradios.radio1fm()
 
 elif action == 'radio181fm':
     from resources.lib.indexers import phradios
-    phradios.radio181fm(image, fanart)
+    phradios.radio181fm()
 
-elif action == 'kickinradio':
+elif action == 'radiocast':
     from resources.lib.indexers import phradios
-    phradios.kickinradio(image, fanart)
+    phradios.kickinradio()
 
 elif action == 'kickinradiocats':
     from resources.lib.indexers import phradios
-    phradios.kickinradiocats(url, image, fanart)
+    phradios.kickinradiocats(url)
 
-elif action == 'CartoonDirectory':
+elif action == 'cartoon':
     from resources.lib.indexers import phtoons
-    phtoons.CartoonDirectory()
+    phtoons.cartoon()
    
 elif action == 'CartoonCrazy':
     from resources.lib.indexers import phtoons

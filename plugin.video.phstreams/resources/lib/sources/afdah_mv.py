@@ -28,9 +28,9 @@ from resources.lib.modules import client
 class source:
     def __init__(self):
         self.domains = ['afdah.org', 'xmovies8.org', 'putlockerhd.co']
-        self.base_link_1 = 'https://afdah.org'
+        self.base_link_1 = 'https://xmovies8.org'
         self.base_link_2 = 'https://xmovies8.org'
-        self.base_link_3 = 'https://putlockerhd.co'
+        self.base_link_3 = 'https://xmovies8.org'
         self.search_link = '/results?q=%s'
 
 

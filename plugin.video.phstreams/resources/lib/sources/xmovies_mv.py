@@ -24,6 +24,7 @@ import re,urllib,urlparse,json,base64
 from resources.lib.modules import cleantitle
 from resources.lib.modules import cloudflare
 from resources.lib.modules import client
+from resources.lib.modules import directstream
 
 
 class source:
@@ -92,28 +93,18 @@ class source:
 
             if url == None: return sources
 
-            referer = urlparse.urljoin(self.base_link, url)
+            url = urlparse.urljoin(self.base_link, url)
 
-            headers = {'X-Requested-With': 'XMLHttpRequest', 'Referer': referer}
+            result = cloudflare.source(url)
 
-            post = urlparse.urlparse(url).path
-            post = re.compile('/.+?/(.+)').findall(post)[0].rsplit('/')[0]
-            post = 'mx=%s&isseries=0&part=0' % post
+            url = client.parseDOM(result, 'embed', ret='src')[0]
+            url = client.replaceHTMLCodes(url)
 
-            url = urlparse.urljoin(self.base_link, '/lib/picasa.php')
+            url = 'https://docs.google.com/file/d/%s/preview' % urlparse.parse_qs(urlparse.urlparse(url).query)['docid'][0]
 
-            result = cloudflare.source(url, post=post, headers=headers)
+            url = directstream.google(url)
 
-            result = client.parseDOM(result, 'div', attrs = {'class': '[^"]*download[^"]*'})[0]
-            result = re.compile('href="([^"]+)[^>]+>(\d+)p?<').findall(result)
-            result = [('%s|referer=%s' % (i[0], referer), i[1])  for i in result]
-
-            links = [(i[0], '1080p') for i in result if int(i[1]) >= 1080]
-            links += [(i[0], 'HD') for i in result if 720 <= int(i[1]) < 1080]
-            links += [(i[0], 'SD') for i in result if 480 <= int(i[1]) < 720]
-            if not 'SD' in [i[1] for i in links]: links += [(i[0], 'SD') for i in result if 360 <= int(i[1]) < 480]
-
-            for i in links: sources.append({'source': 'gvideo', 'quality': i[1], 'provider': 'Xmovies', 'url': i[0], 'direct': True, 'debridonly': False})
+            for i in url: sources.append({'source': 'gvideo', 'quality': i['quality'], 'provider': 'Xmovies', 'url': i['url'], 'direct': True, 'debridonly': False})
 
             return sources
         except:
@@ -122,9 +113,7 @@ class source:
 
     def resolve(self, url):
         try:
-            url, referer = re.compile('(.+?)\|referer=(.+)').findall(url)[0]
-
-            url = client.request(url, referer=referer, output='geturl')
+            url = client.request(url, output='geturl')
             if 'requiressl=yes' in url: url = url.replace('http://', 'https://')
             else: url = url.replace('https://', 'http://')
             return url
