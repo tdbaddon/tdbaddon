@@ -258,7 +258,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 <addon id="plugin.video.exodus" version="1.2.0" name="Exodus" provider-name="Exodus">
 	<requires>
-		<import addon="xbmc.python" version="2.19.0" />
+		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="repository.exodus" version="1.0.0" />
 		<import addon="script.exodus.artwork" version="1.0.0" />
 		<import addon="script.module.urlresolver" version="2.10.11"/>
