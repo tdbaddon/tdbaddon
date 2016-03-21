@@ -10,6 +10,9 @@
 #EXTINF:0,Al Jazeera Balkan 
 rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
 
+#EXTINF:0,Al Jazeera Balkan 
+http://balkanstream.com/stream/AlJazeeraBalkans/amy/amy
+
 #EXTINF:0,Alb Info
 0
 
@@ -24,6 +27,9 @@ rtmp://188.138.17.8:1935/albuk/albuk.stream
 
 #EXTINF:0,ATV
 rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
+
+#EXTINF:0,ATV
+http://balkanstream.com/stream/YU_atv/amy/amy
 
 #EXTINF:0,Bangbang 
 0

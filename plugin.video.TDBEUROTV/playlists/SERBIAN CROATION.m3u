@@ -4,20 +4,38 @@
 #EXTINF:0,Al Jazeera Balkan 
 rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
 
+#EXTINF:0,Al Jazeera Balkan 
+http://balkanstream.com/stream/AlJazeeraBalkans/amy/amy
+
 #EXTINF:0,Arena Sport 1 
-0
+http://balkanstream.com/stream/arenasport1sr/amy/amy
+
+#EXTINF:0,Arena Sport 1 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/1.ts
 
 #EXTINF:0,Arena Sport 2 
-0
+http://balkanstream.com/stream/arenasport2sr/amy/amy
+
+#EXTINF:0,Arena Sport 2 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/2.ts
 
 #EXTINF:0,Arena Sport 3 
-0
+http://balkanstream.com/stream/arenasport3sr/amy/amy
+
+#EXTINF:0,Arena Sport 3 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/3.ts
 
 #EXTINF:0,Arena Sport 4 
-0
+http://balkanstream.com/stream/arenasport4sr/amy/amy
+
+#EXTINF:0,Arena Sport 4 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/4.ts
 
 #EXTINF:0,Arena Sport 5 
-0
+http://balkanstream.com/stream/arenasport5sr/amy/amy
+
+#EXTINF:0,Arena Sport 5 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/5.ts
 
 #EXTINF:0,ATV
 rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
@@ -25,11 +43,14 @@ rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
 #EXTINF:0,B92 
 http://stream.b92.net:7999/tv-b92.ogg
 
+#EXTINF:0,B92 
+http://balkanstream.com/stream/b92/amy/amy
+
 #EXTINF:0,Balkan TV
 0
 
 #EXTINF:0,BN Sat
-0
+http://balkanstream.com/stream/bnsat/amy/amy
 
 #EXTINF:0,Belle Amie TV
 http://92.60.234.98:8081
@@ -38,13 +59,13 @@ http://92.60.234.98:8081
 http://213.81.153.221:8080/cetv
 
 #EXTINF:0,CMC 
-0
+http://balkanstream.com/stream/cmc/amy/amy
 
 #EXTINF:0,DMC
 0
 
 #EXTINF:0,DM SAT 
-0
+http://balkanstream.com/stream/dmsat/amy/amy
 
 #EXTINF:0,DUGA 
 0
@@ -53,22 +74,22 @@ http://213.81.153.221:8080/cetv
 0
 
 #EXTINF:0,Grand 
-0
+http://balkanstream.com/stream/grandtv/amy/amy
 
 #EXTINF:0,Happy 
-0
+http://balkanstream.com/stream/happytv/amy/amy
 
 #EXTINF:0,Hayat Folk 
-0
+http://balkanstream.com/stream/HayatFolk/amy/amy
 
 #EXTINF:0,Hayat Music 
-0
+http://balkanstream.com/stream/BokaTV/amy/amy
 
 #EXTINF:0,Hayat Plus 
-0
+http://balkanstream.com/stream/HayatPlus/amy/amy
 
 #EXTINF:0,Hayatovci
-0
+http://balkanstream.com/stream/Hayatovci/amy/amy
 
 #EXTINF:0,Hema TV 
 mms://77.238.209.50:1234
@@ -77,16 +98,16 @@ mms://77.238.209.50:1234
 0
 
 #EXTINF:0,HRT 1 
-0
+http://balkanstream.com/stream/hrt1/amy/amy
 
 #EXTINF:0,HRT 2 
-0
+http://balkanstream.com/stream/hrt2/amy/amy
 
 #EXTINF:0,HRT 3 
-0
+http://balkanstream.com/stream/hrt3/amy/amy
 
 #EXTINF:0,HRT 4 
-0
+http://balkanstream.com/stream/hrt4/amy/amy
 
 #EXTINF:0,Joj
 0
@@ -95,7 +116,7 @@ mms://77.238.209.50:1234
 0
 
 #EXTINF:0,Jugoton
-0
+http://balkanstream.com/stream/Jugoton/amy/amy
 
 #EXTINF:0,K3 Kumanovo 
 http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/k3-tv-kumanovo/chunklist.m3u8
@@ -122,7 +143,7 @@ http://213.81.153.221:8080/nasa
 0
 
 #EXTINF:0,N1
-0
+http://balkanstream.com/stream/N1SRB/amy/amy
 
 #EXTINF:0,NetTV Plus 
 0
@@ -131,13 +152,13 @@ http://213.81.153.221:8080/nasa
 0
 
 #EXTINF:0,Nova TV
-0
+http://balkanstream.com/stream/novatv/amy/amy
 
 #EXTINF:0,Novosadska TV 
 mms://176.106.121.32:8080/
 
 #EXTINF:0,OBN 
-0
+http://balkanstream.com/stream/obn/amy/amy
 
 #EXTINF:0,Palma Plus 
 0
@@ -146,7 +167,7 @@ mms://176.106.121.32:8080/
 0
 
 #EXTINF:0,Prva TV 
-0
+http://balkanstream.com/stream/prva/amy/amy
 
 #EXTINF:0,RTC 
 0
@@ -158,22 +179,22 @@ mms://beotelmedia.beotel.net/tvcg
 mms://195.252.114.172/tvcg
 
 #EXTINF:0,RTL
-0
+http://balkanstream.com/stream/rtl/amy/amy
 
 #EXTINF:0,RTL 2 
-0
+http://balkanstream.com/stream/rtl2/amy/amy
 
 #EXTINF:0,RTRS 
-0
+http://balkanstream.com/stream/rtrs/amy/amy
 
 #EXTINF:0,RTS 
 0
 
 #EXTINF:0,RTS 1 
-0
+http://balkanstream.com/stream/rts1/amy/amy
 
 #EXTINF:0,RTS 2 
-0
+http://balkanstream.com/stream/rts2/amy/amy
 
 #EXTINF:0,RTS 3 
 0

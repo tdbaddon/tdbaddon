@@ -830,7 +830,7 @@ http://kodilive.eu</description>
 
 <addon id="plugin.video.TDBEUROTV"
        name="TDB EURO TV"
-       version="2.23"
+       version="2.24"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -849,7 +849,7 @@ http://kodilive.eu</description>
 
 <addon id="plugin.video.TDBPORNO"
        name="TDB PORNO"
-       version="1.91"
+       version="1.92"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -905,7 +905,7 @@ http://kodilive.eu</description>
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="3.62"
+       version="3.63"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>

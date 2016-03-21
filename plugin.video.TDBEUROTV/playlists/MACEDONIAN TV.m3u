@@ -1,17 +1,22 @@
 ﻿#EXTM3U
 
-
 #EXTINF:0,A1 Strumica 
 http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/a1-strumica/chunklist.m3u8
 
 #EXTINF:0,Al Jazeera Balkan 
 rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
 
+#EXTINF:0,Al Jazeera Balkan 
+http://balkanstream.com/stream/AlJazeeraBalkans/amy/amy
+
 #EXTINF:0,Alfa 
 http://217.16.82.6:1935/zulu/alfa_1/playlist.m3u8
 
 #EXTINF:0,Alfa 
 http://217.16.82.6:554/zulu/alfa_1/playlist.m3u8
+
+#EXTINF:0,Alfa 
+http://balkanstream.com/stream/mkalfa/amy/amy
 
 #EXTINF:0,BTR 
 0
@@ -49,6 +54,9 @@ http://fms.zulu.mk:1935/zulu/kanal5_1/playlist.m3u8
 #EXTINF:0,Kanal 5 
 http://217.16.82.6:1935/zulu/kanal5_2/playlist.m3u8
 
+#EXTINF:0,Kanal 5 
+http://balkanstream.com/stream/mkkanal5/amy/amy
+
 #EXTINF:0,Kanal 5 Plus 
 http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/kplus-tv-stip/chunklist.m3u8
 
@@ -67,6 +75,9 @@ http://217.16.82.6:1935/zulu/mtv1_1/playlist.m3u8
 #EXTINF:0,MPT 1 
 http://217.16.82.6:554/zulu/mtv1_1/playlist.m3u8
 
+#EXTINF:0,MPT 1 
+http://balkanstream.com/stream/mkmtv1/amy/amy
+
 #EXTINF:0,MPT 2 
 http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video_id/3548/token/9a9e4915833e8e611b2902b144852a92/playlist.m3u8
 
@@ -75,6 +86,9 @@ http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video
 
 #EXTINF:0,MPT 2 
 http://stream.mrt-edge.spectar.tv:1935/mrt-liveedge/_definst_/amlst:dm/hls/video_id/3545/token/baf3cb0ceac4e5243d63f8bf96011783/playlist.m3u8
+
+#EXTINF:0,MPT 2 
+http://balkanstream.com/stream/MK2/amy/amy
 
 #EXTINF:0,MPT Sat 
 http://mrt.cdn.spectar.tv:1935/mrt-edge/_definst_/mrt1-sat/playlist.m3u8
@@ -94,8 +108,11 @@ http://217.16.82.6:1935/zulu/sitel_1/playlist.m3u8
 #EXTINF:0,Sitel 
 http://217.16.82.6:554/zulu/sitel_1/playlist.m3u8
 
+#EXTINF:0,Sitel 
+http://balkanstream.com/stream/mksitel/amy/amy
+
 #EXTINF:0,Sitel 3 
-0
+http://balkanstream.com/stream/mksitel3/amy/amy
 
 #EXTINF:0,Sonce TV 
 http://92.53.27.201:10000/
@@ -108,6 +125,9 @@ http://217.16.82.6:1935/zulu/telma_1/playlist.m3u8
 
 #EXTINF:0,Telma 
 http://217.16.82.6:554/zulu/telma_1/playlist.m3u8
+
+#EXTINF:0,Telma 
+http://balkanstream.com/stream/mktelma/amy/amy
 
 #EXTINF:0,Ultra Tetovo
 http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/ultra-tv-tetovo/chunklist.m3u8

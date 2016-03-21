@@ -37,6 +37,9 @@ http://smashtv.ddns.net:9090/load/4afe5b80d79c/401.mpegts
 #EXTINF:0,BabyTV 
 http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/439.ts
 
+#EXTINF:0,BabyTV 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/1142.ts
+
 #EXTINF:0,BBC 1 
 http://89.163.148.31:8000/live/pierre/pierre/2752.ts
 
@@ -149,7 +152,7 @@ http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/51.ts
 http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/4192.ts
 
 #EXTINF:0,Comedy Gold
-0
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/29.ts
 
 #EXTINF:0,Comedy Channel
 0
@@ -269,7 +272,7 @@ http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/740.ts
 0
 
 #EXTINF:0,Fox Life 
-0
+http://balkanstream.com/stream/foxlife/amy/amy
 
 #EXTINF:0,Fox TV 
 http://smashtv.ddns.net:9090/load/4afe5b80d79c/35.mpegts
@@ -348,6 +351,9 @@ http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/39.ts
 
 #EXTINF:0,ITV 1 
 http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/1480.ts
+
+#EXTINF:0,ITV 1 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/22.ts
 
 #EXTINF:0,ITV 2 
 http://smashtv.ddns.net:9090/load/4afe5b80d79c/30.mpegts

@@ -28,14 +28,20 @@ http://smashtv.ddns.net:9090/load/4afe5b80d79c/187.mpegts
 #EXTINF:0,Cinemax East
 http://smashtv.ddns.net:9090/load/4afe5b80d79c/183.mpegts
 
-#EXTINF:0,Cinemax More East
+#EXTINF:0,Cinemax East
 http://smashtv.ddns.net:9090/load/4afe5b80d79c/334.mpegts
 
-#EXTINF:0,CineStarTV Premiere 1 
+#EXTINF:0,CineStar Action
+http://balkanstream.com/stream/Cinestaraction/amy/amy
+
+#EXTINF:0,CineStar Premiere 1 
 http://balkanstream.com/stream/axnspin/amy/amy
 
-#EXTINF:0,CineStarTV Premiere 2
+#EXTINF:0,CineStar Premiere 2
 http://balkanstream.com/stream/tv1000/amy/amy
+
+#EXTINF:0,CineStar TV 
+http://balkanstream.com/stream/Cinestar/amy/amy
 
 #EXTINF:0,CMore Action 
 0
@@ -122,7 +128,7 @@ http://smashtv.ddns.net:9090/load/4afe5b80d79c/587.mpegts
 0
 
 #EXTINF:0,HBO Adria 
-0
+http://balkanstream.com/stream/hboadria/amy/amy
 
 #EXTINF:0,HBO East
 http://smashtv.ddns.net:9090/load/4afe5b80d79c/189.mpegts

@@ -380,5 +380,8 @@ http://smashtv.ddns.net:9090/load/4afe5b80d79c/79.mpegts
 #EXTINF:0,WWE Network 
 http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/1329.ts
 
+#EXTINF:0,WWE Network 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/37.ts
+
 #EXTINF:0,Wild TV
 0

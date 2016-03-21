@@ -19,6 +19,9 @@ http://smashtv.ddns.net:9090/load/4afe5b80d79c/56.mpegts
 #EXTINF:0,Animal Planet 
 http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/176.ts
 
+#EXTINF:0,Animal Planet 
+http://balkanstream.com/stream/animalplanet/amy/amy
+
 #EXTINF:0,Biography Channel
 0
 
