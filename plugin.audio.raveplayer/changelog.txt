@@ -1,0 +1,200 @@
+[COLOR gold][B]***** Please report dead links and sites not working to @TheYid009 on twitter thanks *****[/COLOR][/B]
+[COLOR red] * [/COLOR]= [B]work still to be done.[/B]    
+[COLOR blue] ** [/COLOR]= [B]mediafire links if over used you will need to go to there site and fill in a catcher.[/B] 
+[COLOR blue]for downloading use Dreamcatcher you can get it from[/COLOR] The[COLOR tan]Highways[/COLOR] REPO.. 
+[COLOR blue]and for making your own folders use Super Favourites you can get it from 
+Spoyser REPO or the XBMC REPO[/COLOR]
+
+[B]Version 2.0.2[/B]
+****** Rave Player is now over 2 years old *****
+- fixed some fanart
+- fixed LTJ bukem 
+- fixed Helter Skelter 
+
+[B]Version 2.0.1[/B]
+****** Rave Player is now 2 years old *****
+- added jungle tapes 
+
+[B]Version 2.0.0[/B]
+****** Rave Player is now 2 years old *****
+- fixed The Pirate Archive
+- fixed Rave Tape packs
+- fixed RatPack
+- loads of code fixes and site fixes
+- fixed loads of fanart and icons
+- added artmeetsscience.co.uk
+- added twiceasnice 
+- added radionecks list 
+- + loads more fixes and code clean up
+
+
+[B]Version 1.7.0[/B]
+- fixed one in the jungle 
+
+[B]Version 1.6.8[/B]
+- refixed LTJ bukem TC
+- refixed Helter Skelter TC
+- added single tracks 
+
+[B]Version 1.6.7[/B]
+- fixed some live webcam streams & added koollondons live webcam
+
+[B]Version 1.6.6[/B]
+- fixed LTJ bukem TC
+- fixed Helter Skelter TC
+
+[B]Version 1.6.5[/B]
+- fixed some art work
+- added oldskoolanthemz oldskool rave packs
+
+[B]Version 1.6.4[/B]
+- Kodi Helix 14 ready all thanks go out to Poegloom for the fix 
+
+[B]Version 1.6.2[/B]
+- added
+* Pure Magic 90.2 fm to The Pirate Archive
+
+[B]Version 1.6.1[/B]
+- fixed
+*The Pirate Archive
+
+[B]Version 1.6.0[/B]
+- fixed
+* Rave tape packs (archive)
+* demodulated mixtapes (archive)
+- added to live radio
+* pure music 247
+* Central radio uk
+
+[B]Version 1.5.5[/B]
+- added
+* kool london to top of list
+
+[B]Version 1.5.4[/B]
+- added
+* slipmatt radio
+
+[B]Version 1.5.2[/B]
+- added
+*braindamageradio.com (hardcore)
+[COLOR gold]***[/COLOR] loads of new links in all Rave player specials [COLOR gold]***[/COLOR]
+
+[B]Version 1.5.1[/B]
+- Code clean up 2
+[COLOR gold]***[/COLOR] loads of new links in all Rave player specials [COLOR gold]***[/COLOR]
+
+[B]Version 1.5.0[/B]
+- Code clean up
+[COLOR gold]***[/COLOR] loads of new links in all Rave player specials [COLOR gold]***[/COLOR]
+
+[B]Version 1.4.4[/B]
+- Code clean up
+
+[B]Version 1.4.2[/B]
+- added 
+* some youtube vids
+
+[B]Version 1.4.1[/B]
+- added 
+* LionDub sets
+* more tags added
+
+[B]Version 1.4.0[/B]
+- added more to the pirate archive
+
+[B]Version 1.2.7[/B]
+- fixed & cleaned up
+* the pirate archive : some links with & in the name was not playing (fantasy fm, kiss fm......)
+* cleaned up menus, better tags
+* radio station put into groups
+[COLOR gold]***[/COLOR] loads of new links in Rave player specials [COLOR gold]***[/COLOR]
+
+[B]Version 1.2.6[/B]
+- fixed
+* Radio necks
+- added
+* more pirate radio archives
+* history videos
+
+[B]Version 1.2.5[/B]
+- addon clean up
+* more info added
+* Fabric podcasts
+* rave videos
+
+[B]Version 1.2.4[/B]
+- added
+* More oldskool radio sets
+* more garage sets
+
+[B]Version 1.2.2[/B]
+- added
+* Grime Podcast
+* radionecks
+
+[B]Version 1.2.1[/B]
+- added
+* Hardcore Highlights site
+* freek fm live video streaming
+
+[B]Version 1.2.0[/B]
+- added
+* new menus
+* more radio st.
+
+[B]Version 1.1.8[/B]
+- added
+* nu-rave radio
+* nu-rave archive
+* playbackuk radio
+
+[B]Version 1.1.7[/B]
+- added
+* Official Sidewinder UK Garage Podcasts
+* more oldskool Garage
+
+[B]Version 1.1.6[/B]
+- added
+* John b podcasts
+* some dj ez stuff
+
+[B]Version 1.1.5[/B]
+- added
+* 175bpm.pl
+* Helter Skelter Collection
+
+[B]Version 1.1.4[/B]
+- code clean up
+- fixed 
+* 20bensons
+* one in the jungle
+* art work in rave-archive
+* mikus musik
+* the beat sanctuary
+
+[B]Version 1.1.2[/B]
+- 1 more site added
+
+[B]Version 1.1.1[/B]
+- added
+* https://archive.org/
+* http://torontoravemixtapearchive.com/
+- cleaned some code up
+
+[B]Version 1.0.7[/B]
+- added Rave player Specials radio
+
+[B]Version 1.0.6[/B]
+- added Rave player Specials
+
+[B]Version 1.0.5[/B]
+- bit of H & G added
+
+[B]Version 1.0.4[/B]
+- fixes to ravetapepacks
+
+[B]Version 1.0.2[/B]
+- fixes to rave-archive
+
+[B]Version 1.0.1[/B]
+- full release of Rave player

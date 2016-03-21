@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+	<addon
+        id="plugin.audio.raveplayer" 
+        name="Rave player" 
+        version="2.0.2" 
+        provider-name="@TheYid009">
+		<requires>
+			<import addon="xbmc.python"             	version="2.1.0"/>
+			<import addon="xbmc.addon"              	version="12.1.0"/>
+                     <import addon="script.module.TheYid.common" version="0.1.1"/>
+                     <import addon="script.module.urlresolver"  version="2.0.9"/>
+                     <import addon="script.module.simplejson" version="3.3.0"/>
+		</requires>
+		<extension point="xbmc.python.pluginsource" library="default.py">
+			<provides>audio</provides>
+		</extension>
+		<extension point="xbmc.addon.metadata">
+			<summary lang="en">No1 for oldskool Stream 1000s and 1000s of Dj sets, mixtapes and ravepacks from over 30 sites all in one place so OiOi lets get xbmc raving to the sound of the oldskool</summary>
+			<description lang="en">Stream oldskool rave tape packs, oldskool pirate radio sets, podcasts, mixtapes and live radio audio and video streaming.[CR] Acid house, hardcore, jungle, drum n bass, house n garage, grime and much more from 1988 to present day for your raving needs and now with Rave and pirate radio Documentaries videos.... [CR] This [COLOR lime]SUPER ADDON[/COLOR] is brought to you by [COLOR blue]TheYids REPO[/COLOR][CR] [COLOR gold][B]For more info please read the changelog.txt[/B][/COLOR][CR] for downloading use Dreamcatcher you can get it from The[COLOR tan]Highways[/COLOR] REPO.. [CR][COLOR red] * [/COLOR]= work still to be done. </description>
+			<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon</disclaimer>
+			<platform>all</platform>
+			<license>GNU GENERAL PUBLIC LICENSE. Version 3, June 2007</license>
+			<language>en</language>
+			<forum>www.xbmchub.com</forum>
+			<website>raveplayer</website>
+			<email>@ThYid009</email>
+			<source>TheYidsREPO</source>
+		</extension>
+	</addon>
