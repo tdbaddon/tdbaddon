@@ -20,7 +20,7 @@ from BeautifulSoup import BeautifulStoneSoup, BeautifulSoup, BeautifulSOAP
 from BeautifulSoup import BeautifulSoup
 h = HTMLParser.HTMLParser()
 
-versao = '3.0.6'
+versao = '3.0.7'
 addon_id = 'plugin.video.roggerstream'
 selfAddon = xbmcaddon.Addon(id=addon_id)
 addonfolder = selfAddon.getAddonInfo('path')
@@ -29,7 +29,7 @@ fanart = addonfolder + '/fanart.png'
 url_base = base64.b64decode('aHR0cDovL3R2LW1zbi5jb20vbWVzdHJlLnBocA==')
 url_base2 = base64.b64decode('aHR0cDovL3R2LW1zbi5jb20vY2FuYWlzLmh0bWw=')
 url_base3 = base64.b64decode('aHR0cDovL3d3dy50di1tc24uY29tL3BsYXllci9wbGF5ZXIuc3dm')
-url_base4 = base64.b64decode('aHR0cHM6Ly9jb3B5LmNvbS9oWjJFbU1YZnROdTRSV3oxP2Rvd25sb2FkPTE=')
+url_base4 = base64.b64decode('aHR0cDovL3Bhc3RlYmluLmNvbS9yYXcvNmJ2Njh5N20=')
 url_base5 = base64.b64decode('aHR0cDovL3d3dy5hb3Zpdm9icmFzaWwuY29tL3R2YW1pZ29zMi8=')
 url_base6 = base64.b64decode('aHR0cDovL3d3dy5jYXJvbGluZW9saXZlaXJhLmNvbS5ici9zd2YvcGxheWVyLnN3Zg==')
  
@@ -41,32 +41,32 @@ def  menus():
 	addDir('[B]ROGGER STREAM[/B]','-',2,'http://i.imgur.com/y22MB94.jpg')	
 	
 def  categorias():
-	addDir('[B]CANAIS ABERTOS DO BRASIL[/B]','https://copy.com/Nlyj6xxWlRFKdinh?download=1',4,'https://copy.com/JvvK4Iw39ofK1rPF')
-	addDir('[B]FUTEBOL AO VIVO[/B]','https://copy.com/xUo6eMRYOiVevL2h?download=1',4,'https://copy.com/NPRaZORymdG0FxJ1')
-	addDir('[B]FUTEBOL AO VIVO [COLOR red] (YOUTUBE) [/COLOR][/B]','https://copy.com/8QZD9AQuv4Lchd2M?download=1',5,'http://i.imgur.com/SAEuWPw.jpg')
+	addDir('[B]CANAIS ABERTOS DO BRASIL[/B]','http://pastebin.com/raw/bXZL7m2L',4,'http://i.imgur.com/hzf0BYQ.jpg')
+	addDir('[B]FUTEBOL AO VIVO[/B]','http://pastebin.com/raw/ZDDMswjx',4,'http://i.imgur.com/9gkts2Z.png')
+	addDir('[B]FUTEBOL AO VIVO [COLOR red] (YOUTUBE) [/COLOR][/B]','http://pastebin.com/raw/Q8gvAVw1',5,'http://i.imgur.com/SAEuWPw.jpg')
 	addDir('[B]BRTV[/B]','-',7,'http://i.imgur.com/GgDmzDO.jpg')
-	addDir('[B]SERIES E DESENHOS [COLOR blue] 24hrs [/COLOR][/B]','-',9,'https://copy.com/KwIFEqNxxBlnSEjL?download=1')	
-	addDir('[B]TV PAGA BRASIL[/B]','-',3,'https://copy.com/VVF8ouCl1Ghkjum8')
-	addDir('[B]PROGRAMAS DA BAND AO VIVO[/B]','https://copy.com/LUbu11FOacRUEw4O?download=1',4,'http://i.imgur.com/Mxyc9jj.png')
-	addDir('[B]WEBCAMS BRASIL[/B]','https://copy.com/nEagWXhOC1s7dlyO?download=1',4,'https://copy.com/dPj2J9AzaExumsnE')
-	addDir('[B]CAÇA E PESCA[/B]','https://copy.com/b6uCi8jKTmq24wLy?download=1',4,'https://copy.com/Igk8UorSxdbG4xnE')
-	addDir('[B]CANAIS LATINOS[/B]','https://copy.com/tapliy8nIaKSLDQq?download=1',4,'https://copy.com/wPVtPygtxuY0P1xl')
-	addDir('[B]CANAIS DE PORTUGAL[/B]','https://copy.com/unoGFK2bL8ZJ0iHD?download=1',4,'https://copy.com/HwP6Xpia6GNQvWsi')
-	addDir('[B]WEBCAMS MUNDO[/B]','https://copy.com/Ywh4MnZQqy2R7M8P?download=1',4,'https://copy.com/dPj2J9AzaExumsnE')
-	addDir('[B]CANAIS [COLOR blue] HD [/COLOR][/B]','https://copy.com/VMoOgU8UDvAgfjv0?download=1',4,'https://copy.com/WB68NrrmvjxdH1pJ')
-	addDir('[B]MÚSICAS E VIDEOCLIPES[/B]','https://copy.com/1cvRyOdMSOCSBH70?download=1',4,'https://copy.com/stpjErgehf9hPtwW')
-	addDir('[B]ESPORTES INTERNACIONAIS[/B]','https://copy.com/bIIpBHwFbXMXOBBB?download=1',4,'https://copy.com/pUGvpVMDpoY09PcA')
-	addDir('[B]RÁDIOS[/B]','https://copy.com/znUclLey0qF30gSd?download=1',4,'https://copy.com/fuDnLrM1Am7VNtmT')
-	addDir('[B]CANAIS ITALIANOS[/B]','https://copy.com/8HphQbrUevxz2OgR?download=1',4,'https://copy.com/61JSYlrWYxnSosTJ')
+	addDir('[B]SERIES E DESENHOS [COLOR blue] 24hrs [/COLOR][/B]','-',9,'http://i.imgur.com/WlvpBPz.png')	
+	addDir('[B]TV PAGA BRASIL[/B]','-',3,'http://i.imgur.com/bDSPhsc.jpg')
+	addDir('[B]PROGRAMAS DA BAND AO VIVO[/B]','http://pastebin.com/raw/kXBnNSbN',4,'http://i.imgur.com/Mxyc9jj.png')
+	addDir('[B]WEBCAMS BRASIL[/B]','http://pastebin.com/raw/Vu4LWBuf',4,'http://i.imgur.com/0yNnSSw.jpg')
+	addDir('[B]CANAIS LATINOS[/B]','http://pastebin.com/raw/uHGmiy37',4,'http://i.imgur.com/jBoh4mo.jpg')
+	addDir('[B]CANAIS DE PORTUGAL[/B]','http://pastebin.com/raw/3HgXnWcw',4,'http://i.imgur.com/RoX15WB.jpg')
+	addDir('[B]WEBCAMS MUNDO[/B]','http://pastebin.com/raw/GHkJUUA2',4,'http://i.imgur.com/0yNnSSw.jpg')
+	addDir('[B]CANAIS [COLOR blue] HD [/COLOR][/B]','http://pastebin.com/raw/v7eFd3LJ',4,'http://i.imgur.com/dPfcJGi.jpg')
+	addDir('[B]MÚSICAS E VIDEOCLIPES[/B]','http://pastebin.com/raw/CkTi4k2A',4,'http://i.imgur.com/eZCqjZJ.jpg')
+	addDir('[B]ESPORTES INTERNACIONAIS[/B]','http://pastebin.com/raw/B0V8Y108',4,'http://i.imgur.com/zQER47a.jpg')
+	addDir('[B]RÁDIOS[/B]','http://pastebin.com/raw/YprHSXUx',4,'http://i.imgur.com/hxtVIeu.jpg')
+	addDir('[B]CANAIS ITALIANOS[/B]','http://pastebin.com/raw/Ep6YLc6Z',4,'http://i.imgur.com/2E2QDf1.png')
+	addDir('[B]CANAIS DA FRANÇA[/B]','http://pastebin.com/raw/JQy0QZpu',4,'http://i.imgur.com/5oK0sUi.png')
 	
 def  categorias_tv_paga_brasil():
-	addDir('[B]DOCUMENTÁRIOS[/B]','https://copy.com/u3fZuJaCSqXQUNuk?download=1',4,'https://copy.com/9KLabSgitalsvYkg')
-	addDir('[B]ESPORTES[/B]','https://copy.com/342Ys8apG9i2Ar9J?download=1',4,'https://copy.com/qJfijQo0kIyxhgsc')	
-	addDir('[B]FILMES E SÉRIES[/B]','https://copy.com/qaC2wr0YHQ3cWgN3?download=1',4,'https://copy.com/9b1kFz9GVNs2CVEg')
-	addDir('[B]INFANTIL[/B]','https://copy.com/FH28QXuLwrJY9cXS?download=1',4,'https://copy.com/AAJrU1yDtryoKeqt')	
-	addDir('[B]NOTÍCIAS[/B]','https://copy.com/r19WdvfFW4xP7h7Q?download=1',4,'https://copy.com/9wy1vGvZAAbP2Gus')
-	addDir('[B]RELIGIOSOS[/B]','https://copy.com/S6Jm2vh2DYJDTEwJ?download=1',4,'https://copy.com/uzJEAXOCWzCUv2up')
-	addDir('[B]VARIEDADES[/B]','https://copy.com/DUKhtoZqYdjklcOa?download=1',4,'https://copy.com/pqAXz2FWGHwAIAfU')	
+	addDir('[B]DOCUMENTÁRIOS[/B]','http://pastebin.com/raw/SqkdckbS',4,'http://i.imgur.com/0TbvGW0.jpg')
+	addDir('[B]ESPORTES[/B]','http://pastebin.com/raw/YxdiprDU',4,'http://i.imgur.com/KAedgQ3.jpg')	
+	addDir('[B]FILMES E SÉRIES[/B]','http://pastebin.com/raw/jc3mzrAi',4,'http://i.imgur.com/hULl4If.jpg')
+	addDir('[B]INFANTIL[/B]','http://pastebin.com/raw/1bixerQr',4,'http://i.imgur.com/4vGPIeu.jpg')	
+	addDir('[B]NOTÍCIAS[/B]','http://pastebin.com/raw/VetY05Gn',4,'http://i.imgur.com/nppVahU.png')
+	addDir('[B]RELIGIOSOS[/B]','http://pastebin.com/raw/1KRPeQbK',4,'http://i.imgur.com/PYwdpky.jpg')
+	addDir('[B]VARIEDADES[/B]','http://pastebin.com/raw.php?i=DY2kby4s',4,'http://i.imgur.com/qDEb7kC.jpg')	
 
 ###############################################################FKav####################################################
 
@@ -130,7 +130,7 @@ def canais_master(name,url,iconimage):
 	xbmc.executebuiltin('Container.SetViewMode(500)')
 		
 def series_e_desenhos_24hrs():
-	html = gethtml(base64.b64decode('aHR0cHM6Ly9jb3B5LmNvbS82Y1ZYMmJQR0xzOFBjQ0xqP2Rvd25sb2FkPTE='))
+	html = gethtml(base64.b64decode('aHR0cDovL3Bhc3RlYmluLmNvbS9yYXcvYzBHZmI5aGo='))
 	soup = html.find("div",{"class":"canais"})
 	items = soup.findAll("li")
 	for item in items:
@@ -252,7 +252,7 @@ def get_wms():
 	return wms	
 	
 def gettoken():
-	req = urllib2.Request(base64.b64decode('aHR0cHM6Ly9jb3B5LmNvbS9LYjNSdnY4WnZIQmpOYVZsP2Rvd25sb2FkPTE='))
+	req = urllib2.Request(base64.b64decode('aHR0cDovL3Bhc3RlYmluLmNvbS9yYXcvVFJkZFZialM='))
 	response = urllib2.urlopen(req)
 	token=response.read()
 	response.close()

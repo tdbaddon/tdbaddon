@@ -1,0 +1,1082 @@
+# Addon Name: Exodus
+# Addon id: plugin.video.exodus
+# Addon Provider: Exodus
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Christian Klippel, 2015
+# Eider Mar, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: Exodus\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2016-02-23 20:06+0000\n"
+"Last-Translator: lambda81\n"
+"Language-Team: German (http://www.transifex.com/tv-addons/exodus/language/de/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: de\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgctxt "#30001"
+msgid "Movies"
+msgstr "Filme"
+
+msgctxt "#30002"
+msgid "TV Shows"
+msgstr "TV-Serien"
+
+msgctxt "#30003"
+msgid "Channels"
+msgstr "Kanäle"
+
+msgctxt "#30004"
+msgid "My Lists"
+msgstr "Meine Listen"
+
+msgctxt "#30005"
+msgid "Latest Movies"
+msgstr "Neueste Filme"
+
+msgctxt "#30006"
+msgid "Latest Episodes"
+msgstr "Neueste Episoden"
+
+msgctxt "#30007"
+msgid "TV Calendar"
+msgstr "TV Kalender"
+
+msgctxt "#30008"
+msgid "Tools"
+msgstr "Werkzeuge"
+
+msgctxt "#30009"
+msgid "Search"
+msgstr "Suche"
+
+msgctxt "#30010"
+msgid "Downloads"
+msgstr "Downloads"
+
+msgctxt "#30021"
+msgid "Genres"
+msgstr "Genres"
+
+msgctxt "#30022"
+msgid "Year"
+msgstr "Jahr"
+
+msgctxt "#30023"
+msgid "People"
+msgstr "Personen"
+
+msgctxt "#30024"
+msgid "Certificates"
+msgstr "Zertifikate"
+
+msgctxt "#30025"
+msgid "Featured"
+msgstr "Empfehlungen"
+
+msgctxt "#30026"
+msgid "People Watching"
+msgstr "Aktive Betrachter"
+
+msgctxt "#30027"
+msgid "Most Popular"
+msgstr "Am populärsten"
+
+msgctxt "#30028"
+msgid "Most Voted"
+msgstr "Die meisten Votes"
+
+msgctxt "#30029"
+msgid "Box Office"
+msgstr "Box Office"
+
+msgctxt "#30030"
+msgid "Oscar Winners"
+msgstr "Oskar Gewinner"
+
+msgctxt "#30031"
+msgid "In Theaters"
+msgstr "In Kinos"
+
+msgctxt "#30032"
+msgid "Latest Movies"
+msgstr "Neueste Filme"
+
+msgctxt "#30033"
+msgid "My Lists"
+msgstr "Meine Listen"
+
+msgctxt "#30034"
+msgid "People Search"
+msgstr "Personensuche"
+
+msgctxt "#30035"
+msgid "Search"
+msgstr "Suche"
+
+msgctxt "#30036"
+msgid "Collection"
+msgstr "Sammlung"
+
+msgctxt "#30037"
+msgid "Watchlist"
+msgstr "Merkliste"
+
+msgctxt "#30038"
+msgid "Movie Lists"
+msgstr "Film Liste"
+
+msgctxt "#30039"
+msgid "History"
+msgstr "Verlauf"
+
+msgctxt "#30051"
+msgid "Genres"
+msgstr "Genres"
+
+msgctxt "#30052"
+msgid "Year"
+msgstr "Jahr"
+
+msgctxt "#30053"
+msgid "Networks"
+msgstr "TV Sender"
+
+msgctxt "#30054"
+msgid "People Watching"
+msgstr "Aktive Betrachter"
+
+msgctxt "#30055"
+msgid "Most Popular"
+msgstr "Am Populärsten"
+
+msgctxt "#30056"
+msgid "Airing today"
+msgstr "Heute ausgestrahlt"
+
+msgctxt "#30057"
+msgid "Returning TV Shows"
+msgstr "Wiederkehrende Serien"
+
+msgctxt "#30058"
+msgid "New TV Shows"
+msgstr "Neue TV-Serien"
+
+msgctxt "#30059"
+msgid "Highly Rated"
+msgstr "Hochbewertet"
+
+msgctxt "#30060"
+msgid "Most Voted"
+msgstr "Die meisten Votes"
+
+msgctxt "#30061"
+msgid "TV Calendar"
+msgstr "TV Kalender"
+
+msgctxt "#30062"
+msgid "Latest Episodes"
+msgstr "Neueste Folgen"
+
+msgctxt "#30063"
+msgid "My Lists"
+msgstr "Meine Listen"
+
+msgctxt "#30065"
+msgid "People Search"
+msgstr "Personensuche"
+
+msgctxt "#30066"
+msgid "Search"
+msgstr "Suche"
+
+msgctxt "#30067"
+msgid "Collection"
+msgstr "Sammlung"
+
+msgctxt "#30068"
+msgid "Watchlist"
+msgstr "Merkliste"
+
+msgctxt "#30069"
+msgid "Progress"
+msgstr "Fortschritt"
+
+msgctxt "#30070"
+msgid "Featured"
+msgstr "Empfehlungen"
+
+msgctxt "#30071"
+msgid "TV Show Lists"
+msgstr "TV-Serien Liste"
+
+msgctxt "#30072"
+msgid "Episode Lists"
+msgstr "Episoden Liste"
+
+msgctxt "#30073"
+msgid "History"
+msgstr "Verlauf"
+
+msgctxt "#30081"
+msgid "No Trakt or IMDb account found."
+msgstr "Kein Trakt oder IMDb Konto gefunden"
+
+msgctxt "#30082"
+msgid "Trakt indicators are disabled by default."
+msgstr "Trakt-Indikatoren sind standardmässig ausgeschalten"
+
+msgctxt "#30083"
+msgid "In order to use them enable them in settings."
+msgstr "Um sie zu benutzen bitte in den Einstellungen aktivieren"
+
+msgctxt "#30084"
+msgid "[B]TRAKT[/B] : Collection"
+msgstr "[B]TRAKT[/B] : Sammlung"
+
+msgctxt "#30085"
+msgid "[B]TRAKT[/B] : TV Collection"
+msgstr "[B]TRAKT[/B] : TV Sammlung"
+
+msgctxt "#30086"
+msgid "[B]TRAKT[/B] : Watchlist"
+msgstr "[B]TRAKT[/B] : Merkliste"
+
+msgctxt "#30087"
+msgid "[B]TRAKT[/B] : TV Watchlist"
+msgstr "[B]TRAKT[/B] : TV Merkliste"
+
+msgctxt "#30088"
+msgid "[B]IMDB[/B] : Watchlist"
+msgstr "[B]IMDB[/B] : Merkliste"
+
+msgctxt "#30089"
+msgid "[B]IMDB[/B] : TV Watchlist"
+msgstr "[B]IMDB[/B] : TV Merkliste"
+
+msgctxt "#30090"
+msgid "[B]TRAKT[/B] : Featured"
+msgstr "[B]TRAKT[/B] : Empfehlungen"
+
+msgctxt "#30091"
+msgid "[B]TRAKT[/B] : TV Featured"
+msgstr "[B]TRAKT[/B] : TV-Serien Empfehlungen"
+
+msgctxt "#30092"
+msgid "[B]TRAKT[/B] : History"
+msgstr "[B]TRAKT[/B] : Verlauf"
+
+msgctxt "#30093"
+msgid "[B]TRAKT[/B] : TV History"
+msgstr "[B]TRAKT[/B] : TV-Serien Verlauf"
+
+msgctxt "#30094"
+msgid "[B]TRAKT[/B] : Progress"
+msgstr "[B]TRAKT[/B] : Fortschritt"
+
+msgctxt "#30095"
+msgid "[B]TRAKT[/B] : Episodes"
+msgstr "[B]TRAKT[/B] : Epsioden"
+
+msgctxt "#30096"
+msgid "Movie Lists"
+msgstr "Film Liste"
+
+msgctxt "#30097"
+msgid "TV Show Lists"
+msgstr "TV-Serien Liste"
+
+msgctxt "#30098"
+msgid "Episode Lists"
+msgstr "Episoden Liste"
+
+msgctxt "#30111"
+msgid "[B]SETTINGS[/B] : General"
+msgstr "[B]EINSTELLUNGEN[/B] : Allgemein"
+
+msgctxt "#30112"
+msgid "[B]SETTINGS[/B] : Accounts"
+msgstr "[B]EINSTELLUNGEN[/B] : Konten"
+
+msgctxt "#30113"
+msgid "[B]SETTINGS[/B] : Playback"
+msgstr "[B]EINSTELLUNGEN[/B] : Wiedergabe"
+
+msgctxt "#30114"
+msgid "[B]SETTINGS[/B] : Subtitles"
+msgstr "[B]EINSTELLUNGEN[/B] : Untertitel"
+
+msgctxt "#30115"
+msgid "[B]SETTINGS[/B] : Providers"
+msgstr "[B]EINSTELLUNGEN[/B] : Index Seiten"
+
+msgctxt "#30119"
+msgid "[B]EXODUS[/B] : Clear providers..."
+msgstr "[B]EXODUS[/B] : Index Seiten löschen..."
+
+msgctxt "#30120"
+msgid "[B]EXODUS[/B] : Clear cache..."
+msgstr "[B]EXODUS[/B] : Cache löschen..."
+
+msgctxt "#30122"
+msgid "[B]EXODUS[/B] : Downloads"
+msgstr "[B]EXODUS[/B] : Downloads"
+
+msgctxt "#30141"
+msgid "Movies"
+msgstr "Filme"
+
+msgctxt "#30142"
+msgid "TV Shows"
+msgstr "TV-Serien"
+
+msgctxt "#30151"
+msgid "Movies"
+msgstr "Filme"
+
+msgctxt "#30152"
+msgid "TV Shows"
+msgstr "TV-Serien"
+
+msgctxt "#30153"
+msgid "People (Movies)"
+msgstr "Personen (Filme)"
+
+msgctxt "#30154"
+msgid "People (TV)"
+msgstr "Personen (TV)"
+
+msgctxt "#30155"
+msgid "Queue item"
+msgstr "Eintrag zur Warteschlange hinzufügen"
+
+msgctxt "#30201"
+msgid "Search"
+msgstr "Suchen"
+
+msgctxt "#30202"
+msgid "Queue item"
+msgstr "Eintrag zur Warteschlange hinzufügen"
+
+msgctxt "#30203"
+msgid "Auto-play"
+msgstr "Automatisch abspielen"
+
+msgctxt "#30204"
+msgid "Play using..."
+msgstr "Abspielen mit..."
+
+msgctxt "#30205"
+msgid "Movie information"
+msgstr "Informationen zum Film"
+
+msgctxt "#30206"
+msgid "Mark as watched"
+msgstr "Als gesehen markieren"
+
+msgctxt "#30207"
+msgid "Mark as unwatched"
+msgstr "Als nicht gesehen markieren"
+
+msgctxt "#30208"
+msgid "Trakt Manager"
+msgstr "Trakt Manager"
+
+msgctxt "#30209"
+msgid "Add to favourites"
+msgstr "Zu Favoriten hinzufügen"
+
+msgctxt "#30210"
+msgid "Remove from favourites"
+msgstr "Aus Favoriten entfernen"
+
+msgctxt "#30212"
+msgid "Set Movies view"
+msgstr "Setze Ansicht für Filme"
+
+msgctxt "#30213"
+msgid "[I]Next Page[/I]"
+msgstr "[I]Nächste Seite[/I]"
+
+msgctxt "#30214"
+msgid "Movie trailer"
+msgstr "Film Trailer"
+
+msgctxt "#30231"
+msgid "Search"
+msgstr "Suchen"
+
+msgctxt "#30232"
+msgid "Queue item"
+msgstr "Eintrag zur Warteschlange hinzufügen"
+
+msgctxt "#30233"
+msgid "TV show information"
+msgstr "Informationen zur Serie"
+
+msgctxt "#30234"
+msgid "Mark as watched"
+msgstr "Als gesehen markieren"
+
+msgctxt "#30235"
+msgid "Mark as unwatched"
+msgstr "Als nicht gesehen markieren"
+
+msgctxt "#30236"
+msgid "Trakt Manager"
+msgstr "Trakt Manager"
+
+msgctxt "#30237"
+msgid "Add to favourites"
+msgstr "Zu Favoriten hinzufügen"
+
+msgctxt "#30238"
+msgid "Remove from favourites"
+msgstr "Aus Favoriten entfernen"
+
+msgctxt "#30240"
+msgid "Set TV Shows view"
+msgstr "Setze Ansicht für Serien"
+
+msgctxt "#30241"
+msgid "[I]Next Page[/I]"
+msgstr "[I]Nächste Seite[/I]"
+
+msgctxt "#30242"
+msgid "TV show trailer"
+msgstr "Film Trailer"
+
+msgctxt "#30261"
+msgid "Queue item"
+msgstr "Eintrag zur Warteschlange hinzufügen"
+
+msgctxt "#30262"
+msgid "TV show information"
+msgstr "Informationen zur Serie"
+
+msgctxt "#30263"
+msgid "Mark as watched"
+msgstr "Als gesehen markieren"
+
+msgctxt "#30264"
+msgid "Mark as unwatched"
+msgstr "Als nicht gesehen markieren"
+
+msgctxt "#30265"
+msgid "Trakt Manager"
+msgstr "Trakt Manager"
+
+msgctxt "#30266"
+msgid "Add to favourites"
+msgstr "Zu Favoriten hinzufügen"
+
+msgctxt "#30267"
+msgid "Remove from favourites"
+msgstr "Aus Favoriten entfernen"
+
+msgctxt "#30268"
+msgid "TV show trailer"
+msgstr "TV-Serie Trailer"
+
+msgctxt "#30269"
+msgid "Set Seasons view"
+msgstr "Setze Ansicht für Staffel"
+
+msgctxt "#30270"
+msgid "Auto-play"
+msgstr "Automatische Wiedergabe"
+
+msgctxt "#30271"
+msgid "Play using..."
+msgstr "Abspielen mit..."
+
+msgctxt "#30272"
+msgid "Episode information"
+msgstr "Informationen zur Episode"
+
+msgctxt "#30273"
+msgid "Set Episodes view"
+msgstr "Setze Ansicht für Episode"
+
+msgctxt "#30274"
+msgid "Browse Seasons"
+msgstr "Durchsuche Staffeln"
+
+msgctxt "#30275"
+msgid "Season"
+msgstr "Staffel"
+
+msgctxt "#30291"
+msgid "Auto-play"
+msgstr "Automatische Wiedergabe"
+
+msgctxt "#30292"
+msgid "Play using..."
+msgstr "Abspielen mit..."
+
+msgctxt "#30293"
+msgid "Information"
+msgstr "Information"
+
+msgctxt "#30294"
+msgid "Refresh"
+msgstr "Aktualisieren"
+
+msgctxt "#30295"
+msgid "Add-on settings"
+msgstr "Add-On Einstellungen"
+
+msgctxt "#30296"
+msgid "Now playing..."
+msgstr "Derzeit am laufen..."
+
+msgctxt "#30297"
+msgid "Trailer"
+msgstr "Trailer"
+
+msgctxt "#30401"
+msgid "Are you sure?"
+msgstr "Sind Sie sicher?"
+
+msgctxt "#30402"
+msgid "Process Complete"
+msgstr "Vorgang abgeschlossen"
+
+msgctxt "#30411"
+msgid "A RealDebrid account already exists"
+msgstr "Ein RealDebrid Konto ist vorhanden"
+
+msgctxt "#30413"
+msgid "Do you want to reset?"
+msgstr "Möchten Sie zurücksetzen?"
+
+msgctxt "#30414"
+msgid "Yes"
+msgstr "Ja"
+
+msgctxt "#30415"
+msgid "No"
+msgstr "Nein"
+
+msgctxt "#30416"
+msgid "1) Visit : "
+msgstr "1) Gehe Sie zu:"
+
+msgctxt "#30417"
+msgid "2) When prompted enter : "
+msgstr "2) Wenn angewiesen folgendes eingeben:"
+
+msgctxt "#30451"
+msgid "Getting information"
+msgstr "Hole Informationen"
+
+msgctxt "#30461"
+msgid "Resume from"
+msgstr "Setze fort ab"
+
+msgctxt "#30462"
+msgid "Start from beginning"
+msgstr "Starte von Anfang an"
+
+msgctxt "#30463"
+msgid "Resume"
+msgstr "Fortsetzen"
+
+msgctxt "#30464"
+msgid "Loaded in"
+msgstr "Geladen in"
+
+msgctxt "#30465"
+msgid "seconds"
+msgstr "Sekunden"
+
+msgctxt "#30471"
+msgid "Trakt Manager"
+msgstr "Trakt Manager"
+
+msgctxt "#30472"
+msgid "Add to Collection"
+msgstr "Zur Sammlung hinzufügen"
+
+msgctxt "#30473"
+msgid "Remove from Collection"
+msgstr "Aus Sammlung entfernen"
+
+msgctxt "#30474"
+msgid "Add to Watchlist"
+msgstr "Zur Merkliste hinzufügen"
+
+msgctxt "#30475"
+msgid "Remove from Watchlist"
+msgstr "Aus Merkliste entfernen"
+
+msgctxt "#30476"
+msgid "Add to new List"
+msgstr "Zu neuer Liste hinzufügen"
+
+msgctxt "#30477"
+msgid "Add to"
+msgstr "Hinzufügen zu"
+
+msgctxt "#30478"
+msgid "Remove from"
+msgstr "Entfernen aus"
+
+msgctxt "#30479"
+msgid "A Trakt account already exists"
+msgstr "Ein Trakt Konto ist vorhanden"
+
+msgctxt "#30481"
+msgid "Do you want to reset?"
+msgstr "Möchten Sie zurücksetzen?"
+
+msgctxt "#30482"
+msgid "Yes"
+msgstr "Ja"
+
+msgctxt "#30483"
+msgid "No"
+msgstr "Nein"
+
+msgctxt "#30484"
+msgid "1) Visit : "
+msgstr "1) Gehe Sie zu:"
+
+msgctxt "#30485"
+msgid "2) If prompted, authorize Exodus to access your account"
+msgstr "2) Autorisieren Sie Exodus für den Zugriff auf Ihr Konto wenn angewiesen"
+
+msgctxt "#30486"
+msgid "3) Enter the PIN provided or Cancel"
+msgstr "3) Geben Sie den angegebenen PIN ein oder brechen Sie ab"
+
+msgctxt "#30487"
+msgid "Enter PIN"
+msgstr "PIN eingeben"
+
+msgctxt "#30488"
+msgid "Cancel"
+msgstr "Abbrechen"
+
+msgctxt "#30491"
+msgid "This View is now Default"
+msgstr "Dies ist nun die Standardansicht"
+
+msgctxt "#30501"
+msgid "No stream available"
+msgstr "Keine Streams verfügbar"
+
+msgctxt "#30502"
+msgid "Movie information"
+msgstr "Informationen zum Film"
+
+msgctxt "#30503"
+msgid "Episode information"
+msgstr "Informationen zur Folge"
+
+msgctxt "#30504"
+msgid "Queue item"
+msgstr "Eintrag zur Warteschlange hinzufügen"
+
+msgctxt "#30505"
+msgid "Download item"
+msgstr "Ausgewählten Eintrag herunterladen"
+
+msgctxt "#30506"
+msgid "Refresh providers"
+msgstr "Index Seiten aktualisieren"
+
+msgctxt "#30507"
+msgid "Add-on settings"
+msgstr "Add-On Einstellungen"
+
+msgctxt "#30508"
+msgid "Now playing..."
+msgstr "Derzeit am laufen..."
+
+msgctxt "#30509"
+msgid "Auto-play"
+msgstr "Automatische Wiedergabe"
+
+msgctxt "#30510"
+msgid "Are you sure?"
+msgstr "Sind Sie sicher?"
+
+msgctxt "#30511"
+msgid "Process Complete"
+msgstr "Vorgang abgeschlossen"
+
+msgctxt "#30512"
+msgid "Time elapsed"
+msgstr "Zeit vergangen"
+
+msgctxt "#30513"
+msgid "seconds"
+msgstr "sekunden"
+
+msgctxt "#30514"
+msgid "Remaining providers"
+msgstr "Verbleibende Index Seiten"
+
+msgctxt "#30515"
+msgid "Loading streams"
+msgstr "Streams werden geladen"
+
+msgctxt "#30516"
+msgid "Movie trailer"
+msgstr "Film Trailer"
+
+msgctxt "#30517"
+msgid "TV show trailer"
+msgstr "TV-Serie Trailer"
+
+msgctxt "#30518"
+msgid "Playback outside Exodus is not allowed"
+msgstr "Eine Wiedergabe ausserhalb von Exodus ist nicht erlaubt"
+
+msgctxt "#30521"
+msgid "Monday"
+msgstr "Montag"
+
+msgctxt "#30522"
+msgid "Tuesday"
+msgstr "Dienstag"
+
+msgctxt "#30523"
+msgid "Wednesday"
+msgstr "Mittwoch"
+
+msgctxt "#30524"
+msgid "Thursday"
+msgstr "Donnerstag"
+
+msgctxt "#30525"
+msgid "Friday"
+msgstr "Freitag"
+
+msgctxt "#30526"
+msgid "Saturday"
+msgstr "Samstag"
+
+msgctxt "#30527"
+msgid "Sunday"
+msgstr "Sonntag"
+
+msgctxt "#30528"
+msgid "January"
+msgstr "Januar"
+
+msgctxt "#30529"
+msgid "February"
+msgstr "Februar"
+
+msgctxt "#30530"
+msgid "March"
+msgstr "März"
+
+msgctxt "#30531"
+msgid "April"
+msgstr "April"
+
+msgctxt "#30532"
+msgid "May"
+msgstr "Mai"
+
+msgctxt "#30533"
+msgid "June"
+msgstr "Juni"
+
+msgctxt "#30534"
+msgid "July"
+msgstr "July"
+
+msgctxt "#30535"
+msgid "August"
+msgstr "August"
+
+msgctxt "#30536"
+msgid "September"
+msgstr "September"
+
+msgctxt "#30537"
+msgid "October"
+msgstr "Oktober"
+
+msgctxt "#30538"
+msgid "November"
+msgstr "November"
+
+msgctxt "#30539"
+msgid "December"
+msgstr "Dezember"
+
+msgctxt "#30800"
+msgid "General"
+msgstr "Allgemein"
+
+msgctxt "#30801"
+msgid "Appearance"
+msgstr "Erscheinungsbild"
+
+msgctxt "#30802"
+msgid "Enable Fanart"
+msgstr "Fanart verwenden"
+
+msgctxt "#30803"
+msgid "Info Language"
+msgstr "Sprache für Informationen"
+
+msgctxt "#30804"
+msgid "Providers Timeout"
+msgstr "Zeitlimit für Index Seiten"
+
+msgctxt "#30805"
+msgid "Main menu"
+msgstr "Hauptmenü"
+
+msgctxt "#30806"
+msgid "Latest Movies"
+msgstr "Neueste Filme"
+
+msgctxt "#30807"
+msgid "Disabled"
+msgstr "Deaktiviert"
+
+msgctxt "#30808"
+msgid "Featured"
+msgstr "Vorgestellt"
+
+msgctxt "#30809"
+msgid "People Watching"
+msgstr "Aktive Betrachter"
+
+msgctxt "#30810"
+msgid "Most Popular"
+msgstr "Am populärsten"
+
+msgctxt "#30811"
+msgid "In Theaters"
+msgstr "In Kinos"
+
+msgctxt "#30812"
+msgid "Latest Episodes"
+msgstr "Neueste Episoden"
+
+msgctxt "#30813"
+msgid "Disabled"
+msgstr "Deaktiviert"
+
+msgctxt "#30814"
+msgid "Episodes"
+msgstr "Episoden"
+
+msgctxt "#30815"
+msgid "Trakt Progress"
+msgstr "Trakt Fortschritt"
+
+msgctxt "#30816"
+msgid "Trakt Episodes"
+msgstr "Trakt Episoden"
+
+msgctxt "#30817"
+msgid "TV Calendar"
+msgstr "TV Kalender"
+
+msgctxt "#30818"
+msgid "Disabled"
+msgstr "Deaktiviert"
+
+msgctxt "#30819"
+msgid "Enabled"
+msgstr "Aktiviert"
+
+msgctxt "#30820"
+msgid "Indicators"
+msgstr "Indikator"
+
+msgctxt "#30821"
+msgid "Local"
+msgstr "Lokal"
+
+msgctxt "#30822"
+msgid "Trakt"
+msgstr "Trakt"
+
+msgctxt "#30823"
+msgid "My Lists"
+msgstr "Meine Listen"
+
+msgctxt "#30824"
+msgid "Disabled"
+msgstr "Deaktiviert"
+
+msgctxt "#30825"
+msgid "Enabled"
+msgstr "Aktiviert"
+
+msgctxt "#30826"
+msgid "Sub menu"
+msgstr "Untermenü"
+
+msgctxt "#30827"
+msgid "Classic"
+msgstr "Klassisch"
+
+msgctxt "#30830"
+msgid "Playback"
+msgstr "Wiedergabe"
+
+msgctxt "#30831"
+msgid "Max Quality"
+msgstr "Höchste Qualität"
+
+msgctxt "#30832"
+msgid "Host selection"
+msgstr "Anbieterauswahl"
+
+msgctxt "#30833"
+msgid "Dialog"
+msgstr "Dialog"
+
+msgctxt "#30834"
+msgid "Directory"
+msgstr "Verzeichnis"
+
+msgctxt "#30835"
+msgid "File Hosting Filters"
+msgstr "Dateianbieter-Filter"
+
+msgctxt "#30836"
+msgid "Hosters with captchas"
+msgstr "Dateianbieter mit Captchas"
+
+msgctxt "#30837"
+msgid "Sort by Provider"
+msgstr "Nach Index Seiten sortieren"
+
+msgctxt "#30839"
+msgid "Auto-play"
+msgstr "Automatische Wiedergabe"
+
+msgctxt "#30840"
+msgid "Auto-play"
+msgstr "Automatische Wiedergabe"
+
+msgctxt "#30842"
+msgid "Force SD playback in Auto-play"
+msgstr "SD Auflösung bei automatischer Wiedergabe erzwingen"
+
+msgctxt "#30843"
+msgid "When playback starts..."
+msgstr "Wenn Wiedergabe startet..."
+
+msgctxt "#30844"
+msgid "Resume Playback"
+msgstr "Wiedergabe fortsetzen"
+
+msgctxt "#30845"
+msgid "Playback Info"
+msgstr "Wiedergabeinformationen"
+
+msgctxt "#30846"
+msgid "Progress Dialog"
+msgstr "Fortschrittsdialog"
+
+msgctxt "#30847"
+msgid "Safe"
+msgstr "Sicher"
+
+msgctxt "#30848"
+msgid "Unsafe"
+msgstr "Unsicher"
+
+msgctxt "#30860"
+msgid "Providers"
+msgstr "Index Seiten"
+
+msgctxt "#30910"
+msgid "Accounts"
+msgstr "Konten"
+
+msgctxt "#30911"
+msgid "User"
+msgstr "Benutzer"
+
+msgctxt "#30912"
+msgid "Email"
+msgstr "E-Mail"
+
+msgctxt "#30913"
+msgid "Password"
+msgstr "Passwort"
+
+msgctxt "#30914"
+msgid "Authorization..."
+msgstr "Berechtigung..."
+
+msgctxt "#30940"
+msgid "Subtitles"
+msgstr "Untertitel"
+
+msgctxt "#30941"
+msgid "Subtitles could be unavailable or out of sync."
+msgstr "Untertitel evtl. nicht verfügbar oder nicht synchron."
+
+msgctxt "#30942"
+msgid "In that case use your own subtitles."
+msgstr "In diesem Fall eigene Untertitel verwenden."
+
+msgctxt "#30943"
+msgid "Enable subtitles"
+msgstr "Untertitel aktivieren"
+
+msgctxt "#30944"
+msgid "Convert subtitles to UTF-8"
+msgstr "Untertitel nach UTF-8 umwandeln"
+
+msgctxt "#30945"
+msgid "Primary Language"
+msgstr "Hauptsprache"
+
+msgctxt "#30946"
+msgid "Secondary Language"
+msgstr "Zweitsprache"
+
+msgctxt "#30950"
+msgid "Downloads"
+msgstr "Downloads"
+
+msgctxt "#30951"
+msgid "Movies"
+msgstr "Filme"
+
+msgctxt "#30952"
+msgid "TV"
+msgstr "TV-Serien"
+
+msgctxt "#30953"
+msgid "Enable downloads"
+msgstr "Herunterladen aktivieren"
+
+msgctxt "#30954"
+msgid "Downloading features are disabled by default."
+msgstr "Herunterladen ist standardmässig deaktiviert"
+
+msgctxt "#30955"
+msgid "Set up your download folders in order to enable them."
+msgstr "Bitte geben Sie Ihre Ordner Pfade an um sie zu aktivieren"

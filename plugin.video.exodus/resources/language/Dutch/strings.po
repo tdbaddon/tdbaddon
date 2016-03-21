@@ -1,0 +1,1082 @@
+# Addon Name: Exodus
+# Addon id: plugin.video.exodus
+# Addon Provider: Exodus
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Translators:
+# Mike Bike, 2015
+# Mike Bike, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: Exodus\n"
+"POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2016-02-17 20:19+0000\n"
+"Last-Translator: lambda81\n"
+"Language-Team: Dutch (http://www.transifex.com/tv-addons/exodus/language/nl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: nl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgctxt "#30001"
+msgid "Movies"
+msgstr "Films"
+
+msgctxt "#30002"
+msgid "TV Shows"
+msgstr "Series"
+
+msgctxt "#30003"
+msgid "Channels"
+msgstr "Kanalen"
+
+msgctxt "#30004"
+msgid "My Lists"
+msgstr "Mijn Lijsten"
+
+msgctxt "#30005"
+msgid "Latest Movies"
+msgstr "Laatste Films"
+
+msgctxt "#30006"
+msgid "Latest Episodes"
+msgstr "Laatste Afleveringen"
+
+msgctxt "#30007"
+msgid "TV Calendar"
+msgstr "Serie Kalender"
+
+msgctxt "#30008"
+msgid "Tools"
+msgstr "Gereedschap"
+
+msgctxt "#30009"
+msgid "Search"
+msgstr "Zoeken"
+
+msgctxt "#30010"
+msgid "Downloads"
+msgstr "Downloads"
+
+msgctxt "#30021"
+msgid "Genres"
+msgstr "Genres"
+
+msgctxt "#30022"
+msgid "Year"
+msgstr "Jaren"
+
+msgctxt "#30023"
+msgid "People"
+msgstr "Acteurs"
+
+msgctxt "#30024"
+msgid "Certificates"
+msgstr "Kijkwijzer"
+
+msgctxt "#30025"
+msgid "Featured"
+msgstr "Uitgelicht"
+
+msgctxt "#30026"
+msgid "People Watching"
+msgstr "Meest Bekeken"
+
+msgctxt "#30027"
+msgid "Most Popular"
+msgstr "Populair"
+
+msgctxt "#30028"
+msgid "Most Voted"
+msgstr "Meeste Stemmen"
+
+msgctxt "#30029"
+msgid "Box Office"
+msgstr "Box Office"
+
+msgctxt "#30030"
+msgid "Oscar Winners"
+msgstr "Oscar Winnaars"
+
+msgctxt "#30031"
+msgid "In Theaters"
+msgstr "In de Bioscoop"
+
+msgctxt "#30032"
+msgid "Latest Movies"
+msgstr "Laatste Films"
+
+msgctxt "#30033"
+msgid "My Lists"
+msgstr "Mijn Lijsten"
+
+msgctxt "#30034"
+msgid "People Search"
+msgstr "Zoek Acteurs"
+
+msgctxt "#30035"
+msgid "Search"
+msgstr "Zoeken"
+
+msgctxt "#30036"
+msgid "Collection"
+msgstr "Collectie"
+
+msgctxt "#30037"
+msgid "Watchlist"
+msgstr "Watchlist"
+
+msgctxt "#30038"
+msgid "Movie Lists"
+msgstr "Film Lijst"
+
+msgctxt "#30039"
+msgid "History"
+msgstr "Geschiedenis"
+
+msgctxt "#30051"
+msgid "Genres"
+msgstr "Genres"
+
+msgctxt "#30052"
+msgid "Year"
+msgstr "Jaren"
+
+msgctxt "#30053"
+msgid "Networks"
+msgstr "Netwerken"
+
+msgctxt "#30054"
+msgid "People Watching"
+msgstr "Meest Bekeken"
+
+msgctxt "#30055"
+msgid "Most Popular"
+msgstr "Populair"
+
+msgctxt "#30056"
+msgid "Airing today"
+msgstr "Vandaag te zien"
+
+msgctxt "#30057"
+msgid "Returning TV Shows"
+msgstr "Terugkomende Series"
+
+msgctxt "#30058"
+msgid "New TV Shows"
+msgstr "Nieuwe Series"
+
+msgctxt "#30059"
+msgid "Highly Rated"
+msgstr "Meest Gewaardeerd"
+
+msgctxt "#30060"
+msgid "Most Voted"
+msgstr "Meeste Stemmen"
+
+msgctxt "#30061"
+msgid "TV Calendar"
+msgstr "Serie Kalender"
+
+msgctxt "#30062"
+msgid "Latest Episodes"
+msgstr "Laatste Afleveringen"
+
+msgctxt "#30063"
+msgid "My Lists"
+msgstr "Mijn Lijsten"
+
+msgctxt "#30065"
+msgid "People Search"
+msgstr "Zoek Acteurs"
+
+msgctxt "#30066"
+msgid "Search"
+msgstr "Zoeken"
+
+msgctxt "#30067"
+msgid "Collection"
+msgstr "Collectie"
+
+msgctxt "#30068"
+msgid "Watchlist"
+msgstr "Watchlist"
+
+msgctxt "#30069"
+msgid "Progress"
+msgstr "Process"
+
+msgctxt "#30070"
+msgid "Featured"
+msgstr "Uitgelicht"
+
+msgctxt "#30071"
+msgid "TV Show Lists"
+msgstr "Series Lijst"
+
+msgctxt "#30072"
+msgid "Episode Lists"
+msgstr "Afleverings-lijst"
+
+msgctxt "#30073"
+msgid "History"
+msgstr "Geschiedenis"
+
+msgctxt "#30081"
+msgid "No Trakt or IMDb account found."
+msgstr "Geen Trakt of IMDb account gevonden"
+
+msgctxt "#30082"
+msgid "Trakt indicators are disabled by default."
+msgstr "Trakt meldingen zijn standaard uitgeschakeld"
+
+msgctxt "#30083"
+msgid "In order to use them enable them in settings."
+msgstr "Om deze te gebruiken activeer deze in instellingen"
+
+msgctxt "#30084"
+msgid "[B]TRAKT[/B] : Collection"
+msgstr "[B]TRAKT[/B] : Collectie"
+
+msgctxt "#30085"
+msgid "[B]TRAKT[/B] : TV Collection"
+msgstr "[B]TRAKT[/B] : Series Collectie"
+
+msgctxt "#30086"
+msgid "[B]TRAKT[/B] : Watchlist"
+msgstr "[B]TRAKT[/B] : Watchlist"
+
+msgctxt "#30087"
+msgid "[B]TRAKT[/B] : TV Watchlist"
+msgstr "[B]TRAKT[/B] : Series Watchlist"
+
+msgctxt "#30088"
+msgid "[B]IMDB[/B] : Watchlist"
+msgstr "[B]IMDB[/B] : Watchlist"
+
+msgctxt "#30089"
+msgid "[B]IMDB[/B] : TV Watchlist"
+msgstr "[B]IMDB[/B] : Series Watchlist"
+
+msgctxt "#30090"
+msgid "[B]TRAKT[/B] : Featured"
+msgstr "[B]TRAKT[/B] : Uitgelicht"
+
+msgctxt "#30091"
+msgid "[B]TRAKT[/B] : TV Featured"
+msgstr "[B]TRAKT[/B] : Series Uitgelicht"
+
+msgctxt "#30092"
+msgid "[B]TRAKT[/B] : History"
+msgstr "[B]TRAKT[/B] : Geschiedenis"
+
+msgctxt "#30093"
+msgid "[B]TRAKT[/B] : TV History"
+msgstr "[B]TRAKT[/B] : Serie Geschiedenis"
+
+msgctxt "#30094"
+msgid "[B]TRAKT[/B] : Progress"
+msgstr "[B]TRAKT[/B] : Voortgang"
+
+msgctxt "#30095"
+msgid "[B]TRAKT[/B] : Episodes"
+msgstr "[B]TRAKT[/B] : Afleveringen"
+
+msgctxt "#30096"
+msgid "Movie Lists"
+msgstr "Film Lijst"
+
+msgctxt "#30097"
+msgid "TV Show Lists"
+msgstr "Series Lijst"
+
+msgctxt "#30098"
+msgid "Episode Lists"
+msgstr "Afleverings-lijst"
+
+msgctxt "#30111"
+msgid "[B]SETTINGS[/B] : General"
+msgstr "[B]INSTELLINGEN[/B] : Algemeen"
+
+msgctxt "#30112"
+msgid "[B]SETTINGS[/B] : Accounts"
+msgstr "[B]INSTELLINGEN[/B] : Accounts"
+
+msgctxt "#30113"
+msgid "[B]SETTINGS[/B] : Playback"
+msgstr "[B]INSTELLINGEN[/B] : Afspelen"
+
+msgctxt "#30114"
+msgid "[B]SETTINGS[/B] : Subtitles"
+msgstr "[B]INSTELLINGEN[/B] : Ondertiteling"
+
+msgctxt "#30115"
+msgid "[B]SETTINGS[/B] : Providers"
+msgstr "[B]INSTELLINGEN[/B] : Bronnen"
+
+msgctxt "#30119"
+msgid "[B]EXODUS[/B] : Clear providers..."
+msgstr "[B]EXODUS[/B] : Opschonen van Bronnen..."
+
+msgctxt "#30120"
+msgid "[B]EXODUS[/B] : Clear cache..."
+msgstr "[B]EXODUS[/B] : Opschonen van Cache..."
+
+msgctxt "#30122"
+msgid "[B]EXODUS[/B] : Downloads"
+msgstr "[B]EXODUS[/B] : Downloads"
+
+msgctxt "#30141"
+msgid "Movies"
+msgstr "Films"
+
+msgctxt "#30142"
+msgid "TV Shows"
+msgstr "Series"
+
+msgctxt "#30151"
+msgid "Movies"
+msgstr "Films"
+
+msgctxt "#30152"
+msgid "TV Shows"
+msgstr "Series"
+
+msgctxt "#30153"
+msgid "People (Movies)"
+msgstr "Acteurs (Films)"
+
+msgctxt "#30154"
+msgid "People (TV)"
+msgstr "Acteurs (Series)"
+
+msgctxt "#30155"
+msgid "Queue item"
+msgstr "In wachtrij plaatsten"
+
+msgctxt "#30201"
+msgid "Search"
+msgstr "Zoeken"
+
+msgctxt "#30202"
+msgid "Queue item"
+msgstr "In wachtrij plaatsten"
+
+msgctxt "#30203"
+msgid "Auto-play"
+msgstr "Automatisch Afspelen"
+
+msgctxt "#30204"
+msgid "Play using..."
+msgstr "Afspelen met..."
+
+msgctxt "#30205"
+msgid "Movie information"
+msgstr "Meer informatie"
+
+msgctxt "#30206"
+msgid "Mark as watched"
+msgstr "Markeer als bekeken"
+
+msgctxt "#30207"
+msgid "Mark as unwatched"
+msgstr "Bekeken status verwijderen"
+
+msgctxt "#30208"
+msgid "Trakt Manager"
+msgstr "Trakt Beheer"
+
+msgctxt "#30209"
+msgid "Add to favourites"
+msgstr "Toevoegen aan Favorieten"
+
+msgctxt "#30210"
+msgid "Remove from favourites"
+msgstr "Verwijderen van Favorieten"
+
+msgctxt "#30212"
+msgid "Set Movies view"
+msgstr "Film Layout instellen"
+
+msgctxt "#30213"
+msgid "[I]Next Page[/I]"
+msgstr "[I]Volgende Pagina[/I]"
+
+msgctxt "#30214"
+msgid "Movie trailer"
+msgstr "Film trailer"
+
+msgctxt "#30231"
+msgid "Search"
+msgstr "Zoeken"
+
+msgctxt "#30232"
+msgid "Queue item"
+msgstr "In wachtrij plaatsen"
+
+msgctxt "#30233"
+msgid "TV show information"
+msgstr "Serie informatie"
+
+msgctxt "#30234"
+msgid "Mark as watched"
+msgstr "Markeer als bekeken"
+
+msgctxt "#30235"
+msgid "Mark as unwatched"
+msgstr "Bekeken status verwijderen"
+
+msgctxt "#30236"
+msgid "Trakt Manager"
+msgstr "Trakt Beheer"
+
+msgctxt "#30237"
+msgid "Add to favourites"
+msgstr "Toevoegen aan Favorieten"
+
+msgctxt "#30238"
+msgid "Remove from favourites"
+msgstr "Verwijderen van Favorieten"
+
+msgctxt "#30240"
+msgid "Set TV Shows view"
+msgstr "Serie Layout instellen"
+
+msgctxt "#30241"
+msgid "[I]Next Page[/I]"
+msgstr "[I]Volgende Pagina[/I]"
+
+msgctxt "#30242"
+msgid "TV show trailer"
+msgstr "Serie trailer"
+
+msgctxt "#30261"
+msgid "Queue item"
+msgstr "In wachtrij plaatsen"
+
+msgctxt "#30262"
+msgid "TV show information"
+msgstr "Serie informatie"
+
+msgctxt "#30263"
+msgid "Mark as watched"
+msgstr "Markeer als bekeken"
+
+msgctxt "#30264"
+msgid "Mark as unwatched"
+msgstr "Bekeken status verwijderen"
+
+msgctxt "#30265"
+msgid "Trakt Manager"
+msgstr "Trakt Beheer"
+
+msgctxt "#30266"
+msgid "Add to favourites"
+msgstr "Toevoegen aan Favorieten"
+
+msgctxt "#30267"
+msgid "Remove from favourites"
+msgstr "Verwijderen van Favorieten"
+
+msgctxt "#30268"
+msgid "TV show trailer"
+msgstr "Serie trailer"
+
+msgctxt "#30269"
+msgid "Set Seasons view"
+msgstr "Seizoens Layout instellen"
+
+msgctxt "#30270"
+msgid "Auto-play"
+msgstr "Automatisch Afspelen"
+
+msgctxt "#30271"
+msgid "Play using..."
+msgstr "Afspelen met..."
+
+msgctxt "#30272"
+msgid "Episode information"
+msgstr "Aflevering informatie"
+
+msgctxt "#30273"
+msgid "Set Episodes view"
+msgstr "Afleverings Layout instellen"
+
+msgctxt "#30274"
+msgid "Browse Seasons"
+msgstr "Zoek in Seizoenen"
+
+msgctxt "#30275"
+msgid "Season"
+msgstr "Seizoen"
+
+msgctxt "#30291"
+msgid "Auto-play"
+msgstr "Automatisch Afspelen"
+
+msgctxt "#30292"
+msgid "Play using..."
+msgstr "Afspelen met..."
+
+msgctxt "#30293"
+msgid "Information"
+msgstr "Informatie"
+
+msgctxt "#30294"
+msgid "Refresh"
+msgstr "Verversen"
+
+msgctxt "#30295"
+msgid "Add-on settings"
+msgstr "Add-on Instellingen"
+
+msgctxt "#30296"
+msgid "Now playing..."
+msgstr "Nu speeld af..."
+
+msgctxt "#30297"
+msgid "Trailer"
+msgstr "Trailer"
+
+msgctxt "#30401"
+msgid "Are you sure?"
+msgstr "Weet u het zeker?"
+
+msgctxt "#30402"
+msgid "Process Complete"
+msgstr "Voortgang Compleet"
+
+msgctxt "#30411"
+msgid "A RealDebrid account already exists"
+msgstr "Een RealDebrid account bestaat al"
+
+msgctxt "#30413"
+msgid "Do you want to reset?"
+msgstr "Wilt u een reset uitvoeren?"
+
+msgctxt "#30414"
+msgid "Yes"
+msgstr "Ja"
+
+msgctxt "#30415"
+msgid "No"
+msgstr "Nee"
+
+msgctxt "#30416"
+msgid "1) Visit : "
+msgstr "1) Ga naar : "
+
+msgctxt "#30417"
+msgid "2) When prompted enter : "
+msgstr "2) Wanneer gevraagd, vul in : "
+
+msgctxt "#30451"
+msgid "Getting information"
+msgstr "Informatie ophalen"
+
+msgctxt "#30461"
+msgid "Resume from"
+msgstr "Doorgaan met afspelen"
+
+msgctxt "#30462"
+msgid "Start from beginning"
+msgstr "Afspelen vannaf het begin"
+
+msgctxt "#30463"
+msgid "Resume"
+msgstr "Doorgaan"
+
+msgctxt "#30464"
+msgid "Loaded in"
+msgstr "Geladen in"
+
+msgctxt "#30465"
+msgid "seconds"
+msgstr "Seconden"
+
+msgctxt "#30471"
+msgid "Trakt Manager"
+msgstr "Trakt Beheer"
+
+msgctxt "#30472"
+msgid "Add to Collection"
+msgstr "Toevoegen aan Collectie"
+
+msgctxt "#30473"
+msgid "Remove from Collection"
+msgstr "Verwijderen van Collectie"
+
+msgctxt "#30474"
+msgid "Add to Watchlist"
+msgstr "Toevoegen aan Watchlist"
+
+msgctxt "#30475"
+msgid "Remove from Watchlist"
+msgstr "Verwijderen van Watchlist"
+
+msgctxt "#30476"
+msgid "Add to new List"
+msgstr "Toevoegen aan een nieuwe Lijst"
+
+msgctxt "#30477"
+msgid "Add to"
+msgstr "Toevoegen aan"
+
+msgctxt "#30478"
+msgid "Remove from"
+msgstr "Verwijderen van"
+
+msgctxt "#30479"
+msgid "A Trakt account already exists"
+msgstr "Een Trakt account bestaat reeds"
+
+msgctxt "#30481"
+msgid "Do you want to reset?"
+msgstr "Wilt u een reset uitvoeren?"
+
+msgctxt "#30482"
+msgid "Yes"
+msgstr "Ja"
+
+msgctxt "#30483"
+msgid "No"
+msgstr "Nee"
+
+msgctxt "#30484"
+msgid "1) Visit : "
+msgstr "1) Bezoek : "
+
+msgctxt "#30485"
+msgid "2) If prompted, authorize Exodus to access your account"
+msgstr "2) Autoriseer Exodus om gebruik te maken van uw account als daarom wordt gevraagd "
+
+msgctxt "#30486"
+msgid "3) Enter the PIN provided or Cancel"
+msgstr "3) Vul de gegeven Code in of annuleer "
+
+msgctxt "#30487"
+msgid "Enter PIN"
+msgstr "Code invullen"
+
+msgctxt "#30488"
+msgid "Cancel"
+msgstr "Annuleer"
+
+msgctxt "#30491"
+msgid "This View is now Default"
+msgstr "Deze Layout is nu Standaard"
+
+msgctxt "#30501"
+msgid "No stream available"
+msgstr "Geen stream beschikbaar"
+
+msgctxt "#30502"
+msgid "Movie information"
+msgstr "Film informatie"
+
+msgctxt "#30503"
+msgid "Episode information"
+msgstr "Aflevering informatie"
+
+msgctxt "#30504"
+msgid "Queue item"
+msgstr "In wachtrij plaatsen"
+
+msgctxt "#30505"
+msgid "Download item"
+msgstr "Download item"
+
+msgctxt "#30506"
+msgid "Refresh providers"
+msgstr "Ververs Bronnen"
+
+msgctxt "#30507"
+msgid "Add-on settings"
+msgstr "Add-on instellingen"
+
+msgctxt "#30508"
+msgid "Now playing..."
+msgstr "Nu speeld af..."
+
+msgctxt "#30509"
+msgid "Auto-play"
+msgstr "Automatisch Afspelen"
+
+msgctxt "#30510"
+msgid "Are you sure?"
+msgstr "Weet u het zeker?"
+
+msgctxt "#30511"
+msgid "Process Complete"
+msgstr "Voortgang Compleet"
+
+msgctxt "#30512"
+msgid "Time elapsed"
+msgstr "Tijd Verstreken"
+
+msgctxt "#30513"
+msgid "seconds"
+msgstr "Seconden"
+
+msgctxt "#30514"
+msgid "Remaining providers"
+msgstr "Overgebleven Bronnen"
+
+msgctxt "#30515"
+msgid "Loading streams"
+msgstr "Steams Laden"
+
+msgctxt "#30516"
+msgid "Movie trailer"
+msgstr "Film trailer"
+
+msgctxt "#30517"
+msgid "TV show trailer"
+msgstr "Serie trailer"
+
+msgctxt "#30518"
+msgid "Playback outside Exodus is not allowed"
+msgstr "Afspelen buiten Exodus is niet toegestaan"
+
+msgctxt "#30521"
+msgid "Monday"
+msgstr "Maandag"
+
+msgctxt "#30522"
+msgid "Tuesday"
+msgstr "Dinsdag"
+
+msgctxt "#30523"
+msgid "Wednesday"
+msgstr "Woensdag"
+
+msgctxt "#30524"
+msgid "Thursday"
+msgstr "Donderdag"
+
+msgctxt "#30525"
+msgid "Friday"
+msgstr "Vrijdag"
+
+msgctxt "#30526"
+msgid "Saturday"
+msgstr "Saterdag"
+
+msgctxt "#30527"
+msgid "Sunday"
+msgstr "Zondag"
+
+msgctxt "#30528"
+msgid "January"
+msgstr "Januri"
+
+msgctxt "#30529"
+msgid "February"
+msgstr "Februari"
+
+msgctxt "#30530"
+msgid "March"
+msgstr "Maart"
+
+msgctxt "#30531"
+msgid "April"
+msgstr "April"
+
+msgctxt "#30532"
+msgid "May"
+msgstr "Mei"
+
+msgctxt "#30533"
+msgid "June"
+msgstr "Juni"
+
+msgctxt "#30534"
+msgid "July"
+msgstr "Juli"
+
+msgctxt "#30535"
+msgid "August"
+msgstr "Augustus"
+
+msgctxt "#30536"
+msgid "September"
+msgstr "September"
+
+msgctxt "#30537"
+msgid "October"
+msgstr "Oktober"
+
+msgctxt "#30538"
+msgid "November"
+msgstr "November"
+
+msgctxt "#30539"
+msgid "December"
+msgstr "December"
+
+msgctxt "#30800"
+msgid "General"
+msgstr "Algemeen"
+
+msgctxt "#30801"
+msgid "Appearance"
+msgstr "Uiterlijk"
+
+msgctxt "#30802"
+msgid "Enable Fanart"
+msgstr "Fanart inschakelen"
+
+msgctxt "#30803"
+msgid "Info Language"
+msgstr "Taal Info"
+
+msgctxt "#30804"
+msgid "Providers Timeout"
+msgstr "Bronnen Tijdslimiet"
+
+msgctxt "#30805"
+msgid "Main menu"
+msgstr "Hoofd menu"
+
+msgctxt "#30806"
+msgid "Latest Movies"
+msgstr "Laatste Films"
+
+msgctxt "#30807"
+msgid "Disabled"
+msgstr "Uitgeschakeld"
+
+msgctxt "#30808"
+msgid "Featured"
+msgstr "Uitgelicht"
+
+msgctxt "#30809"
+msgid "People Watching"
+msgstr "Meest Bekeken"
+
+msgctxt "#30810"
+msgid "Most Popular"
+msgstr "Populair"
+
+msgctxt "#30811"
+msgid "In Theaters"
+msgstr "In de Bioscoop"
+
+msgctxt "#30812"
+msgid "Latest Episodes"
+msgstr "Laatste Afleveringen"
+
+msgctxt "#30813"
+msgid "Disabled"
+msgstr "Uitgeschakeld"
+
+msgctxt "#30814"
+msgid "Episodes"
+msgstr "Afleveringen"
+
+msgctxt "#30815"
+msgid "Trakt Progress"
+msgstr "Trakt Voortgang"
+
+msgctxt "#30816"
+msgid "Trakt Episodes"
+msgstr "Trakt Afleveringen"
+
+msgctxt "#30817"
+msgid "TV Calendar"
+msgstr "Serie Kalender"
+
+msgctxt "#30818"
+msgid "Disabled"
+msgstr "Uitgeschakeld"
+
+msgctxt "#30819"
+msgid "Enabled"
+msgstr "Ingeschakeld"
+
+msgctxt "#30820"
+msgid "Indicators"
+msgstr "Meldingen"
+
+msgctxt "#30821"
+msgid "Local"
+msgstr "Lokaal "
+
+msgctxt "#30822"
+msgid "Trakt"
+msgstr "Trakt"
+
+msgctxt "#30823"
+msgid "My Lists"
+msgstr "Mijn Lijsten"
+
+msgctxt "#30824"
+msgid "Disabled"
+msgstr "Uitgeschakeld"
+
+msgctxt "#30825"
+msgid "Enabled"
+msgstr "Ingeschakeld"
+
+msgctxt "#30826"
+msgid "Sub menu"
+msgstr "Sub menu"
+
+msgctxt "#30827"
+msgid "Classic"
+msgstr "Klassiek "
+
+msgctxt "#30830"
+msgid "Playback"
+msgstr "Afspelen"
+
+msgctxt "#30831"
+msgid "Max Quality"
+msgstr "Maximale Kwaliteit"
+
+msgctxt "#30832"
+msgid "Host selection"
+msgstr "Host selectie"
+
+msgctxt "#30833"
+msgid "Dialog"
+msgstr "Pop-Up"
+
+msgctxt "#30834"
+msgid "Directory"
+msgstr "Map"
+
+msgctxt "#30835"
+msgid "File Hosting Filters"
+msgstr "Bestand Hosting Filters"
+
+msgctxt "#30836"
+msgid "Hosters with captchas"
+msgstr "Hosters met captchas"
+
+msgctxt "#30837"
+msgid "Sort by Provider"
+msgstr "Sorteren op Bron"
+
+msgctxt "#30839"
+msgid "Auto-play"
+msgstr "Automatisch Afspelen"
+
+msgctxt "#30840"
+msgid "Auto-play"
+msgstr "Automatisch Afspelen"
+
+msgctxt "#30842"
+msgid "Force SD playback in Auto-play"
+msgstr "Forceer SD in Automatisch Afspelen"
+
+msgctxt "#30843"
+msgid "When playback starts..."
+msgstr "Wanneer Afspelen begint..."
+
+msgctxt "#30844"
+msgid "Resume Playback"
+msgstr "Doorgaan met Afspelen"
+
+msgctxt "#30845"
+msgid "Playback Info"
+msgstr "Afspeel informatie"
+
+msgctxt "#30846"
+msgid "Progress Dialog"
+msgstr "Proces-dialoog "
+
+msgctxt "#30847"
+msgid "Safe"
+msgstr "Opslaan"
+
+msgctxt "#30848"
+msgid "Unsafe"
+msgstr "Verwijderen"
+
+msgctxt "#30860"
+msgid "Providers"
+msgstr "Bronnen"
+
+msgctxt "#30910"
+msgid "Accounts"
+msgstr "Accounts"
+
+msgctxt "#30911"
+msgid "User"
+msgstr "Gebruiker"
+
+msgctxt "#30912"
+msgid "Email"
+msgstr "Email"
+
+msgctxt "#30913"
+msgid "Password"
+msgstr "Paswoord"
+
+msgctxt "#30914"
+msgid "Authorization..."
+msgstr "Autoriseren..."
+
+msgctxt "#30940"
+msgid "Subtitles"
+msgstr "Ondertiteling"
+
+msgctxt "#30941"
+msgid "Subtitles could be unavailable or out of sync."
+msgstr "Ondertiteling is niet beschikbaar of loopt niet gelijk."
+
+msgctxt "#30942"
+msgid "In that case use your own subtitles."
+msgstr "In dat geval kies uw eigen ondertiteling."
+
+msgctxt "#30943"
+msgid "Enable subtitles"
+msgstr "Activeer ondertiteling"
+
+msgctxt "#30944"
+msgid "Convert subtitles to UTF-8"
+msgstr "Ondertiteling omzetten naar UTF-8"
+
+msgctxt "#30945"
+msgid "Primary Language"
+msgstr "1e keuze Ondertitelings Taal"
+
+msgctxt "#30946"
+msgid "Secondary Language"
+msgstr "2e keuze Ondertitelings Taal"
+
+msgctxt "#30950"
+msgid "Downloads"
+msgstr "Downloads"
+
+msgctxt "#30951"
+msgid "Movies"
+msgstr "Films"
+
+msgctxt "#30952"
+msgid "TV"
+msgstr "Series"
+
+msgctxt "#30953"
+msgid "Enable downloads"
+msgstr "Downloaden activeren"
+
+msgctxt "#30954"
+msgid "Downloading features are disabled by default."
+msgstr "Download functies zijn standaard uitgeschakeld"
+
+msgctxt "#30955"
+msgid "Set up your download folders in order to enable them."
+msgstr "Stel uw download locatie in om dit te activeren"

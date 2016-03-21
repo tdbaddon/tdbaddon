@@ -1,0 +1,23 @@
+[B]1.2.0[/B]
+- Updated indexers
+- Updated providers
+- Tweaked mismatch handling
+- Fixed urlresolver compatibility
+- Tweaked Trakt episodes
+- Updated translations
+
+[B]1.1.1[/B]
+- Updated translations
+- Updated providers
+
+[B]1.1.0[/B]
+- Updated indexers
+- Tweaked Trakt progress
+- Updated translations
+- Updated providers
+
+[B]1.0.1[/B]
+- Code cosmetics
+
+[B]1.0.0[/B]
+- Initial version
