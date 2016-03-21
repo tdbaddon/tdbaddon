@@ -19,11 +19,8 @@ http://rtmp.one.by:1300/
 #EXTINF:0,Capital TV 
 http://ooyalahd2-f.akamaihd.net/i/globalradio01_delivery@156521/index_656_av-p.m3u8?sd=10&rebase=on
 
-#EXTINF:0,Capital TV 
-http://smashtv.ddns.net:9090/load/4afe5b80d79c/242.mpegts
-
 #EXTINF:0,Clubland
-http://smashtv.ddns.net:9090/load/4afe5b80d79c/321.mpegts
+0
 
 #EXTINF:0,Clubbing TV 
 0
@@ -118,38 +115,23 @@ http://k4.usastreams.com:1935/miamitv/miamitv/chunklist_w128908539.m3u8
 #EXTINF:0,MTV 
 http://origin2.voronezh.ertelecom.ru/content/private/s147213/d3720264/r183857sd2500000/efe4541060c00fccc01e8c068fce4f5ab911d969/playlist.m3u8
 
-#EXTINF:0,MTV 
-http://cp.dmbshare.net:8000/live/andy/andy/2817.ts
-
-#EXTINF:0,MTV 
-http://smashtv.ddns.net:9090/load/4afe5b80d79c/439.mpegts
-
-#EXTINF:0,MTV 
-http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/4181.ts
-
-#EXTINF:0,MTV 
-http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/454.ts
-
 #EXTINF:0,MTV Classic
-http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/4180.ts
+0
 
 #EXTINF:0,MTV Dance 
-http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/1554.ts
+0
 
 #EXTINF:0,MTV Hits 
-http://smashtv.ddns.net:9090/load/4afe5b80d79c/263.mpegts
-
-#EXTINF:0,MTV Hits 
-http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/1553.ts
+0
 
 #EXTINF:0,MTV Live 
 0
 
 #EXTINF:0,MTV Rocks 
-http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/4182.ts
+0
 
 #EXTINF:0,Much Music
-http://smashtv.ddns.net:9090/load/4afe5b80d79c/262.mpegts
+0
 
 #EXTINF:0,MusicVoxTV 
 rtmp://stream.smcloud.net/live2/vox/vox_480p
@@ -225,9 +207,6 @@ http://www.iptvsaga.com/play/tv3/0006.m3u8
 
 #EXTINF:0,VH1 
 http://origin2.tomsk.ertelecom.ru/content/private/s147213/d3720264/r183860sd2000000/a7e4d34646b475190d0c99a717f7478a546958ed/track_2_1200/playlist.m3u8
-
-#EXTINF:0,VH1 
-http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/195.ts
 
 #EXTINF:0,VH1 Classics 
 0

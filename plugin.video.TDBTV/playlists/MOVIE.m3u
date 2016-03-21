@@ -13,35 +13,26 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 #EXTINF:0,Cinemax 
 http://77.76.140.251/prgb.m3u8
 
-#EXTINF:0,Cinemax 
-http://balkanstream.com/stream/Cinemax/amy/amy
-
-#EXTINF:0,Cinemax 
-http://balkanstream.com/stream/Cinemax2/amy/amy
-
 #EXTINF:0,Cinemax 5 StarMax
-http://smashtv.ddns.net:9090/load/4afe5b80d79c/186.mpegts
-
-#EXTINF:0,Cinemax ActionMax
-http://smashtv.ddns.net:9090/load/4afe5b80d79c/187.mpegts
-
-#EXTINF:0,Cinemax East
-http://smashtv.ddns.net:9090/load/4afe5b80d79c/183.mpegts
-
-#EXTINF:0,Cinemax East
-http://smashtv.ddns.net:9090/load/4afe5b80d79c/334.mpegts
+0
 
 #EXTINF:0,CineStar Action
-http://balkanstream.com/stream/Cinestaraction/amy/amy
+0
+
+#EXTINF:0,Cinemax ActionMax
+0
+
+#EXTINF:0,Cinemax East
+0
 
 #EXTINF:0,CineStar Premiere 1 
-http://balkanstream.com/stream/axnspin/amy/amy
+0
 
 #EXTINF:0,CineStar Premiere 2
-http://balkanstream.com/stream/tv1000/amy/amy
+0
 
 #EXTINF:0,CineStar TV 
-http://balkanstream.com/stream/Cinestar/amy/amy
+0
 
 #EXTINF:0,CMore Action 
 0
@@ -74,10 +65,7 @@ http://balkanstream.com/stream/Cinestar/amy/amy
 0
 
 #EXTINF:0,Film4 
-http://smashtv.ddns.net:9090/load/4afe5b80d79c/267.mpegts
-
-#EXTINF:0,Film4 
-http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/315.ts
+0
 
 #EXTINF:0,FilmBox 
 0
@@ -119,25 +107,25 @@ http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/315.ts
 0
 
 #EXTINF:0,Fox Movies 
-http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/296.ts
-
-#EXTINF:0,Golden Edge
-http://smashtv.ddns.net:9090/load/4afe5b80d79c/587.mpegts
-
-#EXTINF:0,HBO 
 0
 
+#EXTINF:0,Golden Edge
+0
+
+#EXTINF:0,HBO 
+http://xmiolive.e14538a7.viettel-cdn.vn/hbo.smil/chunklist_b1000000.m3u8
+
 #EXTINF:0,HBO Adria 
-http://balkanstream.com/stream/hboadria/amy/amy
-
-#EXTINF:0,HBO East
-http://smashtv.ddns.net:9090/load/4afe5b80d79c/189.mpegts
-
-#EXTINF:0,HBO East 2
 0
 
 #EXTINF:0,HBO Comedy 
-http://smashtv.ddns.net:9090/load/4afe5b80d79c/194.mpegts
+0
+
+#EXTINF:0,HBO East
+0
+
+#EXTINF:0,HBO East 2
+0
 
 #EXTINF:0,HBO Family
 0
@@ -146,7 +134,7 @@ http://smashtv.ddns.net:9090/load/4afe5b80d79c/194.mpegts
 0
 
 #EXTINF:0,HBO Signature 
-http://smashtv.ddns.net:9090/load/4afe5b80d79c/192.mpegts
+0
 
 #EXTINF:0,HBO West
 0
@@ -155,22 +143,22 @@ http://smashtv.ddns.net:9090/load/4afe5b80d79c/192.mpegts
 0
 
 #EXTINF:0,HBO Zone 
-http://smashtv.ddns.net:9090/load/4afe5b80d79c/193.mpegts
+0
 
 #EXTINF:0,HWD Hollywood 
 0
 
 #EXTINF:0,LMN
-http://smashtv.ddns.net:9090/load/4afe5b80d79c/458.mpegts
+0
 
 #EXTINF:0,MGM 
 http://telvuehls_t02027-i.akamaihd.net/hls/live/213119/T02027-amgtv2/playlist_2.m3u8
 
 #EXTINF:0,Movies 24
-http://smashtv.ddns.net:9090/load/4afe5b80d79c/563.mpegts
+0
 
 #EXTINF:0,Movies4Men 
-http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/4185.ts
+0
 
 #EXTINF:0,Paramount Channel 
 0
@@ -179,82 +167,55 @@ http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/4185.ts
 0
 
 #EXTINF:0,Showtime Extra
-http://smashtv.ddns.net:9090/load/4afe5b80d79c/170.mpegts
+0
 
 #EXTINF:0,Showtime Showcase
-http://smashtv.ddns.net:9090/load/4afe5b80d79c/172.mpegts
+0
 
 #EXTINF:0,Showtime West
-http://smashtv.ddns.net:9090/load/4afe5b80d79c/171.mpegts
+0
 
 #EXTINF:0,Silver Screen Classics
 0
 
 #EXTINF:0,Sky Movies Action 
-http://smashtv.ddns.net:9090/load/4afe5b80d79c/36.mpegts
-
-#EXTINF:0,Sky Movies Action 
-http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/50.ts
+0
 
 #EXTINF:0,Sky Movies Comedy 
-http://smashtv.ddns.net:9090/load/4afe5b80d79c/37.mpegts
-
-#EXTINF:0,Sky Movies Comedy 
-http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/1338.ts
+0
 
 #EXTINF:0,Sky Movies Crime 
-http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/52.ts
+0
 
 #EXTINF:0,Sky Movies Disney 
-http://smashtv.ddns.net:9090/load/4afe5b80d79c/44.mpegts
-
-#EXTINF:0,Sky Movies Disney 
-http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/193.ts
+0
 
 #EXTINF:0,Sky Movies Family 
-http://smashtv.ddns.net:9090/load/4afe5b80d79c/38.mpegts
-
-#EXTINF:0,Sky Movies Family 
-http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/53.ts
+0
 
 #EXTINF:0,Sky Movies Horrors 
 0
 
-#EXTINF:0,Sky Movies Modern Greats 
-http://smashtv.ddns.net:9090/load/4afe5b80d79c/45.mpegts
 
-#EXTINF:0,Sky Movies Modern Greats 
-http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/54.ts
+0
 
 #EXTINF:0,Sky Movies Premiere 
-http://smashtv.ddns.net:9090/load/4afe5b80d79c/41.mpegts
-
-#EXTINF:0,Sky Movies Premiere 
-http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/55.ts
+0
 
 #EXTINF:0,Sky Movies Premiere+
-http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/2763.ts
+0
 
 #EXTINF:0,Sky Movies SciFi 
-http://smashtv.ddns.net:9090/load/4afe5b80d79c/42.mpegts
-
-#EXTINF:0,Sky Movies SciFi 
-http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/56.ts
+0
 
 #EXTINF:0,Sky Movies Select 
-http://smashtv.ddns.net:9090/load/4afe5b80d79c/46.mpegts
-
-#EXTINF:0,Sky Movies Select 
-http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/1340.ts
+0
 
 #EXTINF:0,Sky Movies Showcase 
-http://smashtv.ddns.net:9090/load/4afe5b80d79c/43.mpegts
-
-#EXTINF:0,Sky Movies Showcase 
-http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/179.ts
+0
 
 #EXTINF:0,Sky Movies Thriller 
-http://smashtv.ddns.net:9090/load/4afe5b80d79c/39.mpegts
+0
 
 #EXTINF:0,Sony TV 
 0
@@ -263,25 +224,22 @@ http://smashtv.ddns.net:9090/load/4afe5b80d79c/39.mpegts
 0
 
 #EXTINF:0,Starz Cinema
-http://smashtv.ddns.net:9090/load/4afe5b80d79c/179.mpegts
+0
 
 #EXTINF:0,Starz East
-http://smashtv.ddns.net:9090/load/4afe5b80d79c/182.mpegts
+0
 
 #EXTINF:0,Starz Edge
-http://smashtv.ddns.net:9090/load/4afe5b80d79c/180.mpegts
+0
 
 #EXTINF:0,Starz in Black
-http://smashtv.ddns.net:9090/load/4afe5b80d79c/464.mpegts
+0
 
 #EXTINF:0,Studio Universal
 0
 
 #EXTINF:0,TCM 
-http://smashtv.ddns.net:9090/load/4afe5b80d79c/370.mpegts
-
-#EXTINF:0,TCM 
-http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/4197.ts
+0
 
 #EXTINF:0,The Movie Channel 
 0
@@ -314,16 +272,10 @@ http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/4197.ts
 0
 
 #EXTINF:0,True Movies 1 
-http://smashtv.ddns.net:9090/load/4afe5b80d79c/329.mpegts
-
-#EXTINF:0,True Movies 1 
-http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/4194.ts
+0
 
 #EXTINF:0,True Movies 2 
-http://smashtv.ddns.net:9090/load/4afe5b80d79c/330.mpegts
-
-#EXTINF:0,True Movies 2 
-http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/4195.ts
+0
 
 #EXTINF:0,TV 1000 
 0
@@ -333,5 +285,3 @@ http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/4195.ts
 
 #EXTINF:0,W Movies
 0
-
-
