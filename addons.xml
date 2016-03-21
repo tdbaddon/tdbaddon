@@ -938,7 +938,7 @@ http://kodilive.eu</description>
 
 <addon id="plugin.video.TDBSPANISHTV"
        name="TDB SPANISH TV"
-       version="1.36"
+       version="1.37"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>

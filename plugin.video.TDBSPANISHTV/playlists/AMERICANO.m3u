@@ -44,13 +44,13 @@
 0
 
 #EXTINF:0,Discovery Channel
-http://178.238.224.19/5858/371.m3u8
+0
 
 #EXTINF:0,Discovery Civilization
 0
 
 #EXTINF:0,Discovery Home & Health
-http://178.238.224.19/5858/374.m3u8
+0
 
 #EXTINF:0,Discovery Investigation 
 0
@@ -71,7 +71,7 @@ http://178.238.224.19/5858/374.m3u8
 0
 
 #EXTINF:0,Disney Channel
-http://178.238.224.19/5858/312.m3u8
+0
 
 #EXTINF:0,Disney JR
 0
@@ -80,16 +80,16 @@ http://178.238.224.19/5858/312.m3u8
 0
 
 #EXTINF:0,E!
-http://178.238.224.19/5858/255.m3u8
+0
 
 #EXTINF:0,ESPN
 0
 
 #EXTINF:0,ESPN 2
-http://178.238.224.19/5858/561.m3u8
+0
 
 #EXTINF:0,ESPN 3
-http://178.238.224.19/5858/520.m3u8
+0
 
 #EXTINF:0,Film Zone
 0
@@ -98,7 +98,7 @@ http://178.238.224.19/5858/520.m3u8
 0
 
 #EXTINF:0,Fox 1
-http://178.238.224.19/5858/415.m3u8
+0
 
 #EXTINF:0,Fox Action Movies
 0
@@ -137,7 +137,7 @@ http://178.238.224.19/5858/415.m3u8
 0
 
 #EXTINF:0,History Channel
-http://178.238.224.19/5858/353.m3u8
+0
 
 #EXTINF:0,HMX
 0
@@ -155,16 +155,16 @@ http://178.238.224.19/5858/353.m3u8
 0
 
 #EXTINF:0,MTV 
-http://178.238.224.19/5858/726.m3u8
+0
 
 #EXTINF:0,National Geographic Channel
-http://178.238.224.19/5858/377.m3u8
+0
 
 #EXTINF:0,Nat Geo Wild
-http://178.238.224.19/5858/355.m3u8
+0
 
 #EXTINF:0,Nick
-http://178.238.224.19/5858/315.m3u8
+0
 
 #EXTINF:0,Nick JR
 0
@@ -206,13 +206,10 @@ http://178.238.224.19/5858/315.m3u8
 0
 
 #EXTINF:0,TLC
-http://178.238.224.19/5858/386.m3u8
+0
 
 #EXTINF:0,TNT
-http://178.238.224.19/5858/435.m3u8
-
-#EXTINF:0,TNT
-http://178.238.224.19/5858/266.m3u8
+0
 
 #EXTINF:0,Tooncast
 0
@@ -230,7 +227,7 @@ http://178.238.224.19/5858/266.m3u8
 0
 
 #EXTINF:0,Warner Brothers
-http://178.238.224.19/5858/205.m3u8
+0
 
 #EXTINF:0,Wobi
 0

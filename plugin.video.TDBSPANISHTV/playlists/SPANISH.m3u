@@ -137,7 +137,7 @@ http://108.168.206.90:1935/cdn/cdn/playlist.m3u8
 0
 
 #EXTINF:0,Cine Canal+
-http://178.238.224.19/5858/430.m3u8
+0
 
 #EXTINF:0,Colosal TV
 rtmp://k3.usastreams.com:1935/colosaltv1/colosaltv1
@@ -203,7 +203,7 @@ rtmp://teledifusion.tv:1935/levantetvlive/levantetvlive
 0
 
 #EXTINF:0,Multimedios
-http://brightcovelive-i.akamaihd.net/hls/live/200018/bcplay-live/Multi/Multimedios.m3u8
+0
 
 #EXTINF:0,Nazareno TV 
 rtmp://87.106.232.7/live/myStream_2
@@ -266,10 +266,7 @@ rtmp://k3.usastreams.com:1935/tvuno1/tvuno1
 http://live.telemetro.com/telemetro/tm.smil/playlist.m3u8
 
 #EXTINF:0,Telemundo 
-http://streamup.global.ssl.fastly.net/app/telemundox2chivas_69s-stream/chunklist.m3u8
-
-#EXTINF:0,Telemundo 
-https://video05-lax.streamup.com/app/telemundox2chivas_69s-stream/playlist.m3u8
+0
 
 #EXTINF:0,TeleSur TV 
 0
