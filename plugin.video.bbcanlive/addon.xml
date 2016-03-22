@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.video.bbcanlive" name="Big Brother Canada Live Feeds" version="1.0.0" provider-name="portse">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.requests" version="2.9.1"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+  <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>Big Brother Canada Live Feeds Kodi Plugin</summary>
+    <description>View live camera feeds from inside the Big Brother Canada house!</description>
+    <platform>all</platform>
+    <language>en</language>
+    <disclaimer></disclaimer>
+    <license>MIT</license>
+    <forum></forum>
+    <website>https://github.com/portse/plugin.video.bbcanlive</website>
+    <source>https://github.com/portse/plugin.video.bbcanlive</source>
+  </extension>
+</addon>
