@@ -172,7 +172,13 @@ def PLAYLINK(name,url):
         response = urllib2.urlopen(req)
         link=response.read()
         response.close()
-        stream_url = re.compile('<a href="(.+?)" target="_blank" rel="nofollow">.+?</a>').findall(link)[-1]
+        if 'dscw' in link:
+                vid = re.compile('id="dscw" value="(.+?)"').findall(link)[0]
+                url='https://docs.google.com/get_video_info?docid='+vid
+                link = open_url(url)
+                stream_url = urllib.unquote(urllib.unquote(link)).split('|')[1]
+        else:
+                stream_url = 'http://cartoons8.co/vload/?token='+re.compile('<a href="http://cartoons8.co/vload/\?token=(.+?)"').findall(link)[-1]
         ok=True
         liz=xbmcgui.ListItem(name, iconImage=icon,thumbnailImage=icon); liz.setInfo( type="Video", infoLabels={ "Title": name } )
         ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=url,listitem=liz)
