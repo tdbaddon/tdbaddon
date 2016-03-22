@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="repository.tdbaddon" name="TDB REPO" version="1.04" provider-name="TDB">
+<addon id="repository.tdbaddon" name="TDB REPO" version="1.03" provider-name="TDB">
 	<extension point="xbmc.addon.repository" name="TDB Addon Repository">
         <dir>
 	      <info compressed="false">http://github.com/tdbaddon/tdbaddon/raw/master/addons.xml</info>
