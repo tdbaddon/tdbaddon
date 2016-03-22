@@ -787,7 +787,7 @@ http://kodilive.eu</description>
   </extension>
 </addon>
 
-<addon id="plugin.video.prosport" name="Pro Sport" version="0.38" provider-name="gerikss, podgod">
+<addon id="plugin.video.prosport" name="Pro Sport" version="0.39" provider-name="gerikss, podgod">
   <requires>
     <import addon="xbmc.python" version="2.1.0" />
      <import addon="script.module.requests" version="2.9.1" />
@@ -912,7 +912,7 @@ http://kodilive.eu</description>
 
 <addon id="plugin.video.TDBEUROTV"
        name="TDB EURO TV"
-       version="2.25"
+       version="2.26"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -931,7 +931,7 @@ http://kodilive.eu</description>
 
 <addon id="plugin.video.TDBPORNO"
        name="TDB PORNO"
-       version="1.93"
+       version="1.94"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -950,7 +950,7 @@ http://kodilive.eu</description>
 
 <addon id="plugin.video.TDBRADIO"
        name="TDB RADIO"
-       version="1.30"
+       version="1.32"
        provider-name="TDB">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -968,7 +968,7 @@ http://kodilive.eu</description>
 
 <addon id="plugin.video.TDBSPANISHTV"
        name="TDB SPANISH TV"
-       version="1.38"
+       version="1.39"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -987,7 +987,7 @@ http://kodilive.eu</description>
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="3.65"
+       version="3.66"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -1768,7 +1768,7 @@ http://kodilive.eu</description>
 </addon>
 
 <addon id="script.xbmcbackup"
-    name="TDB-Backup" version="10.06" provider-name="TDB">
+    name="TDB-Backup" version="10.07" provider-name="TDB">
   <requires>
     <import addon="xbmc.python" version="2.19.0"/>
     <import addon="script.module.httplib2" version="0.8.0" />
@@ -1794,7 +1794,7 @@ http://kodilive.eu</description>
   </extension>
 </addon>
 
-<addon id="skin.TDBTouched-K" version="1.06" name="TDB Touched Kodi" provider-name="TDB">
+<addon id="skin.TDBTouched-K" version="1.07" name="TDB Touched Kodi" provider-name="TDB">
 	<requires>
 		<import addon="xbmc.gui" version="5.10.0"/>
 	</requires>

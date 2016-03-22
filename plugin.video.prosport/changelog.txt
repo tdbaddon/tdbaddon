@@ -130,3 +130,6 @@ ver 0.37:
 ver 0.38:
 	- checking main reddit post for links
 	- fixed neulion streams
+
+ver 0.39:
+	- bugfixes

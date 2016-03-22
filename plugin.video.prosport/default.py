@@ -74,7 +74,7 @@ def utc_to_local(utc_dt):
 def GetURL(url, referer=None):
     url = url.replace('///','//')
     request = urllib2.Request(url)
-    request.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
+    request.add_header('User-Agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36')
     if referer:
     	request.add_header('Referer', referer)
     try:
@@ -88,7 +88,7 @@ def GetURL(url, referer=None):
 
 def GetJSON(url, referer=None):
     request = urllib2.Request(url)
-    request.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
+    request.add_header('User-Agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36')
     if referer:
     	request.add_header('Referer', referer)
     try:
@@ -369,7 +369,7 @@ def DisplayLinks(links, orig_title):
 		elif url not in urls and '1apps.com' in url:
 			addLink('Oneapp', orig_title, url, mode="play")
 			urls.append(url)
-		elif url not in urls and 'youtu' in url and 'list' not in url and 'furby' not in url and 'freeanime' not in url:
+		elif url not in urls and '//youtu' in url or '.youtu' in url and 'list' not in url:
 			addLink('Youtube.com', orig_title, url, mode="play")
 			urls.append(url)
 		elif url not in urls and 'freecast.in' in url:
@@ -432,7 +432,7 @@ def DisplayLinks(links, orig_title):
 		elif url not in urls and 'castalba.tv' in url:
 			addLink('Castalba', orig_title, url, mode="play")
 			urls.append(url)
-		elif 'room' in url:
+		elif ('room' in url or 'YES' in url) and 'm3u8' in url:
 			room = url.split('/')[6]
 			if room not in urls:
 				addLink('Room HD (US IP Only)', orig_title, url, mode="play")
@@ -440,11 +440,11 @@ def DisplayLinks(links, orig_title):
 		elif url not in urls and '101livesportsvideos.com' in url and 'ace' not in url:
 			addLink('101livesportsvideos.com', orig_title, url, mode="play")
 			urls.append(url)
-		elif url not in urls and '.m3u8' in url and 'room' not in url and 'anvato' not in url and 'mlblive-akc' not in url:
+		elif url not in urls and '.m3u8' in url and 'room' not in url and 'anvato' not in url and 'mlblive-akc' not in url and 'YES' not in url:
 			addLink('M3U8 stream', orig_title, url, mode="play")
 			urls.append(url)
 		if show_sd=='true':
-			if url not in urls and 'stream24k.com' in url or 'watchnba.tv' in url or 'feedredsoccer.at.ua' in url or 'jugandoes.com' in url or 'wiz1.net' in url or 'bosscast.net' in url or 'watchsportstv.boards.net' in url or 'tv-link.in' in url or 'giostreams.eu' in url or 'klivetv.co' in url or 'videosport.me' in url or 'livesoccerg.com' in url or 'zunox.hk' in url or ('serbiaplus.club' in url and 'ace' not in url) or 'zona4vip.com' in url or 'ciscoweb.ml' in url or 'streamendous.com' in url:
+			if url not in urls and 'stream24k.com' in url or 'wizhdsports.com' in url or 'sportsnewsupdated.com' in url or 'watchnba.tv' in url or 'feedredsoccer.at.ua' in url or 'jugandoes.com' in url or 'wiz1.net' in url or 'bosscast.net' in url or 'watchsportstv.boards.net' in url or 'tv-link.in' in url or 'giostreams.eu' in url or 'klivetv.co' in url or 'videosport.me' in url or 'livesoccerg.com' in url or 'zunox.hk' in url or ('serbiaplus.club' in url and 'ace' not in url) or 'zona4vip.com' in url or 'ciscoweb.ml' in url or 'streamendous.com' in url:
 				title = '(SD) '
 				try:
 					title = title+urlparse.urlparse(url).netloc
@@ -459,7 +459,7 @@ def ParseLink(el, orig_title):
 	if 'caststreams' in el:
 		url = Caststreams(orig_title)
 		return url
-	elif 'stream24k.com' in el or 'baltak.com' in el or 'watchnba.tv' in el or 'feedredsoccer.at.ua' in el or 'jugandoes.com' in el or 'wiz1.net' in el or 'bosscast.net' in el or 'watchsportstv.boards.net' in el or 'tv-link.in' in el or 'giostreams.eu' in el or 'klivetv.co' in el or 'videosport.me' in el or 'livesoccerg.com' in el or 'zunox.hk' in el or 'serbiaplus.club' in el or 'zona4vip.com' in el or 'ciscoweb.ml' in el or 'streamendous.com' in el:
+	elif 'stream24k.com' in el or 'wizhdsports.com' in el or 'antenasport.com' in el or 'sportsnewsupdated.com' in el or 'baltak.com' in el or 'watchnba.tv' in el or 'feedredsoccer.at.ua' in el or 'jugandoes.com' in el or 'wiz1.net' in el or 'bosscast.net' in el or 'watchsportstv.boards.net' in el or 'tv-link.in' in el or 'giostreams.eu' in el or 'klivetv.co' in el or 'videosport.me' in el or 'livesoccerg.com' in el or 'zunox.hk' in el or 'serbiaplus.club' in el or 'zona4vip.com' in el or 'ciscoweb.ml' in el or 'streamendous.com' in el:
 		url = Universal(el)
 		return url
 	elif 'blabseal.com' in el:
@@ -469,7 +469,7 @@ def ParseLink(el, orig_title):
 		url = Universal(el)
 		return url
 	elif '1apps.com' in el:
-		url = Oneapp(el)
+		url = Universal(el)
 		return url
 	elif 'youtu' in el and 'list' not in el:
 		url = Universal(el)
@@ -534,7 +534,7 @@ def ParseLink(el, orig_title):
 	elif 'castalba.tv' in el:
 		url = Castalba(el)
 		return url
-	elif 'room' in el and 'm3u8' in el:
+	elif ('room' in el or 'YES' in el) and 'm3u8' in el:
 		url = Getroom(el)
 		return url
 	elif '101livesportsvideos.com' in el:
@@ -558,7 +558,8 @@ def Archive(page, mode):
 	html = GetURL(url)
 	links = common.parseDOM(html, "a", attrs={"rel": "bookmark"}, ret="href")
 	titles = common.parseDOM(html, "a", attrs={"rel": "bookmark"}, ret="title")
-	del links[1::2]
+	if links:
+		del links[1::2]
 	for i, el in enumerate(links):
 		if '-nba-' in el or '-nfl-' in el:
 			title = common.parseDOM(html, "a", attrs={"href": el}, ret="title")[0]
@@ -788,14 +789,15 @@ def Caststreams(orig_title):
 		orig_title = orig_title.replace('[COLOR=FF00FF00][B]','').replace('[/B][/COLOR]','')
 		home = orig_title.split('at')[0].split()[0]
 		away = orig_title.split('at')[-1].split()[0]
-		url = 'https://caststreams.com:2053/login'
-		data = urllib.urlencode({"email":"prosport@testmail.com","password":"prosport","ipaddress":"desktop","androidId":"","deviceId":"","isGoogleLogin":0})
+		url = 'https://caststreams.com:3000/login-web'
+		data = json.dumps({"email":"prosport3@testmail.com","password":"prosport","ipaddress":"desktop","androidId":"","deviceId":"","isGoogleLogin":0})
 		request = urllib2.Request(url, data)
+		request.add_header('Content-Type', 'application/json')
 		response = urllib2.urlopen(request, timeout=5)
 		resp = response.read()
 		jsonDict = json.loads(resp)
 		token = jsonDict['token']
-		url = 'https://caststreams.com:2053/feeds'
+		url = 'https://caststreams.com:3000/feeds'
 		request = urllib2.Request(url)
 		request.add_header('Authorization', token)
 		response = urllib2.urlopen(request, timeout=5)
@@ -806,12 +808,12 @@ def Caststreams(orig_title):
 			title = feed['nam'].lower().replace('ny', 'new')
 			if home.lower() in title.lower() and away.lower() in title.lower() and 'testing' not in title.lower():
 				channel = feed['url'][0]
-				link = 'https://caststreams.com:2053/getGame?rUrl='+channel
+				link = 'https://caststreams.com:3000/getGame?rUrl='+channel
 				return link	
 			else:
 				continue
 	except:
-		return None		
+		return None	
 		
 def Oneapp(url):
 	try:
@@ -846,6 +848,14 @@ def Streamsus(url):
 		block_content = common.parseDOM(html, "iframe", ret="src")[0]
 		link = GetYoutube(block_content)
 		return link
+	except:
+		pass
+	try:
+		html = GetURL(url)
+		block_content = common.parseDOM(html, "a", ret="href")[0]
+		if 'streamboat' in block_content:
+			link = Streambot(block_content)
+			return link
 	except:
 		return None
 
@@ -945,7 +955,7 @@ def Stream2hd(url):
 
 def Gstreams(url):
 	try:
-		html = GetURL(url)
+		html = GetURL(url, referer=url)
 		link = common.parseDOM(html, "iframe",  ret="src")[0]
 		if 'gstreams.tv' in link:
 			html  = GetURL(link)
@@ -960,10 +970,11 @@ def Gstreams(url):
 		elif 'youtu' in link:
 			link = GetYoutube(link)
 			return link
-		elif 'm3u8' in link:
+		elif '.m3u8' in link:
 			return link
 	except:
 		return None
+	
 		
 def Moonfruit(url):
 	try:
@@ -1143,7 +1154,6 @@ def Castalba(url):
 				streamer = 'rtmp' + streamer.replace("'","")
 			except:
 				streamer = re.findall("(rtmp://.+?\live)",result)[0]
-			print streamer
 			link = streamer.replace('///','//') + ' playpath=' + filePath +' swfUrl=' + swf + ' flashver=WIN\\2020,0,0,228 live=true timeout=15 swfVfy=true pageUrl=' + pageUrl
 		return link
 	except:
@@ -1155,12 +1165,13 @@ def Universal(url):
 		url = url.replace('/live','')
 	if 'serbiaplus.club/wlive' in url:
 		url = 'http://serbiaplus.club/whd/'+url.split('/w')[-1]
-	if 'wiz1' in url or 'live9.net' in url:
+	if 'wiz1.net/ch' in url or 'live9.net' in url:
 		this = GetURL(url, referer=url)
-		link = re.compile('src="(.+?)"').findall(str(this))[0]
-		if 'sawlive' in link:
-			lnk = sawresolve(link)
-			return lnk
+		links = re.compile('src="(.+?)"').findall(str(this))
+		for link in links:
+			if 'sawlive' in link:
+				lnk = sawresolve(link)
+				return lnk
 	if 'streamup' in url:
 		if 'm3u8' in url:
 			return url
@@ -1173,6 +1184,8 @@ def Universal(url):
 	if 'lshstream' in url:
 		link = lshstream(url)
 		return link
+	if 'm3u8' in url:
+		return url
 	html = GetURL(url, referer=url)
 	if html and 'weplayer.pw' in html:
 		id = html.split("'text/javascript'>id='")[-1]
@@ -1188,6 +1201,10 @@ def Universal(url):
 		id = html.split('fid="')[-1].split('";')[0]
 		link = castup(id)
 		return link
+	elif html and 'rocktv.co' in html:
+		id = html.split("fid='")[-1].split("';")[0]
+		link = rocktv(id)
+		return link
 	elif html and 'streamking.cc' in html:
 		id = re.findall('(http://streamking.+?")',html)[0]
 		id = id.replace('"','')
@@ -1198,7 +1215,7 @@ def Universal(url):
 		id = id.split('";')[0]
 		link = hdcast(id)
 		return link
-	elif html and 'm3u8' in html:
+	elif html and '.m3u8' in html:
 		link = re.findall('(http://.+?\.m3u8)',html)[0]
 		return link
 	elif html and 'rtmp' in html and 'jwplayer' in html:
@@ -1396,6 +1413,17 @@ def lshstream(url):
 	except:
 		return None
 
+
+def rocktv(id):
+	try:
+		url = 'http://www.rocktv.co/embed.php?live='+id
+		result = GetURL(url, referer=url)
+		token = re.findall('securetoken\s*:\s*(?:\'|\")(.+?)(?:\'|\")',result)[0]
+		rtmp = re.findall('file\s*:\s*(?:\'|\")(.+?)(?:\'|\")',result)[0]
+		url = rtmp + ' swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf live=1 flashver=WI/2020,0,0,286 token='  + token + ' timeout=14 swfVfy=1 pageUrl=' + url
+		return url
+	except:
+		return None
 
 def Play(url, orig_title):
     url = ParseLink(url, orig_title)
