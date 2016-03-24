@@ -45,7 +45,7 @@ class source:
             result = result['feed']['entry']
 
             title = cleantitle.get(title)
-            years = ['%s' % str(year), '%s' % str(int(year)+1), '%s' % str(int(year)-1)]
+            years = ['%s' % str(year)]
 
             result = [i for i in result if 'movies' in [x['term'].lower() for x in i['category']]]
             result = [[x for x in i['link'] if x['rel'] == 'alternate' and x['type'] == 'text/html'][0] for i in result]
@@ -104,13 +104,16 @@ class source:
             data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
 
             tvshowtitle = cleantitle.get(data['tvshowtitle'])
+            year = re.findall('(\d{4})', premiered)[0]
             season = '%01d' % int(season)
             episode = '%01d' % int(episode)
 
             result = cache.get(self.pubfilm_tvcache, 120)
 
             result = [i for i in result if tvshowtitle == i[1]]
-            result = [i[0] for i in result if season == '%01d' % int(i[2])][0]
+            result = [i[0] for i in result if season == '%01d' % int(i[2])]
+            result = [(i, re.findall('(\d{4})', [x for x in i.split('/') if not x == ''][-1])[0]) for i in result]
+            result = [i[0] for i in result if i[1] == year][0]
 
             url = urlparse.urljoin(self.base_link, result)
             url = urlparse.urlparse(url).path

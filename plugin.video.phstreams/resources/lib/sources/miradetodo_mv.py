@@ -23,6 +23,7 @@ import re,urllib,urlparse,json,base64
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import pyaes
+from resources.lib.modules import cloudflare
 from resources.lib.modules import client
 from resources.lib.modules import directstream
 
@@ -43,7 +44,7 @@ class source:
             result = json.loads(result)['results']
 
             title = cleantitle.get(title)
-            years = ['%s' % str(year), '%s' % str(int(year)+1), '%s' % str(int(year)-1)]
+            years = ['%s' % str(year)]
 
             result = [(i['url'], i['richSnippet']['metatags']['ogTitle']) for i in result if 'richSnippet' in i and 'metatags' in i['richSnippet'] and 'ogTitle' in i['richSnippet']['metatags']]
             result = [(i[0], re.compile('(.+?) [(](\d{4})[)]').findall(i[1])) for i in result]
@@ -79,13 +80,13 @@ class source:
 
             url = urlparse.urljoin(self.base_link, url)
 
-            result = client.source(url)
+            result = cloudflare.source(url)
 
             links = []
 
             try:
                 try: url = re.compile('proxy\.link=([^"&]+)').findall(result)[0]
-                except: url = client.source(re.compile('proxy\.list=([^"&]+)').findall(result)[0])
+                except: url = cloudflare.source(re.compile('proxy\.list=([^"&]+)').findall(result)[0])
 
                 url = url.split('*', 1)[-1].rsplit('<')[0]
 
@@ -107,11 +108,11 @@ class source:
                 post = urlparse.parse_qs(urlparse.urlparse(post).query)
 
                 result = ''
-                try: result += client.source(url, post=urllib.urlencode({'link': post['id'][0]}))
+                try: result += cloudflare.source(url, post=urllib.urlencode({'link': post['id'][0]}))
                 except: pass
-                try: result += client.source(url, post=urllib.urlencode({'link': post['id1'][0]}))
+                try: result += cloudflare.source(url, post=urllib.urlencode({'link': post['id1'][0]}))
                 except: pass
-                try: result += client.source(url, post=urllib.urlencode({'link': post['id2'][0]}))
+                try: result += cloudflare.source(url, post=urllib.urlencode({'link': post['id2'][0]}))
                 except: pass
 
                 result = re.compile('"?link"?\s*:\s*"([^"]+)"\s*,\s*"?label"?\s*:\s*"(\d+)p?"').findall(result)

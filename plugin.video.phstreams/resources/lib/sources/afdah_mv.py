@@ -44,7 +44,7 @@ class source:
             result = client.source(query)
 
             title = cleantitle.get(title)
-            years = ['%s' % str(year), '%s' % str(int(year)+1), '%s' % str(int(year)-1)]
+            years = ['%s' % str(year)]
 
             result = client.parseDOM(result, 'div', attrs = {'class': 'cell_container'})
             result = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', ret='title')) for i in result]

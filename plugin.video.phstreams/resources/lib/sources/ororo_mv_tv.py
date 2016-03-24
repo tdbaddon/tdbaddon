@@ -54,7 +54,7 @@ class source:
             result = client.source(url, cookie='%s; %s' % (self.cookie, self.lang))
 
             title = cleantitle.get(title)
-            years = ['%s' % str(year), '%s' % str(int(year)+1), '%s' % str(int(year)-1)]
+            years = ['%s' % str(year)]
 
             result = client.parseDOM(result, 'div', attrs = {'class': 'index show'})
             result = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', attrs = {'class': 'name'}), client.parseDOM(i, 'span', attrs = {'class': 'value'})) for i in result]
@@ -82,7 +82,7 @@ class source:
             result = client.source(url, cookie='%s; %s' % (self.cookie, self.lang))
 
             tvshowtitle = cleantitle.get(tvshowtitle)
-            years = ['%s' % str(year), '%s' % str(int(year)+1), '%s' % str(int(year)-1)]
+            years = ['%s' % str(year)]
 
             result = client.parseDOM(result, 'div', attrs = {'class': 'index show'})
             result = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', attrs = {'class': 'name'}), client.parseDOM(i, 'span', attrs = {'class': 'value'})) for i in result]
@@ -136,8 +136,7 @@ class source:
             url = client.parseDOM(result, 'a', ret='data-href', attrs = {'href': href})[0]
             url = urlparse.urljoin(self.base_link, url)
 
-            headers = self.headers
-            headers.update({'X-Requested-With': 'XMLHttpRequest'})
+            headers = {'X-Requested-With': 'XMLHttpRequest'}
             result = client.source(url, cookie='%s; %s' % (self.cookie, self.lang), referer=referer, headers=headers)
 
             headers = '|%s' % urllib.urlencode({'User-Agent': self.headers['User-Agent'], 'Cookie': str(self.cookie)})

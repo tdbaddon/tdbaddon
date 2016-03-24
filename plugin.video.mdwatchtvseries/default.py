@@ -12,7 +12,7 @@ addon = Addon(addon_id, sys.argv)
 art = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id + '/resources/art/'))
 icon = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
 fanart = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id , 'fanart.jpg'))
-baseurl = 'http://sermov.com/' #'http://tvserieswatch.net/' #'http://tvwatchtvseries.com/'
+baseurl = 'http://seriestv.us/'  #'http://sermov.com/' #'http://tvserieswatch.net/' #'http://tvwatchtvseries.com/'
 net = Net()
 
 
@@ -129,7 +129,7 @@ def LINK(url):
                 else:
                         headers = {'host': 'sermov.com', 'referer': url, 'user-agent': User_Agent}
                 link = requests.get(RequestURL, headers=headers).text
-                if 'tvwatchtvseriesold' in RequestURL:
+                if 'sermovold' in RequestURL:
                         url = re.compile('"file":"(.*?)"').findall(link)[0]
                 else:
                         try:
@@ -149,7 +149,7 @@ def LINK(url):
                 else:
                         headers = {'host': 'sermov.com', 'referer': url, 'user-agent': User_Agent}
                 link = requests.get(RequestURL, headers=headers).text
-                if 'tvwatchtvseriesold' in RequestURL:
+                if 'sermovold' in RequestURL:
                         url = re.compile('"file":"(.*?)"').findall(link)[0]
                 else:
                         try:
@@ -159,7 +159,7 @@ def LINK(url):
         except: pass
         try:
                 form_data={'link': re.search(r'link:"(.*?)"',link,re.I).group(1)}
-                headers = {'host' : 'sermov.com', 'origin' : 'http://sermov.com', 'referer' : url, 'user-agent' : User_Agent}
+                headers = {'host' : 'seriestv.us', 'origin' : 'http://seriestv.us', 'referer' : url, 'user-agent' : User_Agent}
                 link = requests.post(baseurl+'plugins/gkpluginsphp.php', data=form_data, headers=headers).text
                 try:
                         url = re.compile('link":"(.*?)"').findall(link)[-1].replace('\/','/')

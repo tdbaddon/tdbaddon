@@ -67,7 +67,9 @@ class source:
                 data = urlparse.parse_qs(url)
                 data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
 
-                title = data['title'] ; year = data['year']
+                title = data['title'] ; year = str(data['year'])
+                years = ['(%s)' % year, '( %s)' % year, '(%s )' % year, '( %s )' % year]
+
                 match = title.replace('-', '').replace(':', '').replace('\'', '39').replace(' ', '-').replace('--', '-').lower()
                 match = '/%s_' % match
 
@@ -89,6 +91,8 @@ class source:
 
                 url = cloudflare.source(url)
                 url = re.sub(r'[^\x00-\x7F]+', '', url)
+                atr = client.parseDOM(url, 'span', attrs = {'itemprop': 'title'})
+                atr = [i for i in atr if any(x in i for x in years)][0]
                 url = client.parseDOM(url, 'a', ret='href', attrs = {'class': '[^"]*btn_watch_detail[^"]*'})
                 url = urlparse.urljoin(self.base_link, url[0])
 
@@ -111,11 +115,12 @@ class source:
             result = [('%s?quality=1080P' % i[0], '1080p', i[2]) if '1080' in i[1] else ('%s?quality=720P' % i[0], 'HD', i[2]) for i in result]
 
             links = []
-            links += [(i[0], i[1], True, 'cdn') for i in result if i[2] in ['Global CDN 4', 'Russian CDN 6', 'Original CDN 2']]
             links += [(i[0], i[1], True, 'gvideo') for i in result if i[2] in ['Fast Location 1', 'Fast Location 2', 'Fast Location 4']]
+            links += [(i[0], i[1], True, 'cdn') for i in result if i[2] in ['Global CDN 4', 'Russian CDN 6']]
+            #links += [(i[0], i[1], True, 'cdn') for i in result if i[2] in ['Original CDN 2']]
             links += [(i[0], i[1], False, 'openload.co') for i in result if i[2] in ['Original CDN 1']]
 
-            for i in links: sources.append({'source': i[3], 'quality': i[1], 'provider': 'Watchmovies', 'url': i[0], 'direct': i[2], 'debridonly': False})
+            for i in links: sources.append({'source': i[3], 'quality': i[1], 'provider': 'Watch1080', 'url': i[0], 'direct': i[2], 'debridonly': False})
 
             return sources
         except:

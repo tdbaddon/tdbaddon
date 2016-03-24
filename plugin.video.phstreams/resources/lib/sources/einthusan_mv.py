@@ -53,7 +53,7 @@ class source:
             result = [urlparse.urljoin(self.base_link, self.movie_link % i) for i in result]
 
             title = cleantitle.get(title)
-            years = ['%s' % str(year), '%s' % str(int(year)+1), '%s' % str(int(year)-1)]
+            years = ['%s' % str(year)]
 
             url = None
 

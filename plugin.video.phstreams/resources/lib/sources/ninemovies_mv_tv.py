@@ -101,9 +101,11 @@ class source:
                 try: episode = data['episode']
                 except: pass
 
-                url = cache.get(self.fmovies_cache, 120)
+                r = cache.get(self.fmovies_cache, 120)
 
-                url = [i for i in url if i[2] == year] + [i for i in url if any(x in i[2] for x in years)]
+                url = [i for i in r if i[2] == year]
+                if 'tvshowtitle' in data: url += [i for i in r if any(x in i[2] for x in years)]
+
                 if 'season' in data and int(data['season']) > 1:
                     url = [(i[0], re.findall('(.+?) (\d*)$', i[1])) for i in url]
                     url = [(i[0], i[1][0][0], i[1][0][1]) for i in url if len(i[1]) > 0]

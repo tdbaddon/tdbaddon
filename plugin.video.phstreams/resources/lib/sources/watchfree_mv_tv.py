@@ -43,7 +43,7 @@ class source:
             result = client.parseDOM(result, 'div', attrs = {'class': 'item'})
 
             title = 'watch' + cleantitle.get(title)
-            years = ['(%s)' % str(year), '(%s)' % str(int(year)+1), '(%s)' % str(int(year)-1)]
+            years = ['(%s)' % str(year)]
 
             result = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', ret='title')) for i in result]
             result = [(i[0][0], i[1][0]) for i in result if len(i[0]) > 0 and len(i[1]) > 0]
@@ -83,7 +83,7 @@ class source:
             result = client.parseDOM(result, 'div', attrs = {'class': 'item'})
 
             tvshowtitle = 'watch' + cleantitle.get(tvshowtitle)
-            years = ['(%s)' % str(year), '(%s)' % str(int(year)+1), '(%s)' % str(int(year)-1)]
+            years = ['(%s)' % str(year)]
 
             result = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', ret='title')) for i in result]
             result = [(i[0][0], i[1][0]) for i in result if len(i[0]) > 0 and len(i[1]) > 0]

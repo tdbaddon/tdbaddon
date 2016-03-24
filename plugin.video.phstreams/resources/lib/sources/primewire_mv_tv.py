@@ -73,7 +73,7 @@ class source:
             try: result = [(urlparse.urlparse(i[0]).path, i[1]) for i in result]
             except: pass
 
-            match = [i[0] for i in result if title == cleantitle.get(i[1])]
+            match = [i[0] for i in result if title == cleantitle.get(i[1]) and '(%s)' % str(year) in i[1]]
 
             match2 = [i[0] for i in result]
             match2 = [x for y,x in enumerate(match2) if x not in match2[:y]]
@@ -118,7 +118,7 @@ class source:
             try: result = [(urlparse.urlparse(i[0]).path, i[1]) for i in result]
             except: pass
 
-            match = [i[0] for i in result if tvshowtitle == cleantitle.get(i[1])]
+            match = [i[0] for i in result if tvshowtitle == cleantitle.get(i[1]) and '(%s)' % str(year) in i[1]]
 
             match2 = [i[0] for i in result]
             match2 = [x for y,x in enumerate(match2) if x not in match2[:y]]

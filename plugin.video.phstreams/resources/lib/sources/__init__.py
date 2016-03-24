@@ -105,6 +105,9 @@ class sources:
 
             meta = json.loads(meta)
 
+            try: del meta['duration']
+            except: pass
+
             poster = meta['poster'] if 'poster' in meta else '0'
             banner = meta['banner'] if 'banner' in meta else '0'
             thumb = meta['thumb'] if 'thumb' in meta else poster
@@ -607,28 +610,58 @@ class sources:
                 provider = [i[0] for i in sourceDict if i[1] == False and i[0].startswith(provider + '_')][0]
 
             source = __import__(provider, globals(), locals(), [], -1).source()
-            url = source.resolve(url)
+            u = url = source.resolve(url)
 
             if url == None: raise Exception()
 
             if not d == '':
                 self.url = url = debrid.resolver(url, d)
-                if not url == None: return url
-                else: raise Exception()
+                if url == None: raise Exception()
+                ext = url.split('?')[0].split('&')[0].split('|')[0].rsplit('.')[-1].replace('/', '').lower()
+                if ext == 'rar': raise Exception()
+                return url
 
             elif not direct == True:
                 try:
-                    try: hmf = urlresolver.HostedMediaFile(url=u, include_disabled=True)
-                    except: hmf = urlresolver.HostedMediaFile(url=u)
+                    url = None
+
+                    hmf = urlresolver.HostedMediaFile(url=u, include_disabled=True, include_universal=False)
                     if hmf.valid_url() == True: url = hmf.resolve()
                     else: url = False
                 except:
-                    url = False
+                    pass
 
-            if url == False: raise Exception()
+                try:
+                    if not url == None: raise Exception()
 
-            try: headers = dict(urlparse.parse_qsl(url.rsplit('|', 1)[1]))
-            except: headers = dict('')
+                    hmf = urlresolver.HostedMediaFile(url=u, include_disabled=True)
+                    hmf = hmf.get_resolvers(validated=True)
+                    hmf = [i for i in hmf if not i.isUniversal()][0]
+                    host, media_id = hmf.get_host_and_id(u)
+                    url = hmf.get_media_url(host, media_id)
+                except:
+                    pass
+
+                try:
+                    if not url == None: raise Exception()
+
+                    hmf = urlresolver.plugnplay.man.implementors(urlresolver.UrlResolver)
+                    hmf = [i for i in hmf if not '*' in i.domains]
+                    hmf = [(i, i.get_host_and_id(u)) for i in hmf]
+                    hmf = [i for i in hmf if not i[1] == False]
+                    hmf = [(i[0], i[0].valid_url(u, i[1][0]), i[1][0], i[1][1]) for i in hmf]
+                    hmf = [i for i in hmf if not i[1] == False][0]
+                    url = hmf[0].get_media_url(hmf[2], hmf[3])
+                except:
+                    pass
+
+
+            if url == False or url == None: raise Exception()
+
+            try: headers = url.rsplit('|', 1)[1]
+            except: headers = ''
+            headers = urllib.quote_plus(headers).replace('%3D', '=') if ' ' in headers else headers
+            headers = dict(urlparse.parse_qsl(headers))
 
             if url.startswith('http') and '.m3u8' in url:
                 result = client.request(url.split('|')[0], headers=headers, output='geturl', timeout='20')
@@ -774,7 +807,7 @@ class sources:
 
         self.hostprDict = ['oboom.com', 'rapidgator.net', 'rg.to', 'uploaded.net', 'uploaded.to', 'ul.to', 'filefactory.com', 'nitroflare.com', 'turbobit.net']
 
-        self.hostcapDict = ['hugefiles.net', 'kingfiles.net', 'openload.io', 'openload.co']
+        self.hostcapDict = ['hugefiles.net', 'kingfiles.net']
 
         self.debridDict = debrid.debridDict()
 

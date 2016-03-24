@@ -1,2 +1,6 @@
+[B]3.0.1[/B]
+Updated scrapers
+Updated indexers
+
 [B]3.0.0[/B]
 Re-work of the addon

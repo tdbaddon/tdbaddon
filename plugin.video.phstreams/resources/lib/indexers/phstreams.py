@@ -165,8 +165,9 @@ class indexer:
 
         for item in items:
             try:
-                try: name = re.findall('<name>(.+?)</name>', item)[0]
-                except: name = re.findall('<title>(.+?)</title>', item)[0]
+                name = item.split('<meta>')[0].split('<regex>')[0]
+                try: name = re.findall('<title>(.+?)</title>', name)[0]
+                except: name = re.findall('<name>(.+?)</name>', name)[0]
                 if '<meta>' in name: raise Exception()
 
                 try: date = re.findall('<date>(.+?)</date>', item)[0]
@@ -714,11 +715,20 @@ class resolver:
         except:
             pass
 
+        try:
+            if not '.google.com' in url: raise Exception()
+            from resources.lib.modules import directstream
+            u = directstream.google(url)[0]['url']
+            try: dialog.close()
+            except: pass
+            return u
+        except:
+            pass
 
         try:
             import urlresolver
 
-            try: hmf = urlresolver.HostedMediaFile(url=url, include_disabled=True)
+            try: hmf = urlresolver.HostedMediaFile(url=url, include_disabled=True, include_universal=False)
             except: hmf = urlresolver.HostedMediaFile(url=url)
 
             if hmf.valid_url() == False: raise Exception()

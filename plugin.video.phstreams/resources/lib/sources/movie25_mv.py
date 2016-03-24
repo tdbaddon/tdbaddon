@@ -55,8 +55,7 @@ class source:
             result = self.request(query, 'movie_table')
             result = client.parseDOM(result, 'div', attrs = {'class': 'movie_table'})
 
-            title = cleantitle.get(title)
-            years = ['(%s)' % str(year), '(%s)' % str(int(year)+1), '(%s)' % str(int(year)-1)]
+            title = cleantitle.get(title) ; years = ['(%s)' % str(year)]
 
             result = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'img', ret='alt')) for i in result]
             result = [(i[0][0], i[1][0]) for i in result if len(i[0]) > 0 and len(i[1]) > 0]

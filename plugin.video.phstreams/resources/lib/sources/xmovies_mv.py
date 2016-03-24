@@ -44,7 +44,7 @@ class source:
             result = json.loads(result)['results']
 
             t = cleantitle.get(title)
-            years = ['(%s)' % str(year), '(%s)' % str(int(year)+1), '(%s)' % str(int(year)-1)]
+            years = ['(%s)' % str(year)]
 
             result = [(i['url'], i['titleNoFormatting']) for i in result]
             result = [(i[0], re.compile('(^Watch Full "|^Watch |^Xmovies8:|^xmovies8:|)(.+? [(]\d{4}[)])').findall(i[1])) for i in result]
@@ -65,7 +65,7 @@ class source:
             t = re.sub('\s\s+' , ' ', t)
             t = '/movie/' + t.replace(' ' , '-') + '-'
 
-            years = ['-%s' % str(year), '-%s' % str(int(year)+1), '-%s' % str(int(year)-1)]
+            years = ['-%s' % str(year)]
 
             query = base64.b64decode(self.search_link_2) % t
 

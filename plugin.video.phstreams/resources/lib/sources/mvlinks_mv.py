@@ -57,7 +57,7 @@ class source:
             data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
 
             title = data['title']
-            hdlr = ['%s' % str(data['year']), '%s' % str(int(data['year'])+1), '%s' % str(int(data['year'])-1)]
+            hdlr = ['%s' % str(data['year'])]
 
             query = re.sub('(\\\|/|:|;|\*|\?|"|\'|<|>|\|)', '', title)
             query = self.search_link % urllib.quote_plus(query)

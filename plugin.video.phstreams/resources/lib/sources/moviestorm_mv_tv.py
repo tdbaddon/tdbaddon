@@ -43,7 +43,7 @@ class source:
             result = json.loads(result)['results']
 
             title = cleantitle.get(title)
-            years = ['(%s)' % str(year), '(%s)' % str(int(year)+1), '(%s)' % str(int(year)-1)]
+            years = ['(%s)' % str(year)]
 
             result = [(i['url'], i['titleNoFormatting']) for i in result]
             result = [(i[0], re.compile('(^Watch Full "|^Watch |)(.+? [(]\d{4}[)])').findall(i[1])) for i in result]
