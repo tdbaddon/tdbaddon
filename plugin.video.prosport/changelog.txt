@@ -133,3 +133,6 @@ ver 0.38:
 
 ver 0.39:
 	- bugfixes
+	
+ver 0.40:
+	- fix nba

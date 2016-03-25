@@ -65,6 +65,8 @@ logos ={'nba':'http://bethub.org/wp-content/uploads/2015/09/NBA_Logo_.png',
 'mlb':'http://content.sportslogos.net/logos/4/490/full/1986.gif',
 'soccer':'http://images.clipartpanda.com/soccer-ball-clipart-soccer-ball-clip-art-4.png'}
 
+sd_streams = ['hdstream4u.com', 'stream24k.com', 'wizhdsports.com', 'antenasport.com', 'sportsnewsupdated.com', 'baltak.com', 'watchnba.tv', 'feedredsoccer.at.ua', 'jugandoes.com', 'wiz1.net', 'bosscast.net', 'watchsportstv.boards.net', 'tv-link.in', 'giostreams.eu', 'klivetv.co', 'videosport.me', 'livesoccerg.com', 'zunox.hk', 'serbiaplus.club', 'zona4vip.com', 'ciscoweb.ml', 'streamendous.com']
+
 def utc_to_local(utc_dt):
     timestamp = calendar.timegm(utc_dt.timetuple())
     local_dt = datetime.fromtimestamp(timestamp)
@@ -127,7 +129,8 @@ def Games(mode):
 	today = datetime.utcnow() - timedelta(hours=8)
 	today_from = str(today.strftime('%Y-%m-%d'))+'T00:00:00.000-05:00'
 	today_to = str(today.strftime('%Y-%m-%d'))+'T23:59:00.000-05:00'
-	js = GetJSON('http://www.sbnation.com/sbn_scoreboard/ajax_leagues_and_events?ranges['+mode+'][from]='+today_from+'&ranges['+mode+'][until]='+today_to)
+	url = 'http://www.sbnation.com/sbn_scoreboard/ajax_leagues_and_events?ranges['+mode+'][from]='+today_from+'&ranges['+mode+'][until]='+today_to+'&_='+today.strftime("%s")
+	js = GetJSON(url)
 	js = js['leagues'][mode]
 	if js:	
 		if mode == 'nfl':
@@ -444,7 +447,7 @@ def DisplayLinks(links, orig_title):
 			addLink('M3U8 stream', orig_title, url, mode="play")
 			urls.append(url)
 		if show_sd=='true':
-			if url not in urls and 'stream24k.com' in url or 'wizhdsports.com' in url or 'sportsnewsupdated.com' in url or 'watchnba.tv' in url or 'feedredsoccer.at.ua' in url or 'jugandoes.com' in url or 'wiz1.net' in url or 'bosscast.net' in url or 'watchsportstv.boards.net' in url or 'tv-link.in' in url or 'giostreams.eu' in url or 'klivetv.co' in url or 'videosport.me' in url or 'livesoccerg.com' in url or 'zunox.hk' in url or ('serbiaplus.club' in url and 'ace' not in url) or 'zona4vip.com' in url or 'ciscoweb.ml' in url or 'streamendous.com' in url:
+			if url not in urls and 'ace' not in url and any(el in url for el in sd_streams):
 				title = '(SD) '
 				try:
 					title = title+urlparse.urlparse(url).netloc
@@ -459,7 +462,7 @@ def ParseLink(el, orig_title):
 	if 'caststreams' in el:
 		url = Caststreams(orig_title)
 		return url
-	elif 'stream24k.com' in el or 'wizhdsports.com' in el or 'antenasport.com' in el or 'sportsnewsupdated.com' in el or 'baltak.com' in el or 'watchnba.tv' in el or 'feedredsoccer.at.ua' in el or 'jugandoes.com' in el or 'wiz1.net' in el or 'bosscast.net' in el or 'watchsportstv.boards.net' in el or 'tv-link.in' in el or 'giostreams.eu' in el or 'klivetv.co' in el or 'videosport.me' in el or 'livesoccerg.com' in el or 'zunox.hk' in el or 'serbiaplus.club' in el or 'zona4vip.com' in el or 'ciscoweb.ml' in el or 'streamendous.com' in el:
+	elif any(e in el for e in sd_streams):
 		url = Universal(el)
 		return url
 	elif 'blabseal.com' in el:
@@ -1184,6 +1187,10 @@ def Universal(url):
 	if 'lshstream' in url:
 		link = lshstream(url)
 		return link
+	if 'hdcast.org' in url:
+		id = url.split('u=')[-1].split('&')[0]
+		link = hdcast(id)
+		return link
 	if 'm3u8' in url:
 		return url
 	html = GetURL(url, referer=url)
@@ -1210,7 +1217,7 @@ def Universal(url):
 		id = id.replace('"','')
 		link = streamking(id)
 		return link
-	elif html and 'hdcast.org' in html:
+	elif html and 'hdcast.org' in html and 'fid=' in html:
 		id = html.split('fid="')[-1]
 		id = id.split('";')[0]
 		link = hdcast(id)
@@ -1388,18 +1395,17 @@ def streamking(url):
 def hdcast(id):
 	try:
 		page = 'http://www.hdcast.org/embedlive2.php?u=%s&vw=640&vh=400&domain=www.nhlstream.net' % id
-		request = urllib2.Request(url)
+		request = urllib2.Request(page)
 		request.add_header('Referer', 'http://www.nhlstream.net')
+		request.add_header('User-Agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36')
 		response = urllib2.urlopen(request, timeout=5)
 		result = response.read()
-		#result = GetURL(page, referer='http://www.nhlstream.net/')
 		streamer = re.compile('file\s*:\s*\'(.+?)\'').findall(result)[0]
 		token = 'SECURET0KEN#yw%.?()@W!'
 		url = '%s swfUrl=http://player.hdcast.org/jws/jwplayer.flash.swf pageUrl=%s token=%s swfVfy=1 live=1 timeout=15' % (streamer, page, token)
 		return url
 	except:
 		return None
-
 
 def lshstream(url):
 	try:
