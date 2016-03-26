@@ -28,6 +28,9 @@
 #EXTINF:0,BRAZZERS TV 
 http://4BA9EBDB07C05883:@5.159.96.170:8000/brazzers
 
+#EXTINF:0,BRAZZERS TV 
+http://server6.balkantvmedia.com:8080/XXX1?u=user1610:p=ibccL97n
+
 #EXTINF:0,BUNGA BUNGA 
 0
 
@@ -44,7 +47,7 @@ http://balkanstream.com/stream/XXX3/amy/amy
 0
 
 #EXTINF:0,DORCEL TV 
-0
+http://server5.balkantvmedia.com:8080/XXX3?u=user1610:p=ibccL97n
 
 #EXTINF:0,DREAMGIRLS NETWORK
 0
@@ -78,6 +81,9 @@ http://balkanstream.com/stream/XXX4/amy/amy
 
 #EXTINF:0,HUSTLER TV 
 http://balkanstream.com/stream/XXX8/amy/amy
+
+#EXTINF:0,HUSTLER TV 
+http://server5.balkantvmedia.com:8080/XXX2?u=user1610:p=ibccL97n
 
 #EXTINF:0,ILIVE 1
 0
@@ -142,6 +148,9 @@ rtmp://edge1.everyon.tv/etv1sb/pld10497
 #EXTINF:0,PLAYBOY TV 
 rtmp://edge1.everyon.tv/etv1sb/phd10497
 
+#EXTINF:0,PLAYBOY TV 
+http://5.152.199.130/iptv/2A58VZ6Q2V/527/index.m3u8
+
 #EXTINF:0,PLATINUM TV 
 0
 
@@ -158,7 +167,7 @@ http://balkanstream.com/stream/XXX9/amy/amy
 0
 
 #EXTINF:0,RUSSIAN NIGHT 
-0
+http://5.152.199.130/iptv/2A58VZ6Q2V/147/index.m3u8
 
 #EXTINF:0,RUSSIAN NIGHT CLUB TV 
 0

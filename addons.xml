@@ -951,7 +951,7 @@ http://kodilive.eu</description>
 
 <addon id="plugin.video.TDBPORNO"
        name="TDB PORNO"
-       version="1.94"
+       version="1.95"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
