@@ -13,6 +13,9 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 #EXTINF:0,Cinemax 
 http://77.76.140.251/prgb.m3u8
 
+#EXTINF:0,Cinemax 
+http://server5.balkantvmedia.com:8080/CINEMAX?u=user1610:p=ibccL97n
+
 #EXTINF:0,Cinemax 5 StarMax
 0
 
@@ -29,7 +32,7 @@ http://77.76.140.251/prgb.m3u8
 0
 
 #EXTINF:0,CineStar Premiere 2
-0
+http://server2.balkantvmedia.com:8080/CINESTAR_Premiere_2?u=user1610:p=ibccL97n
 
 #EXTINF:0,CineStar TV 
 0
@@ -116,7 +119,7 @@ http://77.76.140.251/prgb.m3u8
 http://xmiolive.e14538a7.viettel-cdn.vn/hbo.smil/chunklist_b1000000.m3u8
 
 #EXTINF:0,HBO Adria 
-0
+http://server4.balkantvmedia.com:8080/HBO_ADRIA?u=user1610:p=ibccL97n
 
 #EXTINF:0,HBO Comedy 
 0
@@ -125,7 +128,7 @@ http://xmiolive.e14538a7.viettel-cdn.vn/hbo.smil/chunklist_b1000000.m3u8
 0
 
 #EXTINF:0,HBO East 2
-0
+http://server4.balkantvmedia.com:8080/HBO_COMEDY?u=user1610:p=ibccL97n
 
 #EXTINF:0,HBO Family
 0

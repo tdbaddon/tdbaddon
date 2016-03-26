@@ -23,13 +23,13 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 0
 
 #EXTINF:0,BabyTV 
-0
+http://server3.balkantvmedia.com:8080/Baby_TV?u=user1610:p=ibccL97n
 
 #EXTINF:0,BBC 1 
 http://play.uktvnow.net:1935/live/bbc1.stream/playlist.m3u8?wowzasessionid=727529593&wmsAuthSign=c2VydmVyX3RpbWU9My8yMS8yMDE2IDk6MjM6NTAgUE0maGFzaF92YWx1ZT1DTFpURUxhZnNkRzV6M2w3OXoyYVhBPT0mdmFsaWRtaW51dGVzPTIw
 
 #EXTINF:0,BBC 2 
-0
+http://212.231.144.15:9002/play/a008
 
 #EXTINF:0,BBC Entertainment 
 0
@@ -148,7 +148,7 @@ http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/index_350_av-p.m3u8?
 0
 
 #EXTINF:0,Fashion TV 
-0
+http://server2.balkantvmedia.com:8080/FASHION_TV?u=user1610:p=ibccL97n
 
 #EXTINF:0,Fine Living Network 
 0
@@ -167,6 +167,9 @@ http://llnw.live.simplestream.com/coder2/coder.channels.channel2/hls/3/playlist.
 
 #EXTINF:0,Fox Life 
 http://balkanstream.com/stream/foxlife/amy/amy
+
+#EXTINF:0,Fox Life 
+http://server4.balkantvmedia.com:8080/FOX_life?u=user1610:p=ibccL97n
 
 #EXTINF:0,Fox TV 
 0
@@ -226,16 +229,16 @@ rtmp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:468p500kB31?b?b*t$
 http://ios.streamserver01.com:8080/ShowcaseTV/mystream.m3u8
 
 #EXTINF:0,ITV 1 
-0
+http://212.231.144.15:9001/play/a002
 
 #EXTINF:0,ITV 2 
-0
+http://212.231.144.15:9001/play/a003
 
 #EXTINF:0,ITV 3 
 0
 
 #EXTINF:0,ITV 4 
-0
+http://212.231.144.15:9001/play/a004
 
 #EXTINF:0,Jim Jam 
 http://77.120.118.235:8089
@@ -340,7 +343,7 @@ http://llnw.live.qvc.simplestream.com/hera/remote/qvcuk_primary_sdi8/3/prog_inde
 0
 
 #EXTINF:0,TLC 
-0
+http://212.231.144.15:9100/play/a00r
 
 #EXTINF:0,TNT 
 0
