@@ -54,9 +54,11 @@ class source:
             result = self.request(self.key_link, 'searchform')
 
             query = client.parseDOM(result, 'input', ret='value', attrs = {'name': 'key'})[0]
-            query = self.moviesearch_link % (urllib.quote_plus(re.sub('\'', '', title)), query)
+            query = self.moviesearch_link % (urllib.quote_plus(cleantitle.query(title)), query)
 
-            result = self.request(query, 'index_item')
+            result = str(self.request(query, 'index_item'))
+            if 'page=2' in result or 'page%3D2' in result: result += str(self.request(query + '&page=2', 'index_item'))
+
             result = client.parseDOM(result, 'div', attrs = {'class': 'index_item.+?'})
 
             title = 'watch' + cleantitle.get(title)
@@ -99,9 +101,11 @@ class source:
             result = self.request(self.key_link, 'searchform')
 
             query = client.parseDOM(result, 'input', ret='value', attrs = {'name': 'key'})[0]
-            query = self.tvsearch_link % (urllib.quote_plus(re.sub('\'', '', tvshowtitle)), query)
+            query = self.tvsearch_link % (urllib.quote_plus(cleantitle.query(tvshowtitle)), query)
 
-            result = self.request(query, 'index_item')
+            result = str(self.request(query, 'index_item'))
+            if 'page=2' in result or 'page%3D2' in result: result += str(self.request(query + '&page=2', 'index_item'))
+
             result = client.parseDOM(result, 'div', attrs = {'class': 'index_item.+?'})
 
             tvshowtitle = 'watch' + cleantitle.get(tvshowtitle)

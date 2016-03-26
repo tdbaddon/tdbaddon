@@ -87,6 +87,7 @@ class tvshows:
         #self.person_link = 'http://api.themoviedb.org/3/person/%s?api_key=%s&append_to_response=tv_credits'
         #self.genre_link = 'http://api.themoviedb.org/3/discover/tv?api_key=%s&with_genres=%s&air_date.gte=%s&air_date.lte=%s&page=1' % ('%s', '%s', self.year_date, self.today_date)
         #self.network_link = 'http://api.themoviedb.org/3/discover/tv?api_key=%s&with_networks=%s&air_date.gte=%s&air_date.lte=%s&page=1' % ('%s', '%s', self.year_date, self.today_date)
+        #self.network_link = 'http://www.imdb.com/search/title?title_type=tv_series,mini_series&release_date=,%S&company=%s&sort=moviemeter,asc&count=40&start=1' % (self.today_date, %s)
         self.trending_link = 'http://api-v2launch.trakt.tv/shows/trending?limit=20&page=1'
 
         self.search_link = 'http://api-v2launch.trakt.tv/search?type=show&query=%s'

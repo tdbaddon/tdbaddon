@@ -485,6 +485,11 @@ class sources:
             call = [i[1] for i in sourceDict if i[0] == domains[0]][0]
 
             self.sources = call.sources(url, self.hostDict, self.hostprDict)
+
+            for i in range(len(self.sources)):
+                try: self.sources[i]['autoplay'] = True
+                except: pass
+
             self.sources = self.sourcesFilter()
             return self.sources
         except:
@@ -623,28 +628,11 @@ class sources:
 
             elif not direct == True:
                 try:
-                    url = None
-
                     hmf = urlresolver.HostedMediaFile(url=u, include_disabled=True, include_universal=False)
                     if hmf.valid_url() == True: url = hmf.resolve()
-                    else: url = False
                 except:
                     pass
-
                 try:
-                    if not url == None: raise Exception()
-
-                    hmf = urlresolver.HostedMediaFile(url=u, include_disabled=True)
-                    hmf = hmf.get_resolvers(validated=True)
-                    hmf = [i for i in hmf if not i.isUniversal()][0]
-                    host, media_id = hmf.get_host_and_id(u)
-                    url = hmf.get_media_url(host, media_id)
-                except:
-                    pass
-
-                try:
-                    if not url == None: raise Exception()
-
                     hmf = urlresolver.plugnplay.man.implementors(urlresolver.UrlResolver)
                     hmf = [i for i in hmf if not '*' in i.domains]
                     hmf = [(i, i.get_host_and_id(u)) for i in hmf]
@@ -655,13 +643,13 @@ class sources:
                 except:
                     pass
 
-
             if url == False or url == None: raise Exception()
 
             try: headers = url.rsplit('|', 1)[1]
             except: headers = ''
             headers = urllib.quote_plus(headers).replace('%3D', '=') if ' ' in headers else headers
             headers = dict(urlparse.parse_qsl(headers))
+
 
             if url.startswith('http') and '.m3u8' in url:
                 result = client.request(url.split('|')[0], headers=headers, output='geturl', timeout='20')

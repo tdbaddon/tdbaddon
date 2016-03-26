@@ -35,15 +35,16 @@ class source:
 
     def movie(self, imdb, title, year):
         try:
-            query = self.moviesearch_link % urllib.quote_plus(re.sub('\'', '', title))
+            query = self.moviesearch_link % urllib.quote_plus(cleantitle.query(title))
             query = urlparse.urljoin(self.base_link, query)
 
-            result = client.source(query)
-            result = result.decode('iso-8859-1').encode('utf-8')
+            result = str(client.source(query)).decode('iso-8859-1').encode('utf-8')
+            if 'page=2' in result: result += str(client.source(query + '&page=2')).decode('iso-8859-1').encode('utf-8')
+
             result = client.parseDOM(result, 'div', attrs = {'class': 'item'})
 
             title = 'watch' + cleantitle.get(title)
-            years = ['(%s)' % str(year)]
+            years = ['(%s)' % str(year), '(%s)' % str(int(year)+1), '(%s)' % str(int(year)-1)]
 
             result = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', ret='title')) for i in result]
             result = [(i[0][0], i[1][0]) for i in result if len(i[0]) > 0 and len(i[1]) > 0]
@@ -52,7 +53,7 @@ class source:
             try: result = [(urlparse.urlparse(i[0]).path, i[1]) for i in result]
             except: pass
 
-            match = [i[0] for i in result if title == cleantitle.get(i[1])]
+            match = [i[0] for i in result if title == cleantitle.get(i[1]) and '(%s)' % str(year) in i[1]]
 
             match2 = [i[0] for i in result]
             match2 = [x for y,x in enumerate(match2) if x not in match2[:y]]
@@ -75,15 +76,16 @@ class source:
 
     def tvshow(self, imdb, tvdb, tvshowtitle, year):
         try:
-            query = self.tvsearch_link % urllib.quote_plus(re.sub('\'', '', tvshowtitle))
+            query = self.tvsearch_link % urllib.quote_plus(cleantitle.query(tvshowtitle))
             query = urlparse.urljoin(self.base_link, query)
 
-            result = client.source(query)
-            result = result.decode('iso-8859-1').encode('utf-8')
+            result = str(client.source(query)).decode('iso-8859-1').encode('utf-8')
+            if 'page=2' in result: result += str(client.source(query + '&page=2')).decode('iso-8859-1').encode('utf-8')
+
             result = client.parseDOM(result, 'div', attrs = {'class': 'item'})
 
             tvshowtitle = 'watch' + cleantitle.get(tvshowtitle)
-            years = ['(%s)' % str(year)]
+            years = ['(%s)' % str(year), '(%s)' % str(int(year)+1), '(%s)' % str(int(year)-1)]
 
             result = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', ret='title')) for i in result]
             result = [(i[0][0], i[1][0]) for i in result if len(i[0]) > 0 and len(i[1]) > 0]
@@ -92,7 +94,7 @@ class source:
             try: result = [(urlparse.urlparse(i[0]).path, i[1]) for i in result]
             except: pass
 
-            match = [i[0] for i in result if tvshowtitle == cleantitle.get(i[1])]
+            match = [i[0] for i in result if tvshowtitle == cleantitle.get(i[1]) and '(%s)' % str(year) in i[1]]
 
             match2 = [i[0] for i in result]
             match2 = [x for y,x in enumerate(match2) if x not in match2[:y]]

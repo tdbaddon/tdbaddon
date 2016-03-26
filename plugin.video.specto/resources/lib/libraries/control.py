@@ -24,7 +24,7 @@ import base64, jsunpack
 
 tmdb_key = jsunpack.jsunpack_keys()
 tvdb_key = base64.urlsafe_b64decode('MUQ2MkYyRjkwMDMwQzQ0NA==')
-fanarttv_key = base64.urlsafe_b64decode('Y2QyYzI4MzhjNTQ0MTcxZWU1OGUyYjg3NTBjZjJmZmQ=')
+fanarttv_key = base64.urlsafe_b64decode('YTc4YzhmZWRjN2U3NTE1MjRkMzkyNmNhMmQyOTU3OTg=')
 
 scriptID = 'plugin.video.specto'
 ptv = xbmcaddon.Addon(scriptID)

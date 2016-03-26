@@ -986,7 +986,8 @@ class movies:
 
             item = client.request(url, timeout='10')
             item = json.loads(item)
-            #control.log("##################><><><><> META TITLE  %s" % item['Title'])
+            control.log("##################><><><><> META TITLE  %s" % item['Title'])
+            control.log("##################><><><><> META ALL %s" % item)
 
             imdb = item['imdbID']
             if imdb == '' or imdb == None: imdb = '0'

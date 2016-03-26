@@ -1,0 +1,25 @@
+[B]Version 0.1.7[/B]
+- updated description
+- added forum and website links to addon.xml
+
+[B]Version 0.1.6[/B]
+- added code for force token/stream service to return fresh data
+
+[B]Version 0.1.5[/B]
+- renamed some files/functions
+- updated token/streams service
+
+[B]Version 0.1.4[/B]
+- updates to token/passkey creation
+
+[B]Version 0.1.3[/B]
+- updated fanart
+
+[B]Version 0.1.2[/B]
+- fixed bug with name/id change
+
+[B]Version 0.1.1[/B]
+- tweaked addon description
+
+[B]Version 0.1.0[/B]
+- Initial version

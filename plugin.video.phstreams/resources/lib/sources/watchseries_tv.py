@@ -53,7 +53,7 @@ class source:
 
     def tvshow(self, imdb, tvdb, tvshowtitle, year):
         try:
-            query = base64.b64decode(self.search_link) % urllib.quote_plus(tvshowtitle)
+            query = base64.b64decode(self.search_link) % urllib.quote_plus(cleantitle.query(tvshowtitle))
 
             result = self.request(query)
 
@@ -63,6 +63,7 @@ class source:
             result = [i for i in result if any(x in str(i['year']) for x in years)]
 
             match = [i['href'] for i in result if tvshowtitle == cleantitle.get(i['name'])]
+            match = [i['href'] for i in result if tvshowtitle == cleantitle.get(i['name']) and str(year) == str(i['year'])]
 
             match2 = [i['href'] for i in result]
             match2 = [x for y,x in enumerate(match2) if x not in match2[:y]]

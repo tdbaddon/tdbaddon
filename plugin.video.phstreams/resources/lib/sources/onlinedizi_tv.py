@@ -118,9 +118,8 @@ class source:
             elif 'vk.com' in url: host = 'vk' ; direct = True ; url = directstream.vk(url)
             else: raise Exception()
 
-            for i in url: sources.append({'source': host, 'quality': i['quality'], 'provider': 'Onlinedizi', 'url': i['url'], 'direct': True, 'debridonly': False})
+            for i in url: sources.append({'source': host, 'quality': i['quality'], 'provider': 'Onlinedizi', 'url': i['url'], 'direct': direct, 'debridonly': False})
 
-            print sources
             return sources
         except:
             return sources
