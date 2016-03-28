@@ -1,0 +1,30 @@
+﻿<settings>
+  <category label="General">
+    <setting id="parentalblockedpin" label="Pin Controlo Parental" type="text"  option="hidden"  default="1234"/>
+    <setting id="parentalblocked" label="Ativar Controlo Parental" type="bool" default="true" enable="true"/>
+    <setting id="premiumpin" label="Pin Premium" type="text"  option="hidden"  default=""/>
+	
+	
+    <setting id="save_location" type="folder"  label="Localiazação do download." default=""/>
+    <setting id="use_thumb" type="bool" label="Usar os Thumbnails como Fanart" default="false" />
+    <setting id="logo-folderPath" type="folder"  label="Seleciconar pasta dos logos." default=""/>
+    <setting id="add_playlist" type="bool" label="Adicionar items com multiplos links como play lists" default="false"/>
+    <setting id="ask_playlist_items" type="bool" label="Fazer os items playlist escolher de caixa de dialogo" default="false" />
+    <setting id="debug" type="bool" label="Enable Add-on Debugging" default="false"/>
+    <setting id="1080pquality" label="Play 1080p video ON demand if available (Not live)" type="bool" default=""/>
+    <setting id="genesisorpulsar" type="enum" values="Genesis|Pulsar" label="Play IMDBid with:" default="Genesis"/>
+    <setting id="donotshowbychannels" label="Não mostrar os items por baixo do nome" type="bool" default="false"/>
+    
+    
+    
+  </category>
+  
+  <category label=".xml Database">
+    <setting id="browse_xml_database" type="bool" label="Browse and play from .xml Database" default="false"/>
+    <setting type="action" label="Add .xml Database Sources" option="close" action="Container.Update(plugin://plugin.video.pancas/?mode=14)" />
+  </category>
+  <category label="Community Files">
+    <setting id="browse_community" type="bool" label="Browse and play from Community Files" default="false"/>
+    <setting type="action" label="Add Community File URL as Source" option="close" action="Container.Update(plugin://plugin.video.pancas/?mode=10)" />
+  </category>
+</settings>
