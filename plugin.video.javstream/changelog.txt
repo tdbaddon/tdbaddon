@@ -1,15 +1,37 @@
 -----------------------------------
-JAVStream v0.72.9 (25 Januaey 2016)
+JAVStream v0.8.5(7th March 2016)
 -----------------------------------
 
-- VideoMega and OpenLoad updates.. Thanks mortael
+- Fixed another naming issue which stopped some films getting found
+- Fixed issues with OpenLoad and VideoWood playback
 
 -----------------------------------
-JAVStream v0.72.8 (25 October 2015)
+JAVStream v0.8.4(2st March 2016)
 -----------------------------------
 
-- Removed translation so menus load in correctly (to view Japanese font enable Arial font within Appearance settings of Kodi)
-- Tweaked videosource streaming playback for VideoWood and OpenLoad
+- Fixed naming issue which stopped some films getting found
+- Added JavEU and Yebbun90 to sites searched
+
+-----------------------------------
+JAVStream v0.8.3(1st March 2016)
+-----------------------------------
+
+- Fixed OpenLoad, VideMega and flashx playback issues
+
+-----------------------------------
+JAVStream v0.8 (15th February 2016)
+-----------------------------------
+
+- Rewrote core functionality
+- Rewrote to work with BeautifulSoup
+- Rewrote translation to use Bing and not Google Translate
+- Added menu icons
+- Added settings screen
+- Using JavPOP as indexer
+- Added new sources: sexloadng, ivhunter, javhdonline, watchjavonline, javlinks, dodova, hentaidream, jav69, streamingjav, phimsexjav, javwest, dinojav, top1porn, jav-stream, javseen, ikujav, javst, javlabels, terlarang, jav4k, javhub, javonlines
+- Added Captcha functionality
+- Added OpenLoad error checking
+- Added alternative video loading for OpenLoad if API fails
 
 -----------------------------------
 JAVStream v0.72.6 (25 September 2015)

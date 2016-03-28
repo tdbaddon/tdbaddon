@@ -10,6 +10,9 @@ http://64.228.62.144:2046
 #EXTINF:0,AMHQ 
 0
 
+#EXTINF:0,Animal Atlas
+0
+
 #EXTINF:0,Animal Planet 
 http://109.226.222.161:4022/udp/239.255.4.175:1234
 
@@ -93,6 +96,9 @@ http://link.theplatform.com/s/dtjsEC/chjdYJxKb44V?manifest=m3u&feed=History%20Li
 
 #EXTINF:0,History Channel 
 https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8
+
+#EXTINF:0,History Channel 
+http://link.theplatform.com/s/dtjsEC/chjdYJxKb44V?manifest=m3u
 
 #EXTINF:0,History Channel 2 
 0

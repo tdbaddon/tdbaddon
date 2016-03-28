@@ -30,7 +30,7 @@ __scriptname__ = "Ultimate Whitecream"
 __author__ = "mortael"
 __scriptid__ = "plugin.video.uwc"
 __credits__ = "mortael, Fr33m1nd, anton40"
-__version__ = "1.0.95"
+__version__ = "1.0.99"
 
 USER_AGENT = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3'
 
@@ -185,7 +185,11 @@ def playvideo(videosource, name, download=None, url=None):
     if re.search('mega3x\.net/', videosource, re.DOTALL | re.IGNORECASE):
         hosts.append('Mega3X')
     if re.search('streamcloud\.eu/', videosource, re.DOTALL | re.IGNORECASE):
-        hosts.append('StreamCloud')         
+        hosts.append('StreamCloud')
+    if re.search('jetload\.tv/', videosource, re.DOTALL | re.IGNORECASE):
+        hosts.append('Jetload')
+    if re.search('videowood\.tv/', videosource, re.DOTALL | re.IGNORECASE):
+        hosts.append('Videowood')
     if len(hosts) == 0:
         progress.close()
         notify('Oh oh','Couldn\'t find any video')
@@ -216,15 +220,7 @@ def playvideo(videosource, name, download=None, url=None):
             if not hashkey:
                 notify('Oh oh','Couldn\'t find playable videomega link')
                 return
-            if len(hashkey) > 1:
-                i = 1
-                hashlist = []
-                for x in hashkey:
-                    hashlist.append('Video ' + str(i))
-                    i += 1
-                vmvideo = dialog.select('Multiple videos found', hashlist)
-                hashkey = hashkey[vmvideo]
-            else: hashkey = hashkey[0]
+            hashkey = chkmultivids(hashkey)
             hashpage = getHtml('http://videomega.tv/validatehash.php?hashkey='+hashkey, url)
             hashref = re.compile('ref="([^"]+)', re.DOTALL | re.IGNORECASE).findall(hashpage)
         progress.update( 80, "", "Getting video file from Videomega", "" )
@@ -238,16 +234,7 @@ def playvideo(videosource, name, download=None, url=None):
     elif vidhost == 'OpenLoad':
         progress.update( 40, "", "Loading Openload", "" )
         openloadurl = re.compile(r"//(?:www\.)?openload\.(?:co|io)?/(?:embed|f)/([0-9a-zA-Z-_]+)", re.DOTALL | re.IGNORECASE).findall(videosource)
-        openloadlist = list(set(openloadurl))
-        if len(openloadlist) > 1:
-            i = 1
-            hashlist = []
-            for x in openloadlist:
-                hashlist.append('Video ' + str(i))
-                i += 1
-            olvideo = dialog.select('Multiple videos found', hashlist)
-            openloadurl = openloadlist[olvideo]
-        else: openloadurl = openloadurl[0]
+        openloadurl = chkmultivids(openloadurl)
         
         openloadurl1 = 'http://openload.co/embed/%s/' % openloadurl
 
@@ -261,7 +248,8 @@ def playvideo(videosource, name, download=None, url=None):
     elif vidhost == 'Streamin':
         progress.update( 40, "", "Loading Streamin", "" )
         streaminurl = re.compile(r"//(?:www\.)?streamin\.to/(?:embed-)?([0-9a-zA-Z]+)", re.DOTALL | re.IGNORECASE).findall(videosource)
-        streaminurl = 'http://streamin.to/embed-%s-670x400.html' % streaminurl[0]
+        streaminurl = chkmultivids(streaminurl)
+        streaminurl = 'http://streamin.to/embed-%s-670x400.html' % streaminurl
         streaminsrc = getHtml2(streaminurl)
         videohash = re.compile('\?h=([^"]+)', re.DOTALL | re.IGNORECASE).findall(streaminsrc)
         videourl = re.compile('image: "(http://[^/]+/)', re.DOTALL | re.IGNORECASE).findall(streaminsrc)
@@ -270,16 +258,7 @@ def playvideo(videosource, name, download=None, url=None):
     elif vidhost == 'FlashX':
         progress.update( 40, "", "Loading FlashX", "" )
         flashxurl = re.compile(r"//(?:www\.)?flashx\.tv/(?:embed-)?([0-9a-zA-Z]+)", re.DOTALL | re.IGNORECASE).findall(videosource)
-        flashxlist = list(set(flashxurl))
-        if len(flashxlist) > 1:
-            i = 1
-            hashlist = []
-            for x in flashxlist:
-                hashlist.append('Video ' + str(i))
-                i += 1
-            fxvideo = dialog.select('Multiple videos found', hashlist)
-            flashxurl = flashxlist[fxvideo]
-        else: flashxurl = flashxurl[0]        
+        flashxurl = chkmultivids(flashxurl)       
         flashxurl = 'http://flashx.tv/embed-%s-670x400.html' % flashxurl
         flashxsrc = getHtml2(flashxurl)
         progress.update( 60, "", "Grabbing video file", "" )
@@ -295,7 +274,8 @@ def playvideo(videosource, name, download=None, url=None):
     elif vidhost == 'Mega3X':
         progress.update( 40, "", "Loading Mega3X", "" )
         mega3xurl = re.compile('src="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(videosource)
-        mega3xsrc = getHtml(mega3xurl[0],'', openloadhdr)
+        mega3xurl = chkmultivids(mega3xurl)
+        mega3xsrc = getHtml(mega3xurl,'', openloadhdr)
         mega3xjs = re.compile("<script[^>]+>(eval[^<]+)</sc", re.DOTALL | re.IGNORECASE).findall(mega3xsrc)
         progress.update( 80, "", "Getting video file from Mega3X", "" )
         mega3xujs = unpack(mega3xjs[0])
@@ -304,16 +284,7 @@ def playvideo(videosource, name, download=None, url=None):
     elif vidhost == 'StreamCloud':
         progress.update( 40, "", "Opening Streamcloud", "" )
         streamcloudurl = re.compile(r"//(?:www\.)?streamcloud\.eu?/([0-9a-zA-Z-_/.]+html)", re.DOTALL | re.IGNORECASE).findall(videosource)
-        streamcloudlist = list(set(streamcloudurl))
-        if len(streamcloudlist) > 1:
-            i = 1
-            hashlist = []
-            for x in streamcloudlist:
-                hashlist.append('Video ' + str(i))
-                i += 1
-            scvideo = dialog.select('Multiple videos found', hashlist)
-            streamcloudurl = streamcloudlist[scvideo]
-        else: streamcloudurl = streamcloudurl[0]         
+        streamcloudurl = chkmultivids(streamcloudurl)        
         streamcloudurl = "http://streamcloud.eu/" + streamcloudurl
         progress.update( 50, "", "Getting Streamcloud page", "" )
         schtml = postHtml(streamcloudurl)
@@ -323,7 +294,26 @@ def playvideo(videosource, name, download=None, url=None):
             form_values[name] = value.replace("download1","download2")
         progress.update( 60, "", "Grabbing video file", "" )    
         newscpage = postHtml(streamcloudurl, form_data=form_values)
-        videourl = re.compile('file: "(.+?)",', re.DOTALL | re.IGNORECASE).findall(newscpage)[0]  
+        videourl = re.compile('file: "(.+?)",', re.DOTALL | re.IGNORECASE).findall(newscpage)[0]
+    elif vidhost == 'Jetload':
+        progress.update( 40, "", "Loading Jetload", "" )
+        jlurl = re.compile(r'jetload\.tv/([^"]+)', re.DOTALL | re.IGNORECASE).findall(videosource)
+        jlurl = chkmultivids(jlurl)
+        jlurl = "http://jetload.tv/" + jlurl
+        jlsrc = getHtml(jlurl, url)
+        videourl = re.compile(r'file:\s?"([^"]+)', re.DOTALL | re.IGNORECASE).findall(jlsrc)
+        videourl = videourl[0]
+    elif vidhost == 'Videowood':
+        progress.update( 40, "", "Loading Videowood", "" )
+        vwurl = re.compile(r"//(?:www\.)?videowood\.tv/(?:embed|video)/([0-9a-zA-Z]+)", re.DOTALL | re.IGNORECASE).findall(videosource)
+        vwurl = chkmultivids(vwurl)
+        vwurl = 'http://www.videowood.tv/embed/' + vwurl
+        vwsrc = getHtml(vwurl, url)
+        vwjs = re.compile(r"(eval.*?\))\s+</sc", re.DOTALL | re.IGNORECASE).findall(vwsrc)[0]
+        progress.update( 80, "", "Getting video file from Videowood", "" )
+        vwujs = unpack(vwjs)
+        videourl = re.compile(r'file":\s?"([^"]+video\\[^"]+)', re.DOTALL | re.IGNORECASE).findall(vwujs)[0]
+        videourl = videourl.replace("\\","")
     progress.close()
     playvid(videourl, name, download)
 
@@ -336,6 +326,20 @@ def playvid(videourl, name, download=None):
         listitem = xbmcgui.ListItem(name, iconImage="DefaultVideo.png", thumbnailImage=iconimage)
         listitem.setInfo('video', {'Title': name, 'Genre': 'Porn'})
         xbmc.Player().play(videourl, listitem)
+
+
+def chkmultivids(videomatch):
+    videolist = list(set(videomatch))
+    if len(videolist) > 1:
+        i = 1
+        hashlist = []
+        for x in videolist:
+            hashlist.append('Video ' + str(i))
+            i += 1
+        mvideo = dialog.select('Multiple videos found', hashlist)
+        return videolist[mvideo]
+    else:
+        return videomatch[0]
 
 
 def PlayStream(name, url):

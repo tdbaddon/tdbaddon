@@ -45,8 +45,8 @@ def Main(name):
         addon.setSetting('pdsection', '0')
     utils.addDir('[COLOR hotpink]Categories[/COLOR]', 'http://www.porndig.com/videos/', 293, '', '')
     if addon.getSetting("pdsection") == '0':
-        utils.addDir('[COLOR hotpink]Studios[/COLOR]', 'http://www.porndig.com/studios/load_more_studios', 294, '', 0)
-        utils.addDir('[COLOR hotpink]Pornstars[/COLOR]', 'http://www.porndig.com/pornstars/load_more_pornstars', 295, '', 0)
+        utils.addDir('[COLOR hotpink]Studios[/COLOR]', 'https://www.porndig.com/studios/load_more_studios', 294, '', 0)
+        utils.addDir('[COLOR hotpink]Pornstars[/COLOR]', 'https://www.porndig.com/pornstars/load_more_pornstars', 295, '', 0)
     List(0, '', 0)
 
 
@@ -189,7 +189,7 @@ def List(page, channel, section):
     elif section == 3:
         data = CatListData(page, channel)
         maxresult = 100
-    urldata = utils.getHtml("http://www.porndig.com/posts/load_more_posts", pdreferer, headers, data=data)
+    urldata = utils.getHtml("https://www.porndig.com/posts/load_more_posts", pdreferer, headers, data=data)
     urldata = ParseJson(urldata)
     i = 0
     match = re.compile(

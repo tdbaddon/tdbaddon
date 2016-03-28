@@ -69,7 +69,7 @@ def PHCat(url):
 def PHVideo(url, name, download=None):
     progress.create('Play video', 'Searching videofile.')
     progress.update( 10, "", "Loading video page", "" )
-    Supported_hosts = ['Openload.io', 'StreamCloud', 'NowVideo', 'FlashX', 'www.flashx.tv', 'streamcloud.eu', 'streamin.to']
+    Supported_hosts = ['Openload.io', 'StreamCloud', 'NowVideo', 'www.nowvideo.sx', 'FlashX', 'www.flashx.tv', 'streamcloud.eu', 'streamin.to', 'videowood.tv', 'www.keeplinks.eu']
     videopage = utils.getHtml(url, '')
     match = re.compile(r'<li id="link-([^"]+).*?xs-12">\s+Watch it on ([\w\.]+)', re.DOTALL | re.IGNORECASE).findall(videopage)
     if len(match) > 1:
@@ -82,10 +82,13 @@ def PHVideo(url, name, download=None):
         if len(sites) ==  1:
             sitename = match[0][1]
             siteurl = match[0][0]
-        else:
+        elif len(sites) > 1:
             site = utils.dialog.select('Select video site', sites)
             sitename = sites[site]
             siteurl = vidurls[site]
+        else:
+            utils.notify('Sorry','No supported hosts found.')
+            return
     else:
         sitename = match[0][1]
         siteurl = match[0][0]
@@ -97,7 +100,7 @@ def PHVideo(url, name, download=None):
     elif "lash" in sitename:
         progress.update( 30, "", "Getting FlashX", "" )
         playurl = getFlashX(outurl)
-    elif sitename == "NowVideo":
+    elif sitename == "NowVideo" or sitename == "www.nowvideo.sx":
         progress.update( 30, "", "Getting NowVideo", "" )
         playurl = getNowVideo(outurl)        
     elif "Openload" in sitename:
@@ -105,6 +108,11 @@ def PHVideo(url, name, download=None):
         progress.close()
         utils.PLAYVIDEO(outurl, name, download)
         return
+    elif "videowood" in sitename:
+        progress.update( 30, "", "Getting Videowood", "" )
+        progress.close()
+        utils.PLAYVIDEO(outurl, name, download)
+        return        
     elif "streamin" in sitename:
         progress.update( 30, "", "Getting Streamin", "" )
         streaming = utils.getHtml(outurl, '')
@@ -112,19 +120,39 @@ def PHVideo(url, name, download=None):
         progress.close()
         utils.playvideo(outurl, name, download)
         return
+    if 'keeplinks' in sitename:
+        progress.update( 30, "", "Getting Keeplinks", "" )
+        outurl2 = getKeeplinks(outurl)
+        utils.playvideo(outurl2, name, download, outurl)
+        return
     else:
         progress.close()
         utils.notify('Sorry','This host is not supported.')
         return
     progress.update( 90, "", "Playing video", "" )
     progress.close()
-    if download == 1:
-        utils.downloadVideo(playurl, name)
-    else:
-        iconimage = xbmc.getInfoImage("ListItem.Thumb")
-        listitem = xbmcgui.ListItem(name, iconImage="DefaultVideo.png", thumbnailImage=iconimage)
-        listitem.setInfo('video', {'Title': name, 'Genre': 'Porn'})
-        xbmc.Player().play(playurl, listitem)
+    if playurl:
+        if download == 1:
+            utils.downloadVideo(playurl, name)
+        else:
+            iconimage = xbmc.getInfoImage("ListItem.Thumb")
+            listitem = xbmcgui.ListItem(name, iconImage="DefaultVideo.png", thumbnailImage=iconimage)
+            listitem.setInfo('video', {'Title': name, 'Genre': 'Porn'})
+            xbmc.Player().play(playurl, listitem)
+
+
+def getKeeplinks(url):
+    kllink = utils.getVideoLink(url, '')
+    kllinkid = kllink.split('/')[-1]
+    klheader = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11',
+       'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+       'Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
+       'Accept-Encoding': 'none',
+       'Accept-Language': 'en-US,en;q=0.8',
+       'Connection': 'keep-alive',
+       'Cookie': 'flag['+kllinkid+'] = 1;'} 
+    klpage = utils.getHtml(kllink, url, klheader)
+    return klpage
 
 
 def getFlashX(url):
@@ -165,6 +193,10 @@ def getStreamCloud(url):
 def getNowVideo(url):
     progress.update( 50, "", "Opening NowVideo page", "" )
     videopage = utils.getHtml(url, '')
+    if not 'flashvars.file' in videopage:    
+        videoid = re.compile('/video/([^"]+)').findall(videopage)[0]
+        url = "http://embed.nowvideo.sx/embed/?v=" + videoid
+        videopage = utils.getHtml(url, '')
     fileid=re.compile('flashvars.file="(.+?)";').findall(videopage)[0]
     codeid=re.compile('flashvars.cid="(.+?)";').findall(videopage)
     if(len(codeid) > 0):

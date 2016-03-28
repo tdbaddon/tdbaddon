@@ -47,6 +47,14 @@ def INDEX():
     download_path = addon.getSetting('download_path')
     if download_path != '' and os.path.exists(download_path):
         utils.addDir('[COLOR hotpink]Whitecream[/COLOR] [COLOR white]Download Folder[/COLOR]',download_path,4,os.path.join(rootDir, 'icon.png'),'')
+        
+    if not addon.getSetting('uwccounter') == 'true':
+        try:
+            counterpage = utils.getVideoLink('http://bit.ly/uwccounter','http://UWC-' + utils.__version__ + '.com')
+            if 'WhiteCream' in counterpage:
+                addon.setSetting('uwccounter','true')
+        except: pass
+        
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 def INDEXS():
@@ -114,7 +122,7 @@ def INDEXW():
     xbmcplugin.endOfDirectory(utils.addon_handle)
     
 def STREAMS():
-    streamurl = 'https://github.com/whitecream01/WhiteCream-V0.0.1/raw/master/plugin.video.uwc/streamlist.m3u'
+    streamurl = 'http://bit.ly/uwcstreams'
     streamlist = utils.getHtml(streamurl, '')
     match = re.compile('#.+,(.+?)\n(.+?)\n').findall(streamlist)
     for name, url in match:
@@ -188,7 +196,6 @@ try: section = int(params["section"])
 except: pass
 try: keyword = urllib.unquote_plus(params["keyword"])
 except: pass
-
 
 
 if mode is None: INDEX()

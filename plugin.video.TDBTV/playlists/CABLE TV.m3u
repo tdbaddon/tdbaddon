@@ -67,7 +67,8 @@ http://54.255.155.24:1935//Live/_definst_/sweetbcha1novD28_W_150.sdp/playlist.m3
 #EXTINF:0,CBS Drama 
 0
 
-#EXTINF:0,CBS Reality 0
+#EXTINF:0,CBS Reality 
+0
 
 #EXTINF:0,CHCH Ontario
 0
@@ -147,6 +148,9 @@ http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/index_350_av-p.m3u8?
 #EXTINF:0,Family Jr
 0
 
+#EXTINF:0,FashionBox
+0
+
 #EXTINF:0,Fashion TV 
 http://server2.balkantvmedia.com:8080/FASHION_TV?u=user1610:p=ibccL97n
 
@@ -190,13 +194,13 @@ http://link.theplatform.com/s/dtjsEC/77l1KA_G_5P1?feed=DEV%20Live%20Stream%20Fee
 https://glblvhalifax-lh.akamaihd.net/i/glblvHalifax_1@119843/master.m3u8?__b__=900&hdnea=ip=99.18.68.202~st=1434307535~exp=1434308135~acl=/i/*~id=17e92158-bbde-4665-a37c-817c97c7569c~hmac=1afe142fae8d05bad8895371e0834b246ce53e26af2bd6090227741f043668bd
 
 #EXTINF:0,Global TV Toronto 
-http://link.theplatform.com/s/dtjsEC/hdSH3iztz_j_?feed=DEV%20Live%20Stream%20Feed/playlist.m3u8
+http://link.theplatform.com/s/dtjsEC/hdSH3iztz_j_
 
 #EXTINF:0,Global TV Toronto 
 https://glblvestu-f.akamaihd.net/i/glblvestu_1@78149/master.m3u8?__b__=900&hdnea=ip=99.18.68.202~st=1434303944~exp=1434304544~acl=/i/*~id=3f0edb02-c4e5-4596-8950-4331b8ce1baf~hmac=4acbecb511f7c3beaf085123ab9097c7a6acbd5d857fd4cefbfdfb733b666f57
 
 #EXTINF:0,Global TV Vancouver 
-http://link.theplatform.com/s/dtjsEC/EqBPGYLY6fEx?feed=DEV%20Live%20Stream%20Feed/playlist.m3u8
+http://link.theplatform.com/s/dtjsEC/EqBPGYLY6fEx
 
 #EXTINF:0,Global TV Vancouver 
 https://glblvestu-f.akamaihd.net/i/glblvPSTu_1@80128/master.m3u8?__b__=900&hdnea=ip=99.18.68.202~st=1434307348~exp=1434307948~acl=/i/*~id=5a91003f-0e87-4f31-b475-5beb4de69407~hmac=8011c2346009544656a3195d1e9e03e511efc6523dab9644debf3692f630fe77
@@ -289,6 +293,9 @@ http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
 0
 
 #EXTINF:0,PBS 
+0
+
+#EXTINF:0,Popcorn TV
 0
 
 #EXTINF:0,QVC 
@@ -390,14 +397,26 @@ http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/master.m3u8?b?b*t
 #EXTINF:0,WB 
 0
 
+#EXTINF:0,WGN
+0
+
 #EXTINF:0,Wobi
 0
 
 #EXTINF:0,W Network
 0
 
+#EXTINF:0,Wine Oh TV
+0
+
+#EXTINF:0,Wineram TV
+0
+
 #EXTINF:0,World Fashion 
 http://btv-net.mediacdn.ru/TVB7/wfhdeu/playlist.m3u8
+
+#EXTINF:0,World of Wine
+0
 
 #EXTINF:0,Yes TV
 0

@@ -44,7 +44,7 @@ http://edge1.everyon.tv/etv1sb/phd16/chunklist_w1519714347.m3u8
 http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD177_W_150.sdp/media_7419.m3u8
 
 #EXTINF:0,CP24 
-0
+http://198.27.85.173:8899/source1/CP24HD/index.m3u8
 
 #EXTINF:0,CPAC 
 http://bcliveuniv-lh.akamaihd.net/i/cpac1eng2014_01@119330/index_2000_av-p.m3u8

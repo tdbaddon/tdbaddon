@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+	<category label="30000">
+	   <setting id="translation" type="bool" label="30001" default="false"/>
+	   <setting id="language" type="select" label="30002" values="cs|da|de|el|en|es|fi|fr|he|hr|hu|it|ja|ko|nl|no|pl|pt|ru|sl|sv|tr|zh" default="en" />
+	   <setting type="lsep" label="30942" />
+	   <setting type="lsep" label="30943" />
+       <setting type="lsep" label="30944" />
+	</category>
+	<category label="40000">
+		<setting id="sexloading" type="bool" label="40001" default="true"/>
+		<setting id="ivhunter" type="bool" label="40002" default="true"/>
+		<setting id="javhdonline" type="bool" label="40003" default="true"/>
+		<setting id="watchjavonline" type="bool" label="40004" default="true"/>
+		<setting id="javlinks" type="bool" label="40005" default="true"/>
+		<setting id="dodova" type="bool" label="40006" default="true"/>
+		<setting id="hentaidream" type="bool" label="40007" default="true"/>
+		<setting id="jav69" type="bool" label="40008" default="true"/>
+		<setting id="streamingjav" type="bool" label="40009" default="true"/>
+		<setting id="phimsexjav" type="bool" label="40010" default="true"/>
+		<setting id="javwest" type="bool" label="40011" default="true"/>
+		<setting id="dinojav" type="bool" label="40012" default="true"/>
+		<setting id="top1porn" type="bool" label="40013" default="true"/>
+		<setting id="jav-stream" type="bool" label="40014" default="true"/>
+		<setting id="javseen" type="bool" label="40015" default="true"/>
+		<setting id="ikujav" type="bool" label="40016" default="true"/>
+		<setting id="javst" type="bool" label="40017" default="true"/>
+		<setting id="javlabels" type="bool" label="40018" default="true"/>
+		<setting id="terlarang" type="bool" label="40019" default="true"/>
+        <setting id="jav4k" type="bool" label="40020" default="true"/>
+        <setting id="javhub" type="bool" label="40021" default="true"/>
+        <setting id="jav-onlines" type="bool" label="40022" default="true"/>
+        <setting id="javeu" type="bool" label="40023" default="true" />
+        <setting id="yebbun90" type="bool" label="40024" default="true" />
+	</category>
+</settings>
