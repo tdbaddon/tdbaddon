@@ -132,7 +132,7 @@ http://nflioslivesvg2-i.akamaihd.net/hls/live/221521/nflioslive/2015HackerNow_w9
 0
 
 #EXTINF:0,Outdoor Channel 
-0
+http://fr978.edem.tv/iptv/YKDXHPH6S4WQLX/119/index.m3u8
 
 #EXTINF:0,PAC 12 Arizona 
 http://xrxs.net/video/live-p12ariz-1164.m3u8
@@ -251,9 +251,6 @@ rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9
 #EXTINF:0,Sportsnet East
 0
 
-#EXTINF:0,Sportsnet 
-http://sportsnethdf-f.akamaihd.net/i/sn_hd3@91343/index_2000_av-p.m3u8?sd=10&rebase;=o
-
 #EXTINF:0,Sportsnet One 
 rtmp://31.220.2.149:80/live playpath=sprt1 swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf pageUrl=http://yotv.co/embedu.php?live=sprt1&vw=620&vh=490 token=%Zrey(nKa@#Z
 
@@ -285,10 +282,16 @@ rtmp://185.63.255.18:80/live playpath=ontrio swfUrl=http://p.jwpcdn.com/6/12/jwp
 0
 
 #EXTINF:0,TSN 1 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/1031.ts
+
+#EXTINF:0,TSN 1 
 rtmp://31.220.2.149:80/live/ playpath=ts1 token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://yotv.co
 
 #EXTINF:0,TSN 1 
 rtmp://185.63.255.18:80/live playpath=ts1 swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf pageUrl=http://yotv.co/embedu.php?live=ts1&vw=620&vh=490 live=1 token=%Zrey(nKa@#Z
+
+#EXTINF:0,TSN 2 
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/1032.ts
 
 #EXTINF:0,TSN 2 
 rtmp://31.220.2.149:80/live/ playpath=tsnx2 token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://yotv.co
@@ -297,25 +300,25 @@ rtmp://31.220.2.149:80/live/ playpath=tsnx2 token=%Zrey(nKa@#Z swfUrl=http://p.j
 rtmp://185.63.255.60:80/live playpath=tsnx2 swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf pageUrl=http://yotv.co/embedu.php?live=tsnx2&vw=620&vh=490 live=1 token=%Zrey(nKa@#Z
 
 #EXTINF:0,TSN 3 
-0
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/1033.ts
 
 #EXTINF:0,TSN 4 
-0
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/1034.ts
 
 #EXTINF:0,TSN 5 
-0
+http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/1035.ts
 
-#EXTINF:0,UFC TV
+#EXTINF:0,UFC TV 
 0
 
 #EXTINF:0,Ultimate Outdoors
 0
 
 #EXTINF:0,Viasat Golf 
-0
+
 
 #EXTINF:0,Viasat Sport 
-0
+http://3.hls.bolshoe.tv/1/streaming/viasat_sport/tvrec/playlist.m3u8
 
 #EXTINF:0,VS Versus 
 http://208.92.36.158/ipad/live/nba_ipad_1240.m3u8

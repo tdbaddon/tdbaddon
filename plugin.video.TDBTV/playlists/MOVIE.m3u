@@ -104,13 +104,13 @@ http://server2.balkantvmedia.com:8080/CINESTAR_Premiere_2?u=user1610:p=ibccL97n
 0
 
 #EXTINF:0,Fox Action Movies 
-0
+http://vod.cdn.iutpcdn.com/LIVE/H01/CANAL416/PROFILE03.m3u8?
 
 #EXTINF:0,Fox Cinema
 0
 
 #EXTINF:0,Fox Classics 
-0
+http://veetle.com/index.php/hls/streamMbrFast/5408d7749bc24_/stream.m3u8
 
 #EXTINF:0,Fox Comedy
 0
