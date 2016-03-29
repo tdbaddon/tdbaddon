@@ -39,7 +39,7 @@ http://208.92.36.158/ipad/live/nba_ipad_1240.m3u8
 0
 
 #EXTINF:0,ESPN 
-0
+http://167.114.102.27/live/ChRnWoPixMNk_n9eDjPkgw/1459244991/7b0ef842a6a1233a8a86a8533063a1a1.m3u8|User-Agent=Mozilla%2F5.0%20(Windows%20NT%206.1%3B%20WOW64)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F47.0.2526.106%20Safari%2F537.36
 
 #EXTINF:0,ESPN 2
 0
@@ -96,7 +96,7 @@ rtmp://31.220.2.149:80/live playpath=motors swfUrl=http://p.jwpcdn.com/6/12/jwpl
 rtmp://31.220.2.149:80/live/ playpath=motors token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://yotv.co
 
 #EXTINF:0,Motorsport 7 
-0
+http://motorsport.hopto.org:8080/
 
 #EXTINF:0,My Combat Channel
 0
@@ -123,7 +123,7 @@ http://cdn.phoenix.intergi.com/21772/videos/3362254/video-sd.mp4?hosting_id=2177
 http://nflioslivesvg2-i.akamaihd.net/hls/live/221521/nflioslive/2015HackerNow_w99d9.m3u8
 
 #EXTINF:0,NFL Network 
-0
+http://nflioslivesvg2-i.akamaihd.net/hls/live/221521/nflioslive/2015HackerNow_w99d9.m3u8
 
 #EXTINF:0,NHL Network 
 0
@@ -333,7 +333,7 @@ http://208.92.36.158/ipad/live/nba_ipad_1240.m3u8
 0
 
 #EXTINF:0,WWE Network 
-0
+http://veetle.com/index.php/hls/streamMbrFast/5541faf1cd035_/stream.m3u
 
 
 

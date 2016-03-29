@@ -831,7 +831,7 @@ http://kodilive.eu</description>
   </extension>
 </addon>
 
-<addon id="plugin.video.prosport" name="Pro Sport" version="0.40" provider-name="gerikss, podgod">
+<addon id="plugin.video.prosport" name="Pro Sport" version="0.41" provider-name="gerikss, podgod">
   <requires>
     <import addon="xbmc.python" version="2.1.0" />
      <import addon="script.module.requests" version="2.9.1" />
@@ -956,7 +956,7 @@ http://kodilive.eu</description>
 
 <addon id="plugin.video.TDBEUROTV"
        name="TDB EURO TV"
-       version="2.26"
+       version="2.27"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -1031,7 +1031,7 @@ http://kodilive.eu</description>
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="3.70"
+       version="3.71"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -1134,7 +1134,7 @@ http://kodilive.eu</description>
 	</extension>
 </addon>
 
-<addon id="plugin.video.tvtime.tva" name="TV Time" provider-name="mhancoc7" version="0.1.7">
+<addon id="plugin.video.tvtime.tva" name="TV Time" provider-name="mhancoc7" version="0.1.8">
     <requires>
         <import addon="xbmc.python" version="2.1.0" />
     </requires>

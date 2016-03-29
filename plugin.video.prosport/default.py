@@ -129,7 +129,7 @@ def Games(mode):
 	today = datetime.utcnow() - timedelta(hours=8)
 	today_from = str(today.strftime('%Y-%m-%d'))+'T00:00:00.000-05:00'
 	today_to = str(today.strftime('%Y-%m-%d'))+'T23:59:00.000-05:00'
-	url = 'http://www.sbnation.com/sbn_scoreboard/ajax_leagues_and_events?ranges['+mode+'][from]='+today_from+'&ranges['+mode+'][until]='+today_to+'&_='+today.strftime("%s")
+	url = 'http://www.sbnation.com/sbn_scoreboard/ajax_leagues_and_events?ranges['+mode+'][from]='+today_from+'&ranges['+mode+'][until]='+today_to+'&_='+str(int(time.time()))
 	js = GetJSON(url)
 	js = js['leagues'][mode]
 	if js:	

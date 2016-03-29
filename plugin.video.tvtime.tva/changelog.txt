@@ -1,3 +1,6 @@
+[B]Version 0.1.8[/B]
+- code clean-up
+
 [B]Version 0.1.7[/B]
 - updated description
 - added forum and website links to addon.xml

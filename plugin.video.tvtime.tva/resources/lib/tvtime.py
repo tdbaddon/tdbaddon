@@ -17,7 +17,7 @@
 
 import sys, os, re
 import urllib, urllib2
-import json, random, string
+import json, random
 import xbmcgui, xbmc, xbmcvfs
 import Addon
 
@@ -45,7 +45,7 @@ class TVtime:
 
     def get_link(self, quality):
         Addon.log('get_link,' + str(quality))
-	content = self._get_json('/playingnow.php?q=self._random_generator()')
+	content = self._get_json('/playingnow.php')
 	channels = []
 	results = content['results'];
 	quality = (quality + 1)
@@ -135,10 +135,7 @@ class TVtime:
             html = False
         return html
 
-    def _random_generator(size=6, chars=string.ascii_uppercase + string.digits):
-        return ''.join(random.choice(chars) for x in range(size))
-
     def _get_passkey(self):
-        token = self._get_json('/token.php?q=self._random_generator()')['token']
+        token = self._get_json('/token.php')['token']
         passkey = self._get_json_u('/gtv/1/live/viewdvrlist', {'token': token})['globalparams']['passkey']
         return passkey

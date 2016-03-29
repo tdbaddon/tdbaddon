@@ -61,6 +61,9 @@ http://213.81.153.221:8080/cetv
 #EXTINF:0,CMC 
 http://balkanstream.com/stream/cmc/amy/amy
 
+#EXTINF:0,CMC 
+http://95.128.236.80:1935/kaltura/smil:cmc.smil/playlist.m3u8
+
 #EXTINF:0,DMC
 0
 
@@ -117,6 +120,9 @@ http://balkanstream.com/stream/hrt4/amy/amy
 
 #EXTINF:0,Jugoton
 http://balkanstream.com/stream/Jugoton/amy/amy
+
+#EXTINF:0,Jugoton
+http://95.128.236.80:1935/kaltura/smil:jugotontv.smil/playlist.m3u8
 
 #EXTINF:0,K3 Kumanovo 
 http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/k3-tv-kumanovo/chunklist.m3u8
