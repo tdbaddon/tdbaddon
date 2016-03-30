@@ -73,6 +73,9 @@
 		<setting type="lsep" label="Moviesplanet.is" />
 		<setting id="moviesplanet.user" type="text" label="30911" default="" />
 		<setting id="moviesplanet.pass" type="text" option="hidden" label="30913" default="" />
+		<setting type="lsep" label="Streamlord.com" />
+		<setting id="streamlord.user" type="text" label="30911" default="" />
+		<setting id="streamlord.pass" type="text" option="hidden" label="30913" default="" />
 		<setting type="lsep" label="Ororo.tv" />
 		<setting id="ororo.user" type="text" label="30912" option="hidden" default="" />
 		<setting id="ororo.pass" type="text" option="hidden" label="30913" default="" />

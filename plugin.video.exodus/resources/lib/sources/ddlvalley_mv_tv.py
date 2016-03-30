@@ -82,47 +82,48 @@ class source:
             title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
             hdlr = ['S%02dE%02d' % (int(data['season']), int(data['episode']))] if 'tvshowtitle' in data else ['%s' % str(data['year'])]
 
-            query = data['tvshowtitle'] if 'tvshowtitle' in data else '%s %s' % (data['title'], data['year'])
+            query = '%s S%02dE%02d' % (data['tvshowtitle'], int(data['season']), int(data['episode'])) if 'tvshowtitle' in data else '%s %s' % (data['title'], data['year'])
             query = re.sub('(\\\|/|:|;|\*|\?|"|\'|<|>|\|)', '', query)
             query = self.search_link % urllib.quote_plus(query)
             query = urlparse.urljoin(self.base_link, query)
 
             result = client.source(query)
 
-            result = client.parseDOM(result, 'div', attrs = {'id': 'post-\d+'})
-            result = [(client.parseDOM(i, 'a', ret='href', attrs = {'rel': 'nofollow'}), client.parseDOM(i, 'a', ret='title', attrs = {'rel': 'nofollow'}), client.parseDOM(i, 'span', attrs = {'class': 'date'}), client.parseDOM(i, 'a', attrs = {'rel': 'category tag'})) for i in result]
-            result = [(i[0][-1], i[1][-1], i[2][-1], i[3]) for i in result if len(i[0]) > 0 and len(i[1]) > 0 and len(i[2]) > 0 and len(i[3]) > 0]
+            result = client.parseDOM(result, 'div', attrs = {'class': 'pb fl'})[0]
+            result = result.split('<h2>')
 
-            result = [(i[0], i[1], i[2], i[3]) for i in result if '1-Click' in i[3]]
-            if not 'tvshowtitle' in data: result = [(i[0], i[1], i[2]) for i in result if 'Movies' in i[3] and not any(x in ['BDRip', 'CAM', 'DVDR', 'DVDRip', 'DVDSCR', 'TS'] for x in i[3])]
-            else: result = [(i[0], i[1], i[2]) for i in result if 'Tv Shows' in i[3] and not 'Tv-Pack' in i[3]]
+            result = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a'), client.parseDOM(i, 'span', attrs = {'class': 'date'})) for i in result]
+            result = [(i[0][0], i[1][0], i[2][-1]) for i in result if len(i[0]) > 0 and len(i[1]) > 0 and len(i[2]) > 0]
+            result = [(i[0], i[1], i[2]) for i in result]
 
-            result = [(i[0], i[1], re.compile('(\w+).+?(\d+).+?(\d{4})').findall(i[2])) for i in result]
+            result = [(i[0], i[1], re.findall('(\w+).+?(\d+).+?(\d{4})', i[2])) for i in result]
             result = [(i[0], i[1], '%04d%02d%02d' % (int(i[2][0][2]), int(mt[i[2][0][0][:3].lower()]), int(i[2][0][1]))) for i in result if len(i[2]) > 0]
             result = [(i[0], i[1], (abs(dt - int(i[2])) < control.integer * 10)) for i in result]
             result = [(i[0], i[1]) for i in result if i[2] == True]
 
-            result = [(i[0], re.compile('(^Download |)(.+)').findall(i[1])) for i in result]
-            result = [(i[0], i[1][0][-1], i[1][0][-1].upper()) for i in result if len(i[1]) > 0]
-            result = [(i[0], i[1], re.sub('(\.|\(|\[|\s)(\d{4}|S\d*E\d*|3D)(\.|\)|\]|\s|)(.+|)', '', i[2]), re.compile('[\.|\(|\[|\s](\d{4}|S\d*E\d*)[\.|\)|\]|\s|]').findall(i[2])) for i in result]
-            result = [(i[0], i[1], i[2]) for i in result if len(i[3]) > 0 and any(x in i[3][0] for x in hdlr)]
-            result = [(i[0], i[1]) for i in result if cleantitle.get(title) == cleantitle.get(i[2])]
+            result = [(i[0], (re.sub('<.+?>|</.+?>', '', client.replaceHTMLCodes(i[1]))).split('">')[-1]) for i in result]
+            result = [(i[0], re.sub('(\.|\(|\[|\s)(\d{4}|S\d*E\d*|3D)(\.|\)|\]|\s|)(.+|)', '', i[1]), re.findall('[\.|\(|\[|\s](\d{4}|S\d*E\d*)([\.|\)|\]|\s|].+)', i[1])) for i in result]
+            result = [(i[0], i[1], i[2][0][0], i[2][0][1]) for i in result if len(i[2]) > 0]
+            result = [i for i in result if cleantitle.get(title) == cleantitle.get(i[1])]
+            result = [i for i in result if any(x in i[2] for x in hdlr)]
+            result = [i for i in result if not any(x in i[3] for x in ['.BDRip.', '.CAM.', '.DVDR.', '.DVDRip.', '.DVDSCR.', '.TS.', '.3D.'])]
 
-            try: result = [[(i[0], '1080p') for i in result if '1080p' in i[1]][0]] + [[(i[0], 'HD') for i in result if '720p' in i[1]][0]]
-            except: result = [[(i[0], 'HD') for i in result if '720p' in i[1]][0]]
+            r = [(i[0], '1080p') for i in result if '.1080p.' in i[3]]
+            r += [(i[0], 'HD') for i in result if '.720p.' in i[3]]
+            r = r[:4]
 
             links = []
 
-            for i in result:
+            for i in r:
                 try:
-                    result = client.replaceHTMLCodes(i[0])
-                    result = client.source(result)
-                    result = result.replace('\n', '')
-                    result = re.sub('\s\s+', ' ', result)
-                    result = re.compile("<span class='info2'(.+)").findall(result)[0]
-                    result = result.split("<span class='info2'")[-1].split('<span')[0]
-                    result = client.parseDOM(result, 'a', ret='href')
-                    for url in result: links.append({'url': url, 'quality': i[1]})
+                    r = client.replaceHTMLCodes(i[0])
+                    r = client.source(r)
+                    r = r.replace('\n', '')
+                    r = re.sub('\s\s+', ' ', r)
+                    r = re.compile("<span class='info2'(.+)").findall(r)[0]
+                    r = r.split("<span class='info2'")[-1].split('<span')[0]
+                    r = client.parseDOM(r, 'a', ret='href')
+                    for url in r: links.append({'url': url, 'quality': i[1]})
                 except:
                     pass
 

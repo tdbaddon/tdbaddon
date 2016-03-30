@@ -485,6 +485,11 @@ class sources:
             call = [i[1] for i in sourceDict if i[0] == domains[0]][0]
 
             self.sources = call.sources(url, self.hostDict, self.hostprDict)
+
+            for i in range(len(self.sources)):
+                try: self.sources[i]['autoplay'] = True
+                except: pass
+
             self.sources = self.sourcesFilter()
             return self.sources
         except:

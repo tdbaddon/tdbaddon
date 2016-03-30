@@ -1,3 +1,7 @@
+[B]Version 0.1.9[/B]
+- removed checkbox and set to not mark streams as watched
+- some skins still show an empty checkbox
+
 [B]Version 0.1.8[/B]
 - code clean-up
 

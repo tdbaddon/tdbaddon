@@ -16,7 +16,7 @@
 '''
 
 import urllib, pickle, cgi
-import os, sys, re
+import os, sys, re, string, random
 import xbmc, xbmcaddon, xbmcgui, xbmcplugin, xbmcvfs
 
 
@@ -150,3 +150,6 @@ def decode_dict(data):
         if type(v) is str or type(v) is unicode:
             data[k] = decode(v)
     return data
+
+def random_generator(size=6, chars=string.ascii_uppercase + string.digits):
+    return ''.join(random.choice(chars) for x in range(size))

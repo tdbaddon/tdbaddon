@@ -44,7 +44,7 @@ if mode == 'main':
     if channels:
         for c in channels:
             channel = c['channel'];
-            rURL = "plugin://plugin.video.tvtime.tva/?channel=" + channel + "&mode=play"
+            rURL = "plugin://plugin.video.tvtime.tva/?channel=" + channel + "&mode=play&rand=" + Addon.random_generator()
             logo = xbmc.translatePath(os.path.join(plugin_path, 'resources', 'images', 'logos', c['channel']+'.png'))
             title = c["title"].replace("&amp;", "&").replace('&quot;','"');
             title = title.replace("&amp;", "&");

@@ -306,7 +306,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
-<addon id="plugin.video.exodus" version="1.2.1" name="Exodus" provider-name="Exodus">
+<addon id="plugin.video.exodus" version="1.2.2" name="Exodus" provider-name="Exodus">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="repository.exodus" version="1.0.0" />
@@ -1134,7 +1134,7 @@ http://kodilive.eu</description>
 	</extension>
 </addon>
 
-<addon id="plugin.video.tvtime.tva" name="TV Time" provider-name="mhancoc7" version="0.1.8">
+<addon id="plugin.video.tvtime.tva" name="TV Time" provider-name="mhancoc7" version="0.1.9">
     <requires>
         <import addon="xbmc.python" version="2.1.0" />
     </requires>
@@ -1192,7 +1192,7 @@ http://kodilive.eu</description>
 
 <addon
   id="plugin.video.videodevil"
-  version="1.7.125"
+  version="1.7.126"
   name="VideoDevil"
   provider-name="xbmc-adult">
   <requires>
@@ -1204,8 +1204,8 @@ http://kodilive.eu</description>
    <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-  <summary lang="en">Adult(18+) </summary>
-    <description></description>
+    <summary>Play videos from different adult streaming sites</summary>
+    <description>This addon plays videos from YouPorn, Tube8, Boysfood, MoviesAnd, PornoTube, xHamster, KeezMovies and some other adult streaming sites. It contains explicit adult material. You may only view this addon if you are at least 18 years of age, or at least the age of majority in the jurisdiction where you reside or from which you access this content. If you do not meet these requirements, then you do not have permission to use this addon.</description>
     <disclaimer>The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
     <platform>all</platform>
   </extension>
