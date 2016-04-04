@@ -1192,7 +1192,7 @@ http://kodilive.eu</description>
 
 <addon
   id="plugin.video.videodevil"
-  version="1.7.126"
+  version="1.7.128"
   name="VideoDevil"
   provider-name="xbmc-adult">
   <requires>
