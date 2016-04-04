@@ -5,13 +5,10 @@
 http://wxintribune-lh.akamaihd.net/i/WXINTribune_1@120151/master.m3u8
 
 #EXTINF:0,AlJazeera 
-http://62.65.140.218:80/session/97a2297e-f56e-11e5-a43c-005056bc1a52/nvnv5a/2/4013/index.m3u8?token=46fb5f242ff5ae37dab7a798f6e8f73e_1459315503_1459315503&p=127|X-Forwarded-For=85.195.192.0
+0
 
 #EXTINF:0,BBC World News 
-http://64.228.62.144:2073
-
-#EXTINF:0,BBC World News 
-http://62.65.140.153:80/session/9b80e5b2-f56e-11e5-b333-005056bc06d1/nvnv5a/2/4003/index.m3u8?token=187f0bf44114375a6eb220389090d03d_1459315510_1459315510&p=127|X-Forwarded-For=85.195.192.0
+0
 
 #EXTINF:0,Bloomberg News 
 http://x4012c4000.edge.core-cdn.net/40000mb/live/4012hbbtv/bloomberg.ts
@@ -35,10 +32,10 @@ http://cdn3.videos.bloomberg.com/btv/us/master.m3u8
 http://cbsnews-linear.mdialog.com/video_assets/cbsnews.m3u8?api_key=563b80c1ae4ce359830f572d2496a947&iu=/8264/vaw-can/mobile_web/cbsnews_mobile
 
 #EXTINF:0,CCTV News 
-http://ivi.bupt.edu.cn/hls/cctv16.m3u8
+0
 
 #EXTINF:0,CNBC 
-http://62.65.140.151:80/session/9f6d35ae-f56e-11e5-a1bf-005056bc1a52/nvnv5a/2/4001/index.m3u8?token=56a68ec8a809f447755c00ceb17e7405_1459315516_1459315516&p=127|X-Forwarded-For=85.195.192.0
+0
 
 #EXTINF:0,CNN 
 http://edge1.everyon.tv/etv1sb/phd16/chunklist_w1519714347.m3u8
@@ -46,11 +43,8 @@ http://edge1.everyon.tv/etv1sb/phd16/chunklist_w1519714347.m3u8
 #EXTINF:0,CNN 
 http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD177_W_150.sdp/media_7419.m3u8
 
-#EXTINF:0,CNN 
-http://62.65.140.154:80/session/9ff11a40-f56e-11e5-a5c9-005056bc1a52/nvnv5a/2/4002/index.m3u8?token=c92b8c220350a211c83ed6db397b4e1a_1459315517_1459315517&p=127|X-Forwarded-For=85.195.192.0
-
 #EXTINF:0,CP24 
-http://198.27.85.173:8899/source1/CP24HD/index.m3u8
+0
 
 #EXTINF:0,CPAC 
 http://bcliveuniv-lh.akamaihd.net/i/cpac1eng2014_01@119330/index_2000_av-p.m3u8
@@ -60,12 +54,6 @@ http://cspan1-lh.akamaihd.net/i/cspan1_1@304727/master.m3u8
 
 #EXTINF:0,CSPAN 
 http://bcliveuniv-lh.akamaihd.net/i/cpac1flr2014_01@51230/index_2000_av-p.m3u8
-
-#EXTINF:0,CTV NEWS 
-http://66.51.129.171:8080/demo/index.m3u8
-
-#EXTINF:0,CTV NEWS 
-http://ams-lp7.9c9media.com/hls-live/livepkgr/_definst_/liveNews/News18.m3u8 
 
 #EXTINF:0,CTV NEWS 
 http://ams-lp7.9c9media.com/hls-live/livepkgr/_definst_/liveNews/News28.m3u8 
@@ -87,12 +75,6 @@ rtsp://ewns-hls-b-stream.hexaglobe.net/rtpeuronewslive/en_vidan750_rtp.sdp
 
 #EXTINF:0,Euro News 
 http://fr-par-iphone-2.cdn.hexaglobe.net/streaming/euronews_ewns/ipad_en.m3u8
-
-#EXTINF:0,Euro News 
-http://62.65.140.217:80/session/a247c7bc-f56e-11e5-9eb8-005056bc1a52/nvnv5a/1/104903/index.m3u8?token=d6cf772f734bce72ada39c1247a9f074_1459315521_1459315521&p=127|X-Forwarded-For=85.195.192.0
-
-#EXTINF:0,Fox News 
-http://167.114.102.27/live/tqvKOfAoDY7OuuQoYFgSaA/1459245162/b199b33264504f9191862ce605f6754a.m3u8|User-Agent=Mozilla%2F5.0%20(Windows%20NT%206.1%3B%20WOW64)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F47.0.2526.106%20Safari%2F537.36
 
 #EXTINF:0,France 24 
 http://f24hls-i.akamaihd.net/hls/live/221192/F24_FR_LO_HLS/master.m3u8
@@ -146,7 +128,7 @@ http://rt-a.akamaihd.net/ch_04@325608/720p.m3u8
 http://rt.ashttp14.visionip.tv/live/rt-global-live-HD/playlist.m3u8
 
 #EXTINF:0,Sky News 
-http://cp.dmbshare.net:8000/live/c4a/c4a/2772.m3u8
+0
 
 #EXTINF:0,The Weather Channel 
 0

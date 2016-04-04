@@ -11,12 +11,11 @@ def OpenURL(url, headers={}, user_data={}, justCookie=False):
 		req = urllib2.Request(url, user_data)
 	else:
 		req = urllib2.Request(url)
-	
-	req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 6.1; rv:11.0) Gecko/20100101 Firefox/11.0')
-	req.add_header('referer', url)
+		
+		
+        req.add_header('User-Agent', 'kodi')
 	for k, v in headers.items():
-		req.add_header(k, v)
-	
+		req.add_header(k, v)	
 	response = urllib2.urlopen(req)
 	
 	if justCookie == True:
@@ -88,21 +87,6 @@ def plx2list(url, group="Main"):
 		list.append(item_data)
 	return list
 
-
-'''
-flattenList = []
-def flatten(list):
-	global flattenList
-	for item in list:
-		if item['type'] != 'playlist':
-			flattenList.append(item)
-		else:
-			list2 = plx2list(item['url'], item['name'])
-			flatten(list2)
-			
-#list = plx2list(mainPlxUrl, "Main")
-#flatten(list) 
-'''
 
 def m3u2list(url):
 	if url.find("http") >= 0:

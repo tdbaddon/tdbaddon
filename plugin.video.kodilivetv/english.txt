@@ -1,0 +1,30 @@
+[
+    {
+        "url": "http://kodilive.eu/iptv/raw2.php?l=en",
+        "image": "tv.png",        
+        "name": 10057
+    },    
+    {
+        "url": "http://kodilive.eu/iptv/res/radioen.m3u",
+        "image": "radio.png",
+        "name":10073
+    }, 
+
+    {
+        "url": "http://kodilive.eu/iptv/res/bbc_radio.m3u",
+        "image": "radio.png",
+        "name":10074
+    }, 
+    
+    {
+        "url": "http://kodilive.eu/iptv/raw2.php?l=chen",
+        "image": "tb.png",        
+        "name": 10054
+    },
+    {
+        "url": "http://kodilive.eu/iptv/res/vpnchen.m3u",
+        "image": "wi.png",        
+        "name": 10055
+    }
+    
+]

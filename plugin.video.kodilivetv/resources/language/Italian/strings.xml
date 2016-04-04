@@ -30,9 +30,26 @@
         <string id="10029">Rumeno</string>
         <string id="10030">Greco</string>
         <string id="10031">Arabo</string>
+        <string id="10032">Bulgaro</string>
+        <string id="10033">Ceco</string>
+        <string id="10034">Polacco</string>        
+        
         <string id="10050">TV Regionali Italiane</string>
-        <string id="10051">Mediaset (Italian IP only)</string>
+        <string id="10051">TV - VPN/IP Italia</string>
+        <string id="10052">Televisioni italiane</string>
+        <string id="10053">Televisioni Svizzera italiana</string>
+        <string id="10054">Teleboy (VPN?)</string>
+        <string id="10055">Wilmaa TV (VPN CH)</string>
+        
+        <string id="10058">Televisioni in Francese</string>
+        <string id="10056">Televisioni in Tedesco</string>
+        <string id="10057">Televisioni in Inglese</string>
+        
         <string id="10070">Radio italiane</string>
+        <string id="10071">Radio in Francese</string>
+        <string id="10072">Radio in Tedesco</string>
+        <string id="10073">Radio inglesi</string>
+        <string id="10074">BBC Radio</string>
         
         <string id="10100">Tutti i canali</string>
         
@@ -41,4 +58,6 @@
 	<string id="10102">Cancella il file dei favoriti</string>
         <string id="10103">Ripristina il file XML Advancedsettings</string>
         <string id="10104">Cancella il file XML Advancedsettings</string>
+        <string id="10105">Pulisci cache m3u</string>
+        <string id="10106">Ricerca aggiornamenti</string>
 </strings>

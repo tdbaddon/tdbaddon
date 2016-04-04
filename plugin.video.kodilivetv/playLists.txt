@@ -1,63 +1,59 @@
-[
+[  
     {
-        "url": "http://kodilive.eu/iptv/raw2.php?l=it", 
-        "name": 10020
-    }, 
-    {
-        "url": "http://kodilive.eu/iptv/raw2.php?l=fr", 
-        "name": 10021
-    }, 
-    {
-        "url": "http://kodilive.eu/iptv/raw2.php?l=de", 
-        "name": 10022
-    }, 
-    {
-        "url": "http://kodilive.eu/iptv/raw2.php?l=en", 
-        "name": 10023
-    }, 
-    {
-        "url": "http://kodilive.eu/iptv/raw2.php?l=tr", 
+        "url": "http://kodilive.eu/iptv/raw2.php?l=tr",
+        "image": "tr.png",       
         "name": 10024
     }, 
     {
-        "url": "http://kodilive.eu/iptv/raw2.php?l=es", 
+        "url": "http://kodilive.eu/iptv/raw2.php?l=es",
+        "image": "es.png",        
         "name": 10025
     }, 
     {
-        "url": "http://kodilive.eu/iptv/raw2.php?l=pt", 
+        "url": "http://kodilive.eu/iptv/raw2.php?l=pt",
+        "image": "pt.png",     
         "name": 10026
     }, 
     {
-        "url": "http://kodilive.eu/iptv/raw2.php?l=ru", 
+        "url": "http://kodilive.eu/iptv/raw2.php?l=ru",
+        "image": "ru.png",     
         "name": 10027
     },
     {
-        "url": "http://kodilive.eu/iptv/raw2.php?l=ro", 
+        "url": "http://kodilive.eu/iptv/raw2.php?l=ro",
+        "image": "ro.png",     
         "name": 10029
     },
     {
-        "url": "http://kodilive.eu/iptv/raw2.php?l=gr", 
+        "url": "http://kodilive.eu/iptv/raw2.php?l=gr",
+        "image": "gr.png",
         "name": 10030
     },
     {
-        "url": "http://kodilive.eu/iptv/raw2.php?l=ar", 
+        "url": "http://kodilive.eu/iptv/raw2.php?l=ar",
+        "image": "ar.png",   
         "name": 10031
     }, 
     {
-        "url": "http://kodilive.eu/iptv/raw2.php?l=mu", 
+        "url": "http://kodilive.eu/iptv/raw2.php?l=bu",
+        "image": "bu.png",
+        "name": 10032
+    },
+    {
+        "url": "http://kodilive.eu/iptv/raw2.php?l=cz",
+        "image": "cz.png",
+        "name": 10033
+    },    
+    {
+        "url": "http://kodilive.eu/iptv/raw2.php?l=pl",
+        "image": "pl.png",       
+        "name": 10034
+    },    
+    
+    {
+        "url": "http://kodilive.eu/iptv/raw2.php?l=mu",
+        "image": "mu.png",       
         "name": 10028
-    },
-    {
-        "url": "http://kodilive.eu/iptv/regionali.php", 
-        "name":10050
-    },
-    {
-        "url": "http://kodilive.eu/iptv/res/radioit2.m3u", 
-        "name":10070
-    },
-    {
-        "url": "http://kodilive.eu/iptv/res/mediaset2.m3u", 
-        "name":10051
     }
     
 ]

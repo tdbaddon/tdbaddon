@@ -1,0 +1,24 @@
+[
+    {
+        "url": "http://kodilive.eu/iptv/raw2.php?l=fr",
+        "image": "tv.png",        
+        "name": 10058
+    }, 
+
+    {
+        "url": "http://kodilive.eu/iptv/res/radiofr.m3u",
+        "image": "radio.png",
+        "name":10071
+    },
+    {
+        "url": "http://kodilive.eu/iptv/raw2.php?l=chfr",
+        "image": "tb.png",
+        "name":10054
+    },    
+    {
+        "url": "http://kodilive.eu/iptv/res/vpnchfr.m3u",
+        "image": "wi.png",      
+        "name":10055
+    }
+    
+]

@@ -30,8 +30,26 @@
         <string id="10029">Romanian</string>
         <string id="10030">Greek</string>
         <string id="10031">Arabic</string>
+        <string id="10032">Bulgarian</string>
+        <string id="10033">Czech</string>
+        <string id="10034">Polish</string>        
+        
         <string id="10050">Italian regional channels</string>
+        <string id="10051">TV - VPN/IP Italy</string>       
+        <string id="10052">Italian Television</string>
+        <string id="10053">Swiss Italian Television</string>
+        <string id="10054">Teleboy (VPN?)</string>
+        <string id="10055">Wilmaa TV (VPN CH)</string>
+
+        <string id="10058">TV stations in Franch</string>
+        <string id="10056">TV stations in German</string>       
+        <string id="10057">TV stations in English</string>
+        
         <string id="10070">Italian Radio</string>
+        <string id="10071">Radio in French</string>
+        <string id="10072">Radio in German</string> 
+        <string id="10073">English Radio</string>
+        <string id="10074">BBC Radio</string>
         
         <string id="10100">All Channels</string>
 	
@@ -39,4 +57,6 @@
 	<string id="10102">Delete Favourites file</string>
         <string id="10103">Restore XML Advancedsettings</string>
         <string id="10104">Delete XML Advancedsettings</string>
+        <string id="10105">Clean cache m3u</string>
+        <string id="10106">check for updates</string>
 </strings>

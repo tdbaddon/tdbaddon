@@ -5,7 +5,7 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 ---------------------------------------------------------------------------------------------------------------
 
 #EXTINF:0,A&E 
-http://167.114.102.27/live/pK72ybX-R4WlmyCc2aUxoA/1459245132/bb38d9048b7b91706264169a031f32a4.m3u8|User-Agent=Mozilla%2F5.0%20(Windows%20NT%206.1%3B%20WOW64)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F47.0.2526.106%20Safari%2F537.36
+0
 
 #EXTINF:0,ABC 
 0
@@ -17,22 +17,19 @@ http://167.114.102.27/live/pK72ybX-R4WlmyCc2aUxoA/1459245132/bb38d9048b7b9170626
 0
 
 #EXTINF:0,AMC 
-http://167.114.102.27/live/3v0M97BJvPhgctMUzsS5iw/1459244980/7c52ed5b8820b7dfd90b5a784bac64b3.m3u8|User-Agent=Mozilla%2F5.0%20(Windows%20NT%206.1%3B%20WOW64)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F47.0.2526.106%20Safari%2F537.36
+0
 
 #EXTINF:0,AXN 
 0
 
 #EXTINF:0,BabyTV 
-http://server3.balkantvmedia.com:8080/Baby_TV?u=user1610:p=ibccL97n
+0
 
 #EXTINF:0,BBC 1 
-http://play.uktvnow.net:1935/live/bbc1.stream/playlist.m3u8?wowzasessionid=727529593&wmsAuthSign=c2VydmVyX3RpbWU9My8yMS8yMDE2IDk6MjM6NTAgUE0maGFzaF92YWx1ZT1DTFpURUxhZnNkRzV6M2w3OXoyYVhBPT0mdmFsaWRtaW51dGVzPTIw
-
-#EXTINF:0,BBC 1 
-http://62.65.140.214:80/session/9a031db8-f56e-11e5-b7a6-005056bc06d1/nvnv5a/2/4017/index.m3u8?token=c140a90057856d1258f49d96dddca61b_1459315507_1459315507&p=127|X-Forwarded-For=85.195.192.0
+0
 
 #EXTINF:0,BBC 2 
-http://212.231.144.15:9002/play/a008
+0
 
 #EXTINF:0,BBC Entertainment 
 http://vod.cdn.iutpcdn.com/LIVE/H01/CANAL253/PROFILE03.m3u8?
@@ -50,13 +47,7 @@ http://77.120.118.235:8085
 0
 
 #EXTINF:0,Cartoon Network 
-http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD28_W_250.sdp/playlist.m3u8
-
-#EXTINF:0,Cartoon Network 
-http://54.255.155.24:1935//Live/_definst_/sweetbcha1novD28_W_150.sdp/playlist.m3u8
-
-#EXTINF:0,Cartoon Network 
-http://167.114.102.27/live/bZs-TX_8nlkxvdPv8r1jsg/1459245138/8be5e3f6156a6b2108a2d8b9cc5d5d7c.m3u8|User-Agent=Mozilla%2F5.0%20(Windows%20NT%206.1%3B%20WOW64)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F47.0.2526.106%20Safari%2F537.36
+0
 
 #EXTINF:0,CBC TV 
 0
@@ -92,9 +83,6 @@ http://167.114.102.27/live/bZs-TX_8nlkxvdPv8r1jsg/1459245138/8be5e3f6156a6b2108a
 0
 
 #EXTINF:0,Comedy Central 
-http://167.114.102.27/live/2GnV3naM8D5NuYm59qSOGg/1459244985/fa894851552e99b1cc146264a8ffaf4b.m3u8|User-Agent=Mozilla%2F5.0%20(Windows%20NT%206.1%3B%20WOW64)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F47.0.2526.106%20Safari%2F537.36
-
-#EXTINF:0,Comedy Central 
 http://cp.dmbshare.net:8000/live/tufan/tufan/2822.m3u8
 
 #EXTINF:0,Comedy Gold
@@ -125,7 +113,7 @@ http://cp.dmbshare.net:8000/live/tufan/tufan/2822.m3u8
 0
 
 #EXTINF:0,CW 
-http://167.114.102.27/live/CRF00adEN9CCPrirzl0Vxw/1459245000/d61960e75b1a90a23ebfb02f0bb46678.m3u8|User-Agent=Mozilla%2F5.0%20(Windows%20NT%206.1%3B%20WOW64)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F47.0.2526.106%20Safari%2F537.36
+0
 
 #EXTINF:0,DejaView
 0
@@ -161,7 +149,7 @@ http://167.114.102.27/live/CRF00adEN9CCPrirzl0Vxw/1459245000/d61960e75b1a90a23eb
 0
 
 #EXTINF:0,Fashion TV 
-http://server2.balkantvmedia.com:8080/FASHION_TV?u=user1610:p=ibccL97n
+0
 
 #EXTINF:0,Fine Living Network 
 0
@@ -179,19 +167,13 @@ https://video02-atl.streamup.com/app/juanjo-lives-stream_aac/playlist.m3u8
 0
 
 #EXTINF:0,Fox Life 
-http://balkanstream.com/stream/foxlife/amy/amy
-
-#EXTINF:0,Fox Life 
-http://server4.balkantvmedia.com:8080/FOX_life?u=user1610:p=ibccL97n
+0
 
 #EXTINF:0,Fox TV 
-http://167.114.102.27/live/Wxsf4hqXAWuyqXd89S3NAg/1459245171/1cbdb8043b37c7c9ca83582f9218c8b4.m3u8|User-Agent=Mozilla%2F5.0%20(Windows%20NT%206.1%3B%20WOW64)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F47.0.2526.106%20Safari%2F537.36
+0
 
 #EXTINF:0,FX 
-http://167.114.102.27/live/6pHSKIu2SfYX4VBtta-dBw/1459244590/b8b5089c70ae62534970e2d8aa67e96d.m3u8|User-Agent=Mozilla%2F5.0%20(Windows%20NT%206.1%3B%20WOW64)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F47.0.2526.106%20Safari%2F537.36
-
-#EXTINF:0,FX 
-http://167.114.102.27/live/hONszSQ44CRoj_8cslOJxw/1459245019/b8b5089c70ae62534970e2d8aa67e96d.m3u8|User-Agent=Mozilla%2F5.0%20(Windows%20NT%206.1%3B%20WOW64)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F47.0.2526.106%20Safari%2F537.36
+0
 
 #EXTINF:0,FXHD 
 0
@@ -245,22 +227,16 @@ rtmp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:468p500kB31?b?b*t$
 http://ios.streamserver01.com:8080/ShowcaseTV/mystream.m3u8
 
 #EXTINF:0,ITV 1 
-http://212.231.144.15:9001/play/a002
-
-#EXTINF:0,ITV 1 
-http://62.65.140.215:80/session/a931296a-f56e-11e5-a5c9-005056bc1a52/nvnv5a/2/4018/index.m3u8?token=b049a9453afcb8f08b4fda49c7e4aeaf_1459315533_1459315533&p=127|X-Forwarded-For=85.195.192.0
+0
 
 #EXTINF:0,ITV 2 
-http://212.231.144.15:9001/play/a003
-
-#EXTINF:0,ITV 2 
-http://62.65.140.219:80/session/a9bda476-f56e-11e5-9ef6-005056bc06d1/nvnv5a/2/4005/index.m3u8?token=a9c2202ed5a84525a0be2e0d7a7a3ae9_1459315534_1459315534&p=127|X-Forwarded-For=85.195.192.0
+0
 
 #EXTINF:0,ITV 3 
-http://62.65.140.150:80/session/aa446952-f56e-11e5-a43c-005056bc1a52/nvnv5a/2/4025/index.m3u8?token=7729ab69bbd5e4f8068cf0eef3f8d19c_1459315535_1459315535&p=127|X-Forwarded-For=85.195.192.0
+0
 
 #EXTINF:0,ITV 4 
-http://212.231.144.15:9001/play/a004
+0
 
 #EXTINF:0,Jim Jam 
 http://77.120.118.235:8089
@@ -272,7 +248,7 @@ rtmp://jtvmedia.jtv.com:1975/live playpath=live6 swfUrl=http://demandware.edgesu
 0
 
 #EXTINF:0,Lifetime Network 
-http://167.114.102.27/live/6Hk80NYIxakveXnj2xGIJA/1459245022/1a10be3692cec335c74387f33221a6fa.m3u8|User-Agent=Mozilla%2F5.0%20(Windows%20NT%206.1%3B%20WOW64)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F47.0.2526.106%20Safari%2F537.36
+0
 
 #EXTINF:0,London Live 
 http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
@@ -296,7 +272,7 @@ http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
 0
 
 #EXTINF:0,Nickelodeon 
-http://167.114.102.27/live/RhrNMs7Qgpndn-v9TynVhw/1459245153/b11cc9ad84502b27a63fa7a8d813ef6a.m3u8|User-Agent=Mozilla%2F5.0%20(Windows%20NT%206.1%3B%20WOW64)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F47.0.2526.106%20Safari%2F537.36
+0
 
 #EXTINF:0,NickNight 
 0
@@ -332,10 +308,10 @@ http://llnw.live.qvc.simplestream.com/hera/remote/qvcuk_primary_sdi8/3/prog_inde
 0
 
 #EXTINF:0,Sky 1 
-http://cp.dmbshare.net:8000/live/c4a/c4a/2771.m3u8
+0
 
 #EXTINF:0,Sky 2 
-http://cp.dmbshare.net:8000/live/c4a/c4a/2759.m3u8
+0
 
 #EXTINF:0,Sky Arts 1 
 0
@@ -356,19 +332,19 @@ http://cp.dmbshare.net:8000/live/c4a/c4a/2759.m3u8
 0
 
 #EXTINF:0,Spike TV 
-http://167.114.102.27/live/ZUsQclXFa3HCLiEDlyhvlQ/1459244290/a01d4a2d79052d6b1c2c63bf2d284202.m3u8|User-Agent=Mozilla%2F5.0%20(Windows%20NT%206.1%3B%20WOW64)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F47.0.2526.106%20Safari%2F537.36
+0
 
 #EXTINF:0,Syfy 
 0
 
 #EXTINF:0,TBS 
-http://167.114.102.27/live/gUSkP_qwEIb4CsXQj7-xaA/1459244593/c370dca571a8e9eeb48104236808fe8d.m3u8|User-Agent=Mozilla%2F5.0%20(Windows%20NT%206.1%3B%20WOW64)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F47.0.2526.106%20Safari%2F537.36
+0
 
 #EXTINF:0,Teletoon 
 0
 
 #EXTINF:0,TLC 
-http://212.231.144.15:9100/play/a00r
+0
 
 #EXTINF:0,TNT 
 0

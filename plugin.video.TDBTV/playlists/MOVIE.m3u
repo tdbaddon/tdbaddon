@@ -17,10 +17,7 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 0
 
 #EXTINF:0,Cinemax 
-http://77.76.140.251/prgb.m3u8
-
-#EXTINF:0,Cinemax 
-http://server5.balkantvmedia.com:8080/CINEMAX?u=user1610:p=ibccL97n
+0
 
 #EXTINF:0,Cinemax 5 StarMax
 0
@@ -38,7 +35,7 @@ http://server5.balkantvmedia.com:8080/CINEMAX?u=user1610:p=ibccL97n
 0
 
 #EXTINF:0,CineStar Premiere 2
-http://server2.balkantvmedia.com:8080/CINESTAR_Premiere_2?u=user1610:p=ibccL97n
+0
 
 #EXTINF:0,CineStar TV 
 0
@@ -74,7 +71,7 @@ http://server2.balkantvmedia.com:8080/CINESTAR_Premiere_2?u=user1610:p=ibccL97n
 0
 
 #EXTINF:0,Film4 
-http://62.65.140.155:80/session/a4c19982-f56e-11e5-a5c9-005056bc1a52/nvnv5a/2/4023/index.m3u8?token=045859e8dc95418edfb12db3d7bfd697_1459315525_1459315525&p=127|X-Forwarded-For=85.195.192.0
+0
 
 #EXTINF:0,FilmBox 
 0
@@ -110,9 +107,6 @@ http://vod.cdn.iutpcdn.com/LIVE/H01/CANAL416/PROFILE03.m3u8?
 0
 
 #EXTINF:0,Fox Classics 
-http://veetle.com/index.php/hls/streamMbrFast/5408d7749bc24_/stream.m3u8
-
-#EXTINF:0,Fox Classics 
 http://vod.cdn.iutpcdn.com/LIVE/H01/CANAL424/PROFILE03.m3u8?
 
 #EXTINF:0,Fox Comedy
@@ -125,10 +119,10 @@ http://vod.cdn.iutpcdn.com/LIVE/H01/CANAL417/PROFILE03.m3u8?
 0
 
 #EXTINF:0,HBO 
-http://xmiolive.e14538a7.viettel-cdn.vn/hbo.smil/chunklist_b1000000.m3u8
+0
 
 #EXTINF:0,HBO Adria 
-http://server4.balkantvmedia.com:8080/HBO_ADRIA?u=user1610:p=ibccL97n
+0
 
 #EXTINF:0,HBO Comedy 
 0
@@ -137,7 +131,7 @@ http://server4.balkantvmedia.com:8080/HBO_ADRIA?u=user1610:p=ibccL97n
 0
 
 #EXTINF:0,HBO East 2
-http://server4.balkantvmedia.com:8080/HBO_COMEDY?u=user1610:p=ibccL97n
+0
 
 #EXTINF:0,HBO Family
 0
@@ -179,7 +173,7 @@ http://telvuehls_t02027-i.akamaihd.net/hls/live/213119/T02027-amgtv2/playlist_2.
 0
 
 #EXTINF:0,SciFi Action Movies
-http://veetle.com/index.php/hls/streamMbrFast/5611ca8dc238d_/stream.m3u8
+0
 
 #EXTINF:0,Showtime Beyond
 0
@@ -215,7 +209,7 @@ http://veetle.com/index.php/hls/streamMbrFast/5611ca8dc238d_/stream.m3u8
 0
 
 #EXTINF:0,Sky Movies Modern Greats 
-http://cp.dmbshare.net:8000/live/c4a/c4a/2776.m3u8
+0
 
 #EXTINF:0,Sky Movies Premiere 
 0
@@ -224,13 +218,13 @@ http://cp.dmbshare.net:8000/live/c4a/c4a/2776.m3u8
 0
 
 #EXTINF:0,Sky Movies SciFi 
-http://cp.dmbshare.net:8000/live/c4a/c4a/2769.m3u8
+0
 
 #EXTINF:0,Sky Movies Select 
 0
 
 #EXTINF:0,Sky Movies Showcase 
-http://cp.dmbshare.net:8000/live/c4a/c4a/2777.m3u8
+0
 
 #EXTINF:0,Sky Movies Thriller 
 0
@@ -239,7 +233,7 @@ http://cp.dmbshare.net:8000/live/c4a/c4a/2777.m3u8
 0
 
 #EXTINF:0,Star Movies 
-http://112.197.2.135:1935/colive/C001_HD_4/chunklist.m3u8
+0
 
 #EXTINF:0,Starz Cinema
 0

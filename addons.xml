@@ -126,6 +126,32 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 	</extension>
 </addon>
 
+<addon id="plugin.program.advancedsettings"
+       name="Easy Advanced Settings"
+       version="0.8.8"
+       provider-name="kinkin">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource"
+               	library="default.py">
+        <provides>video executable</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <platform>all</platform>
+        <summary>Create, view, edit and delete your advancedsettings.xml file in a user-friendly gui</summary>
+        <description>All settings follow the xbmc.org wiki[CR][CR]With this tool you can create your advanced settings directly from XBMC[CR][CR]If you don't know what a setting does, don't enable it!</description>
+        <platform>all</platform>
+        <language>en</language>
+        <license>GNU GENERAL PUBLIC LICENSE</license>
+        <forum></forum>
+        <website></website>
+        <source></source>
+        <email></email>
+    </extension>
+
+</addon>
+
 <addon id="plugin.program.super.favourites" name="Super Favourites" version="2.0.36" provider-name="spoyser, enhanced iSearches by OpenELEQ">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -479,7 +505,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 	</extension>
 </addon>
 
-<addon id="plugin.video.kodilivetv" name="Kodi Live TV" version="1.1.0" provider-name="Vania Rupeni">
+<addon id="plugin.video.kodilivetv" name="Kodi Live TV" version="1.4.0" provider-name="Vania Rupeni">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
   </requires>
@@ -489,7 +515,11 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   <extension point="xbmc.addon.metadata">
     <summary lang="en">Kodi Live TV - downloaded for free from: http://kodilive.eu</summary>
     <description lang="en">Kodi Live TV - downloaded for free from:
-http://kodilive.eu</description>
+http://kodilive.eu
+Plugin to watch IPTV free worldwide</description>
+
+Regional italian channels list by Infogw:
+http://informaticglobalworld.altervista.org/
     <platform>all</platform>
   </extension>
 </addon>
@@ -1031,7 +1061,7 @@ http://kodilive.eu</description>
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="3.71"
+       version="3.72"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>

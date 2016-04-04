@@ -5,7 +5,7 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 ---------------------------------------------------------------------------------------------------------------
 
 #EXTINF:0,American Heros Channel 
-http://64.228.62.144:2046
+0
 
 #EXTINF:0,AMHQ 
 0
@@ -15,15 +15,6 @@ http://64.228.62.144:2046
 
 #EXTINF:0,Animal Planet 
 http://109.226.222.161:4022/udp/239.255.4.175:1234
-
-#EXTINF:0,Animal Planet 
-http://server2.balkantvmedia.com:8080/Animal_Planet?u=user1610:p=ibccL97n
-
-#EXTINF:0,Animal Planet 
-http://212.231.144.15:9100/play/a00l
-
-#EXTINF:0,Animal Planet 
-http://167.114.102.27/live/eMcOPIgECwqdiY79ZdwAJA/1459244279/52d1df7fff7b1ba3ac317b98ef2fdb80.m3u8|User-Agent=Mozilla%2F5.0%20(Windows%20NT%206.1%3B%20WOW64)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F47.0.2526.106%20Safari%2F537.36
 
 #EXTINF:0,Biography Channel
 0
@@ -41,31 +32,22 @@ http://167.114.102.27/live/eMcOPIgECwqdiY79ZdwAJA/1459244279/52d1df7fff7b1ba3ac3
 0
 
 #EXTINF:0,Discovery Channel
-http://server6.balkantvmedia.com:8080/DISCOVERY?u=user1610:p=ibccL97n
-
-#EXTINF:0,Discovery Channel
-http://212.231.144.15:9100/play/a00c
+0
 
 #EXTINF:0,Discovery History 
-http://212.231.144.15:9100/play/a00m
+0
 
 #EXTINF:0,Discovery H&H
-http://212.231.144.15:9100/play/a00h
+0
 
 #EXTINF:0,Discovery Max 
-http://cp.dmbshare.net:8000/live/burgess/burgess/2813.m3u8
+0
 
 #EXTINF:0,Discovery News 
 0
 
 #EXTINF:0,Discovery Science 
 http://109.226.222.161:4022/udp/239.255.4.250:1234
-
-#EXTINF:0,Discovery Science 
-http://212.231.144.15:9100/play/a00f
-
-#EXTINF:0,Discovery Science 
-http://cp.dmbshare.net:8000/live/andy/andy/2819.m3u8
 
 #EXTINF:0,Discovery Shed
 0
@@ -74,7 +56,7 @@ http://cp.dmbshare.net:8000/live/andy/andy/2819.m3u8
 0
 
 #EXTINF:0,Discovery Turbo 
-http://212.231.144.15:9100/play/a00i
+0
 
 #EXTINF:0,Discovery World 
 0
@@ -92,9 +74,6 @@ http://212.231.144.15:9100/play/a00i
 0
 
 #EXTINF:0,History Channel 
-http://167.114.102.27/live/alPd-BvYM3j3tpTG1JVVvQ/1459245148/d4a4950b7b7267417aa0b9733f30b6fe.m3u8|User-Agent=Mozilla%2F5.0%20(Windows%20NT%206.1%3B%20WOW64)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F47.0.2526.106%20Safari%2F537.36
-
-#EXTINF:0,History Channel 
 https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8?hdnea=ip=174.113.30.187~st=1427694727~exp=1427695327~acl=/i/*~id=a86de0c2-ad09-4469-9a63-6ebbc1bba4d3~hmac=ac144089000bdd16f6916c517ce3e6e04813d4de11ac16839ad468a977ec80b1
 
 #EXTINF:0,History Channel 
@@ -110,7 +89,7 @@ http://link.theplatform.com/s/dtjsEC/chjdYJxKb44V?manifest=m3u
 http://cp.dmbshare.net:8000/live/burgess/burgess/2800.m3u8
 
 #EXTINF:0,Investigation Discovery 
-http://212.231.144.15:9100/play/a00k
+0
 
 #EXTINF:0,Nasa TV 
 http://nasatv-lh.akamaihd.net/i/NASA_101@319270/master.m3u8 
@@ -129,15 +108,6 @@ http://nasatv-lh.akamaihd.net/i/NASA_103@319271/master.m3u8
 
 #EXTINF:0,National Geographic 
 http://109.226.222.161:4022/udp/239.255.4.30:1234
-
-#EXTINF:0,National Geographic 
-http://167.114.102.27/live/QccGELY85ZCra1DvZb3uqw/1459244995/e08dd4627a3cf468a30d8a357956d6f8.m3u8|User-Agent=Mozilla%2F5.0%20(Windows%20NT%206.1%3B%20WOW64)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F47.0.2526.106%20Safari%2F537.36
-
-#EXTINF:0,National Geographic 
-http://167.114.102.27/live/-0IvlZYY76PAhp0ut814iQ/1459245012/e08dd4627a3cf468a30d8a357956d6f8.m3u8|User-Agent=Mozilla%2F5.0%20(Windows%20NT%206.1%3B%20WOW64)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F47.0.2526.106%20Safari%2F537.36
-
-#EXTINF:0,National Geographic 
-http://cp.dmbshare.net:8000/live/andy/andy/2793.m3u8
 
 #EXTINF:0,Nova
 0
