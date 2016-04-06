@@ -46,7 +46,7 @@ def INDEX(url):
                 if metaset=='true':
                         if '/' in qualep:
                                 qualep = qualep.replace('/',' of ')
-                                addDir2('[B][COLOR white]%s Episode%s[/COLOR][/B]' %(name,qualep),url,3,thumb,items)
+                                addDir2('[B][COLOR white]%s Episode%s[/COLOR][/B]' %(name,qualep),url,6,thumb,items)
                         else:
                                 addDir2('[B][COLOR white]%s[/COLOR][/B]' %name,url,3,thumb,items)
                 else:
@@ -95,30 +95,29 @@ def INDEX2(url):
 def EPS(name,url,iconimage):
         link = OPEN_URL(url)
         link = link.encode('ascii', 'ignore')
-        match=re.compile('<a href="(.*?)" target="EZWebPlayer" data-wpel-ignored="true"><input class="abutton orange big" type="button" value="(.*?)" /></a>').findall(link) 
+        match=re.compile('<a href="(.*?)".*?target="EZWebPlayer".*?><input class="abutton orange big" type="button" value="(.*?)" /></a>').findall(link) 
         for url1,name in match:
                 name = name.replace('Episode ','').replace('EPISODE ','')
-                addDir('[B][COLOR white]Episode [/COLOR][/B][B][COLOR red]%s[/COLOR][/B]' %name,url+url1,4,icon,fanart,'')
+                headers = {'host': 'player.pubfilm.com', 'referer': url, 'user-agent': User_Agent}
+                html = requests.get(url1, headers=headers).text
+                try:
+                        url = re.findall(r'"file":"(.*?)","type":"mp4"', str(html), re.I|re.DOTALL)[0]
+                except: pass
+                if baseurl2 not in url:
+                        addDir('[B][COLOR white]Episode [/COLOR][/B][B][COLOR red]%s[/COLOR][/B]' %name,url,4,icon,fanart,'')
 
 
 
 
 def LINK(url):
         link = OPEN_URL(url)
-        RequestURL = 'http://player.pubfilm.com/smplayer/plugins/gkphp/plugins/gkpluginsphp.php'
-        r = re.compile('<ifram.*?rc="(.*?)".*?>').findall(link)[0]
-        r = addon.unescape(r)
-        link = re.split(r'&sub=', r, re.I)[0]
-        sub = re.split(r'&sub=', r, re.I)[1]
-        form_data={'link': link, 'sub': sub}
+        link = link.encode('ascii', 'ignore')
         headers = {'host': 'player.pubfilm.com', 'referer': url, 'user-agent': User_Agent}
-        html = requests.get(r, data=form_data, headers=headers).text
-        form_data={'link': re.search(r'link:"(.*?)"',html,re.I).group(1)}
-        headers = {'host': 'player.pubfilm.com', 'content-type':'application/x-www-form-urlencoded',
-                   'origin':'http://player.pubfilm.com', 'referer': r, 'user-agent': User_Agent}
-        html = requests.post(RequestURL, data=form_data, headers=headers)
-        url = re.findall(r'"link":"(.*?)"', str(html.text), re.I|re.DOTALL)[-1]
-        url = url.replace('\/','/')
+        requestURL = re.findall(r'<a href="http://player.pubfilm.com(.*?)".*?value=".*?" />', str(link), re.I|re.DOTALL)[0]
+        if 'http://player.pubfilm.com' not in requestURL:
+                requestURL = 'http://player.pubfilm.com' + requestURL
+        html = requests.get(requestURL, headers=headers).text
+        url = re.findall(r'"file":"(.*?)","type":"mp4"', str(html), re.I|re.DOTALL)[0]
         liz = xbmcgui.ListItem(name, iconImage='DefaultVideo.png', thumbnailImage=iconimage)
         liz.setInfo(type='Video', infoLabels={'Title':description})
         liz.setProperty("IsPlayable","true")
@@ -129,25 +128,6 @@ def LINK(url):
 
 
 def LINK2(url):
-        splitLink=url.partition('.html')
-        url = ""
-        r = ""
-        url = splitLink[0]
-        url = url + '.html'
-        r = splitLink[2]
-        r = addon.unescape(r)
-        RequestURL = 'http://player.pubfilm.com/smplayer/plugins/gkphp/plugins/gkpluginsphp.php'
-        link = re.split(r'&sub=', r, re.I)[0]
-        sub = re.split(r'&sub=', r, re.I)[1]
-        form_data={'link': link, 'sub': sub}
-        headers = {'host': 'player.pubfilm.com', 'referer': url, 'user-agent': User_Agent}
-        html = requests.get(r, data=form_data, headers=headers).text
-        form_data={'link': re.search(r'link:"(.*?)"',html,re.I).group(1)}
-        headers = {'host': 'player.pubfilm.com', 'content-type':'application/x-www-form-urlencoded',
-                   'origin':'http://player.pubfilm.com', 'referer': r, 'user-agent': User_Agent}
-        html = requests.post(RequestURL, data=form_data, headers=headers)
-        url = re.findall(r'"link":"(.*?)"', str(html.text), re.I|re.DOTALL)[-1]
-        url = url.replace('\/','/')
         liz = xbmcgui.ListItem(name, iconImage='DefaultVideo.png', thumbnailImage=iconimage)
         liz.setInfo(type='Video', infoLabels={'Title':description})
         liz.setProperty("IsPlayable","true")

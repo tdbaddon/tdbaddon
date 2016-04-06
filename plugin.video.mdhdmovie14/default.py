@@ -102,8 +102,9 @@ def LINK(name,url,iconimage):
                                 url = re.findall("'url': u'(.*?)'", str(url), re.I|re.DOTALL)[-1]
                         except:
                                 url = re.findall("'url': u'(.*?)'", str(url), re.I|re.DOTALL)[0]
-                url = url.replace('-[W]x[H]','')
-                name2 = url.replace('http://','').replace('https://','').replace('lh3.','').replace('usercontent','').partition('.')[0]
+                url = str(url).replace('-[W]x[H]','')
+                
+                name2 = str(url).replace('http://','').replace('https://','').replace('lh3.','').replace('usercontent','').partition('.')[0]
                 if metaset=='true':
                         addDir2('[B][COLOR white]%s[/COLOR][/B]' %name,url,100,iconimage,items)
                 else:
@@ -185,7 +186,7 @@ def RESOLVE(name,url):
         liz = xbmcgui.ListItem(name, iconImage='DefaultVideo.png', thumbnailImage=iconimage)
         liz.setInfo(type='Video', infoLabels={'Title':description})
         liz.setProperty("IsPlayable","true")
-        liz.setPath(url)
+        liz.setPath(str(url))
         xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
 
 

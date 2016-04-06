@@ -54,6 +54,32 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
+<addon id="plugin.audio.mp3streams"
+       name="MP3 Streams"
+       version="1.2.0"
+       provider-name="kinkin, spoyser, art by Marquerite">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0"/>
+        <import addon="script.module.t0mm0.common" version="1.1.0"/>
+        <import addon="script.module.mutagen"/>
+        <import addon="script.module.requests" version="1.1.0"/>
+    </requires>
+
+    <extension point="xbmc.python.pluginsource"
+               	library="default.py">
+        <provides>audio</provides>
+    </extension>
+
+	<extension point="xbmc.service" library="playerMP3.py" start="startup" />
+
+    <extension point="xbmc.addon.metadata">
+        <platform>all</platform>
+        <summary>A music streaming collection</summary>
+        <description>Browse and stream your favourite songs and albums</description>
+    </extension>
+
+</addon>
+
 	<addon
         id="plugin.audio.raveplayer"
         name="Rave player"
@@ -593,7 +619,7 @@ http://informaticglobalworld.altervista.org/
   </extension>
 </addon>
 
-<addon id="plugin.video.mdhdmovie14" name="HD-Movie14" version="1.0.3" provider-name="Mucky Duck">
+<addon id="plugin.video.mdhdmovie14" name="HD-Movie14" version="1.0.4" provider-name="Mucky Duck">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.addon.common" />
@@ -652,7 +678,7 @@ http://informaticglobalworld.altervista.org/
   </extension>
 </addon>
 
-<addon id="plugin.video.mdpubfilm" name="PubFilm" version="1.0.3" provider-name="Mucky Duck">
+<addon id="plugin.video.mdpubfilm" name="PubFilm" version="1.0.4" provider-name="Mucky Duck">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.addon.common" />
@@ -1061,7 +1087,7 @@ http://informaticglobalworld.altervista.org/
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="3.72"
+       version="3.73"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>

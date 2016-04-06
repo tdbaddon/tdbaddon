@@ -124,6 +124,9 @@ http://origin2.voronezh.ertelecom.ru/content/private/s147213/d3720264/r183857sd2
 #EXTINF:0,MTV Hits 
 http://vod.cdn.iutpcdn.com/LIVE/H01/CANAL727/PROFILE03.m3u8?
 
+#EXTINF:0,MTV Hits 
+http://ipsatpro.com:8000/live/05021972/05021972/500.ts
+
 #EXTINF:0,MTV Live 
 0
 
@@ -210,6 +213,9 @@ http://www.iptvsaga.com/play/tv3/0006.m3u8
 
 #EXTINF:0,VH1 
 http://origin2.tomsk.ertelecom.ru/content/private/s147213/d3720264/r183860sd2000000/a7e4d34646b475190d0c99a717f7478a546958ed/track_2_1200/playlist.m3u8
+
+#EXTINF:0,VH1 
+http://ipsatpro.com:8000/live/05021972/05021972/449.ts
 
 #EXTINF:0,VH1 Classics 
 http://81.201.52.159:8024
