@@ -15,34 +15,22 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 0
 
 #EXTINF:0,Big Ten Network 
-http://ipsatpro.com:8000/live/05021972/05021972/1172.ts
+0
 
 #EXTINF:0,Box Nation 
-http://newone15.ddns.net:8000/live/spuds/spuds/31.ts
-
-#EXTINF:0,Box Nation 
-http://ipsatpro.com:8000/live/05021972/05021972/490.ts
+0
 
 #EXTINF:0,BT Sport 1 
-http://newone15.ddns.net:8000/live/spuds/spuds/159.ts
-
-#EXTINF:0,BT Sport 1 
-http://ipsatpro.com:8000/live/05021972/05021972/543.ts
+0
 
 #EXTINF:0,BT Sport 2 
-http://newone15.ddns.net:8000/live/spuds/spuds/160.ts
-
-#EXTINF:0,BT Sport 2 
-http://ipsatpro.com:8000/live/05021972/05021972/542.ts
+0
 
 #EXTINF:0,CBS Sports 
 0
 
 #EXTINF:0,Chelsea TV 
-http://newone15.ddns.net:8000/live/spuds/spuds/4097.ts
-
-#EXTINF:0,Chelsea TV 
-http://ipsatpro.com:8000/live/05021972/05021972/537.ts
+0
 
 #EXTINF:0,CMore Sport 
 0
@@ -51,10 +39,10 @@ http://ipsatpro.com:8000/live/05021972/05021972/537.ts
 0
 
 #EXTINF:0,ESPN 
-http://newone15.ddns.net:8000/live/spuds/spuds/1534.ts
+0
 
 #EXTINF:0,ESPN 2
-http://newone15.ddns.net:8000/live/spuds/spuds/1796.ts
+0
 
 #EXTINF:0,Eurosport 1 
 http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_1800.m3u8
@@ -80,11 +68,8 @@ http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_18
 #EXTINF:0,Fox Sports 1 
 http://ooyalahd2-f.akamaihd.net/i/eslax17_delivery@349499/master.m3u8
 
-#EXTINF:0,Fox Sports 1 
-http://ipsatpro.com:8000/live/05021972/05021972/1161.ts
-
 #EXTINF:0,Fox Sports 2 
-http://newone15.ddns.net:8000/live/spuds/spuds/141.ts
+0
 
 #EXTINF:0,Fox Sports News 
 0
@@ -117,7 +102,7 @@ http://motorsport.hopto.org:8080/
 mms://100automoto.tv/100livesport
 
 #EXTINF:0,NBA TV 
-http://ipsatpro.com:8000/live/05021972/05021972/1174.ts
+0
 
 #EXTINF:0,NBC Golf 
 http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/1896k/prog.m3u8|X-Forwarded-For=66.171.228.102
@@ -135,7 +120,7 @@ http://cdn.phoenix.intergi.com/21772/videos/3362254/video-sd.mp4?hosting_id=2177
 http://nflioslivesvg2-i.akamaihd.net/hls/live/221521/nflioslive/2015HackerNow_w99d9.m3u8
 
 #EXTINF:0,NFL Network 
-http://nflioslivesvg2-i.akamaihd.net/hls/live/221521/nflioslive/2015HackerNow_w99d9.m3u8
+0
 
 #EXTINF:0,NHL Network 
 0
@@ -201,25 +186,16 @@ rtmp://31.220.2.149:80/live/ playpath=premier token=%Zrey(nKa@#Z swfUrl=http://p
 rtmp://31.220.2.149:80/live playpath=premier swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf pageUrl=http://yotv.co/embedu.php?live=premier&vw=620&vh=490 live=1 token=%Zrey(nKa@#Z
 
 #EXTINF:0,Racing UK 
-http://newone15.ddns.net:8000/live/spuds/spuds/126.ts
+0
 
-#EXTINF:0,Racing UK 
-http://ipsatpro.com:8000/live/05021972/05021972/458.ts
-
-#EXTINF:0,Redbull TV
+#EXTINF:0,Redbull TV 
 http://sacapunta.eltelon.com/channels/redbulltv/playlist.m3u8
-
-#EXTINF:0,Redbull TV
-http://ipsatpro.com:8000/live/05021972/05021972/1153.ts
 
 #EXTINF:0,Root Sports 
 0
 
 #EXTINF:0,Setanta Sports 
-http://newone15.ddns.net:8000/live/spuds/spuds/1871.ts
-
-#EXTINF:0,Setanta Sports 
-http://ipsatpro.com:8000/live/05021972/05021972/484.ts
+0
 
 #EXTINF:0,Sky Sports 1 
 rtmp://lb.miplayer.net:1935/goLive/_definst_/ibrodtv21_6vhudlq8
@@ -227,29 +203,20 @@ rtmp://lb.miplayer.net:1935/goLive/_definst_/ibrodtv21_6vhudlq8
 #EXTINF:0,Sky Sports 2 
 http://37.187.24.177:80/ramzi/ramzi/852.ch
 
-#EXTINF:0,Sky Sports 2 
-rtmp://lb.miplayer.net:1935/goLive/_definst_/ibrodtv22_j5p1mted
-
 #EXTINF:0,Sky Sports 3 
-rtmp://lb.miplayer.net:1935/goLive/_definst_/ibrodtv23_5px3ntfs
+0
 
 #EXTINF:0,Sky Sports 4 
-rtmp://lb.miplayer.net:1935/goLive/_definst_/ibrodtv24_f84rdmkk
+0
 
 #EXTINF:0,Sky Sports 5 
-http://144.76.3.83/sky_sports5gb.m3u8
-
-#EXTINF:0,Sky Sports 5 
-rtmp://lb.miplayer.net:1935/goLive/_definst_/ibrodtv25_wt250ssk
+0
 
 #EXTINF:0,Sky Sports F1 
-http://newone15.ddns.net:8000/live/spuds/spuds/309.ts
-
-#EXTINF:0,Sky Sports F1 
-http://ipsatpro.com:8000/live/05021972/05021972/539.ts
+0
 
 #EXTINF:0,Sky Sports News 
-http://newone15.ddns.net:8000/live/spuds/spuds/4976.ts
+0
 
 #EXTINF:0,Sports Tonight 
 rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9-SD
@@ -261,19 +228,13 @@ rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9
 0
 
 #EXTINF:0,Sportsnet One 
-http://newone15.ddns.net:8000/live/spuds/spuds/144.ts
-
-#EXTINF:0,Sportsnet One 
-rtmp://31.220.2.149:80/live playpath=sprt1 swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf pageUrl=http://yotv.co/embedu.php?live=sprt1&vw=620&vh=490 token=%Zrey(nKa@#Z
-
-#EXTINF:0,Sportsnet One 
 rtmp://185.63.255.18:80/live playpath=sprt1 swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf pageUrl=http://yotv.co/embedu.php?live=sprt1&vw=620&vh=490 live=1 token=%Zrey(nKa@#Z
 
 #EXTINF:0,Sportsnet One 
 rtmp://185.63.255.60:80/live playpath=sprt1 swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf pageUrl=http://yotv.co/embedu.php?live=sprt1&vw=620&vh=490 live=1 token=%Zrey(nKa@#Z
 
-#EXTINF:0,Sportsnet Ontario 
-http://newone15.ddns.net:8000/live/spuds/spuds/138.ts
+#EXTINF:0,Sportsnet One 
+rtmp://31.220.2.149:80/live playpath=sprt1 swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf pageUrl=http://yotv.co/embedu.php?live=sprt1&vw=620&vh=490 token=%Zrey(nKa@#Z
 
 #EXTINF:0,Sportsnet Ontario 
 rtmp://185.63.255.60:80/live playpath=ontrio swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf live=1 pageUrl=http://yotv.co/embedu.php?live=ontrio&vw=620&vh=490 token=%Zrey(nKa@#Z timeout=13
@@ -288,7 +249,7 @@ rtmp://185.63.255.18:80/live playpath=ontrio swfUrl=http://p.jwpcdn.com/6/12/jwp
 0
 
 #EXTINF:0,Sportsnet World 
-http://newone15.ddns.net:8000/live/spuds/spuds/139.ts
+0
 
 #EXTINF:0,Tennis Channel 
 0
@@ -297,16 +258,10 @@ http://newone15.ddns.net:8000/live/spuds/spuds/139.ts
 0
 
 #EXTINF:0,TSN 1 
-http://newone15.ddns.net:8000/live/spuds/spuds/135.ts
-
-#EXTINF:0,TSN 1 
 rtmp://31.220.2.149:80/live/ playpath=ts1 token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://yotv.co
 
 #EXTINF:0,TSN 1 
 rtmp://185.63.255.18:80/live playpath=ts1 swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf pageUrl=http://yotv.co/embedu.php?live=ts1&vw=620&vh=490 live=1 token=%Zrey(nKa@#Z
-
-#EXTINF:0,TSN 2 
-http://newone15.ddns.net:8000/live/spuds/spuds/136.ts
 
 #EXTINF:0,TSN 2 
 rtmp://31.220.2.149:80/live/ playpath=tsnx2 token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://yotv.co
@@ -315,13 +270,13 @@ rtmp://31.220.2.149:80/live/ playpath=tsnx2 token=%Zrey(nKa@#Z swfUrl=http://p.j
 rtmp://185.63.255.60:80/live playpath=tsnx2 swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf pageUrl=http://yotv.co/embedu.php?live=tsnx2&vw=620&vh=490 live=1 token=%Zrey(nKa@#Z
 
 #EXTINF:0,TSN 3 
-http://newone15.ddns.net:8000/live/spuds/spuds/1537.ts
+0
 
 #EXTINF:0,TSN 4 
-http://newone15.ddns.net:8000/live/spuds/spuds/1538.ts
+0
 
 #EXTINF:0,TSN 5 
-http://newone15.ddns.net:8000/live/spuds/spuds/1539.ts
+0
 
 #EXTINF:0,UFC TV 
 0
@@ -333,7 +288,7 @@ http://newone15.ddns.net:8000/live/spuds/spuds/1539.ts
 
 
 #EXTINF:0,Viasat Sport 
-http://3.hls.bolshoe.tv/1/streaming/viasat_sport/tvrec/playlist.m3u8
+0
 
 #EXTINF:0,VS Versus 
 http://208.92.36.158/ipad/live/nba_ipad_1240.m3u8

@@ -6,6 +6,8 @@ dc={
 "how to change audio language" : "02",
 "how to clean kodi temporary files" : "03",
 "how to customize kodi layout" : "04",
+"check back soon" : "05",
+
 
 
 "CABLE TV " : "0000000000",

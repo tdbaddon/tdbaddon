@@ -16,6 +16,9 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 #EXTINF:0,Animal Planet 
 http://109.226.222.161:4022/udp/239.255.4.175:1234
 
+#EXTINF:0,Animal Planet 
+http://uhs-akamai.ustream.tv/sjc/sjc-uhls225/17448463-improved/live_4/chunk_74_80237_1459964225.ts
+
 #EXTINF:0,Biography Channel
 0
 
@@ -147,3 +150,6 @@ http://rt-a.akamaihd.net/ch_05@325609/720p.m3u8
 
 #EXTINF:0,Viasat Nature 
 0
+
+#EXTINF:0,World Travel Channel
+http://stream.taksimbilisim.com:1935/wtc/bant1/WTC.m3u8

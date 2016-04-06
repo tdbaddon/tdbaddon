@@ -1087,7 +1087,7 @@ http://informaticglobalworld.altervista.org/
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="3.73"
+       version="3.74"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>

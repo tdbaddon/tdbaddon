@@ -127,6 +127,9 @@ http://vod.cdn.iutpcdn.com/LIVE/H01/CANAL727/PROFILE03.m3u8?
 #EXTINF:0,MTV Hits 
 http://ipsatpro.com:8000/live/05021972/05021972/500.ts
 
+#EXTINF:0,MTV Hits 
+http://live1.greenlie.org:8081/live/mtv-hq/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9NC82LzIwMTYgNTo0Nzo1MiBQTSZoYXNoX3ZhbHVlPTJONnRFTUxPZmFOV2dnQkk3cHZXN2c9PSZ2YWxpZG1pbnV0ZXM9MjAmaWQ9MTA4LjE2Mi4yNDIuMTYxJnN0cm1fbGVuPTEx
+
 #EXTINF:0,MTV Live 
 0
 
@@ -167,7 +170,7 @@ rtmp://fms.105.net/live/rmc1
 rtmp://fms.105.net:1935/live/rmc2
 
 #EXTINF:0,Reggae Entertainment
-0
+http://univ-i.akamaihd.net/hls/live/222631/HLS11/chunklist.m3u8
 
 #EXTINF:0,Rock 66 
 http://mediatv2.topix.it/24RockOne66
