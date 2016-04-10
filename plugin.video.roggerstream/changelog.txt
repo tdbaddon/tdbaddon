@@ -1,3 +1,9 @@
+VERSAO 3.0.9
+*Adicionada categoria search para busca de canais
+*Adicionada categoria favoritos, para montar a sua lista de favoritos dentro do proprio addon
+*Mudancas em logos das categorias
+
+
 VERSAO 3.0.7
 *Adicionada categoria de canais franceses
 *Mudanca de servidor de arquivos do addon

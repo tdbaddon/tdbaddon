@@ -91,8 +91,14 @@ class source:
 
                 url = cloudflare.source(url)
                 url = re.sub(r'[^\x00-\x7F]+', '', url)
+
                 atr = client.parseDOM(url, 'span', attrs = {'itemprop': 'title'})
                 atr = [i for i in atr if any(x in i for x in years)][0]
+
+                atr = client.parseDOM(url, 'div', attrs = {'class': 'mif'})
+                atr = atr[0] if len(atr) > 0 else ''
+                if '/film-coming-soon' in atr: raise Exception()
+
                 url = client.parseDOM(url, 'a', ret='href', attrs = {'class': '[^"]*btn_watch_detail[^"]*'})
                 url = urlparse.urljoin(self.base_link, url[0])
 
@@ -115,12 +121,12 @@ class source:
             result = [('%s?quality=1080P' % i[0], '1080p', i[2]) if '1080' in i[1] else ('%s?quality=720P' % i[0], 'HD', i[2]) for i in result]
 
             links = []
-            links += [(i[0], i[1], True, 'gvideo') for i in result if i[2] in ['Fast Location 1', 'Fast Location 2', 'Fast Location 4']]
-            links += [(i[0], i[1], True, 'cdn') for i in result if i[2] in ['Global CDN 4', 'Russian CDN 6']]
-            #links += [(i[0], i[1], True, 'cdn') for i in result if i[2] in ['Original CDN 2']]
-            links += [(i[0], i[1], False, 'openload.co') for i in result if i[2] in ['Original CDN 1']]
+            links += [{'source': 'gvideo', 'quality': i[1], 'url': i[0], 'direct': True} for i in result if i[2] in ['Server 1', 'Server 2', 'Server 3']]
+            links += [{'source': 'cdn', 'quality': i[1], 'url': i[0], 'direct': True} for i in result if i[2] in ['Server 15']]
+            links += [{'source': 'cdn', 'quality': i[1], 'url': i[0], 'direct': False} for i in result if i[2] in ['Server 6', 'Server 8', 'Server 9', 'Server 11', 'Server 16', 'Backup 1']]
+            links += [{'source': 'openload.co', 'quality': i[1], 'url': i[0], 'direct': False} for i in result if i[2] in ['Backup 2']]
 
-            for i in links: sources.append({'source': i[3], 'quality': i[1], 'provider': 'Watch1080', 'url': i[0], 'direct': i[2], 'debridonly': False})
+            for i in links: sources.append({'source': i['source'], 'quality': i['quality'], 'provider': 'Watch1080', 'url': i['url'], 'direct': i['direct'], 'debridonly': False})
 
             return sources
         except:
@@ -157,10 +163,13 @@ class source:
             url = client.parseDOM(result, 'iframe', ret='src')
             if len(url) > 0: return url[0]
 
-            result = re.compile('''<source[^>]+src=["']([^'"]+)[^>]+res=['"]([^'"]+)''').findall(result)
-            url = [i for i in result if i[1] == quality]
+            link = []
+            link += re.compile('''<source[^>]+src=["']([^'"]+)[^>]+res=['"]([^'"]+)''').findall(result)
+            link += re.compile('''\?url=(.+?)["'].+?["'](.+?)["']''').findall(result)
+
+            url = [i for i in link if i[1] == quality]
             if len(url) > 0: url = url[0][0]
-            else: url = result[0][0]
+            else: url = link[0][0]
             url = url.split()[0]
 
             return url

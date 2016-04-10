@@ -75,8 +75,6 @@ class source:
 
             if not str(url).startswith('http'):
 
-                if (self.user == '' or self.password == ''): raise Exception()
-
                 data = urlparse.parse_qs(url)
                 data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
 
@@ -84,38 +82,52 @@ class source:
 
                 year = data['year']
 
-                query = urlparse.urljoin(self.base_link, self.search_link)
 
+                if (self.user == '' or self.password == ''): raise Exception()
+
+                query = urlparse.urljoin(self.base_link, '/login.html')
+                post = urllib.urlencode({'username': self.user, 'password': self.password, 'submit': 'Login'})
+
+                try:
+                    r, headers, content, cookie = client.source(query, post=post, output='extended')
+                    headers = {'Cookie': cookie, 'User-Agent': headers['User-Agent']}
+                except:
+                    cookie, agent, url = cloudflare.request(query, post=post, output='extended')
+                    headers = {'Cookie': cookie, 'User-Agent': agent}
+
+
+                query = urlparse.urljoin(self.base_link, self.search_link)
                 post = urllib.urlencode({'search': title})
 
-                title = cleantitle.get(title)
+                r = cloudflare.source(query, post=post, headers=headers)
 
-                r = cloudflare.source(query, post=post)
+                if 'tvshowtitle' in data:
+                    r = re.findall('(watch-tvshow-.+?-\d+\.html)', r)
+                    r = [(i, re.findall('watch-tvshow-(.+?)-\d+\.html', i)) for i in r]
+                else:
+                    r = re.findall('(watch-movie-.+?-\d+\.html)', r)
+                    r = [(i, re.findall('watch-movie-(.+?)-\d+\.html', i)) for i in r]
 
-                r = client.parseDOM(r, 'a', ret='href')
-                if 'tvshowtitle' in data: r = [(i, re.findall('watch-tvshow-(.+?)-\d+\.html', i)) for i in r]
-                else: r = [(i, re.findall('watch-movie-(.+?)-\d+\.html', i)) for i in r]
                 r = [(i[0], i[1][0]) for i in r if len(i[1]) > 0]
-                r = [i for i in r if title == cleantitle.get(i[1])]
+                r = [i for i in r if cleantitle.get(title) == cleantitle.get(i[1])]
                 r = [i[0] for i in r][0]
 
                 r = urlparse.urljoin(self.base_link, r)
 
-                cookie, agent, url = cloudflare.request(r, output='extended')
+                url = cloudflare.source(r, headers=headers)
 
                 if 'season' in data and 'episode' in data:
-                    r = client.parseDOM(url, 'a', ret='href')
-                    r = [i for i in r if '-s%02de%02d-' % (int(data['season']), int(data['episode'])) in i.lower() and 'episode-' in i.lower()][0]
-
+                    r = re.findall('(episode-.+?-.+?\d+.+?\d+-\d+.html)', url)
+                    r = [i for i in r if '-s%02de%02d-' % (int(data['season']), int(data['episode'])) in i.lower()][0]
                     r = urlparse.urljoin(self.base_link, r)
 
-                    cookie, agent, url = cloudflare.request(r, output='extended')
-
+                    url = cloudflare.source(r, headers=headers)
 
             else:
                 r = urlparse.urljoin(self.base_link, url)
-
                 cookie, agent, url = cloudflare.request(r, output='extended')
+                headers = {'Cookie': cookie, 'User-Agent': agent}
+
 
 
             quality = 'HD' if '-movie-' in url else 'SD'
@@ -132,8 +144,7 @@ class source:
 
             url = u[0] + a + b
             url = url.replace('"', '').replace(',', '').replace('\/', '/')
-            url += '|' + urllib.urlencode({'Cookie': str(cookie), 'User-Agent': agent, 'Referer': r})
-
+            url += '|' + urllib.urlencode(headers)  
 
             sources.append({'source': 'cdn', 'quality': quality, 'provider': 'Streamlord', 'url': url, 'direct': True, 'debridonly': False, 'autoplay': False})
 

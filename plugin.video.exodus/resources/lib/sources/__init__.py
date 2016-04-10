@@ -95,8 +95,6 @@ class sources:
             self.progressDialog.create(control.addonInfo('name'), '')
             self.progressDialog.update(0, control.lang(30515).encode('utf-8'), str(' '))
 
-            content = 'movies' if tvshowtitle == None else 'episodes'
-
             trailerMenu = control.lang(30516).encode('utf-8') if tvshowtitle == None else control.lang(30517).encode('utf-8')
 
             infoMenu = control.lang(30502).encode('utf-8') if tvshowtitle == None else control.lang(30503).encode('utf-8')
@@ -105,7 +103,7 @@ class sources:
 
             meta = json.loads(meta)
 
-            try: del meta['duration']
+            try: del meta['year']
             except: pass
 
             poster = meta['poster'] if 'poster' in meta else '0'
@@ -161,7 +159,7 @@ class sources:
                     pass
 
 
-            control.content(int(sys.argv[1]), content)
+            control.content(int(sys.argv[1]), 'files')
             control.directory(int(sys.argv[1]), cacheToDisc=True)
             try: self.progressDialog.close()
             except: pass
@@ -233,6 +231,9 @@ class sources:
                         k = control.condVisibility('Window.IsActive(virtualkeyboard)')
                         if k: m += '1'; m = m[-1]
                         if (w.is_alive() == False or x > 30) and not k: break
+                        k = control.condVisibility('Window.IsActive(yesnoDialog)')
+                        if k: m += '1'; m = m[-1]
+                        if (w.is_alive() == False or x > 30) and not k: break
                         time.sleep(0.5)
 
                     for x in range(30):
@@ -251,6 +252,8 @@ class sources:
                     except: pass
 
                     control.sleep(200)
+                    control.execute('Dialog.Close(virtualkeyboard)')
+                    control.execute('Dialog.Close(yesnoDialog)')
 
                     from resources.lib.modules.player import player
                     player().run(title, year, season, episode, imdb, tvdb, meta, self.url)
@@ -708,6 +711,9 @@ class sources:
                         k = control.condVisibility('Window.IsActive(virtualkeyboard)')
                         if k: m += '1'; m = m[-1]
                         if (w.is_alive() == False or x > 30) and not k: break
+                        k = control.condVisibility('Window.IsActive(yesnoDialog)')
+                        if k: m += '1'; m = m[-1]
+                        if (w.is_alive() == False or x > 30) and not k: break
                         time.sleep(0.5)
 
                     for x in range(30):
@@ -728,6 +734,8 @@ class sources:
                     try: self.progressDialog.close()
                     except: pass
 
+                    control.execute('Dialog.Close(virtualkeyboard)')
+                    control.execute('Dialog.Close(yesnoDialog)')
                     return self.url
                 except:
                     pass

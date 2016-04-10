@@ -33,13 +33,13 @@ class source:
         self.moviesearch_link = '/en/movies'
         self.tvsearch_link = '/en'
 
-        self.cookie = None
+        cookie = None
         self.lang = 'locale=en; nl=true'
         self.sign = 'https://www2.ororo.tv/en/users/sign_in'
         self.user = control.setting('ororo.user')
         self.password = control.setting('ororo.pass')
         self.headers = {'User-Agent': 'Exodus for Kodi'}
-        self.post = {'user[email]': self.user, 'user[password]': self.password, 'user[remember_me]': 1}
+        self.post = {'user[email]': self.user, 'user[password]': self.password, 'commit': 'Sign in'}
         self.post = urllib.urlencode(self.post)
 
 
@@ -47,11 +47,12 @@ class source:
         try:
             if (self.user == '' or self.password == ''): raise Exception()
 
-            if self.cookie == None: self.cookie = client.source(self.sign, post=self.post, headers=self.headers, cookie=self.lang, output='cookie')
+            cookie = client.source(self.sign, post=self.post, headers=self.headers, cookie=self.lang, output='cookie')
+            cookie = '%s; %s' % (cookie, self.lang)
 
             url = urlparse.urljoin(self.base_link, self.moviesearch_link)
 
-            result = client.source(url, cookie='%s; %s' % (self.cookie, self.lang))
+            result = client.source(url, cookie=cookie)
 
             title = cleantitle.get(title)
             years = ['%s' % str(year)]
@@ -75,11 +76,12 @@ class source:
         try:
             if (self.user == '' or self.password == ''): raise Exception()
 
-            if self.cookie == None: self.cookie = client.source(self.sign, post=self.post, headers=self.headers, cookie=self.lang, output='cookie')
+            cookie = client.source(self.sign, post=self.post, headers=self.headers, cookie=self.lang, output='cookie')
+            cookie = '%s; %s' % (cookie, self.lang)
 
             url = urlparse.urljoin(self.base_link, self.tvsearch_link)
 
-            result = client.source(url, cookie='%s; %s' % (self.cookie, self.lang))
+            result = client.source(url, cookie=cookie)
 
             tvshowtitle = cleantitle.get(tvshowtitle)
             years = ['%s' % str(year)]
@@ -121,25 +123,25 @@ class source:
 
             if (self.user == '' or self.password == ''): raise Exception()
 
-            if self.cookie == None: self.cookie = client.source(self.sign, post=self.post, headers=self.headers, cookie=self.lang, output='cookie')
-
+            cookie = client.source(self.sign, post=self.post, headers=self.headers, cookie=self.lang, output='cookie')
+            cookie = '%s; %s' % (cookie, self.lang)
 
             try: url, season, episode = re.compile('(.+?)#(\d*)-(\d*)$').findall(url)[0]
             except: pass
             try: href = '#%01d-%01d' % (int(season), int(episode))
             except: href = '.+?'
 
-
             url = referer = urlparse.urljoin(self.base_link, url)
-            result = client.source(url, cookie='%s; %s' % (self.cookie, self.lang))
+
+            result = client.source(url, cookie=cookie)
 
             url = client.parseDOM(result, 'a', ret='data-href', attrs = {'href': href})[0]
             url = urlparse.urljoin(self.base_link, url)
 
             headers = {'X-Requested-With': 'XMLHttpRequest'}
-            result = client.source(url, cookie='%s; %s' % (self.cookie, self.lang), referer=referer, headers=headers)
+            result = client.source(url, cookie=cookie, referer=referer, headers=headers)
 
-            headers = '|%s' % urllib.urlencode({'User-Agent': self.headers['User-Agent'], 'Cookie': str(self.cookie)})
+            headers = '|%s' % urllib.urlencode({'User-Agent': self.headers['User-Agent'], 'Cookie': str(cookie)})
 
             url = client.parseDOM(result, 'source', ret='src', attrs = {'type': 'video/mp4'})
             url += client.parseDOM(result, 'source', ret='src', attrs = {'type': 'video/.+?'})

@@ -31,7 +31,7 @@ class source:
     def __init__(self):
         self.domains = ['ddlvalley.cool']
         self.base_link = 'http://www.ddlvalley.cool'
-        self.search_link = '/search/%s'
+        self.search_link = '/search/%s/'
 
 
     def movie(self, imdb, title, year):

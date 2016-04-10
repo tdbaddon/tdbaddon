@@ -24,6 +24,7 @@ import re,urllib,urlparse,json,base64
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import cache
+from resources.lib.modules import directstream
 
 
 class source:
@@ -140,35 +141,43 @@ class source:
 
             result = client.source(url)
 
-            if content == 'movie':
-                url = client.parseDOM(result, 'iframe', ret='src')[0]
-            else:
-                url = zip(client.parseDOM(result, 'a', ret='href', attrs = {'target': 'player_iframe'}), client.parseDOM(result, 'a', attrs = {'target': 'player_iframe'}))
-                url = [(i[0], re.compile('(\d+)').findall(i[1])) for i in url]
-                url = [(i[0], i[1][-1]) for i in url if len(i[1]) > 0]
-                url = [i[0] for i in url if i[1] == '%01d' % int(episode)][0]
+            url = zip(client.parseDOM(result, 'a', ret='href', attrs = {'target': 'player_iframe'}), client.parseDOM(result, 'a', attrs = {'target': 'player_iframe'}))
+            url = [(i[0], re.compile('(\d+)').findall(i[1])) for i in url]
+            url = [(i[0], i[1][-1]) for i in url if len(i[1]) > 0]
 
-            url = client.replaceHTMLCodes(url)
+            if content == 'episode':
+                url = [i for i in url if i[1] == '%01d' % int(episode)]
 
-            result = client.source(url)
+            links = [client.replaceHTMLCodes(i[0]) for i in url]
 
-            headers = {'X-Requested-With': 'XMLHttpRequest', 'Referer': url}
-            url = 'http://player.pubfilm.com/smplayer/plugins/gkphp/plugins/gkpluginsphp.php'
-            post = re.compile('link\s*:\s*"([^"]+)').findall(result)[0]
-            post = urllib.urlencode({'link': post})
+            for u in links:
 
-            result = client.source(url, post=post, headers=headers)
+                try:
+                    headers = {'X-Requested-With': 'XMLHttpRequest', 'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; rv:36.0) Gecko/20100101 Firefox/36.0', 'Referer': u}
 
-            r = re.compile('"?link"?\s*:\s*"([^"]+)"\s*,\s*"?label"?\s*:\s*"(\d+)p?"').findall(result)
-            if not r: r = [(i, 480) for i in re.compile('"?link"?\s*:\s*"([^"]+)').findall(result)]
-            r = [(i[0].replace('\\/', '/'), i[1]) for i in r]
+                    post = urlparse.parse_qs(urlparse.urlparse(u).query)['link'][0]
+                    post = urllib.urlencode({'link': post})
 
-            links = [(i[0], '1080p') for i in r if int(i[1]) >= 1080]
-            links += [(i[0], 'HD') for i in r if 720 <= int(i[1]) < 1080]
-            links += [(i[0], 'SD') for i in r if 480 <= int(i[1]) < 720]
-            if not 'SD' in [i[1] for i in links]: links += [(i[0], 'SD') for i in r if 360 <= int(i[1]) < 480]
+                    url = 'http://player.pubfilm.com/smplayer/plugins/gkphp/plugins/gkpluginsphp.php'
 
-            for i in links: sources.append({'source': 'gvideo', 'quality': i[1], 'provider': 'Pubfilm', 'url': i[0], 'direct': True, 'debridonly': False})
+                    url = client.source(url, post=post, headers=headers)
+                    url = json.loads(url)
+
+                    if 'gklist' in url:
+                        url = client.source(u)
+                        url = re.findall('sources\s*:\s*\[(.+?)\]', url)[0]
+                        url = re.findall('"file"\s*:\s*"(.+?)"', url)
+                        url = [i.split()[0].replace('\\/', '/') for i in url]
+                    else:
+                        url = url['link']
+                        url = directstream.google(url)
+                        url = [i['url'] for i in url]
+
+                    for i in url:
+                        try: sources.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'provider': 'Pubfilm', 'url': i, 'direct': True, 'debridonly': False})
+                        except: pass
+                except:
+                    pass
 
             return sources
         except:

@@ -46,18 +46,24 @@
 		<setting id="provider.watch1080" type="bool" label="Watch1080" default="true" />
 		<setting id="provider.onemovies" type="bool" label="Onemovies" default="true" />
 		<setting id="provider.ninemovies" type="bool" label="Ninemovies" default="true" />
-		<setting id="provider.pubfilm" type="bool" label="Pubfilm" default="true" />
+		<setting id="provider.pelispedia" type="bool" label="Pelispedia" default="true" />
+		<setting id="provider.putlocker" type="bool" label="Putlocker" default="true" />
 		<setting id="provider.miradetodo" type="bool" label="MiraDeTodo" default="true" />
-		<setting id="provider.xmovies" type="bool" label="Xmovies" default="true" />
-		<setting id="provider.tunemovie" type="bool" label="Tunemovie" default="true" />
+		<setting id="provider.usmovies" type="bool" label="USmovies" default="true" />
+		<setting id="provider.usseries" type="bool" label="USseries" default="true" />
 		<setting id="provider.afdah" type="bool" label="Afdah" default="true" />
-		<setting id="provider.dizilab" type="bool" label="Dizilab" default="true" />
+		<setting id="provider.xmovies" type="bool" label="Xmovies" default="true" />
+		<setting id="provider.pubfilm" type="bool" label="Pubfilm" default="true" />
+		<setting id="provider.tunemovie" type="bool" label="Tunemovie" default="true" />
 		<setting id="provider.sezonlukdizi" type="bool" label="Sezonlukdizi" default="true" />
+		<setting id="provider.dizilab" type="bool" label="Dizilab" default="true" />
+		<setting id="provider.dizibox" type="bool" label="Dizibox" default="true" />
 		<setting id="provider.onlinedizi" type="bool" label="Onlinedizi" default="true" />
 		<setting id="provider.dizigold" type="bool" label="Dizigold" default="true" />
 		<setting id="provider.einthusan" type="bool" label="Einthusan" default="true" />
-		<setting id="provider.streamlord" type="bool" label="Streamlord" default="true" />
 		<setting id="provider.animeultima" type="bool" label="Animeultima" default="true" />
+		<setting id="provider.torba" type="bool" label="Torba" default="true" />
+		<setting id="provider.streamlord" type="bool" label="Streamlord" default="true" />
 		<setting id="provider.moviestorm" type="bool" label="Moviestorm" default="true" />
 		<setting id="provider.moviesplanet" type="bool" label="Moviesplanet" default="true" />
 		<setting id="provider.ororo" type="bool" label="Ororo" default="true" />

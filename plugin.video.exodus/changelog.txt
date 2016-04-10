@@ -1,3 +1,13 @@
+[B]1.3.0[/B]
+- Updated indexers
+- Re-work of Trakt lists
+- Better handling of Trakt accounts
+- Tweaked lists for the new default skin
+- Updated current providers
+- Added 6 new providers
+- Depend on URLresolver 3.0
+- Tweaked resolvering
+
 [B]1.2.2[/B]
 - Updated providers
 

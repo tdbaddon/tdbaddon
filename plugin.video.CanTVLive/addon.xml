@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.CanTVLive" name="CanTVLive" version="2.0.2" provider-name="podgod">
+<addon id="plugin.video.CanTVLive" name="CanTVLive" version="2.0.3" provider-name="podgod">
   <requires>
     <import addon="xbmc.python" version="2.1.0" />
 	<import addon="script.module.beautifulsoup" version="3.2.1"/>
@@ -18,6 +18,6 @@
   <extension point="xbmc.addon.metadata">
     <platform>all</platform>
     <summary>Live Canadian TV channels</summary>
-    <description>Live Canadian TV channels all in one place. General disclaimer: These are just random feeds found on the net. Like all things internet, links go up and down. Also, some channels do not broadcast 24/7. I take no responsibility for the content or reliability of the feeds. Enjoy while you can. [B]Filmon.TV[/B] addon from kinkin required for CTV channels.</description>
+    <description>Live Canadian TV channels all in one place. General disclaimer: These are just random feeds found on the net. Like all things internet, links go up and down. Also, some channels do not broadcast 24/7. I take no responsibility for the content or reliability of the feeds. Enjoy while you can. [B]Filmon.TV[/B] addon from kinkin required for CTV channels. F4M Tester addon from Shani rrequired for some channels</description>
   </extension>
 </addon>
