@@ -2132,21 +2132,17 @@ def download_file(name, url):
 
 def _search(url,name):
    # print url,name
-    pluginsearchurls = ['plugin://plugin.video.genesis/?action=shows_search',\
-             'plugin://plugin.video.genesis/?action=movies_search',\
-             'plugin://plugin.video.salts/?mode=search&amp;section=Movies',\
-             'plugin://plugin.video.salts/?mode=search&amp;section=TV',\
-             'plugin://plugin.video.muchmovies.hd/?action=movies_search',\
-             'plugin://plugin.video.viooz.co/?action=root_search',\
-             'plugin://plugin.video.ororotv/?action=shows_search',\
-             'plugin://plugin.video.yifymovies.hd/?action=movies_search',\
-             'plugin://plugin.video.cartoonhdtwo/?description&amp;fanart&amp;iconimage&amp;mode=3&amp;name=Search&amp;url=url',\
-             'plugin://plugin.video.youtube/kodion/search/list/',\
-             'plugin://plugin.video.dailymotion_com/?mode=search&amp;url',\
-             'plugin://plugin.video.vimeo/kodion/search/list/'\
+    pluginsearchurls = ['plugin://plugin.video.ManiacTV/',\
+             'plugin://plugin.video.pancas/',\
+             'plugin://plugin.video.phstreams',\
+	     'plugin://plugin.video.SportsDevil',\
+             'plugin://plugin.video.CanTVLive',\
+             'plugin://plugin.video.ccloudtv',\
+             'plugin://plugin.video.prosport',\
+             'plugin://plugin.video.p2psport',\
              ]
-    names = ['Gensis TV','Genesis Movie','Salt movie','salt TV','Muchmovies','viooz','ORoroTV',\
-             'Yifymovies','cartoonHD','Youtube','DailyMotion','Vimeo']
+    names = ['Maniac TV','Pancas','Phoenix','SportsDevil','CanTVLive','Ccloudtv','Prosport',\
+             'P2psport']
     dialog = xbmcgui.Dialog()
     index = dialog.select('Choose a video source', names)
 

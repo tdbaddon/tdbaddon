@@ -237,6 +237,37 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
+<addon id="plugin.video.bulldogstreams"
+       name="Bulldog Streams"
+       version="1.1"
+       provider-name="Bulldog Streams Dev Team">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+	<import addon="script.module.t0mm0.common" version="2.0.0"/>
+    <import addon="script.module.beautifulsoup" version="3.2.1"/>
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.beautifulsoup4" />
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.requests" />
+    <import addon="script.module.httplib2" />
+    <import addon="script.module.youtube.dl" optional="true"/>
+    <import addon="plugin.video.youtube" version="3.0.0"/>
+    <import addon="script.module.urlresolver" optional="true"/>
+    <import addon="script.module.simplejson" />
+    <import addon="script.common.plugin.cache" version="2.5.2"/>
+    <import addon="script.module.metahandler" version="2.5.1"/>
+
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en"> Bulldog Streams Add-on</summary>
+    <description lang="en">Streams Provided for free!</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
 <addon id="plugin.video.CanTVLive" name="CanTVLive" version="2.0.3" provider-name="podgod">
   <requires>
     <import addon="xbmc.python" version="2.1.0" />
@@ -376,6 +407,21 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
 		<platform>all</platform>
 	</extension>
+</addon>
+
+<addon id="plugin.video.f4mTester" version="2.2.4" name="f4mTester" provider-name="Shani">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0"/>
+        <import addon="script.video.F4mProxy" version="2.2.3"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary>f4mTester</summary>
+        <description></description>
+        <platform>all</platform>
+    </extension>
 </addon>
 
 <addon id="plugin.video.fantasticc"
@@ -1012,7 +1058,7 @@ http://informaticglobalworld.altervista.org/
 
 <addon id="plugin.video.TDBEUROTV"
        name="TDB EURO TV"
-       version="2.27"
+       version="2.28"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -1050,7 +1096,7 @@ http://informaticglobalworld.altervista.org/
 
 <addon id="plugin.video.TDBRADIO"
        name="TDB RADIO"
-       version="1.32"
+       version="1.33"
        provider-name="TDB">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -1068,7 +1114,7 @@ http://informaticglobalworld.altervista.org/
 
 <addon id="plugin.video.TDBSPANISHTV"
        name="TDB SPANISH TV"
-       version="1.39"
+       version="1.40"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -1087,7 +1133,7 @@ http://informaticglobalworld.altervista.org/
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="3.74"
+       version="3.75"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -1132,18 +1178,18 @@ http://informaticglobalworld.altervista.org/
   </extension>
 </addon>
 
-<addon id="plugin.video.tvdireto" name="LiveTV" version="1.0.2" provider-name="TV Direto">
+<addon id="plugin.video.tvdireto" name="LiveTV" version="1.0.4" provider-name="TV Direto">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.beautifulsoup" version="3.2.1"/>
     <import addon="script.module.simple.downloader" version="0.9.4"/>
-    <import addon="script.module.beautifulsoup4" />
-    <import addon="script.module.requests" />
-    <import addon="script.module.httplib2" />
+    <import addon="script.module.beautifulsoup4"/>
+    <import addon="script.module.requests"/>
+    <import addon="script.module.httplib2"/>
     <import addon="script.module.youtube.dl" optional="true"/>
-    <import addon="plugin.video.youtube" />
+    <import addon="plugin.video.youtube"/>
     <import addon="script.module.urlresolver" optional="true"/>
-    <import addon="script.module.simplejson" />
+    <import addon="script.module.simplejson"/>
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
         <provides>video</provides>
@@ -1444,6 +1490,19 @@ http://informaticglobalworld.altervista.org/
   </extension>
 </addon>
 
+<addon id="repository.bulldogstreams" name="Bulldog Streams Repository" version="1.1" provider-name="Bulldog Streams Dev Team">
+	<extension point="xbmc.addon.repository" name="Bulldog Streams Repository">
+		<info compressed="false">http://www.bulldogstreams.football/addon/addons.xml</info>
+		<checksum>http://www.bulldogstreams.football/addon/addons.xml.md5</checksum>
+		<datadir zip="true">http://www.bulldogstreams.football/addon/zips/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Install Bulldog Streams</summary>
+		<description>Home of Bulldog Streams</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
 <addon id="repository.communityrepo" name="The Community Repository" version="1.7" provider-name="The @KodiCommunity Team">
 	<extension point="xbmc.addon.repository" name="The Community Repository">
 		<info compressed="false">http://cloud.appnettv.com/Kodienthusiast/privateuse/RepoPlugins/addons.xml</info>
@@ -1453,6 +1512,19 @@ http://informaticglobalworld.altervista.org/
 	<extension point="xbmc.addon.metadata">
 		<summary>@Kodicommunity Repository</summary>
 		<description>", we bring you "The Community Repository" for all things from the @kodicommunity team currently hold skins and community wizards" massive thanks to appnetv for hosting the repo and also a special thanks to these guys @nathancrumpler1 (crumplestein) @kodicommunity @xeditz @dickothegeordie @hmemar #itonlygetsbetter @kodienthusiasts @nathancrumpler1 @kodicommunity</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="repository.docshadrach" name="Doc Shadrach's Add-ons" version="1.0" provider-name="Doc Shadrach">
+	<extension point="xbmc.addon.repository" name="Doc Shadrach's Add-ons Repo 1.0">
+		<info compressed="false">http://github.com/XBMCSpot/docshadrach.repository/raw/master/addons.xml</info>
+		<checksum>http://github.com/XBMCSpot/docshadrach.repository/raw/master/addons.xml.md5</checksum>
+		<datadir zip="true">http://github.com/XBMCSpot/docshadrach.repository/raw/master/zips</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Instala add-ons desde el repositorio de Doc Shadrach</summary>
+		<description>Visita el spot B75OYRJ de la app Spotbros para enterarte de las novedades.</description>
 		<platform>all</platform>
 	</extension>
 </addon>
@@ -2133,6 +2205,25 @@ http://informaticglobalworld.altervista.org/
     <source></source>
     <forum></forum>
     <website></website>
+  </extension>
+</addon>
+
+<addon id="script.video.F4mProxy"
+	     name="F4mProxy"
+	     version="2.4.5"
+	     provider-name="Shani">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0" />
+  </requires>
+  <extension point="xbmc.python.module" library="lib" />
+    <extension point="xbmc.python.pluginsource" library="addon.py">
+		<provides>executable</provides>
+  </extension>
+
+  <extension point="xbmc.addon.metadata">
+    <platform>all</platform>
+    <summary lang="en">Proxy for f4m</summary>
+    <description lang="en">Use this addon to play F4m v1 and v2 streams</description>
   </extension>
 </addon>
 

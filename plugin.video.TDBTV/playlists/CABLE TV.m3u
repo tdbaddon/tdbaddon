@@ -41,7 +41,7 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 0
 
 #EXTINF:0,Boomerang 
-http://77.120.118.235:8085
+0
 
 #EXTINF:0,Bravo 
 0
@@ -83,7 +83,7 @@ http://77.120.118.235:8085
 0
 
 #EXTINF:0,Comedy Central 
-http://cp.dmbshare.net:8000/live/tufan/tufan/2822.m3u8
+0
 
 #EXTINF:0,Comedy Gold
 0
@@ -155,16 +155,10 @@ http://cp.dmbshare.net:8000/live/tufan/tufan/2822.m3u8
 0
 
 #EXTINF:0,Food Network 
-http://llnw.live.simplestream.com/coder2/coder.channels.channel2/hls/5/playlist.m3u8
-
-#EXTINF:0,Food Network 
-http://llnw.live.simplestream.com/coder2/coder.channels.channel2/hls/3/playlist.m3u8
+0
 
 #EXTINF:0,Fox 1 
-https://video02-atl.streamup.com/app/juanjo-lives-stream_aac/playlist.m3u8
-
-#EXTINF:0,Fox 1 
-http://vod.cdn.iutpcdn.com/LIVE/H01/CANAL415/PROFILE03-19/874-20160405T223445.ts
+0
 
 #EXTINF:0,Fox Crime 
 0
@@ -242,7 +236,7 @@ http://ios.streamserver01.com:8080/ShowcaseTV/mystream.m3u8
 0
 
 #EXTINF:0,Jim Jam 
-http://77.120.118.235:8089
+0
 
 #EXTINF:0,JTV 
 rtmp://jtvmedia.jtv.com:1975/live playpath=live6 swfUrl=http://demandware.edgesuite.net/aaby_prd/on/demandware.static/Sites-jtv-Site/-/default/v1410110388581/swf/flashMediaPlayer/StrobeMediaPlayback.swf live=1 pageUrl=http://www.jtv.com/on/demandware.store/Sites-jtv-Site/default/LiveViewer-Show
@@ -350,7 +344,7 @@ http://llnw.live.qvc.simplestream.com/hera/remote/qvcuk_primary_sdi8/3/prog_inde
 0
 
 #EXTINF:0,TNT 
-http://vod.cdn.iutpcdn.com/LIVE/H01/CANAL266/PROFILE03-101/499-20160406T071121.ts
+0
 
 #EXTINF:0,Tom & Jerry TV 
 0
@@ -359,10 +353,7 @@ http://vod.cdn.iutpcdn.com/LIVE/H01/CANAL266/PROFILE03-101/499-20160406T071121.t
 0
 
 #EXTINF:0,Tru TV 
-http://llnw.live.simplestream.com/coder5/coder.channels.channel2/hls/5/playlist.m3u8
-
-#EXTINF:0,Tru TV 
-http://llnw.live.simplestream.com/coder5/coder.channels.channel2/hls/2/playlist.m3u8
+0
 
 #EXTINF:0,TSC 
 http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/master.m3u8?b?b*t$ 
@@ -410,7 +401,7 @@ http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/index_350_av-p.m3u8?
 0
 
 #EXTINF:0,World Fashion 
-http://btv-net.mediacdn.ru/TVB7/wfhdeu/playlist.m3u8
+0
 
 #EXTINF:0,World of Wine
 0

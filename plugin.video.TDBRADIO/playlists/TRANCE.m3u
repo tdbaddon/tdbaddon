@@ -2,7 +2,7 @@
 
 
 #EXTINF:0,1FM Amsterdam Trance Radio 
-http://205.164.62.21:7700/
+http://173.192.207.51:8062
 
 #EXTINF:0,AH FM Leading Trance Radio 
 0
@@ -17,7 +17,7 @@ http://komplex2.psyradio.org:8040/
 http://mp3.stream.tb-group.fm/hb.mp3?
 
 #EXTINF:0,RauteMusik FM 
-http://95.141.24.118/
+0
 
 #EXTINF:0,Techno 4 Ever 
 http://out03.t4e.dj/main_high.mp3
@@ -26,7 +26,7 @@ http://out03.t4e.dj/main_high.mp3
 http://mp3.stream.tb-group.fm/tb.mp3?
 
 #EXTINF:0,Trance FM 
-http://ch01a.320.trance.fm/
+http://listen.trancebase.fm/tunein-aacplus-pls
 
 #EXTINF:0,Vocal Trance 
 http://174.123.174.52:8100/

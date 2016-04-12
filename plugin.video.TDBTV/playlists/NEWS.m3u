@@ -47,13 +47,10 @@ http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD177_W_150.sdp/
 0
 
 #EXTINF:0,CPAC 
-http://bcliveuniv-lh.akamaihd.net/i/cpac1eng2014_01@119330/index_2000_av-p.m3u8
+0
 
 #EXTINF:0,CSPAN 
 http://cspan1-lh.akamaihd.net/i/cspan1_1@304727/master.m3u8 
-
-#EXTINF:0,CSPAN 
-http://bcliveuniv-lh.akamaihd.net/i/cpac1flr2014_01@51230/index_2000_av-p.m3u8
 
 #EXTINF:0,CTV NEWS 
 http://ams-lp7.9c9media.com/hls-live/livepkgr/_definst_/liveNews/News28.m3u8 
@@ -128,7 +125,7 @@ http://rt-a.akamaihd.net/ch_04@325608/720p.m3u8
 http://rt.ashttp14.visionip.tv/live/rt-global-live-HD/playlist.m3u8
 
 #EXTINF:0,Sky News 
-http://newone15.ddns.net:8000/live/spuds/spuds/68.ts
+0
 
 #EXTINF:0,The Weather Channel 
 0

@@ -2,7 +2,7 @@
 
 
 #EXTINF:0,Afterhours Djs 
-http://72.13.86.3:8000
+0
 
 #EXTINF:0,Alpha Radio 
 http://188.126.1.25:8000/AlphaRadio
@@ -22,14 +22,17 @@ http://195.66.134.41:80
 #EXTINF:0,DI Disco House 
 http://pub5.di.fm/di_discohouse_aacplus
 
+#EXTINF:0,DI Funky House
+http://pub1.diforfree.org:8000/di_funkyhouse_hi
+
 #EXTINF:0,DI House
-http://pub5.di.fm/di_house_aacplus
+http://pub1.diforfree.org:8000/di_house_hi
 
 #EXTINF:0,Dirty Radio 
 http://live.dirtyradio.org:80/stream
 
 #EXTINF:0,Frisky Radio 
-http://stream.friskyradio.com:9000/frisky_mp3_hi
+http://stream2.friskyradio.com/frisky_mp3_hi
 
 #EXTINF:0,Hi Five Radio 
 http://85.214.130.123:8000

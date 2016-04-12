@@ -26,13 +26,13 @@ http://streaming.radionomy.com/ADANCEDREAM-DanceClubbing24H
 http://us2.ah.fm/
 
 #EXTINF:0,Dancetime FM
-0
+http://178.77.123.78:80/dt-deejay-320
 
 #EXTINF:0,Dance Radio
-0
+http://stream1.laut.fm/danceradio-nrw
 
 #EXTINF:0,Electro Radio
-0
+http://stream.electroradio.fm/stream
 
 #EXTINF:0,ETN Progressive 
 http://www.etn.fm/progressive-high.m3u
@@ -44,7 +44,7 @@ http://radiofg.impek.com/fg
 http://stream.funradio.sk:8000/dance128.mp3
 
 #EXTINF:0,Fusion Radio Chicago 
-0
+http://fusionfm.ice.infomaniak.ch:8000/fusionfm-192.mp3
 
 #EXTINF:0,Kick FM 
 http://live.kickfm.eu:8000
@@ -95,4 +95,4 @@ http://89.223.45.5:8000/ices
 http://loadbalancing.topradio.be/topradio.mp3
 
 #EXTINF:0,WunschRadio Dance
-0
+HTTP://91.250.76.15:80/wunschradio-90er.mp3

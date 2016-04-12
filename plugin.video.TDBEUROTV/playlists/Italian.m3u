@@ -26,7 +26,7 @@ rtmp://vs2.streamcaster.net:1935/test_live playpath=canale46 swfUrl=http://www.c
 0
 
 #EXTINF:0,Cielo
-http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/596.ts
+0
 
 #EXTINF:0,E TV Marche
 http://vs2.streamcaster.net:1935/etvmarche_live/etvmarche/sansar.m3u8
@@ -55,9 +55,6 @@ rtmp://wma10.fluidstream.net/HistoryLab playpath=livestream swfUrl=http://www.ra
 #EXTINF:0,LA7 
 http://la7live-lh.akamaihd.net/i/test_1@143593/master.m3u8
 
-#EXTINF:0,LA7 
-http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/619.ts
-
 #EXTINF:0,Lucania TV
 0
 
@@ -83,19 +80,16 @@ rtmp://fms.105.net/live/105Test1
 rtmp://fms.105.net:1935/live/rmc1
 
 #EXTINF:0,RAI 1 
-http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/303.ts
+0
 
 #EXTINF:0,RAI 2 
-http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/304.ts
+0
 
 #EXTINF:0,RAI 3 
-http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/305.ts
+0
 
 #EXTINF:0,RAI 4 
 mmsh://212.162.68.163/Rai4
-
-#EXTINF:0,RAI 4 
-http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/1369.ts
 
 #EXTINF:0,RAI 5 
 http://b2.stream12.rai.it/live/rai5.smil/playlist.m3u8|X-Forwarded-For=2.112.0.1
@@ -103,23 +97,14 @@ http://b2.stream12.rai.it/live/rai5.smil/playlist.m3u8|X-Forwarded-For=2.112.0.1
 #EXTINF:0,Rai Gulp 
 mmsh://212.162.68.163/Rai_gulp
 
-#EXTINF:0,Rai Gulp 
-http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/1371.ts
-
 #EXTINF:0,Rai Movie 
 http://b2everyrai-lh.akamaihd.net/i/raimovie_1@67348/master.m3u8
-
-#EXTINF:0,Rai Movie 
-http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/1368.ts
 
 #EXTINF:0,Rai News 
 http://live.cdn.streamago.tv:1935/streamagoedge/1917/810/livestream.m3u8
 
-#EXTINF:0,Rai News 
-http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/624.ts
-
 #EXTINF:0,Rai Premium 
-http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/1370.ts
+0
 
 #EXTINF:0,Rai Scuola
 http://originstream6.rai.it/italy/smil:raiscuola.smil/chunklist_b900000.m3u8
@@ -128,13 +113,10 @@ http://originstream6.rai.it/italy/smil:raiscuola.smil/chunklist_b900000.m3u8
 mmsh://212.162.68.163/rai_storia
 
 #EXTINF:0,Rai Yoyo 
-http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/1361.ts
+0
 
 #EXTINF:0,REI TV 
 0
-
-#EXTINF:0,Rete 8
-http://rm-edge-4.cdn2.streamago.tv/streamagoedge/39648/36568/Rete8.m3u8
 
 #EXTINF:0,Rete 8
 http://live.cdn.streamago.tv:1935/streamagoedge/39648/36567/livestream.m3u8
@@ -152,28 +134,22 @@ rtmp://flash3.ipercast.net/teleunica.tv-live/livestream1
 0
 
 #EXTINF:0,Sky Arte 
-http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/574.ts
+0
 
 #EXTINF:0,Sky Calcio 
-http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/96.ts
+0
 
 #EXTINF:0,Sky Cinema Family 
-http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/594.ts
-
-#EXTINF:0,Sky Cinema Family 
-http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/593.ts
+0
 
 #EXTINF:0,Sky Sport 24 
-http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/3712.ts
+0
 
 #EXTINF:0,Sky Sport F1 
-http://bb1.sendevric.com:8000/live/marksat485/0lOcqtLIMh/3723.ts
+0
 
 #EXTINF:0,Sky TG24 
 http://skyianywhere2-i.akamaihd.net:80/hls/live/200275/tg24/stream6/streamPlaylist.m3u8
-
-#EXTINF:0,Sky TG24 
-http://skyianywhere2-i.akamaihd.net:80/hls/live/200275/tg24/stream5/streamPlaylist.m3u8
 
 #EXTINF:0,Sky Uno
 0
@@ -182,7 +158,7 @@ http://skyianywhere2-i.akamaihd.net:80/hls/live/200275/tg24/stream5/streamPlayli
 0
 
 #EXTINF:0,Super TV 
-http://wms.shared.streamshow.it:1935/supertv/supertv_mobile/live.m3u8
+0
 
 #EXTINF:0,Tele 8 
 0
@@ -202,9 +178,6 @@ rtmp://wms.shared.streamshow.it:80/telediogene playpath=telediogene swfUrl=http:
 #EXTINF:0,Tele Diogene 
 rtmp://wms.shared.streamshow.it:1935/telediogene/telediogene
 
-#EXTINF:0,Tele Diogene 
-http://wms.shared.streamshow.it:1935/telediogene/telediogene/live.m3u8
-
 #EXTINF:0,Tele Luna 
 rtmp://vs2.streamcaster.net:1935/test_live playpath=teleluna swfUrl=http://www.lunaset.it/scripts/FlowPlayerNet/flowplayer.commercial-3.2.15.swf pageUrl=http://www.lunaset.it/ live=1
 
@@ -216,9 +189,6 @@ rtmp://91.121.222.160/piublulombardia/ playpath=piublulombardia.sdp swfUrl=http:
 
 #EXTINF:0,Tele Milano 
 http://91.121.222.160:1935/piublu/piublu.sdp/live.m3u8
-
-#EXTINF:0,Tele Milano 
-http://91.121.222.160:1935/piublu/piublu.sdp/HasBahCa.m3u8
 
 #EXTINF:0,Tele Monteneve 
 0
@@ -281,7 +251,7 @@ http://ftp.tiscali.it/francescovernata/TVUNO/monoscopioTvUNOint-1.wmv
 http://wms.shared.streamshow.it:1935/tvrs/tvrs/live.m3u8
 
 #EXTINF:0,Vera TV 
-http://wms.shared.streamshow.it/veratv/veratv/playlist.m3u8
+0
 
 #EXTINF:0,Video Brescia 
 rtmp://wms.shared.streamshow.it/videobrescia/videobrescia

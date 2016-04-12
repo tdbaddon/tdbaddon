@@ -1,0 +1,15 @@
+1-1.5 -- Addon born.
+
+1.6 -- Search other plugin`s added,Use the main search function
+------ Search by imdb tag which can be user defined,pulsar or default genesis
+------ Major code clean-up & numerous bug fixes
+------ Youtube playlist`s now supported
+------  P2P catcher updated to plexus allowing list makers to use the <p2p> tag
+------List maker`s can use imdb tag to call Genesis.
+
+1.7-1.9 - Host moved again,some minor code clean-up.
+
+2.0 -- Addon secure with a new home/super server BIG thanks & repect to our long time Robocop friend Andy Maund.Cheers for everything you`re a star!!.If you want show your appeciation ,his iptv & plex service comes highly recommended,awesome quality & great value for money too!!! :D
+
+Respect,credit & thanks to lambda,tknorris,JasOnpc,bromix & BIGGEST THANKS go to shani_08 without him we`d have no addon & neither would RH. :P
+

@@ -50,7 +50,7 @@ http://urtmpkal-f.akamaihd.net/i/077zoqxzy_1@130091/index_3_av-p.m3u8
 0
 
 #EXTINF:0,Campus TV 
-http://wow2.cl.digitalproserver.com/campustv/campustvvivo/campustv.smil/chunklist_w662421777_b848000.m3u8
+0
 
 #EXTINF:0,Canal 02 
 http://mek4.mekstream.com/teleantillas/live3/hasbahca.m3u8
@@ -289,9 +289,6 @@ http://live.telemetro.com/telemetro/tm.smil/playlist.m3u8
 #EXTINF:0,TVE
 0
 
-#EXTINF:0,TV Chile
-http://edge-61-cl.edge.mdstrm.com/tvn-live/_definst_/smil:285a5c6dade574d5f111419c85c6cf17/chunklist_b800000.m3u8
-
 #EXTINF:0,TV Chile 
 http://tvn-vod.mdstrm.com/liveedge/tvnelemental.smil/master.m3u8
 
@@ -308,7 +305,7 @@ rtmp://87.106.220.67/live/myStream_2
 0
 
 #EXTINF:0,TVN 
-http://edge-61-cl.edge.mdstrm.com/tvn-live/_definst_/smil:7cb6048ff45cb5cdf7f5fed828597fd1/chunklist_b500000.m3u8
+0
 
 #EXTINF:0,UniCable 
 0

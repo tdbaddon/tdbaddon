@@ -17,7 +17,7 @@ http://204.2.199.166:80/7/288/80873/v1/rogers.akacast.akamaistream.net/tor925
 http://3313.live.streamtheworld.com/CFXJFMAAC?
 
 #EXTINF:0,94.1 CBC RADIO
-http://8653.live.streamtheworld.com/CBC_R2_IET_H_SC
+http://provisioning.streamtheworld.com/pls/CBC_R1_TOR_L.pls
 
 #EXTINF:0,95.3 FRESH FM
 http://live.leanstream.co/CINGFM-MP3
@@ -37,7 +37,7 @@ http://cal969.akacast.akamaistream.net/7/338/80899/v1/rogers.akacast.akamaistrea
 #EXTINF:0,97.7 HTZ FM 
 0
 
-#EXTINF:0,99.7 BOOM 97 
+#EXTINF:0,99.7 BOOM FM
 http://live.leanstream.co/CJOTFM-MP3?type=.mp3/;stream.mp3
 
 #EXTINF:0,98.1 CHFI 

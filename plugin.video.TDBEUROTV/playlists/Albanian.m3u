@@ -10,9 +10,6 @@
 #EXTINF:0,Al Jazeera Balkan 
 rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
 
-#EXTINF:0,Al Jazeera Balkan 
-http://balkanstream.com/stream/AlJazeeraBalkans/amy/amy
-
 #EXTINF:0,Alb Info
 0
 
@@ -23,13 +20,13 @@ rtmp://188.138.17.8:1935/albuk/albuk.stream
 0
 
 #EXTINF:0,Alsat M 
+0
+
 #EXTINF:0,Kanal 5 Plus
+0
 
 #EXTINF:0,ATV
 rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
-
-#EXTINF:0,ATV
-http://balkanstream.com/stream/YU_atv/amy/amy
 
 #EXTINF:0,Bangbang 
 0
@@ -74,7 +71,7 @@ rtmp://91.82.85.44/live/konyhatv
 0
 
 #EXTINF:0,Ora News 
-http://81.7.13.162/hls/oranews/index.m3u8
+0
 
 #EXTINF:0,Planet TV 
 0
@@ -86,7 +83,7 @@ rtmp://82.114.65.202/live/rrokumtv.flv swfUrl=http://tv24.al/shqiptv/css/player.
 rtmp://wowza.rtkit.com/live/livestream
 
 #EXTINF:0,STV 
-http://88.212.10.27:81/streams/stv1.m3u8?
+0
 
 #EXTINF:0,STV Folk 
 0
