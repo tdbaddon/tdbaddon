@@ -2347,7 +2347,7 @@ def addLink(url,name,iconimage,fanart,description,genre,date,showcontext,playlis
                 u += "url="+urllib.quote_plus(url)+"&mode="+mode
             else:
                 u += "mode=13&name=%s&playlist=%s" %(urllib.quote_plus(name), urllib.quote_plus(str(playlist).replace(',','||')))
-                name = name + '[COLOR magenta] (' + str(len(playlist)) + ' items )[/COLOR]'
+                name = name + '[COLOR green][/COLOR]'
                 play_list = True
         else:
             u += "url="+urllib.quote_plus(url)+"&mode="+mode

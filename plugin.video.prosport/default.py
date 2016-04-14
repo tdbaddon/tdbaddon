@@ -80,7 +80,7 @@ def GetURL(url, referer=None):
     if referer:
     	request.add_header('Referer', referer)
     try:
-    	response = urllib2.urlopen(request, timeout=5)
+    	response = urllib2.urlopen(request, timeout=10)
     	html = response.read()
     	return html
     except:
@@ -429,7 +429,7 @@ def DisplayLinks(links, orig_title):
 		elif url not in urls and 'serbiaplus.club/cbcsport.html' in url:
 			addLink('CbcSportAz', orig_title, url, mode="play")
 			urls.append(url)
-		elif url not in urls and 'mursol.moonfruit.com' in url:
+		elif url not in urls and 'moonfruit.com' in url:
 			addLink('Moonfruit', orig_title, url, mode="play")
 			urls.append(url)
 		elif url not in urls and 'castalba.tv' in url:
@@ -531,7 +531,7 @@ def ParseLink(el, orig_title):
 	elif 'serbiaplus.club/cbcsport.html' in el:
 		url = CbcSportAz(el)
 		return url
-	elif 'mursol.moonfruit.com' in el:
+	elif 'moonfruit.com' in el:
 		url = Moonfruit(el)
 		return url
 	elif 'castalba.tv' in el:
@@ -792,7 +792,7 @@ def Caststreams(orig_title):
 		orig_title = orig_title.replace('[COLOR=FF00FF00][B]','').replace('[/B][/COLOR]','')
 		home = orig_title.split('at')[0].split()[0]
 		away = orig_title.split('at')[-1].split()[0]
-		url = 'https://caststreams.com:3000/login-web'
+		url = 'http://52.37.65.206:2053/login-web'
 		data = json.dumps({"email":"prosport3@testmail.com","password":"prosport","ipaddress":"desktop","androidId":"","deviceId":"","isGoogleLogin":0})
 		request = urllib2.Request(url, data)
 		request.add_header('Content-Type', 'application/json')
@@ -800,7 +800,7 @@ def Caststreams(orig_title):
 		resp = response.read()
 		jsonDict = json.loads(resp)
 		token = jsonDict['token']
-		url = 'https://caststreams.com:3000/feeds'
+		url = 'http://52.37.65.206:2053/feeds'
 		request = urllib2.Request(url)
 		request.add_header('Authorization', token)
 		response = urllib2.urlopen(request, timeout=5)
@@ -811,7 +811,7 @@ def Caststreams(orig_title):
 			title = feed['nam'].lower().replace('ny', 'new')
 			if home.lower() in title.lower() and away.lower() in title.lower() and 'testing' not in title.lower():
 				channel = feed['url'][0]
-				link = 'https://caststreams.com:3000/getGame?rUrl='+channel
+				link = 'http://52.37.65.206:2053/getGame?rUrl='+channel
 				return link	
 			else:
 				continue
@@ -875,35 +875,14 @@ def CbcSportAz(url):
 			
 def Streambot(url):
 	try:
-		cookieJar = cookielib.CookieJar()
-		opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cookieJar), urllib2.HTTPHandler())
-		conn = urllib2.Request('https://streamboat.tv/signin')
-		connection = opener.open(conn, timeout=5)
-		for cookie in cookieJar:
-			token = cookie.value
-		headers = {
-            "User-Agent": "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3",
-            "Content-Type" : "application/x-www-form-urlencoded",
-            "Cookie":"_gat=1; csrftoken="+token+"; _ga=GA1.2.943051497.1450922237",
-            "Origin":"https://streamboat.tv",
-            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
-            "Accept-Language": "en-US,en;q=0.8,bg;q=0.6,it;q=0.4,ru;q=0.2,uk;q=0.2",
-            "Accept-Encoding" : "windows-1251,utf-8;q=0.7,*;q=0.7",
-            "Referer": "https://streamboat.tv/signin"
-		}
-		reqData = {'csrfmiddlewaretoken':token,'username' : 'test_user', 'password' : 'password'}
-		conn = urllib2.Request('https://streamboat.tv/signin', urllib.urlencode(reqData), headers)
-		connection = opener.open(conn, timeout=5)
-		conn = urllib2.Request(url)
-		connection = opener.open(conn, timeout=5)
-		html = connection.read()
-		connection.close()
+		html = GetURL(url, referer=url)
 		link1 = 'http://' + html.split("cdn_host: '")[-1].split("',")[0]
 		link2 = html.split("playlist_url: '")[-1].split("',")[0]
 		link = link1+link2
 		return link
 	except:
 		return None
+	
 
 def Nbanhlstreams(url):
 	try:
@@ -983,7 +962,7 @@ def Moonfruit(url):
 	try:
 		cookieJar = cookielib.CookieJar()
 		opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cookieJar), urllib2.HTTPHandler())
-		conn = urllib2.Request(url+'/htown3')
+		conn = urllib2.Request(url)
 		connection = opener.open(conn, timeout=5)
 		for cookie in cookieJar:
 			token = cookie.value
@@ -1002,7 +981,8 @@ def Moonfruit(url):
 		html = connection.read()
 		link = common.parseDOM(html, "iframe",  ret="src")[0]
 		if 'streamup.com' in link:
-			channel = link.split('/')[4]
+			channel = link.split('/')[3]
+			print channel
 			link = GetStreamup(channel)
 			return link
 	except:
@@ -1029,17 +1009,19 @@ def Nflwatch(url):
 
 def Ducking(url):
 	try:
-		request = urllib2.Request('http://www.ducking.xyz/kvaak/stream/basu.php')
-		request.add_header('Referer', 'www.ducking.xyz/kvaak/')
-		request.add_header('User-Agent','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36')
-		response = urllib2.urlopen(request, timeout=5)
-		html = response.read()
-		link = common.parseDOM(html, "iframe", ret="src")[0]
-		channel = link.split('/')[3]
-		link = GetStreamup(channel)
-		return link
+		html = GetURL(url)
+		link = common.parseDOM(html, "iframe", ret="src")[1]
+		url = 'http://www.ducking.xyz/quack/'+link
+		print url
+		html = GetURL(url, referer=url)
+		print html
+		if 'p2pcast' in html:
+			id = html.split('php?id=')[-1].split('&')[0]
+			link = p2pcast(id)
+			return link
 	except:
 		return None
+	
 		
 def Streamarena(url):
 	try:
@@ -1187,6 +1169,9 @@ def Universal(url):
 	if 'lshstream' in url:
 		link = lshstream(url)
 		return link
+	if 'p2pcast' in url and 'streamcdn' in url:
+		link = p2pcast2(url)
+		return link
 	if 'hdcast.org' in url:
 		id = url.split('u=')[-1].split('&')[0]
 		link = hdcast(id)
@@ -1199,7 +1184,7 @@ def Universal(url):
 		id = id.split("';")[0]
 		link = weplayer(id)
 		return link
-	elif html and 'p2pcast' in html:
+	elif html and 'p2pcast' in html and 'streamcdn' not in html:
 		id = html.split("'text/javascript'>id='")[-1]
 		id = id.split("';")[0]
 		link = p2pcast(id)
@@ -1353,6 +1338,21 @@ def p2pcast(id):
 		js = json.loads(html)
 		tkn = js['token']
 		link = link+tkn
+		link = link + '|User-Agent='+agent+'&Referer='+url
+		return link
+	except:
+		return None
+
+def p2pcast2(url):
+	try:
+		agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36'
+		request = urllib2.Request(url)
+		request.add_header('User-Agent', agent)
+		request.add_header('Referer', url)
+		response = urllib2.urlopen(request, timeout=5)
+		html = response.read()
+		token = html.split('murl = "')[1].split('";')[0]
+		link = base64.b64decode(token)
 		link = link + '|User-Agent='+agent+'&Referer='+url
 		return link
 	except:

@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 import urllib
 import urllib2
 import datetime
@@ -28,7 +28,7 @@ class NoRedirection(urllib2.HTTPErrorProcessor):
        return response
    https_response = http_response
        
-Q1RWQmFzZQ0K = base64.b64decode('aHR0cDovLzRsZWdlbmRzLmNvLnVrL01vbmV5U3BvcnRzL21haW4uWE1M')
+Q1RWQmFzZQ0K = base64.b64decode('aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL1dBTEtJTkdERUFEOTg3NDU2L3JpY2svbWFzdGVyL2ZjdWtvZmY=')
 addon = xbmcaddon.Addon('plugin.video.MoneySports')
 addon_version = addon.getAddonInfo('version')
 profile = xbmc.translatePath(addon.getAddonInfo('profile').decode('utf-8'))

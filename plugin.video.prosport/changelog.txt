@@ -139,3 +139,6 @@ ver 0.40:
 	
 ver 0.41:
 	- fix windows issue
+	
+ver 0.42:
+	- bugfixes
