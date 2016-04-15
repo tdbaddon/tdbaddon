@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+	<category label="General">
+    <setting id="broj_rezultata" type="slider" default="10" range="5,5,70" option="int" label="Broj rezultata HRT video emisija"/>
+    <setting id="downloads_folder" type="folder" label="Download folder" default=""/>
+    <setting id="new_downloader" type="bool" label="Koristi novi downloader" default="true"/>
+    <setting label="
+            " type="lsep"/>
+    <setting type="sep"/>
+    <setting id="username" type="text" label="HRTi username" default=""/>
+	<setting id="password" type="text" label="HRTi password" option="hidden" default=""/>
+		
+
+    </category>
+    
+</settings>

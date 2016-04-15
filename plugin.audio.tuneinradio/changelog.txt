@@ -1,3 +1,6 @@
+*** 3.0.0 ***
+Updated plugin to use Kodi name. Updated copyright date. [5c84021]
+
 *** 2.1.0 ***
 Fixed issue with custom urls not playing. [0a07dbf]
 Fixed issue with adding stations to xbmc favourites. [0261b33]

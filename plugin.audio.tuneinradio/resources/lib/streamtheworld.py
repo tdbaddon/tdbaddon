@@ -1,6 +1,6 @@
 #/*
 # *
-# * TuneIn Radio for XBMC.
+# * TuneIn Radio for Kodi.
 # *
 # * Copyright (C) 2013 Diego Fernando Nieto
 # *

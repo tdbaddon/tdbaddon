@@ -1,8 +1,8 @@
 #/*
 # *
-# * TuneIn Radio for XBMC.
+# * TuneIn Radio for Kodi.
 # *
-# * Copyright (C) 2013 Brian Hornsby
+# * Copyright (C) 2015 Brian Hornsby
 # *
 # * This program is free software: you can redistribute it and/or modify
 # * it under the terms of the GNU General Public License as published by
@@ -29,9 +29,9 @@ import re
 
 import resources.lib.cache as cache
 import resources.lib.tunein as tunein
-import resources.lib.xbmcdownload as download
-import resources.lib.xbmcsettings as settings
-import resources.lib.xbmcutils as utils
+import resources.lib.kodidownload as download
+import resources.lib.kodisettings as settings
+import resources.lib.kodiutils as utils
 
 
 def get_max_preset_num(elementslist):
@@ -430,7 +430,7 @@ def add_station(station):
     if not __tunein__.is_station_id(id):
         return
 
-    contextmenu = [(__settings__.get_string(1018), 'XBMC.RunPlugin(%s)' % (utils.add_params(__settings__.get_argv(0), {'path': 'xbmc-favourites', 'id': id, 'name': name, 'logo': logo})))]
+    contextmenu = [(__settings__.get_string(1018), 'XBMC.RunPlugin(%s)' % (utils.add_params(__settings__.get_argv(0), {'path': 'kodi-favourites', 'id': id, 'name': name, 'logo': logo})))]
 
     url = utils.add_params(__settings__.get_argv(
         0), {'path': 'tune', 'id': id, 'name': name, 'logo': logo})
@@ -470,7 +470,7 @@ def add_station_outline(station):
         contextmenu = [(__settings__.get_string(
             1004), 'XBMC.RunPlugin(%s?path=%s&id=%s)' % (__settings__.get_argv(0), 'add', id))]
 
-    contextmenu.append((__settings__.get_string(1018), 'XBMC.RunPlugin(%s)' % (utils.add_params(__settings__.get_argv(0), {'path': 'xbmc-favourites', 'id': id, 'name': name, 'logo': logo}))))
+    contextmenu.append((__settings__.get_string(1018), 'XBMC.RunPlugin(%s)' % (utils.add_params(__settings__.get_argv(0), {'path': 'kodi-favourites', 'id': id, 'name': name, 'logo': logo}))))
     add_directory_item(name, url, album, artist=label, album=name, genre=genre,
                        logo=logo, isfolder=False, contextmenu=contextmenu)
 
@@ -983,7 +983,7 @@ elif __path__ == 'download':
             downloadpath = os.path.join(downloadpath, topic[0]['show_title'])
             downloadpath = os.path.join(downloadpath, topic[0]['title'])
             if __settings__.get('downloadbackground') == "true":
-                script = __settings__.get_path('resources/lib/xbmcdownload.py')
+                script = __settings__.get_path('resources/lib/kodidownload.py')
                 dbg = 'False'
                 if __debuglevel__ > 0:
                     dbg = 'True'
@@ -1007,9 +1007,9 @@ elif __path__ == 'download':
 elif __path__ == 'refresh':
     xbmc.executebuiltin('Container.Refresh')
 
-# Add station/show to XBMC favourites.
-elif __path__ == 'xbmc-favourites':
-    log_debug('Adding %s to XBMC favourites' % utils.get_value(__params__, 'name'), 1)
+# Add station/show to Kodi favourites.
+elif __path__ == 'kodi-favourites':
+    log_debug('Adding %s to Kodi favourites' % utils.get_value(__params__, 'name'), 1)
     name = utils.get_value(__params__, 'name')
     logo = utils.get_value(__params__, 'logo')
     command = 'PlayMedia(\"%s\")' % (utils.add_params(root='plugin://%s/' % (__addonid__), params={'logo': logo, 'path': 'tune', 'id': utils.get_value(__params__, 'id'), 'name': name}))

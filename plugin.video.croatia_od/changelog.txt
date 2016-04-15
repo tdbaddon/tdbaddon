@@ -1,0 +1,140 @@
+============================================
+Croatia on Demand by natko1412
+============================================
+v1.7.1 [17.11.2010.]
+-dodano: crtanionline.net
+-popravljeno: lzn, serbiaplus
+
+v1.6.3 [26.10.2015.]
+-HRTi live stream bez registracije
+
+v1.6.2 [26.10.2015.]
+-dodano: TEST HRTi Live TV-a (potrebna registracija)
+-popravljeno: greske
+
+v1.6.1 [21.10.2015.]
+-popravljeno: bugovi
+-dodano: mogucnost stavljanja 2 linka i automatski odabir onog koji radi
+
+v1.6.0 [18.10.2015.]
+-popravljeno: lzn
+-dodano: abcast resolver
+-dodano: epg izvor bleb.tv
+
+v1.5.1 [13.10.2015.]
+-popravljeno: balkanje
+-dodano: serbiaplus.com live sport kanali
+-dodano: resolver za serbiaplus
+
+v1.5.0 [11.10.2015.]
+-dodano: EPG u LiveTV sekciji
+-dodano: bikerdays TV lista + pretraga iste
+-dodano: livetv podrska za: sawlive,p2pcast,dailymotion,youtube,filmon,
+			lshstream,veetle,vaughnlive,acestream,sopcast,hdcast,mybeststream + stranice s VLC pluginom
+-dodano: nova ikona by mate@kodi.com.hr
+-dodano: radio gorski kotar
+
+v1.4.1 [9.10.2015.]
+-dodano: AlJazeera, serijex.com
+-popravljeno: radio emisije
+-dodano: radio slunj, prvi radio
+-bolja organizacija koda za lakse odrzavanje
+
+
+v1.3.0 [1.10.2015.]
+-dodane N1 emisije
+-popravljene hrt emisije
+
+v1.2.0 [17.9.2015.]
+-download u svim rubrikama
+-pristupite preuzimanjima iz glavnog izbornika
+-razna poboljsanja
+
+v1.1.1 [13.9.2015.]
+-dodan Yammat FM radio
+
+v1.1.0 [12.9.2015.]
+-dodan movienized izvor
+-dodane nove serije sa balkanje.com
+-popravljeni dailymotion linkovi
+-bolje upravljanje epizodama sa 2 ili vise dijelova
+-mreza tv poboljsana
+
+v1.0.2 [10.9.2015.]
+-fix hrt emisija
+
+v1.0.1 [9.9.2015.]
+-rtl-sada potpuno funkcionalan
+-fix nekih bugova
+
+v0.9.3 [20.8.2015.]
+-privremeni fix za rtl sada
+-fix za download imena datoteka
+
+v0.9.2 [5.8.2015.]
+-jos nekoliko bugova popravljeno
+
+v0.9 [5.8.2015.]
+-novi optimizirani i brzi kod
+-dodana Download funkcija
+-popravljeno dosta greški
+
+v0.8 [29.6.2015.]
+-dodane neke serije sa balkanje.com (BETA)
+
+v0.71 [10.6.2015.]
+-fix hrt emisija
+
+v0.7 [20.5.2015.]
+-puno brze ucitavanje HRT emisija
+-dodane nove emisije na rtl-sada 
+
+v0.63 [28.4.2015.]
+-fix ovisnih paketa
+
+v0.62 [25.4.2015.]
+-rtl-sada fix br.2 
+
+v0.61 [23.4.2015.]
+-rtl-sada fix
+
+v0.6 [16.4.2015.]
+-rtl-sada potpuno integriran, sav sadrzaj sa stranice je dostupan i kategoriziran
+-dodan jabuka tv izvor (beta) -> gledajte placene emisije besplatno
+
+v0.5 [11.4.2015.]
+-rtl-sada: najnovije epizode iz pojedinih kategorija
+-skoro potpuna podrska za rtl-sada, u buducim updateima ce sve biti podrzano
+-dodane video-novosti sa rtl.hr
+
+v0.4 [9.4.2015.]
+-user liste
+-bugfix
+
+v0.35  [6.4.2015.]
+-dodane jos 2 kategorije
+
+v0.3  [6.4.2015.]
+-dodane kategorije u live tv izborniku
+-live tv u addonu odrzavat ce dvojica, tako da bi vecina kanala
+trebala stalno raditi
+
+v0.2  [5.4.2015.]
+-dodane emisije sa mreza.tv
+
+v0.1  [5.4.2015.]
+-dodane live hrvatske radio stanice
+-dodana postavka za broj rezultata hrt emisija (default je 10)
+
+v0.0.4[3.4.2015.]
+-dodane radio emisije sa radio.hrt.hr
+
+v0.0.3 [1.4.2015.]
+-dodane sve emisije sa hrt.hr
+-dodane jos neke emisije sa rtl.hr
+
+v0.0.2 [31.3.2015.]
+-samo neki bug-fixovi
+
+v0.0.1 [29.3.2015.]
+-prvo izdanje

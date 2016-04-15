@@ -1,6 +1,6 @@
-TuneIn Radio for XBMC
+TuneIn Radio for Kodi
 =====================
-A plugin that allows you to access thousands of radio stations at TuneIn from within XBMC.
+A plugin that allows you to access thousands of radio stations at TuneIn from within Kodi.
 
 Features
 --------
@@ -11,7 +11,7 @@ Features
 - Search for a specific radio station.
 - Ability to add/remove stations to/from TuneIn favourites.
 - Manually enter a stream to play.
-- Add stations to XBMC favourites.
+- Add stations to Kodi favourites.
 
 Screenshots
 -----------
@@ -23,7 +23,7 @@ Screenshots
 Installation
 ------------
 Download the latest zip file and install the addon. 
-See [http://wiki.xbmc.org/?title=Add-ons#How_to_install_from_a_ZIP_file][1] for more details on installing addons from zip file.
+See [http://kodi.wiki/view/HOW-TO:Install_an_Add-on_from_a_zip_file][1] for more details on installing addons from zip file.
 
 Usage
 -----
@@ -107,10 +107,20 @@ The following settings are available.
 
 **Update Cache (hrs)**: How often to contact TuneIn to update format and genres cache. Default: 24
 
+FAQ
+---
+
+**Is this plugin available in a Kodi addons repository?** No
+
+**Why doesn't "Such and Such" station play?** There are usual three reason why a station isn't playing:
+
+1. The TuneIn is providing a link to an external website, rather than an audio stream.</li>
+2. The TuneIn is providing an audio stream that Kodi can not play.</li>
+3. There's a bug in my plugin.
 
 License
 -------
 This software is released under the [GPL 3.0 license] [2].
 
-[1]: http://wiki.xbmc.org/?title=Add-ons#How_to_install_from_a_ZIP_file
+[1]: http://kodi.wiki/view/HOW-TO:Install_an_Add-on_from_a_zip_file
 [2]: http://www.gnu.org/licenses/gpl-3.0.html

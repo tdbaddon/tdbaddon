@@ -17,7 +17,7 @@
 	<string id="1015">Downloads</string>
 	<string id="1016">Remover download</string>
 	<string id="1017">Remover url customizada</string>
-	<string id="1018">Add to XBMC favourites</string>
+	<string id="1018">Add to Kodi favourites</string>
 
 	<!--Settings-->
 	<string id="2000">Usuário</string>
@@ -86,7 +86,7 @@
 	<string id="3014">Entre um nome para url customizada</string>
 	<string id="3015">Falha em download show.</string>
 	<string id="3016">URL Download show está em branco, tente reproduzí-lo.</string>
-	<string id="3017">Unable to add station to XBMC favourites.</string>
+	<string id="3017">Unable to add station to Kodi favourites.</string>
 	
 	<!--Download Dialogs-->
 	<string id="4000">TuneIn Radio</string>

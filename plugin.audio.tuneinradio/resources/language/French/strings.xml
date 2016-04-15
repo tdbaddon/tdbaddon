@@ -17,7 +17,7 @@
 	<string id="1015">Téléchargement</string>
 	<string id="1016">Supprimer le téléchargement</string>
 	<string id="1017">Supprimer l'URL</string>
-	<string id="1018">Add to XBMC favourites</string>
+	<string id="1018">Add to Kodi favourites</string>
 
 	<!--Settings-->
 	<string id="2000">Nom d'utilisateur</string>
@@ -86,7 +86,7 @@
 	<string id="3014">Entrez un nom pour l'URL personnalisée</string>
 	<string id="3015">Echec du téléchargement de l'émission.</string>
 	<string id="3016">Adresse de téléchargement vide, essayer de le lire à la place.</string>
-	<string id="3017">Unable to add station to XBMC favourites.</string>
+	<string id="3017">Unable to add station to Kodi favourites.</string>
 	
 	<!--Download Dialogs-->
 	<string id="4000">TuneIn Radio</string>
