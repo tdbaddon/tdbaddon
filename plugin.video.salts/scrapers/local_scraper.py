@@ -117,7 +117,7 @@ class Local_Scraper(scraper.Scraper):
         settings.append('         <setting id="%s-def-quality" type="enum" label="     Default Quality" values="None|Low|Medium|High|HD720|HD1080" default="0" visible="eq(-4,true)"/>' % (name))
         return settings
 
-    def search(self, video_type, title, year):
+    def search(self, video_type, title, year, season=''):
         filter_str = '{{"field": "title", "operator": "contains", "value": "{search_title}"}}'
         if year: filter_str = '{{"and": [%s, {{"field": "year", "operator": "is", "value": "%s"}}]}}' % (filter_str, year)
         if video_type == VIDEO_TYPES.MOVIE:

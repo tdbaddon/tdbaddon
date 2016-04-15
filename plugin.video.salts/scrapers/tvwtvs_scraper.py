@@ -28,7 +28,7 @@ from salts_lib.constants import VIDEO_TYPES
 import scraper
 
 
-BASE_URL = 'http://tvwatchtvseries.com'
+BASE_URL = 'http://seriestv.us'
 LINK_URL = '/plugins/gkpluginsphp.php'
 
 class TVWTVS_Scraper(scraper.Scraper):
@@ -61,7 +61,7 @@ class TVWTVS_Scraper(scraper.Scraper):
             page_url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(page_url, cache_limit=.5)
             sources.update(self.__get_gk_links(html, page_url))
-            sources.update(self.__get_iframe_links(html))
+            sources.update(self.__get_iframe_links(html, page_url))
             
             for source in sources:
                 host = self._get_direct_hostname(source)
@@ -71,10 +71,12 @@ class TVWTVS_Scraper(scraper.Scraper):
     
         return hosters
 
-    def __get_iframe_links(self, html):
+    def __get_iframe_links(self, html, page_url):
         sources = {}
-        for iframe_url in dom_parser.parse_dom(html, 'iframe', ret='src'):
-            html = self._http_get(iframe_url, cache_limit=.25)
+        urls = dom_parser.parse_dom(html, 'iframe', ret='data-lazy-src') + dom_parser.parse_dom(html, 'iframe', ret='src')
+        for iframe_url in urls:
+            headers = {'Referer': page_url}
+            html = self._http_get(iframe_url, headers=headers, cache_limit=0)
             for match in re.finditer('"file"\s*:\s*"([^"]+)"\s*,\s*"label"\s*:\s*"([^"]+)', html, re.DOTALL):
                 stream_url, height = match.groups()
                 stream_url = re.sub('; .*', '', stream_url)
@@ -110,15 +112,11 @@ class TVWTVS_Scraper(scraper.Scraper):
         return self._default_get_url(video)
 
     def _get_episode_url(self, show_url, video):
-        results = self.__search()
+        results = self.__search(video.video_type, '', video.year)
         for result in results:
-            if result['url'].startswith(show_url) and re.search('\s+Season\s+%s( |$)' % (video.season), result['title'], re.I):
-                pages = [result['url']]
-                pages += self.__get_pages(result['url'])
-                for page in pages:
-                    ep_url = self.__find_episode(page, video.episode)
-                    if ep_url: return ep_url
-
+            if result['url'].startswith(show_url) and re.search('\s+season\s+%s( |$)' % (video.season), result['title'], re.I):
+                return self.__find_episode(result['url'], video.episode)
+                        
     def __find_episode(self, url, episode):
         url = urlparse.urljoin(self.base_url, url)
         html = self._http_get(url, cache_limit=2)
@@ -129,7 +127,7 @@ class TVWTVS_Scraper(scraper.Scraper):
                 label = re.sub('</?[^>]*>', '', label)
                 if re.search('\s+Episode\s+%s( |$)' % (episode), label):
                     return scraper_utils.pathify_url(url)
-        
+                
     def __get_pages(self, url):
         pages = []
         url = urlparse.urljoin(self.base_url, url)
@@ -139,12 +137,12 @@ class TVWTVS_Scraper(scraper.Scraper):
             pages = dom_parser.parse_dom(fragment[0], 'a', ret='href')
         return pages
     
-    def search(self, video_type, title, year):
-        results = self.__search(title)
-        results = [result for result in results if not re.search('-season-\d+$', result['url']) and not re.search('Season\s+\d+$', result['title'])]
+    def search(self, video_type, title, year, season=''):
+        results = self.__search(video_type, title, year)
+        results = [result for result in results if not re.search('season[- ]\d+', result['url'], re.I)]
         return results
 
-    def __search(self, title=''):
+    def __search(self, video_type, title, year):
         url = urlparse.urljoin(self.base_url, '/categoryy')
         html = self._http_get(url, cache_limit=48)
         results = []

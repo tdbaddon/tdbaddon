@@ -76,7 +76,7 @@ class MovieTube_Scraper(scraper.Scraper):
     def get_url(self, video):
         return self._default_get_url(video)
 
-    def search(self, video_type, title, year):
+    def search(self, video_type, title, year, season=''):
         results = []
         search_url = urlparse.urljoin(self.base_url, '/index.php?do=search')
         data = {'subaction': 'search', 'story': title, 'do': 'search'}
@@ -88,7 +88,7 @@ class MovieTube_Scraper(scraper.Scraper):
                 match = re.search('<h5><a\s+href="([^"]+)[^>]+title="([^"]+)', item)
                 if match:
                     url, match_title = match.groups('')
-                    result = {'url': scraper_utils.pathify_url(url), 'title': match_title, 'year': ''}
+                    result = {'url': scraper_utils.pathify_url(url), 'title': scraper_utils.cleanse_title(match_title), 'year': ''}
                     results.append(result)
         
         return results

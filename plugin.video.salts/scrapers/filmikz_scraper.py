@@ -76,7 +76,7 @@ class Filmikz_Scraper(scraper.Scraper):
     def get_url(self, video):
         return self._default_get_url(video)
 
-    def search(self, video_type, title, year):
+    def search(self, video_type, title, year, season=''):
         search_url = urlparse.urljoin(self.base_url, '/index.php?search=%s&image.x=0&image.y=0')
         search_url = search_url % (urllib.quote_plus(title))
         html = self._http_get(search_url, cache_limit=.25)
@@ -99,13 +99,13 @@ class Filmikz_Scraper(scraper.Scraper):
                     match_year = ''
                 
                 if not year or not match_year or year == match_year:
-                    result = {'url': match_url, 'title': match_title, 'year': match_year}
+                    result = {'url': match_url, 'title': scraper_utils.cleanse_title(match_title), 'year': match_year}
                     results.append(result)
         else:
             match = re.search('window\.location\s+=\s+"([^"]+)', html)
             if match:
                 url = match.group(1)
                 if url != 'movies.php':
-                    result = {'url': scraper_utils.pathify_url(url), 'title': title, 'year': year}
+                    result = {'url': scraper_utils.pathify_url(url), 'title': scraper_utils.cleanse_title(title), 'year': year}
                     results.append(result)
         return results

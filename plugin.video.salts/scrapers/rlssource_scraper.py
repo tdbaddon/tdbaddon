@@ -86,7 +86,7 @@ class RLSSource_Scraper(scraper.Scraper):
         settings.append('         <setting id="%s-select" type="enum" label="     Automatically Select" values="Most Recent|Highest Quality" default="0" visible="eq(-5,true)"/>' % (name))
         return settings
 
-    def search(self, video_type, title, year):
+    def search(self, video_type, title, year, season=''):
         search_url = urlparse.urljoin(self.base_url, '/?s=%s&go=Search' % (urllib.quote_plus(title)))
         html = self._http_get(search_url, cache_limit=1)
         pattern = 'href="(?P<url>[^"]+)[^>]+rel="bookmark">(?P<post_title>[^<]+).*?class="entry-date">(?P<date>\d+/\d+/\d+)'

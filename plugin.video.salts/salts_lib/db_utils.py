@@ -25,7 +25,7 @@ import xbmcvfs
 import xbmcgui
 import log_utils
 import kodi
-from utils2 import i18n
+from kodi import i18n
 
 def enum(**enums):
     return type('Enum', (), enums)
@@ -135,6 +135,7 @@ class DB_Connection():
         res_header = []
         created = 0
         now = time.time()
+        age = now - created
         limit = 60 * 60 * cache_limit
         sql = 'SELECT timestamp, response, res_header FROM url_cache WHERE url = ? and data=?'
         rows = self.__execute(sql, (url, data))
@@ -145,7 +146,7 @@ class DB_Connection():
             age = now - created
             if age < limit:
                 html = rows[0][1]
-        log_utils.log('DB Cache: Url: %s, Data: %s, Cache Hit: %s, created: %s, age: %s, limit: %s' % (url, data, bool(html), created, now - created, limit), log_utils.LOGDEBUG)
+        log_utils.log('DB Cache: Url: %s, Data: %s, Cache Hit: %s, created: %s, age: %.2fs (%.2fh), limit: %ss' % (url, data, bool(html), created, age, age / (60 * 60), limit), log_utils.LOGDEBUG)
         return created, res_header, html
 
     def get_all_urls(self, include_response=False, order_matters=False):
@@ -214,9 +215,17 @@ class DB_Connection():
         if year is None: year = ''
         sql = 'DELETE FROM rel_url WHERE video_type=? and title=? and year=? and source=?'
         params = [video_type, title, year, source]
-        if season and episode:
-            sql += ' and season=? and episode=?'
-            params += [season, episode]
+        if season:
+            sql += ' and season=?'
+            params += [season]
+        if episode:
+            sql += ' and episode=?'
+            params += [episode]
+        self.__execute(sql, params)
+
+    def clear_scraper_related_urls(self, source):
+        sql = 'DELETE FROM rel_url WHERE source=?'
+        params = [source]
         self.__execute(sql, params)
 
     def get_related_url(self, video_type, title, year, source, season='', episode=''):

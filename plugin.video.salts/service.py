@@ -45,7 +45,7 @@ class Service(xbmc.Player):
         self.reset()
 
     def reset(self):
-        log_utils.log('Service: Resetting...')
+        log_utils.log('Service: Resetting...', log_utils.LOGDEBUG)
         self.win.clearProperty('salts.playing')
         self.win.clearProperty('salts.playing.trakt_id')
         self.win.clearProperty('salts.playing.season')
@@ -73,7 +73,7 @@ class Service(xbmc.Player):
             log_utils.log('Service: tracking progress...')
             self.tracked = True
             if srt_path:
-                log_utils.log('Service: Enabling subtitles: %s' % (srt_path))
+                log_utils.log('Service: Enabling subtitles: %s' % (srt_path), log_utils.LOGDEBUG)
                 self.setSubtitles(srt_path)
             else:
                 self.showSubtitles(False)
@@ -115,8 +115,10 @@ class Service(xbmc.Player):
             if playedTime == 0 and self._totalTime == 999999:
                 log_utils.log('Kodi silently failed to start playback', log_utils.LOGWARNING)
             elif playedTime >= 5:
-                log_utils.log('Service: Setting bookmark on |%s|%s|%s| to %s seconds' % (self.trakt_id, self.season, self.episode, playedTime), log_utils.LOGDEBUG)
-                db_connection.set_bookmark(self.trakt_id, playedTime, self.season, self.episode)
+                if percent_played <= 98:
+                    log_utils.log('Service: Setting bookmark on |%s|%s|%s| to %s seconds' % (self.trakt_id, self.season, self.episode, playedTime), log_utils.LOGDEBUG)
+                    db_connection.set_bookmark(self.trakt_id, playedTime, self.season, self.episode)
+                    
                 if percent_played >= 75:
                     if xbmc.getCondVisibility('System.HasAddon(script.trakt)'):
                         run = 'RunScript(script.trakt, action=sync, silent=True)'

@@ -28,7 +28,7 @@ import scraper
 
 
 QUALITY_MAP = {'HD': QUALITIES.HIGH, 'DVD': QUALITIES.HIGH, 'TV': QUALITIES.HIGH, 'LQ DVD': QUALITIES.MEDIUM, 'CAM': QUALITIES.LOW}
-BASE_URL = 'https://www.solarmovie.is'
+BASE_URL = 'https://www.solarmovie.ph'
 
 class Solar_Scraper(scraper.Scraper):
     base_url = BASE_URL
@@ -84,7 +84,7 @@ class Solar_Scraper(scraper.Scraper):
     def get_url(self, video):
         return self._default_get_url(video)
 
-    def search(self, video_type, title, year):
+    def search(self, video_type, title, year, season=''):
         if video_type == VIDEO_TYPES.MOVIE:
             is_series = 1
         else:
@@ -98,7 +98,7 @@ class Solar_Scraper(scraper.Scraper):
             for match in re.finditer('class="name">\s*<a\s+title="([^"]+)\s+\((\d{4})\)"\s+href="([^"]+)', html):
                 title, year, url = match.groups('')
                 if re.search('/season-\d+/episode-\d+', url): continue  # exclude episodes
-                result = {'url': scraper_utils.pathify_url(url), 'title': title, 'year': year}
+                result = {'url': scraper_utils.pathify_url(url), 'title': scraper_utils.cleanse_title(title), 'year': year}
                 results.append(result)
         return results
 

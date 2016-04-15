@@ -16,9 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 import re
-import urllib
 import urlparse
-
 from salts_lib import dom_parser
 from salts_lib import kodi
 from salts_lib import scraper_utils
@@ -27,7 +25,7 @@ from salts_lib.constants import VIDEO_TYPES
 import scraper
 
 
-BASE_URL = 'http://onlinemovies-pro.com'
+BASE_URL = 'http://www.onlinemovies-pro.com'
 
 class OnlineMoviesPro_Scraper(scraper.Scraper):
     base_url = BASE_URL
@@ -85,28 +83,19 @@ class OnlineMoviesPro_Scraper(scraper.Scraper):
     def get_url(self, video):
         return self._default_get_url(video)
 
-    def search(self, video_type, title, year):
-        search_url = urlparse.urljoin(self.base_url, '/?s=')
-        search_url += urllib.quote_plus('%s %s' % (title, year))
-        html = self._http_get(search_url, cache_limit=.25)
+    def search(self, video_type, title, year, season=''):
         results = []
-        if not re.search('Sorry, but nothing matched', html):
-            norm_title = scraper_utils.normalize_title(title)
-            for item in dom_parser.parse_dom(html, 'li', {'class': '[^"]*box-shadow[^"]*'}):
-                match = re.search('href="([^"]+)"\s+title="([^"]+)', item)
-                if match:
-                    url, match_title_year = match.groups()
-                    if re.search('S\d{2}E\d{2}', match_title_year): continue  # skip episodes
-                    if re.search('TV\s*SERIES', match_title_year, re.I): continue  # skip shows
-                    match = re.search('(.*?)\s+\(?(\d{4})\)?', match_title_year)
-                    if match:
-                        match_title, match_year = match.groups()
-                    else:
-                        match_title = match_title_year
-                        match_year = ''
-
-                    if (not year or not match_year or year == match_year) and norm_title in scraper_utils.normalize_title(match_title):
-                        result = {'title': match_title, 'year': match_year, 'url': scraper_utils.pathify_url(url)}
-                        results.append(result)
+        test_url = title.replace("'", '')
+        test_url = re.sub(r'[^a-zA-Z0-9\s]+', ' ', test_url).lower().strip()
+        test_url = re.sub('\s+', ' ', test_url)
+        test_url = test_url.replace(' ', '-')
+        if year:
+            test_url += '-%s' % (year)
+        test_url += '/'
+        
+        test_url = urlparse.urljoin(self.base_url, test_url)
+        if self._http_get(test_url, cache_limit=1):
+            result = {'title': scraper_utils.cleanse_title(title), 'year': year, 'url': scraper_utils.pathify_url(test_url)}
+            results.append(result)
 
         return results

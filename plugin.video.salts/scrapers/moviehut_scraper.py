@@ -17,7 +17,7 @@
 """
 import re
 import urlparse
-
+from salts_lib import log_utils
 from salts_lib import dom_parser
 from salts_lib import kodi
 from salts_lib import scraper_utils
@@ -27,7 +27,7 @@ from salts_lib.constants import VIDEO_TYPES
 import scraper
 
 
-BASE_URL = 'http://moviehut.co'
+BASE_URL = 'http://netflix-putlocker.com'
 QUALITY_MAP = {'DVD': QUALITIES.HIGH, 'TS': QUALITIES.MEDIUM, 'CAM': QUALITIES.LOW}
 
 class MovieHut_Scraper(scraper.Scraper):
@@ -74,23 +74,24 @@ class MovieHut_Scraper(scraper.Scraper):
                 else:
                     multipart = False
                 host = urlparse.urlparse(stream_url).hostname
-                quality = scraper_utils.get_quality(video, host, QUALITY_MAP.get(q_str, QUALITIES.HIGH))
-                hoster = {'multi-part': multipart, 'host': host, 'class': self, 'quality': quality, 'views': views, 'rating': None, 'url': stream_url, 'direct': False}
-                hoster['label'] = label
-                hosters.append(hoster)
-                for part in parts:
-                    stream_url, part_label = part
-                    part_hoster = hoster.copy()
-                    part_hoster['part_label'] = part_label
-                    part_hoster['url'] = stream_url
-                    hosters.append(part_hoster)
+                if host is not None:
+                    quality = scraper_utils.get_quality(video, host, QUALITY_MAP.get(q_str, QUALITIES.HIGH))
+                    hoster = {'multi-part': multipart, 'host': host, 'class': self, 'quality': quality, 'views': views, 'rating': None, 'url': stream_url, 'direct': False}
+                    hoster['label'] = label
+                    hosters.append(hoster)
+                    for part in parts:
+                        stream_url, part_label = part
+                        part_hoster = hoster.copy()
+                        part_hoster['part_label'] = part_label
+                        part_hoster['url'] = stream_url
+                        hosters.append(part_hoster)
             
         return hosters
 
     def get_url(self, video):
         return self._default_get_url(video)
 
-    def search(self, video_type, title, year):
+    def search(self, video_type, title, year, season=''):
         results = []
         search_url = urlparse.urljoin(self.base_url, '/bestmatch-search-%s.html')
         search_title = title.replace(' ', '-')
@@ -107,11 +108,9 @@ class MovieHut_Scraper(scraper.Scraper):
                 else:
                     match_title = match_title_year
                     match_year = ''
-                match_title = match_title.replace('&#8211;', '-')
-                match_title = match_title.replace('&#8217;', "'")
                 
                 if (not year or not match_year or year == match_year):
-                    result = {'url': scraper_utils.pathify_url(url), 'title': match_title, 'year': match_year}
+                    result = {'url': scraper_utils.pathify_url(url), 'title': scraper_utils.cleanse_title(match_title), 'year': match_year}
                     results.append(result)
         
         return results

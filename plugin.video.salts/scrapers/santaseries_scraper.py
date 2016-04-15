@@ -82,7 +82,7 @@ class SantaSeries_Scraper(scraper.Scraper):
         episode_pattern = 'href="([^"]*-season-%s-episode-%s(?!\d)[^"]*)' % (video.season, video.episode)
         return self._default_get_episode_url(show_url, video, episode_pattern)
 
-    def search(self, video_type, title, year):
+    def search(self, video_type, title, year, season=''):
         results = []
         search_url = urlparse.urljoin(self.base_url, '/?s=')
         search_url += urllib.quote_plus(title)
@@ -100,7 +100,7 @@ class SantaSeries_Scraper(scraper.Scraper):
                     match_year = ''
         
                 if not year or not match_year or year == match_year:
-                    result = {'url': scraper_utils.pathify_url(match_url), 'title': match_title, 'year': match_year}
+                    result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': match_year}
                     results.append(result)
 
         return results

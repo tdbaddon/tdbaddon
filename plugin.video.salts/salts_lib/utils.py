@@ -35,7 +35,8 @@ TOKEN = kodi.get_setting('trakt_oauth_token')
 use_https = kodi.get_setting('use_https') == 'true'
 trakt_timeout = int(kodi.get_setting('trakt_timeout'))
 list_size = int(kodi.get_setting('list_size'))
-trakt_api = Trakt_API(TOKEN, use_https, list_size, trakt_timeout)
+offline = kodi.get_setting('trakt_offline') == 'true'
+trakt_api = Trakt_API(TOKEN, use_https, list_size, trakt_timeout, offline)
 
 # delay db_connection until needed to force db errors during recovery try: block
 def _get_db_connection():
@@ -104,17 +105,20 @@ def make_info(item, show=None, people=None):
     return info
 
 def update_url(video_type, title, year, source, old_url, new_url, season, episode):
-    log_utils.log('Setting Url: |%s|%s|%s|%s|%s|%s|%s|%s|' % (video_type, title.decode('utf-8').encode('ascii', 'xmlcharrefreplace'), year, source, old_url, new_url, season, episode), log_utils.LOGDEBUG)
+    log_utils.log('Setting Url: |%s|%s|%s|%s|%s|%s|%s|%s|' % (video_type, title, year, source, old_url, new_url, season, episode), log_utils.LOGDEBUG)
     db_connection = _get_db_connection()
     if new_url:
         db_connection.set_related_url(video_type, title, year, source, new_url, season, episode)
     else:
         db_connection.clear_related_url(video_type, title, year, source, season, episode)
 
-    # clear all episode local urls if tvshow url changes
-    if video_type == VIDEO_TYPES.TVSHOW and new_url != old_url:
-        db_connection.clear_related_url(VIDEO_TYPES.EPISODE, title, year, source)
-
+    # clear all episode local urls if tvshow or season url changes
+    if new_url != old_url:
+        if video_type == VIDEO_TYPES.TVSHOW:
+            db_connection.clear_related_url(VIDEO_TYPES.EPISODE, title, year, source)
+        elif video_type == VIDEO_TYPES.SEASON:
+            db_connection.clear_related_url(VIDEO_TYPES.EPISODE, title, year, source, season)
+            
 def make_source_sort_key():
     sso = kodi.get_setting('source_sort_order')
     # migrate sso to kodi setting
@@ -267,7 +271,7 @@ def url_exists(video):
                 log_utils.log('Found url for |%s| @ %s: %s' % (video, cls.get_name(), url), log_utils.LOGDEBUG)
                 return True
 
-    log_utils.log('No url found for: |%s|' % (video))
+    log_utils.log('No url found for: |%s|' % (video), log_utils.LOGDEBUG)
     return False
 
 def do_disable_check():

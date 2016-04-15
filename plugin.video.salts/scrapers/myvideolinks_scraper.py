@@ -22,13 +22,14 @@ import urlparse
 from salts_lib import kodi
 from salts_lib import log_utils
 from salts_lib import scraper_utils
+from salts_lib import dom_parser
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import VIDEO_TYPES
-from salts_lib.utils2 import i18n
+from salts_lib.kodi import i18n
 import scraper
 
 
-BASE_URL = 'http://mypopcorntime.xyz'
+BASE_URL = 'http://myvideolinks.xyz'
 
 class MyVidLinks_Scraper(scraper.Scraper):
     base_url = BASE_URL
@@ -49,7 +50,10 @@ class MyVidLinks_Scraper(scraper.Scraper):
         return link
 
     def format_source_label(self, item):
-        return '[%s] %s (%s Views)' % (item['quality'], item['host'], item['views'])
+        label = '[%s] %s' % (item['quality'], item['host'])
+        if 'views' in item and item['views']:
+            label += ' (%s Views)' % (item['views'])
+        return label
 
     def get_sources(self, video):
         source_url = self.get_url(video)
@@ -71,11 +75,10 @@ class MyVidLinks_Scraper(scraper.Scraper):
         return hosters
 
     def __get_movie_links(self, video, views, html):
-        pattern = '<h4>([^<]+)'
-        match = re.search(pattern, html)
         q_str = ''
-        if match:
-            q_str = match.group(1)
+        fragment = dom_parser.parse_dom(html, 'div', {'class': 'post-title'})
+        if fragment:
+            q_str = fragment[0]
         
         match = re.search('<p>Size:(.*)', html, re.DOTALL)
         if match:
@@ -116,7 +119,7 @@ class MyVidLinks_Scraper(scraper.Scraper):
         settings.append('         <setting id="%s-select" type="enum" label="     %s" lvalues="30636|30637" default="0" visible="eq(-5,true)"/>' % (name, i18n('auto_select')))
         return settings
 
-    def search(self, video_type, title, year):
+    def search(self, video_type, title, year, season=''):
         search_url = urlparse.urljoin(self.base_url, '/?s=')
         search_url += urllib.quote_plus(title)
         html = self._http_get(search_url, cache_limit=1)

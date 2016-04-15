@@ -2,14 +2,15 @@
 # Addon id: plugin.video.salts
 # Addon Provider: TV Addons
 # Translators:
-# Maiko GR <maiko77@pathfinder.gr>, 2016
-# Maiko GR <maiko77@pathfinder.gr>, 2016
+# Billy GR <maiko77@pathfinder.gr>, 2016
+# Billy GR <maiko77@pathfinder.gr>, 2016
+# Billy GR <maiko77@pathfinder.gr>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: SALTS\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2016-02-03 18:09+0000\n"
-"Last-Translator: Maiko GR <maiko77@pathfinder.gr>\n"
+"PO-Revision-Date: 2016-02-20 09:51+0000\n"
+"Last-Translator: tknorris\n"
 "Language-Team: Greek (http://www.transifex.com/tv-addons/salts/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -103,7 +104,7 @@ msgstr "Το ημερολόγιό μου"
 
 msgctxt "#30024"
 msgid "General Calendar"
-msgstr "Ημερολόγιο Γενικά"
+msgstr "Ημερολόγιο"
 
 msgctxt "#30025"
 msgid "Premiere Calendar"
@@ -255,7 +256,7 @@ msgstr "Διαγραφή Αναζήτησης"
 
 msgctxt "#30080"
 msgid "Choose your stream"
-msgstr "Επιλέξτε ροή σας"
+msgstr "Επιλέξτε την ροή"
 
 msgctxt "#30086"
 msgid "Manual Search"
@@ -263,7 +264,7 @@ msgstr "Χειροκίνητη Αναζήτηση"
 
 msgctxt "#30088"
 msgid "Enter Search"
-msgstr "Εισάγετε Αναζήτηση"
+msgstr "Εισαγωγή για Αναζήτηση "
 
 msgctxt "#30091"
 msgid "Input TVShow ID"
@@ -337,6 +338,14 @@ msgctxt "#30124"
 msgid "Next Week"
 msgstr "Επόμενη Εβδομάδα"
 
+msgctxt "#30125"
+msgid "Mark as Unwatched"
+msgstr "Σήμανση ως μη προβληθέν"
+
+msgctxt "#30126"
+msgid "Mark as Watched"
+msgstr "Σήμανση ως προβληθέν"
+
 msgctxt "#30128"
 msgid "Set as Season View"
 msgstr "Ορισμός ως Σεζόν Προβολή"
@@ -357,6 +366,10 @@ msgctxt "#30132"
 msgid "Show Information"
 msgstr "Δείτε Πληροφορίες"
 
+msgctxt "#30133"
+msgid "Add Show to List"
+msgstr "Προσθήκη Σειράς σε λίστα"
+
 msgctxt "#30137"
 msgid "Add to Collection"
 msgstr "Προσθήκη σε συλλογή"
@@ -373,25 +386,33 @@ msgctxt "#30145"
 msgid "Pick a list"
 msgstr "Διαλέξτε μια λίστα"
 
+msgctxt "#30156"
+msgid "Start from beginning"
+msgstr "Εκκίνηση από την αρχή"
+
 msgctxt "#30157"
 msgid "Resume"
 msgstr "Επανεκκίνηση"
 
-msgctxt "#30167"
-msgid "Authorize"
-msgstr "Εξουσιοδότηση "
+msgctxt "#30158"
+msgid "Downloading: %s..."
+msgstr "Λήψη : %s..."
 
-msgctxt "#30168"
-msgid "Remind Me Later"
-msgstr "Υπενθύμιση αργότερα"
+msgctxt "#30159"
+msgid "Download Complete: %s"
+msgstr "Η Λήψη Ολοκληρώθηκε %s"
 
-msgctxt "#30169"
-msgid "No Thanks"
-msgstr "Όχι ευχαριστώ"
+msgctxt "#30160"
+msgid "Error (%s) during download: %s"
+msgstr "Σφάλμα (%s) κατά τη διάρκεια της λήψης: %s"
+
+msgctxt "#30161"
+msgid "Trakt Account Authorization"
+msgstr "Trakt Λογαριασμός Εξουσιοδότηση"
 
 msgctxt "#30174"
 msgid "Enabled"
-msgstr "Ενεργοποιήθηκε"
+msgstr "Ενεργοποίηση"
 
 msgctxt "#30177"
 msgid "Username"
@@ -433,17 +454,65 @@ msgctxt "#30189"
 msgid "Updating"
 msgstr "Ενημέρωση"
 
+msgctxt "#30190"
+msgid "Failed to create directory"
+msgstr "Απέτυχε η δημιουργία καταλόγου"
+
+msgctxt "#30191"
+msgid "Failed to write file"
+msgstr "Αποτυχία εγγραφής αρχείου"
+
+msgctxt "#30195"
+msgid "'%s' added to library"
+msgstr "Προστέθηκε στη βιβλιοθήκη"
+
+msgctxt "#30200"
+msgid "Most Played This Week"
+msgstr "Περισσότερο Αναπαραχθέντα Αυτήν την Εβδομάδα"
+
+msgctxt "#30201"
+msgid "Most Played This Month"
+msgstr "Περισσότερο Αναπαραχθέντα Αυτόν τον Μηνά"
+
+msgctxt "#30202"
+msgid "Most Played All Time"
+msgstr "Περισσότερο Αναπαραχθέντα Ολων Των Εποχών"
+
 msgctxt "#30215"
 msgid "Delete Bookmark"
-msgstr "Διαγραφή σελιδοδείκτη"
+msgstr "Διαγραφή Σελιδοδείκτη"
+
+msgctxt "#30216"
+msgid "Bookmark Deleted"
+msgstr "Ο Σελιδοδείκτης Διαγράφηκε"
+
+msgctxt "#30226"
+msgid "Failed: [%s] %s from %s"
+msgstr "Αποτυχια: [%s] %s απο %s"
+
+msgctxt "#30227"
+msgid "Scraper Timeouts: [COLOR blue]%s[/COLOR]"
+msgstr "Scraper Χρονικά όρια: [COLOR blue]%s[/COLOR]"
 
 msgctxt "#30231"
 msgid "Auto-Play"
 msgstr "Αυτόματη αναπαραγωγή"
 
+msgctxt "#30244"
+msgid "Select All/None"
+msgstr "Επιλογή Όλων/Κανενός"
+
+msgctxt "#30245"
+msgid "Automatically Select Best Source"
+msgstr "Αυτόματη Επιλογή Καλύτερης Πηγής"
+
 msgctxt "#30512"
 msgid "24 Hour"
 msgstr "24 Ωρες"
+
+msgctxt "#30513"
+msgid "12 Hour"
+msgstr "12 Ωρες "
 
 msgctxt "#30516"
 msgid "Title"
@@ -477,13 +546,73 @@ msgctxt "#30527"
 msgid "Show Recommended"
 msgstr "Εμφάνιση Προτεινόμενων"
 
+msgctxt "#30528"
+msgid "Show My Collection"
+msgstr "Εμφάνιση Η Συλλογή μου"
+
+msgctxt "#30529"
+msgid "Show My Favorites"
+msgstr "Εμφάνιση Τα Αγαπημένα μου"
+
+msgctxt "#30530"
+msgid "Show My Subscriptions"
+msgstr "Εμφάνιση Οι Συνδρομές μου"
+
+msgctxt "#30531"
+msgid "Show My Watchlist"
+msgstr "Εμφάνιση "
+
+msgctxt "#30532"
+msgid "Show My Lists"
+msgstr "Εμφάνιση Οι Λίστες μου"
+
+msgctxt "#30533"
+msgid "Show Other Lists"
+msgstr "Εμφάνιση Άλλες λίστες"
+
+msgctxt "#30534"
+msgid "Show My Next Episodes"
+msgstr "Εμφάνιση Τα Επόμενα Επεισόδια Μου"
+
+msgctxt "#30535"
+msgid "Show My Calendar"
+msgstr "Εμφάνιση Το Ημερολόγιό μου"
+
+msgctxt "#30536"
+msgid "Show General Calendar"
+msgstr "Εμφάνιση Ημερολόγιο"
+
+msgctxt "#30537"
+msgid "Show Premiere Calendar"
+msgstr "Εμφάνιση Ημερολόγιο Πρεμιέρων"
+
 msgctxt "#30538"
 msgid "Show Friends"
 msgstr "Εμφάνιση Φίλων"
 
+msgctxt "#30539"
+msgid "Show Search"
+msgstr "Εμφάνιση Αναζήτηση"
+
 msgctxt "#30540"
 msgid "Default Views"
 msgstr "Προεπιλεγμένες Προβολές"
+
+msgctxt "#30541"
+msgid "Default Movies View (0 = None)"
+msgstr "Προεπιλογή Προβολής βίντεο (0 = κανένα)"
+
+msgctxt "#30542"
+msgid "Default TV Shows View (0 = None)"
+msgstr "Προεπιλογή Προβολής Σειράς (0 = κανένα)"
+
+msgctxt "#30543"
+msgid "Default Seasons View (0 = None)"
+msgstr "Προεπιλογή Προβολής Κύκλου (0 = κανένα)"
+
+msgctxt "#30544"
+msgid "Default Episodes View (0 = None)"
+msgstr "Προεπιλογή Προβολής Επεισοδίου (0 = κανένα)"
 
 msgctxt "#30545"
 msgid "General"
@@ -493,9 +622,17 @@ msgctxt "#30546"
 msgid "User Interface"
 msgstr "Περιβάλλον χρήστη"
 
+msgctxt "#30547"
+msgid "How do I authorize SALTS to access my trakt.tv account?"
+msgstr "Πώς μπορώ να εξουσιοδοτήσω SALTS να απόκτηση πρόσβαση στο λογαριασμό μου trakt.tv; "
+
 msgctxt "#30548"
 msgid "Use HTTPS"
 msgstr "Χρήση HTTPS"
+
+msgctxt "#30557"
+msgid "Library Integration"
+msgstr "Ενσωμάτωση Βιβλιοθήκη"
 
 msgctxt "#30558"
 msgid "TV Show Folder"
@@ -504,6 +641,18 @@ msgstr "Φάκελος Σειρων"
 msgctxt "#30559"
 msgid "Movie Folder"
 msgstr "Φάκελος Ταινιών "
+
+msgctxt "#30560"
+msgid "Automatically Update Subscriptions"
+msgstr "Αυτόματη Ενημέρωση Συνδρόμων"
+
+msgctxt "#30561"
+msgid "     Update Interval (hours)"
+msgstr "Διάστημα Ενημέρωσης (ώρες)"
+
+msgctxt "#30565"
+msgid "Include specials in library?"
+msgstr "Συμπερίληψη ειδικών επεισοδίων στη βιβλιοθήκη;"
 
 msgctxt "#30568"
 msgid "Show Notifications?"
@@ -541,13 +690,21 @@ msgctxt "#30577"
 msgid "    Movie Download Folder"
 msgstr "Φάκελος Λήψης Ταινίας"
 
+msgctxt "#30578"
+msgid "Scraper Timeout (seconds) (0=No Limit)"
+msgstr "Scraper Χρονικό όριο (δευτερόλεπτα) (0=Κανένα όριο)"
+
 msgctxt "#30589"
 msgid "Window"
 msgstr "Παράθυρο"
 
 msgctxt "#30590"
 msgid "Background"
-msgstr "Φόντο"
+msgstr "Παρασκήνιο"
+
+msgctxt "#30591"
+msgid "Source Sorting"
+msgstr "Ταξινόμηση Πηγής"
 
 msgctxt "#30592"
 msgid "Sort Sources"
@@ -589,6 +746,10 @@ msgctxt "#30617"
 msgid "Subtitle Language"
 msgstr "Γλώσσα υπότιτλων"
 
+msgctxt "#30619"
+msgid "Require HD"
+msgstr "Απαίτηση HD"
+
 msgctxt "#30621"
 msgid "Subtitle Download Folder"
 msgstr "Φάκελο Λήψης Υπότιτλου"
@@ -613,6 +774,14 @@ msgctxt "#30628"
 msgid "    Database"
 msgstr "    Βάση Δεδομένων"
 
+msgctxt "#30632"
+msgid "Export data from SALTS DB"
+msgstr "Εξαγωγή δεδομένων από το SALTS DB"
+
+msgctxt "#30633"
+msgid "Import data into SALTS DB"
+msgstr "Εισαγωγή δεδομένων στο SALTS DB"
+
 msgctxt "#30634"
 msgid "Subtitles"
 msgstr "Υπότιτλοι"
@@ -631,11 +800,15 @@ msgstr "Υψηλότερη Ποιότητα"
 
 msgctxt "#30643"
 msgid "Recently Added"
-msgstr "Προστέθηκε Πρόσφατα"
+msgstr "Προστέθηκαν πρόσφατα"
 
 msgctxt "#30651"
 msgid "All"
 msgstr "Όλα"
+
+msgctxt "#30658"
+msgid "Mute Notifications"
+msgstr "Σίγαση Ειδοποιήσεων"
 
 msgctxt "#30660"
 msgid "HD1080"
@@ -659,11 +832,11 @@ msgstr "Χαμηλή "
 
 msgctxt "#30666"
 msgid "SALTS Auto Configuration"
-msgstr "Αυτόματη Ρύθμιση SALTS"
+msgstr "Αυτόματη Ρύθμιση του SALTS"
 
 msgctxt "#30667"
 msgid "Continue"
-msgstr "Συνεχίστε"
+msgstr "Συνεχίση "
 
 msgctxt "#30668"
 msgid "Cancel"

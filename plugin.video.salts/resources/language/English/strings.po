@@ -662,50 +662,6 @@ msgctxt "#30161"
 msgid "Trakt Account Authorization"
 msgstr ""
 
-msgctxt "#30162"
-msgid "To authorize SALTS to access your trakt.tv account:"
-msgstr ""
-
-msgctxt "#30163"
-msgid "1) Visit [COLOR skyblue]http://trakt.tv/pin/347[/COLOR] or scan the QR Code below."
-msgstr ""
-
-msgctxt "#30164"
-msgid "2) If prompted, authorize SALTS to access your account."
-msgstr ""
-
-msgctxt "#30165"
-msgid "3) Enter the PIN provided in the box below."
-msgstr ""
-
-msgctxt "#30166"
-msgid "SALTS can be used without a trakt.tv account, but to take full advantage of SALTS you should authorize it to access your trakt.tv account."
-msgstr ""
-
-msgctxt "#30167"
-msgid "Authorize"
-msgstr ""
-
-msgctxt "#30168"
-msgid "Remind Me Later"
-msgstr ""
-
-msgctxt "#30169"
-msgid "No Thanks"
-msgstr ""
-
-msgctxt "#30170"
-msgid "Trakt.tv PIN Authorization Failed"
-msgstr ""
-
-msgctxt "#30171"
-msgid "You will be reminded in 24 hours"
-msgstr ""
-
-msgctxt "#30172"
-msgid "Use Addon Settings later if you change your mind"
-msgstr ""
-
 msgctxt "#30173"
 msgid "Trakt Authorization Complete"
 msgstr ""
@@ -1028,6 +984,78 @@ msgstr ""
 
 msgctxt "#30253"
 msgid "No Streamable Url Found"
+msgstr ""
+
+msgctxt "#30254"
+msgid "Discovering Next Episodes"
+msgstr ""
+
+msgctxt "#30255"
+msgid "Retrieving Watched History"
+msgstr ""
+
+msgctxt "#30256"
+msgid "Retrieving Watchlist"
+msgstr ""
+
+msgctxt "#30257"
+msgid "Retrieving Hidden Progress List"
+msgstr ""
+
+msgctxt "#30258"
+msgid "Requesting Progress for: %s"
+msgstr ""
+
+msgctxt "#30259"
+msgid "Received Progress for: %s"
+msgstr ""
+
+msgctxt "#30260"
+msgid "Reset Related Urls"
+msgstr ""
+
+msgctxt "#30261"
+msgid "Related Urls Cleared: %s"
+msgstr ""
+
+msgctxt "#30262"
+msgid "Anticipated %s"
+msgstr ""
+
+msgctxt "#30263"
+msgid "Set as Sources View"
+msgstr ""
+
+msgctxt "#30264"
+msgid "Set Related Season Url (Search)"
+msgstr ""
+
+msgctxt "#30265"
+msgid "Trakt API Offline Mode Enabled"
+msgstr ""
+
+msgctxt "#30266"
+msgid "On ANY device, visit: %s"
+msgstr ""
+
+msgctxt "#30267"
+msgid "When prompted, enter code: %s"
+msgstr ""
+
+msgctxt "#30268"
+msgid "Code expires in: %s seconds"
+msgstr ""
+
+msgctxt "#30269"
+msgid "Authorization was Rejected"
+msgstr ""
+
+msgctxt "#30270"
+msgid "To watch this video scan the QR Code below or visit [COLOR blue]"
+msgstr ""
+
+msgctxt "#30271"
+msgid "[/COLOR] from any device on the same network as this device."
 msgstr ""
 
 msgctxt "#30500"
@@ -1725,3 +1753,22 @@ msgctxt "#30670"
 msgid "Show Settings"
 msgstr ""
 
+msgctxt "#30671"
+msgid "Show Anticipated"
+msgstr ""
+
+msgctxt "#30672"
+msgid "Default Sources View (0 = None)"
+msgstr ""
+
+msgctxt "#30673"
+msgid "Scraper Last Update"
+msgstr ""
+
+msgctxt "#30674"
+msgid "Trakt API Offline Mode"
+msgstr ""
+
+msgctxt "#30675"
+msgid "Torba IP Authorization"
+msgstr ""

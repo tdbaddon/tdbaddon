@@ -60,18 +60,50 @@ class StreamLord_Scraper(scraper.Scraper):
         if source_url and source_url != FORCE_NO_MATCH:
             url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(url, cache_limit=1)
-            match = re.search('"file"\s*:\s*"([^"]+)', html)
+            match = re.search('''["']sources['"]\s*:\s*\[(.*?)\]''', html, re.DOTALL)
             if match:
-                if video.video_type == VIDEO_TYPES.MOVIE:
-                    quality = QUALITIES.HD720
-                else:
-                    quality = QUALITIES.HIGH
-                stream_url = match.group(1) + '|User-Agent=%s&Referer=%s' % (scraper_utils.get_ua(), urllib.quote(url))
-                hoster = {'multi-part': False, 'host': self._get_direct_hostname(stream_url), 'class': self, 'url': stream_url, 'quality': quality, 'views': None, 'rating': None, 'direct': True}
-                hosters.append(hoster)
+                for match in re.finditer('''['"]*file['"]*\s*:\s*([^\(]+)''', match.group(1), re.DOTALL):
+                    stream_url = self.__decode(match.group(1), html)
+                    if stream_url:
+                        if video.video_type == VIDEO_TYPES.MOVIE:
+                            quality = QUALITIES.HD720
+                        else:
+                            quality = QUALITIES.HIGH
+                        stream_url = stream_url + '|User-Agent=%s&Referer=%s&Cookie=%s' % (scraper_utils.get_ua(), urllib.quote(url), self._get_stream_cookies())
+                        hoster = {'multi-part': False, 'host': self._get_direct_hostname(stream_url), 'class': self, 'url': stream_url, 'quality': quality, 'views': None, 'rating': None, 'direct': True}
+                        hosters.append(hoster)
 
         return hosters
 
+    def __decode(self, func, html):
+        pattern = 'function\s+%s[^{]+{\s*([^}]+)' % (func)
+        match = re.search(pattern, html, re.DOTALL)
+        if match:
+            match = re.search('\[([^\]]+)[^+]+\+\s*([^.]+).*?getElementById\("([^"]+)', match.group(1), re.DOTALL)
+            if match:
+                url, array, span = match.groups()
+                url = self.__do_join(url)
+                array = self.__get_array(array, html)
+                span = self.__get_fragment(span, html)
+                if url and array and span:
+                    return url + array + span
+                
+    def __do_join(self, array):
+        array = re.sub('[" ]', '', array)
+        array = array.replace('\/', '/')
+        return ''.join(array.split(','))
+        
+    def __get_array(self, array, html):
+        pattern = 'var\s+%s\s*=\s*\[([^\]]+)' % (array)
+        match = re.search(pattern, html)
+        if match:
+            return self.__do_join(match.group(1))
+    
+    def __get_fragment(self, span, html):
+        fragment = dom_parser.parse_dom(html, 'span', {'id': span})
+        if fragment:
+            return fragment[0]
+    
     def get_url(self, video):
         return self._default_get_url(video)
 
@@ -80,25 +112,28 @@ class StreamLord_Scraper(scraper.Scraper):
         title_pattern = 'class="head".*?</span>(?P<title>.*?)</a>.*?href="(?P<url>[^"]+)'
         return self._default_get_episode_url(show_url, video, episode_pattern, title_pattern)
         
-    def search(self, video_type, title, year):
+    def search(self, video_type, title, year, season=''):
         results = []
         url = urlparse.urljoin(self.base_url, '/search.html')
         data = {'search': title}
-        html = self._http_get(url, data=data, cache_limit=2)
+        headers = {'Referer': self.base_url}
+        html = self._http_get(url, data=data, headers=headers, cache_limit=2)
         if video_type == VIDEO_TYPES.MOVIE:
             query_type = 'watch-movie-'
+            class_type = 'add-to-watchlist'
         else:
             query_type = 'watch-tvshow-'
+            class_type = 'add-show-to-watchlist'
 
         norm_title = scraper_utils.normalize_title(title)
-        for item in dom_parser.parse_dom(html, 'div', {'class': 'item movie'}):
+        for item in dom_parser.parse_dom(html, 'a', {'class': class_type}):
             match = re.search('href="(%s[^"]+)' % (query_type), item)
             if match:
                 link = match.group(1)
                 match_title = self.__make_title(link, query_type)
                 match_year = ''
                 if norm_title in scraper_utils.normalize_title(match_title) and (not year or not match_year or int(year) == int(match_year)):
-                    result = {'url': scraper_utils.pathify_url(link), 'title': match_title, 'year': match_year}
+                    result = {'url': scraper_utils.pathify_url(link), 'title': scraper_utils.cleanse_title(match_title), 'year': match_year}
                     results.append(result)
 
         return results

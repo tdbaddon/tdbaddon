@@ -93,7 +93,7 @@ class CouchTunerV1_Scraper(scraper.Scraper):
         title_pattern = 'href="(?P<url>[^"]+season-\d+-episode-\d+-[^"]+).*?8211;\s*(?P<title>[^<]+)'
         return self._default_get_episode_url(show_url, video, episode_pattern, title_pattern)
 
-    def search(self, video_type, title, year):
+    def search(self, video_type, title, year, season=''):
         show_list_url = urlparse.urljoin(self.base_url, '/tv-lists/')
         html = self._http_get(show_list_url, cache_limit=8)
         results = []
@@ -105,7 +105,7 @@ class CouchTunerV1_Scraper(scraper.Scraper):
                 url, match_title = match.groups()
                 match_title = match_title.replace('<strong>', '').replace('</strong>', '')
                 if norm_title in scraper_utils.normalize_title(match_title):
-                    result = {'url': scraper_utils.pathify_url(url), 'title': match_title, 'year': ''}
+                    result = {'url': scraper_utils.pathify_url(url), 'title': scraper_utils.cleanse_title(match_title), 'year': ''}
                     results.append(result)
 
         return results

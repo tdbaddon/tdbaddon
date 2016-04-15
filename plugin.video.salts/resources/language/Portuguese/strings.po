@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: SALTS\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2016-02-03 09:48+0000\n"
+"PO-Revision-Date: 2016-02-20 09:51+0000\n"
 "Last-Translator: tknorris\n"
 "Language-Team: Portuguese (http://www.transifex.com/tv-addons/salts/language/pt/)\n"
 "MIME-Version: 1.0\n"
@@ -612,50 +612,6 @@ msgstr "Erro (%s) durante o download: %s"
 msgctxt "#30161"
 msgid "Trakt Account Authorization"
 msgstr "Autorização de Conta Trakt"
-
-msgctxt "#30162"
-msgid "To authorize SALTS to access your trakt.tv account:"
-msgstr "Para autorizar o SALTS a aceder à sua conta trakt.tv:"
-
-msgctxt "#30163"
-msgid ""
-msgstr "1) Visite [COLOR skyblue]http://trakt.tv/pin/347[/COLOR] ou leia o código QR abaixo."
-
-msgctxt "#30164"
-msgid "2) If prompted, authorize SALTS to access your account."
-msgstr "2) Se lhe for pedido, autorize o SALTS a aceder à sua conta."
-
-msgctxt "#30165"
-msgid "3) Enter the PIN provided in the box below."
-msgstr "3) Introduza o PIN fornecido na caixa abaixo."
-
-msgctxt "#30166"
-msgid ""
-msgstr "O SALTS pode ser usado sem uma conta trakt.tv, mas para tirar total partido do SALTS deve autorizá-lo a aceder à sua conta trakt.tv."
-
-msgctxt "#30167"
-msgid "Authorize"
-msgstr "Autorizar"
-
-msgctxt "#30168"
-msgid "Remind Me Later"
-msgstr "Lembrar Depois"
-
-msgctxt "#30169"
-msgid "No Thanks"
-msgstr "Não, obrigado"
-
-msgctxt "#30170"
-msgid "Trakt.tv PIN Authorization Failed"
-msgstr "Autorização por PIN Trakt.tv Falhada"
-
-msgctxt "#30171"
-msgid "You will be reminded in 24 hours"
-msgstr "Será lembrado daqui a 24 horas"
-
-msgctxt "#30172"
-msgid "Use Addon Settings later if you change your mind"
-msgstr "Utilize as Definições do add-on se mudar de ideias"
 
 msgctxt "#30173"
 msgid "Trakt Authorization Complete"

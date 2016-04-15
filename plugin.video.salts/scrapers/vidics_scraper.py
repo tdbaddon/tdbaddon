@@ -30,6 +30,7 @@ import scraper
 
 
 BASE_URL = 'http://www.vidics.ch'
+FRAGMENTS = {VIDEO_TYPES.MOVIE: '/film/', VIDEO_TYPES.TVSHOW: '/serie/'}
 
 class Vidics_Scraper(scraper.Scraper):
     base_url = BASE_URL
@@ -66,11 +67,9 @@ class Vidics_Scraper(scraper.Scraper):
             url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(url, cache_limit=.5)
 
-            match = re.search('Links:(.*?)Show All Links', html, re.DOTALL)
-            if match:
-                fragment = match.group(1)
-
-                for match in re.finditer('class="movie_link.*?href="([^"]+)[^>]+>([^<]+)', fragment, re.DOTALL):
+            fragments = dom_parser.parse_dom(html, 'div', {'class': 'lang'})
+            if fragments:
+                for match in re.finditer('class="movie_link.*?href="([^"]+)[^>]+>([^<]+)', fragments[0], re.DOTALL):
                     media_url, host = match.groups()
                     hosters.append({'multi-part': False, 'url': media_url, 'class': self, 'quality': scraper_utils.get_quality(video, host, QUALITIES.HIGH), 'host': host, 'rating': None, 'views': None, 'direct': False})
 
@@ -79,12 +78,9 @@ class Vidics_Scraper(scraper.Scraper):
     def get_url(self, video):
         return self._default_get_url(video)
 
-    def search(self, video_type, title, year):
-        if video_type == VIDEO_TYPES.MOVIE:
-            search_url = urlparse.urljoin(self.base_url, '/Category-Movies/Genre-Any/Letter-Any/ByPopularity/1/Search-')
-        else:
-            search_url = urlparse.urljoin(self.base_url, '/Category-TvShows/Genre-Any/Letter-Any/ByPopularity/1/Search-')
-        search_url += '%s.htm' % (urllib.quote_plus(title))
+    def search(self, video_type, title, year, season=''):
+        search_url = '/Category-FilmsAndTV/Genre-Any/Letter-Any/ByPopularity/1/Search-%s.htm' % (title)
+        search_url = urlparse.urljoin(self.base_url, search_url)
         html = self._http_get(search_url, cache_limit=.25)
 
         results = []
@@ -98,7 +94,8 @@ class Vidics_Scraper(scraper.Scraper):
                 match_year = ''
             
             if url and match_title and (not year or not match_year or year == match_year):
-                result = {'url': scraper_utils.pathify_url(url[0]), 'title': match_title[0], 'year': match_year}
+                if FRAGMENTS[video_type] not in url[0].lower(): continue
+                result = {'url': scraper_utils.pathify_url(url[0]), 'title': scraper_utils.cleanse_title(match_title[0]), 'year': match_year}
                 results.append(result)
         return results
 

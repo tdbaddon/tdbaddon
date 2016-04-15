@@ -15,6 +15,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
+import json
 import datetime
 import time
 import re
@@ -33,12 +34,12 @@ import xbmcvfs
 import xbmcgui
 import xbmcplugin
 import kodi
-import strings
 import pyaes
 from constants import *
+from kodi import i18n
 
 THEME_LIST = ['Shine', 'Luna_Blue', 'Iconic', 'Simple', 'SALTy', 'SALTy (Blended)', 'SALTy (Blue)', 'SALTy (Frog)', 'SALTy (Green)',
-              'SALTy (Macaw)', 'SALTier (Green)', 'SALTier (Orange)', 'SALTier (Red)', 'IGDB', 'Simply Elegant', 'IGDB Redux']
+              'SALTy (Macaw)', 'SALTier (Green)', 'SALTier (Orange)', 'SALTier (Red)', 'IGDB', 'Simply Elegant', 'IGDB Redux', 'NaCl']
 THEME = THEME_LIST[int(kodi.get_setting('theme'))]
 if xbmc.getCondVisibility('System.HasAddon(script.salts.themepak)'):
     themepak_path = xbmcaddon.Addon('script.salts.themepak').getAddonInfo('path')
@@ -61,7 +62,7 @@ def art(name):
         if name == 'fanart.jpg':
             path = os.path.join(kodi.get_path(), name)
         else:
-            path.replace('.png', '.jpg')
+            path = path.replace('.png', '.jpg')
     return path
 
 def show_id(show):
@@ -125,6 +126,7 @@ def iso_2_utc(iso_ts):
     return seconds
 
 def _title_key(title):
+    if title is None: title = ''
     temp = title.upper()
     if temp.startswith('THE '):
         offset = 4
@@ -321,7 +323,7 @@ def filter_quality(video_type, hosters):
     if qual_filter == 5:
         return hosters
     else:
-        return [hoster for hoster in hosters if Q_ORDER[hoster['quality']] <= qual_filter]
+        return [hoster for hoster in hosters if hoster['quality'] is not None and Q_ORDER[hoster['quality']] <= qual_filter]
 
 def get_sort_key(item):
     item_sort_key = []
@@ -380,6 +382,7 @@ def reap_workers(workers, timeout=0):
 def parallel_get_sources(q, scraper, video):
     worker = threading.current_thread()
     log_utils.log('********Worker: %s (%s) for %s sources: %s' % (worker.name, worker, scraper.get_name(), video), log_utils.LOGDEBUG)
+    start = time.time()
     hosters = scraper.get_sources(video)
     if hosters is None: hosters = []
     if kodi.get_setting('filter_direct') == 'true':
@@ -387,7 +390,7 @@ def parallel_get_sources(q, scraper, video):
     for hoster in hosters:
         if not hoster['direct']:
             hoster['host'] = hoster['host'].lower().strip()
-    log_utils.log('%s returned %s sources from %s' % (scraper.get_name(), len(hosters), worker), log_utils.LOGDEBUG)
+    log_utils.log('%s returned %s sources from %s in %.2fs' % (scraper.get_name(), len(hosters), worker, time.time() - start), log_utils.LOGDEBUG)
     result = {'name': scraper.get_name(), 'hosters': hosters}
     q.put(result)
 
@@ -414,9 +417,9 @@ def test_stream(hoster):
     log_utils.log('Testing Stream: %s from %s using Headers: %s' % (hoster['url'], hoster['class'].get_name(), headers), xbmc.LOGDEBUG)
     request = urllib2.Request(hoster['url'].split('|')[0], headers=headers)
 
+    msg = ''
     opener = urllib2.build_opener(urllib2.HTTPRedirectHandler)
     urllib2.install_opener(opener)
-    #  set urlopen timeout to 1 seconds
     try: http_code = urllib2.urlopen(request, timeout=2).getcode()
     except urllib2.URLError as e:
         # treat an unhandled url type as success
@@ -427,15 +430,17 @@ def test_stream(hoster):
                 http_code = e.code
             else:
                 http_code = 600
+        msg = str(e)
     except Exception as e:
         if 'unknown url type' in str(e).lower():
             return True
         else:
             log_utils.log('Exception during test_stream: (%s) %s' % (type(e).__name__, e), xbmc.LOGDEBUG)
             http_code = 601
+        msg = str(e)
 
     if int(http_code) >= 400:
-        log_utils.log('Test Stream Failed: Url: %s HTTP Code: %s' % (hoster['url'], http_code), xbmc.LOGDEBUG)
+        log_utils.log('Test Stream Failed: Url: %s HTTP Code: %s Msg: %s' % (hoster['url'], http_code, msg), xbmc.LOGDEBUG)
 
     return int(http_code) < 400
 
@@ -620,62 +625,54 @@ def format_time(seconds):
 def download_media(url, path, file_name):
     try:
         progress = int(kodi.get_setting('down_progress'))
-        request = urllib2.Request(url)
-        request.add_header('User-Agent', USER_AGENT)
-        request.add_unredirected_header('Host', request.get_host())
-        response = urllib2.urlopen(request)
+        active = not progress == PROGRESS.OFF
+        background = progress == PROGRESS.BACKGROUND
+        with kodi.ProgressDialog('Premiumize Cloud', i18n('downloading') % (file_name), background=background, active=active) as pd:
+            request = urllib2.Request(url)
+            request.add_header('User-Agent', USER_AGENT)
+            request.add_unredirected_header('Host', request.get_host())
+            response = urllib2.urlopen(request)
+            content_length = 0
+            if 'Content-Length' in response.info():
+                content_length = int(response.info()['Content-Length'])
+    
+            file_name = file_name.replace('.strm', get_extension(url, response))
+            full_path = os.path.join(path, file_name)
+            log_utils.log('Downloading: %s -> %s' % (url, full_path), log_utils.LOGDEBUG)
+    
+            path = xbmc.makeLegalFilename(path)
+            if not xbmcvfs.exists(path):
+                try:
+                    try: xbmcvfs.mkdirs(path)
+                    except: os.mkdir(path)
+                except Exception as e:
+                    raise Exception(i18n('failed_create_dir'))
+    
+            file_desc = xbmcvfs.File(full_path, 'w')
+            total_len = 0
+            cancel = False
+            while True:
+                data = response.read(CHUNK_SIZE)
+                if not data:
+                    break
+    
+                if pd.is_canceled():
+                    cancel = True
+                    break
+    
+                total_len += len(data)
+                if not file_desc.write(data):
+                    raise Exception(i18n('failed_write_file'))
+    
+                percent_progress = (total_len) * 100 / content_length if content_length > 0 else 0
+                log_utils.log('Position : %s / %s = %s%%' % (total_len, content_length, percent_progress), log_utils.LOGDEBUG)
+                pd.update(percent_progress)
+            
+            file_desc.close()
 
-        content_length = 0
-        if 'Content-Length' in response.info():
-            content_length = int(response.info()['Content-Length'])
-
-        file_name = file_name.replace('.strm', get_extension(url, response))
-        full_path = os.path.join(path, file_name)
-        log_utils.log('Downloading: %s -> %s' % (url, full_path), log_utils.LOGDEBUG)
-
-        path = xbmc.makeLegalFilename(path)
-        if not xbmcvfs.exists(path):
-            try:
-                try: xbmcvfs.mkdirs(path)
-                except: os.mkdir(path)
-            except Exception as e:
-                raise Exception(i18n('failed_create_dir'))
-
-        file_desc = xbmcvfs.File(full_path, 'w')
-        total_len = 0
-        if progress:
-            if progress == PROGRESS.WINDOW:
-                dialog = xbmcgui.DialogProgress()
-            else:
-                dialog = xbmcgui.DialogProgressBG()
-
-            dialog.create('Stream All The Sources', i18n('downloading') % (file_name))
-            dialog.update(0)
-        while True:
-            data = response.read(CHUNK_SIZE)
-            if not data:
-                break
-
-            if progress == PROGRESS.WINDOW and dialog.iscanceled():
-                break
-
-            total_len += len(data)
-            if not file_desc.write(data):
-                raise Exception('failed_write_file')
-
-            percent_progress = (total_len) * 100 / content_length if content_length > 0 else 0
-            log_utils.log('Position : %s / %s = %s%%' % (total_len, content_length, percent_progress), log_utils.LOGDEBUG)
-            if progress == PROGRESS.WINDOW:
-                dialog.update(percent_progress)
-            elif progress == PROGRESS.BACKGROUND:
-                dialog.update(percent_progress, 'Stream All The Sources')
-        else:
+        if not cancel:
             kodi.notify(msg=i18n('download_complete') % (file_name), duration=5000)
             log_utils.log('Download Complete: %s -> %s' % (url, full_path), log_utils.LOGDEBUG)
-
-        file_desc.close()
-        if progress:
-            dialog.close()
 
     except Exception as e:
         log_utils.log('Error (%s) during download: %s -> %s' % (str(e), url, file_name), log_utils.LOGERROR)
@@ -754,13 +751,6 @@ def reset_base_url():
                     log_utils.log('Resetting: %s -> %s' % (setting.get('id'), setting.get('default')), xbmc.LOGDEBUG)
                     kodi.set_setting(setting.get('id'), setting.get('default'))
 
-def i18n(string_id):
-    try:
-        return xbmcaddon.Addon().getLocalizedString(strings.STRINGS[string_id]).encode('utf-8', 'ignore')
-    except Exception as e:
-        log_utils.log('Failed String Lookup: %s (%s)' % (string_id, e))
-        return string_id
-
 def get_and_decrypt(url, password):
     try:
         req = urllib2.urlopen(url)
@@ -776,3 +766,18 @@ def get_and_decrypt(url, password):
         plain_text = decrypter.feed(cipher_text)
         plain_text += decrypter.feed()
         return plain_text
+
+def json_load_as_str(file_handle):
+    return _byteify(json.load(file_handle, object_hook=_byteify), ignore_dicts=True)
+
+def json_loads_as_str(json_text):
+    return _byteify(json.loads(json_text, object_hook=_byteify), ignore_dicts=True)
+
+def _byteify(data, ignore_dicts=False):
+    if isinstance(data, unicode):
+        return data.encode('utf-8')
+    if isinstance(data, list):
+        return [_byteify(item, ignore_dicts=True) for item in data]
+    if isinstance(data, dict) and not ignore_dicts:
+        return dict([(_byteify(key, ignore_dicts=True), _byteify(value, ignore_dicts=True)) for key, value in data.iteritems()])
+    return data

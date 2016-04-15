@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: SALTS\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2016-02-03 11:53+0000\n"
+"PO-Revision-Date: 2016-03-07 13:02+0000\n"
 "Last-Translator: Achaw <achaw.ar@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/tv-addons/salts/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -82,7 +82,7 @@ msgstr " %s recomendadas"
 
 msgctxt "#30016"
 msgid "My %s Collection"
-msgstr "%s en mi Librería"
+msgstr "%s en mi Colección de Trakt"
 
 msgctxt "#30017"
 msgid "My Favorites"
@@ -234,7 +234,7 @@ msgstr "Definir como lista de Suscripción"
 
 msgctxt "#30054"
 msgid "Import from Collection"
-msgstr "Importar desde Librería"
+msgstr "Importar desde Colección de Trakt"
 
 msgctxt "#30055"
 msgid "Add another user's list"
@@ -338,7 +338,7 @@ msgstr "La reproducción de TODAS las fuentes FALLÓ."
 
 msgctxt "#30080"
 msgid "Choose your stream"
-msgstr "Elige tu Fuente"
+msgstr "Streams Disponibles"
 
 msgctxt "#30081"
 msgid "Set Related Url"
@@ -386,11 +386,11 @@ msgstr "Ingresa ID de Serie de TV"
 
 msgctxt "#30092"
 msgid "Item Added to Collection"
-msgstr "Item agregado a la Librería"
+msgstr "Item agregado a la Colección de Trakt"
 
 msgctxt "#30093"
 msgid "Item Removed from Collection"
-msgstr "Item eliminado de la Librería"
+msgstr "Item eliminado de la Colección de Trakt"
 
 msgctxt "#30094"
 msgid "Item Added to List"
@@ -562,11 +562,11 @@ msgstr "Definir Url relativa (Manual)"
 
 msgctxt "#30136"
 msgid "Remove from Collection"
-msgstr "Eliminar de la Librería"
+msgstr "Eliminar de la Colección de Trakt"
 
 msgctxt "#30137"
 msgid "Add to Collection"
-msgstr "Agregar a la Librería"
+msgstr "Agregar a la Colección de Trakt"
 
 msgctxt "#30138"
 msgid "Add to List"
@@ -663,50 +663,6 @@ msgstr "Error (%s) durante la descarga: %s"
 msgctxt "#30161"
 msgid "Trakt Account Authorization"
 msgstr "Autorización de Cuenta Trakt"
-
-msgctxt "#30162"
-msgid "To authorize SALTS to access your trakt.tv account:"
-msgstr "Para autorizar a que SALTS acceda a tu cuenta Trakt.tv:"
-
-msgctxt "#30163"
-msgid ""
-msgstr "1) Visitar [COLOR skyblue]http://trakt.tv/pin/347[/COLOR] o escanea el código QR de abajo."
-
-msgctxt "#30164"
-msgid "2) If prompted, authorize SALTS to access your account."
-msgstr "2) Ante la solicitud, autoriza a SALTS para acceder a tu cuenta."
-
-msgctxt "#30165"
-msgid "3) Enter the PIN provided in the box below."
-msgstr "3) Ingresa el PIN dado en el cuadro de texto de abajo."
-
-msgctxt "#30166"
-msgid ""
-msgstr "SALTS puede usarse sin una cuenta de trakt.tv, pero para disfrutar el máximo potencial del addon deberías autorizar el acceso a tu cuenta de trakt.tv."
-
-msgctxt "#30167"
-msgid "Authorize"
-msgstr "Autorizar"
-
-msgctxt "#30168"
-msgid "Remind Me Later"
-msgstr "Recordarme Luego"
-
-msgctxt "#30169"
-msgid "No Thanks"
-msgstr "No, gracias"
-
-msgctxt "#30170"
-msgid "Trakt.tv PIN Authorization Failed"
-msgstr "Autorización de PIN Trakt.tv fallida"
-
-msgctxt "#30171"
-msgid "You will be reminded in 24 hours"
-msgstr "Serás recordado en 24 horas"
-
-msgctxt "#30172"
-msgid "Use Addon Settings later if you change your mind"
-msgstr "Usa la configuración del addon si cambias de parecer"
 
 msgctxt "#30173"
 msgid "Trakt Authorization Complete"
@@ -890,7 +846,7 @@ msgstr "Forzar No Match"
 
 msgctxt "#30218"
 msgid "Getting Sources"
-msgstr "Recibiendo Fuentes"
+msgstr "Obteniendo Fuentes"
 
 msgctxt "#30219"
 msgid "Requested Sources from: %s"
@@ -898,7 +854,7 @@ msgstr "Solicitando fuentes de: %s"
 
 msgctxt "#30220"
 msgid "Received %s Sources from: %s"
-msgstr "%s fuentes recibidas de: %s"
+msgstr "%s fuentes obtenidas de: %s"
 
 msgctxt "#30221"
 msgid "Applying Source Filters"
@@ -1028,6 +984,74 @@ msgctxt "#30252"
 msgid "DB Reset Failed: %s"
 msgstr "Reseteo de DB fallido: %s"
 
+msgctxt "#30253"
+msgid "No Streamable Url Found"
+msgstr "No se encontró URL con stream válido "
+
+msgctxt "#30254"
+msgid "Discovering Next Episodes"
+msgstr "Descubriendo próximos episodios"
+
+msgctxt "#30255"
+msgid "Retrieving Watched History"
+msgstr "Obteniendo historial de vistos"
+
+msgctxt "#30256"
+msgid "Retrieving Watchlist"
+msgstr "Obteniendo Lista de Seguimiento"
+
+msgctxt "#30257"
+msgid "Retrieving Hidden Progress List"
+msgstr "Obteniendo lista de progreso oculta"
+
+msgctxt "#30258"
+msgid "Requesting Progress for: %s"
+msgstr "Solicitando progreso de: %s"
+
+msgctxt "#30259"
+msgid "Received Progress for: %s"
+msgstr "Progreso recibido de: %s"
+
+msgctxt "#30260"
+msgid "Reset Related Urls"
+msgstr "Resetear Url relativas"
+
+msgctxt "#30261"
+msgid "Related Urls Cleared: %s"
+msgstr "Urls relativas eliminadas: %s"
+
+msgctxt "#30262"
+msgid "Anticipated %s"
+msgstr "%s Anticipadas"
+
+msgctxt "#30263"
+msgid "Set as Sources View"
+msgstr "Definir como vista de fuente"
+
+msgctxt "#30264"
+msgid "Set Related Season Url (Search)"
+msgstr "Definir Url relativa de Temporada (Buscar)"
+
+msgctxt "#30265"
+msgid "Trakt API Offline Mode Enabled"
+msgstr "Modo Offline del API de Trakt activado"
+
+msgctxt "#30266"
+msgid "On ANY device, visit: %s"
+msgstr "En CUALQUIER dispositivo, visita: %s"
+
+msgctxt "#30267"
+msgid "When prompted, enter code: %s"
+msgstr "Cundo se te pregunte, ingresa el código: %s"
+
+msgctxt "#30268"
+msgid "Code expires in: %s seconds"
+msgstr "El código expira en: %s segundos"
+
+msgctxt "#30269"
+msgid "Authorization was Rejected"
+msgstr "La autorización fue rechazada"
+
 msgctxt "#30500"
 msgid "Addon Theme"
 msgstr "Tema:"
@@ -1046,7 +1070,7 @@ msgstr "Mostrar tiempo de emisión en calendarios"
 
 msgctxt "#30504"
 msgid "My Collection Sort Order"
-msgstr "Orden de clasificación de Mi Librería"
+msgstr "Orden de clasificación de Mi Colección de Trakt"
 
 msgctxt "#30505"
 msgid "My Next Episodes Sort Order"
@@ -1142,7 +1166,7 @@ msgstr "Mostrar Recomendadas"
 
 msgctxt "#30528"
 msgid "Show My Collection"
-msgstr "Mostrar Mi Librería"
+msgstr "Mostrar Mi Colección de Trakt"
 
 msgctxt "#30529"
 msgid "Show My Favorites"
@@ -1647,4 +1671,20 @@ msgstr "Click aqui para instalar el pack de temas de SALTS "
 msgctxt "#30670"
 msgid "Show Settings"
 msgstr "Mostrar Configuración"
+
+msgctxt "#30671"
+msgid "Show Anticipated"
+msgstr "Show Anticipado"
+
+msgctxt "#30672"
+msgid "Default Sources View (0 = None)"
+msgstr "Vista por defecto de Fuentes (0 = Ninguna)"
+
+msgctxt "#30673"
+msgid "Scraper Last Update"
+msgstr "Ultima actualización de Scraper"
+
+msgctxt "#30674"
+msgid "Trakt API Offline Mode"
+msgstr "Modo Offline del API de Trakt"
 

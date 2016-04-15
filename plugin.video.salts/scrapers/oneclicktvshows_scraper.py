@@ -85,7 +85,7 @@ class OCTV_Scraper(scraper.Scraper):
     def _get_episode_url(self, show_url, video):
         return show_url
 
-    def search(self, video_type, title, year):
+    def search(self, video_type, title, year, season=''):
         results = []
         search_url = urlparse.urljoin(self.base_url, '/archives/')
         html = self._http_get(search_url, cache_limit=48)
@@ -99,7 +99,7 @@ class OCTV_Scraper(scraper.Scraper):
                     match_title = match.group(1)
                     
                 if norm_title in scraper_utils.normalize_title(match_title):
-                    result = {'url': scraper_utils.pathify_url(url), 'title': match_title, 'year': ''}
+                    result = {'url': scraper_utils.pathify_url(url), 'title': scraper_utils.cleanse_title(match_title), 'year': ''}
                     results.append(result)
 
         return results

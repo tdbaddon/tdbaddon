@@ -26,7 +26,7 @@ from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
 from salts_lib.constants import VIDEO_TYPES
-from salts_lib.utils2 import i18n
+from salts_lib.kodi import i18n
 import scraper
 
 
@@ -60,8 +60,8 @@ class MoviesPlanet_Scraper(scraper.Scraper):
 
     def get_sources(self, video):
         source_url = self.get_url(video)
-        sources = []
-        stream_urls = []
+        sources = {}
+        hosters = []
         if source_url and source_url != FORCE_NO_MATCH:
             url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(url, cache_limit=.5)
@@ -75,34 +75,32 @@ class MoviesPlanet_Scraper(scraper.Scraper):
                             proxy_link = match.group(1)
                             proxy_link = proxy_link.split('*', 1)[-1]
                             picasa_url = scraper_utils.gk_decrypt(self.get_name(), GK_KEY, proxy_link)
-                            stream_urls += self._parse_google(picasa_url)
+                            for stream_url in self._parse_google(picasa_url):
+                                sources[stream_url] = {'quality': scraper_utils.gv_get_quality(stream_url), 'direct': True}
                     else:
                         html = self._http_get(iframe_url, cache_limit=0)
-                        match = re.search('sources\s*:\s*\[(.*?)\]', html, re.DOTALL)
-                        if match:
-                            for match in re.finditer('''['"]*file['"]*\s*:\s*['"]*([^'"]+).*?['"]*label['"]*\s*:\s*['"]*([^'"]+)''', match.group(1), re.DOTALL):
-                                stream_url, label = match.groups()
-                                if 'download.php' in stream_url:
-                                    redir_html = self._http_get(stream_url, allow_redirect=False, cache_limit=0)
-                                    if stream_url.startswith('http'): stream_url = redir_html
-                                stream_urls.append(stream_url)
-                
-        for stream_url in list(set(stream_urls)):
-            host = self._get_direct_hostname(stream_url)
-            if host == 'gvideo':
-                quality = scraper_utils.gv_get_quality(stream_url)
-            else:
-                quality = QUALITY_MAP.get(label, QUALITIES.HIGH)
-            stream_url += '|User-Agent=%s' % (scraper_utils.get_ua())
-            source = {'multi-part': False, 'url': stream_url, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'direct': True}
-            sources.append(source)
+                        temp_sources = self._parse_sources_list(html)
+                        for source in temp_sources:
+                            if 'download.php' in source:
+                                redir_html = self._http_get(source, allow_redirect=False, method='HEAD', cache_limit=0)
+                                if redir_html.startswith('http'):
+                                    temp_sources[redir_html] = temp_sources[source]
+                                    del temp_sources[source]
+                        sources.update(temp_sources)
+                                
+        for source in sources:
+            host = self._get_direct_hostname(source)
+            stream_url = source + '|User-Agent=%s' % (scraper_utils.get_ua())
+            quality = QUALITY_MAP.get(sources[source]['quality'], QUALITIES.HIGH)
+            hoster = {'multi-part': False, 'url': stream_url, 'host': host, 'class': self, 'quality': quality, 'views': None, 'rating': None, 'direct': True}
+            hosters.append(hoster)
 
-        return sources
+        return hosters
 
     def get_url(self, video):
         return self._default_get_url(video)
 
-    def search(self, video_type, title, year):
+    def search(self, video_type, title, year, season=''):
         results = []
         search_url = urlparse.urljoin(self.base_url, '/ajax/search.php')
         timestamp = int(time.time() * 1000)
@@ -116,7 +114,7 @@ class MoviesPlanet_Scraper(scraper.Scraper):
         js_data = scraper_utils.parse_json(html, search_url)
         for item in js_data:
             if item['meta'].upper().startswith(media_type):
-                result = {'title': item['title'], 'url': scraper_utils.pathify_url(item['permalink']), 'year': ''}
+                result = {'title': scraper_utils.cleanse_title(item['title']), 'url': scraper_utils.pathify_url(item['permalink']), 'year': ''}
                 results.append(result)
 
         return results
@@ -133,16 +131,16 @@ class MoviesPlanet_Scraper(scraper.Scraper):
         settings.append('         <setting id="%s-password" type="text" label="     %s" option="hidden" default="" visible="eq(-5,true)"/>' % (name, i18n('password')))
         return settings
 
-    def _http_get(self, url, data=None, headers=None, allow_redirect=True, cache_limit=8):
+    def _http_get(self, url, data=None, headers=None, allow_redirect=True, method=None, cache_limit=8):
         # return all uncached blank pages if no user or pass
         if not self.username or not self.password:
             return ''
 
-        html = self._cached_http_get(url, self.base_url, self.timeout, data=data, headers=headers, allow_redirect=allow_redirect, cache_limit=cache_limit)
+        html = self._cached_http_get(url, self.base_url, self.timeout, data=data, headers=headers, allow_redirect=allow_redirect, method=method, cache_limit=cache_limit)
         if re.search('Please Register or Login', html, re.I):
             log_utils.log('Logging in for url (%s)' % (url), log_utils.LOGDEBUG)
             self.__login()
-            html = self._cached_http_get(url, self.base_url, self.timeout, data=data, headers=headers, allow_redirect=allow_redirect, cache_limit=0)
+            html = self._cached_http_get(url, self.base_url, self.timeout, data=data, headers=headers, allow_redirect=allow_redirect, method=method, cache_limit=0)
         return html
 
     def __login(self):

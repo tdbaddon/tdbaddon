@@ -72,12 +72,6 @@ class DirectDownload_Scraper(scraper.Scraper):
                 log_utils.log('DD.tv API error: "%s" @ %s' % (js_result['error'], url), log_utils.LOGWARNING)
                 return hosters
 
-            query = urlparse.parse_qs(urlparse.urlparse(url).query)
-            match_quality = self.q_order
-            if 'quality' in query:
-                temp_quality = re.sub('\s', '', query['quality'][0])
-                match_quality = temp_quality.split(',')
-
             sxe_str = '.S%02dE%02d.' % (int(video.season), int(video.episode))
             try:
                 airdate_str = video.ep_airdate.strftime('.%Y.%m.%d.')
@@ -88,7 +82,7 @@ class DirectDownload_Scraper(scraper.Scraper):
                 if sxe_str not in result['release'] and airdate_str not in result['release']:
                     continue
                 
-                if result['quality'] in match_quality:
+                if result['quality'] in self.q_order:
                     for key in result['links']:
                         url = result['links'][key][0]
                         if re.search('\.rar(\.|$)', url):
@@ -108,7 +102,7 @@ class DirectDownload_Scraper(scraper.Scraper):
         result = self.db_connection.get_related_url(video.video_type, video.title, video.year, self.get_name(), video.season, video.episode)
         if result:
             url = result[0][0]
-            log_utils.log('Got local related url: |%s|%s|%s|%s|%s|' % (video.video_type, video.title, video.year, self.get_name(), url))
+            log_utils.log('Got local related url: |%s|%s|%s|%s|%s|' % (video.video_type, video.title, video.year, self.get_name(), url), log_utils.LOGDEBUG)
         else:
             date_match = False
             search_title = '%s S%02dE%02d' % (video.title, int(video.season), int(video.episode))
@@ -126,7 +120,7 @@ class DirectDownload_Scraper(scraper.Scraper):
                 if Q_DICT[result['quality']] > best_q_index:
                     best_q_index = Q_DICT[result['quality']]
                     url = result['url']
-            self.db_connection.set_related_url(video.video_type, video.title, video.year, self.get_name(), url)
+            self.db_connection.set_related_url(video.video_type, video.title, video.year, self.get_name(), url, video.season, video.episode)
         return url
 
     @classmethod
@@ -135,10 +129,10 @@ class DirectDownload_Scraper(scraper.Scraper):
         settings = scraper_utils.disable_sub_check(settings)
         return settings
 
-    def search(self, video_type, title, year):
+    def search(self, video_type, title, year, season=''):
         results = []
         search_url = urlparse.urljoin(self.base_url, '/search?query=')
-        search_url += title
+        search_url += title.replace("'", "")
         html = self._http_get(search_url, cache_limit=.25)
         js_result = scraper_utils.parse_json(html, search_url)
         if 'error' in js_result:
@@ -147,7 +141,7 @@ class DirectDownload_Scraper(scraper.Scraper):
         
         for match in js_result:
             url = search_url + '&quality=%s' % match['quality']
-            result = {'url': scraper_utils.pathify_url(url), 'title': match['release'], 'quality': match['quality'], 'year': ''}
+            result = {'url': scraper_utils.pathify_url(url), 'title': scraper_utils.cleanse_title(match['release']), 'quality': match['quality'], 'year': ''}
             results.append(result)
         return results
 
@@ -161,7 +155,8 @@ class DirectDownload_Scraper(scraper.Scraper):
     def __translate_search(self, url):
         query = urlparse.parse_qs(urlparse.urlparse(url).query)
         if 'quality' in query:
-            q_list = re.sub('\s', '', query['quality'][0].upper()).split(',')
+            q_index = Q_DICT[query['quality'][0]]
+            q_list = [dd_qual for dd_qual in DD_QUALITIES if Q_DICT[dd_qual] <= q_index]
         else:
             q_list = self.q_order
         quality = '&'.join(['quality[]=%s' % (q) for q in q_list])

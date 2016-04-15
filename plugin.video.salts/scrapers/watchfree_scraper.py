@@ -77,7 +77,7 @@ class WatchFree_Scraper(scraper.Scraper):
     def get_url(self, video):
         return self._default_get_url(video)
 
-    def search(self, video_type, title, year):
+    def search(self, video_type, title, year, season=''):
         if video_type == VIDEO_TYPES.MOVIE:
             section = '1'
             url_marker = '-movie-online-'
@@ -91,7 +91,7 @@ class WatchFree_Scraper(scraper.Scraper):
         for match in re.finditer('class="item".*?href="([^"]+)"\s*title="Watch (.*?)(?:\s+\((\d{4})\))?"', html):
             url, res_title, res_year = match.groups('')
             if url_marker in url and (not year or not res_year or year == res_year):
-                result = {'title': res_title, 'url': scraper_utils.pathify_url(url), 'year': res_year}
+                result = {'title': scraper_utils.cleanse_title(res_title), 'url': scraper_utils.pathify_url(url), 'year': res_year}
                 results.append(result)
         return results
 

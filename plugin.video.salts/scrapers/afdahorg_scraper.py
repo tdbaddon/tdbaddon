@@ -83,7 +83,7 @@ class AfdahOrg_Scraper(scraper.Scraper):
     def get_url(self, video):
         return self._default_get_url(video)
 
-    def search(self, video_type, title, year):
+    def search(self, video_type, title, year, season=''):
         search_url = urlparse.urljoin(self.base_url, '/results?q=')
         search_url += urllib.quote_plus(title)
         html = self._http_get(search_url, cache_limit=.25)
@@ -92,6 +92,6 @@ class AfdahOrg_Scraper(scraper.Scraper):
         for match in re.finditer(pattern, html, re.DOTALL):
             url, match_title, match_year = match.groups()
             if not year or not match_year or year == match_year:
-                result = {'title': match_title, 'year': match_year, 'url': scraper_utils.pathify_url(url)}
+                result = {'title': scraper_utils.cleanse_title(match_title), 'year': match_year, 'url': scraper_utils.pathify_url(url)}
                 results.append(result)
         return results

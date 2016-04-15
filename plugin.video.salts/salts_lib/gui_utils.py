@@ -17,134 +17,62 @@
 """
 import xbmcgui
 import time
-import os
 import kodi
 import random
 import json
+import urllib2
 from utils2 import reset_base_url, i18n
 from trakt_api import Trakt_API
 from salts_lib import log_utils
 
-use_https = kodi.get_setting('use_https') == 'true'
-trakt_timeout = int(kodi.get_setting('trakt_timeout'))
+INTERVALS = 5
 
-def get_pin():
-    AUTH_BUTTON = 200
-    LATER_BUTTON = 201
-    NEVER_BUTTON = 202
-    ACTION_PREVIOUS_MENU = 10
-    ACTION_BACK = 92
-    CENTER_Y = 6
-    CENTER_X = 2
-    
-    class PinAuthDialog(xbmcgui.WindowXMLDialog):
-        auth = False
-        
-        def onInit(self):
-            self.pin_edit_control = self.__add_editcontrol(30, 240, 40, 450)
-            self.setFocus(self.pin_edit_control)
-            auth = self.getControl(AUTH_BUTTON)
-            never = self.getControl(NEVER_BUTTON)
-            self.pin_edit_control.controlUp(never)
-            self.pin_edit_control.controlLeft(never)
-            self.pin_edit_control.controlDown(auth)
-            self.pin_edit_control.controlRight(auth)
-            auth.controlUp(self.pin_edit_control)
-            auth.controlLeft(self.pin_edit_control)
-            never.controlDown(self.pin_edit_control)
-            never.controlRight(self.pin_edit_control)
-            
-        def onAction(self, action):
-            # print 'Action: %s' % (action.getId())
-            if action == ACTION_PREVIOUS_MENU or action == ACTION_BACK:
-                self.close()
+def auth_trakt():
+    start = time.time()
+    use_https = kodi.get_setting('use_https') == 'true'
+    trakt_timeout = int(kodi.get_setting('trakt_timeout'))
+    trakt_api = Trakt_API(use_https=use_https, timeout=trakt_timeout)
+    result = trakt_api.get_code()
+    code, expires, interval = result['device_code'], result['expires_in'], result['interval']
+    time_left = expires - int(time.time() - start)
+    line1 = i18n('verification_url') % (result['verification_url'])
+    line2 = i18n('prompt_code') % (result['user_code'])
+    line3 = i18n('code_expires') % (time_left)
+    with kodi.ProgressDialog(i18n('trakt_acct_auth'), line1=line1, line2=line2, line3=line3) as pd:
+        pd.update(100)
+        while time_left:
+            for _ in range(INTERVALS):
+                kodi.sleep(interval * 1000 / INTERVALS)
+                if pd.is_canceled(): return
 
-        def onControl(self, control):
-            # print 'onControl: %s' % (control)
-            pass
-
-        def onFocus(self, control):
-            # print 'onFocus: %s' % (control)
-            pass
-
-        def onClick(self, control):
-            # print 'onClick: %s' % (control)
-            if control == AUTH_BUTTON:
-                if not self.__get_token():
-                    kodi.notify(msg=i18n('pin_auth_failed'), duration=5000)
+            try:
+                result = trakt_api.get_device_token(code)
+                break
+            except urllib2.URLError as e:
+                # authorization is pending; too fast
+                if e.code in [400, 429]:
+                    pass
+                elif e.code == 418:
+                    kodi.notify(msg=i18n('user_reject_auth'), duration=3000)
                     return
-                self.auth = True
-
-            if control == LATER_BUTTON:
-                kodi.notify(msg=i18n('remind_in_24hrs'), duration=5000)
-                kodi.set_setting('last_reminder', str(int(time.time())))
-
-            if control == NEVER_BUTTON:
-                kodi.notify(msg=i18n('use_addon_settings'), duration=5000)
-                kodi.set_setting('last_reminder', '-1')
-
-            if control in [AUTH_BUTTON, LATER_BUTTON, NEVER_BUTTON]:
-                self.close()
+                elif e.code == 410:
+                    break
+                else:
+                    raise
+                
+            time_left = expires - int(time.time() - start)
+            progress = time_left * 100 / expires
+            pd.update(progress, line3=i18n('code_expires') % (time_left))
         
-        def __get_token(self):
-            pin = self.pin_edit_control.getText().strip()
-            if pin:
-                try:
-                    trakt_api = Trakt_API(use_https=use_https, timeout=trakt_timeout)
-                    result = trakt_api.get_token(pin=pin)
-                    kodi.set_setting('trakt_oauth_token', result['access_token'])
-                    kodi.set_setting('trakt_refresh_token', result['refresh_token'])
-                    profile = trakt_api.get_user_profile(cached=False)
-                    kodi.set_setting('trakt_user', '%s (%s)' % (profile['username'], profile['name']))
-                    return True
-                except Exception as e:
-                    log_utils.log('Trakt Authorization Failed: %s' % (e), log_utils.LOGDEBUG)
-                    return False
-            return False
-        
-        # have to add edit controls programatically because getControl() (hard) crashes XBMC on them
-        def __add_editcontrol(self, x, y, height, width):
-            media_path = os.path.join(kodi.get_path(), 'resources', 'skins', 'Default', 'media')
-            temp = xbmcgui.ControlEdit(0, 0, 0, 0, '', font='font12', textColor='0xFFFFFFFF', focusTexture=os.path.join(media_path, 'button-focus2.png'),
-                                       noFocusTexture=os.path.join(media_path, 'button-nofocus.png'), _alignment=CENTER_Y | CENTER_X)
-            temp.setPosition(x, y)
-            temp.setHeight(height)
-            temp.setWidth(width)
-            self.addControl(temp)
-            return temp
-        
-    dialog = PinAuthDialog('TraktPinAuthDialog.xml', kodi.get_path())
-    dialog.doModal()
-    if dialog.auth:
+    try:
+        kodi.set_setting('trakt_oauth_token', result['access_token'])
+        kodi.set_setting('trakt_refresh_token', result['refresh_token'])
+        trakt_api = Trakt_API(result['access_token'], use_https=use_https, timeout=trakt_timeout)
+        profile = trakt_api.get_user_profile(cached=False)
+        kodi.set_setting('trakt_user', '%s (%s)' % (profile['username'], profile['name']))
         kodi.notify(msg=i18n('trakt_auth_complete'), duration=3000)
-    del dialog
-
-class ProgressDialog(object):
-    def __init__(self, heading, line1='', line2='', line3='', active=True):
-        if active:
-            self.pd = xbmcgui.DialogProgress()
-            self.pd.create(heading, line1, line2, line3)
-            self.pd.update(0)
-        else:
-            self.pd = None
-
-    def __enter__(self):
-        return self
-    
-    def __exit__(self, type, value, traceback):
-        if self.pd is not None:
-            self.pd.close()
-            del self.pd
-    
-    def is_canceled(self):
-        if self.pd is not None:
-            return self.pd.iscanceled()
-        else:
-            return False
-        
-    def update(self, percent, line1='', line2='', line3=''):
-        if self.pd is not None:
-            self.pd.update(percent, line1, line2, line3)
+    except Exception as e:
+        log_utils.log('Trakt Authorization Failed: %s' % (e), log_utils.LOGDEBUG)
 
 def perform_auto_conf(responses):
     length = len(responses)
@@ -171,18 +99,18 @@ def perform_auto_conf(responses):
         kodi.set_setting('sort6_field', '4')
 
     if responses[10]:
-        tiers = ['Local', 'Furk.net', 'Premiumize.me', 'EasyNews', 'DD.tv', 'NoobRoom',
-                 ['WatchHD', 'IFlix', 'MoviesPlanet', 'TVWTVS', '9Movies', '123Movies', 'niter.tv', 'HDMovie14', 'ororo.tv'],
-                 ['StreamLord', 'CyberReel', 'MWM', 'tunemovie', 'afdah.org', 'xmovies8', 'xmovies8.v2', 'MovieXK'],
-                 ['torba.se', 'Rainierland', 'FardaDownload', 'zumvo.com', 'PutMV', 'MiraDeTodo', 'beinmovie', 'FireMoviesHD'],
-                 ['IzlemeyeDeger', 'SezonLukDizi', 'Dizimag', 'Dizilab', 'Dizigold', 'Dizibox', 'Diziay', 'Dizipas', 'OneClickTVShows'],
-                 ['DayT.se', 'DDLValley', 'ReleaseBB', 'MyVideoLinks.eu', 'OCW', 'RLSSource.net', 'TVRelease.Net', 'alluc.com'],
-                 ['IceFilms', 'WatchEpisodes', 'PrimeWire', 'SantaSeries', 'Flixanity', 'wso.ch', 'WatchSeries', 'UFlix.org', 'Putlocker'],
-                 ['funtastic-vids', 'WatchFree.to', 'pftv', 'streamallthis.is', 'Movie4K', 'afdah', 'SolarMovie', 'yify-streaming'],
-                 ['MovieSub', 'MovieHut', 'CouchTunerV2', 'CouchTunerV1', 'Watch8Now', 'yshows', 'TwoMovies.us', 'iWatchOnline'],
-                 ['vidics.ch', 'pubfilm', 'OnlineMoviesIs', 'OnlineMoviesPro', 'ViewMovies', 'movie25', 'viooz.ac', 'view47', 'MoviesHD'],
-                 ['wmo.ch', 'ayyex', 'stream-tv.co', 'clickplay.to', 'MintMovies', 'MovieNight', 'cmz', 'ch131', 'filmikz.ch'],
-                 ['MovieTube', 'LosMovies', 'FilmStreaming.in', 'moviestorm.eu', 'MerDB']]
+        tiers = ['Local', 'Premiumize.V2', 'Premiumize.me', 'Furk.net', 'EasyNews', 'DD.tv', 'NoobRoom',
+                 ['WatchHD', 'IFlix', 'MoviesPlanet', 'TVWTVS', 'MWM', '9Movies', '123Movies', 'niter.tv', 'HDMovie14', 'ororo.tv', 'm4ufree'],
+                 ['torba.se', 'StreamLord', 'CyberReel', 'tunemovie', 'MovieMax', 'MovieLocker', 'afdah.org', 'xmovies8', 'xmovies8.v2', 'MovieXK'],
+                 ['PelisPedia', 'DayT.se', 'FardaDownload', 'zumvo.com', 'PutMV', 'vivo.to', 'MiraDeTodo', 'FireMoviesHD'],
+                 ['SezonLukDizi', 'Dizimag', 'Dizilab', 'Dizigold', 'Dizibox', 'Diziay', 'Dizipas', 'OneClickTVShows', 'OnlineDizi'],
+                 ['DiziFilmHD', 'DL-Pars', 'DDLValley', '2DDL', 'ReleaseBB', 'MyVideoLinks.eu', 'OCW', 'TVRelease.Net', 'alluc.com'],
+                 ['IceFilms', 'Flixanity', 'Rainierland', 'WatchEpisodes', 'PrimeWire', 'tvonline', 'SantaSeries', 'WatchSeries', 'Putlocker'],
+                 ['Ganool', 'MovieWatcher', 'VKFlix', 'WatchFree.to', 'pftv', 'streamallthis.is', 'Movie4K', 'afdah', 'SolarMovie'],
+                 ['UFlix.org', 'wso.ch', 'MovieSub', 'MovieHut', 'CouchTunerV1', 'Watch8Now', 'yshows', 'iWatchOnline', 'MerDB'],
+                 ['vidics.ch', 'pubfilm', 'eMovies.Pro', 'OnlineMoviesPro', 'movie25', 'viooz.ac', 'view47', 'MoviesHD', 'LosMovies'],
+                 ['wmo.ch', 'stream-tv.co', 'clickplay.to', 'MintMovies', 'MovieNight', 'cmz', 'ch131', 'filmikz.ch', 'moviestorm.eu'],
+                 ['TheExtopia', 'MovieTube', 'FilmStreaming.in', 'RLSSource.net']]
     
         sso = []
         random_sso = kodi.get_setting('random_sso') == 'true'
@@ -201,6 +129,68 @@ def perform_auto_conf(responses):
         kodi.set_setting('scraper_download', 'true')
         
     kodi.notify(msg=i18n('auto_conf_complete'))
+
+def do_ip_auth(scraper, visit_url, qr_code):
+    EXPIRE_DURATION = 60 * 5
+    ACTION_PREVIOUS_MENU = 10
+    ACTION_BACK = 92
+    CANCEL_BUTTON = 200
+    INSTR_LABEL = 101
+    QR_CODE_CTRL = 102
+    PROGRESS_CTRL = 103
+    
+    class IpAuthDialog(xbmcgui.WindowXMLDialog):
+        def onInit(self):
+            # log_utils.log('onInit:', log_utils.LOGDEBUG)
+            self.cancel = False
+            self.getControl(INSTR_LABEL).setLabel(i18n('ip_auth_line1') + visit_url + i18n('ip_auth_line2'))
+            self.progress = self.getControl(PROGRESS_CTRL)
+            self.progress.setPercent(100)
+            if qr_code:
+                img = self.getControl(QR_CODE_CTRL)
+                img.setImage(qr_code)
+            
+        def onAction(self, action):
+            # log_utils.log('Action: %s' % (action.getId()), log_utils.LOGDEBUG)
+            if action == ACTION_PREVIOUS_MENU or action == ACTION_BACK:
+                self.cancel = True
+                self.close()
+
+        def onControl(self, control):
+            # log_utils.log('onControl: %s' % (control), log_utils.LOGDEBUG)
+            pass
+
+        def onFocus(self, control):
+            # log_utils.log('onFocus: %s' % (control), log_utils.LOGDEBUG)
+            pass
+
+        def onClick(self, control):
+            # log_utils.log('onClick: %s' % (control), log_utils.LOGDEBUG)
+            if control == CANCEL_BUTTON:
+                self.cancel = True
+                self.close()
+        
+        def setProgress(self, progress):
+            self.progress.setPercent(progress)
+
+    dialog = IpAuthDialog('IpAuthDialog.xml', kodi.get_path())
+    dialog.show()
+    interval = 5000
+    begin = time.time()
+    try:
+        while True:
+            for _ in range(INTERVALS):
+                kodi.sleep(interval / INTERVALS)
+                elapsed = time.time() - begin
+                progress = int((EXPIRE_DURATION - elapsed) * 100 / EXPIRE_DURATION)
+                dialog.setProgress(progress)
+                if progress <= 0 or dialog.cancel:
+                    return False
+                
+            authorized, result = scraper.check_auth()
+            if authorized: return result
+    finally:
+        del dialog
 
 def do_auto_config():
     ACTION_PREVIOUS_MENU = 10

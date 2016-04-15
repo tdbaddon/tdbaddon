@@ -71,7 +71,7 @@ class Putlocker_Scraper(scraper.Scraper):
     def get_url(self, video):
         return self._default_get_url(video)
 
-    def search(self, video_type, title, year):
+    def search(self, video_type, title, year, season=''):
         search_url = urlparse.urljoin(self.base_url, '/search/advanced_search.php?q=%s' % (urllib.quote_plus(title)))
         if not year: year = 'Year'
         search_url += '&year_from=%s&year_to=%s' % (year, year)
@@ -96,7 +96,7 @@ class Putlocker_Scraper(scraper.Scraper):
                         match_title = title_year
                         match_year = ''
                     
-                    result = {'url': scraper_utils.pathify_url(url), 'title': match_title, 'year': match_year}
+                    result = {'url': scraper_utils.pathify_url(url), 'title': scraper_utils.cleanse_title(match_title), 'year': match_year}
                     results.append(result)
         results = dict((result['url'], result) for result in results).values()
         return results

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: SALTS\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2016-02-06 18:21+0000\n"
-"Last-Translator: Ante Ruić <ante.ruic@st.htnet.hr>\n"
+"PO-Revision-Date: 2016-02-20 09:51+0000\n"
+"Last-Translator: tknorris\n"
 "Language-Team: Croatian (http://www.transifex.com/tv-addons/salts/language/hr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -664,50 +664,6 @@ msgstr "Greška (%s) tijekom skidanja: %s"
 msgctxt "#30161"
 msgid "Trakt Account Authorization"
 msgstr "Autorizacija Trakt računa"
-
-msgctxt "#30162"
-msgid "To authorize SALTS to access your trakt.tv account:"
-msgstr "Ovlastite SALTS za pristup vašem računu trakt.tv:"
-
-msgctxt "#30163"
-msgid ""
-msgstr "1) Posjeti [COLOR skyblue]http://trakt.tv/pin/347[/COLOR]"
-
-msgctxt "#30164"
-msgid "2) If prompted, authorize SALTS to access your account."
-msgstr "2) Ako je potrebno, ovlasti SALTS za pristup tvom računu."
-
-msgctxt "#30165"
-msgid "3) Enter the PIN provided in the box below."
-msgstr "3) Unesite PIN naveden u okviru ispod."
-
-msgctxt "#30166"
-msgid ""
-msgstr "SALTS se može koristiti bez trakt.tv račun, ali da u potpunosti iskoriste SALTS treba ga ovlastiti za pristup vašem trakt.tv račun."
-
-msgctxt "#30167"
-msgid "Authorize"
-msgstr "Autorizirajte"
-
-msgctxt "#30168"
-msgid "Remind Me Later"
-msgstr "Podsjeti me kasnije"
-
-msgctxt "#30169"
-msgid "No Thanks"
-msgstr "Ne hvala"
-
-msgctxt "#30170"
-msgid "Trakt.tv PIN Authorization Failed"
-msgstr "Trakt.tv PIN autorizacija nije uspjela"
-
-msgctxt "#30171"
-msgid "You will be reminded in 24 hours"
-msgstr "Podsjetit će vas tijekom  24 sata"
-
-msgctxt "#30172"
-msgid "Use Addon Settings later if you change your mind"
-msgstr "Koristite Postavke dodatka kasnije ako se predomislite"
 
 msgctxt "#30173"
 msgid "Trakt Authorization Complete"

@@ -17,11 +17,11 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 import re
-import urllib
 import urlparse
-
+from salts_lib import log_utils
 from salts_lib import kodi
 from salts_lib import scraper_utils
+from salts_lib import dom_parser
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
 from salts_lib.constants import VIDEO_TYPES
@@ -75,24 +75,22 @@ class WSO_Scraper(scraper.Scraper):
     def get_url(self, video):
         return self._default_get_url(video)
 
-    def search(self, video_type, title, year):
-        url = urlparse.urljoin(self.base_url, '/?s=%s&search=')
-        url = url % (urllib.quote_plus(title))
-        html = self._http_get(url, cache_limit=24)
+    def _get_episode_url(self, show_url, video):
+        episode_pattern = "href='([^']*([Ss]%02d[Ee]%02d|-%sx%s-|-season-%s-episode-%s(?!\d))[^']*)"  \
+            % (int(video.season), int(video.episode), video.season, video.episode, video.season, video.episode)
+        return self._default_get_episode_url(show_url, video, episode_pattern)
 
+    def search(self, video_type, title, year, season=''):
         results = []
-        for list_match in re.finditer('class="ddmcc"(.*?)</div>', html, re.DOTALL):
-            list_frag = list_match.group(1)
+        url = urlparse.urljoin(self.base_url, '/index')
+        html = self._http_get(url, cache_limit=24)
+        for fragment in dom_parser.parse_dom(html, 'div', {'class': 'ddmcc'}):
             norm_title = scraper_utils.normalize_title(title)
-            pattern = 'href="([^"]+)">([^<]+)'
-            for match in re.finditer(pattern, list_frag):
+            pattern = 'href="([^"]+)[^>]*>([^<]+)'
+            for match in re.finditer(pattern, fragment):
                 url, match_title = match.groups('')
                 if norm_title in scraper_utils.normalize_title(match_title):
-                    result = {'url': scraper_utils.pathify_url(url), 'title': match_title, 'year': ''}
+                    result = {'url': scraper_utils.pathify_url(url), 'title': scraper_utils.cleanse_title(match_title), 'year': ''}
                     results.append(result)
 
         return results
-
-    def _get_episode_url(self, show_url, video):
-        episode_pattern = "href='([^']+)'>(?:[^<]*(?:[Ss]%02d[Ee]%02d |-\s*%s(?:[×xX]|&#215;)%s\s*-))" % (int(video.season), int(video.episode), video.season, video.episode)
-        return self._default_get_episode_url(show_url, video, episode_pattern)

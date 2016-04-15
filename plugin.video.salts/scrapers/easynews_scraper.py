@@ -24,7 +24,7 @@ from salts_lib import log_utils
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import VIDEO_TYPES
-from salts_lib.utils2 import i18n
+from salts_lib.kodi import i18n
 import scraper
 
 
@@ -57,7 +57,10 @@ class EasyNews_Scraper(scraper.Scraper):
         return link
 
     def format_source_label(self, item):
-        label = '[%s] %s' % (item['quality'], item['host'])
+        if 'format' in item:
+            label = '[%s] (%s) %s' % (item['quality'], item['format'], item['host'])
+        else:
+            label = '[%s] %s' % (item['quality'], item['host'])
         if 'size' in item:
             label += ' (%s)' % (item['size'])
         if 'extra' in item:
@@ -70,7 +73,7 @@ class EasyNews_Scraper(scraper.Scraper):
         if source_url and source_url != FORCE_NO_MATCH:
             params = urlparse.parse_qs(urlparse.urlparse(source_url).query)
             if 'title' in params:
-                query = params['title'][0]
+                query = params['title'][0].replace("'", "")
                 if video.video_type == VIDEO_TYPES.MOVIE:
                     if 'year' in params: query += ' %s' % (params['year'][0])
                 else:
@@ -113,8 +116,22 @@ class EasyNews_Scraper(scraper.Scraper):
                 stream_url = 'http://members.easynews.com/dl/%s' % (stream_url)
                 stream_url = stream_url + '|Cookie=%s' % (self._get_stream_cookies())
                 host = self._get_direct_hostname(stream_url)
-                quality = scraper_utils.width_get_quality(item['width'])
+                quality = None
+                if 'width' in item:
+                    try: width = int(item['width'])
+                    except: width = 0
+                    if width:
+                        quality = scraper_utils.width_get_quality(width)
+                
+                if quality is None:
+                    if video.video_type == VIDEO_TYPES.MOVIE:
+                        _title, _year, height, _extra = scraper_utils.parse_movie_link(post_title)
+                    else:
+                        _title, _season, _episode, height, _extra = scraper_utils.parse_episode_link(post_title)
+                    quality = scraper_utils.height_get_quality(height)
+                    
                 hoster = {'multi-part': False, 'class': self, 'views': None, 'url': stream_url, 'rating': None, 'host': host, 'quality': quality, 'direct': True}
+                if any(i for i in ['X265', 'HEVC'] if i in post_title.upper()): hoster['format'] = 'x265'
                 if size: hoster['size'] = size
                 if post_title: hoster['extra'] = post_title
                 hosters.append(hoster)
@@ -126,17 +143,17 @@ class EasyNews_Scraper(scraper.Scraper):
         result = self.db_connection.get_related_url(video.video_type, video.title, video.year, self.get_name(), video.season, video.episode)
         if result:
             url = result[0][0]
-            log_utils.log('Got local related url: |%s|%s|%s|%s|%s|' % (video.video_type, video.title, video.year, self.get_name(), url))
+            log_utils.log('Got local related url: |%s|%s|%s|%s|%s|' % (video.video_type, video.title, video.year, self.get_name(), url), log_utils.LOGDEBUG)
         else:
             if video.video_type == VIDEO_TYPES.MOVIE:
                 query = 'title=%s&year=%s' % (urllib.quote_plus(video.title), video.year)
             else:
                 query = 'title=%s&season=%s&episode=%s&air_date=%s' % (urllib.quote_plus(video.title), video.season, video.episode, video.ep_airdate)
             url = '/search?%s' % (query)
-            self.db_connection.set_related_url(video.video_type, video.title, video.year, self.get_name(), url)
+            self.db_connection.set_related_url(video.video_type, video.title, video.year, self.get_name(), url, video.season, video.episode)
         return url
 
-    def search(self, video_type, title, year):
+    def search(self, video_type, title, year, season=''):
         return []
 
     @classmethod

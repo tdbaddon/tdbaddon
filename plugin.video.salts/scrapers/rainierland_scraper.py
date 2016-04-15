@@ -72,8 +72,6 @@ class Rainierland_Scraper(scraper.Scraper):
                     host = self._get_direct_hostname(stream_url)
                     if host == 'gvideo':
                         quality = scraper_utils.gv_get_quality(stream_url)
-                    elif 'blogspot' in stream_url:
-                        quality = scraper_utils.gv_get_quality(stream_url)
                     else:
                         _, _, height, _ = scraper_utils.parse_movie_link(stream_url)
                         quality = scraper_utils.height_get_quality(height)
@@ -98,7 +96,7 @@ class Rainierland_Scraper(scraper.Scraper):
             if result:
                 return result
     
-    def search(self, video_type, title, year):
+    def search(self, video_type, title, year, season=''):
         results = []
         if video_type == VIDEO_TYPES.MOVIE:
             search_url = urlparse.urljoin(self.base_url, '/?s=')
@@ -122,7 +120,7 @@ class Rainierland_Scraper(scraper.Scraper):
                 match_year = ''
             
             if norm_title in scraper_utils.normalize_title(match_title) and (not year or not match_year or year == match_year):
-                result = {'title': match_title, 'year': match_year, 'url': scraper_utils.pathify_url(url)}
+                result = {'title': scraper_utils.cleanse_title(match_title), 'year': match_year, 'url': scraper_utils.pathify_url(url)}
                 results.append(result)
 
         return results

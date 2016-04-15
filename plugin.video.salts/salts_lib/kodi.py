@@ -25,10 +25,13 @@ import urlparse
 import sys
 import os
 import re
+import strings
+import log_utils
 
 addon = xbmcaddon.Addon()
 get_setting = addon.getSetting
 show_settings = addon.openSettings
+sleep = xbmc.sleep
 
 def get_path():
     return addon.getAddonInfo('path').decode('utf-8')
@@ -128,3 +131,58 @@ def get_current_view():
         views = match.group(1)
         for view in views.split(','):
             if xbmc.getInfoLabel('Control.GetLabel(%s)' % (view)): return view
+
+class WorkingDialog(object):
+    def __init__(self):
+        xbmc.executebuiltin('ActivateWindow(busydialog)')
+    
+    def __enter__(self):
+        return self
+    
+    def __exit__(self, type, value, traceback):
+        xbmc.executebuiltin('Dialog.Close(busydialog)')
+
+def i18n(string_id):
+    try:
+        return addon.getLocalizedString(strings.STRINGS[string_id]).encode('utf-8', 'ignore')
+    except Exception as e:
+        log_utils.log('Failed String Lookup: %s (%s)' % (string_id, e), log_utils.LOGWARNING)
+        return string_id
+
+class ProgressDialog(object):
+    def __init__(self, heading, line1='', line2='', line3='', background=False, active=True):
+        if active:
+            if background:
+                self.pd = xbmcgui.DialogProgressBG()
+                msg = line1 + line2 + line3
+                self.pd.create(heading, msg)
+            else:
+                self.pd = xbmcgui.DialogProgress()
+                self.pd.create(heading, line1, line2, line3)
+            self.background = background
+            self.heading = heading
+            self.pd.update(0)
+        else:
+            self.pd = None
+
+    def __enter__(self):
+        return self
+    
+    def __exit__(self, type, value, traceback):
+        if self.pd is not None:
+            self.pd.close()
+            del self.pd
+    
+    def is_canceled(self):
+        if self.pd is not None and not self.background:
+            return self.pd.iscanceled()
+        else:
+            return False
+        
+    def update(self, percent, line1='', line2='', line3=''):
+        if self.pd is not None:
+            if self.background:
+                msg = line1 + line2 + line3
+                self.pd.update(percent, self.heading, msg)
+            else:
+                self.pd.update(percent, line1, line2, line3)

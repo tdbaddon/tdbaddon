@@ -25,10 +25,10 @@ from salts_lib import log_utils
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import VIDEO_TYPES
+from salts_lib.constants import QUALITIES
 import scraper
 
-
-BASE_URL = 'http://movie.pubfilmno1.com'
+BASE_URL = 'http://pubfilm.com'
 GK_URL = 'http://player.pubfilm.com/smplayer/plugins/gkphp/plugins/gkpluginsphp.php'
 XHR = {'X-Requested-With': 'XMLHttpRequest'}
 
@@ -41,7 +41,7 @@ class PubFilm_Scraper(scraper.Scraper):
 
     @classmethod
     def provides(cls):
-        return frozenset([VIDEO_TYPES.MOVIE])
+        return frozenset([VIDEO_TYPES.MOVIE, VIDEO_TYPES.SEASON, VIDEO_TYPES.EPISODE])
 
     @classmethod
     def get_name(cls):
@@ -68,75 +68,102 @@ class PubFilm_Scraper(scraper.Scraper):
             if fragment:
                 fragment = fragment[0]
                 views = re.sub('[^\d]', '', fragment)
+            
+            iframe_url = ''
+            if video.video_type == VIDEO_TYPES.MOVIE:
+                iframe_url = dom_parser.parse_dom(html, 'a', {'target': 'EZWebPlayer'}, ret='href')
+                if iframe_url:
+                    iframe_url = iframe_url[0]
+            else:
+                for label, link in self.__get_episode_links(html):
+                    if int(label) == int(video.episode):
+                        iframe_url = link
+                        break
                 
-            iframe_items = set(dom_parser.parse_dom(html, 'iframe', ret='src'))
-            link_items = set(dom_parser.parse_dom(html, 'a', {'target': 'EZWebPlayer'}, ret='href'))
-            items = list(iframe_items | link_items)
-            for item in items:
-                if item:
-                    links = self.__get_links(item)
-                    for link in links:
-                        hoster = {'multi-part': False, 'url': link, 'class': self, 'quality': scraper_utils.height_get_quality(links[link]), 'host': self._get_direct_hostname(link), 'rating': None, 'views': views, 'direct': True}
-                        hosters.append(hoster)
+            if iframe_url:
+                headers = {'Referer': iframe_url}
+                html = self._http_get(iframe_url, headers=headers, cache_limit=5)
+                match = re.search('{link\s*:\s*"([^"]+)', html)
+                if match:
+                    sources = self.__get_gk_links(match.group(1))
+                else:
+                    sources = self._parse_sources_list(html)
+                    
+                for source in sources:
+                    stream_url = source + '|User-Agent=%s' % (scraper_utils.get_ua())
+                    direct = sources[source]['direct']
+                    quality = sources[source]['quality']
+                    if sources[source]['direct']:
+                        host = self._get_direct_hostname(source)
+                    else:
+                        host = urlparse.urlparse(source).hostname
+                    hoster = {'multi-part': False, 'url': stream_url, 'class': self, 'quality': quality, 'host': host, 'rating': None, 'views': views, 'direct': direct}
+                    hosters.append(hoster)
 
         return hosters
 
-    def __get_links(self, url):
-        links = {}
-        url = url.replace('&#038;', '&')
-        html = self._http_get(url, cache_limit=.5)
-        if 'gkpluginsphp' in html:
-            match = re.search('link\s*:\s*"([^"]+)', html)
-            if match:
-                data = {'link': match.group(1)}
-                headers = XHR
-                headers['Referer'] = url
-                html = self._http_get(GK_URL, data=data, headers=headers, cache_limit=.25)
-                js_result = scraper_utils.parse_json(html, GK_URL)
-                if 'link' in js_result:
-                    for link in js_result['link']:
-                        links[link['link']] = link['label']
-                
-        return links
-
+    def __get_gk_links(self, iframe_url):
+        sources = {}
+        data = {'link': iframe_url}
+        headers = {'Referer': iframe_url}
+        html = self._http_get(GK_URL, data=data, headers=headers, cache_limit=.5)
+        js_data = scraper_utils.parse_json(html, GK_URL)
+        if 'link' in js_data:
+            if isinstance(js_data['link'], basestring):
+                sources[js_data['link']] = {'quality': QUALITIES.HIGH, 'direct': False}
+            else:
+                for link in js_data['link']:
+                    stream_url = link['link']
+                    if self._get_direct_hostname(stream_url) == 'gvideo':
+                        quality = scraper_utils.gv_get_quality(stream_url)
+                    elif 'label' in link:
+                        quality = scraper_utils.height_get_quality(link['label'])
+                    else:
+                        quality = QUALITIES.HIGH
+                sources[stream_url] = {'quality': quality, 'direct': True}
+        return sources
+        
     def get_url(self, video):
         return self._default_get_url(video)
 
-    def search(self, video_type, title, year):
-        search_url = urlparse.urljoin(self.base_url, '/feeds/posts/summary?alt=json&q=%s&max-results=9999&callback=showResult')
-        search_url = search_url % (urllib.quote(title))
-        html = self._http_get(search_url, cache_limit=0)
+    def _get_episode_url(self, season_url, video):
+        url = urlparse.urljoin(self.base_url, season_url)
+        html = self._http_get(url, cache_limit=8)
+        for label, _links in self.__get_episode_links(html):
+            if int(label) == int(video.episode):
+                return season_url
+    
+    def __get_episode_links(self, html):
+        links = dom_parser.parse_dom(html, 'a', {'target': 'EZWebPlayer'}, ret='href')
+        labels = dom_parser.parse_dom(html, 'input', {'class': '[^"]*abutton[^"]*'}, ret='value')
+        labels = [re.sub('[^\d]', '', label) for label in labels]
+        return zip(labels, links)
+    
+    def search(self, video_type, title, year, season=''):
         results = []
-        match = re.search('showResult\((.*)\)', html)
-        if match:
-            js_data = scraper_utils.parse_json(match.group(1), search_url)
-            if 'feed' in js_data and 'entry' in js_data['feed']:
-                for entry in js_data['feed']['entry']:
-                    for category in entry['category']:
-                        if category['term'].upper() == 'MOVIES':
-                            break
+        search_url = urlparse.urljoin(self.base_url, '/?s=%s')
+        search_url = search_url % (urllib.quote(title))
+        html = self._http_get(search_url, cache_limit=1)
+        for item in dom_parser.parse_dom(html, 'h3', {'class': 'post-box-title'}):
+            match = re.search('href="([^"]+)[^>]*>([^<]+)', item)
+            if match:
+                match_url, match_title_year = match.groups()
+                is_season = re.search('Season\s+(\d+)$', match_title_year, re.I)
+                if not is_season and video_type == VIDEO_TYPES.MOVIE or is_season and VIDEO_TYPES.SEASON:
+                    match_year = ''
+                    if video_type == VIDEO_TYPES.SEASON:
+                        match_title = match_title_year
+                        if season and int(is_season.group(1)) != int(season):
+                            continue
                     else:
-                        # if no movies category found, skip entry
-                        continue
-                    
-                    for link in entry['link']:
-                        if link['rel'] == 'alternate' and link['type'] == 'text/html':
-                            match = re.search('(.*?)\s*(\d{4})\s*-\s*', link['title'])
-                            if match:
-                                match_title, match_year = match.groups()
-                            else:
-                                match_title = link['title']
-                                match_year = ''
-                            
-                            if not year or not match_year or year == match_year:
-                                result = {'url': scraper_utils.pathify_url(link['href']), 'title': match_title, 'year': match_year}
-                                results.append(result)
+                        match = re.search('(.*?)\s+(\d{4})$', match_title_year)
+                        if match:
+                            match_title, match_year = match.groups()
+                        else:
+                            match_title = match_title_year
+                            match_year = ''
+        
+                    if not year or not match_year or year == match_year:
+                        result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': match_year}
+                        results.append(result)
         return results
-
-    def _http_get(self, url, data=None, headers=None, cache_limit=8):
-        html = self._cached_http_get(url, self.base_url, self.timeout, data=data, cache_limit=cache_limit)
-        cookie = scraper_utils.get_sucuri_cookie(html)
-        if cookie:
-            log_utils.log('Setting Pubfilm cookie: %s' % (cookie), log_utils.LOGDEBUG)
-            html = self._cached_http_get(url, self.base_url, self.timeout, cookies=cookie, data=data, headers=headers, cache_limit=0)
-        return html

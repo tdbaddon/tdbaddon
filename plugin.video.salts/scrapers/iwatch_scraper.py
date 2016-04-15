@@ -18,9 +18,10 @@
 import re
 import time
 import urlparse
-
+from salts_lib import dom_parser
 from salts_lib import kodi
 from salts_lib import scraper_utils
+from salts_lib import log_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
 from salts_lib.constants import VIDEO_TYPES
@@ -28,7 +29,7 @@ import scraper
 
 
 QUALITY_MAP = {'HD': QUALITIES.HIGH, 'HDTV': QUALITIES.HIGH, 'DVD': QUALITIES.HIGH, '3D': QUALITIES.HIGH, 'CAM': QUALITIES.LOW}
-BASE_URL = 'https://www.iwatchonline.ag'
+BASE_URL = 'https://www.iwatchonline.ph'
 
 class IWatchOnline_Scraper(scraper.Scraper):
     base_url = BASE_URL
@@ -47,7 +48,7 @@ class IWatchOnline_Scraper(scraper.Scraper):
 
     def resolve_link(self, link):
         url = urlparse.urljoin(self.base_url, link)
-        html = self._http_get(url, allow_redirect=False, cache_limit=.5)
+        html = self._http_get(url, allow_redirect=False, method='HEAD', cache_limit=.5)
         if html.startswith('http'):
             return html
         else:
@@ -56,7 +57,10 @@ class IWatchOnline_Scraper(scraper.Scraper):
                 return match.group(1)
 
     def format_source_label(self, item):
-        label = '[%s] %s (%s/100)' % (item['quality'], item['host'], item['rating'])
+        if item['rating'] is not None:
+            label = '[%s] %s (%s/100)' % (item['quality'], item['host'], item['rating'])
+        else:
+            label = '[%s] %s' % (item['quality'], item['host'])
         return label
 
     def get_sources(self, video):
@@ -66,35 +70,35 @@ class IWatchOnline_Scraper(scraper.Scraper):
             url = urlparse.urljoin(self.base_url, source_url)
             html = self._http_get(url, cache_limit=.5)
 
-            match = re.search('<table[^>]+id="streamlinks">(.*?)</table>', html, re.DOTALL)
-            if match:
-                fragment = match.group(1)
-                if video.video_type == VIDEO_TYPES.MOVIE:
-                    pattern = 'href="([^"]+/play/[^"]+).*?/>\s+\.?([^\s]+)\s+.*?(?:<td>.*?</td>\s*){2}<td>(.*?)</td>\s*<td>(.*?)</td>'
-                else:
-                    pattern = 'href="([^"]+/play/[^"]+).*?/>\s+\.?([^\s]+)\s+.*?(<span class="linkdate">.*?)</td>\s*<td>(.*?)</td>'
+            fragment = dom_parser.parse_dom(html, 'table', {'id': 'streamlinks'})
+            if fragment:
                 max_age = 0
                 now = min_age = int(time.time())
-                for match in re.finditer(pattern, fragment, re.DOTALL):
-                    url, host, age, quality = match.groups()
-                    age = self.__get_age(now, age)
-                    quality = quality.upper()
-                    if age > max_age: max_age = age
-                    if age < min_age: min_age = age
-                    hoster = {'multi-part': False, 'class': self, 'url': scraper_utils.pathify_url(url), 'host': host, 'age': age, 'views': None, 'rating': None, 'direct': False}
-                    hoster['quality'] = scraper_utils.get_quality(video, host, QUALITY_MAP.get(quality, QUALITIES.HIGH))
-                    hosters.append(hoster)
-
+                for row in dom_parser.parse_dom(fragment[0], 'tr', {'id': 'pt\d+'}):
+                    if video.video_type == VIDEO_TYPES.MOVIE:
+                        pattern = 'href="([^"]+).*?/>([^<]+).*?(?:<td>.*?</td>\s*){1}<td>(.*?)</td>\s*<td>(.*?)</td>'
+                    else:
+                        pattern = 'href="([^"]+).*?/>([^<]+).*?(<span class="linkdate">.*?)</td>\s*<td>(.*?)</td>'
+                    match = re.search(pattern, row, re.DOTALL)
+                    if match:
+                        url, host, age, quality = match.groups()
+                        age = self.__get_age(now, age)
+                        quality = quality.upper()
+                        if age > max_age: max_age = age
+                        if age < min_age: min_age = age
+                        host = host.strip()
+                        hoster = {'multi-part': False, 'class': self, 'url': scraper_utils.pathify_url(url), 'host': host, 'age': age, 'views': None, 'rating': None, 'direct': False}
+                        hoster['quality'] = scraper_utils.get_quality(video, host, QUALITY_MAP.get(quality, QUALITIES.HIGH))
+                        hosters.append(hoster)
+    
                 unit = (max_age - min_age) / 100
                 if unit > 0:
                     for hoster in hosters:
                         hoster['rating'] = (hoster['age'] - min_age) / unit
-                        # print '%s, %s' % (hoster['rating'], hoster['age'])
         return hosters
 
     def __get_age(self, now, age_str):
-        age_str = age_str.replace('<span class="linkdate">', '')
-        age_str = age_str.replace('</span>', '')
+        age_str = re.sub('</?span[^>]*>', '', age_str)
         try:
             age = int(age_str)
         except ValueError:
@@ -125,7 +129,7 @@ class IWatchOnline_Scraper(scraper.Scraper):
     def get_url(self, video):
         return self._default_get_url(video)
 
-    def search(self, video_type, title, year):
+    def search(self, video_type, title, year, season=''):
         search_url = urlparse.urljoin(self.base_url, '/advance-search')
         if video_type == VIDEO_TYPES.MOVIE:
             data = {'searchin': '1'}
@@ -140,7 +144,7 @@ class IWatchOnline_Scraper(scraper.Scraper):
             url, title, match_year = match.groups('')
             if not year or not match_year or year == match_year:
                 url = url.replace('/episode/', '/tv-shows/')  # fix wrong url returned from search results
-                result = {'url': scraper_utils.pathify_url(url), 'title': title, 'year': match_year}
+                result = {'url': scraper_utils.pathify_url(url), 'title': scraper_utils.cleanse_title(title), 'year': match_year}
                 results.append(result)
         return results
 

@@ -9,19 +9,20 @@ from salts_lib import utils2
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import VIDEO_TYPES
 
-__all__ = ['scraper', 'proxy', 'local_scraper', 'pw_scraper', 'uflix_scraper', 'watchseries_scraper', 'movie25_scraper', 'merdb_scraper', '2movies_scraper',
-           'icefilms_scraper', 'movieshd_scraper', 'viooz_scraper', 'filmstreaming_scraper', 'myvideolinks_scraper', 'filmikz_scraper', 'clickplay_scraper', 'nitertv_scraper',
+__all__ = ['scraper', 'proxy', 'local_scraper', 'pw_scraper', 'uflix_scraper', 'watchseries_scraper', 'movie25_scraper', 'merdb_scraper', 'nitertv_scraper',
+           'icefilms_scraper', 'movieshd_scraper', 'viooz_scraper', 'filmstreaming_scraper', 'myvideolinks_scraper', 'filmikz_scraper', 'clickplay_scraper',
            'iwatch_scraper', 'ororotv_scraper', 'view47_scraper', 'vidics_scraper', 'ocw_proxy', 'losmovies_scraper', 'movie4k_scraper', 'easynews_scraper',
-           'noobroom_scraper', 'solar_scraper', 'directdl_scraper', 'streamallthis_scraper', 'afdah_scraper', 'torbase_scraper', 'dizibox_scraper',
+           'noobroom_scraper', 'solar_scraper', 'directdl_scraper', 'streamallthis_scraper', 'afdah_scraper', 'dizibox_scraper', 'theextopia_proxy', 'torba_scraper',
            'streamtv_scraper', 'moviestorm_scraper', 'wmo_scraper', 'zumvo_scraper', 'wso_scraper', 'ch131_scraper', 'watchfree_scraper', 'streamlord_scraper',
-           'pftv_scraper', 'flixanity_scraper', 'cmz_scraper', 'movienight_scraper', 'alluc_scraper', 'afdahorg_scraper', 'xmovies8_scraper', 'yifystreaming_scraper',
-           'mintmovies_scraper', 'pubfilm_scraper', 'rlssource_scraper', 'couchtunerv1_scraper', 'couchtunerv2_scraper', 'ddlvalley_scraper', 'tvrelease_scraper',
-           'tunemovie_scraper', 'watch8now_scraper', 'dizilab_scraper', 'beinmovie_scraper', 'dizimag_scraper', 'ayyex_scraper', 'oneclicktvshows_scraper',
-           'dizigold_scraper', 'onlinemoviespro_scraper', 'onlinemoviesis_scraper', '123movies_scraper', 'rainierland_scraper', 'rlsbb_scraper', 'sezonlukdizi_scraper',
-           'izlemeyedeger_scraper', 'movietube_scraper', 'funtastic_scraper', 'putlocker_scraper', 'yshows_scraper', 'diziay_scraper', 'viewmovies_scraper', 'furk_scraper',
-           'miradetodo_scraper', 'dizipas_scraper', 'moviehut_scraper', 'xmovies8v2_scraper', 'moviesplanet_scraper', 'premiumize_scraper', 'putmv_scraper',
-           '9movies_scraper', 'watchhd_scraper', 'iflix_proxy', 'firemovies_scraper', 'farda_scraper', 'hdmovie14_scraper', 'dayt_scraper', 'tvwtvs_scraper', 'moviexk_scraper',
-           'mwm_scraper', 'moviesub_scraper', 'cyberreel_proxy', 'santaseries_scraper', 'watchepisodes_scraper']
+           'pftv_scraper', 'flixanity_scraper', 'cmz_scraper', 'movienight_scraper', 'alluc_scraper', 'afdahorg_scraper', 'xmovies8_scraper', 'moviexk_scraper',
+           'mintmovies_scraper', 'pubfilm_scraper', 'rlssource_scraper', 'couchtunerv1_scraper', 'ddlvalley_scraper', 'tvrelease_scraper', 'pelispedia_scraper',
+           'tunemovie_scraper', 'watch8now_scraper', 'dizilab_scraper', 'dizimag_scraper', 'oneclicktvshows_scraper', 'moviehut_scraper',
+           'dizigold_scraper', 'onlinemoviespro_scraper', 'emoviespro_scraper', '123movies_scraper', 'rainierland_scraper', 'rlsbb_scraper', 'sezonlukdizi_scraper',
+           'movietube_scraper', 'putlocker_scraper', 'yshows_scraper', 'diziay_scraper', 'ganool_scraper', 'furk_scraper', 'dizifilmhd_scraper', 'dl-pars_scraper',
+           'miradetodo_scraper', 'dizipas_scraper', 'xmovies8v2_scraper', 'moviesplanet_scraper', 'premiumize_scraper', 'putmv_scraper', 'tvonline_scraper',
+           '9movies_scraper', 'watchhd_scraper', 'iflix_proxy', 'firemovies_scraper', 'farda_scraper', 'hdmovie14_scraper', 'dayt_scraper', 'tvwtvs_scraper',
+           'moviesub_scraper', 'cyberreel_proxy', 'santaseries_scraper', 'watchepisodes_scraper', 'moviehdmax_scraper', 'vkflix_scraper', 'm4ufree_scraper',
+           'moviewatcher_scraper', 'vivoto_scraper', '2ddl_scraper', 'onlinedizi_scraper', 'premiumizev2_scraper', 'mwm_proxy', 'movielocker_proxy']
 
 from . import *
     
@@ -97,7 +98,7 @@ def update_settings():
 def update_all_scrapers():
         try: last_check = int(kodi.get_setting('last_list_check'))
         except: last_check = 0
-        now = time.time()
+        now = int(time.time())
         list_url = kodi.get_setting('scraper_url')
         scraper_password = kodi.get_setting('scraper_password')
         list_path = os.path.join(kodi.translate_path(kodi.get_profile()), 'scraper_list.txt')
@@ -109,7 +110,8 @@ def update_all_scrapers():
                     with open(list_path, 'w') as f:
                         f.write(scraper_list)
     
-                    kodi.set_setting('last_list_check', str(int(now)))
+                    kodi.set_setting('last_list_check', str(now))
+                    kodi.set_setting('scraper_last_update', time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(now)))
                     for line in scraper_list.split('\n'):
                         line = line.replace(' ', '')
                         if line:

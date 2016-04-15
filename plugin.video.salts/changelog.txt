@@ -1,3 +1,209 @@
+[B]Version 2.0.28[/B]
+- Add NaCl Theme (from Jokster)
+- Fix m4ufree scraper
+- Fix PutMV scraper
+- Fix Miradetodo scraper
+- Fix DiziFilmHD scraper
+- Fix MovieSub episodes
+
+[B]Version 2.0.25[/B]
+- Fix IWatch scraper scraper
+- Fix StreamLord scraper
+- Fix PubFilm scraper
+- Fix Miradetodo scraper
+- Fix Ganool scraper
+- Fix m4ufree scraper
+- Fix Dizibox scraper
+- Fix Diziay scraper
+- Fix TVWTS scraper
+- Fix DDLValley scraper
+- Fix 2dDL scraper
+- Remove beinmovie
+
+[B]Version 2.0.24[/B]
+- Add PelisPedia
+- Improve DiziBox
+- Fix WatchHD
+- Fix StreamLord
+- Fix TVWTS
+- Remove MovCav
+
+[B]Version 2.0.23[/B]
+ - Fix sezon scraper
+ - Fix tvwts scraper
+ - More IPAuthDialog work
+ 
+[B]Version 2.0.22[/B]
+- Increase zorder on IPAuthDialog
+- Minor Furk Improvement
+
+[B]Version 2.0.21[/B]
+- Add torba scraper back
+- Improve PremiumizeV2 scraper
+- Improve TV-Release.net scraper
+- Improve TuneMovie scraper
+- Improve VKFlix scraper
+- Remove CouchTunerV2 scraper
+- Fix episode SRU bug for blog scrapers
+
+[B]Version 2.0.20[/B]
+- Add dizifilmhd scraper
+- Add dl-pars scraper
+- Fix 9Movies scraper
+- Fix Movie25 scraper
+- Fix tv-relesae scraper
+- Improve Furk scraper
+- Improve Sezon scraper
+- Remove MysticLand scraper
+- Remove Izlemeyedeger scraper
+- Fix download notification
+
+[B]Version 2.0.19[/B]
+- Add MysticLand scraper
+- Replace onlinemovies.is with emovies.pro
+- Replace viewmovies.is with ganool.ag
+- Improve/Fix WatchHD scraper
+- Improve Furk scraper
+- Fix Farda scraper
+- Fix flixanity scraper
+- Fix 9Movies scraper
+- Fix TVWTS scraper
+- Fix StreamLord scraper
+- Fix PubFilm scraper
+
+[B]Version 2.0.17[/B]
+- Add m4ufree scraper
+- Improve Premiumize.V2 scraper
+- Improve tv-release scraper
+- Update flixanity scraper
+- Improve furk matching
+- Fix alluc scraper
+- Improve HDMovie14 scraper searching
+
+[B]Version 2.0.16[/B]
+- Add tvonline scraper
+- Improve Premiumize.V2 scraper
+- Improve HDMovies14 scraper
+- Fix TVWTS scraper
+
+[B]Version 2.0.15[/B]
+- Fix tvwts scraper
+- Fix tunemovie scraper
+- Fix vidics scraper
+- Fix MovieHut scraper
+- Fix MoviesHD scraper
+- Improve OnlineMoviesPro scraper
+- Remove ayyex scraper
+- Remove MWM scraper
+
+[B]Version 2.0.14[/B]
+- Improve 123Movies scraper
+- Improve PremiumizeV2 scraper
+- Improve Furk.net scraper
+- Prepare for smu rewrite
+
+[B]Version 2.0.13[/B]
+- Add tvonline.tw scraper
+- Fix ororo log in
+- Remove mtvs scraper
+- Add recaptchav2 to watchhd
+- Filter videos that are too short from furk
+- Minor improvement in episode matching
+
+[B]Version 2.0.12[/B]
+- Fix premiumize exception
+- Fix moviesub scraper
+- Fix unicode errors
+- Optimize vkflix
+
+[B]Version 2.0.11[/B]
+- Add movcav scraper
+- Improve 2ddl scraper
+- Improve WatchHD scraper
+- Fix MWM scraper
+- Fix unicode errors from trakt
+- Add Premiumize.V2 scraper
+- Fail gracefully when section list does not exist
+
+[B]Version 2.0.9[/B]
+- Add 2DDL Scraper
+- Require uid/pw for alluc
+- Add onlinedizi scraper
+- Fix WatchHD scraper
+- Fix TWTS scraper
+- Fix HDMovie14 scraper
+- Fix FireMoviesHD scraper
+- Fix mira scraper
+- Update Rainierland scraper
+- Update Translations
+
+[B]Version 2.0.8[/B]
+- Add Episodes to Premiumize scraper
+- Add vivo.to scraper
+- Improve 123Movies scraper
+- Remove Torba scraper (UA blocking)
+- Remove TheExtopia scraper (can't handle load)
+- Update several base urls
+
+[B]Version 2.0.7[/B]
+- Rewrite/Improve Premiumize scraper
+- Add mtvs scraper
+- Update alluc base url
+- Improve MNE performance
+- Remove "Sort Watchlist" setting
+- Migrate SALTS to new system trakt authorization
+
+[B]Version 2.0.6[/B]
+- Add "trakt API offline" mode
+- Add Season SRU to WatchHD
+- Fix Flixanity scraper
+- Fix sezon scraper
+- Fix moviewatch title pattern
+- Centrally cleanse/unescape matching titles
+
+[B]Version 2.0.5[/B]
+- Add TheExtopia scraper
+- Add MovieWatcher scraper
+- Fix view47 scraper
+- Fix MovieMax scraper
+- Fix MovieHDMax scraper
+- Fix Flixanity scraper
+- Fix HDMovie14 scraper
+- Fix MVL scraper
+- Fix MWM scraper
+- Fix viooz scraper
+- Fix dizibox scraper
+- Fix sezon scraper
+- Fix torba.se scraper
+- Fix TVWTS scraper
+- Remove TwoMovies scraper
+- Remove Funtastic-Vids scraper
+- Remove yify-streaming scraper
+
+[B]Version 2.0.3[/B]
+- Fix 123Movies scraper
+- Fix Pubfilms scraper
+- Fix xmovies8V2 scraper
+- Fix moviemax scraper
+- Fix tunemovie scraper
+- Fix wso scraper
+- Fix furk.net scraper
+- Close working dialog before resume prompt
+
+[B]Version 2.0.2[/B]
+- Add MovieMax scraper
+- Add VKFlix scraper
+- Add support for Related Season Urls
+- Add Anticipated Movies and TV Shows section
+- Show Background Dialog progress for MNE
+- Show "Working" dialog during url resolve
+- Add function to Reset ALL Related URLs for a single scraper
+- Only set bookmark if <= 98% of video was watched
+- Fix unicode error during sub update when using translated strings
+- Return qualities of less than or equal to locked quality from dd.tv
+- Fix major performance issue with re-loading translated strings (5x improvements in some areas)
+- Exclude specials from aired episodes collection hack (fixes watched count in collections being off sometimes)
+
 [B]Version 2.0.1[/B]
 - Fix srt download path
 - Fix flixanity search

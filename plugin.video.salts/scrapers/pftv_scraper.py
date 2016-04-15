@@ -84,7 +84,7 @@ class PFTV_Scraper(scraper.Scraper):
             airdate_pattern = '{day} {short_month} {year}\s*<a\s+href="([^"]+)'
             return self._default_get_episode_url(season_url, video, episode_pattern, airdate_pattern=airdate_pattern)
 
-    def search(self, video_type, title, year):
+    def search(self, video_type, title, year, season=''):
         url = urlparse.urljoin(self.base_url, '/watch-tv-series')
         html = self._http_get(url, cache_limit=8)
         results = []
@@ -93,7 +93,7 @@ class PFTV_Scraper(scraper.Scraper):
         for match in re.finditer(pattern, html):
             match_title, url = match.groups()
             if norm_title in scraper_utils.normalize_title(match_title):
-                result = {'url': scraper_utils.pathify_url(url), 'title': match_title, 'year': ''}
+                result = {'url': scraper_utils.pathify_url(url), 'title': scraper_utils.cleanse_title(match_title), 'year': ''}
                 results.append(result)
 
         return results

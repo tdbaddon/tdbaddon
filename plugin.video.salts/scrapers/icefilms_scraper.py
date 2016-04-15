@@ -120,7 +120,7 @@ class IceFilms_Scraper(scraper.Scraper):
     def get_url(self, video):
         return self._default_get_url(video)
 
-    def search(self, video_type, title, year):
+    def search(self, video_type, title, year, season=''):
         if video_type == VIDEO_TYPES.MOVIE:
             url = urlparse.urljoin(self.base_url, '/movies/a-z/')
         else:
@@ -146,7 +146,7 @@ class IceFilms_Scraper(scraper.Scraper):
         for match in re.finditer(pattern, html, re.DOTALL):
             url, match_title, match_year = match.groups('')
             if norm_title in scraper_utils.normalize_title(match_title) and (not year or not match_year or year == match_year):
-                result = {'url': url, 'title': match_title, 'year': match_year}
+                result = {'url': url, 'title': scraper_utils.cleanse_title(match_title), 'year': match_year}
                 results.append(result)
         return results
 

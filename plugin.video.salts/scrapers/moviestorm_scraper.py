@@ -84,7 +84,7 @@ class MovieStorm_Scraper(scraper.Scraper):
         airdate_pattern = 'class="edate[^>]+>\s*{p_month}-{p_day}-{year}.*?href="([^"]+)'
         return self._default_get_episode_url(show_url, video, episode_pattern, title_pattern, airdate_pattern)
 
-    def search(self, video_type, title, year):
+    def search(self, video_type, title, year, season=''):
         results = []
         if video_type == VIDEO_TYPES.TVSHOW:
             url = urlparse.urljoin(self.base_url, '/series/all/')
@@ -111,7 +111,7 @@ class MovieStorm_Scraper(scraper.Scraper):
         for item in items:
             url, match_title = item
             if norm_title in scraper_utils.normalize_title(match_title):
-                result = {'url': scraper_utils.pathify_url(url), 'title': match_title, 'year': ''}
+                result = {'url': scraper_utils.pathify_url(url), 'title': scraper_utils.cleanse_title(match_title), 'year': ''}
                 results.append(result)
 
         return results

@@ -16,7 +16,6 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import random
 import re
 import urllib
 import urllib2
@@ -32,9 +31,10 @@ import scraper
 
 
 BASE_URL = 'http://sezonlukdizi.com'
-SEARCH_URL = '/diziler.asp?adi='
+SEARCH_URL = '/js/dizi.js'
 SEASON_URL = '/ajax/dataDizi.asp'
 GET_VIDEO_URL = '/service/get_video_part'
+XHR = {'X-Requested-With': 'XMLHttpRequest'}
 
 class SezonLukDizi_Scraper(scraper.Scraper):
     base_url = BASE_URL
@@ -93,7 +93,7 @@ class SezonLukDizi_Scraper(scraper.Scraper):
                             if stream_url not in seen_urls:
                                 seen_urls[stream_url] = True
                                 if 'v.asp' in stream_url:
-                                    stream_redirect = self._http_get(stream_url, allow_redirect=False, cache_limit=0)
+                                    stream_redirect = self._http_get(stream_url, allow_redirect=False, method='HEAD', cache_limit=0)
                                     if stream_redirect: stream_url = stream_redirect
                                     
                                 stream_url += '|User-Agent=%s' % (scraper_utils.get_ua())
@@ -112,7 +112,7 @@ class SezonLukDizi_Scraper(scraper.Scraper):
 
     def _get_episode_url(self, show_url, video):
         url = urlparse.urljoin(self.base_url, show_url)
-        html = self._http_get(url, cache_limit=1)
+        html = self._http_get(url, cache_limit=.25)
         data_id = dom_parser.parse_dom(html, 'div', {'id': 'dizidetay'}, ret='data-id')
         data_dizi = dom_parser.parse_dom(html, 'div', {'id': 'dizidetay'}, ret='data-dizi')
         if data_id and data_dizi:
@@ -121,32 +121,22 @@ class SezonLukDizi_Scraper(scraper.Scraper):
             episode_pattern = '''href=['"]([^'"]*/%s-sezon-%s-[^'"]*bolum[^'"]*)''' % (video.season, video.episode)
             title_pattern = '''href=['"](?P<url>[^'"]+)[^>]*>(?P<title>[^<]+)'''
             airdate_pattern = '''href=['"]([^"']+)[^>]*>[^<]*</a>\s*</td>\s*<td class="right aligned">{p_day}\.{p_month}\.{year}'''
-            result = self._default_get_episode_url(season_url, video, episode_pattern, title_pattern, airdate_pattern)
+            headers = XHR
+            headers['Content-Length'] = 0
+            headers['Referer'] = url
+            result = self._default_get_episode_url(season_url, video, episode_pattern, title_pattern, airdate_pattern, headers=headers, method='POST')
             if result and 'javascript:;' not in result:
                 return result
 
-    def search(self, video_type, title, year):
+    def search(self, video_type, title, year, season=''):
         results = []
         search_url = urlparse.urljoin(self.base_url, SEARCH_URL)
-        search_url += urllib.quote_plus(title)
-        html = self._http_get(search_url, cache_limit=8)
-        fragment = dom_parser.parse_dom(html, 'div', {'class': '[^"]*items[^"]*'})
-        if fragment:
-            for item in dom_parser.parse_dom(fragment[0], 'div', {'class': 'item'}):
-                match_url = dom_parser.parse_dom(item, 'a', {'class': 'header'}, ret='href')
-                match_title_year = dom_parser.parse_dom(item, 'a', {'class': 'header'})
-                if match_url and match_title_year:
-                    match_url = match_url[0]
-                    match_title_year = match_title_year[0]
-                    r = re.search('(.*?)\s+\((\d{4})\)', match_title_year)
-                    if r:
-                        match_title, match_year = r.groups()
-                    else:
-                        match_title = match_title_year
-                        match_year = ''
-                    
-                    if not year or not match_year or year == match_year:
-                        result = {'url': scraper_utils.pathify_url(match_url), 'title': match_title, 'year': match_year}
-                        results.append(result)
-
+        html = self._http_get(search_url, cache_limit=48)
+        norm_title = scraper_utils.normalize_title(title)
+        match_year = ''
+        for match in re.finditer('d\s*:\s*"([^"]+).*?u\s*:\s*"([^"]+)', html):
+            match_title, match_url = match.groups()
+            if norm_title in scraper_utils.normalize_title(match_title) and (not year or not match_year or year == match_year):
+                result = {'url': scraper_utils.pathify_url(match_url), 'title': scraper_utils.cleanse_title(match_title), 'year': match_year}
+                results.append(result)
         return results

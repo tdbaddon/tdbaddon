@@ -19,21 +19,21 @@ import json
 import re
 import urllib
 import urlparse
-
 from salts_lib import kodi
 from salts_lib import log_utils
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
 from salts_lib.constants import VIDEO_TYPES
-from salts_lib.utils2 import i18n
+from salts_lib.kodi import i18n
 import scraper
 import xml.etree.ElementTree as ET
-
+import xbmcgui
 
 BASE_URL = 'http://www.furk.net'
 SEARCH_URL = '/api/plugins/metasearch'
 LOGIN_URL = '/api/login/login'
+MIN_DURATION = 10 * 60 * 1000  # 10 minutes in milliseconds
 
 class Furk_Scraper(scraper.Scraper):
     base_url = BASE_URL
@@ -55,18 +55,43 @@ class Furk_Scraper(scraper.Scraper):
 
     def resolve_link(self, link):
         playlist = super(self.__class__, self)._http_get(link, cache_limit=.5)
-        root = ET.fromstring(playlist)
-        location = root.find('.//{http://xspf.org/ns/0/}location')
-        if location is not None:
-            return location.text
+        try:
+            ns = '{http://xspf.org/ns/0/}'
+            root = ET.fromstring(playlist)
+            tracks = root.findall('.//%strack' % (ns))
+            locations = []
+            for track in tracks:
+                duration = track.find('%sduration' % (ns)).text
+                try: duration = int(duration)
+                except: duration = 0
+                if duration >= MIN_DURATION:
+                    location = track.find('%slocation' % (ns)).text
+                    locations.append({'duration': duration / 1000, 'url': location})
 
+            if len(locations) > 1:
+                result = xbmcgui.Dialog().select(i18n('choose_stream'), [self.__format_time(location['duration']) for location in locations])
+                if result > -1:
+                    return locations[result]['url']
+            elif locations:
+                return locations[0]['url']
+        except Exception as e:
+            log_utils.log('Failure during furk playlist parse: %s' % (e), log_utils.LOGWARNING)
+
+    def __format_time(self, seconds):
+        minutes, seconds = divmod(seconds, 60)
+        if minutes > 60:
+            hours, minutes = divmod(minutes, 60)
+            return "%02dh:%02dm:%02ds" % (hours, minutes, seconds)
+        else:
+            return "00h:%02dm:%02ds" % (minutes, seconds)
+        
     def format_source_label(self, item):
-        label = '[%s] %s' % (item['quality'], item['host'])
-        if 'size' in item:
-            label += ' (%s)' % (item['size'])
-        if 'extra' in item:
-            label += ' [%s]' % (item['extra'])
-        return label
+            label = '[%s] %s' % (item['quality'], item['host'])
+            if 'size' in item:
+                label += ' (%s)' % (item['size'])
+            if 'extra' in item:
+                label += ' [%s]' % (item['extra'])
+            return label
 
     def get_sources(self, video):
         hosters = []
@@ -74,7 +99,8 @@ class Furk_Scraper(scraper.Scraper):
         if source_url and source_url != FORCE_NO_MATCH:
             params = urlparse.parse_qs(urlparse.urlparse(source_url).query)
             if 'title' in params:
-                query = params['title'][0]
+                search_title = re.sub("[^A-Za-z0-9. ]", "", urllib.unquote_plus(params['title'][0]))
+                query = search_title
                 if video.video_type == VIDEO_TYPES.MOVIE:
                     if 'year' in params: query += ' %s' % (params['year'][0])
                 else:
@@ -84,11 +110,10 @@ class Furk_Scraper(scraper.Scraper):
                     if 'episode' in params:
                         sxe += 'E%02d' % (int(params['episode'][0]))
                     if sxe: query = '%s %s' % (query, sxe)
-                query = urllib.quote_plus(query)
                 query_url = '/search?query=%s' % (query)
                 hosters = self.__get_links(query_url, video)
                 if not hosters and video.video_type == VIDEO_TYPES.EPISODE and params['air_date'][0]:
-                    query = urllib.quote_plus('%s %s' % (params['title'][0], params['air_date'][0].replace('-', '.')))
+                    query = urllib.quote_plus('%s %s' % (search_title, params['air_date'][0].replace('-', '.')))
                     query_url = '/search?query=%s' % (query)
                     hosters = self.__get_links(query_url, video)
 
@@ -135,12 +160,16 @@ class Furk_Scraper(scraper.Scraper):
                     else:
                         quality = QUALITIES.HIGH
                     
-                stream_url = item['url_pls']
-                host = self._get_direct_hostname(stream_url)
-                hoster = {'multi-part': False, 'class': self, 'views': None, 'url': stream_url, 'rating': None, 'host': host, 'quality': quality, 'direct': True}
-                hoster['size'] = scraper_utils.format_size(int(item['size']), 'B')
-                hoster['extra'] = item['name']
-                hosters.append(hoster)
+                if 'url_pls' in item:
+                    stream_url = item['url_pls']
+                    host = self._get_direct_hostname(stream_url)
+                    hoster = {'multi-part': False, 'class': self, 'views': None, 'url': stream_url, 'rating': None, 'host': host, 'quality': quality, 'direct': True}
+                    hoster['size'] = scraper_utils.format_size(int(item['size']), 'B')
+                    hoster['extra'] = item['name']
+                    hosters.append(hoster)
+                else:
+                    log_utils.log('Furk.net result skipped - no playlist: |%s|' % (json.dumps(item)), log_utils.LOGDEBUG)
+                    
         return hosters
     
     def get_url(self, video):
@@ -149,17 +178,17 @@ class Furk_Scraper(scraper.Scraper):
         result = self.db_connection.get_related_url(video.video_type, video.title, video.year, self.get_name(), video.season, video.episode)
         if result:
             url = result[0][0]
-            log_utils.log('Got local related url: |%s|%s|%s|%s|%s|' % (video.video_type, video.title, video.year, self.get_name(), url))
+            log_utils.log('Got local related url: |%s|%s|%s|%s|%s|' % (video.video_type, video.title, video.year, self.get_name(), url), log_utils.LOGDEBUG)
         else:
             if video.video_type == VIDEO_TYPES.MOVIE:
                 query = 'title=%s&year=%s' % (urllib.quote_plus(video.title), video.year)
             else:
                 query = 'title=%s&season=%s&episode=%s&air_date=%s' % (urllib.quote_plus(video.title), video.season, video.episode, video.ep_airdate)
             url = '/search?%s' % (query)
-            self.db_connection.set_related_url(video.video_type, video.title, video.year, self.get_name(), url)
+            self.db_connection.set_related_url(video.video_type, video.title, video.year, self.get_name(), url, video.season, video.episode)
         return url
 
-    def search(self, video_type, title, year):
+    def search(self, video_type, title, year, season=''):
         return []
 
     @classmethod
@@ -210,5 +239,5 @@ class Furk_Scraper(scraper.Scraper):
     
     def __translate_search(self, url):
         query = {'sort': 'relevance', 'filter': 'all', 'moderated': 'yes', 'offset': 0, 'limit': self.max_results, 'match': 'all'}
-        query['q'] = urllib.quote_plus(urlparse.parse_qs(urlparse.urlparse(url).query)['query'][0])
+        query['q'] = urlparse.parse_qs(urlparse.urlparse(url).query)['query'][0]
         return query

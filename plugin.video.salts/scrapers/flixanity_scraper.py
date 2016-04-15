@@ -20,19 +20,22 @@ import re
 import time
 import urllib
 import urlparse
-
+import string
+import random
+from salts_lib import dom_parser
 from salts_lib import kodi
 from salts_lib import log_utils
 from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
 from salts_lib.constants import VIDEO_TYPES
-from salts_lib.utils2 import i18n
+from salts_lib.kodi import i18n
 import scraper
 
 
 BASE_URL = 'http://www.flixanity.is'
 EMBED_URL = '/ajax/embeds.php'
+SEARCH_URL = '/api/v1/cautare/mar'
 XHR = {'X-Requested-With': 'XMLHttpRequest'}
 
 class Flixanity_Scraper(scraper.Scraper):
@@ -104,12 +107,13 @@ class Flixanity_Scraper(scraper.Scraper):
     def get_url(self, video):
         return self._default_get_url(video)
 
-    def search(self, video_type, title, year):
+    def search(self, video_type, title, year, season=''):
         self.__get_token()
         results = []
-        search_url = urlparse.urljoin(self.base_url, '/api/v1/caut')
+        search_url = urlparse.urljoin(self.base_url, self.__get_search_url())
         timestamp = int(time.time() * 1000)
-        query = {'q': title, 'limit': '100', 'timestamp': timestamp, 'verifiedCheck': self.__token}
+        s = self.__get_s()
+        query = {'q': title, 'limit': '100', 'timestamp': timestamp, 'verifiedCheck': self.__token, 'set': s, 'rt': self.__get_rt(self.__token + s)}
         html = self._http_get(search_url, data=query, headers=XHR, cache_limit=1)
         if video_type in [VIDEO_TYPES.TVSHOW, VIDEO_TYPES.EPISODE]:
             media_type = 'TV SHOW'
@@ -120,7 +124,7 @@ class Flixanity_Scraper(scraper.Scraper):
             if item['meta'].upper().startswith(media_type):
                 match_year = str(item['year']) if 'year' in item and item['year'] else ''
                 if not year or not match_year or year == match_year:
-                    result = {'title': item['title'], 'url': scraper_utils.pathify_url(item['permalink']), 'year': match_year}
+                    result = {'title': scraper_utils.cleanse_title(item['title']), 'url': scraper_utils.pathify_url(item['permalink']), 'year': match_year}
                     results.append(result)
 
         return results
@@ -139,16 +143,16 @@ class Flixanity_Scraper(scraper.Scraper):
         settings.append('         <setting id="%s-password" type="text" label="     %s" option="hidden" default="" visible="eq(-5,true)"/>' % (name, i18n('password')))
         return settings
 
-    def _http_get(self, url, data=None, headers=None, cache_limit=8):
+    def _http_get(self, url, data=None, headers=None, method=None, cache_limit=8):
         # return all uncached blank pages if no user or pass
         if not self.username or not self.password:
             return ''
 
-        html = self._cached_http_get(url, self.base_url, self.timeout, data=data, headers=headers, cache_limit=cache_limit)
+        html = self._cached_http_get(url, self.base_url, self.timeout, data=data, headers=headers, method=method, cache_limit=cache_limit)
         if '<span>Log In</span>' in html:
             log_utils.log('Logging in for url (%s)' % (url), log_utils.LOGDEBUG)
             self.__login()
-            html = self._cached_http_get(url, self.base_url, self.timeout, data=data, headers=headers, cache_limit=0)
+            html = self._cached_http_get(url, self.base_url, self.timeout, data=data, headers=headers, method=method, cache_limit=0)
 
         self.__get_token(html)
         return html
@@ -156,7 +160,7 @@ class Flixanity_Scraper(scraper.Scraper):
     def __get_token(self, html=''):
         if self.__token is None:
             if not html:
-                html = self._cached_http_get(self.base_url, self.base_url, self.timeout, cache_limit=0)
+                html = self._cached_http_get(self.base_url, self.base_url, self.timeout, cache_limit=8)
                 
             match = re.search("var\s+tok\s*=\s*'([^']+)", html)
             if match:
@@ -189,3 +193,30 @@ class Flixanity_Scraper(scraper.Scraper):
         for cookie in cj:
             if cookie.name == '__utmx':
                 return cookie.value
+    
+    def __get_search_url(self):
+        search_url = SEARCH_URL
+        html = self._cached_http_get(self.base_url, self.base_url, self.timeout, cache_limit=24)
+        for match in re.finditer('<script[^>]+src="([^"]+)', html):
+            script = match.group(1)
+            if 'flixanity' in script:
+                html = self._cached_http_get(script, self.base_url, self.timeout, cache_limit=24)
+                match = re.search('autocomplete\([^"]*"([^"]+)', html)
+                if match:
+                    search_url = match.group(1)
+                    search_url = search_url.replace('\\', '')
+                    break
+        return search_url
+    
+    def __get_s(self):
+        return ''.join([random.choice(string.ascii_letters) for _ in xrange(25)])
+    
+    def __get_rt(self, s, shift=13):
+        s2 = ''
+        for c in s:
+            limit = 122 if c in string.ascii_lowercase else 90
+            new_code = ord(c) + shift
+            if new_code > limit:
+                new_code -= 26
+            s2 += chr(new_code)
+        return s2

@@ -28,7 +28,7 @@ from salts_lib.constants import VIDEO_TYPES
 import scraper
 
 
-BASE_URL = 'http://watch8now.so'
+BASE_URL = 'http://watch8now.me'
 
 class Watch8Now_Scraper(scraper.Scraper):
     base_url = BASE_URL
@@ -85,7 +85,7 @@ class Watch8Now_Scraper(scraper.Scraper):
         title_pattern = 'href="(?P<url>[^"]+[sS]\d+[eE]\d+\.html)"(?:[^>]+>){6}(?P<title>[^<]+)'
         return self._default_get_episode_url(show_url, video, episode_pattern, title_pattern)
 
-    def search(self, video_type, title, year):
+    def search(self, video_type, title, year, season=''):
         search_url = urlparse.urljoin(self.base_url, '/search?q=')
         search_url += urllib.quote_plus(title)
         html = self._http_get(search_url, cache_limit=8)
@@ -94,7 +94,7 @@ class Watch8Now_Scraper(scraper.Scraper):
             match = re.search('href="([^"]+)">([^<]+)', item)
             if match:
                 url, match_title = match.groups()
-                result = {'url': scraper_utils.pathify_url(url), 'title': match_title, 'year': ''}
+                result = {'url': scraper_utils.pathify_url(url), 'title': scraper_utils.cleanse_title(match_title), 'year': ''}
                 results.append(result)
 
         return results

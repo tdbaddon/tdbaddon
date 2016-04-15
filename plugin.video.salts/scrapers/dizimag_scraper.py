@@ -90,7 +90,7 @@ class Dizimag_Scraper(scraper.Scraper):
         title_pattern = 'class="gizle".*?href="(?P<url>[^"]+)">(?P<title>[^<]+)'
         return self._default_get_episode_url(show_url, video, episode_pattern, title_pattern)
 
-    def search(self, video_type, title, year):
+    def search(self, video_type, title, year, season=''):
         html = self._http_get(self.base_url, cache_limit=8)
         results = []
         fragment = dom_parser.parse_dom(html, 'div', {'id': 'fil'})
@@ -99,7 +99,7 @@ class Dizimag_Scraper(scraper.Scraper):
             for match in re.finditer('href="([^"]+)"\s+title="([^"]+)', fragment[0]):
                 url, match_title = match.groups()
                 if norm_title in scraper_utils.normalize_title(match_title):
-                    result = {'url': scraper_utils.pathify_url(url), 'title': match_title, 'year': ''}
+                    result = {'url': scraper_utils.pathify_url(url), 'title': scraper_utils.cleanse_title(match_title), 'year': ''}
                     results.append(result)
 
         return results

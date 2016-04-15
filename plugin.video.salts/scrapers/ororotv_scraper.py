@@ -26,14 +26,12 @@ from salts_lib import scraper_utils
 from salts_lib.constants import FORCE_NO_MATCH
 from salts_lib.constants import QUALITIES
 from salts_lib.constants import VIDEO_TYPES
-from salts_lib.utils2 import i18n
+from salts_lib.kodi import i18n
 import scraper
 
 
-BASE_URL = 'http://ororo.tv'
-LANDING_URL = '/nl'
+BASE_URL = 'https://ororo.tv'
 LOGIN_URL = '/en/users/sign_in'
-MAX_REDIRECT = 10
 CATEGORIES = {VIDEO_TYPES.TVSHOW: '2,3', VIDEO_TYPES.MOVIE: '1,3,4'}
 ORORO_WAIT = 1000
 XHR = {'X-Requested-With': 'XMLHttpRequest'}
@@ -93,7 +91,7 @@ class OroroTV_Scraper(scraper.Scraper):
         title_pattern = 'data-href="(?P<url>[^"]+)[^>]+class="[^"]*episode[^"]*[^>]+>.\d+\s+(?P<title>[^<]+)'
         return self._default_get_episode_url(show_url, video, episode_pattern, title_pattern)
 
-    def search(self, video_type, title, year):
+    def search(self, video_type, title, year, season=''):
         url = urlparse.urljoin(self.base_url, 'http://ororo.tv/en')
         if video_type == VIDEO_TYPES.MOVIE:
             url += '/movies'
@@ -107,7 +105,7 @@ class OroroTV_Scraper(scraper.Scraper):
                 continue
 
             if norm_title in scraper_utils.normalize_title(match_title) and (not year or not match_year or year == match_year):
-                result = {'url': scraper_utils.pathify_url(url), 'title': match_title, 'year': match_year}
+                result = {'url': scraper_utils.pathify_url(url), 'title': scraper_utils.cleanse_title(match_title), 'year': match_year}
                 results.append(result)
 
         return results
@@ -121,34 +119,26 @@ class OroroTV_Scraper(scraper.Scraper):
         settings.append('         <setting id="%s-include_premium" type="bool" label="     %s" default="false" visible="eq(-6,true)"/>' % (name, i18n('include_premium')))
         return settings
 
-    def _http_get(self, url, auth=True, cookies=None, data=None, headers=None, allow_redirect=True, cache_limit=8):
+    def _http_get(self, url, auth=True, cookies=None, data=None, headers=None, allow_redirect=True, method=None, cache_limit=8):
         # return all uncached blank pages if no user or pass
         if not self.username or not self.password:
             return ''
 
-        html = self._cached_http_get(url, self.base_url, self.timeout, cookies=cookies, data=data, headers=headers, allow_redirect=allow_redirect, cache_limit=cache_limit)
+        html = self._cached_http_get(url, self.base_url, self.timeout, cookies=cookies, data=data, headers=headers, allow_redirect=allow_redirect, method=method, cache_limit=cache_limit)
         if auth and (not html or LOGIN_URL in html):
             log_utils.log('Logging in for url (%s)' % (url), log_utils.LOGDEBUG)
             self.__login()
             xbmc.sleep(ORORO_WAIT)
-            html = self._cached_http_get(url, self.base_url, self.timeout, data=data, headers=headers, cache_limit=0)
+            html = self._cached_http_get(url, self.base_url, self.timeout, data=data, headers=headers, method=method, cache_limit=0)
 
         return html
 
     def __login(self):
-        url = urlparse.urljoin(self.base_url, LANDING_URL)
-        tries = 0
-        while True:
-            html = self._http_get(url, auth=False, allow_redirect=False, cache_limit=0)
-            if html.startswith('http://') and tries < MAX_REDIRECT:
-                tries += 1
-                url = html
-            else:
-                break
-        
         data = {'user[email]': self.username, 'user[password]': self.password, 'user[remember_me]': 1}
+        headers = XHR
+        landing_url = urlparse.urljoin(self.base_url, '/en')
+        headers['Referer'] = landing_url
         url = urlparse.urljoin(self.base_url, LOGIN_URL)
-        xbmc.sleep(ORORO_WAIT)
-        html = self._http_get(url, auth=False, data=data, allow_redirect=False, cache_limit=0)
-        if html != 'http://ororo.tv/en':
+        html = self._http_get(url, auth=False, data=data, headers=headers, allow_redirect=False, cache_limit=0)
+        if html != landing_url:
             raise Exception('ororo.tv login failed: %s' % (html))

@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: SALTS\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2016-02-03 09:48+0000\n"
-"Last-Translator: tknorris\n"
+"PO-Revision-Date: 2016-02-22 00:23+0000\n"
+"Last-Translator: Mike Bike\n"
 "Language-Team: Dutch (http://www.transifex.com/tv-addons/salts/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -666,50 +666,6 @@ msgctxt "#30161"
 msgid "Trakt Account Authorization"
 msgstr "Trakt Account Machtiging"
 
-msgctxt "#30162"
-msgid "To authorize SALTS to access your trakt.tv account:"
-msgstr "SALTS machtigen om verbinding te maken met jouw trakt.tv account:"
-
-msgctxt "#30163"
-msgid ""
-msgstr "1) Ga naar [COLOR skyblue]http://trakt.tv/pin/347[/COLOR] of scan de QR Code hieronder."
-
-msgctxt "#30164"
-msgid "2) If prompted, authorize SALTS to access your account."
-msgstr "2) Word gevraagd, machtig SALTS verbinding te maken met jouw account."
-
-msgctxt "#30165"
-msgid "3) Enter the PIN provided in the box below."
-msgstr "3) Voer uw gegeven PIN hieronder in."
-
-msgctxt "#30166"
-msgid ""
-msgstr "SALTS kan gebruikt worden zonder een trakt.tv account, maar om volledig gebuik van alle functies van SALTS zou u het machtigen om toegang te krijgen tot uw trakt.tv account."
-
-msgctxt "#30167"
-msgid "Authorize"
-msgstr "Machtigen"
-
-msgctxt "#30168"
-msgid "Remind Me Later"
-msgstr "Herinner mij hier later aan"
-
-msgctxt "#30169"
-msgid "No Thanks"
-msgstr "Nee Bedankt"
-
-msgctxt "#30170"
-msgid "Trakt.tv PIN Authorization Failed"
-msgstr "Trakt.tv PIN Machtiging mislukt"
-
-msgctxt "#30171"
-msgid "You will be reminded in 24 hours"
-msgstr "U krijgt een herinnering over 24 uur"
-
-msgctxt "#30172"
-msgid "Use Addon Settings later if you change your mind"
-msgstr "Gebruik Addon instellingen op een ander moment"
-
 msgctxt "#30173"
 msgid "Trakt Authorization Complete"
 msgstr "Trakt Machtiging Voldaan"
@@ -1001,6 +957,102 @@ msgstr "Slecteer Alles/Geen"
 msgctxt "#30245"
 msgid "Automatically Select Best Source"
 msgstr "Automatisch slecteren van Beste Bron"
+
+msgctxt "#30246"
+msgid "SALTS Database Issue Recovery"
+msgstr "SALTS Database Fout Herstellen"
+
+msgctxt "#30247"
+msgid ""
+msgstr "De SALTS DB heeft een Fout die hersteld kan worden door een DB migratie"
+
+msgctxt "#30248"
+msgid "Should SALTS attempt a DB migration?"
+msgstr "Moet SALTS een DB migratie uitvoeren?"
+
+msgctxt "#30249"
+msgid "DB Migration Failed but a DB reset may succeed."
+msgstr "DB Migratie Mislukt maar DB is succesvol reset."
+
+msgctxt "#30250"
+msgid "Should SALTS attempt a DB reset?"
+msgstr "Moet SALTS een DB reset uitvoeren?"
+
+msgctxt "#30251"
+msgid "([COLOR red]***All DB data will be lost.***[/COLOR])"
+msgstr "([COLOR red]***Alle DB data zal verdwijnen.***[/COLOR])"
+
+msgctxt "#30252"
+msgid "DB Reset Failed: %s"
+msgstr "DB Reset Mislukt: %s"
+
+msgctxt "#30253"
+msgid "No Streamable Url Found"
+msgstr "Geen Url voor Sreamen Gevonden"
+
+msgctxt "#30254"
+msgid "Discovering Next Episodes"
+msgstr "Ontdek Volgende Afleveringen"
+
+msgctxt "#30255"
+msgid "Retrieving Watched History"
+msgstr "Ontvangen van Bekeken Geschiedenis"
+
+msgctxt "#30256"
+msgid "Retrieving Watchlist"
+msgstr "Ontvangen Watchlist"
+
+msgctxt "#30257"
+msgid "Retrieving Hidden Progress List"
+msgstr "Ontvangen Verborgen Voortgangs-lijst"
+
+msgctxt "#30258"
+msgid "Requesting Progress for: %s"
+msgstr "Opvragen Voortgang voor: %s"
+
+msgctxt "#30259"
+msgid "Received Progress for: %s"
+msgstr "Ontvangen Voortgang voor: %s"
+
+msgctxt "#30260"
+msgid "Reset Related Urls"
+msgstr "Reset Verwante Urls"
+
+msgctxt "#30261"
+msgid "Related Urls Cleared: %s"
+msgstr "Verwante Urls schoongemaakt: %s"
+
+msgctxt "#30262"
+msgid "Anticipated %s"
+msgstr "Verwacht %s"
+
+msgctxt "#30263"
+msgid "Set as Sources View"
+msgstr "Zet als Bron Weergave "
+
+msgctxt "#30264"
+msgid "Set Related Season Url (Search)"
+msgstr "Zet Verwante Seizoens-Url (Opzoeken)"
+
+msgctxt "#30265"
+msgid "Trakt API Offline Mode Enabled"
+msgstr "Trakt API Offline Modus Geactiveerd"
+
+msgctxt "#30266"
+msgid "On ANY device, visit: %s"
+msgstr "Op ieder Apparaat, bezoek: %s"
+
+msgctxt "#30267"
+msgid "When prompted, enter code: %s"
+msgstr "Wanneer gevraagd, vul code in: %s"
+
+msgctxt "#30268"
+msgid "Code expires in: %s seconds"
+msgstr "Code verloopt over: %s seconden"
+
+msgctxt "#30269"
+msgid "Authorization was Rejected"
+msgstr "Machtigen is Niet Geslaagd"
 
 msgctxt "#30500"
 msgid "Addon Theme"
@@ -1665,4 +1717,28 @@ msgstr "Volgende"
 msgctxt "#30668"
 msgid "Cancel"
 msgstr "Annuleren"
+
+msgctxt "#30669"
+msgid "Select this item to Install the SALTS Themepak"
+msgstr "Selecteer deze om SALTS Themepak te installeren"
+
+msgctxt "#30670"
+msgid "Show Settings"
+msgstr "Toon Instellingen"
+
+msgctxt "#30671"
+msgid "Show Anticipated"
+msgstr "Toon Verwacht"
+
+msgctxt "#30672"
+msgid "Default Sources View (0 = None)"
+msgstr "Standaard Bron Weergave (0 = Geen)"
+
+msgctxt "#30673"
+msgid "Scraper Last Update"
+msgstr "Scraper Laatst Geüpdatet "
+
+msgctxt "#30674"
+msgid "Trakt API Offline Mode"
+msgstr "Trakt API Offline modus"
 

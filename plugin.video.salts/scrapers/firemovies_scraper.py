@@ -67,23 +67,25 @@ class FireMovies_Scraper(scraper.Scraper):
                 if iframe_url:
                     iframe_url = urlparse.urljoin(self.base_url, iframe_url[0])
                     html = self._http_get(iframe_url, cache_limit=.5)
-                    for source in dom_parser.parse_dom(html, 'source', ret='src'):
-                        source_url = urlparse.urljoin(self.base_url, source)
-                        redir_url = self._http_get(source_url, allow_redirect=False, cache_limit=.5)
-                        if redir_url.startswith('http'):
-                            sources[redir_url] = scraper_utils.gv_get_quality(redir_url)
+                    for match in re.finditer('window.location.href\s*=\s*"([^"]+)', html):
+                        stream_url = match.group(1)
+                        host = self._get_direct_hostname(stream_url)
+                        if host == 'gvideo':
+                            sources[stream_url] = scraper_utils.gv_get_quality(stream_url)
                         else:
                             sources[source_url] = QUALITIES.HIGH
                     
             for source in sources:
-                hoster = {'multi-part': False, 'host': self._get_direct_hostname(source), 'class': self, 'quality': sources[source], 'views': None, 'rating': None, 'url': source, 'direct': True}
+                host = self._get_direct_hostname(stream_url)
+                stream_url += '|User-Agent=%s' % (scraper_utils.get_ua())
+                hoster = {'multi-part': False, 'host': host, 'class': self, 'quality': sources[source], 'views': None, 'rating': None, 'url': source, 'direct': True}
                 hosters.append(hoster)
         return hosters
 
     def get_url(self, video):
         return self._default_get_url(video)
 
-    def search(self, video_type, title, year):
+    def search(self, video_type, title, year, season=''):
         search_url = urlparse.urljoin(self.base_url, '/?s=%s' % (urllib.quote_plus(title)))
         html = self._http_get(search_url, cache_limit=1)
         results = []
@@ -100,7 +102,7 @@ class FireMovies_Scraper(scraper.Scraper):
                     match_year = ''
                 
                 if not year or not match_year or year == match_year:
-                    result = {'title': match_title, 'year': match_year, 'url': scraper_utils.pathify_url(match_url)}
+                    result = {'title': scraper_utils.cleanse_title(match_title), 'year': match_year, 'url': scraper_utils.pathify_url(match_url)}
                     results.append(result)
 
         return results

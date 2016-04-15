@@ -23,6 +23,7 @@ import time
 import urllib
 import urlparse
 import json
+import htmlentitydefs
 from salts_lib import kodi
 from salts_lib import pyaes
 from salts_lib import log_utils
@@ -77,6 +78,8 @@ def force_title(video):
         return str(video.trakt_id) in trakt_list
 
 def normalize_title(title):
+    if title is None: title = ''
+    title = cleanse_title(title)
     new_title = title.upper()
     new_title = re.sub('[^A-Za-z0-9]', '', new_title)
     # log_utils.log('In title: |%s| Out title: |%s|' % (title,new_title), log_utils.LOGDEBUG)
@@ -99,6 +102,7 @@ def blog_get_quality(video, q_str, host):
     return get_quality(video, host, post_quality)
 
 def get_quality(video, host, base_quality=None):
+    if host is None: host = ''
     host = host.lower()
     # Assume movies are low quality, tv shows are high quality
     if base_quality is None:
@@ -123,7 +127,8 @@ def get_quality(video, host, base_quality=None):
     return quality
 
 def width_get_quality(width):
-    width = int(width)
+    try: width = int(width)
+    except: width = 320
     if width > 1280:
         quality = QUALITIES.HD1080
     elif width > 800:
@@ -210,15 +215,16 @@ def gk_decrypt(name, key, cipher_link):
 
 def parse_episode_link(link):
     link = urllib.unquote(link)
-    match = re.match('(.*?)(?:\.|_| )S(\d+)(?:\.|_| )?E(\d+)(?:E\d+)*.*?(?:(?:_|\.)(\d+)p(?:_|\.))(.*)', link, re.I)
+    file_name = link.split('/')[-1]
+    match = re.match('(.*?)[._ ]S(\d+)[._ ]?E(\d+)(?:E\d+)*.*?(?:[._ ](\d+)p[._ ])(.*)', file_name, re.I)
     if match:
         return match.groups()
     else:
-        match = re.match('(.*?)(?:\.|_| )S(\d+)(?:\.|_| )?E(\d+)(?:E\d+)*(.*)', link, re.I)
+        match = re.match('(.*?)[._ ]S(\d+)[._ ]?E(\d+)(?:E\d+)*(.*)', file_name, re.I)
         if match:
             return match.groups()[:-1] + ('480', ) + (match.groups()[-1],)  # assume no height = 480
         else:
-            match = re.search('(?:\.|_| )(\d+)p(?:\.|_| )', link)
+            match = re.search('[._ ](\d{3,})p[._ ]', file_name)
             if match:
                 return ('', '-1', '-1', match.group(1), '')
             else:
@@ -226,11 +232,11 @@ def parse_episode_link(link):
 
 def parse_movie_link(link):
     file_name = link.split('/')[-1]
-    match = re.match('(.*?)(?:(?:\.|_| )(\d{4})(?:(?:\.|_| ).*?)*)?(?:\.|_| )(\d+)p(?:\.|_| )(.*)', file_name)
+    match = re.match('(.*?)(?:[._ ](\d{4})(?:[._ ].*?)*)?[._ ](\d+)p[._ ](.*)', file_name)
     if match:
         return match.groups()
     else:
-        match = re.match('(.*?)(?:(?:\.|_| )(\d{4})(?:(?:\.|_| ).*?)*)(.*)', file_name)
+        match = re.match('(.*?)(?:[._ ](\d{4})(?:[._ ].*?)*)(.*)', file_name)
         if match:
             title, year, extra = match.groups()
             return (title, year, '480', extra)
@@ -269,15 +275,21 @@ def pathify_url(url):
         strip = ''
     strip += '//' + pieces.netloc
     url = url.replace(strip, '')
+    if url.startswith('..'): url = url[2:]
     if not url.startswith('/'): url = '/' + url
     url = url.replace('/./', '/')
     url = url.replace('&amp;', '&')
+    url = url.replace('//', '/')
     return url
 
 def parse_json(html, url=''):
     if html:
         try:
-            return json.loads(html)
+            js_data = json.loads(html)
+            if js_data is None:
+                return {}
+            else:
+                return js_data
         except ValueError:
             log_utils.log('Invalid JSON returned: %s: %s' % (html, url), log_utils.LOGWARNING)
             return {}
@@ -291,3 +303,24 @@ def format_size(num, suffix='B'):
             return "%3.1f%s%s" % (num, unit, suffix)
         num /= 1024.0
     return "%.1f%s%s" % (num, 'Y', suffix)
+
+def cleanse_title(text):
+    def fixup(m):
+        text = m.group(0)
+        if text[:2] == "&#":
+            # character reference
+            try:
+                if text[:3] == "&#x":
+                    return unichr(int(text[3:-1], 16))
+                else:
+                    return unichr(int(text[2:-1]))
+            except ValueError:
+                pass
+        else:
+            # named entity
+            try:
+                text = unichr(htmlentitydefs.name2codepoint[text[1:-1]])
+            except KeyError:
+                pass
+        return text
+    return re.sub("&#?\w+;", fixup, text.strip())

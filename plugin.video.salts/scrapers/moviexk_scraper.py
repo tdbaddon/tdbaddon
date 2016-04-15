@@ -76,7 +76,7 @@ class MoxieXK_Scraper(scraper.Scraper):
             for match in re.finditer('''<source[^>]+src=['"]([^'"]+)([^>]+)''', html):
                 stream_url, extra = match.groups()
                 if 'video.php' in stream_url:
-                    redir_url = self._http_get(stream_url, allow_redirect=False, cache_limit=.25)
+                    redir_url = self._http_get(stream_url, allow_redirect=False, method='HEAD', cache_limit=.25)
                     if redir_url.startswith('http'): stream_url = redir_url
                 
                 host = self._get_direct_hostname(stream_url)
@@ -116,7 +116,7 @@ class MoxieXK_Scraper(scraper.Scraper):
     def get_url(self, video):
         return self._default_get_url(video)
 
-    def search(self, video_type, title, year):
+    def search(self, video_type, title, year, season=''):
         results = []
         search_url = urlparse.urljoin(self.base_url, '/search/')
         search_url += urllib.quote_plus(title)
@@ -147,7 +147,7 @@ class MoxieXK_Scraper(scraper.Scraper):
                                 match_year = year_text[0].strip()
     
                     if not year or not match_year or year == match_year:
-                        result = {'title': match_title, 'url': scraper_utils.pathify_url(match_url), 'year': match_year}
+                        result = {'title': scraper_utils.cleanse_title(match_title), 'url': scraper_utils.pathify_url(match_url), 'year': match_year}
                         results.append(result)
 
         return results

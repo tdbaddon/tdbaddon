@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
     SALTS XBMC Addon
     Copyright (C) 2014 tknorris
@@ -17,7 +18,7 @@
 """
 import re
 import urlparse
-
+from salts_lib import dom_parser
 from salts_lib import kodi
 from salts_lib import log_utils
 from salts_lib import scraper_utils
@@ -26,7 +27,8 @@ from salts_lib.constants import VIDEO_TYPES
 import scraper
 
 
-BASE_URL = 'http://dl.fardadownload.ir/'
+BASE_URL = 'http://fardadownload.ir'
+BASE_URL2 = 'http://dl.fardadownload.ir'
 
 class Farda_Scraper(scraper.Scraper):
     base_url = BASE_URL
@@ -34,10 +36,11 @@ class Farda_Scraper(scraper.Scraper):
     def __init__(self, timeout=scraper.DEFAULT_TIMEOUT):
         self.timeout = timeout
         self.base_url = kodi.get_setting('%s-base_url' % (self.get_name()))
+        self.base_url2 = BASE_URL2
 
     @classmethod
     def provides(cls):
-        return frozenset([VIDEO_TYPES.TVSHOW, VIDEO_TYPES.EPISODE, VIDEO_TYPES.MOVIE])
+        return frozenset([VIDEO_TYPES.TVSHOW, VIDEO_TYPES.EPISODE])
 
     @classmethod
     def get_name(cls):
@@ -60,7 +63,7 @@ class Farda_Scraper(scraper.Scraper):
         hosters = []
         norm_title = scraper_utils.normalize_title(video.title)
         if source_url and source_url != FORCE_NO_MATCH:
-            source_url = urlparse.urljoin(self.base_url, source_url)
+            source_url = urlparse.urljoin(self.base_url2, source_url)
             for line in self.__get_files(source_url, cache_limit=24):
                 if not line['directory']:
                     match = {}
@@ -89,42 +92,47 @@ class Farda_Scraper(scraper.Scraper):
     def _get_episode_url(self, show_url, video):
         force_title = scraper_utils.force_title(video)
         if not force_title:
-            show_url = urlparse.urljoin(self.base_url, show_url)
+            show_url = urlparse.urljoin(self.base_url2, show_url)
             html = self._http_get(show_url, cache_limit=24)
             match = re.search('href="(S%02d/)"' % (int(video.season)), html)
             if match:
                 season_url = urlparse.urljoin(show_url, match.group(1))
-                for item in self.__get_files(season_url, cache_limit=1):
-                    match = re.search('(\.|_| )S%02d(\.|_| )?E%02d(\.|_| )' % (int(video.season), int(video.episode)), item['title'], re.I)
-                    if match:
-                        return scraper_utils.pathify_url(season_url)
-            
-    def search(self, video_type, title, year):
+            else:
+                season_url = show_url
+
+            for item in self.__get_files(season_url, cache_limit=1):
+                match = re.search('[._ -]S%02d[._ -]?E%02d[._ -]' % (int(video.season), int(video.episode)), item['title'], re.I)
+                if match:
+                    return scraper_utils.pathify_url(season_url)
+
+    def search(self, video_type, title, year, season=''):
         results = []
         norm_title = scraper_utils.normalize_title(title)
-        if video_type == VIDEO_TYPES.MOVIE:
-            if year:
-                base_url = urlparse.urljoin(self.base_url, '/Film/')
-                html = self._http_get(base_url, cache_limit=48)
-                for link in self.__parse_directory(html):
-                    if year == link['title']:
-                        url = urlparse.urljoin(base_url, link['link'])
-                        for movie in self.__get_files(url, cache_limit=24):
-                            match_title, match_year, _height, _extra = scraper_utils.parse_movie_link(movie['link'])
-                            if not movie['directory'] and norm_title in scraper_utils.normalize_title(match_title) and (not year or not match_year or year == match_year):
-                                result = {'url': scraper_utils.pathify_url(url), 'title': match_title, 'year': year}
-                                results.append(result)
-        else:
-            base_url = urlparse.urljoin(self.base_url, '/Serial/')
-            html = self._http_get(base_url, cache_limit=48)
-            for link in self.__parse_directory(html):
-                if link['directory'] and norm_title in scraper_utils.normalize_title(link['title']):
-                    url = urlparse.urljoin(base_url, link['link'])
-                    result = {'url': scraper_utils.pathify_url(url), 'title': link['title'], 'year': ''}
+        html = self._http_get(self.base_url, cache_limit=48)
+        links = dom_parser.parse_dom(html, 'a', {'rollapp-href': '[^"]*'}, ret='href')
+        titles = dom_parser.parse_dom(html, 'a', {'rollapp-href': '[^"]*'})
+        for match_url, match_title in zip(links, titles):
+            if norm_title in scraper_utils.normalize_title(match_title):
+                show_dir = self.__get_show_dir(match_url)
+                if show_dir:
+                    result = {'url': scraper_utils.pathify_url(show_dir), 'title': scraper_utils.cleanse_title(match_title), 'year': ''}
                     results.append(result)
-            
         return results
 
+    def __get_show_dir(self, show_url):
+        show_url = urlparse.urljoin(self.base_url, show_url)
+        html = self._http_get(show_url, cache_limit=48)
+        article = dom_parser.parse_dom(html, 'article')
+        if article:
+            serial_url = self.base_url2 + '/Serial/[^"]*'
+            links = dom_parser.parse_dom(article[0], 'a', {'href': serial_url}, ret='href')
+            if links:
+                links = list(set(links))
+                pattern = self.base_url2 + '(/Serial/[^/]+/)'
+                match = re.search(pattern, links[0])
+                if match:
+                    return match.group(1)
+        
     def __get_files(self, url, cache_limit=.5):
         sources = []
         for row in self.__parse_directory(self._http_get(url, cache_limit=cache_limit)):

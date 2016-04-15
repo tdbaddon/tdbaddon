@@ -104,7 +104,7 @@ class PW_Scraper(scraper.Scraper):
     def get_url(self, video):
         return self._default_get_url(video)
 
-    def search(self, video_type, title, year):
+    def search(self, video_type, title, year, season=''):
         search_url = urlparse.urljoin(self.base_url, '/index.php?search_keywords=')
         search_url += urllib.quote_plus(title)
         search_url += '&year=' + urllib.quote_plus(str(year))
@@ -123,11 +123,8 @@ class PW_Scraper(scraper.Scraper):
             html = self._http_get(search_url, cache_limit=.25)
             pattern = r'class="index_item.+?href="(.+?)" title="Watch (.+?)"?\(?([0-9]{4})?\)?"?>'
             for match in re.finditer(pattern, html):
-                result = {}
                 url, title, year = match.groups('')
-                result['url'] = scraper_utils.pathify_url(url)
-                result['title'] = title
-                result['year'] = year
+                result = {'url': scraper_utils.pathify_url(url), 'title': scraper_utils.cleanse_title(title), 'year': year}
                 results.append(result)
         else:
             log_utils.log('Unable to locate PW search key', log_utils.LOGWARNING)

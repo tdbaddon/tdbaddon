@@ -70,7 +70,7 @@ class Proxy(scraper.Scraper):
         if self.__scraper is not None:
             return self.__scraper.get_url(video)
     
-    def search(self, video_type, title, year):
+    def search(self, video_type, title, year, season=''):
         if self.__scraper is not None:
             return self.__scraper.search(video_type, title, year)
         else:
