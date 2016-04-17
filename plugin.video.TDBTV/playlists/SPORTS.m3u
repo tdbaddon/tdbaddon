@@ -95,6 +95,9 @@ mms://100automoto.tv/channel_mercedes
 #EXTINF:0,Motorsport 7 
 http://motorsport.hopto.org:8080/
 
+#EXTINF:0,Motorsport 7 
+http://162.248.6.122:8084/
+
 #EXTINF:0,My Combat Channel
 0
 
@@ -117,7 +120,7 @@ http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/4296k/prog.m3u8|X-Forwarded-
 http://cdn.phoenix.intergi.com/21772/videos/3362254/video-sd.mp4?hosting_id=21772
 
 #EXTINF:0,NFL Live 
-http://nflioslivesvg2-i.akamaihd.net/hls/live/221521/nflioslive/2015HackerNow_w99d9.m3u8
+0
 
 #EXTINF:0,NFL Network 
 0
@@ -171,7 +174,7 @@ http://pac12hd2-lh.akamaihd.net/i/p12oreg_delivery@132835/master.m3u8
 0
  
 #EXTINF:0,PAC 12 Washington HD 
-0
+http://pac12hd2-lh.akamaihd.net/i/p12wash_delivery@132841/index_4728_av-b.m3u8?
 
 #EXTINF:0,Poker Central
 http://ooyalahd2-f.akamaihd.net/i/crtv01_delivery@329705/index_1164_av-b.m3u8

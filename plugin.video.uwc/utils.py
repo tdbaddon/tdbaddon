@@ -30,7 +30,7 @@ __scriptname__ = "Ultimate Whitecream"
 __author__ = "mortael"
 __scriptid__ = "plugin.video.uwc"
 __credits__ = "mortael, Fr33m1nd, anton40"
-__version__ = "1.0.99"
+__version__ = "1.1.2"
 
 USER_AGENT = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3'
 
@@ -443,6 +443,8 @@ def addDownLink(name, url, mode, iconimage, desc, stream=None, fav='add'):
     ok = True
     liz = xbmcgui.ListItem(name, iconImage="DefaultVideo.png", thumbnailImage=iconimage)
     liz.setArt({'thumb': iconimage, 'icon': iconimage})
+    if addon.getSetting('posterfanart') == 'true':
+        liz.setArt({'poster': iconimage, 'fanart': iconimage})
     if stream:
         liz.setProperty('IsPlayable', 'true')
     if len(desc) < 1:
@@ -467,6 +469,8 @@ def addDir(name, url, mode, iconimage, page=None, channel=None, section=None, ke
     ok = True
     liz = xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
     liz.setArt({'thumb': iconimage, 'icon': iconimage})
+    if addon.getSetting('posterfanart') == 'true':
+        liz.setArt({'poster': iconimage, 'fanart': iconimage})
     liz.setInfo(type="Video", infoLabels={"Title": name})
     ok = xbmcplugin.addDirectoryItem(handle=addon_handle, url=u, listitem=liz, isFolder=Folder)
     return ok

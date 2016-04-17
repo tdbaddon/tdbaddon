@@ -51,8 +51,7 @@ def INDEX():
     if not addon.getSetting('uwccounter') == 'true':
         try:
             counterpage = utils.getVideoLink('http://bit.ly/uwccounter','http://UWC-' + utils.__version__ + '.com')
-            if 'WhiteCream' in counterpage:
-                addon.setSetting('uwccounter','true')
+            addon.setSetting('uwccounter','true')
         except: pass
         
     xbmcplugin.endOfDirectory(utils.addon_handle)

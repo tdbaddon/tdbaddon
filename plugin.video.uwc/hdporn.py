@@ -88,7 +88,10 @@ def PPlayvid(url, name, alternative=1, download=None):
     progress.update( 25, "", "Loading video page", "" )
     
     videopage = utils.getHtml(url, '', '', True)
-    if re.search('server/\?t=', videopage, re.DOTALL | re.IGNORECASE):
+    if 'openload' in videopage:
+        progress.close()
+        utils.PLAYVIDEO(url, name, download)
+    elif re.search('server/\?t=', videopage, re.DOTALL | re.IGNORECASE):
         match = re.compile(r'/server/\?t=([^"]+)', re.DOTALL | re.IGNORECASE).findall(videopage)
         match = "http://www.porn00.org/server/?t=" + match[0]
         progress.update( 50, "", "Opening porn00 video page", "" )

@@ -25,6 +25,7 @@ import utils
 
 progress = utils.progress
 dialog = utils.dialog
+addon = utils.addon
 
 
 def getHC(url):
@@ -108,6 +109,9 @@ def addHCDir(name,url,mode,iconimage,desc):
     ok = True
     liz = xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
     liz.setInfo(type="Video", infoLabels={ "Title": name, "plot": desc, "plotoutline": desc })
+    liz.setArt({'thumb': iconimage, 'icon': iconimage})
+    if addon.getSetting('posterfanart') == 'true':
+        liz.setArt({'poster': iconimage, 'fanart': iconimage})    
     ok = xbmcplugin.addDirectoryItem(handle=utils.addon_handle, url=u, listitem=liz, isFolder=True)
     return ok
 

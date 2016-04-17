@@ -28,9 +28,6 @@
 #EXTINF:0,BRAZZERS TV 
 http://4BA9EBDB07C05883:@5.159.96.170:8000/brazzers
 
-#EXTINF:0,BRAZZERS TV 
-http://server6.balkantvmedia.com:8080/XXX1?u=user1610:p=ibccL97n
-
 #EXTINF:0,BUNGA BUNGA 
 0
 
@@ -41,13 +38,13 @@ rtmp://edge2.everyon.tv/etv2sb/pld10772
 rtmp://edge2.everyon.tv/etv2sb/phd10772
 
 #EXTINF:0,CENTO X CENTO 
-http://balkanstream.com/stream/XXX3/amy/amy
+http://94.236.201.98:8080/udp/239.111.21.65:4000
 
 #EXTINF:0,COLLEGE HOTTIES
 0
 
 #EXTINF:0,DORCEL TV 
-http://server5.balkantvmedia.com:8080/XXX3?u=user1610:p=ibccL97n
+0
 
 #EXTINF:0,DREAMGIRLS NETWORK
 0
@@ -65,7 +62,7 @@ http://server5.balkantvmedia.com:8080/XXX3?u=user1610:p=ibccL97n
 0
 
 #EXTINF:0,EXOTICA TV 
-http://balkanstream.com/stream/XXX4/amy/amy
+0
 
 #EXTINF:0,FRENCHLOVER 
 0
@@ -80,10 +77,7 @@ http://balkanstream.com/stream/XXX4/amy/amy
 0
 
 #EXTINF:0,HUSTLER TV 
-http://balkanstream.com/stream/XXX8/amy/amy
-
-#EXTINF:0,HUSTLER TV 
-http://server5.balkantvmedia.com:8080/XXX2?u=user1610:p=ibccL97n
+0
 
 #EXTINF:0,ILIVE 1
 0
@@ -91,7 +85,7 @@ http://server5.balkantvmedia.com:8080/XXX2?u=user1610:p=ibccL97n
 #EXTINF:0,INGILTERE 
 0
 
-#EXTINF:0,JASMIN TV
+#EXTINF:0,JASMIN TV 
 rtmp://109.71.162.112:1935/live/sd.jasminchannel.stream
 
 #EXTINF:0,JULES JORDAN
@@ -119,7 +113,7 @@ rtmp://edge1.everyon.tv/etv1sb/phd10766
 http://4BA9EBDB07C05883:@5.159.96.170:8000/olala
 
 #EXTINF:0,PASSIE XXX 
-http://publish.thewebstream.co:1935/leved/_definst_/passielivestream/playlist.m3u8
+0
 
 #EXTINF:0,PENTHOUSE 
 rtmp://edge1.everyon.tv/etv1sb/pld10927
@@ -131,7 +125,7 @@ rtmp://edge1.everyon.tv/etv1sb/phd10927
 0
 
 #EXTINF:0,PINKO TV 
-http://balkanstream.com/stream/XXX6/amy/amy
+0
 
 #EXTINF:0,PLAYBOY SPICE 
 rtmp://edge2.everyon.tv/etv2sb/pld10499
@@ -149,31 +143,31 @@ rtmp://edge1.everyon.tv/etv1sb/pld10497
 rtmp://edge1.everyon.tv/etv1sb/phd10497
 
 #EXTINF:0,PLAYBOY TV 
-http://5.152.199.130/iptv/2A58VZ6Q2V/527/index.m3u8
+http://62.210.251.159/iptv/DTBGR6V597TBPF/527/index.m3u8
 
 #EXTINF:0,PLATINUM TV 
 0
 
 #EXTINF:0,PRIVATE 
-0
+http://5.135.139.145:80/Private_TV/mono.m3u8
 
 #EXTINF:0,PURE MATURE
 0
 
 #EXTINF:0,REDLIGHT PREMIUM 
-http://balkanstream.com/stream/XXX9/amy/amy
+0
 
 #EXTINF:0,REDTUBE
 0
 
 #EXTINF:0,RUSSIAN NIGHT 
-http://5.152.199.130/iptv/2A58VZ6Q2V/147/index.m3u8
+0
 
 #EXTINF:0,RUSSIAN NIGHT CLUB TV 
 0
 
 #EXTINF:0,SATISFACTION HD 
-http://balkanstream.com/stream/XXX1/amy/amy
+0
 
 #EXTINF:0,SCT 
 0
@@ -188,7 +182,7 @@ http://balkanstream.com/stream/XXX1/amy/amy
 0
 
 #EXTINF:0,SEXT 6 SENSO 
-http://balkanstream.com/stream/XXX5/amy/amy
+0
 
 #EXTINF:0,SEXTREME 
 0
@@ -202,8 +196,8 @@ http://balkanstream.com/stream/XXX5/amy/amy
 #EXTINF:0,TELEITALIA 
 0
 
-#EXTINF:0,TGIRLS TV
-http://balkanstream.com/stream/XXX2/amy/amy
+#EXTINF:0,TGIRLS TV 
+http://94.236.201.98:8080/udp/239.111.21.63:4000
 
 #EXTINF:0,VENUS
 0

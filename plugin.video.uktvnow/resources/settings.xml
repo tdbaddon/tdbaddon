@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+		<setting id="username" type="text" label="UK TV Now App Username" default="bypass" visible="true"/>
+		<setting id="password" type="text"label="UK TV Now App Password" default="bypass" visible="true" option="hidden" />
+</settings>

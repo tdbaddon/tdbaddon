@@ -44,11 +44,13 @@ def List(url):
         else:
             hd = " "
         videopage = "http://www.absoluporn.com" + videourl
+        videopage = videopage.replace(" ","%20")
         name = name + hd + "[COLOR deeppink]" + duration + "[/COLOR]"
         utils.addDownLink(name, videopage, 302, img, '')
     try:
-        nextp=re.compile(r'<span class="text16">\d+</span> <a href="..([^"]+)"').findall(listhtml)
-        utils.addDir('Next Page', 'http://www.absoluporn.com' + nextp[0], 301,'')
+        nextp=re.compile(r'<span class="text16">\d+</span> <a href="..([^"]+)"').findall(listhtml)[0]
+        nextp = nextp.replace(" ","%20")
+        utils.addDir('Next Page', 'http://www.absoluporn.com' + nextp, 301,'')
     except: pass    
     xbmcplugin.endOfDirectory(utils.addon_handle)
 

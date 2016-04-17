@@ -37,8 +37,9 @@ def YFTList(url):
         name = utils.cleantext(name)
         utils.addDownLink(name, videopage, 192, img, '')
     try:
-        nextp=re.compile('<a href="([^"]+)">&raquo;', re.DOTALL | re.IGNORECASE).findall(listhtml)
-        nextp = "http://www.yourfreetube.net/" + nextp[0]
+        nextp=re.compile('<a href="([^"]+)">&raquo;', re.DOTALL | re.IGNORECASE).findall(listhtml)[0]
+        if not 'http' in nextp:
+            nextp = "http://www.yourfreetube.net/" + nextp
         utils.addDir('Next Page', nextp, 191,'')
     except: pass
     xbmcplugin.endOfDirectory(utils.addon_handle)

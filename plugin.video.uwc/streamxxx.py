@@ -26,7 +26,7 @@ progress = utils.progress
 
 def Main():
     utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://streamxxx.tv/', 177, '', '')
-    utils.addDir('[COLOR hotpink]Tags[/COLOR]','http://streamxxx.tv/', 173, '', '')
+    #utils.addDir('[COLOR hotpink]Tags[/COLOR]','http://streamxxx.tv/', 173, '', '')
     utils.addDir('[COLOR hotpink]Search Overall[/COLOR]','http://streamxxx.tv/?s=', 174, '', '')
     utils.addDir('[COLOR hotpink]Search Scenes[/COLOR]','http://streamxxx.tv/?cat=2210&s=', 174, '', '')
     utils.addDir('[COLOR hotpink]Movies[/COLOR]','http://streamxxx.tv/category/movies-xxx/', 175, '', '')
@@ -36,7 +36,7 @@ def Main():
 
 
 def MainMovies():
-    utils.addDir('[COLOR hotpink]Tags[/COLOR]','http://streamxxx.tv/', 173, '', '')
+    #utils.addDir('[COLOR hotpink]Tags[/COLOR]','http://streamxxx.tv/', 173, '', '')
     utils.addDir('[COLOR hotpink]Search Overall[/COLOR]','http://streamxxx.tv/&s=', 174, '', '')
     utils.addDir('[COLOR hotpink]Search Movies[/COLOR]','http://streamxxx.tv/?cat=2207&s=', 174, '', '')
     utils.addDir('[COLOR hotpink]International Movies[/COLOR]','http://streamxxx.tv/category/movies-xxx/international-movies/', 176, '', '')
@@ -57,13 +57,12 @@ def MainInternationalMovies():
 
 def List(url):
     listhtml = utils.getHtml(url, '')
-    match = re.compile('<div id="post-.*?<div class="thumb">.*?href="([^"]+)".*?src="([^"]+)".*?alt="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(listhtml)
-    for videopage, img, name in match:
+    match = re.compile(r'<div class="quadrato">\s*?<a href="([^"]+)"\s*?title="([^"]+)".*?src="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(listhtml)
+    for videopage, name, img in match:
         name = utils.cleantext(name)
         utils.addDownLink(name, videopage, 172, img, '')
     try:
-        nextp=re.compile('<a class="nextpostslink" rel="next" href="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(listhtml)
-        nextp = nextp[0].replace("&#038;", "&")
+        nextp=re.compile(r"""current(?:"|')>\d+</span><a.*?href=(?:"|')([^'"]+)""", re.DOTALL | re.IGNORECASE).findall(listhtml)[0]
         utils.addDir('Next Page', nextp, 171,'')
     except: pass
     xbmcplugin.endOfDirectory(utils.addon_handle)
@@ -82,9 +81,10 @@ def Search(url, keyword=None):
 
 def Categories(url):
     cathtml = utils.getHtml(url, '')
-    match = re.compile('Clips</a>.+<ul class="sub-menu">(.*?)</ul>', re.DOTALL | re.IGNORECASE).findall(cathtml)
-    match1 = re.compile('href="([^"]+)[^>]+>([^<]+)<', re.DOTALL | re.IGNORECASE).findall(match[0])
+    match = re.compile("Clips</a>(.*)</ul>", re.DOTALL | re.IGNORECASE).findall(cathtml)
+    match1 = re.compile('href="(/[^"]+)[^>]+>([^<]+)<', re.DOTALL | re.IGNORECASE).findall(match[0])
     for catpage, name in match1:
+        catpage = 'http://streamxxx.tv' + catpage
         utils.addDir(name, catpage, 171, '')
     xbmcplugin.endOfDirectory(utils.addon_handle)
 

@@ -1,3 +1,21 @@
+[B]Version 1.1.2[/B]
+Fixed: Beeg
+Fixed: Cat3movie
+
+
+[B]Version 1.1.1[/B]
+Fixed: Beeg (thanks to youtube-dl)
+Fixed: PornAQ videos (support for Openload)
+Added: Option to use the thumbnails as poster/fanart
+
+
+[B]Version 1.1.0[/B]
+Fixed: Pagination for Absoluporn and some videoplayback
+Fixed: Cam4, return to older method for getting videourl
+Fixed: Videolisting/Categories StreamXXX
+Fixed: Pagination for YourFreeTube
+
+
 [B]Version 1.0.99[/B]
 Added: More supported hosts for Pornhive
 

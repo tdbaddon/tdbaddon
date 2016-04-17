@@ -72,6 +72,7 @@ def Playvid(url, name, download=None):
     url = ''
     for link in embedLinks:
         html = utils.getHtml(link, '')
-        base64str = re.compile('Base64.decode\("(.+?)"\)').findall(html)
-        url = url + " " + base64.b64decode(base64str[0])
+        if 'Base64' in html:
+            base64str = re.compile('Base64.decode\("(.+?)"\)').findall(html)
+            url = url + " " + base64.b64decode(base64str[0])
     utils.playvideo(url, name, download)

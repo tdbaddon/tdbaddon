@@ -10,7 +10,7 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 #EXTINF:0,ABC 
 0
 
-#EXTINF:0,ABC Family 
+#EXTINF:0,ABC Family a
 0
 
 #EXTINF:0,Adult Swim TV
@@ -47,7 +47,7 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 0
 
 #EXTINF:0,Cartoon Network 
-0
+http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD28_W_250.sdp/playlist.m3u8
 
 #EXTINF:0,CBC TV 
 0
@@ -149,7 +149,7 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 0
 
 #EXTINF:0,Fashion TV 
-0
+http://edgeb.streaming.sk/fashiontv/fashiontv.stream/playlist.m3u8?wowzasessionid=1005101551
 
 #EXTINF:0,Fine Living Network 
 0
@@ -269,7 +269,7 @@ http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
 0
 
 #EXTINF:0,Nickelodeon 
-0
+http://5.135.139.145/Nickelodeon/mono.m3u8
 
 #EXTINF:0,NickNight 
 0
@@ -344,7 +344,7 @@ http://llnw.live.qvc.simplestream.com/hera/remote/qvcuk_primary_sdi8/3/prog_inde
 0
 
 #EXTINF:0,TNT 
-0
+http://109.236.92.136:1935/live/tnthd.stream/playlist.m3u8?wowzasessionid=1383569684
 
 #EXTINF:0,Tom & Jerry TV 
 0

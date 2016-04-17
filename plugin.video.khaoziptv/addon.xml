@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.video.khaoziptv"
+       name="[COLOR blue].Khaoz[/COLOR] [COLOR white]TV[/COLOR]"
+       version="1.0.3"
+       provider-name="psndejkriz">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+	<import addon="script.module.t0mm0.common" version="2.0.0"/>
+    <import addon="script.module.beautifulsoup" version="3.2.1"/>
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.requests" />
+    <import addon="script.module.httplib2" />
+    <import addon="script.module.urlresolver" optional="true"/>
+    <import addon="script.module.simplejson" /> 
+    <import addon="script.common.plugin.cache" version="2.5.2"/>
+    <import addon="script.module.metahandler" version="2.5.1"/>
+
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en"> Khaoz Live TV Worldwide TV Channels Free!</summary>
+    <description lang="en">This Addon was developed by PSNDEJKriz if you experince any errors or problems feel free to contact me via youtube PSNDeJKriz or Twitter @KhaozLiveTV please note this is completely ran by myself and please if a channel does not work be paitent there could be high volumes of traffic on that channel.</description>
+    <platform>all</platform>
+  </extension>
+</addon>

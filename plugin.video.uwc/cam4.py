@@ -68,8 +68,8 @@ def Playvid(url, name):
     listhtml = utils.getHtml(url, url)
     match = re.compile('data="([^"]+)".*?videoAppUrl=([^&]+)&.*?videoPlayUrl=([^&]+)&', re.DOTALL | re.IGNORECASE).findall(listhtml)
     for swfUrl, videoAppUrl, videoPlayUrl in match:
-        #videourl = '%s playpath=%s swfUrl=%s pageUrl=%s' % (videoAppUrl, videoPlayUrl, swfUrl, url)
-        videourl = videoAppUrl + videoPlayUrl[videoPlayUrl.find("/", 30):]
+        videourl = '%s playpath=%s swfUrl=%s pageUrl=%s' % (videoAppUrl, videoPlayUrl, swfUrl, url)
+        #videourl = videoAppUrl + videoPlayUrl[videoPlayUrl.find("/", 30):]
     iconimage = xbmc.getInfoImage("ListItem.Thumb")
     listitem = xbmcgui.ListItem(name, iconImage="DefaultVideo.png", thumbnailImage=iconimage)
     listitem.setInfo('video', {'Title': name, 'Genre': 'Porn'})
