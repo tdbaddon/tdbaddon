@@ -22,7 +22,7 @@
 import os,xbmc,xbmcaddon,xbmcplugin,xbmcgui,xbmcvfs
 
 
-integer = 1
+integer = 1000
 
 lang = xbmcaddon.Addon().getLocalizedString
 

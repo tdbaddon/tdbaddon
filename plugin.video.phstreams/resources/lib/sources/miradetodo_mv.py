@@ -24,7 +24,6 @@ import re,urllib,urllib2,urlparse,json,base64
 from resources.lib.modules import cleantitle
 from resources.lib.modules import cloudflare
 from resources.lib.modules import client
-from resources.lib.modules import directstream
 
 
 class source:
@@ -45,7 +44,7 @@ class source:
             result = json.loads(result)['results']
 
             result = [(i['url'], i['titleNoFormatting']) for i in result]
-            result = [(i[0], re.findall('(?:^Ver Online |^Ver |)(.+?)(?: HD |)\((\d{4})\)', i[1])) for i in result]
+            result = [(i[0], re.findall('(?:^Ver Online |^Ver |)(.+?)(?: HD |)\((\d{4})', i[1])) for i in result]
             result = [(i[0], i[1][0][0], i[1][0][1]) for i in result if len(i[1]) > 0]
 
             r = [i for i in result if t == cleantitle.get(i[1]) and year == i[2]]
@@ -56,6 +55,7 @@ class source:
                 t = client.parseDOM(t, 'title')[0]
                 t = re.sub('(?:\(|\s)\d{4}.+', '', t).strip()
                 t = cleantitle.get(t)
+                print t
 
                 r = [i for i in result if t == cleantitle.get(i[1]) and year == i[2]]
 
@@ -98,33 +98,23 @@ class source:
                     dupes.append(id)
 
                     try:
-                        url = base64.b64decode(id)
+                        if 'acd.php' in u: raise Exception()
 
-                        if 'google' in url: url = directstream.google(url)
-                        else: raise Exception()
-
-                        for i in url: links.append({'source': 'gvideo', 'quality': i['quality'], 'url': i['url']})
-                        continue
-                    except:
-                        pass
-
-
-                    result = cloudflare.source(u, headers={'Referer': r})
-
-
-                    try:
                         headers = {'X-Requested-With': 'XMLHttpRequest', 'Referer': u}
 
-                        post = re.findall('{link\s*:\s*"([^"]+)', result)[0]
-                        post = urllib.urlencode({'link': post})
+                        post = urllib.urlencode({'link': id})
 
                         url = urlparse.urljoin(self.base_link, '/stream/plugins/gkpluginsphp.php')
                         url = cloudflare.source(url, post=post, headers=headers)
                         url = json.loads(url)['link']
-                        url = [i['link'] for i in url if 'link' in i]
+
+                        if type(url) is list:
+                            url = [{'url': i['link'], 'quality': '1080p'} for i in url if '1080' in i['label']] + [{'url': i['link'], 'quality': 'HD'} for i in url if '720' in i['label']]
+                        else:
+                            url = [{'url': url, 'quality': 'HD'}]
 
                         for i in url:
-                            try: links.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'url': i})
+                            try: links.append({'source': 'gvideo', 'quality': i['quality'], 'url': i['url']})
                             except: pass
 
                         continue
@@ -132,6 +122,8 @@ class source:
                         pass
 
                     try:
+                        result = cloudflare.source(u, headers={'Referer': r})
+
                         url = re.findall('AmazonPlayer.*?file\s*:\s*"([^"]+)', result, re.DOTALL)[0]
 
                         class NoRedirection(urllib2.HTTPErrorProcessor):

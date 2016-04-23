@@ -22,7 +22,7 @@ import time
 import requests
 
 
-net = Net(user_agent='Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.72 Safari/537.36')
+net = Net(user_agent='BulldogStreams')
 headers = {
     'Accept'    :   'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
     }
@@ -68,7 +68,7 @@ def addon_log(string):
 def makeRequest(url, headers=None):
         try:
             if headers is None:
-                headers = {'User-agent' : 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:19.0) Gecko/20100101 Firefox/19.0'}
+                headers = {'User-agent' : 'BulldogStreams'}
             req = urllib2.Request(url,None,headers)
             response = urllib2.urlopen(req)
             data = response.read()

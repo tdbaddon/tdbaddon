@@ -25,7 +25,7 @@ from resources.lib.modules import control
 from resources.lib.modules import trakt
 
 
-def getMovieIndicators():
+def getMovieIndicators(refresh=False):
     try:
         if trakt.getTraktIndicatorsInfo() == True: raise Exception()
         from metahandler import metahandlers
@@ -35,13 +35,16 @@ def getMovieIndicators():
         pass
     try:
         if trakt.getTraktIndicatorsInfo() == False: raise Exception()
-        indicators = trakt.cachesyncMovies(timeout=720)
+        if refresh == False: timeout = 720
+        elif trakt.getWatchedActivity() < trakt.timeoutsyncMovies(): timeout = 720
+        else: timeout = 0
+        indicators = trakt.cachesyncMovies(timeout=timeout)
         return indicators
     except:
         pass
 
 
-def getTVShowIndicators():
+def getTVShowIndicators(refresh=False):
     try:
         if trakt.getTraktIndicatorsInfo() == True: raise Exception()
         from metahandler import metahandlers
@@ -51,7 +54,19 @@ def getTVShowIndicators():
         pass
     try:
         if trakt.getTraktIndicatorsInfo() == False: raise Exception()
-        indicators = trakt.cachesyncTVShows(timeout=720)
+        if refresh == False: timeout = 720
+        elif trakt.getWatchedActivity() < trakt.timeoutsyncTVShows(): timeout = 720
+        else: timeout = 0
+        indicators = trakt.cachesyncTVShows(timeout=timeout)
+        return indicators
+    except:
+        pass
+
+
+def getSeasonIndicators(imdb):
+    try:
+        if trakt.getTraktIndicatorsInfo() == False: raise Exception()
+        indicators = trakt.syncSeason(imdb)
         return indicators
     except:
         pass

@@ -36,7 +36,7 @@
 		<setting id="iwatchonline" type="bool" label="Iwatchonline" default="true" />
 		<setting id="yify" type="bool" label="YIFY" default="true" />
 		<setting id="yifystreamv2" type="bool" label="YIFYstream" default="true" />
-		<!--<setting id="afdah" type="bool" label="Afdah" default="true" />-->
+		<setting id="afdah" type="bool" label="Afdah" default="true" />
 		<setting id="pubfilm" type="bool" label="Pubfilm" default="true" />
 		<setting id="xmovies" type="bool" label="Xmovies" default="true" />
 		<setting id="tunemovie" type="bool" label="Tunemovie" default="true" />
@@ -57,8 +57,8 @@
 		<setting id="einthusan" type="bool" label="Einthusan (India)" default="true" />
 		<setting id="easynews" type="bool" label="Easynews" default="false" />
 		<setting id="furk" type="bool" label="Furk" default="false" />
-		<setting id="watch1080p" type="bool" label="watch1080p" default="true" />
-		<setting id="9movies" type="bool" label="9movies" default="true" />
+		<setting id="pelispedia" type="bool" label="Pelispedia" default="true" />
+		<setting id="fmovies" type="bool" label="9movies" default="true" />
 
 
 
@@ -91,7 +91,8 @@
 		<setting id="directdl_tv" type="bool" label="Directdownload" default="true" />
 		<setting id="easynews_tv" type="bool" label="Easynews" default="false" />
 		<setting id="furk_tv" type="bool" label="Furk" default="false" />
-		<setting id="9movies" type="bool" label="9movies" default="true" />
+		<setting id="pelispedia_tv" type="bool" label="Pelispedia" default="true" />
+		<setting id="fmovies" type="bool" label="9movies" default="true" />
 
 
 	</category>

@@ -22,16 +22,15 @@
 import re,urllib,urlparse,json,base64
 
 from resources.lib.modules import cleantitle
-from resources.lib.modules import cloudflare
 from resources.lib.modules import client
+from resources.lib.modules import cache
 from resources.lib.modules import directstream
 
 
 class source:
     def __init__(self):
-        self.domains = ['usmovieshd.com']
-        self.base_link = 'http://usmovieshd.com'
-        self.search_link = 'aHR0cHM6Ly93d3cuZ29vZ2xlYXBpcy5jb20vY3VzdG9tc2VhcmNoL3YxZWxlbWVudD9rZXk9QUl6YVN5Q1ZBWGlVelJZc01MMVB2NlJ3U0cxZ3VubU1pa1R6UXFZJnJzej1maWx0ZXJlZF9jc2UmbnVtPTEwJmhsPWVuJmN4PTAwMDc0NjAzOTU3ODI1MDQ0NTkzNTplaWFyaGN2dzgxbSZnb29nbGVob3N0PXd3dy5nb29nbGUuY29tJnE9JXM='
+        self.domains = ['omovmob.com', 'usmovieshd.com']
+        self.base_link = 'http://omovmob.com'
 
 
     def movie(self, imdb, title, year):
@@ -39,6 +38,18 @@ class source:
             url = {'imdb': imdb, 'title': title, 'year': year}
             url = urllib.urlencode(url)
             return url
+        except:
+            return
+
+
+    def usmovies_moviecache(self):
+        try:
+            url = urlparse.urljoin(self.base_link, '/attachment-sitemap.xml')
+            result = str(client.source(url))
+            result = client.parseDOM(result, 'loc')
+            result = [re.sub('http.+?//.+?/','/', i) for i in result]
+            result = [i.split('/attachment/')[0] for i in result]
+            return result
         except:
             return
 
@@ -54,27 +65,18 @@ class source:
                 data = urlparse.parse_qs(url)
                 data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
 
-                t = cleantitle.get(data['title'])
-                title = data['title']
-                year = data['year']
+                match = data['title'].replace(':', '').replace('\'', '').replace(' ', '-')
+                match = re.sub('\-+', '-', match.lower())
+                match = '/%s-%s' % (match, data['year'])
 
-                query = '%s %s' % (title.replace(':', ' '), year)
-                query = base64.b64decode(self.search_link) % urllib.quote_plus(query)
+                url = cache.get(self.usmovies_moviecache, 120)
 
-                result = client.source(query)
-                result = json.loads(result)['results']
-
-                url = [(i['url'], i['titleNoFormatting']) for i in result]
-
-                url = [i for i in url if '.html' in i[0]]
-                url = [(i[0], re.findall('(.+?) (?:\(|)(\d{4})(?:\)|)', i[1])) for i in url]
-                url = [(i[0], i[1][0][0], i[1][0][1]) for i in url if len(i[1]) > 0]
-                url = [i[0] for i in url if t == cleantitle.get(i[1]) and year == i[2]][0]
+                url = [i for i in url if match in i][-1]
                 url = client.replaceHTMLCodes(url)
 
 
             r = urlparse.urljoin(self.base_link, url)
-            result = cloudflare.source(r)
+            result = client.source(r)
 
             links = []
             headers = {'Referer': r}
@@ -85,7 +87,7 @@ class source:
                 post = urllib.urlencode({'link': post})
 
                 url = urlparse.urljoin(self.base_link, '/plugins/gkpluginsphp.php')
-                url = cloudflare.source(url, post=post, headers=headers)
+                url = client.source(url, post=post, headers=headers)
                 url = json.loads(url)['link']
                 links += [i['link'] for i in url if 'link' in i]
             except:
@@ -93,7 +95,7 @@ class source:
 
             try:
                 url = client.parseDOM(result, 'iframe', ret='.+?')[0]
-                url = cloudflare.source(url, headers=headers)
+                url = client.source(url, headers=headers)
                 url = url.replace('\n', '')
 
                 url = re.findall('sources\s*:\s*\[(.+?)\]', url)[0]

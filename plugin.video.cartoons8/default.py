@@ -172,7 +172,9 @@ def PLAYLINK(name,url):
         response = urllib2.urlopen(req)
         link=response.read()
         response.close()
-        if 'dscw' in link:
+        if 'redirector' in link:
+                stream_url = re.compile('<a href="(.+?)" target=".+?" rel=".+?">.+?</a>').findall(link)[-1]
+        elif 'dscw' in link:
                 vid = re.compile('id="dscw" value="(.+?)"').findall(link)[0]
                 url='https://docs.google.com/get_video_info?docid='+vid
                 link = open_url(url)

@@ -28,9 +28,10 @@ from resources.lib.modules import proxy
 
 class source:
     def __init__(self):
-        self.domains = ['movie25.hk']
-        self.base_link = 'http://movie25.hk'
-        self.search_link = 'http://movie25.hk/search.php?key=%s'
+        self.domains = ['movie25.ph']
+        self.base_link = 'http://movie25.ph'
+        #self.search_link = 'http://movie25.ph/ad_search.php?q=%s&year_from=%s&year_to=%s&section=2&ad_search=Search'
+        self.search_link = 'http://movie25.ph/search.php?q=%s'
 
 
     def request(self, url, check):
@@ -49,6 +50,9 @@ class source:
 
     def movie(self, imdb, title, year):
         try:
+            #query = self.search_link % (urllib.quote_plus(cleantitle.query(title)), str(int(year)-1), str(int(year)+1))
+            #query = urlparse.urljoin(self.base_link, query)
+
             query = self.search_link % urllib.quote_plus(cleantitle.query(title))
             query = urlparse.urljoin(self.base_link, query)
 

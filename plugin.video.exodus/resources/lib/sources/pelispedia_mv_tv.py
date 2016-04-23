@@ -48,7 +48,7 @@ class source:
             result = json.loads(result)['results']
 
             result = [(i['url'], i['titleNoFormatting']) for i in result]
-            result = [(i[0], re.findall('(?:^Ver |)(.+?)(?: HD |)\((\d{4})\)', i[1])) for i in result]
+            result = [(i[0], re.findall('(?:^Ver |)(.+?)(?: HD |)\((\d{4})', i[1])) for i in result]
             result = [(i[0], i[1][0][0], i[1][0][1]) for i in result if len(i[1]) > 0]
 
             r = [i for i in result if t == cleantitle.get(i[1]) and year == i[2]]

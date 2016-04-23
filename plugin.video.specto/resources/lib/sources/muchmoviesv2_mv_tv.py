@@ -125,7 +125,8 @@ class source:
 
             result = client.source(url)
             movie = client.parseDOM(result, 'div', ret='movie-id', attrs = {'id': 'media-player'})[0]
-            control.log('####### %s MOVIE' % movie)
+            mtoken =  client.parseDOM(result, 'div', ret='player-token', attrs = {'id': 'media-player'})[0]
+            control.log('####### %s MOVIE %s token ' % (movie, mtoken))
 
             try:
                 quality = client.parseDOM(result, 'span', attrs = {'class': 'quality'})[0].lower()
@@ -136,7 +137,8 @@ class source:
             elif quality == 'hd': quality = 'HD'
             else: quality = 'SD'
 
-            url = '/movie/loadepisodes/%s' % movie
+            #url = '/movie/loadepisodes/%s' % movie
+            url = '/ajax/get_episodes/%s/%s' % (movie, mtoken)
             url = urlparse.urljoin(self.base_link, url)
 
             result = client.source(url)
@@ -148,12 +150,12 @@ class source:
 
             if content == 'episode': result = [i for i in result if i[3] == '%01d' % int(episode)]
 
-            links = [('movie/load_episode/%s/%s' % (i[2], i[1]), 'gvideo') for i in result if 2 <= int(i[0]) <= 11]
+            links = [('ajax/load_episode/%s/%s' % (i[2], i[1]), 'gvideo') for i in result if 2 <= int(i[0]) <= 11]
 
             for i in links: sources.append({'source': i[1], 'quality': quality, 'provider': 'Muchmoviesv2', 'url': i[0]})
 
             links = []
-            links += [('movie/loadEmbed/%s/%s' % (i[2], i[1]), 'openload') for i in result if i[0] == '14']
+            links += [('ajax/loadEmbed/%s/%s' % (i[2], i[1]), 'openload') for i in result if i[0] == '14']
             #links += [('movie/loadEmbed/%s/%s' % (i[2], i[1]), 'videomega.tv') for i in result if i[0] == '13']
             #links += [('movie/loadEmbed/%s/%s' % (i[2], i[1]), 'videowood.tv') for i in result if i[0] == '12']
 
@@ -173,7 +175,7 @@ class source:
         try:
             url = urlparse.urljoin(self.base_link, url)
             result = client.source(url)
-            control.log('####### MUCHMOVIES MOVIE sources %s' % result)
+            control.log('####### MUCHMOVIES url: %s MOVIE sources ' % (url))
 
         except:
             pass
@@ -196,9 +198,9 @@ class source:
         except:
             pass
 
-        try:
-            url = json.loads(result)['embed_url']
-            return url
-        except:
-            pass
+        #try:
+        #    url = json.loads(result)['embed_url']
+        #    return url
+        #except:
+        #    pass
 

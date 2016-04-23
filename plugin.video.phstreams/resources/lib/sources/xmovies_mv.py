@@ -37,20 +37,19 @@ class source:
 
     def movie(self, imdb, title, year):
         try:
-            query = '%s %s' % (title.replace(':', ' '), year)
+            query = title.replace(':', ' ')
             query = base64.b64decode(self.search_link) % urllib.quote_plus(query)
 
             result = client.source(query)
             result = json.loads(result)['results']
 
             t = cleantitle.get(title)
-            years = ['(%s)' % str(year)]
 
             result = [(i['url'], i['titleNoFormatting']) for i in result]
-            result = [(i[0], re.compile('(^Watch Full "|^Watch |^Xmovies8:|^xmovies8:|)(.+? [(]\d{4}[)])').findall(i[1])) for i in result]
-            result = [(i[0], i[1][0][-1]) for i in result if len(i[1]) > 0]
-            result = [i for i in result if t == cleantitle.get(i[1])]
-            result = [i[0] for i in result if any(x in i[1] for x in years)][0]
+            result = [(i[0], re.findall('(?:^Watch Full "|^Watch |^Xmovies8:|^xmovies8:|)(.+?)\((\d{4})', i[1])) for i in result]
+            result = [(i[0], i[1][0][0], i[1][0][1]) for i in result if len(i[1]) > 0]
+            result = [i for i in result if t == cleantitle.get(i[1]) and year == i[2]]
+            result = result[0][0]
 
             url = urlparse.urljoin(self.base_link, result)
             url = urlparse.urlparse(url).path
@@ -65,17 +64,15 @@ class source:
             t = re.sub('\s\s+' , ' ', t)
             t = '/movie/' + t.replace(' ' , '-') + '-'
 
-            years = ['-%s' % str(year)]
-
             query = base64.b64decode(self.search_link_2) % t
 
             result = client.source(query)
             result = json.loads(result)['results']
             result = [i['contentNoFormatting'] for i in result]
             result = ''.join(result)
-            result = re.compile('(/movie/.+?)\s').findall(result)
-            result = [i for i in result if t in i]
-            result = [i for i in result if any(x in i for x in years)][0]
+            result = re.findall('(/movie/.+?)\s', result)
+            result = [i for i in result if t in i and year in i]
+            result = result[0]
 
             url = urlparse.urljoin(self.base_link, result)
             url = urlparse.urlparse(url).path

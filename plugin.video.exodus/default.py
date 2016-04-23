@@ -122,6 +122,10 @@ elif action == 'movies':
     from resources.lib.indexers import movies
     movies.movies().get(url)
 
+elif action == 'moviePage':
+    from resources.lib.indexers import movies
+    movies.movies().get(url)
+
 elif action == 'movieWidget':
     from resources.lib.indexers import movies
     movies.movies().widget()
@@ -159,6 +163,10 @@ elif action == 'channels':
     channels.channels().get()
 
 elif action == 'tvshows':
+    from resources.lib.indexers import tvshows
+    tvshows.tvshows().get(url)
+
+elif action == 'tvshowPage':
     from resources.lib.indexers import tvshows
     tvshows.tvshows().get(url)
 

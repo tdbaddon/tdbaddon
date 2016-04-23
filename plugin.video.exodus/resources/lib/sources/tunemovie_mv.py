@@ -42,15 +42,15 @@ class source:
             result = client.source(query)
             result = json.loads(result)['results']
 
-            title = cleantitle.get(title)
-            years = ['(%s)' % str(year)]
+            t = cleantitle.get(title)
 
             r = [(i['url'], i['titleNoFormatting']) for i in result]
-            r = [(i[0], re.compile('(^Watch Full "|^Watch |)(.+? [(]\d{4}[)])').findall(i[1])) for i in r]
-            r = [(i[0], i[1][0][-1]) for i in r if len(i[1]) > 0]
             r += [(i['url'], i['richSnippet']['breadcrumb']['title']) for i in result if 'richSnippet' in i and 'breadcrumb' in i['richSnippet'] and 'title' in i['richSnippet']['breadcrumb']]
-            result = [i for i in r if title == cleantitle.get(i[1])]
-            result = [i[0] for i in result if any(x in i[1] for x in years)][0]
+            r = [(i[0], re.findall('(?:^Watch Full "|^Watch |)(.+?)\((\d{4})', i[1])) for i in r]
+            r = [(i[0], i[1][0][0], i[1][0][1]) for i in r if len(i[1]) > 0]
+            r = [i for i in r if t == cleantitle.get(i[1]) and year == i[2]]
+
+            result = r[0][0]
             result = urllib.unquote_plus(result)
 
             url = urlparse.urljoin(self.base_link, result)

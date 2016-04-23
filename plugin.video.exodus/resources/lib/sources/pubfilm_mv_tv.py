@@ -24,7 +24,6 @@ import re,urllib,urlparse,json,base64
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import cache
-from resources.lib.modules import directstream
 
 
 class source:
@@ -153,29 +152,15 @@ class source:
             for u in links:
 
                 try:
-                    headers = {'X-Requested-With': 'XMLHttpRequest', 'User-Agent': 'Mozilla/5.0 (Windows NT 6.3; rv:36.0) Gecko/20100101 Firefox/36.0', 'Referer': u}
+                    result = client.source(u)
+                    result = re.findall('sources\s*:\s*\[(.+?)\]', result)[0]
+                    result = re.findall('"file"\s*:\s*"(.+?)".+?"label"\s*:\s*"(.+?)"', result)
 
-                    post = urlparse.parse_qs(urlparse.urlparse(u).query)['link'][0]
-                    post = urllib.urlencode({'link': post})
-
-                    url = 'http://player.pubfilm.com/smplayer/plugins/gkphp/plugins/gkpluginsphp.php'
-
-                    url = client.source(url, post=post, headers=headers)
-                    url = json.loads(url)
-
-                    if 'gklist' in url:
-                        url = client.source(u)
-                        url = re.findall('sources\s*:\s*\[(.+?)\]', url)[0]
-                        url = re.findall('"file"\s*:\s*"(.+?)"', url)
-                        url = [i.split()[0].replace('\\/', '/') for i in url]
-                    else:
-                        url = url['link']
-                        url = directstream.google(url)
-                        url = [i['url'] for i in url]
+                    url = [{'url': i[0], 'quality': '1080p'} for i in result if '1080' in i[1]]
+                    url += [{'url': i[0], 'quality': 'HD'} for i in result if '720' in i[1]]
 
                     for i in url:
-                        try: sources.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'provider': 'Pubfilm', 'url': i, 'direct': True, 'debridonly': False})
-                        except: pass
+                        sources.append({'source': 'gvideo', 'quality': i['quality'], 'provider': 'Pubfilm', 'url': i['url'], 'direct': True, 'debridonly': False})
                 except:
                     pass
 

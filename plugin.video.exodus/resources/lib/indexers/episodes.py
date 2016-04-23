@@ -394,6 +394,9 @@ class seasons:
 
         traktCredentials = trakt.getTraktCredentialsInfo()
 
+        try: indicators = playcount.getSeasonIndicators(items[0]['imdb'])
+        except: pass
+
         addonPoster, addonBanner = control.addonPoster(), control.addonBanner()
         addonFanart, settingFanart = control.addonFanart(), control.setting('fanart')
         sysaddon = sys.argv[0]
@@ -426,6 +429,14 @@ class seasons:
                 except: pass
 
                 url = '%s?action=episodes&tvshowtitle=%s&year=%s&imdb=%s&tvdb=%s&season=%s' % (sysaddon, systitle, year, imdb, tvdb, season)
+
+
+                try:
+                    if season in indicators: meta.update({'playcount': 1, 'overlay': 7})
+                    else: meta.update({'playcount': 0, 'overlay': 6})
+                except:
+                    pass
+
 
                 cm = []
 
@@ -1009,7 +1020,7 @@ class episodes:
 
         traktCredentials = trakt.getTraktCredentialsInfo()
 
-        indicators = playcount.getTVShowIndicators()
+        indicators = playcount.getTVShowIndicators(refresh=True)
 
         cacheToDisc = False
 

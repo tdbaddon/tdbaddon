@@ -27,17 +27,13 @@ from resources.lib.modules import client
 
 class source:
     def __init__(self):
-        self.domains = ['afdah.org', 'xmovies8.org', 'putlockerhd.co']
-        self.base_link_1 = 'https://xmovies8.org'
-        self.base_link_2 = 'https://xmovies8.org'
-        self.base_link_3 = 'https://xmovies8.org'
+        self.domains = ['fmovie.co', 'afdah.org', 'xmovies8.org', 'putlockerhd.co']
+        self.base_link = 'https://fmovie.co'
         self.search_link = '/results?q=%s'
 
 
     def movie(self, imdb, title, year):
         try:
-            self.base_link = random.choice([self.base_link_1, self.base_link_2, self.base_link_3])
-
             query = self.search_link % (urllib.quote_plus(title))
             query = urlparse.urljoin(self.base_link, query)
 
@@ -68,9 +64,6 @@ class source:
             sources = []
 
             if url == None: return sources
-
-            self.base_link = random.choice([self.base_link_1, self.base_link_2, self.base_link_3])
-            self.base_link = self.base_link_1
 
             referer = urlparse.urljoin(self.base_link, url)
 

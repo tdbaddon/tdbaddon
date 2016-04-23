@@ -583,7 +583,7 @@ class sources:
 
             q = self.sources[i]['quality']
 
-            try: f = (' | ' + ' | '.join(['[I]%s [/I]' % info.strip() for info in self.sources[i]['info'].split('|')])).replace('[I]HEVC [/I]', 'HEVC')
+            try: f = (' | '.join(['[I]%s [/I]' % info.strip() for info in self.sources[i]['info'].split('|')]))
             except: f = ''
 
             try: d = self.sources[i]['debrid']
@@ -593,9 +593,12 @@ class sources:
             #if not d == '': label = '%02d | [B]%s[/B] | [B]%s[/B] | ' % (int(i+1), p, d)
             else: label = '%02d | [B]%s[/B] | ' % (int(i+1), p)
 
-            if q in ['1080p', 'HD']: label += '%s%s | [B][I]%s [/I][/B]' % (s.rsplit('.', 1)[0], f, q)
-            else: label += '%s%s | [I]%s [/I]' % (s.rsplit('.', 1)[0], f, q)
+            if q in ['1080p', 'HD']: label += '%s | %s | [B][I]%s [/I][/B]' % (s.rsplit('.', 1)[0], f, q)
+            else: label += '%s | %s | [I]%s [/I]' % (s.rsplit('.', 1)[0], f, q)
             label = label.replace('| 0 |', '|').replace(' | [I]0 [/I]', '')
+            label = label.replace('[I]HEVC [/I]', 'HEVC')
+            label = re.sub('\[I\]\s+\[/I\]', ' ', label)
+            label = re.sub('\|\s+\|', '|', label)
 
             self.sources[i]['label'] = label.upper()
 
@@ -801,7 +804,7 @@ class sources:
         except:
             self.hostDict = []
 
-        self.hostprDict = ['oboom.com', 'rapidgator.net', 'rg.to', 'uploaded.net', 'uploaded.to', 'ul.to', 'filefactory.com', 'nitroflare.com', 'turbobit.net']
+        self.hostprDict = ['oboom.com', 'rapidgator.net', 'rg.to', 'uploaded.net', 'uploaded.to', 'ul.to', 'filefactory.com', 'nitroflare.com', 'turbobit.net', 'uploadrocket.net']
 
         self.hostcapDict = ['hugefiles.net', 'kingfiles.net']
 

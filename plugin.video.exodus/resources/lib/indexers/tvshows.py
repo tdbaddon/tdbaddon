@@ -21,6 +21,9 @@
 
 import os,sys,re,json,urllib,urlparse,base64,datetime
 
+try: action = dict(urlparse.parse_qsl(sys.argv[2].replace('?','')))['action']
+except: action = None
+
 from resources.lib.modules import trakt
 from resources.lib.modules import cleantitle
 from resources.lib.modules import cleangenre
@@ -87,13 +90,13 @@ class tvshows:
 
             if u in self.trakt_link and '/users/' in url:
                 try:
-                    if not '/me/' in url: raise Exception()
+                    if not '/users/me/' in url: raise Exception()
                     if trakt.getActivity() > cache.timeout(self.trakt_list, url, self.trakt_user): raise Exception()
                     self.list = cache.get(self.trakt_list, 720, url, self.trakt_user)
                 except:
                     self.list = cache.get(self.trakt_list, 0, url, self.trakt_user)
 
-                if url == self.traktcollection_link:
+                if '/users/me/' in url:
                     self.list = sorted(self.list, key=lambda k: re.sub('(^the |^a )', '', k['title'].lower()))
 
                 if idx == True: self.worker()
@@ -777,7 +780,7 @@ class tvshows:
 
         traktCredentials = trakt.getTraktCredentialsInfo()
 
-        indicators = playcount.getTVShowIndicators()
+        indicators = playcount.getTVShowIndicators(refresh=True) if action == 'tvshows' else playcount.getTVShowIndicators()
 
         addonPoster, addonBanner = control.addonPoster(), control.addonBanner()
         addonFanart, settingFanart = control.addonFanart(), control.setting('fanart')
@@ -853,7 +856,7 @@ class tvshows:
         try:
             url = items[0]['next']
             if url == '': raise Exception()
-            url = '%s?action=tvshows&url=%s' % (sysaddon, urllib.quote_plus(url))
+            url = '%s?action=tvshowPage&url=%s' % (sysaddon, urllib.quote_plus(url))
             addonNext = control.addonNext()
             item = control.item(label=control.lang(30241).encode('utf-8'), iconImage=addonNext, thumbnailImage=addonNext)
             item.addContextMenuItems([], replaceItems=False)

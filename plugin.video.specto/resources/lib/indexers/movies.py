@@ -771,11 +771,15 @@ class movies:
                 plot = client.replaceHTMLCodes(plot)
                 plot = plot.encode('utf-8')
 
+                fanart = 'http://films4u.org/imdb/bgs/'+imdb+'.jpg'
+                fanart = fanart.encode('utf-8')
+
+
                 tagline = re.compile('[.!?][\s]{1,2}(?=[A-Z])').split(plot)[0]
                 try: tagline = tagline.encode('utf-8')
                 except: pass
 
-                self.list.append({'title': title, 'originaltitle': title, 'year': year, 'premiered': '0', 'studio': '0', 'genre': genre, 'duration': duration, 'rating': rating, 'votes': votes, 'mpaa': mpaa, 'director': director, 'writer': '0', 'cast': cast, 'plot': plot, 'tagline': tagline, 'name': name, 'code': imdb, 'imdb': imdb, 'tmdb': '0', 'tvdb': '0', 'tvrage': '0', 'poster': poster, 'banner': '0', 'fanart': '0', 'next': next})
+                self.list.append({'title': title, 'originaltitle': title, 'year': year, 'premiered': '0', 'studio': '0', 'genre': genre, 'duration': duration, 'rating': rating, 'votes': votes, 'mpaa': mpaa, 'director': director, 'writer': '0', 'cast': cast, 'plot': plot, 'tagline': tagline, 'name': name, 'code': imdb, 'imdb': imdb, 'tmdb': '0', 'tvdb': '0', 'tvrage': '0', 'poster': poster, 'banner': '0', 'fanart': fanart, 'next': next})
             except:
                 pass
 
@@ -995,10 +999,11 @@ class movies:
             imdb = imdb.encode('utf-8')
             if not imdb == '0': self.list[i].update({'imdb': imdb, 'code': imdb})
 
+            """
             try:
-                url2 = 'http://webservice.fanart.tv/v3/movies/%s?api_key=%s' % (imdb, self.fanarttv_key)
-                item2 = client.request(url2, timeout='10')
-                item2 = json.loads(item2)
+                #url2 = 'http://webservice.fanart.tv/v3/movies/%s?api_key=%s' % (imdb, self.fanarttv_key)
+                #item2 = client.request(url2, timeout='10')
+                #item2 = json.loads(item2)
                 #control.log("><><><><> ITEM4  %s" % item2['moviebackground'][0]['url'])
 
             except:
@@ -1013,8 +1018,9 @@ class movies:
             except:
                 tmdb = zero
 
+            """
             try:
-                poster = item2['movieposter'][0]['url']
+                poster = item['Poster']
                 if poster == '' or poster == None: poster = '0'
                 #if not poster == '0': poster = '%s%s' % (self.tmdb_poster, poster)
                 poster = poster.encode('utf-8')
@@ -1022,6 +1028,7 @@ class movies:
             except:
                 poster = zero
 
+            """
             try:
                 fanart = item2['moviebackground'][0]['url']
                 if fanart == '' or fanart == None: fanart = '0'
@@ -1030,7 +1037,19 @@ class movies:
                 if not fanart == '0' and self.list[i]['fanart'] == '0': self.list[i].update({'fanart': fanart})
             except:
                 fanart = zero
+            """
 
+            try:
+                if not imdb == '0':
+                    fanart = 'http://films4u.org/imdb/bgs/'+imdb+'.jpg'
+                    fanart= fanart.encode('utf-8')
+
+                else:
+                    fanart = zero
+            except:
+                fanart = zero
+
+            #    http://fanart.filmkodi.com/tt0006333.jpg
             try:
                 premiered = item['Released']
                 premiered = re.compile('(\d{4}-\d{2}-\d{2})').findall(premiered)[0]
@@ -1118,8 +1137,8 @@ class movies:
             if not director == '0': self.list[i].update({'director': director})
 
             #self.meta.append({'imdb': imdb, 'tmdb': tmdb, 'tvdb': '0', 'lang': self.info_lang, 'item': {'code': imdb, 'imdb': imdb, 'tmdb': tmdb, 'poster': poster, 'fanart': fanart, 'premiered': premiered, 'studio': studio, 'genre': genre, 'duration': duration, 'rating': rating, 'votes': votes, 'mpaa': mpaa, 'director': director, 'writer': writer, 'cast': cast, 'plot': plot, 'tagline': tagline}})
-            self.meta.append({'imdb': imdb, 'tmdb': tmdb, 'tvdb': '0', 'lang': self.info_lang, 'item': {'code': imdb, 'imdb': imdb, 'tmdb': tmdb, 'poster': poster, 'fanart': fanart, 'premiered': premiered, 'studio': studio, 'genre': genre, 'duration': duration, 'rating': rating, 'votes': votes, 'mpaa': mpaa, 'director': director, 'writer': writer, 'cast': cast, 'plot': plot, 'tagline': zero}})
-            #control.log("><><><><> ITEM META IMDB %s" % imdb)
+            self.meta.append({'imdb': imdb, 'tmdb': '0', 'tvdb': '0', 'lang': self.info_lang, 'item': {'code': imdb, 'imdb': imdb, 'tmdb': '0', 'poster': poster, 'fanart': fanart, 'premiered': premiered, 'studio': studio, 'genre': genre, 'duration': duration, 'rating': rating, 'votes': votes, 'mpaa': mpaa, 'director': director, 'writer': writer, 'cast': cast, 'plot': plot, 'tagline': zero}})
+            control.log("><><><><> ITEM META IMDB %s" % imdb)
 
         except:
             pass

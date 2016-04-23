@@ -43,13 +43,12 @@ class source:
             result = json.loads(result)['results']
 
             title = cleantitle.get(title)
-            years = ['(%s)' % str(year)]
 
             result = [(i['url'], i['titleNoFormatting']) for i in result]
-            result = [(i[0], re.compile('(^Watch Full "|^Watch |)(.+? [(]\d{4}[)])').findall(i[1])) for i in result]
-            result = [(i[0], i[1][0][-1]) for i in result if len(i[1]) > 0]
-            result = [i for i in result if title == cleantitle.get(i[1])]
-            result = [i[0] for i in result if any(x in i[1] for x in years)][0]
+            result = [(i[0], re.findall('(?:^Watch Full "|^Watch |)(.+?)\((\d{4})', i[1])) for i in result]
+            result = [(i[0], i[1][0][0], i[1][0][1]) for i in result if len(i[1]) > 0]
+            result = [i for i in result if title == cleantitle.get(i[1]) and year == i[2]]
+            result = result[0][0]
 
             url = urlparse.urljoin(self.base_link, result)
             url = urlparse.urlparse(url).path

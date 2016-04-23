@@ -226,9 +226,30 @@ def getActivity():
         pass
 
 
+def getWatchedActivity():
+    try:
+        result = getTrakt('/sync/last_activities')
+        i = json.loads(result)
+
+        activity = []
+        activity.append(i['movies']['watched_at'])
+        activity.append(i['episodes']['watched_at'])
+        activity = [int(cleandate.iso_2_utc(i)) for i in activity]
+        activity = sorted(activity, key=int)[-1]
+
+        return activity
+    except:
+        pass
+
+
 def cachesyncMovies(timeout=0):
     indicators = cache.get(syncMovies, timeout, control.setting('trakt.user').strip(), table='trakt')
     return indicators
+
+
+def timeoutsyncMovies():
+    timeout = cache.timeout(syncMovies, control.setting('trakt.user').strip(), table='trakt')
+    return timeout
 
 
 def syncMovies(user):
@@ -248,6 +269,11 @@ def cachesyncTVShows(timeout=0):
     return indicators
 
 
+def timeoutsyncTVShows():
+    timeout = cache.timeout(syncTVShows, control.setting('trakt.user').strip(), table='trakt')
+    return timeout
+
+
 def syncTVShows(user):
     try:
         if getTraktCredentialsInfo() == False: return
@@ -255,6 +281,18 @@ def syncTVShows(user):
         indicators = json.loads(indicators)
         indicators = [(i['show']['ids']['tvdb'], i['show']['aired_episodes'], sum([[(s['number'], e['number']) for e in s['episodes']] for s in i['seasons']], [])) for i in indicators]
         indicators = [(str(i[0]), int(i[1]), i[2]) for i in indicators]
+        return indicators
+    except:
+        pass
+
+
+def syncSeason(imdb):
+    try:
+        if getTraktCredentialsInfo() == False: return
+        indicators = getTrakt('/shows/%s/progress/watched?specials=false&hidden=false' % imdb)
+        indicators = json.loads(indicators)['seasons']
+        indicators = [(i['number'], [x['completed'] for x in i['episodes']]) for i in indicators]
+        indicators = ['%01d' % int(i[0]) for i in indicators if not False in i[1]]
         return indicators
     except:
         pass

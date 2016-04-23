@@ -142,3 +142,9 @@ ver 0.41:
 	
 ver 0.42:
 	- bugfixes
+	
+ver 0.43:
+	- bugfixes
+	
+ver 0.44:
+	- fixed xrxs

@@ -68,6 +68,9 @@ http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_18
 #EXTINF:0,Fox Sports 1 
 http://ooyalahd2-f.akamaihd.net/i/eslax17_delivery@349499/master.m3u8
 
+#EXTINF:0,Fox Sports 1 
+http://62.210.162.88:80/live/SPORT162/14751042016/2068.ts
+
 #EXTINF:0,Fox Sports 2 
 0
 
@@ -201,19 +204,19 @@ http://sacapunta.eltelon.com/channels/redbulltv/playlist.m3u8
 0
 
 #EXTINF:0,Sky Sports 1 
-0
+http://62.210.162.88:80/live/SPORT162/14751042016/2147.ts
 
 #EXTINF:0,Sky Sports 2 
-0
+http://62.210.162.88:80/live/SPORT162/14751042016/2146.ts
 
 #EXTINF:0,Sky Sports 3 
-0
+http://62.210.162.88:80/live/SPORT162/14751042016/2148.ts
 
 #EXTINF:0,Sky Sports 4 
-0
+http://62.210.162.88:80/live/SPORT162/14751042016/2149.ts
 
 #EXTINF:0,Sky Sports 5 
-0
+http://62.210.162.88:80/live/SPORT162/14751042016/2150.ts
 
 #EXTINF:0,Sky Sports F1 
 0
@@ -238,6 +241,9 @@ rtmp://185.63.255.60:80/live playpath=sprt1 swfUrl=http://p.jwpcdn.com/6/12/jwpl
 
 #EXTINF:0,Sportsnet One 
 rtmp://31.220.2.149:80/live playpath=sprt1 swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf pageUrl=http://yotv.co/embedu.php?live=sprt1&vw=620&vh=490 token=%Zrey(nKa@#Z
+
+#EXTINF:0,Sportsnet One 
+http://62.210.162.88:80/live/SPORT162/14751042016/2063.ts
 
 #EXTINF:0,Sportsnet Ontario 
 rtmp://185.63.255.60:80/live playpath=ontrio swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf live=1 pageUrl=http://yotv.co/embedu.php?live=ontrio&vw=620&vh=490 token=%Zrey(nKa@#Z timeout=13
@@ -295,6 +301,9 @@ rtmp://185.63.255.60:80/live playpath=tsnx2 swfUrl=http://p.jwpcdn.com/6/12/jwpl
 
 #EXTINF:0,VS Versus 
 http://208.92.36.158/ipad/live/nba_ipad_1240.m3u8
+
+#EXTINF:0,VS Versus 
+http://62.210.162.88:80/live/SPORT162/14751042016/1836.ts
 
 #EXTINF:0,Wild TV
 0

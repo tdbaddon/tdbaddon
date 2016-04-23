@@ -1,4 +1,9 @@
 ------------------------
+Specto v2016.04.20.1
+------------------------
+Fix muchmoovies - small source fix
+
+------------------------
 Specto v2016.03.26.1
 ------------------------
 Fix marked as watched - Metahandler

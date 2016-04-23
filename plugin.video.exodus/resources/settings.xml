@@ -42,7 +42,9 @@
 		<setting id="provider.watchfree" type="bool" label="Watchfree" default="true" />
 		<setting id="provider.directdl" type="bool" label="DirectDL" default="true" />
 		<setting id="provider.ddlvalley" type="bool" label="DDLvalley" default="true" />
-		<setting id="provider.mvlinks" type="bool" label="MVlinks" default="true" />
+		<setting id="provider.twoddl" type="bool" label="twoDDL" default="true" />
+		<setting id="provider.rlsbb" type="bool" label="rlsBB" default="true" />
+		<setting id="provider.hevcmovies" type="bool" label="HEVCmovies" default="true" />
 		<setting id="provider.watch1080" type="bool" label="Watch1080" default="true" />
 		<setting id="provider.onemovies" type="bool" label="Onemovies" default="true" />
 		<setting id="provider.ninemovies" type="bool" label="Ninemovies" default="true" />

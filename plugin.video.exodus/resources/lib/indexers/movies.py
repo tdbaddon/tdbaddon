@@ -93,13 +93,13 @@ class movies:
             if u in self.trakt_link and '/users/' in url:
                 try:
                     if url == self.trakthistory_link: raise Exception()
-                    if not '/me/' in url: raise Exception()
+                    if not '/users/me/' in url: raise Exception()
                     if trakt.getActivity() > cache.timeout(self.trakt_list, url, self.trakt_user): raise Exception()
                     self.list = cache.get(self.trakt_list, 720, url, self.trakt_user)
                 except:
                     self.list = cache.get(self.trakt_list, 0, url, self.trakt_user)
 
-                if url == self.traktcollection_link:
+                if '/users/me/' in url:
                     self.list = sorted(self.list, key=lambda k: re.sub('(^the |^a )', '', k['title'].lower()))
 
                 if idx == True: self.worker()
@@ -785,7 +785,7 @@ class movies:
 
         traktCredentials = trakt.getTraktCredentialsInfo()
 
-        indicators = playcount.getMovieIndicators()
+        indicators = playcount.getMovieIndicators(refresh=True) if action == 'movies' else playcount.getMovieIndicators()
 
         cacheToDisc = False if not action == 'movieSearch' else True
 
@@ -836,6 +836,7 @@ class movies:
                 except:
                     pass
 
+
                 cm = []
 
                 cm.append((playbackMenu, 'RunPlugin(%s?action=alterSources&url=%s&meta=%s)' % (sysaddon, sysurl, sysmeta)))
@@ -874,7 +875,7 @@ class movies:
         try:
             url = items[0]['next']
             if url == '': raise Exception()
-            url = '%s?action=movies&url=%s' % (sysaddon, urllib.quote_plus(url))
+            url = '%s?action=moviePage&url=%s' % (sysaddon, urllib.quote_plus(url))
             addonNext = control.addonNext()
             item = control.item(label=control.lang(30213).encode('utf-8'), iconImage=addonNext, thumbnailImage=addonNext)
             item.addContextMenuItems([], replaceItems=True)

@@ -47,9 +47,8 @@ class source:
                 result = json.loads(result)['results']
 
                 r = [(i['url'], i['titleNoFormatting']) for i in result]
-                r = [(i[0], re.compile('(^Watch Full "|^Watch |)(.+)').findall(i[1])) for i in r]
-                r = [(i[0], i[1][0][-1]) for i in r if len(i[1]) > 0]
-                r = [(i[0], i[1].rsplit(' For Free On 123Movies', 1)[0].rsplit('On 123Movies', 1)[0]) for i in r]
+                r = [(i[0], re.findall('(?:^Watch Full "|^Watch |)(.+?)(?:For Free On 123Movies|On 123Movies|$)', i[1])) for i in r]
+                r = [(i[0], i[1][0]) for i in r if len(i[1]) > 0]
                 r = [(re.sub('http.+?//.+?/','', i[0]), i[1]) for i in r]
                 r = [('/'.join(i[0].split('/')[:2]), i[1]) for i in r]
                 r = [x for y,x in enumerate(r) if x not in r[:y]]
@@ -112,9 +111,9 @@ class source:
                 result = json.loads(result)['results']
 
                 r = [(i['url'], i['titleNoFormatting']) for i in result]
-                r = [(i[0], re.compile('(^Watch Full "|^Watch |)(.+)').findall(i[1])) for i in r]
-                r = [(i[0], i[1][0][-1]) for i in r if len(i[1]) > 0]
-                r = [(i[0], re.compile('(.+?) - Season (\d*)').findall(i[1])) for i in r]
+                r = [(i[0], re.findall('(?:^Watch Full "|^Watch |)(.+)', i[1])) for i in r]
+                r = [(i[0], i[1][0]) for i in r if len(i[1]) > 0]
+                r = [(i[0], re.findall('(.+?) - Season (\d*)', i[1])) for i in r]
                 r = [(i[0], i[1][0][0], i[1][0][1]) for i in r if len(i[1]) > 0]
                 r = [(re.sub('http.+?//.+?/','', i[0]), i[1], i[2]) for i in r]
                 r = [('/'.join(i[0].split('/')[:2]), i[1], i[2]) for i in r]
@@ -137,7 +136,7 @@ class source:
                 r = client.parseDOM(result, 'div', attrs = {'class': 'ml-item'})
                 r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', ret='title')) for i in r]
                 r = [(i[0][0], i[1][-1]) for i in r if len(i[0]) > 0 and len(i[1]) > 0]
-                r = [(i[0], re.compile('(.+?) - Season (\d*)').findall(i[1])) for i in r]
+                r = [(i[0], re.findall('(.+?) - Season (\d*)', i[1])) for i in r]
                 r = [(i[0], i[1][0][0], i[1][0][1]) for i in r if len(i[1]) > 0]
                 r = [(re.sub('http.+?//.+?/','', i[0]), i[1], i[2]) for i in r]
                 r = [('/'.join(i[0].split('/')[:2]), i[1], i[2]) for i in r]

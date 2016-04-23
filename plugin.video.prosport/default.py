@@ -771,6 +771,8 @@ def Xrxs(home, away):
 			if home.lower() in el.lower() and away.lower() in el.lower():
 				links = common.parseDOM(el, "a", ret="href")
 				for link in links:
+					if 'http://xrxs.net' not in link:
+						link = 'http://xrxs.net/nhl/'+link
 					if 'HOME' in link:
 						title = re.findall('(HOME.+?\.m3u8)',link)[0].replace('.m3u8','')
 						addDirectLink(title, {'Title': away+' @ '+home}, link)
@@ -1157,6 +1159,9 @@ def Universal(url):
 			if 'sawlive' in link:
 				lnk = sawresolve(link)
 				return lnk
+	if 'sawlive' in url:
+		lnk = sawresolve(link)
+		return lnk
 	if 'streamup' in url:
 		if 'm3u8' in url:
 			return url
@@ -1207,6 +1212,17 @@ def Universal(url):
 		id = id.split('";')[0]
 		link = hdcast(id)
 		return link
+	elif html and 'sostart.pw' in html and 'fid=' in html:
+		id = html.split('fid="')[-1]
+		id = id.split('";')[0]
+		url = 'http://www.sostart.pw/jwplayer6.php?channel='+id
+		link = sostart(url)
+		return link
+	elif html and 'sawlive.tv' in html:
+		url = re.compile('//(.+?)/(?:embed|v)/([0-9a-zA-Z-_]+)').findall(html)[0]
+		url = 'http://%s/embed/%s' % (url[0], url[1])
+		link = sawresolve(url)
+		return link
 	elif html and '.m3u8' in html:
 		link = re.findall('(http://.+?\.m3u8)',html)[0]
 		return link
@@ -1233,72 +1249,64 @@ def Universal(url):
 				else:
 					Universal(url)
 
-
+	
 def sawresolve(url):
 	try:
 		page = re.compile('//(.+?)/(?:embed|v)/([0-9a-zA-Z-_]+)').findall(url)[0]
 		page = 'http://%s/embed/%s' % (page[0], page[1])
-		try: 
-			referer = urlparse.parse_qs(urlparse.urlparse(url).query)['referer'][0]
-		except: 
-			referer = url
-		ch = url.split("/")[-1]
-		request = urllib2.Request(url)
-		request.add_header('Referer', referer)
-		request.add_header('User-Agent','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36')
-		response = urllib2.urlopen(request, timeout=5)
-		result = response.read()
+		try: referer = urlparse.parse_qs(urlparse.urlparse(url).query)['referer'][0]
+		except: referer = page
+		try: host = urlparse.parse_qs(urlparse.urlparse(url).query)['host'][0]
+		except: host = 'sawlive.tv'
+		result = GetURL(url, referer=referer)
 		url = common.parseDOM(result, 'iframe', ret='src')[-1]
-		url = url.replace(' ', '').split("'")[0]
-		sw = re.compile("sw='(.+?)'").findall(str(result))
-		if not sw:
-			sw = re.compile("ch='(.+?)'").findall(str(result))
-		url = url+'/'+ch+'/'+sw[0]
+		url = url.replace(' ', '').replace('+','')
+		var = re.compile('var\s(.+?)\s*=\s*[\'\"](.+?)[\'\"]').findall(result)
+		for i in range(100):
+			for v in var: result = result.replace(" %s " % v[0], ' %s '%v[1])
+		var = re.compile('var\s(.+?)\s*=\s*[\'\"](.+?)[\'\"]').findall(result)
+		var_dict = dict(var)
+		for v in var:
+			if '+' in v[1]:
+				ss = v[1].rstrip('+').replace('"+','').split('+')
+				sg = v[1].rstrip('+').replace('"+','')
+				for s in ss:
+					sg = sg.replace(s, var_dict[s])
+				var_dict[v[0]]=sg.replace('+','')       
+		for i in range(100):
+			for v in var_dict.keys(): url = url.replace("'%s'" % v, var_dict[v])
+			for v in var_dict.keys(): url = url.replace("(%s)" % v, "(%s)" % var_dict[v])
+		result = GetURL(url, referer = referer)
+		var = re.compile('var\s(.+?)\s*=\s*[\'\"](.+?)[\'\"]').findall(result)
+		var_dict = dict(var)       
+		file = re.compile("'file'\s*(.+?)\)").findall(result)[0]
+		file = file.replace('\'','')
+		for v in var_dict.keys():
+			file = file.replace(v,var_dict[v])
+		file = file.replace('+','').replace(',','').strip()
 		try:
-			url = url.replace('watch//', 'watch/')
-		except:
-			pass
-		request = urllib2.Request(url)
-		request.add_header('User-Agent','Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36')
-		response = urllib2.urlopen(request, timeout=5)
-		result = response.read()
-		file = re.compile("'file'.+?'(.+?)'").findall(result)
-		if file:
-			file = file[0]
-		else:
-			file = result.split("'file', ")[-1].split(");")[0].replace("'","").replace('unescape(','')
-		if 'http' in file:
-			if 'm3u8' in file:
-				return file
+			if not file.startswith('http'): raise Exception()
 			request = urllib2.Request(file)
 			request.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
 			request.add_header('Referer', file)
 			response = urllib2.urlopen(request, timeout=5)
 			url = response.geturl()
-			url += '|%s' % urllib.urlencode({'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36', 'Referer': file})
+			if not '.m3u8' in url: raise Exception()
+			url += '|%s' % urllib.urlencode({'User-Agent': 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3', 'Referer': file})
 			return url
-		else:
-			file = urllib.unquote(file)
-			strm = re.compile("'streamer'.+?'(.+?)'").findall(result)
-			if strm:
-				strm = strm[0]
-				if 'skin' in strm:
-					strm = re.findall('(rtmp://.+?sh)',result)[0]
-			else:
-				strm = result.split("'streamer', ")[-1].split(");")[0].replace("'","").replace('unescape(','')
-			strm = urllib.unquote(strm)
-			swf = re.compile("SWFObject\('(.+?)'").findall(result)[0]
-			if '+' in file:
-				flile = result.split("flile = '")[-1].split("';")[0].replace("'","").replace('unescape(','')
-				flile = urllib.unquote(flile)
-				tkta = result.split("tkta = '")[-1].split("';")[0].replace("'","").replace('unescape(','')
-				tkta = urllib.unquote(tkta)
-				file = flile+'?'+tkta
-			url = '%s playpath=%s swfUrl=%s pageUrl=%s live=1 timeout=40' % (strm, file, swf, url)
-			return url
+		except:
+			pass
+		strm = re.compile("'streamer'\s*(.+?)\)").findall(result)[0]
+		strm = strm.replace('\'','')
+		for v in var_dict.keys():
+			strm = strm.replace(v,var_dict[v])
+		strm = strm.replace('+','').replace(',','').strip()
+		swf = re.compile("SWFObject\('(.+?)'").findall(result)[0]
+		url = '%s playpath=%s swfUrl=%s pageUrl=%s live=1 timeout=60' % (strm, file, swf, url)
+		url = urllib.unquote(url).replace('unescape(','')
+		return url
 	except:
 		return None
-
 
 def castup(id):
 	try:
@@ -1427,6 +1435,19 @@ def rocktv(id):
 		token = re.findall('securetoken\s*:\s*(?:\'|\")(.+?)(?:\'|\")',result)[0]
 		rtmp = re.findall('file\s*:\s*(?:\'|\")(.+?)(?:\'|\")',result)[0]
 		url = rtmp + ' swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf live=1 flashver=WI/2020,0,0,286 token='  + token + ' timeout=14 swfVfy=1 pageUrl=' + url
+		return url
+	except:
+		return None
+		
+def sostart(url):
+	try:
+		try:
+			referer = urlparse.parse_qs(urlparse.urlparse(url).query)['referer'][0]
+		except:
+			referer=url
+		result = GetURL(url, referer=referer)
+		rtmp = re.findall('.*?[\'"]?file[\'"]?[:,]\s*[\'"]([^\'"]+)[\'"].*',result)[0]
+		url = rtmp+' swfUrl=http://sostart.org/jw/jwplayer.flash.swf flashver=WI/2020,0,0,286 token=SECURET0KEN#yw%.?()@W! live=1 timeout=14 swfVfy=1 pageUrl='+url
 		return url
 	except:
 		return None
