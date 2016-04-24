@@ -2,7 +2,6 @@
 
 '''
     Phoenix Add-on
-    Copyright (C) 2016 Phoenix
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -47,7 +46,6 @@ try:
     fanart = params['fanart']
 except:
     fanart = None
-
 
 
 if action == None:
@@ -150,53 +148,41 @@ elif action == 'kickinradiocats':
     from resources.lib.indexers import phradios
     phradios.kickinradiocats(url)
 
-elif action == 'cartoon':
+elif action == 'phtoons.root' or action == 'cartoon':
     from resources.lib.indexers import phtoons
-    phtoons.cartoon()
-   
-elif action == 'CartoonCrazy':
-    from resources.lib.indexers import phtoons
-    phtoons.CartoonCrazy(image, fanart)
+    phtoons.indexer().root()
 
-elif action == 'CCsearch':
+elif action == 'phtoons.cartoons':
     from resources.lib.indexers import phtoons
-    phtoons.CCsearch(url, image, fanart)
+    phtoons.indexer().cartoons(url)
 
-elif action == 'CCcat':
+elif action == 'phtoons.cartoongenres':
     from resources.lib.indexers import phtoons
-    phtoons.CCcat(url, image, fanart)
+    phtoons.indexer().cartoongenres()
 
-elif action == 'CCpart':
+elif action == 'phtoons.cartoonstreams':
     from resources.lib.indexers import phtoons
-    phtoons.CCpart(url, image, fanart)
+    phtoons.indexer().cartoonstreams(url, image, fanart)
 
-elif action == 'CCstream':
+elif action == 'phtoons.cartoonplay':
     from resources.lib.indexers import phtoons
-    phtoons.CCstream(url)
+    phtoons.indexer().cartoonplay(url)
 
-elif action == 'AnimeCrazy':
+elif action == 'phtoons.anime':
     from resources.lib.indexers import phtoons
-    phtoons.AnimeCrazy(image, fanart)
+    phtoons.indexer().anime(url)
 
-elif action == 'ACsearch':
+elif action == 'phtoons.animegenres':
     from resources.lib.indexers import phtoons
-    phtoons.ACsearch(url, image, fanart)
+    phtoons.indexer().animegenres()
 
-elif action == 'AClast':
+elif action == 'phtoons.animestreams':
     from resources.lib.indexers import phtoons
-    phtoons.AClast(url, image, fanart)
+    phtoons.indexer().animestreams(url, image, fanart)
 
-elif action == 'ACcat':
+elif action == 'phtoons.animeplay':
     from resources.lib.indexers import phtoons
-    phtoons.ACcat(url, image, fanart)
-
-elif action == 'ACpart':
-    from resources.lib.indexers import phtoons
-    phtoons.ACpart(url, image, fanart)
-
-elif action == 'ACstream':
-    from resources.lib.indexers import phtoons
-    phtoons.ACstream(url)
+    phtoons.indexer().animeplay(url)
 
 elif action == 'nhlDirectory':
     from resources.lib.indexers import nhlcom

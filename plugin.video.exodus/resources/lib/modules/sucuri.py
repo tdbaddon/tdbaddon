@@ -25,23 +25,19 @@ from resources.lib.modules import cache
 from resources.lib.modules import client
 
 
-def request(url, timeout='30'):
+def headers(url, timeout='30'):
     try:
         u = '%s://%s' % (urlparse.urlparse(url).scheme, urlparse.urlparse(url).netloc)
 
         h = cache.get(sucuri, 168, u, timeout)
         if h == None:
             h = cache.get(sucuri, 0, u, timeout)
+        if h == None:
+            h = {}
 
-        result = client.request(url, headers=h, timeout=timeout)
-        return result
+        return h
     except:
         return
-
-
-def source(url, timeout='30'):
-    return request(url, timeout)
-
 
 def sucuri(url, timeout):
     try:

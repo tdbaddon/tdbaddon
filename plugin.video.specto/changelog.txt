@@ -1,4 +1,12 @@
 ------------------------
+Specto v2016.04.23.1
+------------------------
+Fix scraper - beter handling cloudflare for 1080p sites
+Added Sources:
+    - Pelispedia
+    - rainierland
+
+------------------------
 Specto v2016.04.20.1
 ------------------------
 Fix muchmoovies - small source fix

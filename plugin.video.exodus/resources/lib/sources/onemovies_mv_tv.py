@@ -28,8 +28,8 @@ from resources.lib.modules import client
 
 class source:
     def __init__(self):
-        self.domains = ['123movies.to']
-        self.base_link = 'http://123movies.to'
+        self.domains = ['123movies.to', '123movies.ru']
+        self.base_link = 'http://123movies.ru'
         self.info_link = '/ajax/movie_load_info/%s'
         self.search_link = 'aHR0cHM6Ly93d3cuZ29vZ2xlYXBpcy5jb20vY3VzdG9tc2VhcmNoL3YxZWxlbWVudD9rZXk9QUl6YVN5Q1ZBWGlVelJZc01MMVB2NlJ3U0cxZ3VubU1pa1R6UXFZJnJzej1maWx0ZXJlZF9jc2UmbnVtPTEwJmhsPWVuJmN4PTAwMDc0NjAzOTU3ODI1MDQ0NTkzNTp1a2lqdGJvbm1jNCZnb29nbGVob3N0PXd3dy5nb29nbGUuY29tJnE9JXM='
         self.search2_link = '/movie/search/%s'
@@ -177,7 +177,7 @@ class source:
             if url == None: return sources
 
             url = urlparse.urljoin(self.base_link, url)
-            url = url.replace('/watching.html', '')
+            url = referer = url.replace('/watching.html', '')
 
             content = re.compile('(.+?)\?episode=\d*$').findall(url)
             content = 'movie' if len(content) == 0 else 'episode'
@@ -213,14 +213,19 @@ class source:
                 b = [re.findall('(.+?)-(.+)', i) for i in b]
                 r += [('99', i[0][1], i[0][0], '720') for i in b if len(i) > 0]
 
-            links = []
-            links += [('movie/load_episode/%s/%s' % (i[2], i[1]), True, 'gvideo') for i in r if 2 <= int(i[0]) <= 11]
-            links += [('movie/load_episode/%s/%s' % (i[2], i[1]), True, 'cdn') for i in r if i[0] == '99']
-            links += [('movie/loadEmbed/%s/%s' % (i[2], i[1]), False, 'videowood.tv') for i in r if i[0] == '12']
-            #links += [('movie/loadEmbed/%s/%s' % (i[2], i[1]), False, 'videomega.tv') for i in r if i[0] == '13']
-            links += [('movie/loadEmbed/%s/%s' % (i[2], i[1]), False, 'openload.co') for i in r if i[0] == '14']
 
-            for i in links: sources.append({'source': i[2], 'quality': quality, 'provider': 'Onemovies', 'url': i[0], 'direct': i[1], 'debridonly': False})
+            direct_link = '/ajax/load_episode/%s/%s'
+
+            embed_link = '/ajax/load_embed/%s/%s'
+
+            links = []
+            links += [{'source': 'gvideo', 'url': direct_link % (i[2], i[1]), 'direct': True} for i in r if 2 <= int(i[0]) <= 11]
+            links += [{'source': 'cdn', 'url': direct_link % (i[2], i[1]), 'direct': True} for i in r if i[0] == '99']
+            links += [{'source': 'openload.co', 'url': embed_link % (i[2], i[1]), 'direct': False} for i in r if i[0] == '14']
+            links += [{'source': 'videomega.tv', 'url': embed_link % (i[2], i[1]), 'direct': False} for i in r if i[0] == '13']
+            links += [{'source': 'videowood.tv', 'url': embed_link % (i[2], i[1]), 'direct': False} for i in r if i[0] == '12']
+
+            for i in links: sources.append({'source': i['source'], 'quality': quality, 'provider': 'Onemovies', 'url': i['url'], 'direct': i['direct'], 'debridonly': False})
 
             return sources
         except:

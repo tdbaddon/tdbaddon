@@ -28,7 +28,7 @@ from resources.lib.modules import proxy
 
 class source:
     def __init__(self):
-        self.domains = ['movie25.ph']
+        self.domains = ['movie25.ph', 'movie25.hk']
         self.base_link = 'http://movie25.ph'
         #self.search_link = 'http://movie25.ph/ad_search.php?q=%s&year_from=%s&year_to=%s&section=2&ad_search=Search'
         self.search_link = 'http://movie25.ph/search.php?q=%s'

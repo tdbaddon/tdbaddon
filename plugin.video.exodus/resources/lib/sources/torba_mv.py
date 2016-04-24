@@ -44,7 +44,7 @@ class source:
 
             title = cleantitle.get(title)
 
-            result = client.parseDOM(result, 'li', attrs = {'class': 'films-item'})
+            result = client.parseDOM(result, 'li', attrs = {'class': 'films-item.+?'})
             result = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'div', attrs = {'class': 'films-item-title'}), client.parseDOM(i, 'div', attrs = {'class': 'films-item-year'})) for i in result]
             result = [(i[0][0], i[1][0], i[2][0]) for i in result if len(i[0]) > 0 and len(i[1]) > 0 and len(i[2]) > 0]
             result = [(i[0], re.sub('<.+?>|</.+?>', '', i[1]), re.sub('<.+?>|</.+?>', '', i[2])) for i in result]
@@ -69,7 +69,7 @@ class source:
 
             result = client.source(url)
 
-            url = client.parseDOM(result, 'a', ret='href', attrs = {'class': 'video-play'})[0]
+            url = client.parseDOM(result, 'a', ret='href', attrs = {'class': 'video-play.+?'})[0]
             url = re.findall('(?://|\.)streamtorrent\.tv/.+?/([0-9a-zA-Z/]+)', url)[0]
             url = 'https://streamtorrent.tv/api/torrent/%s.json' % url
 

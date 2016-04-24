@@ -1,3 +1,7 @@
+[B]3.0.5[/B]
+Updated indexers
+Updated scrapers
+
 [B]3.0.4[/B]
 Updated scrapers
 

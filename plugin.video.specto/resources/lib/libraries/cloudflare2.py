@@ -26,13 +26,9 @@ import re
 import urllib2
 import urllib
 import urlparse
-#import log_utils
-from resources.lib.libraries import control
-
+#import xbmc
 import time
-
-USER_AGENT = "Mozilla/5.0 (compatible, MSIE 11, Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko"
-
+from resources.lib.libraries import control
 
 MAX_TRIES = 3
 
@@ -51,7 +47,7 @@ def solve_equation(equation):
         pass
 
 def solve(url, cj, user_agent=None, wait=True):
-    if user_agent is None: user_agent = USER_AGENT
+    if user_agent is None: user_agent = control.USER_AGENT
     headers = {'User-Agent': user_agent, 'Referer': url}
     if cj is not None:
         try: cj.load(ignore_discard=True)

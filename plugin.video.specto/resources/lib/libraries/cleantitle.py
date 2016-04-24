@@ -43,6 +43,11 @@ def query(title):
     title = title.replace('\'', '').rsplit(':', 1)[0]
     return title
 
+def query2(title):
+    if title == None: return
+    title = title.replace('\'', '').replace('-','')
+    return title
+
 def normalize(title):
     try:
         try: return title.decode('ascii').encode("utf-8")

@@ -59,9 +59,7 @@
 		<setting id="furk" type="bool" label="Furk" default="false" />
 		<setting id="pelispedia" type="bool" label="Pelispedia" default="true" />
 		<setting id="fmovies" type="bool" label="9movies" default="true" />
-
-
-
+		<setting id="rainierland" type="bool" label="Rainierland" default="true" />
 	</category>
 	<category label="30861">
 		<setting id="alluc_tv" type="bool" label="Alluc" default="true" />
@@ -210,5 +208,8 @@
         <setting id="trakt_refresh_token" type="text" default="" visible="false"/>
         <setting id="trakt_refresh_time" type="number" default="0" visible="false"/>
     </category>
+
+	<setting id="current_ua" type="text" visible="false"/>
+    <setting id="last_ua_create" type="number" default="0" visible="false"/>
 
 </settings>

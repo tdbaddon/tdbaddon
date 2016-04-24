@@ -163,7 +163,8 @@ class source:
 
             for i in links:
                 try:
-                    url = client.parseDOM(i, 'a', ret='href')[0]
+                    url = client.parseDOM(i, 'a', ret='href')
+                    url = [x for x in url if 'gtfo' in x][-1]
                     url = urlparse.parse_qs(urlparse.urlparse(url).query)['gtfo'][0]
                     url = base64.b64decode(url)
                     url = client.replaceHTMLCodes(url)

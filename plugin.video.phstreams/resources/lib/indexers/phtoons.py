@@ -2,8 +2,6 @@
 
 '''
     Phoenix Add-on
-    Copyright (C) 2015 Blazetamer
-    Copyright (C) 2015 lambda
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -20,427 +18,587 @@
 '''
 
 
-import xbmc
-import re,sys,urllib,urllib2,urlparse,random,base64
+import urlparse,urllib,random,re,os,sys
+try: import xbmc
+except: pass
+
 from resources.lib.modules import control
-from resources.lib.modules import client
 from resources.lib.modules import cloudflare
-from resources.lib.modules import directstream
+from resources.lib.modules import client
+from resources.lib.modules import cache
 
 
-cartoonArt = 'http://phoenixtv.offshorepastebin.com/art/cartoon/art%s.png'
-animeArt = 'http://phoenixtv.offshorepastebin.com/art/anime/art%s.png'
+class indexer:
+    def __init__(self):
+        self.list = []
+
+        self.cartoons_link = 'http://cartoons8.co'
+        self.newcartoons_link = '/top/?filter=newest&req=cartoons'
+        self.topcartoons_link = '/top/?filter=mostviewed&req=cartoons'
+        self.cartoongenres_link = '/genres/%s/1/?filter=mostviewed&req=cartoons'
+        self.cartoonsearch_link = '/search/?s=%s'
+
+        self.cartoons_image = 'http://phoenixtv.offshorepastebin.com/art/cartoon/art%s.png'
+        self.cartoons_fanart = 'http://phoenixtv.offshorepastebin.com/art/cartoon/fanart.jpg'
+
+        self.anime_link = 'http://www.animedreaming.tv'
+        self.newanime_link = '/latest-anime-episodes/'
+        self.animegenres_link = '/genres/%s/?filter=newest&req=anime'
+        self.animeimage_link = '/anime-images-big/%s.jpg'
+        self.animesearch_link = '/search.php?searchquery=%s'
+
+        self.anime_image = 'http://phoenixtv.offshorepastebin.com/art/anime/art%s.png'
+        self.anime_fanart = 'http://phoenixtv.offshorepastebin.com/art/anime/fanart.jpg'
 
 
-def cartoon():
-    addDirectoryItem('Cartoon Search', 'CCsearch', '0', cartoonArt % (random.randint(1,10)), 'http://phoenixtv.offshorepastebin.com/art/cartoon/fanart.jpg')
-    addDirectoryItem('Cartoon Genres', 'CartoonCrazy', '0', cartoonArt % (random.randint(1,10)), 'http://phoenixtv.offshorepastebin.com/art/cartoon/fanart.jpg')
-    addDirectoryItem('Anime Search','ACsearch', '0', animeArt % (random.randint(1,12)), 'http://phoenixtv.offshorepastebin.com/art/anime/fanart.jpg')
-    addDirectoryItem('Anime Genres','AnimeCrazy', '0', animeArt % (random.randint(1,12)), 'http://phoenixtv.offshorepastebin.com/art/anime/fanart.jpg')
-    addDirectoryItem('Anime Latest','AClast', '0', animeArt % (random.randint(1,12)), 'http://phoenixtv.offshorepastebin.com/art/anime/fanart.jpg')
-    endCategory()
-
-
-
-def CartoonCrazy(image, fanart):
-    try:
-        url = 'http://kisscartoon.me/CartoonList/'
-
-        result = cloudflare.request(url)
-
-        items = client.parseDOM(result, 'div', attrs={'id': 'container'})
-        items = client.parseDOM(items, 'div', attrs={'id': 'rightside'})
-        items = client.parseDOM(items, 'div', attrs={'class': 'barContent'})[1]       
-        items = client.parseDOM(items, 'a', ret='href')
-    except:
-        return
-
-    for item in items:
+    def root(self):
         try:
-            name = item[7:].upper()
-            name = client.replaceHTMLCodes(name)
-            name = name.encode('utf-8')
+            self.list = [
+            {
+            'title': 'Cartoon Search',
+            'action': 'phtoons.cartoons',
+            'url': self.cartoonsearch_link,
+            'image': self.cartoons_image % (random.randint(1,10)),
+            'fanart': self.cartoons_fanart
+            },
 
-            url = item
-            url = client.replaceHTMLCodes(url)
-            url = url.encode('utf-8')
+            {
+            'title': 'Cartoon Genres',
+            'action': 'phtoons.cartoongenres',
+            'image': self.cartoons_image % (random.randint(1,10)),
+            'fanart': self.cartoons_fanart
+            },
 
-            addDirectoryItem(name, 'CCcat', cartoonArt % (random.randint(1,10)), image, fanart, url)
+            {
+            'title': 'Cartoon Latest',
+            'action': 'phtoons.cartoons',
+            'url': self.newcartoons_link,
+            'image': self.cartoons_image % (random.randint(1,10)),
+            'fanart': self.cartoons_fanart
+            },
+
+            {
+            'title': 'Cartoon Popular',
+            'action': 'phtoons.cartoons',
+            'url': self.topcartoons_link,
+            'image': self.cartoons_image % (random.randint(1,10)),
+            'fanart': self.cartoons_fanart
+            },
+
+            {
+            'title': 'Anime Search',
+            'action': 'phtoons.anime',
+            'url': self.animesearch_link,
+            'image': self.anime_image % (random.randint(1,10)),
+            'fanart': self.anime_fanart
+            },
+
+            {
+            'title': 'Anime Genres',
+            'action': 'phtoons.animegenres',
+            'image': self.anime_image % (random.randint(1,10)),
+            'fanart': self.anime_fanart
+            },
+
+            {
+            'title': 'Anime Latest',
+            'action': 'phtoons.animestreams',
+            'url': self.newanime_link,
+            'image': self.anime_image % (random.randint(1,10)),
+            'fanart': self.anime_fanart
+            }
+            ]
+
+            self.addDirectory(self.list)
+            return self.list
         except:
             pass
 
-    endDirectory()
 
-
-def CCcat(url, image, fanart):
-    try:
-        url = urlparse.urljoin('http://kisscartoon.me', url)
-
-        result = cloudflare.request(url)
-        result = re.sub('<tr\s+.+?>', '<tr>', result)
-
-        items = client.parseDOM(result, 'tr')
-    except:
-        return
-
-    for item in items:
+    def cartoons(self, url):
         try:
-            name = client.parseDOM(item, 'a')[0]
-            name = name.replace('\n', '')
-            name = '[B]'+ name +'[/B]'
-            name = client.replaceHTMLCodes(name)
-            name = name.encode('utf-8')
+            if url == self.cartoonsearch_link:
+                k = control.keyboard('', '') ; k.setHeading(control.infoLabel('ListItem.Label')) ; k.doModal()
+                if k.getText() == '' or not k.isConfirmed(): return
+                url = self.cartoonsearch_link % urllib.quote_plus(k.getText().split()[0])
 
-            url = client.parseDOM(item, 'a', ret='href')[0]
-            url = client.replaceHTMLCodes(url)
-            url = url.encode('utf-8')
+            self.list = cache.get(self.cartoon_list, 0, url)
 
-            thumb = client.parseDOM(item, 'img', ret='src')[0]
-            thumb = thumb.replace('kisscartoon.me','cdn-c.whatbest.net')
-            thumb = client.replaceHTMLCodes(thumb)
-            thumb = thumb.encode('utf-8')
+            for i in self.list: i.update({'nextaction': 'phtoons.cartoons', 'nexticon': self.cartoons_image % (random.randint(1,10)), 'nextfanart': self.cartoons_fanart})
 
-            addDirectoryItem(name, 'CCpart', thumb, image, fanart, url)
+            for i in self.list: i.update({'action': 'phtoons.cartoonstreams'})
+            for i in self.list: i.update({'fanart': self.cartoons_fanart})
+
+            self.addDirectory(self.list)
+            return self.list
         except:
             pass
 
-    try:
-        next = client.parseDOM(result, 'ul', attrs={'class': 'pager'})[0]
-        next = zip(client.parseDOM(next, 'a', ret='href'), client.parseDOM(next, 'a'))
-        next = [i[0] for i in next if 'Next' in i[1]][0]
 
-        addDirectoryItem('[I]NEXT[/I]', 'CCcat', cartoonArt % (random.randint(1,10)), image, fanart, next)
-    except:
-        pass
-
-    movieCategory()
-
-
-def CCsearch(url, image, fanart):
-    keyboard = control.keyboard('', control.lang(30702).encode('utf-8'))
-    keyboard.setHeading(control.infoLabel('ListItem.Label'))
-    keyboard.doModal()
-
-    if not keyboard.isConfirmed(): return
-
-    search = keyboard.getText()
-    search = re.sub(r'\W+|\s+','-', search)
-    if search == '': return
-
-    url = '/Search/Cartoon/'+search
-    url = url.encode('utf-8')
-
-    CCcat(url, image, fanart)
-
-
-def CCpart(url, image, fanart):
-    try:
-        url = urlparse.urljoin('http://kisscartoon.me', url)
-
-        result = cloudflare.request(url)
-
-        items = client.parseDOM(result, 'table', attrs={'class': 'listing'})
-        items = client.parseDOM(items, 'td')
-        items = zip(client.parseDOM(items, 'a', ret='href'), client.parseDOM(items, 'a'))
-
-        if len(items) == 1: return CCstream(items[0][0])
-    except:
-        return
-
-    for item in items[::-1]:
+    def cartoongenres(self):
         try:
-            name = item[1]
-            name = name.replace('\n', '')
-            name = client.replaceHTMLCodes(name)
-            name = name.encode('utf-8')
+            genres = ['action', 'adventure', 'comedy', 'drama', 'fantasy', 'historical', 'horror', 'movie', 'music',
+            'mystery', 'romance', 'animation', 'family', 'sci-fi', 'short', 'crime', 'sport', 'documentary', 'thriller',
+            'cars', 'magic', 'space', 'super-power', 'supernatural']
 
-            url = item[0]
-            url = client.replaceHTMLCodes(url)
-            url = url.encode('utf-8')
+            for i in genres: self.list.append({'title': i.title(), 'url': self.cartoongenres_link % i, 'image': self.cartoons_image % (random.randint(1,10)), 'fanart': self.cartoons_fanart, 'action': 'phtoons.cartoons'})
 
-            addDirectoryItem(name,'CCstream',image,image,fanart,url)
+            self.addDirectory(self.list)
+            return self.list
         except:
             pass
 
-    episodeCategory()
+
+    def cartoonstreams(self, url, image, fanart):
+        try:
+            self.list = cache.get(self.cartoon_list_2, 0, url, image, fanart)
+
+            if len(self.list) == 1: return self.cartoonplay(self.list[0]['url'])
+
+            for i in self.list: i.update({'action': 'phtoons.cartoonplay'})
+            for i in self.list: i.update({'fanart': self.cartoons_fanart})
+
+            self.addDirectory(self.list, content='files')
+            return self.list
+        except:
+            pass
 
 
-def CCstream(url):
-    try:
-        url = urlparse.urljoin('http://kisscartoon.me', url)
+    def cartoonplay(self, url):
+        try:
+            url = self.cartoon_resolver(url)
+            if not url == None: player().run(url)
+        except:
+            pass
 
-        result = cloudflare.request(url)
 
-        url = []
-        items = client.parseDOM(result,'select', attrs={'id':'selectQuality'}) 
-        items = client.parseDOM(items, 'option', ret='value')
-        for i in items:
-            try: url.append({'q': directstream.googletag(base64.b64decode(i))[0]['quality'], 'u': base64.b64decode(i)})
+    def anime(self, url):
+        try:
+            if url == self.animesearch_link:
+                k = control.keyboard('', '') ; k.setHeading(control.infoLabel('ListItem.Label')) ; k.doModal()
+                if k.getText() == '' or not k.isConfirmed(): return
+                url = self.animesearch_link % urllib.quote_plus(k.getText())
+
+            self.list = cache.get(self.anime_list, 0, url)
+
+            for i in self.list: i.update({'action': 'phtoons.animestreams'})
+            for i in self.list: i.update({'fanart': self.anime_fanart})
+
+            self.addDirectory(self.list)
+            return self.list
+        except:
+            pass
+
+    def animegenres(self):
+        try:
+            genres = ['Action', 'Adventure', 'Airforce', 'Aliens', 'Angels', 'Angst', 'Anthropomorphism', 'Art',
+            'Bakumatsu - Meiji Era', 'Band', 'Baseball', 'Basketball', 'Bishounen', 'Bounty Hunters', 'Boxing', 'Cars',
+            'Catgirls', 'Clubs', 'College', 'Combat', 'Comedy', 'Coming of Age', 'Conspiracy', 'Contemporary Fantasy',
+            'Cooking', 'CopsCrime', 'Crossdressing', 'Cyberpunk', 'Cyborgs', 'Dark Fantasy', 'Delinquents', 'Dementia',
+            'Demons', 'Detective', 'Dragons', 'Drama', 'Driving', 'Dystopia', 'Ecchi', 'Elementary School', 'Elves',
+            'Fantasy', 'Female Students', 'Female Teachers', 'Feudal Warfare', 'Football', 'Gambling', 'Game',
+            'Gender switch', 'Genetic Modification', 'Goddesses', 'Gunfights', 'Gymnastics', 'Harem', 'High Fantasy',
+            'High School', 'Historical', 'Horror', 'Human Enhancement', 'Humanoid', 'Idol', 'Josei', 'Juujin', 'Kids',
+            'Law and Order', 'Lolicon', 'Love', 'Love Polygon', 'Mafia', 'Magic', 'Mahou Shoujo', 'Maids', 'Manga',
+            'Martial Arts', 'Mecha', 'Middle School', 'Military', 'Music', 'Mystery', 'Navy', 'Ninja', 'Ninjas',
+            'Parallel Universe', 'Parasites', 'Parody', 'Performance', 'Piloted Robots', 'Pirates', 'Police',
+            'Post-apocalyptic', 'Power Suits', 'Proxy Battles', 'Psychological', 'Revenge', 'Reverse Harem',
+            'Robot Helpers', 'Robots', 'Romance', 'Samurai', 'School', 'School Life', 'Sci-Fi', 'SciFi', 'Scifi',
+            'Seinen', 'Shoujo', 'Shoujo Ai', 'Shounen', 'Shounen Ai', 'Slapstick', 'Slice of Life', 'Space',
+            'Space Travel', 'Special Squads', 'Sports', 'Sudden Girlfriend Appearance', 'Super Deformed', 'Super Power',
+            'Super Powers', 'Supernatural', 'Swordplay', 'Tennis', 'Thriller', 'Time Travel', 'Tournament', 'Tragedy',
+            'Transforming Robots', 'Underworld', 'Vampire', 'Vampires', 'Violence', 'Virtual Reality', 'WWII', 'Waitresses',
+            'Witches', 'Yakuza', 'Yuri']
+
+            for i in genres: self.list.append({'title': i, 'url': self.animegenres_link % i.replace(' ','%20'), 'image': self.anime_image % (random.randint(1,10)), 'fanart': self.anime_fanart, 'action': 'phtoons.anime'})
+
+            self.addDirectory(self.list)
+            return self.list
+        except:
+            pass
+
+
+    def animestreams(self, url, image, fanart):
+        try:
+            if url == self.newanime_link:
+                self.list = cache.get(self.anime_list_3, 0, url)
+
+            else:
+                self.list = cache.get(self.anime_list_2, 0, url, image, fanart)
+
+
+            if len(self.list) == 1: return self.animeplay(self.list[0]['url'])
+
+            for i in self.list: i.update({'action': 'phtoons.animeplay'})
+            for i in self.list: i.update({'fanart': self.anime_fanart})
+
+            self.addDirectory(self.list, content='files')
+            return self.list
+        except:
+            pass
+
+
+    def animeplay(self, url):
+        try:
+            url = self.anime_resolver(url)
+            if not url == None: player().run(url)
+        except:
+            pass
+
+
+    def cartoon_list(self, url):
+        try:
+            url = urlparse.urljoin(self.cartoons_link, url)
+
+            cookie, agent, result = cloudflare.request(url, output='extended')
+            headers = {'Cookie': cookie, 'User-Agent': agent}
+
+            items = client.parseDOM(result, 'li', attrs = {'class': 'list_ct'})
+        except:
+        	return
+
+        try:
+            nav = client.parseDOM(result, 'div', attrs = {'class': 'pageNav'})[0]
+
+            current = client.parseDOM(nav, 'span', attrs = {'class': 'currentNav'})
+            current = [str(i) for i in current if i.isdigit()][0]
+
+            next = zip(client.parseDOM(nav, 'a', ret='href', attrs = {'class': 'linkNav'}), client.parseDOM(nav, 'a', attrs = {'class': 'linkNav'}))
+            next = [i for i in next if i[1].isdigit()]
+            next = [i[0] for i in next if int(i[1]) == int(current)+1][0]
+
+            next = urlparse.urljoin(self.cartoons_link, next)
+            next = client.replaceHTMLCodes(next)
+            next = next.encode('utf-8')
+        except:
+            next = ''
+
+        for item in items:
+            try:
+                title = client.parseDOM(item, 'span', attrs = {'class': 'title'})[0]
+                title = client.replaceHTMLCodes(title)
+                title = title.encode('utf-8')
+
+                url = client.parseDOM(item, 'a', ret='href')[0]
+                url = urlparse.urljoin(self.cartoons_link, url)
+                url = client.replaceHTMLCodes(url)
+                url = url.encode('utf-8')
+
+                image = client.parseDOM(item, 'img', ret='src')[0]
+                image = urlparse.urljoin(self.cartoons_link, image)
+                image += '|' + urllib.urlencode(headers)
+                image = client.replaceHTMLCodes(image)
+                image = image.encode('utf-8')
+
+                self.list.append({'title': title, 'url': url, 'image': image, 'next': next})
+            except:
+                pass
+
+        return self.list
+
+
+    def cartoon_list_2(self, url, image, fanart):
+        try:
+            url = urlparse.urljoin(self.cartoons_link, url)
+
+            cookie, agent, result = cloudflare.request(url, output='extended')
+            headers = {'Cookie': cookie, 'User-Agent': agent}
+
+            items = client.parseDOM(result, 'table', attrs = {'class': 'listing'})[0]
+            items = client.parseDOM(result, 'tr')
+        except:
+        	return
+
+        for item in items:
+            try:
+                title = client.parseDOM(item, 'a', attrs = {'title': '.+?'})[0]
+                title = title.strip()
+                title = client.replaceHTMLCodes(title)
+                title = title.encode('utf-8')
+
+                date = client.parseDOM(item, 'a', attrs = {'style': 'color.+?'})
+                if len(date) > 0: raise Exception()
+
+                url = client.parseDOM(item, 'a', ret='href', attrs = {'title': '.+?'})[0]
+                url = urlparse.urljoin(self.cartoons_link, url)
+                url = client.replaceHTMLCodes(url)
+                url = url.encode('utf-8')
+
+                self.list.append({'title': title, 'url': url, 'image': image})
+            except:
+                pass
+
+        return self.list
+
+
+    def cartoon_resolver(self, url):
+        try:
+            url = urlparse.urljoin(self.cartoons_link, url)
+
+            cookie, agent, result = cloudflare.request(url, output='extended')
+            headers = {'Cookie': cookie, 'User-Agent': agent}
+
+            url = re.findall('url\s*:\s*"(.+?)"', result)[0]
+            post = re.findall('data\s*:\s*\'(.+?)\'', result)[0]
+
+            result = client.source(url, post=post, headers=headers)
+
+            url = re.findall('href\s*=\s*(?:\'|\")(http(?:s|)://.+?(?:google|blogspot).+?)(?:\'|\")', result)
+            if len(url) > 0:
+                url = urllib.unquote(url[-1]).replace('\\/', '/')
+                return url
+
+            url = re.findall('href\s*=\s*(?:\'|\")(http(?:s|)://.+?/vload/\?token=.+?)(?:\'|\")', result)
+            if len(url) > 0:
+                url = client.source(url[-1], output='geturl', headers=headers)
+                return url
+        except:
+            pass
+
+
+    def anime_list(self, url):
+        try:
+            url = urlparse.urljoin(self.anime_link, url)
+
+            result = client.request(url)
+
+            items = client.parseDOM(result, 'div', attrs={'id': 'left_content'})[0]
+            items = client.parseDOM(items, 'li')
+        except:
+        	return
+
+        for item in items:
+            try:
+                title = client.parseDOM(item, 'a')[0]
+                if '>Movie<' in title: raise Exception()
+                title = re.sub('<.+?>|</.+?>|\\\\|\n', '', title).strip()
+                title = client.replaceHTMLCodes(title)
+                title = title.encode('utf-8')
+
+                url = client.parseDOM(item, 'a', ret='href')[0]
+                url = urlparse.urljoin(self.anime_link, url)
+                url = url.replace(' ','%20')
+                url = client.replaceHTMLCodes(url)
+                url = url.encode('utf-8')
+
+                image = [i for i in url.split('/') if not i == ''][-1]
+                image = self.animeimage_link % image
+                image = urlparse.urljoin(self.anime_link, image)
+                image = image.encode('utf-8')
+
+                self.list.append({'title': title, 'url': url, 'image': image})
+            except:
+                pass
+
+        return self.list
+
+
+    def anime_list_2(self, url, image, fanart):
+        try:
+            url = urlparse.urljoin(self.anime_link, url)
+
+            result = client.request(url)
+
+            items = client.parseDOM(result, 'ul', attrs={'class': 'cat_page_box'})[-1]
+            items = client.parseDOM(items, 'li')
+            items = items[::-1]
+        except:
+        	return
+
+        for item in items:
+            try:
+                title = client.parseDOM(item, 'a')[0]
+                title = re.sub('<.+?>|</.+?>|\\\\|\n', ' ', title).strip()
+                title = re.sub('Watch$', '', title).strip()
+                title = client.replaceHTMLCodes(title)
+                title = title.encode('utf-8')
+
+                url = client.parseDOM(item, 'a', ret='href')[0]
+                url = urlparse.urljoin(self.anime_link, url)
+                url = url.replace(' ','%20')
+                url = client.replaceHTMLCodes(url)
+                url = url.encode('utf-8')
+
+                self.list.append({'title': title, 'url': url, 'image': image})
+            except:
+                pass
+
+        return self.list
+
+
+    def anime_list_3(self, url):
+        try:
+            url = urlparse.urljoin(self.anime_link, url)
+
+            result = client.request(url)
+
+            items = client.parseDOM(result, 'div', attrs={'id': 'left_content'})[0]
+            items = client.parseDOM(items, 'zi')
+        except:
+        	return
+
+        for item in items:
+            try:
+                title = client.parseDOM(item, 'a')[0]
+                if '>Movie<' in title: raise Exception()
+                title = re.sub('<.+?>|</.+?>|\\\\|\n', '', title).strip()
+                title = client.replaceHTMLCodes(title)
+                title = title.encode('utf-8')
+
+                url = client.parseDOM(item, 'a', ret='href')[0]
+                url = urlparse.urljoin(self.anime_link, url)
+                url = url.replace(' ','%20')
+                url = client.replaceHTMLCodes(url)
+                url = url.encode('utf-8')
+
+                image = client.parseDOM(item, 'img', ret='src')[0]
+                image = urlparse.urljoin(self.anime_link, image)
+                image = image.encode('utf-8')
+
+                self.list.append({'title': title, 'url': url, 'image': image})
+            except:
+                pass
+
+        return self.list
+
+
+    def anime_resolver(self, url):
+        try:
+            import urlresolver
+
+            result = client.request(url)
+
+            items = client.parseDOM(result, 'div', attrs = {'class': 'generic-video-item'})
+            items = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'span', attrs = {'class': 'type'})) for i in items]
+            items = [(i[0][0], i[1][0].lower()) for i in items if len(i[0]) > 0 and len(i[1]) > 0]
+
+
+            host = 'veevr'
+            pattern = '(?://|\.)(veevr.com)/(?:videos|embed)/([A-Za-z0-9]+)'
+            link = 'http://veevr.com/embed/%s'
+
+            try: url = [link % re.search(pattern, result).groups()[1]]
+            except: url = []
+            try: url += [i[0] for i in items if i[1] == host]
             except: pass
-        items = sorted(url, key=lambda k: k['q'])
+            for i in url:
+                try:
+                    if 'animedreaming.' in i: i = link % re.search(pattern, client.request(i)).groups()[1]
 
-        player().run(items[0]['u'])
-    except:
-        return
+                    u = client.request(i)
+                    u = client.parseDOM(u, 'source', ret='src', attrs = {'type': 'video.+?'})[-1]
+                    u = client.request(u, output='geturl')
+
+                    r = int(urllib2.urlopen(u, timeout=15).headers['Content-Length'])
+                    if r > 1048576: return u
+                except:
+                    pass
 
 
-  
-def AnimeCrazy(image, fanart):
-    try:
-        url = 'http://www.animedreaming.tv/genres/'
+            host = 'mp4upload'
+            pattern = '(?://|\.)(mp4upload\.com)/(?:embed-)?([0-9a-zA-Z]+)'
+            link = 'http://www.mp4upload.com/embed-%s.html'
 
-        result = client.request(url)
+            try: url = [link % re.search(pattern, result).groups()[1]]
+            except: url = []
+            try: url += [i[0] for i in items if i[1] == host]
+            except: pass
+            for i in url:
+                try:
+                    if 'animedreaming.' in i: i = link % re.search(pattern, client.request(i)).groups()[1]
 
-        items = client.parseDOM(result, 'ul', attrs={'class': 'genre_page_box'})[0]
-        items = client.parseDOM(items, 'li') 
-    except:
-        return
+                    u = urlresolver.HostedMediaFile(i).resolve()
+                    if not u == False: return u
+                except:
+                    pass
 
-    for item in items:
-        try:
-            name =client.parseDOM(item, 'a')[0]
-            name = name.upper()
-            name = client.replaceHTMLCodes(name)
-            name = name.encode('utf-8')
 
-            url = client.parseDOM(item, 'a', ret='href')[0]
-            url = urlparse.urljoin('http://www.animedreaming.tv', url)
-            url = url.replace(' ','%20')
-            url = client.replaceHTMLCodes(url)
-            url = url.encode('utf-8')
+            host = 'engine'
+            pattern = '(?://|\.)(auengine\.com)/embed.php\?file=([0-9a-zA-Z\-_]+)[&]*'
+            link = 'http://www.auengine.com/embed.php?file=%s'
 
-            addDirectoryItem(name, 'ACcat', animeArt % (random.randint(1,12)), image, fanart, url+'/?filter=newest&req=anime')
+            try: url = [link % re.search(pattern, result).groups()[1]]
+            except: url = []
+            try: url += [i[0] for i in items if i[1] == host]
+            except: pass
+            for i in url:
+                try:
+                    if 'animedreaming.' in i: i = link % re.search(pattern, client.request(i)).groups()[1]
+
+                    u = urlresolver.HostedMediaFile(i).resolve()
+                    if not u == False: return u
+                except:
+                    pass
         except:
-            pass
-
-    endDirectory()    
-    
-
-def ACcat(url, image, fanart):   
-    try:
-        result = client.request(url)
-
-        items = client.parseDOM(result, 'div', attrs={'id': 'left_content'})[0]
-        items = client.parseDOM(items, 'li')
-    except:
-        return
-
-    for item in items:
-        try:
-            name = client.parseDOM(item, 'a')[0]
-            if '>Movie<' in name: raise Exception()
-            name = re.sub('<.+?>|</.+?>|\\\\|\n', '', name).strip()
-            name = client.replaceHTMLCodes(name)
-            name = name.encode('utf-8')
-
-            url = client.parseDOM(item, 'a', ret='href')[0]
-            url = urlparse.urljoin('http://www.animedreaming.tv', url)
-            url = url.replace(' ','%20')
-            url = client.replaceHTMLCodes(url)
-            url = url.encode('utf-8')
-
-            thumb = [i for i in url.split('/') if not i == ''][-1]
-            thumb = 'http://www.animedreaming.tv/anime-images-big/%s.jpg' % thumb
-            thumb = thumb.encode('utf-8')
-        
-            addDirectoryItem(name, 'ACpart', thumb, image, fanart, url)
-        except:
-            pass
-
-    movieCategory()
+            return
 
 
-def ACsearch(url, image, fanart):
-    keyboard = control.keyboard('', control.lang(30702).encode('utf-8'))
-    keyboard.setHeading(control.infoLabel('ListItem.Label'))
-    keyboard.doModal()
-    if not keyboard.isConfirmed(): return
+    def addDirectory(self, items, content=None):
+        if items == None or len(items) == 0: return
 
-    search = keyboard.getText()
-    search = re.sub(r'\W+|\s+','+', search)
-    if search == '': return
+        sysaddon = sys.argv[0]
+        sysicon = os.path.join(control.addonInfo('path'), 'resources', 'media')
+        sysimage = control.addonInfo('icon')
+        sysfanart = control.addonInfo('fanart')
 
-    url = 'http://www.animedreaming.tv/search.php?searchquery='+search
-    url = url.encode('utf-8')
-
-    ACcat(url, image, fanart)
-
-
-def AClast(url, image, fanart):   
-    try:
-        url = 'http://www.animedreaming.tv/latest-anime-episodes/'
-
-        result = client.request(url)
-
-        items = client.parseDOM(result, 'div', attrs={'id': 'left_content'})[0]
-        items = client.parseDOM(items, 'zi')
-    except:
-        return
-
-    for item in items:
-        try:
-            name = client.parseDOM(item, 'a')[0]
-            if '>Movie<' in name: raise Exception()
-            name = re.sub('<.+?>|</.+?>|\\\\|\n', '', name).strip()
-            name = client.replaceHTMLCodes(name)
-            name = name.encode('utf-8')
-
-            url = client.parseDOM(item, 'a', ret='href')[0]
-            url = urlparse.urljoin('http://www.animedreaming.tv', url)
-            url = url.replace(' ','%20')
-            url = client.replaceHTMLCodes(url)
-            url = url.encode('utf-8')
-
-            thumb = client.parseDOM(item, 'img', ret='src')[0]
-            thumb = urlparse.urljoin('http://www.animedreaming.tv', thumb)
-            thumb = thumb.replace(' ','%20')
-            thumb = client.replaceHTMLCodes(thumb)
-            thumb = thumb.encode('utf-8')
-
-            addDirectoryItem(name, 'ACstream', thumb, image, fanart, url)
-        except:
-            pass
-
-    episodeCategory()
-
-
-def ACpart(url, image, fanart):
-    try:
-        result = client.request(url)
-
-        index = []
-        items = client.parseDOM(result, 'ul', attrs={'class': 'cat_page_box'})[-1]
-        items = client.parseDOM(items, 'li')
-    except:
-        return
-
-    for item in items[::-1]:
-        try:
-            name = client.parseDOM(item, 'a')[0]
-            name = re.sub('<.+?>|</.+?>|\\\\|\n', ' ', name).strip()
-            name = re.sub('Watch$', '', name).strip()
-            name = client.replaceHTMLCodes(name)
-            name = name.encode('utf-8')
-
-            url = client.parseDOM(item, 'a', ret='href')[0]
-            url = urlparse.urljoin('http://www.animedreaming.tv', url)
-            url = url.replace(' ','%20')
-            url = client.replaceHTMLCodes(url)
-            url = url.encode('utf-8')
-
-            index.append({'name': name, 'url': url})
-        except:
-            pass
-
-    if len(index) == 1: return ACstream(index[0]['url'])
-
-    for i in index: addDirectoryItem(i['name'], 'ACstream', image, image, fanart, i['url'])
-
-    episodeCategory()
-
-
-def ACstream(url):
-    try:
-        import urlresolver
-
-        result = client.request(url)
-
-        items = client.parseDOM(result, 'div', attrs = {'class': 'generic-video-item'})
-        items = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'span', attrs = {'class': 'type'})) for i in items]
-        items = [(i[0][0], i[1][0].lower()) for i in items if len(i[0]) > 0 and len(i[1]) > 0]
-
-
-        host = 'veevr'
-        pattern = '(?://|\.)(veevr.com)/(?:videos|embed)/([A-Za-z0-9]+)'
-        link = 'http://veevr.com/embed/%s'
-
-        try: url = [link % re.search(pattern, result).groups()[1]]
-        except: url = []
-        try: url += [i[0] for i in items if i[1] == host]
-        except: pass
-        for i in url:
+        for i in items:
             try:
-                if 'animedreaming.' in i: i = link % re.search(pattern, client.request(i)).groups()[1]
+                try: label = control.lang(i['title']).encode('utf-8')
+                except: label = i['title']
 
-                u = client.request(i)
-                u = client.parseDOM(u, 'source', ret='src', attrs = {'type': 'video.+?'})[-1]
-                u = client.request(u, output='geturl')
+                if 'image' in i and not i['image'] == '0': image = i['image']
+                elif 'icon' in i and not i['icon'] == '0': image = os.path.join(sysicon, i['icon'])
+                else: image = sysimage
 
-                r = int(urllib2.urlopen(u, timeout=15).headers['Content-Length'])
-                if r > 1048576: return player().run(u)
+                fanart = i['fanart'] if 'fanart' in i and not i['fanart'] == '0' else sysfanart
+
+                isFolder = False if 'isFolder' in i and not i['isFolder'] == '0' else True
+
+                url = '%s?action=%s' % (sysaddon, i['action'])
+
+                try: url += '&url=%s' % urllib.quote_plus(i['url'])
+                except: pass
+                try: url += '&tvshowtitle=%s' % urllib.quote_plus(i['tvshowtitle'])
+                except: pass
+                try: url += '&title=%s' % urllib.quote_plus(i['title'])
+                except: pass
+                try: url += '&image=%s' % urllib.quote_plus(i['image'])
+                except: pass
+                try: url += '&fanart=%s' % urllib.quote_plus(i['fanart'])
+                except: pass
+
+                meta = dict((k,v) for k, v in i.iteritems() if not v == '0')
+                try: meta.update({'duration': str(int(meta['duration']) * 60)})
+                except: pass
+
+                item = control.item(label=label, iconImage=image, thumbnailImage=image)
+
+                try: item.setArt({'poster': image, 'tvshow.poster': image, 'season.poster': image, 'banner': image, 'tvshow.banner': image, 'season.banner': image})
+                except: pass
+
+                item.setProperty('Fanart_Image', fanart)
+
+                item.addContextMenuItems([])
+                item.setInfo(type='Video', infoLabels = meta)
+                if isFolder == False: item.setProperty('IsPlayable', 'true')
+                control.addItem(handle=int(sys.argv[1]), url=url, listitem=item, isFolder=isFolder)
             except:
                 pass
 
+        try:
+            i = items[0]
+            if i['next'] == '': raise Exception()
+            url = '%s?action=%s&url=%s' % (sysaddon, i['nextaction'], urllib.quote_plus(i['next']))
+            icon = i['nexticon'] if 'nexticon' in i else os.path.join(sysicon, 'next.png')
+            fanart = i['nextfanart'] if 'nextfanart' in i else sysfanart
+            item = control.item(label=control.lang(30500).encode('utf-8'), iconImage=icon, thumbnailImage=icon)
+            item.setProperty('Fanart_Image', fanart)
+            control.addItem(handle=int(sys.argv[1]), url=url, listitem=item, isFolder=True)
+        except:
+            pass
 
-        host = 'mp4upload'
-        pattern = '(?://|\.)(mp4upload\.com)/(?:embed-)?([0-9a-zA-Z]+)'
-        link = 'http://www.mp4upload.com/embed-%s.html'
-
-        try: url = [link % re.search(pattern, result).groups()[1]]
-        except: url = []
-        try: url += [i[0] for i in items if i[1] == host]
-        except: pass
-        for i in url:
-            try:
-                if 'animedreaming.' in i: i = link % re.search(pattern, client.request(i)).groups()[1]
-
-                u = urlresolver.HostedMediaFile(i).resolve()
-                if not u == False: return player().run(u)
-            except:
-                pass
-
-
-        host = 'engine'
-        pattern = '(?://|\.)(auengine\.com)/embed.php\?file=([0-9a-zA-Z\-_]+)[&]*'
-        link = 'http://www.auengine.com/embed.php?file=%s'
-
-        try: url = [link % re.search(pattern, result).groups()[1]]
-        except: url = []
-        try: url += [i[0] for i in items if i[1] == host]
-        except: pass
-        for i in url:
-            try:
-                if 'animedreaming.' in i: i = link % re.search(pattern, client.request(i)).groups()[1]
-
-                u = urlresolver.HostedMediaFile(i).resolve()
-                if not u == False: return player().run(u)
-            except:
-                pass
-    except:
-        return
-
-
-
-def addDirectoryItem(name, action, thumb, image, fanart, url='0'):
-    if thumb == '0': thumb = image
-    u = '%s?action=%s&url=%s&image=%s&fanart=%s' % (sys.argv[0], str(action), urllib.quote_plus(url), urllib.quote_plus(thumb), urllib.quote_plus(fanart))
-    item = control.item(name, iconImage=thumb, thumbnailImage=thumb)
-
-    try: item.setArt({'poster': thumb, 'tvshow.poster': thumb, 'season.poster': thumb, 'banner': thumb, 'tvshow.banner': thumb, 'season.banner': thumb})
-    except: pass
-    item.addContextMenuItems([], replaceItems=False)
-    item.setProperty('Fanart_Image', fanart)
-    control.addItem(handle=int(sys.argv[1]),url=u,listitem=item,isFolder=True)
-
-
-def endDirectory():
-    control.directory(int(sys.argv[1]), cacheToDisc=True)
-
-
-def endCategory():
-    if control.skin == 'skin.confluence': control.execute('Container.SetViewMode(500)')
-    control.directory(int(sys.argv[1]), cacheToDisc=True)
-
-
-def movieCategory():
-    control.content(int(sys.argv[1]), 'movies')
-    if control.skin == 'skin.confluence': control.execute('Container.SetViewMode(500)')
-    control.directory(int(sys.argv[1]), cacheToDisc=True)
-
-
-def episodeCategory():
-    control.content(int(sys.argv[1]), 'episodes')
-    control.directory(int(sys.argv[1]), cacheToDisc=True)
+        if not content == None: control.content(int(sys.argv[1]), content)
+        control.directory(int(sys.argv[1]), cacheToDisc=True)
 
 
 class player(xbmc.Player):
@@ -452,8 +610,6 @@ class player(xbmc.Player):
         title = control.infoLabel('ListItem.Label')
         image = control.infoLabel('ListItem.Icon')
         item = control.item(path=url, iconImage=image, thumbnailImage=image)
-        try: item.setArt({'icon': image})
-        except: pass
         item.setInfo(type='Video', infoLabels = {'title': title})
         control.player.play(url, item)
 

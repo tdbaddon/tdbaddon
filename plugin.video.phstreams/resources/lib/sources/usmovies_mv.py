@@ -22,8 +22,8 @@
 import re,urllib,urlparse,json,base64
 
 from resources.lib.modules import cleantitle
+from resources.lib.modules import sucuri
 from resources.lib.modules import client
-from resources.lib.modules import cache
 from resources.lib.modules import directstream
 
 
@@ -31,6 +31,7 @@ class source:
     def __init__(self):
         self.domains = ['omovmob.com', 'usmovieshd.com']
         self.base_link = 'http://omovmob.com'
+        self.search_link = '/?s=%s'
 
 
     def movie(self, imdb, title, year):
@@ -42,23 +43,13 @@ class source:
             return
 
 
-    def usmovies_moviecache(self):
-        try:
-            url = urlparse.urljoin(self.base_link, '/attachment-sitemap.xml')
-            result = str(client.source(url))
-            result = client.parseDOM(result, 'loc')
-            result = [re.sub('http.+?//.+?/','/', i) for i in result]
-            result = [i.split('/attachment/')[0] for i in result]
-            return result
-        except:
-            return
-
-
     def sources(self, url, hostDict, hostprDict):
         try:
             sources = []
 
             if url == None: return sources
+
+            headers = sucuri.headers(self.base_link)
 
             if not str(url).startswith('http'):
 
@@ -69,14 +60,16 @@ class source:
                 match = re.sub('\-+', '-', match.lower())
                 match = '/%s-%s' % (match, data['year'])
 
-                url = cache.get(self.usmovies_moviecache, 120)
+                url = urlparse.urljoin(self.base_link, self.search_link % (urllib.quote_plus(data['title'])))
+                url = client.source(url, headers=headers, safe=True)
+                url = client.parseDOM(url, 'a', ret='href')
 
                 url = [i for i in url if match in i][-1]
                 url = client.replaceHTMLCodes(url)
 
 
             r = urlparse.urljoin(self.base_link, url)
-            result = client.source(r)
+            result = client.source(r, headers=headers, safe=True)
 
             links = []
             headers = {'Referer': r}

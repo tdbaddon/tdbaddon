@@ -35,7 +35,7 @@ class NoRedirection(urllib2.HTTPErrorProcessor):
        return response
    https_response = http_response
        
-CIBase = 'aHR0cDovL2J1bGxkb2cuc2hpdC5mb290YmFsbC9pbmRleC54bWw='.decode('base64')
+CIBase = 'aHR0cDovL3d3dy5idWxsZG9nc3RyZWFtcy5mb290YmFsbA=='.decode('base64')
 
 addon = xbmcaddon.Addon('plugin.video.bulldogstreams')
 addon_version = addon.getAddonInfo('version')
@@ -2516,25 +2516,21 @@ if mode==None:
     RHIndex()	
 
 elif mode==1:
-    addon_log("getData")
     getData(url,fanart)
     SetViewThumbnail()
     xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
 elif mode==2:
-    addon_log("getChannelItems")
     SetViewThumbnail()
     getChannelItems(name,url,fanart)
     xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
 elif mode==3:
-    addon_log("getSubChannelItems")
     getSubChannelItems(name,url,fanart)
     SetViewThumbnail()
     xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
 elif mode==4:
-    addon_log("getFavorites")
     getFavorites()
     SetViewThumbnail()
     xbmcplugin.endOfDirectory(int(sys.argv[1]))

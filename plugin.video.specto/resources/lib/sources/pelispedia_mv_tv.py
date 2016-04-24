@@ -20,16 +20,10 @@
 
 import re,urllib,urlparse,json,base64
 
-#from resources.lib.modules import cleantitle
-#from resources.lib.modules import cloudflare
-#from resources.lib.modules import client
-#from resources.lib.modules import cache
-#from resources.lib.modules import directstream
-
 from resources.lib.libraries import cleantitle
 from resources.lib.libraries import client
-#from resources.lib.modules import directstream
-from resources.lib.libraries import cloudflare
+from resources.lib.libraries import client2
+from resources.lib.libraries import cache
 from resources.lib.libraries import control
 
 import cookielib, os
@@ -43,27 +37,32 @@ class source:
 
 
     def get_movie(self, imdb, title, year):
-        control.log("><><><><> PELISPEDIA IMDB %s" % imdb)
-
-
+        mytitle = title
         try:
-            t = cleantitle.get(title)
+            t = 'http://www.imdb.com/title/%s' % imdb
+            t = client.source(t, headers={'Accept-Language': 'es-ES'})
+            t = client.parseDOM(t, 'title')[0]
+            t = re.sub('(?:\(|\s)\d{4}.+', '', t).strip()
+            mytitle = t
 
-            query = self.search3_link % urllib.quote_plus(cleantitle.query(title))
+        except:
+            pass
+        try:
+            t = cleantitle.get(mytitle)
+
+            query = self.search3_link % urllib.quote_plus(cleantitle.query2(mytitle))
             query = urlparse.urljoin(self.base_link, query)
-            #control.log("><><><><> PELISPEDIA RES-1 %s" % query)
-            result = cloudflare.source(query)
+            result = client2.http_get(query)
+
             result = re.sub(r'[^\x00-\x7F]+','', result)
             r = result.split('<li class=')
             r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'i'), re.findall('\((\d{4})\)', i)) for i in r]
             r = [(i[0][0], re.sub('\(|\)','', i[1][0]), i[2][0]) for i in r if len(i[0]) > 0 and len(i[1]) > 0 and len(i[2]) > 0]
-            r = [i[0] for i in r if t == cleantitle.get(i[1]) and year == i[2]][0]
-            #control.log("><><><><> PELISPEDIA RES-4 %s" % r)
+            r = [i[0] for i in r if year == i[2]][0]
             try: url = re.findall('//.+?(/.+)', r)[0]
             except: url = r
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
-            control.log("><><><><> PELISPEDIA RES-5 %s" % url)
 
             return url
         except:
@@ -78,7 +77,7 @@ class source:
                 u = self.search2_link % str(i * 48)
                 u = urlparse.urljoin(self.base_link, u)
 
-                r = str(cloudflare.source(u))
+                r = str(client2.http_get(u))
                 r = re.sub(r'[^\x00-\x7F]+','', r)
                 r = r.split('<li class=')
                 r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'i'), re.findall('\((\d{4})\)', i)) for i in r]
@@ -131,12 +130,12 @@ class source:
 
             r = urlparse.urljoin(self.base_link, url)
 
-            result = cloudflare.source(r)
+            result = client2.http_get(r)
 
             f = client.parseDOM(result, 'iframe', ret='src')
             f = [i for i in f if 'iframe' in i][0]
 
-            result = cloudflare.source(f, headers={'Referer': r})
+            result = client2.http_get(f, headers={'Referer': r})
 
             r = client.parseDOM(result, 'div', attrs = {'id': 'botones'})[0]
             r = client.parseDOM(r, 'a', ret='href')
@@ -146,7 +145,7 @@ class source:
             links = []
 
             for u in r:
-                result = cloudflare.source(u, headers={'Referer': f})
+                result = client2.http_get(u, headers={'Referer': f})
 
                 try:
                     url = re.findall('sources\s*:\s*\[(.+?)\]', result)[0]
@@ -166,7 +165,7 @@ class source:
                     post = urllib.urlencode({'link': post})
 
                     url = urlparse.urljoin(self.base_link, '/Pe_flv_flsh/plugins/gkpluginsphp.php')
-                    url = client.source(url, post=post, headers=headers)
+                    url = client2.http_get(url, data=post, headers=headers)
                     url = json.loads(url)['link']
 
                     links.append({'source': 'gvideo', 'quality': 'HD', 'url': url})
@@ -181,7 +180,7 @@ class source:
                     post = urllib.urlencode({'sou': 'pic', 'fv': '21', 'url': post})
 
                     url = urlparse.urljoin(self.base_link, '/Pe_Player_Html5/pk/pk/plugins/protected.php')
-                    url = cloudflare.source(url, post=post, headers=headers)
+                    url = client2.http_get(url, data=post, headers=headers)
                     url = json.loads(url)[0]['url']
 
                     links.append({'source': 'cdn', 'quality': 'HD', 'url': url})

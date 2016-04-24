@@ -55,8 +55,6 @@ class source:
                 t = client.parseDOM(t, 'title')[0]
                 t = re.sub('(?:\(|\s)\d{4}.+', '', t).strip()
                 t = cleantitle.get(t)
-                print t
-
                 r = [i for i in result if t == cleantitle.get(i[1]) and year == i[2]]
 
             try: url = re.findall('//.+?(/.+)', r[0][0])[0]
@@ -82,9 +80,8 @@ class source:
             cookie, agent, result = cloudflare.request(r, output='extended')
 
             f = client.parseDOM(result, 'div', attrs = {'class': 'movieplay'})
-            f = client.parseDOM(f, 'iframe', ret='src')
-
-            f = [i for i in f if 'miradetodo' in i]
+            f = [re.findall('(?:\"|\')(http.+?miradetodo\..+?)(?:\"|\')', i) for i in f]
+            f = [i[0] for i in f if len(i) > 0]
 
             links = []
             dupes = []
