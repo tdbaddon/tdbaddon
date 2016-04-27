@@ -223,14 +223,11 @@ def SEARCH(url):
             # (ie replace ' ' with '+' etc)
             # normally you would use: search = urllib.quoteplus(search)
             # but fantasti's search urls are a bit weird
-            search = re.sub('  ', '+', search) # this one is just in case the
-                                               # user accidently enters two
-                                               # spaces
-            search = re.sub(' ', '+', search)
+            search = re.sub(' +', '+', search)
 
             # create the search url
             search_url = main_url + 'search/' + search + '/videos/'
-            xbmc.log('SEARCH: ', search_url)
+            xbmc.log('SEARCH:%s' % search_url)
 
             # get the source code of first page
             first_page = get_html(search_url)
@@ -245,7 +242,7 @@ def SEARCH(url):
                 # scrape to get the number of all the results pages (this is
                 # listed on the first page)
                 match = re.compile('/videos/page_(.+?)">').findall(first_page)
-                xbmc.log('Number of pages:', match)
+                xbmc.log('Number of pages:%s' % match)
 
                 # if there weren't any multiple pages of search results
                 if not match:
@@ -589,7 +586,6 @@ def addLink(name, url, mode, iconimage):
     ok = True
     liz = xbmcgui.ListItem(name, iconImage='DefaultVideo.png',
                            thumbnailImage=iconimage)
-    liz.setInfo( type='Video', infoLabels={ 'Title': name } )
     liz.setProperty('IsPlayable', 'true')
     ok = xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]), url=u,
                                      listitem=liz)

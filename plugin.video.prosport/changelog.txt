@@ -148,3 +148,13 @@ ver 0.43:
 	
 ver 0.44:
 	- fixed xrxs
+	
+ver 0.45:
+	- fixed xrxs
+	
+ver 0.46:
+	- fixed xrxs archive
+	- fixed sd streams
+	
+ver 0.47:
+	- fixed some streams

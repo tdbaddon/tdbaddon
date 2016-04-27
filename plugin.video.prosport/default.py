@@ -65,7 +65,7 @@ logos ={'nba':'http://bethub.org/wp-content/uploads/2015/09/NBA_Logo_.png',
 'mlb':'http://content.sportslogos.net/logos/4/490/full/1986.gif',
 'soccer':'http://images.clipartpanda.com/soccer-ball-clipart-soccer-ball-clip-art-4.png'}
 
-sd_streams = ['hdstream4u.com', 'stream24k.com', 'wizhdsports.com', 'antenasport.com', 'sportsnewsupdated.com', 'baltak.com', 'watchnba.tv', 'feedredsoccer.at.ua', 'jugandoes.com', 'wiz1.net', 'bosscast.net', 'watchsportstv.boards.net', 'tv-link.in', 'giostreams.eu', 'klivetv.co', 'videosport.me', 'livesoccerg.com', 'zunox.hk', 'serbiaplus.club', 'zona4vip.com', 'ciscoweb.ml', 'streamendous.com']
+sd_streams = ['hdstream4u.com', 'stream24k.com', 'wizhdsports.com', 'antenasport.com', 'sportsnewsupdated.com', 'baltak.com', 'watchnba.tv', 'feedredsoccer.at.ua', 'jugandoes.com', 'wiz1.net', 'bosscast.net', 'watchsportstv.boards.net', 'tv-link.in', 'klivetv.co', 'videosport.me', 'livesoccerg.com', 'zunox.hk', 'serbiaplus.club', 'zona4vip.com', 'ciscoweb.ml', 'streamendous.com']
 
 def utc_to_local(utc_dt):
     timestamp = calendar.timegm(utc_dt.timetuple())
@@ -76,7 +76,7 @@ def utc_to_local(utc_dt):
 def GetURL(url, referer=None):
     url = url.replace('///','//')
     request = urllib2.Request(url)
-    request.add_header('User-Agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36')
+    request.add_header('User-agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, Like Gecko) Chrome/48.0.2564.82 Safari/537.36 Edge/14.14316')
     if referer:
     	request.add_header('Referer', referer)
     try:
@@ -607,19 +607,21 @@ def Xrxsday(yesterday):
 
 def Xrxsgame(links, orig_title):
 	links = common.parseDOM(links, "a", ret="href")
+	nhlcookie = GetURL("https://raw.githubusercontent.com/iCanuck/NHLstreams/master/cookie")
 	for link in links:
+		link = 'http://xrxs.net/nhl/'+link
 		if 'HOME' in link:
 			title = re.findall('(HOME.+?\.m3u8)',link)[0].replace('.m3u8','')
-			addDirectLink(title, {'Title': orig_title}, link)
+			addDirectLink(title, {'Title': orig_title}, link+nhlcookie)
 		elif 'VISIT' in link:
 			title = re.findall('(VISIT.+?\.m3u8)',link)[0].replace('.m3u8','')
-			addDirectLink(title, {'Title': orig_title}, link)
+			addDirectLink(title, {'Title': orig_title}, link+nhlcookie)
 		elif 'FRENCH' in link:
 			title = re.findall('(FRENCH.+?\.m3u8)',link)[0].replace('.m3u8','')
-			addDirectLink(title, {'Title': orig_title}, link)
+			addDirectLink(title, {'Title': orig_title}, link+nhlcookie)
 		elif 'NATIONAL' in link:
 			title = re.findall('(NATIONAL.+?\.m3u8)',link)[0].replace('.m3u8','')
-			addDirectLink(title, {'Title': orig_title}, link)
+			addDirectLink(title, {'Title': orig_title}, link+nhlcookie)
 	xbmcplugin.endOfDirectory(h, cacheToDisc=True)
 
 def Playnhlarchive(url):
@@ -770,21 +772,24 @@ def Xrxs(home, away):
 		for el in html:
 			if home.lower() in el.lower() and away.lower() in el.lower():
 				links = common.parseDOM(el, "a", ret="href")
+				nhlcookie = GetURL("https://raw.githubusercontent.com/iCanuck/NHLstreams/master/cookie")
 				for link in links:
 					if 'http://xrxs.net' not in link:
 						link = 'http://xrxs.net/nhl/'+link
 					if 'HOME' in link:
 						title = re.findall('(HOME.+?\.m3u8)',link)[0].replace('.m3u8','')
-						addDirectLink(title, {'Title': away+' @ '+home}, link)
+						addDirectLink(title, {'Title': away+' @ '+home}, link+nhlcookie)
 					elif 'VISIT' in link:
 						title = re.findall('(VISIT.+?\.m3u8)',link)[0].replace('.m3u8','')
-						addDirectLink(title, {'Title': away+' @ '+home}, link)
+						addDirectLink(title, {'Title': away+' @ '+home}, link+nhlcookie)
 					elif 'FRENCH' in link:
 						title = re.findall('(FRENCH.+?\.m3u8)',link)[0].replace('.m3u8','')
-						addDirectLink(title, {'Title': away+' @ '+home}, link)
+						addDirectLink(title, {'Title': away+' @ '+home}, link+nhlcookie)
 					elif 'NATIONAL' in link:
 						title = re.findall('(NATIONAL.+?\.m3u8)',link)[0].replace('.m3u8','')
-						addDirectLink(title, {'Title': away+' @ '+home}, link)
+						addDirectLink(title, {'Title': away+' @ '+home}, link+nhlcookie)
+						#addDirectLink(title, {'Title': away+' @ '+home}, link+nhlcookie)
+						
 	except:
 		pass	
 
@@ -984,7 +989,6 @@ def Moonfruit(url):
 		link = common.parseDOM(html, "iframe",  ret="src")[0]
 		if 'streamup.com' in link:
 			channel = link.split('/')[3]
-			print channel
 			link = GetStreamup(channel)
 			return link
 	except:
@@ -1014,9 +1018,7 @@ def Ducking(url):
 		html = GetURL(url)
 		link = common.parseDOM(html, "iframe", ret="src")[1]
 		url = 'http://www.ducking.xyz/quack/'+link
-		print url
 		html = GetURL(url, referer=url)
-		print html
 		if 'p2pcast' in html:
 			id = html.split('php?id=')[-1].split('&')[0]
 			link = p2pcast(id)
@@ -1202,6 +1204,10 @@ def Universal(url):
 		id = html.split("fid='")[-1].split("';")[0]
 		link = rocktv(id)
 		return link
+	elif html and 'castamp.com' in html:
+		id = html.split('<script type="text/javascript">channel="')[-1].split('";')[0]
+		link = castamp(id)
+		return link
 	elif html and 'streamking.cc' in html:
 		id = re.findall('(http://streamking.+?")',html)[0]
 		id = id.replace('"','')
@@ -1259,6 +1265,16 @@ def sawresolve(url):
 		try: host = urlparse.parse_qs(urlparse.urlparse(url).query)['host'][0]
 		except: host = 'sawlive.tv'
 		result = GetURL(url, referer=referer)
+		if 'var sw=' not in result:
+			try:
+				result = result.replace('sw=', 'var sw=')
+			except:
+				pass
+		if 'var ch=' not in result:
+			try:
+				result = result.replace('ch=', 'var ch=')
+			except:
+				pass
 		url = common.parseDOM(result, 'iframe', ret='src')[-1]
 		url = url.replace(' ', '').replace('+','')
 		var = re.compile('var\s(.+?)\s*=\s*[\'\"](.+?)[\'\"]').findall(result)
@@ -1276,6 +1292,7 @@ def sawresolve(url):
 		for i in range(100):
 			for v in var_dict.keys(): url = url.replace("'%s'" % v, var_dict[v])
 			for v in var_dict.keys(): url = url.replace("(%s)" % v, "(%s)" % var_dict[v])
+		url = url.replace(' ', '').replace('+','').replace('"','').replace('\'','')
 		result = GetURL(url, referer = referer)
 		var = re.compile('var\s(.+?)\s*=\s*[\'\"](.+?)[\'\"]').findall(result)
 		var_dict = dict(var)       
@@ -1307,7 +1324,7 @@ def sawresolve(url):
 		return url
 	except:
 		return None
-
+		
 def castup(id):
 	try:
 		url = 'http://www.castup.tv/embed_2.php?channel='+id
@@ -1325,6 +1342,30 @@ def castup(id):
 		return url
 	except:
 		return None
+
+
+def castamp(id):
+	try:
+		url = 'http://castamp.com/embed.php?c=%s&tk=H0SKNbzC&vwidth=640&vheight=380'%id
+		pageUrl=url
+		result = GetURL(url, referer=url)
+		result = urllib.unquote(result).replace('unescape(','').replace("'+'",'')
+		result = re.sub('\/\*[^*]+\*\/','',result)
+		var = re.compile('var\s(.+?)\s*=\s*[\'\"](.+?)[\'\"]').findall(result)
+		var_dict = dict(var)
+		file = re.compile('\'file\'\s*:\s*(.+?),').findall(result)[-1]
+		fle = var_dict[file]
+		if file+'.replace' in result:
+			rslt = result.split(file+'.replace(')[-1].split(');')[0].replace("'","").strip()
+			vars = rslt.split(',')
+			fle = fle.replace(vars[0].strip(),vars[1].strip())
+		rtmp = re.compile('(rtmp://[^\"\']+)').findall(result)[0]
+		url = rtmp + ' playpath=' + fle + ' swfUrl=http://p.castamp.com/cplayer.swf' + ' flashver=WIN/2019,0,0,185 live=true timeout=15 swfVfy=1 pageUrl=' + pageUrl
+		return url
+	except:
+		return None
+	
+
 
 def p2pcast(id):
 	try:

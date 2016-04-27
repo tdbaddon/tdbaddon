@@ -460,7 +460,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 <addon id="plugin.video.fantasticc"
        name="Fantasti.cc"
-       version="2.3.23"
+       version="2.3.25"
        provider-name="xbmc-adult">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
@@ -693,7 +693,7 @@ http://informaticglobalworld.altervista.org/
 
 <addon id="plugin.video.lubetube"
        name="Lubetube (Adult)"
-       version="1.16"
+       version="1.17"
        provider-name="xbmc-adult">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -703,8 +703,8 @@ http://informaticglobalworld.altervista.org/
         <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary>Adult(18+) from LubeTube</summary>
-    <description></description>
+    <summary>Thousands of Free Streaming Porn videos! Updated every day. Lube Tube is the youtube of free porn.</summary>
+    <description>Thousands of Free Streaming Porn videos! Updated every day. Lube Tube is the youtube of free porn.</description>
     <platform>all</platform>
   </extension>
 </addon>
@@ -995,7 +995,7 @@ http://informaticglobalworld.altervista.org/
   </extension>
 </addon>
 
-<addon id="plugin.video.prosport" name="Pro Sport" version="0.44" provider-name="gerikss, podgod">
+<addon id="plugin.video.prosport" name="Pro Sport" version="0.47" provider-name="gerikss, podgod, iCanuck">
   <requires>
     <import addon="xbmc.python" version="2.1.0" />
      <import addon="script.module.requests" version="2.9.1" />
@@ -1240,7 +1240,7 @@ http://informaticglobalworld.altervista.org/
   </extension>
 </addon>
 
-<addon id="plugin.video.tvdireto" name="LiveTV" version="1.0.7" provider-name="TV Direto">
+<addon id="plugin.video.tvdireto" name="LiveTV" version="1.0.8" provider-name="TV Direto">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.beautifulsoup" version="3.2.1"/>

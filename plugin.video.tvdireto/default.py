@@ -2132,8 +2132,7 @@ def download_file(name, url):
 
 def _search(url,name):
    # print url,name
-    pluginsearchurls = ['plugin.video.PsycoTV/',\
-             'plugin://plugin.video.pancas/',\
+    pluginsearchurls = ['plugin.video.PsycoTV',\
              'plugin://plugin.video.phstreams',\
 	     'plugin://plugin.video.SportsDevil',\
              'plugin://plugin.video.CanTVLive',\
@@ -2141,7 +2140,7 @@ def _search(url,name):
              'plugin://plugin.video.prosport',\
              'plugin://plugin.video.p2psport',\
              ]
-    names = ['Psycho TV','Pancas','Phoenix','SportsDevil','CanTVLive','Ccloudtv','Prosport',\
+    names = ['Psycho TV','Phoenix','SportsDevil','CanTVLive','Ccloudtv','Prosport',\
              'P2psport']
     dialog = xbmcgui.Dialog()
     index = dialog.select('Choose a video source', names)
