@@ -833,8 +833,15 @@ List1 = 'YUhSMGNEb3ZMM2d1WTI4dlpHSmphREF4'.decode('base64').decode('base64')
 List2 = 'YUhSMGNEb3ZMMnR2WkdrdVkyTnNaQzVwYnc9PQ=='.decode('base64').decode('base64')
 List3 = 'YUhSMGNEb3ZMMkZwYnk1alkyeHZkV1IwZGk1dmNtY3ZhMjlrYVE9PQ=='.decode('base64').decode('base64')
 List4 = 'YUhSMGNEb3ZMMmR2TW13dWFXNXJMMnR2WkdrPQ=='.decode('base64').decode('base64')
+List5 = 'YUhSMGNEb3ZMM051YVhBdWJHa3ZhMjlrYVE9PQ=='.decode('base64').decode('base64')
+List6 = 'YUhSMGNEb3ZMMk5rYmk1alkyeHZkV1IwZGk1dmNtY3ZhMjlrYVRFPQ=='.decode('base64').decode('base64')
+List7 = 'YUhSMGNEb3ZMMk5rYmk1alkyeHZkV1IwZGk1dmNtY3ZhMjlrYVRJPQ=='.decode('base64').decode('base64')
+List8 = 'YUhSMGNEb3ZMMk5rYmk1alkyeHZkV1IwZGk1dmNtY3ZhMjlrYVRNPQ=='.decode('base64').decode('base64')
+List9 = 'YUhSMGNEb3ZMMk5rYmk1alkyeHZkV1IwZGk1dmNtY3ZhMjlrYVRRPQ=='.decode('base64').decode('base64')
+List10 = 'YUhSMGNEb3ZMMk5rYmk1alkyeHZkV1IwZGk1dmNtY3ZhMjlrYVRVPQ=='.decode('base64').decode('base64')
+List11= 'YUhSMGNEb3ZMMkZwY2k1alkyeHZkV1IwZGk1dmNtY3ZhMjlrYVE9PQ=='.decode('base64').decode('base64')
 
-CCLOUDTV_SRV_URL = [List1,List2,List3,List4]
+CCLOUDTV_SRV_URL = [List1,List2,List3,List4,List5,List6,List7,List8,List9,List10,List11]
 
 ####################################################################################################
 # Gets the data and tests for a valid M3U since a 200 response code can still lead to an empty file 

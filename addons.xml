@@ -308,7 +308,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 <addon id="plugin.video.ccloudtv"
        name="cCloud TV"
-       version="1.4.6"
+       version="1.4.7"
        provider-name="podgod, Coder Alpha">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -1312,6 +1312,26 @@ http://informaticglobalworld.altervista.org/
         <forum>https://forums.tvaddons.ag/tv-time-for-kodi/</forum>
         <website>http://www.tvaddons.ag/</website>
     </extension>
+</addon>
+
+<addon id="plugin.video.ukturk" name="UK Turk Playlists" version="3.0.0" provider-name="MetalKettle">
+  <requires>
+    <import addon="script.module.simplejson" version="3.3.0"/>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.t0mm0.common" version="2.0.0"/>
+    <import addon="plugin.video.youtube" version="3.0.0"/>
+    <import addon="script.module.urlresolver"  version="2.1.2"/>
+    <import addon="script.common.plugin.cache" version="2.5.2"/>
+    <import addon="script.module.metahandler" version="2.5.1"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Free Playlists courtesy of @uk_turk</summary>
+    <description lang="en">Free Playlists courtesy of @uk_turk</description>
+    <platform>all</platform>
+  </extension>
 </addon>
 
 <addon id="plugin.video.uktvnow" name="[COLOR lime]The-Illuminaty[/COLOR]" version="2.0.0" provider-name="Adam Weishaupt">
