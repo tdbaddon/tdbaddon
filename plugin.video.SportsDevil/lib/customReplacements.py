@@ -62,8 +62,7 @@ class CustomReplacements(object):
             matches = findall(data,'(@PARAM' + str(i) + '@)')
             if matches:
                 for m in matches:
-                    ptemp = str(par).strip()
-                    data = data.replace(m, ptemp)
+                    data = data.replace(m, par.strip())
             i = i + 1
         return data
 
@@ -83,7 +82,7 @@ class CustomReplacements(object):
                     jsName = param1
                     idName = param2
                     varName = param3
-                    regex = "(?:java)?scr(?:'\+')?ipt[^<]+" + idName + "\s*=\s*[\"']([^\"']+)[\"'][^<]*</scr(?:'\+')?ipt\s*>[^<]*<scr(?:'\+')?ipt[^<]*src=[\"']" + jsName + "[\"']"
+                    regex = "(?:java)?scr(?:'\+')?ipt[^<]+" + idName + "\s*=\s*[\"']([^\"']+)[\"'][^<]*</scr(?:'\+')?ipt\s*>[^<]*<scr(?:'\+')?ipt[^<]*src=[\"']" + jsName + "[\"'](?!></script></textarea>)"
                     lines = "item_infos=" + regex + "\nitem_order=" + varName
                     data = data.replace(idat, lines)
         return data
@@ -123,7 +122,7 @@ class CustomReplacements(object):
         starts = [match.start() for match in re.finditer(re.escape('@IF('), data)]
         for j in range(len(starts)-1,-1,-1):
             s = starts[j]
-            p_reg = re.compile('((@IF\((.+?)\)@).*?(@ENDIF@))', re.IGNORECASE + re.DOTALL + re.MULTILINE)
+            p_reg = re.compile('((@IF\((.+?)\)@).*?(@ENDIF@))', re.IGNORECASE + re.DOTALL + re.MULTILINE + re.UNICODE)
             m_reg = p_reg.findall(data[s:])
             if len(m_reg) > 0:
                 for m in m_reg:
@@ -138,12 +137,12 @@ class CustomReplacements(object):
                         hidePassage = condArr[0].strip().lower() == condArr[1].strip().lower()
 
                     if hidePassage:
-                        data = data.replace(str(new_reg.group(1)),'')
+                        data = data.replace(new_reg.group(1),'')
                     else:
-                        tmpdata = str(new_reg.group(1))
-                        tmpdata = tmpdata.replace(str(new_reg.group(2)),'',1)
-                        tmpdata = tmpdata[:-len(str(new_reg.group(4)))]
-                        data = data.replace(str(new_reg.group(1)),tmpdata)
+                        tmpdata = new_reg.group(1)
+                        tmpdata = tmpdata.replace(new_reg.group(2),'',1)
+                        tmpdata = tmpdata[:-len(new_reg.group(4))]
+                        data = data.replace(new_reg.group(1),tmpdata)
         return data
 
 

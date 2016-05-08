@@ -1,0 +1,34 @@
+﻿<settings>
+  <category label="[COLOR=lime]• [/COLOR][COLOR=red][B]About[/B][/COLOR]">
+	<setting type="action" label="[COLOR=lime]• [/COLOR][COLOR=lime][B]Olsion Bakiaj [/COLOR][COLOR=red]&[/B][/COLOR] [COLOR=lime][B]Endrit Pano [/B][/COLOR]" option="close" action="RunPlugin(TRC4.Albdroid-IPTV.AL/?mode=7)" />
+    <setting type="action" label="[COLOR=lime]• [/COLOR][COLOR=red][B]Albmix Media Ltd[COLOR] [COLOR=lime]v1[COLOR=lime].[/COLOR]1[/COLOR][COLOR=lime].[/COLOR][COLOR=lime]0[COLOR][/B][/COLOR]" option="close" action="RunPlugin(TRC4.Albdroid-IPTV.AL/?mode=7)" />
+        </category>
+
+  <category label="[COLOR=lime]• [/COLOR][COLOR=lime]Konfigurime[/COLOR]">
+    <setting id="use_thumb" type="bool" label="[COLOR=lime]• [/COLOR][COLOR=lime]Përdorni Tablotë si Fanart[/COLOR]" default="false" />
+    <setting id="logo-folderPath" type="folder"  label="[COLOR=lime]• [/COLOR][COLOR=lime]Zgjidhni Destinacion për logo[/COLOR]" default=""/>
+    <setting id="add_playlist" type="bool" label="[COLOR=lime]• [/COLOR][COLOR=lime]Shto artikuj të shumta në lidhje për Playlist[/COLOR]" default="false"/>
+    <setting id="ask_playlist_items" type="bool" label="[COLOR=lime]• [/COLOR][COLOR=lime]Doni te Pyeteni për të zgjedhur playlist nga dialogu[/COLOR]" default="false" />
+    <setting id="debug" type="bool" label="[COLOR=red]• [/COLOR][COLOR=red]Aktivizo Add-on Debugging[/COLOR]" default="false"/>
+    <setting id="1080pquality" label="[COLOR=lime]• [/COLOR][COLOR=lime]Luaj videon 1080p në demand nëse është i disponueshëm[/COLOR] [COLOR=red] (Jo live)[/COLOR]" type="bool" default=""/>
+    <setting id="genesisorpulsar" type="enum" values="[COLOR=lime]Genesis[/COLOR]|[COLOR=red]Pulsar[/COLOR]" label="[COLOR=lime]• [/COLOR][COLOR=lime]Luaj IMDBid me:[/COLOR]" default="[COLOR=lime]Genesis[/COLOR]"/>
+    <setting id="donotshowbychannels" label="[COLOR=lime]• [/COLOR][COLOR=lime]Mos trego të dhena nën emrin e kanalit[/COLOR]" type="bool" default="false"/>
+    
+    <setting id="parentalblockedpin" label="[COLOR=red]• [/COLOR][COLOR=red]Aktivizo Bllokimin prindëror me Pin[/COLOR]" type="text"  option="hidden"  default=""/>
+    <setting id="parentalblocked" label="[COLOR=red]• [/COLOR][COLOR=red] Është Bllokim Prindëror të Aplikohet?[/COLOR]" type="bool" default="false" enable="false"/>
+    
+  </category>
+  <category label="[COLOR=lime]• [/COLOR][COLOR=lime]Shto Source[/COLOR]">
+    <setting id="choose_source" type="enum" values="[COLOR=lime]Lokal[/COLOR]|[COLOR=lime]Nga URL[/COLOR]" label="[COLOR=lime]• [/COLOR][COLOR=lime]Zgjidh Tipin e Source[/COLOR]" default=""/>
+    <setting id="new_file_source" type="file" source="files" label="[COLOR=lime]• [/COLOR][COLOR=lime]Shto File[/COLOR]" default="" visible="eq(-1,0)"/>
+    <setting id="new_url_source" type="text" label="[COLOR=lime]• [/COLOR][COLOR=lime]Vendos URL[/COLOR]" default="" visible="eq(-2,1)"/>
+    <setting type="sep" />
+    <setting type="action" label="[COLOR=lime]• [/COLOR][COLOR=lime]Shto Source[/COLOR]" option="close" action="RunPlugin(plugin://TRC4.Albdroid-IPTV.AL/?mode=7)" />
+    <setting type="sep" />
+    <setting id="searchotherplugins" label="[COLOR=red]• [/COLOR][COLOR=red]Kërko plugins të tjera[/COLOR]" type="bool" default="false"/>
+  </category>
+  
+  <category label="32017">
+         <setting label="32018" type="text" id="bbcBitRateMax"  default="1500" values=""/>
+     </category>
+</settings>

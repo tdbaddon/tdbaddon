@@ -844,7 +844,7 @@ http://informaticglobalworld.altervista.org/
 
 <addon id="plugin.video.MoneySports"
        name="MoneySports"
-       version="3.0.3"
+       version="4.0.1"
        provider-name="SOME FINE FELLOW">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -1073,12 +1073,15 @@ http://informaticglobalworld.altervista.org/
 
 <addon
   id="plugin.video.SportsDevil"
-  version="201520152015.12.27.1NL"
+  version="'201620162016.05.03.2NL"
   name="SportsDevil"
-  provider-name="MaxMustermann">
+  provider-name="MaxMustermann, Al101, Hubbab3, Jairox, Sattekop">
   <requires>
    <import addon="xbmc.python" version="2.14.0"/>
+   <import addon="script.module.simplejson" />
+   <import addon="script.module.six" />
    <import addon="script.module.requests" />
+   <import addon="script.module.livestreamer" />
    <import addon="script.module.pydevd" version="4.4.0" optional="true"/>
   </requires>
   <extension
@@ -1623,6 +1626,24 @@ http://informaticglobalworld.altervista.org/
 		<description>Visita el spot B75OYRJ de la app Spotbros para enterarte de las novedades.</description>
 		<platform>all</platform>
 	</extension>
+</addon>
+
+    <addon id="repository.dokinl" name="[B][COLOR lime]D[/COLOR]OKI[COLOR lime]TV[/COLOR].NL [COLOR lime]R[/COLOR]epository[/B]" version="1.0.2" provider-name="DOKITV.NL">
+        <requires>
+            <import addon="xbmc.addon" version="12.0.0"/>
+        </requires>
+        <extension point="xbmc.addon.repository" name="DOKITV.NL Repository">
+            <info compressed="false">https://raw.githubusercontent.com/doki1/repo/master/addons.xml</info>
+            <checksum>https://raw.githubusercontent.com/doki1/repo/master/addons.xml.md5</checksum>
+            <datadir zip="true">https://raw.githubusercontent.com/doki1/repo/master/zips/</datadir>
+            <hashes>false</hashes>
+        </extension>
+        <extension point="xbmc.addon.metadata">
+            <summary>The Official DOKITV.NL repository</summary>
+			<description>This repository contains all Repositorys for KODI.</description>
+			<disclaimer>The owners and submitters to this repository do not host or distribute any of the content displayed by these addons nor do they have any affiliation with the content providers.</disclaimer>
+            <platform>all</platform>
+    </extension>
 </addon>
 
 <addon id="repository.entertainmentrepo" name="The Entertainment Repository" version="1.5" provider-name="Mr Entertainment">
@@ -2672,6 +2693,35 @@ http://informaticglobalworld.altervista.org/
                 <website>https://superrepo.org/</website>
                 </extension>
                 </addon>
+
+<addon id="TRC4.Albdroid-IPTV.AL"
+       name="[COLOR=lime]• [/COLOR][COLOR=lime]Albdroid IPTV[/COLOR]"
+       version="[COLOR=lime] v1[COLOR=lime].[/COLOR]1[/COLOR][COLOR=lime].[/COLOR][COLOR=lime]1[COLOR][/COLOR]"
+       provider-name="[COLOR=lime][B]Olsion Bakiaj[/B][/COLOR] [COLOR=red]and[/COLOR] [COLOR=lime][B]Endrit Pano[/B][/COLOR]">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0"/>
+        <import addon="script.module.beautifulsoup" version="3.2.1"/>
+        <import addon="script.module.simple.downloader" version="0.9.4"/>
+        <import addon="script.module.beautifulsoup4" />
+        <import addon="script.module.requests" />
+        <import addon="script.module.httplib2" />
+        <import addon="script.module.youtube.dl" optional="true"/>
+        <import addon="plugin.video.youtube" />
+        <import addon="script.module.urlresolver" optional="true"/>
+        <import addon="script.module.simplejson" />
+		<import addon="script.module.livestreamer" optional="true"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary> [COLOR red]Albdroid [/COLOR][COLOR lime] IPTV[/COLOR]</summary>
+    <description>[COLOR=lime]• [/COLOR][COLOR=red][B]Albmix Media Ltd[/B][/COLOR]
+[COLOR=lime]• [/COLOR][COLOR lime]Dance.al[/COLOR]</description>
+	<disclaimer lang="en">[COLOR=lime] TRC4 Media Albmix Sources[/COLOR]</disclaimer>
+        <platform>all</platform>
+    </extension>
+</addon>
 
 <addon id="xxtrucoxx-repo" name="XxTRUCOxX repository" version="0.0.1" provider-name="XxTRUCOxX">
 	<extension point="xbmc.addon.repository" name="XxTRUCOxX Add-on Repository">

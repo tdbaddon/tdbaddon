@@ -95,23 +95,84 @@ class JsUnpacker:
             return in_data
         except: 
             traceback.print_exc(file=sys.stdout)
-            return data
+            return in_data
 
     def containsPacked(self, data):
         return 'p,a,c,k,e,d' in data or 'p,a,c,k,e,r' in data
 
 
-class JsUnpacker95High:
+class JsUnpackerV2:
+
     def unpackAll(self, data):
         try:
             in_data=data
             sPattern = '(eval\\(function\\(p,a,c,k,e,d.*)'
             enc_data=re.compile(sPattern).findall(in_data)
+            #print 'enc_data',enc_data, len(enc_data)
             if len(enc_data)==0:
                 sPattern = '(eval\\(function\\(p,a,c,k,e,r.*)'
                 enc_data=re.compile(sPattern).findall(in_data)
-                
+                #print 'enc_data packer...',enc_data
 
+            for enc_val in enc_data:
+                unpack_val=self.unpack(enc_val)
+                in_data=in_data.replace(enc_val,unpack_val)
+            return in_data
+        except: 
+            traceback.print_exc(file=sys.stdout)
+            return data
+        
+        
+    def containsPacked(self, data):
+        return 'String.fromCharCode(c+29)' in data
+        
+    def unpack(self,sJavascript,iteration=1, totaliterations=1  ):
+
+        aSplit = sJavascript.split("rn p}('")
+
+        p1,a1,c1,k1=('','0','0','')
+        ss="p1,a1,c1,k1=(\'"+aSplit[1].split(".spli")[0]+')' 
+        exec(ss)
+        
+        k1=k1.split('|')
+        aSplit = aSplit[1].split("))'")
+        e = ''
+        d = ''#32823
+        sUnpacked1 = str(self.__unpack(p1, a1, c1, k1, e, d,iteration))
+        if iteration>=totaliterations:
+            return sUnpacked1
+        else:
+            return self.unpack(sUnpacked1,iteration+1)
+
+    def __unpack(self,p, a, c, k, e, d, iteration,v=1):
+        while (c >= 1):
+            c = c -1
+            if (k[c]):
+                aa=str(self.__itoaNew(c, a))
+                p=re.sub('\\b' + aa +'\\b', k[c], p)# THIS IS Bloody slow!
+        return p
+
+    def __itoa(self,num, radix):
+
+        result = ""
+        if num==0: return '0'
+        while num > 0:
+            result = "0123456789abcdefghijklmnopqrstuvwxyz"[num % radix] + result
+            num /= radix
+        return result
+    
+    def __itoaNew(self,cc, a):
+        aa="" if cc < a else self.__itoaNew(int(cc / a),a) 
+        cc = (cc % a)
+        bb=chr(cc + 29) if cc> 35 else str(self.__itoa(cc,36))
+        return aa+bb
+
+class JsUnpacker95High:
+    def unpackAll(self, data):
+        try:
+            in_data=data
+            sPattern = '(eval\\(function\\(p,a,c,k.*)'
+            enc_data=re.compile(sPattern).findall(in_data)
             for enc_val in enc_data:
                 unpack_val=unpack95High.unpack(enc_val)
                 in_data=in_data.replace(enc_val,unpack_val)
@@ -119,10 +180,11 @@ class JsUnpacker95High:
             return in_data
         except: 
             traceback.print_exc(file=sys.stdout)
-            return data
+            return in_data
+            #return data.replace(enc_val,'')
 
     def containsPacked(self, data):
-        return 'p,a,c,k,e,d' in data or 'p,a,c,k,e,r' in data
+        return r'[\xa1-\xff]' in data or r'RegExp(e(c)' in data
 
 
 class JsUnIonCube:
@@ -177,7 +239,7 @@ class JsUnwiser:
                 unpack_val=self.unwise(wise_val)
                 #print '\nunpack_val',unpack_val
                 in_data=in_data.replace(wise_val,unpack_val)
-            return re.sub("eval\(function\(w,i,s,e\).*?join\(''\);}", "", in_data, count=1, flags=re.DOTALL)
+            return re.sub(re.compile("eval\(function\(w,i,s,e\).*?join\(''\);}", re.DOTALL), "", in_data, count=1)
         except: 
             traceback.print_exc(file=sys.stdout)
             return data
@@ -265,7 +327,7 @@ class JsUnFunc:
         for i,d in enumerate(encData):
             dec_data += chr((int(k[i % len(k)]) ^ ord(d)) + mod)
             
-        data = re.sub("eval\(unescape\('function.*?unescape\(''\)\);'\)\);", dec_data, in_data, count=1, flags=re.DOTALL)
+        data = re.sub(re.compile("eval\(unescape\('function.*?unescape\(''\)\);'\)\);", re.DOTALL), dec_data, in_data, count=1)
         return data
     
     def cointainUnFunc(self,data):
@@ -282,7 +344,7 @@ class JsUnPP:
         
         for i in t_data:
             out_data = removeNonAscii(str(base64.b16decode(i.upper())))
-            data = re.sub(r"var\s*t=\"[^}]+}", out_data, data)
+            data = re.sub(r"var\s*t=\"[^}]+}", out_data, data, count=1)
                 
         return data
     def containUnPP(self,data):

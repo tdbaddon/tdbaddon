@@ -28,7 +28,7 @@ class NoRedirection(urllib2.HTTPErrorProcessor):
        return response
    https_response = http_response
        
-Q1RWQmFzZQ0K = base64.b64decode('aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL1dBTEtJTkdERUFEOTg3NDU2L3JpY2svbWFzdGVyL2ZjdWtvZmY=')
+Q1RWQmFzZQ0K = base64.b64decode('aHR0cDovL3d3dy5tYXRzYnVpbGRzLmNvLnVrL2hhbmsvZmN1a29mZi5YTUw=')
 addon = xbmcaddon.Addon('plugin.video.MoneySports')
 addon_version = addon.getAddonInfo('version')
 profile = xbmc.translatePath(addon.getAddonInfo('profile').decode('utf-8'))
@@ -60,7 +60,7 @@ def addon_log(string):
 def makeRequest(url, headers=None):
         try:
             if headers is None:
-                headers = {'User-agent' : 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:19.0) Gecko/20100101 Firefox/19.0'}
+                headers = {'User-agent' : 'mat'}
             req = urllib2.Request(url,None,headers)
             response = urllib2.urlopen(req)
             data = response.read()

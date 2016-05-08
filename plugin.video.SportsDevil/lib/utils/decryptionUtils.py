@@ -3,7 +3,7 @@ import pyDes
 import urllib
 import re
 from regexUtils import parseTextToGroups
-from javascriptUtils import JsFunctions, JsUnpacker, JsUnpacker95High, JsUnwiser, JsUnIonCube, JsUnFunc, JsUnPP, JsUnPush
+from javascriptUtils import JsFunctions, JsUnpacker, JsUnpackerV2, JsUnpacker95High, JsUnwiser, JsUnIonCube, JsUnFunc, JsUnPP, JsUnPush
 
 def encryptDES_ECB(data, key):
     data = data.encode()
@@ -13,20 +13,16 @@ def encryptDES_ECB(data, key):
     return d
 
 def gAesDec(data, key):
-    import mycrypt
-    return mycrypt.decrypt(key,data)
+    from mycrypt import decrypt
+    return decrypt(key,data)
 
-def aesDec(data, key):
-    from base64 import b64decode
-    try:
-        from Crypto.Cipher import AES
-    except ImportError:
-        import pyaes as AES
-    iv = 16 * '\x00'
-    cipher = AES.new(b64decode(key), AES.MODE_CBC, IV=iv)
-    padded_plaintext = cipher.decrypt(b64decode(data))
-    padding_len = ord(padded_plaintext[-1])
-    return padded_plaintext[:-padding_len]
+def cjsAesDec(data, key):
+    try: import json
+    except ImportError: import simplejson as json
+    from mycrypt import decrypt
+    enc_data = json.loads(data.decode('base-64'))
+    ciphertext = 'Salted__' + enc_data['s'].decode('hex') + enc_data['ct'].decode('base-64')
+    return json.loads(decrypt(key,ciphertext.encode('base-64')))
 
 def wdecode(data):
     from itertools import chain
@@ -79,6 +75,7 @@ def doDemystify(data):
     #init jsFunctions and jsUnpacker
     jsF = JsFunctions()
     jsU = JsUnpacker()
+    jsU2 = JsUnpackerV2()
     jsUW = JsUnwiser()
     jsUI = JsUnIonCube()
     jsUF = JsUnFunc()
@@ -142,7 +139,7 @@ def doDemystify(data):
                 data = data.replace(g, urllib.unquote(base64_data.decode('base-64')))
                 escape_again=True
     
-    r = re.compile('(eval\\(function\\(\w+,\w+,\w+,\w+.*?join\\(\'\'\\);*}\\(.*?\\))', flags=re.DOTALL)
+    r = re.compile('(eval\\(function\\((?!w)\w+,\w+,\w+,\w+.*?join\\(\'\'\\);*}\\(.*?\\))', flags=re.DOTALL)
     for g in r.findall(data):
         try:
             data = data.replace(g, wdecode(g))
@@ -193,7 +190,11 @@ def doDemystify(data):
         if gs:
             for g in gs:
                 data = data.replace(g, jsF.pbbfa0(g))
-
+    
+    if 'function(d,i,t,s)' in data:
+        data = data.replace('function(d,i,t,s)','function(p,a,c,k)')
+        data = data.replace('(e+0)%i','e%a')
+        data = data.replace('RegExp(e(t)','RegExp(e(c)')
 
     # util.de
     if 'Util.de' in data:
@@ -212,12 +213,16 @@ def doDemystify(data):
                 data = data.replace(g, destreamer(g))
 
     # JS P,A,C,K,E,D
-    if jsU.containsPacked(data):
-        data = jsU.unpackAll(data)
-        escape_again=True
-
     if jsU95.containsPacked(data):
         data = jsU95.unpackAll(data)
+        escape_again=True
+        
+    if jsU2.containsPacked(data):
+        data = jsU2.unpackAll(data)
+        escape_again=True
+    
+    if jsU.containsPacked(data):
+        data = jsU.unpackAll(data)
         escape_again=True
 
     # JS W,I,S,E

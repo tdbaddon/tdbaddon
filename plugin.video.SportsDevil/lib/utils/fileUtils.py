@@ -91,7 +91,7 @@ def md5(fileName, excludeLine="", includeLine=""):
     try:
         fd = codecs.open(fileName,"rb",'utf-8')
     except IOError:
-        print "Unable to open the file in readmode:", fileName
+        #print "Unable to open the file in readmode:", fileName
         return
     content = fd.readlines()
     fd.close()
@@ -116,6 +116,15 @@ def setLastModifiedAt(path, date):
         pass
     
     return False
+
+def checkQuota(directory, limit=200*1024):
+        total_size = 0
+        for root, dirs, files in os.walk(directory, topdown=False):
+            for name in files:
+                total_size += os.path.getsize(os.path.join(root, name))
+                if total_size > limit:
+                   return limit, False
+        return total_size, True
 
 def clearDirectory(path):
     try:
@@ -145,8 +154,8 @@ def GetHashofDirs(directory, verbose=0):
     try:
         for root, _, files in os.walk(directory):
             for names in files:
-                if verbose == 1:
-                    print 'Hashing', names
+                #if verbose == 1:
+                    #print 'Hashing', names
                 filepath = os.path.join(root,names)
                 try:
                     f1 = codecs.open(filepath, 'rb','utf-8')
