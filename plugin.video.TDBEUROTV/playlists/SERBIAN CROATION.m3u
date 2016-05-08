@@ -77,16 +77,16 @@ mms://77.238.209.50:1234
 0
 
 #EXTINF:0,HRT 1 
-0
+http://hrt.live.cdn.spectar.tv/OIV_HRT1_TV/01.m3u8
 
 #EXTINF:0,HRT 2 
-0
+http://hrt.live.cdn.spectar.tv/OIV_HRT2_TV/01.m3u8
 
 #EXTINF:0,HRT 3 
-0
+http://hrt.live.cdn.spectar.tv/OIV_HRT3_TV/01.m3u8
 
 #EXTINF:0,HRT 4 
-0
+http://hrt.live.cdn.spectar.tv/OIV_HRT4_TV/01.m3u8
 
 #EXTINF:0,Joj
 0
@@ -137,7 +137,7 @@ http://213.81.153.221:8080/nasa
 mms://176.106.121.32:8080/
 
 #EXTINF:0,OBN 
-0
+http://51.254.136.4:81/sipragezabava.com/obn/index.m3u8
 
 #EXTINF:0,Palma Plus 
 0

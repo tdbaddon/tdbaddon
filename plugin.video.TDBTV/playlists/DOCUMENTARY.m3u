@@ -16,11 +16,14 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 #EXTINF:0,Animal Planet 
 http://109.226.222.161:4022/udp/239.255.4.175:1234
 
+#EXTINF:0,Animal Planet 
+http://188.175.35.121:8001/1:0:1:13CB:C95:3:E90000:0:0:0:
+
 #EXTINF:0,Biography Channel
 0
 
 #EXTINF:0,Crime & Investigation 
-0
+http://188.175.35.121:8001/1:0:1:13B8:C95:3:E90000:0:0:0:
 
 #EXTINF:0,Cottage Life
 0
@@ -50,7 +53,7 @@ http://109.226.222.161:4022/udp/239.255.4.175:1234
 http://109.226.222.161:4022/udp/239.255.4.250:1234
 
 #EXTINF:0,Discovery Shed
-0
+http://188.175.35.121:8001/1:0:1:13B5:C95:3:E90000:0:0:0:
 
 #EXTINF:0,Discovery Theatre
 0
@@ -84,6 +87,9 @@ https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8
 
 #EXTINF:0,History Channel 
 http://link.theplatform.com/s/dtjsEC/chjdYJxKb44V?manifest=m3u
+
+#EXTINF:0,History Channel
+http://188.175.35.121:8001/1:0:19:13B3:C95:3:E90000:0:0:0:
 
 #EXTINF:0,History Channel 2 
 0
