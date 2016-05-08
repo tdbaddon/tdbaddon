@@ -318,6 +318,7 @@ class libepisodes:
         if not query == None: control.idle()
 
         try:
+
             items = []
             season, episode = [], []
             show = [os.path.join(self.library_folder, i) for i in control.listDir(self.library_folder)[0]]

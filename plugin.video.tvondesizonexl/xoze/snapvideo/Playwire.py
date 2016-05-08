@@ -7,6 +7,7 @@ from xoze.snapvideo import VideoHost, Video, STREAM_QUAL_LOW, \
     STREAM_QUAL_SD
 from xoze.utils import http
 import logging
+import re
 
 try:
     import json
@@ -27,27 +28,16 @@ def retrieveVideoInfo(video_id):
     video.set_video_host(getVideoHost())
     video.set_id(video_id)
     try:
-        video_link = 'https://config.playwire.com/videos/v2/%s/zeus.json' % str(video_id)
+        video_link = 'https://config.playwire.com/videos/v2/%s/player.json' % str(video_id)
         logging.debug('get video info: ' + video_link)
         html = http.HttpClient().get_html_content(url=video_link)
         jsonObj = json.loads(html)
-        img_link = str(jsonObj['content']['poster'])
-        video_link = str(jsonObj['content']['media']['f4m'])
-        name = str(jsonObj['settings']['title'])
-        logging.getLogger().debug('video info ' + str(video_link))
-        
-        soup = http.HttpClient().get_beautiful_soup(url=video_link)
-        baseurl = soup.findChild('baseurl')
-        logging.getLogger().debug(str(baseurl.text))
-        medias = soup.findChildren('media')
-        for mediaInfo in medias:
-            video_link = str(baseurl.text) + '/' + mediaInfo['url']
-            logging.getLogger().debug(video_link)
-            if mediaInfo['bitrate'] == '1200':
-                video.add_stream_link(STREAM_QUAL_SD, video_link)
-            else:
-                video.add_stream_link(STREAM_QUAL_LOW, video_link)
-        
+        video_link = str(jsonObj['src'])
+        video_info = re.compile('config.playwire.com/(.+?)/videos/v2/(.+?)/manifest.f4m').findall(video_link)[0]        
+        video_link = 'http://cdn.phoenix.intergi.com/' + video_info[0] + '/videos/' + video_info[1] + '/video-sd.mp4?hosting_id=' + video_info[0]
+        img_link = str(jsonObj['poster'])
+        name = str(jsonObj['title'])
+        video.add_stream_link(STREAM_QUAL_SD, video_link)        
         video.set_stopped(False)
         video.set_thumb_image(img_link)
         video.set_name(name)

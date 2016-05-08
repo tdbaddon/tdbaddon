@@ -33,7 +33,6 @@ class NoRedirection(urllib2.HTTPErrorProcessor):
     def http_response(self, request, response):
         control.log('Stopping Redirect')
         return response
-
     https_response = http_response
 
 def shrink_host(url):
@@ -76,7 +75,7 @@ def get_sucuri_cookie(html):
     return {}
 
 def http_get(url, cookies=None, data=None, multipart_data=None, headers=None, allow_redirect=True, method=None, require_debrid=False, cache_limit=8):
-    control.log('--=-=-==-=-=-=- CLIENT2 url: %s' % (url))
+    #control.log('--=-=-==-=-=-=- CLIENT2 url: %s' % (url))
 
 
     html = cached_http_get(url, shrink_host(url), control.DEFAULT_TIMEOUT, cookies=cookies, data=data, multipart_data=multipart_data,
@@ -96,14 +95,13 @@ def http_get(url, cookies=None, data=None, multipart_data=None, headers=None, al
 
 def cached_http_get(url, base_url, timeout, cookies=None, data=None, multipart_data=None, headers=None, allow_redirect=True, method=None,
                      require_debrid=False, cache_limit=8):
-    control.log('--=-=-==-=-=-=- CLIENT2 CACHE url: %s base_url:%s' % (url,base_url))
-
+    #control.log('--=-=-==-=-=-=- CLIENT2 CACHE url: %s base_url:%s' % (url,base_url))
     if cookies is None: cookies = {}
     if timeout == 0: timeout = None
     if headers is None: headers = {}
     if url.startswith('//'): url = 'http:' + url
     referer = headers['Referer'] if 'Referer' in headers else url
-    control.log('Getting Url: %s cookie=|%s| data=|%s| extra headers=|%s|' % (url, cookies, data, headers))
+    #control.log('Getting Url: %s cookie=|%s| data=|%s| extra headers=|%s|' % (url, cookies, data, headers))
     if data is not None:
         if isinstance(data, basestring):
             data = data
@@ -140,7 +138,7 @@ def cached_http_get(url, base_url, timeout, cookies=None, data=None, multipart_d
         if method is not None: request.get_method = lambda: method.upper()
         response = urllib2.urlopen(request, timeout=timeout)
         cj.extract_cookies(response, request)
-        control.log('Response Cookies: %s - %s' % (url, cookies_as_str(cj)))
+        #control.log('Response Cookies: %s - %s' % (url, cookies_as_str(cj)))
         cj._cookies = fix_bad_cookies(cj._cookies)
         cj.save(ignore_discard=True)
         if not allow_redirect and (response.getcode() in [301, 302, 303, 307] or response.info().getheader('Refresh')):
@@ -175,7 +173,7 @@ def cached_http_get(url, base_url, timeout, cookies=None, data=None, multipart_d
             control.log('Error (%s) during scraper http get: %s' % (str(e), url))
             return ''
     except Exception as e:
-        control.log('Error (%s) during scraper http get: %s' % (str(e), url))
+        control.log('Error (%s) during scraper get: %s' % (str(e), url))
         return ''
 
     cache.cache_url(url, html, data)
@@ -183,12 +181,13 @@ def cached_http_get(url, base_url, timeout, cookies=None, data=None, multipart_d
 
 def _set_cookies(base_url, cookies):
     cookie_file = os.path.join(control.cookieDir, '%s_cookies.lwp' % shrink_host((base_url)))
-    #cookie_file = os.path.join('/home/mrknow/Dokumenty/praca/kodi/plugin.video.specto/Cookies', '%s_cookies.lwp' % (base_url))
+    #cookie_file = os.path.join('/home/mrknow/.kodi/userdata/addon_data/plugin.video.specto/Cookies', '%s_cookies.lwp' % shrink_host((base_url)))
+    #control.log('control.cookieDir: %s' % (control.cookieDir))
 
     cj = cookielib.LWPCookieJar(cookie_file)
     try: cj.load(ignore_discard=True)
     except: pass
-    control.log('Before Cookies: %s - %s' % (base_url, cookies_as_str(cj)))
+    #control.log('Before Cookies: %s - %s' % (base_url, cookies_as_str(cj)))
     domain = urlparse.urlsplit(base_url).hostname
     for key in cookies:
         c = cookielib.Cookie(0, key, str(cookies[key]), port=None, port_specified=False, domain=domain, domain_specified=True,

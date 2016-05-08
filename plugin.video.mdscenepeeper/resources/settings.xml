@@ -3,15 +3,17 @@
 	<category label="AutoView">
 		<setting id="auto-view" type="bool" label="Enable Automatic View" default="true"/>
 		<setting id="movie-view" type="labelenum" label="Movies View" values="Default View|Info|Info2|Info3|Fanart|Big list|Poster Wrap|Low List|Thumbnail" default="Info2" enable="!eq(-1,false)+!eq(-2,false)"/>
-		<setting type="lsep" label="The number set for each View Type above are based on Confluence/Xonfluence"/>
-		<setting type="lsep" label="if using a different skin these numbers maybe wrong in that case you can set"/>
-		<setting type="lsep" label="Movies View to Default View and then set the number for the View Type you "/>
-		<setting type="lsep" label="would like below"/>
-		<setting id="default-view" type="number" label="Default View" default="500" enable="!eq(-2,false)"/>
-		<setting type="lsep" label="If you have SuperFavourites installed you can find the correct number for the"/>
-		<setting type="lsep" label="view you want by opening SF and choosing the view you want in the side menu."/>
+		<setting type="lsep" label="The number set for each View Types above are based"/>
+		<setting type="lsep" label="on Confluence/Xonfluence if using a different"/>
+		<setting type="lsep" label="skin these numbers maybe wrong in that case"/>
+		<setting type="lsep" label="you can set View to Default View and then set"/>
+		<setting type="lsep" label="the number for the View Type you would like below"/>
+		<setting id="default-view" type="number" label="Default View" default="500" enable="!eq(-3,false)"/>
+		<setting type="lsep" label="If you have SuperFavourites installed you can find"/>
+		<setting type="lsep" label="the correct number for the view you want by opening SF"/>
+		<setting type="lsep" label="and choosing the view you want in the side menu."/>
 		<setting type="lsep" label="Then open the context menu in SF and choose Remember View Type."/>
-		<setting type="lsep" label="Then go into SF settings, select the Display Settings tab and the last"/>
+		<setting type="lsep" label="Now go into SF settings, select the Display Settings tab and the last"/>
 		<setting type="lsep" label="setting will show you the number you want (Set view list type)."/>
 	</category>
 	

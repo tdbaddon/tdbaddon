@@ -31,7 +31,7 @@ from resources.lib import resolvers
 class source:
     def __init__(self):
         self.base_link = 'http://tunemovie.is'
-        self.search_link = '/search/%s.html'
+        self.search_link = '/search-movies/%s.html'
         self.search_mv_link = '/search-movies/%s.html'
         #http://tunemovie.is/search-movies/The+Hateful+Eight.html
 

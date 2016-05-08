@@ -47,10 +47,12 @@ def request(url):
             if len(re.compile('\s*timeout=(\d*)').findall(url)) == 0: url += ' timeout=10'
             return url
 
-        u = client.shrink_host(url)
+        #u = client.shrink_host(url)
+        u = urlparse.urlparse(url).netloc
+        u = u.replace('www.', '').replace('embed.', '')
         u = u.lower()
 
-        #control.log("#RESOLVER#  my url 3 ************ %s " % u)
+        #control.log("#RESOLVER#  URL TO MATCH url 3 ************ %s " % u)
 
         r = [i['class'] for i in info() if u in i['netloc']][0]
         r = __import__(r, globals(), locals(), [], -1)
@@ -150,6 +152,9 @@ def info():
         'captcha': False,
         'a/c': False
     }, {
+        'class': 'yadisk',
+        'netloc': ['yadi.sk']
+    }, {
         'class': 'dailymotion',
         'netloc': ['dailymotion.com']
     }, {
@@ -196,6 +201,9 @@ def info():
     }, {
         'class': 'filepup',
         'netloc': ['filepup.net']
+    }, {
+        'class': 'googledocs',
+        'netloc': ['google.com']
     }, {
         'class': 'googledocs',
         'netloc': ['docs.google.com', 'drive.google.com']
@@ -263,6 +271,9 @@ def info():
     }, {
         'class': 'mailru',
         'netloc': ['mail.ru', 'my.mail.ru', 'videoapi.my.mail.ru', 'api.video.mail.ru']
+    }, {
+        'class': 'cloudmailru',
+        'netloc': ['cloud.mail.ru']
     }, {
         'class': 'mightyupload',
         'netloc': ['mightyupload.com'],

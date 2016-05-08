@@ -16,9 +16,6 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 #EXTINF:0,Animal Planet 
 http://109.226.222.161:4022/udp/239.255.4.175:1234
 
-#EXTINF:0,Animal Planet 
-http://212.39.110.1:9091/play/a00ahttp://212.39.110.1:9091/play/a00a
-
 #EXTINF:0,Biography Channel
 0
 
@@ -87,9 +84,6 @@ https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8
 
 #EXTINF:0,History Channel 
 http://link.theplatform.com/s/dtjsEC/chjdYJxKb44V?manifest=m3u
-
-#EXTINF:0,History Channel 
-http://over.ddns.net:65205
 
 #EXTINF:0,History Channel 2 
 0

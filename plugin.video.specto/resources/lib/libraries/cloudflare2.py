@@ -73,7 +73,7 @@ def solve(url, cj, user_agent=None, wait=True):
         pass_match = re.search(pass_pattern, html)
     
         if not init_match or not vc_match or not pass_match:
-            control.log("Couldn't find attribute: init: |%s| vc: |%s| pass: |%s| No cloudflare check?" % (init_match, vc_match, pass_match))
+            #control.log("Couldn't find attribute: init: |%s| vc: |%s| pass: |%s| No cloudflare check?" % (init_match, vc_match, pass_match))
             return False
             
         init_dict, init_var, init_equation, equations = init_match.groups()
@@ -83,7 +83,7 @@ def solve(url, cj, user_agent=None, wait=True):
         # control.log("VC is: %s" % (vc), xbmc.LOGDEBUG)
         varname = (init_dict, init_var)
         result = int(solve_equation(init_equation.rstrip()))
-        control.log('Initial value: |%s| Result: |%s|' % (init_equation, result))
+        #control.log('Initial value: |%s| Result: |%s|' % (init_equation, result))
         
         for equation in equations.split(';'):
                 equation = equation.rstrip()
@@ -99,19 +99,19 @@ def solve(url, cj, user_agent=None, wait=True):
                     continue
                     
                 result = int(str(eval(str(result) + operator + str(solve_equation(expression)))))
-                control.log('intermediate: %s = %s' % (equation, result))
+                #control.log('intermediate: %s = %s' % (equation, result))
         
         scheme = urlparse.urlparse(url).scheme
         domain = urlparse.urlparse(url).hostname
         result += len(domain)
-        control.log('Final Result: |%s|' % (result))
+        #control.log('Final Result: |%s|' % (result))
     
         if wait:
-                control.log('Sleeping for 5 Seconds')
+                #control.log('Sleeping for 5 Seconds')
                 time.sleep(5)
                 
         url = '%s://%s/cdn-cgi/l/chk_jschl?jschl_vc=%s&jschl_answer=%s&pass=%s' % (scheme, domain, vc, result, urllib.quote(password))
-        control.log('url: %s' % (url))
+        #control.log('url: %s' % (url))
         request = urllib2.Request(url)
         for key in headers: request.add_header(key, headers[key])
         try:
@@ -129,7 +129,7 @@ def solve(url, cj, user_agent=None, wait=True):
                 response = urllib2.urlopen(request)
             final = response.read()
             if 'cf-browser-verification' in final:
-                control.log('CF Failure: html: %s url: %s' % (html, url))
+                #control.log('CF Failure: html: %s url: %s' % (html, url))
                 tries += 1
                 html = final
             else:

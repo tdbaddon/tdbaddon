@@ -32,3 +32,8 @@ def resolve(url):
         except:
             return
 
+def check(url):
+    try:
+        return True
+    except:
+        return False

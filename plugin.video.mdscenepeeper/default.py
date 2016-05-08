@@ -16,7 +16,7 @@ auto_play = addon.get_setting('autoplay')
 def_quality = addon.get_setting('default_quality')
 metaset = selfAddon.getSetting('enable_meta')
 metaget = metahandlers.MetaData()
-baseurl = 'http://layarkaca21.com' #'http://www.nonton.mobi/
+baseurl = 'http://layarkaca21.tv' #'http://layarkaca21.com' #'http://www.nonton.mobi/
 
 
 
@@ -99,8 +99,8 @@ def RANDOM(url):
 
 
 def LINK(name,url,iconimage):
-        title = url.replace('http://layarkaca21.com/','').replace('/','')
-        mplay = 'http://layarkaca21.com/movie/play.php?movie='
+        title = url.replace('http://layarkaca21.com/','').replace('http://layarkaca21.tv/','').replace('/','')
+        mplay = 'http://layarkaca21.tv/movie/play.php?movie='
         url = url + '0/'
         link = OPEN_URL(url)
         all_links = regex_get_all(link, 'server-list', '<script>')

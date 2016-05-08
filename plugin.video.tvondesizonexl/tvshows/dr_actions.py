@@ -271,6 +271,11 @@ def refresh_cache(req_attrib, modelMap):
                    "channelType": "IND",
                    "running_tvshows_url": "/forumdisplay.php?f=2555",
                    "finished_tvshows_url": "/forumdisplay.php?f=2689"},
+                  "Colors Marathi":
+                  {"iconimage":"http://www.lyngsat-logo.com/logo/tv/cc/colors_in_marathi.png",
+                   "channelType": "IND",
+                   "running_tvshows_url": "/forumdisplay.php?f=2369",
+                   "finished_tvshows_url": "/forumdisplay.php?f=2562"},
                   "Sonic":
                   {"iconimage":"http://www.lyngsat-logo.com/logo/tv/ss/sonic_nickelodeon.png",
                    "channelType": "IND",

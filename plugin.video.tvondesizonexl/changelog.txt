@@ -1,3 +1,7 @@
+[B]Version 2.8.9[/B]
+- Fixed Playwire
+- Added Colors Marathi
+
 [B]Version 2.8.8[/B]
 - Fixed TVLogy
 

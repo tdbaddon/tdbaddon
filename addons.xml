@@ -805,7 +805,7 @@ http://informaticglobalworld.altervista.org/
   </extension>
 </addon>
 
-<addon id="plugin.video.mdscenepeeper" name="Scene Peeper" version="1.0.0" provider-name="Mucky Duck">
+<addon id="plugin.video.mdscenepeeper" name="Scene Peeper" version="1.0.1" provider-name="Mucky Duck">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.addon.common" />
@@ -995,7 +995,7 @@ http://informaticglobalworld.altervista.org/
   </extension>
 </addon>
 
-<addon id="plugin.video.prosport" name="Pro Sport" version="0.47" provider-name="gerikss, podgod, iCanuck">
+<addon id="plugin.video.prosport" name="Pro Sport" version="0.49" provider-name="gerikss, podgod, iCanuck">
   <requires>
     <import addon="xbmc.python" version="2.1.0" />
      <import addon="script.module.requests" version="2.9.1" />
@@ -1047,7 +1047,7 @@ http://informaticglobalworld.altervista.org/
 	</extension>
 </addon>
 
-<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2016.04.23.1" provider-name="mrknow" >
+<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2016.05.8.5" provider-name="mrknow" >
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.requests" version="1.0.0" />
@@ -1120,7 +1120,7 @@ http://informaticglobalworld.altervista.org/
 
 <addon id="plugin.video.TDBEUROTV"
        name="TDB EURO TV"
-       version="2.28"
+       version="2.29"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -1195,7 +1195,7 @@ http://informaticglobalworld.altervista.org/
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="3.77"
+       version="3.78"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -1263,7 +1263,7 @@ http://informaticglobalworld.altervista.org/
   </extension>
 </addon>
 
-<addon id="plugin.video.tvondesizonexl" name="TV on DESI ZONE" version="2.8.8"
+<addon id="plugin.video.tvondesizonexl" name="TV on DESI ZONE" version="2.8.9"
 	provider-name="ajdeveloped/jchirag">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
@@ -1334,7 +1334,7 @@ http://informaticglobalworld.altervista.org/
   </extension>
 </addon>
 
-<addon id="plugin.video.uktvnow" name="[COLOR lime]The-Illuminaty[/COLOR]" version="2.0.0" provider-name="Adam Weishaupt">
+<addon id="plugin.video.uktvnow" name="UKTV Now" version="2.0.1" provider-name="MetalKettle">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
   </requires>
@@ -1342,7 +1342,7 @@ http://informaticglobalworld.altervista.org/
         <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary lang="en">Enjoy the new Addon to watch Live TV[COLOR lime]The-Illuminaty[/COLOR]</summary>
+    <summary lang="en"></summary>
     <description lang="en"></description>
     <platform>all</platform>
   </extension>

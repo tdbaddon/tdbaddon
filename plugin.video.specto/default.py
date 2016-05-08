@@ -26,8 +26,21 @@
 import urlparse,sys
 from resources.lib.libraries import control
 
+import xbmcaddon, os, xbmc
+scriptID = 'plugin.video.specto'
+ptv = xbmcaddon.Addon(scriptID)
+datapath = xbmc.translatePath(ptv.getAddonInfo('profile'))
+
+BASE_RESOURCE_PATH = os.path.join( ptv.getAddonInfo('path'), "mylib" )
+sys.path.append( os.path.join( ptv.getAddonInfo('path'), "mylib" ) )
+
+#import pydevd
+#pydevd.settrace('localhost', port=34099, stdoutToServer=True, stderrToServer=True)
+
+
 params = dict(urlparse.parse_qsl(sys.argv[2].replace('?','')))
 control.log("->----------                PARAMS: %s" % params)
+
 
 
 try:
@@ -130,9 +143,10 @@ elif action == 'realdebridauth':
     from resources.lib.resolvers.realdebrid import rdAuthorize
     rdAuthorize()
 
-elif action == 'traktpinauth':
-    from resources.lib.indexers import navigator
-    navigator.navigator().trakt_pin_auth()
+
+elif action == 'authTrakt':
+    from resources.lib.libraries import trakt
+    trakt.authTrakt()
 
 elif action == 'movieNavigator':
     from resources.lib.indexers import navigator

@@ -27,11 +27,20 @@ def getAPIToken( url,  username):
 
 def Main():
     addDir('All Channels','0',1,artpath+'all.PNG',fanart)
+    addDir('Entertainment','1',1,artpath+'ent.PNG',fanart)
     addDir('Movies','2',1,artpath+'mov.PNG',fanart)
+    addDir('Music','3',1,artpath+'mus.PNG',fanart)
+    addDir('News','4',1,artpath+'news.PNG',fanart)
     addDir('Sports','5',1,artpath+'sport.PNG',fanart)
+    addDir('Documentary','6',1,artpath+'doc.PNG',fanart)
+    addDir('Kids Corner','7',1,artpath+'kids.PNG',fanart)
+    addDir('Food','8',1,artpath+'food.PNG',fanart)
+    addDir('Religious','9',1,artpath+'rel.PNG',fanart)
+    addDir('USA Channels','10',1,artpath+'us.PNG',fanart)
+    addDir('Others','11',1,artpath+'others.PNG',fanart)
     xbmc.executebuiltin('Container.SetViewMode(500)')
-	
-
+ 
+        
 def cleanHex(text):
     def fixup(m):
         text = m.group(0)

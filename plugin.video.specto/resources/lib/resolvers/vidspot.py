@@ -21,15 +21,15 @@
 
 import re,urlparse
 from resources.lib.libraries import client
+from resources.lib.libraries import control
+
 
 
 def resolve(url):
     try:
-        url = url.replace('/embed-', '/')
-        url = re.compile('//.+?/([\w]+)').findall(url)[0]
-        url = 'http://vidspot.net/embed-%s.html' % url
 
         result = client.request(url, mobile=True)
+        control.log('### VIDSPOT AAA' % result)
         url = re.compile('"file" *: *"(http.+?)"').findall(result)[-1]
 
         query = urlparse.urlparse(url).query
@@ -39,3 +39,14 @@ def resolve(url):
     except:
         return
 
+def check(url):
+    try:
+        result = client.request(url)
+        if result == None: return False
+
+        result = client.parseDOM(result, 'b', attrs = {'class': 'err'})
+        if any('Removed' in x for x in result): raise Exception()
+
+        return True
+    except:
+        return False

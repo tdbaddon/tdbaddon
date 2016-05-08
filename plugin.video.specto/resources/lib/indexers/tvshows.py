@@ -49,7 +49,7 @@ class tvshows:
         self.week_date = (self.datetime - datetime.timedelta(days = 7)).strftime('%Y-%m-%d')
         self.month_date = (self.datetime - datetime.timedelta(days = 30)).strftime('%Y-%m-%d')
         self.year_date = (self.datetime - datetime.timedelta(days = 365)).strftime('%Y-%m-%d')
-        self.trakt_user = control.setting('trakt_user')
+        self.trakt_user = control.setting('trakt.user')
         self.imdb_user = control.setting('imdb_user').replace('ur', '')
         self.info_lang = control.setting('infoLang') or 'en'
 
