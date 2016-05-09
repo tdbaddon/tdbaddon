@@ -21,6 +21,10 @@
 
 import re,json,urllib
 from resources.lib.libraries import client
+from resources.lib.libraries import control
+
+import os,binascii
+
 
 
 def resolve(url):
@@ -28,10 +32,12 @@ def resolve(url):
         cookie = client.source(url, output='cookie')
         result = client.source(url, cookie=cookie)
         sk = re.compile('"sk":"([^"]+)",').findall(result)[0]
+        idclient = binascii.b2a_hex(os.urandom(16))
         id = re.compile('"id":"([^"]+)",').findall(result)[0]
         if len(id) > 0 and len(sk) > 0:
-            post = {'idClient': '241b0f80730b748e6c0918c0f447d51b', 'version': '3.9.2', 'sk': sk, '_model.0': 'do-get-resource-url', 'id.0': id }
+            post = {'idClient': idclient, 'version': '3.9.2', 'sk': sk, '_model.0': 'do-get-resource-url', 'id.0': id }
             result = client.source('https://yadi.sk/models/?_m=do-get-resource-url',post=post,cookie=cookie)
+            control.log("-----------------------------YANDEX RES %s" % result)
             result = json.loads(result)
             print('res', result)
             url = result['models'][0]['data']['file']

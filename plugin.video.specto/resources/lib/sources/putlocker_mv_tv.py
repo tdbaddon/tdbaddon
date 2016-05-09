@@ -23,6 +23,10 @@ import re,urllib,urlparse,json,base64,time, random,string
 
 from resources.lib.libraries import cleantitle
 from resources.lib.libraries import client
+from resources.lib.libraries import client2
+
+from resources.lib.libraries import control
+
 
 
 
@@ -64,7 +68,7 @@ class source:
             return
 
 
-    def get_sources(self, url, hostDict, hostprDict):
+    def get_sources(self, url, hosthdDict, hostDict, locDict):
         try:
             sources = []
 
@@ -85,20 +89,16 @@ class source:
                     url = '%s/show/%s/season/%01d/episode/%01d' % (self.base_link, match, int(data['season']), int(data['episode']))
                 else:
                     url = '%s/movie/%s' % (self.base_link, match)
-
                 result = client.source(url, output='title')
                 if '%TITLE%' in result: raise Exception()
 
                 result, headers, content, cookie = client.source(url, output='extended')
+                #control.log('#PUTLOCKER %s' % result)
 
                 if not imdb in result: raise Exception()
 
-
             else:
-
                 result, headers, content, cookie = client.source(url, output='extended')
-
-
             auth = re.findall('__utmx=(.+)', cookie)[0].split(';')[0]
             auth = 'Bearer %s' % urllib.unquote_plus(auth)
 
@@ -117,9 +117,6 @@ class source:
             idEl = re.findall('elid\s*=\s*"([^"]+)', result)[0]
 
             post = {'action': action, 'idEl': idEl, 'token': token, 'elid': elid}
-            #post = urllib.urlencode(post)
-
-
             r = client.source(u, post=post, headers=headers)
             r = str(json.loads(r))
             r = client.parseDOM(r, 'iframe', ret='.+?') + client.parseDOM(r, 'IFRAME', ret='.+?')

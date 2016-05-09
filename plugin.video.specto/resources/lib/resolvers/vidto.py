@@ -44,3 +44,11 @@ def resolve(url):
     except:
         return
 
+def check(url):
+    try:
+        result = client.request(url)
+        if result == None: return False
+        if 'File Deleted.' in result: return False
+        return True
+    except:
+        return False

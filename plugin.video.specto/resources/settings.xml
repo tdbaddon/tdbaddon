@@ -38,7 +38,7 @@
 		<setting id="fmovies" type="bool" label="9movies" default="true" />
 		<setting id="furk" type="bool" label="Furk" default="false" />
 		<setting id="icefilms" type="bool" label="Icefilms" default="true" />
-		<setting id="iwatchonline" type="bool" label="Iwatchonline" default="true" />
+		<setting id="iwatchonline" type="bool" label="Iwatchonline" default="false" />
 		<setting id="movie25" type="bool" label="Movie25" default="true" />
 		<setting id="moviefarsiv2" type="bool" label="Moviefarsi" default="true" />
 		<setting id="movietv" type="bool" label="MovieTV" default="true" />
@@ -75,7 +75,7 @@
 		<setting id="fmovies" type="bool" label="9movies" default="true" />
 		<setting id="furk_tv" type="bool" label="Furk" default="false" />
 		<setting id="icefilms_tv" type="bool" label="Icefilms" default="true" />
-		<setting id="iwatchonline_tv" type="bool" label="Iwatchonline" default="true" />
+		<setting id="iwatchonline_tv" type="bool" label="Iwatchonline" default="false" />
 		<setting id="mvsnap_tv" type="bool" label="MVsnap" default="true" />
 		<setting id="movietv_tv" type="bool" label="MovieTV" default="true" />
 		<setting id="muchmoviesv2_tv" type="bool" label="Muchmovies" default="true" />

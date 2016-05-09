@@ -19,11 +19,25 @@
 '''
 
 
-import re,urllib,urlparse
+import re,urllib,urlparse, time
 
 from resources.lib.libraries import cleantitle
 from resources.lib.libraries import client
+from resources.lib.libraries import control
+from resources.lib.libraries import workers
+
 from resources.lib import resolvers
+from resources.lib.resolvers import openload
+from resources.lib.resolvers import uptobox
+from resources.lib.resolvers import cloudzilla
+from resources.lib.resolvers import vidspot
+from resources.lib.resolvers import streamin
+from resources.lib.resolvers import thevideo
+from resources.lib.resolvers import vodlocker
+from resources.lib.resolvers import vidto
+from resources.lib.resolvers import zstream
+
+
 
 
 class source:
@@ -39,6 +53,8 @@ class source:
 
 
     def get_movie(self, imdb, title, year):
+        return
+
         try:
             query = self.search_link
             post = {'searchquery': title, 'searchin': '1'}
@@ -69,6 +85,8 @@ class source:
 
 
     def get_show(self, imdb, tvdb, tvshowtitle, year):
+        return
+
         try:
             query = self.search_link
             post = {'searchquery': tvshowtitle, 'searchin': '2'}
@@ -109,22 +127,27 @@ class source:
 
 
     def get_sources(self, url, hosthdDict, hostDict, locDict):
+        return
         try:
-            sources = []
-
-            if url == None: return sources
+            self.sources =[]
+            mylinks = []
+            if url == None: return self.sources
 
             result = ''
             links = [self.link_1, self.link_2, self.link_3]
             for base_link in links:
                 result = client.source(urlparse.urljoin(base_link, url), headers=self.headers)
+                #control.log('### %s' % result)
                 if 'original-title' in str(result): break
 
             links = client.parseDOM(result, 'tr', attrs = {'id': 'pt.+?'})
 
             for i in links:
+                #control.log('### %s' % i)
+
                 try:
                     lang = re.compile('<img src=[\'|\"|\s|\<]*(.+?)[\'|\"|\s|\>]').findall(i)[1]
+
                     if not 'English' in lang: raise Exception()
 
                     host = re.compile('<img src=[\'|\"|\s|\<]*(.+?)[\'|\"|\s|\>]').findall(i)[0]
@@ -138,31 +161,44 @@ class source:
                     elif '>HD<' in i and host in hosthdDict: quality = 'HD'
                     else: quality = 'SD'
 
-                    if quality == 'HD' and not host in hosthdDict: raise Exception()
-                    if quality == 'SD' and not host in hostDict: raise Exception()
+                    #if quality == 'HD' and not host in hosthdDict: raise Exception()
+                    #if quality == 'SD' and not host in hostDict: raise Exception()
 
                     if '>3D<' in i: info = '3D'
                     else: info = ''
+                    #control.log('### host:%s q:%s' % (host,quality))
 
                     url = re.compile('href=[\'|\"|\s|\<]*(.+?)[\'|\"|\s|\>]').findall(i)[0]
                     url = client.replaceHTMLCodes(url)
+
                     try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['u'][0]
                     except: pass
                     if url.startswith('http'): url = urlparse.urlparse(url).path
                     if not url.startswith('http'): url = urlparse.urljoin(self.base_link, url)
                     url = url.encode('utf-8')
+                    #control.log('########  IWATCH LINK url:%s  host:%s q:%s' % (url,host,quality))
+                    mylinks.append({'source': host, 'quality': quality, 'url': url})
 
-                    sources.append({'source': host, 'quality': quality, 'provider': 'Iwatchonline', 'url': url, 'info': info})
                 except:
                     pass
 
-            return sources
+            threads = []
+            for i in mylinks: threads.append(workers.Thread(self.check, i))
+            [i.start() for i in threads]
+            for i in range(0, 10 * 2):
+                is_alive = [x.is_alive() for x in threads]
+                if all(x == False for x in is_alive): break
+                time.sleep(1)
+
+            return self.sources
+
         except:
-            return sources
+            return self.sources
 
-
-    def resolve(self, url):
+    def check(self, i):
         try:
+
+            url = client.replaceHTMLCodes(i['url'])
             url = urlparse.urlparse(url).path
 
             result = ''
@@ -170,19 +206,44 @@ class source:
             for base_link in links:
                 result = client.request(urlparse.urljoin(base_link, url), headers=self.headers)
                 if 'frame' in str(result): break
-            #print("Result >>> result",result)
+            # print("Result >>> result",result)
             url = re.compile('class=[\'|\"]*frame.+?src=[\'|\"|\s|\<]*(.+?)[\'|\"|\s|\>]').findall(result)[0]
             url = client.replaceHTMLCodes(url)
-            print("Result >>> url",url)
-            try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['u'][0]
-            except: pass
-            try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['url'][0]
-            except: pass
-            print("Result >>> url2 >>>>>>>>>>>>>>>>>>>>",url)
+            try:
+                url = urlparse.parse_qs(urlparse.urlparse(url).query)['u'][0]
+            except:
+                pass
+            try:
+                url = urlparse.parse_qs(urlparse.urlparse(url).query)['url'][0]
+            except:
+                pass
+            #control.log("Result >>> url2 >>>>>>>>>>>>>>>>>>>> %s " % url)
+            host = i['source']
+            if host == 'openload': check = openload.check(url)
+            elif host == 'uptobox': check = uptobox.check(url)
+            elif host == 'cloudzilla': check = cloudzilla.check(url)
+            elif host == 'zstream': check = zstream.check(url)
+            elif host == 'vidspot': check = vidspot.check(url)
+            elif host == 'streamin': check = streamin.check(url)
+            elif host == 'thevideo': check = thevideo.check(url)
+            elif host == 'vodlocker': check = vodlocker.check(url)
+            elif host == 'vidto': check = vidto.check(url)
+            elif host == 'streamin': check = streamin.check(url)
 
+            else:
+                raise Exception()
+
+            if check == None or check == False: raise Exception()
+            self.sources.append({'source': host, 'quality': i['quality'], 'provider': 'Iwatchonline', 'url': url})
+            control.log("############IWATCH RESOLVE >>> url3 +++++++++++++++++++++ host:%s url:%s" % (host,url))
+
+        except:
+            pass
+
+    def resolve(self, url):
+        try:
             url = resolvers.request(url)
-            print("Result >>> url3 +++++++++++++++++++++",url)
-
+            #control.log("############IWATCH RESOLVE >>> url3 +++++++++++++++++++++ % s" % url)
             return url
         except:
             return

@@ -21,10 +21,10 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 0
 
 #EXTINF:0,BT Sport 1 
-0
+http://iptvgafsa.ddns.net:8000/live/daniel/daniel/8128.ts
 
 #EXTINF:0,BT Sport 2 
-0
+http://iptvgafsa.ddns.net:8000/live/daniel/daniel/8127.ts
 
 #EXTINF:0,CBS Sports 
 0
@@ -69,10 +69,13 @@ http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_18
 http://ooyalahd2-f.akamaihd.net/i/eslax17_delivery@349499/master.m3u8
 
 #EXTINF:0,Fox Sports 1 
+http://iptvgafsa.ddns.net:8000/live/daniel/daniel/9787.ts
+
+#EXTINF:0,Fox Sports 1 
 http://62.210.162.88:80/live/SPORT162/14751042016/2068.ts
 
 #EXTINF:0,Fox Sports 2 
-0
+http://iptvgafsa.ddns.net:8000/live/daniel/daniel/9786.ts
 
 #EXTINF:0,Fox Sports News 
 0
@@ -206,14 +209,26 @@ http://sacapunta.eltelon.com/channels/redbulltv/playlist.m3u8
 #EXTINF:0,Sky Sports 1 
 http://62.210.162.88:80/live/SPORT162/14751042016/2147.ts
 
+#EXTINF:0,Sky Sports 1 
+http://iptvgafsa.ddns.net:8000/live/daniel/daniel/8136.ts
+
 #EXTINF:0,Sky Sports 2 
 http://62.210.162.88:80/live/SPORT162/14751042016/2146.ts
+
+#EXTINF:0,Sky Sports 2 
+http://iptvgafsa.ddns.net:8000/live/daniel/daniel/8135.ts
 
 #EXTINF:0,Sky Sports 3 
 http://62.210.162.88:80/live/SPORT162/14751042016/2148.ts
 
 #EXTINF:0,Sky Sports 4 
 http://62.210.162.88:80/live/SPORT162/14751042016/2149.ts
+
+#EXTINF:0,Sky Sports 4 
+http://iptvgafsa.ddns.net:8000/live/daniel/daniel/8134.ts
+
+#EXTINF:0,Sky Sports 4 
+http://iptvgafsa.ddns.net:8000/live/daniel/daniel/8133.ts
 
 #EXTINF:0,Sky Sports 5 
 http://62.210.162.88:80/live/SPORT162/14751042016/2150.ts
@@ -222,7 +237,7 @@ http://62.210.162.88:80/live/SPORT162/14751042016/2150.ts
 0
 
 #EXTINF:0,Sky Sports News 
-0
+http://iptvgafsa.ddns.net:8000/live/daniel/daniel/9575.ts
 
 #EXTINF:0,Sports Tonight 
 rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9-SD

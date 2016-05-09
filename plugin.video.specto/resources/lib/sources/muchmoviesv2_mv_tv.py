@@ -160,7 +160,7 @@ class source:
 
             links = [('ajax/load_episode/%s/%s' % (i[2], i[1]), 'gvideo') for i in result if 2 <= int(i[0]) <= 11]
 
-            for i in links: sources.append({'source': i[1], 'quality': quality, 'provider': 'Muchmoviesv2', 'url': i[0]})
+            for i in links: sources.append({'source': i[1], 'quality': quality, 'provider': 'Muchmovies', 'url': i[0]})
 
             links = []
             links += [('ajax/loadEmbed/%s/%s' % (i[2], i[1]), 'openload') for i in result if i[0] == '14']
@@ -168,7 +168,7 @@ class source:
             #links += [('movie/loadEmbed/%s/%s' % (i[2], i[1]), 'videowood.tv') for i in result if i[0] == '12']
 
             #for i in links: sources.append({'source': i[1], 'quality': quality, 'provider': 'Onemovies', 'url': i[0], 'direct': False, 'debridonly': False})
-            for i in links: sources.append({'source': i[1], 'quality': quality, 'provider': 'Muchmoviesv2', 'url': i[0]})
+            for i in links: sources.append({'source': i[1], 'quality': quality, 'provider': 'Muchmovies', 'url': i[0]})
             #control.log('####### MOVIE sources %s' % sources)
 
             return sources

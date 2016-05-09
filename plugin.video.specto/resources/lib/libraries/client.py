@@ -49,7 +49,7 @@ def request(url, close=True, error=False, proxy=None, post=None, headers=None, m
             handlers += [urllib2.ProxyHandler({'http':'%s' % (proxy)}), urllib2.HTTPHandler]
             opener = urllib2.build_opener(*handlers)
             opener = urllib2.install_opener(opener)
-        if output == 'cookie' or not close == True:
+        if output == 'cookie' or output == 'extended' or not close == True:
             import cookielib
             cookies = cookielib.LWPCookieJar()
             handlers += [urllib2.HTTPHandler(), urllib2.HTTPSHandler(), urllib2.HTTPCookieProcessor(cookies)]
@@ -131,6 +131,16 @@ def request(url, close=True, error=False, proxy=None, post=None, headers=None, m
             content = int(response.headers['Content-Length'])
             if content < (2048 * 1024): return
             result = response.read(16 * 1024)
+        elif output == 'title':
+            result = response.read(1 * 1024)
+            result = parseDOM(result, 'title')[0]
+        elif output == 'extended':
+            cookie = []
+            for c in cookies: cookie.append('%s=%s' % (c.name, c.value))
+            cookie = "; ".join(cookie)
+            content = response.headers
+            result = response.read()
+            return (result, headers, content, cookie)
         elif output == 'geturl':
             result = response.geturl()
         elif output == 'response2':

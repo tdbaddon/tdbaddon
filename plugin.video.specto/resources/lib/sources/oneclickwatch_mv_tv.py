@@ -142,6 +142,7 @@ class source:
             host = client.replaceHTMLCodes(host)
             host = host.encode('utf-8')
             #control.log("##OneClickWatch %s - url %s" % (host, i[0]))
+            #if host in i[2]: check = url = resolvers.request(url)
 
             if host == 'openload': check = openload.check(url)
             elif host == 'uptobox': check = uptobox.check(url)

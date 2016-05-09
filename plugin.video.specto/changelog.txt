@@ -1,8 +1,9 @@
 ------------------------
-Specto v2016.05.08.5
+Specto v2016.05.08.7
 ------------------------
 Fix - searching
 Fix - oneclickwatch
+Fix - putlocker
 Add - resolvers yadi.sk, cloud.mail.ru
 Add DAYT 1080p source
 
