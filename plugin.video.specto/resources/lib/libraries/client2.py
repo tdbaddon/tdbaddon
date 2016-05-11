@@ -177,6 +177,7 @@ def cached_http_get(url, base_url, timeout, cookies=None, data=None, multipart_d
         return ''
 
     cache.cache_url(url, html, data)
+
     return html
 
 def _set_cookies(base_url, cookies):

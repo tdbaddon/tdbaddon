@@ -20,6 +20,7 @@
 
 
 import re,urllib,urlparse,json,base64,time, random,string
+import cookielib,os
 
 from resources.lib.libraries import cleantitle
 from resources.lib.libraries import client
@@ -71,6 +72,7 @@ class source:
     def get_sources(self, url, hosthdDict, hostDict, locDict):
         try:
             sources = []
+            #control.log('#PUTLOCKER1 %s' % url)
 
             if url == None: return sources
 
@@ -82,24 +84,33 @@ class source:
                 title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
 
                 imdb = data['imdb']
-
                 match = title.replace('-', '').replace(':', '').replace('\'', '').replace(' ', '-').replace('--', '-').lower()
 
                 if 'tvshowtitle' in data:
                     url = '%s/show/%s/season/%01d/episode/%01d' % (self.base_link, match, int(data['season']), int(data['episode']))
                 else:
                     url = '%s/movie/%s' % (self.base_link, match)
-                result = client.source(url, output='title')
+                control.log('#PUTLOCKER2 %s' % url)
+
+                #result = client.source(url, output='title')
+                result = client2.http_get(url)
+
                 if '%TITLE%' in result: raise Exception()
 
-                result, headers, content, cookie = client.source(url, output='extended')
-                #control.log('#PUTLOCKER %s' % result)
+                cookie_file = os.path.join(control.cookieDir, '%s_cookies.lwp' % client2.shrink_host(url))
+                #cookie_file = os.path.join('/home/mrknow/.kodi/userdata/addon_data/plugin.video.specto/Cookies','%s_cookies.lwp' % client2.shrink_host((url)))
+                cj = cookielib.LWPCookieJar(cookie_file)
+                try: cj.load(ignore_discard=True)
+                except: pass
+                auth = cj._cookies['www.putlocker.systems']['/']['__utmx'].value
+                headers = {}
 
                 if not imdb in result: raise Exception()
 
             else:
                 result, headers, content, cookie = client.source(url, output='extended')
-            auth = re.findall('__utmx=(.+)', cookie)[0].split(';')[0]
+
+
             auth = 'Bearer %s' % urllib.unquote_plus(auth)
 
             headers['Authorization'] = auth
@@ -117,7 +128,8 @@ class source:
             idEl = re.findall('elid\s*=\s*"([^"]+)', result)[0]
 
             post = {'action': action, 'idEl': idEl, 'token': token, 'elid': elid}
-            r = client.source(u, post=post, headers=headers)
+            r = client2.http_get(u, data=post, headers=headers)
+            print r
             r = str(json.loads(r))
             r = client.parseDOM(r, 'iframe', ret='.+?') + client.parseDOM(r, 'IFRAME', ret='.+?')
 
@@ -133,6 +145,7 @@ class source:
 
 
             for i in links: sources.append({'source': i['source'], 'quality': i['quality'], 'provider': 'Putlocker', 'url': i['url']})
+            #control.log('#PUTLOCKER6 SOURCES %s' % sources)
 
             return sources
         except:

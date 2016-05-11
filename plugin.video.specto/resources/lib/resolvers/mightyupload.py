@@ -25,6 +25,8 @@ from resources.lib.libraries import jsunpack
 
 
 def resolve(url):
+    return
+
     try:
         url = url.replace('/embed-', '/')
         url = re.compile('//.+?/([\w]+)').findall(url)[0]

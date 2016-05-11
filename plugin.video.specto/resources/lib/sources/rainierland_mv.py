@@ -156,6 +156,8 @@ class source:
 
 
     def resolve(self, url):
+        control.log("rainierland-sources-0 @@@@@@@@@@@@@@@@@@@@@@@@@@@@ %s" % url)
+
         try:
             if 'requiressl=yes' in url: url = url.replace('http://', 'https://')
             else: url = url.replace('https://', 'http://')

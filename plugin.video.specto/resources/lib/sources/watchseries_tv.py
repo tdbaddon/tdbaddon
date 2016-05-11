@@ -19,12 +19,25 @@
 '''
 
 
-import re,urllib,urllib2,urlparse
+import re,urllib,urllib2,urlparse,time
 
 from resources.lib.libraries import cleantitle
 from resources.lib.libraries import client
-from resources.lib import resolvers
+from resources.lib.libraries import control
 
+from resources.lib import resolvers
+from resources.lib.libraries import workers
+from resources.lib.libraries import control
+from resources.lib.resolvers import cloudzilla
+from resources.lib.resolvers import openload
+from resources.lib.resolvers import uptobox
+from resources.lib.resolvers import zstream
+from resources.lib.resolvers import streamin
+
+
+class NoRedirection(urllib2.HTTPErrorProcessor):
+    def http_response(self, request, response):
+        return response
 
 class source:
     def __init__(self):
@@ -97,10 +110,12 @@ class source:
 
 
     def get_sources(self, url, hosthdDict, hostDict, locDict):
-        try:
-            sources = []
 
-            if url == None: return sources
+        try:
+            self.sources =[]
+            mylinks = []
+
+            if url == None: return self.sources
 
             url = url.replace('/json/', '/')
 
@@ -134,24 +149,29 @@ class source:
                     if not '/cale/' in url: raise Exception()
                     url = url.encode('utf-8')
 
-                    sources.append({'source': host, 'quality': 'SD', 'provider': 'Watchseries', 'url': url})
+                    url = url.replace('/json/', '/')
+                    url = urlparse.urlparse(url).path
+                    #sources.append({'source': host, 'quality': 'SD', 'provider': 'Watchseries', 'url': url})
+                    mylinks.append([url, 'SD'])
                 except:
                     pass
 
-            return sources
+            threads = []
+            for i in mylinks: threads.append(workers.Thread(self.check, i))
+            [i.start() for i in threads]
+            for i in range(0, 10 * 2):
+                is_alive = [x.is_alive() for x in threads]
+                if all(x == False for x in is_alive): break
+                time.sleep(1)
+            return self.sources
         except:
-            return sources
+            return self.sources
 
 
-    def resolve(self, url):
+    def check(self, i):
         try:
-            url = url.replace('/json/', '/')
-            url = urlparse.urlparse(url).path
-
-            class NoRedirection(urllib2.HTTPErrorProcessor):
-                def http_response(self, request, response):
-                    return response
-
+            url = client.replaceHTMLCodes(i[0])
+            url = url.encode('utf-8')
             result = ''
             links = [self.link_1, self.link_2, self.link_3]
             for base_link in links:
@@ -166,13 +186,45 @@ class source:
                     result = ''
                 if 'myButton' in result: break
 
-            url = re.compile('class=[\'|\"]*myButton.+?href=[\'|\"|\s|\<]*(.+?)[\'|\"|\s|\>]').findall(result)[0]
-            url = client.replaceHTMLCodes(url)
-            try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['u'][0]
-            except: pass
-            try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['url'][0]
-            except: pass
+            url = re.compile('class=[\'|\"]*myButton.+?href=[\'|\"|\s|\<]*(.+?)[\'|\"|\s|\>]').findall(result)[
+                0]
 
+            url = client.replaceHTMLCodes(url)
+            try:
+                url = urlparse.parse_qs(urlparse.urlparse(url).query)['u'][0]
+            except:
+                pass
+            try:
+                url = urlparse.parse_qs(urlparse.urlparse(url).query)['url'][0]
+            except:
+                pass
+
+
+            host = urlparse.urlparse(url).netloc
+            host = host.replace('www.', '').replace('embed.', '')
+            host = host.rsplit('.', 1)[0]
+            host = host.lower()
+            host = client.replaceHTMLCodes(host)
+            host = host.encode('utf-8')
+            #control.log('WWWW WATCHSERIES RESOLVE-2 host: %s url: %s ' % (host,url))
+
+            #if host == 'openload':check = openload.check(url)
+            #elif host == 'streamin':check = streamin.check(url)
+            #elif host == 'cloudzilla':
+            #    check = cloudzilla.check(url)
+            #elif host == 'zstream':
+            #    check = zstream.check(url)
+            #elif host == 'vidspot':
+            #    check = vidspot.check(url)
+            if host == 'up2stream': raise Exception()
+            if host == 'mightyupload': raise Exception()
+
+            self.sources.append({'source': host, 'quality': i[1], 'provider': 'Watchseries', 'url': url})
+        except:
+            pass
+
+    def resolve(self, url):
+        try:
             url = resolvers.request(url)
             return url
         except:

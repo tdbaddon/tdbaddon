@@ -1,0 +1,7 @@
+/nbproject/
+/metapacks.pyc
+/utils.pyc
+/.project
+/.pydevproject
+*.pyo
+*.pyc

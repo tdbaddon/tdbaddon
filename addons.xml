@@ -216,6 +216,60 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
+<!--suppress ALL -->
+<addon id="plugin.video.1channel" version="2.5.64" name="1Channel" provider-name="Bstrdsmkr, tuxen, tknorris">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0"/>
+        <import addon="script.module.urlresolver" version="2.2.0"/>
+        <import addon="script.module.addon.common" version="2.0.0" />
+        <import addon="script.module.metahandler" version="2.6.0" />
+        <import addon="script.module.myconnpy" version="1.1.6" />
+        <import addon="script.module.axel.downloader" version="0.2.0" optional="true"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.service" library="service.py" start="startup">
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary>Browse 1channel.ch</summary>
+        <description>Play a wide selection of movies and TV shows from PrimeWire.ag.
+***This addon is supported at [COLOR blue]www.tvaddons.ag[/COLOR], [COLOR white][B]NOT[/B][/COLOR] [COLOR red]xbmc.org[/COLOR]. ***
+        </description>
+        <platform>all</platform>
+        <website>http://tvaddons.ag/</website>
+		<forum>http://forums.tvaddons.ag/forums/32-BSTRDSMKR-S-REPOSITORY</forum>
+    </extension>
+</addon>
+
+<addon id="plugin.video.AlbdroidIPTV"
+       name="Albdroid IPTV"
+       version="1.1.1"
+       provider-name="[COLOR=lime][B]Olsion Bakiaj[/B][/COLOR] [COLOR=red]and[/COLOR] [COLOR=lime][B]Endrit Pano[/B][/COLOR]">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0"/>
+        <import addon="script.module.beautifulsoup" version="3.2.1"/>
+        <import addon="script.module.simple.downloader" version="0.9.4"/>
+        <import addon="script.module.beautifulsoup4" />
+        <import addon="script.module.requests" />
+        <import addon="script.module.httplib2" />
+        <import addon="script.module.youtube.dl" optional="true"/>
+        <import addon="plugin.video.youtube" />
+        <import addon="script.module.urlresolver" optional="true"/>
+        <import addon="script.module.simplejson" />
+        <import addon="script.module.livestreamer" optional="true"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary>Albdroid IPTV</summary>
+    <description>Albmix Media Ltd</description>
+	<disclaimer lang="en">TRC4 Media Albmix Sources</disclaimer>
+        <platform>all</platform>
+    </extension>
+</addon>
+
 <addon id="plugin.video.bbcanlive" name="Big Brother Canada Live Feeds" version="1.0.0" provider-name="portse">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -1047,7 +1101,7 @@ http://informaticglobalworld.altervista.org/
 	</extension>
 </addon>
 
-<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2016.05.8.7" provider-name="mrknow" >
+<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2016.05.10.5" provider-name="mrknow" >
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.requests" version="1.0.0" />
@@ -2693,35 +2747,6 @@ http://informaticglobalworld.altervista.org/
                 <website>https://superrepo.org/</website>
                 </extension>
                 </addon>
-
-<addon id="TRC4.Albdroid-IPTV.AL"
-       name="[COLOR=lime]• [/COLOR][COLOR=lime]Albdroid IPTV[/COLOR]"
-       version="[COLOR=lime] v1[COLOR=lime].[/COLOR]1[/COLOR][COLOR=lime].[/COLOR][COLOR=lime]1[COLOR][/COLOR]"
-       provider-name="[COLOR=lime][B]Olsion Bakiaj[/B][/COLOR] [COLOR=red]and[/COLOR] [COLOR=lime][B]Endrit Pano[/B][/COLOR]">
-    <requires>
-        <import addon="xbmc.python" version="2.1.0"/>
-        <import addon="script.module.beautifulsoup" version="3.2.1"/>
-        <import addon="script.module.simple.downloader" version="0.9.4"/>
-        <import addon="script.module.beautifulsoup4" />
-        <import addon="script.module.requests" />
-        <import addon="script.module.httplib2" />
-        <import addon="script.module.youtube.dl" optional="true"/>
-        <import addon="plugin.video.youtube" />
-        <import addon="script.module.urlresolver" optional="true"/>
-        <import addon="script.module.simplejson" />
-		<import addon="script.module.livestreamer" optional="true"/>
-    </requires>
-    <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>video</provides>
-    </extension>
-    <extension point="xbmc.addon.metadata">
-        <summary> [COLOR red]Albdroid [/COLOR][COLOR lime] IPTV[/COLOR]</summary>
-    <description>[COLOR=lime]• [/COLOR][COLOR=red][B]Albmix Media Ltd[/B][/COLOR]
-[COLOR=lime]• [/COLOR][COLOR lime]Dance.al[/COLOR]</description>
-	<disclaimer lang="en">[COLOR=lime] TRC4 Media Albmix Sources[/COLOR]</disclaimer>
-        <platform>all</platform>
-    </extension>
-</addon>
 
 <addon id="xxtrucoxx-repo" name="XxTRUCOxX repository" version="0.0.1" provider-name="XxTRUCOxX">
 	<extension point="xbmc.addon.repository" name="XxTRUCOxX Add-on Repository">

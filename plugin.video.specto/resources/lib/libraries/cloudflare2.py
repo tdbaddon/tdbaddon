@@ -139,6 +139,7 @@ def solve(url, cj, user_agent=None, wait=True):
             return False
 
     if cj is not None:
+        cj.extract_cookies(response, request)
         cj.save()
         
     return final

@@ -126,9 +126,13 @@ class source:
 
     def resolve(self, url):
         try:
-            url = client.request(url, output='geturl')
+            #url = client.request(url, output='geturl')
+            if 'sezonlukdizi.com' in url: url = client2.http_get(url,allow_redirect=False)
+            control.log('############ SEZONLUKIDZ res-0 %s' % url)
+            url = client2.http_get(url,allow_redirect=False)
+            control.log('############ SEZONLUKIDZ res-1 %s' % url)
             if 'requiressl=yes' in url: url = url.replace('http://', 'https://')
-            else: url = url.replace('https://', 'http://')
+            #else: url = url.replace('https://', 'http://')
             return url
         except:
             return

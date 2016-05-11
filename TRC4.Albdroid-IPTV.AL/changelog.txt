@@ -1,9 +1,0 @@
-Version 1.1.1
-Vendosje Proxy
-
-Version 1.1.0
-Riparim regx
-
-Version 1.0.0
-rtmp fix
-

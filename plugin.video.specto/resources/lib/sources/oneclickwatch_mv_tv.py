@@ -23,8 +23,6 @@ import re,urlparse,time, urllib
 
 from resources.lib.libraries import client
 from resources.lib.libraries import client2
-
-from resources.lib.libraries import cloudflare
 from resources.lib.libraries import cleantitle
 
 from resources.lib.libraries import workers
@@ -33,11 +31,10 @@ from resources.lib.resolvers import cloudzilla
 from resources.lib.resolvers import openload
 from resources.lib.resolvers import uptobox
 from resources.lib.resolvers import zstream
-from resources.lib.resolvers import vidspot
+from resources.lib.resolvers import videomega
 
 
 from resources.lib import resolvers
-from resources.lib import sources
 
 
 class source:
@@ -54,10 +51,15 @@ class source:
             years = ['%s' % str(year), '%s' % str(int(year) + 1), '%s' % str(int(year) - 1)]
             result = client.parseDOM(result, 'h2', attrs={'class': 'title'})
             result = [(client.parseDOM(i, 'a', ret='href')[0], client.parseDOM(i, 'a')[0]) for i in result]
-            result = [i for i in result if title.lower() in cleantitle.movie(i[1]).lower()]
+            print('R',result)
+            result = [i for i in result if cleantitle.movie(title.lower()) in cleantitle.movie(i[1]).lower()]
+            print('R',result)
             result = [i for i in result if any(x in i[1] for x in years)]
+            print('R',result)
             result2 = [i for i in result if '1080' in i[1]]
+            print('R',result)
             result3 = [i for i in result if '720' in i[1].lower()]
+            print('R',result)
             if len(result3) > 0: result = result3
             if len(result2) > 0: result = result2
             url = result[0][0]
@@ -141,14 +143,14 @@ class source:
             host = host.lower()
             host = client.replaceHTMLCodes(host)
             host = host.encode('utf-8')
-            #control.log("##OneClickWatch %s - url %s" % (host, i[0]))
+            control.log("##OneClickWatch %s - url %s" % (host, i[0]))
             #if host in i[2]: check = url = resolvers.request(url)
 
             if host == 'openload': check = openload.check(url)
             elif host == 'uptobox': check = uptobox.check(url)
             elif host == 'cloudzilla': check = cloudzilla.check(url)
             elif host == 'zstream': check = zstream.check(url)
-            elif host == 'vidspot': check = vidspot.check(url)
+            elif host == 'videomega': check = videomega.check(url)
 
             else: raise Exception()
 

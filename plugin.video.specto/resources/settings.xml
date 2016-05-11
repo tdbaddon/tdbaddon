@@ -35,17 +35,15 @@
 		<setting id="Sezonlukdizi" type="bool" label="Sezonlukdizi (India)" default="true" />
 		<setting id="easynews" type="bool" label="Easynews" default="false" />
 		<setting id="filmikz" type="bool" label="Filmikz" default="true" />
-		<setting id="fmovies" type="bool" label="9movies" default="true" />
-		<setting id="furk" type="bool" label="Furk" default="false" />
+		<setting id="fmovies" type="bool" label="Fmovies" default="true" />
 		<setting id="icefilms" type="bool" label="Icefilms" default="true" />
 		<setting id="iwatchonline" type="bool" label="Iwatchonline" default="false" />
 		<setting id="movie25" type="bool" label="Movie25" default="true" />
 		<setting id="moviefarsiv2" type="bool" label="Moviefarsi" default="true" />
-		<setting id="movietv" type="bool" label="MovieTV" default="true" />
 		<setting id="movietubev2" type="bool" label="Movietube" default="true" />
 		<setting id="movienight" type="bool" label="Movienight" default="true" />
 		<setting id="movieshd" type="bool" label="MoviesHD" default="true" />
-		<setting id="muchmoviesv2" type="bool" label="Muchmovies" default="true" />
+		<setting id="muchmovies" type="bool" label="Muchmovies" default="true" />
 		<setting id="mvsnap" type="bool" label="MVsnap" default="true" />
 		<setting id="oneclickwatch" type="bool" label="Oneclickwatch" default="true" />
 		<setting id="onlinemoviesv2" type="bool" label="Onlinemovies" default="true" />
@@ -59,8 +57,6 @@
 		<setting id="wmonline" type="bool" label="WMOnline" default="true" />
 		<setting id="vidics" type="bool" label="Vidics" default="true" />
 		<setting id="xmovies" type="bool" label="Xmovies" default="true" />
-		<setting id="yify" type="bool" label="YIFY" default="true" />
-		<setting id="yifystreamv2" type="bool" label="YIFYstream" default="true" />
 	</category>
 	<category label="30861">
 		<setting id="alluc_tv" type="bool" label="Alluc" default="false" />
@@ -72,13 +68,11 @@
 		<setting id="dizilab_tv" type="bool" label="Dizilab" default="true" />
 		<setting id="dizimag_tv" type="bool" label="Dizimag" default="true" />
 		<setting id="easynews_tv" type="bool" label="Easynews" default="false" />
-		<setting id="fmovies" type="bool" label="9movies" default="true" />
-		<setting id="furk_tv" type="bool" label="Furk" default="false" />
+		<setting id="fmovies" type="bool" label="Fmovies" default="true" />
 		<setting id="icefilms_tv" type="bool" label="Icefilms" default="true" />
 		<setting id="iwatchonline_tv" type="bool" label="Iwatchonline" default="false" />
 		<setting id="mvsnap_tv" type="bool" label="MVsnap" default="true" />
-		<setting id="movietv_tv" type="bool" label="MovieTV" default="true" />
-		<setting id="muchmoviesv2_tv" type="bool" label="Muchmovies" default="true" />
+		<setting id="muchmovies_tv" type="bool" label="Muchmovies" default="true" />
 		<setting id="moviefarsiv2_tv" type="bool" label="Moviefarsi" default="false" />
 		<setting id="moviestorm_tv" type="bool" label="Moviestorm" default="true" />
 		<setting id="oneclickwatch_tv" type="bool" label="Oneclickwatch" default="true" />
@@ -94,8 +88,6 @@
 		<setting id="watchfree_tv" type="bool" label="Watchfree" default="true" />
 		<setting id="wsonline_tv" type="bool" label="WSOnline" default="true" />
 		<setting id="watchseries_tv" type="bool" label="Watchseries" default="true" />
-		<setting id="xmovies_tv" type="bool" label="Xmovies" default="true" />
-		<setting id="yifystreamv2_tv" type="bool" label="YIFYstream" default="false" />
 
 	</category>
 	<category label="30870">
