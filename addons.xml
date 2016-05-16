@@ -1021,7 +1021,7 @@ http://informaticglobalworld.altervista.org/
   </extension>
 </addon>
 
-<addon id="plugin.video.prosport" name="Pro Sport" version="0.49" provider-name="gerikss, podgod, iCanuck">
+<addon id="plugin.video.prosport" name="Pro Sport" version="0.50" provider-name="gerikss, podgod, iCanuck">
   <requires>
     <import addon="xbmc.python" version="2.1.0" />
      <import addon="script.module.requests" version="2.9.1" />
@@ -1099,9 +1099,9 @@ http://informaticglobalworld.altervista.org/
 
 <addon
   id="plugin.video.SportsDevil"
-  version="'201620162016.05.03.2NL"
+  version="ZNL2016.2016.2016.05.16.NL1"
   name="SportsDevil"
-  provider-name="MaxMustermann, Al101, Hubbab3, Jairox, Sattekop">
+  provider-name="MaxMustermann, Al101, Hubbab3, Sattekop">
   <requires>
    <import addon="xbmc.python" version="2.14.0"/>
    <import addon="script.module.simplejson" />

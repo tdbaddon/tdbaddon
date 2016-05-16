@@ -195,6 +195,13 @@ def doDemystify(data):
         data = data.replace('function(d,i,t,s)','function(p,a,c,k)')
         data = data.replace('(e+0)%i','e%a')
         data = data.replace('RegExp(e(t)','RegExp(e(c)')
+        
+    if """.replace(""" in data:
+        r = re.compile(r""".replace\(["']([^"']+)["'],["']([^"']*)["']\)""")
+        gs = r.findall(data)
+        if gs:
+            for g in gs:
+                data = data.replace(g[0],g[1])
 
     # util.de
     if 'Util.de' in data:

@@ -410,6 +410,9 @@ def DisplayLinks(links, orig_title):
 		elif url not in urls and 'torula' in url:
 			addLink('Torula.us', orig_title, url, mode="play")
 			urls.append(url)
+		elif url not in urls and 'webm' in url or ('caststreams' in url and 'getGame' in url):
+			addLink('caststreams', orig_title, url, mode="play")
+			urls.append(url)
 		elif url not in urls and 'gstreams.tv' in url:
 			addLink('Gstreams.tv', orig_title, url, mode="play")
 			urls.append(url)
@@ -520,6 +523,9 @@ def ParseLink(el, orig_title):
 		return url
 	elif 'ducking.xyz' in el:
 		url = Ducking(el)
+		return url
+	elif 'webm' in el or ('caststreams' in el and 'getGame' in el):
+		url = el
 		return url
 	elif 'streamandme' in el:
 		url = Universal(el)
@@ -801,15 +807,15 @@ def Caststreams(orig_title):
 		orig_title = orig_title.replace('[COLOR=FF00FF00][B]','').replace('[/B][/COLOR]','')
 		home = orig_title.split('at')[0].split()[0]
 		away = orig_title.split('at')[-1].split()[0]
-		url = 'http://52.37.65.206:2053/login-web'
-		data = json.dumps({"email":"prosport3@testmail.com","password":"prosport","ipaddress":"desktop","androidId":"","deviceId":"","isGoogleLogin":0})
+		url = 'http://caststreams.com:2053/login-web'
+		data = json.dumps({"email":"prosport4@testmail.com","password":"prosport","ipaddress":"desktop","androidId":"","deviceId":"","isGoogleLogin":0})
 		request = urllib2.Request(url, data)
 		request.add_header('Content-Type', 'application/json')
 		response = urllib2.urlopen(request, timeout=5)
 		resp = response.read()
 		jsonDict = json.loads(resp)
 		token = jsonDict['token']
-		url = 'http://52.37.65.206:2053/feeds'
+		url = 'http://caststreams.com:2053/feeds'
 		request = urllib2.Request(url)
 		request.add_header('Authorization', token)
 		response = urllib2.urlopen(request, timeout=5)
@@ -820,7 +826,7 @@ def Caststreams(orig_title):
 			title = feed['nam'].lower().replace('ny', 'new')
 			if home.lower() in title.lower() and away.lower() in title.lower() and 'testing' not in title.lower():
 				channel = feed['url'][0]
-				link = 'http://52.37.65.206:2053/getGame?rUrl='+channel
+				link = 'http://caststreams.com:2053/getGame?rUrl='+channel
 				return link	
 			else:
 				continue
@@ -1275,8 +1281,8 @@ def Universal(url):
 					Universal(url)
 
 	
-def sawresolve(url):
-	try:
+def sawresolve2(url):
+	
 		result = GetURL(url)
 		if 'var sw=' not in result:
 			try:
@@ -1308,6 +1314,7 @@ def sawresolve(url):
 		url = url.replace(' ', '').replace('+','').replace('"','').replace('\'','')
 		result = GetURL(url, referer=url)
 		var = re.compile('var\s(.+?)\s*=\s*[\'\"](.+?)[\'\"]').findall(result)
+		print result
 		var_dict = dict(var)       
 		file = re.compile("'file'\s*(.+?)\)").findall(result)[0]
 		file = file.replace('\'','')
@@ -1335,9 +1342,74 @@ def sawresolve(url):
 		url = '%s playpath=%s swfUrl=%s pageUrl=%s live=1 timeout=60' % (strm, file, swf, url)
 		url = urllib.unquote(url).replace('unescape(','')
 		return url
+	
+def sawresolve(url):
+	try:     
+		page = re.compile('//(.+?)/(?:embed|v)/([0-9a-zA-Z-_]+)').findall(url)[0]
+		page = 'http://%s/embed/%s' % (page[0], page[1])        
+		try: referer = urlparse.parse_qs(urlparse.urlparse(url).query)['referer'][0]
+		except: referer = page 
+		result = GetURL(page, referer=referer)
+		result = urllib.unquote_plus(result)
+		vars = re.compile('var (.+?=".+?");').findall(str(result))
+		for item in vars:
+			var = item.split('=')
+		rep = re.findall('.+?=.+?\.replace\("(.+?)","(.+?)"\)',str(result))[0]
+		result = re.sub('\s\s+', ' ', result)
+		url = common.parseDOM(result, 'iframe', ret='src')[-1]
+		url = url.replace(' ', '').split("'")[0]      
+		try:
+			ch = re.compile('ch=""(.+?)""').findall(str(result))[0]
+		except:
+			ch = re.compile("ch='(.+?)'").findall(str(result))[0]
+		try:
+			sw = re.compile("sw='(.+?)'").findall(str(result))[0]
+		except:
+			sw = re.compile('sw=""(.+?)""').findall(str(result))[0]
+		if ' ' in sw:
+			for item in vars:
+				var = item.replace('"','').replace("'",'').split('=')
+				sw = re.sub(var[0], var[1], str(sw))
+			sw = sw.replace(' ','')
+		if ' ' in ch:
+			for item in vars:
+				var = item.replace('"','').replace("'",'').split('=')
+				ch = re.sub(var[0], var[1], str(ch))
+			ch = ch.replace(' ','')
+		if len(str(ch)) > len(str(sw)):url = str(url)+str(sw)+'/'+str(ch)
+		if len(str(sw)) > len(str(ch)):url = str(url)+str(ch)+'/'+str(sw)
+		if rep[0] in str(url): url = str(url).replace(rep[0],rep[1])
+		result = GetURL(url, referer=referer)
+		file = re.compile("\('file',(.+?)\)").findall(result)[0]
+		file = urllib.unquote_plus(file)
+		var2= re.compile("var (.+?) = '(.+?)';").findall(result)
+		strm = re.compile("\('streamer',(.+?)\)").findall(result)[0]
+		strm =strm.replace("'",'').replace('"','')
+		for name, parts in var2:
+			name = name.replace("'",'').replace('"','')
+			parts = parts.replace("'",'').replace('"','')
+			if (name) in file:file = file.replace(name,parts)
+			if (name) in strm: strm = parts
+		file = file.replace(' ','').replace('"','').replace("'","")
+		try:
+			if not file.startswith('http'): raise Exception()
+			request = urllib2.Request(file)
+			request.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
+			request.add_header('Referer', file)
+			response = urllib2.urlopen(request, timeout=5)
+			url = response.geturl()
+			if not '.m3u8' in url: raise Exception()
+			url += '|%s' % urllib.urlencode({'User-Agent': client.agent(), 'Referer': file})
+			return url    
+		except:
+			pass
+		swf = re.compile("SWFObject\('(.+?)'").findall(result)[0]
+		url = '%s playpath=%s swfUrl=%s pageUrl=%s live=1 timeout=30' % (strm, file, swf, url)
+		return url
 	except:
 		return None
-
+          
+       
 		
 def castup(id):
 	try:
@@ -1406,16 +1478,17 @@ def p2pcast(id):
 	except:
 		return None
 		
-def resolve(id):
+def broadcast(id):
 	try:
 		url = 'http://bro.adca.st/stream.php?id='+id
+		ref = url
 		result = GetURL(url, referer=url)
 		curl = re.findall('curl\s*=\s*[\"\']([^\"\']+)',result)[0]
 		url = base64.b64decode(curl)
 		token = GetJSON('http://bro.adcast.tech/getToken.php')
 		token = token['token']
 		url+= 'wfNz6Pz_jNZfR8wmB8JEPw'
-		url+='|%s' % urllib.urlencode({'User-agent':'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.87 Safari/537.36','Referer':ref,'X-Requested-With':constants.get_shockwave(),'Host':urlparse.urlparse(url).netloc,'Accept-Encoding':'gzip, deflate, lzma, sdch'})
+		url+='|%s' % urllib.urlencode({'User-agent':'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.87 Safari/537.36','Referer':ref,'X-Requested-With':'ShockwaveFlash/21.0.0.216','Host':urlparse.urlparse(url).netloc,'Accept-Encoding':'gzip, deflate, lzma, sdch'})
 		return url 
 	except:
 		return None
