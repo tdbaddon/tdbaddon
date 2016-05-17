@@ -8,19 +8,22 @@ http://abclive.abcnews.com/i/abc_live4@136330/index_1200_av-b.m3u8
 0
 
 #EXTINF:0,BBC World News 
-0
+http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/939.ts
 
 #EXTINF:0,Bloomberg News 
 http://x4012c4000.edge.core-cdn.net/40000mb/live/4012hbbtv/bloomberg.ts
 
-#EXTINF:0,Bloomberg TV 
+#EXTINF:0,Bloomberg News 
 http://btvuk-i.akamaihd.net/hls/live/203321/btvuk_ios/P1/M18K.m3u8
 
-#EXTINF:0,Bloomberg TV 
+#EXTINF:0,Bloomberg News 
 http://btvasia-i.akamaihd.net/hls/live/203322/btvasia_ios/P1/M24K.m3u8
 
-#EXTINF:0,Bloomberg TV 
+#EXTINF:0,Bloomberg News 
 http://cdn3.videos.bloomberg.com/btv/us/master.m3u8
+
+#EXTINF:0,Bloomberg TV 
+http://www.iptvsaga.com/play/tv3/0066.m3u8
 
 #EXTINF:0,BNN
 0
@@ -36,9 +39,6 @@ http://cbsnews-linear.mdialog.com/video_assets/cbsnews.m3u8?api_key=563b80c1ae4c
 
 #EXTINF:0,CNBC 
 0
-
-#EXTINF:0,CNN 
-http://edge1.everyon.tv/etv1sb/phd16/chunklist_w1519714347.m3u8
 
 #EXTINF:0,CNN 
 http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD177_W_150.sdp/media_7419.m3u8
@@ -125,10 +125,16 @@ http://rt-a.akamaihd.net/ch_04@325608/720p.m3u8
 http://rt.ashttp14.visionip.tv/live/rt-global-live-HD/playlist.m3u8
 
 #EXTINF:0,Sky News 
-0
+http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/833.ts
+
+#EXTINF:0,Sky News
+http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/855.ts
 
 #EXTINF:0,The Weather Channel 
 0
+
+#EXTINF:0,TRT World
+http://www.iptvsaga.com/play/tv3/0031.m3u8
 
 #EXTINF:0,Weather Nation 
 http://cdnapi.kaltura.com/p/931702/sp/93170200/playManifest/entryId/1_oorxcge2/format/applehttp/protocol/http/uiConfId/28428751/a.m3u8

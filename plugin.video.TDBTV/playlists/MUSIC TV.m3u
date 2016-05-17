@@ -35,7 +35,7 @@ http://nodeb.gocaster.net:1935/CGL/_definst_/mp4:TODAYFM_TEST2/live.m3u8
 0
 
 #EXTINF:0,Deluxe Music 
-rtmp://flash1.ipercast.net/deluxemusic.tv/mp4:staging/120131-love-lounge-catchup.mp4.mp4
+0
 
 #EXTINF:0,Djing Animation 
 http://www.djing.com/tv/a-03.m3u8
@@ -79,6 +79,9 @@ http://www.iptvsaga.com/play/tv3/0087.m3u8
 #EXTINF:0,Dream TV
 http://212.224.108.80/S1/HLS_LIVE/dreamtv/1000/prog_index.m3u8
 
+#EXTINF:0,Dream TV
+http://www.iptvsaga.com/play/tv3/0069.m3u8
+
 #EXTINF:0,Eska Best 
 rtmp://stream.smcloud.net/live2/best/best_480p
 
@@ -101,7 +104,7 @@ rtmp://stream.smcloud.net/live2/eska_rock/eska_rock_720p
 0
 
 #EXTINF:0,Heart TV 
-http://ooyalahd2-f.akamaihd.net/i/globalradio02_delivery@156522/master.m3u8
+0
 
 #EXTINF:0,Ibiza on TV 
 0
@@ -113,7 +116,7 @@ rtmp://tst.es.flash.glb.ipercast.net/tst.es-live/live
 http://k4.usastreams.com:1935/miamitv/miamitv/chunklist_w128908539.m3u8
 
 #EXTINF:0,MTV 
-http://origin2.voronezh.ertelecom.ru/content/private/s147213/d3720264/r183857sd2500000/efe4541060c00fccc01e8c068fce4f5ab911d969/playlist.m3u8
+http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/884.ts
 
 #EXTINF:0,MTV Classic
 0
@@ -123,12 +126,6 @@ http://origin2.voronezh.ertelecom.ru/content/private/s147213/d3720264/r183857sd2
 
 #EXTINF:0,MTV Hits 
 http://vod.cdn.iutpcdn.com/LIVE/H01/CANAL727/PROFILE03.m3u8?
-
-#EXTINF:0,MTV Hits 
-http://ipsatpro.com:8000/live/05021972/05021972/500.ts
-
-#EXTINF:0,MTV Hits 
-http://live1.greenlie.org:8081/live/mtv-hq/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9NC82LzIwMTYgNTo0Nzo1MiBQTSZoYXNoX3ZhbHVlPTJONnRFTUxPZmFOV2dnQkk3cHZXN2c9PSZ2YWxpZG1pbnV0ZXM9MjAmaWQ9MTA4LjE2Mi4yNDIuMTYxJnN0cm1fbGVuPTEx
 
 #EXTINF:0,MTV Live 
 0
@@ -149,7 +146,7 @@ rtmp://stream.smcloud.net/live2/vox/vox_720p
 0
 
 #EXTINF:0,NR1 
-rtmp://mn-l.mncdn.com/birnumaramedya_live/nr1tv.sdp
+0
 
 #EXTINF:0,NRJ HITS
 rtsp://5.196.138.6:1935/live/nrjbelgique_360p
@@ -215,10 +212,7 @@ http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/06/prog_index.m3u8
 http://www.iptvsaga.com/play/tv3/0006.m3u8
 
 #EXTINF:0,VH1 
-http://origin2.tomsk.ertelecom.ru/content/private/s147213/d3720264/r183860sd2000000/a7e4d34646b475190d0c99a717f7478a546958ed/track_2_1200/playlist.m3u8
-
-#EXTINF:0,VH1 
-http://ipsatpro.com:8000/live/05021972/05021972/449.ts
+http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/808.ts
 
 #EXTINF:0,VH1 Classics 
 http://81.201.52.159:8024

@@ -4,7 +4,7 @@
 http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 ---------------------------------------------------------------------------------------------------------------
 #EXTINF:0,Check Back Soon
-0
+www.tcomputers.ca
 
 #EXTINF:0,5 StarMax
 0
@@ -73,7 +73,7 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 0
 
 #EXTINF:0,Film4 
-0
+http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/900.ts
 
 #EXTINF:0,FilmBox 
 0
@@ -121,7 +121,10 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 0
 
 #EXTINF:0,HBO 
-0
+http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/648.ts
+
+#EXTINF:0,HBO 
+http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/647.ts
 
 #EXTINF:0,HBO Adria 
 0
@@ -133,13 +136,16 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 0
 
 #EXTINF:0,HBO East 2
-0
+http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/646.ts
+
+#EXTINF:0,HBO East 2
+http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/631.ts
 
 #EXTINF:0,HBO Family
 0
 
 #EXTINF:0,HBO Plus 
-0
+http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/645.ts
 
 #EXTINF:0,HBO Signature 
 0
@@ -202,34 +208,58 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 0
 
 #EXTINF:0,Sky Movies Disney 
-0
+http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/850.ts
+
+#EXTINF:0,Sky Movies Disney 
+http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/849.ts
 
 #EXTINF:0,Sky Movies Family 
-http://iptvgafsa.ddns.net:8000/live/daniel/daniel/9784.ts
+http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/845.ts
+
+#EXTINF:0,Sky Movies Family 
+http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/846.ts
 
 #EXTINF:0,Sky Movies Horrors 
-0
+http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/895.ts
 
 #EXTINF:0,Sky Movies Modern Greats 
-http://iptvgafsa.ddns.net:8000/live/daniel/daniel/9754.ts
+http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/856.ts
+
+#EXTINF:0,Sky Movies Modern Greats 
+http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/843.ts
 
 #EXTINF:0,Sky Movies Premiere 
-http://iptvgafsa.ddns.net:8000/live/daniel/daniel/9753.ts
+http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/841.ts
 
 #EXTINF:0,Sky Movies Premiere+ 
 0
 
 #EXTINF:0,Sky Movies SciFi 
-http://iptvgafsa.ddns.net:8000/live/daniel/daniel/9568.ts
+http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/840.ts
+
+#EXTINF:0,Sky Movies SciFi 
+http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/839.ts
+
+#EXTINF:0,Sky Movies SciFi 
+http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/838.ts
 
 #EXTINF:0,Sky Movies Select 
-http://iptvgafsa.ddns.net:8000/live/daniel/daniel/9783.ts
+http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/861.ts
+
+#EXTINF:0,Sky Movies Select 
+http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/829.ts
+
+#EXTINF:0,Sky Movies Select 
+http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/837.ts
 
 #EXTINF:0,Sky Movies Showcase 
-0
+http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/836.ts
 
 #EXTINF:0,Sky Movies Thriller 
-0
+http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/835.ts
+
+#EXTINF:0,Sky Movies Thriller 
+http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/834.ts
 
 #EXTINF:0,Sony TV 
 0
@@ -286,7 +316,7 @@ http://iptvgafsa.ddns.net:8000/live/daniel/daniel/9783.ts
 0
 
 #EXTINF:0,True Movies 1 
-0
+http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/810.ts
 
 #EXTINF:0,True Movies 2 
 0

@@ -1224,7 +1224,7 @@ http://informaticglobalworld.altervista.org/
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="3.80"
+       version="3.81"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
