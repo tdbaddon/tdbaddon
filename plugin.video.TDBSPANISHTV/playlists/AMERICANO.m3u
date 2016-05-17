@@ -14,7 +14,13 @@
 0
 
 #EXTINF:0,AXN
-0
+http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/791.ts
+
+#EXTINF:0,AXN
+http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/790.ts
+
+#EXTINF:0,AXN
+http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/789.ts
 
 #EXTINF:0,Aym Sports
 0
@@ -95,7 +101,10 @@
 0
 
 #EXTINF:0,Fox
-0
+http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/752.ts
+
+#EXTINF:0,Fox
+http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/750.ts
 
 #EXTINF:0,Fox 1
 0
@@ -158,10 +167,16 @@
 0
 
 #EXTINF:0,National Geographic Channel
-0
+http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/739.ts
+
+#EXTINF:0,National Geographic Channel
+http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/738.ts
 
 #EXTINF:0,Nat Geo Wild
-0
+http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/740.ts
+
+#EXTINF:0,Nat Geo Wild
+http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/737.ts
 
 #EXTINF:0,Nick
 0
@@ -170,7 +185,7 @@
 0
 
 #EXTINF:0,Nickelodeon
-0
+http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/735.ts
 
 #EXTINF:0,Nicktoons
 0
@@ -209,7 +224,7 @@
 0
 
 #EXTINF:0,TNT
-0
+http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/713.ts
 
 #EXTINF:0,Tooncast
 0

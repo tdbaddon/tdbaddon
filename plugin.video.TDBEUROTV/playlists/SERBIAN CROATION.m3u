@@ -5,19 +5,22 @@
 rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
 
 #EXTINF:0,Arena Sport 1 
-0
+http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/567.ts
 
 #EXTINF:0,Arena Sport 2 
-0
+http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/566.ts
 
-#EXTINF:0,Arena Sport 3 
-0
+#EXTINF:0,Arena Sport 2
+http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/565.ts
+
+#EXTINF:0,Arena Sport 3
+http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/563.ts
 
 #EXTINF:0,Arena Sport 4 
-0
+http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/562.ts
 
 #EXTINF:0,Arena Sport 5 
-0
+http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/561.ts
 
 #EXTINF:0,ATV
 rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
