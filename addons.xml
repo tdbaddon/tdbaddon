@@ -1168,7 +1168,7 @@ http://informaticglobalworld.altervista.org/
 
 <addon id="plugin.video.TDBPORNO"
        name="TDB PORNO"
-       version="1.96"
+       version="1.97"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
