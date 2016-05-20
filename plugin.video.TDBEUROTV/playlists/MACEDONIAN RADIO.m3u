@@ -59,7 +59,7 @@ rtmp://off.net.mk/radio/fortuna.stream
 http://ss1.mk.checast.com:21130/live?1437244565079.aac 
 
 #EXTINF:0,Radio Holidej Prilep
-http://213.135.181.14:8000/;?1437245979490.mp3 
+0
 
 #EXTINF:0,Radio Kometa Gostivar
 http://ss1.mk.checast.com:21070/48.aac

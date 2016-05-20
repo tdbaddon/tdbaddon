@@ -18,34 +18,28 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 0
 
 #EXTINF:0,Box Nation 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/938.ts
+0
 
 #EXTINF:0,BT Sport 1 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/936.ts
+http://185.59.222.65:8080/MHAJbmmhhjPIAmbt1/index.m3u8
 
 #EXTINF:0,BT Sport 1 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/933.ts
-
-#EXTINF:0,BT Sport 1 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/930.ts
+http://proxiiptv.dyndns.tv:8000/live/perparim8/perparim8/625.ts
 
 #EXTINF:0,BT Sport 2 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/935.ts
+http://185.59.222.65:8080/MHAJbmmhhjPIAmbt2/index.m3u8
 
 #EXTINF:0,BT Sport 2 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/934.ts
+http://proxiiptv.dyndns.tv:8000/live/perparim8/perparim8/626.ts
 
-#EXTINF:0,BT Sport 2 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/929.ts
+#EXTINF:0,BT Sport Europe
+http://185.59.222.65:8080/MHAJbmmhhjPIAmbteuro/index.m3u8
 
 #EXTINF:0,CBS Sports 
 0
 
 #EXTINF:0,Chelsea TV 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/923.ts
-
-#EXTINF:0,Chelsea TV 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/922.ts
+0
 
 #EXTINF:0,CMore Sport 
 0
@@ -54,7 +48,7 @@ http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/922.ts
 0
 
 #EXTINF:0,ESPN 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/902.ts
+0
 
 #EXTINF:0,ESPN 2
 0
@@ -62,11 +56,8 @@ http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/902.ts
 #EXTINF:0,Eurosport 1 
 http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_1800.m3u8
 
-#EXTINF:0,Eurosport 1 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/901.ts
-
 #EXTINF:0,Eurosport 2
-0
+http://proxiiptv.dyndns.tv:8000/live/perparim8/perparim8/401.ts
 
 #EXTINF:0,Eurosport News 
 0
@@ -86,8 +77,11 @@ http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/901.ts
 #EXTINF:0,Fox Sports 1 
 http://ooyalahd2-f.akamaihd.net/i/eslax17_delivery@349499/master.m3u8
 
+#EXTINF:0,Fox Sports 1 
+http://proxiiptv.dyndns.tv:8000/live/perparim8/perparim8/430.ts
+
 #EXTINF:0,Fox Sports 2 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/800.ts
+http://proxiiptv.dyndns.tv:8000/live/perparim8/perparim8/699.ts
 
 #EXTINF:0,Fox Sports News 
 0
@@ -108,10 +102,7 @@ mms://100automoto.tv/channel_mercedes
 0
 
 #EXTINF:0,Motors TV 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/705.ts
-
-#EXTINF:0,Motors TV 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/704.ts
+0
 
 #EXTINF:0,Motorsport 7 
 http://motorsport.hopto.org:8080/
@@ -145,6 +136,9 @@ http://cdn.phoenix.intergi.com/21772/videos/3362254/video-sd.mp4?hosting_id=2177
 
 #EXTINF:0,NFL Network 
 0
+
+#EXTINF:0,NFL Now
+http://nflioslivesvg2-i.akamaihd.net/hls/live/221521/nflioslive/2015HackerNow_w99d9_g.m3u8
 
 #EXTINF:0,NHL Network 
 0
@@ -219,13 +213,10 @@ http://ooyalahd2-f.akamaihd.net/i/crtv01_delivery@329705/index_1164_av-b.m3u8
 mms://100automoto.tv/channel_porsche
 
 #EXTINF:0,Premier Sports 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/870.ts
-
-#EXTINF:0,Premier Sports 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/869.ts
+0
 
 #EXTINF:0,Racing UK 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/868.ts
+0
 
 #EXTINF:0,Redbull TV 
 http://sacapunta.eltelon.com/channels/redbulltv/playlist.m3u8
@@ -234,49 +225,55 @@ http://sacapunta.eltelon.com/channels/redbulltv/playlist.m3u8
 0
 
 #EXTINF:0,Setanta Sports 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/865.ts
+0
 
 #EXTINF:0,Sky Sports 1 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/826.ts
+http://185.59.222.65:8080/MHAJbmmhhjPIAmsky1/index.m3u8
 
 #EXTINF:0,Sky Sports 1 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/827.ts
+http://149.202.207.8:8080/sk1-14May/sallu/index.m3u8
 
 #EXTINF:0,Sky Sports 1 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/824.ts
+http://proxiiptv.dyndns.tv:8000/live/perparim8/perparim8/419.ts
 
 #EXTINF:0,Sky Sports 2 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/825.ts
+http://185.59.222.65:8080/MHAJbmmhhjPIAmsky2/index.m3u8
+
+#EXTINF:0,Sky Sports 2 
+http://149.202.207.8:8080/sk2-14May/sallu/index.m3u8
+
+#EXTINF:0,Sky Sports 2 
+http://proxiiptv.dyndns.tv:8000/live/perparim8/perparim8/420.ts
 
 #EXTINF:0,Sky Sports 3 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/822.ts
+http://149.202.207.8:8080/sk3-14May/sallu/index.m3u8
 
 #EXTINF:0,Sky Sports 3 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/823.ts
+http://proxiiptv.dyndns.tv:8000/live/perparim8/perparim8/421.ts
 
 #EXTINF:0,Sky Sports 4 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/820.ts
+http://185.59.222.65:8080/MHAJbmmhhjPIAmsky4/index.m3u8
 
 #EXTINF:0,Sky Sports 4 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/821.ts
+http://149.202.207.8:8080/sk4-14May/sallu/index.m3u8
+
+#EXTINF:0,Sky Sports 4 
+http://proxiiptv.dyndns.tv:8000/live/perparim8/perparim8/422.ts
 
 #EXTINF:0,Sky Sports 5 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/819.ts
+http://185.59.222.65:8080/MHAJbmmhhjPIAmsky5/index.m3u8
+
+#EXTINF:0,Sky Sports 5 
+http://149.202.207.8:8080/sk5-14May/sallu/index.m3u8
+
+#EXTINF:0,Sky Sports 5 
+http://proxiiptv.dyndns.tv:8000/live/perparim8/perparim8/423.ts
 
 #EXTINF:0,Sky Sports F1 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/818.ts
-
-#EXTINF:0,Sky Sports F1 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/817.ts
+0
 
 #EXTINF:0,Sky Sports News 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/814.ts
-
-#EXTINF:0,Sky Sports News 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/815.ts
-
-#EXTINF:0,Sky Sports News 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/816.ts
+0
 
 #EXTINF:0,Sports Tonight 
 rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9-SD
@@ -312,9 +309,6 @@ rtmp://31.220.2.149:80/live/ playpath=ts1 token=%Zrey(nKa@#Z swfUrl=http://p.jwp
 rtmp://185.63.255.18:80/live playpath=ts1 swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf pageUrl=http://yotv.co/embedu.php?live=ts1&vw=620&vh=490 live=1 token=%Zrey(nKa@#Z
 
 #EXTINF:0,TSN 2 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/795.ts
-
-#EXTINF:0,TSN 2 
 rtmp://31.220.2.149:80/live/ playpath=tsnx2 token=%Zrey(nKa@#Z swfUrl=http://p.jwpcdn.com/6/12/jwplayer.flash.swf live=1 timeout=13 pageUrl=http://yotv.co
 
 #EXTINF:0,TSN 2 
@@ -324,7 +318,7 @@ rtmp://185.63.255.60:80/live playpath=tsnx2 swfUrl=http://p.jwpcdn.com/6/12/jwpl
 0
 
 #EXTINF:0,TSN 4 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/794.ts
+0
 
 #EXTINF:0,TSN 5 
 0
@@ -339,7 +333,7 @@ http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/794.ts
 
 
 #EXTINF:0,Viasat Sport 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/966.ts
+0
 
 #EXTINF:0,VS Versus 
 http://208.92.36.158/ipad/live/nba_ipad_1240.m3u8

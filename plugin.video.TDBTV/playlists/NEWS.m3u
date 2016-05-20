@@ -8,7 +8,7 @@ http://abclive.abcnews.com/i/abc_live4@136330/index_1200_av-b.m3u8
 0
 
 #EXTINF:0,BBC World News 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/939.ts
+0
 
 #EXTINF:0,Bloomberg News 
 http://x4012c4000.edge.core-cdn.net/40000mb/live/4012hbbtv/bloomberg.ts
@@ -125,10 +125,7 @@ http://rt-a.akamaihd.net/ch_04@325608/720p.m3u8
 http://rt.ashttp14.visionip.tv/live/rt-global-live-HD/playlist.m3u8
 
 #EXTINF:0,Sky News 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/833.ts
-
-#EXTINF:0,Sky News
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/855.ts
+0
 
 #EXTINF:0,The Weather Channel 
 0

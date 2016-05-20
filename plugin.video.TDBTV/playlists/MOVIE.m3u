@@ -4,7 +4,7 @@
 http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 ---------------------------------------------------------------------------------------------------------------
 #EXTINF:0,Check Back Soon
-0
+WWW.TCOMPUTERS.CA
 
 #EXTINF:0,5 StarMax
 0
@@ -19,7 +19,7 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 0
 
 #EXTINF:0,Cinemax 
-0
+http://37.59.25.38:8000/live/Wqq93u85Lv/dJ6vR8cKlx/1127.ts
 
 #EXTINF:0,Cinemax 5 StarMax
 0
@@ -57,6 +57,9 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 #EXTINF:0,CMore Series 
 0
 
+#EXTINF:0,DXTV
+http://186.33.227.200/DXTV/smil:DXTV.smil/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9NC8xNy8yMDE1IDEyOjM5OjEwIFBNJmhhc2hfdmFsdWU9enNzd2E
+
 #EXTINF:0,Encore 1 East
 0
 
@@ -73,46 +76,31 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 0
 
 #EXTINF:0,Film1 Action
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/661.ts
-
-#EXTINF:0,Film1 Action
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/668.ts
+0
 
 #EXTINF:0,Film1 Comedy & Kids
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/660.ts
-
-#EXTINF:0,Film1 Comedy & Kids
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/665.ts
-
-#EXTINF:0,Film1 Comedy & Kids
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/666.ts
+0
 
 #EXTINF:0,Film1 Premiere
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/659.ts
-
-#EXTINF:0,Film1 Premiere
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/664.ts
+0
 
 #EXTINF:0,Film1 Spotlight
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/658.ts
-
-#EXTINF:0,Film1 Spotlight
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/663.ts
+0
 
 #EXTINF:0,Film4 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/900.ts
+0
 
 #EXTINF:0,FilmBox 
 0
 
 #EXTINF:0,Film Aksion 
-0
+http://188.44.8.20:8000/play/a00z
 
 #EXTINF:0,Film Autor
 0
 
 #EXTINF:0,Film Komedi 
-0
+http://188.44.8.20:8000/play/a010
 
 #EXTINF:0,Film Drame 
 0
@@ -148,10 +136,7 @@ http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/900.ts
 0
 
 #EXTINF:0,HBO 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/648.ts
-
-#EXTINF:0,HBO 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/647.ts
+0
 
 #EXTINF:0,HBO Adria 
 0
@@ -163,16 +148,13 @@ http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/647.ts
 0
 
 #EXTINF:0,HBO East 2
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/646.ts
-
-#EXTINF:0,HBO East 2
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/631.ts
+0
 
 #EXTINF:0,HBO Family
 0
 
 #EXTINF:0,HBO Plus 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/645.ts
+0
 
 #EXTINF:0,HBO Signature 
 0
@@ -203,6 +185,9 @@ http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/645.ts
 
 #EXTINF:0,Movies4Men 
 0
+
+#EXTINF:0,OSN Movies Box Office
+http://37.59.25.38:8000/live/Wqq93u85Lv/dJ6vR8cKlx/1123.ts
 
 #EXTINF:0,Paramount Channel 
 0
@@ -235,58 +220,34 @@ http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/645.ts
 0
 
 #EXTINF:0,Sky Movies Disney 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/850.ts
-
-#EXTINF:0,Sky Movies Disney 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/849.ts
+0
 
 #EXTINF:0,Sky Movies Family 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/845.ts
-
-#EXTINF:0,Sky Movies Family 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/846.ts
+0
 
 #EXTINF:0,Sky Movies Horrors 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/895.ts
+0
 
 #EXTINF:0,Sky Movies Modern Greats 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/856.ts
-
-#EXTINF:0,Sky Movies Modern Greats 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/843.ts
+0
 
 #EXTINF:0,Sky Movies Premiere 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/841.ts
+0
 
 #EXTINF:0,Sky Movies Premiere+ 
 0
 
 #EXTINF:0,Sky Movies SciFi 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/840.ts
-
-#EXTINF:0,Sky Movies SciFi 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/839.ts
-
-#EXTINF:0,Sky Movies SciFi 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/838.ts
+0
 
 #EXTINF:0,Sky Movies Select 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/861.ts
-
-#EXTINF:0,Sky Movies Select 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/829.ts
-
-#EXTINF:0,Sky Movies Select 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/837.ts
+0
 
 #EXTINF:0,Sky Movies Showcase 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/836.ts
+0
 
 #EXTINF:0,Sky Movies Thriller 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/835.ts
-
-#EXTINF:0,Sky Movies Thriller 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/834.ts
+0
 
 #EXTINF:0,Sony TV 
 0
@@ -343,7 +304,7 @@ http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/834.ts
 0
 
 #EXTINF:0,True Movies 1 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/810.ts
+0
 
 #EXTINF:0,True Movies 2 
 0

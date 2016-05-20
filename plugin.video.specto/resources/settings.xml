@@ -88,6 +88,7 @@
 		<setting id="watchfree_tv" type="bool" label="Watchfree" default="true" />
 		<setting id="wsonline_tv" type="bool" label="WSOnline" default="true" />
 		<setting id="watchseries_tv" type="bool" label="Watchseries" default="true" />
+		<setting id="onlinedizi_tv" type="bool" label="Onlinedizi" default="true" />
 
 	</category>
 	<category label="30870">

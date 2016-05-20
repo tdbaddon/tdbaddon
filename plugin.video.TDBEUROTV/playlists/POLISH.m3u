@@ -7,40 +7,49 @@
 #EXTINF:0,24 
 rtmp://cdn4.stream360.pl:1935/CW24/transmisja_live
 
+#EXTINF:0,24 
+http://212.79.96.134:8015/
+
 #EXTINF:0,Asta TV
 0
 
 #EXTINF:0,CE TV
 http://213.81.153.221:8080/cetv
 
-#EXTINF:0,Eska Best TV
+#EXTINF:0,Eska Best TV 
 rtmp://stream.smcloud.net/live2/best/best_720p
 
-#EXTINF:0,Eska Best TV
+#EXTINF:0,Eska Best TV 
 rtmp://stream.smcloud.net/live2/best/best_480p
 
-#EXTINF:0,Eska Go TV
+#EXTINF:0,Eska Go TV 
 rtmp://stream.smcloud.net/live2/wawa/wawa_720p
 
-#EXTINF:0,Eska Go TV
+#EXTINF:0,Eska Go TV 
 rtmp://stream.smcloud.net/live2/wawa/wawa_480p
 
 #EXTINF:0,Eska Party TV 
 rtmp://stream.smcloud.net/live2/eska_party/eska_party_720p
 
-#EXTINF:0,Eska Party TV
+#EXTINF:0,Eska Party TV 
 rtmp://stream.smcloud.net/live2/eska_party/eska_party_480p
 
-#EXTINF:0,Eska Rock TV
+#EXTINF:0,Eska Rock TV 
 rtmp://stream.smcloud.net/live2/eska_rock/eska_rock_720p
 
-#EXTINF:0,Eska Rock TV
+#EXTINF:0,Eska Rock TV 
 rtmp://stream.smcloud.net/live2/eska_rock/eska_rock_480p
 
-#EXTINF:0,Eska Vox TV
+#EXTINF:0,Eska 360 TV 
+http://stream.smcloud.net/live2/eskatv/eskatv_360p/playlist.m3u8
+
+#EXTINF:0,Eska TV 
+rtmp://stream.smcloud.net/live2/eskatv//eskatv_360p
+
+#EXTINF:0,Eska Vox TV 
 rtmp://stream.smcloud.net/live2/vox/vox_720p
 
-#EXTINF:0,Eska Vox TV
+#EXTINF:0,Eska Vox TV 
 rtmp://stream.smcloud.net/live2/vox/vox_480p
 
 #EXTINF:0,Fokus TV 
@@ -49,10 +58,10 @@ rtmp://stream.smcloud.net/live/fokustv
 #EXTINF:0,Fokus TV 
 http://s4w.deb1.scdn.smcloud.net/live/_definst_/fokustv/chunklist_w2048299294.m3u8
 
-#EXTINF:0,ITV
+#EXTINF:0,ITV 
 http://itv.net.pl/video1.asx
 
-#EXTINF:0,ITV
+#EXTINF:0,ITV 
 mms://194.150.185.253/ITV
 
 #EXTINF:0,Lech TV
@@ -62,10 +71,10 @@ http://wtk.live-ext.e96-jw.insyscd.net/lechtv.smil/playlist.m3u8
 http://81.201.52.159:8017
 
 #EXTINF:0,Nova Cinema 
-http://gogo.jksw.cz:8020
+0
 
 #EXTINF:0,Nova TV 
-http://81.201.52.159:8003
+0
 
 #EXTINF:0,Nova Sport 5
 0
@@ -79,8 +88,11 @@ http://81.201.52.159:8002
 #EXTINF:0,O24 
 http://81.201.52.159:8015
 
+#EXTINF:0,O Sport
+http://212.79.96.134:8014/
+
 #EXTINF:0,Ocko 
-0
+http://212.79.96.134:8016/
 
 #EXTINF:0,Ocko Gold 
 0
@@ -98,19 +110,22 @@ rtmp://stream.smcloud.net/live/polotv
 0
 
 #EXTINF:0,Prima 
-http://81.201.52.159:8004
+0
 
 #EXTINF:0,Prima Cool 
-http://81.201.52.159:8021
+0
 
 #EXTINF:0,Prima Love
 http://81.201.52.159:8019
 
 #EXTINF:0,Prima Zoom 
-0
+http://212.79.96.134:8011/
 
 #EXTINF:0,Rela Pohoda
 0
+
+#EXTINF:0,Retro
+http://212.79.96.134:8018/
 
 #EXTINF:0,RTV Krea
 0
@@ -151,7 +166,7 @@ http://217.173.176.107:1935/live/ngrp:tvk.stream_all/.m3u8
 #EXTINF:0,TV Trwam 
 mms://195.94.205.211/Trwam
 
-#EXTINF:0,TV Trwam
+#EXTINF:0,TV Trwam 
 http://trwamtv.live.e96-jw.insyscd.net/trwamtv.smil/playlist.m3u8
 
 #EXTINF:0,TVK
@@ -182,7 +197,7 @@ http://63.237.48.23/ios/TVP/TVP.m3u8
 0
 
 #EXTINF:0,TVP Info 
-http://195.245.213.230/live/szczecin.isml/szczecin.m3u8
+0
 
 #EXTINF:0,TVP Rozrywka 
 0

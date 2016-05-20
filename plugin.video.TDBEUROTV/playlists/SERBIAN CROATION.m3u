@@ -5,22 +5,22 @@
 rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
 
 #EXTINF:0,Arena Sport 1 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/567.ts
+0
 
 #EXTINF:0,Arena Sport 2 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/566.ts
+0
 
 #EXTINF:0,Arena Sport 2
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/565.ts
+0
 
 #EXTINF:0,Arena Sport 3
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/563.ts
+0
 
 #EXTINF:0,Arena Sport 4 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/562.ts
+0
 
 #EXTINF:0,Arena Sport 5 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/561.ts
+0
 
 #EXTINF:0,ATV
 rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
@@ -53,7 +53,7 @@ http://95.128.236.80:1935/kaltura/smil:cmc.smil/playlist.m3u8
 0
 
 #EXTINF:0,Elektrika TV
-0
+rtmp://rtmp.elektrika.cz/live/myStream.sdp
 
 #EXTINF:0,Grand 
 0
@@ -80,16 +80,16 @@ mms://77.238.209.50:1234
 0
 
 #EXTINF:0,HRT 1 
-http://hrt.live.cdn.spectar.tv/OIV_HRT1_TV/01.m3u8
+0
 
 #EXTINF:0,HRT 2 
-http://hrt.live.cdn.spectar.tv/OIV_HRT2_TV/01.m3u8
+0
 
 #EXTINF:0,HRT 3 
-http://hrt.live.cdn.spectar.tv/OIV_HRT3_TV/01.m3u8
+0
 
 #EXTINF:0,HRT 4 
-http://hrt.live.cdn.spectar.tv/OIV_HRT4_TV/01.m3u8
+0
 
 #EXTINF:0,Joj
 0
@@ -101,7 +101,7 @@ http://hrt.live.cdn.spectar.tv/OIV_HRT4_TV/01.m3u8
 http://95.128.236.80:1935/kaltura/smil:jugotontv.smil/playlist.m3u8
 
 #EXTINF:0,K3 Kumanovo 
-http://makedonija-tv.cdn.spectar.tv/makedonija-tv/_definst_/k3-tv-kumanovo/chunklist.m3u8
+0
 
 #EXTINF:0,Kanal 8
 mms://62.162.58.55/TVkanal8
@@ -140,7 +140,7 @@ http://213.81.153.221:8080/nasa
 mms://176.106.121.32:8080/
 
 #EXTINF:0,OBN 
-http://51.254.136.4:81/sipragezabava.com/obn/index.m3u8
+0
 
 #EXTINF:0,Palma Plus 
 0

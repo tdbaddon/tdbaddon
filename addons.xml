@@ -1073,7 +1073,7 @@ http://informaticglobalworld.altervista.org/
 	</extension>
 </addon>
 
-<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2016.05.10.5" provider-name="mrknow" >
+<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2016.05.10.6" provider-name="mrknow" >
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.requests" version="1.0.0" />
@@ -1149,7 +1149,7 @@ http://informaticglobalworld.altervista.org/
 
 <addon id="plugin.video.TDBEUROTV"
        name="TDB EURO TV"
-       version="2.31"
+       version="2.32"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -1168,7 +1168,7 @@ http://informaticglobalworld.altervista.org/
 
 <addon id="plugin.video.TDBPORNO"
        name="TDB PORNO"
-       version="1.97"
+       version="1.98"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -1224,7 +1224,7 @@ http://informaticglobalworld.altervista.org/
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="3.82"
+       version="3.83"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>

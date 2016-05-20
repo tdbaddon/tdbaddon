@@ -4,6 +4,9 @@
 #EXTINF:0,1HD Music 
 http://rtmp.one.by:1300/
 
+#EXTINF:0,1HD Music 
+rtmp://rtmp.one.by/HD/1muz
+
 #EXTINF:0,AKA 
 0
 
@@ -82,6 +85,9 @@ http://212.224.108.80/S1/HLS_LIVE/dreamtv/1000/prog_index.m3u8
 #EXTINF:0,Dream TV
 http://www.iptvsaga.com/play/tv3/0069.m3u8
 
+#EXTINF:0,Electrosound TV
+rtmp://www.electrosound.tv/public/stream
+
 #EXTINF:0,Eska Best 
 rtmp://stream.smcloud.net/live2/best/best_480p
 
@@ -105,6 +111,8 @@ rtmp://stream.smcloud.net/live2/eska_rock/eska_rock_720p
 
 #EXTINF:0,Heart TV 
 0
+#EXTINF:0,Hit TV
+rtmp://tst.es.flash.glb.ipercast.net/tst.es-live/live
 
 #EXTINF:0,Ibiza on TV 
 0
@@ -112,11 +120,23 @@ rtmp://stream.smcloud.net/live2/eska_rock/eska_rock_720p
 #EXTINF:0,Kiss TV
 rtmp://tst.es.flash.glb.ipercast.net/tst.es-live/live
 
+#EXTINF:0,Mad Music TV
+http://144.76.2.213:1935/live/livestream/playlist.m3u8
+
 #EXTINF:0,Miami TV Music 
 http://k4.usastreams.com:1935/miamitv/miamitv/chunklist_w128908539.m3u8
 
+#EXTINF:0,Miami TV Music 
+http://74.208.152.93/music/stream1/stream.m3u8
+
+#EXTINF:0,Miami TV Music 
+http://74.208.152.93/music/stream2/stream.m3u8
+
+#EXTINF:0,Miami TV Music 
+http://74.208.152.93/music/stream3/stream.m3u8
+
 #EXTINF:0,MTV 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/884.ts
+0
 
 #EXTINF:0,MTV Classic
 0

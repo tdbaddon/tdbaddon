@@ -4,6 +4,9 @@
 #EXTINF:0,A1 Report 
 0
 
+#EXTINF:0,ABC News
+http://188.44.8.20:8000/play/a01c
+
 #EXTINF:0,Agon Channel 
 0
 
@@ -29,13 +32,13 @@ rtmp://188.138.17.8:1935/albuk/albuk.stream
 rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
 
 #EXTINF:0,Bangbang 
-0
+http://188.44.8.20:8000/play/a013
 
 #EXTINF:0,Channel One 
 0
 
 #EXTINF:0,Cufo TV 
-0
+http://188.44.8.20:8000/play/a016
 
 #EXTINF:0,Folk Plus 
 0
@@ -47,7 +50,7 @@ rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
 0
 
 #EXTINF:0,Klan 
-0
+http://188.44.8.20:8000/play/a015
 
 #EXTINF:0,Klan Kosova 
 0
@@ -68,7 +71,7 @@ rtmp://91.82.85.44/live/konyhatv
 0
 
 #EXTINF:0,News24
-0
+http://188.44.8.20:8000/play/a012
 
 #EXTINF:0,Ora News 
 0
@@ -92,10 +95,10 @@ rtmp://wowza.rtkit.com/live/livestream
 rtmp://str103.setplex.net:1935/228/stv_online
 
 #EXTINF:0,Top Channel 
-0
+http://188.44.8.20:8000/play/a014
 
 #EXTINF:0,Top Channel News
-0
+http://188.44.8.20:8000/play/a00x
 
 #EXTINF:0,Tring Tring
 0

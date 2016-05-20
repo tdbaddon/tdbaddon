@@ -1,7 +1,7 @@
 ------------------------
-Specto v2016.05.10.5
+Specto v2016.05.10.6
 ------------------------
-Small Fix - putlocker, muchmovies
+Small Fix - putlocker, muchmovies, allmyvideo, cloudtime
 
 ------------------------
 Specto v2016.05.08.7
