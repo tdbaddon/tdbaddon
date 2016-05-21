@@ -38,7 +38,16 @@ http://46.148.100.6:81/udp/234.5.2.248:1234
 rtmp://edge2.everyon.tv/etv2sb/pld10772
 
 #EXTINF:0,BUTGO 
+rtmp://edge2.everyon.tv:1935/etv2sb/pld10772
+
+#EXTINF:0,BUTGO 
 rtmp://edge2.everyon.tv/etv2sb/phd10772
+
+#EXTINF:0,BUTGO 
+rtmp://edge2.everyon.tv:1935/etv2sb/phd10772
+
+#EXTINF:0,Candy
+http://83.222.205.10/TVB7/candy/track_1_1500/playlist.m3u8
 
 #EXTINF:0,CENTO X CENTO 
 0
@@ -200,7 +209,7 @@ http://46.148.100.6:81/udp/234.5.2.249:1234
 0
 
 #EXTINF:0,SATISFACTION HD 
-0
+rtmp://main2sb.everyon.tv:1935/etv2sb/pld10499
 
 #EXTINF:0,SCT 
 0

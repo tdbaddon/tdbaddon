@@ -1,20 +1,32 @@
 #EXTM3U
 
 
+#EXTINF:0,A3S  
+http://a3live-lh.akamaihd.net/i/a3shds/geoa3series_1@122775/master.m3u8
+
 #EXTINF:0,Alfa TV 
 http://streamer1.streamhost.org:1935/salive/GMIalfah/livestream.m3u8
 
 #EXTINF:0,America TV 
 0
 
+#EXTINF:0,Andalucia TV
+http://iphone-andaluciatelevision.rtva.stream.flumotion.com/rtva/andaluciatelevision-iphone-multi/main.m3u8
+
 #EXTINF:0,Andina TV
 0
 
 #EXTINF:0,Antena Latina
-http://ss6.domint.net:1962/al_edge/antena/chunklist_w2059964033.m3u8
+http://hlslive.lcdn.une.net.co/v1/AUTH_HLSLIVE/ANT3/tu1_1.m3u8?time=1439881142212
+
+#EXTINF:0,Antena Latina
+http://a3live-lh.akamaihd.net/i/antena3_1@35248/index_4_av-b.m3u8?sd=10&rebase=on
 
 #EXTINF:0,Aragon TV 
 0
+
+#EXTINF:0,Argentina 9
+http://dd65nd24m61wg.cloudfront.net/livec9/smil:C9.smil/chunklist_b796000.m3u8
 
 #EXTINF:0,Arica TV
 http://wow2.cl.digitalproserver.com/aricatv/aricatvvivo/aricatv.smil/chunklist_w725671068_b848000.m3u8
@@ -38,28 +50,31 @@ http://aztecalive-lh.akamaihd.net/i/142kvpq0l_1@67741/master.m3u8
 http://urtmpkal-f.akamaihd.net/i/077zoqxzy_1@130091/index_3_av-p.m3u8
 
 #EXTINF:0,Azteca Siete 
-0
+http://38.104.228.230:1938/info7/info7_512/playlist.m3u8
 
 #EXTINF:0,Bandamax 
 0
 
 #EXTINF:0,C5N 
-0
+rtmp://c5n.stweb.tv:1935/c5n/live
 
 #EXTINF:0,Cadena 3 
 0
 
 #EXTINF:0,Campus TV 
-0
+http://xcampushdx.api.channel.livestream.com/3.0/playlist.m3u8
 
 #EXTINF:0,Canal 02 
 http://mek4.mekstream.com/teleantillas/live3/hasbahca.m3u8
+
+#EXTINF:0,Canal 02 
+http://162.244.81.181:1935/live//Stream1/playlist.m3u8
 
 #EXTINF:0,Canal 03 
 http://74.63.97.188:1935/gpacifico1/videogpacifico1/playlist.m3u8
 
 #EXTINF:0,Canal 04 
-0
+http://xvivatvcanal4arequipax.api.channel.livestream.com/3.0/playlist.m3u8
 
 #EXTINF:0,Canal 05 
 rtmp://v1.streaminglatinoamerica.com/canal5/canal5
@@ -67,17 +82,38 @@ rtmp://v1.streaminglatinoamerica.com/canal5/canal5
 #EXTINF:0,Canal 05 
 rtmp://c5n.stweb.tv:1935/c5n/live
 
+#EXTINF:0,Canal 05 
+http://37.59.25.38:8000/live/Wqq93u85Lv/dJ6vR8cKlx/1094.ts
+
+#EXTINF:0,Canal 05 
+http://play.gvstream.net:554/e-tv-video/default.stream/playlist.m3u8
+
+#EXTINF:0,Canal 05 
+http://v1.streaminglatinoamerica.com:1935/canal5/canal5/live.m3u8
+
 #EXTINF:0,Canal 06 
-0
+http://k3.usastreams.com:1935/cana6/cana6/playlist.m3u8
 
 #EXTINF:0,Canal 07 
 http://74.63.97.188:1935/gpacifico4/videogpacifico4/chunklist_w1774114891.m3u8?
+
+#EXTINF:0,Canal 07 
+http://74.63.97.188:1935/c7/videoc7/master.m3u8
 
 #EXTINF:0,Canal 09 
 http://ionlive1-lh.akamaihd.net/i/canal9_1@125365/master.m3u8
 
 #EXTINF:0,Canal 09 
 http://xcanal9saltax.api.channel.livestream.com/3.0/playlist.m3u8
+
+#EXTINF:0,Canal 09 
+http://dd65nd24m61wg.cloudfront.net/livec9/smil:C9.smil/playlist.m3u8
+
+#EXTINF:0,Canal 22
+rtmp://192.96.217.230/live/smrtv.sdp
+
+#EXTINF:0,Canal 24
+http://hlslive.rtve.es/24H_LV3_IPH/bitrate_2.m3u8
 
 #EXTINF:0,Canal 26 
 rtsp://live-edge01.telecentro.net.ar:80/live/26hd-360
@@ -101,10 +137,19 @@ rtmp://k3.usastreams.com:1935/canal42/canal42
 rtmp://painel.serveron.com.br:1935/8168/8168
 
 #EXTINF:0,Canal Capital
-0
+http://cdns840stu1010.multistream.net/canalcapitallive/amlst:live/master.m3u8
+
+#EXTINF:0,Canal Capital
+http://q.gs/9830047/canalcapitalltodokodi
 
 #EXTINF:0,Canal Once 
 http://xcanaloncepuntadelestex.api.channel.livestream.com/3.0/playlist.m3u8#
+
+#EXTINF:0,Canal Once 
+http://www.oncetvmexicolive.tv:1935/livepkgr2/smil:int.smil/playlist.m3u8
+
+#EXTINF:0,Canal Once 
+http://q.gs/9830047/onceuuruguaytodokodim3u8
 
 #EXTINF:0,Canal Rural 
 rtsp://streamrural.cmd.com.ar:554/liverural/crural/rural1
@@ -124,6 +169,9 @@ http://lcdn.une.net.co:80/v1/AUTH_HLSLIVE/CANU/tu1_1.m3u8
 #EXTINF:0,Canal U 
 http://hlslive.lcdn.une.net.co/v1/AUTH_HLSLIVE/CANU/tu1_1.m3u8?
 
+#EXTINF:0,Canal U 
+http://xcanalutvx.api.channel.livestream.com/3.0/playlist.m3u8
+
 #EXTINF:0,Canela TV
 0
 
@@ -131,7 +179,7 @@ http://hlslive.lcdn.une.net.co/v1/AUTH_HLSLIVE/CANU/tu1_1.m3u8?
 http://187.237.253.94:8134/hls-live/livepkgr/_definst_/liveevent.m3u8
 
 #EXTINF:0,CDN 37 
-http://108.168.206.90:1935/cdn/cdn/playlist.m3u8
+0
 
 #EXTINF:0,Cine Canal
 0
@@ -164,7 +212,7 @@ http://aztecalive-lh.akamaihd.net/i/0oxnvzh8a_1@175671/index_1_av-b.m3u8
 0
 
 #EXTINF:0,Estrellas TV
-0
+http://hlslive.lcdn.une.net.co/v1/AUTH_HLSLIVE/CEST/tu1_1.m3u8?
 
 #EXTINF:0,Foro TV 
 0
@@ -223,11 +271,13 @@ http://tvaz-pd.kaltura.com.edgesuite.net/p/461031/sp/46103100/serveFlavor/entryI
 #EXTINF:0,Proyecto 40 
 http://urtmpkal-f.akamaihd.net/i/05i15qzql_1@149710/index_2_av-p.m3u8
 
+#EXTINF:0,Proyecto 40 
+http://urtmpkal-f.akamaihd.net/i/05i15qzql_1@149710/master.m3u8
 #EXTINF:0,Ritmoson
 0
 
 #EXTINF:0,RPC TV
-http://live.rpctv.com/rpctv/tm.smil/playlist.m3u8
+0
 
 #EXTINF:0,Solo Tango 
 0
@@ -263,10 +313,10 @@ rtmp://k3.usastreams.com:1935/tvuno1/tvuno1
 0
 
 #EXTINF:0,Telemetro
-http://live.telemetro.com/telemetro/tm.smil/playlist.m3u8
+0
 
 #EXTINF:0,Telemundo 
-0
+http://mek4.mekstream.com/teleantillas/live3/playlist.m3u8
 
 #EXTINF:0,TeleSur TV 
 0
@@ -284,10 +334,10 @@ http://live.telemetro.com/telemetro/tm.smil/playlist.m3u8
 0
 
 #EXTINF:0,Trece 
-0
+http://aztecalive-lh.akamaihd.net/i/0oxnvzh8a_1@175671/master.m3u8
 
 #EXTINF:0,TVE
-0
+http://iphonelive.rtve.es/24H_LV3_IPH/bitrate_2.m3u8
 
 #EXTINF:0,TV Chile 
 http://tvn-vod.mdstrm.com/liveedge/tvnelemental.smil/master.m3u8
@@ -315,7 +365,3 @@ rtmp://87.106.220.67/live/myStream_2
 
 #EXTINF:0,UNO TV
 rtmp://k3.usastreams.com:1935/tvuno1/tvuno1
-
-#EXTINF:0,UNO TV
-0
-

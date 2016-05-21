@@ -127,10 +127,10 @@ http://stream.maktv.gr/i/live_1@332903/master.m3u8
 #EXTINF:0,Mad Music Hits
 0
 
-#EXTINF:0,Mad TV A
+#EXTINF:0,Mad TV 
 rtmp://144.76.2.213:1935/live/livestream
 
-#EXTINF:0,Mad TV B
+#EXTINF:0,Mad TV 
 rtmp://144.76.2.213/live/livestream
 
 #EXTINF:0,Makedonia TV
@@ -204,9 +204,6 @@ rtmp://hls.onestreaming.com:1935/live/thrakinettv
 
 #EXTINF:0,TV 100 
 http://178.62.176.153:1935/TV100/myStream/playlist.m3u8
-
-#EXTINF:0,TVM
-rtmp://cp77174.live.edgefcs.net/live/123456@19937
 
 #EXTINF:0,Zougla TV 
 http://zouglahd-f.akamaihd.net/i/zougla_1@56341/index_700_av-b.m3u8

@@ -1149,7 +1149,7 @@ http://informaticglobalworld.altervista.org/
 
 <addon id="plugin.video.TDBEUROTV"
        name="TDB EURO TV"
-       version="2.32"
+       version="2.33"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -1168,7 +1168,7 @@ http://informaticglobalworld.altervista.org/
 
 <addon id="plugin.video.TDBPORNO"
        name="TDB PORNO"
-       version="1.98"
+       version="1.99"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -1205,7 +1205,7 @@ http://informaticglobalworld.altervista.org/
 
 <addon id="plugin.video.TDBSPANISHTV"
        name="TDB SPANISH TV"
-       version="1.41"
+       version="1.42"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -1224,7 +1224,7 @@ http://informaticglobalworld.altervista.org/
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="3.83"
+       version="3.84"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
