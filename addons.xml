@@ -1073,7 +1073,7 @@ http://informaticglobalworld.altervista.org/
 	</extension>
 </addon>
 
-<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2016.05.10.6" provider-name="mrknow" >
+<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2016.05.10.7" provider-name="mrknow" >
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.requests" version="1.0.0" />
@@ -1363,7 +1363,7 @@ http://informaticglobalworld.altervista.org/
   </extension>
 </addon>
 
-<addon id="plugin.video.uktvnow" name="UKTV Now" version="2.0.1" provider-name="MetalKettle">
+<addon id="plugin.video.uktvnow" name="UKTV Now" version="2.0.2" provider-name="MetalKettle">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
   </requires>
