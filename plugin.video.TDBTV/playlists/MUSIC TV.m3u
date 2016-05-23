@@ -234,6 +234,9 @@ http://www.iptvsaga.com/play/tv3/0006.m3u8
 #EXTINF:0,VH1 
 http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/808.ts
 
+#EXTINF:0,VH1 
+http://cp.dmbshare.net:8000/live/francesco2/francesco2/4616.ts
+
 #EXTINF:0,VH1 Classics 
 http://81.201.52.159:8024
 

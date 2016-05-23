@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="repository.BES-IPTV" name="BES-IPTV Repository" version="1.0.2" provider-name="SaydinX,SimpleKodi">
+	<extension point="xbmc.addon.repository" name="BES-IPTV Repository">
+		<info compressed="false">http://ipbestv.net16.net/Addons/addons.xml</info>
+		<checksum>http://ipbestv.net16.net/Addons/addons.xml.md5</checksum>
+		<datadir zip="true">http://ipbestv.net16.net/Addons/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>BES-IPTV, Albanian IPTV!</summary>
+		<description>BES-IPTV Repository by SimpleKodi,SaydinX</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+

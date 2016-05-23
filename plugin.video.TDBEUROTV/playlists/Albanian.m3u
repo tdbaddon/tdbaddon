@@ -13,6 +13,9 @@ http://188.44.8.20:8000/play/a01c
 #EXTINF:0,Al Jazeera Balkan 
 rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
 
+#EXTINF:0,Al Jazeera Balkan 
+http://cp.dmbshare.net:8000/live/francesco2/francesco2/1814.ts
+
 #EXTINF:0,Alb Info
 0
 
@@ -23,7 +26,7 @@ rtmp://188.138.17.8:1935/albuk/albuk.stream
 0
 
 #EXTINF:0,Alsat M 
-0
+http://cp.dmbshare.net:8000/live/francesco2/francesco2/1763.ts
 
 #EXTINF:0,Kanal 5 Plus
 0
@@ -31,8 +34,14 @@ rtmp://188.138.17.8:1935/albuk/albuk.stream
 #EXTINF:0,ATV
 rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
 
-#EXTINF:0,Bangbang 
+#EXTINF:0,BangBang 
 http://188.44.8.20:8000/play/a013
+
+#EXTINF:0,BangBang 
+http://cp.dmbshare.net:8000/live/francesco2/francesco2/3512.ts
+
+#EXTINF:0,BangBang 
+http://cp.dmbshare.net:8000/live/francesco2/francesco2/1770.ts
 
 #EXTINF:0,Channel One 
 0
@@ -40,20 +49,32 @@ http://188.44.8.20:8000/play/a013
 #EXTINF:0,Cufo TV 
 http://188.44.8.20:8000/play/a016
 
+#EXTINF:0,Cufo TV 
+http://cp.dmbshare.net:8000/live/francesco2/francesco2/1771.ts
+
+#EXTINF:0,Cufo TV 
+http://cp.dmbshare.net:8000/live/francesco2/francesco2/3513.ts
+
+#EXTINF:0,Dasma
+http://cp.dmbshare.net:8000/live/francesco2/francesco2/1819.ts
+
 #EXTINF:0,Folk Plus 
-0
+http://cp.dmbshare.net:8000/live/francesco2/francesco2/1756.ts
 
 #EXTINF:0,Jug TV 
 0
 
 #EXTINF:0,Kanal 7 
-0
+http://cp.dmbshare.net:8000/live/francesco2/francesco2/1760.ts
 
 #EXTINF:0,Klan 
 http://188.44.8.20:8000/play/a015
 
+#EXTINF:0,Klan 
+http://cp.dmbshare.net:8000/live/francesco2/francesco2/1736.ts
+
 #EXTINF:0,Klan Kosova 
-0
+http://cp.dmbshare.net:8000/live/francesco2/francesco2/1735.ts
 
 #EXTINF:0,Klan Plus
 0
@@ -73,14 +94,20 @@ rtmp://91.82.85.44/live/konyhatv
 #EXTINF:0,News24
 http://188.44.8.20:8000/play/a012
 
+#EXTINF:0,News24
+http://cp.dmbshare.net:8000/live/francesco2/francesco2/3508.ts
+
 #EXTINF:0,Ora News 
-0
+http://cp.dmbshare.net:8000/live/francesco2/francesco2/3507.ts
 
 #EXTINF:0,Planet TV 
 0
 
 #EXTINF:0,Rokum TV 
 rtmp://82.114.65.202/live/rrokumtv.flv swfUrl=http://tv24.al/shqiptv/css/player.swf live=1
+
+#EXTINF:0,Rokum TV 
+http://cp.dmbshare.net:8000/live/francesco2/francesco2/1761.ts
 
 #EXTINF:0,RTK1 
 rtmp://wowza.rtkit.com/live/livestream
@@ -97,11 +124,23 @@ rtmp://str103.setplex.net:1935/228/stv_online
 #EXTINF:0,Top Channel 
 http://188.44.8.20:8000/play/a014
 
+#EXTINF:0,Top Channel
+http://cp.dmbshare.net:8000/live/francesco2/francesco2/1734.ts
+
 #EXTINF:0,Top Channel News
 http://188.44.8.20:8000/play/a00x
 
+#EXTINF:0,Top Channel News
+http://cp.dmbshare.net:8000/live/francesco2/francesco2/1766.ts
+
+#EXTINF:0,Top Channel News
+http://stream.bestvideostreaming.is/8722/index.m3u8?token=GNR4XEsJgYz6d6mDfr4Bcw
+
 #EXTINF:0,Tring Tring
-0
+http://cp.dmbshare.net:8000/live/francesco2/francesco2/1747.ts
 
 #EXTINF:0,Vizion Plus 
 rtmp://live.vizionplus.tv/live//livestream3
+
+#EXTINF:0,Vizion Plus 
+http://cp.dmbshare.net:8000/live/francesco2/francesco2/1737.ts

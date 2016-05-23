@@ -8,7 +8,7 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 0
 
 #EXTINF:0,ABC 
-0
+http://cp.dmbshare.net:8000/live/francesco2/francesco2/4601.ts
 
 #EXTINF:0,ABC Family 
 0
@@ -17,10 +17,13 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 0
 
 #EXTINF:0,AMC 
-0
+http://cp.dmbshare.net:8000/live/francesco2/francesco2/4602.ts
 
 #EXTINF:0,AXN 
 0
+
+#EXTINF:0,AXS
+http://cp.dmbshare.net:8000/live/francesco2/francesco2/4588.ts
 
 #EXTINF:0,BabyTV 
 0
@@ -158,7 +161,7 @@ http://212.200.125.5:8199/199
 0
 
 #EXTINF:0,Food Network 
-0
+http://cp.dmbshare.net:8000/live/francesco2/francesco2/4614.ts
 
 #EXTINF:0,Fox 1 
 0
@@ -209,7 +212,7 @@ https://glblvestu-f.akamaihd.net/i/glblvPSTu_1@80128/master.m3u8?__b__=900&hdnea
 0
 
 #EXTINF:0,HGTV 
-0
+http://cp.dmbshare.net:8000/live/francesco2/francesco2/4570.ts
 
 #EXTINF:0,HLN
 0
@@ -263,7 +266,7 @@ http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
 http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
 
 #EXTINF:0,NBC 
-0
+http://cp.dmbshare.net:8000/live/francesco2/francesco2/4578.ts
 
 #EXTINF:0,Nick 
 0
@@ -305,7 +308,10 @@ http://llnw.live.qvc.simplestream.com/hera/remote/qvcuk_primary_sdi6/3/prog_inde
 http://llnw.live.qvc.simplestream.com/hera/remote/qvcuk_primary_sdi8/3/prog_index.m3u8
 
 #EXTINF:0,Showtime 
-0
+http://cp.dmbshare.net:8000/live/francesco2/francesco2/4581.ts
+
+#EXTINF:0,Showtime 
+http://80.80.160.168/live/7/live.m3u8
 
 #EXTINF:0,Sky 1 
 0
@@ -332,10 +338,10 @@ http://llnw.live.qvc.simplestream.com/hera/remote/qvcuk_primary_sdi8/3/prog_inde
 0
 
 #EXTINF:0,Spike TV 
-0
+http://cp.dmbshare.net:8000/live/francesco2/francesco2/4579.ts
 
 #EXTINF:0,Syfy 
-0
+http://cp.dmbshare.net:8000/live/francesco2/francesco2/4593.ts
 
 #EXTINF:0,TBS 
 0
@@ -344,10 +350,10 @@ http://llnw.live.qvc.simplestream.com/hera/remote/qvcuk_primary_sdi8/3/prog_inde
 0
 
 #EXTINF:0,TLC 
-0
+http://80.80.160.168/live/2/live.m3u8
 
 #EXTINF:0,TNT 
-0
+http://cp.dmbshare.net:8000/live/francesco2/francesco2/4571.ts
 
 #EXTINF:0,Tom & Jerry TV 
 0
@@ -404,7 +410,7 @@ http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/index_350_av-p.m3u8?
 0
 
 #EXTINF:0,World Fashion 
-0
+http://btv-net.mediacdn.ru/TVB7/wfhdeu/playlist.m3u8
 
 #EXTINF:0,World of Wine
 0

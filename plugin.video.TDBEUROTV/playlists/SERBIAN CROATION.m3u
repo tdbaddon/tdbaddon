@@ -4,23 +4,26 @@
 #EXTINF:0,Al Jazeera Balkan 
 rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
 
+#EXTINF:0,Al Jazeera Balkan 
+http://cp.dmbshare.net:8000/live/francesco2/francesco2/1814.ts
+
 #EXTINF:0,Arena Sport 1 
 0
 
 #EXTINF:0,Arena Sport 2 
-0
+http://cp.dmbshare.net:8000/live/francesco2/francesco2/1803.ts
 
 #EXTINF:0,Arena Sport 2
 0
 
 #EXTINF:0,Arena Sport 3
-0
+http://cp.dmbshare.net:8000/live/francesco2/francesco2/1804.ts
 
 #EXTINF:0,Arena Sport 4 
-0
+http://cp.dmbshare.net:8000/live/francesco2/francesco2/1805.ts
 
 #EXTINF:0,Arena Sport 5 
-0
+http://cp.dmbshare.net:8000/live/francesco2/francesco2/1806.ts
 
 #EXTINF:0,ATV
 rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
@@ -50,7 +53,7 @@ http://95.128.236.80:1935/kaltura/smil:cmc.smil/playlist.m3u8
 0
 
 #EXTINF:0,DUGA 
-0
+http://cp.dmbshare.net:8000/live/francesco2/francesco2/2924.ts
 
 #EXTINF:0,Elektrika TV
 rtmp://rtmp.elektrika.cz/live/myStream.sdp
@@ -80,10 +83,10 @@ mms://77.238.209.50:1234
 0
 
 #EXTINF:0,HRT 1 
-0
+http://cp.dmbshare.net:8000/live/francesco2/francesco2/1811.ts
 
 #EXTINF:0,HRT 2 
-0
+http://cp.dmbshare.net:8000/live/francesco2/francesco2/1812.ts
 
 #EXTINF:0,HRT 3 
 0
@@ -114,6 +117,9 @@ rtmp://91.82.85.44/live/konyhatv
 
 #EXTINF:0,KTV 
 http://213.81.153.221:8080/kezmarok
+
+#EXTINF:0,KTV 
+http://cp.dmbshare.net:8000/live/francesco2/francesco2/1732.ts
 
 #EXTINF:0,Music Box 
 http://213.81.153.221:8080/nasa
@@ -161,7 +167,7 @@ mms://beotelmedia.beotel.net/tvcg
 mms://195.252.114.172/tvcg
 
 #EXTINF:0,RTL
-0
+http://cp.dmbshare.net:8000/live/francesco2/francesco2/1813.ts
 
 #EXTINF:0,RTL 2 
 0

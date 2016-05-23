@@ -26,13 +26,13 @@ http://stream-12.vty.dailymotion.com/25/dc/1/50b7998806361d3ecc0138cc/5653105394
 0
 
 #EXTINF:0,Destination America 
-0
+http://cp.dmbshare.net:8000/live/francesco2/francesco2/4608.ts
 
 #EXTINF:0,Destination Network 
 0
 
 #EXTINF:0,Discovery Channel
-0
+http://80.80.160.168/live/8/live.m3u8
 
 #EXTINF:0,Discovery History 
 0
@@ -47,7 +47,7 @@ http://stream-12.vty.dailymotion.com/25/dc/1/50b7998806361d3ecc0138cc/5653105394
 0
 
 #EXTINF:0,Discovery Science 
-0
+http://80.80.160.168/live/9/live.m3u8
 
 #EXTINF:0,Discovery Shed
 0
@@ -85,11 +85,14 @@ https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8
 #EXTINF:0,History Channel 
 http://link.theplatform.com/s/dtjsEC/chjdYJxKb44V?manifest=m3u
 
+#EXTINF:0,History Channel 
+http://cp.dmbshare.net:8000/live/francesco2/francesco2/4573.ts
+
 #EXTINF:0,History Channel 2 
-0
+http://cp.dmbshare.net:8000/live/francesco2/francesco2/4572.ts
 
 #EXTINF:0,Investigation Discovery 
-0
+http://80.80.160.168/live/5/live.m3u8
 
 #EXTINF:0,Nasa TV 
 http://nasatv-lh.akamaihd.net/i/NASA_101@319270/master.m3u8 
@@ -116,7 +119,7 @@ http://stream-09.vty.dailymotion.com/20/dc/1/50b7998806361d3ecc0138cc/51adfa5706
 0
 
 #EXTINF:0,Planet Green 
-0
+http://80.80.160.168/live/4/live.m3u8
 
 #EXTINF:0,RT News Documentary 
 http://rt-a.akamaihd.net/ch_05@325609/master.m3u8
@@ -140,7 +143,13 @@ http://rt-a.akamaihd.net/ch_05@325609/720p.m3u8
 0
 
 #EXTINF:0,Travel Channel 
-0
+http://cp.dmbshare.net:8000/live/francesco2/francesco2/1787.ts
+
+#EXTINF:0,Travel Channel 
+http://stream.bestvideostreaming.is/8802/index.m3u8?token=GNR4XEsJgYz6d6mDfr4Bcw
+
+#EXTINF:0,Travel Channel 
+http://80.80.160.168/live/3/live.m3u8
 
 #EXTINF:0,Viasat Explorer 
 0

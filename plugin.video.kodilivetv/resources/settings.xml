@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<settings>
-		<setting id="action" type="action" label="10102" action="RunScript($CWD/default.py,,?mode=41&url=settings)" option="close"/>
-                <setting id="action" type="action" label="10105" action="RunScript($CWD/default.py,,?mode=45&url=settings)" option="close"/>
-                <setting id="action" type="action" label="10106" action="RunScript($CWD/default.py,,?mode=46&url=settings)" option="close"/>
-                <setting id="action" type="action" label="Refresh PVR Manager" action="RunScript($CWD/default.py,,?mode=47&url=settings)" option="close"/>
-</settings>
