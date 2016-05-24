@@ -1346,6 +1346,19 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
     </extension>
 </addon>
 
+<addon id="plugin.video.jamo68" name="Jamo68" version="0.1" provider-name="ptom">
+	<extension point="xbmc.python.pluginsource" library="default.py">
+		<provides>video</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">Jamo68</summary>
+		<description lang="en">Jamo68 - Pulling JAV from jamo.tv and jav68.tv</description>
+		<platform>all</platform>
+		<language>en</language>
+		<email>ptom98@gmail.com</email>
+	</extension>
+</addon>
+
 <addon id="plugin.video.javstream" name="JAV Stream" version="0.80.5" provider-name="ptom">
 	<extension point="xbmc.python.pluginsource" library="default.py">
 		<provides>video</provides>
@@ -1407,6 +1420,19 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
     <description>Adult(18+) Videos from Youtube Kontor</description>
     <platform>all</platform>
   </extension>
+</addon>
+
+<addon id="plugin.video.likuoo" name="Likuoo" version="0.4" provider-name="ptom">
+	<extension point="xbmc.python.pluginsource" library="default.py">
+		<provides>video</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">Likuoo</summary>
+		<description lang="en">Pulling all the best porn from likuoo.com</description>
+		<platform>all</platform>
+		<language>en</language>
+		<email>ptom98@ptom.co.uk</email>
+	</extension>
 </addon>
 
 <addon id="plugin.video.livemix" name="Live Mix" version="1.0.2" provider-name="MetalKettle">
@@ -2646,6 +2672,19 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
     <description></description>
     <platform>all</platform>
   </extension>
+</addon>
+
+<addon id="plugin.video.woodrocket" name="Wood Rocket" version="0.3" provider-name="ptom">
+	<extension point="xbmc.python.pluginsource" library="default.py">
+		<provides>video</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">Wood Rocket</summary>
+		<description lang="en">Pulling all the best porn from WoodRocket.com</description>
+		<platform>all</platform>
+		<language>en</language>
+		<email>ptom98@ptom.co.uk</email>
+	</extension>
 </addon>
 
 <addon id="plugin.video.wweonline" name="WWE Online" version="0.1.8" provider-name="[COLOR blue]X[/COLOR]unity[COLOR blue]T[/COLOR]alk">
