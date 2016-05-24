@@ -1,0 +1,10 @@
+<strings>
+	<!-- Settings -->
+    <string id="10001">Preferred Quality</string>
+    <string id="10002">Enable Meta</string>
+    <string id="10006">Movie Directory</string>
+    <string id="10010">Trailers</string>
+    <string id="10003">Restrict trailer quality</string>
+    <string id="10004">    Trailer quality</string>
+	<string id="10005">    One-click play</string>
+</strings>

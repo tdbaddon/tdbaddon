@@ -1,0 +1,12 @@
+Version 0.0.6
+update login method
+
+Version 0.0.5
+fix bug in login
+added more debug logging
+
+Version 0.0.4
+fix website changes
+added initial subscription support
+added Cooks Illustrated videos
+bump python api for Gotham

@@ -1,0 +1,10 @@
+<settings>
+	<category label="Settings">
+        <setting id="enable_subscriptions" type="bool" label="10005" default="false" />
+        <setting id="tv_directory" type="folder" label="10006" default="special://userdata/addon_data/plugin.video.tv4me/tvshows"/>
+        <setting id="enable_meta" type="bool" label="10007" default="false" />
+        <setting id="autoplay" type="bool" label="10008" default="true" />
+        <setting id="service_time" type="text" label="Service Time" default="2000-01-01 00:00:00" visible="false"/>
+
+	</category>
+</settings>

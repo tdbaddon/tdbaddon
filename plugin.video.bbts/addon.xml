@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.video.bbts" name="BBTS" version="0.1.6" provider-name="[COLOR yellowgreen]B[/COLOR][COLOR dodgerblue]B[/COLOR][COLOR white]T[/COLOR][COLOR orangered]S[/COLOR] IpTV">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="addon.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">International TV and radio steams brought to you by - [COLOR yellowgreen]B[/COLOR][COLOR dodgerblue]B[/COLOR][COLOR white]T[/COLOR][COLOR orangered]S[/COLOR] The Source -</summary>
+	<summary lang="he">המקור -[COLOR yellowgreen] B[/COLOR][COLOR dodgerblue]B[/COLOR][COLOR white]T[/COLOR][COLOR orangered]S [/COLOR]- שידורי טלוויזיה ורדיו בינלאומי בחסות</summary>
+    <description lang="en">[COLOR yellowgreen]B[/COLOR][COLOR dodgerblue]B[/COLOR][COLOR white]T[/COLOR][COLOR orangered]S[/COLOR] video plugin is a collection of Live TV and Radio streams from around the world.
+
+[COLOR yellowgreen]B[/COLOR][COLOR dodgerblue]B[/COLOR][COLOR white]T[/COLOR][COLOR orangered]S[/COLOR] source is brought to you by the people and for the people. With your support, we will give back even more for all of us! Let's get started! Website :[COLOR blue][B]http://www.bbtsip.tv[/B][/COLOR]
+Plugin by @koderdude</description>
+    <description lang="he"> הוא אוסף של ערוצי טלוויזיה ורדיו [COLOR yellowgreen] B[/COLOR][COLOR dodgerblue]B[/COLOR][COLOR white]T[/COLOR][COLOR orangered]S [/COLOR]תוסף הוידאו
+בשידור חי מכל רחבי העולם.
+
+המקור הובא לכם על-ידי המשתמשים ולמען המשתמשים. עם התמיכה שלכם, אנו נחזיר בחזרה עוד יותר לכולנו! אז בואו נתחיל!
+
+לאתר אינטרנט:
+[COLOR blue][B]http://www.bbtsip.tv [/B][/COLOR]
+@koderdude תוסף על ידי</description>
+    <disclaimer lang="en">This add-on is maintained by the [COLOR yellowgreen]B[/COLOR][COLOR dodgerblue]B[/COLOR][COLOR white]T[/COLOR][COLOR orangered]S[/COLOR] community and our generator fetches indexs from multiple sources from around the web. We accept no responsibility for the following content, streams and or media. [COLOR yellowgreen]B[/COLOR][COLOR dodgerblue]B[/COLOR][COLOR white]T[/COLOR][COLOR orangered]S[/COLOR] does not host or stream any of the content displayed on this add-on.</disclaimer>
+	<disclaimer lang="he">תוסף זה מתוחזק על ידי קהילת והמחולל שלנו מביאים את האנידקסים ממקורות מרובים מרחבי האינטרנט.
+אנו לא מקבלים שום אחריות לתכנים הבאים, שידורים חיים או תוכן בכל צורה שלא יהיה.
+אנו לא מארחים או משדרים את התוכן שמוצג על-ידי התוסף.</disclaimer>
+    <platform>all</platform>
+  </extension>
+</addon>

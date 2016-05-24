@@ -1,0 +1,12 @@
+<settings>
+	<category label="Settings">
+        <setting id="quality" type="enum" values="HD|SD" label="10001" default="0" />
+        <setting id="enable_meta" type="bool" label="10002" default="true" />
+        <setting id="movie_directory" type="folder" label="10006" default="set"/>
+        <setting id="separator" type="lsep" label="10010"/>
+        <setting id="restrict_trailer" type="bool" label="10003" default="false"/>
+	    <setting id="trailer_quality" type="enum" values="480p|720p|1080p" label="10004" default="1" enable="!eq(-1,false)"/>
+        <setting id="trailer_one_click" type="bool" label="10005" default="false"/>
+        <setting id="service_time" type="text" label="Service Time" default="2000-01-01 00:00:00" visible="false"/>
+	</category>
+</settings>

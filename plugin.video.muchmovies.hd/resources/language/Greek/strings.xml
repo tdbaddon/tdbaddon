@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<strings>
+	<!-- Settings -->
+	<string id="30000">Γενικά</string>
+	<string id="30001">Χρήση μεταδεδομένων</string>
+	<string id="30002">Χρήση Fanart</string>
+	<string id="30003">Αγαπημένα</string>
+	<string id="30004">Ταξ.: Τίτλος</string>
+	<string id="30005">Ταξ.: Έτος</string>
+	<string id="30006">Ταξ.: Προσθήκη</string>
+	<string id="30007">Λήψεις</string>
+	<string id="30008">Συνέχιση αναπαραγωγής</string>
+	<string id="30040">Συλλογή</string>
+	<string id="30041">Μην ξεχάσετε να προσθέσετε το φάκελο στις πηγές πολυμέσων.</string>
+	<string id="30042">Φάκελος ταινιών</string>
+	<string id="30080">Υπότιτλοι</string>
+	<string id="30081">Οι υπότιτλοι μπορεί να είναι μη διαθέσιμοι ή ασυγχρόνιστοι.</string>
+	<string id="30082">Σε αυτή τη περίπτωση χρησιμοποιήστε τους δικούς σας.</string>
+	<string id="30083">Ενεργοποίηση υποτίτλων</string>
+	<string id="30084">Πρώτη Γλώσσα</string>
+	<string id="30085">Δεύτερη Γλώσσα</string>
+	<!-- Info -->
+	<string id="30301">Η </string>
+	<string id="30302"> είναι πλέον προεπιλεγμένη</string>
+	<string id="30303">Προστέθηκε στα Αγαπημένα</string>
+	<string id="30304">Αφαιρέθηκε από τα Αγαπημένα</string>
+	<string id="30305">Μετακινήθηκε πάνω</string>
+	<string id="30306">Μετακινήθηκε κάτω</string>
+	<string id="30307">Υπάρχει ήδη στα Αγαπημένα</string>
+	<string id="30308">Η λήψη ξεκίνησε</string>
+	<string id="30309">Πρόοδος λήψης - </string>
+	<string id="30310">Η λήψη ολοκληρώθηκε με επιτυχία</string>
+	<string id="30311">Προστέθηκε στα φάκελο συλλογής</string>
+	<string id="30312">Προστέθηκε στις Συνδρομές</string>
+	<string id="30313">Αφαιρέθηκε από τις Συνδρομές</string>
+	<string id="30314">Οι Συνδρομές ενημερώθηκαν</string>
+	<string id="30315">Οι Συνδρομές εκκαθαριστήκαν</string>
+	<string id="30316">Υπάρχει ήδη στις Συνδρομές</string>
+	<string id="30317">Δεν υπάρχουν διαθέσιμοι υπότιτλοι</string>
+	<string id="30318">Δεν υπάρχει διαθέσιμη ροή</string>
+	<string id="30319">Φόρτωση σε</string>
+	<!-- OK -->
+	<string id="30321">Το πρόσθετο YouTube δεν έχει εγκατασταθεί.</string>
+	<string id="30322">Η ροή αυτή το απαιτεί.</string>
+	<string id="30323">Δεν έχετε προσθέσει Συνδρομές.</string>
+	<string id="30324">Τα Πρόσφατα Επεισόδια το απαιτούν.</string>
+	<string id="30325">Έχετε απενεργοποιήσει τις Αυτόματες ενημερώσεις συνδρομών.</string>
+	<string id="30326">Τα Πρόσφατα Επεισόδια το απαιτούν.</string>
+	<!-- YesNo -->
+	<string id="30341">Δεν έχετε ορίσει φάκελο λήψης.</string>
+	<string id="30342">Θέλετε να τον ορίσετε τώρα;</string>
+	<string id="30343">Το βίντεο που θέλετε να κατεβάσετε υπάρχει ήδη.</string>
+	<string id="30344">Θέλετε να το ξανακατεβάσετε;</string>
+	<string id="30345">Η λήψη αυτού του βίντεο είναι σε εξέλιξη.</string>
+	<string id="30346">Θέλετε να την ακυρώσετε;</string>
+	<string id="30347">Ταινία ήδη στη βιβλιοθήκη.</string>
+	<string id="30348">Σειρά ήδη στη βιβλιοθήκη.</string>
+	<string id="30349">Θέλετε πραγματικά να τη προσθέσετε;</string>
+	<string id="30350">Συνέχεια από</string>
+	<string id="30351">Συνέχεια</string>
+	<string id="30352">Εκκίνηση από την αρχή</string>
+	<!-- Misc -->
+	<string id="30361">Επόμενη σελίδα</string>
+	<string id="30362">Αναζήτηση</string>
+	<string id="30363">Λήψεις</string>
+	<string id="30364">Ανανέωση πληροφοριών</string>
+	<!-- ContextMenu -->
+	<string id="30401">Αναπαραγωγή</string>
+	<string id="30402">Τυχαία Αναπαραγωγή</string>
+	<string id="30403">Αναπαραγωγή από εδώ</string>
+	<string id="30404">Όλα στην αναμονή</string>
+	<string id="30405">Βίντεο στην αναμονή</string>
+	<string id="30406">Λήψη βίντεο</string>
+	<string id="30407">Σήμανση ως μη προβληθέν</string>
+	<string id="30408">Σήμανση ως προβληθέν</string>
+	<string id="30409">Ρυθμίσεις πρόσθετου</string>
+	<string id="30410">Τώρα εκτελείται...</string>
+	<string id="30411">Αρχική...</string>
+	<string id="30412">Πληροφορίες ταινίας</string>
+	<string id="30413">Πληροφορίες σειράς</string>
+	<string id="30414">Πληροφορίες επεισοδίου</string>
+	<string id="30415">Ανανέωση πληροφοριών</string>
+	<string id="30416">Αναπαραγωγή Trailer</string>
+	<string id="30417">Προσθήκη στα αγαπημένα</string>
+	<string id="30418">Αφαίρεση από τα αγαπημένα</string>
+	<string id="30419">Μετακίνηση πάνω</string>
+	<string id="30420">Μετακίνηση κάτω</string>
+	<string id="30421">Αφαίρεση</string>
+	<string id="30422">Προσθήκη στη βιβλιοθήκη</string>
+	<string id="30423">Προσθήκη συνδρομής</string>
+	<string id="30424">Ακύρωση συνδρομής</string>
+	<string id="30425">Ενημέρωση συνδρομών</string>
+	<string id="30426">Ενημέρωση συλλογής</string>
+	<string id="30427">Ορισμός καθολικής θέασης</string>
+	<string id="30428">Ορισμός θέασης ταινιών</string>
+	<string id="30429">Ορισμός θέασης σειρών</string>
+	<string id="30430">Ορισμός θέασης κύκλων</string>
+	<string id="30431">Ορισμός θέασης επεισοδίων</string>
+	<string id="30432">Πηγές</string>
+	<string id="30433">Αυτόματη αναπαραγωγή</string>
+	<!-- Description -->
+	<string id="30450">Παρακολουθήστε μια ευρεία συλλογή ταινιών από το muchmovies.org</string>
+	<!-- Labels -->
+	<string id="30501">Τίτλος</string>
+	<string id="30502">Κυκλοφορία</string>
+	<string id="30503">Προσθήκες</string>
+	<string id="30504">Αξιολόγηση</string>
+	<string id="30505">Σελίδες</string>
+	<string id="30506">Είδη</string>
+	<string id="30507">Αγαπημένα</string>
+	<string id="30508">Αναζήτηση</string>
+</strings>

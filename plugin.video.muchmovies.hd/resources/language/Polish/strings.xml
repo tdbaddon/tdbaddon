@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<strings>
+	<!-- Settings -->
+	<string id="30000">Ogólne</string>
+	<string id="30001">Włącz Meta Data</string>
+	<string id="30002">Włącz Fanart</string>
+	<string id="30003">Ulubione</string>
+	<string id="30004">Sortuj wg.: Tytułu</string>
+	<string id="30005">Sortuj wg.: Roku Produkcji</string>
+	<string id="30006">Sortuj wg.: Ostatnio Dodane</string>
+	<string id="30007">Katalog Pobierania</string>
+	<string id="30008">Wznów Odtwarzanie</string>
+	<string id="30040">Biblioteka</string>
+	<string id="30041">Dodaj ten folder do źródeł biblioteki XBMC.</string>
+	<string id="30042">Folder Filmów</string>
+	<string id="30080">Napisy</string>
+	<string id="30081">Napisy mogą być niedostępne bądź działać nieprawidłowo.</string>
+	<string id="30082">W takim przypadku użyj własnego pliku z napisami.</string>
+	<string id="30083">Włącz napisy</string>
+	<string id="30084">Pierwszy język</string>
+	<string id="30085">Drugi język</string>
+	<!-- Info -->
+	<string id="30301"></string>
+	<string id="30302"> domyślnie włączone</string>
+	<string id="30303">Dodano do Ulubionych</string>
+	<string id="30304">Usunięto z Ulubionych</string>
+	<string id="30305">Przesunięto w górę</string>
+	<string id="30306">Przesunięto w dół</string>
+	<string id="30307">Ten Serial już jest w Ulubionych</string>
+	<string id="30308">Rozpoczęto pobieranie</string>
+	<string id="30309">Postęp Pobierania - </string>
+	<string id="30310">Pobieranie ukończone pomyślnie</string>
+	<string id="30311">Dodano do Biblioteki</string>
+	<string id="30312">Dodano do Subskrybcji</string>
+	<string id="30313">Usunięto ze Subskrybcji</string>
+	<string id="30314">Uaktualniono Subskrybcje</string>
+	<string id="30315">Wyczyszczono Subskrybcje</string>
+	<string id="30316">Ten Serial już jest w Subskrybcji</string>
+	<string id="30317">Napisy niedostępne</string>
+	<string id="30318">Brak dostępnego strumienia</string>
+	<string id="30319">Załadowano w</string>
+	<!-- OK -->
+	<string id="30321">Wtyczka YouTube nie jest zainstalowana.</string>
+	<string id="30322">Jest ona wymagana dla tego źródła.</string>
+	<string id="30323">Nie dodałeś żadnych Subskrybcji.</string>
+	<string id="30324">Jest to wymagane dla Ostatnio Dodane.</string>
+	<string id="30325">Automatyczna Aktualizacja Subskrybcji jest wyłączona.</string>
+	<string id="30326">Jest to wymagane dla Ostatnio Dodane.</string>
+	<!-- YesNo -->
+	<string id="30341">Folderu Pobierania nie jest ustawiony.</string>
+	<string id="30342">Chcesz go teraz ustawić?</string>
+	<string id="30343">Wideo, które próbujesz pobrać już istnieje.</string>
+	<string id="30344">Chcesz je pobrać ponownie?</string>
+	<string id="30345">To wideo już jest pobierane.</string>
+	<string id="30346">Chcesz je przerwać?</string>
+	<string id="30347">Film już w Bibliotece.</string>
+	<string id="30348">Serial już w Bibliotece.</string>
+	<string id="30349">Na pewno chcesz go dodać?</string>
+	<string id="30350">Wznów od</string>
+	<string id="30351">Wznów</string>
+	<string id="30352">Zacznij od poczatku</string>
+	<!-- Misc -->
+	<string id="30361">Następna Strona</string>
+	<string id="30362">Szukaj</string>
+	<string id="30363">Pobrane</string>
+	<string id="30364">Odśwież Informacje</string>
+	<!-- ContextMenu -->
+	<string id="30401">Odtwarzaj</string>
+	<string id="30402">Odtwarzaj Losowo</string>
+	<string id="30403">Odtwarzaj</string>
+	<string id="30404">Dodaj Wszystko do Kolejki</string>
+	<string id="30405">Dodaj do Kolejki</string>
+	<string id="30406">Pobierz</string>
+	<string id="30407">Odznacz jako nieobejrzane</string>
+	<string id="30408">Odznacz jako obejrzane</string>
+	<string id="30409">Ustawienia Wtyczki</string>
+	<string id="30410">Teraz Odtwarzane...</string>
+	<string id="30411">Menu Głowne...</string>
+	<string id="30412">Informacje o Filmie</string>
+	<string id="30413">Informacje o Serialu</string>
+	<string id="30414">Informacje o Odcinku</string>
+	<string id="30415">Odśwież Informacje</string>
+	<string id="30416">Zobacz Trailer</string>
+	<string id="30417">Dodaj do Ulubionych</string>
+	<string id="30418">Usuń z Ulubionych</string>
+	<string id="30419">Przesuń w górę</string>
+	<string id="30420">Przesuń w dół</string>
+	<string id="30421">Usuń</string>
+	<string id="30422">Dodaj do Biblioteki</string>
+	<string id="30423">Subskrybuj</string>
+	<string id="30424">Cofnij Subskrybcję</string>
+	<string id="30425">Aktualizuj Subskrybcję</string>
+	<string id="30426">Aktualizuj Bibliotekę</string>
+	<string id="30427">Ustaw Ten Widok dla Wszystkich</string>
+	<string id="30428">Ustaw Ten Widok dla Filmów</string>
+	<string id="30429">Ustaw Ten Widok dla Seriali</string>
+	<string id="30430">Ustaw Ten Widok dla Sezonów</string>
+	<string id="30431">Ustaw Ten Widok dla Odcinków</string>
+	<string id="30432">Wybierz Źródło</string>
+	<string id="30433">Auto-odtwarzanie</string>
+	<!-- Description -->
+	<string id="30450">Oglądaj filmy z muchmovies.org</string>
+	<!-- Labels -->
+	<string id="30501">Tytułu</string>
+	<string id="30502">Data wydania</string>
+	<string id="30503">Data dodania</string>
+	<string id="30504">Ocena</string>
+	<string id="30505">Strony</string>
+	<string id="30506">Gatunki</string>
+	<string id="30507">Ulubione</string>
+	<string id="30508">Szukaj</string>
+</strings>

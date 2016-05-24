@@ -1,0 +1,34 @@
+1.0.7
+Fixed links
+
+1.0.6
+Fixed listings and links
+Added autoplay, enabled by default:
+	Addon will now try to play each link on site
+
+1.0.5a
+Fixed VK links
+
+1.0.5
+Fixed newer episode links
+
+1.0.4c
+Fixed subscriptions for some shows
+
+1.0.4b
+Fixed service.py error at startup
+
+1.0.4a
+Fixed issues with service.py hanging on close
+
+1.0.4
+Fixed missing episodes for some shows
+
+1.0.3
+Added default tv show directory
+
+1.0.2
+Fixed episode names to allow subtitle download
+
+1.0.0
+Initial Release

@@ -1,0 +1,245 @@
+------------------------
+Much Movies HD v1.7.4 (4-Apr-15)
+------------------------
+
+- Fixed issues with listings.
+- Code cosmetics.
+
+
+------------------------
+Much Movies HD v1.7.3 (26-Mar-15)
+------------------------
+
+- Fixed issues with listings.
+- Code cosmetics.
+
+
+------------------------
+Much Movies HD v1.7.2 (2-Mar-15)
+------------------------
+
+- Fixed issues with listings.
+- Code cosmetics.
+
+
+------------------------
+Much Movies HD v1.7.1 (22-Jan-15)
+------------------------
+
+- Fixed issues with listings.
+- Code cosmetics.
+
+
+------------------------
+Much Movies HD v1.7.0 (7-Dec-14)
+------------------------
+
+- Fixed issues with listings.
+- Code cosmetics.
+
+
+------------------------
+Much Movies HD v1.6.3 (5-Sep-14)
+------------------------
+
+- Fixed issues with new domain.
+- Code cosmetics.
+
+
+------------------------
+Much Movies HD v1.6.2 (27-Jun-14)
+------------------------
+
+- Fixed issues with resolver.
+- Added selector for subtitle settings.
+- Code cosmetics.
+
+
+------------------------
+Much Movies HD v1.6.1 (15-Jun-14)
+------------------------
+
+- Fixed issues with resolver.
+- Code cosmetics.
+
+
+------------------------
+Much Movies HD v1.6.0 (13-Jun-14)
+------------------------
+
+- Fixed issues with resolver.
+- Code cosmetics.
+
+
+------------------------
+Much Movies HD v1.5.2 (8-Jun-14)
+------------------------
+
+- Fixed issues with resolver.
+- Code cosmetics.
+
+
+------------------------
+Much Movies HD v1.5.1 (6-Jun-14)
+------------------------
+
+- Fixed issues with resolver.
+- PseudoTV Live: All dialogs are now disabled (Resume, Playback info etc).
+- PseudoTV Live: All streams won't be marked as watched.
+- Updated all translations.
+- Code cosmetics.
+
+
+------------------------
+Much Movies HD v1.5.0 (4-May-14)
+------------------------
+
+- Added full remote share support.
+- Fixed playback issues.
+- Tweaked movie listings.
+- Code cosmetics.
+
+
+------------------------
+Much Movies HD v1.4.5 (5-Mar-14)
+------------------------
+
+- Tweaked internal subtitles.
+- Code cosmetics.
+
+
+------------------------
+Much Movies HD v1.4.4 (2-Mar-14)
+------------------------
+
+- Re-work of subtitles (66 languages are now available).
+- Update all existing translations.
+- Code cosmetics.
+
+
+------------------------
+Much Movies HD v1.4.3 (25-Feb-14)
+------------------------
+
+- Tweaked cache.
+- Added Portuguese translation.
+- Updated French translation.
+- Code cosmetics.
+
+
+------------------------
+Much Movies HD v1.4.2 (23-Feb-14)
+------------------------
+
+- Tweaked cache (less traffic to muchmovies.org).
+- Code cosmetics.
+
+
+------------------------
+Much Movies HD v1.4.1 (20-Feb-14)
+------------------------
+
+- Fixed issues with resolver.
+- Code cosmetics.
+
+
+------------------------
+Much Movies HD v1.4.0 (14-Feb-14)
+------------------------
+
+- Added option for resuming playback.
+- Tweaked playback from library.
+- Added Dutch, French, Polish and Romanian translation.
+- Code cosmetics.
+
+
+------------------------
+Much Movies HD v1.3.2 (20-Jan-14)
+------------------------
+
+- Tweaked watched status.
+- Code cosmetics.
+
+
+------------------------
+Much Movies HD v1.3.1 (10-Jan-14)
+------------------------
+
+- Tweaked watched status.
+- Code cosmetics.
+
+
+------------------------
+Much Movies HD v1.3.0 (7-Jan-14)
+------------------------
+
+- Fixed issues with watched status in library.
+- Fixed issues with trailers.
+- Added sorting methods for favourites (Title, Year, Added).
+- Notifications are now silent in Gotham or later.
+- Tweaked context menus.
+- Code cosmetics.
+
+
+------------------------
+Much Movies HD v1.2.1 (4-Dec-13)
+------------------------
+
+- Code cosmetics.
+
+
+------------------------
+Much Movies HD v1.2.0 (24-Nov-13)
+------------------------
+
+- Fixed issues with watched or unwatched indicators.
+- Fixed issues with strm playback from widgets (Gotham).
+- Fixed issues with trailers (metahandler).
+- The addon will try to find trailer even if it's not available by metahandler.
+- Added support for network locations (downloads and library folder).
+- All sorting methods are now available in main window.
+- Code cosmetics.
+
+
+------------------------
+Much Movies HD v1.1.0 (31-Oct-13)
+------------------------
+
+- Added option to mark items as watched or unwatched (metahandler).
+- Added option to refresh movie information.
+- Root folders can now be added to XBMC favourites.
+- Tweaked context menus.
+- Code cosmetics.
+
+
+------------------------
+Much Movies HD v1.0.3 (20-Oct-13)
+------------------------
+
+- Code cosmetics.
+
+
+------------------------
+Much Movies HD v1.0.2 (18-Oct-13)
+------------------------
+
+- Added downloading support.
+- Added "go to home" option in context menus.
+- Fixed issues with library integration.
+- Fixed issues with subtitles.
+- Tweaked context menus.
+- Code cosmetics.
+
+
+------------------------
+Much Movies HD v1.0.1 (11-Oct-13)
+------------------------
+
+- Renamed addon
+
+
+------------------------
+Much Movies HD v1.0.0 (8-Oct-13)
+------------------------
+
+- Initial version

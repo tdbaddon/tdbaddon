@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<strings>
+	<!-- Settings -->
+	<string id="30000">Algemeen</string>
+	<string id="30001">Meta Data inschakelen</string>
+	<string id="30002">Fanart inschakelen</string>
+	<string id="30003">Favorieten</string>
+	<string id="30004">Sorteren op: Titel</string>
+	<string id="30005">Sorteren op: Jaar</string>
+	<string id="30006">Sorteren op: Toegevoegd</string>
+	<string id="30007">Downloads</string>
+	<string id="30008">Afspelen hervatten</string>
+	<string id="30040">Bibliotheek</string>
+	<string id="30041">Vergeet deze bron niet toe te voegen aan je bibliotheek.</string>
+	<string id="30042">Film map</string>
+	<string id="30080">Ondertiteling</string>
+	<string id="30081">Ondertiteling kan niet beschikbaar zijn of niet synchroon lopen.</string>
+	<string id="30082">In dat geval moet je je eigen ondertitels gebruiken.</string>
+	<string id="30083">Ondertitels gebruiken</string>
+	<string id="30084">Eerste taal</string>
+	<string id="30085">Tweede taal</string>
+	<!-- Info -->
+	<string id="30301"></string>
+	<string id="30302"> is als standaard ingesteld</string>
+	<string id="30303">Toegevoegd aan Favorieten</string>
+	<string id="30304">Verwijderd uit Favorieten</string>
+	<string id="30305">Naar boven geplaatst</string>
+	<string id="30306">Naar beneden geplaatst</string>
+	<string id="30307">Artikel staat al in Favorieten</string>
+	<string id="30308">Download gestart</string>
+	<string id="30309">Download voortgang - </string>
+	<string id="30310">Download succesvol afgerond</string>
+	<string id="30311">Toegevoegd aan Bibliotheek map</string>
+	<string id="30312">Toegevoegd aan Abonnementen</string>
+	<string id="30313">Verwijderd uit Abonnementen</string>
+	<string id="30314">Abonnementen geόpdatet</string>
+	<string id="30315">Abonnementen opgeschoond</string>
+	<string id="30316">Artikel staat al in Abonnementen</string>
+	<string id="30317">Ondertiteling niet beschikbaar</string>
+	<string id="30318">Stream niet beschikbaar</string>
+	<string id="30319">Begonnen in</string>
+	<!-- OK -->
+	<string id="30321">YouTube addon staat niet geοnstalleerd.</string>
+	<string id="30322">Deze stream vereist dat.</string>
+	<string id="30323">Je hebt geen Abonnementen toegevoegd.</string>
+	<string id="30324">Nieuwste Afleveringen vereist dit.</string>
+	<string id="30325">Je hebt Automatische Updates voor Abonnementen uitgeschakeld.</string>
+	<string id="30326">Nieuwste Afleveringen vereist dit.</string>
+	<!-- YesNo -->
+	<string id="30341">Je hebt geen Download-map ingesteld.</string>
+	<string id="30342">Wil je dat nu doen?</string>
+	<string id="30343">De video die je probeert te downloaden bestaat al.</string>
+	<string id="30344">Wil je die opnieuw downloaden?</string>
+	<string id="30345">Het downloaden van deze video is al bezig.</string>
+	<string id="30346">Wil je dat annuleren?</string>
+	<string id="30347">Film al in de bibliotheek.</string>
+	<string id="30348">TV Serie al in de bibliotheek.</string>
+	<string id="30349">Wil je deze alsnog toevoegen?</string>
+	<string id="30350">Hervatten vanaf</string>
+	<string id="30351">Hervatten</string>
+	<string id="30352">Starten vanaf begin</string>
+	<!-- Misc -->
+	<string id="30361">Volgende pagina</string>
+	<string id="30362">Zoeken</string>
+	<string id="30363">Downloads</string>
+	<string id="30364">Info verversen</string>
+	<!-- ContextMenu -->
+	<string id="30401">Afspelen</string>
+	<string id="30402">Willekeurig afspelen</string>
+	<string id="30403">Afspelen vanaf hier</string>
+	<string id="30404">Allen in wachtrij plaatsen</string>
+	<string id="30405">Video in wachtrij plaatsen</string>
+	<string id="30406">Video downloaden</string>
+	<string id="30407">Markeer als niet-bekeken</string>
+	<string id="30408">Markeer als bekeken</string>
+	<string id="30409">Add-on instellingen</string>
+	<string id="30410">Speel nu...</string>
+	<string id="30411">Home...</string>
+	<string id="30412">Filminformatie</string>
+	<string id="30413">Serie-info</string>
+	<string id="30414">Afleveringsinfo</string>
+	<string id="30415">Info verversen</string>
+	<string id="30416">Bekijk Trailer</string>
+	<string id="30417">Toevoegen aan favorieten</string>
+	<string id="30418">Verwijderen uit favorieten</string>
+	<string id="30419">Naar boven verplaatsen</string>
+	<string id="30420">Naar beneden verplaatsen</string>
+	<string id="30421">Verwijderen</string>
+	<string id="30422">Toevoegen aan Bibliotheek</string>
+	<string id="30423">Abonnement toevoegen</string>
+	<string id="30424">Abonnement annuleren</string>
+	<string id="30425">Abonnementen updaten</string>
+	<string id="30426">Bibliotheek updaten</string>
+	<string id="30427">Globale layout vastzetten</string>
+	<string id="30428">Speelfilms layout vastzetten</string>
+	<string id="30429">TV Series layout vastzetten</string>
+	<string id="30430">Seizoens layout vastzetten</string>
+	<string id="30431">Afleveringen layout vastzetten</string>
+	<string id="30432">Bronnen</string>
+	<string id="30433">Automatisch afspelen</string>
+	<!-- Description -->
+	<string id="30450">Bekijk Speelfilms vanaf muchmovies.org</string>
+	<!-- Labels -->
+	<string id="30501">Titel</string>
+	<string id="30502">Releasedatum</string>
+	<string id="30503">Datum toegevoegd</string>
+	<string id="30504">Waardering</string>
+	<string id="30505">Pagina's</string>
+	<string id="30506">Genres</string>
+	<string id="30507">Favorieten</string>
+	<string id="30508">Zoeken</string>
+</strings>

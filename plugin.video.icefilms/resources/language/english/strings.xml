@@ -1,0 +1,64 @@
+<strings>
+    <!-- GENERAL -->
+    <string id="30100">Icefilms Site URL</string>
+    <string id="30103">Flatten TV Shows with single seasons</string>
+    <string id="30106">Stack Multi-Part Sources</string>
+    <string id="30108">Number of search results per page</string>
+    <string id="30109">Hide Recently Added & Popularity tags in Movie and TV Show listings</string>
+
+    <!-- PLAYBACK -->
+    <string id="30505">Auto-Play</string>
+    <string id="30506">    Include HD Sources in Auto-Play</string>
+    <string id="30507">    Auto-Play Method</string>
+    <string id="30508">    Preferred Host #1</string>
+    <string id="30509">    Preferred Host #2</string>
+    <string id="30510">    Preferred Host #3</string>
+    <string id="30511">Enable Resume support</string>
+    <string id="30512">    Resume after how many minutes</string>
+    <string id="30513">Enable Recently Watched support</string>    
+    <string id="30501">Auto-Watch Percentage</string>
+    <string id="30502">Default Play Action</string>
+    <string id="30503">Enable Video Seeking - Fast Forward & Rewind</string>
+    <string id="30504">    Buffer Delay (seconds)</string>
+    
+    <!-- ACCOUNTS -->
+    <string id="30250">Hide successful login notifications</string>
+    <string id="30220">RealDebrid account</string>
+    <string id="30221">    Choose Primary Link Automatically</string>
+    <string id="30222">    Reset Icefilms Real-Debrid authorization</string>    
+
+    <!-- DOWNLOADS -->
+    <string id="30300">Downloads folder:</string>
+    <string id="30301">Create directory structures in downloads folder</string>
+    <string id="30302">Delete incomplete downloads</string>
+    <string id="30303">Download in background</string>
+    <string id="30304">Notify about progress every</string>
+    <string id="30305">Use Axel Proxy (Beta!!!)</string>
+    
+    <!-- Auto View -->
+    <string id="30400">Enable Automatic View</string>
+    <string id="30401">Movies View</string>
+    <string id="30402">TV Shows View</string>
+    <string id="30403">Seasons View</string>
+    <string id="30404">Episodes View</string>
+    <string id="30405">Default View</string>
+    
+    <!-- Meta Data -->
+    <string id="30601">Metahandler Settings</string>    
+    <string id="30600">Enable MetaData</string>
+    <string id="30607">    Meta Zip Pack Location</string>
+    <string id="30608">        Enter custom location</string>
+    <string id="30602">    Movie Covers</string>
+    <string id="30603">    TV Covers</string>   
+    <string id="30604">        Use Posters instead of Banners for TV Shows</string>
+    <string id="30605">    Movie Fanart</string>
+    <string id="30606">    TV Fanart</string>
+
+   <!-- Next Aired -->
+   <string id="45004">Enable Next Aired</string>
+   <string id="45000">Rescan tv guide data</string>    
+   <string id="45001">Display</string>
+   <string id="45002">Enable background fanart</string>
+   <string id="45003">Enable 16:9 preview thumbs</string>
+>>>>>>> stable
+</strings>

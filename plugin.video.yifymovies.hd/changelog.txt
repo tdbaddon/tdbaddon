@@ -1,0 +1,229 @@
+------------------------
+Yify Movies HD v1.7.6
+------------------------
+
+***DOES NOT WORK ON ANDROID OR MAC***
+***REQUIRES PYTHON V2.7***
+
+
+------------------------
+Yify Movies HD v1.7.2 (29-Sep-15)
+------------------------
+
+- Updated omdbapi.com urls.
+- Fixed URL issue causing links to be redirected to other than the video files.
+- Updated User-Agent string.
+- Fixed "Years" category.
+- Added option to disable autoplay and manually select mirror.
+- Added option to save file to a seperate directory matching the video name.
+- Added missing strings for other languages (English only).
+- Minor fixes.
+- Code cosmetics.
+
+
+------------------------
+Yify Movies HD v1.6.1 (27-Jun-14)
+------------------------
+
+- Added selector for subtitle settings.
+- Code cosmetics.
+
+
+------------------------
+Yify Movies HD v1.6.0 (17-Jun-14)
+------------------------
+
+- Re-work of addon.
+- Re-work of resolver.
+- PseudoTV Live: All dialogs are now disabled (Resume, Playback info etc).
+- PseudoTV Live: All streams won't be marked as watched.
+- Removed YIFY lists.
+- Updated all translations.
+- Code cosmetics.
+
+
+------------------------
+Yify Movies HD v1.5.2 (14-May-14)
+------------------------
+
+- Fixed issues with resolver.
+- Code cosmetics.
+
+
+------------------------
+Yify Movies HD v1.5.1 (11-May-14)
+------------------------
+
+- Fixed issues with resolver.
+- Code cosmetics.
+
+
+------------------------
+Yify Movies HD v1.5.0 (4-May-14)
+------------------------
+
+- Re-work of addon.
+- Added full remote share support.
+- Added backup streams for non working movies.
+- Fixed playback issues.
+- Tweaked all listings.
+- Removed captchas.
+- Code cosmetics.
+
+
+------------------------
+Yify Movies HD v1.4.2 (30-Apr-14)
+------------------------
+
+- Added support for captchas.
+- NOTE: Captchas are almost unreadable and you have to be 100% correct.
+- Code cosmetics.
+
+
+------------------------
+Yify Movies HD v1.4.1 (26-Apr-14)
+------------------------
+
+- Fixed issues with resolver.
+- Code cosmetics.
+
+
+------------------------
+Yify Movies HD v1.4.0 (30-Mar-14)
+------------------------
+
+- Fixed issues with movie listings.
+- Added support for YIFY lists (login required).
+- Added option for importing YIFY lists to library.
+- Removed proxy support (not needed anymore).
+- Removed Pages section.
+- Code cosmetics.
+
+
+------------------------
+Yify Movies HD v1.3.4 (5-Mar-14)
+------------------------
+
+- Tweaked internal subtitles.
+- Code cosmetics.
+
+
+------------------------
+Yify Movies HD v1.3.3 (4-Mar-14)
+------------------------
+
+- Fixed issues with resolver.
+- Code cosmetics.
+
+
+------------------------
+Yify Movies HD v1.3.2 (2-Mar-14)
+------------------------
+
+- Re-work of subtitles (66 languages are now available).
+- Update all existing translations.
+- Code cosmetics.
+
+
+------------------------
+Yify Movies HD v1.3.1 (25-Feb-14)
+------------------------
+
+- Tweaked cache.
+- Added Portuguese translation.
+- Updated French translation.
+- Code cosmetics.
+
+
+------------------------
+Yify Movies HD v1.3.0 (23-Feb-14)
+------------------------
+
+- Fixed issue with downloads.
+- Tweaked cache (less traffic to yify.tv).
+- Added Languages section.
+- Code cosmetics.
+
+
+------------------------
+Yify Movies HD v1.2.1 (16-Feb-14)
+------------------------
+
+- Fixed issues with resolver.
+- Code cosmetics.
+
+
+------------------------
+Yify Movies HD v1.2.0 (7-Feb-14)
+------------------------
+
+- Fixed issues with movie listings.
+- Added option for resuming playback.
+- Tweaked playback from library.
+- Added Dutch, French, Polish and Romanian translation.
+- Code cosmetics.
+
+
+------------------------
+Yify Movies HD v1.1.4 (22-Jan-14)
+------------------------
+
+- Added proxy support.
+- Code cosmetics.
+
+
+------------------------
+Yify Movies HD v1.1.3 (20-Jan-14)
+------------------------
+
+- Tweaked watched status.
+- Tweaked genre listings.
+- Code cosmetics.
+
+
+------------------------
+Yify Movies HD v1.1.2 (10-Jan-14)
+------------------------
+
+- Tweaked watched status.
+- Code cosmetics.
+
+
+------------------------
+Yify Movies HD v1.1.1 (7-Jan-14)
+------------------------
+
+- Fixed issues with watched status in library.
+- Notifications are now silent in Gotham or later.
+- Tweaked context menus.
+- Code cosmetics.
+
+
+------------------------
+Yify Movies HD v1.1.0 (3-Jan-14)
+------------------------
+
+- Added new artwork.
+- Added sorting methods for favourites (Title, Year, Added).
+- Fixed issues with trailers.
+- Fixed issues with search.
+- Tweaked context menus.
+- Code cosmetics.
+
+
+------------------------
+Yify Movies HD v1.0.9 (16-Dec-13)
+------------------------
+
+- Fixed various issues.
+- NOTE: Reset addon's settings.
+- Added missing sections.
+- Tweaked context menus.
+- Code cosmetics.
+
+
+------------------------
+Yify Movies HD v1.0.0 (15-Dec-13)
+------------------------
+
+- Initial version

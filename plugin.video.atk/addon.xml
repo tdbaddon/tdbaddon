@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.video.atk"
+       name="Americas Test Kitchen"
+       version="0.0.6"
+       provider-name="divingmule">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.beautifulsoup4" version="4.3.1"/>
+    <import addon="script.module.xmltodict" version="0.7.0"/>
+    <import addon="script.common.plugin.cache" version="2.5.2"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>Americas Test Kitchen.com</summary>
+    <description>Cooking shows and videos from the Americas Test Kitchen, Cooks Country, Cooks Illustrated</description>
+    <disclaimer>Generally only the current season of shows are available without a subscription</disclaimer>
+    <platform>all</platform>
+    <language>en</language>
+    <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+    <source>https://github.com/divingmule/plugin.video.atk</source>
+    <forum>http://forum.xbmc.org/showthread.php?tid=177585</forum>
+  </extension>
+</addon>

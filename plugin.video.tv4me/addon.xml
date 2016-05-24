@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.video.tv4me"
+       name="TV4ME"
+       version="1.0.9"
+       provider-name="kinkin, art by Marquerite">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0"/>
+        <import addon="script.module.t0mm0.common" version="1.1.0"/>
+        <import addon="script.module.requests" version="1.1.0"/>
+        <import addon="script.module.urlresolver" version="1.0.0"/>
+        <import addon="plugin.video.youtube"/>
+        <import addon="script.module.metahandler" version="2.4.0"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource"
+               	library="default.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.service"
+             	library="service.py" start="startup">
+	</extension>
+    <extension point="xbmc.addon.metadata">
+        <platform>all</platform>
+        <summary>Stream your favourite TV shows from watch-tvseries.net</summary>
+        <description>Stream your favourite TV shows from watch-tvseries.net</description>
+    </extension>
+	
+</addon>

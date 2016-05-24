@@ -1,0 +1,27 @@
+[B]december 9 2015[/B]
+0.1.6:
+  - text lang=he for part of video addon
+
+[B]november 30 2015[/B]
+0.1.5:
+  - edited the description/disclaimer text for the video addon New Home!@! youtube
+
+[B]october 24 2015[/B]
+0.1.4:
+  - updated the description/disclaimer and various other text for the video addon
+
+[B]october 1 2015[/B]
+0.1.3:
+  - New Home!@!
+
+[B]March 4 2015[/B]
+0.1.2:
+  - Fix EOL for Android on Windows build
+
+[B]February 20 2015[/B]
+0.1.1:
+  - Fix EOL for Android
+
+[B]February 20 2015[/B]
+0.1.0:
+  - First production version
