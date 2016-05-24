@@ -86,19 +86,23 @@ def HCPlayvid(url,name, download=None):
         except: pass
         videourl = url + "|referer="+ match[vh]
     else:
-        progress.update( 80, "", "Loading video", "" )
+        progress.update( 80, "", "Loading video uphentaivid", "" )
         match2 = re.compile("<script type='text/javascript'>([^<]+)</sc", re.DOTALL | re.IGNORECASE).findall(urldata2)
-        res = unpack(match2[0])
-        match3 = re.compile("file.*?(http.*?mp4)", re.DOTALL | re.IGNORECASE).findall(res)
-        videourl = match3[0]
+        for jspacked in match2:
+            res = unpack(jspacked)
+            try:
+                videourl = re.compile("file.*?(http.*?mp4)", re.DOTALL | re.IGNORECASE).findall(res)[0]
+            except:
+                videourl = None
     progress.close()
-    if download == 1:
-        utils.downloadVideo(videourl, name)
-    else:    
-        iconimage = xbmc.getInfoImage("ListItem.Thumb")
-        listitem = xbmcgui.ListItem(name, iconImage="DefaultVideo.png", thumbnailImage=iconimage)
-        listitem.setInfo('video', {'Title': name, 'Genre': 'Porn'})
-        xbmc.Player().play(videourl, listitem)
+    if videourl:
+        if download == 1:
+            utils.downloadVideo(videourl, name)
+        else:    
+            iconimage = xbmc.getInfoImage("ListItem.Thumb")
+            listitem = xbmcgui.ListItem(name, iconImage="DefaultVideo.png", thumbnailImage=iconimage)
+            listitem.setInfo('video', {'Title': name, 'Genre': 'Porn'})
+            xbmc.Player().play(videourl, listitem)
     
 def addHCDir(name,url,mode,iconimage,desc):
     u = (sys.argv[0] +

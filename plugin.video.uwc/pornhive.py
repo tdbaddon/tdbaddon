@@ -120,7 +120,7 @@ def PHVideo(url, name, download=None):
         progress.close()
         utils.playvideo(outurl, name, download)
         return
-    if 'keeplinks' in sitename:
+    elif 'keeplinks' in sitename:
         progress.update( 30, "", "Getting Keeplinks", "" )
         outurl2 = getKeeplinks(outurl)
         utils.playvideo(outurl2, name, download, outurl)

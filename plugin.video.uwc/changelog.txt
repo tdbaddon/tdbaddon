@@ -1,3 +1,32 @@
+[B]Version 1.1.7[/B]
+Fixed: Search for Dutch Tubes
+Fixed: Bug in Pornhive giving unsupported host for Flashx/Streamcloud
+Changed: Timeout MyFreeCams, maybe it finds more videos
+
+
+[B]Version 1.1.6[/B]
+Changed: Downloader (should work with Openload and Videomega), based on Simpledownloader
+Changed: Videolisting improved for Spankbang
+Removed: Download context item from the webcams
+
+
+[B]Version 1.1.5[/B]
+Added: Spankbang (commited by NothingGnome)
+Added: K18
+
+
+[B]Version 1.1.4[/B]
+Fixed: Videowood, Jetload
+Fixed: MyFreeCams hanging on 2%
+Fixed: StreamXXX search
+
+
+[B]Version 1.1.3[/B]
+Fixed: Porn00
+Fixed: Pagination Czechhd
+Removed: Playporn (site is down)
+
+
 [B]Version 1.1.2[/B]
 Fixed: Beeg
 Fixed: Cat3movie

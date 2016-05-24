@@ -56,7 +56,7 @@ def List(url, page):
     for videourl, img, name in match:
         name = utils.cleantext(name)
         videourl = "http://www.cam4.com" + videourl
-        utils.addDownLink(name, videourl, 282, img, '')
+        utils.addDownLink(name, videourl, 282, img, '', noDownload=True)
     if re.search('<link rel="next"', listhtml, re.DOTALL | re.IGNORECASE):
             npage = page + 1        
             url = url.replace('/'+str(page),'/'+str(npage))

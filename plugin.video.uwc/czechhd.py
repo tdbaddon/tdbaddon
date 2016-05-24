@@ -37,7 +37,7 @@ def List(url):
         name = utils.cleantext(name)
         utils.addDownLink(name, videopage, 312, img, '')
     try:
-        nextp = re.compile('rel="next" href="([^"]+)">', re.DOTALL | re.IGNORECASE).findall(match)
+        nextp = re.compile('href="([^"]+)" >Next', re.DOTALL | re.IGNORECASE).findall(match)
         utils.addDir('Next Page', nextp[0], 311,'')
     except: pass
     xbmcplugin.endOfDirectory(utils.addon_handle)

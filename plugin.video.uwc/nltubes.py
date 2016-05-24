@@ -78,11 +78,10 @@ def NLPLAYVID(url,name, download=None):
 def NLSEARCH(url, site, keyword=None):
     searchUrl = url
     if not keyword:
-        utils.searchDir(url, 104)
+        utils.searchDir(url, 104, site)
     else:
         title = keyword.replace(' ','%20')
         searchUrl = searchUrl + title
-        print "Searching URL: " + searchUrl
         NLVIDEOLIST(searchUrl, site)
 
 

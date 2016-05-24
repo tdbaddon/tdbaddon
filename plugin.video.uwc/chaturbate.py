@@ -105,7 +105,7 @@ def List(url, page=None):
         status = status.replace("\n","").strip()
         name = name + " [" + status + "] Age: [COLOR deeppink]" + age + "[/COLOR]"
         videopage = "https://chaturbate.com" + videopage
-        utils.addDownLink(name, videopage, 222, img, '')
+        utils.addDownLink(name, videopage, 222, img, '', noDownload=True)
     if len(match) == 90:
         try:
             page = page + 1

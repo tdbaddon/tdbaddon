@@ -119,7 +119,34 @@ def PPlayvid(url, name, alternative=1, download=None):
                 progress.close()
                 utils.notify('Oh oh','Couldn\'t find a supported videohost')
         else:
-            playvid()              
+            playvid()
+    elif re.search('play/\?v=', videopage, re.DOTALL | re.IGNORECASE):
+        try:
+            match = re.compile(r'src="([^"]+play/\?v=\d{3,})"', re.DOTALL | re.IGNORECASE).findall(videopage)
+            progress.update( 50, "", "Opening porn00/pornAQ video page", "" )
+            iframepage = utils.getHtml(match[0], url)
+            pcloudid = re.compile(r"playermodes\('(\d+)'", re.DOTALL | re.IGNORECASE).findall(iframepage)[0]
+            pcloudurl = "https://api.pcloud.com/getvideolinks?fileid=%s&access_token=6EWjZL1NQ4yoIe5kZSj6Wq7Z0Yc1Wmg04EmBbwWttEcUekM7cWwX" % pcloudid
+            pcloudpage = utils.getHtml(pcloudurl, match[0])
+            pcloudjson = json.loads(pcloudpage)
+            xbmc.log(pcloudpage)
+            if pcloudjson["result"] != 0:
+                if re.search('id="alternatives"', videopage, re.DOTALL | re.IGNORECASE):
+                    alturl, nalternative = GetAlternative(url, alternative)
+                    PPlayvid(alturl, name, nalternative, download)
+                else:
+                    progress.close()
+                    utils.notify('Oh oh','Couldn\'t find a supported videohost')
+            else:
+                videourl = "https://%s%s" % (pcloudjson["variants"][-1]["hosts"][0], pcloudjson["variants"][-1]["path"])
+                playvid()
+        except:
+            if re.search('id="alternatives"', videopage, re.DOTALL | re.IGNORECASE):
+                alturl, nalternative = GetAlternative(url, alternative)
+                PPlayvid(alturl, name, nalternative, download)
+            else:
+                progress.close()
+                utils.notify('Oh oh','Couldn\'t find a supported videohost')
     elif re.search('/\?V=', videopage, re.DOTALL | re.IGNORECASE):
         try:
             match = re.compile('<iframe.*?src="([^"]+watch/[^"]+)"', re.DOTALL | re.IGNORECASE).findall(videopage)

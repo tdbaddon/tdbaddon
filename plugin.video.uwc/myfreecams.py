@@ -37,7 +37,7 @@ def List(url):
             url = '10' + url
         else:
             url = '1' + url
-        utils.addDownLink(name, url, 272, img, '')
+        utils.addDownLink(name, url, 272, img, '', noDownload=True)
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
@@ -50,7 +50,7 @@ def Playvid(url, name):
         videotest = 'false'
         testurl = 'http://video%s.myfreecams.com:1935/NxServer/mfc_%s.f4v_aac/playlist.m3u8' % (videoid, url)
         if videotest == 'false':
-            try: videotest = urllib2.urlopen(testurl)
+            try: videotest = urllib2.urlopen(testurl, timeout=3)
             except: videotest = 'false'
         count = count + 0.7
         if not videotest == 'false':
