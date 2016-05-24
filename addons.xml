@@ -1650,6 +1650,11 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 <addon id="repository.BES-IPTV" name="BES-IPTV Repository" version="1.0.2" provider-name="SaydinX,SimpleKodi">
 	<extension point="xbmc.addon.repository" name="BES-IPTV Repository">
+	<dir>
+		<info compressed="false">http://ipbestv.net16.net/Addons/addons.xml</info>
+		<checksum>http://ipbestv.net16.net/Addons/addons.xml.md5</checksum>
+		<datadir zip="true">http://ipbestv.net16.net/Addons/</datadir>
+	</dir>
 		<info compressed="false">http://ipbestv.net16.net/Addons/addons.xml</info>
 		<checksum>http://ipbestv.net16.net/Addons/addons.xml.md5</checksum>
 		<datadir zip="true">http://ipbestv.net16.net/Addons/</datadir>
@@ -1687,22 +1692,18 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 	</extension>
 </addon>
 
-    <addon id="repository.dokinl" name="[B][COLOR lime]D[/COLOR]OKI[COLOR lime]TV[/COLOR].NL [COLOR lime]R[/COLOR]epository[/B]" version="1.0.2" provider-name="DOKITV.NL">
-        <requires>
-            <import addon="xbmc.addon" version="12.0.0"/>
-        </requires>
-        <extension point="xbmc.addon.repository" name="DOKITV.NL Repository">
-            <info compressed="false">https://raw.githubusercontent.com/doki1/repo/master/addons.xml</info>
-            <checksum>https://raw.githubusercontent.com/doki1/repo/master/addons.xml.md5</checksum>
-            <datadir zip="true">https://raw.githubusercontent.com/doki1/repo/master/zips/</datadir>
-            <hashes>false</hashes>
-        </extension>
-        <extension point="xbmc.addon.metadata">
-            <summary>The Official DOKITV.NL repository</summary>
-			<description>This repository contains all Repositorys for KODI.</description>
-			<disclaimer>The owners and submitters to this repository do not host or distribute any of the content displayed by these addons nor do they have any affiliation with the content providers.</disclaimer>
-            <platform>all</platform>
-    </extension>
+<addon id="repository.dokinl" name="DOKITV.NL Repository" version="1.0.2" provider-name="DOKITV.NL">
+	<extension point="xbmc.addon.repository" name="DOKITV.NL Repository">
+		<info compressed="false">http://raw.github.com/doki1/dokitvnl/master/addons.xml</info>
+		<checksum>http://raw.github.com/doki1/dokitvnl/master/addons.xml.md5</checksum>
+		<datadir zip="true">http://raw.github.com/doki1/dokitvnl/master</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>The Official DOKITV.NL repository</summary>
+		<description>This repository contains all Repositorys for KODI.</description>
+		<disclaimer>The owners and submitters to this repository do not host or distribute any of the content displayed by these addons nor do they have any affiliation with the content providers.</disclaimer>
+		<platform>all</platform>
+	</extension>
 </addon>
 
 <addon id="repository.entertainmentrepo" name="The Entertainment Repository" version="1.5" provider-name="Mr Entertainment">
@@ -1774,24 +1775,6 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 		<description lang="pl">Wtyczki z nieoficjalnego, repozytorium polskiego mrknow.pl..</description>
 		<disclaimer lang="en">Repository has non-comercial nature. Created by enthusiasts, acting in good faith.</disclaimer>
 		<disclaimer lang="pl">Zawartość repozytorium ma charakter niekomercyjny, wtyczki tworzone przez pasjonatów, .</disclaimer>
-		<platform>all</platform>
-	</extension>
-</addon>
-
-<addon id="repository.MatsBuilds" name="Goliaths Add-ons repository" version="1.0.1" provider-name="Goliath">
-	<extension point="xbmc.addon.repository" name="Goliaths Repository">
-	<dir>
-		<info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
-		<checksum>https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml.md5</checksum>
-		<datadir zip="true">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/zips/</datadir>
-	</dir>
-		<info compressed="false">http://offshoregit.com/goliath/addon.xml</info>
-		<checksum>http://offshoregit.com/goliath/addons.xml.md5</checksum>
-		<datadir zip="true">http://offshoregit.com/goliath/zips/</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>Install Add-ons from Goliath</summary>
-		<description>Download and install Add-ons from Goliaths repository</description>
 		<platform>all</platform>
 	</extension>
 </addon>
@@ -1898,6 +1881,24 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
     </extension>
 </addon>
 
+<addon id="repository.MatsBuilds" name="Goliaths Add-ons repository" version="1.0.1" provider-name="Goliath">
+	<extension point="xbmc.addon.repository" name="Goliaths Repository">
+	<dir>
+		<info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
+		<checksum>https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml.md5</checksum>
+		<datadir zip="true">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/zips/</datadir>
+	</dir>
+		<info compressed="false">http://offshoregit.com/goliath/addon.xml</info>
+		<checksum>http://offshoregit.com/goliath/addons.xml.md5</checksum>
+		<datadir zip="true">http://offshoregit.com/goliath/zips/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Install Add-ons from Goliath</summary>
+		<description>Download and install Add-ons from Goliaths repository</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
 <addon id="repository.mdrepo" name="Mucky Ducks Repo" version="1.0.2" provider-name="Mucky Duck">
 	<extension point="xbmc.addon.repository" name="Mucky Ducks Repo">
 		<info compressed="false">https://raw.githubusercontent.com/mucky-duck/mdrepo/master/addons.xml</info>
@@ -1931,12 +1932,17 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 </addon>
 
 <addon id="repo.natko1412" name="natko1412 repo" version="2.0.0" provider-name="natko1412">
-<extension point="xbmc.addon.repository" name="Natko's Addon Repository">
-<info compressed="false">https://offshoregit.com/natko1412/addons.xml</info>
-<checksum>https://offshoregit.com/natko1412/addons.xml.md5</checksum>
-<datadir zip="true">https://offshoregit.com/natko1412/zips/</datadir>
-</extension>
-<extension point="xbmc.addon.metadata">
+	<extension point="xbmc.addon.repository" name="Natko's Addon Repository">
+	<dir>
+		<info compressed="false">https://offshoregit.com/natko1412/addons.xml</info>
+		<checksum>https://offshoregit.com/natko1412/addons.xml.md5</checksum>
+		<datadir zip="true">https://offshoregit.com/natko1412/zips/</datadir>
+	</dir>
+		<info compressed="false">https://offshoregit.com/natko1412/addons.xml</info>
+		<checksum>https://offshoregit.com/natko1412/addons.xml.md5</checksum>
+		<datadir zip="true">https://offshoregit.com/natko1412/zips/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
 <summary>Install all of Natko's Addons</summary>
 <description>Download and install addons by natko1412. For support visit XBMC thread on forum.hr</description>
 <platform>all</platform>
