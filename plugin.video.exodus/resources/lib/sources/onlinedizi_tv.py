@@ -22,7 +22,6 @@
 import re,urllib,urlparse,base64
 
 from resources.lib.modules import cleantitle
-from resources.lib.modules import cloudflare
 from resources.lib.modules import client
 from resources.lib.modules import cache
 from resources.lib.modules import directstream
@@ -53,7 +52,7 @@ class source:
 
     def onlinedizi_tvcache(self):
         try:
-            result = cloudflare.source(self.base_link)
+            result = client.request(self.base_link)
             result = client.parseDOM(result, 'ul', attrs = {'class': 'all-series-list.+?'})[0]
             result = client.parseDOM(result, 'li')
             result = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a')) for i in result]
@@ -84,7 +83,7 @@ class source:
             url = urlparse.urljoin(self.base_link, url)
             path = urlparse.urlparse(url).path
 
-            result = cloudflare.source(url)
+            result = client.request(url)
             result = re.sub(r'[^\x00-\x7F]+','', result)
             result = client.parseDOM(result, 'li')
             result = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a')) for i in result]
@@ -92,7 +91,7 @@ class source:
 
             url = urlparse.urljoin(self.base_link, result)
 
-            result = cloudflare.source(url)
+            result = client.request(url)
             result = re.sub(r'[^\x00-\x7F]+','', result)
             result = client.parseDOM(result, 'div', attrs = {'class': 'video-player'})[0]
             result = client.parseDOM(result, 'iframe', ret='src')[-1]
@@ -101,12 +100,12 @@ class source:
                 url = base64.b64decode(urlparse.parse_qs(urlparse.urlparse(result).query)['id'][0])
                 if not url.startswith('http'): raise Exception()
             except:
-                url = cloudflare.source(result)
+                url = client.request(result)
                 url = urllib.unquote_plus(url.decode('string-escape'))
 
                 frame = client.parseDOM(url, 'iframe', ret='src')
 
-                if len(frame) > 0: url = [client.source(frame[-1], output='geturl')]
+                if len(frame) > 0: url = [client.request(frame[-1], output='geturl')]
                 else: url = re.compile('"(.+?)"').findall(url)
                 url = [i for i in url if 'ok.ru' in i or 'vk.com' in i or 'openload.co' in i][0]
 

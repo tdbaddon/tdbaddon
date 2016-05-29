@@ -22,48 +22,38 @@
 import re,urllib,urllib2,urlparse,json,base64
 
 from resources.lib.modules import cleantitle
-from resources.lib.modules import cloudflare
 from resources.lib.modules import client
+from resources.lib.modules import directstream
 
 
 class source:
     def __init__(self):
         self.domains = ['miradetodo.net']
         self.base_link = 'http://miradetodo.net'
-        self.search_link = 'aHR0cHM6Ly93d3cuZ29vZ2xlYXBpcy5jb20vY3VzdG9tc2VhcmNoL3YxZWxlbWVudD9rZXk9QUl6YVN5Q1ZBWGlVelJZc01MMVB2NlJ3U0cxZ3VubU1pa1R6UXFZJnJzej1maWx0ZXJlZF9jc2UmbnVtPTEwJmhsPWVuJmN4PTAwMDc0NjAzOTU3ODI1MDQ0NTkzNTpsMmdrdWtvcnRpZyZnb29nbGVob3N0PXd3dy5nb29nbGUuY29tJnE9JXM='
+        self.search_link = '/?s=%s'
 
 
     def movie(self, imdb, title, year):
         try:
-            t = cleantitle.get(title)
+            t = 'http://www.imdb.com/title/%s' % imdb
+            t = client.request(t, headers={'Accept-Language':'ar-AR'})
+            t = client.parseDOM(t, 'title')[0]
+            t = re.sub('(?:\(|\s)\d{4}.+', '', t).strip()
 
-            query = '%s %s' % (title, year)
-            query = base64.b64decode(self.search_link) % urllib.quote_plus(query)
+            query = self.search_link % urllib.quote_plus(t)
+            query = urlparse.urljoin(self.base_link, query)
 
-            result = client.source(query)
-            result = json.loads(result)['results']
+            r = client.request(query)
 
-            result = [(i['url'], i['titleNoFormatting']) for i in result]
-            result = [(i[0], re.findall('(?:^Ver Online |^Ver |)(.+?)(?: HD |)\((\d{4})', i[1])) for i in result]
-            result = [(i[0], i[1][0][0], i[1][0][1]) for i in result if len(i[1]) > 0]
+            r = client.parseDOM(r, 'div', attrs = {'class': 'item'})
+            r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'span', attrs = {'class': 'tt'}), client.parseDOM(i, 'span', attrs = {'class': 'year'})) for i in r]
+            r = [(i[0][0], i[1][0], i[2][0]) for i in r if len(i[0]) > 0 and len(i[1]) > 0 and len(i[2]) > 0]
+            r = [i[0] for i in r if cleantitle.get(t) == cleantitle.get(i[1]) and year == i[2]][0]
 
-            r = [i for i in result if t == cleantitle.get(i[1]) and year == i[2]]
-
-            if len(r) == 0:
-                t = 'http://www.imdb.com/title/%s' % imdb
-                t = client.source(t, headers={'Accept-Language':'ar-AR'})
-                t = client.parseDOM(t, 'title')[0]
-                t = re.sub('(?:\(|\s)\d{4}.+', '', t).strip()
-                t = cleantitle.get(t)
-                r = [i for i in result if t == cleantitle.get(i[1]) and year == i[2]]
-
-            try: url = re.findall('//.+?(/.+)', r[0][0])[0]
-            except: url = r[0][0]
-            try: url = re.findall('(/.+?/.+?/)', url)[0]
-            except: pass
+            url = urlparse.urljoin(self.base_link, r)
+            url = urlparse.urlparse(url).path
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
-
             return url
         except:
             pass
@@ -77,7 +67,7 @@ class source:
 
             r = urlparse.urljoin(self.base_link, url)
 
-            cookie, agent, result = cloudflare.request(r, output='extended')
+            result = client.request(r)
 
             f = client.parseDOM(result, 'div', attrs = {'class': 'movieplay'})
             f = [re.findall('(?:\"|\')(http.+?miradetodo\..+?)(?:\"|\')', i) for i in f]
@@ -102,7 +92,7 @@ class source:
                         post = urllib.urlencode({'link': id})
 
                         url = urlparse.urljoin(self.base_link, '/stream/plugins/gkpluginsphp.php')
-                        url = cloudflare.source(url, post=post, headers=headers)
+                        url = client.request(url, post=post, headers=headers)
                         url = json.loads(url)['link']
 
                         if type(url) is list:
@@ -111,7 +101,7 @@ class source:
                             url = [{'url': url, 'quality': 'HD'}]
 
                         for i in url:
-                            try: links.append({'source': 'gvideo', 'quality': i['quality'], 'url': i['url']})
+                            try: links.append({'source': 'gvideo', 'quality': directstream.googletag(i['url'])[0]['quality'], 'url': i['url']})
                             except: pass
 
                         continue
@@ -119,7 +109,7 @@ class source:
                         pass
 
                     try:
-                        result = cloudflare.source(u, headers={'Referer': r})
+                        result = client.request(u, headers={'Referer': r})
 
                         url = re.findall('AmazonPlayer.*?file\s*:\s*"([^"]+)', result, re.DOTALL)[0]
 
@@ -127,10 +117,10 @@ class source:
                             def http_response(self, request, response): return response
 
                         o = urllib2.build_opener(NoRedirection)
-                        o.addheaders = [('User-Agent', agent)]
-                        r = o.open(url)
-                        url = r.headers['Location']
-                        r.close()
+                        o.addheaders = [('User-Agent', client.agent())]
+                        r = o.open(url) ; url = r.headers['Location'] ; r.close()
+
+                        if 'miradetodo.' in url: raise Exception()
 
                         links.append({'source': 'cdn', 'quality': 'HD', 'url': url})
                     except:

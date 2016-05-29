@@ -1,3 +1,9 @@
+[B]3.0.7[/B]
+Fixed cartoons
+
+[B]3.0.6[/B]
+Updated scrapers
+
 [B]3.0.5[/B]
 Updated indexers
 Updated scrapers

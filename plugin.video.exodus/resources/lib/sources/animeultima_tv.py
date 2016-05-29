@@ -35,7 +35,7 @@ class source:
     def tvshow(self, imdb, tvdb, tvshowtitle, year):
         try:
             genre = 'http://www.imdb.com/title/%s/' % imdb
-            genre = client.source(genre)
+            genre = client.request(genre)
             genre = re.findall('href\s*=\s*[\'|\"](.+?)[\'|\"]', genre)
             genre = [i for i in genre if '/genre/' in i]
             genre = [i.split('/genre/')[-1].split('?')[0].lower() for i in genre]
@@ -44,7 +44,7 @@ class source:
             query = self.search_link % (urllib.quote_plus(tvshowtitle))
             query = urlparse.urljoin(self.base_link, query)
 
-            result = client.source(query)
+            result = client.request(query)
             result = result.decode('iso-8859-1').encode('utf-8')
 
             tvshowtitle = cleantitle.get(tvshowtitle)
@@ -72,12 +72,12 @@ class source:
 
             num = base64.b64decode('aHR0cDovL3RoZXR2ZGIuY29tL2FwaS8xRDYyRjJGOTAwMzBDNDQ0L3Nlcmllcy8lcy9kZWZhdWx0LyUwMWQvJTAxZA==')
             num = num % (tvdb, int(season), int(episode))
-            num = client.source(num)
+            num = client.request(num)
             num = client.parseDOM(num, 'absolute_number')[0]
 
             url = urlparse.urljoin(self.base_link, url)
 
-            result = client.source(url)
+            result = client.request(url)
             result = result.decode('iso-8859-1').encode('utf-8')
 
             result = client.parseDOM(result, 'tr', attrs = {'class': ''})

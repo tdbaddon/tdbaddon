@@ -22,7 +22,6 @@
 import re,urlparse
 
 from resources.lib.modules import cleantitle
-from resources.lib.modules import cloudflare
 from resources.lib.modules import client
 from resources.lib.modules import cache
 from resources.lib.modules import directstream
@@ -54,7 +53,7 @@ class source:
 
     def dizigold_tvcache(self):
         try:
-            result = cloudflare.source(self.base_link)
+            result = client.request(self.base_link)
             result = client.parseDOM(result, 'div', attrs = {'class': 'dizis'})[0]
             result = re.compile('href="(.+?)">(.+?)<').findall(result)
             result = [(re.sub('http.+?//.+?/','/', i[0]), re.sub('&#\d*;','', i[1])) for i in result]
@@ -82,12 +81,12 @@ class source:
 
             url = urlparse.urljoin(self.base_link, url)
 
-            result = cloudflare.source(url)
+            result = client.request(url)
             result = re.compile('var\s*view_id\s*=\s*"(\d*)"').findall(result)[0]
 
             query = self.player_link % result
 
-            result = cloudflare.source(query, headers={'Referer': url})
+            result = client.request(query, headers={'Referer': url})
 
             try:
                 url = client.parseDOM(result, 'iframe', ret='src')[0]

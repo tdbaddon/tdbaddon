@@ -19,7 +19,7 @@
 '''
 
 
-import re,urllib,urlparse,json
+import re,os,urllib,urlparse,json,binascii
 from resources.lib.modules import client
 
 
@@ -77,7 +77,7 @@ def google(url):
 
 
         elif netloc == 'plus':
-            result = client.source(url, headers={'User-Agent': client.agent()})
+            result = client.request(url, headers={'User-Agent': client.agent()})
 
             id = (urlparse.urlparse(url).path).split('/')[-1]
             result = result.replace('\r','').replace('\n','').replace('\t','')
@@ -217,6 +217,52 @@ def odnoklassniki(url):
         url = hd + sd[:1]
         if not url == []: return url
 
+    except:
+        return
+
+
+
+def cldmailru(url):
+    try:
+        v = url.split('public')[-1]
+
+        r = client.request(url)
+        r = re.sub(r'[^\x00-\x7F]+',' ', r)
+
+        tok = re.findall('"tokens"\s*:\s*{\s*"download"\s*:\s*"([^"]+)', r)[0]
+
+        url = re.findall('"weblink_get"\s*:\s*\[.+?"url"\s*:\s*"([^"]+)', r)[0]
+
+        url = '%s%s?key=%s' % (url, v, tok)
+
+        return url
+    except:
+        return
+
+
+
+def yandex(url):
+    try:
+        cookie = client.request(url, output='cookie')
+
+        r = client.request(url, cookie=cookie)
+        r = re.sub(r'[^\x00-\x7F]+',' ', r)
+
+        sk = re.findall('"sk"\s*:\s*"([^"]+)', r)[0]
+
+        idstring = re.findall('"id"\s*:\s*"([^"]+)', r)[0]
+
+        idclient = binascii.b2a_hex(os.urandom(16))
+
+        post = {'idClient': idclient, 'version': '3.9.2', 'sk': sk, '_model.0': 'do-get-resource-url', 'id.0': idstring}
+        post = urllib.urlencode(post)
+
+        r = client.request('https://yadi.sk/models/?_m=do-get-resource-url', post=post, cookie=cookie)
+        r = json.loads(r)
+
+        url = r['models'][0]['data']['file']
+
+        return url
     except:
         return
 

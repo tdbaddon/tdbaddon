@@ -38,8 +38,8 @@ class source:
             query = self.moviesearch_link % urllib.quote_plus(cleantitle.query(title))
             query = urlparse.urljoin(self.base_link, query)
 
-            result = str(client.source(query)).decode('iso-8859-1').encode('utf-8')
-            if 'page=2' in result: result += str(client.source(query + '&page=2')).decode('iso-8859-1').encode('utf-8')
+            result = str(client.request(query)).decode('iso-8859-1').encode('utf-8')
+            if 'page=2' in result: result += str(client.request(query + '&page=2')).decode('iso-8859-1').encode('utf-8')
 
             result = client.parseDOM(result, 'div', attrs = {'class': 'item'})
 
@@ -62,7 +62,7 @@ class source:
             for i in match2[:5]:
                 try:
                     if len(match) > 0: url = match[0] ; break
-                    result = client.source(urlparse.urljoin(self.base_link, i))
+                    result = client.request(urlparse.urljoin(self.base_link, i))
                     if imdb in str(result): url = i ; break
                 except:
                     pass
@@ -79,8 +79,8 @@ class source:
             query = self.tvsearch_link % urllib.quote_plus(cleantitle.query(tvshowtitle))
             query = urlparse.urljoin(self.base_link, query)
 
-            result = str(client.source(query)).decode('iso-8859-1').encode('utf-8')
-            if 'page=2' in result: result += str(client.source(query + '&page=2')).decode('iso-8859-1').encode('utf-8')
+            result = str(client.request(query)).decode('iso-8859-1').encode('utf-8')
+            if 'page=2' in result: result += str(client.request(query + '&page=2')).decode('iso-8859-1').encode('utf-8')
 
             result = client.parseDOM(result, 'div', attrs = {'class': 'item'})
 
@@ -103,7 +103,7 @@ class source:
             for i in match2[:5]:
                 try:
                     if len(match) > 0: url = match[0] ; break
-                    result = client.source(urlparse.urljoin(self.base_link, i))
+                    result = client.request(urlparse.urljoin(self.base_link, i))
                     if imdb in str(result): url = i ; break
                 except:
                     pass
@@ -121,7 +121,7 @@ class source:
 
             url = urlparse.urljoin(self.base_link, url)
 
-            result = client.source(url)
+            result = client.request(url)
             result = result.decode('iso-8859-1').encode('utf-8')
 
             result = client.parseDOM(result, 'div', attrs = {'class': 'tv_episode_item'})
@@ -156,7 +156,7 @@ class source:
 
             url = urlparse.urljoin(self.base_link, url)
 
-            result = client.source(url)
+            result = client.request(url)
             result = result.decode('iso-8859-1').encode('utf-8')
 
             links = client.parseDOM(result, 'table', attrs = {'class': 'link_ite.+?'})

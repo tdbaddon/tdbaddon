@@ -22,7 +22,6 @@
 import re,urllib,urlparse,json,base64
 
 from resources.lib.modules import cleantitle
-from resources.lib.modules import cloudflare
 from resources.lib.modules import client
 from resources.lib.modules import cache
 from resources.lib.modules import directstream
@@ -32,7 +31,7 @@ class source:
     def __init__(self):
         self.domains = ['pelispedia.tv']
         self.base_link = 'http://www.pelispedia.tv'
-        self.search_link = 'aHR0cHM6Ly93d3cuZ29vZ2xlYXBpcy5jb20vY3VzdG9tc2VhcmNoL3YxZWxlbWVudD9rZXk9QUl6YVN5Q1ZBWGlVelJZc01MMVB2NlJ3U0cxZ3VubU1pa1R6UXFZJnJzej1maWx0ZXJlZF9jc2UmbnVtPTEwJmhsPWVuJmN4PTAwMDc0NjAzOTU3ODI1MDQ0NTkzNTp3cW1odGszam5fbyZnb29nbGVob3N0PXd3dy5nb29nbGUuY29tJnE9JXM='
+        self.search_link = 'aHR0cHM6Ly93d3cuZ29vZ2xlYXBpcy5jb20vY3VzdG9tc2VhcmNoL3YxZWxlbWVudD9rZXk9QUl6YVN5Q1ZBWGlVelJZc01MMVB2NlJ3U0cxZ3VubU1pa1R6UXFZJnJzej1maWx0ZXJlZF9jc2UmbnVtPTEwJmhsPWVuJmN4PTAxMzA0MzU4NDUzMDg1NzU4NzM4MTpkcGR2Y3FlbGt3dyZnb29nbGVob3N0PXd3dy5nb29nbGUuY29tJnE9JXM='
         self.search2_link = '/api/more.php?rangeStart=%s&tipo=serie'
         self.search3_link = '/buscar/?s=%s'
 
@@ -44,7 +43,7 @@ class source:
             query = '%s %s' % (title, year)
             query = base64.b64decode(self.search_link) % urllib.quote_plus(query)
 
-            result = client.source(query)
+            result = client.request(query)
             result = json.loads(result)['results']
 
             result = [(i['url'], i['titleNoFormatting']) for i in result]
@@ -55,7 +54,7 @@ class source:
 
             if len(r) == 0:
                 t = 'http://www.imdb.com/title/%s' % imdb
-                t = client.source(t, headers={'Accept-Language':'es-ES'})
+                t = client.request(t, headers={'Accept-Language':'es-ES'})
                 t = client.parseDOM(t, 'title')[0]
                 t = re.sub('(?:\(|\s)\d{4}.+', '', t).strip()
                 t = cleantitle.get(t)
@@ -79,7 +78,7 @@ class source:
             query = self.search3_link % urllib.quote_plus(cleantitle.query(title))
             query = urlparse.urljoin(self.base_link, query)
 
-            result = cloudflare.source(query)
+            result = client.request(query)
             result = re.sub(r'[^\x00-\x7F]+','', result)
 
             r = result.split('<li class=')
@@ -105,7 +104,7 @@ class source:
                 u = self.search2_link % str(i * 48)
                 u = urlparse.urljoin(self.base_link, u)
 
-                r = str(cloudflare.source(u))
+                r = str(client.request(u))
                 r = re.sub(r'[^\x00-\x7F]+','', r)
                 r = r.split('<li class=')
                 r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'i'), re.findall('\((\d{4})\)', i)) for i in r]
@@ -157,12 +156,12 @@ class source:
 
             r = urlparse.urljoin(self.base_link, url)
 
-            result = cloudflare.source(r)
+            result = client.request(r)
 
             f = client.parseDOM(result, 'iframe', ret='src')
             f = [i for i in f if 'iframe' in i][0]
 
-            result = cloudflare.source(f, headers={'Referer': r})
+            result = client.request(f, headers={'Referer': r})
 
             r = client.parseDOM(result, 'div', attrs = {'id': 'botones'})[0]
             r = client.parseDOM(r, 'a', ret='href')
@@ -172,7 +171,7 @@ class source:
             links = []
 
             for u in r:
-                result = cloudflare.source(u, headers={'Referer': f})
+                result = client.request(u, headers={'Referer': f})
 
                 try:
                     url = re.findall('sources\s*:\s*\[(.+?)\]', result)[0]
@@ -192,7 +191,7 @@ class source:
                     post = urllib.urlencode({'link': post})
 
                     url = urlparse.urljoin(self.base_link, '/Pe_flv_flsh/plugins/gkpluginsphp.php')
-                    url = client.source(url, post=post, headers=headers)
+                    url = client.request(url, post=post, headers=headers)
                     url = json.loads(url)['link']
 
                     links.append({'source': 'gvideo', 'quality': 'HD', 'url': url})
@@ -207,7 +206,7 @@ class source:
                     post = urllib.urlencode({'sou': 'pic', 'fv': '21', 'url': post})
 
                     url = urlparse.urljoin(self.base_link, '/Pe_Player_Html5/pk/pk/plugins/protected.php')
-                    url = cloudflare.source(url, post=post, headers=headers)
+                    url = client.request(url, post=post, headers=headers)
                     url = json.loads(url)[0]['url']
 
                     links.append({'source': 'cdn', 'quality': 'HD', 'url': url})

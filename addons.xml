@@ -1035,7 +1035,7 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
   </extension>
 </addon>
 
-<addon id="plugin.video.exodus" version="1.3.2" name="Exodus" provider-name="Exodus">
+<addon id="plugin.video.exodus" version="1.3.3" name="Exodus" provider-name="Exodus">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="repository.exodus" version="1.0.0" />
@@ -1359,7 +1359,7 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
 	</extension>
 </addon>
 
-<addon id="plugin.video.javstream" name="JAV Stream" version="0.80.5" provider-name="ptom">
+<addon id="plugin.video.javstream" name="JAVStream" version="0.90.6" provider-name="ptom">
 	<extension point="xbmc.python.pluginsource" library="default.py">
 		<provides>video</provides>
 	</extension>
@@ -1368,7 +1368,7 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
         <import addon="script.module.urlresolver" version="2.10.0" />
     </requires>
 	<extension point="xbmc.addon.metadata">
-		<summary lang="en">Jav Stream</summary>
+		<summary lang="en">JavStream</summary>
 		<description lang="en">[COLOR yellow]Jav Stream[/COLOR] - Bringing JAV to Kodi! For all your Japanese AV Idol and Gravure Idol needs! Pulling streams from the most popular JAV websites.</description>
 		<platform>all</platform>
 		<language>en</language>
@@ -1521,7 +1521,7 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
   </extension>
 </addon>
 
-<addon id="plugin.video.mdm4u" name="M4U" version="1.0.6" provider-name="Mucky Duck">
+<addon id="plugin.video.mdm4u" name="M4U" version="1.0.7" provider-name="Mucky Duck">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.addon.common" />
@@ -1941,7 +1941,7 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
   </extension>
 </addon>
 
-<addon id="plugin.video.phstreams" name="Phoenix" version="3.0.5" provider-name="tvaddons.ag">
+<addon id="plugin.video.phstreams" name="Phoenix" version="3.0.7" provider-name="tvaddons.ag">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.pyxbmct" version="1.1.4" />
@@ -2594,7 +2594,7 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
 
 <addon
   id="plugin.video.videodevil"
-  version="1.7.130"
+  version="1.7.132"
   name="VideoDevil"
   provider-name="xbmc-adult">
   <requires>

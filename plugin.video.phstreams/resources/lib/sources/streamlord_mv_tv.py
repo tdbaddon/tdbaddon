@@ -23,7 +23,6 @@ import re,urllib,urlparse
 
 from resources.lib.modules import control
 from resources.lib.modules import cleantitle
-from resources.lib.modules import cloudflare
 from resources.lib.modules import client
 
 
@@ -31,7 +30,7 @@ class source:
     def __init__(self):
         self.domains = ['streamlord.com']
         self.base_link = 'http://www.streamlord.com'
-        self.search_link = '/search.html'
+        self.search_link = '/search2.php'
         self.user = control.setting('streamlord.user')
         self.password = control.setting('streamlord.pass')
 
@@ -73,6 +72,19 @@ class source:
 
             if url == None: return sources
 
+            if (self.user == '' or self.password == ''): raise Exception()
+
+            login = urlparse.urljoin(self.base_link, '/login.html')
+
+            post = urllib.urlencode({'username': self.user, 'password': self.password, 'submit': 'Login'})
+
+            cookie = client.request(login, post=post, output='cookie', close=False)
+
+            result, headers, content, cookie = client.request(login, post=post, cookie=cookie, output='extended')
+
+            headers = {'User-Agent': headers['User-Agent'], 'Cookie': cookie}
+
+
             if not str(url).startswith('http'):
 
                 data = urlparse.parse_qs(url)
@@ -82,24 +94,11 @@ class source:
 
                 year = data['year']
 
-
-                if (self.user == '' or self.password == ''): raise Exception()
-
-                query = urlparse.urljoin(self.base_link, '/login.html')
-                post = urllib.urlencode({'username': self.user, 'password': self.password, 'submit': 'Login'})
-
-                try:
-                    r, headers, content, cookie = client.source(query, post=post, output='extended')
-                    headers = {'Cookie': cookie, 'User-Agent': headers['User-Agent']}
-                except:
-                    cookie, agent, url = cloudflare.request(query, post=post, output='extended')
-                    headers = {'Cookie': cookie, 'User-Agent': agent}
-
-
                 query = urlparse.urljoin(self.base_link, self.search_link)
-                post = urllib.urlencode({'search': title})
 
-                r = cloudflare.source(query, post=post, headers=headers)
+                post = urllib.urlencode({'searchapi': title})
+
+                r = client.request(query, post=post, headers=headers)
 
                 if 'tvshowtitle' in data:
                     r = re.findall('(watch-tvshow-.+?-\d+\.html)', r)
@@ -114,39 +113,41 @@ class source:
 
                 r = urlparse.urljoin(self.base_link, r)
 
-                url = cloudflare.source(r, headers=headers)
+                r = client.request(r, headers=headers)
 
                 if 'season' in data and 'episode' in data:
-                    r = re.findall('(episode-.+?-.+?\d+.+?\d+-\d+.html)', url)
+                    r = re.findall('(episode-.+?-.+?\d+.+?\d+-\d+.html)', r)
                     r = [i for i in r if '-s%02de%02d-' % (int(data['season']), int(data['episode'])) in i.lower()][0]
+
                     r = urlparse.urljoin(self.base_link, r)
 
-                    url = cloudflare.source(r, headers=headers)
+                    r = client.request(r, headers=headers)
 
             else:
                 r = urlparse.urljoin(self.base_link, url)
-                cookie, agent, url = cloudflare.request(r, output='extended')
-                headers = {'Cookie': cookie, 'User-Agent': agent}
+
+                r = client.request(r, post=post, headers=headers)
 
 
 
-            quality = 'HD' if '-movie-' in url else 'SD'
+            quality = 'HD' if '-movie-' in r else 'SD'
 
 
-            func = re.findall('''["']sources['"]\s*:\s*\[(.*?)\]''', url)[0]
-            func = re.findall('''['"]*file['"]*\s*:\s*([^\(]+)''', func)[0]
+            f = re.findall('''["']sources['"]\s*:\s*\[(.*?)\]''', r)[0]
+            f = re.findall('''['"]*file['"]*\s*:\s*([^\(]+)''', f)[0]
 
-            u = re.findall('function\s+%s[^{]+{\s*([^}]+)' % func, url)[0]
+            u = re.findall('function\s+%s[^{]+{\s*([^}]+)' % f, r)[0]
             u = re.findall('\[([^\]]+)[^+]+\+\s*([^.]+).*?getElementById\("([^"]+)', u)[0]
 
-            a = re.findall('var\s+%s\s*=\s*\[([^\]]+)' % u[1], url)[0]
-            b = client.parseDOM(url, 'span', {'id': u[2]})[0]
+            a = re.findall('var\s+%s\s*=\s*\[([^\]]+)' % u[1], r)[0]
+            b = client.parseDOM(r, 'span', {'id': u[2]})[0]
 
             url = u[0] + a + b
             url = url.replace('"', '').replace(',', '').replace('\/', '/')
-            url += '|' + urllib.urlencode(headers)  
+            url += '|' + urllib.urlencode(headers)   
 
-            sources.append({'source': 'cdn', 'quality': quality, 'provider': 'Streamlord', 'url': url, 'direct': True, 'debridonly': False, 'autoplay': False})
+
+            sources.append({'source': 'cdn', 'quality': quality, 'provider': 'Streamlord', 'url': url, 'direct': True, 'debridonly': False, 'autoplay': True})
 
             return sources
         except:

@@ -19,24 +19,26 @@
 '''
 
 
-import re,sys,urllib2,urlparse,HTMLParser,random
+import re,sys,cookielib,urllib,urllib2,urlparse,HTMLParser,time,random
 
 from resources.lib.modules import cache
 
 
-def request(url, close=True, error=False, proxy=None, post=None, headers=None, mobile=False, safe=False, referer=None, cookie=None, output='', timeout='30'):
+def request(url, close=True, error=False, proxy=None, post=None, headers=None, mobile=False, limit=None, referer=None, cookie=None, output='', timeout='30'):
     try:
         handlers = []
+
         if not proxy == None:
             handlers += [urllib2.ProxyHandler({'http':'%s' % (proxy)}), urllib2.HTTPHandler]
             opener = urllib2.build_opener(*handlers)
             opener = urllib2.install_opener(opener)
+
         if output == 'cookie' or output == 'extended' or not close == True:
-            import cookielib
             cookies = cookielib.LWPCookieJar()
             handlers += [urllib2.HTTPHandler(), urllib2.HTTPSHandler(), urllib2.HTTPCookieProcessor(cookies)]
             opener = urllib2.build_opener(*handlers)
             opener = urllib2.install_opener(opener)
+
         try:
             if sys.version_info < (2, 7, 9): raise Exception()
             import ssl; ssl_context = ssl.create_default_context()
@@ -75,52 +77,76 @@ def request(url, close=True, error=False, proxy=None, post=None, headers=None, m
         try:
             response = urllib2.urlopen(request, timeout=int(timeout))
         except urllib2.HTTPError as response:
-            if error == False: return
+
+            if response.code == 503:
+                if 'cf-browser-verification' in response.read():
+
+                    netloc = '%s://%s' % (urlparse.urlparse(url).scheme, urlparse.urlparse(url).netloc)
+
+                    cf = cache.get(cfcookie, 168, netloc, headers['User-Agent'], timeout)
+
+                    headers['Cookie'] = cf
+
+                    request = urllib2.Request(url, data=post, headers=headers)
+
+                    response = urllib2.urlopen(request, timeout=int(timeout))
+
+                elif error == False:
+                    return
+
+            elif error == False:
+                return
 
         if output == 'cookie':
-            result = []
-            for c in cookies: result.append('%s=%s' % (c.name, c.value))
-            result = "; ".join(result)
+            try: result = '; '.join(['%s=%s' % (i.name, i.value) for i in cookies])
+            except: pass
+            try: result = cf
+            except: pass
+
         elif output == 'response':
-            if safe == True:
+            if limit == '0':
                 result = (str(response.code), response.read(224 * 1024))
+            elif not limit == None:
+                result = (str(response.code), response.read(int(limit) * 1024))
             else:
                 result = (str(response.code), response.read())
+
         elif output == 'chunk':
             try: content = int(response.headers['Content-Length'])
             except: content = (2049 * 1024)
             if content < (2048 * 1024): return
             result = response.read(16 * 1024)
-        elif output == 'title':
-            result = response.read(1 * 1024)
-            result = parseDOM(result, 'title')[0]
+
         elif output == 'extended':
-            cookie = []
-            for c in cookies: cookie.append('%s=%s' % (c.name, c.value))
-            cookie = "; ".join(cookie)
+            try: cookie = '; '.join(['%s=%s' % (i.name, i.value) for i in cookies])
+            except: pass
+            try: cookie = cf
+            except: pass
             content = response.headers
             result = response.read()
             return (result, headers, content, cookie)
+
         elif output == 'geturl':
             result = response.geturl()
+
         elif output == 'headers':
             content = response.headers
             return content
+
         else:
-            if safe == True:
+            if limit == '0':
                 result = response.read(224 * 1024)
+            elif not limit == None:
+                result = response.read(int(limit) * 1024)
             else:
                 result = response.read()
+
         if close == True:
             response.close()
 
         return result
     except:
         return
-
-
-def source(url, close=True, error=False, proxy=None, post=None, headers=None, mobile=False, safe=False, referer=None, cookie=None, output='', timeout='30'):
-    return request(url, close, error, proxy, post, headers, mobile, safe, referer, cookie, output, timeout)
 
 
 def parseDOM(html, name=u"", attrs={}, ret=False):
@@ -254,5 +280,70 @@ def randomagent():
 
 def agent():
     return 'Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; rv:11.0) like Gecko'
+
+
+def cfcookie(netloc, ua, timeout):
+    try:
+        headers = {'User-Agent': ua}
+
+        request = urllib2.Request(netloc, headers=headers)
+
+        try:
+            response = urllib2.urlopen(request, timeout=int(timeout))
+        except urllib2.HTTPError as response:
+            result = response.read()
+
+        jschl = re.findall('name="jschl_vc" value="(.+?)"/>', result)[0]
+
+        init = re.findall('setTimeout\(function\(\){\s*.*?.*:(.*?)};', result)[-1]
+
+        builder = re.findall(r"challenge-form\'\);\s*(.*)a.v", result)[0]
+
+        decryptVal = parseJSString(init)
+
+        lines = builder.split(';')
+
+        for line in lines:
+
+            if len(line) > 0 and '=' in line:
+
+                sections=line.split('=')
+                line_val = parseJSString(sections[1])
+                decryptVal = int(eval(str(decryptVal)+sections[0][-1]+str(line_val)))
+
+        answer = decryptVal + len(urlparse.urlparse(netloc).netloc)
+
+        query = '%s/cdn-cgi/l/chk_jschl?jschl_vc=%s&jschl_answer=%s' % (netloc, jschl, answer)
+
+        if 'type="hidden" name="pass"' in result:
+            passval = re.findall('name="pass" value="(.*?)"', result)[0]
+            query = '%s/cdn-cgi/l/chk_jschl?pass=%s&jschl_vc=%s&jschl_answer=%s' % (netloc, urllib.quote_plus(passval), jschl, answer)
+            time.sleep(5)
+
+        cookies = cookielib.LWPCookieJar()
+        handlers = [urllib2.HTTPHandler(), urllib2.HTTPSHandler(), urllib2.HTTPCookieProcessor(cookies)]
+        opener = urllib2.build_opener(*handlers)
+        opener = urllib2.install_opener(opener)
+
+        try:
+            request = urllib2.Request(query, headers=headers)
+            response = urllib2.urlopen(request, timeout=int(timeout))
+        except:
+            pass
+
+        cookie = '; '.join(['%s=%s' % (i.name, i.value) for i in cookies])
+
+        return cookie
+    except:
+        pass
+
+
+def parseJSString(s):
+    try:
+        offset=1 if s[0]=='+' else 0
+        val = int(eval(s.replace('!+[]','1').replace('!![]','1').replace('[]','0').replace('(','str(')[offset:]))
+        return val
+    except:
+        pass
 
 

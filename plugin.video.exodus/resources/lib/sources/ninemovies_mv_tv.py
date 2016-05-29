@@ -70,7 +70,7 @@ class source:
         try:
             url = urlparse.urljoin(self.base_link, self.search_link)
 
-            result = client.source(url)
+            result = client.request(url)
             result = re.findall('href="(.+?)">(.+?)<', result)
             result = [(re.sub('http.+?//.+?/','/', i[0]), re.sub('&#\d*;','', i[1])) for i in result]
             result = [(i[0].split('"')[0], re.findall('(.+?)\((\d{4})\)$', i[1].strip())) for i in result]
@@ -104,7 +104,8 @@ class source:
                     search_url = urlparse.urljoin(self.base_link, '/search')
                     search_url = search_url + '?' + urllib.urlencode(query)
 
-                    result = client.source(search_url, safe=True)
+                    #result = client.request(search_url, limit='0')
+                    result = client.request(self.base_link, limit='0')
 
                     r = client.parseDOM(result, 'div', attrs = {'class': '[^"]*movie-list[^"]*'})[0]
                     r = client.parseDOM(r, 'div', attrs = {'class': 'item'})
@@ -148,7 +149,7 @@ class source:
 
             #if xtoken == None: raise Exception()
 
-            result = client.source(url, safe=True)
+            result = client.request(url, limit='0')
 
 
             atr = [i for i in client.parseDOM(result, 'dd') if len(re.findall('(\d{4})', i)) > 0][-1]
@@ -185,7 +186,7 @@ class source:
                     query.update(self.__get_token(query))
                     url = url + '?' + urllib.urlencode(query)
 
-                    result = client.source(url, headers=headers, referer=referer, safe=True)
+                    result = client.request(url, headers=headers, referer=referer, limit='0')
                     result = json.loads(result)
 
                     query = result['params']
@@ -193,7 +194,7 @@ class source:
                     query.update(self.__get_token(query))
                     grabber = result['grabber'] + '?' + urllib.urlencode(query)
 
-                    result = client.source(grabber, headers=headers, referer=url, safe=True)
+                    result = client.request(grabber, headers=headers, referer=url, limit='0')
                     result = json.loads(result)
 
                     result = result['data']
@@ -233,7 +234,7 @@ class source:
 
     def __get_xtoken(self):
         url = urlparse.urljoin(self.base_link, 'fghost?%s' % (random.random()))
-        html = client.source(url, safe=True)
+        html = client.request(url, limit='0')
         k = self.__get_dict('k', html)
         v = self.__get_dict('v', html)
         if k and v:

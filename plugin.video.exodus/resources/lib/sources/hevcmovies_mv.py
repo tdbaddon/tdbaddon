@@ -23,7 +23,6 @@ import re,urllib,urlparse,datetime
 
 from resources.lib.modules import control
 from resources.lib.modules import cleantitle
-from resources.lib.modules import cloudflare
 from resources.lib.modules import client
 from resources.lib.modules import debrid
 
@@ -59,7 +58,7 @@ class source:
             query = self.search_link % urllib.quote_plus(query)
             query = urlparse.urljoin(self.base_link, query)
 
-            result = cloudflare.source(query)
+            result = client.request(query)
 
             result = client.parseDOM(result, 'div', attrs = {'class': 'item'})
 
@@ -77,7 +76,7 @@ class source:
             url = r[0][0]
             url = client.replaceHTMLCodes(url)
 
-            result = cloudflare.source(url)
+            result = client.request(url)
 
             try:
                 links = client.parseDOM(result, 'div', attrs = {'class': 'enlaces_box'})[0]

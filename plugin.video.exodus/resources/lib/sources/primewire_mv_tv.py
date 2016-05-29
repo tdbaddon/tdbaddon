@@ -37,13 +37,13 @@ class source:
 
     def request(self, url, check):
         try:
-            result = client.source(url)
+            result = client.request(url)
             if check in str(result): return result.decode('iso-8859-1').encode('utf-8')
 
-            result = client.source(proxy.get() + urllib.quote_plus(url))
+            result = client.request(proxy.get() + urllib.quote_plus(url))
             if check in str(result): return result.decode('iso-8859-1').encode('utf-8')
 
-            result = client.source(proxy.get() + urllib.quote_plus(url))
+            result = client.request(proxy.get() + urllib.quote_plus(url))
             if check in str(result): return result.decode('iso-8859-1').encode('utf-8')
         except:
             return

@@ -23,7 +23,6 @@ try: import xbmc
 except: pass
 
 from resources.lib.modules import control
-from resources.lib.modules import cloudflare
 from resources.lib.modules import client
 from resources.lib.modules import cache
 
@@ -250,8 +249,7 @@ class indexer:
         try:
             url = urlparse.urljoin(self.cartoons_link, url)
 
-            cookie, agent, result = cloudflare.request(url, output='extended')
-            headers = {'Cookie': cookie, 'User-Agent': agent}
+            result, headers, content, cookie = client.request(url, output='extended')
 
             items = client.parseDOM(result, 'li', attrs = {'class': 'list_ct'})
         except:
@@ -301,8 +299,7 @@ class indexer:
         try:
             url = urlparse.urljoin(self.cartoons_link, url)
 
-            cookie, agent, result = cloudflare.request(url, output='extended')
-            headers = {'Cookie': cookie, 'User-Agent': agent}
+            result, headers, content, cookie = client.request(url, output='extended')
 
             items = client.parseDOM(result, 'table', attrs = {'class': 'listing'})[0]
             items = client.parseDOM(result, 'tr')
@@ -335,13 +332,12 @@ class indexer:
         try:
             url = urlparse.urljoin(self.cartoons_link, url)
 
-            cookie, agent, result = cloudflare.request(url, output='extended')
-            headers = {'Cookie': cookie, 'User-Agent': agent}
+            result, headers, content, cookie = client.request(url, output='extended')
 
             url = re.findall('url\s*:\s*"(.+?)"', result)[0]
             post = re.findall('data\s*:\s*\'(.+?)\'', result)[0]
 
-            result = client.source(url, post=post, headers=headers)
+            result = client.request(url, post=post, headers=headers)
 
             url = re.findall('href\s*=\s*(?:\'|\")(http(?:s|)://.+?(?:google|blogspot).+?)(?:\'|\")', result)
             if len(url) > 0:
@@ -350,7 +346,7 @@ class indexer:
 
             url = re.findall('href\s*=\s*(?:\'|\")(http(?:s|)://.+?/vload/\?token=.+?)(?:\'|\")', result)
             if len(url) > 0:
-                url = client.source(url[-1], output='geturl', headers=headers)
+                url = client.request(url[-1], output='geturl', headers=headers)
                 return url
         except:
             pass

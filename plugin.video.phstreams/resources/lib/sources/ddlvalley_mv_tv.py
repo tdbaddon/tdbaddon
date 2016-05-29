@@ -87,7 +87,7 @@ class source:
             query = self.search_link % urllib.quote_plus(query)
             query = urlparse.urljoin(self.base_link, query)
 
-            result = client.source(query)
+            result = client.request(query)
 
             result = client.parseDOM(result, 'div', attrs = {'class': 'pb fl'})[0]
             result = result.split('<h2>')
@@ -117,7 +117,7 @@ class source:
             for i in r:
                 try:
                     r = client.replaceHTMLCodes(i[0])
-                    r = client.source(r)
+                    r = client.request(r)
                     r = r.replace('\n', '')
                     r = re.sub('\s\s+', ' ', r)
                     r = re.compile("<span class='info2'(.+)").findall(r)[0]

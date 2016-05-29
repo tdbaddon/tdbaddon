@@ -30,25 +30,20 @@ class source:
     def __init__(self):
         self.domains = ['moviestorm.eu']
         self.base_link = 'http://moviestorm.eu'
-        self.moviesearch_link = 'aHR0cHM6Ly93d3cuZ29vZ2xlYXBpcy5jb20vY3VzdG9tc2VhcmNoL3YxZWxlbWVudD9rZXk9QUl6YVN5Q1ZBWGlVelJZc01MMVB2NlJ3U0cxZ3VubU1pa1R6UXFZJnJzej1maWx0ZXJlZF9jc2UmbnVtPTEwJmhsPWVuJmN4PTAwMDc0NjAzOTU3ODI1MDQ0NTkzNTprZ2o3d3dodXJncSZnb29nbGVob3N0PXd3dy5nb29nbGUuY29tJnE9JXM='
+        self.moviesearch_link = '/search'
         self.tvsearch_link = '/series/all/'
 
 
     def movie(self, imdb, title, year):
         try:
-            query = title.replace(':', ' ')
-            query = base64.b64decode(self.moviesearch_link) % urllib.quote_plus(query)
+            query = self.base_link + self.moviesearch_link
+            post = urllib.urlencode({'go': 'Search', 'q': title})
 
-            result = client.source(query)
-            result = json.loads(result)['results']
+            result = client.request(query, post=post)
+            result = client.parseDOM(result, 'div', attrs = {'class': 'movie_box'})
 
-            title = cleantitle.get(title)
-
-            result = [(i['url'], i['titleNoFormatting']) for i in result]
-            result = [(i[0], re.findall('(?:^Watch Full "|^Watch |)(.+?)\((\d{4})', i[1])) for i in result]
-            result = [(i[0], i[1][0][0], i[1][0][1]) for i in result if len(i[1]) > 0]
-            result = [i for i in result if title == cleantitle.get(i[1]) and year == i[2]]
-            result = result[0][0]
+            result = [i for i in result if imdb in i][0]
+            result = client.parseDOM(result, 'a', ret='href')[0]
 
             url = urlparse.urljoin(self.base_link, result)
             url = urlparse.urlparse(url).path
@@ -80,7 +75,7 @@ class source:
         try:
             url = urlparse.urljoin(self.base_link, self.tvsearch_link)
 
-            result = client.source(url)
+            result = client.request(url)
             result = re.compile('(<li>.+?</li>)').findall(result)
             result = [re.compile('href="(.+?)">(.+?)<').findall(i) for i in result]
             result = [i[0] for i in result if len(i) > 0]
@@ -110,7 +105,7 @@ class source:
 
             url = urlparse.urljoin(self.base_link, url)
 
-            result = client.source(url)
+            result = client.request(url)
 
             links = client.parseDOM(result, 'div', attrs = {'class': 'links'})[0]
             links = client.parseDOM(links, 'tr')

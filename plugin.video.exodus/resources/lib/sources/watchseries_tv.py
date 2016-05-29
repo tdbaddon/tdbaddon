@@ -44,7 +44,7 @@ class source:
 
             url = urlparse.urljoin(base64.b64decode(self.base_link), hash.hexdigest() + url)
 
-            result = client.source(url, headers={'User-Agent': base64.b64decode(self.agent_link)})
+            result = client.request(url, headers={'User-Agent': base64.b64decode(self.agent_link)})
             result = json.loads(result)['results'].values()
             return result
         except:

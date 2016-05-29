@@ -67,6 +67,11 @@ def INDEX(url):
                 np = re.compile("<a id='right' href='(.*?)'> <img src='next\.png' alt='.*?' width='50'></a>").findall(link)[0]
                 addDir('[I][B][COLOR dodgerblue]Go To Next Page>>>[/COLOR][/B][/I]',np,1,art+'next.png',fanart,'')
         except:pass
+        try:
+                np = re.compile('<a class="btnpg btnpg-alt btnpg-flat waves-button waves-effect" href="(.*?)">(.*?)</a>.*?').findall(link)
+                for url, name in np:
+                        addDir('[I][B][COLOR dodgerblue]Page %s >>>[/COLOR][/B][/I]' %name,url,1,icon,fanart,'')
+        except:pass
         setView('movies', 'movie-view')
 
 
@@ -97,6 +102,11 @@ def INDEX2(url):
         try:
                 np = re.compile("<a id='right' href='(.*?)'> <img src='next\.png' alt='.*?' width='50'></a>").findall(link)[0]
                 addDir('[I][B][COLOR dodgerblue]Go To Next Page>>>[/COLOR][/B][/I]',np,1,art+'next.png',fanart,'')
+        except:pass
+        try:
+                np = re.compile('<a class="btnpg btnpg-alt btnpg-flat waves-button waves-effect" href="(.*?)">(.*?)</a>.*?').findall(link)
+                for url, name in np:
+                        addDir('[I][B][COLOR dodgerblue]Page %s >>>[/COLOR][/B][/I]' %name,url,1,icon,fanart,'')
         except:pass
         setView('tvshows', 'show-view')
 
@@ -408,6 +418,8 @@ def setView(content, viewType):
             VT = '501'
         elif addon.get_setting(viewType) == 'Big List':
             VT = '51'
+        elif addon.get_setting(viewType) == 'Low List':
+            VT = '724'
         elif addon.get_setting(viewType) == 'Default View':
             VT = addon.get_setting('default-view')
 

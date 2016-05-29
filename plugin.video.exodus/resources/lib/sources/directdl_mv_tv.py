@@ -75,7 +75,7 @@ class source:
             headers = {'Accept': '*/*'}
             if not cookie == None: headers['Cookie'] = cookie
             if not referer == None: headers['Referer'] = referer
-            result = client.source(url, post=post, headers=headers, output=output, close=close)
+            result = client.request(url, post=post, headers=headers, output=output, close=close)
             result = result.decode('iso-8859-1').encode('utf-8')
             result = urllib.unquote_plus(result)
             return result
@@ -118,7 +118,7 @@ class source:
                 q = base64.b64decode(self.search_link) + urllib.quote_plus('%s %s' % (t, f[0]))
                 q = urlparse.urljoin(self.base_link, q)
 
-                result = client.source(q)
+                result = client.request(q)
                 result = json.loads(result)
             except:
                 links = result = []
@@ -256,8 +256,10 @@ class source:
             c = self.request(r, output='cookie', close=False)
             result = self.request(u, post=p, referer=r, cookie=c)
 
-            url = re.compile('url=(.*)').findall(result)[0]
-            url = urllib.unquote_plus(url)
+            url = result.split('url=')
+            url = [urllib.unquote_plus(i.strip()) for i in url]
+            url = [i for i in url if i.startswith('http')]
+            url = url[-1]
 
             return url
         except:

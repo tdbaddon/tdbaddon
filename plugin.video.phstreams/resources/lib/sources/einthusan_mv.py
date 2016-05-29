@@ -38,7 +38,7 @@ class source:
             langMap = {'hi':'hindi', 'ta':'tamil', 'te':'telugu', 'ml':'malayalam', 'kn':'kannada', 'bn':'bengali', 'mr':'marathi', 'pa':'punjabi'}
 
             lang = 'http://www.imdb.com/title/%s/' % imdb
-            lang = client.source(lang)
+            lang = client.request(lang)
             lang = re.findall('href\s*=\s*[\'|\"](.+?)[\'|\"]', lang)
             lang = [i for i in lang if '/language/' in i]
             lang = [i.split('/language/')[-1].split('?')[0].lower() for i in lang]
@@ -48,7 +48,7 @@ class source:
             url = urlparse.urljoin(self.base_link, self.search_link)
             post = urllib.urlencode({'search': title, 'lang': lang})
 
-            result = client.source(url, post=post)
+            result = client.request(url, post=post)
             result = json.loads(result)['results'][:2]
             result = [urlparse.urljoin(self.base_link, self.movie_link % i) for i in result]
 
@@ -57,10 +57,10 @@ class source:
 
             url = None
 
-            info = json.loads(client.source(result[0]))
+            info = json.loads(client.request(result[0]))
             if title == cleantitle.get(info['movie']) and any(x in str(info['year']) for x in years): url = info['movie_id']
 
-            if url == None: info = json.loads(client.source(result[1]))
+            if url == None: info = json.loads(client.request(result[1]))
             if title == cleantitle.get(info['movie']) and any(x in str(info['year']) for x in years): url = info['movie_id']
 
             if url == None: return

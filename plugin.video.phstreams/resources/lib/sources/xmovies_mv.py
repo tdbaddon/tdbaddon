@@ -19,10 +19,9 @@
 '''
 
 
-import re,urllib,urlparse,json,base64
+import re,urllib,urlparse,json
 
 from resources.lib.modules import cleantitle
-from resources.lib.modules import cloudflare
 from resources.lib.modules import client
 from resources.lib.modules import directstream
 
@@ -31,52 +30,25 @@ class source:
     def __init__(self):
         self.domains = ['xmovies8.tv']
         self.base_link = 'http://xmovies8.tv'
-        self.search_link = 'aHR0cHM6Ly93d3cuZ29vZ2xlYXBpcy5jb20vY3VzdG9tc2VhcmNoL3YxZWxlbWVudD9rZXk9QUl6YVN5Q1ZBWGlVelJZc01MMVB2NlJ3U0cxZ3VubU1pa1R6UXFZJnJzej1maWx0ZXJlZF9jc2UmbnVtPTEwJmhsPWVuJmN4PTAwNjQ4MjIzNjE2MjI4MzE1ODkwMDpjZzNhZmZ2bWNvayZnb29nbGVob3N0PXd3dy5nb29nbGUuY29tJnE9JXM='
-        self.search_link_2 = 'aHR0cHM6Ly93d3cuZ29vZ2xlYXBpcy5jb20vY3VzdG9tc2VhcmNoL3YxZWxlbWVudD9rZXk9QUl6YVN5Q1ZBWGlVelJZc01MMVB2NlJ3U0cxZ3VubU1pa1R6UXFZJnJzej1maWx0ZXJlZF9jc2UmbnVtPTEwJmhsPWVuJmN4PTAwMDc0NjAzOTU3ODI1MDQ0NTkzNTowbGdidnQwcndsOCZnb29nbGVob3N0PXd3dy5nb29nbGUuY29tJnE9JXM=='
+        self.search_link = '/movies/search?s=%s'
 
 
     def movie(self, imdb, title, year):
         try:
-            query = title.replace(':', ' ')
-            query = base64.b64decode(self.search_link) % urllib.quote_plus(query)
+            query = urlparse.urljoin(self.base_link, self.search_link)
+            query = query % urllib.quote_plus(title)
 
-            result = client.source(query)
-            result = json.loads(result)['results']
+            r = client.request(query)
 
             t = cleantitle.get(title)
 
-            result = [(i['url'], i['titleNoFormatting']) for i in result]
-            result = [(i[0], re.findall('(?:^Watch Full "|^Watch |^Xmovies8:|^xmovies8:|)(.+?)\((\d{4})', i[1])) for i in result]
-            result = [(i[0], i[1][0][0], i[1][0][1]) for i in result if len(i[1]) > 0]
-            result = [i for i in result if t == cleantitle.get(i[1]) and year == i[2]]
-            result = result[0][0]
+            r = zip(client.parseDOM(r, 'a', ret='href', attrs = {'class': 'movie-item-link'}), client.parseDOM(r, 'a', ret='title', attrs = {'class': 'movie-item-link'}))
+            r = [(i[0], i[1], re.findall('(\d{4})', i[1])) for i in r]
+            r = [(i[0], i[1], i[2][-1]) for i in r if len(i[2]) > 0]
+            r = [i[0] for i in r if t == cleantitle.get(i[1]) and year == i[2]][0]
 
-            url = urlparse.urljoin(self.base_link, result)
+            url = urlparse.urljoin(self.base_link, r)
             url = urlparse.urlparse(url).path
-            url = '/'.join(url.split('/')[:3]) + '/'
-            return url
-        except:
-            pass
-
-        try:
-            t = title.replace('\'', '')
-            t = re.sub(r'[^a-zA-Z0-9\s]+', ' ', t).lower().strip()
-            t = re.sub('\s\s+' , ' ', t)
-            t = '/movie/' + t.replace(' ' , '-') + '-'
-
-            query = base64.b64decode(self.search_link_2) % t
-
-            result = client.source(query)
-            result = json.loads(result)['results']
-            result = [i['contentNoFormatting'] for i in result]
-            result = ''.join(result)
-            result = re.findall('(/movie/.+?)\s', result)
-            result = [i for i in result if t in i and year in i]
-            result = result[0]
-
-            url = urlparse.urljoin(self.base_link, result)
-            url = urlparse.urlparse(url).path
-            url = '/'.join(url.split('/')[:3]) + '/'
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
             return url
@@ -90,18 +62,58 @@ class source:
 
             if url == None: return sources
 
-            url = urlparse.urljoin(self.base_link, url)
+            u = urlparse.urljoin(self.base_link, url)
 
-            result = cloudflare.source(url)
+            r = client.request(u)
 
-            url = client.parseDOM(result, 'embed', ret='src')[0]
-            url = client.replaceHTMLCodes(url)
+            r = re.findall("load_player\(\s*'([^']+)'\s*,\s*'?(\d+)\s*'?", r)
+            r = list(set(r))
+            r = [i for i in r if i[1] == '0' or int(i[1]) >= 720]
 
-            url = 'https://docs.google.com/file/d/%s/preview' % urlparse.parse_qs(urlparse.urlparse(url).query)['docid'][0]
+            links = []
 
-            url = directstream.google(url)
+            for p in r:
+                try:
+                    headers = {'X-Requested-With': 'XMLHttpRequest', 'Referer': u}
 
-            for i in url: sources.append({'source': 'gvideo', 'quality': i['quality'], 'provider': 'Xmovies', 'url': i['url'], 'direct': True, 'debridonly': False})
+                    player = urlparse.urljoin(self.base_link, '/ajax/movie/load_player')
+
+                    post = urllib.urlencode({'id': p[0], 'quality': p[1]})
+
+                    result = client.request(player, post=post, headers=headers)
+
+                    frame = client.parseDOM(result, 'iframe', ret='src')
+                    embed = client.parseDOM(result, 'embed', ret='flashvars')
+
+                    if frame:
+                        if 'player.php' in frame[0]:
+                            frame = client.parseDOM(result, 'input', ret='value', attrs = {'type': 'hidden'})[0]
+
+                            headers = {'Referer': urlparse.urljoin(self.base_link, frame[0])}
+
+                            url = client.request(frame, headers=headers, output='geturl')
+
+                            links += [{'source': 'gvideo', 'url': url, 'quality': directstream.googletag(url)[0]['quality'], 'direct': True}]
+
+                        elif 'openload.' in frame[0]:
+                            links += [{'source': 'openload.co', 'url': frame[0], 'quality': 'HD', 'direct': False}]
+
+                        elif 'videomega.' in frame[0]:
+                            links += [{'source': 'videomega.tv', 'url': frame[0], 'quality': 'HD', 'direct': False}]
+
+                    elif embed:
+                        url = urlparse.parse_qs(embed[0])['fmt_stream_map'][0]
+
+                        url = [i.split('|')[-1] for i in url.split(',')]
+
+                        for i in url:
+                            try: links.append({'source': 'gvideo', 'url': i, 'quality': directstream.googletag(i)[0]['quality'], 'direct': True})
+                            except: pass
+
+                except:
+                    pass
+
+            for i in links: sources.append({'source': i['source'], 'quality': i['quality'], 'provider': 'Xmovies', 'url': i['url'], 'direct': i['direct'], 'debridonly': False})
 
             return sources
         except:

@@ -22,7 +22,6 @@
 import re,urllib,urlparse,json
 
 from resources.lib.modules import cleantitle
-from resources.lib.modules import cloudflare
 from resources.lib.modules import client
 from resources.lib.modules import cache
 
@@ -56,7 +55,7 @@ class source:
         try:
             url = urlparse.urljoin(self.base_link, self.search_link)
 
-            result = cloudflare.source(url)
+            result = client.request(url)
             result = re.compile('{(.+?)}').findall(result)
             result = [(re.findall('u\s*:\s*(?:\'|\")(.+?)(?:\'|\")', i), re.findall('d\s*:\s*(?:\'|\")(.+?)(?:\'|\")', i)) for i in result]
             result = [(i[0][0], i[1][0]) for i in result if len(i[0]) > 0 and len(i[1]) > 0]
@@ -85,7 +84,7 @@ class source:
 
             url = urlparse.urljoin(self.base_link, url)
 
-            result = cloudflare.source(url)
+            result = client.request(url)
             result = re.sub(r'[^\x00-\x7F]+', ' ', result)
 
             pages = []
@@ -97,14 +96,14 @@ class source:
             try:
                 r = client.parseDOM(result, 'div', attrs = {'id': 'playerMenu'})[0]
                 r = client.parseDOM(r, 'div', ret='data-id', attrs = {'class': 'item'})[0]
-                r = cloudflare.source(urlparse.urljoin(self.base_link, self.video_link), post=urllib.urlencode( {'id': r} ))
+                r = client.request(urlparse.urljoin(self.base_link, self.video_link), post=urllib.urlencode( {'id': r} ))
                 pages.append(client.parseDOM(r, 'iframe', ret='src')[0])
             except:
                 pass
 
             for page in pages:
                 try:
-                    result = cloudflare.source(page)
+                    result = client.request(page)
 
                     captions = re.search('kind\s*:\s*(?:\'|\")captions(?:\'|\")', result)
                     if not captions: raise Exception()

@@ -1,14 +1,13 @@
 #-*- coding: utf-8 -*-
 
-import sys, urllib, urllib2, re, cookielib, os.path, json, base64
+import sys, urllib, urllib2, re, cookielib, os.path, json, base64, tempfile, time, threading
 from bs4 import BeautifulSoup
 from jsbeautifier import beautify
 import xml.etree.ElementTree as ET
-import azure_translate_api
 import xbmc, xbmcplugin, xbmcgui, xbmcaddon
 import urlresolver
 from jsunpack import unpack
-#import favourites
+import search
 
 sysarg=str(sys.argv[1])
 ADDON_ID='plugin.video.javstream'
@@ -20,7 +19,12 @@ hdr = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML,
        'Accept-Encoding': 'none',
        'Accept-Language': 'en-US,en;q=0.8',
        'Connection': 'keep-alive'}
-       
+
+headers = {'User-Agent': 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3',
+           'Accept': '*/*',
+           'Connection': 'keep-alive'}
+
+      
 profileDir = addon.getAddonInfo('profile')
 profileDir = xbmc.translatePath(profileDir).decode("utf-8")
 cookiePath = os.path.join(profileDir, 'cookies.lwp')       
@@ -36,6 +40,16 @@ urlopen = urllib2.urlopen
 cj = cookielib.LWPCookieJar()
 Request = urllib2.Request
 
+globalURLS=[]
+statusDialog=""  
+updateCounter=0  
+updateBy=0 
+updateTotal=0
+
+if xbmcplugin.getSetting(int(sysarg), "proxy")=="true":
+    siteURL="http://javstream.club/repress/javpop.com"
+else:
+    siteURL="http://javpop.com"
 if cj != None:
     if os.path.isfile(xbmc.translatePath(cookiePath)):
         try:
@@ -54,9 +68,6 @@ else:
 urllib2.install_opener(opener)
 
 home=xbmc.translatePath(addon.getAddonInfo('path').decode('utf-8'))
-
-client = azure_translate_api.MicrosoftTranslatorClient('javstream',  # make sure to replace client_id with your client id
-                                                       'npMjGpvt+346wdkiYD+sNteGdIvWvJWmEQYmVpIYA68=') # replace the client secret with the client secret for you app.
 
 
                                                        
@@ -81,7 +92,47 @@ def parseParameters(inputString=sys.argv[2]):
                 parameters[key] = value
     return parameters
 
-def getURL(url, header):
+def extractAll(text, startText, endText):
+    """
+    Extract all occurences of a string within text that start with startText and end with endText
+    
+    Parameters:
+    text: the text to be parsed
+    startText: the starting tokem
+    endText: the ending token
+    
+    Returns an array containing all occurences found, with tabs and newlines removed and leading whitespace removed
+    """
+    result = []
+    start = 0
+    pos = text.find(startText, start)
+    while pos != -1:
+        start = pos + startText.__len__()
+        end = text.find(endText, start)
+        result.append(text[start:end].replace('\n', '').replace('\t', '').lstrip())
+        pos = text.find(startText, end)
+    return result
+
+def extract(text, startText, endText):
+    """
+    Extract the first occurence of a string within text that start with startText and end with endText
+    
+    Parameters:
+    text: the text to be parsed
+    startText: the starting tokem
+    endText: the ending token
+    
+    Returns the string found between startText and endText, or None if the startText or endText is not found
+    """
+    start = text.find(startText, 0)
+    if start != -1:
+        start = start + startText.__len__()
+        end = text.find(endText, start + 1)
+        if end != -1:
+            return text[start:end]
+    return None      
+
+def getURL(url, header=hdr):
     try:
         req = urllib2.Request(url, headers=header)
         response = urllib2.urlopen(req)
@@ -103,20 +154,33 @@ def getURL(url, header):
     
     return False
 
-def getHtml(url, referer, hdr2=None):
-    if not hdr2:
-        req = Request(url.encode("utf-8"), '', hdr)
+def getHtml(url, referer, hdr=None, NoCookie=None, data=None):
+    if not hdr:
+        req = Request(url, data, headers)
     else:
-        req = Request(url.encode("utf-8"), '', hdr2)
+        req = Request(url, data, hdr)
     if len(referer) > 1:
         req.add_header('Referer', referer)
+    if data:
+        req.add_header('Content-Length', len(data))
     response = urlopen(req, timeout=60)
-    data = response.read()
-    cj.save(cookiePath)
+    if response.info().get('Content-Encoding') == 'gzip':
+        buf = StringIO( response.read())
+        f = gzip.GzipFile(fileobj=buf)
+        data = f.read()
+        f.close()
+    else:
+        data = response.read()    
+    if not NoCookie:
+        # Cope with problematic timestamp values on RPi on OpenElec 4.2.1
+        try:
+            cj.save(cookiePath)
+        except: pass
     response.close()
     return data
     
 def addMenuItems(details, show=True):
+    changed=False
     for detail in details:
         try:
             u=sys.argv[0]+"?url="+detail['url']+"&mode="+str(detail['mode'])+"&name="+urllib.quote_plus(detail['title'].encode("utf-8"))+"&icon="+detail['icon']
@@ -150,12 +214,46 @@ def addMenuItems(details, show=True):
             u=u+"&poster="+detail['poster']
         except:
             pass
-        
-        
+        if detail['mode']==6:
+            dwnld = (sys.argv[0] +
+                "?url=" + urllib.quote_plus(detail['url']) +
+                "&mode=" + str(9) +
+                "&poster="+detail['poster']+
+                "&extras="+detail['extras']+
+                "&download=" + str(1) +
+                "&fanart="+detail['fanart']+
+                "&name=" + urllib.quote_plus(detail['extras2'].encode('utf-8')))
+                
+            liz.addContextMenuItems([('Download Video', 'xbmc.RunPlugin('+dwnld+')')])
+        if detail['mode']==5:
+            changed=True
+            view = (sys.argv[0] +
+                "?url=set-default-view" +
+                "&mode=" + str(10) +
+                "&poster="+detail['poster']+
+                "&fanart="+detail['fanart']+
+                "&extras="+sysarg+
+                "&name=" + "set-default-view")
+            liz.addContextMenuItems([('Set Default View', 'xbmc.RunPlugin('+view+')')])
+        try:
+            if detail["extras"]=="force-search" and detail["extras2"]=="db-search":
+                dwnld = (sys.argv[0] +
+                    "?url=" + urllib.quote_plus(detail['url']) +
+                    "&mode=" + str(31) +
+                    "&poster="+detail['poster']+
+                    "&extras="+"single-delete"+
+                    "&fanart="+detail['fanart']+
+                    "&name=" + urllib.quote_plus(detail['title'].encode('utf-8')))
+                liz.addContextMenuItems([('Delete Search Term', 'xbmc.RunPlugin('+dwnld+')')])
+        except:
+            pass
         #addContextItem(liz, "Add to favourites","special://home/addons/plugin.video.javstream2/addFavourite.py", "id=909722")
         #addContextItem(liz, "Add idol to favourites","special://home/addons/plugin.video.javstream2/addFavouriteIdol.py", "id=909722")
         ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
+    
     if show:
+        if changed==True:
+            xbmc.executebuiltin('Container.SetViewMode(%d)' % int(xbmcplugin.getSetting(int(sysarg), "vidview")))
         xbmcplugin.endOfDirectory(int(sysarg))
 
 def alert(alertText):
@@ -211,7 +309,7 @@ def progressUpdate(pDialog, progress, status):
 def customDialog(imgW, imgH, img):
     cDialog=xbmcgui.WindowDialog()
     cWindow=xbmcgui.Window()
-    logError(cWindow.getResolution())
+    #logError(cWindow.getResolution())
     cDialog.addControl(xbmcgui.ControlImage(x=cWindow.getWidth()/2, y=30, width=imgW, height=imgH, filename=img))
     cDialog.show()
     return cDialog
@@ -219,51 +317,99 @@ def customDialog(imgW, imgH, img):
 def customDialogClose(cDialog):
     cDialog.close()
  
-def findVideos(url):
+def findVideos(url, refresh=False):
+    searching="0"
+    if "category/censored" in url:
+        searching="40"
+    elif "category/uncensored" in url:
+        searching="41"
+    elif "category/idol" in url:
+        searching="42"
+    else:
+        searching="43"
+        
     html=getURL(url, hdr)
     if html!=False:
-        items=[]
-        #try:
-        bsObj=BeautifulSoup(html, "html.parser")
-        for sibling in bsObj.find("div",{"class":"entry"}).ul.findChildren():
-            if sibling.name=="li":
+        if "No posts found" in html:
+            notify(ADDON_ID, "No videos found.", True)
+        else :
+            items=[]
+            bsObj=BeautifulSoup(html, "html.parser")
+            
+            for sibling in bsObj.find("div",{"class":"entry"}).ul.findChildren():
+                try:
+                    if "http://javpop.com" not in sibling.find("img")["src"]:
+                        image="http://javstream.club"+sibling.find("img")["src"]
+                    else:
+                        image=sibling.find("img")["src"]
+                except:
+                    pass
+                    
+                    
+                if sibling.name=="li":
+                    items.append({
+                        "title": translate(sibling.find("a")["title"]),
+                        "url": sibling.find("a")["href"], 
+                        "mode":5, 
+                        "poster":image,
+                        "icon":image, 
+                        "fanart":image.replace("thumb", "poster"),
+                        "type":"video", 
+                        "plot":"",
+                        "extras":searching
+                    })
+        
+            try:
+                p=re.compile("<a href=[\"|'](\S*)[\"|'] class=[\"|']nextpostslink[\"|']>")
+                next=re.search(p, html).group(1)
+                if "repress" in next:
+                    next=siteURL+(next.replace("/repress/javpop.com", ""))
                 items.append({
-                    "title": translate(sibling.find("a")["title"]),
-                    "url": sibling.find("a")["href"], 
-                    "mode":5, 
-                    "poster":sibling.find("img")["src"],
-                    "icon":sibling.find("img")["src"], 
-                    "fanart":sibling.find("img")["src"].replace("thumb", "poster"),
-                    "type":"video", 
-                    "plot":"",
-                })
-        try:
-            p=re.compile("<a href=[\"|'](\S*)[\"|'] class=[\"|']nextpostslink[\"|']>")
-            next=re.search(p, html).group(1)
-            items.append({
-                    "title": "Next >",
-                    "url":next, 
-                    "mode":4, 
-                    "poster":"default.jpg",
-                    "icon":"default.jpg",
-                    "fanart":"default.jpg",
-                    "type":"", 
-                    "plot":"",
-                })
-        except:
-            # no next page found
-            pass
-        addMenuItems(items)
-        #except:
-        #    logError("Couldnt create video list")
+                        "title": "Next >",
+                        "url":next, 
+                        "mode":4, 
+                        "poster":"default.jpg",
+                        "icon":os.path.join(home, 'resources/media', 'next.jpg'),
+                        "fanart":"default.jpg",
+                        "type":"", 
+                        "plot":"",
+                    })
+            except:
+                # no next page found
+                pass
+            addMenuItems(items)
+                
     else:
-        notify(ADDON_ID, "Unable to load page.", True)
+        notify(ADDON_ID, "Unable to load page. If problem persist turn on Proxy within Settings", True)
 
 def whatPlayer(url, site, dvdCode):
+    global updateCounter
+    global updateString
+    global updateTotal
+    if "<javpage=" in url:
+        parts=url.split("<")
+        url=parts[0]
+        parts=parts[1].replace("javpage=", "")
     html=getURL(url, hdr)  
     found=[]
+    
     try:
-        if site=="javseen":
+        if site=="javstreams":
+            p=re.compile("(javstreams\.com\/play\?v=\S.*?)\"")
+            page="http://"+re.search(p,html).group(1)
+        elif site=="javshow" or site=="eropoi" or site=="youpornjav" or site=="javabc" or site=="javhdvideo":
+            dvdCode=dvdCode.replace(" ", "-").replace("_", "-").replace("%20", "-").replace("%22", "").lower()
+            if dvdCode in html:
+                p=re.compile("<loc>([\S]*.?"+dvdCode+"[\S]*.?)<\/loc>")
+                page=re.search(p,html).group(1)
+                if site=="javshow":
+                    page=page+"watch.html"
+                elif 'parts' in locals():
+                    if site=="eropoi":
+                        page=page+str(parts)
+                    elif site=="javabc":
+                        page=page+"/watch-"+str(parts)
+        elif site=="javseen":
             #p=re.compile("<item>[\s|\S]*<link>([\S]*)<\/link>")
             p=re.compile("<guid[^>]+>(\S*)<\/guid>")
             page=re.search(p, html).group(1).replace("javseen.com/", "javseen.com/watch-");
@@ -277,7 +423,6 @@ def whatPlayer(url, site, dvdCode):
                 videos=bsObj.findAll("div", {"class":"video_box_dvd"})
                 for video in videos:
                     if dvdCode in str(video):
-                        alert("http://jav4k.net/"+video.find("a")["href"])
                         html=getURL("http://jav4k.net/"+video.find("a")["href"], hdr)
                         if html!=False:
                             p=re.compile('href="(watch-\S*)"')
@@ -298,13 +443,20 @@ def whatPlayer(url, site, dvdCode):
             #p=re.compile("<item>[\S\s]+<link>([^<]+)")
             p=re.compile("<guid[^>]+>(\S*)<\/guid>")
             page=re.search(p, html).group(1)
+        
         html=getURL(page, hdr)
         found.append(page)
     except:
         html=False
         #logError(site+": Link not found in "+url.encode("utf-8"))
-            
+    
     if html!=False and site!="adult":
+        if 'type="video/mp4" data-res="480"' in html:
+            found.append("googlevideo (480)")
+        if 'type="video/mp4" data-res="720"' in html:
+            found.append("googlevideo (720)")
+        if 'type="video/mp4" data-res="1080"' in html:
+            found.append("googlevideo (1080)")
         if "googlevideo" in html or "googleusercontent" in html:
             p=re.compile('src=[\'|"](http[s]*:\/\/googleusercontent.[\S]*)[\'|"]')
             try: 
@@ -316,7 +468,12 @@ def whatPlayer(url, site, dvdCode):
                     link=urlresolver.resolve(re.search(p, html).group(1))
                     found.append("googlevideo")
                 except:
-                    a=1
+                    p=re.compile('file: [\'|"](http[s]*:\/\/\S.*?googlevideo.\S.*?)[\'|"]')
+                    try: 
+                        link=urlresolver.resolve(re.search(p, html).group(1))
+                        found.append("googlevideo")
+                    except:
+                        pass
         if "videomega" in html:
             found.append("videomega")
         if "openload" in html:
@@ -358,12 +515,26 @@ def whatPlayer(url, site, dvdCode):
             found.append("filehoot")
         if "streamin Video chanel</button>" in html:  #to be added in the future
             found.append("streamin")
-    return found
+    counter=0
+    for page in found:
+        if site=="adult":
+            site="dodova"
+        if counter==0:
+            link=page
+            counter=1
+        else:
+            globalURLS.append({"site":site, "source":page, "url":link})
+    updateTotal=updateTotal+1
+    updateString=updateString.replace(site, "")
+    updateCounter=updateCounter+1
    
 def huntVideo(params):
+    global updateString
+    global updateTotal
     urls=[]
     items=[]
     found=[]
+    search=str(params["extras"])
     p=re.compile("(\[[A-Za-z0-9-_\ \.]+\])")  
     dvdCode=p.match(params['name'].encode("utf-8")).group(1).replace("[", "").replace("]", "").replace("_fetish-", "%20")
     dvdCodeClean=p.match(params['name'].encode("utf-8")).group(1).replace("[", "").replace("]", "").replace("_fetish-", "%20")
@@ -378,103 +549,169 @@ def huntVideo(params):
     
     huntSites=[]
     
-    if xbmcplugin.getSetting(int(sysarg), "sexloading")=="true":
-        huntSites.append("http://sexloading.com/search/"+dvdCode+"/feed/rss2")
-    if xbmcplugin.getSetting(int(sysarg), "ivhunter")=="true":
-        huntSites.append("http://ivhunter.com/search/"+dvdCode+"/feed/rss2")
-    if xbmcplugin.getSetting(int(sysarg), "javhdonline")=="true":
-        huntSites.append("http://javhdonline.com/search/"+dvdCode+"/feed/rss2")
-    if xbmcplugin.getSetting(int(sysarg), "watchjavonline")=="true":
-        huntSites.append("http://watchjavonline.com/search/"+dvdCode+"/feed/rss2")
-    if xbmcplugin.getSetting(int(sysarg), "javlinks")=="true":
-        huntSites.append("http://javlinks.com/search/"+dvdCode+"/feed/rss2/")
-    if xbmcplugin.getSetting(int(sysarg), "dodova")=="true":
-        huntSites.append("http://adult.dodova.com/search/"+dvdCode+"/feed/rss2/")
-    if xbmcplugin.getSetting(int(sysarg), "hentaidream")=="true":
-        huntSites.append("http://hentaidream.me/search/"+dvdCode+"/feed/rss2")
-    if xbmcplugin.getSetting(int(sysarg), "jav69")=="true":
-        huntSites.append("http://jav69.biz/search/"+dvdCode+"/feed/rss2/")
-    if xbmcplugin.getSetting(int(sysarg), "streamingjav")=="true":
-        huntSites.append("http://streamjav.org/search/"+dvdCode+"/feed/rss2")
-    if xbmcplugin.getSetting(int(sysarg), "phimsexjav")=="true":
-        huntSites.append("http://phimsexjav.net/search/"+dvdCode+"/feed/rss2") # description
-    if xbmcplugin.getSetting(int(sysarg), "javwest")=="true":
-        huntSites.append("http://javwest.com/search/"+dvdCode+"/feed/rss2")
-    if xbmcplugin.getSetting(int(sysarg), "dinojav")=="true":
-        huntSites.append("http://www.dinojav.com/search/"+dvdCode+"/feed/rss2")
-    if xbmcplugin.getSetting(int(sysarg), "top1porn")=="true":
-        huntSites.append("http://top1porn.com/search/"+dvdCode+"/feed/rss2")
-    if xbmcplugin.getSetting(int(sysarg), "jav-stream")=="true":
-        huntSites.append("http://jav-stream.net/search/"+dvdCode+"/feed/rss2")
-    if xbmcplugin.getSetting(int(sysarg), "javseen")=="true":
-        huntSites.append("http://javseen.com/search/"+dvdCode+"/feed/rss2")
-    if xbmcplugin.getSetting(int(sysarg), "ikujav")=="true":
-        huntSites.append("http://www.ikujav.com/search/"+dvdCode+"/feed/rss2")
-    if xbmcplugin.getSetting(int(sysarg), "javst")=="true":
-        huntSites.append("http://javst.net/search/"+dvdCode+"/feed/rss2")
-    if xbmcplugin.getSetting(int(sysarg), "javlabels")=="true":
-        huntSites.append("http://javlabels.com/search/"+dvdCode+"/feed/rss2")
-    if xbmcplugin.getSetting(int(sysarg), "terlarang")=="true":
-        huntSites.append("http://terlarang.net/search/"+dvdCode+"/feed/rss2")
-    if xbmcplugin.getSetting(int(sysarg), "jav4k")=="true":
-        huntSites.append("http://jav4k.net/moviesearch/"+dvdCode)
-    if xbmcplugin.getSetting(int(sysarg), "javhub")=="true":
-        huntSites.append("http://javhub.net/search/"+dvdCodeClean)
-    if xbmcplugin.getSetting(int(sysarg), "jav-onlines")=="true":
-        huntSites.append("http://jav-onlines.com/search/"+dvdCode+"/feed/rss2")
-    if xbmcplugin.getSetting(int(sysarg), "javeu")=="true":
-        huntSites.append("http://javeu.com/search/"+dvdCodeClean+"/feed/rss2")
-    if xbmcplugin.getSetting(int(sysarg), "yebbun90")=="true":
-        huntSites.append("http://yebbun90.com/search/"+dvdCodeClean+"/feed/rss2")
+    udvdCode=dvdCode.replace("-", "%20")
+    
+    search=search.split(",")
+    titles=[]
+    for searching in search:
+        if xbmcplugin.getSetting(int(sysarg), searching+"sexloading")=="true":
+            titles.append("sexloading")
+            huntSites.append("http://sexloading.com/search/"+dvdCode+"/feed/rss2")
+        if xbmcplugin.getSetting(int(sysarg), searching+"ivhunter")=="true":
+            titles.append("ivhunter")
+            huntSites.append("http://ivhunter.com/search/"+dvdCode+"/feed/rss2")
+        if xbmcplugin.getSetting(int(sysarg), searching+"javhdonline")=="true":
+            titles.append("javhdonline")
+            huntSites.append("http://javhdonline.com/search/"+dvdCode+"/feed/rss2")
+        if xbmcplugin.getSetting(int(sysarg), searching+"watchjavonline")=="true":
+            titles.append("watchjavonline")
+            huntSites.append("http://watchjavonline.com/search/"+dvdCode+"/feed/rss2")
+        if xbmcplugin.getSetting(int(sysarg), searching+"javlinks")=="true":
+            titles.append("javlinks")
+            huntSites.append("http://javlinks.com/search/"+dvdCode+"/feed/rss2/")
+        if xbmcplugin.getSetting(int(sysarg), searching+"dodova")=="true":
+            titles.append("dodova")
+            huntSites.append("http://adult.dodova.com/search/"+dvdCode+"/feed/rss2/")
+        if xbmcplugin.getSetting(int(sysarg), searching+"hentaidream")=="true":
+            titles.append("hentaidream")
+            huntSites.append("http://hentaidream.me/search/"+dvdCode+"/feed/rss2")
+        if xbmcplugin.getSetting(int(sysarg), searching+"jav69")=="true":
+            titles.append("jav69")
+            huntSites.append("http://jav69.biz/search/"+dvdCode+"/feed/rss2/")
+        if xbmcplugin.getSetting(int(sysarg), searching+"streamingjav")=="true":
+            titles.append("streamjav")
+            huntSites.append("http://streamjav.org/search/"+dvdCode+"/feed/rss2")
+        if xbmcplugin.getSetting(int(sysarg), searching+"phimsexjav")=="true":
+            titles.append("phimsexjav")
+            huntSites.append("http://phimsexjav.net/search/"+dvdCode+"/feed/rss2") # description
+        if xbmcplugin.getSetting(int(sysarg), searching+"javwest")=="true":
+            titles.append("javwest")
+            huntSites.append("http://javwest.com/search/"+dvdCode+"/feed/rss2")
+        if xbmcplugin.getSetting(int(sysarg), searching+"dinojav")=="true":
+            titles.append("dinojav")
+            huntSites.append("http://www.dinojav.com/search/"+dvdCode+"/feed/rss2")
+        if xbmcplugin.getSetting(int(sysarg), searching+"top1porn")=="true":
+            titles.append("top1porn")
+            huntSites.append("http://top1porn.com/search/"+dvdCode+"/feed/rss2")
+        if xbmcplugin.getSetting(int(sysarg), searching+"jav-stream")=="true":
+            titles.append("jav-search")
+            huntSites.append("http://jav-stream.net/search/"+dvdCode+"/feed/rss2")
+        if xbmcplugin.getSetting(int(sysarg), searching+"javseen")=="true":
+            titles.append("javseen")
+            huntSites.append("http://javseen.com/search/"+dvdCode+"/feed/rss2")
+        if xbmcplugin.getSetting(int(sysarg), searching+"ikujav")=="true":
+            titles.append("ikujav")
+            huntSites.append("http://www.ikujav.com/search/"+dvdCode+"/feed/rss2")
+        if xbmcplugin.getSetting(int(sysarg), searching+"javst")=="true":
+            titles.append("javst")
+            huntSites.append("http://javst.net/search/"+dvdCode+"/feed/rss2")
+        if xbmcplugin.getSetting(int(sysarg), searching+"javlabels")=="true":
+            titles.append("javlabels")
+            huntSites.append("http://javlabels.com/search/"+dvdCode+"/feed/rss2")
+        if xbmcplugin.getSetting(int(sysarg), searching+"terlarang")=="true":
+            titles.append("terlarang")
+            huntSites.append("http://terlarang.net/search/"+dvdCode+"/feed/rss2")
+        if xbmcplugin.getSetting(int(sysarg), searching+"jav4k")=="true":
+            titles.append("jav4k")
+            huntSites.append("http://jav4k.net/moviesearch/"+dvdCode)
+        if xbmcplugin.getSetting(int(sysarg), searching+"javhub")=="true":
+            titles.append("javhub")
+            huntSites.append("http://javhub.net/search/"+dvdCodeClean)
+        if xbmcplugin.getSetting(int(sysarg), searching+"jav-onlines")=="true":
+            titles.append("jav-onlines")
+            huntSites.append("http://jav-onlines.com/search/"+dvdCode+"/feed/rss2")
+        if xbmcplugin.getSetting(int(sysarg), searching+"javeu")=="true":
+            titles.append("javeu")
+            huntSites.append("http://javeu.com/search/"+dvdCodeClean+"/feed/rss2")
+        if xbmcplugin.getSetting(int(sysarg), searching+"yebbun90")=="true":
+            titles.append("yebbun90")
+            huntSites.append("http://yebbun90.com/search/"+dvdCodeClean+"/feed/rss2")
+        if xbmcplugin.getSetting(int(sysarg), searching+"youpornjav")=="true":   
+            titles.append("youpornjav")
+            huntSites.append("http://www.youpornjav.com/sitemap.xml")
+        if xbmcplugin.getSetting(int(sysarg), searching+"javshow")=="true":
+            titles.append("javshow")
+            huntSites.append("http://javshow.net/sitemap.xml")
+        if xbmcplugin.getSetting(int(sysarg), searching+"eropoi")=="true":
+            titles.append("eropoi")
+            huntSites.append("http://eropoi.com/post-sitemap.xml")
+            huntSites.append("http://eropoi.com/post-sitemap.xml<javpage=2")
+            huntSites.append("http://eropoi.com/post-sitemap.xml<javpage=3")
+            # needs new sources adding
+        if xbmcplugin.getSetting(int(sysarg), searching+"jav720p")=="true":
+            titles.append("jav720p")
+            huntSites.append("http://jav720p.com/?s="+dvdCode+"&feed=rss2")
+        if xbmcplugin.getSetting(int(sysarg), searching+"korean720")=="true":
+            titles.append("korean720")
+            huntSites.append("http://korean720.com/?s="+dvdCode+"&feed=rss2")
+        if xbmcplugin.getSetting(int(sysarg), searching+"javstreams")=="true": 
+            titles.append("javstreams")
+            huntSites.append("http://javstreams.com/?s="+dvdCode+"&feed=rss2")
+        if xbmcplugin.getSetting(int(sysarg), searching+"javtv")=="true":
+            titles.append("javtv")
+            huntSites.append("http://javtv.org/?s="+dvdCode+"&feed=rss2")
+        if xbmcplugin.getSetting(int(sysarg), searching+"javstream365")=="true":
+            titles.append("javstream365")
+            #needs checking with uncensored
+            #needs new sources adding
+            huntSites.append("http://javstream365.com/?s="+dvdCode+"&feed=rss2")
+        if xbmcplugin.getSetting(int(sysarg), searching+"javabc")=="true":
+            titles.append("javabc")
+            huntSites.append("http://javabc.net/sitemap.xml")
+        if xbmcplugin.getSetting(int(sysarg), searching+"javhdvideo")=="true":
+            titles.append("havhdvideo")
+            huntSites.append("http://javhdvideo.net/sitemap.xml")
+        if xbmcplugin.getSetting(int(sysarg), searching+"javsex")=="true":
+            titles.append("javsex")
+            huntSites.append("http://javsex.net/?s="+dvdCode+"&feed=rss2")
+        if xbmcplugin.getSetting(int(sysarg), searching+"jpidols")=="true":
+            titles.append("jpidols")
+            huntSites.append("http://jpidols.tv/?s="+dvdCode+"&feed=rss2")
+            huntSites.append("http://jpidols.tv/?s="+udvdCode+"&feed=rss2")
+        if xbmcplugin.getSetting(int(sysarg), searching+"javfree")=="true":
+            titles.append("javhdfree")
+            huntSites.append("http://javhdfree.net/?s="+dvdCode+"&feed=rss2")
+            huntSites.append("http://javhdfree.net/?s="+udvdCode+"&feed=rss2")
+        if xbmcplugin.getSetting(int(sysarg), searching+"dojav69")=="true":
+            titles.append("dojav69")
+            huntSites.append("http://doojav69.com/?s="+dvdCode+"&feed=rss2")
+            huntSites.append("http://doojav69.com//?s="+udvdCode+"&feed=rss2")
+            
+    huntSites=unique(huntSites)  
+    updateString=" ".join(titles)
     # to be added in the future
     # -------------------------
-    # http://freenung-x.com
-    # http://javch.com
-    # http://javso.com
-    # http://jav68.tv/
-    # http://javpub.com/
-    # http://sexiz.net/
-    # http://sexvidx.tv/
-    # http://jporn4u.com/
-    # http://jav720p.com/
-    # http://javstreaming.net/
-    # http://javbabe.com/
-    # http://www.jav24.us/
-    # http://jamo.tv/
-    # http://vk.com/wall-55136440
-    # http://vk.com/videos-83300719?section=all
-    # http://vk.com/videos-69328374?section=all
-    # http://vk.com/videos-63032622?section=all
-    # http://newpornhome.com/
-    # http://playporn.to/
+    # javchan.com
+    # javcenso.com
+    # javuncen.me
     
+    
+    #p1=re.compile("http:\/\/(www.)?([a-zA-Z0-9-]*.[a-z]*)")
     p=re.compile("[http|https]*:\/\/(www.)?([a-zA-Z0-9-]*).")
-    p1=re.compile("http:\/\/(www.)?([a-zA-Z0-9-]*.[a-z]*)")
-    updateCounter=1
     updateBy=100/len(huntSites)
-    statusDialog=progressStart("Searching for streams", "Searching: "+re.search(p1, huntSites[0]).group(2))
-    # progressUpdate(pDialog, progress, status)
-    for site in huntSites:        
-        name=re.search(p, site).group(2)
-        progressUpdate(statusDialog, updateCounter*updateBy, "Searching: "+re.search(p1, site).group(2))
-        
-        found=whatPlayer(site, name, dvdCode)
-        counter=0
-        for page in found:
-            if name=="adult":
-                name="dodova"
-            if counter==0:
-                link=page
-                counter=1
-            else:
-                urls.append({"site":name, "source":page, "url":link})
-        updateCounter=updateCounter+1
-        if progressCancelled(statusDialog):
-            return False
+    
+    statusDialog=progressStart("Searching for streams", "Searching: "+str(updateTotal)+" out of "+str(len(huntSites))+" sites searched, please wait...")
+    progressUpdate(statusDialog, updateCounter*updateBy, "Searching: "+str(updateTotal)+" out of "+str(len(huntSites))+" sites searched, please wait...")
+    
+    threads=[threading.Thread(target=whatPlayer, args=(url, re.search(p, url).group(2), dvdCode,)) for url in huntSites]
+    for thread in threads:
+        thread.start()
+
+    while updateTotal<len(huntSites):
+        progressUpdate(statusDialog, updateCounter*updateBy, "Searching: "+str(updateTotal)+" out of "+str(len(huntSites))+" sites searched, please wait...")
+        if len(globalURLS)>0 and xbmcplugin.getSetting(int(sysarg), "autoplay")=="true":
+            progressCancelled(statusDialog)
+            break
+    
+    for thread in threads:
+        try:
+            thread.exit()
+        except:
+            pass
     
     counter=0
-    if len(urls)>0:
-        for url in urls:
+    if len(globalURLS)>0:
+        for url in globalURLS:
             counter=counter+1
             items.append({
                 "title": str(counter).zfill(2)+" | [B]"+url["site"]+"[/B] | "+url["source"],
@@ -488,27 +725,120 @@ def huntVideo(params):
                 "extras":url["source"],
                 "extras2":params["name"]
             })
+            if xbmcplugin.getSetting(int(sysarg), "autoplay")=="true":
+                myurl=getVideoURL(items[0])
+                playMedia(params["name"], params["poster"], myurl, "Video")
+                return False
         progressStop(statusDialog)
         addMenuItems(items)
     else:
         notify(ADDON_ID, "No Streams Found")
-        
+
+def unique(seq, idfun=None): 
+   # order preserving
+   if idfun is None:
+       def idfun(x): return x
+   seen = {}
+   result = []
+   for item in seq:
+       marker = idfun(item)
+       # in old Python versions:
+       # if seen.has_key(marker)
+       # but in new ones:
+       if marker in seen: continue
+       seen[marker] = 1
+       result.append(item)
+   return result
+   
 def translate(toTranslate):
     p1=re.compile(ur"[\u3000-\u303f\u3040-\u309f\u30a0-\u30ff\uff00-\uff9f\u4e00-\u9faf\u3400-\u4dbf]+ (?=[A-Za-z ]+–)", re.UNICODE)
     toTranslate=p1.sub("", toTranslate)
     
     if xbmcplugin.getSetting(int(sysarg), "translation")=="true":
         p=re.compile("(\[[A-Za-z0-9-_\ ]+\])")  
-        dvdCode=p.match(toTranslate.encode("utf-8")).group(1)
-
-        translated=client.TranslateText(toTranslate.replace(dvdCode, "").encode("utf-8"), 'ja', xbmcplugin.getSetting(int(sysarg), "language"))
-
-        return dvdCode+" "+translated.title().replace('"', '')
+        try:
+            dvdCode=p.match(toTranslate.encode("utf-8")).group(1)
+        except:
+            dvdCode=""
+        f={"to":xbmcplugin.getSetting(int(sysarg), "language"), "string": toTranslate.replace(dvdCode, "").encode("utf-8")}
+        translated=getURL("http://javstream.club/translate/translate.php?"+urllib.urlencode(f))
+        if translated==False:
+            return toTranslate
+        else:
+            return dvdCode+" "+translated.replace('"', '').title()
         
     return toTranslate
+
+def gravureIdols(params):
+    html=getURL(params['url'])
+    if html!=False:
+        if "#" not in params['url']:
+            all=extract(html, '<div id="mcTagMapNav">', '</div>')
+            letters=extractAll(all, '<a', '/a>')
+            items=[]
+            for letter in letters:
+                title=extract(letter, '>', '<')
+                if title!=None:
+                    items.append({
+                        "title": title,
+                        "url": params["url"]+"#"+title+"/0", 
+                        "mode":1002, 
+                        "poster":"default.jpg",
+                        "icon":"default.jpg", 
+                        "fanart":params["fanart"],
+                        "type":"", 
+                        "plot":"",
+                    })
+            addMenuItems(items) 
+        else:
+            details=params['url'].replace('http://ivhunter.com/idols-library/#', '')
+            letter=details.split("/")
+            page=letter[1]
+            letter=letter[0]
+            all=extract(html, '<h4 id="mctm-'+letter+'">'+letter+'</h4>', '</ul>')
+            idols=extractAll(all, '<a', 'a>')
+            items=[]
+            counter=0
+            pagination=0
+            for idol in idols:
+                if pagination>int(page)*20:
+                    poster="default.jpg"
+                    title=re.sub(r'([^\s\w]|_)+', '', extract(idol, 'title="', '"'))
+                  
+                    poster="default.png"
+                    if ".not.found" in poster:
+                        pass
+                    else:
+                        items.append({
+                            "title": title,
+                            "url": siteURL+'/category/idol', 
+                            "mode": 3, 
+                            "poster":poster,
+                            "icon":poster, 
+                            "fanart":params["fanart"],
+                            "type":"", 
+                            "plot":"",
+                            "extras":"force-search"
+                        })
+                        counter=counter+1
+                        if counter==20:
+                            break
+                pagination=pagination+1
+            if len(idols)>int(page)*20+1:
+                items.append({
+                    "title": "Next >",
+                    "url": 'http://ivhunter.com/idols-library/#'+letter+"/"+str(int(page)+1), 
+                    "mode": 1002, 
+                    "poster":os.path.join(home, 'resources/media', 'next.jpg'), 
+                    "icon":os.path.join(home, 'resources/media', 'next.jpg'), 
+                    "fanart":params["fanart"],
+                    "type":"", 
+                    "plot":"",
+                    "extras":"force-search"
+                })
+            addMenuItems(items) 
     
 def playMedia(title, thumbnail, link, mediaType='Video') :
-    #link = urlresolver.resolve("https://openload.co/embed/QjfigJGJKs8/")
     """Plays a video
 
     Arguments:
@@ -528,15 +858,20 @@ def playMedia(title, thumbnail, link, mediaType='Video') :
 def getVideoURL(params):
     #logError("getting "+params["url"].encode("utf-8"))
     videosource=getURL(params["url"].encode("utf-8"), hdr)
-    
-    """if params["extras"]=="videomega":
-        p=re.compile('src=[\'|"](http[s]*:\/\/videomega.[\S]*)[\'|"]')
-        link=urlresolver.resolve(re.search(p, videosource).group(1))
-        #link=re.compile(r"//(?:www\.)?openload\.(?:co|io)?/(?:embed|f)/([0-9a-zA-Z-_]+)", re.DOTALL | re.IGNORECASE).findall(videosource)
-        logError("resolvered url="+link)    
-        return link """
+    if "javeu.com" in params["url"]:
+        
+        p=re.compile('<td>'+params["extras"]+'[\S\s]*?href="([\S\s]*?)"')
+        videosource=getURL(re.search(p, videosource).group(1).encode("utf-8"), hdr)
+        p=re.compile('document\.write\(doit\("([\s\S]*?)"\)')
+        videosource=base64.b64decode(base64.b64decode(re.search(p, videosource).group(1)))
+    else:
+        videosource=getURL(params["url"].encode("utf-8"), hdr)
     
     link=False
+    if params["extras"]=="googlevideo (1080)" or  params["extras"]=="googlevideo (720)" or params["extras"]=="googlevideo (480)":
+        res=params["extras"].replace("googlevideo (", "").replace(")", "")
+        p=re.compile('<source src="([\S]*)" type="video\S*" data-res="'+res+'"\/>')
+        link=re.search(p, videosource).group(1)
     if params["extras"]=="openload":
         openloadurl = re.compile(r"//(?:www\.)?openload\.(?:co|io)?/(?:embed|f)/([0-9a-zA-Z-_]+)", re.DOTALL | re.IGNORECASE).findall(videosource)
         openloadlist = list(set(openloadurl))
@@ -557,7 +892,10 @@ def getVideoURL(params):
         #except:
         #    return
     elif params["extras"]=="videomega":
-        if re.search("videomega.tv/iframe.js", videosource, re.DOTALL | re.IGNORECASE):
+        if ".mp4" in videosource:
+            p=re.compile("SRC='([\s\S]*?)'")
+            link=re.search(p, videosource).group(1)
+        elif re.search("videomega.tv/iframe.js", videosource, re.DOTALL | re.IGNORECASE):
             hashref = re.compile("""javascript["']>ref=['"]([^'"]+)""", re.DOTALL | re.IGNORECASE).findall(videosource)
         elif re.search("videomega.tv/iframe.php", videosource, re.DOTALL | re.IGNORECASE):
             hashref = re.compile(r"iframe\.php\?ref=([^&]+)&", re.DOTALL | re.IGNORECASE).findall(videosource)
@@ -594,29 +932,10 @@ def getVideoURL(params):
 
         link = videourl
     elif params["extras"]=="videowood":
-        errorCounter=0
-        if "embedlink.info/videowood.php" in videosource:
-            try:
-                p=re.compile("(http:\/\/embedlink\.info\/videowood\.php\?url=\S*)[\"|']")
-                videosource2=getURL(re.search(p, videosource).group(1), hdr)
-                if "Base64.decode" in videosource:
-                    p=re.compile("Base64.decode\(\"(\S*)\"\)")
-                    videosource2=base64.b64decode(re.search(p, videosource2).group(1))
-                    p=re.compile('src=[\'|"](\S*)[\'|"]')
-                    videosource2=getURL(re.search(p, videosource2).group(1), hdr)
-            except:
-                pass
-        else:
-            p=re.compile(ur"videowood.[a-z]*\/embed\/([a-zA-Z0-9]*)")
-            videosource2=getURL("http://videowood.tv/embed/"+re.search(p, videosource).group(1), hdr)
-            if videosource2==False:
-                p=re.compile(ur"http[s]*:\/\/[w.]*videowood.tv\/video\/([a-zA-Z0-9]+)")
-                videosource2=getURL("http://videowood.tv/embed/"+re.search(p, videosource).group(1), hdr)
-            
-            matches=re.findall("(eval.function.p,a,c,k,e,.*?)\s*</script>", videosource2, flags=re.DOTALL )
-            data=unpackjs(matches[0])
-            pattern = r'"file"\s*:\s*"([^"]+/video/[^"]+)'
-            link=re.search(pattern, data, re.DOTALL).group(1)
+        vwurl = re.compile(r"//(?:www\.)?videowood\.tv/(?:embed|video)/([0-9a-zA-Z]+)", re.DOTALL | re.IGNORECASE).findall(videosource)
+        vwurl = 'http://www.videowood.tv/embed/' + vwurl[0]
+        vwsrc = getHtml(vwurl, params['url'])
+        link = videowood(vwsrc)
     elif params["extras"]=="flashx":
         flashxurl = re.compile(r"//(?:www\.)?flashx\.tv/(?:embed-)?([0-9a-zA-Z]+)", re.DOTALL | re.IGNORECASE).findall(videosource)
         flashxlist = list(set(flashxurl))
@@ -639,33 +958,99 @@ def getVideoURL(params):
         
         videourl = re.compile(r'\[{\s?file:\s?"([^"]+)",', re.DOTALL | re.IGNORECASE).findall(flashxujs)
         link = videourl[0]
+    elif params["extras"]=="googlevideo":
+        try: 
+            p=re.compile('src=[\'|"](http[s]*:\/\/googlevideo.[\S]*)[\'|"]')
+            link=re.search(p, videosource).group(1)
+        except:
+            try: 
+                p=re.compile('file: [\'|"](http[s]*:\/\/\S.*?googlevideo.\S.*?)[\'|"]')
+                link=re.search(p, videosource).group(1)
+            except:
+                logError("Failed getting google video")
+    elif params["extras"]=='streamin':
+        streaminurl = re.compile(r"//(?:www\.)?streamin\.to/(?:embed-)?([0-9a-zA-Z]+)", re.DOTALL | re.IGNORECASE).findall(videosource)
+        #logError(streaminurl[0])
+        streaminurl = 'http://streamin.to/embed-%s-670x400.html' % streaminurl[0]
+        streaminsrc = getURL(streaminurl)
+        videohash = re.compile('\?h=([^"]+)', re.DOTALL | re.IGNORECASE).findall(streaminsrc)
+        videourl = re.compile('image: "(http://[^/]+/)', re.DOTALL | re.IGNORECASE).findall(streaminsrc)
+        link = videourl[0] + videohash[0] + "/v.mp4"
     else:
         try:
             p=re.compile('src=[\'|"](http[s]*:\/\/'+params['extra']+'.[\S]*)[\'|"]')
             link=urlresolver.resolve(re.search(p, videosource).group(1))
         except:
-            logError("EXTRA equals NULL")
-    """elif params["extras"]=="streamin":
-        p=re.compile("(https?:\/\/[www.|.]*flashx.[a-z]*\/embed[a-zA-Z0-9-]*.html)")
-        url=re.search(p, videosource).group(1)
-        logError(url)
-        link=urlresolver.resolve(url)"""
-    """    link="http://5.79.81.106:8777/tkipfe5o6huzcg3h5gscbfhe22nk4ll7jtlkj3gv24o5dirajilhtayxgkiq/v.mp4"
-    elif params["extras"]=="googlevideo":
-        try:
-            p=re.compile('<source src="(\S*)"')
-            link=re.search(p, videosource).group(1)
-        except:
-            try:
-                quality=["360p", "720p", "1080p"]
-                for q in quality:
-                    p=re.compile('"file":"([a-zA-Z0-9:\/\.\-\=]*)","label":"'+q+'"')
-                    link=re.search(p, videosource).group(1)
-            except:
-                pass"""
-    logError(str(link))
+            pass
+    
     return link
 
+# videowood decode copied from: https://github.com/schleichdi2/OpenNfr_E2_Gui-5.3/blob/4e3b5e967344c3ddc015bc67833a5935fc869fd4/lib/python/Plugins/Extensions/MediaPortal/resources/hosters/videowood.py    
+def videowood(data):
+    parse = re.search('(....ωﾟ.*?);</script>', data)
+    if parse:
+        todecode = parse.group(1).split(';')
+        todecode = todecode[-1].replace(' ','')
+
+        code = {
+            "(ﾟДﾟ)[ﾟoﾟ]" : "o",
+            "(ﾟДﾟ) [return]" : "\\",
+            "(ﾟДﾟ) [ ﾟΘﾟ]" : "_",
+            "(ﾟДﾟ) [ ﾟΘﾟﾉ]" : "b",
+            "(ﾟДﾟ) [ﾟｰﾟﾉ]" : "d",
+            "(ﾟДﾟ)[ﾟεﾟ]": "/",
+            "(oﾟｰﾟo)": '(u)',
+            "3ﾟｰﾟ3": "u",
+            "(c^_^o)": "0",
+            "(o^_^o)": "3",
+            "ﾟεﾟ": "return",
+            "ﾟωﾟﾉ": "undefined",
+            "_": "3",
+            "(ﾟДﾟ)['0']" : "c",
+            "c": "0",
+            "(ﾟΘﾟ)": "1",
+            "o": "3",
+            "(ﾟｰﾟ)": "4",
+            }
+        cryptnumbers = []
+        for searchword,isword in code.iteritems():
+            todecode = todecode.replace(searchword,isword)
+        for i in range(len(todecode)):
+            if todecode[i:i+2] == '/+':
+                for j in range(i+2, len(todecode)):
+                    if todecode[j:j+2] == '+/':
+                        cryptnumbers.append(todecode[i+1:j])
+                        i = j
+                        break
+                        break
+        finalstring = ''
+        for item in cryptnumbers:
+            chrnumber = '\\'
+            jcounter = 0
+            while jcounter < len(item):
+                clipcounter = 0
+                if item[jcounter] == '(':
+                    jcounter +=1
+                    clipcounter += 1
+                    for k in range(jcounter, len(item)):
+                        if item[k] == '(':
+                            clipcounter += 1
+                        elif item[k] == ')':
+                            clipcounter -= 1
+                        if clipcounter == 0:
+                            jcounter = 0
+                            chrnumber = chrnumber + str(eval(item[:k+1]))
+                            item = item[k+1:]
+                            break
+                else:
+                    jcounter +=1
+            finalstring = finalstring + chrnumber.decode('unicode-escape')
+        stream_url = re.search('=\s*(\'|")(.*?)$', finalstring)
+        if stream_url:
+            return stream_url.group(2)
+    else:
+        return
+    
 def decodeOpenLoad(html):
     aastring = re.search(r"<video(?:.|\s)*?<script\s[^>]*?>((?:.|\s)*?)</script", html,
                          re.DOTALL | re.IGNORECASE).group(1)
@@ -766,49 +1151,73 @@ def base10toN(num, n):
         new_num_string = remainder_string + new_num_string
         current = current / n
     return new_num_string
-"""
-def decodeOpenLoad(html):
 
-    aastring = re.search(r"<video(?:.|\s)*?<script\s[^>]*?>((?:.|\s)*?)</script", html, re.DOTALL | re.IGNORECASE).group(1)
     
-    # decodeOpenLoad made by mortael, please leave this line for proper credit :)
-    aastring = aastring.replace("((ﾟｰﾟ) + (ﾟｰﾟ) + (ﾟΘﾟ))", "9")
-    aastring = aastring.replace("((ﾟｰﾟ) + (ﾟｰﾟ))","8")
-    aastring = aastring.replace("((ﾟｰﾟ) + (o^_^o))","7")
-    aastring = aastring.replace("((o^_^o) +(o^_^o))","6")
-    aastring = aastring.replace("((ﾟｰﾟ) + (ﾟΘﾟ))","5")
-    aastring = aastring.replace("(ﾟｰﾟ)","4")
-    aastring = aastring.replace("((o^_^o) - (ﾟΘﾟ))","2")
-    aastring = aastring.replace("(o^_^o)","3")
-    aastring = aastring.replace("(ﾟΘﾟ)","1")
-    aastring = aastring.replace("(+!+[])","1")
-    aastring = aastring.replace("(c^_^o)","0")
-    aastring = aastring.replace("(0+0)","0")
-    aastring = aastring.replace("(ﾟДﾟ)[ﾟεﾟ]","\\")
-    aastring = aastring.replace("(3 +3 +0)","6")
-    aastring = aastring.replace("(3 - 1 +0)","2")
-    aastring = aastring.replace("(!+[]+!+[])","2")
-    aastring = aastring.replace("(-~-~2)","4")
-    aastring = aastring.replace("(-~-~1)","3")
-    
-    decodestring = re.search(r"\\\+([^(]+)", aastring, re.DOTALL | re.IGNORECASE).group(1)
-    decodestring = "\\+"+ decodestring
-    decodestring = decodestring.replace("+","")
-    decodestring = decodestring.replace(" ","")
-    
-    decodestring = decode(decodestring)
-    decodestring = decodestring.replace("\\/","/")`
-
-    return videourl
-    videourl = re.search(r"vr\s?=\s?\"|'([^\"']+)", decodestring, re.DOTALL | re.IGNORECASE).group(1)
-"""
 def decode(encoded):
     for octc in (c for c in re.findall(r'\\(\d{2,3})', encoded)):
         encoded = encoded.replace(r'\%s' % octc, chr(int(octc, 8)))
     return encoded.decode('utf8')
 
-def getFavourites():
-    return favourites.getFavourites()
+def searchFilms(parameters):
+    find=searchDialog()
+    if search.inDatabase(find)==False:
+        search.addSearch(find)
+        xbmc.executebuiltin('Container.Refresh')
+    findVideos(parameters['url']+"?s="+find, True)
+
+def deleteSearch(params):
+    try:
+        if "single-delete" in params["extras"]:
+            runDelete=True
+    except:
+        runDelete= xbmcgui.Dialog().yesno("Confirm Delete","Are you sure you want to delete ALL search terms?")
+    if runDelete==True:
+        search.removeSearch(params)
+        xbmc.executebuiltin('Container.Refresh')
+    
+def searchMenu():
+    items=[]
+    items.append({
+        "title":"New Search", 
+        "url":siteURL+"/index.php", 
+        "mode":3, 
+        "poster":"none",
+        "icon":os.path.join(home, 'resources/media', 'search-main.jpg'), 
+        "fanart":os.path.join(home, '', 'fanart.jpg'),
+        "type":"", 
+        "plot":"",
+        "extras":"true-search"
+    })
+    items.append({
+        "title":"[COLOR yellow]Clear Search Terms[/COLOR]", 
+        "url":"delete-all", 
+        "mode":31, 
+        "poster":"none",
+        "icon":os.path.join(home, 'resources/media', 'search-main.jpg'), 
+        "fanart":os.path.join(home, '', 'fanart.jpg'),
+        "type":"", 
+        "plot":"",
+    })
+    savedSearch=search.getSearch()
+    savedSearch.sort()
+    for ss in savedSearch:
+        try:
+            if len(ss[0])>0:
+                items.append({
+                    "title":ss[0], 
+                    "url":siteURL+"/index.php", 
+                    "mode":3, 
+                    "poster":"none",
+                    "icon":os.path.join(home, 'resources/media', 'search-main.jpg'), 
+                    "fanart":os.path.join(home, '', 'fanart.jpg'),
+                    "type":"", 
+                    "plot":"",
+                    "extras":"force-search",
+                    "extras2":"db-search"
+                })
+        except:
+            pass
+    addMenuItems(items)
     
 def addContextItem(liz, name,script,arg):
     commands = []

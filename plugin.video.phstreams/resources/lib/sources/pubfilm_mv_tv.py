@@ -39,7 +39,7 @@ class source:
             query = self.moviesearch_link % (urllib.quote_plus(title))
             query = urlparse.urljoin(self.base_link, query)
 
-            result = client.source(query)
+            result = client.request(query)
             result = re.compile('showResult\((.*)\)').findall(result)[0]
             result = json.loads(result)
             result = result['feed']['entry']
@@ -79,7 +79,7 @@ class source:
             query = self.tvsearch_link
             query = urlparse.urljoin(self.base_link, query)
 
-            result = client.source(query)
+            result = client.request(query)
             result = re.compile('showResult\((.*)\)').findall(result)[0]
             result = json.loads(result)
             result = result['feed']['entry']
@@ -138,7 +138,7 @@ class source:
             try: url, episode = re.compile('(.+?)\?episode=(\d*)$').findall(url)[0]
             except: pass
 
-            result = client.source(url)
+            result = client.request(url)
 
             url = zip(client.parseDOM(result, 'a', ret='href', attrs = {'target': 'player_iframe'}), client.parseDOM(result, 'a', attrs = {'target': 'player_iframe'}))
             url = [(i[0], re.compile('(\d+)').findall(i[1])) for i in url]
@@ -152,7 +152,7 @@ class source:
             for u in links:
 
                 try:
-                    result = client.source(u)
+                    result = client.request(u)
                     result = re.findall('sources\s*:\s*\[(.+?)\]', result)[0]
                     result = re.findall('"file"\s*:\s*"(.+?)".+?"label"\s*:\s*"(.+?)"', result)
 

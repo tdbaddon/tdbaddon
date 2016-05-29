@@ -95,15 +95,28 @@ class sources:
             self.progressDialog.create(control.addonInfo('name'), '')
             self.progressDialog.update(0, control.lang(30515).encode('utf-8'), str(' '))
 
-            trailerMenu = control.lang(30516).encode('utf-8') if tvshowtitle == None else control.lang(30517).encode('utf-8')
-
-            infoMenu = control.lang(30502).encode('utf-8') if tvshowtitle == None else control.lang(30503).encode('utf-8')
-
             downloads = True if control.setting('downloads') == 'true' and not (control.setting('movie.download.path') == '' or control.setting('tv.download.path') == '') else False
 
-            meta = json.loads(meta)
+            systitle = urllib.quote_plus('%s (%s)' % (title, year) if tvshowtitle == None or season == None or episode == None else '%s S%02dE%02d' % (tvshowtitle, int(season), int(episode)))
+
+            sysname = urllib.quote_plus('%s (%s)' % (title, year) if tvshowtitle == None or season == None or episode == None else tvshowtitle)
+
+            sysaddon = sys.argv[0]
+
+            meta = meta2 = json.loads(meta)
+
+            mediatype = 'movie' if tvshowtitle == None else 'episode'
+
+            meta['mediatype'] = mediatype
+
+            try: meta.update({'trailer': '%s?action=trailer&name=%s' % (sysaddon, sysname)})
+            except: pass
+            try: meta2.update({'trailer': '%s?action=trailer&name=%s' % (sysaddon, sysname)})
+            except: pass
 
             try: del meta['year']
+            except: pass
+            try: del meta2['year']
             except: pass
 
             poster = meta['poster'] if 'poster' in meta else '0'
@@ -119,9 +132,8 @@ class sources:
             if control.setting('fanart') == 'true' and not fanart == '0': pass
             else: fanart = control.addonFanart()
 
-            systitle = urllib.quote_plus('%s (%s)' % (title, year) if tvshowtitle == None or season == None or episode == None else '%s S%02dE%02d' % (tvshowtitle, int(season), int(episode)))
-            sysname = urllib.quote_plus('%s (%s)' % (title, year) if tvshowtitle == None or season == None or episode == None else tvshowtitle)
-            sysimage, sysaddon = urllib.quote_plus(poster), sys.argv[0]
+            sysimage = urllib.quote_plus(poster)
+
 
             for i in range(len(self.sources)):
                 try:
@@ -136,24 +148,28 @@ class sources:
                     url = '%s?action=playItem&source=%s' % (sysaddon, syssource)
 
                     cm = []
+
                     cm.append((control.lang(30504).encode('utf-8'), 'RunPlugin(%s?action=queueItem)' % sysaddon))
 
                     if downloads == True:
                         cm.append((control.lang(30505).encode('utf-8'), 'RunPlugin(%s?action=download&name=%s&image=%s&source=%s)' % (sysaddon, systitle, sysimage, syssource)))
 
-                    cm.append((trailerMenu, 'RunPlugin(%s?action=trailer&name=%s)' % (sysaddon, sysname)))
-                    cm.append((infoMenu, 'Action(Info)'))
-                    cm.append((control.lang(30506).encode('utf-8'), 'RunPlugin(%s?action=refresh)' % sysaddon))
-                    cm.append((control.lang(30507).encode('utf-8'), 'RunPlugin(%s?action=openSettings)' % sysaddon))
-                    cm.append((control.lang(30508).encode('utf-8'), 'RunPlugin(%s?action=openPlaylist)' % sysaddon))
+                    cm.append((control.lang(30294).encode('utf-8'), 'RunPlugin(%s?action=refresh)' % sysaddon))
 
                     item = control.item(label=label, iconImage='DefaultVideo.png', thumbnailImage=thumb)
-                    try: item.setArt({'poster': poster, 'tvshow.poster': poster, 'season.poster': poster, 'banner': banner, 'tvshow.banner': banner, 'season.banner': banner})
+
+                    try: item.setArt({'icon': poster, 'thumb': poster, 'poster': poster, 'tvshow.poster': poster, 'season.poster': poster, 'banner': banner, 'tvshow.banner': banner, 'season.banner': banner})
                     except: pass
-                    item.setInfo(type='Video', infoLabels = meta)
+
+                    try: item.setInfo(type='video', infoLabels = meta)
+                    except: item.setInfo(type='video', infoLabels = meta2)
+
                     if not fanart == None: item.setProperty('Fanart_Image', fanart)
-                    item.setProperty('Video', 'true')
+
+                    item.setProperty('video', 'true')
+
                     item.addContextMenuItems(cm, replaceItems=True)
+
                     control.addItem(handle=int(sys.argv[1]), url=url, listitem=item, isFolder=False)
                 except:
                     pass

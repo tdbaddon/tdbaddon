@@ -1,13 +1,27 @@
 <strings>
+    <string id="20000">General</string>
+    <string id="20001">AutoPlay Videos</string>
+    <string id="20002">Download Paths</string>
+    <string id="20003">Video Download Path</string>
+    <string id="20004">Use JavPOP Proxy</string>
+    <string id="20005">Proxy (Use if you get Page Load errors)</string>
+    <string id="20006">Playback</string>
+    <string id="20007">Default View</string>
+    <string id="20008">Videos</string>
+    
     <string id="30000">Translation</string>
     <string id="30001">Enable Translation</string>
     <string id="30002">Select Language</string>
 	<string id="30003">Enable Fallback Font</string>
 	<string id="30942">Disabling translation may speed up menu load times.</string>
-	<string id="30943">If text isn't showing correctly, please either change you theme font </string>
-    <string id="30944">to Arial or install the Skin Font addon.</string>
+	<string id="30943">If text isn't showing correctly, please either change</string>
+    <string id="30944">you theme font to Arial or install the Skin Font addon.</string>
 	
-	<string id="40000">Sources</string>
+	<string id="40000">Censored Sources</string>
+    <string id="41000">Uncensored Sources</string>
+    <string id="42000">Gravure Sources</string>
+    <string id="43000">Search Sources</string>
+    
 	<string id="40001">Sexloading</string>
 	<string id="40002">IVhunter</string>
 	<string id="40003">Javhdonline</string>
@@ -32,4 +46,18 @@
     <string id="40022">Jav-onlines</string>
     <string id="40023">JavEU</string>
     <string id="40024">Yebbun90</string>
+    <string id="40025">YouPornJav</string>
+    <string id="40026">JavShow</string>
+    <string id="40027">EroPoi</string>
+    <string id="40028">Jav720p</string>
+    <string id="40029">Korean720</string>
+    <string id="40030">JAVStreams</string>
+    <string id="40031">JavTV</string>
+    <string id="40032">JavStream365</string>
+    <string id="40033">JavABC</string>
+    <string id="40034">JavHDVideo</string>
+    <string id="40035">JavSex</string>
+    <string id="40036">JPIdols TV</string>
+    <string id="40037">JAVHDFree</string>
+    <string id="40038">DooJav69</string>
 </strings>

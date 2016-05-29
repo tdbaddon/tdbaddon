@@ -22,7 +22,6 @@
 import re,urllib,urlparse
 
 from resources.lib.modules import cleantitle
-from resources.lib.modules import cloudflare
 from resources.lib.modules import client
 from resources.lib.modules import cache
 from resources.lib.modules import directstream
@@ -59,7 +58,7 @@ class source:
 
     def dizibox_tvcache(self):
         try:
-            result = cloudflare.source(self.base_link)
+            result = client.request(self.base_link)
 
             result = client.parseDOM(result, 'input', {'id': 'filterAllCategories'})[0]
             result = client.parseDOM(result, 'li')
@@ -91,12 +90,12 @@ class source:
                 url = [i[0] for i in url if title == i[1]][-1]
                 url = urlparse.urljoin(self.base_link, url)
 
-                result = cloudflare.source(url)
+                result = client.request(url)
 
                 if not season == '1':
                     url = client.parseDOM(result, 'a', ret='href', attrs = {'class': 'season-.+?'})
                     url = [i for i in url if '/%s-sezon-' % season in i][0]
-                    result = cloudflare.source(url)
+                    result = client.request(url)
 
                 url = client.parseDOM(result, 'a', ret='href')
                 url = [i for i in url if '%s-sezon-%s-bolum-' % (season, episode) in i][0]
@@ -107,7 +106,7 @@ class source:
 
             url = urlparse.urljoin(self.base_link, url)
 
-            result = cloudflare.source(url)
+            result = client.request(url)
             result = re.sub(r'[^\x00-\x7F]+','', result)
 
             url = re.compile('(<a.*?</a>)', re.DOTALL).findall(result)
@@ -115,7 +114,7 @@ class source:
             url = [(i[0][0], i[1][0]) for i in url if len(i[0]) > 0 and len(i[1]) > 0]
             url = [i[0] for i in url if i[1] == 'Altyazsz'][0]
 
-            result = cloudflare.source(url)
+            result = client.request(url)
             result = re.sub(r'[^\x00-\x7F]+','', result)
  
             headers = {'Referer': url}
@@ -124,7 +123,7 @@ class source:
             url = client.parseDOM(url, 'iframe', ret='src')[0]
             url = client.replaceHTMLCodes(url)
 
-            url = cloudflare.source(url, headers=headers)
+            url = client.request(url, headers=headers)
             url = client.parseDOM(url, 'param', ret='value', attrs = {'name': 'flashvars'})[0]
             url = urllib.unquote_plus(url)
             url = 'http://ok.ru/video/%s' % urlparse.parse_qs(urlparse.urlparse(url).query)['mid'][0]

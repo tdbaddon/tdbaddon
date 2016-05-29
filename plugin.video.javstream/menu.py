@@ -1,15 +1,21 @@
-import urllib, os
+import sys, urllib, os
 import xbmc, xbmcplugin, xbmcgui, xbmcaddon
 
+sysarg=str(sys.argv[1])
 ADDON_ID='plugin.video.javstream'
 addon=xbmcaddon.Addon(id=ADDON_ID)
 home=xbmc.translatePath(addon.getAddonInfo('path').decode('utf-8'))
+
+if xbmcplugin.getSetting(int(sysarg), "proxy")=="true":
+    siteURL="http://javstream.club/repress/javpop.com"
+else:
+    siteURL="http://javpop.com"
 
 # the main menu structure
 mainMenu=[
     {
         "title":"Latest JAV Censored", 
-        "url":"http://javpop.com/category/censored", 
+        "url":siteURL+"/category/censored", 
         "mode":4, 
         "poster":"none",
         "icon":os.path.join(home, 'resources/media', 'jav-latest.jpg'), 
@@ -18,7 +24,7 @@ mainMenu=[
         "plot":""
     }, {
         "title":"Latest JAV Uncensored", 
-        "url":"http://javpop.com/category/uncensored", 
+        "url":siteURL+"/category/uncensored", 
         "mode":4, 
         "poster":"none",
         "icon":os.path.join(home, 'resources/media', 'jav-latest.jpg'), 
@@ -27,7 +33,7 @@ mainMenu=[
         "plot":""
     }, {
         "title":"Latest Gravure", 
-        "url":"http://javpop.com/category/idol", 
+        "url":siteURL+"/category/idol", 
         "mode":4, 
         "poster":"none",
         "icon":os.path.join(home, 'resources/media', 'gravure-latest.jpg'), 
@@ -36,7 +42,7 @@ mainMenu=[
         "plot":""
     }, {
         "title":"Search", 
-        "url":"http://javpop.com/index.php", 
+        "url":siteURL+"/index.php", 
         "mode":3, 
         "poster":"none",
         "icon":os.path.join(home, 'resources/media', 'search-main.jpg'), 
@@ -129,7 +135,7 @@ javMenu=[
     },
     {
         "title":"Search",
-        "url":"http://javpop.com/category/censored, http://javpop.com/category/uncensored",
+        "url":siteURL+"/category/censored, "+siteURL+"/category/uncensored",
         "mode":3,
         "poster":"none",
         "icon":os.path.join(home, 'resources/media', 'jav-search.jpg'), 
@@ -153,9 +159,9 @@ gravureMenu=[
     },
     {
         "title":"Idols",
-        "url":"genre-link",
-        "mode":5,
-        "poster":"",
+        "url":"http://ivhunter.com/idols-library/",
+        "mode":1002,
+        "poster":os.path.join(home, 'resources/media', 'gravure-idols.jpg'),
         "icon":os.path.join(home, 'resources/media', 'gravure-idols.jpg'), 
         "fanart":os.path.join(home, '', 'fanart.jpg'),
         "type":"", 
@@ -183,7 +189,7 @@ gravureMenu=[
     },
     {
         "title":"Search",
-        "url":"http://javpop.com/category/idol",
+        "url":siteURL+"/category/idol",
         "mode":3,
         "poster":"none",
         "icon":os.path.join(home, 'resources/media', 'gravure-search.jpg'), 

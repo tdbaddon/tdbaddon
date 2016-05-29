@@ -1,4 +1,63 @@
 -----------------------------------
+JAVStream v0.90.6(27nd May 2016)
+-----------------------------------
+
+- Added setting option to manually change video view
+- Added contect menu to allow current view to become the default view
+
+-----------------------------------
+JAVStream v0.90.5(22nd May 2016)
+-----------------------------------
+
+- Add a proxy for Javpop to get around ISPs blocking it
+- Tidied some debug code left in by mistake
+
+-----------------------------------
+JAVStream v0.90.4(22nd May 2016)
+-----------------------------------
+
+- Fixed issue which stopping saved searching and translations from working
+
+-----------------------------------
+JAVStream v0.90.3(22nd May 2016)
+-----------------------------------
+
+- Fixed issue which stopped database from being created
+
+-----------------------------------
+JAVStream v0.90.2(22nd May 2016)
+-----------------------------------
+
+- Fixed spelling mistake on DooJav69
+
+-----------------------------------
+JAVStream v0.90.1(22nd May 2016)
+-----------------------------------
+
+- Added threaded search to help speed things up
+- Added ability to save and delete search terms
+- Fixed streamin playback
+- Rewrote translation so as to use less Bing character uses
+- Added DoJav69
+
+-----------------------------------
+JAVStream v0.9(4th May 2016)
+-----------------------------------
+
+- Added YouPornJav, JavShow, EroPoi, Jav720p, Korean720, JavStreams, JavTV, JavStream365, JavABC, JavHDVideo, JavSex and JPIdols to sites searched
+- Added configuration for Uncensored, Censored, Gravure and Global Search
+- Added a download features
+- Added auto play
+- Fixed Next button image
+- Fixed VideoWood playback
+
+-----------------------------------
+JAVStream v0.8.6(26th March 2016)
+-----------------------------------
+
+- Fixed issue with playback from javeu.com
+
+-----------------------------------
 JAVStream v0.8.5(7th March 2016)
 -----------------------------------
 

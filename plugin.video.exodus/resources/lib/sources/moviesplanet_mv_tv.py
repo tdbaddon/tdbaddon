@@ -48,7 +48,7 @@ class source:
             post = {'q': title.rsplit(':', 1)[0], 'limit': '10', 'timestamp': int(time.time() * 1000), 'verifiedCheck': ''}
             post = urllib.urlencode(post)
 
-            result = client.source(url, post=post, headers=headers)
+            result = client.request(url, post=post, headers=headers)
             result = json.loads(result)
 
             title = cleantitle.get(title)
@@ -58,14 +58,14 @@ class source:
 
             if len(result) > 1:
                 result = [(i, urlparse.urljoin(self.base_link, i['permalink'])) for i in result]
-                result = [(i[0], str(client.source(i[1]))) for i in result]
+                result = [(i[0], str(client.request(i[1]))) for i in result]
                 result = [(i[0], re.compile('/(tt\d+)').findall(i[1])) for i in result]
                 result = [i[0] for i in result if len(i[1]) > 0 and imdb == i[1][0]]
 
             result = result[0]['permalink']
 
             atr = urlparse.urljoin(self.base_link, result)
-            atr = client.source(atr)
+            atr = client.request(atr)
             atr = client.parseDOM(atr, 'p')
             atr = [i for i in atr if 'Released:' in i][0]
             atr = client.parseDOM(atr, 'a')[0]
@@ -91,7 +91,7 @@ class source:
             post = {'q': tvshowtitle.rsplit(':', 1)[0], 'limit': '10', 'timestamp': int(time.time() * 1000), 'verifiedCheck': ''}
             post = urllib.urlencode(post)
 
-            result = client.source(url, post=post, headers=headers)
+            result = client.request(url, post=post, headers=headers)
             result = json.loads(result)
 
             tvshowtitle = cleantitle.get(tvshowtitle)
@@ -101,14 +101,14 @@ class source:
 
             if len(result) > 1:
                 result = [(i, urlparse.urljoin(self.base_link, i['permalink'])) for i in result]
-                result = [(i[0], str(client.source(i[1]))) for i in result]
+                result = [(i[0], str(client.request(i[1]))) for i in result]
                 result = [(i[0], re.compile('/(tt\d+)').findall(i[1])) for i in result]
                 result = [i[0] for i in result if len(i[1]) > 0 and imdb == i[1][0]]
 
             result = result[0]['permalink']
 
             atr = urlparse.urljoin(self.base_link, result)
-            atr = client.source(atr)
+            atr = client.request(atr)
             atr = client.parseDOM(atr, 'p')
             atr = [i for i in atr if 'Published:' in i][0]
             atr = client.parseDOM(atr, 'a')[0]
@@ -166,12 +166,12 @@ class source:
             post = {'username': self.user, 'password': self.password, 'action': 'login'}
             post = urllib.urlencode(post)
 
-            cookie = client.source(login, post=post, headers=headers, output='cookie')
+            cookie = client.request(login, post=post, headers=headers, output='cookie')
 
 
             url = urlparse.urljoin(self.base_link, url)
 
-            result = client.source(url, cookie=cookie)
+            result = client.request(url, cookie=cookie)
 
             url = re.compile("embeds\[\d+\]\s*=\s*'([^']+)").findall(result)[0]
             url = client.parseDOM(url, 'iframe', ret='src')[0]
@@ -190,7 +190,7 @@ class source:
                 pass
 
             try:
-                result = client.source(url)
+                result = client.request(url)
 
                 result = re.compile('sources\s*:\s*\[(.*?)\]', re.DOTALL).findall(result)[0]
                 result = re.compile('''['"]*file['"]*\s*:\s*['"]*([^'"]+).*?['"]*label['"]*\s*:\s*['"]*([^'"]+)''', re.DOTALL).findall(result)
@@ -198,24 +198,18 @@ class source:
                 pass
 
             try:
-                u = a = result[0][0]
-                if not 'download.php' in u and not '.live.' in u: raise Exception()
-                o = urllib2.build_opener(NoRedirection)
-                o.addheaders = [('User-Agent', client.randomagent()), ('Cookie', cookie)]
-                r = o.open(u)
-                try: u = r.headers['Location']
-                except: pass
-                r.close()
-                if a == u: raise Exception()
-                links += [(u, '1080p', 'cdn')]
+                u = [i[0] for i in result if i[1] == 'HD'][0]
+                if 'moviesplanet.' in u: raise Exception()
+                links += [(u, 'HD', 'cdn')]
             except:
                 pass
             try:
                 u = [(i[0], re.sub('[^0-9]', '', i[1])) for i in result]
                 u = [(i[0], i[1]) for i in u if i[1].isdigit()]
+
                 links += [(i[0], '1080p', 'gvideo') for i in u if int(i[1]) >= 1080]
                 links += [(i[0], 'HD', 'gvideo') for i in u if 720 <= int(i[1]) < 1080]
-                links += [(i[0], 'SD', 'gvideo') for i in u if 480 <= int(i[1]) < 720]
+                links += [(i[0], 'SD', 'gvideo') for i in u if 1 <= int(i[1]) < 720]
             except:
                 pass
 

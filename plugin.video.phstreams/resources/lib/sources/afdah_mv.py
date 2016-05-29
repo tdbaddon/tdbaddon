@@ -37,7 +37,7 @@ class source:
             query = self.search_link % (urllib.quote_plus(title))
             query = urlparse.urljoin(self.base_link, query)
 
-            result = client.source(query)
+            result = client.request(query)
 
             title = cleantitle.get(title)
             years = ['%s' % str(year)]
@@ -74,7 +74,7 @@ class source:
 
             url = urlparse.urljoin(self.base_link, '/video_info/iframe')
 
-            result = client.source(url, post=post, headers=headers, referer=referer)
+            result = client.request(url, post=post, headers=headers, referer=referer)
 
             result = re.compile('"(\d+)"\s*:\s*"([^"]+)').findall(result)
             result = [(urllib.unquote(i[1].split('url=')[-1]), i[0])  for i in result]

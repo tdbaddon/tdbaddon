@@ -87,7 +87,7 @@ class source:
             query = self.search_link % urllib.quote_plus(query)
             query = urlparse.urljoin(self.base_link, query)
 
-            result = client.source(query)
+            result = client.request(query)
 
             result = client.parseDOM(result, 'div', attrs = {'id': 'post-\d+'})
             result = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a'), client.parseDOM(i, 'a', attrs = {'title': 'posting time.+?'}), client.parseDOM(i, 'a', attrs = {'rel': 'category tag'})) for i in result]
@@ -118,7 +118,7 @@ class source:
             for i in result:
                 try:
                     r = client.replaceHTMLCodes(i[0])
-                    r = client.source(r)
+                    r = client.request(r)
                     r = client.parseDOM(r, 'p')
                     r = [(client.parseDOM(x, 'a', attrs = {'rel': 'nofollow'}), client.parseDOM(x, 'strong')) for x in r]
                     r = [(x[0], len(x[0]), len(x[1])) for x in r]
