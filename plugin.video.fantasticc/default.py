@@ -504,8 +504,8 @@ def GET_LINK(url, collections, url2):
     elif 'redtube' in url2:
         match = re.compile('(http://www.redtube.com/.+?)"').findall(html)
         html = get_html(match[0])
-        match = re.compile('p=([^&]+)').findall(html)
-        fetchurl = urllib.unquote(match[-1]) # get highest quality
+        match = re.compile('(http:[^"]+\.mp4[^"]+)').findall(html)
+        fetchurl = urllib.unquote(match[0])
         xbmc.log('fetchurl: %s' % fetchurl)
         return fetchurl
     elif 'tube8' in url2:
@@ -517,13 +517,12 @@ def GET_LINK(url, collections, url2):
         xbmc.log('fetchurl: %s' % fetchurl)
         return fetchurl
     elif 'you_porn' in url2:
-        match = re.compile('href="(http://www.youporn.com/watch/[^"]+)"'
+        match = re.compile('"(http://www.youporn.com/watch/[^"]+)"'
                           ).findall(html)
         for gurl in match:
             urlget2 = gurl
         html = get_html(urlget2)
-        match = re.compile('video[^>]+src = \'([^\']+mp4[^\']+)\';'
-                          ).findall(html)
+        match = re.compile('video[^>]+src="([^"]+)').findall(html)
         for each in match:
             fetchurl = each.replace('&amp;', '&')
         xbmc.log('fetchurl: %s' % fetchurl)

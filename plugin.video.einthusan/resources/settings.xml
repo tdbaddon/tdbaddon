@@ -1,0 +1,4 @@
+<settings>
+   <setting id="username" type="text" label="3002" default="" />
+   <setting id="password" type="text" option="hidden" label="3003" enable="!eq(-1,)" default="" />
+</settings>

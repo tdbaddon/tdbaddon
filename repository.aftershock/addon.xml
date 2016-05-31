@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="repository.aftershock" name="Aftershock addons" version="1.3.0" provider-name="IDev">
+	<extension point="xbmc.addon.repository" name="Aftershock add-on repository">
+		<dir>
+			<info compressed="false">https://raw.githubusercontent.com/vineegu/aftershock-repo/master/addons.xml</info>
+			<checksum>https://raw.githubusercontent.com/vineegu/aftershock-repo/master/addons.xml.md5</checksum>
+			<datadir zip="true">https://raw.githubusercontent.com/vineegu/aftershock-repo/master/releases</datadir>
+		</dir>
+		<info compressed="false">https://offshoregit.com/vineegu/aftershock-repo/addons.xml</info>
+		<checksum>https://offshoregit.com/vineegu/aftershock-repo/addons.xml.md5</checksum>
+		<datadir zip="true">https://offshoregit.com/vineegu/aftershock-repo/releases</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Install video addons from Aftershock</summary>
+		<description>Download and install video addons from Aftershock Adddon repository.</description>
+		<disclaimer>The video add-ons hosted by add-ons repository(Aftershock add-ons) makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties, including without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights. Further, video add-ons don't warrant or make any representations concerning the accuracy, likely results, or reliability of the use of the materials on the Internet web site where from data is retrieved or otherwise relating to such materials or on any sites linked to this addon. Videos are streamed directly from video-hosting websites that are having full rights to remove such access to video if required.</disclaimer>
+		<platform>all</platform>
+	</extension>
+</addon>
+

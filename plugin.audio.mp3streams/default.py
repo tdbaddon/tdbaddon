@@ -299,7 +299,7 @@ def search_songs(query):
     match = re.compile('<tr class="song"><td class="song__play_button"><a class="player__play_btn js_play_btn" href="#" rel="(.+?)" title="Play track" /></td><td class="song__name song__name--search"><a class="song__link" href="(.+?)">(.+?)</a>(.+?)song__link" href="(.+?)">(.+?)</a>(.+?)<a class="song__link" href="(.+?)">(.+?)</a>').findall(link)
     for id,songurl,song,d1,artisturl,artist,d2,albumurl,album in match:
         iconimage = ""
-        url = 'https://listen2.musicmp3.ru/' + id # 'http://files.musicmp3.ru/lofi/' + id
+        url = 'https://listen.musicmp3.ru/' + id # 'http://files.musicmp3.ru/lofi/' + id
         #url = 'http://listen.musicmp3.ru/2f99f4bf4ce7b171/' + id
         title = "%s - %s - %s" % (artist.replace('&amp;','and'), song.replace('&amp;','&'), album.replace('&amp;','&'))
         addDirAudio(title,url,10,iconimage,song,artist,album,'','')
@@ -361,7 +361,7 @@ def find_url(id):
                 if urlid == id:
                     return url
     else:
-        return 'http://listen.musicmp3.ru/1d6c13041066bed9/'
+        return 'https://listen.musicmp3.ru/1d6c13041066bed9/'
 			
 
 def play_album(name, url, iconimage,mix,clear):
@@ -433,7 +433,7 @@ def play_album(name, url, iconimage,mix,clear):
                 except:
                     url = find_url(trn).strip() + id
             else:
-                url = 'https://listen2.musicmp3.ru/' + id #'http://files.musicmp3.ru/lofi/' + id #find_url(trn).strip() + id
+                url = 'https://listen.musicmp3.ru/' + id #'http://files.musicmp3.ru/lofi/' + id #find_url(trn).strip() + id
 
             songname = songname.replace('&amp;', 'and')
             if 'musicmp3' in origurl:
@@ -480,7 +480,7 @@ def play_album(name, url, iconimage,mix,clear):
             except:
                 url = find_url(trn).strip() + id
         else:
-            url = 'https://listen2.musicmp3.ru/' + id  #'http://files.musicmp3.ru/lofi/' + id #find_url(trn).strip() + id
+            url = 'https://listen.musicmp3.ru/' + id  #'http://files.musicmp3.ru/lofi/' + id #find_url(trn).strip() + id
 
         songname = songname.replace('&amp;', 'and')
         if 'musicmp3' in origurl:
@@ -627,7 +627,7 @@ def download_album(url,name,iconimage):
         album = album.replace('&amp;', 'and')
         trn = track.replace('track','')
         #url = find_url(trn).strip() + id
-        url = 'https://listen2.musicmp3.ru/' + id #'http://files.musicmp3.ru/lofi/' + id
+        url = 'https://listen.musicmp3.ru/' + id #'http://files.musicmp3.ru/lofi/' + id
         playlist.append(songname)
         title = "%s. %s" % (track.replace('track',''), songname)
         artist_path = create_directory(MUSIC_DIR, artist)
@@ -635,7 +635,7 @@ def download_album(url,name,iconimage):
         list_data = "%s<>%s<>%s<>%s<>%s%s" % (album_path,artist,album,trn,title,'.mp3')
         download_lock = create_file(MUSIC_DIR, "downloading.txt")
         local_filename = album_path + '/' + title + '.mp3'
-        headers = {'Host':'listen2.musicmp3.ru', 'Range':'bytes=0-', 'User-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:44.0) Gecko/20100101 Firefox/44.0', 'Accept':'audio/webm,audio/ogg,audio/wav,audio/*;q=0.9,application/ogg;q=0.7,video/*;q=0.6,*/*;q=0.5','Referer':'https://www.goldenmp3.ru'}
+        headers = {'Host':'listen.musicmp3.ru', 'Range':'bytes=0-', 'User-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:44.0) Gecko/20100101 Firefox/44.0', 'Accept':'audio/webm,audio/ogg,audio/wav,audio/*;q=0.9,application/ogg;q=0.7,video/*;q=0.6,*/*;q=0.5','Referer':'https://www.goldenmp3.ru'}
         r = requests.get(url, headers=headers, stream=True)
         with open(local_filename, 'wb') as f:
             for chunk in r.iter_content(chunk_size=1024): 

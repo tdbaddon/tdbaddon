@@ -1,0 +1,515 @@
+[B]Version 4.8.1[/B]
+   added Pi sports, few channels are down and few working
+[B]Version 4.8.0[/B]
+   added GTV, few channels are down and few working
+[B]Version 4.7.9[/B]
+   Icon fixed in Shows folers
+[B]Version 4.7.8[/B]
+   fix noor tv but not all CF channels going to work.
+[B]Version 4.7.7[/B]
+   Fixed PTC sports and category filtering
+[B]Version 4.7.6[/B]
+   Fixed yellow channels and wiseplay urls
+[B]Version 4.7.5[/B]
+   Added mona in sports
+[B]Version 4.7.4[/B]
+   removed few non working folders and updated willow
+[B]Version 4.7.3[/B]
+   Enable Categories in saveral sports directories
+[B]Version 4.7.2[/B]
+   Willow update
+[B]Version 4.7.1[/B]
+   just repeat
+[B]Version 4.7.0[/B]
+   added wtv source
+[B]Version 4.6.9[/B]
+   crichd is back, not all channels are working
+[B]Version 4.6.8[/B]
+   relaxed filters for unitv and ptc etc in sports section
+[B]Version 4.6.7[/B]
+   WillowTv live games
+[B]Version 4.6.6[/B]
+   Updated ipbox,ditto
+[B]Version 4.6.5[/B]
+   SS disabled/removed and update pv2
+
+[B]Version 4.6.4[/B]
+   SS disabled/removed
+[B]Version 4.6.3[/B]
+   sports365 now dynamically updates
+[B]Version 4.6.2[/B]
+   uktvnow now dynamically updates
+
+[B]Version 4.6.1[/B]
+   uktvnow another small fix lols
+[B]Version 4.6.0[/B]
+   uktvnow another small fix
+[B]Version 4.5.9[/B]
+   uktvnow small fix
+[B]Version 4.5.8[/B]
+    365 and uktvnow back
+[B]Version 4.5.7[/B]
+    365 updated 
+[B]Version 4.5.6[/B]
+    365 is back
+[B]Version 4.5.5[/B]
+    uktvnow
+
+[B]Version 4.5.4[/B]
+    smart and pv2
+
+[B]Version 4.5.3[/B]
+    uktv
+[B]Version 4.5.2[/B]
+    DM issue
+[B]Version 4.5.1[/B]
+    yupp asia cup
+[B]Version 4.5.0[/B]
+    uktv user
+[B]Version 4.4.9[/B]
+    uktv caching
+[B]Version 4.4.8[/B]
+    streams retry improved
+[B]Version 4.4.7[/B]
+    uktv upate
+[B]Version 4.4.6[/B]
+    365 site restructuring
+[B]Version 4.4.5[/B]
+    uktv
+[B]Version 4.4.4[/B]
+    ipbox url hiding
+[B]Version 4.4.3[/B]
+    ipbox url hiding
+[B]Version 4.4.2[/B]
+    365 time bug
+[B]Version 4.4.1[/B]
+    365 improved
+[B]Version 4.4.0[/B]
+    retry in Streams in sports section
+[B]Version 4.3.9[/B]
+    retry in Streams in sports section
+[B]Version 4.3.8[/B]
+    useragent for pv2
+[B]Version 4.3.7[/B]
+    Added sport365, removed streams till we fix it properly
+[B]Version 4.3.6[/B]
+    Ipbox Improved still in beta
+[B]Version 4.3.5[/B]
+    SS is back
+[B]Version 4.3.4[/B]
+    SS is back
+[B]Version 4.3.3[/B]
+    -yp caching, v7 and ipbox off
+    
+[B]Version 4.3.2[/B]
+    -pv2 random us
+    
+[B]Version 4.3.1[/B]
+    -Yp source added in Pakistani, Indian and Punjabi channels
+    
+[B]Version 4.3.0[/B]
+    -pv2 sports back
+    
+[B]Version 4.2.9[/B]
+    -v3 channels are back, also ipbox enabled on requests
+[B]Version 4.2.8[/B]
+    -ditto channels manual
+[B]Version 4.2.7[/B]
+    -Ipbox removed
+[B]Version 4.2.6[/B]
+    -Ipbox
+[B]Version 4.2.5[/B]
+    -CF Added
+    
+[B]Version 4.2.4[/B]
+    -first time install blank folders
+[B]Version 4.2.3[/B]
+    -little bug
+[B]Version 4.2.2[/B]
+    -little bug
+[B]Version 4.2.1[/B]
+    -better ptc decoding
+    
+[B]Version 4.2.0[/B]
+    -PTC fixed and ary zindagi and other ary channels
+    
+[B]Version 4.1.9[/B]
+    -willow, check for error
+    
+[B]Version 4.1.8[/B]
+    -SS is back...but hardcoded ids
+    
+[B]Version 4.1.7[/B]
+    -KTN news
+    
+[B]Version 4.1.6[/B]
+    -movies section
+    
+[B]Version 4.1.5[/B]
+    -sports section reshuffle, removed few
+    
+[B]Version 4.1.4[/B]
+    -added caching support for faster channel list
+[B]Version 4.1.3[/B]
+    -added v8
+[B]Version 4.1.2[/B]
+    -duplication removed
+[B]Version 4.1.1[/B]
+    -added v7
+    
+[B]Version 4.1.0[/B]
+    -v3.v6 updated colours and settings to turn them off
+    
+[B]Version 4.0.9[/B]
+    -v3 updated and p3g/streams updated in sports
+[B]Version 4.0.8[/B]
+    -v3 updated
+[B]Version 4.0.7[/B]
+    -sports section updated for smartcric and crifree
+    
+[B]Version 4.0.6[/B]
+    -v5 updated retry logic
+[B]Version 4.0.5[/B]
+    -v5 updated
+
+[B]Version 4.0.4[/B]
+    -DM bug
+
+[B]Version 4.0.3[/B]
+    -retry bug
+    
+[B]Version 4.0.2[/B]
+    -retry login for v5 and updated link for external source 
+    
+[B]Version 4.0.1[/B]
+    -removed sports not working, added support for v5 to get it from external place 
+    
+[B]Version 3.9.9[/B]
+    -added v5 channels, and new additionm in sports 
+    
+[B]Version 3.9.8[/B]
+    -added back green v4, Makkah and Madinah youtube live
+    
+[B]Version 3.9.7[/B]
+    -updated sports channels
+    
+[B]Version 3.9.6[/B]
+    -merged yellow and green channels together
+    -smartcric fixed
+    -added See TV
+
+    
+[B]Version 3.9.4[/B]
+    -fixed yellow channels
+    -fixed ebound video source
+    - added support for VidRail
+
+
+[B]Version 3.9.4[/B]
+few v4 channels, not all working
+
+[B]Version 3.9.3[/B]
+Stop normal green for time being
+
+
+[B]Version 3.9.2[/B]
+Implemented CF check
+
+[B]Version 3.9.1[/B]
+Added Shows and Programs link
+
+[B]Version 3.9.0[/B]
+ads optimisation again
+
+[B]Version 3.8.9[/B]
+ads optimisation
+
+
+[B]Version 3.8.8[/B]
+Updated Pv2, v3 and greeen
+
+[B]Version 3.8.7[/B]
+undo v3 mistake
+
+[B]Version 3.8.6[/B]
+better WL condition
+
+[B]Version 3.8.5[/B]
+V3 added
+
+[B]Version 3.8.3[/B]
+WL highlights bug fixed
+
+[B]Version 3.8.3[/B]
+WL highlights
+
+
+[B]Version 3.8.2[/B]
+WL highlights
+
+
+[B]Version 3.8.1[/B]
+Waseeb and news one added from their sites
+
+
+[B]Version 3.8.0[/B]
+WC 24x7 and few SSport
+
+
+[B]Version 3.7.5[/B]
+crichd fixed
+
+[B]Version 3.7.4[/B]
+watchric fixed
+
+[B]Version 3.7.3[/B]
+fixed smart tv
+
+
+[B]Version 3.7.2[/B]
+changed url
+
+[B]Version 3.7.1[/B]
+using swf now
+
+
+[B]Version 3.7.0[/B]
+Fixed sss
+
+
+[B]Version 3.6.6[/B]
+Fixed ads
+
+[B]Version 3.6.5[/B]
+Fixed pv2
+
+[B]Version 3.6.4[/B]
+Playwire fix
+
+
+[B]Version 3.6.3[/B]
+Small bug fix
+
+[B]Version 3.6.2[/B]
+added Streams and cricfree
+
+
+[B]Version 3.6.1[/B]
+added Bol and Geo etc, plus the sports section
+
+[B]Version 3.6.0[/B]
+added Bol and Geo etc, plus the sports section
+
+B]Version 3.5.9[/B]
+bigfix
+
+B]Version 3.5.8[/B]
+Added punjabi channels
+
+B]Version 3.5.7[/B]
+smart cric fix
+
+B]Version 3.5.6[/B]
+Fixed ads channel
+
+
+[B]Version 3.5.5[/B]
+fixed crichd and watchcric
+
+[B]Version 3.5.4[/B]
+add qtv
+
+[B]Version 3.5.3[/B]
+added channel24 and bol new yellow section (low quality)
+
+[B]Version 3.5.2[/B]
+icon updated
+
+[B]Version 3.5.1[/B]
+Added SSS in sports section
+
+[B]Version 3.5.0[/B]
+updated willow index and a settings to turn off Yellow channels
+
+
+[B]Version 3.4.9[/B]
+updates sports, removed some, updated some
+
+[B]Version 3.4.8[/B]
+Mac-change randomized
+
+
+[B]Version 3.4.7[/B]
+Mac-change and smartcric
+
+[B]Version 3.4.6[/B]
+added geo entertainment for EB
+
+[B]Version 3.4.5[/B]
+added alt sports
+
+
+B]Version 3.4.4[/B]
+greens channels back. another try
+
+B]Version 3.4.3[/B]
+greens channels back. thanks to arif
+
+B]Version 3.4.2[/B]
+-smartcric url changed
+
+B]Version 3.4.1[/B]
+- streamify links in smartcric modified
+
+B]Version 3.4.0[/B]
+- p3g links are now dynamic
+
+B]Version 3.3.9[/B]
+- smartcric with static ip
+
+B]Version 3.3.8[/B]
+- updated sports and indian
+
+B]Version 3.3.7[/B]
+- updated, green channels
+
+B]Version 3.3.6[/B]
+- updated, green channels vanished
+
+B]Version 3.3.5[/B]
+- green channels stopping fix, p3glinks updated and thanks to Gujjal, pope links too
+
+B]Version 3.3.4[/B]
+- encoding and couple more channels
+
+B]Version 3.3.3[/B]
+- website changed again
+
+B]Version 3.3.2[/B]
+- added more missing channels :)
+
+B]Version 3.3.1[/B]
+- added those channels :)
+
+B]Version 3.3.0[/B]
+- website changed noshows
+
+B]Version 3.2.9[/B]
+- Added some more channels
+
+B]Version 3.2.8[/B]
+- Added cricHD
+
+B]Version 3.2.7[/B]
+- Start sports added and expres channels
+
+B]Version 3.2.6[/B]
+- Enable willow but with login only
+
+B]Version 3.2.5[/B]
+- Indians channel and watch cricket added
+
+B]Version 3.2.4[/B]
+- quick fix, with better link
+
+B]Version 3.2.3[/B]
+- quick fix, with better link
+
+
+
+[B]Version 1.0[/B]
+- First version 1
+[B]Version 1.1.0[/B]
+- Fixed some bugs about folder names and zip files and naming etc
+[B]Version 1.1.2[/B]
+- Fixed some bugs about folder names and zip files and naming etc
+[B]Version 1.2.0[/B]
+- Updated live channels, seems better now
+[B]Version 2.0.0[/B]
+- Implemented RTMP streaming now.
+- Option to select which steam to play as well as the default select
+
+[B]Version 2.1.0[/B]
+- Support for Gotham
+
+[B]Version 2.2.0[/B]
+- Reading streams from the source-eboundservices
+
+[B]Version 2.2.1[/B]
+- Fixed dependencie
+[B]Version 2.2.2[/B]
+- Progress bars etc while streaming
+[B]Version 2.2.3[/B]
+- house cleaning
+[B]Version 2.2.4[/B]
+- Timeout specified while live streaming
+[B]Version 2.2.5[/B]
+- Fixed Favourite bug, now you can add links to favourites and run it
+[B]Version 2.2.6[/B]
+- Fixed the recent in the streaming site change done by you know who!
+[B]Version 2.2.7[/B]
+- Small bug in next page
+[B]Version 2.2.9[/B]
+- change on the website reflected in the addon
+[B]Version 2.3.0[/B]
+- Gotham dependencies
+[B]Version 2.3.1[/B]
+- added ARY Digital and news in eb section
+[B]Version 2.3.1[/B]
+- Removed Common
+[B]Version 2.4.0[/B]
+- Added "Other" source
+[B]Version 2.4.1[/B]
+- Added Babytv
+[B]Version 2.4.2[/B]
+- Added StarGold
+[B]Version 2.4.3[/B]
+- fixed dunya news hd in other
+
+[B]Version 2.4.4[/B]
+- fixed newsone
+
+[B]Version 2.4.5[/B]
+- added manual ary and expressnews
+
+[B]Version 2.4.6[/B]
+- removed non working wmv channels
+[B]Version 2.4.7[/B]
+- Fixed sorting and added some new channels in zem section
+
+[B]Version 3.0.0[/B]
+- Support for "All sources" in the settings and context menu. if default source is not available then it will show all available. Also added Playwire video playing support too.
+B]Version 3.0.1[/B]
+- 
+
+B]Version 3.0.1[/B]
+- Added ETV Urdu and Ary zindagi
+B]Version 3.0.2[/B]
+- Added Sky sports and few test channels
+B]Version 3.0.3[/B]
+- some tweaks
+B]Version 3.0.4[/B]
+- update v2 links
+B]Version 3.0.6[/B]
+- Fixed new outlook of Zem, added support for ebound video
+B]Version 3.0.7[/B]
+- Fixed DM source
+B]Version 3.0.8[/B]
+- Updated caption problem
+B]Version 3.0.8[/B]
+- updated sky v2 links
+B]Version 3.1.0[/B]
+- updated sky v2 links
+B]Version 3.1.1[/B]
+- removed test links
+B]Version 3.1.2[/B]
+- fixed the running from fav.
+B]Version 3.1.3[/B]
+- fixed shows  not appearing
+B]Version 3.2.0[/B]
+- changed the live urls...
+B]Version 3.2.1[/B]
+- minor effort in hiding the links..
+B]Version 3.2.2[/B]
+- quick fix, with whatever is available.
+reversed... go at the top

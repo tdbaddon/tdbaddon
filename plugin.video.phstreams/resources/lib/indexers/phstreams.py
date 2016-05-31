@@ -568,9 +568,9 @@ class resolver:
             title = meta['title']
 
             try:
-                if not '.f4m'in url: raise Exception()
+                if not any(i in url for i in ['.f4m', '.ts']): raise Exception()
                 ext = url.split('?')[0].split('&')[0].split('|')[0].rsplit('.')[-1].replace('/', '').lower()
-                if not ext == 'f4m': raise Exception()
+                if not ext in ['f4m', 'ts']: raise Exception()
                 from resources.lib.modules.f4mproxy.F4mProxy import f4mProxyHelper
                 return f4mProxyHelper().playF4mLink(url, title, None, None, '', icon)
             except:
@@ -651,15 +651,14 @@ class resolver:
             pass
 
         try:
-            if not '.m3u8'in url: raise Exception()
+            if not any(i in url for i in ['.m3u8', '.f4m', '.ts']): raise Exception()
             ext = url.split('?')[0].split('&')[0].split('|')[0].rsplit('.')[-1].replace('/', '').lower()
-            if not ext == 'm3u8': raise Exception()
+            if not ext in ['m3u8', 'f4m', 'ts']: raise Exception()
             try: dialog.close()
             except: pass
             return url
         except:
             pass
-
 
         try:
             preset = re.findall('<preset>(.+?)</preset>', url)[0]
@@ -671,7 +670,7 @@ class resolver:
 
             direct = False
 
-            presetDict = ['primewire_mv_tv', 'watchfree_mv_tv', 'movie25_mv', 'watchseries_tv', 'afdah_mv', 'dayt_mv_tv', 'dizibox_tv', 'dizigold_tv', 'miradetodo_mv', 'moviebox_mv', 'onemovies_mv_tv', 'onlinedizi_tv', 'pelispedia_mv_tv', 'pubfilm_mv_tv', 'putlocker_mv_tv', 'rainierland_mv', 'sezonlukdizi_tv', 'showbox_tv', 'tunemovie_mv', 'xmovies_mv']
+            presetDict = ['primewire_mv_tv', 'watchfree_mv_tv', 'movie25_mv', 'watchseries_tv', 'afdah_mv', 'dayt_mv_tv', 'dizibox_tv', 'dizigold_tv', 'miradetodo_mv', 'onlinedizi_tv', 'pelispedia_mv_tv', 'pubfilm_mv_tv', 'putlocker_mv_tv', 'rainierland_mv', 'sezonlukdizi_tv', 'tunemovie_mv', 'xmovies_mv']
 
             if preset == 'searchsd': presetDict = ['primewire_mv_tv', 'watchfree_mv_tv', 'movie25_mv', 'watchseries_tv']
 

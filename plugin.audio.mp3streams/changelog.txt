@@ -1,3 +1,6 @@
+1.2.1
+Fixed playback
+
 1.2.0
 Fixed playback
 Fixed downloads

@@ -1,3 +1,6 @@
+[B]3.0.8[/B]
+Fixed resolving issues
+
 [B]3.0.7[/B]
 Fixed cartoons
 

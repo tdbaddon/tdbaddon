@@ -554,7 +554,7 @@ class Downloader(threading.Thread):
 
      def downloadFile(self):
          try:
-             headers = {'Host':'listen2.musicmp3.ru', 'Range':'bytes=0-', 'User-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:44.0) Gecko/20100101 Firefox/44.0', 'Accept':'audio/webm,audio/ogg,audio/wav,audio/*;q=0.9,application/ogg;q=0.7,video/*;q=0.6,*/*;q=0.5','Referer':'https://www.goldenmp3.ru'}
+             headers = {'Host':'listen.musicmp3.ru', 'Range':'bytes=0-', 'User-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:44.0) Gecko/20100101 Firefox/44.0', 'Accept':'audio/webm,audio/ogg,audio/wav,audio/*;q=0.9,application/ogg;q=0.7,video/*;q=0.6,*/*;q=0.5','Referer':'https://www.goldenmp3.ru'}
 
              xbmcgui.Window(10000).setProperty(PROPERTY % self.slot, 'Downloading')
 
