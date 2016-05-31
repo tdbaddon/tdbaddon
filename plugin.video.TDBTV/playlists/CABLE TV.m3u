@@ -8,7 +8,7 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 0
 
 #EXTINF:0,ABC 
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/4601.ts
+0
 
 #EXTINF:0,ABC Family 
 0
@@ -17,13 +17,13 @@ http://cp.dmbshare.net:8000/live/francesco2/francesco2/4601.ts
 0
 
 #EXTINF:0,AMC 
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/4602.ts
+0
 
 #EXTINF:0,AXN 
 0
 
 #EXTINF:0,AXS
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/4588.ts
+0
 
 #EXTINF:0,BabyTV 
 0
@@ -51,9 +51,6 @@ http://cp.dmbshare.net:8000/live/francesco2/francesco2/4588.ts
 
 #EXTINF:0,Cartoon Network 
 http://91.202.196.24:8002/play/a009
-
-#EXTINF:0,Cartoon Network 
-http://54.255.155.24:1935//Live/_definst_/sweetbcha1novD28_W_150.sdp/playlist.m3u8
 
 #EXTINF:0,CBC TV 
 0
@@ -125,7 +122,7 @@ http://54.255.155.24:1935//Live/_definst_/sweetbcha1novD28_W_150.sdp/playlist.m3
 0
 
 #EXTINF:0,Disney Channel 
-http://212.200.125.5:8199/199
+0
 
 #EXTINF:0,Disney Junior 
 0
@@ -161,13 +158,13 @@ http://212.200.125.5:8199/199
 0
 
 #EXTINF:0,Food Network 
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/4614.ts
+0
 
 #EXTINF:0,Fox 1 
 0
 
 #EXTINF:0,Fox Crime 
-http://37.59.25.38:8000/live/Wqq93u85Lv/dJ6vR8cKlx/1138.ts
+0
 
 #EXTINF:0,Fox Life 
 0
@@ -266,13 +263,13 @@ http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
 http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
 
 #EXTINF:0,NBC 
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/4578.ts
+0
 
 #EXTINF:0,Nick 
 0
 
 #EXTINF:0,Nick Jr 
-http://212.200.125.5:8546/546
+0
 
 #EXTINF:0,Nickelodeon 
 http://stream-06.vty.dailymotion.com/26/dc/1/50b7998806361d3ecc0138cc/51a76de19473995ffc000235/live.isml/events/live-audio%3D64000-video%3D681000.m3u8
@@ -308,10 +305,7 @@ http://llnw.live.qvc.simplestream.com/hera/remote/qvcuk_primary_sdi6/3/prog_inde
 http://llnw.live.qvc.simplestream.com/hera/remote/qvcuk_primary_sdi8/3/prog_index.m3u8
 
 #EXTINF:0,Showtime 
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/4581.ts
-
-#EXTINF:0,Showtime 
-http://80.80.160.168/live/7/live.m3u8
+0
 
 #EXTINF:0,Sky 1 
 0
@@ -338,10 +332,10 @@ http://80.80.160.168/live/7/live.m3u8
 0
 
 #EXTINF:0,Spike TV 
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/4579.ts
+0
 
 #EXTINF:0,Syfy 
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/4593.ts
+0
 
 #EXTINF:0,TBS 
 0
@@ -350,10 +344,10 @@ http://cp.dmbshare.net:8000/live/francesco2/francesco2/4593.ts
 0
 
 #EXTINF:0,TLC 
-http://80.80.160.168/live/2/live.m3u8
+0
 
 #EXTINF:0,TNT 
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/4571.ts
+0
 
 #EXTINF:0,Tom & Jerry TV 
 0
