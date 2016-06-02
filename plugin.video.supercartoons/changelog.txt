@@ -1,5 +1,10 @@
 
 
+[COLOR chartreuse]1.0.19: 2nd June 2016[/COLOR]
+  - fixed due to changes at website
+  - removed Most Popular and Most  Recent sections (no longer available on website)
+
+
 [COLOR chartreuse]1.0.18: 4th May 2016[/COLOR]
   - Star Wars release
   - fixed due to changes at website

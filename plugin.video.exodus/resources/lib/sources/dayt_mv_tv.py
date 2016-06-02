@@ -29,6 +29,7 @@ from resources.lib.modules import directstream
 
 class source:
     def __init__(self):
+        self.domains = ['dayt.se']
         self.base_link = 'http://dayt.se'
         self.search_link = '/forum/search.php?do=process'
         self.forum_link = '/forum/forum.php'

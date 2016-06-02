@@ -19,6 +19,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>
 
 import urllib, urllib2, sys, re, os, random, unicodedata, cookielib, shutil
 import xbmc, xbmcgui, xbmcplugin, xbmcaddon, requests, base64
+import checkaddon
 
 plugin_handle = int(sys.argv[1])
 mysettings = xbmcaddon.Addon(id = 'plugin.video.ccloudtv')
@@ -77,6 +78,7 @@ def make_request():
 
 			
 def main():
+	#checkaddon.do_block_check()
 	addDir('[COLOR royalblue][B]***Latest Announcements***[/B][/COLOR]', yt, 3, '%s/announcements.png'% iconpath, fanart)
 	addDir('[COLOR red][B]Search[/B][/COLOR]', 'searchlink', 99, '%s/search.png'% iconpath, fanart)
 	if len(CCLOUDTV_SRV_URL) > 0:	

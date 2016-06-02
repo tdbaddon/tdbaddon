@@ -75,7 +75,7 @@ class navigator:
 
         from resources.lib.modules import cache
         from resources.lib.modules import changelog
-        cache.get(changelog.get, 600000000, control.addonInfo('version'), table='changelog')
+        #cache.get(changelog.get, 600000000, control.addonInfo('version'), table='changelog')
 
 
     def movies(self):
@@ -245,6 +245,7 @@ class navigator:
 
 
     def endDirectory(self, cacheToDisc=True):
+        #control.do_block_check(False)
         control.directory(int(sys.argv[1]), cacheToDisc=cacheToDisc)
 
 

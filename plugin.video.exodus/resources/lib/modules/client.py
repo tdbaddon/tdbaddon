@@ -24,7 +24,7 @@ import re,sys,cookielib,urllib,urllib2,urlparse,HTMLParser,time,random
 from resources.lib.modules import cache
 
 
-def request(url, close=True, error=False, proxy=None, post=None, headers=None, mobile=False, limit=None, referer=None, cookie=None, output='', timeout='30'):
+def request(url, close=True, redirect=True, error=False, proxy=None, post=None, headers=None, mobile=False, limit=None, referer=None, cookie=None, output='', timeout='30'):
     try:
         handlers = []
 
@@ -33,11 +33,13 @@ def request(url, close=True, error=False, proxy=None, post=None, headers=None, m
             opener = urllib2.build_opener(*handlers)
             opener = urllib2.install_opener(opener)
 
+
         if output == 'cookie' or output == 'extended' or not close == True:
             cookies = cookielib.LWPCookieJar()
             handlers += [urllib2.HTTPHandler(), urllib2.HTTPSHandler(), urllib2.HTTPCookieProcessor(cookies)]
             opener = urllib2.build_opener(*handlers)
             opener = urllib2.install_opener(opener)
+
 
         try:
             if sys.version_info < (2, 7, 9): raise Exception()
@@ -49,6 +51,7 @@ def request(url, close=True, error=False, proxy=None, post=None, headers=None, m
             opener = urllib2.install_opener(opener)
         except:
             pass
+
 
         try: headers.update(headers)
         except: headers = {}
@@ -72,14 +75,28 @@ def request(url, close=True, error=False, proxy=None, post=None, headers=None, m
         elif not cookie == None:
             headers['Cookie'] = cookie
 
+
+        if redirect == False:
+
+            class NoRedirection(urllib2.HTTPErrorProcessor):
+                def http_response(self, request, response): return response
+
+            opener = urllib2.build_opener(NoRedirection)
+            opener = urllib2.install_opener(opener)
+
+            try: del headers['Referer']
+            except: pass
+
+
         request = urllib2.Request(url, data=post, headers=headers)
+
 
         try:
             response = urllib2.urlopen(request, timeout=int(timeout))
         except urllib2.HTTPError as response:
 
             if response.code == 503:
-                if 'cf-browser-verification' in response.read():
+                if 'cf-browser-verification' in response.read(5242880):
 
                     netloc = '%s://%s' % (urlparse.urlparse(url).scheme, urlparse.urlparse(url).netloc)
 
@@ -97,6 +114,7 @@ def request(url, close=True, error=False, proxy=None, post=None, headers=None, m
             elif error == False:
                 return
 
+
         if output == 'cookie':
             try: result = '; '.join(['%s=%s' % (i.name, i.value) for i in cookies])
             except: pass
@@ -109,7 +127,7 @@ def request(url, close=True, error=False, proxy=None, post=None, headers=None, m
             elif not limit == None:
                 result = (str(response.code), response.read(int(limit) * 1024))
             else:
-                result = (str(response.code), response.read())
+                result = (str(response.code), response.read(5242880))
 
         elif output == 'chunk':
             try: content = int(response.headers['Content-Length'])
@@ -123,7 +141,7 @@ def request(url, close=True, error=False, proxy=None, post=None, headers=None, m
             try: cookie = cf
             except: pass
             content = response.headers
-            result = response.read()
+            result = response.read(5242880)
             return (result, headers, content, cookie)
 
         elif output == 'geturl':
@@ -139,7 +157,7 @@ def request(url, close=True, error=False, proxy=None, post=None, headers=None, m
             elif not limit == None:
                 result = response.read(int(limit) * 1024)
             else:
-                result = response.read()
+                result = response.read(5242880)
 
         if close == True:
             response.close()
@@ -154,7 +172,7 @@ def parseDOM(html, name=u"", attrs={}, ret=False):
 
     if isinstance(html, str):
         try:
-            html = [html.decode("utf-8")] # Replace with chardet thingy
+            html = [html.decode("utf-8")]
         except:
             html = [html]
     elif isinstance(html, unicode):
@@ -174,7 +192,7 @@ def parseDOM(html, name=u"", attrs={}, ret=False):
         lst = []
         for key in attrs:
             lst2 = re.compile('(<' + name + '[^>]*?(?:' + key + '=[\'"]' + attrs[key] + '[\'"].*?>))', re.M | re.S).findall(item)
-            if len(lst2) == 0 and attrs[key].find(" ") == -1:  # Try matching without quotation marks
+            if len(lst2) == 0 and attrs[key].find(" ") == -1:
                 lst2 = re.compile('(<' + name + '[^>]*?(?:' + key + '=' + attrs[key] + '.*?>))', re.M | re.S).findall(item)
 
             if len(lst) == 0:
@@ -183,7 +201,7 @@ def parseDOM(html, name=u"", attrs={}, ret=False):
             else:
                 test = range(len(lst))
                 test.reverse()
-                for i in test:  # Delete anything missing from the next list.
+                for i in test:
                     if not lst[i] in lst2:
                         del(lst[i])
 
@@ -201,11 +219,9 @@ def parseDOM(html, name=u"", attrs={}, ret=False):
                 for tmp in attr_lst:
                     cont_char = tmp[0]
                     if cont_char in "'\"":
-                        # Limit down to next variable.
                         if tmp.find('=' + cont_char, tmp.find(cont_char, 1)) > -1:
                             tmp = tmp[:tmp.find('=' + cont_char, tmp.find(cont_char, 1))]
 
-                        # Limit to the last quotation mark
                         if tmp.rfind(cont_char, 1) > -1:
                             tmp = tmp[1:tmp.rfind(cont_char)]
                     else:
@@ -291,7 +307,7 @@ def cfcookie(netloc, ua, timeout):
         try:
             response = urllib2.urlopen(request, timeout=int(timeout))
         except urllib2.HTTPError as response:
-            result = response.read()
+            result = response.read(5242880)
 
         jschl = re.findall('name="jschl_vc" value="(.+?)"/>', result)[0]
 

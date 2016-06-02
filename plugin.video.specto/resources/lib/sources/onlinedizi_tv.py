@@ -22,6 +22,8 @@
 import re,urllib,urlparse,base64
 from resources.lib.libraries import client
 from resources.lib.libraries import client2
+from resources.lib.libraries import control
+
 from resources.lib.libraries import cache
 from resources.lib.libraries import cleantitle
 
@@ -95,6 +97,7 @@ class source:
             result = re.sub(r'[^\x00-\x7F]+','', result)
             result = client.parseDOM(result, 'div', attrs = {'class': 'video-player'})[0]
             result = client.parseDOM(result, 'iframe', ret='src')[-1]
+            control.log('RRRR %s' % result)
 
             try:
                 url = base64.b64decode(urlparse.parse_qs(urlparse.urlparse(result).query)['id'][0])
@@ -104,20 +107,23 @@ class source:
                 url = urllib.unquote_plus(url.decode('string-escape'))
 
                 frame = client.parseDOM(url, 'iframe', ret='src')
+                control.log('RRRR frame %s' % frame)
 
-                if len(frame) > 0: url = [client.source(frame[-1], output='geturl')]
+                if len(frame) > 0:
+                    url = [client2.http_get(frame[-1], allow_redirect = False)]
                 else: url = re.compile('"(.+?)"').findall(url)
                 url = [i for i in url if 'ok.ru' in i or 'vk.com' in i or 'openload.co' in i][0]
 
             try: url = 'http://ok.ru/video/%s' % urlparse.parse_qs(urlparse.urlparse(url).query)['mid'][0]
             except: pass
 
-            if 'openload.co' in url: host = 'openload.co' ; direct = False ; url = [{'url': url, 'quality': 'HD'}]
-            elif 'ok.ru' in url: host = 'vk' ; direct = True ; url = resolvers.request(url)
-            elif 'vk.com' in url: host = 'vk' ; direct = True ; url = resolvers.request(url)
+            if 'openload.co' in url: host = 'openload.co' ; direct = False ; url = [{'url': resolvers.request(url), 'quality': 'HD'}]
+            elif 'ok.ru' in url: host = 'vk' ; direct = True ;url = [{'url': resolvers.request(url), 'quality': 'HD'}]
+            elif 'vk.com' in url: host = 'vk' ; direct = True ; url = [{'url': resolvers.request(url), 'quality': 'HD'}]
             else: raise Exception()
 
             for i in url: sources.append({'source': host, 'quality': i['quality'], 'provider': 'Onlinedizi', 'url': i['url'], })
+
 
             return sources
         except:

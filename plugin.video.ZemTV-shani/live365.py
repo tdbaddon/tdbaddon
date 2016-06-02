@@ -51,7 +51,7 @@ def tr(param1 , param2 , param3):
     return param1;
 
 def swapme(st, fromstr , tostr):
-    st=st.replace(tostr,"___")
+    st=st.replace(tostr,"___") 
     st=st.replace(fromstr,tostr)
     st=st.replace("___", fromstr)
     return st
@@ -59,8 +59,8 @@ def swapme(st, fromstr , tostr):
      
 def decode(encstring):
     encstring=tr(encstring ,114,65)
-    mc_from="MD7cXIZxt5B61RHbN8dovGzW3C"
-    mc_to="myilk4UpJfYLgn0u9eQwsVaT2="
+    mc_from="0BwtxmczunMQR6vVlND3LXa4oA"
+    mc_to="p9U1bsyZIHf8YWg5GiJ2Tekd7="
     if 1==2:#encstring.endswith("!"):
         encstring=encstring[:-1]
         mc_from="ngU08IuldVHosTmZz9kYL2bayE"
@@ -316,7 +316,7 @@ def selectMatch(url):
                     import jscrypto
                     lnk=jscrypto.decode(enclink["ct"],kkey,enclink["s"].decode("hex"))
                     
-                    #print lnk
+                    print lnk
                     enclink=lnk
                 #enclink=enclink[0]
                 #print 'enclink',enclink

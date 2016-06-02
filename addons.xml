@@ -689,7 +689,7 @@ Plugin by @koderdude</description>
 
 <addon id="plugin.video.ccloudtv"
        name="cCloud TV"
-       version="1.4.7"
+       version="1.4.7d"
        provider-name="podgod, Coder Alpha">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -723,7 +723,7 @@ Plugin by @koderdude</description>
 
 <addon id="plugin.video.channelpear"
        name="channel PEAR"
-       version="1.5"
+       version="1.5d"
        provider-name="podgod">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -1082,7 +1082,7 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
   </extension>
 </addon>
 
-<addon id="plugin.video.exodus" version="1.3.3" name="Exodus" provider-name="Exodus">
+<addon id="plugin.video.exodus" version="1.3.6" name="Exodus" provider-name="Exodus">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="repository.exodus" version="1.0.0" />
@@ -1139,7 +1139,7 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
 
 <addon id="plugin.video.fantasticc"
        name="Fantasti.cc"
-       version="2.3.27"
+       version="2.3.28"
        provider-name="xbmc-adult">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
@@ -1482,7 +1482,7 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
 	</extension>
 </addon>
 
-<addon id="plugin.video.livemix" name="Live Mix" version="1.0.2" provider-name="MetalKettle">
+<addon id="plugin.video.livemix" name="Live Mix" version="1.0.4" provider-name="MetalKettle">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.addon.common" version="2.0.0" />
@@ -2003,7 +2003,7 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
   <extension point="xbmc.service" library="service.py" start="login" />
 </addon>
 
-<addon id="plugin.video.phstreams" name="Phoenix" version="3.0.8" provider-name="tvaddons.ag">
+<addon id="plugin.video.phstreams" name="Phoenix" version="3.1.0" provider-name="tvaddons.ag">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.pyxbmct" version="1.1.4" />
@@ -2053,7 +2053,7 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
   </extension>
 </addon>
 
-<addon id="plugin.video.prosport" name="Pro Sport" version="0.50" provider-name="gerikss, podgod, iCanuck">
+<addon id="plugin.video.prosport" name="Pro Sport" version="0.50d" provider-name="gerikss, podgod, iCanuck">
   <requires>
     <import addon="xbmc.python" version="2.1.0" />
      <import addon="script.module.requests" version="2.9.1" />
@@ -2069,7 +2069,7 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
   </extension>
 </addon>
 
-<addon id="plugin.video.roggerstream" name="Rogger Stream" version="4.0.1" provider-name="Rogger Henrique, Cleiton Leonel Creton, Filipe Carvalho e Marcos Alvarenga">
+<addon id="plugin.video.roggerstream" name="Rogger Stream" version="4.0.2" provider-name="Rogger Henrique, Cleiton Leonel Creton, Filipe Carvalho e Marcos Alvarenga">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
   </requires>
@@ -2156,7 +2156,7 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
   </extension>
 </addon>
 
-<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2016.05.10.7" provider-name="mrknow" >
+<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2016.06.01.3" provider-name="mrknow" >
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.requests" version="1.0.0" />
@@ -2230,7 +2230,7 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
   </extension>
 </addon>
 
-<addon id="plugin.video.supercartoons" name="Super Cartoons" version="1.0.18" provider-name="spoyser">
+<addon id="plugin.video.supercartoons" name="Super Cartoons" version="1.0.19" provider-name="spoyser">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
   </requires>
@@ -2490,7 +2490,7 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
   </extension>
 </addon>
 
-<addon id="plugin.video.tvondesizonexl" name="TV on DESI ZONE" version="2.8.9"
+<addon id="plugin.video.tvondesizonexl" name="TV on DESI ZONE" version="2.8.10"
 	provider-name="ajdeveloped/jchirag">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
@@ -2580,7 +2580,7 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
   </extension>
 </addon>
 
-<addon id="plugin.video.ukturk" name="UK Turk Playlists" version="3.0.0" provider-name="MetalKettle">
+<addon id="plugin.video.ukturk" name="UK Turk Playlists" version="3.0.3" provider-name="MetalKettle">
   <requires>
     <import addon="script.module.simplejson" version="3.3.0"/>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -2842,7 +2842,7 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
 
 <addon id="plugin.video.ZemTV-shani"
        name="ZemTV.com"
-       version="4.8.2"
+       version="4.8.5"
        provider-name="shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -3071,7 +3071,7 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
 	</extension>
 </addon>
 
-<addon id="repository.exodus" version="1.0.0" name="Exodus repository" provider-name="l*m*d*">
+<addon id="repository.exodus" version="1.0.1" name="Exodus repository" provider-name="Exodus">
 	<extension point="xbmc.addon.repository" name="Exodus repository">
 		<dir>
 			<info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>

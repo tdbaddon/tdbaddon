@@ -594,6 +594,7 @@ class indexer:
             pass
 
         if not content == None: control.content(int(sys.argv[1]), content)
+        #control.do_block_check(False)
         control.directory(int(sys.argv[1]), cacheToDisc=True)
 
 

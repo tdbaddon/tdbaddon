@@ -886,6 +886,7 @@ class movies:
 
 
         control.content(int(sys.argv[1]), 'movies')
+        #control.do_block_check(False)
         control.directory(int(sys.argv[1]), cacheToDisc=cacheToDisc)
         views.setView('movies', {'skin.estuary': 54, 'skin.confluence': 500})
 
@@ -922,6 +923,7 @@ class movies:
             except:
                 pass
 
+        #control.do_block_check(False)
         control.directory(int(sys.argv[1]), cacheToDisc=True)
 
 

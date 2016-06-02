@@ -23,6 +23,7 @@ import re,urllib,urlparse,json,base64
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
+from resources.lib.modules import directstream
 
 
 class source:
@@ -219,11 +220,18 @@ class source:
 
         try:
             url = re.compile('"?file"?\s*=\s*"(.+?)"\s+"?label"?\s*=\s*"(\d+)p?"').findall(result)
+
             url = [(int(i[1]), i[0]) for i in url]
             url = sorted(url, key=lambda k: k[0])
             url = url[-1][1]
 
-            url = client.request(url, output='geturl')
+            try: u = client.request(url, output='headers', redirect=False)['Location']
+            except: u = client.request(url, output='geturl')
+
+            q = directstream.googletag(u)[0]['quality']
+
+            url = u
+
             if 'requiressl=yes' in url: url = url.replace('http://', 'https://')
             else: url = url.replace('https://', 'http://')
             return url

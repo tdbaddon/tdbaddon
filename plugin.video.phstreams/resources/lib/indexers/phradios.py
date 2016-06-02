@@ -201,6 +201,7 @@ def addCategoryItem(name, action, image, fanart, url='0'):
 
 
 def endCategory():
+    #control.do_block_check(False)
     if control.skin == 'skin.confluence': control.execute('Container.SetViewMode(500)')
     control.directory(int(sys.argv[1]), cacheToDisc=True)
 
@@ -222,6 +223,7 @@ def addDirectoryItem(name, url, thumb, image, fanart):
 
 
 def endDirectory():
+    #control.do_block_check(False)
     control.directory(int(sys.argv[1]), cacheToDisc=True)
 
 

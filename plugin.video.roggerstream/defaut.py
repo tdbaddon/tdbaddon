@@ -27,7 +27,7 @@ import urllib,urllib2,re,xbmcplugin,xbmcgui,xbmc,xbmcaddon,HTMLParser,os,base64
 from BeautifulSoup import BeautifulStoneSoup, BeautifulSoup, BeautifulSOAP
 from BeautifulSoup import BeautifulSoup
 h = HTMLParser.HTMLParser()
-versao = '4.0.1'
+versao = '4.0.2'
 addon_id = 'plugin.video.roggerstream'
 selfAddon = xbmcaddon.Addon(id=addon_id)
 addonfolder = selfAddon.getAddonInfo('path')
@@ -301,12 +301,13 @@ def get_wms():
 	return wms
 
 def get_token():
-    req = urllib2.Request(base64.b64decode('aHR0cDovL3Bhc3RlYmluLmNvbS9yYXcvVFJkZFZialM='))
+    req = urllib2.Request(base64.b64decode('aHR0cDovL2lwdHZici5vcmcvYWRkb25pcHR2YnIvdG9rZW5uZXcucGhw'))
     print req
     response = urllib2.urlopen(req)
     print response
     token = response.read()
     print token
+    token = token.replace('<br />','')
     response.close()
     return token
 

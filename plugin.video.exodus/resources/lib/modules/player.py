@@ -60,6 +60,8 @@ class player(xbmc.Player):
             except: pass
             item.setProperty('Video', 'true')
             item.setProperty('IsPlayable', 'true')
+
+            #control.do_block_check(False)
             control.player.play(url, item)
             control.resolve(int(sys.argv[1]), True, item)
 

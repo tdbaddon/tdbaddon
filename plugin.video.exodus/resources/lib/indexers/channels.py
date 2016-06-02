@@ -241,6 +241,7 @@ class channels:
                 pass
 
         control.content(int(sys.argv[1]), 'movies')
+        #control.do_block_check(False)
         control.directory(int(sys.argv[1]), cacheToDisc=True)
 
 

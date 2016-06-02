@@ -312,7 +312,7 @@
     </snapper>
     
     <snapper function="retrieveVideoInfo" enabled="true" module="xoze.snapvideo.TVLogy">
-    	<video-id regex="tvlogy.com/watch.php\?v=(.+?)&amp;"/>
+    	<video-id regex="tvlogy.to/watch.php\?v=(.+?)&amp;"/>
     </snapper>
     
     <snapper function="retrieveVideoInfo" enabled="true" module="xoze.snapvideo.IDOWatch">

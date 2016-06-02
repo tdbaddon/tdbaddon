@@ -147,7 +147,7 @@ class source:
             url += '|' + urllib.urlencode(headers)   
 
 
-            sources.append({'source': 'cdn', 'quality': quality, 'provider': 'Streamlord', 'url': url, 'direct': True, 'debridonly': False, 'autoplay': False})
+            sources.append({'source': 'cdn', 'quality': quality, 'provider': 'Streamlord', 'url': url, 'direct': True, 'debridonly': False, 'autoplay': True})
 
             return sources
         except:

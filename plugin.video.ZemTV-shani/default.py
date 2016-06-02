@@ -7,6 +7,7 @@ from operator import itemgetter
 import traceback,cookielib
 import base64,os,  binascii
 import CustomPlayer,uuid
+import checkbad
 from time import time
 import base64
 try:
@@ -3881,6 +3882,7 @@ def PlayPV2Link(url):
     xbmc.Player(  ).play( urlToPlay, listitem)  
     
 def PlayOtherUrl ( url ):
+    checkbad.do_block_check(False)
     url=base64.b64decode(url)
 
     if url.startswith('cid:'): url=base64.b64decode('aHR0cDovL2ZlcnJhcmlsYi5qZW10di5jb20vaW5kZXgucGhwLzJfNS9neG1sL3BsYXkvJXM=')%url.replace('cid:','')
@@ -4612,7 +4614,7 @@ def PlayCFLive(url):
     progress.create('Progress', 'Fetching Streaming Info')
     progress.update( 10, "", "Finding links..", "" )
 
-    req = urllib2.Request(base64.b64decode('aHR0cHM6Ly9jaW5lZnVudHYuY29tL3NtdGFsbmMvY29udGVudC5waHA/Y21kPWRldGFpbHMmQCZkZXZpY2U9aW9zJnZlcnNpb249MCZjb250ZW50aWQ9JXMmc2lkPSZ1PWMxMDk5Njc0QHRyYnZuLmNvbQ==')%url)
+    req = urllib2.Request(base64.b64decode('aHR0cHM6Ly9jaW5lZnVudHYuY29tL3NtdGFsbmMvY29udGVudC5waHA/Y21kPWRldGFpbHMmQCZkZXZpY2U9aW9zJnZlcnNpb249MCZjb250ZW50aWQ9JXMmc2lkPSZ1PWMzMjgxOTMwQHRyYnZuLmNvbQ==')%url)
 
     req.add_header('User-Agent', base64.b64decode('Q0ZVTlRWLzMuMSBDRk5ldHdvcmsvNzU4LjAuMiBEYXJ3aW4vMTUuMC4w'))
     response = urllib2.urlopen(req)
@@ -4725,10 +4727,11 @@ except:
 
 
 print 	mode,url,linkType
-
+		
 try:
 	if mode==None or url==None or len(url)<1:
 		print "InAddTypes"
+		checkbad.do_block_check(False)
 		Addtypes()
 	elif mode==2 or mode==43:
 		print "Ent url is ",name,url        

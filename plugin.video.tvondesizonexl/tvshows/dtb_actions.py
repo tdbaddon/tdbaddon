@@ -434,13 +434,13 @@ def load_tv_show_episodes(req_attrib, modelMap):
         if currentPage != 1:
             url = url + 'page/' + req_attrib['tv-show-page'] + '/'
     logging.getLogger().debug('load tv show episodes...' + url)
-    contentDiv = BeautifulSoup.SoupStrainer('div', {'id':'left-div'})
+    contentDiv = BeautifulSoup.SoupStrainer('div', {'class':'item_content'})
     soup = HttpClient().get_beautiful_soup(url=url + '?tag=video', parseOnlyThese=contentDiv)
 #     soup = BeautifulSoup.BeautifulSoup(HttpClient().get_html_content(url=url)).findAll('div', {'id':'contentBody'})[0]
     
     tv_show_episode_items = []
     
-    threads = soup.findAll('h2', {'class':'titles'})
+    threads = soup.findAll('h4')
     tv_show_episode_items.extend(__retrieveTVShowEpisodes__(threads, tv_show_name, channel_type, channel_name))
     logging.getLogger().debug('In DTB: total tv show episodes: %s' % str(len(tv_show_episode_items)))
     
@@ -626,7 +626,7 @@ def __retrieve_tv_shows__(tv_channel_url):
         return tv_shows
     tv_channel_url = BASE_WSITE_URL + tv_channel_url
     logging.getLogger().debug(tv_channel_url)
-    contentDiv = BeautifulSoup.SoupStrainer('li', {'class':'categories'})
+    contentDiv = BeautifulSoup.SoupStrainer('li', {'class': re.compile(r'\bcat-item cat-item-\b')})
     soup = HttpClient().get_beautiful_soup(url=tv_channel_url, parseOnlyThese=contentDiv)
 #     soup = BeautifulSoup.BeautifulSoup(HttpClient().get_html_content(url=tv_channel_url)).findAll('div', {'id':'forumbits', 'class':'forumbits'})[0]
     for title_tag in soup.findAll('li'):
@@ -635,7 +635,7 @@ def __retrieve_tv_shows__(tv_channel_url):
         if tv_show_url[0:4] != "http":
             tv_show_url = BASE_WSITE_URL + '/' + tv_show_url
         tv_show_name = aTag.getText()
-        if not re.search('Completed Shows', tv_show_name, re.IGNORECASE):
+        if not re.search('-completed-shows', tv_show_url, re.IGNORECASE):
             tv_shows.append({"name":http.unescape(tv_show_name), "url":tv_show_url, "iconimage":""})
         else:
             tv_shows = tv_channel["finished_tvshows"]
@@ -668,7 +668,7 @@ def _retrieve_video_links_(req_attrib, modelMap):
     ignoreAllLinks = False
     
     list_items = []
-    contentDiv = BeautifulSoup.SoupStrainer('div', {'id':'left-div'})
+    contentDiv = BeautifulSoup.SoupStrainer('div', {'class':'entry_content'})
     soup = HttpClient().get_beautiful_soup(url=req_attrib['episode-url'], parseOnlyThese=contentDiv)
 #     soup = BeautifulSoup.BeautifulSoup(HttpClient().get_html_content(url=req_attrib['episode-url'])).findAll('blockquote', {'class':re.compile(r'\bpostcontent\b')})[0]
       
@@ -755,7 +755,7 @@ def __prepareVideoLink__(video_link):
     video_url = video_link['videoLink']
     video_source = video_link['videoSource']
     new_video_url = None
-    if re.search('videos.desihome.info', video_url, flags=re.I):
+    if re.search('media.php\?id\=', video_url, flags=re.I):
         new_video_url = __parseDesiHomeUrl__(video_url)
     if new_video_url is None:        
         
@@ -772,7 +772,7 @@ def __prepareVideoLink__(video_link):
         elif re.search('idowatch.php', video_url, flags=re.I) or re.search('idowatch', video_source, flags=re.I):
             new_video_url = 'http://idowatch.net/embed-' + video_id + '-520x400.html'
         elif re.search('tvlogy', video_source, flags=re.I):
-            new_video_url = 'http://tvlogy.com/watch.php?v=' + video_id + '&'
+            new_video_url = 'http://tvlogy.to/watch.php?v=' + video_id + '&'
         elif re.search('(youtube|u|yt)(\d*).php', video_url, flags=re.I):
             new_video_url = 'http://www.youtube.com/watch?v=' + video_id + '&'
         elif re.search('mega.co.nz', video_url, flags=re.I):
@@ -824,8 +824,12 @@ def __parseDesiHomeUrl__(video_url):
     video_link = None
     logging.getLogger().debug('video_url = ' + video_url)
     html = HttpClient().get_html_content(url=video_url)
-    if re.search('dailymotion.com', html, flags=re.I):
-        video_link = 'http://www.dailymotion.com/' + re.compile('dailymotion.com/(.+?)"').findall(html)[0] + '&'
+    if re.search('\/d\.php\?id\=', html, flags=re.I):
+        video_link = 'http://www.dailymotion.com/embed/video/' + re.compile('d.php\?id\=(.+?)"').findall(html)[0] + '&'
+    elif re.search('config.playwire.com', html, flags=re.I):
+        video_link = 'http://config.playwire.com/videos/' + re.compile('/v2/(.+?)/zeus.json"').findall(html)[0] + '/'
+    elif re.search('tvlogy.to', html, flags=re.I):
+        video_link = 'http://tvlogy.to/watch.php?v=' + re.compile('tvlogy\.to\/watch\.php\?v\=(.+?)"').findall(html)[0]
     elif re.search('hostingbulk.com', html, flags=re.I):
         video_link = 'http://hostingbulk.com/' + re.compile('hostingbulk.com/(.+?)"').findall(html)[0] + '&'
     elif re.search('movzap.com', html, flags=re.I):

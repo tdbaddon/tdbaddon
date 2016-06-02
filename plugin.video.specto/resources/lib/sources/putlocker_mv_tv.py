@@ -35,7 +35,7 @@ from resources.lib import resolvers
 class source:
     def __init__(self):
         self.domains = ['putlocker.systems']
-        self.base_link = 'http://www.putlocker.systems'
+        self.base_link = 'http://www.putlocker.systems/'
         self.myrandom = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase) for _ in range(25))
 
 
@@ -73,7 +73,7 @@ class source:
     def get_sources(self, url, hosthdDict, hostDict, locDict):
         try:
             sources = []
-            #control.log('#PUTLOCKER1 %s' % url)
+            control.log('#PUTLOCKER1 %s' % url)
 
             if url == None: return sources
 
@@ -150,7 +150,7 @@ class source:
             links += [{'source': 'Allmyvideos', 'quality': 'SD', 'url': i} for i in r if 'allmyvideos.net' in i]
 
             for i in links: sources.append({'source': i['source'], 'quality': i['quality'], 'provider': 'Putlocker', 'url': i['url']})
-            control.log('#PUTLOCKER6 SOURCES %s' % sources)
+            #control.log('#PUTLOCKER6 SOURCES %s' % sources)
 
             return sources
         except:

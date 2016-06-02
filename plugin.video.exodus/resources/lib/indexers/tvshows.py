@@ -867,6 +867,7 @@ class tvshows:
 
 
         control.content(int(sys.argv[1]), 'tvshows')
+        #control.do_block_check(False)
         control.directory(int(sys.argv[1]), cacheToDisc=True)
         views.setView('tvshows', {'skin.estuary': 54, 'skin.confluence': 500})
 
@@ -899,6 +900,7 @@ class tvshows:
             except:
                 pass
 
+        #control.do_block_check(False)
         control.directory(int(sys.argv[1]), cacheToDisc=True)
 
 

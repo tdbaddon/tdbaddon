@@ -1,3 +1,6 @@
+[B]Version 2.8.10[/B]
+- Fixed Desitvbox
+
 [B]Version 2.8.9[/B]
 - Fixed Playwire
 - Added Colors Marathi

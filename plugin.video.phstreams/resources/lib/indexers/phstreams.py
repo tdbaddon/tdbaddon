@@ -543,6 +543,7 @@ class indexer:
                 pass
 
         if not mode == None: control.content(int(sys.argv[1]), mode)
+        #control.do_block_check(False)
         control.directory(int(sys.argv[1]), cacheToDisc=True)
         if not mode == None: views.setView(mode)
 
@@ -670,7 +671,7 @@ class resolver:
 
             direct = False
 
-            presetDict = ['primewire_mv_tv', 'watchfree_mv_tv', 'movie25_mv', 'watchseries_tv', 'afdah_mv', 'dayt_mv_tv', 'dizibox_tv', 'dizigold_tv', 'miradetodo_mv', 'onlinedizi_tv', 'pelispedia_mv_tv', 'pubfilm_mv_tv', 'putlocker_mv_tv', 'rainierland_mv', 'sezonlukdizi_tv', 'tunemovie_mv', 'xmovies_mv']
+            presetDict = ['primewire_mv_tv', 'watchfree_mv_tv', 'movie25_mv', 'watchseries_tv', 'afdah_mv', 'dayt_mv_tv', 'dizibox_tv', 'dizigold_tv', 'miradetodo_mv', 'onemovies_mv_tv', 'onlinedizi_tv', 'pelispedia_mv_tv', 'pubfilm_mv_tv', 'putlocker_mv_tv', 'rainierland_mv', 'sezonlukdizi_tv', 'tunemovie_mv', 'xmovies_mv']
 
             if preset == 'searchsd': presetDict = ['primewire_mv_tv', 'watchfree_mv_tv', 'movie25_mv', 'watchseries_tv']
 

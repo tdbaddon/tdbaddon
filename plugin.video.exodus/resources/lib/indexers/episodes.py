@@ -476,6 +476,7 @@ class seasons:
         except: pass
 
         control.content(int(sys.argv[1]), 'seasons')
+        #control.do_block_check(False)
         control.directory(int(sys.argv[1]), cacheToDisc=True)
         views.setView('seasons', {'skin.estuary': 50, 'skin.confluence': 500})
 
@@ -1137,6 +1138,7 @@ class episodes:
 
 
         control.content(int(sys.argv[1]), 'episodes')
+        #control.do_block_check(False)
         control.directory(int(sys.argv[1]), cacheToDisc=cacheToDisc)
         views.setView('episodes', {'skin.estuary': 50, 'skin.confluence': 504})
 
@@ -1172,6 +1174,7 @@ class episodes:
             except:
                 pass
 
+        #control.do_block_check(False)
         control.directory(int(sys.argv[1]), cacheToDisc=True)
 
 
