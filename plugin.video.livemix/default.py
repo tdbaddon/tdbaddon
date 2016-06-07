@@ -1,1 +1,333 @@
-exec("import re;import base64");exec((lambda p,y:(lambda o,b,f:re.sub(o,b,f))(r"([0-9a-f]+)",lambda m:p(m,y),base64.b64decode("MjkgM2EsN2IsNjUsMTYwLDhkLDk0LGUzLGRiLDEzMSw3NSxmNiwxMjYsMzQsMzgsYWMsYjYsMWMKMjkgN2YuYjggMTU0IDdmCjhmIDczLjEwMy43MyAyOSA5NgoKMzggPSAzOC4xM2QoKQoxYSA9ICcxMDYuMTIwLmY0JwpmID0gN2IuOTYoMTRlPTFhKQo3Yz1mLjZhKCcxMmUnKQozMz0nL2QzLycrN2MKYzQgPSAnYWY6Ly9iOS4xNjIvMTEzLjEwYScKNTggPSAzYS4xNSg4ZC40ZS4yZCgnMmM6Ly8xNjQvMTU2LycgKyAxYSwgJzU4LjY0JykpCjE1ZSA9IDNhLjE1KDhkLjRlLjJkKCcyYzovLzE2NC8xNTYvJyArIDFhLCAnMTVlLjEwYScpKQoxMmY9IDNhLjE1KDhkLjRlLjJkKCcyYzovLzE2NC8xNTYvJyArIDFhICsgMzMsICcxMjEuNjQnKSkKMTYxPSAzYS4xNSg4ZC40ZS4yZCgnMmM6Ly8xNjQvMTU2LycgKyAxYSArIDMzLCAnYmYuNjQnKSkKMTQzID0gM2EuMTUoOGQuNGUuMmQoJzJjOi8vMTY0LzE1Ni8nICsgMWEgKyAzMywgJ2E2LjY0JykpCjEwZiA9IDNhLjE1KDhkLjRlLjJkKCcyYzovLzE2NC8xNTYvJyArIDFhICsgMzMsICc4NS42NCcpKQoxMzMgPSAzYS4xNSg4ZC40ZS4yZCgnMmM6Ly8xNjQvMTU2LycgKyAxYSArIDMzLCAnMTM4LTE0ZC42NCcpKQoxMDIgID0gN2YuODMoJycpCjEwMi5iYygxMjIsIDE0YiwgMTAwLCA1MCkKNzE9N2YuYzAoMTMzKQoxMDIuMTFkKDcxLCAtNSwgMCwgMTI1LCA1MSkKNzMgPSA5NigxYSwgOTQuOGUpCjVkID0gNzMuZWQuMTQ0KCc1ZCcsICcnKQoKMjMgMTU4KCk6CgllIDEzYQoJZSAxNTIKCWUgMjgKCWUgMmYKCWUgMTUxCgllIDE1NwoJZSAyZQoJZSAxNTUKCWUgM2MKCWUgMTNjCgllIGMKCWUgNWEKCgkjMTA3IGU0CgkzOSAnMTNmJyA2NiAxMmY6MTY4PSc2ZicKCTEyNCAnMTI5JyA2NiAxMmY6MTY4PSc2ZicKCWU1OjE2OD0nYzUnCgkxM2E9IDdmLjY4KCdkNicsMTY5PTE0Myw5MT0xMGYsMTM9MTY4LDEzND0xNjgpCgkxNTIgPSA3Zi42OCgnMTUyJywxNjk9MTQzLDkxPTEwZiwxMz0xNjgsMTM0PTE2OCkKCTI4ID0gN2YuNjgoJzI4JywxNjk9MTQzLDkxPTEwZiwxMz0xNjgsMTM0PTE2OCkKCTJmID0gN2YuNjgoJzJmJywxNjk9MTQzLDkxPTEwZiwxMz0xNjgsMTM0PTE2OCkKCTE1MSA9IDdmLjY4KCcxNTEnLDE2OT0xNDMsOTE9MTBmLDEzPTE2OCwxMzQ9MTY4KQoJMTU3ID0gN2YuNjgoJ2JlJywxNjk9MTQzLDkxPTEwZiwxMz0xNjgsMTM0PTE2OCkKCTJlPSA3Zi42OCgnMmUnLDE2OT0xNDMsOTE9MTBmLDEzPTE2OCwxMzQ9MTY4KQoJMTU1ID0gN2YuNjgoJzE1NScsMTY5PTE0Myw5MT0xMGYsMTM9MTY4LDEzND0xNjgpCgkzYyA9IDdmLjY4KCczYycsMTY5PTE0Myw5MT0xMGYsMTM9MTY4LDEzND0xNjgpCgkxM2MgPSA3Zi42OCgnMTNjJywxNjk9MTQzLDkxPTEwZiwxMz0xNjgpCgljID0gN2YuYyg3Nz0xNDMsYTU9MTBmLGZlPTExLDg4PS03LDEzPTE2OCkKCTVhPTdmLmMwKDU4LCBiZD0yKQoJNWEuNTcoNTgpCgk0NCA9IDdmLjY4KCcgJyw5MT0xMmYsMTY5PTE2MSkKCgkjMTE3IGVmCgkxMDIuMTFkKDEzYSwyMCwgMSwgIDgsIDUpCgkxMDIuMTFkKDE1MiAsMjAsIDYsIDgsIDUpCgkxMDIuMTFkKDI4LDIwLCAxMSwgOCwgNSkKCTEwMi4xMWQoMmYsMjAsIDE2LCA4LCA1KQoJMTAyLjExZCgxNTEsMjAsIDIxLCA4LCA1KQoJMTAyLjExZCgxNTcsMjAsIDI2LCA4LCA1KQoJMTAyLjExZCgyZSwyMCwgMzEsIDgsIDUpCgkxMDIuMTFkKDE1NSwyMCwgMzYsIDgsIDUpCgkxMDIuMTFkKDNjLDIwLCA0MSwgOCwgNSkKCTEwMi4xMWQoMTNjLDIwLCA0NiwgOCwgNSkKCTEwMi4xMWQoYywgMzAsIDEsIDkwLCAzMCkKCTEwMi4xMWQoNWEsIDQ1LCAzMiwgNjAsIDE4KQoJMTAyLjExZCg0NCwgMTEwLCA0OCwgMTAsIDMpCgoJI2ZhIDExYiAxMTkgMTVhIDE1YyAxMzAgMTA4CgkxMDIuODQoCglbN2YuOGMsCgk3Zi5hMCwKCQk3Zi44MV0sCgk2MikKCgkjYzEKCTEzYS4xNDYoMTUyKQoJMTNhLjE0OSg0NCkKCTEzYS5jZihjKQoJMTUyLjE0NigyOCkKCTE1Mi4xNDkoMTNhKQoJMTUyLmNmKGMpCgkyOC4xNDYoMmYpCgkyOC4xNDkoMTUyKQoJMjguY2YoYykKCTJmLjE0NigxNTEpCgkyZi4xNDkoMjgpCgkyZi5jZihjKQoJMTUxLjE0NigxNTcpCgkxNTEuMTQ5KDJmKQoJMTUxLmNmKGMpCgkxNTcuMTQ2KDJlKQoJMTU3LjE0OSgxNTEpCgkxNTcuY2YoYykKCTJlLjE0NigxNTUpCgkyZS4xNDkoMTU3KQoJMmUuY2YoYykKCTE1NS4xNDYoM2MpCgkxNTUuMTQ5KDJlKQoJMTU1LmNmKGMpCgkzYy4xNDYoMTNjKQoJM2MuMTQ5KDE1NSkKCTNjLmNmKGMpCgkxM2MuMTQ2KDQ0KQoJMTNjLjE0OSgzYykKCTEzYy5jZihjKQoJYy5kNygxM2EpCgljLjE0OSgxM2EpCgljLjE0Nig0NCkKCTQ0LjE0OSgxM2MpCgk0NC4xNDYoMTNhKQoJNWEuNTcoNTgpCgkKCSNmZCBmMgkKCTEwMi4xNygxM2EsZDIpCgkxMDIuMTcoMTUyLDc2KQoJMTAyLjE3KDI4LDk3KQoJMTAyLjE3KDJmLGI1KQoJMTAyLjE3KDE1MSw5MykKCTEwMi4xNygxNTcsYjMpCgkxMDIuMTcoMmUsYWIpCgkxMDIuMTcoMTU1LGFkKQoJMTAyLjE3KDNjLDc5KQoJMTAyLjE3KDEzYyw1YykKCTEwMi4xNyhjLCA1ZikKCTEwMi4xNyg0NCwgMTAyLmMyKQoJODI9Zi42YSgnODInKQoJYSg3YSg4MikpCgkzOSA4Mj09JzEnOjEwMi4xOSgxM2EpCgkzOSA4Mj09JzInOjEwMi4xOSgxNTIpCgkzOSA4Mj09JzMnOjEwMi4xOSgyOCkKCTM5IDgyPT0nNCc6MTAyLjE5KDJmKQoJMzkgODI9PSc1JzoxMDIuMTkoMTUxKQoJMzkgODI9PSc2JzoxMDIuMTkoMTU3KQoJMzkgODI9PSc3JzoxMDIuMTkoMmUpCgkzOSA4Mj09JzgnOjEwMi4xOSgxNTUpCgkzOSA4Mj09JzknOjEwMi4xOSgxM2MpCgkzOSA4Mj09JzEwJzoxMDIuMTkoM2MpCgoyMyA1ZigpOgoJMTAyLmMyKCkKCTc4PTY1Ljg5KDFlLCA3ZD0xNWQsNGY9MTVkKQoJM2EuMTA5ICgpLjEzNig0MCwgNzgsIGNiKQoKMjMgZDIoKToKCWMuMmIoKQoJMWMuMWQoJ2QyIDFiJykKCTE0PTEKCWYuMTIoJzgyJywzYigxNCkpCglhKDE0KQoJCjIzIDc2KCk6CgljLjJiKCkKCTFjLjFkKCc3NiAxYicpCgkxND0yCglmLjEyKCc4MicsM2IoMTQpKQoJYSgxNCkKCjIzIDk3KCk6CgljLjJiKCkKCTFjLjFkKCc5NyAxYicpCgkxND0zCglmLjEyKCc4MicsM2IoMTQpKQoJYSgxNCkKCQoyMyBiNSgpOgoJYy4yYigpCgkxYy4xZCgnYjUgMWInKQoJMTQ9NAoJZi4xMignODInLDNiKDE0KSkKCWEoMTQpCgkKMjMgOTMoKToKCWMuMmIoKQoJMWMuMWQoJzkzIDFiJykKCTE0PTUKCWYuMTIoJzgyJywzYigxNCkpCglhKDE0KQoJCjIzIGIzKCk6CgljLjJiKCkKCTFjLjFkKCdiMyAxYicpCgkxND02CglmLjEyKCc4MicsM2IoMTQpKQoJYSgxNCkKCQoyMyBhYigpOgoJYy4yYigpCgkxYy4xZCgnYWIgMWInKQoJMTQ9NwoJZi4xMignODInLDNiKDE0KSkKCWEoMTQpCgkKMjMgYWQoKToKCWMuMmIoKQoJMWMuMWQoJ2FkIDFiJykKCTE0PTgKCWYuMTIoJzgyJywzYigxNCkpCglhKDE0KQoJCjIzIDc5KCk6CgljLjJiKCkKCTFjLjFkKCczYyAxYicpCgkxND0xMAoJZi4xMignODInLDNiKDE0KSkKCWEoMTQpCgkKMjMgNWMoKToKCWMuMmIoKQoJMWMuMWQoJzVjIDFiJykKCTE0PTkKCWYuMTIoJzgyJywzYigxNCkpCglhKDE0KQoKMjMgYSgxNCk6CgllIDU2CgllIDVlCgllIDNkCgllIDNlCgk1Nj1bXQoJNWU9W10KCTNkPVtdCgkzZT1bXQoJY2MgPSA2ZSgpCgk4MCAxZSwxNWQsYTEsYTIsMTRjIDY2IGNjOgoJICAzOSAxMDUgJ2VlJyA2NiAxZToKCSAgICAgMzkgMTA1ICcxNjYnIDY2IDFlOgoJCTM5IDFlPT0nMTMyJzoxZT0nZjknCgkJMWU9MWUuMTY1KCciJywnJykuMTY1KCcuJywnJykuMTY1KCdmYicsJ2ZjJykKCQljOT0nOTI6Ly81Mi4yNS4zOC8nKzE1ZCsnfDhiLTcyPWE5LzIuMS4wIChjNjsgMTRmOyA5YSA1LjEuMTsgMTI3LWMzIGNkL2E3KScKCQkzOSA3YSgxNGMpPT0xNDoKCQkJNTYuNWIoMWUpCgkJCTVlLjViKGM5KQoJCQkzZC41YihhMSkKCQkJM2UuNWIoYTIpCgkJCWMuZjgoMWUpCgoyMyA2ZCgpOgoJMjkgMzQKCTI5IDFmCiAgICAgICAJM2Y9NDIoJ2FmOi8vNTIuMjUuMzgvZGYvYWUnLCcnKQogICAgICAgCWUxID0gJycuMmQoWzM0LjQ3KDFmLjIyICsgMWYuNGMpIDgwIDExNiA2NiA0OSgxNildKQogICAgICAgCTI0ID0gJycuMmQoWzM0LjQ3KDFmLjIyICsgMWYuNGMpIDgwIDExNiA2NiA0OSgxMCldKQogICAgICAgCTUzID0gJycuMmQoWzM0LjQ3KDFmLjIyICsgMWYuNGMpIDgwIDExNiA2NiA0OSgxMCldKQogICAgIAlhOCA9ICcnLjJkKFszNC40NygxZi4yMiArIDFmLjRjKSA4MCAxMTYgNjYgNDkoNCldKQogICAgICAgCTUzPTUzKydAJythOCsnLjEzZScKICAgICAgIAk1OT0nJy4yZChbMzQuNDcoMWYuMjIgKyAxZi40YykgODAgMTE2IDY2IDQ5KDkpXSkKICAgICAgIAk0ZD17JzhiLTcyJzonZTYtYzgtOWYtMTBlLTEyYicsCgkJCSAnYTMtZTknOicxNTMvMTRhLTEwNC1lNy02YzsgOTk9MTExLTgnLAoJCQkgJ2IwLTg3JyA6ICdkOCcsCgkJCSAnNTItM2YnOjNmLAoJCQkgJzY5JzonZWMtY2EnLAoJCQkgJ2RkJzonNTIuMjUuMzgnfQogICAgICAgCTQzPXsnNTMnOiA1MywKCQkgICcyNCcgOiAyNCwKCQkgICc1OScgOiA1OSwKCQkgICdkNCcgOiBlMX0KICAgICAgIAkzNyA9IDM4LjdlKCdhZjovLzUyLjI1LjM4L2RmL2FlJyw0MywgNGQpLjljCgkyYSAyNAoJCSAgIAoyMyA2ZSgpOgoJM2Y9NDIoJzkyOi8vNTIuMjUuMzgvZGYvMTVmJywnZTAnKQoJNGQ9eyc4Yi03Mic6J2U2LWM4LTlmLTEwZS0xMmInLAoJCQkgJ2EzLWU5JzonMTUzLzE0YS0xMDQtZTctNmM7IDk5PTExMS04JywKCQkJICdiMC04NycgOiAnZDgnLAoJCQkgJzUyLTNmJzozZiwKCQkJICc2OSc6J2VjLWNhJywKCQkJICdkZCc6JzUyLjI1LjM4J30KCTQzPXsnMjQnOidlMCd9CgkzNyA9IDM4LjdlKCc5MjovLzUyLjI1LjM4L2RmLzE1ZicsNDMsIDRkKS45YwoJMzcgPSAzNy4xNjUoJ1wvJywnLycpCgk2MT1kYi5mNygnImI0IjoiKC4rPykiLCIxM2IiOiIoLis/KSIsImI3IjoiKC4rPykiLCJiYSI6IiguKz8pIiwiMTBiIjoiKC4rPykiJykuZjEoMzcpCgkyYSA2MQoKMjMgNzAoZWE9JzEzNS9mNScpOgoJOGYgNTUgMjkgNTUKCThmIGFjIDI5IDU0Cgk2NyA9IDU0KGVhKQoJNGIgPSA1NS4xNDIoNjcpCgkyYSA0Yi5lOCgnJWItJWQtJTE2YScpCgkKMjMgNDIoIDYzLCAgMjQpOgoJOGYgYWMgMjkgNTQKCTEyMz03MCgpCgkxNWIgPSAiMjUtM2YtIisgMTIzICsgIi0iKyAiMTM3fDEzNy0iICsgNjMgKyAiLSIgKyAyNCArIi0iICsgIjEzN3wxMzciKyAiLSIrIGI2LmQxKCIzNT09IikKCTI5IDlkCgkyYSA5ZC4xNDAoMTViKS5kMCgpCgoyMyBkYygxNjgpOgoJMjMgOTUoMTU5KToKCQkxNjggPSAxNTkuMTE4KDApCgkJMzkgMTY4WzozXSA9PSAiJiMxNGEiOiAyYSBhYSg3YSgxNjhbMzotMV0sIDE2KSkuNGEoJ2IyLTgnKQoJCWU1OiAyYSBhYSg3YSgxNjhbMjotMV0pKS40YSgnYjItOCcpCgkxNDggOjJhIGRiLjEwZCgiKD8xNjMpJiNcMTY3KzsiLCA5NSwgMTY4LjExNCgnMTQ3LTEyZC0xJykuNGEoJ2IyLTgnKSkKCTEwMToyYSBkYi4xMGQoIig/MTYzKSYjXDE2Nys7IiwgOTUsIDE2OC40YSgiMTFjIiwgIjExMiIpLjRhKCdiMi04JykpCgkKCSAKIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIDExYSBlYiBkNQoyMyA2MigpOgoJZSA0MAoJZSA4NgoJZSAxNWQKCWUgMWUKCTM5IDEwMi5lMigpID09IGM6CgkJOTg9Yy43NCgpCgkJMTVkPTVlWzk4XQoJCTFlPTU2Wzk4XQoJCTVhLjU3KDE1ZCkKCQk0MD0zZFs5OF0KCQk4Nj0zZVs5OF0KCQkjNDA9NDAuMTFlKCd8JylbMF0rJ3w4Yi03Mj1hOS8yLjEuMCAoYzY7IDE0ZjsgOWEgNS4xLjE7IDEyNy1jMyBjZC9hNyknCgoJCSAgCjIzIDllKDFlLDYzLDVkLDE1ZCwxNWUsMjc9JycpOgoJCTE1MD05NC44ZVswXSsiPzYzPSIrNzUuNmIoNjMpKyImNWQ9IiszYig1ZCkrIiYxZT0iKzc1LjZiKDFlKSsiJjI3PSIrM2IoMjcpCgkJMTBjPTE0MQoJCTc4PTY1Ljg5KDFlLCA3ZD0iYTQuNjQiLCA0Zj0xNWQpCgkJNzguZjMoIDEyOD0iMTFmIiwgYzc9eyAiMTE1IjogMWUsICcxMmEnOiAyNyB9ICkKCQk3OC5iYignYjEnLCAxNWUpCgkJMTBjPTE2MC44YShmZj03YSg5NC44ZVsxXSksNjM9MTUwLGQ5PTc4LGRlPWNiKQoJCTJhIDEwYwoKMTU4KCkKIzZkKCkKMTAyLmYwKCkKMTQ1IDEwMgozOSA1ZD09MToxNTgoKQojOWUoJ1tjZSAxMmNdZGEgMTM5Wy9jZV0nLCc2MycsMSw1OCwxNWUsMjc9JycpCjE2MC45Yig3YSg5NC44ZVsxXSkp")))(lambda a,b:b[int("0x"+a.group(1),16)],"0|1|2|3|4|5|6|7|8|9|GetChannels|B|List|d|global|selfAddon|10|11|setSetting|textColor|sec|translatePath|16|connect|18|setFocus|addon_id|SELECTED|logging|warning|name|string|20|21|ascii_letters|def|username|uktvnow|26|description|Music|import|return|reset|special|join|Kids|News|30|31|32|artpath|random|MTIzNDU2IUAjJCVedWt0dm5vd14lJCNAITY1NDMyMQ|36|channels|net|if|xbmc|str|USA|chstream1|chstream2|token|playurl|41|getAPIToken|postdata|Quit|45|46|choice|48|xrange|encode|other_zone_time|digits|headers|path|thumbnailImage|50|51|app|email|timezone|datetime|chname|setImage|icon|password|Icon|append|RELIGION|mode|chicon|PLAY_STREAM|60|channellist|LIST_UPDATE|url|png|xbmcgui|in|other_zone|Button|Connection|getSetting|quote_plus|urlencoded|CreateUser|GetContent|0xffffffff|local_time|background|Agent|addon|getSelectedPosition|urllib|MOVIES|buttonFocusTexture|liz|USAMERICA|int|xbmcaddon|skintheme|iconImage|http_POST|pyxbmct|for|ACTION_MOUSE_MOVE|secstore|AddonDialogWindow|connectEventList|button_no_focus1|playurl2|Encoding|_itemTextYOffset|ListItem|addDirectoryItem|User|ACTION_MOVE_DOWN|os|argv|from|90|noFocusTexture|https|SPORT|sys|fixup|Addon|MUSIC|pos|charset|Android|endOfDirectory|content|hashlib|addLink|UKTVNOW|ACTION_MOVE_UP|stream1|stream2|Content|DefaultFolder|buttonTexture|button_focus1|LMY47X|email2|Dalvik|unichr|KIDS|pytz|FOOD|signup|http|Accept|fanart_image|utf|DOCS|channel_name|NEWS|base64|http_stream|addonwindow|metalkettle|rtmp_stream|setProperty|setGeometry|aspectRatio|Documentary|power_focus|Image|navigation|close|G920F|searchlist|0xFF000000|Linux|infoLabels|AGENT|thumb|Alive|False|match|Build|COLOR|controlDown|hexdigest|b64decode|ENT|resources|device_id|FUNCTIONS|Entertain|controlUp|gzip|listitem|Relaunch|re|cleanHex|Host|isFolder|v1|goat|d_id|getFocus|urlparse|butttons|else|USER|form|strftime|Type|zone|SPECIFIC|Keep|queries|Planett|buttons|doModal|findall|actions|setInfo|livemix|Karachi|urllib2|compile|addItem|Channel|capture|Disnep|Disney|button|_space|handle|100|except|window|common|www|not|plugin|create|arrows|Player|jpg|cat_id|ok|sub|APP|button_no_focus|110|UTF|ignore|ukturk|decode|Title|n|place|group|moves|ADDON|mouse|ascii|placeControl|split|Video|video|power|1240|dt|elif|125|json|SM|type|Mono|plot|V1|gold|8859|skin|button_quit|down|time|null|bg|focusedColor|Asia|play|_|main|Gui|Entertainment|img|Religion|Net|com|Red|md5|True|now|button_focus|get|del|controlRight|ISO|try|controlLeft|x|650|cat|bg2|id|U|u|Sport|Movies|application|as|Food|addons|Docs|START|m|or|s|up|iconimage|fanart|get_all_channels|xbmcplugin|button_quit_focus|co|i|home|replace|HD|w|text|focusTexture|Y".split("|")))
+import xbmc,xbmcaddon,xbmcgui,xbmcplugin,os,sys,urlparse,re,time,urllib,urllib2,json,random,net,pytz,base64,logging
+import pyxbmct.addonwindow as pyxbmct
+from addon.common.addon import Addon
+
+net = net.Net()
+addon_id = 'plugin.video.livemix'
+selfAddon = xbmcaddon.Addon(id=addon_id)
+skintheme=selfAddon.getSetting('skin')
+artpath='/resources/'+skintheme
+searchlist = 'http://metalkettle.co/ukturk.jpg'
+icon = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
+fanart = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'fanart.jpg'))
+button_quit= xbmc.translatePath(os.path.join('special://home/addons/' + addon_id + artpath, 'power.png'))
+button_quit_focus= xbmc.translatePath(os.path.join('special://home/addons/' + addon_id + artpath, 'power_focus.png'))
+button_focus = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id + artpath, 'button_focus1.png'))
+button_no_focus = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id + artpath, 'button_no_focus1.png'))
+bg = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id + artpath, 'main-bg2.png'))
+window  = pyxbmct.AddonDialogWindow('')
+window.setGeometry(1240, 650, 100, 50)
+background=pyxbmct.Image(bg)
+window.placeControl(background, -5, 0, 125, 51)
+addon = Addon(addon_id, sys.argv)
+mode = addon.queries.get('mode', '')
+
+def START():
+	global Entertainment
+	global Movies
+	global Music
+	global News
+	global Sport
+	global Docs
+	global Kids
+	global Food
+	global USA
+	global Religion
+	global List
+	global Icon
+
+	#create butttons
+	if 'Red' in button_quit:text='0xffffffff'
+	elif 'Mono' in button_quit:text='0xffffffff'
+	else:text='0xFF000000'
+	Entertainment= pyxbmct.Button('Entertain',focusTexture=button_focus,noFocusTexture=button_no_focus,textColor=text,focusedColor=text)
+	Movies = pyxbmct.Button('Movies',focusTexture=button_focus,noFocusTexture=button_no_focus,textColor=text,focusedColor=text)
+	Music = pyxbmct.Button('Music',focusTexture=button_focus,noFocusTexture=button_no_focus,textColor=text,focusedColor=text)
+	News = pyxbmct.Button('News',focusTexture=button_focus,noFocusTexture=button_no_focus,textColor=text,focusedColor=text)
+	Sport = pyxbmct.Button('Sport',focusTexture=button_focus,noFocusTexture=button_no_focus,textColor=text,focusedColor=text)
+	Docs = pyxbmct.Button('Documentary',focusTexture=button_focus,noFocusTexture=button_no_focus,textColor=text,focusedColor=text)
+	Kids= pyxbmct.Button('Kids',focusTexture=button_focus,noFocusTexture=button_no_focus,textColor=text,focusedColor=text)
+	Food = pyxbmct.Button('Food',focusTexture=button_focus,noFocusTexture=button_no_focus,textColor=text,focusedColor=text)
+	USA = pyxbmct.Button('USA',focusTexture=button_focus,noFocusTexture=button_no_focus,textColor=text,focusedColor=text)
+	Religion = pyxbmct.Button('Religion',focusTexture=button_focus,noFocusTexture=button_no_focus,textColor=text)
+	List = pyxbmct.List(buttonFocusTexture=button_focus,buttonTexture=button_no_focus,_space=11,_itemTextYOffset=-7,textColor=text)
+	Icon=pyxbmct.Image(icon, aspectRatio=2)
+	Icon.setImage(icon)
+	Quit = pyxbmct.Button(' ',noFocusTexture=button_quit,focusTexture=button_quit_focus)
+
+	#place buttons
+	window.placeControl(Entertainment,20, 1,  8, 5)
+	window.placeControl(Movies ,20, 6, 8, 5)
+	window.placeControl(Music,20, 11, 8, 5)
+	window.placeControl(News,20, 16, 8, 5)
+	window.placeControl(Sport,20, 21, 8, 5)
+	window.placeControl(Docs,20, 26, 8, 5)
+	window.placeControl(Kids,20, 31, 8, 5)
+	window.placeControl(Food,20, 36, 8, 5)
+	window.placeControl(USA,20, 41, 8, 5)
+	window.placeControl(Religion,20, 46, 8, 5)
+	window.placeControl(List, 30, 1, 90, 30)
+	window.placeControl(Icon, 45, 32, 60, 18)
+	window.placeControl(Quit, 110, 48, 10, 3)
+
+	#capture mouse moves or up down arrows
+	window.connectEventList(
+	[pyxbmct.ACTION_MOVE_DOWN,
+	pyxbmct.ACTION_MOVE_UP,
+		pyxbmct.ACTION_MOUSE_MOVE],
+	LIST_UPDATE)
+
+	#navigation
+	Entertainment.controlRight(Movies)
+	Entertainment.controlLeft(Quit)
+	Entertainment.controlDown(List)
+	Movies.controlRight(Music)
+	Movies.controlLeft(Entertainment)
+	Movies.controlDown(List)
+	Music.controlRight(News)
+	Music.controlLeft(Movies)
+	Music.controlDown(List)
+	News.controlRight(Sport)
+	News.controlLeft(Music)
+	News.controlDown(List)
+	Sport.controlRight(Docs)
+	Sport.controlLeft(News)
+	Sport.controlDown(List)
+	Docs.controlRight(Kids)
+	Docs.controlLeft(Sport)
+	Docs.controlDown(List)
+	Kids.controlRight(Food)
+	Kids.controlLeft(Docs)
+	Kids.controlDown(List)
+	Food.controlRight(USA)
+	Food.controlLeft(Kids)
+	Food.controlDown(List)
+	USA.controlRight(Religion)
+	USA.controlLeft(Food)
+	USA.controlDown(List)
+	Religion.controlRight(Quit)
+	Religion.controlLeft(USA)
+	Religion.controlDown(List)
+	List.controlUp(Entertainment)
+	List.controlLeft(Entertainment)
+	List.controlRight(Quit)
+	Quit.controlLeft(Religion)
+	Quit.controlRight(Entertainment)
+	Icon.setImage(icon)
+	
+	#button actions	
+	window.connect(Entertainment,ENT)
+	window.connect(Movies,MOVIES)
+	window.connect(Music,MUSIC)
+	window.connect(News,NEWS)
+	window.connect(Sport,SPORT)
+	window.connect(Docs,DOCS)
+	window.connect(Kids,KIDS)
+	window.connect(Food,FOOD)
+	window.connect(USA,USAMERICA)
+	window.connect(Religion,RELIGION)
+	window.connect(List, PLAY_STREAM)
+	window.connect(Quit, window.close)
+	secstore=selfAddon.getSetting('secstore')
+	GetChannels(int(secstore))
+	if secstore=='1':window.setFocus(Entertainment)
+	if secstore=='2':window.setFocus(Movies)
+	if secstore=='3':window.setFocus(Music)
+	if secstore=='4':window.setFocus(News)
+	if secstore=='5':window.setFocus(Sport)
+	if secstore=='6':window.setFocus(Docs)
+	if secstore=='7':window.setFocus(Kids)
+	if secstore=='8':window.setFocus(Food)
+	if secstore=='9':window.setFocus(Religion)
+	if secstore=='10':window.setFocus(USA)
+
+def PLAY_STREAM():
+	window.close()
+	liz=xbmcgui.ListItem(name, iconImage=iconimage,thumbnailImage=iconimage)
+	xbmc.Player ().play(playurl2, liz, False)
+
+def ENT():
+	List.reset()
+	logging.warning('ENT SELECTED')
+	sec=1
+	selfAddon.setSetting('secstore',str(sec))
+	GetChannels(sec)
+	
+def MOVIES():
+	List.reset()
+	logging.warning('MOVIES SELECTED')
+	sec=2
+	selfAddon.setSetting('secstore',str(sec))
+	GetChannels(sec)
+
+def MUSIC():
+	List.reset()
+	logging.warning('MUSIC SELECTED')
+	sec=3
+	selfAddon.setSetting('secstore',str(sec))
+	GetChannels(sec)
+	
+def NEWS():
+	List.reset()
+	logging.warning('NEWS SELECTED')
+	sec=4
+	selfAddon.setSetting('secstore',str(sec))
+	GetChannels(sec)
+	
+def SPORT():
+	List.reset()
+	logging.warning('SPORT SELECTED')
+	sec=5
+	selfAddon.setSetting('secstore',str(sec))
+	GetChannels(sec)
+	
+def DOCS():
+	List.reset()
+	logging.warning('DOCS SELECTED')
+	sec=6
+	selfAddon.setSetting('secstore',str(sec))
+	GetChannels(sec)
+	
+def KIDS():
+	List.reset()
+	logging.warning('KIDS SELECTED')
+	sec=7
+	selfAddon.setSetting('secstore',str(sec))
+	GetChannels(sec)
+	
+def FOOD():
+	List.reset()
+	logging.warning('FOOD SELECTED')
+	sec=8
+	selfAddon.setSetting('secstore',str(sec))
+	GetChannels(sec)
+	
+def USAMERICA():
+	List.reset()
+	logging.warning('USA SELECTED')
+	sec=10
+	selfAddon.setSetting('secstore',str(sec))
+	GetChannels(sec)
+	
+def RELIGION():
+	List.reset()
+	logging.warning('RELIGION SELECTED')
+	sec=9
+	selfAddon.setSetting('secstore',str(sec))
+	GetChannels(sec)
+
+def GetChannels(sec):
+	global chname
+	global chicon
+	global chstream1
+	global chstream2
+	chname=[]
+	chicon=[]
+	chstream1=[]
+	chstream2=[]
+	match = GetContent()
+	for name,iconimage,stream1,stream2,cat in match:
+	  if not 'Planett' in name:
+	     if not 'HD' in name:
+		if name=='null':name='Channel'
+		name=name.replace('"','').replace('.','').replace('Disnep','Disney')
+		thumb='https://app.uktvnow.net/'+iconimage+'|User-Agent=Dalvik/2.1.0 (Linux; U; Android 5.1.1; SM-G920F Build/LMY47X)'
+		if int(cat)==sec:
+			chname.append(name)
+			chicon.append(thumb)
+			chstream1.append(stream1)
+			chstream2.append(stream2)
+			List.addItem(name)
+
+def CreateUser():
+	import random
+	import string
+       	token=getAPIToken('http://app.uktvnow.net/v1/signup','')
+       	d_id = ''.join([random.choice(string.ascii_letters + string.digits) for n in xrange(16)])
+       	username = ''.join([random.choice(string.ascii_letters + string.digits) for n in xrange(10)])
+       	email = ''.join([random.choice(string.ascii_letters + string.digits) for n in xrange(10)])
+     	email2 = ''.join([random.choice(string.ascii_letters + string.digits) for n in xrange(4)])
+       	email=email+'@'+email2+'.com'
+       	password=''.join([random.choice(string.ascii_letters + string.digits) for n in xrange(9)])
+       	headers={'User-Agent':'USER-AGENT-UKTVNOW-APP-V1',
+			 'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8',
+			 'Accept-Encoding' : 'gzip',
+			 'app-token':token,
+			 'Connection':'Keep-Alive',
+			 'Host':'app.uktvnow.net'}
+       	postdata={'email': email,
+		  'username' : username,
+		  'password' : password,
+		  'device_id' : d_id}
+       	channels = net.http_POST('http://app.uktvnow.net/v1/signup',postdata, headers).content
+	return username
+		   
+def GetContent():
+	token=getAPIToken('https://app.uktvnow.net/v1/get_all_channels','goat')
+	headers={'User-Agent':'USER-AGENT-UKTVNOW-APP-V1',
+			 'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8',
+			 'Accept-Encoding' : 'gzip',
+			 'app-token':token,
+			 'Connection':'Keep-Alive',
+			 'Host':'app.uktvnow.net'}
+	postdata={'username':'goat'}
+	channels = net.http_POST('https://app.uktvnow.net/v1/get_all_channels',postdata, headers).content
+	channels = channels.replace('\/','/')
+	channellist=re.compile('"channel_name":"(.+?)","img":"(.+?)","http_stream":"(.+?)","rtmp_stream":"(.+?)","cat_id":"(.+?)"').findall(channels)
+	return channellist
+
+def local_time(zone='Asia/Karachi'):
+	from datetime import datetime
+	from pytz import timezone
+	other_zone = timezone(zone)
+	other_zone_time = datetime.now(other_zone)
+	return other_zone_time.strftime('%B-%d-%Y')
+	
+def getAPIToken( url,  username):
+	from pytz import timezone
+	dt=local_time()
+	s = "uktvnow-token-"+ dt + "-"+ "_|_-" + url + "-" + username +"-" + "_|_"+ "-"+ base64.b64decode("MTIzNDU2IUAjJCVedWt0dm5vd14lJCNAITY1NDMyMQ==")
+	import hashlib
+	return hashlib.md5(s).hexdigest()
+
+def cleanHex(text):
+	def fixup(m):
+		text = m.group(0)
+		if text[:3] == "&#x": return unichr(int(text[3:-1], 16)).encode('utf-8')
+		else: return unichr(int(text[2:-1])).encode('utf-8')
+	try :return re.sub("(?i)&#\w+;", fixup, text.decode('ISO-8859-1').encode('utf-8'))
+	except:return re.sub("(?i)&#\w+;", fixup, text.encode("ascii", "ignore").encode('utf-8'))
+	
+	 
+########################################## ADDON SPECIFIC FUNCTIONS
+def LIST_UPDATE():
+	global playurl
+	global playurl2
+	global iconimage
+	global name
+	if window.getFocus() == List:
+		pos=List.getSelectedPosition()
+		iconimage=chicon[pos]
+		name=chname[pos]
+		Icon.setImage(iconimage)
+		playurl=chstream1[pos]
+		playurl2=chstream2[pos]
+		#playurl=playurl.split('|')[0]+'|User-Agent=Dalvik/2.1.0 (Linux; U; Android 5.1.1; SM-G920F Build/LMY47X)'
+
+		  
+def addLink(name,url,mode,iconimage,fanart,description=''):
+		u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&description="+str(description)
+		ok=True
+		liz=xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
+		liz.setInfo( type="Video", infoLabels={ "Title": name, 'plot': description } )
+		liz.setProperty('fanart_image', fanart)
+		ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=False)
+		return ok
+
+START()
+#CreateUser()
+window.doModal()
+del window
+if mode==1:START()
+#addLink('[COLOR gold]Relaunch Gui[/COLOR]','url',1,icon,fanart,description='')
+xbmcplugin.endOfDirectory(int(sys.argv[1]))

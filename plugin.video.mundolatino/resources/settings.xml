@@ -1,0 +1,10 @@
+﻿<settings>
+  <category label="General">
+    <setting type="action" label="Actualizar [B]Mundo Latino[/B] [COLOR yellow]Version Actual[/COLOR] [COLOR yellow]2.0.0[/COLOR]" option="close" action="RunPlugin(plugin://plugin.video.MundoLatino/?mode=7)"/>
+	<setting id="save_location" type="folder"  label="Selecciona directorio de descarga" default=""/>
+    <setting id="parentalblockedpin" label="Parental Block Pin" type="text"  option="hidden"  default=""/>
+    <setting id="parentalblocked" label="Is Parental Blocked Applied?" type="bool" default="false" enable="false"/>
+    
+  </category>
+  
+</settings>

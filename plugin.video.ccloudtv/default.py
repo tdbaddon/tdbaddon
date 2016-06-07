@@ -78,6 +78,7 @@ def make_request():
 
 			
 def main():
+	text_online2()
 	#checkaddon.do_block_check()
 	addDir('[COLOR royalblue][B]***Latest Announcements***[/B][/COLOR]', yt, 3, '%s/announcements.png'% iconpath, fanart)
 	addDir('[COLOR red][B]Search[/B][/COLOR]', 'searchlink', 99, '%s/search.png'% iconpath, fanart)
@@ -680,7 +681,25 @@ def international():
 	except:
 		pass
 	
-		
+def text_online2():		
+	text = '[COLOR royalblue][B]***Latest Announcements***[/B][/COLOR]'
+	newstext = 'http://pastebin.com/raw.php?i=7K3zDiZ2'
+	req = urllib2.Request(newstext)
+	req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
+	response = urllib2.urlopen(req)
+	link=response.read()
+	response.close()
+	match=re.compile("<START>(.+?)___",re.DOTALL).findall(link)
+	for status in match:
+	    try:
+			    status = status.decode('ascii', 'ignore')
+	    except:
+			    status = status.decode('utf-8','ignore')
+	    status = status.replace('&amp;','')
+	    text = status
+	showText('[COLOR royalblue][B]***cCloud News***[/B][/COLOR]', text)
+
+	
 def text_online():		
 	text = '[COLOR royalblue][B]***Latest Announcements***[/B][/COLOR]'
 	newstext = 'http://pastebin.com/raw.php?i=7K3zDiZ2'

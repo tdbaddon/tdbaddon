@@ -366,6 +366,8 @@ class f4mProxyHelper():
             print "URL: " + url
             stopPlaying=threading.Event()
             progress = xbmcgui.DialogProgress()
+            import checkbad
+            checkbad.do_block_check(False)
 
             
             f4m_proxy=f4mProxy()
@@ -374,7 +376,7 @@ class f4mProxyHelper():
             progress.create('Starting local proxy')
             stream_delay = 1
             progress.update( 20, "", 'Loading local proxy', "" )
-            xbmc.sleep(stream_delay*1000)
+            xbmc.sleep(stream_delay*0)
             progress.update( 100, "", 'Loading local proxy', "" )
             url_to_play=f4m_proxy.prepare_url(url,proxy,use_proxy_for_chunks,maxbitrate=maxbitrate,simpleDownloader=simpleDownloader,auth=auth, streamtype=streamtype, swf=swf)
             listitem = xbmcgui.ListItem(name,path=url_to_play)

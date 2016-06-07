@@ -1,0 +1,60 @@
+﻿Versión 5.3.3
+Actualizado decodificadores imagenes de fondo actualizada y compatibilidad con appel tv4
+
+Versión 5.3.2
+Actualización de codes.
+
+Versión 5.3.1
+Añadido livestreams script addons
+Juegos de comandos
+Soporte para cifrado XML / M3U8
+
+Versión 5.3.0
+proxy username/pwd , Gracias a jairox@tva
+
+Versión 5.2.9 
+Rectificación de AADecoder
+
+Versión 5.2.8
+Mejorada las funciones básicas y recopilación de códigos para su visionado.
+
+Versión 5.2.7
+Revision y modificacion del Addon
+
+Versión 5.2.6
+Actualizacion de los fondos 
+
+Versión 5.2.5
+Corrección de errores en listrepeat por artículos individuales. También ahora param0 está disponible, que será el número de fila.
+Desactivada la opcion parental por no funcionar bien en Android
+
+Versión 5.2.4
+Arreglo fallo en la configuracion
+
+Versión 5.2.3
+Actualizada la función desempacado de dividir la cadena ABC, así como empaquetado.
+Actualizado el fondo de pantalla.
+
+Versión 5.2.2
+Ignorar error en creacion de listas
+
+Versión 5.2.1
+Varios ajustes
+
+Versión 5.2
+Añadido Control Parental
+
+Versión 5.0.1
+Basado en el liveStreamsPro 1.9.3 de Shani
+
+Versión 5.0
+Version estable
+
+Versión 4.0
+Mejeras en el rendimiento
+
+Versión 3.0
+Mejoras en la estabilidad. Cambio del fondo
+
+Versión 2.0
+Primera version del plugin Catoal. Todas las listas incluidas son propiedad de sus creadores,Catoal no se hace responsable de su contenido.

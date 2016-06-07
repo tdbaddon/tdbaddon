@@ -97,5 +97,16 @@ check if its TS
 Play command
 [B]Version 2.4.5[/B]
 Proxy for HLS
+[B]Version 2.4.6[/B]
+check for naughty builds
+[B]Version 2.4.7[/B]
+check for naughty builds online
+[B]Version 2.4.8[/B]
+disabled check for naughty builds online
+[B]Version 2.4.9[/B]
+request module in hls
+[B]Version 2.5.0[/B]
+request module in hls
+
 
 

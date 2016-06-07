@@ -1,4 +1,4 @@
-import urllib,urllib2,re,xbmcplugin,xbmcgui,sys,xbmc,xbmcaddon,os,cf,net
+import urllib,urllib2,re,xbmcplugin,xbmcgui,sys,xbmc,xbmcaddon,os,cloudflare,net
 from t0mm0.common.addon import Addon
 
 net = net.Net()
@@ -38,7 +38,7 @@ def GETMOVIES(url,name):
         link = open_url(url)
         match=re.compile('<div class="thumbs"><a href="(.+?)"><img alt=".+?" title="(.+?)" src="(.+?)" /></a></div>').findall(link)
         for url, name, iconimage in match:
-                iconimage=iconimage+"|User-Agent=Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36&Cookie=%s"%getCookiesString()
+                iconimage=iconimage+"|User-Agent=Mozilla/5.0 (Windows NT 6.1; rv:32.0) Gecko/20100101 Firefox/32.0&Cookie=%s"%getCookiesString()
                 name = cleanHex(name)
                 addDir(name,url,2,iconimage,fanart)
         try:
@@ -107,7 +107,7 @@ def GETCUSTCAT(url):
         link = open_url(url)
         match=re.compile('<img src="(.+?)".+?<a href="(.+?)".+?"title">(.+?)</span>',re.DOTALL).findall(link)
         for iconimage,url, name in match:
-                iconimage=iconimage+"|User-Agent=Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36&Cookie=%s"%getCookiesString()
+                iconimage=iconimage+"|User-Agent=Mozilla/5.0 (Windows NT 6.1; rv:32.0) Gecko/20100101 Firefox/32.0&Cookie=%s"%getCookiesString()
                 addDir(name,url,2,iconimage,fanart)
 	try:
                 addDir('Next >> Page '+str(nextpage),nextpageurl,9,icon,fanart)
@@ -118,7 +118,7 @@ def GETGENREMOVIES(url):
         link = open_url(url)
         match=re.compile('<img src="(.+?)".+?<a href="(.+?)".+?"title">(.+?)</span>',re.DOTALL).findall(link)
         for iconimage,url, name in match:
-                iconimage=iconimage+"|User-Agent=Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36&Cookie=%s"%getCookiesString()
+                iconimage=iconimage+"|User-AgentMozilla/5.0 (Windows NT 6.1; rv:32.0) Gecko/20100101 Firefox/32.0&Cookie=%s"%getCookiesString()
                 addDir(name,url,2,iconimage,fanart)  #
 	try:
                addDir('Next >> Page 2',pagenum+'/'+'2',10,icon,fanart)
@@ -132,7 +132,7 @@ def GETGENRENEXT(url):
         link = open_url(url)
         match=re.compile('<img src="(.+?)".+?<a href="(.+?)".+?"title">(.+?)</span>',re.DOTALL).findall(link)
         for iconimage,url, name in match:
-                iconimage=iconimage+"|User-Agent=Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36&Cookie=%s"%getCookiesString()
+                iconimage=iconimage+"|User-Agent=Mozilla/5.0 (Windows NT 6.1; rv:32.0) Gecko/20100101 Firefox/32.0&Cookie=%s"%getCookiesString()
                 addDir(name,url,2,iconimage,fanart)  
 	try:
                 addDir('Next >> Page '+str(nextpage),nextpageurl,10,icon,fanart)
@@ -168,7 +168,7 @@ def PLAYLINK(name,url):
         posturl = re.compile('url: "(.+?)",').findall(link)[0]
         postparams = re.compile("data: '(.+?)',").findall(link)[0]
         req = urllib2.Request(posturl,postparams)
-        req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36')
+        req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 6.1; rv:32.0) Gecko/20100101 Firefox/32.0')
         response = urllib2.urlopen(req)
         link=response.read()
         response.close()
@@ -184,7 +184,7 @@ def PLAYLINK(name,url):
         ok=True
         liz=xbmcgui.ListItem(name, iconImage=icon,thumbnailImage=icon); liz.setInfo( type="Video", infoLabels={ "Title": name } )
         ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=url,listitem=liz)
-        xbmc.Player ().play(stream_url+"|User-Agent=Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36&Cookie=%s"%getCookiesString(), liz, False)
+        xbmc.Player ().play(stream_url+"|User-Agent=Mozilla/5.0 (Windows NT 6.1; rv:32.0) Gecko/20100101 Firefox/32.0&Cookie=%s"%getCookiesString(), liz, False)
 
 def get_params():
         param=[]
@@ -222,25 +222,19 @@ def addLink(name,url,mode,iconimage,fanart,description=''):
         return ok
         
 def open_url(url):
-	try:
-	    net.set_cookies(cookie_file)
-	    link = net.http_GET(url).content
-	    link = cleanHex(link)
-	    return link
-	except:
-	  try:
-	    cf.solve(url,cookie_file,wait=True)
-	    net.set_cookies(cookie_file)
-	    link = net.http_GET(url).content
-	    link = cleanHex(link)
-	    return link
-	  except:
-	    cf.solve(url,cookie_file,wait=True)
-	    net.set_cookies(cookie_file)
-	    link = net.http_GET(url).content
-	    link = cleanHex(link)
-	    return link 
-
+        try:
+                net.set_cookies(cookie_file)
+                link = net.http_GET(url).content
+                link = cleanHex(link)
+                return link
+        except:
+                import cloudflare
+                cloudflare.createCookie(url,cookie_file,'Mozilla/5.0 (Windows NT 6.1; rv:32.0) Gecko/20100101 Firefox/32.0')
+                net.set_cookies(cookie_file)
+                link = net.http_GET(url).content
+                link = cleanHex(link)
+                return link
+	
 def cleanHex(text):
     def fixup(m):
         text = m.group(0)
@@ -266,9 +260,6 @@ try: mode=int(params["mode"])
 except: pass
 try: iconimage=urllib.unquote_plus(params["iconimage"])
 except: pass
-
-print "Site: "+str(site); print "Mode: "+str(mode); print "URL: "+str(url); print "Name: "+str(name); print "IconImage: "+str(iconimage)
-print params
 
 if mode==None or url==None or len(url)<1: CATEGORIES()
 elif mode==1: GETMOVIES(url,name)

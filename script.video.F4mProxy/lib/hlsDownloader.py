@@ -38,7 +38,7 @@ import zlib
 from hashlib import sha256
 import cookielib
 import array, random, string
-
+import requests
 #from Crypto.Cipher import AES
 '''
 from crypto.cipher.aes      import AES
@@ -131,9 +131,41 @@ class HLSDownloader():
         self.status='finished'
 
         
+def getUrl(url,timeout=20,returnres=False):
+    global cookieJar
+    global clientHeader
+    try:
+        post=None
+        #print 'url',url
+        session = requests.Session()
+        session.cookies = cookieJar
+
+        headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux i686; rv:42.0) Gecko/20100101 Firefox/42.0 Iceweasel/42.0'}
+        if clientHeader:
+            for n,v in clientHeader:
+                headers[n]=v
+        proxies={}
+        
+        if gproxy:
+            proxies= {"http": gproxy}
+         
+        if post:
+            req = session.post(url, headers = headers, data= post, proxies=proxies)
+        else:
+            req = session.get(url, headers=headers,proxies=proxies )
+
+        if returnres: 
+            return req
+        else:
+            return req.text
+
+    except:
+        print 'Error in getUrl'
+        traceback.print_exc()
+        return None
+        
     
-    
-def getUrl(url,timeout=20, returnres=False):
+def getUrlold(url,timeout=20, returnres=False):
     global cookieJar
     global clientHeader
     try:
@@ -189,15 +221,19 @@ def download_chunks(URL, chunk_size=4096, enc=False):
     else:
         chunk_size=chunk_size*10
     conn=getUrl(URL,returnres=True)
-    while 1:
-        if chunk_size==-1:
-            data=conn.read()
-        else:
-            data=conn.read(chunk_size)
-        if not data : return
-        yield data
-        if chunk_size==-1: return
-
+    #while 1:
+    
+    for chunk in conn.iter_content(chunk_size=chunk_size):
+        yield chunk
+    
+        #if chunk_size==-1:
+        #    data=conn.read()
+        #else:
+        #    data=conn.read(chunk_size)
+        #if not data : return
+        #yield data
+        #if chunk_size==-1: return
+    #return 
     print 'function finished'
 
     if 1==2:
@@ -255,11 +291,11 @@ def gen_m3u(url, skip_comments=True):
     #print conn
     #url=re.compile(',RESOLUTION=512x2.*\s?(.*?)\s').findall(conn)[0]
     conn = getUrl(url,returnres=True )#urllib2.urlopen(url)
-    print conn
+    #print conn
     #conn=urllib2.urlopen(url)
     enc = validate_m3u(conn)
     #print conn
-    for line in conn:#.split('\n'):
+    for line in conn.iter_lines():#.split('\n'):
         line = line.rstrip('\r\n').decode(enc)
         if not line:
             # blank line

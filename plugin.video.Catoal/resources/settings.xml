@@ -1,0 +1,19 @@
+﻿<settings>
+  <category label="Información Catoal">
+       	<setting type="lsep" label="Versión del Addon Actualizado 05/05/2016" option="close" action="RunPlugin(plugin://plugin.video.Catoal/?mode=7)" />
+        <setting type="lsep" label="Facebook: www.facebook.com/catoal.kodi" option="close" action="RunPlugin(plugin://plugin.video.Catoal/?mode=7)" />
+        <setting type="lsep" label="Twitter: @kodi_catoal" option="close" action="RunPlugin(plugin://plugin.video.Catoal/?mode=7)" />
+		<setting type="lsep" label="Email: catoal.kodi@gmail.com" option="close" action="RunPlugin(plugin://plugin.video.Catoal/?mode=7)" />
+		<setting type="lsep" label="Web: http://catoalkodi.com" option="close" action="RunPlugin(plugin://plugin.video.Catoal/?mode=7)" />
+		<setting type="lsep" label="Grupo Telegram: @kodicatoal" option="close" action="RunPlugin(plugin://plugin.video.Catoal/?mode=7)" />
+ </category>
+		
+  <category label="Configuración General">
+        <setting type="lsep" label="Para su buen funcionamiento pinchar en" option="close" action="RunPlugin(plugin://plugin.video.Catoal/?mode=7)" />
+        <setting type="lsep" label="POR DEFECTO y luego en OK" option="close" action="RunPlugin(plugin://plugin.video.Catoal/?mode=7)" />
+		<setting id="ask_playlist_items" type="bool" label="Elegir Fuente de Video" default="true" visible="false"/>
+        <setting id="add_playlist" type="bool" label="Activar Multilink" default="true" visible="false"/>
+        <setting id="genesisorpulsar" type="enum" values="Genesis|Pulsar" label="Play IMDBid with:" default="Genesis"visible="false"/>
+        <setting id="donotshowbychannels" label="Ocultar Canales" type="bool" default="false" visible="false"/>
+  </category>
+</settings>

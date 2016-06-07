@@ -1,8 +1,8 @@
 ------------------------
-Specto v2016.06.01.2
+Specto v2016.06.06.1
 ------------------------
-Small Fix - oneclickwatch, xmovies,
-
+- oneclickwatch - disabled
+- openload - fixed (maybe?)
 ------------------------
 Specto v2016.05.10.6
 ------------------------

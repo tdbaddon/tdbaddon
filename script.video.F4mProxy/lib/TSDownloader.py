@@ -71,7 +71,7 @@ def getLastPTS(data,rpid,type="video"):
             transportpri = bits.read(1).uint
             pid = bits.read(13).uint
             ##print pid
-            if pid==rpid:
+            if pid==rpid or rpid==0:
                 ##print pid
                 ##print 1/0
              
@@ -244,7 +244,7 @@ def getFirstPTSFrom(data,rpid, initpts,type="video" ):
             ##print pid
             ##print pid,rpid
                 ##print 1/0
-            if rpid==pid: 
+            if rpid==pid or rpid==0: 
                 ##print 'here pid is same'
                 try:
                     packet = bits.read((packsize-3)*8)

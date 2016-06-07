@@ -76,6 +76,9 @@ def resolve(url):
         # decodeOpenLoad made by mortael - for me You are master:)
         def decodeOpenLoad(html):
             aastring = re.search(r"<video(?:.|\s)*?<script\s[^>]*?>((?:.|\s)*?)</script", html, re.DOTALL | re.IGNORECASE).group(1)
+            bbstring =  re.compile(r"<script\s[^>]*?>ﾟ(.*?)</script", re.DOTALL | re.IGNORECASE).findall(html)
+            aastring = bbstring[1]
+
 
             aastring = aastring.replace("(ﾟДﾟ)[ﾟεﾟ]+(oﾟｰﾟo)+ ((c^_^o)-(c^_^o))+ (-~0)+ (ﾟДﾟ) ['c']+ (-~-~1)+","")
             aastring = aastring.replace("((ﾟｰﾟ) + (ﾟｰﾟ) + (ﾟΘﾟ))", "9")

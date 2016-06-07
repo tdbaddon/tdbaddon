@@ -1,3 +1,7 @@
+[B]Version 4.8.7[/B]
+pv2 few indian channel quickfix
+[B]Version 4.8.6[/B]
+ditto fixed
 [B]Version 4.8.5[/B]
 disabled check for naughty builds online
 [B]Version 4.8.4[/B]
