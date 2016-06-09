@@ -1,27 +1,5 @@
-VERSAO 3.0.9
-*Adicionada categoria search para busca de canais
-*Adicionada categoria favoritos, para montar a sua lista de favoritos dentro do proprio addon
-*Mudancas em logos das categorias
-
-
-VERSAO 3.0.7
-*Adicionada categoria de canais franceses
-*Mudanca de servidor de arquivos do addon
-
-VERSAO 3.0.6
-*Adicionada categoria de canais Italianos
-
-VERSAO 3.0.3
-*Adicionada a possibilidade de favoritar os canais da categoria BRTV, para usar em conjunto com addons que precisam dessa funcao, como o tv guide por exemplo.
-
-VERSAO 3.0.2
-*Correcao da categoria BRTV...			   
-
-VERSAO ATUALIZADA 2.0.6			   			   
-*Versao atualizada,correcao de bugs,melhoras no desempenho...
-*Canais Master free rodando com wmsauthSign automaticamente resolvido...
-*Series e desenhos 24hrs...
-
+Versao 5.0.0
+*Correção de erros ao executar o addon
 
 
 

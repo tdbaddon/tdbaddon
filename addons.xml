@@ -388,15 +388,21 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 </addon>
 
-<addon id="plugin.program.super.favourites" name="Super Favourites" version="2.0.36" provider-name="spoyser, enhanced iSearches by OpenELEQ">
+<addon id="plugin.program.super.favourites" name="Super Favourites" version="2.0.37" provider-name="spoyser">
   <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="script.module.metahandler" version="2.7.0" />
+    <import addon="xbmc.python" version="2.14.0"/>
+	<import addon="script.module.metahandler" optional="true" />
   </requires>
+
+
   <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>video audio executable</provides>
+        <provides>video audio image executable</provides>
   </extension>
+
+
   <extension point="xbmc.service" library="service.py" start="startup" />
+
+
   <extension point="xbmc.addon.metadata">
     <summary lang="en">Put all your favourites bits of all your favourites addons into one easy to use addon.</summary>
     <description lang="en">Super Favourites is a better way of managing your Kodi Favourites.[CR][CR]Virtually any menu item within Kodi can be added to Super Favourites, even from addons that don't normally provide this feature.[CR][CR]Super Favourites allows you to better manage your Kodi favourites, including the creation of sub-folders, into which your Kodi favourites can then be copied or moved into.[CR][CR]This allows you to create you own custom addon with just the best bits of your favourite addons. Search your favourite addons, play your favourite music, read your favourite comic strips, select your favourite playlists, browse your favourite movies, listen to your favourite radio stations, watch your favourite cartoons, the possibilities are endless, all from within one easy to use addon.</description>
@@ -405,9 +411,32 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
     <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
     <forum>http://forum.xbmc.org/showthread.php?tid=192662</forum>
     <website></website>
-    <source></source>
-    <email></email>
+    <source>https://github.com/spoyser/spoyser-repo/tree/master/plugin.program.super.favourites</source>
+    <email>seanpoyser at gmail.com</email>
   </extension>
+
+
+  <extension point="kodi.context.item">
+    <menu id="kodi.core.main">
+
+      <item library="capture.py">
+        <label>30002</label>
+        <visible>!IsEmpty(Window(10000).Property(SF_STD_CONTEXTMENU_ENABLED)) + !StringCompare(Container.PluginName,plugin.program.super.favourites)</visible>
+      </item>
+
+      <item library="menu_addtofaves.py">
+        <label>30047</label>
+        <visible>!IsEmpty(Window(10000).Property(SF_STD_ADDTOFAVES_ENABLED)) + !StringCompare(Container.PluginName,plugin.program.super.favourites)</visible>
+      </item>
+
+      <item library="menu_download.py">
+        <label>30259</label>
+        <visible>!IsEmpty(Window(10000).Property(SF_STD_DOWNLOAD_ENABLED)) + Player.IsInternetStream</visible>
+      </item>
+
+    </menu>
+  </extension>
+
 </addon>
 
 <addon id="plugin.program.thechief" name="*[COLOR white]The Chief[/COLOR]" version="7.0.0" provider-name="[COLOR white]The Chief[/COLOR]">
@@ -1251,29 +1280,6 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
     </extension>
 </addon>
 
-<addon id="plugin.video.genesis" name="Genesis" version="10.01" provider-name="TDB">
-	<requires>
-		<import addon="xbmc.python" version="2.1.0" />
-		<import addon="script.module.pyxbmct" version="1.1.4" />
-		<import addon="script.module.requests" version="1.0.0" />
-		<import addon="script.module.metahandler" optional="true" />
-		<import addon="plugin.video.youtube" optional="true" />
-	</requires>
-	<extension point="xbmc.python.pluginsource" library="default.py">
-		<provides>video</provides>
-	</extension>
-	<extension point="xbmc.service" library="service.py" start="startup" />
-	<extension point="xbmc.addon.metadata">
-		<summary lang="en">Genesis Lazarus - Genesis Has Risen</summary>
-		<description lang="en">Genesis Lazarus provides Genesis 4.8.5 with download availability again. All credit for the Genesis add-on goes to lambda. </description>
-		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
-		<forum></forum>
-		<source>https://offshoregit.com/lambda81/</source>
-		<website>https://offshoregit.com/lambda81/</website>
-		<platform>all</platform>
-	</extension>
-</addon>
-
 <addon id="plugin.video.genesislazarus" name="Genesis Lazarus" version="4.8.5" provider-name="KodiMaster">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
@@ -1418,6 +1424,26 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
 
 Turns your XBMC into an instant free on-demand media-center. Stream and download to your library DVD and HD720p quality videos. Browse and search the library of over 77,000 videos with metadata and posters. Never experience the frustration of dead video links!</description>
     </extension>
+</addon>
+
+<addon id="plugin.video.ipla.pl"
+       name="ipla.tv"
+       version="2.0.0"
+       provider-name="smuto">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource"
+            library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Ipla - Internet TV</summary>
+    <summary lang="pl">Interaktywna platforma multimedialna.</summary>
+    <description lang="en">Watch videos from www.ipla.pl</description>
+    <description lang="pl">Ipla to największa telewizja internetowa w Polsce. Swoim widzom oferuje transmisje w wysokiej jakości, największą w Polsce legalną bazę treści, w tym tysiące odcinków seriali, programów rozrywkowych i informacyjnych, koncerty i najważniejsze wydarzenia sportowe, a także ponad tysiąc filmów pełnometrażowych. Dostęp do zasobów telewizji ipla mają użytkownicy różnych urządzeń dzięki aplikacjom ipla specjalnie do nich przystosowanym.</description>
+    <platform>all</platform>
+  </extension>
 </addon>
 
 <addon id="plugin.video.jamo68" name="Jamo68" version="0.1" provider-name="ptom">
@@ -1595,7 +1621,7 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
   </extension>
 </addon>
 
-<addon id="plugin.video.mdm4u" name="M4U" version="1.0.7" provider-name="Mucky Duck">
+<addon id="plugin.video.mdm4u" name="M4U" version="1.0.9" provider-name="Mucky Duck">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.addon.common" />
@@ -1634,7 +1660,7 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
   </extension>
 </addon>
 
-<addon id="plugin.video.mdpubfilm" name="PubFilm" version="1.0.4" provider-name="Mucky Duck">
+<addon id="plugin.video.mdpubfilm" name="PubFilm" version="1.0.5" provider-name="Mucky Duck">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.addon.common" />
@@ -1667,24 +1693,6 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
   <extension point="xbmc.addon.metadata">
     <summary lang="en">Stream content From The layarkaca21.com WebSite</summary>
     <description lang="en">Stream Content From layarkaca21.com WebSite</description>
-	<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon or have any affiliation with the website owners</disclaimer>
-    <platform>all</platform>
-  </extension>
-</addon>
-
-<addon id="plugin.video.mdwatchtvseries" name="Watch TV Series" version="1.1.4" provider-name="Mucky Duck">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-	<import addon="script.module.addon.common" />
-	<import addon="script.module.requests" />
-	<import addon="repository.mdrepo" />
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en">Stream content From The tvserieswatch.net WebSite</summary>
-    <description lang="en">Stream Content From The tvserieswatch.net WebSite</description>
 	<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon or have any affiliation with the website owners</disclaimer>
     <platform>all</platform>
   </extension>
@@ -2125,19 +2133,31 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.roggerstream" name="Rogger Stream" version="4.0.2" provider-name="Rogger Henrique, Cleiton Leonel Creton, Filipe Carvalho e Marcos Alvarenga">
+<addon id="plugin.video.roggerstream"
+       name="Rogger Stream"
+       version="5.0.0"
+       provider-name="Rogger Henrique, Cleiton Leonel Creton, Filipe Carvalho e Marcos Alvarenga">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.beautifulsoup" version="3.2.1"/>
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.beautifulsoup4" />
+    <import addon="script.module.requests" />
+    <import addon="script.module.httplib2" />
+    <import addon="script.module.youtube.dl" optional="true"/>
+    <import addon="plugin.video.youtube" optional="true" />
+    <import addon="script.module.urlresolver" optional="true"/>
+    <import addon="script.module.simplejson" />
+     <import addon="script.module.livestreamer" optional="true"/>
+     <import addon="script.module.pyamf" optional="true"/>
   </requires>
-  <extension point="xbmc.python.pluginsource" library="defaut.py">
+  <extension point="xbmc.python.pluginsource" library="default.py">
     <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <language>en</language>
-    <platform>all</platform>
     <summary lang="en">Lista de canais IPTV by Rogger</summary>
     <description lang="en">Assista a vários canais transmitidos pela internet diretamente no Kodi</description>
-	<platform>all</platform>
+    <platform>all</platform>
   </extension>
 </addon>
 
@@ -2581,22 +2601,6 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
-<addon id="plugin.video.tvtime.tva" name="TV Time" provider-name="mhancoc7" version="0.1.9">
-    <requires>
-        <import addon="xbmc.python" version="2.1.0" />
-    </requires>
-    <extension library="main.py" point="xbmc.python.pluginsource">
-        <provides>video</provides>
-    </extension>
-    <extension point="xbmc.addon.metadata">
-        <summary>Watch Major American Television Networks Live for Free!</summary>
-        <description>Watch all the best American cable television channels live and in high quality, completely unrestricted and free of charge! Please feel free to visit www.tvaddons.ag for support and assistance.</description>
-        <platform>all</platform>
-        <forum>https://forums.tvaddons.ag/tv-time-for-kodi/</forum>
-        <website>http://www.tvaddons.ag/</website>
-    </extension>
-</addon>
-
 <addon id="plugin.video.UFC"
 	name="UFC"
 	version="1.0.8"
@@ -2731,26 +2735,6 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.watch1080" name="Watch 1080p" version="1.0.11" provider-name="MetalKettle">
-  <requires>
-    <import addon="script.module.simplejson" version="3.3.0"/>
-    <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="script.module.t0mm0.common" version="2.0.0"/>
-    <import addon="plugin.video.youtube" version="3.0.0"/>
-    <import addon="script.module.urlresolver"  version="2.1.2"/>
-    <import addon="script.common.plugin.cache" version="2.5.2"/>
-    <import addon="script.module.metahandler" version="2.5.1"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en"></summary>
-    <description lang="en"></description>
-    <platform>all</platform>
-  </extension>
-</addon>
-
 <addon id="plugin.video.watch4free" name="Watch4[COLOR lime]free[/COLOR]" version="2.2.0" provider-name="SchisM">
  <requires>
 	<import addon="script.module.simplejson" version="3.3.0"/>
@@ -2823,26 +2807,6 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.xmovies8" name="XMovies8" version="1.1.4" provider-name="MetalKettle">
-  <requires>
-    <import addon="script.module.simplejson" version="3.3.0"/>
-    <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="script.module.t0mm0.common" version="2.0.0"/>
-    <import addon="plugin.video.youtube" version="3.0.0"/>
-    <import addon="script.module.urlresolver"  version="2.1.2"/>
-    <import addon="script.common.plugin.cache" version="2.5.2"/>
-    <import addon="script.module.metahandler" version="2.5.1"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en"></summary>
-    <description lang="en"></description>
-    <platform>all</platform>
-  </extension>
-</addon>
-
 <addon
     id="plugin.video.xxtrucoxx"
     name="XxTRUCOxX"
@@ -2893,6 +2857,45 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 		<source>https://offshoregit.com/lambda81/lambda-addons</source>
 		<website>https://offshoregit.com/lambda81/</website>
 		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="plugin.video.youtube" name="YouTube" version="5.2.2" provider-name="h0d3nt3uf3l, jdf76, bromix">
+	<requires>
+		<import addon="xbmc.python" version="2.1.0"/>
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="default.py">
+		<provides>video</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+        <summary lang="en">Plugin for YouTube</summary>
+        <description lang="en">YouTube is one of the biggest video-sharing websites of the world.</description>
+		<summary lang="de">Plugin für YouTube</summary>
+        <description lang="de">YouTube ist eines der größten Video-Sharing-Websites der Welt.</description>
+        <summary lang="pl">Wtyczka YouTube</summary>
+        <description lang="pl">YouTube jest jednym z największych na świecie serwisów udostępniania wideo.</description>
+		<summary lang="hu">Kiegészítő  a YouTube-hoz</summary>
+        <description lang="hu">A YouTube világ egyik legnagyobb videómegosztó weboldala.</description>
+        <summary lang="es">Plugin para YouTube</summary>
+        <description lang="es">YouTube es un uno de los mayores sitios web de intercambio de vídeos del mundo.</description>
+        <summary lang="ru">Видеодополнение YouTube</summary>
+        <description lang="ru">Данное дополнение позволяет находить и смотреть видео на всеми любимом сайте.</description>
+        <summary lang="fr">Plugin pour YouTube</summary>
+        <description lang="fr">YouTube est l'un des plus grands sites de partage vidéos du monde.</description>
+        <summary lang="zh">YouTube附加元件</summary>
+        <description lang="zh">「Youtube」是全世界最大的影片分享網站</description>
+        <summary lang="bg">Добавка за YouTube</summary>
+        <description lang="bg">YouTube е един от най-големите уеб сайтове за споделяне на видео в целия свят.</description>
+		<summary lang="el">Πρόσθετο YouTube</summary>
+        <description lang="el">Το YouTube είναι μία από τις μεγαλύτερες ιστοσελίδες διαμοιρασμού βίντεο στον κόσμο.</description>
+		<disclaimer lang="en"></disclaimer>
+		<language></language>
+		<platform>all</platform>
+		<license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+		<forum>http://forum.kodi.tv/showthread.php?tid=267160</forum>
+		<website>http://www.youtube.com</website>
+		<email>ytplugin at datanet dot ws</email>
+		<source>https://github.com/Kolifanes/plugin.video.youtube</source>
 	</extension>
 </addon>
 
@@ -3802,6 +3805,19 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 		<platform>all</platform>
                 <forum>http://www.adultxbmc.com</forum>
                 <website>http://www.adultxbmc.com</website>
+	</extension>
+</addon>
+
+<addon id="repository.ytplugin" name="Youtube Addon Repo" version="1.0" provider-name="Jeffrey Frasure">
+	<extension point="xbmc.addon.repository" name="Youtube Addon Repository">
+		<info compressed="false">https://github.com/jdf76/repository/raw/master/addons.xml</info>
+		<checksum>https://github.com/jdf76/repository/raw/master/addons.xml.md5</checksum>
+		<datadir zip="true">https://github.com/jdf76/repository/raw/master/zips</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Install Kodis Youtube Addons</summary>
+                <description>Download and install addons from the Kodi Youtube group. This plugin is not official from Google.</description>
+		<platform>all</platform>
 	</extension>
 </addon>
 

@@ -116,8 +116,12 @@ def LINK(url):
         requestURL = re.findall(r'<a href="http://player.pubfilm.com(.*?)".*?value=".*?" />', str(link), re.I|re.DOTALL)[0]
         if 'http://player.pubfilm.com' not in requestURL:
                 requestURL = 'http://player.pubfilm.com' + requestURL
+        print '####################################url='+url
         html = requests.get(requestURL, headers=headers).text
         url = re.findall(r'"file":"(.*?)","type":"mp4"', str(html), re.I|re.DOTALL)[0]
+        headers = {'host': 'player.pubfilm.com', 'referer': requestURL, 'user-agent': User_Agent}
+        html2 = requests.get(url, headers=headers)
+        print '####################################headers'+str(html2.headers)
         liz = xbmcgui.ListItem(name, iconImage='DefaultVideo.png', thumbnailImage=iconimage)
         liz.setInfo(type='Video', infoLabels={'Title':description})
         liz.setProperty("IsPlayable","true")
@@ -247,7 +251,7 @@ def addDir2(name,url,mode,iconimage,itemcount):
                 year = name[-4:]
                 year = year.replace(' ','')
                 name = name[:-4]
-                meta = metaget.get_meta('movie',name=name,year=year)
+                meta = metaget.get_meta('movie',name=name)
                 name = '[B][COLOR white]' + name + '[/COLOR][/B]' + '[I][COLOR red]' + '(' + year + ')' + '[/COLOR][/I]'
                 meta['title'] = name
         else:
@@ -263,7 +267,7 @@ def addDir2(name,url,mode,iconimage,itemcount):
                         name = name[:-5]
                         print name
                 print year
-                meta = metaget.get_meta('tvshow',name=name,year=year)
+                meta = metaget.get_meta('tvshow',name=name)
                 name = '[B][COLOR white]' + name + '[/COLOR][/B]' + ' [I][COLOR red]' + '[' + season + ']' + '[/COLOR][/I]'
                 meta['title'] = name
                 

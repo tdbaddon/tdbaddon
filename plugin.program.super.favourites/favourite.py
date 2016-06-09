@@ -18,24 +18,26 @@
 #  http://www.gnu.org/copyleft/gpl.html
 #
 
-import os
 import xbmc
+
+import os
 import re
-import re
+import urllib
 
 import utils
-
 import sfile
 
 
-HOMESPECIAL = 'special://home/'
-HOMEFULL    = xbmc.translatePath(HOMESPECIAL)
 
 SHOWUNAVAIL = utils.ADDON.getSetting('SHOWUNAVAIL') == 'true'
 
 
-def getFavourites(file, limit=10000, validate=True, superSearch=False):
+def getFavourites(file, limit=10000, validate=True, superSearch=False, chooser=False):
     import xbmcgui
+
+    prefix = ''
+    if not chooser:
+        prefix = 'HOME:' if xbmcgui.getCurrentWindowId() == 10000 else ''    
 
     xml  = '<favourites></favourites>'
     if sfile.exists(file):
@@ -83,13 +85,34 @@ def getFavourites(file, limit=10000, validate=True, superSearch=False):
                     win  = xbmcgui.getCurrentWindowId()
                     cmd  = updateSFOption(cmd, 'winID', win)
 
-            cmd = patch(cmd)
+            name = resolve(name)
+            cmd  = patch(cmd)
+            cmd  = resolve(cmd)
+            cmd  = prefix + cmd
 
             items.append([name, thumb, cmd])
             if len(items) > limit:
                 return items
 
     return items
+
+
+def resolve(text):
+    try:
+        if '$LOCALIZE' in text:
+            id   = int(re.compile('\$LOCALIZE\[(.+?)\]').search(text).group(1))
+            text = text.replace('$LOCALIZE[%d]' % id, xbmc.getLocalizedString(id))
+            return resolve(text)
+
+        if '$INFO' in text:
+            str  = re.compile('\$INFO\[(.+?)\]').search(text).group(1)
+            text = text.replace('$INFO[%s]' % str, xbmc.getInfoLabel(str))
+            return resolve(text)
+
+    except:
+        pass
+
+    return text
 
 
 def patch(cmd):
@@ -141,7 +164,7 @@ def writeFavourites(file, faves):
             if isKodi and cmd.lower().startswith('playmedia'):
                 cmd = removeSFOptions(cmd)
 
-            thumb = convertToHome(thumb)
+            thumb = utils.convertToHome(thumb)
 
             name  = 'name="%s" '  % name
             thumb = 'thumb="%s">' % thumb
@@ -186,17 +209,18 @@ def isValid(cmd):
 
     cmd = tidy(cmd)
 
-    if 'PlayMedia' in cmd:
+    #if 'PlayMedia' in cmd:
+    if cmd.startswith('PlayMedia'):
         return utils.verifyPlayMedia(cmd)
-        
 
-    if 'plugin' in cmd:        
-        if not utils.verifyPlugin(cmd):
-            return False
-
-    if 'RunScript' in cmd:
+    #if 'RunScript' in cmd:
+    if cmd.startswith('RunScript'):
         cmd = re.sub('/&content_type=(.+?)"\)', '")', cmd)
         if not utils.verifyScript(cmd):
+            return False
+        
+    if 'plugin' in cmd:        
+        if not utils.verifyPlugin(cmd):
             return False
         
     return True
@@ -206,6 +230,7 @@ def updateFave(file, update):
     cmd = update[2]
 
     fave, index, nFaves = findFave(file, cmd)
+    
    
     removeFave(file, cmd)
     return insertFave(file, update, index)
@@ -237,6 +262,11 @@ def findFave(file, cmd):
     for idx, fave in enumerate(faves):
         if '[%SF%]' in fave[2]:
             test = fave[2].split('[%SF%]', 1)
+            if cmd.startswith(test[0]) and cmd.endswith(test[1]):
+                return fave, idx, len(faves)
+
+        if '[%SF+%]' in fave[2]:
+            test = fave[2].split('[%SF+%]', 1)
             if cmd.startswith(test[0]) and cmd.endswith(test[1]):
                 return fave, idx, len(faves)
 
@@ -311,17 +341,45 @@ def removeFave(file, cmd):
     return True
 
 
+def _shiftUpIndex(index, max, faves):
+    index -= 1
+    if index < 0:
+        index = max
+    
+    cmd = faves[index][2]
+    if isValid(cmd):
+        return index
+
+    return _shiftUpIndex(index, max, faves)
+
+
+def _shiftDownIndex(index, max, faves):
+    index += 1
+    if index > max:
+        index = 0
+
+    cmd = faves[index][2]
+    if isValid(cmd):
+        return index
+
+    return _shiftDownIndex(index, max, faves)
+
+
 def shiftFave(file, cmd, up):
+    faves = getFavourites(file, validate=True)
+    if len(faves) < 2:
+        return
+
+    faves = getFavourites(file, validate=False)
+
     fave, index, nFaves = findFave(file, cmd)
+
     max = nFaves - 1
+
     if up:
-        index -= 1
-        if index < 0:
-            index = max
-    else: #down
-        index += 1
-        if index > max:
-            index = 0
+        index = _shiftUpIndex(index, max, faves)
+    else:
+        index = _shiftDownIndex(index, max, faves)
 
     removeFave(file, cmd)
     return insertFave(file, fave, index)
@@ -341,21 +399,31 @@ def renameFave(file, cmd, newName):
 
 
 def equals(fave, cmd):
+    fave = fave.strip()
+    cmd  = cmd.strip()
+
     if fave == cmd:
         return True
 
     fave = removeSFOptions(fave)
     cmd  = removeSFOptions(cmd)
 
+
     if fave == cmd:
         return True
 
-    if '[%SF%]' not in fave:
-        return False
-
-    test = fave.split('[%SF%]', 1)
-    if cmd.startswith(test[0])  and cmd.endswith(test[1]):
+    if fave == cmd.replace('")', '/")'):
         return True
+
+    if '[%SF%]' in fave:
+        test = fave.split('[%SF%]', 1)
+        if cmd.startswith(test[0])  and cmd.endswith(test[1]):
+            return True
+
+    if '[%SF+%]' in fave:
+        test = fave.split('[%SF+%]', 1)
+        if cmd.startswith(test[0])  and cmd.endswith(test[1]):
+            return True
 
     return False
 
@@ -364,7 +432,7 @@ def addFanart(cmd, fanart):
     if len(fanart) < 1:
         return cmd
 
-    return updateSFOption(cmd, 'fanart', convertToHome(fanart))
+    return updateSFOption(cmd, 'fanart', utils.convertToHome(fanart))
 
 
 def updateSFOption(cmd, option, value):
@@ -380,8 +448,6 @@ def updateSFOptions(cmd, options):
 
     if len(options) == 0:
         return cmd
-
-    import urllib 
 
     hasReturn = False
     if cmd.endswith(',return)'):
@@ -415,12 +481,12 @@ def updateSFOptions(cmd, options):
 
 
 def getSFOptions(cmd):
-    import urllib 
-
     try:    options = urllib.unquote_plus(re.compile('sf_options=(.+?)_options_sf').search(cmd).group(1))
     except: return {}
 
-    return get_params(options)
+    params = get_params(options)
+
+    return params
 
 
 def removeSFOptions(cmd):
@@ -433,16 +499,9 @@ def removeSFOptions(cmd):
     cmd = re.sub('&sf_options=(.+?)_options_sf",return\)', '",return)', cmd)
     cmd = re.sub('&sf_options=(.+?)_options_sf',    '',                 cmd)
 
-    cmd = cmd.replace('/")', '")')
+    #cmd = cmd.replace('/")', '")')
 
     return cmd
-
-
-def convertToHome(text):
-    if text.startswith(HOMEFULL):
-        text = text.replace(HOMEFULL, HOMESPECIAL)
-
-    return text
 
 
 def getFanart(cmd):
@@ -456,22 +515,19 @@ def getOption(cmd, option):
     except: return ''
 
 
-def get_params(p):
-    param=[]
-    paramstring=p
-    if len(paramstring)>=2:
-        params=p
-        cleanedparams=params.replace('?','')
-        if (params[len(params)-1]=='/'):
-           params=params[0:len(params)-2]
-        pairsofparams=cleanedparams.split('&')
-        param={}
-        for i in range(len(pairsofparams)):
-            splitparams={}
-            splitparams=pairsofparams[i].split('=')
-            if (len(splitparams))==2:
-                param[splitparams[0]]=splitparams[1]
-    return param
+def get_params(path):
+    params = {}
+    #path   = path.split('?', 1)[-1]
+    pairs  = path.split('&')
+
+    for pair in pairs:
+        split = pair.split('=')
+        if len(split) > 1:
+            #params[split[0]] = urllib.unquote_plus(split[1])
+            params[split[0]] = split[1]
+
+    return params
+
 
 
 #used only during upgrade process
@@ -494,8 +550,7 @@ def _removeFanart(cmd):
 #used only during upgrade process
 def _getFanart(cmd):
     cmd = cmd.replace(',return', '')
-
-    import urllib 
+ 
     try:    return urllib.unquote_plus(re.compile('sf_fanart=(.+?)_"\)').search(cmd).group(1))
     except: pass
 

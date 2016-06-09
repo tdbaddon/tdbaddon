@@ -130,11 +130,6 @@ def EPIS(name,url,iconimage):
 
 
 def LINK(name,url,iconimage):
-        if '-tvshow-' not in url:
-                link = OPEN_URL(url)
-                url=re.compile('<h3 class="h3-detail"> <a  href="(.*?)"').findall(link)[0] 
-                #url = re.split(r'fo/', url, re.I)[1]
-                #url = baseurl + '/watch-free-movie/' + url
         link = OPEN_URL(url)
         try:
                 url = re.findall(r'type="application/x-shockwave-flash" src="(.*?)"', str(link), re.I|re.DOTALL)[0]
@@ -151,17 +146,23 @@ def LINK(name,url,iconimage):
                         except:
                                 url = re.findall(r'\|(.*?)\|', str(link), re.I|re.DOTALL)[0]
         except:
-                link = link.replace('../view.php?','./view.php?')
+                link = link.replace('../view.php?','/view.php?')
+                link = link.replace('./view.php?','/view.php?')
                 try:
-                        url = re.findall(r'<source type="video/mp4"  src="\./view\.php\?(.*?)"', str(link), re.I|re.DOTALL)[0]
-                except:
                         url = re.findall(r'<source type="video/mp4"  src="(.*?)"', str(link), re.I|re.DOTALL)[0]
+                except:
+                        pass
+                if url == '':
+                        try:
+                                url = re.findall(r'<source type="video/mp4"  src="(.*?)"', str(link), re.I|re.DOTALL)[1]
+                        except:
+                                pass
                 if 'google' in url:
                         url = url
                 else:
-                        url = baseurl + '/view.php?' + url
-        liz = xbmcgui.ListItem(name, iconImage='DefaultVideo.png', thumbnailImage=iconimage)
-        liz.setInfo(type='Video', infoLabels={'Title':description})
+                        url = baseurl + '/' + url
+        liz = xbmcgui.ListItem(name, iconImage="DefaultVideo.png", thumbnailImage=iconimage)
+        liz.setInfo(type="Video", infoLabels={"Title": name, "Plot": description})
         liz.setProperty("IsPlayable","true")
         liz.setPath(url)
         xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)

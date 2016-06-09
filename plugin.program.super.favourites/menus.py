@@ -23,6 +23,8 @@ import xbmcgui
 import xbmcaddon
 import os
 
+import utils
+
 ACTION_BACK          = 92
 ACTION_PARENT_DIR    = 9
 ACTION_PREVIOUS_MENU = 10
@@ -35,31 +37,42 @@ ACTION_UP    = 3
 ACTION_DOWN  = 4
 
 
+ESTUARY_SKIN = xbmc.getSkinDir().lower() == 'skin.estuary'
+FILENAME     = 'script-super-favourites-contextmenu.xml' if not ESTUARY_SKIN else 'script-super-favourites-contextmenu-estuary.xml'
+
+
 class ContextMenu(xbmcgui.WindowXMLDialog):
 
-    def __new__(cls, addonID, menu, helix):
-        if helix:
-            return super(ContextMenu, cls).__new__(cls, 'contextmenu_helix.xml', xbmcaddon.Addon(addonID).getAddonInfo('path'))
-        else:
-            return super(ContextMenu, cls).__new__(cls, 'contextmenu.xml', xbmcaddon.Addon(addonID).getAddonInfo('path'))
+    def __new__(cls, addonID, menu):
+        return super(ContextMenu, cls).__new__(cls, FILENAME, xbmcaddon.Addon(addonID).getAddonInfo('path'))
         
 
-    def __init__(self, addonID, menu, helix):
+    def __init__(self, addonID, menu):
         super(ContextMenu, self).__init__()
         self.menu = menu
 
         
     def onInit(self):
-        for i in range(5):
-            self.getControl(5001+i).setVisible(False)
+        line   = 38
+        spacer = 20
+        delta  = 0 
+
+        nItem = len(self.menu)
+        if nItem > 16:
+            nItem = 16
+            delta = 1
+
+        height = (line+spacer) + (nItem*line)
+
+        self.getControl(5001).setHeight(height)
             
-        nItem = len(self.menu)  
-        if nItem > 5:
-            nItem = 5
-        id = 5000 + nItem
-        self.getControl(id).setVisible(True)
-            
-        self.list      = self.getControl(3000)
+        self.list = self.getControl(3000)
+        self.list.setHeight(height-spacer-(delta*line))
+
+        newY = 360 - (height/2)
+
+        self.getControl(5000).setPosition(self.getControl(5000).getX(), newY)
+
         self.params    = None
         self.paramList = []
 
@@ -72,12 +85,12 @@ class ContextMenu(xbmcgui.WindowXMLDialog):
         self.setFocus(self.list)
 
            
-    def onAction(self, action):        
+    def onAction(self, action):  
         actionId = action.getId()
 
         if actionId in [ACTION_CONTEXT_MENU, ACTION_C_KEY]:
             self.params = 0
-            #xbmc.sleep(100)
+            xbmc.sleep(100)
             return self.close()
 
         if actionId in [ACTION_PARENT_DIR, ACTION_PREVIOUS_MENU, ACTION_BACK]:
@@ -97,12 +110,26 @@ class ContextMenu(xbmcgui.WindowXMLDialog):
         pass
 
 
-def showMenu(addonID, menu, helix=False):
-    menu = ContextMenu(addonID, menu, helix)
+def showMenu(addonID, menu, useBuiltin=True):
+    param = -1
+    if useBuiltin and hasattr(xbmcgui.Dialog(), 'contextmenu'):
+        list = []
+        for item in menu:
+            list.append(item[0])
+
+        param = xbmcgui.Dialog().contextmenu(list)
+
+        if param > -1:
+            param = menu[param][1]
+
+        return param
+
+    menu = ContextMenu(addonID, menu)
     menu.doModal()
-    params = menu.params
+    param = menu.params
     del menu
-    return params
+
+    return param
 
 
 def selectMenu(title, menu):
