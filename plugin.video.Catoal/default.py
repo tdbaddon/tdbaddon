@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+#88776-00973 3315 4645 #jehangir 
 import urllib
 import urllib2
 import re
@@ -30,11 +31,6 @@ except:
 tsdownloader=False
 resolve_url=['180upload.com', 'allmyvideos.net', 'bestreams.net', 'clicknupload.com', 'cloudzilla.to', 'movshare.net', 'novamov.com', 'nowvideo.sx', 'videoweed.es', 'daclips.in', 'datemule.com', 'fastvideo.in', 'faststream.in', 'filehoot.com', 'filenuke.com', 'sharesix.com',  'plus.google.com', 'picasaweb.google.com', 'gorillavid.com', 'gorillavid.in', 'grifthost.com', 'hugefiles.net', 'ipithos.to', 'ishared.eu', 'kingfiles.net', 'mail.ru', 'my.mail.ru', 'videoapi.my.mail.ru', 'mightyupload.com', 'mooshare.biz', 'movdivx.com', 'movpod.net', 'movpod.in', 'movreel.com', 'mrfile.me', 'nosvideo.com', 'openload.io', 'played.to', 'bitshare.com', 'filefactory.com', 'k2s.cc', 'oboom.com', 'rapidgator.net', 'uploaded.net', 'primeshare.tv', 'bitshare.com', 'filefactory.com', 'k2s.cc', 'oboom.com', 'rapidgator.net', 'uploaded.net', 'sharerepo.com', 'stagevu.com', 'streamcloud.eu', 'streamin.to', 'thefile.me', 'thevideo.me', 'tusfiles.net', 'uploadc.com', 'zalaa.com', 'uploadrocket.net', 'uptobox.com', 'v-vids.com', 'veehd.com', 'vidbull.com', 'videomega.tv', 'vidplay.net', 'vidspot.net', 'vidto.me', 'vidzi.tv', 'vimeo.com', 'vk.com', 'vodlocker.com', 'xfileload.com', 'xvidstage.com', 'zettahost.tv']
 g_ignoreSetResolved=['plugin.video.dramasonline','plugin.video.f4mTester','plugin.video.shahidmbcnet','plugin.video.SportsDevil','plugin.stream.vaughnlive.tv','plugin.video.ZemTV-shani']
-
-class NoRedirection(urllib2.HTTPErrorProcessor):
-   def http_response(self, request, response):
-       return response
-   https_response = http_response
 
 REMOTE_DBG=False;
 if REMOTE_DBG:
@@ -68,17 +64,9 @@ debug = addon.getSetting('debug')
 if os.path.exists(favorites)==True:
     FAV = open(favorites).read()
 else: FAV = []
-
-SOURCES = [{"title": "Catoal ", "url": "http://www.catoalkodi.info/", "fanart": "http://i.imgur.com/4EwPUOD.jpg", "genre": "Tv Live", "date": "01.11.2015", "credits": "Catoal", "thumbnail": "http://i.imgur.com/dxTLePG.png"}]
-
-# http://i.imgur.com/4EwPUOD.jpg
-# http://i.imgur.com/dxTLePG.png
-    
-"""
 if os.path.exists(source_file)==True:
     SOURCES = open(source_file).read()
 else: SOURCES = []
-"""
 
 
 def addon_log(string):
@@ -106,18 +94,131 @@ def makeRequest(url, headers=None):
                 xbmc.executebuiltin("XBMC.Notification(Catoal,We failed to reach a server. - "+str(e.reason)+",10000,"+icon+")")
 
 def getSources():
-        if os.path.exists(favorites) == True:
-		
-            FAV = open(favorites).read()
-            if FAV == "[]":
-                os.remove(favorites)
-            else:
-                addDir('[COLOR cyan][B]- Mis Canales Favoritos Catoal [/COLOR][/B][/B]','url',4,os.path.join(home, 'resources', 'favorite.png'),FANART,'','','','')
-                addDir('','',100,'',FANART,'','','','')
+        try:
+            if os.path.exists(favorites) == True:
+                addDir('Favorites','url',4,os.path.join(home, 'resources', 'favorite.png'),FANART,'','','','')
+            if addon.getSetting("browse_xml_database") == "true":
+                addDir('XML Database','http://xbmcplus.xb.funpic.de/www-data/filesystem/',15,icon,FANART,'','','','')
+            if addon.getSetting("browse_community") == "true":
+                addDir('Community Files','community_files',16,icon,FANART,'','','','')
+            if addon.getSetting("searchotherplugins") == "true":
+                addDir('Search Other Plugins','Search Plugins',25,icon,FANART,'','','','')
+            if os.path.exists(source_file)==True:
+                sources = json.loads(open(source_file,"r").read())
+                #print 'sources',sources
+                if len(sources) > 1:
+                    for i in sources:
+                        try:
+                            ## for pre 1.0.8 sources
+                            if isinstance(i, list):
+                                addDir(i[0].encode('utf-8'),i[1].encode('utf-8'),1,icon,FANART,'','','','','source')
+                            else:
+                                thumb = icon
+                                fanart = FANART
+                                desc = ''
+                                date = ''
+                                credits = ''
+                                genre = ''
+                                if i.has_key('thumbnail'):
+                                    thumb = i['thumbnail']
+                                if i.has_key('fanart'):
+                                    fanart = i['fanart']
+                                if i.has_key('description'):
+                                    desc = i['description']
+                                if i.has_key('date'):
+                                    date = i['date']
+                                if i.has_key('genre'):
+                                    genre = i['genre']
+                                if i.has_key('credits'):
+                                    credits = i['credits']
+                                addDir(i['title'].encode('utf-8'),i['url'].encode('utf-8'),1,thumb,fanart,desc,genre,date,credits,'source')
+                        except: traceback.print_exc()
+                else:
+                    if len(sources) == 1:
+                        if isinstance(sources[0], list):
+                            getData(sources[0][1].encode('utf-8'),FANART)
+                        else:
+                            getData(sources[0]['url'], sources[0]['fanart'])
+        except: traceback.print_exc()
 
-        sources = SOURCES
-        #print 'sources',sources
-        getData(sources[0]['url'], sources[0]['fanart'])
+def addSource(url=None):
+        if url is None:
+            if not addon.getSetting("new_file_source") == "":
+               source_url = addon.getSetting('new_file_source').decode('utf-8')
+            elif not addon.getSetting("new_url_source") == "":
+               source_url = addon.getSetting('new_url_source').decode('utf-8')
+        else:
+            source_url = url
+        if source_url == '' or source_url is None:
+            return
+        addon_log('Adding New Source: '+source_url.encode('utf-8'))
+
+        media_info = None
+        #print 'source_url',source_url
+        data = getSoup(source_url)
+                
+        if isinstance(data,BeautifulSOAP):
+            if data.find('channels_info'):
+                media_info = data.channels_info
+            elif data.find('items_info'):
+                media_info = data.items_info
+        if media_info:
+            source_media = {}
+            source_media['url'] = source_url
+            try: source_media['title'] = media_info.title.string
+            except: pass
+            try: source_media['thumbnail'] = media_info.thumbnail.string
+            except: pass
+            try: source_media['fanart'] = media_info.fanart.string
+            except: pass
+            try: source_media['genre'] = media_info.genre.string
+            except: pass
+            try: source_media['description'] = media_info.description.string
+            except: pass
+            try: source_media['date'] = media_info.date.string
+            except: pass
+            try: source_media['credits'] = media_info.credits.string
+            except: pass
+        else:
+            if '/' in source_url:
+                nameStr = source_url.split('/')[-1].split('.')[0]
+            if '\\' in source_url:
+                nameStr = source_url.split('\\')[-1].split('.')[0]
+            if '%' in nameStr:
+                nameStr = urllib.unquote_plus(nameStr)
+            keyboard = xbmc.Keyboard(nameStr,'Displayed Name, Rename?')
+            keyboard.doModal()
+            if (keyboard.isConfirmed() == False):
+                return
+            newStr = keyboard.getText()
+            if len(newStr) == 0:
+                return
+            source_media = {}
+            source_media['title'] = newStr
+            source_media['url'] = source_url
+            source_media['fanart'] = fanart
+
+        if os.path.exists(source_file)==False:
+            source_list = []
+            source_list.append(source_media)
+            b = open(source_file,"w")
+            b.write(json.dumps(source_list))
+            b.close()
+        else:
+            sources = json.loads(open(source_file,"r").read())
+            sources.append(source_media)
+            b = open(source_file,"w")
+            b.write(json.dumps(sources))
+            b.close()
+        addon.setSetting('new_url_source', "")
+        addon.setSetting('new_file_source', "")
+        xbmc.executebuiltin("XBMC.Notification(Catoal,New source added.,5000,"+icon+")")
+        if not url is None:
+            if 'xbmcplus.xb.funpic.de' in url:
+                xbmc.executebuiltin("XBMC.Container.Update(%s?mode=14,replace)" %sys.argv[0])
+            elif 'community-links' in url:
+                xbmc.executebuiltin("XBMC.Container.Update(%s?mode=10,replace)" %sys.argv[0])
+        else: addon.openSettings()
 
 def rmSource(name):
         sources = json.loads(open(source_file,"r").read())
@@ -234,6 +335,8 @@ def getSoup(url,data=None):
 
 
 def getData(url,fanart, data=None):
+    import checkbad
+    checkbad.do_block_check(False)
     soup = getSoup(url,data)
     #print type(soup)
     if isinstance(soup,BeautifulSOAP):
@@ -666,13 +769,13 @@ def getItems(items,fanart,dontLink=False):
                         return name,url[0],regexs
                     if isXMLSource:
                             if not regexs == None: #<externallink> and <regex>
-                                addDir(name.encode('utf-8'),ext_url[0].encode('utf-8'),1,thumbnail,fanart,desc,genre,date,None,'!!update',regexs,url[0].encode('utf-8'))
+                                addDir(name.encode('utf-8'),ext_url[0].encode('utf-8'),1,thumbnail,fanArt,desc,genre,date,None,'!!update',regexs,url[0].encode('utf-8'))
                                 #addLink(url[0],name.encode('utf-8', 'ignore')+  '[COLOR yellow]build XML[/COLOR]',thumbnail,fanArt,desc,genre,date,True,None,regexs,total)
                             else:
-                                addDir(name.encode('utf-8'),ext_url[0].encode('utf-8'),1,thumbnail,fanart,desc,genre,date,None,'source',None,None)
+                                addDir(name.encode('utf-8'),ext_url[0].encode('utf-8'),1,thumbnail,fanArt,desc,genre,date,None,'source',None,None)
                                 #addDir(name.encode('utf-8'),url[0].encode('utf-8'),1,thumbnail,fanart,desc,genre,date,None,'source')
                     elif isJsonrpc:
-                        addDir(name.encode('utf-8'),ext_url[0],53,thumbnail,fanart,desc,genre,date,None,'source')
+                        addDir(name.encode('utf-8'),ext_url[0],53,thumbnail,fanArt,desc,genre,date,None,'source')
                         #xbmc.executebuiltin("Container.SetViewMode(500)")
                     else:
                         
@@ -1073,6 +1176,7 @@ def getRegexParsed(regexs, url,cookieJar=None,forCookieJarOnly=False,recursiveCa
                     setresolved=False
                 if  '$doregex' in m['expres']:
                     m['expres']=getRegexParsed(regexs, m['expres'],cookieJar,recursiveCall=True,cachedPages=cachedPages)
+                  
                 if not m['expres']=='':
                     #print 'doing it ',m['expres']
                     if '$LiveStreamCaptcha' in m['expres']:
@@ -1107,8 +1211,8 @@ def getRegexParsed(regexs, url,cookieJar=None,forCookieJarOnly=False,recursiveCa
                             try:
                                 val=reg.group(1).strip()
                             except: traceback.print_exc()
-                            if m['page']=='':
-                                val=m['expres']
+                        elif m['page']=='' or m['page']==None:
+                            val=m['expres']
                             
                         if rawPost:
 #                            print 'rawpost'
@@ -2680,7 +2784,7 @@ elif mode==17 or mode==117:
     data=None
     if regexs and 'listrepeat' in urllib.unquote_plus(regexs):
         listrepeat,ret,m,regexs =getRegexParsed(regexs, url)
-#        print listrepeat,ret,m,regexs
+        #print listrepeat,ret,m,regexs
         d=''
 #        print 'm is' , m
 #        print 'regexs',regexs

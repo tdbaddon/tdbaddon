@@ -135,7 +135,7 @@ def extract(text, startText, endText):
 def getURL(url, header=hdr):
     try:
         req = urllib2.Request(url, headers=header)
-        response = urllib2.urlopen(req)
+        response = urllib2.urlopen(req, timeout=10)
         if response and response.getcode() == 200:
             if response.info().get('Content-Encoding') == 'gzip':
                 buf = StringIO.StringIO( response.read())
@@ -1052,7 +1052,7 @@ def videowood(data):
         return
     
 def decodeOpenLoad(html):
-    aastring = re.search(r"<video(?:.|\s)*?<script\s[^>]*?>((?:.|\s)*?)</script", html,
+    aastring = re.search(r"<video(?:.|\s)*?<script\s[^>]*?>.+?<\/script>\s<script\s[^>]*?>((?:.|\s)*?)<\/", html,
                          re.DOTALL | re.IGNORECASE).group(1)
 
     aastring = aastring.replace(

@@ -546,27 +546,6 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
-<addon id="plugin.video.bbcanlive" name="Big Brother Canada Live Feeds" version="1.0.0" provider-name="portse">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="script.module.requests" version="2.9.1"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-  <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary>Big Brother Canada Live Feeds Kodi Plugin</summary>
-    <description>View live camera feeds from inside the Big Brother Canada house!</description>
-    <platform>all</platform>
-    <language>en</language>
-    <disclaimer></disclaimer>
-    <license>MIT</license>
-    <forum></forum>
-    <website>https://github.com/portse/plugin.video.bbcanlive</website>
-    <source>https://github.com/portse/plugin.video.bbcanlive</source>
-  </extension>
-</addon>
-
 <addon id="plugin.video.bbts" name="BBTS" version="0.1.6" provider-name="[COLOR yellowgreen]B[/COLOR][COLOR dodgerblue]B[/COLOR][COLOR white]T[/COLOR][COLOR orangered]S[/COLOR] IpTV">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -681,7 +660,7 @@ Plugin by @koderdude</description>
   </extension>
 </addon>
 
-<addon id="plugin.video.cartoons8" name="Cartoons8" version="1.0.15" provider-name="MetalKettle">
+<addon id="plugin.video.cartoons8" name="Cartoons8" version="1.0.16" provider-name="MetalKettle">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.t0mm0.common" version="2.0.0"/>
@@ -697,8 +676,8 @@ Plugin by @koderdude</description>
 </addon>
 
 <addon id="plugin.video.Catoal"
-       name="Catoal[COLOR blue] 5[/COLOR].[COLOR yellow]3[/COLOR].[COLOR red]3[/COLOR]"
-       version="5.3.3"
+       name="Catoal[COLOR blue] 5[/COLOR].[COLOR yellow]3[/COLOR].[COLOR red]4[/COLOR]"
+       version="5.3.4"
        provider-name="Catoal">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -717,7 +696,7 @@ Plugin by @koderdude</description>
     <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary>basado en livestreamspro</summary>
+    <summary>Basado en LivestreamsPro</summary>
     <description>Catoal</description>
     <platform>all</platform>
   </extension>
@@ -777,39 +756,6 @@ Plugin by @koderdude</description>
   </extension>
 </addon>
 
-<addon id="plugin.video.channelpear"
-       name="channel PEAR"
-       version="1.5d"
-       provider-name="podgod">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="script.module.beautifulsoup" version="3.2.1"/>
-    <import addon="script.module.simple.downloader" version="0.9.4"/>
-    <import addon="script.module.beautifulsoup4" />
-    <import addon="script.module.simple.downloader" version="0.9.4"/>
-    <import addon="script.module.requests" />
-    <import addon="script.module.httplib2" />
-    <import addon="script.module.youtube.dl" optional="true"/>
-    <import addon="plugin.video.youtube" />
-    <import addon="script.module.urlresolver" optional="true"/>
-    <import addon="script.module.simplejson" />
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-    <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary>All the best from channelpear.com</summary>
-    <description>
-	The channel PEAR media database is 100% maintained by users like you! Share media sources with fellow channel PEAR users and discover a whole world of live streaming channels from around the globe! http://channelpear.com
-	You can now enter your custom Plex URL in the addon settings. You can get your custom Plex URL from your library at https://channelpear.com/library/ (must be logged in - click the "Plex Channel" link at the top right of the page).
-
-	This addon is based on code from LiveStreamspro from Shani. All credit to Shani and other devs involved.
-
-    </description>
-    <platform>all</platform>
-  </extension>
-</addon>
-
 <addon id="plugin.video.chaturbate" name="Chaturbate" version="2.1.0" provider-name="LivingOn">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -847,38 +793,31 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
 
 </addon>
 
-<addon id="plugin.video.croatia_od"
-	name="Croatia On Demand"
-	version="1.7.1"
-	provider-name="natko1412">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="script.module.beautifulsoup" version="3.2.1"/>
-    <import addon="script.module.urlresolver" version="2.5.0" />
-    <import addon="script.module.youtube.dl" version="15.318.0"/>
-    <import addon="script.module.simple.downloader" version="1.9.5"/>
-    <import addon="script.module.requests" />
-    <import addon="script.module.liveresolver" />
-    <import addon="script.module.mechanize" />
-    <import addon="script.module.addon.common" version="2.0.0" />
+<addon id="plugin.video.croatia_od" name="Croatia On Demand" version="1.9.2" provider-name="natko1412">
+	<requires>
+		<import addon="xbmc.python" version="2.1.0"/>
+		<import addon="script.module.beautifulsoup" version="3.2.1"/>
+		<import addon="script.module.youtube.dl" version="15.318.0"/>
+		<import addon="script.module.requests"  />
+    	<import addon="script.module.addon.common" />
+		<import addon="script.module.urlresolver" />
+		<import addon="script.module.liveresolver"  />
+		<import addon="script.module.pyxbmct" version="1.1.4" />
 
 
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="default.py">
+		<provides>video</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">Croatia On Demand</summary>
 
+		<description lang="en">Visit TVADDONS.ag for support.
+		</description>
+		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
 
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-    <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary>Pristupite emisijama na zahtjev sa hrvatskih tv stranica poput hrt.hr i rtl-sada!</summary>
-        <description>Pristupite emisijama na zahtjev sa stranica poput hrt.hr i rtl-sada!
-
-        </description>
-
-    <platform>all</platform>
-    <forum>kodi.com.hr</forum>
-
-  </extension>
+		<platform>all</platform>
+	</extension>
 </addon>
 
 <addon id="plugin.video.dclip"
@@ -896,7 +835,7 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
   </extension>
 </addon>
 
-<addon id="plugin.video.DecadoDocs" name="Decado Documentaries" version="1.0.1" provider-name="MetalKettle">
+<addon id="plugin.video.DecadoDocs" name="Decado Documentaries" version="1.0.2" provider-name="MetalKettle">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.t0mm0.common" version="2.0.0"/>
@@ -1138,14 +1077,14 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
   </extension>
 </addon>
 
-<addon id="plugin.video.exodus" version="1.3.6" name="Exodus" provider-name="Exodus">
+<addon id="plugin.video.exodus" version="1.3.7" name="Exodus" provider-name="Exodus">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="repository.exodus" version="1.0.0" />
 		<import addon="script.exodus.artwork" version="1.0.1" />
 		<import addon="script.module.urlresolver" version="3.0.0"/>
 		<import addon="script.module.metahandler" version="1.0.0" />
-		<import addon="plugin.video.youtube" optional="true" />
+		<import addon="plugin.video.youtube" version="5.2.1" optional="true" />
 	</requires>
 	<extension point="xbmc.python.pluginsource" library="default.py">
 		<provides>video</provides>
@@ -1459,7 +1398,7 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
 	</extension>
 </addon>
 
-<addon id="plugin.video.javstream" name="JAVStream" version="0.90.6" provider-name="ptom">
+<addon id="plugin.video.javstream" name="JAVStream" version="0.90.71" provider-name="ptom">
 	<extension point="xbmc.python.pluginsource" library="default.py">
 		<provides>video</provides>
 	</extension>
@@ -2067,13 +2006,13 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   <extension point="xbmc.service" library="service.py" start="login" />
 </addon>
 
-<addon id="plugin.video.phstreams" name="Phoenix" version="3.1.0" provider-name="tvaddons.ag">
+<addon id="plugin.video.phstreams" name="Phoenix" version="3.1.1" provider-name="tvaddons.ag">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.pyxbmct" version="1.1.4" />
 		<import addon="script.module.urlresolver" version="3.0.0"/>
 		<import addon="script.module.liveresolver" version="0.1.24"/>
-		<import addon="plugin.video.youtube" optional="true" />
+		<import addon="plugin.video.youtube" version="5.2.1" optional="true" />
 	</requires>
 	<extension point="xbmc.python.pluginsource" library="default.py">
 		<provides>video</provides>
@@ -2085,36 +2024,6 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 		<forum>http://forums.tvaddons.ag/forums/220-PHOENIX-LIVE-STREAMS</forum>
 		<website>http://www.tvaddons.ag/</website>
 	</extension>
-</addon>
-
-<addon id="plugin.video.ProjectCypher"
-       name="ProjectCypher"
-       version="2.0.1"
-       provider-name="Cypher">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-	<import addon="script.module.t0mm0.common" version="2.0.0"/>
-    <import addon="script.module.beautifulsoup" version="3.2.1"/>
-    <import addon="script.module.simple.downloader" version="0.9.4"/>
-    <import addon="script.module.beautifulsoup4" />
-    <import addon="script.module.simple.downloader" version="0.9.4"/>
-    <import addon="script.module.requests" />
-    <import addon="script.module.httplib2" />
-    <import addon="script.module.youtube.dl" optional="true"/>
-    <import addon="plugin.video.youtube" version="3.0.0"/>
-    <import addon="script.module.urlresolver" optional="true"/>
-    <import addon="script.module.simplejson" />
-    <import addon="script.common.plugin.cache" version="2.5.2"/>
-    <import addon="script.module.metahandler" version="2.5.1"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-    <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary>Live SD and HD TV channels</summary>
-    <description>General disclaimer: Project Cypher takes no responsibility for the content or reliability of the feeds. Project Cypher [B]Does Not[/B] host any of the feeds or Streams. Most of the Code from this addon was taken from many other addons but used under the GNU GENERAL PUBLIC LICENSE Version 2, June 1991</description>
-    <platform>all</platform>
-  </extension>
 </addon>
 
 <addon id="plugin.video.prosport" name="Pro Sport" version="0.50d" provider-name="gerikss, podgod, iCanuck">
@@ -2135,8 +2044,8 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.roggerstream"
        name="Rogger Stream"
-       version="5.0.0"
-       provider-name="Rogger Henrique, Cleiton Leonel Creton, Filipe Carvalho e Marcos Alvarenga">
+       version="5.0.1"
+       provider-name="Rogger Henrique, Filipe Carvalho e Marcos Alvarenga">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.beautifulsoup" version="3.2.1"/>
@@ -2901,7 +2810,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.ZemTV-shani"
        name="ZemTV.com"
-       version="4.8.7"
+       version="4.8.8"
        provider-name="shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>

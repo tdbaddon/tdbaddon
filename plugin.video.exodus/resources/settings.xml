@@ -38,11 +38,11 @@
 	<category label="30860">
 		<setting id="provider.afdah" type="bool" label="Afdah" default="true" />
 		<setting id="provider.animeultima" type="bool" label="Animeultima" default="true" />
-		<setting id="provider.dayt" type="bool" label="Dayt" default="true" />
 		<setting id="provider.ddlvalley" type="bool" label="DDLvalley" default="true" />
 		<setting id="provider.directdl" type="bool" label="DirectDL" default="true" />
 		<setting id="provider.dizibox" type="bool" label="Dizibox" default="true" />
 		<setting id="provider.dizigold" type="bool" label="Dizigold" default="true" />
+		<setting id="provider.dtmovies" type="bool" label="Dtmovies" default="true" />
 		<setting id="provider.einthusan" type="bool" label="Einthusan" default="true" />
 		<setting id="provider.hevcmovies" type="bool" label="HEVCmovies" default="true" />
 		<setting id="provider.library" type="bool" label="Library" default="true" />

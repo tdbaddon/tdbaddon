@@ -649,21 +649,8 @@ class sources:
                 return url
 
             elif not direct == True:
-                try:
-                    hmf = urlresolver.HostedMediaFile(url=u, include_disabled=True, include_universal=False)
-                    if hmf.valid_url() == True: url = hmf.resolve()
-                except:
-                    pass
-                try:
-                    hmf = urlresolver.plugnplay.man.implementors(urlresolver.UrlResolver)
-                    hmf = [i for i in hmf if not '*' in i.domains]
-                    hmf = [(i, i.get_host_and_id(u)) for i in hmf]
-                    hmf = [i for i in hmf if not i[1] == False]
-                    hmf = [(i[0], i[0].valid_url(u, i[1][0]), i[1][0], i[1][1]) for i in hmf]
-                    hmf = [i for i in hmf if not i[1] == False][0]
-                    url = hmf[0].get_media_url(hmf[2], hmf[3])
-                except:
-                    pass
+                hmf = urlresolver.HostedMediaFile(url=u, include_disabled=True, include_universal=False)
+                if hmf.valid_url() == True: url = hmf.resolve()
 
             if url == False or url == None: raise Exception()
 

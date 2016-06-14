@@ -1,34 +1,27 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.croatia_od"
-	name="Croatia On Demand"
-	version="1.7.1"
-	provider-name="natko1412">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="script.module.beautifulsoup" version="3.2.1"/>
-    <import addon="script.module.urlresolver" version="2.5.0" />
-    <import addon="script.module.youtube.dl" version="15.318.0"/>
-    <import addon="script.module.simple.downloader" version="1.9.5"/>
-    <import addon="script.module.requests" />
-    <import addon="script.module.liveresolver" />
-    <import addon="script.module.mechanize" />
-    <import addon="script.module.addon.common" version="2.0.0" />
-
-
-    
-    
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-    <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary>Pristupite emisijama na zahtjev sa hrvatskih tv stranica poput hrt.hr i rtl-sada!</summary>
-        <description>Pristupite emisijama na zahtjev sa stranica poput hrt.hr i rtl-sada!
-
-        </description>
-    
-    <platform>all</platform>
-    <forum>kodi.com.hr</forum>
-    
-  </extension>
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.video.croatia_od" name="Croatia On Demand" version="1.9.2" provider-name="natko1412">
+	<requires>
+		<import addon="xbmc.python" version="2.1.0"/>
+		<import addon="script.module.beautifulsoup" version="3.2.1"/>
+		<import addon="script.module.youtube.dl" version="15.318.0"/>
+		<import addon="script.module.requests"  />
+    	<import addon="script.module.addon.common" />
+		<import addon="script.module.urlresolver" />
+		<import addon="script.module.liveresolver"  />
+		<import addon="script.module.pyxbmct" version="1.1.4" />
+		
+    	
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="default.py">
+		<provides>video</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">Croatia On Demand</summary>
+		
+		<description lang="en">Visit TVADDONS.ag for support.
+		</description>
+		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
+		
+		<platform>all</platform>
+	</extension>
 </addon>

@@ -12,23 +12,23 @@ try:os.mkdir(datapath)
 except:pass
 file_var = open(xbmc.translatePath(os.path.join(datapath, 'cookie.lwp')), "a")
 cookie_file = os.path.join(os.path.join(datapath,''), 'cookie.lwp')
-base = 'http://cartoons8.co'
+base = 'http://cartoons8.me'
 
 def CATEGORIES():
         open_url(base)
-        addDir('Top Cartoons','http://cartoons8.co/top/page/1',1,icon,fanart)
-	#addDir('Top Movies','http://cartoons8.co/genres/movie/page/1',7,icon,fanart)
-	addDir('Top OVAs','http://cartoons8.co/search/page/1?s=ova',9,icon,fanart)
-	addDir('Top Dubbed Anime','http://cartoons8.co/search/page/1?s=dubbed',9,icon,fanart)
-	addDir('Top Subbed Anime','http://cartoons8.co/search/page/1?s=subbed',9,icon,fanart)
-	addDir('Cartoon List','http://cartoons8.co/list/page/1',5,icon,fanart)
-	addDir('Most Viewed','http://cartoons8.co/most-viewed/page/1',1,icon,fanart)
-	addDir('New','http://cartoons8.co/new/page/1',1,icon,fanart)
-	addDir('Genres','http://cartoons8.co',6,icon,fanart)
-	addDir('TV Series','http://cartoons8.co/series/page/1',1,icon,fanart)
-        addDir('Anime','http://cartoons8.co/anime/page/1',1,icon,fanart)
-	addDir('Latest Updates','http://cartoons8.co/latestupdate/page/1',4,icon,fanart)
-        addDir('Search','http://cartoons8.co',8,icon,fanart) 
+        addDir('Top Cartoons','http://cartoons8.me/top/page/1',1,icon,fanart)
+	#addDir('Top Movies','http://cartoons8.me/genres/movie/page/1',7,icon,fanart)
+	addDir('Top OVAs','http://cartoons8.me/search/page/1?s=ova',9,icon,fanart)
+	addDir('Top Dubbed Anime','http://cartoons8.me/search/page/1?s=dubbed',9,icon,fanart)
+	addDir('Top Subbed Anime','http://cartoons8.me/search/page/1?s=subbed',9,icon,fanart)
+	addDir('Cartoon List','http://cartoons8.me/list/page/1',5,icon,fanart)
+	addDir('Most Viewed','http://cartoons8.me/most-viewed/page/1',1,icon,fanart)
+	addDir('New','http://cartoons8.me/new/page/1',1,icon,fanart)
+	addDir('Genres','http://cartoons8.me',6,icon,fanart)
+	addDir('TV Series','http://cartoons8.me/series/page/1',1,icon,fanart)
+        addDir('Anime','http://cartoons8.me/anime/page/1',1,icon,fanart)
+	addDir('Latest Updates','http://cartoons8.me/latestupdate/page/1',4,icon,fanart)
+        addDir('Search','http://cartoons8.me',8,icon,fanart) 
       
 def GETMOVIES(url,name):
         pagenum = url.split('page/')
@@ -128,7 +128,7 @@ def GETGENRENEXT(url):
 	pagenum = url.split('/')
 	curpage = int(pagenum[5])
 	nextpage = curpage + 1
-	nextpageurl = 'http://cartoons8.co/genres/'+str(pagenum[4])+'/'+str(nextpage)
+	nextpageurl = 'http://cartoons8.me/genres/'+str(pagenum[4])+'/'+str(nextpage)
         link = open_url(url)
         match=re.compile('<img src="(.+?)".+?<a href="(.+?)".+?"title">(.+?)</span>',re.DOTALL).findall(link)
         for iconimage,url, name in match:
@@ -145,7 +145,7 @@ def SEARCH():
     if keyboard.isConfirmed():
         search_entered = keyboard.getText().replace(' ','+')
     if len(search_entered)>1:
-        url = 'http://cartoons8.co/search/page/1?s='+ search_entered
+        url = 'http://cartoons8.me/search/page/1?s='+ search_entered
         GETCUSTCAT(url)
 
 def getCookiesString():
@@ -180,7 +180,7 @@ def PLAYLINK(name,url):
                 link = open_url(url)
                 stream_url = urllib.unquote(urllib.unquote(link)).split('|')[1]
         else:
-                stream_url = 'http://cartoons8.co/vload/?token='+re.compile('<a href="http://cartoons8.co/vload/\?token=(.+?)"').findall(link)[-1]
+                stream_url = 'http://cartoons8.me/vload/?token='+re.compile('<a href="http://cartoons8.me/vload/\?token=(.+?)"').findall(link)[-1]
         ok=True
         liz=xbmcgui.ListItem(name, iconImage=icon,thumbnailImage=icon); liz.setInfo( type="Video", infoLabels={ "Title": name } )
         ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=url,listitem=liz)

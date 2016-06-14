@@ -123,8 +123,9 @@ class source:
                     except: pass
                     try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['q'][0]
                     except: pass
-                    url = urlparse.parse_qs(urlparse.urlparse(url).query)['url'][0]
+                    url = urlparse.urlparse(url).query
                     url = base64.b64decode(url)
+                    url = re.findall('((?:http|https)://.+?/.+?)(?:&|$)', url)[0]
                     url = client.replaceHTMLCodes(url)
                     url = url.encode('utf-8')
 

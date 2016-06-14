@@ -1,4 +1,7 @@
-﻿Versión 5.3.3
+﻿Versión 5.3.4
+Mejorada la seguridad del addon para evitar robos de listas
+
+Versión 5.3.3
 Actualizado decodificadores imagenes de fondo actualizada y compatibilidad con appel tv4
 
 Versión 5.3.2

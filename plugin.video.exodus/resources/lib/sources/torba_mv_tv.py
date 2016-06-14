@@ -98,30 +98,19 @@ class source:
 
             url = client.parseDOM(r, 'a', ret='href', attrs = {'class': 'video-play.+?'})[0]
             url = re.findall('(?://|\.)streamtorrent\.tv/.+?/([0-9a-zA-Z/]+)', url)[0]
-            url = 'https://streamtorrent.tv/api/torrent/%s.json' % url
 
-            r = client.request(url)
+            u = 'https://streamtorrent.tv/api/torrent/%s.json' % url
+
+            r = client.request(u)
             r = json.loads(r)
 
-            url = [i for i in r['files'] if 'streams' in i and len(i['streams']) > 0][0]
-            url = 'https://streamtorrent.tv/api/torrent/%s/%s.m3u8' % (r['_id'], url['_id'])
-
-            r = client.request(url)
-
-            audio = re.findall('#EXT-X-MEDIA:TYPE=AUDIO.*?GROUP-ID="([^"]+).*?URI="([^"]+)', r)
-
-            video = [i.split('\n') for i in r.split('#EXT-X-STREAM-INF')]
-            video = [i[:2] for i in video if len(i) >= 2]
-            video = [(re.findall('BANDWIDTH=(\d+).*?NAME="(\d+)', i[0]), urlparse.urljoin(url, i[1])) for i in video]
-            video = [(i[0][0][0], i[0][0][1], i[1]) for i in video if len(i[0]) > 0]
-
-            try: r = [{'bandwidth': i[0], 'stream_name': i[1], 'video_stream': i[2], 'audio_group': audio[0][0], 'audio_stream': audio[0][1]} for i in video]
-            except: r = [{'bandwidth': i[0], 'stream_name': i[1], 'video_stream': i[2]} for i in video]
+            r = [i for i in r['files'] if 'streams' in i and len(i['streams']) > 0][0]
+            r = [{'height': i['height'], 'stream_id': r['_id'], 'vid_id': url} for i in r['streams']]
 
             links = []
-            links += [{'quality': '1080p', 'url': urllib.urlencode(i)} for i in r if int(i['stream_name']) >= 1080]
-            links += [{'quality': 'HD', 'url': urllib.urlencode(i)} for i in r if 720 <= int(i['stream_name']) < 1080]
-            links += [{'quality': 'SD', 'url': urllib.urlencode(i)} for i in r if int(i['stream_name']) <= 720]
+            links += [{'quality': '1080p', 'url': urllib.urlencode(i)} for i in r if int(i['height']) >= 1080]
+            links += [{'quality': 'HD', 'url': urllib.urlencode(i)} for i in r if 720 <= int(i['height']) < 1080]
+            links += [{'quality': 'SD', 'url': urllib.urlencode(i)} for i in r if int(i['height']) <= 720]
             links = links[:3]
 
             for i in links: sources.append({'source': 'cdn', 'quality': i['quality'], 'provider': 'Torba', 'url': i['url'], 'direct': True, 'debridonly': False, 'autoplay': False})
@@ -134,37 +123,24 @@ class source:
     def resolve(self, url):
         try:
             m3u8 = [
-
-                [
                 '#EXTM3U',
+                '#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="audio",DEFAULT=YES,AUTOSELECT=YES,NAME="Stream 1",URI="{audio_stream}"',
                 '',
-                '#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH={bandwidth},NAME="{stream_name}"',
-                '{video_stream}'
-                ],
-
-                [
-                '#EXTM3U',
-                '#EXT-X-MEDIA:TYPE=AUDIO,GROUP-ID="{audio_group}",DEFAULT=YES,AUTOSELECT=YES,NAME="Stream 1",URI="{audio_stream}"',
-                '',
-                '#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH={bandwidth},NAME="{stream_name}",AUDIO="{audio_group}"',
+                '#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=0,NAME="{stream_name}",AUDIO="audio"',
                 '{video_stream}'
                 ]
 
-                ]
 
             query = urlparse.parse_qs(url)
             query = dict([(key, query[key][0]) if query[key] else (key, '') for key in query])
 
-            for i in m3u8:
-                try: content = ('\n'.join(i)).format(**query)
-                except: pass
+            auth = 'http://streamtorrent.tv/api/torrent/%s/%s.m3u8?json=true' % (query['vid_id'], query['stream_id'])
 
-
-            auth = query['video_stream']
-
-            r = client.request(auth, headers={'User-Agent': 'Lavf/56.40.101'})
-            try: url = json.loads(r)['url']
+            r = client.request(auth)
+            r = json.loads(r)
+            try: url = r['url']
             except: url = None
+
 
             if not url == None:
 
@@ -179,8 +155,9 @@ class source:
                     try:
                         if not control.condVisibility('Window.IsActive(yesnoDialog)'): break
 
-                        r = client.request(auth, headers={'User-Agent': 'Lavf/56.40.101'})
-                        try: url = json.loads(r)['url']
+                        r = client.request(auth)
+                        r = json.loads(r)
+                        try: url = r['url']
                         except: url = None
 
                         if url == None: break
@@ -198,6 +175,17 @@ class source:
 
 
             if not url == None: return
+
+
+            stream_name = '%sp' % (query['height'])
+            video_stream = r[stream_name]
+
+            if not 'audio' in r: return video_stream
+
+            audio_stream = r['audio']
+
+            content = ('\n'.join(m3u8)).format(**{'audio_stream': audio_stream, 'stream_name': stream_name, 'video_stream': video_stream})
+
 
             path = os.path.join(control.dataPath, 'torbase.m3u8')
 

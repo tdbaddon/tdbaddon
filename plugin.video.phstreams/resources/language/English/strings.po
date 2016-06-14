@@ -138,6 +138,10 @@ msgctxt "#30731"
 msgid "Please wait..."
 msgstr ""
 
+msgctxt "#30732"
+msgid "Opening image"
+msgstr ""
+
 msgctxt "#30751"
 msgid "Scoreboard"
 msgstr ""

@@ -626,13 +626,34 @@ class resolver:
 
     def process(self, url, direct=True):
         try:
+            if not any(i in url for i in ['.jpg', '.png', '.gif']): raise Exception()
+            ext = url.split('?')[0].split('&')[0].split('|')[0].rsplit('.')[-1].replace('/', '').lower()
+            if not ext in ['jpg', 'png', 'gif']: raise Exception()
+            try:
+                dialog = None
+                dialog = control.progressDialog
+                dialog.create(control.addonInfo('name'), control.lang(30732).encode('utf-8'))
+                dialog.update(0)
+                i = os.path.join(control.dataPath,'img')
+                control.deleteFile(i)
+                f = control.openFile(i, 'w')
+                f.write(client.request(url))
+                f.close()
+                dialog.close()
+                control.execute('ShowPicture("%s")' % i)
+                return True
+            except:
+                return
+        except:
+            pass
+
+        try:
             dialog = None
             dialog = control.progressDialog
             dialog.create(control.addonInfo('name'), control.lang(30726).encode('utf-8'))
             dialog.update(0)
         except:
             pass
-
 
         try:
             if not '</regex>' in url: raise Exception()
@@ -671,7 +692,7 @@ class resolver:
 
             direct = False
 
-            presetDict = ['primewire_mv_tv', 'watchfree_mv_tv', 'movie25_mv', 'watchseries_tv', 'afdah_mv', 'dayt_mv_tv', 'dizibox_tv', 'dizigold_tv', 'miradetodo_mv', 'onemovies_mv_tv', 'onlinedizi_tv', 'pelispedia_mv_tv', 'pubfilm_mv_tv', 'putlocker_mv_tv', 'rainierland_mv', 'sezonlukdizi_tv', 'tunemovie_mv', 'xmovies_mv']
+            presetDict = ['primewire_mv_tv', 'watchfree_mv_tv', 'movie25_mv', 'watchseries_tv', 'afdah_mv', 'dtmovies_mv', 'dizibox_tv', 'dizigold_tv', 'miradetodo_mv', 'onemovies_mv_tv', 'onlinedizi_tv', 'pelispedia_mv_tv', 'pubfilm_mv_tv', 'putlocker_mv_tv', 'rainierland_mv', 'sezonlukdizi_tv', 'tunemovie_mv', 'xmovies_mv']
 
             if preset == 'searchsd': presetDict = ['primewire_mv_tv', 'watchfree_mv_tv', 'movie25_mv', 'watchseries_tv']
 
@@ -727,8 +748,7 @@ class resolver:
         try:
             import urlresolver
 
-            try: hmf = urlresolver.HostedMediaFile(url=url, include_disabled=True, include_universal=False)
-            except: hmf = urlresolver.HostedMediaFile(url=url)
+            hmf = urlresolver.HostedMediaFile(url=url, include_disabled=True, include_universal=False)
 
             if hmf.valid_url() == False: raise Exception()
 
