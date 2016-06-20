@@ -25,7 +25,7 @@ WWW.TCOMPUTERS.CA
 0
 
 #EXTINF:0,CineStar Action
-0
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/2490.ts
 
 #EXTINF:0,Cinemax ActionMax
 0
@@ -34,7 +34,7 @@ WWW.TCOMPUTERS.CA
 0
 
 #EXTINF:0,CineStar Premiere 1 
-0
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/2492.ts
 
 #EXTINF:0,CineStar Premiere 2
 0
@@ -99,8 +99,14 @@ http://cp.dmbshare.net:8000/live/francesco2/francesco2/1774.ts
 #EXTINF:0,Film Aksion 
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/3524.ts
 
+#EXTINF:0,Film Aksion 
+http://cp.dmbshare.net:8000/live/paul1/paul1/3524.ts
+
 #EXTINF:0,Film Autor
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/3523.ts
+
+#EXTINF:0,Film Autor
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/4078.ts
 
 #EXTINF:0,Film Komedi 
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/1775.ts
@@ -108,11 +114,20 @@ http://cp.dmbshare.net:8000/live/francesco2/francesco2/1775.ts
 #EXTINF:0,Film Komedi 
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/3525.ts
 
+#EXTINF:0,Film Komedi 
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/1664.ts
+
 #EXTINF:0,Film Drame 
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/1773.ts
 
 #EXTINF:0,Film Drame 
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/3521.ts
+
+#EXTINF:0,Film Drame 
+http://cp.dmbshare.net:8000/live/paul1/paul1/3521.ts
+
+#EXTINF:0,Film Drame 
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/3726.ts
 
 #EXTINF:0,Film Hits 
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/1776.ts
@@ -120,13 +135,26 @@ http://cp.dmbshare.net:8000/live/francesco2/francesco2/1776.ts
 #EXTINF:0,Film Hits 
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/3526.ts
 
+#EXTINF:0,Film Hits 
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/1663.ts
+
+#EXTINF:0,Film Hits 
+http://cp.dmbshare.net:8000/live/paul1/paul1/3526.ts
+
 #EXTINF:0,Film Nje 
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/1778.ts
 
-#EXTINF:0,Film Thriller http://cp.dmbshare.net:8000/live/francesco2/francesco2/1777.ts
+#EXTINF:0,Film Thriller 
+http://cp.dmbshare.net:8000/live/francesco2/francesco2/1777.ts
 
 #EXTINF:0,Film Thriller 
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/3522.ts
+
+#EXTINF:0,Film Thriller 
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/2237.ts
+
+#EXTINF:0,Film Thriller 
+http://cp.dmbshare.net:8000/live/paul1/paul1/3522.ts
 
 #EXTINF:0,Film Zone
 0
@@ -378,10 +406,10 @@ http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/7894.ts
 0
 
 #EXTINF:0,Tring Life 
-0
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/5441.ts
 
 #EXTINF:0,Tring Max 
-0
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/5440.ts
 
 #EXTINF:0,Tring Super 
 0

@@ -172,6 +172,9 @@ http://cp.dmbshare.net:8000/live/paul1/paul1/5785.ts
 #EXTINF:0,Disney Channel 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5774.ts
 
+#EXTINF:0,Disney Channel 
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/5350.ts
+
 #EXTINF:0,Disney Junior 
 http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/5651.ts
 
@@ -195,6 +198,9 @@ http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/7900.ts
 
 #EXTINF:0,E! 
 http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/5475.ts
+
+#EXTINF:0,E! 
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/5372.ts
 
 #EXTINF:0,E2 
 0

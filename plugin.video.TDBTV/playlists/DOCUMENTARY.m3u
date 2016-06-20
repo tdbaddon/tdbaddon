@@ -163,6 +163,9 @@ http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/8398.ts
 #EXTINF:0,National Geographic 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5740.ts
 
+#EXTINF:0,National Geographic 
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/5390.ts
+
 #EXTINF:0,Nova
 0
 

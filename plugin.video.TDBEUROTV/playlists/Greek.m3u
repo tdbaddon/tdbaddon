@@ -20,19 +20,19 @@ http://antennatv-lh.akamaihd.net/i/live_1@329667/master.m3u8
 http://94.23.218.186:1935/galanos2/galanos2/playlist.m3u8
 
 #EXTINF:0,Ant1 Cyprus
-http://46.21.53.171:1935/iwohttporigin/mp4:livestream/playlist.m3u8
+0
 
 #EXTINF:0,Astra TV 
 http://www.astratv.gr:8090/hls/livestream.m3u8 
 
 #EXTINF:0,Axeloos TV
-http://srv.viiideo.gr:1935/axeloos/live/playlist.m3u8
+0
 
 #EXTINF:0,Best TV 
 0
 
 #EXTINF:0,BlueSky TV
-0
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/7387.ts
 
 #EXTINF:0,Boyah TV
 http://streamer-cache.grnet.gr/parliament/parltv.sdp/master.m3u8 
@@ -58,6 +58,9 @@ mms://deltatv1.dyndns.org:1194
 #EXTINF:0,E TV 
 http://mgrouphdlive4-f.akamaihd.net/i/live_1@324569/master.m3u8
 
+#EXTINF:0,E TV 
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/8759.ts
+
 #EXTINF:0,Ellada TV 
 0
 
@@ -68,13 +71,13 @@ http://wpc.68fc.edgecastcdn.net/hls-live/2068FC/ena-channel-live/video/video.m3u
 0
 
 #EXTINF:0,EPT 1 
-0
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/5606.ts
 
 #EXTINF:0,EPT 2
-http://nerit2-lh.akamaihd.net/i/neritplus_1@121149/master.m3u8
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/5605.ts
 
 #EXTINF:0,EPT 3 
-http://ert3-lh.akamaihd.net/i/live_1@329807/master.m3u8
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/5604.ts
 
 #EXTINF:0,Extra 
 rtmp://213.16.167.186/live/mpegts_256.stream
@@ -98,13 +101,7 @@ http://wm1.gmlogic.com/ch-patra?ovpsv=2.3.1.0
 0
 
 #EXTINF:0,Kontra 
-rtmp://flashcloud.mediacdn.com:1935/live/kontratv
-
-#EXTINF:0,Kontra 
-rtmp://flashcloud.mediacdn.com/live/kontratv live=1
-
-#EXTINF:0,Kontra 
-rtmp://flashcloud.mediacdn.com/live playpath=kontratv pageUrl=http://www.tvonlinestreams.com live=1
+0
 
 #EXTINF:0,Kphth TV 
 http://live.cretetv.gr:1935/cretetv/myStream/playlist.m3u8
@@ -143,7 +140,7 @@ http://makeliolive-lh.akamaihd.net/i/event_1@167269/master.m3u8
 0
 
 #EXTINF:0,Mega 
-http://megahdlive1-f.akamaihd.net/i/live_1@105260/master.m3u8
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6944.ts
 
 #EXTINF:0,Mega Cyprus 
 0
@@ -154,17 +151,17 @@ rtmp://176.9.123.140:1935/messinia/messinia
 #EXTINF:0,Nea TV 
 http://srv.viiideo.gr:1935/neatv/live/playlist.m3u8
 
+#EXTINF:0,Nea TV 
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6270.ts
+
 #EXTINF:0,N Cinema 
-0
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/8654.ts
 
 #EXTINF:0,Nerit 
 0
 
 #EXTINF:0,Nerit Plus 
-http://nerit2-lh.akamaihd.net/i/neritplus_1@121149/master.m3u8 
-
-#EXTINF:0,Nerit Plus 
-http://nerit2-lh.akamaihd.net/i/neritplus_1@45603/master.m3u8
+0
 
 #EXTINF:0,Omega TV 
 http://stream2.omegatv.net/hls-live/livepkgr/_definst_/liveevent/omegatv.m3u8
@@ -178,14 +175,17 @@ http://stream2.omegatv.net/hls-live/livepkgr/_definst_/liveevent/omegatv.m3u8
 #EXTINF:0,Rik Sat 
 http://cdnvideo.webvideocore.net/livenl/out_2xtqzyrq6gysc48ko0cs/index.m3u8
 
+#EXTINF:0,Rik Sat 
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/7866.ts
+
 #EXTINF:0,Samiaki TV 
 http://94.23.218.186:1935/samiaki/samiaki/playlist.m3u8
 
 #EXTINF:0,SBC
-http://xsbcgrx.api.channel.livestream.com/3.0/playlist.m3u8
+0
 
 #EXTINF:0,Sigma Cyprus
-http://81.21.47.74/hls/live.m3u8
+0
 
 #EXTINF:0,Skai 
 http://iphone.skai.gr.edgesuite.net/iphone_iphone.m3u8

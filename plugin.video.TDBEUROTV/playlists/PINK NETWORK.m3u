@@ -5,19 +5,19 @@
 0
 
 #EXTINF:0,Pink 1 
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/2890.ts
+http://cp.dmbshare.net:8000/live/paul1/paul1/1823.ts
+
+#EXTINF:0,Pink 1 
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/2862.ts
 
 #EXTINF:0,Pink 2 
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/2891.ts
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/2863.ts
 
 #EXTINF:0,Pink 3 
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/2892.ts
+0
 
 #EXTINF:0,Pink Action 1 
-http://188.247.133.24:8888/ipvt_004
-
-#EXTINF:0,Pink Action 1 
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/2915.ts
+0
 
 #EXTINF:0,Pink Action 2 
 0
@@ -29,70 +29,61 @@ http://cp.dmbshare.net:8000/live/francesco2/francesco2/2915.ts
 0
 
 #EXTINF:0,Pink Bravo
-http://188.44.8.20:8000/play/a00b
-
-#EXTINF:0,Pink Bravo
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/2910.ts
-
-#EXTINF:0,Pink Classic 
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/2929.ts
-
-#EXTINF:0,Pink Comedy 
-http://188.247.133.24:8888/ipvt_006
-
-#EXTINF:0,Pink Crime & Mystery 
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/2894.ts
-
-#EXTINF:0,Pink Extra 
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/2921.ts
-
-#EXTINF:0,Pink Family 
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/2916.ts
-
-#EXTINF:0,Pink Fashion 
-http://188.44.8.20:8000/play/a00a
-
-#EXTINF:0,Pink Fashion 
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/2909.ts
-
-#EXTINF:0,Pink Film 
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/2914.ts
-
-#EXTINF:0,Pink Folk 1
 0
 
+#EXTINF:0,Pink Classic 
+0
+
+#EXTINF:0,Pink Comedy 
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/4011.ts
+
+#EXTINF:0,Pink Crime & Mystery 
+0
+
+#EXTINF:0,Pink Extra 
+0
+
+#EXTINF:0,Pink Family 
+0
+
+#EXTINF:0,Pink Fashion 
+0
+
+#EXTINF:0,Pink Film 
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/2240.ts
+
+#EXTINF:0,Pink Folk 1
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/5106.ts
+
 #EXTINF:0,Pink Folk 2 
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/2920.ts
+0
 
 #EXTINF:0,Pink Hits
-http://188.44.8.20:8000/play/a008
-
-#EXTINF:0,Pink Hits
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/2928.ts
+0
 
 #EXTINF:0,Pink Hits 2
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/2903.ts
+0
 
 #EXTINF:0,Pink Horror 
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/2899.ts
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/2239.ts
 
 #EXTINF:0,Pink Kids 
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/2912.ts
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/5104.ts
 
 #EXTINF:0,Pink Koncert
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/2904.ts
+0
 
 #EXTINF:0,Pink Kuvar 
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/2934.ts
+0
 
 #EXTINF:0,Pink Live 
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/2922.ts
+0
 
 #EXTINF:0,Pink M 
 0
 
 #EXTINF:0,Pink Movies 1 
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/2931.ts
+0
 
 #EXTINF:0,Pink Movies 2 
 0
@@ -101,13 +92,10 @@ http://cp.dmbshare.net:8000/live/francesco2/francesco2/2931.ts
 0
 
 #EXTINF:0,Pink Music 1 
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/2930.ts
+0
 
 #EXTINF:0,Pink Music 2
-http://188.44.8.20:8000/play/a009
-
-#EXTINF:0,Pink Music 2
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/2927.ts
+0
 
 #EXTINF:0,Pink Music 3 
 0
@@ -125,64 +113,52 @@ http://cp.dmbshare.net:8000/live/francesco2/francesco2/2927.ts
 0
 
 #EXTINF:0,Pink Parada
-http://188.44.8.20:8000/play/a007
-
-#EXTINF:0,Pink Parada
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/2926.ts
+0
 
 #EXTINF:0,Pink Pedia 
-http://188.247.133.24:8888/ipvt_001
-
-#EXTINF:0,Pink Pedia 
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/2901.ts
+0
 
 #EXTINF:0,Pink Plus 
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/2897.ts
+0
 
 #EXTINF:0,Pink Premium 
 0
 
 #EXTINF:0,Pink Reality 
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/2902.ts
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/2865.ts
 
 #EXTINF:0,Pink Romance
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/2895.ts
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/2866.ts
 
 #EXTINF:0,Pink SciFi & Fantasy
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/2896.ts
-
-#EXTINF:0,Pink Serije 
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/2933.ts
-
-#EXTINF:0,Pink Show 
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/2936.ts
-
-#EXTINF:0,Pink Soap 
-http://188.247.133.24:8888/ipvt_009
-
-#EXTINF:0,Pink Soap 
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/2900.ts
-
-#EXTINF:0,Pink Style 
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/2908.ts
-
-#EXTINF:0,Pink Super Kids
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/2935.ts
-
-#EXTINF:0,Pink Thriller
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/2893.ts
-
-#EXTINF:0,Pink Western 
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/2907.ts
-
-#EXTINF:0,Pink World 
 0
 
+#EXTINF:0,Pink Serije 
+0
+
+#EXTINF:0,Pink Show 
+0
+
+#EXTINF:0,Pink Soap 
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/3791.ts
+
+#EXTINF:0,Pink Style 
+0
+
+#EXTINF:0,Pink Super Kids
+0
+
+#EXTINF:0,Pink Thriller
+0
+
+#EXTINF:0,Pink Western 
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/2242.ts
+
+#EXTINF:0,Pink World 
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/2869.ts
+
 #EXTINF:0,Pink World Cinema 
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/2932.ts
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/4369.ts
 
 #EXTINF:0,Pink Zabava 
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/2913.ts
-
-#EXTINF:0,Pink Zabava 
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/2905.ts
+0

@@ -2,34 +2,40 @@
 
 
 #EXTINF:0,Al Jazeera Balkan 
-rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
-
-#EXTINF:0,Al Jazeera Balkan 
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/1814.ts
 
 #EXTINF:0,Arena Sport 1 
-0
+http://cp.dmbshare.net:8000/live/paul1/paul1/1802.ts
 
 #EXTINF:0,Arena Sport 2 
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/1803.ts
 
 #EXTINF:0,Arena Sport 2
-0
+http://cp.dmbshare.net:8000/live/paul1/paul1/1803.ts
 
 #EXTINF:0,Arena Sport 3
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/1804.ts
 
+#EXTINF:0,Arena Sport 3
+http://cp.dmbshare.net:8000/live/paul1/paul1/1804.ts
+
 #EXTINF:0,Arena Sport 4 
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/1805.ts
 
+#EXTINF:0,Arena Sport 4 
+http://cp.dmbshare.net:8000/live/paul1/paul1/1805.ts
+
 #EXTINF:0,Arena Sport 5 
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/1806.ts
+
+#EXTINF:0,Arena Sport 5 
+http://cp.dmbshare.net:8000/live/paul1/paul1/1806.ts
 
 #EXTINF:0,ATV
 rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
 
 #EXTINF:0,B92 
-0
+http://cp.dmbshare.net:8000/live/paul1/paul1/1822.ts
 
 #EXTINF:0,Balkan TV
 0
@@ -44,7 +50,7 @@ rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
 0
 
 #EXTINF:0,CMC 
-http://95.128.236.80:1935/kaltura/smil:cmc.smil/playlist.m3u8
+0
 
 #EXTINF:0,DMC
 0
@@ -53,7 +59,7 @@ http://95.128.236.80:1935/kaltura/smil:cmc.smil/playlist.m3u8
 0
 
 #EXTINF:0,DUGA 
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/2924.ts
+0
 
 #EXTINF:0,Elektrika TV
 rtmp://rtmp.elektrika.cz/live/myStream.sdp
@@ -65,19 +71,19 @@ rtmp://rtmp.elektrika.cz/live/myStream.sdp
 0
 
 #EXTINF:0,Hayat Folk 
-0
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6642.ts
 
 #EXTINF:0,Hayat Music 
 0
 
 #EXTINF:0,Hayat Plus 
-0
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/2499.ts
 
 #EXTINF:0,Hayatovci
 0
 
 #EXTINF:0,Hema TV 
-mms://77.238.209.50:1234
+0
 
 #EXTINF:0,Hronka
 0
@@ -85,14 +91,20 @@ mms://77.238.209.50:1234
 #EXTINF:0,HRT 1 
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/1811.ts
 
+#EXTINF:0,HRT 1 
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/4597.ts
+
 #EXTINF:0,HRT 2 
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/1812.ts
 
+#EXTINF:0,HRT 2
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/4596.ts
+
 #EXTINF:0,HRT 3 
-0
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/4595.ts
 
 #EXTINF:0,HRT 4 
-0
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/4594.ts
 
 #EXTINF:0,Joj
 0
@@ -101,13 +113,16 @@ http://cp.dmbshare.net:8000/live/francesco2/francesco2/1812.ts
 0
 
 #EXTINF:0,Jugoton
-http://95.128.236.80:1935/kaltura/smil:jugotontv.smil/playlist.m3u8
+0
 
 #EXTINF:0,K3 Kumanovo 
 0
 
+#EXTINF:0,Kanal 3 
+0
+
 #EXTINF:0,Kanal 8
-mms://62.162.58.55/TVkanal8
+0
 
 #EXTINF:0,Kanal 21
 0
@@ -140,13 +155,13 @@ http://213.81.153.221:8080/nasa
 0
 
 #EXTINF:0,Nova TV
-0
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/4830.ts
 
 #EXTINF:0,Novosadska TV 
-mms://176.106.121.32:8080/
+0
 
 #EXTINF:0,OBN 
-0
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/3300.ts
 
 #EXTINF:0,Palma Plus 
 0
@@ -155,34 +170,49 @@ mms://176.106.121.32:8080/
 0
 
 #EXTINF:0,Prva TV 
-0
+http://cp.dmbshare.net:8000/live/paul1/paul1/1817.ts
+
+#EXTINF:0,Prva TV 
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/4827.ts
+
+#EXTINF:0,Prva TV 
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/4826.ts
 
 #EXTINF:0,RTC 
 0
 
 #EXTINF:0,RTCG Sat 
-mms://beotelmedia.beotel.net/tvcg
-
-#EXTINF:0,RTCG Sat 
-mms://195.252.114.172/tvcg
+0
 
 #EXTINF:0,RTL
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/1813.ts
 
+#EXTINF:0,RTL
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/4822.ts
+
+#EXTINF:0,RTL
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/4831.ts
+
 #EXTINF:0,RTL 2 
-0
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/4823.ts
 
 #EXTINF:0,RTRS 
-0
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/3729.ts
 
 #EXTINF:0,RTS 
 0
 
 #EXTINF:0,RTS 1 
-0
+http://cp.dmbshare.net:8000/live/paul1/paul1/1815.ts
+
+#EXTINF:0,RTS 1 
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/3892.ts
 
 #EXTINF:0,RTS 2 
-0
+http://cp.dmbshare.net:8000/live/paul1/paul1/1816.ts
+
+#EXTINF:0,RTS 2 
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/3891.ts
 
 #EXTINF:0,RTS 3 
 0

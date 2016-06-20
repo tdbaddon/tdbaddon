@@ -5,16 +5,13 @@
 0
 
 #EXTINF:0,ABC News
-http://188.44.8.20:8000/play/a01c
+http://cp.dmbshare.net:8000/live/paul1/paul1/1768.ts
 
 #EXTINF:0,Agon Channel 
 0
 
 #EXTINF:0,Al Jazeera Balkan 
-rtmp://aljazeeraflashlivefs.fplive.net/aljazeeraflashlive-live/ playpath=aljazeera_balkans_high swfUrl=http://www.longtailvideo.com//jwplayer/jwplayer.flash.swf live=1 pageUrl=http://mali-ekrani.blogspot.ch/2013/07/al-jazeera-balkan.html
-
-#EXTINF:0,Al Jazeera Balkan 
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/1814.ts
+http://cp.dmbshare.net:8000/live/paul1/paul1/1814.ts
 
 #EXTINF:0,Alb Info
 0
@@ -35,19 +32,13 @@ http://cp.dmbshare.net:8000/live/francesco2/francesco2/1763.ts
 rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
 
 #EXTINF:0,BangBang 
-http://188.44.8.20:8000/play/a013
-
-#EXTINF:0,BangBang 
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/3512.ts
+0
 
 #EXTINF:0,BangBang 
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/1770.ts
 
 #EXTINF:0,Channel One 
 0
-
-#EXTINF:0,Cufo TV 
-http://188.44.8.20:8000/play/a016
 
 #EXTINF:0,Cufo TV 
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/1771.ts
@@ -68,7 +59,7 @@ http://cp.dmbshare.net:8000/live/francesco2/francesco2/1756.ts
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/1760.ts
 
 #EXTINF:0,Klan 
-http://188.44.8.20:8000/play/a015
+0
 
 #EXTINF:0,Klan 
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/1736.ts
@@ -92,9 +83,6 @@ rtmp://91.82.85.44/live/konyhatv
 0
 
 #EXTINF:0,News24
-http://188.44.8.20:8000/play/a012
-
-#EXTINF:0,News24
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/3508.ts
 
 #EXTINF:0,Ora News 
@@ -102,9 +90,6 @@ http://cp.dmbshare.net:8000/live/francesco2/francesco2/3507.ts
 
 #EXTINF:0,Planet TV 
 0
-
-#EXTINF:0,Rokum TV 
-rtmp://82.114.65.202/live/rrokumtv.flv swfUrl=http://tv24.al/shqiptv/css/player.swf live=1
 
 #EXTINF:0,Rokum TV 
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/1761.ts
@@ -121,14 +106,8 @@ rtmp://wowza.rtkit.com/live/livestream
 #EXTINF:0,Supersonic TV
 rtmp://str103.setplex.net:1935/228/stv_online
 
-#EXTINF:0,Top Channel 
-http://188.44.8.20:8000/play/a014
-
 #EXTINF:0,Top Channel
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/1734.ts
-
-#EXTINF:0,Top Channel News
-http://188.44.8.20:8000/play/a00x
 
 #EXTINF:0,Top Channel News
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/1766.ts
