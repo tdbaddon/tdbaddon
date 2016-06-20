@@ -22,7 +22,6 @@
 import re,urllib,urlparse,json,random
 
 from resources.lib.libraries import cleantitle
-from resources.lib.libraries import client2
 from resources.lib.libraries import client
 from resources.lib.libraries import control
 
@@ -55,7 +54,7 @@ class source:
             r = [(i[0], i[1], i[2][-1]) for i in r if len(i[2]) > 0]
             #control.log('R %s' % r)
             r = [i[0] for i in r if t == cleantitle.get(i[1]) and year == i[2]][0]
-            #control.log('R %s' % r)
+            control.log('R %s' % r)
 
             url = urlparse.urljoin(self.base_link, r)
             url = urlparse.urlparse(url).path
@@ -84,7 +83,7 @@ class source:
             query = '%s season %s' % (tvshowtitle, season)
             query = self.search_link % (urllib.quote_plus(query))
 
-            result = client.source(query)
+            result = client.request(query)
             result = json.loads(result)
             result = result['results']
 
@@ -120,7 +119,7 @@ class source:
 
             u = urlparse.urljoin(self.base_link, url)
 
-            r = client2.http_get(u)
+            r = client.request(u)
             #control.log('R %s' % r)
 
             r = re.findall("load_player\(\s*'([^']+)'\s*,\s*'?(\d+)\s*'?", r)
@@ -132,14 +131,13 @@ class source:
 
             for p in r:
                 try:
+                    print ('P',p )
                     headers = {'X-Requested-With': 'XMLHttpRequest', 'Referer': u}
-
                     player = urlparse.urljoin(self.base_link, '/ajax/movie/load_player')
-
                     post = urllib.urlencode({'id': p[0], 'quality': p[1]})
-
-                    result = client2.http_get(player, data=post, headers=headers)
-                    #control.log('result %s' % result)
+                    control.sleep(270)
+                    result = client.request(player, post=post, headers=headers)
+                    control.log('result %s' % result)
 
                     frame = client.parseDOM(result, 'iframe', ret='src')
                     embed = client.parseDOM(result, 'embed', ret='flashvars')
@@ -153,14 +151,13 @@ class source:
                             url = client.request(frame, headers=headers, output='geturl')
 
                             links += [
-                                {'source': 'gvideo', 'url': url, 'quality': client.googletag(url)[0]['quality'],
-                                 'direct': True}]
+                                {'source': 'gvideo', 'url': url, 'quality': client.googletag(url)[0]['quality']}]
 
                         elif 'openload.' in frame[0]:
-                            links += [{'source': 'openload.co', 'url': frame[0], 'quality': 'HD', 'direct': False}]
+                            links += [{'source': 'openload.co', 'url': frame[0], 'quality': 'HD'}]
 
                         elif 'videomega.' in frame[0]:
-                            links += [{'source': 'videomega.tv', 'url': frame[0], 'quality': 'HD', 'direct': False}]
+                            links += [{'source': 'videomega.tv', 'url': frame[0], 'quality': 'HD'}]
 
                     elif embed:
                         url = urlparse.parse_qs(embed[0])['fmt_stream_map'][0]
@@ -180,7 +177,8 @@ class source:
 
 
             return sources
-        except:
+        except Exception as e:
+            control.log('ERROR XMOVIES %s' % e)
             return sources
 
 

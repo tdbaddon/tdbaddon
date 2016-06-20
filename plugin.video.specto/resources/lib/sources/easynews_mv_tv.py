@@ -97,7 +97,7 @@ class source:
 
             query = urlparse.urljoin(self.base_link, query)
 
-            result = client.source(query, cookie=self.cookie)
+            result = client.request(query, cookie=self.cookie)
             result = json.loads(result)
 
             links = result['data']

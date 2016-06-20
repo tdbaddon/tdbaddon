@@ -34,8 +34,7 @@ from resources.lib import resolvers
 
 class source:
     def __init__(self):
-        self.domains = ['putlocker.systems']
-        self.base_link = 'http://www.putlocker.systems/'
+        self.base_link = 'http://www.putlocker.systems'
         self.myrandom = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase) for _ in range(25))
 
 
@@ -73,9 +72,9 @@ class source:
     def get_sources(self, url, hosthdDict, hostDict, locDict):
         try:
             sources = []
-            control.log('#PUTLOCKER1 %s' % url)
 
             if url == None: return sources
+            #control.log('RESU %s' % url)
 
             if not str(url).startswith('http'):
 
@@ -85,34 +84,29 @@ class source:
                 title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
 
                 imdb = data['imdb']
+
                 match = title.replace('-', '').replace(':', '').replace('\'', '').replace(' ', '-').replace('--', '-').lower()
 
                 if 'tvshowtitle' in data:
                     url = '%s/show/%s/season/%01d/episode/%01d' % (self.base_link, match, int(data['season']), int(data['episode']))
                 else:
                     url = '%s/movie/%s' % (self.base_link, match)
-                #control.log('#PUTLOCKER2 %s' % url)
 
-                #result = client.source(url, output='title')
-                result = client2.http_get(url)
+                result = client.request(url, limit='1')
+                result = client.parseDOM(result, 'title')[0]
 
                 if '%TITLE%' in result: raise Exception()
 
-                cookie_file = os.path.join(control.cookieDir, '%s_cookies.lwp' % client2.shrink_host(url))
-                #cookie_file = os.path.join('/home/mrknow/.kodi/userdata/addon_data/plugin.video.specto/Cookies','%s_cookies.lwp' % client2.shrink_host((url)))
-                cj = cookielib.LWPCookieJar(cookie_file)
-                try: cj.load(ignore_discard=True)
-                except: pass
-                auth = cj._cookies['www.putlocker.systems']['/']['__utmx'].value
-                headers = {}
+                result, headers, content, cookie = client.request(url, output='extended')
 
                 if not imdb in result: raise Exception()
 
+
             else:
-                result, headers, content, cookie = client.source(url, output='extended')
 
-            #control.log('#PUTLOCKER3 %s' % auth)
+                result, headers, content, cookie = client.request(url, output='extended')
 
+            auth = re.findall('__utmx=(.+)', cookie)[0].split(';')[0]
             auth = 'Bearer %s' % urllib.unquote_plus(auth)
 
             headers['Authorization'] = auth
@@ -130,13 +124,12 @@ class source:
             idEl = re.findall('elid\s*=\s*"([^"]+)', result)[0]
 
             post = {'action': action, 'idEl': idEl, 'token': token, 'elid': elid}
-            r = client2.http_get(u, data=post, headers=headers)
-            #print r
-            #control.log('#PUTLOCKER4 %s' % r)
+            post = urllib.urlencode(post)
 
+
+            r = client.request(u, post=post, headers=headers)
             r = str(json.loads(r))
             r = client.parseDOM(r, 'iframe', ret='.+?') + client.parseDOM(r, 'IFRAME', ret='.+?')
-            #control.log('#PUTLOCKER5 %s' % r)
 
             links = []
 
@@ -147,14 +140,14 @@ class source:
             links += [{'source': 'openload.co', 'quality': 'SD', 'url': i} for i in r if 'openload.co' in i]
 
             links += [{'source': 'videomega.tv', 'quality': 'SD', 'url': i} for i in r if 'videomega.tv' in i]
-            links += [{'source': 'Allmyvideos', 'quality': 'SD', 'url': i} for i in r if 'allmyvideos.net' in i]
+
 
             for i in links: sources.append({'source': i['source'], 'quality': i['quality'], 'provider': 'Putlocker', 'url': i['url']})
-            #control.log('#PUTLOCKER6 SOURCES %s' % sources)
 
             return sources
         except:
             return sources
+
 
 
     def resolve(self, url):

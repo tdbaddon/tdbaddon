@@ -66,7 +66,7 @@ class source:
             query = base64.urlsafe_b64decode(self.search_link) + urllib.quote_plus(url)
             query = urlparse.urljoin(self.base_link, query)
 
-            result = client.source(query)
+            result = client.request(query)
             result = json.loads(result)
 
             title, hdlr = re.compile('(.+?) (S\d*E\d*)$').findall(url)[0]

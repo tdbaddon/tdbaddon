@@ -43,9 +43,9 @@ from resources.lib.resolvers import zstream
 class source:
     def __init__(self):
         self.base_link = 'http://www.iwatchonline.ph'
-        self.link_1 = 'http://www.iwatchonline.video'
+        self.link_1 = 'https://www.iwatchonline.video/'
         self.link_2 = 'http://translate.googleusercontent.com/translate_c?anno=2&hl=en&sl=mt&tl=en&u=http://www.iwatchonline.ag'
-        self.link_3 = 'https://iwatchonline.unblocked.pw'
+        self.link_3 = 'https://iwatchonline.unblocked.one'
         self.search_link = '/advance-search'
         self.show_link = '/tv-shows/%s'
         self.episode_link = '/episode/%s-s%02de%02d'
@@ -57,11 +57,13 @@ class source:
         try:
             query = self.search_link
             post = {'searchquery': title, 'searchin': '1'}
+            post = urllib.urlencode(post)
+
 
             result = ''
             links = [self.link_1, self.link_3]
             for base_link in links:
-                result = client.source(urlparse.urljoin(base_link, query), post=post, headers=self.headers)
+                result = client.request(urlparse.urljoin(base_link, query), post=post, headers=self.headers)
                 if 'widget search-page' in str(result): break
 
             result = client.parseDOM(result, 'div', attrs = {'class': 'widget search-page'})[0]
@@ -88,11 +90,13 @@ class source:
         try:
             query = self.search_link
             post = {'searchquery': tvshowtitle, 'searchin': '2'}
+            post = urllib.urlencode(post)
+
 
             result = ''
             links = [self.link_1, self.link_3]
             for base_link in links:
-                result = client.source(urlparse.urljoin(base_link, query), post=post, headers=self.headers)
+                result = client.request(urlparse.urljoin(base_link, query), post=post, headers=self.headers)
                 if 'widget search-page' in str(result): break
 
             result = client.parseDOM(result, 'div', attrs = {'class': 'widget search-page'})[0]
@@ -134,7 +138,7 @@ class source:
             result = ''
             links = [self.link_1, self.link_2, self.link_3]
             for base_link in links:
-                result = client.source(urlparse.urljoin(base_link, url), headers=self.headers)
+                result = client.request(urlparse.urljoin(base_link, url), headers=self.headers)
                 #control.log('### %s' % result)
                 if 'original-title' in str(result): break
 

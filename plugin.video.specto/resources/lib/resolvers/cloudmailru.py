@@ -25,7 +25,7 @@ from resources.lib.libraries import client
 
 def resolve(url):
     try:
-        result = client.source(url)
+        result = client.request(url)
         vid = url.split('public')[-1]
         token = re.compile('"tokens":{"download":"([^"]+)"}').findall(result)[0]
         weblink = re.compile('"weblink_get":\[{"count":\d+,"url":"([^"]+)"}\]').findall(result)[0]

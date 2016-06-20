@@ -22,21 +22,15 @@
 import re,urllib,urlparse,json,base64
 
 from resources.lib.libraries import cleantitle
-from resources.lib.libraries import cloudflare
+from resources.lib.libraries import directstream
 from resources.lib.libraries import client
 from resources.lib.libraries import logger
 
 class source:
     def __init__(self):
-        '''self.domains = ['123movies.to']
-        self.base_link = 'http://123movies.to'
-        self.search_link = 'aHR0cHM6Ly93d3cuZ29vZ2xlYXBpcy5jb20vY3VzdG9tc2VhcmNoL3YxP2tleT1BSXphU3lCS3NHYUZ6alIxUXl5bE1QYzZ6Vm9QNzFVczU3aTltRWsmbnVtPTEwJmhsPWVuJmN4PTAxNTc3MDA5MzA5OTIyNTYzNDAxMzpvOHRwZHlram93dSYmZ29vZ2xlaG9zdD13d3cuZ29vZ2xlLmNvbSZxPSVz'
-        self.search2_link = '/movie/search/%s'
-        '''
         self.domains = ['123movies.to', '123movies.ru']
         self.base_link = 'http://123movies.ru'
         self.info_link = '/ajax/movie_load_info/%s'
-        self.search_link = 'aHR0cHM6Ly93d3cuZ29vZ2xlYXBpcy5jb20vY3VzdG9tc2VhcmNoL3YxZWxlbWVudD9rZXk9QUl6YVN5Q1ZBWGlVelJZc01MMVB2NlJ3U0cxZ3VubU1pa1R6UXFZJnJzej1maWx0ZXJlZF9jc2UmbnVtPTEwJmhsPWVuJmN4PTAwMDc0NjAzOTU3ODI1MDQ0NTkzNTp1a2lqdGJvbm1jNCZnb29nbGVob3N0PXd3dy5nb29nbGUuY29tJnE9JXM='
         self.search2_link = '/movie/search/%s'
 
 
@@ -45,31 +39,10 @@ class source:
             t = cleantitle.movie(title)
 
             try:
-                query = '%s %s' % (title, year)
-                query = base64.b64decode(self.search_link) % urllib.quote_plus(query)
-
-                result = client.source(query)
-                result = json.loads(result)['results']
-
-                r = [(i['url'], i['titleNoFormatting']) for i in result]
-                r = [(i[0], re.findall('(?:^Watch Full "|^Watch |)(.+?)(?:For Free On 123Movies|On 123Movies|$)', i[1])) for i in r]
-                r = [(i[0], i[1][0]) for i in r if len(i[1]) > 0]
-                r = [(re.sub('http.+?//.+?/','', i[0]), i[1]) for i in r]
-                r = [('/'.join(i[0].split('/')[:2]), i[1]) for i in r]
-                r = [x for y,x in enumerate(r) if x not in r[:y]]
-                r = [i[0] for i in r if t == cleantitle.get(i[1])]
-
-                for i in r:
-                    url = self._info(i, year)
-                    if not url == None: return url
-            except:
-                pass
-
-            try:
                 query = self.search2_link % urllib.quote_plus(title)
                 query = urlparse.urljoin(self.base_link, query)
 
-                result = cloudflare.source(query)
+                result = client.request(query)
 
                 r = client.parseDOM(result, 'div', attrs = {'class': 'ml-item'})
                 r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', ret='title')) for i in r]
@@ -77,14 +50,31 @@ class source:
                 r = [(re.sub('http.+?//.+?/','', i[0]), i[1]) for i in r]
                 r = [('/'.join(i[0].split('/')[:2]), i[1]) for i in r]
                 r = [x for y,x in enumerate(r) if x not in r[:y]]
-                r = [i[0] for i in r if t == cleantitle.get(i[1])]
+                r = [i[0] for i in r if t == cleantitle.movie(i[1])]
 
                 for i in r:
                     url = self._info(i, year)
                     if not url == None: return url
             except:
+                import traceback
+                traceback.print_exc()
                 pass
 
+        except:
+            return
+
+    def _info(self, url, year):
+        try:
+            url = urlparse.urljoin(self.base_link, url)
+            url = urlparse.urlparse(url).path
+            url = client.replaceHTMLCodes(url)
+            url = url.encode('utf-8')
+
+            u = urlparse.urljoin(self.base_link, self.info_link)
+            u = u % re.findall('(\d+)', url)[-1]
+            u = client.request(u)
+            u = client.parseDOM(u, 'div', attrs = {'class': 'jt-info'})[0]
+            if year == u: return url
         except:
             return
 
@@ -96,7 +86,7 @@ class source:
             if url == None: return sources
 
             url = urlparse.urljoin(self.base_link, url)
-            url = url.replace('/watching.html', '')
+            url = referer = url.replace('/watching.html', '')
 
             content = re.compile('(.+?)\?episode=\d*$').findall(url)
             content = 'movie' if len(content) == 0 else 'episode'
@@ -106,8 +96,9 @@ class source:
 
             url = urlparse.urljoin(self.base_link, url) + '/watching.html'
 
-            result = cloudflare.source(url)
+            result = client.request(url)
             movie = client.parseDOM(result, 'div', ret='movie-id', attrs = {'id': 'media-player'})[0]
+            token = client.parseDOM(result, 'div', ret='player-token', attrs = {'id': 'media-player'})[0]
 
             try: quality = client.parseDOM(result, 'span', attrs = {'class': 'quality'})[0].lower()
             except: quality = 'hd'
@@ -115,14 +106,14 @@ class source:
             elif quality == 'hd': quality = 'HD'
             else: quality = 'SD'
 
-            url = '/movie/loadepisodes/%s' % movie
+            url = '/ajax/get_episodes/%s/%s' % (movie, token)
             url = urlparse.urljoin(self.base_link, url)
 
-            result = cloudflare.source(url)
+            result = client.request(url)
 
             r = client.parseDOM(result, 'div', attrs = {'class': 'les-content'})
             r = zip(client.parseDOM(r, 'a', ret='onclick'), client.parseDOM(r, 'a', ret='episode-id'), client.parseDOM(r, 'a'))
-            r = [(re.sub('[^0-9]', '', i[0].split(',')[0]), re.sub('[^0-9]', '', i[0].split(',')[-1]), i[1], ''.join(re.findall('(\d+)', i[2])[:1])) for i in r]
+            r = [(re.sub('[^0-9]', '', i[0].split(',')[0]), re.sub('[^0-9a-fA-F]', '', i[0].split(',')[-1]), i[1], ''.join(re.findall('(\d+)', i[2])[:1])) for i in r]
             r = [(i[0], i[1], i[2], i[3]) for i in r]
 
             if content == 'episode':
@@ -146,29 +137,42 @@ class source:
 
             for i in links: sources.append({'source': i['source'], 'quality': quality, 'provider': 'Onemovies', 'url': i['url'], 'direct': i['direct'], 'debridonly': False})
 
-            logger.debug('%s SOURCES [%s]' % (__name__,sources))
             return sources
         except:
             return sources
 
-    def resolve(self, url):
+    def resolve(self, url, resolverList=None):
         logger.debug('%s ORIGINAL URL [%s]' % (__name__, url))
         try:
             url = urlparse.urljoin(self.base_link, url)
-            result = cloudflare.source(url)
+            result = client.request(url)
         except:
             pass
 
         try:
             url = re.compile('"?file"?\s*=\s*"(.+?)"\s+"?label"?\s*=\s*"(\d+)p?"').findall(result)
+
             url = [(int(i[1]), i[0]) for i in url]
             url = sorted(url, key=lambda k: k[0])
             url = url[-1][1]
 
-            url = client.request(url, output='geturl')
+            try: u = client.request(url, output='headers', redirect=False)['Location']
+            except: u = client.request(url, output='geturl')
+
+            q = directstream.googletag(u)[0]['quality']
+
+            url = u
+
             if 'requiressl=yes' in url: url = url.replace('http://', 'https://')
             else: url = url.replace('https://', 'http://')
-            logger.debug('%s RESOLVED URL [%s]' % (__name__, url))
+            return url
+        except:
+            pass
+
+        try:
+            url = re.compile('file\s*=\s*"(.+?)"').findall(result)[0]
+            if self.base_link in url: raise Exception()
+            url = client.replaceHTMLCodes(url)
             return url
         except:
             pass

@@ -38,6 +38,7 @@ try :
     params = {'action': 'playItem', 'content': 'live', 'name': '&TV',       'source': "{'url': 'http://www.dittotv.com/livetv/linkname=&TV', 'source': 'ditto', 'label': 'ditto', 'quality': 'HD', 'provider': 'ditto'}"}
     params = {'action': 'playItem', 'content': 'live', 'name': 'Raj News Telugu', 'source': "[{'url': 'http://www.dittotv.com/livetv/linkname=Raj News Telugu', 'source': 'ditto', 'label': 'ditto', 'quality': 'HD', 'provider': 'ditto'}]"}
     params = {'action': 'movies', 'lang': 'hindi', 'url': 'theaters', 'provider': 'apnaview_mv'}
+    params = {'tmdb': '362045', 'name': 'Bajirao Mastani (2015)', 'title': 'Bajirao Mastani', 'meta': '{"rating": "7.0", "code": "tt3735246", "tmdb": "362045", "imdb": "tt3735246", "year": "2015", "duration": "9000", "plot": "A historical account of the romance between the Maratha general, Baji Rao I and Mastani, a Muslim princess.", "votes": "18", "title": "Bajirao Mastani", "fanart": "http://image.tmdb.org/t/p/original/pZVL7yJdKqR7oAa4J8fUUOwuiGG.jpg", "tagline": "A historical account of the romance between the Maratha general, Baji Rao I and Mastani, a Muslim princess.", "writer": "Prakash Kapadia", "next": "", "poster": "http://image.tmdb.org/t/p/w500/h6t2eLxievyA5GrthmpmE2uzB9W.jpg", "director": "Sanjay Leela Bhansali", "studio": "SLB Films", "genre": "War / History / Romance", "metacache": true, "name": "Bajirao Mastani (2015)", "premiered": "2015-12-18", "originaltitle": "Bajirao Mastani", "cast": [["Ranveer Singh", "Baji Rao I"], ["Deepika Padukone", "Mastani"], ["Priyanka Chopra", "Kashibai"], ["Tanvi Azmi", "Radhabai, Bajirao\'s mother."], ["Vaibhav Tatwawadi", "Chimaji Appa, Baji Rao\'s younger brother"], ["Mahesh Manjrekar", "Maratha Emperor \'Chhattrapati Shahu\'"], ["Milind Soman", "Ambaji Panth"], ["Sanjay Mishra", ""], ["Aditya Pancholi", "Panth Pratinidhi"]], "trailer": "plugin://plugin.video.aftershock/?action=trailer&name=Bajirao+Mastani+%282015%29"}', 'imdb': 'tt3735246', 'year': '2015', 'action': 'sources'}
 
 
     try:
@@ -162,10 +163,10 @@ try :
 
     #livetv.channels().get()
     #tvshows.tvshows().get(url, provider=provider, network=name)
-    movies.movies().get(url, provider=provider, lang=lang)
+    #movies.movies().get(url, provider=provider, lang=lang)
     #episodes.episodes().get(tvshowtitle, year, imdb, tmdb, tvdb, tvrage, season, episode, provider=provider, url=url)
 
-    #sources().addItem(name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date, meta)
+    sources().addItem(name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date, meta)
     #sources().play(name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date, meta, url)
     #sources().playItem(content, name, year, imdb, tvdb, source)
     #print re.compile()
@@ -173,14 +174,14 @@ try :
     #from resources.lib.sources.ditto_live import source
     #source().getLiveSource()
 
-    import json, urllib
+    '''import json, urllib
     source = {"provider":provider, "url":url, "quality":'HD', "label":provider, "source":provider}
     tmp=json.dumps([source])
     print tmp
     tmp= urllib.quote_plus(tmp)
     print tmp
     tmp = urllib.unquote_plus(tmp)
-    print json.loads(tmp)
+    print json.loads(tmp)'''
 
 
 

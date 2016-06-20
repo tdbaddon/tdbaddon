@@ -34,7 +34,7 @@ class source:
 
     def dizibox_shows(self):
         try:
-            result = client.source(self.base_link)
+            result = client.request(self.base_link)
 
             result = client.parseDOM(result, 'input', {'id': 'filterAllCategories'})[0]
             result = client.parseDOM(result, 'li')
@@ -71,12 +71,12 @@ class source:
 
             season, episode = '%01d' % int(season), '%01d' % int(episode)
 
-            result = client.source(url)
+            result = client.request(url)
 
             if not season == '1':
                 url = client.parseDOM(result, 'a', ret='href', attrs = {'class': 'season-.+?'})
                 url = [i for i in url if '/%s-sezon-' % season in i][0]
-                result = client.source(url)
+                result = client.request(url)
 
             result = client.parseDOM(result, 'a', ret='href')
             result = [i for i in result if '%s-sezon-%s-bolum-' % (season, episode) in i][0]
@@ -98,7 +98,7 @@ class source:
 
             sources_url = urlparse.urljoin(self.base_link, url)
 
-            result = client.source(sources_url, close=False)
+            result = client.request(sources_url, close=False)
             result = re.sub(r'[^\x00-\x7F]+','', result)
 
             result = re.compile('(<option.*?</option>)', re.DOTALL).findall(result)
@@ -107,13 +107,13 @@ class source:
 
             url = urlparse.urljoin(self.base_link, result)
 
-            result = client.source(url, close=False)
+            result = client.request(url, close=False)
 
             url = client.parseDOM(result, 'span', attrs = {'class': 'object-wrapper'})[0]
             url = client.parseDOM(url, 'iframe', ret='src')[0]
             url = client.replaceHTMLCodes(url)
 
-            result = client.source(url, close=False)
+            result = client.request(url, close=False)
 
             try:
                 r = re.compile('"?file"?\s*:\s*"([^"]+)"\s*,\s*"?label"?\s*:\s*"(\d+)p?"').findall(result)

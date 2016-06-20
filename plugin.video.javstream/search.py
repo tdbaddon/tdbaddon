@@ -21,7 +21,42 @@ try:
     dbcur.execute("CREATE TABLE IF NOT EXISTS search (search_term);")
 except:
     pass
+try:
+    dbcur.execute("CREATE TABLE IF NOT EXISTS versions (version_id);")
+except:
+    pass
 dbcon.close()
+
+def checkVersion(v):
+    try:
+        dbcon=database.connect(dbFile)
+        dbcur=dbcon.cursor()
+        
+        
+        dbcur.execute("SELECT version_id FROM versions")
+        faves=dbcur.fetchall()
+        if not faves:
+            dbcur.execute("INSERT INTO versions (version_id) VALUES (?)", (v,))
+            dbcon.commit()
+            dbcon.close()
+            return False
+        else:
+            for a_row in faves:
+                if a_row[0]==v:
+                    dbcon.close()
+                    return True
+                else:
+                    dbcur.execute("DELETE FROM versions")
+                    dbcon.commit()
+                    dbcur.execute("INSERT INTO versions (version_id) VALUES (?)", (v,))
+                    dbcon.commit()
+                    dbcon.close()
+                    return False
+    except Exception, e:
+        dbcon.close()
+        return False
+    dbcon.close()
+    return False
 
 def getSearch():
     items=[]

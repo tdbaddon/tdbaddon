@@ -92,7 +92,7 @@ class source:
 
             sources_url = urlparse.urljoin(self.base_link, url)
 
-            result = client.source(sources_url, close=False)
+            result = client.request(sources_url, close=False)
             result = re.compile('<script[^>]*>(.*?)</script>', re.DOTALL).findall(result)
             result = [re.compile("var\s+kaynaklar.*?url\s*:\s*\"([^\"]+)\"\s*,\s*data\s*:\s*'([^']+)").findall(i.replace('\n', '')) for i in result]
             result = [i[0] for i in result if len(i) > 0][0]
@@ -100,7 +100,7 @@ class source:
             url = urlparse.urljoin(self.base_link, result[0])
             post = result[1]
 
-            result = client.source(url, post=post, headers=self.headers)
+            result = client.request(url, post=post, headers=self.headers)
             result = re.compile('"videolink\d*"\s*:\s*"([^"]+)","videokalite\d*"\s*:\s*"?(\d+)p?').findall(result)
             result = [(i[0].replace('\\/', '/'), i[1])  for i in result]
 

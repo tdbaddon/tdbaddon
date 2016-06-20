@@ -97,7 +97,7 @@ class source:
             try:
                 r = client.parseDOM(result, 'div', attrs = {'id': 'playerMenu'})[0]
                 r = client.parseDOM(r, 'div', ret='data-id', attrs = {'class': 'item'})[0]
-                r = cloudflare.source(urlparse.urljoin(self.base_link, self.video_link), post=urllib.urlencode( {'id': r} ))
+                r = client.request(urlparse.urljoin(self.base_link, self.video_link), post=urllib.urlencode( {'id': r} ))
                 pages.append(client.parseDOM(r, 'iframe', ret='src')[0])
             except:
                 pass

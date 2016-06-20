@@ -37,7 +37,7 @@ class source:
             query = self.search_link % (urllib.quote_plus(title))
             query = urlparse.urljoin(self.base_link, query)
 
-            result = client.source(query)
+            result = client.request(query)
             result = client.parseDOM(result, 'div', attrs = {'class': 'Post-body'})
 
             title = cleantitle.movie(title)
@@ -64,7 +64,7 @@ class source:
 
             url = urlparse.urljoin(self.base_link, url)
 
-            result = client.source(url)
+            result = client.request(url)
             links = client.parseDOM(result, 'td', attrs = {'class': 'even tdhost'})
             links += client.parseDOM(result, 'td', attrs = {'class': 'odd tdhost'})
 

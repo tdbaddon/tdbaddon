@@ -28,7 +28,7 @@ from resources.lib import resolvers
 
 class source:
     def __init__(self):
-        self.base_link = 'http://watchseries-online.li'
+        self.base_link = 'http://watchseries-online.la'
         self.search_link = 'index'
 
 
@@ -38,7 +38,7 @@ class source:
 
             query = urlparse.urljoin(self.base_link, self.search_link)
 
-            result = client.source(query)
+            result = client.request(query)
 
             result = re.compile('(<li>.+?</li>)').findall(result)
             result = [re.compile('href="(.+?)">(.+?)<').findall(i) for i in result]
@@ -67,15 +67,15 @@ class source:
 
 
             url = urlparse.urljoin(self.base_link, '/episode/%s-s%02de%02d' % (cat, int(season), int(episode)))
-            result = client.source(url, output='response', error=True)
+            result = client.request(url, output='response', error=True)
 
             if '404' in result[0]:
                 url = urlparse.urljoin(self.base_link, '/%s/%s/%s-s%02de%02d' % (year, month, cat, int(season), int(episode)))
-                result = client.source(url, output='response', error=True)
+                result = client.request(url, output='response', error=True)
 
             if '404' in result[0]:
                 url = urlparse.urljoin(self.base_link, '/%s/%s/%s-%01dx%01d' % (year, month, cat, int(season), int(episode)))
-                result = client.source(url, output='response', error=True)
+                result = client.request(url, output='response', error=True)
 
             if '404' in result[0]: raise Exception()
 
@@ -96,7 +96,7 @@ class source:
 
             url = urlparse.urljoin(self.base_link, url)
 
-            result = client.source(url)
+            result = client.request(url)
             links = client.parseDOM(result, 'td', attrs = {'class': 'even tdhost'})
             links += client.parseDOM(result, 'td', attrs = {'class': 'odd tdhost'})
 

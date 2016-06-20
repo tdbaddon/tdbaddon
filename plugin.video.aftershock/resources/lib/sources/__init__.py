@@ -748,15 +748,6 @@ class sources:
             if type(url) is list :
                 self.url = url
                 return url
-
-            if url.startswith('http') and '.m3u8' in url:
-                result = client.request(url.split('|')[0], headers=headers, output='geturl', timeout='20')
-                if result == None: raise Exception()
-
-            elif url.startswith('http'):
-                result = client.request(url.split('|')[0], headers=headers, output='chunk', timeout='20')
-                if result == None: raise Exception()
-
             self.url = url
             return url
         except:

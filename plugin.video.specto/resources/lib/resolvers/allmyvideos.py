@@ -38,7 +38,7 @@ def resolve(url):
         f = client.parseDOM(result, 'form', attrs = {'action': ''})
         k = client.parseDOM(f, 'input', ret='name', attrs = {'type': 'hidden'})
         for i in k: post.update({i: client.parseDOM(f, 'input', ret='value', attrs = {'name': i})[0]})
-        post = post
+        post = urllib.urlencode(post)
 
         result = client.request(page, post=post)
 

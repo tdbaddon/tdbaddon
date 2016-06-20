@@ -88,7 +88,7 @@ class source:
             query = self.search_link % urllib.quote(tvshowtitle)
             query = urlparse.urljoin(self.base_link, query)
 
-            result = client.source(query)
+            result = client.request(query)
 
             tvshowtitle = cleantitle.tv(tvshowtitle)
             season = '%01d' % int(season)

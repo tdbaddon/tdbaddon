@@ -100,7 +100,7 @@ def RANDOM(url):
 
 def LINK(name,url,iconimage):
         title = url.replace('http://layarkaca21.com/','').replace('http://layarkaca21.tv/','').replace('/','')
-        mplay = 'http://layarkaca21.tv/movie/play.php?movie='
+        mplay = 'http://layarkaca21.tv/movie/auth.php?movie='
         url = url + '0/'
         link = OPEN_URL(url)
         all_links = regex_get_all(link, 'server-list', '<script>')

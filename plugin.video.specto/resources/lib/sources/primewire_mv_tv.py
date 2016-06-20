@@ -43,13 +43,13 @@ class source:
             result = ''
             links = [self.link_1, self.link_2, self.link_3]
             for base_link in links:
-                result = client.source(urlparse.urljoin(base_link, self.key_link), headers=self.headers)
+                result = client.request(urlparse.urljoin(base_link, self.key_link), headers=self.headers)
                 if 'searchform' in str(result): break
 
             key = client.parseDOM(result, 'input', ret='value', attrs = {'name': 'key'})[0]
             query = self.moviesearch_link % (urllib.quote_plus(re.sub('\'', '', title)), key)
 
-            result = client.source(urlparse.urljoin(base_link, query), headers=self.headers)
+            result = client.request(urlparse.urljoin(base_link, query), headers=self.headers)
             result = result.decode('iso-8859-1').encode('utf-8')
             result = client.parseDOM(result, 'div', attrs = {'class': 'index_item.+?'})
 
@@ -74,7 +74,7 @@ class source:
                     if len(match) > 0:
                         url = match[0]
                         break
-                    result = client.source(base_link + i, headers=self.headers)
+                    result = client.request(base_link + i, headers=self.headers)
                     if str(imdb) in str(result):
                         url = i
                         break
@@ -92,13 +92,13 @@ class source:
             result = ''
             links = [self.link_1, self.link_2, self.link_3]
             for base_link in links:
-                result = client.source(urlparse.urljoin(base_link, self.key_link), headers=self.headers)
+                result = client.request(urlparse.urljoin(base_link, self.key_link), headers=self.headers)
                 if 'searchform' in str(result): break
 
             key = client.parseDOM(result, 'input', ret='value', attrs = {'name': 'key'})[0]
             query = self.tvsearch_link % (urllib.quote_plus(re.sub('\'', '', tvshowtitle)), key)
 
-            result = client.source(urlparse.urljoin(base_link, query), headers=self.headers)
+            result = client.request(urlparse.urljoin(base_link, query), headers=self.headers)
             result = result.decode('iso-8859-1').encode('utf-8')
             result = client.parseDOM(result, 'div', attrs = {'class': 'index_item.+?'})
 
@@ -123,7 +123,7 @@ class source:
                     if len(match) > 0:
                         url = match[0]
                         break
-                    result = client.source(base_link + i, headers=self.headers)
+                    result = client.request(base_link + i, headers=self.headers)
                     if str(imdb) in str(result):
                         url = i
                         break
@@ -155,7 +155,7 @@ class source:
             result = ''
             links = [self.link_1, self.link_2, self.link_3]
             for base_link in links:
-                result = client.source(urlparse.urljoin(base_link, url), headers=self.headers)
+                result = client.request(urlparse.urljoin(base_link, url), headers=self.headers)
                 if 'choose_tabs' in str(result): break
 
             result = result.decode('iso-8859-1').encode('utf-8')

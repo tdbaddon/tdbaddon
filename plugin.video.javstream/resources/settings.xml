@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <settings>
     <category label="20000">
+        <setting type="lsep" label="20009" />
+        <setting id="timeout" type="number" label="20010" default="10" />
         <setting type="lsep" label="20006" />
-        <setting id="autoyplay" type="bool" label="20001" default="false" />
+        <setting id="autoplay" type="bool" label="20001" default="false" />
         <setting type="lsep" label="20002" />
         <setting id="download_path" type="folder" source="video" label="20003" option="writeable" default=""/>
         <setting type="lsep" label="20007" />
@@ -56,6 +58,7 @@
         <setting id="40jpidols" type="bool" label="40036" default="true" />
         <setting id="40javhdfree" type="bool" label="40037" default="true" />
         <setting id="40dojav69" type="bool" label="40038" default="true" />
+        <setting id="40javl" type="bool" label="40039" default="true" />
 	</category>
     <category label="41000">
 		<setting id="41sexloading" type="bool" label="40001" default="false"/>
@@ -96,6 +99,7 @@
         <setting id="41jpidols" type="bool" label="40036" default="true" />
         <setting id="41javhdfree" type="bool" label="40037" default="true" />
         <setting id="41dojav69" type="bool" label="40038" default="true" />
+        <setting id="41javl" type="bool" label="40039" default="true" />
 	</category>
     <category label="42000">
 		<setting id="42sexloading" type="bool" label="40001" default="false"/>
@@ -136,6 +140,7 @@
         <setting id="42jpidols" type="bool" label="40036" default="true" />
         <setting id="42javhdfree" type="bool" label="40037" default="false" />
         <setting id="42dojav69" type="bool" label="40038" default="false" />
+        <setting id="42javl" type="bool" label="40039" default="false" />
 	</category>
     <category label="43000">
 		<setting id="43sexloading" type="bool" label="40001" default="true"/>
@@ -176,5 +181,6 @@
         <setting id="43jpidols" type="bool" label="40036" default="true" />
         <setting id="43javhdfree" type="bool" label="40037" default="true" />
         <setting id="43dojav69" type="bool" label="40038" default="true" />
+        <setting id="43javl" type="bool" label="40039" default="true" />
 	</category>
 </settings>

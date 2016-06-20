@@ -74,7 +74,7 @@ class source:
             control.log('>>>>>>>>>>>>---------- CACHE %s' % url)
 
             #result = client.source(url)
-            result = client2.http_get(url)
+            result = client.request(url)
             result = result.split('>Movies and Series<')[-1]
             control.log('>>>>>>>>>>>>---------- CACHE-2 %s' % result)
             result = client.parseDOM(result, 'ul')[0]
@@ -115,7 +115,7 @@ class source:
                     search_url = urlparse.urljoin(self.base_link, '/search')
                     search_url = search_url + '?' + urllib.urlencode(query)
                     print("R",search_url)
-                    result = client2.http_get(search_url)
+                    result = client.request(search_url)
                     print("r", result)
 
                     r = client.parseDOM(result, 'div', attrs = {'class': '[^"]*movie-list[^"]*'})[0]
@@ -161,7 +161,7 @@ class source:
             referer = url
             #xtoken = self.__get_xtoken()
 
-            result = client2.http_get(url, safe=True)
+            result = client.request(url, limit='0')
             #xtoken = self.__get_xtoken()
             print("r22", result)
 
@@ -198,37 +198,42 @@ class source:
             for s in servers[:3]:
                 try:
                     headers = {'X-Requested-With': 'XMLHttpRequest'}
-
+                    control.sleep(600)
                     hash_url = urlparse.urljoin(self.base_link, self.hash_link)
                     query = {'id': s[0], 'update': '0'}
                     query.update(self.__get_token(query))
                     hash_url = hash_url + '?' + urllib.urlencode(query)
                     headers['Referer'] = url
-                    result = client2.http_get(hash_url, headers=headers, cache_limit=.5)
-                    print("r100",result)
+                    result = client.request(hash_url, headers=headers, limit='0')
+                    print("r101 result",result)
 
-
+                    control.sleep(440)
                     query = {'id': s[0], 'update': '0'}
                     query.update(self.__get_token(query))
                     url = url + '?' + urllib.urlencode(query)
-                    result = client2.http_get(url, headers=headers)
-                    print("r100",result)
+                    #result = client2.http_get(url, headers=headers)
                     result = json.loads(result)
+                    print("r102", result)
 
                     query = result['params']
                     query['mobile'] = '0'
                     query.update(self.__get_token(query))
                     grabber = result['grabber'] + '?' + urllib.urlencode(query)
 
-                    result = client2.http_get(grabber, headers=headers)
+                    result = client.request(grabber, headers=headers, referer=url, limit='0')
+                    print("r112",result)
+
                     result = json.loads(result)
 
                     result = result['data']
                     result = [i['file'] for i in result if 'file' in i]
+                    print("r122",result)
 
                     for i in result:
                         try: sources.append({'source': 'gvideo', 'quality': client.googletag(i)[0]['quality'], 'provider': 'Fmovies', 'url': i})
                         except: pass
+                    control.sleep(410)
+
                 except:
                     pass
 
@@ -260,7 +265,7 @@ class source:
 
     def __get_xtoken(self):
         url = urlparse.urljoin(self.base_link, 'fghost?%s' % (random.random()))
-        html = client.source(url, safe=True)
+        html = client.request(url, safe=True)
         k = self.__get_dict('k', html)
         v = self.__get_dict('v', html)
         if k and v:

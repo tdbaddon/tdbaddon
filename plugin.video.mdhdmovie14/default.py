@@ -81,7 +81,7 @@ def EPIS(url):
                         if name > '':
                                 addDir('[I][B][COLOR cyan]Season[/COLOR][COLOR white] %s[/COLOR][/B][/I]' %name,baseurl+url,2,iconimage,fanart,'')
         except: pass
-        setView('movies', 'movie-view')
+        setView('tvshows', 'show-view')
 
 
 
@@ -91,11 +91,22 @@ def LINK(name,url,iconimage):
                 iconimage = icon
         link = OPEN_URL(url)
         RequestURL = baseurl+re.findall(r'<ifram.*?rc="(.*?)" .*?>', str(link), re.I|re.DOTALL)[-1]
-        headers = {'host': 'hdmovie14.net', 'referer': url, 'user-agent': User_Agent}
+        print '#################################RequestURL='+str(RequestURL)
+        headers = {'referer': url, 'user-agent': User_Agent}
         r = requests.get(RequestURL, headers=headers).text
-        RequestALT = baseurl+re.findall(r'console.log\("(.*?)"', str(r), re.I|re.DOTALL)[0]
+        gvids = re.findall(r'"url":"(.*?)","res":"(.*?)","type":"video/mp4"', str(r), re.I|re.DOTALL)
+        items = len(gvids)
+        for url, name in gvids:
+                if metaset=='true':
+                        addDir2('[B][COLOR white]Google Vids %s[/COLOR][/B]' %name,url,100,iconimage,items)
+                else:
+                        addDir('[B][COLOR white]Google Vids %s[/COLOR][/B]' %name,url,100,iconimage,fanart,'')
+                
+        print '#################################r'+str(r)
+        RequestALT = baseurl+re.findall(r'ajax\({url: "(.*?)"', str(r), re.I|re.DOTALL)[0]
+        print '#################################RequestALT'+str(RequestALT)
         r = requests.get(RequestALT).json()
-        items = len(r)
+        items2 = len(r)
         for url in r:
                 if 'google' in str(url):
                         try:
@@ -103,12 +114,11 @@ def LINK(name,url,iconimage):
                         except:
                                 url = re.findall("'url': u'(.*?)'", str(url), re.I|re.DOTALL)[0]
                 url = str(url).replace('-[W]x[H]','')
-                
                 name2 = str(url).replace('http://','').replace('https://','').replace('lh3.','').replace('usercontent','').partition('.')[0]
                 if metaset=='true':
-                        addDir2('[B][COLOR white]%s[/COLOR][/B]' %name,url,100,iconimage,items)
+                        addDir2('[B][COLOR white]%s[/COLOR][/B]' %name2,url,100,iconimage,items2)
                 else:
-                        addDir('[B][COLOR white]%s[/COLOR][/B]' %name,url,100,iconimage,fanart,'')
+                        addDir('[B][COLOR white]%s[/COLOR][/B]' %name2,url,100,iconimage,fanart,'')
 
 
 
@@ -175,10 +185,11 @@ def YEAR(url):
 
 
 def RESOLVE(name,url):
+        url = url.replace('html\:','')
         if 'thevideos.tv' in url:
                 url = thevideos(url)
-        elif 'vidlocker.xyz' in url:
-                url = vidlocker(url)
+        #elif 'vidlocker.xyz' in url:
+                #url = vidlocker(url)
         elif 'google' in url:
                 url = url
         else:
@@ -193,12 +204,12 @@ def RESOLVE(name,url):
 
 def thevideos(url):
         link = requests.get(url).text
-        script = re.findall("<script type='text/javascript'>(.*?)</script>", str(link), re.I|re.DOTALL)[0]
-        unpack = packer.unpack(script)
+        #script = re.findall("<script type='text/javascript'>(.*?)</script>", str(link), re.I|re.DOTALL)[0]
+        #unpack = packer.unpack(script)
         try:
-                url = re.findall('file:"(.*?)",label:".*?0p"', str(unpack), re.I|re.DOTALL)[-1]
+                url = re.findall('file:"(.*?)",label:".*?0p"', str(link), re.I|re.DOTALL)[-1]
         except:
-                url = re.findall('file:"(.*?)",label:".*?0p"', str(unpack), re.I|re.DOTALL)[0]
+                url = re.findall('file:"(.*?)",label:".*?0p"', str(link), re.I|re.DOTALL)[0]
         return url
 
 
@@ -342,11 +353,9 @@ def OPEN_URL(url):
 
 
 
-''' Why recode whats allready written and works well,
-    Thanks go to Eldrado for it '''
-
 def setView(content, viewType):
-        
+    ''' Why recode whats allready written and works well,
+    Thanks go to Eldrado for it '''
     if content:
         xbmcplugin.setContent(int(sys.argv[1]), content)
     if addon.get_setting('auto-view') == 'true':
@@ -364,8 +373,10 @@ def setView(content, viewType):
             VT = '501'
         elif addon.get_setting(viewType) == 'Big List':
             VT = '51'
-        elif viewType == 'default-view':
-            VT = addon.get_setting(viewType)
+        elif addon.get_setting(viewType) == 'Low List':
+            VT = '724'
+        elif addon.get_setting(viewType) == 'Default View':
+            VT = addon.get_setting('default-view')
 
         print viewType
         print VT

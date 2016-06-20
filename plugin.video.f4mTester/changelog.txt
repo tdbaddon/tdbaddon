@@ -48,3 +48,5 @@ Introduced settings for BBC birate
 added swf parameter for hds
 [B]Version 2.2.4[/B]
 play command
+[B]Version 2.2.5[/B]
+iconImage added

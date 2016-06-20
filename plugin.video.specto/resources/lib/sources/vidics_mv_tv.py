@@ -39,7 +39,7 @@ class source:
             query = self.moviesearch_link % (urllib.quote_plus(title))
             query = urlparse.urljoin(self.base_link, query)
 
-            result = client.source(query)
+            result = client.request(query)
             result = client.parseDOM(result, 'div', attrs = {'class': 'searchResult'})
 
             title = cleantitle.movie(title)
@@ -63,7 +63,7 @@ class source:
             query = self.tvsearch_link % (urllib.quote_plus(tvshowtitle))
             query = urlparse.urljoin(self.base_link, query)
 
-            result = client.source(query)
+            result = client.request(query)
             result = client.parseDOM(result, 'div', attrs = {'class': 'searchResult'})
 
             tvshowtitle = cleantitle.tv(tvshowtitle)
@@ -99,7 +99,7 @@ class source:
 
             url = urlparse.urljoin(self.base_link, url)
 
-            result = client.source(url)
+            result = client.request(url)
             result = result.decode('iso-8859-1').encode('utf-8')
             links = client.parseDOM(result, 'div', attrs = {'class': 'lang'})[0]
             links = client.parseDOM(links, 'div', attrs = {'class': 'movie_link.+?'})

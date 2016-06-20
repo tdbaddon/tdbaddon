@@ -136,22 +136,25 @@ http://74.208.152.93/music/stream2/stream.m3u8
 http://74.208.152.93/music/stream3/stream.m3u8
 
 #EXTINF:0,MTV 
-0
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/8776.ts
 
 #EXTINF:0,MTV Classic
-0
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/3850.ts
 
 #EXTINF:0,MTV Dance 
-0
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6085.ts
 
 #EXTINF:0,MTV Hits 
 http://vod.cdn.iutpcdn.com/LIVE/H01/CANAL727/PROFILE03.m3u8?
+
+#EXTINF:0,MTV Hits 
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6086.ts
 
 #EXTINF:0,MTV Live 
 0
 
 #EXTINF:0,MTV Rocks 
-0
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6087.ts
 
 #EXTINF:0,Much Music
 0
@@ -236,6 +239,9 @@ http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/808.ts
 
 #EXTINF:0,VH1 
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/4616.ts
+
+#EXTINF:0,VH1 
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/3847.ts
 
 #EXTINF:0,VH1 Classics 
 http://81.201.52.159:8024

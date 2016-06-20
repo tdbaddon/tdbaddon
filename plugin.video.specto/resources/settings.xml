@@ -5,7 +5,7 @@
 		<setting id="fanart" type="bool" label="30802" default="true" />
 		<setting id="infoLang" type="select" label="30803" values="bg|cs|da|de|el|en|es|fi|fr|he|hr|hu|it|ja|ko|nl|no|pl|pt|ru|sl|sv|tr|zh" default="en" />
 		<setting type="sep" />
-		<setting id="sources_timeout_40" type="slider" label="30804" default="40" range="10,120" option="int" />
+		<setting id="sources_timeout_40" type="slider" label="30804" default="30" range="10,60" option="int" />
 		<setting type="sep" />
 		<setting type="lsep" label="30805" />
 		<setting id="movie_widget" type="enum" label="30806" lvalues="30807|30808|30809|30810" default="1" />
@@ -38,7 +38,6 @@
 		<setting id="movietubev2" type="bool" label="Movietube" default="true" />
 		<setting id="movienight" type="bool" label="Movienight" default="true" />
 		<setting id="muchmovies" type="bool" label="Muchmovies" default="true" />
-		<setting id="oneclickwatch" type="bool" label="Oneclickwatch" default="false" />
 		<setting id="pelispedia" type="bool" label="Pelispedia" default="true" />
 		<setting id="primewire" type="bool" label="Primewire" default="true" />
 		<setting id="pubfilm" type="bool" label="Pubfilm" default="true" />
@@ -59,13 +58,12 @@
 		<setting id="dizilab_tv" type="bool" label="Dizilab" default="true" />
 		<setting id="dizimag_tv" type="bool" label="Dizimag" default="true" />
 		<setting id="easynews_tv" type="bool" label="Easynews" default="false" />
-		<setting id="fmovies" type="bool" label="Fmovies" default="true" />
+		<setting id="fmovies_tv" type="bool" label="Fmovies" default="true" />
 		<setting id="icefilms_tv" type="bool" label="Icefilms" default="true" />
 		<setting id="iwatchonline_tv" type="bool" label="Iwatchonline" default="false" />
 		<setting id="muchmovies_tv" type="bool" label="Muchmovies" default="true" />
 		<setting id="moviefarsiv2_tv" type="bool" label="Moviefarsi" default="false" />
 		<setting id="moviestorm_tv" type="bool" label="Moviestorm" default="false" />
-		<setting id="oneclickwatch_tv" type="bool" label="Oneclickwatch" default="false" />
 		<setting id="ororo_tv" type="bool" label="Ororo" default="true" />
 		<setting id="primewire_tv" type="bool" label="Primewire" default="true" />
 		<setting id="pelispedia_tv" type="bool" label="Pelispedia" default="true" />
@@ -79,6 +77,8 @@
 		<setting id="wsonline_tv" type="bool" label="WSOnline" default="true" />
 		<setting id="watchseries_tv" type="bool" label="Watchseries" default="true" />
 		<setting id="onlinedizi_tv" type="bool" label="Onlinedizi" default="true" />
+		<setting id="xmovies_tv" type="bool" label="Xmovies" default="true" />
+
 
 	</category>
 	<category label="30870">

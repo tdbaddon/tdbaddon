@@ -47,7 +47,7 @@ class source:
             result = ''
             links = [self.link_1]
             for base_link in links:
-                result = client.source(urlparse.urljoin(base_link, query), headers=self.headers)
+                result = client.request(urlparse.urljoin(base_link, query), headers=self.headers)
                 if 'Donate' in str(result): break
 
             imdb = re.sub('[^0-9]', '', imdb)
@@ -74,7 +74,7 @@ class source:
             result = ''
             links = [self.link_1]
             for base_link in links:
-                result = client.source(urlparse.urljoin(base_link, query), headers=self.headers)
+                result = client.request(urlparse.urljoin(base_link, query), headers=self.headers)
                 if 'Donate' in str(result): break
 
             imdb = re.sub('[^0-9]', '', imdb)
@@ -99,7 +99,7 @@ class source:
             result = ''
             links = [self.link_1]
             for base_link in links:
-                result = client.source(urlparse.urljoin(base_link, url), headers=self.headers)
+                result = client.request(urlparse.urljoin(base_link, url), headers=self.headers)
                 if 'Donate' in str(result): break
 
             result = result.decode('iso-8859-1').encode('utf-8')
@@ -126,7 +126,7 @@ class source:
             result = ''
             links = [self.link_1]
             for base_link in links:
-                result = client.source(urlparse.urljoin(base_link, url), headers=self.headers)
+                result = client.request(urlparse.urljoin(base_link, url), headers=self.headers)
                 if 'ripdiv' in str(result): break
 
             result = result.decode('iso-8859-1').encode('utf-8')

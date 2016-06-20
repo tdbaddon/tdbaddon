@@ -45,7 +45,7 @@ class source:
             query = '%s %s' % (title, year)
             query = base64.b64decode(self.search_link) % urllib.quote_plus(query)
 
-            result = client2.http_get(query, headers={'Referer': self.base_link})
+            result = client.request(query, headers={'Referer': self.base_link})
             result = json.loads(result)['results']
 
             result = [(i['url'], i['titleNoFormatting']) for i in result]
@@ -56,7 +56,7 @@ class source:
 
             if len(r) == 0:
                 t = 'http://www.imdb.com/title/%s' % imdb
-                t = client.source(t, headers={'Accept-Language': 'es-ES'})
+                t = client.request(t, headers={'Accept-Language': 'es-ES'})
                 t = client.parseDOM(t, 'title')[0]
                 t = re.sub('(?:\(|\s)\d{4}.+', '', t).strip()
                 t = cleantitle.get(t)
@@ -84,7 +84,7 @@ class source:
             query = self.search3_link % urllib.quote_plus(cleantitle.query(title))
             query = urlparse.urljoin(self.base_link, query)
 
-            result = client2.http_get(query)
+            result = client.request(query)
             result = re.sub(r'[^\x00-\x7F]+', '', result)
             print("R",result)
 
@@ -115,7 +115,7 @@ class source:
                 u = self.search2_link % str(i * 48)
                 u = urlparse.urljoin(self.base_link, u)
 
-                r = str(client2.http_get(u))
+                r = str(client.request(u))
                 r = re.sub(r'[^\x00-\x7F]+', '', r)
                 r = r.split('<li class=')
                 r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'i'), re.findall('\((\d{4})\)', i)) for i
@@ -168,12 +168,12 @@ class source:
 
             r = urlparse.urljoin(self.base_link, url)
 
-            result = client2.http_get(r)
+            result = client.request(r)
 
             f = client.parseDOM(result, 'iframe', ret='src')
             f = [i for i in f if 'iframe' in i][0]
 
-            result = client2.http_get(f, headers={'Referer': r})
+            result = client.request(f, headers={'Referer': r})
 
             r = client.parseDOM(result, 'div', attrs={'id': 'botones'})[0]
             r = client.parseDOM(r, 'a', ret='href')
@@ -183,7 +183,7 @@ class source:
             links = []
 
             for u in r:
-                result = client2.http_get(u, headers={'Referer': f})
+                result = client.request(u, headers={'Referer': f})
 
                 try:
                     url = re.findall('sources\s*:\s*\[(.+?)\]', result)[0]
@@ -206,7 +206,7 @@ class source:
                     post = urllib.urlencode({'link': post})
 
                     url = urlparse.urljoin(self.base_link, '/Pe_flv_flsh/plugins/gkpluginsphp.php')
-                    url = client.source(url, data=post, headers=headers)
+                    url = client.request(url, data=post, headers=headers)
                     url = json.loads(url)['link']
 
                     links.append({'source': 'gvideo', 'quality': 'HD', 'url': url})
@@ -221,7 +221,7 @@ class source:
                     post = urllib.urlencode({'sou': 'pic', 'fv': '21', 'url': post})
 
                     url = urlparse.urljoin(self.base_link, '/Pe_Player_Html5/pk/pk/plugins/protected.php')
-                    url = client2.http_get(url, data=post, headers=headers)
+                    url = client.request(url, data=post, headers=headers)
                     url = json.loads(url)[0]['url']
 
                     links.append({'source': 'cdn', 'quality': 'HD', 'url': url})

@@ -55,12 +55,12 @@ class source:
         try:
             if (self.user == '' or self.password == ''): raise Exception()
 
-            cookie = client.source(self.sign, post=self.post, headers=self.headers, cookie=self.lang, output='cookie')
+            cookie = client.request(self.sign, post=self.post, headers=self.headers, cookie=self.lang, output='cookie')
             cookie = '%s; %s' % (cookie, self.lang)
 
             url = urlparse.urljoin(self.base_link, self.tvsearch_link)
 
-            result = client.source(url, cookie=cookie)
+            result = client.request(url, cookie=cookie)
 
             tvshowtitle = cleantitle.get(tvshowtitle)
             years = ['%s' % str(year)]
@@ -102,7 +102,7 @@ class source:
 
             if (self.user == '' or self.password == ''): raise Exception()
 
-            cookie = client.source(self.sign, post=self.post, headers=self.headers, cookie=self.lang, output='cookie')
+            cookie = client.request(self.sign, post=self.post, headers=self.headers, cookie=self.lang, output='cookie')
             cookie = '%s; %s' % (cookie, self.lang)
 
             try:
@@ -116,13 +116,13 @@ class source:
 
             url = referer = urlparse.urljoin(self.base_link, url)
 
-            result = client.source(url, cookie=cookie)
+            result = client.request(url, cookie=cookie)
 
             url = client.parseDOM(result, 'a', ret='data-href', attrs={'href': href})[0]
             url = urlparse.urljoin(self.base_link, url)
 
             headers = {'X-Requested-With': 'XMLHttpRequest'}
-            result = client.source(url, cookie=cookie, referer=referer, headers=headers)
+            result = client.request(url, cookie=cookie, referer=referer, headers=headers)
 
             headers = '|%s' % urllib.urlencode({'User-Agent': self.headers['User-Agent'], 'Cookie': str(cookie)})
 

@@ -35,6 +35,8 @@
 		<setting id="desihdmovies" type="bool" label="DesiHDMovies" default="true" />
 		<setting id="hdbuffer" type="bool" label="HDBuffer" default="true" /> 
 		<setting id="filmywap" type="bool" label="FilmyWap" default="true" />
+		<setting id="putlocker" type="bool" label="PutLocker" default="true" />
+		<setting id="pubfilm" type="bool" label="PubFilm" default="true" />
 		<setting id="yodesi" type="bool" label="YoDesi" default="true"/>
 		<setting id="desirulez" type="bool" label="DesiRulez" default="true" />
 		<setting id="json" type="bool" label="json" visible="false" default="true" />

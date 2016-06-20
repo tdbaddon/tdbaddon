@@ -163,7 +163,7 @@ def cached_http_get(url, base_url, timeout, cookies=None, data=None, multipart_d
                 html = response.read(control.MAX_RESPONSE)
 
     except urllib2.HTTPError as e:
-        control.log('--=-=-==-=-=-=- CLIENT2 CACHE ERROR-1 e: %s' % (e))
+        control.log('--=-=-==-=-=-=- CLIENT2 CACHE ERROR-1 e:%s url:%s' % (e,url))
 
         if e.code == 503 and 'cf-browser-verification' in e.read():
             html = cloudflare2.solve(url, cj, control.get_ua())

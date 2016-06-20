@@ -132,6 +132,10 @@ def EPIS(name,url,iconimage):
 def LINK(name,url,iconimage):
         link = OPEN_URL(url)
         try:
+                url=re.compile('<h3 class="h3-detail">.*?<a  href="(.*?)">').findall(link)[0]
+                link = OPEN_URL(url)
+        except: pass
+        try:
                 url = re.findall(r'type="application/x-shockwave-flash" src="(.*?)"', str(link), re.I|re.DOTALL)[0]
                 vid_id = re.split(r'=', url, re.I)[1]
                 vid_id = re.split(r'&amp', vid_id, re.I)[0]
@@ -146,15 +150,15 @@ def LINK(name,url,iconimage):
                         except:
                                 url = re.findall(r'\|(.*?)\|', str(link), re.I|re.DOTALL)[0]
         except:
-                link = link.replace('../view.php?','/view.php?')
-                link = link.replace('./view.php?','/view.php?')
+                link = link.replace('../view.php?','view.php?')
+                link = link.replace('./view.php?','view.php?')
                 try:
-                        url = re.findall(r'<source type="video/mp4"  src="(.*?)"', str(link), re.I|re.DOTALL)[0]
+                        url = re.findall(r'<source.*?src="(.*?)"', str(link), re.I|re.DOTALL)[0]
                 except:
                         pass
                 if url == '':
                         try:
-                                url = re.findall(r'<source type="video/mp4"  src="(.*?)"', str(link), re.I|re.DOTALL)[1]
+                                url = re.findall(r'<source.*?src="(.*?)"', str(link), re.I|re.DOTALL)[1]
                         except:
                                 pass
                 if 'google' in url:

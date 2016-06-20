@@ -88,20 +88,24 @@ if paramstring:
         import json
         setResolved=json.loads(setResolved)
     except:setResolved=False
+    iconImage=None
+    try:
+        iconImage = params['iconImage'][0]
+    except: pass
     
-def playF4mLink(url,name,proxy=None,use_proxy_for_chunks=False,auth_string=None,streamtype='HDS',setResolved=False,swf=""):
+def playF4mLink(url,name,proxy=None,use_proxy_for_chunks=False,auth_string=None,streamtype='HDS',setResolved=False,swf="",iconImage=None):
     from F4mProxy import f4mProxyHelper
     player=f4mProxyHelper()
     #progress = xbmcgui.DialogProgress()
     #progress.create('Starting local proxy')
     if setResolved:
-        urltoplay,item=player.playF4mLink(url, name, proxy, use_proxy_for_chunks,maxbitrate,simpleDownloader,auth_string,streamtype,setResolved,swf)
+        urltoplay,item=player.playF4mLink(url, name, proxy, use_proxy_for_chunks,maxbitrate,simpleDownloader,auth_string,streamtype,setResolved,swf,iconImage)
         item.setProperty("IsPlayable", "true")
         xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, item)
 
     else:
         xbmcplugin.endOfDirectory(int(sys.argv[1]), cacheToDisc=False)
-        player.playF4mLink(url, name, proxy, use_proxy_for_chunks,maxbitrate,simpleDownloader,auth_string,streamtype,setResolved,swf)
+        player.playF4mLink(url, name, proxy, use_proxy_for_chunks,maxbitrate,simpleDownloader,auth_string,streamtype,setResolved,swf,iconImage)
     
     return   
     
@@ -266,7 +270,7 @@ if mode ==None:
 elif mode == "play":
     print 'PLAying ',mode,url,setResolved
     if not name in ['Custom','TESTING not F4M'] :
-        playF4mLink(url,name, proxy_string, proxy_use_chunks,auth_string,streamtype,setResolved,swf)
+        playF4mLink(url,name, proxy_string, proxy_use_chunks,auth_string,streamtype,setResolved,swf,iconImage)
     else:
         listitem = xbmcgui.ListItem( label = str(name), iconImage = "DefaultVideo.png", thumbnailImage = xbmc.getInfoImage( "ListItem.Thumb" ), path=url )
         xbmc.Player().play( url,listitem)

@@ -8,6 +8,8 @@
     <string id="20006">Playback</string>
     <string id="20007">Default View</string>
     <string id="20008">Videos</string>
+    <string id="20009">Web Page Timeout</string>
+    <string id="20010">Timeout in Seconds</string>
     
     <string id="30000">Translation</string>
     <string id="30001">Enable Translation</string>
@@ -60,4 +62,5 @@
     <string id="40036">JPIdols TV</string>
     <string id="40037">JAVHDFree</string>
     <string id="40038">DooJav69</string>
+    <string id="40039">Javl</string>
 </strings>

@@ -70,7 +70,7 @@ class source:
             query = re.sub('\s+',' ',query)
             query = self.base_link + self.search_link % urllib.quote_plus(query)
 
-            result = client.source(query)
+            result = client.request(query)
 
             result = client.parseDOM(result, 'table', attrs = {'class': 'posts_table'})
 
@@ -133,7 +133,7 @@ class source:
 
     def check(self, i):
         try:
-            result = client.source(i['url'])
+            result = client.request(i['url'])
             result = client.parseDOM(result, 'td', attrs = {'class': 'td_cols'})[0]
             result = result.split('"td_heads"')
             result = client.parseDOM(result, 'a', ret='href')
@@ -142,7 +142,7 @@ class source:
                 try:
                     if 'go4up.com' in url:
                         url = re.compile('//.+?/.+?/([\w]+)').findall(url)[0]
-                        url = client.source(self.go4up_link_2 % url)
+                        url = client.request(self.go4up_link_2 % url)
                         url = client.parseDOM(url, 'div', attrs = {'id': 'linklist'})[0]
                         url = client.parseDOM(url, 'a', ret='href')[0]
 

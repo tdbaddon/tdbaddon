@@ -27,7 +27,6 @@ from resources.lib.resolvers import realdebrid
 from resources.lib.resolvers import premiumize
 
 
-
 def request(url):
     try:
         #control.log("#RESOLVER#  my url 1 ************ %s " % url)

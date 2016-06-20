@@ -97,14 +97,9 @@ def EPS(name,url,iconimage):
         link = link.encode('ascii', 'ignore')
         match=re.compile('<a href="(.*?)".*?target="EZWebPlayer".*?><input class="abutton orange big" type="button" value="(.*?)" /></a>').findall(link) 
         for url1,name in match:
-                name = name.replace('Episode ','').replace('EPISODE ','')
-                headers = {'host': 'player.pubfilm.com', 'referer': url, 'user-agent': User_Agent}
-                html = requests.get(url1, headers=headers).text
-                try:
-                        url = re.findall(r'"file":"(.*?)","type":"mp4"', str(html), re.I|re.DOTALL)[0]
-                except: pass
-                if baseurl2 not in url:
-                        addDir('[B][COLOR white]Episode [/COLOR][/B][B][COLOR red]%s[/COLOR][/B]' %name,url,4,icon,fanart,'')
+                if '/api/' in url1:
+                        name = name.replace('Episode ','').replace('EPISODE ','')
+                        addDir('[B][COLOR white]Episode [/COLOR][/B][B][COLOR red]%s[/COLOR][/B]' %name,url1,4,icon,fanart,url)
 
 
 
@@ -116,14 +111,12 @@ def LINK(url):
         requestURL = re.findall(r'<a href="http://player.pubfilm.com(.*?)".*?value=".*?" />', str(link), re.I|re.DOTALL)[0]
         if 'http://player.pubfilm.com' not in requestURL:
                 requestURL = 'http://player.pubfilm.com' + requestURL
-        print '####################################url='+url
         html = requests.get(requestURL, headers=headers).text
         url = re.findall(r'"file":"(.*?)","type":"mp4"', str(html), re.I|re.DOTALL)[0]
         headers = {'host': 'player.pubfilm.com', 'referer': requestURL, 'user-agent': User_Agent}
         html2 = requests.get(url, headers=headers)
-        print '####################################headers'+str(html2.headers)
         liz = xbmcgui.ListItem(name, iconImage='DefaultVideo.png', thumbnailImage=iconimage)
-        liz.setInfo(type='Video', infoLabels={'Title':description})
+        liz.setInfo(type='Video', infoLabels={ "Title": name, 'plot': description } )
         liz.setProperty("IsPlayable","true")
         liz.setPath(url)
         xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
@@ -131,9 +124,14 @@ def LINK(url):
 
 
 
-def LINK2(url):
+def LINK2(url,description):
+        headers = {'host': 'player.pubfilm.com', 'referer': description, 'user-agent': User_Agent}
+        html = requests.get(url, headers=headers).text
+        try:
+                url = re.findall(r'"file":"(.*?)","type":"mp4"', str(html), re.I|re.DOTALL)[0]
+        except: pass
         liz = xbmcgui.ListItem(name, iconImage='DefaultVideo.png', thumbnailImage=iconimage)
-        liz.setInfo(type='Video', infoLabels={'Title':description})
+        liz.setInfo(type='Video', infoLabels={ "Title": name, 'plot': description } )
         liz.setProperty("IsPlayable","true")
         liz.setPath(url)
         xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
@@ -400,7 +398,7 @@ elif mode==3:
         LINK(url)
 
 elif mode==4:
-        LINK2(url)
+        LINK2(url,description)
 
 elif mode==5:
         GENRE(url)

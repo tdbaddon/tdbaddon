@@ -167,7 +167,7 @@ class source:
         try:
             headers = {'Referer': url}
             url = urlparse.urljoin(self.base_link, url)
-            result = client.source(url, headers=headers)
+            result = client.request(url, headers=headers)
             if 'load_embed' in url:
                 result = json.loads(result)
                 result = resolvers.request(result['embed_url'])

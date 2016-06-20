@@ -35,7 +35,7 @@ def __replaceQuality(qual):
 
 def __get_Metadata(media_id):
     url = "http://www.ok.ru/dk?cmd=videoPlayerMetadata&mid=" + media_id
-    html = client.source(url, headers=header)
+    html = client.request(url, headers=header)
     json_data = json.loads(html)
     info = dict()
     info['urls'] = []

@@ -28,9 +28,9 @@ from resources.lib.libraries import logger
 
 class source:
     def __init__(self):
-        self.domains = ['movie25.ph', 'movie25.hk']
-        self.base_link = 'http://movie25.ph'
-        self.search_link = 'http://movie25.ph/search.php?q=%s'
+        self.domains = ['movie25.ph', 'movie25.hk', 'tinklepad.is']
+        self.base_link = 'http://tinklepad.is'
+        self.search_link = 'http://tinklepad.is/search.php?q=%s'
 
     def request(self, url, check):
         try:
@@ -101,8 +101,9 @@ class source:
                     except: pass
                     try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['q'][0]
                     except: pass
-                    url = urlparse.parse_qs(urlparse.urlparse(url).query)['url'][0]
+                    url = urlparse.urlparse(url).query
                     url = base64.b64decode(url)
+                    url = re.findall('((?:http|https)://.+?/.+?)(?:&|$)', url)[0]
                     url = client.replaceHTMLCodes(url)
                     url = url.encode('utf-8')
 
