@@ -2287,7 +2287,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBSPANISHTV"
        name="TDB SPANISH TV"
-       version="1.42"
+       version="1.43"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
