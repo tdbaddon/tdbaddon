@@ -1311,32 +1311,6 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
   </extension>
 </addon>
 
-<addon id="plugin.video.hunt-channel" name="Hunt Channel" version="0.0.4" provider-name="MetalChris">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="script.module.beautifulsoup4" version="4.3.2"/>
-    <import addon="script.module.requests" version="2.9.1"/>
-    <import addon="script.module.html5lib" version="0.999.0"/>
-    <import addon="script.module.simplejson" version="3.3.0"/>
-    <import addon="script.module.pytz" version="2014.2"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="addon.py">
-    <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en">Hunt Channel</summary>
-    <description lang="en">Hunt Channel’s Mission is to provide Quality Outdoor Programming during PrimeTime.  Watch Live or On Demand video.</description>
-    <disclaimer lang="en"></disclaimer>
-    <language></language>
-    <platform>all</platform>
-    <license></license>
-    <forum></forum>
-    <website></website>
-    <email></email>
-    <source></source>
-  </extension>
-</addon>
-
 <addon id="plugin.video.icefilms"
        name="Icefilms"
        version="1.24.0"
@@ -1415,34 +1389,6 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
 	</extension>
 </addon>
 
-<addon id="plugin.video.khaoziptv"
-       name="[COLOR blue].Khaoz[/COLOR] [COLOR white]TV[/COLOR]"
-       version="1.0.3"
-       provider-name="psndejkriz">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-	<import addon="script.module.t0mm0.common" version="2.0.0"/>
-    <import addon="script.module.beautifulsoup" version="3.2.1"/>
-    <import addon="script.module.simple.downloader" version="0.9.4"/>
-    <import addon="script.module.simple.downloader" version="0.9.4"/>
-    <import addon="script.module.requests" />
-    <import addon="script.module.httplib2" />
-    <import addon="script.module.urlresolver" optional="true"/>
-    <import addon="script.module.simplejson" />
-    <import addon="script.common.plugin.cache" version="2.5.2"/>
-    <import addon="script.module.metahandler" version="2.5.1"/>
-
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-    <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en"> Khaoz Live TV Worldwide TV Channels Free!</summary>
-    <description lang="en">This Addon was developed by PSNDEJKriz if you experince any errors or problems feel free to contact me via youtube PSNDeJKriz or Twitter @KhaozLiveTV please note this is completely ran by myself and please if a channel does not work be paitent there could be high volumes of traffic on that channel.</description>
-    <platform>all</platform>
-  </extension>
-</addon>
-
 <addon id="plugin.video.kontor"
 	   name="Kontor"
 	   version="1.0.1"
@@ -1472,21 +1418,6 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
 		<language>en</language>
 		<email>ptom98@ptom.co.uk</email>
 	</extension>
-</addon>
-
-<addon id="plugin.video.livemix" name="Live Mix" version="1.0.5" provider-name="MetalKettle">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="script.module.addon.common" version="2.0.0" />
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-    <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en"></summary>
-    <description lang="en"></description>
-    <platform>all</platform>
-  </extension>
 </addon>
 
 <addon id="plugin.video.lubetube"
@@ -1519,44 +1450,6 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
     <summary lang="en">Macedonian on demand.</summary>
     <description lang="en">Watch videos and live streams from Macedonian TV stations, and listen to live radio streams.
     </description>
-  </extension>
-</addon>
-
-<addon id="plugin.video.md123movies" name="123Movies" version="1.1.3" provider-name="Mucky Duck">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-	<import addon="script.module.addon.common" />
-	<import addon="script.module.requests" />
-	<import addon="repository.mdrepo" />
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en">Stream Movies From The 123movies.to WebSite</summary>
-    <description lang="en">Special thanks to [COLOR FF8ABEE2]Open[/COLOR][COLOR FF757677]ELEQ[/COLOR] for the iSearch compatibility modifications</description>
-	<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon</disclaimer>
-    <platform>all</platform>
-  </extension>
-</addon>
-
-<addon id="plugin.video.mdhdmovie14" name="HD-Movie14" version="1.0.5" provider-name="Mucky Duck">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-	<import addon="script.module.addon.common" />
-	<import addon="script.module.urlresolver"  version="2.8.0"/>
-	<import addon="script.module.metahandler" version="2.5.1"/>
-	<import addon="script.module.requests" />
-	<import addon="repository.mdrepo" />
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en">Stream content From The hdmovie14.net WebSite</summary>
-    <description lang="en">Stream Content From The hdmovie14.net WebSite</description>
-	<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon or have any affiliation with the website owners</disclaimer>
-    <platform>all</platform>
   </extension>
 </addon>
 
@@ -1718,47 +1611,6 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
   </extension>
 </addon>
 
-<addon id="plugin.video.movienight" name="Movie Night" version="1.0.7" provider-name="MetalKettle">
-  <requires>
-    <import addon="script.module.simplejson" version="3.3.0"/>
-    <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="script.module.t0mm0.common" version="2.0.0"/>
-    <import addon="plugin.video.youtube" version="3.0.0"/>
-    <import addon="script.module.urlresolver"  version="2.1.2"/>
-    <import addon="script.common.plugin.cache" version="2.5.2"/>
-    <import addon="script.module.metahandler" version="2.5.1"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en"></summary>
-    <description lang="en"></description>
-    <platform>all</platform>
-  </extension>
-</addon>
-
-<addon id="plugin.video.movies4me"
-       name="Movies4ME"
-       version="1.0.5"
-       provider-name="kinkin, art by azad720">
-    <requires>
-        <import addon="xbmc.python" version="2.1.0"/>
-        <import addon="script.module.t0mm0.common" version="1.1.0"/>
-        <import addon="script.module.metahandler"/>
-    </requires>
-    <extension point="xbmc.python.pluginsource"
-               	library="default.py">
-        <provides>video</provides>
-    </extension>
-    <extension point="xbmc.addon.metadata">
-        <platform>all</platform>
-        <summary>A simple movie addon</summary>
-        <description>SD or HD, it's your choice. Watch your favourite movies with one click.</description>
-    </extension>
-
-</addon>
-
 <addon id="plugin.video.moviesaboutmusic"
        name="MoviesAboutMusic.com"
        version="1.1.1"
@@ -1780,29 +1632,6 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
 		<disclaimer lang="en">The author is not responsible for the media you find in this add-on.</disclaimer>
     </extension>
 
-</addon>
-
-<addon id="plugin.video.muchmovies.hd" name="Much Movies HD" version="1.7.5" provider-name="lambda">
-	<requires>
-		<import addon="xbmc.python" version="2.1.0"/>
-		<import addon="script.module.metahandler" version="1.0.0"/>
-		<import addon="script.common.plugin.cache" version="0.9.1"/>
-		<import addon="script.module.simplejson" optional="true"/>
-		<import addon="script.module.parsedom" optional="true"/>
-		<import addon="plugin.video.youtube" optional="true"/>
-	</requires>
-	<extension point="xbmc.python.pluginsource" library="default.py">
-		<provides>video</provides>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary lang="en">Watch a wide selection of movies from muchmovies.org</summary>
-		<description lang="en">Visit TVADDONS.ag for support</description>
-		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
-		<forum>http://forums.tvaddons.ag/forums/148-lambda-s-xbmc-addons</forum>
-		<source>https://offshoregit.com/lambda81/</source>
-		<website>https://offshoregit.com/lambda81/</website>
-		<platform>all</platform>
-	</extension>
 </addon>
 
 <addon id="plugin.video.MundoLatino"
