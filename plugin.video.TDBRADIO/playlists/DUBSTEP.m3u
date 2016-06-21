@@ -11,7 +11,7 @@ http://stream.dubbase.fm:7004/
 http://stream.dubstep.fm/;stream/DUBSTEP.FM
 
 #EXTINF:0,Dubstep Music
-http://95.81.147.20/5334/nrj_104446.mp3
+0
 
 #EXTINF:0,Dubstep Light Radio 
 0
@@ -20,7 +20,7 @@ http://95.81.147.20/5334/nrj_104446.mp3
 http://noisefm.ru:8000/play_256
 
 #EXTINF:0,NRJ Dubstep 
-http://95.81.155.24/8760/nrj_169531.mp3
+0
 
 #EXTINF:0,Radio Record 
 http://air.radiorecord.ru:8102/dub_128

@@ -19,11 +19,17 @@ http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6127.ts
 #EXTINF:0,Animal Planet 
 http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/3473.ts
 
+#EXTINF:0,Animal Planet 
+http://213.136.90.30:8000/live/guzi/isla/11475.ts
+
 #EXTINF:0,Biography Channel
 0
 
 #EXTINF:0,Crime & Investigation 
 http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/7909.ts
+
+#EXTINF:0,Crime & Investigation 
+http://213.136.90.30:8000/live/guzi/isla/15524.ts
 
 #EXTINF:0,Cottage Life
 0
@@ -49,11 +55,14 @@ http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/5652.ts
 #EXTINF:0,Discovery Channel
 http://cp.dmbshare.net:8000/live/paul1/paul1/5782.ts
 
+#EXTINF:0,Discovery Channel
+http://213.136.90.30:8000/live/guzi/isla/11499.ts
+
 #EXTINF:0,Discovery History 
-0
+http://213.136.90.30:8000/live/guzi/isla/11500.ts
 
 #EXTINF:0,Discovery H&H
-0
+http://213.136.90.30:8000/live/guzi/isla/15551.ts
 
 #EXTINF:0,Discovery Max 
 http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/5762.ts
@@ -71,7 +80,7 @@ http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/3861.ts
 http://cp.dmbshare.net:8000/live/paul1/paul1/5780.ts
 
 #EXTINF:0,Discovery Shed
-0
+http://213.136.90.30:8000/live/guzi/isla/15530.ts
 
 #EXTINF:0,Discovery Theatre
 0
@@ -81,6 +90,9 @@ http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/2100.ts
 
 #EXTINF:0,Discovery World 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5777.ts
+
+#EXTINF:0,Discovery World 
+http://213.136.90.30:8000/live/guzi/isla/11503.ts
 
 #EXTINF:0,Docubox 
 http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/8421.ts
@@ -108,6 +120,9 @@ http://link.theplatform.com/s/dtjsEC/chjdYJxKb44V?manifest=m3u
 
 #EXTINF:0,History Channel 
 http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6114.ts
+
+#EXTINF:0,History Channel 
+http://213.136.90.30:8000/live/guzi/isla/11516.ts
 
 #EXTINF:0,History Channel 2
 http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6620.ts
@@ -165,6 +180,9 @@ http://cp.dmbshare.net:8000/live/paul1/paul1/5740.ts
 
 #EXTINF:0,National Geographic 
 http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/5390.ts
+
+#EXTINF:0,National Geographic 
+http://213.136.90.30:8000/live/guzi/isla/11530.ts
 
 #EXTINF:0,Nova
 0

@@ -1,6 +1,11 @@
 =====================================
 Croatia On Demand addon by natko1412
 =====================================
+v1.9.3
+-dodano: tribina.net i sipragezabava.com
+-dodano: serijex.com
+-dodano: sultanovic.net IPTV (potreban login)
+-dodano: vise linkova za HRT
 
 v1.9.2
 -popravljena greška skripte

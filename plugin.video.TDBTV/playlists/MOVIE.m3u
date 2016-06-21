@@ -90,6 +90,9 @@ http://186.33.227.200/DXTV/smil:DXTV.smil/playlist.m3u8?wmsAuthSign=c2VydmVyX3Rp
 #EXTINF:0,Film4 
 http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/3846.ts
 
+#EXTINF:0,Film4 
+http://213.136.90.30:8000/live/guzi/isla/15542.ts
+
 #EXTINF:0,FilmBox 
 0
 
@@ -294,6 +297,9 @@ http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/8254.ts
 #EXTINF:0,Sky Movies Action 
 http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/1427.ts
 
+#EXTINF:0,Sky Movies Action 
+http://213.136.90.30:8000/live/guzi/isla/11540.ts
+
 #EXTINF:0,Sky Movies Comedy 
 http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/1426.ts
 
@@ -309,6 +315,12 @@ http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/1424.ts
 #EXTINF:0,Sky Movies Disney 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5719.ts
 
+#EXTINF:0,Sky Movies Disney 
+http://213.136.90.30:8000/live/guzi/isla/15535.ts
+
+#EXTINF:0,Sky Movies Drama
+http://213.136.90.30:8000/live/guzi/isla/11542.ts
+
 #EXTINF:0,Sky Movies Family 
 http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/1422.ts
 
@@ -317,6 +329,9 @@ http://cp.dmbshare.net:8000/live/paul1/paul1/5716.ts
 
 #EXTINF:0,Sky Movies Family 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5715.ts
+
+#EXTINF:0,Sky Movies Family 
+http://213.136.90.30:8000/live/guzi/isla/11543.ts
 
 #EXTINF:0,Sky Movies Horrors 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5713.ts
@@ -327,14 +342,14 @@ http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/1421.ts
 #EXTINF:0,Sky Movies Modern Greats 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5714.ts
 
-#EXTINF:0,Sky Movies Modern Greats 
-
-
 #EXTINF:0,Sky Movies Premiere 
 http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/1420.ts
 
 #EXTINF:0,Sky Movies Premiere 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5712.ts
+
+#EXTINF:0,Sky Movies Premiere 
+http://213.136.90.30:8000/live/guzi/isla/11545.ts
 
 #EXTINF:0,Sky Movies Premiere+ 
 http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6915.ts
@@ -348,14 +363,20 @@ http://cp.dmbshare.net:8000/live/paul1/paul1/5711.ts
 #EXTINF:0,Sky Movies SciFi 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5710.ts
 
+#EXTINF:0,Sky Movies SciFi 
+http://213.136.90.30:8000/live/guzi/isla/11546.ts
+
 #EXTINF:0,Sky Movies Select 
-0
+http://213.136.90.30:8000/live/guzi/isla/11547.ts
 
 #EXTINF:0,Sky Movies Showcase 
 http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/1417.ts
 
+#EXTINF:0,Sky Movies Showcase 
+http://213.136.90.30:8000/live/guzi/isla/11548.ts
+
 #EXTINF:0,Sky Movies Thriller 
-0
+http://213.136.90.30:8000/live/guzi/isla/11549.ts
 
 #EXTINF:0,Sony TV 
 http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/5743.ts
@@ -420,8 +441,14 @@ http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/2437.ts
 #EXTINF:0,True Movies 1 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5692.ts
 
+#EXTINF:0,True Movies 1 
+http://213.136.90.30:8000/live/guzi/isla/11568.ts
+
 #EXTINF:0,True Movies 2 
 http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/2436.ts
+
+#EXTINF:0,True Movies 2 
+http://213.136.90.30:8000/live/guzi/isla/11569.ts
 
 #EXTINF:0,TV 1000 
 0

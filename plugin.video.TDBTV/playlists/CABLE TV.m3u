@@ -52,11 +52,17 @@ http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/1436.ts
 #EXTINF:0,BBC 2 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5807.ts
 
+#EXTINF:0,BBC 2 
+http://213.136.90.30:8000/live/guzi/isla/15499.ts
+
 #EXTINF:0,BBC Entertainment 
 http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6718.ts
 
 #EXTINF:0,BBC Entertainment 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5776.ts
+
+#EXTINF:0,BBC Entertainment 
+http://213.136.90.30:8000/live/guzi/isla/15502.ts
 
 #EXTINF:0,BBC Kids
 0
@@ -69,6 +75,9 @@ http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/7913.ts
 
 #EXTINF:0,Boomerang 
 http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6921.tshttp://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6921.ts
+
+#EXTINF:0,Boomerang 
+http://213.136.90.30:8000/live/guzi/isla/15505.ts
 
 #EXTINF:0,Bravo 
 http://cp.dmbshare.net:8000/live/paul1/paul1/4610.ts
@@ -88,6 +97,9 @@ http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6920.ts
 #EXTINF:0,Cartoon Network
 http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/8748.ts
 
+#EXTINF:0,Cartoon Network
+http://213.136.90.30:8000/live/guzi/isla/15514.ts
+
 #EXTINF:0,CBC TV 
 0
 
@@ -100,11 +112,20 @@ http://cp.dmbshare.net:8000/live/paul1/paul1/4576.ts
 #EXTINF:0,CBS Action 
 http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/3823.ts
 
+#EXTINF:0,CBS Action 
+http://213.136.90.30:8000/live/guzi/isla/11491.ts
+
 #EXTINF:0,CBS Drama 
 http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/3824.ts
 
+#EXTINF:0,CBS Drama 
+http://213.136.90.30:8000/live/guzi/isla/11492.ts
+
 #EXTINF:0,CBS Reality 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5793.ts
+
+#EXTINF:0,CBS Reality 
+http://213.136.90.30:8000/live/guzi/isla/14229.ts
 
 #EXTINF:0,CHCH Ontario
 0
@@ -135,6 +156,15 @@ http://cp.dmbshare.net:8000/live/paul1/paul1/5786.ts
 
 #EXTINF:0,Comedy Central 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5785.ts
+
+#EXTINF:0,Comedy Central 
+http://213.136.90.30:8000/live/guzi/isla/14230.ts
+
+#EXTINF:0,Comedy Central 
+http://213.136.90.30:8000/live/guzi/isla/11541.ts
+
+#EXTINF:0,Comedy Central 
+http://213.136.90.30:8000/live/guzi/isla/15523.ts
 
 #EXTINF:0,Comedy Gold
 0
@@ -184,6 +214,9 @@ http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/5650.ts
 #EXTINF:0,Disney XD 
 http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/8297.ts
 
+#EXTINF:0,Disney XD 
+http://213.136.90.30:8000/live/guzi/isla/15534.ts
+
 #EXTINF:0,DIY Network 
 0
 
@@ -232,6 +265,9 @@ http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6926.ts
 #EXTINF:0,Food Network 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5761.ts
 
+#EXTINF:0,Food Network 
+http://213.136.90.30:8000/live/guzi/isla/11513.ts
+
 #EXTINF:0,Fox 1 
 0
 
@@ -255,6 +291,9 @@ http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/5477.ts
 
 #EXTINF:0,Fox TV 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5759.ts
+
+#EXTINF:0,Fox TV 
+http://213.136.90.30:8000/live/guzi/isla/15545.ts
 
 #EXTINF:0,FX 
 0
@@ -379,8 +418,14 @@ http://cp.dmbshare.net:8000/live/paul1/paul1/5739.ts
 #EXTINF:0,Nickelodeon 
 http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/8446.ts
 
+#EXTINF:0,Nickelodeon 
+http://213.136.90.30:8000/live/guzi/isla/11531.ts
+
 #EXTINF:0,NickNight 
 http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/3867.ts
+
+#EXTINF:0,NickNight 
+http://213.136.90.30:8000/live/guzi/isla/15570.ts
 
 #EXTINF:0,NTV
 0
@@ -422,7 +467,7 @@ http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6623.ts
 http://cp.dmbshare.net:8000/live/paul1/paul1/4581.ts
 
 #EXTINF:0,Sky 1 
-0
+http://213.136.90.30:8000/live/guzi/isla/15591.ts
 
 #EXTINF:0,Sky 2 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5726.ts
@@ -442,6 +487,9 @@ http://cp.dmbshare.net:8000/live/paul1/paul1/5725.ts
 #EXTINF:0,Sky Living 
 http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/7897.ts
 
+#EXTINF:0,Sky Living 
+http://213.136.90.30:8000/live/guzi/isla/11539.ts
+
 #EXTINF:0,Slice 
 0
 
@@ -456,6 +504,9 @@ http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/8294.ts
 
 #EXTINF:0,Syfy 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5696.ts
+
+#EXTINF:0,Syfy 
+http://213.136.90.30:8000/live/guzi/isla/15607.ts
 
 #EXTINF:0,TBS 
 http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6809.ts

@@ -14,7 +14,7 @@ http://streamerepsilon.jazz.fm:8000
 http://204.2.199.166:80/7/288/80873/v1/rogers.akacast.akamaistream.net/tor925
 
 #EXTINF:0,93.5 THE FLOW
-http://3313.live.streamtheworld.com/CFXJFMAAC?
+0
 
 #EXTINF:0,94.1 CBC RADIO
 http://provisioning.streamtheworld.com/pls/CBC_R1_TOR_L.pls
@@ -26,7 +26,7 @@ http://live.leanstream.co/CINGFM-MP3
 http://live.leanstream.co/CJWFFM?blackburn_web&type=.flv&uid=93da8e01-9c2a-48c8-be81-9651b5c654dd
 
 #EXTINF:0,95.9 KX 96
-http://9213.live.streamtheworld.com/CJKXFMAAC?pname=StandardPlayerV4&pversion=4.7.0-026&banners=300x250,728x90,swf,vpaid
+0
 
 #EXTINF:0,96.3 CLASSICAL
 http://stream.classical963fm.com:8017/;stream.mp3 
@@ -47,7 +47,7 @@ http://tor981.akacast.akamaistream.net/7/550/80872/v1/rogers.akacast.akamaistrea
 http://50.22.253.45:8000/ckfg-fm
 
 #EXTINF:0,99.9 VIRGIN RADIO 
-http://ckfm-mp3.akacast.akamaistream.net/7/318/102120/v1/astral.akacast.akamaistream.net/ckfm-mp3
+0
 
 #EXTINF:0,100.7 CHIN FM
 http://ice7.securenetsystems.net/CHINFM?type=.flv
@@ -74,7 +74,7 @@ http://s2.stationplaylist.com:8110/
 http://ice7.securenetsystems.net/CIRR
 
 #EXTINF:0,104.5 CHUM FM 
-http://chumfm-p3.akacast.akamaistream.net/7/441/102120/v1/astral.akacast.akamaistream.net/chumfm-mp3
+0
 
 #EXTINF:0,105.1 COUNTRY FM
 0
@@ -110,5 +110,5 @@ http://199.27.180.216:8015
 0
 
 #EXTINF:0,1010 NEWSTALK 
-http://icecastsource2.amri.ca/cfrb-mp3
+0
 

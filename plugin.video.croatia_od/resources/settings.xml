@@ -19,5 +19,8 @@
     <setting id="hrti_pass" type="text" visible="true" option="hidden" label="Lozinka" default=""/>
     <setting id="hrti_token" type="text" visible="false" default=""/>
     <setting id="hrti_expire" type="text" visible="false" default="0"/>
+    <setting type="lsep" label="sultanovic.net" />
+    <setting id="sultan_user" type="text" visible="true" label="E-mail" default=""/>
+    <setting id="sultan_pass" type="text" visible="true" option="hidden" label="Password" default=""/>
 	</category>
 </settings>

@@ -26,7 +26,10 @@ class track():
 # # # file name - relative or absolute path of file
 # ..\Minus The Bear - Planet of Ice\Minus The Bear_Planet of Ice_01_Burying Luck.mp3
 def parseM3U(infile):
-    text = read_url(infile).lstrip()
+    if '#EXT' not in infile:
+        text = read_url(infile).lstrip()
+    else:
+        text = infile
     inf = open(m3uTemp,'w')
     inf.write(text)
     inf.close()

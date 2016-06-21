@@ -34,6 +34,9 @@ http://cp.dmbshare.net:8000/live/paul1/paul1/4582.ts
 #EXTINF:0,Box Nation 
 http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/2174.ts
 
+#EXTINF:0,Box Nation 
+http://213.136.90.30:8000/live/guzi/isla/15506.ts
+
 #EXTINF:0,BT Sport 1 
 http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6911.ts
 
@@ -54,6 +57,9 @@ http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/5745.ts
 
 #EXTINF:0,Chelsea TV 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5790.ts
+
+#EXTINF:0,Chelsea TV 
+http://213.136.90.30:8000/live/guzi/isla/11495.ts
 
 #EXTINF:0,CMore Sport 
 0
@@ -118,11 +124,17 @@ http://cp.dmbshare.net:8000/live/francesco2/francesco2/4567.ts
 #EXTINF:0,Fox Sports 1
 http://cp.dmbshare.net:8000/live/paul1/paul1/4607.ts
 
+#EXTINF:0,Fox Sports 1
+http://213.136.90.30:8000/live/guzi/isla/13281.ts
+
 #EXTINF:0,Fox Sports 2 
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/4568.ts
 
 #EXTINF:0,Fox Sports 2 
 http://cp.dmbshare.net:8000/live/paul1/paul1/4585.ts
+
+#EXTINF:0,Fox Sports 2 
+http://213.136.90.30:8000/live/guzi/isla/14305.ts
 
 #EXTINF:0,Fox Sports 3
 0
@@ -154,6 +166,9 @@ http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/5749.ts
 #EXTINF:0,Motors TV 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5745.ts
 
+#EXTINF:0,Motors TV 
+http://213.136.90.30:8000/live/guzi/isla/15561.ts
+
 #EXTINF:0,Motorsport 7 
 http://motorsport.hopto.org:8080/
 
@@ -171,6 +186,9 @@ http://208.92.36.158/ipad/live/nba_ipad_1240.m3u8
 
 #EXTINF:0,NBA TV 
 http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/4272.ts
+
+#EXTINF:0,NBA TV 
+http://213.136.90.30:8000/live/guzi/isla/14306.ts
 
 #EXTINF:0,NBA TV 
 http://cp.dmbshare.net:8000/live/paul1/paul1/4577.ts
@@ -282,6 +300,9 @@ http://cp.dmbshare.net:8000/live/paul1/paul1/5737.ts
 
 #EXTINF:0,Racing UK 
 http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/5769.ts
+
+#EXTINF:0,Racing UK
+http://213.136.90.30:8000/live/guzi/isla/15573.ts
 
 #EXTINF:0,Redbull TV 
 http://sacapunta.eltelon.com/channels/redbulltv/playlist.m3u8
@@ -398,10 +419,10 @@ http://cp.dmbshare.net:8000/live/paul1/paul1/4598.ts
 0
 
 #EXTINF:0,Viasat Golf 
-
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/4767.ts
 
 #EXTINF:0,Viasat Sport 
-0
+http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/4834.ts
 
 #EXTINF:0,VS Versus 
 http://208.92.36.158/ipad/live/nba_ipad_1240.m3u8
@@ -426,5 +447,8 @@ http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/4270.ts
 
 #EXTINF:0,WWE Network 
 http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6807.ts
+
+#EXTINF:0,WWE Network 
+http://213.136.90.30:8000/live/guzi/isla/13283.ts
 
 

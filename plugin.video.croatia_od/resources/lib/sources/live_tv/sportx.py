@@ -78,4 +78,4 @@ class main():
 
 	def resolve(self,url):
 		import liveresolver
-		return liveresolver.resolve(url)
+		return liveresolver.resolve(url,cache_timeout=0)

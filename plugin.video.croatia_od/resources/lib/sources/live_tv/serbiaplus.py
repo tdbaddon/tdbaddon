@@ -17,8 +17,8 @@ class info():
         self.categorized = False
         self.multilink = False
 class main():
-	def __init__(self,url = 'http://www.serbiaplus.club/menu1.html'):
-		self.base = 'http://www.serbiaplus.club/'
+	def __init__(self,url = 'http://www.singi.club/menu1.html'):
+		self.base = 'http://www.singi.club/'
 		self.url = url
 
 	
@@ -40,7 +40,7 @@ class main():
 
 	def resolve(self,url):
 		import liveresolver
-		return liveresolver.resolve(url)
+		return liveresolver.resolve(url,cache_timeout=0)
 	
 
 

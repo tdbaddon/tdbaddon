@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from resources.lib.modules import client,epg,convert
+from resources.lib.modules import client,epg,convert,control
 import re
 from resources.lib.modules.log_utils import log
 import sys,xbmcgui,os
@@ -63,40 +63,42 @@ class main():
 		return epg.get_current_epg(epgx)
 
 	def resolve(self,url):
+		urls = url.split('##')
+		choices = ['Link %s'%(i+1) for i in range(len(urls))]
+		
+		if len(choices)==1:
+			index=0
+		else:
+			index = control.selectDialog(choices,'Odaberite link:')
+		if index>-1:
+			url = urls[index]
+			if 'morescreens' in url:
+				from resources.lib.resolvers import hrti
+				return hrti.resolve(url)
 
-		if 'morescreens' in url:
-			from resources.lib.resolvers import hrti
-			return hrti.resolve(url)
 
+			#nova tv, doma tv
+			specy = {'http://www.sipragezabava.com/kanal_3_hr.php':'http://prvenstvoliga.blogspot.hr/2014/12/nova-tv.html',
+					'http://www.netraja.net/2014/05/doma-tv.html':'http://www.prvenstvoliga.blogspot.hr/2014/05/doma-tv.html'}
+			if url in specy.keys():
+				urlx = []
+				src = []
+				html = client.request(specy[url],referer='http://prvenstvoliga.blogspot.com/search/label/Hrvatska')
+				urls = re.findall('target=[\"\']([^\"\']+)[\"\'].+?</embed>',html)
+				i=0
+				for url in urls:
+					i+=1
+					src+=['Link %s'%i]
+					
+				dialog = xbmcgui.Dialog()
+				index = dialog.select('Odaberite:', src)
+				if index==-1:
+					return ''
+				return urlx[index]
 
-		#nova tv, doma tv
-		specy = {'http://www.sipragezabava.com/kanal_3_hr.php':'http://prvenstvoliga.blogspot.hr/2014/12/nova-tv.html',
-				'http://www.netraja.net/2014/05/doma-tv.html':'http://www.prvenstvoliga.blogspot.hr/2014/05/doma-tv.html'}
-		if url in specy.keys():
-			urlx = []
-			src = []
-			html = client.request(specy[url],referer='http://prvenstvoliga.blogspot.com/search/label/Hrvatska')
-			urls = re.findall('target=[\"\']([^\"\']+)[\"\'].+?</embed>',html)
-			i=0
-			for url in urls:
-				i+=1
-
-				if '.ts' in url:
-					if url not in urlx:
-						urlx += ['plugin://plugin.video.f4mTester/?streamtype=TSDOWNLOADER&url=' + url]
-						src+=['Link %s'%i]
-				else:
-					if url not in urlx:
-						urlx+=[url]
-						src+=['Link %s'%i]
-			dialog = xbmcgui.Dialog()
-			index = dialog.select('Odaberite:', src)
-			if index==-1:
-				return
-			return urlx[index]
-
-		import liveresolver
-		return liveresolver.resolve(url)
+			import liveresolver
+			return liveresolver.resolve(url)
 	
 
 
+		return ''

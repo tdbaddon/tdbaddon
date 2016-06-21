@@ -10,6 +10,10 @@ from resources.lib.modules.log_utils import log
 addon = Addon('plugin.video.croatia_od', sys.argv)
 addon_handle = int(sys.argv[1])
 
+
+if not os.path.exists(control.dataPath):
+    os.mkdir(control.dataPath)
+
 AddonPath = addon.get_path()
 IconPath = os.path.join(AddonPath , "resources/media/")
 fanart = os.path.join(AddonPath + "/fanart.jpg")
@@ -23,6 +27,8 @@ mode = args.get('mode', None)
 
 
 if mode is None:
+    from  resources.lib.resolvers import hrti
+    hrti.get_live()
     addon.add_item({'mode': 'on_demand_tv'}, {'title':'Televizija na zahtjev'}, img=icon_path('TV.png'), fanart=fanart,is_folder=True)
     addon.add_item({'mode': 'live_tv'}, {'title':('Televizija uživo').encode('utf-8')}, img=icon_path('TV.png'), fanart=fanart,is_folder=True)
     addon.add_item({'mode': 'on_demand_radio'}, {'title':'Radio na zahtjev'}, img=icon_path('Radio.png'), fanart=fanart,is_folder=True)
@@ -236,11 +242,16 @@ elif mode[0]=='open_tv_cat':
     info = eval(site+".info()")
     source = eval(site+".main()")
     channels = source.channels(url)
-
+    try: special = info.special
+    except: special = False
     for event in channels:
         if not info.multilink:
+            if not special:
+                addon.add_video_item({'mode': 'play_special', 'url': event[0], 'title': event[1], 'img':event[2], 'site': site}, {'title': event[1]}, img=event[2], fanart=fanart)
+            else:
+                addon.add_item({'mode': 'play_folder', 'url': event[0], 'title': event[1], 'img':event[2], 'site': site}, {'title': event[1]}, img=event[2], fanart=fanart,is_folder=True)
+
             
-            addon.add_video_item({'mode': 'play_special', 'url': event[0],'title':event[1],'site':site, 'img': event[2]}, {'title': event[1]}, img=event[2], fanart=fanart)
         else:
             addon.add_item({'mode': 'get_tv_event', 'url': event[0],'site':site , 'title':event[1], 'img': event[2]}, {'title': event[1]}, img=event[2], fanart=fanart,is_folder=True)
     
@@ -318,25 +329,10 @@ elif mode[0]=='get_tv_event':
     source = eval(site+".main()")
     events = source.links(url)
 
-    autoplay = addon.get_setting('autoplay')
-    if autoplay == 'false':
-        for event in events:
-            addon.add_video_item({'mode': 'play_special', 'url': event[0],'title':title, 'img': img, 'site':site}, {'title': event[1]}, img=img, fanart=fanart)
-        addon.end_of_directory()
-    else:
-        for event in events:
-            import liveresolver
-            try:
-                resolved = liveresolver.resolve(event[0])
-            except:
-                resolved = None
-            if resolved:
-                player=xbmc.Player()
-                li = xbmcgui.ListItem(title)
-                li.setThumbnailImage(img)
-                player.play(resolved,listitem=li)
-                break
-        control.infoDialog("No stream found")
+    for event in events:
+        addon.add_video_item({'mode': 'play_special', 'url': event[0],'title':title, 'img': img, 'site':site}, {'title': event[1]}, img=img, fanart=fanart)
+    addon.end_of_directory()
+    
 
 
 elif mode[0] == 'play':
@@ -362,14 +358,18 @@ elif mode[0] == 'play_special':
     exec "from resources.lib.sources.live_tv import %s"%(site)
     source = eval(site+'.main()')
     resolved = source.resolve(url)
-    li = xbmcgui.ListItem(title, path=resolved)
-    li.setThumbnailImage(img)
-    li.setLabel(title)
-    handle = int(sys.argv[1])
-    if handle > -1:
-        xbmcplugin.endOfDirectory(handle, True, False, False)
-    
-    xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, li)
+    if resolved.startswith('plugin'):
+        resolved = resolved.replace('&name=Video','&name=%s'%urllib.quote(title))
+        control.player.play(resolved)
+    else:
+        li = xbmcgui.ListItem(title, path=resolved)
+        li.setThumbnailImage(img)
+        li.setLabel(title)
+        handle = int(sys.argv[1])
+        if handle > -1:
+            xbmcplugin.endOfDirectory(handle, True, False, False)
+        
+        xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, li)
 
 elif mode[0] == 'play_folder':
     url = args['url'][0]
@@ -378,8 +378,9 @@ elif mode[0] == 'play_folder':
     site = args['site'][0]
     exec "from resources.lib.sources.live_tv import %s"%(site)
     source = eval(site+'.main()')
-    resolved = source.resolve(url)
+    resolved = source.resolve(url,title = title,icon=img)
     li = xbmcgui.ListItem(title, path=resolved)
+    li.setProperty('isPlayable','true')
     li.setThumbnailImage(img)
     li.setLabel(title)
     xbmc.Player().play(resolved, listitem=li)
@@ -400,7 +401,7 @@ elif mode[0] == 'play_special_sport':
 
 
 elif mode[0]=='play_od_item':
-    try:
+    #try:
         url = args['url'][0]
         title = args['title'][0]
         site = args['site'][0]
@@ -414,8 +415,8 @@ elif mode[0]=='play_od_item':
         li.setLabel(title)
         li.setProperty('IsPlayable', 'true')
         xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, li)
-    except:
-        pass
+    #except:
+    #    pass
 
 elif mode[0]=='play_od_radio_item':
     url = args['url'][0]
@@ -441,6 +442,13 @@ elif mode[0]=='tools':
     addon.end_of_directory()
 
 elif mode[0]=='clear_liveresolver_cache':
+    import shutil
+    files = ['cache.db','loginSultanCookie','playlist.m3u','s365CookieFile.lwp','settings.db','data.zip']
+    for file in files:
+        filename = os.path.join(control.dataPath,file)
+        if os.path.exists(filename):
+            os.remove(filename)
+  
     import liveresolver
     liveresolver.delete_cache()
 

@@ -202,3 +202,16 @@ def openSettings(query=None, id=addonInfo('id')):
         return
 
 
+def get_keyboard(heading, default=''):
+    keyboard = xbmc.Keyboard()
+    keyboard.setHeading(heading)
+    if default: keyboard.setDefault(default)
+    keyboard.doModal()
+    if keyboard.isConfirmed():
+        return keyboard.getText()
+    else:
+        return None
+
+IconPath = addonPath + "/resources/media/"
+def icon_path(filename):
+    return os.path.join(IconPath, filename)
