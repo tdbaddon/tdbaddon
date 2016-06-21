@@ -1,6 +1,6 @@
 ﻿<settings>
   <category label="BES-IPTV">
-	<setting type="action" label="Version of Addon 3.1.1 - 04/12/2016 BES-IPTV" option="close" action="RunPlugin(plugin://plugin.video.BES-IPTV/?mode=7)" />
+	<setting type="action" label="Version of Addon 3.1.3 - 06/21/2016 BES-IPTV" option="close" action="RunPlugin(plugin://plugin.video.BES-IPTV/?mode=7)" />
     <setting type="action" label="[B]By: SayDinX[/B]" option="close" action="RunPlugin(plugin://plugin.video.BES-IPTV/?mode=7)" />
         </category>
 

@@ -1,5 +1,4 @@
 import urllib,re,xbmcplugin,xbmcgui,xbmc,xbmcaddon,os
-import urlresolver
 import requests
 from addon.common.addon import Addon
 from addon.common.net import Net
@@ -121,32 +120,49 @@ def PINDEX(url):
 def LINK(url):
         link = OPEN_URL(url)
         link = link.encode('ascii', 'ignore').decode('ascii')
+        referer = url
         try:
-                referer = url
-                try:
-                    RequestURL = re.search(r'emb=(.*?)&',link,re.I).group(1)
-                except:
-                    RequestURL = re.search(r'emb2=(.*?)&',link,re.I).group(1)
-
-                headers = {'Host': 'videomega.tv', 'Referer': referer, 'User-Agent': User_Agent}
-                link = requests.get(RequestURL, headers=headers).content
-                if jsunpack.detect(link): #1 these 3 lines taken from urlresolver
-                    js_data = jsunpack.unpack(link) #2
-                    match = re.search('"src"\s*,\s*"([^"]+)', js_data) #3
-                headers = {'Origin': 'videomega.tv', 'Referer': link, 'User-Agent': User_Agent}
-                url = match.group(1) + '|' + urllib.urlencode(headers)
+                url = re.findall(r'dir=(.*?)&', str(link), re.I|re.DOTALL)[0]
+                headers = {'Referer': referer, 'User-Agent': User_Agent}
+                url = url + '|' + urllib.urlencode(headers)
                 liz = xbmcgui.ListItem(name, iconImage='DefaultVideo.png', thumbnailImage=iconimage)
-                liz.setInfo(type='Video', infoLabels={'Title':description})
+                liz.setInfo(type='Video', infoLabels={"Title": name,"Plot":description})
+                liz.setProperty("IsPlayable","true")
+                liz.setPath(str(url))
+                xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
+        except: pass
+        try:
+                try:
+                    RequestURL = re.search(r'emb.*?=(.*?)&',link,re.I).group(1)
+                except:
+                    RequestURL = re.search(r'emb.*?=(.*?)<',link,re.I).group(1)
+                if 'videomega' in RequestURL:
+                        headers = {'Host': 'videomega.tv', 'Referer': referer, 'User-Agent': User_Agent}
+                        link = requests.get(RequestURL, headers=headers).content
+                        if jsunpack.detect(link): #1 these 3 lines taken from urlresolver
+                                js_data = jsunpack.unpack(link) #2
+                                match = re.search('"src"\s*,\s*"([^"]+)', js_data) #3
+                        headers = {'Origin': 'videomega.tv', 'Referer': link, 'User-Agent': User_Agent}
+                        url = match.group(1) + '|' + urllib.urlencode(headers)
+                elif 'up2stream' in RequestURL:
+                        headers = {'Referer': referer, 'User-Agent': User_Agent}
+                        link = requests.get(RequestURL, headers=headers).content
+                        if jsunpack.detect(link):
+                                js_data = jsunpack.unpack(link)
+                                match = re.search('"src"\s*,\s*"([^"]+)', js_data)
+                        headers = {'Origin': 'http://up2stream.com', 'Referer': RequestURL, 'User-Agent': User_Agent}
+                        url = match.group(1) + '|' + urllib.urlencode(headers)
+                liz = xbmcgui.ListItem(name, iconImage='DefaultVideo.png', thumbnailImage=iconimage)
+                liz.setInfo(type='Video', infoLabels={"Title": name,"Plot":description})
                 liz.setProperty("IsPlayable","true")
                 liz.setPath(str(url))
                 xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
         except:pass
         try:
-                referer = url
-                RequestURL = 'http://niter.co/player/pk/pk/plugins/player_p2.php'
+                RequestURL = 'http://yify.co/player/pk/pk/plugins/player_p2.php'
                 form_data = re.findall(r'ic=.*?&em.*?&(.*?)<', str(link), re.I|re.DOTALL)[0].replace('=','_')
                 form_data={'url':form_data}
-                headers = {'host': 'niter.co', 'content-type':'application/x-www-form-urlencoded; charset=UTF-8',
+                headers = {'content-type':'application/x-www-form-urlencoded; charset=UTF-8',
                            'origin':'http://niter.co', 'referer': referer,
                            'user-agent': User_Agent,'x-requested-with':'XMLHttpRequest'}
                 r = requests.post(RequestURL, data=form_data, headers=headers)
@@ -155,19 +171,19 @@ def LINK(url):
                 headers = {'Host': host, 'Referer': referer, 'User-Agent': User_Agent}
                 url = url + '|' + urllib.urlencode(headers)
                 liz = xbmcgui.ListItem(name, iconImage='DefaultVideo.png', thumbnailImage=iconimage)
-                liz.setInfo(type='Video', infoLabels={'Title':description})
+                liz.setInfo(type='Video', infoLabels={"Title": name,"Plot":description})
                 liz.setProperty("IsPlayable","true")
                 liz.setPath(str(url))
                 xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
         except:pass
         try:
-                RequestURL = 'http://niter.co/player/pk/pk/plugins/player_p2.php'
+                RequestURL = 'http://yify.co/player/pk/pk/plugins/player_p2.php'
                 try:
                         form_data={'url': re.search(r'ic=(.*?)&',link,re.I).group(1)}
                 except:
                         form_data={'url': re.search(r'ic=(.*?)<',link,re.I).group(1)}
-                headers = {'host': 'niter.co', 'content-type':'application/x-www-form-urlencoded; charset=UTF-8',
-                           'origin':'http://niter.co', 'referer': url,
+                headers = {'content-type':'application/x-www-form-urlencoded; charset=UTF-8',
+                           'origin':'http://niter.co', 'referer': referer,
                            'user-agent': User_Agent,'x-requested-with':'XMLHttpRequest'}
                 r = requests.post(RequestURL, data=form_data, headers=headers)
                 url = re.findall(r'"url":"(.*?)"', str(r.text), re.I|re.DOTALL)[-1]
@@ -175,69 +191,12 @@ def LINK(url):
                 headers = {'Host': host, 'Referer': referer, 'User-Agent': User_Agent}
                 url = url + '|' + urllib.urlencode(headers)
                 liz = xbmcgui.ListItem(name, iconImage='DefaultVideo.png', thumbnailImage=iconimage)
-                liz.setInfo(type='Video', infoLabels={'Title':description})
+                liz.setInfo(type='Video', infoLabels={"Title": name,"Plot":description})
                 liz.setProperty("IsPlayable","true")
                 liz.setPath(url)
                 xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
         except:pass
-        try:
-                referer = url
-                url = re.findall(r'dir=(.*?)&', str(link), re.I|re.DOTALL)[0]
-                host =  url.replace('http://','').replace('https://','').partition('/')[0]
-                headers = {'Host': host, 'Referer': referer, 'User-Agent': User_Agent}
-                url = url + '|' + urllib.urlencode(headers)
-                liz = xbmcgui.ListItem(name, iconImage='DefaultVideo.png', thumbnailImage=iconimage)
-                liz.setInfo(type='Video', infoLabels={'Title':description})
-                liz.setProperty("IsPlayable","true")
-                liz.setPath(str(url))
-                xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
-        except: pass
-        try:
-                try:
-                        RequestURL = re.search(r'&emb=(.*?)&',link,re.I).group(1)
-                except:
-                        RequestURL = re.search(r'&emb=(.*?)<',link,re.I).group(1)
-                video_id = re.split(r'ef=', RequestURL, re.I)[1]
-                form_data={'ref:': video_id}
-                headers = {'host': 'up2stream.com','referer': url, 'user-agent': User_Agent,}
-                r = requests.get(RequestURL, data=form_data, headers=headers).text
-                try:
-                        match = re.compile("\,.*?'(.*?)'\.split\('\|'\)").findall(r)[0]
-                        try:
-                                url_part = re.compile("15,15,\'(.*?)\|").findall(r)[0]
-                        except:
-                                url_part = re.compile("16,16,\'(.*?)\|").findall(r)[0]
-                        try:
-                                hash_id = re.split(r"15,15,", str(match), re.I)[1]
-                        except:
-                                hash_id = re.split(r"16,16,", str(match), re.I)[1]
-                        try:
-                                hash_id2 = re.split(r"\|cdn\|http\|src\|video\|attr\|vizplay\|org\|", str(hash_id), re.I)[1]
-                        except:
-                                hash_id2 = re.split(r"\|cdn\|vizplay\|http\|src\|video\|attr\|org\|v\|hash\|.*?\|", str(hash_id), re.I)[1]
-    
-                        try:
-                                url_part2 = re.split(r"\|hash\|st\|mp4\|v\|", str(hash_id2), re.I)[0]
-                        except:
-                                url_part2 = re.split(r"\|st\|", str(hash_id2), re.I)[0]
-                        try:
-                                hash_id3 = re.split(r"\|hash\|st\|mp4\|v\|", str(hash_id2), re.I)[1]
-                        except:
-                                hash_id3 = re.split(r"\|st\|", str(hash_id2), re.I)[1]
-                        url_part3 = re.split(r"\|", str(hash_id3), re.I)[0]
-                        try:
-                                url_part4 = re.split(r"\|mp4\|", str(hash_id3), re.I)[1]
-                        except:
-                                url_part4 = re.split(r"\|", str(hash_id3), re.I)[1]
-                        url = 'http://'+url_part+'.cdn.vizplay.org/v/'+url_part3+'.mp4?st='+url_part2+'&hash='+url_part4
-                        print url
-                        liz = xbmcgui.ListItem(name, iconImage='DefaultVideo.png', thumbnailImage=iconimage)
-                        liz.setInfo(type='Video', infoLabels={'Title':description})
-                        liz.setProperty("IsPlayable","true")
-                        liz.setPath(url)
-                        xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
-                except:pass
-        except:pass
+        
         
 
 
@@ -359,7 +318,7 @@ def addDir(name,url,mode,iconimage,fanart,description):
         u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&iconimage="+urllib.quote_plus(iconimage)+"&description="+urllib.quote_plus(description)
         ok=True
         liz=xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
-        liz.setInfo( type="Video", infoLabels={ "Title": name,"Plot":description} )
+        liz.setInfo( type="Video", infoLabels={"Title": name,"Plot":description})
         liz.setProperty('fanart_image', fanart)
         if mode==3:
             liz.setProperty("IsPlayable","true")
@@ -429,11 +388,9 @@ def OPEN_URL(url):
 
 
 
-''' Why recode whats allready written and works well,
-    Thanks go to Eldrado for it '''
-
 def setView(content, viewType):
-        
+    ''' Why recode whats allready written and works well,
+    Thanks go to Eldrado for it '''
     if content:
         xbmcplugin.setContent(int(sys.argv[1]), content)
     if addon.get_setting('auto-view') == 'true':
@@ -451,9 +408,13 @@ def setView(content, viewType):
             VT = '501'
         elif addon.get_setting(viewType) == 'Big List':
             VT = '51'
-        elif viewType == 'default-view':
-            VT = addon.get_setting(viewType)
-
+        elif addon.get_setting(viewType) == 'Low List':
+            VT = '724'
+        elif addon.get_setting(viewType) == 'Thumbnail':
+            VT = '500'
+        elif addon.get_setting(viewType) == 'Default View':
+            VT = addon.get_setting('default-view')
+        
         print viewType
         print VT
         
