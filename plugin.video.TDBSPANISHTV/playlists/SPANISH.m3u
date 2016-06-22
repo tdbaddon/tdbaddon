@@ -1,6 +1,15 @@
 #EXTM3U
 
 
+#EXTINF:0,24 Horas
+http://hlslive.rtve.es/24H_LV3_IPH/master.m3u8
+
+#EXTINF:0,360 Deportes
+http://lsd360tvhls-lh.akamaihd.net/i/360TVHLS_1@197877/master.m3u8
+
+#EXTINF:0,5TV
+http://play.gvstream.net:554/e-tv-video/default.stream/playlist.m3u8
+
 #EXTINF:0,A3S  
 http://a3live-lh.akamaihd.net/i/a3shds/geoa3series_1@122775/master.m3u8
 
@@ -18,6 +27,9 @@ http://iphone-andaluciatelevision.rtva.stream.flumotion.com/rtva/andaluciatelevi
 
 #EXTINF:0,Antena Latina
 http://a3live-lh.akamaihd.net/i/antena3_1@35248/index_4_av-b.m3u8?sd=10&rebase=on
+
+#EXTINF:0,Antena Latina
+http://hlslive.lcdn.une.net.co/v1/AUTH_HLSLIVE/ANT3/tu1_1.m3u8
 
 #EXTINF:0,Aragon TV 
 0
@@ -103,6 +115,9 @@ http://xcanal9saltax.api.channel.livestream.com/3.0/playlist.m3u8
 #EXTINF:0,Canal 22
 rtmp://192.96.217.230/live/smrtv.sdp
 
+#EXTINF:0,Canal 22
+http://50.7.98.234:1935/5936soyguerrero/guerrerovideo/playlist.m3u8
+
 #EXTINF:0,Canal 24
 http://hlslive.rtve.es/24H_LV3_IPH/bitrate_2.m3u8
 
@@ -126,6 +141,9 @@ rtsp://live-edge01.telecentro.net.ar:1935/live/26hd-720
 
 #EXTINF:0,Canal 79 
 0
+
+#EXTINF:0,Canal Antiestres
+http://hlslive.lcdn.une.net.co/v1/AUTH_HLSLIVE/ANTI/tu1_1.m3u8
 
 #EXTINF:0,Canal Capital
 http://cdns840stu1010.multistream.net/canalcapitallive/amlst:live/master.m3u8
@@ -187,6 +205,9 @@ http://184.164.158.202:1936/48/smil:48.smil/playlist.m3u8
 #EXTINF:0,Distrito Comedia
 0
 
+#EXTINF:0,El Tiempo
+http://hlslive.lcdn.une.net.co/v1/AUTH_HLSLIVE/TIEM/tu1_1.m3u8
+
 #EXTINF:0,El Trece 
 http://aztecalive-lh.akamaihd.net/i/0oxnvzh8a_1@175671/index_1_av-b.m3u8
 
@@ -208,6 +229,9 @@ http://media3.crtvg.es/live/tvga/.m3u8
 #EXTINF:0,Garage TV
 0
 
+#EXTINF:0,Guatevision
+http://162.220.219.35:8081/live/stream1.sdp/playlist.m3u8
+
 #EXTINF:0,Glitz
 0
 
@@ -219,6 +243,12 @@ http://4.31.30.140:1935/live/hchtvdigital/playlist.m3u8?wowzasessionid=179256159
 
 #EXTINF:0,Info 7 
 0
+
+#EXTINF:0,Ingenio TV
+http://dl-dgtve.xsn.com.mx/dgtve/canal30dgtve.mp4/playlist.m3u8?
+
+#EXTINF:0,La Sexta
+http://a3live-lh.akamaihd.net/i/lasexta_1@35272/master.m3u8
 
 #EXTINF:0,Levante TV
 0
@@ -285,11 +315,17 @@ http://hlslive.lcdn.une.net.co/v1/AUTH_HLSLIVE/0002/tu1_1.m3u8?
 #EXTINF:0,Tele Uno TV
 rtmp://k3.usastreams.com:1935/tvuno1/tvuno1
 
+#EXTINF:0,Teleantioquia
+http://hlslive.lcdn.une.net.co/v1/AUTH_HLSLIVE/TANT/tu1_1.m3u8?
+
 #EXTINF:0,Telearagua 
 0
 
 #EXTINF:0,TeleCaribe 
 0
+
+#EXTINF:0,Telemedellin
+http://hlslive.lcdn.une.net.co/v1/AUTH_HLSLIVE/TMED/tu1_1.m3u8?
 
 #EXTINF:0,Telemetro
 0
@@ -326,6 +362,9 @@ rtmp://50.7.98.234/rtv/videortv
 
 #EXTINF:0,TV Noticias 10 
 rtmp://87.106.220.67/live/myStream_2
+
+#EXTINF:0,TV Noticias 10 
+http://hlslive.lcdn.une.net.co/v1/AUTH_HLSLIVE/CNOT/tu1_1.m3u8
 
 #EXTINF:0,TV Novelas 
 0

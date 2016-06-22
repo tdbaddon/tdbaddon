@@ -2102,7 +2102,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBPORNO"
        name="TDB PORNO"
-       version="1.99"
+       version="2.00"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -2139,7 +2139,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBSPANISHTV"
        name="TDB SPANISH TV"
-       version="1.43"
+       version="1.44"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
