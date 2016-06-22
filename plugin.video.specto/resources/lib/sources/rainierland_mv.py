@@ -22,7 +22,6 @@
 import re,urllib,urlparse, json
 
 from resources.lib.libraries import cleantitle
-from resources.lib.libraries import client2
 from resources.lib.libraries import client
 from resources.lib.libraries import control
 from resources.lib import resolvers
@@ -40,7 +39,7 @@ class source:
             query = self.search_link % urllib.quote(title)
             query = urlparse.urljoin(self.base_link, query)
             #control.log("rainierland-0 @@@@@@@@@@@@@@@@@@@@@@@@@@@@ %s" % query)
-            result = client2.http_get(query)
+            result = client.request(query)
             title = cleantitle.movie(title)
             years = ['%s' % str(year), '%s' % str(int(year)+1), '%s' % str(int(year)-1)]
             r = client.parseDOM(result, 'div', attrs = {'class': 'thumb'})
@@ -123,7 +122,7 @@ class source:
         try:
             r = urlparse.urljoin(self.base_link, url)
 
-            result = client2.http_get(r)
+            result = client.request(r)
             #control.log("rainierland-sources-1 @@@@@@@@@@@@@@@@@@@@@@@@@@@@ %s" % result)
             r = client.parseDOM(result, 'div', attrs = {'class': 'screen fluid-width-video-wrapper'})[0]
             #control.log("rainierland-sources-2 @@@@@@@@@@@@@@@@@@@@@@@@@@@@ %s" % r)
@@ -131,7 +130,7 @@ class source:
             #control.log("rainierland-sources-3 @@@@@@@@@@@@@@@@@@@@@@@@@@@@ %s" % r)
             if len(r) > 0:
                 t = urlparse.urljoin(self.base_link, r[0])
-                r2 = client2.http_get(t)
+                r2 = client.request(t)
                 #control.log("rainierland-sources-4 @@@@@@@@@@@@@@@@@@@@@@@@@@@@ %s" % r2)
                 r3 = re.compile('<source src="(.*?)"').findall(r2)
                 for i in r3:

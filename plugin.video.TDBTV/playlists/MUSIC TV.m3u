@@ -43,7 +43,7 @@ http://nodeb.gocaster.net:1935/CGL/_definst_/mp4:TODAYFM_TEST2/live.m3u8
 #EXTINF:0,Djing Animation 
 http://www.djing.com/tv/a-03.m3u8
 
-#EXTINF:0,Djing Animation HD
+#EXTINF:0,Djing Animation HD 
 http://www.djing.com/tv/a-05.m3u8
 
 #EXTINF:0,Djing Animation HD
@@ -55,7 +55,7 @@ http://www.djing.com/tv/i-03.m3u8
 #EXTINF:0,Djing Classics HD 
 http://www.djing.com/tv/i-05.m3u8
 
-#EXTINF:0,Djing Classics HD
+#EXTINF:0,Djing Classics HD 
 http://www.iptvsaga.com/play/tv3/0090.m3u8
 
 #EXTINF:0,Djing Ibiza
@@ -89,22 +89,22 @@ http://www.iptvsaga.com/play/tv3/0069.m3u8
 rtmp://www.electrosound.tv/public/stream
 
 #EXTINF:0,Eska Best 
-rtmp://stream.smcloud.net/live2/best/best_480p
+0
 
-#EXTINF:0,Eska Best HD
-rtmp://stream.smcloud.net/live2/best/best_720p
+#EXTINF:0,Eska Best HD 
+0
 
 #EXTINF:0,Eska Party 
-rtmp://stream.smcloud.net/live2/eska_party/eska_party_480p
+0
 
-#EXTINF:0,Eska Party HD
-rtmp://stream.smcloud.net/live2/eska_party/eska_party_720p
+#EXTINF:0,Eska Party HD 
+0
 
 #EXTINF:0,Eska Rock 
-rtmp://stream.smcloud.net/live2/eska_rock/eska_rock_480p
+0
 
-#EXTINF:0,Eska Rock HD
-rtmp://stream.smcloud.net/live2/eska_rock/eska_rock_720p
+#EXTINF:0,Eska Rock HD 
+0
 
 #EXTINF:0,Gold TV 
 0
@@ -145,10 +145,7 @@ http://213.136.90.30:8000/live/guzi/isla/15564.ts
 http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/3850.ts
 
 #EXTINF:0,MTV Dance 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6085.ts
-
-#EXTINF:0,MTV Hits 
-http://vod.cdn.iutpcdn.com/LIVE/H01/CANAL727/PROFILE03.m3u8?
+0
 
 #EXTINF:0,MTV Hits 
 http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6086.ts
@@ -163,10 +160,10 @@ http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6087.ts
 0
 
 #EXTINF:0,MusicVoxTV 
-rtmp://stream.smcloud.net/live2/vox/vox_480p
+0
 
 #EXTINF:0,MusicVoxTV HD
-rtmp://stream.smcloud.net/live2/vox/vox_720p
+0
 
 #EXTINF:0,Now Thats What I Call Music
 0
@@ -236,12 +233,6 @@ http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/06/prog_index.m3u8
 
 #EXTINF:0,Vevo Pop HD
 http://www.iptvsaga.com/play/tv3/0006.m3u8
-
-#EXTINF:0,VH1 
-http://149.202.188.59:8080/live/zxH3HyIGFF/RnlHTlQ8MB/808.ts
-
-#EXTINF:0,VH1 
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/4616.ts
 
 #EXTINF:0,VH1 
 http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/3847.ts

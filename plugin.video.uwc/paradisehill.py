@@ -24,9 +24,9 @@ import utils
 dialog = utils.dialog
 
 def Main():
-    utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://www.paradisehill.tv/en/',253,'','')
-    utils.addDir('[COLOR hotpink]Search[/COLOR]','http://www.paradisehill.tv/en/search_results.html?search=',254,'','')
-    List('http://www.paradisehill.tv/en/?page=1',1)
+    utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://en.paradisehill.cc/porn/',253,'','')
+    utils.addDir('[COLOR hotpink]Search[/COLOR]','http://en.paradisehill.cc/search_results/?search=',254,'','')
+    List('http://en.paradisehill.cc/porn/?page=1',1)
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
@@ -34,12 +34,11 @@ def List(url, page):
     if page == 1:
         url = url.replace('page=1','page='+str(page))
     listhtml = utils.getHtml(url, '')
-    match = re.compile('</h\d+>(.*?)<footer>', re.DOTALL | re.IGNORECASE).findall(listhtml)
-    match1 = re.compile('link" href="([^"]+)".*?bci-title">([^<]+)<.*?src="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(match[0])
-    for videopage, name, img in match1:
+    match = re.compile(r'link" href="([^"]+)"[^>]+>\s+<span class="bci-title">([^<]+)</span>.+?src="([^"]+)"[^>]+>\s*?</span>\s+</a>', re.DOTALL | re.IGNORECASE).findall(listhtml)
+    for videopage, name, img in match:
         name = utils.cleantext(name)
-        img = "http://www.paradisehill.tv" + img
-        videopage = "http://www.paradisehill.tv" + videopage
+        img = "http://en.paradisehill.cc" + img
+        videopage = "http://en.paradisehill.cc" + videopage
         utils.addDownLink(name, videopage, 252, img, '')
     if re.search('<li class="last">', listhtml, re.DOTALL | re.IGNORECASE):
         npage = page + 1        
@@ -54,8 +53,8 @@ def Cat(url):
     match1 = re.compile('link" href="([^"]+)".*?bci-title">([^<]+)<.*?src="([^"]+)".*?cat-title">([^<]+)<', re.DOTALL | re.IGNORECASE).findall(match[0])
     for caturl, name, img, videos in match1:
         name = name + " [COLOR deeppink]" + videos + "[/COLOR]"
-        img = "http://www.paradisehill.tv" + img
-        catpage = "http://www.paradisehill.tv" + caturl + "?page=1"
+        img = "http://en.paradisehill.cc" + img
+        catpage = "http://en.paradisehill.cc" + caturl + "?page=1"
         utils.addDir(name, catpage, 251, img, 1)
     xbmcplugin.endOfDirectory(utils.addon_handle)
 

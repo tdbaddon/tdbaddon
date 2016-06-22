@@ -46,7 +46,7 @@ def Main():
 def List(url):
     print "spankbang::List " + url
     listhtml = utils.getHtml(url, '')
-    match = re.compile('<a href="([^"]+)" class="thumb">.+?<img src="([^"]+)" alt="([^"]+)" class="cover".*?</span>(.*?)</a>.*?clock-o"></i> ([^<]+)<', re.DOTALL).findall(listhtml)
+    match = re.compile(r'<a href="([^"]+)" class="thumb">\s*?<img src="([^"]+)" alt="([^"]+)" class="cover".*?</span>(.*?)i-len"><i class="fa fa-clock-o"></i>([^<]+)<', re.DOTALL).findall(listhtml)
     for videopage, img, name, hd, duration in match:
         if hd.find('HD') > 0:
             hd = " [COLOR orange]HD[/COLOR] "

@@ -25,7 +25,7 @@ import utils
  
 def Main():
     utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://xxxstreams.org/',423,'','')
-    #utils.addDir('[COLOR hotpink]Search[/COLOR]','http://xxxstreams.org/?s=',424,'','')
+    utils.addDir('[COLOR hotpink]Search[/COLOR]','http://xxxstreams.org/?s=',424,'','')
     List('http://xxxstreams.org/page/1')
     xbmcplugin.endOfDirectory(utils.addon_handle)
  
@@ -41,8 +41,19 @@ def List(url):
         utils.addDir('Next Page', nextp[0], 421,'')
     except: pass
     xbmcplugin.endOfDirectory(utils.addon_handle)
- 
- 
+
+def ListSearch(url):
+    html = utils.getHtml(url, '').replace('\n','')
+    match = re.compile('<p>(.+?)</p><p>.+?<img src="(.+?)".*?/>.*?</a>.*?<a href="(.+?)" class="more-link">').findall(html)
+    for name, img, videopage in match:
+        name = utils.cleantext(name)
+        utils.addDownLink(name, videopage, 422, img, '')
+    try:
+        nextp = re.compile('<link rel="next" href="(.+?)" />', re.DOTALL | re.IGNORECASE).findall(html)
+        utils.addDir('Next Page', nextp[0], 425,'')
+    except: pass
+    xbmcplugin.endOfDirectory(utils.addon_handle)
+
 def Playvid(url, name, download):
     url = url.split('#')[0]
     utils.PLAYVIDEO(url, name, download)
@@ -55,11 +66,11 @@ def Categories(url):
         utils.addDir(name, catpage, 421, '')    
     xbmcplugin.endOfDirectory(utils.addon_handle)
  
-#def Search(url, keyword=None):
-#    searchUrl = url
-#    if not keyword:
-#        utils.searchDir(url, 414)
-#    else:
-#        title = keyword.replace(' ','+')
-#        searchUrl = searchUrl + title
-#        List(searchUrl)
+def Search(url, keyword=None):
+    searchUrl = url
+    if not keyword:
+        utils.searchDir(url, 424)
+    else:
+        title = keyword.replace(' ','+')
+        searchUrl = searchUrl + title
+        ListSearch(searchUrl)

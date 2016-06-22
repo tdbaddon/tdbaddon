@@ -1,0 +1,53 @@
+from __future__ import unicode_literals
+from resources.lib.modules import client,webutils,convert,control,cache
+import re,urlparse,json,urllib,os
+
+from resources.lib.modules.log_utils import log
+
+AddonPath = control.addonPath
+IconPath = AddonPath + "/resources/media/"
+def icon_path(filename):
+    return os.path.join(IconPath, filename)
+
+class info():
+    def __init__(self):
+    	self.mode = 'motolink'
+        self.name = 'motolinks.info'
+        self.icon = 'motolink.png'
+        self.paginated = False
+        self.categorized = False
+        self.multilink = False
+
+
+class main():
+	
+	def __init__(self,url = control.setting('motolink_base')):
+		self.base = control.setting('motolink_base')
+		self.url = url
+	
+	def items(self):
+		out = []
+		html = client.request(self.base)
+		items = webutils.bs(html).findAll('p',{'class':'MsoNormal'})
+		words = ['thank','full','chrome','&nbsp;','page','contact','you must?']
+		for i in items:
+				item = i.getText()
+				if len(item)>50 or any(w in item.lower() for w in words):
+					continue
+				if 'adf.ly' not in item:
+					item = '[B][COLOR orange]%s[/COLOR][/B]'%item
+
+				out.append((item,item,control.icon_path(info().icon)))		
+		
+		
+		return out
+
+	
+	
+	def resolve(self,url):
+		if 'adf.ly' not in url:
+			return
+		url = cache.get(webutils.adfly,1,url)
+		from resources.lib.resolvers import onedrive
+		resolved = onedrive.resolve(url)
+		return resolved

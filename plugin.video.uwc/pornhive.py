@@ -163,14 +163,14 @@ def getFlashX(url):
     flashxsrc = utils.getHtml2(flashxurl)
     progress.update( 60, "", "Grabbing video file", "" )
     flashxurl2 = re.compile('<a href="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(flashxsrc)
-    flashxsrc2 = utils.getHtml2(flashxurl2[0])
+    flashxsrc2 = utils.getHtml(flashxurl2[0])
     progress.update( 70, "", "Grabbing video file", "" )
     flashxjs = re.compile("<script type='text/javascript'>([^<]+)</sc", re.DOTALL | re.IGNORECASE).findall(flashxsrc2)
     try: flashxujs = unpack(flashxjs[0])
     except: flashxujs = flashxjs[0]
-    videourl = re.compile(r'\[{\s?file:\s?"([^"]+)",', re.DOTALL | re.IGNORECASE).findall(flashxujs)
+    videourl = re.compile(r'\[\{\s*?file:\s*?"([^"]+)",', re.DOTALL | re.IGNORECASE).findall(flashxujs)
     progress.update( 80, "", "Returning video file", "" )
-    videourl = videourl[0]
+    videourl = videourl[-1]
     return videourl
 
 

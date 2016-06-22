@@ -19,7 +19,7 @@
 '''
 
 import urllib, urllib2, re, cookielib, os.path, sys, socket, time, tempfile, string
-import xbmc, xbmcplugin, xbmcgui, xbmcaddon, sqlite3, urlparse, xbmcvfs
+import xbmc, xbmcplugin, xbmcgui, xbmcaddon, sqlite3, urlparse, xbmcvfs, base64
 
 from jsunpack import unpack
 
@@ -30,7 +30,7 @@ __scriptname__ = "Ultimate Whitecream"
 __author__ = "mortael"
 __scriptid__ = "plugin.video.uwc"
 __credits__ = "mortael, Fr33m1nd, anton40, NothingGnome"
-__version__ = "1.1.7"
+__version__ = "1.1.16"
 
 USER_AGENT = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3'
 
@@ -336,6 +336,11 @@ def playvideo(videosource, name, download=None, url=None):
         hosts.append('Jetload')
     if re.search('videowood\.tv/', videosource, re.DOTALL | re.IGNORECASE):
         hosts.append('Videowood')
+    if re.search('streamdefence.com/view\.php', videosource, re.DOTALL | re.IGNORECASE):
+        hosts.append('Streamdefence')        
+    if not 'keeplinks' in url:
+        if re.search('keeplinks\.eu/p1', videosource, re.DOTALL | re.IGNORECASE):
+            hosts.append('Keeplinks <--')        
     if len(hosts) == 0:
         progress.close()
         notify('Oh oh','Couldn\'t find any video')
@@ -409,14 +414,14 @@ def playvideo(videosource, name, download=None, url=None):
         flashxsrc = getHtml2(flashxurl)
         progress.update( 60, "", "Grabbing video file", "" )
         flashxurl2 = re.compile('<a href="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(flashxsrc)
-        flashxsrc2 = getHtml2(flashxurl2[0])
+        flashxsrc2 = getHtml(flashxurl2[0])
         progress.update( 70, "", "Grabbing video file", "" ) 
         flashxjs = re.compile("<script type='text/javascript'>([^<]+)</sc", re.DOTALL | re.IGNORECASE).findall(flashxsrc2)
         progress.update( 80, "", "Getting video file from FlashX", "" )
         try: flashxujs = unpack(flashxjs[0])
         except: flashxujs = flashxjs[0]
-        videourl = re.compile(r'\[{\s?file:\s?"([^"]+)",', re.DOTALL | re.IGNORECASE).findall(flashxujs)
-        videourl = videourl[0]
+        videourl = re.compile(r'\[\{\s*?file:\s*?"([^"]+)",', re.DOTALL | re.IGNORECASE).findall(flashxujs)
+        videourl = videourl[-1]
     elif vidhost == 'Mega3X':
         progress.update( 40, "", "Loading Mega3X", "" )
         mega3xurl = re.compile(r"(https?://(?:www\.)?mega3x.net/(?:embed-)?(?:[0-9a-zA-Z]+).html)", re.DOTALL | re.IGNORECASE).findall(videosource)
@@ -447,7 +452,7 @@ def playvideo(videosource, name, download=None, url=None):
         jlurl = chkmultivids(jlurl)
         jlurl = "http://jetload.tv/" + jlurl
         jlsrc = getHtml(jlurl, url)
-        videourl = re.compile(r'<source src="([^"]+)', re.DOTALL | re.IGNORECASE).findall(jlsrc)
+        videourl = re.compile(r'file: "([^"]+)', re.DOTALL | re.IGNORECASE).findall(jlsrc)
         videourl = videourl[0]
     elif vidhost == 'Videowood':
         progress.update( 40, "", "Loading Videowood", "" )
@@ -457,6 +462,33 @@ def playvideo(videosource, name, download=None, url=None):
         vwsrc = getHtml(vwurl, url)
         progress.update( 80, "", "Getting video file from Videowood", "" )
         videourl = videowood(vwsrc)
+    elif vidhost == 'Keeplinks <--':
+        progress.update( 40, "", "Loading Keeplinks", "" )
+        klurl = re.compile(r"//(?:www\.)?keeplinks\.eu/p1/([0-9a-zA-Z]+)", re.DOTALL | re.IGNORECASE).findall(videosource)
+        klurl = chkmultivids(klurl)
+        klurl = 'http://www.keeplinks.eu/p1/' + klurl
+        kllink = getVideoLink(klurl, '')
+        kllinkid = kllink.split('/')[-1]
+        klheader = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11',
+           'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+           'Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
+           'Accept-Encoding': 'none',
+           'Accept-Language': 'en-US,en;q=0.8',
+           'Connection': 'keep-alive',
+           'Cookie': 'flag['+kllinkid+'] = 1;'} 
+        klpage = getHtml(kllink, klurl, klheader)
+        playvideo(klpage, name, download, klurl)
+        return
+    elif vidhost == 'Streamdefence':
+        progress.update( 40, "", "Loading Streamdefence", "" )
+        sdurl = re.compile(r'streamdefence\.com/view.php\?ref=([^"]+)"', re.DOTALL | re.IGNORECASE).findall(videosource)
+        sdurl = chkmultivids(sdurl)
+        sdurl = 'http://www.streamdefence.com/view.php?ref=' + sdurl
+        sdsrc = getHtml(sdurl, url)
+        progress.update( 80, "", "Getting video file from Streamdefence", "" )
+        sdpage = streamdefence(sdsrc)
+        playvideo(sdpage, name, download, sdurl)
+        return
     progress.close()
     playvid(videourl, name, download)
 
@@ -491,7 +523,7 @@ def PlayStream(name, url):
     return
 
 
-def getHtml(url, referer, hdr=None, NoCookie=None, data=None):
+def getHtml(url, referer='', hdr=None, NoCookie=None, data=None):
     if not hdr:
         req = Request(url, data, headers)
     else:
@@ -587,17 +619,20 @@ def addDownLink(name, url, mode, iconimage, desc, stream=None, fav='add', noDown
     ok = True
     liz = xbmcgui.ListItem(name, iconImage="DefaultVideo.png", thumbnailImage=iconimage)
     liz.setArt({'thumb': iconimage, 'icon': iconimage})
+    fanart = os.path.join(rootDir, 'fanart.jpg')
     if addon.getSetting('posterfanart') == 'true':
-        liz.setArt({'poster': iconimage, 'fanart': iconimage})
+        fanart = iconimage
+        liz.setArt({'poster': iconimage})
+    liz.setArt({'fanart': fanart})
     if stream:
         liz.setProperty('IsPlayable', 'true')
     if len(desc) < 1:
         liz.setInfo(type="Video", infoLabels={"Title": name})
     else:
         liz.setInfo(type="Video", infoLabels={"Title": name, "plot": desc, "plotoutline": desc})
+    contextMenuItems.append(('[COLOR hotpink]' + favtext + ' favorites[/COLOR]', 'xbmc.RunPlugin('+favorite+')'))
     if noDownload == False:
         contextMenuItems.append(('[COLOR hotpink]Download Video[/COLOR]', 'xbmc.RunPlugin('+dwnld+')'))
-    contextMenuItems.append(('[COLOR hotpink]' + favtext + ' favorites[/COLOR]', 'xbmc.RunPlugin('+favorite+')'))
     liz.addContextMenuItems(contextMenuItems, replaceItems=False)
     ok = xbmcplugin.addDirectoryItem(handle=addon_handle, url=u, listitem=liz, isFolder=False)
     return ok
@@ -615,8 +650,11 @@ def addDir(name, url, mode, iconimage, page=None, channel=None, section=None, ke
     ok = True
     liz = xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
     liz.setArt({'thumb': iconimage, 'icon': iconimage})
+    fanart = os.path.join(rootDir, 'fanart.jpg')
     if addon.getSetting('posterfanart') == 'true':
-        liz.setArt({'poster': iconimage, 'fanart': iconimage})
+        fanart = iconimage
+        liz.setArt({'poster': iconimage})
+    liz.setArt({'fanart': fanart})
     liz.setInfo(type="Video", infoLabels={"Title": name})
     ok = xbmcplugin.addDirectoryItem(handle=addon_handle, url=u, listitem=liz, isFolder=Folder)
     return ok
@@ -633,7 +671,11 @@ def _get_keyboard(default="", heading="", hidden=False):
 def decodeOpenLoad(html):
 
     # decodeOpenLoad made by mortael, please leave this line for proper credit :)
-    aastring = re.search(r"<video(?:.|\s)*?<script\s[^>]*?>((?:.|\s)*?)</script", html, re.DOTALL | re.IGNORECASE).group(1)
+    aastring = re.compile("<script[^>]+>(ﾟωﾟﾉ[^<]+)<", re.DOTALL | re.IGNORECASE).findall(html)
+    haha = re.compile(r"welikekodi_ya_rly = (\d+) - (\d+)", re.DOTALL | re.IGNORECASE).findall(html)
+    haha = int(haha[0][0]) - int(haha[0][1])
+    
+    aastring = aastring[haha]
 
     aastring = aastring.replace("(ﾟДﾟ)[ﾟεﾟ]+(oﾟｰﾟo)+ ((c^_^o)-(c^_^o))+ (-~0)+ (ﾟДﾟ) ['c']+ (-~-~1)+","")
     aastring = aastring.replace("((ﾟｰﾟ) + (ﾟｰﾟ) + (ﾟΘﾟ))", "9")
@@ -799,6 +841,18 @@ def videowood(data):
         return
 
 
+def streamdefence(html):
+    if 'openload' in html:
+        return html
+    match = re.search(r'\("([^"]+)', html, re.DOTALL | re.IGNORECASE)
+    if match:
+        result = match.group()
+        decoded = base64.b64decode(result)
+    else:
+        decoded = base64.b64decode(html)
+    return streamdefence(decoded)
+        
+        
 def searchDir(url, mode, page=None):
     conn = sqlite3.connect(favoritesdb)
     c = conn.cursor()

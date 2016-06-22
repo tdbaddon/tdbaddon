@@ -114,8 +114,11 @@ def addHCDir(name,url,mode,iconimage,desc):
     liz = xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
     liz.setInfo(type="Video", infoLabels={ "Title": name, "plot": desc, "plotoutline": desc })
     liz.setArt({'thumb': iconimage, 'icon': iconimage})
+    fanart = os.path.join(utils.rootDir, 'fanart.jpg')
     if addon.getSetting('posterfanart') == 'true':
-        liz.setArt({'poster': iconimage, 'fanart': iconimage})    
+        fanart = iconimage
+        liz.setArt({'poster': iconimage})
+    liz.setArt({'fanart': fanart})  
     ok = xbmcplugin.addDirectoryItem(handle=utils.addon_handle, url=u, listitem=liz, isFolder=True)
     return ok
 

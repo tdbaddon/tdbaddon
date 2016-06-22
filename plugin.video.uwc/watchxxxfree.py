@@ -32,13 +32,13 @@ def WXFMain():
     utils.addDir('[COLOR hotpink]Top Pornstars[/COLOR]','http://www.watchxxxfree.com/top-pornstars/',15,'','')
     Sort = '[COLOR hotpink]Current sort:[/COLOR] ' + sortlistwxf[int(addon.getSetting("sortwxf"))]
     utils.addDir(Sort, '', 16, '', '')
-    WXFList('http://www.watchxxxfree.com/page/1/',1)
+    WXFList('http://watchxxxfree.com/page/1/',1)
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
 def WXFCat(url):
     cathtml = utils.getHtml(url, '')
-    match = re.compile('data-src="([^"]+)".*?<a href="([^"]+)"[^<]+<span>([^<]+)</s.*?">([^<]+)', re.DOTALL | re.IGNORECASE).findall(cathtml)
+    match = re.compile('data-lazy-src="([^"]+)".*?<a href="([^"]+)"[^<]+<span>([^<]+)</s.*?">([^<]+)', re.DOTALL | re.IGNORECASE).findall(cathtml)
     for img, catpage, name, videos in match:
         catpage = catpage + 'page/1/'
         name = name + ' [COLOR deeppink]' + videos + '[/COLOR]'
@@ -73,7 +73,7 @@ def WXFList(url, page, onelist=None):
     else:
         url = url + '?filtre=' + sort + '&display=extract'
     listhtml = utils.getHtml(url, '')
-    match = re.compile('data-src="([^"]+)".*?<a href="([^"]+)" title="([^"]+)".*?<p>([^<]+)</p>', re.DOTALL | re.IGNORECASE).findall(listhtml)
+    match = re.compile('data-lazy-src="([^"]+)".*?<a href="([^"]+)" title="([^"]+)".*?<p>([^<]+)</p>', re.DOTALL | re.IGNORECASE).findall(listhtml)
     for img, videopage, name, desc in match:
         name = utils.cleantext(name)
         desc = utils.cleantext(desc)

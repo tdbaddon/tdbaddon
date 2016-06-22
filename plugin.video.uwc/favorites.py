@@ -44,6 +44,7 @@ def List():
         cleanchat()
         cleancam4()
     conn = sqlite3.connect(favoritesdb)
+    conn.text_factory = str
     c = conn.cursor()
     try:
         c.execute("SELECT * FROM favorites")
@@ -70,6 +71,7 @@ def Favorites(fav,mode,name,url,img):
 
 def addFav(mode,name,url,img):
     conn = sqlite3.connect(favoritesdb)
+    conn.text_factory = str
     c = conn.cursor()
     c.execute("INSERT INTO favorites VALUES (?,?,?,?)", (name, url, mode, img))
     conn.commit()

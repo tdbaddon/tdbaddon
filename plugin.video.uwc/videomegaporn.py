@@ -34,7 +34,7 @@ def Main():
 
 def List(url):
     listhtml = utils.getHtml(url, '')
-    match = re.compile(r'<div class="item">\s<a href="([^"]+)" title="([^"]+)".*?><img.*?src="([^"]+)".*?<div class="runtime">([^<]+)??</div>', re.DOTALL | re.IGNORECASE).findall(listhtml)
+    match = re.compile(r'<div class="item">\s*?<a href="([^"]+)" title="([^"]+)".*?><img.*?src="([^"]+)".*?<div class="runtime">([^<]+)??</div>', re.DOTALL | re.IGNORECASE).findall(listhtml)
     for videopage, name, img, runtime in match:
         name = utils.cleantext(name)
         if runtime:

@@ -39,28 +39,74 @@ def List(url):
             url = '1' + url
         utils.addDownLink(name, url, 272, img, '', noDownload=True)
     xbmcplugin.endOfDirectory(utils.addon_handle)
+    
 
-
-def Playvid(url, name):
+def findurl(url, name):
     dp = xbmcgui.DialogProgress()
     dp.create("Searching webcamlink","Searching webcamlink for:",name)
     count = 0
-    for videoid in range(491, 340, -1):
+    for videoid in range(492, 438, -1): #54
         dp.update(int(count))
-        videotest = 'false'
+        videotest = ''
         testurl = 'http://video%s.myfreecams.com:1935/NxServer/mfc_%s.f4v_aac/playlist.m3u8' % (videoid, url)
-        if videotest == 'false':
-            try: videotest = urllib2.urlopen(testurl, timeout=3)
-            except: videotest = 'false'
-        count = count + 0.7
-        if not videotest == 'false':
+        try: videotest = urllib2.urlopen(testurl, timeout=3)
+        except: pass
+        if videotest:
             dp.update(100)
-            dp.close()
-            break
+            dp.close()        
+            return testurl
+        count = count + 0.7
         if dp.iscanceled():
             dp.close()
             break
-    if not videotest == 'false':
+    for videoid in range(419, 404, -1): #15
+        dp.update(int(count))
+        videotest = ''
+        testurl = 'http://video%s.myfreecams.com:1935/NxServer/mfc_%s.f4v_aac/playlist.m3u8' % (videoid, url)
+        try: videotest = urllib2.urlopen(testurl, timeout=3)
+        except: pass
+        if videotest:
+            dp.update(100)
+            dp.close()        
+            return testurl
+        count = count + 0.7
+        if dp.iscanceled():
+            dp.close()
+            break
+    for videoid in range(371, 340, -1): #31
+        dp.update(int(count))
+        videotest = ''
+        testurl = 'http://video%s.myfreecams.com:1935/NxServer/mfc_%s.f4v_aac/playlist.m3u8' % (videoid, url)
+        try: videotest = urllib2.urlopen(testurl, timeout=3)
+        except: pass
+        if videotest:
+            dp.update(100)
+            dp.close()        
+            return testurl
+        count = count + 0.7
+        if dp.iscanceled():
+            dp.close()
+            break            
+    for videoid in range(627, 600, -1): #27
+        dp.update(int(count))
+        videotest = ''
+        testurl = 'http://video%s.myfreecams.com:1935/NxServer/mfc_%s.f4v_aac/playlist.m3u8' % (videoid, url)
+        try: videotest = urllib2.urlopen(testurl, timeout=3)
+        except: pass
+        if videotest:
+            dp.update(100)
+            dp.close()        
+            return testurl
+        count = count + 0.7
+        if dp.iscanceled():
+            dp.close()
+            break            
+    return ''
+
+
+def Playvid(url, name):
+    testurl = findurl(url, name)
+    if testurl.startswith('http'):
         videourl = testurl
         iconimage = xbmc.getInfoImage("ListItem.Thumb")
         listitem = xbmcgui.ListItem(name, iconImage="DefaultVideo.png", thumbnailImage=iconimage)

@@ -1,3 +1,51 @@
+[B]Version 1.1.16[/B]
+Fixed: Jetload
+Added: Streamdefence support for watchxxxfree
+
+
+[B]Version 1.1.15[/B]
+Fixed: Porntrex
+Added: Keeplinks to utils, for Pornkino
+
+
+[B]Version 1.1.14[/B]
+Fixed: Saving Streamxxx to favorites
+Fixed: FlashX videos
+Fixed: Spankbang, Videomegaporn, WatchXXXFree, ParadiseHill
+Changed: Switched Contextmenu items
+
+
+[B]Version 1.1.13[/B]
+Fixed: Openload pt 2
+Fixed: Sexix
+
+
+[B]Version 1.1.12[/B]
+Fixed: Openload
+
+
+[B]Version 1.1.11[/B]
+Fixed: Hentai section
+Fixed: Spankbang videolisting
+
+
+[B]Version 1.1.10[/B]
+Added: MyFreeCams, check for more video servers
+Added: Age check dialog on first start
+
+
+[B]Version 1.1.9[/B]
+Added: Search for xxxstreams(org) (thanks Anton40)
+Added: Sexix
+Changed: UWC Fanart, also adding it to every 'folder'
+Fixed: MyFreeCams, you should now get every video
+Fixed: ParadiseHill video listing (fixed by Anton40)
+
+
+[B]Version 1.1.8[/B]
+Fixed: Streamxxx videos
+
+
 [B]Version 1.1.7[/B]
 Fixed: Search for Dutch Tubes
 Fixed: Bug in Pornhive giving unsupported host for Flashx/Streamcloud

@@ -60,6 +60,8 @@ def List(url):
     match = re.compile(r'<div class="quadrato">\s*?<a href="([^"]+)"\s*?title="([^"]+)".*?src="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(listhtml)
     for videopage, name, img in match:
         name = utils.cleantext(name)
+        if videopage.startswith('/'):
+            videopage = 'http://streamxxx.tv/' + videopage
         utils.addDownLink(name, videopage, 172, img, '')
     try:
         nextp=re.compile(r"""current(?:"|')>\d+</span><a.*?href=(?:"|')([^'"]+)""", re.DOTALL | re.IGNORECASE).findall(listhtml)[0]
