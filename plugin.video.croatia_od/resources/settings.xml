@@ -2,7 +2,7 @@
 <settings>
 	<category label="General">
 	
-	
+	<setting id="tvm_token" type="text" default="" visible="false"/>
     <setting id="authtime" type="text" default="" visible="false"/>
     <setting id="currentauth" type="textr" default="" visible="false"/>
 

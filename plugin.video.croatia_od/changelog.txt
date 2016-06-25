@@ -1,6 +1,10 @@
 =====================================
 Croatia On Demand addon by natko1412
 =====================================
+v1.9.4
+-dodano: extra sadržaj Euro 2016
+-dorađene neke stvari
+
 v1.9.3
 -dodano: tribina.net i sipragezabava.com
 -dodano: serijex.com

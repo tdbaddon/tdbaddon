@@ -8,8 +8,29 @@ try:
 except:
 	import urllib.request as urllib2
 	
-import urllib, client
-import re
+import urllib, client, control
+import re,sys
+from random import randint
+from log_utils import log
+from addon import Addon
+addon = Addon('plugin.video.croatia_od', sys.argv)
+
+def track_ga(sc):
+    try:
+        cid = get_cid()
+        av = addon.get_version()
+        sc = urllib.quote(sc)
+        client.request('http://www.google-analytics.com/collect?payload_data&v=1&tid=UA-79665842-1&cid=%s&t=screenview&an=Croatia%%20On%%20Demand&av=%s&cd=%s'%(cid,av,sc))
+    except:
+        pass
+
+def get_cid():
+    id = control.setting('client_id')
+    if id=='':
+        id = str(randint(0, 0x7fffffff))
+        control.set_setting('client_id',id)
+    return id
+
 
 def read_url(url):
 	return client.request(url)

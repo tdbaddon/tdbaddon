@@ -1,5 +1,9 @@
 
 
+[COLOR chartreuse]1.0.22: 21st June 2016[/COLOR]
+  - fixed downloading functionality
+
+
 [COLOR chartreuse]1.0.21: 18th June 2016[/COLOR]
   - fixed due to changes at website
 

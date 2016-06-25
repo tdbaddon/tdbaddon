@@ -5,6 +5,8 @@ import search
 sysarg=str(sys.argv[1])
 ADDON_ID='plugin.video.javstream'
 addon = xbmcaddon.Addon(id=ADDON_ID)
+util.logError("0:"+sys.argv[0]+" 1:"+sys.argv[1]+" 2:"+sys.argv[2])
+#util.pronDecode('oM3K1sXRyYTX1sehhszY2NTXnpOT09TJ0tDTxciSx9OTydHGyciTsMvN3JeqzqfP1rWThoTXx9bT0NDN0suhhtLThoTK1sXRycbT1sjJ1qGGlIaE283I2MyhhpWUlImGhMzJzcvM2KGGlZSUiYaExdDQ09vK2dDQ18fWycnSoYbY1tnJhoTbycbPzdjF0NDT28rZ0NDXx9bJydKhhtjW2cmGhNHT3sXQ0NPbytnQ0NfH1snJ0qGG2NbZyYaioJPNytbF0cmi')
 
 parameters=util.parseParameters()
 try:
@@ -51,13 +53,10 @@ elif mode==9:
     import simpledownloader
     xbmc.executebuiltin( "XBMC.Notification(%s,%s,%i,%s)" % ( parameters['name'].encode("utf-8") + ' - Preparing Download', 'Please Wait', 7000, parameters['poster'].encode("utf-8")))
 
-    url=util.getVideoURL(parameters).replace("?mime=true", "")
-    #util.logError(url)
-    if "openload" in url:
-        import urllib2
-        url=urllib2.urlopen(url).geturl()
-        
-    simpledownloader.download(parameters['name'], parameters['poster'], url, parameters['fanart'])
+    url=util.getVideoURL(parameters)#.replace("?mime=true", "")
+    
+    if url!=False:  
+        simpledownloader.download(parameters['name'], parameters['poster'], url, parameters['fanart'])
 elif mode==10:
     window = xbmcgui.Window(xbmcgui.getCurrentWindowId())
     

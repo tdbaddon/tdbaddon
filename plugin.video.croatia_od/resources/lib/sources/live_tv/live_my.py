@@ -76,6 +76,10 @@ class main():
 				from resources.lib.resolvers import hrti
 				return hrti.resolve(url)
 
+			if 'streamlive.to' in url:
+				log('using my')
+				from resources.lib.resolvers import streamlive
+				return streamlive.resolve(url)
 
 			#nova tv, doma tv
 			specy = {'http://www.sipragezabava.com/kanal_3_hr.php':'http://prvenstvoliga.blogspot.hr/2014/12/nova-tv.html',

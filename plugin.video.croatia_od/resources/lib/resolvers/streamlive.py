@@ -33,12 +33,13 @@ def resolve(url):
           control.infoDialog('Premium channel. Upgrade your account to watch it!', heading='Streamlive.to')
           return 
 
-        if 'not logged in yet' in result.lower():
+        if 'not logged in yet' in result.lower() or 'you have reached the limit today' in result.lower():
             #Cookie expired or not valid, request new cookie
             cj = login(cj,post_data)
             cj.save (cookieFile,ignore_discard=True)
             result = client.request(url,cj=cj)
 
+        log(result)
         token_url = re.compile('getJSON\("(.+?)"').findall(result)[0]
         r2 = client.request(token_url,referer=referer)
         token = json.loads(r2)["token"]
@@ -74,5 +75,5 @@ def get_cj():
 
 def get_account():
     import random
-    accounts = [('cod1','croatia_on_demand1'),('cod2','croatia_on_demand2'),('cod3','croatia_on_demand3')]
+    accounts = [('cod11','croatia_on_demand1'),('cod1','croatia_on_demand1'),('cod2','croatia_on_demand2'),('cod3','croatia_on_demand3'),('cod22','croatia_on_demand'),('cod33','croatia_on_demand'),('cod44','croatia_on_demand')]
     return random.choice(accounts)

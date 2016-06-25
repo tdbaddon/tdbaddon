@@ -4,7 +4,7 @@ from resources.lib.modules.addon import Addon
 import sys,os
 import urlparse,urllib
 import xbmc, xbmcgui, xbmcplugin, xbmcaddon
-from resources.lib.modules import control,radio
+from resources.lib.modules import control,radio,webutils
 from resources.lib.modules.log_utils import log
 
 addon = Addon('plugin.video.croatia_od', sys.argv)
@@ -27,8 +27,7 @@ mode = args.get('mode', None)
 
 
 if mode is None:
-    from  resources.lib.resolvers import hrti
-    hrti.get_live()
+    webutils.track_ga('Glavni izbornik')
     addon.add_item({'mode': 'on_demand_tv'}, {'title':'Televizija na zahtjev'}, img=icon_path('TV.png'), fanart=fanart,is_folder=True)
     addon.add_item({'mode': 'live_tv'}, {'title':('Televizija uživo').encode('utf-8')}, img=icon_path('TV.png'), fanart=fanart,is_folder=True)
     addon.add_item({'mode': 'on_demand_radio'}, {'title':'Radio na zahtjev'}, img=icon_path('Radio.png'), fanart=fanart,is_folder=True)
@@ -36,12 +35,14 @@ if mode is None:
     addon.add_item({'mode': 'downloads'}, {'title':'Preuzimanja'}, img=icon_path('Downloads.png'), fanart=fanart,is_folder=True)
     addon.add_item({'mode': 'tools'}, {'title':'Alati'}, img=icon_path('tools.png'), fanart=fanart,is_folder=True)
     
-    
+
     addon.end_of_directory()
     from resources.lib.modules import cache, control, changelog
     cache.get(changelog.get, 600000000, control.addonInfo('version'), table='changelog')
+
     
 elif mode[0] == 'live_tv':
+    webutils.track_ga('Live TV')
     sources = os.listdir(AddonPath + '/resources/lib/sources/live_tv')
     sources.remove('__init__.py')
     for source in sources:
@@ -56,6 +57,7 @@ elif mode[0] == 'live_tv':
     addon.end_of_directory()
 
 elif mode[0]=='live_radio':
+    webutils.track_ga('Live radio')
     lista=radio.get_links_country('croatia')
     for i in range(1,len(lista)):
         if lista[i][1]!='':
@@ -65,6 +67,7 @@ elif mode[0]=='live_radio':
     xbmcplugin.endOfDirectory(addon_handle)
 
 elif mode[0] == 'on_demand_tv':
+    webutils.track_ga('TV na zahtjev')
     sources = os.listdir(AddonPath + '/resources/lib/sources/on_demand_tv/')
     sources.remove('__init__.py')
     for source in sources:
@@ -99,6 +102,7 @@ elif mode[0] == 'on_demand_radio':
 
 elif mode[0] == 'open_live_tv':
     site = args['site'][0]
+    webutils.track_ga('Live TV: ' + site)
     try:
         next_page = args['next'][0]
     except:
@@ -145,6 +149,7 @@ elif mode[0] == 'open_live_tv':
 
 elif mode[0] == 'open_demand_tv':
     site = args['site'][0]
+    webutils.track_ga('TV na zahtjev: ' + site)
     try:
         next_page = args['next'][0]
     except:
@@ -339,6 +344,7 @@ elif mode[0] == 'play':
     url = args['url'][0]
     title = args['title'][0]
     img = args['img'][0]
+    webutils.track_ga('Play')
     if url.endswith('.ts') or 'bit.ly' in url:
         resolved = url
     else:
@@ -355,6 +361,7 @@ elif mode[0] == 'play_special':
     title = args['title'][0]
     img = args['img'][0]
     site = args['site'][0]
+    webutils.track_ga('Play')
     exec "from resources.lib.sources.live_tv import %s"%(site)
     source = eval(site+'.main()')
     resolved = source.resolve(url)
@@ -376,6 +383,7 @@ elif mode[0] == 'play_folder':
     title = args['title'][0]
     img = args['img'][0]
     site = args['site'][0]
+    webutils.track_ga('Play')
     exec "from resources.lib.sources.live_tv import %s"%(site)
     source = eval(site+'.main()')
     resolved = source.resolve(url,title = title,icon=img)
@@ -390,6 +398,7 @@ elif mode[0] == 'play_special_sport':
     title = args['title'][0]
     img = args['img'][0]
     site = args['site'][0]
+    webutils.track_ga('Play')
     exec "from resources.lib.sources.live_sport import %s"%(site)
     source = eval(site+'.main()')
     resolved = source.resolve(url)
@@ -406,6 +415,7 @@ elif mode[0]=='play_od_item':
         title = args['title'][0]
         site = args['site'][0]
         img = args['img'][0]
+        webutils.track_ga('Play')
         exec "from resources.lib.sources.on_demand_tv import %s"%(site)
         info = eval(site+".info()")
         source = eval(site+".main()")
@@ -423,6 +433,7 @@ elif mode[0]=='play_od_radio_item':
     title = args['title'][0]
     site = args['site'][0]
     img = args['img'][0]
+    webutils.track_ga('Play')
     exec "from resources.lib.sources.on_demand_radio import %s"%(site)
     info = eval(site+".info()")
     source = eval(site+".main()")
@@ -511,6 +522,7 @@ elif mode[0]=='settings':
 ######################################################################################################################
 
 elif mode[0]=='downloads':
+    webutils.track_ga('Preuzimanja')
     from resources.lib.modules import downloader
     downloader.downloader()
 
@@ -519,6 +531,7 @@ elif mode[0]=='stopDownload':
     downloader.stopDownload()
 
 elif mode[0]=='startDownload':
+    webutils.track_ga('Preuzimanje zapoceto')
     from resources.lib.modules import downloader
     downloader.startDownload()
 
@@ -545,7 +558,6 @@ elif mode[0]=='download_file':
     info = eval(site+".info()")
     source = eval(site+".main()")
     url = source.resolve(url)
-    log(url)
     from resources.lib.modules import downloader
     downloader.addDownload(title, url, image, resolved=True)
 

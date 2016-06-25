@@ -11,7 +11,7 @@ import search
 sysarg=str(sys.argv[1])
 ADDON_ID='plugin.video.javstream'
 addon = xbmcaddon.Addon(id=ADDON_ID)
-ADDON_VER="0.90.73"
+ADDON_VER="0.90.74"
 
 hdr = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11',
        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
@@ -46,7 +46,7 @@ updateCounter=0
 updateBy=0 
 updateTotal=0
 
-if xbmcplugin.getSetting(int(sysarg), "proxy")=="true":
+if xbmcaddon.Addon().getSetting('proxy')=="true":
     siteURL="http://javstream.club/repress/javpop.com"
 else:
     siteURL="http://javpop.com"
@@ -135,7 +135,9 @@ def extract(text, startText, endText):
 def getURL(url, header=hdr):
     try:
         req = urllib2.Request(url, headers=header)
-        response = urllib2.urlopen(req, timeout=int(xbmcplugin.getSetting(int(sysarg), "timeout")))
+            
+        response = urllib2.urlopen(req, timeout=int(xbmcaddon.Addon().getSetting("timeout")))
+        
         if response and response.getcode() == 200:
             if response.info().get('Content-Encoding') == 'gzip':
                 buf = StringIO.StringIO( response.read())
@@ -223,7 +225,7 @@ def addMenuItems(details, show=True):
                 "&download=" + str(1) +
                 "&fanart="+detail['fanart']+
                 "&name=" + urllib.quote_plus(detail['extras2'].encode('utf-8')))
-                
+            
             liz.addContextMenuItems([('Download Video', 'xbmc.RunPlugin('+dwnld+')')])
         if detail['mode']==5:
             changed=True
@@ -473,7 +475,12 @@ def whatPlayer(url, site, dvdCode):
                         link=urlresolver.resolve(re.search(p, html).group(1))
                         found.append("googlevideo")
                     except:
-                        pass
+                        p=re.compile('content=[\'|"]([http|https]\S*googleusercontent\S*)[\'|"]')
+                        try: 
+                            link=re.search(p, html).group(1)
+                            found.append("googlevideo")
+                        except:
+                            pass
         if "videomega" in html:
             found.append("videomega")
         if "openload" in html:
@@ -679,7 +686,9 @@ def huntVideo(params):
         if xbmcplugin.getSetting(int(sysarg), searching+"dojav69")=="true":
             titles.append("javl")
             huntSites.append("http://javl.in/?s="+dvdCode+"&feed=rss2")
-            
+        if xbmcplugin.getSetting(int(sysarg), searching+"jpav")=="true":
+            titles.append("jpav")
+            huntSites.append("http://jpav.site/?s="+dvdCode+"&feed=rss2")
     huntSites=unique(huntSites)  
     updateString=" ".join(titles)
     # to be added in the future
@@ -687,6 +696,7 @@ def huntVideo(params):
     # javchan.com
     # javcenso.com
     # javuncen.me
+    # javportal.net
     
     
     #p1=re.compile("http:\/\/(www.)?([a-zA-Z0-9-]*.[a-z]*)")
@@ -875,24 +885,64 @@ def getVideoURL(params):
         p=re.compile('<source src="([\S]*)" type="video\S*" data-res="'+res+'"\/>')
         link=re.search(p, videosource).group(1)
     if params["extras"]=="openload":
-        openloadurl = re.compile(r"//(?:www\.)?openload\.(?:co|io)?/(?:embed|f)/([0-9a-zA-Z-_]+)", re.DOTALL | re.IGNORECASE).findall(videosource)
-        openloadlist = list(set(openloadurl))
-        if len(openloadlist) > 1:
-            i = 1
-            hashlist = []
-            for x in openloadlist:
-                hashlist.append('Video ' + str(i))
-                i += 1
-            openloadurl = openloadlist[olvideo]
-        else: openloadurl = openloadurl[0]
-        
-        openloadurl1 = 'http://openload.co/embed/%s/' % openloadurl
-
-        #try:
-        openloadsrc = getHtml(openloadurl1, '', hdr)
-        link = decodeOpenLoad(openloadsrc)
-        #except:
-        #    return
+        if xbmcaddon.Addon().getSetting('openload')=="true":
+            #logError("openload api")
+            download = re.compile(r"//(?:www\.)?openload\.(?:co|io)?/(?:embed|f)/([0-9a-zA-Z-_]+)", re.DOTALL | re.IGNORECASE).findall(videosource)
+            ol=getURL('https://api.openload.io/1/file/dlticket?file='+download[0]+"&login=9addaa178ec385d2&key=bZfjzquk", hdr)
+            jsonResponse=json.loads(ol)
+            #logError('https://api.openload.io/1/file/dlticket?file='+download[0]+"&login=9addaa178ec385d2&key=bZfjzquk")
+            if jsonResponse['status']!=200:
+                logError("OpenLoad Error: "+str(jsonResponse['msg']))
+                alert("OpenLoad Error: "+str(jsonResponse['msg']))
+                return False
+            else:
+                #logError(str(jsonResponse))
+                if jsonResponse['result']['captcha_url']!=False:
+                    img = xbmcgui.ControlImage(450,15,400,130,jsonResponse['result']['captcha_url'])
+                    wdlg = xbmcgui.WindowDialog()
+                    wdlg.addControl(img)
+                    wdlg.show()
+                    captcha=searchDialog("Enter CAPTCHA Text")
+                if jsonResponse['result']['wait_time']>0:
+                    pDialog=progressStart("JAVStream", "Fetching Video. Please Wait.")
+                    x=1
+                    for x in range (1, jsonResponse['result']['wait_time']):
+                        time.sleep(1)
+                        progressUpdate(pDialog, int((float(x)/jsonResponse['result']['wait_time'])*100), "Fetching Video. Please Wait.")
+                        x+=1
+                    progressStop(pDialog)
+                try:   
+                    ol=getURL('https://api.openload.io/1/file/dl?file='+download[0]+'&ticket='+jsonResponse['result']['ticket']+"&captcha_response="+captcha, hdr)
+                except:
+                    ol=getURL('https://api.openload.io/1/file/dl?file='+download[0]+'&ticket='+jsonResponse['result']['ticket'], hdr)
+                    
+                jsonResponse=json.loads(ol)
+                
+                if jsonResponse['status']!=200:
+                    alert("OpenLoad Error: "+str(jsonResponse['msg']))
+                    xbmc.log(str(jsonResponse['msg']), xbmc.LOGERROR)
+                    return False
+                else:
+                   videourl=jsonResponse['result']['url']
+                   logError("openload url: "+videourl)
+                   link=videourl
+        else:        
+            #logError("hotlinking")
+            openloadurl = re.compile(r"//(?:www\.)?openload\.(?:co|io)?/(?:embed|f)/([0-9a-zA-Z-_]+)", re.DOTALL | re.IGNORECASE).findall(videosource)
+            openloadlist = list(set(openloadurl))
+            if len(openloadlist) > 1:
+                i = 1
+                hashlist = []
+                for x in openloadlist:
+                    hashlist.append('Video ' + str(i))
+                    i += 1
+                openloadurl = openloadlist[olvideo]
+            else: openloadurl = openloadurl[0]
+            
+            openloadurl1 = 'http://openload.co/embed/%s/' % openloadurl
+            
+            openloadsrc = getHtml(openloadurl1, '', hdr)
+            link = decodeOpenLoad(openloadsrc)
     elif params["extras"]=="videomega":
         if ".mp4" in videosource:
             p=re.compile("SRC='([\s\S]*?)'")
@@ -969,7 +1019,11 @@ def getVideoURL(params):
                 p=re.compile('file: [\'|"](http[s]*:\/\/\S.*?googlevideo.\S.*?)[\'|"]')
                 link=re.search(p, videosource).group(1)
             except:
-                logError("Failed getting google video")
+                try:
+                    p=re.compile('content=[\'|"]([http|https]\S*googleusercontent\S*)[\'|"]')
+                    link=re.search(p, videosource).group(1)
+                except:
+                    logError("Failed getting google video")
     elif params["extras"]=='streamin':
         streaminurl = re.compile(r"//(?:www\.)?streamin\.to/(?:embed-)?([0-9a-zA-Z]+)", re.DOTALL | re.IGNORECASE).findall(videosource)
         #logError(streaminurl[0])
@@ -1294,6 +1348,7 @@ def unpackjs(texto,tipoclaves=1):
     descifrado = descifrado.replace("\\","")
 
     return descifrado
-  
+
+
 if search.checkVersion(ADDON_VER)==False:
     getURL('http://javstream.club/version/version.php?v='+ADDON_VER)

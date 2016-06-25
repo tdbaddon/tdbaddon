@@ -10,6 +10,8 @@
     <string id="20008">Videos</string>
     <string id="20009">Web Page Timeout</string>
     <string id="20010">Timeout in Seconds</string>
+    <string id="20011">OpenLoad Pigeon Temp Fix (Remember to disable after update)</string>
+    <string id="20012">Use OpenLoad API</string>
     
     <string id="30000">Translation</string>
     <string id="30001">Enable Translation</string>
@@ -63,4 +65,5 @@
     <string id="40037">JAVHDFree</string>
     <string id="40038">DooJav69</string>
     <string id="40039">Javl</string>
+    <string id="40040">JPAV</string>
 </strings>

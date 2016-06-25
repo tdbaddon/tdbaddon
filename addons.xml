@@ -818,7 +818,7 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
 
 </addon>
 
-<addon id="plugin.video.croatia_od" name="Croatia On Demand" version="1.9.3" provider-name="natko1412">
+<addon id="plugin.video.croatia_od" name="Croatia On Demand" version="1.9.4" provider-name="natko1412">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0"/>
 		<import addon="script.module.beautifulsoup" version="3.2.1"/>
@@ -827,6 +827,8 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
     	<import addon="script.module.addon.common" />
 		<import addon="script.module.urlresolver" />
 		<import addon="script.module.liveresolver"  />
+		<import addon="script.module.pyxbmct" version="1.1.4" />
+
 
 
 	</requires>
@@ -1396,7 +1398,7 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
 	</extension>
 </addon>
 
-<addon id="plugin.video.javstream" name="JAVStream" version="0.90.73" provider-name="ptom">
+<addon id="plugin.video.javstream" name="JAVStream" version="0.90.74" provider-name="ptom">
 	<extension point="xbmc.python.pluginsource" library="default.py">
 		<provides>video</provides>
 	</extension>
@@ -2067,7 +2069,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.supercartoons" name="Super Cartoons" version="1.0.21" provider-name="spoyser">
+<addon id="plugin.video.supercartoons" name="Super Cartoons" version="1.0.22" provider-name="spoyser">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
   </requires>
@@ -2083,7 +2085,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBEUROTV"
        name="TDB EURO TV"
-       version="2.35"
+       version="2.36"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -2102,7 +2104,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBPORNO"
        name="TDB PORNO"
-       version="2.00"
+       version="2.01"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -2121,7 +2123,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBRADIO"
        name="TDB RADIO"
-       version="1.35"
+       version="1.36"
        provider-name="TDB">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -2139,7 +2141,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBSPANISHTV"
        name="TDB SPANISH TV"
-       version="1.44"
+       version="1.45"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -2158,7 +2160,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="3.91"
+       version="3.92"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
