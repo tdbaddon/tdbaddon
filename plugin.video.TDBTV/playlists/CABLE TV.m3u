@@ -1,17 +1,14 @@
 ﻿#EXTM3U
 
 #EXTINF:0,HOW TO CHANGE AUDIO LANGUAGE
-http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
+http://www.support.tcomputers.ca/-videos/changeaudio.mp4
 --------------------------------------------------------------------------------------------------------------
 
 #EXTINF:0,A&E 
 http://cp.dmbshare.net:8000/live/paul1/paul1/4611.ts
 
 #EXTINF:0,ABC 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/8068.ts
-
-#EXTINF:0,ABC
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/8090.ts
+0
 
 #EXTINF:0,ABC Family 
 0
@@ -32,28 +29,13 @@ http://cp.dmbshare.net:8000/live/paul1/paul1/4602.ts
 0
 
 #EXTINF:0,BBC 1 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/7902.ts
-
-#EXTINF:0,BBC 1
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/1437.ts
+0
 
 #EXTINF:0,BBC 2 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/1436.ts
-
-#EXTINF:0,BBC 2 
-http://cp.dmbshare.net:8000/live/paul1/paul1/5807.ts
-
-#EXTINF:0,BBC 2 
-http://213.136.90.30:8000/live/guzi/isla/15499.ts
+0
 
 #EXTINF:0,BBC Entertainment 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6718.ts
-
-#EXTINF:0,BBC Entertainment 
-http://cp.dmbshare.net:8000/live/paul1/paul1/5776.ts
-
-#EXTINF:0,BBC Entertainment 
-http://213.136.90.30:8000/live/guzi/isla/15502.ts
+0
 
 #EXTINF:0,BBC Kids
 0
@@ -62,34 +44,13 @@ http://213.136.90.30:8000/live/guzi/isla/15502.ts
 0
 
 #EXTINF:0,Boomerang 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/7913.ts
-
-#EXTINF:0,Boomerang 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6921.ts
-
-#EXTINF:0,Boomerang 
-http://213.136.90.30:8000/live/guzi/isla/15505.ts
+0
 
 #EXTINF:0,Bravo 
 http://cp.dmbshare.net:8000/live/paul1/paul1/4610.ts
 
 #EXTINF:0,Cartoon Network 
-http://91.202.196.24:8002/play/a009
-
-#EXTINF:0,Cartoon Network 
-http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD28_W_250.sdp/playlist.m3u8
-
-#EXTINF:0,Cartoon Network 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/7002.ts
-
-#EXTINF:0,Cartoon Network 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6920.ts
-
-#EXTINF:0,Cartoon Network
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/8748.ts
-
-#EXTINF:0,Cartoon Network
-http://213.136.90.30:8000/live/guzi/isla/15514.ts
+0
 
 #EXTINF:0,CBC TV 
 0
@@ -101,19 +62,13 @@ http://cp.dmbshare.net:8000/live/paul1/paul1/5796.ts
 http://cp.dmbshare.net:8000/live/paul1/paul1/4576.ts
 
 #EXTINF:0,CBS Action 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/3823.ts
-
-#EXTINF:0,CBS Action 
-http://213.136.90.30:8000/live/guzi/isla/11491.ts
+0
 
 #EXTINF:0,CBS Drama 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/3824.ts
-
-#EXTINF:0,CBS Drama 
-http://213.136.90.30:8000/live/guzi/isla/11492.ts
+0
 
 #EXTINF:0,CBS Reality 
-http://213.136.90.30:8000/live/guzi/isla/14229.ts
+0
 
 #EXTINF:0,CHCH Ontario
 0
@@ -131,19 +86,7 @@ http://213.136.90.30:8000/live/guzi/isla/14229.ts
 0
 
 #EXTINF:0,Comedy Central 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/7446.ts
-
-#EXTINF:0,Comedy Central 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/1445.ts
-
-#EXTINF:0,Comedy Central 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/4625.ts
-
-#EXTINF:0,Comedy Central 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5786.ts
-
-#EXTINF:0,Comedy Central 
-http://213.136.90.30:8000/live/guzi/isla/15523.ts
 
 #EXTINF:0,Comedy Gold
 0
@@ -181,35 +124,17 @@ http://213.136.90.30:8000/live/guzi/isla/15523.ts
 #EXTINF:0,Disney Channel 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5774.ts
 
-#EXTINF:0,Disney Channel 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/5350.ts
-
 #EXTINF:0,Disney Junior 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/5651.ts
+0
 
 #EXTINF:0,Disney XD 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/5650.ts
-
-#EXTINF:0,Disney XD 
-http://213.136.90.30:8000/live/guzi/isla/15534.ts
+0
 
 #EXTINF:0,DIY Network 
 0
 
 #EXTINF:0,E! 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/7858.ts
-
-#EXTINF:0,E! 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/8069.ts
-
-#EXTINF:0,E! 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/7900.ts
-
-#EXTINF:0,E! 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/5475.ts
-
-#EXTINF:0,E! 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/5372.ts
+0
 
 #EXTINF:0,E2 
 0
@@ -233,19 +158,7 @@ http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/5372.ts
 0
 
 #EXTINF:0,Food Network 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/7434.ts
-
-#EXTINF:0,Food Network 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6926.ts
-
-#EXTINF:0,Food Network 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5761.ts
-
-#EXTINF:0,Food Network 
-http://213.136.90.30:8000/live/guzi/isla/11513.ts
-
-#EXTINF:-1,Food Network
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6926.ts
 
 #EXTINF:0,Fox 1 
 0
@@ -254,19 +167,10 @@ http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6926.ts
 0
 
 #EXTINF:0,Fox Life 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6414.ts
+0
 
 #EXTINF:0,Fox TV 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6416.ts
-
-#EXTINF:0,Fox TV 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/7899.ts
-
-#EXTINF:0,Fox TV 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/5477.ts
-
-#EXTINF:0,Fox TV 
-http://213.136.90.30:8000/live/guzi/isla/15545.ts
+0
 
 #EXTINF:0,FX 
 0
@@ -302,7 +206,7 @@ https://glblvestu-f.akamaihd.net/i/glblvPSTu_1@80128/master.m3u8?__b__=900&hdnea
 0
 
 #EXTINF:0,Hallmark Channel 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6827.ts
+0
 
 #EXTINF:0,HGTV 
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/4570.ts
@@ -329,31 +233,16 @@ rtmp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:468p500kB31?b?b*t$
 http://ios.streamserver01.com:8080/ShowcaseTV/mystream.m3u8
 
 #EXTINF:0,ITV 1 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/3845.ts
-
-#EXTINF:0,ITV 1 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5753.ts
 
-#EXTINF:-1,ITV 1
+#EXTINF:0,ITV 1
 http://cp.dmbshare.net:8000/live/paul1/paul1/5753.ts
-
-#EXTINF:0,ITV 2 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/1431.ts
 
 #EXTINF:0,ITV 2 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5752.ts
 
 #EXTINF:0,ITV 3 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/1430.ts
-
-#EXTINF:0,ITV 3 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5751.ts
-
-#EXTINF:-1,ITV 3
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/1430.ts
-
-#EXTINF:0,ITV 4 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/1429.ts
 
 #EXTINF:0,ITV 4 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5750.ts
@@ -368,16 +257,13 @@ rtmp://jtvmedia.jtv.com:1975/live playpath=live6 swfUrl=http://demandware.edgesu
 0
 
 #EXTINF:0,Lifetime Network 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6813.ts
+0
 
 #EXTINF:0,London Live 
 http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
 
 #EXTINF:0,M3 
 0
-
-#EXTINF:0,More4 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/3838.ts
 
 #EXTINF:0,More4 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5746.ts
@@ -389,34 +275,22 @@ http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
 0
 
 #EXTINF:0,Nick 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/3866.ts
+0
 
 #EXTINF:0,Nick Jr 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/8746.ts
-
-#EXTINF:-1,Nick Jr
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/8746.ts
+0
 
 #EXTINF:0,Nickelodeon 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/8446.ts
-
-#EXTINF:0,Nickelodeon 
-http://213.136.90.30:8000/live/guzi/isla/11531.ts
+0
 
 #EXTINF:0,NickNight 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/3867.ts
-
-#EXTINF:0,NickNight 
-http://213.136.90.30:8000/live/guzi/isla/15570.ts
+0
 
 #EXTINF:0,NTV
 0
 
 #EXTINF:0,OSN First Comedy
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6103.ts
-
-#EXTINF:0,OSN First Comedy
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/983.ts
+0
 
 #EXTINF:0,OMNI 
 0
@@ -443,7 +317,7 @@ http://llnw.live.qvc.simplestream.com/hera/remote/qvcuk_primary_sdi6/3/prog_inde
 http://llnw.live.qvc.simplestream.com/hera/remote/qvcuk_primary_sdi8/3/prog_index.m3u8
 
 #EXTINF:0,Showtime 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6623.ts
+0
 
 #EXTINF:0,Sky 1 
 0
@@ -455,39 +329,27 @@ http://cp.dmbshare.net:8000/live/paul1/paul1/5726.ts
 http://cp.dmbshare.net:8000/live/paul1/paul1/5726.ts
 
 #EXTINF:0,Sky Arts 1 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/3836.ts
+0
 
 #EXTINF:0,Sky Arts 2 
 0
 
 #EXTINF:0,Sky Atlantic 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/7898.ts
+0
 
 #EXTINF:0,Sky Living 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/7897.ts
-
-#EXTINF:0,Sky Living 
-http://213.136.90.30:8000/live/guzi/isla/11539.ts
+0
 
 #EXTINF:0,Slice 
 0
 
 #EXTINF:0,Space 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6806.ts
+0
 
 #EXTINF:0,Spike TV 
 0
 
 #EXTINF:0,Syfy 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/8294.ts
-
-#EXTINF:0,Syfy 
-http://cp.dmbshare.net:8000/live/paul1/paul1/5696.ts
-
-#EXTINF:0,Syfy 
-http://213.136.90.30:8000/live/guzi/isla/15607.ts
-
-#EXTINF:-1,Syfy
 http://cp.dmbshare.net:8000/live/paul1/paul1/5696.ts
 
 #EXTINF:0,TBS 
@@ -500,7 +362,7 @@ http://cp.dmbshare.net:8000/live/paul1/paul1/5696.ts
 0
 
 #EXTINF:0,TNT 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/2350.ts
+0
 
 #EXTINF:0,Tom & Jerry TV 
 0
@@ -527,10 +389,7 @@ http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/master.m3u8?b?b*t
 0
 
 #EXTINF:0,Universal Channel 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6722.ts
-
-#EXTINF:0,Universal Channel 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/8621.ts
+0
 
 #EXTINF:0,USA Network 
 0
@@ -560,16 +419,13 @@ http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/index_350_av-p.m3u8?
 0
 
 #EXTINF:0,World Fashion 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/7443.ts
-
-#EXTINF:-1,World Fashion
-http://btv-net.mediacdn.ru/TVB7/wfhdeu/playlist.m3u8
+0
 
 #EXTINF:0,World of Wine
 0
 
 #EXTINF:0,Yes TV
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6900.ts
+0
 
 #EXTINF:0,YTV 
 0

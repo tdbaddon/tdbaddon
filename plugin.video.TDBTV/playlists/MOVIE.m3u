@@ -1,7 +1,7 @@
 ﻿#EXTM3U
 
 #EXTINF:0,HOW TO CHANGE AUDIO LANGUAGE
-http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
+http://www.support.tcomputers.ca/-videos/changeaudio.mp4
 ---------------------------------------------------------------------------------------------------------------
 #EXTINF:0,Check Back Soon
 0
@@ -25,7 +25,7 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 0
 
 #EXTINF:0,CineStar Action
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/2490.ts
+0
 
 #EXTINF:0,Cinemax ActionMax
 0
@@ -34,7 +34,7 @@ http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/2490.ts
 0
 
 #EXTINF:0,CineStar Premiere 1 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/2492.ts
+0
 
 #EXTINF:0,CineStar Premiere 2
 0
@@ -43,7 +43,7 @@ http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/2492.ts
 0
 
 #EXTINF:0,CMore Action 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/4973.ts
+0
 
 #EXTINF:0,CMore Emotion 
 0
@@ -55,7 +55,7 @@ http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/4973.ts
 0
 
 #EXTINF:0,CMore Series 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/3691.ts
+0
 
 #EXTINF:0,DXTV
 http://186.33.227.200/DXTV/smil:DXTV.smil/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9NC8xNy8yMDE1IDEyOjM5OjEwIFBNJmhhc2hfdmFsdWU9enNzd2E
@@ -87,12 +87,6 @@ http://186.33.227.200/DXTV/smil:DXTV.smil/playlist.m3u8?wmsAuthSign=c2VydmVyX3Rp
 #EXTINF:0,Film1 Spotlight
 0
 
-#EXTINF:0,Film4 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/3846.ts
-
-#EXTINF:0,Film4 
-http://213.136.90.30:8000/live/guzi/isla/15542.ts
-
 #EXTINF:0,FilmBox 
 0
 
@@ -106,25 +100,13 @@ http://cp.dmbshare.net:8000/live/francesco2/francesco2/3524.ts
 http://cp.dmbshare.net:8000/live/paul1/paul1/3524.ts
 
 #EXTINF:0,Film Autor
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/4078.ts
-
-#EXTINF:0,Film Komedi 
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/1775.ts
-
-#EXTINF:0,Film Komedi 
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/3525.ts
-
-#EXTINF:0,Film Komedi 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/1664.ts
+0
 
 #EXTINF:0,Film Drame 
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/1773.ts
 
 #EXTINF:0,Film Drame 
 http://cp.dmbshare.net:8000/live/paul1/paul1/3521.ts
-
-#EXTINF:0,Film Drame 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/3726.ts
 
 #EXTINF:0,Film Hits 
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/1776.ts
@@ -133,10 +115,13 @@ http://cp.dmbshare.net:8000/live/francesco2/francesco2/1776.ts
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/3526.ts
 
 #EXTINF:0,Film Hits 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/1663.ts
-
-#EXTINF:0,Film Hits 
 http://cp.dmbshare.net:8000/live/paul1/paul1/3526.ts
+
+#EXTINF:0,Film Komedi 
+http://cp.dmbshare.net:8000/live/francesco2/francesco2/1775.ts
+
+#EXTINF:0,Film Komedi 
+http://cp.dmbshare.net:8000/live/francesco2/francesco2/3525.ts
 
 #EXTINF:0,Film Nje 
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/1778.ts
@@ -145,10 +130,10 @@ http://cp.dmbshare.net:8000/live/francesco2/francesco2/1778.ts
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/1777.ts
 
 #EXTINF:0,Film Thriller 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/2237.ts
-
-#EXTINF:0,Film Thriller 
 http://cp.dmbshare.net:8000/live/paul1/paul1/3522.ts
+
+#EXTINF:0,Film4 
+0
 
 #EXTINF:0,Film Zone
 0
@@ -172,16 +157,16 @@ http://cp.dmbshare.net:8000/live/paul1/paul1/3522.ts
 0
 
 #EXTINF:0,HBO 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6826.ts
+0
 
 #EXTINF:0,HBO Adria 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/2856.ts
+0
 
 #EXTINF:0,HBO Comedy 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/2857.ts
+0
 
 #EXTINF:0,HBO East
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/7462.ts
+0
 
 #EXTINF:0,HBO East 2
 0
@@ -220,46 +205,28 @@ http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6830.ts
 0
 
 #EXTINF:0,Movies4Men 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/5748.ts
-
-#EXTINF:0,Movies4Men 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5744.ts
 
 #EXTINF:0,OSN Movies
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6119.ts
+0
 
 #EXTINF:0,OSN Movies Action
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6118.ts
-
-#EXTINF:0,OSN Movies Action
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/8500.ts
+0
 
 #EXTINF:0,OSN Movies Box Office
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/8530.ts
-
-#EXTINF:0,OSN Movies Box Office
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/8529.ts
-
-#EXTINF:0,OSN Movies Box Office
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/8528.ts
+0
 
 #EXTINF:0,OSN Movies Comedy
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6978.ts
+0
 
 #EXTINF:0,OSN Movies Festival
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6115.ts
-
-#EXTINF:0,OSN Movies Festival
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/2608.ts
-
-#EXTINF:0,OSN Movies Festival
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/8420.ts
+0
 
 #EXTINF:0,OSN Movies First
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6104.ts
+0
 
 #EXTINF:0,OSN Movies Premiere
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/8254.ts
+0
 
 #EXTINF:0,Paramount Channel 
 0
@@ -283,25 +250,19 @@ http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/8254.ts
 0
 
 #EXTINF:0,Sky Movies Action 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/1427.ts
-
-#EXTINF:0,Sky Movies Action 
-http://213.136.90.30:8000/live/guzi/isla/11540.ts
+0
 
 #EXTINF:0,Sky Movies Comedy 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/1426.ts
+0
 
 #EXTINF:0,Sky Movies Crime 
 0
 
 #EXTINF:0,Sky Movies Disney 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/1424.ts
-
-#EXTINF:0,Sky Movies Disney 
-http://213.136.90.30:8000/live/guzi/isla/15535.ts
+0
 
 #EXTINF:0,Sky Movies Drama
-http://213.136.90.30:8000/live/guzi/isla/11542.ts
+0
 
 #EXTINF:0,Sky Movies Family 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5716.ts
@@ -309,53 +270,35 @@ http://cp.dmbshare.net:8000/live/paul1/paul1/5716.ts
 #EXTINF:0,Sky Movies Family 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5715.ts
 
-#EXTINF:0,Sky Movies Family 
-http://213.136.90.30:8000/live/guzi/isla/11543.ts
-
 #EXTINF:0,Sky Movies Horrors 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5713.ts
 
 #EXTINF:0,Sky Movies Modern Greats 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/1421.ts
-
-#EXTINF:0,Sky Movies Premiere 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/1420.ts
+0
 
 #EXTINF:0,Sky Movies Premiere 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5712.ts
 
-#EXTINF:0,Sky Movies Premiere 
-http://213.136.90.30:8000/live/guzi/isla/11545.ts
-
 #EXTINF:0,Sky Movies Premiere+ 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6915.ts
-
-#EXTINF:0,Sky Movies SciFi 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/1419.ts
+0
 
 #EXTINF:0,Sky Movies SciFi 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5711.ts
 
-#EXTINF:0,Sky Movies SciFi 
-http://213.136.90.30:8000/live/guzi/isla/11546.ts
-
 #EXTINF:0,Sky Movies Select 
-http://213.136.90.30:8000/live/guzi/isla/11547.ts
+0
 
 #EXTINF:0,Sky Movies Showcase 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/1417.ts
-
-#EXTINF:0,Sky Movies Showcase 
-http://213.136.90.30:8000/live/guzi/isla/11548.ts
+0
 
 #EXTINF:0,Sky Movies Thriller 
-http://213.136.90.30:8000/live/guzi/isla/11549.ts
+0
 
 #EXTINF:0,Sony TV 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/5743.ts
+0
 
 #EXTINF:0,Star Movies 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/2656.ts
+0
 
 #EXTINF:0,Starz Cinema
 0
@@ -373,7 +316,7 @@ http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/2656.ts
 0
 
 #EXTINF:0,TCM 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/7894.ts
+0
 
 #EXTINF:0,The Movie Channel 
 0
@@ -397,28 +340,19 @@ http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/7894.ts
 0
 
 #EXTINF:0,Tring Life 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/5441.ts
+0
 
 #EXTINF:0,Tring Max 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/5440.ts
+0
 
 #EXTINF:0,Tring Super 
 0
 
 #EXTINF:0,True Movies 1 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/2437.ts
-
-#EXTINF:0,True Movies 1 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5692.ts
 
-#EXTINF:0,True Movies 1 
-http://213.136.90.30:8000/live/guzi/isla/11568.ts
-
 #EXTINF:0,True Movies 2 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/2436.ts
-
-#EXTINF:0,True Movies 2 
-http://213.136.90.30:8000/live/guzi/isla/11569.ts
+0
 
 #EXTINF:0,TV 1000 
 0

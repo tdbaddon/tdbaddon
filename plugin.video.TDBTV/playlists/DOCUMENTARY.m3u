@@ -1,7 +1,7 @@
 ﻿#EXTM3U
 
 #EXTINF:0,HOW TO CHANGE AUDIO LANGUAGE
-http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
+http://www.support.tcomputers.ca/-videos/changeaudio.mp4
 --------------------------------------------------------------------------------------------------------------
 
 #EXTINF:0,American Heros Channel 
@@ -14,22 +14,13 @@ http://www.oc.tcomputers.ca/cloud/index.php/s/AR9xtVGxgEzdglK/download
 0
 
 #EXTINF:0,Animal Planet 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6127.ts
-
-#EXTINF:0,Animal Planet 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/3473.ts
-
-#EXTINF:0,Animal Planet 
-http://213.136.90.30:8000/live/guzi/isla/11475.ts
+0
 
 #EXTINF:0,Biography Channel
 0
 
 #EXTINF:0,Crime & Investigation 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/7909.ts
-
-#EXTINF:0,Crime & Investigation 
-http://213.136.90.30:8000/live/guzi/isla/15524.ts
+0
 
 #EXTINF:0,Cottage Life
 0
@@ -41,58 +32,34 @@ http://213.136.90.30:8000/live/guzi/isla/15524.ts
 0
 
 #EXTINF:0,Discovery Channel
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6980.ts
-
-#EXTINF:0,Discovery Channel
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/5213.ts
-
-#EXTINF:0,Discovery Channel
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/5001.ts
-
-#EXTINF:0,Discovery Channel
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/5652.ts
-
-#EXTINF:0,Discovery Channel
 http://cp.dmbshare.net:8000/live/paul1/paul1/5782.ts
 
-#EXTINF:0,Discovery Channel
-http://213.136.90.30:8000/live/guzi/isla/11499.ts
+#EXTINF:0,Discovery H&H
+0
 
 #EXTINF:0,Discovery History 
-http://213.136.90.30:8000/live/guzi/isla/11500.ts
-
-#EXTINF:0,Discovery H&H
-http://213.136.90.30:8000/live/guzi/isla/15551.ts
+0
 
 #EXTINF:0,Discovery Max 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/5762.ts
+0
 
 #EXTINF:0,Discovery News 
 0
 
 #EXTINF:0,Discovery Science 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6123.ts
-
-#EXTINF:0,Discovery Science 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/3861.ts
-
-#EXTINF:0,Discovery Science 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5780.ts
 
 #EXTINF:0,Discovery Shed
-http://213.136.90.30:8000/live/guzi/isla/15530.ts
+0
 
 #EXTINF:0,Discovery Theatre
 0
 
 #EXTINF:0,Discovery Turbo 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/2100.ts
+0
 
 #EXTINF:0,Discovery World 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5777.ts
-
-#EXTINF:0,Discovery World 
-http://213.136.90.30:8000/live/guzi/isla/11503.ts
 
 #EXTINF:0,Docubox 
 http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/8421.ts
@@ -118,24 +85,8 @@ https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8
 #EXTINF:0,History Channel 
 http://link.theplatform.com/s/dtjsEC/chjdYJxKb44V?manifest=m3u
 
-#EXTINF:0,History Channel 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6114.ts
-
-#EXTINF:0,History Channel 
-http://213.136.90.30:8000/live/guzi/isla/11516.ts
-
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6620.ts
-#EXTINF:0,History Channel 2
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/5899.ts
-
-#EXTINF:0,History Channel 2
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6629.ts
-
 #EXTINF:0,History Channel 2
 http://cp.dmbshare.net:8000/live/paul1/paul1/5756.ts
-
-#EXTINF:0,Investigation Discovery 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/3864.ts
 
 #EXTINF:0,Investigation Discovery 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5781.ts
@@ -150,28 +101,13 @@ http://iphone-streaming.ustream.tv/uhls/6540154/streams/live/iphone/playlist.m3u
 http://nasatv-lh.akamaihd.net/i/NASA_103@319271/master.m3u8
 
 #EXTINF:0,Nat Geo People
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/7535.ts
+0
 
 #EXTINF:0,Nat Geo Wild 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6120.ts
-
-#EXTINF:0,Nat Geo Wild 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/7408.ts
-
-#EXTINF:0,Nat Geo Wild 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/3863.ts
-
-#EXTINF:0,National Geographic 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/3862.ts
+0
 
 #EXTINF:0,National Geographic 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5740.ts
-
-#EXTINF:0,National Geographic 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/5390.ts
-
-#EXTINF:0,National Geographic 
-http://213.136.90.30:8000/live/guzi/isla/11530.ts
 
 #EXTINF:0,Nova
 0
@@ -191,9 +127,6 @@ http://rt-a.akamaihd.net/ch_05@325609/720p.m3u8
 #EXTINF:0,RT News Documentary 
 http://rt-a.akamaihd.net/ch_05@325609/720p.m3u8
 
-#EXTINF:-1,RT News Documentary
-http://rt.ashttp14.visionip.tv/live/rt-doc-live-HD/playlist.m3u8
-
 #EXTINF:0,Ted TV 
 0
 
@@ -202,12 +135,6 @@ http://rt.ashttp14.visionip.tv/live/rt-doc-live-HD/playlist.m3u8
 
 #EXTINF:0,Travel Channel 
 http://stream.bestvideostreaming.is/8802/index.m3u8?token=GNR4XEsJgYz6d6mDfr4Bcw
-
-#EXTINF:0,Travel Channel 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/8422.ts
-
-#EXTINF:0,Travel Channel 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/5764.ts
 
 #EXTINF:0,Viasat Explorer 
 0
@@ -220,6 +147,3 @@ http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/5764.ts
 
 #EXTINF:0,World Travel Channel
 http://stream.taksimbilisim.com:1935/wtc/bant1/WTC.m3u8
-
-#EXTINF:0,World Travel Channel
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/8215.ts

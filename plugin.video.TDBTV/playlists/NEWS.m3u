@@ -11,7 +11,7 @@ http://abclive.abcnews.com/i/abc_live4@136330/index_800_av-b.m3u8
 0
 
 #EXTINF:0,BBC World News 
-http://213.136.90.30:8000/live/guzi/isla/15503.ts
+0
 
 #EXTINF:0,Bloomberg News 
 http://x4012c4000.edge.core-cdn.net/40000mb/live/4012hbbtv/bloomberg.ts
@@ -44,16 +44,7 @@ http://cbsnews-linear.mdialog.com/video_assets/cbsnews.m3u8?api_key=563b80c1ae4c
 0
 
 #EXTINF:0,CNN 
-http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/sweetbcha1novD177_W_150.sdp/media_7419.m3u8
-
-#EXTINF:0,CNN 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6814.ts
-
-#EXTINF:0,CNN 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6928.ts
-
-#EXTINF:0,CNN 
-http://213.136.90.30:8000/live/guzi/isla/15521.ts
+0
 
 #EXTINF:0,CP24 
 0
@@ -133,11 +124,8 @@ http://rt-a.akamaihd.net/ch_04@325608/480p.m3u8
 #EXTINF:0,RT News 
 http://rt-a.akamaihd.net/ch_04@325608/720p.m3u8
 
-#EXTINF:0,RT News 
-http://rt.ashttp14.visionip.tv/live/rt-global-live-HD/playlist.m3u8
-
 #EXTINF:0,Sky News 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/5770.ts
+0
 
 #EXTINF:0,The Weather Channel 
 0
@@ -149,4 +137,4 @@ http://www.iptvsaga.com/play/tv3/0031.m3u8
 http://cdnapi.kaltura.com/p/931702/sp/93170200/playManifest/entryId/1_oorxcge2/format/applehttp/protocol/http/uiConfId/28428751/a.m3u8
 
 #EXTINF:0,Weather Network 
-http://bcoveliveios-i.akamaihd.net/hls/live/207737/1942203455001/nat/master_Layer5.m3u8
+0

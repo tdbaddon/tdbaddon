@@ -2160,7 +2160,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="3.92"
+       version="3.93"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>

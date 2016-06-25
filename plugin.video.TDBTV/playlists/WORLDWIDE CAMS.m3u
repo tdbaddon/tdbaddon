@@ -43,8 +43,8 @@ mms://62.162.58.55/KameraBitola
 #EXTINF:0,Hollywood Blvd Los Angelos 
 0
 
-#EXTINF:0,Kocani Macedonia
-mms://62.162.58.55/KameraKocani
+#EXTINF:0,WWE Network 
+0
 
 #EXTINF:0,Las Vegas Nevada 
 0
@@ -113,7 +113,7 @@ mms://62.162.58.55/KameraStip
 0
 
 #EXTINF:0,Times Square South View New York
-rtmp://video3.earthcam.com:1935/fecnetwork/4717.flv
+0
 
 #EXTINF:0,Times Square Street View New York 
 0
