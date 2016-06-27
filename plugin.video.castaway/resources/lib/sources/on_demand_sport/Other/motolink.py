@@ -34,7 +34,7 @@ class main():
 				item = i.getText()
 				if len(item)>50 or any(w in item.lower() for w in words):
 					continue
-				if 'adf.ly' not in item:
+				if '(' in item:
 					item = '[B][COLOR orange]%s[/COLOR][/B]'%item
 
 				out.append((item,item,control.icon_path(info().icon)))		
@@ -45,6 +45,12 @@ class main():
 	
 	
 	def resolve(self,url):
+		url = self.base + '/' + url + '.htm'
+		html = client.request(url,referer=self.base)
+		unescape = urllib.unquote(re.findall('unescape\s*\(\s*[\"\']([^\"\']+)',html)[0])
+		links = re.findall('(http://adf.ly[^\"\']+)',unescape)
+		import random
+		url = random.choice(links)
 		if 'adf.ly' not in url:
 			return
 		url = cache.get(webutils.adfly,1,url)

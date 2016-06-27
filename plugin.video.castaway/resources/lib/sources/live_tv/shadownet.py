@@ -1,6 +1,6 @@
 from __future__ import unicode_literals
 from resources.lib.modules import client,webutils
-import re,sys,xbmcgui,os
+import re,sys,xbmcgui,os,urllib
 from resources.lib.modules.log_utils import log
 from addon.common.addon import Addon
 addon = Addon('plugin.video.castaway', sys.argv)
@@ -19,8 +19,8 @@ class info():
         self.categorized = True
         self.multilink = False
 class main():
-	def __init__(self,url = 'http://www.sdw-net.co/'):
-		self.base = 'http://www.sdw-net.co/'
+	def __init__(self,url = 'http://www.shadownet.me/'):
+		self.base = 'http://www.shadownet.me/'
 		self.url = url
 
 
@@ -49,7 +49,7 @@ class main():
 		new=[]
 		for channel in channels:
 			url = channel[0]
-			img = channel[1]
+			img = channel[1] + '|%s' % urllib.urlencode({'Referer':self.url,'User-agent':client.agent()})
 			title = channel[2].encode('utf-8')
 			
 			new.append((url,title,img))

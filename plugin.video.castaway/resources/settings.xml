@@ -44,5 +44,6 @@
         <setting type="lsep" label="Reddit.com" />
         <setting id="reddit_user" type="text" visible="true" label="Username" default=""/>
         <setting id="reddit_pass" type="text" visible="true" option="hidden" label="Password" default=""/>
+        
     </category>
 </settings>

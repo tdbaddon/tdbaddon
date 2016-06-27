@@ -37,5 +37,7 @@ class main():
 
 
 	def resolve(self,url):
+		html = client.request(url)
+		url2 = self.base + re.findall('href=[\"\']([^\"\']+)[\"\'] target=[\"\']_blank[\"\']>.+?Click Here To Watch',html)[0]
 		import liveresolver
-		return liveresolver.resolve(url)
+		return liveresolver.resolve(url2)

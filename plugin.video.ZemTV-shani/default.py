@@ -884,12 +884,9 @@ def RefreshResources(resources):
     return updated
 
 
-def PlayUKTVNowChannels(url):
-    jsondata=getUKTVPage()
-    cc=[item for item in jsondata["msg"]["channels"]
-            if item["pk_id"]== url]
-            
-    
+def PlayUKTVNowChannels(url):            
+    cc= getUKTVPlayUrl(url)
+    print cc
     listitem = xbmcgui.ListItem( label = str(name), iconImage = "DefaultVideo.png", thumbnailImage = xbmc.getInfoImage( "ListItem.Thumb" ) )
     played=False
     ##DO YOU WANT ME TO STOP? lol
@@ -2323,6 +2320,27 @@ def getDittoChannels(categories, forSports=False):
     except:
         traceback.print_exc(file=sys.stdout)
     return ret    
+
+def getIpBoxSourcesAllOtherSource():
+    ret=[]
+    try:
+
+
+        htmls=getUrl("http://www.m3uliste.pw/")
+
+        servers=re.findall( '(http:\/\/.*?get.php.*?)<', htmls)
+        import time
+
+        for ln in servers[0:25]:
+            try:
+                surl,servername=ln,ln.split('/')[2].split(':')[0]
+                ret.append((servername, surl.replace('&amp;','&') ))   
+            except: traceback.print_exc(file=sys.stdout)
+
+    except:
+        traceback.print_exc(file=sys.stdout)
+
+    return ret
     
 def getIpBoxSources():
     ret=[]
@@ -2344,8 +2362,10 @@ def getIpBoxSources():
                 except: traceback.print_exc(file=sys.stdout)
     except:
         traceback.print_exc(file=sys.stdout)
-    return ret  
+    
+    return ret+getIpBoxSourcesAllOtherSource()
 
+    
 def getIpBoxChannels(url,forSports=False):
     ret=[]
     try:
@@ -2569,14 +2589,26 @@ def local_time(zone='Asia/Karachi'):
     other_zone = timezone(zone)
     other_zone_time = datetime.now(other_zone)
     return other_zone_time.strftime('%B-%d-%Y')
+
+def getUKTVPlayUrl(channelID ):
+    url=base64.b64decode("aHR0cHM6Ly9hcHAudWt0dm5vdy5uZXQvdjMvZ2V0X3ZhbGlkX2xpbms=")
+    username="-1"
+    usernameC=username+channelID
+    s = base64.b64decode("dWt0dm5vdy10b2tlbi0tX3xfLSVzLXVrdHZub3dfdG9rZW5fZ2VuZXJhdGlvbi0lcy1ffF8tMTIzNDU2X3VrdHZub3dfNjU0MzIxLV98Xy11a3R2bm93X2xpbmtfdG9rZW4=")%(url,usernameC)
+    import hashlib
+    token= hashlib.md5(s).hexdigest()
+    post = {'username':username,'channel_id':channelID}
+    post = urllib.urlencode(post)
+  
+    headers=[('User-Agent','USER-AGENT-UKTVNOW-APP-V2'),('app-token',token)]
+    jsondata=getUrl(url,post=post,headers=headers)
+    return json.loads(jsondata)
     
 def getAPIToken( url,  username):
-    print url,username
-    from pytz import timezone
-    dt=local_time()
-    s = "uktvnow-token-"+ dt + "-"+ "_|_-" + url + "-" + username +"-" + "_|_"+ "-"+ base64.b64decode("MTIzNDU2IUAjJCVedWt0dm5vd14lJCNAITY1NDMyMQ==")
-    
-    print s
+    #print url,username
+    #from pytz import timezone
+    #dt=local_time()
+    s = base64.b64decode("dWt0dm5vdy10b2tlbi0tX3xfLSVzLXVrdHZub3dfdG9rZW5fZ2VuZXJhdGlvbi0lcy1ffF8tMTIzNDU2X3VrdHZub3dfNjU0MzIx")%(url,  username)
     import hashlib
     return hashlib.md5(s).hexdigest()
 
@@ -2624,13 +2656,13 @@ def getUKTVPage():
         traceback.print_exc(file=sys.stdout)
     usernames=eval(base64.b64decode("WydTZXJnaW8nLCdEYXNoJywnRnJhemVyJywnWmVkJywnQWxhbicsJ0RvbWluaWMnLCdLZW50JywnSG93YXJkJywnRXJpYycsJ0plbidd"))
     import random
-    username = random.choice(usernames)
+    username = "-1"#random.choice(usernames)
     post = {'username':username}
     post = urllib.urlencode(post)
   
     #headers=eval(base64.b64decode("WygnVXNlci1BZ2VudCcsJ1VTRVItQUdFTlQtVUtUVk5PVy1BUFAtVjEnKSwoJ2FwcC10b2tlbicsJ2FmZjE2MTRiNTJhNTM3YmQ3YmEyZDMyODE0ODU1NmFmJyld"))
-    headers=[('User-Agent','USER-AGENT-UKTVNOW-APP-V1'),('app-token',getAPIToken(base64.b64decode("aHR0cDovL2FwcC51a3R2bm93Lm5ldC92MS9nZXRfYWxsX2NoYW5uZWxz"),username))]
-    jsondata=getUrl(base64.b64decode("aHR0cDovL2FwcC51a3R2bm93Lm5ldC92MS9nZXRfYWxsX2NoYW5uZWxz"),post=post,headers=headers)
+    headers=[('User-Agent','USER-AGENT-UKTVNOW-APP-V2'),('app-token',getAPIToken(base64.b64decode("aHR0cHM6Ly9hcHAudWt0dm5vdy5uZXQvdjMvZ2V0X2FsbF9jaGFubmVscw=="),username))]
+    jsondata=getUrl(base64.b64decode("aHR0cHM6Ly9hcHAudWt0dm5vdy5uZXQvdjMvZ2V0X2FsbF9jaGFubmVscw=="),post=post,headers=headers)
     jsondata=json.loads(jsondata)
     
     try:
@@ -3717,12 +3749,13 @@ def getPV2Url():
     first =int(second)+int(base64.b64decode('NjkyOTY5Mjk='))
     token=base64.b64encode(base64.b64decode('JXNAMm5kMkAlcw==') % (str(first),second))
     #req = urllib2.Request( base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2FwcF9wYW5lbG5ldy9vdXRwdXQucGhwL3BsYXlsaXN0P3R5cGU9eG1sJmRldmljZVNuPXBha2luZGlhaGRwYWlkMi42JnRva2VuPSVz')  %token)      
-    req = urllib2.Request( base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2FwcF9wYW5lbG5ldy9vdXRwdXQucGhwL3BsYXlsaXN0P3R5cGU9eG1sJmRldmljZVNuPTI0NCZ0b2tlbj0lcw==')  %token)    
+    #req = urllib2.Request( base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2FwcF9wYW5lbG5ldy9vdXRwdXQucGhwL3BsYXlsaXN0P3R5cGU9eG1sJmRldmljZVNuPTI0NCZ0b2tlbj0lcw==')  %token)    
+    req = urllib2.Request( base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2FwcF9wYW5lbG5ldy9vdXRwdXQucGhwL3BsYXlsaXN0P3R5cGU9eG1sJmRldmljZVNuPTY2MSZ0b2tlbj0lcw==')  %token)    
     req.add_header('Authorization', base64.b64decode('QmFzaWMgWVdSdGFXNDZRV3hzWVdneFFBPT0=')) 
     req.add_header(base64.b64decode("VXNlci1BZ2VudA=="),base64.b64decode("dW1hci8xMjQuMCBDRk5ldHdvcmsvNzU5LjIuOCBEYXJ3aW4vMTUuMTEuMjM=")) 
     response = urllib2.urlopen(req)
     link=response.read()
-    if 'Sky sports' not in link:
+    if 'Sky sports' not in link and 1==2:
         req = urllib2.Request( base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2FwcF9wYW5lbG5ldy9vdXRwdXQucGhwL3BsYXlsaXN0P3R5cGU9eG1sJmRldmljZVNuPXBha2luZGlhaGRwYWlkMi42JnRva2VuPSVz')  %token)    
         req.add_header('Authorization', base64.b64decode('QmFzaWMgWVdSdGFXNDZRV3hzWVdneFFBPT0=')) 
         req.add_header(base64.b64decode("VXNlci1BZ2VudA=="),base64.b64decode("dW1hci8xMjQuMCBDRk5ldHdvcmsvNzU5LjIuOCBEYXJ3aW4vMTUuMTEuMjM=")) 
@@ -3884,39 +3917,38 @@ def PlayPV2Link(url):
     import random
     useragent='User-Agent: AppleCoreMedia/1.%s.%s (iPhone; U; CPU OS 9_3_2%s like Mac OS X; en_gb)'%(binascii.b2a_hex(os.urandom(2))[:2],binascii.b2a_hex(os.urandom(2))[:2],binascii.b2a_hex(os.urandom(2))[:3])
     urlToPlay+=useragent
-    try:
-        if 'iptvaus.dynns.com' in urlToPlay:# quickfix
-            a=urllib.urlopen('http://iptvaus.dynns.com/')
-            if a.getcode()==502: #server not found
-                urlToPlay=urlToPlay.replace('iptvaus.dynns.com','130.185.144.63')
-    except:
-        pass
-    print 'before ind',urlToPlay
-    try:
-        if ('indaus.dynns.com' in urlToPlay) and 'm3u8' in urlToPlay:# quickfix
-            testh=getUrl(urlToPlay.split('|')[0],headers=[('User-Agent',useragent)])
-    except:
-        urlToPlay=urlToPlay.replace('indaus.dynns.com','130.185.144.63')
+    #try:
+    #    if 'iptvaus.dynns.com' in urlToPlay:# quickfix
+    #        a=urllib.urlopen('http://iptvaus.dynns.com/')
+    #        if a.getcode()==502: #server not found
+    #            urlToPlay=urlToPlay.replace('iptvaus.dynns.com','130.185.144.63')
+    #except:
+    #    pass
+    #print 'before ind',urlToPlay
+    #try:
+    #    if ('indaus.dynns.com' in urlToPlay) and 'm3u8' in urlToPlay:# quickfix
+    #        testh=getUrl(urlToPlay.split('|')[0],headers=[('User-Agent',useragent)])
+    #except:
+    #    urlToPlay=urlToPlay.replace('indaus.dynns.com','130.185.144.63')
         
-    try:
-        if ('movaus.dynns.com' in urlToPlay) and 'm3u8' in urlToPlay:# quickfix
-            testh=getUrl(urlToPlay.split('|')[0],headers=[('User-Agent',useragent)])
-    except:
-        urlToPlay=urlToPlay.replace('movaus.dynns.com','130.185.144.112')
+    #try:
+    #    if ('movaus.dynns.com' in urlToPlay) and 'm3u8' in urlToPlay:# quickfix
+    #        testh=getUrl(urlToPlay.split('|')[0],headers=[('User-Agent',useragent)])
+    #except:
+    #    urlToPlay=urlToPlay.replace('movaus.dynns.com','130.185.144.112')
         
 
 #    print 'urlToPlay',urlToPlay
     listitem = xbmcgui.ListItem( label = str(name), iconImage = "DefaultVideo.png", thumbnailImage = xbmc.getInfoImage( "ListItem.Thumb" ) )
 #    print "playing stream name: " + str(name) 
+#88.150.206.7 last ip
     if not tryplay(urlToPlay, listitem):
         if '130.185.144.63' not in urlToPlay:
-            urlToPlay='http://130.185.144.63:8081/'+'/'.join(urlToPlay.split('/')[3:])
+            urlToPlay='http://130.185.144.63:8081'+'/'.join(urlToPlay.split('/')[3:])
             if not tryplay(urlToPlay, listitem):
-                urlToPlay='http://130.185.144.112:8081/'+'/'.join(urlToPlay.split('/')[3:])
-                if not tryplay(urlToPlay, listitem):
-                    urlToPlay='http://168.1.112.95:8081/'+'/'.join(urlToPlay.split('/')[3:])
-                    #tryplay(urlToPlay, listitem)
- 
+                urlToPlay='http://130.185.144.112:8081'+'/'.join(urlToPlay.split('/')[3:])
+                tryplay(urlToPlay, listitem)
+    
 def PlayOtherUrl ( url ):
     checkbad.do_block_check(False)
     url=base64.b64decode(url)
@@ -4315,7 +4347,7 @@ def AddShowsFromSiasat(Fromurl):
 
     headers=[('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36')]       
     link=getUrl(Fromurl, headers=headers)
-    match =re.findall('<li class="threadbit.*?<img src="(.*?)".*?href="(.*?)".*?id="thread_title.*?>(.*?)<', link,re.DOTALL)
+    match =re.findall('<div class="threadinfo".*?<img src="(.*?)".*?href="(.*?)" id="thread_title.*?>(.*?)<', link, re.DOTALL)
     #if len(match)==0:
     #    match =re.findall('<div class="thumbnail">\s*<a href="(.*?)".*\s*<img.*?.*?src="(.*?)".* alt="(.*?)"', link, re.UNICODE)
 
@@ -4327,10 +4359,11 @@ def AddShowsFromSiasat(Fromurl):
     h = HTMLParser.HTMLParser()
 
     print match
+    
     for cname in match:
-        imgUrl=cname[0].replace('&amp;','&')
         tname=cname[2]
         url=cname[1]
+        imageurl=cname[0].replace('&amp;','&')
         try:
             tname=h.unescape(tname).encode("utf-8")
         except:
@@ -4338,9 +4371,12 @@ def AddShowsFromSiasat(Fromurl):
             
         if not url.startswith('http'):
             url='http://www.siasat.pk/forum/'+url
-        
+
+        if not imageurl.startswith('http'):
+            url='http://www.siasat.pk/forum/'+url
+            
         #tname=repr(tname)
-        addDir(tname,url,3,imgUrl, True,isItFolder=False)
+        addDir(tname,url,3,imageurl, True,isItFolder=False)
         
 
     match =re.findall('title="Results.*?<a href="(.*?)" title', link, re.IGNORECASE)

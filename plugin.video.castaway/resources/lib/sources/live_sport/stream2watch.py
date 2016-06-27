@@ -2,6 +2,7 @@ from resources.lib.modules import client,webutils
 import re,sys,xbmcgui
 from addon.common.addon import Addon
 addon = Addon('plugin.video.castaway', sys.argv)
+from resources.lib.modules.log_utils import log
 
 class info():
     def __init__(self):
@@ -36,7 +37,7 @@ class main():
     def links(self,url):
         html = client.request(url)
         soup = webutils.bs(html)
-        links = soup.find('div',{'class':'stream_codes'}).findAll('a')
+        links = soup.find('div',{'class':'stream_codes_inner'}).findAll('a')
         links = self.__prepare_links(links)
         return links
 
@@ -60,25 +61,19 @@ class main():
 
     def __prepare_links(self,links):
         new=[]
-        precheck = addon.get_setting('link_precheck')
-        if precheck=='true':
-            pDialog = xbmcgui.DialogProgress()
-            pDialog.create('Checking links', 'Checking links...')
-        i=1
-        items = len(links)
+        
         for link in links:
-            title = link.getText()
-            url = link['data-f-href']
-            found = True
-            perc = 100*i/items
-            if precheck=='true':
-                import liveresolver
-                found = liveresolver.find_link(url)
-                pDialog.update(perc, 'Checking:',title)
-            if found:
+            try:
+                title = link.getText()
+                try:
+                    url = link['data-f-href']
+                except:
+                    url = link['href']
+
                 new.append((url,title))
-            i+=1
-            if (precheck=='true' and pDialog.iscanceled()): return new
+            except:
+                pass
+            
         return new
 
 

@@ -125,6 +125,7 @@ def __prepare_links(links):
     for l in links:
         
         url = l[0]
+        url = url.replace('https://','http://')
         url = url.replace('101livesportsvideos','www.101livesportsvideos')
         if not (url.startswith('http://') or url.startswith('sop://') or url.startswith('acestream://') or url.startswith('https://')):
             url = 'http://' + url

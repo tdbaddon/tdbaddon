@@ -53,6 +53,6 @@ class main():
 			new.append((url,title.encode('utf-8'),icon_path(info().icon)))
 		return new
 
-	
-
-
+	def resolve(self,url):
+		import liveresolver
+		return liveresolver.resolve(url,cache_timeout=0)

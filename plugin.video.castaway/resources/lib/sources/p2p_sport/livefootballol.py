@@ -30,8 +30,8 @@ class main():
         return links
 
     def channels(self):
-        result = client.request('http://www.livefootballol.me/live-football-streaming.html')
-        dates=re.findall('<h3>(.+?)\s*CET</h3></div>\s*<list class="uk-list uk-list-striped">',result)
+        result = client.request(self.base + '/live-football-streaming-2016.html')
+        dates=re.findall('<h3>(.+?)\s*CEST</h3></div>\s*<list class="uk-list uk-list-striped">',result)
         d = webutils.bs(result).findAll('list', {'class': 'uk-list uk-list-striped'})
         events = self.__prepare_events(dates, d)
         return events
@@ -83,4 +83,8 @@ class main():
             new.append((url,title, info().icon))
         return new
 
-    
+    def resolve(self,url):
+        html = client.request(url)
+        url = re.findall('[\"\']((?:sop|acestream)://[^\"\']+)[\"\']',html)[0]
+        import liveresolver
+        return liveresolver.resolve(url)

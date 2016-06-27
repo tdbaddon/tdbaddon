@@ -34,6 +34,7 @@ class main():
             title = c[1]
             events.append((url,title,icon_path(info().icon)))
         events=list(set(events))
+        events.append(('http://www.ustream.tv/embed/19964595','Toonami Aftermath',icon_path(info().icon)))
         events.sort(key=lambda x: x[1])
         return events
         

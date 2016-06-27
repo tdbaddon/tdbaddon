@@ -26,6 +26,8 @@ lang = xbmcaddon.Addon().getLocalizedString
 
 setting = xbmcaddon.Addon().getSetting
 
+set_setting = xbmcaddon.Addon().setSetting
+
 addon = xbmcaddon.Addon
 
 addItem = xbmcplugin.addDirectoryItem

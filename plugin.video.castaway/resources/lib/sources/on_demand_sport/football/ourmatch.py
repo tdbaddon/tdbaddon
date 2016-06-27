@@ -71,10 +71,13 @@ class main():
 				url = 'http:' + url
 			title = '%s (%s, %s) - %s'%(link[2],link[1],link[3],link[4])
 			out.append((title,url,img))
+
 		return out
 
 	def resolve(self,url):
-		if 'playwire' in url:
+		if '.mp4' in url:
+			return url
+		elif 'playwire' in url:
 			from resources.lib.resolvers import playwire
 			return playwire.resolve(url)
 		else:

@@ -2,6 +2,7 @@ import re
 import convert
 import client
 import control
+from log_utils import log
 
 def links(url,base,img,icon):
     if base not in url:
@@ -192,6 +193,7 @@ def links(url,base,img,icon):
             if url not in urls:
                 out.append((title,url,control.icon_path(icon)))
                 urls.append(url)
+    log(out)
     return out
 
 def resolve(url):

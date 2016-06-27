@@ -2,9 +2,10 @@ from __future__ import unicode_literals
 from resources.lib.modules import client, webutils,control
 from resources.lib.modules.log_utils import log
 import urllib, requests
-import re,sys,xbmcgui,os
+import re,sys,xbmcgui,os,cookielib
 from addon.common.addon import Addon
 addon = Addon('plugin.video.castaway', sys.argv)
+cookieFile = os.path.join(control.dataPath, 'streamlivecookie.lwp')
 
 
 class info():
@@ -21,6 +22,7 @@ class main():
 	def __init__(self, url = 'http://www.streamlive.to/channels/?sort=1'):
 		self.base = 'http://www.streamlive.to/'
 		self.url = url
+		self.favourites_url = 'http://www.streamlive.to/channels_favorite'
 
 
 	def categories(self):
@@ -47,8 +49,10 @@ class main():
 		hour,minute=int(li[0]),int(li[1])
 		if hour == 12 and not pm:
 			hour = 0
-		if pm and hour!='12':
+		if pm and hour!=12:
 			hour += 12
+
+		log(hour)
 
 		import datetime
 		from resources.lib.modules import pytzimp
@@ -64,6 +68,9 @@ class main():
 		if url == '#schedule':
 			self.url = url
 			return self.schedule()
+		elif url == '#favourites':
+			self.url = self.favourites_url
+			return self.favourites()
 		self.url = url.replace(' ','%20')
 		html = client.request(self.url,referer=self.base)
 		channels = webutils.bs(html).findAll('li')
@@ -108,6 +115,7 @@ class main():
 		index = control.selectDialog(choices,heading='Choose the source')
 		if index>-1:
 			return links[index][0]
+		return ''
 
 
 	def __prepare_channels(self,channels):
@@ -135,12 +143,11 @@ class main():
 		except:
 			return None
 
-
-
-
 	def resolve(self,url):
 		if 'http' not in url:
 			url = self.sch_links(url)
+			if url=='':
+				return url
 
 		import liveresolver
 		return liveresolver.resolve(url)

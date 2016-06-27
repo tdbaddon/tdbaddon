@@ -24,7 +24,7 @@ import re,sys,cookielib,urllib,urllib2,urlparse,HTMLParser,time,random
 import cache
 
 
-def request(url, close=True, redirect=True, error=False, proxy=None, post=None, headers=None, mobile=False, limit=None, referer=None, cookie=None, output='', timeout='30'):
+def request(url, close=True, redirect=True, error=False, proxy=None, post=None, headers=None, mobile=False, limit=None, referer=None, cookie=None,cj = None, output='', timeout='30'):
     try:
         handlers = []
 
@@ -34,8 +34,11 @@ def request(url, close=True, redirect=True, error=False, proxy=None, post=None, 
             opener = urllib2.install_opener(opener)
 
 
-        if output == 'cookie' or output == 'extended' or not close == True:
-            cookies = cookielib.LWPCookieJar()
+        if output == 'cookie' or output == 'extended' or output=='cj' or not close == True:
+            if not cj==None:
+                cookies = cookielib.LWPCookieJar()
+            else:
+                cookies = cj
             handlers += [urllib2.HTTPHandler(), urllib2.HTTPSHandler(), urllib2.HTTPCookieProcessor(cookies)]
             opener = urllib2.build_opener(*handlers)
             opener = urllib2.install_opener(opener)
@@ -120,6 +123,9 @@ def request(url, close=True, redirect=True, error=False, proxy=None, post=None, 
             except: pass
             try: result = cf
             except: pass
+
+        elif output=='cj':
+            result = cookies
 
         elif output == 'response':
             if limit == '0':

@@ -9,6 +9,9 @@ from resources.lib.modules.log_utils import log
 addon = Addon('plugin.video.castaway', sys.argv)
 addon_handle = int(sys.argv[1])
 
+if not os.path.exists(control.dataPath):
+    os.mkdir(control.dataPath)
+
 AddonPath = addon.get_path()
 IconPath = os.path.join(AddonPath , "resources/media/")
 fanart = os.path.join(AddonPath + "/fanart.jpg")
@@ -48,9 +51,13 @@ elif mode[0]=='keyboard_open':
     keyboard.doModal()
     if keyboard.isConfirmed():
         query = keyboard.getText()
-        import liveresolver
-        url=query
-        resolved = liveresolver.resolve(url,cache_timeout=0)
+        if query.startswith('livestreamer'):
+            from resources.lib.resolvers import livestreamer
+            resolved = livestreamer.resolve(query)
+        else:
+            import liveresolver
+            url=query
+            resolved = liveresolver.resolve(url,cache_timeout=0)
         xbmc.Player().play(resolved)
 
 elif mode[0] == 'live_sport':
@@ -74,13 +81,13 @@ elif mode[0] == 'live_tv':
     sources.remove('__init__.py')
     for source in sources:
         if '.pyo' not in source and '__init__' not in source:
-            try:
+            #try:
                 source = source.replace('.py','')
                 exec "from resources.lib.sources.live_tv import %s"%source
                 info = eval(source+".info()")
                 addon.add_item({'mode': 'open_live_tv', 'site': info.mode}, {'title': info.name}, img=icon_path(info.icon), fanart=fanart,is_folder=True)
-            except:
-                pass
+            #except:
+            #    pass
     addon.end_of_directory()
 
 
@@ -234,7 +241,7 @@ elif mode[0] == 'open_p2p_sport':
             if not info.multilink:
                 browser = 'plugin://plugin.program.chrome.launcher/?url=%s&mode=showSite&stopPlayback=no'%(event[0])
                 context = [('Open in browser','RunPlugin(%s)'%browser)]
-                addon.add_video_item({'mode': 'play', 'url': event[0],'title':event[1], 'img': event[2]}, {'title': event[1]}, img=event[2], fanart=fanart, contextmenu_items=context)
+                addon.add_video_item({'mode': 'play_p2p', 'url': event[0],'title':event[1], 'img': event[2], 'site':site}, {'title': event[1]}, img=event[2], fanart=fanart, contextmenu_items=context)
             else:
                 addon.add_item({'mode': 'get_p2p_event', 'url': event[0],'site':site , 'title':event[1], 'img': event[2]}, {'title': event[1]}, img=event[2], fanart=fanart,is_folder=True)
     
@@ -284,7 +291,7 @@ elif mode[0]=='open_p2p_cat':
             if not info.multilink:
                 browser = 'plugin://plugin.program.chrome.launcher/?url=%s&mode=showSite&stopPlayback=no'%(event[0])
                 context= [('Open in browser','RunPlugin(%s)'%browser)]
-                addon.add_video_item({'mode': 'play', 'url': event[0],'title':event[1], 'img': event[2]}, {'title': event[1]}, img=event[2], fanart=fanart,contextmenu_items=context)
+                addon.add_video_item({'mode': 'play_p2p', 'url': event[0],'title':event[1], 'img': event[2], 'site':site}, {'title': event[1]}, img=event[2], fanart=fanart,contextmenu_items=context)
             else:
                 addon.add_item({'mode': 'get_p2p_event', 'url': event[0],'site':site , 'title':event[1], 'img': event[2]}, {'title': event[1]}, img=event[2], fanart=fanart,is_folder=True)
         
@@ -494,12 +501,30 @@ elif mode[0]=='get_p2p_event':
     for event in events:
         browser = 'plugin://plugin.program.chrome.launcher/?url=%s&mode=showSite&stopPlayback=no'%(event[0])
         context = [('Open in browser','RunPlugin(%s)'%browser)]
-        addon.add_video_item({'mode': 'play', 'url': event[0],'title':title, 'img': img}, {'title': event[1]}, img=img, fanart=fanart, contextmenu_items=context)
+        addon.add_video_item({'mode': 'play_p2p', 'url': event[0],'title':title, 'img': img, 'site':site}, {'title': event[1]}, img=img, fanart=fanart, contextmenu_items=context)
     addon.end_of_directory()
     
 
 
-
+elif mode[0] == 'play_p2p':
+    #try:
+        url = args['url'][0]
+        title = args['title'][0]
+        img = args['img'][0]
+        site = args['site'][0]
+        exec "from resources.lib.sources.p2p_sport import %s"%(site)
+        source = eval(site+'.main()')
+        resolved = source.resolve(url)
+        li = xbmcgui.ListItem(title, path=resolved)
+        li.setThumbnailImage(img)
+        li.setLabel(title)
+        handle = int(sys.argv[1])
+        if handle > -1:
+            xbmcplugin.endOfDirectory(handle, True, False, False)
+        
+        xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, li)
+    #except:
+    #    pass
 
 elif mode[0] == 'play':
     try:
@@ -520,7 +545,7 @@ elif mode[0] == 'play':
         pass
 
 elif mode[0] == 'play_special':
-    try:
+    #try:
         url = args['url'][0]
         title = args['title'][0]
         img = args['img'][0]
@@ -536,11 +561,11 @@ elif mode[0] == 'play_special':
             xbmcplugin.endOfDirectory(handle, True, False, False)
         
         xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, li)
-    except:
-        pass
+    #except:
+    #    pass
 
 elif mode[0] == 'play_folder':
-    try:
+    #try:
         url = args['url'][0]
         title = args['title'][0]
         img = args['img'][0]
@@ -552,8 +577,8 @@ elif mode[0] == 'play_folder':
         li.setThumbnailImage(img)
         li.setLabel(title)
         xbmc.Player().play(resolved, listitem=li)
-    except:
-        pass
+    #except:
+    #    pass
 
 elif mode[0] == 'play_special_sport':
     #try:
@@ -785,7 +810,9 @@ elif mode[0]=='bblogs':
 elif mode[0]=='my_lists':
     lists = myLists.getLists()
     for ls in lists:
-        addon.add_item({'mode': 'open_list', 'path':ls[1], 'name':ls[0]}, {'title': ls[0]}, img=icon_path('my_lists.jpg'), fanart=fanart, is_folder=True)
+        delete = addon.build_plugin_url({'mode':'remove_list','name':ls[0]})
+        context = [('Remove list','RunPlugin(%s)'%delete)]
+        addon.add_item({'mode': 'open_list', 'path':ls[1], 'name':ls[0]}, {'title': ls[0]}, img=icon_path('my_lists.jpg'), fanart=fanart, is_folder=True, contextmenu_items=context)
     addon.add_item({'mode':'add_list'},{'title':'[B][COLOR green]Add list...[/COLOR][/B]'},img=icon_path('my_lists.jpg'), fanart=fanart, is_folder=True)
     addon.end_of_directory()
 
@@ -814,16 +841,45 @@ elif mode[0]=='add_list':
             name = control.get_keyboard('Enter list title:')
             if path and name:
                 myLists.addList(name,path)
-            
-        
+
+elif mode[0]=='remove_list':
+    name = args['name'][0]
+    myLists.removeList(name)
+    control.refresh()        
+
 elif mode[0]=='open_list':
     path = args['path'][0]
     items = myLists.getItems(path)
     for item in items:
-            addon.add_video_item({'mode': 'play', 'url': item[0],'title':item[1], 'img': item[2]}, {'title': item[1]}, img=item[2], fanart=fanart)
+            url = item[0]
+            if url.endswith('.ts'):
+                import liveresolver
+                url = liveresolver.resolve(url,title= item[1])
+                item = control.item(item[1],item[2])
+                control.addItem(handle=addon_handle,url=url,listitem=item)
+            else:
+                addon.add_video_item({'mode': 'play_playlist', 'url': item[0],'title':item[1], 'img': item[2]}, {'title': item[1]}, img=item[2], fanart=fanart)
     addon.end_of_directory()
 
+elif mode[0] == 'play_playlist':
+    url = args['url'][0]
+    title = args['title'][0]
+    img = args['img'][0]
+    if url.endswith('.ts'):
+        import liveresolver
+        resolved = liveresolver.resolve(url,cache_timeout=0,title=title)
+    else:
+        resolved = url
 
+    li = xbmcgui.ListItem(title, path=resolved)
+    li.setThumbnailImage(img)
+    li.setLabel(title)
+    li.setProperty('IsPlayable', 'true')
+    if resolved.startswith('plugin'):
+        control.execute("RunPlugin(%s)"%resolved)
+    else:
+        xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, li)
+    
 
 
 ##################################################################################################################################
@@ -833,6 +889,7 @@ elif mode[0]=='reddit':
     from resources.lib.modules import subreddits
     items = subreddits.get_subreddits()
     for item in items:
+
         delete = addon.build_plugin_url({'mode':'delete_subreddit','reddit':item})
         context = [('Remove subreddit','RunPlugin(%s)'%delete)]
         addon.add_item({'mode': 'open_subreddit', 'reddit': item}, {'title': item}, img=icon_path('reddit.jpg'), fanart=fanart,contextmenu_items=context,is_folder=True)

@@ -127,7 +127,7 @@ class main():
                 evento = events[i]
                 ln_num = names[i]
                 title = "%s %s (%s)"%(evento, ln_num, pl_name)
-                if not 'bet' in pl_name.lower():
+                if not 'bet' in pl_name.lower() and '!' not in title:
                     new.append((url,title))
 
         return new

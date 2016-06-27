@@ -1,9 +1,13 @@
-from resources.lib.modules import client,webutils
+from resources.lib.modules import client,webutils,constants
 from resources.lib.modules.log_utils import log
-import re,urllib,json
+import re,urllib,json,urllib
 
 def resolve(url):
 	try:
+		if '.mp4' in url:
+			url = url.replace('https','http')
+			url += '|%s' % urllib.urlencode({'User-agent':client.agent(),'X-requested-with':constants.get_shockwave()})
+			return url
 		if url.startswith('//'):
 			url = 'http:' + url
 		result = client.request(url)

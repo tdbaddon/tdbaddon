@@ -16,13 +16,12 @@ def resolve(url):
 		rand = re.findall('name=[\"\']rand[\"\'] value=[\"\']([^\"\']+)',html)[0]
 		id = re.findall('name=[\"\']id[\"\'] value=[\"\']([^\"\']+)',html)[0]
 		post_data = {'op':'download2','id':id,'rand':rand,'referer':referer,'down_script':'1','method_free':'','method_premium':''}
-		result = client.request(url,redirect=False,output ='headers',post=urllib.urlencode(post_data),headers = {'Referer':referer,'Content-type':'application/x-www-form-urlencoded','Host':'userscloud.com'})
-		tor = re.findall('Location:\s*([^$]+)',str(result))[0]
+		tor = client.request(url,redirect=False,output ='geturl',post=urllib.urlencode(post_data),headers = {'Referer':referer,'Content-type':'application/x-www-form-urlencoded','Host':'userscloud.com'})
 		tor = re.sub(':\d+/','/',tor)
 		sm = tor.split('/')[-1]
 		tor = tor.replace(sm,urllib.quote(sm))
 		from resources.lib.resolvers import torrent
-		out = torrent.resolve(tor)
+		out = torrent.resolve(tor.replace('https','http'))
 		return out
 	except:
 		return ''

@@ -130,3 +130,7 @@ class main():
             title = title.encode('utf-8')         
             new.append((url,title, info().icon))
         return new
+
+    def resolve(self,url):
+        import liveresolver
+        return liveresolver.resolve(url,cache_timeout=0)

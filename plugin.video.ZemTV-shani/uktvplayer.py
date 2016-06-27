@@ -11,10 +11,11 @@ from time import time
 import base64
 
 def getUserAgent():
-    ua="Mozilla/5.0 (Linux; Android 5.1; en-US; Nexus 6 Build/LMY47Z) "+("MX Player/%s.%s.%s"%(binascii.b2a_hex(os.urandom(2))[:2],binascii.b2a_hex(os.urandom(2))[:2],binascii.b2a_hex(os.urandom(2))[:3]))
+#    ua="Mozilla/5.0 (Linux; Android 5.1; en-US; Nexus 6 Build/LMY47Z) "+("MX Player/%s.%s.%s"%(binascii.b2a_hex(os.urandom(2))[:2],binascii.b2a_hex(os.urandom(2))[:2],binascii.b2a_hex(os.urandom(2))[:3]))
+    ua="EMVideoView 2.5.6 (25600) / Android 4.4.4 / GT-I9300"
     import random
     
-    return ''.join(random.sample(set(ua.split(' ')), 3))
+    return ua#''.join(random.sample(set(ua.split(' ')), 3))
 
 def tryplay(url,listitem):    
     import  CustomPlayer,time
@@ -36,7 +37,8 @@ def play(listitem, item):
     played=False
     try:
         try:
-            url=item[0]["http_stream"]
+            
+            url=item["msg"]["channel"]["http_stream"]
             if '|' in url:# and 1==2:
                 url=url#.split('|')[0]+"|User-Agent=UKTVNOW_PLAYER_1.2&Referer=www.uktvnow.net"
             elif url.startswith('http') :
@@ -50,7 +52,7 @@ def play(listitem, item):
         except: pass
         #print "playing stream name: " + str(name) 
         #xbmc.Player(  ).play( urlToPlay, listitem)    
-        url=item[0]["rtmp_stream"].replace(' ','')
+        url=item["msg"]["channel"]["rtmp_stream"].replace(' ','')
         if '|' not in url and url.startswith('http'):
             url=url+"|User-Agent=%s"%getUserAgent()
         if url.startswith('rtmp'):

@@ -89,3 +89,7 @@ class main():
             if 'Acestream'  in service or 'Sopcast' in service:
                 new.append((url,title))
         return new
+
+    def resolve(self,url):
+        import liveresolver
+        return liveresolver.resolve(url,cache_timeout=0)

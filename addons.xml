@@ -675,15 +675,15 @@ Plugin by @koderdude</description>
   </extension>
 </addon>
 
-<addon id="plugin.video.castaway" name="Castaway" version="0.2.4" provider-name="natko1412">
+<addon id="plugin.video.castaway" name="Castaway" version="0.2.5" provider-name="natko1412">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0"/>
 		<import addon="script.module.beautifulsoup" version="3.2.1"/>
 		<import addon="script.module.requests"  />
-		<import addon="script.module.mechanize"  />
     	<import addon="script.module.addon.common" />
 		<import addon="script.module.urlresolver" />
 		<import addon="script.module.liveresolver"  />
+		<import addon="script.module.livestreamer" />
 
 
 	</requires>
@@ -1898,7 +1898,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.roggerstream"
        name="Rogger Stream"
-       version="5.0.1"
+       version="5.0.2"
        provider-name="Rogger Henrique, Filipe Carvalho e Marcos Alvarenga">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -2160,7 +2160,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="3.93"
+       version="3.94"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -2423,7 +2423,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.uktvnow" name="UKTV Now" version="2.0.4" provider-name="MetalKettle">
+<addon id="plugin.video.uktvnow" name="UKTV Again" version="2.0.6" provider-name="MetalKettle">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
   </requires>
@@ -2664,7 +2664,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.ZemTV-shani"
        name="ZemTV.com"
-       version="4.9.1"
+       version="4.9.3"
        provider-name="shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>

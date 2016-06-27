@@ -50,3 +50,6 @@ class main():
 		return events
 
 	
+	def resolve(self,url):
+		import liveresolver
+		return liveresolver.resolve(url,cache_timeout=0)
