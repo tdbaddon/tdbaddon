@@ -49,13 +49,13 @@ http://www.support.tcomputers.ca/-videos/changeaudio.mp4
 0
 
 #EXTINF:0,CMore First 
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/793.ts
 
 #EXTINF:0,CMore Hits 
 0
 
 #EXTINF:0,CMore Series 
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/787.ts
 
 #EXTINF:0,DXTV
 http://186.33.227.200/DXTV/smil:DXTV.smil/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9NC8xNy8yMDE1IDEyOjM5OjEwIFBNJmhhc2hfdmFsdWU9enNzd2E
@@ -76,16 +76,16 @@ http://186.33.227.200/DXTV/smil:DXTV.smil/playlist.m3u8?wmsAuthSign=c2VydmVyX3Rp
 0
 
 #EXTINF:0,Film1 Action
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/1461.ts
 
 #EXTINF:0,Film1 Comedy & Kids
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/909.ts
 
 #EXTINF:0,Film1 Premiere
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/908.ts
 
 #EXTINF:0,Film1 Spotlight
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/1464.ts
 
 #EXTINF:0,FilmBox 
 0
@@ -99,14 +99,20 @@ http://cp.dmbshare.net:8000/live/francesco2/francesco2/3524.ts
 #EXTINF:0,Film Aksion 
 http://cp.dmbshare.net:8000/live/paul1/paul1/3524.ts
 
+#EXTINF:0,Film Aksion 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/652.ts
+
 #EXTINF:0,Film Autor
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/653.ts
 
 #EXTINF:0,Film Drame 
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/1773.ts
 
 #EXTINF:0,Film Drame 
 http://cp.dmbshare.net:8000/live/paul1/paul1/3521.ts
+
+#EXTINF:0,Film Drame 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/644.ts
 
 #EXTINF:0,Film Hits 
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/1776.ts
@@ -117,20 +123,35 @@ http://cp.dmbshare.net:8000/live/francesco2/francesco2/3526.ts
 #EXTINF:0,Film Hits 
 http://cp.dmbshare.net:8000/live/paul1/paul1/3526.ts
 
+#EXTINF:0,Film Hits 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/654.ts
+
+#EXTINF:0,Film Hits 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/670.ts
+
 #EXTINF:0,Film Komedi 
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/1775.ts
 
 #EXTINF:0,Film Komedi 
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/3525.ts
 
+#EXTINF:0,Film Komedi 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/655.ts
+
 #EXTINF:0,Film Nje 
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/1778.ts
+
+#EXTINF:0,Film Nje 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/660.ts
 
 #EXTINF:0,Film Thriller 
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/1777.ts
 
 #EXTINF:0,Film Thriller 
 http://cp.dmbshare.net:8000/live/paul1/paul1/3522.ts
+
+#EXTINF:0,Film Thriller
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/656.ts
 
 #EXTINF:0,Film4 
 0
@@ -151,13 +172,22 @@ http://cp.dmbshare.net:8000/live/paul1/paul1/3522.ts
 0
 
 #EXTINF:0,Fox Movies 
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/1684.ts
 
 #EXTINF:0,Golden Edge
 0
 
 #EXTINF:0,HBO 
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2542.ts
+
+#EXTINF:0,HBO 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/905.ts
+
+#EXTINF:0,HBO 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/904.ts
+
+#EXTINF:0,HBO 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/906.ts
 
 #EXTINF:0,HBO Adria 
 0
@@ -169,7 +199,7 @@ http://cp.dmbshare.net:8000/live/paul1/paul1/3522.ts
 0
 
 #EXTINF:0,HBO East 2
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2543.ts
 
 #EXTINF:0,HBO Family
 http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6824.ts
@@ -190,7 +220,7 @@ http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6830.ts
 0
 
 #EXTINF:0,HWD Hollywood 
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/1681.ts
 
 #EXTINF:0,Kung Fu Classics
 0
@@ -206,6 +236,9 @@ http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6830.ts
 
 #EXTINF:0,Movies4Men 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5744.ts
+
+#EXTINF:0,Movies4Men 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2125.ts
 
 #EXTINF:0,OSN Movies
 0
@@ -250,19 +283,34 @@ http://cp.dmbshare.net:8000/live/paul1/paul1/5744.ts
 0
 
 #EXTINF:0,Sky Movies Action 
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2176.ts
+
+#EXTINF:0,Sky Movies Action 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2220.ts
 
 #EXTINF:0,Sky Movies Comedy 
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2174.ts
+
+#EXTINF:0,Sky Movies Comedy 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/417.ts
+
+#EXTINF:0,Sky Movies Comedy 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/415.ts
 
 #EXTINF:0,Sky Movies Crime 
 0
 
 #EXTINF:0,Sky Movies Disney 
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2173.ts
+
+#EXTINF:0,Sky Movies Disney 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/412.ts
 
 #EXTINF:0,Sky Movies Drama
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2219.ts
+
+#EXTINF:0,Sky Movies Drama
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2172.ts
 
 #EXTINF:0,Sky Movies Family 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5716.ts
@@ -270,14 +318,29 @@ http://cp.dmbshare.net:8000/live/paul1/paul1/5716.ts
 #EXTINF:0,Sky Movies Family 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5715.ts
 
+#EXTINF:0,Sky Movies Family 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2161.ts
+
+#EXTINF:0,Sky Movies Family 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/411.ts
+
 #EXTINF:0,Sky Movies Horrors 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5713.ts
 
 #EXTINF:0,Sky Movies Modern Greats 
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2175.ts
+
+#EXTINF:0,Sky Movies Modern Greats 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2113.ts
+
+#EXTINF:0,Sky Movies Modern Greats 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2171.ts
 
 #EXTINF:0,Sky Movies Premiere 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5712.ts
+
+#EXTINF:0,Sky Movies Premiere 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/418.ts
 
 #EXTINF:0,Sky Movies Premiere+ 
 0
@@ -285,17 +348,44 @@ http://cp.dmbshare.net:8000/live/paul1/paul1/5712.ts
 #EXTINF:0,Sky Movies SciFi 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5711.ts
 
+#EXTINF:0,Sky Movies SciFi 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2218.ts
+
+#EXTINF:0,Sky Movies SciFi 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2112.ts
+
+#EXTINF:0,Sky Movies SciFi 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2170.ts
+
 #EXTINF:0,Sky Movies Select 
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2111.ts
+
+#EXTINF:0,Sky Movies Select 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2168.ts
+
+#EXTINF:0,Sky Movies Select 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/410.ts
 
 #EXTINF:0,Sky Movies Showcase 
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/882.ts
+
+#EXTINF:0,Sky Movies Showcase 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/409.ts
+
+#EXTINF:0,Sky Movies Showcase 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2160.ts
 
 #EXTINF:0,Sky Movies Thriller 
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2110.ts
+
+#EXTINF:0,Sky Movies Thriller 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2159.ts
+
+#EXTINF:0,Sky Movies Thriller 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/408.ts
 
 #EXTINF:0,Sony TV 
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/881.ts
 
 #EXTINF:0,Star Movies 
 0
@@ -316,7 +406,7 @@ http://cp.dmbshare.net:8000/live/paul1/paul1/5711.ts
 0
 
 #EXTINF:0,TCM 
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2210.ts
 
 #EXTINF:0,The Movie Channel 
 0
@@ -337,22 +427,25 @@ http://cp.dmbshare.net:8000/live/paul1/paul1/5711.ts
 0
 
 #EXTINF:0,Tring Fantasy 
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/666.ts
 
 #EXTINF:0,Tring Life 
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/669.ts
 
 #EXTINF:0,Tring Max 
 0
 
 #EXTINF:0,Tring Super 
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/665.ts
 
 #EXTINF:0,True Movies 1 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5692.ts
 
+#EXTINF:0,True Movies 1 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2157.ts
+
 #EXTINF:0,True Movies 2 
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2107.ts
 
 #EXTINF:0,TV 1000 
 0

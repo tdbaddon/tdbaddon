@@ -37,7 +37,7 @@ http://cp.dmbshare.net:8000/live/paul1/paul1/1783.ts
 0
 
 #EXTINF:0,Kanal 21 
-0
+mms://62.162.58.55/TVKanal21
 
 #EXTINF:0,K Plus Stip
 0
@@ -73,7 +73,7 @@ http://cp.dmbshare.net:8000/live/paul1/paul1/1783.ts
 0
 
 #EXTINF:0,Sitel 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/5473.ts
+rtmp://51.255.92.232:1935/sitel/ playpath=siteI swfUrl=http://www.tvstanici.net/jwplayer/jwplayer.flash.swf live=1 pageUrl=http://www.tvstanici.net/tvsitelzivo2.html
 
 #EXTINF:0,Sitel 3 
 0
@@ -89,12 +89,6 @@ http://92.53.27.201:10000/
 
 #EXTINF:0,Ultra Tetovo
 0
-
-#EXTINF:0,Vesti 24 
-http://24vesti.com.mk/sites/dnevnik/Vesti_VB6.flv 
-
-#EXTINF:0,Vesti 24 
-http://62.162.58.55:80/24vesti
 
 #EXTINF:0,Vesti 24 
 http://62.162.58.55/24vesti

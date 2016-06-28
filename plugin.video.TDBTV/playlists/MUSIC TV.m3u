@@ -95,7 +95,7 @@ rtmp://www.electrosound.tv/public/stream
 0
 
 #EXTINF:0,Eska Party 
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2254.ts
 
 #EXTINF:0,Eska Party HD 
 0
@@ -136,16 +136,19 @@ http://74.208.152.93/music/stream2/stream.m3u8
 http://74.208.152.93/music/stream3/stream.m3u8
 
 #EXTINF:0,MTV 
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2183.ts
 
 #EXTINF:0,MTV Classic
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2185.ts
 
 #EXTINF:0,MTV Dance 
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2124.ts
 
 #EXTINF:0,MTV Hits 
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2184.ts
+
+#EXTINF:0,MTV Hits 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/1676.ts
 
 #EXTINF:0,MTV Live 
 0
@@ -157,7 +160,7 @@ http://74.208.152.93/music/stream3/stream.m3u8
 0
 
 #EXTINF:0,MusicVoxTV 
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2251.ts
 
 #EXTINF:0,MusicVoxTV HD
 0
@@ -232,7 +235,7 @@ http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/06/prog_index.m3u8
 http://www.iptvsaga.com/play/tv3/0006.m3u8
 
 #EXTINF:0,VH1 
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2156.ts
 
 #EXTINF:0,VH1 Classics 
 http://81.201.52.159:8024

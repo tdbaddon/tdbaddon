@@ -25,6 +25,12 @@ rtmp://188.138.17.8:1935/albuk/albuk.stream
 #EXTINF:0,Alsat M 
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/1763.ts
 
+#EXTINF:0,Alsat M 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/642.ts
+
+#EXTINF:0,Alsat M 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/643.ts
+
 #EXTINF:0,Kanal 5 Plus
 0
 
@@ -32,7 +38,7 @@ http://cp.dmbshare.net:8000/live/francesco2/francesco2/1763.ts
 rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
 
 #EXTINF:0,BangBang 
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/648.ts
 
 #EXTINF:0,BangBang 
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/1770.ts
@@ -46,11 +52,20 @@ http://cp.dmbshare.net:8000/live/francesco2/francesco2/1771.ts
 #EXTINF:0,Cufo TV 
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/3513.ts
 
+#EXTINF:0,Cufo TV 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/649.ts
+
 #EXTINF:0,Dasma
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/1819.ts
 
+#EXTINF:0,Dasma
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/646.ts
+
 #EXTINF:0,Folk Plus 
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/1756.ts
+
+#EXTINF:0,Folk Plus 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/1775.ts
 
 #EXTINF:0,Jug TV 
 0
@@ -106,8 +121,14 @@ rtmp://wowza.rtkit.com/live/livestream
 #EXTINF:0,Supersonic TV
 rtmp://str103.setplex.net:1935/228/stv_online
 
+#EXTINF:0,Supersonic TV
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/1772.ts
+
 #EXTINF:0,Top Channel
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/1734.ts
+
+#EXTINF:0,Top Channel
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/639.ts
 
 #EXTINF:0,Top Channel News
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/1766.ts
@@ -115,8 +136,14 @@ http://cp.dmbshare.net:8000/live/francesco2/francesco2/1766.ts
 #EXTINF:0,Top Channel News
 http://stream.bestvideostreaming.is/8722/index.m3u8?token=GNR4XEsJgYz6d6mDfr4Bcw
 
+#EXTINF:0,Top Channel News
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/640.ts
+
 #EXTINF:0,Tring Tring
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/1747.ts
+
+#EXTINF:0,Tring Tring
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/673.ts
 
 #EXTINF:0,Vizion Plus 
 rtmp://live.vizionplus.tv/live//livestream3

@@ -55,6 +55,12 @@ rtmp://wma10.fluidstream.net/HistoryLab playpath=livestream swfUrl=http://www.ra
 #EXTINF:0,LA7 
 http://la7live-lh.akamaihd.net/i/test_1@143593/master.m3u8
 
+#EXTINF:0,LA7 
+http://cp.dmbshare.net:8000/live/stakenborg/stakenborg/6045.ts
+
+#EXTINF:0,LA7 
+http://cp.dmbshare.net:8000/live/stakenborg/stakenborg/6044.ts
+
 #EXTINF:0,Lucania TV
 0
 
@@ -83,7 +89,7 @@ rtmp://fms.105.net:1935/live/rmc1
 http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/2963.ts
 
 #EXTINF:0,RAI 2 
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/1330.ts
 
 #EXTINF:0,RAI 3 
 http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/4162.ts
@@ -152,7 +158,7 @@ rtmp://flash3.ipercast.net/teleunica.tv-live/livestream1
 0
 
 #EXTINF:0,Sky Arte 
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/991.ts
 
 #EXTINF:0,Sky Calcio 
 http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/2398.ts
@@ -164,7 +170,7 @@ http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/1413.ts
 http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/5008.ts
 
 #EXTINF:0,Sky Sport F1 
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/1634.ts
 
 #EXTINF:0,Sky TG24 
 http://skyianywhere2-i.akamaihd.net:80/hls/live/200275/tg24/stream6/streamPlaylist.m3u8

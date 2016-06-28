@@ -11,7 +11,7 @@ http://abclive.abcnews.com/i/abc_live4@136330/index_800_av-b.m3u8
 0
 
 #EXTINF:0,BBC World News 
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/385.tshttp://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/385.ts
 
 #EXTINF:0,Bloomberg News 
 http://x4012c4000.edge.core-cdn.net/40000mb/live/4012hbbtv/bloomberg.ts
@@ -44,7 +44,7 @@ http://cbsnews-linear.mdialog.com/video_assets/cbsnews.m3u8?api_key=563b80c1ae4c
 0
 
 #EXTINF:0,CNN 
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/1690.ts
 
 #EXTINF:0,CP24 
 0
@@ -125,7 +125,7 @@ http://rt-a.akamaihd.net/ch_04@325608/480p.m3u8
 http://rt-a.akamaihd.net/ch_04@325608/720p.m3u8
 
 #EXTINF:0,Sky News 
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2115.ts
 
 #EXTINF:0,The Weather Channel 
 0

@@ -32,22 +32,37 @@ http://cp.dmbshare.net:8000/live/paul1/paul1/4582.ts
 0
 
 #EXTINF:0,Box Nation 
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2138.ts
+
+#EXTINF:0,Box Nation 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2202.ts
 
 #EXTINF:0,BT Sport 1 
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/595.ts
+
+#EXTINF:0,BT Sport 1 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2222.ts
 
 #EXTINF:0,BT Sport 2 
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/594.ts
+
+#EXTINF:0,BT Sport 2 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2152.ts
 
 #EXTINF:0,BT Sport Europe
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2200.ts
 
 #EXTINF:0,CBS Sports 
 0
 
 #EXTINF:0,Chelsea TV 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5790.ts
+
+#EXTINF:0,Chelsea TV 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2133.ts
+
+#EXTINF:0,Chelsea TV 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2221.ts
 
 #EXTINF:0,CMore Sport 
 0
@@ -60,6 +75,12 @@ http://cp.dmbshare.net:8000/live/paul1/paul1/4583.ts
 
 #EXTINF:0,ESPN 
 http://cp.dmbshare.net:8000/live/paul1/paul1/4604.ts
+
+#EXTINF:0,ESPN 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2201.ts
+
+#EXTINF:0,ESPN 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2192.ts
 
 #EXTINF:0,ESPN 2
 0
@@ -136,6 +157,9 @@ http://cp.dmbshare.net:8000/live/paul1/paul1/4621.ts
 #EXTINF:0,Motors TV 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5745.ts
 
+#EXTINF:0,Motors TV 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/1678.ts
+
 #EXTINF:0,Motorsport 7 
 http://motorsport.hopto.org:8080/
 
@@ -153,6 +177,9 @@ http://208.92.36.158/ipad/live/nba_ipad_1240.m3u8
 
 #EXTINF:0,NBA TV 
 http://cp.dmbshare.net:8000/live/paul1/paul1/4577.ts
+
+#EXTINF:0,NBA TV 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/1157.ts
 
 #EXTINF:0,NBC Golf 
 http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/1896k/prog.m3u8|X-Forwarded-For=66.171.228.102
@@ -253,8 +280,17 @@ mms://100automoto.tv/channel_porsche
 #EXTINF:0,Premier Sports
 http://cp.dmbshare.net:8000/live/paul1/paul1/5737.ts
 
+#EXTINF:0,Premier Sports
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2121.ts
+
+#EXTINF:0,Premier Sports
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2178.ts
+
+#EXTINF:0,Premier Sports
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2179.ts
+
 #EXTINF:0,Racing UK 
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2120.ts
 
 #EXTINF:0,Redbull TV 
 http://sacapunta.eltelon.com/channels/redbulltv/playlist.m3u8
@@ -263,13 +299,31 @@ http://sacapunta.eltelon.com/channels/redbulltv/playlist.m3u8
 0
 
 #EXTINF:0,Setanta Sports 
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2118.ts
+
+#EXTINF:0,Setanta Sports 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/806.ts
+
+#EXTINF:0,Setanta Sports 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2224.ts
 
 #EXTINF:0,Sky Sports 1 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5706.ts
 
+#EXTINF:0,Sky Sports 1 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/602.ts
+
+#EXTINF:0,Sky Sports 1 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2217.ts
+
 #EXTINF:0,Sky Sports 2 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5705.ts
+
+#EXTINF:0,Sky Sports 2 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/603.ts
+
+#EXTINF:0,Sky Sports 2 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2214.ts
 
 #EXTINF:0,Sky Sports 3 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5704.ts
@@ -280,6 +334,15 @@ http://cp.dmbshare.net:8000/live/paul1/paul1/5703.ts
 #EXTINF:0,Sky Sports 4 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5702.ts
 
+#EXTINF:0,Sky Sports 4 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/605.ts
+
+#EXTINF:0,Sky Sports 4 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/407.ts
+
+#EXTINF:0,Sky Sports 4 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2212.ts
+
 #EXTINF:0,Sky Sports 5 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5700.ts
 
@@ -288,6 +351,15 @@ http://cp.dmbshare.net:8000/live/paul1/paul1/5698.ts
 
 #EXTINF:0,Sky Sports News 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5697.ts
+
+#EXTINF:0,Sky Sports News 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/606.ts
+
+#EXTINF:0,Sky Sports News 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/895.ts
+
+#EXTINF:0,Sky Sports News 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2158.ts
 
 #EXTINF:0,Sports Tonight 
 rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9-SD
@@ -321,6 +393,9 @@ http://cp.dmbshare.net:8000/live/paul1/paul1/4592.ts
 
 #EXTINF:0,TSN 1 
 http://cp.dmbshare.net:8000/live/paul1/paul1/4594.ts
+
+#EXTINF:0,TSN 1 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/1536.ts
 
 #EXTINF:0,TSN 2 
 http://cp.dmbshare.net:8000/live/paul1/paul1/4595.ts

@@ -14,7 +14,7 @@ http://www.support.tcomputers.ca/-videos/changeaudio.mp4
 0
 
 #EXTINF:0,Animal Planet 
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/899.ts
 
 #EXTINF:0,Biography Channel
 0
@@ -34,11 +34,17 @@ http://www.support.tcomputers.ca/-videos/changeaudio.mp4
 #EXTINF:0,Discovery Channel
 http://cp.dmbshare.net:8000/live/paul1/paul1/5782.ts
 
+#EXTINF:0,Discovery Channel
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/1465.ts
+
+#EXTINF:0,Discovery Channel
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/421.ts
+
 #EXTINF:0,Discovery H&H
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/420.ts
 
 #EXTINF:0,Discovery History 
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2188.ts
 
 #EXTINF:0,Discovery Max 
 0
@@ -48,6 +54,9 @@ http://cp.dmbshare.net:8000/live/paul1/paul1/5782.ts
 
 #EXTINF:0,Discovery Science 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5780.ts
+
+#EXTINF:0,Discovery Science 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2195.ts
 
 #EXTINF:0,Discovery Shed
 0
@@ -91,6 +100,12 @@ http://cp.dmbshare.net:8000/live/paul1/paul1/5756.ts
 #EXTINF:0,Investigation Discovery 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5781.ts
 
+#EXTINF:0,Investigation Discovery 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2131.ts
+
+#EXTINF:0,Investigation Discovery 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2187.ts
+
 #EXTINF:0,Nasa TV 
 http://nasatv-lh.akamaihd.net/i/NASA_101@319270/master.m3u8 
 
@@ -104,10 +119,13 @@ http://nasatv-lh.akamaihd.net/i/NASA_103@319271/master.m3u8
 0
 
 #EXTINF:0,Nat Geo Wild 
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/1674.ts
 
 #EXTINF:0,National Geographic 
 http://cp.dmbshare.net:8000/live/paul1/paul1/5740.ts
+
+#EXTINF:0,National Geographic 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2123.ts
 
 #EXTINF:0,Nova
 0

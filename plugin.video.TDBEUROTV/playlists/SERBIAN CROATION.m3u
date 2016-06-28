@@ -4,26 +4,56 @@
 #EXTINF:0,Al Jazeera Balkan 
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/1814.ts
 
+#EXTINF:0,Al Jazeera Balkan 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/521.ts
+
 #EXTINF:0,Arena Sport 1 
 http://cp.dmbshare.net:8000/live/paul1/paul1/1802.ts
+
+#EXTINF:0,Arena Sport 1 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/47.ts
+
+#EXTINF:0,Arena Sport 1 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/399.ts
+
+#EXTINF:0,Arena Sport 1 
+http://cp.dmbshare.net:8000/live/stakenborg/stakenborg/5922.ts
 
 #EXTINF:0,Arena Sport 2 
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/1803.ts
 
-#EXTINF:0,Arena Sport 2
+#EXTINF:0,Arena Sport 2 
 http://cp.dmbshare.net:8000/live/paul1/paul1/1803.ts
 
-#EXTINF:0,Arena Sport 3
+#EXTINF:0,Arena Sport 2 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/44.ts
+
+#EXTINF:0,Arena Sport 2 
+http://cp.dmbshare.net:8000/live/stakenborg/stakenborg/5923.ts
+
+#EXTINF:0,Arena Sport 3 
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/1804.ts
 
-#EXTINF:0,Arena Sport 3
+#EXTINF:0,Arena Sport 3 
 http://cp.dmbshare.net:8000/live/paul1/paul1/1804.ts
+
+#EXTINF:0,Arena Sport 3 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/43.ts
+
+#EXTINF:0,Arena Sport 3 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/42.ts
+
+#EXTINF:0,Arena Sport 3
+http://cp.dmbshare.net:8000/live/stakenborg/stakenborg/5924.ts
 
 #EXTINF:0,Arena Sport 4 
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/1805.ts
 
 #EXTINF:0,Arena Sport 4 
 http://cp.dmbshare.net:8000/live/paul1/paul1/1805.ts
+
+#EXTINF:0,Arena Sport 4 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/41.ts
 
 #EXTINF:0,Arena Sport 5 
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/1806.ts
@@ -36,6 +66,9 @@ rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
 
 #EXTINF:0,B92 
 http://cp.dmbshare.net:8000/live/paul1/paul1/1822.ts
+
+#EXTINF:0,B92 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/519.ts
 
 #EXTINF:0,Balkan TV
 0
@@ -50,7 +83,7 @@ http://cp.dmbshare.net:8000/live/paul1/paul1/1822.ts
 0
 
 #EXTINF:0,CMC 
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/531.ts
 
 #EXTINF:0,DMC
 0
@@ -68,16 +101,19 @@ rtmp://rtmp.elektrika.cz/live/myStream.sdp
 0
 
 #EXTINF:0,Happy 
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/520.ts
 
 #EXTINF:0,Hayat Folk 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6642.ts
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/534.ts
+
+#EXTINF:0,Hayat Folk 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/532.ts
 
 #EXTINF:0,Hayat Music 
 0
 
 #EXTINF:0,Hayat Plus 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/2499.ts
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/530.ts
 
 #EXTINF:0,Hayatovci
 0
@@ -92,19 +128,19 @@ http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/2499.ts
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/1811.ts
 
 #EXTINF:0,HRT 1 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/4597.ts
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/526.ts
 
 #EXTINF:0,HRT 2 
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/1812.ts
 
-#EXTINF:0,HRT 2
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/4596.ts
+#EXTINF:0,HRT 2 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/527.ts
 
 #EXTINF:0,HRT 3 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/4595.ts
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/528.ts
 
 #EXTINF:0,HRT 4 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/4594.ts
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/529.ts
 
 #EXTINF:0,Joj
 0
@@ -122,7 +158,7 @@ http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/4594.ts
 0
 
 #EXTINF:0,Kanal 8
-0
+mms://62.162.58.55/TVKanal8
 
 #EXTINF:0,Kanal 21
 0
@@ -155,13 +191,13 @@ http://213.81.153.221:8080/nasa
 0
 
 #EXTINF:0,Nova TV
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/4830.ts
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/525.ts
 
 #EXTINF:0,Novosadska TV 
 0
 
 #EXTINF:0,OBN 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/3300.ts
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/522.ts
 
 #EXTINF:0,Palma Plus 
 0
@@ -172,12 +208,6 @@ http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/3300.ts
 #EXTINF:0,Prva TV 
 http://cp.dmbshare.net:8000/live/paul1/paul1/1817.ts
 
-#EXTINF:0,Prva TV 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/4827.ts
-
-#EXTINF:0,Prva TV 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/4826.ts
-
 #EXTINF:0,RTC 
 0
 
@@ -187,12 +217,6 @@ http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/4826.ts
 #EXTINF:0,RTL
 http://cp.dmbshare.net:8000/live/francesco2/francesco2/1813.ts
 
-#EXTINF:0,RTL
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/4822.ts
-
-#EXTINF:0,RTL
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/4831.ts
-
 #EXTINF:0,RTL 2 
 http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/4823.ts
 
@@ -200,19 +224,19 @@ http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/4823.ts
 http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/3729.ts
 
 #EXTINF:0,RTS 
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/518.ts
 
 #EXTINF:0,RTS 1 
 http://cp.dmbshare.net:8000/live/paul1/paul1/1815.ts
 
 #EXTINF:0,RTS 1 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/3892.ts
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/516.ts
 
 #EXTINF:0,RTS 2 
 http://cp.dmbshare.net:8000/live/paul1/paul1/1816.ts
 
 #EXTINF:0,RTS 2 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/3891.ts
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/517.ts
 
 #EXTINF:0,RTS 3 
 0

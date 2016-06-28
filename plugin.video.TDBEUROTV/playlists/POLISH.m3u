@@ -17,46 +17,31 @@ http://212.79.96.134:8015/
 http://213.81.153.221:8080/cetv
 
 #EXTINF:0,Eska Best TV 
-rtmp://stream.smcloud.net/live2/best/best_720p
-
-#EXTINF:0,Eska Best TV 
-rtmp://stream.smcloud.net/live2/best/best_480p
+0
 
 #EXTINF:0,Eska Go TV 
-rtmp://stream.smcloud.net/live2/wawa/wawa_720p
-
-#EXTINF:0,Eska Go TV 
-rtmp://stream.smcloud.net/live2/wawa/wawa_480p
+0
 
 #EXTINF:0,Eska Party TV 
-rtmp://stream.smcloud.net/live2/eska_party/eska_party_720p
-
-#EXTINF:0,Eska Party TV 
-rtmp://stream.smcloud.net/live2/eska_party/eska_party_480p
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2254.ts
 
 #EXTINF:0,Eska Rock TV 
-rtmp://stream.smcloud.net/live2/eska_rock/eska_rock_720p
-
-#EXTINF:0,Eska Rock TV 
-rtmp://stream.smcloud.net/live2/eska_rock/eska_rock_480p
+0
 
 #EXTINF:0,Eska 360 TV 
-http://stream.smcloud.net/live2/eskatv/eskatv_360p/playlist.m3u8
+0
 
 #EXTINF:0,Eska TV 
-rtmp://stream.smcloud.net/live2/eskatv//eskatv_360p
+0
 
 #EXTINF:0,Eska Vox TV 
-rtmp://stream.smcloud.net/live2/vox/vox_720p
-
-#EXTINF:0,Eska Vox TV 
-rtmp://stream.smcloud.net/live2/vox/vox_480p
-
-#EXTINF:0,Fokus TV 
-rtmp://stream.smcloud.net/live/fokustv
+0
 
 #EXTINF:0,Fokus TV 
 http://s4w.deb1.scdn.smcloud.net/live/_definst_/fokustv/chunklist_w2048299294.m3u8
+
+#EXTINF:0,Fokus TV 
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2246.ts
 
 #EXTINF:0,ITV 
 http://itv.net.pl/video1.asx
@@ -65,7 +50,7 @@ http://itv.net.pl/video1.asx
 mms://194.150.185.253/ITV
 
 #EXTINF:0,Lech TV
-http://wtk.live-ext.e96-jw.insyscd.net/lechtv.smil/playlist.m3u8
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2236.ts
 
 #EXTINF:0,Noe Zive 
 http://81.201.52.159:8017
@@ -99,6 +84,9 @@ http://212.79.96.134:8016/
 
 #EXTINF:0,Polo TV
 rtmp://stream.smcloud.net/live/polotv
+
+#EXTINF:0,Polo TV
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2253.ts
 
 #EXTINF:0,Polsat 
 0
@@ -155,31 +143,31 @@ http://81.201.52.159:8013
 0
 
 #EXTINF:0,TV Torun 
-http://217.173.176.107:1935/live/ngrp:tvk.stream_all/.m3u8
+0
 
 #EXTINF:0,TV Trwam 
 mms://195.94.205.211/Trwam
 
 #EXTINF:0,TV Trwam 
-http://trwamtv.live.e96-jw.insyscd.net/trwamtv.smil/playlist.m3u8
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2252.ts
 
 #EXTINF:0,TVK
 0
 
 #EXTINF:0,TVN 
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2243.ts
 
 #EXTINF:0,TVN Style 
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/1116.ts
 
 #EXTINF:0,TVN Turbo 
-0
+http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/1115.ts
 
 #EXTINF:0,TVP 
 0
 
 #EXTINF:0,TVP 1 
-http://63.237.48.23/ios/TVP/TVP.m3u8
+0
 
 #EXTINF:0,TVP 2 
 0
@@ -203,7 +191,7 @@ http://63.237.48.23/ios/TVP/TVP.m3u8
 0
 
 #EXTINF:0,Twoja TV 
-http://94.246.169.19/ttv_hls/live_270p/index.m3u8
+0
 
 #EXTINF:0,WTK 
-http://wtk.live-ext.e96-jw.insyscd.net/wtk.smil/playlist.m3u8
+0
