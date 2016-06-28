@@ -85,14 +85,11 @@ http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2192.ts
 #EXTINF:0,ESPN 2
 0
 
-#EXTINF:0,ESPN News
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/4612.ts
+#EXTINF:0,ESPN News 
+0
 
 #EXTINF:0,Eurosport 1 
 http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_1800.m3u8
-
-#EXTINF:0,Eurosport 1 
-http://cp.dmbshare.net:8000/live/paul1/paul1/5766.ts
 
 #EXTINF:0,Eurosport 2
 0
@@ -177,9 +174,6 @@ http://208.92.36.158/ipad/live/nba_ipad_1240.m3u8
 
 #EXTINF:0,NBA TV 
 http://cp.dmbshare.net:8000/live/paul1/paul1/4577.ts
-
-#EXTINF:0,NBA TV 
-http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/1157.ts
 
 #EXTINF:0,NBC Golf 
 http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/1896k/prog.m3u8|X-Forwarded-For=66.171.228.102

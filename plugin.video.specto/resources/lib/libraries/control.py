@@ -30,6 +30,7 @@ trakt_key = base64.urlsafe_b64decode('NDFjYzI1NjY5Y2Y2OTc0NTg4ZjA0MTMxYjcyZjc4Mj
 trakt_secret = base64.urlsafe_b64decode('Y2I4OWExYTViN2ZlYmJiMDM2NmQ3Y2EyNzJjZDc4YTU5MWQ1ODI2Y2UyMTQ1NWVmYzE1ZDliYzQ1ZWNjY2QyZQ==')
 
 scriptID = 'plugin.video.specto'
+scriptIDMedia = 'script.specto.media'
 ptv = xbmcaddon.Addon(scriptID)
 
 lang = xbmcaddon.Addon().getLocalizedString
@@ -49,6 +50,8 @@ content = xbmcplugin.setContent
 property = xbmcplugin.setProperty
 
 addonInfo = xbmcaddon.Addon().getAddonInfo
+
+addonInfoMedia = xbmcaddon.Addon(scriptIDMedia).getAddonInfo
 
 infoLabel = xbmc.getInfoLabel
 
@@ -96,6 +99,8 @@ skinPath = xbmc.translatePath('special://skin/')
 
 addonPath = xbmc.translatePath(addonInfo('path'))
 
+addonPathMedia = xbmc.translatePath(addonInfoMedia('path'))
+
 dataPath = xbmc.translatePath(addonInfo('profile')).decode('utf-8')
 
 settingsFile = os.path.join(dataPath, 'settings.xml')
@@ -126,45 +131,45 @@ except:
 def addonIcon():
     appearance = setting('appearance').lower()
     if appearance in ['-', '']: return addonInfo('icon')
-    else: return os.path.join(addonPath, 'resources', 'media', appearance, 'icon.png')
+    else: return os.path.join(addonPathMedia, 'resources', 'media', appearance, 'icon.png')
 
 
 def addonPoster():
     appearance = setting('appearance').lower()
     if appearance in ['-', '']: return 'DefaultVideo.png'
-    else: return os.path.join(addonPath, 'resources', 'media', appearance, 'poster.png')
+    else: return os.path.join(addonPathMedia, 'resources', 'media', appearance, 'poster.png')
 
 
 def addonBanner():
     appearance = setting('appearance').lower()
     if appearance in ['-', '']: return 'DefaultVideo.png'
-    else: return os.path.join(addonPath, 'resources', 'media', appearance, 'banner.png')
+    else: return os.path.join(addonPathMedia, 'resources', 'media', appearance, 'banner.png')
 
 
 def addonThumb():
     appearance = setting('appearance').lower()
     if appearance == '-': return 'DefaultFolder.png'
     elif appearance == '': return addonInfo('icon')
-    else: return os.path.join(addonPath, 'resources', 'media', appearance, 'icon.png')
+    else: return os.path.join(addonPathMedia, 'resources', 'media', appearance, 'icon.png')
 
 
 def addonFanart():
     appearance = setting('appearance').lower()
     if appearance == '-': return None
     elif appearance == '': return addonInfo('fanart')
-    else: return os.path.join(addonPath, 'resources', 'media', appearance, 'fanart.jpg')
+    else: return os.path.join(addonPathMedia, 'resources', 'media', appearance, 'fanart.jpg')
 
 
 def addonNext():
     appearance = setting('appearance').lower()
     if appearance in ['-', '']: return 'DefaultFolderBack.png'
-    else: return os.path.join(addonPath, 'resources', 'media', appearance, 'next.jpg')
+    else: return os.path.join(addonPathMedia, 'resources', 'media', appearance, 'next.jpg')
 
 
 def artPath():
     appearance = setting('appearance').lower()
     if appearance in ['-', '']: return None
-    else: return os.path.join(addonPath, 'resources', 'media', appearance)
+    else: return os.path.join(addonPathMedia, 'resources', 'media', appearance)
 
 
 def infoDialog(message, heading=addonInfo('name'), icon=addonIcon(), time=3000):

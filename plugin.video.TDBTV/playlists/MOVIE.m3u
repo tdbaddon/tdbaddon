@@ -57,9 +57,6 @@ http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/793.ts
 #EXTINF:0,CMore Series 
 http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/787.ts
 
-#EXTINF:0,DXTV
-http://186.33.227.200/DXTV/smil:DXTV.smil/playlist.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9NC8xNy8yMDE1IDEyOjM5OjEwIFBNJmhhc2hfdmFsdWU9enNzd2E
-
 #EXTINF:0,Encore 1 East
 0
 
@@ -202,13 +199,13 @@ http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/906.ts
 http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2543.ts
 
 #EXTINF:0,HBO Family
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6824.ts
+0
 
 #EXTINF:0,HBO Plus 
 0
 
 #EXTINF:0,HBO Signature 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6830.ts
+0
 
 #EXTINF:0,HBO West
 0

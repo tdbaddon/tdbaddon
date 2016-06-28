@@ -23,8 +23,6 @@ import re,urlparse,datetime,os,base64,urllib
 from resources.lib.libraries import cleantitle
 from resources.lib import resolvers
 from resources.lib.libraries import client
-from resources.lib.libraries import client2
-from resources.lib.libraries import cache
 from resources.lib.libraries import control
 try:
     from sqlite3 import dbapi2 as database
@@ -104,26 +102,9 @@ class source:
                 dbcur = dbcon.cursor()
                 dbcur.execute("SELECT * FROM movies WHERE title like '%"+title.lower()+"%'")
                 result = dbcur.fetchone()
-                control.log('#Dayt Result Final %s' % result[0])
-
-                #result = [i for i in result if mytitle in cleantitle.movie(i[0])]
-                #result = [i[0] for i in result if any(x in i[1] for x in years)][0]
-                #result = re.compile('(.+?)(?:&amp)').findall(result)[0]
-                #return result
-                control.log('#Dayt Final %s' % result[1])
-
                 myurl = urlparse.urljoin(self.base_link, '/movies/' + urllib.quote_plus(result[1]))
-                control.log('#Dayt Final myurl %s' % myurl)
-
                 myhead = {'Referer': 'http://dayt.se/movies/'}
-
-                #result = client2.http_get('http://dayt.se/', headers={})
-                #result = client2.http_get(myurl, headers=myhead, allow_redirect=False)
-                #control.log('#Dayt Final result  redir 1 %s' % result)
-                result10 = client2.http_get(myurl, headers=myhead)
-                #control.log('#Dayt Final result  redir 2 %s' % result)
-
-
+                result10 = client.request(myurl, headers=myhead)
                 result10 = client.parseDOM(result10, 'div', attrs={'id': '5throw'})[0]
                 result10 = client.parseDOM(result10, 'a', attrs={'rel': 'nofollow'}, ret='href')
                 mquality = 'HD'
@@ -151,9 +132,6 @@ class source:
 
     def resolve(self, url):
         try:
-            #url = client.request(url, output='geturl')
-            #if 'requiressl=yes' in url: url = url.replace('http://', 'https://')
-            #else: url = url.replace('https://', 'http://')
             return url
         except:
             return

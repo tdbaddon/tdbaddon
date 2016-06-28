@@ -311,7 +311,6 @@ dc={
 "film1 comedy & kids" : "8116",
 "film1 premiere" : "8117",
 "film1 spotlight" : "8118",
-"dxtv" : "8119",
 "osn movies box office 1" : "8120",
 "film autor" : "8121",
 "osn movies box office" : "8122",

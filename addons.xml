@@ -1995,12 +1995,14 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2016.06.18.4" provider-name="mrknow" >
+<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2016.06.26.3" provider-name="mrknow" >
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.requests" version="1.0.0" />
-		<import addon="script.module.metahandler" />
+		<import addon="script.module.metahandler" version="1.0.0" />
 		<import addon="plugin.video.youtube" optional="true" />
+		<import addon="script.specto.media" />
+
 
 	</requires>
 	<extension point="xbmc.python.pluginsource" library="default.py">
@@ -2160,7 +2162,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="3.95"
+       version="3.96"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
