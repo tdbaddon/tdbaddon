@@ -388,7 +388,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 </addon>
 
-<addon id="plugin.program.super.favourites" name="Super Favourites" version="2.0.38" provider-name="spoyser">
+<addon id="plugin.program.super.favourites" name="Super Favourites" version="2.0.39" provider-name="spoyser">
   <requires>
     <import addon="xbmc.python" version="2.14.0"/>
 	<import addon="script.module.metahandler" optional="true" />
