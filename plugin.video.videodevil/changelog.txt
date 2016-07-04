@@ -1,3 +1,16 @@
+[B]Version 1.7.135[/B]
+
+- Updated: eporner
+- Fixed: video list
+- Fixed: catcher
+- Updated: porn.com
+- Fixed: video list
+
+[B]Version 1.7.134[/B]
+
+- Updated: vporn
+- Fixed: search
+
 [B]Version 1.7.133[/B]
 
 - Updated: tnaflix
@@ -631,6 +644,10 @@ Jarvis
 - Fixed: video listing
 - Updated: pornomovies
 - Fixed: video listing
+- Updated: pornhd
+- Fixed: catcher
+- Updated: tnaflix
+- Fixed: catcher
 
 
 [B]Version 1.7.50[/B]

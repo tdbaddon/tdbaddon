@@ -79,7 +79,7 @@ def rdAuthorize():
         result = json.loads(result)
 
         token, refresh = result['access_token'], result['refresh_token']
-        #control.log("### id:%s, secret:%s, token:%s, refresh:%s " % (id,secret,token,refresh))
+        control.log("### id:%s, secret:%s, token:%s, refresh:%s " % (id,secret,token,refresh))
         control.set_setting('realdebrid_client_id', id)
         control.set_setting('realdebrid_client_secret', secret)
         control.set_setting('realdebrid_token', token)
@@ -202,6 +202,7 @@ def resolve(url, debrid='realdebrid'):
 
         if '' in credentials()['realdebrid'].values(): raise Exception()
         id, secret, token, refresh = credentials()['realdebrid']['id'], credentials()['realdebrid']['secret'], credentials()['realdebrid']['token'], credentials()['realdebrid']['refresh']
+        control.log('@@ DEBRID  refresh@@ %s' % refresh)
 
         USER_AGENT = 'SPECTO for Kodi/1.0'
 
@@ -210,7 +211,7 @@ def resolve(url, debrid='realdebrid'):
         url = 'https://api.real-debrid.com/rest/1.0/unrestrict/link'
 
         result = client.request(url, post=post, headers=headers, error=True)
-        #control.log('@@ DEBRID  RESULTS@@ %s' % result)
+        control.log('@@ DEBRID  RESULTS@@ %s' % result)
 
         result = json.loads(result)
 

@@ -11,7 +11,7 @@ import search
 sysarg=str(sys.argv[1])
 ADDON_ID='plugin.video.javstream'
 addon = xbmcaddon.Addon(id=ADDON_ID)
-ADDON_VER="0.90.74"
+ADDON_VER="0.90.75"
 
 hdr = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11',
        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
@@ -1111,11 +1111,16 @@ def decodeOpenLoad(html):
 
     # decodeOpenLoad made by mortael, please leave this line for proper credit :)
     aastring = re.compile("<script[^>]+>(ﾟωﾟﾉ[^<]+)<", re.DOTALL | re.IGNORECASE).findall(html)
-    haha = re.compile(r"welikekodi_ya_rly = (\d+) - (\d+)", re.DOTALL | re.IGNORECASE).findall(html)
-    haha = int(haha[0][0]) - int(haha[0][1])
+    hahadec = decodeOpenLoad2(aastring[0])
+    haha = re.compile(r"welikekodi_ya_rly = Math.round([^;]+);", re.DOTALL | re.IGNORECASE).findall(hahadec)[0]
+    haha = eval("int" + haha)
     
-    aastring = aastring[haha]
+    videourl1 = decodeOpenLoad2(aastring[haha])
 
+    return videourl1
+    
+    
+def decodeOpenLoad2(aastring):
     aastring = aastring.replace("(ﾟДﾟ)[ﾟεﾟ]+(oﾟｰﾟo)+ ((c^_^o)-(c^_^o))+ (-~0)+ (ﾟДﾟ) ['c']+ (-~-~1)+","")
     aastring = aastring.replace("((ﾟｰﾟ) + (ﾟｰﾟ) + (ﾟΘﾟ))", "9")
     aastring = aastring.replace("((ﾟｰﾟ) + (ﾟｰﾟ))","8")
@@ -1147,7 +1152,6 @@ def decodeOpenLoad(html):
     
     decodestring = decode(decodestring)
     decodestring = decodestring.replace("\\/","/")
-    print decodestring
     
     if 'toString' in decodestring:
         base = re.compile(r"toString\(a\+(\d+)", re.DOTALL | re.IGNORECASE).findall(decodestring)[0]
@@ -1161,64 +1165,66 @@ def decodeOpenLoad(html):
         decodestring = decodestring.replace("+","")
         decodestring = decodestring.replace("\"","")
         videourl = re.search(r"(http[^\}]+)", decodestring, re.DOTALL | re.IGNORECASE).group(1)
+        videourl = videourl.replace("https","http")
     else:
-        videourl = re.search(r"vr\s?=\s?\"|'([^\"']+)", decodestring, re.DOTALL | re.IGNORECASE).group(1)
+        return decodestring
+        
+    UA = 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:39.0) Gecko/20100101 Firefox/39.0'
+    headers = {'User-Agent': UA }
+    
+    req = urllib2.Request(videourl,None,headers)
+    res = urllib2.urlopen(req)
+    videourl = res.geturl()
+    
     
     return videourl
 
-
 def decode(encoded):
     for octc in (c for c in re.findall(r'\\(\d{2,3})', encoded)):
         encoded = encoded.replace(r'\%s' % octc, chr(int(octc, 8)))
     return encoded.decode('utf8')
 
 
-def base10toN(num, n):
-    num_rep = {10: 'a',
-               11: 'b',
-               12: 'c',
-               13: 'd',
-               14: 'e',
-               15: 'f',
-               16: 'g',
-               17: 'h',
-               18: 'i',
-               19: 'j',
-               20: 'k',
-               21: 'l',
-               22: 'm',
-               23: 'n',
-               24: 'o',
-               25: 'p',
-               26: 'q',
-               27: 'r',
-               28: 's',
-               29: 't',
-               30: 'u',
-               31: 'v',
-               32: 'w',
-               33: 'x',
-               34: 'y',
-               35: 'z'}
-    new_num_string = ''
-    current = num
-    while current != 0:
-        remainder = current % n
-        if 36 > remainder > 9:
-            remainder_string = num_rep[remainder]
-        elif remainder >= 36:
-            remainder_string = '(' + str(remainder) + ')'
+def base10toN(num,n):
+    num_rep={10:'a',
+         11:'b',
+         12:'c',
+         13:'d',
+         14:'e',
+         15:'f',
+         16:'g',
+         17:'h',
+         18:'i',
+         19:'j',
+         20:'k',
+         21:'l',
+         22:'m',
+         23:'n',
+         24:'o',
+         25:'p',
+         26:'q',
+         27:'r',
+         28:'s',
+         29:'t',
+         30:'u',
+         31:'v',
+         32:'w',
+         33:'x',
+         34:'y',
+         35:'z'}
+    new_num_string=''
+    current=num
+    while current!=0:
+        remainder=current%n
+        if 36>remainder>9:
+            remainder_string=num_rep[remainder]
+        elif remainder>=36:
+            remainder_string='('+str(remainder)+')'
         else:
-            remainder_string = str(remainder)
-        new_num_string = remainder_string + new_num_string
-        current = current / n
+            remainder_string=str(remainder)
+        new_num_string=remainder_string+new_num_string
+        current=current/n
     return new_num_string
-
-    
-def decode(encoded):
-    for octc in (c for c in re.findall(r'\\(\d{2,3})', encoded)):
-        encoded = encoded.replace(r'\%s' % octc, chr(int(octc, 8)))
-    return encoded.decode('utf8')
 
 def searchFilms(parameters):
     find=searchDialog()

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <addon id="repository.kaosbox2" name="KAOSbox Repo" version="2.0.1" provider-name="KAOSbox">
+    <addon id="repository.kaosbox2" name="KAOSbox Repo" version="3.0.1" provider-name="KAOSbox">
         <requires>
             <import addon="xbmc.addon" version="12.0.0"/>
         </requires>
         <extension point="xbmc.addon.repository" name="KAOSbox Repo">
-            <info compressed="false">https://raw.githubusercontent.com/KAOSbox/KAOSbox-Repo/master/addons.xml</info>
-            <checksum>https://raw.githubusercontent.com/KAOSbox/KAOSbox-Repo/master/addons.xml.md5</checksum>
-            <datadir zip="true">https://raw.githubusercontent.com/KAOSbox/KAOSbox-Repo/master/zips/</datadir>
+            <info compressed="false">https://offshoregit.com/kaosbox/addons.xml</info>
+            <checksum>https://offshoregit.com/kaosbox/addons.xml.md5</checksum>
+            <datadir zip="true">https://offshoregit.com/kaosbox/zips/</datadir>
             <hashes>false</hashes>
         </extension>
         <extension point="xbmc.addon.metadata">
