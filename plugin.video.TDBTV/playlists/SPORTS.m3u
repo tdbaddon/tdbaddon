@@ -4,7 +4,7 @@
 http://www.support.tcomputers.ca/-videos/changeaudio.mp4
 ---------------------------------------------------------------------------------------------------------------
 #EXTINF:0,Check Back Soon
-www.tcomputers.ca
+0
 
 #EXTINF:0,Astro SuperSports 1
 0
@@ -19,7 +19,7 @@ www.tcomputers.ca
 0
 
 #EXTINF:0,Bein Sport 1 
-0
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/830.ts
 
 #EXTINF:0,Bein Sport 2 
 0
@@ -31,16 +31,31 @@ www.tcomputers.ca
 0
 
 #EXTINF:0,Box Nation 
-0
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/771.ts
 
 #EXTINF:0,BT Sport 1 
-0
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/767.ts
+
+#EXTINF:0,BT Sport 1 
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/769.ts
+
+#EXTINF:0,BT Sport 1 
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/901.ts
+
+#EXTINF:0,BT Sport 1 
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/164.ts
 
 #EXTINF:0,BT Sport 2 
-0
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/165.ts
 
 #EXTINF:0,BT Sport Europe
-0
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/735.ts
+
+#EXTINF:0,BT Sport Europe
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/903.ts
+
+#EXTINF:0,BT Sport Europe
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/166.ts
 
 #EXTINF:0,CBS Sports 
 0
@@ -55,19 +70,19 @@ www.tcomputers.ca
 0
 
 #EXTINF:0,ESPN 
-0
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/902.ts
 
 #EXTINF:0,ESPN 2
-0
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/1522.ts
 
 #EXTINF:0,ESPN News 
-0
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/1523.ts
 
 #EXTINF:0,Eurosport 1 
 http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_1800.m3u8
 
 #EXTINF:0,Eurosport 2
-0
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/50.ts
 
 #EXTINF:0,Eurosport News 
 0
@@ -88,7 +103,7 @@ http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_18
 0
 
 #EXTINF:0,Fox Sports 
-0
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/1511.ts
 
 #EXTINF:0,Fox Sports 1
 0
@@ -109,7 +124,7 @@ http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_18
 0
 
 #EXTINF:0,LFC TV 
-0
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/722.ts
 
 #EXTINF:0,Mercedes TV
 mms://100automoto.tv/channel_mercedes
@@ -135,6 +150,9 @@ mms://100automoto.tv/100livesport
 #EXTINF:0,NBA TV 
 http://208.92.36.158/ipad/live/nba_ipad_1240.m3u8
 
+#EXTINF:0,NBA TV 
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/763.ts
+
 #EXTINF:0,NBC Golf 
 http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/1896k/prog.m3u8|X-Forwarded-For=66.171.228.102
 
@@ -147,14 +165,20 @@ http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/4296k/prog.m3u8|X-Forwarded-
 #EXTINF:0,NBCSN 
 http://cdn.phoenix.intergi.com/21772/videos/3362254/video-sd.mp4?hosting_id=21772
 
+#EXTINF:0,NBCSN 
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/762.ts
+
 #EXTINF:0,NFL Live 
 0
 
 #EXTINF:0,NFL Network 
-0
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/761.ts
 
 #EXTINF:0,NFL Now
 http://nflioslivesvg2-i.akamaihd.net/hls/live/221521/nflioslive/2015HackerNow_w99d9_g.m3u8
+
+#EXTINF:0,NFL Now
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/08.ts
 
 #EXTINF:0,NHL Network 
 0
@@ -225,6 +249,9 @@ http://pac12hd2-lh.akamaihd.net/i/p12wash_delivery@132841/index_4728_av-b.m3u8
 #EXTINF:0,Poker Central
 http://ooyalahd2-f.akamaihd.net/i/crtv01_delivery@329705/index_1164_av-b.m3u8
 
+#EXTINF:0,Poker Central
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/11.ts
+
 #EXTINF:0,Porsche Channel 
 mms://100automoto.tv/channel_porsche
 
@@ -232,43 +259,82 @@ mms://100automoto.tv/channel_porsche
 0
 
 #EXTINF:0,Racing UK 
-0
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/904.ts
 
 #EXTINF:0,Redbull TV 
 http://sacapunta.eltelon.com/channels/redbulltv/playlist.m3u8
 
+#EXTINF:0,Redbull TV 
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/706.ts
+
+#EXTINF:0,Redbull TV 
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/779.ts
+
 #EXTINF:0,Root Sports 
-0
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/1524.ts
 
 #EXTINF:0,Setanta Sports 
-0
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/709.ts
 
 #EXTINF:0,Sky Sports 1 
-0
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/756.ts
+
+#EXTINF:0,Sky Sports 1 
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/157.ts
 
 #EXTINF:0,Sky Sports 2 
-0
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/783.ts
+
+#EXTINF:0,Sky Sports 2 
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/755.ts
+
+#EXTINF:0,Sky Sports 2 
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/158.ts
 
 #EXTINF:0,Sky Sports 3 
-0
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/782.ts
+
+#EXTINF:0,Sky Sports 3 
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/753.ts
+
+#EXTINF:0,Sky Sports 3 
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/160.ts
 
 #EXTINF:0,Sky Sports 4 
-0
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/721.ts
+
+#EXTINF:0,Sky Sports 4 
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/781.ts
+
+#EXTINF:0,Sky Sports 4 
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/161.ts
 
 #EXTINF:0,Sky Sports 5 
-0
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/162.ts
 
 #EXTINF:0,Sky Sports F1 
-0
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/784.ts
+
+#EXTINF:0,Sky Sports F1 
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/180.ts
 
 #EXTINF:0,Sky Sports News 
-0
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/747.ts
+
+#EXTINF:0,Sky Sports News 
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/749.ts
+
+#EXTINF:0,Sky Sports News 
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/780.ts
+
+#EXTINF:0,Sky Sports News 
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/867.ts
 
 #EXTINF:0,Sports Tonight 
 rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9-SD
 
 #EXTINF:0,Sportsnet 360 
-0
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/670.ts
 
 #EXTINF:0,Sportsnet East
 0
@@ -292,19 +358,19 @@ rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9
 0
 
 #EXTINF:0,TSN 1 
-0
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/662.ts
 
 #EXTINF:0,TSN 2 
-0
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/663.ts
 
 #EXTINF:0,TSN 3 
-0
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/664.ts
 
 #EXTINF:0,TSN 4 
 0
 
 #EXTINF:0,TSN 5 
-0
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/666.ts
 
 #EXTINF:0,UFC TV 
 0
@@ -321,6 +387,9 @@ rtmp://freeview.fms.visionip.tv/live/sports_tonight-sports_tonight-live-25f-16x9
 #EXTINF:0,VS Versus 
 http://208.92.36.158/ipad/live/nba_ipad_1240.m3u8
 
+#EXTINF:0,VS Versus 
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/590.ts
+
 #EXTINF:0,Wild TV
 0
 
@@ -331,4 +400,4 @@ http://208.92.36.158/ipad/live/nba_ipad_1240.m3u8
 0
 
 #EXTINF:0,WWE Network 
-0
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/908.ts

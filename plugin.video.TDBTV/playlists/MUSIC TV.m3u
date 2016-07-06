@@ -180,6 +180,9 @@ rtmp://fms.105.net:1935/live/rmc2
 #EXTINF:0,Reggae Entertainment
 http://univ-i.akamaihd.net/hls/live/222631/HLS11/chunklist.m3u8
 
+#EXTINF:0,Reggae Entertainment
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/65.ts
+
 #EXTINF:0,Rock 66 
 http://mediatv2.topix.it/24RockOne66
 
@@ -204,6 +207,9 @@ http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch3/06/prog_index.m3u8
 #EXTINF:0,Vevo Country HD
 http://www.iptvsaga.com/play/tv3/0004.m3u8
 
+#EXTINF:0,Vevo Country HD
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/73.ts
+
 #EXTINF:0,Vevo Hits 
 http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch2/04/prog_index.m3u8
 
@@ -213,6 +219,9 @@ http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch2/06/prog_index.m3u8
 #EXTINF:0,Vevo Hits HD
 http://www.iptvsaga.com/play/tv3/0005.m3u8
 
+#EXTINF:0,Vevo Hits HD
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/74.ts
+
 #EXTINF:0,Vevo Pop 
 http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/04/prog_index.m3u8
 
@@ -221,6 +230,12 @@ http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/06/prog_index.m3u8
 
 #EXTINF:0,Vevo Pop HD
 http://www.iptvsaga.com/play/tv3/0006.m3u8
+
+#EXTINF:0,Vevo Pop HD
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/72.ts
+
+#EXTINF:0,Vevo Pop HD
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/71.ts
 
 #EXTINF:0,VH1 
 0

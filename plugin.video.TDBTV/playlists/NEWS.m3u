@@ -11,7 +11,7 @@ http://abclive.abcnews.com/i/abc_live4@136330/index_800_av-b.m3u8
 0
 
 #EXTINF:0,BBC World News 
-0
+http://live-1273.fra.edge.filmon.com/live/27.low.stream/1467793639742.ts
 
 #EXTINF:0,Bloomberg News 
 http://x4012c4000.edge.core-cdn.net/40000mb/live/4012hbbtv/bloomberg.ts
@@ -25,6 +25,9 @@ http://btvasia-i.akamaihd.net/hls/live/203322/btvasia_ios/P1/M24K.m3u8
 #EXTINF:0,Bloomberg News 
 http://cdn3.videos.bloomberg.com/btv/us/master.m3u8
 
+#EXTINF:0,Bloomberg News 
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/91.ts
+
 #EXTINF:0,Bloomberg TV 
 0
 
@@ -36,6 +39,9 @@ http://cdn3.videos.bloomberg.com/btv/us/master.m3u8
 
 #EXTINF:0,CBS News 
 http://cbsnews-linear.mdialog.com/video_assets/cbsnews.m3u8?api_key=563b80c1ae4ce359830f572d2496a947&iu=/8264/vaw-can/mobile_web/cbsnews_mobile
+
+#EXTINF:0,CBS News 
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/39.ts
 
 #EXTINF:0,CCTV News 
 0
@@ -55,6 +61,12 @@ http://cbsnews-linear.mdialog.com/video_assets/cbsnews.m3u8?api_key=563b80c1ae4c
 #EXTINF:0,CSPAN 
 http://cspan1-lh.akamaihd.net/i/cspan1_1@304727/master.m3u8 
 
+#EXTINF:0,CSPAN 
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/04.ts
+
+#EXTINF:0,CSPAN 
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/03.ts
+
 #EXTINF:0,CTV NEWS 
 http://ams-lp7.9c9media.com/hls-live/livepkgr/_definst_/liveNews/News28.m3u8 
 
@@ -63,6 +75,9 @@ http://ams-lp6.9c9media.com/hls-live/livepkgr/_definst_/liveNews/News38.m3u8
 
 #EXTINF:0,CTV NEWS 
 http://ams-lp5.9c9media.com/hls-live/livepkgr/_definst_/liveNews/News48.m3u8 
+
+#EXTINF:0,CTV NEWS 
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/34.ts
 
 #EXTINF:0,DW 
 http://www.metafilegenerator.de/DWelle/tv-latinoamerica/ios/master.m3u8
@@ -75,6 +90,9 @@ rtsp://ewns-hls-b-stream.hexaglobe.net/rtpeuronewslive/en_vidan750_rtp.sdp
 
 #EXTINF:0,Euro News 
 http://fr-par-iphone-2.cdn.hexaglobe.net/streaming/euronews_ewns/ipad_en.m3u8
+
+#EXTINF:0,Euro News 
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/49.ts
 
 #EXTINF:0,France 24 
 http://f24hls-i.akamaihd.net/hls/live/221192/F24_FR_LO_HLS/master.m3u8

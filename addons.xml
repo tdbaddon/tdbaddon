@@ -1970,6 +1970,24 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
+<addon id="plugin.video.skymashitvkids" name="SkymashiTV Kids" version="1.5" provider-name="SkymashiTV">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.addon.common" version="0.0.1"/>
+    <import addon="plugin.video.youtube" version="0.0.1"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Baby and Toddler TV</summary>
+    <description lang="en">Channels for Babies and Toddlers</description>
+    <platform>all</platform>
+    <facebook>https://www.facebook.com/groups/1555745284754323/</facebook>
+    <website>http://skymashi.eu</website>
+  </extension>
+</addon>
+
 <addon id="plugin.video.smithsonian"
        name="Smithsonian Channel"
        version="3.0.1"
@@ -2161,7 +2179,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="3.97"
+       version="3.98"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -2517,6 +2535,26 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	<description lang="en">Credits to MK for the base of the addon</description>
 	<platform>all</platform>
  </extension>
+</addon>
+
+<addon id="plugin.video.white.devil" name="[COLOR white]White Devil Streams[/COLOR]" version="1.0.1" provider-name="Biggy_Ozz">
+	<requires>
+		<import addon="xbmc.python" version="2.1.0" />
+		<import addon="script.module.pyxbmct" version="1.1.4" />
+		<import addon="script.module.urlresolver" version="3.0.0"/>
+		<import addon="script.module.liveresolver" version="0.1.24"/>
+		<import addon="plugin.video.youtube" optional="true" />
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="default.py">
+		<provides>video</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">White Devil-Streams</summary>
+		<description lang="en">White Devil-Streams</description>
+		<platform>all</platform>
+		<forum>White Devil-Streams</forum>
+		<website>White Devil-Streams</website>
+	</extension>
 </addon>
 
 <addon id="plugin.video.wildfire"
@@ -3202,6 +3240,23 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 		<description>Go though the plugins and see what you like</description>
 		<platform>all</platform>
 	</extension>
+</addon>
+
+    <addon id="repository.skymashitv" name="SkymashiTV Repo" version="0.2" provider-name="Skymashi">
+        <requires>
+            <import addon="xbmc.addon" version="12.0.0"/>
+        </requires>
+        <extension point="xbmc.addon.repository" name="SkymashiTV Repo">
+            <info compressed="false">https://skymashi.eu/_repo/addons.xml</info>
+            <checksum>https://skymashi.eu/_repo/addons.xml.md5</checksum>
+            <datadir zip="true">https://skymashi.eu/_repo/</datadir>
+            <hashes>false</hashes>
+        </extension>
+        <extension point="xbmc.addon.metadata">
+            <summary>SkymashiTV Repository</summary>
+            <description>SkymashiTV Repository for our Addons and Builds</description>
+            <platform>all</platform>
+    </extension>
 </addon>
 
 <addon id="repository.t1m.addons" name="t1m Add-on Repository" version="1.0.4" provider-name="t1m">

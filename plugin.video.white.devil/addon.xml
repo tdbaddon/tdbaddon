@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.video.white.devil" name="[COLOR white]White Devil Streams[/COLOR]" version="1.0.1" provider-name="Biggy_Ozz">
+	<requires>
+		<import addon="xbmc.python" version="2.1.0" />
+		<import addon="script.module.pyxbmct" version="1.1.4" />
+		<import addon="script.module.urlresolver" version="3.0.0"/>
+		<import addon="script.module.liveresolver" version="0.1.24"/>
+		<import addon="plugin.video.youtube" optional="true" />
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="default.py">
+		<provides>video</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">White Devil-Streams</summary>
+		<description lang="en">White Devil-Streams</description>
+		<platform>all</platform>
+		<forum>White Devil-Streams</forum>
+		<website>White Devil-Streams</website>
+	</extension>
+</addon>
+

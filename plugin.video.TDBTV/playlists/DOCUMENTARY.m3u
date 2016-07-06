@@ -4,7 +4,7 @@
 http://www.support.tcomputers.ca/-videos/changeaudio.mp4
 --------------------------------------------------------------------------------------------------------------
 #EXTINF:0,Check Back Soon
-www.tcomputers.ca
+0
 
 #EXTINF:0,American Heros Channel 
 0
@@ -22,7 +22,10 @@ www.tcomputers.ca
 0
 
 #EXTINF:0,Crime & Investigation 
-0
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/1319.ts
+
+#EXTINF:0,Crime & Investigation 
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/1322.ts
 
 #EXTINF:0,Cottage Life
 0
@@ -40,7 +43,10 @@ www.tcomputers.ca
 0
 
 #EXTINF:0,Discovery History 
-0
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/626.ts
+
+#EXTINF:0,Discovery History 
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/1320.ts
 
 #EXTINF:0,Discovery Max 
 0
@@ -49,7 +55,10 @@ www.tcomputers.ca
 0
 
 #EXTINF:0,Discovery Science 
-0
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/620.ts
+
+#EXTINF:0,Discovery Science 
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/1327.ts
 
 #EXTINF:0,Discovery Shed
 0
@@ -87,11 +96,17 @@ https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8
 #EXTINF:0,History Channel 
 http://link.theplatform.com/s/dtjsEC/chjdYJxKb44V?manifest=m3u
 
+#EXTINF:0,History Channel 
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/587.ts
+
+#EXTINF:0,History Channel 
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/886.ts
+
 #EXTINF:0,History Channel 2
 0
 
 #EXTINF:0,Investigation Discovery 
-0
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/627.ts
 
 #EXTINF:0,Nasa TV 
 http://nasatv-lh.akamaihd.net/i/NASA_101@319270/master.m3u8 
@@ -102,14 +117,20 @@ http://iphone-streaming.ustream.tv/uhls/6540154/streams/live/iphone/playlist.m3u
 #EXTINF:0,Nasa TV 
 http://nasatv-lh.akamaihd.net/i/NASA_103@319271/master.m3u8
 
+#EXTINF:0,Nasa TV 
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/57.ts
+
 #EXTINF:0,Nat Geo People
 0
 
 #EXTINF:0,Nat Geo Wild 
-0
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/1306.ts
 
 #EXTINF:0,National Geographic 
-0
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/249.ts
+
+#EXTINF:0,National Geographic 
+http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/1307.ts
 
 #EXTINF:0,Nova
 0
