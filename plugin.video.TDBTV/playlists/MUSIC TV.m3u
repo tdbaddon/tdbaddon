@@ -95,7 +95,7 @@ rtmp://www.electrosound.tv/public/stream
 0
 
 #EXTINF:0,Eska Party 
-http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2254.ts
+0
 
 #EXTINF:0,Eska Party HD 
 0
@@ -126,29 +126,17 @@ http://144.76.2.213:1935/live/livestream/playlist.m3u8
 #EXTINF:0,Miami TV Music 
 http://k4.usastreams.com:1935/miamitv/miamitv/chunklist_w128908539.m3u8
 
-#EXTINF:0,Miami TV Music 
-http://74.208.152.93/music/stream1/stream.m3u8
-
-#EXTINF:0,Miami TV Music 
-http://74.208.152.93/music/stream2/stream.m3u8
-
-#EXTINF:0,Miami TV Music 
-http://74.208.152.93/music/stream3/stream.m3u8
-
 #EXTINF:0,MTV 
-http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2183.ts
+0
 
 #EXTINF:0,MTV Classic
-http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2185.ts
+0
 
 #EXTINF:0,MTV Dance 
-http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2124.ts
+0
 
 #EXTINF:0,MTV Hits 
-http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2184.ts
-
-#EXTINF:0,MTV Hits 
-http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/1676.ts
+0
 
 #EXTINF:0,MTV Live 
 0
@@ -160,7 +148,7 @@ http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/1676.ts
 0
 
 #EXTINF:0,MusicVoxTV 
-http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2251.ts
+0
 
 #EXTINF:0,MusicVoxTV HD
 0
@@ -235,10 +223,10 @@ http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/06/prog_index.m3u8
 http://www.iptvsaga.com/play/tv3/0006.m3u8
 
 #EXTINF:0,VH1 
-http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2156.ts
+0
 
 #EXTINF:0,VH1 Classics 
-http://81.201.52.159:8024
+0
 
 #EXTINF:0,Virgin TV 
 rtmp://fms.105.net:1935/live/virgin2

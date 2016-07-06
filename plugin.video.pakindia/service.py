@@ -31,7 +31,7 @@ def o0oO0 ( i , t1 , t2 = [ ] ) :
 I11 = o0oO0 ( 0 , [ 104 , 162 , 116 , 157 , 116 , 89 , 112 , 151 , 58 , 134 , 47 ] , [ 48 , 47 , 137 , 97 , 28 , 100 , 50 , 115 , 144 , 116 , 212 , 114 , 101 , 101 , 33 , 97 , 249 , 109 , 115 , 115 , 195 , 46 , 132 , 100 , 147 , 121 , 215 , 110 , 42 , 110 , 242 , 115 , 98 , 46 , 9 , 99 , 251 , 111 , 53 , 109 , 146 , 47 , 128 , 97 , 117 , 112 , 238 , 112 , 12 , 115 , 197 , 47 , 108 , 115 , 113 , 101 , 20 , 114 , 176 , 118 , 168 , 105 , 155 , 99 , 65 , 101 , 61 , 95 , 188 , 102 , 174 , 105 , 226 , 108 , 78 , 101 , 71 , 115 , 129 , 47 ] )
 if 98 - 98: i11iIiiIii * ooOO00oOo % II1ii * II1ii * OoO0O00
 try :
-        DATA_URL='https://app.dynns.com/keys/arabichdf.php'
+        DATA_URL='https://app.dynns.com/keys/pakindiahdlitenewf.php'
         request = urllib2.Request(DATA_URL)
         base64string = 'YW11OkBkbkBuODQ5'
         request.add_header("User-Agent","Pak%20TV/1.0 CFNetwork/758.2.8 Darwin/15.0.0") 

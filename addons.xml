@@ -1537,7 +1537,7 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
   </extension>
 </addon>
 
-<addon id="plugin.video.mdscenepeeper" name="Scene Peeper" version="1.0.5" provider-name="Mucky Duck">
+<addon id="plugin.video.mdscenepeeper" name="Scene Peeper" version="1.0.6" provider-name="Mucky Duck">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.addon.common" />
@@ -1550,7 +1550,7 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
   </extension>
   <extension point="xbmc.addon.metadata">
     <summary lang="en">Stream content From The layarkaca21.com WebSite</summary>
-    <description lang="en">Stream Content From layarkaca21.com WebSite</description>
+    <description lang="en">Stream Content From layarkaca21.com WebSite. This Addon Will No Longer Work Unless You Have http://muckysmediaportal4kodi.ml In File Manager.</description>
 	<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon or have any affiliation with the website owners</disclaimer>
     <platform>all</platform>
   </extension>
@@ -1846,7 +1846,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.pakindia" name="Pak India Live" version="0.4.0" provider-name="Mikey1234">
+<addon id="plugin.video.pakindia" name="Pak India Live" version="0.4.1" provider-name="Mikey1234">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
   </requires>
@@ -2161,7 +2161,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="3.96"
+       version="3.97"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>

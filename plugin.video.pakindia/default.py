@@ -50,14 +50,15 @@ def OPEN_URL(url):
 def auth():
  import base64
  import time
+ AGENT = ADDON.getSetting('pakuser')
  TIME = time.time()
  second= str(TIME).split('.')[0]
  first =int(second)+69296929
  token=base64.b64encode('%s@2nd2@%s' % (str(first),second))    
- DATA_URL='https://app.dynns.com/keys/Pak.php?token='+token
+ DATA_URL='https://app.dynns.com/keys/%s.php?token=%s' % (AGENT.split('%')[0],token)
  request = urllib2.Request(DATA_URL)
  base64string = 'ZGlsZGlsZGlsOlBAa2lzdEBu'
- request.add_header("User-Agent",ADDON.getSetting('pakuser')) 
+ request.add_header("User-Agent",AGENT) 
  request.add_header("Authorization", "Basic %s" % base64string)   
  return urllib2.urlopen(request).read()
     

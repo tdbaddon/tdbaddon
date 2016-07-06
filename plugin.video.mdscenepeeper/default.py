@@ -1,4 +1,4 @@
-import sys,urllib,re,xbmcplugin,xbmcgui,xbmc,xbmcaddon,os,xbmcvfs
+import sys,urllib,re,xbmcplugin,xbmcgui,xbmc,xbmcaddon,os,xbmcvfs,shutil
 import requests
 from addon.common.addon import Addon
 from metahandler import metahandlers
@@ -8,6 +8,7 @@ from metahandler import metahandlers
 User_Agent = 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.89 Safari/537.36'
 addon_id='plugin.video.mdscenepeeper'
 selfAddon = xbmcaddon.Addon(id=addon_id)
+addon_name = selfAddon.getAddonInfo('name')
 addon = Addon(addon_id, sys.argv)
 art = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id + '/resources/art/'))
 icon = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
@@ -50,7 +51,7 @@ def INDEX(url):
         all_videos = regex_get_all(link, '<article', '</article')
         items = len(all_videos)
         for a in all_videos:
-                name = regex_from_to(a, 'Nonton</span> ', '<')
+                name = regex_from_to(a, '<span>Nonton Film</span> ', '<')
                 name = addon.unescape(name)
                 name = name.encode('ascii', 'ignore').decode('ascii')
                 qual = regex_from_to(a, 'Kualitas Film ', '"')
@@ -2834,11 +2835,8 @@ if xbmcvfs.exists(xbmc.translatePath('special://masterprofile/sources.xml')):
                         xbmcgui.Dialog().ok(addon_name, line1, line2, line3)
                         delete_addon = xbmc.translatePath('special://home/addons/'+addon_id)
                         delete_repo = xbmc.translatePath('special://home/addons/repository.mdrepo')
-                        try:
-                                shutil.rmtree(delete_addon, ignore_errors=True)
-                                shutil.rmtree(delete_repo, ignore_errors=True)
-                                dialog = xbmcgui.Dialog()
-                                addon.log('===MovieFlix===DELETING===ADDON+===REPO===')
-                                xbmcgui.Dialog().ok(addon_name, line4, line5)
-                        except:
-                                xbmcgui.Dialog().ok(addon_name, line4, line5)
+                        shutil.rmtree(delete_addon, ignore_errors=True)
+                        shutil.rmtree(delete_repo, ignore_errors=True)
+                        dialog = xbmcgui.Dialog()
+                        addon.log('===MovieFlix===DELETING===ADDON+===REPO===')
+                        xbmcgui.Dialog().ok(addon_name, line4, line5)

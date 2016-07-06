@@ -26,7 +26,7 @@ http://btvasia-i.akamaihd.net/hls/live/203322/btvasia_ios/P1/M24K.m3u8
 http://cdn3.videos.bloomberg.com/btv/us/master.m3u8
 
 #EXTINF:0,Bloomberg TV 
-http://www.iptvsaga.com/play/tv3/0066.m3u8
+0
 
 #EXTINF:0,BNN
 0
@@ -44,7 +44,7 @@ http://cbsnews-linear.mdialog.com/video_assets/cbsnews.m3u8?api_key=563b80c1ae4c
 0
 
 #EXTINF:0,CNN 
-http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/1690.ts
+0
 
 #EXTINF:0,CP24 
 0
@@ -125,7 +125,7 @@ http://rt-a.akamaihd.net/ch_04@325608/480p.m3u8
 http://rt-a.akamaihd.net/ch_04@325608/720p.m3u8
 
 #EXTINF:0,Sky News 
-http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2115.ts
+0
 
 #EXTINF:0,The Weather Channel 
 0
