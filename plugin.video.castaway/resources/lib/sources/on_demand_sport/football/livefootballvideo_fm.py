@@ -1,22 +1,13 @@
 from __future__ import unicode_literals
-from resources.lib.modules import client,webutils
+from resources.lib.modules import client,webutils,control
 import re,urlparse,json,sys,os
 from resources.lib.modules.log_utils import log
-
-
-from addon.common.addon import Addon
-addon = Addon('plugin.video.castaway', sys.argv)
-
-AddonPath = addon.get_path()
-IconPath = AddonPath + "/resources/media/"
-def icon_path(filename):
-    return os.path.join(IconPath, filename)
 
 class info():
     def __init__(self):
     	self.mode = 'livefootballvideo_fm'
         self.name = 'livefootballvideo.com (full matches)'
-        self.icon = icon_path('livefootballvideo.png')
+        self.icon = control.icon_path('livefootballvideo.png')
         self.paginated = True
         self.categorized = False
         self.multilink = True

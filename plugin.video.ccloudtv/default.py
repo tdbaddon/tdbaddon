@@ -47,9 +47,16 @@ text = 'http://pastebin.com/raw.php?i=Zr0Hgrbw'
 GuideDirectory = xbmc.translatePath('special://home/userdata/addon_data/script.renegadestv/')
 GuideINI = xbmc.translatePath('special://home/userdata/addon_data/script.renegadestv/addons2.ini')
 xbmcplugin.setContent(int(sys.argv[1]), 'movies')
+skin = xbmc.getSkinDir()
 
-
-					
+def set_view_thumbnail():
+    if skin == 'skin.confluence':
+        xbmc.executebuiltin('Container.SetViewMode(500)')
+    elif skin == 'skin.aeon.nox':
+        xbmc.executebuiltin('Container.SetViewMode(511)')
+    else:
+        xbmc.executebuiltin('Container.SetViewMode(500)')
+		
 def read_file(file):
     try:
         f = open(file, 'r')
@@ -78,34 +85,37 @@ def make_request():
 
 			
 def main():
-	text_online2()
+	#text_online2()
 	#checkaddon.do_block_check()
-	addDir('[COLOR royalblue][B]***Latest Announcements***[/B][/COLOR]', yt, 3, '%s/announcements.png'% iconpath, fanart)
-	addDir('[COLOR red][B]Search[/B][/COLOR]', 'searchlink', 99, '%s/search.png'% iconpath, fanart)
+	set_view_thumbnail()
+	addDir('[COLOR white][B]*Announcements*[/B][/COLOR]', yt, 3, '%s/announcements.png'% iconpath, fanart)
+	addDir('[COLOR white][B]*ReadMe*[/B][/COLOR]', yt, 5, '%s/readme.png'% iconpath, fanart)
+	addDir('[COLOR white][B]*Server Status*[/B][/COLOR]', yt, 4, '%s/serverStatus.png'% iconpath, fanart)
+	addDir('[COLOR white][B]*Search*[/B][/COLOR]', 'searchlink', 99, '%s/search.png'% iconpath, fanart)
 	if len(CCLOUDTV_SRV_URL) > 0:	
-		addDir('[COLOR yellow][B]All Channels[/B][/COLOR]', yt, 2, '%s/allchannels.png'% iconpath, fanart)
+		addDir('[COLOR white][B]All Channels[/B][/COLOR]', yt, 2, '%s/allchannels.png'% iconpath, fanart)
 	if (len(CCLOUDTV_SRV_URL) < 1 ):		
 		mysettings.openSettings()
 		xbmc.executebuiltin("Container.Refresh")
-	addDir('[COLOR yellow][B]TV Guide[/B][/COLOR]', 'guide', 97, '%s/guide.png'% iconpath, fanart)
+	addDir('[COLOR white][B]TV Guide[/B][/COLOR]', 'guide', 97, '%s/guide.png'% iconpath, fanart)
 	#addDir('Open TV Guide/Update Channels','INI',95,'%s/guide.png'% iconpath,fanart)
-	addDir('[COLOR royalblue][B]English[/B][/COLOR]', 'english', 62, '%s/english.png'% iconpath, fanart)
-	addDir('[COLOR royalblue][B]Top 10[/B][/COLOR]', 'top10', 51, '%s/top10.png'% iconpath, fanart)
-	addDir('[COLOR royalblue][B]Sports[/B][/COLOR]', 'sports', 52, '%s/sports.png'% iconpath, fanart)
-	addDir('[COLOR royalblue][B]News[/B][/COLOR]', 'news', 53, '%s/news.png'% iconpath, fanart)
-	addDir('[COLOR royalblue][B]Documentary[/B][/COLOR]', 'documentary', 54, '%s/documentary.png'% iconpath, fanart)
-	addDir('[COLOR royalblue][B]Entertainment[/B][/COLOR]', 'entertainment', 55, '%s/entertainment.png'% iconpath, fanart)
-	addDir('[COLOR royalblue][B]Family[/B][/COLOR]', 'family', 56, '%s/family.png'% iconpath, fanart)
-	addDir('[COLOR royalblue][B]Movies[/B][/COLOR]', 'movie', 57, '%s/movies.png'% iconpath, fanart)
-	addDir('[COLOR royalblue][B]Music[/B][/COLOR]', 'music', 58, '%s/music.png'% iconpath, fanart)
-	addDir('[COLOR royalblue][B]Lifestyle[/B][/COLOR]', 'lifestyle', 63, '%s/lifestyle.png'% iconpath, fanart)
-	addDir('[COLOR royalblue][B]On Demand Movies[/B][/COLOR]', 'ondemandmovies', 59, '%s/ondemandmovies.png'% iconpath, fanart)
-	addDir('[COLOR royalblue][B]On Demand Shows[/B][/COLOR]', 'ondemandshows', 65, '%s/ondemandshows.png'% iconpath, fanart)
-	addDir('[COLOR royalblue][B]24/7 Channels[/B][/COLOR]', '24', 60, '%s/twentyfourseven.png'% iconpath, fanart)
-	addDir('[COLOR royalblue][B]Radio[/B][/COLOR]', 'radio', 61, '%s/radio.png'% iconpath, fanart)
-	addDir('[COLOR royalblue][B]Non-English/International[/B][/COLOR]', 'international', 64,'%s/international.png'% iconpath, fanart)
+	addDir('[COLOR white][B]English[/B][/COLOR]', 'english', 62, '%s/english.png'% iconpath, fanart)
+	addDir('[COLOR white]Top 10[/COLOR]', 'top10', 51, '%s/top10.png'% iconpath, fanart)
+	addDir('[COLOR white]Sports[/COLOR]', 'sports', 52, '%s/sports.png'% iconpath, fanart)
+	addDir('[COLOR white]News[/COLOR]', 'news', 53, '%s/news.png'% iconpath, fanart)
+	addDir('[COLOR white]Documentary[/COLOR]', 'documentary', 54, '%s/documentary.png'% iconpath, fanart)
+	addDir('[COLOR white]Entertainment[/COLOR]', 'entertainment', 55, '%s/entertainment.png'% iconpath, fanart)
+	addDir('[COLOR white]Family[/COLOR]', 'family', 56, '%s/family.png'% iconpath, fanart)
+	addDir('[COLOR white]Movies[/COLOR]', 'movie', 57, '%s/movies.png'% iconpath, fanart)
+	addDir('[COLOR white]Music[/COLOR]', 'music', 58, '%s/music.png'% iconpath, fanart)
+	addDir('[COLOR white]Lifestyle[/COLOR]', 'lifestyle', 63, '%s/lifestyle.png'% iconpath, fanart)
+	addDir('[COLOR white]On Demand Movies[/COLOR]', 'ondemandmovies', 59, '%s/ondemandmovies.png'% iconpath, fanart)
+	addDir('[COLOR white]On Demand Shows[/COLOR]', 'ondemandshows', 65, '%s/ondemandshows.png'% iconpath, fanart)
+	addDir('[COLOR white]24/7 Channels[/COLOR]', '24', 60, '%s/twentyfourseven.png'% iconpath, fanart)
+	addDir('[COLOR white]Radio[/COLOR]', 'radio', 61, '%s/radio.png'% iconpath, fanart)
+	addDir('[COLOR white]Non-English/International[/COLOR]', 'international', 64,'%s/international.png'% iconpath, fanart)
 	if getSetting("enable_adult_section") == 'true':	
-		addDir('[COLOR magenta][B]Adult(18+)[/B][/COLOR]', 'adult', 98, '%s/adult.png'% iconpath, fanart)
+		addDir('[COLOR white][B]Adult(18+)[/B][/COLOR]', 'adult', 98, '%s/adult.png'% iconpath, fanart)
 
 def createini():
 	if not os.path.exists(GuideDirectory):
@@ -680,6 +690,43 @@ def international():
 					m3u_playlist(name, url, thumb)	
 	except:
 		pass
+		
+def online_status():        
+    text = '[COLOR royalblue][B]**Online Status**[/B][/COLOR]'
+    newstext = 'http://94.23.35.42/cCloudTv/status.php'
+    req = urllib2.Request(newstext)
+    req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
+    response = urllib2.urlopen(req)
+    link=response.read()
+    response.close()
+    match=re.compile("<caption>(.*)</tr></tbody>",re.DOTALL).findall(link)
+    for status in match:
+        try:
+                status = status.decode('ascii', 'ignore')
+        except:
+                status = status.decode('utf-8','ignore')
+    status = status.replace('&amp;','').replace("			</tr><tr>","").replace("			<th scope='row'> www.ccld.io </th>","").replace("			<th scope='row'> www.ccloudtv.org </th>","").replace("			<th scope='row'> Kodi Server 1 </th>","").replace("			<th scope='row'> Kodi Server 2 </th>","").replace("			<th scope='row'> Kodi Server 3 </th>","").replace("			<th scope='row'> Kodi Server 4 </th>","").replace("			<th scope='row'> Kodi Server 5 </th>","").replace("			<th scope='row'> Kodi Server 6 </th>","").replace("			<th scope='row'> Kodi Server 7 </th>","").replace("			<th scope='row'> Kodi Server 8 </th>","").replace("			<th scope='row'> Kodi Server 9 </th>","").replace("			<th scope='row'> Kodi Server 10 </th>","").replace("			<th scope='row'> Plex Server 1 </th>","").replace("			<th scope='row'> Plex Server 2 </th>","").replace("			<th scope='row'> Plex Server 3 </th>","").replace("			<td><span id='","").replace("' class='Online'> Online </span></td>"," = [COLOR green]Online[/COLOR]").replace("' class='Offline'> Offline </span></td>"," = [COLOR red]Offline[/COLOR]").replace("	</table></center>","").replace("			</tr></tbody>","").replace("		<thead>","").replace("			<tr>","").replace("			<th scope='col'>Server Type</th>","Scroll down to check the current status of our servers. ").replace("			<th scope='col'>Status</th>","").replace("			</tr>","").replace("		</thead>","").replace("		<tbody><tr>","[COLOR royalblue][B]Server Type  -  Status[/B][/COLOR]").replace("cCloud TV Status</caption>","[B]cCloud TV Status[/B]").replace("","").replace("","").replace("","").replace("","")
+    text = status
+    showText('[COLOR royalblue][B]***Online Status***[/B][/COLOR]', text)
+
+def readme():		
+	text = '[COLOR royalblue][B]**ReadMe**[/B][/COLOR]'
+	newstext = 'http://ccloudtv.org/readme'
+	req = urllib2.Request(newstext)
+	req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
+	response = urllib2.urlopen(req)
+	link=response.read()
+	response.close()
+	match=re.compile("<body>(.+?)</body>",re.DOTALL).findall(link)
+	for status in match:
+	    try:
+			    status = status.decode('ascii', 'ignore')
+	    except:
+			    status = status.decode('utf-8','ignore')
+	    status = status.replace('&amp;','').replace('<h1>README</h1>','[B]README[/B]').replace('<p>','').replace('</p>','').replace('<a href="','').replace('https://youtu.be/kz1LHwyWygE""target="_blank">https://youtu.be/kz1LHwyWygE</a>','[COLOR royalblue]https://youtu.be/kz1LHwyWygE[/COLOR]').replace('https://youtu.be/VvXH9OzWKSM""target="_blank">https://youtu.be/VvXH9OzWKSM</a>','[COLOR royalblue]https://youtu.be/VvXH9OzWKSM[/COLOR]').replace('https://youtu.be/C6Q0voXrp88""target="_blank">https://youtu.be/C6Q0voXrp88</a>','[COLOR royalblue]https://youtu.be/C6Q0voXrp88[/COLOR]').replace('http://youtu.be/enipIP2sEWw""target="_blank">http://youtu.be/enipIP2sEWw</a>','[COLOR royalblue]http://youtu.be/enipIP2sEWw[/COLOR]').replace('https://youtu.be/zYIa72b5vyk""target="_blank">https://youtu.be/zYIa72b5vyk</a>','[COLOR royalblue]https://youtu.be/zYIa72b5vyk[/COLOR]').replace('https://youtu.be/nCNF5cXLZts""target="_blank">https://youtu.be/nCNF5cXLZts</a>','[COLOR royalblue]https://youtu.be/nCNF5cXLZts[/COLOR]').replace('http://youtu.be/hvxPg4TE0tc""target="_blank">http://youtu.be/hvxPg4TE0tc</a>','[COLOR royalblue]http://youtu.be/hvxPg4TE0tc[/COLOR]')
+	    text = status
+	showText('[COLOR royalblue][B]**ReadMe**[/B][/COLOR]', text)
+
 	
 def text_online2():		
 	text = '[COLOR royalblue][B]***Latest Announcements***[/B][/COLOR]'
@@ -688,7 +735,7 @@ def text_online2():
 	req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
 	response = urllib2.urlopen(req)
 	link=response.read()
-	response.close()
+	response.close() 
 	match=re.compile("<START>(.+?)___",re.DOTALL).findall(link)
 	for status in match:
 	    try:
@@ -966,6 +1013,12 @@ elif mode == 2:
 	
 elif mode == 3:
 	text_online()
+
+elif mode == 4:
+	online_status()
+
+elif mode == 5:
+	readme()
 	
 	
 elif mode == 51:

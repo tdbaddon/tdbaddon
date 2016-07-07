@@ -1,10 +1,8 @@
 from __future__ import unicode_literals
-from resources.lib.modules import client,webutils
+from resources.lib.modules import client,webutils,control
 import re,urlparse,json,xbmcgui, xbmc, sys
 from resources.lib.modules.log_utils import log
-from addon.common.addon import Addon
 
-addon = Addon('plugin.video.castaway', sys.argv)
 
 class info():
     def __init__(self):

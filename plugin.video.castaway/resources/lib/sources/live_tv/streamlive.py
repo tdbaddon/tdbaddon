@@ -3,8 +3,7 @@ from resources.lib.modules import client, webutils,control
 from resources.lib.modules.log_utils import log
 import urllib, requests
 import re,sys,xbmcgui,os,cookielib
-from addon.common.addon import Addon
-addon = Addon('plugin.video.castaway', sys.argv)
+
 cookieFile = os.path.join(control.dataPath, 'streamlivecookie.lwp')
 
 
@@ -52,12 +51,11 @@ class main():
 		if pm and hour!=12:
 			hour += 12
 
-		log(hour)
 
 		import datetime
 		from resources.lib.modules import pytzimp
 		d = pytzimp.timezone(str(pytzimp.timezone('America/Detroit'))).localize(datetime.datetime(2000 , 1, 1, hour=int(hour), minute=int(minute)))
-		timezona= addon.get_setting('timezone_new')
+		timezona= control.setting('timezone_new')
 		my_location=pytzimp.timezone(pytzimp.all_timezones[int(timezona)])
 		convertido=d.astimezone(my_location)
 		fmt = "%H:%M"
@@ -100,7 +98,7 @@ class main():
 		html = client.request(self.base)
 		sch = self.sch_dict()
 		for s in sch:
-			out.append((s[0],s[0],control.icon_path(info().icon)))
+			out.append((s[0].replace('embed','view'),s[0],control.icon_path(info().icon)))
 
 		return out
 
@@ -125,10 +123,10 @@ class main():
 				url = channel.find('a')['href']
 				img = 'http:' + re.findall('img.+?src="(.+?)"',str(channel.find('img')))[0]
 				title = channel.find('img')['alt'].encode('utf-8')
-				if 'premium' in channel.getText().lower() and addon.get_setting('streamlive_show_premium')=='false':
+				if 'premium' in channel.getText().lower() and control.setting('streamlive_show_premium')=='false':
 					continue
 				else:
-					new.append((url,title,img))
+					new.append((url.replace('embed','view'),title,img))
 				
 			except:
 				pass

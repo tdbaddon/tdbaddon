@@ -1,13 +1,8 @@
 from resources.lib.modules import client,webutils,control
 import sys,os,cookielib,urllib2,re,urllib,json
-from addon.common.addon import Addon
-addon = Addon('plugin.video.castaway', sys.argv)
+
 from resources.lib.modules.log_utils import log
 
-AddonPath = addon.get_path()
-IconPath = AddonPath + "/resources/media/"
-def icon_path(filename):
-    return os.path.join(IconPath, filename)
 
 class info():
     def __init__(self):
@@ -22,7 +17,7 @@ class info():
 class main():
 	def __init__(self):
 		self.base = 'http://mc.ustvnow.com/'
-		self.premium = addon.get_setting('ustvnow_show_premium') == 'true'
+		self.premium = control.setting('ustvnow_show_premium') == 'true'
 
 	def channels(self):
 		token = self.get_token()

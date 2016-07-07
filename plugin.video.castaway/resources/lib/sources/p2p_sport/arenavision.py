@@ -1,9 +1,9 @@
-from resources.lib.modules import client,webutils
+from resources.lib.modules import client,webutils,control,convert
 import re,sys,xbmcgui,os
-from addon.common.addon import Addon
-addon = Addon('plugin.video.castaway', sys.argv)
 
-AddonPath = addon.get_path()
+from resources.lib.modules.log_utils import log
+
+AddonPath = control.addonPath
 IconPath = AddonPath + "/resources/media/"
 def icon_path(filename):
     return os.path.join(IconPath, filename)
@@ -23,17 +23,16 @@ class main():
         self.headers = { "Cookie" : "beget=begetok; has_js=1;" }       
 
     def links(self,url):
-        links = url.strip('/').split('/')
+        links = re.findall('(\d+.+?)\[(.+?)\]',url)
         links=self.__prepare_links(links)
         return links
 
     def channels(self):
-        import requests
         
         result = client.request('http://arenavision.in/agenda', headers=self.headers)
-        match = re.findall('Bruselas(.*?)</footer>', result, re.DOTALL)[0]
-        events = re.findall('(\d+/\d+/\d+)\s*(\d+:\d+)\s*CET\s*(.+?)\s*\((.+?)\)(.+?)<',match)
-        events = self.__prepare_events(events)
+        table = client.parseDOM(result,'table',attrs={'style':'width: 100%; float: left'})[0]
+        rows = client.parseDOM(table,'tr')
+        events = self.__prepare_events(rows)
         return events
     
 
@@ -46,7 +45,7 @@ class main():
         import datetime
         from resources.lib.modules import pytzimp
         d = pytzimp.timezone(str(pytzimp.timezone('Europe/Ljubljana'))).localize(datetime.datetime(2000 + int(year), int(month), int(day), hour=int(hour), minute=int(minute)))
-        timezona= addon.get_setting('timezone_new')
+        timezona= control.setting('timezone_new')
         my_location=pytzimp.timezone(pytzimp.all_timezones[int(timezona)])
         convertido=d.astimezone(my_location)
         fmt = "%A, %B %d, %Y"
@@ -59,21 +58,42 @@ class main():
 
     def __prepare_events(self,events):
         new = []
+        events.pop(0)
         date_old = ''
         for event in events:
+            items = client.parseDOM(event,'td')
+            i = 0
+            
+            for item in items:
+
+                if i==0:
+                    date = item
+                elif i==1:
+                    time = item.replace('CET','').strip()
+                elif i==2:
+                    sport = item
+                elif i==3:
+                    competition = item
+                elif i==4:
+                    event = webutils.remove_tags(item)
+                elif i==5:
+                    url = item
+
+                i += 1
             try:
-                date,time,title,sport,url = event
                 time, date = self.convert_time(time,date)
                 if date != date_old:
                     date_old = date
                     new.append(('x','[COLOR yellow]%s[/COLOR]'%date, info().icon))
-                    continue
-                
-                title = '[COLOR orange](%s)[/COLOR] (%s) [B]%s[/B]'%(time,sport,title)
+
+                sport = '%s - %s'%(sport,competition)
+                event = re.sub('\s+',' ',event)
+                title = '[COLOR orange](%s)[/COLOR] (%s) [B]%s[/B]'%(time,sport,convert.unescape(event))
                 title = title.encode('utf-8')
                 new.append((url,title, info().icon))
             except:
                 pass
+            
         
         return new
 
@@ -81,9 +101,12 @@ class main():
         new=[]        
         
         for link in links:
-            url = self.base + '/' + link.lower()
-            title = link
-            new.append((url,title))
+            lang = link[1]
+            urls = link[0].split('-')
+            for u in urls:
+                title = '[B]AV%s[/B] [%s]'%(u,lang)
+                url = 'http://arenavision.in/av' + u
+                new.append((url,title))
         return new
 
     def resolve(self,url):

@@ -128,10 +128,10 @@ def addDownload(name, url, image, resolved=False):
         return control.infoDialog('Nije moguće preuzeti')
         pass
 
-    def download(): return [{'name': name, 'url': url, 'image': image}]
+    def download(): return [{'name': name, 'url': resolved, 'image': image}]
     result = cache.get(download, 600000000, table='rel_dl')
     result = [i for i in result if not i['url'] == url]
-    def download(): return result + [{'name': name, 'url': url, 'image': image}]
+    def download(): return result + [{'name': name, 'url': resolved, 'image': image}]
     result = cache.get(download, 0, table='rel_dl')
 
     control.infoDialog('Datoteka dodana u red čekanja', name)

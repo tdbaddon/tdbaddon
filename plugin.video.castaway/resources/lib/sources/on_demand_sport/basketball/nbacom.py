@@ -1,14 +1,7 @@
 from __future__ import unicode_literals
-from resources.lib.modules import client,webutils
+from resources.lib.modules import client,webutils,control
 import re,urlparse,json, datetime, sys, os, time
-from addon.common.addon import Addon
 
-addon = Addon('plugin.video.castaway', sys.argv)
-
-AddonPath = addon.get_path()
-IconPath = AddonPath + "/resources/media/"
-def icon_path(filename):
-    return os.path.join(IconPath, filename)
 
 
 class info():
@@ -27,9 +20,9 @@ class main():
 		self.url = url
 
 	def categories(self):
-		categs=[['http://searchapp2.nba.com/nba-search/query.jsp?section=channels%2F*%7Cgames%2F*%7Cflip_video_diaries%7Cfiba&sort=recent&hide=true&type=advvideo&npp=15&start=1','NBA Video (All feeds)',icon_path(info().icon)],
-		['http://searchapp2.nba.com/nba-search/query.jsp?section=channels%2Ftop_plays&sort=recent&hide=true&type=advvideo&npp=15&start=1','Top Plays',icon_path(info().icon)],
-		['http://searchapp2.nba.com/nba-search/query.jsp?section=games%2F*%7Cchannels%2Fplayoffs&sort=recent&hide=true&type=advvideo&npp=15&start=1','Highlights',icon_path(info().icon)]]
+		categs=[['http://searchapp2.nba.com/nba-search/query.jsp?section=channels%2F*%7Cgames%2F*%7Cflip_video_diaries%7Cfiba&sort=recent&hide=true&type=advvideo&npp=15&start=1','NBA Video (All feeds)',control.icon_path(info().icon)],
+		['http://searchapp2.nba.com/nba-search/query.jsp?section=channels%2Ftop_plays&sort=recent&hide=true&type=advvideo&npp=15&start=1','Top Plays',control.icon_path(info().icon)],
+		['http://searchapp2.nba.com/nba-search/query.jsp?section=games%2F*%7Cchannels%2Fplayoffs&sort=recent&hide=true&type=advvideo&npp=15&start=1','Highlights',control.icon_path(info().icon)]]
 		return categs
 
 	def items(self):
@@ -56,7 +49,7 @@ class main():
 	def resolve(self, link):
 	    link=link.replace('/index.html','')
 	    soup = webutils.get_soup(link)
-	    bitrate = addon.get_setting('nba_bitrate')
+	    bitrate = control.setting('nba_bitrate')
 	    link=soup.find('file',{'bitrate':'%s'%bitrate}).getText()
 	    return link
 

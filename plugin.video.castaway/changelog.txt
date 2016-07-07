@@ -2,6 +2,12 @@
 Castaway sports addon by [COLOR yellow]@natko1412[/COLOR]
 ====================================================================
 
+v0.2.6 [7-Jul-2016]
+-fix arenavision
+-remove addon.common from source modules
+-fix fullmatchtv
+-fix lmshows
+
 v0.2.5 [25-Jun-2016]
 -fix userscloud resolver
 -fix livefootballol p2p

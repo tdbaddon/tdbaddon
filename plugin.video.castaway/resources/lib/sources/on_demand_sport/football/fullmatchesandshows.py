@@ -1,22 +1,16 @@
 from __future__ import unicode_literals
-from resources.lib.modules import client,webutils,convert
+from resources.lib.modules import client,webutils,convert,control
 from resources.lib.modules.log_utils import log
 import re,urlparse,json,sys,os, json,urllib
 import requests
 
-from addon.common.addon import Addon
-addon = Addon('plugin.video.castaway', sys.argv)
 
-AddonPath = addon.get_path()
-IconPath = AddonPath + "/resources/media/"
-def icon_path(filename):
-    return os.path.join(IconPath, filename)
 
 class info():
     def __init__(self):
     	self.mode = 'fullmatchesandshows'
         self.name = 'fullmatchesandshows.com'
-        self.icon = icon_path('fms.png')
+        self.icon = control.icon_path('fms.png')
         self.paginated = True
         self.categorized = True
         self.multilink = True
@@ -42,7 +36,7 @@ class main():
 		html_cut = html#re.findall('td-subcat-list.*?>(.+?)</u',html)[0]
 		items = re.findall('data-td_filter_value=[\"\'](\d+)[\"\'][^<]+>([^<]+)<',html_cut)
 		for item in items:
-			cats.append((item[0],item[1],icon_path(info().icon)))
+			cats.append((item[0],item[1],control.icon_path(info().icon)))
 		return cats
 
 
@@ -90,7 +84,7 @@ class main():
 		try:
 			img = re.findall('class="wpb_wrapper">\s*<a href=[\"\']([^\"\']+)[\"\']',html)[0]
 		except:
-			img = icon_path(info().icon)
+			img = control.icon_path(info().icon)
 
 		links = re.findall('id=[\"\']([^\"\']+)[\"\']><a href=[\"\']#\d+[\"\']><div.+?>([^<]+)<',html)
 
@@ -119,7 +113,7 @@ class main():
 			try:
 				img = re.findall('class="wpb_wrapper">\s*<a href=[\"\']([^\"\']+)[\"\']',html)[0]
 			except:
-				img = icon_path(info().icon)
+				img = control.icon_path(info().icon)
 			out.append((title,urlx,img))
 		return out
 

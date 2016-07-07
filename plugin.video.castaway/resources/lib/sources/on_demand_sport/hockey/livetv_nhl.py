@@ -1,40 +1,27 @@
 from __future__ import unicode_literals
-from resources.lib.modules import client,webutils
+from resources.lib.modules import client,webutils,control,convert
 import re,urlparse,os,sys,json,xbmcgui,urllib,requests
 from resources.lib.modules.log_utils import log
-
-
-try:
-    import CommonFunctions as common
-except:
-    from resources.lib.modules import commonfunctionsdummy as common
-from addon.common.addon import Addon
-addon = Addon('plugin.video.castaway', sys.argv)
-
-AddonPath = addon.get_path()
-IconPath = AddonPath + "/resources/media/"
-def icon_path(filename):
-    return os.path.join(IconPath, filename)
 
 class info():
     def __init__(self):
     	self.mode = 'livetv_nhl'
         self.name = 'livetv.sx (NHL full replays & highlights)'
-        self.icon = icon_path('nhlstream.jpg')
+        self.icon = control.icon_path('nhlstream.jpg')
         self.paginated = False
         self.categorized = False
         self.multilink = True
 
 
 class main():
-	def __init__(self,url = addon.get_setting('livetv_base') + '/en/videotourney/2/'):
-		self.base = addon.get_setting('livetv_base')
+	def __init__(self,url = control.setting('livetv_base') + '/en/videotourney/2/'):
+		self.base = control.setting('livetv_base')
 		self.url = url
 
 	def items(self):
 		result = client.request(self.url)
 		result = result.decode('iso-8859-1').encode('utf-8')
-		items= common.parseDOM(result, "table", attrs = { "height": "27" })
+		items= client.parseDOM(result, "table", attrs = { "height": "27" })
 		items = self.__prepare_items(items,result)
 		return items
 
@@ -45,7 +32,7 @@ class main():
 				title = [i for i in title if '&ndash;' in i or '-' in i][-1]
 				title = title.split('<b>')[-1]
 				title = title.replace('&ndash;', '-')
-				title = common.replaceHTMLCodes(title)
+				title = convert.unescape(webutils.remove_tags(title))
 				title = title.encode('utf-8')
 				url = self.base + re.compile('<a.+?href="(.+?)"').findall(video)[0]
 				out+=[(title,url,info().icon)]

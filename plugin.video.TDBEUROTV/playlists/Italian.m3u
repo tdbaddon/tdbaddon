@@ -17,7 +17,7 @@ rtmp://wms.shared.streamshow.it:80/videocalabria playpath=videocalabria swfUrl=h
 0
 
 #EXTINF:0,Canale 46 
-rtmp://vs2.streamcaster.net:1935/test_live playpath=canale46 swfUrl=http://www.canale46.it/scripts/FlowPlayerNet/flowplayer.commercial-3.2.15.swf pageUrl=http://www.canale46.it/portale_web/lib/archivio.aspx?canale=1&id=1 live=1 timeout=10
+0
 
 #EXTINF:0,Canale Dieci 
 0
@@ -26,7 +26,7 @@ rtmp://vs2.streamcaster.net:1935/test_live playpath=canale46 swfUrl=http://www.c
 0
 
 #EXTINF:0,Cielo
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/4412.ts
+0
 
 #EXTINF:0,E TV Marche
 http://vs2.streamcaster.net:1935/etvmarche_live/etvmarche/sansar.m3u8
@@ -53,13 +53,7 @@ rtmp://wma10.fluidstream.net/HistoryLab playpath=livestream swfUrl=http://www.ra
 0
 
 #EXTINF:0,LA7 
-http://la7live-lh.akamaihd.net/i/test_1@143593/master.m3u8
-
-#EXTINF:0,LA7 
-http://cp.dmbshare.net:8000/live/stakenborg/stakenborg/6045.ts
-
-#EXTINF:0,LA7 
-http://cp.dmbshare.net:8000/live/stakenborg/stakenborg/6044.ts
+0
 
 #EXTINF:0,Lucania TV
 0
@@ -86,49 +80,31 @@ rtmp://fms.105.net/live/105Test1
 rtmp://fms.105.net:1935/live/rmc1
 
 #EXTINF:0,RAI 1 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/2963.ts
+0
 
 #EXTINF:0,RAI 2 
-http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/1330.ts
+0
 
 #EXTINF:0,RAI 3 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/4162.ts
+0
 
 #EXTINF:0,RAI 4 
 mmsh://212.162.68.163/Rai4
 
-#EXTINF:0,RAI 4 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/4161.ts
-
 #EXTINF:0,RAI 5 
-http://b2.stream12.rai.it/live/rai5.smil/playlist.m3u8|X-Forwarded-For=2.112.0.1
-
-#EXTINF:0,RAI 5 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/3569.ts
+0
 
 #EXTINF:0,Rai Gulp 
 mmsh://212.162.68.163/Rai_gulp
 
-#EXTINF:0,Rai Gulp 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/2007.ts
-
 #EXTINF:0,Rai Movie 
 http://b2everyrai-lh.akamaihd.net/i/raimovie_1@67348/master.m3u8
-
-#EXTINF:0,Rai Movie 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/2006.ts
 
 #EXTINF:0,Rai News 
 http://live.cdn.streamago.tv:1935/streamagoedge/1917/810/livestream.m3u8
 
-#EXTINF:0,Rai News 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/2005.ts
-
 #EXTINF:0,Rai Premium 
-http://37.59.25.38:8000/live/Wqq93u85Lv/dJ6vR8cKlx/1094.ts
-
-#EXTINF:0,Rai Premium 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/2004.ts
+0
 
 #EXTINF:0,Rai Scuola
 http://originstream6.rai.it/italy/smil:raiscuola.smil/chunklist_b900000.m3u8
@@ -137,13 +113,13 @@ http://originstream6.rai.it/italy/smil:raiscuola.smil/chunklist_b900000.m3u8
 mmsh://212.162.68.163/rai_storia
 
 #EXTINF:0,Rai Yoyo 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/5016.ts
+0
 
 #EXTINF:0,REI TV 
 0
 
-#EXTINF:0,Rete 8
-http://live.cdn.streamago.tv:1935/streamagoedge/39648/36567/livestream.m3u8
+#EXTINF:0,Rete 8 
+0
 
 #EXTINF:0,Rete 55
 0
@@ -158,19 +134,19 @@ rtmp://flash3.ipercast.net/teleunica.tv-live/livestream1
 0
 
 #EXTINF:0,Sky Arte 
-http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/991.ts
+0
 
 #EXTINF:0,Sky Calcio 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/2398.ts
+0
 
 #EXTINF:0,Sky Cinema Family 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/1413.ts
+0
 
 #EXTINF:0,Sky Sport 24 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/5008.ts
+0
 
 #EXTINF:0,Sky Sport F1 
-http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/1634.ts
+0
 
 #EXTINF:0,Sky TG24 
 http://skyianywhere2-i.akamaihd.net:80/hls/live/200275/tg24/stream6/streamPlaylist.m3u8
@@ -197,28 +173,16 @@ rtmp://184.173.179.163/TeleabruzzoTV playpath=TeleabruzzoTV swfUrl=http://184.17
 0
 
 #EXTINF:0,Tele Diogene 
-rtmp://wms.shared.streamshow.it:80/telediogene playpath=telediogene swfUrl=http://player.streamshow.it/flowplayer/flowplayer.commercial-3.2.18.swf pageUrl=http://player.streamshow.it/embed/telediogene.php?height=338&width=448 live=1 timeout=10
-
-#EXTINF:0,Tele Diogene 
 rtmp://wms.shared.streamshow.it:1935/telediogene/telediogene
 
 #EXTINF:0,Tele Luna 
 rtmp://vs2.streamcaster.net:1935/test_live playpath=teleluna swfUrl=http://www.lunaset.it/scripts/FlowPlayerNet/flowplayer.commercial-3.2.15.swf pageUrl=http://www.lunaset.it/ live=1
 
-#EXTINF:0,Telemarket
-http://wms.shared.streamshow.it:1935/telemarket/telemarket/live.m3u8
-
 #EXTINF:0,Tele Milano 
-rtmp://91.121.222.160/piublulombardia/ playpath=piublulombardia.sdp swfUrl=http://ondemand.superstreaming.it/telemilanocity/flowplayer.rtmp-3.1.3.swf live=1 pageUrl=http://ondemand.superstreaming.it/telemilanocity//telemilanocity.html
-
-#EXTINF:0,Tele Milano 
-http://91.121.222.160:1935/piublu/piublu.sdp/live.m3u8
+0
 
 #EXTINF:0,Tele Monteneve 
 0
-
-#EXTINF:0,Tele Pavia 
-rtmp://wms.shared.streamshow.it:80/telepavia playpath=telepavia swfUrl=http://player.streamshow.it/flowplayer/flowplayer.commercial-3.2.18.swf pageUrl=http://player.streamshow.it/embed/telepavia_2.php?width=640&height=360 live=1
 
 #EXTINF:0,Tele Pavia 
 http://wms.shared.streamshow.it:1935/telepavia/telepavia/live.m3u8
@@ -244,6 +208,9 @@ rtmp://stream.telepadova.com/live/ playpath=tv1
 #EXTINF:0,Teleliberta 
 0
 
+#EXTINF:0,Telemarket 
+0
+
 #EXTINF:0,Telemolise 
 http://iphone-streaming.ustream.tv/ustreamVideo/9426995/streams/live/playlist.m3u8
 
@@ -264,9 +231,6 @@ rtmp://flash3.ipercast.net/teleunica.tv-live/livestream1
 
 #EXTINF:0,TRM TV 
 http://flash.streamingmedia.it:1935/TRM/livestream/hasbahca.m3u8
-
-#EXTINF:0,TRM TV 
-rtmp://flash.streamingmedia.it/TRM playpath=livestream swfUrl=http://flash.streamingmedia.it:8000/player/player.swf live=1 pageUrl=http://www.trmtv.it/home/
 
 #EXTINF:0,TV Uno
 http://ftp.tiscali.it/francescovernata/TVUNO/monoscopioTvUNOint-1.wmv

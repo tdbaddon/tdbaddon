@@ -4,10 +4,6 @@ import re,urlparse,json,urllib,os
 
 from resources.lib.modules.log_utils import log
 
-AddonPath = control.addonPath
-IconPath = AddonPath + "/resources/media/"
-def icon_path(filename):
-    return os.path.join(IconPath, filename)
 
 class info():
     def __init__(self):
@@ -37,7 +33,7 @@ class main():
 				if '(' in item:
 					item = '[B][COLOR orange]%s[/COLOR][/B]'%item
 
-				out.append((item,item,control.icon_path(info().icon)))		
+				out.append((item,item,control.control.icon_path(info().icon)))		
 		
 		
 		return out

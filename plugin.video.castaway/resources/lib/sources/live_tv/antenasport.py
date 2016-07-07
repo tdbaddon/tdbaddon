@@ -3,10 +3,6 @@ from resources.lib.modules import client,webutils,control,convert
 from resources.lib.modules.log_utils import log
 import re,os
 
-AddonPath = control.addonPath
-IconPath = AddonPath + "/resources/media/"
-def icon_path(filename):
-    return os.path.join(IconPath, filename)
 
 
 class info():
@@ -33,7 +29,7 @@ class main():
 	def __prepare_channels(self,channels):
 		
 		urls=[]
-		img= icon_path(info().icon)
+		img= control.icon_path(info().icon)
 		new=[('#schedule','Schedule',img)]
 		for channel in channels:
 			url = channel['href']

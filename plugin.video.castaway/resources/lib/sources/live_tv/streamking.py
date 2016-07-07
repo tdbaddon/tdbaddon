@@ -3,11 +3,6 @@ from resources.lib.modules import client,webutils,control
 from resources.lib.modules.log_utils import log
 import re,os
 
-AddonPath = control.addonPath
-IconPath = AddonPath + "/resources/media/"
-def icon_path(filename):
-    return os.path.join(IconPath, filename)
-
 
 class info():
     def __init__(self):

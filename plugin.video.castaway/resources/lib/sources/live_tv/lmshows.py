@@ -1,13 +1,7 @@
 from __future__ import unicode_literals
-from resources.lib.modules import client
+from resources.lib.modules import client,control
 import re,sys,xbmcgui,os
-from addon.common.addon import Addon
-addon = Addon('plugin.video.castaway', sys.argv)
 
-AddonPath = addon.get_path()
-IconPath = AddonPath + "/resources/media/"
-def icon_path(filename):
-    return os.path.join(IconPath, filename)
 
 class info():
     def __init__(self):
@@ -23,18 +17,19 @@ class main():
         
     def channels(self):
         html = client.request(self.base)
-        channels = re.findall('<li><a href="(.+?)" title="(.+?)" >.+?</a></li>',html)
+        channels = re.findall('href=[\"\']([^\"\']+)[\"\']><img src=[\"\']([^\"\']+)[\"\'] alt=[\"\']([^\"\']+)[\"\'].+?class=[\"\']ch-cover',html)
         events = []
-        unwanted = ['House','90\'s Hits','Trance','Vocal Trance','PsyTrance','Progressive','Top Hits','Love Music','Rain Sounds','Pacman','Koutack','Duck Hunt','Tic Tac Toe','Silversphere','Heat Rush USA','Sift Renegade 3 Defiance',
-        'Super Mario Flash','Billards Master Pro','Super Mario Flash 2','Strike Force Heroes 2','Big Time Butter Baron']
         for c in channels:
-            if c[0]=='#' or c[1] in unwanted:
+           
+            url = self.base + c[0]
+            img = self.base + c[1]
+            title = c[2]
+            if c[0] == 'tr.php':
                 continue
-            url = self.base + c[0]  
-            title = c[1]
-            events.append((url,title,icon_path(info().icon)))
+            events.append((url,title,img))
+        events.append(('http://lmshows.se/sb.php','SpongeBob SquarePants','http://vignette2.wikia.nocookie.net/spongebobtv/images/0/0b/SpongeBob-Logo.jpg/revision/latest?cb=20100716014643'))
         events=list(set(events))
-        events.append(('http://www.ustream.tv/embed/19964595','Toonami Aftermath',icon_path(info().icon)))
+        events.append(('http://www.ustream.tv/embed/19964595','Toonami Aftermath','http://66.media.tumblr.com/tumblr_lnfu9bYqaH1qa0xnuo1_500.png'))
         events.sort(key=lambda x: x[1])
         return events
         

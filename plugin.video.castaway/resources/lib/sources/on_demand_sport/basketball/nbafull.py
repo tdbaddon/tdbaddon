@@ -1,14 +1,8 @@
 from __future__ import unicode_literals
-from resources.lib.modules import client,webutils,convert,demand_links
+from resources.lib.modules import client,webutils,convert,demand_links,control
 import re,urlparse,urllib,sys,os,urllib2,json,cookielib
 from resources.lib.modules.log_utils import log
-from addon.common.addon import Addon
-addon = Addon('plugin.video.castaway', sys.argv)
 
-AddonPath = addon.get_path()
-IconPath = AddonPath + "/resources/media/"
-def icon_path(filename):
-    return os.path.join(IconPath, filename)
 
 class info():
     def __init__(self):
@@ -34,7 +28,7 @@ class main():
 			url = item.find('a')['href']
 			title=item.find('a')['title'].encode('utf-8')
 			title = re.sub('<[^>]*>','',title)
-			out+=[[title,url,icon_path(info().icon)]]
+			out+=[[title,url,control.icon_path(info().icon)]]
 
 		return out
 

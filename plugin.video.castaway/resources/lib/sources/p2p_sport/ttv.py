@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from resources.lib.modules import client
+from resources.lib.modules import client,control
 import re,sys,xbmcgui,os,json
-from addon.common.addon import Addon
-addon = Addon('plugin.video.castaway', sys.argv)
 
-AddonPath = addon.get_path()
+
+AddonPath = control.addonPath
 IconPath = AddonPath + "/resources/media/"
 def icon_path(filename):
     return os.path.join(IconPath, filename)

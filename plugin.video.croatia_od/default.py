@@ -4,7 +4,7 @@ from resources.lib.modules.addon import Addon
 import sys,os
 import urlparse,urllib
 import xbmc, xbmcgui, xbmcplugin, xbmcaddon
-from resources.lib.modules import control,radio,webutils
+from resources.lib.modules import control,radio,webutils,client
 from resources.lib.modules.log_utils import log
 
 addon = Addon('plugin.video.croatia_od', sys.argv)

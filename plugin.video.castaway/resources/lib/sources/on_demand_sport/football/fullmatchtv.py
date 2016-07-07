@@ -61,8 +61,9 @@ class main():
 		urls=[]
 		html = client.request(self.post_url,post=urllib.urlencode(self.postData))
 		j = json.loads(html)
+
 		data = j['td_data']
-		items = re.findall('url[\"\'].*?href=[\"\'](.+?)[\"\'].*?>(.+?)<.*?image.*?content=[\"\'](.+?)[\"\']',data)
+		items = re.findall('href=[\"\']([^\"\']+)[\"\'].+?title=[\"\']([^\"\']+)[\"\'].+?img.+?src=[\"\']([^\"\']+)[\"\']',data)
 		for item in items:
 			title = self.clean(item[1])
 			if item[0] not in urls:

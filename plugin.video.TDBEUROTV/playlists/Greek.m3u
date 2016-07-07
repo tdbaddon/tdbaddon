@@ -16,9 +16,6 @@ http://82.192.84.30:554/live/myStream.sdp/playlist.m3u8
 #EXTINF:0,Ant1 
 http://antennatv-lh.akamaihd.net/i/live_1@329667/master.m3u8
 
-#EXTINF:0,Ant1 
-http://94.23.218.186:1935/galanos2/galanos2/playlist.m3u8
-
 #EXTINF:0,Ant1 Cyprus
 0
 
@@ -31,8 +28,8 @@ http://www.astratv.gr:8090/hls/livestream.m3u8
 #EXTINF:0,Best TV 
 0
 
-#EXTINF:0,BlueSky TV
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/7387.ts
+#EXTINF:0,BlueSky TV 
+0
 
 #EXTINF:0,Boyah TV
 http://streamer-cache.grnet.gr/parliament/parltv.sdp/master.m3u8 
@@ -58,9 +55,6 @@ mms://deltatv1.dyndns.org:1194
 #EXTINF:0,E TV 
 http://mgrouphdlive4-f.akamaihd.net/i/live_1@324569/master.m3u8
 
-#EXTINF:0,E TV 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/8759.ts
-
 #EXTINF:0,Ellada TV 
 0
 
@@ -71,13 +65,13 @@ http://wpc.68fc.edgecastcdn.net/hls-live/2068FC/ena-channel-live/video/video.m3u
 0
 
 #EXTINF:0,EPT 1 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/5606.ts
+0
 
-#EXTINF:0,EPT 2
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/5605.ts
+#EXTINF:0,EPT 2 
+0
 
 #EXTINF:0,EPT 3 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/5604.ts
+0
 
 #EXTINF:0,Extra 
 rtmp://213.16.167.186/live/mpegts_256.stream
@@ -85,8 +79,8 @@ rtmp://213.16.167.186/live/mpegts_256.stream
 #EXTINF:0,Extra 
 http://213.16.167.186:1935/live/mpegts_256.stream/playlist.m3u8
 
-#EXTINF:0,FOS TV
-http://wm1.gmlogic.com/ch-patra?ovpsv=2.3.1.0
+#EXTINF:0,FOS TV 
+0
 
 #EXTINF:0,Greek Cinema 
 0
@@ -140,7 +134,7 @@ http://makeliolive-lh.akamaihd.net/i/event_1@167269/master.m3u8
 0
 
 #EXTINF:0,Mega 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6944.ts
+0
 
 #EXTINF:0,Mega Cyprus 
 0
@@ -148,14 +142,12 @@ http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6944.ts
 #EXTINF:0,Messinia TV
 rtmp://176.9.123.140:1935/messinia/messinia
 
+#EXTINF:0,N Cinema 
+0
+
 #EXTINF:0,Nea TV 
 http://srv.viiideo.gr:1935/neatv/live/playlist.m3u8
 
-#EXTINF:0,Nea TV 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/6270.ts
-
-#EXTINF:0,N Cinema 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/8654.ts
 
 #EXTINF:0,Nerit 
 0
@@ -174,9 +166,6 @@ http://stream2.omegatv.net/hls-live/livepkgr/_definst_/liveevent/omegatv.m3u8
 
 #EXTINF:0,Rik Sat 
 http://cdnvideo.webvideocore.net/livenl/out_2xtqzyrq6gysc48ko0cs/index.m3u8
-
-#EXTINF:0,Rik Sat 
-http://dmtn-iptv.com:8080/live/ksa.knig.g4/ksa.knig.g4/7866.ts
 
 #EXTINF:0,Samiaki TV 
 http://94.23.218.186:1935/samiaki/samiaki/playlist.m3u8

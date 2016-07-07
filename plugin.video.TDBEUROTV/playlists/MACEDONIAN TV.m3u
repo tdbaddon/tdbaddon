@@ -1,16 +1,19 @@
 ﻿#EXTM3U
 
+#EXTINF:0,Check Back Soon
+WWW.TCOMPUTERS.CA
+
 #EXTINF:0,A1 Strumica 
 0
 
 #EXTINF:0,Al Jazeera Balkan 
-http://cp.dmbshare.net:8000/live/francesco2/francesco2/1814.ts
+0
 
 #EXTINF:0,Alsat M 
-http://cp.dmbshare.net:8000/live/paul1/paul1/1763.ts
+0
 
 #EXTINF:0,Alfa 
-0
+http://37.187.158.217:8081/alfa/alfatv/chunks.m3u8
 
 #EXTINF:0,BTR 
 0
@@ -19,7 +22,7 @@ http://cp.dmbshare.net:8000/live/paul1/paul1/1763.ts
 0
 
 #EXTINF:0,ERA TV 
-http://cp.dmbshare.net:8000/live/paul1/paul1/1783.ts
+0
 
 #EXTINF:0,H1 Hugo
 0
@@ -48,6 +51,9 @@ mms://62.162.58.55/TVKanal21
 #EXTINF:0,Kanal 5 Plus
 0
 
+#EXTINF:0,Kanal 8
+mms://62.162.58.55/TVKanal8
+
 #EXTINF:0,Mega TV Bitola
 0
 
@@ -73,7 +79,7 @@ mms://62.162.58.55/TVKanal21
 0
 
 #EXTINF:0,Sitel 
-rtmp://51.255.92.232:1935/sitel/ playpath=siteI swfUrl=http://www.tvstanici.net/jwplayer/jwplayer.flash.swf live=1 pageUrl=http://www.tvstanici.net/tvsitelzivo2.html
+http://51.255.92.232:1935/sitel/siteI/playlist.m3u8
 
 #EXTINF:0,Sitel 3 
 0

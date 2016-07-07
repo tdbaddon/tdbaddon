@@ -1,6 +1,9 @@
 =====================================
 Croatia On Demand addon by natko1412
 =====================================
+v1.9.5
+-prepravljan epg
+
 v1.9.4
 -dodano: extra sadržaj Euro 2016
 -dorađene neke stvari

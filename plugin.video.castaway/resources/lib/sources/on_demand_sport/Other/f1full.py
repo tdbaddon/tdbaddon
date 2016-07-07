@@ -4,11 +4,6 @@ import re,urlparse,json,urllib,os
 
 from resources.lib.modules.log_utils import log
 
-AddonPath = control.addonPath
-IconPath = AddonPath + "/resources/media/"
-def icon_path(filename):
-    return os.path.join(IconPath, filename)
-
 class info():
     def __init__(self):
     	self.mode = 'f1full'
@@ -45,7 +40,7 @@ class main():
 		links = re.findall('(?:<.+?>)+([A-Z][^:<]+).+?\s*(?:.+?)?<iframe.+?src=[\"\']([^\"\']+)[\"\']',html)
 		i = 1
 		for link in links:
-			out.append((convert.unescape(link[0]).encode('utf-8'),link[1],icon_path(info().icon)))
+			out.append((convert.unescape(link[0]).encode('utf-8'),link[1],control.icon_path(info().icon)))
 			i += 1
 		return out
 	

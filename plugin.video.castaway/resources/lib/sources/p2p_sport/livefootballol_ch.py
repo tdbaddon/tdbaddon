@@ -1,11 +1,9 @@
 from __future__ import unicode_literals
-from resources.lib.modules import client,convert
+from resources.lib.modules import client,convert,control
 from resources.lib.modules.log_utils import log
 import re, urllib,sys,os
-from addon.common.addon import Addon
-addon = Addon('plugin.video.castaway', sys.argv)
 
-AddonPath = addon.get_path()
+AddonPath = control.addonPath
 IconPath = AddonPath + "/resources/media/"
 def icon_path(filename):
     return os.path.join(IconPath, filename)

@@ -1,13 +1,8 @@
 from __future__ import unicode_literals
-from resources.lib.modules import client, webutils
+from resources.lib.modules import client, webutils,control
 import re,sys,xbmcgui,os
-from addon.common.addon import Addon
-addon = Addon('plugin.video.castaway', sys.argv)
 
-AddonPath = addon.get_path()
-IconPath = AddonPath + "/resources/media/"
-def icon_path(filename):
-    return os.path.join(IconPath, filename)
+
 
 class info():
     def __init__(self):
@@ -30,7 +25,7 @@ class main():
         for c in channels:
            url = self.base + c.find('a')['href'] 
            title = c.getText()
-           events.append((url,title,icon_path(info().icon)))
+           events.append((url,title,control.icon_path(info().icon)))
         events.sort(key=lambda x: x[1])
         return events
 	

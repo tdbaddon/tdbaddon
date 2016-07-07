@@ -1,9 +1,7 @@
-from resources.lib.modules import client,webutils
+from resources.lib.modules import client,webutils,control
 import re,sys
 from resources.lib.modules.log_utils import log
 
-from addon.common.addon import Addon
-addon = Addon('plugin.video.castaway', sys.argv)
 
 class info():
     def __init__(self):
@@ -16,7 +14,7 @@ class info():
 
 class main():
     def __init__(self):
-        self.base = addon.get_setting('livetv_base')
+        self.base = control.setting('livetv_base')
 
     def categories(self):
         import requests
@@ -55,7 +53,7 @@ class main():
         import datetime
         from resources.lib.modules import pytzimp
         d = pytzimp.timezone(str(pytzimp.timezone('Europe/London'))).localize(datetime.datetime(2000 , int(month), int(day), hour=int(hour), minute=int(minute)))
-        timezona= addon.get_setting('timezone_new')
+        timezona= control.setting('timezone_new')
         my_location=pytzimp.timezone(pytzimp.all_timezones[int(timezona)])
         convertido=d.astimezone(my_location)
         fmt = "%m/%d %H:%M"

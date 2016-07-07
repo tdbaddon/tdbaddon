@@ -1,7 +1,5 @@
 from resources.lib.modules import client,webutils
 import re,sys
-from addon.common.addon import Addon
-addon = Addon('plugin.video.castaway', sys.argv)
 
 class info():
     def __init__(self):

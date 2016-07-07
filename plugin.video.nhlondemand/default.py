@@ -18,7 +18,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
-import urllib,urllib2,re,os,threading,datetime,time,base64,xbmc,xbmcplugin,xbmcgui,xbmcaddon,xbmcvfs
+import urllib,urllib2,re,os,threading,datetime,time,base64,xbmc,xbmcplugin,xbmcgui,xbmcaddon,xbmcvfs,HTMLParser,array
 from operator import itemgetter
 try:
     from sqlite3 import dbapi2 as database
@@ -675,8 +675,23 @@ class resolver:
         try:
             url = self.livetv(url)
             if url is None: raise Exception()
-            player().run(url)
-            return url
+            elif isinstance(url, list):
+                if getSetting("quality") == 'false' and len(url) > 1:
+                    mirrors = list()
+                    for i in url:
+                        mirrors.extend([str(i[0])])
+                    
+                    dialog = xbmcgui.Dialog()
+                    src = dialog.select('Choose a Resolution', mirrors)
+                    
+                    player().run(url[src][1])
+                    return url[src][1]
+                else:
+                    player().run(url[0][1])
+                    return url[0][1]
+            else: 
+                player().run(url)
+                return url
         except:
             index().infoDialog(language(30304).encode("utf-8"))
             return
@@ -684,36 +699,54 @@ class resolver:
     def livetv(self, url):
         try:
             result = getUrl(url, timeout='30').result
-            result = result.replace('https://', 'http://')
             result = result.replace('\n','')
 
-            url = re.compile('"(http://vk.com/.+?)"').findall(result)
+            url = re.compile('(vk.com/.+?)"').findall(result)
             url += re.compile('(youtube.com/embed/.+?)"').findall(result)
             url += re.compile('(/video.nhl.com.+?playlist=.+?)"').findall(result)
             url += re.compile('"file","(.+?)"').findall(result)
-            url += re.compile('"//(rutube.ru/play/embed/.+?)"').findall(result)
-            url += re.compile('(http://videoapi.my.mail.ru/videos/embed/mail/(.+?)/_myvideo/(.+?).html)').findall(result)
+            url += re.compile('(rutube.ru/play/embed/.+?)"').findall(result)
+            url += re.compile('(https?://videoapi.my.mail.ru/videos/embed/(inbox|mail)/(.+?)/_myvideo/(.+?).html)').findall(result)
+            url += re.compile('data-config="//(config.playwire.com/.+?/zeus.json)"').findall(result)
             url = url[0]
 
-            if '/vk.com' in url: url = self.vk(url)
+            if 'vk.com' in url: url = self.vk(url)
             elif 'youtube.com' in url: url = self.youtube(url)
             elif 'nhl.com' in url: url = self.nhl(url)
             elif 'mail.ru' in url[0]: url = self.mail(url)
             elif 'rutube.ru' in url: url = self.rutube(url)
+            elif 'playwire.com' in url: url = self.playwire(url)
             return url
         except:
             return
+            
+    def playwire(self, url):
+        try:
+            url = "http://%s" % url
+            result = getUrl(url).result
+            result = json.loads(result)['content']['media']['f4m']
+            result = getUrl(result).result
+            baseURL = common.parseDOM(result, "baseURL")[0]
+            media = common.parseDOM(result, "media", ret="url")[0]
+            url = '%s/%s' % (baseURL, media)
+            
+            return url
+        except:
+            return        
 
     def vk(self, url):
         try:
-            url = url.replace('http://', 'https://')
+            url = "http://%s" % url
             result = getUrl(url).result
+            result = result.replace('\/', '/')
 
-            hd = re.compile('url(1080|720)=(.+?)&').findall(result)
-            sd = re.compile('url(540|480|360)=(.+?)&').findall(result)
-            if len(hd) == 0 or not link().quality == 'true': hd = sd
+            url = re.compile('\"url(.+?)\":\"(https?.+?)\"').findall(result)
+            urlDict = {}
+            for c in url:
+                urlDict.update({c[0]: c[1]})
+                
+            url = sorted(urlDict.items(), key=itemgetter(0), reverse=True)
 
-            url = hd[-1][1]
             return url
         except:
             return
@@ -724,32 +757,34 @@ class resolver:
             result = getUrl(url).result
 
             m3u8 = re.compile('video_balancer&quot;: {.*?&quot;m3u8&quot;: &quot;(.*?)&quot;}').findall(result)[0]
+            m3u8 = HTMLParser.HTMLParser().unescape(m3u8)
             result = getUrl(m3u8).result
             
-            url = re.compile('"\n(.+?)\n').findall(result)
+            url = re.compile('\n(.+?i=(.+?)_.+?)\n').findall(result)
             url = url[::-1]
+            url = [sublist[::-1] for sublist in url]
 
-            return url[0]
+            return url
         except:
-            return           
+            return
             
     def mail(self, url):
         try:
-            url = "http://videoapi.my.mail.ru/videos/mail/%s/_myvideo/%s.json?ver=0.2.60" % (url[1], url[2])
+            url = "http://videoapi.my.mail.ru/videos/%s/%s/_myvideo/%s.json?ver=0.2.60" % (url[1], url[2], url[3])
             result = getUrl(url).result
             cookie = getUrl(url, output='cookie').result
             result = json.loads(result)['videos']
             cookie = "|Cookie=%s" % urllib.quote(cookie)
-
-            url = [i['url'] for i in result if '720p' in i['key']]
-            url += [i['url'] for i in result if '1080p' in i['key']]
-            if not url: url = result[0]['url']
-            else: url = url[-1]
-            url = url + cookie
+            
+            urlDict = {}
+            for c in result:
+                urlDict.update({c["key"]: "%s%s" % (c["url"], cookie)})
+                
+            url = sorted(urlDict.items(), key=itemgetter(0), reverse=True)
             
             return url
         except:
-            return                 
+            return
 
     def nhl(self, url):
         try:

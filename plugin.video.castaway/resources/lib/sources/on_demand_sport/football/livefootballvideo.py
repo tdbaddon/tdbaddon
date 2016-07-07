@@ -1,20 +1,12 @@
 from __future__ import unicode_literals
-from resources.lib.modules import client,webutils
+from resources.lib.modules import client,webutils,control,convert
 import re,urlparse,json,sys,os
-
-from addon.common.addon import Addon
-addon = Addon('plugin.video.castaway', sys.argv)
-
-AddonPath = addon.get_path()
-IconPath = AddonPath + "/resources/media/"
-def icon_path(filename):
-    return os.path.join(IconPath, filename)
 
 class info():
     def __init__(self):
     	self.mode = 'livefootballvideo'
         self.name = 'livefootballvideo.com (highlights)'
-        self.icon = icon_path('livefootballvideo.png')
+        self.icon = control.icon_path('livefootballvideo.png')
         self.paginated = True
         self.categorized = False
         self.multilink = False
@@ -31,12 +23,12 @@ class main():
 		items = soup.find('div',{'class':'listhighlights'}).findAll('li')
 		out = []
 		for item in items:
-			date = addon.unescape(item.find('div',{'class':'date_time column'}).getText())
+			date = convert.unescape(item.find('div',{'class':'date_time column'}).getText())
 			url = item.find('div',{'class':'play_btn column'}).find('a')['href']
-			home = addon.unescape(item.find('div',{'class':'team home column'}).getText())
-			away = addon.unescape(item.find('div',{'class':'team column'}).getText())
-			result = addon.unescape(item.find('div',{'class':'result column'}).getText())
-			league = addon.unescape(item.find('div',{'class':'leaguelogo column'}).find('a')['title'])
+			home = convert.unescape(item.find('div',{'class':'team home column'}).getText())
+			away = convert.unescape(item.find('div',{'class':'team column'}).getText())
+			result = convert.unescape(item.find('div',{'class':'result column'}).getText())
+			league = convert.unescape(item.find('div',{'class':'leaguelogo column'}).find('a')['title'])
 			title  = '%s (%s) [B]%s %s %s[/B]'%(date,league,home,result,away)
 			import HTMLParser
 			title = HTMLParser.HTMLParser().unescape(title).encode('utf-8')

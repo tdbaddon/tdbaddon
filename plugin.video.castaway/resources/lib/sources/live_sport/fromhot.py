@@ -1,7 +1,5 @@
 from resources.lib.modules import client,webutils,convert
 import re,sys,urllib
-from addon.common.addon import Addon
-addon = Addon('plugin.video.castaway', sys.argv)
 from resources.lib.modules.log_utils import log
 
 class info():
@@ -82,17 +80,16 @@ class main():
 
     def resolve(self,url):
         html = client.request(url)
-        html= convert.unescape(html)
+        try:
+            html= convert.unescape(html)
+        except:
+            pass
         res = url
-        unescape = re.findall('unescape\s*\(\s*[\"\']([^\"\']+)',html)
-        for u in unescape:
-            u = urllib.unquote(u)
-            try:
-                url = re.findall('href=[\"\']([^\"\']+)',u)[0]
-                if 'sop' in url or 'ace' in url:
-                    res = url
-                    break
-            except:
-                pass
+        try:
+            res = urllib.unquote(re.findall('unescape\s*\(\s*[\"\']([^\"\']+)',html)[0])
+            res = re.findall('(?:href|src)=[\"\']([^\"\']+)',res)[0]
+        except:
+            pass
+        
         import liveresolver
         return liveresolver.resolve(res)

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.croatia_od" name="Croatia On Demand" version="1.9.4" provider-name="natko1412">
+<addon id="plugin.video.croatia_od" name="Croatia On Demand" version="1.9.5" provider-name="natko1412">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0"/>
 		<import addon="script.module.beautifulsoup" version="3.2.1"/>

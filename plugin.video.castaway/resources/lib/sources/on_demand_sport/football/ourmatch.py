@@ -1,22 +1,14 @@
 from __future__ import unicode_literals
-from resources.lib.modules import client,webutils,convert
+from resources.lib.modules import client,webutils,convert,control
 from resources.lib.modules.log_utils import log
 import re,urlparse,json,sys,os, json,urllib
 import requests
-
-from addon.common.addon import Addon
-addon = Addon('plugin.video.castaway', sys.argv)
-
-AddonPath = addon.get_path()
-IconPath = AddonPath + "/resources/media/"
-def icon_path(filename):
-    return os.path.join(IconPath, filename)
 
 class info():
     def __init__(self):
     	self.mode = 'ourmatch'
         self.name = 'ourmatch.net'
-        self.icon = icon_path('ourmatch.png')
+        self.icon = control.icon_path('ourmatch.png')
         self.paginated = True
         self.categorized = True
         self.multilink = True
@@ -30,7 +22,7 @@ class main():
 
 	def categories(self):
 		urls = []
-		img = icon_path(info().icon)
+		img = control.icon_path(info().icon)
 		out = [('http://ourmatch.net','Latest matches',img)]
 		html = client.request(self.base)
 		cats = re.findall('<li class=[\"\']hover-tg[\"\']><a href=[\"\'](.+?)[\"\']>(.+?)</a></li>',html)

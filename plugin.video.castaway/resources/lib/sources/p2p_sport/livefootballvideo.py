@@ -1,9 +1,8 @@
-from resources.lib.modules import client,webutils
+from resources.lib.modules import client,webutils,control
 import re,sys,xbmcgui,os
-from addon.common.addon import Addon
-addon = Addon('plugin.video.castaway', sys.argv)
 
-AddonPath = addon.get_path()
+
+AddonPath = control.addonPath
 IconPath = AddonPath + "/resources/media/"
 def icon_path(filename):
     return os.path.join(IconPath, filename)

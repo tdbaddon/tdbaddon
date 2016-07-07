@@ -106,13 +106,13 @@ elif mode[0] == 'on_demand_sport':
     sources.remove('__init__.py')
     for source in sources:
         if '.pyo' not in source and '__init__' not in source:
-            try:
+            #try:
                 source = source.replace('.py','')
                 exec "from resources.lib.sources.on_demand_sport.%s import %s"%(cat,source)
                 info = eval(source+".info()")
                 addon.add_item({'mode': 'open_demand_sport', 'site': info.mode, 'category':cat}, {'title': info.name}, img=icon_path(info.icon), fanart=fanart,is_folder=True)
-            except:
-                pass
+            #except:
+            #    pass
     addon.end_of_directory()
 
 elif mode[0] == 'p2p_corner':

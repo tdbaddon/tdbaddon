@@ -1,5 +1,7 @@
 ﻿#EXTM3U
 
+#EXTINF:0,Check Back Soon
+WWW.TCOMPUTERS.CA
 
 #EXTINF:0,4fun TV 
 0
@@ -17,40 +19,34 @@ http://212.79.96.134:8015/
 http://213.81.153.221:8080/cetv
 
 #EXTINF:0,Eska Best TV 
-0
+http://stream.smcloud.net/live/best/aylist.m3u8
 
 #EXTINF:0,Eska Go TV 
 0
 
 #EXTINF:0,Eska Party TV 
-http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2254.ts
+http://stream.smcloud.net/live/eska_party/aylist.m3u8
 
 #EXTINF:0,Eska Rock TV 
-0
+http://stream.smcloud.net/live/eska_rock/aylist.m3u8
 
 #EXTINF:0,Eska 360 TV 
 0
 
 #EXTINF:0,Eska TV 
-0
+http://stream.smcloud.net/live/eskatv/aylist.m3u8
 
 #EXTINF:0,Eska Vox TV 
+http://stream.smcloud.net/live/vox/aylist.m3u8
+
+#EXTINF:0,Fokus TV 
 0
 
-#EXTINF:0,Fokus TV 
-http://s4w.deb1.scdn.smcloud.net/live/_definst_/fokustv/chunklist_w2048299294.m3u8
-
-#EXTINF:0,Fokus TV 
-http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2246.ts
-
 #EXTINF:0,ITV 
-http://itv.net.pl/video1.asx
-
-#EXTINF:0,ITV 
-mms://194.150.185.253/ITV
+0
 
 #EXTINF:0,Lech TV
-http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2236.ts
+0
 
 #EXTINF:0,Noe Zive 
 http://81.201.52.159:8017
@@ -85,8 +81,6 @@ http://212.79.96.134:8016/
 #EXTINF:0,Polo TV
 rtmp://stream.smcloud.net/live/polotv
 
-#EXTINF:0,Polo TV
-http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2253.ts
 
 #EXTINF:0,Polsat 
 0
@@ -148,26 +142,23 @@ http://81.201.52.159:8013
 #EXTINF:0,TV Trwam 
 mms://195.94.205.211/Trwam
 
-#EXTINF:0,TV Trwam 
-http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2252.ts
-
 #EXTINF:0,TVK
 0
 
 #EXTINF:0,TVN 
-http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/2243.ts
+0
 
 #EXTINF:0,TVN Style 
-http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/1116.ts
+0
 
 #EXTINF:0,TVN Turbo 
-http://s1.ukhdtv.com:7860/live/ml2new/wxcvbnhgf/1115.ts
+0
 
 #EXTINF:0,TVP 
 0
 
 #EXTINF:0,TVP 1 
-0
+http://63.237.48.23/ios/TVP/TVP.m3u8
 
 #EXTINF:0,TVP 2 
 0

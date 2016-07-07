@@ -1,9 +1,7 @@
 from __future__ import unicode_literals
-from resources.lib.modules import client,webutils,convert
+from resources.lib.modules import client,webutils,convert,control
 import re,sys
-from addon.common.addon import Addon
 from resources.lib.modules.log_utils import log
-addon = Addon('plugin.video.castaway', sys.argv)
 
 class info():
     def __init__(self):
@@ -36,7 +34,7 @@ class main():
 		import datetime
 		from resources.lib.modules import pytzimp
 		d = pytzimp.timezone(str(pytzimp.timezone('Europe/Ljubljana'))).localize(datetime.datetime.fromtimestamp(float(time)))
-		timezona= addon.get_setting('timezone_new')
+		timezona= control.setting('timezone_new')
 		my_location=pytzimp.timezone(pytzimp.all_timezones[int(timezona)])
 		convertido=d.astimezone(my_location)
 		fmt = "%H:%M"

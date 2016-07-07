@@ -1,9 +1,8 @@
-from resources.lib.modules import client,webutils
+from resources.lib.modules import client,webutils,control
 import re,sys,xbmcgui,os
-from addon.common.addon import Addon
-addon = Addon('plugin.video.castaway', sys.argv)
 
-AddonPath = addon.get_path()
+
+AddonPath = control.addonPath
 IconPath = AddonPath + "/resources/media/"
 def icon_path(filename):
     return os.path.join(IconPath, filename)
@@ -49,7 +48,7 @@ class main():
         import datetime
         from resources.lib.modules import pytzimp
         d = pytzimp.timezone(str(pytzimp.timezone('Europe/London'))).localize(datetime.datetime(2000 , 1, 1, hour=int(hour), minute=int(minute)))
-        timezona= addon.get_setting('timezone_new')
+        timezona= control.setting('timezone_new')
         my_location=pytzimp.timezone(pytzimp.all_timezones[int(timezona)])
         convertido=d.astimezone(my_location)
         fmt = "%H:%M"

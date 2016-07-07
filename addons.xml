@@ -675,7 +675,7 @@ Plugin by @koderdude</description>
   </extension>
 </addon>
 
-<addon id="plugin.video.castaway" name="Castaway" version="0.2.5" provider-name="natko1412">
+<addon id="plugin.video.castaway" name="Castaway" version="0.2.6" provider-name="natko1412">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0"/>
 		<import addon="script.module.beautifulsoup" version="3.2.1"/>
@@ -683,8 +683,6 @@ Plugin by @koderdude</description>
     	<import addon="script.module.addon.common" />
 		<import addon="script.module.urlresolver" />
 		<import addon="script.module.liveresolver"  />
-		<import addon="script.module.livestreamer" />
-
 
 	</requires>
 	<extension point="xbmc.python.pluginsource" library="default.py">
@@ -749,27 +747,27 @@ Plugin by @koderdude</description>
 
 <addon id="plugin.video.ccloudtv"
        name="cCloud TV"
-       version="1.4.7e"
+       version="1.4.8"
        provider-name="podgod, Coder Alpha">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.beautifulsoup" version="3.2.1"/>
     <import addon="script.module.simple.downloader" version="0.9.4"/>
     <import addon="script.module.beautifulsoup4" />
-    <import addon="script.module.simple.downloader" version="0.9.4"/>
     <import addon="script.module.requests" />
     <import addon="script.module.httplib2" />
     <import addon="script.module.youtube.dl" optional="true"/>
     <import addon="plugin.video.youtube" />
     <import addon="script.module.urlresolver" optional="true"/>
     <import addon="script.module.simplejson" />
+    <import addon="repository.podgod" />
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
     <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
     <summary>All the best from cCloud TV</summary>
-    <description>cCloud is an open source cloud based social IPTV service. It is built by the community for the community, where streaming is just a click away. Just click, play and stream. Yes, it's that simple. Just go to http://ccloudtv.org  and enjoy:) Please report any channels that are down here http://www.tiny.cc/reportchs Users can now check servers status which can be found at http://ccloudtv.org/status
+    <description>cCloud is an open source cloud based social IPTV service. It is built by the community for the community, where streaming is just a click away. Just click, play and stream. Yes, it's that simple. Just go to [COLOR blue]http://ccloudtv.org[/COLOR] and enjoy:) Please report any channels that are down here [COLOR blue]http://www.tiny.cc/reportchs[/COLOR] Users can now check servers status which can be found at [COLOR blue]http://ccloudtv.org/status[/COLOR]
     </description>
 	<license>http://www.gnu.org/licenses/</license>
     <forum>http://ccloudtv.org/forum</forum>
@@ -818,7 +816,7 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
 
 </addon>
 
-<addon id="plugin.video.croatia_od" name="Croatia On Demand" version="1.9.4" provider-name="natko1412">
+<addon id="plugin.video.croatia_od" name="Croatia On Demand" version="1.9.5" provider-name="natko1412">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0"/>
 		<import addon="script.module.beautifulsoup" version="3.2.1"/>
@@ -1690,7 +1688,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.nbaondemand" name="NBA On-demand" version="2.0.1" provider-name="lambda,enen92">
+<addon id="plugin.video.nbaondemand" name="NBA On-demand" version="2.0.3" provider-name="lambda,enen92,jsergio">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0"/>
 		<import addon="script.module.simplejson" optional="true"/>
@@ -1756,7 +1754,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.nhlondemand" name="NHL On-demand" version="2.0.1" provider-name="lambda">
+<addon id="plugin.video.nhlondemand" name="NHL On-demand" version="2.0.3" provider-name="lambda,jsergio">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0"/>
 		<import addon="script.module.simplejson" optional="true"/>
@@ -2014,7 +2012,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2016.07.02.1" provider-name="mrknow" >
+<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2016.07.02.2" provider-name="mrknow" >
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.requests" version="1.0.0" />
@@ -2104,7 +2102,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBEUROTV"
        name="TDB EURO TV"
-       version="2.37"
+       version="2.38"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -2994,6 +2992,19 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
+<addon id="repository.husham.com" name="Husham.com Repo" version="1.1.0004" provider-name="husham.com">
+	<extension point="xbmc.addon.repository" name="Husham.com Repository">
+		<info compressed="false">https://raw.githubusercontent.com/hmemar/husham.com/master/repository/addons.xml</info>
+		<checksum>https://raw.githubusercontent.com/hmemar/husham.com/master/repository/addons.xml.md5</checksum>
+		<datadir zip="true">https://raw.githubusercontent.com/hmemar/husham.com/master/zip</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>The Husham.com Repo</summary>
+		<description>Download and install addons from husham.com repo</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
 	<addon
         id="repository.imaxpo"
         name="iMaxpo's Repository"
@@ -3017,6 +3028,24 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
             <source>https://raw.github.com/luftreich/imaxpo.xbmc/master/repository.imaxpo</source>
 		</extension>
 	</addon>
+
+<addon id="repository.jsergio" name="jsergio repo" version="1.0.2" provider-name="jsergio">
+	<extension point="xbmc.addon.repository" name="jsergio repo">
+        <dir>
+	        <info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
+	        <checksum>https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml.md5</checksum>
+	        <datadir zip="true">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/zips/</datadir>
+	    </dir>
+        <info compressed="false">https://offshoregit.com/jsergio123/addons.xml</info>
+        <checksum>https://offshoregit.com/jsergio123/addons.xml.md5</checksum>
+        <datadir zip="true">https://offshoregit.com/jsergio123/zips/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Repo for jsergio Add-ons</summary>
+		<description>Repo for jsergio Add-ons</description>
+		<platform>all</platform>
+	</extension>
+</addon>
 
     <addon id="repository.kaosbox2" name="KAOSbox Repo" version="3.0.1" provider-name="KAOSbox">
         <requires>

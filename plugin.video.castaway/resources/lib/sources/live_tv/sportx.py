@@ -1,12 +1,5 @@
-from resources.lib.modules import client,webutils
+from resources.lib.modules import client,webutils,control
 import sys,os
-from addon.common.addon import Addon
-addon = Addon('plugin.video.castaway', sys.argv)
-
-AddonPath = addon.get_path()
-IconPath = AddonPath + "/resources/media/"
-def icon_path(filename):
-    return os.path.join(IconPath, filename)
 
 class info():
     def __init__(self):
@@ -41,7 +34,7 @@ class main():
 			title = channel.getText()
 			if url not in urls:
 				urls.append(url)
-				new.append((url,title,icon_path(info().icon)))
+				new.append((url,title,control.icon_path(info().icon)))
 		#new.pop(-1)
 		return new
 
@@ -60,7 +53,7 @@ class main():
 				url = self.base + urls[i]['href']
 				titl = '[COLOR orange](%s)[/COLOR] %s - %s'%(time,title,inf)
 				if url not in urls:
-					new.append((url,titl.encode('utf-8'),icon_path(info().icon)))
+					new.append((url,titl.encode('utf-8'),control.icon_path(info().icon)))
 					urls.append(url)
 		return new
 
@@ -72,7 +65,7 @@ class main():
 		import datetime
 		from resources.lib.modules import pytzimp
 		d = pytzimp.timezone(str(pytzimp.timezone('Europe/Ljubljana'))).localize(datetime.datetime(2000 , 1, 1, hour=int(hour), minute=int(minute)))
-		timezona= addon.get_setting('timezone_new')
+		timezona= control.setting('timezone_new')
 		my_location=pytzimp.timezone(pytzimp.all_timezones[int(timezona)])
 		convertido=d.astimezone(my_location)
 		fmt = "%H:%M"
