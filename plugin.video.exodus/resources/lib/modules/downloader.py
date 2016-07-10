@@ -32,10 +32,9 @@ import inspect
 
 def download(name, image, url):
 
-    from resources.lib.modules import control
+    if url == None: return
 
-    if url == None:
-        return control.infoDialog(control.lang(30501).encode('utf-8'))
+    from resources.lib.modules import control
 
     try: headers = dict(urlparse.parse_qsl(url.rsplit('|', 1)[1]))
     except: headers = dict('')

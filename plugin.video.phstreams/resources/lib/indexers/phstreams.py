@@ -143,7 +143,14 @@ class indexer:
             except: r = ''
             if '</link>' in r: result = r
 
-            result = str(result).replace('\r','').replace('\n','').replace('\t','').replace('&nbsp;','')
+            result = str(result)
+
+            regex = re.compile('<link>(.+?)</link>', re.MULTILINE|re.DOTALL).findall(result)
+            for i in regex:
+                if '</regex>' in i: result = result.replace('<link>'+i+'</link>', '<link>'+urllib.quote_plus(i)+'</link>')
+
+            result = result.replace('\r','').replace('\n','').replace('\t','').replace('&nbsp;','')
+
             result = self.account_filter(result)
             result = re.sub('<link></link>|<sublink></sublink>','', result)
 
@@ -656,9 +663,10 @@ class resolver:
             pass
 
         try:
-            if not '</regex>' in url: raise Exception()
+            r = urllib.unquote_plus(url)
+            if not '</regex>' in r: raise Exception()
             from resources.lib.modules import regex
-            u = regex.resolve(url)
+            u = regex.resolve(r)
             if not u == None: url = u
         except:
             pass
@@ -692,9 +700,9 @@ class resolver:
 
             direct = False
 
-            presetDict = ['primewire_mv_tv', 'watchfree_mv_tv', 'movie25_mv', 'watchseries_tv', 'afdah_mv', 'dtmovies_mv', 'dizibox_tv', 'dizigold_tv', 'miradetodo_mv', 'onemovies_mv_tv', 'onlinedizi_tv', 'pelispedia_mv_tv', 'pubfilm_mv_tv', 'putlocker_mv_tv', 'rainierland_mv', 'sezonlukdizi_tv', 'tunemovie_mv', 'xmovies_mv']
+            presetDict = ['primewire_mv_tv', 'watchfree_mv_tv', 'movie25_mv', 'watchseries_tv', 'uflix_mv_tv', 'afdah_mv', 'dayt_mv', 'dizibox_tv', 'dizigold_tv', 'genvideo_mv', 'miradetodo_mv', 'moviebox_mv', 'ninemovies_mv_tv', 'onemovies_mv_tv', 'onlinedizi_tv', 'pelispedia_mv_tv', 'pubfilm_mv_tv', 'putlocker_mv_tv', 'rainierland_mv', 'sezonlukdizi_tv', 'tunemovie_mv', 'xmovies_mv']
 
-            if preset == 'searchsd': presetDict = ['primewire_mv_tv', 'watchfree_mv_tv', 'movie25_mv', 'watchseries_tv']
+            if preset == 'searchsd': presetDict = ['primewire_mv_tv', 'watchfree_mv_tv', 'movie25_mv', 'watchseries_tv', 'uflix_mv_tv']
 
             from resources.lib.sources import sources
 

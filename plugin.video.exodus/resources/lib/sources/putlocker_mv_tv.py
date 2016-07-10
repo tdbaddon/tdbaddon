@@ -78,7 +78,7 @@ class source:
 
                 imdb = data['imdb']
 
-                match = title.replace('-', '').replace(':', '').replace('\'', '').replace(' ', '-').replace('--', '-').lower()
+                match = (title.translate(None, '\/:*?"\'<>|!,')).replace(' ', '-').replace('--', '-').lower()
 
                 if 'tvshowtitle' in data:
                     url = '%s/show/%s/season/%01d/episode/%01d' % (self.base_link, match, int(data['season']), int(data['episode']))

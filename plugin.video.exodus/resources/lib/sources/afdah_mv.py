@@ -37,21 +37,18 @@ class source:
             query = self.search_link % (urllib.quote_plus(title))
             query = urlparse.urljoin(self.base_link, query)
 
-            result = client.request(query)
+            t = cleantitle.get(title)
 
-            title = cleantitle.get(title)
-            years = ['%s' % str(year)]
+            r = client.request(query)
 
-            result = client.parseDOM(result, 'div', attrs = {'class': 'cell_container'})
-            result = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', ret='title')) for i in result]
-            result = [(i[0][0], i[1][0]) for i in result if len(i[0]) > 0 and len(i[1]) > 0]
-            result = [(i[0], re.compile('(.+?) [(](\d{4})[)]').findall(i[1])) for i in result]
-            result = [(i[0], i[1][0][0], i[1][0][1]) for i in result if len(i[1]) > 0]
-            result = [i for i in result if title == cleantitle.get(i[1])]
-            result = [i[0] for i in result if any(x in i[2] for x in years)][0]
+            r = client.parseDOM(r, 'div', attrs = {'class': 'cell_container'})
+            r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', ret='title')) for i in r]
+            r = [(i[0][0], i[1][0]) for i in r if len(i[0]) > 0 and len(i[1]) > 0]
+            r = [(i[0], re.findall('(.+?) \((\d{4})', i[1])) for i in r]
+            r = [(i[0], i[1][0][0], i[1][0][1]) for i in r if len(i[1]) > 0]
+            r = [i[0] for i in r if t == cleantitle.get(i[1]) and year == i[2]][0]
 
-            try: url = re.compile('//.+?(/.+)').findall(result)[0]
-            except: url = result
+            url = re.findall('(?://.+?|)(/.+)', r)[0]
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
             return url
@@ -74,14 +71,14 @@ class source:
 
             url = urlparse.urljoin(self.base_link, '/video_info/iframe')
 
-            result = client.request(url, post=post, headers=headers, referer=referer)
+            r = client.request(url, post=post, headers=headers, referer=referer)
 
-            result = re.compile('"(\d+)"\s*:\s*"([^"]+)').findall(result)
-            result = [(urllib.unquote(i[1].split('url=')[-1]), i[0])  for i in result]
+            r = re.findall('"(\d+)"\s*:\s*"([^"]+)', r)
+            r = [(urllib.unquote(i[1].split('url=')[-1]), i[0])  for i in r]
 
-            links = [(i[0], '1080p') for i in result if int(i[1]) >= 1080]
-            links += [(i[0], 'HD') for i in result if 720 <= int(i[1]) < 1080]
-            links += [(i[0], 'SD') for i in result if 480 <= int(i[1]) < 720]
+            links = [(i[0], '1080p') for i in r if int(i[1]) >= 1080]
+            links += [(i[0], 'HD') for i in r if 720 <= int(i[1]) < 1080]
+            links += [(i[0], 'SD') for i in r if 480 <= int(i[1]) < 720]
 
             for i in links: sources.append({'source': 'gvideo', 'quality': i[1], 'provider': 'Afdah', 'url': i[0], 'direct': True, 'debridonly': False})
 

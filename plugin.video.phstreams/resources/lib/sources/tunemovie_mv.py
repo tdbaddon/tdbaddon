@@ -28,28 +28,27 @@ from resources.lib.modules import directstream
 
 class source:
     def __init__(self):
-        self.domains = ['tunemovie.tv']
-        self.base_link = 'http://tunemovie.tv'
-        self.search_link = '/search.php'
+        self.domains = ['tunemovies.to', 'tunemovie.tv']
+        self.base_link = 'http://tunemovies.to'
+        self.search_link = '/search/%s.html'
 
 
     def movie(self, imdb, title, year):
         try:
             query = urlparse.urljoin(self.base_link, self.search_link)
-            post = urllib.urlencode({'q': title})
+            query = query % urllib.quote_plus(title)
 
             t = cleantitle.get(title)
 
-            r = client.request(query, post=post)
-            r = json.loads(r)['content']
+            r = client.request(query)
 
-            r = client.parseDOM(r, 'div', attrs = {'class': 'ss-info'})
-            r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', attrs = {'class': 'ss-title'}), re.findall('(\d{4})', i)) for i in r]
+            r = client.parseDOM(r, 'div', attrs = {'id': 'post-\d+'})
+            r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', ret='title'), re.findall('(\d{4})', i)) for i in r]
             r = [(i[0][0], i[1][0], i[2][0]) for i in r if len(i[0]) > 0 and len(i[1]) > 0 and len(i[2]) > 0]
+
             r = [i[0] for i in r if t == cleantitle.get(i[1]) and year == i[2]][0]
 
-            url = urlparse.urljoin(self.base_link, r)
-            url = urlparse.urlparse(url).path
+            url = re.findall('(?://.+?|)(/.+)', r)[0]
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
             return url

@@ -32,7 +32,7 @@ def rdAuthorize():
         USER_AGENT = 'Kodi Exodus/3.0'
 
         if not '' in credentials()['realdebrid'].values():
-            if control.yesnoDialog(control.lang(30411).encode('utf-8'), control.lang(30413).encode('utf-8'), '', 'RealDebrid', control.lang(30415).encode('utf-8'), control.lang(30414).encode('utf-8')):
+            if control.yesnoDialog(control.lang(32531).encode('utf-8'), control.lang(32532).encode('utf-8'), '', 'RealDebrid'):
                 control.setSetting(id='realdebrid.id', value='')
                 control.setSetting(id='realdebrid.secret', value='')
                 control.setSetting(id='realdebrid.token', value='')
@@ -44,8 +44,8 @@ def rdAuthorize():
         url = 'https://api.real-debrid.com/oauth/v2/device/code?client_id=%s&new_credentials=yes' % (CLIENT_ID)
         result = client.request(url, headers=headers)
         result = json.loads(result)
-        verification_url = (control.lang(30416) + '[COLOR skyblue]%s[/COLOR]' % result['verification_url']).encode('utf-8')
-        user_code = (control.lang(30417) + '[COLOR skyblue]%s[/COLOR]' % result['user_code']).encode('utf-8')
+        verification_url = (control.lang(32533) % result['verification_url']).encode('utf-8')
+        user_code = (control.lang(32534) % result['user_code']).encode('utf-8')
         device_code = result['device_code']
         interval = result['interval']
 
@@ -84,7 +84,7 @@ def rdAuthorize():
         control.setSetting(id='realdebrid.auth', value='*************')
         raise Exception()
     except:
-        control.openSettings('3.13')
+        control.openSettings('3.16')
 
 
 def rdDict():
@@ -256,7 +256,5 @@ def resolver(url, debrid):
         return url
     except:
         return
-
-
 
 

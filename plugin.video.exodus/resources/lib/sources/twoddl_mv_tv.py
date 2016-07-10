@@ -87,37 +87,37 @@ class source:
             query = self.search_link % urllib.quote_plus(query)
             query = urlparse.urljoin(self.base_link, query)
 
-            result = client.request(query)
+            r = client.request(query)
 
-            result = client.parseDOM(result, 'div', attrs = {'id': 'post-\d+'})
-            result = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a'), client.parseDOM(i, 'a', attrs = {'title': 'posting time.+?'}), client.parseDOM(i, 'a', attrs = {'rel': 'category tag'})) for i in result]
-            result = [(i[0][0], i[1][0], i[2][0], i[3]) for i in result if len(i[0]) > 0 and len(i[1]) > 0 and len(i[2]) > 0 and len(i[3]) > 0]
+            r = client.parseDOM(r, 'div', attrs = {'id': 'post-\d+'})
+            r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a'), client.parseDOM(i, 'a', attrs = {'title': 'posting time.+?'}), client.parseDOM(i, 'a', attrs = {'rel': 'category tag'})) for i in r]
+            r = [(i[0][0], i[1][0], i[2][0], i[3]) for i in r if len(i[0]) > 0 and len(i[1]) > 0 and len(i[2]) > 0 and len(i[3]) > 0]
 
-            result = [(i[0], i[1], i[2], i[3]) for i in result if 'Single Link' in i[3]]
-            result = [(i[0], i[1], i[2], i[3]) for i in result if any(x in ['720P', '1080P', 'TV 1080p', 'TV 720p'] for x in i[3])]
-            if not 'tvshowtitle' in data: result = [(i[0], i[3], i[1], i[2]) for i in result if 'Movies' in i[3] and not any(x in ['BDRip', 'Cam', 'CAMRip', 'HDCAM', 'HDScr', 'DVDR', 'DVDRip', 'DVDScr', 'R6', 'Telesync', 'Extras', '3D'] for x in i[3])]
-            else: result = [(i[0], i[3], i[1], i[2]) for i in result if 'TV Shows' in i[3] and not 'TV Packs' in i[3]]
+            r = [(i[0], i[1], i[2], i[3]) for i in r if 'Single Link' in i[3]]
+            r = [(i[0], i[1], i[2], i[3]) for i in r if any(x in ['720P', '1080P', 'TV 1080p', 'TV 720p'] for x in i[3])]
+            if not 'tvshowtitle' in data: r = [(i[0], i[3], i[1], i[2]) for i in r if 'Movies' in i[3] and not any(x in ['BDRip', 'Cam', 'CAMRip', 'HDCAM', 'HDScr', 'DVDR', 'DVDRip', 'DVDScr', 'R6', 'Telesync', 'Extras', '3D'] for x in i[3])]
+            else: r = [(i[0], i[3], i[1], i[2]) for i in r if 'TV Shows' in i[3] and not 'TV Packs' in i[3]]
 
-            result = [(i[0], i[1], i[2], re.findall('(\w+).+?(\d+).+?(\d*)', i[3])) for i in result]
-            result = [(i[0], i[1], i[2], '%04d%02d%02d' % (int('20' + i[3][0][2][-2:]), int(mt[i[3][0][0][:3].lower()]), int(i[3][0][1]))) for i in result if len(i[3]) > 0]
-            result = [(i[0], i[1], i[2], (abs(dt - int(i[3])) < control.integer * 10)) for i in result]
-            result = [(i[0], i[1], i[2]) for i in result if i[3] == True]
+            r = [(i[0], i[1], i[2], re.findall('(\w+).+?(\d+).+?(\d*)', i[3])) for i in r]
+            r = [(i[0], i[1], i[2], '%04d%02d%02d' % (int('20' + i[3][0][2][-2:]), int(mt[i[3][0][0][:3].lower()]), int(i[3][0][1]))) for i in r if len(i[3]) > 0]
+            r = [(i[0], i[1], i[2], (abs(dt - int(i[3])) < control.integer * 10)) for i in r]
+            r = [(i[0], i[1], i[2]) for i in r if i[3] == True]
 
-            result = [(i[0], i[1], i[2].upper()) for i in result]
-            result = [(i[0], i[1], re.sub('(\.|\(|\[|\s)(\d{4}|S\d*E\d*|3D)(\.|\)|\]|\s|)(.+|)', '', i[2]), re.findall('[\.|\(|\[|\s](\d{4}|S\d*E\d*)[\.|\)|\]|\s|]', i[2])) for i in result]
-            result = [(i[0], i[1], i[2]) for i in result if len(i[3]) > 0 and any(x in i[3][0] for x in hdlr)]
-            result = [(i[0], i[1]) for i in result if cleantitle.get(title) == cleantitle.get(i[2])]
+            r = [(i[0], i[1], i[2].upper()) for i in r]
+            r = [(i[0], i[1], re.sub('(\.|\(|\[|\s)(\d{4}|S\d*E\d*|3D)(\.|\)|\]|\s|)(.+|)', '', i[2]), re.findall('[\.|\(|\[|\s](\d{4}|S\d*E\d*)[\.|\)|\]|\s|]', i[2])) for i in r]
+            r = [(i[0], i[1], i[2]) for i in r if len(i[3]) > 0 and any(x in i[3][0] for x in hdlr)]
+            r = [(i[0], i[1]) for i in r if cleantitle.get(title) == cleantitle.get(i[2])]
 
 
-            r = [(i[0], '1080p') for i in result if any(x in ['1080P', 'TV 1080p'] for x in i[1])][:2]
-            r += [(i[0], 'HD') for i in result if any(x in ['720P', 'TV 720p'] for x in i[1])][:2]
-            result = r
+            l = [(i[0], '1080p') for i in r if any(x in ['1080P', 'TV 1080p'] for x in i[1])][:2]
+            l += [(i[0], 'HD') for i in r if any(x in ['720P', 'TV 720p'] for x in i[1])][:2]
 
             links = []
 
-            for i in result:
+            for i in l:
                 try:
-                    r = client.replaceHTMLCodes(i[0])
+                    r = urlparse.urljoin(self.base_link, i[0])
+                    r = client.replaceHTMLCodes(r)
                     r = client.request(r)
                     r = client.parseDOM(r, 'p')
                     r = [(client.parseDOM(x, 'a', attrs = {'rel': 'nofollow'}), client.parseDOM(x, 'strong')) for x in r]

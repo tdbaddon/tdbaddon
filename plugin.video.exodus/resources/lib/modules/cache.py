@@ -21,10 +21,8 @@
 
 import re,hashlib,time
 
-try:
-    from sqlite3 import dbapi2 as database
-except:
-    from pysqlite2 import dbapi2 as database
+try: from sqlite3 import dbapi2 as database
+except: from pysqlite2 import dbapi2 as database
 
 from resources.lib.modules import control
 
@@ -120,13 +118,8 @@ def timeout(function, *args, **table):
 
 def clear(table=None):
     try:
-        control.idle()
-
         if table == None: table = ['rel_list', 'rel_lib']
         elif not type(table) == list: table = [table]
-
-        yes = control.yesnoDialog(control.lang(30401).encode('utf-8'), '', '')
-        if not yes: return
 
         dbcon = database.connect(control.cacheFile)
         dbcur = dbcon.cursor()
@@ -138,8 +131,6 @@ def clear(table=None):
                 dbcon.commit()
             except:
                 pass
-
-        control.infoDialog(control.lang(30402).encode('utf-8'))
     except:
         pass
 

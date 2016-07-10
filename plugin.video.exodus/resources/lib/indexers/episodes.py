@@ -384,52 +384,69 @@ class seasons:
 
 
     def seasonDirectory(self, items):
-        if items == None or len(items) == 0: return
+        if items == None or len(items) == 0: control.idle() ; sys.exit()
 
-        if 'super.fav' in control.infoLabel('Container.PluginName'):
-            return control.dialog.ok('Exodus', control.lang(30518).encode('utf-8'), '', '')
+        sysaddon = sys.argv[0]
 
-        isFolder = True if control.setting('autoplay') == 'false' and control.setting('hosts.mode') == '1' else False
-        isFolder = False if control.window.getProperty('PseudoTVRunning') == 'True' else isFolder
+        syshandle = int(sys.argv[1])
+
+        addonPoster, addonBanner = control.addonPoster(), control.addonBanner()
+
+        addonFanart, settingFanart = control.addonFanart(), control.setting('fanart')
 
         traktCredentials = trakt.getTraktCredentialsInfo()
+
+        try: isOld = False ; control.item().getArt('type')
+        except: isOld = True
+
+        isEstuary = True if 'estuary' in control.skin else False
 
         try: indicators = playcount.getSeasonIndicators(items[0]['imdb'])
         except: pass
 
-        addonPoster, addonBanner = control.addonPoster(), control.addonBanner()
-        addonFanart, settingFanart = control.addonFanart(), control.setting('fanart')
-        sysaddon = sys.argv[0]
+        watchedMenu = control.lang(32068).encode('utf-8') if trakt.getTraktIndicatorsInfo() == True else control.lang(32066).encode('utf-8')
+
+        unwatchedMenu = control.lang(32069).encode('utf-8') if trakt.getTraktIndicatorsInfo() == True else control.lang(32067).encode('utf-8')
+
+        queueMenu = control.lang(32065).encode('utf-8')
+
+        traktManagerMenu = control.lang(32070).encode('utf-8')
+
+        labelMenu = control.lang(32055).encode('utf-8')
 
 
         for i in items:
             try:
-                label = '%s %s' % (control.lang(30275).encode('utf-8'), i['season'])
+                label = '%s %s' % (labelMenu, i['season'])
                 systitle = sysname = urllib.quote_plus(i['tvshowtitle'])
                 sysimage = urllib.quote_plus(i['thumb'])
 
                 imdb, tvdb, year, season = i['imdb'], i['tvdb'], i['year'], i['season']
 
+
                 poster, banner, fanart, thumb = i['poster'], i['banner'], i['fanart'], i['thumb']
+                if banner == '0' and not fanart == '0': banner = fanart
+                elif banner == '0' and not poster == '0': banner = poster
+                if thumb == '0' and not poster == '0': thumb = poster
+                elif thumb == '0' and not fanart == '0': thumb = fanart
                 if poster == '0': poster = addonPoster
-                if banner == '0' and poster == '0': banner = addonBanner
-                elif banner == '0': banner = poster
-                if thumb == '0' and poster == '0': thumb = addonPoster
-                elif thumb == '0': thumb = poster
+                if banner == '0': banner = addonBanner
+                if thumb == '0': thumb = addonPoster
+
 
                 meta = dict((k,v) for k, v in i.iteritems() if not v == '0')
+                meta.update({'mediatype': 'tvshow'})
                 meta.update({'trailer': '%s?action=trailer&name=%s' % (sysaddon, sysname)})
                 if i['duration'] == '0': meta.update({'duration': '60'})
                 try: meta.update({'duration': str(int(meta['duration']) * 60)})
                 except: pass
                 try: meta.update({'genre': cleangenre.lang(meta['genre'], self.lang)})
                 except: pass
-                sysmeta = urllib.quote_plus(json.dumps(meta))
                 try: meta.update({'tvshowtitle': i['label']})
                 except: pass
-
-                url = '%s?action=episodes&tvshowtitle=%s&year=%s&imdb=%s&tvdb=%s&season=%s' % (sysaddon, systitle, year, imdb, tvdb, season)
-
+                if isEstuary == True:
+                    try: del meta['cast']
+                    except: pass
 
                 try:
                     if season in indicators: meta.update({'playcount': 1, 'overlay': 7})
@@ -438,47 +455,50 @@ class seasons:
                     pass
 
 
+                url = '%s?action=episodes&tvshowtitle=%s&year=%s&imdb=%s&tvdb=%s&season=%s' % (sysaddon, systitle, year, imdb, tvdb, season)
+
+
                 cm = []
 
-                if isFolder == False:
-                    cm.append((control.lang(30261).encode('utf-8'), 'RunPlugin(%s?action=queueItem)' % sysaddon))
+                cm.append((queueMenu, 'RunPlugin(%s?action=queueItem)' % sysaddon))
+
+                cm.append((watchedMenu, 'RunPlugin(%s?action=tvPlaycount&name=%s&imdb=%s&tvdb=%s&season=%s&query=7)' % (sysaddon, systitle, imdb, tvdb, season)))
+
+                cm.append((unwatchedMenu, 'RunPlugin(%s?action=tvPlaycount&name=%s&imdb=%s&tvdb=%s&season=%s&query=6)' % (sysaddon, systitle, imdb, tvdb, season)))
 
                 if traktCredentials == True:
-                    cm.append((control.lang(30265).encode('utf-8'), 'RunPlugin(%s?action=traktManager&name=%s&tvdb=%s&content=tvshow)' % (sysaddon, sysname, tvdb)))
+                    cm.append((traktManagerMenu, 'RunPlugin(%s?action=traktManager&name=%s&tvdb=%s&content=tvshow)' % (sysaddon, sysname, tvdb)))
 
-                cm.append((control.lang(30268).encode('utf-8'), 'RunPlugin(%s?action=trailer&name=%s)' % (sysaddon, sysname)))
-                cm.append((control.lang(30262).encode('utf-8'), 'Action(Info)'))
-                cm.append((control.lang(30263).encode('utf-8'), 'RunPlugin(%s?action=tvPlaycount&name=%s&imdb=%s&tvdb=%s&season=%s&query=7)' % (sysaddon, systitle, imdb, tvdb, season)))
-                cm.append((control.lang(30264).encode('utf-8'), 'RunPlugin(%s?action=tvPlaycount&name=%s&imdb=%s&tvdb=%s&season=%s&query=6)' % (sysaddon, systitle, imdb, tvdb, season)))
-
-                cm.append((control.lang(30269).encode('utf-8'), 'RunPlugin(%s?action=addView&content=seasons)' % sysaddon))
+                if isOld == True:
+                    cm.append((control.lang2(19033).encode('utf-8'), 'Action(Info)'))
 
 
-                item = control.item(label=label, iconImage=thumb, thumbnailImage=thumb)
+                item = control.item(label=label)
 
-                try: item.setArt({'poster': thumb, 'tvshow.poster': poster, 'season.poster': thumb, 'banner': banner, 'tvshow.banner': banner, 'season.banner': banner})
-                except: pass
+                item.setArt({'icon': thumb, 'thumb': thumb, 'poster': poster, 'tvshow.poster': poster, 'season.poster': poster, 'banner': banner, 'tvshow.banner': banner, 'season.banner': banner})
+
+                item.setArt({'icon': poster, 'thumb': poster, 'poster': thumb, 'tvshow.poster': poster, 'season.poster': thumb, 'banner': banner, 'tvshow.banner': banner, 'season.banner': banner})
 
                 if settingFanart == 'true' and not fanart == '0':
                     item.setProperty('Fanart_Image', fanart)
                 elif not addonFanart == None:
                     item.setProperty('Fanart_Image', addonFanart)
 
+                item.addContextMenuItems(cm)
                 item.setInfo(type='Video', infoLabels = meta)
-                item.setProperty('Video', 'true')
-                item.addContextMenuItems(cm, replaceItems=True)
-                control.addItem(handle=int(sys.argv[1]), url=url, listitem=item, isFolder=True)
+
+                control.addItem(handle=syshandle, url=url, listitem=item, isFolder=True)
             except:
                 pass
 
 
-        try: control.property(int(sys.argv[1]), 'showplot', items[0]['plot'])
+        try: control.property(syshandle, 'showplot', items[0]['plot'])
         except: pass
 
-        control.content(int(sys.argv[1]), 'seasons')
+        control.content(syshandle, 'seasons')
         #control.do_block_check(False)
-        control.directory(int(sys.argv[1]), cacheToDisc=True)
-        views.setView('seasons', {'skin.estuary': 50, 'skin.confluence': 500})
+        control.directory(syshandle, cacheToDisc=True)
+        views.setView('seasons', {'skin.confluence': 500})
 
 
 class episodes:
@@ -562,13 +582,20 @@ class episodes:
 
 
     def calendars(self):
-        map = [(30521, 'Monday'), (30522, 'Tuesday'), (30523, 'Wednesday'), (30524, 'Thursday'), (30525, 'Friday'), (30526, 'Saturday'), (30527, 'Sunday'), (30528, 'January'), (30529, 'February'), (30530, 'March'), (30531, 'April'), (30532, 'May'), (30533, 'June'), (30534, 'July'), (30535, 'August'), (30536, 'September'), (30537, 'October'), (30538, 'November'), (30539, 'December')]
+        m = control.lang(32060).encode('utf-8').split('|')
+        try: months = [(m[0], 'January'), (m[1], 'February'), (m[2], 'March'), (m[3], 'April'), (m[4], 'May'), (m[5], 'June'), (m[6], 'July'), (m[7], 'August'), (m[8], 'September'), (m[9], 'October'), (m[10], 'November'), (m[11], 'December')]
+        except: months = []
+
+        d = control.lang(32061).encode('utf-8').split('|')
+        try: days = [(d[0], 'Monday'), (d[1], 'Tuesday'), (d[2], 'Wednesday'), (d[3], 'Thursday'), (d[4], 'Friday'), (d[5], 'Saturday'), (d[6], 'Sunday')]
+        except: days = []
 
         for i in range(0, 30):
             try:
                 name = (self.datetime - datetime.timedelta(days = i))
-                name = '[B]%s[/B] : %s' % (name.strftime('%A'), name.strftime('%d %B'))
-                for m in map: name = name.replace(m[1], control.lang(m[0]).encode('utf-8'))
+                name = (control.lang(32062) % (name.strftime('%A'), name.strftime('%d %B'))).encode('utf-8')
+                for m in months: name = name.replace(m[1], m[0])
+                for d in days: name = name.replace(d[1], d[0])
                 try: name = name.encode('utf-8')
                 except: pass
 
@@ -1012,22 +1039,26 @@ class episodes:
 
 
     def episodeDirectory(self, items):
-        if items == None or len(items) == 0: return
+        if items == None or len(items) == 0: control.idle() ; sys.exit()
 
-        isFolder = True if control.setting('autoplay') == 'false' and control.setting('hosts.mode') == '1' else False
-        isFolder = False if control.window.getProperty('PseudoTVRunning') == 'True' else isFolder
+        sysaddon = sys.argv[0]
 
-        playbackMenu = control.lang(30271).encode('utf-8') if control.setting('autoplay') == 'true' else control.lang(30270).encode('utf-8')
+        syshandle = int(sys.argv[1])
+
+        addonPoster, addonBanner = control.addonPoster(), control.addonBanner()
+
+        addonFanart, settingFanart = control.addonFanart(), control.setting('fanart')
 
         traktCredentials = trakt.getTraktCredentialsInfo()
 
+        try: isOld = False ; control.item().getArt('type')
+        except: isOld = True
+
+        isEstuary = True if 'estuary' in control.skin else False
+
+        isPlayable = 'true' if not 'plugin' in control.infoLabel('Container.PluginName') else 'false'
+
         indicators = playcount.getTVShowIndicators(refresh=True)
-
-        cacheToDisc = False
-
-        addonPoster, addonBanner = control.addonPoster(), control.addonBanner()
-        addonFanart, settingFanart = control.addonFanart(), control.setting('fanart')
-        sysaddon = sys.argv[0]
 
         try: multi = [i['tvshowtitle'] for i in items]
         except: multi = []
@@ -1036,6 +1067,20 @@ class episodes:
 
         try: sysaction = items[0]['action']
         except: sysaction = ''
+
+        isFolder = False if not sysaction == 'episodes' else True
+
+        playbackMenu = control.lang(32063).encode('utf-8') if control.setting('hosts.mode') == '2' else control.lang(32064).encode('utf-8')
+
+        watchedMenu = control.lang(32068).encode('utf-8') if trakt.getTraktIndicatorsInfo() == True else control.lang(32066).encode('utf-8')
+
+        unwatchedMenu = control.lang(32069).encode('utf-8') if trakt.getTraktIndicatorsInfo() == True else control.lang(32067).encode('utf-8')
+
+        queueMenu = control.lang(32065).encode('utf-8')
+
+        traktManagerMenu = control.lang(32070).encode('utf-8')
+
+        tvshowBrowserMenu = control.lang(32071).encode('utf-8')
 
 
         for i in items:
@@ -1054,16 +1099,20 @@ class episodes:
                 systitle = urllib.quote_plus(i['title'])
                 systvshowtitle = urllib.quote_plus(i['tvshowtitle'])
                 syspremiered = urllib.quote_plus(i['premiered'])
-                sysimage = urllib.quote_plus(i['poster'])
+
 
                 poster, banner, fanart, thumb = i['poster'], i['banner'], i['fanart'], i['thumb']
+                if banner == '0' and not fanart == '0': banner = fanart
+                elif banner == '0' and not poster == '0': banner = poster
+                if thumb == '0' and not fanart == '0': thumb = fanart
+                elif thumb == '0' and not poster == '0': thumb = poster
                 if poster == '0': poster = addonPoster
-                if banner == '0' and poster == '0': banner = addonBanner
-                elif banner == '0': banner = poster
-                if thumb == '0' and fanart == '0': thumb = addonFanart
-                elif thumb == '0': thumb = fanart
+                if banner == '0': banner = addonBanner
+                if thumb == '0': thumb = addonFanart
+
 
                 meta = dict((k,v) for k, v in i.iteritems() if not v == '0')
+                meta.update({'mediatype': 'episode'})
                 meta.update({'trailer': '%s?action=trailer&name=%s' % (sysaddon, systvshowtitle)})
                 if i['duration'] == '0': meta.update({'duration': '60'})
                 try: meta.update({'duration': str(int(meta['duration']) * 60)})
@@ -1072,6 +1121,10 @@ class episodes:
                 except: pass
                 try: meta.update({'title': i['label']})
                 except: pass
+                if isEstuary == True:
+                    try: del meta['cast']
+                    except: pass
+
                 sysmeta = urllib.quote_plus(json.dumps(meta))
 
 
@@ -1081,81 +1134,78 @@ class episodes:
                 path = '%s?action=play&title=%s&year=%s&imdb=%s&tvdb=%s&season=%s&episode=%s&tvshowtitle=%s&premiered=%s' % (sysaddon, systitle, year, imdb, tvdb, season, episode, systvshowtitle, syspremiered)
 
                 if isFolder == True:
-                    url = '%s?action=sources&title=%s&year=%s&imdb=%s&tvdb=%s&season=%s&episode=%s&tvshowtitle=%s&premiered=%s&meta=%s' % (sysaddon, systitle, year, imdb, tvdb, season, episode, systvshowtitle, syspremiered, sysmeta)
-
-                if sysaction == 'episodes':
                     url = '%s?action=episodes&tvshowtitle=%s&year=%s&imdb=%s&tvdb=%s&season=%s&episode=%s' % (sysaddon, systvshowtitle, year, imdb, tvdb, season, episode)
-                    isFolder = True ; cacheToDisc = True
-
-
-                try:
-                    overlay = int(playcount.getEpisodeOverlay(indicators, imdb, tvdb, season, episode))
-                    if overlay == 7: meta.update({'playcount': 1, 'overlay': 7})
-                    else: meta.update({'playcount': 0, 'overlay': 6})
-                except:
-                    pass
 
 
                 cm = []
 
-                cm.append((playbackMenu, 'RunPlugin(%s?action=alterSources&url=%s&meta=%s)' % (sysaddon, sysurl, sysmeta)))
-
-                if isFolder == False:
-                    cm.append((control.lang(30261).encode('utf-8'), 'RunPlugin(%s?action=queueItem)' % sysaddon))
-
-                if traktCredentials == True:
-                    cm.append((control.lang(30265).encode('utf-8'), 'RunPlugin(%s?action=traktManager&name=%s&tvdb=%s&content=tvshow)' % (sysaddon, systvshowtitle, tvdb)))
+                cm.append((queueMenu, 'RunPlugin(%s?action=queueItem)' % sysaddon))
 
                 if multi == True:
-                    cm.append((control.lang(30274).encode('utf-8'), 'ActivateWindow(Videos,%s?action=seasons&tvshowtitle=%s&year=%s&imdb=%s&tvdb=%s,return)' % (sysaddon, systvshowtitle, year, imdb, tvdb)))
+                    cm.append((tvshowBrowserMenu, 'Container.Update(%s?action=seasons&tvshowtitle=%s&year=%s&imdb=%s&tvdb=%s,return)' % (sysaddon, systvshowtitle, year, imdb, tvdb)))
 
-                cm.append((control.lang(30272).encode('utf-8'), 'Action(Info)'))
-                cm.append((control.lang(30263).encode('utf-8'), 'RunPlugin(%s?action=episodePlaycount&imdb=%s&tvdb=%s&season=%s&episode=%s&query=7)' % (sysaddon, imdb, tvdb, season, episode)))
-                cm.append((control.lang(30264).encode('utf-8'), 'RunPlugin(%s?action=episodePlaycount&imdb=%s&tvdb=%s&season=%s&episode=%s&query=6)' % (sysaddon, imdb, tvdb, season, episode)))
+                try:
+                    overlay = int(playcount.getEpisodeOverlay(indicators, imdb, tvdb, season, episode))
+                    if overlay == 7:
+                        cm.append((unwatchedMenu, 'RunPlugin(%s?action=episodePlaycount&imdb=%s&tvdb=%s&season=%s&episode=%s&query=6)' % (sysaddon, imdb, tvdb, season, episode)))
+                        meta.update({'playcount': 1, 'overlay': 7})
+                    else:
+                        cm.append((watchedMenu, 'RunPlugin(%s?action=episodePlaycount&imdb=%s&tvdb=%s&season=%s&episode=%s&query=7)' % (sysaddon, imdb, tvdb, season, episode)))
+                        meta.update({'playcount': 0, 'overlay': 6})
+                except:
+                    pass
 
-                cm.append((control.lang(30273).encode('utf-8'), 'RunPlugin(%s?action=addView&content=episodes)' % sysaddon))
+                if traktCredentials == True:
+                    cm.append((traktManagerMenu, 'RunPlugin(%s?action=traktManager&name=%s&tvdb=%s&content=tvshow)' % (sysaddon, systvshowtitle, tvdb)))
+
+                if isFolder == False:
+                    cm.append((playbackMenu, 'RunPlugin(%s?action=alterSources&url=%s&meta=%s)' % (sysaddon, sysurl, sysmeta)))
+
+                if isOld == True:
+                    cm.append((control.lang2(19033).encode('utf-8'), 'Action(Info)'))
 
 
-                item = control.item(label=label, iconImage=thumb, thumbnailImage=thumb)
+                item = control.item(label=label)
 
-                try: item.setArt({'poster': poster, 'tvshow.poster': poster, 'season.poster': poster, 'banner': banner, 'tvshow.banner': banner, 'season.banner': banner})
-                except: pass
+                item.setArt({'icon': thumb, 'thumb': thumb, 'poster': poster, 'tvshow.poster': poster, 'season.poster': poster, 'banner': banner, 'tvshow.banner': banner, 'season.banner': banner})
 
                 if settingFanart == 'true' and not fanart == '0':
                     item.setProperty('Fanart_Image', fanart)
                 elif not addonFanart == None:
                     item.setProperty('Fanart_Image', addonFanart)
 
+                item.addContextMenuItems(cm)
+                item.setProperty('IsPlayable', isPlayable)
                 item.setInfo(type='Video', infoLabels = meta)
-                item.setProperty('Video', 'true')
-                #item.setProperty('IsPlayable', 'true')
-                item.setProperty('resumetime',str(0))
-                item.setProperty('totaltime',str(1))
-                item.addContextMenuItems(cm, replaceItems=True)
-                control.addItem(handle=int(sys.argv[1]), url=url, listitem=item, isFolder=isFolder)
+
+                control.addItem(handle=syshandle, url=url, listitem=item, isFolder=isFolder)
             except:
                 pass
 
 
-        control.content(int(sys.argv[1]), 'episodes')
+        control.content(syshandle, 'episodes')
         #control.do_block_check(False)
-        control.directory(int(sys.argv[1]), cacheToDisc=cacheToDisc)
-        views.setView('episodes', {'skin.estuary': 50, 'skin.confluence': 504})
+        control.directory(syshandle, cacheToDisc=True)
+        views.setView('episodes', {'skin.confluence': 504})
 
 
     def addDirectory(self, items, queue=False):
-        if items == None or len(items) == 0: return
+        if items == None or len(items) == 0: control.idle() ; sys.exit()
 
         sysaddon = sys.argv[0]
-        isPlayable = False if control.setting('autoplay') == 'false' and control.setting('hosts.mode') == '1' else True
+
+        syshandle = int(sys.argv[1])
+
         addonFanart, addonThumb, artPath = control.addonFanart(), control.addonThumb(), control.artPath()
+
+        queueMenu = control.lang(32065).encode('utf-8')
 
         for i in items:
             try:
-                try: name = control.lang(i['name']).encode('utf-8')
-                except: name = i['name']
+                name = i['name']
 
-                if not artPath == None: thumb = os.path.join(artPath, i['image'])
+                if i['image'].startswith('http://'): thumb = i['image']
+                elif not artPath == None: thumb = os.path.join(artPath, i['image'])
                 else: thumb = addonThumb
 
                 url = '%s?action=%s' % (sysaddon, i['action'])
@@ -1164,17 +1214,21 @@ class episodes:
 
                 cm = []
 
-                if queue == True and isPlayable == True:
-                    cm.append((control.lang(30261).encode('utf-8'), 'RunPlugin(%s?action=queueItem)' % sysaddon))
+                if queue == True:
+                    cm.append((queueMenu, 'RunPlugin(%s?action=queueItem)' % sysaddon))
 
-                item = control.item(label=name, iconImage=thumb, thumbnailImage=thumb)
-                item.addContextMenuItems(cm, replaceItems=False)
+                item = control.item(label=name)
+
+                item.setArt({'icon': thumb, 'thumb': thumb})
                 if not addonFanart == None: item.setProperty('Fanart_Image', addonFanart)
-                control.addItem(handle=int(sys.argv[1]), url=url, listitem=item, isFolder=True)
+
+                item.addContextMenuItems(cm)
+
+                control.addItem(handle=syshandle, url=url, listitem=item, isFolder=True)
             except:
                 pass
 
         #control.do_block_check(False)
-        control.directory(int(sys.argv[1]), cacheToDisc=True)
+        control.directory(syshandle, cacheToDisc=True)
 
 

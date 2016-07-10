@@ -1,5 +1,5 @@
 from __future__ import unicode_literals
-from resources.lib.modules import client,webutils,convert,control,cache
+from resources.lib.modules import client,webutils,convert,control,cache,control
 import re,urlparse,json,urllib,os
 
 from resources.lib.modules.log_utils import log
@@ -33,7 +33,7 @@ class main():
 				if '(' in item:
 					item = '[B][COLOR orange]%s[/COLOR][/B]'%item
 
-				out.append((item,item,control.control.icon_path(info().icon)))		
+				out.append((item,item,control.icon_path(info().icon)))		
 		
 		
 		return out

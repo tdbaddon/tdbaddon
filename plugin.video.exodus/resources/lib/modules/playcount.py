@@ -206,9 +206,11 @@ def tvshows(tvshowtitle, imdb, tvdb, season, watched):
 
         metaget = metahandlers.MetaData(preparezip=False)
 
-        dialog = control.progressDialog
-        dialog.create(control.addonInfo('name'), str(tvshowtitle))
-        dialog.update(0, str(tvshowtitle), control.lang(30451).encode('utf-8') + '...')
+        name = control.addonInfo('name')
+
+        dialog = control.progressDialogBG
+        dialog.create(str(name), str(tvshowtitle))
+        dialog.update(0, str(name), str(tvshowtitle))
 
         metaget.get_meta('tvshow', name='', imdb_id=imdb)
 
@@ -219,9 +221,8 @@ def tvshows(tvshowtitle, imdb, tvdb, season, watched):
 
         for i in range(len(items)):
             if xbmc.abortRequested == True: return sys.exit()
-            if dialog.iscanceled(): return dialog.close()
 
-            dialog.update(int((100 / float(len(items))) * i), str(tvshowtitle), str(items[i]['label']))
+            dialog.update(int((100 / float(len(items))) * i), str(name), str(items[i]['label']))
 
             season, episode = items[i]['season'], items[i]['episode']
             metaget.get_episode_meta('', imdb_id=imdb, season=season, episode=episode)

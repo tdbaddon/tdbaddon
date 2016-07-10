@@ -87,36 +87,39 @@ class source:
             query = self.search_link % urllib.quote_plus(query)
             query = urlparse.urljoin(self.base_link, query)
 
-            result = client.request(query)
+            r = client.request(query)
 
-            result = client.parseDOM(result, 'div', attrs = {'class': 'pb fl'})[0]
-            result = result.split('<h2>')
+            r = client.parseDOM(r, 'div', attrs = {'class': 'pb fl'})[0]
+            r = r.split('<h2>')
 
-            result = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a'), client.parseDOM(i, 'span', attrs = {'class': 'date'})) for i in result]
-            result = [(i[0][0], i[1][0], i[2][-1]) for i in result if len(i[0]) > 0 and len(i[1]) > 0 and len(i[2]) > 0]
-            result = [(i[0], i[1], i[2]) for i in result]
+            r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a'), client.parseDOM(i, 'span', attrs = {'class': 'date'})) for i in r]
+            r = [(i[0][0], i[1][0], i[2][-1]) for i in r if len(i[0]) > 0 and len(i[1]) > 0 and len(i[2]) > 0]
+            r = [(i[0], i[1], i[2]) for i in r]
 
-            result = [(i[0], i[1], re.findall('(\w+).+?(\d+).+?(\d{4})', i[2])) for i in result]
-            result = [(i[0], i[1], '%04d%02d%02d' % (int(i[2][0][2]), int(mt[i[2][0][0][:3].lower()]), int(i[2][0][1]))) for i in result if len(i[2]) > 0]
-            result = [(i[0], i[1], (abs(dt - int(i[2])) < control.integer * 10)) for i in result]
-            result = [(i[0], i[1]) for i in result if i[2] == True]
+            r = [(i[0], i[1], re.findall('(\w+).+?(\d+).+?(\d{4})', i[2])) for i in r]
+            r = [(i[0], i[1], '%04d%02d%02d' % (int(i[2][0][2]), int(mt[i[2][0][0][:3].lower()]), int(i[2][0][1]))) for i in r if len(i[2]) > 0]
+            r = [(i[0], i[1], (abs(dt - int(i[2])) < control.integer * 10)) for i in r]
+            r = [(i[0], i[1]) for i in r if i[2] == True]
 
-            result = [(i[0], (re.sub('<.+?>|</.+?>', '', client.replaceHTMLCodes(i[1]))).split('">')[-1]) for i in result]
-            result = [(i[0], re.sub('(\.|\(|\[|\s)(\d{4}|S\d*E\d*|3D)(\.|\)|\]|\s|)(.+|)', '', i[1]), re.findall('[\.|\(|\[|\s](\d{4}|S\d*E\d*)([\.|\)|\]|\s|].+)', i[1])) for i in result]
-            result = [(i[0], i[1], i[2][0][0], i[2][0][1]) for i in result if len(i[2]) > 0]
-            result = [i for i in result if cleantitle.get(title) == cleantitle.get(i[1])]
-            result = [i for i in result if any(x in i[2] for x in hdlr)]
-            result = [i for i in result if not any(x in i[3] for x in ['.BDRip.', '.CAM.', '.DVDR.', '.DVDRip.', '.DVDSCR.', '.TS.', '.3D.'])]
+            r = [(i[0], (re.sub('<.+?>|</.+?>', '', client.replaceHTMLCodes(i[1]))).split('">')[-1]) for i in r]
+            r = [(i[0], re.sub('(\.|\(|\[|\s)(\d{4}|S\d*E\d*|3D)(\.|\)|\]|\s|)(.+|)', '', i[1]), re.findall('[\.|\(|\[|\s](\d{4}|S\d*E\d*)([\.|\)|\]|\s|].+)', i[1])) for i in r]
+            r = [(i[0], i[1], i[2][0][0], i[2][0][1]) for i in r if len(i[2]) > 0]
+            r = [(i[0], i[1], i[2], re.split('\.|\(|\)|\[|\]|\s|\-', i[3])) for i in r]
 
-            r = [(i[0], '1080p') for i in result if '.1080p.' in i[3]]
-            r += [(i[0], 'HD') for i in result if '.720p.' in i[3]]
-            r = r[:4]
+            r = [i for i in r if not any(x in i[3] for x in ['HDCAM', 'CAM', 'DVDR', 'DVDRip', 'DVDSCR', 'HDTS', 'TS', '3D'])]
+            r = [i for i in r if cleantitle.get(title) == cleantitle.get(i[1])]
+            r = [i for i in r if any(x in i[2] for x in hdlr)]
+
+            l = [(i[0], '1080p') for i in r if '1080p' in i[3]]
+            l += [(i[0], 'HD') for i in r if '720p' in i[3]]
+            l = l[:4]
 
             links = []
 
-            for i in r:
+            for i in l:
                 try:
-                    r = client.replaceHTMLCodes(i[0])
+                    r = urlparse.urljoin(self.base_link, i[0])
+                    r = client.replaceHTMLCodes(r)
                     r = client.request(r)
                     r = r.replace('\n', '')
                     r = re.sub('\s\s+', ' ', r)

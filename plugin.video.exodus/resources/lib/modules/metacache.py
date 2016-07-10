@@ -21,10 +21,8 @@
 
 import time,hashlib
 
-try:
-    from sqlite3 import dbapi2 as database
-except:
-    from pysqlite2 import dbapi2 as database
+try: from sqlite3 import dbapi2 as database
+except: from pysqlite2 import dbapi2 as database
 
 from resources.lib.modules import control
 

@@ -56,6 +56,8 @@ dialog = xbmcgui.Dialog()
 
 progressDialog = xbmcgui.DialogProgress()
 
+progressDialogBG = xbmcgui.DialogProgressBG()
+
 windowDialog = xbmcgui.WindowDialog()
 
 button = xbmcgui.ControlButton
@@ -98,7 +100,7 @@ viewsFile = os.path.join(dataPath, 'views.db')
 
 bookmarksFile = os.path.join(dataPath, 'bookmarks.db')
 
-providercacheFile = os.path.join(dataPath, 'providers.4.db')
+providercacheFile = os.path.join(dataPath, 'providers.5.db')
 
 metacacheFile = os.path.join(dataPath, 'meta.db')
 
@@ -160,10 +162,12 @@ def artwork():
     execute('RunPlugin(plugin://script.exodus.artwork)')
 
 
-def infoDialog(message, heading=addonInfo('name'), icon='', time=3000):
+def infoDialog(message, heading=addonInfo('name'), icon='', time=3000, sound=False):
     if icon == '': icon = addonIcon()
-    try: dialog.notification(heading, message, icon, time, sound=False)
-    except: execute("Notification(%s,%s, %s, %s)" % (heading, message, time, icon))
+    elif icon == 'INFO': icon = xbmcgui.NOTIFICATION_INFO
+    elif icon == 'WARNING': icon = xbmcgui.NOTIFICATION_WARNING
+    elif icon == 'ERROR': icon = xbmcgui.NOTIFICATION_ERROR
+    dialog.notification(heading, message, icon, time, sound=sound)
 
 
 def yesnoDialog(line1, line2, line3, heading=addonInfo('name'), nolabel='', yeslabel=''):
@@ -247,10 +251,6 @@ def do_block_check(uninstall=True):
     except:
         traceback.print_exc()
         pass
-
-
-def openPlaylist():
-    return execute('ActivateWindow(VideoPlaylist)')
 
 
 def refresh():

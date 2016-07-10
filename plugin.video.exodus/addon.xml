@@ -1,14 +1,12 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.exodus" version="1.3.7" name="Exodus" provider-name="Exodus">
+<addon id="plugin.video.exodus" version="2.0.2" name="Exodus" provider-name="Exodus">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="repository.exodus" version="1.0.0" />
-		<import addon="script.exodus.artwork" version="1.0.1" />
 		<import addon="script.module.urlresolver" version="3.0.0"/>
 		<import addon="script.module.metahandler" version="1.0.0" />
-		<import addon="plugin.video.youtube" version="5.2.1" optional="true" />
 	</requires>
-	<extension point="xbmc.python.pluginsource" library="default.py">
+	<extension point="xbmc.python.pluginsource" library="exodus.py">
 		<provides>video</provides>
 	</extension>
 	<extension point="xbmc.addon.metadata">

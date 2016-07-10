@@ -1,3 +1,7 @@
+[B]3.1.2[/B]
+Improved regex support
+Updated scrapers
+
 [B]3.1.1[/B]
 Addded image support
 Updated scrapers

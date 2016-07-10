@@ -21,8 +21,9 @@
 
 import os,sys,re,json,urllib,urlparse,base64,datetime
 
-try: action = dict(urlparse.parse_qsl(sys.argv[2].replace('?','')))['action']
-except: action = None
+params = dict(urlparse.parse_qsl(sys.argv[2].replace('?','')))
+
+action = params.get('action')
 
 from resources.lib.modules import trakt
 from resources.lib.modules import cleangenre
@@ -43,25 +44,25 @@ class movies:
         self.trakt_link = 'http://api-v2launch.trakt.tv'
         self.datetime = (datetime.datetime.utcnow() - datetime.timedelta(hours = 5))
         self.systime = (self.datetime).strftime('%Y%m%d%H%M%S%f')
-        #self.trakt_user = re.sub('[^a-z0-9]', '-', control.setting('trakt.user').strip().lower())
 
         self.trakt_user = control.setting('trakt.user').strip()
 
         self.imdb_user = control.setting('imdb.user').replace('ur', '')
         self.lang = control.apiLanguage()['trakt']
 
-        self.search_link = 'http://api-v2launch.trakt.tv/search?type=movie&query=%s&limit=40'
+        self.search_link = 'http://api-v2launch.trakt.tv/search?type=movie&limit=100&query='
         self.trakt_info_link = 'http://api-v2launch.trakt.tv/movies/%s?extended=images'
         self.trakt_lang_link = 'http://api-v2launch.trakt.tv/movies/%s/translations/%s'
         self.imdb_info_link = 'http://www.omdbapi.com/?i=%s&plot=full&r=json'
 
-        self.persons_link = 'http://www.imdb.com/search/name?count=100&name=%s'
+        self.persons_link = 'http://www.imdb.com/search/name?count=100&name='
         self.personlist_link = 'http://www.imdb.com/search/name?count=100&gender=male,female'
         self.popular_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&languages=en&num_votes=1000,&production_status=released&groups=top_1000&sort=moviemeter,asc&count=40&start=1'
         self.views_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&languages=en&num_votes=1000,&production_status=released&sort=num_votes,desc&count=40&start=1'
         self.featured_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&languages=en&num_votes=1000,&production_status=released&release_date=date[365],date[60]&sort=moviemeter,asc&count=40&start=1'
         self.person_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&production_status=released&role=%s&sort=year,desc&count=40&start=1'
         self.genre_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&languages=en&num_votes=100,&release_date=date[730],date[30]&genres=%s&sort=moviemeter,asc&count=40&start=1'
+        self.language_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&num_votes=100,&production_status=released&languages=%s|1&sort=moviemeter,asc&count=40&start=1'
         self.certification_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&languages=en&num_votes=100,&production_status=released&certificates=us:%s&sort=moviemeter,asc&count=40&start=1'
         self.year_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&languages=en&num_votes=100,&production_status=released&year=%s,%s&sort=moviemeter,asc&count=40&start=1'
         self.boxoffice_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&languages=en&production_status=released&sort=boxoffice_gross_us,desc&count=40&start=1'
@@ -78,7 +79,9 @@ class movies:
         self.trakthistory_link = 'http://api-v2launch.trakt.tv/users/me/history/movies?limit=40&page=1'
         self.imdblists_link = 'http://www.imdb.com/user/ur%s/lists?tab=all&sort=modified:desc&filter=titles' % self.imdb_user
         self.imdblist_link = 'http://www.imdb.com/list/%s/?view=detail&sort=title:asc&title_type=feature,short,tv_movie,tv_special,video,documentary,game&start=1'
-        self.imdbwatchlist_link = 'http://www.imdb.com/user/ur%s/watchlist' % self.imdb_user
+        self.imdblist2_link = 'http://www.imdb.com/list/%s/?view=detail&sort=created:desc&title_type=feature,short,tv_movie,tv_special,video,documentary,game&start=1'
+        self.imdbwatchlist_link = 'http://www.imdb.com/user/ur%s/watchlist?sort=alpha,asc' % self.imdb_user
+        self.imdbwatchlist2_link = 'http://www.imdb.com/user/ur%s/watchlist?sort=date_added,desc' % self.imdb_user
 
 
     def get(self, url, idx=True):
@@ -99,10 +102,13 @@ class movies:
                 except:
                     self.list = cache.get(self.trakt_list, 0, url, self.trakt_user)
 
-                if '/users/me/' in url:
+                if '/users/me/' in url and not '/watchlist/' in url:
                     self.list = sorted(self.list, key=lambda k: re.sub('(^the |^a )', '', k['title'].lower()))
 
                 if idx == True: self.worker()
+
+            elif u in self.trakt_link and self.search_link in url:
+                self.list = cache.get(self.trakt_list, 0, url, self.trakt_user)
 
             elif u in self.trakt_link:
                 self.list = cache.get(self.trakt_list, 24, url, self.trakt_user)
@@ -139,51 +145,44 @@ class movies:
 
     def search(self, query=None):
         try:
-            if control.infoLabel('Container.PluginName') == '':
-                return control.dialog.ok('Exodus', control.lang(30518).encode('utf-8'), '', '')
+            control.idle()
 
-            if not control.infoLabel('ListItem.Title') == '':
-                self.query = control.window.getProperty('%s.movie.search' % control.addonInfo('id'))
+            sysloc = [urlparse.urlparse(sys.argv[0]).netloc, 'plugin.program.super.favourites' ]
 
-            elif query == None:
-                t = control.lang(30201).encode('utf-8')
+            sysplg = True if control.infoLabel('Container.PluginName') in sysloc else False
+
+            if query == None:
+                t = control.lang(32010).encode('utf-8')
                 k = control.keyboard('', t) ; k.doModal()
-                self.query = k.getText() if k.isConfirmed() else None
+                query = k.getText() if k.isConfirmed() else None
 
-            else:
-                self.query = query
+            if (query == None or query == '' or sysplg == False): return
 
-            if (self.query == None or self.query == ''): return
-
-            control.window.setProperty('%s.movie.search' % control.addonInfo('id'), self.query)
-
-            url = self.search_link % urllib.quote_plus(self.query)
-            self.list = cache.get(self.trakt_list, 0, url, self.trakt_user)
-
-            self.worker()
-            self.movieDirectory(self.list)
-            return self.list
+            url = self.search_link + urllib.quote_plus(query)
+            url = '%s?action=movies&url=%s' % (sys.argv[0], urllib.quote_plus(url))
+            control.execute('Container.Update(%s)' % url)
         except:
             return
 
 
     def person(self, query=None):
         try:
+            control.idle()
+
+            sysloc = [urlparse.urlparse(sys.argv[0]).netloc, 'plugin.program.super.favourites' ]
+
+            sysplg = True if control.infoLabel('Container.PluginName') in sysloc else False
+
             if query == None:
-                t = control.lang(30201).encode('utf-8')
+                t = control.lang(32010).encode('utf-8')
                 k = control.keyboard('', t) ; k.doModal()
-                self.query = k.getText() if k.isConfirmed() else None
-            else:
-                self.query = query
+                query = k.getText() if k.isConfirmed() else None
 
-            if (self.query == None or self.query == ''): return
+            if (query == None or query == '' or sysplg == False): return
 
-            url = self.persons_link % urllib.quote_plus(self.query)
-            self.list = cache.get(self.imdb_person_list, 0, url)
-
-            for i in range(0, len(self.list)): self.list[i].update({'action': 'movies'})
-            self.addDirectory(self.list)
-            return self.list
+            url = self.persons_link + urllib.quote_plus(query)
+            url = '%s?action=moviePersons&url=%s' % (sys.argv[0], urllib.quote_plus(url))
+            control.execute('Container.Update(%s)' % url)
         except:
             return
 
@@ -197,6 +196,18 @@ class movies:
         ('Western', 'western')]
 
         for i in genres: self.list.append({'name': cleangenre.lang(i[0], self.lang), 'url': self.genre_link % i[1], 'image': 'genres.png', 'action': 'movies'})
+        self.addDirectory(self.list)
+        return self.list
+
+
+    def languages(self):
+        languages = [('Arabic', 'ar'), ('Bulgarian', 'bg'), ('Chinese', 'zh'), ('Croatian', 'hr'), ('Dutch', 'nl'),
+        ('English', 'en'), ('Finnish', 'fi'), ('French', 'fr'), ('German', 'de'), ('Greek', 'el'), ('Hebrew', 'he'),
+        ('Hindi ', 'hi'), ('Hungarian', 'hu'), ('Icelandic', 'is'), ('Italian', 'it'), ('Japanese', 'ja'), ('Korean', 'ko'),
+        ('Norwegian', 'no'), ('Persian', 'fa'), ('Polish', 'pl'), ('Portuguese', 'pt'), ('Punjabi', 'pa'), ('Romanian', 'ro'),
+        ('Russian', 'ru'), ('Spanish', 'es'), ('Swedish', 'sv'), ('Turkish', 'tr'), ('Ukrainian', 'uk')]
+
+        for i in languages: self.list.append({'name': str(i[0]), 'url': self.language_link % i[1], 'image': 'languages.png', 'action': 'movies'})
         self.addDirectory(self.list)
         return self.list
 
@@ -217,8 +228,12 @@ class movies:
         return self.list
 
 
-    def persons(self):
-        self.list = cache.get(self.imdb_person_list, 24, self.personlist_link)
+    def persons(self, url):
+        if url == None:
+            self.list = cache.get(self.imdb_person_list, 24, self.personlist_link)
+        else:
+            self.list = cache.get(self.imdb_person_list, 0, url)
+
         for i in range(0, len(self.list)): self.list[i].update({'action': 'movies'})
         self.addDirectory(self.list)
         return self.list
@@ -412,11 +427,16 @@ class movies:
             for i in re.findall('date\[(\d+)\]', url):
                 url = url.replace('date[%s]' % i, (self.datetime - datetime.timedelta(days = int(i))).strftime('%Y-%m-%d'))
 
+            def imdb_watchlist_id(url):
+                return re.findall('/export[?]list_id=(ls\d*)', client.request(url))[0]
+
             if url == self.imdbwatchlist_link:
-                def imdb_watchlist_id(url):
-                    return re.findall('/export[?]list_id=(ls\d*)', client.request(url))[0]
                 url = cache.get(imdb_watchlist_id, 8640, url)
                 url = self.imdblist_link % url
+
+            elif url == self.imdbwatchlist2_link:
+                url = cache.get(imdb_watchlist_id, 8640, url)
+                url = self.imdblist2_link % url
 
             result = client.request(url)
 
@@ -621,9 +641,9 @@ class movies:
             [i.start() for i in threads]
             [i.join() for i in threads]
 
-        self.list = [i for i in self.list if not i['imdb'] == '0']
+            if len(self.meta) > 0: metacache.insert(self.meta)
 
-        if len(self.meta) > 0: metacache.insert(self.meta)
+        self.list = [i for i in self.list if not i['imdb'] == '0']
 
 
     def super_info(self, i):
@@ -734,7 +754,7 @@ class movies:
             poster = poster.encode('utf-8')
             if not poster == '0': self.list[i].update({'poster': poster})
 
-            banner = poster
+            banner = '0'
             try: banner = item['images']['banner']['full']
             except: pass
             if banner == None or not '/banners/' in banner: banner = '0'
@@ -770,53 +790,74 @@ class movies:
                 except: pass
                 if not plot == '0': self.list[i].update({'plot': plot})
 
-            self.meta.append({'imdb': imdb, 'tmdb': '0', 'tvdb': '0', 'lang': self.lang, 'item': {'title': title, 'year': year, 'code': imdb, 'imdb': imdb, 'tmdb': '0', 'poster': poster, 'fanart': fanart, 'premiered': premiered, 'studio': studio, 'genre': genre, 'duration': duration, 'rating': rating, 'votes': votes, 'mpaa': mpaa, 'director': director, 'writer': writer, 'cast': cast, 'plot': plot}})
+            self.meta.append({'imdb': imdb, 'tmdb': '0', 'tvdb': '0', 'lang': self.lang, 'item': {'title': title, 'year': year, 'code': imdb, 'imdb': imdb, 'tmdb': '0', 'poster': poster, 'banner': banner, 'fanart': fanart, 'premiered': premiered, 'studio': studio, 'genre': genre, 'duration': duration, 'rating': rating, 'votes': votes, 'mpaa': mpaa, 'director': director, 'writer': writer, 'cast': cast, 'plot': plot}})
         except:
             pass
 
 
     def movieDirectory(self, items):
-        if items == None or len(items) == 0: return
+        if items == None or len(items) == 0: control.idle() ; sys.exit()
 
-        isFolder = True if control.setting('autoplay') == 'false' and control.setting('hosts.mode') == '1' else False
-        isFolder = False if control.window.getProperty('PseudoTVRunning') == 'True' else isFolder
+        sysaddon = sys.argv[0]
 
-        playbackMenu = control.lang(30204).encode('utf-8') if control.setting('autoplay') == 'true' else control.lang(30203).encode('utf-8')
+        syshandle = int(sys.argv[1])
+
+        addonPoster, addonBanner = control.addonPoster(), control.addonBanner()
+
+        addonFanart, settingFanart = control.addonFanart(), control.setting('fanart')
 
         traktCredentials = trakt.getTraktCredentialsInfo()
 
+        try: isOld = False ; control.item().getArt('type')
+        except: isOld = True
+
+        isEstuary = True if 'estuary' in control.skin else False
+
+        isPlayable = 'true' if not 'plugin' in control.infoLabel('Container.PluginName') else 'false'
+
         indicators = playcount.getMovieIndicators(refresh=True) if action == 'movies' else playcount.getMovieIndicators()
 
-        cacheToDisc = False if not action == 'movieSearch' else True
+        playbackMenu = control.lang(32063).encode('utf-8') if control.setting('hosts.mode') == '2' else control.lang(32064).encode('utf-8')
 
-        addonPoster, addonBanner = control.addonPoster(), control.addonBanner()
-        addonFanart, settingFanart = control.addonFanart(), control.setting('fanart')
-        sysaddon = sys.argv[0]
+        watchedMenu = control.lang(32068).encode('utf-8') if trakt.getTraktIndicatorsInfo() == True else control.lang(32066).encode('utf-8')
+
+        unwatchedMenu = control.lang(32069).encode('utf-8') if trakt.getTraktIndicatorsInfo() == True else control.lang(32067).encode('utf-8')
+
+        queueMenu = control.lang(32065).encode('utf-8')
+
+        traktManagerMenu = control.lang(32070).encode('utf-8')
+
+        nextMenu = control.lang(32053).encode('utf-8')
+
 
         for i in items:
             try:
                 label = '%s (%s)' % (i['title'], i['year'])
                 imdb, title, year = i['imdb'], i['originaltitle'], i['year']
                 sysname = urllib.quote_plus('%s (%s)' % (title, year))
-                sysimage = urllib.quote_plus(i['poster'])
                 systitle = urllib.quote_plus(title)
 
 
                 poster, banner, fanart = i['poster'], i['banner'], i['fanart']
+                if banner == '0' and not fanart == '0': banner = fanart
+                elif banner == '0' and not poster == '0': banner = poster
                 if poster == '0': poster = addonPoster
-                if banner == '0' and poster == '0': banner = addonBanner
-                elif banner == '0': banner = poster
+                if banner == '0': banner = addonBanner
 
 
                 meta = dict((k,v) for k, v in i.iteritems() if not v == '0')
-                meta.update({'trailer': '%s?action=trailer&name=%s' % (sysaddon, sysname)})
+                meta.update({'mediatype': 'movie'})
+                #meta.update({'trailer': '%s?action=trailer&name=%s' % (sysaddon, sysname)})
+                meta.update({'trailer': 'plugin://script.extendedinfo/?info=playtrailer&&id=%s' % imdb})
                 if i['duration'] == '0': meta.update({'duration': '120'})
                 try: meta.update({'duration': str(int(meta['duration']) * 60)})
                 except: pass
                 try: meta.update({'genre': cleangenre.lang(meta['genre'], self.lang)})
                 except: pass
-                try: del meta['tagline']
-                except: pass
+                if isEstuary == True:
+                    try: del meta['cast']
+                    except: pass
+
                 sysmeta = urllib.quote_plus(json.dumps(meta))
 
 
@@ -825,83 +866,85 @@ class movies:
 
                 path = '%s?action=play&title=%s&year=%s&imdb=%s' % (sysaddon, systitle, year, imdb)
 
-                if isFolder == True:
-                    url = '%s?action=sources&title=%s&year=%s&imdb=%s&meta=%s' % (sysaddon, systitle, year, imdb, sysmeta)
-
-
-                try:
-                    overlay = int(playcount.getMovieOverlay(indicators, imdb))
-                    if overlay == 7: meta.update({'playcount': 1, 'overlay': 7})
-                    else: meta.update({'playcount': 0, 'overlay': 6})
-                except:
-                    pass
-
 
                 cm = []
 
-                cm.append((playbackMenu, 'RunPlugin(%s?action=alterSources&url=%s&meta=%s)' % (sysaddon, sysurl, sysmeta)))
+                cm.append((queueMenu, 'RunPlugin(%s?action=queueItem)' % sysaddon))
 
-                if isFolder == False:
-                    cm.append((control.lang(30202).encode('utf-8'), 'RunPlugin(%s?action=queueItem)' % sysaddon))
+                try:
+                    overlay = int(playcount.getMovieOverlay(indicators, imdb))
+                    if overlay == 7:
+                        cm.append((unwatchedMenu, 'RunPlugin(%s?action=moviePlaycount&imdb=%s&query=6)' % (sysaddon, imdb)))
+                        meta.update({'playcount': 1, 'overlay': 7})
+                    else:
+                        cm.append((watchedMenu, 'RunPlugin(%s?action=moviePlaycount&imdb=%s&query=7)' % (sysaddon, imdb)))
+                        meta.update({'playcount': 0, 'overlay': 6})
+                except:
+                    pass
 
                 if traktCredentials == True:
-                    cm.append((control.lang(30208).encode('utf-8'), 'RunPlugin(%s?action=traktManager&name=%s&imdb=%s&content=movie)' % (sysaddon, sysname, imdb)))
+                    cm.append((traktManagerMenu, 'RunPlugin(%s?action=traktManager&name=%s&imdb=%s&content=movie)' % (sysaddon, sysname, imdb)))
 
-                cm.append((control.lang(30214).encode('utf-8'), 'RunPlugin(%s?action=trailer&name=%s)' % (sysaddon, sysname)))
-                cm.append((control.lang(30205).encode('utf-8'), 'Action(Info)'))
-                cm.append((control.lang(30206).encode('utf-8'), 'RunPlugin(%s?action=moviePlaycount&imdb=%s&query=7)' % (sysaddon, imdb)))
-                cm.append((control.lang(30207).encode('utf-8'), 'RunPlugin(%s?action=moviePlaycount&imdb=%s&query=6)' % (sysaddon, imdb)))
-                cm.append((control.lang(30212).encode('utf-8'), 'RunPlugin(%s?action=addView&content=movies)' % sysaddon))
+                cm.append((playbackMenu, 'RunPlugin(%s?action=alterSources&url=%s&meta=%s)' % (sysaddon, sysurl, sysmeta)))
+
+                if isOld == True:
+                    cm.append((control.lang2(19033).encode('utf-8'), 'Action(Info)'))
 
 
-                item = control.item(label=label, iconImage=poster, thumbnailImage=poster)
+                item = control.item(label=label)
 
-                try: item.setArt({'poster': poster, 'banner': banner})
-                except: pass
+                item.setArt({'icon': poster, 'thumb': poster, 'poster': poster, 'banner': banner})
 
                 if settingFanart == 'true' and not fanart == '0':
                     item.setProperty('Fanart_Image', fanart)
                 elif not addonFanart == None:
                     item.setProperty('Fanart_Image', addonFanart)
 
+                item.addContextMenuItems(cm)
+                item.setProperty('IsPlayable', isPlayable)
                 item.setInfo(type='Video', infoLabels = meta)
-                item.setProperty('Video', 'true')
-                #item.setProperty('IsPlayable', 'true')
-                item.addContextMenuItems(cm, replaceItems=True)
-                control.addItem(handle=int(sys.argv[1]), url=url, listitem=item, isFolder=isFolder)
+
+                control.addItem(handle=syshandle, url=url, listitem=item, isFolder=False)
             except:
                 pass
 
         try:
             url = items[0]['next']
             if url == '': raise Exception()
+
+            icon = control.addonNext()
             url = '%s?action=moviePage&url=%s' % (sysaddon, urllib.quote_plus(url))
-            addonNext = control.addonNext()
-            item = control.item(label=control.lang(30213).encode('utf-8'), iconImage=addonNext, thumbnailImage=addonNext)
-            item.addContextMenuItems([], replaceItems=True)
+
+            item = control.item(label=nextMenu)
+
+            item.setArt({'icon': icon, 'thumb': icon, 'poster': icon, 'banner': icon})
             if not addonFanart == None: item.setProperty('Fanart_Image', addonFanart)
-            control.addItem(handle=int(sys.argv[1]), url=url, listitem=item, isFolder=True)
+
+            control.addItem(handle=syshandle, url=url, listitem=item, isFolder=True)
         except:
             pass
 
 
-        control.content(int(sys.argv[1]), 'movies')
+        control.content(syshandle, 'movies')
         #control.do_block_check(False)
-        control.directory(int(sys.argv[1]), cacheToDisc=cacheToDisc)
-        views.setView('movies', {'skin.estuary': 54, 'skin.confluence': 500})
+        control.directory(syshandle, cacheToDisc=True)
+        views.setView('movies', {'skin.confluence': 500})
 
 
     def addDirectory(self, items, queue=False):
-        if items == None or len(items) == 0: return
+        if items == None or len(items) == 0: control.idle() ; sys.exit()
 
         sysaddon = sys.argv[0]
-        isPlayable = False if control.setting('autoplay') == 'false' and control.setting('hosts.mode') == '1' else True
+
+        syshandle = int(sys.argv[1])
+
         addonFanart, addonThumb, artPath = control.addonFanart(), control.addonThumb(), control.artPath()
+
+        queueMenu = control.lang(32065).encode('utf-8')
 
         for i in items:
             try:
-                try: name = control.lang(i['name']).encode('utf-8')
-                except: name = i['name']
+                name = i['name']
 
                 if i['image'].startswith('http://'): thumb = i['image']
                 elif not artPath == None: thumb = os.path.join(artPath, i['image'])
@@ -913,17 +956,21 @@ class movies:
 
                 cm = []
 
-                if queue == True and isPlayable == True:
-                    cm.append((control.lang(30202).encode('utf-8'), 'RunPlugin(%s?action=queueItem)' % sysaddon))
+                if queue == True:
+                    cm.append((queueMenu, 'RunPlugin(%s?action=queueItem)' % sysaddon))
 
-                item = control.item(label=name, iconImage=thumb, thumbnailImage=thumb)
-                item.addContextMenuItems(cm, replaceItems=False)
+                item = control.item(label=name)
+
+                item.setArt({'icon': thumb, 'thumb': thumb})
                 if not addonFanart == None: item.setProperty('Fanart_Image', addonFanart)
-                control.addItem(handle=int(sys.argv[1]), url=url, listitem=item, isFolder=True)
+
+                item.addContextMenuItems(cm)
+
+                control.addItem(handle=syshandle, url=url, listitem=item, isFolder=True)
             except:
                 pass
 
         #control.do_block_check(False)
-        control.directory(int(sys.argv[1]), cacheToDisc=True)
+        control.directory(syshandle, cacheToDisc=True)
 
 

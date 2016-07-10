@@ -19,54 +19,39 @@
 '''
 
 
-import re,urllib,urlparse
+import re,urlparse,json,base64
 
+from resources.lib.modules import cache
 from resources.lib.modules import control
-from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 
 
 class source:
     def __init__(self):
         self.domains = ['ororo.tv']
-        self.base_link = 'https://www2.ororo.tv'
-        self.moviesearch_link = '/en/movies'
-        self.tvsearch_link = '/en'
+        self.base_link = 'https://ororo.tv'
+        self.moviesearch_link = '/api/v2/movies'
+        self.tvsearch_link = '/api/v2/shows'
+        self.movie_link = '/api/v2/movies/%s'
+        self.show_link = '/api/v2/shows/%s'
+        self.episode_link = '/api/v2/episodes/%s'
 
-        cookie = None
-        self.lang = 'locale=en; nl=true'
-        self.sign = 'https://www2.ororo.tv/en/users/sign_in'
         self.user = control.setting('ororo.user')
         self.password = control.setting('ororo.pass')
-        self.headers = {'User-Agent': 'Exodus for Kodi'}
-        self.post = {'user[email]': self.user, 'user[password]': self.password, 'commit': 'Sign in'}
-        self.post = urllib.urlencode(self.post)
+        self.headers = {
+        'Authorization': 'Basic %s' % base64.b64encode('%s:%s' % (self.user, self.password)),
+        'User-Agent': 'Exodus for Kodi'
+        }
 
 
     def movie(self, imdb, title, year):
         try:
             if (self.user == '' or self.password == ''): raise Exception()
 
-            cookie = client.request(self.sign, post=self.post, headers=self.headers, cookie=self.lang, output='cookie')
-            cookie = '%s; %s' % (cookie, self.lang)
+            url = cache.get(self.ororo_moviecache, 60, self.user)
+            url = [i[0] for i in url if imdb == i[1]][0]
+            url= self.movie_link % url
 
-            url = urlparse.urljoin(self.base_link, self.moviesearch_link)
-
-            result = client.request(url, cookie=cookie)
-
-            title = cleantitle.get(title)
-            years = ['%s' % str(year)]
-
-            result = client.parseDOM(result, 'div', attrs = {'class': 'index show'})
-            result = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', attrs = {'class': 'name'}), client.parseDOM(i, 'span', attrs = {'class': 'value'})) for i in result]
-            result = [(i[0][0], i[1][0], i[2][0]) for i in result if len(i[0]) > 0 and len(i[1]) > 0 and len(i[2]) > 0]
-            result = [i for i in result if title == cleantitle.get(i[1])]
-            result = [i[0] for i in result if any(x in i[2] for x in years)][0]
-
-            url = urlparse.urljoin(self.base_link, result)
-            url = urlparse.urlparse(url).path
-            url = client.replaceHTMLCodes(url)
-            url = url.encode('utf-8')
             return url
         except:
             return
@@ -76,26 +61,10 @@ class source:
         try:
             if (self.user == '' or self.password == ''): raise Exception()
 
-            cookie = client.request(self.sign, post=self.post, headers=self.headers, cookie=self.lang, output='cookie')
-            cookie = '%s; %s' % (cookie, self.lang)
+            url = cache.get(self.ororo_tvcache, 120, self.user)
+            url = [i[0] for i in url if imdb == i[1]][0]
+            url= self.show_link % url
 
-            url = urlparse.urljoin(self.base_link, self.tvsearch_link)
-
-            result = client.request(url, cookie=cookie)
-
-            tvshowtitle = cleantitle.get(tvshowtitle)
-            years = ['%s' % str(year)]
-
-            result = client.parseDOM(result, 'div', attrs = {'class': 'index show'})
-            result = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', attrs = {'class': 'name'}), client.parseDOM(i, 'span', attrs = {'class': 'value'})) for i in result]
-            result = [(i[0][0], i[1][0], i[2][0]) for i in result if len(i[0]) > 0 and len(i[1]) > 0 and len(i[2]) > 0]
-            result = [i for i in result if tvshowtitle == cleantitle.get(i[1])]
-            result = [i[0] for i in result if any(x in i[2] for x in years)][0]
-
-            url = urlparse.urljoin(self.base_link, result)
-            url = urlparse.urlparse(url).path
-            url = client.replaceHTMLCodes(url)
-            url = url.encode('utf-8')
             return url
         except:
             return
@@ -107,10 +76,44 @@ class source:
 
             if url == None: return
 
-            url = '%s#%01d-%01d' % (url, int(season), int(episode))
-            url = client.replaceHTMLCodes(url)
-            url = url.encode('utf-8')
+            url = urlparse.urljoin(self.base_link, url)
+
+            r = client.request(url, headers=self.headers)
+            r = json.loads(r)['episodes']
+            r = [(str(i['id']), str(i['season']), str(i['number']), str(i['airdate'])) for i in r]
+
+            url = [i for i in r if season == '%01d' % int(i[1]) and episode == '%01d' % int(i[2])]
+            url += [i for i in r if premiered == i[3]]
+
+            url= self.episode_link % url[0][0]
+
             return url
+        except:
+            return
+
+
+    def ororo_moviecache(self, user):
+        try:
+            url = urlparse.urljoin(self.base_link, self.moviesearch_link)
+
+            r = client.request(url, headers=self.headers)
+            r = json.loads(r)['movies']
+            r = [(str(i['id']), str(i['imdb_id'])) for i in r]
+            r = [(i[0], 'tt' + re.sub('[^0-9]', '', i[1])) for i in r]
+            return r
+        except:
+            return
+
+
+    def ororo_tvcache(self, user):
+        try:
+            url = urlparse.urljoin(self.base_link, self.tvsearch_link)
+
+            r = client.request(url, headers=self.headers)
+            r = json.loads(r)['shows']
+            r = [(str(i['id']), str(i['imdb_id'])) for i in r]
+            r = [(i[0], 'tt' + re.sub('[^0-9]', '', i[1])) for i in r]
+            return r
         except:
             return
 
@@ -123,29 +126,9 @@ class source:
 
             if (self.user == '' or self.password == ''): raise Exception()
 
-            cookie = client.request(self.sign, post=self.post, headers=self.headers, cookie=self.lang, output='cookie')
-            cookie = '%s; %s' % (cookie, self.lang)
-
-            try: url, season, episode = re.compile('(.+?)#(\d*)-(\d*)$').findall(url)[0]
-            except: pass
-            try: href = '#%01d-%01d' % (int(season), int(episode))
-            except: href = '.+?'
-
-            url = referer = urlparse.urljoin(self.base_link, url)
-
-            result = client.request(url, cookie=cookie)
-
-            url = client.parseDOM(result, 'a', ret='data-href', attrs = {'href': href})[0]
             url = urlparse.urljoin(self.base_link, url)
-
-            headers = {'X-Requested-With': 'XMLHttpRequest'}
-            result = client.request(url, cookie=cookie, referer=referer, headers=headers)
-
-            headers = '|%s' % urllib.urlencode({'User-Agent': self.headers['User-Agent'], 'Cookie': str(cookie)})
-
-            url = client.parseDOM(result, 'source', ret='src', attrs = {'type': 'video/mp4'})
-            url += client.parseDOM(result, 'source', ret='src', attrs = {'type': 'video/.+?'})
-            url = url[0] + headers
+            url = client.request(url, headers=self.headers)
+            url = json.loads(url)['url']
 
             sources.append({'source': 'ororo', 'quality': 'HD', 'provider': 'Ororo', 'url': url, 'direct': True, 'debridonly': False})
 
