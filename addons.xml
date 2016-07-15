@@ -1661,7 +1661,7 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
 </addon>
 
 <addon id="plugin.video.MundoLatino"
-       name="[COLOR yellow]MundoLatino[/COLOR]"
+       name="MundoLatino"
        version="2.0.0"
        provider-name="Mundo Latino">
   <requires>
