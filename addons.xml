@@ -2143,7 +2143,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBRADIO"
        name="TDB RADIO"
-       version="1.37"
+       version="1.38"
        provider-name="TDB">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>

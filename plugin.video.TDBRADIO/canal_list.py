@@ -281,13 +281,12 @@ dc={
 "miami rhythm 98" : "9002",
 "the freestyle radio" : "9003",
 "wbmx freestyle classics" : "9004",
-"freestyleforever" : "9005",
+"freestyle4ever" : "9005",
 "radio na balada" : "9006",
 "jammerstream freestyle" : "9007",
 "00000000000000000000000000000" : "9008",
 "00000000000000000000000000000" : "9009",
 "00000000000000000000000000000" : "9010",
-
 
 "HIPHOP & URBAN" : "0000000000",
 "nrj classic rap" : "10000",
@@ -322,6 +321,9 @@ dc={
 "tm radio" : "11019",
 "traxx fm tech minimal" : "11020",
 "uzic ch minimal" : "11021",
+"di funky house" : "11022",
+
+
 
 "JUNGLE" : "0000000000",
 "bassjunkees" : "12000",
@@ -426,6 +428,8 @@ dc={
 "nrj uk top 40" : "21006",
 "powerhitz" : "21007",
 "radio 8 fm" : "21008",
+"poptron" : "21009",
+
 
 "TRANCE " : "0000000000",
 "1fm amsterdam trance radio" : "22000",
