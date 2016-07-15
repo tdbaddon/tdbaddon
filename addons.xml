@@ -2065,7 +2065,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.Stallion-IPTV" name="Stallion-IPTV" version="2.2" provider-name="Stallion-IPTV">
+<addon id="plugin.video.Stallion-IPTV" name="Stallion-IPTV" version="2.5" provider-name="Stallion-IPTV">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.beautifulsoup" version="3.2.1"/>
@@ -2083,8 +2083,8 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
     <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary>[COLOR yellow]Stallion[/COLOR][COLOR blue]IPTV[/COLOR]basado en LivetreamsPro by Shani  </summary>
-    <description lang="en">[COLOR green][B]Stallion-IPTV, Best IPTV [/B][/COLOR]</description>
+    <summary>[COLOR blue]Stallion[/COLOR][COLOR blue]IPTV[/COLOR]basado en LivetreamsPro by Shani  </summary>
+    <description lang="en">[COLOR blue][B]Stallion-IPTV, Enjoy the Best Free IPTV [/B][/COLOR]</description>
     <platform>all</platform>
   </extension>
 </addon>
@@ -2479,7 +2479,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.uwc"
        name="Ultimate Whitecream"
-       version="1.1.16"
+       version="1.1.20"
        provider-name="mortael">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>

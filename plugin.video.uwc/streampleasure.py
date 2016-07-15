@@ -16,8 +16,9 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
-import urllib, urllib2, re, cookielib, os.path, sys, socket
-import xbmc, xbmcplugin, xbmcgui, xbmcaddon
+import urllib2
+import re
+import xbmcplugin
 
 import utils
 
@@ -33,7 +34,11 @@ def SPMain():
 def SPList(url, page, onelist=None):
     if onelist:
         url = url.replace('/page/1/','/page/'+str(page)+'/')
-    listhtml = utils.getHtml(url, '')
+    try:
+        listhtml = utils.getHtml(url, '')
+    except urllib2.HTTPError:
+        return None
+
     match = re.compile('<div id="content">(.*?)<div class="pagination">', re.DOTALL | re.IGNORECASE).findall(listhtml)
     match1 = re.compile(r'src="([^"]+)".*?<a href="([^"]+)" title="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(match[0])
     for img, videopage, name in match1:
@@ -41,12 +46,12 @@ def SPList(url, page, onelist=None):
         utils.addDownLink(name, videopage, 212, img, '')
     if not onelist:
         if re.search('<link rel="next"', listhtml, re.DOTALL | re.IGNORECASE):
-            npage = page + 1        
+            npage = page + 1
             url = url.replace('/page/'+str(page)+'/','/page/'+str(npage)+'/')
             utils.addDir('Next Page ('+str(npage)+')', url, 211, '', npage)
         xbmcplugin.endOfDirectory(utils.addon_handle)
 
-    
+
 def SPSearch(url, keyword=None):
     searchUrl = url
     if not keyword:

@@ -30,7 +30,7 @@ __scriptname__ = "Ultimate Whitecream"
 __author__ = "mortael"
 __scriptid__ = "plugin.video.uwc"
 __credits__ = "mortael, Fr33m1nd, anton40, NothingGnome"
-__version__ = "1.1.16"
+__version__ = "1.1.20"
 
 USER_AGENT = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3'
 
@@ -393,6 +393,7 @@ def playvideo(videosource, name, download=None, url=None):
             openloadsrc = getHtml(openloadurl1, '', openloadhdr)
             progress.update( 80, "", "Getting video file from OpenLoad", "")
             videourl = decodeOpenLoad(openloadsrc)
+            videourl = videourl + '|Referer='+ openloadurl1 + '&User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5376e Safari/8536.25'
         except:
             notify('Oh oh','Couldn\'t find playable OpenLoad link')
             return
@@ -445,7 +446,7 @@ def playvideo(videosource, name, download=None, url=None):
             form_values[name] = value.replace("download1","download2")
         progress.update( 60, "", "Grabbing video file", "" )    
         newscpage = postHtml(streamcloudurl, form_data=form_values)
-        videourl = re.compile('file: "(.+?)",', re.DOTALL | re.IGNORECASE).findall(newscpage)[0]
+        videourl = re.compile('file:\s*"(.+?)",', re.DOTALL | re.IGNORECASE).findall(newscpage)[0]
     elif vidhost == 'Jetload':
         progress.update( 40, "", "Loading Jetload", "" )
         jlurl = re.compile(r'jetload\.tv/([^"]+)', re.DOTALL | re.IGNORECASE).findall(videosource)
@@ -672,11 +673,16 @@ def decodeOpenLoad(html):
 
     # decodeOpenLoad made by mortael, please leave this line for proper credit :)
     aastring = re.compile("<script[^>]+>(ﾟωﾟﾉ[^<]+)<", re.DOTALL | re.IGNORECASE).findall(html)
-    haha = re.compile(r"welikekodi_ya_rly = (\d+) - (\d+)", re.DOTALL | re.IGNORECASE).findall(html)
-    haha = int(haha[0][0]) - int(haha[0][1])
+    hahadec = decodeOpenLoad2(aastring[0])
+    haha = re.compile(r"welikekodi_ya_rly = Math.round([^;]+);", re.DOTALL | re.IGNORECASE).findall(hahadec)[0]
+    haha = eval("int" + haha)
     
-    aastring = aastring[haha]
+    videourl1 = decodeOpenLoad2(aastring[haha])
 
+    return videourl1
+    
+    
+def decodeOpenLoad2(aastring):
     aastring = aastring.replace("(ﾟДﾟ)[ﾟεﾟ]+(oﾟｰﾟo)+ ((c^_^o)-(c^_^o))+ (-~0)+ (ﾟДﾟ) ['c']+ (-~-~1)+","")
     aastring = aastring.replace("((ﾟｰﾟ) + (ﾟｰﾟ) + (ﾟΘﾟ))", "9")
     aastring = aastring.replace("((ﾟｰﾟ) + (ﾟｰﾟ))","8")
@@ -721,8 +727,17 @@ def decodeOpenLoad(html):
         decodestring = decodestring.replace("+","")
         decodestring = decodestring.replace("\"","")
         videourl = re.search(r"(http[^\}]+)", decodestring, re.DOTALL | re.IGNORECASE).group(1)
+        videourl = videourl.replace("https","http")
     else:
-        videourl = re.search(r"vr\s?=\s?\"|'([^\"']+)", decodestring, re.DOTALL | re.IGNORECASE).group(1)
+        return decodestring
+        
+    UA = 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:39.0) Gecko/20100101 Firefox/39.0'
+    headers = {'User-Agent': UA }
+    
+    req = urllib2.Request(videourl,None,headers)
+    res = urllib2.urlopen(req)
+    videourl = res.geturl()
+    
     
     return videourl
 

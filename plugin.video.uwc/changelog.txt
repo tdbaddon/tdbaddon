@@ -1,3 +1,19 @@
+[B]Version 1.1.20[/B]
+Fixed: Pornhive
+
+
+[B]Version 1.1.19[/B]
+Fixed: Better Openload Fix
+
+
+[B]Version 1.1.18[/B]
+Fixed: Openload
+
+
+[B]Version 1.1.17[/B]
+Fixed: Sexix
+
+
 [B]Version 1.1.16[/B]
 Fixed: Jetload
 Added: Streamdefence support for watchxxxfree

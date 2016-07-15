@@ -35,12 +35,12 @@ def PHMain():
 
 def PHList(url):
     listhtml = utils.getHtml(url, '')
-    match = re.compile('panel-img">.*?<a href="([^"]+)" title="([^"]+)".*?src="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(listhtml)
-    for videopage, name, img in match:
+    match = re.compile(r'panel-img">\s+<a href="([^"]+)"><img data-src="([^"]+)".*?alt="([^"]+)', re.DOTALL | re.IGNORECASE).findall(listhtml)
+    for videopage, img, name in match:
         name = utils.cleantext(name)
         utils.addDownLink(name, videopage, 72, img, '')
     try:
-        nextp=re.compile('<a href="([^"]+)">Next', re.DOTALL | re.IGNORECASE).findall(listhtml)
+        nextp=re.compile('<a href="([^"]+)"[^>]+>Next', re.DOTALL | re.IGNORECASE).findall(listhtml)
         utils.addDir('Next Page', nextp[0],71,'')
     except: pass
     xbmcplugin.endOfDirectory(utils.addon_handle)
@@ -69,9 +69,9 @@ def PHCat(url):
 def PHVideo(url, name, download=None):
     progress.create('Play video', 'Searching videofile.')
     progress.update( 10, "", "Loading video page", "" )
-    Supported_hosts = ['Openload.io', 'StreamCloud', 'NowVideo', 'www.nowvideo.sx', 'FlashX', 'www.flashx.tv', 'streamcloud.eu', 'streamin.to', 'videowood.tv', 'www.keeplinks.eu']
+    Supported_hosts = ['Openload.io', 'StreamCloud', 'NowVideo', 'www.nowvideo.sx', 'FlashX', 'www.flashx.tv', 'streamcloud.eu', 'streamin.to', 'videowood.tv', 'www.keeplinks.eu', 'openload.co']
     videopage = utils.getHtml(url, '')
-    match = re.compile(r'<li id="link-([^"]+).*?xs-12">\s+Watch it on ([\w\.]+)', re.DOTALL | re.IGNORECASE).findall(videopage)
+    match = re.compile(r'data-id="([^"]+)" target="_blank" title="Watch it on ([\w.]+)', re.DOTALL | re.IGNORECASE).findall(videopage)
     if len(match) > 1:
         sites = []
         vidurls = []
@@ -103,7 +103,7 @@ def PHVideo(url, name, download=None):
     elif sitename == "NowVideo" or sitename == "www.nowvideo.sx":
         progress.update( 30, "", "Getting NowVideo", "" )
         playurl = getNowVideo(outurl)        
-    elif "Openload" in sitename:
+    elif "penload" in sitename:
         progress.update( 30, "", "Getting Openload", "" )
         progress.close()
         utils.PLAYVIDEO(outurl, name, download)
@@ -185,7 +185,7 @@ def getStreamCloud(url):
         form_values[name] = value.replace("download1","download2")
     progress.update( 60, "", "Grabbing video file", "" )    
     newscpage = utils.postHtml(scpage, form_data=form_values)
-    videourl = re.compile('file: "(.+?)",', re.DOTALL | re.IGNORECASE).findall(newscpage)
+    videourl = re.compile('file:\s*"(.+?)",', re.DOTALL | re.IGNORECASE).findall(newscpage)
     progress.update( 80, "", "Returning video file", "" )  
     return videourl[0]
 
