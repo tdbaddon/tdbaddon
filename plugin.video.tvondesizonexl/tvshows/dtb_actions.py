@@ -32,7 +32,7 @@ import xbmc  # @UnresolvedImport
 import xbmcgui  # @UnresolvedImport
 from xoze.context import AddonContext, SnapVideo
 from xoze.snapvideo import WatchVideo2US, VideoWeed, CloudEC, LetWatch, PlayU, \
-    Playwire
+    TVLogy, Playwire
 from xoze.utils import file, http, jsonfile
 from xoze.utils.cache import CacheManager
 from xoze.utils.http import HttpClient

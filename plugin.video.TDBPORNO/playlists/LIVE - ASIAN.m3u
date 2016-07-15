@@ -88,9 +88,6 @@ rtmp://edge2.everyon.tv/etv2sb/pld10769
 #EXTINF:0,PLAYY 
 rtmp://edge2.everyon.tv/etv2sb/phd10769
 
-#EXTINF:0,PLAYY 
-http://hyper.de1-eu.com:8000/live/samsam/samsam/5735.ts
-
 #EXTINF:0,RED ON 10060
 0
 

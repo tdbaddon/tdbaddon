@@ -14,7 +14,7 @@ http://mp3uplink.duplexfx.com:8012
 http://205.164.62.15:6900
 
 #EXTINF:0,Hit Station FM 
-0
+http://www.hitstation.fm/winamp.pls
 
 #EXTINF:0,Maxi 80 Radio 
 http://maxi80.com/ecoute/maxi80.m3u
@@ -38,7 +38,7 @@ http://rouge-80s.ice.infomaniak.ch/rouge-80s-64.aac
 http://rouge-90.ice.infomaniak.ch/rouge-90-64.aac
 
 #EXTINF:0,SomaFM Underground 80s 
-0
+http://somafm.com/u80s256.pls
 
 #EXTINF:0,Star 107.9 
-0
+http://hemnos.cdnstream.com/1100_128?cb=287311.mp3

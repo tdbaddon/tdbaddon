@@ -5,10 +5,10 @@
 http://streaming.radionomy.com/AbbaTrax
 
 #EXTINF:0,ACDC
-0
+http://87.117.202.97:9436/listen.pls
 
 #EXTINF:0,Aerosmith
-0
+http://cd09.64.aac.jango.com/17/03/33/1703339493.m4a
 
 #EXTINF:0,Ariana Grande
 http://95.81.155.24/10081/nrj_161132.mp3
@@ -20,7 +20,7 @@ http://95.81.155.24/10081/nrj_161132.mp3
 0
 
 #EXTINF:0,Beyonce
-0
+http://185.52.127.132/fr/31189/mp3_128.mp3
 
 #EXTINF:0,Bob Dylan 
 0

@@ -35,7 +35,7 @@ http://stream1.laut.fm/danceradio-nrw
 http://stream.electroradio.fm/stream
 
 #EXTINF:0,ETN Progressive 
-0
+http://www.etn.fm:8200/house-mp3-320
 
 #EXTINF:0, FG DJ Radio 
 http://radiofg.impek.com/fg

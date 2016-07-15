@@ -20,13 +20,13 @@ http://radio.bigupradio.com:8005/
 http://173.244.215.163:8470/
 
 #EXTINF:0,JamRockOne 
-0
+http://jroradio.com:8000/stream1/;sound.mp3
 
 #EXTINF:0,NRJ Reggae 
-0
+http://185.52.127.131/fr/30075/mp3_128.mp3
 
 #EXTINF:0,NRJ Reggaeton 
-0
+http://185.52.127.131/fr/31023/mp3_128.mp3
 
 #EXTINF:0,RadioTunes Roots Reggae 
 http://pub7.radiotunes.com/radiotunes_rootsreggae
@@ -35,7 +35,7 @@ http://pub7.radiotunes.com/radiotunes_rootsreggae
 http://ais.rastamusic.com/rastamusic.mp3
 
 #EXTINF:0,Reggae141 
-0
+http://hestia2.cdnstream.com/1301_128
 
 #EXTINF:0,Rouge Reggae 
 http://rouge-reggae.ice.infomaniak.ch/rouge-reggae-64.aac

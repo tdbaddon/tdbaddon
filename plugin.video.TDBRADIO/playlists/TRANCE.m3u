@@ -5,7 +5,7 @@
 http://173.192.207.51:8062
 
 #EXTINF:0,AH FM Leading Trance Radio 
-0
+http://ah.fm/192k.m3u
 
 #EXTINF:0,Discover Trance Radio 
 http://195.12.29.146/
@@ -17,7 +17,7 @@ http://komplex2.psyradio.org:8040/
 http://mp3.stream.tb-group.fm/hb.mp3?
 
 #EXTINF:0,RauteMusik FM 
-0
+http://79.141.174.216/club
 
 #EXTINF:0,Techno 4 Ever 
 http://out03.t4e.dj/main_high.mp3

@@ -7,7 +7,7 @@ http://webradio.antennevorarlberg.at/lounge
 http://sc1c-sjc.1.fm:8010/
 
 #EXTINF:0,2000FM Chill Out 
-0
+http://bigrradio.cdnstream1.com/5102_128?cb=248023.mp3
 
 #EXTINF:0,Antenne Bayern Chillout 
 http://webradio.antennevorarlberg.at/lounge
@@ -73,7 +73,7 @@ http://95.81.155.20/5620/nrj_110007.mp3
 http://sl256.hnux.com/
 
 #EXTINF:0,Soma FM Lush 
-0
+https://somafm.com/lush.pls
 
 #EXTINF:0,The Green Room 
 0

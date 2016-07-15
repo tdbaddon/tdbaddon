@@ -14,7 +14,7 @@ http://streamerepsilon.jazz.fm:8000
 http://204.2.199.166:80/7/288/80873/v1/rogers.akacast.akamaistream.net/tor925
 
 #EXTINF:0,93.5 THE FLOW
-0
+http://8293.live.streamtheworld.com:80/CFXJFMAAC_SC
 
 #EXTINF:0,94.1 CBC RADIO
 http://provisioning.streamtheworld.com/pls/CBC_R1_TOR_L.pls
@@ -26,7 +26,7 @@ http://live.leanstream.co/CINGFM-MP3
 http://live.leanstream.co/CJWFFM?blackburn_web&type=.flv&uid=93da8e01-9c2a-48c8-be81-9651b5c654dd
 
 #EXTINF:0,95.9 KX 96
-0
+http://15123.live.streamtheworld.com:80/CJKXFMAAC_SC
 
 #EXTINF:0,96.3 CLASSICAL
 http://stream.classical963fm.com:8017/;stream.mp3 
@@ -35,7 +35,7 @@ http://stream.classical963fm.com:8017/;stream.mp3
 http://cal969.akacast.akamaistream.net/7/338/80899/v1/rogers.akacast.akamaistream.net/cal969
 
 #EXTINF:0,97.7 HTZ FM 
-0
+http://13573.live.streamtheworld.com:80/CHTZFMAAC_SC
 
 #EXTINF:0,99.7 BOOM FM
 http://live.leanstream.co/CJOTFM-MP3?type=.mp3/;stream.mp3
@@ -47,7 +47,7 @@ http://tor981.akacast.akamaistream.net/7/550/80872/v1/rogers.akacast.akamaistrea
 http://50.22.253.45:8000/ckfg-fm
 
 #EXTINF:0,99.9 VIRGIN RADIO 
-0
+http://15723.live.streamtheworld.com:80/CKFMFMAAC_SC
 
 #EXTINF:0,100.7 CHIN FM
 http://ice7.securenetsystems.net/CHINFM?type=.flv
@@ -62,7 +62,7 @@ http://live.leanstream.co/CFNYFM
 http://sc10.spacialnet.com:23932/
 
 #EXTINF:0,102.9 KLITE FM 
-0
+http://14553.live.streamtheworld.com/CKLHFMAAC
 
 #EXTINF:0,103.5 Z1035 FM 
 http://ice8.securenetsystems.net/CIDC
@@ -74,16 +74,16 @@ http://s2.stationplaylist.com:8110/
 http://ice7.securenetsystems.net/CIRR
 
 #EXTINF:0,104.5 CHUM FM 
-0
+http://15723.live.streamtheworld.com/CHUMFMAAC
 
 #EXTINF:0,105.1 COUNTRY FM
-0
+http://7319.live.streamtheworld.com/CKQMFMAAC
 
 #EXTINF:0,105.7 EZ ROCK 
-0
+http://13683.live.streamtheworld.com/CHREFMAAC
 
 #EXTINF:0,105.9 KICX
-0
+http://8673.live.streamtheworld.com/CICXFMAAC
 
 #EXTINF:0,106.1 MAGIC
 http://live.leanstream.co/CIMJFM-MP3?tunein
@@ -107,8 +107,8 @@ http://tor680.akacast.akamaistream.net/7/941/86884/v1/rogers.akacast.akamaistrea
 http://199.27.180.216:8015
 
 #EXTINF:0,820 FUNNY
-0
+http://5833.live.streamtheworld.com/CHAMAMAAC
 
 #EXTINF:0,1010 NEWSTALK 
-0
+http://8673.live.streamtheworld.com:80/CFRBAMAAC_SC
 

@@ -281,6 +281,13 @@ dc={
 "miami rhythm 98" : "9002",
 "the freestyle radio" : "9003",
 "wbmx freestyle classics" : "9004",
+"freestyleforever" : "9005",
+"radio na balada" : "9006",
+"jammerstream freestyle" : "9007",
+"00000000000000000000000000000" : "9008",
+"00000000000000000000000000000" : "9009",
+"00000000000000000000000000000" : "9010",
+
 
 "HIPHOP & URBAN" : "0000000000",
 "nrj classic rap" : "10000",

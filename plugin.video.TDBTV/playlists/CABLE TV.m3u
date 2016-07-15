@@ -1,8 +1,8 @@
 ﻿#EXTM3U
 
 #EXTINF:0,HOW TO CHANGE AUDIO LANGUAGE
-http://www.support.tcomputers.ca/-videos/changeaudio.mp4
---------------------------------------------------------------------------------------------------------------
+http://www.videos.tcomputers.ca/HowTo-ChangeAudioLanguage.mp4
+--------------------------------------------------------------------------------------------------------
 #EXTINF:0,Check Back Soon
 0
 
@@ -127,13 +127,13 @@ http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/1323.ts
 0
 
 #EXTINF:0,Disney Channel 
-http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/1316.ts
+0
 
 #EXTINF:0,Disney Junior 
-http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/1315.ts
+0
 
 #EXTINF:0,Disney XD 
-http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/1314.ts
+0
 
 #EXTINF:0,DIY Network 
 0
@@ -244,7 +244,7 @@ rtmp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:468p500kB31?b?b*t$
 http://ios.streamserver01.com:8080/ShowcaseTV/mystream.m3u8
 
 #EXTINF:0,ITV 1 
-http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/811.ts
+0
 
 #EXTINF:0,ITV 2 
 0
@@ -328,7 +328,7 @@ http://llnw.live.qvc.simplestream.com/hera/remote/qvcuk_primary_sdi6/3/prog_inde
 http://llnw.live.qvc.simplestream.com/hera/remote/qvcuk_primary_sdi8/3/prog_index.m3u8
 
 #EXTINF:0,Showtime 
-http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/555.ts
+0
 
 #EXTINF:0,Sky 1 
 http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/1906.ts

@@ -2,13 +2,13 @@
 
 
 #EXTINF:0,Afterhours Djs 
-0
+http://ahdjs.net/listen.pls
 
 #EXTINF:0,Alpha Radio 
-0
+http://www.alpharadio.bg/mp3high.m3u
 
 #EXTINF:0,Black Martini Radio 
-0
+http://s2.viastreaming.net:6285
 
 #EXTINF:0,Cavo Paradiso 
 http://s5.onweb.gr:8488
@@ -23,7 +23,7 @@ http://195.66.134.41:80
 http://pub5.di.fm/di_discohouse_aacplus
 
 #EXTINF:0,DI Funky House
-0
+http://pub1.diforfree.org:8000/di_funkyhouse_hi
 
 #EXTINF:0,DI House
 http://pub1.diforfree.org:8000/di_house_hi
@@ -44,7 +44,7 @@ http://r1.hirschmilch.de:9080
 http://hirschmilch.de:7000/prog-house.mp3
 
 #EXTINF:0,Ibiza House Music
-0
+http://www.ibizaglobalradio.com/player/?pl=winamp&c=IbizaGlobalRadio
 
 #EXTINF:0,Laser FM
 http://listen.radionomy.com/laser-fm-europe.m3u

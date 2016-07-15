@@ -578,8 +578,8 @@ Plugin by @koderdude</description>
 
 <addon id="plugin.video.BES-IPTV"
        name="BES-IPTV"
-       version="3.1.3"
-       provider-name="SayDinX">
+       version="3.1.6"
+       provider-name="SayDinX.F.BESA">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
         <import addon="script.module.beautifulsoup" version="3.2.1"/>
@@ -587,22 +587,23 @@ Plugin by @koderdude</description>
         <import addon="script.module.beautifulsoup4" />
         <import addon="script.module.requests" />
         <import addon="script.module.httplib2" />
+		<import addon="script.module.liveresolver" optional="true"/>
         <import addon="script.module.youtube.dl" optional="true"/>
         <import addon="plugin.video.youtube" />
         <import addon="script.module.urlresolver" optional="true"/>
         <import addon="script.module.simplejson" />
-		 <import addon="script.module.livestreamer" optional="true"/>
+		<import addon="script.module.livestreamer" optional="true"/>
     </requires>
     <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>video</provides>
+    <provides>video</provides>
     </extension>
     <extension point="xbmc.addon.metadata">
-        <summary>[COLOR red]BES[/COLOR][COLOR blue] IPTV[/COLOR] -brought to you by: SayDinX  </summary>
+    <summary>[COLOR red]BES[/COLOR][COLOR blue] IPTV[/COLOR] -brought to you by: S.X  </summary>
     <description>
-        1.For questions about BES-IPTV visit us @ FB.com/besiptv
-        2.Disclaimer: This add-on is made for personal use only. DMCA Reports, Please send to FB.COM/besiptv.
+        1.For questions about BES-IPTV visit us @ FB.com/BESiptv
+        2.Disclaimer: This add-on is made for personal use only. DMCA Reports, Please send to FB.COM/BESiptv.
     </description>
-        <platform>all</platform>
+    <platform>all</platform>
     </extension>
 </addon>
 
@@ -1478,7 +1479,7 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
   </extension>
 </addon>
 
-<addon id="plugin.video.mdm4u" name="M4U" version="1.1.0" provider-name="Mucky Duck">
+<addon id="plugin.video.mdm4u" name="M4U" version="1.1.1" provider-name="Mucky Duck">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.addon.common" />
@@ -1491,7 +1492,7 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
   </extension>
   <extension point="xbmc.addon.metadata">
     <summary lang="en">Stream content From The m4ufree.info WebSite</summary>
-    <description lang="en">Stream Content From The m4ufree.info WebSite</description>
+    <description lang="en">This Addon Will Delete Itself Unless You Have http://muckysmediaportal4kodi.ml In File Manager. Stream Content From The m4ufree.info WebSite</description>
 	<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon or have any affiliation with the website owners</disclaimer>
     <platform>all</platform>
   </extension>
@@ -2104,7 +2105,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBEUROTV"
        name="TDB EURO TV"
-       version="2.38"
+       version="2.39"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -2123,7 +2124,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBPORNO"
        name="TDB PORNO"
-       version="2.02"
+       version="2.03"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -2142,7 +2143,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBRADIO"
        name="TDB RADIO"
-       version="1.36"
+       version="1.37"
        provider-name="TDB">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -2160,7 +2161,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBSPANISHTV"
        name="TDB SPANISH TV"
-       version="1.46"
+       version="1.47"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -2179,7 +2180,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="3.99"
+       version="4.00"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -2348,7 +2349,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.tvondesizonexl" name="TV on DESI ZONE" version="2.8.10"
+<addon id="plugin.video.tvondesizonexl" name="TV on DESI ZONE" version="2.8.11"
 	provider-name="ajdeveloped/jchirag">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
@@ -2498,7 +2499,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon
   id="plugin.video.videodevil"
-  version="1.7.135"
+  version="1.7.136"
   name="VideoDevil"
   provider-name="xbmc-adult">
   <requires>

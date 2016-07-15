@@ -1,8 +1,8 @@
 ﻿#EXTM3U
 
 #EXTINF:0,HOW TO CHANGE AUDIO LANGUAGE
-http://www.support.tcomputers.ca/-videos/changeaudio.mp4
---------------------------------------------------------------------------------------------------------------
+http://www.videos.tcomputers.ca/HowTo-ChangeAudioLanguage.mp4
+--------------------------------------------------------------------------------------------------------
 #EXTINF:0,Check Back Soon
 0
 
@@ -14,9 +14,6 @@ http://www.support.tcomputers.ca/-videos/changeaudio.mp4
 
 #EXTINF:0,Animal Atlas
 0
-
-#EXTINF:0,Animal Planet 
-http://orbit-iptv.com:2500/live/mzyqqgFxNn/jI7iLVyCb7/1942.ts
 
 #EXTINF:0,Animal Planet 
 http://topiptv.net:5890/live/nostalgia/nostalgia/288.ts
@@ -40,7 +37,7 @@ http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/1322.ts
 0
 
 #EXTINF:0,Discovery Channel
-http://iptv.re:80/live/iptv-salah/iptv-salah/2376.ts
+0
 
 #EXTINF:0,Discovery H&H
 http://www.q7t1.com:8000/live/sYKADDaJs2/SnoQc6v4hZ/1063.ts
@@ -50,9 +47,6 @@ http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/626.ts
 
 #EXTINF:0,Discovery History 
 http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/1320.ts
-
-#EXTINF:0,Discovery History 
-http://orbital.exabytetv.info:2500/live/hannes/hannes/1939.ts
 
 #EXTINF:0,Discovery History 
 http://topiptv.net:5890/live/nostalgia/nostalgia/292.ts
@@ -70,12 +64,6 @@ http://www.q7t1.com:8000/live/sYKADDaJs2/SnoQc6v4hZ/1076.ts
 http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/620.ts
 
 #EXTINF:0,Discovery Science 
-http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/1327.ts
-
-#EXTINF:0,Discovery Science 
-http://orbital.exabytetv.info:2500/live/hannes/hannes/1937.ts
-
-#EXTINF:0,Discovery Science 
 http://topiptv.net:5890/live/nostalgia/nostalgia/291.ts
 
 #EXTINF:0,Discovery Shed
@@ -89,9 +77,6 @@ http://orbital.exabytetv.info:2500/live/hannes/hannes/1936.ts
 
 #EXTINF:0,Discovery Turbo 
 http://www.q7t1.com:8000/live/sYKADDaJs2/SnoQc6v4hZ/1058.ts
-
-#EXTINF:0,Discovery World 
-http://27.67.50.6:18080/168.m3u8
 
 #EXTINF:0,Discovery World 
 http://187.188.79.2/wp/vod.cdn.iutpcdn.com/LIVE/H01/CANAL356/PROFILE03.m3u8
@@ -126,17 +111,11 @@ http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/587.ts
 #EXTINF:0,History Channel 
 http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/886.ts
 
-#EXTINF:0,History Channel 
-http://iptv.re:80/live/iptv-salah/iptv-salah/2375.ts
-
 #EXTINF:0,History Channel 2
-http://orbit-iptv.com:2500/live/mzyqqgFxNn/jI7iLVyCb7/2168.ts
+0
 
 #EXTINF:0,Investigation Discovery 
 http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/627.ts
-
-#EXTINF:0,Investigation Discovery 
-http://orbital.exabytetv.info:2500/live/hannes/hannes/1938.ts
 
 #EXTINF:0,Investigation Discovery 
 http://www.q7t1.com:8000/live/sYKADDaJs2/SnoQc6v4hZ/1037.ts
@@ -160,28 +139,10 @@ http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/57.ts
 http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/1306.ts
 
 #EXTINF:0,Nat Geo Wild 
-http://orbit-iptv.com:2500/live/mzyqqgFxNn/jI7iLVyCb7/1941.ts
-
-#EXTINF:0,Nat Geo Wild 
-http://iptv.re:80/live/iptv-salah/iptv-salah/2373.ts
-
-#EXTINF:0,Nat Geo Wild 
 http://topiptv.net:5890/live/nostalgia/nostalgia/807.ts
-
-#EXTINF:0,Nat Geo Wild 
-http://www.q7t1.com:8000/live/sYKADDaJs2/SnoQc6v4hZ/1102.ts
-
-#EXTINF:0,National Geographic 
-http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/249.ts
-
-#EXTINF:0,National Geographic 
-http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/1307.ts
 
 #EXTINF:0,National Geographic 
 http://topiptv.net:5890/live/nostalgia/nostalgia/286.ts
-
-#EXTINF:0,National Geographic 
-http://iptv.re:80/live/iptv-salah/iptv-salah/2010.ts
 
 #EXTINF:0,Nova
 0

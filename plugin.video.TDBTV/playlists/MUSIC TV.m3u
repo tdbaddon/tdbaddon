@@ -124,7 +124,7 @@ rtmp://tst.es.flash.glb.ipercast.net/tst.es-live/live
 http://144.76.2.213:1935/live/livestream/playlist.m3u8
 
 #EXTINF:0,Miami TV Music 
-http://k4.usastreams.com:1935/miamitv/miamitv/chunklist_w128908539.m3u8
+0
 
 #EXTINF:0,MTV 
 0

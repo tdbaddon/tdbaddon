@@ -1,8 +1,8 @@
 ﻿#EXTM3U
 
 #EXTINF:0,HOW TO CHANGE AUDIO LANGUAGE
-http://www.support.tcomputers.ca/-videos/changeaudio.mp4
----------------------------------------------------------------------------------------------------------------
+http://www.videos.tcomputers.ca/HowTo-ChangeAudioLanguage.mp4
+--------------------------------------------------------------------------------------------------------
 #EXTINF:0,Check Back Soon
 0
 
@@ -73,7 +73,7 @@ http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/166.ts
 http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/902.ts
 
 #EXTINF:0,ESPN 2
-http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/1522.ts
+0
 
 #EXTINF:0,ESPN News 
 http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/1523.ts
@@ -103,7 +103,7 @@ http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/50.ts
 0
 
 #EXTINF:0,Fox Sports 
-http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/1511.ts
+0
 
 #EXTINF:0,Fox Sports 1
 0
@@ -136,10 +136,7 @@ mms://100automoto.tv/channel_mercedes
 0
 
 #EXTINF:0,Motorsport 7 
-http://motorsport.hopto.org:8080/
-
-#EXTINF:0,Motorsport 7 
-http://162.248.6.122:8084/
+0
 
 #EXTINF:0,My Combat Channel
 0
@@ -271,7 +268,7 @@ http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/706.ts
 http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/779.ts
 
 #EXTINF:0,Root Sports 
-http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/1524.ts
+0
 
 #EXTINF:0,Setanta Sports 
 http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/709.ts
@@ -299,9 +296,6 @@ http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/753.ts
 
 #EXTINF:0,Sky Sports 3 
 http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/160.ts
-
-#EXTINF:0,Sky Sports 4 
-http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/721.ts
 
 #EXTINF:0,Sky Sports 4 
 http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/781.ts
@@ -361,7 +355,7 @@ http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/670.ts
 http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/662.ts
 
 #EXTINF:0,TSN 2 
-http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/663.ts
+0
 
 #EXTINF:0,TSN 3 
 http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/664.ts

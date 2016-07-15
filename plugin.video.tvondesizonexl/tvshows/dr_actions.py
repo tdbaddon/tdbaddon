@@ -943,7 +943,7 @@ def __prepareVideoLink__(video_link):
         elif re.search('idowatch.php', video_url, flags=re.I) or re.search('idowatch', video_source, flags=re.I):
             new_video_url = 'http://idowatch.net/embed-' + video_id + '-520x400.html'
         elif re.search('tvlogy', video_source, flags=re.I):
-            new_video_url = 'http://tvlogy.com/watch.php?v=' + video_id + '&' 
+            new_video_url = 'http://tvlogy.to/watch.php?v=' + video_id + '&' 
         elif re.search('(youtube|u|yt)(\d*).php', video_url, flags=re.I):
             new_video_url = 'http://www.youtube.com/watch?v=' + video_id + '&'
         elif re.search('mega.co.nz', video_url, flags=re.I):

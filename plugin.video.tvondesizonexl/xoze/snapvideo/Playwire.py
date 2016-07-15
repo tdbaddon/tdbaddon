@@ -35,12 +35,16 @@ def retrieveVideoInfo(video_id):
         video_link = str(jsonObj['src'])
         video_info = re.compile('config.playwire.com/(.+?)/videos/v2/(.+?)/manifest.f4m').findall(video_link)[0]        
         video_link = 'http://cdn.phoenix.intergi.com/' + video_info[0] + '/videos/' + video_info[1] + '/video-sd.mp4?hosting_id=' + video_info[0]
-        img_link = str(jsonObj['poster'])
+        img_link = ""
+        if 'poster' in jsonObj:
+            img_link = str(jsonObj['poster'])
+        else:
+            img_link = 'http://cdn.intergi.com/playwire/playwire-logo-subhed.png'
         name = str(jsonObj['title'])
         video.add_stream_link(STREAM_QUAL_SD, video_link)        
         video.set_stopped(False)
-        video.set_thumb_image(img_link)
-        video.set_name(name)
+        if img_link != "":
+            video.set_thumb_image(img_link)
         
     except Exception, e:
         logging.getLogger().error(e)
