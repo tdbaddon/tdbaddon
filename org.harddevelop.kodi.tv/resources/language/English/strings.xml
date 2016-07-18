@@ -1,0 +1,52 @@
+<strings><!-- plugin title -->
+    <string id="10001">Browse remote channel list</string>
+    <string id="10002">Downloading...</string>
+    <string id="10003">%.2fMB/%.2fMB (%d%%) %.2f Kb/s %s left </string>
+    <string id="10004">Its not possible download the file</string>
+    <string id="10005">Watch streaming</string>
+    <string id="10006">Display by event</string>
+    <string id="10007">Browse by Country</string>
+    <string id="10008">Browse by Genre</string>
+    <string id="10009">Something happened, probably link is down</string>
+
+    <string id="10010">Browse web pages</string>
+    <string id="10011">¡Update available!</string>
+
+    <string id="11010">Yes</string>
+    <string id="11011">No</string>
+    <string id="11012">Confirm</string>
+    <string id="11013">Cancel</string>
+    <string id="11014">Update</string>
+    <string id="11017">Force update</string>
+    <string id="11015">Keep</string>
+    <string id="11016">Choose an option</string>
+
+    <string id="30000">Settings</string>
+    <string id="30001">Remote channel list</string>
+    <string id="30002">XML remote for updates</string>
+    <string id="30003">Enable alternative channels (more channels)</string>
+    <string id="30004">Confirm ffmpeg patch (in some providers is required)</string>
+    <string id="30005">Use local patch for special servers</string>
+    <string id="30006">Install universal patch</string>
+
+    <string id="30010">Development</string>
+    <string id="30011">Debug</string>
+    <string id="30012">Download and install plexus (modded to work)</string>
+
+    <string id="30020">SPLive</string>
+    <string id="30021">Channels list</string>
+    <string id="30022">Enable SPlive app lists (experimental)</string>
+
+    <string id="30031">Online decoder</string>
+
+    <string id="30040">Plexus</string>
+    <string id="30041">Enable channels managed by plexus (experimental)</string>
+    <string id="30042">Download and install plexus (experimental)</string>
+    <string id="30043">Download and install quasar (experimental)</string>
+
+    <string id="30050">Do you want to install plexus? The plexus install require additional libraries, if you have installed a previous version it's not going to be overwritten.</string>
+    <string id="30051">Addon installed, please run it into programs addons to configure and launch wizard. If it doesn't appear please restart Kodi.</string>
+    <string id="30052">Do you want to install quasar? If you have installed a previous version it's not going to be overwritten.</string>
+
+    <string id="30060">Patch installed. Please restart Kodi to take effect</string>
+</strings>

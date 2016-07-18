@@ -2,13 +2,18 @@
 Castaway sports addon by [COLOR yellow]@natko1412[/COLOR]
 ====================================================================
 
+v0.2.7 [16-Jul-2016]
+-add vaughnlive.tv (login in addon settings to view followed channels)
+-add racing4everyone.eu
+-remove vipbox
+-update MyLists API
 
 v0.2.6.1 [7-Jul-2016]
+-fix some bugs
 -fix arenavision
 -remove addon.common from source modules
 -fix fullmatchtv
 -fix lmshows
--fix some bugs
 
 v0.2.5 [25-Jun-2016]
 -fix userscloud resolver

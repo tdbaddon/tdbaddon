@@ -84,7 +84,7 @@ class main():
             try:
                 info = ev.findAll('td')
                 sport = info[0].getText()
-                title = info[1].getText().replace('vs',' vs ')
+                title = info[1].getText().replace('vs',' vs ').replace('Play Now!','')
                 url = info[1].find('a')['href']
                 timetxt = info[2].find('span')['title']
                 live = info[2].getText()

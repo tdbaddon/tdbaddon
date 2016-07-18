@@ -81,7 +81,8 @@ class main():
                 health = re.findall('&nbsp;(\d+)',link)[0]
                 streamer_tmp,video,eid,lid,ci,si,jj,url = re.findall('show_webplayer\(\'(\w+)\',\s*\'(\w+)\',\s*(\w+),\s*(\w+),\s*(\w+),\s*(\w+),\s*\'(\w+)\'\).+?href="(.+?)">',link)[0]
                 title = "%s (health %s%%) %s %s"%(streamer_tmp,health,lang, bitrate)
-                new.append((url,title.replace('ifr','flash')))
+                if 'cast3d' not in title:
+                    new.append((url,title.replace('ifr','flash')))
             except:
                 pass
         return new

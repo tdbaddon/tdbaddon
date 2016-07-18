@@ -36,6 +36,7 @@ class main():
 		regex='<a href="([^"]+)" class="clearfix" onclick="return false;">\s*<img class="channel_logo" src="([^"]+)" title="([^"]+)'
 		channels=re.compile(regex).findall(html)
 		events = self.__prepare_channels(channels)
+		events.sort(key=lambda x: x[1])
 		return events
 
 	def __prepare_channels(self,channels):

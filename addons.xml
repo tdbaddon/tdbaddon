@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addons>
+<addon id="org.harddevelop.kodi.tv"
+	name="TV BOX"
+	version="0.0.9"
+	provider-name="bit" >
+	<requires>
+		<import addon="xbmc.python" version="2.1.0" />
+		<import addon="script.module.parsedom" version="0.9.1"/>
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="addon.py">
+		<provides>video</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<platform>all</platform>
+		<language>en</language>
+		<summary lang="en">TV BOX channels</summary>
+		<description lang="en">TV BOX channels client for browse and see online channels.</description>
+		<description lang="es">Cliente de canales TV BOX para navegar y ver canales online.</description>
+	</extension>
+</addon>
+
 <addon id="plugin.audio.dipremium" name="DI Premium" version="2.0" provider-name="NVTTeam">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -456,10 +476,10 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 </addon>
 
 <!--suppress ALL -->
-<addon id="plugin.video.1channel" version="2.5.64" name="1Channel" provider-name="Bstrdsmkr, tuxen, tknorris">
+<addon id="plugin.video.1channel" version="2.5.72" name="1Channel" provider-name="Bstrdsmkr, tuxen, tknorris">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
-        <import addon="script.module.urlresolver" version="2.2.0"/>
+        <import addon="script.module.urlresolver" version="3.0"/>
         <import addon="script.module.addon.common" version="2.0.0" />
         <import addon="script.module.metahandler" version="2.6.0" />
         <import addon="script.module.myconnpy" version="1.1.6" />
@@ -676,7 +696,7 @@ Plugin by @koderdude</description>
   </extension>
 </addon>
 
-<addon id="plugin.video.castaway" name="Castaway" version="0.2.6.1" provider-name="natko1412">
+<addon id="plugin.video.castaway" name="Castaway" version="0.2.7" provider-name="natko1412">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0"/>
 		<import addon="script.module.beautifulsoup" version="3.2.1"/>
@@ -684,7 +704,6 @@ Plugin by @koderdude</description>
     	<import addon="script.module.addon.common" />
 		<import addon="script.module.urlresolver" />
 		<import addon="script.module.liveresolver"  />
-		<import addon="script.module.livestreamer" />
 
 
 	</requires>
@@ -2592,6 +2611,27 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
+<addon id="plugin.video.wwe-on-demand" name="[COLOR gold][B]WWE ON DEMAND[/B] [/COLOR]" version="1.6" provider-name="@PBear90">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.simplejson" version="3.3.0"/>
+    <import addon="script.module.urlresolver"  version="2.1.2"/>
+    <import addon="script.module.liveresolver" version="0.1.24"/>
+    <import addon="script.common.plugin.cache" version="2.5.2"/>
+
+    <import addon="script.module.metahandler" version="2.5.1"/>
+    <import addon="plugin.video.youtube" optional="true" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">WWE ON DEMAND </summary>
+    <description lang="en">The author of this addon does not own nor is affiliated in any way with the content providers , But is providing a 3rd party way to give access to all links provided</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
 <addon id="plugin.video.wweonline" name="WWE Online" version="0.1.8" provider-name="[COLOR blue]X[/COLOR]unity[COLOR blue]T[/COLOR]alk">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -2882,17 +2922,28 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
-<addon id="repository.communityrepo" name="The Community Repository" version="1.7" provider-name="The @KodiCommunity Team">
+<addon id="repository.communityrepo" name="The Community Repository" version="9.0" provider-name="The @CommunityRepo Team">
+
 	<extension point="xbmc.addon.repository" name="The Community Repository">
-		<info compressed="false">http://cloud.appnettv.com/Kodienthusiast/privateuse/RepoPlugins/addons.xml</info>
-		<checksum>http://cloud.appnettv.com/Kodienthusiast/privateuse/RepoPlugins/addons.xml.md5</checksum>
-		<datadir zip="true">http://cloud.appnettv.com/Kodienthusiast/privateuse/RepoPlugins/</datadir>
+
+		<info compressed="false">http://repo.kodi-pirates.tv/comrepo/RepoPlugins/addons.xml</info>
+
+		<checksum>http://repo.kodi-pirates.tv/comrepo/RepoPlugins/addons.xml.md5</checksum>
+
+		<datadir zip="true">http://repo.kodi-pirates.tv/comrepo/RepoPlugins/</datadir>
+
 	</extension>
+
 	<extension point="xbmc.addon.metadata">
+
 		<summary>@Kodicommunity Repository</summary>
-		<description>", we bring you "The Community Repository" for all things from the @kodicommunity team currently hold skins and community wizards" massive thanks to appnetv for hosting the repo and also a special thanks to these guys @nathancrumpler1 (crumplestein) @kodicommunity @xeditz @dickothegeordie @hmemar #itonlygetsbetter @kodienthusiasts @nathancrumpler1 @kodicommunity</description>
+
+		<description>" "The Community Repository" addon, skin and wizard host, contact for details on how to add your content @communityrepo</description>
+
 		<platform>all</platform>
+
 	</extension>
+
 </addon>
 
 <addon id="repository.dokinl" name="DOKITV.NL Repository" version="1.0.2" provider-name="DOKITV.NL">
@@ -3252,6 +3303,20 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 		<disclaimer></disclaimer>
 		<platform>all</platform>
 	</extension>
+</addon>
+
+<addon id="repository.schismtv.official" name="[COLOR orange][B]SchisM TV[/B][/COLOR] Builds Repository" version="1.0" provider-name="SchisM">
+    <extension point="xbmc.addon.repository" name="schism tv repository">
+        <info compressed="false">http://github.com/schismtv/officialrepo/raw/master/addons.xml</info>
+        <checksum>http://github.com/schismtv/officialrepo/raw/master/addons.xml.md5</checksum>
+        <datadir zip="true">http://github.com/schismtv/officialrepo/raw/master/zips/</datadir>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary>This is used FOR BUILDS ONLY</summary>
+        <description>BUILDS ONLY FROM SCHISM TV - THIS REPO CONTAINS UPDATES FOR THE SCHISM TV BUILDS
+        </description>
+        <platform>all</platform>
+    </extension>
 </addon>
 
 <addon id="repository.shani" name="Shanis Addon Repository" version="2.8" provider-name="Shani">

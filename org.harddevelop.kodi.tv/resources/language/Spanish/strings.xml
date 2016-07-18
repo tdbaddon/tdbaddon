@@ -1,0 +1,52 @@
+<strings><!-- plugin title -->
+    <string id="10001">Listas de canales detectados</string>
+    <string id="10002">Descargando...</string>
+    <string id="10003">%.2fMB/%.2fMB (%d%%) %.2f Kb/s %s quedan </string>
+    <string id="10004">No es posible descargar el fichero</string>
+    <string id="10005">Ver canal</string>
+    <string id="10006">Mostrar por evento</string>
+    <string id="10007">Mostrar por País</string>
+    <string id="10008">Mostrar por Género</string>
+    <string id="10009">Algo ha ocurrido, probablemente el link esté caido</string>
+
+    <string id="10010">Navegar por páginas web</string>
+    <string id="10011">¡Actualización disponible!</string>
+
+    <string id="11010">Sí</string>
+    <string id="11011">No</string>
+    <string id="11012">Confirmar</string>
+    <string id="11013">Cancelar</string>
+    <string id="11014">Actualizar</string>
+    <string id="11017">Forzar actualización</string>
+    <string id="11015">Mantener</string>
+    <string id="11016">Elija una opción</string>
+
+    <string id="30000">Opciones</string>
+    <string id="30001">Lista remota de canales</string>
+    <string id="30002">Actualizador XML remoto</string>
+    <string id="30003">Habilitar canales alternativos (más canales)</string>
+    <string id="30004">Confirmar ffmpeg patch (algunos proveedores lo requieren)</string>
+    <string id="30005">Usar local patch para servidores especiales</string>
+    <string id="30006">Instalar parche universal</string>
+
+    <string id="30010">Desarrollo</string>
+    <string id="30011">Debug</string>
+    <string id="30012">Descargar e instalar plexus (modificado para funcionar)</string>
+
+    <string id="30020">SPLive</string>
+    <string id="30021">Lista de canales</string>
+    <string id="30022">Habilitar listas del programa splive (experimental)</string>
+
+    <string id="30031">Decoder online</string>
+
+    <string id="30040">Plexus</string>
+    <string id="30041">Habilitar canales gestionados por plexus (experimental)</string>
+    <string id="30042">Descargar e instalar plexus (experimental)</string>
+    <string id="30043">Descargar e instalar quasar (experimental)</string>
+
+    <string id="30050">¿Desea instalar plexus? La instalación de plexus sobreescribirá las dependencias en su sistema, si ha instalado una versión anterior será sobreescrita.</string>
+    <string id="30051">Addon instalado, por favor ejecútelo en addons de programas para configurar y lanzar el asistente. Si no aparece por favor reinicie Kodi. Si aparece y tiene problemas pruebe a deshabilitar y habilitar la extensión o reinstalar.</string>
+    <string id="30052">¿Desea instalar quasar? Si ha instalado una versión anterior será sobreescrita.</string>
+
+    <string id="30060">Parche instalado. Por favor, reinicie Kodi para que los cambios tengan efecto</string>
+</strings>

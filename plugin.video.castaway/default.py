@@ -1,5 +1,5 @@
 from __future__ import unicode_literals
-from addon.common.addon import Addon
+from resources.lib.modules.addon import Addon
 import sys,os
 import urlparse,urllib
 import xbmc, xbmcgui, xbmcplugin, xbmcaddon

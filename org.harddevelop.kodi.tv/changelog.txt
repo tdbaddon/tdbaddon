@@ -1,0 +1,28 @@
+0.0.1 Initial Release
+Added support for updates, open remote list and manage xml formatted structures.
+Added support for multilanguage
+
+0.0.2 Added support for more servers
+This version will use github content by default (the free server has some limited problems)
+Added more streaming providers
+
+0.0.3 Added support for complex lists, more providers
+
+0.0.4 Migrated compatible splive decryption and simple lists.
+
+0.0.5 Added support for multiplatform (now works in all checked platforms)
+Also has been included internal decrypted so now it's not needed system libraries
+(Android, Windows or incomplete Linux installations now works fine)
+Now all providers are marked like "supported-stable" list.
+
+0.0.6 Added support for the Kore fork to receive links.
+Also added support for torrent, magnet, sopcast, acestream links (linked to external addons like vimeo or youtube).
+
+0.0.7 Added support for plexus comunication between addon and providers.
+Also has been added installers for external addons and dependencies.
+Added support for change headers with simple call in player
+
+0.0.8 Added support for internal patch (httpproxy service)
+Added external dependencies (with some fixes and new binaries)
+
+0.0.9 (dev) Added new provider (with external dependencies)

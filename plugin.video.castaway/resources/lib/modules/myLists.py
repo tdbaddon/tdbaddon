@@ -42,7 +42,8 @@ def migrate():
     
 
 def addList(name,path):
-    path = path.replace('pastebin.com/','pastebin.com/raw/')
+    if 'raw' not in path:
+        path = path.replace('pastebin.com/','pastebin.com/raw/')
     initDB()
     dbcur = db.cursor()
     dbcur.execute("INSERT INTO Lists Values (?, ?)", (name,path))
@@ -61,7 +62,7 @@ def getLists():
     dbcur.execute("SELECT * FROM Lists")
     items = dbcur.fetchall()
     for item in items:
-        i = (item[0],item[1])
+        i = (item[0],item[1].replace('raw/raw','raw'))
         out.append(i)
     return out
 
@@ -85,8 +86,9 @@ def getItems(path):
 
         
 
-    if content.startswith('#EXTM3U'):
+    if '#ext' in content.lower():
         return getItemsM3U(content)
+
     items = content.split('<item>')
     items = filter(None,items)
     for item in items:
