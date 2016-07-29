@@ -1,6 +1,6 @@
 ﻿<settings>
   <category label="BES-IPTV">
-	<setting type="action" label="[B]Version: 3.1.6 Date: 07/12/2016 BES-IPTV[/B]" option="close" action="RunPlugin(plugin://plugin.video.BES-IPTV/?mode=7)" />
+	<setting type="action" label="[B]Version: 3.1.7 Date: 07/18/2016 BES-IPTV[/B]" option="close" action="RunPlugin(plugin://plugin.video.BES-IPTV/?mode=7)" />
     <setting type="action" label="[B]Addon by S.X. F.BESA[/B]" option="close" action="RunPlugin(plugin://plugin.video.BES-IPTV/?mode=7)" />
 	<setting type="action" label="[COLOR red][B]O SA MIRE ME KEN SHQIPETAR[/B][/COLOR]" option="close" action="RunPlugin(plugin://plugin.video.BES-IPTV/?mode=7)" />
   </category>

@@ -19,7 +19,7 @@
 '''
 
 
-import re,urllib,urlparse
+import re,urllib,urlparse,json
 
 from resources.lib.modules import control
 from resources.lib.modules import cleantitle
@@ -31,7 +31,11 @@ class source:
     def __init__(self):
         self.domains = ['rlsbb.com']
         self.base_link = 'http://rlsbb.com'
-        self.search_link = '/search/%s'
+        self.search_base_link = 'http://search.rlsbb.com'
+        self.search_header_link = {'X-Requested-With': 'XMLHttpRequest', 'Cookie': 'serach_mode=rlsbb'}
+        self.search_link = '/test_rlsbb/lib/search.php?phrase=%s&pindex=1&content=true'
+        self.search_link2 = '/search/%s?serach_mode=rlsbb'
+
 
 
     def movie(self, imdb, title, year):
@@ -79,103 +83,117 @@ class source:
             title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
 
 
-            result = ''
+
+
+            posts = []
 
             if 'tvshowtitle' in data:
                 query = '%s S%02d' % (data['tvshowtitle'], int(data['season']))
                 query = re.sub('(\\\|/| -|:|;|\*|\?|"|\'|<|>|\|)', ' ', query)
-                query = self.search_link % urllib.quote_plus(query)
-                query = urlparse.urljoin(self.base_link, query)
 
-                result += str(client.request(query))
+                referer = self.search_link2 % urllib.quote_plus(query)
+                referer = urlparse.urljoin(self.search_base_link, referer)
 
+                url = self.search_link % urllib.quote_plus(query)
+                url = urlparse.urljoin(self.search_base_link, url)
+
+                result = client.request(url, headers=self.search_header_link, referer=referer)
+                try: posts += json.loads(re.findall('({.+?})$', result)[0])['results']
+                except: pass
 
             query = '%s S%02dE%02d' % (data['tvshowtitle'], int(data['season']), int(data['episode'])) if 'tvshowtitle' in data else '%s %s' % (data['title'], data['year'])
             query = re.sub('(\\\|/| -|:|;|\*|\?|"|\'|<|>|\|)', ' ', query)
-            query = self.search_link % urllib.quote_plus(query)
-            query = urlparse.urljoin(self.base_link, query)
 
-            result += str(client.request(query))
+            referer = self.search_link2 % urllib.quote_plus(query)
+            referer = urlparse.urljoin(self.search_base_link, referer)
+
+            url = self.search_link % urllib.quote_plus(query)
+            url = urlparse.urljoin(self.search_base_link, url)
+
+            result = client.request(url, headers=self.search_header_link, referer=referer)
+            try: posts += json.loads(re.findall('({.+?})$', result)[0])['results']
+            except: pass
 
 
-            posts = client.parseDOM(result, 'div', attrs = {'class': 'entry post'})
-            posts = [x for y,x in enumerate(posts) if x not in posts[:y]]
-
-            links = []
+            links = [] ; dupes = []
 
             for post in posts:
-                items = []
+                try:
+                    name = post['post_title'] ; url = post['post_name']
 
-                try: items += zip([i for i in client.parseDOM(post, 'p') if 'Release Name:' in i], [i for i in client.parseDOM(post, 'p') if '<strong>Download' in i])
-                except: pass
+                    if url in dupes: raise Exception()
+                    dupes.append(url)
 
-                try: items += client.parseDOM(post, 'p', attrs = {'style': '.+?'})
-                except: pass
+                    t = re.sub('(\.|\(|\[|\s)(\d{4}|S\d*E\d*|S\d*|3D)(\.|\)|\]|\s|)(.+|)', '', name)
 
-                for item in items:
-                    try:
-                        if type(item) == tuple: item = '######URL######'.join(item)
+                    if not cleantitle.get(t) == cleantitle.get(title): raise Exception()
 
-                        cats = client.parseDOM(post, 'a', attrs = {'rel': 'category tag'})
-                        if 'Movies' in cats: cat = 'movie'
-                        elif 'TV Packs' in cats: cat = 'tvshow'
-                        elif 'TV Shows' in cats: cat = 'episode'
+                    y = re.findall('[\.|\(|\[|\s](\d{4}|S\d*E\d*|S\d*)[\.|\)|\]|\s]', name)[-1].upper()
 
-                        if cat == 'movie' and 'tvshowtitle' in data: raise Exception()
-                        elif not cat == 'movie' and not 'tvshowtitle' in data: raise Exception()
+                    if y.isdigit(): cat = 'movie'
+                    elif 'S' in y and 'E' in y: cat = 'episode'
+                    elif 'S' in y: cat = 'tvshow'
 
-                        if cat == 'movie': hdlr = data['year']
-                        elif cat == 'episode': hdlr = 'S%02dE%02d' % (int(data['season']), int(data['episode']))
-                        elif cat == 'tvshow': hdlr = 'S%02d' % int(data['season'])
+                    if cat == 'movie': hdlr = data['year']
+                    elif cat == 'episode': hdlr = 'S%02dE%02d' % (int(data['season']), int(data['episode']))
+                    elif cat == 'tvshow': hdlr = 'S%02d' % int(data['season'])
 
-                        try: name = re.findall('Release Name:.+?>(.+?)<br', item)[0].strip()
-                        except: name = client.parseDOM(item, 'strong')[0]
-                        name = re.sub('<.+?>|</.+?>', '', name)
+                    if not y == hdlr: raise Exception()
 
-                        t = re.sub('(\.|\(|\[|\s)(\d{4}|S\d*E\d*|S\d*|3D)(\.|\)|\]|\s|)(.+|)', '', name)
-                        t = cleantitle.get(client.replaceHTMLCodes(t))
 
-                        y = re.findall('[\.|\(|\[|\s](\d{4}|S\d*E\d*|S\d*)[\.|\)|\]|\s]', name)[-1].upper()
+                    items = []
 
-                        if data['imdb'] in post and not 'tvshowtitle' in data: pass
-                        elif not t == cleantitle.get(title): raise Exception()
-                        elif not y == hdlr: raise Exception()
+                    content = post['post_content']
 
-                        fmt = re.sub('(.+)(\.|\(|\[|\s)(\d{4}|S\d*E\d*|S\d*)(\.|\)|\]|\s)', '', name.upper())
-                        fmt = re.split('\.|\(|\)|\[|\]|\s|\-', fmt)
-                        fmt = [i.lower() for i in fmt]
+                    try: items += zip([i for i in client.parseDOM(content, 'p') if 'Release Name:' in i], [i for i in client.parseDOM(content, 'p') if '<strong>Download' in i])
+                    except: pass
 
-                        if any(i.endswith(('subs', 'sub', 'dubbed', 'dub')) for i in fmt): raise Exception()
-                        if any(i in ['extras'] for i in fmt): raise Exception()
+                    try: items += client.parseDOM(content, 'p', attrs = {'style': '.+?'})
+                    except: pass
 
-                        if '1080p' in fmt: quality = '1080p'
-                        elif '720p' in fmt: quality = 'HD'
-                        else: quality = 'SD'
-                        if any(i in ['dvdscr', 'r5', 'r6'] for i in fmt): quality = 'SCR'
-                        elif any(i in ['camrip', 'tsrip', 'hdcam', 'hdts', 'dvdcam', 'dvdts', 'cam', 'telesync', 'ts'] for i in fmt): quality = 'CAM'
-
-                        info = []
-
-                        if '3d' in fmt: info.append('3D')
-
+                    for item in items:
                         try:
-                            if cat == 'tvshow': raise Exception()
-                            size = re.findall('(\d+(?:\.|/,|)\d+(?:\s+|)(?:GB|GiB|MB|MiB))', item)[0].strip()
-                            div = 1 if size.endswith(('GB', 'GiB')) else 1024
-                            size = float(re.sub('[^0-9|/.|/,]', '', size))/div
-                            size = '%.2f GB' % size
-                            info.append(size)
+                            if type(item) == tuple: item = '######URL######'.join(item)
+
+                            fmt = re.sub('(.+)(\.|\(|\[|\s)(\d{4}|S\d*E\d*|S\d*)(\.|\)|\]|\s)', '', name.upper())
+                            fmt = re.split('\.|\(|\)|\[|\]|\s|\-', fmt)
+                            fmt = [i.lower() for i in fmt]
+
+                            if any(i.endswith(('subs', 'sub', 'dubbed', 'dub')) for i in fmt): raise Exception()
+                            if any(i in ['extras'] for i in fmt): raise Exception()
+
+                            if '1080p' in fmt: quality = '1080p'
+                            elif '720p' in fmt: quality = 'HD'
+                            else: quality = 'SD'
+                            if any(i in ['dvdscr', 'r5', 'r6'] for i in fmt): quality = 'SCR'
+                            elif any(i in ['camrip', 'tsrip', 'hdcam', 'hdts', 'dvdcam', 'dvdts', 'cam', 'telesync', 'ts'] for i in fmt): quality = 'CAM'
+
+                            info = []
+
+                            if '3d' in fmt: info.append('3D')
+
+                            try:
+                                if cat == 'tvshow': raise Exception()
+                                size = re.findall('(\d+(?:\.|/,|)\d+(?:\s+|)(?:GB|GiB|MB|MiB))', item)[0].strip()
+                                div = 1 if size.endswith(('GB', 'GiB')) else 1024
+                                size = float(re.sub('[^0-9|/.|/,]', '', size))/div
+                                size = '%.2f GB' % size
+                                info.append(size)
+                            except:
+                                pass
+
+                            info = ' | '.join(info)
+
+                            url = item.rsplit('######URL######')[-1]
+                            url = zip(client.parseDOM(url, 'a'), client.parseDOM(url, 'a', ret='href'))
+
+                            for i in url: links.append({'url': i[1], 'quality': quality, 'info': info, 'host': i[0], 'cat': cat})
                         except:
                             pass
 
-                        info = ' | '.join(info)
+                except:
+                    pass
 
-                        url = item.rsplit('######URL######')[-1]
-                        url = zip(client.parseDOM(url, 'a'), client.parseDOM(url, 'a', ret='href'))
-
-                        for i in url: links.append({'url': i[1], 'quality': quality, 'info': info, 'host': i[0], 'cat': cat})
-                    except:
-                        pass
 
             check = [i for i in links if not i['quality'] == 'CAM']
             if len(check) > 0: links = check

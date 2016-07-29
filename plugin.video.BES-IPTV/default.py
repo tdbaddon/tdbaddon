@@ -54,7 +54,7 @@ icon = os.path.join(home, 'icon.png')
 FANART = os.path.join(home, 'fanart.jpg')
 source_file = os.path.join(home, 'source_file') #If source_file fails, play + _source_file
 functions_dir = profile
-communityfiles = os.path.join(profile, 'LivewebTV')
+communityfiles = os.path.join(profile, 'LivewebTV') #vari karin, kapi gjitha! 
 downloader = downloader.SimpleDownloader()
 debug = addon.getSetting('debug')
 if os.path.exists(favorites)==True:

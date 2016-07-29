@@ -44,7 +44,7 @@ class main():
         day,month,year = li2[0],li2[1],li2[2]
         import datetime
         from resources.lib.modules import pytzimp
-        d = pytzimp.timezone(str(pytzimp.timezone('Europe/Ljubljana'))).localize(datetime.datetime(2000 + int(year), int(month), int(day), hour=int(hour), minute=int(minute)))
+        d = pytzimp.timezone(str(pytzimp.timezone('Europe/Ljubljana'))).localize(datetime.datetime(int(year), int(month), int(day), hour=int(hour), minute=int(minute)))
         timezona= control.setting('timezone_new')
         my_location=pytzimp.timezone(pytzimp.all_timezones[int(timezona)])
         convertido=d.astimezone(my_location)

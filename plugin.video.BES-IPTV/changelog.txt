@@ -1,3 +1,6 @@
+Version 3.1.7
+remove albanian live iptv (gone) :(
+
 Version 3.1.6
 code fix
 

@@ -29,13 +29,17 @@ from resources.lib.modules import directstream
 
 class source:
     def __init__(self):
-        self.domains = ['123movies.to', '123movies.ru']
+        self.domains = ['123movies.to', '123movies.ru', 'yesmovies.to']
         self.base_link = 'http://123movies.ru'
         self.search_link = '/ajax/suggest_search'
         self.info_link = '/ajax/movie_load_info/%s'
         self.server_link = '/ajax/get_episodes/%s'
-        self.direct_link = '/ajax/v2_load_episode/%s'
         self.embed_link = '/ajax/load_embed/%s'
+        self.base_link2 = 'http://yesmovies.to'
+        self.info_link2 = '/ajax/movie_get_info/%s.html'
+        self.play_link2 = '/ajax/v2_movie_quick_play/%s/%s/%s.html'
+        self.server_link2 = '/ajax/v3_movie_get_episodes/%s/%s/%s/%s.html'
+        self.embed_link2 = '/ajax/movie_load_embed/%s.html'
 
 
     def movie(self, imdb, title, year):
@@ -140,47 +144,97 @@ class source:
             try: url, episode = re.findall('(.+?)\?episode=(\d*)$', url)[0]
             except: episode = None
 
-            u = re.findall('-(\d+)', url)[-1]
+            vid_id = re.findall('-(\d+)', url)[-1]
 
-            headers = {'X-Requested-With': 'XMLHttpRequest', 'Referer': url}
-
-            quality = cache.get(self.onemovies_info, 9000, u)[1].lower()
+            quality = cache.get(self.onemovies_info, 9000, vid_id)[1].lower()
             if quality == 'cam' or quality == 'ts': quality = 'CAM'
             elif quality == 'hd': quality = 'HD'
             else: quality = 'SD'
 
-            u = urlparse.urljoin(self.base_link, self.server_link % u)
 
-            r = client.request(u, headers=headers)
+            try:
+                headers = {'X-Requested-With': 'XMLHttpRequest', 'Referer': url}
 
-            r = client.parseDOM(r, 'div', attrs = {'class': 'les-content'})
-            r = zip(client.parseDOM(r, 'a', ret='onclick'), client.parseDOM(r, 'a'))
-            r = [(i[0], ''.join(re.findall('(\d+)', i[1])[:1])) for i in r]
+                u = urlparse.urljoin(self.base_link, self.server_link % vid_id)
 
-            if not episode == None:
-                r = [i[0] for i in r if '%01d' % int(i[1]) == episode]
-            else:
-                r = [i[0] for i in r]
+                r = client.request(u, headers=headers)
 
-            r = [re.findall('(\d+),(\d+)', i) for i in r]
-            r = [i[0][:2] for i in r if len(i) > 0]
+                r = client.parseDOM(r, 'div', attrs = {'class': 'les-content'})
+                r = zip(client.parseDOM(r, 'a', ret='onclick'), client.parseDOM(r, 'a'))
+                r = [(i[0], ''.join(re.findall('(\d+)', i[1])[:1])) for i in r]
+
+                if not episode == None:
+                    r = [i[0] for i in r if '%01d' % int(i[1]) == episode]
+                else:
+                    r = [i[0] for i in r]
+
+                r = [re.findall('(\d+),(\d+)', i) for i in r]
+                r = [i[0][:2] for i in r if len(i) > 0]
+
+                links = []
+
+                links += [{'source': 'openload.co', 'url': self.embed_link % i[1], 'direct': False} for i in r if i[0] == '14']
+
+                links += [{'source': 'videomega.tv', 'url': self.embed_link % i[1], 'direct': False} for i in r if i[0] == '13']
+
+                links += [{'source': 'videowood.tv', 'url': self.embed_link % i[1], 'direct': False} for i in r if i[0] == '12']
+
+                head = '|' + urllib.urlencode(headers)
+
+                for i in links: sources.append({'source': i['source'], 'quality': quality, 'provider': 'Onemovies', 'url': urlparse.urljoin(self.base_link, i['url']) + head, 'direct': i['direct'], 'debridonly': False})
+            except:
+                pass
 
 
-            head_link = '|' + urllib.urlencode(headers)
+            try:
+                u = urlparse.urljoin(self.base_link2, self.info_link2)
+                u = client.request(u % vid_id)
+                u = client.parseDOM(u, 'a', ret='href', attrs = {'class': 'btn.+?'})
+                u = [i for i in u if 'http' in i][0]
 
+                headers = {'X-Requested-With': 'XMLHttpRequest', 'Referer': u}
 
-            links = []
+                vid_slug = re.findall('/movie/(.+?)-\d+\.html', u)[0]
+                vid_type = 'movie' if episode == None else 'series'
 
-            #links += [{'source': 'gvideo', 'url': self.direct_link % i[1], 'direct': True} for i in r if 2 <= int(i[0]) <= 11]
+                u = self.play_link2 % (vid_slug, vid_id, vid_type)
+                u = urlparse.urljoin(self.base_link2, u)
 
-            links += [{'source': 'openload.co', 'url': self.embed_link % i[1], 'direct': False} for i in r if i[0] == '14']
+                r = client.request(u, headers=headers)
+                r = client.parseDOM(r, 'a', ret='href', attrs = {'title': 'View all episodes'})[0]
 
-            links += [{'source': 'videomega.tv', 'url': self.embed_link % i[1], 'direct': False} for i in r if i[0] == '13']
+                show_id, episode_id, server_id = re.findall('-(\d+)/(\d+)-(\d+)/', r)[0]
 
-            links += [{'source': 'videowood.tv', 'url': self.embed_link % i[1], 'direct': False} for i in r if i[0] == '12']
+                r = self.server_link2 % (show_id, server_id, episode_id, vid_type)
+                r = urlparse.urljoin(self.base_link2, r)
 
+                r = str(client.request(r, headers=headers))
 
-            for i in links: sources.append({'source': i['source'], 'quality': quality, 'provider': 'Onemovies', 'url': i['url'] + head_link, 'direct': i['direct'], 'debridonly': False})
+                if episode == None:
+                    r = client.parseDOM(r, 'li', ret='onclick')
+
+                else:
+                    r = zip(client.parseDOM(r, 'li', ret='onclick'), client.parseDOM(r, 'a', ret='title'))
+                    r = [(i[0], ''.join(re.findall('(\d+)', i[1])[:1])) for i in r]
+                    r = [i[0] for i in r if '%01d' % int(i[1]) == episode]
+
+                r = [re.findall('(\d+),(\d+)', i) for i in r]
+                r = [i[0][:2] for i in r if len(i) > 0]
+
+                links = []
+
+                links += [{'source': 'openload.co', 'url': self.embed_link2 % i[0], 'direct': False} for i in r if i[1] == '14']
+
+                links += [{'source': 'videomega.tv', 'url': self.embed_link2 % i[0], 'direct': False} for i in r if i[1] == '13']
+
+                links += [{'source': 'videowood.tv', 'url': self.embed_link2 % i[0], 'direct': False} for i in r if i[1] == '12']
+
+                head = '|' + urllib.urlencode(headers)
+
+                for i in links: sources.append({'source': i['source'], 'quality': quality, 'provider': 'Onemovies', 'url': urlparse.urljoin(self.base_link2, i['url']) + head, 'direct': i['direct'], 'debridonly': False})
+            except:
+                pass
+
 
             return sources
         except:
@@ -192,10 +246,9 @@ class source:
         try: headers = dict(urlparse.parse_qsl(url.rsplit('|', 1)[1]))
         except: headers = None
 
-        url = urlparse.urljoin(self.base_link, url.split('|')[0])
+        url = url.split('|')[0]
 
         result = client.request(url, headers=headers)
-
 
         try:
             url = re.findall('"?file"?\s*=\s*"(.+?)"', result)

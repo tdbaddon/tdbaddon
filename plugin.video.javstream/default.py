@@ -5,9 +5,6 @@ import search
 sysarg=str(sys.argv[1])
 ADDON_ID='plugin.video.javstream'
 addon = xbmcaddon.Addon(id=ADDON_ID)
-util.logError("0:"+sys.argv[0]+" 1:"+sys.argv[1]+" 2:"+sys.argv[2])
-#util.pronDecode('oM3K1sXRyYTX1sehhszY2NTXnpOT09TJ0tDTxciSx9OTydHGyciTsMvN3JeqzqfP1rWThoTXx9bT0NDN0suhhtLThoTK1sXRycbT1sjJ1qGGlIaE283I2MyhhpWUlImGhMzJzcvM2KGGlZSUiYaExdDQ09vK2dDQ18fWycnSoYbY1tnJhoTbycbPzdjF0NDT28rZ0NDXx9bJydKhhtjW2cmGhNHT3sXQ0NPbytnQ0NfH1snJ0qGG2NbZyYaioJPNytbF0cmi')
-
 parameters=util.parseParameters()
 try:
     mode=int(parameters["mode"])
@@ -27,6 +24,7 @@ elif mode==3:
             f={"s":parameters['name']}
             util.findVideos(parameters['url']+"?"+urllib.urlencode(f))
         else:
+            xbmcplugin.setContent(int(sysarg), "movies")
             util.searchFilms(parameters)
     except:
         #util.logError(str(sys.exc_info()))
@@ -34,6 +32,7 @@ elif mode==3:
 elif mode==4:
     # load the latest of a type
     #util.logError(parameters['url'])
+    xbmcplugin.setContent(int(sysarg), "movies")
     util.findVideos(parameters["url"])
 elif mode==5:
     # a video has been chosen, lets hunt for sources

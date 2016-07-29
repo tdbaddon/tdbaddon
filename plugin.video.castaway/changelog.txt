@@ -2,6 +2,13 @@
 Castaway sports addon by [COLOR yellow]@natko1412[/COLOR]
 ====================================================================
 
+v0.2.8 [19-Jul-2016]
+-add streamhd.eu
+-add arconaitv.me
+-add streamgaroo.com
+-remove usachannels.tv
+-remove crichd
+
 v0.2.7 [16-Jul-2016]
 -add vaughnlive.tv (login in addon settings to view followed channels)
 -add racing4everyone.eu
@@ -32,7 +39,6 @@ v0.2.4 [13-Jun-2016]
 -improve ourmatch.net
 -fix NBA GO
 -bug fixes
-
 
 v0.2.3 [9-Jun-2016]
 -add motolinks.info

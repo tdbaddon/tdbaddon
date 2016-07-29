@@ -34,20 +34,6 @@ class source:
         self.search_link = 'http://tinklepad.is/search.php?q=%s'
 
 
-    def request(self, url, check):
-        try:
-            result = client.request(url)
-            if check in str(result): return result.decode('iso-8859-1').encode('utf-8')
-
-            result = client.request(proxy.get() + urllib.quote_plus(url))
-            if check in str(result): return result.decode('iso-8859-1').encode('utf-8')
-
-            result = client.request(proxy.get() + urllib.quote_plus(url))
-            if check in str(result): return result.decode('iso-8859-1').encode('utf-8')
-        except:
-            return
-
-
     def movie(self, imdb, title, year):
         try:
             #query = self.search_link % (urllib.quote_plus(cleantitle.query(title)), str(int(year)-1), str(int(year)+1))
@@ -56,8 +42,8 @@ class source:
             query = self.search_link % urllib.quote_plus(cleantitle.query(title))
             query = urlparse.urljoin(self.base_link, query)
 
-            result = str(self.request(query, 'movie_table'))
-            if 'page=2' in result or 'page%3D2' in result: result += str(self.request(query + '&page=2', 'movie_table'))
+            result = str(proxy.request(query, 'movie_table'))
+            if 'page=2' in result or 'page%3D2' in result: result += str(proxy.request(query + '&page=2', 'movie_table'))
 
             result = client.parseDOM(result, 'div', attrs = {'class': 'movie_table'})
 
@@ -84,7 +70,7 @@ class source:
             for i in match2[:5]:
                 try:
                     if len(match) > 0: url = match[0] ; break
-                    result = self.request(urlparse.urljoin(self.base_link, i), 'link_name')
+                    result = proxy.request(urlparse.urljoin(self.base_link, i), 'link_name')
                     if imdb in str(result): url = i ; break
                 except:
                     pass
@@ -104,7 +90,7 @@ class source:
 
             url = urlparse.urljoin(self.base_link, url)
 
-            result = self.request(url, 'Links - Quality')
+            result = proxy.request(url, 'Links - Quality')
             result = result.replace('\n','')
 
             quality = re.compile('>Links - Quality(.+?)<').findall(result)[0]

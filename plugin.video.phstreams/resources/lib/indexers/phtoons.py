@@ -31,11 +31,11 @@ class indexer:
     def __init__(self):
         self.list = []
 
-        self.cartoons_link = 'http://cartoons8.co'
-        self.newcartoons_link = '/top/?filter=newest&req=cartoons'
-        self.topcartoons_link = '/top/?filter=mostviewed&req=cartoons'
-        self.cartoongenres_link = '/genres/%s/1/?filter=mostviewed&req=cartoons'
-        self.cartoonsearch_link = '/search/?s=%s'
+        self.cartoons_link = 'http://9cartoon.me'
+        self.newcartoons_link = '/CartoonList/NewAndHot'
+        self.topcartoons_link = '/CartoonList/MostViewed'
+        self.cartoongenres_link = '/genre/%s/'
+        self.cartoonsearch_link = '/Search?s=%s'
 
         self.cartoons_image = 'http://phoenixtv.offshorepastebin.com/art/cartoon/art%s.png'
         self.cartoons_fanart = 'http://phoenixtv.offshorepastebin.com/art/cartoon/fanart.jpg'
@@ -136,9 +136,7 @@ class indexer:
 
     def cartoongenres(self):
         try:
-            genres = ['action', 'adventure', 'comedy', 'drama', 'fantasy', 'historical', 'horror', 'movie', 'music',
-            'mystery', 'romance', 'animation', 'family', 'sci-fi', 'short', 'crime', 'sport', 'documentary', 'thriller',
-            'cars', 'magic', 'space', 'super-power', 'supernatural']
+            genres = ['action', 'adventure', 'comedy', 'crime', 'Documentary', 'family', 'fantasy', 'drama', 'romance', 'game', 'historical', 'horror', 'movie', 'music', 'mystery', 'sci-fi', 'short', 'Sport', 'Thriller']
 
             for i in genres: self.list.append({'title': i.title(), 'url': self.cartoongenres_link % i, 'image': self.cartoons_image % (random.randint(1,10)), 'fanart': self.cartoons_fanart, 'action': 'phtoons.cartoons'})
 
@@ -187,6 +185,7 @@ class indexer:
             return self.list
         except:
             pass
+
 
     def animegenres(self):
         try:
@@ -251,20 +250,18 @@ class indexer:
 
             result, headers, content, cookie = client.request(url, output='extended')
 
-            items = client.parseDOM(result, 'li', attrs = {'class': 'list_ct'})
+            items = client.parseDOM(result, 'div', attrs = {'class': 'anime_movies_items'})
+
+            try: items += client.parseDOM(result, 'ul', attrs = {'class': 'listin.+?'})[0].split('</li>')
+            except: pass
         except:
         	return
 
         try:
-            nav = client.parseDOM(result, 'div', attrs = {'class': 'pageNav'})[0]
-
-            current = client.parseDOM(nav, 'span', attrs = {'class': 'currentNav'})
-            current = [str(i) for i in current if i.isdigit()][0]
-
-            next = zip(client.parseDOM(nav, 'a', ret='href', attrs = {'class': 'linkNav'}), client.parseDOM(nav, 'a', attrs = {'class': 'linkNav'}))
-            next = [i for i in next if i[1].isdigit()]
-            next = [i[0] for i in next if int(i[1]) == int(current)+1][0]
-
+            next = client.parseDOM(result, 'li', attrs = {'class': 'page'})
+            next = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a')) for i in next]
+            next = [(i[0][0], i[1][0]) for i in next if len(i[0]) > 0 and len(i[1]) > 0]
+            next = [i[0] for i in next if 'raquo' in i[1]][0]
             next = urlparse.urljoin(self.cartoons_link, next)
             next = client.replaceHTMLCodes(next)
             next = next.encode('utf-8')
@@ -273,7 +270,10 @@ class indexer:
 
         for item in items:
             try:
-                title = client.parseDOM(item, 'span', attrs = {'class': 'title'})[0]
+                try: title = client.parseDOM(item, 'a')[0]
+                except: pass
+                try: title = client.parseDOM(item, 'a', ret='title')[0]
+                except: pass
                 title = client.replaceHTMLCodes(title)
                 title = title.encode('utf-8')
 
@@ -301,22 +301,19 @@ class indexer:
 
             result, headers, content, cookie = client.request(url, output='extended')
 
-            items = client.parseDOM(result, 'table', attrs = {'class': 'listing'})[0]
-            items = client.parseDOM(result, 'tr')
+            items = client.parseDOM(result, 'ul', attrs = {'id': 'episode_related'})[0]
+            items = client.parseDOM(items, 'li')
         except:
         	return
 
         for item in items:
             try:
-                title = client.parseDOM(item, 'a', attrs = {'title': '.+?'})[0]
+                title = client.parseDOM(item, 'a')[0]
                 title = title.strip()
                 title = client.replaceHTMLCodes(title)
                 title = title.encode('utf-8')
 
-                date = client.parseDOM(item, 'a', attrs = {'style': 'color.+?'})
-                if len(date) > 0: raise Exception()
-
-                url = client.parseDOM(item, 'a', ret='href', attrs = {'title': '.+?'})[0]
+                url = client.parseDOM(item, 'a', ret='href')[0]
                 url = urlparse.urljoin(self.cartoons_link, url)
                 url = client.replaceHTMLCodes(url)
                 url = url.encode('utf-8')
@@ -334,20 +331,13 @@ class indexer:
 
             result, headers, content, cookie = client.request(url, output='extended')
 
-            url = re.findall('url\s*:\s*"(.+?)"', result)[0]
-            post = re.findall('data\s*:\s*\'(.+?)\'', result)[0]
+            result = client.parseDOM(result, 'div', attrs = {'id': 'divDownload'})[0]
 
-            result = client.request(url, post=post, headers=headers)
+            url = client.parseDOM(result, 'a', ret='href')[-1]
+            url = client.replaceHTMLCodes(url)
+            url = url.encode('utf-8')
 
-            url = re.findall('href\s*=\s*(?:\'|\")(http(?:s|)://.+?(?:google|blogspot).+?)(?:\'|\")', result)
-            if len(url) > 0:
-                url = urllib.unquote(url[-1]).replace('\\/', '/')
-                return url
-
-            url = re.findall('href\s*=\s*(?:\'|\")(http(?:s|)://.+?/vload/\?token=.+?)(?:\'|\")', result)
-            if len(url) > 0:
-                url = client.request(url[-1], output='geturl', headers=headers)
-                return url
+            return url
         except:
             pass
 

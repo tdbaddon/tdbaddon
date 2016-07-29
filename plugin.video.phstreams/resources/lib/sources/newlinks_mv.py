@@ -29,8 +29,8 @@ from resources.lib.modules import debrid
 
 class source:
     def __init__(self):
-        self.domains = ['newmyvideolink.xyz']
-        self.base_link = 'http://newmyvideolink.xyz'
+        self.domains = ['newmyvideolink.xyz', 'beta.myvideolinks.xyz']
+        self.base_link = 'http://beta.myvideolinks.xyz'
         self.search_link = '/?s=%s'
 
 
@@ -76,7 +76,7 @@ class source:
             r = [i for i in r if t == cleantitle.get(i[1]) and data['year'] == i[2]]
 
             r = [i for i in r if not any(x in i[3] for x in ['HDCAM', 'CAM', 'DVDR', 'DVDRip', 'DVDSCR', 'HDTS', 'TS', '3D'])]
-            r = [i for i in r if 'newmyvideolink.xyz' in i[0]]
+            r = [i for i in r if urlparse.urlparse(self.base_link).netloc in i[0]]
 
             l = [(i[0], '1080p') for i in r if '1080p' in i[3]]
             l += [(i[0], 'HD') for i in r if '720p' in i[3]]

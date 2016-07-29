@@ -26,8 +26,8 @@ Fixed pre-cache default setting
 Fixed track number error
 
 1.1.0
-Playback function re-written by spoyser to pre-cache songs!
-Added option to always keep cached songs and automatically set ID3 tags (spoyser) - Disabled by default
+Playback function re-written by ****** to pre-cache songs!
+Added option to always keep cached songs and automatically set ID3 tags (******) - Disabled by default
 Added option to set preferred artist/album folder structure for downloads
 Added new Compilations menu
 

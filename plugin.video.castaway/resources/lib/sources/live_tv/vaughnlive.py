@@ -18,7 +18,7 @@ class info():
 
 
 class main():
-	def __init__(self, url = 'hhttp://vaughnlive.tv'):
+	def __init__(self, url = 'http://vaughnlive.tv'):
 		self.base = 'http://vaughnlive.tv'
 		self.url = url
 

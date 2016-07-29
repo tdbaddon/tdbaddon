@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.wwe-on-demand" name="[COLOR gold][B]WWE ON DEMAND[/B] [/COLOR]" version="1.6" provider-name="@PBear90">
+<addon id="plugin.video.wwe-on-demand" name="[COLOR gold]WWE ON DEMAND[/COLOR]" version="2.0.2" provider-name="@PBear90">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.simplejson" version="3.3.0"/>
@@ -14,8 +14,8 @@
         <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary lang="en">WWE ON DEMAND </summary>
-    <description lang="en">The author of this addon does not own nor is affiliated in any way with the content providers , But is providing a 3rd party way to give access to all links provided</description>
+    <summary lang="en">WWE ON DEMAND Add-On</summary>
+    <description lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</description>
     <platform>all</platform>
   </extension>
 </addon>

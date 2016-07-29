@@ -1,3 +1,13 @@
+[B]2.0.3[/B]
+- Fixed issue with movie listings
+- Fixed issue with tv show listings
+- Added French translation
+- Added German translation
+- Added Spanish translation
+- Updated existing providers
+- Removed dead providers
+- Added new providers
+
 [B]2.0.2[/B]
 - Code cosmetics
 

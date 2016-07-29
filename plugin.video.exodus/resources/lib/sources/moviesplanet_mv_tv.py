@@ -19,7 +19,7 @@
 '''
 
 
-import re,urllib,urllib2,urlparse,json,base64,time
+import re,urllib,urlparse,json,base64,time
 
 from resources.lib.modules import control
 from resources.lib.modules import pyaes
@@ -48,31 +48,30 @@ class source:
             post = {'q': title.rsplit(':', 1)[0], 'limit': '10', 'timestamp': int(time.time() * 1000), 'verifiedCheck': ''}
             post = urllib.urlencode(post)
 
-            result = client.request(url, post=post, headers=headers)
-            result = json.loads(result)
+            r = client.request(url, post=post, headers=headers)
+            r = json.loads(r)
 
             title = cleantitle.get(title)
 
-            result = [i for i in result if i['meta'].strip().split(' ')[0].lower() == 'movie']
-            result = [i for i in result if title == cleantitle.get(i['title'])][:2]
+            r = [i for i in r if i['meta'].strip().split(' ')[0].lower() == 'movie']
+            r = [i for i in r if title == cleantitle.get(i['title'])][:2]
 
-            if len(result) > 1:
-                result = [(i, urlparse.urljoin(self.base_link, i['permalink'])) for i in result]
-                result = [(i[0], str(client.request(i[1]))) for i in result]
-                result = [(i[0], re.compile('/(tt\d+)').findall(i[1])) for i in result]
-                result = [i[0] for i in result if len(i[1]) > 0 and imdb == i[1][0]]
+            if len(r) > 1:
+                r = [(i, urlparse.urljoin(self.base_link, i['permalink'])) for i in r]
+                r = [(i[0], str(client.request(i[1]))) for i in r]
+                r = [(i[0], re.findall('/(tt\d+)', i[1])) for i in r]
+                r = [i[0] for i in r if len(i[1]) > 0 and imdb == i[1][0]]
 
-            result = result[0]['permalink']
+            r = r[0]['permalink']
 
-            atr = urlparse.urljoin(self.base_link, result)
+            atr = urlparse.urljoin(self.base_link, r)
             atr = client.request(atr)
             atr = client.parseDOM(atr, 'p')
             atr = [i for i in atr if 'Released:' in i][0]
             atr = client.parseDOM(atr, 'a')[0]
             if not atr == year: raise Exception()
 
-            url = urlparse.urljoin(self.base_link, result)
-            url = urlparse.urlparse(url).path
+            url = re.findall('(?://.+?|)(/.+)', r)[0]
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
             return url
@@ -91,23 +90,23 @@ class source:
             post = {'q': tvshowtitle.rsplit(':', 1)[0], 'limit': '10', 'timestamp': int(time.time() * 1000), 'verifiedCheck': ''}
             post = urllib.urlencode(post)
 
-            result = client.request(url, post=post, headers=headers)
-            result = json.loads(result)
+            r = client.request(url, post=post, headers=headers)
+            r = json.loads(r)
 
             tvshowtitle = cleantitle.get(tvshowtitle)
 
-            result = [i for i in result if i['meta'].strip().split(' ')[0].lower() == 'tv']
-            result = [i for i in result if tvshowtitle == cleantitle.get(i['title'])][:2]
+            r = [i for i in r if i['meta'].strip().split(' ')[0].lower() == 'tv']
+            r = [i for i in r if tvshowtitle == cleantitle.get(i['title'])][:2]
 
-            if len(result) > 1:
-                result = [(i, urlparse.urljoin(self.base_link, i['permalink'])) for i in result]
-                result = [(i[0], str(client.request(i[1]))) for i in result]
-                result = [(i[0], re.compile('/(tt\d+)').findall(i[1])) for i in result]
-                result = [i[0] for i in result if len(i[1]) > 0 and imdb == i[1][0]]
+            if len(r) > 1:
+                r = [(i, urlparse.urljoin(self.base_link, i['permalink'])) for i in r]
+                r = [(i[0], str(client.request(i[1]))) for i in r]
+                r = [(i[0], re.findall('/(tt\d+)', i[1])) for i in r]
+                r = [i[0] for i in r if len(i[1]) > 0 and imdb == i[1][0]]
 
-            result = result[0]['permalink']
+            r = r[0]['permalink']
 
-            atr = urlparse.urljoin(self.base_link, result)
+            atr = urlparse.urljoin(self.base_link, r)
             atr = client.request(atr)
             atr = client.parseDOM(atr, 'p')
             atr = [i for i in atr if 'Published:' in i][0]
@@ -115,8 +114,7 @@ class source:
             atr = re.findall('(\d{4})', atr)[0]
             if not atr == year: raise Exception()
 
-            url = urlparse.urljoin(self.base_link, result)
-            url = urlparse.urlparse(url).path
+            url = re.findall('(?://.+?|)(/.+)', r)[0]
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
             return url
@@ -157,10 +155,6 @@ class source:
 
             if (self.user == '' or self.password == ''): raise Exception()
 
-            class NoRedirection(urllib2.HTTPErrorProcessor):
-                def http_response(self, request, response): return response
-
-
             headers = {'X-Requested-With': 'XMLHttpRequest'}
             login = urlparse.urljoin(self.base_link, '/login')
             post = {'username': self.user, 'password': self.password, 'action': 'login'}
@@ -173,48 +167,45 @@ class source:
 
             result = client.request(url, cookie=cookie)
 
-            url = re.compile("embeds\[\d+\]\s*=\s*'([^']+)").findall(result)[0]
+            url = re.findall("embeds\[\d+\]\s*=\s*'([^']+)", result)[0]
             url = client.parseDOM(url, 'iframe', ret='src')[0]
             url = url.replace('https://', 'http://')
+
 
             links = []
 
             try:
-                url = re.compile('mplanet\*(.+)').findall(url)[0]
-                url = url.rsplit('&')[0]
-                dec = self._gkdecrypt(base64.b64decode('MllVcmlZQmhTM2swYU9BY0lmTzQ='), url)
+                dec = re.findall('mplanet\*(.+)', url)[0]
+                dec = dec.rsplit('&')[0]
+                dec = self._gkdecrypt(base64.b64decode('MllVcmlZQmhTM2swYU9BY0lmTzQ='), dec)
                 dec = directstream.google(dec)
 
                 links += [(i['url'], i['quality'], 'gvideo') for i in dec]
             except:
                 pass
 
-            try:
-                result = client.request(url)
 
-                result = re.compile('sources\s*:\s*\[(.*?)\]', re.DOTALL).findall(result)[0]
-                result = re.compile('''['"]*file['"]*\s*:\s*['"]*([^'"]+).*?['"]*label['"]*\s*:\s*['"]*([^'"]+)''', re.DOTALL).findall(result)
+            result = client.request(url)
+
+            try:
+                url = re.compile('sources\s*:\s*\[(.*?)\]', re.DOTALL).findall(result)[0]
+                url = re.compile('''['"]*file['"]*\s*:\s*['"]*([^'"]+).*?['"]*label['"]*\s*:\s*['"]*[^'"]+''', re.DOTALL).findall(url)
+
+                for i in url:
+                    try: links.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'url': i})
+                    except: pass
             except:
                 pass
 
             try:
-                u = [i[0] for i in result if i[1] == 'HD'][0]
-                if 'moviesplanet.' in u: raise Exception()
-                links += [(u, 'HD', 'cdn')]
-            except:
-                pass
-            try:
-                u = [(i[0], re.sub('[^0-9]', '', i[1])) for i in result]
-                u = [(i[0], i[1]) for i in u if i[1].isdigit()]
+                url = client.parseDOM(result, 'source', ret='src')[0]
 
-                links += [(i[0], '1080p', 'gvideo') for i in u if int(i[1]) >= 1080]
-                links += [(i[0], 'HD', 'gvideo') for i in u if 720 <= int(i[1]) < 1080]
-                links += [(i[0], 'SD', 'gvideo') for i in u if 1 <= int(i[1]) < 720]
+                links.append({'source': 'cdn', 'quality': 'HD', 'url': url})
             except:
                 pass
 
 
-            for i in links: sources.append({'source': i[2], 'quality': i[1], 'provider': 'Moviesplanet', 'url': i[0], 'direct': True, 'debridonly': False})
+            for i in links: sources.append({'source': i['source'], 'quality': i['quality'], 'provider': 'Moviesplanet', 'url': i['url'], 'direct': True, 'debridonly': False})
 
             return sources
         except:

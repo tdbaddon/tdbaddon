@@ -1,4 +1,30 @@
 -----------------------------------
+JAVStream v0.91.1(29th July 2016)
+-----------------------------------
+
+- Fixed repo install problem
+
+-----------------------------------
+JAVStream v0.91(29th July 2016)
+-----------------------------------
+
+- Removed broken code for nungav.com
+- Added support for Premium Sharing WuShare, added configd screen and enabled SD, HD and downloading from links
+
+-----------------------------------
+JAVStream v0.90.77(26th July 2016)
+-----------------------------------
+
+- Updated to allow for new URL from openload oload.co
+
+-----------------------------------
+JAVStream v0.90.76(25th July 2016)
+-----------------------------------
+
+- Correctly set media type to video, should allow more views available when viewing DVD covers
+- Added HJAV5278, Tubebo, JavPortal, FreePornXXX, JavBest, GravureGirlz 
+
+-----------------------------------
 JAVStream v0.90.75(29th June 2016)
 -----------------------------------
 

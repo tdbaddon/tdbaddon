@@ -178,3 +178,6 @@ msgctxt "#30491"
 msgid "This View is now Default"
 msgstr ""
 
+msgctxt "#30500"
+msgid "[I]Next Page[/I]"
+msgstr ""

@@ -442,23 +442,25 @@ class tvshows:
                 url = cache.get(imdb_watchlist_id, 8640, url)
                 url = self.imdblist2_link % url
 
-            result = str(client.request(url))
+            result = client.request(url)
 
             result = result.replace('\n','')
             result = result.decode('iso-8859-1').encode('utf-8')
 
-            items = client.parseDOM(result, 'tr', attrs = {'class': '.+?'})
+            items = client.parseDOM(result, 'div', attrs = {'class': 'lister-item mode-advanced'})
             items += client.parseDOM(result, 'div', attrs = {'class': 'list_item.+?'})
         except:
             return
 
         try:
-            next = client.parseDOM(result, 'span', attrs = {'class': 'pagination'})
-            next += client.parseDOM(result, 'div', attrs = {'class': 'pagination'})
-            name = client.parseDOM(next[-1], 'a')[-1]
-            if 'laquo' in name: raise Exception()
-            next = client.parseDOM(next, 'a', ret='href')[-1]
-            next = url.replace(urlparse.urlparse(url).query, urlparse.urlparse(next).query)
+            next = client.parseDOM(result, 'a', ret='href', attrs = {'class': 'lister-page-next.+?'})
+
+            if len(next) == 0:
+                next = client.parseDOM(result, 'div', attrs = {'class': 'pagination'})[0]
+                next = zip(client.parseDOM(next, 'a', ret='href'), client.parseDOM(next, 'a'))
+                next = [i[0] for i in next if 'Next' in i[1]]
+
+            next = url.replace(urlparse.urlparse(url).query, urlparse.urlparse(next[0]).query)
             next = client.replaceHTMLCodes(next)
             next = next.encode('utf-8')
         except:
@@ -466,48 +468,43 @@ class tvshows:
 
         for item in items:
             try:
-                try: title = client.parseDOM(item, 'a')[1]
-                except: pass
-                try: title = client.parseDOM(item, 'a', attrs = {'onclick': '.+?'})[-1]
-                except: pass
+                title = client.parseDOM(item, 'a')[1]
                 title = client.replaceHTMLCodes(title)
                 title = title.encode('utf-8')
 
-                year = client.parseDOM(item, 'span', attrs = {'class': 'year_type'})[0]
-                year = re.compile('(\d{4})').findall(year)[-1]
+                year = client.parseDOM(item, 'span', attrs = {'class': 'lister-item-year.+?'})
+                year += client.parseDOM(item, 'span', attrs = {'class': 'year_type'})
+                year = re.findall('(\d{4})', year[0])[0]
                 year = year.encode('utf-8')
 
                 if int(year) > int((self.datetime).strftime('%Y')): raise Exception()
 
                 imdb = client.parseDOM(item, 'a', ret='href')[0]
-                try: imdb = client.parseDOM(item, 'a', ret='href')[1]
-                except: pass
-                imdb = 'tt' + re.sub('[^0-9]', '', imdb.rsplit('tt', 1)[-1])
+                imdb = re.findall('(tt\d*)', imdb)[0]
                 imdb = imdb.encode('utf-8')
 
                 if imdb in dupes: raise Exception()
                 dupes.append(imdb)
 
-                poster = '0'
-                try: poster = client.parseDOM(item, 'img', ret='src')[0]
-                except: pass
                 try: poster = client.parseDOM(item, 'img', ret='loadlate')[0]
-                except: pass
-                if not ('_SX' in poster or '_SY' in poster): poster = '0'
-                poster = re.sub('_SX\d*|_SY\d*|_CR\d+?,\d+?,\d+?,\d*','_SX500', poster)
+                except: poster = '0'
+                poster = re.sub('(?:_SX\d+?|)(?:_SY\d+?|)(?:_UX\d+?|)_CR\d+?,\d+?,\d+?,\d*','_SX500', poster)
                 poster = client.replaceHTMLCodes(poster)
                 poster = poster.encode('utf-8')
 
+                rating = '0'
                 try: rating = client.parseDOM(item, 'span', attrs = {'class': 'rating-rating'})[0]
-                except: rating = '0'
+                except: pass
                 try: rating = client.parseDOM(rating, 'span', attrs = {'class': 'value'})[0]
                 except: rating = '0'
+                try: rating = client.parseDOM(item, 'div', ret='data-value', attrs = {'class': '.*?imdb-rating'})[0]
+                except: pass
                 if rating == '' or rating == '-': rating = '0'
                 rating = client.replaceHTMLCodes(rating)
                 rating = rating.encode('utf-8')
 
                 plot = '0'
-                try: plot = client.parseDOM(item, 'span', attrs = {'class': 'outline'})[0]
+                try: plot = client.parseDOM(item, 'p', attrs = {'class': 'text-muted'})[0]
                 except: pass
                 try: plot = client.parseDOM(item, 'div', attrs = {'class': 'item_description'})[0]
                 except: pass

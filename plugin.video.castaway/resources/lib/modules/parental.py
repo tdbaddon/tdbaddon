@@ -3,7 +3,7 @@ import xbmc, sys
 import sqlite3 as sql
 import control
 
-from addon.common.addon import Addon
+from resources.lib.modules.addon import Addon
 addon = Addon('plugin.video.castaway', sys.argv)
 
 db_path = control.databaseFile

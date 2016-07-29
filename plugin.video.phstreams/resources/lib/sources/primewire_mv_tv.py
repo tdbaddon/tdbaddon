@@ -30,34 +30,22 @@ class source:
     def __init__(self):
         self.domains = ['primewire.ag']
         self.base_link = 'http://www.primewire.ag'
-        self.key_link = 'http://www.primewire.ag/index.php?search'
-        self.moviesearch_link = 'http://www.primewire.ag/index.php?search_keywords=%s&key=%s&search_section=1'
-        self.tvsearch_link = 'http://www.primewire.ag/index.php?search_keywords=%s&key=%s&search_section=2'
-
-
-    def request(self, url, check):
-        try:
-            result = client.request(url)
-            if check in str(result): return result.decode('iso-8859-1').encode('utf-8')
-
-            result = client.request(proxy.get() + urllib.quote_plus(url))
-            if check in str(result): return result.decode('iso-8859-1').encode('utf-8')
-
-            result = client.request(proxy.get() + urllib.quote_plus(url))
-            if check in str(result): return result.decode('iso-8859-1').encode('utf-8')
-        except:
-            return
+        self.key_link = '/index.php?search'
+        self.moviesearch_link = '/index.php?search_keywords=%s&key=%s&search_section=1'
+        self.tvsearch_link = '/index.php?search_keywords=%s&key=%s&search_section=2'
 
 
     def movie(self, imdb, title, year):
         try:
-            result = self.request(self.key_link, 'searchform')
+            key = urlparse.urljoin(self.base_link, self.key_link)
+            key = proxy.request(key, 'searchform')
+            key = client.parseDOM(key, 'input', ret='value', attrs = {'name': 'key'})[0]
 
-            query = client.parseDOM(result, 'input', ret='value', attrs = {'name': 'key'})[0]
-            query = self.moviesearch_link % (urllib.quote_plus(cleantitle.query(title)), query)
+            query = self.moviesearch_link % (urllib.quote_plus(cleantitle.query(title)), key)
+            query = urlparse.urljoin(self.base_link, query)
 
-            result = str(self.request(query, 'index_item'))
-            if 'page=2' in result or 'page%3D2' in result: result += str(self.request(query + '&page=2', 'index_item'))
+            result = str(proxy.request(query, 'index_item'))
+            if 'page=2' in result or 'page%3D2' in result: result += str(proxy.request(query + '&page=2', 'index_item'))
 
             result = client.parseDOM(result, 'div', attrs = {'class': 'index_item.+?'})
 
@@ -68,27 +56,30 @@ class source:
             result = [(i[0][0], i[1][0]) for i in result if len(i[0]) > 0 and len(i[1]) > 0]
             result = [i for i in result if any(x in i[1] for x in years)]
 
-            try: result = [(urlparse.parse_qs(urlparse.urlparse(i[0]).query)['q'][0], i[1]) for i in result]
-            except: pass
-            try: result = [(urlparse.parse_qs(urlparse.urlparse(i[0]).query)['u'][0], i[1]) for i in result]
-            except: pass
-            try: result = [(urlparse.urlparse(i[0]).path, i[1]) for i in result]
-            except: pass
+            r = []
+            for i in result:
+                u = i[0]
+                try: u = urlparse.parse_qs(urlparse.urlparse(u).query)['u'][0]
+                except: pass
+                try: u = urlparse.parse_qs(urlparse.urlparse(u).query)['q'][0]
+                except: pass
+                r += [(u, i[1])]
 
-            match = [i[0] for i in result if title == cleantitle.get(i[1]) and '(%s)' % str(year) in i[1]]
+            match = [i[0] for i in r if title == cleantitle.get(i[1]) and '(%s)' % str(year) in i[1]]
 
-            match2 = [i[0] for i in result]
+            match2 = [i[0] for i in r]
             match2 = [x for y,x in enumerate(match2) if x not in match2[:y]]
             if match2 == []: return
 
             for i in match2[:5]:
                 try:
                     if len(match) > 0: url = match[0] ; break
-                    result = self.request(urlparse.urljoin(self.base_link, i), 'choose_tabs')
-                    if imdb in str(result): url = i ; break
+                    r = proxy.request(urlparse.urljoin(self.base_link, i), 'choose_tabs')
+                    if imdb in str(r): url = i ; break
                 except:
                     pass
 
+            url = re.findall('(?://.+?|)(/.+)', url)[0]
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
             return url
@@ -98,13 +89,15 @@ class source:
 
     def tvshow(self, imdb, tvdb, tvshowtitle, year):
         try:
-            result = self.request(self.key_link, 'searchform')
+            key = urlparse.urljoin(self.base_link, self.key_link)
+            key = proxy.request(key, 'searchform')
+            key = client.parseDOM(key, 'input', ret='value', attrs = {'name': 'key'})[0]
 
-            query = client.parseDOM(result, 'input', ret='value', attrs = {'name': 'key'})[0]
-            query = self.tvsearch_link % (urllib.quote_plus(cleantitle.query(tvshowtitle)), query)
+            query = self.tvsearch_link % (urllib.quote_plus(cleantitle.query(tvshowtitle)), key)
+            query = urlparse.urljoin(self.base_link, query)
 
-            result = str(self.request(query, 'index_item'))
-            if 'page=2' in result or 'page%3D2' in result: result += str(self.request(query + '&page=2', 'index_item'))
+            result = str(proxy.request(query, 'index_item'))
+            if 'page=2' in result or 'page%3D2' in result: result += str(proxy.request(query + '&page=2', 'index_item'))
 
             result = client.parseDOM(result, 'div', attrs = {'class': 'index_item.+?'})
 
@@ -115,27 +108,30 @@ class source:
             result = [(i[0][0], i[1][0]) for i in result if len(i[0]) > 0 and len(i[1]) > 0]
             result = [i for i in result if any(x in i[1] for x in years)]
 
-            try: result = [(urlparse.parse_qs(urlparse.urlparse(i[0]).query)['q'][0], i[1]) for i in result]
-            except: pass
-            try: result = [(urlparse.parse_qs(urlparse.urlparse(i[0]).query)['u'][0], i[1]) for i in result]
-            except: pass
-            try: result = [(urlparse.urlparse(i[0]).path, i[1]) for i in result]
-            except: pass
+            r = []
+            for i in result:
+                u = i[0]
+                try: u = urlparse.parse_qs(urlparse.urlparse(u).query)['u'][0]
+                except: pass
+                try: u = urlparse.parse_qs(urlparse.urlparse(u).query)['q'][0]
+                except: pass
+                r += [(u, i[1])]
 
-            match = [i[0] for i in result if tvshowtitle == cleantitle.get(i[1]) and '(%s)' % str(year) in i[1]]
+            match = [i[0] for i in r if tvshowtitle == cleantitle.get(i[1]) and '(%s)' % str(year) in i[1]]
 
-            match2 = [i[0] for i in result]
+            match2 = [i[0] for i in r]
             match2 = [x for y,x in enumerate(match2) if x not in match2[:y]]
             if match2 == []: return
 
             for i in match2[:5]:
                 try:
                     if len(match) > 0: url = match[0] ; break
-                    result = self.request(urlparse.urljoin(self.base_link, i), 'tv_episode_item')
-                    if imdb in str(result): url = i ; break
+                    r = proxy.request(urlparse.urljoin(self.base_link, i), 'tv_episode_item')
+                    if imdb in str(r): url = i ; break
                 except:
                     pass
 
+            url = re.findall('(?://.+?|)(/.+)', url)[0]
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
             return url
@@ -149,7 +145,7 @@ class source:
 
             url = urlparse.urljoin(self.base_link, url)
 
-            result = self.request(url, 'tv_episode_item')
+            result = proxy.request(url, 'tv_episode_item')
             result = client.parseDOM(result, 'div', attrs = {'class': 'tv_episode_item'})
 
             title = cleantitle.get(title)
@@ -168,7 +164,7 @@ class source:
             except: pass
             try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['q'][0]
             except: pass
-            url = urlparse.urlparse(url).path
+            url = re.findall('(?://.+?|)(/.+)', url)[0]
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
             return url
@@ -184,7 +180,7 @@ class source:
 
             url = urlparse.urljoin(self.base_link, url)
 
-            result = self.request(url, 'choose_tabs')
+            result = proxy.request(url, 'choose_tabs')
 
             links = client.parseDOM(result, 'tbody')
 

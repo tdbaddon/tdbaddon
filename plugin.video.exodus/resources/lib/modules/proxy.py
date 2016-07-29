@@ -19,30 +19,49 @@
 '''
 
 
-import random
+import urllib,random
+from resources.lib.modules import client
+
+
+def request(url, check):
+    try:
+        result = client.request(url)
+        if check in str(result): return result.decode('iso-8859-1').encode('utf-8')
+
+        result = client.request(get() + urllib.quote_plus(url))
+        if check in str(result): return result.decode('iso-8859-1').encode('utf-8')
+
+        result = client.request(get() + urllib.quote_plus(url))
+        if check in str(result): return result.decode('iso-8859-1').encode('utf-8')
+    except:
+        return
 
 
 def get():
     return random.choice([
+    'http://2anonymousproxy.com//browse.php?b=20&u=',
     'https://www.3proxy.us/index.php?hl=2e5&q=',
     'https://www.4proxy.us/index.php?hl=2e5&q=',
+    'http://alter-ip.com/index.php?hl=3c0&q=',
+    'http://buka.link/browse.php?b=20&u=',
+    'http://www.bypassrestrictions.com/browse.php?b=20&u=',
     'http://dontfilter.us/browse.php?b=20&u=',
-    'http://www.fakeip.org/index.php?hl=3c0&q=',
-    'http://filesdownloader.com/o.php?b=20&u=',
     'http://free-proxyserver.com/browse.php?b=20&u=',
-    'http://freeanimesonline.com/o.php?b=20&u=',
     'http://www.freeopenproxy.com/browse.php?b=20&u=',
-    'http://freeproxy.io/o.php?b=20&u=',
-    'http://www.greatestfreeproxy.com/browse.php?b=20&u=',
-    'http://www.gumm.org/index.php?hl=2e5&q=',
+    'http://www.gumm.org/browse.php?b=20&u=',
     'http://www.justproxy.co.uk/index.php?hl=2e5&q=',
+    'http://myroxy.info/browse.php?b=20&u=',
+    'http://www.nologproxy.com/browse.php?b=20&u=',
+    'http://protectproxy.com/browse.php?b=20&u=',
+    'http://proxite.net/browse.php?b=20&u=',
+    'http://www.proxythis.info/index.php?hl=2e5&q=',
     'http://quickprox.com/browse.php?b=20&u=',
-    'http://siteget.net/o.php?b=20&u=',
-    'http://sitenable.info/o.php?b=20&u=',
     'http://unblock-proxy.com/browse.php?b=20&u=',
     'http://www.unblockmyweb.com/browse.php?b=20&u=',
-    'http://www.unblockyoutubefree.net/browse.php?b=20&u=',
-    'http://www.webproxyfree.net/browse.php?b=20&u=',
+    'http://unblocksite.org/view.php?b=20&u=',
+    'http://unblockthatsite.net/ahora.php?b=20&u=',
+    'http://www.web-proxy.org.uk/index.php?hl=2e5&q=',
+    'http://www.webproxy.online/index.php?hl=2e5&q=',
     'http://www.youtubeunblockproxy.com/browse.php?b=20&u=',
     'https://zendproxy.com/bb.php?b=20&u='
     ])

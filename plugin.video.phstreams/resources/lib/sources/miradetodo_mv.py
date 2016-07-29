@@ -19,11 +19,10 @@
 '''
 
 
-import re,urllib,urllib2,urlparse,json,base64
+import re,urllib,urlparse,json
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
-from resources.lib.modules import directstream
 
 
 class source:
@@ -50,8 +49,7 @@ class source:
             r = [(i[0][0], i[1][0], i[2][0]) for i in r if len(i[0]) > 0 and len(i[1]) > 0 and len(i[2]) > 0]
             r = [i[0] for i in r if cleantitle.get(t) == cleantitle.get(i[1]) and year == i[2]][0]
 
-            url = urlparse.urljoin(self.base_link, r)
-            url = urlparse.urlparse(url).path
+            url = re.findall('(?://.+?|)(/.+)', r)[0]
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
             return url
@@ -73,63 +71,35 @@ class source:
             f = [re.findall('(?:\"|\')(http.+?miradetodo\..+?)(?:\"|\')', i) for i in f]
             f = [i[0] for i in f if len(i) > 0]
 
-            links = []
             dupes = []
 
             for u in f:
 
                 try:
-                    id = urlparse.parse_qs(urlparse.urlparse(u).query)['id'][0]
+                    sid = urlparse.parse_qs(urlparse.urlparse(u).query)['id'][0]
 
-                    if id in dupes: raise Exception()
-                    dupes.append(id)
+                    if sid in dupes: raise Exception()
+                    dupes.append(sid)
 
-                    try:
-                        if 'acd.php' in u: raise Exception()
+                    headers = {'X-Requested-With': 'XMLHttpRequest', 'Referer': u}
 
-                        headers = {'X-Requested-With': 'XMLHttpRequest', 'Referer': u}
+                    post = urllib.urlencode({'link': sid})
 
-                        post = urllib.urlencode({'link': id})
+                    url = urlparse.urljoin(self.base_link, '/stream/plugins/gkpluginsphp.php')
+                    url = client.request(url, post=post, headers=headers)
+                    url = json.loads(url)['link']
 
-                        url = urlparse.urljoin(self.base_link, '/stream/plugins/gkpluginsphp.php')
-                        url = client.request(url, post=post, headers=headers)
-                        url = json.loads(url)['link']
+                    if type(url) is list:
+                        url = [{'url': i['link'], 'quality': '1080p'} for i in url if '1080' in i['label']] + [{'url': i['link'], 'quality': 'HD'} for i in url if '720' in i['label']]
+                    else:
+                        url = [{'url': url, 'quality': 'HD'}]
 
-                        if type(url) is list:
-                            url = [{'url': i['link'], 'quality': '1080p'} for i in url if '1080' in i['label']] + [{'url': i['link'], 'quality': 'HD'} for i in url if '720' in i['label']]
-                        else:
-                            url = [{'url': url, 'quality': 'HD'}]
+                    url = [i for i in url if any(x in i['url'] for x in ['google', 'blogspot'])]
 
-                        for i in url:
-                            try: links.append({'source': 'gvideo', 'quality': directstream.googletag(i['url'])[0]['quality'], 'url': i['url']})
-                            except: pass
-
-                        continue
-                    except:
-                        pass
-
-                    try:
-                        result = client.request(u, headers={'Referer': r})
-
-                        url = re.findall('AmazonPlayer.*?file\s*:\s*"([^"]+)', result, re.DOTALL)[0]
-
-                        class NoRedirection(urllib2.HTTPErrorProcessor):
-                            def http_response(self, request, response): return response
-
-                        o = urllib2.build_opener(NoRedirection)
-                        o.addheaders = [('User-Agent', client.agent())]
-                        r = o.open(url) ; url = r.headers['Location'] ; r.close()
-
-                        if 'miradetodo.' in url: raise Exception()
-
-                        links.append({'source': 'cdn', 'quality': 'HD', 'url': url})
-                    except:
-                        pass
+                    for i in url:
+                        sources.append({'source': 'gvideo', 'quality': i['quality'], 'provider': 'MiraDeTodo', 'url': i['url'], 'direct': True, 'debridonly': False})
                 except:
                     pass
-
-
-            for i in links: sources.append({'source': i['source'], 'quality': i['quality'], 'provider': 'MiraDeTodo', 'url': i['url'], 'direct': True, 'debridonly': False})
 
             return sources
         except:
@@ -137,6 +107,12 @@ class source:
 
 
     def resolve(self, url):
-        return url
+        try:
+            url = client.request(url, output='geturl')
+            if 'requiressl=yes' in url: url = url.replace('http://', 'https://')
+            else: url = url.replace('https://', 'http://')
+            return url
+        except:
+            return
 
 

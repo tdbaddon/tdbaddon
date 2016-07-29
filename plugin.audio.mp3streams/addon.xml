@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="plugin.audio.mp3streams"
        name="MP3 Streams"
-       version="1.2.1"
-       provider-name="kinkin, spoyser, art by Marquerite">
+       version="1.2.2"
+       provider-name="kinkin, art by Marquerite">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
         <import addon="script.module.t0mm0.common" version="1.1.0"/>

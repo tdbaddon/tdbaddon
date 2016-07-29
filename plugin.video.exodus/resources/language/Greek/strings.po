@@ -106,7 +106,7 @@ msgstr "Σειρές σε εξέλιξη"
 
 msgctxt "#32026"
 msgid "New TV Shows"
-msgstr "Νέα Σειρές"
+msgstr "Νέες Σειρές"
 
 msgctxt "#32027"
 msgid "TV Calendar"
@@ -537,7 +537,7 @@ msgid "Playback outside Exodus is not allowed"
 msgstr "Η αναπαραγωγή εκτός Exodus δεν επιτρέπεται"
 
 msgctxt "#32403"
-msgid "Download item"
+msgid "Download"
 msgstr "Λήψη"
 
 msgctxt "#32404"

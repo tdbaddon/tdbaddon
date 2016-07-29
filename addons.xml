@@ -76,8 +76,8 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 <addon id="plugin.audio.mp3streams"
        name="MP3 Streams"
-       version="1.2.1"
-       provider-name="kinkin, spoyser, art by Marquerite">
+       version="1.2.2"
+       provider-name="kinkin, art by Marquerite">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
         <import addon="script.module.t0mm0.common" version="1.1.0"/>
@@ -598,7 +598,7 @@ Plugin by @koderdude</description>
 
 <addon id="plugin.video.BES-IPTV"
        name="BES-IPTV"
-       version="3.1.6"
+       version="3.1.7"
        provider-name="SayDinX.F.BESA">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
@@ -696,7 +696,7 @@ Plugin by @koderdude</description>
   </extension>
 </addon>
 
-<addon id="plugin.video.castaway" name="Castaway" version="0.2.7" provider-name="natko1412">
+<addon id="plugin.video.castaway" name="Castaway" version="0.2.8" provider-name="natko1412">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0"/>
 		<import addon="script.module.beautifulsoup" version="3.2.1"/>
@@ -704,6 +704,7 @@ Plugin by @koderdude</description>
     	<import addon="script.module.addon.common" />
 		<import addon="script.module.urlresolver" />
 		<import addon="script.module.liveresolver"  />
+		<import addon="script.module.livestreamer" />
 
 
 	</requires>
@@ -1124,11 +1125,12 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
   </extension>
 </addon>
 
-<addon id="plugin.video.exodus" version="2.0.2" name="Exodus" provider-name="Exodus">
+<addon id="plugin.video.exodus" version="2.0.3" name="Exodus" provider-name="Exodus">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="repository.exodus" version="1.0.0" />
-		<import addon="script.module.urlresolver" version="3.0.0"/>
+		<import addon="script.exodus.artwork" version="1.0.4" />
+		<import addon="script.module.urlresolver" version="3.0.0" />
 		<import addon="script.module.metahandler" version="1.0.0" />
 	</requires>
 	<extension point="xbmc.python.pluginsource" library="exodus.py">
@@ -1417,7 +1419,7 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
 	</extension>
 </addon>
 
-<addon id="plugin.video.javstream" name="JAVStream" version="0.90.75" provider-name="ptom">
+<addon id="plugin.video.javstream" name="JAVStream" version="0.91.1" provider-name="ptom">
 	<extension point="xbmc.python.pluginsource" library="default.py">
 		<provides>video</provides>
 	</extension>
@@ -1879,7 +1881,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   <extension point="xbmc.service" library="service.py" start="login" />
 </addon>
 
-<addon id="plugin.video.phstreams" name="Phoenix" version="3.1.2" provider-name="tvaddons.ag">
+<addon id="plugin.video.phstreams" name="Phoenix" version="3.1.3" provider-name="tvaddons.ag">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.pyxbmct" version="1.1.4" />
@@ -2178,6 +2180,26 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
+<addon id="plugin.video.TDBTVSHOWS"
+       name="TDB TV SHOWS"
+       version="1.00"
+       provider-name="TDB">
+<requires>
+<import addon="xbmc.python" version="2.1.0"/>
+</requires>
+<extension point="xbmc.python.pluginsource"
+            library="default.py">
+<provides>video</provides>
+</extension>
+<extension point="xbmc.addon.metadata">
+<summary>TDB TV SHOWS</summary>
+<description>Live Streaming TV</description>
+<disclaimer>The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
+    <platform>all</platform>
+  </extension>
+  <extension point="xbmc.service" library="service.py" start="login" />
+</addon>
+
 <addon id="plugin.video.TDBSPANISHTV"
        name="TDB SPANISH TV"
        version="1.47"
@@ -2199,7 +2221,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="4.00"
+       version="4.01"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -2611,7 +2633,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
-<addon id="plugin.video.wwe-on-demand" name="[COLOR gold][B]WWE ON DEMAND[/B] [/COLOR]" version="1.6" provider-name="@PBear90">
+<addon id="plugin.video.wwe-on-demand" name="[COLOR gold]WWE ON DEMAND[/COLOR]" version="2.0.2" provider-name="@PBear90">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.simplejson" version="3.3.0"/>
@@ -2626,8 +2648,8 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
         <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary lang="en">WWE ON DEMAND </summary>
-    <description lang="en">The author of this addon does not own nor is affiliated in any way with the content providers , But is providing a 3rd party way to give access to all links provided</description>
+    <summary lang="en">WWE ON DEMAND Add-On</summary>
+    <description lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</description>
     <platform>all</platform>
   </extension>
 </addon>

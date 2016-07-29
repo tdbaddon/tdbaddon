@@ -6,25 +6,72 @@ addon_id        = 'plugin.video.wwe-on-demand'
 addon           = Addon(addon_id, sys.argv)
 selfAddon       = xbmcaddon.Addon(id=addon_id)
 fanart          = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id , 'fanart.jpg'))
+fanarts         = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id , 'fanart.jpg'))
 icon            = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
+searchicon      = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'search.jpg'))
+nextpage        = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'next.png'))
 baseurl         = 'http://pbear90repo.netai.net/addons/wweondemand/pbearmain.xml'
 ytpl            = 'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId='
 ytpl2           = '&maxResults=50&key=AIzaSyAd-YEOqZz9nXVzGtn3KWzYLbLaajhqIDA'
-ytplpg1          = 'https://www.googleapis.com/youtube/v3/playlistItems?pageToken='
-ytplpg2          = '&part=snippet&playlistId='
-ytplpg3          = '&maxResults=50&key=AIzaSyAd-YEOqZz9nXVzGtn3KWzYLbLaajhqIDA'
+ytplpg1         = 'https://www.googleapis.com/youtube/v3/playlistItems?pageToken='
+ytplpg2         = '&part=snippet&playlistId='
+ytplpg3         = '&maxResults=50&key=AIzaSyAd-YEOqZz9nXVzGtn3KWzYLbLaajhqIDA'
 adultpass       = selfAddon.getSetting('password')
 metaset         = selfAddon.getSetting('enable_meta')
-
+messagetext     = 'http://pbear90repo.netai.net/addons/wweondemand/info.txt'+'?%d=%s' % (random.randint(1, 10000), random.randint(1, 10000))
+                                                               
 def GetMenu():
+#        popup()
         link=open_url(baseurl)
         match= re.compile('<item>(.+?)</item>').findall(link)
         for item in match:
-                data=re.compile('<title>(.+?)</title>.+?folder>(.+?)</folder>.+?thumbnail>(.+?)</thumbnail>.+?fanart>(.+?)</fanart>').findall(item)
-                for name,url,iconimage,fanart in data:
-                        addDir(name,url,1,iconimage,fanart)
-        xbmc.executebuiltin('Container.SetViewMode(500)') 
+            try:
+                if '<sportsdevil>' in item:
+                        name=re.compile('<title>(.+?)</title>').findall(item)[0]
+                        iconimage=re.compile('<thumbnail>(.+?)</thumbnail>').findall(item)[0]            
+                        url=re.compile('<sportsdevil>(.+?)</sportsdevil>').findall(item)[0]
+                        referer=re.compile('<referer>(.+?)</referer>').findall(item)[0]
+                        link = 'plugin://plugin.video.SportsDevil/?mode=1&amp;item=catcher%3dstreams%26url=' +url
+                        url = link + '%26referer=' +referer
+                        addLink(name,url,4,iconimage,fanart)       
+                elif '<folder>'in item:
+                                data=re.compile('<title>(.+?)</title>.+?folder>(.+?)</folder>.+?thumbnail>(.+?)</thumbnail>.+?fanart>(.+?)</fanart>').findall(item)
+                                for name,url,iconimage,fanart in data:
+                                        addDir(name,url,1,iconimage,fanart)
+                else:
+                                links=re.compile('<link>(.+?)</link>').findall(item)
+                                if len(links)==1:
+                                        data=re.compile('<title>(.+?)</title>.+?link>(.+?)</link>.+?thumbnail>(.+?)</thumbnail>.+?fanart>(.+?)</fanart>').findall(item)
+                                        lcount=len(match)
+                                        for name,url,iconimage,fanart in data:
+                                                if 'youtube.com/playlist' in url:
+                                                        addDir(name,url,2,iconimage,fanart)
+                                                else:
+                                                        addLink(name,url,2,iconimage,fanart)
+                                elif len(links)>1:
+                                        name=re.compile('<title>(.+?)</title>').findall(item)[0]
+                                        iconimage=re.compile('<thumbnail>(.+?)</thumbnail>').findall(item)[0]
+                                        fanart=re.compile('<fanart>(.+?)</fanart>').findall(item)[0]
+                                        addLink(name,url2,3,iconimage,fanart)
+            except:pass
+            view(link)
+        addDir('[B][COLOR gold]Search[/COLOR][/B] [B][COLOR white]WWE[/COLOR][/B]',url,5,searchicon,fanarts)
+        xbmc.executebuiltin('Container.SetViewMode(500)')
 
+def popup():
+        message=open_url2(messagetext)
+        if len(message)>1:
+                path = xbmcaddon.Addon().getAddonInfo('path')
+                comparefile = os.path.join(os.path.join(path,''), 'compare.txt')
+                r = open(comparefile)
+                compfile = r.read()       
+                if compfile == message:pass
+                else:
+                        showText('[B][COLOR gold]WWE[/COLOR] [COLOR white]I[/COLOR][COLOR white]nformation[/COLOR][/B]', message)
+                        text_file = open(comparefile, "w")
+                        text_file.write(message)
+                        text_file.close()
+                        
 def GetContent(name,url,iconimage,fanart):
         url2=url
         link=open_url(url)
@@ -80,11 +127,62 @@ def GetContent(name,url,iconimage,fanart):
                                 elif len(links)>1:
                                         name=re.compile('<title>(.+?)</title>').findall(item)[0]
                                         iconimage=re.compile('<thumbnail>(.+?)</thumbnail>').findall(item)[0]
+                                        fanart=re.compile('<fanart>(.+?)</fanart>').findall(item)[0]
                                         addLink(name,url2,3,iconimage,fanart)
             except:pass
             view(link)
 
-
+def SEARCH():
+	keyb = xbmc.Keyboard('', '[COLOR white]Search[/COLOR] [COLOR gold]WWE[/COLOR]')
+	keyb.doModal()
+	if (keyb.isConfirmed()):
+		searchterm=keyb.getText()
+		searchterm=searchterm.upper()
+	else:quit()
+	link=open_url('http://pbear90repo.netai.net/addons/wweondemand/search.xml')
+	slist=re.compile('<link>(.+?)</link>').findall(link)
+	for url in slist:
+                url2=url
+                link=open_url(url)
+                entries= re.compile('<item>(.+?)</item>').findall(link)
+                for item in entries:
+                        match=re.compile('<title>(.+?)</title>').findall(item)
+                        for title in match:
+                                title=title.upper()
+                                if searchterm in title:
+                                    try:
+                                        if '<sportsdevil>' in item:
+                                                name=re.compile('<title>(.+?)</title>').findall(item)[0]
+                                                iconimage=re.compile('<thumbnail>(.+?)</thumbnail>').findall(item)[0]            
+                                                url=re.compile('<sportsdevil>(.+?)</sportsdevil>').findall(item)[0]
+                                                referer=re.compile('<referer>(.+?)</referer>').findall(item)[0]
+                                                link = 'plugin://plugin.video.SportsDevil/?mode=1&amp;item=catcher%3dstreams%26url=' +url
+                                                url = link + '%26referer=' +referer
+                                                if 'tp' in url:
+                                                        addLink(name,url,4,iconimage,fanarts)       
+                                        elif '<folder>'in item:
+                                                        data=re.compile('<title>(.+?)</title>.+?folder>(.+?)</folder>.+?thumbnail>(.+?)</thumbnail>.+?fanart>(.+?)</fanart>').findall(item)
+                                                        for name,url,iconimage,fanart in data:
+                                                                if 'tp' in url:
+                                                                        addDir(name,url,1,iconimage,fanarts)
+                                        else:
+                                                        links=re.compile('<link>(.+?)</link>').findall(item)
+                                                        if len(links)==1:
+                                                                data=re.compile('<title>(.+?)</title>.+?link>(.+?)</link>.+?thumbnail>(.+?)</thumbnail>.+?fanart>(.+?)</fanart>').findall(item)
+                                                                lcount=len(match)
+                                                                for name,url,iconimage,fanart in data:
+                                                                        if 'youtube.com/playlist' in url:
+                                                                                addDir(name,url,2,iconimage,fanarts)
+                                                                        else:
+                                                                                if 'tp' in url: 
+                                                                                        addLink(name,url,2,iconimage,fanarts)
+                                                        elif len(links)>1:
+                                                                name=re.compile('<title>(.+?)</title>').findall(item)[0]
+                                                                iconimage=re.compile('<thumbnail>(.+?)</thumbnail>').findall(item)[0]
+                                                                addLink(name,url2,3,iconimage,fanarts)
+                                    except:pass       
+                        
+		
 def GETMULTI(name,url,iconimage):
 	streamurl=[]
 	streamname=[]
@@ -95,22 +193,31 @@ def GETMULTI(name,url,iconimage):
 	links=re.compile('<link>(.+?)</link>').findall(urls)
 	i=1
 	for sturl in links:
-		streamurl.append( sturl )
-		streamname.append( 'Link '+str(i) )
-		dialog = xbmcgui.Dialog()
-		i=i+1
+                sturl2=sturl
+                if '(' in sturl:
+                        sturl=sturl.split('(')[0]
+                        caption=str(sturl2.split('(')[1].replace(')',''))
+                        streamurl.append(sturl)
+                        streamname.append(caption)
+                else:
+                        streamurl.append( sturl )
+                        streamname.append( 'Link '+str(i) )
+                i=i+1
 	name='[COLOR red]'+name+'[/COLOR]'
+	dialog = xbmcgui.Dialog()
 	select = dialog.select(name,streamname)
-	if select == -1:
+	if select < 0:
 		quit()
 	else:
 		url = streamurl[select]
+		print url
 		if urlresolver.HostedMediaFile(url).valid_url(): stream_url = urlresolver.HostedMediaFile(url).resolve()
                 elif liveresolver.isValid(url)==True: stream_url=liveresolver.resolve(url)
                 else: stream_url=url
                 liz = xbmcgui.ListItem(name,iconImage='DefaultVideo.png', thumbnailImage=iconimage)
                 liz.setPath(stream_url)
                 xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
+                
 def PLAYSD(name,url,iconimage):
         ok=True
         liz=xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage); liz.setInfo( type="Video", infoLabels={ "Title": name } )
@@ -129,15 +236,22 @@ def PLAYLINK(name,url,iconimage):
                 response.close()
                 link = link.replace('\r','').replace('\n','').replace('  ','')     
                 match=re.compile('"title": "(.+?)".+?"videoId": "(.+?)"',re.DOTALL).findall(link)
-                for name,ytid in match:
-                        url = 'https://www.youtube.com/watch?v='+ytid
-                        if not 'Private video' in name:
-                                addLink(name,url,2,iconimage,fanart)
                 try:
                         np=re.compile('"nextPageToken": "(.+?)"').findall(link)[0]
                         ytapi = ytplpg1 + np + ytplpg2 + searchterm + ytplpg3
-                        addDir('Next Page >>',ytapi,2,iconimage,fanart)
+                        addDir('Next Page >>',ytapi,2,nextpage,fanart)
                 except:pass
+
+
+
+                
+                for name,ytid in match:
+                        url = 'https://www.youtube.com/watch?v='+ytid
+                        iconimage = 'https://i.ytimg.com/vi/'+ytid+'/hqdefault.jpg'
+                        if not 'Private video' in name:
+                                if not 'Deleted video' in name:
+                                        addLink(name,url,2,iconimage,fanart)
+                
         if 'https://www.googleapis.com/youtube/v3' in url:
                 searchterm = re.compile('playlistId=(.+?)&maxResults').findall(url)[0]
                 req = urllib2.Request(url)
@@ -147,15 +261,22 @@ def PLAYLINK(name,url,iconimage):
                 response.close()
                 link = link.replace('\r','').replace('\n','').replace('  ','')     
                 match=re.compile('"title": "(.+?)".+?"videoId": "(.+?)"',re.DOTALL).findall(link)
-                for name,ytid in match:
-                        url = 'https://www.youtube.com/watch?v='+ytid
-                        if not 'Private video' in name:
-                                addLink(name,url,2,iconimage,fanart)
                 try:
                         np=re.compile('"nextPageToken": "(.+?)"').findall(link)[0]
                         ytapi = ytplpg1 + np + ytplpg2 + searchterm + ytplpg3
-                        addDir('Next Page >>',ytapi,2,iconimage,fanart)
+                        addDir('Next Page >>',ytapi,2,nextpage,fanart)
                 except:pass
+
+
+                
+                for name,ytid in match:
+                        url = 'https://www.youtube.com/watch?v='+ytid
+                        iconimage = 'https://i.ytimg.com/vi/'+ytid+'/hqdefault.jpg'
+                        if not 'Private video' in name:
+                                if not 'Deleted video' in name:
+                                        addLink(name,url,2,iconimage,fanart)
+
+                
                                      
         if urlresolver.HostedMediaFile(url).valid_url(): stream_url = urlresolver.HostedMediaFile(url).resolve()
         elif liveresolver.isValid(url)==True: stream_url=liveresolver.resolve(url)
@@ -164,18 +285,25 @@ def PLAYLINK(name,url,iconimage):
         liz.setPath(stream_url)
         xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
                                      
+
 def open_url(url):
     try:
         req = urllib2.Request(url)
-        if 'matsbuilds'in url:req.add_header('User-Agent', 'mat')
-        else:req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
+        req.add_header('User-Agent', 'slimeevole')
         response = urllib2.urlopen(req)
         link=response.read()
         response.close()
         link=link.replace('\n','').replace('\r','').replace('<fanart></fanart>','<fanart>x</fanart>').replace('<thumbnail></thumbnail>','<thumbnail>x</thumbnail>').replace('<utube>','<link>https://www.youtube.com/watch?v=').replace('</utube>','</link>')#.replace('></','>x</')
         return link
     except:quit()
- 
+
+def open_url2(url):
+        req = urllib2.Request(url)
+        req.add_header('User-Agent', 'slimeevolve')
+        response = urllib2.urlopen(req)
+        link=response.read()
+        response.close()
+        return link
 def get_params():
         param=[]
         paramstring=sys.argv[2]
@@ -235,6 +363,22 @@ def addLink(name,url,mode,iconimage,fanart,description=''):
         ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=False)
         return ok
 
+def showText(heading, text):
+    id = 10147
+    xbmc.executebuiltin('ActivateWindow(%d)' % id)
+    xbmc.sleep(500)
+    win = xbmcgui.Window(id)
+    retry = 50
+    while (retry > 0):
+	try:
+	    xbmc.sleep(10)
+	    retry -= 1
+	    win.getControl(1).setLabel(heading)
+	    win.getControl(5).setText(text)
+	    return
+	except:
+	    pass
+
 def view(link):
         try:
                 match= re.compile('<layouttype>(.+?)</layouttype>').findall(link)[0]
@@ -261,5 +405,7 @@ elif mode==1:GetContent(name,url,iconimage,fanart)
 elif mode==2:PLAYLINK(name,url,iconimage)
 elif mode==3:GETMULTI(name,url,iconimage)
 elif mode==4:PLAYSD(name,url,iconimage)
+elif mode==5:SEARCH()
+
 
 xbmcplugin.endOfDirectory(int(sys.argv[1]))

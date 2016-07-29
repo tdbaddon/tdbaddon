@@ -54,9 +54,6 @@ http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/735.ts
 #EXTINF:0,BT Sport Europe
 http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/903.ts
 
-#EXTINF:0,BT Sport Europe
-http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/166.ts
-
 #EXTINF:0,CBS Sports 
 0
 
@@ -309,9 +306,6 @@ http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/162.ts
 #EXTINF:0,Sky Sports F1 
 http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/784.ts
 
-#EXTINF:0,Sky Sports F1 
-http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/180.ts
-
 #EXTINF:0,Sky Sports News 
 http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/747.ts
 
@@ -394,4 +388,4 @@ http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/590.ts
 0
 
 #EXTINF:0,WWE Network 
-http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/908.ts
+0
