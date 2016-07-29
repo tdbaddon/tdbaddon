@@ -26,7 +26,7 @@ def xt(x):return xbmc.translatePath(x)
 	
 handle = int(sys.argv[1])
 
-PLUGIN_NAME   = 'TDBTVSHOWS'
+PLUGIN_NAME   = 'TDB TV SHOWS'
 
 addon = xbmcaddon.Addon(id='plugin.video.TDBTVSHOWS')
 
