@@ -23,7 +23,7 @@ import utils, sqlite3
 
 
 def Main():
-    utils.addDownLink('[COLOR red]Refresh Chaturbate images[/COLOR]','',223,'','')
+    utils.addDir('[COLOR red]Refresh Chaturbate images[/COLOR]','',223,'',Folder=False)
     utils.addDir('[COLOR hotpink]Featured[/COLOR]','https://chaturbate.com/?page=1',221,'','')
     utils.addDir('[COLOR hotpink]Female[/COLOR]','https://chaturbate.com/female-cams/?page=1',221,'','')
     utils.addDir('[COLOR hotpink]Couple[/COLOR]','https://chaturbate.com/couple-cams/?page=1',221,'','')

@@ -69,7 +69,7 @@ def PHCat(url):
 def PHVideo(url, name, download=None):
     progress.create('Play video', 'Searching videofile.')
     progress.update( 10, "", "Loading video page", "" )
-    Supported_hosts = ['Openload.io', 'StreamCloud', 'NowVideo', 'www.nowvideo.sx', 'FlashX', 'www.flashx.tv', 'streamcloud.eu', 'streamin.to', 'videowood.tv', 'www.keeplinks.eu', 'openload.co']
+    Supported_hosts = ['Openload.io', 'StreamCloud', 'NowVideo', 'www.nowvideo.sx', 'FlashX', 'www.flashx.tv', 'flashx.tv',  'streamcloud.eu', 'streamin.to', 'videowood.tv', 'www.keeplinks.eu', 'openload.co']
     videopage = utils.getHtml(url, '')
     match = re.compile(r'data-id="([^"]+)" target="_blank" title="Watch it on ([\w.]+)', re.DOTALL | re.IGNORECASE).findall(videopage)
     if len(match) > 1:
@@ -80,8 +80,8 @@ def PHVideo(url, name, download=None):
                 sites.append(site)
                 vidurls.append(videourl)
         if len(sites) ==  1:
-            sitename = match[0][1]
-            siteurl = match[0][0]
+            sitename = sites[0]
+            siteurl = vidurls[0]
         elif len(sites) > 1:
             site = utils.dialog.select('Select video site', sites)
             sitename = sites[site]
@@ -163,7 +163,7 @@ def getFlashX(url):
     flashxsrc = utils.getHtml2(flashxurl)
     progress.update( 60, "", "Grabbing video file", "" )
     flashxurl2 = re.compile('<a href="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(flashxsrc)
-    flashxsrc2 = utils.getHtml(flashxurl2[0])
+    flashxsrc2 = utils.getHtml(flashxurl2[0], flashxurl, utils.openloadhdr)
     progress.update( 70, "", "Grabbing video file", "" )
     flashxjs = re.compile("<script type='text/javascript'>([^<]+)</sc", re.DOTALL | re.IGNORECASE).findall(flashxsrc2)
     try: flashxujs = unpack(flashxjs[0])

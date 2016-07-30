@@ -21,6 +21,8 @@ import urllib, urllib2, re, cookielib, os.path, sys, socket
 import xbmc, xbmcplugin, xbmcgui, xbmcaddon
  
 import utils
+
+progress = utils.progress
  
  
 def Main():
@@ -44,7 +46,7 @@ def List(url):
 
 def ListSearch(url):
     html = utils.getHtml(url, '').replace('\n','')
-    match = re.compile('<p>(.+?)</p><p>.+?<img src="(.+?)".*?/>.*?</a>.*?<a href="(.+?)" class="more-link">').findall(html)
+    match = re.compile('bookmark">([^<]+)</a></h1>.*?<img src="([^"]+)".*?href="([^"]+)"').findall(html)
     for name, img, videopage in match:
         name = utils.cleantext(name)
         utils.addDownLink(name, videopage, 422, img, '')
@@ -55,8 +57,18 @@ def ListSearch(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 def Playvid(url, name, download):
+    progress.create('Play video', 'Searching videofile.')
+    progress.update( 10, "", "Loading video page", "" )
     url = url.split('#')[0]
-    utils.PLAYVIDEO(url, name, download)
+    videopage = utils.getHtml(url, '')
+    entrycontent = re.compile('entry-content">(.*?)entry-content', re.DOTALL | re.IGNORECASE).findall(videopage)[0]
+    links = re.compile('href="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(entrycontent)
+    videourls = " "
+    for link in links:
+        if 'securely' in link:
+            link = utils.getVideoLink(link, url)
+        videourls = videourls + " " + link
+    utils.playvideo(videourls, name, download, url)
  
  
 def Categories(url):

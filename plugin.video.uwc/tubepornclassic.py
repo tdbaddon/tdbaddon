@@ -59,9 +59,9 @@ def Search(url, keyword=None):
 
 def Cat(url):
     listhtml = utils.getHtml(url, '')
-    match = re.compile('<a class="item" href="([^"]+)" title="([^"]+)".*?thumb" src="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(listhtml)
-    for catpage, name, img in match:
-        name = utils.cleantext(name)
+    match = re.compile('<a class="item" href="([^"]+)" title="([^"]+)".*?data-original="([^"]+)".*?videos">([^<]+)<', re.DOTALL | re.IGNORECASE).findall(listhtml)
+    for catpage, name, img, videos in match:
+        name = utils.cleantext(name) + " [COLOR deeppink]" + videos + "[/COLOR]"
         utils.addDir(name, catpage, 361, img, '')
     xbmcplugin.endOfDirectory(utils.addon_handle)
 

@@ -23,7 +23,7 @@ import utils, sqlite3
 
 
 def Main():
-    utils.addDownLink('[COLOR red]Refresh Cam4 images[/COLOR]','',283,'','')
+    utils.addDir('[COLOR red]Refresh Cam4 images[/COLOR]','',283,'',Folder=False)
     utils.addDir('[COLOR hotpink]Featured[/COLOR]','http://www.cam4.com/featured/1',281,'',1)
     utils.addDir('[COLOR hotpink]Females[/COLOR]','http://www.cam4.com/female/1',281,'',1)
     utils.addDir('[COLOR hotpink]Couples[/COLOR]','http://www.cam4.com/couple/1',281,'',1)

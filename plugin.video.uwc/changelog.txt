@@ -1,3 +1,28 @@
+[B]Version 1.1.25[/B]
+Fixed: Openload part 2 (??)
+
+
+[B]Version 1.1.24[/B]
+Fixed: Openload (??)
+
+
+[B]Version 1.1.23[/B]
+Added: A to Z list for HentaiHaven
+Added: Filecrypt support (Pornkino)
+Fixed: Videomegaporn
+
+
+[B]Version 1.1.22[/B]
+Added: HentaiHaven
+Fixed: Stopped flooding the log with warnings
+
+
+[B]Version 1.1.21[/B]
+Fixed: FlashX
+Fixed: Tubepornclassic categories
+Fixed: xxxstreams(org)
+
+
 [B]Version 1.1.20[/B]
 Fixed: Pornhive
 

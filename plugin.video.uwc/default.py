@@ -23,7 +23,7 @@ import utils, hdporn, porntrex, nudeflix, hentaicraving, watchxxxfree, xtheatre,
 import elreyx, thepornnation, xvideospanish, pelisxporno, hqporner, videomegaporn, streamxxx, yourfreetube
 import xtasie, streampleasure, chaturbate, pornkino, justporn, hdzog, cat3movie, tubepornclassic, paradisehill
 import freeomovie, hclips, pornhub, mrsexe, erotik, favorites, myfreecams, cam4, porndig, absoluporn, czechhd, xxxstreams
-import xxxsorg, eroticage, anybunny, spankbang, k18, sexix
+import xxxsorg, eroticage, anybunny, spankbang, k18, sexix, hentaihaven
 
 socket.setdefaulttimeout(60)
 
@@ -38,9 +38,9 @@ rootDir = utils.rootDir
 
 
 def INDEX():
-    utils.addDir('[COLOR hotpink]Whitecream[/COLOR] [COLOR white]Scenes[/COLOR]','',2,os.path.join(rootDir, 'icon.png'),'')
-    utils.addDir('[COLOR hotpink]Whitecream[/COLOR] [COLOR white]Movies[/COLOR]','',3,os.path.join(rootDir, 'icon.png'),'')
-    utils.addDir('[COLOR hotpink]Whitecream[/COLOR] [COLOR white]Hentai[/COLOR]','http://www.hentaicraving.com/?genre=Uncensored',30,os.path.join(imgDir, 'hc.jpg'),'')
+    utils.addDir('[COLOR hotpink]Whitecream[/COLOR] [COLOR white]Scenes[/COLOR]','',1,os.path.join(rootDir, 'icon.png'),'')
+    utils.addDir('[COLOR hotpink]Whitecream[/COLOR] [COLOR white]Movies[/COLOR]','',2,os.path.join(rootDir, 'icon.png'),'')
+    utils.addDir('[COLOR hotpink]Whitecream[/COLOR] [COLOR white]Hentai[/COLOR]','',3,os.path.join(rootDir, 'icon.png'),'')
     utils.addDir('[COLOR hotpink]Whitecream[/COLOR] [COLOR white]Tubes[/COLOR]','',6,os.path.join(rootDir, 'icon.png'),'')
     utils.addDir('[COLOR hotpink]Whitecream[/COLOR] [COLOR white]Webcams & Streams[/COLOR]','',7,os.path.join(rootDir, 'icon.png'),'')
     utils.addDir('[COLOR hotpink]Whitecream[/COLOR] [COLOR white]Favorites[/COLOR]','',901,os.path.join(rootDir, 'icon.png'),'')
@@ -120,6 +120,11 @@ def INDEXW():
     utils.addDir('[COLOR hotpink]Cam4[/COLOR] [COLOR white]- webcams[/COLOR]','http://www.cam4.com',280,os.path.join(imgDir, 'cam4.png'),'')    
     utils.addDir('[COLOR hotpink]Streams[/COLOR] [COLOR white]- beta[/COLOR]','',8,'','')
     xbmcplugin.endOfDirectory(utils.addon_handle)
+    
+def INDEXH():
+    utils.addDir('[COLOR hotpink]Hentaicraving[/COLOR]','http://www.hentaicraving.com/?genre=Uncensored',30,os.path.join(imgDir, 'hc.jpg'),'')
+    utils.addDir('[COLOR hotpink]Hentaihaven[/COLOR]','http://hentaihaven.org/?sort=date',460,os.path.join(imgDir, 'hh.png'),'')
+    xbmcplugin.endOfDirectory(utils.addon_handle)    
     
 def STREAMS():
     streamurl = 'http://bit.ly/uwcstreams'
@@ -206,8 +211,9 @@ else:
 
 if age:
     if mode is None: INDEX()
-    elif mode == 2: INDEXS()
-    elif mode == 3: INDEXM()
+    elif mode == 1: INDEXS()
+    elif mode == 2: INDEXM()
+    elif mode == 3: INDEXH()    
     elif mode == 4: xbmc.executebuiltin('ActivateWindow(Videos, '+url+')')
     elif mode == 5: ONELIST(page)
     elif mode == 6: INDEXT()
@@ -454,6 +460,11 @@ if age:
     elif mode == 452: sexix.Playvid(url, name, download)
     elif mode == 453: sexix.Categories(url)
     elif mode == 454: sexix.Search(url, keyword)
+    elif mode == 460: hentaihaven.Main()
+    elif mode == 461: hentaihaven.List(url)
+    elif mode == 462: hentaihaven.Playvid(url, name, download)
+    elif mode == 463: hentaihaven.Categories(url)
+    elif mode == 464: hentaihaven.A2Z(url)    
 
     elif mode == 900: favorites.Favorites(fav,favmode,name,url,img)
     elif mode == 901: favorites.List()

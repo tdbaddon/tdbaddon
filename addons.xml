@@ -2180,26 +2180,6 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.TDBTVSHOWS"
-       name="TDB TV SHOWS"
-       version="1.00"
-       provider-name="TDB">
-<requires>
-<import addon="xbmc.python" version="2.1.0"/>
-</requires>
-<extension point="xbmc.python.pluginsource"
-            library="default.py">
-<provides>video</provides>
-</extension>
-<extension point="xbmc.addon.metadata">
-<summary>TDB TV SHOWS</summary>
-<description>Live Streaming TV</description>
-<disclaimer>The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
-    <platform>all</platform>
-  </extension>
-  <extension point="xbmc.service" library="service.py" start="login" />
-</addon>
-
 <addon id="plugin.video.TDBSPANISHTV"
        name="TDB SPANISH TV"
        version="1.47"
@@ -2233,6 +2213,26 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 <extension point="xbmc.addon.metadata">
 <summary>TDB TV</summary>
 <description>Live Streaming TV</description>
+<disclaimer>The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
+    <platform>all</platform>
+  </extension>
+  <extension point="xbmc.service" library="service.py" start="login" />
+</addon>
+
+<addon id="plugin.video.TDBTVSHOWS"
+       name="TDB TV SHOWS"
+       version="1.00"
+       provider-name="TDB">
+<requires>
+<import addon="xbmc.python" version="2.1.0"/>
+</requires>
+<extension point="xbmc.python.pluginsource"
+            library="default.py">
+<provides>video</provides>
+</extension>
+<extension point="xbmc.addon.metadata">
+<summary>TDB TV SHOWS</summary>
+<description></description>
 <disclaimer>The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
     <platform>all</platform>
   </extension>
@@ -2520,7 +2520,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.uwc"
        name="Ultimate Whitecream"
-       version="1.1.20"
+       version="1.1.25"
        provider-name="mortael">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
