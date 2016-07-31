@@ -24,6 +24,9 @@ import sys,pkgutil,re,json,urllib,urlparse,datetime,time
 try: import xbmc
 except: pass
 
+try: import urlresolver
+except: pass
+
 try:
     from sqlite3 import dbapi2 as database
 except:
@@ -870,8 +873,20 @@ class sources:
         try: self.hostlqDict = [i.lower() for i in reduce(lambda x, y: x+y, self.hostlqDict)]
         except: pass
 
+        try:
+            self.hostDict = urlresolver.relevant_resolvers(order_matters=True)
+            self.hostDict = [i.domains for i in self.hostDict if not '*' in i.domains]
+            self.hostDict = [i.lower() for i in reduce(lambda x, y: x+y, self.hostDict)]
+            self.hostDict = [x for y,x in enumerate(self.hostDict) if x not in self.hostDict[:y]]
+        except:
+            self.hostDict = []
+
+        #for i in self.hostDict:
+        #    control.log('##### SOURCES DICTY: %s' % i )
+
         self.hostsdfullDict = self.hostprDict + self.hosthqDict + self.hostmqDict + self.hostlqDict
+        #for i in self.hostsdfullDict:
+        #    control.log('##### SOURCES DICTY2: %s' % i )
+        #self.hostsdfullDict = self.hostDict
 
         self.hosthdfullDict = self.hostprDict + self.hosthdDict
-
-

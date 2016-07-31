@@ -36,6 +36,7 @@
 		<setting id="icefilms" type="bool" label="Icefilms" default="true" />
 		<setting id="iwatchonline" type="bool" label="Iwatchonline" default="false" />
 		<setting id="movie25" type="bool" label="Movie25" default="false" />
+		<setting id="movieshd" type="bool" label="MoviesHD" default="true" />
 		<setting id="movietubev2" type="bool" label="Movietube" default="true" />
 		<setting id="movienight" type="bool" label="Movienight" default="true" />
 		<setting id="muchmovies" type="bool" label="Muchmovies" default="true" />
@@ -64,9 +65,10 @@
 		<setting id="fmovies_tv" type="bool" label="Fmovies" default="true" />
 		<setting id="icefilms_tv" type="bool" label="Icefilms" default="true" />
 		<setting id="iwatchonline_tv" type="bool" label="Iwatchonline" default="false" />
-		<setting id="muchmovies_tv" type="bool" label="Muchmovies" default="true" />
 		<setting id="moviefarsiv2_tv" type="bool" label="Moviefarsi" default="false" />
+		<setting id="movieshd_tv" type="bool" label="MoviesHD" default="true" />
 		<setting id="moviestorm_tv" type="bool" label="Moviestorm" default="false" />
+		<setting id="muchmovies_tv" type="bool" label="Muchmovies" default="true" />
 		<setting id="oneclickwatch_tv" type="bool" label="Oneclickwatch" default="true" />
 		<setting id="ororo_tv" type="bool" label="Ororo" default="true" />
 		<setting id="onlinedizi_tv" type="bool" label="Onlinedizi" default="true" />

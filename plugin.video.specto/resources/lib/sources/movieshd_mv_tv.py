@@ -19,28 +19,31 @@
 '''
 
 
-import re,urllib,urlparse,json,base64,time, random,string
+import re,urllib,urlparse
+import json, time, random, string
+import base64
 
 from resources.lib.libraries import cleantitle
+from resources.lib.libraries import cache
 from resources.lib.libraries import client
 from resources.lib.libraries import control
-from resources.lib.libraries import cache
 from resources.lib import resolvers
-
-
 
 
 class source:
     def __init__(self):
-        self.base_link = 'http://www.putlocker.systems'
+        self.base_link = 'http://movieshd.is'
         self.search_link = '/api/v1/cautare/apr'
 
 
     def get_movie(self, imdb, title, year):
         try:
-            tk = cache.get(self.putlocker_token, 8)
-            st = self.putlocker_set() ; rt = self.putlocker_rt(tk + st)
+            tk = cache.get(self.movieshd_token, 8)
+
+            st = self.movieshd_set() ; rt = self.movieshd_rt(tk + st)
+
             tm = int(time.time() * 1000)
+
             headers = {'X-Requested-With': 'XMLHttpRequest'}
 
             url = urlparse.urljoin(self.base_link, self.search_link)
@@ -65,12 +68,11 @@ class source:
         except:
             return
 
-
     def get_show(self, imdb, tvdb, tvshowtitle, year):
         try:
-            tk = cache.get(self.putlocker_token, 8)
+            tk = cache.get(self.movieshd_token, 8)
 
-            st = self.putlocker_set() ; rt = self.putlocker_rt(tk + st)
+            st = self.movieshd_set() ; rt = self.movieshd_rt(tk + st)
 
             tm = int(time.time() * 1000)
 
@@ -98,7 +100,6 @@ class source:
         except:
             return
 
-
     def get_episode(self, url, imdb, tvdb, title, premiered, season, episode):
         try:
             if url == None: return
@@ -111,30 +112,6 @@ class source:
             return url
         except:
             return
-
-    def putlocker_token(self):
-        try:
-            token = client.request(self.base_link)
-            token = re.findall("var\s+tok\s*=\s*'([^']+)", token)[0]
-            return token
-        except:
-            return
-
-
-    def putlocker_set(self):
-        return ''.join([random.choice(string.ascii_letters) for _ in xrange(25)])
-
-
-    def putlocker_rt(self, s, shift=13):
-        s2 = ''
-        for c in s:
-            limit = 122 if c in string.ascii_lowercase else 90
-            new_code = ord(c) + shift
-            if new_code > limit:
-                new_code -= 26
-            s2 += chr(new_code)
-        return s2
-
 
     def get_sources(self, url, hosthdDict, hostDict, locDict):
         try:
@@ -179,15 +156,13 @@ class source:
                 except: pass
 
             links += [{'source': 'openload.co', 'quality': 'SD', 'url': i} for i in r if 'openload.co' in i]
-
             links += [{'source': 'videomega.tv', 'quality': 'SD', 'url': i} for i in r if 'videomega.tv' in i]
-
-
-            for i in links: sources.append({'source': i['source'], 'quality': i['quality'], 'provider': 'Putlocker', 'url': i['url']})
+            for i in links: sources.append({'source': i['source'], 'quality': i['quality'], 'provider': 'MoviesHD', 'url': i['url']})
 
             return sources
         except:
             return sources
+
 
     def resolve(self, url):
         try:
@@ -199,5 +174,26 @@ class source:
         except:
             return
 
+    def movieshd_token(self):
+        try:
+            token = client.request(self.base_link)
+            token = re.findall("var\s+tok\s*=\s*'([^']+)", token)[0]
+            return token
+        except:
+            return
 
+
+    def movieshd_set(self):
+        return ''.join([random.choice(string.ascii_letters) for _ in xrange(25)])
+
+
+    def movieshd_rt(self, s, shift=13):
+        s2 = ''
+        for c in s:
+            limit = 122 if c in string.ascii_lowercase else 90
+            new_code = ord(c) + shift
+            if new_code > limit:
+                new_code -= 26
+            s2 += chr(new_code)
+        return s2
 

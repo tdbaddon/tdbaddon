@@ -42,7 +42,7 @@ class NoRedirection(urllib2.HTTPErrorProcessor):
 class source:
     def __init__(self):
         self.base_link = 'http://watchseries.ag'
-        self.link_1 = 'http://watchseries.ag'
+        self.link_1 = 'http://watchseriesfree.to'
         self.link_2 = 'http://translate.googleusercontent.com/translate_c?anno=2&hl=en&sl=mt&tl=en&u=http://watchseries.ag'
         self.link_3 = 'https://watchseries.unblocked.pw'
         self.search_link = '/AdvancedSearch/%s-%s/by_popularity/%s'
@@ -57,6 +57,7 @@ class source:
             result = ''
             links = [self.link_1, self.link_2, self.link_3]
             for base_link in links:
+                control.log('### Watch %s' % urlparse.urljoin(base_link, query))
                 result = client.request(urlparse.urljoin(base_link, query))
                 if 'episode-summary' in str(result): break
             #control.log('######WA %s' % result)

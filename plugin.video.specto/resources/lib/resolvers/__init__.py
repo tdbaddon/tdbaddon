@@ -47,6 +47,9 @@ def request(url):
             if len(re.compile('\s*timeout=(\d*)').findall(url)) == 0: url += ' timeout=10'
             return url
 
+        if 'openload' in url:
+            return
+
         try:
             z=False
             hmf = urlresolver.HostedMediaFile(url,include_disabled=True, include_universal=False)
