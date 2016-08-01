@@ -1125,7 +1125,7 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
   </extension>
 </addon>
 
-<addon id="plugin.video.exodus" version="2.0.3" name="Exodus" provider-name="Exodus">
+<addon id="plugin.video.exodus" version="2.0.4" name="Exodus" provider-name="Exodus">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="repository.exodus" version="1.0.0" />
@@ -2034,7 +2034,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2016.07.30.1" provider-name="mrknow" >
+<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2016.08.01.2" provider-name="mrknow" >
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.requests" version="1.0.0" />
@@ -2221,7 +2221,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBTVSHOWS"
        name="TDB TV SHOWS"
-       version="1.02"
+       version="1.03"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -2633,14 +2633,13 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
-<addon id="plugin.video.wwe-on-demand" name="[COLOR gold]WWE ON DEMAND[/COLOR]" version="2.0.2" provider-name="@PBear90">
+<addon id="plugin.video.wwe-on-demand" name="[COLOR gold][B]WWE ON DEMAND[/B][/COLOR]" version="2.0.4" provider-name="@PBear90">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.simplejson" version="3.3.0"/>
     <import addon="script.module.urlresolver"  version="2.1.2"/>
     <import addon="script.module.liveresolver" version="0.1.24"/>
     <import addon="script.common.plugin.cache" version="2.5.2"/>
-
     <import addon="script.module.metahandler" version="2.5.1"/>
     <import addon="plugin.video.youtube" optional="true" />
   </requires>
@@ -2648,7 +2647,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
         <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary lang="en">WWE ON DEMAND Add-On</summary>
+    <summary lang="en">WWE ON DEMAND</summary>
     <description lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</description>
     <platform>all</platform>
   </extension>
@@ -2766,7 +2765,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.ZemTV-shani"
        name="ZemTV.com"
-       version="4.9.6"
+       version="4.9.8"
        provider-name="shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -2944,26 +2943,21 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
-<addon id="repository.communityrepo" name="The Community Repository" version="9.0" provider-name="The @CommunityRepo Team">
-
+<addon id="repository.communityrepo" name="The Community Repository" version="9.1" provider-name="The @CommunityRepo Team">
 	<extension point="xbmc.addon.repository" name="The Community Repository">
-
+	<dir>
+		<info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
+		<checksum>https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml.md5</checksum>
+		<datadir zip="true">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/zips/</datadir>
+	</dir>
 		<info compressed="false">http://repo.kodi-pirates.tv/comrepo/RepoPlugins/addons.xml</info>
-
 		<checksum>http://repo.kodi-pirates.tv/comrepo/RepoPlugins/addons.xml.md5</checksum>
-
 		<datadir zip="true">http://repo.kodi-pirates.tv/comrepo/RepoPlugins/</datadir>
-
 	</extension>
-
 	<extension point="xbmc.addon.metadata">
-
 		<summary>@Kodicommunity Repository</summary>
-
 		<description>" "The Community Repository" addon, skin and wizard host, contact for details on how to add your content @communityrepo</description>
-
 		<platform>all</platform>
-
 	</extension>
 
 </addon>

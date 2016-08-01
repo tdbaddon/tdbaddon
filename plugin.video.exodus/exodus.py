@@ -128,11 +128,11 @@ elif action == 'movieWidget':
 
 elif action == 'movieSearch':
     from resources.lib.indexers import movies
-    movies.movies().search(query)
+    movies.movies().search()
 
 elif action == 'moviePerson':
     from resources.lib.indexers import movies
-    movies.movies().person(query)
+    movies.movies().person()
 
 elif action == 'movieGenres':
     from resources.lib.indexers import movies
@@ -172,11 +172,11 @@ elif action == 'tvshowPage':
 
 elif action == 'tvSearch':
     from resources.lib.indexers import tvshows
-    tvshows.tvshows().search(query)
+    tvshows.tvshows().search()
 
 elif action == 'tvPerson':
     from resources.lib.indexers import tvshows
-    tvshows.tvshows().person(query)
+    tvshows.tvshows().person()
 
 elif action == 'tvGenres':
     from resources.lib.indexers import tvshows

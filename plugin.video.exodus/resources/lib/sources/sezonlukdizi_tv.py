@@ -55,7 +55,10 @@ class source:
         try:
             url = urlparse.urljoin(self.base_link, self.search_link)
 
-            result = client.request(url)
+            for i in range(3):
+                result = client.request(url)
+                if not result == None: break
+
             result = re.compile('{(.+?)}').findall(result)
             result = [(re.findall('u\s*:\s*(?:\'|\")(.+?)(?:\'|\")', i), re.findall('d\s*:\s*(?:\'|\")(.+?)(?:\'|\")', i)) for i in result]
             result = [(i[0][0], i[1][0]) for i in result if len(i[0]) > 0 and len(i[1]) > 0]
@@ -84,37 +87,50 @@ class source:
 
             url = urlparse.urljoin(self.base_link, url)
 
-            result = client.request(url)
+            for i in range(3):
+                result = client.request(url)
+                if not result == None: break
+
             result = re.sub(r'[^\x00-\x7F]+', ' ', result)
 
             pages = []
-            try:
-                r = client.parseDOM(result, 'div', attrs = {'id': 'embed'})[0]
-                pages.append(client.parseDOM(r, 'iframe', ret='src')[0])
-            except:
-                pass
-            try:
-                r = client.parseDOM(result, 'div', attrs = {'id': 'playerMenu'})[0]
-                r = client.parseDOM(r, 'div', ret='data-id', attrs = {'class': 'item'})[0]
-                r = client.request(urlparse.urljoin(self.base_link, self.video_link), post=urllib.urlencode( {'id': r} ))
-                pages.append(client.parseDOM(r, 'iframe', ret='src')[0])
-            except:
-                pass
+
+            r = client.parseDOM(result, 'div', attrs = {'id': 'embed'})[0]
+            pages.append(client.parseDOM(r, 'iframe', ret='src')[0])
+
 
             for page in pages:
                 try:
-                    result = client.request(page)
+                    for i in range(3):
+                        result = client.request(page)
+                        if not result == None: break
 
                     captions = re.search('kind\s*:\s*(?:\'|\")captions(?:\'|\")', result)
                     if not captions: raise Exception()
 
-                    result = re.compile('"?file"?\s*:\s*"([^"]+)"\s*,\s*"?label"?\s*:\s*"(\d+)p?[^"]*"').findall(result)
+                    try:
+                        r = re.findall('url\s*:\s*\'(http(?:s|)://api.pcloud.com/.+?)\'', result)[0]
+                        r = client.request(r)
+                        r = json.loads(r)['variants']
+                        r = [(i['hosts'], i['path'], i['height']) for i in r if 'hosts' in i and 'path' in i and 'height' in i]
+                        r = [('%s%s' % (i[0][0], i[1]), str(i[2])) for i in r if len(i[0]) > 0]
+                        r = [(i[0] if i[0].startswith('http') else 'http://%s' % i[0], i[1]) for i in r]
+                        host = 'cdn' ; direct = False ; l = r
+                    except:
+                        pass
 
-                    links = [(i[0], '1080p') for i in result if int(i[1]) >= 1080]
-                    links += [(i[0], 'HD') for i in result if 720 <= int(i[1]) < 1080]
-                    links += [(i[0], 'SD') for i in result if 480 <= int(i[1]) < 720]
+                    try:
+                        r = re.findall('"?file"?\s*:\s*"([^"]+)"\s*,\s*"?label"?\s*:\s*"(\d+)p?[^"]*"', result)
+                        if not r: raise Exception()
+                        host = 'gvideo' ; direct = True ; l = r
+                    except:
+                        pass
 
-                    for i in links: sources.append({'source': 'gvideo', 'quality': i[1], 'provider': 'Sezonlukdizi', 'url': i[0], 'direct': True, 'debridonly': False})
+                    links = [(i[0], '1080p') for i in l if int(i[1]) >= 1080]
+                    links += [(i[0], 'HD') for i in l if 720 <= int(i[1]) < 1080]
+                    links += [(i[0], 'SD') for i in l if 480 <= int(i[1]) < 720]
+
+                    for i in links: sources.append({'source': host, 'quality': i[1], 'provider': 'Sezonlukdizi', 'url': i[0], 'direct': direct, 'debridonly': False})
                 except:
                     pass
 
@@ -125,7 +141,10 @@ class source:
 
     def resolve(self, url):
         try:
-            url = client.request(url, output='geturl')
+            for i in range(3):
+                u = client.request(url, output='geturl')
+                if not u == None: url = u ; break
+
             if 'requiressl=yes' in url: url = url.replace('http://', 'https://')
             else: url = url.replace('https://', 'http://')
             return url

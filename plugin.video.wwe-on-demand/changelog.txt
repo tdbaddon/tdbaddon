@@ -1,3 +1,6 @@
+v2.0.4
+Notification enabled
+
 v2.0.2
 Search function working.
 Notification disabled.

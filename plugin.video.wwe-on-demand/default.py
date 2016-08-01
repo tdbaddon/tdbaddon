@@ -18,10 +18,10 @@ ytplpg2         = '&part=snippet&playlistId='
 ytplpg3         = '&maxResults=50&key=AIzaSyAd-YEOqZz9nXVzGtn3KWzYLbLaajhqIDA'
 adultpass       = selfAddon.getSetting('password')
 metaset         = selfAddon.getSetting('enable_meta')
-messagetext     = 'http://pbear90repo.netai.net/addons/wweondemand/info.txt'+'?%d=%s' % (random.randint(1, 10000), random.randint(1, 10000))
+messagetext     = 'http://pbear90repo.netai.net/addons/wweondemand/info.xml'+'?%d=%s' % (random.randint(1, 10000), random.randint(1, 10000))
                                                                
 def GetMenu():
-#        popup()
+        popup()
         link=open_url(baseurl)
         match= re.compile('<item>(.+?)</item>').findall(link)
         for item in match:
@@ -67,7 +67,7 @@ def popup():
                 compfile = r.read()       
                 if compfile == message:pass
                 else:
-                        showText('[B][COLOR gold]WWE[/COLOR] [COLOR white]I[/COLOR][COLOR white]nformation[/COLOR][/B]', message)
+                        showText('[COLOR gold][B]WWE ON DEMAND - News and Updates[/COLOR][/B]', message)
                         text_file = open(comparefile, "w")
                         text_file.write(message)
                         text_file.close()
@@ -289,7 +289,7 @@ def PLAYLINK(name,url,iconimage):
 def open_url(url):
     try:
         req = urllib2.Request(url)
-        req.add_header('User-Agent', 'slimeevole')
+        req.add_header('User-Agent', 'PBear90')
         response = urllib2.urlopen(req)
         link=response.read()
         response.close()
@@ -299,7 +299,7 @@ def open_url(url):
 
 def open_url2(url):
         req = urllib2.Request(url)
-        req.add_header('User-Agent', 'slimeevolve')
+        req.add_header('User-Agent', 'PBear90')
         response = urllib2.urlopen(req)
         link=response.read()
         response.close()

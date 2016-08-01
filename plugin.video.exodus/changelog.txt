@@ -1,3 +1,12 @@
+[B]2.0.4[/B]
+- Updated providers
+- Fixed issue with networks
+- Added Croatian translation
+- Added Dutch translation
+- Added Hebrew translation
+- Added Slovenian translation
+- Code cosmetics
+
 [B]2.0.3[/B]
 - Fixed issue with movie listings
 - Fixed issue with tv show listings

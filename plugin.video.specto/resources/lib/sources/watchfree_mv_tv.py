@@ -164,7 +164,8 @@ class source:
                     host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(url.strip().lower()).netloc)[0]
                     host = host.rsplit('.', 1)[0]
                     print("%@@$^@ host",host, not host in hostDict)
-                    if not host in hostDict: raise Exception()
+                    if not host in hostDict:
+                        if not host in hosthdDict: raise Exception()
                     host = client.replaceHTMLCodes(host)
                     host = host.encode('utf-8')
 

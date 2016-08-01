@@ -19,8 +19,6 @@
 '''
 
 
-import os,sys,re,json,zipfile,StringIO,urllib,urllib2,urlparse,base64,datetime
-
 from resources.lib.modules import trakt
 from resources.lib.modules import cleantitle
 from resources.lib.modules import cleangenre
@@ -30,6 +28,14 @@ from resources.lib.modules import cache
 from resources.lib.modules import playcount
 from resources.lib.modules import workers
 from resources.lib.modules import views
+
+import os,sys,re,json,zipfile,StringIO,urllib,urllib2,urlparse,base64,datetime
+
+params = dict(urlparse.parse_qsl(sys.argv[2].replace('?','')))
+
+action = params.get('action')
+
+control.moderator()
 
 
 class seasons:

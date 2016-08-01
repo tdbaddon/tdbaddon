@@ -25,13 +25,9 @@ from resources.lib.modules import control
 from resources.lib.modules import trakt
 
 
-sysaddon = sys.argv[0]
+sysaddon = sys.argv[0] ; syshandle = int(sys.argv[1]) ; control.moderator()
 
-syshandle = int(sys.argv[1])
-
-artPath = control.artPath()
-
-addonFanart = control.addonFanart()
+artPath = control.artPath() ; addonFanart = control.addonFanart()
 
 imdbCredentials = False if control.setting('imdb.user') == '' else True
 

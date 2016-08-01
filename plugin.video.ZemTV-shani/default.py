@@ -423,9 +423,9 @@ def AddSports(url):
     #addDir(base64.b64decode('U3VwZXIgU3BvcnRz') ,'sss',34,'')
     addDir('PV2 Sports' ,'zemsports',36,'')
     #addDir('Yupp Asia Cup','Live' ,60,'')
-    addDir('CricHD.tv (Live Channels)' ,'pope' ,26,'')
+    #addDir('CricHD.tv (Live Channels)' ,'pope' ,26,'')
     #addDir('cricfree.sx' ,'sss',41,'')
-    addDir('WatchCric.com-Live matches only' ,base64.b64decode('aHR0cDovL3d3dy53YXRjaGNyaWMubmV0Lw==' ),16,'') #blocking as the rtmp requires to be updated to send gaolVanusPobeleVoKosat
+    #addDir('WatchCric.com-Live matches only' ,base64.b64decode('aHR0cDovL3d3dy53YXRjaGNyaWMubmV0Lw==' ),16,'') #blocking as the rtmp requires to be updated to send gaolVanusPobeleVoKosat
     addDir('c247.tv-P3G.Tv' ,'P3G'  ,30,'')
     #addDir('Streams' ,'sss',39,'')
 
@@ -3375,14 +3375,17 @@ def getPTCUrl():
     maindata=json.loads(link)
     print maindata
     decodeddata=maindata["Secret"]
-    #decodeddata='ew0KDQogI'.join(decodeddata.split('ew0KDQogI')[:-1])
-    #data=base64.b64decode(decodeddata)[:-1]
-    decodeddata=decodeddata.replace('nbUioPLk6nbviOP0kjgfreWEur','')
-    decodeddata=decodeddata+'='*(len(decodeddata) % 4)
+    decodeddata='JCQkJIklu'.join(decodeddata.split('JCQkJIklu')[:-1])+'JCQkJIklu'
+    print decodeddata
+    data=base64.b64decode(decodeddata)
+    #decodeddata=decodeddata.replace('nbUioPLk6nbviOP0kjgfreWEur','')
+    #decodeddata=decodeddata+'='*(len(decodeddata) % 4)
+    #data=''
     try:
-        data=base64.b64decode(decodeddata)
+        #data=base64.b64decode(decodeddata)
         jsondata= json.loads(data)
     except:
+        #print 'in except'   ,data
         if '"categoryName":"appsetting"' in data:
             data=data.split('"categoryName":"appsetting"')[0]
             print 'xxxxxxxxxxxxxxxxx',data[-100:]
@@ -3747,10 +3750,12 @@ def getPV2Url():
     headers=[('User-Agent',base64.b64decode('dW1hci8xLjEgQ0ZOZXR3b3JrLzc1OC4wLjIgRGFyd2luLzE1LjAuMA=='))]
     iphtml=getUrl(base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2tleXMvaXBfY2hlY2sucGhw'),headers=headers)
     ipaddrs=re.findall('Address: (.*)',iphtml)[0]
-    headers=[('User-Agent',base64.b64decode('dW1hci8xLjEgQ0ZOZXR3b3JrLzc1OC4wLjIgRGFyd2luLzE1LjAuMA==')),('SOAPAction','http://app.dynns.com/saveDeviceIdService/tns:db.saveId'),('Content-Type','text/xml; charset=ISO-8859-1')]
-    xmldata=base64.b64decode("PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iSVNPLTg4NTktMSI/PgogICAgPFNPQVAtRU5WOkVudmVsb3BlIFNPQVAtRU5WOmVuY29kaW5nU3R5bGU9Imh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3NvYXAvZW5jb2RpbmcvIiB4bWxuczpTT0FQLUVOVj0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbnZlbG9wZS8iIHhtbG5zOnhzZD0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiIHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiIHhtbG5zOlNPQVAtRU5DPSJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy9zb2FwL2VuY29kaW5nLyIgeG1sbnM6dG5zPSJodHRwOi8vc2NyaXB0YmFrZXIuY29tL3NhdmVEZXZpY2VJZFNlcnZpY2UiPgogICAgPFNPQVAtRU5WOkJvZHk+CiAgICA8dG5zOmRiLnNhdmVJZCB4bWxuczp0bnM9Imh0dHA6Ly9hcHAuZHlubnMuY29tL3NhdmVEZXZpY2VJZFNlcnZpY2UiPgogICAgPGlkIHhzaTp0eXBlPSJ4c2Q6c3RyaW5nIj4lcyBAZG5AbjAzMzE8L2lkPgogICAgPG5hbWUgeHNpOnR5cGU9InhzZDpzdHJpbmciPkFyYWJpYyB0diBIRDwvbmFtZT4KICAgIDwvdG5zOmRiLnNhdmVJZD4KICAgIDwvU09BUC1FTlY6Qm9keT4KICAgIDwvU09BUC1FTlY6RW52ZWxvcGU+")%ipaddrs
+    headers=[('User-Agent',base64.b64decode('QkVCNDNDOENDNUU5NDVFOTk4QjI3MjM4MDFFQjk0RjQ=')),('SOAPAction','http://app.dynns.com/saveDeviceIdService/tns:db.saveId'),('Content-Type','text/xml; charset=ISO-8859-1')]
+    nm='BEB43C8CC5E945E998B2723801EB94F4'
+    xmldata=base64.b64decode("PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iSVNPLTg4NTktMSI/Pgo8U09BUC1FTlY6RW52ZWxvcGUgU09BUC1FTlY6ZW5jb2RpbmdTdHlsZT0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbmNvZGluZy8iIHhtbG5zOlNPQVAtRU5WPSJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy9zb2FwL2VudmVsb3BlLyIgeG1sbnM6eHNkPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYSIgeG1sbnM6eHNpPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYS1pbnN0YW5jZSIgeG1sbnM6U09BUC1FTkM9Imh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3NvYXAvZW5jb2RpbmcvIiB4bWxuczp0bnM9Imh0dHA6Ly9zY3JpcHRiYWtlci5jb20vc2F2ZURldmljZUlkU2VydmljZSI+CjxTT0FQLUVOVjpCb2R5Pgo8dG5zOmRiLnNhdmVJZCB4bWxuczp0bnM9Imh0dHA6Ly9hcHAuZHlubnMuY29tL3NhdmVEZXZpY2VJZFNlcnZpY2UiPgo8aWQgeHNpOnR5cGU9InhzZDpzdHJpbmciPiVzIGNodWxidWxwYW5kYXk8L2lkPgo8bmFtZSB4c2k6dHlwZT0ieHNkOnN0cmluZyI+JXM8L25hbWU+CjwvdG5zOmRiLnNhdmVJZD4KPC9TT0FQLUVOVjpCb2R5Pgo8L1NPQVAtRU5WOkVudmVsb3BlPg==")%(ipaddrs,nm)
+    
     try:
-        getUrl(base64.b64decode('aHR0cDovL2FwcC5keW5ucy5jb20vYXBpL2luZGV4LnBocA=='),post=xmldata,headers=headers)
+        getUrl(base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2FwaXNvYXAvaW5kZXgucGhw'),post=xmldata,headers=headers)
     except: pass
     import time
     TIME = time.time()
@@ -3759,9 +3764,11 @@ def getPV2Url():
     token=base64.b64encode(base64.b64decode('JXNAMm5kMkAlcw==') % (str(first),second))
     #req = urllib2.Request( base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2FwcF9wYW5lbG5ldy9vdXRwdXQucGhwL3BsYXlsaXN0P3R5cGU9eG1sJmRldmljZVNuPXBha2luZGlhaGRwYWlkMi42JnRva2VuPSVz')  %token)      
     #req = urllib2.Request( base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2FwcF9wYW5lbG5ldy9vdXRwdXQucGhwL3BsYXlsaXN0P3R5cGU9eG1sJmRldmljZVNuPTI0NCZ0b2tlbj0lcw==')  %token)    
+    
     req = urllib2.Request( base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2FwcF9wYW5lbG5ldy9vdXRwdXQucGhwL3BsYXlsaXN0P3R5cGU9eG1sJmRldmljZVNuPTY2MSZ0b2tlbj0lcw==')  %token)    
     req.add_header('Authorization', base64.b64decode('QmFzaWMgWVdSdGFXNDZRV3hzWVdneFFBPT0=')) 
-    req.add_header(base64.b64decode("VXNlci1BZ2VudA=="),base64.b64decode("dW1hci8xMjQuMCBDRk5ldHdvcmsvNzU5LjIuOCBEYXJ3aW4vMTUuMTEuMjM=")) 
+    req.add_header(base64.b64decode("VXNlci1BZ2VudA=="),base64.b64decode("QkVCNDNDOENDNUU5NDVFOTk4QjI3MjM4MDFFQjk0RjQ=")) 
+    #req.add_header(base64.b64decode("VXNlci1BZ2VudA=="),base64.b64decode("QkVCNDNDOENDNUU5NDVFOTk4QjI3MjM4MDFFQjk0RkY=")) 
     response = urllib2.urlopen(req)
     link=response.read()
     if 'Sky sports' not in link and 1==2:
@@ -3790,7 +3797,7 @@ def getPV2Auth():
 
     req = urllib2.Request( base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2tleXMvYmFrLnBocD90b2tlbj0=')+token)
     req.add_header('Authorization', "Basic %s"%base64.b64decode('Wkdsc1pHbHNaR2xzT2xCQWEybHpkRUJ1')) 
-    req.add_header(base64.b64decode("VXNlci1BZ2VudA=="),base64.b64decode("dW1hci8xMjQuMCBDRk5ldHdvcmsvNzU5LjIuOCBEYXJ3aW4vMTUuMTEuMjM=")) 
+    req.add_header(base64.b64decode("VXNlci1BZ2VudA=="),base64.b64decode("QkVCNDNDOENDNUU5NDVFOTk4QjI3MjM4MDFFQjk0RjQ=")) 
     response = urllib2.urlopen(req)
     link=response.read()
     return link

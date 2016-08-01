@@ -42,7 +42,7 @@ from resources.lib.resolvers import zstream
 
 class source:
     def __init__(self):
-        self.base_link = 'http://www.iwatchonline.ph'
+        self.base_link = 'http://www.iwatchonline.cr'
         self.link_1 = 'https://www.iwatchonline.video/'
         self.link_2 = 'http://translate.googleusercontent.com/translate_c?anno=2&hl=en&sl=mt&tl=en&u=http://www.iwatchonline.ag'
         self.link_3 = 'https://iwatchonline.unblocked.one'
@@ -245,7 +245,7 @@ class source:
     def resolve(self, url):
         try:
             url = resolvers.request(url)
-            #control.log("############IWATCH RESOLVE >>> url3 +++++++++++++++++++++ % s" % url)
+            control.log("############IWATCH RESOLVE >>> url3 +++++++++++++++++++++ % s" % url)
             return url
         except:
             return

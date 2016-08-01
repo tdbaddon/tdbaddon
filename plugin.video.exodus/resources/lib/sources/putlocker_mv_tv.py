@@ -29,8 +29,8 @@ from resources.lib.modules import directstream
 
 class source:
     def __init__(self):
-        self.domains = ['putlocker-movies.tv', 'putlocker.systems']
-        self.base_link = 'http://www.putlocker.systems'
+        self.domains = ['putlocker.systems', 'putlocker-movies.tv', 'putlocker.yt']
+        self.base_link = 'http://putlocker.yt'
         self.search_link = '/api/v1/cautare/apr'
 
 

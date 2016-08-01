@@ -45,23 +45,15 @@ class sources:
 
     def play(self, title, year, imdb, tvdb, season, episode, tvshowtitle, premiered, meta, select):
         try:
-            sysloc = [urlparse.urlparse(sys.argv[0]).netloc, '', 'plugin.video.live.streamspro', 'plugin.video.tinklepad']
+            url = None
 
-            sysplg = True if control.infoLabel('Container.PluginName') in sysloc else False
-
-            syslib = True if '.strm' in str(control.infoLabel('ListItem.FileName')) else False
+            control.moderator()
 
             items = self.getSources(title, year, imdb, tvdb, season, episode, tvshowtitle, premiered)
 
             select = control.setting('hosts.mode') if select == None else select
 
             title = tvshowtitle if not tvshowtitle == None else title
-
-            url = None
-
-
-            if syslib == True or sysplg == False:
-                items = []
 
             if control.window.getProperty('PseudoTVRunning') == 'True':
                 return control.resolve(int(sys.argv[1]), True, control.item(path=str(self.sourcesDirect(items))))

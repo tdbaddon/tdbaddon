@@ -6,632 +6,632 @@ msgstr ""
 
 msgctxt "#32001"
 msgid "Movies"
-msgstr ""
+msgstr "סרטים"
 
 msgctxt "#32002"
 msgid "TV Shows"
-msgstr ""
+msgstr "סדרות"
 
 msgctxt "#32003"
 msgid "My Movies"
-msgstr ""
+msgstr "הסרטים שלי"
 
 msgctxt "#32004"
 msgid "My TV Shows"
-msgstr ""
+msgstr "הסדרות שלי"
 
 msgctxt "#32005"
 msgid "New Movies"
-msgstr ""
+msgstr "סרטים חדשים"
 
 msgctxt "#32006"
 msgid "New Episodes"
-msgstr ""
+msgstr "פרקים חדשים"
 
 msgctxt "#32007"
 msgid "Channels"
-msgstr ""
+msgstr "סרטים מערוצים"
 
 msgctxt "#32008"
 msgid "Tools"
-msgstr ""
+msgstr "כלים"
 
 msgctxt "#32009"
 msgid "Downloads"
-msgstr ""
+msgstr "הורדות"
 
 msgctxt "#32010"
 msgid "Search"
-msgstr ""
+msgstr "חיפוש"
 
 msgctxt "#32011"
 msgid "Genres"
-msgstr ""
+msgstr "ז'אנר"
 
 msgctxt "#32012"
 msgid "Year"
-msgstr ""
+msgstr "שנה"
 
 msgctxt "#32013"
 msgid "People"
-msgstr ""
+msgstr "שחקנים"
 
 msgctxt "#32014"
 msgid "Languages"
-msgstr ""
+msgstr "שפות"
 
 msgctxt "#32015"
 msgid "Certificates"
-msgstr ""
+msgstr "סינון גיל"
 
 msgctxt "#32016"
 msgid "Networks"
-msgstr ""
+msgstr "רשתות"
 
 msgctxt "#32017"
 msgid "People Watching"
-msgstr ""
+msgstr "אנשים צופים כעת"
 
 msgctxt "#32018"
 msgid "Most Popular"
-msgstr ""
+msgstr "פופולרי"
 
 msgctxt "#32019"
 msgid "Most Voted"
-msgstr ""
+msgstr "דירוג מצביעים"
 
 msgctxt "#32020"
 msgid "Box Office"
-msgstr ""
+msgstr "שוברי קופות"
 
 msgctxt "#32021"
 msgid "Oscar Winners"
-msgstr ""
+msgstr "זוכי אוסקר"
 
 msgctxt "#32022"
 msgid "In Theaters"
-msgstr ""
+msgstr "בקולנוע"
 
 msgctxt "#32023"
 msgid "Highly Rated"
-msgstr ""
+msgstr "דירוג גבוה"
 
 msgctxt "#32024"
 msgid "Airing today"
-msgstr ""
+msgstr "משודרים היום"
 
 msgctxt "#32025"
 msgid "Returning TV Shows"
-msgstr ""
+msgstr "סדרות חוזרות"
 
 msgctxt "#32026"
 msgid "New TV Shows"
-msgstr ""
+msgstr "סדרות חדשות"
 
 msgctxt "#32027"
 msgid "TV Calendar"
-msgstr ""
+msgstr "לוח שידורי סדרות"
 
 msgctxt "#32028"
 msgid "People Search"
-msgstr ""
+msgstr "חיפוש שחקנים"
 
 msgctxt "#32029"
 msgid "People (Movies)"
-msgstr ""
+msgstr "שחקני סרטים"
 
 msgctxt "#32030"
 msgid "People (TV)"
-msgstr ""
+msgstr "שחקני סדרות"
 
 msgctxt "#32031"
 msgid "Discover"
-msgstr ""
+msgstr "סייר"
 
 msgctxt "#32032"
 msgid "Collection"
-msgstr ""
+msgstr "אוספים"
 
 msgctxt "#32033"
 msgid "Watchlist"
-msgstr ""
+msgstr "רשימת צפייה"
 
 msgctxt "#32034"
 msgid "IMDb"
-msgstr ""
+msgstr "IMDB"
 
 msgctxt "#32035"
 msgid "Featured"
-msgstr ""
+msgstr "מומלצים"
 
 msgctxt "#32036"
 msgid "History"
-msgstr ""
+msgstr "היסטוריה"
 
 msgctxt "#32037"
 msgid "Progress"
-msgstr ""
+msgstr "התקדמות"
 
 msgctxt "#32038"
 msgid "Episodes"
-msgstr ""
+msgstr "פרקים"
 
 msgctxt "#32039"
 msgid "Movie Lists"
-msgstr ""
+msgstr "רשימת סרטים"
 
 msgctxt "#32040"
 msgid "TV Show Lists"
-msgstr ""
+msgstr "רשימת סדרות"
 
 msgctxt "#32041"
 msgid "Episode Lists"
-msgstr ""
+msgstr "רשימת פרקים"
 
 msgctxt "#32042"
 msgid "No Trakt or IMDb account found."
-msgstr ""
+msgstr "לא נמצא חשבון IMDB או TRAKT"
 
 msgctxt "#32043"
 msgid "[B]SETTINGS[/B] : General"
-msgstr ""
+msgstr ": כללי [B]הגדרות[/B] "
 
 msgctxt "#32044"
 msgid "[B]SETTINGS[/B] : Accounts"
-msgstr ""
+msgstr ": חשבונות [B]הגדרות[/B] "
 
 msgctxt "#32045"
 msgid "[B]SETTINGS[/B] : Playback"
-msgstr ""
+msgstr ": ניגון [B]הגדרות[/B] "
 
 msgctxt "#32046"
 msgid "[B]SETTINGS[/B] : Subtitles"
-msgstr ""
+msgstr ": כתוביות [B]הגדרות[/B] "
 
 msgctxt "#32047"
 msgid "[B]SETTINGS[/B] : Providers"
-msgstr ""
+msgstr ": שרתים [B]הגדרות[/B] "
 
 msgctxt "#32048"
 msgid "[B]EXODUS[/B] : Downloads"
-msgstr ""
+msgstr ": הורדות [B]EXODUS[/B] "
 
 msgctxt "#32049"
 msgid "[B]EXODUS[/B] : Viewtypes"
-msgstr ""
+msgstr ": סוג רשימה [B]EXODUS[/B] "
 
 msgctxt "#32050"
 msgid "[B]EXODUS[/B] : Clear providers..."
-msgstr ""
+msgstr ": ניקוי שרתים [B]EXODUS[/B] "
 
 msgctxt "#32051"
 msgid "[B]EXODUS[/B] : Clear metadata..."
-msgstr ""
+msgstr ": ניקוי מטאדאטה[B]EXODUS[/B] "
 
 msgctxt "#32052"
 msgid "[B]EXODUS[/B] : Clear cache..."
-msgstr ""
+msgstr ": ניקוי קאש [B]EXODUS[/B] "
 
 msgctxt "#32053"
 msgid "[I]Next Page[/I]"
-msgstr ""
+msgstr "דף הבא"
 
 msgctxt "#32054"
 msgid "Seasons"
-msgstr ""
+msgstr "עונות"
 
 msgctxt "#32055"
 msgid "Season"
-msgstr ""
+msgstr "עונה"
 
 msgctxt "#32056"
 msgid "Are you sure?"
-msgstr ""
+msgstr "האם אתה בטוח?"
 
 msgctxt "#32057"
 msgid "Process Complete"
-msgstr ""
+msgstr "תהליך הושלם"
 
 msgctxt "#32058"
 msgid "This will slow down things until they are re-cached!"
-msgstr ""
+msgstr "פעולה זו תאט את הפעילות עד לבניית מטמון הכתובות מחדש"
 
 msgctxt "#32059"
 msgid "CLICK HERE TO SAVE VIEW"
-msgstr ""
+msgstr "תקליק כאן לשמירת התצוגה"
 
 msgctxt "#32060"
 msgid "January|February|March|April|May|June|July|August|September|October|November|December"
-msgstr ""
+msgstr "ינואר|פברואר|מרץ|אפריל|מאי|יוני|יולי|אוגוסט|ספטמבר|אוקטובר| נובמבר|דצמבר"
 
 msgctxt "#32061"
 msgid "Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday"
-msgstr ""
+msgstr "ראשון|שני|שלישי|רביעי|חמישי|שישי|שבת"
 
 msgctxt "#32062"
 msgid "[B]%s[/B] : %s"
-msgstr ""
+msgstr "[B]%s[/B] : %s"
 
 msgctxt "#32063"
 msgid "Play using..."
-msgstr ""
+msgstr "נגן באמצעות"
 
 msgctxt "#32064"
 msgid "Auto Play"
-msgstr ""
+msgstr "ניגון אוטומטי"
 
 msgctxt "#32065"
 msgid "Queue item"
-msgstr ""
+msgstr "הוספה לתור"
 
 msgctxt "#32066"
 msgid "Watched in Exodus"
-msgstr ""
+msgstr "נצפה באקסודוס"
 
 msgctxt "#32067"
 msgid "Unwatched in Exodus"
-msgstr ""
+msgstr "לא נצפה באקסודוס"
 
 msgctxt "#32068"
 msgid "Watched in Trakt"
-msgstr ""
+msgstr "נצפה בTrakt"
 
 msgctxt "#32069"
 msgid "Unwatched in Trakt"
-msgstr ""
+msgstr "לא נצפה בTrakt"
 
 msgctxt "#32070"
 msgid "Trakt Manager"
-msgstr ""
+msgstr "מנהל Trakt"
 
 msgctxt "#32071"
 msgid "Browse Series"
-msgstr ""
+msgstr "עיון בסדרות"
 
 msgctxt "#32072"
 msgid "Refresh"
-msgstr ""
+msgstr "רענון "
 
 msgctxt "#32301"
 msgid "Enabled"
-msgstr ""
+msgstr "מאופשר "
 
 msgctxt "#32302"
 msgid "Disabled"
-msgstr ""
+msgstr "לא מאופשר "
 
 msgctxt "#32303"
 msgid "User"
-msgstr ""
+msgstr "משתמש "
 
 msgctxt "#32304"
 msgid "Email"
-msgstr ""
+msgstr "Email"
 
 msgctxt "#32305"
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 msgctxt "#32306"
 msgid "Authorization..."
-msgstr ""
+msgstr "אימות..."
 
 msgctxt "#32307"
 msgid "Password"
-msgstr ""
+msgstr "סיסמה "
 
 msgctxt "#32308"
 msgid "PIN"
-msgstr ""
+msgstr "PIN"
 
 msgctxt "#32309"
 msgid "API"
-msgstr ""
+msgstr " API"
 
 msgctxt "#32310"
 msgid "General"
-msgstr ""
+msgstr "כללי"
 
 msgctxt "#32311"
 msgid "Appearance"
-msgstr ""
+msgstr "מראה"
 
 msgctxt "#32312"
 msgid "Providers Timeout"
-msgstr ""
+msgstr "זמן חיפוש שרתים"
 
 msgctxt "#32313"
 msgid "Indicators"
-msgstr ""
+msgstr "מחוונים"
 
 msgctxt "#32314"
 msgid "Local"
-msgstr ""
+msgstr "מקומי"
 
 msgctxt "#32315"
 msgid "Trakt"
-msgstr ""
+msgstr "Trakt"
 
 msgctxt "#32316"
 msgid "Info Language"
-msgstr ""
+msgstr "שפת מידע"
 
 msgctxt "#32317"
 msgid "Flatten TV seasons"
-msgstr ""
+msgstr "שטח עונות בסדרות"
 
 msgctxt "#32318"
 msgid "Enable Fanart"
-msgstr ""
+msgstr "אפשר Fanart"
 
 msgctxt "#32319"
 msgid "Menu"
-msgstr ""
+msgstr "תפריט"
 
 msgctxt "#32320"
 msgid "New Movies"
-msgstr ""
+msgstr "סרטים חדשים"
 
 msgctxt "#32321"
 msgid "Featured"
-msgstr ""
+msgstr "מוצגים עכשיו"
 
 msgctxt "#32322"
 msgid "People Watching"
-msgstr ""
+msgstr "אנשים צופים כעת"
 
 msgctxt "#32323"
 msgid "Most Popular"
-msgstr ""
+msgstr "הכי פופולרי"
 
 msgctxt "#32324"
 msgid "In Theaters"
-msgstr ""
+msgstr "עכשיו בקולנוע"
 
 msgctxt "#32325"
 msgid "New Episodes"
-msgstr ""
+msgstr "פרקים חדשים"
 
 msgctxt "#32326"
 msgid "Episodes"
-msgstr ""
+msgstr "פרקים"
 
 msgctxt "#32327"
 msgid "Trakt Progress"
-msgstr ""
+msgstr "התקדמות סדרות Trakt"
 
 msgctxt "#32328"
 msgid "Trakt Episodes"
-msgstr ""
+msgstr "פרקים Trakt "
 
 msgctxt "#32329"
 msgid "My Lists"
-msgstr ""
+msgstr "הרשימות שלי"
 
 msgctxt "#32330"
 msgid "Playback"
-msgstr ""
+msgstr "ניגון"
 
 msgctxt "#32331"
 msgid "Default action"
-msgstr ""
+msgstr "ברירת מחדל"
 
 msgctxt "#32332"
 msgid "Dialog"
-msgstr ""
+msgstr "דיאלוג"
 
 msgctxt "#32333"
 msgid "Directory"
-msgstr ""
+msgstr "ספריה"
 
 msgctxt "#32334"
 msgid "Auto Play"
-msgstr ""
+msgstr "ניגון אוטומטי"
 
 msgctxt "#32335"
 msgid "Progress Dialog"
-msgstr ""
+msgstr "דיאלוג התקדמות"
 
 msgctxt "#32336"
 msgid "Foreground"
-msgstr ""
+msgstr "קדמי"
 
 msgctxt "#32337"
 msgid "Background"
-msgstr ""
+msgstr "ברקע"
 
 msgctxt "#32338"
 msgid "File Hosting Filters"
-msgstr ""
+msgstr "סינון שרתים"
 
 msgctxt "#32339"
 msgid "Max Quality"
-msgstr ""
+msgstr "איכות מקסימלית"
 
 msgctxt "#32340"
 msgid "SD Hosters in Auto Play"
-msgstr ""
+msgstr "שרתי SD בניגון אוטמטי"
 
 msgctxt "#32341"
 msgid "Hosters with captchas"
-msgstr ""
+msgstr "שרתים עם קוד אימות"
 
 msgctxt "#32342"
 msgid "Sort by Provider"
-msgstr ""
+msgstr "סידור לפי שרתים"
 
 msgctxt "#32343"
 msgid "When playback starts..."
-msgstr ""
+msgstr "כאשר הניגון מתחיל..."
 
 msgctxt "#32344"
 msgid "Resume Playback"
-msgstr ""
+msgstr "המשך ניגון"
 
 msgctxt "#32345"
 msgid "Providers"
-msgstr ""
+msgstr "שרתים"
 
 msgctxt "#32346"
 msgid "Accounts"
-msgstr ""
+msgstr "חשבונות"
 
 msgctxt "#32347"
 msgid "Downloads"
-msgstr ""
+msgstr "הורדות"
 
 msgctxt "#32348"
 msgid "Enable downloads"
-msgstr ""
+msgstr "אפשר הורדות"
 
 msgctxt "#32349"
 msgid "Movies"
-msgstr ""
+msgstr "סרטים"
 
 msgctxt "#32350"
 msgid "TV"
-msgstr ""
+msgstr "סדרות"
 
 msgctxt "#32351"
 msgid "Downloading features are disabled by default."
-msgstr ""
+msgstr "תכונות ההורדה מנוטרלות כבררת מחדל."
 
 msgctxt "#32352"
 msgid "Set up your download folders in order to enable them."
-msgstr ""
+msgstr "הגדרת תיקיות ההורדה שלך על מנת לאפשר אותם."
 
 msgctxt "#32353"
 msgid "Subtitles"
-msgstr ""
+msgstr "כתוביות"
 
 msgctxt "#32354"
 msgid "Enable subtitles"
-msgstr ""
+msgstr "אפשר כתוביות"
 
 msgctxt "#32355"
 msgid "Convert subtitles to UTF-8"
-msgstr ""
+msgstr "המר כתוביות לפורמט UTF-8"
 
 msgctxt "#32356"
 msgid "Primary Language"
-msgstr ""
+msgstr "שפה ראשית"
 
 msgctxt "#32357"
 msgid "Secondary Language"
-msgstr ""
+msgstr "שפה משנית"
 
 msgctxt "#32358"
 msgid "Subtitles could be unavailable or out of sync."
-msgstr ""
+msgstr "יתכן שהכתוביות לא יהיו זמינות או שלא יהיו מסונכרנות."
 
 msgctxt "#32359"
 msgid "In that case use your own subtitles."
-msgstr ""
+msgstr "במקרה שכזה מוטב להשתמש בכתוביות שסופקו על ידך."
 
 msgctxt "#32401"
 msgid "No stream available"
-msgstr ""
+msgstr "אין מקור להזרמה"
 
 msgctxt "#32402"
 msgid "Playback outside Exodus is not allowed"
-msgstr ""
+msgstr "הניגון מחוץ ל־Exodus אינו מורשה"
 
 msgctxt "#32403"
 msgid "Download"
-msgstr ""
+msgstr "הורדה"
 
 msgctxt "#32404"
 msgid "Time elapsed: %s seconds"
-msgstr ""
+msgstr "זמן שעבר %s שניות"
 
 msgctxt "#32405"
 msgid "%s seconds"
-msgstr ""
+msgstr "%s שניות"
 
 msgctxt "#32406"
 msgid "Remaining providers: %s"
-msgstr ""
+msgstr "מקורות שנותרו : %s"
 
 msgctxt "#32407"
 msgid "Are you sure?"
-msgstr ""
+msgstr "האם אתה בטוח?"
 
 msgctxt "#32408"
 msgid "Process Complete"
-msgstr ""
+msgstr "תהליך הושלם"
 
 msgctxt "#32501"
 msgid "Start from beginning"
-msgstr ""
+msgstr "התחל מחדש"
 
 msgctxt "#32502"
 msgid "Resume from %s"
-msgstr ""
+msgstr "המשך מ %s"
 
 msgctxt "#32503"
 msgid "Resume"
-msgstr ""
+msgstr "המשך"
 
 msgctxt "#32511"
 msgid "An account already exists."
-msgstr ""
+msgstr "החשבון קיים כבר"
 
 msgctxt "#32512"
 msgid "Do you want to reset?"
-msgstr ""
+msgstr "האם לאפס?"
 
 msgctxt "#32513"
 msgid "1) Visit : [COLOR skyblue]%s[/COLOR]"
-msgstr ""
+msgstr " [COLOR skyblue]%s[/COLOR]1) בקר :"
 
 msgctxt "#32514"
 msgid "2) When prompted enter : [COLOR skyblue]%s[/COLOR]"
-msgstr ""
+msgstr "[COLOR skyblue]%s[/COLOR] 2) לאחר שנכנסת יש להזין  : "
 
 msgctxt "#32515"
 msgid "Trakt Manager"
-msgstr ""
+msgstr "מנהל Trakt"
 
 msgctxt "#32516"
 msgid "Add to [B]Collection[/B]"
-msgstr ""
+msgstr "הוספה ל [B]אוספים[/B]"
 
 msgctxt "#32517"
 msgid "Remove from [B]Collection[/B]"
-msgstr ""
+msgstr "הסרה מ [B]אוספים[/B]"
 
 msgctxt "#32518"
 msgid "Add to [B]Watchlist[/B]"
-msgstr ""
+msgstr "הוספה ל [B]רשימת צפייה[/B]"
 
 msgctxt "#32519"
 msgid "Remove from [B]Watchlist[/B]"
-msgstr ""
+msgstr "הסרה מ [B]רשימת צפייה[/B]"
 
 msgctxt "#32520"
 msgid "Add to [B]new List[/B]"
-msgstr ""
+msgstr "הוסף ל  [B]רשימה חדשה[/B]"
 
 msgctxt "#32521"
 msgid "Add to [B]%s[/B]"
-msgstr ""
+msgstr "הוסף ל [B]%s[/B]"
 
 msgctxt "#32522"
 msgid "Remove from [B]%s[/B]"
-msgstr ""
+msgstr "הסר מ [B]%s[/B]"
 
 msgctxt "#32531"
 msgid "An account already exists."
-msgstr ""
+msgstr "חשבון כבר קיים."
 
 msgctxt "#32532"
 msgid "Do you want to reset?"
-msgstr ""
+msgstr "לבצע איפוס?"
 
 msgctxt "#32533"
 msgid "1) Visit : [COLOR skyblue]%s[/COLOR]"
-msgstr ""
+msgstr "1) בקר:  [COLOR skyblue]%s[/COLOR]"
 
 msgctxt "#32534"
 msgid "2) When prompted enter : [COLOR skyblue]%s[/COLOR]"
-msgstr ""
+msgstr "2)כאשר תתבקש להזין:  [COLOR skyblue]%s[/COLOR]"

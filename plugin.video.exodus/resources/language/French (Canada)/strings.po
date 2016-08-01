@@ -197,8 +197,8 @@ msgid "[B]EXODUS[/B] : Downloads"
 msgstr "[B]EXODUS[/B] : Téléchargements"
 
 msgctxt "#32049"
-msgid "[B]EXODUS[/B]: Viewtypes"
-msgstr "[B]EXODUS[/B]: Types de Présentation"
+msgid "[B]EXODUS[/B] : Viewtypes"
+msgstr "[B]EXODUS[/B] : Types de Présentation"
 
 msgctxt "#32050"
 msgid "[B]EXODUS[/B] : Clear providers..."

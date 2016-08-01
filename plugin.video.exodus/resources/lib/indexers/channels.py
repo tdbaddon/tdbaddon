@@ -19,12 +19,18 @@
 '''
 
 
-import sys,re,json,urllib,urlparse,datetime
-
 from resources.lib.modules import cleangenre
 from resources.lib.modules import control
 from resources.lib.modules import client
 from resources.lib.modules import workers
+
+import sys,re,json,urllib,urlparse,datetime
+
+params = dict(urlparse.parse_qsl(sys.argv[2].replace('?','')))
+
+action = params.get('action')
+
+control.moderator()
 
 
 class channels:
@@ -40,7 +46,24 @@ class channels:
 
 
     def get(self): 
-        channels = [('01', 'Sky Premiere', '4021'), ('02', 'Sky Premiere +1', '1823'), ('03', 'Sky Showcase', '4033'), ('04', 'Sky Greats', '1815'), ('05', 'Sky Disney', '4013'), ('06', 'Sky Family', '4018'), ('07', 'Sky Action', '4014'), ('08', 'Sky Comedy', '4019'), ('09', 'Sky Crime', '4062'), ('10', 'Sky Drama', '4016'), ('11', 'Sky Sci Fi', '4017'), ('12', 'Sky Select', '4020'), ('13', 'Film4', '4044'), ('14', 'Film4 +1', '1629'), ('15', 'TCM', '3811'), ('16', 'TCM +1', '5275')] 
+        channels = [
+        ('01', 'Sky Premiere', '4021'),
+        ('02', 'Sky Premiere +1', '1823'),
+        ('03', 'Sky Showcase', '4033'),
+        ('04', 'Sky Greats', '1815'),
+        ('05', 'Sky Disney', '4013'),
+        ('06', 'Sky Family', '4018'),
+        ('07', 'Sky Action', '4014'),
+        ('08', 'Sky Comedy', '4019'),
+        ('09', 'Sky Crime', '4062'),
+        ('10', 'Sky Drama', '4016'),
+        ('11', 'Sky Sci Fi', '4017'),
+        ('12', 'Sky Select', '4020'),
+        ('13', 'Film4', '4044'),
+        ('14', 'Film4 +1', '1629'),
+        ('15', 'TCM', '3811'),
+        ('16', 'TCM +1', '5275')
+        ]
 
         threads = []
         for i in channels: threads.append(workers.Thread(self.sky_list, i[0], i[1], i[2]))
