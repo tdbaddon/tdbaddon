@@ -1,4 +1,4 @@
-import urllib2 , xbmc , xbmcaddon , os , re
+import urllib2 , xbmc , xbmcaddon , os , re,hashlib
 if 64 - 64: i11iIiiIii
 OO0o = 'plugin.video.pakindia'
 Oo0Ooo = xbmcaddon . Addon ( id = OO0o )
@@ -36,9 +36,15 @@ try :
         base64string = 'YW11OkBkbkBuODQ5'
         request.add_header("User-Agent","C275D6E6E8BC498D93F15842174445F7") 
         request.add_header("Authorization", "Basic %s" % base64string)   
-        Oo0Ooo.setSetting('pakuser',urllib2.urlopen(request).read())
+        Oo0Ooo.setSetting('pakuser','C275D6E6E8BC498D93F15842174445F7')
 except:pass
 
+
+
+
+
+
+    
 try :
  import base64
  import time
@@ -60,4 +66,52 @@ try :
      I1 = open ( ooo0OO , mode = 'w' )
      I1 . write ( i1iIIII )
 except : pass
+
+
+
+def ip():
+    request = urllib2.Request('https://app.dynns.com/keys/ip_check.php')	
+    request.add_header("Host",'app.dynns.com')
+    request.add_header("User-Agent",'umar/1.0 CFNetwork/758.5.3 Darwin/15.6.0')
+    link = urllib2.urlopen(request).read()
+    match=link.split(': ')[1]
+    return match
+
+                     
+def TEMPLATE():
+        SM_TEMPLATE='''<SOAP-ENV:Envelope SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://scriptbaker.com/saveDeviceIdService">
+            <SOAP-ENV:Body>
+            <tns:db.saveId xmlns:tns="http://app.dynns.com/saveDeviceIdService">
+            <id xsi:type="xsd:string">%s chulbulpanday</id>
+            <name xsi:type="xsd:string">C275D6E6E8BC498D93F15842174445F7</name>
+            </tns:db.saveId>
+            </SOAP-ENV:Body>
+            </SOAP-ENV:Envelope>'''
+        
+        print SM_TEMPLATE%(ip())
+        return SM_TEMPLATE%(ip())
+    
+
+SM_TEMPLATE=TEMPLATE()
+
+
+try:
+    
+    http_headers = {"Host": "app.dynns.com",
+                    "Content-Type": "text/xml; charset=ISO-8859-1",
+                    "Connection": "keep-alive",
+                    "SOAPAction": "http://app.dynns.com/saveDeviceIdService/tns:db.saveId",
+                    "Proxy-Connection": "keep-alive",
+                    "Accept": "*/*",
+                    "User-Agent": "C275D6E6E8BC498D93F15842174445F7",
+                    "Content-Length":  str(len(SM_TEMPLATE)),
+                    "Accept-Language": "en-gb",
+                    "Accept-Encoding": "gzip, deflate"}
+                         
+    request_object = urllib2.Request('https://app.dynns.com/apisoap/index.php', SM_TEMPLATE, http_headers)
+    response = urllib2.urlopen(request_object)
+    html_string = response.read()
+    #print html_string
+except:pass
+                     
 # dd678faae9ac167bc83abf78e5cb2f3f0688d3a3

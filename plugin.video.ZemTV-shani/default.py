@@ -56,7 +56,7 @@ ZEMCOOKIEFILE=os.path.join(profile_path, ZEMCOOKIEFILE)
 S365COOKIEFILE='s365CookieFile.lwp'
 S365COOKIEFILE=os.path.join(profile_path, S365COOKIEFILE)
  
-mainurl=base64.b64decode('aHR0cDovL3d3dy56ZW10di5jb20v')
+mainurl=base64.b64decode('aHR0cDovL3d3dy56ZW10di5jb20vY2F0ZWdvcnkvcGFraXN0YW5pLw==')
 liveURL=base64.b64decode('aHR0cDovL3d3dy56ZW10di5jb20vbGl2ZS1wYWtpc3RhbmktbmV3cy1jaGFubmVscy8=')
 
 tabURL =base64.b64decode('aHR0cDovL3d3dy5lYm91bmRzZXJ2aWNlcy5jb206ODg4OC91c2Vycy9yZXgvbV9saXZlLnBocD9hcHA9JXMmc3RyZWFtPSVz')
@@ -2174,7 +2174,7 @@ def AddEnteries(name, type=None):
     elif '(Siasat.pk)' in name:
         AddShowsFromSiasat(url)
     elif type=='ProgTalkShows':
-        AddProgramsAndShows(mainurl)
+        AddProgramsAndShows('http://www.zemtv.com/')
     elif name=='Next Page' or mode==43:
         AddShows(url)
     else:
@@ -3735,6 +3735,16 @@ def getPITVPage():
         print 'pitv file saving error'
         traceback.print_exc(file=sys.stdout)
     return jsondata
+
+def getPv2Code(newcode=False):
+    currentcode=selfAddon.getSetting( id="pv2DeviceID")
+    if currentcode=="" or newcode:
+        import os,binascii
+        currentcode=binascii.b2a_hex(os.urandom(16)).upper()
+        selfAddon.setSetting( id="pv2DeviceID" ,value=currentcode)
+    
+    return currentcode
+
     
 def getPV2Url():
     fname='pv2tvpage.json'
@@ -3750,8 +3760,9 @@ def getPV2Url():
     headers=[('User-Agent',base64.b64decode('dW1hci8xLjEgQ0ZOZXR3b3JrLzc1OC4wLjIgRGFyd2luLzE1LjAuMA=='))]
     iphtml=getUrl(base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2tleXMvaXBfY2hlY2sucGhw'),headers=headers)
     ipaddrs=re.findall('Address: (.*)',iphtml)[0]
-    headers=[('User-Agent',base64.b64decode('QkVCNDNDOENDNUU5NDVFOTk4QjI3MjM4MDFFQjk0RjQ=')),('SOAPAction','http://app.dynns.com/saveDeviceIdService/tns:db.saveId'),('Content-Type','text/xml; charset=ISO-8859-1')]
-    nm='BEB43C8CC5E945E998B2723801EB94F4'
+    nm=getPv2Code(True)
+    headers=[('User-Agent',nm),('SOAPAction','http://app.dynns.com/saveDeviceIdService/tns:db.saveId'),('Content-Type','text/xml; charset=ISO-8859-1')]
+    
     xmldata=base64.b64decode("PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iSVNPLTg4NTktMSI/Pgo8U09BUC1FTlY6RW52ZWxvcGUgU09BUC1FTlY6ZW5jb2RpbmdTdHlsZT0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbmNvZGluZy8iIHhtbG5zOlNPQVAtRU5WPSJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy9zb2FwL2VudmVsb3BlLyIgeG1sbnM6eHNkPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYSIgeG1sbnM6eHNpPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYS1pbnN0YW5jZSIgeG1sbnM6U09BUC1FTkM9Imh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3NvYXAvZW5jb2RpbmcvIiB4bWxuczp0bnM9Imh0dHA6Ly9zY3JpcHRiYWtlci5jb20vc2F2ZURldmljZUlkU2VydmljZSI+CjxTT0FQLUVOVjpCb2R5Pgo8dG5zOmRiLnNhdmVJZCB4bWxuczp0bnM9Imh0dHA6Ly9hcHAuZHlubnMuY29tL3NhdmVEZXZpY2VJZFNlcnZpY2UiPgo8aWQgeHNpOnR5cGU9InhzZDpzdHJpbmciPiVzIGNodWxidWxwYW5kYXk8L2lkPgo8bmFtZSB4c2k6dHlwZT0ieHNkOnN0cmluZyI+JXM8L25hbWU+CjwvdG5zOmRiLnNhdmVJZD4KPC9TT0FQLUVOVjpCb2R5Pgo8L1NPQVAtRU5WOkVudmVsb3BlPg==")%(ipaddrs,nm)
     
     try:
@@ -3767,7 +3778,7 @@ def getPV2Url():
     
     req = urllib2.Request( base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2FwcF9wYW5lbG5ldy9vdXRwdXQucGhwL3BsYXlsaXN0P3R5cGU9eG1sJmRldmljZVNuPTY2MSZ0b2tlbj0lcw==')  %token)    
     req.add_header('Authorization', base64.b64decode('QmFzaWMgWVdSdGFXNDZRV3hzWVdneFFBPT0=')) 
-    req.add_header(base64.b64decode("VXNlci1BZ2VudA=="),base64.b64decode("QkVCNDNDOENDNUU5NDVFOTk4QjI3MjM4MDFFQjk0RjQ=")) 
+    req.add_header(base64.b64decode("VXNlci1BZ2VudA=="),getPv2Code()) 
     #req.add_header(base64.b64decode("VXNlci1BZ2VudA=="),base64.b64decode("QkVCNDNDOENDNUU5NDVFOTk4QjI3MjM4MDFFQjk0RkY=")) 
     response = urllib2.urlopen(req)
     link=response.read()
@@ -3797,7 +3808,7 @@ def getPV2Auth():
 
     req = urllib2.Request( base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2tleXMvYmFrLnBocD90b2tlbj0=')+token)
     req.add_header('Authorization', "Basic %s"%base64.b64decode('Wkdsc1pHbHNaR2xzT2xCQWEybHpkRUJ1')) 
-    req.add_header(base64.b64decode("VXNlci1BZ2VudA=="),base64.b64decode("QkVCNDNDOENDNUU5NDVFOTk4QjI3MjM4MDFFQjk0RjQ=")) 
+    req.add_header(base64.b64decode("VXNlci1BZ2VudA=="),getPv2Code()) 
     response = urllib2.urlopen(req)
     link=response.read()
     return link
@@ -4269,19 +4280,20 @@ def AddProgramsAndShows(Fromurl):
         link=getUrl(Fromurl,cookieJar=CookieJar, headers=headers)
 
     CookieJar.save (ZEMCOOKIEFILE,ignore_discard=True)
-    link=link.split('<select data-placeholder="Choose a Program..."')[1].split('</select>')[0]
-#    print link    
-    match =re.findall('<optgroup label=\'(.*?)\'', link, re.UNICODE)
+    link=link.split('<div class="title mb10">Programs')[1].split('</select>')[0]
+    print link    
+    match =re.findall('<optgroup label="(.*?)"', link, re.UNICODE)
+    print match
     h = HTMLParser.HTMLParser()
     #'<option value="(.*?)">(.*?)<'
     #<optgroup label='(.*?)'
     for cname in match:
         addDir(Colored(cname,'ZM'),cname ,-9,'', True,isItFolder=False)
-        subprogs=link.split('<optgroup label=\'%s\''%cname)[1].split('</optgroup>')[0]
+        subprogs=link.split('<optgroup label="%s"'%cname)[1].split('</optgroup>')[0]
         submatch=re.findall('<option value="(.*?)">(.*?)<', subprogs, re.UNICODE)
         for csubname in submatch:
     #		tname=cname[2]#
-            addDir('    '+csubname[1],mainurl+ csubname[0] ,43,'', True,isItFolder=True)
+            addDir('    '+csubname[1],'http://www.zemtv.com'+ csubname[0] ,43,'', True,isItFolder=True)
     return
 
     
@@ -4301,7 +4313,12 @@ def AddShows(Fromurl):
         import cloudflare
         cloudflare.createCookie(Fromurl,CookieJar,'Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10')
         linkfull=getUrl(Fromurl,cookieJar=CookieJar, headers=headers)
-
+    pageNumber=1
+    catid=''
+    if not 'loopHandler' in Fromurl:
+        catid=re.findall("currentcat = (.*?);",linkfull)[0]
+        Fromurl='http://www.zemtv.com/wp-content/themes/zemresponsive/loopHandler.php?pageNumber=%s&catNumber=%s'%(str(pageNumber),catid)
+        linkfull=getUrl(Fromurl,cookieJar=CookieJar, headers=headers)
 
     #	print link
     #cloudflare.createCookie('http://www.movie25.ag/',Cookie_Jar,'Mozilla/5.0 (Windows NT 6.1; rv:14.0) Gecko/20100101 Firefox/14.0.1')
@@ -4315,29 +4332,11 @@ def AddShows(Fromurl):
     #	match =re.findall('<img src="(.*?)" alt=".*".+<\/a>\n*.+<div class="post-title"><a href="(.*?)".*<b>(.*)<\/b>', link, re.UNICODE)
     CookieJar.save (ZEMCOOKIEFILE,ignore_discard=True)
 
-    link=linkfull
-    if '<div id="top-articles">' in linkfull:
-        link=linkfull.split('<div id="top-articles">')[0]
-        
-    match =re.findall('<div class="thumbnail">\\s*<a href="(.*?)".*\s*<img class="thumb".*?src="(.*?)" alt="(.*?)"', link, re.UNICODE)
-    if len(match)==0:
-        match =re.findall('<div class="thumbnail">\s*<a href="(.*?)".*\s*<img.*?.*?src="(.*?)".* alt="(.*?)"', link, re.UNICODE)
+    
 
-    if not '/page/' in Fromurl:
-        try:
-            pat='\\<a href="(.*?)".*>\\s*<img.*?src="(.*?)".*\\s?.*?\\s*?<h1.*?>(.*?)<'
-    #        print linkfull
-            matchbanner=re.findall(pat, linkfull, re.UNICODE)
-    #        print 'matchbanner',matchbanner,match
-            if len(matchbanner)>0:
-                match=matchbanner+match
-        except: pass
-
-        
-    #	print link
-    #	print match
-
-    #	print match
+    match =re.findall('<div class="card">.*?<img src="(.*?)".*?<a href="(.*?)".*?>(.*?)<', linkfull, re.UNICODE|re.DOTALL)
+    #if len(match)==0:
+    #    match =re.findall('<div class="thumbnail">\s*<a href="(.*?)".*\s*<img.*?.*?src="(.*?)".* alt="(.*?)"', link, re.UNICODE)
     h = HTMLParser.HTMLParser()
 
     
@@ -4348,13 +4347,14 @@ def AddShows(Fromurl):
         except:
             tname=re.sub(r'[\x80-\xFF]+', convert,tname )
         #tname=repr(tname)
-        addDir(tname,cname[0] ,3,cname[1]+'|Cookie=%s'%getCookiesString(CookieJar)+'&User-Agent=Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10', True,isItFolder=False)
+        addDir(tname,cname[1] ,3,cname[0]+'|Cookie=%s'%getCookiesString(CookieJar)+'&User-Agent=Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10', True,isItFolder=False)
         
-
-    match =re.findall('<a class="nextpostslink" rel="next" href="(.*?)">', link, re.IGNORECASE)
-
-    if len(match)==1:
-        addDir('Next Page' ,match[0] ,2,'',isItFolder=True)
+    
+    pageNumber=re.findall("pageNumber=(.*?)&",Fromurl)[0]
+    catid=re.findall("&catNumber=(.*?)",Fromurl)[0]
+    pageNumber=int(pageNumber)+1
+    Fromurl='http://www.zemtv.com/wp-content/themes/zemresponsive/loopHandler.php?pageNumber=%s&catNumber=%s'%(str(pageNumber),catid)
+    addDir('Next Page' ,Fromurl ,2,'',isItFolder=True)
     #       print match
 
     return
@@ -4538,7 +4538,11 @@ def PlayShowLink ( url, redirect=True ):
                 return 
             playURL=match[0][0]
             pat='<source src="(.*?)"'
+            #print 'source is',playURL
+            if playURL.startswith('//'): playURL='http:'+playURL
+            #print playURL
             link=getUrl(playURL,cookieJar=CookieJar, headers=headers)
+            #print link
             playURL=re.findall(pat, link)
             stream_url=playURL[0]
         playlist = xbmc.PlayList(1)
