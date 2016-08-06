@@ -28,8 +28,8 @@ from resources.lib.modules import directstream
 
 class source:
     def __init__(self):
-        self.domains = ['movieshd.is']
-        self.base_link = 'http://movieshd.is'
+        self.domains = ['movieshd.tv', 'movieshd.is']
+        self.base_link = 'http://movieshd.tv'
         self.search_link = '/api/v1/cautare/apr'
 
 

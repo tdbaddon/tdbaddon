@@ -33,9 +33,8 @@ class source:
         self.base_link = 'http://rlsbb.com'
         self.search_base_link = 'http://search.rlsbb.com'
         self.search_header_link = {'X-Requested-With': 'XMLHttpRequest', 'Cookie': 'serach_mode=rlsbb'}
-        self.search_link = '/test_rlsbb/lib/search.php?phrase=%s&pindex=1&content=true'
-        self.search_link2 = '/search/%s?serach_mode=rlsbb'
-
+        self.search_link = '/lib/search.php?phrase=%s&pindex=1&content=true'
+        self.search_link2 = '/search/%s'
 
 
     def movie(self, imdb, title, year):
@@ -81,8 +80,6 @@ class source:
             data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
 
             title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
-
-
 
 
             posts = []

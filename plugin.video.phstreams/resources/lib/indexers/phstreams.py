@@ -474,7 +474,10 @@ class indexer:
                 except: pass
 
                 if i['action'] == 'plugin' and 'url' in i: url = i['url']
-                if i['action'] == 'developer' and not devmode == True: raise Exception()
+
+                try: devurl = dict(urlparse.parse_qsl(urlparse.urlparse(url).query))['action']
+                except: devurl = None
+                if devurl == 'developer' and not devmode == True: raise Exception()
 
                 poster = i['poster'] if 'poster' in i else '0'
                 banner = i['banner'] if 'banner' in i else '0'

@@ -1,3 +1,7 @@
+[B]3.1.4[/B]
+Updated scrapers
+Updated indexers
+
 [B]3.1.3[/B]
 Fixed cartoons
 Updated scrapers
@@ -7,7 +11,7 @@ Improved regex support
 Updated scrapers
 
 [B]3.1.1[/B]
-Addded image support
+Added image support
 Updated scrapers
 
 [B]3.0.9[/B]

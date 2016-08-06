@@ -64,7 +64,9 @@ class source:
 
             referer = urlparse.urljoin(self.base_link, url)
 
-            result = client.request(referer)
+            for i in range(3):
+                result = client.request(referer)
+                if not result == None: break
 
             r = client.parseDOM(result, 'div', attrs = {'class': '[^"]*server_line[^"]*'})
 
@@ -87,7 +89,10 @@ class source:
 
                     if not host in ['google', 'putlocker']: raise Exception()
 
-                    result = client.request(url, post=post, headers=headers)
+                    for i in range(3):
+                        result = client.request(url, post=post, headers=headers)
+                        if not result == None: break
+
                     result = json.loads(result)['s']
 
                     url = urlparse.urljoin(self.base_link, '/ip.temp/swf/ipplayer/ipplayer.php')
@@ -95,7 +100,10 @@ class source:
                     post = {'u': result, 'w': '100%', 'h': '420'}
                     post = urllib.urlencode(post)
 
-                    result = client.request(url, post=post, headers=headers)
+                    for i in range(3):
+                        result = client.request(url, post=post, headers=headers)
+                        if not result == None: break
+
                     result = json.loads(result)['data']
                     result = [i['files'] for i in result]
 
