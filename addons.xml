@@ -2099,7 +2099,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBEUROTV"
        name="TDB EURO TV"
-       version="2.40"
+       version="2.41"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -2174,7 +2174,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="4.01"
+       version="4.02"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -2738,7 +2738,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.ZemTV-shani"
        name="ZemTV.com"
-       version="5.0.1"
+       version="5.0.3"
        provider-name="shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>

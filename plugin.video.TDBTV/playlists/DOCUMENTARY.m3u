@@ -22,10 +22,7 @@ http://www.videos.tcomputers.ca/HowTo-ChangeAudioLanguage.mp4
 0
 
 #EXTINF:0,Crime & Investigation 
-http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/1319.ts
-
-#EXTINF:0,Crime & Investigation 
-http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/1322.ts
+0
 
 #EXTINF:0,Cottage Life
 0
@@ -37,13 +34,10 @@ http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/1322.ts
 0
 
 #EXTINF:0,Discovery Channel
-0
+http://27.67.50.72:18080/67_2.m3u8?AdaptiveType=HLS
 
 #EXTINF:0,Discovery H&H
 0
-
-#EXTINF:0,Discovery History 
-http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/1320.ts
 
 #EXTINF:0,Discovery History 
 http://www.q7t1.com:8000/live/sYKADDaJs2/SnoQc6v4hZ/1076.ts
@@ -82,22 +76,10 @@ http://187.188.79.2/wp/vod.cdn.iutpcdn.com/LIVE/H01/CANAL356/PROFILE03.m3u8
 0
 
 #EXTINF:0,History Channel 
-https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8?hdnea=ip=174.113.30.187~st=1427694727~exp=1427695327~acl=/i/*~id=a86de0c2-ad09-4469-9a63-6ebbc1bba4d3~hmac=ac144089000bdd16f6916c517ce3e6e04813d4de11ac16839ad468a977ec80b1
-
-#EXTINF:0,History Channel 
-http://link.theplatform.com/s/dtjsEC/chjdYJxKb44V?manifest=m3u&feed=History%20Live%20Stream%20Feed
-
-#EXTINF:0,History Channel 
-https://history-lh.akamaihd.net/i/History_1@156885/master.m3u8
-
-#EXTINF:0,History Channel 
-http://link.theplatform.com/s/dtjsEC/chjdYJxKb44V?manifest=m3u
+0
 
 #EXTINF:0,History Channel 2
 0
-
-#EXTINF:0,Investigation Discovery 
-http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/627.ts
 
 #EXTINF:0,Investigation Discovery 
 http://www.q7t1.com:8000/live/sYKADDaJs2/SnoQc6v4hZ/1037.ts
@@ -111,17 +93,14 @@ http://iphone-streaming.ustream.tv/uhls/6540154/streams/live/iphone/playlist.m3u
 #EXTINF:0,Nasa TV 
 http://nasatv-lh.akamaihd.net/i/NASA_103@319271/master.m3u8
 
-#EXTINF:0,Nasa TV 
-http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/57.ts
-
 #EXTINF:0,Nat Geo People
 0
 
 #EXTINF:0,Nat Geo Wild 
-http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/1306.ts
+0
 
 #EXTINF:0,National Geographic 
-0
+http://27.67.50.72:18080/153_3.m3u8?AdaptiveType=HLS
 
 #EXTINF:0,Nova
 0
@@ -130,16 +109,7 @@ http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/1306.ts
 0
 
 #EXTINF:0,RT News Documentary 
-http://rt-a.akamaihd.net/ch_05@325609/master.m3u8
-
-#EXTINF:0,RT News Documentary 
-http://rt-a.akamaihd.net/ch_05@325609/480p.m3u8
-
-#EXTINF:0,RT News Documentary 
-http://rt-a.akamaihd.net/ch_05@325609/720p.m3u8
-
-#EXTINF:0,RT News Documentary 
-http://rt-a.akamaihd.net/ch_05@325609/720p.m3u8
+0
 
 #EXTINF:0,Ted TV 
 0

@@ -127,9 +127,6 @@ rtmp://144.76.2.213/live/livestream
 #EXTINF:0,Makedonia TV
 http://stream.maktv.gr/i/live_1@332903/master.m3u8
 
-#EXTINF:0,Makedonia TV
-http://makeliolive-lh.akamaihd.net/i/event_1@167269/master.m3u8
-
 #EXTINF:0,Max
 0
 

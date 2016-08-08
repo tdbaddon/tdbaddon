@@ -103,7 +103,7 @@ rtmp://rtmp.elektrika.cz/live/myStream.sdp
 0
 
 #EXTINF:0,Kanal 8
-mms://62.162.58.55/TVKanal8
+0
 
 #EXTINF:0,Kanal 21
 0
@@ -148,7 +148,7 @@ http://213.81.153.221:8080/nasa
 0
 
 #EXTINF:0,Prva TV 
-http://92.60.224.62:3018/udp/238.21.13.1:6007
+0
 
 #EXTINF:0,RTC 
 0
@@ -166,7 +166,7 @@ http://92.60.224.62:3018/udp/238.21.13.1:6007
 0
 
 #EXTINF:0,RTS 
-http://92.60.224.62:3018/udp/238.10.0.1:6005
+0
 
 #EXTINF:0,RTS 1 
 0
@@ -190,7 +190,7 @@ http://213.81.153.221:8080/ruzinov
 http://92.53.27.201:10000/
 
 #EXTINF:0,SOS Kanal 
-http://92.60.224.62:3018/udp/239.10.58.10:12058#EXTM3U
+0
 
 #EXTINF:0,Studio B 
 0

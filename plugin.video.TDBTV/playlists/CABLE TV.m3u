@@ -10,7 +10,7 @@ http://www.videos.tcomputers.ca/HowTo-ChangeAudioLanguage.mp4
 0
 
 #EXTINF:0,ABC 
-http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/06.ts
+0
 
 #EXTINF:0,ABC Family 
 0
@@ -67,10 +67,10 @@ http://187.188.79.2/wp/vod.cdn.iutpcdn.com/LIVE/H01/CANAL253/PROFILE03.m3u8
 0
 
 #EXTINF:0,CBS Drama 
-http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/1905.ts
+0
 
 #EXTINF:0,CBS Reality 
-http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/1298.ts
+0
 
 #EXTINF:0,CHCH Ontario
 0
@@ -88,10 +88,7 @@ http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/1298.ts
 0
 
 #EXTINF:0,Comedy Central 
-http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/595.ts
-
-#EXTINF:0,Comedy Central 
-http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/1323.ts
+0
 
 #EXTINF:0,Comedy Gold
 0
@@ -139,10 +136,7 @@ http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/1323.ts
 0
 
 #EXTINF:0,E! 
-http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/300.ts
-
-#EXTINF:0,E! 
-http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/1313.ts
+0
 
 #EXTINF:0,E2 
 0
@@ -161,6 +155,9 @@ http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/1313.ts
 
 #EXTINF:0,Fashion TV 
 http://187.188.79.2/wp/vod.cdn.iutpcdn.com/LIVE/H01/CANAL220/PROFILE03.m3u8
+
+#EXTINF:0,Fashion TV 
+http://27.67.50.68:18080/169_3.m3u8?AdaptiveType=HLS
 
 #EXTINF:0,Fine Living Network 
 0
@@ -247,7 +244,7 @@ rtmp://jtvmedia.jtv.com:1975/live playpath=live6 swfUrl=http://demandware.edgesu
 0
 
 #EXTINF:0,Lifetime Network 
-http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/1901.ts
+0
 
 #EXTINF:0,London Live 
 http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
@@ -265,10 +262,7 @@ http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
 0
 
 #EXTINF:0,Nick 
-http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/1302.ts
-
-#EXTINF:0,Nick 
-http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/1305.ts
+0
 
 #EXTINF:0,Nick Jr 
 0
@@ -277,7 +271,7 @@ http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/1305.ts
 0
 
 #EXTINF:0,NickNight 
-http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/1303.ts
+0
 
 #EXTINF:0,NTV
 0
@@ -350,7 +344,7 @@ http://187.188.79.2/wp/vod.cdn.iutpcdn.com/LIVE/H01/CANAL491/PROFILE03.m3u8
 0
 
 #EXTINF:0,TLC 
-http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/1317.ts
+0
 
 #EXTINF:0,TNT 
 http://187.188.79.2/wp/vod.cdn.iutpcdn.com/LIVE/H01/CANAL266/PROFILE03.m3u8
@@ -396,9 +390,6 @@ http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/master.m3u8?b?b*t
 
 #EXTINF:0,WGN
 http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/index_350_av-p.m3u8?
-
-#EXTINF:0,WGN
-http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/593.ts
 
 #EXTINF:0,Wobi
 http://187.188.79.2/wp/vod.cdn.iutpcdn.com/LIVE/H01/CANAL387/PROFILE03.m3u8
