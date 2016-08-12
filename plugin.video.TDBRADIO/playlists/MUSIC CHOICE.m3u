@@ -26,9 +26,6 @@ http://arcostream.mp3.miisolutions.net/musicchoice/MCU_Backup.m3u
 http://arcostream.mp3.miisolutions.net/musicchoice/Metal_QA.m3u
 
 #EXTINF:0,Soft Rock
-http://arcostream.mp3.miisolutions.net/musicchoice/SoftRock_Live
-
-#EXTINF:0,Soft Rock
 http://arcostream.mp3.miisolutions.net/musicchoice/SoftRock_Backup.m3u
 
 #EXTINF:0,Adult Alternative
@@ -111,9 +108,6 @@ http://arcostream.mp3.miisolutions.net/musicchoice/CountryHits_Backup.m3u
 
 #EXTINF:0,Christian
 http://arcostream.mp3.miisolutions.net/musicchoice/Christian_Backup.m3u
-
-#EXTINF:0,Gospel
-http://arcostream.mp3.miisolutions.net/musicchoice/Gospel_Backup.m3u
 
 #EXTINF:0,Blues
 http://arcostream.mp3.miisolutions.net/musicchoice/Blues_Backup.m3u

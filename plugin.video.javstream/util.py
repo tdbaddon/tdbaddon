@@ -11,7 +11,7 @@ import search
 sysarg=str(sys.argv[1])
 ADDON_ID='plugin.video.javstream'
 addon = xbmcaddon.Addon(id=ADDON_ID)
-ADDON_VER="0.91.2"
+ADDON_VER="0.91.3"
 
 hdr = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11',
        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
@@ -726,6 +726,9 @@ def huntVideo(params):
         if xbmcplugin.getSetting(int(sysarg), searching+"gravuregirlz")=="true":
             titles.append("gravuregirlz")
             huntSites.append("http://gravuregirlz.com/search/"+dvdCode+"/feed/rss2")
+        if xbmcplugin.getSetting(int(sysarg), searching+"javleak")=="true":
+            titles.append("javleak")
+            huntSites.append("http://javleak.com/search/"+dvdCode+"/feed/rss2")
         
     huntSites=unique(huntSites)  
     updateString=" ".join(titles)
@@ -1226,7 +1229,6 @@ def decodeOpenLoad(html):
 
     # Kodi version based on urlresolver
     
-    
     imageData = re.search('''<img[^>]*?id="linkimg"[^>]*?src="([^"]+?)"''', html, re.IGNORECASE).group(1)
     imageData = base64.b64decode(imageData.split('base64,')[-1])
     _x, _y, pixel, _meta = png.Reader(bytes=imageData).read()
@@ -1254,7 +1256,7 @@ def decodeOpenLoad(html):
             j += 1
         imageTabs[i][j].append(imageStr[idx])
 
-    data = getHtml('https://openload.co/assets/js/obfuscator/numbers.js', '', hdr)
+    data = getHtml('https://openload.co/assets/js/obfuscator/n.js', '')
     signStr = re.search('''['"]([^"^']+?)['"]''', data, re.IGNORECASE).group(1)
 
     # split signature data
@@ -1293,7 +1295,6 @@ def decodeOpenLoad(html):
 
     res = res[3] + '~' + res[1] + '~' + res[2] + '~' + res[0]
     videoUrl = 'https://openload.co/stream/{0}?mime=true'.format(res)
-    
     dtext = videoUrl.replace('https', 'http')
     UA = 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:39.0) Gecko/20100101 Firefox/39.0'
     headers = {'User-Agent': UA }
@@ -1302,8 +1303,8 @@ def decodeOpenLoad(html):
     res = urllib2.urlopen(req)
     videourl = res.geturl() 
     res.close()
-    
     return videourl
+
 
 def decode(encoded):
     for octc in (c for c in re.findall(r'\\(\d{2,3})', encoded)):

@@ -23,7 +23,7 @@ http://195.66.134.41:80
 http://pub5.di.fm/di_discohouse_aacplus
 
 #EXTINF:0,DI Funky House
-http://pub1.diforfree.org:8000/di_funkyhouse_hi
+0
 
 #EXTINF:0,DI House
 http://pub1.diforfree.org:8000/di_house_hi
@@ -53,7 +53,7 @@ http://listen.radionomy.com/laser-fm-europe.m3u
 http://we-love-house.fm:8000/stream
 
 #EXTINF:0,NRJ Deep House
-http://95.81.147.24/9962/nrj_100122.mp3
+0
 
 #EXTINF:0,Proton Radio 
 http://protonradio.com:8000

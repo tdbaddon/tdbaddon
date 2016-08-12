@@ -5,10 +5,10 @@
 http://streaming.radionomy.com/AbbaTrax
 
 #EXTINF:0,ACDC
-http://87.117.202.97:9436/listen.pls
+0
 
 #EXTINF:0,Aerosmith
-http://cd09.64.aac.jango.com/17/03/33/1703339493.m4a
+0
 
 #EXTINF:0,Ariana Grande
 http://95.81.155.24/10081/nrj_161132.mp3
@@ -152,7 +152,7 @@ http://95.81.155.20/3808/nrj_3808.mp3
 0
 
 #EXTINF:0,Nrj Selena Gomez 
-http://95.81.147.20/7595/nrj_174257.mp3
+0
 
 #EXTINF:0,Taylor Swift
 0
