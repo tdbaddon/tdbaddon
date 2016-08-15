@@ -517,7 +517,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 <addon id="plugin.video.aftershock"
        name="Aftershock"
-       version="3.7.3"
+       version="3.7.4"
        provider-name="IDev">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
@@ -1696,7 +1696,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   <extension point="xbmc.service" library="service.py" start="login" />
 </addon>
 
-<addon id="plugin.video.phstreams" name="Phoenix" version="3.1.4" provider-name="tvaddons.ag">
+<addon id="plugin.video.phstreams" name="Phoenix" version="3.1.5" provider-name="tvaddons.ag">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.pyxbmct" version="1.1.4" />
@@ -1901,25 +1901,25 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.Stallion-IPTV" name="Stallion-IPTV" version="2.5" provider-name="Stallion-IPTV">
+<addon id="plugin.video.Stallion-IPTV" name="Stallion-IPTV" version="3.1" provider-name="Stallion-IPTV">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.beautifulsoup" version="3.2.1"/>
     <import addon="script.module.simple.downloader" version="0.9.4"/>
     <import addon="script.module.beautifulsoup4" />
-    <import addon="script.module.simple.downloader" version="0.9.4"/>
     <import addon="script.module.requests" />
     <import addon="script.module.httplib2" />
     <import addon="script.module.youtube.dl" optional="true"/>
-    <import addon="plugin.video.youtube" />
+    <import addon="plugin.video.youtube" optional="true" />
     <import addon="script.module.urlresolver" optional="true"/>
     <import addon="script.module.simplejson" />
+	<import addon="script.module.livestreamer" optional="true"/>
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
     <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary>[COLOR blue]Stallion[/COLOR][COLOR blue]IPTV[/COLOR]basado en LivetreamsPro by Shani  </summary>
+    <summary>[COLOR blue]Stallion[/COLOR][COLOR blue]IPTV[/COLOR]basado en LivetreamsPro by Shani mod by Wolf </summary>
     <description lang="en">[COLOR blue][B]Stallion-IPTV, Enjoy the Best Free IPTV [/B][/COLOR]</description>
     <platform>all</platform>
   </extension>
@@ -2036,7 +2036,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBTVSHOWS"
        name="TDB TV SHOWS"
-       version="1.14"
+       version="1.16"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>

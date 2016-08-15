@@ -18,7 +18,11 @@
 '''
 
 
-import os,re,sys,urllib,urlparse,json,base64
+import os,re,sys,hashlib,urllib,urlparse,json,base64
+import xbmc
+
+try: from sqlite3 import dbapi2 as database
+except: from pysqlite2 import dbapi2 as database
 
 from resources.lib.modules import cache
 from resources.lib.modules import metacache
@@ -472,6 +476,8 @@ class indexer:
                 url = '%s?action=%s' % (sysaddon, i['action'])
                 try: url += '&url=%s' % urllib.quote_plus(i['url'])
                 except: pass
+                try: url += '&content=%s' % urllib.quote_plus(i['content'])
+                except: pass
 
                 if i['action'] == 'plugin' and 'url' in i: url = i['url']
 
@@ -487,7 +493,6 @@ class indexer:
                 elif banner == '0': banner = poster
 
                 content = i['content'] if 'content' in i else '0'
-                replaceItems = False if content == '0' else True
 
                 folder = i['folder'] if 'folder' in i else True
 
@@ -501,12 +506,8 @@ class indexer:
                     meta.update({'trailer': '%s?action=trailer&name=%s' % (sysaddon, urllib.quote_plus(name))})
                     cm.append((control.lang(30707).encode('utf-8'), 'RunPlugin(%s?action=trailer&name=%s)' % (sysaddon, urllib.quote_plus(name))))
 
-                if content == 'movies':
+                if content in ['movies', 'tvshows', 'seasons', 'episodes']:
                     cm.append((control.lang(30708).encode('utf-8'), 'XBMC.Action(Info)'))
-                elif content in ['tvshows', 'seasons']:
-                    cm.append((control.lang(30709).encode('utf-8'), 'XBMC.Action(Info)'))
-                elif content == 'episodes':
-                    cm.append((control.lang(30710).encode('utf-8'), 'XBMC.Action(Info)'))
 
                 if content == 'movies':
                     try: dfile = '%s (%s)' % (data['title'], data['year'])
@@ -532,9 +533,6 @@ class indexer:
                     try: cm.append(('Open in browser', 'RunPlugin(%s?action=browser&url=%s)' % (sysaddon, urllib.quote_plus(i['url']))))
                     except: pass
 
-                if replaceItems == True:
-                    cm.append((control.lang(30725).encode('utf-8'), 'RunPlugin(%s?action=openSettings)' % sysaddon))
-
 
                 item = control.item(label=name, iconImage=poster, thumbnailImage=poster)
 
@@ -547,7 +545,7 @@ class indexer:
                     item.setProperty('Fanart_Image', addonFanart)
 
                 item.setInfo(type='Video', infoLabels = meta)
-                item.addContextMenuItems(cm, replaceItems=replaceItems)
+                item.addContextMenuItems(cm)
                 control.addItem(handle=int(sys.argv[1]), url=url, listitem=item, isFolder=folder)
             except:
                 pass
@@ -560,42 +558,6 @@ class indexer:
 
 
 class resolver:
-
-    def play(self, url):
-        try:
-            url = self.get(url)
-            if url == False: return
-
-            url = self.process(url)
-            if url == None: return control.infoDialog(control.lang(30705).encode('utf-8'))
-
-            meta = {}
-            for i in ['title', 'originaltitle', 'tvshowtitle', 'year', 'season', 'episode', 'genre', 'rating', 'votes', 'director', 'writer', 'plot', 'tagline']:
-                try: meta[i] = control.infoLabel('listitem.%s' % i)
-                except: pass
-            meta = dict((k,v) for k, v in meta.iteritems() if not v == '')
-            if not 'title' in meta: meta['title'] = control.infoLabel('listitem.label')
-            icon = control.infoLabel('listitem.icon')
-            title = meta['title']
-
-            try:
-                if not any(i in url for i in ['.f4m', '.ts']): raise Exception()
-                ext = url.split('?')[0].split('&')[0].split('|')[0].rsplit('.')[-1].replace('/', '').lower()
-                if not ext in ['f4m', 'ts']: raise Exception()
-                from resources.lib.modules.f4mproxy.F4mProxy import f4mProxyHelper
-                return f4mProxyHelper().playF4mLink(url, title, None, None, '', icon)
-            except:
-                pass
-
-            item = control.item(path=url, iconImage=icon, thumbnailImage=icon)
-            try: item.setArt({'icon': icon})
-            except: pass
-            item.setInfo(type='Video', infoLabels = meta)
-            control.player.play(url, item)
-        except:
-            pass
-
-
     def browser(self, url):
         try:
             url = self.get(url)
@@ -757,6 +719,16 @@ class resolver:
             pass
 
         try:
+            if not 'filmon.com/' in url: raise Exception()
+            from resources.lib.modules import filmon
+            u = filmon.resolve(url)
+            try: dialog.close()
+            except: pass
+            return u
+        except:
+            pass
+
+        try:
             import urlresolver
 
             hmf = urlresolver.HostedMediaFile(url=url, include_disabled=True, include_universal=False)
@@ -797,5 +769,141 @@ class resolver:
 
         try: dialog.close()
         except: pass
+
+
+
+class player(xbmc.Player):
+    def __init__ (self):
+        xbmc.Player.__init__(self)
+
+
+    def play(self, url, content=None):
+        try:
+            url = resolver().get(url)
+            if url == False: return
+
+            url = resolver().process(url)
+            if url == None: return control.infoDialog(control.lang(30705).encode('utf-8'))
+
+
+            meta = {}
+            for i in ['title', 'originaltitle', 'tvshowtitle', 'year', 'season', 'episode', 'genre', 'rating', 'votes', 'director', 'writer', 'plot', 'tagline']:
+                try: meta[i] = control.infoLabel('listitem.%s' % i)
+                except: pass
+            meta = dict((k,v) for k, v in meta.iteritems() if not v == '')
+            if not 'title' in meta: meta['title'] = control.infoLabel('listitem.label')
+            icon = control.infoLabel('listitem.icon')
+
+
+            self.name = meta['title'] ; self.year = meta['year'] if 'year' in meta else '0'
+
+            self.offset = bookmarks().get(self.name, self.year)
+
+
+            try:
+                if not any(i in url for i in ['.f4m', '.ts']): raise Exception()
+                ext = url.split('?')[0].split('&')[0].split('|')[0].rsplit('.')[-1].replace('/', '').lower()
+                if not ext in ['f4m', 'ts']: raise Exception()
+                from resources.lib.modules.f4mproxy.F4mProxy import f4mProxyHelper
+                return f4mProxyHelper().playF4mLink(url, self.name, None, None, '', icon)
+            except:
+                pass
+
+
+            item = control.item(path=url, iconImage=icon, thumbnailImage=icon)
+            try: item.setArt({'icon': icon})
+            except: pass
+            item.setInfo(type='Video', infoLabels = meta)
+            control.player.play(url, item)
+
+            if not (content == 'movies' or content == 'episodes'): return
+
+
+            self.totalTime = 0 ; self.currentTime = 0
+
+            for i in range(0, 240):
+                if self.isPlayingVideo(): break
+                control.sleep(1000)
+            while self.isPlayingVideo():
+                try:
+                    self.totalTime = self.getTotalTime()
+                    self.currentTime = self.getTime()
+                except:
+                    pass
+                xbmc.sleep(2000)
+            control.sleep(5000)
+        except:
+            pass
+
+
+    def onPlayBackStarted(self):
+        if not self.offset == '0': self.seekTime(float(self.offset))
+
+
+    def onPlayBackStopped(self):
+        bookmarks().reset(self.currentTime, self.totalTime, self.name, self.year)
+
+
+    def onPlayBackEnded(self):
+        self.onPlayBackStopped()
+
+
+
+class bookmarks:
+    def get(self, name, year='0'):
+        try:
+            offset = '0'
+
+            #if not control.setting('bookmarks') == 'true': raise Exception()
+
+            idFile = hashlib.md5()
+            for i in name: idFile.update(str(i))
+            for i in year: idFile.update(str(i))
+            idFile = str(idFile.hexdigest())
+
+            dbcon = database.connect(control.bookmarksFile)
+            dbcur = dbcon.cursor()
+            dbcur.execute("SELECT * FROM bookmark WHERE idFile = '%s'" % idFile)
+            match = dbcur.fetchone()
+            self.offset = str(match[1])
+            dbcon.commit()
+
+            if self.offset == '0': raise Exception()
+
+            minutes, seconds = divmod(float(self.offset), 60) ; hours, minutes = divmod(minutes, 60)
+            label = '%02d:%02d:%02d' % (hours, minutes, seconds)
+            label = (control.lang(32502) % label).encode('utf-8')
+
+            try: yes = control.dialog.contextmenu([label, control.lang(32501).encode('utf-8'), ])
+            except: yes = control.yesnoDialog(label, '', '', str(name), control.lang(32503).encode('utf-8'), control.lang(32501).encode('utf-8'))
+
+            if yes: self.offset = '0'
+
+            return self.offset
+        except:
+            return offset
+
+
+    def reset(self, currentTime, totalTime, name, year='0'):
+        try:
+            #if not control.setting('bookmarks') == 'true': raise Exception()
+
+            timeInSeconds = str(currentTime)
+            ok = int(currentTime) > 180 and (currentTime / totalTime) <= .92
+
+            idFile = hashlib.md5()
+            for i in name: idFile.update(str(i))
+            for i in year: idFile.update(str(i))
+            idFile = str(idFile.hexdigest())
+
+            control.makeFile(control.dataPath)
+            dbcon = database.connect(control.bookmarksFile)
+            dbcur = dbcon.cursor()
+            dbcur.execute("CREATE TABLE IF NOT EXISTS bookmark (""idFile TEXT, ""timeInSeconds TEXT, ""UNIQUE(idFile)"");")
+            dbcur.execute("DELETE FROM bookmark WHERE idFile = '%s'" % idFile)
+            if ok: dbcur.execute("INSERT INTO bookmark Values (?, ?)", (idFile, timeInSeconds))
+            dbcon.commit()
+        except:
+            pass
 
 

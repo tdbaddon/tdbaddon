@@ -62,7 +62,7 @@ elif action == 'developer':
 
 elif action == 'play':
     from resources.lib.indexers import phstreams
-    phstreams.resolver().play(url)
+    phstreams.player().play(url, content)
 
 elif action == 'browser':
     from resources.lib.indexers import phstreams

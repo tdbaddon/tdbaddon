@@ -68,7 +68,7 @@ class source:
 
             if url == None: return sources
 
-            result = cloudflare.source(url)
+            result = client.source(url)
             result = client.parseDOM(result, 'table', attrs = {'class': 'rows differ_download'})[0]
             links = client.parseDOM(result, 'tr')
 

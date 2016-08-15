@@ -110,6 +110,8 @@ def decrypt_vipracing(page_url, justHtml=False,doDecrypt=True,ref=None):
 	streamer=streamer.replace('\\/','/')
 	str_pattern='file[\'"]?: [\'"](.*?)[\'"]'
 	file=re.compile(str_pattern).findall(un_chtml)[0].replace('.flv','')
+	if  file=="":
+		return ""
 	#print file, un_chtml
 	str_pattern='getJSON\(\"(.*?)\"'
 	token_url=re.compile(str_pattern).findall(un_chtml)[0] 

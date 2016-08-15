@@ -1,3 +1,8 @@
+[B]3.1.5[/B]
+Updated indexers
+Tweaked context menus
+Added resume points
+
 [B]3.1.4[/B]
 Updated scrapers
 Updated indexers

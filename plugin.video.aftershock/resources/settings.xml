@@ -3,7 +3,7 @@
 	<category label="30800">
 		<setting id="fanart" type="bool" label="30802" default="true" />
 		<setting type="sep" />
-		<setting id="idx_provider" type="labelenum" label="30801" values="apnaview|ibollytv" default="ibollytv" enable="eq(5,false)" />
+		<setting id="idx_provider" type="labelenum" label="30801" values="bollywoodmdb|apnaview|ibollytv" default="ibollytv" enable="eq(5,false)" />
 		<setting type="sep" />
 		<setting id="sources_timeout_40" type="slider" label="30804" default="40" range="10,60" option="int" />
 		<setting id="hypermode" type="bool" label="30863" default="false" />

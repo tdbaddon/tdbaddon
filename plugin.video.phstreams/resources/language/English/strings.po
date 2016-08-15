@@ -39,19 +39,11 @@ msgid "Discover Great Streaming Playlists!"
 msgstr ""
 
 msgctxt "#30707"
-msgid "Watch Trailer"
+msgid "Trailer"
 msgstr ""
 
 msgctxt "#30708"
-msgid "Movie Information"
-msgstr ""
-
-msgctxt "#30709"
-msgid "TV Show Information"
-msgstr ""
-
-msgctxt "#30710"
-msgid "Episode Information"
+msgid "Information"
 msgstr ""
 
 msgctxt "#30711"
@@ -180,4 +172,16 @@ msgstr ""
 
 msgctxt "#30500"
 msgid "[I]Next Page[/I]"
+msgstr ""
+
+msgctxt "#32501"
+msgid "Start from beginning"
+msgstr ""
+
+msgctxt "#32502"
+msgid "Resume from %s"
+msgstr ""
+
+msgctxt "#32503"
+msgid "Resume"
 msgstr ""

@@ -13,7 +13,7 @@ class MyXBMCPlayer(xbmc.Player):
     #   print 'Now im playing... %s' % url
     #    self.is_active = False
     #    self.urlplayed = False
-    #    xbmc.Player(xbmc.PLAYER_CORE_AUTO).play(url, listitem)
+    #    xbmc.Player().play(url, listitem)
 
 	#def setdialogue( self, pdialogue ):
 	#	self.pdialogue=pdialogue

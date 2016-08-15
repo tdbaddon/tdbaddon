@@ -39,6 +39,7 @@ try :
     params = {'action': 'playItem', 'content': 'live', 'name': 'Raj News Telugu', 'source': "[{'url': 'http://www.dittotv.com/livetv/linkname=Raj News Telugu', 'source': 'ditto', 'label': 'ditto', 'quality': 'HD', 'provider': 'ditto'}]"}
     params = {'action': 'movies', 'lang': 'hindi', 'url': 'theaters', 'provider': 'apnaview_mv'}
     params = {'tmdb': '362045', 'name': 'Bajirao Mastani (2015)', 'title': 'Bajirao Mastani', 'meta': '{"rating": "7.0", "code": "tt3735246", "tmdb": "362045", "imdb": "tt3735246", "year": "2015", "duration": "9000", "plot": "A historical account of the romance between the Maratha general, Baji Rao I and Mastani, a Muslim princess.", "votes": "18", "title": "Bajirao Mastani", "fanart": "http://image.tmdb.org/t/p/original/pZVL7yJdKqR7oAa4J8fUUOwuiGG.jpg", "tagline": "A historical account of the romance between the Maratha general, Baji Rao I and Mastani, a Muslim princess.", "writer": "Prakash Kapadia", "next": "", "poster": "http://image.tmdb.org/t/p/w500/h6t2eLxievyA5GrthmpmE2uzB9W.jpg", "director": "Sanjay Leela Bhansali", "studio": "SLB Films", "genre": "War / History / Romance", "metacache": true, "name": "Bajirao Mastani (2015)", "premiered": "2015-12-18", "originaltitle": "Bajirao Mastani", "cast": [["Ranveer Singh", "Baji Rao I"], ["Deepika Padukone", "Mastani"], ["Priyanka Chopra", "Kashibai"], ["Tanvi Azmi", "Radhabai, Bajirao\'s mother."], ["Vaibhav Tatwawadi", "Chimaji Appa, Baji Rao\'s younger brother"], ["Mahesh Manjrekar", "Maratha Emperor \'Chhattrapati Shahu\'"], ["Milind Soman", "Ambaji Panth"], ["Sanjay Mishra", ""], ["Aditya Pancholi", "Panth Pratinidhi"]], "trailer": "plugin://plugin.video.aftershock/?action=trailer&name=Bajirao+Mastani+%282015%29"}', 'imdb': 'tt3735246', 'year': '2015', 'action': 'sources'}
+    params = {'tmdb': '362136', 'name': 'Prem Ratan Dhan Payo (2015)', 'title': 'Prem Ratan Dhan Payo', 'meta': '{"rating": "5.7", "code": "tt3595298", "tmdb": "362136", "imdb": "tt3595298", "year": "2015", "duration": "10440", "plot": "Loosely based on the novel The prince and the Pauper. Ever loving Prem is respected and loved by all and Vijay (also played by Salman Khan) is in the world of hatred and violence. They change their identities temporarily to discover the other side of the world.", "votes": "20", "title": "Prem Ratan Dhan Payo", "fanart": "http://image.tmdb.org/t/p/original/9fVjhznaYPcQF7eHZ08CkytmTbL.jpg", "tagline": "Loosely based on the novel The prince and the Pauper", "writer": "Sooraj R. Barjatya", "next": "", "poster": "http://image.tmdb.org/t/p/w500/weXScKHG1UzfYcRuefzr6EaoTke.jpg", "director": "Sooraj R. Barjatya", "studio": "Fox Star Studios", "genre": "Drama / Action / Romance", "metacache": true, "name": "Prem Ratan Dhan Payo (2015)", "premiered": "2015-11-11", "originaltitle": "Prem Ratan Dhan Payo", "cast": [["Salman Khan", "Prem/Vijay"], ["Sonam Kapoor", "Maithili"], ["Neil Nitin Mukesh", "Yuvraj Ajay Singh"], ["Anupam Kher", "Diwan"], ["Swara Bhaskar", "Chandrika"], ["Deepak Dobriyal", "Kanhaiya"], ["Arman Kohli", "Chirag Singh"], ["Manoj Joshi", "Bhandari"]], "mpaa": "NR", "trailer": "plugin://plugin.video.aftershock/?action=trailer&name=Prem+Ratan+Dhan+Payo+%282015%29"}', 'imdb': 'tt3595298', 'year': '2015', 'action': 'sources'}
 
 
     try:
@@ -153,6 +154,14 @@ try :
     from resources.lib.sources import sources
     from resources.lib.indexers import tvshows
     from resources.lib.indexers import livetv
+
+    from resources.lib.sources import bollywoodmdb_mv
+
+    #try :
+    #    bollywoodmdb_mv.source().scn_full_list('theaters',lang='hi',provider='bollywoodmdb')
+    #except:
+    #    import traceback
+    #    traceback.print_exc()
 
     #import json
     #from resources.lib.sources import sources
