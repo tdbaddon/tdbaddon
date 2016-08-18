@@ -414,7 +414,7 @@ def AddSports(url):
     addDir('GTV sports' ,'sss',70,'')
     addDir('Pi sports' ,'sss',71,'')
     addDir('Mona' ,'sss',68,'')
-    addDir('Sport365.live' ,'sss',56,'')
+    addDir('Sport365.live [GeoBlocked]' ,'sss',56,'')
     addDir('SmartCric.com (Live matches only)' ,'Live' ,14,'')
     addDir('UKTVNow','sss' ,57,'')
     
@@ -1985,7 +1985,7 @@ def PlayWatchCric(url):
     app='live'
     pat_js='channel=\'(.*?)\''
     loadbalanacername=sitename
-    
+    print 'link',link
     if 'liveflashplayer.net/resources' in link:
         c='kaskatijaEkonomista'
         swfUrl=base64.b64decode('aHR0cDovL3d3dy5saXZlZmxhc2hwbGF5ZXIubmV0L3Jlc291cmNlcy9zY3JpcHRzL2ZwbGF5ZXIuc3dm')
@@ -2016,13 +2016,22 @@ def PlayWatchCric(url):
         pat_e='channel.*?g=\'(.*?)\''
         app='live'
         pat_js='channel=\'(.*?)\''
-    elif 'c247.tv' or 'crichd.tv' in link:
+    elif 'p3g.tv/resources' in link or '247bay.tv'  in link :
+        c=''
+        ccommand=''
+        swfUrl=base64.b64decode('aHR0cDovL3d3dy4yNDdiYXkudHYvc3RhdGljL3NjcmlwdHMvZXBsYXllci5zd2Y=')
+        sitename='www.247bay.tv'
+        pat_e='channel.*?g=\'(.*?)\''
+        loadbalanacername='www.publish247.xyz'
+        app='stream'
+        pat_js='channel=\'(.*?)\''
+    elif 'janjuaplayer.com/resources' in link:
         c='zenataStoGoPuknalaGavolot'
         ccommand=''
-        swfUrl=base64.b64decode('aHR0cDovL3d3dy5wM2cudHYvcmVzb3VyY2VzL3NjcmlwdHMvZXBsYXllci5zd2Y=')
-        sitename='www.p3g.tv'
+        swfUrl=base64.b64decode('aHR0cDovL3d3dy5qYW5qdWFwbGF5ZXIuY29tL3Jlc291cmNlcy9zY3JpcHRzL2VwbGF5ZXIuc3dm')
+        sitename='www.janjuaplayer.com'
         pat_e='channel.*?g=\'(.*?)\''
-        loadbalanacername='www.p3gpublish.com'
+        loadbalanacername='www.janjuapublisher.com'
         app='live'
         pat_js='channel=\'(.*?)\''
     elif 'zenexplayer.com' in link:
@@ -2064,15 +2073,17 @@ def PlayWatchCric(url):
     response.close()
     
     pat_flash='FlashVars\',.?\'(.*?)\''
+  
     match_flash =re.findall(pat_flash,link)[0]
+    print 'match_flash',match_flash
     matchid=match_flash.split('id=')[1].split('&')[0]
     if 'pk=' in match_flash:
         matchid+="&pk="+match_flash.split('pk=')[1].split('\'')[0].split('\"')[0]
     
-    lb_url='http://%s:1935/loadbalancer?%s'%(loadbalanacername,match_code)
+    lb_url='http://%s:1935/loadbalancer?%s'%(loadbalanacername,matchid.split('&')[0])
         
     req = urllib2.Request(lb_url)
-    req.add_header('User-Agent', 'Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10')
+    req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36')
     req.add_header('Referer', match_urljs)
     response = urllib2.urlopen(req)
     link=response.read()
@@ -2086,8 +2097,10 @@ def PlayWatchCric(url):
     if not ccommand=="":
         ccommand="ccommand="+(ccommand%c)
 #    print 'ccommand',ccommand
-    url='rtmp://%s/%s playpath=%s?id=%s pageUrl=%s swfUrl=%s Conn=S:OK %s flashVer=WIN\2019,0,0,185 timeout=20'%(ip,app,sid,matchid,match_urljs,swfUrl,ccommand)
-#    print url
+    
+    url='rtmp://%s/%s playpath=%s?id=%s pageUrl=%s swfUrl=%s Conn=S:OK %s flashVer=WIN\\2022,0,0,209 live=true timeout=20'%(ip,app,sid,matchid,match_urljs,swfUrl,ccommand)
+    print url
+    
     playlist = xbmc.PlayList(1)
     playlist.clear()
     listitem = xbmcgui.ListItem( label = str(name), iconImage = "DefaultVideo.png", thumbnailImage = xbmc.getInfoImage( "ListItem.Thumb" ) )
@@ -2328,14 +2341,16 @@ def getIpBoxSourcesAllOtherSource():
     try:
 
 
-        htmls=getUrl("http://www.m3uliste.pw/")
+        htmls=getUrl("http://www.oneplaylist.eu.pn/")
 
-        servers=re.findall( '(http:\/\/.*?get.php.*?)<', htmls)
+        servers=re.findall( '>(http:\/\/(.*?)\/.*?get.php.*?)<', htmls)
+        print servers
         import time
 
         for ln in servers[0:25]:
             try:
-                surl,servername=ln,ln.split('/')[2].split(':')[0]
+                surl,servername=ln
+                servername=servername.split('/')[0].split(':')[0]
                 ret.append((servername, surl.replace('&amp;','&') ))   
             except: traceback.print_exc(file=sys.stdout)
 
@@ -2615,7 +2630,7 @@ def getAPIToken( url,  username):
     return hashlib.md5(s).hexdigest()
 
 def getMonaKey():
-    s=getUrl(base64.b64decode("aHR0cDovL3pvbmEtYXBwLmNvbS96b25hLWFwcC9hcGkucGhwP2FwaV9rZXk="),headers=[('User-Agent','Dalvik/2.1.0 (Linux; U; Android 5.1.1; SM-G920F Build/LMY47X')])
+    s=getUrl(base64.b64decode("aHR0cDovL3pvbmEtbGl2ZS10di5jb20vem9uYWFwcC9hcGkucGhwP2FwaV9rZXk="),headers=[('User-Agent','Dalvik/1.6.0 (Linux; U; Android 4.4.2; SM-G900F Build/KOT49H)')])
     return json.loads(s)["LIVETV"][0]["key"]
     
 def getMonaPage(cat):
@@ -2630,9 +2645,9 @@ def getMonaPage(cat):
         traceback.print_exc(file=sys.stdout)
     
     if cat=="":
-        url=base64.b64decode('aHR0cDovL3pvbmEtYXBwLmNvbS96b25hLWFwcC9hcGkucGhwP2tleT0lcw==')%(getMonaKey())
+        url=base64.b64decode('aHR0cDovL3pvbmEtbGl2ZS10di5jb20vem9uYWFwcC9hcGkucGhwP2tleT0lcw==')%(getMonaKey())
     else:
-        url=base64.b64decode('aHR0cDovL3pvbmEtYXBwLmNvbS96b25hLWFwcC9hcGkucGhwP2NhdF9pZD0lcyZrZXk9JXM=')%(cat,getMonaKey())
+        url=base64.b64decode('aHR0cDovL3pvbmEtbGl2ZS10di5jb20vem9uYWFwcC9hcGkucGhwP2NhdF9pZD0lcyZrZXk9JXM=')%(cat,getMonaKey())
     print url
     headers=[('User-Agent','Dalvik/2.1.0 (Linux; U; Android 5.1.1; SM-G920F Build/LMY47X)')]
     jsondata=getUrl(url,headers=headers)

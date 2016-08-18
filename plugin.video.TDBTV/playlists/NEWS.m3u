@@ -70,9 +70,6 @@ rtsp://ewns-hls-b-stream.hexaglobe.net/rtpeuronewslive/en_vidan350_rtp.sdp?
 #EXTINF:0,Euro News 
 http://fr-par-iphone-2.cdn.hexaglobe.net/streaming/euronews_ewns/ipad_en.m3u8
 
-#EXTINF:0,Euro News 
-http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/49.ts
-
 #EXTINF:0,France 24 
 http://f24hls-i.akamaihd.net/hls/live/221192/F24_FR_LO_HLS/master.m3u8
 
@@ -101,7 +98,7 @@ http://nhkwglobal-i.akamaihd.net/hls/live/222714/nhkwglobal/index_1180.m3u8
 0
 
 #EXTINF:0,Reuters Live
-http://37.58.85.156/rlo001/ngrp:rlo001.stream_all/playlist.m3u8
+0
 
 #EXTINF:0,RT News 
 0

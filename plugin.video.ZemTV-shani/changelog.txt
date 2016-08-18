@@ -1,3 +1,5 @@
+[B]Version 5.0.4[/B]
+fixed mona and c247
 [B]Version 5.0.3[/B]
 no change just repeat of 5.0.2
 [B]Version 5.0.2[/B]
