@@ -1,3 +1,8 @@
+2016.08.14.1:
+    download fix - if download folder is not set, display settings
+    sources fix - movie25, tunemovie, dayt.se
+    TVShows - add section networks (copy from exodus)
+
 2016.08.01.1:
     imdb fix - movie and tvshows now works
 
@@ -10,8 +15,6 @@
     Add - separate addon called script.mrknow.urlresolver (from tknorris repo)
     Fix - WSOnline - thx @bjgood
     Fix - Muchmovies
-
-
 
 Specto v2016.06.26.2
 ------------------------

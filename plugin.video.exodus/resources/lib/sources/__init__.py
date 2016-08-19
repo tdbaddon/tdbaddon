@@ -203,7 +203,7 @@ class sources:
                     break
 
             items = json.loads(source)
-            items = [i for i in items+next+prev][:20]
+            items = [i for i in items+next+prev][:40]
 
             header = control.addonInfo('name')
             header2 = header.upper()
@@ -608,11 +608,13 @@ class sources:
             else: label = '%02d | [B]%s[/B] | ' % (int(i+1), p)
 
             if q in ['1080p', 'HD']: label += '%s | %s | [B][I]%s [/I][/B]' % (s.rsplit('.', 1)[0], f, q)
+            elif q == 'SD': label += '%s | %s' % (s.rsplit('.', 1)[0], f)
             else: label += '%s | %s | [I]%s [/I]' % (s.rsplit('.', 1)[0], f, q)
             label = label.replace('| 0 |', '|').replace(' | [I]0 [/I]', '')
             label = label.replace('[I]HEVC [/I]', 'HEVC')
             label = re.sub('\[I\]\s+\[/I\]', ' ', label)
             label = re.sub('\|\s+\|', '|', label)
+            label = re.sub('\|(?:\s+|)$', '', label)
 
             self.sources[i]['label'] = label.upper()
 
@@ -686,7 +688,7 @@ class sources:
             prev = [y for x,y in enumerate(items) if x < select][::-1]
 
             items = [items[select]]
-            items = [i for i in items+next+prev][:20]
+            items = [i for i in items+next+prev][:40]
 
             header = control.addonInfo('name')
             header2 = header.upper()

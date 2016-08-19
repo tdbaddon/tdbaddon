@@ -35,7 +35,7 @@
 		<setting id="genvideos" type="bool" label="Genvideos" default="true" />
 		<setting id="icefilms" type="bool" label="Icefilms" default="true" />
 		<setting id="iwatchonline" type="bool" label="Iwatchonline" default="false" />
-		<setting id="movie25" type="bool" label="Movie25" default="false" />
+		<setting id="movie25" type="bool" label="Movie25" default="true" />
 		<setting id="movieshd" type="bool" label="MoviesHD" default="true" />
 		<setting id="movietubev2" type="bool" label="Movietube" default="true" />
 		<setting id="movienight" type="bool" label="Movienight" default="true" />

@@ -23,6 +23,7 @@ import re,urllib,urlparse, time
 
 from resources.lib.libraries import cleantitle
 from resources.lib.libraries import client
+
 from resources.lib.libraries import control
 from resources.lib.libraries import workers
 
@@ -42,10 +43,10 @@ from resources.lib.resolvers import zstream
 
 class source:
     def __init__(self):
-        self.base_link = 'http://www.iwatchonline.cr'
-        self.link_1 = 'https://www.iwatchonline.video/'
-        self.link_2 = 'http://translate.googleusercontent.com/translate_c?anno=2&hl=en&sl=mt&tl=en&u=http://www.iwatchonline.ag'
-        self.link_3 = 'https://iwatchonline.unblocked.one'
+        self.base_link = 'https://www.iwatchonline.cr'
+        self.link_1 = 'https://www.iwatchonline.video'
+        self.link_2 = 'http://translate.googleusercontent.com/translate_c?anno=2&hl=en&sl=mt&tl=en&u=http://www.iwatchonline.cr'
+        self.link_3 = 'https://www.iwatchonline.cr'
         self.search_link = '/advance-search'
         self.show_link = '/tv-shows/%s'
         self.episode_link = '/episode/%s-s%02de%02d'
@@ -53,6 +54,7 @@ class source:
 
 
     def get_movie(self, imdb, title, year):
+        return
 
         try:
             query = self.search_link
@@ -61,9 +63,10 @@ class source:
 
 
             result = ''
-            links = [self.link_1, self.link_3]
+            links = [self.link_3, self.link_2]
             for base_link in links:
-                result = client.request(urlparse.urljoin(base_link, query), post=post, headers=self.headers)
+                headers = {"Content-Type":"application/x-www-form-urlencoded", "Referer":urlparse.urljoin(base_link, query)}
+                result = client.request(urlparse.urljoin(base_link, query), post=post, headers=headers)
                 if 'widget search-page' in str(result): break
 
             result = client.parseDOM(result, 'div', attrs = {'class': 'widget search-page'})[0]
@@ -86,28 +89,31 @@ class source:
 
 
     def get_show(self, imdb, tvdb, tvshowtitle, year):
-
+        return
         try:
             query = self.search_link
             post = {'searchquery': tvshowtitle, 'searchin': '2'}
             post = urllib.urlencode(post)
 
-
             result = ''
-            links = [self.link_1, self.link_3]
+            links = [self.link_3]
             for base_link in links:
-                result = client.request(urlparse.urljoin(base_link, query), post=post, headers=self.headers)
+                headers = {'Referer': base_link+ "/advance-search"}
+
+                result = client.request(urlparse.urljoin(base_link, query), post=post, headers=headers)
                 if 'widget search-page' in str(result): break
 
             result = client.parseDOM(result, 'div', attrs = {'class': 'widget search-page'})[0]
             result = client.parseDOM(result, 'td')
 
+
             tvshowtitle = cleantitle.tv(tvshowtitle)
             years = ['(%s)' % str(year), '(%s)' % str(int(year)+1), '(%s)' % str(int(year)-1)]
             result = [(client.parseDOM(i, 'a', ret='href')[-1], client.parseDOM(i, 'a')[-1]) for i in result]
             result = [i for i in result if tvshowtitle == cleantitle.tv(i[1])]
+            print "--!--"
+            print result
             result = [i[0] for i in result if any(x in i[1] for x in years)][0]
-
             url = client.replaceHTMLCodes(result)
             try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['u'][0]
             except: pass
@@ -116,6 +122,7 @@ class source:
             return url
         except:
             return
+
 
 
     def get_episode(self, url, imdb, tvdb, title, date, season, episode):
@@ -129,23 +136,24 @@ class source:
 
 
     def get_sources(self, url, hosthdDict, hostDict, locDict):
-
         try:
             self.sources =[]
             mylinks = []
             if url == None: return self.sources
 
             result = ''
-            links = [self.link_1, self.link_2, self.link_3]
+            links = [self.link_3]
             for base_link in links:
-                result = client.request(urlparse.urljoin(base_link, url), headers=self.headers)
+                result = client.request(urlparse.urljoin(base_link, url))
+                cookie = client.request(urlparse.urljoin(base_link, url), output='cookie')
+                myref=urlparse.urljoin(base_link, url)
+
                 #control.log('### %s' % result)
                 if 'original-title' in str(result): break
 
             links = client.parseDOM(result, 'tr', attrs = {'id': 'pt.+?'})
 
             for i in links:
-                #control.log('### %s' % i)
 
                 try:
                     lang = re.compile('<img src=[\'|\"|\s|\<]*(.+?)[\'|\"|\s|\>]').findall(i)[1]
@@ -183,9 +191,10 @@ class source:
 
                 except:
                     pass
+            print("M",mylinks)
 
             threads = []
-            for i in mylinks: threads.append(workers.Thread(self.check, i))
+            for i in mylinks: threads.append(workers.Thread(self.check, i, cookie, myref))
             [i.start() for i in threads]
             for i in range(0, 10 * 2):
                 is_alive = [x.is_alive() for x in threads]
@@ -197,17 +206,19 @@ class source:
         except:
             return self.sources
 
-    def check(self, i):
+    def check(self, i,mycook, myref):
         try:
-
+            return
             url = client.replaceHTMLCodes(i['url'])
-            url = urlparse.urlparse(url).path
+            #url = urlparse.urlparse(url).path
+            control.log("Result >>> url2 >>>>>>>>>>>>>>>>>>>> %s | %s | %s" % (url,mycook,myref))
+            exit()
 
             result = ''
-            links = [self.link_1, self.link_2, self.link_3]
-            for base_link in links:
-                result = client.request(urlparse.urljoin(base_link, url), headers=self.headers)
-                if 'frame' in str(result): break
+            result = client.request(url, cookie=mycook, referer=myref)
+            print("R1",result)
+            exit()
+
             # print("Result >>> result",result)
             url = re.compile('class=[\'|\"]*frame.+?src=[\'|\"|\s|\<]*(.+?)[\'|\"|\s|\>]').findall(result)[0]
             url = client.replaceHTMLCodes(url)
@@ -219,7 +230,6 @@ class source:
                 url = urlparse.parse_qs(urlparse.urlparse(url).query)['url'][0]
             except:
                 pass
-            #control.log("Result >>> url2 >>>>>>>>>>>>>>>>>>>> %s " % url)
             host = i['source']
             if host == 'openload': check = openload.check(url)
             elif host == 'uptobox': check = uptobox.check(url)

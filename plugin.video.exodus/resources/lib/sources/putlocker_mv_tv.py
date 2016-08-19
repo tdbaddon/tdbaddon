@@ -30,7 +30,7 @@ from resources.lib.modules import directstream
 class source:
     def __init__(self):
         self.domains = ['putlocker.systems', 'putlocker-movies.tv', 'putlocker.yt']
-        self.base_link = 'http://putlocker.yt'
+        self.base_link = 'http://www.putlocker.systems'
         self.search_link = '/api/v1/cautare/apr'
 
 
@@ -146,7 +146,9 @@ class source:
 
             url = urlparse.urljoin(self.base_link, url)
 
-            result, headers, content, cookie = client.request(url, output='extended')
+            r = client.request(url, output='extended')
+
+            cookie = r[4] ; headers = r[3] ; result = r[0]
 
             auth = re.findall('__utmx=(.+)', cookie)[0].split(';')[0]
             auth = 'Bearer %s' % urllib.unquote_plus(auth)

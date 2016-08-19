@@ -1710,6 +1710,7 @@ def LOADMIRRORS(url):
 
 def determine_source(search_string, is_domain=False):
   
+    empty_list = []
     #Keep host list as global var - used to determine resolver and build/select auto play settings
     host_list = [('180upload.com', '180Upload', 'resolve_180upload'),
                 ('hugefiles.net', 'HugeFiles', 'resolve_hugefiles'),
@@ -1733,7 +1734,7 @@ def determine_source(search_string, is_domain=False):
             hoster = re.search('https?://[www\.]*([^/]+)/', search_string)
            
             if not hoster:
-                return None
+                return empty_list
 
             domain = hoster.group(1)
             host_index = [y[0] for y in host_list].index(domain)      
@@ -1745,7 +1746,7 @@ def determine_source(search_string, is_domain=False):
 
     except Exception, e:
         addon.log_error('Error determining source: %s' % e)
-        return None
+        return empty_list
 
 
 def PART(scrap, sourcenumber, host, args, source_tag, ice_meta=None, video_url=None, debrid_hosts=None):
@@ -1759,9 +1760,10 @@ def PART(scrap, sourcenumber, host, args, source_tag, ice_meta=None, video_url=N
           hoster = determine_source(host)
           
           debrid_tag = ''
-          if debrid_hosts:
-              if hoster[0] in debrid_hosts:
-                  debrid_tag = ' [COLOR yellow]*RD[/COLOR] '
+          if hoster:
+			  if debrid_hosts:
+				  if hoster[0] in debrid_hosts:
+					  debrid_tag = ' [COLOR yellow]*RD[/COLOR] '
           
           #check if source contains multiple parts
           multiple_part = re.search('<p>Source #'+sourcenumber+':', scrap)
@@ -2141,18 +2143,19 @@ def Handle_Vidlink(url):
     debrid_account = str2bool(addon.get_setting('realdebrid-account'))
 
     link = None
-    if debrid_account:
-      rd = debridroutines.RealDebrid()
-      
-      if rd.valid_host(hoster[0]):
-          if addon.get_setting('realdebrid_token'):
-               link = rd.get_media_url(url)
-               if not link:
-                   Notify('big','Real-Debrid','Error occurred attempting to stream the file.', '', '', line3 = '**Attempting to resolve with original host instead..')
-                   link = None
-               else:
-                   addon.log_debug('Real-Debrid Link resolved: %s ' % link)
-                   return link
+    if hoster:
+		if debrid_account:
+		  rd = debridroutines.RealDebrid()
+		  
+		  if rd.valid_host(hoster[0]):
+			  if addon.get_setting('realdebrid_token'):
+				   link = rd.get_media_url(url)
+				   if not link:
+					   Notify('big','Real-Debrid','Error occurred attempting to stream the file.', '', '', line3 = '**Attempting to resolve with original host instead..')
+					   link = None
+				   else:
+					   addon.log_debug('Real-Debrid Link resolved: %s ' % link)
+					   return link
 
     if not link:
         # Resolvers - Custom to Icefilms

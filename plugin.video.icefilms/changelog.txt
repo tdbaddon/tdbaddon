@@ -1,3 +1,7 @@
+[B]v1.25.0 (Thursday, 18 August 2016):[/B]
+  - Fixed UploadX
+  - Fixed error with unsupported hosts with RD enabled
+
 [B]v1.24.0 (Saturday, 14 May 2016):[/B]
   - Fixed ClicknUpload resolver
   - Fixed UploadX resolver

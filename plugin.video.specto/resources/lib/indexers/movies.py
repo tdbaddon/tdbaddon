@@ -1133,7 +1133,8 @@ class movies:
                 cm.append((control.lang(30211).encode('utf-8'), 'RunPlugin(%s?action=movieToLibrary&name=%s&title=%s&year=%s&imdb=%s&tmdb=%s)' % (sysaddon, sysname, systitle, year, imdb, tmdb)))
 
                 cm.append((control.lang(30212).encode('utf-8'), 'RunPlugin(%s?action=addView&content=movies)' % sysaddon))
-
+                #Trailer
+                #cm.append((control.lang(33003).encode('utf-8'),'RunPlugin(%s?action=trailer&name=%s)' % (sysaddon, sysname)))
 
                 item = control.item(label=label, iconImage=poster, thumbnailImage=poster)
 

@@ -85,8 +85,14 @@ rtmp://edge2.everyon.tv:1935/etv2sb/phd10772
 #EXTINF:0,HOT SHOTS 
 0
 
+#EXTINF:0,HOWARD STERN
+http://178.33.226.36:8000/live/olsi/olsi/796.ts
+
+#EXTINF:0,HOWARD STERN
+http://178.33.226.36:8000/live/olsi/olsi/795.ts
+
 #EXTINF:0,HUSTLER TV 
-http://1.pro1011.us:8080/live/haldun/haldun123/78.ts
+0
 
 #EXTINF:0,ILIVE 1
 0
@@ -104,13 +110,16 @@ rtmp://109.71.162.112:1935/live/sd.jasminchannel.stream
 0
 
 #EXTINF:0,MIAMI TV 
-0
+http://178.33.226.36:8000/live/olsi/olsi/798.ts
 
 #EXTINF:0,MIDNIGHT TV
 rtmp://edge1.everyon.tv/etv1sb/pld10766
 
 #EXTINF:0,MIDNIGHT TV
 rtmp://edge1.everyon.tv/etv1sb/phd10766
+
+#EXTINF:0,NAKED NEWS
+http://178.33.226.36:8000/live/olsi/olsi/799.ts
 
 #EXTINF:0,NUART 
 0
@@ -150,12 +159,6 @@ rtmp://edge1.everyon.tv/etv1sb/pld10497
 
 #EXTINF:0,PLAYBOY TV 
 rtmp://edge1.everyon.tv/etv1sb/phd10497
-
-#EXTINF:0,PLAYBOY TV 
-http://62.210.251.159/iptv/DTBGR6V597TBPF/527/index.m3u8
-
-#EXTINF:0,PLAYBOY TV 
-http://1.pro1011.us:8080/live/haldun/haldun123/76.ts
 
 #EXTINF:0,PLATINUM TV 
 0
@@ -215,7 +218,7 @@ rtmp://main2sb.everyon.tv:1935/etv2sb/pld10499
 0
 
 #EXTINF:0,VISIT X 
-0
+http://178.33.226.36:8000/live/olsi/olsi/804.ts
 
 #EXTINF:0,WOW GIRLS 
 0
@@ -227,46 +230,55 @@ rtmp://main2sb.everyon.tv:1935/etv2sb/pld10499
 0
 
 #EXTINF:0,XXL 
-http://pro.panel2cc101.us:8080/live/haldun/haldun123/1952.ts
+0
 
 #EXTINF:0,XXX 
-http://1.pro1011.us:8080/live/haldun/haldun123/263.ts
+http://178.33.226.36:8000/live/olsi/olsi/793.ts
 
 #EXTINF:0,XXX 
-http://1.pro1011.us:8080/live/haldun/haldun123/61.ts
+http://178.33.226.36:8000/live/olsi/olsi/794.ts
 
 #EXTINF:0,XXX 
-http://1.pro1011.us:8080/live/haldun/haldun123/60.ts
+http://178.33.226.36:8000/live/olsi/olsi/921.ts
 
 #EXTINF:0,XXX 
-http://1.pro1011.us:8080/live/haldun/haldun123/62.ts
+http://178.33.226.36:8000/live/olsi/olsi/912.ts
 
 #EXTINF:0,XXX 
-http://pro.panel2cc101.us:8080/live/haldun/haldun123/1949.ts
+http://178.33.226.36:8000/live/olsi/olsi/914.ts
 
 #EXTINF:0,XXX 
-http://pro.panel2cc101.us:8080/live/haldun/haldun123/1951.ts
+http://178.33.226.36:8000/live/olsi/olsi/916.ts
 
 #EXTINF:0,XXX 
-http://1.pro1011.us:8080/live/haldun/haldun123/262.ts
+http://178.33.226.36:8000/live/olsi/olsi/917.ts
 
 #EXTINF:0,XXX 
-http://1.pro1011.us:8080/live/haldun/haldun123/267.ts
+http://178.33.226.36:8000/live/olsi/olsi/918.ts
 
 #EXTINF:0,XXX 
-http://1.pro1011.us:8080/live/haldun/haldun123/266.ts
+http://178.33.226.36:8000/live/olsi/olsi/919.ts
 
 #EXTINF:0,XXX 
-http://1.pro1011.us:8080/live/haldun/haldun123/268.ts
+http://178.33.226.36:8000/live/olsi/olsi/920.ts
 
 #EXTINF:0,XXX 
-http://1.pro1011.us:8080/live/haldun/haldun123/1950.ts
+http://178.33.226.36:8000/live/olsi/olsi/791.ts
 
 #EXTINF:0,XXX 
-http://1.pro1011.us:8080/live/haldun/haldun123/1952.ts
+http://178.33.226.36:8000/live/olsi/olsi/785.ts
 
 #EXTINF:0,XXX 
-http://1.pro1011.us:8080/live/haldun/haldun123/1949.ts
+http://178.33.226.36:8000/live/olsi/olsi/788.ts
+
+#EXTINF:0,XXX 
+http://178.33.226.36:8000/live/olsi/olsi/802.ts
+
+#EXTINF:0,XXX 
+http://178.33.226.36:8000/live/olsi/olsi/801.ts
+
+#EXTINF:0,XXX 
+http://178.33.226.36:8000/live/olsi/olsi/800.ts
 
 #EXTINF:0,YOU DIVA 
 0

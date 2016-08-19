@@ -33,7 +33,7 @@ except:
 
 class source:
     def __init__(self):
-        self.base_link = 'http://dayt.se'
+        self.base_link = 'http://cyro.se'
         self.search_link = '/forum/search.php?do=process'
         self.forum_link = '/forum/forum.php'
         self.forum_prefix = '/forum'

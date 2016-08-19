@@ -19,8 +19,7 @@
 '''
 
 #TODO ['notifications-on-startup', False, 'DoFromService', True]
-#TODO Trakt
-#TODO RealDbrid v3
+#TODO http://yify.tv
 
 
 import urlparse,sys

@@ -23,9 +23,7 @@ import re,urlparse,datetime, urllib,zipfile
 import os,base64,StringIO,time
 
 from resources.lib.libraries import client
-from resources.lib.libraries import client2
 from resources.lib.libraries import cleantitle
-
 from resources.lib.libraries import workers
 from resources.lib.libraries import control
 from resources.lib.resolvers import cloudzilla

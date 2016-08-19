@@ -1202,3 +1202,11 @@ msgstr ""
 msgctxt "#33001"
 msgid "Authoriztaion..."
 msgstr ""
+
+msgctxt "#33002"
+msgid "Set download folder location"
+msgstr "Set download folder location"
+
+msgctxt "#33003"
+msgid "Trailer"
+msgstr "Trailer"
