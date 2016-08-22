@@ -94,14 +94,6 @@ msgctxt "#30722"
 msgid "Download item"
 msgstr ""
 
-msgctxt "#30723"
-msgid "NHL"
-msgstr ""
-
-msgctxt "#30724"
-msgid "Tweak for Android"
-msgstr ""
-
 msgctxt "#30725"
 msgid "Add-on settings"
 msgstr ""

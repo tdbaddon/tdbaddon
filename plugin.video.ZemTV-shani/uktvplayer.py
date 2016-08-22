@@ -5,7 +5,7 @@ import HTMLParser
 import xbmcaddon
 from operator import itemgetter
 import traceback,cookielib
-import base64,os,  binascii
+import base64,os,  binascii,sys
 import CustomPlayer,uuid
 from time import time
 import base64
@@ -33,12 +33,21 @@ def tryplay(url,listitem):
         xbmc.sleep(1000)
     print 'not played',url
     return False
+    
 def play(listitem, item):
     played=False
     try:
         try:
             
             url=item["msg"]["channel"]["http_stream"]
+            print 'encurl',url
+            if not url.startswith('http'):
+                import pyaes
+                key="MDk0NTg3MjEyNDJhZmZkZQ==".decode("base64")
+                iv="ZWVkY2ZhMDQ4OTE3NDM5Mg==".decode("base64")
+                decryptor = pyaes.new(key, pyaes.MODE_CBC, IV=iv)
+                url= decryptor.decrypt(url.decode("hex")).split('\0')[0]
+                print repr(url)
             if '|' in url:# and 1==2:
                 url=url#.split('|')[0]+"|User-Agent=UKTVNOW_PLAYER_1.2&Referer=www.uktvnow.net"
             elif url.startswith('http') :
@@ -49,10 +58,19 @@ def play(listitem, item):
             print 'first',url
             played=tryplay(url,listitem)
             
-        except: pass
+        except: 
+            traceback.print_exc(file=sys.stdout)
+        if played: return
         #print "playing stream name: " + str(name) 
         #xbmc.Player(  ).play( urlToPlay, listitem)    
         url=item["msg"]["channel"]["rtmp_stream"].replace(' ','')
+        import pyaes
+        key="MDk0NTg3MjEyNDJhZmZkZQ==".decode("base64")
+        iv="ZWVkY2ZhMDQ4OTE3NDM5Mg==".decode("base64")
+        decryptor = pyaes.new(key, pyaes.MODE_CBC, IV=iv)
+        url= decryptor.decrypt(url.decode("hex")).split('\0')[0]
+        print repr(url)
+       
         if '|' not in url and url.startswith('http'):
             url=url+"|User-Agent=%s"%getUserAgent()
         if url.startswith('rtmp'):

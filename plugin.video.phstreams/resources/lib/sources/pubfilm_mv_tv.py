@@ -28,37 +28,24 @@ from resources.lib.modules import cache
 
 class source:
     def __init__(self):
-        self.domains = ['pubfilmno1.com']
-        self.base_link = 'http://movie.pubfilmno1.com'
-        self.moviesearch_link = '/feeds/posts/summary?alt=json&q=%s&max-results=10&callback=showResult'
-        self.tvsearch_link = '/feeds/posts/summary?alt=json&q=season&max-results=3000&callback=showResult'
+        self.domains = ['pubfilmno1.com', 'pubfilm.com']
+        self.base_link = 'http://pubfilm.com'
+        self.moviesearch_link = '/%s-%s-full-hd-pubfilm-free.html'
+        self.tvsearch_link = '/wp-admin/admin-ajax.php'
 
 
     def movie(self, imdb, title, year):
         try:
-            query = self.moviesearch_link % (urllib.quote_plus(title))
+            title = (title.translate(None, '\/:*?"\'<>|!,')).replace(' ', '-').replace('--', '-').lower()
+
+            query = self.moviesearch_link % (title, year)
             query = urlparse.urljoin(self.base_link, query)
 
-            result = client.request(query)
-            result = re.compile('showResult\((.*)\)').findall(result)[0]
-            result = json.loads(result)
-            result = result['feed']['entry']
+            result = client.request(query, limit='1')
 
-            title = cleantitle.get(title)
-            years = ['%s' % str(year)]
+            if result == None: raise Exception()
 
-            result = [i for i in result if 'movies' in [x['term'].lower() for x in i['category']]]
-            result = [[x for x in i['link'] if x['rel'] == 'alternate' and x['type'] == 'text/html'][0] for i in result]
-            result = [(i['href'], i['title']) for i in result]
-            result = [(i[0], re.compile('(.+?) (\d{4})(.+)').findall(i[1])) for i in result]
-            result = [(i[0], i[1][0][0], i[1][0][1], i[1][0][2]) for i in result if len(i[1]) > 0]
-            result = [(i[0], i[1], i[2]) for i in result if not 'TS' in i[3] and not 'CAM' in i[3]]
-            result = [i for i in result if title == cleantitle.get(i[1])]
-            result = [i[0] for i in result if any(x in i[2] for x in years)][0]
-
-            url = urlparse.urljoin(self.base_link, result)
-            url = urlparse.urlparse(url).path
-            url = client.replaceHTMLCodes(url)
+            url = re.findall('(?://.+?|)(/.+)', query)[0]
             url = url.encode('utf-8')
             return url
         except:
@@ -74,49 +61,27 @@ class source:
             return
 
 
-    def pubfilm_tvcache(self):
-        try:
-            query = self.tvsearch_link
-            query = urlparse.urljoin(self.base_link, query)
-
-            result = client.request(query)
-            result = re.compile('showResult\((.*)\)').findall(result)[0]
-            result = json.loads(result)
-            result = result['feed']['entry']
-
-            result = [i for i in result if 'series' in [x['term'].lower() for x in i['category']]]
-            result = [[x for x in i['link'] if x['rel'] == 'alternate' and x['type'] == 'text/html'][0] for i in result]
-            result = [(i['href'], i['title']) for i in result]
-            result = [(i[0], re.compile('(.+?) \d{4}.+? Season (\d*) ').findall(i[1])) for i in result]
-            result = [(i[0], i[1][0][0], i[1][0][1]) for i in result if len(i[1]) > 0]
-            result = [(i[0], i[1], i[2]) for i in result if len(i[1]) > 0]
-            result = [(re.sub('http.+?//.+?/','/', i[0]), re.sub('&#\d*;','', i[1]), i[2]) for i in result]
-            result = [(i[0], cleantitle.get(i[1]), i[2]) for i in result]
-
-            return result
-        except:
-            return
-
-
     def episode(self, url, imdb, tvdb, title, premiered, season, episode):
         try:
             data = urlparse.parse_qs(url)
             data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
 
-            tvshowtitle = cleantitle.get(data['tvshowtitle'])
             year = re.findall('(\d{4})', premiered)[0]
-            season = '%01d' % int(season)
-            episode = '%01d' % int(episode)
+            season = '%01d' % int(season) ; episode = '%01d' % int(episode)
+            tvshowtitle = '%s %s: Season %s' % (data['tvshowtitle'], year, season)
 
-            result = cache.get(self.pubfilm_tvcache, 120)
+            headers = {'X-Requested-With': 'XMLHttpRequest'}
 
-            result = [i for i in result if tvshowtitle == i[1]]
-            result = [i[0] for i in result if season == '%01d' % int(i[2])]
-            result = [(i, re.findall('(\d{4})', [x for x in i.split('/') if not x == ''][-1])[0]) for i in result]
-            result = [i[0] for i in result if i[1] == year][0]
+            post = urllib.urlencode({'sf_value': tvshowtitle, 'action': 'ajaxy_sf', 'search': 'false'})
 
-            url = urlparse.urljoin(self.base_link, result)
-            url = urlparse.urlparse(url).path
+            url = urlparse.urljoin(self.base_link, self.tvsearch_link)
+
+            url = client.request(url, post=post, headers=headers)
+            url = json.loads(url)['post'][0]['all']
+            url = [i['post_link'] for i in url if i['post_title'] == tvshowtitle][0]
+
+            url = urlparse.urljoin(self.base_link, url)
+            url = re.findall('(?://.+?|)(/.+)', url)[0]
             url += '?episode=%01d' % int(episode)
             url = url.encode('utf-8')
             return url
@@ -140,7 +105,7 @@ class source:
 
             result = client.request(url)
 
-            url = zip(client.parseDOM(result, 'a', ret='href', attrs = {'target': 'player_iframe'}), client.parseDOM(result, 'a', attrs = {'target': 'player_iframe'}))
+            url = zip(client.parseDOM(result, 'a', ret='href', attrs = {'target': 'EZWebPlayer'}), client.parseDOM(result, 'a', attrs = {'target': 'EZWebPlayer'}))
             url = [(i[0], re.compile('(\d+)').findall(i[1])) for i in url]
             url = [(i[0], i[1][-1]) for i in url if len(i[1]) > 0]
 

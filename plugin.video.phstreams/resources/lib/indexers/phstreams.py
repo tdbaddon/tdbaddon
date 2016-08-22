@@ -143,6 +143,11 @@ class indexer:
         try:
             if result == None: result = cache.get(client.request, 0, url)
 
+            if result.strip().startswith('#EXTM3U') and '#EXTINF' in result:
+                result = re.compile('#EXTINF:.+?\,(.+?)\n(.+?)\n', re.MULTILINE|re.DOTALL).findall(result)
+                result = ['<item><title>%s</title><link>%s</link></item>' % (i[0], i[1]) for i in result]
+                result = ''.join(result)
+
             try: r = base64.b64decode(result)
             except: r = ''
             if '</link>' in r: result = r
@@ -596,6 +601,41 @@ class resolver:
             pass
 
 
+    def f4m(self, url, name):
+            try:
+                if not any(i in url for i in ['.f4m', '.ts']): raise Exception()
+                ext = url.split('?')[0].split('&')[0].split('|')[0].rsplit('.')[-1].replace('/', '').lower()
+                if not ext in ['f4m', 'ts']: raise Exception()
+
+                params = urlparse.parse_qs(url)
+
+                try: proxy = params['proxy'][0]
+                except: proxy = None
+
+                try: proxy_use_chunks = json.loads(params['proxy_for_chunks'][0])
+                except: proxy_use_chunks = True
+
+                try: maxbitrate = int(params['maxbitrate'][0])
+                except: maxbitrate = 0
+
+                try: simpleDownloader = json.loads(params['simpledownloader'][0])
+                except: simpleDownloader = False
+
+                try: auth_string = params['auth'][0]
+                except: auth_string = ''
+
+                try: streamtype = params['streamtype'][0]
+                except: streamtype = 'TSDOWNLOADER' if ext == 'ts' else 'HDS'
+
+                try: swf = params['swf'][0]
+                except: swf = None
+
+                from F4mProxy import f4mProxyHelper
+                return f4mProxyHelper().playF4mLink(url, name, proxy, proxy_use_chunks, maxbitrate, simpleDownloader, auth_string, streamtype, False, swf)
+            except:
+                pass
+
+
     def process(self, url, direct=True):
         try:
             if not any(i in url for i in ['.jpg', '.png', '.gif']): raise Exception()
@@ -736,7 +776,6 @@ class resolver:
             if hmf.valid_url() == False: raise Exception()
 
             direct = False ; u = hmf.resolve()
-            if 'plugin://plugin.video.youtube' in u: raise Exception()
 
             if not u == False:
                 try: dialog.close()
@@ -799,15 +838,8 @@ class player(xbmc.Player):
 
             self.offset = bookmarks().get(self.name, self.year)
 
-
-            try:
-                if not any(i in url for i in ['.f4m', '.ts']): raise Exception()
-                ext = url.split('?')[0].split('&')[0].split('|')[0].rsplit('.')[-1].replace('/', '').lower()
-                if not ext in ['f4m', 'ts']: raise Exception()
-                from resources.lib.modules.f4mproxy.F4mProxy import f4mProxyHelper
-                return f4mProxyHelper().playF4mLink(url, self.name, None, None, '', icon)
-            except:
-                pass
+            f4m = resolver().f4m(url, self.name)
+            if not f4m == None: return
 
 
             item = control.item(path=url, iconImage=icon, thumbnailImage=icon)
@@ -830,7 +862,7 @@ class player(xbmc.Player):
                     self.currentTime = self.getTime()
                 except:
                     pass
-                xbmc.sleep(2000)
+                control.sleep(2000)
             control.sleep(5000)
         except:
             pass

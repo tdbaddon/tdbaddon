@@ -664,7 +664,7 @@ Plugin by @koderdude</description>
 
 <addon id="plugin.video.ccloudtv"
        name="cCloud TV"
-       version="1.4.8"
+       version="1.4.9"
        provider-name="podgod, Coder Alpha">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -675,10 +675,12 @@ Plugin by @koderdude</description>
     <import addon="script.module.httplib2" />
     <import addon="script.module.youtube.dl" optional="true"/>
     <import addon="plugin.video.youtube" />
-    <import addon="script.module.urlresolver" optional="true"/>
-    <import addon="script.module.simplejson" />
+    <import addon="script.module.urlresolver"  version="3.0.0" optional="true"/>
+	<import addon="script.module.addon.common" />
+	<import addon="script.module.simplejson" version="2.0.10"/>
     <import addon="repository.podgod" />
-  </requires>
+    <import addon="script.tvaddons.debug.log" optional="true" />
+</requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
     <provides>video</provides>
   </extension>
@@ -1034,7 +1036,7 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
 
 <addon id="plugin.video.fantasticc"
        name="Fantasti.cc"
-       version="2.3.28"
+       version="2.3.29"
        provider-name="xbmc-adult">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
@@ -1697,13 +1699,14 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   <extension point="xbmc.service" library="service.py" start="login" />
 </addon>
 
-<addon id="plugin.video.phstreams" name="Phoenix" version="3.1.5" provider-name="tvaddons.ag">
+<addon id="plugin.video.phstreams" name="Phoenix" version="3.1.6" provider-name="tvaddons.ag">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
+		<import addon="plugin.video.youtube" version="5.2.1" optional="true" />
 		<import addon="script.module.pyxbmct" version="1.1.4" />
 		<import addon="script.module.urlresolver" version="3.0.0"/>
 		<import addon="script.module.liveresolver" version="0.1.24"/>
-		<import addon="plugin.video.youtube" version="5.2.1" optional="true" />
+		<import addon="script.video.F4mProxy" version="2.2.3"/>
 	</requires>
 	<extension point="xbmc.python.pluginsource" library="default.py">
 		<provides>video</provides>
@@ -1714,6 +1717,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 		<platform>all</platform>
 		<forum>http://forums.tvaddons.ag/forums/220-PHOENIX-LIVE-STREAMS</forum>
 		<website>http://www.tvaddons.ag/</website>
+		<news>Updated indexers[CR]Updated scrapers[CR]Updated resolvers</news>
 	</extension>
 </addon>
 
@@ -2037,7 +2041,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBTVSHOWS"
        name="TDB TV SHOWS"
-       version="1.19"
+       version="1.20"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -2333,7 +2337,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon
   id="plugin.video.videodevil"
-  version="1.7.136"
+  version="1.7.139"
   name="VideoDevil"
   provider-name="xbmc-adult">
   <requires>
@@ -2558,7 +2562,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.ZemTV-shani"
        name="ZemTV.com"
-       version="5.0.4"
+       version="5.0.6"
        provider-name="shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>

@@ -24,6 +24,7 @@ S365COOKIEFILE='s365CookieFile.lwp'
 S365COOKIEFILE=os.path.join(profile_path, S365COOKIEFILE)
 
 
+
 def tr(param1 , param2 , param3):
     _loc4_ = 0;
     _loc5_= "";
@@ -71,11 +72,122 @@ def decode(encstring):
         st=swapme(st, mc_from[i], mc_to[i])
     print st
     return st.decode("base64")
-def getUrl(url, cookieJar=None,post=None, timeout=20, headers=None):
-
+    
+def getUrl(mainurl, cookieJar=None,post=None, timeout=20, headers=None, useproxy=True):
+    url=mainurl
     cookie_handler = urllib2.HTTPCookieProcessor(cookieJar)
     opener = urllib2.build_opener(cookie_handler, urllib2.HTTPBasicAuthHandler(), urllib2.HTTPHandler())
     #opener = urllib2.install_opener(opener)
+    req = urllib2.Request(url)
+    req.add_header('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36')
+    if headers:
+        for h,hv in headers:
+            req.add_header(h,hv)
+    
+    if '|' in url:
+        url,header_in_page=url.split('|')
+        header_in_page=header_in_page.split('&')
+        
+        for h in header_in_page:
+            
+            n,v=h.split('=')
+            req.add_header(h,v)
+    link=""
+    try:
+        response = opener.open(req,post,timeout=timeout)
+        link=response.read()
+        response.close()
+    except: pass
+    if link=="" and useproxy: 
+        return getUrlWithWebProxy(mainurl,cookieJar,post,timeout,headers)
+    return link;
+
+    #function arcfour(k,d) {var o='';s=new Array();var n=256;l=k.length;for(var i=0;i<n;i++){s[i]=i;}for(var j=i=0;i<n;i++){j=(j+s[i]+k.charCodeAt(i%l))%n;var x=s[i];s[i]=s[j];s[j]=x;}for(var i=j=y=0;y<d.length;y++){i=(i+1)%n;j=(j+s[i])%n;x=s[i];s[i]=s[j];s[j]=x;o+=String.fromCharCode(d.charCodeAt(y)^s[(s[i]+s[j])%n]);}return o;}
+def  arcfour(k,d):
+    o='';    
+    n=256;
+    l=len(k);
+    s=range(0,n)    
+    i=0
+    j=0
+    for i in range(0,n):      
+       
+        j=(j+s[i]+ord(k[i%l]))%n;
+
+        x=s[i];
+        s[i]=s[j];
+        s[j]=x;
+        #if (i==0): print s
+    i=0
+    j=0    
+    for y in range(0,len(d)):#(var i=j=y=0;y<d.length;y++)
+        i=(i+1)%n;
+        j=(j+s[i])%n;
+        x=s[i];
+        s[i]=s[j];
+        s[j]=x;
+        o+=chr(ord(d[y])^s[(s[i]+s[j])%n]);
+
+    return o;
+
+        
+def getUrlWithWebProxy(url, cookieJar=None,post=None, timeout=20, headers=None):
+
+
+    import urllib,re
+    #print 'webproxyurl before',url
+    if cookieJar==None:
+        cookieJar=cookielib.LWPCookieJar()
+    te=getUrl('http://proxy.marbenak.com/',cookieJar=cookieJar,useproxy=False)
+    c=re.findall('\{u\:\'(.*?)\'',te)[0]
+    ss= arcfour(c,url[4:])
+    bb='21'#re.findall('\},b:\'(.*?)\'',te)[0]
+    referer='norefer'
+    if headers:
+        for h,hv in headers:
+            if h=='Referer':
+                referer=hv
+    
+    rs=getUrl('http://proxy.marbenak.com/browse.php?u=%s&b=%s&f=%s'%(urllib.quote_plus(ss.encode('base64')),bb,referer),cookieJar=cookieJar, headers=headers ,useproxy=False)
+
+    rr='[\'"]\/browse.php\?u\=(.*?)["\']'
+    ec=re.findall(rr,rs)
+    c=re.findall('\{u\:\'(.*?)\'',rs)[0]
+
+    for enc in ec:
+        
+        try:
+            dtext=arcfour(c,urllib.unquote(enc.split('&amp;')[0]).decode("base64"))
+            #print enc
+            #print dtext
+            rs=rs.replace('/browse.php?u='+enc,'http'+dtext)
+            
+            
+        except: pass
+    #print 'webproxyurl',url,rs
+    return rs
+
+    
+
+def setProxy():
+    #proxyhtml=getUrl('http://gatherproxy.com/proxylist/country/?c=Australia')
+    selfAddon.setSetting( id="sport365proxyserver" ,value="185.72.246.41")    
+    selfAddon.setSetting( id="sport365proxyport" ,value="3128")    
+    return True
+    
+    
+def proxyserverAndPort():
+    return selfAddon.getSetting(id="sport365proxyserver"),selfAddon.getSetting(id="sport365proxyport")    
+    
+    
+def getUrlWithProxy(url, cookieJar=None,post=None, timeout=20, headers=None):
+#    from socksipyhandler import SocksiPyHandler
+    proxyserver,proxyport=proxyserverAndPort()
+    print 'in proxy',proxyserver,proxyport,url
+    
+    cookie_handler = urllib2.HTTPCookieProcessor(cookieJar)    
+    opener = urllib2.build_opener(cookie_handler, urllib2.HTTPBasicAuthHandler(), urllib2.HTTPHandler(),urllib2.ProxyHandler({ 'http'  : '%s:%s'%(proxyserver,proxyport)}))    
+    
     req = urllib2.Request(url)
     req.add_header('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36')
     if headers:
@@ -87,6 +199,7 @@ def getUrl(url, cookieJar=None,post=None, timeout=20, headers=None):
     response.close()
     return link;
 
+    
 def unwise_func( w, i, s, e):
     lIll = 0;
     ll1I = 0;
@@ -155,17 +268,26 @@ def get365CookieJar(updatedUName=False):
     if not cookieJar:
         cookieJar = cookielib.LWPCookieJar()
     return cookieJar    
-def get365Key(cookieJar,url=None):
+def get365Key(cookieJar,url=None, useproxy=True):
     headers=[('User-Agent','AppleCoreMedia/1.0.0.13A452 (iPhone; U; CPU OS 9_0_2 like Mac OS X; en_gb)')]
+    import time
     if not url:
         mainhtml=getUrl("http://www.sport365.live/en/main",headers=headers, cookieJar=cookieJar)
-        kurl=re.findall("src=\"(http.*?/wrapper.js.*?)\"",mainhtml)[0]
+        #print 'mainhtml',mainhtml
+        try:
+            kurl=re.findall("src=\"(http.*?/wrapper.js.*?)\"",mainhtml)[0]
+        except:
+            kurl='http://s1.medianetworkinternational.com/js/wrapper.js?'+str(int(time.time()))
     else:
         kurl=url
+    
     khtml=getUrl(kurl,headers=headers, cookieJar=cookieJar)
+    if khtml=="": 
+        if setProxy():
+            kkey=getUrl(kurl,headers=headers, cookieJar=cookieJar)        
     kstr=re.compile('eval\(function\(w,i,s,e\).*}\((.*?)\)').findall(khtml)[0]
     kunc=get_unwise(kstr)
-    print kunc    
+    #print kunc    
     
     kkey=re.findall('aes_key="(.*?)"',kunc)
     kkey=re.findall('aes\(\)\{return "(.*?)"',kunc)
@@ -183,9 +305,11 @@ def Colored(text = '', colorid = '', isBold = False):
     if isBold == True:
         text = '[B]' + text + '[/B]'
     return '[COLOR ' + color + ']' + text + '[/COLOR]'	
+
 def getLinks():
     cookieJar=get365CookieJar()
-    kkey=get365Key(cookieJar)
+    kkey=get365Key(cookieJar,useproxy=False)
+        
     headers=[('User-Agent','AppleCoreMedia/1.0.0.13A452 (iPhone; U; CPU OS 9_0_2 like Mac OS X; en_gb)')]
 
     liveurl="http://www.sport365.live/en/events/-/1/-/-"+'/'+str(getutfoffset())
@@ -195,7 +319,7 @@ def getLinks():
     print 'got links',sportslinks
     progress = xbmcgui.DialogProgress()
     progress.create('Progress', 'Fetching Live Links')
-#    print sportslinks
+    #print sportslinks
     c=0
     cookieJar.save (S365COOKIEFILE,ignore_discard=True)
 
@@ -259,6 +383,8 @@ def getutfoffset():
     return int(utc_offset)
     
 def selectMatch(url):
+    #return "http://012-180.sport365.tech:43911/ls/38e59757cc13f10968253344378a8d6637aa391672a53601f03aab5f496959a5/1471368842/57b2c8434797a306029265/57b34f33eccd9/index.m3u8|Referer=%s&User-Agent=Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36&X-Requested-With=ShockwaveFlash/22.0.0.209&Cookie=%s"%("http://h5.adshell.net/flash","PHPSESSID=n2v7leegtqd2ljdksn2k0p8ql6")
+
     url=select365(url)
     if url=="": return 
     import HTMLParser
@@ -270,6 +396,7 @@ def selectMatch(url):
     #print html
     reg="iframe frameborder=0.*?src=\"(.*?)\""
     linkurl=re.findall(reg,html)
+    #print 'linkurl',linkurl
     if len(linkurl)==0:
         reg="http://www.sport365.live.*?'\/(.*?)'\)"
         linkurl=re.findall(reg,html)[0]
@@ -280,7 +407,13 @@ def selectMatch(url):
 #        print linkurl
     else:
         linkurl=linkurl[0]
-    enclinkhtml=getUrl(h.unescape(linkurl),cookieJar=cookieJar)
+    uurl=h.unescape(linkurl)
+    print 'uurl',uurl
+    if not uurl.startswith('http'):
+        import urlparse
+        uurl=urlparse.urljoin('http://www.fastflash.pw/', uurl)
+        print 'newurl',uurl
+    enclinkhtml=getUrl(uurl,cookieJar=cookieJar)
     reg='player_div", "st".*?file":"(.*?)"'
     enclink=re.findall(reg,enclinkhtml)
     usediv=False
@@ -316,7 +449,7 @@ def selectMatch(url):
                     import jscrypto
                     lnk=jscrypto.decode(enclink["ct"],kkey,enclink["s"].decode("hex"))
                     
-                    print lnk
+                    #print lnk
                     enclink=lnk
                 #enclink=enclink[0]
                 #print 'enclink',enclink
@@ -343,9 +476,15 @@ def selectMatch(url):
     reg='"stkey":"(.*?)"'
     sitekey=re.findall(reg,decodedst)[0]
     #sitekey="myFhOWnjma1omjEf9jmH9WZg91CC"#hardcoded
-
-    urlToPlay= decode(enclink.replace(sitekey,""))+"|Referer=%s&User-Agent=Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36"%"http://h5.adshell.net/flash"
-    return urlToPlay
+    urlToPlaymain=decode(enclink.replace(sitekey,""))
+    urlToPlay= urlToPlaymain
+    newcj=cookielib.LWPCookieJar();
+    try:
+        getUrl(urlToPlay, headers=[('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36'),('Referer','http://h5.adshell.net/flash')],cookieJar=newcj)
+    except: pass
+    print newcj
+    return urlToPlaymain+"|Referer=%s&User-Agent=Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36&X-Requested-With=ShockwaveFlash/22.0.0.209&Cookie=PHPSESSID=%s"%("http://h5.adshell.net/flash",getCookiesString(newcj,'PHPSESSID').split('=')[-1])
+    
 def select365(url):
     print 'select365',url
     url=base64.b64decode(url)
@@ -437,3 +576,16 @@ def select365(url):
     except:
         traceback.print_exc(file=sys.stdout)
     return retUtl
+
+    
+def getCookiesString(cookieJar,cookieName=None):
+    try:
+        cookieString=""
+        for index, cookie in enumerate(cookieJar):
+            if cookieName==None:
+                cookieString+=cookie.name + "=" + cookie.value +";"
+            elif (cookieName==cookie.name or cookieName in cookie.name ):
+                cookieString=cookie.name + "=" + cookie.value +";"
+    except: pass
+    print 'cookieString',cookieString
+    return cookieString

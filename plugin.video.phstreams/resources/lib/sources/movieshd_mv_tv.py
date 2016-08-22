@@ -28,16 +28,16 @@ from resources.lib.modules import directstream
 
 class source:
     def __init__(self):
-        self.domains = ['movieshd.tv', 'movieshd.is']
-        self.base_link = 'http://movieshd.tv'
+        self.domains = ['movieshd.tv', 'movieshd.is', 'cartoonhd.website']
+        self.base_link = 'http://cartoonhd.website'
         self.search_link = '/api/v1/cautare/apr'
 
 
     def movie(self, imdb, title, year):
         try:
-            tk = cache.get(self.movieshd_token, 8)
+            tk = cache.get(self.cartoonhd_token, 8)
 
-            st = self.movieshd_set() ; rt = self.movieshd_rt(tk + st)
+            st = self.cartoonhd_set() ; rt = self.cartoonhd_rt(tk + st)
 
             tm = int(time.time() * 1000)
 
@@ -68,9 +68,9 @@ class source:
 
     def tvshow(self, imdb, tvdb, tvshowtitle, year):
         try:
-            tk = cache.get(self.movieshd_token, 8)
+            tk = cache.get(self.cartoonhd_token, 8)
 
-            st = self.movieshd_set() ; rt = self.movieshd_rt(tk + st)
+            st = self.cartoonhd_set() ; rt = self.cartoonhd_rt(tk + st)
 
             tm = int(time.time() * 1000)
 
@@ -113,7 +113,7 @@ class source:
             return
 
 
-    def movieshd_token(self):
+    def cartoonhd_token(self):
         try:
             token = client.request(self.base_link)
             token = re.findall("var\s+tok\s*=\s*'([^']+)", token)[0]
@@ -122,11 +122,11 @@ class source:
             return
 
 
-    def movieshd_set(self):
+    def cartoonhd_set(self):
         return ''.join([random.choice(string.ascii_letters) for _ in xrange(25)])
 
 
-    def movieshd_rt(self, s, shift=13):
+    def cartoonhd_rt(self, s, shift=13):
         s2 = ''
         for c in s:
             limit = 122 if c in string.ascii_lowercase else 90
@@ -145,7 +145,9 @@ class source:
 
             url = urlparse.urljoin(self.base_link, url)
 
-            result, headers, content, cookie = client.request(url, output='extended')
+            r = client.request(url, output='extended')
+
+            cookie = r[4] ; headers = r[3] ; result = r[0]
 
             auth = re.findall('__utmx=(.+)', cookie)[0].split(';')[0]
             auth = 'Bearer %s' % urllib.unquote_plus(auth)

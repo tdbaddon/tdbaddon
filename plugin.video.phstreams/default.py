@@ -184,24 +184,4 @@ elif action == 'phtoons.animeplay':
     from resources.lib.indexers import phtoons
     phtoons.indexer().animeplay(url)
 
-elif action == 'nhlDirectory':
-    from resources.lib.indexers import nhlcom
-    nhlcom.nhlDirectory()
-        
-elif action == 'nhlScoreboard':
-    from resources.lib.indexers import nhlcom
-    nhlcom.nhlScoreboard()
-
-elif action == 'nhlArchives':
-    from resources.lib.indexers import nhlcom
-    nhlcom.nhlArchives()
-
-elif action == 'nhlStreams':
-    from resources.lib.indexers import nhlcom
-    nhlcom.nhlStreams(name,url)
-
-elif action == 'nhlResolve':
-    from resources.lib.indexers import nhlcom
-    nhlcom.nhlResolve(url)
-
 

@@ -422,6 +422,7 @@ def AddSports(url):
     addDir('Willow.Tv (Subscription required, US Only or use VPN)' ,base64.b64decode('aHR0cDovL3d3dy53aWxsb3cudHYv') ,19,'')
     #addDir(base64.b64decode('U3VwZXIgU3BvcnRz') ,'sss',34,'')
     addDir('PV2 Sports' ,'zemsports',36,'')
+    addDir('Safe' ,'sss',72,'')
     #addDir('Yupp Asia Cup','Live' ,60,'')
     #addDir('CricHD.tv (Live Channels)' ,'pope' ,26,'')
     #addDir('cricfree.sx' ,'sss',41,'')
@@ -1057,6 +1058,44 @@ def AddGTVSports(url=None):
             mm=11
         addDir(Colored(cname.capitalize(),'ZM') ,base64.b64encode(curl) ,mm ,imgurl, False, True,isItFolder=False)		#name,url,mode,icon
     return      
+
+    
+def AddSafeLang(url=None):
+    for cname,ctype in [('English','en'),('German','de'),('French','fr'),('Italian','it'),('Dutch','nl'),('Polish','pl')]:        
+        addDir(Colored(cname.capitalize(),'ZM') ,base64.b64encode(cname+','+ctype) ,73 ,'', False, True,isItFolder=True)		#name,url,mode,icon
+    return  
+    
+def AddSafeChannels(url):
+    import time 
+    tt=int(time.time())
+    url=url.decode("base64")
+    
+    cname,curl=url.split(',')
+    headers=[('Referer',"http://customer.safersurf.com/onlinetv.html"),('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36'),('X-Requested-With','XMLHttpRequest')]               
+    jsondata=getUrl('http://customer.safersurf.com/php/getProgForLanguage.php?varName=allChannelsAllCats&noAdd=false&browserLang=%s&displayLang=en&userCountry=United%%20Kingdom&src=all&dtp=%s'%(curl,tt),headers=headers)
+    jsondata=re.findall('=(\[.*?\]);',jsondata)[0]
+    addDir(Colored('Channel Language [%s]'.capitalize()%cname,'red') ,'' ,0 ,'', False, True,isItFolder=False)
+    #print jsondata
+    jsondata=json.loads(jsondata)
+    for cc in jsondata:
+        cc=json.loads(cc)
+        mm=11
+        col='ZM'
+        #print 'xxxxxxxxxxx'
+        #print 'name' in cc
+        if 'name' in cc:
+            #print 'in name'
+            cname,logo,cid=cc["name"],cc["logo"],cc["cId"]
+        else:
+            mm=0
+            col='red'
+            if 'seperatorText' in cc:
+                cname,logo,cid=cc["seperatorText"],'',''
+            else:
+                continue
+        if not logo.startswith('http'):
+            logo= 'http://customer.safersurf.com/'+logo
+        addDir(Colored(cname.capitalize(),col) ,base64.b64encode('safe:'+cid) ,mm ,logo, False, True,isItFolder=False)		#name,url,mode,icon
     
 def AddPITVSports(url=None):
 
@@ -2608,13 +2647,14 @@ def local_time(zone='Asia/Karachi'):
     return other_zone_time.strftime('%B-%d-%Y')
 
 def getUKTVPlayUrl(channelID ):
-    url=base64.b64decode("aHR0cHM6Ly9hcHAudWt0dm5vdy5uZXQvdjMvZ2V0X3ZhbGlkX2xpbms=")
+
+    url=base64.b64decode("aHR0cDovL3VrdHZub3cubmV0L2FwcDIvdjMvZ2V0X3ZhbGlkX2xpbms=")
     username="-1"
     usernameC=username+channelID
-    s = base64.b64decode("dWt0dm5vdy10b2tlbi0tX3xfLSVzLXVrdHZub3dfdG9rZW5fZ2VuZXJhdGlvbi0lcy1ffF8tMTIzNDU2X3VrdHZub3dfNjU0MzIxLV98Xy11a3R2bm93X2xpbmtfdG9rZW4=")%(url,usernameC)
+    s = base64.b64decode("dWt0dm5vdy10b2tlbi0tX3xfLSVzLXVrdHZub3dfdG9rZW5fZ2VuZXJhdGlvbi0lcy1ffF8tMTIzNDU2X3VrdHZub3dfNjU0MzIxLV98Xy11a3R2bm93X2xpbmtfdG9rZW4=")%(url,username)
     import hashlib
     token= hashlib.md5(s).hexdigest()
-    post = {'username':username,'channel_id':channelID}
+    post = {'username':username,'channel_id':channelID,'useragent':'Test-User-Agent'}
     post = urllib.urlencode(post)
   
     headers=[('User-Agent','USER-AGENT-UKTVNOW-APP-V2'),('app-token',token)]
@@ -3980,6 +4020,32 @@ def playSports365(url):
             print 'Updated files'
     return
     
+def PlaySafeLink(url):
+
+
+    #print 'safe url',url    
+    import websocket
+    ws = websocket.WebSocket()
+    
+    header=["Origin: http://customer.safersurf.com","User-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"]
+    ws.connect("ws://52.48.86.135:1337/tb/m3u8/master/siteid/customer.onlinetv",header=header)
+    jsdata=''
+    ws.send(jsdata)
+    result = ws.recv()   
+
+    jsdata='[{"key":"type","value":"channelrequest"},{"key":"dbid","value":"%s"},{"key":"tbid","value":""},{"key":"format","value":"masterm3u8"},{"key":"proxify","value":"true"},{"key":"bitrate","value":"1368000"},{"key":"maxbitrate","value":"3305000"}]'%url
+    ws.send(jsdata)
+    result = ws.recv()
+    #print repr(result)
+    #ws.close()
+    headers = [('Referer', 'http://customer.safersurf.com/onlinetv.html'),('User-Agent','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36'),('Origin','http://customer.safersurf.com')]
+    url=re.findall('[\'"](http.*?)[\'"]',result)[0]
+    result=getUrl(url,headers=headers)
+    urlToPlay=re.findall('(http.*?)\s',result)[-1]
+    import random
+    listitem = xbmcgui.ListItem( label = str(name), iconImage = "DefaultVideo.png", thumbnailImage = xbmc.getInfoImage( "ListItem.Thumb" ) )
+    xbmc.Player(  ).play( urlToPlay+'|Origin=http://customer.safersurf.com&User-Agent=Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36&Referer=http://customer.safersurf.com/onlinetv.html', listitem)
+     
 def PlayPV2Link(url):
 
     if not mode==37:
@@ -4074,7 +4140,10 @@ def PlayOtherUrl ( url ):
         return    
     if "pv2:" in url:
         PlayPV2Link(url.split('pv2:')[1])
-        return    
+        return 
+    if "safe:" in url:
+        PlaySafeLink(url.split('safe:')[1])
+        return            
     if url in [base64.b64decode('aHR0cDovL2xpdmUuYXJ5bmV3cy50di8='),
             base64.b64decode('aHR0cDovL2xpdmUuYXJ5emluZGFnaS50di8='),
             base64.b64decode('aHR0cDovL2xpdmUuYXJ5cXR2LnR2Lw=='),
@@ -5112,6 +5181,14 @@ try:
 	elif mode==71:
 		print "Play url is "+url
 		AddPITVSports(url)  
+	elif mode==72:
+		print "Play url is "+url
+		AddSafeLang(url)  
+	elif mode==73:
+		print "Play url is "+url
+		AddSafeChannels(url)  
+      
+        
 except:
 	print 'somethingwrong'
 	traceback.print_exc(file=sys.stdout)
