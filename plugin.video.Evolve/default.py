@@ -10,7 +10,7 @@ fanarts         = xbmc.translatePath(os.path.join('special://home/addons/' + add
 icon            = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
 searchicon      = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'search.jpg'))
 nextpage        = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'next.png'))
-baseurl         = 'http://matsbuilds.co.uk/private/Evolvemenu.txt'
+baseurl         = 'http://matsbuilds.uk/private/Evolvemenu.txt'
 ytpl            = 'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId='
 ytpl2           = '&maxResults=50&key=AIzaSyAd-YEOqZz9nXVzGtn3KWzYLbLaajhqIDA'
 ytplpg1         = 'https://www.googleapis.com/youtube/v3/playlistItems?pageToken='
@@ -18,7 +18,7 @@ ytplpg2         = '&part=snippet&playlistId='
 ytplpg3         = '&maxResults=50&key=AIzaSyAd-YEOqZz9nXVzGtn3KWzYLbLaajhqIDA'
 adultpass       = selfAddon.getSetting('password')
 metaset         = selfAddon.getSetting('enable_meta')
-messagetext     = 'http://matsbuilds.co.uk/private/info.txt'+'?%d=%s' % (random.randint(1, 10000), random.randint(1, 10000))
+messagetext     = 'http://matsbuilds.uk/private/info.txt'+'?%d=%s' % (random.randint(1, 10000), random.randint(1, 10000))
                                                                
 def GetMenu():
         popup()
@@ -113,7 +113,7 @@ def SEARCH():
 		searchterm=keyb.getText()
 		searchterm=searchterm.upper()
 	else:quit()
-	link=open_url('http://matsbuilds.co.uk/search/search.xml')
+	link=open_url('http://matsbuilds.uk/search/search.xml')
 	slist=re.compile('<link>(.+?)</link>').findall(link)
 	for url in slist:
                 url2=url
