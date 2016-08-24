@@ -1,3 +1,5 @@
+[B]Version 5.0.7[/B]
+uktv update -- agent
 [B]Version 5.0.6[/B]
 uktv update
 [B]Version 5.0.5[/B]

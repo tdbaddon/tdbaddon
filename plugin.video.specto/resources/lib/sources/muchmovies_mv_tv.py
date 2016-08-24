@@ -188,9 +188,14 @@ class source:
         if '/ajax/v2_load_episode/' in url:
             print "Direct"
             try:
-                key = "bgr63m6d1ln3rech"
-                key2 = "d7ltv9lmvytcq2zf"
-                key3 = "f7sg3mfrrs5qako9nhvvqlfr7wc9la63"
+                #key = "bgr63m6d1ln3rech"
+                #key2 = "d7ltv9lmvytcq2zf"
+                #key3 = "f7sg3mfrrs5qako9nhvvqlfr7wc9la63"
+
+                key = 'n1sqcua67bcq9826'
+                key2 = 'i6m49vd7shxkn985'
+                key3 = 'rbi6m49vd7shxkn985mhodk06twz87ww'
+
                 video_id = headers['Referer'].split('-')[-1].replace('/','')
                 print "1"
 
@@ -198,9 +203,9 @@ class source:
                 key_gen = self.random_generator()
                 coookie = '%s%s%s=%s' % (key, episode_id, key2, key_gen)
                 hash_id = hashlib.md5(episode_id + key_gen + key3).hexdigest()
-                #print "2",coookie,headers['Referer'], episode_id
+                print "2",coookie,headers['Referer'], episode_id
 
-                request_url2 = self.base_link + '/ajax/v3_load_episode/' + episode_id + '/' + hash_id
+                request_url2 = self.base_link + '/ajax/v4_load_episode/' + episode_id + '/' + hash_id
                 headers = {'Accept-Encoding': 'gzip, deflate, sdch', 'Cookie': coookie, 'Referer': headers['Referer']+ '\+' + coookie,
                            'user-agent': headers['User-Agent'], 'x-requested-with': 'XMLHttpRequest'}
                 result = requests.get(request_url2, headers=headers).text

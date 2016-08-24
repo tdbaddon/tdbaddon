@@ -73,7 +73,23 @@ def addon_log(string):
 def makeRequest(url, headers=None):
         try:
             if headers is None:
-                headers = {'User-agent' : 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:19.0) Gecko/20100101 Firefox/19.0'}
+                headers = {'User-Agent' : 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36'}
+                
+            if '|' in url:
+                url,header_in_page=url.split('|')
+                header_in_page=header_in_page.split('&')
+                
+                for h in header_in_page:
+                    if len(h.split('='))==2:
+                        n,v=h.split('=')
+                    else:
+                        vals=h.split('=')
+                        n=vals[0]
+                        v='='.join(vals[1:])
+                        #n,v=h.split('=')
+                    print n,v
+                    headers[n]=v
+                    
             req = urllib2.Request(url,None,headers)
             response = urllib2.urlopen(req)
             data = response.read()
@@ -949,6 +965,7 @@ def getRegexParsed(regexs, url,cookieJar=None,forCookieJarOnly=False,recursiveCa
                     cookieJarParam=m['cookiejar']
                     if  '$doregex' in cookieJarParam:
                         cookieJar=getRegexParsed(regexs, m['cookiejar'],cookieJar,True, True,cachedPages)
+                        
                         cookieJarParam=True
                     else:
                         cookieJarParam=True
@@ -1078,7 +1095,13 @@ def getRegexParsed(regexs, url,cookieJar=None,forCookieJarOnly=False,recursiveCa
                         if header_in_page:
                             header_in_page=header_in_page.split('&')
                             for h in header_in_page:
-                                n,v=h.split('=')
+                                if h.split('=')==2:
+                                    n,v=h.split('=')
+                                else:
+                                    vals=h.split('=')
+                                    n=vals[0]
+                                    v='='.join(vals[1:])
+                                #n,v=h.split('=')
                                 req.add_header(n,v)
                         
                         if not cookieJar==None:
@@ -1199,6 +1222,13 @@ def getRegexParsed(regexs, url,cookieJar=None,forCookieJarOnly=False,recursiveCa
                         else:
                             val=doEvalFunction(m['expres'],link,cookieJar,m)
                         if 'ActivateWindow' in m['expres']: return
+                        if forCookieJarOnly:
+                            return cookieJar# do nothing
+                        if 'listrepeat' in m:
+                            listrepeat=m['listrepeat']                            
+                            #ret=re.findall(m['expres'],link)
+                            #print 'ret',val
+                            return listrepeat,eval(val), m,regexs
 #                        print 'url k val',url,k,val
                         #print 'repr',repr(val)
                         
@@ -1208,7 +1238,12 @@ def getRegexParsed(regexs, url,cookieJar=None,forCookieJarOnly=False,recursiveCa
                     else:
                         if 'listrepeat' in m:
                             listrepeat=m['listrepeat']
+                            #print 'listrepeat',m['expres']
+                            #print m['expres']
+                            #print 'aaaa'
+                            #print link
                             ret=re.findall(m['expres'],link)
+                            #print 'ret',ret
                             return listrepeat,ret, m,regexs
                              
                         val=''
@@ -1813,8 +1848,11 @@ def doEvalFunction(fun_call,page_data,Cookie_Jar,m):
     ret_val=''
     if functions_dir not in sys.path:
         sys.path.append(functions_dir)
-    f=open(functions_dir+"/LSProdynamicCode.py","w")
-    f.write(fun_call);
+		
+    f=open(os.path.join(functions_dir,'LSProdynamicCode.py'),"wb")
+    f.write("# -*- coding: utf-8 -*-\n")
+    f.write(fun_call.encode("utf-8"));
+    
     f.close()
     import LSProdynamicCode
     ret_val=LSProdynamicCode.GetLSProData(page_data,Cookie_Jar,m)
@@ -2279,7 +2317,13 @@ def _search(url,name):
 
 def addDir(name,url,mode,iconimage,fanart,description,genre,date,credits,showcontext=False,regexs=None,reg_url=None,allinfo={}):
 
-        u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&fanart="+urllib.quote_plus(fanart)
+
+
+        if regexs and len(regexs)>0:
+            u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&fanart="+urllib.quote_plus(fanart)+"&regexs="+regexs
+        else:
+            u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&fanart="+urllib.quote_plus(fanart)
+        
         ok=True
         if date == '':
             date = None
@@ -2313,7 +2357,7 @@ def addDir(name,url,mode,iconimage,fanart,description,genre,date,credits,showcon
                 contextMenu.append(('Download','XBMC.RunPlugin(%s?url=%s&mode=9&name=%s)'
                                     %(sys.argv[0], urllib.quote_plus(url), urllib.quote_plus(name))))
             elif showcontext == 'fav':
-                contextMenu.append(('Remove from BES-IPTV Favorites','XBMC.RunPlugin(%s?mode=6&name=%s)'
+                contextMenu.append(('Remove from LiveStreamsPro Favorites','XBMC.RunPlugin(%s?mode=6&name=%s)'
                                     %(sys.argv[0], urllib.quote_plus(name))))
             if showcontext == '!!update':
                 fav_params2 = (
@@ -2322,7 +2366,7 @@ def addDir(name,url,mode,iconimage,fanart,description,genre,date,credits,showcon
                     )
                 contextMenu.append(('[COLOR yellow]!!update[/COLOR]','XBMC.RunPlugin(%s)' %fav_params2))
             if not name in FAV:
-                contextMenu.append(('Add to BES-IPTV Favorites','XBMC.RunPlugin(%s?mode=5&name=%s&url=%s&iconimage=%s&fanart=%s&fav_mode=%s)'
+                contextMenu.append(('Add to LiveStreamsPro Favorites','XBMC.RunPlugin(%s?mode=5&name=%s&url=%s&iconimage=%s&fanart=%s&fav_mode=%s)'
                          %(sys.argv[0], urllib.quote_plus(name), urllib.quote_plus(url), urllib.quote_plus(iconimage), urllib.quote_plus(fanart), mode)))
             liz.addContextMenuItems(contextMenu)
         ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
@@ -2349,6 +2393,7 @@ def ytdl_download(url,title,media_type='video'):
             youtubedl.single_YD('',download=True,dl_info=info)
     else:
         xbmc.executebuiltin("XBMC.Notification(DOWNLOAD,First Play [COLOR yellow]WHILE playing download[/COLOR] ,10000)")
+
 
 ## Lunatixz PseudoTV feature
 def ascii(string):
@@ -2481,11 +2526,12 @@ def addLink(url,name,iconimage,fanart,description,genre,date,showcontext,playlis
         else:
             description += '\n\nDate: %s' %date
         liz=xbmcgui.ListItem(name, iconImage="DefaultVideo.png", thumbnailImage=iconimage)
-        if len(allinfo) <1:
-            liz.setInfo(type="Video", infoLabels={ "Title": name, "Plot": description, "Genre": genre, "dateadded": date })
+        if isFolder:
+            if len(allinfo) <1:
+                liz.setInfo(type="Video", infoLabels={ "Title": name, "Plot": description, "Genre": genre, "dateadded": date })
 
-        else:
-            liz.setInfo(type="Video", infoLabels=allinfo)
+            else:
+                liz.setInfo(type="Video", infoLabels=allinfo)
         liz.setProperty("Fanart_Image", fanart)
         
         if (not play_list) and not any(x in url for x in g_ignoreSetResolved) and not '$PLAYERPROXY$=' in url:#  (not url.startswith('plugin://plugin.video.f4mTester')):
@@ -2706,13 +2752,20 @@ if mode==None:
 elif mode==1:
     addon_log("getData")
     data=None
-    if regexs:
-        data=getRegexParsed(regexs, url)
-        url=''
+  
+    if regexs and len(regexs)>0:
+        data,setresolved=getRegexParsed(regexs, url)
+        #print data
+        #url=''
+        if data.startswith('http') or data.startswith('smb') or data.startswith('nfs') or data.startswith('/'):
+            url=data
+            data=None
         #create xml here
+		
     getData(url,fanart,data)
     xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
+	
 elif mode==2:
     addon_log("getChannelItems")
     getChannelItems(name,url,fanart)

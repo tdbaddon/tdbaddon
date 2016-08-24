@@ -44,9 +44,11 @@ def createCookie(url,cj=None,agent='Mozilla/5.0 (Windows NT 6.1; rv:32.0) Gecko/
 #        print urlparse.urlparse(url).netloc
         answer = decryptVal + len(urlparse.urlparse(url).netloc)
 
-        u='/'.join(url.split('/')[:-1])
-        query = '%s/cdn-cgi/l/chk_jschl?jschl_vc=%s&jschl_answer=%s' % (u, jschl, answer)
-
+        u='/'.join(url.split('/')[:-1])  
+        if '<form id="challenge-form" action="/cdn' in urlData:
+            u='/'.join(url.split('/')[:3])
+        query = urlparse.urljoin(url,'/cdn-cgi/l/chk_jschl?jschl_vc=%s&jschl_answer=%s' % ( jschl, answer))
+        passval=None
         if 'type="hidden" name="pass"' in result:
             passval=re.compile('name="pass" value="(.*?)"').findall(result)[0]
             query = '%s/cdn-cgi/l/chk_jschl?pass=%s&jschl_vc=%s&jschl_answer=%s' % (u,urllib.quote_plus(passval), jschl, answer)
@@ -58,6 +60,9 @@ def createCookie(url,cj=None,agent='Mozilla/5.0 (Windows NT 6.1; rv:32.0) Gecko/
 #        opener.addheaders = [('User-Agent', agent)]
         #print opener.headers
         response = opener.open(query)
+        
+                
+            
  #       print response.headers
         #cookie = str(response.headers.get('Set-Cookie'))
         #response = opener.open(url)

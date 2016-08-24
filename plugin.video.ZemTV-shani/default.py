@@ -2636,8 +2636,22 @@ def getUniTVChannels(categories, forSports=False):
         traceback.print_exc(file=sys.stdout)
     return ret  
     
-    
-
+def getUKTVUserAgent():
+    try:
+        username = "-1"#random.choice(usernames)
+        post = {'username':username}
+        post = urllib.urlencode(post)
+      
+        headers=[('User-Agent','USER-AGENT-UKTVNOW-APP-V2'),('app-token',getAPIToken(base64.b64decode("aHR0cDovL3VrdHZub3cubmV0L2FwcDIvdjMvZ2V0X3VzZXJfYWdlbnQ="),username))]
+        jsondata=getUrl(base64.b64decode("aHR0cDovL3VrdHZub3cubmV0L2FwcDIvdjMvZ2V0X3VzZXJfYWdlbnQ="),post=post,headers=headers)
+        jsondata=json.loads(jsondata)    
+        import pyaes
+        key="MDk0NTg3MjEyNDJhZmZkZQ==".decode("base64")
+        iv="ZWVkY2ZhMDQ4OTE3NDM5Mg==".decode("base64")
+        decryptor = pyaes.new(key, pyaes.MODE_CBC, IV=iv)
+        return decryptor.decrypt(jsondata["msg"]["54b23f9b3596397b2acf70a81b2da31d"].decode("hex")).split('\0')[0]
+    except: return 'USER-AGENT-UKTVNOW-APP-V2'
+#    print jsondata
 
 def local_time(zone='Asia/Karachi'):
     from datetime import datetime
@@ -2654,7 +2668,8 @@ def getUKTVPlayUrl(channelID ):
     s = base64.b64decode("dWt0dm5vdy10b2tlbi0tX3xfLSVzLXVrdHZub3dfdG9rZW5fZ2VuZXJhdGlvbi0lcy1ffF8tMTIzNDU2X3VrdHZub3dfNjU0MzIxLV98Xy11a3R2bm93X2xpbmtfdG9rZW4=")%(url,username)
     import hashlib
     token= hashlib.md5(s).hexdigest()
-    post = {'username':username,'channel_id':channelID,'useragent':'Test-User-Agent'}
+    
+    post = {'username':username,'channel_id':channelID,'useragent':getUKTVUserAgent()}
     post = urllib.urlencode(post)
   
     headers=[('User-Agent','USER-AGENT-UKTVNOW-APP-V2'),('app-token',token)]
