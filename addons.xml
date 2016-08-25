@@ -2041,7 +2041,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBTVSHOWS"
        name="TDB TV SHOWS"
-       version="1.23"
+       version="1.24"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -2846,24 +2846,6 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
-<addon id="repository.MatsBuilds" name="Goliaths Add-ons repository" version="1.0.7" provider-name="Goliath">
-	<extension point="xbmc.addon.repository" name="Goliaths Repository">
-	<dir>
-		<info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
-		<checksum>https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml.md5</checksum>
-		<datadir zip="true">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/zips/</datadir>
-	</dir>
-		<info compressed="false">http://www.matsbuilds.uk/addons/addon.xml</info>
-		<checksum>http://simtech.net16.net/Goliathrepo/addons.xml.md5</checksum>
-		<datadir zip="true">http://www.matsbuilds.uk/addons/zips/</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>Install Add-ons from Goliath</summary>
-		<description>Download and install Add-ons from Goliaths repository</description>
-		<platform>all</platform>
-	</extension>
-</addon>
-
 <addon id="repository.HalowTV" name="  [COLOR lime][B]HALOW [/COLOR][COLOR white]Repository[/B][/COLOR]" version="3.0.0" provider-name="HalowRepo">
 	<extension point="xbmc.addon.repository" name="  [COLOR lime][B]Halow[/COLOR][COLOR white]Repository[/B][/COLOR]">
         <info compressed="false">https://raw.githubusercontent.com/HalowTV/HalowTV/master/zips/addons.xml</info>
@@ -2997,16 +2979,16 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
     </extension>
 </addon>
 
-<addon id="repository.MatsBuilds" name="Goliaths Add-ons repository" version="1.0.1" provider-name="Goliath">
+<addon id="repository.MatsBuilds" name="Goliaths Add-ons repository" version="1.0.7" provider-name="Goliath">
 	<extension point="xbmc.addon.repository" name="Goliaths Repository">
 	<dir>
 		<info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
 		<checksum>https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml.md5</checksum>
 		<datadir zip="true">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/zips/</datadir>
 	</dir>
-		<info compressed="false">http://offshoregit.com/goliath/addon.xml</info>
-		<checksum>http://offshoregit.com/goliath/addons.xml.md5</checksum>
-		<datadir zip="true">http://offshoregit.com/goliath/zips/</datadir>
+		<info compressed="false">http://www.matsbuilds.uk/addons/addon.xml</info>
+		<checksum>http://simtech.net16.net/Goliathrepo/addons.xml.md5</checksum>
+		<datadir zip="true">http://www.matsbuilds.uk/addons/zips/</datadir>
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<summary>Install Add-ons from Goliath</summary>
