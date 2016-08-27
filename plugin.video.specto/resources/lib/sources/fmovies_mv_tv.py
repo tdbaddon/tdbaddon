@@ -148,6 +148,9 @@ class source:
                     url = url[0][0]
                     url = urlparse.urljoin(self.base_link, url)
                     print("r2", url)
+                    r2 = url.split('.')[-1]
+                    print("r2", r2)
+
 
                 except:
                     url == self.base_link
@@ -193,12 +196,13 @@ class source:
             try: servers = [i for i in servers if '%01d' % int(i[1]) == '%01d' % int(episode)]
             except: pass
 
-            for s in servers[:3]:
+            for s in servers[:4]:
                 try:
+                    #http://fmovies.to/ajax/episode/info?_token=31f2ab5&id=1r12ww&update=0&film=286l
                     headers = {'X-Requested-With': 'XMLHttpRequest'}
                     control.sleep(600)
                     hash_url = urlparse.urljoin(self.base_link, self.hash_link)
-                    query = {'id': s[0], 'update': '0'}
+                    query = {'id': s[0], 'update': '0', 'film': r2}
                     query.update(self.__get_token(query))
                     hash_url = hash_url + '?' + urllib.urlencode(query)
                     headers['Referer'] = url

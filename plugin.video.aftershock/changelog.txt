@@ -1,4 +1,12 @@
 ------------------------
+Aftershock v3.7.5 (24-Aug-2016)
+------------------------
+- [COLOR orange]NOTE: Aftershock is a free addon.[/COLOR]
+- Updated Providers
+- Fixed Live Streams for UKTVNOW and DITTO
+- Fixed TV Show providers
+
+------------------------
 Aftershock v3.7.4 (14-Aug-2016)
 ------------------------
 - [COLOR orange]NOTE: Aftershock is a free addon.[/COLOR]

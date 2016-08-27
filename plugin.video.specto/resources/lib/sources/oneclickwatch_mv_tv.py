@@ -103,10 +103,10 @@ class source:
 
             dbcon = database.connect(data)
             dbcur = dbcon.cursor()
-            control.log(">>>>>>>>>>>>>>> ONEC content "  )
+            #control.log(">>>>>>>>>>>>>>> ONEC content "  )
 
             content = re.compile('(.+?)\sS\d*E\d*$').findall(url)
-            control.log(">>>>>>>>>>>>>>> ONEC aaa content %s" % len(content))
+            #control.log(">>>>>>>>>>>>>>> ONEC aaa content %s" % len(content))
 
             if len(content) == 0:
                 title, year = re.compile('(.+?) (\d{4})$').findall(url)[0]
@@ -119,7 +119,7 @@ class source:
                     mysources.append(i[0])
 
             else:
-                control.log(">>>>>>>>>>>>>>> ONEC %ELSE ")
+                #control.log(">>>>>>>>>>>>>>> ONEC %ELSE ")
 
                 tvshowtitle, season, episode = re.compile('(.+?)\sS(\d*)E(\d*)$').findall(url)[0]
                 tvshowtitle = cleantitle.movie(tvshowtitle)
@@ -128,13 +128,13 @@ class source:
                 mysql = "SELECT * FROM movies WHERE title like '%"+tvshowtitle+"%' and title like '%"+myses+"%'"
                 #mysql = "SELECT * FROM movies WHERE title like '%" + tvshowtitle + "%'"
 
-                control.log(">>>>>>>>>>>>>>> ONEC SQL  |%s|" % (mysql))
+                #control.log(">>>>>>>>>>>>>>> ONEC SQL  |%s|" % (mysql))
                 dbcur.execute(mysql)
                 result = dbcur.fetchall()
 
                 for i in result:
                     mysources.append(i[0])
-                    control.log(">>>>>>>>>>>>>>> ONEC result %s" % (i[0]))
+                    #control.log(">>>>>>>>>>>>>>> ONEC result %s" % (i[0]))
 
 
 
@@ -153,8 +153,7 @@ class source:
                 links = client.parseDOM(result, 'a', attrs={'rel': 'nofollow'})
                 links = [i for i in links if i.startswith('http')]
                 for a in links:
-                    control.log(">>>>>>>>>>>>>>> ONE CHECK  %s" % (a))
-
+                    #control.log(">>>>>>>>>>>>>>> ONE CHECK  %s" % (a))
                     mylinks.append([a,quality])
 
             threads = []
@@ -171,8 +170,7 @@ class source:
 
     def check(self, i):
         try:
-            control.log(">>>>>>>>>>>>>>> ONE CHECK  %s" % (i[0]))
-
+            #control.log(">>>>>>>>>>>>>>> ONE CHECK  %s" % (i[0]))
             url = client.replaceHTMLCodes(i[0])
             url = url.encode('utf-8')
 

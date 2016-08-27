@@ -43,15 +43,11 @@ class source:
             url = urlparse.urljoin(self.base_link, client.replaceHTMLCodes(query))
             result = client.request(url, headers=self.headers)
             result = client.parseDOM(result, 'div', attrs = {'class': 'cell'})
-            print ("r1",result)
             title = cleantitle.movie(title)
             years = ['(%s)' % str(year), '(%s)' % str(int(year)+1), '(%s)' % str(int(year)-1)]
             result = [(client.parseDOM(i, 'a', ret='href')[-1], client.parseDOM(i, 'a',ret='title')[-1]) for i in result]
-            print ("r2", result)
             result = [i for i in result if title in cleantitle.movie(i[1])]
-            print ("r3", result)
             result = [i[0] for i in result if any(x in i[1] for x in years)][0]
-            print ("r4", result)
             url = result.encode('utf-8')
             return url
         except:

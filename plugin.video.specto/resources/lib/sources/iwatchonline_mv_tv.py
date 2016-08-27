@@ -43,19 +43,16 @@ from resources.lib.resolvers import zstream
 
 class source:
     def __init__(self):
-        self.base_link = 'https://www.iwatchonline.cr'
-        self.link_1 = 'https://www.iwatchonline.video'
-        self.link_2 = 'http://translate.googleusercontent.com/translate_c?anno=2&hl=en&sl=mt&tl=en&u=http://www.iwatchonline.cr'
+        self.base_link = 'https://www.iwatchonline.lol'
+        self.link_1 = 'https://www.iwatchonline.lol'
+        self.link_2 = 'https://www.iwatchonline.video'
         self.link_3 = 'https://www.iwatchonline.cr'
         self.search_link = '/advance-search'
         self.show_link = '/tv-shows/%s'
         self.episode_link = '/episode/%s-s%02de%02d'
         self.headers = {}
 
-
     def get_movie(self, imdb, title, year):
-        return
-
         try:
             query = self.search_link
             post = {'searchquery': title, 'searchin': '1'}
@@ -63,7 +60,7 @@ class source:
 
 
             result = ''
-            links = [self.link_3, self.link_2]
+            links = [self.link_3, self.link_2, self.link_1]
             for base_link in links:
                 headers = {"Content-Type":"application/x-www-form-urlencoded", "Referer":urlparse.urljoin(base_link, query)}
                 result = client.request(urlparse.urljoin(base_link, query), post=post, headers=headers)
@@ -87,9 +84,8 @@ class source:
         except:
             return
 
-
     def get_show(self, imdb, tvdb, tvshowtitle, year):
-        return
+
         try:
             query = self.search_link
             post = {'searchquery': tvshowtitle, 'searchin': '2'}
@@ -123,8 +119,6 @@ class source:
         except:
             return
 
-
-
     def get_episode(self, url, imdb, tvdb, title, date, season, episode):
         if url == None: return
 
@@ -134,27 +128,25 @@ class source:
         url = url.encode('utf-8')
         return url
 
-
     def get_sources(self, url, hosthdDict, hostDict, locDict):
+        control.log(">>>>>>>>>>>>>>> ONE IWACH %s" % (url))
         try:
-            self.sources =[]
+            self.sources = []
             mylinks = []
             if url == None: return self.sources
 
             result = ''
-            links = [self.link_3]
+            links = [self.link_3, self.link_2, self.link_1]
             for base_link in links:
-                result = client.request(urlparse.urljoin(base_link, url))
-                cookie = client.request(urlparse.urljoin(base_link, url), output='cookie')
+                headers = {"Referer":urlparse.urljoin(base_link, url)}
+                result, headers, content, cookie = client.request(urlparse.urljoin(base_link, url), output='extended', headers=headers)
                 myref=urlparse.urljoin(base_link, url)
-
                 #control.log('### %s' % result)
                 if 'original-title' in str(result): break
 
             links = client.parseDOM(result, 'tr', attrs = {'id': 'pt.+?'})
 
             for i in links:
-
                 try:
                     lang = re.compile('<img src=[\'|\"|\s|\<]*(.+?)[\'|\"|\s|\>]').findall(i)[1]
 
@@ -185,16 +177,20 @@ class source:
                     except: pass
                     if url.startswith('http'): url = urlparse.urlparse(url).path
                     if not url.startswith('http'): url = urlparse.urljoin(self.base_link, url)
+
+
                     url = url.encode('utf-8')
-                    #control.log('########  IWATCH LINK url:%s  host:%s q:%s' % (url,host,quality))
+                    control.log('########  IWATCH LINK url:%s  host:%s q:%s' % (url,host,quality))
                     mylinks.append({'source': host, 'quality': quality, 'url': url})
 
                 except:
                     pass
-            print("M",mylinks)
+            #print("M",mylinks)
+            #for i in mylinks:
+            #    control.log(">>>>>>>>>>>>>>> ONE IWACH LINKS %s" % (i))
 
             threads = []
-            for i in mylinks: threads.append(workers.Thread(self.check, i, cookie, myref))
+            for i in mylinks: threads.append(workers.Thread(self.check, i, headers, cookie,hostDict,hosthdDict))
             [i.start() for i in threads]
             for i in range(0, 10 * 2):
                 is_alive = [x.is_alive() for x in threads]
@@ -206,56 +202,24 @@ class source:
         except:
             return self.sources
 
-    def check(self, i,mycook, myref):
+    def check(self, i, headers, cookie, hostDict, hosthdDict):
         try:
-            return
             url = client.replaceHTMLCodes(i['url'])
-            #url = urlparse.urlparse(url).path
-            control.log("Result >>> url2 >>>>>>>>>>>>>>>>>>>> %s | %s | %s" % (url,mycook,myref))
-            exit()
-
-            result = ''
-            result = client.request(url, cookie=mycook, referer=myref)
-            print("R1",result)
-            exit()
-
-            # print("Result >>> result",result)
-            url = re.compile('class=[\'|\"]*frame.+?src=[\'|\"|\s|\<]*(.+?)[\'|\"|\s|\>]').findall(result)[0]
-            url = client.replaceHTMLCodes(url)
-            try:
-                url = urlparse.parse_qs(urlparse.urlparse(url).query)['u'][0]
-            except:
-                pass
-            try:
-                url = urlparse.parse_qs(urlparse.urlparse(url).query)['url'][0]
-            except:
-                pass
-            host = i['source']
-            if host == 'openload': check = openload.check(url)
-            elif host == 'uptobox': check = uptobox.check(url)
-            elif host == 'cloudzilla': check = cloudzilla.check(url)
-            elif host == 'zstream': check = zstream.check(url)
-            elif host == 'vidspot': check = vidspot.check(url)
-            elif host == 'streamin': check = streamin.check(url)
-            elif host == 'thevideo': check = thevideo.check(url)
-            elif host == 'vodlocker': check = vodlocker.check(url)
-            elif host == 'vidto': check = vidto.check(url)
-            elif host == 'streamin': check = streamin.check(url)
-
-            else:
-                raise Exception()
-
-            if check == None or check == False: raise Exception()
-            self.sources.append({'source': host, 'quality': i['quality'], 'provider': 'Iwatchonline', 'url': url})
-            control.log("############IWATCH RESOLVE >>> url3 +++++++++++++++++++++ host:%s url:%s" % (host,url))
-
+            #control.log("Result >>> url2 >>>>>>>>>>>>>>>>>>>> %s | %s | %s" % (url, headers,cookie))
+            r = client.request(url, headers=headers, cookie=cookie, output='headers')
+            url = r['Refresh'].replace('0;url=','')
+            host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(url.strip().lower()).netloc)[0]
+            host = host.rsplit('.', 1)[0]
+            print("%@@$^@ host", host, not host in hostDict)
+            if not host in hostDict:
+                if not host in hosthdDict: raise Exception()
+            self.sources.append({'source': i['source'], 'quality': i['quality'], 'provider': 'Iwatchonline', 'url': url})
         except:
             pass
 
     def resolve(self, url):
         try:
             url = resolvers.request(url)
-            control.log("############IWATCH RESOLVE >>> url3 +++++++++++++++++++++ % s" % url)
             return url
         except:
             return

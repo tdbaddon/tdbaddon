@@ -49,6 +49,7 @@ class source:
 
 
     def get_episode(self, url, imdb, tvdb, title, date, season, episode):
+
         try:
             if url == None: return
 
@@ -61,6 +62,7 @@ class source:
 
 
     def get_sources(self, url, hosthdDict, hostDict, locDict):
+        return
         try:
             self.sources = []
 

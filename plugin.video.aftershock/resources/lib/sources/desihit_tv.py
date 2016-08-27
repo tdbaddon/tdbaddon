@@ -69,7 +69,7 @@ class source:
             result = result.replace('\n','').replace('\t','')
 
             result = client.parseDOM(result, "div", attrs={"class":"td-post-content td-pb-padding-side"})[0]
-            result = client.parseDOM(result, "p")
+            result = client.parseDOM(result, "p", attrs={"style":"text-align: center;"})
 
             for item in result:
                 try :

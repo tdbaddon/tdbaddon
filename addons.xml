@@ -517,7 +517,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 <addon id="plugin.video.aftershock"
        name="Aftershock"
-       version="3.7.4"
+       version="3.7.5"
        provider-name="IDev">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
@@ -1684,7 +1684,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.pakindia" name="Pak India Live" version="0.4.3" provider-name="Mikey1234">
+<addon id="plugin.video.pakindia" name="Pak India Live" version="0.4.6" provider-name="Mikey1234">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
   </requires>
@@ -1854,7 +1854,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2016.08.23.1" provider-name="mrknow" >
+<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2016.08.23.4" provider-name="mrknow" >
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.requests" version="1.0.0" />
@@ -2041,7 +2041,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBTVSHOWS"
        name="TDB TV SHOWS"
-       version="1.25"
+       version="1.26"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -2562,7 +2562,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.ZemTV-shani"
        name="ZemTV.com"
-       version="5.0.7"
+       version="5.0.9"
        provider-name="shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -3071,13 +3071,8 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
-<addon id="repository.rayw1986" name="RayW1986 Repo" version="2.1.0" provider-name="RayW1986">
+<addon id="repository.rayw1986" name="RayW1986 Repo" version="2.1.1" provider-name="RayW1986">
 	<extension point="xbmc.addon.repository" name="RayW1986 Repository">
-		<dir>
-			<info compressed="false">http://raw.github.com/RayW1986/repository.rayw1986/master/addons.xml</info>
-			<checksum>http://raw.github.com/RayW1986/repository.rayw1986/master/addons.xml.md5</checksum>
-			<datadir zip="true">http://raw.github.com/RayW1986/repository.rayw1986/master/zips</datadir>
-		</dir>
 		<info compressed="false">https://offshoregit.com/rayw1986/rayw1986-repo/addons.xml</info>
 		<checksum>https://offshoregit.com/rayw1986/rayw1986-repo/addons.xml.md5</checksum>
 		<datadir zip="true">https://offshoregit.com/rayw1986/rayw1986-repo/zips</datadir>
@@ -3242,7 +3237,8 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
-    <addon id="repository.ufo-repo" name="[COLOR lightgreen]UFO[/COLOR]" version="0.1.4" provider-name="krAZ">        <requires>
+    <addon id="repository.ufo-repo" name="[COLOR lightgreen]UFO[/COLOR] Repository" version="0.1.5" provider-name="krAZ">
+        <requires>
             <import addon="xbmc.addon" version="12.0.0"/>
         </requires>
         <extension point="xbmc.addon.repository" name="UFO">

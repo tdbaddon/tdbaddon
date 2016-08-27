@@ -133,7 +133,7 @@ class source:
 
 
     def get_sources(self, url, hosthdDict, hostDict, locDict):
-        control.log('### %s' %url)
+        #control.log('### %s' %url)
         try:
             sources = []
 
@@ -143,13 +143,9 @@ class source:
 
             result = client.request(url)
             result = result.decode('iso-8859-1').encode('utf-8')
-            control.log('### %s' % url)
+            #control.log('### %s' % url)
 
             links = client.parseDOM(result, 'table', attrs = {'class': 'link_ite.+?'})
-
-            for i in hostDict:
-                control.log('Watchfree hosts### i %s' % i)
-
             for i in links:
                 #control.log('### i %s' % i)
 

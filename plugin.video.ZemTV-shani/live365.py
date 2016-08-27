@@ -99,7 +99,12 @@ def getUrl(mainurl, cookieJar=None,post=None, timeout=20, headers=None, useproxy
         response.close()
     except: pass
     if link=="" and useproxy: 
-        return getUrlWithWebProxy(mainurl,cookieJar,post,timeout,headers)
+        
+        for retry in range(4):
+            try:
+                link=getUrlWithWebProxy(mainurl,cookieJar,post,timeout,headers)
+                if not link=="": break
+            except: pass
     return link;
 
     #function arcfour(k,d) {var o='';s=new Array();var n=256;l=k.length;for(var i=0;i<n;i++){s[i]=i;}for(var j=i=0;i<n;i++){j=(j+s[i]+k.charCodeAt(i%l))%n;var x=s[i];s[i]=s[j];s[j]=x;}for(var i=j=y=0;y<d.length;y++){i=(i+1)%n;j=(j+s[i])%n;x=s[i];s[i]=s[j];s[j]=x;o+=String.fromCharCode(d.charCodeAt(y)^s[(s[i]+s[j])%n]);}return o;}

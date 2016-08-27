@@ -32,7 +32,7 @@ class source:
         self.base_link_3 = 'http://www.yodesi.net'
 
         self.search_link = '/feed/?s=%s&submit=Search'
-        self.info_link = ''
+        self.info_link = 'http://www.yo-desi.com/player.php?id=%s'
         self.now = datetime.datetime.now()
 
         self.list = []
@@ -90,7 +90,8 @@ class source:
                         quality = 'SD'
                     urls = client.parseDOM(items[i], "a", ret="href")
                     for j in range(0,len(urls)):
-                        result = client.source(urls[j])
+                        videoID = getVideoID(urls[j])
+                        result = client.source(self.info_link%videoID)
                         item = client.parseDOM(result, name="div", attrs={"style":"float:none;height:700px;margin-left:200px"})[0]
                         rUrl = re.compile('(SRC|src|data-config)=[\'|\"](.+?)[\'|\"]').findall(item)[0][1]
                         urls[j] = rUrl
@@ -125,3 +126,9 @@ class source:
             return url
         except:
             return False
+
+def getVideoID(url):
+    try :
+        return re.compile('(id|url|v|si|sim|data-config)=(.+?)/').findall(url + '/')[0][1]
+    except:
+        return

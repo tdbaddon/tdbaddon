@@ -21,14 +21,14 @@
 
 import json, urlparse, re, urllib
 from resources.lib.libraries import client
-from resources.lib.libraries import control
 from resources.lib.libraries import logger
+from resources.lib.libraries import pyaes
 
 class source:
     def __init__(self):
         self.base_link = 'http://www.dittotv.com'
         self.live_link = '/livetv'
-        self.channel_link = 'http://www.dittotv.com/livetv/link?name=%s'
+        self.channel_link = 'http://origin.dittotv.com/livetv/%s'
         self.poster_link = 'http://dittotv2.streamark.netdna-cdn.com/vod_images/optimized/livetv/%s.jpg'
         self.headers = {'Accept':'text/html,application/xhtml+xml,q=0.9,image/jxr,*/*',
                         'Accept-Language':'en-US,en;q=0.5',
@@ -47,7 +47,8 @@ class source:
             channels = re.compile('<option value="(\d+)">(.+?)</option>').findall(result)
 
             for logo, channel in channels:
-                channelUrl = self.channel_link % urllib.quote_plus(channel).replace('+','%20')
+                channelUrl = self.channel_link % urllib.quote_plus(channel).replace('+','-')
+                channelUrl = channelUrl.lower()
                 poster = self.poster_link % str(logo)
                 self.list.append({'name':client.replaceHTMLCodes(channel), 'poster':poster,'url':channelUrl,'provider':'ditto','direct':False, 'quality':'HD'})
             return self.list
@@ -59,9 +60,18 @@ class source:
         try :
             logger.debug('%s ORIGINAL URL [%s]' % (__name__, url))
             result = client.source(url, headers=self.headers)
+            playdata='window.pl_data = (\{.*?"key":.*?\}\})'
+            result=re.findall(playdata, result)[0]
             try :
                 result = json.loads(result)
-                link = result['link']
+                link = result['live']['channel_list'][0]['file']
+                key = result['live']['key']
+                link = link.decode('base64')
+                key = key.decode('base64')
+
+                de = pyaes.new(key, pyaes.MODE_CBC, IV='\0'*16)
+                link = de.decrypt(link).replace('\x00', '').split('\0')[0]
+                link = re.sub('[^\s!-~]', '', link)
             except:link = client.parseDOM(result, "source", attrs={"type":"application/x-mpegurl"}, ret="src")[0]
             url = '%s|Referer=%s' % (link, url)
             logger.debug('%s RESOLVED URL [%s]' % (__name__, url))

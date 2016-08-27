@@ -60,17 +60,17 @@ def play(listitem, item):
             
         except: 
             traceback.print_exc(file=sys.stdout)
-        if played: return
+        if played: return True
         #print "playing stream name: " + str(name) 
         #xbmc.Player(  ).play( urlToPlay, listitem)    
-        url=item["msg"]["channel"]["rtmp_stream"].replace(' ','')
+        url=item["msg"]["channel"]["rtmp_stream"]
         import pyaes
         key="MDk0NTg3MjEyNDJhZmZkZQ==".decode("base64")
         iv="ZWVkY2ZhMDQ4OTE3NDM5Mg==".decode("base64")
         decryptor = pyaes.new(key, pyaes.MODE_CBC, IV=iv)
         url= decryptor.decrypt(url.decode("hex")).split('\0')[0]
         print repr(url)
-       
+        url=url.replace(' ','')
         if '|' not in url and url.startswith('http'):
             url=url+"|User-Agent=%s"%getUserAgent()
         if url.startswith('rtmp'):

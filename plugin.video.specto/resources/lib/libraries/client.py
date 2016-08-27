@@ -50,13 +50,11 @@ def request(url, close=True, redirect=True, error=False, proxy=None, post=None, 
             opener = urllib2.build_opener(*handlers)
             opener = urllib2.install_opener(opener)
 
-
-        if output == 'cookie' or output == 'extended' or not close == True:
+        if output == 'cookie2' or output == 'cookie' or output == 'extended' or not close == True:
             cookies = cookielib.LWPCookieJar()
             handlers += [urllib2.HTTPHandler(), urllib2.HTTPSHandler(), urllib2.HTTPCookieProcessor(cookies)]
             opener = urllib2.build_opener(*handlers)
             opener = urllib2.install_opener(opener)
-
 
         try:
             if sys.version_info < (2, 7, 9): raise Exception()
@@ -68,7 +66,6 @@ def request(url, close=True, redirect=True, error=False, proxy=None, post=None, 
             opener = urllib2.install_opener(opener)
         except:
             pass
-
 
         try: headers.update(headers)
         except: headers = {}
@@ -92,9 +89,7 @@ def request(url, close=True, redirect=True, error=False, proxy=None, post=None, 
         elif not cookie == None:
             headers['Cookie'] = cookie
 
-
         if redirect == False:
-
             class NoRedirection(urllib2.HTTPErrorProcessor):
                 def http_response(self, request, response): return response
 
@@ -104,34 +99,36 @@ def request(url, close=True, redirect=True, error=False, proxy=None, post=None, 
             try: del headers['Referer']
             except: pass
 
-
         request = urllib2.Request(url, data=post, headers=headers)
-
 
         try:
             response = urllib2.urlopen(request, timeout=int(timeout))
         except urllib2.HTTPError as response:
-
+            #control.log("AAAA- CODE %s|%s " % (url, response.code))
             if response.code == 503:
                 if 'cf-browser-verification' in response.read(5242880):
-
                     netloc = '%s://%s' % (urlparse.urlparse(url).scheme, urlparse.urlparse(url).netloc)
-
                     cf = cache.get(cfcookie, 168, netloc, headers['User-Agent'], timeout)
-
                     headers['Cookie'] = cf
-
                     request = urllib2.Request(url, data=post, headers=headers)
-
                     response = urllib2.urlopen(request, timeout=int(timeout))
-
                 elif error == False:
                     return
+
+            elif response.code == 307:
+                #control.log("AAAA- Location: %s" % (response.headers['Location'].rstrip()))
+                try: cookie = '; '.join(['%s=%s' % (i.name, i.value) for i in cookies])
+                except: pass
+                try: cookie = cf
+                except: pass
+                headers['Cookie'] = cookie
+                request = urllib2.Request(response.headers['Location'], data=post, headers=headers)
+                response = urllib2.urlopen(request, timeout=int(timeout))
+                #control.log("AAAA- BBBBBBB %s" %  response.code)
 
             elif error == False:
                 print ("Response code",response.code, response.msg,url)
                 return
-
 
         if output == 'cookie':
             try: result = '; '.join(['%s=%s' % (i.name, i.value) for i in cookies])
@@ -333,7 +330,7 @@ def googletag(url):
     quality += re.compile('=m(\d*)$').findall(url)
     try: quality = quality[0]
     except: return []
-    control.log('<><><><><><><><><><><><> %s <><><><><><><><><>' % quality)
+    #control.log('<><><><><><><><><><><><> %s <><><><><><><><><>' % quality)
     if quality in ['37', '137', '299', '96', '248', '303', '46']:
         return [{'quality': '1080p', 'url': url}]
     elif quality in ['22', '84', '136', '298', '120', '95', '247', '302', '45', '102']:
@@ -357,6 +354,61 @@ def file_quality_openload(url):
             return {'quality': 'SD'}
     except:
         return {'quality': 'SD', 'url': url}
+
+def cfcookie(netloc, ua, timeout):
+    try:
+        headers = {'User-Agent': ua}
+
+        request = urllib2.Request(netloc, headers=headers)
+
+        try:
+            response = urllib2.urlopen(request, timeout=int(timeout))
+        except urllib2.HTTPError as response:
+            result = response.read(5242880)
+
+        jschl = re.findall('name="jschl_vc" value="(.+?)"/>', result)[0]
+
+        init = re.findall('setTimeout\(function\(\){\s*.*?.*:(.*?)};', result)[-1]
+
+        builder = re.findall(r"challenge-form\'\);\s*(.*)a.v", result)[0]
+
+        decryptVal = parseJSString(init)
+
+        lines = builder.split(';')
+
+        for line in lines:
+
+            if len(line) > 0 and '=' in line:
+
+                sections=line.split('=')
+                line_val = parseJSString(sections[1])
+                decryptVal = int(eval(str(decryptVal)+sections[0][-1]+str(line_val)))
+
+        answer = decryptVal + len(urlparse.urlparse(netloc).netloc)
+
+        query = '%s/cdn-cgi/l/chk_jschl?jschl_vc=%s&jschl_answer=%s' % (netloc, jschl, answer)
+
+        if 'type="hidden" name="pass"' in result:
+            passval = re.findall('name="pass" value="(.*?)"', result)[0]
+            query = '%s/cdn-cgi/l/chk_jschl?pass=%s&jschl_vc=%s&jschl_answer=%s' % (netloc, urllib.quote_plus(passval), jschl, answer)
+            time.sleep(5)
+
+        cookies = cookielib.LWPCookieJar()
+        handlers = [urllib2.HTTPHandler(), urllib2.HTTPSHandler(), urllib2.HTTPCookieProcessor(cookies)]
+        opener = urllib2.build_opener(*handlers)
+        opener = urllib2.install_opener(opener)
+
+        try:
+            request = urllib2.Request(query, headers=headers)
+            response = urllib2.urlopen(request, timeout=int(timeout))
+        except:
+            pass
+
+        cookie = '; '.join(['%s=%s' % (i.name, i.value) for i in cookies])
+
+        return cookie
+    except:
+        pass
 
 def cfcookie(netloc, ua, timeout):
     try:

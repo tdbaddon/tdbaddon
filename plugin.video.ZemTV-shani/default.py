@@ -3813,15 +3813,25 @@ def getPv2Code(newcode=False):
         currentcode=binascii.b2a_hex(os.urandom(16)).upper()
         selfAddon.setSetting( id="pv2DeviceID" ,value=currentcode)
     
-    return currentcode
-
 def getPV2UserAgent(option):
     if option==1:
-        headers=[('User-Agent',base64.b64decode('UGFrJTIwVFYvMS4wIENGTmV0d29yay83NTguMi44IERhcndpbi8xNS4wLjA=')),('Authorization',base64.b64decode('QmFzaWMgWVcxMU9rQmtia0J1T0RRNQ=='))]
-        return getUrl('https://app.dynns.com/keys/abdc.php',headers=headers)
-        
+        #headers=[('User-Agent',base64.b64decode('UGFrJTIwVFYvMS4wIENGTmV0d29yay83NTguMi44IERhcndpbi8xNS4wLjA=')),('Authorization',base64.b64decode('QmFzaWMgWVcxMU9rQmtia0J1T0RRNQ=='))]
+        headers=[('User-Agent',getPv2Code()),('Authorization',base64.b64decode('QmFzaWMgWVcxMU9rQmtia0J1T0RRNQ=='))]
+        return getUrl('https://app.dynns.com/keys/pakindiahdv2ff.php',headers=headers)
     else:
         return getPv2Code();
+
+def getPV2Device(option):
+    useragent=''
+    if option==1:
+        #headers=[('User-Agent',base64.b64decode('UGFrJTIwVFYvMS4wIENGTmV0d29yay83NTguMi44IERhcndpbi8xNS4wLjA=')),('Authorization',base64.b64decode('QmFzaWMgWVcxMU9rQmtia0J1T0RRNQ=='))]
+        headers=[('User-Agent',base64.b64decode('UGFrJTIwVFYvMS4wIENGTmV0d29yay83NTguMi44IERhcndpbi8xNS4wLjA=')),('Authorization',base64.b64decode('QmFzaWMgWVcxMU9rQmtia0J1T0RRNQ=='))]
+        useragent=getUrl(base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2tleXMvYXJhYmljdHZoZHYxcC5waHA='),headers=headers)
+    else:
+        headers=[('User-Agent',getPv2Code()),('Authorization',base64.b64decode('QmFzaWMgWVcxMU9rQmtia0J1T0RRNQ=='))]
+        useragent=getUrl(base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2tleXMvYXJhYmljdHZoZHYxZmYucGhw'),headers=headers)
+    return useragent.split('.')[-1]
+
     
 def getPV2Url():
     fname='pv2tvpage.json'
@@ -3834,31 +3844,39 @@ def getPV2Url():
         print 'file getting error'
         traceback.print_exc(file=sys.stdout)
 
-    for pvopt in [(0,1),(1,1),(1,2)]:
-        pvitr,pv2option=pvopt
+        
+    for pvopt in [(1,2),(2,2)]:#[(0,1),(1,1),(1,2)]:
+        pvitr,pv2option=pvopt  ##pv2option==2=soapxml with, =1 with 
         try:
             selfAddon.setSetting( id="pv2PlayOption" ,value=str(pv2option))
             mainurl=''
             nm=getPv2Code(True)
-            if pv2option==1:
+            deviceid=''
+            if pv2option==1:#not in use
                 
                 if pvitr==0:
-                    mainurl='aHR0cHM6Ly9hcHAuZHlubnMuY29tL2FwcF9wYW5lbG5ldy9vdXRwdXQucGhwL3BsYXlsaXN0P3R5cGU9eG1sJmRldmljZVNuPTI0MyZ0b2tlbj0lcw=='
+                    mainurl='aHR0cHM6Ly9hcHAuZHlubnMuY29tL2FwcF9wYW5lbG5ldy9vdXRwdXQucGhwL3BsYXlsaXN0P3R5cGU9eG1sJmRldmljZVNuPTEyMyZ0b2tlbj0lcw=='
                 else:                    
                     mainurl='aHR0cHM6Ly9hcHAuZHlubnMuY29tL2FwcF9wYW5lbG5ldy9vdXRwdXQucGhwL3BsYXlsaXN0P3R5cGU9eG1sJmRldmljZVNuPXBha2luZGlhaGRwYWlkMi42JnRva2VuPSVz'
-            else:
+            else: #soap xml
                 headers=[('User-Agent',base64.b64decode('dW1hci8xLjEgQ0ZOZXR3b3JrLzc1OC4wLjIgRGFyd2luLzE1LjAuMA=='))]
                 iphtml=getUrl(base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2tleXMvaXBfY2hlY2sucGhw'),headers=headers)
                 ipaddrs=re.findall('Address: (.*)',iphtml)[0]
                 
                 headers=[('User-Agent',nm),('SOAPAction',base64.b64decode('aHR0cDovL2FwcC5keW5ucy5jb20vc2F2ZURldmljZUlkU2VydmljZS90bnM6ZGIuc2F2ZUlk')),('Content-Type','text/xml; charset=ISO-8859-1')]
                 
-                xmldata=base64.b64decode("PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iSVNPLTg4NTktMSI/Pgo8U09BUC1FTlY6RW52ZWxvcGUgU09BUC1FTlY6ZW5jb2RpbmdTdHlsZT0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbmNvZGluZy8iIHhtbG5zOlNPQVAtRU5WPSJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy9zb2FwL2VudmVsb3BlLyIgeG1sbnM6eHNkPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYSIgeG1sbnM6eHNpPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYS1pbnN0YW5jZSIgeG1sbnM6U09BUC1FTkM9Imh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3NvYXAvZW5jb2RpbmcvIiB4bWxuczp0bnM9Imh0dHA6Ly9zY3JpcHRiYWtlci5jb20vc2F2ZURldmljZUlkU2VydmljZSI+CjxTT0FQLUVOVjpCb2R5Pgo8dG5zOmRiLnNhdmVJZCB4bWxuczp0bnM9Imh0dHA6Ly9hcHAuZHlubnMuY29tL3NhdmVEZXZpY2VJZFNlcnZpY2UiPgo8aWQgeHNpOnR5cGU9InhzZDpzdHJpbmciPiVzIGNodWxidWxwYW5kYXk8L2lkPgo8bmFtZSB4c2k6dHlwZT0ieHNkOnN0cmluZyI+JXM8L25hbWU+CjwvdG5zOmRiLnNhdmVJZD4KPC9TT0FQLUVOVjpCb2R5Pgo8L1NPQVAtRU5WOkVudmVsb3BlPg==")%(ipaddrs,nm)
+                xmldata=base64.b64decode("PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iSVNPLTg4NTktMSI/Pgo8U09BUC1FTlY6RW52ZWxvcGUgU09BUC1FTlY6ZW5jb2RpbmdTdHlsZT0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbmNvZGluZy8iIHhtbG5zOlNPQVAtRU5WPSJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy9zb2FwL2VudmVsb3BlLyIgeG1sbnM6eHNkPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYSIgeG1sbnM6eHNpPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYS1pbnN0YW5jZSIgeG1sbnM6U09BUC1FTkM9Imh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3NvYXAvZW5jb2RpbmcvIiB4bWxuczp0bnM9Imh0dHA6Ly9zY3JpcHRiYWtlci5jb20vc2F2ZURldmljZUlkU2VydmljZSI+CjxTT0FQLUVOVjpCb2R5Pgo8dG5zOmRiLnNhdmVJZCB4bWxuczp0bnM9Imh0dHA6Ly9hcHAuZHlubnMuY29tL3NhdmVEZXZpY2VJZFNlcnZpY2UiPgo8aWQgeHNpOnR5cGU9InhzZDpzdHJpbmciPiVzIEBkbkBuMDMzMTwvaWQ+CjxuYW1lIHhzaTp0eXBlPSJ4c2Q6c3RyaW5nIj4lczwvbmFtZT4KPC90bnM6ZGIuc2F2ZUlkPgo8L1NPQVAtRU5WOkJvZHk+CjwvU09BUC1FTlY6RW52ZWxvcGU+")%(ipaddrs,nm)
                 
                 try:
                     getUrl(base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2FwaXNvYXAvaW5kZXgucGhw'),post=xmldata,headers=headers)
                 except: pass
-                mainurl='aHR0cHM6Ly9hcHAuZHlubnMuY29tL2FwcF9wYW5lbG5ldy9vdXRwdXQucGhwL3BsYXlsaXN0P3R5cGU9eG1sJmRldmljZVNuPTY2MSZ0b2tlbj0lcw=='
+                
+                deviceid=getPV2Device(pvitr)
+                #if pvitr==1: print 1/0
+                mainurl=base64.b64encode(base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2FwcF9wYW5lbG5ldy9vdXRwdXQucGhwL3BsYXlsaXN0P3R5cGU9eG1sJmRldmljZVNuPSVz')%deviceid+'&token=%s')
+                
+                #else:
+                #    mainurl='aHR0cHM6Ly9hcHAuZHlubnMuY29tL2FwcF9wYW5lbG5ldy9vdXRwdXQucGhwL3BsYXlsaXN0P3R5cGU9eG1sJmRldmljZVNuPTEyMyZ0b2tlbj0lcw=='    
                 #mainurl='aHR0cHM6Ly9hcHAuZHlubnMuY29tL2FwcF9wYW5lbG5ldy9vdXRwdXQucGhwL3BsYXlsaXN0P3R5cGU9eG1sJmRldmljZVNuPXBha2luZGlhaGRwYWlkMi42JnRva2VuPSVz'
             import time
             TIME = time.time()
@@ -3868,7 +3886,7 @@ def getPV2Url():
             #req = urllib2.Request( base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2FwcF9wYW5lbG5ldy9vdXRwdXQucGhwL3BsYXlsaXN0P3R5cGU9eG1sJmRldmljZVNuPXBha2luZGlhaGRwYWlkMi42JnRva2VuPSVz')  %token)      
             #req = urllib2.Request( base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2FwcF9wYW5lbG5ldy9vdXRwdXQucGhwL3BsYXlsaXN0P3R5cGU9eG1sJmRldmljZVNuPTI0NCZ0b2tlbj0lcw==')  %token)    
             
-            req = urllib2.Request( base64.b64decode(mainurl)  %token)    
+            req = urllib2.Request( base64.b64decode(mainurl)  %(token))    
             req.add_header('Authorization', base64.b64decode('QmFzaWMgWVdSdGFXNDZRV3hzWVdneFFBPT0=')) 
             req.add_header(base64.b64decode("VXNlci1BZ2VudA=="),getPV2UserAgent(pv2option)) 
             #req.add_header(base64.b64decode("VXNlci1BZ2VudA=="),base64.b64decode("QkVCNDNDOENDNUU5NDVFOTk4QjI3MjM4MDFFQjk0RkY=")) 
@@ -4074,7 +4092,7 @@ def PlayPV2Link(url):
     if '|' not in urlToPlay:
         urlToPlay+='|'
     import random
-    useragent='User-Agent: AppleCoreMedia/1.%s.%s (iPhone; U; CPU OS 9_3_2%s like Mac OS X; en_gb)'%(binascii.b2a_hex(os.urandom(2))[:2],binascii.b2a_hex(os.urandom(2))[:2],binascii.b2a_hex(os.urandom(2))[:3])
+    useragent='User-Agent=AppleCoreMedia/1.0.0.13A452 (iPhone; U; CPU OS 9_0_2 like Mac OS X; en_gb)'#User-Agent: AppleCoreMedia/1.%s.%s (iPhone; U; CPU OS 9_3_2%s like Mac OS X; en_gb)'%(binascii.b2a_hex(os.urandom(2))[:2],binascii.b2a_hex(os.urandom(2))[:2],binascii.b2a_hex(os.urandom(2))[:3])
     urlToPlay+=useragent
     #try:
     #    if 'iptvaus.dynns.com' in urlToPlay:# quickfix
@@ -4102,11 +4120,8 @@ def PlayPV2Link(url):
 #    print "playing stream name: " + str(name) 
 #88.150.206.7 last ip
     if not tryplay(urlToPlay, listitem):
-        if '130.185.144.63' not in urlToPlay:
-            urlToPlay='http://130.185.144.63:8081'+'/'.join(urlToPlay.split('/')[3:])
-            if not tryplay(urlToPlay, listitem):
-                urlToPlay='http://130.185.144.112:8081'+'/'.join(urlToPlay.split('/')[3:])
-                tryplay(urlToPlay, listitem)
+        if '130.185.144.112' not in urlToPlay:
+            urlToPlay='http://130.185.144.112:8081'+'/'.join(urlToPlay.split('/')[3:])           
     
 def PlayOtherUrl ( url ):
     checkbad.do_block_check(False)

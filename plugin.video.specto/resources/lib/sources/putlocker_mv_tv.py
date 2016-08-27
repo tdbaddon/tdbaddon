@@ -33,7 +33,8 @@ from resources.lib import resolvers
 class source:
     def __init__(self):
         self.base_link = 'http://www.putlocker.systems'
-        self.search_link = '/api/v1/cautare/apr'
+        #self.search_link = '/api/v1/cautare/apr'
+        self.search_link = '/api/v1/cautare/aug'
 
 
     def get_movie(self, imdb, title, year):
@@ -45,10 +46,12 @@ class source:
 
             url = urlparse.urljoin(self.base_link, self.search_link)
 
-            post = {'q': title.lower(), 'limit': '20', 'timestamp': tm, 'verifiedCheck': tk, 'set': st, 'rt': rt}
+            post = {'q': title.lower(), 'limit': '100', 'timestamp': tm, 'verifiedCheck': tk, 'set': st, 'rt': rt}
+            print("POST",post)
             post = urllib.urlencode(post)
 
-            r = client.request(url, post=post, headers=headers)
+            r = client.request(url, post=post, headers=headers, output='cookie2')
+            print("R",r)
             r = json.loads(r)
 
             t = cleantitle.get(title)
@@ -61,6 +64,7 @@ class source:
             url = re.findall('(?://.+?|)(/.+)', r)[0]
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
+            print("U",url)
             return url
         except:
             return
@@ -78,11 +82,12 @@ class source:
 
             url = urlparse.urljoin(self.base_link, self.search_link)
 
-            post = {'q': tvshowtitle.lower(), 'limit': '20', 'timestamp': tm, 'verifiedCheck': tk, 'set': st, 'rt': rt}
+            post = {'q': tvshowtitle.lower(), 'limit': '100', 'timestamp': tm, 'verifiedCheck': tk, 'set': st, 'rt': rt}
             post = urllib.urlencode(post)
 
             r = client.request(url, post=post, headers=headers)
             r = json.loads(r)
+            pr
 
             t = cleantitle.get(tvshowtitle)
 
@@ -152,6 +157,7 @@ class source:
             headers['Authorization'] = auth
             headers['X-Requested-With'] = 'XMLHttpRequest'
             headers['Referer'] = url
+            headers['Accept'] = 'application/json, text/javascript, */*; q=0.01'
 
             u = '/ajax/embeds.php'
             u = urlparse.urljoin(self.base_link, u)
@@ -168,7 +174,8 @@ class source:
             post = urllib.urlencode(post)
 
 
-            r = client.request(u, post=post, headers=headers)
+            r = client.request(u, post=post, headers=headers, output='cookie2')
+            print('AAAA-CCCCCCCCCCCCCCCCCCC %s' % r)
             r = str(json.loads(r))
             r = client.parseDOM(r, 'iframe', ret='.+?') + client.parseDOM(r, 'IFRAME', ret='.+?')
 

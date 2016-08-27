@@ -99,6 +99,8 @@ def request(url, close=True, error=False, proxy=None, post=None, headers=None, m
                 elif error == False:
                     return
             except:
+                import traceback
+                traceback.print_exc()
                 pass
         if output == 'cookie':
             result = []

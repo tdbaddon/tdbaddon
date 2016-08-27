@@ -51,18 +51,18 @@ class source:
             query = urllib.urlencode({'keyword': title})
             url = urlparse.urljoin(self.base_link, self.search_link)
             r = client.request(url, post=query, headers=headers)
-            print("1",r)
+            #print("1",r)
             r = json.loads(r)['content']
-            print ("2",r)
+            #print ("2",r)
             r = zip(client.parseDOM(r, 'a', ret='href', attrs = {'class': 'ss-title'}), client.parseDOM(r, 'a', attrs = {'class': 'ss-title'}))
             r = [i[0] for i in r if cleantitle.get(t) == cleantitle.get(i[1])][:2]
             r = [(i, re.findall('(\d+)', i)[-1]) for i in r]
-            print ("3",r)
+            #print ("3",r)
 
             for i in r:
                 try:
                     y, q = cache.get(self.muchmovies_info, 9000, i[1])
-                    print("4",y,q)
+                    #print("4",y,q)
                     if not y == year: raise Exception()
                     return urlparse.urlparse(i[0]).path
                 except:
@@ -168,9 +168,9 @@ class source:
 
             links = []
             links += [{'source': 'gvideo', 'url': self.direct_link % i[1]} for i in r if 2 <= int(i[0]) <= 11]
-            links += [{'source': 'openload.co', 'url': self.embed_link % i[1]} for i in r if i[0] == '14']
-            links += [{'source': 'videomega.tv', 'url': self.embed_link % i[1]} for i in r if i[0] == '13']
-            links += [{'source': 'videowood.tv', 'url': self.embed_link % i[1]} for i in r if i[0] == '12']
+            links += [{'source': 'openload', 'url': self.embed_link % i[1]} for i in r if i[0] == '14']
+            links += [{'source': 'videomega', 'url': self.embed_link % i[1]} for i in r if i[0] == '13']
+            links += [{'source': 'videowood', 'url': self.embed_link % i[1]} for i in r if i[0] == '12']
 
             for i in links: sources.append({'source': i['source'], 'quality': quality, 'provider': 'Muchmovies', 'url': i['url'] + head_link})
 
@@ -181,12 +181,12 @@ class source:
 
 
     def resolve(self, url):
-        print url
+        #print url
         try: headers = dict(urlparse.parse_qsl(url.rsplit('|', 1)[1]))
         except: headers = None
         url = urlparse.urljoin(self.base_link, url.split('|')[0])
         if '/ajax/v2_load_episode/' in url:
-            print "Direct"
+            #print "Direct"
             try:
                 #key = "bgr63m6d1ln3rech"
                 #key2 = "d7ltv9lmvytcq2zf"
@@ -197,20 +197,20 @@ class source:
                 key3 = 'rbi6m49vd7shxkn985mhodk06twz87ww'
 
                 video_id = headers['Referer'].split('-')[-1].replace('/','')
-                print "1"
+                #print "1"
 
                 episode_id= url.split('/')[-1]
                 key_gen = self.random_generator()
                 coookie = '%s%s%s=%s' % (key, episode_id, key2, key_gen)
                 hash_id = hashlib.md5(episode_id + key_gen + key3).hexdigest()
-                print "2",coookie,headers['Referer'], episode_id
+                #print "2",coookie,headers['Referer'], episode_id
 
                 request_url2 = self.base_link + '/ajax/v4_load_episode/' + episode_id + '/' + hash_id
                 headers = {'Accept-Encoding': 'gzip, deflate, sdch', 'Cookie': coookie, 'Referer': headers['Referer']+ '\+' + coookie,
                            'user-agent': headers['User-Agent'], 'x-requested-with': 'XMLHttpRequest'}
                 result = requests.get(request_url2, headers=headers).text
                 #link = client.request(request_url2, headers=headers)
-                print "3",url
+                #print "3",url
 
                 url = re.findall('"?file"?\s*=\s*"(.+?)"', result)
                 url = [client.googletag(i) for i in url]

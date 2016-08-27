@@ -34,7 +34,7 @@ def GetContent(url):
             name=re.compile('<programTitle>(.+?)</programTitle>').findall(p)[0]
             URL=re.compile('<programURL>(.+?)</programURL>').findall(p)[0]
             iconimage=re.compile('<programImage>(.+?)</programImage>').findall(p)[0]
-            if '<programCategory>'+url in p:
+            if '<programCategory>'+url+'<'in p:
                 addDir(name,URL,200,iconimage)
         except:pass
                
@@ -50,7 +50,7 @@ def OPEN_URL(url):
 def auth():
  import base64
  import time
- AGENT = 'C275D6E6E8BC498D93F15842174445F7'#ADDON.getSetting('pakuser')
+ AGENT = ADDON.getSetting('pak_key')
  TIME = time.time()
  second= str(TIME).split('.')[0]
  first =int(second)+69296929
@@ -81,7 +81,7 @@ def getuser():
       from random import randint
       
       number='1.0.0.%s%s%s' % (getletter().upper(),randint(0,20),randint(0,20))
-      agent='AppleCoreMedia/1.0.0.13E238 (iPhone; U; CPU OS 9_3_1 like Mac OS X; en_gb)'
+      agent='AppleCoreMedia/1.0.0.13589 (iPhone; U; CPU OS 9_3_3 like Mac OS X; en_gb)'
 
     
             
