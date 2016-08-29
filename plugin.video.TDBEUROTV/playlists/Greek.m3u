@@ -19,6 +19,9 @@ http://antennatv-lh.akamaihd.net/i/live_1@329667/master.m3u8
 #EXTINF:0,Ant1 Cyprus
 0
 
+EXTINF:0,Art
+https://raw.githubusercontent.com/free-greek-iptv/greek-iptv/master/m3u8/ART.m3u8
+
 #EXTINF:0,Astra TV 
 http://www.astratv.gr:8090/hls/livestream.m3u8 
 
@@ -33,6 +36,9 @@ http://www.astratv.gr:8090/hls/livestream.m3u8
 
 #EXTINF:0,Boyah TV
 http://streamer-cache.grnet.gr/parliament/parltv.sdp/master.m3u8 
+
+#EXTINF:0,Capital
+https://raw.githubusercontent.com/free-greek-iptv/greek-iptv/master/m3u8/CAPITAL.m3u8
 
 #EXTINF:0,Creta 
 rtmp://live.cretetv.gr/cretetv/myStream
@@ -79,6 +85,9 @@ rtmp://213.16.167.186/live/mpegts_256.stream
 #EXTINF:0,Extra 
 http://213.16.167.186:1935/live/mpegts_256.stream/playlist.m3u8
 
+#EXTINF:0,Extra 
+https://raw.githubusercontent.com/free-greek-iptv/greek-iptv/master/m3u8/EXTRA.CY.m3u8
+
 #EXTINF:0,FOS TV 
 0
 
@@ -95,7 +104,7 @@ http://213.16.167.186:1935/live/mpegts_256.stream/playlist.m3u8
 0
 
 #EXTINF:0,Kontra 
-0
+https://raw.githubusercontent.com/free-greek-iptv/greek-iptv/master/m3u8/KONTRA.m3u8
 
 #EXTINF:0,Kphth TV 
 http://live.cretetv.gr:1935/cretetv/myStream/playlist.m3u8
@@ -127,6 +136,9 @@ rtmp://144.76.2.213/live/livestream
 #EXTINF:0,Makedonia TV
 http://stream.maktv.gr/i/live_1@332903/master.m3u8
 
+#EXTINF:0,Makedonia TV
+https://raw.githubusercontent.com/free-greek-iptv/greek-iptv/master/m3u8/MAKEDONIA.m3u8
+
 #EXTINF:0,Max
 0
 
@@ -134,7 +146,7 @@ http://stream.maktv.gr/i/live_1@332903/master.m3u8
 0
 
 #EXTINF:0,Mega Cyprus 
-0
+https://raw.githubusercontent.com/free-greek-iptv/greek-iptv/master/m3u8/Mega.cy.m3u8
 
 #EXTINF:0,Messinia TV
 rtmp://176.9.123.140:1935/messinia/messinia
@@ -153,7 +165,7 @@ http://srv.viiideo.gr:1935/neatv/live/playlist.m3u8
 0
 
 #EXTINF:0,Omega TV 
-http://stream2.omegatv.net/hls-live/livepkgr/_definst_/liveevent/omegatv.m3u8
+0
 
 #EXTINF:0,OPT TV 
 0
@@ -164,6 +176,9 @@ http://stream2.omegatv.net/hls-live/livepkgr/_definst_/liveevent/omegatv.m3u8
 #EXTINF:0,Rik Sat 
 http://cdnvideo.webvideocore.net/livenl/out_2xtqzyrq6gysc48ko0cs/index.m3u8
 
+#EXTINF:0,Rik Sat 
+https://raw.githubusercontent.com/free-greek-iptv/greek-iptv/master/m3u8/rik2.m3u8
+
 #EXTINF:0,Samiaki TV 
 http://94.23.218.186:1935/samiaki/samiaki/playlist.m3u8
 
@@ -171,7 +186,7 @@ http://94.23.218.186:1935/samiaki/samiaki/playlist.m3u8
 0
 
 #EXTINF:0,Sigma Cyprus
-0
+https://raw.githubusercontent.com/free-greek-iptv/greek-iptv/master/m3u8/SIGMA.m3u8
 
 #EXTINF:0,Skai 
 http://iphone.skai.gr.edgesuite.net/iphone_iphone.m3u8
@@ -180,7 +195,7 @@ http://iphone.skai.gr.edgesuite.net/iphone_iphone.m3u8
 0
 
 #EXTINF:0,Syros TV 
-http://176.9.123.140:1935/msg116s/msg116s/playlist.m3u8
+0
 
 #EXTINF:0,Thraki Net TV
 rtmp://hls.onestreaming.com:1935/live/thrakinettv
@@ -190,9 +205,6 @@ rtmp://hls.onestreaming.com:1935/live/thrakinettv
 
 #EXTINF:0,TV 100 
 http://178.62.176.153:1935/TV100/myStream/playlist.m3u8
-
-#EXTINF:0,Zougla TV 
-http://zouglahd-f.akamaihd.net/i/zougla_1@56341/index_700_av-b.m3u8
 
 #EXTINF:0,Zougla TV 
 http://zouglahd-f.akamaihd.net/i/zougla_1@56341/master.m3u8

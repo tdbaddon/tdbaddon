@@ -587,6 +587,9 @@ class sources:
             filter = [i for i in self.sources if i['source'].lower() in self.hostcapDict and not 'debrid' in i]
             self.sources = [i for i in self.sources if not i in filter]
 
+        filter = [i for i in self.sources if i['source'].lower() in self.hostblockDict and not 'debrid' in i]
+        self.sources = [i for i in self.sources if not i in filter]
+
         self.sources = self.sources[:2000]
 
         for i in range(len(self.sources)):
@@ -769,6 +772,9 @@ class sources:
         filter = [i for i in items if i['source'].lower() in self.hostcapDict and i['debrid'] == '']
         items = [i for i in items if not i in filter]
 
+        filter = [i for i in items if i['source'].lower() in self.hostblockDict and i['debrid'] == '']
+        items = [i for i in items if not i in filter]
+
         items = [i for i in items if ('autoplay' in i and i['autoplay'] == True) or not 'autoplay' in i]
 
         if control.setting('autoplay.sd') == 'true':
@@ -829,7 +835,9 @@ class sources:
 
         self.hostprDict = ['oboom.com', 'rapidgator.net', 'rg.to', 'uploaded.net', 'uploaded.to', 'ul.to', 'filefactory.com', 'nitroflare.com', 'turbobit.net', 'uploadrocket.net']
 
-        self.hostcapDict = ['hugefiles.net', 'kingfiles.net']
+        self.hostcapDict = ['hugefiles.net', 'kingfiles.net', 'torba.se']
+
+        self.hostblockDict = ['thevideo.me']
 
         self.debridDict = debrid.debridDict()
 

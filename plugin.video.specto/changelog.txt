@@ -1,3 +1,7 @@
+2016.08.28.1
+    fix cache, and iwatchonline
+    todo: fmovies, muchmovies(gvideo)
+
 2016.08.23.4
     fix - muchmovies, putlocker, movieshd
     fix - iwatchonline

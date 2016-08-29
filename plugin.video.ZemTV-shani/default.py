@@ -1,5 +1,6 @@
 import xbmc, xbmcgui, xbmcplugin
-import urllib2,urllib,cgi, re, urlresolver  
+import urllib2,urllib,cgi, re
+
 import urlparse
 import HTMLParser
 import xbmcaddon
@@ -10,6 +11,8 @@ import CustomPlayer,uuid
 import checkbad
 from time import time
 import base64
+
+    
 try:
     from lxmlERRRORRRR import etree
     print("running with lxml.etree")
@@ -895,7 +898,10 @@ def PlayUKTVNowChannels(url):
         import uktvplayer
         played=uktvplayer.play(listitem,cc)
             
-    except: pass
+    except: 
+        print 'error in PlayUKTVNowChannels'
+        traceback.print_exc(file=sys.stdout)
+        pass
     if not played:
         if RefreshResources([('uktvplayer.py','https://raw.githubusercontent.com/Shani-08/ShaniXBMCWork2/master/plugin.video.ZemTV-shani/uktvplayer.py')]):
             dialog = xbmcgui.Dialog()
@@ -2164,10 +2170,11 @@ def getYPUrl(url):
         else:
             videoid=tmp[0]
     
-        pageurl='http://stream.yupptv.com/PreviewPaidChannel.aspx?cid=%s'%videoid  
-        emhtm=getUrl(pageurl)
+        pageurl='http://www.yupptv.com/Account/OctoNewFrame.aspx?ChanId=%s'%videoid  
+        emhtm=getUrl(pageurl,headers=[('Referer','http://www.yupptv.com/Livetv/'),('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36')])
         rr='file:\'(http.*?)\''    
         finalUrl=re.findall(rr,emhtm)
+        print 'finalUrl',finalUrl
         #if len(finalUrl)==0:
         #    
         #    pageurl='http://stream.yupptv.com/PreviewPaidChannel.aspx?cid=%s'%videoid  
@@ -2185,14 +2192,17 @@ def PlayYP(url):
     #print 'gen is '+url
 
     finalUrl=getYPUrl(url)
+    if '.f4m' in finalUrl:
+        finalUrl=urllib.quote_plus(finalUrl+'&g=FLONTKRDWKGI&hdcore=3.2.0&amp;plugin=jwplayer-3.2.0.1|Referer=http://stream.yupptv.com/PreviewPaidChannel.aspx?cid=195')
+        finalUrl='plugin://plugin.video.f4mTester/?url='+finalUrl
+            
+            
+        xbmc.executebuiltin("xbmc.PlayMedia("+finalUrl+")")
+    else:
+        PlayGen(base64.b64encode( finalUrl+'|User-Agent=Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36'))
         
-    finalUrl=urllib.quote_plus(finalUrl+'&g=FLONTKRDWKGI&hdcore=3.2.0&amp;plugin=jwplayer-3.2.0.1|Referer=http://stream.yupptv.com/PreviewPaidChannel.aspx?cid=195')
-    finalUrl='plugin://plugin.video.f4mTester/?url='+finalUrl
-        
-        
-    xbmc.executebuiltin("xbmc.PlayMedia("+finalUrl+")")
 
-def PlayGen(url,checkUrl=False):
+def PlayGen(url,checkUrl=False, followredirect=False):
     url = base64.b64decode(url)
     print 'gen is '+url
 
@@ -2202,7 +2212,10 @@ def PlayGen(url,checkUrl=False):
     
     if checkUrl and url.startswith('http') and '.m3u' in url:
         headers=[('User-Agent','AppleCoreMedia/1.0.0.13A452 (iPhone; U; CPU OS 9_0_2 like Mac OS X; en_gb)')]
-        getUrl(url.split('|')[0],timeout=5,headers=headers)
+        urldata=getUrl(url.split('|')[0],timeout=5,headers=headers)
+        if followredirect:
+            if not urldata.startswith('#EXTM3U'):
+                url=urldata+'|'+url.split('|')[1]
     playlist = xbmc.PlayList(1)
     playlist.clear()
     listitem = xbmcgui.ListItem( label = str(name), iconImage = "DefaultVideo.png", thumbnailImage = xbmc.getInfoImage( "ListItem.Thumb" ) )
@@ -2649,8 +2662,14 @@ def getUKTVUserAgent():
         key="MDk0NTg3MjEyNDJhZmZkZQ==".decode("base64")
         iv="ZWVkY2ZhMDQ4OTE3NDM5Mg==".decode("base64")
         decryptor = pyaes.new(key, pyaes.MODE_CBC, IV=iv)
-        return decryptor.decrypt(jsondata["msg"]["54b23f9b3596397b2acf70a81b2da31d"].decode("hex")).split('\0')[0]
-    except: return 'USER-AGENT-UKTVNOW-APP-V2'
+        print 'user agent trying'
+        ua= decryptor.decrypt(jsondata["msg"]["54b23f9b3596397b2acf70a81b2da31d"].decode("hex")).split('\0')[0]
+        print ua
+        return ua
+    except: 
+        print 'err in user agent'
+        traceback.print_exc(file=sys.stdout)
+        return 'USER-AGENT-UKTVNOW-APP-V2'
 #    print jsondata
 
 def local_time(zone='Asia/Karachi'):
@@ -2788,11 +2807,11 @@ def getMonaChannels(cat):
             if curl.startswith('vlc://'):
                 curl=curl.split('vlc://')[1]
                 #ua=""
-            curl='direct:'+curl
+            curl='direct3:'+curl
             #print curl
             if 'wiseplay' in cname.lower():
                 ua='Lavf/57.25.100'
-            if  curl.startswith("direct:http"):
+            if  curl.startswith("direct3:http"):
                 curl+='|User-Agent='+ua
             cimage=channel["category_image"]
             if not cimage.startswith("http"):
@@ -3811,7 +3830,9 @@ def getPv2Code(newcode=False):
     if currentcode=="" or newcode:
         import os,binascii
         currentcode=binascii.b2a_hex(os.urandom(16)).upper()
+        print 'code is ',currentcode
         selfAddon.setSetting( id="pv2DeviceID" ,value=currentcode)
+    return currentcode
     
 def getPV2UserAgent(option):
     if option==1:
@@ -3866,7 +3887,7 @@ def getPV2Url():
                 headers=[('User-Agent',nm),('SOAPAction',base64.b64decode('aHR0cDovL2FwcC5keW5ucy5jb20vc2F2ZURldmljZUlkU2VydmljZS90bnM6ZGIuc2F2ZUlk')),('Content-Type','text/xml; charset=ISO-8859-1')]
                 
                 xmldata=base64.b64decode("PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iSVNPLTg4NTktMSI/Pgo8U09BUC1FTlY6RW52ZWxvcGUgU09BUC1FTlY6ZW5jb2RpbmdTdHlsZT0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbmNvZGluZy8iIHhtbG5zOlNPQVAtRU5WPSJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy9zb2FwL2VudmVsb3BlLyIgeG1sbnM6eHNkPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYSIgeG1sbnM6eHNpPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYS1pbnN0YW5jZSIgeG1sbnM6U09BUC1FTkM9Imh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3NvYXAvZW5jb2RpbmcvIiB4bWxuczp0bnM9Imh0dHA6Ly9zY3JpcHRiYWtlci5jb20vc2F2ZURldmljZUlkU2VydmljZSI+CjxTT0FQLUVOVjpCb2R5Pgo8dG5zOmRiLnNhdmVJZCB4bWxuczp0bnM9Imh0dHA6Ly9hcHAuZHlubnMuY29tL3NhdmVEZXZpY2VJZFNlcnZpY2UiPgo8aWQgeHNpOnR5cGU9InhzZDpzdHJpbmciPiVzIEBkbkBuMDMzMTwvaWQ+CjxuYW1lIHhzaTp0eXBlPSJ4c2Q6c3RyaW5nIj4lczwvbmFtZT4KPC90bnM6ZGIuc2F2ZUlkPgo8L1NPQVAtRU5WOkJvZHk+CjwvU09BUC1FTlY6RW52ZWxvcGU+")%(ipaddrs,nm)
-                
+                #if pvitr==1: print 1/0
                 try:
                     getUrl(base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2FwaXNvYXAvaW5kZXgucGhw'),post=xmldata,headers=headers)
                 except: pass
@@ -4092,7 +4113,7 @@ def PlayPV2Link(url):
     if '|' not in urlToPlay:
         urlToPlay+='|'
     import random
-    useragent='User-Agent=AppleCoreMedia/1.0.0.13A452 (iPhone; U; CPU OS 9_0_2 like Mac OS X; en_gb)'#User-Agent: AppleCoreMedia/1.%s.%s (iPhone; U; CPU OS 9_3_2%s like Mac OS X; en_gb)'%(binascii.b2a_hex(os.urandom(2))[:2],binascii.b2a_hex(os.urandom(2))[:2],binascii.b2a_hex(os.urandom(2))[:3])
+    useragent='User-Agent=AppleCoreMedia/1.0.0.13A45%s (iPhone; U; CPU OS 9_%s_%s like Mac OS X; en_gb)'%(binascii.b2a_hex(os.urandom(2))[:2],binascii.b2a_hex(os.urandom(2))[:2],binascii.b2a_hex(os.urandom(2))[:3])
     urlToPlay+=useragent
     #try:
     #    if 'iptvaus.dynns.com' in urlToPlay:# quickfix
@@ -4155,6 +4176,9 @@ def PlayOtherUrl ( url ):
         return
     if "direct:" in url:
         PlayGen(base64.b64encode(url.split('direct:')[1]))
+        return    
+    if "direct3:" in url:
+        PlayGen(base64.b64encode(url.split('direct3:')[1]),True,followredirect=True)
         return    
     if "ipbox:" in url:
         playipbox(url.split('ipbox:')[1])
@@ -4647,6 +4671,11 @@ def PlayShowLink ( url, redirect=True ):
         listitem.setProperty('mimetype', 'video/x-msvideo')
         listitem.setProperty('IsPlayable', 'true')
         print 'playURL',playURL
+        try: 
+            import urlresolver  
+        except: 
+            print 'urlresolver err'
+            traceback.print_exc(file=sys.stdout)
         stream_url = urlresolver.HostedMediaFile(playURL).resolve()
         print stream_url
         playlist.add(stream_url,listitem)
@@ -4754,6 +4783,11 @@ def PlayShowLink ( url, redirect=True ):
         listitem.setInfo("Video", {"Title":name})
         listitem.setProperty('mimetype', 'video/x-msvideo')
         listitem.setProperty('IsPlayable', 'true')
+        try: 
+            import urlresolver  
+        except: 
+            print 'urlresolver err'
+            traceback.print_exc(file=sys.stdout)
         stream_url = urlresolver.HostedMediaFile(playURL).resolve()
     #		print stream_url
         playlist.add(stream_url,listitem)

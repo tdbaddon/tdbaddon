@@ -44,7 +44,7 @@ http://k3.usastreams.com:1935/canal42/canal42/live.m3u8
 0
 
 #EXTINF:0,History Lab 
-rtmp://wma10.fluidstream.net/HistoryLab playpath=livestream swfUrl=http://www.radioetv.it/modules/mod_hllive/jw/player58l.swf pageUrl=http://www.radioetv.it/history-lab live=1 timeout=10
+0
 
 #EXTINF:0,Jo TV 
 0
@@ -173,7 +173,7 @@ rtmp://184.173.179.163/TeleabruzzoTV playpath=TeleabruzzoTV swfUrl=http://184.17
 0
 
 #EXTINF:0,Tele Diogene 
-rtmp://wms.shared.streamshow.it:1935/telediogene/telediogene
+0
 
 #EXTINF:0,Tele Luna 
 rtmp://vs2.streamcaster.net:1935/test_live playpath=teleluna swfUrl=http://www.lunaset.it/scripts/FlowPlayerNet/flowplayer.commercial-3.2.15.swf pageUrl=http://www.lunaset.it/ live=1
@@ -185,19 +185,13 @@ rtmp://vs2.streamcaster.net:1935/test_live playpath=teleluna swfUrl=http://www.l
 0
 
 #EXTINF:0,Tele Pavia 
-http://wms.shared.streamshow.it:1935/telepavia/telepavia/live.m3u8
+0
 
 #EXTINF:0,Tele SanRemo
 0
 
 #EXTINF:0,Tele Sondrio 
 http://wms.shared.streamshow.it:1935/telestudiomo/telestudiomo/live.m3u8
-
-#EXTINF:0,Tele Sondrio 
-http://wms.shared.streamshow.it:1935/tsn/tsn/live.m3u8
-
-#EXTINF:0,Tele Sondrio 
-http://wms.shared.streamshow.it:1935/tsn2/tsn2/live.m3u8
 
 #EXTINF:0,Telecitta 
 rtmp://stream.telepadova.com/live/ playpath=tv1
@@ -212,10 +206,10 @@ rtmp://stream.telepadova.com/live/ playpath=tv1
 0
 
 #EXTINF:0,Telemolise 
-http://iphone-streaming.ustream.tv/ustreamVideo/9426995/streams/live/playlist.m3u8
+0
 
 #EXTINF:0,Telemonteneve
-http://wms.shared.streamshow.it/telemonteneve/telemonteneve/playlist.m3u8
+0
 
 #EXTINF:0,Teleunica 
 rtmp://flash3.ipercast.net/teleunica.tv-live/livestream1
@@ -236,7 +230,7 @@ http://flash.streamingmedia.it:1935/TRM/livestream/hasbahca.m3u8
 http://ftp.tiscali.it/francescovernata/TVUNO/monoscopioTvUNOint-1.wmv
 
 #EXTINF:0,TVRS TV 
-http://wms.shared.streamshow.it:1935/tvrs/tvrs/live.m3u8
+0
 
 #EXTINF:0,Vera TV 
 0

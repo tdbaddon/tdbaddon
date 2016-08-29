@@ -994,7 +994,7 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
   </extension>
 </addon>
 
-<addon id="plugin.video.exodus" version="2.0.6" name="Exodus" provider-name="Exodus">
+<addon id="plugin.video.exodus" version="2.0.7" name="Exodus" provider-name="Exodus">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="repository.exodus" version="1.0.0" />
@@ -1010,7 +1010,7 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
 		<description lang="en">Please visit www.tvaddons.ag for Exodus support and assistance! Kindly note that Exodus is not an official part of the media player you are running, and therefore not to be mentioned within official support channels, this addon has nothing to do with the media player itself, nor it’s intended use, it is simply a third party plugin which has been added to your system.</description>
 		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
 		<platform>all</platform>
-		<news>- Updated providers[CR]- Code cosmetics</news>
+		<news>- Updated indexers[CR]- Updated providers[CR]- Code cosmetics</news>
 	</extension>
 </addon>
 
@@ -1854,7 +1854,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2016.08.23.4" provider-name="mrknow" >
+<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2016.08.28.1" provider-name="mrknow" >
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.requests" version="1.0.0" />
@@ -1946,7 +1946,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBEUROTV"
        name="TDB EURO TV"
-       version="2.41"
+       version="2.42"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -2021,7 +2021,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="4.03"
+       version="4.04"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -2562,7 +2562,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.ZemTV-shani"
        name="ZemTV.com"
-       version="5.0.9"
+       version="5.1.1"
        provider-name="shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>

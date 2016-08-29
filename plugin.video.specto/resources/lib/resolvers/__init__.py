@@ -473,7 +473,7 @@ def info():
         'class': 'uploadc',
         'netloc': ['uploadc.com', 'uploadc.ch', 'zalaa.com'],
         'host': ['Uploadc', 'Zalaa'],
-        'quality': 'High',
+        'quality': 'Medium',
         'captcha': False,
         'a/c': False
     }, {
@@ -603,7 +603,7 @@ def info():
         'class': 'zstream',
         'netloc': ['zstream.to'],
         'host': ['zStream'],
-        'quality': 'High',
+        'quality': 'Medium',
         'captcha': False,
         'a/c': False
     }, {

@@ -1,5 +1,5 @@
 import xbmc, xbmcgui, xbmcplugin
-import urllib2,urllib,cgi, re, urlresolver  
+import urllib2,urllib,cgi, re  
 import urlparse
 import HTMLParser
 import xbmcaddon
@@ -36,15 +36,17 @@ def tryplay(url,listitem):
     
 def play(listitem, item):
     played=False
+    print 'i n pl;ay'
     try:
         try:
-            
+            print 'enc Item',item
             url=item["msg"]["channel"]["http_stream"]
             print 'encurl',url
             if not url.startswith('http'):
                 import pyaes
                 key="MDk0NTg3MjEyNDJhZmZkZQ==".decode("base64")
                 iv="ZWVkY2ZhMDQ4OTE3NDM5Mg==".decode("base64")
+                print 'trying to decode'
                 decryptor = pyaes.new(key, pyaes.MODE_CBC, IV=iv)
                 url= decryptor.decrypt(url.decode("hex")).split('\0')[0]
                 print repr(url)
@@ -59,6 +61,7 @@ def play(listitem, item):
             played=tryplay(url,listitem)
             
         except: 
+            print 'err in play'
             traceback.print_exc(file=sys.stdout)
         if played: return True
         #print "playing stream name: " + str(name) 

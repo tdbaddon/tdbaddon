@@ -9,9 +9,6 @@ WWW.TCOMPUTERS.CA
 #EXTINF:0,24 
 rtmp://cdn4.stream360.pl:1935/CW24/transmisja_live
 
-#EXTINF:0,24 
-http://212.79.96.134:8015/
-
 #EXTINF:0,Asta TV
 0
 
@@ -49,7 +46,7 @@ http://212.79.96.134:8015/
 0
 
 #EXTINF:0,Noe Zive 
-http://81.201.52.159:8017
+0
 
 #EXTINF:0,Nova Cinema 
 0
@@ -61,16 +58,16 @@ http://81.201.52.159:8017
 0
 
 #EXTINF:0,O1 
-http://81.201.52.159:8001
+0
 
 #EXTINF:0,O2 
-http://81.201.52.159:8002
+0
 
 #EXTINF:0,O24 
-http://81.201.52.159:8015
+0
 
 #EXTINF:0,Ocko 
-http://212.79.96.134:8016/
+0
 
 #EXTINF:0,Ocko Gold 
 0
@@ -95,10 +92,10 @@ rtmp://stream.smcloud.net/live/polotv
 0
 
 #EXTINF:0,Prima Love
-http://81.201.52.159:8019
+0
 
 #EXTINF:0,Prima Zoom 
-http://212.79.96.134:8011/
+0
 
 #EXTINF:0,Rela Pohoda
 0
@@ -113,7 +110,7 @@ http://212.79.96.134:8011/
 0
 
 #EXTINF:0,Slagr TV 
-http://81.201.52.159:8013
+0
 
 #EXTINF:0,Superstacja
 0

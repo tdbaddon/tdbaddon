@@ -51,6 +51,7 @@ class sources:
 
 
     def play(self, name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date, meta, url):
+        control.log('############# PLAY # %s' % url)
         try:
             if not control.infoLabel('Container.FolderPath').startswith('plugin://'):
                 control.playlist.clear()
@@ -172,7 +173,7 @@ class sources:
                     control.addItem(handle=int(sys.argv[1]), url='%s?%s' % (sysaddon, query), listitem=item, isFolder=False)
                 except:
                     pass
-
+            control.content(int(sys.argv[1]), 'files')
             control.directory(int(sys.argv[1]), cacheToDisc=True)
             try: self.progressDialog.close()
             except: pass
@@ -409,7 +410,7 @@ class sources:
             except:
                 pass
 
-        if len(self.sources) >= 10: return True
+        if len(self.sources) >= 15: return True
         else: return False
 
 

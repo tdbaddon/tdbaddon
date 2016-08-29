@@ -23,7 +23,7 @@
 		<setting type="lsep" label="30839" />
 		<setting id="autoplay" type="bool" label="30840" default="false" />
 		<setting id="autoplay_library" type="bool" label="30841" default="false" />
-		<setting id="playback_auto_sd" type="bool" label="30842" default="true" />
+		<setting id="playback_auto_sd" type="bool" label="30842" default="false" />
 		<setting type="lsep" label="30843" />
 		<setting id="resume_playback" type="bool" label="30844" default="true" />
 		<setting id="playback_info" type="bool" label="30845" default="false" />

@@ -247,8 +247,8 @@ class channels:
 
                 meta = dict((k,v) for k, v in i.iteritems() if not v == '0')
                 meta.update({'mediatype': 'movie'})
-                #meta.update({'trailer': '%s?action=trailer&name=%s' % (sysaddon, sysname)})
-                meta.update({'trailer': 'plugin://script.extendedinfo/?info=playtrailer&&id=%s' % imdb})
+                meta.update({'trailer': '%s?action=trailer&name=%s' % (sysaddon, sysname)})
+                #meta.update({'trailer': 'plugin://script.extendedinfo/?info=playtrailer&&id=%s' % imdb})
                 meta.update({'playcount': 0, 'overlay': 6})
                 try: meta.update({'genre': cleangenre.lang(meta['genre'], self.lang)})
                 except: pass

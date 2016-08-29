@@ -868,8 +868,8 @@ class movies:
 
                 meta = dict((k,v) for k, v in i.iteritems() if not v == '0')
                 meta.update({'mediatype': 'movie'})
-                #meta.update({'trailer': '%s?action=trailer&name=%s' % (sysaddon, sysname)})
-                meta.update({'trailer': 'plugin://script.extendedinfo/?info=playtrailer&&id=%s' % imdb})
+                meta.update({'trailer': '%s?action=trailer&name=%s' % (sysaddon, sysname)})
+                #meta.update({'trailer': 'plugin://script.extendedinfo/?info=playtrailer&&id=%s' % imdb})
                 if i['duration'] == '0': meta.update({'duration': '120'})
                 try: meta.update({'duration': str(int(meta['duration']) * 60)})
                 except: pass

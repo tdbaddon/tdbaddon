@@ -32,6 +32,7 @@ class source:
         self.base_link = 'http://pubfilm.com'
         self.moviesearch_link = '/%s-%s-full-hd-pubfilm-free.html'
         self.tvsearch_link = '/wp-admin/admin-ajax.php'
+        self.tvsearch_link_2 = '/search/%s/feed/rss2/'
 
 
     def movie(self, imdb, title, year):
@@ -70,15 +71,22 @@ class source:
             season = '%01d' % int(season) ; episode = '%01d' % int(episode)
             tvshowtitle = '%s %s: Season %s' % (data['tvshowtitle'], year, season)
 
+            '''
             headers = {'X-Requested-With': 'XMLHttpRequest'}
-
             post = urllib.urlencode({'sf_value': tvshowtitle, 'action': 'ajaxy_sf', 'search': 'false'})
-
             url = urlparse.urljoin(self.base_link, self.tvsearch_link)
-
             url = client.request(url, post=post, headers=headers)
             url = json.loads(url)['post'][0]['all']
             url = [i['post_link'] for i in url if i['post_title'] == tvshowtitle][0]
+            '''
+
+            url = urlparse.urljoin(self.base_link, self.tvsearch_link_2)
+            url = url % urllib.quote_plus(tvshowtitle)
+            url = client.request(url)
+            url = client.parseDOM(url, 'item')
+            url = [(client.parseDOM(i, 'link'), client.parseDOM(i, 'title')) for i in url]
+            url = [(i[0][0], i[1][0]) for i in url if len(i[0]) > 0 and len(i[1]) > 0]
+            url = [i[0] for i in url if i[1] == tvshowtitle][0]
 
             url = urlparse.urljoin(self.base_link, url)
             url = re.findall('(?://.+?|)(/.+)', url)[0]

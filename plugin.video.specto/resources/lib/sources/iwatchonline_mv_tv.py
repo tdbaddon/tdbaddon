@@ -60,7 +60,7 @@ class source:
 
 
             result = ''
-            links = [self.link_3, self.link_2, self.link_1]
+            links = [self.link_1, self.link_3]
             for base_link in links:
                 headers = {"Content-Type":"application/x-www-form-urlencoded", "Referer":urlparse.urljoin(base_link, query)}
                 result = client.request(urlparse.urljoin(base_link, query), post=post, headers=headers)
@@ -129,14 +129,14 @@ class source:
         return url
 
     def get_sources(self, url, hosthdDict, hostDict, locDict):
-        control.log(">>>>>>>>>>>>>>> ONE IWACH %s" % (url))
+        control.log(">>>>>>>>>>>>>>> IWACH SOURCES %s" % (url))
         try:
             self.sources = []
             mylinks = []
             if url == None: return self.sources
 
             result = ''
-            links = [self.link_3, self.link_2, self.link_1]
+            links = [self.link_1, self.link_3]
             for base_link in links:
                 headers = {"Referer":urlparse.urljoin(base_link, url)}
                 result, headers, content, cookie = client.request(urlparse.urljoin(base_link, url), output='extended', headers=headers)
@@ -180,7 +180,7 @@ class source:
 
 
                     url = url.encode('utf-8')
-                    control.log('########  IWATCH LINK url:%s  host:%s q:%s' % (url,host,quality))
+                    #control.log('########  IWATCH LINK url:%s  host:%s q:%s' % (url,host,quality))
                     mylinks.append({'source': host, 'quality': quality, 'url': url})
 
                 except:
@@ -202,17 +202,20 @@ class source:
         except:
             return self.sources
 
-    def check(self, i, headers, cookie, hostDict, hosthdDict):
+    def check(self, i, headers, cookie, myhostDict, myhosthdDict):
         try:
             url = client.replaceHTMLCodes(i['url'])
-            #control.log("Result >>> url2 >>>>>>>>>>>>>>>>>>>> %s | %s | %s" % (url, headers,cookie))
+            #control.log("IWATCH Result >>> url2 >>>>>>>>>>>>>>>>>>>> %s | %s | %s" % (url, headers,cookie))
             r = client.request(url, headers=headers, cookie=cookie, output='headers')
             url = r['Refresh'].replace('0;url=','')
             host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(url.strip().lower()).netloc)[0]
             host = host.rsplit('.', 1)[0]
-            print("%@@$^@ host", host, not host in hostDict)
-            if not host in hostDict:
-                if not host in hosthdDict: raise Exception()
+            #control.log("IWATCH Result >>> url2 >>>>>>>>>>>>>>>>>>>> %s | %s" % (url, host))
+            #print("%@@$^@ host", host, not host in hostDict)
+            if not host in myhostDict:
+                if not host in myhosthdDict:
+                    #control.log("IWATCH Result >>> url2 >>>>>>>>>>>>>>>>>>>> %s | %s" % (url, host))
+                    raise Exception()
             self.sources.append({'source': i['source'], 'quality': i['quality'], 'provider': 'Iwatchonline', 'url': url})
         except:
             pass

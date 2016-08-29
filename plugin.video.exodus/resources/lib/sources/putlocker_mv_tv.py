@@ -31,7 +31,7 @@ class source:
     def __init__(self):
         self.domains = ['putlocker.systems', 'putlocker-movies.tv', 'putlocker.yt']
         self.base_link = 'http://www.putlocker.systems'
-        self.search_link = '/api/v1/cautare/apr'
+        self.search_link = '/api/v1/cautare/aug'
 
 
     def movie(self, imdb, title, year):
@@ -155,7 +155,11 @@ class source:
 
             headers['Authorization'] = auth
             headers['X-Requested-With'] = 'XMLHttpRequest'
+            headers['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8'
+            headers['Accept'] = 'application/json, text/javascript, */*; q=0.01'
+            headers['Cookie'] = cookie
             headers['Referer'] = url
+
 
             u = '/ajax/embeds.php'
             u = urlparse.urljoin(self.base_link, u)
@@ -171,10 +175,14 @@ class source:
             post = {'action': action, 'idEl': idEl, 'token': token, 'elid': elid}
             post = urllib.urlencode(post)
 
+            c = client.request(u, post=post, headers=headers, output='cookie', error=True)
+
+            headers['Cookie'] = cookie + '; ' + c
 
             r = client.request(u, post=post, headers=headers)
             r = str(json.loads(r))
             r = client.parseDOM(r, 'iframe', ret='.+?') + client.parseDOM(r, 'IFRAME', ret='.+?')
+
 
             links = []
 

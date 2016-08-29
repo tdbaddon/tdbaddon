@@ -21,6 +21,9 @@ www.tcomputers.ca
 #EXTINF:0,AMC 
 0
 
+#EXTINF:0,AMG TV
+http://telvuehls_t02027-i.akamaihd.net/hls/live/213119/T02027-amgtv2/playlist_2.m3u8
+
 #EXTINF:0,AXN 
 0
 
@@ -30,7 +33,7 @@ www.tcomputers.ca
 #EXTINF:0,BabyTV 
 0
 
-#EXTINF:0,BBC 1 
+#EXTINF:0,BBC 1
 0
 
 #EXTINF:0,BBC 2 

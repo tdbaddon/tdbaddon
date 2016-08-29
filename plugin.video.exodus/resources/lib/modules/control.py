@@ -181,7 +181,7 @@ def selectDialog(list, heading=addonInfo('name')):
 
 
 def moderator():
-    netloc = [urlparse.urlparse(sys.argv[0]).netloc, '', 'plugin.video.live.streamspro', 'plugin.video.phstreams', 'plugin.video.tinklepad', 'plugin.video.metallic']
+    netloc = [urlparse.urlparse(sys.argv[0]).netloc, '', 'plugin.video.live.streamspro', 'plugin.video.phstreams', 'plugin.video.cpstreams', 'plugin.video.tinklepad', 'plugin.video.metallic']
 
     if not infoLabel('Container.PluginName') in netloc: sys.exit()
 

@@ -39,6 +39,7 @@
 		<setting id="provider.genvideo" type="bool" label="Genvideo" default="true" />
 		<setting id="provider.hevcfilm" type="bool" label="Hevcfilm" default="true" />
 		<setting id="provider.library" type="bool" label="Library" default="true" />
+		<setting id="provider.mfree" type="bool" label="MFree" default="true" />
 		<setting id="provider.miradetodo" type="bool" label="MiraDeTodo" default="true" />
 		<setting id="provider.movie4k" type="bool" label="Movie4K" default="true" />
 		<setting id="provider.movie25" type="bool" label="Movie25" default="true" />

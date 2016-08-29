@@ -177,6 +177,9 @@ rtmp://fms.105.net/live/rmc1
 #EXTINF:0,Reggae Entertainment
 http://univ-i.akamaihd.net/hls/live/222631/HLS11/chunklist.m3u8
 
+#EXTINF:0,Reggae Entertainment
+http://68.71.42.179/live/livestream1/playlist.m3u8
+
 #EXTINF:0,Rock 66 
 http://mediatv2.topix.it/24RockOne66
 
