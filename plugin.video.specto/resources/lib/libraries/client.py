@@ -104,9 +104,11 @@ def request(url, close=True, redirect=True, error=False, proxy=None, post=None, 
         try:
             response = urllib2.urlopen(request, timeout=int(timeout))
         except urllib2.HTTPError as response:
-            #control.log("AAAA- CODE %s|%s " % (url, response.code))
+            control.log("AAAA- CODE %s|%s " % (url, response.code))
             if response.code == 503:
                 if 'cf-browser-verification' in response.read(5242880):
+                    control.log("CF-OK")
+
                     netloc = '%s://%s' % (urlparse.urlparse(url).scheme, urlparse.urlparse(url).netloc)
                     cf = cache.get(cfcookie, 168, netloc, headers['User-Agent'], timeout)
                     headers['Cookie'] = cf
@@ -116,10 +118,9 @@ def request(url, close=True, redirect=True, error=False, proxy=None, post=None, 
                     return
 
             elif response.code == 307:
-                #control.log("AAAA- Location: %s" % (response.headers['Location'].rstrip()))
+                control.log("AAAA- Location: %s" % (response.headers['Location'].rstrip()))
+                cookie = ''
                 try: cookie = '; '.join(['%s=%s' % (i.name, i.value) for i in cookies])
-                except: pass
-                try: cookie = cf
                 except: pass
                 headers['Cookie'] = cookie
                 request = urllib2.Request(response.headers['Location'], data=post, headers=headers)

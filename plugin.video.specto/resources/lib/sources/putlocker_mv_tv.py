@@ -34,7 +34,7 @@ class source:
     def __init__(self):
         self.base_link = 'http://www.putlocker.systems'
         #self.search_link = '/api/v1/cautare/apr'
-        self.search_link = '/api/v1/cautare/aug'
+        self.search_link = '/api/v1/cautare/upd'
 
 
     def get_movie(self, imdb, title, year):
@@ -46,7 +46,7 @@ class source:
 
             url = urlparse.urljoin(self.base_link, self.search_link)
 
-            post = {'q': title.lower(), 'limit': '100', 'timestamp': tm, 'verifiedCheck': tk, 'set': st, 'rt': rt}
+            post = {'q': title.lower(), 'limit': '20', 'timestamp': tm, 'verifiedCheck': tk, 'sl': st, 'rt': rt}
             print("POST",post)
             post = urllib.urlencode(post)
 
@@ -82,12 +82,12 @@ class source:
 
             url = urlparse.urljoin(self.base_link, self.search_link)
 
-            post = {'q': tvshowtitle.lower(), 'limit': '100', 'timestamp': tm, 'verifiedCheck': tk, 'set': st, 'rt': rt}
+            post = {'q': tvshowtitle.lower(), 'limit': '100', 'timestamp': tm, 'verifiedCheck': tk, 'sl': st, 'rt': rt}
             post = urllib.urlencode(post)
 
             r = client.request(url, post=post, headers=headers)
+            print(">>>",r)
             r = json.loads(r)
-            pr
 
             t = cleantitle.get(tvshowtitle)
 
@@ -125,10 +125,8 @@ class source:
         except:
             return
 
-
     def putlocker_set(self):
         return ''.join([random.choice(string.ascii_letters) for _ in xrange(25)])
-
 
     def putlocker_rt(self, s, shift=13):
         s2 = ''
@@ -140,16 +138,17 @@ class source:
             s2 += chr(new_code)
         return s2
 
-
     def get_sources(self, url, hosthdDict, hostDict, locDict):
+        print(">>>>", url)
+
         try:
             sources = []
 
             if url == None: return sources
 
             url = urlparse.urljoin(self.base_link, url)
-
             result, headers, content, cookie = client.request(url, output='extended')
+            print("C",cookie)
 
             auth = re.findall('__utmx=(.+)', cookie)[0].split(';')[0]
             auth = 'Bearer %s' % urllib.unquote_plus(auth)
@@ -158,7 +157,7 @@ class source:
             headers['X-Requested-With'] = 'XMLHttpRequest'
             headers['Referer'] = url
             headers['Accept'] = 'application/json, text/javascript, */*; q=0.01'
-
+            print('AUTH',headers)
             u = '/ajax/embeds.php'
             u = urlparse.urljoin(self.base_link, u)
 
@@ -173,9 +172,10 @@ class source:
             post = {'action': action, 'idEl': idEl, 'token': token, 'elid': elid}
             post = urllib.urlencode(post)
 
+            print("Post",post)
 
             r = client.request(u, post=post, headers=headers, output='cookie2')
-            print('AAAA-CCCCCCCCCCCCCCCCCCC %s' % r)
+            print('PUTLOCKER RESP %s' % r)
             r = str(json.loads(r))
             r = client.parseDOM(r, 'iframe', ret='.+?') + client.parseDOM(r, 'IFRAME', ret='.+?')
 

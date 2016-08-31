@@ -664,7 +664,7 @@ Plugin by @koderdude</description>
 
 <addon id="plugin.video.ccloudtv"
        name="cCloud TV"
-       version="1.4.9"
+       version="1.5.0"
        provider-name="podgod, Coder Alpha">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -1684,7 +1684,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.pakindia" name="Pak India Live" version="0.4.6" provider-name="Mikey1234">
+<addon id="plugin.video.pakindia" name="Pak India Live" version="0.4.7" provider-name="Mikey1234">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
   </requires>
@@ -1699,7 +1699,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   <extension point="xbmc.service" library="service.py" start="login" />
 </addon>
 
-<addon id="plugin.video.phstreams" name="Phoenix" version="3.1.6" provider-name="tvaddons.ag">
+<addon id="plugin.video.phstreams" name="Phoenix" version="3.1.7" provider-name="tvaddons.ag">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="plugin.video.youtube" version="5.2.1" optional="true" />
@@ -1854,7 +1854,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2016.08.28.1" provider-name="mrknow" >
+<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2016.08.30.2" provider-name="mrknow" >
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.requests" version="1.0.0" />
@@ -1870,7 +1870,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	<extension point="xbmc.service" library="service.py" start="startup" />
 	<extension point="xbmc.addon.metadata">
 		<summary lang="en">Mrknow fork of ...</summary>
-		<description lang="en">Mrknow fork of ..., support https://github.com/mrknow/filmkodi/issues.</description>
+		<description lang="en">Specto - ... Fork. Website http://filmkodi.com . Our suport forum https://github.com/mrknow/filmkodi/issues.</description>
 		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.
 		</disclaimer>
 		<forum>https://github.com/mrknow/filmkodi/issues</forum>
@@ -2521,7 +2521,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
-<addon id="plugin.video.youtube" name="YouTube" version="5.2.2" provider-name="h0d3nt3uf3l, jdf76, bromix">
+<addon id="plugin.video.youtube" name="YouTube" version="5.2.4" provider-name="h0d3nt3uf3l, jdf76, bromix">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0"/>
 	</requires>
@@ -2562,7 +2562,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.ZemTV-shani"
        name="ZemTV.com"
-       version="5.1.1"
+       version="5.1.3"
        provider-name="shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>

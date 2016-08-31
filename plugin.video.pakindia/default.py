@@ -81,7 +81,7 @@ def getuser():
       from random import randint
       
       number='1.0.0.%s%s%s' % (getletter().upper(),randint(0,20),randint(0,20))
-      agent='AppleCoreMedia/1.0.0.13589 (iPhone; U; CPU OS 9_3_3 like Mac OS X; en_gb)'
+      agent='AppleCoreMedia/1.0.0.13G35 (iPhone; U; CPU OS 9_3_4 like Mac OS X; en_gb)'
 
     
             

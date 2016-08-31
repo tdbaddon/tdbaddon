@@ -705,7 +705,7 @@ class resolver:
 
             direct = False
 
-            presetDict = ['primewire_mv_tv', 'watchfree_mv_tv', 'movie4k_mv', 'movie25_mv', 'watchseries_tv', 'pftv_tv', 'afdah_mv', 'dayt_mv', 'dizibox_tv', 'dizigold_tv', 'genvideo_mv', 'miradetodo_mv', 'movieshd_mv_tv', 'ninemovies_mv_tv', 'onemovies_mv_tv', 'onlinedizi_tv', 'pelispedia_mv_tv', 'pubfilm_mv_tv', 'putlocker_mv_tv', 'rainierland_mv', 'sezonlukdizi_tv', 'tunemovie_mv', 'xmovies_mv']
+            presetDict = ['primewire_mv_tv', 'watchfree_mv_tv', 'movie4k_mv', 'movie25_mv', 'watchseries_tv', 'pftv_tv', 'afdah_mv', 'dayt_mv', 'dizibox_tv', 'dizigold_tv', 'genvideo_mv', 'mfree_mv', 'miradetodo_mv', 'movieshd_mv_tv', 'onemovies_mv_tv', 'onlinedizi_tv', 'pelispedia_mv_tv', 'pubfilm_mv_tv', 'putlocker_mv_tv', 'rainierland_mv', 'sezonlukdizi_tv', 'tunemovie_mv', 'xmovies_mv']
 
             if preset == 'searchsd': presetDict = ['primewire_mv_tv', 'watchfree_mv_tv', 'movie4k_mv', 'movie25_mv', 'watchseries_tv', 'pftv_tv']
 

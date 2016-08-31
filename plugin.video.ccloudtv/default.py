@@ -907,7 +907,7 @@ def get_params():
 				param[splitparams[0]] = splitparams[1]
 	return param
 
-exec("import re;import base64");exec((lambda p,y:(lambda o,b,f:re.sub(o,b,f))(r"([0-9a-f]+)",lambda m:p(m,y),ou812("MTYgPSAnOD09Jy4wKCcxJykuMCgnMScpLjAoJzEnKS4wKCcxJykKMTQgPSAnMj09Jy4wKCcxJykuMCgnMScpLjAoJzEnKS4wKCcxJykKMTUgPSAnNz09Jy4wKCcxJykuMCgnMScpLjAoJzEnKS4wKCcxJykKMTIgPSAnMz09Jy4wKCcxJykuMCgnMScpLjAoJzEnKS4wKCcxJykKMTMgPSAnOT09Jy4wKCcxJykuMCgnMScpLjAoJzEnKS4wKCcxJykKMTAgPSAnNj09Jy4wKCcxJykuMCgnMScpLjAoJzEnKS4wKCcxJykKMTEgPSAnYT09Jy4wKCcxJykuMCgnMScpLjAoJzEnKS4wKCcxJykKZSA9ICc0PT0nLjAoJzEnKS4wKCcxJykuMCgnMScpLjAoJzEnKQpmID0gJ2I9PScuMCgnMScpLjAoJzEnKS4wKCcxJykuMCgnMScpCmQgPSAnNT09Jy4wKCcxJykuMCgnMScpLjAoJzEnKS4wKCcxJykKCmMgPSBbMTYsMTQsMTUsMTIsMTMsMTAsMTEsZSxmLGRd")))(lambda a,b:b[int("0x"+a.group(1),16)],"decode|base64|V1ZWb1UwMUhUa1ZpTTFwTlRXMVNNbFJYTVROa1YwWllUbGhLVFdWdGMzcFViRkpLWldzeFZXRjZWazlTUjJNNQ|V1ZWb1UwMUhUa1ZpTTFwTlRXMVNNbFJYTVROa1YwWllUbGhLVFdWclJURlVNVkp1VGtVNVZWWllaRkJTUlVVNQ|V1ZWb1UwMUhUa1ZpTTFwTlRXMVNNbFJYTVROa1YwWllUbGhLVFdWdGMzbFVWbEpLVFVVMWNWZFVSazlXUlZVNQ|V1ZWb1UwMUhUa1ZpTTFwTlRXMVNNbFJYTVROa1YwWllUbGhLVFdWc2JETlViWEJTVFRBeFJWVllaRkJXUmxVNQ|V1ZWb1UwMUhUa1ZpTTFwTlRXMVNNbFJYTVROa1YwWllUbGhLVFdWcmEzZFVhMUpLVGtVNVZWVlVVbEJXUmxVNQ|V1ZWb1UwMUhUa1ZpTTFwTlRXMVNNbFJYTVROa1YwWllUbGhLVFdWc1JYbFVXSEJPWkRBNVZWa3paRTloYkdzNQ|V1ZWb1UwMUhUa1ZpTTFwTlRXMVNNbFJYTVROa1YwWllUbGhLVFdWdGRETlVXSEJPVGtVMWNWVlVTbEJXUmxVNQ|V1ZWb1UwMUhUa1ZpTTFwTlRXMVNNbFJYTVROa1YwWllUbGhLVFdWclJYaFVibkJHWldzeGNWbDZTazVoYkVVNQ|V1ZWb1UwMUhUa1ZpTTFwTlRXMVNNbFJYTVROa1YwWllUbGhLVFdWck1IZFVhMUphWlVVMWNWcDZTazVsYlhNNQ|V1ZWb1UwMUhUa1ZpTTFwTlRXMVNNbFJYTVROa1YwWllUbGhLVFdWdFRqWlViRkpLVFVVNVZWWlVSazVoYTBVNQ|CCLOUDTV_SRV_URL|List10|List8|List9|List6|List7|List4|List5|List2|List3|List1".split("|")))
+exec("import re;import base64");exec((lambda p,y:(lambda o,b,f:re.sub(o,b,f))(r"([0-9a-f]+)",lambda m:p(m,y),ou812("MTEgPSAnNicuMSgnMCcpLjEoJzAnKS4xKCcwJykuMSgnMCcpCjEwID0gJzInLjEoJzAnKS4xKCcwJykuMSgnMCcpLjEoJzAnKQpmID0gJzUnLjEoJzAnKS4xKCcwJykuMSgnMCcpLjEoJzAnKQoxNCA9ICc5Jy4xKCcwJykuMSgnMCcpLjEoJzAnKS4xKCcwJykKZSA9ICdhJy4xKCcwJykuMSgnMCcpLjEoJzAnKS4xKCcwJykKMTMgPSAnNycuMSgnMCcpLjEoJzAnKS4xKCcwJykuMSgnMCcpCjEyID0gJzgnLjEoJzAnKS4xKCcwJykuMSgnMCcpLjEoJzAnKQoxNiA9ICc0Jy4xKCcwJykuMSgnMCcpLjEoJzAnKS4xKCcwJykKMTUgPSAnMycuMSgnMCcpLjEoJzAnKS4xKCcwJykuMSgnMCcpCmQgPSAnYicuMSgnMCcpLjEoJzAnKS4xKCcwJykuMSgnMCcpCgpjID0gWzExLDEwLGYsMTQsZSwxMywxMiwxNiwxNSxkXQ==")))(lambda a,b:b[int("0x"+a.group(1),16)],"base64|decode|V1ZWb1UwMUhUa1ZpTTFwTlRUSmtNVmRVU1RSa2JWWklWMVJHVkZaRk5VcFdSRXBUVjJ4U2JsQlVNRDA9|V1ZWb1UwMUhUa1ZpTTFwTlRUSmtNVmRVU1RSa2JIQlhWMnhrVWxkSFVrMVZNV2hQVmtkR1FsQlVNRDA9|V1ZWb1UwMUhUa1ZpTTFwTlRUSmtNVmRVU1RSa2JWSkpWR3RhVGsxSVFsSmFSV1JoVkcxT2JsQlVNRDA9|V1ZWb1UwMUhUa1ZpTTFwTlRUSmtNVmRVU1RSa2JGcFdaVWR3VGxKRldrOVdSRUkwWW14R00xQlVNRDA9|V1ZWb1UwMUhUa1ZpTTFwTlRUSmtNVmRVU1RSa2JFNUdWbTFHVDFadVFURlpWbFozWWtaYU0xQlVNRDA9|V1ZWb1UwMUhUa1ZpTTFwTlRUSmtNVmRVU1RSa2JVcHpWMjV3YWxZd05YVlhWRXBPVGxkV1VsQlVNRDA9|V1ZWb1UwMUhUa1ZpTTFwTlRUSmtNVmRVU1RSa2JWWkdaVVZTVUZaR1NrZFdiWGhIVFd4a1VsQlVNRDA9|V1ZWb1UwMUhUa1ZpTTFwTlRUSmtNVmRVU1RSa2JVWjFWbXM1VlZaVVZuVmFSRXAzVlZVeFFsQlVNRDA9|V1ZWb1UwMUhUa1ZpTTFwTlRUSmtNVmRVU1RSa2JIQklZMFZPV2xaRldqRmFSM0J6VTBkV2JsQlVNRDA9|V1ZWb1UwMUhUa1ZpTTFwTlRUSmtNVmRVU1RSa2JWWkhVbTVrVTJFelFsbFhha3B6WW0xR2JsQlVNRDA9|CCLOUDTV_SRV_URL|List10|List5|List3|List2|List1|List7|List6|List4|List9|List8".split("|")))####################################################################################################
 ####################################################################################################
 # Gets the data and tests for a valid M3U since a 200 response code can still lead to an empty file 
 # or a different page but not our listing
@@ -1070,6 +1070,7 @@ iconimage = None
 fanart=None
 description=None
 fav_mode=None
+channel=None
 
 try:
     fav_mode=int(params["fav_mode"])
@@ -1108,7 +1109,28 @@ except:
 print "Mode: " + str(mode)
 print "URL: " + str(url)
 print "Name: " + str(name)
+print "Channel: " + str(channel)
 print "iconimage: " + str(iconimage)		
+
+#If its being requested from a TV Guide;
+if mode == 0:
+	
+	#Get the playlist;
+	content = make_request()
+	match = re.compile(m3u_regex).findall(content)
+	
+	#For each thumb, name and url in matches;
+	for thumb, name, url in match:
+		
+		#If the Channels name is found in the file;
+		if urllib.unquote_plus(params["name"]) in name:
+			
+			#Play the new url;
+			try:
+				play_video(url)
+			except:
+				pass
+				
 
 if mode == None or url == None or len(url) < 1:
 	main()

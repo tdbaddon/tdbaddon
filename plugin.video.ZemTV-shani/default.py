@@ -2559,7 +2559,7 @@ def getPITVChannels(categories, forSports=False):
 
                 ss=source
                 cname=ss["channelName"]
-                #print cname
+                
                 if 'ebound.tv' in ss["channelLink"]:
                     curl='ebound2:'+ss["channelLink"].replace(':1935','')
                 else:
@@ -3072,8 +3072,8 @@ def AddChannelsFromOthers(cctype,eboundMatches=[],progress=None):
             
             match.append((base64.b64decode('S1ROIEVudC4gKHdlYnNpdGUp'),'manual','direct:'+"rtmp://103.24.96.74/ktn/ playpath=ktn swfUrl=http://ktntv.tv/wp-content/player/jwplayer.flash.swf pageUrl=http://www.ktntv.tv/ live=1",''))
             match.append((base64.b64decode('S1ROIE5FV1MgKHdlYnNpdGUp'),'manual','direct:'+"rtmp://103.24.96.74/ktn/ playpath=ktnnews swfUrl=http://ktntv.tv/wp-content/player/jwplayer.flash.swf pageUrl=http://www.ktnnews.tv/ live=1",''))
-            match.append(('Makkah (youtube)','manual','','direct:plugin://plugin.video.youtube/?action=play_video&videoid=%s' %'ArVmnth5jB4'))
-            match.append(('Madina (youtube)','manual','direct:plugin://plugin.video.youtube/?action=play_video&videoid=%s' %'4OoKpZWJASY',''))
+            match.append(('Makkah (youtube)','manual','direct:plugin://plugin.video.youtube/?action=play_video&videoid=%s' %'D8YHp37-tp0',''))
+            match.append(('Madina (youtube)','manual','direct:plugin://plugin.video.youtube/?action=play_video&videoid=%s' %'ArVmnth5jB4',''))
             
   
 
@@ -3457,8 +3457,8 @@ def getPTCUrl():
         print 'file getting error'
         traceback.print_exc(file=sys.stdout)
 
-    req = urllib2.Request( base64.b64decode('aHR0cDovL2NsdW9kYmFja2VuZGFwaS5hcHBzcG90LmNvbS9pb3MvcGFrdHYvcGFrdHYuanNvbg==') )      
-    req.add_header(base64.b64decode("VXNlci1BZ2VudA=="),base64.b64decode("UGFrJTIwVFYlMjBDb25uZWN0aWZ5LzQuMyBDRk5ldHdvcmsvNzU4LjAuMiBEYXJ3aW4vMTUuMC4w")) 
+    req = urllib2.Request( base64.b64decode('aHR0cDovL2NsdW9kYmFja2VuZGFwaS5hcHBzcG90LmNvbS9pb3MvcGFrdHYvcGFrdHY0LjQuanNvbg==') )      
+    req.add_header(base64.b64decode("VXNlci1BZ2VudA=="),base64.b64decode("UGFrJTIwVFYlMjBDb25uZWN0aWZ5LzQuNCBDRk5ldHdvcmsvNzU4LjAuMiBEYXJ3aW4vMTUuMC4w")) 
     response = urllib2.urlopen(req)
     link=response.read()
     maindata=json.loads(link)
@@ -3675,26 +3675,26 @@ def getUniTVPage():
         print 'file getting error'
         traceback.print_exc(file=sys.stdout)
         
-    req = urllib2.Request( base64.b64decode('aHR0cDovL3VuaXZlcnNhbHR2LmRkbnMubmV0L1VuaXZlcnNhbC1UVi1IRC9jbXMvWFZlci9nZXRDb250dFYxLTAucGhw') )      
-    req.add_header(base64.b64decode("VXNlci1BZ2VudA=="),base64.b64decode("VW5pdmVyc2FsVFZIRC8xLjAgQ0ZOZXR3b3JrLzc1OC4wLjIgRGFyd2luLzE1LjAuMA==")) 
-    req.add_header(base64.b64decode("QXV0aG9yaXphdGlvbg=="),base64.b64decode("QmFzaWMgYWpOMGRtVnljMkZzT21SeVFHY3diakZ2YzBBM09EWT0=")) 
+    req = urllib2.Request( base64.b64decode('aHR0cDovL25ld2NtczZocHBhay5keW5kbnMudHYvQ01TNi9jbXMvWFZlci9nZXRDb250dFYxLTAucGhw') )      
+    req.add_header(base64.b64decode("VXNlci1BZ2VudA=="),base64.b64decode("VW5pdmVyc2FsJTIwU3BvcnRzJTIwSEQlMjBUVi8xLjAuMSBDRk5ldHdvcmsvNzU4LjAuMiBEYXJ3aW4vMTUuMC4w")) 
+    req.add_header(base64.b64decode("QXV0aG9yaXphdGlvbg=="),base64.b64decode("QmFzaWMgUTIxVE5qWlZjMlZTT2tOdFV6WTJWWE5sVWtCd1lYTlRkMDl5UkE9PQ==")) 
     response = urllib2.urlopen(req)
     link=response.read()
     import rc
     cryptor=rc.RNCryptor()
     d=base64.b64decode(link)    
-    decrypted_data = cryptor.decrypt(d, base64.b64decode("dGVsYzA5OVBAc3N3b3JkNzg2"))
+    decrypted_data = cryptor.decrypt(d, base64.b64decode("Q21TNjZQQDNzU3cwcmQ3ODY="))
     decrypted_data=json.loads(decrypted_data)
     dataUrl=decrypted_data[0]["LiveLink"]
 
     req = urllib2.Request( dataUrl)      
-    req.add_header(base64.b64decode("VXNlci1BZ2VudA=="),base64.b64decode("VW5pdmVyc2FsVFZIRC8xLjAgQ0ZOZXR3b3JrLzc1OC4wLjIgRGFyd2luLzE1LjAuMA==")) 
-    req.add_header(base64.b64decode("QXV0aG9yaXphdGlvbg=="),base64.b64decode("QmFzaWMgYWpOMGRtVnljMkZzT21SeVFHY3diakZ2YzBBM09EWT0=")) 
+    req.add_header(base64.b64decode("VXNlci1BZ2VudA=="),base64.b64decode("VW5pdmVyc2FsJTIwU3BvcnRzJTIwSEQlMjBUVi8xLjAuMSBDRk5ldHdvcmsvNzU4LjAuMiBEYXJ3aW4vMTUuMC4w")) 
+    req.add_header(base64.b64decode("QXV0aG9yaXphdGlvbg=="),base64.b64decode("QmFzaWMgUTIxVE5qWlZjMlZTT2tOdFV6WTJWWE5sVWtCd1lYTlRkMDl5UkE9PQ==")) 
     response = urllib2.urlopen(req)
     link=response.read()
 
     d=base64.b64decode(link)    
-    decrypted_data = cryptor.decrypt(d, base64.b64decode("dGVsYzA5OVBAc3N3b3JkNzg2"))
+    decrypted_data = cryptor.decrypt(d, base64.b64decode("Q21TNjZQQDNzU3cwcmQ3ODY="))
     #print decrypted_data
     jsondata=json.loads(decrypted_data)
     try:
@@ -3755,26 +3755,26 @@ def getGTVPage():
         print 'file getting error'
         traceback.print_exc(file=sys.stdout)
         
-    req = urllib2.Request( base64.b64decode('aHR0cDovL3d3dy5zb2Z0bWFnbmF0ZS5jb20vQ01TLVNlcnZlci1TcG9ydHMtVFYvWFZlci9nZXRDb250dFYxLTAucGhw') )      
-    req.add_header(base64.b64decode("VXNlci1BZ2VudA=="),base64.b64decode("U3BvcnRzVFYvMS4wIENGTmV0d29yay83NTguMC4yIERhcndpbi8xNS4wLjA=")) 
+    req = urllib2.Request( base64.b64decode('aHR0cDovL3d3dy5zb2Z0bWFnbmF0ZS5jb20vQ01TLVNlcnZlci1TcG9ydHMtVFYvWFZlci9QVFYtU3BvcnRzLVRWL2dldENvbnR0VjEtMC5waHA=') )      
+    req.add_header(base64.b64decode("VXNlci1BZ2VudA=="),base64.b64decode("UFRWU3BvcnRzLzEuMCBDRk5ldHdvcmsvNzU4LjAuMiBEYXJ3aW4vMTUuMC4w")) 
     req.add_header(base64.b64decode("QXV0aG9yaXphdGlvbg=="),base64.b64decode("QmFzaWMgVFRCcU1FdEFhMEU2Y0VGd2NIVkFOamczUUVReFkzUXhiMjVCY25rPQ==")) 
     response = urllib2.urlopen(req)
     link=response.read()
     import rc
     cryptor=rc.RNCryptor()
     d=base64.b64decode(link)    
-    decrypted_data = cryptor.decrypt(d, base64.b64decode("dFcxbjNsZUIzbnpANjg3QGQwbGw="))
+    decrypted_data = cryptor.decrypt(d, base64.b64decode("dFcxbjNsZUIzbnpANDc1QGQwMzM="))#first
     decrypted_data=json.loads(decrypted_data)
     dataUrl=decrypted_data[0]["LiveLink"]
 
     req = urllib2.Request( dataUrl)      
-    req.add_header(base64.b64decode("VXNlci1BZ2VudA=="),base64.b64decode("U3BvcnRzVFYvMS4wIENGTmV0d29yay83NTguMC4yIERhcndpbi8xNS4wLjA=")) 
+    req.add_header(base64.b64decode("VXNlci1BZ2VudA=="),base64.b64decode("UFRWU3BvcnRzLzEuMCBDRk5ldHdvcmsvNzU4LjAuMiBEYXJ3aW4vMTUuMC4w")) 
     req.add_header(base64.b64decode("QXV0aG9yaXphdGlvbg=="),base64.b64decode("QmFzaWMgVFRCcU1FdEFhMEU2Y0VGd2NIVkFOamczUUVReFkzUXhiMjVCY25rPQ==")) 
     response = urllib2.urlopen(req)
     link=response.read()
 
     d=base64.b64decode(link)    
-    decrypted_data = cryptor.decrypt(d, base64.b64decode("dFcxbjNsZUIzbnpANjg3QGQwbGw="))
+    decrypted_data = cryptor.decrypt(d, base64.b64decode("dFcxbjNsZUIzbnpANDc1QGQwMzM="))#second
     #print decrypted_data
     jsondata=json.loads(decrypted_data)
     try:
@@ -4190,7 +4190,7 @@ def PlayOtherUrl ( url ):
         PlayGen(base64.b64encode(url.split('direct2:')[1]),True)
         return
     if "ptc:" in url:
-        PlayGen(base64.b64encode(url.split('ptc:')[1]+getPTCAuth()))
+        PlayGen(base64.b64encode(url.split('ptc:')[1]+getPTCAuth()+'|User-Agent=AppleCoreMedia/1.0.0.13A452 (iPhone; U; CPU OS 9_0_2 like Mac OS X; en_gb)'))
         return    
     if "pv2:" in url:
         PlayPV2Link(url.split('pv2:')[1])
@@ -4204,14 +4204,24 @@ def PlayOtherUrl ( url ):
             base64.b64decode('aHR0cDovL2xpdmUuYXJ5bXVzaWsudHYv'),
             base64.b64decode('aHR0cDovL2xpdmUuYXJ5ZGlnaXRhbC50di8=')]:
         req = urllib2.Request(url)
+        
         req.add_header('User-Agent', base64.b64decode('TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgNi4xOyBXT1c2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzQ3LjAuMjUyNi4xMTEgU2FmYXJpLzUzNy4zNg==')) 
         response = urllib2.urlopen(req)
         link=response.read()
+        print link
+        paa='(content.jwplatform.com.players.*?.js)'
+        ln=re.findall(paa,link)
+        if len(ln)>0:
+            print ln, 'ln val'
+            link=getUrl('http://'+ln[0])
+        
 #        curlpatth='file: "(htt.*?)"' if 'qtv' not in url else 'file: \'(.*?)\''
-        curlpatth='file: [\'"](.*?)[\'"]'
-        if curlpatth.startswith('rtmp'): curlpatth+=' timeout=20'
+        curlpatth='file[\'"]?: [\'"](.*?)[\'"]'
+        
         progress.update( 50, "", "Preparing url..", "" )
-        dag_url =re.findall(curlpatth,link)[0]
+        dag_url =re.findall(curlpatth,link)[-1]
+        if dag_url.startswith('rtmp'): dag_url+=' timeout=20'
+        direct=True
     elif url=='etv':
         req = urllib2.Request(base64.b64decode('aHR0cDovL20ubmV3czE4LmNvbS9saXZlLXR2L2V0di11cmR1'))
         req.add_header('User-Agent', 'Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10')
@@ -4372,7 +4382,7 @@ def AddChannelsFromEbound():
 
     match.append(('Quran TV Urdu','aHR0cDovL2lzbDEuaXNsYW00cGVhY2UuY29tL1F1cmFuVXJkdVRW','gen'))
     match.append(('Channel 24','cnRtcDovL2RzdHJlYW1vbmUuY29tOjE5MzUvbGl2ZS8gcGxheXBhdGg9Y2l0eTQyIHN3ZlVybD1odHRwOi8vZHN0cmVhbW9uZS5jb20vanAvandwbGF5ZXIuZmxhc2guc3dmIHBhZ2VVcmw9aHR0cDovL2RzdHJlYW1vbmUuY29tL2NpdHk0Mi9pZnJhbWUuaHRtbCB0aW1lb3V0PTIw','gen'))
-    match.append(('QTV','cnRtcDovLzkzLjExNS44NS4xNzoxOTM1L0FSWVFUVi9teVN0cmVhbSB0aW1lb3V0PTEw','gen'))
+    match.append(('QTV','aHR0cDovLzE1OC42OS4yMjkuMzA6MTkzNS9BUllRVFYvbXlTdHJlYW0vcGxheWxpc3QubTN1OA==','gen'))
     match.append(('SEE TV','cnRtcDovLzM2Nzc4OTg4Ni5yLm15Y2RuOTIubmV0LzM2Nzc4OTg4Ni9fZGVmaW5zdF8vIHBsYXlwYXRoPXNlZXR2IHN3ZlVybD1odHRwOi8vZHN0cmVhbW9uZS5jb20vanAvandwbGF5ZXIuZmxhc2guc3dmIHBhZ2VVcmw9aHR0cDovL2RzdHJlYW1vbmUuY29tL3NlZXR2L2lmcmFtZS5odG1sIHRpbWVvdXQ9MTA=','gen'))
 
 

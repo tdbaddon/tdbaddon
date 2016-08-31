@@ -248,7 +248,8 @@ class indexer:
         try:
             url = urlparse.urljoin(self.cartoons_link, url)
 
-            result, headers, content, cookie = client.request(url, output='extended')
+            r = client.request(url, output='extended')
+            result = r[0] ; headers = r[3]
 
             items = client.parseDOM(result, 'div', attrs = {'class': 'anime_movies_items'})
 
@@ -299,7 +300,7 @@ class indexer:
         try:
             url = urlparse.urljoin(self.cartoons_link, url)
 
-            result, headers, content, cookie = client.request(url, output='extended')
+            result = client.request(url)
 
             items = client.parseDOM(result, 'ul', attrs = {'id': 'episode_related'})[0]
             items = client.parseDOM(items, 'li')
@@ -329,7 +330,7 @@ class indexer:
         try:
             url = urlparse.urljoin(self.cartoons_link, url)
 
-            result, headers, content, cookie = client.request(url, output='extended')
+            result = client.request(url)
 
             result = client.parseDOM(result, 'div', attrs = {'id': 'divDownload'})[0]
 

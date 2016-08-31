@@ -32,8 +32,8 @@ from resources.lib import resolvers
 
 class source:
     def __init__(self):
-        self.base_link = 'http://movieshd.is'
-        self.search_link = '/api/v1/cautare/aug'
+        self.base_link = 'http://movieshd.watch'
+        self.search_link = '/api/v1/cautare/upd'
 
 
     def get_movie(self, imdb, title, year):
@@ -48,7 +48,7 @@ class source:
 
             url = urlparse.urljoin(self.base_link, self.search_link)
 
-            post = {'q': title.lower(), 'limit': '100', 'timestamp': tm, 'verifiedCheck': tk, 'set': st, 'rt': rt}
+            post = {'q': title.lower(), 'limit': '100', 'timestamp': tm, 'verifiedCheck': tk, 'sl': st, 'rt': rt}
             post = urllib.urlencode(post)
 
             r = client.request(url, post=post, headers=headers, output='cookie2')
@@ -78,9 +78,10 @@ class source:
 
             headers = {'X-Requested-With': 'XMLHttpRequest'}
 
+
             url = urlparse.urljoin(self.base_link, self.search_link)
 
-            post = {'q': tvshowtitle.lower(), 'limit': '20', 'timestamp': tm, 'verifiedCheck': tk, 'set': st, 'rt': rt}
+            post = {'q': tvshowtitle.lower(), 'limit': '20', 'timestamp': tm, 'verifiedCheck': tk, 'sl': st, 'rt': rt}
             post = urllib.urlencode(post)
 
             r = client.request(url, post=post, headers=headers)
@@ -119,21 +120,33 @@ class source:
 
             if url == None: return sources
 
-            url = urlparse.urljoin(self.base_link, url)
+            url1 = urlparse.urljoin(self.base_link, url)
 
-            result, headers, content, cookie = client.request(url, output='extended')
+            result, headers, content, cookie = client.request(url1, output='extended')
 
             auth = re.findall('__utmx=(.+)', cookie)[0].split(';')[0]
             auth = 'Bearer %s' % urllib.unquote_plus(auth)
+            print cookie
 
             headers['Authorization'] = auth
             headers['X-Requested-With'] = 'XMLHttpRequest'
-            headers['Referer'] = url
+            #headers['Content-Type']='application/x-www-form-urlencoded; charset=UTF-8'
+            #headers['Accept'] = 'application/json, text/javascript, */*; q=0.01'
+            headers['Cookie'] = cookie
 
             u = '/ajax/embeds.php'
             u = urlparse.urljoin(self.base_link, u)
 
-            action = 'getEpisodeEmb' if '/episode/' in url else 'getMovieEmb'
+            #action = 'getEpisodeEmb' if '/episode/' in url else 'getMovieEmb'
+            if '/episode/' in url:
+                url = urlparse.urljoin(self.base_link,  '/tv-series'+ url)
+                action = 'getEpisodeEmb'
+            else:
+                action = 'getMovieEmb'
+                url = urlparse.urljoin(self.base_link, '/tv-series' + url)
+
+            headers['Referer'] = url
+            control.sleep(200)
 
             elid = urllib.quote(base64.encodestring(str(int(time.time()))).strip())
 
@@ -143,9 +156,12 @@ class source:
 
             post = {'action': action, 'idEl': idEl, 'token': token, 'elid': elid}
             post = urllib.urlencode(post)
+            print post
+            print headers
 
 
             r = client.request(u, post=post, headers=headers, output='cookie2')
+            print("####",r)
             r = str(json.loads(r))
             r = client.parseDOM(r, 'iframe', ret='.+?') + client.parseDOM(r, 'IFRAME', ret='.+?')
 

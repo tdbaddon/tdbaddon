@@ -39,10 +39,10 @@ class source:
         self.base_link = 'http://123movies.ru'
         self.search_link = '/ajax/suggest_search'
         self.info_link = '/ajax/movie_load_info/%s'
-        self.server_link = '/ajax/get_episodes/%s'
+        self.server_link = '/ajax/v2_get_episodes/%s'
         self.direct_link = '/ajax/v2_load_episode/%s'
         self.embed_link = '/ajax/load_embed/%s'
-
+        #http://123movies.to/ajax/suggest_search
 
     def get_movie(self, imdb, title, year):
         try:
@@ -86,6 +86,7 @@ class source:
             data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
 
             t = cleantitle.get(data['tvshowtitle'])
+            print('###',t,data['tvshowtitle'])
             year = re.findall('(\d{4})', date)[0]
             years = [str(year), str(int(year)+1), str(int(year)-1)]
             season = '%01d' % int(season)
@@ -96,12 +97,15 @@ class source:
             url = urlparse.urljoin(self.base_link, self.search_link)
             r = client.request(url, post=query, headers=headers)
             r = json.loads(r)['content']
+            print('>>>',r)
+
             r = zip(client.parseDOM(r, 'a', ret='href', attrs = {'class': 'ss-title'}), client.parseDOM(r, 'a', attrs = {'class': 'ss-title'}))
             r = [(i[0], re.findall('(.+?) - season (\d+)$', i[1].lower())) for i in r]
             r = [(i[0], i[1][0][0], i[1][0][1]) for i in r if len(i[1]) > 0]
             r = [i for i in r if t == cleantitle.get(i[1])]
             r = [i[0] for i in r if season == '%01d' % int(i[2])][:2]
             r = [(i, re.findall('(\d+)', i)[-1]) for i in r]
+            print('>>>',r)
 
             for i in r:
                 try:
@@ -115,8 +119,11 @@ class source:
 
     def muchmovies_info(self, url):
         try:
+            print('>>> url',url)
             u = urlparse.urljoin(self.base_link, self.info_link)
             u = client.request(u % url)
+            print('>>> u',u)
+
             q = client.parseDOM(u, 'div', attrs = {'class': 'jtip-quality'})[0]
             y = client.parseDOM(u, 'div', attrs = {'class': 'jt-info'})
             y = [i.strip() for i in y if i.strip().isdigit() and len(i.strip()) == 4][0]
@@ -192,9 +199,25 @@ class source:
                 #key2 = "d7ltv9lmvytcq2zf"
                 #key3 = "f7sg3mfrrs5qako9nhvvqlfr7wc9la63"
 
+                467078
+
+                #826avrbi6m49vd7shxkn985m 467078 k06twz87wwxtp3dqiicks2df
+                #826avrbi6m49vd7shxkn985m467078k06twz87wwxtp3dqiicks2df
+                #eyxep4
+                #n1sqcua67bcq9826avrbi6m49vd7shxkn985mhodk06twz87wwxtp3dqiicks2dfyud213k6ygiomq01s94e4tr9v0k887bkyud213k6ygiomq01s94e4tr9v0k887bkqocxzw39esdyfhvtkpzq9n4e7at4kc6k8sxom08bl4dukp16h09oplu7zov4m5f8
+                #467078eyxep49826avrbi6m49vd7shxkn985
+
                 key = 'n1sqcua67bcq9826'
                 key2 = 'i6m49vd7shxkn985'
                 key3 = 'rbi6m49vd7shxkn985mhodk06twz87ww'
+
+                key = '826avrbi6m49vd7shxkn985m'
+                key2 = 'k06twz87wwxtp3dqiicks2df'
+                key3 = '467078eyxep49826avrbi6m49vd7shxkn985'
+
+                key = '826avrbi6m49vd7shxkn985m'
+                key2 = 'k06twz87wwxtp3dqiicks2df'
+                key3 = '9826avrbi6m49vd7shxkn985'
 
                 video_id = headers['Referer'].split('-')[-1].replace('/','')
                 #print "1"
@@ -205,16 +228,25 @@ class source:
                 hash_id = hashlib.md5(episode_id + key_gen + key3).hexdigest()
                 #print "2",coookie,headers['Referer'], episode_id
 
-                request_url2 = self.base_link + '/ajax/v4_load_episode/' + episode_id + '/' + hash_id
+                request_url2 = self.base_link + '/ajax/get_sources/' + episode_id + '/' + hash_id
                 headers = {'Accept-Encoding': 'gzip, deflate, sdch', 'Cookie': coookie, 'Referer': headers['Referer']+ '\+' + coookie,
                            'user-agent': headers['User-Agent'], 'x-requested-with': 'XMLHttpRequest'}
                 result = requests.get(request_url2, headers=headers).text
+                print(">>>>>>>>",result)
+                result = result.replace('\\','')
                 #link = client.request(request_url2, headers=headers)
                 #print "3",url
 
-                url = re.findall('"?file"?\s*=\s*"(.+?)"', result)
+                url = re.findall('"?file"?\s*:\s*"(.+?)"', result)
+                print(">>>>>>>>",url)
+
                 url = [client.googletag(i) for i in url]
+                print(">>>>>>>>",url)
+
                 url = [i[0] for i in url if len(i) > 0]
+
+                print(">>>>>>>>",url)
+
 
                 u = []
                 try: u += [[i for i in url if i['quality'] == '1080p'][0]]

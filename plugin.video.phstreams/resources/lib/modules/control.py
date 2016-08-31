@@ -19,7 +19,9 @@
 '''
 
 
-import os,xbmc,xbmcaddon,xbmcplugin,xbmcgui,xbmcvfs
+import urlparse,os,sys
+
+import xbmc,xbmcaddon,xbmcplugin,xbmcgui,xbmcvfs
 
 
 integer = 1000
@@ -176,6 +178,14 @@ def yesnoDialog(line1, line2, line3, heading=addonInfo('name'), nolabel='', yesl
 
 def selectDialog(list, heading=addonInfo('name')):
     return dialog.select(heading, list)
+
+
+def moderator():
+    netloc = [urlparse.urlparse(sys.argv[0]).netloc, '', 'plugin.video.live.streamspro', 'plugin.video.phstreams', 'plugin.video.cpstreams', 'plugin.video.tinklepad', 'plugin.video.metallic']
+
+    if not infoLabel('Container.PluginName') in netloc: sys.exit()
+
+    if '.strm' in str(infoLabel('ListItem.FileName')): sys.exit()
 
 
 def apiLanguage():

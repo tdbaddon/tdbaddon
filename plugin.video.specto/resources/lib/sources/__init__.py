@@ -337,6 +337,8 @@ class sources:
 
         for i in range(0, timeout * 2):
             try:
+                control.log("SOURCE S2 %s" % len(self.sources))
+
                 if xbmc.abortRequested == True: return sys.exit()
 
                 try: info = [sourceLabel[int(re.sub('[^0-9]', '', str(x.getName()))) - 1] for x in threads if x.is_alive() == True]
@@ -353,8 +355,8 @@ class sources:
                 time.sleep(0.5)
             except:
                 pass
-
-        self.progressDialog.close()
+        try: self.progressDialog.close()
+        except: pass
 
         return self.sources
 
@@ -399,6 +401,7 @@ class sources:
 
         [i.start() for i in threads]
 
+
         for i in range(0, timeout * 2):
             try:
                 if xbmc.abortRequested == True: return sys.exit()
@@ -410,7 +413,7 @@ class sources:
             except:
                 pass
 
-        if len(self.sources) >= 15: return True
+        if len(self.sources) >= 10: return True
         else: return False
 
 

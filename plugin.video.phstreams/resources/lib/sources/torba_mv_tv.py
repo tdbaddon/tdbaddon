@@ -113,7 +113,7 @@ class source:
             links += [{'quality': 'SD', 'url': urllib.urlencode(i)} for i in r if int(i['height']) <= 720]
             links = links[:3]
 
-            for i in links: sources.append({'source': 'cdn', 'quality': i['quality'], 'provider': 'Torba', 'url': i['url'], 'direct': True, 'debridonly': False, 'autoplay': False})
+            for i in links: sources.append({'source': 'torba.se', 'quality': i['quality'], 'provider': 'Torba', 'url': i['url'], 'direct': True, 'debridonly': False, 'autoplay': False})
 
             return sources
         except:

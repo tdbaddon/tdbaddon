@@ -30,7 +30,7 @@ from resources.lib.modules import debrid
 class source:
     def __init__(self):
         self.domains = ['newmyvideolink.xyz', 'beta.myvideolinks.xyz']
-        self.base_link = 'http://beta.myvideolinks.xyz'
+        self.base_link = 'http://newmyvideolink.xyz'
         self.search_link = '/?s=%s'
 
 
