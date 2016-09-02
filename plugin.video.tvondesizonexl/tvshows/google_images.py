@@ -47,10 +47,9 @@ def convertHTMLCodes(html):
     
 
 class googleImagesAPI:
-    baseURL = 'https://www.google.com/search?imgsz=large&safe=active&hl=en&site=imghp&tbm=isch{start}{query}'
+    baseURL = 'https://www.google.com.au/search?num={start}&filter=0&source=lnms&tbm=isch{query}'
     perPage = 20
-    
-        
+
     def createQuery(self, terms, **kwargs):
         args = ['q={0}'.format(urllib.quote_plus(terms))]
         for k in kwargs.keys():
@@ -61,7 +60,7 @@ class googleImagesAPI:
         return dict(urlparse.parse_qsl(query))
     
     def parseImages(self, html):
-        matches = re.compile('href="/imgres\?imgurl=(.+?)&amp;').findall(html)
+        matches = re.compile('\"ou\"\:\"(.+?)\"').findall(html)
         results = []
         i = 0
         for match in matches:
@@ -77,7 +76,7 @@ class googleImagesAPI:
         return self.parseImages(html)
 
     def getPage(self, url):
-        return http.HttpClient().get_html_content(url=url, headers={'User-Agent': 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)'})
+        return http.HttpClient().get_html_content(url=url, headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36'})
         
 
 def load_tv_show_images(req_attrib, modelMap):

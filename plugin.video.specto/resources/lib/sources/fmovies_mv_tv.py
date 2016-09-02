@@ -19,7 +19,7 @@
 '''
 
 
-import re,urllib,urlparse,json, random
+import re,urllib,urlparse,json, random, time
 
 from resources.lib.libraries import control
 from resources.lib.libraries import cleantitle
@@ -41,7 +41,7 @@ class source:
             #X - Requested - With:"XMLHttpRequest"
             return url
         except:
-            return
+            return None
 
     def get_show(self, imdb, tvdb, tvshowtitle, year):
 
@@ -49,8 +49,9 @@ class source:
             url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'year': year}
             url = urllib.urlencode(url)
             return url
+            return None
         except:
-            return
+            return None
 
 
     def get_episode(self, url, imdb, tvdb, title, date, season, episode):
@@ -163,6 +164,8 @@ class source:
             #xtoken = self.__get_xtoken()
 
             result = client.request(url, limit='0')
+            result, headers, content, cookie = client.request(url, limit='0', output='extended')
+
             #xtoken = self.__get_xtoken()
             print("r22", result)
 
@@ -200,22 +203,27 @@ class source:
                 try:
                     #http://fmovies.to/ajax/episode/info?_token=31f2ab5&id=1r12ww&update=0&film=286l
                     headers = {'X-Requested-With': 'XMLHttpRequest'}
-                    control.sleep(600)
+                    time.sleep(0.7)
                     hash_url = urlparse.urljoin(self.base_link, self.hash_link)
                     query = {'id': s[0], 'update': '0', 'film': r2}
                     query.update(self.__get_token(query))
                     hash_url = hash_url + '?' + urllib.urlencode(query)
-                    headers['Referer'] = url
+                    headers['Referer'] = urlparse.urljoin(url, s[0])
+                    headers['Cookie'] = cookie
                     result = client.request(hash_url, headers=headers, limit='0')
-                    print("r101 result",result)
+                    print("r101 result",result,headers)
 
-                    control.sleep(440)
+                    time.sleep(0.6)
                     query = {'id': s[0], 'update': '0'}
                     query.update(self.__get_token(query))
                     url = url + '?' + urllib.urlencode(query)
                     #result = client2.http_get(url, headers=headers)
                     result = json.loads(result)
-                    print("r102", result)
+                    print("S",s[1],"r102", result)
+                    quality = 'SD'
+                    if s[1] == '1080': quality = '1080p'
+                    if s[1] == '720': quality = 'HD'
+                    if s[1] == 'CAM': quality == 'CAM'
 
                     query = result['params']
                     query['mobile'] = '0'
@@ -232,8 +240,12 @@ class source:
                     print("r122",result)
 
                     for i in result:
-                        try: sources.append({'source': 'gvideo', 'quality': client.googletag(i)[0]['quality'], 'provider': 'Fmovies', 'url': i})
-                        except: pass
+                        if 'google' in i:
+                            try:sources.append({'source': 'gvideo', 'quality': client.googletag(i)[0]['quality'], 'provider': 'Fmovies', 'url': i})
+                            except:pass
+                        else:
+                            try: sources.append({'source': 'gvideo', 'quality': quality, 'provider': 'Fmovies', 'url': i})
+                            except: pass
                     control.sleep(410)
 
                 except:
@@ -262,8 +274,12 @@ class source:
         for key in data:
             if not key.startswith('_'):
                 for i, c in enumerate(data[key]):
-                    n += ord(c) * (i + 123456 + len(data[key]))
+                    n += ord(c) * 64184 + len(data[key])
+        print("NNN",n,data)
         return {'_token': hex(n)[2:]}
+        #print ("TOK",hex(n)[2:])
+        #return {'_token': '3c3b375'}
+
 
     def __get_xtoken(self):
         url = urlparse.urljoin(self.base_link, 'fghost?%s' % (random.random()))

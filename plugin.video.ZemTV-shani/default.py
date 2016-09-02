@@ -2333,7 +2333,12 @@ def getCFChannels(category):
             ss=source
             cname=ss["Title"]
             cimage=ss["ThumbnailURL"]
-            curl="CF:"+ss["ContentId"]
+            if 1==2 and 'HLSURL' in ss and len(ss["HLSURL"])>0 :
+                curl="direct:"+ss["HLSURL"]
+            elif 1==2 and 'SamsungURL' in ss  and len(ss["SamsungURL"])>0 :
+                curl="direct:"+ss["SamsungURL"]
+            else:
+                curl="CF:"+ss["ContentId"]
                     
             ret.append((cname +' CF' ,'manual', curl ,cimage))   
         if len(ret)>0:
@@ -3865,8 +3870,8 @@ def getPV2Url():
         print 'file getting error'
         traceback.print_exc(file=sys.stdout)
 
-        
-    for pvopt in [(1,2),(2,2)]:#[(0,1),(1,1),(1,2)]:
+    link=''
+    for pvopt in [(1,2),(2,2),(3,2)]:#[(0,1),(1,1),(1,2)]:
         pvitr,pv2option=pvopt  ##pv2option==2=soapxml with, =1 with 
         try:
             selfAddon.setSetting( id="pv2PlayOption" ,value=str(pv2option))
@@ -3894,27 +3899,30 @@ def getPV2Url():
                 
                 deviceid=getPV2Device(pvitr)
                 #if pvitr==1: print 1/0
-                mainurl=base64.b64encode(base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2FwcF9wYW5lbG5ldy9vdXRwdXQucGhwL3BsYXlsaXN0P3R5cGU9eG1sJmRldmljZVNuPSVz')%deviceid+'&token=%s')
+                if pvitr==3:                    
+                    link=getUrl(base64.b64decode('aHR0cDovL3NoYW5pLm9mZnNob3JlcGFzdGViaW4uY29tL3B2Mkxhc3RXb3JraW5nLnhtbA==')).decode("base64")
+                else:
+                    mainurl=base64.b64encode(base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2FwcF9wYW5lbG5ldy9vdXRwdXQucGhwL3BsYXlsaXN0P3R5cGU9eG1sJmRldmljZVNuPSVz')%deviceid+'&token=%s')
                 
                 #else:
                 #    mainurl='aHR0cHM6Ly9hcHAuZHlubnMuY29tL2FwcF9wYW5lbG5ldy9vdXRwdXQucGhwL3BsYXlsaXN0P3R5cGU9eG1sJmRldmljZVNuPTEyMyZ0b2tlbj0lcw=='    
                 #mainurl='aHR0cHM6Ly9hcHAuZHlubnMuY29tL2FwcF9wYW5lbG5ldy9vdXRwdXQucGhwL3BsYXlsaXN0P3R5cGU9eG1sJmRldmljZVNuPXBha2luZGlhaGRwYWlkMi42JnRva2VuPSVz'
-            import time
-            TIME = time.time()
-            second= str(TIME).split('.')[0]
-            first =int(second)+int(base64.b64decode('NjkyOTY5Mjk='))
-            token=base64.b64encode(base64.b64decode('JXNAMm5kMkAlcw==') % (str(first),second))
-            #req = urllib2.Request( base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2FwcF9wYW5lbG5ldy9vdXRwdXQucGhwL3BsYXlsaXN0P3R5cGU9eG1sJmRldmljZVNuPXBha2luZGlhaGRwYWlkMi42JnRva2VuPSVz')  %token)      
-            #req = urllib2.Request( base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2FwcF9wYW5lbG5ldy9vdXRwdXQucGhwL3BsYXlsaXN0P3R5cGU9eG1sJmRldmljZVNuPTI0NCZ0b2tlbj0lcw==')  %token)    
-            
-            req = urllib2.Request( base64.b64decode(mainurl)  %(token))    
-            req.add_header('Authorization', base64.b64decode('QmFzaWMgWVdSdGFXNDZRV3hzWVdneFFBPT0=')) 
-            req.add_header(base64.b64decode("VXNlci1BZ2VudA=="),getPV2UserAgent(pv2option)) 
-            #req.add_header(base64.b64decode("VXNlci1BZ2VudA=="),base64.b64decode("QkVCNDNDOENDNUU5NDVFOTk4QjI3MjM4MDFFQjk0RkY=")) 
-            response = urllib2.urlopen(req)
-            link=response.read()
-            if 'sky sports' in link.lower():
-                break
+                    import time
+                    TIME = time.time()
+                    second= str(TIME).split('.')[0]
+                    first =int(second)+int(base64.b64decode('NjkyOTY5Mjk='))
+                    token=base64.b64encode(base64.b64decode('JXNAMm5kMkAlcw==') % (str(first),second))
+                    #req = urllib2.Request( base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2FwcF9wYW5lbG5ldy9vdXRwdXQucGhwL3BsYXlsaXN0P3R5cGU9eG1sJmRldmljZVNuPXBha2luZGlhaGRwYWlkMi42JnRva2VuPSVz')  %token)      
+                    #req = urllib2.Request( base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2FwcF9wYW5lbG5ldy9vdXRwdXQucGhwL3BsYXlsaXN0P3R5cGU9eG1sJmRldmljZVNuPTI0NCZ0b2tlbj0lcw==')  %token)    
+                    
+                    req = urllib2.Request( base64.b64decode(mainurl)  %(token))    
+                    req.add_header('Authorization', base64.b64decode('QmFzaWMgWVdSdGFXNDZRV3hzWVdneFFBPT0=')) 
+                    req.add_header(base64.b64decode("VXNlci1BZ2VudA=="),getPV2UserAgent(pv2option)) 
+                    #req.add_header(base64.b64decode("VXNlci1BZ2VudA=="),base64.b64decode("QkVCNDNDOENDNUU5NDVFOTk4QjI3MjM4MDFFQjk0RkY=")) 
+                    response = urllib2.urlopen(req)
+                    link=response.read()
+                if 'sky sports' in link.lower():
+                    break
         except:
             traceback.print_exc(file=sys.stdout)
             pass
@@ -4996,24 +5004,37 @@ def PlayCFLive(url):
     progress.create('Progress', 'Fetching Streaming Info')
     progress.update( 10, "", "Finding links..", "" )
 
-    req = urllib2.Request(base64.b64decode('aHR0cHM6Ly9jaW5lZnVudHYuY29tL3NtdGFsbmMvY29udGVudC5waHA/Y21kPWRldGFpbHMmQCZkZXZpY2U9aW9zJnZlcnNpb249MCZjb250ZW50aWQ9JXMmc2lkPSZ1PWMzMjgxOTMwQHRyYnZuLmNvbQ==')%url)
+    try:
+        #headers=[('User-Agent','Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10')]
+        opener = urllib2.build_opener(NoRedirection)
+        opener.addheaders = [('User-agent', 'Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10')]
+        response = opener.open('https://cinefuntv.com/watchnow.php?content='+url)
+        html= response.read();#getUrl('https://cinefuntv.com/watchnow.php?content='+url,headers=headers)
+        #print html
+        playfile=re.findall('var cms_url = [\'"](.*?)[\'"]', html)[0]+'|User-Agent=Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10'
+    except: 
+        traceback.print_exc(file=sys.stdout)
+        playfile=''
+        
+    if playfile=='':
+        req = urllib2.Request(base64.b64decode('aHR0cHM6Ly9jaW5lZnVudHYuY29tL3NtdGFsbmMvY29udGVudC5waHA/Y21kPWRldGFpbHMmQCZkZXZpY2U9aW9zJnZlcnNpb249MCZjb250ZW50aWQ9JXMmc2lkPSZ1PWMzMjgxOTMwQHRyYnZuLmNvbQ==')%url)
+        req.add_header('User-Agent', base64.b64decode('Q0ZVTlRWLzMuMSBDRk5ldHdvcmsvNzU4LjAuMiBEYXJ3aW4vMTUuMC4w'))
+        response = urllib2.urlopen(req)
+        link=response.read()
+        response.close()
+        progress.update( 50, "", "Finding links..", "" )
+        import json
+        data=json.loads(link)
+        playfile=""
+        
+        playfile=data[0]["HLSURL"]
+        if playfile=="":
+            playfile=data[0]["SamsungURL"]
+        if playfile=="":
+            playfile=data[0]["PanasonicURL"]
 
-    req.add_header('User-Agent', base64.b64decode('Q0ZVTlRWLzMuMSBDRk5ldHdvcmsvNzU4LjAuMiBEYXJ3aW4vMTUuMC4w'))
-    response = urllib2.urlopen(req)
-    link=response.read()
-    response.close()
-    progress.update( 50, "", "Finding links..", "" )
-    import json
-    data=json.loads(link)
-    playfile=""
-    
-    playfile=data[0]["HLSURL"]
-    if playfile=="":
-        playfile=data[0]["SamsungURL"]
-    if playfile=="":
-        playfile=data[0]["PanasonicURL"]
-                
-    playfile+='|User-Agent=AppleCoreMedia/1.0.0.13A452 (iPhone; U; CPU OS 9_0_2 like Mac OS X; en_gb)'
+        
+        playfile+='|User-Agent=AppleCoreMedia/1.0.0.13A452 (iPhone; U; CPU OS 9_0_2 like Mac OS X; en_gb)'
 #    playfile =url+'?wmsAuthSign='+link+'|User-Agent=AppleCoreMedia/1.0.0.13A452 (iPhone; U; CPU OS 9_0_2 like Mac OS X; en_gb)'
     progress.update( 100, "", "Almost done..", "" )
     listitem = xbmcgui.ListItem( label = str(name), iconImage = "DefaultVideo.png", thumbnailImage = xbmc.getInfoImage( "ListItem.Thumb" ) )

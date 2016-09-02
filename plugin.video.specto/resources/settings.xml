@@ -52,7 +52,6 @@
 	<category label="30861">
 		<setting id="animeultima_tv" type="bool" label="Animeultima" default="false" />
 		<setting id="dayt_tv" type="bool" label="Dayt" default="true" />
-		<setting id="directdl_tv" type="bool" label="Directdownload" default="false" />
 		<setting id="easynews_tv" type="bool" label="Easynews" default="false" />
 		<setting id="fmovies_tv" type="bool" label="Fmovies" default="true" />
 		<setting id="iwatchonline_tv" type="bool" label="Iwatchonline" default="true" />

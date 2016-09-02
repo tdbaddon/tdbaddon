@@ -337,7 +337,7 @@ class sources:
 
         for i in range(0, timeout * 2):
             try:
-                control.log("SOURCE S2 %s" % len(self.sources))
+                #control.log("SOURCE S2 %s" % len(self.sources))
 
                 if xbmc.abortRequested == True: return sys.exit()
 

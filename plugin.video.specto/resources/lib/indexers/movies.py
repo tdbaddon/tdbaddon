@@ -265,7 +265,6 @@ class movies:
         return self.list
 
 
-
     def persons(self):
         self.list = cache.get(self.imdb_person_list, 24, self.personlist_link)
         for i in range(0, len(self.list)): self.list[i].update({'action': 'movies'})

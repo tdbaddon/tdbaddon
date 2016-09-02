@@ -1,3 +1,6 @@
+2016.09.01.1
+    sfix - fmovie, sezonlukdizi
+
 2016.08.29.1
     fix cache, and iwatchonline, muchmovies
     todo: fmovies

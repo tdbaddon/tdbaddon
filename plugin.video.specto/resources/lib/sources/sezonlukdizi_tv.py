@@ -41,10 +41,11 @@ class source:
             tvshowtitle = cleantitle.get(tvshowtitle)
 
             result = [i[0] for i in result if tvshowtitle == i[1]][0]
-
+            print result
             url = urlparse.urljoin(self.base_link, result)
             url = urlparse.urlparse(url).path
             url = client.replaceHTMLCodes(url)
+            url = urlparse.urljoin('/diziler',url)
             url = url.encode('utf-8')
             return url
         except:
@@ -84,13 +85,20 @@ class source:
 
             url = urlparse.urljoin(self.base_link, url)
 
-            result = client.source(url)
-            result = re.sub(r'[^\x00-\x7F]+', ' ', result)
+            result = client.request(url)
+            #result = result.encode('windows-1254')
+            #print result
 
+            result = re.sub(r'[^\x00-\x7F]+', ' ', result)
+            #print result
             pages = []
             try:
-                r = client.parseDOM(result, 'div', attrs = {'id': 'embed'})[0]
+                r = client.parseDOM(result, 'div', attrs = {'id': 'embed'})
+                print ("r",r[0])
                 pages.append(client.parseDOM(r, 'iframe', ret='src')[0])
+                print pages
+
+
             except:
                 pass
             try:
@@ -103,18 +111,25 @@ class source:
 
             for page in pages:
                 try:
-                    result = client.source(page)
+                    if not 'http' in page: page = 'http:'+page
+                    result = client.request(page)
+                    #print result
 
                     captions = re.search('kind\s*:\s*(?:\'|\")captions(?:\'|\")', result)
                     if not captions: raise Exception()
 
                     result = re.compile('"?file"?\s*:\s*"([^"]+)"\s*,\s*"?label"?\s*:\s*"(\d+)p?[^"]*"').findall(result)
+                    print result
 
                     links = [(i[0], '1080p') for i in result if int(i[1]) >= 1080]
                     links += [(i[0], 'HD') for i in result if 720 <= int(i[1]) < 1080]
                     links += [(i[0], 'SD') for i in result if 480 <= int(i[1]) < 720]
 
-                    for i in links: sources.append({'source': 'gvideo', 'quality': i[1], 'provider': 'Sezonlukdizi', 'url': i[0]})
+                    for i in links:
+                        if not 'http' in i[0]: myurl = 'http:'+i[0]
+                        else: myurl = [0]
+
+                        sources.append({'source': 'gvideo', 'quality': i[1], 'provider': 'Sezonlukdizi', 'url': myurl})
                 except:
                     pass
 

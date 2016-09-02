@@ -155,7 +155,6 @@ class tvshows:
                 self.list = self.tvmaze_list(url)
                 self.worker()
 
-
             if idx == True: self.tvshowDirectory(self.list)
             return self.list
         except:

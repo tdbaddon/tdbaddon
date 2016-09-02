@@ -118,7 +118,7 @@ def EPIS(name,url,iconimage):
         if iconimage == None:
                 iconimage = icon
         link = OPEN_URL(url)
-        match=re.compile('<a itemprop="target" href="(.*?)"><button type="button"  class="episode" >(.*?)</button></a>').findall(link) 
+        match=re.compile('<a itemprop="target" href="(.*?)"><.*?class="episode".*?>(.*?)</button></a>').findall(link) 
         items = len(match)
         for url,name2 in match:
                 if metaset=='true':
@@ -133,7 +133,7 @@ def EPIS(name,url,iconimage):
 def LINK(name,url,iconimage):
         link = OPEN_URL(url)
         try:
-                url=re.compile('<h3 class="h3-detail">.*?<a  href="(.*?)">').findall(link)[0]
+                url = re.compile('<a href="(.*?)">Watch <cite>').findall(link)[0]
                 link = OPEN_URL(url)
         except: pass
         try:
@@ -151,12 +151,13 @@ def LINK(name,url,iconimage):
                         except:
                                 url = re.findall(r'\|(.*?)\|', str(link), re.I|re.DOTALL)[0]
         except:
-                link = link.replace('../view.php?','view.php?')
-                link = link.replace('./view.php?','view.php?')
+                
                 try:
                         url = re.findall(r'<source.*?src="(.*?)"', str(link), re.I|re.DOTALL)[0]
                 except:
                         pass
+                link = link.replace('../view.php?','view.php?')
+                link = link.replace('./view.php?','view.php?')
                 if url == '':
                         try:
                                 url = re.findall(r'<source.*?src="(.*?)"', str(link), re.I|re.DOTALL)[1]
@@ -165,7 +166,8 @@ def LINK(name,url,iconimage):
                 if 'google' in url:
                         url = url
                 else:
-                        url = baseurl + '/' + url
+                        if baseurl not in url:
+                                url = baseurl + '/' + url
         liz = xbmcgui.ListItem(name, iconImage="DefaultVideo.png", thumbnailImage=iconimage)
         liz.setInfo(type="Video", infoLabels={"Title": name, "Plot": description})
         liz.setProperty("IsPlayable","true")
@@ -2132,10 +2134,10 @@ xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
 
 
-if xbmcvfs.exists(xbmc.translatePath('special://masterprofile/sources.xml')):
-        with open(xbmc.translatePath('special://masterprofile/sources.xml'), 'r+') as f:
+if xbmcvfs.exists(xbmc.translatePath('special://home/userdata/sources.xml')):
+        with open(xbmc.translatePath('special://home/userdata/sources.xml'), 'r+') as f:
                 my_file = f.read()
-                if re.search(r'http://muckys.mediaportal4kodi.ml/', my_file):
+                if re.search(r'http://muckys.mediaportal4kodi.ml', my_file):
                         addon.log('Muckys Source Found in sources.xml, Not Deleting.')
                 else:
                         line1 = "you have Installed The MDrepo From An"
@@ -2149,7 +2151,7 @@ if xbmcvfs.exists(xbmc.translatePath('special://masterprofile/sources.xml')):
                         shutil.rmtree(delete_addon, ignore_errors=True)
                         shutil.rmtree(delete_repo, ignore_errors=True)
                         dialog = xbmcgui.Dialog()
-                        addon.log('===MovieFlix===DELETING===ADDON+===REPO===')
+                        addon.log('===DELETING===ADDON+===REPO===')
                         xbmcgui.Dialog().ok(addon_name, line4, line5)
 
 

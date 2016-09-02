@@ -47,6 +47,7 @@ class source:
         self.sources = []
 
     def get_movie(self, imdb, title, year):
+        return None
         try:
             url = '%s %s' % (title, year)
             url = client.replaceHTMLCodes(url)

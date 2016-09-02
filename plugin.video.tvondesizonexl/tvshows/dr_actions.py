@@ -42,13 +42,7 @@ DIRECT_CHANNELS = {"Awards & Concerts":{"iconimage":"Awards.jpg",
                    "channelType": "IND",
                    "tvshow_episodes_url": "/forums/20-Latest-Exclusive-Movie-HQ"}}
  
-LIVE_CHANNELS = {"MTunes":{"iconimage":"http://www.lyngsat-logo.com/logo/tv/mm/m_tunes_hd.png",
-                        "channelType": "IND",
-                        "channelUrl": "http://akamaihd.wowzahls12.yuppcdn.net/live/mtunes/chunklist.m3u8|User-Agent=Apache"},
-                 "Music India":{"iconimage":"http://www.lyngsat-logo.com/logo/tv/mm/music_india.png",
-                        "channelType": "IND",
-                        "channelUrl": "http://akamaihd.wowzahls12.yuppcdn.net/live/musicindia/chunklist.m3u8|User-Agent=Apache"},
-                 "9XM":{"iconimage":"http://www.lyngsat-logo.com/logo/tv/num/9x_music.png",
+LIVE_CHANNELS = {"9XM":{"iconimage":"http://www.lyngsat-logo.com/logo/tv/num/9x_music.png",
                         "channelType": "IND",
                         "channelUrl": "http://d2ckk42trw29cy.cloudfront.net/9xmedia/ngrp:9xmusic_all/playlist.m3u8"},
                  "9X Jalwa":{"iconimage":"http://www.lyngsat-logo.com/logo/tv/num/9x_jalwa.png",
@@ -65,7 +59,16 @@ LIVE_CHANNELS = {"MTunes":{"iconimage":"http://www.lyngsat-logo.com/logo/tv/mm/m
                           "channelUrl": "http://ibn7_hls-lh.akamaihd.net/i/ibn7_hls_n_1@174951/index_3_av-b.m3u8?sd=10&play-only=backup&rebase=on"},
                  "India TV": {"iconimage":"http://www.lyngsat-logo.com/logo/tv/ii/india_tv_in.png",
                               "channelType": "IND",
-                              "channelUrl": "http://indiatvnews-lh.akamaihd.net/i/ITV_1@199237/master.m3u8"}						  
+                              "channelUrl": "http://indiatvnews-lh.akamaihd.net/i/ITV_1@199237/master.m3u8"},
+                 "NDTV 24x7": {"iconimage":"http://www.lyngsat-logo.com/logo/tv/nn/ndtv_24x7.png",
+                              "channelType": "IND",
+                              "channelUrl": "http://ndtv.live-s.cdn.bitgravity.com/cdn-live-b7/_definst_/ndtv/live/ndtv247live.smil/playlist.m3u8"},
+                 "NDTV India": {"iconimage":"http://www.lyngsat-logo.com/logo/tv/nn/ndtv_india.png",
+                              "channelType": "IND",
+                              "channelUrl": "http://ndtv.live-s.cdn.bitgravity.com/cdn-live-b7/_definst_/ndtv/live/ndtvindialive.smil/playlist.m3u8"},
+                 "NDTV GoodTimes": {"iconimage":"http://www.lyngsat-logo.com/logo/tv/nn/ndtv_good_times.png",
+                              "channelType": "IND",
+                              "channelUrl": "http://ndtv.live-s.cdn.bitgravity.com/cdn-live-b3/_definst_/ndtv/live/ndtvgoodtime.smil/playlist.m3u8"}
                  }
 
 BASE_WSITE_URL = base64.b64decode('aHR0cDovL3d3dy5kZXNpcnVsZXoubmV0')

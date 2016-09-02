@@ -35,6 +35,7 @@ class source:
 
 
     def get_movie(self, imdb, title, year):
+        return None
         try:
             query = self.moviesearch_link % (urllib.quote_plus(title))
             query = urlparse.urljoin(self.base_link, query)
@@ -96,6 +97,7 @@ class source:
             return
 
     def get_episode(self, url, imdb, tvdb, title, premiered, season, episode):
+        return None
         try:
             data = urlparse.parse_qs(url)
             data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])

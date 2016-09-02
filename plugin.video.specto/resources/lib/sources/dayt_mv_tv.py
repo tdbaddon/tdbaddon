@@ -47,8 +47,9 @@ class source:
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
             return url
-        except:
-            return
+        except Exception as e:
+            control.log("------ %s | %s " ('DAYT',e))
+            return None
 
 
 
@@ -77,30 +78,26 @@ class source:
     def get_sources(self, url, hosthdDict, hostDict, locDict):
         try:
             sources = []
-            control.log('#Dayt url %s' % url)
-
             if url == None: return sources
             content = re.compile('(.+?)\sS\d*E\d*$').findall(url)
-            control.log('#Dayt content %s' % content)
+            #control.log('#Dayt content %s' % content)
 
             if len(content) == 0:
-                control.log('#Dayt ttttttt')
                 title, year = re.compile('(.+?) \((\d{4})\)').findall(url)[0]
                 mytitle = cleantitle.movie(title)
-                control.log('#Dayt title, year: %s,%s' % (title, year))
 
                 data = os.path.join(control.dataPath, 'daytse1.db')
                 download = True
                 try:download = abs(datetime.datetime.fromtimestamp(os.path.getmtime(data)) - (datetime.datetime.now())) > datetime.timedelta(days=2)
                 except:pass
                 if download == True:
-                    control.log('#Dayt DDDOOOWNLOAD ')
+                    #control.log('#Dayt DDDOOOWNLOAD ')
                     #result = client.request(base64.b64decode(self.data_link))
                     #with open(data, "wb") as code:
                     #    code.write(result)
                     result = client.request(base64.b64decode(self.data_link))
                     print(len(result))
-                    control.log(">>>>>>>>>>>>>>> ONEC Downloading")
+                    #control.log(">>>>>>>>>>>>>>> ONEC Downloading")
                     zip = zipfile.ZipFile(StringIO.StringIO(result))
                     zip.extractall(control.dataPath)
                     zip.close()
@@ -113,7 +110,7 @@ class source:
                 #myurl = urlparse.urljoin(self.base_link, '/movies/' + urllib.quote_plus(result[1]))
                 myurl = urlparse.urljoin(self.base_link, '/movies/' + result[1])
 
-                myhead = {'Referer': 'http://dayt.se/movies/'}
+                myhead = {'Referer': self.base_link}
                 result10 = client.request(myurl, headers=myhead)
                 result10 = client.parseDOM(result10, 'div', attrs={'id': '5throw'})[0]
                 result10 = client.parseDOM(result10, 'a', attrs={'rel': 'nofollow'}, ret='href')
@@ -136,7 +133,8 @@ class source:
                 links = resolvers.request(result)
                 for i in links: sources.append({'source': 'gvideo', 'quality': i[1], 'provider': 'Dayt', 'url': i[0]})
                 return sources
-        except:
+        except Exception as e:
+            control.log("------ %s | %s "('DAYT', e))
             return sources
 
 
