@@ -2657,13 +2657,18 @@ def getUniTVChannels(categories, forSports=False):
 def getUKTVUserAgent():
     try:
         username = "-1"#random.choice(usernames)
-        post = {'username':username}
+        post = {'version':'5.7'}
         post = urllib.urlencode(post)
       
         headers=[('User-Agent','USER-AGENT-UKTVNOW-APP-V2'),('app-token',getAPIToken(base64.b64decode("aHR0cDovL3VrdHZub3cubmV0L2FwcDIvdjMvZ2V0X3VzZXJfYWdlbnQ="),username))]
         jsondata=getUrl(base64.b64decode("aHR0cDovL3VrdHZub3cubmV0L2FwcDIvdjMvZ2V0X3VzZXJfYWdlbnQ="),post=post,headers=headers)
         jsondata=json.loads(jsondata)    
         import pyaes
+        try:
+            if 'useragent' in jsondata["msg"]:
+                return jsondata["msg"]["useragent"]
+        except: 
+            pass
         key="MDk0NTg3MjEyNDJhZmZkZQ==".decode("base64")
         iv="ZWVkY2ZhMDQ4OTE3NDM5Mg==".decode("base64")
         decryptor = pyaes.new(key, pyaes.MODE_CBC, IV=iv)
@@ -2693,11 +2698,11 @@ def getUKTVPlayUrl(channelID ):
     import hashlib
     token= hashlib.md5(s).hexdigest()
     
-    post = {'username':username,'channel_id':channelID,'useragent':getUKTVUserAgent()}
+    post = {'username':username,'channel_id':channelID,'useragent':getUKTVUserAgent(),'version':'5.7'}
     post = urllib.urlencode(post)
   
     headers=[('User-Agent','USER-AGENT-UKTVNOW-APP-V2'),('app-token',token)]
-    jsondata=getUrl(url,post=post,headers=headers)
+    jsondata=getUrl(url,post=post+'&',headers=headers)
     return json.loads(jsondata)
     
 def getAPIToken( url,  username):
@@ -3871,7 +3876,7 @@ def getPV2Url():
         traceback.print_exc(file=sys.stdout)
 
     link=''
-    for pvopt in [(1,2),(2,2),(3,2)]:#[(0,1),(1,1),(1,2)]:
+    for pvopt in [(1,2),(2,2)]:#[(0,1),(1,1),(1,2)]:
         pvitr,pv2option=pvopt  ##pv2option==2=soapxml with, =1 with 
         try:
             selfAddon.setSetting( id="pv2PlayOption" ,value=str(pv2option))
@@ -3921,8 +3926,10 @@ def getPV2Url():
                     #req.add_header(base64.b64decode("VXNlci1BZ2VudA=="),base64.b64decode("QkVCNDNDOENDNUU5NDVFOTk4QjI3MjM4MDFFQjk0RkY=")) 
                     response = urllib2.urlopen(req)
                     link=response.read()
-                if 'sky sports' in link.lower():
-                    break
+                if 'items' in link.lower():
+                    break;
+                #if 'sky sports' in link.lower():
+                #    break
         except:
             traceback.print_exc(file=sys.stdout)
             pass
@@ -3931,7 +3938,12 @@ def getPV2Url():
         #    req.add_header(base64.b64decode("VXNlci1BZ2VudA=="),base64.b64decode("dW1hci8xMjQuMCBDRk5ldHdvcmsvNzU5LjIuOCBEYXJ3aW4vMTUuMTEuMjM=")) 
         #    response = urllib2.urlopen(req)
         #    link=response.read()
-
+    if not 'sky sports' in link.lower():
+        try:
+            dummyxml=getUrl(base64.b64decode('aHR0cDovL3NoYW5pLm9mZnNob3JlcGFzdGViaW4uY29tL3B2MnNwb3J0cy54bWw=')).decode("base64")
+            link='<channel>'+dummyxml+link.split('<channel>')[1]
+            
+        except: pass
     try:
         if 'items' in link:
             storeCacheData(base64.b64encode(link),fname)
@@ -4121,7 +4133,7 @@ def PlayPV2Link(url):
     if '|' not in urlToPlay:
         urlToPlay+='|'
     import random
-    useragent='User-Agent=AppleCoreMedia/1.0.0.13A45%s (iPhone; U; CPU OS 9_%s_%s like Mac OS X; en_gb)'%(binascii.b2a_hex(os.urandom(2))[:2],binascii.b2a_hex(os.urandom(2))[:2],binascii.b2a_hex(os.urandom(2))[:3])
+    useragent='User-Agent=AppleCoreMedia/1.0.0.1%s (%s; U; CPU OS 9_%s_%s like Mac OS X; en_gb)'%(binascii.b2a_hex(os.urandom(2))[:4],random.choice(['iPhone','iPad']),binascii.b2a_hex(os.urandom(2))[:2],binascii.b2a_hex(os.urandom(2))[:3])
     urlToPlay+=useragent
     #try:
     #    if 'iptvaus.dynns.com' in urlToPlay:# quickfix
@@ -5056,7 +5068,7 @@ def PlayEboundFromIOS(url):
     response.close()
     progress.update( 50, "", "Finding links..", "" )
 
-    playfile =url+'?wmsAuthSign='+link+'|User-Agent=AppleCoreMedia/1.0.0.13A452 (iPhone; U; CPU OS 9_0_2 like Mac OS X; en_gb)'
+    playfile =url+'?wmsAuthSign='+link+'|User-Agent=Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36'
     progress.update( 100, "", "Almost done..", "" )
     listitem = xbmcgui.ListItem( label = str(name), iconImage = "DefaultVideo.png", thumbnailImage = xbmc.getInfoImage( "ListItem.Thumb" ) )
     xbmc.Player(  ).play( playfile, listitem)

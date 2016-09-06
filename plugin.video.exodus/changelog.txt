@@ -1,3 +1,6 @@
+[B]2.0.8[/B]
+- Updated providers
+
 [B]2.0.7[/B]
 - Updated indexers
 - Updated providers

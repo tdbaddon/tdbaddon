@@ -44,8 +44,9 @@ def play(listitem, item):
             print 'encurl',url
             if not url.startswith('http'):
                 import pyaes
-                key="MDk0NTg3MjEyNDJhZmZkZQ==".decode("base64")
-                iv="ZWVkY2ZhMDQ4OTE3NDM5Mg==".decode("base64")
+
+                key="ZGlmajM4OXJqZjgzZmY5MA==".decode("base64")
+                iv="Z3IwNGpoc2Y0Nzg5MCQ5Mw==".decode("base64")
                 print 'trying to decode'
                 decryptor = pyaes.new(key, pyaes.MODE_CBC, IV=iv)
                 url= decryptor.decrypt(url.decode("hex")).split('\0')[0]
@@ -68,8 +69,8 @@ def play(listitem, item):
         #xbmc.Player(  ).play( urlToPlay, listitem)    
         url=item["msg"]["channel"]["rtmp_stream"]
         import pyaes
-        key="MDk0NTg3MjEyNDJhZmZkZQ==".decode("base64")
-        iv="ZWVkY2ZhMDQ4OTE3NDM5Mg==".decode("base64")
+        key="ZGlmajM4OXJqZjgzZmY5MA==".decode("base64")
+        iv="Z3IwNGpoc2Y0Nzg5MCQ5Mw==".decode("base64")
         decryptor = pyaes.new(key, pyaes.MODE_CBC, IV=iv)
         url= decryptor.decrypt(url.decode("hex")).split('\0')[0]
         print repr(url)

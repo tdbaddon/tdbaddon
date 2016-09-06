@@ -45,7 +45,7 @@ class source:
             t = cleantitle.get(title)
 
             r = client.parseDOM(r, 'div', attrs = {'class': 'col-lg.+?'})
-            r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'p', attrs = {'class': 'c-title.+?'})) for i in r]
+            r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'h2', attrs = {'class': 'c-title.+?'})) for i in r]
             r = [(i[0][0], i[1][0]) for i in r if len(i[0]) > 0 and len(i[1]) > 0]
             r = [(i[0], i[1], re.findall('(\d{4})', i[1])) for i in r]
             r = [(i[0], i[1], i[2][-1]) for i in r if len(i[2]) > 0]

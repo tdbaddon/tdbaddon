@@ -1,4 +1,2 @@
-[B]3.1.7[/B]
-Updated indexers
+[B]3.1.8[/B]
 Updated scrapers
-Updated resolvers
