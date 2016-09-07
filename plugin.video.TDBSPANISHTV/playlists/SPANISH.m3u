@@ -93,6 +93,9 @@ http://play.gvstream.net:554/e-tv-video/default.stream/playlist.m3u8
 #EXTINF:0,Canal 05 
 http://v1.streaminglatinoamerica.com:1935/canal5/canal5/live.m3u8
 
+#EXTINF:0,Canal 05 
+http://live.tvplayerlatino.com/lista_remota/src1/74511.m3u8
+
 #EXTINF:0,Canal 06 
 http://k3.usastreams.com:1935/cana6/cana6/playlist.m3u8
 
@@ -107,6 +110,9 @@ http://ionlive1-lh.akamaihd.net/i/canal9_1@125365/master.m3u8
 
 #EXTINF:0,Canal 09 
 http://xcanal9saltax.api.channel.livestream.com/3.0/playlist.m3u8
+
+#EXTINF:0,Canal 21
+http://live.tvplayerlatino.com/lista_remota/src3/OQy7P.m3u8
 
 #EXTINF:0,Canal 22
 rtmp://192.96.217.230/live/smrtv.sdp
@@ -128,6 +134,9 @@ rtsp://live-edge01.telecentro.net.ar:1935/live/26hd-720
 
 #EXTINF:0,Canal 28 
 0
+
+#EXTINF:0,Canal 33
+http://live.tvplayerlatino.com/lista_remota/src3/ktXRz.m3u8
 
 #EXTINF:0,Canal 41
 0
@@ -168,6 +177,9 @@ http://xcanalutvx.api.channel.livestream.com/3.0/playlist.m3u8
 #EXTINF:0,Capital 21
 http://187.237.253.94:8134/hls-live/livepkgr/_definst_/liveevent.m3u8
 
+#EXTINF:0,Capital 21
+http://live.tvplayerlatino.com/lista_remota/src3/YrMVO.m3u8
+
 #EXTINF:0,CDN 37 
 0
 
@@ -187,10 +199,10 @@ rtmp://k3.usastreams.com:1935/colosaltv1/colosaltv1
 0
 
 #EXTINF:0,De Pelicula 
-0
+http://live.tvplayerlatino.com/lista_remota/src1/syIoC.m3u8
 
 #EXTINF:0,Distrito Comedia
-0
+http://live.tvplayerlatino.com/lista_remota/src1/VGGNc.m3u8
 
 #EXTINF:0,El Tiempo
 http://hlslive.lcdn.une.net.co/v1/AUTH_HLSLIVE/TIEM/tu1_1.m3u8
@@ -198,29 +210,38 @@ http://hlslive.lcdn.une.net.co/v1/AUTH_HLSLIVE/TIEM/tu1_1.m3u8
 #EXTINF:0,El Trece 
 http://aztecalive-lh.akamaihd.net/i/0oxnvzh8a_1@175671/index_1_av-b.m3u8
 
+#EXTINF:0,Elgourmet
+http://freedom.duki.me/LIVE/H02/ElgourmetLA/master.m3u8
+
+#EXTINF:0,Elgourmet
+http://live.tvplayerlatino.com/lista_remota/src1/WrdYp.m3u8
+
 #EXTINF:0,ESNE TV
 0
 
 #EXTINF:0,Estrellas TV
 http://hlslive.lcdn.une.net.co/v1/AUTH_HLSLIVE/CEST/tu1_1.m3u8?
 
+#EXTINF:0,Estrellas TV
+http://live.tvplayerlatino.com/lista_remota/src1/ulgFW.m3u8
+
 #EXTINF:0,Foro TV 
 0
 
 #EXTINF:0,Gala TV
-0
+http://live.tvplayerlatino.com/lista_remota/src1/K1kPK.m3u8
 
 #EXTINF:0,Galicia a
 http://media3.crtvg.es/live/tvga/.m3u8
 
 #EXTINF:0,Garage TV
-0
+http://live.tvplayerlatino.com/lista_remota/src1/24Ufd.m3u8
 
 #EXTINF:0,Guatevision
 0
 
 #EXTINF:0,Glitz
-0
+http://live.tvplayerlatino.com/lista_remota/src1/gOQYF.m3u8
 
 #EXTINF:0,HCH
 http://4.31.30.140:1935/live/hchtvdigital/playlist.m3u8?wowzasessionid=1792561590
@@ -237,6 +258,9 @@ http://dl-dgtve.xsn.com.mx/dgtve/canal30dgtve.mp4/playlist.m3u8?
 #EXTINF:0,La Sexta
 http://a3live-lh.akamaihd.net/i/lasexta_1@35272/master.m3u8
 
+#EXTINF:0,La Sexta
+http://live.tvplayerlatino.com/lista_remota/src3/sexta.m3u8
+
 #EXTINF:0,Levante TV
 0
 
@@ -247,7 +271,7 @@ http://a3live-lh.akamaihd.net/i/mghds/geomega_1@328914/index_2_av-b.m3u8?sd=10&r
 0
 
 #EXTINF:0,Multimedios
-0
+http://live.tvplayerlatino.com/lista_remota/src3/QXgr8.m3u8
 
 #EXTINF:0,Nazareno TV 
 rtmp://87.106.232.7/live/myStream_2
@@ -261,6 +285,9 @@ http://www.oncetvmexicolive.tv:1935/livepkgr2/smil:int.smil/playlist.m3u8
 #EXTINF:0,Orbe 21
 http://urtmpkal-f.akamaihd.net/i/1b6mj17sk_1@308700/master.m3u8
 
+#EXTINF:0,Orbe 21
+http://live.tvplayerlatino.com/lista_remota/src3/iNyim.m3u8
+
 #EXTINF:0,Proyecto 40 
 http://tvaz-pd.kaltura.com.edgesuite.net/p/461031/sp/46103100/serveFlavor/entryId/0_08wdjxfl/v/1/flavorId/0_8j06e5nk/forceproxy/true/name/a.mp4
 
@@ -270,8 +297,11 @@ http://urtmpkal-f.akamaihd.net/i/05i15qzql_1@149710/index_2_av-p.m3u8
 #EXTINF:0,Proyecto 40 
 http://urtmpkal-f.akamaihd.net/i/05i15qzql_1@149710/master.m3u8
 
+#EXTINF:0,Proyecto 40 
+http://live.tvplayerlatino.com/lista_remota/src3/eUS0q.m3u8
+
 #EXTINF:0,Ritmoson
-0
+http://live.tvplayerlatino.com/lista_remota/src1/2xsUx.m3u8
 
 #EXTINF:0,RPC TV
 0
@@ -295,7 +325,7 @@ http://hlslive.lcdn.une.net.co/v1/AUTH_HLSLIVE/0002/tu1_1.m3u8?
 0
 
 #EXTINF:0,Telehit
-0
+http://live.tvplayerlatino.com/lista_remota/src1/LKqfP.m3u8
 
 #EXTINF:0,Tele Junin 
 0
@@ -343,7 +373,7 @@ http://aztecalive-lh.akamaihd.net/i/0oxnvzh8a_1@175671/master.m3u8
 http://iphonelive.rtve.es/24H_LV3_IPH/bitrate_2.m3u8
 
 #EXTINF:0,TVE
-0
+http://live.tvplayerlatino.com/lista_remota/src1/nGBpw.m3u8
 
 #EXTINF:0,TV Chile 
 0

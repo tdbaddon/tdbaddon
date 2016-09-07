@@ -86,10 +86,7 @@ rtmp://edge2.everyon.tv:1935/etv2sb/phd10772
 0
 
 #EXTINF:0,HOWARD STERN
-http://178.33.226.36:8000/live/olsi/olsi/796.ts
-
-#EXTINF:0,HOWARD STERN
-http://178.33.226.36:8000/live/olsi/olsi/795.ts
+0
 
 #EXTINF:0,HUSTLER TV 
 0
@@ -110,7 +107,7 @@ rtmp://109.71.162.112:1935/live/sd.jasminchannel.stream
 0
 
 #EXTINF:0,MIAMI TV 
-http://178.33.226.36:8000/live/olsi/olsi/798.ts
+0
 
 #EXTINF:0,MIDNIGHT TV
 rtmp://edge1.everyon.tv/etv1sb/pld10766
@@ -119,7 +116,7 @@ rtmp://edge1.everyon.tv/etv1sb/pld10766
 rtmp://edge1.everyon.tv/etv1sb/phd10766
 
 #EXTINF:0,NAKED NEWS
-http://178.33.226.36:8000/live/olsi/olsi/799.ts
+0
 
 #EXTINF:0,NUART 
 0
@@ -155,10 +152,7 @@ rtmp://edge2.everyon.tv/etv2sb/phd10499
 rtmp://main2sb.everyon.tv:1935/etv2sb/_definst_/phd10499
 
 #EXTINF:0,PLAYBOY TV 
-rtmp://edge1.everyon.tv/etv1sb/pld10497
-
-#EXTINF:0,PLAYBOY TV 
-rtmp://edge1.everyon.tv/etv1sb/phd10497
+http://freedom.duki.me/LIVE/H02/PlayboyTV/master.m3u8
 
 #EXTINF:0,PLATINUM TV 
 0
@@ -200,7 +194,7 @@ rtmp://main2sb.everyon.tv:1935/etv2sb/pld10499
 0
 
 #EXTINF:0,SEXTREME 
-0
+http://freedom.duki.me/LIVE/H02/SextremeSD/master.m3u8
 
 #EXTINF:0,SEXYHOT 
 0
@@ -215,10 +209,10 @@ rtmp://main2sb.everyon.tv:1935/etv2sb/pld10499
 0
 
 #EXTINF:0,VENUS
-0
+http://freedom.duki.me/LIVE/H02/VENUSSD/master.m3u8
 
 #EXTINF:0,VISIT X 
-http://178.33.226.36:8000/live/olsi/olsi/804.ts
+0
 
 #EXTINF:0,WOW GIRLS 
 0
@@ -233,52 +227,7 @@ http://178.33.226.36:8000/live/olsi/olsi/804.ts
 0
 
 #EXTINF:0,XXX 
-http://178.33.226.36:8000/live/olsi/olsi/793.ts
-
-#EXTINF:0,XXX 
-http://178.33.226.36:8000/live/olsi/olsi/794.ts
-
-#EXTINF:0,XXX 
-http://178.33.226.36:8000/live/olsi/olsi/921.ts
-
-#EXTINF:0,XXX 
-http://178.33.226.36:8000/live/olsi/olsi/912.ts
-
-#EXTINF:0,XXX 
-http://178.33.226.36:8000/live/olsi/olsi/914.ts
-
-#EXTINF:0,XXX 
-http://178.33.226.36:8000/live/olsi/olsi/916.ts
-
-#EXTINF:0,XXX 
-http://178.33.226.36:8000/live/olsi/olsi/917.ts
-
-#EXTINF:0,XXX 
-http://178.33.226.36:8000/live/olsi/olsi/918.ts
-
-#EXTINF:0,XXX 
-http://178.33.226.36:8000/live/olsi/olsi/919.ts
-
-#EXTINF:0,XXX 
-http://178.33.226.36:8000/live/olsi/olsi/920.ts
-
-#EXTINF:0,XXX 
-http://178.33.226.36:8000/live/olsi/olsi/791.ts
-
-#EXTINF:0,XXX 
-http://178.33.226.36:8000/live/olsi/olsi/785.ts
-
-#EXTINF:0,XXX 
-http://178.33.226.36:8000/live/olsi/olsi/788.ts
-
-#EXTINF:0,XXX 
-http://178.33.226.36:8000/live/olsi/olsi/802.ts
-
-#EXTINF:0,XXX 
-http://178.33.226.36:8000/live/olsi/olsi/801.ts
-
-#EXTINF:0,XXX 
-http://178.33.226.36:8000/live/olsi/olsi/800.ts
+0
 
 #EXTINF:0,YOU DIVA 
 0
