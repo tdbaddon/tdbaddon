@@ -283,8 +283,17 @@ def refresh_cache(req_attrib, modelMap):
                   {"iconimage":"http://www.lyngsat-logo.com/logo/tv/ss/sonic_nickelodeon.png",
                    "channelType": "IND",
                    "running_tvshows_url": "/forumdisplay.php?f=1533",
-                   "finished_tvshows_url": "/forumdisplay.php?f=2234"}
-                   
+                   "finished_tvshows_url": "/forumdisplay.php?f=2234"},
+                  "Maa TV":
+                  {"iconimage":"http://www.lyngsat-logo.com/logo/tv/mm/maa_tv.png",
+                   "channelType": "IND",
+                   "running_tvshows_url": "/forumdisplay.php?f=3165",
+                   "finished_tvshows_url": "/forumdisplay.php?f=3411"},
+                  "Zee Telugu":
+                  {"iconimage":"http://www.lyngsat-logo.com/logo/tv/zz/zee_telugu.png",
+                   "channelType": "IND",
+                   "running_tvshows_url": "/forumdisplay.php?f=3163",
+                   "finished_tvshows_url": "/forumdisplay.php?f=3410"}                  
                 }
             }
     current_index = 0
