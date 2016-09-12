@@ -327,7 +327,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
-<addon id="plugin.audio.soundcloud" name="SoundCloud" version="2.0.5" provider-name="bromix">
+<addon id="plugin.audio.soundcloud" name="SoundCloud" version="2.0.6" provider-name="bromix">
 	<requires>
 		<import addon="xbmc.python" version="2.14.0"/>
 	</requires>
@@ -602,7 +602,7 @@ Plugin by @koderdude</description>
     </extension>
 </addon>
 
-<addon id="plugin.video.cartoons8" name="Cartoons8" version="1.0.17" provider-name="MetalKettle">
+<addon id="plugin.video.cartoons8" name="Cartoons8" version="1.0.18" provider-name="MetalKettle">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.t0mm0.common" version="2.0.0"/>
@@ -994,7 +994,7 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
   </extension>
 </addon>
 
-<addon id="plugin.video.exodus" version="2.0.8" name="Exodus" provider-name="Exodus">
+<addon id="plugin.video.exodus" version="2.0.9" name="Exodus" provider-name="Exodus">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="repository.exodus" version="1.0.0" />
@@ -1699,7 +1699,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   <extension point="xbmc.service" library="service.py" start="login" />
 </addon>
 
-<addon id="plugin.video.phstreams" name="Phoenix" version="3.1.8" provider-name="tvaddons.ag">
+<addon id="plugin.video.phstreams" name="Phoenix" version="3.1.9" provider-name="tvaddons.ag">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="plugin.video.youtube" version="5.2.1" optional="true" />
@@ -2041,7 +2041,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBTVSHOWS"
        name="TDB TV SHOWS"
-       version="1.37"
+       version="1.38"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -2562,7 +2562,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.ZemTV-shani"
        name="ZemTV.com"
-       version="5.2.4"
+       version="5.3.1"
        provider-name="shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>

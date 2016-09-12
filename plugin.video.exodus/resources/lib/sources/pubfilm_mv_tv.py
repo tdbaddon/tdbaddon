@@ -28,9 +28,10 @@ from resources.lib.modules import cache
 
 class source:
     def __init__(self):
-        self.domains = ['pubfilmno1.com', 'pubfilm.com']
-        self.base_link = 'http://pubfilm.com'
-        self.moviesearch_link = '/%s-%s-full-hd-pubfilm-free.html'
+        self.domains = ['pubfilmno1.com', 'pubfilm.com', 'pidtv.com']
+        self.base_link = 'http://pidtv.com'
+        self.moviesearch_link = '/%s-%s-full-hd-pidtv-free.html'
+        self.moviesearch_link_2 = '/%s-%s-pidtv-free.html'
         self.tvsearch_link = '/wp-admin/admin-ajax.php'
         self.tvsearch_link_2 = '/search/%s/feed/rss2/'
 
@@ -42,9 +43,16 @@ class source:
             query = self.moviesearch_link % (title, year)
             query = urlparse.urljoin(self.base_link, query)
 
-            result = client.request(query, limit='1')
+            result = client.request(query, limit='5')
 
-            if result == None: raise Exception()
+            if result == None:
+                query = self.moviesearch_link_2 % (title, year)
+                query = urlparse.urljoin(self.base_link, query)
+
+                result = client.request(query, limit='5')
+
+            if result == None:
+                raise Exception()
 
             url = re.findall('(?://.+?|)(/.+)', query)[0]
             url = url.encode('utf-8')

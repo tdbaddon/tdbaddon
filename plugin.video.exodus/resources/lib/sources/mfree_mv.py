@@ -39,9 +39,9 @@ class source:
         try:
             t = cleantitle.get(title)
 
-            r = cache.get(self.mfree_mvcache, 170)
+            #r = cache.get(self.mfree_mvcache, 170)
 
-            r = [i for i in r if t == i[0] and year == i[1]][0]
+            #r = [i for i in r if t == i[0] and year == i[1]][0]
 
 
             q = (title.translate(None, '\/:*?"\'<>|!,')).replace(' ', '-').replace('--', '-').lower()

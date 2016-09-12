@@ -1,12 +1,12 @@
-import xbmc, xbmcgui, xbmcplugin
+
 import urllib2,urllib,cgi, re  
 import urlparse
 import HTMLParser
-import xbmcaddon
+
 from operator import itemgetter
 import traceback,cookielib
 import base64,os,  binascii
-import CustomPlayer,uuid
+
 from time import time
 import base64,sys
 try:
@@ -14,14 +14,62 @@ try:
 except:
     import simplejson as json
 
-__addon__       = xbmcaddon.Addon()
-__addonname__   = __addon__.getAddonInfo('name')
-__icon__        = __addon__.getAddonInfo('icon')
-addon_id = 'plugin.video.ZemTV-shani'
-selfAddon = xbmcaddon.Addon(id=addon_id)
-profile_path =  xbmc.translatePath(selfAddon.getAddonInfo('profile'))
-S365COOKIEFILE='s365CookieFile.lwp'
-S365COOKIEFILE=os.path.join(profile_path, S365COOKIEFILE)
+useragent='Mozilla/5.0 (iPhone; CPU iPhone OS 9_0_2 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13A452 Safari/601.1'
+#useragent='Mozilla/5.0 (Linux; Android 4.0.4; Galaxy Nexus Build/IMM76B) AppleWebKit/535.19 (KHTML, like Gecko) Chrome/18.0.1025.133 Mobile Safari/535.19'
+lastfinalurl=''
+
+def getUrl(mainurl, cookieJar=None,post=None, timeout=20, headers=None, useproxy=True):
+    global lastfinalurl
+    lastfinalurl=''
+    url=mainurl
+    cookie_handler = urllib2.HTTPCookieProcessor(cookieJar)
+    opener = urllib2.build_opener(cookie_handler, urllib2.HTTPBasicAuthHandler(), urllib2.HTTPHandler())
+    #opener = urllib2.install_opener(opener)
+    req = urllib2.Request(url)
+    req.add_header('User-Agent',useragent)
+    if headers:
+        for h,hv in headers:
+            req.add_header(h,hv)
+    
+    if '|' in url:
+        url,header_in_page=url.split('|')
+        header_in_page=header_in_page.split('&')
+        
+        for h in header_in_page:
+            
+            n,v=h.split('=')
+            req.add_header(h,v)
+    link=""
+    try:
+        response = opener.open(req,post,timeout=timeout)
+
+        lastfinalurl = response.geturl()
+        link=response.read()
+        response.close()
+    except: pass
+    if link=="" and useproxy: 
+        
+        for retry in range(4):
+            try:
+                link=getUrlWithWebProxy(mainurl,cookieJar,post,timeout,headers)
+                if not link=="": break
+            except: pass
+    return link;
+
+try:
+    import xbmc, xbmcgui, xbmcplugin
+    import xbmcaddon
+    import CustomPlayer,uuid
+    __addon__       = xbmcaddon.Addon()
+    __addonname__   = __addon__.getAddonInfo('name')
+    __icon__        = __addon__.getAddonInfo('icon')
+    addon_id = 'plugin.video.ZemTV-shani'
+    selfAddon = xbmcaddon.Addon(id=addon_id)
+    profile_path =  xbmc.translatePath(selfAddon.getAddonInfo('profile'))
+    S365COOKIEFILE='s365CookieFile.lwp'
+    S365COOKIEFILE=os.path.join(profile_path, S365COOKIEFILE)
+except: pass
+
 
 
 
@@ -76,39 +124,7 @@ def decode(encstring):
     print st
     return st.decode("base64")
     
-def getUrl(mainurl, cookieJar=None,post=None, timeout=20, headers=None, useproxy=True):
-    url=mainurl
-    cookie_handler = urllib2.HTTPCookieProcessor(cookieJar)
-    opener = urllib2.build_opener(cookie_handler, urllib2.HTTPBasicAuthHandler(), urllib2.HTTPHandler())
-    #opener = urllib2.install_opener(opener)
-    req = urllib2.Request(url)
-    req.add_header('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36')
-    if headers:
-        for h,hv in headers:
-            req.add_header(h,hv)
-    
-    if '|' in url:
-        url,header_in_page=url.split('|')
-        header_in_page=header_in_page.split('&')
-        
-        for h in header_in_page:
-            
-            n,v=h.split('=')
-            req.add_header(h,v)
-    link=""
-    try:
-        response = opener.open(req,post,timeout=timeout)
-        link=response.read()
-        response.close()
-    except: pass
-    if link=="" and useproxy: 
-        
-        for retry in range(4):
-            try:
-                link=getUrlWithWebProxy(mainurl,cookieJar,post,timeout,headers)
-                if not link=="": break
-            except: pass
-    return link;
+
 
     #function arcfour(k,d) {var o='';s=new Array();var n=256;l=k.length;for(var i=0;i<n;i++){s[i]=i;}for(var j=i=0;i<n;i++){j=(j+s[i]+k.charCodeAt(i%l))%n;var x=s[i];s[i]=s[j];s[j]=x;}for(var i=j=y=0;y<d.length;y++){i=(i+1)%n;j=(j+s[i])%n;x=s[i];s[i]=s[j];s[j]=x;o+=String.fromCharCode(d.charCodeAt(y)^s[(s[i]+s[j])%n]);}return o;}
 def  arcfour(k,d):
@@ -197,7 +213,7 @@ def getUrlWithProxy(url, cookieJar=None,post=None, timeout=20, headers=None):
     opener = urllib2.build_opener(cookie_handler, urllib2.HTTPBasicAuthHandler(), urllib2.HTTPHandler(),urllib2.ProxyHandler({ 'http'  : '%s:%s'%(proxyserver,proxyport)}))    
     
     req = urllib2.Request(url)
-    req.add_header('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36')
+    req.add_header('User-Agent',useragent)
     if headers:
         for h,hv in headers:
             req.add_header(h,hv)
@@ -277,7 +293,7 @@ def get365CookieJar(updatedUName=False):
         cookieJar = cookielib.LWPCookieJar()
     return cookieJar    
 def get365Key(cookieJar,url=None, useproxy=True):
-    headers=[('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36')]
+    headers=[('User-Agent',useragent)]
     import time
     if not url:
         mainhtml=getUrl("http://www.sport365.live/en/main",headers=headers, cookieJar=cookieJar)
@@ -318,7 +334,7 @@ def getLinks():
     cookieJar=get365CookieJar()
     kkey=get365Key(cookieJar,useproxy=False)
         
-    headers=[('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36')]
+    headers=[('User-Agent',useragent)]
 
     liveurl="http://www.sport365.live/en/events/-/1/-/-"+'/'+str(getutfoffset())
     linkshtml=getUrl(liveurl,headers=headers, cookieJar=cookieJar)
@@ -391,15 +407,32 @@ def getutfoffset():
     return int(utc_offset)
     
 def selectMatch(url):
+
     cookieJar=get365CookieJar()
-    url=select365(url,cookieJar)
+    mainref='http://www.sport365.live/en/main'
+    headers=[('User-Agent',useragent)]
+    try:
+        getUrl("http://www.sport365.live/",headers=headers, cookieJar=cookieJar)
+        mainref=lastfinalurl
+    except: pass
+    
+    url=select365(url,cookieJar,mainref)
+    
+    if 1==2:
+        try:
+            headers=[('User-Agent',useragent)]
+            hh=getUrl("http://adbetnet.advertserve.com/servlet/view/dynamic/javascript/zone?zid=281&pid=4&resolution=1920x1080&random=11965377&millis=1473441350879&referrer=http%3A%2F%2Fwww.sport365.live%2Fen%2Fhome",headers=headers, cookieJar=cookieJar)
+            getUrl(re.findall('<img width=.*?src=\\\\"(.*?)\\\\"',hh)[0],headers=headers, cookieJar=cookieJar,useproxy=False)
+        except: pass
     if url=="": return 
     import HTMLParser
     h = HTMLParser.HTMLParser()
 
     #urlToPlay=base64.b64decode(url)
 
-    html=getUrl(url,headers=[('Referer','http://www.sport365.live/en/main')],cookieJar=cookieJar)
+    html=getUrl(url,headers=[('Referer',mainref)],cookieJar=cookieJar)
+    
+    
     #print html
     reg="iframe frameborder=0.*?src=\"(.*?)\""
     linkurl=re.findall(reg,html)
@@ -437,7 +470,7 @@ def selectMatch(url):
             reg='player_div", "st".*?file":"(.*?)"'
             post={'d':encst,'f':enclink}
             post = urllib.urlencode(post)
-            enclinkhtml2= getUrl(postpage[0],post=post,cookieJar=cookieJar, headers=[('Referer',linkurl),('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36')])
+            enclinkhtml2= getUrl(postpage[0],post=post,cookieJar=cookieJar, headers=[('Referer',linkurl),('User-Agent',useragent)])
             #enclink=re.findall(reg,enclinkhtml2)
             if 'player_div' in enclinkhtml2>0:
                 usediv=True
@@ -492,29 +525,32 @@ def selectMatch(url):
     urlToPlay= urlToPlaymain
     newcj=cookielib.LWPCookieJar();
     try:
-        getUrl(urlToPlay, headers=[('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36'),('Origin','http://h5.adshell.net'),('Referer','http://h5.adshell.net/peer5')],cookieJar=newcj)
+        getUrl(urlToPlay, headers=[('User-Agent',useragent),('Origin','http://h5.adshell.net'),('Referer','http://h5.adshell.net/peer5')],cookieJar=newcj)
     except: pass
 
    
     #print newcj
     sessionid=getCookiesString(newcj,'PHPSESSID').split('=')[-1]
+    import uuid
+    playback=str(uuid.uuid1()).upper()   
     if len(sessionid)>0: '&Cookie=PHPSESSID='+sessionid.split('=')[-1]
-    urlToPlaymain+="|Referer=%s&User-Agent=%s&Origin=http://h5.adshell.net&Referer=http://h5.adshell.net/peer5%s"%( "http://h5.adshell.net/flash",urllib.quote_plus("Mozilla/5.0 (Windows NT 6.1; WOW64; rv:41.0) Gecko/20100101 Firefox/41.0"),sessionid)    
-    headers=[('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36')]
-    #getUrl("http://www.sport365.live/en/main",headers=headers, cookieJar=cookieJar)
+    urlToPlaymain+="|Referer=%s&User-Agent=%s&Origin=http://h5.adshell.net&Referer=http://h5.adshell.net/peer5%s&X-Playback-Session-Id=%s"%( "http://h5.adshell.net/flash",urllib.quote_plus(useragent),sessionid,playback)    
+#    urlToPlaymain+="|Referer=%s&User-Agent=%s&Origin=http://h5.adshell.net&Referer=http://h5.adshell.net/peer5%s&X-Playback-Session-Id=%s"%( "http://h5.adshell.net/flash",urllib.quote_plus(useragent),sessionid,playback)    
+    headers=[('User-Agent',useragent),('Referer',mainref)]
+    getUrl("http://www.sport365.live/en/sidebar",headers=headers, cookieJar=cookieJar)
     cookieJar.save (S365COOKIEFILE,ignore_discard=True)
-    
+
     return urlToPlaymain
     return 'plugin://plugin.video.f4mTester/?url=%s&streamtype=HLS'%(urllib.quote_plus(urlToPlaymain))
     
-def select365(url,cookieJar):
+def select365(url,cookieJar,mainref):
     print 'select365',url
     url=base64.b64decode(url)
     retUtl=""
     
     try:
         links=[]
-        matchhtml=getUrl(url,cookieJar=cookieJar,headers=[('X-Requested-With','XMLHttpRequest'),('Referer','http://www.sport365.live/en/home/')])        
+        matchhtml=getUrl(url,cookieJar=cookieJar,headers=[('X-Requested-With','XMLHttpRequest'),('Referer',mainref)])        
         reg=".open\('(.*?)'.*?>(.*?)<"
         sourcelinks=re.findall(reg,matchhtml)
         b6=False
@@ -612,3 +648,4 @@ def getCookiesString(cookieJar,cookieName=None):
     except: pass
     print 'cookieString',cookieString
     return cookieString
+

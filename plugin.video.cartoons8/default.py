@@ -23,12 +23,12 @@ def CATEGORIES():
 	addDir('Cartoon - Genres','http://9cartoon.me',6,cartoon,fanart)
         addDir('Cartoon - Search','http://9cartoon.me/Search?s=',8,cartoon,fanart)
 
-        addDir('Anime - New & Hot','http://chiaanime.co/AnimeList/NewAndHot?page=1',1,anime,fanart)
-	addDir('Anime - New Added','http://chiaanime.co/AnimeList/New?page=1',1,anime,fanart)
-	addDir('Anime - Popular','http://chiaanime.co/AnimeList/MostViewed?page=1',1,anime,fanart)
-	addDir('Anime - A - Z','http://chiaanime.co/AnimeList',5,anime,fanart)
-	addDir('Anime - Genres','http://chiaanime.co/',6,anime,fanart)
-        addDir('Anime - Search','http://chiaanime.co/Search?s=',8,anime,fanart)
+        addDir('Anime - New & Hot','http://gogoanime.ch/AnimeList/NewAndHot?page=1',1,anime,fanart)
+	addDir('Anime - New Added','http://gogoanime.ch/AnimeList/New?page=1',1,anime,fanart)
+	addDir('Anime - Popular','http://gogoanime.ch/AnimeList/MostViewed?page=1',1,anime,fanart)
+	addDir('Anime - A - Z','http://gogoanime.ch/AnimeList',5,anime,fanart)
+	addDir('Anime - Genres','http://gogoanime.ch/',6,anime,fanart)
+        addDir('Anime - Search','http://gogoanime.ch/Search?s=',8,anime,fanart)
        
 def GETMOVIES(url,name):
         link = open_url(url)

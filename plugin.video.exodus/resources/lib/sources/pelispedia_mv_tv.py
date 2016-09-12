@@ -23,7 +23,6 @@ import re,urllib,urlparse,json,base64
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
-from resources.lib.modules import cache
 from resources.lib.modules import directstream
 
 
@@ -32,8 +31,6 @@ class source:
         self.domains = ['pelispedia.tv']
         self.base_link = 'http://www.pelispedia.tv'
         self.search_link = 'aHR0cHM6Ly93d3cuZ29vZ2xlYXBpcy5jb20vY3VzdG9tc2VhcmNoL3YxZWxlbWVudD9rZXk9QUl6YVN5Q1ZBWGlVelJZc01MMVB2NlJ3U0cxZ3VubU1pa1R6UXFZJnJzej1maWx0ZXJlZF9jc2UmbnVtPTEwJmhsPWVuJmN4PTAxMzA0MzU4NDUzMDg1NzU4NzM4MTpkcGR2Y3FlbGt3dyZnb29nbGVob3N0PXd3dy5nb29nbGUuY29tJnE9JXM='
-        self.search2_link = '/api/more.php?rangeStart=%s&tipo=serie'
-        self.search3_link = '/buscar/?s=%s'
 
 
     def movie(self, imdb, title, year):
@@ -72,67 +69,40 @@ class source:
         except:
             pass
 
-        try:
-            t = cleantitle.get(title)
-
-            query = self.search3_link % urllib.quote_plus(cleantitle.query(title))
-            query = urlparse.urljoin(self.base_link, query)
-
-            result = client.request(query)
-            result = re.sub(r'[^\x00-\x7F]+','', result)
-
-            r = result.split('<li class=')
-            r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'i'), re.findall('\((\d{4})\)', i)) for i in r]
-            r = [(i[0][0], re.sub('\(|\)','', i[1][0]), i[2][0]) for i in r if len(i[0]) > 0 and len(i[1]) > 0 and len(i[2]) > 0]
-            r = [i[0] for i in r if t == cleantitle.get(i[1]) and year == i[2]][0]
-
-            try: url = re.findall('//.+?(/.+)', r)[0]
-            except: url = r
-            url = client.replaceHTMLCodes(url)
-            url = url.encode('utf-8')
-
-            return url
-        except:
-            pass
-
-
-    def pelispedia_tvcache(self):
-        result = []
-
-        for i in range(0,10):
-            try:
-                u = self.search2_link % str(i * 48)
-                u = urlparse.urljoin(self.base_link, u)
-
-                r = str(client.request(u))
-                r = re.sub(r'[^\x00-\x7F]+','', r)
-                r = r.split('<li class=')
-                r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'i'), re.findall('\((\d{4})\)', i)) for i in r]
-                r = [(i[0][0], re.sub('\(|\)','', i[1][0]), i[2][0]) for i in r if len(i[0]) > 0 and len(i[1]) > 0 and len(i[2]) > 0]
-
-                if len(r) == 0: break
-                result += r
-            except:
-                pass
-
-        if len(result) == 0: return
-        result = [(re.sub('http.+?//.+?/','/', i[0]), cleantitle.get(i[1]), i[2]) for i in result]
-        return result
-
 
     def tvshow(self, imdb, tvdb, tvshowtitle, year):
-
         try:
-            result = cache.get(self.pelispedia_tvcache, 120)
+            t = cleantitle.get(tvshowtitle)
 
-            tvshowtitle = cleantitle.get(tvshowtitle)
+            query = '%s %s' % (tvshowtitle, year)
+            query = base64.b64decode(self.search_link) % urllib.quote_plus(query)
 
-            result = [i[0] for i in result if tvshowtitle == i[1] and  year == i[2]][0]
+            result = client.request(query)
+            result = json.loads(result)['results']
 
-            url = urlparse.urljoin(self.base_link, result)
-            url = urlparse.urlparse(url).path
+            result = [(i['url'], i['titleNoFormatting']) for i in result]
+            result = [(i[0], re.findall('(?:^Ver Serie|^Ver |)(.+?)(?: HD |)\((\d{4})', i[1])) for i in result]
+            result = [(i[0], i[1][0][0], i[1][0][1]) for i in result if len(i[1]) > 0]
+            result = [i for i in result if '/serie/' in i[0]]
+
+            r = [i for i in result if t == cleantitle.get(i[1]) and year == i[2]]
+
+            if len(r) == 0:
+                t = 'http://www.imdb.com/title/%s' % imdb
+                t = client.request(t, headers={'Accept-Language':'es-ES'})
+                t = client.parseDOM(t, 'title')[0]
+                t = re.sub('\((?:.+?|)\d{4}.+', '', t).strip()
+                t = cleantitle.get(t)
+
+                r = [i for i in result if t == cleantitle.get(i[1]) and year == i[2]]
+
+            try: url = re.findall('//.+?(/.+)', r[0][0])[0]
+            except: url = r[0][0]
+            try: url = re.findall('(/.+?/.+?/)', url)[0]
+            except: pass
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
+
             return url
         except:
             return

@@ -28,8 +28,8 @@ from resources.lib.modules import directstream
 
 class source:
     def __init__(self):
-        self.domains = ['dayt.se']
-        self.base_link = 'http://dayt.se'
+        self.domains = ['dayt.se', 'cyro.se']
+        self.base_link = 'http://cyro.se'
         self.watch_link = '/watch/%s'
 
 

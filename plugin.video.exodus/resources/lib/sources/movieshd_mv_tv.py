@@ -28,8 +28,8 @@ from resources.lib.modules import directstream
 
 class source:
     def __init__(self):
-        self.domains = ['movieshd.tv', 'movieshd.is', 'movieshd.watch']
-        self.base_link = 'http://movieshd.watch'
+        self.domains = ['movieshd.tv', 'movieshd.is', 'movieshd.watch', 'flixanity.is']
+        self.base_link = 'http://www.flixanity.is'
 
 
     def movie(self, imdb, title, year):

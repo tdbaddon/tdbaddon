@@ -58,6 +58,11 @@ ZEMCOOKIEFILE='ZemCookieFile.lwp'
 ZEMCOOKIEFILE=os.path.join(profile_path, ZEMCOOKIEFILE)
 S365COOKIEFILE='s365CookieFile.lwp'
 S365COOKIEFILE=os.path.join(profile_path, S365COOKIEFILE)
+
+YPLoginFile='YpCookieFile.lwp'
+YPLoginFile=os.path.join(profile_path, YPLoginFile)
+
+
  
 mainurl=base64.b64decode('aHR0cDovL3d3dy56ZW10di5jb20vY2F0ZWdvcnkvcGFraXN0YW5pLw==')
 liveURL=base64.b64decode('aHR0cDovL3d3dy56ZW10di5jb20vbGl2ZS1wYWtpc3RhbmktbmV3cy1jaGFubmVscy8=')
@@ -419,18 +424,19 @@ def AddSports(url):
     addDir('Mona' ,'sss',68,'')
     addDir('Sport365.live [GeoBlocked]' ,'sss',56,'')
     addDir('SmartCric.com (Live matches only)' ,'Live' ,14,'')
-    addDir('UKTVNow','sss' ,57,'')
+    addDir('UKTVNow [Limited Channels]','sss' ,57,'')
     
 #    addDir('Flashtv.co (Live Channels)' ,'flashtv' ,31,'')
     addDir('Willow.Tv (Subscription required, US Only or use VPN)' ,base64.b64decode('aHR0cDovL3d3dy53aWxsb3cudHYv') ,19,'')
     #addDir(base64.b64decode('U3VwZXIgU3BvcnRz') ,'sss',34,'')
     addDir('PV2 Sports' ,'zemsports',36,'')
     addDir('Safe' ,'sss',72,'')
+    addDir('TVPlayer [UK Geo Restricted]','sss',74,'https://assets.tvplayer.com/web/images/tvplayer-logo-white.png')
     #addDir('Yupp Asia Cup','Live' ,60,'')
     #addDir('CricHD.tv (Live Channels)' ,'pope' ,26,'')
     #addDir('cricfree.sx' ,'sss',41,'')
     #addDir('WatchCric.com-Live matches only' ,base64.b64decode('aHR0cDovL3d3dy53YXRjaGNyaWMubmV0Lw==' ),16,'') #blocking as the rtmp requires to be updated to send gaolVanusPobeleVoKosat
-    addDir('c247.tv-P3G.Tv' ,'P3G'  ,30,'')
+   # addDir('c247.tv-P3G.Tv' ,'P3G'  ,30,'')
     #addDir('Streams' ,'sss',39,'')
 
     
@@ -895,15 +901,15 @@ def PlayUKTVNowChannels(url):
     played=False
     ##DO YOU WANT ME TO STOP? lol
     try:
-        import uktvplayer
-        played=uktvplayer.play(listitem,cc)
+        import uktvplayerlimited
+        played=uktvplayerlimited.play(listitem,cc)
             
     except: 
         print 'error in PlayUKTVNowChannels'
         traceback.print_exc(file=sys.stdout)
         pass
     if not played:
-        if RefreshResources([('uktvplayer.py','https://raw.githubusercontent.com/Shani-08/ShaniXBMCWork2/master/plugin.video.ZemTV-shani/uktvplayer.py')]):
+        if RefreshResources([('uktvplayerlimited.py','https://raw.githubusercontent.com/Shani-08/ShaniXBMCWork2/master/plugin.video.ZemTV-shani/uktvplayerlimited.py')]):
             dialog = xbmcgui.Dialog()
             ok = dialog.ok('XBMC', 'Updated files dyamically, try again, just in case!')           
             print 'Updated files'
@@ -1071,6 +1077,24 @@ def AddSafeLang(url=None):
         addDir(Colored(cname.capitalize(),'ZM') ,base64.b64encode(cname+','+ctype) ,73 ,'', False, True,isItFolder=True)		#name,url,mode,icon
     return  
     
+def AddTVPlayerChannels(url):
+
+    headers=[('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36')]               
+    mainhtml=getUrl('http://tvplayer.com/watch/bbcone',headers=headers)
+    cdata=re.findall('<li class="online.*?free.*?\s*<a href="(.*?)" title="(.*?)".*?\s*<img.*?src="(.*?)"',mainhtml)
+    for cc in cdata:
+        
+        mm=11
+        col='ZM'
+        logo=cc[2]
+        cname=cc[1]
+        if 'Watch ' in cname:
+            cname=cname.replace('Watch ','')
+        curl=cc[0]
+        if not curl.startswith('http'):
+            curl= ' http://tvplayer.com/'+curl
+        addDir(cname.capitalize() ,base64.b64encode('tvplayer:'+curl) ,mm ,logo, False, True,isItFolder=False)		#name,url,mode,icon
+
 def AddSafeChannels(url):
     import time 
     tt=int(time.time())
@@ -2170,8 +2194,12 @@ def getYPUrl(url):
         else:
             videoid=tmp[0]
     
-        pageurl='http://www.yupptv.com/Account/OctoNewFrame.aspx?ChanId=%s'%videoid  
-        emhtm=getUrl(pageurl,headers=[('Referer','http://www.yupptv.com/Livetv/'),('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36')])
+        sess= getYPSession()
+        print 'sess',sess
+        pageurl='http://www.yupptv.com/Account/OctoNewFrame.aspx?ChanId=%s'%videoid 
+        print pageurl
+        emhtm=getUrl(pageurl,headers=[('Cookie',sess),('Referer','http://www.yupptv.com/Livetv/'),('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36')])
+        print 'after em'
         rr='file:\'(http.*?)\''    
         finalUrl=re.findall(rr,emhtm)
         print 'finalUrl',finalUrl
@@ -2184,7 +2212,8 @@ def getYPUrl(url):
         #    finalUrl=re.findall(rr,emhtm)
         ret=finalUrl[0]
         
-    except: pass
+    except: 
+        traceback.print_exc(file=sys.stdout)
     return ret
     
 def PlayYP(url):
@@ -2661,7 +2690,7 @@ def getUKTVUserAgent():
         post = urllib.urlencode(post)
       
         headers=[('User-Agent','USER-AGENT-UKTVNOW-APP-V2'),('app-token',getAPIToken(base64.b64decode("aHR0cDovL3VrdHZub3cubmV0L2FwcDIvdjMvZ2V0X3VzZXJfYWdlbnQ="),username))]
-        jsondata=getUrl(base64.b64decode("aHR0cDovL3VrdHZub3cubmV0L2FwcDIvdjMvZ2V0X3VzZXJfYWdlbnQ="),post=post,headers=headers)
+        jsondata=getUrl(base64.b64decode("aHR0cDovL3VrdHZub3cubmV0L2FwcDMvdjMvZ2V0X3VzZXJfYWdlbnQ="),post=post,headers=headers)
         jsondata=json.loads(jsondata)    
         import pyaes
         try:
@@ -2691,7 +2720,7 @@ def local_time(zone='Asia/Karachi'):
 
 def getUKTVPlayUrl(channelID ):
 
-    url=base64.b64decode("aHR0cDovL3VrdHZub3cubmV0L2FwcDIvdjMvZ2V0X3ZhbGlkX2xpbms=")
+    url=base64.b64decode("aHR0cDovL3VrdHZub3cubmV0L2FwcDMvdjMvZ2V0X3ZhbGlkX2xpbms=")
     username="-1"
     usernameC=username+channelID
     s = base64.b64decode("dWt0dm5vdy10b2tlbi0tX3xfLSVzLXVrdHZub3dfdG9rZW5fZ2VuZXJhdGlvbi0lcy1ffF8tMTIzNDU2X3VrdHZub3dfNjU0MzIxLV98Xy11a3R2bm93X2xpbmtfdG9rZW4=")%(url,username)
@@ -2704,6 +2733,7 @@ def getUKTVPlayUrl(channelID ):
     headers=[('User-Agent','USER-AGENT-UKTVNOW-APP-V2'),('app-token',token)]
     jsondata=getUrl(url,post=post+'&',headers=headers)
     return json.loads(jsondata)
+    
     
 def getAPIToken( url,  username):
     #print url,username
@@ -2763,7 +2793,7 @@ def getUKTVPage():
   
     #headers=eval(base64.b64decode("WygnVXNlci1BZ2VudCcsJ1VTRVItQUdFTlQtVUtUVk5PVy1BUFAtVjEnKSwoJ2FwcC10b2tlbicsJ2FmZjE2MTRiNTJhNTM3YmQ3YmEyZDMyODE0ODU1NmFmJyld"))
     headers=[('User-Agent','USER-AGENT-UKTVNOW-APP-V2'),('app-token',getAPIToken(base64.b64decode("aHR0cHM6Ly9hcHAudWt0dm5vdy5uZXQvdjMvZ2V0X2FsbF9jaGFubmVscw=="),username))]
-    jsondata=getUrl(base64.b64decode("aHR0cHM6Ly9hcHAudWt0dm5vdy5uZXQvdjMvZ2V0X2FsbF9jaGFubmVscw=="),post=post,headers=headers)
+    jsondata=getUrl(base64.b64decode("aHR0cDovL3VrdHZub3cubmV0L2FwcDMvdjMvZ2V0X2FsbF9jaGFubmVscw=="),post=post,headers=headers)
     jsondata=json.loads(jsondata)
     
     try:
@@ -2773,6 +2803,7 @@ def getUKTVPage():
         print 'uktv file saving error'
         traceback.print_exc(file=sys.stdout)
     return jsondata
+
 
 def getUKTVCats():
     ret=[]
@@ -2844,9 +2875,11 @@ def getUKTVChannels(categories=[], channels=[]):
             if channel["cat_name"].strip().lower() in categories or  channel["cat_name"] in categories  or channel["channel_name"].strip().lower() in categories  :
                     cname=channel["channel_name"]
                     curl='uktvnow:'+channel["pk_id"]
-                    cimage=channel["img"]
+                    cimage=channel["img"].replace(' ','%20')
+                    print cimage
                     if not cimage.startswith("http"):
                         cimage='https://app.uktvnow.net/'+cimage
+                    print cimage
                     if cname==None: cname=curl
                     if len([i for i, x in enumerate(ret) if x[2] ==curl  ])==0:                    
                         ret.append((cname +' uktv' ,'manual', curl ,cimage))  
@@ -3589,7 +3622,7 @@ def getDittoPage():
 
 def getYPPage(url,progress):
     
-
+ 
     p="u" if 'urdu' in url.lower() else 'h' if 'hindi' in url.lower() else 'p'
     
     fname='yptvpage_%s.json'%p
@@ -3611,7 +3644,7 @@ def getYPPage(url,progress):
         ln+=1
         progress.update( int((ln*100)/len(links)), "", "Filtering YP links..%d of %d"%(ln, len(links) ))
         if progress.iscanceled(): return []
-        if not getYPUrl(l[0])==None:
+        if 1==1:# not getYPUrl(l[0])==None:
             ret+=[l]
     links=ret
     jj=json.dumps(links)
@@ -3621,7 +3654,46 @@ def getYPPage(url,progress):
         print 'yp file saving error'
         traceback.print_exc(file=sys.stdout)
     return links
- 
+    
+def getYpCookieJar(updatedUName=False):
+    cookieJar=None
+    try:
+        cookieJar = cookielib.LWPCookieJar()
+        if not updatedUName:
+            cookieJar.load(YPLoginFile,ignore_discard=True)
+    except: 
+        cookieJar=None
+
+    if not cookieJar:
+        cookieJar = cookielib.LWPCookieJar()
+    return cookieJar 
+    
+#def getYPSession():
+#    cookieJar=getYpCookieJar()
+#    try:
+#        headers=[('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36')]
+#        mainpage=getUrl('http://www.yupptv.com/Default.aspx',headers=headers,cookieJar=cookieJar )
+#        if 'Login / Register' in mainpage:
+#            headers=[('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36'),
+#            ('Origin','http://www.yupptv.com') ,
+#              ('Referer','http://www.yupptv.com/Default.aspx') ,
+#                ('X-Requested-With','XMLHttpRequest')             ]
+#            
+#            post="ctl00%24header1%24sm1=ctl00%24header1%24upLocation%7Cctl00%24header1%24btnSubmit&__LASTFOCUS=&__EVENTTARGET=&__EVENTARGUMENT=&ctl00%24header1%24txtSearch1280=&ctl00%24header1%24txtSearch1600=&ctl00%24header1%24txtLogin=cdn54447%40zasod.com&ctl00%24header1%24txtpassword=NOPWD&ctl00%24header1%24txtName=&ctl00%24header1%24txtEmail=&ctl00%24header1%24txtPwd=&ctl00%24header1%24txtretypwd=&ctl00%24header1%24ddlLangugae=0&ctl00%24header1%24TxtBoxCountry=0&ctl00%24header1%24txtCountryCode=&ctl00%24header1%24txtphoneno=&ctl00%24header1%24chkRterm=option3&ctl00%24header1%24txtFLogin=&ctl00%24header1%24lblCountryName=&ctl00%24header1%24lblCountryValue=&ctl00%24header1%24lblCountryNameindia=&ctl00%24header1%24lblCountryValueindia=&ctl00%24header1%24txtOtp=&ctl00%24header1%24dpdotplogin=0&ctl00%24header1%24txtlogincountrycode=&ctl00%24header1%24txtloginphone=&ctl00%24header1%24txtloginotp=&ctl00%24ContentPlaceHolder1%24header3%24txtActDiv=divHindi&__ASYNCPOST=true&ctl00%24header1%24btnSubmit=Login"
+#            mainpage=getUrl('http://www.yupptv.com/Default.aspx',post=post,cookieJar=cookieJar,headers=headers)
+#        cookieJar.save (YPLoginFile,ignore_discard=True)
+#    except: pass
+#    return cookieJar
+def getYPSession():
+    cookieJar=getYpCookieJar()
+    try:
+        import time
+        headers=[('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36')]
+        mainpage=getUrl('http://shani.offshorepastebin.com/yppsession.php?i'+str(time.time()),headers=headers )
+        sess=re.findall('ASP.NET_SessionId\s(.*)',mainpage)[0]
+        return "ASP.NET_SessionId="+sess+";"
+    except: pass
+    return ""
     
 def getCFPage(catId):
     headers=[('User-Agent',base64.b64decode('Q0ZVTlRWLzMuMSBDRk5ldHdvcmsvNzU4LjAuMiBEYXJ3aW4vMTUuMC4w'))]
@@ -4003,13 +4075,16 @@ def tryplaywithping(url,listitem,pingurl,cookiejar, timeout):
     #xbmc.Player().play( liveLink,listitem)
     player.play( url, listitem)
     xbmc.sleep(1000)
-    getUrl(pingurl, cookieJar = cookiejar)
+    useragent='Mozilla/5.0 (iPhone; CPU iPhone OS 9_0_2 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13A452 Safari/601.1'
+
+    headers=[('User-Agent',useragent)]
+    getUrl(pingurl, cookieJar = cookiejar,headers=headers)
     import time
     lastpingdone=time.time()
     while player.is_active:
         xbmc.sleep(3000)
         if time.time()-lastpingdone>timeout:
-            getUrl(pingurl, cookieJar = cookiejar)
+            getUrl(pingurl, cookieJar = cookiejar,headers=headers)
             lastpingdone=time.time()
     return False              
 def PlayStreamSports(url):
@@ -4121,7 +4196,8 @@ def playSports365(url,progress):
     #    print   "playing stream name: " + str(name) 
             #xbmc.Player().play( urlToPlay, listitem)  
             progress.close()
-            tryplaywithping(urlToPlay,listitem,'http://www.sport365.live/en/main',get365CookieJar(), 10) 
+            xbmc.Player().play( urlToPlay, listitem)  
+            #tryplaywithping(urlToPlay,listitem,'http://www.sport365.live/en/sidebar ',get365CookieJar(), 10) 
     else:
         if RefreshResources([('live365.py','https://raw.githubusercontent.com/Shani-08/ShaniXBMCWork2/master/plugin.video.ZemTV-shani/live365.py')]):
             dialog = xbmcgui.Dialog()
@@ -4168,7 +4244,7 @@ def PlayPV2Link(url):
     if '|' not in urlToPlay:
         urlToPlay+='|'
     import random
-    useragent='User-Agent=AppleCoreMedia/1.0.0.%s (%s; U; CPU OS 9_%s_%s like Mac OS X; en_gb)'%(random.choice(['13G34' ,'13G36','13G35']),random.choice(['iPhone','iPad']),binascii.b2a_hex(os.urandom(2))[:2],binascii.b2a_hex(os.urandom(2))[:3])
+    useragent='User-Agent=AppleCoreMedia/1.0.0.%s (%s; U; CPU OS %s like Mac OS X; en_gb)'%(random.choice(['13G34' ,'13G36','13G35']),random.choice(['iPhone','iPad','iPod']),random.choice(['9_3_3','9_3_4','9_3_5']))
     urlToPlay+=useragent
     #try:
     #    if 'iptvaus.dynns.com' in urlToPlay:# quickfix
@@ -4252,7 +4328,11 @@ def PlayOtherUrl ( url ):
         return 
     if "safe:" in url:
         PlaySafeLink(url.split('safe:')[1])
-        return            
+        return        
+    if "tvplayer:" in url:
+        playtvplayer(url.split('tvplayer:')[1])
+        return                 
+       
     if url in [base64.b64decode('aHR0cDovL2xpdmUuYXJ5bmV3cy50di8='),
             base64.b64decode('aHR0cDovL2xpdmUuYXJ5emluZGFnaS50di8='),
             base64.b64decode('aHR0cDovL2xpdmUuYXJ5cXR2LnR2Lw=='),
@@ -4931,7 +5011,52 @@ def PlayShowLink ( url, redirect=True ):
         xbmc.executebuiltin("xbmc.PlayMedia("+uurl+")")
 
     return
+    
+def get_treabaAia():
+    val=""
+    import math
+    for d in [5.6
+            ,12.1
+            ,7.5
+            ,3.3
+            ,11.8
+            ,7
+            ,11.6
+            ,9
+            ,10.7
+            ,6.6
+            ,3.5
+            ,10.1
+            ,11.8
+            ,7.1
+            ,11.5]:
+        val +=  chr(int(math.floor(d * 10)));
+    return val
+import md5
+#print 
 
+def generateKey(tokenexpiry):
+    return md5.new(tokenexpiry+get_treabaAia()).hexdigest()
+print generateKey("1473650167")
+
+def playtvplayer(url):
+    import re,urllib,json
+    watchHtml=getUrl(url)
+    channelid=re.findall('var initialChannelId = "(.*?)"' ,watchHtml)[0]
+    hashval=urllib.unquote(re.findall('hash = "(.*?)"' ,watchHtml)[0])
+    expval=re.findall('exp = "(.*?)"' ,watchHtml)[0]
+    keyval=generateKey(expval)
+    cj = cookielib.LWPCookieJar()
+    data = urllib.urlencode({'id' : channelid})
+    headers=[('Token-Expiry',expval) ,('Hash',hashval),('Key',keyval),('Referer','http://assets.tvplayer.com/web/flash/tvplayer/TVPlayer-DFP-3.swf'),('X-Requested-With','ShockwaveFlash/22.0.0.209')]
+    retjson=getUrl("http://live.tvplayer.com/stream-web-encrypted.php",post=data, headers=headers,cookieJar=cj);
+    jsondata=json.loads(retjson)
+#    print cj
+    url=jsondata["tvplayer"]["response"]["stream"]
+    PlayGen(base64.b64encode(url+'|Cookie=%s&User-Agent=Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36&X-Requested-With=ShockwaveFlash/22.0.0.209&Referer=http://tvplayer.com/watch/'%getCookiesString(cj)))
+    return 
+    
+    
 def ShowAllSources(url, loadedLink=None):
 	global linkType
 #	print 'show all sources',url
@@ -5329,7 +5454,9 @@ try:
 	elif mode==73:
 		print "Play url is "+url
 		AddSafeChannels(url)  
-      
+	elif mode==74:
+		print "Play url is "+url
+		AddTVPlayerChannels(url)        
         
 except:
 	print 'somethingwrong'
