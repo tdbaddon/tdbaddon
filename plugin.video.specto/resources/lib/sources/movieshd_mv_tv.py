@@ -32,8 +32,8 @@ from resources.lib import resolvers
 
 class source:
     def __init__(self):
-        self.base_link = 'http://movieshd.watch'
-        self.search_link = '/api/v1/cautare/upd'
+        self.base_link = 'http://cartoonhd.website'
+        self.search_link = '/api/v2/cautare/upd'
 
 
     def get_movie(self, imdb, title, year):
@@ -182,10 +182,14 @@ class source:
 
     def resolve(self, url):
         try:
+            if 'requiressl=yes' in url: url = url.replace('http://', 'https://')
+            else: url = url.replace('https://', 'http://')
+
             control.log('@#@ PUT %s' % url)
             if 'openload.co' in url or 'videomega.tv' in url:
                 control.log('@#@ PUT resolving ')
                 url = resolvers.request(url)
+
             return url
         except:
             return

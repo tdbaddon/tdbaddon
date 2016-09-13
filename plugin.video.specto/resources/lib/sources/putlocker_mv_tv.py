@@ -32,9 +32,10 @@ from resources.lib import resolvers
 
 class source:
     def __init__(self):
-        self.base_link = 'http://www.putlocker.systems'
+        self.base_link = 'http://www.flixanity.me'
         #self.search_link = '/api/v1/cautare/apr'
         self.search_link = '/api/v1/cautare/upd'
+
 
 
     def get_movie(self, imdb, title, year):

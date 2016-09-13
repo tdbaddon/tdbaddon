@@ -1,3 +1,5 @@
+[B]Version 5.3.2[/B]
+StreamHD Added
 [B]Version 5.3.1[/B]
 TVPlayer Added
 [B]Version 5.3.0[/B]

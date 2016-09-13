@@ -452,6 +452,9 @@ class libepisodes:
 
 
     def service(self):
+        try: control.fix_metahandler()
+        except: pass
+
         try:
             control.makeFile(control.dataPath)
             dbcon = database.connect(control.libcacheFile)

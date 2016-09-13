@@ -424,7 +424,7 @@ def AddSports(url):
     addDir('Mona' ,'sss',68,'')
     addDir('Sport365.live [GeoBlocked]' ,'sss',56,'')
     addDir('SmartCric.com (Live matches only)' ,'Live' ,14,'')
-    addDir('UKTVNow [Limited Channels]','sss' ,57,'')
+    addDir('UKTVNow [Limited Channels]','sss' ,57,'http://www.uktvnow.net/images/uktvnow_logo.png')
     
 #    addDir('Flashtv.co (Live Channels)' ,'flashtv' ,31,'')
     addDir('Willow.Tv (Subscription required, US Only or use VPN)' ,base64.b64decode('aHR0cDovL3d3dy53aWxsb3cudHYv') ,19,'')
@@ -432,6 +432,8 @@ def AddSports(url):
     addDir('PV2 Sports' ,'zemsports',36,'')
     addDir('Safe' ,'sss',72,'')
     addDir('TVPlayer [UK Geo Restricted]','sss',74,'https://assets.tvplayer.com/web/images/tvplayer-logo-white.png')
+    addDir('StreamHD','sss',75,'http://www.streamhd.eu/images/logo.png')
+
     #addDir('Yupp Asia Cup','Live' ,60,'')
     #addDir('CricHD.tv (Live Channels)' ,'pope' ,26,'')
     #addDir('cricfree.sx' ,'sss',41,'')
@@ -1076,9 +1078,7 @@ def AddSafeLang(url=None):
     for cname,ctype in [('English','en'),('German','de'),('French','fr'),('Italian','it'),('Dutch','nl'),('Polish','pl')]:        
         addDir(Colored(cname.capitalize(),'ZM') ,base64.b64encode(cname+','+ctype) ,73 ,'', False, True,isItFolder=True)		#name,url,mode,icon
     return  
-    
 def AddTVPlayerChannels(url):
-
     headers=[('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36')]               
     mainhtml=getUrl('http://tvplayer.com/watch/bbcone',headers=headers)
     cdata=re.findall('<li class="online.*?free.*?\s*<a href="(.*?)" title="(.*?)".*?\s*<img.*?src="(.*?)"',mainhtml)
@@ -1094,6 +1094,61 @@ def AddTVPlayerChannels(url):
         if not curl.startswith('http'):
             curl= ' http://tvplayer.com/'+curl
         addDir(cname.capitalize() ,base64.b64encode('tvplayer:'+curl) ,mm ,logo, False, True,isItFolder=False)		#name,url,mode,icon
+
+def AddStreamHDCats(url):
+
+    cdata=[('Football','http://www.streamhd.eu/football/'),('','')]
+    reg='<li>\s*?<a.*?href="(.*?)".*?src="(.*?)".*?>(.*?)<'
+    headers=[('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36')]               
+    mainhtml=getUrl('http://www.streamhd.eu/',headers=headers)
+    cdata=re.findall(reg,mainhtml)
+    cdata=[('http://www.streamhd.eu/tv/','','Live Sports Channels'),('http://www.streamhd.eu/','','All Sports'),
+        ('http://www.streamhd.eu/football/','http://www.streamhd.eu/images/icons/football.png','Footbal')
+        ]+cdata
+    
+    for cc in cdata:
+        
+        mm=76
+        logo=cc[1]
+        cname=cc[2]
+        curl=cc[0]
+        if not curl.startswith('http'):
+            curl= 'http://www.streamhd.eu'+curl
+        addDir(cname.capitalize() ,curl ,mm ,logo, False, True,isItFolder=True)		#name,url,mode,icon
+    
+        
+def AddStreamHDChannels(url):
+
+    headers=[('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36')]               
+    mainhtml=getUrl(url,headers=headers)
+    tv=False
+    if '/tv/' in url:
+        tv=True
+        reg='<a href="(.*?)".*?class="re.*?alt="(.*?)".*?'
+        cdata=re.findall(reg,mainhtml)
+    else:
+        cdata=re.findall('eventsmall">(.*?)<.*?den-xs">(.*?)<.*\s*?<.*?img src="(.*?)".*?>(.*?)<.*\s*.*\s*.*?<span>(.*?)<.*\s*?.*?eventsmall.*?href="(.*?)">(.*?)<',mainhtml)
+    for cc in cdata:
+        
+        
+        mm=11
+        
+        if tv:
+            logo=''
+            cname=cc[1]
+            curl=cc[0]
+            if curl=='#': continue
+            
+        else:
+            logo=cc[2]
+        
+            cname=Colored(cc[0]+cc[1],'green')+': '+Colored(cc[3],'red')+' '+cc[4]+'\n'+cc[6]
+
+            curl=cc[5]
+            
+        if not curl.startswith('http'):
+            curl= 'http://www.streamhd.eu'+curl
+        addDir(cname ,base64.b64encode('streamhd:'+curl) ,mm ,logo, False, True,isItFolder=False)		#name,url,mode,icon
 
 def AddSafeChannels(url):
     import time 
@@ -4331,7 +4386,11 @@ def PlayOtherUrl ( url ):
         return        
     if "tvplayer:" in url:
         playtvplayer(url.split('tvplayer:')[1])
-        return                 
+        return  
+    if "streamhd:" in url:
+        playstreamhd(url.split('streamhd:')[1])
+        return               
+        
        
     if url in [base64.b64decode('aHR0cDovL2xpdmUuYXJ5bmV3cy50di8='),
             base64.b64decode('aHR0cDovL2xpdmUuYXJ5emluZGFnaS50di8='),
@@ -5037,8 +5096,26 @@ import md5
 
 def generateKey(tokenexpiry):
     return md5.new(tokenexpiry+get_treabaAia()).hexdigest()
-print generateKey("1473650167")
 
+def playstreamhd(url):
+    import re,urllib,json
+    headers=[('Referer','http://streamhdeu.com/'),('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36')]
+
+    watchHtml=getUrl(url,headers=headers)
+    videframe=re.findall('"videoiframe" src="(.*?)"' ,watchHtml)[0]
+    videoframedata=getUrl(videframe,headers=headers)
+    iframe=re.findall('iframe src="(.*?)"' ,videoframedata)
+    if len(iframe)>0:
+        
+        iframdata=getUrl(iframe[0],headers=headers)
+    else:
+        iframdata=videoframedata
+    m3ufile=re.findall('file: "(.*?)"' ,iframdata)[0]
+    
+   
+    PlayGen(base64.b64encode(m3ufile+'|User-Agent=Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36'))
+    return 
+    
 def playtvplayer(url):
     import re,urllib,json
     watchHtml=getUrl(url)
@@ -5457,8 +5534,15 @@ try:
 	elif mode==74:
 		print "Play url is "+url
 		AddTVPlayerChannels(url)        
+	elif mode==75:
+		print "Play url is "+url
+		AddStreamHDCats(url)  
+	elif mode==76:
+		print "Play url is "+url
+		AddStreamHDChannels(url)                   
         
 except:
+
 	print 'somethingwrong'
 	traceback.print_exc(file=sys.stdout)
 	
