@@ -331,7 +331,7 @@ def Colored(text = '', colorid = '', isBold = False):
     return '[COLOR ' + color + ']' + text + '[/COLOR]'	
 
 def getLinks():
-    cookieJar=get365CookieJar()
+    cookieJar=get365CookieJar(True)
     kkey=get365Key(cookieJar,useproxy=False)
         
     headers=[('User-Agent',useragent)]
@@ -477,9 +477,10 @@ def selectMatch(url):
                 #enclinkhtml=enclinkhtml2
                 #print 'usediv',usediv
                 reg='player_div\'.*?\s*\s*<.*?\s*.*?\("(.*?)\",.?\"(.*?)\",(.*?)\)'
-                encst,enclink,isenc=re.findall(reg,enclinkhtml2)[0]
+                reg="\([\"'](.*?)[\"'],.?[\"'](.*?)[\"'],.?[\"'](.*?)[\"'],(.*?)\)"
+                pd,encst,enclink,isenc=re.findall(reg,enclinkhtml2)[0]
 
-                #print 'encst,enclink',encst,enclink,isenc
+                print 'encst,enclink',encst,enclink,isenc
                 isenc=isenc.strip();
                 if isenc=="1":
                     reg="src=\"(.*?\\/wrapper.js.*)\""
@@ -490,7 +491,7 @@ def selectMatch(url):
                     import jscrypto
                     lnk=jscrypto.decode(enclink["ct"],kkey,enclink["s"].decode("hex"))
                     
-                    print lnk                    
+                    print 'dec link',lnk                    
                     enclink=lnk
                     if lnk.startswith('"http'): lnk= lnk.replace('\"','').replace('\\/','/')
                 #enclink=enclink[0]
@@ -511,7 +512,7 @@ def selectMatch(url):
     #    print 'enclink',enclink
     #    reg='player_div", "st":"(.*?)"'
     #    encst=re.findall(reg,enclinkhtml)[0]
-
+    print 'encst',encst
     if not 'peer' in encst:
         decodedst=decode(encst)
 
@@ -540,7 +541,7 @@ def selectMatch(url):
     getUrl("http://www.sport365.live/en/sidebar",headers=headers, cookieJar=cookieJar)
     cookieJar.save (S365COOKIEFILE,ignore_discard=True)
 
-    return urlToPlaymain
+    #return urlToPlaymain
     return 'plugin://plugin.video.f4mTester/?url=%s&streamtype=HLS'%(urllib.quote_plus(urlToPlaymain))
     
 def select365(url,cookieJar,mainref):

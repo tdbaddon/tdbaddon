@@ -22,14 +22,13 @@
        <setting type="lsep" label="30944" />
 	</category>
     <category label="50000">
+       <setting type="lsep" label="50003" />
 	   <setting id="wushare_username" type="text" label="50001" />
 	   <setting id="wushare_password" type="text" option="hidden" label="50002" />
-       <setting type="lsep" label="50003" />
-       <setting type="lsep" label="50004" />
-       <setting type="lsep" label="50005" />
 	</category>
 	<category label="40000">
         <setting id="40wushare" type="bool" label="40047" default="false"/>
+        <setting id="409XXX" type="bool" label="40049" default="true"/>
         <setting id="40dinojav" type="bool" label="40012" default="true"/>
         <setting id="40dodova" type="bool" label="40006" default="true"/>
         <setting id="40dojav69" type="bool" label="40038" default="true" />
@@ -63,10 +62,13 @@
         <setting id="40javstream365" type="bool" label="40032" default="true" />
         <setting id="40jav-stream" type="bool" label="40014" default="true"/>
         <setting id="40javstreams" type="bool" label="40030" default="true" />
+        <setting id="40javtubehd" type="bool" label="40051" default="true" />
         <setting id="40javtv" type="bool" label="40031" default="true" />
         <setting id="40javwest" type="bool" label="40011" default="true"/>
+        <setting id="40javzab" type="bool" label="40050" default="true"/>
         <setting id="40jpav" type="bool" label="40040" default="true"/>
         <setting id="40jpidols" type="bool" label="40036" default="true" />
+        <setting id="40kodporn" type="bool" label="40052" default="true" />
         <setting id="40korean720" type="bool" label="40029" default="true" />
 		<setting id="40sexloading" type="bool" label="40001" default="true"/>
         <setting id="40streamingjav" type="bool" label="40009" default="true"/>
@@ -76,10 +78,12 @@
         <setting id="40phimsexjav" type="bool" label="40010" default="true"/>
 		<setting id="40watchjavonline" type="bool" label="40004" default="true"/>
         <setting id="40yebbun90" type="bool" label="40024" default="false" />
+        <setting id="40youjav" type="bool" label="40053" default="false" />
         <setting id="40youpornjav" type="bool" label="40025" default="true" />
 	</category>
     <category label="41000">
         <setting id="41wushare" type="bool" label="40047" default="false"/>
+        <setting id="419XXX" type="bool" label="40049" default="true"/>
         <setting id="41dinojav" type="bool" label="40012" default="true"/>
         <setting id="41dodova" type="bool" label="40006" default="true"/>
         <setting id="41dojav69" type="bool" label="40038" default="true" />
@@ -113,10 +117,13 @@
         <setting id="41javstream365" type="bool" label="40032" default="true" />
         <setting id="41jav-stream" type="bool" label="40014" default="true"/>
         <setting id="41javstreams" type="bool" label="40030" default="false" />
+        <setting id="41javtubehd" type="bool" label="40051" default="true" />
         <setting id="41javtv" type="bool" label="40031" default="false" />
         <setting id="41javwest" type="bool" label="40011" default="true"/>
+        <setting id="41javzab" type="bool" label="40050" default="true"/>
         <setting id="41jpav" type="bool" label="40040" default="true"/>
         <setting id="4jpidols" type="bool" label="40036" default="true" />
+        <setting id="41kodporn" type="bool" label="40052" default="false" />
         <setting id="41korean720" type="bool" label="40029" default="true" />
 		<setting id="41sexloading" type="bool" label="40001" default="true"/>
         <setting id="41streamingjav" type="bool" label="40009" default="true"/>
@@ -126,10 +133,12 @@
         <setting id="41phimsexjav" type="bool" label="40010" default="true"/>
 		<setting id="41watchjavonline" type="bool" label="40004" default="true"/>
         <setting id="41yebbun90" type="bool" label="40024" default="false" />
+        <setting id="41youjav" type="bool" label="40053" default="true" />
         <setting id="41youpornjav" type="bool" label="40025" default="false" />
 	</category>
     <category label="42000">
         <setting id="42wushare" type="bool" label="40047" default="false"/>
+        <setting id="429XXX" type="bool" label="40049" default="true"/>
 		<setting id="42dinojav" type="bool" label="40012" default="false"/>
         <setting id="42dodova" type="bool" label="40006" default="false"/>
         <setting id="42dojav69" type="bool" label="40038" default="false" />
@@ -163,10 +172,13 @@
         <setting id="42javstream365" type="bool" label="40032" default="false" />
         <setting id="42jav-stream" type="bool" label="40014" default="false"/>
         <setting id="42javstreams" type="bool" label="40030" default="false" />
+        <setting id="42javtubehd" type="bool" label="40051" default="false" />
         <setting id="42javtv" type="bool" label="40031" default="false" />
         <setting id="42javwest" type="bool" label="40011" default="false"/>
+        <setting id="42javzab" type="bool" label="40050" default="false"/>
         <setting id="42jpav" type="bool" label="40040" default="false"/>
         <setting id="42jpidols" type="bool" label="40036" default="true" />
+        <setting id="42kodporn" type="bool" label="40052" default="false" />
         <setting id="42korean720" type="bool" label="40029" default="false" />
 		<setting id="42sexloading" type="bool" label="40001" default="false"/>
         <setting id="42streamingjav" type="bool" label="40009" default="false"/>
@@ -176,10 +188,12 @@
         <setting id="42phimsexjav" type="bool" label="40010" default="false"/>
 		<setting id="42watchjavonline" type="bool" label="40004" default="true"/>
         <setting id="42yebbun90" type="bool" label="40024" default="false" />
+        <setting id="42youjav" type="bool" label="40053" default="false" />
         <setting id="42youpornjav" type="bool" label="40025" default="false" />
 	</category>
     <category label="43000">
         <setting id="43wushare" type="bool" label="40047" default="false"/>
+        <setting id="439XXX" type="bool" label="40049" default="true"/>
         <setting id="43dinojav" type="bool" label="40012" default="true"/>
         <setting id="43dodova" type="bool" label="40006" default="true"/>
         <setting id="43dojav69" type="bool" label="40038" default="true" />
@@ -213,10 +227,13 @@
         <setting id="43javstream365" type="bool" label="40032" default="true" />
         <setting id="43jav-stream" type="bool" label="40014" default="true"/>
         <setting id="43javstreams" type="bool" label="40030" default="true" />
+        <setting id="43javtubehd" type="bool" label="40051" default="true" />
         <setting id="43javtv" type="bool" label="40031" default="true" />
         <setting id="43javwest" type="bool" label="40011" default="true"/>
+        <setting id="43javzab" type="bool" label="40050" default="true"/>
         <setting id="43jpav" type="bool" label="40040" default="true"/>
-        <setting id="43pidols" type="bool" label="40036" default="true" />
+        <setting id="43jpidols" type="bool" label="40036" default="true" />
+        <setting id="43kodporn" type="bool" label="40052" default="false" />
         <setting id="43korean720" type="bool" label="40029" default="true" />
 		<setting id="43sexloading" type="bool" label="40001" default="true"/>
         <setting id="43streamingjav" type="bool" label="40009" default="true"/>
@@ -226,6 +243,7 @@
         <setting id="43phimsexjav" type="bool" label="40010" default="true"/>
 		<setting id="43watchjavonline" type="bool" label="40004" default="true"/>
         <setting id="43yebbun90" type="bool" label="40024" default="true" />
+        <setting id="43youjav" type="bool" label="40053" default="true" />
         <setting id="43youpornjav" type="bool" label="40025" default="true" />
 	</category>
 </settings>

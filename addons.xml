@@ -1274,7 +1274,7 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
 	</extension>
 </addon>
 
-<addon id="plugin.video.javstream" name="JAVStream" version="0.91.3" provider-name="ptom">
+<addon id="plugin.video.javstream" name="JAVStream" version="0.91.5" provider-name="ptom">
 	<extension point="xbmc.python.pluginsource" library="default.py">
 		<provides>video</provides>
 	</extension>
@@ -2059,7 +2059,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   <extension point="xbmc.service" library="service.py" start="login" />
 </addon>
 
-<addon id="plugin.video.ted.talks" name="TED Talks" version="4.2.8" provider-name="rwparris2, moreginger">
+<addon id="plugin.video.ted.talks" name="TED Talks" version="4.2.9" provider-name="rwparris2, moreginger">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.elementtree" version="1.2.7"/>
@@ -2562,7 +2562,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.ZemTV-shani"
        name="ZemTV.com"
-       version="5.3.2"
+       version="5.3.4"
        provider-name="shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>

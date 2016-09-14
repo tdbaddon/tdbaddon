@@ -25,6 +25,10 @@ try:
     dbcur.execute("CREATE TABLE IF NOT EXISTS versions (version_id);")
 except:
     pass
+try:
+    dbcur.execute("CREATE TABLES IF NOT EXISTS realdebrid (client_id, client_secret, device_code)")
+except:
+    pass
 dbcon.close()
 
 def checkVersion(v):
@@ -99,3 +103,11 @@ def inDatabase(term):
     if len(data)==0:
         return False
     return True
+    
+def storeDebrid(client_id, client_secret, device_code):
+    dbcon=database.connect(dbFile)
+    dbcur=dbcon.cursor()
+    dbcur.execute("DELETE FROM realdebrid")
+    dbcur.execute("INSERT INTO realdebrid (client_id, client_secret, device_code) VALUES (?)", (client_id, client_secret, device_code,))
+    dbcon.commit()
+    dbcon.close()

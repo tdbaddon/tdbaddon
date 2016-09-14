@@ -1,6 +1,6 @@
 import menu, util, urllib
 import xbmcplugin, xbmcaddon, xbmcgui
-import search
+import search, realdebrid
 
 sysarg=str(sys.argv[1])
 ADDON_ID='plugin.video.javstream'
@@ -68,6 +68,10 @@ elif mode==1000:
     util.addMenuItems(menu.gravureMenu)
 elif mode==1002:
     util.gravureIdols(parameters)
-else:
-    # if we get here then there's nothing to do except display the main menu
-    util.addMenuItems(menu.mainMenu)
+else: 
+    try:
+        if parameters['realdebrid']=="true":
+            realdebrid.auth()
+    except:
+        # if we get here then there's nothing to do except display the main menu
+        util.addMenuItems(menu.mainMenu)

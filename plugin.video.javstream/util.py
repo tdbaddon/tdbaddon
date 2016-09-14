@@ -11,7 +11,7 @@ import search
 sysarg=str(sys.argv[1])
 ADDON_ID='plugin.video.javstream'
 addon = xbmcaddon.Addon(id=ADDON_ID)
-ADDON_VER="0.91.3"
+ADDON_VER="0.91.5"
 
 hdr = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11',
        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
@@ -80,16 +80,22 @@ def parseParameters(inputString=sys.argv[2]):
     
     Returns a dictionary with parameter names as keys and parameter values as values
     """
+    
+    
     parameters = {}
     p1 = inputString.find('?')
     if p1 >= 0:
         splitParameters = inputString[p1 + 1:].split('&')
         for nameValuePair in splitParameters:
-            if (len(nameValuePair) > 0):
-                pair = nameValuePair.split('=')
-                key = pair[0]
-                value = urllib.unquote(urllib.unquote_plus(pair[1])).decode('utf-8')
-                parameters[key] = value
+            try:
+                if (len(nameValuePair) > 0):
+                    pair = nameValuePair.split('=')
+                    key = pair[0]
+                    value = urllib.unquote(urllib.unquote_plus(pair[1])).decode('utf-8')
+                    parameters[key] = value
+                    logError(value)
+            except:
+                pass
     return parameters
 
 def extractAll(text, startText, endText):
@@ -132,7 +138,7 @@ def extract(text, startText, endText):
             return text[start:end]
     return None      
 
-def getURL(url, header=hdr):
+def getURL(url, header=headers):
     try:
         req = urllib2.Request(url, headers=header)
             
@@ -147,6 +153,8 @@ def getURL(url, header=hdr):
                 content = response.read()
             content = content.decode('utf-8', 'ignore')
             return content
+        else:
+            xbmc.log('Error Loading URL : '+str(response.getcode()), xbmc.LOGERROR)
     except:
         xbmc.log('Error Loading URL : '+url.encode("utf-8"), xbmc.LOGERROR)
         try:
@@ -156,6 +164,13 @@ def getURL(url, header=hdr):
     
     return False
 
+def postURL(url, payload):
+    data = urllib.urlencode(payload)
+    request = urllib2.Request(url, data)
+    response = urllib2.urlopen(request)
+    return response.read
+
+    
 def getHtml(url, referer, hdr=None, NoCookie=None, data=None):
     if not hdr:
         req = Request(url, data, headers)
@@ -397,9 +412,9 @@ def whatPlayer(url, site, dvdCode):
     
     try:
         if site=="javstreams":
-            p=re.compile("(javstreams\.com\/play\?v=\S.*?)\"")
+            p=re.compile("(javstreams\.tv\/play\?v=\S.*?)\"")
             page="http://"+re.search(p,html).group(1)
-        elif site=="javshow" or site=="eropoi" or site=="youpornjav" or site=="javabc" or site=="javhdvideo":
+        elif site=="javshow" or site=="eropoi" or site=="youpornjav" or site=="javabc" or site=="javhdvideo" or site=="xonline":
             dvdCode=dvdCode.replace(" ", "-").replace("_", "-").replace("%20", "-").replace("%22", "").lower()
             if dvdCode in html:
                 p=re.compile("<loc>([\S]*.?"+dvdCode+"[\S]*.?)<\/loc>")
@@ -444,13 +459,32 @@ def whatPlayer(url, site, dvdCode):
         elif site=="streamjav":
             p=re.compile("<link>(\S*)<\/link>")
             page=re.search(p, html).group(2)
-            logError(page)
+        elif site=="javtubehd":
+            logError("javhdtube init")
+            p=re.compile('<iframe src="(http:\/\/www\.riz1.info\S+)"')
+            page=re.search(p, html).group(1)
         else:
             #p=re.compile("<item>[\S\s]+<link>([^<]+)")
             p=re.compile("<guid[^>]+>(\S*)<\/guid>")
             page=re.search(p, html).group(1)
+      
         
+            
         html=getURL(page, hdr)
+        
+        if site=="9xxx":
+            p=re.compile('<iframe src="(\/\/9player.net\S+)"')
+            page="http:"+re.search(p, html).group(1)
+            html=getURL(page, hdr)
+        elif site=="kodporn":
+            p=re.compile('iframe src="(\S*\/tube\/xplay\S+)"')
+            page="http://www.kodporn.co"+re.search(p, html).group(1)
+            html=getURL(page, hdr)
+        elif site=="youjav":
+            p=re.compile('src="(\S*watch\?v=\S+)"')
+            page="http:"+re.search(p, html).group(1)
+            html=getURL(page, hdr)
+            
         found.append(page)
     except:
         html=False
@@ -467,7 +501,10 @@ def whatPlayer(url, site, dvdCode):
             found.append("googlevideo (720)")
         if 'type="video/mp4" data-res="1080"' in html:
             found.append("googlevideo (1080)")
-        if "googlevideo" in html or "googleusercontent" in html:
+        """if "rapidgator" in html:
+            found.append("rapidgator")"""
+        if "googlevideo" in html or "googleusercontent" in html or "docs.google" in html:
+            logError(site+" gvideo")
             p=re.compile('src=[\'|"](http[s]*:\/\/googleusercontent.[\S]*)[\'|"]')
             try: 
                 link=urlresolver.resolve(re.search(p, html).group(1))
@@ -475,20 +512,25 @@ def whatPlayer(url, site, dvdCode):
             except:
                 p=re.compile('src=[\'|"](http[s]*:\/\/googlevideo.[\S]*)[\'|"]')
                 try: 
-                    link=urlresolver.resolve(re.search(p, html).group(1))
+                    link=re.search(p, html).group(1)
                     found.append("googlevideo")
                 except:
                     p=re.compile('file: [\'|"](http[s]*:\/\/\S.*?googlevideo.\S.*?)[\'|"]')
                     try: 
-                        link=urlresolver.resolve(re.search(p, html).group(1))
+                        #link=urlresolver.resolve(re.search(p, html).group(1))
                         found.append("googlevideo")
                     except:
                         p=re.compile('content=[\'|"]([http|https]\S*googleusercontent\S*)[\'|"]')
                         try: 
-                            link=re.search(p, html).group(1)
+                            link=urlresolver.resolve(re.search(p, html).group(1))
                             found.append("googlevideo")
                         except:
-                            pass
+                            p=re.compile('file: [\'|"](http[s]*:\/\/\S.*?docs.google.com.\S.*?)[\'|"]')
+                            try: 
+                                #link=urlresolver.resolve(re.search(p, html).group(1))
+                                found.append("googlevideo")
+                            except:
+                                pass
         if "videomega" in html:
             found.append("videomega")
         if "openload" in html or "oload" in html:
@@ -672,7 +714,7 @@ def huntVideo(params):
             huntSites.append("http://korean720.com/?s="+dvdCode+"&feed=rss2")
         if xbmcplugin.getSetting(int(sysarg), searching+"javstreams")=="true": 
             titles.append("javstreams")
-            huntSites.append("http://javstreams.com/?s="+dvdCode+"&feed=rss2")
+            huntSites.append("http://javstreams.tv/search/"+dvdCode+"/feed/rss")
         if xbmcplugin.getSetting(int(sysarg), searching+"javtv")=="true":
             titles.append("javtv")
             huntSites.append("http://javtv.org/?s="+dvdCode+"&feed=rss2")
@@ -729,14 +771,51 @@ def huntVideo(params):
         if xbmcplugin.getSetting(int(sysarg), searching+"javleak")=="true":
             titles.append("javleak")
             huntSites.append("http://javleak.com/search/"+dvdCode+"/feed/rss2")
-        
+        if xbmcplugin.getSetting(int(sysarg), searching+"9XXX")=="true":
+            titles.append("9xxx")
+            huntSites.append("http://9xxx.net/search/"+dvdCode+"/feed/rss2")
+        if xbmcplugin.getSetting(int(sysarg), searching+"javzab")=="true":
+            titles.append("javzab")
+            huntSites.append("http://www.javzab.com/search/"+dvdCode+"/feed/rss2")
+        if xbmcplugin.getSetting(int(sysarg), searching+"javtubehd")=="true":
+            titles.append("javtubehd")
+            huntSites.append("http://javtubehd.com/search/"+dvdCode+"/feed/rss2")
+        if xbmcplugin.getSetting(int(sysarg), searching+"kodporn")=="true":
+            titles.append("kodporn")
+            huntSites.append("http://www.kodporn.co//search/"+dvdCode+"/feed/rss2")
+        if xbmcplugin.getSetting(int(sysarg), searching+"youjav")=="true":
+            titles.append("youjav")
+            huntSites.append("http://youjav.me/search/"+dvdCode+"/feed/rss2")
+        titles.append("maddawdjav")
+        huntSites.append("hhttp://maddawgjav.net/"+dvdCode+"/feed/rss2")
     huntSites=unique(huntSites)  
     updateString=" ".join(titles)
     # to be added in the future
     # -------------------------
     # javchan.com
+    # javmovie.com
     # javcenso.com
     # javuncen.me
+    # hdporn4us.com
+    # jav18online.com
+    # jav-th.com
+    # joojav.com
+    # javholy
+    # rejav.com
+    # jav-onlines.com
+    # xonline
+    # jav-720p.com
+    # javhub.net
+    # --------------------------
+    # realdebrid
+    # --------------------------
+    # javfilm.tk
+    # javblog.me
+    # nippondvd.com
+    # acr700.biz
+    # javfilm.ga
+    # javarchive.com
+    # maddawgjav.net
     
     
     #p1=re.compile("http:\/\/(www.)?([a-zA-Z0-9-]*.[a-z]*)")
@@ -978,8 +1057,8 @@ def getVideoURL(params):
             
         cj2 = cookielib.CookieJar()
         opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cj2))
-        login_data = urllib.urlencode({'username_or_email' : xbmcaddon.Addon().getSetting('wushare_username'), 'password' : xbmcaddon.Addon().getSetting('wushare_password'), 'referrer' : 'http://wushare.com/'})
-        opener.open('http://wushare.com/login', login_data)
+        login_data = urllib.urlencode({'username' : "ptom98", 'password' : "m0rn1ngm", 'referrer' : 'http://wushare.com/ajax/login.php'})
+        opener.open('https://real-debrid.com/login.php', login_data)
         resp = opener.open(link)
         content=resp.read()
         if "Start download" not in content:
@@ -991,6 +1070,8 @@ def getVideoURL(params):
             link=re.search(p, content).group(1)
         except:
             logError(resp.read())
+    elif params['extras']=="rapidgator":
+        pass # for the minute
     elif params["extras"]=="googlevideo (1080)" or  params["extras"]=="googlevideo (720)" or params["extras"]=="googlevideo (480)":
         res=params["extras"].replace("googlevideo (", "").replace(")", "")
         p=re.compile('<source src="([\S]*)" type="video\S*" data-res="'+res+'"\/>')
@@ -1139,7 +1220,12 @@ def getVideoURL(params):
                     p=re.compile('content=[\'|"]([http|https]\S*googleusercontent\S*)[\'|"]')
                     link=re.search(p, videosource).group(1)
                 except:
-                    logError("Failed getting google video")
+                    try:
+                        p=re.compile('file: [\'|"](http[s]*:\/\/\S.*?docs.google.com.\S.*?)[\'|"]')
+                        link=re.search(p, videosource).group(1)
+                        link=urlresolver.resolve(link)
+                    except:
+                        logError("Failed to get Googe Video link")
     elif params["extras"]=='streamin':
         streaminurl = re.compile(r"//(?:www\.)?streamin\.to/(?:embed-)?([0-9a-zA-Z]+)", re.DOTALL | re.IGNORECASE).findall(videosource)
         #logError(streaminurl[0])
@@ -1154,6 +1240,7 @@ def getVideoURL(params):
             link=urlresolver.resolve(re.search(p, videosource).group(1))
         except:
             pass
+    logError(link)
     return link
 
 # videowood decode copied from: https://github.com/schleichdi2/OpenNfr_E2_Gui-5.3/blob/4e3b5e967344c3ddc015bc67833a5935fc869fd4/lib/python/Plugins/Extensions/MediaPortal/resources/hosters/videowood.py    
@@ -1223,78 +1310,49 @@ def videowood(data):
         return
     
 def decodeOpenLoad(html):
-    # If you want to use the code for openload please at least put the info from were you take it:
-    # for example: "Code take from plugin IPTVPlayer: "https://gitlab.com/iptvplayer-for-e2/iptvplayer-for-e2/"
-    # It will be very nice if you send also email to me samsamsam@o2.pl and inform were this code will be used
-
-    # Kodi version based on urlresolver
+    # fixed by the openload guy ;)  based on work by pitoosie
+    from HTMLParser import HTMLParser
+    from jjdecode import JJDecoder
+    hiddenurl = HTMLParser().unescape(re.search("</span>[^>]+>([^<]+).*?streamurl", html, re.DOTALL | re.IGNORECASE).group(1))
     
-    imageData = re.search('''<img[^>]*?id="linkimg"[^>]*?src="([^"]+?)"''', html, re.IGNORECASE).group(1)
-    imageData = base64.b64decode(imageData.split('base64,')[-1])
-    _x, _y, pixel, _meta = png.Reader(bytes=imageData).read()
-
-    imageData = None
-    imageStr = ''
-    try:
-        for item in pixel:
-            for p in item:
-                imageStr += chr(p)
-    except:
-        pass
-
-    imageTabs = []
-    i = -1
-    for idx in range(len(imageStr)):
-        if imageStr[idx] == '\0':
-            break
-        if 0 == (idx % (12 * 20)):
-            imageTabs.append([])
-            i += 1
-            j = -1
-        if 0 == (idx % (20)):
-            imageTabs[i].append([])
-            j += 1
-        imageTabs[i][j].append(imageStr[idx])
-
-    data = getHtml('https://openload.co/assets/js/obfuscator/n.js', '')
-    signStr = re.search('''['"]([^"^']+?)['"]''', data, re.IGNORECASE).group(1)
-
-    # split signature data
-    signTabs = []
-    i = -1
-    for idx in range(len(signStr)):
-        if signStr[idx] == '\0':
-            break
-        if 0 == (idx % (11 * 26)):
-            signTabs.append([])
-            i += 1
-            j = -1
-        if 0 == (idx % (26)):
-            signTabs[i].append([])
-            j += 1
-        signTabs[i][j].append(signStr[idx])
-
-    # get link data
-    linkData = {}
-    for i in [2, 3, 5, 7]:
-        linkData[i] = []
-        tmp = ord('c')
-        for j in range(len(signTabs[i])):
-            for k in range(len(signTabs[i][j])):
-                if tmp > 122:
-                    tmp = ord('b')
-                if signTabs[i][j][k] == chr(int(math.floor(tmp))):
-                    if len(linkData[i]) > j:
-                        continue
-                    tmp += 2.5
-                    if k < len(imageTabs[i][j]):
-                        linkData[i].append(imageTabs[i][j][k])
-    res = []
-    for idx in linkData:
-        res.append(''.join(linkData[idx]).replace(',', ''))
-
-    res = res[3] + '~' + res[1] + '~' + res[2] + '~' + res[0]
+    jjstring = re.compile('a="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(html)[1]
+    shiftint =  re.compile(r";\}\((\d+)\)", re.DOTALL | re.IGNORECASE).findall(html)[1]
+    
+    
+    def shiftChar(a):
+        a = a.group()
+        if a <= "Z":
+            b = 90
+        else:
+            b = 122
+        c = ord(a) + int(shiftint)
+        if b >= c:
+            a = c
+        else:
+            a = c - 26
+        return chr(a)    
+   
+    jjstring = re.sub(r'[a-zA-Z]', shiftChar, jjstring)
+    jjstring = urllib.unquote_plus(jjstring)
+    jjstring = jjstring.replace('0','j')
+    jjstring = jjstring.replace('1','_')
+    jjstring = jjstring.replace('2','__')
+    jjstring = jjstring.replace('3','___')    
+    jjstring = JJDecoder(jjstring).decode()
+    magicnumber = re.compile(r"charCodeAt\(\d+?\)\s*?\+\s*?(\d+?)\)", re.DOTALL | re.IGNORECASE).findall(jjstring)[0]
+    
+    s = []
+    for idx, i in enumerate(hiddenurl):
+        j = ord(i)
+        if (j>=33 & j<=126):
+            j = 33 + ((j + 14) % 94)
+        if idx == len(hiddenurl) - 1:
+            j += int(magicnumber)
+        s.append(chr(j))
+    res = ''.join(s)
+    
     videoUrl = 'https://openload.co/stream/{0}?mime=true'.format(res)
+
     dtext = videoUrl.replace('https', 'http')
     UA = 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:39.0) Gecko/20100101 Firefox/39.0'
     headers = {'User-Agent': UA }
@@ -1303,7 +1361,11 @@ def decodeOpenLoad(html):
     res = urllib2.urlopen(req)
     videourl = res.geturl() 
     res.close()
-    return videourl
+    if 'pigeons.mp4' in videourl.lower():
+        return
+    else:
+        return videourl
+
 
 
 def decode(encoded):

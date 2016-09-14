@@ -4188,7 +4188,8 @@ def getiptvmac():
 #    return maccode,base64.b64decode("aHR0cDovL3BvcnRhbC5pcHR2cHJpdmF0ZXNlcnZlci50dg==")
 
 def playipbox(finalUrl):
-    finalUrl='plugin://plugin.video.f4mTester/?name=%s&url=%s&streamtype=TSDOWNLOADER'%(name,urllib.quote_plus(finalUrl))
+    print 'finalUrl',finalUrl
+    finalUrl='plugin://plugin.video.f4mTester/?name=%s&url=%s&streamtype=TSDOWNLOADER'%(urllib.quote_plus(name),urllib.quote_plus(finalUrl))
     
 #    finalUrl='plugin://plugin.video.f4mTester/?url=%s&streamtype=HLS'%(urllib.quote_plus(finalUrl))
     xbmc.executebuiltin('XBMC.RunPlugin('+finalUrl+')') 
@@ -5115,10 +5116,38 @@ def playstreamhd(url):
    
     PlayGen(base64.b64encode(m3ufile+'|User-Agent=Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36'))
     return 
-    
+
 def playtvplayer(url):
     import re,urllib,json
-    watchHtml=getUrl(url)
+    listitem = xbmcgui.ListItem( label = str(name), iconImage = "DefaultVideo.png", thumbnailImage = xbmc.getInfoImage( "ListItem.Thumb" ) )
+
+    playurl=''
+    try:
+        watchHtml=getUrl(url)
+        channelid=re.findall('resourceId = "(.*?)"' ,watchHtml)[0]
+        validate=re.findall('var validate = "(.*?)"' ,watchHtml)[0]
+       
+        cj = cookielib.LWPCookieJar()
+        data = urllib.urlencode({'service':'1','platform':'website','token':'null','validate':validate ,'id' : channelid})
+        headers=[('Referer','http://tvplayer.com/watch/'),('Origin','http://tvplayer.com'),('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36')]
+        retjson=getUrl("http://api.tvplayer.com/api/v2/stream/live",post=data, headers=headers,cookieJar=cj);
+        jsondata=json.loads(retjson)
+    #    print cj
+        cj = cookielib.LWPCookieJar()
+        playurl1=jsondata["tvplayer"]["response"]["stream"]
+        getUrl(playurl1, headers=headers,cookieJar=cj);
+        playurl=playurl1+'|Cookie=%s&User-Agent=Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36&X-Requested-With=ShockwaveFlash/22.0.0.209&Referer=http://tvplayer.com/watch/'%getCookiesString(cj)
+        
+    except: 
+        traceback.print_exc(file=sys.stdout)
+        playurl=''
+    if playurl=='' or not tryplay(playurl+'|Cookie=%s&User-Agent=Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36&X-Requested-With=ShockwaveFlash/22.0.0.209&Referer=http://tvplayer.com/watch/'%getCookiesString(cj),listitem):
+        playtvplayerfallback(url)
+    return 
+    
+def playtvplayerfallback(url):
+    import re,urllib,json
+    watchHtml=getUrl(url.replace('/watch/','/watch/fallback/'))
     channelid=re.findall('var initialChannelId = "(.*?)"' ,watchHtml)[0]
     hashval=urllib.unquote(re.findall('hash = "(.*?)"' ,watchHtml)[0])
     expval=re.findall('exp = "(.*?)"' ,watchHtml)[0]
@@ -5129,9 +5158,10 @@ def playtvplayer(url):
     retjson=getUrl("http://live.tvplayer.com/stream-web-encrypted.php",post=data, headers=headers,cookieJar=cj);
     jsondata=json.loads(retjson)
 #    print cj
-    url=jsondata["tvplayer"]["response"]["stream"]
-    PlayGen(base64.b64encode(url+'|Cookie=%s&User-Agent=Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36&X-Requested-With=ShockwaveFlash/22.0.0.209&Referer=http://tvplayer.com/watch/'%getCookiesString(cj)))
-    return 
+    playurl=jsondata["tvplayer"]["response"]["stream"]
+    listitem = xbmcgui.ListItem( label = str(name), iconImage = "DefaultVideo.png", thumbnailImage = xbmc.getInfoImage( "ListItem.Thumb" ) )
+
+    return tryplay(playurl+'|Cookie=%s&User-Agent=Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36&X-Requested-With=ShockwaveFlash/22.0.0.209&Referer=http://tvplayer.com/watch/'%getCookiesString(cj),listitem)
     
     
 def ShowAllSources(url, loadedLink=None):

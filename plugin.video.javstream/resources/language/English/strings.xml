@@ -74,11 +74,17 @@
     <string id="40046">GRAVUREGIRLZ</string>
     <string id="40047">WuShare (Requires Premium Account)</string>
     <string id="40048">JavLeak</string>
+    <string id="40049">9XXX</string>
+    <string id="40050">JavZab</string>
+    <string id="40051">JavTubeHD</string>
+    <string id="40052">KoDPorn</string>
+    <string id="40053">YouJav</string>
     
-    <string id="50000">WuShare</string>
+    <string id="50000">Accounts</string>
     <string id="50001">Username or Email</string>
     <string id="50002">Password</string>
-    <string id="50003">A Premium WuShare account is required to use this service.</string>
-    <string id="50004">Provides both HD and SD versions of videos.</string>
-    <string id="50005">Accounts can be created at wushare.com</string>
+    <string id="50003">WuShare</string>
+    <string id="50004">RealDebrid</string>
+    <string id="50005">Configure RealDebrid</string>
+    <string id="50006">RealDebrid oAuth Key</string>
 </strings>
