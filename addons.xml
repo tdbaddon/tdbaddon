@@ -2670,6 +2670,21 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
+<addon id="repository.BassFox-Official" name="BassFox Official Repo" version="1.3.6" provider-name="BassFox">
+	<extension point="xbmc.addon.repository" name="BassFox official Repo">
+		<info compressed="false">https://raw.githubusercontent.com/Jfx666/BiltegiberriaBFX3/master/addons.xml</info>
+		<checksum>https://raw.githubusercontent.com/Jfx666/BiltegiberriaBFX3/master/addons.xml.md5</checksum>
+                <datadir zip="true">https://raw.githubusercontent.com/Jfx666/BiltegiberriaBFX3/master</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>BassFox Official Repository</summary>
+                <description lang="en">Install Addon Official Bass Fox and other add-ons that are complementary help in support links</description>
+   		<description lang="es">Instala el Addon Oficial BassFox y los otros add-ons que son complementos de ayuda en la reproducción de las listas</description>
+		<disclaimer></disclaimer>
+		<platform>all</platform>
+	</extension>
+</addon>
+
 <addon id="repository.bbtsip.tv" name="[COLOR yellowgreen]B[/COLOR][COLOR dodgerblue]B[/COLOR]T[COLOR orangered]S[/COLOR] - Repo" version="0.0.7" provider-name="BBTS">
   <requires>
     <import addon="xbmc.addon" version="12.0.0" />
