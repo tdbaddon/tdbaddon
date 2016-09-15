@@ -1,3 +1,8 @@
+[B]v1.26.0 (Monday, 12 September 2016):[/B]
+  - Fixed Upload.af - now uses https which may not work on Andriod platforms running anything less than Krypton
+  - ClicknUpload now requires Krypton, they have updated their ssl which Jarvis and earlier do not support
+  - General fixes for Krypton
+  
 [B]v1.25.0 (Thursday, 18 August 2016):[/B]
   - Fixed UploadX
   - Fixed error with unsupported hosts with RD enabled

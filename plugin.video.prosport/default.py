@@ -69,7 +69,7 @@ logos ={'nba':'http://bethub.org/wp-content/uploads/2015/09/NBA_Logo_.png',
 'mlb':'http://content.sportslogos.net/logos/4/490/full/1986.gif',
 'soccer':'http://images.clipartpanda.com/soccer-ball-clipart-soccer-ball-clip-art-4.png'}
 
-sd_streams = ['apollofm.website','giostreams.eu','watch-sportstv.boards.net', 'hdstream4u.com', 'stream24k.com', 'wizhdsports.com', 'antenasport.com', 'sportsnewsupdated.com', 'baltak.com', 'watchnba.tv', 'feedredsoccer.at.ua', 'jugandoes.com', 'wiz1.net', 'bosscast.net', 'watchsportstv.boards.net', 'tv-link.in', 'klivetv.co', 'videosport.me', 'livesoccerg.com', 'zunox.hk', 'serbiaplus.club', 'zona4vip.com', 'ciscoweb.ml', 'streamendous.com']
+sd_streams = ['goindexsport','multi-sports.eu', 'watchnfl.live', 'streamhd.eu/mlb/', 'streamhd.eu/nfl/', 'vines.tn', 'apollofm.website','giostreams.eu','watch-sportstv.boards.net', 'hdstream4u.com', 'stream24k.com', 'wizhdsports.com', 'antenasport.com', 'sportsnewsupdated.com', 'baltak.com', 'watchnba.tv', 'feedredsoccer.at.ua', 'jugandoes.com', 'wiz1.net', 'bosscast.net', 'watchsportstv.boards.net', 'tv-link.in', 'klivetv.co', 'videosport.me', 'livesoccerg.com', 'zunox.hk', 'singidunum.club', 'zona4vip.com', 'ciscoweb.ml', 'streamendous.com']
 
 def utc_to_local(utc_dt):
     timestamp = calendar.timegm(utc_dt.timetuple())
@@ -92,6 +92,22 @@ def GetURL(url, referer=None):
     	if 'reddit' in url:
     		xbmcgui.Dialog().ok(__addonname__, 'Looks like '+url+' is down... Please try later...')
     	return None
+
+
+UA='Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'
+
+def getUrl(url,data=None,header={},cookies=None):
+    if not header:
+        header = {'User-Agent':UA}
+    req = urllib2.Request(url,data,headers=header)
+    response = urllib2.urlopen(req, timeout=15)
+    if cookies=='':
+        cookies=response.info()['Set-Cookie']
+    link = response.read()
+    response.close()
+    
+    return link
+
 
 def GetJSON(url, referer=None):
     request = urllib2.Request(url)
@@ -126,7 +142,7 @@ def Arch():
 	addDir("[COLOR=FFFFFF00][ NBA Archive ][/COLOR]", '', iconImg='http://bethub.org/wp-content/uploads/2015/09/NBA_Logo_.png', mode="nbaarch")
 	addDir("[COLOR=FFFFFF00][ NFL Archive ][/COLOR]", '', iconImg='http://www.shermanreport.com/wp-content/uploads/2012/06/NFL-Logo1.gif', mode="nflarch")
 	addDir("[COLOR=FFFFFF00][ NHL Archive ][/COLOR]", '', iconImg='https://upload.wikimedia.org/wikipedia/de/thumb/1/19/Logo-NHL.svg/2000px-Logo-NHL.svg.png', mode="nhlarch")
-	addDir("[COLOR=FFFFFF00][ XRXS NHL Archive ][/COLOR]", '', iconImg='https://upload.wikimedia.org/wikipedia/de/thumb/1/19/Logo-NHL.svg/2000px-Logo-NHL.svg.png', mode="xrnhlarch")
+	#addDir("[COLOR=FFFFFF00][ XRXS NHL Archive ][/COLOR]", '', iconImg='https://upload.wikimedia.org/wikipedia/de/thumb/1/19/Logo-NHL.svg/2000px-Logo-NHL.svg.png', mode="xrnhlarch")
 	#addDir("[COLOR=FFFFFF00][ MLB Archive ][/COLOR]", '', iconImg='http://content.sportslogos.net/logos/4/490/full/1986.gif', mode="mlbarch")
 	xbmcplugin.endOfDirectory(h)
 	
@@ -139,7 +155,7 @@ def Games(mode):
 	js = js['leagues'][mode]
 	if js:	
 		if mode == 'nfl':
-			addDir('[COLOR=FF00FF00][B]NFL Redzone[/B][/COLOR]', GAMEURL, iconImg=logos[mode], home='redzone', away='redzone', mode="STREAMS")
+			addDir('[COLOR=FF00FF00][B]NFL Redzone[/B][/COLOR]', mode, iconImg=logos[mode], home='redzone', away='redzone', mode="STREAMS")
 		for game in js:
 			home = game['away_team']['name']
 			away = game['home_team']['name']
@@ -363,7 +379,6 @@ def getMyStreams(url, home):
 
 def DisplayLinks(links, orig_title):	
 	urls = []
-	print links
 	for url in links:
 		url = url[0]
 		if 'http://' not in url and 'https://' not in url:
@@ -510,7 +525,7 @@ def ParseLink(el, orig_title):
 		url = Getmlb(el)
 		return url
 	elif 'streamsarena.eu' in el:
-		url = Streamarena(el)
+		url = Universal(el)
 		return url
 	elif 'streamup.com' in el and 'm3u8' not in el:
 		url = GetStreamup(el.split('/')[3])
@@ -647,7 +662,8 @@ def PlayArchive(url):
 	html = GetURL(url)
 	html = html.split('>english<')[-1]
 	link = common.parseDOM(html, "iframe", ret="src")[0]
-	link = link.replace('https://videoapi.my.mail.ru/videos/embed/mail/','http://videoapi.my.mail.ru/videos/mail/')
+	link = link.replace('https://videoapi.my.mail.ru/videos/embed/mail/','https://my.mail.ru/+/video/meta/')
+	link = link.replace('https://my.mail.ru/video/embed/','https://my.mail.ru/+/video/meta/')
 	link = link.replace('html','json')
 	cookieJar = cookielib.CookieJar()
 	opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cookieJar), urllib2.HTTPHandler())
@@ -660,7 +676,7 @@ def PlayArchive(url):
 		token = cookie.value
 	js = js['videos']
 	for el in js:
-		addDirectLink(el['key'], {'Title': orig_title}, el['url']+'|Cookie=video_key='+token)
+		addDirectLink(el['key'], {'Title': orig_title}, 'https:'+el['url']+'|Cookie=video_key='+token)
 		#addLink(el['key'], orig_title, el['url']+'|Cookie=video_key='+token, mode="play")
 	xbmcplugin.endOfDirectory(h, cacheToDisc=True)
 
@@ -1168,8 +1184,8 @@ def Castalba(url):
 def Universal(url):
 	if 'zona4vip.com/live' in url:
 		url = url.replace('/live','')
-	if 'serbiaplus.club/wlive' in url:
-		url = 'http://serbiaplus.club/whd/'+url.split('/w')[-1]
+	if 'singidunum.club/wlive' in url:
+		url = 'http://singidunum.club/whd/'+url.split('/w')[-1]
 	if 'wiz1.net/ch' in url or 'live9.net' in url:
 		this = GetURL(url, referer=url)
 		links = re.compile('src="(.+?)"').findall(str(this))
@@ -1191,6 +1207,10 @@ def Universal(url):
 		return link
 	if 'lshstream' in url:
 		link = lshstream(url)
+		return link
+	if 'rocktv.co' in url:
+		id = url.split("live=")[-1].split("&")[0]
+		link = rocktv(id)
 		return link
 	if 'p2pcast' in url and 'streamcdn' in url:
 		link = p2pcast2(url)
@@ -1216,7 +1236,7 @@ def Universal(url):
 		id = html.split('fid="')[-1].split('";')[0]
 		link = castup(id)
 		return link
-	elif html and 'rocktv.co' in html:
+	elif html and 'rocktv.co' in html and 'live=' not in html:
 		id = html.split("fid='")[-1].split("';")[0]
 		link = rocktv(id)
 		return link
@@ -1224,9 +1244,9 @@ def Universal(url):
 		id = html.split('<script type="text/javascript">channel="')[-1].split('";')[0]
 		link = castamp(id)
 		return link
-	elif html and 'broadcast/player' in html:
+	elif html and 'bro.adca.st' in html:
 		id = html.split("<script type='text/javascript'>id='")[-1].split("';")[0]
-		link = broadcast(id)
+		link = broadcast(id, url)
 		return link
 	elif html and 'streamking.cc' in html:
 		id = re.findall("(http://streamking.+?')",html)[0]
@@ -1244,7 +1264,7 @@ def Universal(url):
 		url = 'http://www.sostart.pw/jwplayer6.php?channel='+id
 		link = sostart(url)
 		return link
-	if html and 'https://streamboat.tv/@' in html:
+	elif html and 'https://streamboat.tv/@' in html:
 			url = html.split('https://streamboat.tv/@')[-1].split('"')[0]
 			url = 'https://streamboat.tv/@'+url
 			url = Streambot(url)
@@ -1252,13 +1272,22 @@ def Universal(url):
 	elif html and 'sawlive.tv' in html:
 		#url = re.compile('//(.+?)/(?:embed|v)/([0-9a-zA-Z-_]+)').findall(html)[0]
 		#url = 'http://%s/embed/%s' % (url[0], url[1])
-		url = re.findall('(http://www3.sawlive.tv/embed/.+?")',html)[0]
-		url = url.replace('"','')
-		print url
-		link = sawresolve(url)
+		try:
+			url = re.findall('(sawlive.tv/embed/.+?")',html)[0]
+			url = url.replace('"','')
+		except:
+			url = re.findall("(sawlive.tv/embed/.+?')",html)[0]
+			url = url.replace("'","")
+		link = sawresolve('http://www.'+url)
 		return link
-	elif html and '.m3u8' in html:
+	elif html and '.m3u8' in html and 'widestream' not in html and 'clappr' not in html and 'jwpcdn' not in html:
 		link = re.findall('(http://.+?\.m3u8)',html)[0]
+		return link
+	elif html and '.m3u8' in html and ('widestream' in html or 'jwpcdn' in html):
+		link = re.findall('file: "(.*?)"', html)[0]
+		return link
+	elif html and '.m3u8' in html and 'clappr' in html:
+		link = re.findall('source: "(.*?)"', html)[0]
 		return link
 	elif html and 'rtmp' in html and 'jwplayer' in html:
 		link = re.findall('(rtmp://.+?")',html)[0]
@@ -1270,6 +1299,10 @@ def Universal(url):
 		urls = common.parseDOM(html, 'iframe', ret='src')
 		if urls:
 			for url in urls:
+				if '../../' in url:
+					url = url.replace('../../', '/')
+				if '../' in url:
+					url = url.replace('../', '/')
 				if 'http://' not in url and 'https://' not in url:
 					if not url.startswith('/'):
 						url = '/'+url
@@ -1284,135 +1317,86 @@ def Universal(url):
 					Universal(url)
 
 	
-def sawresolve2(url):
-	
-		result = GetURL(url)
-		if 'var sw=' not in result:
-			try:
-				result = result.replace('sw=', 'var sw=')
-			except:
-				pass
-		if 'var ch=' not in result:
-			try:
-				result = result.replace('ch=', 'var ch=')
-			except:
-				pass
-		url = common.parseDOM(result, 'iframe', ret='src')[-1]
-		url = url.replace(' ', '').replace('+','')
-		var = re.compile('var\s(.+?)\s*=\s*[\'\"](.+?)[\'\"]').findall(result)
-		for i in range(100):
-			for v in var: result = result.replace(" %s " % v[0], ' %s '%v[1])
-		var = re.compile('var\s(.+?)\s*=\s*[\'\"](.+?)[\'\"]').findall(result)
-		var_dict = dict(var)
-		for v in var:
-			if '+' in v[1]:
-				ss = v[1].rstrip('+').replace('"+','').split('+')
-				sg = v[1].rstrip('+').replace('"+','')
-				for s in ss:
-					sg = sg.replace(s, var_dict[s])
-				var_dict[v[0]]=sg.replace('+','')       
-		for i in range(100):
-			for v in var_dict.keys(): url = url.replace("'%s'" % v, var_dict[v])
-			for v in var_dict.keys(): url = url.replace("(%s)" % v, "(%s)" % var_dict[v])
-		url = url.replace(' ', '').replace('+','').replace('"','').replace('\'','')
-		result = GetURL(url, referer=url)
-		var = re.compile('var\s(.+?)\s*=\s*[\'\"](.+?)[\'\"]').findall(result)
-		print result
-		var_dict = dict(var)       
-		file = re.compile("'file'\s*(.+?)\)").findall(result)[0]
-		file = file.replace('\'','')
-		for v in var_dict.keys():
-			file = file.replace(v,var_dict[v])
-		file = file.replace('+','').replace(',','').strip()
+def sawresolve(query):
+	try:
+		import jsunpack
+		vido_url=''
+		source = getUrl(query)
 		try:
-			if not file.startswith('http'): raise Exception()
-			request = urllib2.Request(file)
-			request.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
-			request.add_header('Referer', file)
-			response = urllib2.urlopen(request, timeout=5)
-			url = response.geturl()
-			if not '.m3u8' in url: raise Exception()
-			url += '|%s' % urllib.urlencode({'User-Agent': 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3', 'Referer': file})
-			return url
+			decoded = jsunpack.unpack(source.decode('string_escape'))
 		except:
-			pass
-		strm = re.compile("'streamer'\s*(.+?)\)").findall(result)[0]
-		strm = strm.replace('\'','')
-		for v in var_dict.keys():
-			strm = strm.replace(v,var_dict[v])
-		strm = strm.replace('+','').replace(',','').strip()
-		swf = re.compile("SWFObject\('(.+?)'").findall(result)[0]
-		url = '%s playpath=%s swfUrl=%s pageUrl=%s live=1 timeout=60' % (strm, file, swf, url)
-		url = urllib.unquote(url).replace('unescape(','')
-		return url
-	
-def sawresolve(url):
-	try:     
-		page = re.compile('//(.+?)/(?:embed|v)/([0-9a-zA-Z-_]+)').findall(url)[0]
-		page = 'http://%s/embed/%s' % (page[0], page[1])        
-		try: referer = urlparse.parse_qs(urlparse.urlparse(url).query)['referer'][0]
-		except: referer = page 
-		result = GetURL(page, referer=referer)
-		result = urllib.unquote_plus(result)
-		vars = re.compile('var (.+?=".+?");').findall(str(result))
-		for item in vars:
-			var = item.split('=')
-		rep = re.findall('.+?=.+?\.replace\("(.+?)","(.+?)"\)',str(result))[0]
-		result = re.sub('\s\s+', ' ', result)
-		url = common.parseDOM(result, 'iframe', ret='src')[-1]
-		url = url.replace(' ', '').split("'")[0]      
-		try:
-			ch = re.compile('ch=""(.+?)""').findall(str(result))[0]
-		except:
-			ch = re.compile("ch='(.+?)'").findall(str(result))[0]
-		try:
-			sw = re.compile("sw='(.+?)'").findall(str(result))[0]
-		except:
-			sw = re.compile('sw=""(.+?)""').findall(str(result))[0]
-		if ' ' in sw:
-			for item in vars:
-				var = item.replace('"','').replace("'",'').split('=')
-				sw = re.sub(var[0], var[1], str(sw))
-			sw = sw.replace(' ','')
-		if ' ' in ch:
-			for item in vars:
-				var = item.replace('"','').replace("'",'').split('=')
-				ch = re.sub(var[0], var[1], str(ch))
-			ch = ch.replace(' ','')
-		if len(str(ch)) > len(str(sw)):url = str(url)+str(sw)+'/'+str(ch)
-		if len(str(sw)) > len(str(ch)):url = str(url)+str(ch)+'/'+str(sw)
-		if rep[0] in str(url): url = str(url).replace(rep[0],rep[1])
-		result = GetURL(url, referer=referer)
-		file = re.compile("\('file',(.+?)\)").findall(result)[0]
-		file = urllib.unquote_plus(file)
-		var2= re.compile("var (.+?) = '(.+?)';").findall(result)
-		strm = re.compile("\('streamer',(.+?)\)").findall(result)[0]
-		strm =strm.replace("'",'').replace('"','')
-		for name, parts in var2:
-			name = name.replace("'",'').replace('"','')
-			parts = parts.replace("'",'').replace('"','')
-			if (name) in file:file = file.replace(name,parts)
-			if (name) in strm: strm = parts
-		file = file.replace(' ','').replace('"','').replace("'","")
-		try:
-			if not file.startswith('http'): raise Exception()
-			request = urllib2.Request(file)
-			request.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
-			request.add_header('Referer', file)
-			response = urllib2.urlopen(request, timeout=5)
-			url = response.geturl()
-			if not '.m3u8' in url: raise Exception()
-			url += '|%s' % urllib.urlencode({'User-Agent': client.agent(), 'Referer': file})
-			return url    
-		except:
-			pass
-		swf = re.compile("SWFObject\('(.+?)'").findall(result)[0]
-		url = '%s playpath=%s swfUrl=%s pageUrl=%s live=1 timeout=30' % (strm, file, swf, url)
-		return url
+			decoded =source
+		decoded = decoded.replace('document.write(',' var result =').replace('\');','\'')
+		decoded = decoded.replace('"\' +swidth+ \'"','')
+		decoded = decoded.replace('"\' +sheight+ \'"','')
+		decoded = re.sub('([^+\s])\s([^+\s])',r'\1+\2',decoded)
+		decoded = decoded.replace('function+','function ')
+		decoded = decoded.replace('+var','var ')
+		decoded = decoded.replace('var+','var ')
+		decoded = decoded.replace('+result','result ')
+		decoded = decoded.replace('result +','result ')
+		decoded = decoded.replace('return+','return ')
+		import js2py
+		context = js2py.EvalJs()
+		context.swidth = '400'
+		context.sheight = '400'
+		context.execute(decoded)
+		result = context.result
+		result = urllib.unquote_plus(result)  
+		src=common.parseDOM(result, 'iframe', ret='src')[-1]
+		if src:
+			header = {'Referer':  src[0], 'User-Agent': UA}
+			decoded = getUrl(src,header=header)
+			swfUrl = re.compile('SWFObject\(\'(.*?)\'').findall(decoded)
+			match = re.compile('(eval\(function\(p,a,c,k,e,d\).*?)\n').findall(decoded)
+			if match:
+				decoded = jsunpack.unpack(match[0].decode('string_escape'))
+				unscape = lambda x: x.group(0).replace('%','').decode('hex')
+				decoded = re.sub('%.{2}',unscape,decoded)
+				code = decoded.replace("so.addVariable('file',","file=")
+				code = code.replace("so.addVariable('streamer',","streamer=")
+				code = code.replace("));",");")
+				code = code.replace("unescape","")
+				context = js2py.EvalJs() 
+				context.execute(code)
+				streamer= getattr(context,'streamer')
+				file= getattr(context,'file')
+				if swfUrl and streamer and file:
+					vido_url = streamer +' playpath='+file + ' swfUrl='+swfUrl[0] + ' swfVfy=1 live=1 timeout=13   pageUrl='+src
+					return vido_url
+			else:
+				var = re.compile('var\s(.+?)\s*=\s*[\'\"](.+?)[\'\"]').findall(decoded)
+				rplcs = re.findall(';.+?=(.+?).replace\([\"\'](.+?)[\"\']\s*,\s*[\"\']([^\"\']*)[\"\']',decoded)
+				var_dict = dict(var) 
+				file = re.compile("'file'\s*(.+?)\)").findall(decoded)[0]
+				file = file.replace('\'','')    
+				for v in var_dict.keys():
+					file = file.replace(v,var_dict[v])
+				file = file.replace('+','').replace(',','').strip().replace(' ', '')
+				if 'f4m' in file:
+					return file
+				try:
+					if not file.startswith('http'): raise Exception()
+					#url = client.request(file, output='geturl')
+					if not '.m3u8' in url: raise Exception()
+					url += '|%s' % urllib.urlencode({'User-Agent': UA, 'Referer': file})
+					return url
+				except:
+					pass
+				strm = re.compile("'streamer'\s*(.+?)\)").findall(decoded)[0]
+				strm = strm.replace('\'','')
+				for v in var_dict.keys():
+					strm = strm.replace(v,var_dict[v])
+				strm = strm.replace('+','').replace(',','').strip().replace(' ', '')
+				swf = re.compile("SWFObject\('(.+?)'").findall(decoded)[0].replace(' ', '')
+				url = '%s playpath=%s swfUrl=%s pageUrl=%s live=1 timeout=60' % (strm, file, swf, src)
+				url = urllib.unquote(url).replace('unescape(','')
+				for r in rplcs:
+					url = url.replace(r[1],r[2])
+				return url
 	except:
 		return None
-          
-       
+
 		
 def castup(id):
 	try:
@@ -1481,21 +1465,21 @@ def p2pcast(id):
 	except:
 		return None
 		
-def broadcast(id):
+def broadcast(id, ur):
 	try:
-		url = 'http://bro.adca.st/stream.php?id='+id
-		ref = url
-		result = GetURL(url, referer=url)
-		curl = re.findall('curl\s*=\s*[\"\']([^\"\']+)',result)[0]
-		url = base64.b64decode(curl)
-		token = GetJSON('http://bro.adcast.tech/getToken.php')
-		token = token['token']
-		url+= 'wfNz6Pz_jNZfR8wmB8JEPw'
-		url+='|%s' % urllib.urlencode({'User-agent':'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.87 Safari/537.36','Referer':ref,'X-Requested-With':'ShockwaveFlash/21.0.0.216','Host':urlparse.urlparse(url).netloc,'Accept-Encoding':'gzip, deflate, lzma, sdch'})
-		return url 
+		import base64           
+		url = 'http://bro.adca.st/stream.php?id=' + id + '&width=640&height=480'
+		headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.101 Safari/537.36', 'Referer': ur, 'Host': 'bro.adca.st'}
+		source = getUrl(url, header = headers)
+		curl = re.findall('curl = "(.*?)"', source)[0]
+		m3u8 = base64.b64decode(curl)
+		url2 = 'http://bro.adca.st/getToken.php'    
+		headers2 = {'User-Agent': 'Mozilla/5.0 (X11 Linux i686 rv:42.0) Gecko/20100101 Firefox/42.0 Iceweasel/42.0', 'Referer': url, 'X-Requested-With': 'XMLHttpRequest'}
+		source2 = getUrl(url2, header = headers2)
+		token = re.findall('"token":"(.*?)"', source2)[0]
+		return m3u8 + token + '|Referer=http://cdn.bro.adca.st/jwplayer.flash.swf&User-Agent=Mozilla/5.0 (X11 Linux i686 rv:42.0) Gecko/20100101 Firefox/42.0 Iceweasel/42.0'
 	except:
-		return None
-
+		return None	
 
 def p2pcast2(url):
 	try:

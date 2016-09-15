@@ -167,3 +167,14 @@ ver 0.49:
 	
 ver 0.50:
 	- one more attempt to fix MLB
+	
+ver 0.50e:
+	- fixed some streams
+	- removed archive (not working)
+	
+ver 0.51:
+	- fixed streamer
+	
+ver 0.52:
+	- hopefully fixed sawlive
+	- fixed NFL archive

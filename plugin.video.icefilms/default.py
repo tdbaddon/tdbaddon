@@ -2417,7 +2417,7 @@ class MyPlayer (xbmc.Player):
     def play(self, url, listitem):
         addon.log_debug('Now im playing... %s' % url)
 
-        xbmc.Player(xbmc.PLAYER_CORE_AUTO).play(url, listitem)
+        xbmc.Player().play(url, listitem)
         
     def isplaying(self):
         xbmc.Player.isPlaying(self)

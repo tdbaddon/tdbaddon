@@ -1,4 +1,5 @@
 import xbmc,xbmcgui
+import xbmc,xbmcgui
 import os
 import urllib, urllib2
 import cookielib
@@ -344,8 +345,11 @@ def resolve_upload_af(url):
         dialog.create('Resolving', 'Resolving Upload.af Link...')       
         dialog.update(0)
         
-        addon.log('Upload.af - Requesting GET URL: %s' % url)
-        html = net.http_GET(url).content
+        import urlparse
+        new_url = 'https://upload.af' + urlparse.urlsplit(url).path
+        
+        addon.log('Upload.af - Requesting GET URL: %s' % new_url)
+        html = net.http_GET(new_url).content
         
         dialog.update(33)
         
@@ -355,33 +359,27 @@ def resolve_upload_af(url):
             raise Exception('File has been deleted from the host')
 
         #Set POST data values
-        data = {}
-        r = re.findall('type="(hidden|submit)" name="(.+?)" value="(.*?)">', html)
-        if r:
-            for none, name, value in r:
-                data[name] = value
+        data = get_hidden(html)
 
         data['method_free'] = 'Free Download >>'                
         
-        addon.log('Upload.af - Requesting POST URL: %s DATA: %s' % (url, data))                
-        html = net.http_POST(url, data, headers=headers).content
+        addon.log('Upload.af - Requesting POST URL: %s DATA: %s' % (new_url, data))                
+        html = net.http_POST(new_url, data, headers=headers).content
+        addon.log(html)
         dialog.update(66)
 
-        data = {}
-        r = re.findall('type="(hidden|submit)" name="(.+?)" value="(.*?)">', html)
-        if r:
-            for none, name, value in r:
-                data[name] = value
-
+        data = get_hidden(html)
+        
         #Check for captcha
-        data = handle_captchas(url, html, data, dialog)                
+        data = handle_captchas(new_url, html, data, dialog)  
         
         wait_string = re.search('<div class="btn btn-danger" id="countdown">Wait <b class="seconds">([0-9]+)</b> seconds</div>', html)
         if wait_string:
             xbmc.sleep(int(wait_string.group(1)) * 1000)
     
-        addon.log('Upload.af - Requesting POST URL: %s DATA: %s' % (url, data))                                
-        html = net.http_POST(url, data, headers=headers).content
+        addon.log('Upload.af - Requesting POST URL: %s DATA: %s' % (new_url, data))                                
+        html = net.http_POST(new_url, data, headers=headers).content
+        addon.log(html)
 
         #Get download link
         dialog.update(100)
@@ -397,8 +395,26 @@ def resolve_upload_af(url):
         raise
     finally:
         dialog.close()
+    
+    
+def get_hidden(html, form_id=None):
+    hidden = {}
+    if form_id:
+        pattern = '''<form [^>]*id\s*=\s*['"]?%s['"]?[^>]*>(.*?)</form>'''
+    else:
+        pattern = '''<form[^>]*>(.*?)</form>'''
         
-
+    for form in re.finditer(pattern, html, re.DOTALL | re.I):
+        for field in re.finditer('''<input [^>]*type=['"]?hidden['"]?[^>]*>''', form.group(1)):
+            match = re.search('''name\s*=\s*['"]([^'"]+)''', field.group(0))
+            match1 = re.search('''value\s*=\s*['"]([^'"]*)''', field.group(0))
+            if match and match1:
+                hidden[match.group(1)] = match1.group(1)
+            
+    addon.log_debug('Hidden fields are: %s' % (hidden))
+    return hidden
+    
+    
 def resolve_uploadx(url):
 
     try:
