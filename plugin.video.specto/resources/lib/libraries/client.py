@@ -118,6 +118,7 @@ def request(url, close=True, redirect=True, error=False, proxy=None, post=None, 
                     return
 
             elif response.code == 307:
+                control.log("AAAA- Response read: %s" % response.read(5242880))
                 control.log("AAAA- Location: %s" % (response.headers['Location'].rstrip()))
                 cookie = ''
                 try: cookie = '; '.join(['%s=%s' % (i.name, i.value) for i in cookies])

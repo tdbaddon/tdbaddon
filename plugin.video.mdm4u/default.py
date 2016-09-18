@@ -21,7 +21,7 @@ baseurl = 'http://m4ufree.info'
 
 
 def CAT():
-        addDir('[B][COLOR white]LATEST ADDED[/COLOR][/B]',baseurl+'/newupdate',1,icon,fanart,'')
+        addDir('[B][COLOR white]LATEST ADDED[/COLOR][/B]',baseurl+'/new',1,icon,fanart,'')
         addDir('[B][COLOR white]MOST VIEWED[/COLOR][/B]',baseurl+'/top-view',1,icon,fanart,'')
         addDir('[B][COLOR white]HOT MOVIES[/COLOR][/B]',baseurl,1,icon,fanart,'')
         addDir('[B][COLOR white]SEARCH[/COLOR][/B]','url',4,icon,fanart,'')
@@ -33,7 +33,8 @@ def CAT():
 
 
 def TV():
-        addDir('[B][COLOR white]LATEST ADDED[/COLOR][/B]',baseurl+'/tvs-newupdate',11,icon,fanart,'')
+        addDir('[B][COLOR white]LATEST ADDED[/COLOR][/B]',baseurl+'/latest-tvshow',11,icon,fanart,'')
+        #addDir('[B][COLOR white]LATEST ADDED[/COLOR][/B]',baseurl+'/tvs-newupdate',11,icon,fanart,'')
         addDir('[B][COLOR white]MOST VIEWED[/COLOR][/B]',baseurl+'/top-view-tvshow',11,icon,fanart,'')
         addDir('[B][COLOR white]SEARCH[/COLOR][/B]','url',10,icon,fanart,'')
         addDir('[B][COLOR white]GENRE[/COLOR][/B]',baseurl,9,icon,fanart,'')

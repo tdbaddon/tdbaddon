@@ -1,5 +1,7 @@
+2016.09.17.2
+    fix - putlocker, movieshd, xmovies
 2016.09.01.1
-    sfix - fmovie, sezonlukdizi
+    fix - fmovie, sezonlukdizi
 
 2016.08.29.1
     fix cache, and iwatchonline, muchmovies

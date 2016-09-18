@@ -11,7 +11,7 @@ import search
 sysarg=str(sys.argv[1])
 ADDON_ID='plugin.video.javstream'
 addon = xbmcaddon.Addon(id=ADDON_ID)
-ADDON_VER="0.91.6"
+ADDON_VER="0.91.7"
 
 hdr = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11',
        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
@@ -93,7 +93,7 @@ def parseParameters(inputString=sys.argv[2]):
                     key = pair[0]
                     value = urllib.unquote(urllib.unquote_plus(pair[1])).decode('utf-8')
                     parameters[key] = value
-                    logError(value)
+                    #logError(value)
             except:
                 pass
     return parameters
@@ -410,6 +410,8 @@ def whatPlayer(url, site, dvdCode):
     html=getURL(url, hdr)  
     found=[]
     
+    #logError(url)
+    
     try:
         if site=="javstreams":
             p=re.compile("(javstreams\.tv\/play\?v=\S.*?)\"")
@@ -460,8 +462,11 @@ def whatPlayer(url, site, dvdCode):
             p=re.compile("<link>(\S*)<\/link>")
             page=re.search(p, html).group(2)
         elif site=="javtubehd":
-            logError("javhdtube init")
+            #logError("javhdtube init")
             p=re.compile('<iframe src="(http:\/\/www\.riz1.info\S+)"')
+            page=re.search(p, html).group(1)
+        elif "blogspot" in url:
+            p=re.compile(ur'<item>[\n\S\s]*?<link>(.*?)<\/link>')
             page=re.search(p, html).group(1)
         else:
             #p=re.compile("<item>[\S\s]+<link>([^<]+)")
@@ -503,7 +508,7 @@ def whatPlayer(url, site, dvdCode):
             found.append("googlevideo (1080)")
         """if "rapidgator" in html:
             found.append("rapidgator")"""
-        if "googlevideo" in html or "googleusercontent" in html or "docs.google" in html:
+        if "googlevideo" in html or "googleusercontent" in html or "docs.google" in html or "drive.google" in html:
             logError(site+" gvideo")
             p=re.compile('src=[\'|"](http[s]*:\/\/googleusercontent.[\S]*)[\'|"]')
             try: 
@@ -517,7 +522,7 @@ def whatPlayer(url, site, dvdCode):
                 except:
                     p=re.compile('file: [\'|"](http[s]*:\/\/\S.*?googlevideo.\S.*?)[\'|"]')
                     try: 
-                        #link=urlresolver.resolve(re.search(p, html).group(1))
+                        link=urlresolver.resolve(re.search(p, html).group(1))
                         found.append("googlevideo")
                     except:
                         p=re.compile('content=[\'|"]([http|https]\S*googleusercontent\S*)[\'|"]')
@@ -527,10 +532,15 @@ def whatPlayer(url, site, dvdCode):
                         except:
                             p=re.compile('file: [\'|"](http[s]*:\/\/\S.*?docs.google.com.\S.*?)[\'|"]')
                             try: 
-                                #link=urlresolver.resolve(re.search(p, html).group(1))
+                                link=urlresolver.resolve(re.search(p, html).group(1))
                                 found.append("googlevideo")
                             except:
-                                pass
+                                p=re.compile('<video[\S\s].*src="(.*)"')
+                                try:
+                                    link=urlresolver.resolve(re.search(p, html).group(1))
+                                    found.append("googlevideo")
+                                except:
+                                    pass
         if "videomega" in html:
             found.append("videomega")
         if "openload" in html or "oload" in html:
@@ -616,11 +626,11 @@ def huntVideo(params):
     titles=[]
     for searching in search:
         if xbmcplugin.getSetting(int(sysarg), searching+"wushare")=="true":
-            if xbmcplugin.getSetting(int(sysarg), "wushare_username")=="" or xbmcplugin.getSetting(int(sysarg), "wushare_password")=="":
+            """if xbmcaddon.Addon().getSetting("wushare_username")=="" or xbmcaddon.Addon().getSetting("wushare_password")=="":
                 alert("To use WuShare you must enter a Username and Password to a valid premium account.");
             else:
-                titles.append("wushare")
-                huntSites.append("http://javpop.com/search/"+dvdCode.replace("%22", "")+"/feed/rss2")
+                titles.append("wushare")"""
+            huntSites.append("http://javpop.com/search/"+dvdCode.replace("%22", "")+"/feed/rss2")
         
         if xbmcplugin.getSetting(int(sysarg), searching+"sexloading")=="true":
             titles.append("sexloading")
@@ -786,26 +796,53 @@ def huntVideo(params):
         if xbmcplugin.getSetting(int(sysarg), searching+"youjav")=="true":
             titles.append("youjav")
             huntSites.append("http://youjav.me/search/"+dvdCode+"/feed/rss2")
-        titles.append("maddawdjav")
-        huntSites.append("hhttp://maddawgjav.net/"+dvdCode+"/feed/rss2")
+        if xbmcplugin.getSetting(int(sysarg), searching+"idolportal")=="true":
+            titles.append("idolportal")
+            huntSites.append("http://idolportal.blogspot.com/feeds/posts/default/?alt=rss&q="+dvdCode)
+        if xbmcplugin.getSetting(int(sysarg), searching+"planetjav")=="true":
+            titles.append("planetjav")
+            huntSites.append("http://planetjav.blogspot.com/feeds/posts/default/?alt=rss&q="+dvdCode)
+        if xbmcplugin.getSetting(int(sysarg), searching+"ytbsexclub")=="true":
+            titles.append("ytbsexclub")
+            huntSites.append("http://ytbsexclub.blogspot.com/feeds/posts/default/?alt=rss&q="+dvdCode)
+        if xbmcplugin.getSetting(int(sysarg), searching+"ytbsexclub")=="true":
+            titles.append("streamjavporn")
+            huntSites.append("http://streamjavporn.blogspot.com/feeds/posts/default/?alt=rss&q="+dvdCode)
+        if xbmcplugin.getSetting(int(sysarg), searching+"javcuteonline")=="true":
+            titles.append("javcuteonline")
+            huntSites.append("http://javcuteonline.com/search/"+dvdCode.replace("%22", "")+"/feed/rss2")
+        if xbmcplugin.getSetting(int(sysarg), searching+"jav-720p")=="true":
+            titles.append("jav-720p")
+            huntSites.append("http://jav-720p.com/search/"+dvdCode+"/feed/rss2")
+        if xbmcplugin.getSetting(int(sysarg), searching+"koleksijav")=="true":
+            titles.append("koleksijav")
+            huntSites.append("http://javkonyol.blogspot.com/feeds/posts/default/?alt=rss&q="+dvdCode)
+            
     huntSites=unique(huntSites)  
     updateString=" ".join(titles)
     # to be added in the future
     # -------------------------
-    # javchan.com
     # javmovie.com
-    # javcenso.com
     # javuncen.me
+    # rejav.com
+    # xonline
+    # openload2.appspot.com
+    # --------------------------
+    # wordpress sites
+    # --------------------------
+    # javdude.com
+    # javchan.com
     # hdporn4us.com
     # jav18online.com
-    # jav-th.com
     # joojav.com
-    # javholy
-    # rejav.com
-    # jav-onlines.com
-    # xonline
-    # jav-720p.com
-    # javhub.net
+    # javholy.com
+    # jav.one
+    # javhdx.tv
+    # --------------------------
+    # blogspot (http://idolportal.blogspot.com/feeds/posts/default/?alt=rss&q=mmr)
+    # --------------------------
+    # planetjav.blogspot.com (added for censored not for uncensored)
+    # ikibokep.blogspot.co.uk
     # --------------------------
     # realdebrid
     # --------------------------
@@ -816,7 +853,11 @@ def huntVideo(params):
     # javfilm.ga
     # javarchive.com
     # maddawgjav.net
-    
+    # hdporn4us.com
+    # vureness.com
+    # japanidols.info
+    # javgravureidols.info
+    # japanesekayo.net
     
     #p1=re.compile("http:\/\/(www.)?([a-zA-Z0-9-]*.[a-z]*)")
     p=re.compile("[http|https]*:\/\/(www.)?([a-zA-Z0-9-]*).")
@@ -1057,20 +1098,22 @@ def getVideoURL(params):
             
         cj2 = cookielib.CookieJar()
         opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cj2))
-        login_data = urllib.urlencode({'username_or_email' : xbmcplugin.getSetting(int(sysarg), "wushare_username"), 'password' : xbmcplugin.getSetting(int(sysarg), "wushare_password"), 'referrer' : 'http://wushare.com/login'})
+        
+        login_data = urllib.urlencode({'username_or_email' : xbmcaddon.Addon().getSetting("wushare_username"), 'password' : xbmcaddon.Addon().getSetting("wushare_password"), 'referrer' : 'http://wushare.com/login'})
         opener.open('http://wushare.com/login', login_data)
         
         resp = opener.open(link)
         content=resp.read()
         if "Start download" not in content:
             alert("Unable to authenticate: Please check your WusShare account details.")
-            logError(content)
+            #logError(content)
             return False;
         p=re.compile('dl_link">(\S+)<\/')
         try:
             link=re.search(p, content).group(1)
         except:
-            logError(resp.read())
+            pass
+            #logError(resp.read())
     elif params['extras']=="rapidgator":
         pass # for the minute
     elif params["extras"]=="googlevideo (1080)" or  params["extras"]=="googlevideo (720)" or params["extras"]=="googlevideo (480)":
@@ -1084,7 +1127,7 @@ def getVideoURL(params):
             ol=getURL('https://api.openload.io/1/file/dlticket?file='+download[0]+"&login=9addaa178ec385d2&key=bZfjzquk", hdr)
             jsonResponse=json.loads(ol)
             #logError('https://api.openload.io/1/file/dlticket?file='+download[0]+"&login=9addaa178ec385d2&key=bZfjzquk")
-            logError(str(jsonResponse))
+            #logError(str(jsonResponse))
             if jsonResponse['status']!=200:
                 logError("OpenLoad Error: "+str(jsonResponse['msg']))
                 alert("OpenLoad Error: "+str(jsonResponse['msg']))
@@ -1118,7 +1161,7 @@ def getVideoURL(params):
                     return False
                 else:
                    videourl=jsonResponse['result']['url']
-                   logError("openload url: "+videourl)
+                   #logError("openload url: "+videourl)
                    link=videourl
         else:        
             #logError("hotlinking")
@@ -1138,7 +1181,7 @@ def getVideoURL(params):
             openloadsrc = getHtml(openloadurl1, '', hdr)
             
             videourl = decodeOpenLoad(openloadsrc)
-            logError(videourl)
+            #logError(videourl)
             link = videourl + '|Referer='+ openloadurl1 + '&User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5376e Safari/8536.25'
             
     elif params["extras"]=="videomega":
@@ -1241,7 +1284,7 @@ def getVideoURL(params):
             link=urlresolver.resolve(re.search(p, videosource).group(1))
         except:
             pass
-    logError(link)
+    #logError(link)
     return link
 
 # videowood decode copied from: https://github.com/schleichdi2/OpenNfr_E2_Gui-5.3/blob/4e3b5e967344c3ddc015bc67833a5935fc869fd4/lib/python/Plugins/Extensions/MediaPortal/resources/hosters/videowood.py    
@@ -1314,11 +1357,11 @@ def decodeOpenLoad(html):
     # fixed by the openload guy ;)  based on work by pitoosie
     from HTMLParser import HTMLParser
     from jjdecode import JJDecoder
-    hiddenurl = HTMLParser().unescape(re.search("</span>[^>]+>([^<]+).*?streamurl", html, re.DOTALL | re.IGNORECASE).group(1))
+    
+    hiddenurl = HTMLParser().unescape(re.search("</span>[^>]+>([^<]+)</sp.*?streamurl", html, re.DOTALL | re.IGNORECASE).group(1))
     
     jjstring = re.compile('a="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(html)[1]
     shiftint =  re.compile(r";\}\((\d+)\)", re.DOTALL | re.IGNORECASE).findall(html)[1]
-    
     
     def shiftChar(a):
         a = a.group()
@@ -1332,7 +1375,7 @@ def decodeOpenLoad(html):
         else:
             a = c - 26
         return chr(a)    
-   
+    
     jjstring = re.sub(r'[a-zA-Z]', shiftChar, jjstring)
     jjstring = urllib.unquote_plus(jjstring)
     jjstring = jjstring.replace('0','j')
@@ -1340,6 +1383,7 @@ def decodeOpenLoad(html):
     jjstring = jjstring.replace('2','__')
     jjstring = jjstring.replace('3','___')    
     jjstring = JJDecoder(jjstring).decode()
+    
     magicnumber = re.compile(r"charCodeAt\(\d+?\)\s*?\+\s*?(\d+?)\)", re.DOTALL | re.IGNORECASE).findall(jjstring)[0]
     
     s = []
@@ -1353,7 +1397,6 @@ def decodeOpenLoad(html):
     res = ''.join(s)
     
     videoUrl = 'https://openload.co/stream/{0}?mime=true'.format(res)
-
     dtext = videoUrl.replace('https', 'http')
     UA = 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:39.0) Gecko/20100101 Firefox/39.0'
     headers = {'User-Agent': UA }

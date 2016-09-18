@@ -41,18 +41,22 @@ class source:
             query = urlparse.urljoin(self.base_link, self.search_link)
             query = query % urllib.quote_plus(title)
 
-            for i in range(5):
-                r = client.request(query)
-                if not r == None: break
+            #for i in range(5):
+            r = client.request(query)
+            #    if not r == None: break
 
             t = cleantitle.get(title)
 
             r = client.parseDOM(r, 'div', attrs = {'class': 'col-lg.+?'})
-            r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'p', attrs = {'class': 'c-title.+?'})) for i in r]
+            print("R1",r)
+
+            r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', ret='title')) for i in r]
             r = [(i[0][0], i[1][0]) for i in r if len(i[0]) > 0 and len(i[1]) > 0]
             r = [(i[0], i[1], re.findall('(\d{4})', i[1])) for i in r]
             r = [(i[0], i[1], i[2][-1]) for i in r if len(i[2]) > 0]
             r = [i[0] for i in r if t == cleantitle.get(i[1]) and year == i[2]][0]
+
+            print("R6", r)
 
             url = re.findall('(?://.+?|)(/.+)', r)[0]
             url = client.replaceHTMLCodes(url)
@@ -79,7 +83,7 @@ class source:
 
             query = '%s season %s' % (tvshowtitle, season)
             query = self.search_link % (urllib.quote_plus(query))
-
+            print("R",query)
             result = client.request(query)
             result = json.loads(result)
             result = result['results']

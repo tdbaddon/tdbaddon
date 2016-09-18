@@ -178,3 +178,9 @@ ver 0.51:
 ver 0.52:
 	- hopefully fixed sawlive
 	- fixed NFL archive
+	
+ver 0.53:
+	- fixed stream
+	
+ver 0.54:
+	- fixed stream

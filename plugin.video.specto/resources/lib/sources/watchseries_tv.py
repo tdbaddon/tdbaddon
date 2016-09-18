@@ -44,7 +44,7 @@ class source:
         self.base_link = 'http://watchseries.ag'
         self.link_1 = 'http://watchseriesfree.to'
         self.link_2 = 'http://translate.googleusercontent.com/translate_c?anno=2&hl=en&sl=mt&tl=en&u=http://watchseries.ag'
-        self.link_3 = 'https://watchseries.unblocked.pw'
+        self.link_3 = 'http://the-watch-series.to/'
         self.search_link = '/AdvancedSearch/%s-%s/by_popularity/%s'
         self.episode_link = '/episode/%s_s%s_e%s.html'
         self.headers = {}

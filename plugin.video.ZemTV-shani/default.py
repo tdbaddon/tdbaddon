@@ -1081,7 +1081,7 @@ def AddSafeLang(url=None):
 def AddTVPlayerChannels(url):
     headers=[('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36')]               
     mainhtml=getUrl('http://tvplayer.com/watch/bbcone',headers=headers)
-    cdata=re.findall('<li class="online.*?free.*?\s*<a href="(.*?)" title="(.*?)".*?\s*<img.*?src="(.*?)"',mainhtml)
+    cdata=re.findall('<li .*? class="online.*?free.*?\s*<a href="(.*?)" title="(.*?)".*?\s*<img.*?src="(.*?)',mainhtml)
     for cc in cdata:
         
         mm=11
@@ -1158,7 +1158,8 @@ def AddSafeChannels(url):
     cname,curl=url.split(',')
     headers=[('Referer',"http://customer.safersurf.com/onlinetv.html"),('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36'),('X-Requested-With','XMLHttpRequest')]               
     jsondata=getUrl('http://customer.safersurf.com/php/getProgForLanguage.php?varName=allChannelsAllCats&noAdd=false&browserLang=%s&displayLang=en&userCountry=United%%20Kingdom&src=all&dtp=%s'%(curl,tt),headers=headers)
-    jsondata=re.findall('=(\[.*?\]);',jsondata)[0]
+    #print jsondata
+    jsondata=re.findall('=(\[.*\])',jsondata)[0]
     addDir(Colored('Channel Language [%s]'.capitalize()%cname,'red') ,'' ,0 ,'', False, True,isItFolder=False)
     #print jsondata
     jsondata=json.loads(jsondata)
@@ -2500,7 +2501,7 @@ def getIpBoxSourcesAllOtherSource():
 
     return ret
     
-def getIpBoxSources():
+def getIpBoxSources(frompakindia=False):
     ret=[]
     try:
 
@@ -2521,7 +2522,10 @@ def getIpBoxSources():
     except:
         traceback.print_exc(file=sys.stdout)
     
-    return ret+getIpBoxSourcesAllOtherSource()
+    if frompakindia:
+        return ret
+    else:
+        return ret+getIpBoxSourcesAllOtherSource()
 
     
 def getIpBoxChannels(url,forSports=False):
@@ -3339,7 +3343,7 @@ def AddChannelsFromOthers(cctype,eboundMatches=[],progress=None):
         try:
             
             progress.update( 90, "", "Loading IpBox Channels", "" )
-            for nm,url in getIpBoxSources():
+            for nm,url in getIpBoxSources(True):
                 rematch=getIpBoxChannels([url])
                 if len(rematch)>0:
                     match+=rematch
@@ -5135,7 +5139,8 @@ def playtvplayer(url):
     #    print cj
         cj = cookielib.LWPCookieJar()
         playurl1=jsondata["tvplayer"]["response"]["stream"]
-        getUrl(playurl1, headers=headers,cookieJar=cj);
+        m3utext=getUrl(playurl1, headers=headers,cookieJar=cj);
+        #playurl1=re.findall('(http.*)',m3utext)[-1]
         playurl=playurl1+'|Cookie=%s&User-Agent=Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36&X-Requested-With=ShockwaveFlash/22.0.0.209&Referer=http://tvplayer.com/watch/'%getCookiesString(cj)
         
     except: 

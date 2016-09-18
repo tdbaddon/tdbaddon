@@ -5,6 +5,7 @@ import urllib, urllib2
 import cookielib
 import re
 import jsunpack
+import urlparse
 
 ''' Use addon.common library for http calls '''
 from addon.common.net import Net
@@ -275,15 +276,17 @@ def resolve_clicknupload(url):
         media_id = re.search('//.+?/([\w]+)', url).group(1)
         url = 'http://clicknupload.link/%s' % media_id
         
-        headers = {'Referer': url}
+        new_url = "https://clicknupload.link%s" % urlparse.urlsplit(url).path
+		
+        headers = {'Referer': new_url, 'User-Agent': USER_AGENT}
         
         #Show dialog box so user knows something is happening
         dialog = xbmcgui.DialogProgress()
         dialog.create('Resolving', 'Resolving ClicknUpload Link...')       
         dialog.update(0)
         
-        addon.log('ClicknUpload - Requesting GET URL: %s' % url)
-        html = net.http_GET(url).content
+        addon.log('ClicknUpload - Requesting GET URL: %s' % new_url)
+        html = net.http_GET(new_url).content
         
         dialog.update(33)
         
@@ -293,35 +296,28 @@ def resolve_clicknupload(url):
             raise Exception('File has been deleted from the host')
 
         #Set POST data values
-        data = {}
-        r = re.findall('type="(hidden|submit)" name="(.+?)" value="(.*?)">', html)
-        if r:
-            for none, name, value in r:
-                data[name] = value
+        data = data = get_hidden(html)				
+        data['method_free'] = 'Free+Download+>>'
                 
-        addon.log('ClicknUpload - Requesting POST URL: %s DATA: %s' % (url, data))                
-        html = net.http_POST(url, data, headers=headers).content
+        addon.log('ClicknUpload - Requesting POST URL: %s DATA: %s' % (new_url, data))                
+        html = net.http_POST(new_url, data, headers=headers).content
         dialog.update(66)
 
-        data = {}
-        r = re.findall('type="(hidden|submit)" name="(.+?)" value="(.*?)">', html)
-        if r:
-            for none, name, value in r:
-                data[name] = value
+        data = data = get_hidden(html)
 
         #Check for captcha
-        data = handle_captchas(url, html, data, dialog)                
+        data = handle_captchas(new_url, html, data, dialog)                
 
         wait_string = re.search('<span id="countdown_str">Please wait <span id=".+?" style=".+?">([0-9]+)</span>', html)
         if wait_string:
             xbmc.sleep(int(wait_string.group(1)) * 1000)
     
-        addon.log('ClicknUpload - Requesting POST URL: %s DATA: %s' % (url, data))                                
-        html = net.http_POST(url, data, headers=headers).content
+        addon.log('ClicknUpload - Requesting POST URL: %s DATA: %s' % (new_url, data))                                
+        html = net.http_POST(new_url, data, headers=headers).content
 
         #Get download link
         dialog.update(100)
-        link = re.search("onClick\s*=\s*\"window\.open\('([^']+)", html)
+        link = re.search('''class="downloadbtn"[^>]+onClick\s*=\s*\"window\.open\('([^']+)''', html)
         if link:
             return link.group(1) + '|User-Agent=%s' % USER_AGENT
         else:
@@ -345,7 +341,6 @@ def resolve_upload_af(url):
         dialog.create('Resolving', 'Resolving Upload.af Link...')       
         dialog.update(0)
         
-        import urlparse
         new_url = 'https://upload.af' + urlparse.urlsplit(url).path
         
         addon.log('Upload.af - Requesting GET URL: %s' % new_url)

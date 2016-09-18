@@ -203,7 +203,7 @@ class source:
                 try:
                     #http://fmovies.to/ajax/episode/info?_token=31f2ab5&id=1r12ww&update=0&film=286l
                     headers = {'X-Requested-With': 'XMLHttpRequest'}
-                    time.sleep(0.7)
+                    time.sleep(0.2)
                     hash_url = urlparse.urljoin(self.base_link, self.hash_link)
                     query = {'id': s[0], 'update': '0', 'film': r2}
                     query.update(self.__get_token(query))
@@ -213,7 +213,7 @@ class source:
                     result = client.request(hash_url, headers=headers, limit='0')
                     print("r101 result",result,headers)
 
-                    time.sleep(0.6)
+                    time.sleep(0.3)
                     query = {'id': s[0], 'update': '0'}
                     query.update(self.__get_token(query))
                     url = url + '?' + urllib.urlencode(query)

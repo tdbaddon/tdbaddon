@@ -21,7 +21,7 @@
 
 import re,urllib,urlparse
 import json, time, random, string
-import base64
+import base64, hashlib
 
 from resources.lib.libraries import cleantitle
 from resources.lib.libraries import cache
@@ -33,22 +33,23 @@ from resources.lib import resolvers
 class source:
     def __init__(self):
         self.base_link = 'http://cartoonhd.website'
-        self.search_link = '/api/v2/cautare/upd'
+        self.social_lock = 'evokjaqbb8'
+        self.search_link = '/api/v2/cautare/' + self.social_lock
 
 
     def get_movie(self, imdb, title, year):
         try:
             tk = cache.get(self.movieshd_token, 8)
-
-            st = self.movieshd_set() ; rt = self.movieshd_rt(tk + st)
-
+            set = self.movieshd_set()
+            rt = self.movieshd_rt(tk + set)
+            sl = self.movieshd_sl()
             tm = int(time.time() * 1000)
 
             headers = {'X-Requested-With': 'XMLHttpRequest'}
 
             url = urlparse.urljoin(self.base_link, self.search_link)
 
-            post = {'q': title.lower(), 'limit': '100', 'timestamp': tm, 'verifiedCheck': tk, 'sl': st, 'rt': rt}
+            post = {'q': title.lower(), 'limit': '100', 'timestamp': tm, 'verifiedCheck': tk, 'set': set, 'rt': rt, 'sl': sl}
             post = urllib.urlencode(post)
 
             r = client.request(url, post=post, headers=headers, output='cookie2')
@@ -72,7 +73,9 @@ class source:
         try:
             tk = cache.get(self.movieshd_token, 8)
 
-            st = self.movieshd_set() ; rt = self.movieshd_rt(tk + st)
+            set = self.movieshd_set()
+            rt = self.movieshd_rt(tk + set)
+            sl = self.movieshd_sl()
 
             tm = int(time.time() * 1000)
 
@@ -81,7 +84,7 @@ class source:
 
             url = urlparse.urljoin(self.base_link, self.search_link)
 
-            post = {'q': tvshowtitle.lower(), 'limit': '20', 'timestamp': tm, 'verifiedCheck': tk, 'sl': st, 'rt': rt}
+            post = {'q': tvshowtitle.lower(), 'limit': '20', 'timestamp': tm, 'verifiedCheck': tk, 'set': set, 'rt': rt, 'sl': sl}
             post = urllib.urlencode(post)
 
             r = client.request(url, post=post, headers=headers)
@@ -124,9 +127,11 @@ class source:
 
             result, headers, content, cookie = client.request(url1, output='extended')
 
-            auth = re.findall('__utmx=(.+)', cookie)[0].split(';')[0]
-            auth = 'Bearer %s' % urllib.unquote_plus(auth)
-            print cookie
+            try:
+                auth = re.findall('__utmx=(.+)', cookie)[0].split(';')[0]
+                auth = 'Bearer %s' % urllib.unquote_plus(auth)
+            except:
+                auth = 'Bearer false'
 
             headers['Authorization'] = auth
             headers['X-Requested-With'] = 'XMLHttpRequest'
@@ -134,7 +139,7 @@ class source:
             #headers['Accept'] = 'application/json, text/javascript, */*; q=0.01'
             headers['Cookie'] = cookie
 
-            u = '/ajax/embeds.php'
+            u = '/ajax/nembeds.php'
             u = urlparse.urljoin(self.base_link, u)
 
             #action = 'getEpisodeEmb' if '/episode/' in url else 'getMovieEmb'
@@ -205,6 +210,9 @@ class source:
 
     def movieshd_set(self):
         return ''.join([random.choice(string.ascii_letters) for _ in xrange(25)])
+
+    def movieshd_sl(self):
+        return hashlib.md5(base64.encodestring('0A6ru35yyi5yn4THYpJqy0X82tE95btV')+self.social_lock).hexdigest()
 
 
     def movieshd_rt(self, s, shift=13):
