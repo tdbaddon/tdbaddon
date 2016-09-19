@@ -1034,6 +1034,21 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
 
 </addon>
 
+<addon id="plugin.video.f4mTester" version="2.5.6" name="f4mTester" provider-name="Shani">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0"/>
+        <import addon="script.video.F4mProxy" version="2.5.6"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary>f4mTester</summary>
+        <description></description>
+        <platform>all</platform>
+    </extension>
+</addon>
+
 <addon id="plugin.video.fantasticc"
        name="Fantasti.cc"
        version="2.3.30"
@@ -2060,7 +2075,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBTVSHOWS"
        name="TDB TV SHOWS"
-       version="1.44"
+       version="1.45"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
