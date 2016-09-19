@@ -21,7 +21,6 @@
 
 import re,urllib,urlparse,datetime
 
-from resources.lib.modules import control
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import debrid
@@ -74,6 +73,8 @@ class source:
 
             quality = l[0][1]
 
+            hostDict = hostprDict + hostDict
+
             url = l[0][0]
             url = client.replaceHTMLCodes(url)
 
@@ -95,7 +96,7 @@ class source:
                     url = url.encode('utf-8')
 
                     host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(url.strip().lower()).netloc)[0]
-                    if not host in hostDict + hostprDict: raise Exception()
+                    if not host in hostDict: raise Exception()
                     host = client.replaceHTMLCodes(host)
                     host = host.encode('utf-8')
 

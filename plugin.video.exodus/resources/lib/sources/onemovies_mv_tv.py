@@ -175,7 +175,7 @@ class source:
 
                 links += [{'source': 'openload.co', 'url': self.embed_link % i[1], 'direct': False} for i in r if i[0] == '14']
 
-                links += [{'source': 'videomega.tv', 'url': self.embed_link % i[1], 'direct': False} for i in r if i[0] == '13']
+                #links += [{'source': 'videomega.tv', 'url': self.embed_link % i[1], 'direct': False} for i in r if i[0] == '13']
 
                 links += [{'source': 'videowood.tv', 'url': self.embed_link % i[1], 'direct': False} for i in r if i[0] == '12']
 
@@ -225,7 +225,7 @@ class source:
 
                 links += [{'source': 'openload.co', 'url': self.embed_link2 % i[0], 'direct': False} for i in r if i[1] == '14']
 
-                links += [{'source': 'videomega.tv', 'url': self.embed_link2 % i[0], 'direct': False} for i in r if i[1] == '13']
+                #links += [{'source': 'videomega.tv', 'url': self.embed_link2 % i[0], 'direct': False} for i in r if i[1] == '13']
 
                 links += [{'source': 'videowood.tv', 'url': self.embed_link2 % i[0], 'direct': False} for i in r if i[1] == '12']
 

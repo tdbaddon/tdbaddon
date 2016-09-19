@@ -23,13 +23,15 @@ import re,urllib,urlparse,json
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
+from resources.lib.modules import directstream
 
 
 class source:
     def __init__(self):
         self.domains = ['fmovies.to']
         self.base_link = 'http://fmovies.to'
-        self.info_link = '/ajax/episode/info?id=%s&update=0&film=%s'
+        #self.info_link = '/ajax/episode/info?id=%s&update=0&film=%s'
+        self.info_link = '/ajax/episode/info'
         self.search_link = '/search?keyword=%s'
 
 
@@ -125,7 +127,9 @@ class source:
             try: url, episode = re.findall('(.+?)\?episode=(\d*)$', url)[0]
             except: episode = None
 
-            r = client.request(url)
+            result = client.request(url, output='extended')
+
+            r = result[0] ; cookie = result[4]
 
             try: quality = client.parseDOM(r, 'span', attrs = {'class': 'quality'})[0].lower()
             except: quality = 'hd'
@@ -135,8 +139,7 @@ class source:
 
             category = client.parseDOM(r, 'div', ret='data-id', attrs = {'id': '.+?'})[0]
 
-            servers = client.parseDOM(r, 'div', attrs = {'id': 'servers'})
-            servers = client.parseDOM(r, 'div', attrs = {'data-type': 'iframe'})
+            servers = client.parseDOM(r, 'ul', attrs = {'data-range-id': '0'})
             servers = zip(client.parseDOM(servers, 'a', ret='data-id'), client.parseDOM(servers, 'a'))
             servers = [(i[0], re.findall('(\d+)', i[1])) for i in servers]
             servers = [(i[0], ''.join(i[1][:1])) for i in servers]
@@ -144,27 +147,46 @@ class source:
             if not episode == None:
                 servers = [i for i in servers if '%01d' % int(i[1]) == '%01d' % int(episode)]
 
-            servers = [i[0] for i in servers]
-
-            for s in servers:
+            for s in servers[:5]:
                 try:
                     headers = {
                     'X-Requested-With': 'XMLHttpRequest',
-                    'Referrer': '%s/%s' % (url, s),
-                    'Age': '217'
+                    'Referer': '%s/%s' % (url, s),
+                    'Cookie': cookie
                     }
 
-                    u = urlparse.urljoin(self.base_link, self.info_link % (s, category))
+                    post = {'id': s[0], 'update': '0', 'film': category}
+                    post.update(self._token(post))
 
-                    u = client.request(u, headers=headers)
-                    u = json.loads(u)['target']
+                    u = urlparse.urljoin(self.base_link, self.info_link)
+                    u += '?' + urllib.urlencode(post)
 
-                    u = u.replace('/oload.co/', '/openload.co/')
+                    r = client.request(u, headers=headers)
 
-                    if 'openload.' in u: host = 'openload.co'
-                    elif 'videomega.' in u: host = 'videomega.tv'
+                    r = json.loads(r)
 
-                    sources.append({'source': host, 'quality': quality, 'provider': 'Ninemovies', 'url': u, 'direct': True, 'debridonly': False})
+                    t = r['target']
+
+                    if 'openload' in t:
+                        sources.append({'source': 'openload.co', 'quality': quality, 'provider': 'Ninemovies', 'url': t, 'direct': False, 'debridonly': False})
+
+                    post = r['params']
+                    if not post: raise Exception()
+                    post['mobile'] = '0'
+                    post.update(self._token(post))
+
+                    headers['Referer'] = u
+
+                    g = r['grabber'] + '?' + urllib.urlencode(post)
+
+                    r = client.request(g, headers=headers)
+
+                    r = json.loads(r)['data']
+                    r = [i['file'] for i in r if 'file' in i]
+
+                    for i in r:
+                        try: sources.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'provider': 'Ninemovies', 'url': i, 'direct': True, 'debridonly': False})
+                        except: pass
                 except:
                     pass
 
@@ -175,5 +197,14 @@ class source:
 
     def resolve(self, url):
         return url
+
+
+    def _token(self, data):
+        n = 0
+        for key in data:
+            if not key.startswith('_'):
+                for i, c in enumerate(data[key]):
+                    n += ord(c) * 64184 + len(data[key])
+        return {'_token': hex(n)[2:]}
 
 

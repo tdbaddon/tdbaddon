@@ -21,7 +21,6 @@
 
 import re,urllib,urlparse,json,base64
 
-from resources.lib.modules import control
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import debrid
@@ -81,6 +80,8 @@ class source:
             l = [(i[0], '1080p') for i in r if '1080p' in i[3]]
             l += [(i[0], 'HD') for i in r if '720p' in i[3]]
             l = l[:4]
+
+            hostDict = hostprDict + hostDict
 
             links = []
 

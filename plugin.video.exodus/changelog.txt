@@ -1,3 +1,7 @@
+[B]2.0.10[/B]
+- Updated existing providers
+- Added new providers
+
 [B]2.0.9[/B]
 - Updated providers
 

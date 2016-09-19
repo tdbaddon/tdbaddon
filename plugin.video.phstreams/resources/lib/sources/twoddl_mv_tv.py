@@ -112,6 +112,8 @@ class source:
             l = [(i[0], '1080p') for i in r if any(x in ['1080P', 'TV 1080p'] for x in i[1])][:2]
             l += [(i[0], 'HD') for i in r if any(x in ['720P', 'TV 720p'] for x in i[1])][:2]
 
+            hostDict = hostprDict + hostDict
+
             links = []
 
             for i in l:
@@ -135,7 +137,7 @@ class source:
                     url = url.encode('utf-8')
 
                     host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(url.strip().lower()).netloc)[0]
-                    if not host in hostprDict: raise Exception()
+                    if not host in hostDict: raise Exception()
                     host = client.replaceHTMLCodes(host)
                     host = host.encode('utf-8')
 

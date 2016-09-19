@@ -65,10 +65,6 @@ class navigator:
 
         self.endDirectory()
 
-        from resources.lib.modules import cache
-        from resources.lib.modules import changelog
-        #cache.get(changelog.get, 600000000, control.addonInfo('version'), table='changelog')
-
 
     def movies(self, lite=False):
         self.addDirectoryItem(32011, 'movieGenres', 'genres.png', 'DefaultMovies.png')

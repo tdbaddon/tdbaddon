@@ -115,8 +115,6 @@ class source:
                 try:
                     if not link.startswith('http'): link = urlparse.urljoin(self.base_link, link)
 
-                    if not self.base_link in link: raise Exception()
-
                     url = client.request(link, output='geturl')
 
                     quality = directstream.googletag(url)[0]['quality']

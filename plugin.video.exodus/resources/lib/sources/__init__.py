@@ -833,7 +833,7 @@ class sources:
         except:
             self.hostDict = []
 
-        self.hostprDict = ['oboom.com', 'rapidgator.net', 'rg.to', 'uploaded.net', 'uploaded.to', 'ul.to', 'filefactory.com', 'nitroflare.com', 'turbobit.net', 'uploadrocket.net']
+        self.hostprDict = ['1fichier.com', 'oboom.com', 'rapidgator.net', 'rg.to', 'uploaded.net', 'uploaded.to', 'ul.to', 'filefactory.com', 'nitroflare.com', 'turbobit.net', 'uploadrocket.net']
 
         self.hostcapDict = ['hugefiles.net', 'kingfiles.net', 'torba.se']
 

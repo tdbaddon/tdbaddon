@@ -28,8 +28,8 @@ from resources.lib.modules import directstream
 
 class source:
     def __init__(self):
-        self.domains = ['movieshd.tv', 'movieshd.is', 'movieshd.watch', 'flixanity.is']
-        self.base_link = 'http://www.flixanity.is'
+        self.domains = ['movieshd.tv', 'movieshd.is', 'movieshd.watch', 'flixanity.is', 'flixanity.me']
+        self.base_link = 'http://www.flixanity.me'
 
 
     def movie(self, imdb, title, year):
@@ -102,7 +102,8 @@ class source:
 
             cookie = r[4] ; headers = r[3] ; result = r[0]
 
-            auth = re.findall('__utmx=(.+)', cookie)[0].split(';')[0]
+            try: auth = re.findall('__utmx=(.+)', cookie)[0].split(';')[0]
+            except: auth = 'false'
             auth = 'Bearer %s' % urllib.unquote_plus(auth)
 
             headers['Authorization'] = auth
@@ -144,7 +145,7 @@ class source:
 
             links += [{'source': 'openload.co', 'quality': 'SD', 'url': i, 'direct': False} for i in r if 'openload.co' in i]
 
-            links += [{'source': 'videomega.tv', 'quality': 'SD', 'url': i, 'direct': False} for i in r if 'videomega.tv' in i]
+            #links += [{'source': 'videomega.tv', 'quality': 'SD', 'url': i, 'direct': False} for i in r if 'videomega.tv' in i]
 
 
             for i in links: sources.append({'source': i['source'], 'quality': i['quality'], 'provider': 'MoviesHD', 'url': i['url'], 'direct': i['direct'], 'debridonly': False})

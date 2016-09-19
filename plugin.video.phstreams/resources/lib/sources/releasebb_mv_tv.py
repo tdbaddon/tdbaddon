@@ -21,7 +21,6 @@
 
 import re,urllib,urlparse,json
 
-from resources.lib.modules import control
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import debrid
@@ -195,6 +194,8 @@ class source:
             check = [i for i in links if not i['quality'] == 'CAM']
             if len(check) > 0: links = check
 
+            hostDict = hostprDict + hostDict
+
             for i in links:
                 try:
                     url = i['url']
@@ -203,13 +204,13 @@ class source:
 
                     if i['cat'] == 'tvshow':
                         if not i['quality'] in ['1080p', 'HD']: raise Exception()
-                        if not any(i['host'].lower() in x for x in hostprDict): raise Exception()
+                        if not any(i['host'].lower() in x for x in hostDict): raise Exception()
                         url = client.request(url)
                         url = client.parseDOM(url, 'ol')[0]
                         url = client.parseDOM(url, 'div', attrs = {'style': '.+?'})[int(data['episode'])-1]
 
                     host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(url.strip().lower()).netloc)[0]
-                    if not host in hostprDict: raise Exception()
+                    if not host in hostDict: raise Exception()
                     host = client.replaceHTMLCodes(host)
                     host = host.encode('utf-8')
 
