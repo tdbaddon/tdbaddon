@@ -151,9 +151,6 @@ rtmp://edge2.everyon.tv/etv2sb/phd10499
 #EXTINF:0,PLAYBOY SPICE 
 rtmp://main2sb.everyon.tv:1935/etv2sb/_definst_/phd10499
 
-#EXTINF:0,PLAYBOY TV 
-http://freedom.duki.me/LIVE/H02/PlayboyTV/master.m3u8
-
 #EXTINF:0,PLATINUM TV 
 0
 
@@ -194,7 +191,7 @@ rtmp://main2sb.everyon.tv:1935/etv2sb/pld10499
 0
 
 #EXTINF:0,SEXTREME 
-http://freedom.duki.me/LIVE/H02/SextremeSD/master.m3u8
+0
 
 #EXTINF:0,SEXYHOT 
 0
@@ -209,7 +206,7 @@ http://freedom.duki.me/LIVE/H02/SextremeSD/master.m3u8
 0
 
 #EXTINF:0,VENUS
-http://freedom.duki.me/LIVE/H02/VENUSSD/master.m3u8
+0
 
 #EXTINF:0,VISIT X 
 0

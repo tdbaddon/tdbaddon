@@ -2,7 +2,7 @@
 
 
 #EXTINF:0,Antenna 5 Skopje 
-0
+http://antenna5stream.neotel.mk:8000/live32?type=.flv
 
 #EXTINF:0,City Radio Skopje 
 http://ss1.mk.checast.com:21306/48.aac

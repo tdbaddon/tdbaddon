@@ -59,7 +59,7 @@ mms://deltatv1.dyndns.org:1194
 0
 
 #EXTINF:0,E TV 
-http://mgrouphdlive4-f.akamaihd.net/i/live_1@324569/master.m3u8
+0
 
 #EXTINF:0,Ellada TV 
 0
@@ -126,9 +126,6 @@ http://stream.maktv.gr/i/live_1@332903/master.m3u8
 
 #EXTINF:0,Mad Music Hits
 0
-
-#EXTINF:0,Mad TV 
-rtmp://144.76.2.213:1935/live/livestream
 
 #EXTINF:0,Mad TV 
 rtmp://144.76.2.213/live/livestream
@@ -198,7 +195,7 @@ http://iphone.skai.gr.edgesuite.net/iphone_iphone.m3u8
 0
 
 #EXTINF:0,Thraki Net TV
-rtmp://hls.onestreaming.com:1935/live/thrakinettv
+0
 
 #EXTINF:0,TRT 
 0

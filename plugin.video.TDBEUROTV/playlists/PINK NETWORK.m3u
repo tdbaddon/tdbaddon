@@ -5,16 +5,16 @@
 WWW.TCOMPUTERS.CA
 
 #EXTINF:0,Pink 1 
-0
+http://92.60.224.62:3018/udp/232.171.194.22:4000
 
 #EXTINF:0,Pink 2 
-0
+http://92.60.224.62:3018/udp/232.171.194.28:4000
 
 #EXTINF:0,Pink 3 
-0
+http://92.60.224.62:3018/udp/232.171.194.1:4000
 
 #EXTINF:0,Pink Action 1 
-0
+http://92.60.224.62:3018/udp/232.171.194.23:4000
 
 #EXTINF:0,Pink Action 2 
 0
@@ -23,7 +23,7 @@ WWW.TCOMPUTERS.CA
 0
 
 #EXTINF:0,Pink BH
-0
+http://92.60.224.62:3018/udp/232.171.194.21:4000
 
 #EXTINF:0,Pink Bravo
 0
@@ -38,19 +38,22 @@ WWW.TCOMPUTERS.CA
 0
 
 #EXTINF:0,Pink Extra 
-0
+http://92.60.224.62:3018/udp/232.171.194.20:4000
 
 #EXTINF:0,Pink Family 
 http://str108.setplex.net/fastv_2psh/PinkFamilyglobal_rly_greece_103/TDB.m3u8
+
+#EXTINF:0,Pink Family
+http://92.60.224.62:3018/udp/232.171.194.27:4000
 
 #EXTINF:0,Pink Family 
 0
 
 #EXTINF:0,Pink Fashion 
-0
+http://92.60.224.62:3018/udp/232.171.194.17:4000
 
 #EXTINF:0,Pink Film 
-0
+http://92.60.224.62:3018/udp/232.171.194.25:4000
 
 #EXTINF:0,Pink Folk 1
 0
@@ -59,7 +62,7 @@ http://str108.setplex.net/fastv_2psh/PinkFamilyglobal_rly_greece_103/TDB.m3u8
 0
 
 #EXTINF:0,Pink Hits
-0
+http://92.60.224.62:3018/udp/232.171.194.34:4000
 
 #EXTINF:0,Pink Hits 2
 0
@@ -68,7 +71,7 @@ http://str108.setplex.net/fastv_2psh/PinkFamilyglobal_rly_greece_103/TDB.m3u8
 0
 
 #EXTINF:0,Pink Kids 
-0
+http://92.60.224.62:3018/udp/232.171.194.30:4000
 
 #EXTINF:0,Pink Koncert
 0
@@ -80,10 +83,10 @@ http://str108.setplex.net/fastv_2psh/PinkFamilyglobal_rly_greece_103/TDB.m3u8
 0
 
 #EXTINF:0,Pink M 
-0
+http://92.60.224.62:3018/udp/232.171.194.29:4000
 
 #EXTINF:0,Pink Movies 1 
-0
+http://92.60.224.62:3018/udp/232.171.194.24:4000
 
 #EXTINF:0,Pink Movies 2 
 0
@@ -92,10 +95,10 @@ http://str108.setplex.net/fastv_2psh/PinkFamilyglobal_rly_greece_103/TDB.m3u8
 0
 
 #EXTINF:0,Pink Music 1 
-0
+http://92.60.224.62:3018/udp/232.171.194.26:4000
 
 #EXTINF:0,Pink Music 2
-0
+http://92.60.224.62:3018/udp/232.171.194.11:4000
 
 #EXTINF:0,Pink Music 3 
 0
@@ -113,13 +116,13 @@ http://str108.setplex.net/fastv_2psh/PinkFamilyglobal_rly_greece_103/TDB.m3u8
 0
 
 #EXTINF:0,Pink Parada
-0
+http://92.60.224.62:3018/udp/232.171.194.35:4000
 
 #EXTINF:0,Pink Pedia 
 0
 
 #EXTINF:0,Pink Plus 
-0
+http://92.60.224.62:3018/udp/232.171.194.19:4000
 
 #EXTINF:0,Pink Premium 
 0

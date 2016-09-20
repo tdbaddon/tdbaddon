@@ -31,7 +31,7 @@ rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
 0
 
 #EXTINF:0,Belle Amie TV
-0
+http://92.60.224.62:3018/udp/231.1.3.1:5903
 
 #EXTINF:0,BN Sat
 0
@@ -52,7 +52,7 @@ rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
 0
 
 #EXTINF:0,Elektrika TV
-rtmp://rtmp.elektrika.cz/live/myStream.sdp
+0
 
 #EXTINF:0,Grand 
 0

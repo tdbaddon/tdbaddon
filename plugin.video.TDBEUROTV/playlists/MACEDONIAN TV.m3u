@@ -40,19 +40,19 @@ http://37.187.158.217:8081/alfa/alfatv/chunks.m3u8
 0
 
 #EXTINF:0,Kanal 21 
-0
+rtsp://62.162.58.55/TVKanal21
 
 #EXTINF:0,K Plus Stip
 0
 
 #EXTINF:0,Kanal 5 
-0
+http://37.187.158.217:8081/kanal5/kanal5/playlist.m3u8
 
 #EXTINF:0,Kanal 5 Plus
 0
 
 #EXTINF:0,Kanal 8
-0
+rtsp://62.162.58.55/TVKanal8
 
 #EXTINF:0,Mega TV Bitola
 0
@@ -61,7 +61,7 @@ http://37.187.158.217:8081/alfa/alfatv/chunks.m3u8
 0
 
 #EXTINF:0,MPT 1 
-0
+http://37.187.158.217:8081/mtv/mtv1/playlist.m3u8
 
 #EXTINF:0,MPT 2 
 0
@@ -79,7 +79,7 @@ http://37.187.158.217:8081/alfa/alfatv/chunks.m3u8
 0
 
 #EXTINF:0,Sitel 
-0
+http://51.255.92.232:1935/sitel/siteI/playlist.m3u8
 
 #EXTINF:0,Sitel 3 
 0
@@ -91,7 +91,7 @@ http://92.53.27.201:10000/
 0
 
 #EXTINF:0,Telma 
-0
+http://37.187.158.217:8081/telma/tvtelma/playlist.m3u8
 
 #EXTINF:0,Ultra Tetovo
 0

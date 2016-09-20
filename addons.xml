@@ -1980,7 +1980,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBEUROTV"
        name="TDB EURO TV"
-       version="2.42"
+       version="2.43"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -1999,7 +1999,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBPORNO"
        name="TDB PORNO"
-       version="2.05"
+       version="2.06"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -2055,7 +2055,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="4.05"
+       version="4.06"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
