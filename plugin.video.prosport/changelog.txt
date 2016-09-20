@@ -184,3 +184,6 @@ ver 0.53:
 	
 ver 0.54:
 	- fixed stream
+	
+ver 0.55:
+	- fixed streams

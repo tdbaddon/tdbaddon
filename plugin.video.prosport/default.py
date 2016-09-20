@@ -73,7 +73,8 @@ sd_streams = ['goindexsport','multi-sports.eu', 'watchnfl.live', 'streamhd.eu/fo
 			'giostreams.eu','watch-sportstv.boards.net', 'hdstream4u.com', 'stream24k.com', 'wizhdsports.com', 'antenasport.com', 
 			'sportsnewsupdated.com', 'baltak.com', 'watchnba.tv', 'feedredsoccer.at.ua', 'jugandoes.com', 'wiz1.net', 'bosscast.net', 
 			'watchsportstv.boards.net', 'tv-link.in', 'klivetv.co', 'videosport.me', 'livesoccerg.com', 'zunox.hk', 'singidunum.', 
-			'zona4vip.com', 'ciscoweb.ml', 'streamendous.com','streamm.eu', 'sports-arena.net', 'stablelivestream.com', 'iguide.to']
+			'zona4vip.com', 'ciscoweb.ml', 'streamendous.com','streamm.eu', 'sports-arena.net', 'stablelivestream.com', 
+			'iguide.to']
 
 def utc_to_local(utc_dt):
     timestamp = calendar.timegm(utc_dt.timetuple())
@@ -566,7 +567,7 @@ def ParseLink(el, orig_title):
 		url = Moonfruit(el)
 		return url
 	elif 'castalba.tv' in el:
-		url = Castalba(el)
+		url = Castalba(None, el)
 		return url
 	elif ('room' in el or 'YES' in el) and 'm3u8' in el:
 		url = Getroom(el)
@@ -1139,16 +1140,21 @@ def Livesports101(url):
 	except:
 		return None
 
-def Castalba(url):
+def Castalba(id, url):
 	try:
 		try:
 			cid  = urlparse.parse_qs(urlparse.urlparse(url).query)['cid'][0] 
 		except:
-			cid = re.compile('channel/(.+?)(?:/|$)').findall(url)[0]
+			try:
+				cid = re.compile('channel/(.+?)(?:/|$)').findall(url)[0]
+			except:
+				pass
 		try:
 			referer = urlparse.parse_qs(urlparse.urlparse(url).query)['referer'][0]
 		except:
 			referer='http://castalba.tv'        
+		if id:
+			cid = id
 		url = 'http://castalba.tv/embed.php?cid=%s&wh=600&ht=380&r=%s'%(cid,urlparse.urlparse(referer).netloc)
 		pageUrl=url
 		request = urllib2.Request(url)
@@ -1158,9 +1164,9 @@ def Castalba(url):
 		result = response.read()
 		result=urllib.unquote(result)
 		if 'm3u8' in result:
-			link = re.compile('filez\s*=\s*(?:unescape\()\'(.+?)\'').findall(result)[0]
-			link = 'http://' + url + '.m3u8'
-			link += '|%s' % urllib.urlencode({'User-Agent': client.agent(), 'Referer': referer})          
+			link = re.findall("var filez = '(.+?)'", result)[0]
+			link = 'http://' + link + '.m3u8'
+			link += '|User-Agent='+UA+'&Referer='+url+'&X-Requested-With=ShockwaveFlash/23.0.0.166'       
 		else:
 			try:
 				filePath = re.compile("'file'\s*:\s*(?:unescape\()?'(.+?)'").findall(result)[0]
@@ -1238,6 +1244,11 @@ def Universal(url):
 		id = html.split("'text/javascript'>id='")[-1]
 		id = id.split("';")[0]
 		link = weplayer(id)
+		return link
+	if html and 'castalba.tv' in html:
+		id = html.split('<script type="text/javascript"> id="')[-1]
+		id = id.split('";')[0]
+		link = Castalba(id, url)
 		return link
 	elif html and 'p2pcast' in html and 'streamcdn' not in html:
 		id = html.split("'text/javascript'>id='")[-1]
@@ -1335,11 +1346,12 @@ def sawresolve(query):
 		import jsunpack
 		vido_url=''
 		source = getUrl(query)
-		try:
-			decoded = jsunpack.unpack(source.decode('string_escape'))
-		except:
-			decoded =source
+		decoded = jsunpack.unpack(source.decode('string_escape'))
 		decoded = decoded.replace('document.write(',' var result =').replace('\');','\'')
+		decoded = decoded.replace("dwrite('"," var result ='").replace('\');','\'')
+		if 'function dwrite' in decoded:
+			dwrite = re.findall('function dwrite(.*?)}', decoded)[0]
+			decoded = decoded.replace('function dwrite'+dwrite+'}',' ')
 		decoded = decoded.replace('document.domain',"'"+urlparse.urlparse(query).netloc+"'")
 		decoded = decoded.replace('"\' +swidth+ \'"','')
 		decoded = decoded.replace('"\' +sheight+ \'"','')
@@ -1347,9 +1359,14 @@ def sawresolve(query):
 		decoded = decoded.replace('function+','function ')
 		decoded = decoded.replace('+var','var ')
 		decoded = decoded.replace('var+','var ')
+		decoded = decoded.replace('+ var','var ')
+		decoded = decoded.replace('var +','var ')
 		decoded = decoded.replace('+result','result ')
-		decoded = decoded.replace('result +','result ')
+		decoded = decoded.replace('result+','result ')
 		decoded = decoded.replace('return+','return ')
+		decoded = decoded.replace('+ result','result ')
+		decoded = decoded.replace('result +','result ')
+		decoded = decoded.replace('return +','return ')
 		import js2py
 		context = js2py.EvalJs()
 		context.swidth = '400'

@@ -433,6 +433,7 @@ def AddSports(url):
     addDir('Safe' ,'sss',72,'')
     addDir('TVPlayer [UK Geo Restricted]','sss',74,'https://assets.tvplayer.com/web/images/tvplayer-logo-white.png')
     addDir('StreamHD','sss',75,'http://www.streamhd.eu/images/logo.png')
+    addDir('HDfree','sss',77,'http://www.streamhd.eu/images/logo.png')
 
     #addDir('Yupp Asia Cup','Live' ,60,'')
     #addDir('CricHD.tv (Live Channels)' ,'pope' ,26,'')
@@ -1150,6 +1151,97 @@ def AddStreamHDChannels(url):
             curl= 'http://www.streamhd.eu'+curl
         addDir(cname ,base64.b64encode('streamhd:'+curl) ,mm ,logo, False, True,isItFolder=False)		#name,url,mode,icon
 
+def playHDFree(url):
+    try:
+
+        #url='http://hdfree.tv/watch/2/sky-sports-1-hd-live-stream.html'
+        pageURl = url
+        mainref='http://hdfree.tv/tvlogos.html'
+        headers=[('Referer',mainref),('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36')]                       
+        result = getUrl(url, headers=headers)
+        #print result
+        firstframe=re.findall( '<iframe frameborder="0.*?src="(.*?)"', result)[0]
+        
+        headers=[('Referer',pageURl),('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36')]                       
+        result = getUrl(firstframe, headers=headers)
+        #print result
+        regid='<script.*?id=[\'"](.*?)[\'"].*?width=(.*?)\;.*?height=(.*?)\;.*?src=[\'"](.*?)[\'"]'
+        id,wd,ht, jsurl=re.findall(regid,result)[0]
+        finalpageUrl=''
+        headers=[('Referer',firstframe),('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36')]                       
+        jsresult = getUrl(jsurl, headers=headers)
+        regjs='src=[\'"](.*?)[\'"]'
+        embedUrl=re.findall(regjs,jsresult)[0]
+        embedUrl+=id+'&vw'+wd+'&vh='+ht
+        headers=[('Referer',firstframe),('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36')]                             
+        print embedUrl
+        result=getUrl(embedUrl, headers=headers)
+        
+        result= result.replace('","','').replace('["','').replace('"]','').replace('.join("")',' ').replace(r'\/','/')
+
+        vars = re.findall('var (.+?)\s*=\s*(.+?);',result)
+        inners = re.findall('id=(.+?)>([^<]+)<',result)
+        inners = dict(inners)
+
+        js = re.findall('srcs*=s*(?:\'|\")(.+?player\.js(?:.+?|))(?:\'|\")',result)[0]
+        js = getUrl(js, headers=headers)
+        token = re.findall('securetoken: ([^\n]+)',result)[0]
+        token = re.findall('var\s+%s\s*=\s*(?:\'|\")(.+?)(?:\'|\")' % token, js)[-1]
+
+        for i in range (100):
+            for v in vars:
+                result = result.replace('  + %s'%v[0],v[1])
+        for x in inners.keys():
+            result = result.replace('  + document.getElementById("%s").innerHTML'%x,inners[x])
+
+        
+        fs = re.findall('function (.+?)\(\)\s*\{\s*return\(([^\n]+)',result)
+        url = re.findall('file:(.+?)\s*\}',result)[0]
+        for f in fs:
+                url = url.replace('%s()'%f[0],f[1])
+        url = url.replace(');','').split(" + '/' + ")
+        streamer, file = url[0].replace('rtmpe','rtmp').strip(), url[1]
+        url=streamer + '/ playpath=' + file + ' swfUrl=http://www.hdcast.info/myplayer/jwplayer.flash.swf flashver=' + "WIN\2021,0,0,242" + ' live=1 timeout=20 token=' + token + ' pageUrl=' + embedUrl
+        
+        print url
+        PlayGen(base64.b64encode(url))
+
+    except:
+        traceback.print_exc(file=sys.stdout)
+        return
+
+def AddHDFreeChannels(url):
+
+    headers=[('Referer',"http://customer.safersurf.com/onlinetv.html"),('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36'),('X-Requested-With','XMLHttpRequest')]               
+    headers=[('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36')]               
+    
+    mainhtml=getUrl('http://hdfree.tv/tvlogos.html',headers=headers)
+    #if 'quiv="refresh' in mainhtml:
+    #    mainhtml=getUrl(re.findall('url=(.*?)"',mainhtml)[0])
+    #print jsondata
+    elements=re.findall('<a href=[\'"](.*?)[\'"].*?img.*?src=[\'"](.*?)[\'"]',mainhtml)
+    #print elements
+    #print jsondata
+    #jsondata=json.loads(jsondata)
+    for cc in elements:
+
+        mm=11
+        col='ZM'
+        #print 'xxxxxxxxxxx'
+        #print 'name' in cc
+        name=cc[0]
+        name=name.split('/')[-1]
+        
+        if '-live-stream' in name:
+            name=name.split('-live-stream')[0]
+        url=cc[0]
+        logo=cc[1]
+        #print name, logo
+        if not logo.startswith('http'):
+            logo= 'http://hdfree.tv'+logo
+        addDir(Colored(name.capitalize(),col) ,base64.b64encode('hdfree:'+url) ,mm ,logo, False, True,isItFolder=True)		#name,url,mode,icon
+    
+    
 def AddSafeChannels(url):
     import time 
     tt=int(time.time())
@@ -4304,7 +4396,7 @@ def PlayPV2Link(url):
     if '|' not in urlToPlay:
         urlToPlay+='|'
     import random
-    useragent='User-Agent=AppleCoreMedia/1.0.0.%s (%s; U; CPU OS %s like Mac OS X; en_gb)'%(random.choice(['13G34' ,'13G36','13G35']),random.choice(['iPhone','iPad','iPod']),random.choice(['9_3_3','9_3_4','9_3_5']))
+    useragent='User-Agent=AppleCoreMedia/1.0.0.%s (%s; U; CPU OS %s like Mac OS X; en_gb)'%(random.choice(['13G34' ,'13G36']),random.choice(['iPhone','iPad','iPod']),random.choice(['9_3_3','9_3_4','9_3_5']))
     urlToPlay+=useragent
     #try:
     #    if 'iptvaus.dynns.com' in urlToPlay:# quickfix
@@ -4395,6 +4487,10 @@ def PlayOtherUrl ( url ):
     if "streamhd:" in url:
         playstreamhd(url.split('streamhd:')[1])
         return               
+    if "hdfree:" in url:
+        playHDFree(url.split('hdfree:')[1])
+        return                       
+        
         
        
     if url in [base64.b64decode('aHR0cDovL2xpdmUuYXJ5bmV3cy50di8='),
@@ -5574,8 +5670,13 @@ try:
 		AddStreamHDCats(url)  
 	elif mode==76:
 		print "Play url is "+url
-		AddStreamHDChannels(url)                   
-        
+		AddStreamHDChannels(url)
+	elif mode==77:
+		print "Play url is "+url
+		AddHDFreeChannels(url)                 
+
+
+
 except:
 
 	print 'somethingwrong'
