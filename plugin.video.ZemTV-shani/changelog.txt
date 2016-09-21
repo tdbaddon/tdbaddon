@@ -1,3 +1,9 @@
+[B]Version 5.4.0[/B]
+streamhd schedule links update
+[B]Version 5.3.9[/B]
+infi streams few errors
+[B]Version 5.3.8[/B]
+infi streams and movies
 [B]Version 5.3.7[/B]
 pv2 and hdfree
 [B]Version 5.3.6[/B]

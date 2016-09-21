@@ -225,7 +225,7 @@ def Addtypes():
 	addDir('Pakistani Live Channels' ,'PakLive' ,2,'')
 	addDir('Indian Live Channels' ,'IndianLive' ,2,'')
 	addDir('Punjabi Live Channels' ,'PunjabiLive' ,2,'')
-	addDir('Movies' ,'zemmovies',36,'')
+	addDir('Movies' ,'pv2',66,'')
 	addDir('Sports' ,'Live' ,13,'')
 	addDir('Settings' ,'Live' ,6,'',isItFolder=False)
 	addDir('Clear Cache' ,'Live' ,54,'',isItFolder=False)
@@ -433,7 +433,8 @@ def AddSports(url):
     addDir('Safe' ,'sss',72,'')
     addDir('TVPlayer [UK Geo Restricted]','sss',74,'https://assets.tvplayer.com/web/images/tvplayer-logo-white.png')
     addDir('StreamHD','sss',75,'http://www.streamhd.eu/images/logo.png')
-    addDir('HDfree','sss',77,'http://www.streamhd.eu/images/logo.png')
+    addDir('HDfree','sss',77,'')
+    addDir('inFinite Streams','sss',78,'')
 
     #addDir('Yupp Asia Cup','Live' ,60,'')
     #addDir('CricHD.tv (Live Channels)' ,'pope' ,26,'')
@@ -643,7 +644,7 @@ def GetSSSEvents(url):
     except: traceback.print_exc(file=sys.stdout)
  
 
-def getPV2Cats():
+def getPV2Cats(movies=False):
     ret=[]
     try:
         xmldata=getPV2Url()
@@ -651,7 +652,9 @@ def getPV2Cats():
         #print xmldata
         for source in sources.findall('items'):#Cricket#
             if not source.findtext('programCategory') in ret :
-                    ret.append(source.findtext('programCategory'))   
+                    print source.findtext('programCategory')
+                    if movies==False or source.findtext('programCategory').lower().endswith('movies'):
+                        ret.append(source.findtext('programCategory'))   
         if len(ret)>0:
             ret=sorted(ret,key=lambda s: s[0].lower()   )
     except:
@@ -1150,7 +1153,91 @@ def AddStreamHDChannels(url):
         if not curl.startswith('http'):
             curl= 'http://www.streamhd.eu'+curl
         addDir(cname ,base64.b64encode('streamhd:'+curl) ,mm ,logo, False, True,isItFolder=False)		#name,url,mode,icon
+        
+        
+def playInfinite(url):
+    try:
 
+        agent = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36'
+
+        mainref=base64.b64decode('aHR0cDovL3d3dy5sYW9sYTEudHYvZW4taW50L2xpdmUtc2NoZWR1bGU=')
+        headers=[('Referer',mainref),('User-Agent',agent)]                       
+        result = getUrl(url, headers=headers)
+        url=re.findall('<iframe frameborde.*\s*.*\s*.*?src="(.*?)"',result)[0]
+        if not url.startswith('http:'):
+            url=base64.b64decode('aHR0cDovL3d3dy5sYW9sYTEudHY=')+url
+        print url
+        page_data = getUrl(url, headers=headers)
+        streamid = re.findall("streamid: \"(.*?)\"", page_data)[0]
+        partid = re.findall("partnerid: \"(.*?)\"", page_data)[0]
+        
+        url=base64.b64decode('aHR0cDovL3d3dy5sYW9sYTEudHYvc2VydmVyL2hkX3ZpZGVvLnBocD92PTImcGxheT0lcyZwYXJ0bmVyPSVzJnBvcnRhbD1pbnQmdjVpZGVudD0mbGFuZz1lbg==')%(streamid,partid)
+        page_data=getUrl(url, headers=headers)
+        
+        
+        areaid= re.findall(";area=(.*?)<", page_data)[0]
+        import string,random
+        randomtext=''.join(random.SystemRandom().choice(string.ascii_uppercase) for _ in range(7))
+
+        data=base64.b64decode("MD10diUyRWxhb2xhMSUyRWxhb2xhdHYlMkVwcmVtaXVtY2x1YiYxPXR2JTJFbGFvbGExJTJFbGFvbGF0diUyRXByZW1pdW1jbHViJTVGYWxsJTVGYWNjZXNz")
+        pageurl=base64.b64decode("aHR0cHM6Ly9jbHViLmxhb2xhMS50di9zcC9sYW9sYTEvYXBpL3YzL3VzZXIvc2Vzc2lvbi9wcmVtaXVtL3BsYXllci9zdHJlYW0tYWNjZXNzP3ZpZGVvSWQ9JXMmdGFyZ2V0PTE3JmxhYmVsPSZhcmVhPSVz")%(streamid,areaid)
+
+    
+        swf=base64.b64decode('aHR0cDovL3d3dy5sYW9sYTEudHYvYXNzZXRzL3N3Zi92aWRlb3BsYXllcl83LjAuMzIzMS5zd2Y=')
+        headers=[('Referer',swf),('User-Agent',agent)]                       
+
+        ttext = getUrl(pageurl, headers = headers,post=data)
+        import json
+        url=json.loads(ttext)["data"]["stream-access"][0]
+    
+        headers=[('Referer',pageurl),('User-Agent',agent)]                       
+
+        ttext = getUrl(url, headers = headers)
+    
+        mainurl= re.findall("url=\"(.*?)\"", ttext)[0]
+        print mainurl
+        auth= re.findall("auth=\"(.*?)\"", ttext)[0]
+        final="plugin://plugin.video.f4mTester/?streamtype=HDS&url=%s&swf=%s&name=%s"%(urllib.quote_plus(mainurl+'?hdnea='+auth+'&g='+randomtext+'&hdcore=3.8.0'+'|User-Agent='+urllib.quote_plus(agent)+'&X-Requested-With=ShockwaveFlash/22.0.0.209'),swf,name)
+        
+        PlayGen(base64.b64encode(final))
+
+    except:
+        traceback.print_exc(file=sys.stdout)
+        return
+        
+def playHDCast(url, mainref):
+    try:
+
+        firstframe=url
+        pageURl=mainref
+        agent='Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36'
+        headers=[('Referer',pageURl),('User-Agent',agent)]                       
+        result = getUrl(firstframe, headers=headers)
+
+        regid='<script.*?id=[\'"](.*?)[\'"].*?width=[\'"]?(.*?)[\'"]?\;.*?height=[\'"]?(.*?)[\'"]?\;.*?src=[\'"](.*?)[\'"]'
+        id,wd,ht, jsurl=re.findall(regid,result)[0]
+        finalpageUrl=''
+        headers=[('Referer',firstframe),('User-Agent',agent)]                       
+
+
+        jsresult = getUrl(jsurl, headers=headers)
+        regjs='src=[\'"](.*?)[\'"]'
+        embedUrl=re.findall(regjs,jsresult)[0]
+        embedUrl+=id+'&vw'+wd+'&vh='+ht
+        headers=[('Referer',firstframe),('User-Agent',agent)]                             
+        result=getUrl(embedUrl, headers=headers)
+        if '<iframe  width= height=100%' in result:
+            streamurl = re.findall('<div id=[\'"]player.*\s*<iframe.*?src=(.*?)\s',result)
+            if len(streamurl)>0:
+                headers=[('Referer',embedUrl),('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36')]                             
+                html=getUrl(streamurl[0].replace('&amp;','&'),headers=headers)
+                streamurl = re.findall('file:["\'](.*?)["\']',html)[0]
+                return PlayGen(base64.b64encode(streamurl+'|User-Agent='+agent))
+
+    except:
+        traceback.print_exc(file=sys.stdout)
+        return False
+                
 def playHDFree(url):
     try:
 
@@ -1210,6 +1297,36 @@ def playHDFree(url):
         traceback.print_exc(file=sys.stdout)
         return
 
+def AddInfiniteChannels(url):
+
+    headers=[('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36')]               
+    addDir(Colored("All times in UTC, Blue ones are LIVE now","red") ,"" ,0 ,'', False, True,isItFolder=False)		#name,url,mode,icon
+    mainhtml=getUrl(base64.b64decode('aHR0cDovL3d3dy5sYW9sYTEudHYvZW4taW50L2xpdmUtc2NoZWR1bGU='),headers=headers)
+    elements=mainhtml.split('<li class="item list-sport')# re.findall('<time.*?>(.*?)<.*\s*.*\s*.*\s*<span.*?>(.*?)<.*\s*.*\s*.*\s*.*?src="(.*?)".*\s*.*\s*.*\s*.*?href="(.*?)".*\s.*?h3>(.*?)<.*\s*.*?h2>(.*?)<',mainhtml)
+    print 'starting'
+    for el in elements[1:30]:
+        print el
+        cc=re.findall('<time.*?>(.*?)<.*?displaymo.*?>(.*?)<.*?img.*?src="(.*?)".*?h3>(.*?)<.*?h2>(.*?)<.*?href="(.*?)".*?data-sstatus="(.*?)"',el,re.DOTALL)[0]
+        mm=11
+        col='ZM'
+        #print 'xxxxxxxxxxx'
+        #print 'name' in cc
+        name='%s %s %s\n%s'%(Colored(cc[0], 'red'),Colored(cc[1],col),cc[4],Colored(cc[4],('blue' if cc[6]=="4" else "white")  ))
+        
+        
+        
+        url=cc[5]
+        logo=cc[2]
+        #print name, logo
+        if not logo.startswith('http'):
+            logo= 'http:'+logo
+        if not url.startswith('http'):
+            url= base64.b64decode('aHR0cDovL3d3dy5sYW9sYTEudHY=')+url
+            
+        addDir(name ,base64.b64encode('infi:'+url) ,mm ,logo, False, True,isItFolder=True)		#name,url,mode,icon
+    
+    
+    
 def AddHDFreeChannels(url):
 
     headers=[('Referer',"http://customer.safersurf.com/onlinetv.html"),('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36'),('X-Requested-With','XMLHttpRequest')]               
@@ -1332,7 +1449,7 @@ def ShowAllCategories(url):
         cats=getUKTVCats()
         cmode=57    
     elif url=="pv2":
-        cats=getPV2Cats()
+        cats=getPV2Cats(True if name.lower()=="movies" else False)
         cmode=36
     elif url=="mona":
         cats=getMonaCats()
@@ -4425,7 +4542,12 @@ def PlayPV2Link(url):
 #88.150.206.7 last ip
     if not tryplay(urlToPlay, listitem):
         if '130.185.144.112' not in urlToPlay:
-            urlToPlay='http://130.185.144.112:8081'+'/'.join(urlToPlay.split('/')[3:])           
+            urlToPlay2='http://130.185.144.112:8081'+'/'.join(urlToPlay.split('/')[3:])          
+            if not tryplay(urlToPlay2, listitem):
+                return False
+                #if 'live2.dynns.com' not in urlToPlay:
+                #    urlToPlay2='http://live2.dynns.com:8081'+'/'.join(urlToPlay.split('/')[3:])                      
+                #    tryplay(urlToPlay2, listitem)
     
 def PlayOtherUrl ( url ):
     checkbad.do_block_check(False)
@@ -4489,6 +4611,9 @@ def PlayOtherUrl ( url ):
         return               
     if "hdfree:" in url:
         playHDFree(url.split('hdfree:')[1])
+        return                       
+    if "infi:" in url:
+        playInfinite(url.split('infi:')[1])
         return                       
         
         
@@ -5204,14 +5329,20 @@ def playstreamhd(url):
 
     watchHtml=getUrl(url,headers=headers)
     videframe=re.findall('"videoiframe" src="(.*?)"' ,watchHtml)[0]
+    
     videoframedata=getUrl(videframe,headers=headers)
     iframe=re.findall('iframe src="(.*?)"' ,videoframedata)
     if len(iframe)>0:
         
         iframdata=getUrl(iframe[0],headers=headers)
+        iframe=iframe[0]
     else:
+        if 'hdcast' in videoframedata:
+            return playHDCast(videframe, "http://streamhdeu.com/")
         iframdata=videoframedata
     m3ufile=re.findall('file: "(.*?)"' ,iframdata)[0]
+    
+    
     
    
     PlayGen(base64.b64encode(m3ufile+'|User-Agent=Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36'))
@@ -5673,7 +5804,10 @@ try:
 		AddStreamHDChannels(url)
 	elif mode==77:
 		print "Play url is "+url
-		AddHDFreeChannels(url)                 
+		AddHDFreeChannels(url)    
+	elif mode==78:
+		print "Play url is "+url
+		AddInfiniteChannels(url)               
 
 
 
