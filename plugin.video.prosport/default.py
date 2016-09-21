@@ -74,7 +74,7 @@ sd_streams = ['goindexsport','multi-sports.eu', 'watchnfl.live', 'streamhd.eu/fo
 			'sportsnewsupdated.com', 'baltak.com', 'watchnba.tv', 'feedredsoccer.at.ua', 'jugandoes.com', 'wiz1.net', 'bosscast.net', 
 			'watchsportstv.boards.net', 'tv-link.in', 'klivetv.co', 'videosport.me', 'livesoccerg.com', 'zunox.hk', 'singidunum.', 
 			'zona4vip.com', 'ciscoweb.ml', 'streamendous.com','streamm.eu', 'sports-arena.net', 'stablelivestream.com', 
-			'iguide.to']
+			'iguide.to', 'sportsleague.me']
 
 def utc_to_local(utc_dt):
     timestamp = calendar.timegm(utc_dt.timetuple())
@@ -340,6 +340,10 @@ def getProStreams(ur, home, away):
 				try:
 					link = re.findall(regex, comment.body.encode('utf-8'))
 					links = links + link
+					link = re.findall('(http://.+?:.+?\.m3u8)',comment.body.encode('utf-8'))
+					if link:
+						for ln in link:
+							links.append((ln,' '))
 				except:
 					pass	
 	if links:
@@ -374,6 +378,10 @@ def getMyStreams(url, home):
 		try:
 			link = re.findall(regex, comment.body.encode('utf-8'))
 			links = links + link
+			link = re.findall('(http://.+?:.+?\.m3u8)',comment.body.encode('utf-8'))
+			if link:
+				for ln in link:
+					links.append((ln,' '))
 		except:
 			pass
 	if links:
@@ -1267,6 +1275,10 @@ def Universal(url):
 		id = html.split('<script type="text/javascript">channel="')[-1].split('";')[0]
 		link = castamp(id)
 		return link
+	elif html and '101livesportsvideos' in url and 'youtu' in html: 
+		url = re.findall('(youtu.+?\")',html)[0]
+		link = GetYoutube(url)
+		return link
 	elif html and 'bro.adca.st' in html:
 		id = html.split("<script type='text/javascript'>id='")[-1].split("';")[0]
 		link = broadcast(id, url)
@@ -1293,8 +1305,6 @@ def Universal(url):
 			url = Streambot(url)
 			return url
 	elif html and 'sawlive.tv' in html:
-		#url = re.compile('//(.+?)/(?:embed|v)/([0-9a-zA-Z-_]+)').findall(html)[0]
-		#url = 'http://%s/embed/%s' % (url[0], url[1])
 		try:
 			url = re.findall('(sawlive.tv/embed/.+?")',html)[0]
 			url = url.replace('"','')
@@ -1346,16 +1356,25 @@ def sawresolve(query):
 		import jsunpack
 		vido_url=''
 		source = getUrl(query)
-		decoded = jsunpack.unpack(source.decode('string_escape'))
-		decoded = decoded.replace('document.write(',' var result =').replace('\');','\'')
-		decoded = decoded.replace("dwrite('"," var result ='").replace('\');','\'')
+		try:
+			decoded = jsunpack.unpack(source.decode('string_escape'))
+		except:
+			decoded = source
+		if 'document.write(' in decoded:
+			decoded = decoded.replace('document.write(',' var result =').replace('\');','\'')
+		if "dwrite('" in decoded:
+			decoded = decoded.replace("dwrite('"," var result ='").replace('\');','\'')
 		if 'function dwrite' in decoded:
 			dwrite = re.findall('function dwrite(.*?)}', decoded)[0]
 			decoded = decoded.replace('function dwrite'+dwrite+'}',' ')
-		decoded = decoded.replace('document.domain',"'"+urlparse.urlparse(query).netloc+"'")
+		if 'document[' in decoded:
+			dwrite = re.findall('(document\[.*?\()', decoded)[0]
+			decoded = decoded.replace(dwrite,'var result= ').replace(')','')
+		if 'document.domain' in decoded:
+			decoded = decoded.replace('document.domain',"'"+urlparse.urlparse(query).netloc+"'")
 		decoded = decoded.replace('"\' +swidth+ \'"','')
 		decoded = decoded.replace('"\' +sheight+ \'"','')
-		decoded = re.sub('([^+\s])\s([^+\s])',r'\1+\2',decoded)
+		#decoded = re.sub('([^+\s])\s([^+\s])',r'\1+\2',decoded)
 		decoded = decoded.replace('function+','function ')
 		decoded = decoded.replace('+var','var ')
 		decoded = decoded.replace('var+','var ')
@@ -1376,55 +1395,39 @@ def sawresolve(query):
 		result = urllib.unquote_plus(result)  
 		src=common.parseDOM(result, 'iframe', ret='src')[-1]
 		if src:
-			header = {'Referer':  src[0], 'User-Agent': UA}
-			decoded = getUrl(src,header=header)
-			swfUrl = re.compile('SWFObject\(\'(.*?)\'').findall(decoded)
-			match = re.compile('(eval\(function\(p,a,c,k,e,d\).*?)\n').findall(decoded)
-			if match:
-				decoded = jsunpack.unpack(match[0].decode('string_escape'))
-				unscape = lambda x: x.group(0).replace('%','').decode('hex')
-				decoded = re.sub('%.{2}',unscape,decoded)
-				code = decoded.replace("so.addVariable('file',","file=")
-				code = code.replace("so.addVariable('streamer',","streamer=")
-				code = code.replace("));",");")
-				code = code.replace("unescape","")
-				context = js2py.EvalJs() 
-				context.execute(code)
-				streamer= getattr(context,'streamer')
-				file= getattr(context,'file')
-				if swfUrl and streamer and file:
-					vido_url = streamer +' playpath='+file + ' swfUrl='+swfUrl[0] + ' swfVfy=1 live=1 timeout=13   pageUrl='+src
-					return vido_url
-			else:
-				var = re.compile('var\s(.+?)\s*=\s*[\'\"](.+?)[\'\"]').findall(decoded)
-				rplcs = re.findall(';.+?=(.+?).replace\([\"\'](.+?)[\"\']\s*,\s*[\"\']([^\"\']*)[\"\']',decoded)
-				var_dict = dict(var) 
-				file = re.compile("'file'\s*(.+?)\)").findall(decoded)[0]
-				file = file.replace('\'','')    
-				for v in var_dict.keys():
-					file = file.replace(v,var_dict[v])
-				file = file.replace('+','').replace(',','').strip().replace(' ', '')
-				if 'f4m' in file:
-					return file
-				try:
-					if not file.startswith('http'): raise Exception()
-					#url = client.request(file, output='geturl')
-					if not '.m3u8' in url: raise Exception()
-					url += '|%s' % urllib.urlencode({'User-Agent': UA, 'Referer': file})
-					return url
-				except:
-					pass
-				strm = re.compile("'streamer'\s*(.+?)\)").findall(decoded)[0]
-				strm = strm.replace('\'','')
-				for v in var_dict.keys():
-					strm = strm.replace(v,var_dict[v])
-				strm = strm.replace('+','').replace(',','').strip().replace(' ', '')
-				swf = re.compile("SWFObject\('(.+?)'").findall(decoded)[0].replace(' ', '')
-				url = '%s playpath=%s swfUrl=%s pageUrl=%s live=1 timeout=60' % (strm, file, swf, src)
-				url = urllib.unquote(url).replace('unescape(','')
-				for r in rplcs:
-					url = url.replace(r[1],r[2])
+			header = {'Referer':  src, 'User-Agent': UA}
+			decoded = getUrl(src)
+			
+			var = re.compile('var\s(.+?)\s*=\s*[\'\"](.+?)[\'\"]').findall(decoded)
+			rplcs = re.findall('replace\([\"\'](.+?)[\"\']\s*,\s*[\"\']([^\"\']*)[\"\']',decoded)
+			print rplcs
+			var_dict = dict(var) 
+			file = re.compile("'file'\s*(.+?)\)").findall(decoded)[0]
+			file = file.replace('\'','')    
+			for v in var_dict.keys():
+				file = file.replace(v,var_dict[v])
+			file = file.replace('+','').replace(',','').strip().replace(' ', '')
+			if 'f4m' in file:
+				return file
+			try:
+				if not file.startswith('http'): raise Exception()
+				#url = client.request(file, output='geturl')
+				if not '.m3u8' in url: raise Exception()
+				url += '|%s' % urllib.urlencode({'User-Agent': UA, 'Referer': file})
 				return url
+			except:
+				pass
+			strm = re.compile("'streamer'\s*(.+?)\)").findall(decoded)[0]
+			strm = strm.replace('\'','')
+			for v in var_dict.keys():
+				strm = strm.replace(v,var_dict[v])
+			strm = strm.replace('+','').replace(',','').strip().replace(' ', '')
+			swf = re.compile("SWFObject\('(.+?)'").findall(decoded)[0].replace(' ', '')
+			url = '%s playpath=%s swfUrl=%s pageUrl=%s live=1 timeout=60' % (strm, file, swf, src)
+			url = urllib.unquote(url).replace('unescape(','')
+			for r in rplcs:
+				url = url.replace(r[0],r[1])
+			return url
 	except:
 		return None
 		

@@ -149,8 +149,8 @@ def Pornstars(url, page):
                        re.DOTALL | re.IGNORECASE).findall(urldata)
     for ID, studio, videos in match:
         title = studio + " Videos: [COLOR deeppink]" + videos + "[/COLOR]"
-        img = "http://static2.porndig.com/media/default/pornstars/pornstar_" + ID + ".jpg"
-        utils.addDir(title, '', 291, img, '', ID, 2)
+        img = "http://static-push.porndig.com/media/default/pornstars/pornstar_" + ID + ".jpg"
+        utils.addDir(title, '', 291, img, 0, ID, 2)
         i += 1
     if i >= 60:
         page += 1
@@ -167,8 +167,8 @@ def Studios(url, page):
                        re.DOTALL | re.IGNORECASE).findall(urldata)
     for ID, studio, videos in match:
         title = studio + " Videos: [COLOR deeppink]" + videos + "[/COLOR]"
-        img = "http://static2.porndig.com/media/default/studios/studio_" + ID + ".jpg"
-        utils.addDir(title, '', 291, img, '', ID, 1)
+        img = "http://static-push.porndig.com/media/default/studios/studio_" + ID + ".jpg"
+        utils.addDir(title, '', 291, img, 0, ID, 1)
         i += 1
     if i >= 60:
         page += 1

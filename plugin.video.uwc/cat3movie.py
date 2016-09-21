@@ -27,18 +27,19 @@ progress = utils.progress
 def Main():
     utils.addDir('[COLOR hotpink]Search[/COLOR]','http://cat3movie.us/?s=', 353, '', '')
     utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://cat3movie.us', 354, '', '')
-    List('http://cat3movie.us')
+    List('http://cat3movie.us/page/1')
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
 def List(url):
     listhtml = utils.getHtml(url, '')
-    match = re.compile('<a class="" href="(.+?)" title="(.+?)">\n<img src="(.+?)" class="has-image" alt=".+?"/>', re.DOTALL | re.IGNORECASE).findall(listhtml)
-    for videopage, name, img in match:
+    match = re.compile("<main(.*?)</main", re.DOTALL | re.IGNORECASE).findall(listhtml)[0]
+    match1 = re.compile('<a class="" href="([^"]+)" title="([^"]+)">\n<img src="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(match)
+    for videopage, name, img in match1:
         name = utils.cleantext(name)
         utils.addDownLink(name, videopage, 352, img, '')
     try:
-        nextp=re.compile('<li class="disabled active"><span class="active">.+?</span></li><li><a href="(.+?)"', re.DOTALL | re.IGNORECASE).findall(listhtml)
+        nextp=re.compile(r'<span class="active">\d+</span></li><li><a href="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(listhtml)
         utils.addDir('Next Page', nextp[0], 351,'')
     except: pass
     xbmcplugin.endOfDirectory(utils.addon_handle)
@@ -57,22 +58,24 @@ def Search(url, keyword=None):
 
 def Categories(url):
     cathtml = utils.getHtml(url, '')
-    match = re.compile('<li id=".+?" class=".+?menu-item-object-category.+?"><a href="(.+?)">(.+?)</a></li>', re.DOTALL | re.IGNORECASE).findall(cathtml)
+    match = re.compile('menu-item-object-category[^>]+><a href="([^"]+)">([^<]+)</a></li>').findall(cathtml)
     for catpage, name in match:
         utils.addDir(name, catpage, 351, '')
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
 def Playvid(url, name, download=None):
-    print "cat3movie::playvid " + url
     progress.create('Play video', 'Searching videofile.')
     progress.update( 10, "", "Loading video page", "" )
     html = utils.getHtml(url, '')
-    embedLinks = re.compile('<a href="(.+?)" rel="nofollow" target="_blank">').findall(html)
+    embedLinks = re.compile('<a href="([^"]+)" rel="nofollow" target="_blank">').findall(html)
     url = ''
     for link in embedLinks:
-        html = utils.getHtml(link, '')
-        if 'Base64' in html:
-            base64str = re.compile('Base64.decode\("(.+?)"\)').findall(html)
-            url = url + " " + base64.b64decode(base64str[0])
+        if 'embedlink' in link:
+            try:
+                html = utils.getHtml(link, '')
+                if 'Base64' in html:
+                    base64str = re.compile(r'Base64\.decode\("([^"]+)"').findall(html)
+                    url = url + " " + base64.b64decode(base64str[0])
+            except: pass
     utils.playvideo(url, name, download, url)

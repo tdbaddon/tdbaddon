@@ -1185,10 +1185,11 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
 
 <addon id="plugin.video.hgtv.canada"
        name="HGTV Canada"
-       version="1.0.5"
+       version="3.0.2"
        provider-name="t1m">
   <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="xbmc.python" version="2.20.0"/>
+    <import addon="script.module.t1mlib" version="1.0.15"/>
   </requires>
   <extension point="xbmc.python.pluginsource"
             library="default.py">
@@ -1204,7 +1205,7 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
     <forum>http://forum.kodi.tv/showthread.php?tid=232755</forum>
     <website>www.hgtv.ca</website>
     <email></email>
-    <source>https://github.com/learningit/plugin.video.hgtv.canada/</source>
+    <source>https://github.com/learningit/Kodi-plugins-source</source>
   </extension>
 </addon>
 
@@ -1389,7 +1390,7 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
   </extension>
 </addon>
 
-<addon id="plugin.video.mdm4u" name="M4U" version="1.1.3" provider-name="Mucky Duck">
+<addon id="plugin.video.mdm4u" name="M4U" version="1.1.4" provider-name="Mucky Duck">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.addon.common" />
@@ -1755,7 +1756,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
-<addon id="plugin.video.prosport" name="Pro Sport" version="0.55" provider-name="gerikss, podgod, iCanuck">
+<addon id="plugin.video.prosport" name="Pro Sport" version="0.56" provider-name="gerikss, podgod, iCanuck">
   <requires>
     <import addon="xbmc.python" version="2.1.0" />
      <import addon="script.module.requests" version="2.9.1" />
@@ -2315,7 +2316,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.uktvnow" name="UKTV Again" version="2.0.6" provider-name="MetalKettle">
+<addon id="plugin.video.uktvnow" name="UKTV Again" version="2.0.9" provider-name="MetalKettle">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
   </requires>
@@ -2351,7 +2352,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.uwc"
        name="Ultimate Whitecream"
-       version="1.1.25"
+       version="1.1.38"
        provider-name="mortael">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
@@ -2774,23 +2775,22 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
-<addon id="repository.communityrepo" name="The Community Repository" version="9.1" provider-name="The @CommunityRepo Team">
+<addon id="repository.communityrepo" name="[COLOR orange][B]The Community Repository[/B][/COLOR]" version="9.3" provider-name="The @CommunityRepo Team">
 	<extension point="xbmc.addon.repository" name="The Community Repository">
 	<dir>
 		<info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
 		<checksum>https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml.md5</checksum>
 		<datadir zip="true">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/zips/</datadir>
 	</dir>
-		<info compressed="false">http://repo.kodi-pirates.tv/comrepo/RepoPlugins/addons.xml</info>
-		<checksum>http://repo.kodi-pirates.tv/comrepo/RepoPlugins/addons.xml.md5</checksum>
-		<datadir zip="true">http://repo.kodi-pirates.tv/comrepo/RepoPlugins/</datadir>
+		<info compressed="false">http://allsorts.kodi-pirates.tv/ComRepo/RepoPlugins/addons.xml</info>
+		<checksum>http://allsorts.kodi-pirates.tv/ComRepo/RepoPlugins/addons.xml.md5</checksum>
+		<datadir zip="true">http://allsorts.kodi-pirates.tv/ComRepo/RepoPlugins/</datadir>
 	</extension>
 	<extension point="xbmc.addon.metadata">
-		<summary>@Kodicommunity Repository</summary>
+		<summary>@communityrepo Repository</summary>
 		<description>" "The Community Repository" addon, skin and wizard host, contact for details on how to add your content @communityrepo</description>
 		<platform>all</platform>
 	</extension>
-
 </addon>
 
 <addon id="repository.dokinl" name="DOKITV.NL Repository" version="1.0.2" provider-name="DOKITV.NL">
@@ -3288,11 +3288,11 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
     </extension>
 </addon>
 
-<addon id="repository.whitecream" name="WhiteCream repo" version="0.0.1" provider-name="mortael">
+<addon id="repository.whitecream" name="WhiteCream repo" version="2.0.0" provider-name="mortael">
 	<extension point="xbmc.addon.repository" name="WhiteCream repo">
-		<info compressed="false">http://raw.github.com/whitecream01/WhiteCream-V0.0.1/master/addons.xml</info>
-		<checksum>http://raw.github.com/whitecream01/WhiteCream-V0.0.1/master/addons.xml.md5</checksum>
-		<datadir zip="true">http://raw.github.com/whitecream01/WhiteCream-V0.0.1/master</datadir>
+		<info compressed="false">http://offshoregit.com/whitecream/addons.xml</info>
+		<checksum>http://offshoregit.com/whitecream/addons.xml.md5</checksum>
+		<datadir zip="true">http://offshoregit.com/whitecream/</datadir>
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<summary>The Official WhiteCream repository</summary>

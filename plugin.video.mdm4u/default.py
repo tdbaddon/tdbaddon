@@ -5,7 +5,7 @@ from metahandler import metahandlers
 
 #M4U Add-on Created By Mucky Duck (3/2016)
 
-User_Agent = 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.89 Safari/537.36'
+User_Agent = 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.116 Safari/537.36'
 addon_id='plugin.video.mdm4u'
 selfAddon = xbmcaddon.Addon(id=addon_id)
 addon_name = selfAddon.getAddonInfo('name')
@@ -16,15 +16,16 @@ fanart = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id , '
 metaset = selfAddon.getSetting('enable_meta')
 metaget = metahandlers.MetaData()
 baseurl = 'http://m4ufree.info'
+s = requests.session()
 
 
 
 
 def CAT():
-        addDir('[B][COLOR white]LATEST ADDED[/COLOR][/B]',baseurl+'/new',1,icon,fanart,'')
-        addDir('[B][COLOR white]MOST VIEWED[/COLOR][/B]',baseurl+'/top-view',1,icon,fanart,'')
+        addDir('[B][COLOR white]LATEST ADDED[/COLOR][/B]',baseurl+'/new/',1,icon,fanart,'')
+        addDir('[B][COLOR white]MOST VIEWED[/COLOR][/B]',baseurl+'/top_movies/',1,icon,fanart,'')
         addDir('[B][COLOR white]HOT MOVIES[/COLOR][/B]',baseurl,1,icon,fanart,'')
-        addDir('[B][COLOR white]SEARCH[/COLOR][/B]','url',4,icon,fanart,'')
+        #addDir('[B][COLOR white]SEARCH[/COLOR][/B]','url',4,icon,fanart,'')
         addDir('[B][COLOR white]GENRE[/COLOR][/B]',baseurl,5,icon,fanart,'')
         addDir('[B][COLOR white]YEAR[/COLOR][/B]',baseurl,6,icon,fanart,'')
         addDir('[B][COLOR white]TV[/COLOR][/B]','url',8,icon,fanart,'')
@@ -33,40 +34,50 @@ def CAT():
 
 
 def TV():
-        addDir('[B][COLOR white]LATEST ADDED[/COLOR][/B]',baseurl+'/latest-tvshow',11,icon,fanart,'')
-        #addDir('[B][COLOR white]LATEST ADDED[/COLOR][/B]',baseurl+'/tvs-newupdate',11,icon,fanart,'')
-        addDir('[B][COLOR white]MOST VIEWED[/COLOR][/B]',baseurl+'/top-view-tvshow',11,icon,fanart,'')
-        addDir('[B][COLOR white]SEARCH[/COLOR][/B]','url',10,icon,fanart,'')
-        addDir('[B][COLOR white]GENRE[/COLOR][/B]',baseurl,9,icon,fanart,'')
-        addDir('[B][COLOR white]ALL[/COLOR][/B]',baseurl+'/tvshow',11,icon,fanart,'')
+        addDir('[B][COLOR white]LATEST ADDED[/COLOR][/B]',baseurl+'/new_tv/',11,icon,fanart,'')
+        addDir('[B][COLOR white]MOST VIEWED[/COLOR][/B]',baseurl+'/top_tv/',11,icon,fanart,'')
+        #addDir('[B][COLOR white]ALL[/COLOR][/B]',baseurl+'/films/',11,icon,fanart,'')
+        #addDir('[B][COLOR white]SEARCH[/COLOR][/B]','url',10,icon,fanart,'')
+        #addDir('[B][COLOR white]GENRE[/COLOR][/B]',baseurl,9,icon,fanart,'')
+        #addDir('[B][COLOR white]ALL[/COLOR][/B]',baseurl+'/films/',11,icon,fanart,'')
 
 
 
 
 def INDEX(url):
+        url2 = url
         link = OPEN_URL(url)
-        all_videos = regex_get_all(link, '"item"', 'clear:both')
+        link = link.replace('\r','').replace('\n','').replace('\t','')
+        addon.log(link)
+        all_videos = regex_get_all(link, '"item"', '</span></div></div>')[1:]
+        addon.log(all_videos)
         items = len(all_videos)
         for a in all_videos:
-                name = regex_from_to(a, 'cite>', '<')
+                name = regex_from_to(a, '"tt">', '<')
                 name = addon.unescape(name)
                 name = name.encode('ascii', 'ignore').decode('ascii')
-                qual = regex_from_to(a, 'class="h3-quality".*?>', '<')#.replace('- Quality:','[COLOR gold]- Quality:[/COLOR]')
+                qual = regex_from_to(a, '"typepost">', '<')
+                year = regex_from_to(a, '"year">', '<')
                 url = regex_from_to(a, 'href="', '"')
-                thumb = regex_from_to(a, 'src=', 'alt=').replace(' ','')
-                epi = regex_from_to(a, '"h4-cat"<a title="Latest episode.*?">', '<')#.replace('Latest episode:','[COLOR gold]Latest episode:[/COLOR]')
+                if baseurl not in url:
+                        url = baseurl + url
+                thumb = regex_from_to(a, 'src="', '"').replace(' ','')
+                if baseurl not in thumb:
+                        thumb = baseurl + thumb
+                epi = regex_from_to(a, '"h4-cat"<a title="Latest episode.*?">', '<')
                 if metaset=='true':
-                        if '-tvshow-' in url:
+                        if 'S' in year:
                                 addDir3('[B][COLOR white]%s[/COLOR][/B] [I][B][COLOR dodgerblue]%s[/COLOR][/B][/I]' %(name,epi),url,2,thumb,items,'',name)
                         else:
                                 addDir2('[B][COLOR white]%s[/COLOR][/B][I][B][COLOR dodgerblue]%s[/COLOR][/B][/I]' %(name,qual),url,3,thumb,items)
                 else:
-                        if '-tvshow-' in url:
+                        if 'S' in year:
                                 addDir('[B][COLOR white]%s[/COLOR][/B][I][B] [COLOR dodgerblue]%s[/COLOR][/B][/I]' %(name,epi),url,2,thumb,fanart,'')
                         else:
                                 addDir('[B][COLOR white]%s[/COLOR][/B][I][B][COLOR dodgerblue]%s[/COLOR][/B][/I]' %(name,qual),url,3,thumb,fanart,'')
         try:
-                np = re.compile("<a id='right' href='(.*?)'> <img src='next\.png' alt='.*?' width='50'></a>").findall(link)[0]
+                np = re.compile('<div class="pag_b"><a href="(.*?)">Next</a></div>').findall(link)[0]
+                np = url2 + np
                 addDir('[I][B][COLOR dodgerblue]Go To Next Page>>>[/COLOR][/B][/I]',np,1,art+'next.png',fanart,'')
         except:pass
         try:
@@ -80,29 +91,39 @@ def INDEX(url):
 
 
 def INDEX2(url):
+        url2 = url
         link = OPEN_URL(url)
-        all_videos = regex_get_all(link, '"item"', 'clear:both')
+        link = link.replace('\r','').replace('\n','').replace('\t','')
+        addon.log(link)
+        all_videos = regex_get_all(link, '"item"', '</span></div></div>')[1:]
+        addon.log(all_videos)
         items = len(all_videos)
         for a in all_videos:
-                name = regex_from_to(a, 'href=.*?>', '<')
+                name = regex_from_to(a, '"tt">', '<')
                 name = addon.unescape(name)
                 name = name.encode('ascii', 'ignore').decode('ascii')
-                qual = regex_from_to(a, 'class="h3-quality".*?>', '<')#.replace('- Quality:','[COLOR gold]- Quality:[/COLOR]')
+                qual = regex_from_to(a, '"typepost">', '<')
+                year = regex_from_to(a, '"year">', '<')
                 url = regex_from_to(a, 'href="', '"')
-                thumb = regex_from_to(a, 'src=', 'alt=').replace(' ','')
-                epi = regex_from_to(a, '"h4-cat"<a title="Latest episode.*?">', '<')#.replace('Latest episode:','[COLOR gold]Latest episode:[/COLOR]')
+                if baseurl not in url:
+                        url = baseurl + url
+                thumb = regex_from_to(a, 'src="', '"').replace(' ','')
+                if baseurl not in thumb:
+                        thumb = baseurl + thumb
+                epi = regex_from_to(a, '"h4-cat"<a title="Latest episode.*?">', '<')
                 if metaset=='true':
-                        if '-tvshow-' in url:
+                        if 'S' in year:
                                 addDir3('[B][COLOR white]%s[/COLOR][/B] [I][B][COLOR dodgerblue]%s[/COLOR][/B][/I]' %(name,epi),url,2,thumb,items,'',name)
                         else:
                                 addDir2('[B][COLOR white]%s[/COLOR][/B][I][B][COLOR dodgerblue]%s[/COLOR][/B][/I]' %(name,qual),url,3,thumb,items)
                 else:
-                        if '-tvshow-' in url:
+                        if 'S' in year:
                                 addDir('[B][COLOR white]%s[/COLOR][/B][I][B] [COLOR dodgerblue]%s[/COLOR][/B][/I]' %(name,epi),url,2,thumb,fanart,'')
                         else:
                                 addDir('[B][COLOR white]%s[/COLOR][/B][I][B][COLOR dodgerblue]%s[/COLOR][/B][/I]' %(name,qual),url,3,thumb,fanart,'')
         try:
-                np = re.compile("<a id='right' href='(.*?)'> <img src='next\.png' alt='.*?' width='50'></a>").findall(link)[0]
+                np = re.compile('<div class="pag_b"><a href="(.*?)">Next</a></div>').findall(link)[0]
+                np = url2 + np
                 addDir('[I][B][COLOR dodgerblue]Go To Next Page>>>[/COLOR][/B][/I]',np,1,art+'next.png',fanart,'')
         except:pass
         try:
@@ -119,9 +140,10 @@ def EPIS(name,url,iconimage):
         if iconimage == None:
                 iconimage = icon
         link = OPEN_URL(url)
-        match=re.compile('<a itemprop="target" href="(.*?)"><.*?class="episode".*?>(.*?)</button></a>').findall(link) 
+        match=re.compile('<li><a class="">(.*?)</a></li>').findall(link)
         items = len(match)
-        for url,name2 in match:
+        for name2 in match:
+                name2 = name2.replace(' Link:','')
                 if metaset=='true':
                         addDir3('[I][B][COLOR white]%s[/COLOR][/B][/I]' %name2,url,3,iconimage,items,'',name)
                 else:
@@ -132,6 +154,68 @@ def EPIS(name,url,iconimage):
 
 
 def LINK(name,url,iconimage):
+        name = name.replace('[I][B][COLOR white]','').replace('[/COLOR][/B][/I]','')
+        addon.log(name)
+        link = OPEN_URL(url)
+        link = regex_get_all(link, '<ul class="">', '</ul>')
+        if len(link) > 1:
+                link = regex_get_all(str(link), '<li><a class="">%s Link:</a>' %name, '</ul>')[0]
+        else:
+                link = link[0]
+        try:
+                RequestURL = re.compile('<a href="(.*?)" server-id="1" class="select_server">Server 1</a>').findall(str(link))[0]
+                RequestURL = baseurl + RequestURL
+                link2 = OPEN_URL(RequestURL)
+
+                episode = ''
+                try:
+                        match = regex_get_all(str(link2), '<li><a class="">%s Link:</a>' %name, '</ul>')[0]
+                        episode = re.compile('<a href="#" episode="(.*?)"').findall(match)[0]
+                except: pass
+                        
+                token = re.compile("name='csrfmiddlewaretoken' value='(.*?)'/>").findall(link2)[0]
+
+                headers = {'Accept':'*/*', 'Accept-Encoding':'gzip, deflate', 'Accept-Language':'en-US,en;q=0.8',
+                           'Cache-Control':'max-age=0', 'Connection':'keep-alive', 'Content-Length':'166',
+                           'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8', 'Origin':'http://m4ufree.info',
+                           'Referer':RequestURL, 'User-Agent':User_Agent, 'X-Requested-With':'XMLHttpRequest'}
+
+                form_data ={'slug':RequestURL, 'episode':episode, 'server_id':'1', 'csrfmiddlewaretoken':token}
+
+                final = s.post(RequestURL, data=form_data, headers=headers).text
+                url = re.findall('"src": "(.*?)"', final)[0]
+        except:
+                RequestURL = re.compile('<a href="(.*?)" server-id="2" class="select_server">Server 2</a>').findall(str(link))[0]
+                RequestURL = baseurl + RequestURL
+                link2 = OPEN_URL(RequestURL)
+
+                episode = ''
+                try:
+                        match = regex_get_all(str(link2), '<li><a class="">%s Link:</a>' %name, '</ul>')[0]
+                        episode = re.compile('<a href="#" episode="(.*?)"').findall(match)[0]
+                except: pass
+
+                token = re.compile("name='csrfmiddlewaretoken' value='(.*?)'/>").findall(link2)[0]
+
+                headers = {'Accept':'*/*', 'Accept-Encoding':'gzip, deflate', 'Accept-Language':'en-US,en;q=0.8',
+                           'Cache-Control':'max-age=0', 'Connection':'keep-alive', 'Content-Length':'166',
+                           'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8', 'Origin':'http://m4ufree.info',
+                           'Referer':RequestURL, 'User-Agent':User_Agent, 'X-Requested-With':'XMLHttpRequest'}
+
+                form_data ={'slug':RequestURL, 'episode':episode, 'server_id':'2', 'csrfmiddlewaretoken':token}
+
+                final = s.post(RequestURL, data=form_data, headers=headers).text
+                url = re.findall('"src": "(.*?)"', final)[0]
+        liz = xbmcgui.ListItem(name, iconImage="DefaultVideo.png", thumbnailImage=iconimage)
+        liz.setInfo(type="Video", infoLabels={"Title": name, "Plot": description})
+        liz.setProperty("IsPlayable","true")
+        liz.setPath(url)
+        xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
+
+
+
+
+'''def LINK(name,url,iconimage):
         link = OPEN_URL(url)
         try:
                 url = re.compile('<a href="(.*?)">Watch <cite>').findall(link)[0]
@@ -173,17 +257,17 @@ def LINK(name,url,iconimage):
         liz.setInfo(type="Video", infoLabels={"Title": name, "Plot": description})
         liz.setProperty("IsPlayable","true")
         liz.setPath(url)
-        xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
+        xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)'''
 
 
 
 
 def SEARCHM():
-        keyb = xbmc.Keyboard('', 'Search')
+        keyb = xbmc.Keyboard('', addon_name + 'Search')
         keyb.doModal()
         if (keyb.isConfirmed()):
-                search = keyb.getText().replace(' ','-')
-                url = baseurl+'/tag/'+search
+                search = keyb.getText().replace(' ','+')
+                url = baseurl + '/search?s' + search
                 INDEX(url)
 
 
@@ -202,19 +286,23 @@ def SEARCHT():
 
 def GENRE(url):
         link = OPEN_URL(url)
-        match=re.compile('<li> <a href="(.*?)" title="All movies.*?">(.*?)</a></li>').findall(link) 
+        all_videos = regex_get_all(link, '<a>Category</a>', '</ul>')[0]
+        match=re.compile('<li class="menu-item menu-item-type-custom"><a href="(.*?)">(.*?)</a></li>').findall(str(all_videos)) 
         for url,name in match:
-                if '/movie-' in url:
-                        addDir('[B][COLOR white]%s[/COLOR][/B]' %name,url,1,icon,fanart,'')
+                if baseurl not in url:
+                        url = baseurl + url
+                addDir('[B][COLOR white]%s[/COLOR][/B]' %name,url,1,icon,fanart,'')
 
 
 
 
 def YEAR(url):
         link = OPEN_URL(url)
-        match=re.compile('<li> <a href="(.*?)" title="All movies.*?">(.*?)</a></li>').findall(link) 
+        match=re.compile('<option value="(.*?)">(.*?)</option>').findall(link) 
         for url,name in match:
-                if '/year-' in url:
+                if baseurl not in url:
+                        url = baseurl + url
+                if 'release-year' in url:
                         addDir('[B][COLOR white]%s[/COLOR][/B]' %name,url,1,icon,fanart,'')
 
 
@@ -399,7 +487,7 @@ def addLink(name,url,mode,iconimage,fanart,description=''):
 def OPEN_URL(url):
         headers = {}
         headers['User-Agent'] = User_Agent
-        link = requests.get(url, headers=headers, allow_redirects=False).text
+        link = s.get(url, headers=headers, allow_redirects=False).text
         link = link.encode('ascii', 'ignore').decode('ascii')
         return link
 

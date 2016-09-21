@@ -29,6 +29,7 @@ import utils
 
 progress = utils.progress
 
+
 def Main():
     utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://k18.co/',233,'','')
     utils.addDir('[COLOR hotpink]Search[/COLOR]','http://k18.co/?s=',234,'','')
@@ -38,15 +39,31 @@ def Main():
 
 def List(url):
     listhtml = utils.getHtml(url, '')
+    cookieString = getCookiesString()
     match = re.compile(r'class="content-list-thumb">\s+<a href="([^"]+)" title="([^"]+)">.*?src="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(listhtml)
     for videopage, name, img in match:
         name = utils.cleantext(name)
+        img = img + "|Cookie=" + urllib.quote(cookieString) + "&User-Agent=" + urllib.quote(utils.USER_AGENT)
         utils.addDownLink(name, videopage, 232, img, '')
     try:
         nextp=re.compile('next page-numbers" href="([^"]+)">&raquo;', re.DOTALL | re.IGNORECASE).findall(listhtml)[0]
         utils.addDir('Next Page', nextp, 231,'')
     except: pass
     xbmcplugin.endOfDirectory(utils.addon_handle)
+
+
+def getCookiesString():
+    cookieString=""
+    import cookielib
+    try:
+        cookieJar = cookielib.LWPCookieJar()
+        cookieJar.load(utils.cookiePath,ignore_discard=True)
+        for index, cookie in enumerate(cookieJar):
+            cookieString+=cookie.name + "=" + cookie.value +";"
+    except:
+        import sys,traceback
+        traceback.print_exc(file=sys.stdout)
+    return cookieString
 
     
 def Search(url, keyword=None):
@@ -70,5 +87,8 @@ def Cat(url):
 
 
 def Playvid(url, name, download=None):
-    utils.PLAYVIDEO(url, name, download)
+    progress.create('Play video', 'Searching videofile.')
+    progress.update( 10, "", "Loading video page", "" )
+    videopage = utils.getHtml(url, '')
+    utils.playvideo(videopage, name, download, url)
 

@@ -56,7 +56,7 @@ def MainInternationalMovies():
 
 
 def List(url):
-    listhtml = utils.getHtml(url, '')
+    listhtml = utils.getHtml(url, url)
     match = re.compile(r'<div class="quadrato">\s*?<a href="([^"]+)"\s*?title="([^"]+)".*?src="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(listhtml)
     for videopage, name, img in match:
         name = utils.cleantext(name)

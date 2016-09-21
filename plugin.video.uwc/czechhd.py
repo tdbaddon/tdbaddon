@@ -25,7 +25,7 @@ import utils
 def Main():
     utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://czechhd.net/',313,'','')
     utils.addDir('[COLOR hotpink]Search[/COLOR]','http://czechhd.net/?s=',314,'','')
-    List('http://czechhd.net/page/1/?orderby=date')
+    List('http://czechhd.net')
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 

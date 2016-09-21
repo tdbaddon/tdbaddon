@@ -69,7 +69,7 @@ def PHCat(url):
 def PHVideo(url, name, download=None):
     progress.create('Play video', 'Searching videofile.')
     progress.update( 10, "", "Loading video page", "" )
-    Supported_hosts = ['Openload.io', 'StreamCloud', 'NowVideo', 'www.nowvideo.sx', 'FlashX', 'www.flashx.tv', 'flashx.tv',  'streamcloud.eu', 'streamin.to', 'videowood.tv', 'www.keeplinks.eu', 'openload.co']
+    Supported_hosts = ['Openload.io', 'StreamCloud', 'NowVideo', 'www.nowvideo.sx', 'FlashX', 'www.flashx.tv', 'flashx.tv',  'streamcloud.eu', 'streamin.to', 'videowood.tv', 'www.keeplinks.eu', 'openload.co', 'datoporn.com', 'gr8movies.org', 'pornoworld.freeforumzone.com']
     videopage = utils.getHtml(url, '')
     match = re.compile(r'data-id="([^"]+)" target="_blank" title="Watch it on ([\w.]+)', re.DOTALL | re.IGNORECASE).findall(videopage)
     if len(match) > 1:
@@ -84,6 +84,8 @@ def PHVideo(url, name, download=None):
             siteurl = vidurls[0]
         elif len(sites) > 1:
             site = utils.dialog.select('Select video site', sites)
+            if site == -1:
+                return
             sitename = sites[site]
             siteurl = vidurls[site]
         else:
@@ -99,17 +101,29 @@ def PHVideo(url, name, download=None):
         playurl = getStreamCloud(outurl)
     elif "lash" in sitename:
         progress.update( 30, "", "Getting FlashX", "" )
-        playurl = getFlashX(outurl)
+        progress.close()
+        utils.PLAYVIDEO(outurl, name, download)
+        return
     elif sitename == "NowVideo" or sitename == "www.nowvideo.sx":
         progress.update( 30, "", "Getting NowVideo", "" )
         playurl = getNowVideo(outurl)        
     elif "penload" in sitename:
         progress.update( 30, "", "Getting Openload", "" )
-        progress.close()
-        utils.PLAYVIDEO(outurl, name, download)
+        outurl1 = utils.getVideoLink(outurl, '')
+        utils.playvideo(outurl1, name, download, outurl)
         return
     elif "videowood" in sitename:
         progress.update( 30, "", "Getting Videowood", "" )
+        progress.close()
+        utils.PLAYVIDEO(outurl, name, download)
+        return
+    elif "gr8movies" in sitename:
+        progress.update( 30, "", "Getting Gr8movies", "" )
+        progress.close()
+        utils.PLAYVIDEO(outurl, name, download)
+        return
+    elif "freeforumzone" in sitename:
+        progress.update( 30, "", "Getting pornoworld", "" )
         progress.close()
         utils.PLAYVIDEO(outurl, name, download)
         return        
@@ -118,13 +132,18 @@ def PHVideo(url, name, download=None):
         streaming = utils.getHtml(outurl, '')
         outurl=re.compile("action='([^']+)'").findall(streaming)[0]
         progress.close()
-        utils.playvideo(outurl, name, download)
+        utils.playvideo(outurl, name, download, outurl)
         return
     elif 'keeplinks' in sitename:
         progress.update( 30, "", "Getting Keeplinks", "" )
         outurl2 = getKeeplinks(outurl)
         utils.playvideo(outurl2, name, download, outurl)
         return
+    elif "datoporn" in sitename:
+        progress.update( 30, "", "Getting Datoporn", "" )
+        outurl1 = utils.getVideoLink(outurl, '')
+        utils.playvideo(outurl1, name, download, outurl)
+        return        
     else:
         progress.close()
         utils.notify('Sorry','This host is not supported.')
@@ -153,25 +172,6 @@ def getKeeplinks(url):
        'Cookie': 'flag['+kllinkid+'] = 1;'} 
     klpage = utils.getHtml(kllink, url, klheader)
     return klpage
-
-
-def getFlashX(url):
-    phpage = utils.getHtml(url, '')
-    progress.update( 50, "", "Opening FlashX page", "" )
-    flashxurl = re.compile(r"//(?:www\.)?flashx\.tv/(?:embed-)?([0-9a-zA-Z]+)", re.DOTALL | re.IGNORECASE).findall(phpage)
-    flashxurl = 'http://flashx.tv/embed-%s-670x400.html' % flashxurl[0]    
-    flashxsrc = utils.getHtml2(flashxurl)
-    progress.update( 60, "", "Grabbing video file", "" )
-    flashxurl2 = re.compile('<a href="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(flashxsrc)
-    flashxsrc2 = utils.getHtml(flashxurl2[0], flashxurl, utils.openloadhdr)
-    progress.update( 70, "", "Grabbing video file", "" )
-    flashxjs = re.compile("<script type='text/javascript'>([^<]+)</sc", re.DOTALL | re.IGNORECASE).findall(flashxsrc2)
-    try: flashxujs = unpack(flashxjs[0])
-    except: flashxujs = flashxjs[0]
-    videourl = re.compile(r'\[\{\s*?file:\s*?"([^"]+)",', re.DOTALL | re.IGNORECASE).findall(flashxujs)
-    progress.update( 80, "", "Returning video file", "" )
-    videourl = videourl[-1]
-    return videourl
 
 
 def getStreamCloud(url):

@@ -137,7 +137,6 @@ def Playvid(url, name):
     match = re.compile("<video.*?src='([^']+)'", re.DOTALL | re.IGNORECASE).findall(listhtml)
     if match:
         videourl = match[0]
-        videourl = videourl + '|User-Agent=' + utils.USER_AGENT
         iconimage = xbmc.getInfoImage("ListItem.Thumb")
         listitem = xbmcgui.ListItem(name, iconImage="DefaultVideo.png", thumbnailImage=iconimage)
         listitem.setInfo('video', {'Title': name, 'Genre': 'Porn'})

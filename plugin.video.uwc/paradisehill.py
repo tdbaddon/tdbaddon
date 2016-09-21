@@ -84,6 +84,8 @@ def Playvid(url, name, download=None):
                 videolist.append('Part ' + str(i))
                 i += 1
             videopart = dialog.select('Multiple videos found', videolist)
+            if videopart == -1:
+                return
             videourl = videos[videopart]
         else: videourl = videos[0]    
         videourl = videourl + "|referer="+ url

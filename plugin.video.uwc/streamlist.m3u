@@ -1,5 +1,5 @@
 #EXTM3U
-#EXTINF:-1,-------------------Updated 23-04-2016-------------------
+#EXTINF:-1,-------------------Older streams-------------------
 http://nothi.ng
 #EXTINF:-1,Passion XXX
 http://publish.thewebstream.co:1935/leved/_definst_/passielivestream/playlist.m3u8
@@ -57,8 +57,6 @@ http://178.33.126.213:1935/cellcast/encoder32/.m3u8
 http://46.105.116.159:1935/cellcast/encoder72/.m3u8
 #EXTINF:-1,Babestation Blue
 http://178.33.126.213:1935/cellcast/encoder32/.m3u8
-#EXTINF:-1,-------------------Older streams-------------------
-http://nothi.ng
 #EXTINF:-1,NUART
 http://80.77.52.6:3719/udp/226.0.5.6:12345
 #EXTINF:-1,PRIVATE COM

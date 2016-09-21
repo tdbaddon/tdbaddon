@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="repository.communityrepo" name="The Community Repository" version="9.1" provider-name="The @CommunityRepo Team">
+<addon id="repository.communityrepo" name="[COLOR orange][B]The Community Repository[/B][/COLOR]" version="9.3" provider-name="The @CommunityRepo Team">
 	<extension point="xbmc.addon.repository" name="The Community Repository">
 	<dir>
 		<info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
 		<checksum>https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml.md5</checksum>
 		<datadir zip="true">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/zips/</datadir>
 	</dir>
-		<info compressed="false">http://repo.kodi-pirates.tv/comrepo/RepoPlugins/addons.xml</info>
-		<checksum>http://repo.kodi-pirates.tv/comrepo/RepoPlugins/addons.xml.md5</checksum>
-		<datadir zip="true">http://repo.kodi-pirates.tv/comrepo/RepoPlugins/</datadir>
+		<info compressed="false">http://allsorts.kodi-pirates.tv/ComRepo/RepoPlugins/addons.xml</info>
+		<checksum>http://allsorts.kodi-pirates.tv/ComRepo/RepoPlugins/addons.xml.md5</checksum>
+		<datadir zip="true">http://allsorts.kodi-pirates.tv/ComRepo/RepoPlugins/</datadir>
 	</extension>
 	<extension point="xbmc.addon.metadata">
-		<summary>@Kodicommunity Repository</summary>
+		<summary>@communityrepo Repository</summary>
 		<description>" "The Community Repository" addon, skin and wizard host, contact for details on how to add your content @communityrepo</description>
 		<platform>all</platform>
 	</extension>
-
 </addon>

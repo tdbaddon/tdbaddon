@@ -1,3 +1,79 @@
+[B]Version 1.1.38[/B]
+Added: Cloudflare support (fixes K18)
+Fixed: CzechHD
+Fixed: xxxstreams(eu) pagination
+Fixed: Openload
+
+
+[B]Version 1.1.37[/B]
+Fixed: Openload
+
+
+[B]Version 1.1.36[/B]
+Fixed: Camsoda/Cam4 (thanks hdgdl)
+Fixed: Openload
+Fixed: FlashX
+
+
+[B]Version 1.1.35[/B]
+Improved: More supported hosts for pornhive
+
+
+[B]Version 1.1.34[/B]
+Added: Naked (webcams, thanks hdgdl)
+Improved: Camsoda (thanks hdgdl)
+Fixed: Openload
+
+
+[B]Version 1.1.33[/B]
+Fixed: Openload (again)
+
+
+[B]Version 1.1.32[/B]
+Added: Camsode (thanks hdgdl)
+Changed: Cam4 video playback (thanks hdgdl)
+Fixed: Openload
+Fixed: FlashX
+
+[B]Version 1.1.31[/B]
+Anybunny is back :)
+Improved: FlashX
+Fixed: stupid bug I added, Tubepornclassic works again
+
+
+[B]Version 1.1.30[/B]
+Added: Datoporn (for Pelisxporno)
+Fixed: Openload (thanks pitoosie)
+Fixed: FlashX
+Improved: Keeplinks
+Removed: Anybunny (couldn't get it to work)
+
+
+[B]Version 1.1.29[/B]
+Fixed: Cat3movie listing
+Fixed: Mega3x videohost
+Fixed: FlashX videohost (thanks gujal)
+Improved: PornKinoX listing
+
+
+[B]Version 1.1.28[/B]
+Added: PornkinoX (thanks anton40)
+Fixed: Anybunny video playback
+Fixed: Openload
+
+
+[B]Version 1.1.27[/B]
+Fixed: Tubepornclassic downloading
+Fixed: Chaturbate Krypton playback
+Fixed: Porndig Pornstars/Studios
+Fixed: Cancel works on all the select dialogs
+Changed: Disabled caching for the main menu's
+
+
+[B]Version 1.1.26[/B]
+Fixed: Openload (credits are in the py)
+
+
 [B]Version 1.1.25[/B]
 Fixed: Openload part 2 (??)
 

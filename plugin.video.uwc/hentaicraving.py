@@ -67,6 +67,8 @@ def HCPlayvid(url,name, download=None):
     match = re.compile('<iframe.*? src="([^"]+)" FRAME', re.DOTALL | re.IGNORECASE).findall(link)
     if len(match) > 1:
         vh = dialog.select('Videohost:', match)
+        if vh == -1:
+            return
     else:
         vh = 0
     progress.update( 40, "", "Loading video host", "" )
