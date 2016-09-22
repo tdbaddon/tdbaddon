@@ -471,7 +471,6 @@ class movies:
         self.list = sorted(self.list, key=lambda k: re.sub('(^the |^a )', '', k['name'].lower()))
         return self.list
 
-
     def imdb_list(self, url, idx=True):
         try:
             if url == self.imdbwatchlist_link:
@@ -616,7 +615,6 @@ class movies:
                 pass
 
         return self.list
-
 
     def imdb_user_list(self, url):
         print("Items", url)
@@ -819,7 +817,6 @@ class movies:
         for i in range(0, len(self.list)): self.list[i].update({'next': next})
 
         return self.list
-
 
     def worker(self):
 

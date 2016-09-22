@@ -212,8 +212,6 @@ class source:
                     headers['Cookie'] = cookie
                     result = client.request(hash_url, headers=headers, limit='0')
                     print("r101 result",result,headers)
-
-                    time.sleep(0.3)
                     query = {'id': s[0], 'update': '0'}
                     query.update(self.__get_token(query))
                     url = url + '?' + urllib.urlencode(query)

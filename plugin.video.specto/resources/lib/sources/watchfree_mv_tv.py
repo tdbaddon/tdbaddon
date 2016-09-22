@@ -133,7 +133,7 @@ class source:
 
 
     def get_sources(self, url, hosthdDict, hostDict, locDict):
-        #control.log('### %s' %url)
+        control.log('### WATCHFREE %s' %url)
         try:
             sources = []
 
@@ -158,18 +158,19 @@ class source:
                     url = url.encode('utf-8')
 
                     host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(url.strip().lower()).netloc)[0]
-                    host = host.rsplit('.', 1)[0]
-                    print("%@@$^@ host",host, not host in hostDict)
-                    if not host in hostDict:
-                        if not host in hosthdDict: raise Exception()
+                    #if not host in hostDict:
+                    #    control.log('watchfree HOST; %s' % host)
+                    #    raise Exception()
                     host = client.replaceHTMLCodes(host)
                     host = host.encode('utf-8')
-
+                    try: host = host.split('.')[0]
+                    except: pass
                     quality = client.parseDOM(i, 'div', attrs = {'class': 'quality'})
                     if any(x in ['[CAM]', '[TS]'] for x in quality): quality = 'CAM'
                     else:  quality = 'SD'
                     #quality = quality.encode('utf-8')
                     sources.append({'source': host, 'quality': quality, 'provider': 'Watchfree', 'url': url})
+
 
                 except:
                     pass

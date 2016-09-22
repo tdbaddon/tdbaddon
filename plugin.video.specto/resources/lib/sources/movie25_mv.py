@@ -128,10 +128,10 @@ class source:
                     print("URL1",url)
 
                     host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(url.strip().lower()).netloc)[0]
-                    #if not host in hostDict: raise Exception()
-                    print(host.split('.')[0],hostDict)
-                    if not host.split('.')[0] in hostDict:
-                        if not host.split('.')[0] in hosthdDict: raise Exception()
+                    if not host in hostDict: raise Exception()
+                    try: host = host.split('.')[0]
+                    except: pass
+
                     host = client.replaceHTMLCodes(host)
                     host = host.encode('utf-8')
                     print("URL4", host)

@@ -408,142 +408,146 @@ def getutfoffset():
     
 def selectMatch(url):
 
-    cookieJar=get365CookieJar()
-    mainref='http://www.sport365.live/en/main'
-    headers=[('User-Agent',useragent)]
     try:
-        getUrl("http://www.sport365.live/",headers=headers, cookieJar=cookieJar)
-        mainref=lastfinalurl
-    except: pass
-    
-    url=select365(url,cookieJar,mainref)
-    
-    if 1==2:
+        cookieJar=get365CookieJar()
+        mainref='http://www.sport365.live/en/main'
+        headers=[('User-Agent',useragent)]
         try:
-            headers=[('User-Agent',useragent)]
-            hh=getUrl("http://adbetnet.advertserve.com/servlet/view/dynamic/javascript/zone?zid=281&pid=4&resolution=1920x1080&random=11965377&millis=1473441350879&referrer=http%3A%2F%2Fwww.sport365.live%2Fen%2Fhome",headers=headers, cookieJar=cookieJar)
-            getUrl(re.findall('<img width=.*?src=\\\\"(.*?)\\\\"',hh)[0],headers=headers, cookieJar=cookieJar,useproxy=False)
+            getUrl("http://www.sport365.live/",headers=headers, cookieJar=cookieJar)
+            mainref=lastfinalurl
         except: pass
-    if url=="": return 
-    import HTMLParser
-    h = HTMLParser.HTMLParser()
-
-    #urlToPlay=base64.b64decode(url)
-
-    html=getUrl(url,headers=[('Referer',mainref)],cookieJar=cookieJar)
-    
-    
-    #print html
-    reg="iframe frameborder=0.*?src=\"(.*?)\""
-    linkurl=re.findall(reg,html)
-    #print 'linkurl',linkurl
-    if len(linkurl)==0:
-        reg="http://www.sport365.live.*?'\/(.*?)'\)"
-        linkurl=re.findall(reg,html)[0]
-        linkurl="http://www.sport365.live/en/player/f/"+linkurl
-        html=getUrl(h.unescape(linkurl),cookieJar=cookieJar)
-        reg="iframe frameborder=0.*?src=\"(.*?)\""
-        linkurl=re.findall(reg,html)[0]
-#        print linkurl
-    else:
-        linkurl=linkurl[0]
-    uurl=h.unescape(linkurl)
-    print 'uurl',uurl
-    if not uurl.startswith('http'):
-        import urlparse
-        uurl=urlparse.urljoin('http://www.fastflash.pw/', uurl)
-        print 'newurl',uurl
-    enclinkhtml=getUrl(uurl,cookieJar=cookieJar,headers=[('Referer',url )])
-    reg='player_div", "st".*?file":"(.*?)"'
-    enclink=re.findall(reg,enclinkhtml)
-    usediv=False
-    
-    if len(enclink)==0:
-        reg='name="f" value="(.*?)"'
-        enclink=re.findall(reg,enclinkhtml)[-1]  
-        reg='name="d" value="(.*?)"'
-        encst=re.findall(reg,enclinkhtml)[-1]
-        reg="\('action', ['\"](.*?)['\"]"
-        postpage=re.findall(reg,enclinkhtml)
-        if len(postpage)>0:
-            
-            reg='player_div", "st".*?file":"(.*?)"'
-            post={'d':encst,'f':enclink}
-            post = urllib.urlencode(post)
-            enclinkhtml2= getUrl(postpage[0],post=post,cookieJar=cookieJar, headers=[('Referer',linkurl),('User-Agent',useragent)])
-            #enclink=re.findall(reg,enclinkhtml2)
-            if 'player_div' in enclinkhtml2>0:
-                usediv=True
-                #enclinkhtml=enclinkhtml2
-                #print 'usediv',usediv
-                reg='player_div\'.*?\s*\s*<.*?\s*.*?\("(.*?)\",.?\"(.*?)\",(.*?)\)'
-                reg="\([\"'](.*?)[\"'],.?[\"'](.*?)[\"'],.?[\"'](.*?)[\"'],(.*?)\)"
-                pd,encst,enclink,isenc=re.findall(reg,enclinkhtml2)[0]
-
-                print 'encst,enclink',encst,enclink,isenc
-                isenc=isenc.strip();
-                if isenc=="1":
-                    reg="src=\"(.*?\\/wrapper.js.*)\""
-                    wrapurl=re.findall(reg,enclinkhtml2)[0]
-                    kkey=get365Key(cookieJar,url=wrapurl)
-                    #print 'kkey',kkey
-                    enclink=json.loads(enclink.decode("base64"))
-                    import jscrypto
-                    lnk=jscrypto.decode(enclink["ct"],kkey,enclink["s"].decode("hex"))
-                    
-                    print 'dec link',lnk                    
-                    enclink=lnk
-                    if lnk.startswith('"http'): lnk= lnk.replace('\"','').replace('\\/','/')
-                #enclink=enclink[0]
-                #print 'enclink',enclink
-                #reg='player_div", "st":"(.*?)"'
-                #encst=re.findall(reg,enclinkhtml)[0]
         
-    else:
-        usediv=True
-        #print 'usediv',usediv
-        enclink=enclink[0]
-        #print 'enclink',enclink
-        reg='player_div", "st":"(.*?)"'
-        encst=re.findall(reg,enclinkhtml)[0]
-    #if usediv:
-    #    print 'usediv',usediv
-    #    enclink=enclink[0]
-    #    print 'enclink',enclink
-    #    reg='player_div", "st":"(.*?)"'
-    #    encst=re.findall(reg,enclinkhtml)[0]
-    print 'encst',encst
-    if not 'peer' in encst:
-        decodedst=decode(encst)
+        url=select365(url,cookieJar,mainref)
+        
+        if 1==2:
+            try:
+                headers=[('User-Agent',useragent)]
+                hh=getUrl("http://adbetnet.advertserve.com/servlet/view/dynamic/javascript/zone?zid=281&pid=4&resolution=1920x1080&random=11965377&millis=1473441350879&referrer=http%3A%2F%2Fwww.sport365.live%2Fen%2Fhome",headers=headers, cookieJar=cookieJar)
+                getUrl(re.findall('<img width=.*?src=\\\\"(.*?)\\\\"',hh)[0],headers=headers, cookieJar=cookieJar,useproxy=False)
+            except: pass
+        if url=="": return 
+        import HTMLParser
+        h = HTMLParser.HTMLParser()
 
-        #print encst, decodedst
-        reg='"stkey":"(.*?)"'
-        sitekey=re.findall(reg,decodedst)[0]
-        #sitekey="myFhOWnjma1omjEf9jmH9WZg91CC"#hardcoded
-        urlToPlaymain=decode(enclink.replace(sitekey,""))
-    else:
-        urlToPlaymain=lnk
-    urlToPlay= urlToPlaymain
-    newcj=cookielib.LWPCookieJar();
-    try:
-        getUrl(urlToPlay, headers=[('User-Agent',useragent),('Origin','http://h5.adshell.net'),('Referer','http://h5.adshell.net/peer5')],cookieJar=newcj)
-    except: pass
+        #urlToPlay=base64.b64decode(url)
 
-   
-    #print newcj
-    sessionid=getCookiesString(newcj,'PHPSESSID').split('=')[-1]
-    import uuid
-    playback=str(uuid.uuid1()).upper()   
-    if len(sessionid)>0: '&Cookie=PHPSESSID='+sessionid.split('=')[-1]
-    urlToPlaymain+="|Referer=%s&User-Agent=%s&Origin=http://h5.adshell.net&Referer=http://h5.adshell.net/peer5%s&X-Playback-Session-Id=%s"%( "http://h5.adshell.net/flash",urllib.quote_plus(useragent),sessionid,playback)    
-#    urlToPlaymain+="|Referer=%s&User-Agent=%s&Origin=http://h5.adshell.net&Referer=http://h5.adshell.net/peer5%s&X-Playback-Session-Id=%s"%( "http://h5.adshell.net/flash",urllib.quote_plus(useragent),sessionid,playback)    
-    headers=[('User-Agent',useragent),('Referer',mainref)]
-    getUrl("http://www.sport365.live/en/sidebar",headers=headers, cookieJar=cookieJar)
-    cookieJar.save (S365COOKIEFILE,ignore_discard=True)
+        html=getUrl(url,headers=[('Referer',mainref)],cookieJar=cookieJar)
+        
+        
+        #print html
+        reg="iframe frameborder=0.*?src=\"(.*?)\""
+        linkurl=re.findall(reg,html)
+        #print 'linkurl',linkurl
+        if len(linkurl)==0:
+            reg="http://www.sport365.live.*?'\/(.*?)'\)"
+            linkurl=re.findall(reg,html)[0]
+            linkurl="http://www.sport365.live/en/player/f/"+linkurl
+            html=getUrl(h.unescape(linkurl),cookieJar=cookieJar)
+            reg="iframe frameborder=0.*?src=\"(.*?)\""
+            linkurl=re.findall(reg,html)[0]
+    #        print linkurl
+        else:
+            linkurl=linkurl[0]
+        uurl=h.unescape(linkurl)
+        print 'uurl',uurl
+        if not uurl.startswith('http'):
+            import urlparse
+            uurl=urlparse.urljoin('http://www.fastflash.pw/', uurl)
+            print 'newurl',uurl
+        enclinkhtml=getUrl(uurl,cookieJar=cookieJar,headers=[('Referer',url )])
+        reg='player_div", "st".*?file":"(.*?)"'
+        enclink=re.findall(reg,enclinkhtml)
+        usediv=False
+        
+        if len(enclink)==0:
+            reg='name="f" value="(.*?)"'
+            enclink=re.findall(reg,enclinkhtml)[-1]  
+            reg='name="d" value="(.*?)"'
+            encst=re.findall(reg,enclinkhtml)[-1]
+            reg="\('action', ['\"](.*?)['\"]"
+            postpage=re.findall(reg,enclinkhtml)
+            if len(postpage)>0:
+                
+                reg='player_div", "st".*?file":"(.*?)"'
+                post={'d':encst,'f':enclink}
+                post = urllib.urlencode(post)
+                enclinkhtml2= getUrl(postpage[0],post=post,cookieJar=cookieJar, headers=[('Referer',linkurl),('User-Agent',useragent)])
+                #enclink=re.findall(reg,enclinkhtml2)
+                
+                if 1==1:#'player_div' in enclinkhtml2>0:
+                    usediv=True
+                    #enclinkhtml=enclinkhtml2
+                    #print 'usediv',usediv
+                    reg='player_div\'.*?\s*\s*<.*?\s*.*?\("(.*?)\",.?\"(.*?)\",(.*?)\)'
+                    reg="\([\"'](.*?)[\"'],.?[\"'](.*?)[\"'],.?[\"'](.*?)[\"'],(.*?)\)"
+                    pd,encst,enclink,isenc=re.findall(reg,enclinkhtml2)[0]
 
-    #return urlToPlaymain
-    return 'plugin://plugin.video.f4mTester/?url=%s&streamtype=HLS'%(urllib.quote_plus(urlToPlaymain))
-    
+                    print 'encst,enclink',encst,enclink,isenc
+                    isenc=isenc.strip();
+                    if isenc=="1":
+                        reg="src=\"(.*?\\/wrapper.js.*)\""
+                        wrapurl=re.findall(reg,enclinkhtml2)[0]
+                        kkey=get365Key(cookieJar,url=wrapurl)
+                        #print 'kkey',kkey
+                        enclink=json.loads(enclink.decode("base64"))
+                        import jscrypto
+                        lnk=jscrypto.decode(enclink["ct"],kkey,enclink["s"].decode("hex"))
+                        
+                        print 'dec link',lnk                    
+                        enclink=lnk
+                        if lnk.startswith('"http'): lnk= lnk.replace('\"','').replace('\\/','/')
+                    #enclink=enclink[0]
+                    #print 'enclink',enclink
+                    #reg='player_div", "st":"(.*?)"'
+                    #encst=re.findall(reg,enclinkhtml)[0]
+            
+        else:
+            usediv=True
+            #print 'usediv',usediv
+            enclink=enclink[0]
+            #print 'enclink',enclink
+            reg='player_div", "st":"(.*?)"'
+            encst=re.findall(reg,enclinkhtml)[0]
+        #if usediv:
+        #    print 'usediv',usediv
+        #    enclink=enclink[0]
+        #    print 'enclink',enclink
+        #    reg='player_div", "st":"(.*?)"'
+        #    encst=re.findall(reg,enclinkhtml)[0]
+        print 'encst',encst
+        if not 'peer' in encst:
+            decodedst=decode(encst)
+
+            #print encst, decodedst
+            reg='"stkey":"(.*?)"'
+            sitekey=re.findall(reg,decodedst)[0]
+            #sitekey="myFhOWnjma1omjEf9jmH9WZg91CC"#hardcoded
+            urlToPlaymain=decode(enclink.replace(sitekey,""))
+        else:
+            urlToPlaymain=lnk
+        urlToPlay= urlToPlaymain
+        newcj=cookielib.LWPCookieJar();
+        try:
+            getUrl(urlToPlay, headers=[('User-Agent',useragent),('Origin','http://h5.adshell.net'),('Referer','http://h5.adshell.net/peer5')],cookieJar=newcj)
+        except: pass
+
+       
+        #print newcj
+        sessionid=getCookiesString(newcj,'PHPSESSID').split('=')[-1]
+        import uuid
+        playback=str(uuid.uuid1()).upper()   
+        if len(sessionid)>0: '&Cookie=PHPSESSID='+sessionid.split('=')[-1]
+        urlToPlaymain+="|Referer=%s&User-Agent=%s&Origin=http://h5.adshell.net&Referer=http://h5.adshell.net/peer5%s&X-Playback-Session-Id=%s"%( "http://h5.adshell.net/flash",urllib.quote_plus(useragent),sessionid,playback)    
+    #    urlToPlaymain+="|Referer=%s&User-Agent=%s&Origin=http://h5.adshell.net&Referer=http://h5.adshell.net/peer5%s&X-Playback-Session-Id=%s"%( "http://h5.adshell.net/flash",urllib.quote_plus(useragent),sessionid,playback)    
+        headers=[('User-Agent',useragent),('Referer',mainref)]
+        getUrl("http://www.sport365.live/en/sidebar",headers=headers, cookieJar=cookieJar)
+        cookieJar.save (S365COOKIEFILE,ignore_discard=True)
+
+        #return urlToPlaymain
+        return 'plugin://plugin.video.f4mTester/?url=%s&streamtype=HLS'%(urllib.quote_plus(urlToPlaymain))
+    except:
+        traceback.print_exc(file=sys.stdout)
+        return None
 def select365(url,cookieJar,mainref):
     print 'select365',url
     url=base64.b64decode(url)

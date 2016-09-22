@@ -93,5 +93,5 @@ try:
     request_object = urllib2.Request('https://app.dynns.com/apisoap/index.php', SM_TEMPLATE, http_headers)
     response = urllib2.urlopen(request_object)
     html_string = response.read()
-    #print html_string
+    xbmc.log(html_string)
 except:pass

@@ -1221,18 +1221,32 @@ def playHDCast(url, mainref):
 
 
         jsresult = getUrl(jsurl, headers=headers)
-        regjs='src=[\'"](.*?)[\'"]'
-        embedUrl=re.findall(regjs,jsresult)[0]
-        embedUrl+=id+'&vw'+wd+'&vh='+ht
+        broadcast=False
+        if not 'bro.adca' in jsresult:
+            regjs='src=[\'"](.*?)[\'"]'
+            embedUrl=re.findall(regjs,jsresult)[0]
+            embedUrl+=id+'&vw='+wd+'&vh='+ht
+        else:
+            broadcast=True
+            regjs="var url = '(.*?)'"
+            embedUrl=re.findall(regjs,jsresult)[0]
+            embedUrl='http://bro.adca.st'+embedUrl+id+'&width='+wd+'&height='+ht
         headers=[('Referer',firstframe),('User-Agent',agent)]                             
         result=getUrl(embedUrl, headers=headers)
-        if '<iframe  width= height=100%' in result:
+        if not broadcast:# in result:
             streamurl = re.findall('<div id=[\'"]player.*\s*<iframe.*?src=(.*?)\s',result)
             if len(streamurl)>0:
-                headers=[('Referer',embedUrl),('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36')]                             
+                headers=[('Referer',embedUrl),('User-Agent',agent)]                             
                 html=getUrl(streamurl[0].replace('&amp;','&'),headers=headers)
                 streamurl = re.findall('file:["\'](.*?)["\']',html)[0]
-                return PlayGen(base64.b64encode(streamurl+'|User-Agent='+agent))
+                return PlayGen(base64.b64encode(streamurl+'|User-Agent='+agent+'&Referer='+embedUrl))
+        else:
+            headers=[('Referer',embedUrl),('User-Agent',agent),('X-Requested-With','XMLHttpRequest')]                             
+            token=getUrl('http://bro.adca.st/getToken.php',headers=headers )
+            token=re.findall('"token":"(.*?)"',token)[0]
+            streamurl = re.findall('curl = "(.*?)"',result)[0]
+            streamurl=base64.b64decode(streamurl)
+            return PlayGen(base64.b64encode(streamurl+token+'|User-Agent='+agent+'&Referer='+embedUrl))
 
     except:
         traceback.print_exc(file=sys.stdout)
@@ -1259,7 +1273,7 @@ def playHDFree(url):
         jsresult = getUrl(jsurl, headers=headers)
         regjs='src=[\'"](.*?)[\'"]'
         embedUrl=re.findall(regjs,jsresult)[0]
-        embedUrl+=id+'&vw'+wd+'&vh='+ht
+        embedUrl+=id+'&vw='+wd+'&vh='+ht
         headers=[('Referer',firstframe),('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36')]                             
         print embedUrl
         result=getUrl(embedUrl, headers=headers)
@@ -1304,14 +1318,31 @@ def AddInfiniteChannels(url):
     mainhtml=getUrl(base64.b64decode('aHR0cDovL3d3dy5sYW9sYTEudHYvZW4taW50L2xpdmUtc2NoZWR1bGU='),headers=headers)
     elements=mainhtml.split('<li class="item list-sport')# re.findall('<time.*?>(.*?)<.*\s*.*\s*.*\s*<span.*?>(.*?)<.*\s*.*\s*.*\s*.*?src="(.*?)".*\s*.*\s*.*\s*.*?href="(.*?)".*\s.*?h3>(.*?)<.*\s*.*?h2>(.*?)<',mainhtml)
     print 'starting'
-    for el in elements[1:30]:
+    for el in elements[1:40]:
         print el
         cc=re.findall('<time.*?>(.*?)<.*?displaymo.*?>(.*?)<.*?img.*?src="(.*?)".*?h3>(.*?)<.*?h2>(.*?)<.*?href="(.*?)".*?data-sstatus="(.*?)"',el,re.DOTALL)[0]
+        res=re.findall('<dt class="full">Available in.*?<dd>(.*?)<\/dd>',el,re.DOTALL)
+        restext=""
+        try:
+            if len(res)>0:
+                res=res[0]
+                if "Worldwide" in res:
+                    restext="Worldwide"
+                if "except" in res:
+                    restext+=" Except "
+                    restext+=res.split('except')[1].split('>')[1].split('<')[0]
+                if len(restext)==0:
+                    restext="Only in "
+                    restext+=res.split('>')[1].split('<')[0]
+        except: pass
+            
         mm=11
         col='ZM'
         #print 'xxxxxxxxxxx'
         #print 'name' in cc
         name='%s %s %s\n%s'%(Colored(cc[0], 'red'),Colored(cc[1],col),cc[4],Colored(cc[4],('blue' if cc[6]=="4" else "white")  ))
+        if len(restext)>0:
+            name+= Colored(' [%s]'%restext, 'red')
         
         
         
@@ -5337,7 +5368,7 @@ def playstreamhd(url):
         iframdata=getUrl(iframe[0],headers=headers)
         iframe=iframe[0]
     else:
-        if 'hdcast' in videoframedata:
+        if 'hdcast' in videoframedata or 'static.bro' in videoframedata:
             return playHDCast(videframe, "http://streamhdeu.com/")
         iframdata=videoframedata
     m3ufile=re.findall('file: "(.*?)"' ,iframdata)[0]

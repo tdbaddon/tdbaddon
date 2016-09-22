@@ -129,7 +129,6 @@ class source:
         return url
 
     def get_sources(self, url, hosthdDict, hostDict, locDict):
-        control.log(">>>>>>>>>>>>>>> IWACH SOURCES %s" % (url))
         try:
             self.sources = []
             mylinks = []
@@ -205,17 +204,12 @@ class source:
     def check(self, i, headers, cookie, myhostDict, myhosthdDict):
         try:
             url = client.replaceHTMLCodes(i['url'])
-            #control.log("IWATCH Result >>> url2 >>>>>>>>>>>>>>>>>>>> %s | %s | %s" % (url, headers,cookie))
             r = client.request(url, headers=headers, cookie=cookie, output='headers')
             url = r['Refresh'].replace('0;url=','')
             host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(url.strip().lower()).netloc)[0]
-            host = host.rsplit('.', 1)[0]
-            #control.log("IWATCH Result >>> url2 >>>>>>>>>>>>>>>>>>>> %s | %s" % (url, host))
-            #print("%@@$^@ host", host, not host in hostDict)
             if not host in myhostDict:
-                if not host in myhosthdDict:
-                    #control.log("IWATCH Result >>> url2 >>>>>>>>>>>>>>>>>>>> %s | %s" % (url, host))
-                    raise Exception()
+                #control.log('movie25 HOST; %s' % host)
+                raise Exception()
             self.sources.append({'source': i['source'], 'quality': i['quality'], 'provider': 'Iwatchonline', 'url': url})
         except:
             pass

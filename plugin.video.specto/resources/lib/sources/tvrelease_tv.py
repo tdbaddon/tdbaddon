@@ -62,7 +62,7 @@ class source:
 
 
     def get_sources(self, url, hosthdDict, hostDict, locDict):
-        return
+
         try:
             self.sources = []
 
@@ -73,6 +73,7 @@ class source:
             query = self.base_link + self.search_link % urllib.quote_plus(query)
 
             result = client.request(query)
+            print result,query
 
             result = client.parseDOM(result, 'table', attrs = {'class': 'posts_table'})
 

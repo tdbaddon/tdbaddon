@@ -1,3 +1,12 @@
+[B]Version 1.1.40[/B]
+Fixed: Openload mistake
+
+
+[B]Version 1.1.39[/B]
+Fixed: xxxstreams(org)
+Changed: internal code changes
+
+
 [B]Version 1.1.38[/B]
 Added: Cloudflare support (fixes K18)
 Fixed: CzechHD

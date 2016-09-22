@@ -85,6 +85,8 @@ class tvshows:
         self.imdblist_link = 'http://www.imdb.com/list/%s/?view=detail&sort=title:asc&title_type=tv_series,mini_series&start=1'
         self.imdbwatchlist_link = 'http://www.imdb.com/user/ur%s/watchlist' % self.imdb_user
 
+        self.trakt_lang_link = 'http://api-v2launch.trakt.tv/shows/%s/translations/%s'
+
         self.genres_tab = [('Action', 'action'), ('Adventure', 'adventure'), ('Animation', 'animation'),('Biography', 'biography'),
                            ('Comedy', 'comedy'), ('Crime', 'crime'), ('Drama', 'drama'),('Family', 'family'), ('Fantasy', 'fantasy'),
                            ('History', 'history'), ('Horror', 'horror'),('Music ', 'music'), ('Musical', 'musical'), ('Mystery', 'mystery'),
@@ -1074,6 +1076,27 @@ class tvshows:
             plot = client.replaceHTMLCodes(plot)
             plot = plot.encode('utf-8')
             if not plot == '0': self.list[i].update({'plot': plot})
+
+
+
+            if not self.info_lang == 'en':
+                url = self.trakt_lang_link % (imdb, self.info_lang)
+
+                item = trakt.getTrakt(url)
+                item = json.loads(item)[0]
+
+                t = item['title']
+                if not (t == None or t == ''): title = t
+                try: title = title.encode('utf-8')
+                except: pass
+                if not title == '0': self.list[i].update({'title': title})
+
+                t = item['overview']
+                if not (t == None or t == ''): plot = t
+                try: plot = plot.encode('utf-8')
+                except: pass
+                if not plot == '0': self.list[i].update({'plot': plot})
+
 
             self.meta.append({'imdb': imdb, 'tmdb': '0', 'tvdb': tvdb, 'lang': self.lang, 'item': {'title': title, 'year': year, 'code': imdb, 'imdb': imdb, 'tmdb': '0', 'tvdb': tvdb, 'poster': poster, 'banner': banner, 'fanart': fanart, 'premiered': premiered, 'studio': studio, 'genre': genre, 'duration': duration, 'rating': rating, 'votes': votes, 'mpaa': mpaa, 'cast': cast, 'plot': plot}})
 

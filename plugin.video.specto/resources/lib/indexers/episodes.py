@@ -88,7 +88,8 @@ class seasons:
                 tmdb = tmdb.encode('utf-8')
 
                 if not tmdb == '0':
-                    url = self.tmdb_info_link % (tmdb, lang)
+                    #url = self.tmdb_info_link % (tmdb, lang)
+                    url = self.tmdb_info_link % (tmdb, 'en')
 
                     item = client.request(url, timeout='10')
                     item = json.loads(item)
@@ -131,7 +132,8 @@ class seasons:
 
             if tmdb == '0': raise Exception()
 
-            url = self.tmdb_info_link % (tmdb, lang)
+            #url = self.tmdb_info_link % (tmdb, lang)
+            url = self.tmdb_info_link % (tmdb, 'en')
 
             item = client.request(url, timeout='10')
             item = json.loads(item)
@@ -142,7 +144,8 @@ class seasons:
         try:
             if tvdb == '0': raise Exception()
 
-            tvdb_lang = re.sub('bg', 'en', lang)
+            #tvdb_lang = re.sub('bg', 'en', lang)
+            tvdb_lang = 'en'
 
             url = self.tvdb_info_link % (tvdb, tvdb_lang)
             data = urllib2.urlopen(url, timeout=30).read()

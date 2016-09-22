@@ -23,6 +23,7 @@ import re,urllib,urlparse,base64
 
 from resources.lib.libraries import cleantitle
 from resources.lib.libraries import client
+from resources.lib.libraries import control
 from resources.lib import resolvers
 
 
@@ -170,9 +171,11 @@ class source:
 
                     host = urlparse.parse_qs(urlparse.urlparse(u).query)['domain'][0]
                     host = base64.urlsafe_b64decode(host.encode('utf-8'))
-                    host = host.rsplit('.', 1)[0]
-                    host = host.strip().lower()
+                    #host = host.rsplit('.', 1)[0]
+                    #host = host.strip().lower()
                     if not host in hostDict: raise Exception()
+                    try: host = host.split('.')[0]
+                    except: pass
                     host = client.replaceHTMLCodes(host)
                     host = host.encode('utf-8')
 
