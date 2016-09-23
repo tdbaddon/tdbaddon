@@ -20,7 +20,7 @@ rtmp://rtmp.one.by/HD/1muz
 0
 
 #EXTINF:0,Capital TV 
-0
+http://ooyalahd2-f.akamaihd.net/i/globalradio01_delivery@156521/master.m3u8
 
 #EXTINF:0,Clubland
 0
@@ -29,7 +29,7 @@ rtmp://rtmp.one.by/HD/1muz
 0
 
 #EXTINF:0,CMC 
-0
+http://cmctv.ios.internapcdn.net/cmctv_vitalstream_com/live_1/CMC-Mobile/CMC-Mobile.m3u8
 
 #EXTINF:0,City
 http://nodeb.gocaster.net:1935/CGL/_definst_/mp4:TODAYFM_TEST2/live.m3u8
@@ -38,7 +38,7 @@ http://nodeb.gocaster.net:1935/CGL/_definst_/mp4:TODAYFM_TEST2/live.m3u8
 0
 
 #EXTINF:0,Deluxe Music 
-0
+http://server55.livestreamingcdn.com:1935/tulixdemo/tulixdemo/chunklist.m3u8
 
 #EXTINF:0,Djing Animation 
 http://www.djing.com/tv/a-03.m3u8
@@ -89,19 +89,22 @@ http://www.iptvsaga.com/play/tv3/0069.m3u8
 rtmp://www.electrosound.tv/public/stream
 
 #EXTINF:0,Eska Best 
-0
+http://stream.smcloud.net/tv/best/best_360p/playlist.m3u8
 
 #EXTINF:0,Eska Best HD 
 0
 
+#EXTINF:0,Eska HipHop
+http://stream.smcloud.net/live/hiphoptv/playlist.m3u8
+
 #EXTINF:0,Eska Party 
-0
+http://stream.smcloud.net/tv/eska_party/eska_party_360p/playlist.m3u8
 
 #EXTINF:0,Eska Party HD 
 0
 
 #EXTINF:0,Eska Rock 
-0
+http://stream.smcloud.net/tv/eska_rock/eska_rock_360p/playlist.m3u8
 
 #EXTINF:0,Eska Rock HD 
 0
@@ -110,7 +113,8 @@ rtmp://www.electrosound.tv/public/stream
 0
 
 #EXTINF:0,Heart TV 
-0
+http://ooyalahd2-f.akamaihd.net/i/globalradio02_delivery@156522/master.m3u8
+
 #EXTINF:0,Hit TV
 rtmp://tst.es.flash.glb.ipercast.net/tst.es-live/live
 
@@ -148,7 +152,7 @@ http://144.76.2.213:1935/live/livestream/playlist.m3u8
 0
 
 #EXTINF:0,MusicVoxTV 
-0
+http://s4w.deb1.scdn.smcloud.net/live/_definst_/vox2/chunklist_w1817328956.m3u8
 
 #EXTINF:0,MusicVoxTV HD
 0
@@ -157,10 +161,13 @@ http://144.76.2.213:1935/live/livestream/playlist.m3u8
 0
 
 #EXTINF:0,NR1 
-0
+http://mn-l.mncdn.com/birnumaramedya_live/nr1tv.sdp/playlist.m3u8
 
 #EXTINF:0,NRJ HITS
 rtsp://5.196.138.6:1935/live/nrjbelgique_360p
+
+#EXTINF:0,NRJ HITS
+rtsp://5.196.138.6:1935/live/nrjbelgique_720p
 
 #EXTINF:1,Planet Pop 
 0

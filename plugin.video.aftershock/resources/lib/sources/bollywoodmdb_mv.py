@@ -56,7 +56,6 @@ class source:
         for movie in movies:
             try :
                 title = client.parseDOM(movie, "a", attrs={"class":"movie-link"})[0]
-                print title
                 title = re.compile('<strong>(.+?)</strong>').findall(title)[0]
                 title = client.replaceHTMLCodes(title)
                 try : title = title.encode('utf-8')

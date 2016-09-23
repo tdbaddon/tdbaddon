@@ -1,6 +1,7 @@
 import util, search as db
 import threading, time, json
 import xbmc, xbmcplugin
+import urllib, urllib2
 
 client_id="HQWCL2WKYEAM4" #realdebrid clientid
 
@@ -38,20 +39,33 @@ def verifyThread(authData):
             break
             
         # all good to carry on lets check auth
-        util.logError("https://api.real-debrid.com/oauth/v2/device/credentials?client_id="+client_id+"&code="+authJSON['device_code'])
         credentials=util.getURL("https://api.real-debrid.com/oauth/v2/device/credentials?client_id="+client_id+"&code="+authJSON['device_code'])
-        try:
-            if "error" in credentials:
-                #may need to jazz up a bit, but for now its ok
+        
+        
+        url = 'https://api.real-debrid.com/oauth/v2/device/credentials'
+        values = {'client_id' : client_id,
+                  'code' : authJSON['device_code'] }
+
+        data = urllib.urlencode(values)
+        req = urllib2.Request(url, data)
+        response = urllib2.urlopen(req)
+        the_page = response.read()
+        util.logError(the_page)
+        
+        if credentials!=False:
+            try:
+                if "error" in credentials:
+                    #may need to jazz up a bit, but for now its ok
+                    pass
+                else:
+                    credJSON=json.loads(credentials)
+                    #store credentials in the database
+                    db.storeDebrid(credJSON['client_id'], credJSON['client_secret'], authJSON['device_code'])
+                    authorised=True
+            except:
                 pass
-            else:
-                credJSON=json.loads(credentials)
-                #store credentials in the database
-                db.storeDebrid(credJSON['client_id'], credJSON['client_secret'], authJSON['device_code'])
-                authorised=True
-        except:
-            pass
-            
+        else:
+            util.logError(":(")
     # check how we exited loop
     if authorised==True:
         util.progrssStop(authDialog)

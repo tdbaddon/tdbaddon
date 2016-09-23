@@ -23,6 +23,7 @@ import datetime, base64, os, json
 from resources.lib.libraries import client
 from resources.lib.libraries import control
 from resources.lib.libraries import logger
+from resources.lib.libraries import cleantitle
 
 class source:
     def __init__(self):
@@ -32,7 +33,7 @@ class source:
 
     def getLiveSource(self):
         try :
-            logger.debug(control.setting('livelocal'))
+            logger.debug('json local : %s' % control.setting('livelocal'))
             if control.setting('livelocal') == 'true':
                 dataPath = control.dataPath
                 filename = os.path.join(dataPath, 'livestreams_wip.json')
@@ -50,7 +51,8 @@ class source:
             for channel in channelNames:
                 channelObj = channels[channel]
                 if not channelObj['enabled'] == 'false':
-                    self.list.append({'name':channel, 'poster':channelObj['iconimage'],'url':channelObj['channelUrl'],'provider':'json','direct':True})
+                    channelName = cleantitle.live(channel).title()
+                    self.list.append({'name':channelName, 'poster':channelObj['iconimage'],'url':channelObj['channelUrl'],'provider':'json','source':'json','direct':True})
             return self.list
         except:
             pass

@@ -125,7 +125,7 @@ rtmp://live.cretetv.gr/cretetv/myStream live=1 timeout=10
 http://stream.maktv.gr/i/live_1@332903/master.m3u8
 
 #EXTINF:0,Mad Music Hits
-0
+http://eradio.networksolutions.com.cy:1935/live/livestream/playlist.m3u8
 
 #EXTINF:0,Mad TV 
 rtmp://144.76.2.213/live/livestream

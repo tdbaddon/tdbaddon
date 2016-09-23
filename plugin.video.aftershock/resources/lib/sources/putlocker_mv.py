@@ -73,7 +73,6 @@ class source:
 
                 result, headers, content, cookie = client.request(url, output='extended')
 
-            print cookie
             auth = re.findall('__utmx=(.+)', cookie)[0].split(';')[0]
             auth = 'Bearer %s' % urllib.unquote_plus(auth)
 
@@ -115,8 +114,6 @@ class source:
             logger.debug('%s SOURCES [%s]' % (__name__,sources))
             return sources
         except:
-            import traceback
-            traceback.print_exc()
             return sources
 
     def resolve(self, url, resolverList=None):

@@ -56,8 +56,6 @@ class source:
                     url = self._info(i, year)
                     if not url == None: return url
             except:
-                import traceback
-                traceback.print_exc()
                 pass
 
         except:

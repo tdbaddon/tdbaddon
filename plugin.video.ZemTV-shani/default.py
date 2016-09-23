@@ -62,6 +62,8 @@ S365COOKIEFILE=os.path.join(profile_path, S365COOKIEFILE)
 YPLoginFile='YpCookieFile.lwp'
 YPLoginFile=os.path.join(profile_path, YPLoginFile)
 
+HDCASTCookie='HDCastCookieFile.lwp'
+HDCASTCookie=os.path.join(profile_path, HDCASTCookie)
 
  
 mainurl=base64.b64decode('aHR0cDovL3d3dy56ZW10di5jb20vY2F0ZWdvcnkvcGFraXN0YW5pLw==')
@@ -1207,12 +1209,12 @@ def playInfinite(url):
         
 def playHDCast(url, mainref):
     try:
-
+        cookieJar=getHDCASTCookieJar()
         firstframe=url
         pageURl=mainref
         agent='Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36'
         headers=[('Referer',pageURl),('User-Agent',agent)]                       
-        result = getUrl(firstframe, headers=headers)
+        result = getUrl(firstframe, headers=headers, cookieJar=cookieJar)
 
         regid='<script.*?id=[\'"](.*?)[\'"].*?width=[\'"]?(.*?)[\'"]?\;.*?height=[\'"]?(.*?)[\'"]?\;.*?src=[\'"](.*?)[\'"]'
         id,wd,ht, jsurl=re.findall(regid,result)[0]
@@ -1220,7 +1222,7 @@ def playHDCast(url, mainref):
         headers=[('Referer',firstframe),('User-Agent',agent)]                       
 
 
-        jsresult = getUrl(jsurl, headers=headers)
+        jsresult = getUrl(jsurl, headers=headers, cookieJar=cookieJar)
         broadcast=False
         if not 'bro.adca' in jsresult:
             regjs='src=[\'"](.*?)[\'"]'
@@ -1232,26 +1234,74 @@ def playHDCast(url, mainref):
             embedUrl=re.findall(regjs,jsresult)[0]
             embedUrl='http://bro.adca.st'+embedUrl+id+'&width='+wd+'&height='+ht
         headers=[('Referer',firstframe),('User-Agent',agent)]                             
-        result=getUrl(embedUrl, headers=headers)
+        result=getUrl(embedUrl, headers=headers, cookieJar=cookieJar)
         if not broadcast:# in result:
+            if 'blockscript=' in result: #ok captcha here
+                try:
+                    xval=re.findall('name="x" value="(.*?)"',html)[0]
+                    urlval=re.findall('name="url" value="(.*?)"',html)[0]
+                    blocscriptval=re.findall('name="blockscript" value="(.*?)"',html)[0]
+                    imageurl==re.findall('<td nowrap><img src="(.*?)"',html)[0]                
+
+                    post={'blockscript':blocscriptval, 'x':xval, 'url':urlval,'val':getHDCastCaptcha(imageurl,cookieJar,embedUrl )}
+                    post = urllib.urlencode(post)
+                    headers=[('Referer',embedUrl),('User-Agent',agent)]                             
+                    result=getUrl(embedUrl,post=post, headers=headers, cookieJar=cookieJar)
+                except: 
+                    print 'error in catpcha'
+                    traceback.print_exc(file=sys.stdout)
             streamurl = re.findall('<div id=[\'"]player.*\s*<iframe.*?src=(.*?)\s',result)
             if len(streamurl)>0:
                 headers=[('Referer',embedUrl),('User-Agent',agent)]                             
-                html=getUrl(streamurl[0].replace('&amp;','&'),headers=headers)
+                html=getUrl(streamurl[0].replace('&amp;','&'),headers=headers, cookieJar=cookieJar)
                 streamurl = re.findall('file:["\'](.*?)["\']',html)[0]
+                cookieJar.save (HDCASTCookie,ignore_discard=True)
                 return PlayGen(base64.b64encode(streamurl+'|User-Agent='+agent+'&Referer='+embedUrl))
         else:
             headers=[('Referer',embedUrl),('User-Agent',agent),('X-Requested-With','XMLHttpRequest')]                             
-            token=getUrl('http://bro.adca.st/getToken.php',headers=headers )
+            token=getUrl('http://bro.adca.st/getToken.php',headers=headers, cookieJar=cookieJar )
             token=re.findall('"token":"(.*?)"',token)[0]
             streamurl = re.findall('curl = "(.*?)"',result)[0]
             streamurl=base64.b64decode(streamurl)
+            cookieJar.save (HDCASTCookie,ignore_discard=True)
             return PlayGen(base64.b64encode(streamurl+token+'|User-Agent='+agent+'&Referer='+embedUrl))
 
     except:
         traceback.print_exc(file=sys.stdout)
         return False
-                
+class InputWindow(xbmcgui.WindowDialog):
+    def __init__(self, *args, **kwargs):
+        self.cptloc = kwargs.get('captcha')
+        self.img = xbmcgui.ControlImage(335,30,424,50,self.cptloc)
+        self.addControl(self.img)
+        self.kbd = xbmc.Keyboard()
+
+    def get(self):
+        self.show()
+        time.sleep(3)        
+        self.kbd.doModal()
+        if (self.kbd.isConfirmed()):
+            text = self.kbd.getText()
+            self.close()
+            return text
+        self.close()
+        return False        
+def getHDCastCaptcha(imageurl,cookieJar, logonpaged):
+    retcaptcha=""
+    if 1==1:
+        local_captcha = os.path.join(profile_path, "captchaC.img" )
+        localFile = open(local_captcha, "wb")
+        localFile.write(getUrl(imageurl,cookieJar,headers=[('Referer',logonpaged),('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36')]))
+        localFile.close()
+        cap="";#cap=parseCaptcha(local_captcha)
+        #if originalcaptcha:
+        #    cap=parseCaptcha(local_captcha)
+        #print 'parsed cap',cap
+        if cap=="":
+            solver = InputWindow(captcha=local_captcha)
+            retcaptcha = solver.get()
+    return retcaptcha
+    
 def playHDFree(url):
     try:
 
@@ -1653,6 +1703,19 @@ def getZemCookieJar(updatedUName=False):
         cookieJar = cookielib.LWPCookieJar()
         if not updatedUName:
             cookieJar.load(ZEMCOOKIEFILE,ignore_discard=True)
+    except: 
+        cookieJar=None
+
+    if not cookieJar:
+        cookieJar = cookielib.LWPCookieJar()
+    return cookieJar
+    
+def getHDCASTCookieJar(updatedUName=False):
+    cookieJar=None
+    try:
+        cookieJar = cookielib.LWPCookieJar()
+        if not updatedUName:
+            cookieJar.load(HDCASTCookie,ignore_discard=True)
     except: 
         cookieJar=None
 
@@ -3275,6 +3338,7 @@ def AddChannelsFromOthers(cctype,eboundMatches=[],progress=None):
     isIpBoxff=selfAddon.getSetting( "isIpBoxff" )
     #isIpBoxff="true"
     isYPgenOff= selfAddon.getSetting( "isYPOff" )
+    isYPgenOff="true"
     isUKTVOff=selfAddon.getSetting( "isUKTVOff" )
 
     main_ch='(<section_name>Pakistani<\/section_name>.*?<\/section>)'

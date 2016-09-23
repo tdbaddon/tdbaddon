@@ -180,10 +180,17 @@ ver 0.52:
 	- fixed NFL archive
 	
 ver 0.53:
-	- fixed stream
+	-fixed streams
 	
 ver 0.54:
-	- fixed stream
+	-fixed streams
 	
 ver 0.55:
-	- fixed streams
+	-fixed streams
+	
+ver 0.56:
+	-fixed streams
+
+ver 0.57:
+	- fixed some streams
+	- added sopcast/acestream support (plexus has to be installed)

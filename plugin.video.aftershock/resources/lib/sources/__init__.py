@@ -152,10 +152,18 @@ class sources:
             if imdb == '0': imdb = '0000000'
             imdb = 'tt' + re.sub('[^0-9]', '', str(imdb))
 
-            content = 'movie' if tvshowtitle == None else 'episode'
+            if title == None and tvshowtitle == None :
+                content = 'live'
+            else :
+                content = 'movie' if tvshowtitle == None else 'episode'
 
             self.sources = self.getSources(name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date, meta)
-            #if self.sources == []: raise Exception()
+
+            try :
+                if content == 'live':
+                    meta = self.sources[0]['meta']
+            except:
+                pass
 
             self.sources = self.sourcesFilter()
 
@@ -297,6 +305,7 @@ class sources:
 
     def getSources(self, name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date, meta=None):
         sourceDict = []
+        channelName = name
         for package, name, is_pkg in pkgutil.walk_packages(__path__): sourceDict.append((name, is_pkg))
         sourceDict = [i[0] for i in sourceDict if i[1] == False]
 
@@ -335,7 +344,7 @@ class sources:
 
             for source in sourceDict: threads.append(workers.Thread(self.getEpisodeSource, title, year, imdb, tvdb, season, episode, tvshowtitle, date, re.sub('_mv_tv$|_mv$|_tv$', '', source), __import__(source, globals(), locals(), [], -1).source(), meta))
         elif content == 'live':
-            for source in sourceDict:threads.append(workers.Thread(self.getLiveSource,re.sub('_live$', '', source), __import__(source, globals(), locals(), [], -1).source()))
+            for source in sourceDict:threads.append(workers.Thread(self.getLiveSource,channelName, re.sub('_live$', '', source), __import__(source, globals(), locals(), [], -1).source()))
 
 
         try: timeout = int(control.setting('sources_timeout_40'))
@@ -514,36 +523,83 @@ class sources:
             pass
 
 
-    def getLiveSource(self, source, call):
+    def getLiveSource(self, name, source, call):
         try:
             dbcon = database.connect(self.sourceFile)
             dbcur = dbcon.cursor()
-            dbcur.execute("CREATE TABLE IF NOT EXISTS rel_src (""source TEXT, ""imdb_id TEXT, ""season TEXT, ""episode TEXT, ""hosts TEXT, ""added TEXT, ""UNIQUE(source, imdb_id, season, episode)"");")
+            dbcur.execute("CREATE TABLE IF NOT EXISTS rel_src (""source TEXT, ""imdb_id TEXT, ""season TEXT, ""episode TEXT, ""hosts TEXT, ""added TEXT, ""UNIQUE(source, imdb_id, season, episode, hosts)"");")
         except:
             pass
 
         try:
             sources = []
-            dbcur.execute("SELECT * FROM rel_src WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, '', '', ''))
-            match = dbcur.fetchone()
-            t1 = int(re.sub('[^0-9]', '', str(match[5])))
-            t2 = int(datetime.datetime.now().strftime("%Y%m%d%H%M"))
-            update = abs(t2 - t1) > 300
+            dbcur.execute("SELECT * FROM rel_src WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, name, 'live', ''))
+            for row in dbcur:
+                match = row
+                t1 = int(re.sub('[^0-9]', '', str(match[5])))
+                t2 = int(datetime.datetime.now().strftime("%Y%m%d%H%M"))
+                update = abs(t2 - t1) > 300
+                if update == False:
+                    logger.debug('Fetched sources from cache for [%s]: %s'% (name, source))
+                    sources = json.loads(match[4])
+                    sources['content'] = 'live'
+                    poster = sources['poster']
+                    meta = {"poster":poster, "iconImage":poster, 'thumb': poster}
+                    sources['meta'] = json.dumps(meta)
+                    self.sources.append(sources)
+                else:
+                    raise Exception()
             if update == False:
-                sources = json.loads(match[4])
-                return self.sources.extend(sources)
+                return self.sources
         except:
+            logger.debug('Source from cache not found for [%s]: %s'% (name, source))
             pass
         try:
             sources = []
-            sources = call.getLiveSource()
+            try:
+                # check if the source site needs to be refreshed
+                dbcur.execute("SELECT * FROM rel_src WHERE source = '%s' AND season = '%s' AND episode = '%s'" % (source, 'live', ''))
+                match = dbcur.fetchone()
+                t1 = int(re.sub('[^0-9]', '', str(match[5])))
+                t2 = int(datetime.datetime.now().strftime("%Y%m%d%H%M"))
+                update = abs(t2 - t1) > 300
+            except:
+                update = True
+            if update == False:
+                sources == None
+                logger.debug('No Update required for : %s' % source)
+            else :
+               logger.debug('Fetching Live source : %s' % source)
+               sources = call.getLiveSource()
+               dbcur.execute("DELETE FROM rel_src WHERE source = '%s' AND season = '%s' AND episode = '%s'" % (source, 'live', ''))
+               dbcon.commit()
+
             if sources == None:
                 raise Exception()
                 sources = []
-            self.sources.extend(sources)
-            dbcur.execute("DELETE FROM rel_src WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, '', '', ''))
-            dbcur.execute("INSERT INTO rel_src Values (?, ?, ?, ?, ?, ?)", (source, '', '', '', json.dumps(sources), datetime.datetime.now().strftime("%Y-%m-%d %H:%M")))
-            dbcon.commit()
+
+            for item in sources:
+                item['name'] = cleantitle.live(item['name'])
+                dbcur.execute("INSERT INTO rel_src Values (?, ?, ?, ?, ?, ?)", (source, item['name'], 'live', '', json.dumps(item), datetime.datetime.now().strftime("%Y-%m-%d %H:%M")))
+                dbcon.commit()
+
+            try:
+                sources = []
+                if name == None or name == '' :
+                    dbcur.execute("SELECT * FROM rel_src WHERE source = '%s' AND season = '%s' AND episode = '%s'" % (source, 'live', ''))
+                    for row in dbcur:
+                        match = row[4]
+                        self.sources.append(json.loads(match))
+                else :
+                    dbcur.execute("SELECT * FROM rel_src WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, name, 'live', ''))
+                    for row in dbcur:
+                        match = row
+                        sources = json.loads(match[4])
+                        sources['content'] = 'live'
+                        self.sources.append(sources)
+                return self.sources
+            except:
+                pass
         except:
             pass
 
@@ -554,7 +610,7 @@ class sources:
             labels = [i['label'] for i in sources]
 
             select = control.selectDialog(labels)
-            #if select == 0: return self.sourcesDirect()
+            if select == 0: return self.sourcesDirect()
             if select == -1: return 'close://'
 
             items = [self.sources[select-1]]
@@ -687,6 +743,8 @@ class sources:
 
         filter = []
         filter += [i for i in self.sources if i['direct'] == True]
+        try:filter += [i for i in self.sources if i['content'] == 'live']
+        except:pass
         for host in self.hostDict : filter += [i for i in self.sources if i['direct'] == False and i['source'] in host]
         self.sources = filter
 
@@ -751,7 +809,6 @@ class sources:
             self.url = url
             return url
         except:
-            client.printException('sources().sourcesResolve()')
             return
 
     def getResolverList(self):

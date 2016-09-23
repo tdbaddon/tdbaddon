@@ -28,6 +28,13 @@ def tv(title):
     title = re.sub('\n|\s(|[(])(UK|US|AU|\d{4})(|[)])$|\s(vs|v[.])\s|(:|;|-|"|,|\'|\_|\.|\?)|\s', '', title).lower()
     return title
 
+def live(title):
+    title = title.upper()
+    title = re.sub('USA| US | UK| AU|APAC|EUROPE', '', title)
+    title = re.sub('CENIMA', 'CINEMA', title)
+    title = re.sub('&TV', 'AND TV', title)
+    return title
+
 def normalize(title):
     try:
         try: return title.decode('ascii').encode("utf-8")

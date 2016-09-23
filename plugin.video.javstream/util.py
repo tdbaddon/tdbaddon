@@ -11,7 +11,7 @@ import search
 sysarg=str(sys.argv[1])
 ADDON_ID='plugin.video.javstream'
 addon = xbmcaddon.Addon(id=ADDON_ID)
-ADDON_VER="0.91.7"
+ADDON_VER="0.91.9"
 
 hdr = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11',
        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
@@ -604,6 +604,7 @@ def huntVideo(params):
     items=[]
     javpophd=[]
     javpopsd=[]
+    jsc=[]
     found=[]
     search=str(params["extras"])
     p=re.compile("(\[[A-Za-z0-9-_\ \.]+\])")  
@@ -620,7 +621,7 @@ def huntVideo(params):
     
     huntSites=[]
     
-    udvdCode=dvdCode.replace("-", "%20")
+    udvdCode=dvdCode.replace("-", "%20").replace("%22", "")
     
     search=search.split(",")
     titles=[]
@@ -630,6 +631,7 @@ def huntVideo(params):
                 alert("To use WuShare you must enter a Username and Password to a valid premium account.");
             else:
                 titles.append("wushare")"""
+            titles.append("javpop")
             huntSites.append("http://javpop.com/search/"+dvdCode.replace("%22", "")+"/feed/rss2")
         
         if xbmcplugin.getSetting(int(sysarg), searching+"sexloading")=="true":
@@ -712,6 +714,8 @@ def huntVideo(params):
             huntSites.append("http://javshow.net/sitemap.xml")
         if xbmcplugin.getSetting(int(sysarg), searching+"eropoi")=="true":
             titles.append("eropoi")
+            titles.append("eropoi")
+            titles.append("eropoi")
             huntSites.append("http://eropoi.com/post-sitemap.xml")
             huntSites.append("http://eropoi.com/post-sitemap.xml<javpage=2")
             huntSites.append("http://eropoi.com/post-sitemap.xml<javpage=3")
@@ -744,13 +748,16 @@ def huntVideo(params):
             huntSites.append("http://javsex.net/?s="+dvdCode+"&feed=rss2")
         if xbmcplugin.getSetting(int(sysarg), searching+"jpidols")=="true":
             titles.append("jpidols")
+            titles.append("jpidols")
             huntSites.append("http://jpidols.tv/?s="+dvdCode+"&feed=rss2")
             huntSites.append("http://jpidols.tv/?s="+udvdCode+"&feed=rss2")
         if xbmcplugin.getSetting(int(sysarg), searching+"javfree")=="true":
             titles.append("javhdfree")
+            titles.append("javhdfree")
             huntSites.append("http://javhdfree.net/?s="+dvdCode+"&feed=rss2")
             huntSites.append("http://javhdfree.net/?s="+udvdCode+"&feed=rss2")
         if xbmcplugin.getSetting(int(sysarg), searching+"dojav69")=="true":
+            titles.append("dojav69")
             titles.append("dojav69")
             huntSites.append("http://doojav69.com/?s="+dvdCode+"&feed=rss2")
             huntSites.append("http://doojav69.com//?s="+udvdCode+"&feed=rss2")
@@ -817,7 +824,9 @@ def huntVideo(params):
         if xbmcplugin.getSetting(int(sysarg), searching+"koleksijav")=="true":
             titles.append("koleksijav")
             huntSites.append("http://javkonyol.blogspot.com/feeds/posts/default/?alt=rss&q="+dvdCode)
-            
+        if xbmcplugin.getSetting(int(sysarg), searching+"javstreamclub")=="true":
+            titles.append("javstreamclub")
+            huntSites.append("http://javstream.club/search/"+dvdCode+"/feed/rss2")    
     huntSites=unique(huntSites)  
     updateString=" ".join(titles)
     # to be added in the future
@@ -865,8 +874,15 @@ def huntVideo(params):
     
     statusDialog=progressStart("Searching for streams", "Searching: "+str(updateTotal)+" out of "+str(len(huntSites))+" sites searched, please wait...")
     progressUpdate(statusDialog, updateCounter*updateBy, "Searching: "+str(updateTotal)+" out of "+str(len(huntSites))+" sites searched, please wait...")
+
     
-    threads=[threading.Thread(target=whatPlayer, args=(url, re.search(p, url).group(2), dvdCode,)) for url in huntSites]
+    threads=[]
+    counter=0
+    for url in huntSites:
+        threads.append(threading.Thread(target=whatPlayer, args=(url, titles[counter], dvdCode,)) )
+        counter=counter+1
+    
+    #threads=[threading.Thread(target=whatPlayer, args=(url, titles, dvdCode,)) for url in huntSites]
     for thread in threads:
         thread.start()
 
@@ -912,6 +928,19 @@ def huntVideo(params):
                     "extras":url["source"],
                     "extras2":params["name"]
                 })
+            elif url["site"]=="javstreamclub":
+                jsc.append({
+                    "title": " | [B]"+url["site"]+"[/B] | "+url["source"],
+                    "url": url["url"], 
+                    "mode":6, 
+                    "poster":params["poster"],
+                    "icon":params["poster"], 
+                    "fanart":params["fanart"],
+                    "type":"", 
+                    "plot":"",
+                    "extras":url["source"],
+                    "extras2":params["name"]
+                })
             else:
                 items.append({
                     "title": " | [B]"+url["site"]+"[/B] | "+url["source"],
@@ -939,7 +968,7 @@ def huntVideo(params):
                 return False
         
         counter=1
-        items=javpophd+javpopsd+items
+        items=javpophd+javpopsd+jsc+items
         for item in items:
             if "javpop" in item['title']:
                 item['title']="[COLOR orange]"+str(counter).zfill(2)+item['title']+"[/COLOR]"
@@ -1358,8 +1387,6 @@ def decodeOpenLoad(html):
     from HTMLParser import HTMLParser
     from jjdecode import JJDecoder
     
-    hiddenurl = HTMLParser().unescape(re.search("</span>[^>]+>([^<]+)</sp.*?streamurl", html, re.DOTALL | re.IGNORECASE).group(1))
-    
     jjstring = re.compile('a="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(html)[1]
     shiftint =  re.compile(r";\}\((\d+)\)", re.DOTALL | re.IGNORECASE).findall(html)[1]
     
@@ -1385,6 +1412,9 @@ def decodeOpenLoad(html):
     jjstring = JJDecoder(jjstring).decode()
     
     magicnumber = re.compile(r"charCodeAt\(\d+?\)\s*?\+\s*?(\d+?)\)", re.DOTALL | re.IGNORECASE).findall(jjstring)[0]
+    hiddenid = re.compile(r'=\s*?\$\("#([^"]+)"', re.DOTALL | re.IGNORECASE).findall(jjstring)[0]
+   
+    hiddenurl = HTMLParser().unescape(re.compile(r'<span id="'+hiddenid+'">([^<]+)</span', re.DOTALL | re.IGNORECASE).findall(html)[0])
     
     s = []
     for idx, i in enumerate(hiddenurl):
@@ -1403,14 +1433,42 @@ def decodeOpenLoad(html):
     
     req = urllib2.Request(dtext,None,headers)
     res = urllib2.urlopen(req)
-    videourl = res.geturl() 
+    videourl = res.geturl()
     res.close()
-    if 'pigeons.mp4' in videourl.lower():
-        return
+    
+    #doesnt work
+    filename = re.compile('tion" content="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(html)[0]    
+    filename = urllib.quote_plus(cleanse_title(filename))
+
+    if filename in videourl:
+        return videourl
     else:
         return videourl
 
-
+def cleanse_title(text):
+    def fixup(m):
+        text = m.group(0)
+        if text[:2] == "&#":
+            # character reference
+            try:
+                if text[:3] == "&#x":
+                    return unichr(int(text[3:-1], 16))
+                else:
+                    return unichr(int(text[2:-1]))
+            except ValueError:
+                pass
+        else:
+            # named entity
+            try:
+                text = unichr(htmlentitydefs.name2codepoint[text[1:-1]])
+            except KeyError:
+                pass
+        return text
+    
+    if isinstance(text, str):
+        try: text = text.decode('utf-8')
+        except: pass
+    return re.sub("&#?\w+;", fixup, text.strip())   
 
 def decode(encoded):
     for octc in (c for c in re.findall(r'\\(\d{2,3})', encoded)):

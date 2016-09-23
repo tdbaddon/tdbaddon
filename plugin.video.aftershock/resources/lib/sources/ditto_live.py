@@ -21,6 +21,7 @@
 
 import json, urlparse, re, urllib
 from resources.lib.libraries import client
+from resources.lib.libraries import cleantitle
 from resources.lib.libraries import logger
 from resources.lib.libraries import pyaes
 
@@ -47,10 +48,13 @@ class source:
             channels = re.compile('<option value="(\d+)">(.+?)</option>').findall(result)
 
             for logo, channel in channels:
-                channelUrl = self.channel_link % urllib.quote_plus(channel).replace('+','-')
+                channelUrl = channel.replace('&', 'and-')
+                channel = cleantitle.live(channel)
+                channel = channel.title()
+                channelUrl = self.channel_link % urllib.quote_plus(channelUrl).replace('+','-')
                 channelUrl = channelUrl.lower()
                 poster = self.poster_link % str(logo)
-                self.list.append({'name':client.replaceHTMLCodes(channel), 'poster':poster,'url':channelUrl,'provider':'ditto','direct':False, 'quality':'HD'})
+                self.list.append({'name':client.replaceHTMLCodes(channel), 'poster':poster,'url':channelUrl,'provider':'ditto','source':'ditto','direct':False, 'quality':'HD'})
             return self.list
         except:
             pass

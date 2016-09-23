@@ -20,7 +20,7 @@
 
 
 import datetime, base64, hashlib, re, urllib, urlparse, json
-from resources.lib.libraries import net
+#from resources.lib.libraries import net
 from resources.lib.libraries import client
 from resources.lib.libraries import cleantitle
 from resources.lib.libraries import logger
@@ -77,10 +77,8 @@ class source:
             filter = []
             for channel in self.channels.keys() : filter += [i for i in channellist if cleantitle.movie(i[1]) == channel]
             channellist = filter
-            print channellist
             for id, name,thumbnail,httpurl,rtmpurl,cat in channellist:
-                self.list.append({'name':name, 'poster':self.channels[cleantitle.movie(name)],'url':id,'provider':'uktvnow','direct':False})
-            print self.list
+                self.list.append({'name':name, 'poster':self.channels[cleantitle.movie(name)],'url':id,'provider':'uktvnow','source':'uktvnow','direct':False})
             return self.list
         except :
             return self.list
@@ -107,7 +105,7 @@ class source:
                      'Accept-Encoding' : 'gzip',
                      'app-token':playlistToken}
             post = urllib.urlencode({'useragent':userAgent,
-                                     'username':self.username, 'channel_id':url})
+                                     'username':self.username, 'channel_id':url, 'version':'5.7'})
 
             result = client.source(self.token_link+self.valid_link, post=post, headers=headers, compression=True)
             result=re.compile('"channel_name":"(.+?)","img":".+?","http_stream":"(.+?)","rtmp_stream":"(.+?)"').findall(result)
@@ -119,6 +117,4 @@ class source:
             logger.debug('%s RESOLVED URL [%s]' % (__name__, url))
             return url
         except :
-            import traceback
-            traceback.print_exc()
             return False

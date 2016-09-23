@@ -40,7 +40,8 @@
 		<setting id="yodesi" type="bool" label="YoDesi" default="true"/>
 		<setting id="desirulez" type="bool" label="DesiRulez" default="true" />
 		<setting id="json" type="bool" label="json" visible="false" default="true" />
-		<setting id="uktvnow" type="bool" label="UKTVNow" visible="false" default="true" />
+		<setting id="uktvnow" type="bool" label="UKTVNow" visible="false" default="false" />
+		<setting id="dynns" type="bool" label="Dynns" visible="false" default="true" />
 	</category>
 
 	<category label="30910">

@@ -1,3 +1,5 @@
+[B]Version 5.4.3[/B]
+YP removed as very limited channels available
 [B]Version 5.4.2[/B]
 sports365
 [B]Version 5.4.1[/B]

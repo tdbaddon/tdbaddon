@@ -21,9 +21,11 @@
 import sys,urllib, json
 
 from resources.lib.libraries import control
+from resources.lib.libraries import client
 from resources.lib.libraries import views
 from resources.lib.libraries import cache
 from resources.lib.sources import sources
+from resources.lib.libraries import cleantitle
 
 class channels:
     def __init__(self):
@@ -45,10 +47,15 @@ class channels:
             date=None
             meta=None
             sourceList = cache.get(sources().getSources, 2, name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date, meta)
+
+            sourceList = dict((cleantitle.tv(item['name']),item) for item in sourceList).values()
+            #sourceList = {cleantitle.tv(item['name']):item for item in sourceList}.values()
             self.list.extend(sourceList)
             self.list = sorted(self.list, key=lambda k: k['name'])
+
             self.channelDirectory(self.list)
         except :
+            client.printException('channels.get()')
             pass
 
     def channelDirectory(self, items):
@@ -82,7 +89,7 @@ class channels:
                               "source":provider, "meta":json.dumps(meta)}
                     syssource = urllib.quote_plus(json.dumps([source]))
 
-                    url = 'action=playItem&content=%s&name=%s&source=%s' % (content, sysname, syssource)
+                    url = 'action=play&content=%s&name=%s&url=direct://' % (content, sysname)
                     url = '%s?%s' % (sysaddon, url)
 
                 item = control.item(label=label, iconImage=poster, thumbnailImage=poster)
@@ -94,7 +101,7 @@ class channels:
                     item.setProperty('Fanart_Image', addonFanart)
 
                 item.setProperty('Video', 'true')
-                item.setProperty("IsPlayable", "true")
+                item.setProperty("IsPlayable", "false")
                 item.addContextMenuItems([], replaceItems=True)
                 control.addItem(handle=int(sys.argv[1]), url=url, listitem=item, isFolder=False)
             except:

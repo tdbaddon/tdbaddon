@@ -40,7 +40,6 @@ class player(xbmc.Player):
         else:
             poster, thumb, meta = self.getLibraryMeta(meta)
 
-        logger.debug(' meta %s' % (meta))
         if not type(url) == list:
             url = [url]
 

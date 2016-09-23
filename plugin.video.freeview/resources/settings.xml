@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+
+	<category label="General">
+		<setting id="list_all" type="bool" label="List All Possible Sources" default="false"/>
+	</category>
+	<category label="Preferred Sources">
+		<setting id="four_music" type="labelenum" label="4Music" values="Direct|TVPlayer|Off" default="Direct" />
+		<setting id="five_star" type="labelenum" label="5*" values="FilmOn|Off" default="FilmOn" />
+		<setting id="five_usa" type="labelenum" label="5USA" values="FilmOn|Off" default="FilmOn" />
+		<setting id="al_jazeera" type="labelenum" label="Al Jazeera" values="TVPlayer|FilmOn|Off" default="TVPlayer" />
+		<setting id="bbc_four" type="labelenum" label="BBC Four" values="BBC iPlayer|TVPlayer|FilmOn|Off" default="BBC iPlayer" />
+		<setting id="bbc_news" type="labelenum" label="BBC News" values="BBC iPlayer|TVPlayer|FilmOn|Off" default="BBC iPlayer" />
+		<setting id="bbc_one" type="labelenum" label="BBC One" values="BBC iPlayer|TVPlayer|FilmOn|Off" default="BBC iPlayer" />
+		<setting id="bbc_par" type="labelenum" label="BBC Parliament" values="BBC iPlayer|TVPlayer|FilmOn|Off" default="BBC iPlayer" />
+		<setting id="bbc_two" type="labelenum" label="BBC Two" values="BBC iPlayer|TVPlayer|FilmOn|Off" default="BBC iPlayer" />
+		<setting id="bloomberg" type="labelenum" label="Bloomberg" values="TVPlayer|FilmOn|Off" default="TVPlayer" />
+		<setting id="the_box" type="labelenum" label="The Box" values="Direct|TVPlayer|Off" default="Direct" />
+		<setting id="box_hits" type="labelenum" label="Box Hits" values="Direct|TVPlayer|Off" default="Direct" />
+		<setting id="box_up" type="labelenum" label="Box Upfront" values="Direct|TVPlayer|Off" default="Direct" />
+		<setting id="capital" type="labelenum" label="Capital TV" values="Direct|TVPlayer|Off" default="Direct" />
+		<setting id="cbbc" type="labelenum" label="CBBC" values="BBC iPlayer|TVPlayer|FilmOn|Off" default="BBC iPlayer" />
+		<setting id="cbeebies" type="labelenum" label="CBeebies" values="BBC iPlayer|TVPlayer|FilmOn|Off" default="BBC iPlayer" />
+		<setting id="cbs_a" type="labelenum" label="CBS Action" values="FilmOn|Off" default="FilmOn" />
+		<setting id="cbs_d" type="labelenum" label="CBS Drama" values="FilmOn|Off" default="FilmOn" />
+		<setting id="cbs_r" type="labelenum" label="CBS Reality" values="FilmOn|Off" default="FilmOn" />
+		<setting id="cbs_r+1" type="labelenum" label="CBS Reality+1" values="FilmOn|Off" default="FilmOn" />
+		<setting id="channel_4" type="labelenum" label="Channel 4" values="TVPlayer|FilmOn|Off" default="TVPlayer" />
+		<setting id="channel_5" type="labelenum" label="Channel 5" values="TVPlayer|FilmOn|Off" default="TVPlayer" />
+		<setting id="channel_aka" type="labelenum" label="Channel AKA" values="Direct|TVPlayer|Off" default="Direct" />
+		<setting id="chilled" type="labelenum" label="Chilled" values="TVPlayer|Off" default="TVPlayer" />
+		<setting id="citv" type="labelenum" label="CITV" values="ITV Hub|Off" default="ITV Hub" />
+		<setting id="clubbingtv" type="labelenum" label="Clubbing TV" values="FilmOn|Off" default="FilmOn" />
+		<setting id="clubland" type="labelenum" label="Clubland" values="TVPlayer|Off" default="TVPlayer" />
+		<setting id="cnn" type="labelenum" label="CNN International" values="TVPlayer|Off" default="TVPlayer" />
+		<setting id="community" type="labelenum" label="Community Channel" values="TVPlayer|Off" default="TVPlayer" />
+		<setting id="craft_chan" type="labelenum" label="The Craft Channel" values="TVPlayer|Off" default="TVPlayer" />
+		<setting id="dave" type="labelenum" label="Dave" values="TVPlayer|Off" default="TVPlayer" />
+		<setting id="dave_ja_vu" type="labelenum" label="Dave ja vu" values="TVPlayer|Off" default="TVPlayer" />
+		<setting id="drama" type="labelenum" label="Drama" values="TVPlayer|Off" default="TVPlayer" />
+		<setting id="e4" type="labelenum" label="E4" values="FilmOn|Off" default="FilmOn" />
+		<setting id="film4" type="labelenum" label="Film4" values="FilmOn|Off" default="FilmOn" />
+		<setting id="food_net" type="labelenum" label="Food Network" values="TVPlayer|FilmOn|Off" default="TVPlayer" />
+		<setting id="food_net+1" type="labelenum" label="Food Network+1" values="TVPlayer|FilmOn|Off" default="TVPlayer" />
+		<setting id="forces_tv" type="labelenum" label="Forces TV" values="TVPlayer|Off" default="TVPlayer" />
+		<setting id="heart" type="labelenum" label="Heart TV" values="Direct|TVPlayer|Off" default="Direct" />
+		<setting id="home" type="labelenum" label="Home" values="TVPlayer|Off" default="TVPlayer" />
+		<setting id="horror_ch" type="labelenum" label="Horror Channel" values="FilmOn|Off" default="FilmOn" />
+		<setting id="itv1" type="labelenum" label="ITV1" values="ITV Hub|TVPlayer|FilmOn|Off" default="ITV Hub" />
+		<setting id="itv1+1" type="labelenum" label="ITV1+1" values="FilmOn|Off" default="FilmOn" />
+		<setting id="itv2" type="labelenum" label="ITV2" values="ITV Hub|FilmOn|Off" default="ITV Hub" />
+		<setting id="itv2+1" type="labelenum" label="ITV2+1" values="FilmOn|Off" default="FilmOn" />
+		<setting id="itv3" type="labelenum" label="ITV3" values="ITV Hub|FilmOn|Off" default="ITV Hub" />
+		<setting id="itv3+1" type="labelenum" label="ITV3+1" values="FilmOn|Off" default="FilmOn" />
+		<setting id="itv4" type="labelenum" label="ITV4" values="ITV Hub|FilmOn|Off" default="ITV Hub" />
+		<setting id="itv4+1" type="labelenum" label="ITV4+1" values="FilmOn|Off" default="FilmOn" />
+		<setting id="itvbe" type="labelenum" label="ITVBe" values="ITV Hub|FilmOn|Off" default="ITV Hub" />
+		<setting id="tjc" type="labelenum" label="The Jewllery Channel" values="Direct|TVPlayer|Off" default="Direct" />
+		<setting id="kic" type="labelenum" label="Keep It Country" values="TVPlayer|Off" default="TVPlayer" />
+		<setting id="kerrang" type="labelenum" label="Kerrang!" values="Direct|TVPlayer|Off" default="Direct" />
+		<setting id="kiss" type="labelenum" label="Kiss" values="Direct|TVPlayer|Off" default="Direct" />
+		<setting id="kix" type="labelenum" label="Kix!" values="FilmOn|Off" default="FilmOn" />
+		<setting id="london_live" type="labelenum" label="London Live" values="Direct|Off" default="Direct" />
+		<setting id="magic" type="labelenum" label="Magic" values="Direct|TVPlayer|Off" default="Direct" />
+		<setting id="more4" type="labelenum" label="More4" values="FilmOn|Off" default="FilmOn" />
+		<setting id="now" type="labelenum" label="Magic" values="Direct|TVPlayer|Off" default="Direct" />
+		<setting id="pick" type="labelenum" label="Pick" values="FilmOn|Off" default="FilmOn" />
+		<setting id="pop" type="labelenum" label="POP" values="FilmOn|Off" default="FilmOn" />
+		<setting id="quest" type="labelenum" label="QUEST" values="TVPlayer|FilmOn|Off" default="TVPlayer" />
+		<setting id="quest+1" type="labelenum" label="QUEST+1" values="TVPlayer|Off" default="TVPlayer" />
+		<setting id="qvc" type="labelenum" label="QVC" values="TVPlayer|Off" default="TVPlayer" />
+		<setting id="qvc_b" type="labelenum" label="QVC Beauty" values="TVPlayer|Off" default="TVPlayer" />
+		<setting id="qvc_e" type="labelenum" label="QVC Extra" values="TVPlayer|Off" default="TVPlayer" />
+		<setting id="qvc_p" type="labelenum" label="QVC Plus" values="TVPlayer|Off" default="TVPlayer" />
+		<setting id="qvc_s" type="labelenum" label="QVC Style" values="TVPlayer|Off" default="TVPlayer" />
+		<setting id="really" type="labelenum" label="Really" values="TVPlayer|FilmOn|Off" default="TVPlayer" />
+		<setting id="sky_news" type="labelenum" label="Sky News" values="YouTube|Off" default="YouTube" />
+		<setting id="tiny_pop" type="labelenum" label="Tiny Pop" values="FilmOn|Off" default="FilmOn" />
+		<setting id="travel" type="labelenum" label="Travel Channel" values="TVPlayer|Off" default="TVPlayer" />
+		<setting id="travel+1" type="labelenum" label="Travel Channel+1" values="TVPlayer|FilmOn|Off" default="TVPlayer" />
+		<setting id="trutv" type="labelenum" label="truTV" values="Direct|TVPlayer|FilmOn|Off" default="Direct" />
+		<setting id="yesterday" type="labelenum" label="Yesterday" values="TVPlayer|FilmOn|Off" default="TVPlayer" />
+		<setting id="yesterday+1" type="labelenum" label="Yesterday+1" values="TVPlayer|Off" default="TVPlayer" />
+	</category>
+	<category label="Regional">
+		<setting id="bbc_alba" type="labelenum" label="BBC Alba" values="BBC iPlayer|TVPlayer|Off" default="BBC iPlayer" />
+		<setting id="bbc_one_scotland" type="labelenum" label="BBC One Scotland" values="BBC iPlayer|FilmOn|Off" default="BBC iPlayer" />
+		<setting id="bbc_one_wales" type="labelenum" label="BBC One Wales" values="BBC iPlayer|FilmOn|Off" default="BBC iPlayer" />
+		<setting id="bbc_one_ni" type="labelenum" label="BBC One Northern Ireland" values="BBC iPlayer|FilmOn|Off" default="BBC iPlayer" />
+		<setting id="bbc_two_scotland" type="labelenum" label="BBC Two Scotland" values="BBC iPlayer|Off" default="BBC iPlayer" />
+		<setting id="bbc_two_wales" type="labelenum" label="BBC Two Wales" values="BBC iPlayer|Off" default="BBC iPlayer" />
+		<setting id="bbc_two_ni" type="labelenum" label="BBC Two Northern Ireland" values="BBC iPlayer|Off" default="BBC iPlayer" />
+		<setting id="s4c" type="labelenum" label="S4C" values="BBC iPlayer|TVPlayer|Off" default="BBC iPlayer" />
+	</category>
+	
+</settings>

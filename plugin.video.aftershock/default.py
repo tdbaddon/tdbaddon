@@ -187,10 +187,6 @@ elif action == 'playItem':
     from resources.lib.sources import sources
     sources().playItem(content, name, year, imdb, tvdb, source)
 
-elif action == 'playLive':
-    from resources.lib.sources import sources
-    sources().playLive(content, name, source)
-
 elif action == 'trailer':
     from resources.lib.libraries import trailer
     trailer.trailer().play(name, url)

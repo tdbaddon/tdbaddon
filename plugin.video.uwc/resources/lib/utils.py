@@ -22,7 +22,7 @@ __scriptname__ = "Ultimate Whitecream"
 __author__ = "mortael"
 __scriptid__ = "plugin.video.uwc"
 __credits__ = "mortael, Fr33m1nd, anton40, NothingGnome"
-__version__ = "1.1.40"
+__version__ = "1.1.41"
 
 import urllib
 import urllib2
@@ -815,8 +815,6 @@ def decodeOpenLoad(html):
     from HTMLParser import HTMLParser
     from jjdecode import JJDecoder
     
-    hiddenurl = HTMLParser().unescape(re.search("</span>[^>]+>([^<]+)</sp.*?streamurl", html, re.DOTALL | re.IGNORECASE).group(1))
-    
     jjstring = re.compile('a="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(html)[1]
     shiftint =  re.compile(r";\}\((\d+)\)", re.DOTALL | re.IGNORECASE).findall(html)[1]
     
@@ -842,6 +840,9 @@ def decodeOpenLoad(html):
     jjstring = JJDecoder(jjstring).decode()
     
     magicnumber = re.compile(r"charCodeAt\(\d+?\)\s*?\+\s*?(\d+?)\)", re.DOTALL | re.IGNORECASE).findall(jjstring)[0]
+    hiddenid = re.compile(r'=\s*?\$\("#([^"]+)"', re.DOTALL | re.IGNORECASE).findall(jjstring)[0]
+   
+    hiddenurl = HTMLParser().unescape(re.compile(r'<span id="'+hiddenid+'">([^<]+)</span', re.DOTALL | re.IGNORECASE).findall(html)[0])
     
     s = []
     for idx, i in enumerate(hiddenurl):

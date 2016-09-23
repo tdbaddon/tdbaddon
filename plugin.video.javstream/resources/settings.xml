@@ -25,6 +25,9 @@
        <setting type="lsep" label="50003" />
 	   <setting id="wushare_username" type="text" label="50001" />
 	   <setting id="wushare_password" type="text" option="hidden" label="50002" />
+       <setting type="lsep" label="50004" />
+       <setting type="action" label="50005" action="RunScript(plugin.video.javstream, 0, ?realdebrid=true)" />
+       <setting type="text" label="50006" enabel="false" option="hidden" />
 	</category>
 	<category label="40000">
         <setting id="40wushare" type="bool" label="40047" default="false"/>
@@ -63,6 +66,7 @@
         <setting id="40javshow" type="bool" label="40026" default="true" />
         <setting id="40javst" type="bool" label="40017" default="true"/>
         <setting id="40javstream365" type="bool" label="40032" default="true" />
+        <setting id="40javstreamclub" type="bool" label="40061" default="true" />
         <setting id="40jav-stream" type="bool" label="40014" default="true"/>
         <setting id="40javstreams" type="bool" label="40030" default="true" />
         <setting id="40javtubehd" type="bool" label="40051" default="true" />
@@ -125,6 +129,7 @@
         <setting id="41javshow" type="bool" label="40026" default="true" />
         <setting id="41javst" type="bool" label="40017" default="false"/>
         <setting id="41javstream365" type="bool" label="40032" default="true" />
+        <setting id="41javstreamclub" type="bool" label="40061" default="true" />
         <setting id="41jav-stream" type="bool" label="40014" default="true"/>
         <setting id="41javstreams" type="bool" label="40030" default="false" />
         <setting id="41javtubehd" type="bool" label="40051" default="true" />
@@ -187,6 +192,7 @@
         <setting id="42javshow" type="bool" label="40026" default="false" />
         <setting id="42javst" type="bool" label="40017" default="false"/>
         <setting id="42javstream365" type="bool" label="40032" default="false" />
+        <setting id="42javstreamclub" type="bool" label="40061" default="true" />
         <setting id="42jav-stream" type="bool" label="40014" default="false"/>
         <setting id="42javstreams" type="bool" label="40030" default="false" />
         <setting id="42javtubehd" type="bool" label="40051" default="false" />
@@ -249,6 +255,7 @@
         <setting id="43javshow" type="bool" label="40026" default="true" />
         <setting id="43javst" type="bool" label="40017" default="true"/>
         <setting id="43javstream365" type="bool" label="40032" default="true" />
+        <setting id="43javstreamclub" type="bool" label="40061" default="true" />
         <setting id="43jav-stream" type="bool" label="40014" default="true"/>
         <setting id="43javstreams" type="bool" label="40030" default="true" />
         <setting id="43javtubehd" type="bool" label="40051" default="true" />
