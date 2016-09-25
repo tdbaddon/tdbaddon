@@ -1051,7 +1051,7 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
 
 <addon id="plugin.video.fantasticc"
        name="Fantasti.cc"
-       version="2.3.32"
+       version="2.3.33"
        provider-name="xbmc-adult">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
@@ -1446,7 +1446,7 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
   </extension>
 </addon>
 
-<addon id="plugin.video.mdpubfilm" name="PubFilm" version="1.0.6" provider-name="Mucky Duck">
+<addon id="plugin.video.mdpubfilm" name="PubFilm" version="1.0.7" provider-name="Mucky Duck">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.addon.common" />
@@ -1459,7 +1459,7 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
   </extension>
   <extension point="xbmc.addon.metadata">
     <summary lang="en">Stream Movies And TV-Shows From pubfilm.com</summary>
-    <description lang="en">Stream Movies And TV-Shows From pubfilm.com</description>
+    <description lang="en">This Addon Will Delete Itself Unless You Have http://muckys.mediaportal4kodi.ml In File Manager. Stream Movies And TV-Shows From pubfilm.com</description>
 	<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon or have any affiliation with the website owners.</disclaimer>
     <platform>all</platform>
   </extension>
@@ -1938,7 +1938,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2016.09.20.2" provider-name="mrknow" >
+<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2016.09.24.1" provider-name="mrknow" >
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.requests" version="1.0.0" />
@@ -2125,7 +2125,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBTVSHOWS"
        name="TDB TV SHOWS"
-       version="1.52"
+       version="1.53"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -2646,7 +2646,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.ZemTV-shani"
        name="ZemTV.com"
-       version="5.4.3"
+       version="5.5.0"
        provider-name="shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -3154,11 +3154,16 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
-<addon id="repository.rayw1986" name="RayW1986 Repo" version="2.1.1" provider-name="RayW1986">
+<addon id="repository.rayw1986" name="RayW1986 Repo" version="2.2.0" provider-name="RayW1986">
 	<extension point="xbmc.addon.repository" name="RayW1986 Repository">
 		<info compressed="false">https://offshoregit.com/rayw1986/rayw1986-repo/addons.xml</info>
 		<checksum>https://offshoregit.com/rayw1986/rayw1986-repo/addons.xml.md5</checksum>
 		<datadir zip="true">https://offshoregit.com/rayw1986/rayw1986-repo/zips</datadir>
+		<dir>
+			<info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
+			<checksum>https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml.md5</checksum>
+			<datadir zip="true">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/zips/</datadir>
+		</dir>
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<summary>RayW1986's Repository</summary>

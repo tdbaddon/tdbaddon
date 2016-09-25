@@ -238,7 +238,6 @@ def SEARCH(url):
                 # listed on the first page)
                 match = re.compile(
                     '([^"]+)page_(\d+)">last').findall(first_page)
-                xbmc.log('Number of pages:%s' % match[0][1])
 
                 # if there weren't any multiple pages of search results
                 if not match:
@@ -251,6 +250,7 @@ def SEARCH(url):
 
                     # convert the list of strings produced by re.compile to a
                     # list of integers, so we can use them for calculations
+                    xbmc.log('Number of pages:%s' % match[0][1])
                     total_pages = int(match[0][1])
 
                     # generate a list of numbers 1 to total_pages (eg if
@@ -280,11 +280,11 @@ def SEARCH(url):
 
 
 def SEARCH_RESULTS(url, html=False):
-    xbmc.log(url)
     # this function scrapes the search results pages
     # accepts page source code (html) for any searches where there is only one
     # page of results
     if html is False:
+        xbmc.log(url)
         html = get_html(url)
     match = re.compile('searchVideo">\s+<a href="([^"]+)">\s+<img src="([^"]+)"'
                        ).findall(html)
@@ -303,19 +303,17 @@ def INDEX(url):
             mode = 4
             xbmc.log('realurl %s' % realurl)
             addLink(name, realurl, mode, thumbnail)
-        match = re.compile('\(\'(.+?)\', ([0-9]*),\'(.+?)\', \'(.+?)\'\)'
-                           ';return false;" href="#">next').findall(html)
-        if len(match) >= 1:
-            fixedNext = None
-            for next_match in match:
-                mode = 1
-                page = next_match[0][-1]
-                vid_id = next_match[1]
-                fixedNext = 'http://fantasti.cc/ajax/pager.php?page=%s&pid=%s'\
-                            '&div=collection_%s&uid=14657' % \
-                            (page, vid_id, vid_id)
-                xbmc.log('fixedNext %s' % fixedNext)
-            addDir('Next Page', fixedNext, mode, default_image)
+
+        match = re.compile('#(\d+)').findall(url)
+        if not match:
+            fixedNext = url + '#2'
+        else:
+            page = int(match[0]) + 1
+            fixedNext = url.rstrip('123456789') + str(page)
+
+        mode = 1
+        xbmc.log('fixedNext %s' % fixedNext)
+        addDir('Next Page', fixedNext, mode, default_image)
     else:
         match = re.compile('<a href="([^"]+)"><img src="([^"]+)"'
                            ' alt="([^"]+)"[^>]+>.+?'
@@ -360,12 +358,16 @@ def INDEXCOLLECT(url):   # Index Collections Pages
 
         addDir(name + ' (' + num_of_vids + ' vids)', realurl, mode, icons)
 
-    next_match = re.compile(
-        '<a href="([^"]+)">next &gt;&gt;</a>').findall(html)
-    mode = 2
-    fixedNext = 'http://fantasti.cc%s' % next_match[0]
-    xbmc.log('FixedNext: %s' % fixedNext)
-    addDir('Next Page', fixedNext, mode, default_image)
+    try:
+        next_match = re.compile(
+            '<a href="([^"]+)">next &gt;&gt;</a>').findall(html)
+        mode = 2
+        fixedNext = 'http://fantasti.cc%s' % next_match[0]
+        xbmc.log('FixedNext: %s' % fixedNext)
+        addDir('Next Page', fixedNext, mode, default_image)
+    except IndexError:
+        xbmc.log("IndexError skipped")
+        pass
 
     xbmcplugin.endOfDirectory(pluginhandle)
 

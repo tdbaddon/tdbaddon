@@ -107,7 +107,9 @@ class source:
         try:
             self.sources =[]
             mylinks = []
-
+            hostDict = hostDict.sort()
+            for i in hostDict:
+                control.log("WA HO %s" % i)
             if url == None: return self.sources
 
             url = url.replace('/json/', '/')
@@ -170,12 +172,15 @@ class source:
             result = client.request(urlparse.urljoin(self.base_link, url), headers=self.headers)
             url = re.compile('class=[\'|\"]*myButton.+?href=[\'|\"|\s|\<]*(.+?)[\'|\"|\s|\>]').findall(result)[0]
             print("URL2",url,i[1])
+            control.log("WATCHSERIES CHECK %s | url: %s" % (url,i[0]))
             url = client.replaceHTMLCodes(url)
 
             host = urlparse.urlparse(url).netloc
             host = host.replace('www.', '').replace('embed.', '')
             host = host.lower()
-            if not host in hostDict: raise Exception()
+            if not host in hostDict:
+                control.log("WATCHSERIES HOST %s" % host)
+                raise Exception()
 
             host = host.rsplit('.', 1)[0]
             host = client.replaceHTMLCodes(host)

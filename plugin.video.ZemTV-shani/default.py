@@ -435,6 +435,7 @@ def AddSports(url):
     addDir('Safe' ,'sss',72,'')
     addDir('TVPlayer [UK Geo Restricted]','sss',74,'https://assets.tvplayer.com/web/images/tvplayer-logo-white.png')
     addDir('StreamHD','sss',75,'http://www.streamhd.eu/images/logo.png')
+    addDir('Mama HD','http://mamahd.com/',79,'http://mamahd.com/images/logo.png')
     addDir('HDfree','sss',77,'')
     addDir('inFinite Streams','sss',78,'')
 
@@ -823,12 +824,16 @@ def get_unwise( str_eval):
     return page_value    
     
     
-def AddSports365Channels(url=None):
+def AddSports365Channels(url=None, recursive=False):
     errored=True
+    forced=False
     try:
-        import live365
-        
+
         addDir(Colored("All times in local timezone.",'red') ,"" ,0,"", False, True,isItFolder=False)		#name,url,mode,icon
+        addDir(Colored("Update parser file!.",'blue') ,"sss" ,80,"", False, True,isItFolder=False)		#name,url,mode,icon
+        addDir(Colored("Refresh listing",'blue') ,"sss" ,156,"", False, True,isItFolder=True)		#name,url,mode,icon
+        import live365
+        forced=not live365.isvalid()
         videos=live365.getLinks()
         for nm,link,active in videos:
             if active:
@@ -839,9 +844,13 @@ def AddSports365Channels(url=None):
             errored=False
     except: traceback.print_exc(file=sys.stdout)
     if errored:
-       if RefreshResources([('live365.py','https://raw.githubusercontent.com/Shani-08/ShaniXBMCWork2/master/plugin.video.ZemTV-shani/live365.py')]):
+       print 'forced',forced
+       import time
+       if not recursive and RefreshResources([('live365.py','http://shani.offshorepastebin.com/live365.py',forced)]):
             dialog = xbmcgui.Dialog()
-            ok = dialog.ok('XBMC', 'No Links, so updated files dyamically, try again, just in case!')           
+            ok = dialog.ok('XBMC', 'Updated files dyamically, Try to play again, just in case!')
+            #if not recursive:
+            #    AddSports365Channels(url=url, recursive=True)            
             print 'Updated files'
         
         
@@ -862,6 +871,9 @@ def RefreshResources(resources):
             fileHash=hashlib.md5(fileToDownload+addonversion).hexdigest()
             lastFileTime=selfAddon.getSetting( "Etagid"+fileHash)  
             if lastFileTime=="": lastFileTime=None
+            try:
+                if rfile[2]: lastFileTime=None
+            except: pass
             resCode=200
             #print fileToDownload
             eTag=None        
@@ -1122,6 +1134,74 @@ def AddStreamHDCats(url):
             curl= 'http://www.streamhd.eu'+curl
         addDir(cname.capitalize() ,curl ,mm ,logo, False, True,isItFolder=True)		#name,url,mode,icon
     
+def AddMAMAHDChannels(url):
+    import time
+    headers=[('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36')]               
+    mainhtml=getUrl(url,headers=headers)
+    tv=False
+    
+    if 1==2 and '/tv/' in url:
+        tv=True
+        reg='<a href="(.*?)".*?class="re.*?alt="(.*?)".*?'
+        cdata=re.findall(reg,mainhtml)
+    else:
+        #cdata=re.findall('eventsmall">(.*?)<.*?den-xs">(.*?)<.*\s*?<.*?img src="(.*?)".*?>(.*?)<.*\s*.*\s*.*?<span>(.*?)<.*\s*?.*?eventsmall.*?href="(.*?)">(.*?)<',mainhtml)
+        cdata= mainhtml.split('<div class="schedule">')[1]
+        cdata= re.findall( '(<a.*?<div class="row">.*?)<\/a>',cdata, re.DOTALL)
+    try:
+        addDir(Colored('Live Channels', 'blue') ,'sss' ,0 ,'', False, True,isItFolder=False)		#name,url,mode,icon
+        chdata= mainhtml.split('<div class="standard row channels">')[1].split('</div>')[0]
+        chdata= re.findall( '<a href="([^"]+)".*?\s*.*?src="([^"]+)".*?<span>([^<]+)<',chdata)
+        for cc2 in chdata:
+            try:
+                mm=11            
+                          
+                logo=cc2[1]            
+                cname=cc2[2]
+                curl=cc2[0]
+                
+
+                addDir(cname ,base64.b64encode('mamahd:'+curl) ,mm ,logo, False, True,isItFolder=False)		#name,url,mode,icon
+            except:
+                traceback.print_exc(file=sys.stdout)
+    except:
+        traceback.print_exc(file=sys.stdout)
+
+    addDir(Colored('Scheduled Games', 'blue') ,'sss' ,0 ,'', False, True,isItFolder=False)		#name,url,mode,icon        
+    for cc in cdata[:30]:
+        try:
+            mm=11
+            
+            if tv:
+                logo=''
+                cname=cc[1]
+                curl=cc[0]
+                if curl=='#': continue
+                
+            else:
+                cc2=re.findall('<a href="([^"]+)".*?<img src="([^"]+)".*?start="([^"]+)".*?home cell.*?<span>([^<]+)<.*?<span>([^<]+)<',cc, re.DOTALL)[0]
+                logo=cc2[1]            
+                cname=cc2[3]+' vs '+cc2[4]
+                curl=cc2[0]
+                timing=cc2[2]
+                livetxt=""
+                try:
+                    if time.time()>int(timing):
+                        livetxt="\nLIVE NOW"
+                    else:
+                        hrs=str(int((int(timing)-time.time())/60/60))
+                        if hrs=="0":
+                            livetxt="\nLIVE in %s Minutes"% str(int((int(timing)-time.time())/60))
+                        else:
+                            livetxt="\nLIVE in %s Hrs"% str(int((int(timing)-time.time())/60/60))
+                except:
+                    traceback.print_exc(file=sys.stdout)
+                    pass
+                cname+=Colored(livetxt,'red')
+
+            addDir(cname ,base64.b64encode('mamahd:'+curl) ,mm ,logo, False, True,isItFolder=False)		#name,url,mode,icon
+        except:
+            traceback.print_exc(file=sys.stdout)
         
 def AddStreamHDChannels(url):
 
@@ -1165,12 +1245,26 @@ def playInfinite(url):
         mainref=base64.b64decode('aHR0cDovL3d3dy5sYW9sYTEudHYvZW4taW50L2xpdmUtc2NoZWR1bGU=')
         headers=[('Referer',mainref),('User-Agent',agent)]                       
         result = getUrl(url, headers=headers)
-        url=re.findall('<iframe frameborde.*\s*.*\s*.*?src="(.*?)"',result)[0]
-        if not url.startswith('http:'):
-            url=base64.b64decode('aHR0cDovL3d3dy5sYW9sYTEudHY=')+url
-        print url
-        page_data = getUrl(url, headers=headers)
-        streamid = re.findall("streamid: \"(.*?)\"", page_data)[0]
+        url=re.findall('<iframe frameborde.*\s*.*\s*.*?src="(.*?)"',result)
+        if len(url)==0:
+            url=re.findall('<iframe.*?src="(.*?player.php.*?)"',result)[0]
+        else:
+            url=url[0]
+        try:
+            if not url.startswith('http:'):
+                urlnew=base64.b64decode('aHR0cDovL3d3dy5sYW9sYTEudHY=')+url
+            print urlnew
+            page_data = getUrl(urlnew, headers=headers)
+            streamid = re.findall("streamid: \"(.*?)\"", page_data)[0]
+        except:
+            
+            if not url.startswith('http:'):
+                url=base64.b64decode('aHR0cDovL3d3dy5laGZ0di5jb20=')+url
+            print url
+            page_data = getUrl(url, headers=headers)
+            streamid = re.findall("streamid: \"(.*?)\"", page_data)[0]
+        
+        
         partid = re.findall("partnerid: \"(.*?)\"", page_data)[0]
         
         url=base64.b64decode('aHR0cDovL3d3dy5sYW9sYTEudHYvc2VydmVyL2hkX3ZpZGVvLnBocD92PTImcGxheT0lcyZwYXJ0bmVyPSVzJnBvcnRhbD1pbnQmdjVpZGVudD0mbGFuZz1lbg==')%(streamid,partid)
@@ -1195,8 +1289,12 @@ def playInfinite(url):
         headers=[('Referer',pageurl),('User-Agent',agent)]                       
 
         ttext = getUrl(url, headers = headers)
-    
+        
         mainurl= re.findall("url=\"(.*?)\"", ttext)[0]
+        if mainurl=="restricted":
+            ttext = getUrlFromUS(url)
+            mainurl= re.findall("url=\"(.*?)\"", ttext)[0]
+        
         print mainurl
         auth= re.findall("auth=\"(.*?)\"", ttext)[0]
         final="plugin://plugin.video.f4mTester/?streamtype=HDS&url=%s&swf=%s&name=%s"%(urllib.quote_plus(mainurl+'?hdnea='+auth+'&g='+randomtext+'&hdcore=3.8.0'+'|User-Agent='+urllib.quote_plus(agent)+'&X-Requested-With=ShockwaveFlash/22.0.0.209'),swf,name)
@@ -1207,7 +1305,7 @@ def playInfinite(url):
         traceback.print_exc(file=sys.stdout)
         return
         
-def playHDCast(url, mainref):
+def playHDCast(url, mainref, altref=None):
     try:
         cookieJar=getHDCASTCookieJar()
         firstframe=url
@@ -1219,7 +1317,7 @@ def playHDCast(url, mainref):
         regid='<script.*?id=[\'"](.*?)[\'"].*?width=[\'"]?(.*?)[\'"]?\;.*?height=[\'"]?(.*?)[\'"]?\;.*?src=[\'"](.*?)[\'"]'
         id,wd,ht, jsurl=re.findall(regid,result)[0]
         finalpageUrl=''
-        headers=[('Referer',firstframe),('User-Agent',agent)]                       
+        headers=[('Referer',pageURl),('User-Agent',agent)]                       
 
 
         jsresult = getUrl(jsurl, headers=headers, cookieJar=cookieJar)
@@ -1233,20 +1331,23 @@ def playHDCast(url, mainref):
             regjs="var url = '(.*?)'"
             embedUrl=re.findall(regjs,jsresult)[0]
             embedUrl='http://bro.adca.st'+embedUrl+id+'&width='+wd+'&height='+ht
-        headers=[('Referer',firstframe),('User-Agent',agent)]                             
+        headers=[('Referer',altref if not altref==None else mainref),('User-Agent',agent)]                             
         result=getUrl(embedUrl, headers=headers, cookieJar=cookieJar)
+
         if not broadcast:# in result:
             if 'blockscript=' in result: #ok captcha here
                 try:
-                    xval=re.findall('name="x" value="(.*?)"',html)[0]
-                    urlval=re.findall('name="url" value="(.*?)"',html)[0]
-                    blocscriptval=re.findall('name="blockscript" value="(.*?)"',html)[0]
-                    imageurl==re.findall('<td nowrap><img src="(.*?)"',html)[0]                
-
-                    post={'blockscript':blocscriptval, 'x':xval, 'url':urlval,'val':getHDCastCaptcha(imageurl,cookieJar,embedUrl )}
+                    xval=re.findall('name="x" value="(.*?)"',result)[0]
+                    urlval=re.findall('name="url" value="(.*?)"',result)[0]
+                    blocscriptval=re.findall('name="blockscript" value="(.*?)"',result)[0]
+                    imageurl=re.findall('<td nowrap><img src="(.*?)"',result)[0].replace('&amp;','&')             
+                    if not imageurl.startswith('http'):
+                        imageurl='http://hdcast.org'+imageurl
+                    headersforimage=[('Referer',embedUrl),('Origin','http://hdcast.org'),('User-Agent',agent)]                             
+                    post={'blockscript':blocscriptval, 'x':xval, 'url':urlval,'val':getHDCastCaptcha(imageurl,cookieJar,headersforimage )}
                     post = urllib.urlencode(post)
-                    headers=[('Referer',embedUrl),('User-Agent',agent)]                             
-                    result=getUrl(embedUrl,post=post, headers=headers, cookieJar=cookieJar)
+                    
+                    result=getUrl(embedUrl,post=post, headers=headersforimage, cookieJar=cookieJar)
                 except: 
                     print 'error in catpcha'
                     traceback.print_exc(file=sys.stdout)
@@ -1257,6 +1358,11 @@ def playHDCast(url, mainref):
                 streamurl = re.findall('file:["\'](.*?)["\']',html)[0]
                 cookieJar.save (HDCASTCookie,ignore_discard=True)
                 return PlayGen(base64.b64encode(streamurl+'|User-Agent='+agent+'&Referer='+embedUrl))
+            if 'rtmp' in result:
+                print 'rtmp'
+                streamurl= re.findall('"(rtmp.*?)"' , result)[0]
+                cookieJar.save (HDCASTCookie,ignore_discard=True)
+                return PlayGen(base64.b64encode(streamurl+' timeout=20 live=1'))   
         else:
             headers=[('Referer',embedUrl),('User-Agent',agent),('X-Requested-With','XMLHttpRequest')]                             
             token=getUrl('http://bro.adca.st/getToken.php',headers=headers, cookieJar=cookieJar )
@@ -1272,28 +1378,51 @@ def playHDCast(url, mainref):
 class InputWindow(xbmcgui.WindowDialog):
     def __init__(self, *args, **kwargs):
         self.cptloc = kwargs.get('captcha')
-        self.img = xbmcgui.ControlImage(335,30,424,50,self.cptloc)
+        self.img = xbmcgui.ControlImage(335,30,524,90,self.cptloc)
+
         self.addControl(self.img)
-        self.kbd = xbmc.Keyboard()
+        self.setProperty('zorder', "99")
+        #self.kbd = xbmc.Keyboard()
 
     def get(self):
         self.show()
-        time.sleep(3)        
-        self.kbd.doModal()
-        if (self.kbd.isConfirmed()):
-            text = self.kbd.getText()
-            self.close()
-            return text
+        xbmc.sleep(3000)            
+        #self.kbd.doModal()
+        #if (self.kbd.isConfirmed()):
+        #    text = self.kbd.getText()
+        #    self.close()
+        text=xbmcgui.Dialog().input('Enter Captcha', type=xbmcgui.INPUT_ALPHANUM)
         self.close()
-        return False        
-def getHDCastCaptcha(imageurl,cookieJar, logonpaged):
+        return text
+        
+        return False  
+        
+    def showme():
+        self.setProperty('zorder', "-1")
+
+def tst():
+    retcaptcha=""
+    if 1==1:
+        local_captcha = os.path.join(profile_path, "captchaC.img" )
+        #localFile = open(local_captcha, "wb")
+        #localFile.write(getUrl(imageurl,cookieJar,headers=[('Referer',logonpaged),('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36')]))
+        #localFile.close()
+        cap=""#cap=parseCaptcha(local_captcha)
+        #if originalcaptcha:
+        #    cap=parseCaptcha(local_captcha)
+        #print 'parsed cap',cap
+        if cap=="":
+            solver = InputWindow(captcha=local_captcha)
+            retcaptcha = solver.get()
+            
+def getHDCastCaptcha(imageurl,cookieJar, headers):
     retcaptcha=""
     if 1==1:
         local_captcha = os.path.join(profile_path, "captchaC.img" )
         localFile = open(local_captcha, "wb")
-        localFile.write(getUrl(imageurl,cookieJar,headers=[('Referer',logonpaged),('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36')]))
+        localFile.write(getUrl(imageurl,cookieJar,headers=headers))
         localFile.close()
-        cap="";#cap=parseCaptcha(local_captcha)
+        cap=""#cap=parseCaptcha(local_captcha)
         #if originalcaptcha:
         #    cap=parseCaptcha(local_captcha)
         #print 'parsed cap',cap
@@ -1369,8 +1498,8 @@ def AddInfiniteChannels(url):
     elements=mainhtml.split('<li class="item list-sport')# re.findall('<time.*?>(.*?)<.*\s*.*\s*.*\s*<span.*?>(.*?)<.*\s*.*\s*.*\s*.*?src="(.*?)".*\s*.*\s*.*\s*.*?href="(.*?)".*\s.*?h3>(.*?)<.*\s*.*?h2>(.*?)<',mainhtml)
     print 'starting'
     for el in elements[1:40]:
-        print el
-        cc=re.findall('<time.*?>(.*?)<.*?displaymo.*?>(.*?)<.*?img.*?src="(.*?)".*?h3>(.*?)<.*?h2>(.*?)<.*?href="(.*?)".*?data-sstatus="(.*?)"',el,re.DOTALL)[0]
+        
+        cc=re.findall('<time.*?>(.*?)<.*?displaymo.*?>(.*?)<.*?img.*?src="([^"]+)".*?h3>([^<]+)<.*?h2>([^<]+)<.*?href="([^"]+)".*?data-sstatus="([^"]+)"',el,re.DOTALL)[0]
         res=re.findall('<dt class="full">Available in.*?<dd>(.*?)<\/dd>',el,re.DOTALL)
         restext=""
         try:
@@ -4549,24 +4678,31 @@ def get365CookieJar(updatedUName=False):
     
 def playSports365(url,progress):
     #print ('playSports365')
-    import live365
-    urlToPlay=live365.selectMatch(url)
-    if urlToPlay and len(urlToPlay)>0:
-    
-        listitem = xbmcgui.ListItem( label = str(name), iconImage = "DefaultVideo.png", thumbnailImage = xbmc.getInfoImage( "ListItem.Thumb" ) )
-        if 'f4mtester' in urlToPlay:
-            xbmc.executebuiltin('XBMC.RunPlugin('+urlToPlay+')') 
-        else:        
-    #    print   "playing stream name: " + str(name) 
-            #xbmc.Player().play( urlToPlay, listitem)  
-            progress.close()
-            xbmc.Player().play( urlToPlay, listitem)  
-            #tryplaywithping(urlToPlay,listitem,'http://www.sport365.live/en/sidebar ',get365CookieJar(), 10) 
-    else:
-        if RefreshResources([('live365.py','https://raw.githubusercontent.com/Shani-08/ShaniXBMCWork2/master/plugin.video.ZemTV-shani/live365.py')]):
-            dialog = xbmcgui.Dialog()
-            ok = dialog.ok('XBMC', 'No Links, so updated files dyamically, try again, just in case!')           
-            print 'Updated files'
+    played=False
+    forced=False
+    try:
+        import live365
+        forced=not live365.isvalid()
+        urlToPlay=live365.selectMatch(url)
+        if urlToPlay and len(urlToPlay)>0:
+            
+            listitem = xbmcgui.ListItem( label = str(name), iconImage = "DefaultVideo.png", thumbnailImage = xbmc.getInfoImage( "ListItem.Thumb" ) )
+            if 'f4mtester' in urlToPlay:
+                xbmc.executebuiltin('XBMC.RunPlugin('+urlToPlay+')') 
+            else:        
+        #    print   "playing stream name: " + str(name) 
+                #xbmc.Player().play( urlToPlay, listitem)  
+                progress.close()
+                #xbmc.Player().play( urlToPlay, listitem)  
+                played=tryplay(urlToPlay,listitem) 
+    except:
+        pass
+    import time
+    if not played and RefreshResources([('live365.py','http://shani.offshorepastebin.com/live365.py',forced)]):
+        
+        dialog = xbmcgui.Dialog()
+        ok = dialog.ok('XBMC', 'Updated files dyamically, Try to play again, just in case!')          
+        print 'Updated files'
     return
     
 def PlaySafeLink(url):
@@ -4703,7 +4839,11 @@ def PlayOtherUrl ( url ):
         return  
     if "streamhd:" in url:
         playstreamhd(url.split('streamhd:')[1])
-        return               
+        return
+    if "mamahd:" in url:
+        playmamahd(url.split('mamahd:')[1])
+        return
+        
     if "hdfree:" in url:
         playHDFree(url.split('hdfree:')[1])
         return                       
@@ -5412,11 +5552,13 @@ def get_treabaAia():
             ,11.5]:
         val +=  chr(int(math.floor(d * 10)));
     return val
-import md5
+
 #print 
 
 def generateKey(tokenexpiry):
-    return md5.new(tokenexpiry+get_treabaAia()).hexdigest()
+    import hashlib
+    return hashlib.md5(tokenexpiry+get_treabaAia()).hexdigest()
+
 
 def playstreamhd(url):
     import re,urllib,json
@@ -5433,16 +5575,24 @@ def playstreamhd(url):
         iframe=iframe[0]
     else:
         if 'hdcast' in videoframedata or 'static.bro' in videoframedata:
-            return playHDCast(videframe, "http://streamhdeu.com/")
+            return playHDCast(videframe, "http://streamhdeu.com/","http://streamhd.eu/")
         iframdata=videoframedata
     m3ufile=re.findall('file: "(.*?)"' ,iframdata)[0]
-    
-    
-    
-   
+
     PlayGen(base64.b64encode(m3ufile+'|User-Agent=Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36'))
     return 
+    
+def playmamahd(url):
+    import re,urllib,json
+    headers=[('Referer','http://mamahd.com/index.html'),('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36')]
 
+    watchHtml=getUrl(url,headers=headers)
+    videframe=re.findall('<iframe wid.*?src="(.*?)"' ,watchHtml)[0]
+    watchHtml=getUrl(videframe,headers=headers)
+    if 'hdcast' in watchHtml or 'static.bro' in watchHtml:
+        return playHDCast(videframe, "http://mamahd.com/")
+    return 
+    
 def playtvplayer(url):
     import re,urllib,json
     listitem = xbmcgui.ListItem( label = str(name), iconImage = "DefaultVideo.png", thumbnailImage = xbmc.getInfoImage( "ListItem.Thumb" ) )
@@ -5858,7 +6008,7 @@ try:
 	elif mode==61 or mode==67:
 		print "Play url is "+url
 		AddIpBoxChannels(url)     
-	elif mode==56 :
+	elif mode in [56,156] :
 		print "Play url is 56"+url
 		AddSports365Channels(url) 
 	elif mode==57 :
@@ -5893,6 +6043,7 @@ try:
 		AddTVPlayerChannels(url)        
 	elif mode==75:
 		print "Play url is "+url
+		#tst()
 		AddStreamHDCats(url)  
 	elif mode==76:
 		print "Play url is "+url
@@ -5903,9 +6054,23 @@ try:
 	elif mode==78:
 		print "Play url is "+url
 		AddInfiniteChannels(url)               
+	elif mode==79:
+		print "Play url is "+url
+		AddMAMAHDChannels(url)               
+	elif mode==80:
+		print "Play url is "+url
+		import time        
+		try:
+			if RefreshResources([('live365.py','http://shani.offshorepastebin.com/live365.py?t=%s'%str(int(time.time())),True)]):
+				dialog = xbmcgui.Dialog()
+				ok = dialog.ok('XBMC', 'Updated files! Try click Refresh Listing to see if it works')  
+			else:
+				dialog = xbmcgui.Dialog()
+				ok = dialog.ok('XBMC', 'Not updated, perhaps no change?')  
+				print 'Updated files'
+		except: traceback.print_exc(file=sys.stdout)
 
-
-
+        
 except:
 
 	print 'somethingwrong'
@@ -5913,7 +6078,7 @@ except:
 	
 
 if not ( (mode==3 or mode==4 or mode==9 or mode==11 or mode==15 or mode==21 or mode==22 or mode==27 or mode==33 or mode==35 or mode==37 or mode==40 or mode==42 or mode==45)  )  :
-	if mode==144:
+	if mode in [144,156]:
 		xbmcplugin.endOfDirectory(int(sys.argv[1]),updateListing=True)
 	else:
 		xbmcplugin.endOfDirectory(int(sys.argv[1]))

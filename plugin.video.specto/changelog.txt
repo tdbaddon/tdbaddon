@@ -1,4 +1,8 @@
 2016.09.20.1
+    fix - wsonline
+    fix - sd hosts now are showing
+
+2016.09.20.1
     fix - putlocker, movieshd, xmovies
     add - hevcbluray
 2016.09.01.1

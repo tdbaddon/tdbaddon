@@ -596,12 +596,11 @@ class sources:
         self.sources = sorted(self.sources, key=lambda k: k['source'])
 
         #MRKNOW SORT
-        #btable = [x['source'].lower() for x in self.sources]
-        #btable = list(set(btable))
-        #hd_rank = hd_rank + (list(set(btable) - set(hd_rank)))
-        #for i in hd_rank:
-        #    control.log("HDRANK: %s" % i)
-        #self.sources.sort(key=lambda x: hd_rank.index(x['source']))
+        btable = [x['source'].lower() for x in self.sources]
+        btable = list(set(btable))
+        hd_rank = hd_rank + (list(set(btable) - set(hd_rank)))
+
+        self.sources.sort(key=lambda x: hd_rank.index(x['source']))
 
         filter = []
         for host in hd_rank: filter += [i for i in self.sources if i['quality'] == '1080p' and i['source'].lower() == host]
@@ -651,22 +650,38 @@ class sources:
             if q == 'SD' and s in self.hostmqDict: q = 'MQ'
             elif q == 'SD' and s in self.hostlqDict: q = 'LQ'
             elif q == 'SD': q = 'HQ'
+            self.sources[i]['quality']=q
 
             try: d = self.sources[i]['info']
             except: d = ''
             if not d == '': d = ' | [I]%s [/I]' % d
 
-            if s in self.rdDict: label = '%02d | [B]realdebrid[/B] | ' % int(i+1)
-            elif s in self.pzDict: label = '%02d | [B]premiumize[/B] | ' % int(i+1)
-            else: label = '%02d | [B]%s[/B] | ' % (int(i+1), p)
+            #if s in self.rdDict: label = '%02d | [B]realdebrid[/B] | ' % int(i+1)
+            #elif s in self.pzDict: label = '%02d | [B]premiumize[/B] | ' % int(i+1)
+            #else: label = '%02d | [B]%s[/B] | ' % (int(i+1), p)
+            if s in self.rdDict: label = '| [B]realdebrid[/B] | '
+            elif s in self.pzDict: label = '| [B]premiumize[/B] | '
+            else: label = '| [B]%s[/B] | ' % (p)
 
             if q in ['1080p', 'HD']: label += '%s%s | [B][I]%s [/I][/B]' % (s, d, q)
             else: label += '%s%s | [I]%s [/I]' % (s, d, q)
 
             self.sources[i]['label'] = label.upper()
 
-        return self.sources
+        filter = []
+        filter += [i for i in self.sources if i['quality'] == '1080p']
+        filter += [i for i in self.sources if i['quality'] == 'HD']
+        filter += [i for i in self.sources if i['quality'] == 'HQ']
+        filter += [i for i in self.sources if i['quality'] == 'MQ']
+        filter += [i for i in self.sources if i['quality'] == 'LQ']
+        filter += [i for i in self.sources if i['quality'] == 'SCR']
+        filter += [i for i in self.sources if i['quality'] == 'CAM']
+        self.sources = filter
 
+        for i in range(len(self.sources)):
+            self.sources[i]['label'] = '%02d %s' % (int(i+1), self.sources[i]['label'])
+
+        return self.sources
 
     def sourcesReset(self):
         try:

@@ -1,3 +1,17 @@
+[B]Version 5.5.0[/B]
+auto and forced refresh option for sport365
+[B]Version 5.4.9[/B]
+sport365
+[B]Version 5.4.8[/B]
+sport365
+[B]Version 5.4.7[/B]
+sport365
+[B]Version 5.4.6[/B]
+mamahd small fix
+[B]Version 5.4.5[/B]
+mamahd added
+[B]Version 5.4.4[/B]
+streamhd catpcha and sport365 loading issues
 [B]Version 5.4.3[/B]
 YP removed as very limited channels available
 [B]Version 5.4.2[/B]

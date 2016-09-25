@@ -79,6 +79,13 @@ def info():
         'class': 'okru',
         'netloc': ['ok.ru']
     }, {
+        'class': '',
+        'netloc': ['youwatch.com'],
+        'host': ['youwatch'],
+        'quality': 'Low',
+        'captcha': False,
+        'a/c': False
+    }, {
         'class': '_180upload',
         'netloc': ['180upload.com'],
         'host': ['180upload'],
