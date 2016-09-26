@@ -693,6 +693,8 @@ class movies:
                     result += client.request(self.scn_page % (str(i), '2'))
 
                 items = client.parseDOM(result, 'div', attrs = {'class': 'post'})
+                for i in items:
+                    control.log('@@@@@ SCN %s' % i)
                 items = [(client.parseDOM(i, 'a', attrs = {'class': 'p-title'}), re.compile('(\d{4}-\d{2}-\d{2})').findall(i)) for i in items]
                 items = [(i[0][0], i[1][0]) for i in items if len(i[0]) > 0 and len(i[1]) > 0]
                 items = [(re.sub('(\.|\(|\[|\s)(\d{4}|S\d*E\d*|3D)(\.|\)|\]|\s)(.+)', '', i[0]), re.compile('[\.|\(|\[|\s](\d{4})[\.|\)|\]|\s]').findall(i[0]), re.sub('[^0-9]', '', i[1])) for i in items]

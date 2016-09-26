@@ -14,6 +14,7 @@
 		<setting id="bbc_one" type="labelenum" label="BBC One" values="BBC iPlayer|TVPlayer|FilmOn|Off" default="BBC iPlayer" />
 		<setting id="bbc_par" type="labelenum" label="BBC Parliament" values="BBC iPlayer|TVPlayer|FilmOn|Off" default="BBC iPlayer" />
 		<setting id="bbc_two" type="labelenum" label="BBC Two" values="BBC iPlayer|TVPlayer|FilmOn|Off" default="BBC iPlayer" />
+		<setting id="blaze" type="labelenum" label="Blaze" values="Direct|Off" default="Direct" />
 		<setting id="bloomberg" type="labelenum" label="Bloomberg" values="TVPlayer|FilmOn|Off" default="TVPlayer" />
 		<setting id="the_box" type="labelenum" label="The Box" values="Direct|TVPlayer|Off" default="Direct" />
 		<setting id="box_hits" type="labelenum" label="Box Hits" values="Direct|TVPlayer|Off" default="Direct" />

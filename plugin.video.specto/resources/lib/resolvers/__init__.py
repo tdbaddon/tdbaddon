@@ -80,8 +80,8 @@ def info():
         'netloc': ['ok.ru']
     }, {
         'class': '',
-        'netloc': ['youwatch.com'],
-        'host': ['youwatch'],
+        'netloc': ['youwatch.com','www.flashx.tv', 'thevideobee.to','auroravid.to'],
+        'host': ['youwatch', 'flashx', 'thevideobee','auroravid'],
         'quality': 'Low',
         'captcha': False,
         'a/c': False

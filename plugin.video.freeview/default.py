@@ -151,6 +151,7 @@ def CATEGORIES():
 		addLink('truTV | Direct','http://llnw.live.btv.simplestream.com/coder5/coder.channels.channel2/hls/4/playlist.m3u8',1,logos_tvp+'295.png')
 		addLink('truTV | TVPlayer','295',2,logos_tvp+'295.png')
 		addLink('truTV | FilmOn','http://www.filmon.tv/tv/tru-tv',1,logos_tvp+'295.png')
+		addLink('Blaze | Direct','http://live.blaze.simplestreamcdn.com/live/blaze/bitrate1.isml/bitrate1-audio_track=64000-video=3500000.m3u8',1,logos+'blaze.png')
 		xbmcplugin.addSortMethod(int(sys.argv[1]), xbmcplugin.SORT_METHOD_LABEL)
 
 	else:
@@ -217,6 +218,9 @@ def CATEGORIES():
 		if selfAddon.getSetting('bbc_two') == 'BBC iPlayer': addLink('BBC Two HD','http://vs-hls-uk-live.edgesuite.net/pool_31/live/bbc_two_hd/bbc_two_hd.isml/bbc_two_hd-pa4%3d128000-video%3d5070000.m3u8',1,logos_tvp+'90.png')
 		if selfAddon.getSetting('bbc_two') == 'TVPlayer': addLink('BBC Two','90',2,logos_tvp+'90.png')
 		if selfAddon.getSetting('bbc_two') == 'FilmOn': addLink('BBC Two','https://www.filmon.com/tv/bbc-two',1,logos_tvp+'90.png')
+		
+		#Blaze
+		if selfAddon.getSetting('blaze') == 'Direct': addLink('Blaze | Direct','http://live.blaze.simplestreamcdn.com/live/blaze/bitrate1.isml/bitrate1-audio_track=64000-video=3500000.m3u8',1,logos+'blaze.png')
 
 		#Bloomberg
 		if selfAddon.getSetting('bloomberg') == 'TVPlayer': addLink('Bloomberg','514',2,logos_tvp+'514.png')

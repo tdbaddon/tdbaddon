@@ -715,15 +715,15 @@ class sources:
 
             source = __import__(provider, globals(), locals(), [], -1).source()
             url = source.resolve(url)
-            #control.log("[suurces]   my url 1 ************ %s " % url)
-            #url = resolvers.request(url)
-            #control.log("[sources]   my url 2 ************ %s " % url)
-
+            if url == False or url == None: raise Exception()
             try: headers = dict(urlparse.parse_qsl(url.rsplit('|', 1)[1]))
             except: headers = dict('')
-
-            result = client.request(url.split('|')[0], headers=headers, output='chunk', timeout='20')
-            if result == None: raise Exception()
+            if url.startswith('http') and '.m3u8' in url:
+                result = client.request(url.split('|')[0], headers=headers, output='geturl', timeout='20')
+                if result == None: raise Exception()
+            elif url.startswith('http'):
+                result = client.request(url.split('|')[0], headers=headers, output='chunk', timeout='20')
+                if result == None: raise Exception()
             #control.log("!!!!!!!!!!!!!!!!!!!  %s prov: %s" % (url,provider))
             self.url = url
             return url

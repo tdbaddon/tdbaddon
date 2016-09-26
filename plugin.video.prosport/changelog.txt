@@ -194,3 +194,7 @@ ver 0.56:
 ver 0.57:
 	- fixed some streams
 	- added sopcast/acestream support (plexus has to be installed)
+	
+ver 0.58:
+	- fixed streams
+	- fixed redzone had no links

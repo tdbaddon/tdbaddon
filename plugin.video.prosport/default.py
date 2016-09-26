@@ -75,7 +75,7 @@ sd_streams = ['goindexsport','multi-sports.eu', 'watchnfl.live', 'streamhd.eu/fo
 			'sportsnewsupdated.com', 'baltak.com', 'watchnba.tv', 'feedredsoccer.at.ua', 'jugandoes.com', 'wiz1.net', 'bosscast.net', 
 			'watchsportstv.boards.net', 'tv-link.in', 'klivetv.co', 'videosport.me', 'livesoccerg.com', 'zunox.hk', 'singidunum.', 
 			'zona4vip.com', 'ciscoweb.ml', 'streamendous.com','streamm.eu', 'sports-arena.net', 'stablelivestream.com', 
-			'iguide.to', 'sportsleague.me']
+			'iguide.to', 'sportsleague.me','kostatz.com']
 
 def utc_to_local(utc_dt):
     timestamp = calendar.timegm(utc_dt.timetuple())
@@ -162,7 +162,7 @@ def Games(mode):
 	js = js['leagues'][mode]
 	if js:	
 		if mode == 'nfl':
-			addDir('[COLOR=FF00FF00][B]NFL Redzone[/B][/COLOR]', mode, iconImg=logos[mode], home='redzone', away='redzone', mode="STREAMS")
+			addDir('[COLOR=FF00FF00][B]NFL Redzone[/B][/COLOR]', mode, iconImg=logos[mode], home='red zone', away='red zone', mode="prostreams")
 		for game in js:
 			home = game['away_team']['name']
 			away = game['home_team']['name']
@@ -525,14 +525,14 @@ def ParseLink(el, orig_title):
 	elif 'iceballet' in el:
 		url = Universal(el)
 		return url
-	elif '1apps.com' in el:
-		url = Universal(el)
-		return url
 	elif 'youtu' in el and 'list' not in el:
 		url = Universal(el)
 		return url
 	elif 'freecast.in' in el:
 		url = Freecastin(el)
+		return url
+	elif '1apps.com' in el:
+		url = Oneapp(el)
 		return url
 	elif 'streamsus.com' in el:
 		url = Streamsus(el)
@@ -917,6 +917,25 @@ def Freecastin(url):
 	except:
 		return None
 		
+def Oneapp(url):
+	try:
+		html = GetURL(url)
+		link = re.findall("(http.+?dotstream.tv/.+?)[\"\']",html)[0]
+		link = link.replace('/pl?','/player.php?')
+		html = GetURL(link)
+		a=int(re.search('a = ([0-9]+)',html).group(1))
+		b=int(re.search('b = ([0-9]+)',html).group(1))
+		c=int(re.search('c = ([0-9]+)',html).group(1))
+		d=int(re.search('d = ([0-9]+)',html).group(1))
+		f=int(re.search('f = ([0-9]+)',html).group(1))
+		v_part = re.search('v_part = \'(.*?)\';',html).group(1)
+		swfUrl='http://dotstream.tv/jwp/jwplayer.flash.swf'
+		video_link = 'rtmp://%d.%d.%d.%d/'%(a/f,b/f,c/f,d/f) + v_part.split('/')[1]+'/'+' playpath='+v_part.split('/')[-1]
+		video_link = video_link + ' swfUrl='+swfUrl + ' swfVfy=1 live=1 timeout=13 pageUrl='+link
+		return video_link
+	except:
+		return None
+		
 def Streamsus(url):
 	try:
 		html = GetURL(url)
@@ -1111,6 +1130,8 @@ def Universal(url):
 	if 'youtu' in url:
 		link = GetYoutube(url)
 		return link
+	if 'kostatz.com' in url:
+		url = 'http://admin1.ninacdn.com/iframe.php?c=peanutly&s=peanutly'
 	if 'iguide.to' in url:
 		link = iguide(url)
 		return link
@@ -1171,9 +1192,12 @@ def Universal(url):
 		link = streamking(id)
 		return link
 	elif html and 'hdcast.org' in html and 'fid=' in html:
-		id = html.split('fid="')[-1]
-		id = id.split('";')[0]
-		link = hdcast(id, url)
+		id = html.split('fid="')[-1].split('";')[0]
+		link = re.findall("(http.+?hdcast.org/.+?)[\"\']",html)[0]
+		html = GetURL(link)
+		link = re.findall("(http.+?hdcast.org/.+?)[\"\']",html)[0]
+		link = link+id
+		link = hdcast(link, url)
 		return link
 	elif html and 'sostart.pw' in html and 'fid=' in html:
 		id = html.split('fid="')[-1]
@@ -1238,6 +1262,16 @@ def sawresolve(query):
 			decoded = jsunpack.unpack(source.decode('string_escape'))
 		except:
 			decoded = source
+		if 'unescape(' in decoded:
+			unesc = re.findall('(unescape\(.*?\))', decoded)
+			for uns in  unesc:
+				dec = uns.replace("unescape(","").replace(")","")
+				dec = dec.decode('unicode_escape')
+				decoded = decoded.replace(uns, dec)
+		if 'document[' in decoded:
+			docs = re.findall('(document\[.*?)\(', decoded)
+			for doc in docs:
+				decoded = decoded.replace(doc, 'document.write')	
 		functions = re.findall('(function.*?})', decoded)
 		vars = re.findall('(var.*?;)', decoded)
 		for i,f in enumerate(functions):
@@ -1251,7 +1285,7 @@ def sawresolve(query):
 			if d and 'document.write' in d:
 				dwrite = re.findall('document\.write\((.*)\)', d)
 				dwrite = ''.join(dwrite)
-				st += dwrite
+				st += dwrite+'+'
 				st = st.replace("'''","'").replace("''","'")
 			elif d:
 				st+=d+'+'
@@ -1265,45 +1299,22 @@ def sawresolve(query):
 		context.execute(decoded)
 		result = context.result
 		result = urllib.unquote_plus(result)
-		src=common.parseDOM(result, 'iframe', ret='src')[-1]
-		src= src.replace("'","").replace('"','')
+		src = common.parseDOM(result, 'iframe', ret='src')[-1]
+		src = src.replace("'","").replace('"','')
 		if src:
 			header = {'Referer':  src, 'User-Agent': UA, 'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
 					'Accept-Language':'en-US,en;q=0.8,bg;q=0.6,it;q=0.4,ru;q=0.2,uk;q=0.2',
 					'Connection':'keep-alive', 'Host':urlparse.urlparse(src).netloc,'Upgrade-Insecure-Requests':'1'}
 			decoded = getUrl(src,header=header)
-			var = re.compile('var\s(.+?)\s*=\s*[\'\"](.+?)[\'\"]').findall(decoded)
-			rplcs = re.findall('replace\([\"\'](.+?)[\"\']\s*,\s*[\"\']([^\"\']*)[\"\']',decoded)
-			var_dict = dict(var) 
-			file = re.compile("'file'\s*(.+?)\)").findall(decoded)[0]
-			file = file.replace('\'','')    
-			for v in var_dict.keys():
-				file = file.replace(v,var_dict[v])
-			file = file.replace('+','').replace(',','').strip().replace(' ', '')
-			if 'f4m' in file:
-				return file
-			if 'streamas' in file:
-				return file
-			try:
-				if not file.startswith('http'): raise Exception()
-				response = urllib2.urlopen(file)
-				url = response.geturl()
-				#url = client.request(file, output='geturl')
-				if not '.m3u8' in url: raise Exception()
-				url += '|%s' % urllib.urlencode({'User-Agent': UA, 'Referer': file})
-				return url
-			except:
-				pass
-			strm = re.compile("'streamer'\s*(.+?)\)").findall(decoded)[0]
-			strm = strm.replace('\'','')
-			for v in var_dict.keys():
-				strm = strm.replace(v,var_dict[v])
-			strm = strm.replace('+','').replace(',','').strip().replace(' ', '')
+			dec = decoded.split("'uniform');")[-1].split("</script>")[0]
+			so = re.findall('(so.addVariable\(.*?\))', dec)
+			for s in so:
+				o = s.replace("so.addVariable('", "var ").replace("',", " = ").replace(")","").replace(".","")
+				dec = dec.replace(s, o)
+			context = js2py.EvalJs()
+			context.execute(dec)
 			swf = re.compile("SWFObject\('(.+?)'").findall(decoded)[0].replace(' ', '')
-			url = '%s playpath=%s swfUrl=%s pageUrl=%s live=1 timeout=60' % (strm, file, swf, src)
-			url = urllib.unquote(url).replace('unescape(','')
-			for r in rplcs:
-				url = url.replace(r[0],r[1])
+			url = '%s playpath=%s swfUrl=%s pageUrl=%s live=1 timeout=60' % (context.streamer, context.file, swf, src)
 			return url
 	except:
 		return None
@@ -1440,19 +1451,19 @@ def streamking(url):
 		return None	
 
 
-def hdcast(id, url):
+def hdcast(link, url):
 	try:
-		page = 'http://www.hdcast.org/streamhd.php?u='+id+'&vw=100%&vh=100%'
 		header = {'Referer':  url, 'User-Agent': UA, 'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
 					'Accept-Language':'en-US,en;q=0.8,bg;q=0.6,it;q=0.4,ru;q=0.2,uk;q=0.2',
-					'Connection':'keep-alive', 'Host':urlparse.urlparse(page).netloc,'Upgrade-Insecure-Requests':'1'}
-		result = getUrl(page,header=header)
-		src=common.parseDOM(result, 'iframe', ret='src')
+					'Connection':'keep-alive', 'Host':urlparse.urlparse(link).netloc,'Upgrade-Insecure-Requests':'1'}
+		result = getUrl(link,header=header)
+		src = common.parseDOM(result, 'iframe', ret='src')
 		if not src:
 			src = 'http://94.102.50.97:8081/player.php?ch='+id
 		else:
 			src = src[-1]
-		header = {'Referer':  page, 'User-Agent': UA, 'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+			src = src.split('&')[0]
+		header = {'Referer':  link, 'User-Agent': UA, 'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
 					'Accept-Language':'en-US,en;q=0.8,bg;q=0.6,it;q=0.4,ru;q=0.2,uk;q=0.2',
 					'Connection':'keep-alive', 'Host':urlparse.urlparse(src).netloc,'Upgrade-Insecure-Requests':'1'}
 		result = getUrl(src,header=header)
@@ -1460,6 +1471,7 @@ def hdcast(id, url):
 		return url
 	except:
 		return None
+
 
 def lshstream(url):
 	try:

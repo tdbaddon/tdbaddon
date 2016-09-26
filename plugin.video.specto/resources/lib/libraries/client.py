@@ -149,8 +149,11 @@ def request(url, close=True, redirect=True, error=False, proxy=None, post=None, 
         elif output == 'chunk':
             try: content = int(response.headers['Content-Length'])
             except: content = (2049 * 1024)
-            if content < (2048 * 1024): return
+            #control.log('CHUNK %s|%s' % (url,content))
+            if content < (2048 * 1024):return
             result = response.read(16 * 1024)
+            if close == True: response.close()
+            return result
 
         elif output == 'extended':
             try: cookie = '; '.join(['%s=%s' % (i.name, i.value) for i in cookies])
