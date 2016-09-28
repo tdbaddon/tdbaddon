@@ -53,9 +53,6 @@ path = __addon__.getAddonInfo('path')
 display_score = __addon__.getSetting('score')
 display_status = __addon__.getSetting('status')
 display_start_time = __addon__.getSetting('start_time')
-show_sd = __addon__.getSetting('showsd')
-show_hehe = __addon__.getSetting('showhehe')
-show_cast = __addon__.getSetting('showcast')
 show_xrxs  = __addon__.getSetting('showxrxs')
 display_pattern = __addon__.getSetting('pattern')
 username  = __addon__.getSetting('username')
@@ -72,10 +69,10 @@ logos ={'nba':'http://bethub.org/wp-content/uploads/2015/09/NBA_Logo_.png',
 
 sd_streams = ['goindexsport','multi-sports.eu', 'watchnfl.live', 'streamhd.eu/football/', 'streamhd.eu/mlb/', 'streamhd.eu/nfl/', 'vines.tn', 'apollofm.website',
 			'giostreams.eu','watch-sportstv.boards.net', 'hdstream4u.com', 'stream24k.com', 'wizhdsports.com', 'antenasport.com', 
-			'sportsnewsupdated.com', 'baltak.com', 'watchnba.tv', 'feedredsoccer.at.ua', 'jugandoes.com', 'wiz1.net', 'bosscast.net', 
+			'sportsnewsupdated.com', 'watchnba.tv', 'feedredsoccer.at.ua', 'jugandoes.com', 'wiz1.net', 'bosscast.net', 
 			'watchsportstv.boards.net', 'tv-link.in', 'klivetv.co', 'videosport.me', 'livesoccerg.com', 'zunox.hk', 'singidunum.', 
 			'zona4vip.com', 'ciscoweb.ml', 'streamendous.com','streamm.eu', 'sports-arena.net', 'stablelivestream.com', 
-			'iguide.to', 'sportsleague.me','kostatz.com']
+			'iguide.to', 'sportsleague.me','kostatz.com', 'soccerpluslive.com', 'zunox']
 
 def utc_to_local(utc_dt):
     timestamp = calendar.timegm(utc_dt.timetuple())
@@ -86,21 +83,28 @@ def utc_to_local(utc_dt):
 
 UA='Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'
 
-def GetURL(url, referer=None):
-    url = url.replace('///','//')
-    request = urllib2.Request(url)
-    request.add_header('User-agent', UA)
-    
-    if referer:
-    	request.add_header('Referer', referer)
-    try:
-    	response = urllib2.urlopen(request, timeout=20)
-    	html = response.read()
-    	return html
-    except:
-    	if 'reddit' in url:
-    		xbmcgui.Dialog().ok(__addonname__, 'Looks like '+url+' is down... Please try later...')
-    	return None
+def GetURL(url, referer=None, output=None):
+	if 'streamm.eu' in url:
+		import cfscrape
+		scraper = cfscrape.create_scraper()
+		return scraper.get(url).content
+	url = url.replace('///','//')
+	request = urllib2.Request(url)
+	request.add_header('User-agent', UA)
+	if referer:
+		request.add_header('Referer', referer)
+	try:
+		response = urllib2.urlopen(request, timeout=20)
+		if output == 'geturl':
+			return response.geturl()
+		if output == 'cookie':
+			return response.info()['Set-Cookie']
+		html = response.read()
+		return html
+	except:
+		if 'reddit' in url:
+			xbmcgui.Dialog().ok(__addonname__, 'Looks like '+url+' is down... Please try later...')
+		return None
 
 
 def getUrl(url,data=None,header={},cookies=None):
@@ -112,7 +116,6 @@ def getUrl(url,data=None,header={},cookies=None):
         cookies=response.info()['Set-Cookie']
     link = response.read()
     response.close()
-    
     return link
 
 
@@ -149,7 +152,7 @@ def Arch():
 	addDir("[COLOR=FFFFFF00][ NBA Archive ][/COLOR]", '', iconImg='http://bethub.org/wp-content/uploads/2015/09/NBA_Logo_.png', mode="nbaarch")
 	addDir("[COLOR=FFFFFF00][ NFL Archive ][/COLOR]", '', iconImg='http://www.shermanreport.com/wp-content/uploads/2012/06/NFL-Logo1.gif', mode="nflarch")
 	addDir("[COLOR=FFFFFF00][ NHL Archive ][/COLOR]", '', iconImg='https://upload.wikimedia.org/wikipedia/de/thumb/1/19/Logo-NHL.svg/2000px-Logo-NHL.svg.png', mode="nhlarch")
-	#addDir("[COLOR=FFFFFF00][ XRXS NHL Archive ][/COLOR]", '', iconImg='https://upload.wikimedia.org/wikipedia/de/thumb/1/19/Logo-NHL.svg/2000px-Logo-NHL.svg.png', mode="xrnhlarch")
+	addDir("[COLOR=FFFFFF00][ XRXS NHL Archive ][/COLOR]", '', iconImg='https://upload.wikimedia.org/wikipedia/de/thumb/1/19/Logo-NHL.svg/2000px-Logo-NHL.svg.png', mode="xrnhlarch")
 	#addDir("[COLOR=FFFFFF00][ MLB Archive ][/COLOR]", '', iconImg='http://content.sportslogos.net/logos/4/490/full/1986.gif', mode="mlbarch")
 	xbmcplugin.endOfDirectory(h)
 	
@@ -315,12 +318,8 @@ def getProStreams(ur, home, away):
 	away_f = away.lower().split()[0]
 	home_l = home.lower().split()[-1]
 	away_l = away.lower().split()[-1]
-	if 'nba' in ur and show_hehe=='true':
-		addDir('[ Hehestreams ]', '', iconImg='', home=home_l, away=away_l, mode="hehestreams")
 	if 'nhl' in ur and show_xrxs=='true':
 		addDir('[ Xrxs ]', '', iconImg='', home=home_l, away=away_l, mode="xrxsstreams")
-	if 'nhl' in ur and show_cast=='true':
-		addLink('Caststreams', orig_title, 'caststreams', mode="play")
 	r = praw.Reddit(user_agent='xbmc pro sport addon')
 	r.config.api_request_delay = 0
 	links=[]
@@ -493,15 +492,14 @@ def DisplayLinks(links, orig_title):
 		elif url not in urls and '.m3u8' in url and 'room' not in url and 'anvato' not in url and 'mlblive-akc' not in url and 'YES' not in url:
 			addLink('M3U8 stream', orig_title, url, mode="play")
 			urls.append(url)
-		if show_sd=='true':
-			if url not in urls and 'ace' not in url and any(el in url for el in sd_streams):
-				title = '(SD) '
-				try:
-					title = urlparse.urlparse(url).netloc
-				except:
-					pass
-				addLink(title, orig_title, url, mode="play")
-				urls.append(url)
+		if url not in urls and any(el in url for el in sd_streams):
+			title = '(stream)'
+			try:
+				title = urlparse.urlparse(url).netloc
+			except:
+				pass
+			addLink(title, orig_title, url, mode="play")
+			urls.append(url)
 		if show_tor=='true':
 			if url not in urls and'acestream://' in url:
 				addLink('Acestream', orig_title, url, mode="play")
@@ -655,7 +653,7 @@ def Xrxsarch():
 	xbmcplugin.endOfDirectory(h, cacheToDisc=True)
 
 def Xrxsday(yesterday):
-	html = GetURL("http://xrxs.net/nhl/?date="+yesterday)
+	html = GetURL("http://xrxs.ml/nhl/?date="+yesterday)
 	titles = re.findall('(PM.+?<)',html)
 	for title in titles:
 		title = title.replace('PM','').replace('|','').replace('<','').strip()
@@ -665,9 +663,10 @@ def Xrxsday(yesterday):
 
 def Xrxsgame(links, orig_title):
 	links = common.parseDOM(links, "a", ret="href")
-	nhlcookie = GetURL("https://raw.githubusercontent.com/iCanuck/NHLstreams/master/cookie")
+	nhlcookie = GetURL("http://nhlkeys.ga/auth", output='cookie')
+	nhlcookie = '|Cookie='+nhlcookie
 	for link in links:
-		link = 'http://xrxs.net/nhl/'+link
+		link = 'http://xrxs.ml/nhl/'+link
 		if 'HOME' in link:
 			title = re.findall('(HOME.+?\.m3u8)',link)[0].replace('.m3u8','')
 			addDirectLink(title, {'Title': orig_title}, link+nhlcookie)
@@ -716,6 +715,36 @@ def PlayArchive(url):
 				addDirectLink(el['key']+per, {'Title': orig_title}, 'https:'+el['url']+'|Cookie=video_key='+token)
 				#addLink(el['key'], orig_title, el['url']+'|Cookie=video_key='+token, mode="play")
 	xbmcplugin.endOfDirectory(h, cacheToDisc=True)
+
+def Xrxs(home, away):
+	try:
+		today = datetime.utcnow() - timedelta(hours=8)
+		today = str(today.strftime('%Y-%m-%d'))
+		html = GetURL("http://xrxs.ml/nhl/?date="+today)
+		html = html.split('<br /><hr/>')
+		for el in html:
+			if home.lower() in el.lower() and away.lower() in el.lower():
+				links = common.parseDOM(el, "a", ret="href")
+				nhlcookie = GetURL("http://nhlkeys.ga/auth", output='cookie')
+				for link in links:
+					if 'http://xrxs.ml' not in link:
+						link = 'http://xrxs.ml/nhl/'+link
+					if 'HOME' in link:
+						title = re.findall('(HOME.+?\.m3u8)',link)[0].replace('.m3u8','')
+						addDirectLink(title, {'Title': away+' @ '+home}, link+'|Cookie='+nhlcookie)
+					elif 'VISIT' in link:
+						title = re.findall('(VISIT.+?\.m3u8)',link)[0].replace('.m3u8','')
+						addDirectLink(title, {'Title': away+' @ '+home}, link+'|Cookie='+nhlcookie)
+					elif 'FRENCH' in link:
+						title = re.findall('(FRENCH.+?\.m3u8)',link)[0].replace('.m3u8','')
+						addDirectLink(title, {'Title': away+' @ '+home}, link+'|Cookie='+nhlcookie)
+					elif 'NATIONAL' in link:
+						title = re.findall('(NATIONAL.+?\.m3u8)',link)[0].replace('.m3u8','')
+						addDirectLink(title, {'Title': away+' @ '+home}, link+'|Cookie='+nhlcookie)
+						
+	except:
+		pass	
+
 
 def GetStreamup(channel):
 	try:
@@ -798,106 +827,6 @@ def Blabseal(url):
 		return link
 	except:
 		return None
-		
-def Hehestreams(home, away):
-	try:
-		html = GetURL("http://hehestreams.xyz/")
-		titles = common.parseDOM(html, "a", attrs={"class": "results-link"})
-		links = common.parseDOM(html, "a", attrs={"class": "results-link"}, ret="href")
-		for title in titles:
-			if home.lower() in title.lower() and away.lower() in title.lower():
-				link = links[titles.index(title)]
-				link = "http://hehestreams.xyz"+link
-				html = GetURL(link)
-				lnks = common.parseDOM(html, "option", ret="value")
-				if lnks:
-					for lnk in lnks:
-						lnk = 'http://'+lnk.split('http://')[-1]
-						if 'turner' in lnk:
-							try:
-								timest = lnk.split("exp=")[-1].split("~acl")[0]
-								time_exp = datetime.fromtimestamp(int(timest)).strftime(xbmc.getRegion('time').replace('%H%H','%H').replace(':%S',''))
-							except:
-								time_exp = ''
-							addDirectLink('Turner - (external player) link expires '+time_exp, {'Title': away+' @ '+home}, lnk)
-						elif 'neulion' in lnk:
-							lnk = lnk.replace('amp;','')
-							lnk = lnk.replace('androidtab', '3000')
-							try:
-								timest = lnk.split("expires=")[-1].split("~access")[0]
-								time_exp = datetime.fromtimestamp(int(timest)).strftime(xbmc.getRegion('time').replace('%H%H','%H').replace(':%S',''))
-							except:
-								time_exp = ''
-							addDirectLink('Neulion link expires '+time_exp, {'Title': away+' @ '+home}, lnk)
-				else:
-					addDir("[COLOR=FFFF0000]Could not find any streams on hehestreams...[/COLOR]", '', iconImg="", mode="")
-		xbmcplugin.endOfDirectory(h, cacheToDisc=True)
-	except:
-		pass	
-
-
-def Xrxs(home, away):
-	try:
-		today = datetime.utcnow() - timedelta(hours=8)
-		today = str(today.strftime('%Y-%m-%d'))
-		html = GetURL("http://xrxs.net/nhl/?date="+today)
-		html = html.split('<br/><hr/>')
-		for el in html:
-			if home.lower() in el.lower() and away.lower() in el.lower():
-				links = common.parseDOM(el, "a", ret="href")
-				nhlcookie = GetURL("https://raw.githubusercontent.com/iCanuck/NHLstreams/master/cookie")
-				for link in links:
-					if 'http://xrxs.net' not in link:
-						link = 'http://xrxs.net/nhl/'+link
-					if 'HOME' in link:
-						title = re.findall('(HOME.+?\.m3u8)',link)[0].replace('.m3u8','')
-						addDirectLink(title, {'Title': away+' @ '+home}, link+nhlcookie)
-					elif 'VISIT' in link:
-						title = re.findall('(VISIT.+?\.m3u8)',link)[0].replace('.m3u8','')
-						addDirectLink(title, {'Title': away+' @ '+home}, link+nhlcookie)
-					elif 'FRENCH' in link:
-						title = re.findall('(FRENCH.+?\.m3u8)',link)[0].replace('.m3u8','')
-						addDirectLink(title, {'Title': away+' @ '+home}, link+nhlcookie)
-					elif 'NATIONAL' in link:
-						title = re.findall('(NATIONAL.+?\.m3u8)',link)[0].replace('.m3u8','')
-						addDirectLink(title, {'Title': away+' @ '+home}, link+nhlcookie)
-						#addDirectLink(title, {'Title': away+' @ '+home}, link+nhlcookie)
-						
-	except:
-		pass	
-
-
-def Caststreams(orig_title):
-	try:
-		orig_title = orig_title.replace('[COLOR=FF00FF00][B]','').replace('[/B][/COLOR]','')
-		home = orig_title.split('at')[0].split()[0]
-		away = orig_title.split('at')[-1].split()[0]
-		url = 'http://caststreams.com:2053/login-web'
-		data = json.dumps({"email":"prosport4@testmail.com","password":"prosport","ipaddress":"desktop","androidId":"","deviceId":"","isGoogleLogin":0})
-		request = urllib2.Request(url, data)
-		request.add_header('Content-Type', 'application/json')
-		response = urllib2.urlopen(request, timeout=5)
-		resp = response.read()
-		jsonDict = json.loads(resp)
-		token = jsonDict['token']
-		url = 'http://caststreams.com:2053/feeds'
-		request = urllib2.Request(url)
-		request.add_header('Authorization', token)
-		response = urllib2.urlopen(request, timeout=5)
-		resp = response.read()
-		jsonDict = json.loads(resp)
-		feeds = jsonDict['feeds']
-		for feed in feeds:
-			title = feed['nam'].lower().replace('ny', 'new')
-			if home.lower() in title.lower() and away.lower() in title.lower() and 'testing' not in title.lower():
-				channel = feed['url'][0]
-				link = 'http://caststreams.com:2053/getGame?rUrl='+channel
-				return link	
-			else:
-				continue
-	except:
-		return None	
-		
 		
 def Torula(url):
 	try:
@@ -1219,13 +1148,14 @@ def Universal(url):
 			url = url.replace("'","")
 		link = sawresolve(url)
 		return link
-	elif html and ('m3u8' in html or 'rtmp' in html or 'f4m' in html):
+	elif html and ('.m3u8' in html or 'rtmp:' in html or '.f4m' in html):
 		html = urllib.unquote_plus(html)
 		links = re.findall("[file|source|hls|src][:|=]\s*[\"\'](.*?)[\"\']", html)
 		for link in links:
 			if '.m3u8' in link or 'rtmp:' in link or 'f4m' in link:
 				link = link.replace('src=','')	
-				link = link+'|Referer='+url+'&Host='+urlparse.urlparse(link).netloc+'&Origin='+urlparse.urlparse(url).netloc+'&User-Agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.116 Safari/537.36'
+				if 'smotrimult' in link:
+					link = link+'|Referer='+url+'&Host='+urlparse.urlparse(link).netloc+'&Origin='+urlparse.urlparse(url).netloc+'&User-Agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.116 Safari/537.36'
 				return link
 	else:
 		domain = urlparse.urlparse(url).netloc
@@ -1252,53 +1182,34 @@ def Universal(url):
 
 	
 def sawresolve(query):
-	try:
+	try:	
+		import js2py
 		import jsunpack
 		header = {'Referer':  query, 'User-Agent': UA, 'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
 					'Accept-Language':'en-US,en;q=0.8,bg;q=0.6,it;q=0.4,ru;q=0.2,uk;q=0.2',
 					'Connection':'keep-alive', 'Host':urlparse.urlparse(query).netloc,'Upgrade-Insecure-Requests':'1'}
 		source = getUrl(query,header=header)
 		try:
-			decoded = jsunpack.unpack(source.decode('string_escape'))
+			source = source.decode('string_escape')
+			source = source.decode('unicode_escape')
+			decoded = jsunpack.unpack(source)
 		except:
 			decoded = source
-		if 'unescape(' in decoded:
-			unesc = re.findall('(unescape\(.*?\))', decoded)
-			for uns in  unesc:
-				dec = uns.replace("unescape(","").replace(")","")
-				dec = dec.decode('unicode_escape')
-				decoded = decoded.replace(uns, dec)
-		if 'document[' in decoded:
-			docs = re.findall('(document\[.*?)\(', decoded)
-			for doc in docs:
-				decoded = decoded.replace(doc, 'document.write')	
-		functions = re.findall('(function.*?})', decoded)
-		vars = re.findall('(var.*?;)', decoded)
-		for i,f in enumerate(functions):
-			decoded = decoded.replace(f,'')
-			functions[i] = f.replace('document.write', 'return ')
-		for v in vars:
-			decoded = decoded.replace(v,'')
-		decoded = decoded.split(';')
-		st = ' var result = '
-		for d in decoded:
-			if d and 'document.write' in d:
-				dwrite = re.findall('document\.write\((.*)\)', d)
-				dwrite = ''.join(dwrite)
-				st += dwrite+'+'
-				st = st.replace("'''","'").replace("''","'")
-			elif d:
-				st+=d+'+'
-		if st.endswith('+'):
-			st = st[:-1]
-		decoded = ''.join(functions)+''.join(vars)+st
-		import js2py
 		context = js2py.EvalJs()
+		context.execute('''pyimport jstools;
+           		var escape = jstools.escape;
+            	var unescape = jstools.unescape;
+            	var document = [];
+            	document.html = ""
+            	document.result = "";
+            	document.write = function(markup){ document.result = document.result + markup };''')
 		context.swidth = '400'
 		context.sheight = '400'
 		context.execute(decoded)
-		result = context.result
-		result = urllib.unquote_plus(result)
+		if '<script>' in context.document.result and '</script>' in context.document.result:
+			decoded = decoded+';'+context.document.result.replace('<script>','').replace('</script>','')
+			context.execute(decoded)
+		result = context.document.result
 		src = common.parseDOM(result, 'iframe', ret='src')[-1]
 		src = src.replace("'","").replace('"','')
 		if src:
@@ -1312,6 +1223,13 @@ def sawresolve(query):
 				o = s.replace("so.addVariable('", "var ").replace("',", " = ").replace(")","").replace(".","")
 				dec = dec.replace(s, o)
 			context = js2py.EvalJs()
+			context.execute('''pyimport jstools;
+           		var escape = jstools.escape;
+            	var unescape = jstools.unescape;
+            	var document = [];
+            	document.html = ""
+            	document.result = "";
+            	document.write = function(markup){ document.result = document.result + markup };''')
 			context.execute(dec)
 			swf = re.compile("SWFObject\('(.+?)'").findall(decoded)[0].replace(' ', '')
 			url = '%s playpath=%s swfUrl=%s pageUrl=%s live=1 timeout=60' % (context.streamer, context.file, swf, src)
@@ -1416,6 +1334,7 @@ def p2pcast2(url):
 		return link
 	except:
 		return None
+
 
 def weplayer(id):
 	try:
@@ -1562,6 +1481,7 @@ def Play(url, orig_title):
     	dialog = xbmcgui.Dialog()
     	dialog.notification('Pro Sport', 'Stream not found', xbmcgui.NOTIFICATION_INFO, 3000)
     else:
+    	print url
     	item = xbmcgui.ListItem(path=url)
     	item.setInfo('video', { 'Title': orig_title })
     	xbmcplugin.setResolvedUrl(h, True, item)

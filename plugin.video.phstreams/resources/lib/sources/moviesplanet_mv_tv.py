@@ -184,7 +184,6 @@ class source:
             except:
                 pass
 
-
             result = client.request(url)
 
             try:
@@ -198,9 +197,10 @@ class source:
                 pass
 
             try:
-                url = client.parseDOM(result, 'source', ret='src')[0]
+                url = client.parseDOM(result, 'source', ret='src')
+                url += re.findall('src:\s*\'(.*?)\'', result)
 
-                links.append({'source': 'cdn', 'quality': 'HD', 'url': url})
+                links.append({'source': 'cdn', 'quality': 'HD', 'url': url[0]})
             except:
                 pass
 

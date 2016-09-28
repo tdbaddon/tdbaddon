@@ -58,14 +58,16 @@ class source:
 
     def dizibox_tvcache(self):
         try:
-            result = client.request(self.base_link)
+            r = client.request(self.base_link)
+            r = re.sub(r'[^\x00-\x7F]+','', r)
 
-            result = client.parseDOM(result, 'input', {'id': 'filterAllCategories'})[0]
-            result = client.parseDOM(result, 'li')
-            result = zip(client.parseDOM(result, 'a', ret='href'), client.parseDOM(result, 'a'))
-            result = [(re.sub('http.+?//.+?/','/', i[0]), cleantitle.get(i[1])) for i in result]
+            r = client.parseDOM(r, 'div', {'id': 'all-tv-series-list'})[0]
+            r = client.parseDOM(r, 'li')
+            r = zip(client.parseDOM(r, 'a', ret='href'), client.parseDOM(r, 'a'))
+            r = [(i[0], i[1].split('>')[-1]) for i in r]
+            r = [(re.findall('(?://.+?|)(/.+)', i[0])[0], cleantitle.get(i[1])) for i in r]
 
-            return result
+            return r
         except:
             return
 
@@ -88,17 +90,19 @@ class source:
                 url = cache.get(self.dizibox_tvcache, 120)
 
                 url = [i[0] for i in url if title == i[1]][-1]
+
                 url = urlparse.urljoin(self.base_link, url)
 
                 result = client.request(url)
 
                 if not season == '1':
-                    url = client.parseDOM(result, 'a', ret='href', attrs = {'class': 'season-.+?'})
+                    url = client.parseDOM(result, 'a', ret='href', attrs = {'class': 'btn btn-s.+?'})
                     url = [i for i in url if '/%s-sezon-' % season in i][0]
                     result = client.request(url)
 
                 url = client.parseDOM(result, 'a', ret='href')
                 url = [i for i in url if '%s-sezon-%s-bolum-' % (season, episode) in i][0]
+
 
                 atr = re.findall('%s.+?\s+(\d{4})' % url, result)[0]
                 if not atr == year: raise Exception()
@@ -109,8 +113,8 @@ class source:
             result = client.request(url)
             result = re.sub(r'[^\x00-\x7F]+','', result)
 
-            url = re.compile('(<a.*?</a>)', re.DOTALL).findall(result)
-            url = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a')) for i in url]
+            url = re.compile('(<option.*?</option>)', re.DOTALL).findall(result)
+            url = [(client.parseDOM(i, 'option', ret='value'), client.parseDOM(i, 'option')) for i in url]
             url = [(i[0][0], i[1][0]) for i in url if len(i[0]) > 0 and len(i[1]) > 0]
             url = [i[0] for i in url if i[1] == 'Altyazsz'][0]
 
@@ -119,7 +123,7 @@ class source:
  
             headers = {'Referer': url}
 
-            url = client.parseDOM(result, 'span', attrs = {'class': 'object-wrapper'})[0]
+            url = client.parseDOM(result, 'span', attrs = {'class': 'embed-responsive-item.+?'})[0]
             url = client.parseDOM(url, 'iframe', ret='src')[0]
             url = client.replaceHTMLCodes(url)
 

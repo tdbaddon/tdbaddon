@@ -80,8 +80,8 @@ def getlanguage():
 def getuser():
       from random import randint
       
-      number='1.0.0.%s%s%s' % (getletter().upper(),randint(0,20),randint(0,20))
-      agent='AppleCoreMedia/1.0.0.13G82 (iPhone; U; CPU OS 9_3_5 like Mac OS X; en_gb)'
+      number='1.0.0.%s%s%s' % (randint(10,20),getletter().upper(),randint(10,40))
+      agent='AppleCoreMedia/%s (iPhone; U; CPU OS 9_3_5 like Mac OS X; en_us)'%number
 
     
             

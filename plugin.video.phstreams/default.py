@@ -56,6 +56,10 @@ elif action == 'directory':
     from resources.lib.indexers import phstreams
     phstreams.indexer().get(url)
 
+elif action == 'xdirectory':
+    from resources.lib.indexers import phstreams
+    phstreams.indexer().getx(url)
+
 elif action == 'developer':
     from resources.lib.indexers import phstreams
     phstreams.indexer().developer()

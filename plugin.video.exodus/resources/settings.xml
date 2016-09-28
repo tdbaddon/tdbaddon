@@ -46,6 +46,7 @@
 		<setting id="provider.miradetodo" type="bool" label="MiraDeTodo" default="true" />
 		<setting id="provider.movie4k" type="bool" label="Movie4K" default="true" />
 		<setting id="provider.movie25" type="bool" label="Movie25" default="true" />
+		<setting id="provider.moviefree" type="bool" label="Moviefree" default="true" />
 		<setting id="provider.movieshd" type="bool" label="MoviesHD" default="true" />
 		<setting id="provider.moviesplanet" type="bool" label="Moviesplanet" default="true" />
 		<setting id="provider.newlinks" type="bool" label="Newlinks" default="true" />

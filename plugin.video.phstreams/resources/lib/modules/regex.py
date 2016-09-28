@@ -37,13 +37,16 @@ profile = functions_dir = xbmc.translatePath(xbmcaddon.Addon().getAddonInfo('pro
 
 def resolve(regex):
     try:
+        vanilla = re.compile('(<regex>.+)', re.MULTILINE|re.DOTALL).findall(regex)[0]
         cddata = re.compile('<\!\[CDATA\[(.+?)\]\]>', re.MULTILINE|re.DOTALL).findall(regex)
-        for i in cddata: regex = regex.replace('<![CDATA['+i+']]>', i)
+        for i in cddata:
+            regex = regex.replace('<![CDATA['+i+']]>', urllib.quote_plus(i))
 
         regexs = re.compile('(<regex>.+)', re.MULTILINE|re.DOTALL).findall(regex)[0]
         regexs = re.compile('<regex>(.+?)</regex>', re.MULTILINE|re.DOTALL).findall(regexs)
         regexs = [re.compile('<(.+?)>(.*?)</.+?>', re.MULTILINE|re.DOTALL).findall(i) for i in regexs]
-        regexs = [dict([(client.replaceHTMLCodes(x[0]), client.replaceHTMLCodes(x[1])) for x in i]) for i in regexs]
+
+        regexs = [dict([(client.replaceHTMLCodes(x[0]), client.replaceHTMLCodes(urllib.unquote_plus(x[1]))) for x in i]) for i in regexs]
         regexs = [(i['name'], i) for i in regexs]
         regexs = dict(regexs)
 
@@ -51,9 +54,38 @@ def resolve(regex):
         url = client.replaceHTMLCodes(url)
         url = url.encode('utf-8')
 
-        url, setresolved = getRegexParsed(regexs, url)
+        r = getRegexParsed(regexs, url)
 
-        return url
+        try:
+            ln = ''
+            ret = r[1]
+            listrepeat = r[2]['listrepeat']
+            regexname = r[2]['name']
+
+            for obj in ret:
+                try:
+                    item = listrepeat
+                    for i in range(len(obj)+1):
+                        item = item.replace('[%s.param%s]' % (regexname, str(i)), obj[i-1])
+
+                    item2 = vanilla
+                    for i in range(len(obj)+1):
+                        item2 = item2.replace('[%s.param%s]' % (regexname, str(i)), obj[i-1])
+
+                    item2 = re.compile('(<regex>.+?</regex>)', re.MULTILINE|re.DOTALL).findall(item2)
+                    item2 = [x for x in item2 if not '<name>%s</name>' % regexname in x]
+                    item2 = ''.join(item2)
+
+                    ln += '\n<item>%s\n%s</item>\n' % (item, item2)
+                except:
+                    pass
+
+            return ('makelist', ln)
+        except:
+            pass
+
+        if r[1] == True:
+            return ('link', r[0])
     except:
         return
 
@@ -329,9 +361,12 @@ def getRegexParsed(regexs, url,cookieJar=None,forCookieJarOnly=False,recursiveCa
                         else:
                             val=doEvalFunction(m['expres'],link,cookieJar,m)
                         if 'ActivateWindow' in m['expres']: return
-#                        print 'url k val',url,k,val
-                        #print 'repr',repr(val)
-                        
+                        if forCookieJarOnly:
+                            return cookieJar# do nothing
+                        if 'listrepeat' in m:
+                            listrepeat=m['listrepeat']
+                            return listrepeat,eval(val), m,regexs,cookieJar
+
                         try:
                             url = url.replace(u"$doregex[" + k + "]", val)
                         except: url = url.replace("$doregex[" + k + "]", val.decode("utf-8"))

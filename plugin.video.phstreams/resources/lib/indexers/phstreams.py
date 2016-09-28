@@ -58,13 +58,20 @@ class indexer:
             pass
 
 
+    def getx(self, url):
+        try:
+            self.list = self.phoenix_list('', result=url)
+            self.addDirectory(self.list)
+            return self.list
+        except:
+            pass
+
+
     def developer(self):
         try:
             url = os.path.join(control.dataPath, 'testings.xml')
             f = control.openFile(url) ; result = f.read() ; f.close()
-            self.list = self.phoenix_list('', result=result)
-            self.addDirectory(self.list)
-            return self.list
+            self.getx(result)
         except:
             pass
 
@@ -154,14 +161,7 @@ class indexer:
 
             result = str(result)
 
-            regex = re.compile('<link>(.+?)</link>', re.MULTILINE|re.DOTALL).findall(result)
-            for i in regex:
-                if '</regex>' in i: result = result.replace('<link>'+i+'</link>', '<link>'+urllib.quote_plus(i)+'</link>')
-
-            result = result.replace('\r','').replace('\n','').replace('\t','').replace('&nbsp;','')
-
             result = self.account_filter(result)
-            result = re.sub('<link></link>|<sublink></sublink>','', result)
 
             info = result.split('<item>')[0].split('<dir>')[0]
 
@@ -174,12 +174,19 @@ class indexer:
             try: fanart = re.findall('<fanart>(.+?)</fanart>', info)[0]
             except: fanart = '0'
 
-            items = re.findall('((?:<item>.+?</item>|<dir>.+?</dir>|<plugin>.+?</plugin>|<info>.+?</info>|<name>[^<]+</name><link>[^<]+</link><thumbnail>[^<]+</thumbnail><mode>[^<]+</mode>|<name>[^<]+</name><link>[^<]+</link><thumbnail>[^<]+</thumbnail><date>[^<]+</date>))', result)
+            items = re.compile('((?:<item>.+?</item>|<dir>.+?</dir>|<plugin>.+?</plugin>|<info>.+?</info>|<name>[^<]+</name><link>[^<]+</link><thumbnail>[^<]+</thumbnail><mode>[^<]+</mode>|<name>[^<]+</name><link>[^<]+</link><thumbnail>[^<]+</thumbnail><date>[^<]+</date>))', re.MULTILINE|re.DOTALL).findall(result)
         except:
             return
 
         for item in items:
             try:
+                regex = re.compile('(<regex>.+?</regex>)', re.MULTILINE|re.DOTALL).findall(item)
+                regex = ''.join(regex)
+                regex = urllib.quote_plus(regex)
+
+                item = item.replace('\r','').replace('\n','').replace('\t','').replace('&nbsp;','')
+                item = re.sub('<link></link>|<sublink></sublink>','', item)
+
                 name = item.split('<meta>')[0].split('<regex>')[0]
                 try: name = re.findall('<title>(.+?)</title>', name)[0]
                 except: name = re.findall('<name>(.+?)</name>', name)[0]
@@ -199,6 +206,7 @@ class indexer:
                 url = url.replace('>searchsd<', '><preset>searchsd</preset>%s<' % meta)
                 url = '<preset>searchsd</preset>%s' % meta if url == 'searchsd' else url
                 url = url.replace('<sublink></sublink>', '')
+                url += regex
 
                 if item.startswith('<item>'): action = 'play'
                 elif item.startswith('<plugin>'): action = 'plugin'
@@ -206,6 +214,7 @@ class indexer:
                 else: action = 'directory'
 
                 if action in ['directory', 'plugin']: folder = True
+                elif not regex == '': folder = True
                 else: folder = False
 
                 try: image2 = re.findall('<thumbnail>(.+?)</thumbnail>', item)[0]
@@ -576,7 +585,11 @@ class resolver:
         try:
             url = self.get(url)
             if url == False: return
+
+            control.execute('ActivateWindow(busydialog)')
             url = self.process(url)
+            control.execute('Dialog.Close(busydialog)')
+
             if url == None: return control.infoDialog(control.lang(30705).encode('utf-8'))
             return url
         except:
@@ -642,36 +655,31 @@ class resolver:
             ext = url.split('?')[0].split('&')[0].split('|')[0].rsplit('.')[-1].replace('/', '').lower()
             if not ext in ['jpg', 'png', 'gif']: raise Exception()
             try:
-                dialog = None
-                dialog = control.progressDialog
-                dialog.create(control.addonInfo('name'), control.lang(30732).encode('utf-8'))
-                dialog.update(0)
                 i = os.path.join(control.dataPath,'img')
                 control.deleteFile(i)
                 f = control.openFile(i, 'w')
                 f.write(client.request(url))
                 f.close()
-                dialog.close()
                 control.execute('ShowPicture("%s")' % i)
-                return True
+                return False
             except:
                 return
         except:
             pass
 
         try:
-            dialog = None
-            dialog = control.progressDialog
-            dialog.create(control.addonInfo('name'), control.lang(30726).encode('utf-8'))
-            dialog.update(0)
-        except:
-            pass
-
-        try:
             r = urllib.unquote_plus(url)
             if not '</regex>' in r: raise Exception()
+
             from resources.lib.modules import regex
-            u = regex.resolve(r)
+            r = regex.resolve(r)
+
+            if r[0] == 'makelist':
+                indexer().getx(r[1])
+                return False
+            elif r[0] == 'link':
+                u = r[1]
+
             if not u == None: url = u
         except:
             pass
@@ -679,8 +687,6 @@ class resolver:
         try:
             if not url.startswith('rtmp'): raise Exception()
             if len(re.compile('\s*timeout=(\d*)').findall(url)) == 0: url += ' timeout=10'
-            try: dialog.close()
-            except: pass
             return url
         except:
             pass
@@ -689,8 +695,6 @@ class resolver:
             if not any(i in url for i in ['.m3u8', '.f4m', '.ts']): raise Exception()
             ext = url.split('?')[0].split('&')[0].split('|')[0].rsplit('.')[-1].replace('/', '').lower()
             if not ext in ['m3u8', 'f4m', 'ts']: raise Exception()
-            try: dialog.close()
-            except: pass
             return url
         except:
             pass
@@ -711,6 +715,11 @@ class resolver:
 
             from resources.lib.sources import sources
 
+            dialog = None
+            dialog = control.progressDialog
+            dialog.create(control.addonInfo('name'), control.lang(30726).encode('utf-8'))
+            dialog.update(0)
+
             try: dialog.update(0, control.lang(30726).encode('utf-8'), control.lang(30731).encode('utf-8'))
             except: pass
 
@@ -726,7 +735,8 @@ class resolver:
                 except: pass
                 return u
         except:
-            pass
+            try: dialog.close()
+            except: pass
 
         try:
             from resources.lib.sources import sources
@@ -735,6 +745,11 @@ class resolver:
 
             if not u == False: direct = False
             if u == None or u == False or u == []: raise Exception()
+
+            dialog = None
+            dialog = control.progressDialog
+            dialog.create(control.addonInfo('name'), control.lang(30726).encode('utf-8'))
+            dialog.update(0)
 
             try: dialog.update(50, control.lang(30726).encode('utf-8'), control.lang(30731).encode('utf-8'))
             except: pass
@@ -746,14 +761,13 @@ class resolver:
                 except: pass
                 return u
         except:
-            pass
+            try: dialog.close()
+            except: pass
 
         try:
             if not '.google.com' in url: raise Exception()
             from resources.lib.modules import directstream
             u = directstream.google(url)[0]['url']
-            try: dialog.close()
-            except: pass
             return u
         except:
             pass
@@ -762,8 +776,6 @@ class resolver:
             if not 'filmon.com/' in url: raise Exception()
             from resources.lib.modules import filmon
             u = filmon.resolve(url)
-            try: dialog.close()
-            except: pass
             return u
         except:
             pass
@@ -777,13 +789,9 @@ class resolver:
 
             direct = False ; u = hmf.resolve()
 
-            if not u == False:
-                try: dialog.close()
-                except: pass
-                return u
+            if not u == False: return u
         except:
             pass
-
 
         try:
             try: headers = dict(urlparse.parse_qsl(url.rsplit('|', 1)[1]))
@@ -793,22 +801,16 @@ class resolver:
             if 'Content-Type' in result and not 'html' in result['Content-Type']: raise Exception()
 
             import liveresolver
-            if liveresolver.isValid(url) == True: direct = False
-            u = liveresolver.resolve(url)
 
-            if not u == None:
-                try: dialog.close()
-                except: pass
-                return u
+            if liveresolver.isValid(url) == False: raise Exception()
+
+            direct = False ; u = liveresolver.resolve(url)
+
+            if not u == None: return u
         except:
             pass
 
-
         if direct == True: return url
-
-        try: dialog.close()
-        except: pass
-
 
 
 class player(xbmc.Player):
@@ -821,9 +823,12 @@ class player(xbmc.Player):
             url = resolver().get(url)
             if url == False: return
 
+            control.execute('ActivateWindow(busydialog)')
             url = resolver().process(url)
-            if url == None: return control.infoDialog(control.lang(30705).encode('utf-8'))
+            control.execute('Dialog.Close(busydialog)')
 
+            if url == None: return control.infoDialog(control.lang(30705).encode('utf-8'))
+            if url == False: return
 
             meta = {}
             for i in ['title', 'originaltitle', 'tvshowtitle', 'year', 'season', 'episode', 'genre', 'rating', 'votes', 'director', 'writer', 'plot', 'tagline']:
@@ -836,6 +841,8 @@ class player(xbmc.Player):
 
             self.name = meta['title'] ; self.year = meta['year'] if 'year' in meta else '0'
 
+            self.getbookmark = True if (content == 'movies' or content == 'episodes') else False
+
             self.offset = bookmarks().get(self.name, self.year)
 
             f4m = resolver().f4m(url, self.name)
@@ -847,8 +854,6 @@ class player(xbmc.Player):
             except: pass
             item.setInfo(type='Video', infoLabels = meta)
             control.player.play(url, item)
-
-            if not (content == 'movies' or content == 'episodes'): return
 
 
             self.totalTime = 0 ; self.currentTime = 0
@@ -869,11 +874,14 @@ class player(xbmc.Player):
 
 
     def onPlayBackStarted(self):
-        if not self.offset == '0': self.seekTime(float(self.offset))
+        control.execute('Dialog.Close(all,true)')
+        if self.getbookmark == True and not self.offset == '0':
+            self.seekTime(float(self.offset))
 
 
     def onPlayBackStopped(self):
-        bookmarks().reset(self.currentTime, self.totalTime, self.name, self.year)
+        if self.getbookmark == True:
+            bookmarks().reset(self.currentTime, self.totalTime, self.name, self.year)
 
 
     def onPlayBackEnded(self):

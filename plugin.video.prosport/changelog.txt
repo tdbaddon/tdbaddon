@@ -198,3 +198,11 @@ ver 0.57:
 ver 0.58:
 	- fixed streams
 	- fixed redzone had no links
+	
+ver 0.59:
+	- fixed streams
+	- fixed redzone had no links
+	
+ver 0.60:
+	- fixed streams
+	- xrxs is back

@@ -11,7 +11,7 @@ import search
 sysarg=str(sys.argv[1])
 ADDON_ID='plugin.video.javstream'
 addon = xbmcaddon.Addon(id=ADDON_ID)
-ADDON_VER="0.91.9"
+ADDON_VER="0.91.91"
 
 hdr = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11',
        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
@@ -1128,7 +1128,7 @@ def getVideoURL(params):
         cj2 = cookielib.CookieJar()
         opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cj2))
         
-        login_data = urllib.urlencode({'username_or_email' : xbmcaddon.Addon().getSetting("wushare_username"), 'password' : xbmcaddon.Addon().getSetting("wushare_password"), 'referrer' : 'http://wushare.com/login'})
+        login_data = urllib.urlencode({'username_or_email' : xbmcaddon.Addon().getSetting("wushare_username"), 'password' : xbmcaddon.Addon().getSetting("wushare_password"), 'stay_login': '1', 'commit' : 'Login', 'referrer' : 'http://wushare.com/login'})
         opener.open('http://wushare.com/login', login_data)
         
         resp = opener.open(link)
