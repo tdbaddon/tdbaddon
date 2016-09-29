@@ -206,3 +206,6 @@ ver 0.59:
 ver 0.60:
 	- fixed streams
 	- xrxs is back
+	
+ver 0.61:
+	- fixed streams

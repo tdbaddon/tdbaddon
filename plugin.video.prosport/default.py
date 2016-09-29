@@ -663,8 +663,15 @@ def Xrxsday(yesterday):
 
 def Xrxsgame(links, orig_title):
 	links = common.parseDOM(links, "a", ret="href")
+	result = urllib.urlretrieve("http://nhlkeys.ga/auth")
+	print open(result[0]).read()
 	nhlcookie = GetURL("http://nhlkeys.ga/auth", output='cookie')
-	nhlcookie = '|Cookie='+nhlcookie
+	if not nhlcookie:
+		nhlcookie = ''
+		dialog = xbmcgui.Dialog()
+		dialog.notification('Pro Sport', "Failed to get cookie, links won't work", xbmcgui.NOTIFICATION_WARNING, 5000)
+	else:
+		nhlcookie = '|Cookie='+nhlcookie
 	for link in links:
 		link = 'http://xrxs.ml/nhl/'+link
 		if 'HOME' in link:
@@ -717,33 +724,36 @@ def PlayArchive(url):
 	xbmcplugin.endOfDirectory(h, cacheToDisc=True)
 
 def Xrxs(home, away):
-	try:
-		today = datetime.utcnow() - timedelta(hours=8)
-		today = str(today.strftime('%Y-%m-%d'))
-		html = GetURL("http://xrxs.ml/nhl/?date="+today)
-		html = html.split('<br /><hr/>')
-		for el in html:
-			if home.lower() in el.lower() and away.lower() in el.lower():
-				links = common.parseDOM(el, "a", ret="href")
-				nhlcookie = GetURL("http://nhlkeys.ga/auth", output='cookie')
-				for link in links:
-					if 'http://xrxs.ml' not in link:
-						link = 'http://xrxs.ml/nhl/'+link
-					if 'HOME' in link:
-						title = re.findall('(HOME.+?\.m3u8)',link)[0].replace('.m3u8','')
-						addDirectLink(title, {'Title': away+' @ '+home}, link+'|Cookie='+nhlcookie)
-					elif 'VISIT' in link:
-						title = re.findall('(VISIT.+?\.m3u8)',link)[0].replace('.m3u8','')
-						addDirectLink(title, {'Title': away+' @ '+home}, link+'|Cookie='+nhlcookie)
-					elif 'FRENCH' in link:
-						title = re.findall('(FRENCH.+?\.m3u8)',link)[0].replace('.m3u8','')
-						addDirectLink(title, {'Title': away+' @ '+home}, link+'|Cookie='+nhlcookie)
-					elif 'NATIONAL' in link:
-						title = re.findall('(NATIONAL.+?\.m3u8)',link)[0].replace('.m3u8','')
-						addDirectLink(title, {'Title': away+' @ '+home}, link+'|Cookie='+nhlcookie)
-						
-	except:
-		pass	
+	today = datetime.utcnow() - timedelta(hours=8)
+	today = str(today.strftime('%Y-%m-%d'))
+	nhlcookie = GetURL("http://nhlkeys.ga/auth", output='cookie')
+	if not nhlcookie:
+		nhlcookie = ''
+		dialog = xbmcgui.Dialog()
+		dialog.notification('Pro Sport', "Failed to get cookie, links won't work", xbmcgui.NOTIFICATION_WARNING, 5000)
+	else:
+		nhlcookie = '|Cookie='+nhlcookie
+	html = GetURL("http://xrxs.ml/nhl/?date="+today)
+	html = html.split('<br /><hr/>')
+	for el in html:
+		if home.lower() in el.lower() and away.lower() in el.lower():
+			links = common.parseDOM(el, "a", ret="href")
+			for link in links:
+				if 'http://xrxs.ml' not in link:
+					link = 'http://xrxs.ml/nhl/'+link
+				if 'HOME' in link:
+					title = re.findall('(HOME.+?\.m3u8)',link)[0].replace('.m3u8','')
+					addDirectLink(title, {'Title': away+' @ '+home}, link+nhlcookie)
+				elif 'VISIT' in link:
+					title = re.findall('(VISIT.+?\.m3u8)',link)[0].replace('.m3u8','')
+					addDirectLink(title, {'Title': away+' @ '+home}, link+nhlcookie)
+				elif 'FRENCH' in link:
+					title = re.findall('(FRENCH.+?\.m3u8)',link)[0].replace('.m3u8','')
+					addDirectLink(title, {'Title': away+' @ '+home}, link+nhlcookie)
+				elif 'NATIONAL' in link:
+					title = re.findall('(NATIONAL.+?\.m3u8)',link)[0].replace('.m3u8','')
+					addDirectLink(title, {'Title': away+' @ '+home}, link+nhlcookie)
+	xbmcplugin.endOfDirectory(h, cacheToDisc=True)	
 
 
 def GetStreamup(channel):
@@ -1182,33 +1192,36 @@ def Universal(url):
 
 	
 def sawresolve(query):
-	try:	
+	try:
 		import js2py
-		import jsunpack
 		header = {'Referer':  query, 'User-Agent': UA, 'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
 					'Accept-Language':'en-US,en;q=0.8,bg;q=0.6,it;q=0.4,ru;q=0.2,uk;q=0.2',
 					'Connection':'keep-alive', 'Host':urlparse.urlparse(query).netloc,'Upgrade-Insecure-Requests':'1'}
-		source = getUrl(query,header=header)
-		try:
-			source = source.decode('string_escape')
-			source = source.decode('unicode_escape')
-			decoded = jsunpack.unpack(source)
-		except:
-			decoded = source
+		decoded = getUrl(query)
 		context = js2py.EvalJs()
 		context.execute('''pyimport jstools;
            		var escape = jstools.escape;
             	var unescape = jstools.unescape;
             	var document = [];
-            	document.html = ""
             	document.result = "";
+            	document.domain = "";
             	document.write = function(markup){ document.result = document.result + markup };''')
 		context.swidth = '400'
 		context.sheight = '400'
+		context.document.domain = urlparse.urlparse(query).netloc
 		context.execute(decoded)
-		if '<script>' in context.document.result and '</script>' in context.document.result:
-			decoded = decoded+';'+context.document.result.replace('<script>','').replace('</script>','')
-			context.execute(decoded)
+		if '</script>' in context.document.result:
+			if 'src' in context.document.result:
+				src = common.parseDOM(context.document.result, 'script', ret='src')
+				a = ''
+				for s in src:
+					s = GetURL(s)
+					a = a+s
+				decoded = decoded+';'+a
+				context.execute(decoded)
+			else:
+				decoded = decoded+';'+context.document.result.replace('<script>','').replace('</script>','')
+				context.execute(decoded)
 		result = context.document.result
 		src = common.parseDOM(result, 'iframe', ret='src')[-1]
 		src = src.replace("'","").replace('"','')
@@ -1217,25 +1230,28 @@ def sawresolve(query):
 					'Accept-Language':'en-US,en;q=0.8,bg;q=0.6,it;q=0.4,ru;q=0.2,uk;q=0.2',
 					'Connection':'keep-alive', 'Host':urlparse.urlparse(src).netloc,'Upgrade-Insecure-Requests':'1'}
 			decoded = getUrl(src,header=header)
-			dec = decoded.split("'uniform');")[-1].split("</script>")[0]
-			so = re.findall('(so.addVariable\(.*?\))', dec)
+			swf = re.compile("SWFObject\('(.+?)'").findall(decoded)[0].replace(' ', '')
+			decoded = decoded.split("'uniform');")[-1].split("</script>")[0]
+			so = re.findall('(so.addVariable\(.*?\))', decoded)
 			for s in so:
-				o = s.replace("so.addVariable('", "var ").replace("',", " = ").replace(")","").replace(".","")
-				dec = dec.replace(s, o)
+				o = s.replace("so.addVariable('", "var ").replace("',", " = ").replace(")","").replace("rtmp.tunneling","rtmptunneling")
+				decoded = decoded.replace(s, o)
 			context = js2py.EvalJs()
 			context.execute('''pyimport jstools;
            		var escape = jstools.escape;
             	var unescape = jstools.unescape;
             	var document = [];
-            	document.html = ""
             	document.result = "";
             	document.write = function(markup){ document.result = document.result + markup };''')
-			context.execute(dec)
-			swf = re.compile("SWFObject\('(.+?)'").findall(decoded)[0].replace(' ', '')
-			url = '%s playpath=%s swfUrl=%s pageUrl=%s live=1 timeout=60' % (context.streamer, context.file, swf, src)
+			context.execute(decoded)
+			try:
+				streamer = context.streamer
+			except: streamer = ''
+			url = '%s playpath=%s swfUrl=%s pageUrl=%s live=1 timeout=60' % (streamer, context.file, swf, src)
 			return url
 	except:
 		return None
+	
 		
 def castup(id):
 	try:
