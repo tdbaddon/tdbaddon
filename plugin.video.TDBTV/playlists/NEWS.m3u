@@ -14,7 +14,7 @@ http://live.tvplayerlatino.com/lista_remota/src3/abcnw.m3u8
 0
 
 #EXTINF:0,BBC World News 
-0
+http://198.16.76.122:8000/343/LCLDTIPOAUOEMAH0
 
 #EXTINF:0,Bloomberg News 
 http://x4012c4000.edge.core-cdn.net/40000mb/live/4012hbbtv/bloomberg.ts
@@ -41,13 +41,16 @@ http://cdn3.videos.bloomberg.com/btv/us/master.m3u8
 http://cbsnews-linear.mdialog.com/video_assets/cbsnews.m3u8?api_key=563b80c1ae4ce359830f572d2496a947&iu=/8264/vaw-can/mobile_web/cbsnews_mobile
 
 #EXTINF:0,CCTV News 
-0
+http://198.16.76.122:8000/731/LCLDTIPOAUOEMAH0
 
 #EXTINF:0,CNBC 
 0
 
 #EXTINF:0,CNN 
 http://149.255.152.110/cnn/index.m3u8
+
+#EXTINF:0,CNN 
+http://198.16.76.122:8000/314/LCLDTIPOAUOEMAH0
 
 #EXTINF:0,CP24 
 0
@@ -76,6 +79,9 @@ http://fr-par-iphone-2.cdn.hexaglobe.net/streaming/euronews_ewns/ipad_en.m3u8
 #EXTINF:0,France 24 
 http://f24hls-i.akamaihd.net/hls/live/221192/F24_FR_LO_HLS/master.m3u8
 
+#EXTINF:0,France 24 
+http://198.16.76.122:8000/345/LCLDTIPOAUOEMAH0
+
 #EXTINF:0,Global News 
 0
 
@@ -97,6 +103,9 @@ http://web-cache.stream.ne.jp/www11/nhkworld-tv/global/222714/live.m3u8
 #EXTINF:0,NHK World 
 http://nhkwglobal-i.akamaihd.net/hls/live/222714/nhkwglobal/index_1180.m3u8
 
+#EXTINF:0,NHK World 
+http://198.16.76.122:8000/790/LCLDTIPOAUOEMAH0
+
 #EXTINF:0,Press TV 
 0
 
@@ -104,7 +113,10 @@ http://nhkwglobal-i.akamaihd.net/hls/live/222714/nhkwglobal/index_1180.m3u8
 0
 
 #EXTINF:0,RT News 
-0
+http://198.16.76.122:8000/310/LCLDTIPOAUOEMAH0
+
+#EXTINF:0,RT News 
+http://198.16.76.122:8000/643/LCLDTIPOAUOEMAH0
 
 #EXTINF:0,Sky News 
 0

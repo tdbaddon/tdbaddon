@@ -40,6 +40,9 @@ http://nodeb.gocaster.net:1935/CGL/_definst_/mp4:TODAYFM_TEST2/live.m3u8
 #EXTINF:0,Deluxe Music 
 http://server55.livestreamingcdn.com:1935/tulixdemo/tulixdemo/chunklist.m3u8
 
+#EXTINF:0,Deluxe Music 
+http://198.16.76.122:8000/465/LCLDTIPOAUOEMAH0
+
 #EXTINF:0,Djing Animation 
 http://www.djing.com/tv/a-03.m3u8
 
@@ -127,32 +130,48 @@ rtmp://tst.es.flash.glb.ipercast.net/tst.es-live/live
 #EXTINF:0,Mad Music TV
 http://144.76.2.213:1935/live/livestream/playlist.m3u8
 
+#EXTINF:0,Mezzo TV
+http://198.16.76.122:8000/275/LCLDTIPOAUOEMAH0
+
+#EXTINF:0,Mezzo TV
+http://198.16.76.122:8000/262/LCLDTIPOAUOEMAH0
+
+
 #EXTINF:0,Miami TV Music 
 0
 
 #EXTINF:0,MTV 
-0
+http://198.16.76.122:8000/653/LCLDTIPOAUOEMAH0
+
+#EXTINF:0,MTV 
+http://198.16.76.122:8000/654/LCLDTIPOAUOEMAH0
+
+#EXTINF:0,MTV 
+http://198.16.76.122:8000/474/LCLDTIPOAUOEMAH0
 
 #EXTINF:0,MTV Classic
 0
 
 #EXTINF:0,MTV Dance 
-0
+http://198.16.76.122:8000/650/LCLDTIPOAUOEMAH0
 
 #EXTINF:0,MTV Hits 
-0
+http://198.16.76.122:8000/787/LCLDTIPOAUOEMAH0
 
 #EXTINF:0,MTV Live 
-0
+http://198.16.76.122:8000/91/LCLDTIPOAUOEMAH0
 
 #EXTINF:0,MTV Rocks 
-0
+http://198.16.76.122:8000/366/LCLDTIPOAUOEMAH0
 
 #EXTINF:0,Much Music
 0
 
 #EXTINF:0,MusicVoxTV 
 http://s4w.deb1.scdn.smcloud.net/live/_definst_/vox2/chunklist_w1817328956.m3u8
+
+#EXTINF:0,MusicVoxTV 
+http://198.16.76.122:8000/630/LCLDTIPOAUOEMAH0
 
 #EXTINF:0,MusicVoxTV HD
 0
@@ -230,10 +249,10 @@ http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/06/prog_index.m3u8
 http://www.iptvsaga.com/play/tv3/0006.m3u8
 
 #EXTINF:0,VH1 
-0
+http://198.16.76.122:8000/2/LCLDTIPOAUOEMAH0
 
 #EXTINF:0,VH1 Classics 
-0
+http://198.16.76.122:8000/651/LCLDTIPOAUOEMAH0
 
 #EXTINF:0,Virgin TV 
 rtmp://fms.105.net:1935/live/virgin2

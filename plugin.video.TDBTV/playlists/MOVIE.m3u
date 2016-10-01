@@ -22,16 +22,19 @@ www.tcomputers.ca
 0
 
 #EXTINF:0,Cinemax 5 StarMax
-0
+http://46.166.162.35:9090/load/b0922f3fa8aa/24.m3u8
 
 #EXTINF:0,CineStar Action
 0
 
 #EXTINF:0,Cinemax ActionMax
-0
+http://46.166.162.35:9090/load/b0922f3fa8aa/25.m3u8
 
 #EXTINF:0,Cinemax East
-0
+http://46.166.162.35:9090/load/b0922f3fa8aa/23.m3u8
+
+#EXTINF:0,Cinemax East
+http://198.16.76.122:8000/608/LCLDTIPOAUOEMAH0
 
 #EXTINF:0,CineStar Premiere 1 
 0
@@ -85,7 +88,16 @@ www.tcomputers.ca
 0
 
 #EXTINF:0,FilmBox 
-0
+http://198.16.76.122:8000/422/LCLDTIPOAUOEMAH0
+
+#EXTINF:0,FilmBox 
+http://198.16.76.122:8000/586/LCLDTIPOAUOEMAH0
+
+#EXTINF:0,FilmBox 
+http://198.16.76.122:8000/425/LCLDTIPOAUOEMAH0
+
+#EXTINF:0,FilmBox 
+http://198.16.76.122:8000/427/LCLDTIPOAUOEMAH0
 
 #EXTINF:0,Film Aksion 
 0
@@ -135,14 +147,20 @@ http://freedom.duki.me/LIVE/H02/FOXACTIONLASD/master.m3u8
 #EXTINF:0,HBO 
 http://freedom.duki.me/LIVE/H02/HBOLASD/master.m3u8
 
+#EXTINF:0,HBO 
+http://198.16.76.122:8000/537/LCLDTIPOAUOEMAH0
+
 #EXTINF:0,HBO Adria 
 0
 
 #EXTINF:0,HBO Comedy 
-0
+http://46.166.162.35:9090/load/b0922f3fa8aa/20.m3u8
+
+#EXTINF:0,HBO Comedy 
+http://198.16.76.122:8000/454/LCLDTIPOAUOEMAH0
 
 #EXTINF:0,HBO East
-0
+http://46.166.162.35:9090/load/b0922f3fa8aa/19.m3u8
 
 #EXTINF:0,HBO East 2
 0
@@ -154,7 +172,7 @@ http://freedom.duki.me/LIVE/H02/HBOLASD/master.m3u8
 http://freedom.duki.me/LIVE/H02/HBOPlusLASD/master.m3u8
 
 #EXTINF:0,HBO Signature 
-0
+http://46.166.162.35:9090/load/b0922f3fa8aa/22.m3u8
 
 #EXTINF:0,HBO West
 0
@@ -163,7 +181,7 @@ http://freedom.duki.me/LIVE/H02/HBOPlusLASD/master.m3u8
 0
 
 #EXTINF:0,HBO Zone 
-0
+http://46.166.162.35:9090/load/b0922f3fa8aa/21.m3u8
 
 #EXTINF:0,HWD Hollywood 
 0
@@ -175,7 +193,10 @@ http://freedom.duki.me/LIVE/H02/HBOPlusLASD/master.m3u8
 0
 
 #EXTINF:0,MGM 
-0
+http://198.16.76.122:8000/214/LCLDTIPOAUOEMAH0
+
+#EXTINF:0,MGM 
+http://198.16.76.122:8000/635/LCLDTIPOAUOEMAH0
 
 #EXTINF:0,Movies 24
 0
@@ -205,7 +226,7 @@ http://freedom.duki.me/LIVE/H02/HBOPlusLASD/master.m3u8
 0
 
 #EXTINF:0,Paramount Channel 
-0
+http://198.16.76.122:8000/779/LCLDTIPOAUOEMAH0
 
 #EXTINF:0,SciFi Action Movies
 0
@@ -214,13 +235,13 @@ http://freedom.duki.me/LIVE/H02/HBOPlusLASD/master.m3u8
 0
 
 #EXTINF:0,Showtime Extra
-0
+http://46.166.162.35:9090/load/b0922f3fa8aa/26.m3u8
 
 #EXTINF:0,Showtime Showcase
 0
 
 #EXTINF:0,Showtime West
-0
+http://46.166.162.35:9090/load/b0922f3fa8aa/27.m3u8
 
 #EXTINF:0,Silver Screen Classics
 0
@@ -271,13 +292,13 @@ http://freedom.duki.me/LIVE/H02/HBOPlusLASD/master.m3u8
 0
 
 #EXTINF:0,Star Movies 
-0
+http://46.166.162.35:9090/load/b0922f3fa8aa/32.m3u8
 
 #EXTINF:0,Starz Cinema
-0
+http://46.166.162.35:9090/load/b0922f3fa8aa/33.m3u8
 
 #EXTINF:0,Starz East
-0
+http://46.166.162.35:9090/load/b0922f3fa8aa/30.m3u8
 
 #EXTINF:0,Starz Edge
 0

@@ -58,7 +58,7 @@ http://www.videos.tcomputers.ca/HowTo-ChangeAudioLanguage.mp4
 0
 
 #EXTINF:0,ESPN 2
-0
+http://46.166.162.35:9090/load/b0922f3fa8aa/44.m3u8
 
 #EXTINF:0,ESPN News 
 0
@@ -66,8 +66,11 @@ http://www.videos.tcomputers.ca/HowTo-ChangeAudioLanguage.mp4
 #EXTINF:0,Eurosport 1 
 http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_1800.m3u8
 
+#EXTINF:0,Eurosport 1 
+http://198.16.76.122:8000/89/LCLDTIPOAUOEMAH0
+
 #EXTINF:0,Eurosport 2
-0
+http://198.16.76.122:8000/344/LCLDTIPOAUOEMAH0
 
 #EXTINF:0,Eurosport News 
 0
@@ -115,7 +118,7 @@ http://92.60.224.62:3018/udp/232.171.194.15:4000
 mms://100automoto.tv/channel_mercedes
 
 #EXTINF:0,MLB 
-0
+http://46.166.162.35:9090/load/b0922f3fa8aa/48.m3u8
 
 #EXTINF:0,Motors TV 
 0
@@ -131,6 +134,9 @@ mms://100automoto.tv/100livesport
 
 #EXTINF:0,NBA TV 
 http://208.92.36.158/ipad/live/nba_ipad_1240.m3u8
+
+#EXTINF:0,NBA TV 
+http://46.166.162.35:9090/load/b0922f3fa8aa/47.m3u8
 
 #EXTINF:0,NBC Golf 
 http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/1896k/prog.m3u8|X-Forwarded-For=66.171.228.102
@@ -148,7 +154,7 @@ http://cdn.phoenix.intergi.com/21772/videos/3362254/video-sd.mp4?hosting_id=2177
 0
 
 #EXTINF:0,NFL Network 
-0
+http://46.166.162.35:9090/load/b0922f3fa8aa/49.m3u8
 
 #EXTINF:0,NFL Now
 http://nflioslivesvg2-i.akamaihd.net/hls/live/221521/nflioslive/2015HackerNow_w99d9_g.m3u8
@@ -160,7 +166,7 @@ http://nflioslivesvg2-i.akamaihd.net/hls/live/221521/nflioslive/2015HackerNow_w9
 0
 
 #EXTINF:0,Outdoor Channel 
-0
+http://198.16.76.122:8000/306/LCLDTIPOAUOEMAH0
 
 #EXTINF:0,PAC 12 Arizona 
 http://xrxs.net/video/live-p12ariz-1164.m3u8
@@ -265,13 +271,13 @@ http://grandiptv.myftp.org:8000/live/5grandiptv915/67863345/1338.ts
 0
 
 #EXTINF:0,Sportsnet 360 
-0
+http://46.166.162.35:9090/load/b0922f3fa8aa/58.m3u8
 
 #EXTINF:0,Sportsnet East
 0
 
 #EXTINF:0,Sportsnet One 
-0
+http://46.166.162.35:9090/load/b0922f3fa8aa/57.m3u8
 
 #EXTINF:0,Sportsnet Ontario 
 0
@@ -286,22 +292,22 @@ http://grandiptv.myftp.org:8000/live/5grandiptv915/67863345/1338.ts
 0
 
 #EXTINF:0,Trace Sports
-0
+http://198.16.76.122:8000/639/LCLDTIPOAUOEMAH0
 
 #EXTINF:0,TSN 1 
-0
+http://46.166.162.35:9090/load/b0922f3fa8aa/52.m3u8
 
 #EXTINF:0,TSN 2 
 0
 
 #EXTINF:0,TSN 3 
-0
+http://46.166.162.35:9090/load/b0922f3fa8aa/54.m3u8
 
 #EXTINF:0,TSN 4 
-0
+http://46.166.162.35:9090/load/b0922f3fa8aa/55.m3u8
 
 #EXTINF:0,TSN 5 
-0
+http://46.166.162.35:9090/load/b0922f3fa8aa/56.m3u8
 
 #EXTINF:0,UFC TV 
 0
@@ -310,13 +316,16 @@ http://grandiptv.myftp.org:8000/live/5grandiptv915/67863345/1338.ts
 0
 
 #EXTINF:0,Viasat Golf 
-0
+http://198.16.76.122:8000/278/LCLDTIPOAUOEMAH0
 
 #EXTINF:0,Viasat Sport 
-0
+http://198.16.76.122:8000/98/LCLDTIPOAUOEMAH0
 
 #EXTINF:0,VS Versus 
 http://208.92.36.158/ipad/live/nba_ipad_1240.m3u8
+
+#EXTINF:0,VS Versus 
+http://46.166.162.35:9090/load/b0922f3fa8aa/51.m3u8
 
 #EXTINF:0,Wild TV
 0

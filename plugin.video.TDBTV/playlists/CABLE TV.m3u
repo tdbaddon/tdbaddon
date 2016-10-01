@@ -4,13 +4,16 @@
 http://www.videos.tcomputers.ca/HowTo-ChangeAudioLanguage.mp4
 --------------------------------------------------------------------------------------------------------
 #EXTINF:0,Check Back Soon
-www.tcomputers.ca
+
 
 #EXTINF:0,A&E 
-0
+http://198.16.76.122:8000/681/LCLDTIPOAUOEMAH0
 
 #EXTINF:0,ABC 
-0
+http://46.166.162.35:9090/load/b0922f3fa8aa/03.m3u8
+
+#EXTINF:0,ABC 
+http://46.166.162.35:9090/load/b0922f3fa8aa/07.m3u8
 
 #EXTINF:0,ABC Family 
 0
@@ -19,19 +22,22 @@ www.tcomputers.ca
 0
 
 #EXTINF:0,AMC 
-0
+http://46.166.162.35:9090/load/b0922f3fa8aa/04.m3u8
+
+#EXTINF:0,AMC 
+http://198.16.76.122:8000/791/LCLDTIPOAUOEMAH0
 
 #EXTINF:0,AMG TV
 http://telvuehls_t02027-i.akamaihd.net/hls/live/213119/T02027-amgtv2/playlist_2.m3u8
 
 #EXTINF:0,AXN 
-0
+http://198.16.76.122:8000/679/LCLDTIPOAUOEMAH0
 
 #EXTINF:0,AXS
 0
 
 #EXTINF:0,BabyTV 
-0
+http://77.120.118.233:8000/4
 
 #EXTINF:0,BBC 1
 0
@@ -49,13 +55,13 @@ http://telvuehls_t02027-i.akamaihd.net/hls/live/213119/T02027-amgtv2/playlist_2.
 0
 
 #EXTINF:0,Boomerang 
-0
+http://77.120.118.233:8000/6
 
 #EXTINF:0,Bravo 
-0
+http://46.166.162.35:9090/load/b0922f3fa8aa/05.m3u8
 
 #EXTINF:0,Cartoon Network 
-0
+http://198.16.76.122:8000/530/LCLDTIPOAUOEMAH0
 
 #EXTINF:0,CBC TV 
 0
@@ -64,16 +70,16 @@ http://telvuehls_t02027-i.akamaihd.net/hls/live/213119/T02027-amgtv2/playlist_2.
 0
 
 #EXTINF:0,CBS 
-0
+http://198.16.76.122:8000/534/LCLDTIPOAUOEMAH0
 
 #EXTINF:0,CBS Action 
-0
+http://198.16.76.122:8000/581/LCLDTIPOAUOEMAH0
 
 #EXTINF:0,CBS Drama 
 0
 
 #EXTINF:0,CBS Reality 
-0
+http://198.16.76.122:8000/272/LCLDTIPOAUOEMAH0
 
 #EXTINF:0,CHCH Ontario
 0
@@ -91,7 +97,7 @@ http://telvuehls_t02027-i.akamaihd.net/hls/live/213119/T02027-amgtv2/playlist_2.
 0
 
 #EXTINF:0,Comedy Central 
-0
+http://46.166.162.35:9090/load/b0922f3fa8aa/14.m3u8
 
 #EXTINF:0,Comedy Gold
 0
@@ -130,16 +136,19 @@ http://telvuehls_t02027-i.akamaihd.net/hls/live/213119/T02027-amgtv2/playlist_2.
 http://freedom.duki.me/LIVE/H02/DisneyChannelEastHD/master.m3u8
 
 #EXTINF:0,Disney Junior 
-0
+http://198.16.76.122:8000/538/LCLDTIPOAUOEMAH0
 
 #EXTINF:0,Disney XD 
-0
+http://198.16.76.122:8000/188/LCLDTIPOAUOEMAH0
 
 #EXTINF:0,DIY Network 
 0
 
 #EXTINF:0,E! 
-0
+http://46.166.162.35:9090/load/b0922f3fa8aa/06.m3u8
+
+#EXTINF:0,E! 
+http://198.16.76.122:8000/226/LCLDTIPOAUOEMAH0
 
 #EXTINF:0,E2 
 0
@@ -154,31 +163,34 @@ http://freedom.duki.me/LIVE/H02/DisneyChannelEastHD/master.m3u8
 0
 
 #EXTINF:0,FashionBox
-0
+http://198.16.76.122:8000/373/LCLDTIPOAUOEMAH0
 
 #EXTINF:0,Fashion TV 
 0
 
 #EXTINF:0,Fine Living Network 
-0
+http://198.16.76.122:8000/79/LCLDTIPOAUOEMAH0
 
 #EXTINF:0,Food Network 
 0
 
 #EXTINF:0,Fox 1 
-0
+http://198.16.76.122:8000/496/LCLDTIPOAUOEMAH0
 
 #EXTINF:0,Fox Crime 
 0
 
 #EXTINF:0,Fox Life 
-0
+http://198.16.76.122:8000/367/LCLDTIPOAUOEMAH0
 
 #EXTINF:0,Fox TV 
-0
+http://198.16.76.122:8000/768/LCLDTIPOAUOEMAH0
+
+#EXTINF:0,Fox TV
+http://198.16.76.122:8000/517/LCLDTIPOAUOEMAH0
 
 #EXTINF:0,FX 
-0
+http://46.166.162.35:9090/load/b0922f3fa8aa/08.m3u8
 
 #EXTINF:0,FXHD 
 0
@@ -202,7 +214,7 @@ http://freedom.duki.me/LIVE/H02/DisneyChannelEastHD/master.m3u8
 0
 
 #EXTINF:0,Hallmark Channel 
-0
+http://46.166.162.35:9090/load/b0922f3fa8aa/16.m3u8
 
 #EXTINF:0,HGTV 
 0
@@ -235,7 +247,10 @@ http://ios.streamserver01.com:8080/ShowcaseTV/mystream.m3u8
 0
 
 #EXTINF:0,Jim Jam 
-0
+http://77.120.118.233:8000/17
+
+#EXTINF:0,Jim Jam 
+http://198.16.76.122:8000/502/LCLDTIPOAUOEMAH0
 
 #EXTINF:0,JTV 
 rtmp://jtvmedia.jtv.com:1975/live playpath=live6 swfUrl=http://demandware.edgesuite.net/aaby_prd/on/demandware.static/Sites-jtv-Site/-/default/v1410110388581/swf/flashMediaPlayer/StrobeMediaPlayback.swf live=1 pageUrl=http://www.jtv.com/on/demandware.store/Sites-jtv-Site/default/LiveViewer-Show
@@ -244,7 +259,10 @@ rtmp://jtvmedia.jtv.com:1975/live playpath=live6 swfUrl=http://demandware.edgesu
 0
 
 #EXTINF:0,Lifetime Network 
-0
+http://46.166.162.35:9090/load/b0922f3fa8aa/09.m3u8
+
+#EXTINF:0,Lifetime Network 
+http://46.166.162.35:9090/load/b0922f3fa8aa/15.m3u8
 
 #EXTINF:0,London Live 
 http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
@@ -259,16 +277,31 @@ http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
 http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
 
 #EXTINF:0,NBC 
-0
+http://46.166.162.35:9090/load/b0922f3fa8aa/01.m3u8
 
 #EXTINF:0,Nick 
 0
 
 #EXTINF:0,Nick Jr 
-0
+http://77.120.118.233:8000/18
+
+#EXTINF:0,Nick Jr 
+http://198.16.76.122:8000/652/LCLDTIPOAUOEMAH0
 
 #EXTINF:0,Nickelodeon 
-0
+http://77.120.118.233:8000/12
+
+#EXTINF:0,Nickelodeon 
+http://198.16.76.122:8000/347/LCLDTIPOAUOEMAH0
+
+#EXTINF:0,Nickelodeon 
+http://198.16.76.122:8000/265/LCLDTIPOAUOEMAH0
+
+#EXTINF:0,Nickelodeon 
+http://198.16.76.122:8000/458/LCLDTIPOAUOEMAH0
+
+#EXTINF:0,Nickelodeon 
+http://198.16.76.122:8000/403/LCLDTIPOAUOEMAH0
 
 #EXTINF:0,NickNight 
 0
@@ -304,7 +337,7 @@ http://llnw.live.qvc.simplestream.com/hera/remote/qvcuk_primary_sdi6/3/prog_inde
 http://llnw.live.qvc.simplestream.com/hera/remote/qvcuk_primary_sdi8/3/prog_index.m3u8
 
 #EXTINF:0,Showtime 
-0
+http://46.166.162.35:9090/load/b0922f3fa8aa/28.m3u8
 
 #EXTINF:0,Sky 1 
 0
@@ -328,26 +361,44 @@ http://llnw.live.qvc.simplestream.com/hera/remote/qvcuk_primary_sdi8/3/prog_inde
 #EXTINF:0,Slice 
 0
 
+#EXTINF:0,Sony SciFi
+http://198.16.76.122:8000/9/LCLDTIPOAUOEMAH0
+
 #EXTINF:0,Space 
 0
 
 #EXTINF:0,Spike TV 
-0
+http://46.166.162.35:9090/load/b0922f3fa8aa/12.m3u8
+
+#EXTINF:0,Sundance Channel
+http://198.16.76.122:8000/519/LCLDTIPOAUOEMAH0
 
 #EXTINF:0,Syfy 
-0
+http://46.166.162.35:9090/load/b0922f3fa8aa/11.m3u8
 
 #EXTINF:0,TBS 
-0
+http://46.166.162.35:9090/load/b0922f3fa8aa/13.m3u8
 
 #EXTINF:0,Teletoon 
 0
 
 #EXTINF:0,TLC 
-0
+http://46.166.162.35:9090/load/b0922f3fa8aa/18.m3u8
+
+#EXTINF:0,TLC 
+http://198.16.76.122:8000/54/LCLDTIPOAUOEMAH0
 
 #EXTINF:0,TNT 
-0
+http://46.166.162.35:9090/load/b0922f3fa8aa/10.m3u8
+
+#EXTINF:0,TNT 
+http://198.16.76.122:8000/233/LCLDTIPOAUOEMAH0
+
+#EXTINF:0,TNT 
+http://198.16.76.122:8000/506/LCLDTIPOAUOEMAH0
+
+#EXTINF:0,TNT Series
+http://198.16.76.122:8000/198/LCLDTIPOAUOEMAH0
 
 #EXTINF:0,Tom & Jerry TV 
 0
@@ -374,10 +425,10 @@ http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/master.m3u8?b?b*t
 0
 
 #EXTINF:0,Universal Channel 
-0
+http://198.16.76.122:8000/224/LCLDTIPOAUOEMAH0
 
 #EXTINF:0,USA Network 
-0
+http://46.166.162.35:9090/load/b0922f3fa8aa/17.m3u8
 
 #EXTINF:0,Veria Living TV 
 0
@@ -404,7 +455,7 @@ http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/index_350_av-p.m3u8?
 0
 
 #EXTINF:0,World Fashion 
-0
+http://198.16.76.122:8000/257/LCLDTIPOAUOEMAH0
 
 #EXTINF:0,World of Wine
 0
