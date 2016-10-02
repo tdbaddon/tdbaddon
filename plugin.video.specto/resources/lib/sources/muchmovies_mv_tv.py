@@ -42,6 +42,10 @@ class source:
         self.server_link = '/ajax/v2_get_episodes/%s'
         self.direct_link = '/ajax/v2_load_episode/%s'
         self.embed_link = '/ajax/load_embed/%s'
+        self.key = 'i6m49vd7shxkn985mhodk'
+        self.key2 = 'twz87wwxtp3dqiicks2dfyud213k6yg'
+        self.key3 = '7bcq9826avrbi6m4'
+
         #http://123movies.to/ajax/suggest_search
 
     def get_movie(self, imdb, title, year):
@@ -182,7 +186,8 @@ class source:
             for i in links: sources.append({'source': i['source'], 'quality': quality, 'provider': 'Muchmovies', 'url': i['url'] + head_link})
 
             return sources
-        except:
+        except Exception as e:
+            control.log('ERROR MUCH %s' % e)
             return sources
 
 
@@ -195,40 +200,19 @@ class source:
         if '/ajax/v2_load_episode/' in url:
             #print "Direct"
             try:
-                #key = "bgr63m6d1ln3rech"
-                #key2 = "d7ltv9lmvytcq2zf"
-                #key3 = "f7sg3mfrrs5qako9nhvvqlfr7wc9la63"
 
-                467078
-
-                #826avrbi6m49vd7shxkn985m 467078 k06twz87wwxtp3dqiicks2df
-                #826avrbi6m49vd7shxkn985m467078k06twz87wwxtp3dqiicks2df
-                #eyxep4
-                #n1sqcua67bcq9826avrbi6m49vd7shxkn985mhodk06twz87wwxtp3dqiicks2dfyud213k6ygiomq01s94e4tr9v0k887bkyud213k6ygiomq01s94e4tr9v0k887bkqocxzw39esdyfhvtkpzq9n4e7at4kc6k8sxom08bl4dukp16h09oplu7zov4m5f8
-                #467078eyxep49826avrbi6m49vd7shxkn985
-
-                key = 'n1sqcua67bcq9826'
-                key2 = 'i6m49vd7shxkn985'
-                key3 = 'rbi6m49vd7shxkn985mhodk06twz87ww'
-
-                key = '826avrbi6m49vd7shxkn985m'
-                key2 = 'k06twz87wwxtp3dqiicks2df'
-                key3 = '467078eyxep49826avrbi6m49vd7shxkn985'
-
-                key = '826avrbi6m49vd7shxkn985m'
-                key2 = 'k06twz87wwxtp3dqiicks2df'
-                key3 = '9826avrbi6m49vd7shxkn985'
 
                 video_id = headers['Referer'].split('-')[-1].replace('/','')
                 #print "1"
 
                 episode_id= url.split('/')[-1]
                 key_gen = self.random_generator()
-                coookie = '%s%s%s=%s' % (key, episode_id, key2, key_gen)
-                hash_id = hashlib.md5(episode_id + key_gen + key3).hexdigest()
+                coookie = '%s%s%s=%s' % (self.key, episode_id, self.key2, key_gen)
+                hash_id = hashlib.md5(episode_id + key_gen + self.key3).hexdigest()
                 #print "2",coookie,headers['Referer'], episode_id
+                #http://123movies.ru/ajax/get_sources/487774/a8cf6807f4c2a1888f09700019b16841/2
 
-                request_url2 = self.base_link + '/ajax/get_sources/' + episode_id + '/' + hash_id
+                request_url2 = self.base_link + '/ajax/get_sources/' + episode_id + '/' + hash_id + '/2'
                 headers = {'Accept-Encoding': 'gzip, deflate, sdch', 'Cookie': coookie, 'Referer': headers['Referer']+ '\+' + coookie,
                            'user-agent': headers['User-Agent'], 'x-requested-with': 'XMLHttpRequest'}
                 result = requests.get(request_url2, headers=headers).text

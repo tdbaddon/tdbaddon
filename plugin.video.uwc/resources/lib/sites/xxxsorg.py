@@ -22,19 +22,24 @@ import re
 import xbmcplugin
 from resources.lib import utils
 
-
 progress = utils.progress
+
  
- 
+@utils.url_dispatcher.register('420') 
 def Main():
     utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://xxxstreams.org/',423,'','')
     utils.addDir('[COLOR hotpink]Search[/COLOR]','http://xxxstreams.org/?s=',424,'','')
     List('http://xxxstreams.org/page/1')
     xbmcplugin.endOfDirectory(utils.addon_handle)
- 
- 
+
+
+@utils.url_dispatcher.register('421', ['url']) 
 def List(url):
-    html = utils.getHtml(url, '')
+    try:
+        html = utils.getHtml(url, '')
+    except:
+        utils.notify('Oh oh','It looks like this website is down.')
+        return None
     match = re.compile('<div class="entry-content">.*?<img src="([^"]+)".*?<a href="([^"]+)" class="more-link">.+?<span class="screen-reader-text">([^"]+)</span>', re.DOTALL | re.IGNORECASE).findall(html)
     for img, videopage, name in match:
         name = utils.cleantext(name)
@@ -45,6 +50,8 @@ def List(url):
     except: pass
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
+
+@utils.url_dispatcher.register('425', ['url'])
 def ListSearch(url):
     html = utils.getHtml(url, '').replace('\n','')
     match = re.compile('bookmark">([^<]+)</a></h1>.*?<img src="([^"]+)".*?href="([^"]+)"').findall(html)
@@ -57,7 +64,9 @@ def ListSearch(url):
     except: pass
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
-def Playvid(url, name, download):
+
+@utils.url_dispatcher.register('422', ['url', 'name'], ['download'])
+def Playvid(url, name, download=None):
     progress.create('Play video', 'Searching videofile.')
     progress.update( 10, "", "Loading video page", "" )
     url = url.split('#')[0]
@@ -72,15 +81,18 @@ def Playvid(url, name, download):
             except: pass
         videourls = videourls + " " + link
     utils.playvideo(videourls, name, download, url)
- 
- 
+
+
+@utils.url_dispatcher.register('423', ['url']) 
 def Categories(url):
     cathtml = utils.getHtml(url, '')
     match = re.compile('<li.+?class=".+?menu-item-object-post_tag.+?"><a href="(.+?)">(.+?)</a></li>').findall(cathtml)
     for catpage, name in match:
         utils.addDir(name, catpage, 421, '')    
     xbmcplugin.endOfDirectory(utils.addon_handle)
- 
+
+
+@utils.url_dispatcher.register('424', ['url'], ['keyword'])    
 def Search(url, keyword=None):
     searchUrl = url
     if not keyword:

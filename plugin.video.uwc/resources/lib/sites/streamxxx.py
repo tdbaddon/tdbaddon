@@ -22,9 +22,10 @@ import re
 import xbmcplugin
 from resources.lib import utils
 
-
 progress = utils.progress
 
+
+@utils.url_dispatcher.register('170')
 def Main():
     utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://streamxxx.tv/', 177, '', '')
     #utils.addDir('[COLOR hotpink]Tags[/COLOR]','http://streamxxx.tv/', 173, '', '')
@@ -36,6 +37,7 @@ def Main():
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('175')
 def MainMovies():
     #utils.addDir('[COLOR hotpink]Tags[/COLOR]','http://streamxxx.tv/', 173, '', '')
     utils.addDir('[COLOR hotpink]Search Overall[/COLOR]','http://streamxxx.tv/&s=', 174, '', '')
@@ -46,6 +48,7 @@ def MainMovies():
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('176')
 def MainInternationalMovies():
     utils.addDir('[COLOR hotpink]Tags[/COLOR]','http://streamxxx.tv/', 173, '', '')
     utils.addDir('[COLOR hotpink]Search Overall[/COLOR]','http://streamxxx.tv/?s=', 174, '', '')
@@ -56,8 +59,13 @@ def MainInternationalMovies():
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('171', ['url'])
 def List(url):
-    listhtml = utils.getHtml(url, url)
+    try:
+        listhtml = utils.getHtml(url, url)
+    except:
+        utils.notify('Oh oh','It looks like this website is down.')
+        return None
     match = re.compile(r'<div class="quadrato">\s*?<a href="([^"]+)"\s*?title="([^"]+)".*?src="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(listhtml)
     for videopage, name, img in match:
         name = utils.cleantext(name)
@@ -70,7 +78,8 @@ def List(url):
     except: pass
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
-    
+
+@utils.url_dispatcher.register('174', ['url'], ['keyword'])    
 def Search(url, keyword=None):
     searchUrl = url
     if not keyword:
@@ -82,6 +91,7 @@ def Search(url, keyword=None):
         List(searchUrl)
 
 
+@utils.url_dispatcher.register('177', ['url'])
 def Categories(url):
     cathtml = utils.getHtml(url, '')
     match = re.compile("Clips</a>(.*)</ul>", re.DOTALL | re.IGNORECASE).findall(cathtml)
@@ -92,6 +102,7 @@ def Categories(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('173', ['url'])
 def Tags(url):
     html = utils.getHtml(url, '')
     match = re.compile('<div class="tagcloud">(.*?)</div>', re.DOTALL | re.IGNORECASE).findall(html)
@@ -101,5 +112,6 @@ def Tags(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('172', ['url', 'name'], ['download'])
 def Playvid(url, name, download=None):
     utils.PLAYVIDEO(url, name, download)

@@ -23,7 +23,8 @@ import xbmcplugin
 import xbmcgui
 from resources.lib import utils
 
-
+    
+@utils.url_dispatcher.register('40')
 def NFMain():
     utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://www.nudeflix.com/browse',44,'','')
     utils.addDir('[COLOR hotpink]HD[/COLOR]','http://www.nudeflix.com/browse/cover?order=hd&page=1',41,'',1)
@@ -31,6 +32,7 @@ def NFMain():
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('44', ['url'])
 def NFCat(url):
     cathtml = utils.getHtml(url, '')
     match = re.compile(r'<li>\s+<a href="/browse/category/([^"]+)">([^<]+)<', re.DOTALL | re.IGNORECASE).findall(cathtml)
@@ -41,8 +43,13 @@ def NFCat(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
-def NFList(url,page):
-    listhtml = utils.getHtml(url, '')
+@utils.url_dispatcher.register('41', ['url'], ['page'])
+def NFList(url,page=1):
+    try:
+        listhtml = utils.getHtml(url, '')
+    except:
+        utils.notify('Oh oh','It looks like this website is down.')
+        return None
     match = re.compile('href="([^"]+)" class="link">[^"]+?"([^"]+)" alt="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(listhtml)
     for videopage, img, name in match:
         videopage = 'http://www.nudeflix.com' + videopage
@@ -54,6 +61,7 @@ def NFList(url,page):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('42', ['url'])
 def NFScenes(url):
     scenehtml = utils.getHtml(url, '')
     match = re.compile('class="scene">.*?<img class="poster" src="([^"]+)".*?data-src="([^"]+)".*?<div class="description">[^>]+>([^<]+)<', re.DOTALL | re.IGNORECASE).findall(scenehtml)
@@ -66,6 +74,7 @@ def NFScenes(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('43', ['url', 'name'], ['download'])
 def NFPlayvid(url, name, download=None):
     videourl = url
     if download == 1:

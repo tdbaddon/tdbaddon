@@ -24,13 +24,7 @@ import xbmcgui
 from resources.lib import utils
 
 
-# 90 TPMain
-# 91 TPList
-# 92 TPPlayvid
-# 93 TPCat
-# 94 TPSearch
-# 95 TPPornstars
-
+@utils.url_dispatcher.register('90')
 def TPMain():
     utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://www.todayporn.com/channels/',93,'','')
     utils.addDir('[COLOR hotpink]Pornstars[/COLOR]','http://www.todayporn.com/pornstars/page1.html',95,'','')
@@ -41,8 +35,13 @@ def TPMain():
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
-def TPList(url, page):
-    listhtml = utils.getHtml(url, '')
+@utils.url_dispatcher.register('91', ['url'], ['page'])
+def TPList(url, page=1):
+    try:
+        listhtml = utils.getHtml(url, '')
+    except:
+        utils.notify('Oh oh','It looks like this website is down.')
+        return None
     match = re.compile('prefix="([^"]+)[^<]+[^"]+"([^"]+)">([^<]+)<[^"]+[^>]+>([^\s]+)\s', re.DOTALL | re.IGNORECASE).findall(listhtml)
     for thumb, videourl, name, duration in match:
         name = utils.cleantext(name)
@@ -57,6 +56,7 @@ def TPList(url, page):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('92', ['url', 'name'], ['download'])
 def TPPlayvid(url, name, download=None):
     videopage = utils.getHtml(url, '')
     match = re.compile(r"url: '([^']+)',\s+f", re.DOTALL | re.IGNORECASE).findall(videopage)
@@ -71,6 +71,7 @@ def TPPlayvid(url, name, download=None):
             xbmc.Player().play(videourl, listitem)
 
 
+@utils.url_dispatcher.register('93', ['url'])
 def TPCat(url):
     caturl = utils.getHtml(url, '')
     match = re.compile('<img src="([^"]+)"[^<]+<[^"]+"([^"]+)">([^<]+)<', re.DOTALL | re.IGNORECASE).findall(caturl)
@@ -80,7 +81,8 @@ def TPCat(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
-def TPPornstars(url, page):
+@utils.url_dispatcher.register('95', ['url'], ['page'])
+def TPPornstars(url, page=1):
     pshtml = utils.getHtml(url, '')
     pornstars = re.compile("""img" src='([^']+)'[^<]+<[^"]+"([^"]+)"[^>]+>([^<]+)<.*?total[^>]+>([^<]+)<""", re.DOTALL | re.IGNORECASE).findall(pshtml)
     for img, psurl, title, videos in pornstars:
@@ -94,6 +96,7 @@ def TPPornstars(url, page):
     xbmcplugin.endOfDirectory(utils.addon_handle)
     
 
+@utils.url_dispatcher.register('94', ['url'], ['keyword'])  
 def TPSearch(url, keyword=None):
     searchUrl = url
     if not keyword:

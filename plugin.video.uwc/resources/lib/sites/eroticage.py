@@ -22,6 +22,7 @@ import xbmcplugin
 from resources.lib import utils
 
 
+@utils.url_dispatcher.register('430')
 def Main():
     utils.addDir('[COLOR hotpink]Tags[/COLOR]','http://www.eroticage.net/',433,'','')
     utils.addDir('[COLOR hotpink]Search[/COLOR]','http://www.eroticage.net/?s=',434,'','')
@@ -29,8 +30,13 @@ def Main():
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('431', ['url'])
 def List(url):
-    html = utils.getHtml(url, '')
+    try:
+        html = utils.getHtml(url, '')
+    except:
+        utils.notify('Oh oh','It looks like this website is down.')
+        return None
     match = re.compile('id="wrapper"(.*?)sayfala', re.DOTALL | re.IGNORECASE).findall(html)[0]
     match1 = re.compile('<div class="titleFilm"><a href="([^"]+)">([^<]+)<.*?src="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(match)
     for videopage, name, img in match1:
@@ -43,10 +49,12 @@ def List(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
-def Playvid(url, name, download):
+@utils.url_dispatcher.register('432', ['url', 'name'], ['download'])
+def Playvid(url, name, download=None):
     utils.PLAYVIDEO(url, name, download)
 
 
+@utils.url_dispatcher.register('433', ['url'])
 def Categories(url):
     cathtml = utils.getHtml(url, '')
     match = re.compile("href='([^']+)' class='tag[^>]+>([^<]+)<").findall(cathtml)
@@ -55,6 +63,7 @@ def Categories(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('434', ['url'], ['keyword'])
 def Search(url, keyword=None):
     searchUrl = url
     if not keyword:

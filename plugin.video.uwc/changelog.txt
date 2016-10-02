@@ -1,3 +1,10 @@
+[B]Version 1.1.42[/B]
+Fixed: Cam4 (thanks hdgdl)
+Changed: Switched to Urlresolver for Openload
+Changed: Internal changes, could be some bugs, please post them
+Removed: Some offline sites
+
+
 [B]Version 1.1.41[/B]
 Fixed: Pigeon fix
 

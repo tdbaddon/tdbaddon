@@ -24,16 +24,23 @@ import xbmcgui
 from resources.lib import utils
 
 
+@utils.url_dispatcher.register('50')    
 def PTMain():
     utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://www.porntrex.com/categories',53,'','')
     utils.addDir('[COLOR hotpink]Search[/COLOR]','http://www.porntrex.com/search?search_type=videos&page=1&search_query=',54,'','')
     PTList('http://www.porntrex.com/videos?o=mr&page=1',1)
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
-def PTList(url, page, onelist=None):
+
+@utils.url_dispatcher.register('51', ['url'], ['page'])
+def PTList(url, page=1, onelist=None):
     if onelist:
         url = url.replace('page=1','page='+str(page))
-    listhtml = utils.getHtml(url, '')
+    try:
+        listhtml = utils.getHtml(url, '')
+    except:
+        utils.notify('Oh oh','It looks like this website is down.')
+        return None
     match = re.compile(r'<div class="(?:visible-xs|thumb-overlay)+">\s+<img src=.*?data-original="([^"]+)" title="([^"]+)"[^>]+>(.*?)duration">[^\d]+([^\t\n\r]+)', re.DOTALL | re.IGNORECASE).findall(listhtml)
     for img, name, hd, duration in match:
         name = utils.cleantext(name)
@@ -52,6 +59,8 @@ def PTList(url, page, onelist=None):
             utils.addDir('Next Page ('+str(npage)+')', url, 51, '', npage)
         xbmcplugin.endOfDirectory(utils.addon_handle)
 
+
+@utils.url_dispatcher.register('52', ['url', 'name'], ['download'])
 def PTPlayvid(url, name, download=None):
     videopage = utils.getHtml(url, '')
     match = re.compile("<filehd>([^<]+)<", re.DOTALL | re.IGNORECASE).findall(videopage)
@@ -67,6 +76,7 @@ def PTPlayvid(url, name, download=None):
         xbmc.Player().play(videourl, listitem)
 
 
+@utils.url_dispatcher.register('53', ['url'])
 def PTCat(url):
     cathtml = utils.getHtml(url, '')
     match = re.compile('c=([^"]+)".*?original="([^"]+)" title="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(cathtml)
@@ -77,6 +87,7 @@ def PTCat(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('54', ['url'], ['keyword'])  
 def PTSearch(url, keyword=None):
     searchUrl = url
     if not keyword:

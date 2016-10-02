@@ -1,4 +1,4 @@
-from js2py.base import *
+from ..base import *
 import math
 import random
 
@@ -14,7 +14,7 @@ CONSTANTS = {'E': 2.7182818284590452354,
              'SQRT1_2': 0.7071067811865476,
              'SQRT2': 1.4142135623730951}
 
-for constant, value in CONSTANTS.iteritems():
+for constant, value in CONSTANTS.items():
     Math.define_own_property(constant, {'value': Js(value),
                                         'writable': False,
                                         'enumerable': False,
@@ -31,13 +31,19 @@ class MathFunctions:
         a = x.to_number().value
         if a!=a: # it must be a nan
             return NaN
-        return math.acos(a)
+        try:
+            return math.acos(a)
+        except:
+            return NaN
 
     def asin(x):
         a = x.to_number().value
         if a!=a: # it must be a nan
             return NaN
-        return math.asin(a)
+        try:
+            return math.asin(a)
+        except:
+            return NaN
 
     def atan(x):
         a = x.to_number().value
@@ -92,7 +98,10 @@ class MathFunctions:
         a = x.to_number().value
         if a!=a: # it must be a nan
             return NaN
-        return math.log(a)
+        try:
+            return math.log(a)
+        except:
+            return NaN
 
     def exp(x):
         a = x.to_number().value
@@ -105,13 +114,19 @@ class MathFunctions:
         b = y.to_number().value
         if a!=a or b!=b: # it must be a nan
             return NaN
-        return a**b
+        try:
+            return a**b
+        except:
+            return NaN
 
     def sqrt(x):
         a = x.to_number().value
         if a!=a: # it must be a nan
             return NaN
-        return a**0.5
+        try:
+            return a**0.5
+        except:
+            return NaN
 
     def min():
         if not len(arguments):

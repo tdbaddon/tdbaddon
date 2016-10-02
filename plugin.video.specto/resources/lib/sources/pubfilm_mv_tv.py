@@ -35,7 +35,6 @@ class source:
 
 
     def get_movie(self, imdb, title, year):
-        return None
         try:
             query = self.moviesearch_link % (urllib.quote_plus(title))
             query = urlparse.urljoin(self.base_link, query)
@@ -168,7 +167,8 @@ class source:
                     pass
 
             return sources
-        except:
+        except Exception as e:
+            control.log('ERROR pub %s' % e)
             return sources
 
     def resolve(self, url):

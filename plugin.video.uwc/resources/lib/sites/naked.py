@@ -24,22 +24,22 @@ import xbmcgui
 from resources.lib import utils
 
 
-
-#elif mode == 480: naked.Main()
-    #elif mode == 481: naked.List(url)
-    #elif mode == 482: naked.Playvid(url, name)
-    #elif mode == 483: naked.clean_database(True)
-
+@utils.url_dispatcher.register('480')
 def Main():
 	utils.addDir('[COLOR red]Refresh naked.com images[/COLOR]','',483,'',Folder=False)
 	List('http://new.naked.com/')
 	xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('481', ['url'])
 def List(url):
     if utils.addon.getSetting("chaturbate") == "true":
-        clean_database()
-    data = utils.getHtml(url, '')
+        clean_database(False)
+    try:
+        data = utils.getHtml(url, '')
+    except:
+        utils.notify('Oh oh','It looks like this website is down.')
+        return None
     model_list = re.compile('int-each-hml">\s+<a class ="linkHandlerClass" title="([^"]+)" href="([^"]+)" target="">\s+<span[^<]+[^>]+>\s+<span[^<]+[^>]+>\s+<img[^<]+src="([^"]+)">\s+', re.DOTALL | re.IGNORECASE).findall(data)
     for model, url, img in model_list:
         name = model.replace("'s webcam","").strip()
@@ -47,7 +47,9 @@ def List(url):
         utils.addDownLink(name, videourl, 482, img, '', noDownload=True)
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
-def clean_database(showdialog=False):
+
+@utils.url_dispatcher.register('483')
+def clean_database(showdialog=True):
     conn = sqlite3.connect(xbmc.translatePath("special://database/Textures13.db"))
     try:
         with conn:
@@ -63,6 +65,7 @@ def clean_database(showdialog=False):
         pass
 
 
+@utils.url_dispatcher.register('482', ['url', 'name'])
 def Playvid(url, name):
     listhtml = utils.getHtml(url, '')
     match = re.compile('(hls_[0-9]+s_[0-9a-z]+)', re.DOTALL | re.IGNORECASE).findall(listhtml)

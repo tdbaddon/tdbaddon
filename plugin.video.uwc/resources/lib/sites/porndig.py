@@ -24,7 +24,6 @@ import xbmcplugin
 import xbmcgui
 from resources.lib import utils
 
-
 addon = utils.addon
 
 USER_AGENT = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3'
@@ -39,6 +38,8 @@ headers = {'User-Agent': USER_AGENT,
 
 pdreferer = 'http://www.porndig.com/videos/'
 
+
+@utils.url_dispatcher.register('290', ['name'])
 def Main(name):
     if 'Amateurs' in name:
         addon.setSetting('pdsection', '1')
@@ -48,9 +49,10 @@ def Main(name):
     if addon.getSetting("pdsection") == '0':
         utils.addDir('[COLOR hotpink]Studios[/COLOR]', 'https://www.porndig.com/studios/load_more_studios', 294, '', 0)
         utils.addDir('[COLOR hotpink]Pornstars[/COLOR]', 'https://www.porndig.com/pornstars/load_more_pornstars', 295, '', 0)
-    List(0, '', 0)
+    List('', 0, 0)
 
 
+@utils.url_dispatcher.register('293', ['url'])
 def Categories(caturl):
     if addon.getSetting("pdsection") == '1':
         caturl = 'http://www.porndig.com/amateur/videos/'
@@ -141,7 +143,8 @@ def PornstarListData(page):
     return urllib.urlencode(values)
 
 
-def Pornstars(url, page):
+@utils.url_dispatcher.register('295', ['url'], ['page'])
+def Pornstars(url, page=1):
     data = PornstarListData(page)
     urldata = utils.getHtml(url, pdreferer, headers, data=data)
     urldata = ParseJson(urldata)
@@ -159,7 +162,8 @@ def Pornstars(url, page):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
-def Studios(url, page):
+@utils.url_dispatcher.register('294', ['url'], ['page'])
+def Studios(url, page=1):
     data = StudioListData(page)
     urldata = utils.getHtml(url, pdreferer, headers, data=data)
     urldata = ParseJson(urldata)
@@ -177,7 +181,8 @@ def Studios(url, page):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
-def List(page, channel, section):
+@utils.url_dispatcher.register('291', ['channel', 'section'], ['page'])
+def List(channel, section, page=1):
     if section == 0:
         data = VideoListData(page, channel)
         maxresult = 100
@@ -190,7 +195,11 @@ def List(page, channel, section):
     elif section == 3:
         data = CatListData(page, channel)
         maxresult = 100
-    urldata = utils.getHtml("https://www.porndig.com/posts/load_more_posts", pdreferer, headers, data=data)
+    try:
+        urldata = utils.getHtml("https://www.porndig.com/posts/load_more_posts", pdreferer, headers, data=data)
+    except:
+        utils.notify('Oh oh','It looks like this website is down.')
+        return None
     urldata = ParseJson(urldata)
     i = 0
     match = re.compile(
@@ -215,6 +224,7 @@ def List(page, channel, section):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('292', ['url', 'name'], ['download'])
 def Playvid(url, name, download=None):
     videopage = utils.getHtml(url, pdreferer, headers, data='')
     links = re.compile('<a href="([^"]+)" class="post_download_link clearfix">[^>]+>.*?(\d+p).*?<',

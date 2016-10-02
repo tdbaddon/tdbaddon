@@ -24,9 +24,10 @@ import xbmcplugin
 import xbmcgui
 from resources.lib import utils
 
-
 progress = utils.progress
 
+
+@utils.url_dispatcher.register('400')
 def Main():
     utils.addDir('[COLOR hotpink]Classiques[/COLOR]','http://www.mrsexe.com/classiques/', 401, '', '')
     utils.addDir('[COLOR hotpink]Search[/COLOR]','http://www.mrsexe.com/?search=', 404, '', '')
@@ -36,8 +37,13 @@ def Main():
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('401', ['url'])
 def List(url):
-    listhtml = utils.getHtml(url, '')
+    try:
+        listhtml = utils.getHtml(url, '')
+    except:
+        utils.notify('Oh oh','It looks like this website is down.')
+        return None
     match = re.compile('thumb-list(.*?)<ul class="right pagination">', re.DOTALL | re.IGNORECASE).findall(listhtml)
     match1 = re.compile(r'<li class="[^"]*">\s<a class="thumbnail" href="([^"]+)">\n<script.+?</script>\n<figure>\n<img  id=".+?" src="([^"]+)".+?/>\n<figcaption>\n<span class="video-icon"><i class="fa fa-play"></i></span>\n<span class="duration"><i class="fa fa-clock-o"></i>([^<]+)</span>\n(.+?)\n', re.DOTALL | re.IGNORECASE).findall(match[0])
     for videopage, img, duration, name in match1:
@@ -49,7 +55,8 @@ def List(url):
     except: pass
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
-    
+
+@utils.url_dispatcher.register('404', ['url'], ['keyword'])    
 def Search(url, keyword=None):
     searchUrl = url
     if not keyword:
@@ -61,6 +68,7 @@ def Search(url, keyword=None):
         List(searchUrl)
 
 
+@utils.url_dispatcher.register('403', ['url'])
 def Categories(url):
     cathtml = utils.getHtml(url, '')
     match = re.compile('value="(/cat[^"]+)">([^<]+)<', re.DOTALL | re.IGNORECASE).findall(cathtml)
@@ -69,6 +77,7 @@ def Categories(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('405', ['url'])
 def Stars(url):
     print "mrsexe::Stars " + url
     starhtml = utils.getHtml(url, '')
@@ -84,6 +93,7 @@ def Stars(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('402', ['url', 'name'], ['download'])
 def Playvid(url, name, download=None):
     print "mrsexe::Playvid " + url
     html = utils.getHtml(url, '')

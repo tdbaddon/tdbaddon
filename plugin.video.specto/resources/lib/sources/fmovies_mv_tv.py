@@ -41,7 +41,7 @@ class source:
             #X - Requested - With:"XMLHttpRequest"
             return url
         except:
-            return None
+            return
 
     def get_show(self, imdb, tvdb, tvshowtitle, year):
 
@@ -115,7 +115,7 @@ class source:
                     search_url = search_url + '?' + urllib.urlencode(query)
                     print("R",search_url)
                     result = client.request(search_url)
-                    print("r", result)
+                    #print("r", result)
 
                     r = client.parseDOM(result, 'div', attrs = {'class': '[^"]*movie-list[^"]*'})[0]
                     r = client.parseDOM(r, 'div', attrs = {'class': 'item'})
@@ -129,7 +129,8 @@ class source:
                         url = [i for i in url if cleantitle.get(title) == cleantitle.get(i[1])]
                         url = [i for i in url if '%01d' % int(data['season']) == '%01d' % int(i[2])]
                     else:
-                        url = [i for i in r if cleantitle.get(title) == cleantitle.get(i[1])]
+                        url = [i for i in r if cleantitle.get(title) in cleantitle.get(i[1])]
+                    print("r1", cleantitle.get(title),url,r)
 
 
 
@@ -147,6 +148,8 @@ class source:
 
                     """
                     url = url[0][0]
+                    print("r", url)
+
                     url = urlparse.urljoin(self.base_link, url)
                     print("r2", url)
                     r2 = url.split('.')[-1]
@@ -212,6 +215,8 @@ class source:
                     headers['Cookie'] = cookie
                     result = client.request(hash_url, headers=headers, limit='0')
                     print("r101 result",result,headers)
+
+                    time.sleep(0.3)
                     query = {'id': s[0], 'update': '0'}
                     query.update(self.__get_token(query))
                     url = url + '?' + urllib.urlencode(query)
@@ -272,7 +277,8 @@ class source:
         for key in data:
             if not key.startswith('_'):
                 for i, c in enumerate(data[key]):
-                    n += ord(c) * 64184 + len(data[key])
+                    #n += ord(c) * 64184 + len(data[key])
+                    n += ord(c) * (i + 2016 + len(data[key]))
         print("NNN",n,data)
         return {'_token': hex(n)[2:]}
         #print ("TOK",hex(n)[2:])

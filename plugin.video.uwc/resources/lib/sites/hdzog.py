@@ -25,9 +25,10 @@ import xbmcplugin
 import xbmcgui
 from resources.lib import utils
 
-
 progress = utils.progress
 
+
+@utils.url_dispatcher.register('340')
 def Main():
     utils.addDir('[COLOR hotpink]Search[/COLOR]','http://www.hdzog.com/search/?q=', 343, '', '')
     utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://www.hdzog.com/categories/', 344, '', '')
@@ -37,8 +38,13 @@ def Main():
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('341', ['url'])
 def List(url):
-    listhtml = utils.getHtml(url, '')
+    try:
+        listhtml = utils.getHtml(url, '')
+    except:
+        utils.notify('Oh oh','It looks like this website is down.')
+        return None
     match = re.compile('<li>\n.+?<a href="(.+?)" title="(.+?)">\n.+?<div class="thumb thumb-paged" data-screen-main="1">\n\n.+?<img src="(.+?)"').findall(listhtml)
     for videopage, name, img in match:
         name = utils.cleantext(name)
@@ -49,7 +55,8 @@ def List(url):
     except: pass
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
-    
+ 
+@utils.url_dispatcher.register('343', ['url'], ['keyword']) 
 def Search(url, keyword=None):
     searchUrl = url
     if not keyword:
@@ -61,6 +68,7 @@ def Search(url, keyword=None):
         List(searchUrl)
 
 
+@utils.url_dispatcher.register('344', ['url'])
 def Categories(url):
     listhtml = utils.getHtml(url, '')
     match = re.compile('<a href="(.+?)" title=".+?">\n.+?<div class="thumb">\n.+?<img class="thumb" src="(.+?)" alt="(.+?)"/>').findall(listhtml)
@@ -70,6 +78,7 @@ def Categories(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('345', ['url'])
 def Channels(url):
     listhtml = utils.getHtml(url, '')
     match = re.compile('<a href="(.+?)" title=".+?">.+?<div class="thumb">.+?<img src="(.+?)" alt="(.+?)" />', re.DOTALL).findall(listhtml)
@@ -83,6 +92,8 @@ def Channels(url):
     except: pass
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
+
+@utils.url_dispatcher.register('346', ['url'])
 def Models(url):
     listhtml = utils.getHtml(url, '')
     match = re.compile('<a href="(.+?)" title="(.+?)">\n.+?<div class="thumb">\n.+?<img src="(.+?)"').findall(listhtml)
@@ -97,6 +108,7 @@ def Models(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('342', ['url', 'name'], ['download'])
 def Playvid(url, name, download=None):
     videopage = utils.getHtml(url, '')
     videourl = re.compile("video_url: '(.+?)\/\?br", re.DOTALL | re.IGNORECASE).findall(videopage)

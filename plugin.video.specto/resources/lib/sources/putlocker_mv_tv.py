@@ -202,7 +202,8 @@ class source:
             for i in links: sources.append({'source': i['source'], 'quality': i['quality'], 'provider': 'Putlocker', 'url': i['url']})
 
             return sources
-        except:
+        except Exception as e:
+            control.log('ERROR putlocker %s' % e)
             return sources
 
     def resolve(self, url):

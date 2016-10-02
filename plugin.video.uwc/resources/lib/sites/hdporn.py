@@ -24,10 +24,11 @@ import xbmc
 import xbmcplugin
 import xbmcgui
 from resources.lib import utils
-
-
+ 
 progress = utils.progress
 
+
+@utils.url_dispatcher.register('60')
 def PAQMain():
     utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://www.pornaq.com',63,'','')
     utils.addDir('[COLOR hotpink]Search[/COLOR]','http://www.pornaq.com/page/1/?s=',68,'','')
@@ -35,6 +36,7 @@ def PAQMain():
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('64')
 def P00Main():
     utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://www.porn00.org',63,'','')
     utils.addDir('[COLOR hotpink]Search[/COLOR]','http://www.porn00.org/page/1/?s=',68,'','')
@@ -42,10 +44,15 @@ def P00Main():
     xbmcplugin.endOfDirectory(utils.addon_handle)    
 
 
-def PAQList(url, page, onelist=None):
+@utils.url_dispatcher.register('61', ['url'], ['page'])
+def PAQList(url, page=1, onelist=None):
     if onelist:
-        url = url.replace('page/1/','page/'+str(page)+'/')    
-    listhtml = utils.getHtml(url, '')
+        url = url.replace('page/1/','page/'+str(page)+'/')
+    try:
+        listhtml = utils.getHtml(url, '')
+    except:
+        utils.notify('Oh oh','It looks like this website is down.')
+        return None
     if 'pornaq' in url:
         match = re.compile(r'<h2>\s+<a title="([^"]+)" href="([^"]+)".*?src="([^"]+)" class="attachment-primary-post-thumbnail', re.DOTALL | re.IGNORECASE).findall(listhtml)
         for name, videopage, img in match:
@@ -75,7 +82,8 @@ def GetAlternative(url, alternative):
     return url, nalternative
 
 
-def PPlayvid(url, name, alternative=1, download=None):
+@utils.url_dispatcher.register('62', ['url', 'name'], ['download'])
+def PPlayvid(url, name, download=None, alternative=1):
 
     def playvid():
         progress.close()
@@ -103,7 +111,7 @@ def PPlayvid(url, name, alternative=1, download=None):
         if not video720:
             if re.search('id="alternatives"', videopage, re.DOTALL | re.IGNORECASE):
                 alturl, nalternative = GetAlternative(url, alternative)
-                PPlayvid(alturl, name, nalternative, download)
+                PPlayvid(alturl, name, download, nalternative)
             else:
                 progress.close()
                 utils.notify('Oh oh','Couldn\'t find a supported videohost')
@@ -117,7 +125,7 @@ def PPlayvid(url, name, alternative=1, download=None):
         if not videourl:
             if re.search('id="alternatives"', videopage, re.DOTALL | re.IGNORECASE):
                 alturl, nalternative = GetAlternative(url, alternative)
-                PPlayvid(alturl, name, nalternative, download)
+                PPlayvid(alturl, name, download, nalternative)
             else:
                 progress.close()
                 utils.notify('Oh oh','Couldn\'t find a supported videohost')
@@ -136,7 +144,7 @@ def PPlayvid(url, name, alternative=1, download=None):
             if pcloudjson["result"] != 0:
                 if re.search('id="alternatives"', videopage, re.DOTALL | re.IGNORECASE):
                     alturl, nalternative = GetAlternative(url, alternative)
-                    PPlayvid(alturl, name, nalternative, download)
+                    PPlayvid(alturl, name, download, nalternative)
                 else:
                     progress.close()
                     utils.notify('Oh oh','Couldn\'t find a supported videohost')
@@ -146,7 +154,7 @@ def PPlayvid(url, name, alternative=1, download=None):
         except:
             if re.search('id="alternatives"', videopage, re.DOTALL | re.IGNORECASE):
                 alturl, nalternative = GetAlternative(url, alternative)
-                PPlayvid(alturl, name, nalternative, download)
+                PPlayvid(alturl, name, download, nalternative)
             else:
                 progress.close()
                 utils.notify('Oh oh','Couldn\'t find a supported videohost')
@@ -159,7 +167,7 @@ def PPlayvid(url, name, alternative=1, download=None):
             if not video720:
                 if re.search('id="alternatives"', videopage, re.DOTALL | re.IGNORECASE):
                     alturl, nalternative = GetAlternative(url, alternative)
-                    PPlayvid(alturl, name, nalternative, download)
+                    PPlayvid(alturl, name, download, nalternative)
                 else:
                     progress.close()
                     utils.notify('Oh oh','Couldn\'t find a supported videohost')
@@ -169,7 +177,7 @@ def PPlayvid(url, name, alternative=1, download=None):
         except:
             if re.search('id="alternatives"', videopage, re.DOTALL | re.IGNORECASE):
                 alturl, nalternative = GetAlternative(url, alternative)
-                PPlayvid(alturl, name, nalternative, download)
+                PPlayvid(alturl, name, download, nalternative)
             else:
                 progress.close()
                 utils.notify('Oh oh','Couldn\'t find a supported videohost')        
@@ -182,7 +190,7 @@ def PPlayvid(url, name, alternative=1, download=None):
         if not video720:
             if re.search('id="alternatives"', videopage, re.DOTALL | re.IGNORECASE):
                 alturl, nalternative = GetAlternative(url, alternative)
-                PPlayvid(alturl, name, nalternative, download)
+                PPlayvid(alturl, name, download, nalternative)
             else:
                 progress.close()
                 utils.notify('Oh oh','Couldn\'t find a supported videohost')
@@ -191,12 +199,13 @@ def PPlayvid(url, name, alternative=1, download=None):
             playvid()
     elif re.search('id="alternatives"', videopage, re.DOTALL | re.IGNORECASE):
         alturl, nalternative = GetAlternative(url, alternative)
-        PPlayvid(alturl, name, nalternative, download)
+        PPlayvid(alturl, name, download, nalternative)
     else:
         progress.close()
         utils.notify('Oh oh','Couldn\'t find a supported videohost')
 
 
+@utils.url_dispatcher.register('63', ['url'])
 def PCat(url):
     caturl = utils.getHtml(url, '')
     cathtml = re.compile('<ul id="categorias">(.*?)</html>', re.DOTALL | re.IGNORECASE).findall(caturl)
@@ -214,6 +223,7 @@ def PCat(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('68', ['url'], ['keyword'])
 def PSearch(url, keyword=None):
     searchUrl = url
     if not keyword:

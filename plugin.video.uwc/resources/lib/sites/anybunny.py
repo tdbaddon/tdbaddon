@@ -22,14 +22,7 @@ import xbmc
 import xbmcplugin
 import xbmcgui
 from resources.lib import utils
-
-
-# 320: anybunny.Main()
-# 321: anybunny.List(url)
-# 322: anybunny.Playvid(url, name, download)
-# 323: anybunny.Categories(url)
-# 324: anybunny.Search(url, keyword)
-# 325: anybunny.Categories2(url
+    
 
 vartuchdr = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36',
        'Accept': '*/*',
@@ -45,7 +38,7 @@ vartuchdr2 = {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537
        'Connection': 'keep-alive'}        
 
 
-
+@utils.url_dispatcher.register('320')
 def Main():
     utils.addDir('[COLOR hotpink]Top videos[/COLOR]','http://anybunny.com/top/',321,'','')
     utils.addDir('[COLOR hotpink]Categories - images[/COLOR]','http://anybunny.com/',323,'','')
@@ -54,8 +47,14 @@ def Main():
     List('http://anybunny.com/new/?p=1')
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
+    
+@utils.url_dispatcher.register('321', ['url'])
 def List(url):
-    listhtml = utils.getHtml(url, '')
+    try:
+        listhtml = utils.getHtml(url, '')
+    except:
+        utils.notify('Oh oh','It looks like this website is down.')
+        return None
     match = re.compile(r"<a href='([^']+).*?src='([^']+)' id=\d+ alt='([^']+)'", re.DOTALL | re.IGNORECASE).findall(listhtml)
     for videopage, img, name in match:
         name = utils.cleantext(name)
@@ -66,6 +65,8 @@ def List(url):
     except: pass
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
+
+@utils.url_dispatcher.register('322', ['url', 'name'], ['download'])
 def Playvid(url, name, download=None):
     abpage = utils.getHtml(url, url)
     vartucurl = re.compile('<iframe.*?src="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(abpage)[0]
@@ -91,6 +92,7 @@ def Playvid(url, name, download=None):
         xbmc.Player().play(videourl, listitem)
 
 
+@utils.url_dispatcher.register('323', ['url'])
 def Categories(url):
     cathtml = utils.getHtml(url, '')
     match = re.compile("<a href='/top/([^']+)'>.*?src='([^']+)' alt='([^']+)'", re.DOTALL | re.IGNORECASE).findall(cathtml)
@@ -100,6 +102,7 @@ def Categories(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('325', ['url'])
 def Categories2(url):
     cathtml = utils.getHtml(url, '')
     match = re.compile(r"href='/top/([^']+)'>([^<]+)</a> <a>([^)]+\))", re.DOTALL | re.IGNORECASE).findall(cathtml)
@@ -110,6 +113,7 @@ def Categories2(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('324', ['url'], ['keyword'])
 def Search(url, keyword=None):
     searchUrl = url
     if not keyword:

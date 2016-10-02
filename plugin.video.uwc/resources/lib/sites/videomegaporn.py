@@ -24,10 +24,10 @@ import os
 import xbmcplugin
 from resources.lib import utils
 
-
 progress = utils.progress
+ 
 
-
+@utils.url_dispatcher.register('160')
 def Main():
     utils.addDir('[COLOR hotpink]Categories[/COLOR]', 'http://www.videomegaporn.com/categories/', 163, '', '')
     utils.addDir('[COLOR hotpink]Search[/COLOR]', 'http://www.videomegaporn.com/search-', 164, '', '')
@@ -35,8 +35,13 @@ def Main():
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('161', ['url'])
 def List(url):
-    listhtml = utils.getHtml(url, '')
+    try:
+        listhtml = utils.getHtml(url, '')
+    except:
+        utils.notify('Oh oh','It looks like this website is down.')
+        return None
     match = re.compile(r'<div class="item">\s*?<a href="([^"]+)" title="([^"]+)".*?><img.*?src="([^"]+)".*?<div class="runtime">([^<]+)??</div>', re.DOTALL | re.IGNORECASE).findall(listhtml)
     for videopage, name, img, runtime in match:
         name = utils.cleantext(name)
@@ -51,7 +56,8 @@ def List(url):
     except: pass
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
-    
+
+@utils.url_dispatcher.register('164', ['url'], ['keyword'])    
 def Search(url, keyword=None):
     searchUrl = url
     if not keyword:
@@ -63,6 +69,7 @@ def Search(url, keyword=None):
         List(searchUrl)
 
 
+@utils.url_dispatcher.register('163', ['url'])
 def Categories(url):
     cathtml = utils.getHtml(url, '')
     match = re.compile('<div class="menu">(.*?)</div>', re.DOTALL | re.IGNORECASE).findall(cathtml)
@@ -72,5 +79,6 @@ def Categories(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)   
 
 
+@utils.url_dispatcher.register('162', ['url', 'name'], ['download'])
 def Playvid(url, name, download=None):
     utils.PLAYVIDEO(url, name, download)

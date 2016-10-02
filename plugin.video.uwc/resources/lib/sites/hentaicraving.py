@@ -42,15 +42,21 @@ def getHC(url):
     response.close()
     return data
 
+@utils.url_dispatcher.register('30', ['url'])
 def HCList(url):
     utils.addDir('[COLOR hotpink]A-Z List[/COLOR] [COLOR white]Censored & Uncensored[/COLOR]','http://www.hentaicraving.com/hentai-list/',33,'','')
-    link = utils.getHtml(url, '')
+    try:
+        link = utils.getHtml(url, '')
+    except:
+        utils.notify('Oh oh','It looks like this website is down.')
+        return None
     match = re.compile("""<a href='([^']+)'><img.*?title="([^"]+)".*?src="([^"]+)".*?Description: </b> ([^<]+)<p>""", re.DOTALL | re.IGNORECASE).findall(link)
     for videourl, name, img, desc in match:
         addHCDir(name, videourl, 31, img, desc)
     xbmc.executebuiltin('Container.SetViewMode(503)')
     xbmcplugin.endOfDirectory(utils.addon_handle)
-    
+
+@utils.url_dispatcher.register('33', ['url'])    
 def HCA2Z(url):
     link = utils.getHtml(url, '')
     match = re.compile('hentai-series/([^/]+)/">([^<]+)', re.DOTALL | re.IGNORECASE).findall(link)
@@ -59,13 +65,15 @@ def HCA2Z(url):
         img = 'http://www.hentaicraving.com/images/' + link + '.jpg'
         addHCDir(name, url, 31, img, '')
     xbmcplugin.endOfDirectory(utils.addon_handle)    
-    
+
+@utils.url_dispatcher.register('31', ['url', 'name', 'img'])
 def HCEpisodes(url,name, img):
     link = utils.getHtml(url, '')
     eps = re.compile('<li><a href="([^"]+)">([^<]+)</a> <', re.DOTALL | re.IGNORECASE).findall(link)
     for url, name in eps:
         utils.addDownLink(name,url,32,img, '')
-        
+
+@utils.url_dispatcher.register('32', ['url', 'name'], ['download'])
 def HCPlayvid(url,name, download=None):
     progress.create('Play video', 'Searching videofile.')
     progress.update( 10, "", "Loading video page", "" )

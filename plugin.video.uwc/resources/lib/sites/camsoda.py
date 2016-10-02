@@ -26,22 +26,22 @@ import xbmcgui
 from resources.lib import utils
 
 
-
-#elif mode == 475: camsoda.Main()
-    #elif mode == 476: camsoda.List(url)
-    #elif mode == 478: camsoda.Playvid(url, name)
-    #elif mode == 479: camsoda.clean_database(True)
-
+@utils.url_dispatcher.register('475')
 def Main():
 	utils.addDir('[COLOR red]Refresh Camsoda images[/COLOR]','',479,'',Folder=False)
 	List('http://www.camsoda.com/api/v1/browse/online')
 	xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('476', ['url'])
 def List(url):
     if utils.addon.getSetting("chaturbate") == "true":
-        clean_database()
-    response = urllib2.urlopen(url)
+        clean_database(False)
+    try:
+        response = urllib2.urlopen(url)
+    except:
+        utils.notify('Oh oh','It looks like this website is down.')
+        return None
     data = json.load(response)
     for camgirl in data['results']:
         name = camgirl['slug'] + " [" + camgirl['status'] + "]"
@@ -50,7 +50,9 @@ def List(url):
         utils.addDownLink(name, videourl, 478, img, '', noDownload=True)
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
-def clean_database(showdialog=False):
+
+@utils.url_dispatcher.register('479')
+def clean_database(showdialog=True):
     conn = sqlite3.connect(xbmc.translatePath("special://database/Textures13.db"))
     try:
         with conn:
@@ -66,6 +68,7 @@ def clean_database(showdialog=False):
         pass
 
 
+@utils.url_dispatcher.register('478', ['url', 'name'])
 def Playvid(url, name):
     response = urllib2.urlopen(url)
     data = json.load(response)

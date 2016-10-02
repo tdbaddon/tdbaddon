@@ -1,3 +1,7 @@
+2016.09.30.2
+    fix - muchmovies
+
+
 2016.09.20.1
     fix - wsonline
     fix - sd hosts now are showing

@@ -24,9 +24,10 @@ import os.path
 import xbmcplugin
 from resources.lib import utils
 
-
 progress = utils.progress
 
+
+@utils.url_dispatcher.register('110')
 def EXMain():
     utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://elreyx.com/index1.html',113,'','')
     utils.addDir('[COLOR hotpink]Search[/COLOR]','http://elreyx.com/search-',114,'','')
@@ -36,10 +37,17 @@ def EXMain():
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('111', ['url'])
 def EXList(url):
-    listhtml = utils.getHtml(url, '')
+    try:
+        listhtml = utils.getHtml(url, '')
+    except:
+        utils.notify('Oh oh','It looks like this website is down.')
+        return None
     match = re.compile('notice_image">.*?<a title="([^"]+)" href="([^"]+)".*?src="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(listhtml)
     for name, videopage, img in match:
+        imgid = re.compile('(\d+)', re.DOTALL | re.IGNORECASE).findall(img)[0]
+        img = 'http://images.panelporn.com/' + imgid + '.jpg'
         utils.addDownLink(name, videopage, 112, img, '')
     try:
         nextp=re.compile("<a href='([^']+)' title='([^']+)'>&raquo;</a>", re.DOTALL | re.IGNORECASE).findall(listhtml)
@@ -49,7 +57,8 @@ def EXList(url):
     except: pass
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
-    
+
+@utils.url_dispatcher.register('114', ['url'], ['keyword'])      
 def EXSearch(url, keyword=None):
     searchUrl = url
     if not keyword:
@@ -61,6 +70,7 @@ def EXSearch(url, keyword=None):
         EXList(searchUrl)
 
 
+@utils.url_dispatcher.register('113', ['url'])
 def EXCat(url):
     cathtml = utils.getHtml(url, '')
     match = re.compile('<div id="categories">(.*?)</div>', re.DOTALL | re.IGNORECASE).findall(cathtml)
@@ -70,10 +80,12 @@ def EXCat(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)   
 
 
+@utils.url_dispatcher.register('112', ['url', 'name'], ['download'])
 def EXPlayvid(url, name, download=None):
     utils.PLAYVIDEO(url, name, download)
 
 
+@utils.url_dispatcher.register('115', ['url'])
 def EXPornstars(url):
     cathtml = utils.getHtml(url, '')
     match = re.compile('<div id="pornstars">(.*?)</div>', re.DOTALL | re.IGNORECASE).findall(cathtml)
@@ -83,6 +95,7 @@ def EXPornstars(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('116', ['url'])
 def EXMovies(url):
     cathtml = utils.getHtml(url, '')
     match = re.compile('<div id="movies">(.*?)</div>', re.DOTALL | re.IGNORECASE).findall(cathtml)
@@ -92,11 +105,14 @@ def EXMovies(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('117', ['url'])
 def EXMoviesList(url):
     listhtml = utils.getHtml(url, '')
     match = re.compile('<div class="container_news">(.*?)</div>', re.DOTALL | re.IGNORECASE).findall(listhtml)
     match1 = re.compile('<td.*?<a title="([^"]+)" href="([^"]+)".*?src="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(match[0])
     for name, videopage, img in match1:
+        imgid = re.compile('(\d+)', re.DOTALL | re.IGNORECASE).findall(img)[0]
+        img = 'http://images.panelporn.com/' + imgid + '.jpg'    
         utils.addDownLink(name, videopage, 112, img, '')
     try:
         nextp=re.compile("<a href='([^']+)' title='([^']+)'>&raquo;</a>", re.DOTALL | re.IGNORECASE).findall(listhtml)

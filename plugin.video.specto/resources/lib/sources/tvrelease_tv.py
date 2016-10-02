@@ -28,6 +28,7 @@ from resources.lib.libraries import client
 from resources.lib.resolvers import hugefiles
 from resources.lib.resolvers import uploadrocket
 from resources.lib.resolvers import uptobox
+from resources.lib.resolvers import control
 from resources.lib import resolvers
 
 
@@ -62,7 +63,6 @@ class source:
 
 
     def get_sources(self, url, hosthdDict, hostDict, locDict):
-
         try:
             self.sources = []
 
@@ -130,7 +130,8 @@ class source:
 
 
             return self.sources
-        except:
+        except Exception as e:
+            control.log('ERROR tvre %s' % e)
             return self.sources
 
 

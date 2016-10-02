@@ -23,6 +23,8 @@ import re,urllib,urlparse
 
 from resources.lib.libraries import cleantitle
 from resources.lib.libraries import client
+from resources.lib.libraries import control
+
 from resources.lib import resolvers
 
 
@@ -131,7 +133,8 @@ class source:
                     pass
 
             return sources
-        except:
+        except Exception as e:
+            control.log('ERROR vidics %s' % e)
             return sources
 
 

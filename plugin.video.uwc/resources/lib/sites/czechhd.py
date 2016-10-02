@@ -21,7 +21,8 @@ import re
 import xbmcplugin
 from resources.lib import utils
 
-
+    
+@utils.url_dispatcher.register('310')
 def Main():
     utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://czechhd.net/',313,'','')
     utils.addDir('[COLOR hotpink]Search[/COLOR]','http://czechhd.net/?s=',314,'','')
@@ -29,8 +30,13 @@ def Main():
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('311', ['url'])
 def List(url):
-    listhtml = utils.getHtml(url, '')
+    try:
+        listhtml = utils.getHtml(url, '')
+    except:
+        utils.notify('Oh oh','It looks like this website is down.')
+        return None
     match = re.compile('<div id="main">(.*?)<div id="sidebar', re.DOTALL | re.IGNORECASE).findall(listhtml)[0]
     match1 = re.compile(r'data-id="\d+" title="([^"]+)" href="([^"]+)".*?src="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(match)
     for name, videopage, img in match1:
@@ -43,10 +49,12 @@ def List(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
-def Playvid(url, name, download):
+@utils.url_dispatcher.register('312', ['url', 'name'], ['download'])
+def Playvid(url, name, download=None):
     utils.PLAYVIDEO(url, name, download)
 
 
+@utils.url_dispatcher.register('313', ['url'])
 def Categories(url):
     cathtml = utils.getHtml(url, '')
     match = re.compile('<a href="(http://czechhd.net/category/[^"]+)" >([^<]+)<', re.DOTALL | re.IGNORECASE).findall(cathtml)
@@ -55,6 +63,7 @@ def Categories(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('314', ['url'], ['keyword'])
 def Search(url, keyword=None):
     searchUrl = url
     if not keyword:

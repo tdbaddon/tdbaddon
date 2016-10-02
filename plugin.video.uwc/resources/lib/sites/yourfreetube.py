@@ -21,9 +21,10 @@ import re
 import xbmcplugin
 from resources.lib import utils
 
-
 progress = utils.progress
 
+
+@utils.url_dispatcher.register('190')
 def YFTMain():
     utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://www.yourfreetube.net/index.html',193,'','')
     utils.addDir('[COLOR hotpink]Search[/COLOR]','http://www.yourfreetube.net/search.php?keywords=',194,'','')
@@ -31,8 +32,13 @@ def YFTMain():
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('191', ['url'])
 def YFTList(url):
-    listhtml = utils.getHtml(url, '')
+    try:
+        listhtml = utils.getHtml(url, '')
+    except:
+        utils.notify('Oh oh','It looks like this website is down.')
+        return None
     match = re.compile('<a href="([^"]+)"[^<]+<[^<]+<img src="([^"]+)" alt="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(listhtml)
     for videopage, img, name in match:
         name = utils.cleantext(name)
@@ -46,6 +52,7 @@ def YFTList(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('194', ['url'], ['keyword'])
 def YFTSearch(url, keyword=None):
     searchUrl = url
     if not keyword:
@@ -57,6 +64,7 @@ def YFTSearch(url, keyword=None):
         YFTList(searchUrl)
 
 
+@utils.url_dispatcher.register('193', ['url'])
 def YFTCat(url):
     cathtml = utils.getHtml(url, '')
     match = re.compile('<ul class="pm-browse-ul-subcats">(.*?)</ul>', re.DOTALL | re.IGNORECASE).findall(cathtml)
@@ -66,6 +74,7 @@ def YFTCat(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('192', ['url', 'name'], ['download'])
 def YFTPlayvid(url, name, download=None):
     utils.PLAYVIDEO(url, name, download)
 

@@ -95,7 +95,7 @@ class source:
 
             return url
         except:
-            pass
+            return
 
 
     def pelispedia_tvcache(self):
@@ -218,7 +218,8 @@ class source:
             for i in links: sources.append({'source': i['source'], 'quality': i['quality'], 'provider': 'Pelispedia', 'url': i['url']})
 
             return sources
-        except:
+        except Exception as e:
+            control.log('ERROR PELISP %s' % e)
             return sources
 
 

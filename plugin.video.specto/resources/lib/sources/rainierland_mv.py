@@ -150,9 +150,9 @@ class source:
 
             return sources
 
-        except:
+        except Exception as e:
+            control.log('ERROR rainier %s' % e)
             return sources
-
 
     def resolve(self, url):
         control.log("rainierland-sources-0 @@@@@@@@@@@@@@@@@@@@@@@@@@@@ %s" % url)

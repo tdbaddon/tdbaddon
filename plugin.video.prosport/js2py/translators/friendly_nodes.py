@@ -1,18 +1,29 @@
-from pyjsparser import PyJsParser
+import binascii
+
+from .pyjsparser import PyJsParser
+import six
+if six.PY3:
+    basestring = str
+    long = int
+    xrange = range
+    unicode = str
 
 REGEXP_CONVERTER = PyJsParser()
 
+def to_hex(s):
+    return binascii.hexlify(s.encode('utf8')).decode('utf8')  # fucking python 3, I hate it so much
+                                                              # wtf was wrong with s.encode('hex') ???
 def indent(lines, ind=4):
     return ind*' '+lines.replace('\n', '\n'+ind*' ').rstrip(' ')
 
 def inject_before_lval(source, lval, code):
     if source.count(lval)>1:
-        print
-        print lval
+        print()
+        print(lval)
         raise RuntimeError('To many lvals (%s)' % lval)
     elif not source.count(lval):
-        print
-        print lval
+        print()
+        print(lval)
         assert lval not in source
         raise RuntimeError('No lval found "%s"' % lval)
     end = source.index(lval)
@@ -25,15 +36,15 @@ def inject_before_lval(source, lval, code):
 
 
 def get_continue_label(label):
-    return CONTINUE_LABEL%label.encode('hex')
+    return CONTINUE_LABEL%to_hex(label)
 
 def get_break_label(label):
-    return BREAK_LABEL%label.encode('hex')
+    return BREAK_LABEL%to_hex(label)
 
 
 def is_valid_py_name(name):
     try:
-        compile(name, 'a','exec')
+        compile(name+' =  11', 'a','exec')
     except:
         return False
     return True
@@ -43,7 +54,7 @@ def indent(lines, ind=4):
 
 def compose_regex(val):
     reg, flags = val
-    reg = REGEXP_CONVERTER._unescape_string(reg)
+    #reg = REGEXP_CONVERTER._unescape_string(reg)
     return u'/%s/%s' % (reg, flags)
 
 def float_repr(f):
@@ -212,6 +223,7 @@ def js_delete(a):
     c = list(bracket_split(a, ['()']))
     beg, arglist = ''.join(c[:-1]).strip(), c[-1].strip()  #strips just to make sure... I will remove it later
     if beg[-4:]!='.get':
+        print(a)
         raise SyntaxError('Invalid delete operation')
     return beg[:-3]+'delete'+arglist
 
@@ -234,7 +246,7 @@ def js_postfix(a, inc, post):
     if not meth.endswith('get'):
         raise SyntaxError('Invalid ++ or -- operation.')
     bra[-2] = bra[-2][:-3] + 'put'
-    bra[-1] = '(%s,%s%sJs(1))' % (bra[-1][1:-1], a, '+' if inc else '-')
+    bra[-1] = '(%s,Js(%s.to_number())%sJs(1))' % (bra[-1][1:-1], a, '+' if inc else '-')
     res = ''.join(bra)
     return res if not post else '(%s%sJs(1))' % (res, '-' if inc else '+')
 

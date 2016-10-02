@@ -22,13 +22,7 @@ import xbmcplugin
 from resources.lib import utils
 
 
-#460: hentaihaven.Main()
-#461: hentaihaven.List(url)
-#462: hentaihaven.Playvid(url, name, download)
-#463: hentaihaven.Categories(url)
-#464: hentaihaven.A2Z(url)    
-
-
+@utils.url_dispatcher.register('460')
 def Main():
     utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://hentaihaven.org/pick-your-poison/',463,'','')
     utils.addDir('[COLOR hotpink]A to Z[/COLOR]','http://hentaihaven.org/pick-your-series/',464,'','')
@@ -37,8 +31,13 @@ def Main():
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('461', ['url'])
 def List(url):
-    listhtml = utils.getHtml(url, '')
+    try:
+        listhtml = utils.getHtml(url, '')
+    except:
+        utils.notify('Oh oh','It looks like this website is down.')
+        return None
     listhtml = listhtml.replace('\\','')
     match1 = re.compile('<a class="thumbnail-image" href="([^"]+)".*?data-src="([^"]+)"(.*?)<h3>[^>]+>([^<]+)<', re.DOTALL | re.IGNORECASE).findall(listhtml)
     for videopage, img, other, name in match1:
@@ -58,7 +57,8 @@ def List(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
-def Playvid(url, name, download):
+@utils.url_dispatcher.register('462', ['url', 'name'], ['download'])
+def Playvid(url, name, download=None):
     videopage = utils.getHtml(url)
     videourl = re.compile('class="btn btn-1 btn-1e" href="([^"]+)" target="_blank"', re.DOTALL | re.IGNORECASE).findall(videopage)[0]
     if videourl:
@@ -67,6 +67,7 @@ def Playvid(url, name, download):
         utils.notify('Oh oh','Couldn\'t find a video')
 
 
+@utils.url_dispatcher.register('463', ['url'])
 def Categories(url):
     cathtml = utils.getHtml(url, '')
     match = re.compile('/tag/([^/]+)/" cla[^>]+>([^<]+)<', re.DOTALL | re.IGNORECASE).findall(cathtml)
@@ -76,6 +77,7 @@ def Categories(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('464', ['url'])
 def A2Z(url):
     cathtml = utils.getHtml(url, '')
     match = re.compile(r'class="cat_section"><a\s+href="([^"]+)"[^>]+>([^<]+)<.*?src="([^"]+)"(.*?)</div>', re.DOTALL | re.IGNORECASE).findall(cathtml)

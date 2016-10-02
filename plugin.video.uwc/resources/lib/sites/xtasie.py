@@ -21,10 +21,10 @@ import re
 import xbmcplugin
 from resources.lib import utils
 
-
 progress = utils.progress
 
 
+@utils.url_dispatcher.register('200')
 def XTCMain():
     utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://xtasie.com/video-porn-categories/',203,'','')
     utils.addDir('[COLOR hotpink]Top Rated[/COLOR]','http://xtasie.com/top-rated-porn-videos/page/1/',201,'','')
@@ -34,8 +34,13 @@ def XTCMain():
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('201', ['url'])
 def XTCList(url):
-    listhtml = utils.getHtml(url, '')
+    try:
+        listhtml = utils.getHtml(url, '')
+    except:
+        utils.notify('Oh oh','It looks like this website is down.')
+        return None
     match = re.compile(r'<div class="image-holder">\s+<a href="([^"]+)".*?><img.*?data-original="([^"]+)" alt="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(listhtml)
     for videopage, img, name in match:
         name = utils.cleantext(name)
@@ -47,7 +52,8 @@ def XTCList(url):
     except: pass
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
-    
+
+@utils.url_dispatcher.register('204', ['url'], ['keyword'])    
 def XTCSearch(url, keyword=None):
     searchUrl = url
     if not keyword:
@@ -59,6 +65,7 @@ def XTCSearch(url, keyword=None):
         XTCList(searchUrl)
 
 
+@utils.url_dispatcher.register('203', ['url'])
 def XTCCat(url):
     cathtml = utils.getHtml(url, '')
     match = re.compile('<p><a href="([^"]+)".*?<img src="([^"]+)".*?<h2>([^<]+)<', re.DOTALL | re.IGNORECASE).findall(cathtml)
@@ -67,5 +74,6 @@ def XTCCat(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('202', ['url', 'name'], ['download'])
 def XTCPlayvid(url, name, download=None):
     utils.PLAYVIDEO(url, name, download)

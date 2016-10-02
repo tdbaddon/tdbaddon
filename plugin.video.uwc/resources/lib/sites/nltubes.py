@@ -24,32 +24,28 @@ import xbmcplugin
 import xbmcgui
 from resources.lib import utils
 
-
-
-# 100 NLTUBES
-# 101 NLVIDEOLIST
-# 102 NLPLAYVID
-# 103 NLCAT
-# 104 NLSEARCH
-
-
 sitelist = ['http://www.poldertube.nl', 'http://www.milf.nl', 'http://www.sextube.nl']
 
 
-
-def NLTUBES(url, site):
-    siteurl = sitelist[site]
-    utils.addDir('[COLOR hotpink]Categories[/COLOR]', siteurl + '/categorieen',103,'', site)
-    if site == 0:
-        utils.addDir('[COLOR hotpink]Search[/COLOR]', siteurl + '/pornofilms/zoeken/',104,'', site)
+@utils.url_dispatcher.register('100', ['url'], ['page'])
+def NLTUBES(url, page=1):
+    siteurl = sitelist[page]
+    utils.addDir('[COLOR hotpink]Categories[/COLOR]', siteurl + '/categorieen',103,'', page)
+    if page == 0:
+        utils.addDir('[COLOR hotpink]Search[/COLOR]', siteurl + '/pornofilms/zoeken/',104,'', page)
     else:
-        utils.addDir('[COLOR hotpink]Search[/COLOR]', siteurl + '/videos/zoeken/',104,'', site)
-    NLVIDEOLIST(url, site)
+        utils.addDir('[COLOR hotpink]Search[/COLOR]', siteurl + '/videos/zoeken/',104,'', page)
+    NLVIDEOLIST(url, page)
 
 
-def NLVIDEOLIST(url, site):
-    siteurl = sitelist[site]
-    link = utils.getHtml(url, '')
+@utils.url_dispatcher.register('101', ['url'], ['page'])
+def NLVIDEOLIST(url, page=1):
+    siteurl = sitelist[page]
+    try:
+        link = utils.getHtml(url, '')
+    except:
+        utils.notify('Oh oh','It looks like this website is down.')
+        return None
     match = re.compile(r'<article([^>]*)>.*?href="([^"]+)".*?src="([^"]+)".*?<h3>([^<]+)<.*?duration">[^\d]+([^\s<]+)(?:\s|<)', re.DOTALL | re.IGNORECASE).findall(link)
     for hd, url, img, name, duration in match:
         if len(hd) > 2:
@@ -62,11 +58,12 @@ def NLVIDEOLIST(url, site):
     try:
         nextp=re.compile('<a href="([^"]+)" title="volg', re.DOTALL | re.IGNORECASE).findall(link)
         nextp = siteurl + nextp[0]
-        utils.addDir('Next Page', nextp,101,'',site)
+        utils.addDir('Next Page', nextp,101,'',page)
     except: pass
     xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
 
+@utils.url_dispatcher.register('102', ['url', 'name'], ['download'])
 def NLPLAYVID(url,name, download=None):
     videopage = utils.getHtml(url, '')
     videourl = re.compile('<source src="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(videopage)
@@ -80,20 +77,23 @@ def NLPLAYVID(url,name, download=None):
         xbmc.Player().play(videourl, listitem)
 
 
-def NLSEARCH(url, site, keyword=None):
+@utils.url_dispatcher.register('104', ['url'], ['page', 'keyword'])  
+def NLSEARCH(url, page=1, keyword=None):
     searchUrl = url
     if not keyword:
-        utils.searchDir(url, 104, site)
+        utils.searchDir(url, 104, page)
     else:
         title = keyword.replace(' ','%20')
         searchUrl = searchUrl + title
-        NLVIDEOLIST(searchUrl, site)
+        NLVIDEOLIST(searchUrl, page)
 
 
-def NLCAT(url, site):
-    siteurl = sitelist[site]
+@utils.url_dispatcher.register('103', ['url'], ['page'])
+def NLCAT(url, page=1):
+    siteurl = sitelist[page]
     link = utils.getHtml(url, '')
     tags = re.compile('<div class="category".*?href="([^"]+)".*?<h2>([^<]+)<.*?src="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(link)
     for caturl, catname, catimg in tags:
         catimg = siteurl + catimg
-        utils.addDir(catname,caturl,101,catimg,site)
+        utils.addDir(catname,caturl,101,catimg,page)
+    xbmcplugin.endOfDirectory(int(sys.argv[1]))

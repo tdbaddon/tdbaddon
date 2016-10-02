@@ -52,35 +52,27 @@ class source:
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
             return url
-        except:
+        except Exception as e:
+            control.log('ERROR WSO GET %s' % e)
             return
 
     def get_episode(self, url, imdb, tvdb, title, date, season, episode):
-        print("URL",url)
         try:
             if url == None: return
             myses = 's%02de%02d' % (int(season), int(episode))
             result = client.request(urlparse.urljoin(self.base_link,url))
             result = re.compile("<li class='listEpisode'>.+?</>",re.DOTALL).findall(result)
-            #for i in result:
-            #    print("I",i)
             result = [re.compile("<a href='(.*?)'.*</span>(.*?)</a>").findall(i) for i in result]
-            #for i in result:
-            #    print("J",i)
-            #print result
             result = [i[0] for i in result if len(i[0]) > 0]
-            #print result
-            for i in result:
-                print("J",i[1])
-                if myses in i[1]:
-                    print "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+
             result = [i for i in result if myses in cleantitle.tv(i[1])]
             result = [i[0] for i in result][0]
             print result
 
-            try: url = re.compile('//.+?(/.+)').findall(url)[0]
-            except: url = result
-            print result
+            try:
+                url = re.compile('//.+?(/.+)').findall(url)[0]
+            except:
+                url = result
 
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
@@ -90,9 +82,8 @@ class source:
 
 
     def get_sources(self, url, hosthdDict, hostDict, locDict):
+        sources = []
         try:
-            sources = []
-
             if url == None: return sources
 
             url = urlparse.urljoin(self.base_link, url)
@@ -123,7 +114,8 @@ class source:
                     pass
 
             return sources
-        except:
+        except Exception as e:
+            control.log('ERROR WSO %s' % e)
             return sources
 
 

@@ -20,15 +20,9 @@ import re
 
 import xbmcplugin
 from resources.lib import utils
+  
 
-
-#450: Main()
-#451: List(url)
-#452: Playvid(url, name, download)
-#453: Categories(url)
-#454: Search(url, keyword)
-
-
+@utils.url_dispatcher.register('450')
 def Main():
     utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://sexix.net/',453,'','')
     utils.addDir('[COLOR hotpink]Search[/COLOR]','http://sexix.net/?s=',454,'','')
@@ -36,8 +30,13 @@ def Main():
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('451', ['url'])
 def List(url):
-    listhtml = utils.getHtml(url, '')
+    try:
+        listhtml = utils.getHtml(url, '')
+    except:
+        utils.notify('Oh oh','It looks like this website is down.')
+        return None
     match = re.compile('<div id="main">(.*?)<div id="sidebar', re.DOTALL | re.IGNORECASE).findall(listhtml)[0]
     match1 = re.compile(r'data-id="\d+" title="([^"]+)" href="([^"]+)".*?src="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(match)
     for name, videopage, img in match1:
@@ -50,7 +49,8 @@ def List(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
-def Playvid(url, name, download):
+@utils.url_dispatcher.register('452', ['url', 'name'], ['download'])
+def Playvid(url, name, download=None):
     videopage = utils.getHtml(url)
     plurl = re.compile('\?u=([^"]+)"', re.DOTALL | re.IGNORECASE).findall(videopage)[0]
     plurl = 'http://sexix.net/qaqqew/playlist.php?u=' + plurl
@@ -62,6 +62,7 @@ def Playvid(url, name, download):
         utils.notify('Oh oh','Couldn\'t find a video')
 
 
+@utils.url_dispatcher.register('453', ['url'])
 def Categories(url):
     cathtml = utils.getHtml(url, '')
     match = re.compile('<a href="(http://sexix.net/videotag/[^"]+)"[^>]+>([^<]+)<', re.DOTALL | re.IGNORECASE).findall(cathtml)
@@ -70,6 +71,7 @@ def Categories(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('454', ['url'], ['keyword'])
 def Search(url, keyword=None):
     searchUrl = url
     if not keyword:

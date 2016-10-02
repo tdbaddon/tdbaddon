@@ -24,18 +24,25 @@ import xbmcplugin
 import xbmcgui
 from resources.lib import utils
 
-
 progress = utils.progress
+  
 
+@utils.url_dispatcher.register('390')
 def Main():
     utils.addDir('[COLOR hotpink]Search[/COLOR]','http://www.pornhub.com/video/search?o=mr&search=', 394, '', '')
     utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://www.pornhub.com/categories', 393, '', '')
     List('http://www.pornhub.com/video?o=cm')
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
+
+@utils.url_dispatcher.register('391', ['url'])
 def List(url):
     print "pornhub::List " + url
-    listhtml = utils.getHtml(url, '')
+    try:
+        listhtml = utils.getHtml(url, '')
+    except:
+        utils.notify('Oh oh','It looks like this website is down.')
+        return None
     match = re.compile('<li class="videoblock.+?<a href="([^"]+)" title="([^"]+)".+?<var class="duration">([^<]+)<.*?data-mediumthumb="([^"]+)"', re.DOTALL).findall(listhtml)
     for videopage, name, duration, img in match:
         name = utils.cleantext(name)
@@ -46,7 +53,9 @@ def List(url):
         utils.addDir('Next Page', 'http://www.pornhub.com' + nextp[0].replace('&amp;','&'), 391,'')
     except: pass
     xbmcplugin.endOfDirectory(utils.addon_handle)
-    
+
+
+@utils.url_dispatcher.register('394', ['url'], ['keyword'])    
 def Search(url, keyword=None):
     searchUrl = url
     if not keyword:
@@ -57,6 +66,8 @@ def Search(url, keyword=None):
         print "Searching URL: " + searchUrl
         List(searchUrl)
 
+
+@utils.url_dispatcher.register('393', ['url'])
 def Categories(url):
     cathtml = utils.getHtml(url, '')
     match = re.compile('<div class="category-wrapper">.+?<a href="(.+?)"  alt="(.+?)">.+?<img src="(.+?)"', re.DOTALL).findall(cathtml)
@@ -66,7 +77,9 @@ def Categories(url):
         else:
             utils.addDir(name, 'http://www.pornhub.com' + catpage + "?o=cm", 391, img, '')
     xbmcplugin.endOfDirectory(utils.addon_handle)
-    
+
+
+@utils.url_dispatcher.register('392', ['url', 'name'], ['download'])    
 def Playvid(url, name, download=None):
     html = utils.getHtml(url, '')
     videourl = re.compile("var player_quality_.+? = '(.+?)'").findall(html)

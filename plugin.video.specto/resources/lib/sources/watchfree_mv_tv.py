@@ -176,7 +176,8 @@ class source:
                     pass
 
             return sources
-        except:
+        except Exception as e:
+            control.log('ERROR Watchfree %s' % e)
             return sources
 
 

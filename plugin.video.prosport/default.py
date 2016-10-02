@@ -72,7 +72,7 @@ sd_streams = ['goindexsport','multi-sports.eu', 'watchnfl.live', 'streamhd.eu/fo
 			'sportsnewsupdated.com', 'watchnba.tv', 'feedredsoccer.at.ua', 'jugandoes.com', 'wiz1.net', 'bosscast.net', 
 			'watchsportstv.boards.net', 'tv-link.in', 'klivetv.co', 'videosport.me', 'livesoccerg.com', 'zunox.hk', 'singidunum.', 
 			'zona4vip.com', 'ciscoweb.ml', 'streamendous.com','streamm.eu', 'sports-arena.net', 'stablelivestream.com', 
-			'iguide.to', 'sportsleague.me','kostatz.com', 'soccerpluslive.com', 'zunox']
+			'iguide.to', 'sportsleague.me','kostatz.com', 'soccerpluslive.com', 'zunox', 'apkfifa.com']
 
 def utc_to_local(utc_dt):
     timestamp = calendar.timegm(utc_dt.timetuple())
@@ -83,8 +83,8 @@ def utc_to_local(utc_dt):
 
 UA='Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'
 
-def GetURL(url, referer=None, output=None):
-	if 'streamm.eu' in url:
+def GetURL(url, referer=None, output=None, timeout=None):
+	if 'streamm.eu' in url or 'sawlive' in url:
 		import cfscrape
 		scraper = cfscrape.create_scraper()
 		return scraper.get(url).content
@@ -94,7 +94,10 @@ def GetURL(url, referer=None, output=None):
 	if referer:
 		request.add_header('Referer', referer)
 	try:
-		response = urllib2.urlopen(request, timeout=20)
+		if timeout:
+			response = urllib2.urlopen(request, timeout=int(timeout))
+		else:
+			response = urllib2.urlopen(request, timeout=20)
 		if output == 'geturl':
 			return response.geturl()
 		if output == 'cookie':
@@ -645,49 +648,6 @@ def Nhlarchive(page, mode):
 	xbmcplugin.addDirectoryItem(h, uri, item, True)
 	xbmcplugin.endOfDirectory(h, cacheToDisc=True)
 
-def Xrxsarch():
-	for i in range (1,5,1):
-		yesterday = datetime.today() - timedelta(i)
-		yesterday = yesterday.strftime('%Y-%m-%d')
-		addDir(yesterday, yesterday, iconImg='', home='', away='', mode="xrxsday")
-	xbmcplugin.endOfDirectory(h, cacheToDisc=True)
-
-def Xrxsday(yesterday):
-	html = GetURL("http://xrxs.ml/nhl/?date="+yesterday)
-	titles = re.findall('(PM.+?<)',html)
-	for title in titles:
-		title = title.replace('PM','').replace('|','').replace('<','').strip()
-		links = html.split(title)[-1].split('<hr/>')[0]
-		addDir(title, links, iconImg='', home=title, away='', mode="xrxsgame")
-	xbmcplugin.endOfDirectory(h, cacheToDisc=True)
-
-def Xrxsgame(links, orig_title):
-	links = common.parseDOM(links, "a", ret="href")
-	result = urllib.urlretrieve("http://nhlkeys.ga/auth")
-	print open(result[0]).read()
-	nhlcookie = GetURL("http://nhlkeys.ga/auth", output='cookie')
-	if not nhlcookie:
-		nhlcookie = ''
-		dialog = xbmcgui.Dialog()
-		dialog.notification('Pro Sport', "Failed to get cookie, links won't work", xbmcgui.NOTIFICATION_WARNING, 5000)
-	else:
-		nhlcookie = '|Cookie='+nhlcookie
-	for link in links:
-		link = 'http://xrxs.ml/nhl/'+link
-		if 'HOME' in link:
-			title = re.findall('(HOME.+?\.m3u8)',link)[0].replace('.m3u8','')
-			addDirectLink(title, {'Title': orig_title}, link+nhlcookie)
-		elif 'VISIT' in link:
-			title = re.findall('(VISIT.+?\.m3u8)',link)[0].replace('.m3u8','')
-			addDirectLink(title, {'Title': orig_title}, link+nhlcookie)
-		elif 'FRENCH' in link:
-			title = re.findall('(FRENCH.+?\.m3u8)',link)[0].replace('.m3u8','')
-			addDirectLink(title, {'Title': orig_title}, link+nhlcookie)
-		elif 'NATIONAL' in link:
-			title = re.findall('(NATIONAL.+?\.m3u8)',link)[0].replace('.m3u8','')
-			addDirectLink(title, {'Title': orig_title}, link+nhlcookie)
-	xbmcplugin.endOfDirectory(h, cacheToDisc=True)
-
 def Playnhlarchive(url):
 	orig_title = xbmc.getInfoLabel('ListItem.Title')
 	url = 'http://rutube.ru/api/play/options/'+url+'?format=json'
@@ -723,10 +683,52 @@ def PlayArchive(url):
 				#addLink(el['key'], orig_title, el['url']+'|Cookie=video_key='+token, mode="play")
 	xbmcplugin.endOfDirectory(h, cacheToDisc=True)
 
+def Xrxsarch():
+	for i in range (1,5,1):
+		yesterday = datetime.today() - timedelta(i)
+		yesterday = yesterday.strftime('%Y-%m-%d')
+		addDir(yesterday, yesterday, iconImg='', home='', away='', mode="xrxsday")
+	xbmcplugin.endOfDirectory(h, cacheToDisc=True)
+
+def Xrxsday(yesterday):
+	html = GetURL("http://xrxs.ml/nhl/?date="+yesterday)
+	titles = re.findall('(PM.+?<)',html)
+	for title in titles:
+		title = title.replace('PM','').replace('|','').replace('<','').strip()
+		links = html.split(title)[-1].split('<hr/>')[0]
+		addDir(title, links, iconImg='', home=title, away='', mode="xrxsgame")
+	xbmcplugin.endOfDirectory(h, cacheToDisc=True)
+
+def Xrxsgame(links, orig_title):
+	links = common.parseDOM(links, "a", ret="href")
+	nhlcookie = getXrxsCookie()
+	if not nhlcookie:
+		nhlcookie = ''
+		dialog = xbmcgui.Dialog()
+		dialog.notification('Pro Sport', "Failed to get cookie, links won't work", xbmcgui.NOTIFICATION_WARNING, 5000)
+	else:
+		nhlcookie = '|Cookie='+nhlcookie
+	for link in links:
+		link = 'http://xrxs.ml/nhl/'+link
+		if 'HOME' in link:
+			title = re.findall('(HOME.+?\.m3u8)',link)[0].replace('.m3u8','')
+			addDirectLink(title, {'Title': orig_title}, link+nhlcookie)
+		elif 'VISIT' in link:
+			title = re.findall('(VISIT.+?\.m3u8)',link)[0].replace('.m3u8','')
+			addDirectLink(title, {'Title': orig_title}, link+nhlcookie)
+		elif 'FRENCH' in link:
+			title = re.findall('(FRENCH.+?\.m3u8)',link)[0].replace('.m3u8','')
+			addDirectLink(title, {'Title': orig_title}, link+nhlcookie)
+		elif 'NATIONAL' in link:
+			title = re.findall('(NATIONAL.+?\.m3u8)',link)[0].replace('.m3u8','')
+			addDirectLink(title, {'Title': orig_title}, link+nhlcookie)
+	xbmcplugin.endOfDirectory(h, cacheToDisc=True)
+
+
 def Xrxs(home, away):
 	today = datetime.utcnow() - timedelta(hours=8)
 	today = str(today.strftime('%Y-%m-%d'))
-	nhlcookie = GetURL("http://nhlkeys.ga/auth", output='cookie')
+	nhlcookie = getXrxsCookie()
 	if not nhlcookie:
 		nhlcookie = ''
 		dialog = xbmcgui.Dialog()
@@ -1193,11 +1195,12 @@ def Universal(url):
 	
 def sawresolve(query):
 	try:
+		print query
 		import js2py
 		header = {'Referer':  query, 'User-Agent': UA, 'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
 					'Accept-Language':'en-US,en;q=0.8,bg;q=0.6,it;q=0.4,ru;q=0.2,uk;q=0.2',
 					'Connection':'keep-alive', 'Host':urlparse.urlparse(query).netloc,'Upgrade-Insecure-Requests':'1'}
-		decoded = getUrl(query)
+		decoded = GetURL(query)
 		context = js2py.EvalJs()
 		context.execute('''pyimport jstools;
            		var escape = jstools.escape;
@@ -1213,23 +1216,24 @@ def sawresolve(query):
 		if '</script>' in context.document.result:
 			if 'src' in context.document.result:
 				src = common.parseDOM(context.document.result, 'script', ret='src')
-				a = ''
+				result = ''
 				for s in src:
-					s = GetURL(s)
-					a = a+s
-				decoded = decoded+';'+a
-				context.execute(decoded)
+					context.execute(GetURL(s))
+					s = context.document.result
+					result = result+s
 			else:
 				decoded = decoded+';'+context.document.result.replace('<script>','').replace('</script>','')
 				context.execute(decoded)
-		result = context.document.result
+				result = context.document.result
+		else:
+			result = context.document.result
 		src = common.parseDOM(result, 'iframe', ret='src')[-1]
 		src = src.replace("'","").replace('"','')
 		if src:
 			header = {'Referer':  src, 'User-Agent': UA, 'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
 					'Accept-Language':'en-US,en;q=0.8,bg;q=0.6,it;q=0.4,ru;q=0.2,uk;q=0.2',
 					'Connection':'keep-alive', 'Host':urlparse.urlparse(src).netloc,'Upgrade-Insecure-Requests':'1'}
-			decoded = getUrl(src,header=header)
+			decoded = GetURL(src)
 			swf = re.compile("SWFObject\('(.+?)'").findall(decoded)[0].replace(' ', '')
 			decoded = decoded.split("'uniform');")[-1].split("</script>")[0]
 			so = re.findall('(so.addVariable\(.*?\))', decoded)
@@ -1251,7 +1255,6 @@ def sawresolve(query):
 			return url
 	except:
 		return None
-	
 		
 def castup(id):
 	try:
@@ -1458,6 +1461,21 @@ def sostart(url):
 	except:
 		return None
 
+
+
+def getXrxsCookie():
+	try:
+		nhlcookie = GetURL("http://nhlkeys.ga/auth", output='cookie', timeout=5)
+		if not nhlcookie:
+			import requests
+			import random
+			domains = ['eu1','eu2','eu3','eu4','eu5']
+			r = requests.post("https://"+random.choice(domains)+".proxysite.com/includes/process.php?action=update", data={'d':'http://nhlkeys.ga/auth'})
+			nhlcookie = re.findall('"attributeValue":"(.*?)"', r.text)[0]
+			nhlcookie = 'mediaAuth='+nhlcookie
+		return nhlcookie
+	except:
+		return None
 
 ###################TVA############################
 '''

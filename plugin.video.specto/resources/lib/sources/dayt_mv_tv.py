@@ -151,7 +151,8 @@ class source:
             for i in links: sources.append({'source': i['source'], 'quality': i['quality'], 'provider': 'Dayt', 'url': i['url']})
 
             return sources
-        except:
+        except Exception as e:
+            control.log('ERROR dayyt %s' % e)
             return sources
 
 

@@ -23,6 +23,8 @@ import re,urlparse,json,os,base64,urllib
 from resources.lib.libraries import cleantitle
 from resources.lib import resolvers
 from resources.lib.libraries import client
+from resources.lib.libraries import control
+
 
 try:
     from sqlite3 import dbapi2 as database
@@ -78,7 +80,8 @@ class source:
                 if '72' in i: mq = 'HD'
                 sources.append({'source': 'gvideo', 'quality': mq, 'provider': 'Genvideos', 'url': result[i]})
             return sources
-        except:
+        except Exception as e:
+            control.log('ERROR gen %s' % e)
             return sources
 
 

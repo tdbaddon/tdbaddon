@@ -23,9 +23,10 @@ import xbmcplugin
 import xbmcgui
 from resources.lib import utils
 
-
 dialog = utils.dialog
 
+
+@utils.url_dispatcher.register('250')
 def Main():
     utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://en.paradisehill.cc/porn/',253,'','')
     utils.addDir('[COLOR hotpink]Search[/COLOR]','http://en.paradisehill.cc/search_results/?search=',254,'','')
@@ -33,10 +34,15 @@ def Main():
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
-def List(url, page):
+@utils.url_dispatcher.register('251', ['url'], ['page'])
+def List(url, page=1):
     if page == 1:
         url = url.replace('page=1','page='+str(page))
-    listhtml = utils.getHtml(url, '')
+    try:
+        listhtml = utils.getHtml(url, '')
+    except:
+        utils.notify('Oh oh','It looks like this website is down.')
+        return None
     match = re.compile(r'link" href="([^"]+)"[^>]+>\s+<span class="bci-title">([^<]+)</span>.+?src="([^"]+)"[^>]+>\s*?</span>\s+</a>', re.DOTALL | re.IGNORECASE).findall(listhtml)
     for videopage, name, img in match:
         name = utils.cleantext(name)
@@ -50,6 +56,7 @@ def List(url, page):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('253', ['url'])
 def Cat(url):
     cathtml = utils.getHtml(url, '')
     match = re.compile("Categories</h2>(.*?)<noindex>", re.DOTALL | re.IGNORECASE).findall(cathtml)
@@ -62,6 +69,7 @@ def Cat(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('254', ['url'], ['keyword'])
 def Search(url, keyword=None):
     searchUrl = url
     if not keyword:
@@ -72,6 +80,7 @@ def Search(url, keyword=None):
         List(searchUrl, 1)
 
 
+@utils.url_dispatcher.register('252', ['url', 'name'], ['download'])
 def Playvid(url, name, download=None):
     if utils.addon.getSetting("paradisehill") == "true": playall = True
     else: playall = ''

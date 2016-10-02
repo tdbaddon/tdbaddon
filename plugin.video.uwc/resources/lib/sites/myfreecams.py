@@ -26,12 +26,18 @@ import xbmcgui
 from resources.lib import utils
 
 
+@utils.url_dispatcher.register('270')
 def Main():
     List('https://www.myfreecams.com/mfc2/php/online_models_splash.php')
 
 
+@utils.url_dispatcher.register('271', ['url'])
 def List(url):
-    listhtml = utils.getHtml2(url)
+    try:
+        listhtml = utils.getHtml2(url)
+    except:
+        utils.notify('Oh oh','It looks like this website is down.')
+        return None
     match = re.compile("model_detail=(.*?)&.*?img src=(.*?)jpg.*?</div>", re.DOTALL | re.IGNORECASE).findall(listhtml)
     for name, img in match:
         name = utils.cleantext(name)
@@ -108,6 +114,7 @@ def findurl(url, name):
     return ''
 
 
+@utils.url_dispatcher.register('272', ['url', 'name'])
 def Playvid(url, name):
     testurl = findurl(url, name)
     if testurl.startswith('http'):

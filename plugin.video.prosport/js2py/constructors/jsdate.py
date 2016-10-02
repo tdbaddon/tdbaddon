@@ -1,7 +1,7 @@
-from js2py.base import *
-from time_helpers import *
+from ..base import *
+from .time_helpers import *
 
-TZ_OFFSET = (time.altzone/3600)
+TZ_OFFSET = (time.altzone//3600)
 ABS_OFFSET = abs(TZ_OFFSET)
 TZ_NAME = time.tzname[1]
 ISO_FORMAT = '%s-%s-%sT%s:%s:%s.%sZ'
@@ -36,6 +36,7 @@ def parse(string):
     return PyJsDate(TimeClip(parse_date(string.to_string().value)), prototype=DatePrototype)
 
 
+
 Date.define_own_property('now', {'value': Js(now),
                                  'enumerable': False,
                                  'writable': True,
@@ -61,10 +62,10 @@ class PyJsDate(PyJs):
 
     # todo fix this problematic datetime part
     def to_local_dt(self):
-        return datetime.datetime.utcfromtimestamp(UTCToLocal(self.value)/1000)
+        return datetime.datetime.utcfromtimestamp(UTCToLocal(self.value)//1000)
 
     def to_utc_dt(self):
-        return datetime.datetime.utcfromtimestamp(self.value/1000)
+        return datetime.datetime.utcfromtimestamp(self.value//1000)
 
     def local_strftime(self, pattern):
         if self.value is NaN:
@@ -93,8 +94,13 @@ class PyJsDate(PyJs):
 
 
 
-def parse_date(py_string):
-    return NotImplementedError()
+def parse_date(py_string):   # todo support all date string formats
+    try:
+        dt = datetime.datetime.strptime(py_string, "%Y-%m-%dT%H:%M:%S.%fZ")
+        return MakeDate(MakeDay(Js(dt.year), Js(dt.month-1), Js(dt.day)), MakeTime(Js(dt.hour), Js(dt.minute), Js(dt.second), Js(dt.microsecond//1000)))
+    except:
+        raise MakeError('TypeError', 'Could not parse date %s - unsupported date format. Currently only supported format is RFC3339 utc. Sorry!' % py_string)
+
 
 
 def date_constructor(*args):
@@ -147,7 +153,7 @@ class DateProto:
         check_date(this)
         if this.value is NaN:
             return 'Invalid Date'
-        offset = (UTCToLocal(this.value) - this.value)/msPerHour
+        offset = (UTCToLocal(this.value) - this.value)//msPerHour
         return this.local_strftime('%a %b %d %Y %H:%M:%S GMT') + '%s00 (%s)' % (pad(offset, 2, True), GetTimeZoneName(this.value))
 
     def toDateString():
@@ -278,7 +284,7 @@ class DateProto:
         check_date(this)
         if this.value is NaN:
             return NaN
-        return (UTCToLocal(this.value) - this.value)/60000
+        return (this.value - UTCToLocal(this.value))//60000
 
 
     def setTime(time):

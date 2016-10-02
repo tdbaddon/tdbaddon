@@ -23,17 +23,10 @@ import sys
 import xbmcplugin
 from resources.lib import utils
 
-
-
-#230: k18.Main()
-#231: k18.List(url)
-#232: k18.Playvid(url, name, download)
-#233: k18.Cat(url)
-#234: k18.Search(url, keyword)
-
 progress = utils.progress
 
 
+@utils.url_dispatcher.register('230')
 def Main():
     utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://k18.co/',233,'','')
     utils.addDir('[COLOR hotpink]Search[/COLOR]','http://k18.co/?s=',234,'','')
@@ -41,8 +34,13 @@ def Main():
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('231', ['url'])
 def List(url):
-    listhtml = utils.getHtml(url, '')
+    try:
+        listhtml = utils.getHtml(url, '')
+    except:
+        utils.notify('Oh oh','It looks like this website is down.')
+        return None
     cookieString = getCookiesString()
     match = re.compile(r'class="content-list-thumb">\s+<a href="([^"]+)" title="([^"]+)">.*?src="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(listhtml)
     for videopage, name, img in match:
@@ -69,7 +67,8 @@ def getCookiesString():
         traceback.print_exc(file=sys.stdout)
     return cookieString
 
-    
+
+@utils.url_dispatcher.register('234', ['url'], ['keyword'])    
 def Search(url, keyword=None):
     searchUrl = url
     if not keyword:
@@ -81,6 +80,7 @@ def Search(url, keyword=None):
         List(searchUrl)
 
 
+@utils.url_dispatcher.register('233', ['url'])
 def Cat(url):
     cathtml = utils.getHtml(url, '')
     match = re.compile('0" value="([^"]+)">([^<]+)<', re.DOTALL | re.IGNORECASE).findall(cathtml)
@@ -90,6 +90,7 @@ def Cat(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)   
 
 
+@utils.url_dispatcher.register('232', ['url', 'name'], ['download'])
 def Playvid(url, name, download=None):
     progress.create('Play video', 'Searching videofile.')
     progress.update( 10, "", "Loading video page", "" )

@@ -21,12 +21,12 @@ import re
 import xbmcplugin
 from resources.lib import utils
 
-
 addon = utils.addon
 
 sortlistwxf = [addon.getLocalizedString(30012), addon.getLocalizedString(30013), addon.getLocalizedString(30014)]
 
 
+@utils.url_dispatcher.register('10')
 def WXFMain():
     utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://www.watchxxxfree.com/categories/',12,'','')
     utils.addDir('[COLOR hotpink]Search[/COLOR]','http://www.watchxxxfree.com/page/1/?s=',14,'','')
@@ -37,6 +37,13 @@ def WXFMain():
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('16')
+def WXFSort():
+    addon.openSettings()
+    WXFMain()
+
+
+@utils.url_dispatcher.register('12', ['url'])
 def WXFCat(url):
     cathtml = utils.getHtml(url, '')
     match = re.compile('data-lazy-src="([^"]+)".*?<a href="([^"]+)"[^<]+<span>([^<]+)</s.*?">([^<]+)', re.DOTALL | re.IGNORECASE).findall(cathtml)
@@ -45,7 +52,9 @@ def WXFCat(url):
         name = name + ' [COLOR deeppink]' + videos + '[/COLOR]'
         utils.addDir(name, catpage, 11, img, 1)
     xbmcplugin.endOfDirectory(utils.addon_handle)
-    
+
+
+@utils.url_dispatcher.register('15', ['url'])
 def WXFTPS(url):
     tpshtml = utils.getHtml(url, '')
     match = re.compile("<li><a href='([^']+)[^>]+>([^<]+)", re.DOTALL | re.IGNORECASE).findall(tpshtml)
@@ -53,8 +62,9 @@ def WXFTPS(url):
         tpsurl = tpsurl + 'page/1/'
         utils.addDir(name, tpsurl, 11, '', 1)
     xbmcplugin.endOfDirectory(utils.addon_handle)    
-    
-    
+
+
+@utils.url_dispatcher.register('14', ['url'], ['keyword'])
 def WXFSearch(url, keyword=None):
     searchUrl = url
     if not keyword:
@@ -65,7 +75,8 @@ def WXFSearch(url, keyword=None):
         WXFList(searchUrl, 1)
 
 
-def WXFList(url, page, onelist=None):
+@utils.url_dispatcher.register('11', ['url'], ['page'])
+def WXFList(url, page=1, onelist=None):
     if onelist:
         url = url.replace('/page/1/','/page/'+str(page)+'/')
     sort = getWXFSortMethod()
@@ -73,7 +84,11 @@ def WXFList(url, page, onelist=None):
         url = url + '&filtre=' + sort + '&display=extract'
     else:
         url = url + '?filtre=' + sort + '&display=extract'
-    listhtml = utils.getHtml(url, '')
+    try:
+        listhtml = utils.getHtml(url, '')
+    except:
+        utils.notify('Oh oh','It looks like this website is down.')
+        return None
     match = re.compile('data-lazy-src="([^"]+)".*?<a href="([^"]+)" title="([^"]+)".*?<p>([^<]+)</p>', re.DOTALL | re.IGNORECASE).findall(listhtml)
     for img, videopage, name, desc in match:
         name = utils.cleantext(name)
@@ -87,7 +102,8 @@ def WXFList(url, page, onelist=None):
         xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
-def WXFVideo(url, name, download):
+@utils.url_dispatcher.register('13', ['url', 'name'], ['download'])
+def WXFVideo(url, name, download=None):
     utils.PLAYVIDEO(url, name, download)
 
 

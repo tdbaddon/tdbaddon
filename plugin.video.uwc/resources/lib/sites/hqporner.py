@@ -20,8 +20,9 @@ import re
 
 import xbmcplugin
 from resources.lib import utils
+ 
 
-
+@utils.url_dispatcher.register('150')
 def HQMAIN():
     utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://hqporner.com/porn-categories.php',153,'','')
     utils.addDir('[COLOR hotpink]Studios[/COLOR]','http://hqporner.com/porn-studios.php',153,'','')
@@ -31,8 +32,13 @@ def HQMAIN():
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('151', ['url'])
 def HQLIST(url):
-    link = utils.getHtml(url, '')
+    try:
+        link = utils.getHtml(url, '')
+    except:
+        utils.notify('Oh oh','It looks like this website is down.')
+        return None
     match = re.compile('<a href="([^"]+)" class="image featured non-overlay".*?<img id="[^"]+" src="([^"]+)" alt="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(link)
     for url, img, name in match:
         name = utils.cleantext(name)    
@@ -46,6 +52,7 @@ def HQLIST(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('153', ['url'])
 def HQCAT(url):
     link = utils.getHtml(url, '')
     tags = re.compile('<a href="([^"]+)"[^<]+<img src="([^"]+)" alt="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(link)
@@ -56,6 +63,7 @@ def HQCAT(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('154', ['url'], ['keyword'])
 def HQSEARCH(url, keyword=None):
     searchUrl = url
     if not keyword:
@@ -67,6 +75,7 @@ def HQSEARCH(url, keyword=None):
         HQLIST(searchUrl)
 
 
+@utils.url_dispatcher.register('152', ['url', 'name'], ['download'])
 def HQPLAY(url, name, download=None):
     videopage = utils.getHtml(url, url)
     iframeurl = re.compile(r'<iframe\swidth="\d+"\sheight="\d+"\ssrc="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(videopage)

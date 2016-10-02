@@ -17,12 +17,17 @@
 # IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
 # WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
 #  OR THE USE OR OTHER DEALINGS IN THE SOFTWARE
-
 from __future__ import unicode_literals
+
 import sys
 import unicodedata
+import six
 from collections import defaultdict
 
+if six.PY3:
+    unichr = chr
+    xrange = range
+    unicode = str
 
 token = {
         'BooleanLiteral': 1,
@@ -37,9 +42,7 @@ token = {
         'Template': 10
     }
 
-
 TokenName = {}
-
 for k,v in token.iteritems():
 	TokenName[v]=k
 
@@ -226,7 +229,7 @@ UNICODE_LETTER = set(U_CATEGORIES['Lu']+U_CATEGORIES['Ll']+
 UNICODE_COMBINING_MARK = set(U_CATEGORIES['Mn']+U_CATEGORIES['Mc'])
 UNICODE_DIGIT = set(U_CATEGORIES['Nd'])
 UNICODE_CONNECTOR_PUNCTUATION = set(U_CATEGORIES['Pc'])
-IDENTIFIER_START = UNICODE_LETTER.union(['$','_']) # and some fucking unicode escape sequence
+IDENTIFIER_START = UNICODE_LETTER.union(['$','_', '\\']) # and some fucking unicode escape sequence
 IDENTIFIER_PART = IDENTIFIER_START.union(UNICODE_COMBINING_MARK).union(UNICODE_DIGIT).union(UNICODE_CONNECTOR_PUNCTUATION).union([ZWJ, ZWNJ])
 
 WHITE_SPACE = [0x20, 0x09, 0x0B, 0x0C, 0xA0, 0x1680,
@@ -252,10 +255,12 @@ def isLineTerminator(ch):
 OCTAL = ['0', '1', '2', '3', '4', '5', '6', '7']
 DEC = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 HEX = set('0123456789abcdefABCDEF')
-HEX_CONV = {'0': 0, '1': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9, 'a': 10, 'b': 11, 'c': 12, 'd': 13, 'e': 14, 'f': 15}
+HEX_CONV = {}
+for n in xrange(16):
+	HEX_CONV['0123456789abcdef'[n]] = n
+
 for i,e in enumerate('ABCDEF', 10):
     HEX_CONV[e] = i
-
 
 def isDecimalDigit(ch):
     return (ch if isinstance(ch, unicode) else unichr(ch)) in DEC

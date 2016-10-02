@@ -142,7 +142,9 @@ class source:
                     pass
 
             return sources
-        except:
+        except Exception as e:
+            control.log('ERROR MOVIE25 %s' % e)
+            pass
             return sources
 
 

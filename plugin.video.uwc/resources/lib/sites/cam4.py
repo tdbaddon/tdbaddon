@@ -29,6 +29,8 @@ from resources.lib import utils
 
 mobileagent = {'User-Agent': 'Mozilla/5.0 (Linux; U; Android 2.2; en-us; Droid Build/FRG22D) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1'}
 
+
+@utils.url_dispatcher.register('280')
 def Main():
     utils.addDir('[COLOR red]Refresh Cam4 images[/COLOR]','',283,'',Folder=False)
     utils.addDir('[COLOR hotpink]Featured[/COLOR]','http://www.cam4.com/featured/1',281,'',1)
@@ -39,7 +41,8 @@ def Main():
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
-def clean_database(showdialog=False):
+@utils.url_dispatcher.register('283')
+def clean_database(showdialog=True):
     conn = sqlite3.connect(xbmc.translatePath("special://database/Textures13.db"))
     try:
         with conn:
@@ -55,10 +58,15 @@ def clean_database(showdialog=False):
         pass
 
 
-def List(url, page):
+@utils.url_dispatcher.register('281', ['url'], ['page'])
+def List(url, page=1):
     if utils.addon.getSetting("chaturbate") == "true":
-        clean_database()
-    listhtml = utils.getHtml(url, url)
+        clean_database(False)
+    try:
+        listhtml = utils.getHtml(url, url)
+    except:
+        utils.notify('Oh oh','It looks like this website is down.')
+        return None
     match = re.compile('profileDataBox"> <a href="([^"]+)".*?src="([^"]+)" title="Chat Now Free with ([^"]+)"', re.DOTALL | re.IGNORECASE).findall(listhtml)
     for videourl, img, name in match:
         name = utils.cleantext(name)
@@ -71,9 +79,10 @@ def List(url, page):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('282', ['url', 'name'])
 def Playvid(url, name):
     listhtml = utils.getHtml(url, '', mobileagent)
-    match = re.compile('<video id=Cam4HLSPlayer class="SD" controls autoplay src="([^"]+)"> </video>', re.DOTALL | re.IGNORECASE).findall(listhtml)
+    match = re.compile("(http[^']+m3u8)", re.DOTALL | re.IGNORECASE).findall(listhtml)
     if match:
        videourl = match[0]
        iconimage = xbmc.getInfoImage("ListItem.Thumb")

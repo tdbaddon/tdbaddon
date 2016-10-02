@@ -25,8 +25,6 @@ import xbmcplugin
 import xbmcgui
 from resources.lib import utils
 
-
-
 # from youtube-dl
 from resources.lib.compat import (
     compat_chr,
@@ -37,11 +35,6 @@ from resources.lib.compat import (
 dialog = utils.dialog
 addon = utils.addon
 
-# 80 BGMain
-# 81 BGList
-# 82 BGPlayvid
-# 83 BGCat
-# 84 BGSearch
 
 def BGVersion():
     bgpage = utils.getHtml('http://beeg.com','')
@@ -53,6 +46,8 @@ def BGVersion():
         bgsalt = re.compile('beeg_salt="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(bgjspage)[0]
         addon.setSetting('bgsalt',bgsalt)
 
+
+@utils.url_dispatcher.register('80')
 def BGMain():
     BGVersion()
     bgversion = addon.getSetting('bgversion')
@@ -63,9 +58,14 @@ def BGMain():
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('81', ['url'])
 def BGList(url):
     bgversion = addon.getSetting('bgversion')
-    listjson = utils.getHtml(url,'')
+    try:
+        listjson = utils.getHtml(url,'')
+    except:
+        utils.notify('Oh oh','It looks like this website is down.')
+        return None
 
     match = re.compile(r'\{"title":"([^"]+)","id":"([^"]+)"', re.DOTALL | re.IGNORECASE).findall(listjson)
 
@@ -108,8 +108,9 @@ def decrypt_key(key):
         compat_chr(compat_ord(e[n]) - compat_ord(a[n % len(a)]) % 21)
         for n in range(len(e))])
     return ''.join(split(o, 3)[::-1])   
-##
 
+
+@utils.url_dispatcher.register('82', ['url', 'name'], ['download'])
 def BGPlayvid(url, name, download=None):
     videopage = utils.getHtml(url,'http://beeg.com')
     videopage = json.loads(videopage)
@@ -146,6 +147,7 @@ def BGPlayvid(url, name, download=None):
             xbmcplugin.setResolvedUrl(utils.addon_handle, True, listitem)
 
 
+@utils.url_dispatcher.register('83', ['url'])
 def BGCat(url):
     bgversion = addon.getSetting('bgversion')
     caturl = utils.getHtml2(url)
@@ -159,6 +161,7 @@ def BGCat(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('84', ['url'], ['keyword'])
 def BGSearch(url, keyword=None):
     searchUrl = url
     if not keyword:

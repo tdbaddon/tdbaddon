@@ -85,7 +85,7 @@ class source:
             url = url.encode('utf-8')
             return url
         except:
-            return ''
+            return
 
 
     def get_show(self, imdb, tvdb, tvshowtitle, year):
@@ -194,7 +194,8 @@ class source:
                     pass
 
             return sources
-        except:
+        except Exception as e:
+            control.log('ERROR PRIME %s' % e)
             return sources
 
 

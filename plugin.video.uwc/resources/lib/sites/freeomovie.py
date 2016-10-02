@@ -25,16 +25,20 @@ from resources.lib import utils
 
 progress = utils.progress
 
-
+@utils.url_dispatcher.register('370') 
 def Main():
     utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://www.freeomovie.com/', 373, '', '')
     utils.addDir('[COLOR hotpink]Search[/COLOR]','http://www.freeomovie.com/?s=', 374, '', '')    
     List('http://www.freeomovie.com/')
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
-
+@utils.url_dispatcher.register('371', ['url']) 
 def List(url):
-    listhtml = utils.getHtml(url, '')
+    try:
+        listhtml = utils.getHtml(url, '')
+    except:
+        utils.notify('Oh oh','It looks like this website is down.')
+        return None
     match = re.compile('<h2><a href="([^"]+)".*?title="([^"]+)">.+?<img src="([^"]+)".+? width="', re.DOTALL).findall(listhtml)
     for videopage, name, img in match:
         name = utils.cleantext(name)
@@ -45,7 +49,7 @@ def List(url):
     except: pass
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
-    
+@utils.url_dispatcher.register('374', ['url'], ['keyword'])     
 def Search(url, keyword=None):
     searchUrl = url
     if not keyword:
@@ -56,6 +60,7 @@ def Search(url, keyword=None):
         print "Searching URL: " + searchUrl
         List(searchUrl)
 
+@utils.url_dispatcher.register('373', ['url']) 
 def Cat(url):
     listhtml = utils.getHtml(url, '')
     match = re.compile('<li><a href="([^"]+)" rel="tag">([^<]+)<', re.DOTALL | re.IGNORECASE).findall(listhtml)
@@ -64,6 +69,6 @@ def Cat(url):
         utils.addDir(name, catpage, 371, '', '')
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
-
+@utils.url_dispatcher.register('372', ['url', 'name'], ['keyword'])   
 def Playvid(url, name, download=None):
     utils.PLAYVIDEO(url, name, download)

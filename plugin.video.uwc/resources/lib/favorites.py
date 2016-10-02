@@ -38,11 +38,11 @@ except:
     pass
 conn.close()
 
-
+@utils.url_dispatcher.register('901')  
 def List():
     if utils.addon.getSetting("chaturbate") == "true":
-        cleanchat()
-        cleancam4()
+        cleanchat(False)
+        cleancam4(False)
     conn = sqlite3.connect(favoritesdb)
     conn.text_factory = str
     c = conn.cursor()
@@ -57,11 +57,11 @@ def List():
         utils.notify('No Favorites','No Favorites found')
         return
 
-
-def Favorites(fav,mode,name,url,img):
+@utils.url_dispatcher.register('900', ['fav','favmode','name','url','img'])  
+def Favorites(fav,favmode,name,url,img):
     if fav == "add":
         delFav(url)
-        addFav(mode, name, url, img)
+        addFav(favmode, name, url, img)
         utils.notify('Favorite added','Video added to the favorites')
     elif fav == "del":
         delFav(url)

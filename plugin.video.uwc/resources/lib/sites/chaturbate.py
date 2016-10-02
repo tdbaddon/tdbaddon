@@ -27,6 +27,7 @@ import xbmcgui
 from resources.lib import utils
 
 
+@utils.url_dispatcher.register('220')
 def Main():
     utils.addDir('[COLOR red]Refresh Chaturbate images[/COLOR]','',223,'',Folder=False)
     utils.addDir('[COLOR hotpink]Featured[/COLOR]','https://chaturbate.com/?page=1',221,'','')
@@ -100,10 +101,15 @@ def Main():
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('221', ['url'], ['page'])
 def List(url, page=None):
     if utils.addon.getSetting("chaturbate") == "true":
-        clean_database()
-    listhtml = utils.getHtml2(url)
+        clean_database(False)
+    try:
+        listhtml = utils.getHtml2(url)
+    except:
+        utils.notify('Oh oh','It looks like this website is down.')
+        return None
     match = re.compile(r'<li>\s+<a href="([^"]+)".*?src="([^"]+)".*?<div[^>]+>([^<]+)</div>.*?href[^>]+>([^<]+)<.*?age[^>]+>([^<]+)<', re.DOTALL | re.IGNORECASE).findall(listhtml)
     for videopage, img, status, name, age in match:
         name = utils.cleantext(name)
@@ -121,7 +127,8 @@ def List(url, page=None):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
-def clean_database(showdialog=False):
+@utils.url_dispatcher.register('223')
+def clean_database(showdialog=True):
     conn = sqlite3.connect(xbmc.translatePath("special://database/Textures13.db"))
     try:
         with conn:
@@ -137,6 +144,7 @@ def clean_database(showdialog=False):
         pass
 
 
+@utils.url_dispatcher.register('222', ['url', 'name'])
 def Playvid(url, name):
     listhtml = utils.getHtml2(url)
     match = re.compile("<video.*?src='([^']+)'", re.DOTALL | re.IGNORECASE).findall(listhtml)

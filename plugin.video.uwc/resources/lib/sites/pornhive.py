@@ -24,9 +24,10 @@ import xbmcplugin
 import xbmcgui
 from resources.lib import utils
 
-
 progress = utils.progress
 
+
+@utils.url_dispatcher.register('70')
 def PHMain():
     utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://www.pornhive.tv/en/movies/all',73,'','')
     utils.addDir('[COLOR hotpink]Search[/COLOR]','http://www.pornhive.tv/en/search?title=',74,'','')
@@ -34,9 +35,13 @@ def PHMain():
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
-
+@utils.url_dispatcher.register('71', ['url'])
 def PHList(url):
-    listhtml = utils.getHtml(url, '')
+    try:
+        listhtml = utils.getHtml(url, '')
+    except:
+        utils.notify('Oh oh','It looks like this website is down.')
+        return None
     match = re.compile(r'panel-img">\s+<a href="([^"]+)"><img data-src="([^"]+)".*?alt="([^"]+)', re.DOTALL | re.IGNORECASE).findall(listhtml)
     for videopage, img, name in match:
         name = utils.cleantext(name)
@@ -47,7 +52,8 @@ def PHList(url):
     except: pass
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
-    
+
+@utils.url_dispatcher.register('74', ['url'], ['keyword'])    
 def PHSearch(url, keyword=None):
     searchUrl = url
     if not keyword:
@@ -59,6 +65,7 @@ def PHSearch(url, keyword=None):
         PHList(searchUrl)
 
 
+@utils.url_dispatcher.register('73', ['url'])
 def PHCat(url):
     cathtml = utils.getHtml(url, '')
     match = re.compile('<ul class="dropdown-menu my-drop">(.*?)</ul>', re.DOTALL | re.IGNORECASE).findall(cathtml)
@@ -68,6 +75,7 @@ def PHCat(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)   
 
 
+@utils.url_dispatcher.register('72', ['url', 'name'], ['download'])
 def PHVideo(url, name, download=None):
     progress.create('Play video', 'Searching videofile.')
     progress.update( 10, "", "Loading video page", "" )

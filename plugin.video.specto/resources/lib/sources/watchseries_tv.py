@@ -88,7 +88,8 @@ class source:
 
             url = url.encode('utf-8')
             return url
-        except:
+        except Exception as e:
+            control.log('ERROR watchser GET %s' % e)
             return
 
 
@@ -160,7 +161,8 @@ class source:
                 if all(x == False for x in is_alive): break
                 time.sleep(1)
             return self.sources
-        except:
+        except Exception as e:
+            control.log('ERROR watchseries %s' % e)
             return self.sources
 
 

@@ -62,8 +62,9 @@ class source:
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
             return url
-        except:
-            pass
+        except Exception as e:
+            control.log('ERROR XMOVIES GET %s' % e)
+            return
 
     def get_show(self, imdb, tvdb, tvshowtitle, year):
         try:

@@ -125,7 +125,8 @@ class source:
 
 
             return sources
-        except:
+        except Exception as e:
+            control.log('ERROR ONLINELID %s' % e)
             return sources
 
 

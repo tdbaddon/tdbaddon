@@ -22,7 +22,7 @@ __scriptname__ = "Ultimate Whitecream"
 __author__ = "mortael"
 __scriptid__ = "plugin.video.uwc"
 __credits__ = "mortael, Fr33m1nd, anton40, NothingGnome"
-__version__ = "1.1.41"
+__version__ = "1.1.42"
 
 import urllib
 import urllib2
@@ -45,6 +45,12 @@ import xbmcaddon
 import xbmcvfs
 import cloudflare
 from jsunpack import unpack
+import urlresolver
+
+from url_dispatcher import URL_Dispatcher
+
+url_dispatcher = URL_Dispatcher()
+
 
 
 USER_AGENT = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3'
@@ -331,10 +337,6 @@ def PLAYVIDEO(url, name, download=None):
 
 def playvideo(videosource, name, download=None, url=None):
     hosts = []
-    if re.search('videomega\.tv/', videosource, re.DOTALL | re.IGNORECASE):
-        hosts.append('VideoMega')
-    if re.search('megavideo\.pro/', videosource, re.DOTALL | re.IGNORECASE):
-        hosts.append('VideoMega')
     if re.search('openload\.(?:co|io)?/', videosource, re.DOTALL | re.IGNORECASE):
         hosts.append('OpenLoad')
     if re.search('oload\.(?:co|io)?/', videosource, re.DOTALL | re.IGNORECASE):
@@ -376,37 +378,8 @@ def playvideo(videosource, name, download=None, url=None):
             vidhost = hosts[vh]
     else:
         vidhost = hosts[0]
-    
-    if vidhost == 'VideoMega':
-        progress.update( 40, "", "Loading videomegatv", "" )
-        if re.search("videomega.tv/iframe.js", videosource, re.DOTALL | re.IGNORECASE):
-            hashref = re.compile("""javascript["']>ref=['"]([^'"]+)""", re.DOTALL | re.IGNORECASE).findall(videosource)
-        elif re.search("videomega.tv/iframe.php", videosource, re.DOTALL | re.IGNORECASE):
-            hashref = re.compile(r"iframe\.php\?ref=([^&]+)&", re.DOTALL | re.IGNORECASE).findall(videosource)
-        elif re.search("view.php\?ref=", videosource, re.DOTALL | re.IGNORECASE):
-            hashref = re.compile(r'view\.php\?ref=([^"]+)', re.DOTALL | re.IGNORECASE).findall(videosource)
-        elif re.search("videomega.tv/cdn.php", videosource, re.DOTALL | re.IGNORECASE):
-            hashref = re.compile(r'cdn\.php\?ref=([^"]+)', re.DOTALL | re.IGNORECASE).findall(videosource)
-        elif re.search("videomega.tv/\?ref=", videosource, re.DOTALL | re.IGNORECASE):
-            hashref = re.compile(r'videomega.tv/\?ref=([^"]+)', re.DOTALL | re.IGNORECASE).findall(videosource)
-        else:
-            hashkey = re.compile("""hashkey=([^"']+)""", re.DOTALL | re.IGNORECASE).findall(videosource)
-            if not hashkey:
-                notify('Oh oh','Couldn\'t find playable videomega link')
-                return
-            hashkey = chkmultivids(hashkey)
-            hashpage = getHtml('http://videomega.tv/validatehash.php?hashkey='+hashkey, url)
-            hashref = re.compile('ref="([^"]+)', re.DOTALL | re.IGNORECASE).findall(hashpage)
-        progress.update( 80, "", "Getting video file from Videomega", "" )
-        vmhost = 'http://videomega.tv/view.php?ref=' + hashref[0]
-        videopage = getHtml(vmhost, url)
-        vmpacked = re.compile(r"(eval\(.*\))\s+</", re.DOTALL | re.IGNORECASE).findall(videopage)
-        vmunpacked = unpack(vmpacked[0])
-        videourl = re.compile('src",\s?"([^"]+)', re.DOTALL | re.IGNORECASE).findall(vmunpacked)
-        videourl = videourl[0]
-        videourl = videourl + '|Referer=' + vmhost + '&User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5376e Safari/8536.25'
 
-    elif vidhost == 'OpenLoad':
+    if vidhost == 'OpenLoad':
         progress.update( 40, "", "Loading Openload", "" )
         openloadurl = re.compile(r"//(?:www\.)?o(?:pen)?load\.(?:co|io)?/(?:embed|f)/([0-9a-zA-Z-_]+)", re.DOTALL | re.IGNORECASE).findall(videosource)
         openloadurl = chkmultivids(openloadurl)
@@ -414,16 +387,9 @@ def playvideo(videosource, name, download=None, url=None):
         openloadurl1 = 'http://openload.io/embed/%s/' % openloadurl
 
         try:
-            openloadsrc = getHtml(openloadurl1, '', openloadhdr)
-            progress.update( 80, "", "Getting video file from OpenLoad", "")
-            if 'We are sorry!' in openloadsrc:
-                notify('Oh oh','Video is deleted from Openload')
-                return                
-            videourl = decodeOpenLoad(openloadsrc)
-            if 'pigeons' in videourl:
-                notify('Oh oh','Pigeons, Pigeons, Pigeons!')
-                return                
-            videourl = videourl + '|Referer='+ openloadurl1 + '&User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5376e Safari/8536.25'
+            video = urlresolver.resolve(openloadurl1)
+            if video:
+                videourl = video
         except:
             notify('Oh oh','Couldn\'t find playable OpenLoad link')
             return
@@ -433,11 +399,9 @@ def playvideo(videosource, name, download=None, url=None):
         streaminurl = re.compile(r"//(?:www\.)?streamin\.to/(?:embed-)?([0-9a-zA-Z]+)", re.DOTALL | re.IGNORECASE).findall(videosource)
         streaminurl = chkmultivids(streaminurl)
         streaminurl = 'http://streamin.to/embed-%s-670x400.html' % streaminurl
-        streaminsrc = getHtml2(streaminurl)
-        videohash = re.compile('\?h=([^"]+)', re.DOTALL | re.IGNORECASE).findall(streaminsrc)
-        videourl = re.compile('image: "(http://[^/]+/)', re.DOTALL | re.IGNORECASE).findall(streaminsrc)
-        progress.update( 80, "", "Getting video file from Streamin", "" )
-        videourl = videourl[0] + videohash[0] + "/v.mp4"
+        video = urlresolver.resolve(streaminurl)
+        if video:
+            videourl = video
 
     elif vidhost == 'FlashX':
         progress.update( 40, "", "Loading FlashX", "" )
@@ -448,6 +412,9 @@ def playvideo(videosource, name, download=None, url=None):
         flashx = urllib2.urlopen(req)
         #flashxcookie = flashx.info()['set-cookie']
         flashxdata = flashx.read()
+        if "File Not Found" in flashxdata:
+            notify('Oh oh','Video deleted from FlashX')
+            return            
         #cfduid = re.search('cfduid=(.*?);', flashxcookie).group(1)
         file_id = re.search("'file_id', '(.*?)'", flashxdata).group(1)
         aff = re.search("'aff', '(.*?)'", flashxdata).group(1)
@@ -619,7 +586,7 @@ def chkmultivids(videomatch):
     else:
         return videomatch[0]
 
-
+@url_dispatcher.register('9', ['name', 'url'])
 def PlayStream(name, url):
     item = xbmcgui.ListItem(name, path = url)
     xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, item)
@@ -696,6 +663,23 @@ def getVideoLink(url, referer, hdr=None, data=None):
         req2.add_header('Referer', referer)
     url2 = urlopen(req2).geturl()
     return url2
+    
+    
+def parse_query(query):
+    toint = ['page', 'download', 'favmode', 'channel', 'section']
+    q = {'mode': '0'}
+    if query.startswith('?'): query = query[1:]
+    queries = urlparse.parse_qs(query)
+    for key in queries:
+        if len(queries[key]) == 1:
+            if key in toint:
+                try: q[key] = int(queries[key][0])
+                except: q[key] = queries[key][0]
+            else:
+                q[key] = queries[key][0]
+        else:
+            q[key] = queries[key]
+    return q    
 
 
 def cleantext(text):
@@ -810,114 +794,6 @@ def _get_keyboard(default="", heading="", hidden=False):
     return default
 
 
-def decodeOpenLoad(html):
-    # fixed by the openload guy ;)  based on work by pitoosie
-    from HTMLParser import HTMLParser
-    from jjdecode import JJDecoder
-    
-    jjstring = re.compile('a="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(html)[1]
-    shiftint =  re.compile(r";\}\((\d+)\)", re.DOTALL | re.IGNORECASE).findall(html)[1]
-    
-    def shiftChar(a):
-        a = a.group()
-        if a <= "Z":
-            b = 90
-        else:
-            b = 122
-        c = ord(a) + int(shiftint)
-        if b >= c:
-            a = c
-        else:
-            a = c - 26
-        return chr(a)    
-    
-    jjstring = re.sub(r'[a-zA-Z]', shiftChar, jjstring)
-    jjstring = urllib.unquote_plus(jjstring)
-    jjstring = jjstring.replace('0','j')
-    jjstring = jjstring.replace('1','_')
-    jjstring = jjstring.replace('2','__')
-    jjstring = jjstring.replace('3','___')    
-    jjstring = JJDecoder(jjstring).decode()
-    
-    magicnumber = re.compile(r"charCodeAt\(\d+?\)\s*?\+\s*?(\d+?)\)", re.DOTALL | re.IGNORECASE).findall(jjstring)[0]
-    hiddenid = re.compile(r'=\s*?\$\("#([^"]+)"', re.DOTALL | re.IGNORECASE).findall(jjstring)[0]
-   
-    hiddenurl = HTMLParser().unescape(re.compile(r'<span id="'+hiddenid+'">([^<]+)</span', re.DOTALL | re.IGNORECASE).findall(html)[0])
-    
-    s = []
-    for idx, i in enumerate(hiddenurl):
-        j = ord(i)
-        if (j>=33 & j<=126):
-            j = 33 + ((j + 14) % 94)
-        if idx == len(hiddenurl) - 1:
-            j += int(magicnumber)
-        s.append(chr(j))
-    res = ''.join(s)
-    
-    videoUrl = 'https://openload.co/stream/{0}?mime=true'.format(res)
-    dtext = videoUrl.replace('https', 'http')
-    UA = 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:39.0) Gecko/20100101 Firefox/39.0'
-    headers = {'User-Agent': UA }
-    
-    req = urllib2.Request(dtext,None,headers)
-    res = urllib2.urlopen(req)
-    videourl = res.geturl()
-    res.close()
-    
-    #doesnt work
-    filename = re.compile('tion" content="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(html)[0]    
-    filename = urllib.quote_plus(cleanse_title(filename))
-
-    if filename in videourl:
-        return videourl
-    else:
-        return videourl
-
-
-def decodeAA(aastring):
-    aastring = aastring.replace("(ﾟДﾟ)[ﾟεﾟ]+(oﾟｰﾟo)+ ((c^_^o)-(c^_^o))+ (-~0)+ (ﾟДﾟ) ['c']+ (-~-~1)+","")
-    aastring = aastring.replace("((ﾟｰﾟ) + (ﾟｰﾟ) + (ﾟΘﾟ))", "9")
-    aastring = aastring.replace("((ﾟｰﾟ) + (ﾟｰﾟ))","8")
-    aastring = aastring.replace("((ﾟｰﾟ) + (o^_^o))","7")
-    aastring = aastring.replace("((o^_^o) +(o^_^o))","6")
-    aastring = aastring.replace("((ﾟｰﾟ) + (ﾟΘﾟ))","5")
-    aastring = aastring.replace("(ﾟｰﾟ)","4")
-    aastring = aastring.replace("((o^_^o) - (ﾟΘﾟ))","2")
-    aastring = aastring.replace("(o^_^o)","3")
-    aastring = aastring.replace("(ﾟΘﾟ)","1")
-    aastring = aastring.replace("(+!+[])","1")
-    aastring = aastring.replace("(c^_^o)","0")
-    aastring = aastring.replace("(0+0)","0")
-    aastring = aastring.replace("(ﾟДﾟ)[ﾟεﾟ]","\\")
-    aastring = aastring.replace("(3 +3 +0)","6")
-    aastring = aastring.replace("(3 - 1 +0)","2")
-    aastring = aastring.replace("(!+[]+!+[])","2")
-    aastring = aastring.replace("(-~-~2)","4")
-    aastring = aastring.replace("(-~-~1)","3")
-    aastring = aastring.replace("(-~0)","1")
-    aastring = aastring.replace("(-~1)","2")
-    aastring = aastring.replace("(-~3)","4")
-    aastring = aastring.replace("(0-0)","0")
-    
-  
-    decodestring = re.search(r"\\\+([^(]+)", aastring, re.DOTALL | re.IGNORECASE).group(1)
-    decodestring = "\\+"+ decodestring
-    decodestring = decodestring.replace("+","")
-    decodestring = decodestring.replace(" ","")
-    
-    decodestring = decode(decodestring)
-    decodestring = decodestring.replace("\\/","/")
-    
-    return decodestring
-
-
-def decode(encoded):
-    s = []
-    for octc in (c for c in re.findall(r'\\(\d{2,3})', encoded)):
-        s.append(chr(int(octc, 8)))
-        #encoded = encoded.replace(r'\%s' % octc, chr(int(octc, 8)))
-    return ''.join(s)
-
 
 # videowood decode copied from: https://github.com/schleichdi2/OpenNfr_E2_Gui-5.3/blob/4e3b5e967344c3ddc015bc67833a5935fc869fd4/lib/python/Plugins/Extensions/MediaPortal/resources/hosters/videowood.py    
 def videowood(data):
@@ -1011,7 +887,8 @@ def searchDir(url, mode, page=None):
     addDir('[COLOR hotpink]Clear list[/COLOR]', '', 903, '', Folder=False)
     xbmcplugin.endOfDirectory(addon_handle)
 
-def newSearch(url, mode):
+@url_dispatcher.register('902', ['url', 'channel'])
+def newSearch(url, channel):
     vq = _get_keyboard(heading="Searching for...")
     if (not vq): return False, 0
     title = urllib.quote_plus(vq)
@@ -1023,7 +900,7 @@ def newSearch(url, mode):
     #     "&keyword=" + urllib.quote_plus(title))
     #xbmc.executebuiltin('xbmc.RunPlugin('+searchcmd+')')
 
-
+@url_dispatcher.register('903')
 def clearSearch():
     delKeyword()
     xbmc.executebuiltin('Container.Refresh')

@@ -134,7 +134,8 @@ class source:
                     pass
 
             return sources
-        except:
+        except Exception as e:
+            control.log('ERROR sezonlukidz %s' % e)
             return sources
 
 

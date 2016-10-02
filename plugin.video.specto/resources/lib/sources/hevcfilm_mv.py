@@ -23,6 +23,7 @@ import re,urlparse,json,os,base64,urllib
 from resources.lib.libraries import cleantitle
 from resources.lib import resolvers
 from resources.lib.libraries import client
+from resources.lib.libraries import control
 
 
 class source:
@@ -110,7 +111,8 @@ class source:
                     pass
 
             return sources
-        except:
+        except Exception as e:
+            control.log('ERROR hev %s' % e)
             return sources
 
 

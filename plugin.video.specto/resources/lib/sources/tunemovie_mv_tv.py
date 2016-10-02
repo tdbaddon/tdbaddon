@@ -23,7 +23,7 @@ import re,urllib,urlparse,base64
 
 from resources.lib.libraries import cleantitle
 from resources.lib.libraries import pyaes
-from resources.lib.libraries import cloudflare
+from resources.lib.libraries import control
 from resources.lib.libraries import client
 from resources.lib import resolvers
 import json
@@ -171,7 +171,8 @@ class source:
                     pass
 
             return sources
-        except:
+        except Exception as e:
+            control.log('ERROR tunemovie %s' % e)
             return sources
 
 

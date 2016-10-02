@@ -1,5 +1,5 @@
-from pyjsparserdata import *
- 
+from .pyjsparserdata import *
+import six
 
 class BaseNode:
         def finish(self):
@@ -542,5 +542,3 @@ def conv(node):
 	for k, v in node.__dict__.iteritems():
 		el[k] = node_to_dict(v)
 	return el
-	
-	

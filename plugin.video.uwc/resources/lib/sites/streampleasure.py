@@ -22,22 +22,24 @@ import re
 import xbmcplugin
 from resources.lib import utils
 
-
 progress = utils.progress
+ 
 
-
+@utils.url_dispatcher.register('210')
 def SPMain():
     utils.addDir('[COLOR hotpink]Search[/COLOR]','http://streampleasure.com/page/1/?s=',213,'','')
     SPList('http://streampleasure.com/page/1/?filtre=date&cat=0',1)
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
-def SPList(url, page, onelist=None):
+@utils.url_dispatcher.register('211', ['url'], ['page'])
+def SPList(url, page=1, onelist=None):
     if onelist:
         url = url.replace('/page/1/','/page/'+str(page)+'/')
     try:
         listhtml = utils.getHtml(url, '')
-    except urllib2.HTTPError:
+    except:
+        utils.notify('Oh oh','It looks like this website is down.')
         return None
 
     match = re.compile('<div id="content">(.*?)<div class="pagination">', re.DOTALL | re.IGNORECASE).findall(listhtml)
@@ -53,6 +55,7 @@ def SPList(url, page, onelist=None):
         xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('213', ['url'], ['keyword'])
 def SPSearch(url, keyword=None):
     searchUrl = url
     if not keyword:
@@ -64,5 +67,6 @@ def SPSearch(url, keyword=None):
         SPList(searchUrl,1)
 
 
+@utils.url_dispatcher.register('212', ['url', 'name'], ['download'])
 def SPPlayvid(url, name, download=None):
     utils.PLAYVIDEO(url, name, download)

@@ -21,13 +21,13 @@ import re
 import xbmcplugin
 from resources.lib import utils
 
-
 addon = utils.addon
 
 sortlistxt = [addon.getLocalizedString(30022), addon.getLocalizedString(30023), addon.getLocalizedString(30024),
             addon.getLocalizedString(30025)]   
 
 
+@utils.url_dispatcher.register('20')
 def XTMain():
     utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://xtheatre.net/categories/',22,'','')
     utils.addDir('[COLOR hotpink]Search[/COLOR]','http://xtheatre.net/page/1/?s=',24,'','')
@@ -37,6 +37,13 @@ def XTMain():
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('25')
+def XTSort():
+    addon.openSettings()
+    XTMain()
+
+
+@utils.url_dispatcher.register('22', ['url'])
 def XTCat(url):
     cathtml = utils.getHtml(url, '')
     match = re.compile('src="([^"]+)"[^<]+</noscript>.*?<a href="([^"]+)"[^<]+<span>([^<]+)</s.*?">([^<]+)', re.DOTALL | re.IGNORECASE).findall(cathtml)
@@ -45,8 +52,9 @@ def XTCat(url):
         name = name + ' [COLOR deeppink]' + videos + '[/COLOR]'
         utils.addDir(name, catpage, 21, img, 1)
     xbmcplugin.endOfDirectory(utils.addon_handle)
-    
-    
+
+
+@utils.url_dispatcher.register('24', ['url'], ['keyword'])
 def XTSearch(url, keyword=None):
     searchUrl = url
     if not keyword:
@@ -58,14 +66,18 @@ def XTSearch(url, keyword=None):
         XTList(searchUrl, 1)
 
 
-def XTList(url, page):
+@utils.url_dispatcher.register('21', ['url'], ['page'])
+def XTList(url, page=1):
     sort = getXTSortMethod()
     if re.search('\?', url, re.DOTALL | re.IGNORECASE):
         url = url + '&filtre=' + sort + '&display=extract'
     else:
         url = url + '?filtre=' + sort + '&display=extract'
-    print url
-    listhtml = utils.getHtml(url, '')
+    try:
+        listhtml = utils.getHtml(url, '')
+    except:
+        utils.notify('Oh oh','It looks like this website is down.')
+        return None
     match = re.compile('src="([^"]+?)" class="attachment.*?<a href="([^"]+)" title="([^"]+)".*?<div class="right">.<p>([^<]+)</p>', re.DOTALL | re.IGNORECASE).findall(listhtml)
     for img, videopage, name, desc in match:
         name = utils.cleantext(name)
@@ -77,9 +89,12 @@ def XTList(url, page):
         utils.addDir('Next Page ('+str(npage)+')', url, 21, '', npage)
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
-def XTVideo(url, name, download):
+
+@utils.url_dispatcher.register('23', ['url', 'name'], ['download'])
+def XTVideo(url, name, download=None):
     utils.PLAYVIDEO(url, name, download)
-    
+
+
 def getXTSortMethod():
     sortoptions = {0: 'date',
                    1: 'title',

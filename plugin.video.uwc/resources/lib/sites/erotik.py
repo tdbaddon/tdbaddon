@@ -21,10 +21,10 @@ import re
 import xbmcplugin
 from resources.lib import utils
 
-
 progress = utils.progress
 
 
+@utils.url_dispatcher.register('260')
 def EROMain():
     utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://www.ero-tik.com',263,'','')
     utils.addDir('[COLOR hotpink]Top Rated[/COLOR]','http://www.ero-tik.com/topvideos.html?page=1',261,'','')
@@ -34,8 +34,13 @@ def EROMain():
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('261', ['url'])
 def EROList(url):
-    listhtml = utils.getHtml(url, '')
+    try:
+        listhtml = utils.getHtml(url, '')
+    except:
+        utils.notify('Oh oh','It looks like this website is down.')
+        return None
     match = re.compile('pm-li-video.*?href="([^"]+)".*?src="([^"]+)".*?alt="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(listhtml)
     for videopage, img, name in match:
         name = utils.cleantext(name)
@@ -50,7 +55,8 @@ def EROList(url):
     except: pass
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
-    
+
+@utils.url_dispatcher.register('264', ['url'], ['keyword'])    
 def EROSearch(url, keyword=None):
     searchUrl = url
     if not keyword:
@@ -62,6 +68,7 @@ def EROSearch(url, keyword=None):
         EROList(searchUrl)
 
 
+@utils.url_dispatcher.register('263', ['url'])
 def EROCat(url):
     cathtml = utils.getHtml(url, '')
     match = re.compile('<ul class="dropdown-menu">(.*?)</ul>', re.DOTALL | re.IGNORECASE).findall(cathtml)[0]
@@ -71,5 +78,6 @@ def EROCat(url):
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
 
+@utils.url_dispatcher.register('262', ['url', 'name'], ['download'])
 def EROPlayvid(url, name, download=None):
     utils.PLAYVIDEO(url, name, download)
