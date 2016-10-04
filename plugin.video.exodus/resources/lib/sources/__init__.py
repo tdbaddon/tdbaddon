@@ -69,7 +69,7 @@ class sources:
 
                     control.sleep(200)
 
-                    return control.execute('Container.Update(%s?action=addItem&title=%s)' % (sys.argv[0], urllib.quote_plus(title.encode('utf-8'))))
+                    return control.execute('Container.Update(%s?action=addItem&title=%s)' % (sys.argv[0], urllib.quote_plus(title)))
 
                 elif select == '0' or select == '1':
                     url = self.sourcesDialog(items)
@@ -114,9 +114,10 @@ class sources:
         else:
             name = title
 
-        systitle = urllib.quote_plus(title.encode('utf-8'))
 
-        sysname = urllib.quote_plus(name.encode('utf-8'))
+        systitle = urllib.quote_plus(title)
+
+        sysname = urllib.quote_plus(name)
 
 
         poster = meta['poster'] if 'poster' in meta else '0'
@@ -409,7 +410,7 @@ class sources:
         try:
             sources = []
             sources = call.sources(url, self.hostDict, self.hostprDict)
-            if sources == None: sources = []
+            if sources == None: raise Exception()
             self.sources.extend(sources)
             dbcur.execute("DELETE FROM rel_src WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, imdb, '', ''))
             dbcur.execute("INSERT INTO rel_src Values (?, ?, ?, ?, ?, ?)", (source, imdb, '', '', json.dumps(sources), datetime.datetime.now().strftime("%Y-%m-%d %H:%M")))
@@ -478,7 +479,7 @@ class sources:
         try:
             sources = []
             sources = call.sources(ep_url, self.hostDict, self.hostprDict)
-            if sources == None: sources = []
+            if sources == None: raise Exception()
             self.sources.extend(sources)
             dbcur.execute("DELETE FROM rel_src WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, imdb, season, episode))
             dbcur.execute("INSERT INTO rel_src Values (?, ?, ?, ?, ?, ?)", (source, imdb, season, episode, json.dumps(sources), datetime.datetime.now().strftime("%Y-%m-%d %H:%M")))

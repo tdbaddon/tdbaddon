@@ -26,9 +26,14 @@ try:
 except:
     pass
 try:
-    dbcur.execute("CREATE TABLES IF NOT EXISTS realdebrid (client_id, client_secret, device_code)")
+    dbcur.execute("CREATE TABLE IF NOT EXISTS realdebrid (client_id, client_secret, device_code)")
 except:
     pass
+try:
+    dbcur.execute("CREATE TABLE IF NOT EXISTS bookmarks (name, code, poster, fanart)")
+except:
+    pass
+    
 dbcon.close()
 
 def checkVersion(v):
@@ -94,6 +99,17 @@ def removeSearch(params):
         dbcur.execute("DELETE FROM search")
     dbcon.commit()
     dbcon.close()
+    
+def removeBookmarks(params):
+    dbcon=database.connect(dbFile)
+    dbcur=dbcon.cursor()
+    try:
+        if params["extras"]=="single-delete" :
+            dbcur.execute("DELETE FROM bookmarks WHERE name=?", (params['name'],))
+    except:
+        dbcur.execute("DELETE FROM bookmarks")
+    dbcon.commit()
+    dbcon.close()
 
 def inDatabase(term):
     dbcon=database.connect(dbFile)
@@ -103,6 +119,25 @@ def inDatabase(term):
     if len(data)==0:
         return False
     return True
+
+def addBookmark(title, poster, fanart, url):
+    dbcon=database.connect(dbFile)
+    dbcur=dbcon.cursor()
+    dbcur.execute("SELECT name FROM bookmarks WHERE name=?", (title, ))
+    data=dbcur.fetchall()
+    if len(data)==0:
+        dbcur.execute("INSERT INTO bookmarks (name, poster, fanart, code) VALUES (?, ?, ?, ?)", (title, poster, fanart, url))
+        dbcon.commit()
+    dbcon.close()
+    
+def getBookmarks():
+    dbcon=database.connect(dbFile)
+    dbcur=dbcon.cursor()
+    dbcur.execute("SELECT name, poster, fanart, code FROM bookmarks ORDER BY name ASC")
+    data=dbcur.fetchall()
+    if len(data)==0:
+        return False
+    return data
     
 def storeDebrid(client_id, client_secret, device_code):
     dbcon=database.connect(dbFile)

@@ -42,7 +42,14 @@ def normalize(title):
         try: return title.decode('ascii').encode("utf-8")
         except: pass
 
-        return str( ''.join(c for c in unicodedata.normalize('NFKD', unicode( title.decode('utf-8') )) if unicodedata.category(c) != 'Mn') )
+        t = ''
+        for i in title:
+            c = unicodedata.normalize('NFKD',unicode(i,"ISO-8859-1"))
+            c = c.encode("ascii","ignore").strip()
+            if i == ' ': c = i
+            t += c
+
+        return t.encode("utf-8")
     except:
         return title
 

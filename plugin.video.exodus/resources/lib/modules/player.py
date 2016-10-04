@@ -175,6 +175,7 @@ class player(xbmc.Player):
 
 
     def onPlayBackStarted(self):
+        control.execute('Dialog.Close(all,true)')
         if not self.offset == '0': self.seekTime(float(self.offset))
         subtitles().get(self.name, self.imdb, self.season, self.episode)
         self.idleForPlayback()

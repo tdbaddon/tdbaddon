@@ -7,8 +7,6 @@
         <setting id="download_path" type="folder" source="video" label="20003" option="writeable" default=""/>
         <setting type="lsep" label="20005" />
         <setting id="proxy" type="bool" label="20004" default="false" />
-        <setting type="lsep" label="20011" />
-        <setting id="openload" type="bool" label="20012" default="false" />
         <setting type="lsep" label="20009" />
         <setting id="timeout" type="number" label="20010" default="10" />
         <setting type="lsep" label="20007" />
@@ -28,6 +26,10 @@
        <setting type="lsep" label="50004" />
        <setting type="action" label="50005" action="RunScript(plugin.video.javstream, 0, ?realdebrid=true)" />
        <setting type="text" label="50006" enabel="false" option="hidden" />
+	</category>
+    <category label="60000">
+       <setting id="library_path" type="folder" source="video" label="60001" option="writeable" default="special://userdata/addon_data/plugin.video.javstream/JAV"/>
+       <setting id="library_update" type="bool" label="60002" default="false"/>
 	</category>
 	<category label="40000">
         <setting id="40wushare" type="bool" label="40047" default="false"/>
@@ -280,5 +282,9 @@
         <setting id="43youjav" type="bool" label="40053" default="true" />
         <setting id="43youpornjav" type="bool" label="40025" default="true" />
         <setting id="43ytbsexclub" type="bool" label="40056" default="true" />
+    </category>
+    <category label="70000">
+        <setting type="action" label="70001" action="RunScript(plugin.video.javstream, 0, ?emptySearch=true)" />
+        <setting type="action" label="70002" action="RunScript(plugin.video.javstream, 0, ?emptyBookmarks=true)" />
     </category>
 </settings>

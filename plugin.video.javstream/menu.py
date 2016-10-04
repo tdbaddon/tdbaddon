@@ -18,7 +18,7 @@ mainMenu=[
         "url":siteURL+"/category/censored", 
         "mode":4, 
         "poster":"none",
-        "icon":os.path.join(home, 'resources/media', 'jav-latest.jpg'), 
+        "icon":os.path.join(home, 'resources/media', 'main-censored.jpg'), 
         "fanart":os.path.join(home, '', 'fanart.jpg'),
         "type":"", 
         "plot":""
@@ -27,7 +27,7 @@ mainMenu=[
         "url":siteURL+"/category/uncensored", 
         "mode":4, 
         "poster":"none",
-        "icon":os.path.join(home, 'resources/media', 'jav-latest.jpg'), 
+        "icon":os.path.join(home, 'resources/media', 'main-uncensored.jpg'), 
         "fanart":os.path.join(home, '', 'fanart.jpg'),
         "type":"", 
         "plot":""
@@ -36,7 +36,16 @@ mainMenu=[
         "url":siteURL+"/category/idol", 
         "mode":4, 
         "poster":"none",
-        "icon":os.path.join(home, 'resources/media', 'gravure-latest.jpg'), 
+        "icon":os.path.join(home, 'resources/media', 'main-gravure.jpg'), 
+        "fanart":os.path.join(home, '', 'fanart.jpg'),
+        "type":"", 
+        "plot":""
+    }, {
+        "title":"Favourite JAV", 
+        "url":siteURL+"/index.php", 
+        "mode":13, 
+        "poster":"none",
+        "icon":os.path.join(home, 'resources/media', 'main-favourites.jpg'), 
         "fanart":os.path.join(home, '', 'fanart.jpg'),
         "type":"", 
         "plot":""
@@ -45,7 +54,7 @@ mainMenu=[
         "url":siteURL+"/index.php", 
         "mode":3, 
         "poster":"none",
-        "icon":os.path.join(home, 'resources/media', 'search-main.jpg'), 
+        "icon":os.path.join(home, 'resources/media', 'main-search.jpg'), 
         "fanart":os.path.join(home, '', 'fanart.jpg'),
         "type":"", 
         "plot":""

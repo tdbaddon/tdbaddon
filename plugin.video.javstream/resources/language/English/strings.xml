@@ -95,4 +95,12 @@
     <string id="50004">RealDebrid</string>
     <string id="50005">Configure RealDebrid</string>
     <string id="50006">RealDebrid oAuth Key</string>
+    
+    <string id="60000">Library</string>
+    <string id="60001">JAV Folder</string>
+    <string id="60002">Update Library After Adding Content</string>
+    
+    <string id="70000">Database</string>
+    <string id="70001">Reset Search Database</string>
+    <string id="70002">Reset Bookmarks Database</string>
 </strings>

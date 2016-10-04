@@ -102,7 +102,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 <addon id="plugin.audio.radiotunes.com"
        name="RadioTunes"
-       version="3.0.0"
+       version="3.0.1"
        provider-name="qualisoft.dk - Tim C. Steinmetz">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0"/>
@@ -114,9 +114,14 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 		<platform>all</platform>
 		<language>en</language>
 		<license>GPL 2.0</license>
+   		<forum>http://forum.kodi.tv/showthread.php?tid=141942</forum>
+   		<source>https://github.com/Bitcrusher/Radiotunes-XBMC-plugin</source>
    		<summary lang="en">RadioTunes</summary>
 		<description lang="en">
 			RadioTunes.com features a wide variety of high quality free streaming radio channels. Find your favorites among the best of each class - be it New Age, 80s, Smooth Jazz, New Age, Top40, Hip Hop, Oldies, 70s, Reggae, Lounge or many others inside.
+		</description>
+		<description lang="he">
+			RadioTunes.com כולל מגוון רחב של הזרמת ערוצי רדיו באיכות גבוהה. מצא את המועדף שלך בין הטובים ביותר - בין אם זה עידן חדש, שנות ה-80, ג'אז, Top40, היפ הופ, שירים ישנים, שנות ה-70, רגאיי, Lounge ורבים אחרים.
 		</description>
 		<language/>
 	</extension>
@@ -994,7 +999,7 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
   </extension>
 </addon>
 
-<addon id="plugin.video.exodus" version="2.0.11" name="Exodus" provider-name="Exodus">
+<addon id="plugin.video.exodus" version="2.0.12" name="Exodus" provider-name="Exodus">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="repository.exodus" version="1.0.0" />
@@ -1010,7 +1015,7 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
 		<description lang="en">Please visit www.tvaddons.ag for Exodus support and assistance! Kindly note that Exodus is not an official part of the media player you are running, and therefore not to be mentioned within official support channels, this addon has nothing to do with the media player itself, nor it’s intended use, it is simply a third party plugin which has been added to your system.</description>
 		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
 		<platform>all</platform>
-		<news>- Added openload to filehosts with captchas[CR]- Updated existing providers[CR]- Added new providers</news>
+		<news>- Fixed issue with Trakt Progress (hidden items)[CR]- Fixed issue with urlresolver's openload pair dialog[CR]- Tweaked search and caching of providers[CR]- Updated providers</news>
 	</extension>
 </addon>
 
@@ -1034,10 +1039,10 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
 
 </addon>
 
-<addon id="plugin.video.f4mTester" version="2.5.7" name="f4mTester" provider-name="Shani">
+<addon id="plugin.video.f4mTester" version="2.6.1" name="f4mTester" provider-name="Shani">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
-        <import addon="script.video.F4mProxy" version="2.5.7"/>
+        <import addon="script.video.F4mProxy" version="2.6.1"/>
     </requires>
     <extension point="xbmc.python.pluginsource" library="default.py">
         <provides>video</provides>
@@ -1308,13 +1313,13 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
 	</extension>
 </addon>
 
-<addon id="plugin.video.javstream" name="JAVStream" version="0.91.91" provider-name="ptom">
+<addon id="plugin.video.javstream" name="JAVStream" version="0.92" provider-name="ptom">
 	<extension point="xbmc.python.pluginsource" library="default.py">
 		<provides>video</provides>
 	</extension>
     <requires>
         <import addon="script.module.beautifulsoup4" version="4.3.2" />
-        <import addon="script.module.urlresolver" version="2.10.0" />
+        <import addon="script.module.urlresolver" version="3.0.12" />
     </requires>
 	<extension point="xbmc.addon.metadata">
 		<summary lang="en">JavStream</summary>
@@ -2125,7 +2130,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBTVSHOWS"
        name="TDB TV SHOWS"
-       version="1.60"
+       version="1.61"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -2647,7 +2652,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.ZemTV-shani"
        name="ZemTV.com"
-       version="5.5.5"
+       version="5.5.7"
        provider-name="shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>

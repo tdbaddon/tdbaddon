@@ -11,6 +11,9 @@ try:
 except:
     mode=None
   
+  
+xbmcplugin.setPluginFanart(int(sys.argv[1]), 'special://home/addons/plugin.video.javstream/fanart.jpg', color2='0xFFFF3300')
+  
 if mode==1:
     # display the JAV specific sub menu
     util.addMenuItems(menu.javMenu)
@@ -39,7 +42,7 @@ elif mode==5:
     util.huntVideo(parameters)
 elif mode==6:
     url=util.getVideoURL(parameters)
-    util.playMedia(parameters['extras2'], parameters['poster'], url, "Video")
+    util.playMedia(parameters['extras2'], parameters['poster'], url, "Video", False)
 elif mode==7:
     util.addMenuItems(util.getFavourites())
 elif mode==8:
@@ -61,6 +64,14 @@ elif mode==10:
     
     addon.setSetting("vidview", str(window.getFocusId()))
     util.notify(ADDON_ID, "Default view has been set ("+str(window.getFocusId())+").", True, 2000)
+elif mode==11:
+    util.addToLibrary(parameters)
+elif mode==12:
+    util.addToBookmarks(parameters)
+elif mode==13:
+    util.showBookmarks(parameters)
+elif mode==14:
+    util.deleteBookmark(parameters)
 elif mode==31:
     util.deleteSearch(parameters)
 elif mode==1000:
@@ -73,5 +84,19 @@ else:
         if parameters['realdebrid']=="true":
             realdebrid.auth()
     except:
-        # if we get here then there's nothing to do except display the main menu
-        util.addMenuItems(menu.mainMenu)
+        try:
+            if parameters['emptySearch']=="true":
+                runDelete= xbmcgui.Dialog().yesno("Confirm Database Reset","Are you sure you want to delete ALL search terms?")
+                if runDelete==True:
+                    search.removeSearch(parameters)
+                    util.notify("Search database reset")
+        except:
+            try:
+                if parameters['emptyBookmarks']=="true":
+                    runDelete= xbmcgui.Dialog().yesno("Confirm Database Reset","Are you sure you want to delete ALL of your favourites?")
+                    if runDelete==True:
+                        search.removeBookmarks(parameters)
+                        util.notify("Favourites database reset")
+            except:
+                # if we get here then there's nothing to do except display the main menu
+                util.addMenuItems(menu.mainMenu)

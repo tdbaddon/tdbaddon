@@ -2,16 +2,16 @@
 
 import sys, urllib, urllib2, re, cookielib, os.path, json, base64, tempfile, time, threading, png, math
 from bs4 import BeautifulSoup
-from jsbeautifier import beautify
 import xml.etree.ElementTree as ET
-import xbmc, xbmcplugin, xbmcgui, xbmcaddon
+import xbmc, xbmcplugin, xbmcgui, xbmcaddon, xbmcvfs
 from jsunpack import unpack
 import search
+import urlresolver
 
 sysarg=str(sys.argv[1])
 ADDON_ID='plugin.video.javstream'
 addon = xbmcaddon.Addon(id=ADDON_ID)
-ADDON_VER="0.91.91"
+ADDON_VER="0.92"
 
 hdr = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11',
        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
@@ -35,6 +35,10 @@ Request = urllib2.Request
 
 if not os.path.exists(profileDir):
     os.makedirs(profileDir)
+
+libraryDir=xbmc.translatePath(xbmcaddon.Addon().getSetting('library_path'))
+if not os.path.exists(libraryDir):
+    os.makedirs(libraryDir)
 
 urlopen = urllib2.urlopen
 cj = cookielib.LWPCookieJar()
@@ -242,7 +246,7 @@ def addMenuItems(details, show=True):
                 "&name=" + urllib.quote_plus(detail['extras2'].encode('utf-8')))
             
             liz.addContextMenuItems([('Download Video', 'xbmc.RunPlugin('+dwnld+')')])
-        if detail['mode']==5:
+        if detail['mode']==5 and detail['extras']!="44":
             changed=True
             view = (sys.argv[0] +
                 "?url=set-default-view" +
@@ -251,7 +255,47 @@ def addMenuItems(details, show=True):
                 "&fanart="+detail['fanart']+
                 "&extras="+sysarg+
                 "&name=" + "set-default-view")
-            liz.addContextMenuItems([('Set Default View', 'xbmc.RunPlugin('+view+')')])
+            #liz.addContextMenuItems([('Set Default View', 'xbmc.RunPlugin('+view+')')])
+            save2library = (sys.argv[0] +
+                "?url=" + detail['url'] +
+                "&mode=" + str(11) +
+                "&poster="+detail['poster']+
+                "&fanart="+detail['fanart']+
+                "&extras="+detail["extras"]+
+                "&name=" + urllib.quote_plus(detail['title'].encode("utf-8")))
+            save2bookmarks = (sys.argv[0] +
+                "?url=" + detail['url'] +
+                "&mode=" + str(12) +
+                "&poster="+detail['poster']+
+                "&fanart="+detail['fanart']+
+                "&extras="+detail["extras"]+
+                "&name=" + urllib.quote_plus(detail['title'].encode("utf-8")))
+            liz.addContextMenuItems([('Set default view', 'xbmc.RunPlugin('+view+')'), ('Add to library', 'xbmc.RunPlugin('+save2library+')'), ('Add to JAVStream favourites', 'xbmc.RunPlugin('+save2bookmarks+')')])
+        elif detail['mode']==5 and detail['extras']=="44":
+            changed=True
+            view = (sys.argv[0] +
+                "?url=set-default-view" +
+                "&mode=" + str(10) +
+                "&poster="+detail['poster']+
+                "&fanart="+detail['fanart']+
+                "&extras="+sysarg+
+                "&name=" + "set-default-view")
+            #liz.addContextMenuItems([('Set Default View', 'xbmc.RunPlugin('+view+')')])
+            save2library = (sys.argv[0] +
+                "?url=" + detail['url'] +
+                "&mode=" + str(11) +
+                "&poster="+detail['poster']+
+                "&fanart="+detail['fanart']+
+                "&extras="+detail["extras"]+
+                "&name=" + urllib.quote_plus(detail['title'].encode("utf-8")))
+            deletebookmarks = (sys.argv[0] +
+                "?url=" + detail['url'] +
+                "&mode=" + str(14) +
+                "&poster="+detail['poster']+
+                "&fanart="+detail['fanart']+
+                "&extras="+"single-delete"+
+                "&name=" + urllib.quote_plus(detail['title'].encode("utf-8")))
+            liz.addContextMenuItems([('Set default view', 'xbmc.RunPlugin('+view+')'), ('Add to library', 'xbmc.RunPlugin('+save2library+')'), ('Remove from JAVStream favourites', 'xbmc.RunPlugin('+deletebookmarks+')')])
         try:
             if detail["extras"]=="force-search" and detail["extras2"]=="db-search":
                 dwnld = (sys.argv[0] +
@@ -276,6 +320,11 @@ def addMenuItems(details, show=True):
 def alert(alertText):
     dialog = xbmcgui.Dialog()
     ret = dialog.ok("JAVStream", alertText)
+    
+def select(list):
+    dialog = xbmcgui.Dialog()
+    ret = dialog.select("JAVStream", list)
+    return ret
         
 def notify(addonId, message, reportError=False, timeShown=5000):
     """Displays a notification to the user
@@ -317,6 +366,7 @@ def progressStop(pDialog):
     
 def progressCancelled(pDialog):
     if pDialog.iscanceled():
+        pDialog.close
         return True
     return False
 
@@ -333,7 +383,93 @@ def customDialog(imgW, imgH, img):
 
 def customDialogClose(cDialog):
     cDialog.close()
- 
+
+def getIMAGE(url):
+    header = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11',
+       'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+       'Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
+       'Accept-Encoding': 'none',
+       'Accept-Language': 'en-US,en;q=0.8',
+       'Connection': 'keep-alive'}
+    try:
+        req = urllib2.Request(url, headers=header)
+        response = urllib2.urlopen(req)
+        if response and response.getcode() == 200:
+            return response
+    except:
+        return "failed"
+    
+    return False
+    
+def addToLibrary(params):
+    name=' '.join(params['name'].replace("'", " ").replace('"', " ").replace("/", "-").replace("\\", "-").encode('utf-8').split())
+    toAdd=os.path.join(libraryDir, name.decode('utf-8'))
+    if not os.path.isdir(toAdd.encode('utf-8')):
+        #try:
+        xbmcvfs.mkdir(toAdd.encode('utf-8'))
+        file=os.path.join(toAdd.encode('utf-8'), "movie.strm")
+        #f = open(file,'w')
+        f =xbmcvfs.File (file, 'w')
+        f.write(str('plugin://plugin.video.javstream/?extras='+params['extras']+'&fanart='+params['fanart']+'&icon='+params['poster']+'&mode=5&name='+urllib.quote_plus(params['name'].encode("utf-8"))+'&poster='+params['poster']+'&url='+params['url']+'&fromlibrary=true'))
+        f.close() # you can omit in most cases as the destructor will call it
+        
+        genre=""
+        if params['extras']=="40":
+            genre="\n<genre>Censored</genre>"
+        elif params['extras']=="41":
+            genre="\n<genre>Uncensored</genre>"
+        elif params['extras']=="42":
+            genre="\n<genre>Gravure</genre>"
+        
+        nfo=os.path.join(toAdd.encode('utf-8'), "movie.nfo")
+        #f = open(nfo,'w')
+        f=xbmcvfs.File (nfo, 'w')
+        f.write(str('<?xml version="1.0" encoding="utf-8"?>\n<movie>\n<title>'+params['name'].encode('utf-8')+'</title>\n<genre>JAV</genre>'+genre.encode('utf-8')+'\n</movie>'))
+        f.close()
+        
+        
+        #f = open(os.path.join(toAdd, "fanart.jpg"),'wb')
+        f =xbmcvfs.File (os.path.join(toAdd.encode('utf-8'), "fanart.jpg"), 'w')
+        f.write(getIMAGE(params['fanart']).read())
+        
+        #f = open(os.path.join(toAdd, "poster.jpg"),'wb')
+        f =xbmcvfs.File (os.path.join(toAdd.encode('utf-8'), "poster.jpg"), 'w')
+        f.write(getIMAGE(params['poster']).read())
+        
+        notify(ADDON_ID, "Video added to library", True, 2000)
+        #except:
+        #    notify(ADDON_ID, "Unable to add video to library")
+        #    logError('Unable to add '+name)
+        if xbmcaddon.Addon().getSetting('library_update')=='true':
+            xbmc.executebuiltin('updateLibrary(video, %s)' % (libraryDir))
+    else:
+        notify(ADDON_ID, "Video already added to library", True, 2000)
+        logError('Folder '+toAdd+' already exists')
+
+def addToBookmarks(params):
+    search.addBookmark(params['name'], params['poster'], params['fanart'], params['url'])
+    notify(ADDON_ID, "Video added to bookmarks", True, 2000)
+
+def showBookmarks(params):
+    bookmarks=search.getBookmarks()
+    #logError(bookmarks)
+    items=[]
+    if bookmarks:
+        
+        for bookmark in bookmarks:
+            items.append({
+                "title": bookmark[0],
+                "url": bookmark[3], 
+                "mode":5, 
+                "poster":bookmark[1],
+                "icon":bookmark[1], 
+                "fanart":bookmark[2],
+                "type":"video", 
+                "plot":"",
+                "extras":"44"
+            })
+    addMenuItems(items)
+        
 def findVideos(url, refresh=False):
     searching="0"
     if "category/censored" in url:
@@ -344,7 +480,7 @@ def findVideos(url, refresh=False):
         searching="42"
     else:
         searching="43"
-        
+    
     html=getURL(url, hdr)
     if html!=False:
         if "No posts found" in html:
@@ -375,7 +511,6 @@ def findVideos(url, refresh=False):
                         "plot":"",
                         "extras":searching
                     })
-        
             try:
                 p=re.compile("<a href=[\"|'](\S*)[\"|'] class=[\"|']nextpostslink[\"|']>")
                 next=re.search(p, html).group(1)
@@ -386,7 +521,7 @@ def findVideos(url, refresh=False):
                         "url":next, 
                         "mode":4, 
                         "poster":"default.jpg",
-                        "icon":os.path.join(home, 'resources/media', 'next.jpg'),
+                        "icon":os.path.join(home, 'resources/media', str(searching)+'next.jpg'),
                         "fanart":"default.jpg",
                         "type":"", 
                         "plot":"",
@@ -541,8 +676,8 @@ def whatPlayer(url, site, dvdCode):
                                     found.append("googlevideo")
                                 except:
                                     pass
-        if "videomega" in html:
-            found.append("videomega")
+        """if "videomega" in html:
+            found.append("videomega")"""
         if "openload" in html or "oload" in html:
             found.append("openload")
         if "flashx" in html: #to be added in the future
@@ -607,6 +742,8 @@ def huntVideo(params):
     jsc=[]
     found=[]
     search=str(params["extras"])
+    if search=="44":
+        search="43"
     p=re.compile("(\[[A-Za-z0-9-_\ \.]+\])")  
     dvdCode=p.match(params['name'].encode("utf-8")).group(1).replace("[", "").replace("]", "").replace("_fetish-", "%20")
     dvdCodeClean=p.match(params['name'].encode("utf-8")).group(1).replace("[", "").replace("]", "").replace("_fetish-", "%20")
@@ -633,7 +770,6 @@ def huntVideo(params):
                 titles.append("wushare")"""
             titles.append("javpop")
             huntSites.append("http://javpop.com/search/"+dvdCode.replace("%22", "")+"/feed/rss2")
-        
         if xbmcplugin.getSetting(int(sysarg), searching+"sexloading")=="true":
             titles.append("sexloading")
             huntSites.append("http://sexloading.com/search/"+dvdCode+"/feed/rss2")
@@ -956,7 +1092,9 @@ def huntVideo(params):
                 })
                 
             
+            
             if xbmcplugin.getSetting(int(sysarg), "autoplay")=="true":
+                logError(str(items))
                 try:
                     myurl=getVideoURL(javpophd[0])
                 except:
@@ -977,7 +1115,19 @@ def huntVideo(params):
             counter=counter+1
         
         progressStop(statusDialog)
-        addMenuItems(items)
+        statusDialog.close()
+        
+        try:
+            if params['fromlibrary']:
+                librarySources=[]
+                for item in items:
+                    librarySources.append(item['title'])
+                
+                value=select(librarySources)
+                url=getVideoURL({"url":items[value]['url'], "extras":items[value]['extras']})
+                playMedia(items[value]['extras2'], items[value]['poster'], url, "Video")
+        except:
+            addMenuItems(items)
     else:
         notify(ADDON_ID, "No Streams Found")
 
@@ -1085,7 +1235,7 @@ def gravureIdols(params):
                 })
             addMenuItems(items) 
     
-def playMedia(title, thumbnail, link, mediaType='Video') :
+def playMedia(title, thumbnail, link, mediaType='Video', library=True) :
     """Plays a video
 
     Arguments:
@@ -1097,7 +1247,14 @@ def playMedia(title, thumbnail, link, mediaType='Video') :
     try:
         li = xbmcgui.ListItem(label=title, iconImage=thumbnail, thumbnailImage=thumbnail, path=link)
         li.setInfo(type=mediaType, infoLabels={ "Title": title })
-        xbmc.Player().play(item=link, listitem=li)
+        li.setProperty('Video', 'true')
+        li.setProperty('IsPlayable', 'true')
+        li.setPath(link)
+        if library:
+            xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, li)
+        else:
+            xbmc.Player().play(item=link, listitem=li)
+        
     except:
         if link!=False:
             notify(ADDON_ID, "Unable to play stream. "+str(link))
@@ -1150,109 +1307,20 @@ def getVideoURL(params):
         p=re.compile('<source src="([\S]*)" type="video\S*" data-res="'+res+'"\/>')
         link=re.search(p, videosource).group(1)
     if params["extras"]=="openload":
-        if xbmcaddon.Addon().getSetting('openload')=="true":
-            #logError("openload api")
-            download = re.compile(r"//(?:www\.)?o(?:pen)?load\.(?:co|io)?/(?:embed|f)/([0-9a-zA-Z-_]+)", re.DOTALL | re.IGNORECASE).findall(videosource)
-            ol=getURL('https://api.openload.io/1/file/dlticket?file='+download[0]+"&login=9addaa178ec385d2&key=bZfjzquk", hdr)
-            jsonResponse=json.loads(ol)
-            #logError('https://api.openload.io/1/file/dlticket?file='+download[0]+"&login=9addaa178ec385d2&key=bZfjzquk")
-            #logError(str(jsonResponse))
-            if jsonResponse['status']!=200:
-                logError("OpenLoad Error: "+str(jsonResponse['msg']))
-                alert("OpenLoad Error: "+str(jsonResponse['msg']))
-                return False
-            else:
-                #logError(str(jsonResponse))
-                if jsonResponse['result']['captcha_url']!=False:
-                    img = xbmcgui.ControlImage(450,15,400,130,jsonResponse['result']['captcha_url'])
-                    wdlg = xbmcgui.WindowDialog()
-                    wdlg.addControl(img)
-                    wdlg.show()
-                    captcha=searchDialog("Enter CAPTCHA Text")
-                if jsonResponse['result']['wait_time']>0:
-                    pDialog=progressStart("JAVStream", "Fetching Video. Please Wait.")
-                    x=1
-                    for x in range (1, jsonResponse['result']['wait_time']):
-                        time.sleep(1)
-                        progressUpdate(pDialog, int((float(x)/jsonResponse['result']['wait_time'])*100), "Fetching Video. Please Wait.")
-                        x+=1
-                    progressStop(pDialog)
-                try:   
-                    ol=getURL('https://api.openload.io/1/file/dl?file='+download[0]+'&ticket='+jsonResponse['result']['ticket']+"&captcha_response="+captcha, hdr)
-                except:
-                    ol=getURL('https://api.openload.io/1/file/dl?file='+download[0]+'&ticket='+jsonResponse['result']['ticket'], hdr)
-                    
-                jsonResponse=json.loads(ol)
-                
-                if jsonResponse['status']!=200:
-                    alert("OpenLoad Error: "+str(jsonResponse['msg']))
-                    xbmc.log(str(jsonResponse['msg']), xbmc.LOGERROR)
-                    return False
-                else:
-                   videourl=jsonResponse['result']['url']
-                   #logError("openload url: "+videourl)
-                   link=videourl
-        else:        
-            #logError("hotlinking")
-            openloadurl = re.compile(r"//(?:www\.)?o(?:pen)?load\.(?:co|io)?/(?:embed|f)/([0-9a-zA-Z-_]+)", re.DOTALL | re.IGNORECASE).findall(videosource)
-            openloadlist = list(set(openloadurl))
-            if len(openloadlist) > 1:
-                i = 1
-                hashlist = []
-                for x in openloadlist:
-                    hashlist.append('Video ' + str(i))
-                    i += 1
-                openloadurl = openloadlist[olvideo]
-            else: openloadurl = openloadurl[0]
-            
-            openloadurl1 = 'http://openload.io/embed/%s/' % openloadurl
-            
-            openloadsrc = getHtml(openloadurl1, '', hdr)
-            
-            videourl = decodeOpenLoad(openloadsrc)
-            #logError(videourl)
-            link = videourl + '|Referer='+ openloadurl1 + '&User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5376e Safari/8536.25'
-            
-    elif params["extras"]=="videomega":
-        if ".mp4" in videosource:
-            p=re.compile("SRC='([\s\S]*?)'")
-            link=re.search(p, videosource).group(1)
-        elif re.search("videomega.tv/iframe.js", videosource, re.DOTALL | re.IGNORECASE):
-            hashref = re.compile("""javascript["']>ref=['"]([^'"]+)""", re.DOTALL | re.IGNORECASE).findall(videosource)
-        elif re.search("videomega.tv/iframe.php", videosource, re.DOTALL | re.IGNORECASE):
-            hashref = re.compile(r"iframe\.php\?ref=([^&]+)&", re.DOTALL | re.IGNORECASE).findall(videosource)
-        elif re.search("videomega.tv/view.php", videosource, re.DOTALL | re.IGNORECASE):
-            hashref = re.compile(r'view\.php\?ref=([^"]+)', re.DOTALL | re.IGNORECASE).findall(videosource)
-        elif re.search("videomega.tv/cdn.php", videosource, re.DOTALL | re.IGNORECASE):
-            hashref = re.compile(r'cdn\.php\?ref=([^"]+)', re.DOTALL | re.IGNORECASE).findall(videosource)
-        elif re.search("videomega.tv/\?ref=", videosource, re.DOTALL | re.IGNORECASE):
-            hashref = re.compile(r'videomega.tv/\?ref=([^"]+)', re.DOTALL | re.IGNORECASE).findall(videosource)
-        else:
-            hashkey = re.compile("""hashkey=([^"']+)""", re.DOTALL | re.IGNORECASE).findall(videosource)
-            if not hashkey:
-                dialog.ok('Oh oh','Couldn\'t find playable videomega link')
-                return
-            if len(hashkey) > 1:
-                i = 1
-                hashlist = []
-                for x in hashkey:
-                    hashlist.append('Video ' + str(i))
-                    i += 1
-                vmvideo = dialog.select('Multiple videos found', hashlist)
-                hashkey = hashkey[vmvideo]
-            else: hashkey = hashkey[0]
-            hashpage = getHtml('http://videomega.tv/validatehash.php?hashkey='+hashkey, params['url'])
-            hashref = re.compile('ref="([^"]+)', re.DOTALL | re.IGNORECASE).findall(hashpage)
-        #progress.update( 80, "", "Getting video file from Videomega", "" )
-        vmhost = 'http://videomega.tv/view.php?ref=' + hashref[0]
-        videopage = getHtml(vmhost, params['url'])
-        vmpacked = re.compile(r"(eval\(.*\))\s+</", re.DOTALL | re.IGNORECASE).findall(videopage)
-        vmunpacked = unpack(vmpacked[0])
-        videourl = re.compile('src",\s?"([^"]+)', re.DOTALL | re.IGNORECASE).findall(vmunpacked)
-        videourl = videourl[0]
-        videourl = videourl + '|Referer=' + vmhost + '&User-Agent:%20Mozilla/5.0%20(Windows%20NT%206.1;%20WOW64)%20AppleWebKit/537.36%20(KHTML,%20like%20Gecko)%20Chrome/46.0.2490.86%20Safari/537.36'
-
-        link = videourl
+        openloadurl = re.compile(r"//(?:www\.)?o(?:pen)?load\.(?:co|io)?/(?:embed|f)/([0-9a-zA-Z-_]+)", re.DOTALL | re.IGNORECASE).findall(videosource)
+        openloadlist = list(set(openloadurl))
+        if len(openloadlist) > 1:
+            i = 1
+            hashlist = []
+            for x in openloadlist:
+                hashlist.append('Video ' + str(i))
+                i += 1
+            openloadurl = openloadlist[olvideo]
+        else: openloadurl = openloadurl[0]
+        
+        openloadurl = 'http://openload.io/embed/%s/' % openloadurl
+        logError(openloadurl)
+        link=urlresolver.resolve(openloadurl)
     elif params["extras"]=="videowood":
         vwurl = re.compile(r"//(?:www\.)?videowood\.tv/(?:embed|video)/([0-9a-zA-Z]+)", re.DOTALL | re.IGNORECASE).findall(videosource)
         vwurl = 'http://www.videowood.tv/embed/' + vwurl[0]
@@ -1381,141 +1449,6 @@ def videowood(data):
             return stream_url.group(2)
     else:
         return
-    
-def decodeOpenLoad(html):
-    # fixed by the openload guy ;)  based on work by pitoosie
-    from HTMLParser import HTMLParser
-    from jjdecode import JJDecoder
-    
-    jjstring = re.compile('a="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(html)[1]
-    shiftint =  re.compile(r";\}\((\d+)\)", re.DOTALL | re.IGNORECASE).findall(html)[1]
-    
-    def shiftChar(a):
-        a = a.group()
-        if a <= "Z":
-            b = 90
-        else:
-            b = 122
-        c = ord(a) + int(shiftint)
-        if b >= c:
-            a = c
-        else:
-            a = c - 26
-        return chr(a)    
-    
-    jjstring = re.sub(r'[a-zA-Z]', shiftChar, jjstring)
-    jjstring = urllib.unquote_plus(jjstring)
-    jjstring = jjstring.replace('0','j')
-    jjstring = jjstring.replace('1','_')
-    jjstring = jjstring.replace('2','__')
-    jjstring = jjstring.replace('3','___')    
-    jjstring = JJDecoder(jjstring).decode()
-    
-    magicnumber = re.compile(r"charCodeAt\(\d+?\)\s*?\+\s*?(\d+?)\)", re.DOTALL | re.IGNORECASE).findall(jjstring)[0]
-    hiddenid = re.compile(r'=\s*?\$\("#([^"]+)"', re.DOTALL | re.IGNORECASE).findall(jjstring)[0]
-   
-    hiddenurl = HTMLParser().unescape(re.compile(r'<span id="'+hiddenid+'">([^<]+)</span', re.DOTALL | re.IGNORECASE).findall(html)[0])
-    
-    s = []
-    for idx, i in enumerate(hiddenurl):
-        j = ord(i)
-        if (j>=33 & j<=126):
-            j = 33 + ((j + 14) % 94)
-        if idx == len(hiddenurl) - 1:
-            j += int(magicnumber)
-        s.append(chr(j))
-    res = ''.join(s)
-    
-    videoUrl = 'https://openload.co/stream/{0}?mime=true'.format(res)
-    dtext = videoUrl.replace('https', 'http')
-    UA = 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:39.0) Gecko/20100101 Firefox/39.0'
-    headers = {'User-Agent': UA }
-    
-    req = urllib2.Request(dtext,None,headers)
-    res = urllib2.urlopen(req)
-    videourl = res.geturl()
-    res.close()
-    
-    #doesnt work
-    filename = re.compile('tion" content="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(html)[0]    
-    filename = urllib.quote_plus(cleanse_title(filename))
-
-    if filename in videourl:
-        return videourl
-    else:
-        return videourl
-
-def cleanse_title(text):
-    def fixup(m):
-        text = m.group(0)
-        if text[:2] == "&#":
-            # character reference
-            try:
-                if text[:3] == "&#x":
-                    return unichr(int(text[3:-1], 16))
-                else:
-                    return unichr(int(text[2:-1]))
-            except ValueError:
-                pass
-        else:
-            # named entity
-            try:
-                text = unichr(htmlentitydefs.name2codepoint[text[1:-1]])
-            except KeyError:
-                pass
-        return text
-    
-    if isinstance(text, str):
-        try: text = text.decode('utf-8')
-        except: pass
-    return re.sub("&#?\w+;", fixup, text.strip())   
-
-def decode(encoded):
-    for octc in (c for c in re.findall(r'\\(\d{2,3})', encoded)):
-        encoded = encoded.replace(r'\%s' % octc, chr(int(octc, 8)))
-    return encoded.decode('utf8')
-
-
-def base10toN(num,n):
-    num_rep={10:'a',
-         11:'b',
-         12:'c',
-         13:'d',
-         14:'e',
-         15:'f',
-         16:'g',
-         17:'h',
-         18:'i',
-         19:'j',
-         20:'k',
-         21:'l',
-         22:'m',
-         23:'n',
-         24:'o',
-         25:'p',
-         26:'q',
-         27:'r',
-         28:'s',
-         29:'t',
-         30:'u',
-         31:'v',
-         32:'w',
-         33:'x',
-         34:'y',
-         35:'z'}
-    new_num_string=''
-    current=num
-    while current!=0:
-        remainder=current%n
-        if 36>remainder>9:
-            remainder_string=num_rep[remainder]
-        elif remainder>=36:
-            remainder_string='('+str(remainder)+')'
-        else:
-            remainder_string=str(remainder)
-        new_num_string=remainder_string+new_num_string
-        current=current/n
-    return new_num_string
 
 def searchFilms(parameters):
     find=searchDialog()
@@ -1533,7 +1466,14 @@ def deleteSearch(params):
     if runDelete==True:
         search.removeSearch(params)
         xbmc.executebuiltin('Container.Refresh')
-    
+
+def deleteBookmark(params):
+    if "single-delete" in params["extras"]:
+        runDelete=True
+    if runDelete==True:
+        search.removeBookmarks(params)
+        xbmc.executebuiltin('Container.Refresh')
+        
 def searchMenu():
     items=[]
     items.append({
@@ -1541,7 +1481,7 @@ def searchMenu():
         "url":siteURL+"/index.php", 
         "mode":3, 
         "poster":"none",
-        "icon":os.path.join(home, 'resources/media', 'search-main.jpg'), 
+        "icon":os.path.join(home, 'resources/media', 'new-search.jpg'), 
         "fanart":os.path.join(home, '', 'fanart.jpg'),
         "type":"", 
         "plot":"",
@@ -1552,7 +1492,7 @@ def searchMenu():
         "url":"delete-all", 
         "mode":31, 
         "poster":"none",
-        "icon":os.path.join(home, 'resources/media', 'search-main.jpg'), 
+        "icon":os.path.join(home, 'resources/media', 'clear-search.jpg'), 
         "fanart":os.path.join(home, '', 'fanart.jpg'),
         "type":"", 
         "plot":"",
@@ -1567,7 +1507,7 @@ def searchMenu():
                     "url":siteURL+"/index.php", 
                     "mode":3, 
                     "poster":"none",
-                    "icon":os.path.join(home, 'resources/media', 'search-main.jpg'), 
+                    "icon":os.path.join(home, 'resources/media', 'main-search.jpg'), 
                     "fanart":os.path.join(home, '', 'fanart.jpg'),
                     "type":"", 
                     "plot":"",
@@ -1584,68 +1524,26 @@ def addContextItem(liz, name,script,arg):
     commands.append(( str(name), runner, ))
     liz.addContextMenuItems( commands )
 
-def unpackjs(texto,tipoclaves=1):
-    
-    patron = "return p\}(.*?)\.split"
-    matches = re.compile(patron,re.DOTALL).findall(texto)
-    if len(matches)>0:
-        data = matches[0]
-    else:
-        patron = "return p; }(.*?)\.split"
-        matches = re.compile(patron,re.DOTALL).findall(texto)
-        if len(matches)>0:
-            data = matches[0]
-        else:
-            return ""
-
-    patron = "(.*)'([^']+)'"
-    matches = re.compile(patron,re.DOTALL).findall(data)
-    cifrado = matches[0][0]
-    descifrado = ""
-    
-    # Crea el dicionario con la tabla de conversion
-    claves = []
-    if tipoclaves==1:
-        claves.extend(["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"])
-        claves.extend(["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"])
-    else:
-        claves.extend(["0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"])
-        claves.extend(["10","11","12","13","14","15","16","17","18","19","1a","1b","1c","1d","1e","1f","1g","1h","1i","1j","1k","1l","1m","1n","1o","1p","1q","1r","1s","1t","1u","1v","1w","1x","1y","1z"])
-        claves.extend(["20","21","22","23","24","25","26","27","28","29","2a","2b","2c","2d","2e","2f","2g","2h","2i","2j","2k","2l","2m","2n","2o","2p","2q","2r","2s","2t","2u","2v","2w","2x","2y","2z"])
-        claves.extend(["30","31","32","33","34","35","36","37","38","39","3a","3b","3c","3d","3e","3f","3g","3h","3i","3j","3k","3l","3m","3n","3o","3p","3q","3r","3s","3t","3u","3v","3w","3x","3y","3z"])
-        
-    palabras = matches[0][1].split("|")
-    diccionario = {}
-
-    i=0
-    for palabra in palabras:
-        #logger.info("i=%d" % i)
-        #logger.info("claves_i="+claves[i])
-        if palabra!="":
-            diccionario[claves[i]]=palabra
-        else:
-            diccionario[claves[i]]=claves[i]
-        i=i+1
-
-    # Sustituye las palabras de la tabla de conversion
-    # Obtenido de http://rc98.net/multiple_replace
-    def lookup(match):
-        try:
-            return diccionario[match.group(0)]
-        except:
-            return ""
-
-    #lista = map(re.escape, diccionario)
-    # Invierte las claves, para que tengan prioridad las más largas
-    claves.reverse()
-    cadenapatron = '|'.join(claves)
-    #logger.info("[unpackerjs.py] cadenapatron="+cadenapatron)
-    compiled = re.compile(cadenapatron)
-    descifrado = compiled.sub(lookup, cifrado)
-    descifrado = descifrado.replace("\\","")
-
-    return descifrado
-
-
 if search.checkVersion(ADDON_VER)==False:
     getURL('http://javstream.club/version/version.php?v='+ADDON_VER)
+    
+def postHtml(url, form_data={}, headers={}, compression=True, NoCookie=None):
+    _user_agent = 'Mozilla/5.0 (X11; Linux i686) AppleWebKit/535.1 ' + \
+                  '(KHTML, like Gecko) Chrome/13.0.782.99 Safari/535.1'
+    req = urllib2.Request(url)
+    if form_data:
+        form_data = urllib.urlencode(form_data)
+        req = urllib2.Request(url, form_data)
+    req.add_header('User-Agent', _user_agent)
+    for k, v in headers.items():
+        req.add_header(k, v)
+    if compression:
+        req.add_header('Accept-Encoding', 'gzip')
+    response = urllib2.urlopen(req)
+    data = response.read()
+    if not NoCookie:
+        try:
+            cj.save(cookiePath)
+        except: pass
+    response.close()
+    return data

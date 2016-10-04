@@ -1,5 +1,12 @@
+[B]2.0.12[/B]
+- Fixed issue with Trakt Progress (hidden items)
+- Fixed issue with urlresolver's openload pair dialog
+- Tweaked search and caching of providers
+- Updated providers
+
 [B]2.0.11[/B]
 - Added openload to filehosts with captchas
+- NOTE: Filehosts witch captchas can be disabled
 - Updated existing providers
 - Added new providers
 

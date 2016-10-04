@@ -527,6 +527,7 @@ class episodes:
         self.mycalendar_link = 'http://api-v2launch.trakt.tv/calendars/my/shows/date[29]/60/'
         self.trakthistory_link = 'http://api-v2launch.trakt.tv/users/me/history/shows?limit=300'
         self.progress_link = 'http://api-v2launch.trakt.tv/users/me/watched/shows'
+        self.hiddenprogress_link = 'http://api-v2launch.trakt.tv/users/hidden/progress_watched?limit=1000&type=show'
         self.calendar_link = 'http://api-v2launch.trakt.tv/calendars/all/shows/%s/%s'
         self.traktlists_link = 'http://api-v2launch.trakt.tv/users/me/lists'
         self.traktlikedlists_link = 'http://api-v2launch.trakt.tv/users/likes/lists?limit=1000000'
@@ -827,6 +828,14 @@ class episodes:
             except:
                 pass
 
+        try:
+            result = trakt.getTrakt(self.hiddenprogress_link)
+            result = json.loads(result)
+            result = [str(i['show']['ids']['tvdb']) for i in result]
+
+            items = [i for i in items if not i['tvdb'] in result]
+        except:
+            pass
 
         def items_list(i):
             try:

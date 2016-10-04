@@ -425,7 +425,7 @@ def AddSports(url):
     addDir('GTV sports' ,'sss',70,'')
     addDir('Pi sports' ,'sss',71,'')
     addDir('Mona' ,'sss',68,'')
-    addDir('Sport365.live [GeoBlocked]' ,'sss',56,'')
+    addDir('Sport365.live' ,'sss',56,'http://s1.medianetworkinternational.com/images/icons/256x256px.png')
     addDir('SmartCric.com (Live matches only)' ,'Live' ,14,'')
     addDir('UKTVNow [Limited Channels]','sss' ,57,'http://www.uktvnow.net/images/uktvnow_logo.png')
     
@@ -3726,6 +3726,7 @@ def AddChannelsFromOthers(cctype,eboundMatches=[],progress=None):
     UKTVGenCat=[]
     UKTVGenCH=[]
     tvplayerChannels=None
+    Zengagen=None
     if cctype==1:
         pg='pakistan'
         iptvgen="pakistani"
@@ -3864,7 +3865,7 @@ def AddChannelsFromOthers(cctype,eboundMatches=[],progress=None):
                 match+=rematch
         except:
             traceback.print_exc(file=sys.stdout)    
-    print    'Zengagen',Zengagen        
+    
     if Zengagen:
         try:
             
@@ -4853,7 +4854,7 @@ def playSports365(url,progress):
     except:
         pass
     import time
-    if not played and RefreshResources([('live365.py','http://shani.offshorepastebin.com/live365.py',forced)]):
+    if not played  and RefreshResources([('live365.py','http://shani.offshorepastebin.com/live365.py',forced)]):
         
         dialog = xbmcgui.Dialog()
         ok = dialog.ok('XBMC', 'Updated files dyamically, Try to play again, just in case!')          
@@ -6246,7 +6247,7 @@ try:
         print "Play url is "+url
         import time        
         try:
-            if not recursive and  RefreshResources([('live365.py','http://shani.offshorepastebin.com/live365.py?t=%s'%str(int(time.time())),True)]):
+            if RefreshResources([('live365.py','http://shani.offshorepastebin.com/live365.py?t=%s'%str(int(time.time())),True)]):
                 dialog = xbmcgui.Dialog()
                 ok = dialog.ok('XBMC', 'Updated files! Try click Refresh Listing to see if it works')   
             else:

@@ -54,3 +54,5 @@ Fixed bbc links
 version bump
 [B]Version 2.5.7[/B]
 version bump for TSDownloaders
+[B]Version 2.6.1[/B]
+callback params
