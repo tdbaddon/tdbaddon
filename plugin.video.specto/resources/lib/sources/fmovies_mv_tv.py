@@ -49,7 +49,6 @@ class source:
             url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'year': year}
             url = urllib.urlencode(url)
             return url
-            return None
         except:
             return None
 
@@ -61,7 +60,7 @@ class source:
 
             url = urlparse.parse_qs(url)
             url = dict([(i, url[i][0]) if url[i] else (i, '') for i in url])
-            url['title'],  url['season'], url['episode'] = title, season, episode
+            url['title'],  url['season'], url['episode'], url['premiered'] = title, season, episode, date
             url = urllib.urlencode(url)
             return url
         except:
@@ -105,7 +104,6 @@ class source:
                     title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
 
                     year = re.findall('(\d{4})', data['premiered'])[0] if 'tvshowtitle' in data else data['year']
-
                     try: episode = data['episode']
                     except: pass
 
@@ -122,12 +120,18 @@ class source:
                     r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', attrs = {'class': 'name'})) for i in r]
                     r = [(i[0][0], i[1][0]) for i in r if len(i[0]) > 0 and  len(i[1]) > 0]
                     r = [(re.sub('http.+?//.+?/','/', i[0]), re.sub('&#\d*;','', i[1])) for i in r]
+                    print r
 
                     if 'season' in data:
                         url = [(i[0], re.findall('(.+?) (\d*)$', i[1])) for i in r]
+                        #print url
                         url = [(i[0], i[1][0][0], i[1][0][1]) for i in url if len(i[1]) > 0]
-                        url = [i for i in url if cleantitle.get(title) == cleantitle.get(i[1])]
+                        #print url
+                        url = [i for i in url if cleantitle.get(title) in cleantitle.get(i[1])]
+                        print url,'%01d' % int(data['season'])
+
                         url = [i for i in url if '%01d' % int(data['season']) == '%01d' % int(i[2])]
+                        print("END",url)
                     else:
                         url = [i for i in r if cleantitle.get(title) in cleantitle.get(i[1])]
                     print("r1", cleantitle.get(title),url,r)
@@ -277,12 +281,10 @@ class source:
         for key in data:
             if not key.startswith('_'):
                 for i, c in enumerate(data[key]):
-                    #n += ord(c) * 64184 + len(data[key])
-                    n += ord(c) * (i + 2016 + len(data[key]))
-        print("NNN",n,data)
+                    t = 14283
+                    n += ord(c) * t + len(data[key]) + i
+        #print("NNN",n,data)
         return {'_token': hex(n)[2:]}
-        #print ("TOK",hex(n)[2:])
-        #return {'_token': '3c3b375'}
 
 
     def __get_xtoken(self):

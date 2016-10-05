@@ -50,6 +50,7 @@ class source:
     def get_show(self, imdb, tvdb, tvshowtitle, year):
         try:
             query = self.search_link % (str(int(year)-1), str(int(year)+1), urllib.quote_plus(tvshowtitle))
+            print query
 
             result = ''
             result = client.request(urlparse.urljoin(self.base_link, query))
@@ -67,9 +68,10 @@ class source:
             try: result = [(urlparse.parse_qs(urlparse.urlparse(i[0]).query)['u'][0], i[1]) for i in result]
             except: pass
             result = [(urlparse.urlparse(i[0]).path, i[1]) for i in result]
+            #print result,tvshowtitle,cleantitle.tv(result[0][1])
 
-            match = [i[0] for i in result if tvshowtitle == cleantitle.tv(i[1])]
-
+            match = [i[0] for i in result if cleantitle.tv(i[1]) in tvshowtitle]
+            print match
             match2 = [i[0] for i in result]
             match2 = [x for y,x in enumerate(match2) if x not in match2[:y]]
             if match2 == []: return
@@ -108,9 +110,9 @@ class source:
         try:
             self.sources =[]
             mylinks = []
-            hostDict = hostDict.sort()
-            for i in hostDict:
-                control.log("WA HO %s" % i)
+            #hostDict = hostDict.sort()
+            #for i in hostDict:
+            #    control.log("WA HO %s" % i)
             if url == None: return self.sources
 
             url = url.replace('/json/', '/')
@@ -154,7 +156,7 @@ class source:
                     pass
 
             threads = []
-            for i in mylinks: threads.append(workers.Thread(self.check, i, hostDict))
+            for i in mylinks[:15]: threads.append(workers.Thread(self.check, i, hostDict))
             [i.start() for i in threads]
             for i in range(0, 10 * 2):
                 is_alive = [x.is_alive() for x in threads]
@@ -173,15 +175,15 @@ class source:
             result = ''
             result = client.request(urlparse.urljoin(self.base_link, url), headers=self.headers)
             url = re.compile('class=[\'|\"]*myButton.+?href=[\'|\"|\s|\<]*(.+?)[\'|\"|\s|\>]').findall(result)[0]
-            print("URL2",url,i[1])
-            control.log("WATCHSERIES CHECK %s | url: %s" % (url,i[0]))
+            #print("URL2",url,i[1])
+            #control.log("WATCHSERIES CHECK %s | url: %s" % (url,i[0]))
             url = client.replaceHTMLCodes(url)
 
             host = urlparse.urlparse(url).netloc
             host = host.replace('www.', '').replace('embed.', '')
             host = host.lower()
             if not host in hostDict:
-                control.log("WATCHSERIES HOST %s" % host)
+                #control.log("WATCHSERIES HOST %s" % host)
                 raise Exception()
 
             host = host.rsplit('.', 1)[0]

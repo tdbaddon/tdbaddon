@@ -58,9 +58,10 @@ class indexer:
             pass
 
 
-    def getx(self, url):
+    def getx(self, url, worker=False):
         try:
             self.list = self.phoenix_list('', result=url)
+            if worker == True: self.worker()
             self.addDirectory(self.list)
             return self.list
         except:
@@ -185,7 +186,8 @@ class indexer:
                 regex = urllib.quote_plus(regex)
 
                 item = item.replace('\r','').replace('\n','').replace('\t','').replace('&nbsp;','')
-                item = re.sub('<link></link>|<sublink></sublink>','', item)
+                item = re.sub('<sublink></sublink>|<sublink\s+name=(?:\'|\").*?(?:\'|\")></sublink>','', item)
+                item = re.sub('<link></link>','', item)
 
                 name = item.split('<meta>')[0].split('<regex>')[0]
                 try: name = re.findall('<title>(.+?)</title>', name)[0]
@@ -196,6 +198,14 @@ class indexer:
                 except: date = ''
                 if re.search(r'\d+', date): name += ' [COLOR red] Updated %s[/COLOR]' % date
 
+                try: image2 = re.findall('<thumbnail>(.+?)</thumbnail>', item)[0]
+                except: image2 = image
+                if not str(image2).lower().startswith('http'): image2 = '0'
+
+                try: fanart2 = re.findall('<fanart>(.+?)</fanart>', item)[0]
+                except: fanart2 = fanart
+                if not str(fanart2).lower().startswith('http'): fanart2 = '0'
+
                 try: meta = re.findall('<meta>(.+?)</meta>', item)[0]
                 except: meta = '0'
 
@@ -205,7 +215,7 @@ class indexer:
                 url = '<preset>search</preset>%s' % meta if url == 'search' else url
                 url = url.replace('>searchsd<', '><preset>searchsd</preset>%s<' % meta)
                 url = '<preset>searchsd</preset>%s' % meta if url == 'searchsd' else url
-                url = url.replace('<sublink></sublink>', '')
+                url = re.sub('<sublink></sublink>|<sublink\s+name=(?:\'|\").*?(?:\'|\")></sublink>','', url)
                 url += regex
 
                 if item.startswith('<item>'): action = 'play'
@@ -217,17 +227,13 @@ class indexer:
                 elif not regex == '': folder = True
                 else: folder = False
 
-                try: image2 = re.findall('<thumbnail>(.+?)</thumbnail>', item)[0]
-                except: image2 = image
-                if not str(image2).lower().startswith('http'): image2 = '0'
-
-                try: fanart2 = re.findall('<fanart>(.+?)</fanart>', item)[0]
-                except: fanart2 = fanart
-                if not str(fanart2).lower().startswith('http'): fanart2 = '0'
-
                 try: content = re.findall('<content>(.+?)</content>', meta)[0]
                 except: content = '0'
                 if not content == '0': content += 's'
+
+                if 'tvshow' in  content and not url.strip().endswith('.xml'):
+                    url = '<preset>tvindexer</preset><url>%s</url><thumbnail>%s</thumbnail><fanart>%s</fanart>%s' % (url, image2, fanart2, meta)
+                    action = 'play'
 
                 try: imdb = re.findall('<imdb>(.+?)</imdb>', meta)[0]
                 except: imdb = '0'
@@ -409,12 +415,12 @@ class indexer:
 
             url = self.tvmaze_info_link % tvdb
 
-            item = client.request(url, output='response', error=True, timeout='10')
+            item = client.request(url, output='extended', error=True, timeout='10')
 
-            if item[0] == '404':
+            if item[1] == '404':
                 return self.meta.append({'imdb': '0', 'tmdb': '0', 'tvdb': tvdb, 'lang': self.lang, 'item': {'code': '0'}})
 
-            item = json.loads(item[1])
+            item = json.loads(item[0])
 
             tvshowtitle = item['name']
             tvshowtitle = tvshowtitle.encode('utf-8')
@@ -431,7 +437,8 @@ class indexer:
             imdb = imdb.encode('utf-8')
             if self.list[i]['imdb'] == '0' and not imdb == '0': self.list[i].update({'imdb': imdb})
 
-            studio = item['network']['name']
+            try: studio = item['network']['name']
+            except: studio = '0'
             if studio == '' or studio == None: studio = '0'
             studio = studio.encode('utf-8')
             if not studio == '0': self.list[i].update({'studio': studio})
@@ -598,18 +605,17 @@ class resolver:
 
     def get(self, url):
         try:
-            items = re.compile('<sublink>(.+?)</sublink>').findall(url)
-            if len(items) == 0: items = [url]
-            items = [('Link %s' % (int(items.index(i))+1), i) for i in items]
+            items = re.compile('<sublink(?:\s+name=|)(?:\'|\"|)(.*?)(?:\'|\"|)>(.+?)</sublink>').findall(url)
 
-            if len(items) == 1:
-                url = items[0][1]
-            else:
-                select = control.selectDialog([i[0] for i in items], control.infoLabel('listitem.label'))
-                if select == -1: return False
-                else: url = items[select][1]
+            if len(items) == 0: return url
+            if len(items) == 1: return items[0][1]
 
-            return url
+            items = [('Link %s' % (int(items.index(i))+1) if i[0] == '' else i[0], i[1]) for i in items]
+
+            select = control.selectDialog([i[0] for i in items], control.infoLabel('listitem.label'))
+
+            if select == -1: return False
+            else: return items[select][1]
         except:
             pass
 
@@ -702,6 +708,35 @@ class resolver:
         try:
             preset = re.findall('<preset>(.+?)</preset>', url)[0]
 
+            if not 'tvindexer' in preset: raise Exception()
+
+            url, imdb, tvdb, tvshowtitle, year, thumbnail, fanart = re.findall('<url>(.+?)</url>', url)[0], re.findall('<imdb>(.+?)</imdb>', url)[0], re.findall('<tvdb>(.+?)</tvdb>', url)[0], re.findall('<tvshowtitle>(.+?)</tvshowtitle>', url)[0], re.findall('<year>(.+?)</year>', url)[0], re.findall('<thumbnail>(.+?)</thumbnail>', url)[0], re.findall('<fanart>(.+?)</fanart>', url)[0]
+
+            from resources.lib.modules import proxy
+
+            pattern = 'href=.*?season-(\d*)-episode-(\d*).*?Episode.*?>(?:.*?-|)(.*?)</a>'
+            check = 'Episode'
+
+            items = proxy.request(url, check)
+            items = re.findall(pattern, items)
+            items = [(i[0], i[1], i[2].strip()) for i in items]
+
+            result = ''
+
+            for i in items:
+                try: result += '<item><title> %01dx%02d . %s</title><meta><content>episode</content><imdb>%s</imdb><tvdb>%s</tvdb><tvshowtitle>%s</tvshowtitle><year>%s</year><title>%s</title><premiered>0</premiered><season>%01d</season><episode>%01d</episode></meta><link><sublink>search</sublink><sublink>searchsd</sublink></link><thumbnail>%s</thumbnail><fanart>%s</fanart></item>' % (int(i[0]), int(i[1]), i[2], imdb, tvdb, tvshowtitle, year, i[2], int(i[0]), int(i[1]), thumbnail, fanart)
+                except: pass
+
+            indexer().getx(result, worker=True)
+            return False
+        except:
+            pass
+
+        try:
+            preset = re.findall('<preset>(.+?)</preset>', url)[0]
+
+            if not 'search' in preset: raise Exception()
+
             title, year, imdb = re.findall('<title>(.+?)</title>', url)[0], re.findall('<year>(.+?)</year>', url)[0], re.findall('<imdb>(.+?)</imdb>', url)[0]
 
             try: tvdb, tvshowtitle, premiered, season, episode = re.findall('<tvdb>(.+?)</tvdb>', url)[0], re.findall('<tvshowtitle>(.+?)</tvshowtitle>', url)[0], re.findall('<premiered>(.+?)</premiered>', url)[0], re.findall('<season>(.+?)</season>', url)[0], re.findall('<episode>(.+?)</episode>', url)[0]
@@ -709,7 +744,7 @@ class resolver:
 
             direct = False
 
-            presetDict = ['primewire_mv_tv', 'watchfree_mv_tv', 'movie4k_mv', 'movie25_mv', 'watchseries_tv', 'pftv_tv', 'afdah_mv', 'dayt_mv', 'dizibox_tv', 'dizigold_tv', 'genvideo_mv', 'mfree_mv', 'miradetodo_mv', 'movieshd_mv_tv', 'onemovies_mv_tv', 'onlinedizi_tv', 'pelispedia_mv_tv', 'pubfilm_mv_tv', 'putlocker_mv_tv', 'rainierland_mv', 'sezonlukdizi_tv', 'tunemovie_mv', 'xmovies_mv']
+            presetDict = ['primewire_mv_tv', 'watchfree_mv_tv', 'movie4k_mv', 'movie25_mv', 'watchseries_tv', 'pftv_tv', 'afdah_mv', 'dayt_mv', 'dizibox_tv', 'dizigold_tv', 'genvideo_mv', 'miradetodo_mv', 'movieshd_mv_tv', 'onemovies_mv_tv', 'onlinedizi_tv', 'pelispedia_mv_tv', 'pubfilm_mv_tv', 'putlocker_mv_tv', 'rainierland_mv', 'sezonlukdizi_tv', 'tunemovie_mv', 'xmovies_mv']
 
             if preset == 'searchsd': presetDict = ['primewire_mv_tv', 'watchfree_mv_tv', 'movie4k_mv', 'movie25_mv', 'watchseries_tv', 'pftv_tv']
 
@@ -783,7 +818,7 @@ class resolver:
         try:
             import urlresolver
 
-            hmf = urlresolver.HostedMediaFile(url=url, include_disabled=True, include_universal=False)
+            hmf = urlresolver.HostedMediaFile(url=url)
 
             if hmf.valid_url() == False: raise Exception()
 

@@ -122,44 +122,12 @@ msgctxt "#30731"
 msgid "Please wait..."
 msgstr ""
 
-msgctxt "#30732"
-msgid "Opening image"
-msgstr ""
-
-msgctxt "#30751"
-msgid "Scoreboard"
-msgstr ""
-
-msgctxt "#30752"
-msgid "Archived Games"
-msgstr ""
-
-msgctxt "#30753"
-msgid "Live Games , Requires some modifications to get working visit forum."
-msgstr ""
-
-msgctxt "#30754"
-msgid "If list returns BLANK, Feed is not up yet."
-msgstr ""
-
-msgctxt "#30755"
-msgid "Feed not available yet"
-msgstr ""
-
-msgctxt "#30756"
-msgid "Pick A Bandwidth"
-msgstr ""
-
 msgctxt "#30401"
 msgid "Are you sure?"
 msgstr ""
 
 msgctxt "#30402"
 msgid "Process Complete"
-msgstr ""
-
-msgctxt "#30491"
-msgid "This View is now Default"
 msgstr ""
 
 msgctxt "#30500"
@@ -176,4 +144,12 @@ msgstr ""
 
 msgctxt "#32503"
 msgid "Resume"
+msgstr ""
+
+msgctxt "#32504"
+msgid "URLResolver"
+msgstr ""
+
+msgctxt "#32505"
+msgid "Settings"
 msgstr ""

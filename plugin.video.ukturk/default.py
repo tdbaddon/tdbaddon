@@ -18,9 +18,9 @@ mKmkmkmKm = KmkKmkKKmkKmkKmk . queries . get ( 'iconimage' , '' )
 KKKmmk = KmmkKmm . getSetting ( 'enable_meta' )
 Kmmmmkmkmkm = xbmc . translatePath ( os . path . join ( 'special://home/userdata/Database' , 'UKTurk.db' ) )
 IiIi11iIIi1Ii = 'https://www.googleapis.com/youtube/v3/search?q='
-KmmkK = '&regionCode=US&part=snippet&hl=en_US&key=AIzaSyBAdxZCHbeJwnQ7dDZQJNfcaF46MdqJ24E&type=video&maxResults=50'
+KmmkK = '&regionCode=US&part=snippet&hl=en_US&key=AIzaSyAd-YEOqZz9nXVzGtn3KWzYLbLaajhqIDA&type=video&maxResults=50'
 IiI = 'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId='
-mmKm = '&maxResults=50&key=AIzaSyBAdxZCHbeJwnQ7dDZQJNfcaF46MdqJ24E'
+mmKm = '&maxResults=50&key=AIzaSyAd-YEOqZz9nXVzGtn3KWzYLbLaajhqIDA'
 Km = 'http://ukturk.offshorepastebin.com/ukturk.jpg'
 if 67 - 67: KmkmkmmKK . I1iII1iiII
 def iI1Ii11111iIi ( ) :

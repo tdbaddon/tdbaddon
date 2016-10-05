@@ -88,6 +88,10 @@ elif action == 'openSettings':
     from resources.lib.modules import control
     control.openSettings()
 
+elif action == 'urlresolverSettings':
+    from resources.lib.modules import control
+    control.openSettings(id='script.module.urlresolver')
+
 elif action == 'addView':
     from resources.lib.modules import views
     views.addView(content)
