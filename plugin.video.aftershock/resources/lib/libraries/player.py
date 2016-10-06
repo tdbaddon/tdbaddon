@@ -29,11 +29,9 @@ class player(xbmc.Player):
     def __init__ (self):
         xbmc.Player.__init__(self)
 
-    def run(self, content, name, url, year, imdb, tvdb, meta):
-        if control.window.getProperty('PseudoTVRunning') == 'True':
-            return control.player.play(url, control.item(path=url))
+    def run(self, content, title, url, year, imdb, tvdb, meta):
 
-        self.getVideoInfo(content, name, year, imdb, tvdb)
+        self.getVideoInfo(content, title, year, imdb, tvdb)
 
         if self.folderPath.startswith('plugin://') and not meta == None:
             poster, thumb, meta = self.getMeta(meta)
@@ -48,13 +46,13 @@ class player(xbmc.Player):
 
         for i in range(0,len(url)):
             if len(url) > 1:
-                meta['title'] = '%s Part # %s' % (name, str(i+1))
+                meta['title'] = '%s Part # %s' % (title, str(i+1))
             try:
                 iconImage = meta['iconImage']
             except:
                 iconImage = 'DefaultVideo.png'
 
-            item = control.item(name, path=url[i], iconImage=iconImage, thumbnailImage=thumb)
+            item = control.item(title, path=url[i], iconImage=iconImage, thumbnailImage=thumb)
             item.setInfo(type='Video', infoLabels = meta)
             try: item.setArt({'poster': poster, 'tvshow.poster': poster, 'season.poster': poster})
             except: pass
@@ -123,8 +121,6 @@ class player(xbmc.Player):
 
     def getMeta(self, meta):
         try:
-            meta = json.loads(meta)
-
             poster = meta['poster'] if 'poster' in meta else '0'
             thumb = meta['thumb'] if 'thumb' in meta else poster
 

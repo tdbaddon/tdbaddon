@@ -45,6 +45,8 @@ class source:
 
             channels = json.loads(result)
 
+            print channels
+
             channelNames = channels.keys()
             channelNames.sort()
 

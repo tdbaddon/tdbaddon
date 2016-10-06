@@ -23,7 +23,7 @@ import urlparse, re, os, binascii, base64, time
 from resources.lib.libraries import client
 from resources.lib.libraries import logger
 from resources.lib.libraries import cleantitle
-from resources.lib.libraries import control
+from resources.lib.libraries import cache
 
 class source:
     def __init__(self):
@@ -34,12 +34,12 @@ class source:
         self.poster_link = 'http://dittotv2.streamark.netdna-cdn.com/vod_images/optimized/livetv/%s.jpg'
         self.headers = {'User-Agent':'umar/1.1 CFNetwork/758.0.2 Darwin/15.0.0'}
         self.list = []
-        self.deviceId = control.setting('dynnsDeviceId')
+        self.deviceId = None
         self.ipAddress = None
 
     def getLiveSource(self):
         try :
-            self.getDeviceID()
+            self.deviceId = cache.get(self.getDeviceID, 8)
             url = urlparse.urljoin(self.base_link,self.ip_check)
 
             result = client.source(url, headers=self.headers)
@@ -90,6 +90,7 @@ class source:
         try :
             logger.debug('%s ORIGINAL URL [%s]' % (__name__, url))
             authToken = self.getAuthToken()
+            logger.debug('AuthToken %s' % authToken)
             url += authToken
             if '|' not in url:
                 url += '|'
@@ -103,18 +104,12 @@ class source:
             return False
 
     def getDeviceID(self):
-        self.deviceId = control.setting('dynnsDeviceId')
-        if self.deviceId == None or self.deviceId == '':
-            # generate new DeviceID
-            self.deviceId = binascii.b2a_hex(os.urandom(16)).upper()
-            control.addon().setSetting(id='dynnsDeviceId', value = self.deviceId)
-        else :
-            return self.deviceId
+        self.deviceId = binascii.b2a_hex(os.urandom(16)).upper()
 
     def getUserAgent(self, option):
         useragent=''
         if option == 0:
-            headers={'User-Agent':self.getDeviceID(),
+            headers={'User-Agent':cache.get(self.getDeviceID, 8),
                      'Authorization':base64.b64decode('QmFzaWMgWVcxMU9rQmtia0J1T0RRNQ==')}
             return client.source('https://app.dynns.com/keys/pakindiahdv2ff.php',headers=headers)
         elif option==1:
@@ -122,9 +117,9 @@ class source:
                      'Authorization':base64.b64decode('QmFzaWMgWVcxMU9rQmtia0J1T0RRNQ==')}
             useragent = client.source(base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2tleXMvYXJhYmljdHZoZHYxcC5waHA='),headers=headers)
         elif option == -1:
-            return self.getDeviceID()
+            return cache.get(self.getDeviceID, 8)
         else:
-            headers={'User-Agent':self.getDeviceID(),
+            headers={'User-Agent':cache.get(self.getDeviceID, 8),
                      'Authorization':base64.b64decode('QmFzaWMgWVcxMU9rQmtia0J1T0RRNQ==')}
             useragent = client.source(base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2tleXMvYXJhYmljdHZoZHYxZmYucGhw'),headers=headers)
         return useragent.split('.')[-1]
@@ -141,6 +136,7 @@ class source:
 
                 headers = {'Authorization': "Basic %s"%base64.b64decode('Wkdsc1pHbHNaR2xzT2xCQWEybHpkRUJ1'),
                            base64.b64decode("VXNlci1BZ2VudA=="):self.getUserAgent(-1)}
+                logger.debug('Token : %s url : %s' % (token, base64.b64decode(url)))
                 result = client.source(base64.b64decode(url)+token, headers=headers)
                 return result
             except:

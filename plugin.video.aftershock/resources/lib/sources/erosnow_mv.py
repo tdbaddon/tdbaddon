@@ -82,11 +82,6 @@ class source:
 
             result = json.loads(result)
 
-            #try :
-            #     sources.append({'source': host, 'parts': '1', 'quality': quality, 'provider': 'Hotstar', 'url': url, 'direct':True})
-            #except:
-            #    client.printException('')
-            #    pass
             logger.debug('%s SOURCES [%s]' % (__name__,sources))
             return sources
         except:

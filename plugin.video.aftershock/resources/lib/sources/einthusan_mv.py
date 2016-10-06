@@ -81,8 +81,10 @@ class source:
             try: import xbmc ; ip = xbmc.getIPAddress()
             except: ip = 'London'
 
+            referer = 'http://www.einthusan.com/movies/watch.php?id=%s' % url
+
             url = 'http://cdn.einthusan.com/geturl/%s/hd/%s/' % (url, ip)
-            url = client.request(url)
+            url = client.request(url, referer=referer)
 
             sources.append({'source': 'einthusan', 'quality': 'HD', 'provider': 'Einthusan', 'url': url,'direct':True})
             logger.debug('%s SOURCES [%s]' % (__name__,sources))

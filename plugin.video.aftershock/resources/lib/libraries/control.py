@@ -25,6 +25,8 @@ lang = xbmcaddon.Addon().getLocalizedString
 
 setting = xbmcaddon.Addon().getSetting
 
+setSetting = xbmcaddon.Addon().setSetting
+
 addon = xbmcaddon.Addon
 
 addItem = xbmcplugin.addDirectoryItem
@@ -113,47 +115,54 @@ cacheFile = os.path.join(dataPath, 'cache.db')
 # Media info 3  xbmc.executebuiltin('Container.SetViewMode(515)')
 viewMode = {'list':502, 'biglist':51, 'thumbnails':500, 'posterwrap':501, 'fanart':508, 'mediainfo1':504,'mediainfo2':503, 'mediainfo3':515}
 
+def artwork():
+    execute('RunPlugin(plugin://script.aftershock.artwork)')
+
+def appearance():
+    appearance = setting('appearance').lower() if condVisibility('System.HasAddon(script.aftershock.artwork)') else setting('appearance.alt').lower()
+    return appearance
+
 def addonIcon():
-    #appearance = setting('appearance').lower()
-    #if appearance in ['-', '']: return addonInfo('icon')
-    #else:
-    return os.path.join(addonPath, 'resources', 'media', 'icon.png')
+    theme = appearance() ; art = artPath()
+    if not (art == None and theme in ['-', '']): return os.path.join(art, 'icon.png')
+    return addonInfo('icon')
 
-def addonPoster():
-    #appearance = setting('appearance').lower()
-    #if appearance in ['-', '']: return 'DefaultVideo.png'
-    #else:
-    return os.path.join(addonPath, 'resources', 'media', 'poster.png')
-
-def addonBanner():
-    #appearance = setting('appearance').lower()
-    #if appearance in ['-', '']: return 'DefaultVideo.png'
-    #else:
-    return os.path.join(addonPath, 'resources', 'media', 'banner.png')
 
 def addonThumb():
-    #appearance = setting('appearance').lower()
-    #if appearance == '-': return 'DefaultFolder.png'
-    #elif appearance == '': return addonInfo('icon')
-    #else:
-    #return os.path.join(addonPath, 'resources', 'media', appearance, 'icon.png')
-    return os.path.join(addonPath, 'resources', 'media', 'icon.png')
+    theme = appearance() ; art = artPath()
+    if not (art == None and theme in ['-', '']): return os.path.join(art, 'poster.png')
+    elif theme == '-': return 'DefaultFolder.png'
+    return addonInfo('icon')
+
+
+def addonPoster():
+    theme = appearance() ; art = artPath()
+    if not (art == None and theme in ['-', '']): return os.path.join(art, 'poster.png')
+    return 'DefaultVideo.png'
+
+
+def addonBanner():
+    theme = appearance() ; art = artPath()
+    if not (art == None and theme in ['-', '']): return os.path.join(art, 'banner.png')
+    return 'DefaultVideo.png'
+
 
 def addonFanart():
-    #appearance = setting('appearance').lower()
-    #if appearance == '-': return None
-    #elif appearance == '': return addonInfo('fanart')
-    #else:
-    return os.path.join(addonPath, 'resources', 'media', 'fanart.png')
+    theme = appearance() ; art = artPath()
+    if not (art == None and theme in ['-', '']): return os.path.join(art, 'fanart.png')
+    return addonInfo('fanart')
+
 
 def addonNext():
-    appearance = setting('appearance').lower()
-    #if appearance in ['-', '']: return 'DefaultFolderBack.png'
-    #else:
-    return os.path.join(addonPath, 'resources', 'media', 'next.png')
+    theme = appearance() ; art = artPath()
+    if not (art == None and theme in ['-', '']): return os.path.join(art, 'next.png')
+    return 'DefaultVideo.png'
 
 def artPath():
-    return os.path.join(addonPath, 'resources', 'media')
+    theme = appearance()
+    if theme in ['-', '']: return
+    elif condVisibility('System.HasAddon(script.aftershock.artwork)'):
+        return os.path.join(xbmcaddon.Addon('script.aftershock.artwork').getAddonInfo('path'), 'resources', 'media', theme)
 
 def infoDialog(message, heading=addonInfo('name'), icon=addonIcon(), time=3000):
     try: dialog.notification(heading, message, icon, time, sound=False)
@@ -196,3 +205,12 @@ def openSettings(query=None, id=addonInfo('id')):
         execute('SetFocus(%i)' % (int(f) + 200))
     except:
         return
+
+
+def resetSettings(forceReset, version):
+    try :
+        if xbmcvfs.exists(settingsFile):
+            xbmcvfs.delete(settingsFile)
+        return '1'
+    except:
+        return '1'

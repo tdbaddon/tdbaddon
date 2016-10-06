@@ -33,6 +33,7 @@ def live(title):
     title = re.sub('USA| US | UK| AU|APAC|EUROPE', '', title)
     title = re.sub('CENIMA', 'CINEMA', title)
     title = re.sub('&TV', 'AND TV', title)
+    title = title.strip()
     return title
 
 def normalize(title):

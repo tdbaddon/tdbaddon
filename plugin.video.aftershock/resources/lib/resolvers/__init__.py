@@ -19,8 +19,6 @@
 '''
 
 import urlparse, urllib
-from resources.lib.resolvers import realdebrid
-from resources.lib.resolvers import premiumize
 from resources.lib.libraries import client
 from resources.lib.libraries import logger
 
@@ -105,4 +103,6 @@ def info():
         , {'class': 'playu', 'host': ['playu.net']}
         , {'class': 'apnasave', 'host': ['apnasave.in']}
         , {'class': 'filmywap', 'host': ['storeinusa.com']}
+        , {'class': 'ditto', 'host': ['dittotv.com']}
+        , {'class': 'dynns', 'host': ['dynns.com']}
     ]

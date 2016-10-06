@@ -24,10 +24,9 @@ import os,sys,urlparse
 from resources.lib.libraries import control
 from resources.lib.libraries import views
 from resources.lib.libraries import logger
+from resources.lib.libraries import analytics
 
-artPath = control.artPath()
-
-addonFanart = control.addonFanart()
+artPath = control.artPath() ; addonFanart = control.addonFanart()
 
 try: action = dict(urlparse.parse_qsl(sys.argv[2].replace('?','')))['action']
 except: action = None
@@ -52,29 +51,35 @@ class navigator:
     def root(self):
 
         self.addDirectoryItem(30860, 'movieLangNavigator', 'movies.png','DefaultMovies.png')
-        self.addDirectoryItem(90114, 'desiLiveNavigator', 'live.png','DefaultMovies.png')
-        self.addDirectoryItem(30861, 'desiTVNavigator', 'tv.png','DefaultMovies.png')
+        self.addDirectoryItem(90114, 'desiLiveNavigator', 'tv-live.png','DefaultMovies.png')
+        self.addDirectoryItem(90115, 'liveEPGNavigator', 'tv-epg.png','DefaultMovies.png')
+        self.addDirectoryItem(30861, 'desiTVNavigator', 'tv-vod.png','DefaultMovies.png')
 
         self.addDirectoryItem(90116, 'openSettings&query=0.0', 'settings.png', 'DefaultMovies.png')
         self.addDirectoryItem(90117, 'clearCache', 'clearcache.png', 'DefaultMovies.png')
 
         self.endDirectory()
 
+
         from resources.lib.libraries import cache
         from resources.lib.libraries import changelog
         cache.get(changelog.get, 600000000, control.addonInfo('version'), table='changelog')
+        cache.get(control.resetSettings, 600000000, 'true', control.addonInfo('version'), table='changelog')
+        cache.get(analytics.sendAnalytics, 600000000, ("Installed-%s" % control.addonInfo('version')), table='changelog')
+
+
 
     def desiLangMovies(self):
         self.addDirectoryItem(30201, 'movieSearch', 'search.png', 'DefaultMovies.png')
-        self.addDirectoryItem(90105, 'movieNavigator&lang=%s' % 'hindi', 'hindimovies.png', 'DefaultMovies.png')
-        self.addDirectoryItem(90106, 'movieNavigator&lang=%s' % 'tamil', 'tamil.png', 'DefaultMovies.png')
-        self.addDirectoryItem(90107, 'movieNavigator&lang=%s' % 'telugu', 'telugu.png', 'DefaultMovies.png')
-        self.addDirectoryItem(90118, 'movieNavigator&lang=%s' % 'marathi', 'marathi.png', 'DefaultMovies.png')
-        self.addDirectoryItem(90119, 'movieNavigator&lang=%s' % 'punjabi', 'punjabi.png', 'DefaultMovies.png')
-        self.addDirectoryItem(90120, 'movieNavigator&lang=%s' % 'bengali', 'bengali.png', 'DefaultMovies.png')
-        self.addDirectoryItem(90121, 'movieNavigator&lang=%s' % 'gujarati', 'gujarati.png', 'DefaultMovies.png')
-        self.addDirectoryItem(90122, 'movieNavigator&lang=%s' % 'malayalam', 'malayalam.png', 'DefaultMovies.png')
-        self.addDirectoryItem(90123, 'movieNavigator&lang=%s' % 'kannada', 'kannada.png', 'DefaultMovies.png')
+        self.addDirectoryItem(90105, 'movieNavigator&lang=%s' % 'hindi', 'language.png', 'DefaultMovies.png')
+        self.addDirectoryItem(90106, 'movieNavigator&lang=%s' % 'tamil', 'language.png', 'DefaultMovies.png')
+        self.addDirectoryItem(90107, 'movieNavigator&lang=%s' % 'telugu', 'language.png', 'DefaultMovies.png')
+        self.addDirectoryItem(90118, 'movieNavigator&lang=%s' % 'marathi', 'language.png', 'DefaultMovies.png')
+        self.addDirectoryItem(90119, 'movieNavigator&lang=%s' % 'punjabi', 'language.png', 'DefaultMovies.png')
+        self.addDirectoryItem(90120, 'movieNavigator&lang=%s' % 'bengali', 'language.png', 'DefaultMovies.png')
+        self.addDirectoryItem(90121, 'movieNavigator&lang=%s' % 'gujarati', 'language.png', 'DefaultMovies.png')
+        self.addDirectoryItem(90122, 'movieNavigator&lang=%s' % 'malayalam', 'language.png', 'DefaultMovies.png')
+        self.addDirectoryItem(90123, 'movieNavigator&lang=%s' % 'kannada', 'language.png', 'DefaultMovies.png')
         self.endDirectory()
 
     def desiMovies(self, lang):
@@ -130,8 +135,8 @@ class navigator:
         self.endDirectory()
 
     def search(self):
-        self.addDirectoryItem(30151, 'movieSearch', 'movieSearch.jpg', 'DefaultMovies.png')
-        self.addDirectoryItem(30152, 'tvSearch', 'tvSearch.jpg', 'DefaultTVShows.png')
+        self.addDirectoryItem(30151, 'movieSearch', 'search.jpg', 'DefaultMovies.png')
+        self.addDirectoryItem(30152, 'tvSearch', 'search.jpg', 'DefaultTVShows.png')
         self.addDirectoryItem(30153, 'moviePerson', 'moviePerson.jpg', 'DefaultMovies.png')
         self.addDirectoryItem(30154, 'tvPerson', 'tvPerson.jpg', 'DefaultTVShows.png')
 
@@ -140,7 +145,7 @@ class navigator:
     def addDirectoryItem(self, name, query, thumb, icon, context=None, isAction=True, isFolder=True):
         try: name = control.lang(name).encode('utf-8')
         except: pass
-        url = '%s?action=%s' % (sysaddon, query) if isAction == True else query
+        url = '%s?action=%s&name=%s' % (sysaddon, query, name) if isAction == True else query
 
         if not 'http' in thumb :
             thumb = os.path.join(artPath, thumb) if not artPath == None else icon

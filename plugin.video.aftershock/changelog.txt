@@ -1,19 +1,28 @@
 ------------------------
-Aftershock v3.8.0 (22-Sept-2016)
+Aftershock v4.0.1 (05-Oct-2016)
 ------------------------
-- [COLOR orange]NOTE: Aftershock is a free addon.[/COLOR]
+- [COLOR orange]NOTE: If you like the addon please consider making a donation to aftershockpy@gmail.com via paypal.[/COLOR]
+- Updated the look n feel with new theme icons for modern look
+- Added DesiPlex ( thanks to crazzzzy for providing the source )
+- Real-Debrid Support added
+- Updated Providers
+
+------------------------
+Aftershock v3.8.1 (22-Sept-2016)
+------------------------
+- [COLOR orange]NOTE: If you like the addon please consider making a donation to aftershockpy@gmail.com via paypal.[/COLOR]
 - Live TV Bug fix for all platforms
 
 ------------------------
 Aftershock v3.8.0 (22-Sept-2016)
 ------------------------
-- [COLOR orange]NOTE: Aftershock is a free addon.[/COLOR]
+- [COLOR orange]NOTE: If you like the addon please consider making a donation to aftershockpy@gmail.com via paypal.[/COLOR]
 - Re-wrote Live TV module for future expansion
 
 ------------------------
 Aftershock v3.7.5 (24-Aug-2016)
 ------------------------
-- [COLOR orange]NOTE: Aftershock is a free addon.[/COLOR]
+- [COLOR orange]NOTE: If you like the addon please consider making a donation to aftershockpy@gmail.com via paypal.[/COLOR]
 - Updated Providers
 - Fixed Live Streams for UKTVNOW and DITTO
 - Fixed TV Show providers
@@ -21,31 +30,31 @@ Aftershock v3.7.5 (24-Aug-2016)
 ------------------------
 Aftershock v3.7.4 (14-Aug-2016)
 ------------------------
-- [COLOR orange]NOTE: Aftershock is a free addon.[/COLOR]
+- [COLOR orange]NOTE: If you like the addon please consider making a donation to aftershockpy@gmail.com via paypal.[/COLOR]
 - Updated Providers
 
 ------------------------
 Aftershock v3.7.3 (17-June-2016)
 ------------------------
-- [COLOR orange]NOTE: Aftershock is a free addon.[/COLOR]
+- [COLOR orange]NOTE: If you like the addon please consider making a donation to aftershockpy@gmail.com via paypal.[/COLOR]
 - Updated Providers
 
 ------------------------
 Aftershock v3.7.2 (11-May-2016)
 ------------------------
-- [COLOR orange]NOTE: Aftershock is a free addon.[/COLOR]
+- [COLOR orange]NOTE: If you like the addon please consider making a donation to aftershockpy@gmail.com via paypal.[/COLOR]
 - Updated Live TV Provider
 
 ------------------------
 Aftershock v3.7.1 (09-May-2016)
 ------------------------
-- [COLOR orange]NOTE: Aftershock is a free addon.[/COLOR]
+- [COLOR orange]NOTE: If you like the addon please consider making a donation to aftershockpy@gmail.com via paypal.[/COLOR]
 - Updated Index Provider
 
 ------------------------
 Aftershock v3.7.0 (05-May-2016)
 ------------------------
-- [COLOR orange]NOTE: Aftershock is a free addon.[/COLOR]
+- [COLOR orange]NOTE: If you like the addon please consider making a donation to aftershockpy@gmail.com via paypal.[/COLOR]
 - Fixed Download Feature
 - Updated dependencies
 - Updated Live TV Providers
@@ -53,7 +62,7 @@ Aftershock v3.7.0 (05-May-2016)
 ------------------------
 Aftershock v3.6.2 (03-May-2016)
 ------------------------
-- [COLOR orange]NOTE: Aftershock is a free addon.[/COLOR]
+- [COLOR orange]NOTE: If you like the addon please consider making a donation to aftershockpy@gmail.com via paypal.[/COLOR]
 - Updated Indexers
 - Updated Providers
 - Removed ZeeTV List Streams
@@ -61,7 +70,7 @@ Aftershock v3.6.2 (03-May-2016)
 ------------------------
 Aftershock v3.6.1 (04-Apr-2016)
 ------------------------
-- [COLOR orange]NOTE: Aftershock is a free addon.[/COLOR]
+- [COLOR orange]NOTE: If you like the addon please consider making a donation to aftershockpy@gmail.com via paypal.[/COLOR]
 - Re-wrote Live TV Framework to support multiple providers
 - Updated Indexers
 - Updated Providers
@@ -69,7 +78,7 @@ Aftershock v3.6.1 (04-Apr-2016)
 ------------------------
 Aftershock v3.5.2 (30-Mar-2016)
 ------------------------
-- [COLOR orange]NOTE: Aftershock is a free addon.[/COLOR]
+- [COLOR orange]NOTE: If you like the addon please consider making a donation to aftershockpy@gmail.com via paypal.[/COLOR]
 - Logging Improvements
 - Code cosmetics
 - UrlResolver Integration Improvements
@@ -78,7 +87,7 @@ Aftershock v3.5.2 (30-Mar-2016)
 ------------------------
 Aftershock v3.5.0 (21-Mar-2016)
 ------------------------
-- [COLOR orange]NOTE: Aftershock is a free addon.[/COLOR]
+- [COLOR orange]NOTE: If you like the addon please consider making a donation to aftershockpy@gmail.com via paypal.[/COLOR]
 - Fixed Aaj Tak Live Streams
 - Updated Providers
 - Updated Indexers
@@ -88,14 +97,14 @@ Aftershock v3.5.0 (21-Mar-2016)
 ------------------------
 Aftershock v3.4.1 (17-Mar-2016)
 ------------------------
-- [COLOR orange]NOTE: Aftershock is a free addon.[/COLOR]
+- [COLOR orange]NOTE: If you like the addon please consider making a donation to aftershockpy@gmail.com via paypal.[/COLOR]
 - Fixed HD Movies
 - Updated Providers
 
 ------------------------
 Aftershock v3.4.0 (15-Mar-2016)
 ------------------------
-- [COLOR orange]NOTE: Aftershock is a free addon.[/COLOR]
+- [COLOR orange]NOTE: If you like the addon please consider making a donation to aftershockpy@gmail.com via paypal.[/COLOR]
 - New Provider Added
     - DesiHits
     - DesiHDMovies
@@ -103,13 +112,13 @@ Aftershock v3.4.0 (15-Mar-2016)
 ------------------------
 Aftershock v3.3.1 (08-Mar-16)
 ------------------------
-- [COLOR orange]NOTE: Aftershock is a free addon.[/COLOR]
+- [COLOR orange]NOTE: If you like the addon please consider making a donation to aftershockpy@gmail.com via paypal.[/COLOR]
 - Hotfix for TV shows issue
 
 ------------------------
 Aftershock v3.3.0 (08-Mar-16)
 ------------------------
-- [COLOR orange]NOTE: Aftershock is a free addon.[/COLOR]
+- [COLOR orange]NOTE: If you like the addon please consider making a donation to aftershockpy@gmail.com via paypal.[/COLOR]
 
 - Bug Fixes
 - New Provider Added
@@ -124,7 +133,7 @@ Aftershock v3.3.0 (08-Mar-16)
 ------------------------
 Aftershock v3.2.0 (02-Mar-16)
 ------------------------
-- [COLOR orange]NOTE: Aftershock is a free addon.[/COLOR]
+- [COLOR orange]NOTE: If you like the addon please consider making a donation to aftershockpy@gmail.com via paypal.[/COLOR]
 
 - Bug Fixes
 - New Provider Added
@@ -138,7 +147,7 @@ Aftershock v3.2.0 (02-Mar-16)
 ------------------------
 Aftershock v3.1.0 (25-Feb-16)
 ------------------------
-- [COLOR orange]NOTE: Aftershock is a free addon.[/COLOR]
+- [COLOR orange]NOTE: If you like the addon please consider making a donation to aftershockpy@gmail.com via paypal.[/COLOR]
 
 - Added Tamil / Telugu Movies
 - Code cosmetics
@@ -148,21 +157,21 @@ Aftershock v3.1.0 (25-Feb-16)
 ------------------------
 Aftershock v3.0.5 (19-Feb-16)
 ------------------------
-- [COLOR orange]NOTE: Aftershock is a free addon.[/COLOR]
+- [COLOR orange]NOTE: If you like the addon please consider making a donation to aftershockpy@gmail.com via paypal.[/COLOR]
 
 - Fixed Zee TV Live Streams
 
 ------------------------
 Aftershock v3.0.4 (15-Feb-16)
 ------------------------
-- [COLOR orange]NOTE: Aftershock is a free addon.[/COLOR]
+- [COLOR orange]NOTE: If you like the addon please consider making a donation to aftershockpy@gmail.com via paypal.[/COLOR]
 
 - Added new sources [ApnaView]
 
 ------------------------
 Aftershock v3.0.2 (14-Feb-16)
 ------------------------
-- [COLOR orange]NOTE: Aftershock is a free addon.[/COLOR]
+- [COLOR orange]NOTE: If you like the addon please consider making a donation to aftershockpy@gmail.com via paypal.[/COLOR]
 
 - Bug Fixes
 - Added new sources [HindiLinks4U]
@@ -170,14 +179,14 @@ Aftershock v3.0.2 (14-Feb-16)
 ------------------------
 Aftershock v3.0.1 (1-Feb-16)
 ------------------------
-- [COLOR orange]NOTE: Aftershock is a free addon.[/COLOR]
+- [COLOR orange]NOTE: If you like the addon please consider making a donation to aftershockpy@gmail.com via paypal.[/COLOR]
 
 - Bug Fixes
 
 ------------------------
 Aftershock v3.0.1 (1-Jan-16)
 ------------------------
-- [COLOR orange]NOTE: Aftershock is a free addon.[/COLOR]
+- [COLOR orange]NOTE: If you like the addon please consider making a donation to aftershockpy@gmail.com via paypal.[/COLOR]
 
 - Complete re-write to migrate onto GENESIS Framework
 - New Look and Feel

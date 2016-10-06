@@ -434,8 +434,7 @@ class tvshows:
     def tvshowDirectory(self, items):
         if items == None or len(items) == 0: return
 
-        isFolder = True if control.setting('autoplay') == 'false' and control.setting('host_select') == '1' else False
-        isFolder = False if control.window.getProperty('PseudoTVRunning') == 'True' else isFolder
+        isFolder = True if control.setting('host_select') == '1' else False
 
         addonPoster, addonBanner = control.addonPoster(), control.addonBanner()
         addonFanart, settingFanart = control.addonFanart(), control.setting('fanart')

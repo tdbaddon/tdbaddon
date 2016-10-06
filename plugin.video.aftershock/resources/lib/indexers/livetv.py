@@ -48,8 +48,11 @@ class channels:
             meta=None
             sourceList = cache.get(sources().getSources, 2, name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date, meta)
 
-            sourceList = dict((cleantitle.tv(item['name']),item) for item in sourceList).values()
+            #print 'Before Cleanup', sourceList
+            sourceList = dict((cleantitle.live(item['name']),item) for item in sourceList).values()
+            #print 'Aftercleanup', sourceList
             #sourceList = {cleantitle.tv(item['name']):item for item in sourceList}.values()
+
             self.list.extend(sourceList)
             self.list = sorted(self.list, key=lambda k: k['name'])
 
@@ -89,7 +92,7 @@ class channels:
                               "source":provider, "meta":json.dumps(meta)}
                     syssource = urllib.quote_plus(json.dumps([source]))
 
-                    url = 'action=play&content=%s&name=%s&url=direct://' % (content, sysname)
+                    url = 'action=play&content=%s&name=%s' % (content, sysname)
                     url = '%s?%s' % (sysaddon, url)
 
                 item = control.item(label=label, iconImage=poster, thumbnailImage=poster)

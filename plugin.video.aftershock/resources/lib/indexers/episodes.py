@@ -437,7 +437,7 @@ class seasons:
     def seasonDirectory(self, items):
         if items == None or len(items) == 0: return
 
-        isFolder = True if control.setting('autoplay') == 'false' and control.setting('host_select') == '1' else False
+        isFolder = True if control.setting('host_select') == '1' else False
         isFolder = False if control.window.getProperty('PseudoTVRunning') == 'True' else isFolder
 
         addonPoster, addonBanner = control.addonPoster(), control.addonBanner()
@@ -564,10 +564,10 @@ class episodes:
     def episodeDirectory(self, items, provider=None):
         if items == None or len(items) == 0: return
 
-        isFolder = True if control.setting('autoplay') == 'false' and control.setting('host_select') == '1' else False
-        isFolder = False if control.window.getProperty('PseudoTVRunning') == 'True' else isFolder
+        isFolder = True if control.setting('host_select') == '1' else False
+        isPlayable = 'true' if not 'plugin' in control.infoLabel('Container.PluginName') else 'false'
 
-        playbackMenu = control.lang(30271).encode('utf-8') if control.setting('autoplay') == 'true' else control.lang(30270).encode('utf-8')
+        playbackMenu = control.lang(30271).encode('utf-8') if control.setting('host_select') == '2' else control.lang(30270).encode('utf-8')
 
         cacheToDisc = False
 
@@ -617,8 +617,8 @@ class episodes:
                 url = '%s?action=play&name=%s&title=%s&year=%s&imdb=%s&tmdb=%s&tvdb=%s&tvrage=%s&season=%s&episode=%s&tvshowtitle=%s&alter=%s&date=%s&meta=%s&t=%s' % (sysaddon, episodename, episodetitle, year, imdb, tmdb, tvdb, tvrage, season, episode, systitle, alter, syspremiered, sysmeta, self.systime)
                 sysurl = urllib.quote_plus(url)
 
-                if isFolder == True:
-                    url = '%s?action=sources&name=%s&title=%s&year=%s&imdb=%s&tmdb=%s&tvdb=%s&tvrage=%s&season=%s&episode=%s&tvshowtitle=%s&alter=%s&date=%s&meta=%s&provider=%s' % (sysaddon, episodename, episodetitle, year, imdb, tmdb, tvdb, tvrage, season, episode, systitle, alter, syspremiered, sysmeta, provider)
+                #if isFolder == True:
+                #    url = '%s?action=play&name=%s&title=%s&year=%s&imdb=%s&tmdb=%s&tvdb=%s&tvrage=%s&season=%s&episode=%s&tvshowtitle=%s&alter=%s&date=%s&meta=%s&provider=%s' % (sysaddon, episodename, episodetitle, year, imdb, tmdb, tvdb, tvrage, season, episode, systitle, alter, syspremiered, sysmeta, provider)
 
                 if sysaction == 'episodes':
                     url = '%s?action=episodes&tvshowtitle=%s&year=%s&imdb=%s&tmdb=%s&tvdb=%s&tvrage=%s&season=%s&episode=%s' % (sysaddon, systitle, year, imdb, tmdb, tvdb, tvrage, season, episode)
@@ -655,12 +655,12 @@ class episodes:
 
                 item.setInfo(type='Video', infoLabels = meta)
                 item.setProperty('Video', 'true')
-                #item.setProperty('IsPlayable', 'true')
+                item.setProperty('IsPlayable', isPlayable)
                 item.setProperty('resumetime',str(0))
                 item.setProperty('totaltime',str(1))
                 item.addContextMenuItems(cm, replaceItems=True)
 
-                control.addItem(handle=int(sys.argv[1]), url=url, listitem=item, isFolder=isFolder)
+                control.addItem(handle=int(sys.argv[1]), url=url, listitem=item, isFolder=False)
             except:
                 pass
 

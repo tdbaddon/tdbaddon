@@ -56,3 +56,5 @@ version bump
 version bump for TSDownloaders
 [B]Version 2.6.1[/B]
 callback params
+[B]Version 2.6.2[/B]
+iconImage support
