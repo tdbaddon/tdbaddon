@@ -38,6 +38,8 @@ class player(xbmc.Player):
         else:
             poster, thumb, meta = self.getLibraryMeta(meta)
 
+        if type(meta) == str:
+            meta = json.loads(meta)
         if not type(url) == list:
             url = [url]
 
@@ -46,7 +48,7 @@ class player(xbmc.Player):
 
         for i in range(0,len(url)):
             if len(url) > 1:
-                meta['title'] = '%s Part # %s' % (title, str(i+1))
+                meta['title'] = '%s Part # %s' % (title, i+1)
             try:
                 iconImage = meta['iconImage']
             except:

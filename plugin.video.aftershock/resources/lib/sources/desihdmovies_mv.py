@@ -28,7 +28,7 @@ from resources.lib.libraries import logger
 
 class source:
     def __init__(self):
-        self.base_link = 'http://www.desihdmovies.co'
+        self.base_link = 'http://www.movieonline365.com'
         self.search_link = '?s=%s'
 
     def get_movie(self, imdb, title, year):
@@ -42,7 +42,7 @@ class source:
 
             result = result.decode('iso-8859-1').encode('utf-8')
 
-            result = client.parseDOM(result, "div", attrs={"class":"boxinfo"})
+            result = client.parseDOM(result, "div", attrs={"class":"item"})
             title = cleantitle.movie(title)
 
             for item in result:
@@ -57,7 +57,8 @@ class source:
             if url == None or url == '':
                 raise Exception()
             return url
-        except:
+        except Exception as e:
+            logger.error('[%s] Exception : %s' % (self.__class__, e))
             return
 
     def get_sources(self, url):
@@ -75,7 +76,8 @@ class source:
             result = result.decode('iso-8859-1').encode('utf-8')
             result = result.replace('\n','').replace('\t','')
 
-            quality = client.parseDOM(result, "span", attrs={"class":"calidad2"})[0]
+            try:quality = client.parseDOM(result, "span", attrs={"class":"calidad2"})[0]
+            except:quality=""
 
             parts = client.parseDOM(result, "div", attrs={"class":"player_nav"})[0]
             parts = client.parseDOM(parts, "a")
@@ -98,7 +100,8 @@ class source:
                     pass
             logger.debug('%s SOURCES [%s]' % (__name__,sources))
             return sources
-        except:
+        except Exception as e:
+            logger.error('[%s] Exception : %s' % (self.__class__, e))
             return sources
 
 

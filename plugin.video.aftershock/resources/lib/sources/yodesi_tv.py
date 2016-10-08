@@ -62,7 +62,7 @@ class source:
 
     def get_sources(self, url):
         try:
-            logger.debug('%s SOURCES URL %s' % (self.__class__, url))
+            logger.debug('[%s] SOURCES URL %s' % (self.__class__, url))
             quality = ''
             sources = []
 
@@ -101,14 +101,14 @@ class source:
                     urls = []
                 except:
                     pass
-            logger.debug('%s SOURCES [%s]' % (__name__,sources))
+            logger.debug('[%s] SOURCES [%s]' % (__name__,sources))
             return sources
         except:
             return sources
 
     def resolve(self, url, resolverList):
         try:
-            logger.debug('%s ORIGINAL URL [%s]' % (__name__, url))
+            logger.debug('[%s] ORIGINAL URL [%s]' % (__name__, url))
             tUrl = url.split('##')
             if len(tUrl) > 0:
                 url = tUrl
@@ -122,7 +122,7 @@ class source:
                     raise Exception()
                 links.append(r)
             url = links
-            logger.debug('%s RESOLVED URL [%s]' % (__name__, url))
+            logger.debug('[%s] RESOLVED URL [%s]' % (__name__, url))
             return url
         except:
             return False

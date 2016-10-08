@@ -64,8 +64,6 @@ class sources:
 
             downloads = True if control.setting('downloads') == 'true' and not control.setting('movie.download.path') == '' else False
 
-            logger.debug('Downloads : %s' % downloads)
-
             sysaddon = sys.argv[0]
             syshandle = int(sys.argv[1])
 
@@ -103,8 +101,6 @@ class sources:
                 except:
                     parts = 2
 
-                logger.debug('Downloads : %s Parts : %s' % (downloads, parts))
-
                 label = items[i]['label']
 
                 syssource = urllib.quote_plus(json.dumps([items[i]]))
@@ -136,8 +132,8 @@ class sources:
 
     def play(self, name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date, meta, url, select=None):
         try:
-            #if not control.infoLabel('Container.FolderPath').startswith('plugin://'):
-            #    control.playlist.clear()
+            if not control.infoLabel('Container.FolderPath').startswith('plugin://'):
+                control.playlist.clear()
 
             control.resolve(int(sys.argv[1]), True, control.item(path=''))
             control.execute('Dialog.Close(okdialog)')
@@ -193,7 +189,8 @@ class sources:
             player().run(content, name, url, year, imdb, tvdb, meta)
 
             return url
-        except:
+        except Exception as e:
+            logger.error(e)
             control.infoDialog(control.lang(30501).encode('utf-8'))
 
     def playItem(self, content, title, source):
@@ -316,7 +313,6 @@ class sources:
             except: sourceDict = [(i, 'true') for i in sourceDict]
         elif content == 'episode':
             sourceDict = [i for i in sourceDict if i.endswith(('_tv', '_mv_tv'))]
-            #try: sourceDict = [(i, control.setting(re.sub('_mv_tv$|_mv$|_tv$', '', i) + '_tv')) for i in sourceDict]
             try: sourceDict = [(i, control.setting(re.sub('_mv_tv$|_mv$|_tv$', '', i))) for i in sourceDict]
             except: sourceDict = [(i, 'true') for i in sourceDict]
         elif content == 'live':
@@ -330,6 +326,8 @@ class sources:
         self.sourceFile = control.sourcescacheFile
 
         sourceDict = [i[0] for i in sourceDict if i[1] == 'true']
+
+        logger.debug('[%s] Content [%s] Source Dict : %s' % (self.__class__, content, sourceDict))
 
         if content == 'movie':
             title = cleantitle.normalize(title)
@@ -434,7 +432,9 @@ class sources:
             dbcur.execute("DELETE FROM rel_src WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, imdb, '', ''))
             dbcur.execute("INSERT INTO rel_src Values (?, ?, ?, ?, ?, ?)", (source, imdb, '', '', json.dumps(sources), datetime.datetime.now().strftime("%Y-%m-%d %H:%M")))
             dbcon.commit()
-        except:
+        except Exception as e:
+            logger.error(e)
+            import traceback
             pass
 
     def getEpisodeSource(self, title, year, imdb, tvdb, season, episode, tvshowtitle, date, source, call, meta=None):
@@ -536,7 +536,7 @@ class sources:
                 t2 = int(datetime.datetime.now().strftime("%Y%m%d%H%M"))
                 update = abs(t2 - t1) > 300
                 if update == False:
-                    logger.debug('Fetched sources from cache for [%s]: %s'% (name, source))
+                    logger.debug('[%s] Fetched sources from cache for [%s]'% (call.__class__, name))
                     sources = json.loads(match[4])
                     sources['content'] = 'live'
                     poster = sources['poster']
@@ -548,7 +548,7 @@ class sources:
             if update == False:
                 return self.sources
         except:
-            logger.debug('Source from cache not found for [%s]: %s'% (name, source))
+            logger.debug('[%s] Source from cache not found for [%s]'% (call.__class__, name))
             pass
         try:
             sources = []
@@ -563,17 +563,19 @@ class sources:
                 update = True
             if update == False:
                 sources == None
-                logger.debug('No Update required for : %s' % source)
+                logger.debug('[%s] No Update required ' % (call.__class__))
             else :
-               logger.debug('Fetching Live source : %s' % source)
+               logger.debug('[%s] Fetching Live source ' % (call.__class__))
                sources = call.getLiveSource()
+
                dbcur.execute("DELETE FROM rel_src WHERE source = '%s' AND season = '%s'" % (source, 'live'))
                dbcon.commit()
 
             if sources == None:
-                raise Exception()
+                raise Exception('No Sources Found')
                 sources = []
-
+            else:
+                logger.debug('(%s) Fetched Live sources : %s' % (call.__class__, len(sources)))
             idx = 0
 
             for item in sources:
@@ -600,9 +602,11 @@ class sources:
                         sources['content'] = 'live'
                         self.sources.append(sources)
                 return self.sources
-            except:
+            except Exception as e:
+                logger.error('(%s) Exception processing posters from sources : %s' % (call.__class__, e.args))
                 pass
-        except:
+        except Exception as e:
+            logger.error('(%s) Exception Live sources : %s' % (call.__class__, e.args))
             pass
     def getLivePoster(self, source):
         try:
@@ -796,7 +800,7 @@ class sources:
             pass
 
     def sourcesFilter(self):
-        logger.debug('Calling sources.filter()')
+        logger.debug('[%s] Calling sources.filter()' % self.__class__)
         for i in range(len(self.sources)): self.sources[i]['source'] = self.sources[i]['source'].lower()
         self.sources = sorted(self.sources, key=lambda k: k['source'])
 
@@ -810,12 +814,12 @@ class sources:
 
         self.sources = filter
 
+        filter = []
         for d in self.debridDict: filter += [dict(i.items() + [('debrid', d)]) for i in self.sources if i['source'].lower() in self.debridDict[d]]
+
+        for host in self.hostDict : filter += [i for i in self.sources if i['direct'] == False and i['source'] in host and 'debridonly' not in i]
         self.sources = filter
 
-        filter = []
-        for host in self.hostDict : filter += [i for i in self.sources if i['direct'] == False and i['source'] in host]
-        self.sources = filter
 
         filter = []
         filter += [i for i in self.sources if i['quality'] == '1080p' and 'debrid' in i]
@@ -835,6 +839,7 @@ class sources:
             p = re.sub('v\d*$', '', p)
 
             q = self.sources[i]['quality']
+            logger.debug('%s %s %s' % (s, p, q))
 
             try: f = (' | '.join(['[I]%s [/I]' % info.strip() for info in self.sources[i]['info'].split('|')]))
             except: f = ''

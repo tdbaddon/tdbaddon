@@ -64,7 +64,7 @@ class navigator:
         from resources.lib.libraries import cache
         from resources.lib.libraries import changelog
         cache.get(changelog.get, 600000000, control.addonInfo('version'), table='changelog')
-        cache.get(control.resetSettings, 600000000, 'true', control.addonInfo('version'), table='changelog')
+        #cache.get(control.resetSettings, 600000000, 'true', control.addonInfo('version'), table='changelog')
         cache.get(analytics.sendAnalytics, 600000000, ("Installed-%s" % control.addonInfo('version')), table='changelog')
 
 

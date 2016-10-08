@@ -1,4 +1,13 @@
 ------------------------
+Aftershock v4.0.2 (XX-XXX-2016)
+------------------------
+- [COLOR orange]NOTE: If you like the addon please consider making a donation to aftershockpy@gmail.com via paypal.[/COLOR]
+- Fixed bug with Auto-Play and Dialog Host selection methods
+- Added Real-Debrid providers
+- Minor fixes
+- Updated providers
+- Improved logging
+------------------------
 Aftershock v4.0.1 (05-Oct-2016)
 ------------------------
 - [COLOR orange]NOTE: If you like the addon please consider making a donation to aftershockpy@gmail.com via paypal.[/COLOR]

@@ -33,7 +33,7 @@ class source:
 
     def getLiveSource(self):
         try :
-            logger.debug('json local : %s' % control.setting('livelocal'))
+            logger.debug('[%s] json local : %s' % (self.__class__, control.setting('livelocal')))
             if control.setting('livelocal') == 'true':
                 dataPath = control.dataPath
                 filename = os.path.join(dataPath, 'livestreams_wip.json')
@@ -44,8 +44,6 @@ class source:
                 result = client.request(self.live_link)
 
             channels = json.loads(result)
-
-            print channels
 
             channelNames = channels.keys()
             channelNames.sort()

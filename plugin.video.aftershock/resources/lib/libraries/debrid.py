@@ -24,6 +24,7 @@ import urllib,json,time
 from resources.lib.libraries import cache
 from resources.lib.libraries import control
 from resources.lib.libraries import client
+from resources.lib.libraries import logger
 
 
 def rdAuthorize():
@@ -94,6 +95,7 @@ def rdDict():
         result = cache.get(client.request, 24, url)
         hosts = json.loads(result)
         hosts = [i.lower() for i in hosts]
+        logger.debug('[%s] Debrid Dict : %s' %(__name__ , hosts))
         return hosts
     except:
         return []

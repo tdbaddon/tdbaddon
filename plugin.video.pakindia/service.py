@@ -18,9 +18,8 @@ def random_generator(size=32):
 KEY= random_generator().upper()
 ADDON.setSetting('pak_key',KEY)
 
-
 try :
-        DATA_URL='https://app.dynns.com/keys/arabictvhdv1ff.php'
+        DATA_URL='https://app.dynns.com/keys/arabictvhdnewfff.php'
         request = urllib2.Request(DATA_URL)
         base64string = 'YW11OkBkbkBuODQ5'
         request.add_header("User-Agent",KEY) 

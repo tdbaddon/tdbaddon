@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addon id="plugin.video.aftershock"
        name="Aftershock"
-       version="4.0.1"
+       version="4.1.0"
        provider-name="IDev">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>

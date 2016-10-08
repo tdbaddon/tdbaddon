@@ -36,29 +36,30 @@ class source:
             langMap = {'hi':'hindi', 'ta':'tamil', 'te':'telugu', 'ml':'malayalam', 'kn':'kannada', 'bn':'bengali', 'mr':'marathi', 'pa':'punjabi'}
 
             lang = 'http://www.imdb.com/title/%s/' % imdb
-            lang = client.source(lang)
+            lang = client.request(lang)
             lang = re.findall('href\s*=\s*[\'|\"](.+?)[\'|\"]', lang)
-            lang = [i for i in lang if '/language/' in i]
-            lang = [i.split('/language/')[-1].split('?')[0].lower() for i in lang]
+            lang = [i for i in lang if 'languages=' in i]
+            lang = [i.split('languages=')[-1].split('&')[0].lower() for i in lang]
             lang = [i for i in lang if any(x == i for x in langMap.keys())]
             lang = langMap[lang[0]]
+
 
             url = urlparse.urljoin(self.base_link, self.search_link)
             post = urllib.urlencode({'search': title, 'lang': lang})
 
-            result = client.source(url, post=post)
+            result = client.request(url, post=post)
             result = json.loads(result)['results'][:2]
             result = [urlparse.urljoin(self.base_link, self.movie_link % i) for i in result]
 
             title = cleantitle.movie(title)
-            years = ['%s' % str(year), '%s' % str(int(year)+1), '%s' % str(int(year)-1)]
+            years = ['%s' % str(year)]
 
             url = None
 
-            info = json.loads(client.source(result[0]))
+            info = json.loads(client.request(result[0]))
             if title == cleantitle.movie(info['movie']) and any(x in str(info['year']) for x in years): url = info['movie_id']
 
-            if url == None: info = json.loads(client.source(result[1]))
+            if url == None: info = json.loads(client.request(result[1]))
             if title == cleantitle.movie(info['movie']) and any(x in str(info['year']) for x in years): url = info['movie_id']
 
             if url == None: return
@@ -67,8 +68,8 @@ class source:
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
             return url
-
-        except:
+        except Exception as e:
+            logger.error('[%s] Exception : %s' % (self.__class__, e))
             return
 
     def get_sources(self, url):

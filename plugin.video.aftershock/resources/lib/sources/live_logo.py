@@ -33,7 +33,7 @@ class source:
 
     def getLivePosters(self):
         try :
-            logger.debug('logos local : %s' % control.setting('livelocal'))
+            logger.debug('[%s] logos local : %s' % (self.__class__, control.setting('livelocal')))
 
             if control.setting('livelocal') == 'true':
                 dataPath = control.dataPath

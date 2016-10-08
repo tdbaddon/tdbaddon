@@ -522,7 +522,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 <addon id="plugin.video.aftershock"
        name="Aftershock"
-       version="4.0.1"
+       version="4.1.0"
        provider-name="IDev">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
@@ -1774,7 +1774,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.pakindia" name="Pak India Live" version="0.4.9" provider-name="Mikey1234">
+<addon id="plugin.video.pakindia" name="Pak India Live" version="0.5.0" provider-name="Mikey1234">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
   </requires>
@@ -2131,7 +2131,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBTVSHOWS"
        name="TDB TV SHOWS"
-       version="1.62"
+       version="1.63"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -2277,7 +2277,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.tvondesizonexl" name="TV on DESI ZONE" version="2.8.13"
+<addon id="plugin.video.tvondesizonexl" name="TV on DESI ZONE" version="2.8.14"
 	provider-name="ajdeveloped/jchirag">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
@@ -2651,7 +2651,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.ZemTV-shani"
        name="ZemTV.com"
-       version="5.6.0"
+       version="5.6.1"
        provider-name="shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>

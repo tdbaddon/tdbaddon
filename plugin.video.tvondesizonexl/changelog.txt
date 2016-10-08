@@ -1,3 +1,6 @@
+[B]Version 2.8.14[/B]
+- Fixed Icons
+
 [B]Version 2.8.13[/B]
 - Added Maa TV and Zee Telugu
 

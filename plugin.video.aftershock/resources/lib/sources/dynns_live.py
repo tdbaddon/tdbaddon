@@ -88,9 +88,9 @@ class source:
     def resolve(self, url, resolverList):
 
         try :
-            logger.debug('%s ORIGINAL URL [%s]' % (__name__, url))
+            logger.debug('[%s] ORIGINAL URL [%s]' % (self.__class__, url))
             authToken = self.getAuthToken()
-            logger.debug('AuthToken %s' % authToken)
+            logger.debug('[%s] AuthToken %s' % (self.__class__, authToken))
             url += authToken
             if '|' not in url:
                 url += '|'
@@ -98,13 +98,15 @@ class source:
             import random
             useragent='User-Agent=AppleCoreMedia/1.0.0.%s (%s; U; CPU OS %s like Mac OS X; en_gb)'%(random.choice(['13G34' ,'13G36']),random.choice(['iPhone','iPad','iPod']),random.choice(['9_3_3','9_3_4','9_3_5']))
             url+=useragent
-            logger.debug('%s RESOLVED URL [%s]' % (__name__, url))
+            logger.debug('[%s] RESOLVED URL [%s]' % (self.__class__, url))
             return url
-        except :
+        except Exception as e:
+            logger.error(e)
             return False
 
     def getDeviceID(self):
         self.deviceId = binascii.b2a_hex(os.urandom(16)).upper()
+        logger.debug('[%s] DeviceID : %s' % (self.__class__, self.deviceId))
 
     def getUserAgent(self, option):
         useragent=''
@@ -122,6 +124,7 @@ class source:
             headers={'User-Agent':cache.get(self.getDeviceID, 8),
                      'Authorization':base64.b64decode('QmFzaWMgWVcxMU9rQmtia0J1T0RRNQ==')}
             useragent = client.source(base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2tleXMvYXJhYmljdHZoZHYxZmYucGhw'),headers=headers)
+        logger.debug('[%s] UserAgent : %s' % (self.__class__, useragent))
         return useragent.split('.')[-1]
 
     def getAuthToken(self):
@@ -136,8 +139,9 @@ class source:
 
                 headers = {'Authorization': "Basic %s"%base64.b64decode('Wkdsc1pHbHNaR2xzT2xCQWEybHpkRUJ1'),
                            base64.b64decode("VXNlci1BZ2VudA=="):self.getUserAgent(-1)}
-                logger.debug('Token : %s url : %s' % (token, base64.b64decode(url)))
+                logger.debug('[%s] Token : %s url : %s' % (self.__class__, token, base64.b64decode(url)))
                 result = client.source(base64.b64decode(url)+token, headers=headers)
+                logger.debug('[%s] AuthToken : %s' % (self.__class__, result))
                 return result
-            except:
-                print 'auth error',url
+            except Exception as e:
+                logger.error(e)

@@ -4868,27 +4868,40 @@ def PlaySafeLink(url):
 
     #print 'safe url',url    
 
+    
     import websocket
     ws = websocket.WebSocket()
     #wsfirst = websocket.WebSocket()
     try:
-    
-
-    
+        useragent=''
+        headers = [('Referer', base64.b64decode('aHR0cDovL29ubGluZWRlbW8uc2FmZXJzdXJmLmNvbS9vbmxpbmV0di1saXZlZGVtby5odG1s')),('User-Agent','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36')]
+        import time
+        od= base64.b64decode('aHR0cDovL29ubGluZWRlbW8uc2FmZXJzdXJmLmNvbS8=')
+        mainhtml=getUrl(od,headers=headers)
+        js=urllib.unquote(re.findall("StartScriptSpeedTest\(unescape\('(.*?)'",mainhtml)[0])
+        if not js.startswith('http'):
+            js=od+js
         header=[base64.b64decode("T3JpZ2luOiBodHRwOi8vY3VzdG9tZXIuc2FmZXJzdXJmLmNvbQ=="),"User-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"]
         #wsfirst.connect(base64.b64decode("d3M6Ly81Mi40OC44Ni4xMzU6MTMzOC90Yi9tM3U4L21hc3Rlci9zaXRlaWQvY3VzdG9tZXIub25saW5ldHYudjM="),header=header)
         #wsfirst.recv() 
         ws.connect(base64.b64decode("d3M6Ly81Mi40OC44Ni4xMzU6MTMzOC90Yi9tM3U4L21hc3Rlci9zaXRlaWQvY3VzdG9tZXIub25saW5ldHYudjM="),header=header)
         result = ws.recv() 
 
-        import time
-        bpsurl=base64.b64decode("aHR0cHM6Ly9saXZlZGVtby5zYWZlcnN1cmYuY29tL3BocC9zcGVlZC5waHA/ZHRwPQ==")+ str(int(time.time()*1000))
         headers = [('Referer', base64.b64decode('aHR0cDovL2N1c3RvbWVyLnNhZmVyc3VyZi5jb20=')),('User-Agent','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36'),('Origin',base64.b64decode('aHR0cDovL2N1c3RvbWVyLnNhZmVyc3VyZi5jb20v'))]
+
+        import time
+        print 'js',js
+        st= time.time()
+        getUrl(js+'?dt='+ str(int(time.time()*1000)),headers=headers)
+        totaltime=time.time()- st
+        print totaltime
+        testsize,kbps, kbRes, res =safeFinishedTest(totaltime)
+        bpsurl=base64.b64decode("aHR0cHM6Ly9saXZlZGVtby5zYWZlcnN1cmYuY29tL3BocC9zcGVlZC5waHA/ZHRwPQ==")+ str(int(time.time()*1000))
         bpsdata=getUrl( bpsurl,headers=headers)
         bpsres, bpstime=re.findall("'bpsResultDiv'>(.*?)<.*?bpsTimeResultDiv'>(.*?)<",bpsdata)[0]
         #bpsres, bpstime="f2824d2ea474e61cade597825656747e","1475696762" 
         
-        jsdata='[{"key":"type","value":"info"},{"key":"info","value":"speedtest"},{"key":"country","value":"France"},{"key":"language","value":"en"},{"key":"speedTestSize","value":"210"},{"key":"kbPs","value":"1600.79"},{"key":"speedResKb","value":"4G"},{"key":"bpsResult","value":"%s"},{"key":"speedResTime","value":"DSL"},{"key":"websocketSupport","value":"true"},{"key":"speedTestInTime","value":"true"},{"key":"bpsTimeResult","value":"%s"},{"key":"flash","value":"true"},{"key":"touchScreen","value":"false"},{"key":"rotationSupport","value":"false"},{"key":"pixelRatio","value":"1"},{"key":"width","value":"1366"},{"key":"height","value":"768"},{"key":"mobilePercent","value":"33"}]'%(bpsres, bpstime)
+        jsdata='[{"key":"type","value":"info"},{"key":"info","value":"speedtest"},{"key":"country","value":"France"},{"key":"language","value":"en"},{"key":"speedTestSize","value": "%s"},{"key":"kbPs","value":"%s"},{"key":"speedResKb","value":"%s"},{"key":"bpsResult","value":"%s"},{"key":"speedResTime","value":"%s"},{"key":"websocketSupport","value":"true"},{"key":"speedTestInTime","value":"true"},{"key":"bpsTimeResult","value":"%s"},{"key":"flash","value":"true"},{"key":"touchScreen","value":"false"},{"key":"rotationSupport","value":"false"},{"key":"pixelRatio","value":"1"},{"key":"width","value":"1366"},{"key":"height","value":"768"},{"key":"mobilePercent","value":"33"}]'%( testsize,str(kbps),kbRes , bpsres, res, bpstime,)
         ws.send(jsdata)
         
         #result = ws.recv()   
@@ -4914,6 +4927,47 @@ def PlaySafeLink(url):
     import random
     listitem = xbmcgui.ListItem( label = str(name), iconImage = "DefaultVideo.png", thumbnailImage = xbmc.getInfoImage( "ListItem.Thumb" ) )
     xbmc.Player(  ).play( urlToPlay+base64.b64decode('fE9yaWdpbj1odHRwOi8vY3VzdG9tZXIuc2FmZXJzdXJmLmNvbSZVc2VyLUFnZW50PU1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDYuMSkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzUyLjAuMjc0My4xMTYgU2FmYXJpLzUzNy4zNiZSZWZlcmVyPWh0dHA6Ly9jdXN0b21lci5zYWZlcnN1cmYuY29tL29ubGluZXR2Lmh0bWw='), listitem)
+
+def safeFinishedTest(dur):
+    import math
+    res = "";
+    kbMulti = 1
+    if (dur > 5): #// 43 kb/s
+        res = "GPRS"; 
+    elif (dur > 2):# // 47 kb/s | onlinedemo : ~2.3s
+        res = "2G"; 
+        kbMulti = 2.6;
+    elif (dur > 1.3):# // 89 kb/s | onlinedemo : ~1.3s
+        res = "2G"; 
+        kbMulti = 2.8;
+    elif (dur > 0.7):# // 153 kb/s | onlinedemo : ~0.8s
+        res = "3G"; 
+        kbMulti = 3;
+    elif (dur > 0.4):# // 358 kb/s | onlinedemo : ~0.45s
+        res = "3G";
+        kbMulti = 3;
+    elif (dur > 0.3):# // 358 kb/s | onlinedemo : ~0.35s
+        res = "DSL";
+        kbMulti = 3.3;
+    else:
+        res = "4G"; 
+        kbMulti = 4;
+    kbps = (210 / dur) * 1.024 * kbMulti
+    kbps = round(kbps * 100) / 100
+    kbRes = "";
+    if (kbps > 1500.0):
+        kbRes = "4G";
+    elif (kbps > 600.0):
+        kbRes = "DSL";
+    elif (kbps > 300.0):
+        kbRes = "3G";
+    elif (kbps > 100.0):
+        kbRes = "2G";
+    else:
+        kbRes = "GPRS";
+    
+                
+    return "210",kbps, kbRes, res
      
 def PlayPV2Link(url):
 

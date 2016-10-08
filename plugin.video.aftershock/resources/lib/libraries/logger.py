@@ -44,7 +44,8 @@ def warning(msg):
     log(msg, level=LOGWARNING)
 
 def error(msg):
-    log(msg, level=LOGERROR)
+    if control.setting('debug') == 'true':
+        log(msg, level=LOGERROR)
 
 def log(msg, level=LOGDEBUG):
     # override message level to force logging when addon logging turned on

@@ -239,6 +239,8 @@ elif action == 'openSettings':
 
 elif action == 'clearCache':
     from resources.lib.libraries import cache
+    from resources.lib.libraries import metacache
     from resources.lib import sources
     cache.clear()
+    metacache.clear()
     sources.sources().clearSources()

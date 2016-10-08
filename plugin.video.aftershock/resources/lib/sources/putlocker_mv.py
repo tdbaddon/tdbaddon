@@ -39,7 +39,7 @@ class source:
             return
 
     def get_sources(self, url):
-        logger.debug('%s SOURCES URL %s' % (self.__class__, url))
+        logger.debug('[%s] SOURCES URL %s' % (self.__class__, url))
 
         try:
             sources = []
@@ -111,7 +111,7 @@ class source:
 
             for i in links: sources.append({'source': i['source'], 'quality': i['quality'], 'provider': 'Putlocker', 'url': i['url'], 'direct': i['direct'], 'debridonly': False})
 
-            logger.debug('%s SOURCES [%s]' % (__name__,sources))
+            logger.debug('[%s] SOURCES [%s]' % (__name__,sources))
             return sources
         except:
             return sources

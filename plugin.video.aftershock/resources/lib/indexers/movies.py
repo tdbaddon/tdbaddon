@@ -70,21 +70,22 @@ class movies:
 
 
     def get(self, url, idx=True, provider=None, lang=None):
-        logger.debug('Inside movies.get()')
+        logger.debug('[%s] url [%s] provider [%s] lang [%s] ' % (self.__class__, url, provider, lang))
         try:
             try: u = urlparse.urlparse(url).netloc.lower()
             except: pass
             if not provider == None:
                 call = __import__('resources.lib.sources.%s' % provider, globals(), locals(), ['source'], -1).source()
-                self.list = cache.get(call.scn_full_list, 24, url, lang, provider)
+                self.list = cache.get(call.scn_full_list, 48, url, lang, provider)
                 self.worker()
             elif u in self.imdb_link:
-                self.list = cache.get(self.imdb_list, 24, url)
+                self.list = cache.get(self.imdb_list, 48, url)
                 if idx == True: self.worker()
 
             if idx == True: self.movieDirectory(self.list, lang=lang)
             return self.list
-        except:
+        except Exception as e:
+            logger.error(e)
             pass
     def imdb_list(self, url):
         try:
@@ -513,7 +514,6 @@ class movies:
     def movieDirectory(self, items, lang=None):
         if items == None or len(items) == 0: return
 
-        isFolder = True if control.setting('host_select') == '1' else False
         isPlayable = 'true' if not 'plugin' in control.infoLabel('Container.PluginName') else 'false'
 
         playbackMenu = control.lang(30204).encode('utf-8') if control.setting('host_select') == '2' else control.lang(30203).encode('utf-8')
@@ -522,7 +522,6 @@ class movies:
 
         addonPoster, addonBanner = control.addonPoster(), control.addonBanner()
         addonFanart, settingFanart = control.addonFanart(), control.setting('fanart')
-
 
         sysaddon = sys.argv[0]
 

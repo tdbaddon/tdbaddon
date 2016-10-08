@@ -55,7 +55,7 @@ class source:
             query = self.search_link % (urllib.quote_plus(query))
             query = urlparse.urljoin(self.base_link % 'search', query)
 
-            result = client.source(query, headers=self.headers,safe=True)
+            result = client.source(query, headers=self.headers)
 
             result = result.decode('iso-8859-1').encode('utf-8')
             result = json.loads(result)
@@ -71,11 +71,12 @@ class source:
             if url == None or url == '':
                 raise Exception()
             return url
-        except:
+        except Exception as e:
+            logger.error('[%s] Exception : %s' % (self.__class__, e))
             return
 
     def get_sources(self, url):
-        logger.debug('%s SOURCES URL %s' % (self.__class__, url))
+        logger.debug('[%s] SOURCES URL %s' % (self.__class__, url))
         try:
             quality = ''
             sources = []
@@ -101,21 +102,23 @@ class source:
                             quality = self.res_map[res]
                             url = '%s|Cookie=%s' % (url, cookie)
                             sources.append({'source': host, 'parts': '1', 'quality': quality, 'provider': 'Hotstar', 'url': url, 'direct':True})
-                        except:
+                        except Exception as e:
+                            logger.error('[%s] Exception : %s' % (self.__class__, e))
                             pass
-            except:
+            except Exception as e:
+                logger.error('[%s] Exception : %s' % (self.__class__, e))
                 pass
-            logger.debug('%s SOURCES [%s]' % (__name__,sources))
+            logger.debug('[%s] SOURCES [%s]' % (__name__,sources))
             return sources
         except:
             return sources
 
     def resolve(self, url, resolverList):
-        logger.debug('%s ORIGINAL URL [%s]' % (__name__, url))
+        logger.debug('[%s] ORIGINAL URL [%s]' % (__name__, url))
         try:
             cookie = url.split("|")[1]
             url = '%s|Cookie=%s&%s' % (url, cookie,urllib.urlencode(self.headers))
-            logger.debug('%s RESOLVED URL [%s]' % (__name__, url))
+            logger.debug('[%s] RESOLVED URL [%s]' % (__name__, url))
             return [url]
         except:
             return False
