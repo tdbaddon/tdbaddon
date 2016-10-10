@@ -1,3 +1,7 @@
+2016.10.06.02
+    add - Added Documentaries as Genre
+    Trakt.tv - API Images will be removed on Oct 31, 2016. - added images from filmkodi
+
 2016.10.04.02
     small fix - muchmovies, watchseriesfree, fmovies
 

@@ -18,7 +18,7 @@
 '''
 
 
-import os,re,sys,hashlib,urllib,urlparse,json,base64
+import os,re,sys,hashlib,urllib,urlparse,json,base64,random
 import xbmc
 
 try: from sqlite3 import dbapi2 as database
@@ -63,6 +63,16 @@ class indexer:
             self.list = self.phoenix_list('', result=url)
             if worker == True: self.worker()
             self.addDirectory(self.list)
+            return self.list
+        except:
+            pass
+
+
+    def gety(self, url, worker=False):
+        try:
+            self.list = self.phoenix_list('', result=url)
+            if worker == True: self.worker()
+            self.addDirectory(self.list, queue=True)
             return self.list
         except:
             pass
@@ -224,15 +234,19 @@ class indexer:
                 else: action = 'directory'
 
                 if action in ['directory', 'plugin']: folder = True
-                elif not regex == '': folder = True
+                elif not regex == '': folder = True ; action = 'regex'
                 else: folder = False
 
                 try: content = re.findall('<content>(.+?)</content>', meta)[0]
                 except: content = '0'
                 if not content == '0': content += 's'
 
-                if 'tvshow' in  content and not url.strip().endswith('.xml'):
+                if 'tvshow' in content and not url.strip().endswith('.xml'):
                     url = '<preset>tvindexer</preset><url>%s</url><thumbnail>%s</thumbnail><fanart>%s</fanart>%s' % (url, image2, fanart2, meta)
+                    action = 'play'
+
+                if 'tvtuner' in content and not url.strip().endswith('.xml'):
+                    url = '<preset>tvtuner</preset><url>%s</url><thumbnail>%s</thumbnail><fanart>%s</fanart>%s' % (url, image2, fanart2, meta)
                     action = 'play'
 
                 try: imdb = re.findall('<imdb>(.+?)</imdb>', meta)[0]
@@ -471,12 +485,15 @@ class indexer:
             pass
 
 
-    def addDirectory(self, items, mode=True):
+    def addDirectory(self, items, mode=True, queue=False):
         if items == None or len(items) == 0: return
 
         sysaddon = sys.argv[0]
         addonPoster = addonBanner = control.addonInfo('icon')
         addonFanart = control.addonInfo('fanart')
+
+        playlist = control.playlist
+        if not queue == False: playlist.clear()
 
         try: devmode = True if 'testings.xml' in control.listDir(control.dataPath)[1] else False
         except: devmode = False
@@ -567,12 +584,15 @@ class indexer:
 
                 item.setInfo(type='Video', infoLabels = meta)
                 item.addContextMenuItems(cm)
-                control.addItem(handle=int(sys.argv[1]), url=url, listitem=item, isFolder=folder)
+                if queue == False: control.addItem(handle=int(sys.argv[1]), url=url, listitem=item, isFolder=folder)
+                else: playlist.add(url=url, listitem=item)
             except:
                 pass
 
+        if not queue == False:
+            return control.player.play(playlist)
+
         if not mode == None: control.content(int(sys.argv[1]), mode)
-        #control.do_block_check(False)
         control.directory(int(sys.argv[1]), cacheToDisc=True)
         if not mode == None: views.setView(mode)
 
@@ -708,7 +728,7 @@ class resolver:
         try:
             preset = re.findall('<preset>(.+?)</preset>', url)[0]
 
-            if not 'tvindexer' in preset: raise Exception()
+            if not preset in ['tvindexer', 'tvtuner']: raise Exception()
 
             url, imdb, tvdb, tvshowtitle, year, thumbnail, fanart = re.findall('<url>(.+?)</url>', url)[0], re.findall('<imdb>(.+?)</imdb>', url)[0], re.findall('<tvdb>(.+?)</tvdb>', url)[0], re.findall('<tvshowtitle>(.+?)</tvshowtitle>', url)[0], re.findall('<year>(.+?)</year>', url)[0], re.findall('<thumbnail>(.+?)</thumbnail>', url)[0], re.findall('<fanart>(.+?)</fanart>', url)[0]
 
@@ -721,13 +741,25 @@ class resolver:
             items = re.findall(pattern, items)
             items = [(i[0], i[1], i[2].strip()) for i in items]
 
+            if preset == 'tvtuner':
+                choice = random.choice(items)
+                items = items[items.index(choice):] + items[:items.index(choice)]
+                items = items[:100]
+
             result = ''
 
             for i in items:
-                try: result += '<item><title> %01dx%02d . %s</title><meta><content>episode</content><imdb>%s</imdb><tvdb>%s</tvdb><tvshowtitle>%s</tvshowtitle><year>%s</year><title>%s</title><premiered>0</premiered><season>%01d</season><episode>%01d</episode></meta><link><sublink>search</sublink><sublink>searchsd</sublink></link><thumbnail>%s</thumbnail><fanart>%s</fanart></item>' % (int(i[0]), int(i[1]), i[2], imdb, tvdb, tvshowtitle, year, i[2], int(i[0]), int(i[1]), thumbnail, fanart)
+                item = '<item><title> %01dx%02d . %s</title><meta><content>episode</content><imdb>%s</imdb><tvdb>%s</tvdb><tvshowtitle>%s</tvshowtitle><year>%s</year><title>%s</title><premiered>0</premiered><season>%01d</season><episode>%01d</episode></meta><link><sublink>search</sublink><sublink>searchsd</sublink></link><thumbnail>%s</thumbnail><fanart>%s</fanart></item>' % (int(i[0]), int(i[1]), i[2], imdb, tvdb, tvshowtitle, year, i[2], int(i[0]), int(i[1]), thumbnail, fanart)
+                try: result += item
                 except: pass
 
-            indexer().getx(result, worker=True)
+            if preset == 'tvindexer':
+                indexer().getx(result, worker=True)
+
+            elif preset == 'tvtuner':
+                result = result.replace('<sublink>searchsd</sublink>', '')
+                indexer().gety(result, worker=True)
+
             return False
         except:
             pass
@@ -853,8 +885,10 @@ class player(xbmc.Player):
         xbmc.Player.__init__(self)
 
 
-    def play(self, url, content=None):
+    def play(self, url, content=None, SRU=True):
         try:
+            base = url
+
             url = resolver().get(url)
             if url == False: return
 
@@ -889,6 +923,7 @@ class player(xbmc.Player):
             except: pass
             item.setInfo(type='Video', infoLabels = meta)
             control.player.play(url, item)
+            if SRU == True: control.resolve(int(sys.argv[1]), True, item)
 
 
             self.totalTime = 0 ; self.currentTime = 0

@@ -72,7 +72,8 @@ sd_streams = ['goindexsport','multi-sports.eu', 'watchnfl.live', 'streamhd.eu/fo
 			'sportsnewsupdated.com', 'watchnba.tv', 'feedredsoccer.at.ua', 'jugandoes.com', 'wiz1.net', 'bosscast.net', 
 			'watchsportstv.boards.net', 'tv-link.in', 'klivetv.co', 'videosport.me', 'livesoccerg.com', 'zunox.hk', 'singidunum.', 
 			'zona4vip.com', 'ciscoweb.ml', 'streamendous.com','streamm.eu', 'sports-arena.net', 'stablelivestream.com', 
-			'iguide.to', 'sportsleague.me','kostatz.com', 'soccerpluslive.com', 'zunox', 'apkfifa.com']
+			'iguide.to', 'sportsleague.me','kostatz.com', 'soccerpluslive.com', 'zunox', 'apkfifa.com','watchhdsports.xyz','lovelysports2016.ml',
+			'sports4u.live','tusalavip3.es.tl']
 
 def utc_to_local(utc_dt):
     timestamp = calendar.timegm(utc_dt.timetuple())
@@ -83,11 +84,13 @@ def utc_to_local(utc_dt):
 
 UA='Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'
 
-def GetURL(url, referer=None, output=None, timeout=None):
+def GetURL(url, referer=None, output=None, timeout=None, headers=None):
 	if 'streamm.eu' in url or 'sawlive' in url:
 		import cfscrape
 		scraper = cfscrape.create_scraper()
-		return scraper.get(url).content
+		if headers:
+			return scraper.get(url, headers=headers).content
+		else: return scraper.get(url).content
 	url = url.replace('///','//')
 	request = urllib2.Request(url)
 	request.add_header('User-agent', UA)
@@ -1112,6 +1115,10 @@ def Universal(url):
 		id = html.split('fid="')[-1].split('";')[0]
 		link = castup(id)
 		return link
+	elif html and 'cast4u' in html:
+		id = html.split("fid='")[-1].split("';")[0]
+		link = cast4u(id)
+		return link
 	elif html and 'rocktv.co' in html and 'live=' not in html:
 		id = html.split("fid='")[-1].split("';")[0]
 		link = rocktv(id)
@@ -1160,6 +1167,10 @@ def Universal(url):
 			url = url.replace("'","")
 		link = sawresolve(url)
 		return link
+	elif html and 'shidurlive.com' in html:
+		url = re.findall("src='(http.+?shidurlive.com/embed/.+?)'",html)[0]
+		link = sawresolve(url)
+		return link
 	elif html and ('.m3u8' in html or 'rtmp:' in html or '.f4m' in html):
 		html = urllib.unquote_plus(html)
 		links = re.findall("[file|source|hls|src][:|=]\s*[\"\'](.*?)[\"\']", html)
@@ -1168,6 +1179,8 @@ def Universal(url):
 				link = link.replace('src=','')	
 				if 'smotrimult' in link:
 					link = link+'|Referer='+url+'&Host='+urlparse.urlparse(link).netloc+'&Origin='+urlparse.urlparse(url).netloc+'&User-Agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.116 Safari/537.36'
+				elif 'widestream' in link:
+					link = link+'|Referer='+url+'&X-Requested-With=ShockwaveFlash/23.0.0.166'
 				return link
 	else:
 		domain = urlparse.urlparse(url).netloc
@@ -1189,18 +1202,17 @@ def Universal(url):
 				ss = Universal(url)
 				if ss:
 					return ss
-				else:
-					Universal(url)
 
 	
 def sawresolve(query):
 	try:
-		print query
 		import js2py
+		import cfscrape
+		scraper = cfscrape.create_scraper()
 		header = {'Referer':  query, 'User-Agent': UA, 'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
 					'Accept-Language':'en-US,en;q=0.8,bg;q=0.6,it;q=0.4,ru;q=0.2,uk;q=0.2',
 					'Connection':'keep-alive', 'Host':urlparse.urlparse(query).netloc,'Upgrade-Insecure-Requests':'1'}
-		decoded = GetURL(query)
+		decoded = scraper.get(query, headers=header).content
 		context = js2py.EvalJs()
 		context.execute('''pyimport jstools;
            		var escape = jstools.escape;
@@ -1230,10 +1242,10 @@ def sawresolve(query):
 		src = common.parseDOM(result, 'iframe', ret='src')[-1]
 		src = src.replace("'","").replace('"','')
 		if src:
-			header = {'Referer':  src, 'User-Agent': UA, 'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+			header = {'Referer':  query, 'User-Agent': UA, 'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
 					'Accept-Language':'en-US,en;q=0.8,bg;q=0.6,it;q=0.4,ru;q=0.2,uk;q=0.2',
 					'Connection':'keep-alive', 'Host':urlparse.urlparse(src).netloc,'Upgrade-Insecure-Requests':'1'}
-			decoded = GetURL(src)
+			decoded = scraper.get(src, headers=header).content
 			swf = re.compile("SWFObject\('(.+?)'").findall(decoded)[0].replace(' ', '')
 			decoded = decoded.split("'uniform');")[-1].split("</script>")[0]
 			so = re.findall('(so.addVariable\(.*?\))', decoded)
@@ -1255,6 +1267,7 @@ def sawresolve(query):
 			return url
 	except:
 		return None
+	
 		
 def castup(id):
 	try:
@@ -1327,8 +1340,8 @@ def broadcast(id, ur):
 	try:
 		import base64           
 		url = 'http://bro.adca.st/stream.php?id=' + id + '&width=640&height=480'
-		headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.101 Safari/537.36', 'Referer': ur, 'Host': 'bro.adca.st'}
-		source = getUrl(url, header = headers)
+		ur = ur.replace('wizhdsports.be','wizhdsports.to')
+		source = GetURL(url, referer=ur)
 		curl = re.findall('curl = "(.*?)"', source)[0]
 		m3u8 = base64.b64decode(curl)
 		url2 = 'http://bro.adca.st/getToken.php'    
@@ -1410,6 +1423,36 @@ def hdcast(link, url):
 	except:
 		return None
 
+
+def cast4u(id):
+	try:
+		url = 'http://www.cast4u.tv/embedp4u.php?v='+id
+		page = url
+		result = GetURL(url, referer=url)
+		result= result.replace('","','').replace('["','').replace('"]','').replace('.join("")',' ').replace(r'\/','/')
+		vars = re.findall('var (.+?)\s*=\s*(.+?);',result)
+		inners = re.findall('id=(.+?)>([^<]+)<',result)
+		inners = dict(inners)
+		js = re.findall('srcs*=s*(?:\'|\")(.+?player\.js(?:.+?|))(?:\'|\")',result)[0]
+		js = GetURL(js, referer=url)
+		token = re.findall('securetoken: ([^\n]+)',result)[0]
+		token = re.findall('var\s+%s\s*=\s*(?:\'|\")(.+?)(?:\'|\")' % token, js)[-1]
+		for i in range (100):
+			for v in vars:
+				result = result.replace('  + %s'%v[0],v[1])
+		for x in inners.keys():
+			result = result.replace('  + document.getElementById("%s").innerHTML'%x,inners[x])
+		fs = re.findall('function (.+?)\(\)\s*\{\s*return\(([^\n]+)',result)
+		url = re.findall('file:(.+?)\s*\}',result)[0]
+		for f in fs:
+			url = url.replace('%s()'%f[0],f[1])
+		url = url.replace(');','').split(" + '/' + ")
+		streamer, file = url[0].replace('rtmpe','rtmp').strip(), url[1]
+		url=streamer + '/ playpath=' + file + ' swfUrl=http://www.hdcast.info/myplayer/jwplayer.flash.swf flashver=WI/2020,0,0,286 live=1 timeout=20 token=' + token + ' pageUrl=' + page
+		return url
+	except:
+		return None
+    
 
 def lshstream(url):
 	try:

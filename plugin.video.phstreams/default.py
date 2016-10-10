@@ -68,6 +68,10 @@ elif action == 'play':
     from resources.lib.indexers import phstreams
     phstreams.player().play(url, content)
 
+elif action == 'regex':
+    from resources.lib.indexers import phstreams
+    phstreams.player().play(url, content, False)
+
 elif action == 'browser':
     from resources.lib.indexers import phstreams
     phstreams.resolver().browser(url)

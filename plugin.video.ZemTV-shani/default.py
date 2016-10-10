@@ -219,11 +219,13 @@ def DisplayChannelNames(url):
 			addDir(cname[1] ,cname[0] ,1,'',isItFolder=False)
 	return
 
-
-def Addtypes():
+def AddtypesForShows():
 	addDir('Latest Shows (ZemTv)' ,'Shows' ,2,'')
 	addDir('Latest Shows (Siasat.pk)' ,'http://www.siasat.pk/forum/forumdisplay.php?29-Daily-Talk-Shows' ,2,'')
 	addDir('All Programs and Talk Shows' ,'ProgTalkShows' ,2,'')
+
+def Addtypes():
+	addDir('Pakistani Political Shows' ,'PakLive' ,29,'')
 	addDir('Pakistani Live Channels' ,'PakLive' ,2,'')
 	addDir('Indian Live Channels' ,'IndianLive' ,2,'')
 	addDir('Punjabi Live Channels' ,'PunjabiLive' ,2,'')
@@ -1383,7 +1385,7 @@ def playHDCast(url, mainref, altref=None):
             if 'blockscript=' in result: #ok captcha here
                 try:
                     tries=0
-                    while 'blockscript=' in result and tries<3:
+                    while 'blockscript=' in result and tries<2:
                         tries+=1
                         xval=re.findall('name="x" value="(.*?)"',result)[0]
                         urlval=re.findall('name="url" value="(.*?)"',result)[0]
@@ -1391,8 +1393,10 @@ def playHDCast(url, mainref, altref=None):
                         imageurl=re.findall('<td nowrap><img src="(.*?)"',result)[0].replace('&amp;','&')             
                         if not imageurl.startswith('http'):
                             imageurl='http://hdcast.org'+imageurl
-                        headersforimage=[('Referer',embedUrl),('Origin','http://hdcast.org'),('User-Agent',agent)]                             
-                        post={'blockscript':blocscriptval, 'x':xval, 'url':urlval,'val':getHDCastCaptcha(imageurl,cookieJar,headersforimage )}
+                        headersforimage=[('Referer',embedUrl),('Origin','http://hdcast.org'),('User-Agent',agent)]     
+                        captchaval=getHDCastCaptcha(imageurl,cookieJar,headersforimage , tries )
+                        if captchaval=="": break
+                        post={'blockscript':blocscriptval, 'x':xval, 'url':urlval,'val':captchaval}
                         post = urllib.urlencode(post)
                         
                         result=getUrl(embedUrl,post=post, headers=headersforimage, cookieJar=cookieJar)
@@ -1471,10 +1475,10 @@ def tst():
             solver = InputWindow(captcha=local_captcha)
             retcaptcha = solver.get()
             
-def getHDCastCaptcha(imageurl,cookieJar, headers):
+def getHDCastCaptcha(imageurl,cookieJar, headers, tries):
     retcaptcha=""
     if 1==1:
-        local_captcha = os.path.join(profile_path, "captchaC.img" )
+        local_captcha = os.path.join(profile_path, "captchaC%s.img"%str(tries) )
         localFile = open(local_captcha, "wb")
         localFile.write(getUrl(imageurl,cookieJar,headers=headers))
         localFile.close()
@@ -1635,7 +1639,7 @@ def AddSafeChannels(url):
     jsondata=getUrl('http://customer.safersurf.com/php/getProgForLanguage.php?varName=allChannelsAllCats&noAdd=false&browserLang=%s&displayLang=en&userCountry=United%%20Kingdom&src=all&dtp=%s'%(curl,tt),headers=headers)
     #print jsondata
     jsondata=re.findall('=(\[.*\])',jsondata)[0]
-    addDir(Colored('Channel Language [%s]'.capitalize()%cname,'red') ,'' ,0 ,'', False, True,isItFolder=False)
+    addDir(Colored('Channel Language [%s] .\nPlease Click again if fails first time'.capitalize()%cname,'red') ,'' ,0 ,'', False, True,isItFolder=False)
     #print jsondata
     jsondata=json.loads(jsondata)
     for cc in jsondata:
@@ -4863,7 +4867,7 @@ def playSports365(url,progress):
         print 'Updated files'
     return
     
-def PlaySafeLink(url):
+def PlaySafeLink(url, recursive=False, usecode=None):
 
 
     #print 'safe url',url    
@@ -4900,6 +4904,11 @@ def PlaySafeLink(url):
         bpsdata=getUrl( bpsurl,headers=headers)
         bpsres, bpstime=re.findall("'bpsResultDiv'>(.*?)<.*?bpsTimeResultDiv'>(.*?)<",bpsdata)[0]
         #bpsres, bpstime="f2824d2ea474e61cade597825656747e","1475696762" 
+        #lastval=selfAddon.getSetting( "safeplaylastcode" ) 
+        #if lastval=="": lastval=bpsres
+        #selfAddon.setSetting( "safeplaylastcode",bpsres)
+        #bpsres=lastval
+        if usecode: bpsres=usecode
         
         jsdata='[{"key":"type","value":"info"},{"key":"info","value":"speedtest"},{"key":"country","value":"France"},{"key":"language","value":"en"},{"key":"speedTestSize","value": "%s"},{"key":"kbPs","value":"%s"},{"key":"speedResKb","value":"%s"},{"key":"bpsResult","value":"%s"},{"key":"speedResTime","value":"%s"},{"key":"websocketSupport","value":"true"},{"key":"speedTestInTime","value":"true"},{"key":"bpsTimeResult","value":"%s"},{"key":"flash","value":"true"},{"key":"touchScreen","value":"false"},{"key":"rotationSupport","value":"false"},{"key":"pixelRatio","value":"1"},{"key":"width","value":"1366"},{"key":"height","value":"768"},{"key":"mobilePercent","value":"33"}]'%( testsize,str(kbps),kbRes , bpsres, res, bpstime,)
         ws.send(jsdata)
@@ -4913,8 +4922,8 @@ def PlaySafeLink(url):
         print repr(result)
 
         headers = [('Referer', base64.b64decode('aHR0cDovL2N1c3RvbWVyLnNhZmVyc3VyZi5jb20vb25saW5ldHYuaHRtbA==')),('User-Agent','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36'),('Origin',base64.b64decode('aHR0cDovL2N1c3RvbWVyLnNhZmVyc3VyZi5jb20='))]
-        url=re.findall('[\'"](http.*?)[\'"]',result)[0]
-        result=getUrl(url,headers=headers)
+        urlnew=re.findall('[\'"](http.*?)[\'"]',result)[0]
+        result=getUrl(urlnew,headers=headers)
     except: 
         traceback.print_exc(file=sys.stdout)
 
@@ -4924,6 +4933,16 @@ def PlaySafeLink(url):
     except: 
         traceback.print_exc(file=sys.stdout)
     urlToPlay=re.findall('(http.*?)\s',result)[-1]
+    try:
+        result=getUrl(urlToPlay,headers=headers)
+    except:
+        #dialog = xbmcgui.Dialog()
+        #ok = dialog.ok('XBMC', 'Failed to get the Url, try again!') 
+        #return
+        if not recursive:
+            urlToPlay=PlaySafeLink(url, recursive=True,usecode=bpsres )
+    
+    if recursive: return urlToPlay
     import random
     listitem = xbmcgui.ListItem( label = str(name), iconImage = "DefaultVideo.png", thumbnailImage = xbmc.getInfoImage( "ListItem.Thumb" ) )
     xbmc.Player(  ).play( urlToPlay+base64.b64decode('fE9yaWdpbj1odHRwOi8vY3VzdG9tZXIuc2FmZXJzdXJmLmNvbSZVc2VyLUFnZW50PU1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDYuMSkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzUyLjAuMjc0My4xMTYgU2FmYXJpLzUzNy4zNiZSZWZlcmVyPWh0dHA6Ly9jdXN0b21lci5zYWZlcnN1cmYuY29tL29ubGluZXR2Lmh0bWw='), listitem)
@@ -6163,7 +6182,10 @@ try:
     elif mode==2 or mode==43:
         print "Ent url is ",name,url        
         AddEnteries(name, url)
-
+    elif mode==29:
+        print "Ent url is ",name,url        
+        AddtypesForShows()
+        
     elif mode==3:
         print "Play url is "+url
         PlayShowLink(url)

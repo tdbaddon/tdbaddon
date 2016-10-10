@@ -223,6 +223,7 @@ class tvshows:
         ('Comedy', 'comedy'),
         ('Crime', 'crime'),
         ('Drama', 'drama'),
+        ('Documentary','documentary'),
         ('Family', 'family'),
         ('Fantasy', 'fantasy'),
         ('Game-Show', 'game_show'),

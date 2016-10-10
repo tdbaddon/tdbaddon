@@ -46,8 +46,14 @@ http://tor981.akacast.akamaistream.net/7/550/80872/v1/rogers.akacast.akamaistrea
 #EXTINF:0,98.7 G98 
 http://50.22.253.45:8000/ckfg-fm
 
+#EXTINF:0,99.7 BOOM FM
+http://live.leanstream.co/CJOTFM-MP3?type=.mp3/;stream.mp3
+
 #EXTINF:0,99.9 VIRGIN RADIO 
 http://15723.live.streamtheworld.com:80/CKFMFMAAC_SC
+
+#EXTINF:0,100.3 JACK FM
+http://80.237.210.91
 
 #EXTINF:0,100.7 CHIN FM
 http://ice7.securenetsystems.net/CHINFM?type=.flv

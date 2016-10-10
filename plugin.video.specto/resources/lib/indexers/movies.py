@@ -21,6 +21,7 @@
 
 import os,sys,re,json,urllib,urlparse,datetime
 import re
+import base64
 
 try: action = dict(urlparse.parse_qsl(sys.argv[2].replace('?','')))['action']
 except: action = None
@@ -60,10 +61,10 @@ class movies:
         self.tmdb_poster = 'http://image.tmdb.org/t/p/w500'
         self.persons_link = 'http://www.imdb.com/search/name?count=100&name=%s'
         self.personlist_link = 'http://www.imdb.com/search/name?count=100&gender=male,female'
-        self.genres_tab = [('Action', 'action'), ('Adventure', 'adventure'), ('Animation', 'animation'),('Biography', 'biography'),
-                           ('Comedy', 'comedy'), ('Crime', 'crime'), ('Drama', 'drama'),('Family', 'family'), ('Fantasy', 'fantasy'),
-                           ('History', 'history'), ('Horror', 'horror'),('Music ', 'music'), ('Musical', 'musical'), ('Mystery', 'mystery'),
-                           ('Romance', 'romance'),('Science Fiction', 'sci_fi'), ('Sport', 'sport'), ('Thriller', 'thriller'), ('War', 'war'),('Western', 'western')]
+        #self.genres_tab = [('Action', 'action'), ('Adventure', 'adventure'), ('Animation', 'animation'),('Biography', 'biography'),
+        #                   ('Comedy', 'comedy'), ('Crime', 'crime'), ('Drama', 'drama'),('Family', 'family'), ('Fantasy', 'fantasy'),
+        #                   ('History', 'history'), ('Horror', 'horror'),('Music ', 'music'), ('Musical', 'musical'), ('Mystery', 'mystery'),
+        #                   ('Romance', 'romance'),('Science Fiction', 'sci_fi'), ('Sport', 'sport'), ('Thriller', 'thriller'), ('War', 'war'),('Western', 'western')]
 
         self.popular_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&languages=en&num_votes=500,&production_status=released&groups=top_1000&sort=moviemeter,asc&count=20&start=1'
         self.featured_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&languages=en&num_votes=500,&production_status=released&release_date=date[365],date[60]&sort=moviemeter,asc&count=20&start=1'
@@ -73,7 +74,7 @@ class movies:
         self.views_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&languages=en&num_votes=500,&production_status=released&sort=num_votes,desc&count=20&start=1'
         self.theaters_link = 'http://www.imdb.com/search/title?title_type=feature&languages=en&num_votes=200,&release_date=%s,%s&sort=release_date_us,desc&count=20&start=1' % (self.year_date, self.today_date)
         self.search_link = 'http://api-v2launch.trakt.tv/search?type=movie&query=%s&limit=20'
-        self.genre_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&languages=en&num_votes=100,&genres=%s&sort=moviemeter,asc&count=20&start=1'
+        self.genre_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie,documentary&languages=en&num_votes=100,&genres=%s&sort=moviemeter,asc&count=20&start=1'
         self.year_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&languages=en&num_votes=100,&production_status=released&year=%s&sort=moviemeter,asc&count=20&start=1'
         self.person_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&production_status=released&role=%s&sort=year,desc&count=40&start=1'
         self.certification_link = 'http://api.themoviedb.org/3/discover/movie?api_key=%s&certification=%s&certification_country=US&primary_release_date.lte=%s&page=1' % ('%s', '%s', self.today_date)
@@ -232,6 +233,7 @@ class movies:
         ('Comedy', 'comedy'),
         ('Crime', 'crime'),
         ('Drama', 'drama'),
+        ('Documentary','documentary'),
         ('Family', 'family'),
         ('Fantasy', 'fantasy'),
         ('History', 'history'),
@@ -369,24 +371,18 @@ class movies:
                 imdb = imdb.encode('utf-8')
 
                 poster = '0'
-                try: poster = item['images']['poster']['medium']
-                except: pass
-                if poster == None or not '/posters/' in poster: poster = '0'
-                poster = poster.rsplit('?', 1)[0]
+                poster = 'http://films4u.org/poster/'+base64.b64encode(imdb)+'.jpg'
+
                 poster = poster.encode('utf-8')
 
                 banner = poster
-                try: banner = item['images']['banner']['full']
-                except: pass
+
                 if banner == None or not '/banners/' in banner: banner = '0'
-                banner = banner.rsplit('?', 1)[0]
+                banner = 'http://films4u.org/banner/'+base64.b64encode(imdb)+'.jpg'
                 banner = banner.encode('utf-8')
 
                 fanart = '0'
-                try: fanart = item['images']['fanart']['full']
-                except: pass
-                if fanart == None or not '/fanarts/' in fanart: fanart = '0'
-                fanart = fanart.rsplit('?', 1)[0]
+                poster = 'http://films4u.org/fanart/'+base64.b64encode(imdb)+'.jpg'
                 fanart = fanart.encode('utf-8')
 
                 try:
@@ -602,7 +598,7 @@ class movies:
                 plot = client.replaceHTMLCodes(plot)
                 plot = plot.encode('utf-8')
 
-                fanart = 'http://films4u.org/imdb/bgs/'+imdb+'.jpg'
+                fanart = 'http://films4u.org/fanart/'+base64.b64encode(imdb)+'.jpg'
                 fanart = fanart.encode('utf-8')
 
 
@@ -883,7 +879,7 @@ class movies:
 
             try:
                 if not imdb == '0':
-                    fanart = 'http://films4u.org/imdb/bgs/'+imdb+'.jpg'
+                    fanart = 'http://films4u.org/fanart/'+base64.b64encode(imdb)+'.jpg'
                     fanart= fanart.encode('utf-8')
 
                 else:

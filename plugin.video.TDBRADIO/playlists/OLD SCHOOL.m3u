@@ -1,9 +1,6 @@
 ﻿#EXTM3U
 
 
-#EXTINF:0,1FM All 80s
-http://sc-80s.1.fm:8097
-
 #EXTINF:0,181FM Jammin 
 http://uplink.duplexfx.com:8042
 
@@ -31,7 +28,7 @@ http://streaming.radionomy.com/EnergyFMoldschoolclassics
 #EXTINF:0,GotRadio Old School
 http://173.244.215.163:8580/
 
-#EXTINF:0,Jamm FM 
+#EXTINF:0,Jammin FM 
 http://stream.jammfm.nl:8221
 
 #EXTINF:0,NRJ Funky
