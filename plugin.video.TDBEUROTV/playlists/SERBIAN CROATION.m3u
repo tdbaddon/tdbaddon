@@ -93,6 +93,12 @@ http://92.60.224.62:3018/udp/231.1.3.1:5903
 #EXTINF:0,Joj Plus
 0
 
+#EXTINF:0,Jug TV 
+rtmp://84.20.77.50:1935/live
+
+#EXTINF:0,Jug TV 
+http://84.20.77.50:554/live/rtmp.stream/playlist.m3u8
+
 #EXTINF:0,Jugoton
 http://95.128.236.80:1935/kaltura/smil:jugotontv.smil/playlist.m3u8
 
@@ -200,6 +206,9 @@ http://92.53.27.201:10000/
 
 #EXTINF:0,STV2
 0
+
+#EXTINF:0,SuperSky
+rtmp://flash.supersky.ch:1935/live/supersky
 
 #EXTINF:0,Vesti 24
 mms://62.162.58.55/24vesti

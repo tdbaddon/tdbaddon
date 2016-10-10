@@ -2036,7 +2036,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBEUROTV"
        name="TDB EURO TV"
-       version="2.45"
+       version="2.46"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>

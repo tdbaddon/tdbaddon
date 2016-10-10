@@ -38,7 +38,7 @@ http://ss1.mk.checast.com:21100/live?1437243979579.aac
 0
 
 #EXTINF:0,Radio Bubamara Skopje 
-0
+http://88.85.99.2/live-128.mp3
 
 #EXTINF:0,Radio Bravo Kumanovo
 http://80.77.157.10:8000/
@@ -71,7 +71,7 @@ http://ss1.mk.checast.com:21070/48.aac?1437244407221.aac
 0
 
 #EXTINF:0,Radio Lav Ohrid
-0
+http://ss1.mk.checast.com:21080/live
 
 #EXTINF:0,Radio Medison Kicevo
 http://ss1.mk.checast.com:21300/live?1420340187325.aac
