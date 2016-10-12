@@ -4701,20 +4701,26 @@ def getPV2Auth():
             print 'auth error',url
             traceback.print_exc(file=sys.stdout)
     
-def tryplay(url,listitem):    
+def tryplay(url,listitem, keepactive=False, aliveobject=None , pdialogue=None):    
     import  CustomPlayer,time
 
+    localobject=aliveobject
     player = CustomPlayer.MyXBMCPlayer()
+    player.pdialogue=pdialogue
     start = time.time() 
     #xbmc.Player().play( liveLink,listitem)
     player.play( url, listitem)
     xbmc.sleep(1000)
     while player.is_active:
         xbmc.sleep(200)
-        if player.urlplayed:
+        if player.urlplayed and not keepactive:
             print 'yes played'
             return True
         xbmc.sleep(1000)
+    
+    try:
+        if localobject: localobject.close()
+    except: pass
     print 'not played',url
     return False
               
@@ -4867,7 +4873,7 @@ def playSports365(url,progress):
         print 'Updated files'
     return
     
-def PlaySafeLink(url, recursive=False, usecode=None):
+def PlaySafeLink(url, recursive=False, usecode=None, progress=None):
 
 
     #print 'safe url',url    
@@ -4891,7 +4897,8 @@ def PlaySafeLink(url, recursive=False, usecode=None):
         ws.connect(base64.b64decode("d3M6Ly81Mi40OC44Ni4xMzU6MTMzOC90Yi9tM3U4L21hc3Rlci9zaXRlaWQvY3VzdG9tZXIub25saW5ldHYudjM="),header=header)
         result = ws.recv() 
 
-        headers = [('Referer', base64.b64decode('aHR0cDovL2N1c3RvbWVyLnNhZmVyc3VyZi5jb20=')),('User-Agent','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36'),('Origin',base64.b64decode('aHR0cDovL2N1c3RvbWVyLnNhZmVyc3VyZi5jb20v'))]
+        headers = [('Referer', base64.b64decode('aHR0cDovL2N1c3RvbWVyLnNhZmVyc3VyZi5jb20=')),('User-Agent','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36'),('Origin',base64.b64decode('WC1SZXF1ZXN0ZWQtV2l0aDogWE1MSHR0cFJlcXVlc3Q=')),('Cookie','jwplayer.captionLabel=Off'),
+            ('Accept-Encoding','gzip, deflate, sdch'),('Accept-Language','en-US,en;q=0.8')]
 
         import time
         print 'js',js
@@ -4900,15 +4907,14 @@ def PlaySafeLink(url, recursive=False, usecode=None):
         totaltime=time.time()- st
         print totaltime
         testsize,kbps, kbRes, res =safeFinishedTest(totaltime)
-        bpsurl=base64.b64decode("aHR0cHM6Ly9saXZlZGVtby5zYWZlcnN1cmYuY29tL3BocC9zcGVlZC5waHA/ZHRwPQ==")+ str(int(time.time()*1000))
+        bpsurl=base64.b64decode("aHR0cDovL2N1c3RvbWVyLnNhZmVyc3VyZi5jb20vcGhwL3NwZWVkLnBocD9kdHA9")+ str(int(time.time()*1000))
         bpsdata=getUrl( bpsurl,headers=headers)
         bpsres, bpstime=re.findall("'bpsResultDiv'>(.*?)<.*?bpsTimeResultDiv'>(.*?)<",bpsdata)[0]
-        #bpsres, bpstime="f2824d2ea474e61cade597825656747e","1475696762" 
-        #lastval=selfAddon.getSetting( "safeplaylastcode" ) 
-        #if lastval=="": lastval=bpsres
-        #selfAddon.setSetting( "safeplaylastcode",bpsres)
-        #bpsres=lastval
-        if usecode: bpsres=usecode
+        lastval=selfAddon.getSetting( "safeplaylastcode" ) 
+        if lastval=="": lastval=bpsres
+        selfAddon.setSetting( "safeplaylastcode",bpsres)
+        #bpsres,bpstime="6512efb51b0909d02ca88742b31b658f", "1476109520"#lastval
+        #if usecode: bpsres=usecode
         
         jsdata='[{"key":"type","value":"info"},{"key":"info","value":"speedtest"},{"key":"country","value":"France"},{"key":"language","value":"en"},{"key":"speedTestSize","value": "%s"},{"key":"kbPs","value":"%s"},{"key":"speedResKb","value":"%s"},{"key":"bpsResult","value":"%s"},{"key":"speedResTime","value":"%s"},{"key":"websocketSupport","value":"true"},{"key":"speedTestInTime","value":"true"},{"key":"bpsTimeResult","value":"%s"},{"key":"flash","value":"true"},{"key":"touchScreen","value":"false"},{"key":"rotationSupport","value":"false"},{"key":"pixelRatio","value":"1"},{"key":"width","value":"1366"},{"key":"height","value":"768"},{"key":"mobilePercent","value":"33"}]'%( testsize,str(kbps),kbRes , bpsres, res, bpstime,)
         ws.send(jsdata)
@@ -4927,25 +4933,27 @@ def PlaySafeLink(url, recursive=False, usecode=None):
     except: 
         traceback.print_exc(file=sys.stdout)
 
-    try:
-        print ws.close()
-        #wsfirst.close()
-    except: 
-        traceback.print_exc(file=sys.stdout)
+    #try:
+    #    print ws.close()
+    #    #wsfirst.close()
+    #except: 
+    #    traceback.print_exc(file=sys.stdout)
     urlToPlay=re.findall('(http.*?)\s',result)[-1]
     try:
-        result=getUrl(urlToPlay,headers=headers)
+        result2=getUrl(urlToPlay,headers=headers)
     except:
+        traceback.print_exc(file=sys.stdout)
         #dialog = xbmcgui.Dialog()
         #ok = dialog.ok('XBMC', 'Failed to get the Url, try again!') 
         #return
         if not recursive:
             urlToPlay=PlaySafeLink(url, recursive=True,usecode=bpsres )
     
-    if recursive: return urlToPlay
+    if recursive: return urlnew
     import random
     listitem = xbmcgui.ListItem( label = str(name), iconImage = "DefaultVideo.png", thumbnailImage = xbmc.getInfoImage( "ListItem.Thumb" ) )
-    xbmc.Player(  ).play( urlToPlay+base64.b64decode('fE9yaWdpbj1odHRwOi8vY3VzdG9tZXIuc2FmZXJzdXJmLmNvbSZVc2VyLUFnZW50PU1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDYuMSkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzUyLjAuMjc0My4xMTYgU2FmYXJpLzUzNy4zNiZSZWZlcmVyPWh0dHA6Ly9jdXN0b21lci5zYWZlcnN1cmYuY29tL29ubGluZXR2Lmh0bWw='), listitem)
+    #xbmc.Player(  ).play( urlToPlay+base64.b64decode('fE9yaWdpbj1odHRwOi8vY3VzdG9tZXIuc2FmZXJzdXJmLmNvbSZVc2VyLUFnZW50PU1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDYuMSkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzUyLjAuMjc0My4xMTYgU2FmYXJpLzUzNy4zNiZSZWZlcmVyPWh0dHA6Ly9jdXN0b21lci5zYWZlcnN1cmYuY29tL29ubGluZXR2Lmh0bWw='), listitem)
+    tryplay( urlnew+base64.b64decode('fE9yaWdpbj1odHRwOi8vY3VzdG9tZXIuc2FmZXJzdXJmLmNvbSZVc2VyLUFnZW50PU1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDYuMSkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzUyLjAuMjc0My4xMTYgU2FmYXJpLzUzNy4zNiZSZWZlcmVyPWh0dHA6Ly9jdXN0b21lci5zYWZlcnN1cmYuY29tL29ubGluZXR2Lmh0bWw='), listitem, keepactive=True, aliveobject=ws, pdialogue=progress)
 
 def safeFinishedTest(dur):
     import math
@@ -5089,7 +5097,7 @@ def PlayOtherUrl ( url ):
         PlayPV2Link(url.split('pv2:')[1])
         return 
     if "safe:" in url:
-        PlaySafeLink(url.split('safe:')[1])
+        PlaySafeLink(url.split('safe:')[1],progress=progress)
         return        
     if "tvplayer:" in url:
         playtvplayer(url.split('tvplayer:')[1])
