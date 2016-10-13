@@ -1,3 +1,7 @@
+[B]Version 2.8.15[/B]
+- Added watchers, streamin
+- Fixed watchvideo, PlayU, Dailymotion
+
 [B]Version 2.8.14[/B]
 - Fixed Icons
 

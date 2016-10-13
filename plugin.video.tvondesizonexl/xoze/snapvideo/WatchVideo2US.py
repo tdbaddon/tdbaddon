@@ -42,7 +42,6 @@ def retrieveVideoInfo(video_id):
             video.set_thumb_image(img_link)
         video.set_stopped(False)
         video.add_stream_link(STREAM_QUAL_SD, video_link)
-        video.set_thumb_image(img_link)
         
     except: 
         video.set_stopped(True)

@@ -32,7 +32,7 @@ import xbmc  # @UnresolvedImport
 import xbmcgui  # @UnresolvedImport
 from xoze.context import AddonContext, SnapVideo
 from xoze.snapvideo import WatchVideo2US, VideoWeed, CloudEC, LetWatch, PlayU, \
-    TVLogy, Playwire
+    TVLogy, Playwire, Streamin, Watchers
 from xoze.utils import file, http, jsonfile
 from xoze.utils.cache import CacheManager
 from xoze.utils.http import HttpClient
@@ -772,6 +772,10 @@ def __prepareVideoLink__(video_link):
             new_video_url = 'http://playu.net/embed-' + video_id + '-540x304.html'
         elif re.search('watchvideo.php', video_url, flags=re.I) or re.search('watchvideo', video_source, flags=re.I):
             new_video_url = 'http://watchvideo2.us/embed-' + video_id + '-540x304.html'
+        elif re.search('streamin.php', video_url, flags=re.I) or re.search('streamin', video_source, flags=re.I):
+            new_video_url = 'http://streamin.to/embed-' + video_id + '-520x400.html'
+        elif re.search('watchers.php', video_url, flags=re.I) or re.search('watchers', video_source, flags=re.I):
+            new_video_url = 'http://watchers.to/embed-' + video_id + '.html'
         elif re.search('idowatch.php', video_url, flags=re.I) or re.search('idowatch', video_source, flags=re.I):
             new_video_url = 'http://idowatch.net/embed-' + video_id + '-520x400.html'
         elif re.search('tvlogy', video_source, flags=re.I):

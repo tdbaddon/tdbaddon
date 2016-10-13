@@ -67,13 +67,13 @@ logos ={'nba':'http://bethub.org/wp-content/uploads/2015/09/NBA_Logo_.png',
 'mlb':'http://content.sportslogos.net/logos/4/490/full/1986.gif',
 'soccer':'http://images.clipartpanda.com/soccer-ball-clipart-soccer-ball-clip-art-4.png'}
 
-sd_streams = ['goindexsport','multi-sports.eu', 'watchnfl.live', 'streamhd.eu/football/', 'streamhd.eu/mlb/', 'streamhd.eu/nfl/', 'vines.tn', 'apollofm.website',
+sd_streams = ['goindexsport','multi-sports.eu', 'watchnfl.live', 'streamhd.eu', 'vines.tn', 'apollofm.website',
 			'giostreams.eu','watch-sportstv.boards.net', 'hdstream4u.com', 'stream24k.com', 'wizhdsports.com', 'antenasport.com', 
 			'sportsnewsupdated.com', 'watchnba.tv', 'feedredsoccer.at.ua', 'jugandoes.com', 'wiz1.net', 'bosscast.net', 
 			'watchsportstv.boards.net', 'tv-link.in', 'klivetv.co', 'videosport.me', 'livesoccerg.com', 'zunox.hk', 'singidunum.', 
 			'zona4vip.com', 'ciscoweb.ml', 'streamendous.com','streamm.eu', 'sports-arena.net', 'stablelivestream.com', 
 			'iguide.to', 'sportsleague.me','kostatz.com', 'soccerpluslive.com', 'zunox', 'apkfifa.com','watchhdsports.xyz','lovelysports2016.ml',
-			'sports4u.live','tusalavip3.es.tl']
+			'sports4u.live','tusalavip3.es.tl', 'neymargoals.com', 'crichd.sx']
 
 def utc_to_local(utc_dt):
     timestamp = calendar.timegm(utc_dt.timetuple())
@@ -167,6 +167,7 @@ def Games(mode):
 	today_from = str(today.strftime('%Y-%m-%d'))+'T00:00:00.000-05:00'
 	today_to = str(today.strftime('%Y-%m-%d'))+'T23:59:00.000-05:00'
 	url = 'http://www.sbnation.com/sbn_scoreboard/ajax_leagues_and_events?ranges['+mode+'][from]='+today_from+'&ranges['+mode+'][until]='+today_to+'&_='+str(int(time.time()))
+	print url
 	js = GetJSON(url)
 	js = js['leagues'][mode]
 	if js:	
@@ -1060,10 +1061,10 @@ def Universal(url):
 		links = re.compile('src="(.+?)"').findall(str(this))
 		for link in links:
 			if 'sawlive' in link or 'xoomtv' in link:
-				lnk = sawresolve(link)
+				lnk = sawresolve(link, url)
 				return lnk
 	if 'sawlive' in url:
-		lnk = sawresolve(link)
+		lnk = sawresolve(url, url)
 		return lnk
 	if 'streamup' in url:
 		if 'm3u8' in url:
@@ -1115,7 +1116,7 @@ def Universal(url):
 		id = html.split('fid="')[-1].split('";')[0]
 		link = castup(id)
 		return link
-	elif html and 'cast4u' in html:
+	elif html and 'cast4u' in html and 'fid=' in html:
 		id = html.split("fid='")[-1].split("';")[0]
 		link = cast4u(id)
 		return link
@@ -1160,16 +1161,16 @@ def Universal(url):
 			return url
 	elif html and 'sawlive.tv' in html:
 		try:
-			url = re.findall('(http.+?sawlive.tv/embed/.+?")',html)[0]
-			url = url.replace('"','')
+			link = re.findall('(http.+?sawlive.tv/embed/.+?")',html)[0]
+			link = url.replace('"','')
 		except:
-			url = re.findall("(http.+?sawlive.tv/embed/.+?')",html)[0]
-			url = url.replace("'","")
-		link = sawresolve(url)
+			link = re.findall("(http.+?sawlive.tv/embed/.+?')",html)[0]
+			link = url.replace("'","")
+		link = sawresolve(link, url)
 		return link
 	elif html and 'shidurlive.com' in html:
-		url = re.findall("src='(http.+?shidurlive.com/embed/.+?)'",html)[0]
-		link = sawresolve(url)
+		link = re.findall("src='(http.+?shidurlive.com/embed/.+?)'",html)[0]
+		link = sawresolve(link, url)
 		return link
 	elif html and ('.m3u8' in html or 'rtmp:' in html or '.f4m' in html):
 		html = urllib.unquote_plus(html)
@@ -1204,12 +1205,12 @@ def Universal(url):
 					return ss
 
 	
-def sawresolve(query):
+def sawresolve(query, referer):
 	try:
 		import js2py
 		import cfscrape
 		scraper = cfscrape.create_scraper()
-		header = {'Referer':  query, 'User-Agent': UA, 'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+		header = {'Referer':  referer, 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36', 'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
 					'Accept-Language':'en-US,en;q=0.8,bg;q=0.6,it;q=0.4,ru;q=0.2,uk;q=0.2',
 					'Connection':'keep-alive', 'Host':urlparse.urlparse(query).netloc,'Upgrade-Insecure-Requests':'1'}
 		decoded = scraper.get(query, headers=header).content
@@ -1242,9 +1243,10 @@ def sawresolve(query):
 		src = common.parseDOM(result, 'iframe', ret='src')[-1]
 		src = src.replace("'","").replace('"','')
 		if src:
-			header = {'Referer':  query, 'User-Agent': UA, 'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+			header = {'Referer':  referer, 'User-Agent': UA, 'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
 					'Accept-Language':'en-US,en;q=0.8,bg;q=0.6,it;q=0.4,ru;q=0.2,uk;q=0.2',
 					'Connection':'keep-alive', 'Host':urlparse.urlparse(src).netloc,'Upgrade-Insecure-Requests':'1'}
+			scraper = cfscrape.create_scraper()
 			decoded = scraper.get(src, headers=header).content
 			swf = re.compile("SWFObject\('(.+?)'").findall(decoded)[0].replace(' ', '')
 			decoded = decoded.split("'uniform');")[-1].split("</script>")[0]
@@ -1267,7 +1269,6 @@ def sawresolve(query):
 			return url
 	except:
 		return None
-	
 		
 def castup(id):
 	try:

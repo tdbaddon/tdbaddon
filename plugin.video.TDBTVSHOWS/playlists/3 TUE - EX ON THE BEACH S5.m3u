@@ -1,7 +1,7 @@
 ﻿#EXTM3U
 
 #EXTINF:0,SEASON 5
-http://www.tvshows.tcomputers.ca/ExOnTheBeach/50
+http://www.tvshows.tcomputers.ca/ExOnTheBeach/51
 
 #EXTINF:0,EX ON THE BEACH 501
 http://www.tvshows.tcomputers.ca/ExOnTheBeach/501.mp4
@@ -26,3 +26,8 @@ http://www.tvshows.tcomputers.ca/ExOnTheBeach/507.mp4
 
 #EXTINF:0,EX ON THE BEACH 508
 http://www.tvshows.tcomputers.ca/ExOnTheBeach/508.mp4
+
+#EXTINF:0,EX ON THE BEACH 509
+http://www.tvshows.tcomputers.ca/ExOnTheBeach/509.mp4
+
+#EXTINF:0,EX ON THE BEACH 510

@@ -4888,13 +4888,18 @@ def PlaySafeLink(url, recursive=False, usecode=None, progress=None):
         import time
         od= base64.b64decode('aHR0cDovL29ubGluZWRlbW8uc2FmZXJzdXJmLmNvbS8=')
         mainhtml=getUrl(od,headers=headers)
+        
         js=urllib.unquote(re.findall("StartScriptSpeedTest\(unescape\('(.*?)'",mainhtml)[0])
+        speedhtml= urllib.unquote(re.findall("phpUrl = unescape\('(.*?)'",mainhtml)[0])
+        
+        servername,portnum=re.findall("\n\s*\{.*?url.*?:.*?['\"](.*?)?['\"].*?port.*?:(.*?)\}",mainhtml.split('man.AddServers')[1].split(']);')[0])[0]
+        print servername,portnum
         if not js.startswith('http'):
             js=od+js
-        header=[base64.b64decode("T3JpZ2luOiBodHRwOi8vY3VzdG9tZXIuc2FmZXJzdXJmLmNvbQ=="),"User-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"]
+        header=[base64.b64decode("T3JpZ2luOiBodHRwOi8vb25saW5lZGVtby5zYWZlcnN1cmYuY29t"),"User-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"]
         #wsfirst.connect(base64.b64decode("d3M6Ly81Mi40OC44Ni4xMzU6MTMzOC90Yi9tM3U4L21hc3Rlci9zaXRlaWQvY3VzdG9tZXIub25saW5ldHYudjM="),header=header)
         #wsfirst.recv() 
-        ws.connect(base64.b64decode("d3M6Ly81Mi40OC44Ni4xMzU6MTMzOC90Yi9tM3U4L21hc3Rlci9zaXRlaWQvY3VzdG9tZXIub25saW5ldHYudjM="),header=header)
+        ws.connect(base64.b64decode("d3M6Ly8lczolcy90Yi9tM3U4L21hc3Rlci9zaXRlaWQvY3VzdG9tZXIub25saW5ldHYudjM=")%(servername,portnum),header=header)
         result = ws.recv() 
 
         headers = [('Referer', base64.b64decode('aHR0cDovL2N1c3RvbWVyLnNhZmVyc3VyZi5jb20=')),('User-Agent','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36'),('Origin',base64.b64decode('WC1SZXF1ZXN0ZWQtV2l0aDogWE1MSHR0cFJlcXVlc3Q=')),('Cookie','jwplayer.captionLabel=Off'),
@@ -4907,13 +4912,13 @@ def PlaySafeLink(url, recursive=False, usecode=None, progress=None):
         totaltime=time.time()- st
         print totaltime
         testsize,kbps, kbRes, res =safeFinishedTest(totaltime)
-        bpsurl=base64.b64decode("aHR0cDovL2N1c3RvbWVyLnNhZmVyc3VyZi5jb20vcGhwL3NwZWVkLnBocD9kdHA9")+ str(int(time.time()*1000))
+        bpsurl=base64.b64decode("JXM/ZHRwPQ==")%speedhtml+ str(int(time.time()*1000))
         bpsdata=getUrl( bpsurl,headers=headers)
         bpsres, bpstime=re.findall("'bpsResultDiv'>(.*?)<.*?bpsTimeResultDiv'>(.*?)<",bpsdata)[0]
         lastval=selfAddon.getSetting( "safeplaylastcode" ) 
         if lastval=="": lastval=bpsres
         selfAddon.setSetting( "safeplaylastcode",bpsres)
-        #bpsres,bpstime="6512efb51b0909d02ca88742b31b658f", "1476109520"#lastval
+        #bpsres,bpstime="", ""#lastval
         #if usecode: bpsres=usecode
         
         jsdata='[{"key":"type","value":"info"},{"key":"info","value":"speedtest"},{"key":"country","value":"France"},{"key":"language","value":"en"},{"key":"speedTestSize","value": "%s"},{"key":"kbPs","value":"%s"},{"key":"speedResKb","value":"%s"},{"key":"bpsResult","value":"%s"},{"key":"speedResTime","value":"%s"},{"key":"websocketSupport","value":"true"},{"key":"speedTestInTime","value":"true"},{"key":"bpsTimeResult","value":"%s"},{"key":"flash","value":"true"},{"key":"touchScreen","value":"false"},{"key":"rotationSupport","value":"false"},{"key":"pixelRatio","value":"1"},{"key":"width","value":"1366"},{"key":"height","value":"768"},{"key":"mobilePercent","value":"33"}]'%( testsize,str(kbps),kbRes , bpsres, res, bpstime,)
@@ -4946,8 +4951,8 @@ def PlaySafeLink(url, recursive=False, usecode=None, progress=None):
         #dialog = xbmcgui.Dialog()
         #ok = dialog.ok('XBMC', 'Failed to get the Url, try again!') 
         #return
-        if not recursive:
-            urlToPlay=PlaySafeLink(url, recursive=True,usecode=bpsres )
+        #if not recursive:
+        #    urlToPlay=PlaySafeLink(url, recursive=True,usecode=bpsres )
     
     if recursive: return urlnew
     import random

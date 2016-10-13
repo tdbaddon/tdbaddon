@@ -1811,7 +1811,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
-<addon id="plugin.video.prosport" name="Pro Sport" version="0.66" provider-name="gerikss, podgod, iCanuck">
+<addon id="plugin.video.prosport" name="Pro Sport" version="0.67" provider-name="gerikss, podgod, iCanuck">
   <requires>
     <import addon="xbmc.python" version="2.1.0" />
      <import addon="script.module.requests" version="2.9.1" />
@@ -2131,7 +2131,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBTVSHOWS"
        name="TDB TV SHOWS"
-       version="1.66"
+       version="1.67"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -2277,7 +2277,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.tvondesizonexl" name="TV on DESI ZONE" version="2.8.14"
+<addon id="plugin.video.tvondesizonexl" name="TV on DESI ZONE" version="2.8.15"
 	provider-name="ajdeveloped/jchirag">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
@@ -2651,7 +2651,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.ZemTV-shani"
        name="Zem"
-       version="5.6.5"
+       version="5.6.7"
        provider-name="shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -2722,12 +2722,12 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
-<addon id="repository.aftershock" name="Aftershock addons" version="2.0.0" provider-name="IDev">
+<addon id="repository.aftershock" name="Aftershock addons" version="2.0.1" provider-name="IDev">
 	<extension point="xbmc.addon.repository" name="Aftershock add-on repository">
 		<dir>
-			<info compressed="false">https://offshoregit.com/vineegu/aftershock-repo/addons.xml</info>
-			<checksum>https://offshoregit.com/vineegu/aftershock-repo/addons.xml.md5</checksum>
-			<datadir zip="true">https://offshoregit.com/vineegu/aftershock-repo/releases</datadir>
+			<info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
+			<checksum>https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml.md5</checksum>
+			<datadir zip="true">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/zips/</datadir>
 		</dir>
 		<info compressed="false">https://offshoregit.com/vineegu/aftershock-repo/addons.xml</info>
 		<checksum>https://offshoregit.com/vineegu/aftershock-repo/addons.xml.md5</checksum>

@@ -326,6 +326,14 @@
     <snapper function="retrieveVideoInfo" enabled="true" module="xoze.snapvideo.WatchVideo2US">
     	<video-id regex="watchvideo2.us/embed-(.+?)-"/>
     </snapper>
+
+    <snapper function="retrieveVideoInfo" enabled="true" module="xoze.snapvideo.Streamin">
+    	<video-id regex="streamin.to/embed-(.+?)-"/>
+    </snapper>
+
+    <snapper function="retrieveVideoInfo" enabled="true" module="xoze.snapvideo.Watchers">
+    	<video-id regex="watchers.to/embed-(.+?)\.html"/>
+    </snapper>
     
     <!-- The following snapper should be at the end of all srcappers -->
     <snapper module="xoze.snapvideo.UrlResolverDelegator" function="retrieveVideoInfo" 

@@ -7,6 +7,7 @@ from xoze.snapvideo import VideoHost, Video, STREAM_QUAL_LOW, STREAM_QUAL_SD, \
     STREAM_QUAL_HD_720, STREAM_QUAL_HD_1080
 from xoze.utils import http
 import logging
+import urllib
 import re
 try:
     import json
@@ -30,31 +31,72 @@ def retrieveVideoInfo(video_id):
         html = http.HttpClient().get_html_content(url=video_link)
         http.HttpClient().disable_cookies()
         
-        player = re.compile('document\.getElementById\(\'player\'\), (.+?)\);').findall(html)
-        player_obj = json.loads(player[0])
-        video_qual = player_obj['metadata']['qualities']
-        print video_qual
+        matchHDLink = ''
+        matchHQLink = ''
+        matchSDLink = ''
+        matchLDLink = ''
+
+        matchHD = re.compile('"720":\[{"type":"video(.+?)"}]', re.DOTALL).findall(html)
+        matchHQ = re.compile('"480":\[{"type":"video(.+?)"}]', re.DOTALL).findall(html)
+        matchSD = re.compile('"380":\[{"type":"video(.+?)"}]', re.DOTALL).findall(html)
+        matchLD = re.compile('"240":\[{"type":"video(.+?)"}]', re.DOTALL).findall(html)
+
+        try:
+            if matchHD[0]:
+                matchHDLink = matchHD[0]
+        except:
+            print "No Dailymotion HD Link"
+
+        try:
+            if matchHQ[0]:
+                matchHQLink = matchHQ[0]
+        except:
+            print "No Dailymotion HQ Link"
+
+        try:
+            if matchSD[0]:
+                matchSDLink = matchSD[0]
+        except:
+            print "No Dailymotion SD Link"
+
+        try:
+            if matchLD[0]:
+                matchLDLink = matchLD[0]
+        except:
+            print "No Dailymotion LD Link"
+
+        matchHDLink = matchHDLink.replace('\/mp4","url":"', '')
+        matchHQLink = matchHQLink.replace('\/mp4","url":"', '')
+        matchSDLink = matchSDLink.replace('\/mp4","url":"', '')
+        matchLDLink = matchLDLink.replace('\/mp4","url":"', '')
+
         dm_LD = None
-        if video_qual.has_key('380'):
-            dm_LD = video_qual['380'][0]['url']
         dm_SD = None
-        if video_qual.has_key('480'):
-            dm_SD = video_qual['480'][0]['url']
+        dm_HQ = None    
         dm_720 = None
-        if video_qual.has_key('720'):
-            dm_720 = video_qual['720'][0]['url']
-        dm_1080 = None
-        if video_qual.has_key('1080'):
-            dm_1080 = video_qual['1080'][0]['url']
-        
-        if dm_LD is not None:
-            video.add_stream_link(STREAM_QUAL_LOW, dm_LD, addUserAgent=False , addReferer=False, refererUrl=video_link)
-        if dm_SD is not None:
-            video.add_stream_link(STREAM_QUAL_SD, dm_SD, addUserAgent=False , addReferer=False, refererUrl=video_link)
-        if dm_720 is not None:
-            video.add_stream_link(STREAM_QUAL_HD_720, dm_720, addUserAgent=False , addReferer=False, refererUrl=video_link)
-        if dm_1080 is not None:
-            video.add_stream_link(STREAM_QUAL_HD_1080, dm_1080, addUserAgent=False , addReferer=False, refererUrl=video_link)
+        final_url = None
+
+        if matchHDLink:
+            dm_720 = urllib.unquote_plus(matchHDLink).replace("\\", "")
+        if dm_720 is None and matchHQ:
+            dm_720 = urllib.unquote_plus(matchHQLink).replace("\\", "")
+        if matchSD:
+            dm_SD = urllib.unquote_plus(matchSDLink).replace("\\", "")
+        if matchLD:
+            dm_LD = urllib.unquote_plus(matchLDLink).replace("\\", "")
+
+        if final_url is None and dm_720 is not None:
+            final_url = dm_720
+        if final_url is None and dm_HQ is not None:
+            final_url = dm_HQ
+        if final_url is None and dm_SD is not None:
+            final_url = dm_SD
+        if final_url is None and dm_LD is not None:
+            final_url = dm_LD
+
+
+        video.add_stream_link(STREAM_QUAL_HD_1080, final_url, addUserAgent=False , addReferer=False, refererUrl=video_link)
+        video.set_thumb_image('http://fontslogo.com/wp-content/uploads/2013/02/Dailymotion-LOGO.jpg')
         if len(video.get_streams()) == 0:
             video.set_stopped(True)
         else:

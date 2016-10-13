@@ -21,7 +21,7 @@ along with XOZE.  If not, see <http://www.gnu.org/licenses/>.
 
 from xoze.context import AddonContext, SnapVideo
 from xoze.snapvideo import WatchVideo2US, Playwire, VideoWeed, CloudEC, LetWatch, \
-    TVLogy, PlayU
+    TVLogy, PlayU, Streamin, Watchers
 from xoze.utils import file, http, jsonfile
 from xoze.utils.cache import CacheManager
 from xoze.utils.http import HttpClient
@@ -165,7 +165,7 @@ def refresh_cache(req_attrib, modelMap):
                    "running_tvshows_url": "/forumdisplay.php?f=339",
                    "finished_tvshows_url": "/forumdisplay.php?f=532"},
                   "Bindass TV":
-                  {"iconimage":"http://www.lyngsat.com/logo/tv/bb/bindass_in.pn|Referer=http://www.lyngsat.com/",
+                  {"iconimage":"http://www.lyngsat.com/logo/tv/bb/bindass_in.png|Referer=http://www.lyngsat.com/",
                    "channelType": "IND",
                    "running_tvshows_url": "/forumdisplay.php?f=504",
                    "finished_tvshows_url": "/forumdisplay.php?f=960"},
@@ -952,6 +952,10 @@ def __prepareVideoLink__(video_link):
             new_video_url = 'http://playu.net/embed-' + video_id + '-540x304.html'
         elif re.search('watchvideo.php', video_url, flags=re.I) or re.search('watchvideo', video_source, flags=re.I):
             new_video_url = 'http://watchvideo2.us/embed-' + video_id + '-540x304.html'
+        elif re.search('streamin.php', video_url, flags=re.I) or re.search('streamin', video_source, flags=re.I):
+            new_video_url = 'http://streamin.to/embed-' + video_id + '-520x400.html'
+        elif re.search('watchers.php', video_url, flags=re.I) or re.search('watchers', video_source, flags=re.I):
+            new_video_url = 'http://watchers.to/embed-' + video_id + '.html'
         elif re.search('idowatch.php', video_url, flags=re.I) or re.search('idowatch', video_source, flags=re.I):
             new_video_url = 'http://idowatch.net/embed-' + video_id + '-520x400.html'
         elif re.search('tvlogy', video_source, flags=re.I):
