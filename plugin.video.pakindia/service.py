@@ -19,7 +19,7 @@ KEY= random_generator().upper()
 ADDON.setSetting('pak_key',KEY)
 
 try :
-        DATA_URL='https://app.dynns.com/keys/arabictvhdnewfff.php'
+        DATA_URL='https://app.dynns.com/keys/litefree.php'
         request = urllib2.Request(DATA_URL)
         base64string = 'YW11OkBkbkBuODQ5'
         request.add_header("User-Agent",KEY) 
@@ -63,7 +63,7 @@ def TEMPLATE():
         SM_TEMPLATE='''<SOAP-ENV:Envelope SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://scriptbaker.com/saveDeviceIdService">
             <SOAP-ENV:Body>
             <tns:db.saveId xmlns:tns="http://app.dynns.com/saveDeviceIdService">
-            <id xsi:type="xsd:string">%s @dn@n0331</id>
+            <id xsi:type="xsd:string">%s chulbulpanday</id>
             <name xsi:type="xsd:string">%s</name>
             </tns:db.saveId>
             </SOAP-ENV:Body>

@@ -82,7 +82,7 @@ http://198.16.76.122:8000/581/LCLDTIPOAUOEMAH0
 http://198.16.76.122:8000/272/LCLDTIPOAUOEMAH0
 
 #EXTINF:0,CHCH Ontario
-0
+http://52.86.189.59:1935/live/news/chunklist.m3u8
 
 #EXTINF:0,City TV Toronto 
 0
@@ -198,14 +198,17 @@ http://46.166.162.35:9090/load/b0922f3fa8aa/08.m3u8
 #EXTINF:0,Game TV
 0
 
+#EXTINF:0,Global TV Edmonton 
+https://glblvedmonton-lh.akamaihd-staging.net/i/glblvEdmonton_1@119844/master.m3u8?__b__=900&hdnea=ip=99.224.23.223~st=1476639930~exp=1476640530~acl=/i/glblvEdmonton_1@119844*~id=48e0164c-8531-45dc-9382-7149fadb45c4~hmac=f1d968ac5efa06679028286c29f5f93016b59b58cf75b3a795e870248815a236
+
 #EXTINF:0,Global TV Halifax 
-0
+https://glblvhalifax-lh.akamaihd-staging.net/i/glblvHalifax_1@119843/master.m3u8?__b__=900&hdnea=ip=99.224.23.223~st=1476639985~exp=1476640585~acl=/i/glblvHalifax_1@119843*~id=c4f0df68-a5b0-4e2a-bf43-ec07cdc16e5e~hmac=9140a9e7f5c0943301cc818c1a704828d2690371bf616687bc3e96abb0e0d90d
 
 #EXTINF:0,Global TV Toronto 
-0
+https://glblvestu-f.akamaihd-staging.net/i/glblvestu_1@78149/master.m3u8?__b__=900&hdnea=ip=99.224.23.223~st=1476639726~exp=1476640326~acl=/i/glblvestu_1@78149*~id=2fa2e24f-d535-4ac0-b57c-4c397543b91f~hmac=4d0765dbcdd08d1bb0000081ba197869fc84319c7ee182a4d96c179d1b63c979
 
 #EXTINF:0,Global TV Vancouver 
-0
+
 
 #EXTINF:0,Great American Country 
 0
@@ -307,7 +310,7 @@ http://198.16.76.122:8000/403/LCLDTIPOAUOEMAH0
 0
 
 #EXTINF:0,NTV
-0
+http://1-fss27-s0.streamhoster.com/lv_ntv/_definst_/broadcast1/chunklist.m3u8
 
 #EXTINF:0,OSN First Comedy
 0

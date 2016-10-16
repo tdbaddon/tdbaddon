@@ -1628,39 +1628,15 @@ def AddHDFreeChannels(url):
             logo= 'http://hdfree.tv'+logo
         addDir(Colored(name.capitalize(),col) ,base64.b64encode('hdfree:'+url) ,mm ,logo, False, True,isItFolder=True)		#name,url,mode,icon
     
-    
+
+        
 def AddSafeChannels(url):
-    import time 
-    tt=int(time.time())
-    url=url.decode("base64")
-    
-    cname,curl=url.split(',')
-    headers=[('Referer',"http://customer.safersurf.com/onlinetv.html"),('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36'),('X-Requested-With','XMLHttpRequest')]               
-    jsondata=getUrl('http://customer.safersurf.com/php/getProgForLanguage.php?varName=allChannelsAllCats&noAdd=false&browserLang=%s&displayLang=en&userCountry=United%%20Kingdom&src=all&dtp=%s'%(curl,tt),headers=headers)
-    #print jsondata
-    jsondata=re.findall('=(\[.*\])',jsondata)[0]
+    import safelinks
+    print url
+    cname,curlmedia=url.decode("base64").split(',')
     addDir(Colored('Channel Language [%s] .\nPlease Click again if fails first time'.capitalize()%cname,'red') ,'' ,0 ,'', False, True,isItFolder=False)
-    #print jsondata
-    jsondata=json.loads(jsondata)
-    for cc in jsondata:
-        cc=json.loads(cc)
-        mm=11
-        col='ZM'
-        #print 'xxxxxxxxxxx'
-        #print 'name' in cc
-        if 'name' in cc:
-            #print 'in name'
-            cname,logo,cid=cc["name"],cc["logo"],cc["cId"]
-        else:
-            mm=0
-            col='red'
-            if 'seperatorText' in cc:
-                cname,logo,cid=cc["seperatorText"],'',''
-            else:
-                continue
-        if not logo.startswith('http'):
-            logo= 'http://customer.safersurf.com/'+logo
-        addDir(Colored(cname.capitalize(),col) ,base64.b64encode('safe:'+cid) ,mm ,logo, False, True,isItFolder=False)		#name,url,mode,icon
+    for cc in safelinks.getSafeChannels(url):
+        addDir(cc[0] ,cc[1] ,cc[2] ,cc[3], False, True,isItFolder=False)
     
 def AddPITVSports(url=None):
 
@@ -4571,20 +4547,25 @@ def getPV2UserAgent(option):
     if option==1:
         #headers=[('User-Agent',base64.b64decode('UGFrJTIwVFYvMS4wIENGTmV0d29yay83NTguMi44IERhcndpbi8xNS4wLjA=')),('Authorization',base64.b64decode('QmFzaWMgWVcxMU9rQmtia0J1T0RRNQ=='))]
         headers=[('User-Agent',getPv2Code()),('Authorization',base64.b64decode('QmFzaWMgWVcxMU9rQmtia0J1T0RRNQ=='))]
-        return getUrl('https://app.dynns.com/keys/pakindiahdv2ff.php',headers=headers)
+        return getUrl(base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2tleXMvcGFraW5kaWFoZHYyZmYucGhw'),headers=headers)
     else:
         return getPv2Code();
 
+def getpv2stkey():
+    headers=[('User-Agent',base64.b64decode('UGFrJTIwVFYvMS4wIENGTmV0d29yay83NTguMi44IERhcndpbi8xNS4wLjA=')),('Authorization',base64.b64decode('QmFzaWMgWVcxMU9rQmtia0J1T0RRNQ=='))]
+    return getUrl(base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2tleXMvYXJhYmljdHZoZHYxcHAucGhw'),headers=headers)
+    
 def getPV2Device(option):
-    useragent=''
-    if option==1:
-        #headers=[('User-Agent',base64.b64decode('UGFrJTIwVFYvMS4wIENGTmV0d29yay83NTguMi44IERhcndpbi8xNS4wLjA=')),('Authorization',base64.b64decode('QmFzaWMgWVcxMU9rQmtia0J1T0RRNQ=='))]
-        headers=[('User-Agent',base64.b64decode('UGFrJTIwVFYvMS4wIENGTmV0d29yay83NTguMi44IERhcndpbi8xNS4wLjA=')),('Authorization',base64.b64decode('QmFzaWMgWVcxMU9rQmtia0J1T0RRNQ=='))]
-        useragent=getUrl(base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2tleXMvYXJhYmljdHZoZHYxcC5waHA='),headers=headers)
-    else:
-        headers=[('User-Agent',getPv2Code()),('Authorization',base64.b64decode('QmFzaWMgWVcxMU9rQmtia0J1T0RRNQ=='))]
-        useragent=getUrl(base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2tleXMvYXJhYmljdHZoZHYxZmYucGhw'),headers=headers)
+    useragent=getpv2stkey()
+    #if option==1 or 1==1:
+    #    #headers=[('User-Agent',base64.b64decode('UGFrJTIwVFYvMS4wIENGTmV0d29yay83NTguMi44IERhcndpbi8xNS4wLjA=')),('Authorization',base64.b64decode('QmFzaWMgWVcxMU9rQmtia0J1T0RRNQ=='))]
+    #    headers=[('User-Agent',base64.b64decode('UGFrJTIwVFYvMS4wIENGTmV0d29yay83NTguMi44IERhcndpbi8xNS4wLjA=')),('Authorization',base64.b64decode('QmFzaWMgWVcxMU9rQmtia0J1T0RRNQ=='))]
+    #    useragent=getUrl(base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2tleXMvYXJhYmljdHZoZHYxcHAucGhw'),headers=headers)
+    #else:
+    #    headers=[('User-Agent',getPv2Code()),('Authorization',base64.b64decode('QmFzaWMgWVcxMU9rQmtia0J1T0RRNQ=='))]
+    #    useragent=getUrl(base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2tleXMvYXJhYmljdHZoZHYxZmYucGhw'),headers=headers)
     return useragent.split('.')[-1]
+    
 
     
 def getPV2Url():
@@ -4678,28 +4659,37 @@ def getPV2Url():
 def getPV2Option():
     return int(selfAddon.getSetting( "pv2PlayOption" ) )
     
-def getPV2Auth():
+def getPV2PlayAuth():
     import base64
     import time
     
-    for url,pv2option in [('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2tleXMvYmFrLnBocD90b2tlbj0=',2),('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2tleXMvUGFrLnBocD90b2tlbj0=',1)]:
-        try:
-            TIME = time.time()
-            second= str(TIME).split('.')[0]
-            first =int(second)+int(base64.b64decode('NjkyOTY5Mjk='))
-            token=base64.b64encode(base64.b64decode('JXNAMm5kMkAlcw==') % (str(first),second))
-            #pv2option=getPV2Option()
+    url=base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tLyVzLnBocD93bXNBdXRoU2lnbj0=')
 
-            
-            req = urllib2.Request( base64.b64decode(url)+token)
-            req.add_header('Authorization', "Basic %s"%base64.b64decode('Wkdsc1pHbHNaR2xzT2xCQWEybHpkRUJ1')) 
-            req.add_header(base64.b64decode("VXNlci1BZ2VudA=="),getPV2UserAgent(pv2option)) 
-            response = urllib2.urlopen(req)
-            link=response.read()
-            return link
-        except: 
-            print 'auth error',url
-            traceback.print_exc(file=sys.stdout)
+    lastplay=getpv2stkey()
+    filename=lastplay[:4]
+    import datetime  ,hashlib
+    timesegment = datetime.datetime.utcnow().strftime("%m/%d/%Y %H:%M:%S")
+    validtime=lastplay[4]
+    headers=[('User-Agent',base64.b64decode('UGFrJTIwVFYvMS4wIENGTmV0d29yay83NTguMC4yIERhcndpbi8xNS4wLjA='))]
+    ipstring=getUrl(base64.b64decode("aHR0cHM6Ly9hcHAuZHlubnMuY29tL2tleXMvaXBfY2hlY2sucGhw"),headers=headers)
+    ipadd=ipstring.split('Address: ')[1]
+    s="%s%s%s%s"%(ipadd,base64.b64decode("bW5zZGtqc2Rza2o=")+lastplay[:10],timesegment ,validtime)
+    print s
+    print repr(hashlib.md5(s).hexdigest())
+    dd=base64.b64decode("c2VydmVyX3RpbWU9JXMmaGFzaF92YWx1ZT0lcyZ2YWxpZG1pbnV0ZXM9JXM=")%(timesegment,base64.b64encode(hashlib.md5(s).hexdigest().lower()),validtime )
+    print dd
+    url=(url%filename)+base64.b64encode(dd)
+    headers=[('User-Agent',getPv2Code())]
+    print repr(url)
+    res=getUrl(url,headers=headers)
+
+    s=list(res)
+    for i in range( (len(s)-59)/12):
+            ind=len(s)-59 + (12*(i))
+            if ind<len(s):
+                print ind
+                s[ind]=''
+    return ''.join(s)
     
 def tryplay(url,listitem, keepactive=False, aliveobject=None , pdialogue=None):    
     import  CustomPlayer,time
@@ -4876,89 +4866,11 @@ def playSports365(url,progress):
 def PlaySafeLink(url, recursive=False, usecode=None, progress=None):
 
 
-    #print 'safe url',url    
-
-    
-    import websocket
-    ws = websocket.WebSocket()
-    #wsfirst = websocket.WebSocket()
-    try:
-        useragent=''
-        headers = [('Referer', base64.b64decode('aHR0cDovL29ubGluZWRlbW8uc2FmZXJzdXJmLmNvbS9vbmxpbmV0di1saXZlZGVtby5odG1s')),('User-Agent','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36')]
-        import time
-        od= base64.b64decode('aHR0cDovL29ubGluZWRlbW8uc2FmZXJzdXJmLmNvbS8=')
-        mainhtml=getUrl(od,headers=headers)
-        
-        js=urllib.unquote(re.findall("StartScriptSpeedTest\(unescape\('(.*?)'",mainhtml)[0])
-        speedhtml= urllib.unquote(re.findall("phpUrl = unescape\('(.*?)'",mainhtml)[0])
-        
-        servername,portnum=re.findall("\n\s*\{.*?url.*?:.*?['\"](.*?)?['\"].*?port.*?:(.*?)\}",mainhtml.split('man.AddServers')[1].split(']);')[0])[0]
-        print servername,portnum
-        if not js.startswith('http'):
-            js=od+js
-        header=[base64.b64decode("T3JpZ2luOiBodHRwOi8vb25saW5lZGVtby5zYWZlcnN1cmYuY29t"),"User-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36"]
-        #wsfirst.connect(base64.b64decode("d3M6Ly81Mi40OC44Ni4xMzU6MTMzOC90Yi9tM3U4L21hc3Rlci9zaXRlaWQvY3VzdG9tZXIub25saW5ldHYudjM="),header=header)
-        #wsfirst.recv() 
-        ws.connect(base64.b64decode("d3M6Ly8lczolcy90Yi9tM3U4L21hc3Rlci9zaXRlaWQvY3VzdG9tZXIub25saW5ldHYudjM=")%(servername,portnum),header=header)
-        result = ws.recv() 
-
-        headers = [('Referer', base64.b64decode('aHR0cDovL2N1c3RvbWVyLnNhZmVyc3VyZi5jb20=')),('User-Agent','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36'),('Origin',base64.b64decode('WC1SZXF1ZXN0ZWQtV2l0aDogWE1MSHR0cFJlcXVlc3Q=')),('Cookie','jwplayer.captionLabel=Off'),
-            ('Accept-Encoding','gzip, deflate, sdch'),('Accept-Language','en-US,en;q=0.8')]
-
-        import time
-        print 'js',js
-        st= time.time()
-        getUrl(js+'?dt='+ str(int(time.time()*1000)),headers=headers)
-        totaltime=time.time()- st
-        print totaltime
-        testsize,kbps, kbRes, res =safeFinishedTest(totaltime)
-        bpsurl=base64.b64decode("JXM/ZHRwPQ==")%speedhtml+ str(int(time.time()*1000))
-        bpsdata=getUrl( bpsurl,headers=headers)
-        bpsres, bpstime=re.findall("'bpsResultDiv'>(.*?)<.*?bpsTimeResultDiv'>(.*?)<",bpsdata)[0]
-        lastval=selfAddon.getSetting( "safeplaylastcode" ) 
-        if lastval=="": lastval=bpsres
-        selfAddon.setSetting( "safeplaylastcode",bpsres)
-        #bpsres,bpstime="", ""#lastval
-        #if usecode: bpsres=usecode
-        
-        jsdata='[{"key":"type","value":"info"},{"key":"info","value":"speedtest"},{"key":"country","value":"France"},{"key":"language","value":"en"},{"key":"speedTestSize","value": "%s"},{"key":"kbPs","value":"%s"},{"key":"speedResKb","value":"%s"},{"key":"bpsResult","value":"%s"},{"key":"speedResTime","value":"%s"},{"key":"websocketSupport","value":"true"},{"key":"speedTestInTime","value":"true"},{"key":"bpsTimeResult","value":"%s"},{"key":"flash","value":"true"},{"key":"touchScreen","value":"false"},{"key":"rotationSupport","value":"false"},{"key":"pixelRatio","value":"1"},{"key":"width","value":"1366"},{"key":"height","value":"768"},{"key":"mobilePercent","value":"33"}]'%( testsize,str(kbps),kbRes , bpsres, res, bpstime,)
-        ws.send(jsdata)
-        
-        #result = ws.recv()   
-        #xbmc.sleep(2000)
-        jsdata='[{"key":"type","value":"channelrequest"},{"key":"dbid","value":"%s"},{"key":"tbid","value":""},{"key":"format","value":"masterm3u8"},{"key":"proxify","value":"true"},{"key":"bitrate","value":"1368000"},{"key":"maxbitrate","value":"3305000"}]'%url
-        ws.send(jsdata)
-        result = ws.recv()
-        #result = ws.recv()
-        print repr(result)
-
-        headers = [('Referer', base64.b64decode('aHR0cDovL2N1c3RvbWVyLnNhZmVyc3VyZi5jb20vb25saW5ldHYuaHRtbA==')),('User-Agent','Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36'),('Origin',base64.b64decode('aHR0cDovL2N1c3RvbWVyLnNhZmVyc3VyZi5jb20='))]
-        urlnew=re.findall('[\'"](http.*?)[\'"]',result)[0]
-        result=getUrl(urlnew,headers=headers)
-    except: 
-        traceback.print_exc(file=sys.stdout)
-
-    #try:
-    #    print ws.close()
-    #    #wsfirst.close()
-    #except: 
-    #    traceback.print_exc(file=sys.stdout)
-    urlToPlay=re.findall('(http.*?)\s',result)[-1]
-    try:
-        result2=getUrl(urlToPlay,headers=headers)
-    except:
-        traceback.print_exc(file=sys.stdout)
-        #dialog = xbmcgui.Dialog()
-        #ok = dialog.ok('XBMC', 'Failed to get the Url, try again!') 
-        #return
-        #if not recursive:
-        #    urlToPlay=PlaySafeLink(url, recursive=True,usecode=bpsres )
-    
-    if recursive: return urlnew
-    import random
+    import safelinks
     listitem = xbmcgui.ListItem( label = str(name), iconImage = "DefaultVideo.png", thumbnailImage = xbmc.getInfoImage( "ListItem.Thumb" ) )
-    #xbmc.Player(  ).play( urlToPlay+base64.b64decode('fE9yaWdpbj1odHRwOi8vY3VzdG9tZXIuc2FmZXJzdXJmLmNvbSZVc2VyLUFnZW50PU1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDYuMSkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzUyLjAuMjc0My4xMTYgU2FmYXJpLzUzNy4zNiZSZWZlcmVyPWh0dHA6Ly9jdXN0b21lci5zYWZlcnN1cmYuY29tL29ubGluZXR2Lmh0bWw='), listitem)
-    tryplay( urlnew+base64.b64decode('fE9yaWdpbj1odHRwOi8vY3VzdG9tZXIuc2FmZXJzdXJmLmNvbSZVc2VyLUFnZW50PU1vemlsbGEvNS4wIChXaW5kb3dzIE5UIDYuMSkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzUyLjAuMjc0My4xMTYgU2FmYXJpLzUzNy4zNiZSZWZlcmVyPWh0dHA6Ly9jdXN0b21lci5zYWZlcnN1cmYuY29tL29ubGluZXR2Lmh0bWw='), listitem, keepactive=True, aliveobject=ws, pdialogue=progress)
+    urlnew=safelinks.getSafeLink(url, progress=progress, name=name)
+    PlayGen(base64.b64encode(urlnew))
+    
 
 def safeFinishedTest(dur):
     import math
@@ -5010,45 +4922,22 @@ def PlayPV2Link(url):
         urlToPlay=base64.b64decode(url)
 
 #    print 'urlToPlay',urlToPlay    
-    urlToPlay+=getPV2Auth()
+    urlToPlay+=getPV2PlayAuth()
     if '|' not in urlToPlay:
         urlToPlay+='|'
     import random
     useragent='User-Agent=AppleCoreMedia/1.0.0.%s (%s; U; CPU OS %s like Mac OS X; en_gb)'%(random.choice(['13G34' ,'13G36']),random.choice(['iPhone','iPad','iPod']),random.choice(['9_3_3','9_3_4','9_3_5']))
     urlToPlay+=useragent
-    #try:
-    #    if 'iptvaus.dynns.com' in urlToPlay:# quickfix
-    #        a=urllib.urlopen('http://iptvaus.dynns.com/')
-    #        if a.getcode()==502: #server not found
-    #            urlToPlay=urlToPlay.replace('iptvaus.dynns.com','130.185.144.63')
-    #except:
-    #    pass
-    #print 'before ind',urlToPlay
-    #try:
-    #    if ('indaus.dynns.com' in urlToPlay) and 'm3u8' in urlToPlay:# quickfix
-    #        testh=getUrl(urlToPlay.split('|')[0],headers=[('User-Agent',useragent)])
-    #except:
-    #    urlToPlay=urlToPlay.replace('indaus.dynns.com','130.185.144.63')
-        
-    #try:
-    #    if ('movaus.dynns.com' in urlToPlay) and 'm3u8' in urlToPlay:# quickfix
-    #        testh=getUrl(urlToPlay.split('|')[0],headers=[('User-Agent',useragent)])
-    #except:
-    #    urlToPlay=urlToPlay.replace('movaus.dynns.com','130.185.144.112')
+
         
 
-#    print 'urlToPlay',urlToPlay
     listitem = xbmcgui.ListItem( label = str(name), iconImage = "DefaultVideo.png", thumbnailImage = xbmc.getInfoImage( "ListItem.Thumb" ) )
-#    print "playing stream name: " + str(name) 
-#88.150.206.7 last ip
+
     if not tryplay(urlToPlay, listitem):
         if '130.185.144.112' not in urlToPlay:
             urlToPlay2='http://130.185.144.112:8081'+'/'.join(urlToPlay.split('/')[3:])          
             if not tryplay(urlToPlay2, listitem):
                 return False
-                #if 'live2.dynns.com' not in urlToPlay:
-                #    urlToPlay2='http://live2.dynns.com:8081'+'/'.join(urlToPlay.split('/')[3:])                      
-                #    tryplay(urlToPlay2, listitem)
     
 def PlayOtherUrl ( url ):
     checkbad.do_block_check(False)

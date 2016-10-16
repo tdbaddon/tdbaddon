@@ -15,7 +15,11 @@ except:pass
 file_var = open(xbmc.translatePath(os.path.join(datapath, 'cookie.lwp')), "a")
 cookie_file = os.path.join(os.path.join(datapath,''), 'cookie.lwp')
 
-def CATEGORIES():
+def INDEX():
+        addDir('Cartoons','url',9,cartoon,fanart)
+        addDir('Anime','url',10,anime,fanart)
+
+def CCATEGORIES():
         addDir('Cartoon - New & Hot','http://9cartoon.me/CartoonList/NewAndHot?page=1',1,cartoon,fanart)
 	addDir('Cartoon - New Added','http://9cartoon.me/CartoonList/New?page=1',1,cartoon,fanart)
 	addDir('Cartoon - Popular','http://9cartoon.me/CartoonList/MostViewed?page=1',1,cartoon,fanart)
@@ -23,13 +27,14 @@ def CATEGORIES():
 	addDir('Cartoon - Genres','http://9cartoon.me',6,cartoon,fanart)
         addDir('Cartoon - Search','http://9cartoon.me/Search?s=',8,cartoon,fanart)
 
+def ACATEGORIES():
         addDir('Anime - New & Hot','http://gogoanime.ch/AnimeList/NewAndHot?page=1',1,anime,fanart)
 	addDir('Anime - New Added','http://gogoanime.ch/AnimeList/New?page=1',1,anime,fanart)
 	addDir('Anime - Popular','http://gogoanime.ch/AnimeList/MostViewed?page=1',1,anime,fanart)
 	addDir('Anime - A - Z','http://gogoanime.ch/AnimeList',5,anime,fanart)
 	addDir('Anime - Genres','http://gogoanime.ch/',6,anime,fanart)
         addDir('Anime - Search','http://gogoanime.ch/Search?s=',8,anime,fanart)
-       
+
 def GETMOVIES(url,name):
         link = open_url(url)
         link = link.replace("'",'"')
@@ -54,7 +59,7 @@ def GETEPISODES(url,name,iconimage):
         match=list(reversed(match))
         for url, name2 in match:
                 if len(match)==1:
-                        PLAYLINK(name,url,iconimage)
+                        GETPLAYLINK(name,url,iconimage)
                         quit()
                 else:
                         name = cleanHex(name)
@@ -67,25 +72,7 @@ def SEARCH(url):
         search_entered = keyboard.getText().replace(' ','+')
     if len(search_entered)>1:
         url = url + search_entered + '&page=1'
-        GETCUSTCAT(url)
-
-def GETCUSTCAT(url):
-	url2=url
-        link = open_url(url)        
-        match=re.compile('<img src="(.+?)">.+?<a href="(.+?)" title="(.+?)">',re.DOTALL
-
-).findall(link)[1:]
-        for iconimage, url, name  in match:
-                iconimage=iconimage+"|User-Agent=Mozilla/5.0 (Windows NT 6.1; rv:32.0) Gecko/20100101 Firefox/32.0&Cookie=%s"%getCookiesString()
-                addDir(name,url,2,iconimage,fanart)
-	try:
-                pagenum = url2.split('&page=')[1]
-                search = url2.split('Search?s=')[1].split('&page')[0]
-                curpage = int(pagenum)
-                nextpage = curpage + 1
-                nextpageurl = 'http://9cartoon.me/Search?s='+search+'&page='+str(nextpage)
-                addDir('Next >> Page '+str(nextpage),nextpageurl,9,icon,fanart)
-        except: pass
+        GETGENREMOVIES(url)
 
 def getCookiesString():
     cookieString=""
@@ -111,9 +98,7 @@ def GETGENRES(url,iconimage):
 def GETGENREMOVIES(url):
 	url2=url
         link = open_url(url)        
-        match=re.compile('<img src="(.+?)">.+?<a href="(.+?)" title="(.+?)">',re.DOTALL
-
-).findall(link)[1:]
+        match=re.compile('<img src="(.+?)">.+?<a href="(.+?)" title="(.+?)">',re.DOTALL).findall(link)[3:]
         for iconimage, url, name  in match:
                 iconimage=iconimage+"|User-Agent=Mozilla/5.0 (Windows NT 6.1; rv:32.0) Gecko/20100101 Firefox/32.0&Cookie=%s"%getCookiesString()
                 addDir(name,url,2,iconimage,fanart)
@@ -148,15 +133,21 @@ def AZ(url,name):
                 nextpageurl = pagenum[0]+'&page='+str(nextpage)
                 addDir('Next >> Page '+str(nextpage),nextpageurl,11,icon,fanart)
         except: pass
-
-       
-def PLAYLINK(name,url,iconimage):
+    
+def GETPLAYLINK(name,url,iconimage):
         link = open_url(url)
-        stream_url = re.compile('<a href="(.+?)" target="_blank"').findall(link)[-1]
+        try: stream_url = re.compile('<a href="(.+?)" target="_blank"').findall(link)[-1]
+        except:
+                holderpage=re.compile('<iframe src="(.+?)" scrolling="no" frameborder="0" width="1008" height="640" allowfullscreen="true"></iframe>').findall(link)[0]
+                link = open_url(holderpage)
+                stream_url = re.compile('<a href="(.+?)" target="_blank"').findall(link)[-1]
+        PLAYLINK(name,stream_url,iconimage)
+
+def PLAYLINK(name,url,iconimage):
         ok=True
         liz=xbmcgui.ListItem(name, iconImage=iconimage,thumbnailImage=iconimage); liz.setInfo( type="Video", infoLabels={ "Title": name } )
         ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=url,listitem=liz)
-        xbmc.Player ().play(stream_url+"|User-Agent=Mozilla/5.0 (Windows NT 6.1; rv:32.0) Gecko/20100101 Firefox/32.0&Cookie=%s"%getCookiesString(), liz, False)
+        xbmc.Player ().play(url+"|User-Agent=Mozilla/5.0 (Windows NT 6.1; rv:32.0) Gecko/20100101 Firefox/32.0&Cookie=%s"%getCookiesString(), liz, False)
 
 def get_params():
         param=[]
@@ -228,16 +219,17 @@ except: pass
 try: iconimage=urllib.unquote_plus(params["iconimage"])
 except: pass
 
-if mode==None or url==None or len(url)<1: CATEGORIES()
+if mode==None or url==None or len(url)<1: INDEX()
 elif mode==1: GETMOVIES(url,name)
 elif mode==2: GETEPISODES(url,name,iconimage)
 elif mode==5: GETFULL(url,name)
 elif mode==6: GETGENRES(url,iconimage)
 elif mode==7: GETGENREMOVIES(url)
 elif mode==8: SEARCH(url)
-elif mode==9: GETCUSTCAT(url)
+elif mode==9: CCATEGORIES()
+elif mode==10: ACATEGORIES()
 elif mode==11: AZ(url,name)
-elif mode==100: PLAYLINK(name,url,iconimage)
+elif mode==100: GETPLAYLINK(name,url,iconimage)
 
 xbmcplugin.endOfDirectory(int(sys.argv[1]))
 

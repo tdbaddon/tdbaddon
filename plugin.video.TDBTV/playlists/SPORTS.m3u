@@ -273,11 +273,17 @@ http://grandiptv.myftp.org:8000/live/5grandiptv915/67863345/1338.ts
 #EXTINF:0,Sportsnet 360 
 http://46.166.162.35:9090/load/b0922f3fa8aa/58.m3u8
 
+#EXTINF:0,Sportsnet 360 
+http://46.166.162.35:9090/load/b0922f3fa8aa/58.mpegts
+
 #EXTINF:0,Sportsnet East
 0
 
 #EXTINF:0,Sportsnet One 
 http://46.166.162.35:9090/load/b0922f3fa8aa/57.m3u8
+
+#EXTINF:0,Sportsnet One 
+http://46.166.162.35:9090/load/b0922f3fa8aa/57.mpegts
 
 #EXTINF:0,Sportsnet Ontario 
 0
@@ -286,7 +292,10 @@ http://46.166.162.35:9090/load/b0922f3fa8aa/57.m3u8
 0
 
 #EXTINF:0,Sportsnet World 
-0
+http://46.166.162.35:9090/load/b0922f3fa8aa/59.m3u8
+
+#EXTINF:0,Sportsnet World 
+http://46.166.162.35:9090/load/b0922f3fa8aa/59.mpegts
 
 #EXTINF:0,Tennis Channel 
 0
