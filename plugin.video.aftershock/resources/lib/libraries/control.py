@@ -164,6 +164,10 @@ def artPath():
     elif condVisibility('System.HasAddon(script.aftershock.artwork)'):
         return os.path.join(xbmcaddon.Addon('script.aftershock.artwork').getAddonInfo('path'), 'resources', 'media', theme)
 
+def logoPath():
+    if condVisibility('System.HasAddon(script.aftershock.artwork)'):
+        return os.path.join(xbmcaddon.Addon('script.aftershock.artwork').getAddonInfo('path'), 'resources', 'media', 'logos')
+
 def infoDialog(message, heading=addonInfo('name'), icon=addonIcon(), time=3000):
     try: dialog.notification(heading, message, icon, time, sound=False)
     except: execute("Notification(%s,%s, %s, %s)" % (heading, message, time, icon))
@@ -206,6 +210,14 @@ def openSettings(query=None, id=addonInfo('id')):
     except:
         return
 
+def delete(fileName):
+    try :
+        filePath = os.path.join(dataPath, fileName)
+        if xbmcvfs.exists(filePath):
+            xbmcvfs.delete(filePath)
+        return '1'
+    except:
+        return '1'
 
 def resetSettings(forceReset, version):
     try :

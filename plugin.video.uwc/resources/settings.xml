@@ -1,9 +1,20 @@
 <settings>
-   <setting id="sortwxf" type="enum" lvalues="30012|30013|30014" label="30011" default="0"/>
-   <setting id="sortxt" type="enum" lvalues="30022|30023|30024|30025" label="30021" default="0"/>
-   <setting id="dontask" label="30002" type="bool" default="false" />
-   <setting id="chaturbate" label="30003" type="bool" default="false" />
-   <setting id="paradisehill" label="30004" type="bool" default="false" />
-   <setting id="posterfanart" label="30005" type="bool" default="false" />
-   <setting id="download_path" type="folder" source="video" label="Download Folder"  option="writeable" default=""/>
+    <category label="General">
+        <setting id="sortwxf" type="enum" lvalues="30012|30013|30014" label="30011" default="0"/>
+        <setting id="sortxt" type="enum" lvalues="30022|30023|30024|30025" label="30021" default="0"/>
+        <setting id="dontask" label="30002" type="bool" default="false" />
+        <setting id="chaturbate" label="30003" type="bool" default="false" />
+        <setting id="paradisehill" label="30004" type="bool" default="false" />
+        <setting id="posterfanart" label="30005" type="bool" default="false" />
+        <setting id="download_path" type="folder" source="video" label="Download Folder"  option="writeable" default=""/>
+    </category>
+    <category label="Chaturbate">
+        <setting id="chatplay" type="enum" label="30100" lvalues="30101|30102|30103" default="0" />
+        <setting type="sep" label="" />
+        <setting type="lsep" label="F4mProxy is slightly better" />
+        <setting type="lsep" label="RTMP needs a patched librtmp from:" />
+        <setting type="lsep" label="http://kodi.wiki/view/how-to:update_librtmp" />
+        <setting type="lsep" label="With RTMP, no audio on most streams though," />         
+        <setting type="lsep" label="because of missing Speex coded in Kodi" />        
+    </category>
 </settings>

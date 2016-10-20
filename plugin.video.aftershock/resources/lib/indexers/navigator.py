@@ -67,7 +67,33 @@ class navigator:
         #cache.get(control.resetSettings, 600000000, 'true', control.addonInfo('version'), table='changelog')
         cache.get(analytics.sendAnalytics, 600000000, ("Installed-%s" % control.addonInfo('version')), table='changelog')
 
+    def clearCache(self, url=None):
+        if url == None:
+            self.addDirectoryItem(90124, 'clearCache&url=main', 'clearcache.png','DefaultMovies.png')
+            self.addDirectoryItem(90125, 'clearCache&url=providers', 'clearcache.png','DefaultMovies.png')
+            self.addDirectoryItem(90126, 'clearCache&url=live', 'clearcache.png','DefaultMovies.png')
+            self.addDirectoryItem(90127, 'clearCache&url=meta', 'clearcache.png','DefaultMovies.png')
 
+            self.endDirectory(viewMode='list')
+        elif url == 'main':
+            from resources.lib.libraries import cache
+            cache.clear()
+        elif url == 'providers':
+            from resources.lib.libraries import cache
+            cache.clear()
+            cache.clear(['rel_src'], control.sourcescacheFile)
+        elif url == 'live' :
+            from resources.lib.libraries import cache
+            cache.clear()
+            control.delete('static.json')
+            control.delete('ditto.json')
+            control.delete('cinefun.json')
+            control.delete('dynns.json')
+            cache.clear(['rel_live','rel_logo'], control.sourcescacheFile)
+        elif url == 'meta':
+            from resources.lib.libraries import cache
+            cache.clear()
+            cache.clear(['meta', 'meta_imdb'], control.metacacheFile)
 
     def desiLangMovies(self):
         self.addDirectoryItem(30201, 'movieSearch', 'search.png', 'DefaultMovies.png')
@@ -100,33 +126,33 @@ class navigator:
 
     def desiTV(self):
         listItems = []
-        logoBaseURL='http://www.lyngsat-logo.com/logo/tv'
-        provider = 'desirulez_tv'
-        listItems.append({'provider':provider, 'name':90200, 'image': logoBaseURL+'/ss/star_plus.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=42'})
-        listItems.append({'provider':provider, 'name':90201, 'image': logoBaseURL+'/zz/zee_tv.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=73'})
-        listItems.append({'provider':provider, 'name':90203, 'image': logoBaseURL+'/ss/set_in.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=63'})
-        listItems.append({'provider':provider, 'name':90205, 'image': logoBaseURL+'/ll/life_ok_in.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=1375'})
-        listItems.append({'provider':provider, 'name':90206, 'image': logoBaseURL+'/ss/sahara_one.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=134'})
-        listItems.append({'provider':provider, 'name':90207, 'image': logoBaseURL+'/ss/star_jalsha.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=667'})
-        listItems.append({'provider':provider, 'name':90208, 'image': logoBaseURL+'/cc/colors_in.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=176'})
-        listItems.append({'provider':provider, 'name':90209, 'image': logoBaseURL+'/ss/sony_sab_tv.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=254'})
-        listItems.append({'provider':provider, 'name':90210, 'image': logoBaseURL+'/ss/star_pravah.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=1138'})
-        listItems.append({'provider':provider, 'name':90212, 'image': logoBaseURL+'/mm/mtv_india.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=339'})
-        listItems.append({'provider':provider, 'name':90213, 'image': logoBaseURL+'/cc/channel_v_in.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=633'})
-        listItems.append({'provider':provider, 'name':90214, 'image': logoBaseURL+'/uu/utv_bindass.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=504'})
-        listItems.append({'provider':provider, 'name':90215, 'image': logoBaseURL+'/uu/utv_stars.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=1274'})
-        listItems.append({'provider':provider, 'name':90218, 'image': logoBaseURL+'/hh/hungama.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=472'})
-        listItems.append({'provider':provider, 'name':90219, 'image': logoBaseURL+'/cc/cartoon_network_in.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=509'})
-        listItems.append({'provider':provider, 'name':90220, 'image': logoBaseURL+'/aa/and_tv_in.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=3138'})
-        listItems.append({'provider':provider, 'name':90222, 'image': logoBaseURL+'/cc/colors_in_bangla.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=2117'})
-        listItems.append({'provider':provider, 'name':90223, 'image': logoBaseURL+'/zz/zee_zindagi_in.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=2679'})
-        listItems.append({'provider':provider, 'name':90224, 'image': logoBaseURL+'/bb/big_magic_in.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=1887'})
-        listItems.append({'provider':provider, 'name':90225, 'image': logoBaseURL+'/cc/colors_in_marathi.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=2369'})
-        listItems.append({'provider':provider, 'name':90226, 'image': logoBaseURL+'/mm/maa_tv.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=3165'})
-        listItems.append({'provider':provider, 'name':90227, 'image': logoBaseURL+'/zz/zee_marathi.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=1299'})
-        listItems.append({'provider':provider, 'name':90228, 'image': logoBaseURL+'/zz/zee_bangla.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=676'})
-        listItems.append({'provider':provider, 'name':90229, 'image': logoBaseURL+'/zz/zoom_tv_in.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=1876'})
-        listItems.append({'provider':provider, 'name':90230, 'image': logoBaseURL+'/ss/star_vijay_in.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=1609'})
+        logoBaseURL=control.logoPath() + "\\"
+        provider = 'desirulez_mv_tv'
+        listItems.append({'provider':provider, 'name':90200, 'image': logoBaseURL+'star_plus_hk.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=42'})
+        listItems.append({'provider':provider, 'name':90201, 'image': logoBaseURL+'zee_tv_in.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=73'})
+        listItems.append({'provider':provider, 'name':90203, 'image': logoBaseURL+'sony_set.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=63'})
+        listItems.append({'provider':provider, 'name':90205, 'image': logoBaseURL+'life_ok_in.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=1375'})
+        listItems.append({'provider':provider, 'name':90206, 'image': logoBaseURL+'sahara_one_in.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=134'})
+        listItems.append({'provider':provider, 'name':90207, 'image': logoBaseURL+'star_jalsha.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=667'})
+        listItems.append({'provider':provider, 'name':90208, 'image': logoBaseURL+'colors_in.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=176'})
+        listItems.append({'provider':provider, 'name':90209, 'image': logoBaseURL+'sony_sab_tv_in.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=254'})
+        listItems.append({'provider':provider, 'name':90210, 'image': logoBaseURL+'star_pravah.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=1138'})
+        listItems.append({'provider':provider, 'name':90212, 'image': logoBaseURL+'mtv_us.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=339'})
+        listItems.append({'provider':provider, 'name':90213, 'image': logoBaseURL+'channel_v_in.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=633'})
+        listItems.append({'provider':provider, 'name':90214, 'image': logoBaseURL+'bindass_in.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=504'})
+        listItems.append({'provider':provider, 'name':90215, 'image': logoBaseURL+'utv_stars.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=1274'})
+        listItems.append({'provider':provider, 'name':90218, 'image': logoBaseURL+'hungama.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=472'})
+        listItems.append({'provider':provider, 'name':90219, 'image': logoBaseURL+'cartoon_network_global.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=509'})
+        listItems.append({'provider':provider, 'name':90220, 'image': logoBaseURL+'and_tv_in.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=3138'})
+        listItems.append({'provider':provider, 'name':90222, 'image': logoBaseURL+'colors_in_bangla.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=2117'})
+        listItems.append({'provider':provider, 'name':90223, 'image': logoBaseURL+'zee_zindagi_in.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=2679'})
+        listItems.append({'provider':provider, 'name':90224, 'image': logoBaseURL+'big_magic_in.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=1887'})
+        listItems.append({'provider':provider, 'name':90225, 'image': logoBaseURL+'colors_in_marathi.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=2369'})
+        listItems.append({'provider':provider, 'name':90226, 'image': logoBaseURL+'maa_tv.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=3165'})
+        listItems.append({'provider':provider, 'name':90227, 'image': logoBaseURL+'zee_marathi.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=1299'})
+        listItems.append({'provider':provider, 'name':90228, 'image': logoBaseURL+'zee_bangla.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=676'})
+        listItems.append({'provider':provider, 'name':90229, 'image': logoBaseURL+'zoom_tv_in.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=1876'})
+        listItems.append({'provider':provider, 'name':90230, 'image': logoBaseURL+'star_vijay.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=1609'})
         listItems.sort()
 
         for item in listItems:
@@ -157,6 +183,6 @@ class navigator:
         if not addonFanart == None: item.setProperty('Fanart_Image', addonFanart)
         control.addItem(handle=int(sys.argv[1]), url=url, listitem=item, isFolder=isFolder)
 
-    def endDirectory(self, cacheToDisc=True):
-        views.setView('movies', {'skin.confluence': control.viewMode['thumbnails']})
+    def endDirectory(self, cacheToDisc=True, viewMode='thumbnails'):
+        views.setView('movies', {'skin.confluence': control.viewMode[viewMode]})
         control.directory(int(sys.argv[1]), cacheToDisc=cacheToDisc)

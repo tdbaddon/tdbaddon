@@ -37,7 +37,6 @@
     <string id="30402">Process Complete</string>
     <string id="30403">Mark as unwatched</string>
     <string id="30404">Mark as watched</string>
-    <string id="30405">Process Complete</string>
     <string id="30412">Movie information</string>
     <string id="30413">TV show information</string>
     <string id="30461">Resume from</string>
@@ -55,8 +54,6 @@
     <string id="30507">Add-on settings</string>
     <string id="30508">Now playing...</string>
     <string id="30509">Auto-play</string>
-    <string id="30510">Clear Sources Cache ?</string>
-    <string id="30511">Process Complete</string>
     <string id="30512">Time elapsed</string>
     <string id="30513">seconds</string>
     <string id="30514">Remaining sources</string>
@@ -129,6 +126,11 @@
     <string id="90121">Gujarati</string>
     <string id="90122">Malayalam</string>
     <string id="90123">Kannada</string>
+
+    <string id="90124">Clear Cache : Main</string>
+    <string id="90125">Clear Cache : Providers</string>
+    <string id="90126">Clear Cache : Live</string>
+    <string id="90127">Clear Cache : Meta</string>
 
 
     <string id="90200">Star Plus</string>

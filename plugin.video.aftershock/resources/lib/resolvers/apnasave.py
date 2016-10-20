@@ -42,7 +42,7 @@ def resolve(url):
                 url = client.parseDOM(result, name="src")[0]
         except:
             pass
-        logger.debug('%s URL [%s]' % (__name__, url))
+        logger.debug('URL [%s]' % url, __name__)
         return url
     except:
         return

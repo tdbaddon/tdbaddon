@@ -38,7 +38,7 @@ def resolve(url):
             videoId = data['settings']['videoId']
 
         url = 'https://cdn.video.playwire.com/%s/videos/%s/video-sd.mp4?hosting_id=%s' % (publisherId, videoId, hostingId)
-        logger.debug('%s URL [%s]' % (__name__, url))
+        logger.debug('URL [%s]' % url, __name__)
         return url
     except:
         return

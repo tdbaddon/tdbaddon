@@ -19,17 +19,20 @@
 '''
 
 
-import json, urlparse, re, urllib
+import json, urlparse, re, urllib, os
 from resources.lib.libraries import client
 from resources.lib.libraries import cleantitle
 from resources.lib.libraries import logger
 from resources.lib.libraries import pyaes
+from resources.lib.libraries import control
+from resources.lib.libraries.fileFetcher import *
+from resources.lib.libraries.liveParser import *
 
 class source:
     def __init__(self):
         self.base_link = 'http://www.dittotv.com'
-        self.live_link = '/livetv'
-        self.channel_link = 'http://origin.dittotv.com/livetv/%s'
+        self.live_link = 'http://origin.dittotv.com/livetv/all/0'
+        self.channel_link = 'http://origin.dittotv.com%s'
         self.poster_link = 'http://dittotv2.streamark.netdna-cdn.com/vod_images/optimized/livetv/%s.jpg'
         self.headers = {'Accept':'text/html,application/xhtml+xml,q=0.9,image/jxr,*/*',
                         'Accept-Language':'en-US,en;q=0.5',
@@ -38,31 +41,55 @@ class source:
                         'User-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0' ,
                         'Referer':'http://www.dittotv.com/livetv'}
         self.list = []
+        self.fileName = 'ditto.json'
 
-    def getLiveSource(self):
+    def getLiveSource(self, generateJSON=False):
         try :
-            url = urlparse.urljoin(self.base_link,self.live_link)
 
-            result = client.source(url, headers=self.headers)
-            result = client.parseDOM(result, "select", attrs={"class":"select_rerun_buttons "})[0]
-            channels = re.compile('<option value="(\d+)">(.+?)</option>').findall(result)
+            if generateJSON:
+                url = self.live_link
 
-            for logo, channel in channels:
-                channelUrl = channel.replace('&', 'and-')
-                channel = cleantitle.live(channel)
-                channel = channel.title()
-                channelUrl = self.channel_link % urllib.quote_plus(channelUrl).replace('+','-')
-                channelUrl = channelUrl.lower()
-                poster = self.poster_link % str(logo)
-                self.list.append({'name':client.replaceHTMLCodes(channel), 'poster':poster,'url':channelUrl,'provider':'ditto','source':'ditto','direct':False, 'quality':'HD'})
-            return self.list
+                #result = client.source(url, headers=self.headers)
+                fileName = os.path.join(control.dataPath, 'ditto.html')
+                #file = open(fileName, "w")
+                #file.write(result)
+                file = open(fileName, "r")
+                result = file.read()
+                #result = result.decode('iso-8859-1').encode('utf-8')
+                #result = result.replace('\n','').replace('\t','')
+                channels=re.findall('<div class="subpattern.*?\s*<a href="(.*?)" title="(.*?)".*?\s*<img src=".*?".*?\s*<img src="(.*?)"',result)
+
+                channelList = {}
+                for url, title, logo in channels:
+                    title = title.replace("&amp;","And")
+                    title = cleantitle.live(title)
+                    title = title.title()
+                    if 'temple' in title.lower():
+                        continue
+                    url = self.channel_link % url
+                    poster = self.poster_link % str(logo)
+                    channelList[title] ={'icon':poster,'url':url,'provider':'ditto','source':'ditto','direct':'false', 'quality':'HD', 'enabled':'true'}
+
+                filePath = os.path.join(control.dataPath, self.fileName)
+                with open(filePath, 'w') as outfile:
+                    json.dump(channelList, outfile)
+
+            fileFetcher = FileFetcher(self.fileName,control.addon)
+            retValue = fileFetcher.fetchFile()
+            if retValue < 0 :
+                raise Exception()
+
+            liveParser = LiveParser(self.fileName, control.addon)
+            self.list = liveParser.parseFile(decode=True)
+            return (retValue, self.list)
         except:
+            import traceback
+            traceback.print_exc()
             pass
 
     def resolve(self, url, resolverList):
-
         try :
-            logger.debug('%s ORIGINAL URL [%s]' % (__name__, url))
+            logger.debug('ORIGINAL URL [%s]' % url, __name__)
             result = client.source(url, headers=self.headers)
             playdata='window.pl_data = (\{.*?"key":.*?\}\})'
             result=re.findall(playdata, result)[0]
@@ -72,13 +99,13 @@ class source:
                 key = result['live']['key']
                 link = link.decode('base64')
                 key = key.decode('base64')
-
                 de = pyaes.new(key, pyaes.MODE_CBC, IV='\0'*16)
                 link = de.decrypt(link).replace('\x00', '').split('\0')[0]
                 link = re.sub('[^\s!-~]', '', link)
             except:link = client.parseDOM(result, "source", attrs={"type":"application/x-mpegurl"}, ret="src")[0]
-            url = '%s|Referer=%s' % (link, url)
-            logger.debug('%s RESOLVED URL [%s]' % (__name__, url))
+            logger.debug('URL : [%s]' % link, __name__)
+            url = '%s|Referer=%s' % (link.strip(), url)
+            logger.debug('RESOLVED URL [%s]' % url, __name__)
             return url
         except :
             return False

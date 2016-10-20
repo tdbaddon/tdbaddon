@@ -69,6 +69,6 @@ def Cat(url):
         utils.addDir(name, catpage, 371, '', '')
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
-@utils.url_dispatcher.register('372', ['url', 'name'], ['keyword'])   
+@utils.url_dispatcher.register('372', ['url', 'name'], ['download'])   
 def Playvid(url, name, download=None):
     utils.PLAYVIDEO(url, name, download)

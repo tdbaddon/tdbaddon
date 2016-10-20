@@ -1,3 +1,6 @@
+[B]Version 2.8.16[/B]
+- Fixed Desitvbox loading issue
+
 [B]Version 2.8.15[/B]
 - Added watchers, streamin
 - Fixed watchvideo, PlayU, Dailymotion

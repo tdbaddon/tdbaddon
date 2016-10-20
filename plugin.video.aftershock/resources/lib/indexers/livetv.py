@@ -21,11 +21,16 @@
 import sys,urllib, json
 
 from resources.lib.libraries import control
-from resources.lib.libraries import client
 from resources.lib.libraries import views
 from resources.lib.libraries import cache
 from resources.lib.sources import sources
 from resources.lib.libraries import cleantitle
+from resources.lib.libraries import logger
+
+try:
+    from sqlite3 import dbapi2 as database
+except:
+    from pysqlite2 import dbapi2 as database
 
 class channels:
     def __init__(self):
@@ -46,7 +51,7 @@ class channels:
             alter=None
             date=None
             meta=None
-            sourceList = cache.get(sources().getSources, 2, name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date, meta)
+            sourceList = cache.get(sources().getSources, 72, name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date, meta)
 
             sourceList = dict((cleantitle.live(item['name']),item) for item in sourceList).values()
 
@@ -54,8 +59,8 @@ class channels:
             self.list = sorted(self.list, key=lambda k: k['name'])
 
             self.channelDirectory(self.list)
-        except :
-            client.printException('channels.get()')
+        except Exception as e:
+            logger.error(e.message)
             pass
 
     def channelDirectory(self, items):
@@ -101,7 +106,7 @@ class channels:
                     item.setProperty('Fanart_Image', addonFanart)
 
                 item.setProperty('Video', 'true')
-                item.setProperty("IsPlayable", "false")
+                item.setProperty("IsPlayable", "true")
                 item.addContextMenuItems([], replaceItems=True)
                 control.addItem(handle=int(sys.argv[1]), url=url, listitem=item, isFolder=False)
             except:

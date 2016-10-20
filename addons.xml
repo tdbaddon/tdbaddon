@@ -522,16 +522,16 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 <addon id="plugin.video.aftershock"
        name="Aftershock"
-       version="4.1.0"
+       version="4.2.0"
        provider-name="IDev">
     <requires>
-        <import addon="xbmc.python" version="2.1.0"/>
+        <import addon="xbmc.python" version="2.20.0"/>
 		<import addon="script.module.urlresolver"  version="3.0.21"/>
-		<import addon="script.module.metahandler"  version="2.9.0"/>
+		<import addon="script.module.metahandler"  version="1.0.0"/>
         <import addon="script.module.requests" version="2.9.1" />
 		<import addon="script.module.beautifulsoup" version="3.2.1"/>
         <import addon="plugin.video.youtube" version="5.2.1"/>
-        <import addon="script.aftershock.artwork" version="1.0.0"/>
+        <import addon="script.aftershock.artwork" version="1.1.0"/>
     </requires>
     <extension point="xbmc.python.pluginsource"
                library="default.py">
@@ -1255,7 +1255,7 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
 
 <addon id="plugin.video.icefilms"
        name="Icefilms"
-       version="1.27.0"
+       version="1.99.03"
        provider-name="Eldorado">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
@@ -1265,6 +1265,7 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
         <import addon="script.module.metahandler" version="2.5.1" />
         <import addon="script.module.addon.common" version="2.0.0" />
         <import addon="script.module.axel.downloader" version="0.2.1" />
+        <import addon="script.module.urlresolver" version="3.0.0"/>
         <!--import addon="script.module.pyxbmct" version="1.1.2" /-->
         <import addon="script.common.plugin.cache" />
     </requires>
@@ -1433,7 +1434,7 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
   </extension>
 </addon>
 
-<addon id="plugin.video.mdm4u" name="M4U" version="1.1.5" provider-name="Mucky Duck">
+<addon id="plugin.video.mdm4u" name="M4U" version="1.1.6" provider-name="Mucky Duck">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.addon.common" />
@@ -2013,7 +2014,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2016.10.06.2" provider-name="mrknow" >
+<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2016.10.18.2" provider-name="mrknow" >
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.requests" version="1.0.0" />
@@ -2176,7 +2177,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBTVSHOWS"
        name="TDB TV SHOWS"
-       version="1.70"
+       version="1.72"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -2349,7 +2350,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.tvondesizonexl" name="TV on DESI ZONE" version="2.8.15"
+<addon id="plugin.video.tvondesizonexl" name="TV on DESI ZONE" version="2.8.16"
 	provider-name="ajdeveloped/jchirag">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
@@ -2479,11 +2480,12 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.uwc"
        name="Ultimate Whitecream"
-       version="1.1.42"
+       version="1.1.43"
        provider-name="mortael">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
         <import addon="script.module.urlresolver"  version="3.0.12" />
+        <import addon="script.video.F4mProxy" version="2.5.7" />
     </requires>
     <extension point="xbmc.python.pluginsource"
                library="default.py">
@@ -2493,8 +2495,11 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
         <platform>all</platform>
         <license>GPL 2.0</license>
         <summary lang="en">Watch [COLOR red][B]ADULT[/B][/COLOR] Movies with Ultimate WhiteCream</summary>
-        <description lang="en">Watch [COLOR red][B]ADULT[/B][/COLOR] Movies with Ultimate WhiteCream</description>
+        <description lang="en">Watch [COLOR red][B]ADULT[/B][/COLOR] Movies with Ultimate WhiteCream
+
+For support, visit: [COLOR hotpink]http://bit.ly/uwc-support[/COLOR]</description>
 		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
+        <forum>http://bit.ly/uwc-support</forum>
     </extension>
 </addon>
 
@@ -2723,7 +2728,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.ZemTV-shani"
        name="Zem"
-       version="5.7.0"
+       version="5.7.3"
        provider-name="shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -3745,7 +3750,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
-<addon id="script.aftershock.artwork" version="1.0.0" name="Aftershock Artwork" provider-name="IDev">
+<addon id="script.aftershock.artwork" version="1.1.0" name="Aftershock Artwork" provider-name="IDev">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0"/>
 	</requires>
@@ -3757,7 +3762,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
-<addon id="script.mrknow.urlresolver" name="Mrknow URLResolver" version="2016.10.05.1" provider-name="mrknow" >
+<addon id="script.mrknow.urlresolver" name="Mrknow URLResolver" version="2016.10.19.1" provider-name="mrknow" >
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 	</requires>

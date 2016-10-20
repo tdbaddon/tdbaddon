@@ -24,6 +24,9 @@ from resources.lib.libraries import client
 from resources.lib.libraries import logger
 from resources.lib.libraries import cleantitle
 from resources.lib.libraries import cache
+from resources.lib.libraries import control
+from resources.lib.libraries.fileFetcher import *
+from resources.lib.libraries.liveParser import *
 
 class source:
     def __init__(self):
@@ -36,61 +39,80 @@ class source:
         self.list = []
         self.deviceId = None
         self.ipAddress = None
+        self.fileName = 'dynns.json'
 
-    def getLiveSource(self):
+    def getLiveSource(self, generateJSON=False):
         try :
-            self.deviceId = cache.get(self.getDeviceID, 8)
-            url = urlparse.urljoin(self.base_link,self.ip_check)
 
-            result = client.source(url, headers=self.headers)
-            self.ipAddress = re.findall('Address: (.*)',result)[0]
+            if generateJSON:
+                self.deviceId = cache.get(self.getDeviceID, 720)
+                url = urlparse.urljoin(self.base_link,self.ip_check)
 
-            headers = {'User-Agent':self.deviceId,
-                       'SOAPAction':'http://app.dynns.com/saveDeviceIdService/tns:db.saveId',
-                       'Content-Type':'text/xml; charset=ISO-8859-1'}
+                result = client.source(url, headers=self.headers)
+                self.ipAddress = re.findall('Address: (.*)',result)[0]
 
-            xmldata=base64.b64decode("PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iSVNPLTg4NTktMSI/Pgo8U09BUC1FTlY6RW52ZWxvcGUgU09BUC1FTlY6ZW5jb2RpbmdTdHlsZT0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbmNvZGluZy8iIHhtbG5zOlNPQVAtRU5WPSJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy9zb2FwL2VudmVsb3BlLyIgeG1sbnM6eHNkPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYSIgeG1sbnM6eHNpPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYS1pbnN0YW5jZSIgeG1sbnM6U09BUC1FTkM9Imh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3NvYXAvZW5jb2RpbmcvIiB4bWxuczp0bnM9Imh0dHA6Ly9zY3JpcHRiYWtlci5jb20vc2F2ZURldmljZUlkU2VydmljZSI+CjxTT0FQLUVOVjpCb2R5Pgo8dG5zOmRiLnNhdmVJZCB4bWxuczp0bnM9Imh0dHA6Ly9hcHAuZHlubnMuY29tL3NhdmVEZXZpY2VJZFNlcnZpY2UiPgo8aWQgeHNpOnR5cGU9InhzZDpzdHJpbmciPiVzIEBkbkBuMDMzMTwvaWQ+CjxuYW1lIHhzaTp0eXBlPSJ4c2Q6c3RyaW5nIj4lczwvbmFtZT4KPC90bnM6ZGIuc2F2ZUlkPgo8L1NPQVAtRU5WOkJvZHk+CjwvU09BUC1FTlY6RW52ZWxvcGU+")%(self.ipAddress,self.deviceId)
+                headers = {'User-Agent':self.deviceId,
+                           'SOAPAction':'http://app.dynns.com/saveDeviceIdService/tns:db.saveId',
+                           'Content-Type':'text/xml; charset=ISO-8859-1'}
 
-            url = 'https://app.dynns.com/apisoap/index.php'
-            result = client.source(url, headers=headers, post=xmldata)
+                xmldata=base64.b64decode("PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iSVNPLTg4NTktMSI/Pgo8U09BUC1FTlY6RW52ZWxvcGUgU09BUC1FTlY6ZW5jb2RpbmdTdHlsZT0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbmNvZGluZy8iIHhtbG5zOlNPQVAtRU5WPSJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy9zb2FwL2VudmVsb3BlLyIgeG1sbnM6eHNkPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYSIgeG1sbnM6eHNpPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYS1pbnN0YW5jZSIgeG1sbnM6U09BUC1FTkM9Imh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3NvYXAvZW5jb2RpbmcvIiB4bWxuczp0bnM9Imh0dHA6Ly9zY3JpcHRiYWtlci5jb20vc2F2ZURldmljZUlkU2VydmljZSI+CjxTT0FQLUVOVjpCb2R5Pgo8dG5zOmRiLnNhdmVJZCB4bWxuczp0bnM9Imh0dHA6Ly9hcHAuZHlubnMuY29tL3NhdmVEZXZpY2VJZFNlcnZpY2UiPgo8aWQgeHNpOnR5cGU9InhzZDpzdHJpbmciPiVzIEBkbkBuMDMzMTwvaWQ+CjxuYW1lIHhzaTp0eXBlPSJ4c2Q6c3RyaW5nIj4lczwvbmFtZT4KPC90bnM6ZGIuc2F2ZUlkPgo8L1NPQVAtRU5WOkJvZHk+CjwvU09BUC1FTlY6RW52ZWxvcGU+")%(self.ipAddress,self.deviceId)
 
-            # get dynns userAgent
-            userAgent = self.getUserAgent(1)
+                url = 'https://app.dynns.com/apisoap/index.php'
+                result = client.source(url, headers=headers, post=xmldata)
 
-            url = ('https://app.dynns.com/app_panelnew/output.php/playlist?type=xml&deviceSn=%s')%userAgent+'&token=%s'
+                # get dynns userAgent
+                userAgent = self.getUserAgent(1)
 
-            TIME = time.time()
-            second= str(TIME).split('.')[0]
-            first =int(second)+int(base64.b64decode('NjkyOTY5Mjk='))
-            token=base64.b64encode(base64.b64decode('JXNAMm5kMkAlcw==') % (str(first),second))
+                url = ('https://app.dynns.com/app_panelnew/output.php/playlist?type=xml&deviceSn=%s')%userAgent+'&token=%s'
 
-            headers = {'Authorization': base64.b64decode('QmFzaWMgWVdSdGFXNDZRV3hzWVdneFFBPT0='),
-                        base64.b64decode("VXNlci1BZ2VudA=="):self.getDeviceID()}
+                TIME = time.time()
+                second= str(TIME).split('.')[0]
+                first =int(second)+int(base64.b64decode('NjkyOTY5Mjk='))
+                token=base64.b64encode(base64.b64decode('JXNAMm5kMkAlcw==') % (str(first),second))
 
-            url = url % token
-            result = client.source(url, headers=headers)
+                headers = {'Authorization': base64.b64decode('QmFzaWMgWVdSdGFXNDZRV3hzWVdneFFBPT0='),
+                           base64.b64decode("VXNlci1BZ2VudA=="):self.getDeviceID()}
 
-            result = client.parseDOM(result, "items")
+                url = url % token
+                result = client.source(url, headers=headers)
 
-            for channel in result:
-                category = client.parseDOM(channel, "programCategory")[0]
-                if category == 'Indian':
-                    channelName = client.parseDOM(channel,"programTitle")[0]
-                    channelName = cleantitle.live(channelName)
-                    channelName = channelName.title()
-                    poster = client.parseDOM(channel, "programImage")[0]
-                    channelUrl = client.parseDOM(channel, "programURL")[0]
-                    self.list.append({'name':client.replaceHTMLCodes(channelName), 'poster':poster,'url':channelUrl,'provider':'dynns','source':'dynns','direct':False, 'quality':'HD'})
-            return self.list
+                result = client.parseDOM(result, "items")
+
+                channelList = {}
+                for channel in result:
+
+                    category = client.parseDOM(channel, "programCategory")[0]
+                    if category == 'Indian':
+                        title = client.parseDOM(channel,"programTitle")[0]
+                        title = cleantitle.live(title)
+                        title = title.title()
+                        poster = client.parseDOM(channel, "programImage")[0]
+                        url = client.parseDOM(channel, "programURL")[0]
+                        channelList[title] ={'icon':poster,'url':url,'provider':'dynns','source':'dynns','direct':'false', 'quality':'HD'}
+
+                    filePath = os.path.join(control.dataPath, self.fileName)
+                    with open(filePath, 'w') as outfile:
+                        json.dump(channelList, outfile)
+
+            fileFetcher = FileFetcher(self.fileName,control.addon)
+            retValue = fileFetcher.fetchFile()
+            if retValue < 0 :
+                raise Exception()
+
+            liveParser = LiveParser(self.fileName, control.addon)
+            self.list = liveParser.parseFile(decode=True)
+            return (retValue, self.list)
         except:
+            import traceback
+            traceback.print_exc()
             pass
 
     def resolve(self, url, resolverList):
 
         try :
-            logger.debug('[%s] ORIGINAL URL [%s]' % (self.__class__, url))
+            logger.debug('ORIGINAL URL [%s]' % url, __name__)
             authToken = self.getAuthToken()
-            logger.debug('[%s] AuthToken %s' % (self.__class__, authToken))
+            logger.debug('AuthToken %s' % authToken, __name__)
             url += authToken
             if '|' not in url:
                 url += '|'
@@ -98,15 +120,16 @@ class source:
             import random
             useragent='User-Agent=AppleCoreMedia/1.0.0.%s (%s; U; CPU OS %s like Mac OS X; en_gb)'%(random.choice(['13G34' ,'13G36']),random.choice(['iPhone','iPad','iPod']),random.choice(['9_3_3','9_3_4','9_3_5']))
             url+=useragent
-            logger.debug('[%s] RESOLVED URL [%s]' % (self.__class__, url))
+            logger.debug('RESOLVED URL [%s]' % url, __name__)
             return url
         except Exception as e:
             logger.error(e)
             return False
 
     def getDeviceID(self):
-        self.deviceId = binascii.b2a_hex(os.urandom(16)).upper()
-        logger.debug('[%s] DeviceID : %s' % (self.__class__, self.deviceId))
+        deviceId = binascii.b2a_hex(os.urandom(16)).upper()
+        logger.debug('DeviceID : %s' % deviceId, __name__)
+        return deviceId
 
     def getUserAgent(self, option):
         useragent=''
@@ -124,7 +147,7 @@ class source:
             headers={'User-Agent':cache.get(self.getDeviceID, 8),
                      'Authorization':base64.b64decode('QmFzaWMgWVcxMU9rQmtia0J1T0RRNQ==')}
             useragent = client.source(base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2tleXMvYXJhYmljdHZoZHYxZmYucGhw'),headers=headers)
-        logger.debug('[%s] UserAgent : %s' % (self.__class__, useragent))
+        logger.debug('UserAgent : %s' % useragent, __name__)
         return useragent.split('.')[-1]
 
     def getAuthToken(self):
@@ -139,9 +162,9 @@ class source:
 
                 headers = {'Authorization': "Basic %s"%base64.b64decode('Wkdsc1pHbHNaR2xzT2xCQWEybHpkRUJ1'),
                            base64.b64decode("VXNlci1BZ2VudA=="):self.getUserAgent(-1)}
-                logger.debug('[%s] Token : %s url : %s' % (self.__class__, token, base64.b64decode(url)))
+                logger.debug('Token : %s url : %s' % (token, base64.b64decode(url)), __name__)
                 result = client.source(base64.b64decode(url)+token, headers=headers)
-                logger.debug('[%s] AuthToken : %s' % (self.__class__, result))
+                logger.debug('AuthToken : %s' % result, __name__)
                 return result
             except Exception as e:
                 logger.error(e)

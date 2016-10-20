@@ -27,8 +27,8 @@ from resources.lib.libraries import directstream
 
 class source:
     def __init__(self):
-        self.domains = ['putlocker.systems']
-        self.base_link = 'http://www.putlocker.systems'
+        self.domains = ['putlocker.systems', 'putlocker-movies.tv', 'putlocker.yt', 'cartoonhd.website']
+        self.base_link = 'http://cartoonhd.website'
 
     def get_movie(self, imdb, title, year):
         try:
@@ -39,7 +39,7 @@ class source:
             return
 
     def get_sources(self, url):
-        logger.debug('[%s] SOURCES URL %s' % (self.__class__, url))
+        logger.debug('SOURCES URL %s' % url, __name__)
 
         try:
             sources = []
@@ -55,34 +55,45 @@ class source:
 
                 imdb = data['imdb']
 
-                match = title.replace('-', '').replace(':', '').replace('\'', '').replace(' ', '-').replace('--', '-').lower()
+                match = (title.translate(None, '\/:*?"\'<>|!,')).replace(' ', '-').replace('--', '-').lower()
 
                 url = '%s/movie/%s' % (self.base_link, match)
 
-                result = client.request(url, limit='1')
+                result = client.request(url, limit='5')
                 result = client.parseDOM(result, 'title')[0]
 
                 if '%TITLE%' in result: raise Exception()
 
-                result, headers, content, cookie = client.request(url, output='extended')
+                r = client.request(url, output='extended')
 
-                if not imdb in result: raise Exception()
+                if not imdb in r[0]: raise Exception()
 
 
             else:
 
-                result, headers, content, cookie = client.request(url, output='extended')
+                url = urlparse.urljoin(self.base_link, url)
 
-            auth = re.findall('__utmx=(.+)', cookie)[0].split(';')[0]
+                r = client.request(url, output='extended')
+
+
+            cookie = r[4] ; headers = r[3] ; result = r[0]
+
+            try: auth = re.findall('__utmx=(.+)', cookie)[0].split(';')[0]
+            except: auth = 'false'
             auth = 'Bearer %s' % urllib.unquote_plus(auth)
 
             headers['Authorization'] = auth
             headers['X-Requested-With'] = 'XMLHttpRequest'
+            headers['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8'
+            headers['Accept'] = 'application/json, text/javascript, */*; q=0.01'
+            headers['Cookie'] = cookie
             headers['Referer'] = url
 
-            u = 'http://www.putlocker.systems/ajax/embeds.php'
 
-            action = 'getMovieEmb'
+            u = '/ajax/nembeds.php'
+            u = urlparse.urljoin(self.base_link, u)
+
+            action = 'getEpisodeEmb' if '/episode/' in url else 'getMovieEmb'
 
             elid = urllib.quote(base64.encodestring(str(int(time.time()))).strip())
 
@@ -93,10 +104,10 @@ class source:
             post = {'action': action, 'idEl': idEl, 'token': token, 'elid': elid}
             post = urllib.urlencode(post)
 
-
             r = client.request(u, post=post, headers=headers)
             r = str(json.loads(r))
             r = client.parseDOM(r, 'iframe', ret='.+?') + client.parseDOM(r, 'IFRAME', ret='.+?')
+
 
             links = []
 
@@ -104,14 +115,11 @@ class source:
                 try: links += [{'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'url': i, 'direct': True}]
                 except: pass
 
-            links += [{'source': 'openload.co', 'quality': 'SD', 'url': i, 'direct': False} for i in r if 'openload.co' in i]
-
-            links += [{'source': 'videomega.tv', 'quality': 'SD', 'url': i, 'direct': False} for i in r if 'videomega.tv' in i]
-
+            links += [{'source': 'openload.co', 'parts' : '1','quality': 'SD', 'url': i, 'direct': False} for i in r if 'openload.co' in i]
 
             for i in links: sources.append({'source': i['source'], 'quality': i['quality'], 'provider': 'Putlocker', 'url': i['url'], 'direct': i['direct'], 'debridonly': False})
 
-            logger.debug('[%s] SOURCES [%s]' % (__name__,sources))
+            logger.debug('SOURCES [%s]' % sources, __name__)
             return sources
         except:
             return sources

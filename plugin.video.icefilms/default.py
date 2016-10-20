@@ -47,9 +47,14 @@ datapath = addon.get_profile()
 try:
     from metahandler import metahandlers
     metahandler_version = metahandlers.common.addon.get_version()
+    key = base64.b64decode('YzQ0ZDBjN2VkMTMyY2MyZWM5MDU4MWE3Y2ExYThmMDI=')
+    metaget=metahandlers.MetaData(tmdb_api_key=key)
 except Exception, e:
     addon.log_error('Failed to import script.module.metahandler: %s' % e)
     xbmcgui.Dialog().ok("Icefilms Import Failure", "Failed to import Metahandlers", "A component needed by Icefilms is missing on your system", "Please visit www.tvaddons.ag for support")
+
+    
+import urlresolver
 
 ########################### Queries ############################
 
@@ -379,23 +384,8 @@ def DLDirStartup():
 
 def LoginStartup():
 
-    #Get whether user has set an account to use.
-     
-    debrid_account = str2bool(addon.get_setting('realdebrid-account'))
-    movreel_account = str2bool(addon.get_setting('movreel-account'))
+    #Get whether user has set an account to use.   
     HideSuccessfulLogin = str2bool(addon.get_setting('hide-successful-login-messages'))
-
-    # #Verify Read-Debrid Account
-    if debrid_account:
-        if not addon.get_setting('realdebrid_token'):
-
-            try:
-                rd = debridroutines.RealDebrid()
-                rd.authorize_resolver()
-            except Exception, e:
-                addon.log_error('**** Real-Debrid Error: %s' % e)
-                Notify('big','Real-Debrid Login Failed','Failed to connect with Real-Debrid.', '', '', 'Please check your internet connection.')
-                pass                
             
 def ContainerStartup():
 
@@ -564,8 +554,9 @@ def CATEGORIES():  #  (homescreen of addon)
                 addDir('Recently Watched', '', 'recent_watched', os.path.join(art_path,'being watched now.png'))
           
           addDir('Search',iceurl,55,search)
+          VaddDir('URLResolver Settings', '', 'resolver_settings', '')
           VaddDir('Help', '', 'addon_help', '')
-          
+                    
           #Only show if prepare_zip = True - meaning you are creating a meta pack
           if prepare_zip:
               addDir('Create Meta Pack',iceurl,666,'')
@@ -714,7 +705,7 @@ def getFavourites(videoType):
     new_fav_list = sort_list(fav_list)
       
     if meta_setting=='true':    
-        metaget=metahandlers.MetaData()
+        
         meta_installed = metaget.check_meta_installed(addon_id)
     else:
         meta_installed = False
@@ -785,7 +776,7 @@ def get_video_name(name):
     return video
         
 
-def check_video_meta(name, metaget):
+def check_video_meta(name):
     #Determine if it's a movie or tvshow by the title returned - tv show will contain eg. 01x15 to signal season/episode number
     episode = check_episode(name)
     if episode:
@@ -824,7 +815,6 @@ def RECENT(url):
 
         #initialise meta class before loop
         if meta_setting=='true':
-            metaget=metahandlers.MetaData()
             meta_installed = metaget.check_meta_installed(addon_id)
         else:
             meta_installed = False
@@ -849,7 +839,7 @@ def RECENT(url):
                     new_name = name
                     
                 if meta_installed and meta_setting=='true':
-                    meta = check_video_meta(name, metaget)
+                    meta = check_video_meta(name)
                     addDir(new_name,url,100,'',meta=meta,disablefav=True, disablewatch=True, meta_install=meta_installed)
                 else:
                     addDir(new_name,url,100,'',disablefav=True, disablewatch=True)
@@ -861,7 +851,6 @@ def LATEST(url):
         
         #initialise meta class before loop
         if meta_setting=='true':
-            metaget=metahandlers.MetaData()
             meta_installed = metaget.check_meta_installed(addon_id)
         else:
             meta_installed = False
@@ -893,7 +882,7 @@ def LATEST(url):
                         new_name = name
                         
                     if meta_installed and meta_setting=='true':
-                        meta = check_video_meta(name, metaget)
+                        meta = check_video_meta(name)
                         addDir(new_name,url,mode,'',meta=meta,disablefav=True, disablewatch=True, meta_install=meta_installed)
                     else:
                         addDir(new_name,url,mode,'',disablefav=True, disablewatch=True)
@@ -905,7 +894,6 @@ def WATCHINGNOW(url):
 
         #initialise meta class before loop
         if meta_setting=='true':
-            metaget=metahandlers.MetaData()
             meta_installed = metaget.check_meta_installed(addon_id)
         else:
             meta_installed = False
@@ -932,7 +920,7 @@ def WATCHINGNOW(url):
                         new_name = name
                                                                                             
                     if meta_installed and meta_setting=='true':
-                        meta = check_video_meta(name, metaget)
+                        meta = check_video_meta(name)
                         addDir(new_name,url,mode,'',meta=meta,disablefav=True, disablewatch=True, meta_install=meta_installed)
                     else:
                         addDir(new_name,url,mode,'',disablefav=True, disablewatch=True) 
@@ -948,7 +936,6 @@ def recently_watched():
 def get_recent_watched(videoType):
 
     if meta_setting=='true':    
-        metaget=metahandlers.MetaData()
         meta_installed = metaget.check_meta_installed(addon_id)
     else:
         meta_installed = False
@@ -1056,7 +1043,6 @@ def clear_queue(videoType=None):
 def get_queue_list(videoType):
 
     if meta_setting=='true':    
-        metaget=metahandlers.MetaData()
         meta_installed = metaget.check_meta_installed(addon_id)
     else:
         meta_installed = False
@@ -1395,7 +1381,6 @@ def MOVIEINDEX(url):
 
     #initialise meta class before loop    
     if meta_setting=='true':
-        metaget=metahandlers.MetaData()
         meta_installed = metaget.check_meta_installed(addon_id)
         
     temp = re.compile('(<h3>|<a class=imdb id=.+?></a><a class=tube></a><i class=star></i><a href=)(.+?)(<div|</h3>|>(.+?)<br>)').findall(link)
@@ -1409,7 +1394,7 @@ def MOVIEINDEX(url):
             scrape=re.compile('<a class=imdb id=(.+?)></a><a class=tube></a><i class=star></i><a href=/(.+?)>(.+?)<br>').findall(string)
             for imdb_id,url,name in scrape:
                 if meta_setting=='true':
-                    ADD_ITEM(metaget,meta_installed,imdb_id,url,name,100, totalitems=len(temp))
+                    ADD_ITEM(meta_installed,imdb_id,url,name,100, totalitems=len(temp))
                 else:
                     #add without metadata -- imdb is still passed for use with Add to Favourites
                     for imdb_id,url,name in scrape:
@@ -1427,7 +1412,6 @@ def TVINDEX(url):
 
     #initialise meta class before loop    
     if meta_setting=='true':
-        metaget=metahandlers.MetaData()
         meta_installed = metaget.check_meta_installed(addon_id)
         
     #list scraper now tries to get number of episodes on icefilms for show. this only works in A-Z.
@@ -1445,7 +1429,7 @@ def TVINDEX(url):
     scrape=re.search('<a class=imdb id=(.+?)></a><a class=tube></a><i class=star></i><a href=/(.+?)>(.+?)<br>', link)
 
     if meta_setting=='true':
-        ADD_ITEM(metaget,meta_installed,scrape.group(1),scrape.group(2),scrape.group(3),12, totalitems=1)
+        ADD_ITEM(meta_installed,scrape.group(1),scrape.group(2),scrape.group(3),12, totalitems=1)
     else:
         addDir(scrape.group(3),iceurl + scrape.group(2),12,'',imdb='tt'+str(scrape.group(1)), totalItems=1)
 
@@ -1459,7 +1443,7 @@ def TVINDEX(url):
         if scrape:
             for imdb_id,url,name in scrape:
                 if meta_setting=='true':
-                    ADD_ITEM(metaget,meta_installed,imdb_id,url,name,12, totalitems=len(temp))
+                    ADD_ITEM(meta_installed,imdb_id,url,name,12, totalitems=len(temp))
                 else:
                     #add without metadata -- imdb is still passed for use with Add to Favourites
                     for imdb_id,url,name in scrape:
@@ -1508,7 +1492,6 @@ def TVSEASONS(url, imdb_id):
         season_nums = re.compile('Season ([0-9]{1,2}) ').findall(seasons)                        
         
         if meta_setting=='true':
-            metaget=metahandlers.MetaData()
             meta_installed = metaget.check_meta_installed(addon_id)
             if meta_installed:
                 season_meta = metaget.get_seasons(showname, imdb_id, season_nums)
@@ -1565,15 +1548,13 @@ def TVEPLINKS(source, season, imdb_id):
         
     if meta_setting=='true':
         #initialise meta class before loop
-        metaget=metahandlers.MetaData()
         meta_installed = metaget.check_meta_installed(addon_id)
     else:
-        metaget=False
         meta_installed=False
     for url, name, hd in match:
             name = name + ' ' + hd
             addon.log_debug("TVepLinks name: %s " % name)
-            get_episode(season, name, imdb_id, url, metaget, meta_installed, totalitems=len(match)) 
+            get_episode(season, name, imdb_id, url, meta_installed, totalitems=len(match)) 
     
     # Enable library mode & set the right view for the content
     setView('episodes', 'episodes-view')
@@ -1683,12 +1664,7 @@ def LOADMIRRORS(url):
         mirrorpageurl = iceurl+'membersonly/components/com_iceplayer/' + link
       
     html = GetURL(mirrorpageurl, save_cookie = True, use_cache=False)
-
-    #Show Ice Ad's
-    match = re.search('<iframe[^>]*src="([^"]+)', html)
-    if match:
-        show_ice_ad(urllib.quote(match.group(1)), mirrorpageurl)
-              
+             
     #string for all text under hd720p border
     defcat = re.compile('<div class=ripdiv><b>(.+?)</b>(.+?)</div>').findall(html)
     for media_type, scrape in defcat:
@@ -1700,6 +1676,8 @@ def LOADMIRRORS(url):
             tag = ' | [COLOR yellow]DVDSCR[/COLOR]'
         elif media_type == 'R5/R6 DVDRip':
             tag = ' | [COLOR green]R5/R6[/COLOR]'
+        elif media_type == 'Fast Stream / Low Quality':
+            tag = ' | [COLOR yellow]Low Quality[/COLOR]'
         else:
             tag = ' | [COLOR white]Other[/COLOR]'
             
@@ -1708,48 +1686,7 @@ def LOADMIRRORS(url):
     setView(None, 'default-view')
 
 
-def determine_source(search_string, is_domain=False):
-  
-    empty_list = []
-    #Keep host list as global var - used to determine resolver and build/select auto play settings
-    host_list = [('180upload.com', '180Upload', 'resolve_180upload'),
-                ('hugefiles.net', 'HugeFiles', 'resolve_hugefiles'),
-                ('kingfiles.net', 'KingFiles', 'resolve_kingfiles'),
-                ('clicknupload.com', 'ClicknUpload', 'resolve_clicknupload'),
-                ('clicknupload.link', 'ClicknUpload', 'resolve_clicknupload'),
-                ('upload.af', 'Upload', 'resolve_upload_af'),
-                ('uploadx.org', 'UploadX', 'resolve_uploadx'),
-                ('tusfiles.net', 'TusFiles', 'resolve_tusfiles'),
-                ('xfileload.com', 'XfileLoad', 'resolve_xfileload'),
-                ('mightyupload.com', 'MightyUpload', 'resolve_mightyupload'),
-                ('donevideo.com', 'DoneVideo', 'resolve_donevideo'),
-                ('vidplay.net', 'VidPlay', 'resolve_vidplay'),
-                ('24uploading.com', '24Uploading', 'resolve_24uploading'),                
-                ('xvidstage.com', 'XVIDStage', 'resolve_xvidstage'),                
-                ('2shared.com', '2Shared', 'SHARED2_HANDLER')
-                ]
-
-    try:                
-        if is_domain:
-            hoster = re.search('https?://[www\.]*([^/]+)/', search_string)
-           
-            if not hoster:
-                return empty_list
-
-            domain = hoster.group(1)
-            host_index = [y[0] for y in host_list].index(domain)      
-
-        else:
-            host_index = [y[1].lower() for y in host_list].index(search_string)      
-        
-        return host_list[host_index]
-
-    except Exception, e:
-        addon.log_error('Error determining source: %s' % e)
-        return empty_list
-
-
-def PART(scrap, sourcenumber, host, args, source_tag, ice_meta=None, video_url=None, debrid_hosts=None):
+def PART(scrap, sourcenumber, host, args, source_tag, ice_meta=None, video_url=None):
      #check if source exists
      sourcestring='Source #'+sourcenumber
      checkforsource = re.search(sourcestring, scrap)
@@ -1757,63 +1694,22 @@ def PART(scrap, sourcenumber, host, args, source_tag, ice_meta=None, video_url=N
      #if source exists proceed.
      if checkforsource:
           
-          hoster = determine_source(host)
+          hoster = urlresolver.HostedMediaFile(host=host, media_id='dummy')
           
           debrid_tag = ''
-          if hoster:
-			  if debrid_hosts:
-				  if hoster[0] in debrid_hosts:
-					  debrid_tag = ' [COLOR yellow]*RD[/COLOR] '
+#          if hoster:
+#			  if debrid_hosts:
+#				  if hoster[0] in debrid_hosts:
+#					  debrid_tag = ' [COLOR yellow]*RD[/COLOR] '
           
-          #check if source contains multiple parts
-          multiple_part = re.search('<p>Source #'+sourcenumber+':', scrap)
-          
-          if multiple_part:
-               addon.log_debug(sourcestring+' has multiple parts')
-               #get all text under source if it has multiple parts
-               multi_part_source=re.compile('<p>Source #'+sourcenumber+': (.+?)PART 1(.+?)</i><p>').findall(scrap)
+          # find corresponding '<a rel=?' entry and add as a one-link source
+          source5=re.compile('<a\s+rel='+sourcenumber+'.+?onclick=\'go\((\d+)\)\'>Source\s+#'+sourcenumber+':').findall(scrap)
 
-               #put scrape back together
-               for sourcescrape1,sourcescrape2 in multi_part_source:
-                    scrape=sourcescrape1 + 'PART 1' + sourcescrape2
-                    pair = re.compile("onclick='go\((\d+)\)'>PART\s+(\d+)").findall(scrape)
-
-                    for id, partnum in pair:
-
-                        #hoster = determine_source(host)
-
-                        if hoster:
-                            partname='Part '+ partnum
-                            fullname=sourcestring + ' | ' + hoster[1] + debrid_tag + ' | ' + source_tag + partname
-
-                            try:
-                                sources = eval(cache.get("source"+str(sourcenumber)+"parts"))
-                            except:
-                                sources = {partnum: url}
-                                addon.log_debug('sources havent been set yet...'  )
-
-                            sources[partnum] = url
-                            cache.delete("source"+str(sourcenumber)+"parts")
-                            cache.set("source"+str(sourcenumber)+"parts", repr(sources))
-                            stacked = str2bool(addon.get_setting('stack-multi-part'))
-
-                            if stacked and partnum == '1':
-                                fullname = fullname.replace('Part 1', 'Multiple Parts')
-                                addExecute(fullname, args, get_default_action(), ice_meta, stacked, video_url=video_url)
-                            elif not stacked:
-                                addExecute(fullname, args, get_default_action(), ice_meta, video_url=video_url)
-
-          # if source does not have multiple parts...
-          else:
-               # find corresponding '<a rel=?' entry and add as a one-link source
-               source5=re.compile('<a\s+rel='+sourcenumber+'.+?onclick=\'go\((\d+)\)\'>Source\s+#'+sourcenumber+':').findall(scrap)
-
-               for id in source5:
-                    
-                    #hoster = determine_source(host)
-                    if hoster:
-                        fullname=sourcestring + ' | ' + hoster[1] + debrid_tag + source_tag + ' | Full '
-                        addExecute(fullname, args, get_default_action(), ice_meta, video_url=video_url)
+          for id in source5:
+                
+               if hoster:
+                   fullname=sourcestring + ' | ' + host + debrid_tag + source_tag + ' | Full '
+                   addExecute(fullname, args, get_default_action(), ice_meta, video_url=video_url)
 
 
 def SOURCE(page, sources, source_tag, ice_meta=None, video_url=None):
@@ -1861,81 +1757,15 @@ def SOURCE(page, sources, source_tag, ice_meta=None, video_url=None):
                     addLocal("Play Local File " + match.group(0), os.path.join(dlDir,fname), listitem)
     except:
         pass
-
-    #Find all hosts
-    debrid_hosts = None
-    debrid_account = str2bool(addon.get_setting('realdebrid-account'))
-    if debrid_account:
-        rd = debridroutines.RealDebrid()
-        try: debrid_hosts = rd.get_hosts()
-        except Exception, e: 
-            addon.log_error(e)
-            pass
-      
+     
     hosts = re.findall('<a\s+rel=[0-9]+.+?onclick=\'go\((\d+)\)\'>Source\s+#([0-9]+): (<span .+?</span>)</a>', sources)
     for id, number, hoster in hosts:
         host = re.sub('</span>', '', re.sub('<span .+?>', '', hoster)).lower()
         args['id'] = id
-        PART(sources, number, host, args, source_tag, ice_meta, video_url, debrid_hosts)
+        PART(sources, number, host, args, source_tag, ice_meta, video_url)
     setView(None, 'default-view')
 
-    
-def show_ice_ad(ad_url, referrer):
 
-    try:
-
-        headers = {'Referer': referrer}
-         
-        # Import PyXBMCt module.
-        import pyxbmct.addonwindow as pyxbmct
-             
-        # Create a window instance.
-        window = pyxbmct.AddonDialogWindow('Icefilms Advertisement')
-        # Set the window width, height, rows, columns.
-        window.setGeometry(450, 250, 6, 4)
-        
-        if not ad_url.startswith('http:'): ad_url = 'http:' + ad_url
-        addon.log_debug('Found Ice advertisement url: %s' % ad_url)
-        html = net.http_GET(ad_url, headers=headers).content
-        for match in re.finditer("<img\s+src='([^']+)'\s+width='(\d+)'\s+height='(\d+)'", html):
-            img_url, width, height = match.groups()
-            addon.log_debug('Ice advertisement image url: %s' % img_url)
-            width = int(width)
-            height = int(height)
-            if width > 0 and height > 0:
-
-                # Ad image
-                image = pyxbmct.Image(img_url)
-                window.placeControl(image, 0, 0, rowspan=4, columnspan=4)                   
-            else:
-                temp = net.http_GET(img_url, headers=headers).content
-               
-        # Create a button.
-        button = pyxbmct.Button('Close')
-        # Place the button on the window grid.
-        window.placeControl(button, 5, 1, columnspan=2)
-        # Set initial focus on the button.
-        window.setFocus(button)
-        # Connect the button to a function.
-        window.connect(button, window.close)
-        # Connect a key action to a function.
-        window.connect(pyxbmct.ACTION_NAV_BACK, window.close)
-        # Show the created window.
-        window.doModal()                
-
-        match = re.search("href='([^']+)", html)
-        if match and random.randint(0, 100) < 5:
-            addon.log_debug('Ice advertisement - performing click on ad: %s' % match.group(1))
-            html = net.http_GET(match.group(1)).content
-            match = re.search("location=decode\('([^']+)", html)
-            if match:
-                html = net.http_GET(match.group(1)).content
-    except:
-        pass
-    finally:
-        window.close()
-
-            
 def GetURL(url, params = None, referrer = ICEFILMS_REFERRER, use_cookie = False, save_cookie = False, use_cache=True):
     addon.log_debug('GetUrl: ' + url)
     addon.log_debug('params: ' + repr(params))
@@ -2134,35 +1964,9 @@ def handle_wait(time_to_wait,title,text):
          return True
 
    
-def Handle_Vidlink(url):
-
-    #Determine who our source is, grab all needed info
-    hoster = determine_source(url, is_domain=True)
-     
-    #Using real-debrid to get the generated premium link
-    debrid_account = str2bool(addon.get_setting('realdebrid-account'))
-
-    link = None
-    if hoster:
-		if debrid_account:
-		  rd = debridroutines.RealDebrid()
-		  
-		  if rd.valid_host(hoster[0]):
-			  if addon.get_setting('realdebrid_token'):
-				   link = rd.get_media_url(url)
-				   if not link:
-					   Notify('big','Real-Debrid','Error occurred attempting to stream the file.', '', '', line3 = '**Attempting to resolve with original host instead..')
-					   link = None
-				   else:
-					   addon.log_debug('Real-Debrid Link resolved: %s ' % link)
-					   return link
-
-    if not link:
-        # Resolvers - Custom to Icefilms
-        import resolvers
-        
-        #Dynamic call to proper resolve function returned from determine_source()
-        return getattr(resolvers, "%s" % hoster[2])(url)
+def Handle_Vidlink(url): 
+        hmf = urlresolver.HostedMediaFile(url=url)
+        return hmf.resolve()
 
 
 def PlayFile(name,url):
@@ -3128,7 +2932,7 @@ def cleanUnicode(string):
         return string
 
 
-def ADD_ITEM(metaget, meta_installed, imdb_id,url,name,mode,num_of_eps=False, totalitems=0):
+def ADD_ITEM(meta_installed, imdb_id,url,name,mode,num_of_eps=False, totalitems=0):
             #clean name of unwanted stuff
             name=CLEANUP(name)
             if url.startswith('http://www.icefilms.info') == False:
@@ -3173,7 +2977,6 @@ def REFRESH(videoType, url,imdb_id,name,dirmode):
         imdb_id = imdb_id.replace('tttt','')
 
         if meta_setting=='true':
-            metaget=metahandlers.MetaData()
             meta_installed = metaget.check_meta_installed(addon_id)          
             
             if meta_installed:
@@ -3195,7 +2998,6 @@ def episode_refresh(url, imdb_id, name, dirmode, season, episode):
         imdb_id = imdb_id.replace('tttt','')
 
         if meta_setting=='true':
-            metaget=metahandlers.MetaData()
             meta_installed = metaget.check_meta_installed(addon_id)          
             
             if meta_installed:
@@ -3211,7 +3013,6 @@ def season_refresh(url, imdb_id, name, dirmode, season):
         imdb_id = imdb_id.replace('tttt','')
 
         if meta_setting=='true':
-            metaget=metahandlers.MetaData()
             meta_installed = metaget.check_meta_installed(addon_id)          
             
             if meta_installed:
@@ -3220,7 +3021,7 @@ def season_refresh(url, imdb_id, name, dirmode, season):
                 xbmc.executebuiltin("XBMC.Container.Refresh")
 
 
-def get_episode(season, episode, imdb_id, url, metaget, meta_installed, tmp_season_num=-1, tmp_episode_num=-1, totalitems=0):
+def get_episode(season, episode, imdb_id, url, meta_installed, tmp_season_num=-1, tmp_episode_num=-1, totalitems=0):
         # displays all episodes in the source it is passed.
         imdb_id = imdb_id.replace('t','')
    
@@ -3267,7 +3068,6 @@ def get_episode(season, episode, imdb_id, url, metaget, meta_installed, tmp_seas
 def find_meta_for_search_results(results, mode, search=''):
     
     #initialise meta class before loop
-    metaget=metahandlers.MetaData()
     meta_installed = metaget.check_meta_installed(addon_id)
     
     if mode == 100:        
@@ -3284,7 +3084,7 @@ def find_meta_for_search_results(results, mode, search=''):
                 mode = 100
                                                                        
             if meta_installed and meta_setting=='true':
-                meta = check_video_meta(name, metaget)
+                meta = check_video_meta(name)
                 addDir(name,url,mode,'',meta=meta,imdb=meta['imdb_id'],searchMode=True, meta_install=meta_installed)
             else:
                 addDir(name,url,mode,'',searchMode=True)
@@ -3370,7 +3170,6 @@ def SearchForTrailer(search, imdb_id, type, manual=False):
             "PlayMedia(plugin://plugin.video.youtube/?action=play_video&videoid=%s&quality=720p)" 
             % str(trailer_url)[str(trailer_url).rfind("v=")+2:] )
         
-        metaget=metahandlers.MetaData()
         if type=='100':
             media_type='movie'
         elif type=='12':
@@ -3382,14 +3181,12 @@ def SearchForTrailer(search, imdb_id, type, manual=False):
 
 
 def ChangeWatched(imdb_id, videoType, name, season, episode, year='', watched='', refresh=False):
-    metaget=metahandlers.MetaData()
     metaget.change_watched(videoType, name, imdb_id, season=season, episode=episode, year=year, watched=watched)
     if refresh:
         xbmc.executebuiltin("XBMC.Container.Refresh")
 
 
 def SimilarMovies(tmdb_id):
-    metaget=metahandlers.MetaData()
     movie_list = metaget.similar_movies(tmdb_id)
     name_list = []
     filtered_movie_list = []
@@ -3589,13 +3386,11 @@ elif mode=='990':
 elif mode=='addon_help':
     show_addon_help()
     
+elif mode=='resolver_settings':
+    urlresolver.display_settings()
+
 elif mode=='flush_cache':
     flush_cache()
-    
-elif mode=='reset_rd':
-    rd = debridroutines.RealDebrid()
-    rd.clear_client()
-    Notify('small','Icefilms', 'Successfully reset Real-Debrid authorization','')
     
 elif mode=='reset_db':
     reset_db()
@@ -3806,7 +3601,7 @@ elif mode=='5555':
          
 elif mode=='666':
         create_meta_pack()
-
+        
 if callEndOfDirectory and int(sys.argv[1]) <> -1:
     xbmcplugin.endOfDirectory(int(sys.argv[1]))
     

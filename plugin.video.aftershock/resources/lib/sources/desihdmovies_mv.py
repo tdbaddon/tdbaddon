@@ -62,7 +62,7 @@ class source:
             return
 
     def get_sources(self, url):
-        logger.debug('%s SOURCES URL %s' % (self.__class__, url))
+        logger.debug('SOURCES URL %s' % url, __name__)
         try:
             sources = []
 
@@ -98,7 +98,7 @@ class source:
                     sources.append({'source': host, 'parts' : '1', 'quality': quality, 'provider': 'DesiHDMovies', 'url': url, 'direct':False})
                 except :
                     pass
-            logger.debug('%s SOURCES [%s]' % (__name__,sources))
+            logger.debug('SOURCES [%s]' % sources, __name__)
             return sources
         except Exception as e:
             logger.error('[%s] Exception : %s' % (self.__class__, e))
@@ -106,7 +106,7 @@ class source:
 
 
     def resolve(self, url, resolverList):
-        logger.debug('%s ORIGINAL URL [%s]' % (__name__, url))
+        logger.debug('ORIGINAL URL [%s]' % url, __name__)
         url = resolvers.request(url, resolverList)
-        logger.debug('%s RESOLVED URL [%s]' % (__name__, url))
+        logger.debug('RESOLVED URL [%s]' % url, __name__)
         return url

@@ -79,7 +79,7 @@ class movies:
         self.person_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&production_status=released&role=%s&sort=year,desc&count=40&start=1'
         self.certification_link = 'http://api.themoviedb.org/3/discover/movie?api_key=%s&certification=%s&certification_country=US&primary_release_date.lte=%s&page=1' % ('%s', '%s', self.today_date)
         self.scn_link = 'http://predb.me'
-        self.scn_page = 'http://predb.me/?search=720p+%s+tag:-foreign&cats=movies-hd&page=%s'
+        self.scn_page = 'http://predb.me/?search=%s+720p+tag:-foreign&cats=movies-hd&page=%s'
         self.added_link = 'http://predb.me?start=1'
         self.traktlists_link = 'http://api-v2launch.trakt.tv/users/me/lists'
         self.traktlikedlists_link = 'http://api-v2launch.trakt.tv/users/likes/lists?limit=1000000'
@@ -370,19 +370,13 @@ class movies:
                 imdb = 'tt' + re.sub('[^0-9]', '', str(imdb))
                 imdb = imdb.encode('utf-8')
 
-                poster = '0'
-                poster = 'http://films4u.org/poster/'+base64.b64encode(imdb)+'.jpg'
-
+                poster = 'http://films4u.org/poster/'+base64.b64encode(imdb)+'.png'
                 poster = poster.encode('utf-8')
 
-                banner = poster
-
-                if banner == None or not '/banners/' in banner: banner = '0'
-                banner = 'http://films4u.org/banner/'+base64.b64encode(imdb)+'.jpg'
+                banner = 'http://films4u.org/banner/'+base64.b64encode(imdb)+'.png'
                 banner = banner.encode('utf-8')
 
-                fanart = '0'
-                poster = 'http://films4u.org/fanart/'+base64.b64encode(imdb)+'.jpg'
+                fanart = 'http://films4u.org/fanart/'+base64.b64encode(imdb)+'.png'
                 fanart = fanart.encode('utf-8')
 
                 try:
@@ -598,7 +592,7 @@ class movies:
                 plot = client.replaceHTMLCodes(plot)
                 plot = plot.encode('utf-8')
 
-                fanart = 'http://films4u.org/fanart/'+base64.b64encode(imdb)+'.jpg'
+                fanart = 'http://films4u.org/fanart/'+base64.b64encode(imdb)+'.png'
                 fanart = fanart.encode('utf-8')
 
 
@@ -689,8 +683,6 @@ class movies:
                     result += client.request(self.scn_page % (str(i), '2'))
 
                 items = client.parseDOM(result, 'div', attrs = {'class': 'post'})
-                for i in items:
-                    control.log('@@@@@ SCN %s' % i)
                 items = [(client.parseDOM(i, 'a', attrs = {'class': 'p-title'}), re.compile('(\d{4}-\d{2}-\d{2})').findall(i)) for i in items]
                 items = [(i[0][0], i[1][0]) for i in items if len(i[0]) > 0 and len(i[1]) > 0]
                 items = [(re.sub('(\.|\(|\[|\s)(\d{4}|S\d*E\d*|3D)(\.|\)|\]|\s)(.+)', '', i[0]), re.compile('[\.|\(|\[|\s](\d{4})[\.|\)|\]|\s]').findall(i[0]), re.sub('[^0-9]', '', i[1])) for i in items]
@@ -700,6 +692,7 @@ class movies:
                 items = [(re.sub('(\.|\(|\[|LIMITED|UNCUT)', ' ', i[0]).strip(), i[1]) for i in items]
                 items = [x for y,x in enumerate(items) if x not in items[:y]]
                 items = items[:150]
+                print items
 
                 return items
             except:
@@ -729,11 +722,16 @@ class movies:
                 imdb = 'tt' + re.sub('[^0-9]', '', str(imdb))
                 imdb = imdb.encode('utf-8')
 
+                #poster = 'http://films4u.org/poster/'+base64.b64encode(imdb)+'.png'
+                #poster = poster.encode('utf-8')
                 poster = item['Poster']
                 if poster == None or poster == '' or poster == 'N/A': poster = '0'
                 if not ('_SX' in poster or '_SY' in poster): poster = '0'
                 poster = re.sub('_SX\d*|_SY\d*|_CR\d+?,\d+?,\d+?,\d*','_SX500', poster)
                 poster = poster.encode('utf-8')
+
+                fanart = 'http://films4u.org/fanart/'+base64.b64encode(imdb)+'.png'
+                fanart = fanart.encode('utf-8')
 
                 genre = item['Genre']
                 if genre == None or genre == '' or genre == 'N/A': genre = '0'
@@ -789,7 +787,7 @@ class movies:
                 try: tagline = tagline.encode('utf-8')
                 except: pass
 
-                self.list.append({'title': title, 'originaltitle': title, 'year': year, 'premiered': '0', 'studio': '0', 'genre': genre, 'duration': duration, 'rating': rating, 'votes': votes, 'mpaa': mpaa, 'director': director, 'writer': writer, 'cast': cast, 'plot': plot, 'tagline': tagline, 'name': name, 'code': imdb, 'imdb': imdb, 'tmdb': '0', 'tvdb': '0', 'tvrage': '0', 'poster': poster, 'banner': '0', 'fanart': '0'})
+                self.list.append({'title': title, 'originaltitle': title, 'year': year, 'premiered': '0', 'studio': '0', 'genre': genre, 'duration': duration, 'rating': rating, 'votes': votes, 'mpaa': mpaa, 'director': director, 'writer': writer, 'cast': cast, 'plot': plot, 'tagline': tagline, 'name': name, 'code': imdb, 'imdb': imdb, 'tmdb': '0', 'tvdb': '0', 'tvrage': '0', 'poster': poster, 'banner': '0', 'fanart': fanart})
             except:
                 pass
 
@@ -879,7 +877,7 @@ class movies:
 
             try:
                 if not imdb == '0':
-                    fanart = 'http://films4u.org/fanart/'+base64.b64encode(imdb)+'.jpg'
+                    fanart = 'http://films4u.org/fanart/'+base64.b64encode(imdb)+'.png'
                     fanart= fanart.encode('utf-8')
 
                 else:

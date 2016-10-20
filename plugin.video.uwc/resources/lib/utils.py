@@ -22,7 +22,7 @@ __scriptname__ = "Ultimate Whitecream"
 __author__ = "mortael"
 __scriptid__ = "plugin.video.uwc"
 __credits__ = "mortael, Fr33m1nd, anton40, NothingGnome"
-__version__ = "1.1.42"
+__version__ = "1.1.43"
 
 import urllib
 import urllib2
@@ -326,7 +326,11 @@ def notify(header=None, msg='', duration=5000):
     if header is None: header = 'Ultimate Whitecream'
     builtin = "XBMC.Notification(%s,%s, %s, %s)" % (header, msg, duration, uwcicon)
     xbmc.executebuiltin(builtin)
-
+    
+    
+def kodilog(logvar):
+    xbmc.log(str(logvar))
+    
 
 def PLAYVIDEO(url, name, download=None):
     progress.create('Play video', 'Searching videofile.')
@@ -385,10 +389,11 @@ def playvideo(videosource, name, download=None, url=None):
         openloadurl = chkmultivids(openloadurl)
         
         openloadurl1 = 'http://openload.io/embed/%s/' % openloadurl
-
+        progress.update( 50, "", "Loading Openload", "Sending it to urlresolver" )
         try:
             video = urlresolver.resolve(openloadurl1)
             if video:
+                progress.update( 80, "", "Loading Openload", "Found the video" )
                 videourl = video
         except:
             notify('Oh oh','Couldn\'t find playable OpenLoad link')
@@ -399,8 +404,10 @@ def playvideo(videosource, name, download=None, url=None):
         streaminurl = re.compile(r"//(?:www\.)?streamin\.to/(?:embed-)?([0-9a-zA-Z]+)", re.DOTALL | re.IGNORECASE).findall(videosource)
         streaminurl = chkmultivids(streaminurl)
         streaminurl = 'http://streamin.to/embed-%s-670x400.html' % streaminurl
+        progress.update( 50, "", "Loading Streamin", "Sending it to urlresolver")
         video = urlresolver.resolve(streaminurl)
         if video:
+            progress.update( 80, "", "Loading Streamin", "Found the video" )
             videourl = video
 
     elif vidhost == 'FlashX':
@@ -408,42 +415,11 @@ def playvideo(videosource, name, download=None, url=None):
         flashxurl = re.compile(r"//(?:www\.)?flashx\.tv/(?:embed-)?([0-9a-zA-Z]+)", re.DOTALL | re.IGNORECASE).findall(videosource)
         media_id = chkmultivids(flashxurl)       
         flashxurl = 'http://www.flashx.tv/%s.html' % media_id
-        req = Request(flashxurl, None, headers)
-        flashx = urllib2.urlopen(req)
-        #flashxcookie = flashx.info()['set-cookie']
-        flashxdata = flashx.read()
-        if "File Not Found" in flashxdata:
-            notify('Oh oh','Video deleted from FlashX')
-            return            
-        #cfduid = re.search('cfduid=(.*?);', flashxcookie).group(1)
-        file_id = re.search("'file_id', '(.*?)'", flashxdata).group(1)
-        aff = re.search("'aff', '(.*?)'", flashxdata).group(1)
-        headers2 = { 'Referer': flashxurl,
-                    'Cookie': '; lang=1'}
-        surl = re.search('src="(.*?' + file_id + ')',flashxdata, re.IGNORECASE).group(1)
-        dummy = getHtml(surl, flashxurl, headers2)
-        headers2 = { 'Referer': flashxurl,
-                    'Cookie': 'lang=1; file_id=' + file_id + '; aff=' + aff }
-        progress.update( 60, "", "Grabbing video file", "" )                    
-        flashxhtml = getHtml(flashxurl, flashxurl, headers)
-        fname = re.search('name="fname" value="(.*?)"', flashxhtml).group(1)
-        hash = re.search('name="hash" value="(.*?)"', flashxhtml).group(1)
-        fdata = { 'op': 'download1',
-                  'usr_login': '',
-                  'id': media_id,
-                  'fname': fname,
-                  'referer': '',
-                  'hash': hash,
-                  'imhuman': 'Proceed to video' }
-        furl = 'http://www.flashx.tv/dl?' + media_id
-        time.sleep(5)
-        progress.update( 70, "", "Grabbing video file", "" )        
-        flashxhtml2 = postHtml(furl, fdata, headers2, False)
-        flashxjs = re.compile('(eval\(function.*?)</script>', re.DOTALL | re.IGNORECASE).findall(flashxhtml2)
-        progress.update( 80, "", "Getting video file from FlashX", "" )
-        try: flashxujs = unpack(flashxjs[1])
-        except: flashxujs = flashxjs[1]
-        videourl = re.compile('file:"([^"]+)"', re.DOTALL | re.IGNORECASE).findall(flashxujs)[0]
+        progress.update( 50, "", "Loading FlashX", "Sending it to urlresolver" )
+        video = urlresolver.resolve(flashxurl)
+        if video:
+            progress.update( 80, "", "Loading FlashX", "Found the video" )
+            videourl = video
 
     elif vidhost == 'Mega3X':
         progress.update( 40, "", "Loading Mega3X", "" )
@@ -684,6 +660,7 @@ def parse_query(query):
 
 def cleantext(text):
     text = text.replace('&#8211;','-')
+    text = text.replace('&ndash;','-')
     text = text.replace('&#038;','&')
     text = text.replace('&#8217;','\'')
     text = text.replace('&#8216;','\'')
@@ -692,35 +669,12 @@ def cleantext(text):
     text = text.replace('&#039;','`')
     text = text.replace('&amp;','&')
     text = text.replace('&ntilde;','ñ')
+    text = text.replace('&rsquo;','\'')
     return text
     
-def cleanse_title(text):
-    def fixup(m):
-        text = m.group(0)
-        if text[:2] == "&#":
-            # character reference
-            try:
-                if text[:3] == "&#x":
-                    return unichr(int(text[3:-1], 16))
-                else:
-                    return unichr(int(text[2:-1]))
-            except ValueError:
-                pass
-        else:
-            # named entity
-            try:
-                text = unichr(htmlentitydefs.name2codepoint[text[1:-1]])
-            except KeyError:
-                pass
-        return text
-    
-    if isinstance(text, str):
-        try: text = text.decode('utf-8')
-        except: pass
-    return re.sub("&#?\w+;", fixup, text.strip())    
 
 
-def addDownLink(name, url, mode, iconimage, desc, stream=None, fav='add', noDownload=False):
+def addDownLink(name, url, mode, iconimage, desc='', stream=None, fav='add', noDownload=False):
     contextMenuItems = []
     if fav == 'add': favtext = "Add to"
     elif fav == 'del': favtext = "Remove from"
@@ -782,6 +736,14 @@ def addDir(name, url, mode, iconimage, page=None, channel=None, section=None, ke
         liz.setArt({'poster': iconimage})
     liz.setArt({'fanart': fanart})
     liz.setInfo(type="Video", infoLabels={"Title": name})
+    
+    if len(keyword) >= 1:
+        keyw = (sys.argv[0] +
+            "?mode=" + str('904') +
+            "&keyword=" + urllib.quote_plus(keyword))
+        contextMenuItems = []
+        contextMenuItems.append(('[COLOR hotpink]Remove keyword[/COLOR]', 'xbmc.RunPlugin('+keyw+')'))
+        liz.addContextMenuItems(contextMenuItems, replaceItems=False)
     ok = xbmcplugin.addDirectoryItem(handle=addon_handle, url=u, listitem=liz, isFolder=Folder)
     return ok
     
@@ -902,7 +864,7 @@ def newSearch(url, channel):
 
 @url_dispatcher.register('903')
 def clearSearch():
-    delKeyword()
+    delallKeyword()
     xbmc.executebuiltin('Container.Refresh')
 
 
@@ -915,9 +877,19 @@ def addKeyword(keyword):
     conn.close()
 
 
-def delKeyword():
+def delallKeyword():
     conn = sqlite3.connect(favoritesdb)
     c = conn.cursor()
     c.execute("DELETE FROM keywords;")
     conn.commit()
     conn.close()
+    
+@url_dispatcher.register('904', ['keyword'])
+def delKeyword(keyword):
+    xbmc.log('keyword: ' + keyword)
+    conn = sqlite3.connect(favoritesdb)
+    c = conn.cursor()
+    c.execute("DELETE FROM keywords WHERE keyword = '%s'" % keyword)
+    conn.commit()
+    conn.close()
+    xbmc.executebuiltin('Container.Refresh')

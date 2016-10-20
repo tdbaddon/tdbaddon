@@ -77,7 +77,7 @@ class source:
             return
 
     def get_sources(self, url):
-        logger.debug('[%s] SOURCES URL %s' % (self.__class__, url))
+        logger.debug('SOURCES URL %s' % url, __name__)
         try:
             sources = []
 
@@ -133,14 +133,14 @@ class source:
             links += [{'source': 'videomega.tv', 'url': embed_link % (i[2], i[1]), 'direct': False} for i in r if i[0] == '13']
             links += [{'source': 'videowood.tv', 'url': embed_link % (i[2], i[1]), 'direct': False} for i in r if i[0] == '12']
 
-            for i in links: sources.append({'source': i['source'], 'quality': quality, 'provider': 'Onemovies', 'url': i['url'], 'direct': i['direct'], 'debridonly': False})
+            for i in links: sources.append({'source': i['source'], 'parts' : '1','quality': quality, 'provider': 'Onemovies', 'url': i['url'], 'direct': i['direct'], 'debridonly': False})
 
             return sources
         except:
             return sources
 
     def resolve(self, url, resolverList=None):
-        logger.debug('[%s] ORIGINAL URL [%s]' % (__name__, url))
+        logger.debug('ORIGINAL URL [%s]' % url, __name__)
         try:
             url = urlparse.urljoin(self.base_link, url)
             result = client.request(url)
@@ -177,7 +177,7 @@ class source:
 
         try:
             url = json.loads(result)['embed_url']
-            logger.debug('[%s] RESOLVED URL [%s]' % (__name__, url))
+            logger.debug('RESOLVED URL [%s]' % url, __name__)
             return url
         except:
             pass

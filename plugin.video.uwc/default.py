@@ -108,7 +108,7 @@ def INDEXM():
 
 @utils.url_dispatcher.register('6')    
 def INDEXT():
-    #utils.addDir('[COLOR hotpink]TodayPorn[/COLOR]','http://www.todayporn.com/page1.html',90,os.path.join(imgDir, 'tp.png'),'')
+    utils.addDir('[COLOR hotpink]BubbaPorn[/COLOR]','http://www.bubbaporn.com/page1.html',90,os.path.join(imgDir, 'bubba.png'),'')
     utils.addDir('[COLOR hotpink]Poldertube.nl[/COLOR] [COLOR orange](Dutch)[/COLOR]','http://www.poldertube.nl/pornofilms/nieuw',100,os.path.join(imgDir, 'poldertube.png'),0)
     utils.addDir('[COLOR hotpink]Milf.nl[/COLOR] [COLOR orange](Dutch)[/COLOR]','http://www.milf.nl/videos/nieuw',100,os.path.join(imgDir, 'milfnl.png'),1)
     utils.addDir('[COLOR hotpink]Sextube.nl[/COLOR] [COLOR orange](Dutch)[/COLOR]','http://www.sextube.nl/videos/nieuw',100,os.path.join(imgDir, 'sextube.png'),2)
@@ -120,6 +120,8 @@ def INDEXT():
     utils.addDir('[COLOR hotpink]AbsoluPorn[/COLOR]','http://www.absoluporn.com/en/',300,os.path.join(imgDir, 'absoluporn.gif'),'')
     utils.addDir('[COLOR hotpink]Anybunny[/COLOR]','http://anybunny.com/',320,os.path.join(imgDir, 'anybunny.png'),'')    
     utils.addDir('[COLOR hotpink]SpankBang[/COLOR]','http://spankbang.com/new_videos/',440,os.path.join(imgDir, 'spankbang.png'),'')	
+    utils.addDir('[COLOR hotpink]Amateur Cool[/COLOR]','http://www.amateurcool.com/most-recent/',490,os.path.join(imgDir, 'amateurcool.png'),'')	
+    utils.addDir('[COLOR hotpink]Vporn[/COLOR]','https://www.vporn.com/newest/',500,os.path.join(imgDir, 'vporn.png'),'')	
     xbmcplugin.endOfDirectory(utils.addon_handle, cacheToDisc=False)
 
 @utils.url_dispatcher.register('7')    

@@ -1,6 +1,7 @@
 import xbmc, xbmcgui, xbmcplugin
 import urllib2,urllib,cgi, re
 
+
 import urlparse
 import HTMLParser
 import xbmcaddon
@@ -81,7 +82,12 @@ class NoRedirection(urllib2.HTTPErrorProcessor):
 
 def ShowSettings(Fromurl):
 	selfAddon.openSettings()
-	
+
+def ShowStatus(Fromurl):
+    dialog = xbmcgui.Dialog()
+    ok = dialog.ok('Status',getUrl('http://pastebin.com/raw/f3EBTxM3'))
+    
+    
 def addLink(name,url,iconimage):
 	ok=True
 	liz=xbmcgui.ListItem(name, iconImage="DefaultVideo.png", thumbnailImage=iconimage)
@@ -226,6 +232,7 @@ def AddtypesForShows():
 
 def Addtypes():
 	addDir('Pakistani Political Shows' ,'PakLive' ,29,'')
+	addDir('Indian/Pakistani Shows/Dramas' ,'IndPakLive' ,83,'')    
 	addDir('Pakistani Live Channels' ,'PakLive' ,2,'')
 	addDir('Indian Live Channels' ,'IndianLive' ,2,'')
 	addDir('Punjabi Live Channels' ,'PunjabiLive' ,2,'')
@@ -233,7 +240,7 @@ def Addtypes():
 	addDir('Sports' ,'Live' ,13,'')
 	addDir('Settings' ,'Live' ,6,'',isItFolder=False)
 	addDir('Clear Cache' ,'Live' ,54,'',isItFolder=False)
-
+	addDir(Colored('Status Report', 'red') ,'live',7,'',isItFolder=False)
 	return
 
 def PlayFlashTv(url):
@@ -418,6 +425,7 @@ def AddSports(url):
         addDir(Colored(cname.capitalize(),'ZM') ,base64.b64encode(curl) ,m,imgurl, False, True,isItFolder=False)		#name,url,mode,icon
     
 #    addDir('IPTV Sports' ,'sss',46,'')
+    
     addDir('IpBox sports Using TSDownloader and HLS' ,'mpegts',55,'')
     #addDir('IpBox sports Using HLS ' ,'hls',55,'')
     addDir('PTC sports' ,'sss',51,'')
@@ -434,8 +442,9 @@ def AddSports(url):
 #    addDir('Flashtv.co (Live Channels)' ,'flashtv' ,31,'')
     addDir('Willow.Tv (Subscription required, US Only or use VPN)' ,base64.b64decode('aHR0cDovL3d3dy53aWxsb3cudHYv') ,19,'')
     #addDir(base64.b64decode('U3VwZXIgU3BvcnRz') ,'sss',34,'')
+    addDir('My Sports' ,'sss',82,'')
     addDir('PV2 Sports' ,'zemsports',36,'')
-    addDir('Safe' ,'sss',72,'')
+    #addDir('Safe' ,'sss',72,'')
     addDir('TVPlayer [UK Geo Restricted]','sss',74,'https://assets.tvplayer.com/web/images/tvplayer-logo-white.png')
     addDir('StreamHD','sss',75,'http://www.streamhd.eu/images/logo.png')
     addDir('Mama HD','http://mamahd.com/',79,'http://mamahd.com/images/logo.png')
@@ -710,7 +719,15 @@ def AddPv2Sports(url):
             addDir(Colored(url[int(seq)].capitalize(),col),'',37,'', False, True,isItFolder=True)            
         prevseq=seq    
         addDir (Colored(r[0].capitalize(),col) ,base64.b64encode(r[2]),37,r[3], False, True,isItFolder=False)
-            
+
+def AddMyTVSports(url=None):
+        
+    for cname,ctype,curl,imgurl in getMyTVChannels():
+        cname=cname.encode('ascii', 'ignore').decode('ascii')
+        mm=11
+        addDir(Colored(cname.capitalize(),'ZM') ,base64.b64encode(curl) ,mm ,imgurl, False, True,isItFolder=False)		#name,url,mode,icon
+    return    
+    
 def AddPakTVSports(url=None):
 
     if url=="sss":
@@ -964,6 +981,111 @@ def getYuppSportsChannel(Live=True):
         traceback.print_exc(file=sys.stdout)
     return ret
 
+def getIndianPakShowsCat():
+    ret=[]
+    try:
+        url=base64.b64decode("aHR0cDovL3l0eC5tZS9tanNvbi9nZXRtZW51P2lvc2FwcG5hbWU9YXJ6dQ==")
+
+        headers=[('User-Agent',base64.b64decode('QXJ6dS8yLjAuMiBDRk5ldHdvcmsvNzU4LjAuMiBEYXJ3aW4vMTUuMC4w'))]
+        jdata=getUrl(url, headers=headers)
+        jsondata=json.loads(jdata)
+        for channel in jsondata["menuItems"]:
+            cname=channel["title"]
+            curl=channel["jsonURL"]
+            curl=curl.replace('%@%@',base64.b64decode('eXR4Lm1l'))+'app=%s&c=%s&returnid=%s'%(channel["appName"],channel["category"],channel["id"])
+            cimage=''            
+            ret.append((cname ,'manual', curl ,cimage))  
+    except:
+        traceback.print_exc(file=sys.stdout)
+    if len(ret)>0:
+        ret=sorted(ret,key=lambda s: s[0].lower()   )
+    return ret
+    
+def AddIndianPakShowsCat(url=None):
+    try:
+        channels=getIndianPakShowsCat()
+        if len(channels)>0:
+            for cname,ctype,curl,imgurl in channels:
+                cname=cname.encode('ascii', 'ignore').decode('ascii')
+        #        print repr(curl)      
+                addDir(cname ,curl,84 ,imgurl, False, True,isItFolder=True)		#name,url,mode,icon
+    except: 
+        traceback.print_exc(file=sys.stdout)
+
+def getIndianPakShows(url):
+    ret=[]
+    try:
+
+        headers=[('User-Agent',base64.b64decode('dmlkZW91dC8yLjAgKGlQaG9uZTsgaU9TIDkuMC4yOyBTY2FsZS8yLjAwKQ=='))]
+        jdata=getUrl(url, headers=headers)
+        appname=url.split('app=')[1].split('&')[0]
+        jsondata=json.loads(jdata)
+        for channel in jsondata["shows"]:
+            cname=channel["title"]
+            type=85
+            if not 'videoId' in channel:
+                showname=channel["title"].lower().replace(' ','_')
+                curl=base64.b64decode('aHR0cDovL3l0eC5tZS9tanNvbi9nZXRqc29uP25hbWU9JXMmc3RhcnQ9MCZhcHA9JXMmbWF4PTI1MA==')%(showname,appname)
+            else:
+                curl=channel["videoId"]  
+                type=11
+                curl=base64.b64encode('direct:plugin://plugin.video.youtube/?action=play_video&videoid=%s' %curl)                
+            cimage=channel["imageurl"] 
+            if not cimage.startswith('http'): cimage=base64.b64decode('aHR0cDovL3l0eC5tZS9tanNvbi9jb25mLw==')+cimage            
+            ret.append((cname ,type, curl ,cimage))  
+    except:
+        traceback.print_exc(file=sys.stdout)
+    if len(ret)>0:
+        ret=sorted(ret,key=lambda s: s[0].lower()   )
+    return ret
+    
+def AddIndianPakShows(url):
+    try:
+        channels=getIndianPakShows(url)
+        if len(channels)>0:
+            for cname,ctype,curl,imgurl in channels:
+                cname=cname.encode('ascii', 'ignore').decode('ascii')
+        #        print repr(curl)      
+                if ctype==11:
+                    addDir(cname ,curl,ctype ,imgurl, False, True,isItFolder=False)		#name,url,mode,icon
+                else:
+                    addDir(cname ,curl,ctype ,imgurl, False, True,isItFolder=True)		#name,url,mode,icon
+    except: 
+        traceback.print_exc(file=sys.stdout)
+
+def getIndianPakShowsEP(url):
+    ret=[]
+    try:
+
+        headers=[('User-Agent',base64.b64decode('dmlkZW91dC8yLjAgKGlQaG9uZTsgaU9TIDkuMC4yOyBTY2FsZS8yLjAwKQ=='))]
+        jdata=getUrl(url, headers=headers)
+        appname=url.split('app=')[1].split('&')
+        jsondata=json.loads(jdata)
+        for channel in jsondata["playlistitems"]:
+            cname=channel["title"]
+            curl=channel["videoid"]  
+            curl=base64.b64encode('direct:plugin://plugin.video.youtube/?action=play_video&videoid=%s' %curl)
+            cimage=channel["imageurl"]  
+            if not cimage.startswith('http'): cimage=base64.b64decode('aHR0cDovL3l0eC5tZS9tanNvbi9jb25mLw==')+cimage
+            ret.append((cname ,'manual', curl ,cimage))  
+    except:
+        traceback.print_exc(file=sys.stdout)
+    #if len(ret)>0:
+    #   ret=sorted(ret,key=lambda s: s[0].lower()   )
+    return ret
+    
+def AddIndianPakShowsEP(url):
+    try:
+        channels=getIndianPakShowsEP(url)
+        if len(channels)>0:
+            for cname,ctype,curl,imgurl in channels:
+                cname=cname.encode('ascii', 'ignore').decode('ascii')
+        #        print repr(curl)      
+                addDir(cname ,curl,11 ,imgurl, False, True,isItFolder=False)		#name,url,mode,icon
+    except: 
+        traceback.print_exc(file=sys.stdout)
+
+    
 def AddYuppSports(url=None):
     try:
 
@@ -2747,6 +2869,17 @@ def getYPUrl(url):
         traceback.print_exc(file=sys.stdout)
     return ret
     
+def playMYTV(url):
+    url = base64.b64decode(url)
+    #print 'gen is '+url
+    headers=[('User-Agent','sport%20TV%20Live/2.5 CFNetwork/758.0.2 Darwin/15.0.0')]
+    jsondata=getUrl(base64.b64decode('aHR0cDovL3d3dy5yZWFkZXJ3aWxsLmNvbS9zcG9ydC9hcGkucGhwP2NoYW5uZWxfaWQ9JXM=')%url,headers=headers)
+    jsondata=json.loads(jsondata)
+    
+    PlayGen(base64.b64encode( jsondata["LIVETV"][0]["channel_url"]+'|AppleCoreMedia/1.0.0.13A452 (iPhone; U; CPU OS 9_0_2 like Mac OS X; en_gb)'))
+        
+
+        
 def PlayYP(url):
     url = base64.b64decode(url)
     #print 'gen is '+url
@@ -2861,6 +2994,25 @@ def getPakTVCats():
         traceback.print_exc(file=sys.stdout)
     return ret
             
+def getMyTVChannels():
+    ret=[]
+    try:
+        xmldata=getMYTVPage()
+        for ss in xmldata["LIVETV"]:
+            
+            cname=ss["channel_title"]
+            curl='mytv:'+ss["id"]#+'|User-Agent=AppleCoreMedia/1.0.0.13A452 (iPhone; U; CPU OS 9_0_2 like Mac OS X; en_gb)'
+            cimage='http://www.readerwill.com/sport/images/thumbs/'+ss["channel_thumbnail"]
+            
+            
+            if len([i for i, x in enumerate(ret) if x[2] ==curl ])==0:                    
+                ret.append((cname ,'manual', curl ,cimage))   
+        if len(ret)>0:
+            ret=sorted(ret,key=lambda s: s[0].lower()   )
+    except:
+        traceback.print_exc(file=sys.stdout)
+    return ret
+    
 def getPakTVChannels(categories, forSports=False):
     ret=[]
     try:
@@ -2878,11 +3030,13 @@ def getPakTVChannels(categories, forSports=False):
                 
                 if len([i for i, x in enumerate(ret) if x[2] ==curl ])==0:                    
                     ret.append((cname +' v7' ,'manual', curl ,cimage))   
+        
         if len(ret)>0:
             ret=sorted(ret,key=lambda s: s[0].lower()   )
     except:
         traceback.print_exc(file=sys.stdout)
     return ret
+    
 def getCFChannels(category):
     ret=[]
     try:
@@ -4165,6 +4319,11 @@ def clearCache():
     fname=os.path.join(profile_path, fname)
     files+=[fname]  
     
+    fname='mytvpage.json'
+    fname=os.path.join(profile_path, fname)
+    files+=[fname]  
+    
+    
     fname='wtvpage.json'
     fname=os.path.join(profile_path, fname)
     files+=[fname]       
@@ -4327,6 +4486,29 @@ def getCFPage(catId):
     html= getUrl(base64.b64decode('aHR0cHM6Ly9jaW5lZnVudHYuY29tL3NtdGFsbmMvY29udGVudC5waHA/Y21kPWNvbnRlbnQmY2F0ZWdvcnlpZD0lcyZkZXZpY2U9aW9zJnZlcnNpb249MCZrZXk9Q1l4UElWRTlhZQ==')%catId,headers=headers)
     return json.loads(html)
 
+def getMYTVPage():
+
+    fname='mytvpage.json'
+    fname=os.path.join(profile_path, fname)
+    try:
+        jsondata=getCacheData(fname,3*60*60)
+        if not jsondata==None:
+            return jsondata
+    except:
+        print 'file getting error'
+        traceback.print_exc(file=sys.stdout)
+    
+    headers=[('User-Agent','sport%20TV%20Live/2.5 CFNetwork/758.0.2 Darwin/15.0.0')]
+    jsondata=getUrl('http://www.readerwill.com/sport/api.php?latest=350', headers=headers)
+    print 'decrypted paktvpage'
+    #print decrypted_data
+    jsondata=json.loads(jsondata)
+    try:
+        storeCacheData(jsondata,fname)
+    except:
+        print 'paktv file saving error'
+        traceback.print_exc(file=sys.stdout)
+    return jsondata
     
 def getPakTVPage():
 
@@ -4842,6 +5024,11 @@ def playSports365(url,progress):
         import live365
         forced=not live365.isvalid()
         urlToPlay=live365.selectMatch(url)
+
+        if urlToPlay and urlToPlay=="-1":
+            dialog = xbmcgui.Dialog()
+            ok = dialog.ok('XBMC', 'Couldn\'t play, Please visit their website and try again!')        
+            urlToPlay=None
         if urlToPlay and len(urlToPlay)>0:
             
             listitem = xbmcgui.ListItem( label = str(name), iconImage = "DefaultVideo.png", thumbnailImage = xbmc.getInfoImage( "ListItem.Thumb" ) )
@@ -4868,8 +5055,9 @@ def PlaySafeLink(url, recursive=False, usecode=None, progress=None):
 
     import safelinks
     listitem = xbmcgui.ListItem( label = str(name), iconImage = "DefaultVideo.png", thumbnailImage = xbmc.getInfoImage( "ListItem.Thumb" ) )
-    urlnew=safelinks.getSafeLink(url, progress=progress, name=name)
+    urlnew, ws=safelinks.getSafeLink(url, progress=progress, name=name)
     PlayGen(base64.b64encode(urlnew))
+    #tryplay( urlnew , listitem,keepactive=True, aliveobject =ws , pdialogue= progress)
     
 
 def safeFinishedTest(dur):
@@ -4972,6 +5160,10 @@ def PlayOtherUrl ( url ):
     if "direct:" in url:
         PlayGen(base64.b64encode(url.split('direct:')[1]))
         return    
+    if "mytv:" in url:
+        playMYTV(base64.b64encode(url.split('mytv:')[1]))
+        return  
+        
     if "direct3:" in url:
         PlayGen(base64.b64encode(url.split('direct3:')[1]),True,followredirect=True)
         return    
@@ -6102,6 +6294,9 @@ try:
     elif mode==6 :
         print "Play url is "+url
         ShowSettings(url)
+    elif mode==7 :
+        print "Play url is "+url
+        ShowStatus(url)        
     elif mode==13 :
         print "Play url is "+url
         AddSports(url)
@@ -6264,6 +6459,18 @@ try:
     elif mode==81:
         print "Play url is "+url
         AddEuroStreamChannels(url)      
+    elif mode==82:
+        print "Play url is "+url
+        AddMyTVSports(url)            
+    elif mode==83:
+        print "Play url is "+url
+        AddIndianPakShowsCat(url)
+    elif mode==84:
+        print "Play url is "+url
+        AddIndianPakShows(url)  
+    elif mode==85:
+        print "Play url is "+url
+        AddIndianPakShowsEP(url)  
         
 except:
 

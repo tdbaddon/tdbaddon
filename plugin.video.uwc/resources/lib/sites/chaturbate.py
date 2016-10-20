@@ -20,12 +20,19 @@ import re
 import os
 import sys
 import sqlite3
+import urllib
 
 import xbmc
 import xbmcplugin
 import xbmcgui
 from resources.lib import utils
 
+addon = utils.addon
+
+HTTP_HEADERS_IPAD = {'User-Agent': 'Mozilla/5.0 (iPad; CPU OS 8_1 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Version/8.0 Mobile/12B410 Safari/600.1.4'}
+cbheaders = {'User-Agent': HTTP_HEADERS_IPAD,
+       'Accept': '*/*',
+       'Connection': 'keep-alive'}
 
 @utils.url_dispatcher.register('220')
 def Main():
@@ -102,8 +109,8 @@ def Main():
 
 
 @utils.url_dispatcher.register('221', ['url'], ['page'])
-def List(url, page=None):
-    if utils.addon.getSetting("chaturbate") == "true":
+def List(url, page=1):
+    if addon.getSetting("chaturbate") == "true":
         clean_database(False)
     try:
         listhtml = utils.getHtml2(url)
@@ -146,22 +153,52 @@ def clean_database(showdialog=True):
 
 @utils.url_dispatcher.register('222', ['url', 'name'])
 def Playvid(url, name):
-    listhtml = utils.getHtml2(url)
-    match = re.compile("<video.*?src='([^']+)'", re.DOTALL | re.IGNORECASE).findall(listhtml)
-    if match:
-        videourl = match[0]
-        iconimage = xbmc.getInfoImage("ListItem.Thumb")
-        listitem = xbmcgui.ListItem(name, iconImage="DefaultVideo.png", thumbnailImage=iconimage)
-        listitem.setInfo('video', {'Title': name, 'Genre': 'Porn'})
-        listitem.setProperty("IsPlayable","true")
-        if int(sys.argv[1]) == -1:
-            pl = xbmc.PlayList(xbmc.PLAYLIST_VIDEO)
-            pl.clear()
-            pl.add(videourl, listitem)
-            xbmc.Player().play(pl)
-        else:
-            listitem.setPath(str(videourl))
-            xbmcplugin.setResolvedUrl(utils.addon_handle, True, listitem)
+    playmode = int(addon.getSetting('chatplay'))
+    listhtml = utils.getHtml(url, hdr=cbheaders)
+    iconimage = xbmc.getInfoImage("ListItem.Thumb")
+    
+    m3u8url = re.compile("<video.*?src='([^']+)'", re.DOTALL | re.IGNORECASE).findall(listhtml)
+    if m3u8url:
+        m3u8stream = m3u8url[0]
     else:
-        utils.notify('Oh oh','Couldn\'t find a playable webcam link')
+        m3u8stream = False
+    
+    if playmode == 0:
+        if m3u8stream:
+            videourl = m3u8stream
+        else:
+            utils.notify('Oh oh','Couldn\'t find a playable webcam link')
+            return
+        
+    elif playmode == 1:
+        if m3u8stream:
+            from F4mProxy import f4mProxyHelper
+            f4mp=f4mProxyHelper()
+            f4mp.playF4mLink(m3u8stream,name,proxy=None,use_proxy_for_chunks=False, maxbitrate=0, simpleDownloader=False, auth=None, streamtype='HLS',setResolved=False,swf=None , callbackpath="",callbackparam="", iconImage=iconimage)
+            return
+        else:
+            utils.notify('Oh oh','Couldn\'t find a playable webcam link')
+            return        
+    
+    elif playmode == 2:
+        flv_info = []
+        embed = re.compile(r"EmbedViewerSwf\(*(.+?)\);", re.DOTALL).findall(listhtml)[0]
+        for line in embed.split("\n"):
+            data = re.search("""\s+["']([^"']+)["'],""", line)
+            if data:
+                flv_info.append(data.group(1))
+        
+        streamserver = "rtmp://%s/live-edge"%(flv_info[2])
+        modelname = flv_info[1]
+        username = flv_info[8]
+        password = urllib.unquote(flv_info[12])
+        unknown = flv_info[13]
+        swfurl = "https://chaturbate.com/static/flash/CBV_2p650.swf"
+        
+        videourl = "%s app=live-edge swfUrl=%s tcUrl=%s pageUrl=http://chaturbate.com/%s/ conn=S:%s conn=S:%s conn=S:2.650 conn=S:%s conn=S:%s playpath=mp4"%(streamserver,swfurl,streamserver,modelname,username,modelname,password,unknown)
+
+    listitem = xbmcgui.ListItem(name, iconImage="DefaultVideo.png", thumbnailImage=iconimage)
+    listitem.setInfo('video', {'Title': name, 'Genre': 'Porn'})
+    listitem.setProperty("IsPlayable","true")
+    xbmc.Player().play(videourl, listitem)
 

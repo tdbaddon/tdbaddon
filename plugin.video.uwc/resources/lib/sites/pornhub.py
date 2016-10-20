@@ -30,7 +30,7 @@ progress = utils.progress
 @utils.url_dispatcher.register('390')
 def Main():
     utils.addDir('[COLOR hotpink]Search[/COLOR]','http://www.pornhub.com/video/search?o=mr&search=', 394, '', '')
-    utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://www.pornhub.com/categories', 393, '', '')
+    utils.addDir('[COLOR hotpink]Categories[/COLOR]','http://www.pornhub.com/categories?o=al', 393, '', '')
     List('http://www.pornhub.com/video?o=cm')
     xbmcplugin.endOfDirectory(utils.addon_handle)
 
@@ -70,8 +70,8 @@ def Search(url, keyword=None):
 @utils.url_dispatcher.register('393', ['url'])
 def Categories(url):
     cathtml = utils.getHtml(url, '')
-    match = re.compile('<div class="category-wrapper">.+?<a href="(.+?)"  alt="(.+?)">.+?<img src="(.+?)"', re.DOTALL).findall(cathtml)
-    for catpage, name, img, in sorted(match, key=lambda item: item[1]):
+    match = re.compile(r'<div class="category-wrapper">\s*?<a href="([^"]+)"\s*?alt="([^"]+)">\s*?<img src="([^"]+)"', re.DOTALL).findall(cathtml)
+    for catpage, name, img in match:
         if '?' in catpage:
             utils.addDir(name, 'http://www.pornhub.com' + catpage + "&o=cm", 391, img, '')
         else:

@@ -12,4 +12,9 @@
     <string id="30023">Title</string>
     <string id="30024">Views</string>
     <string id="30025">Likes</string>
+    <string id="30100">Select Playback mode</string>
+    <string id="30101">Direct</string>
+    <string id="30102">F4mProxy</string>
+    <string id="30103">RTMP</string>
+    
 </strings>

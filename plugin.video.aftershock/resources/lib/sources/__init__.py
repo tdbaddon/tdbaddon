@@ -63,7 +63,6 @@ class sources:
             infoMenu = control.lang(30502).encode('utf-8')
 
             downloads = True if control.setting('downloads') == 'true' and not control.setting('movie.download.path') == '' else False
-
             sysaddon = sys.argv[0]
             syshandle = int(sys.argv[1])
 
@@ -77,7 +76,6 @@ class sources:
             systitle = urllib.quote_plus(title.encode('utf-8'))
 
             sysname = urllib.quote_plus(name.encode('utf-8'))
-
 
             poster = meta['poster'] if 'poster' in meta else '0'
             banner = meta['banner'] if 'banner' in meta else '0'
@@ -97,9 +95,9 @@ class sources:
             for i in range(len(items)):
                 try :
                     parts = int(items[i]['parts'])
-                    logger.debug('Download : %s, Parts : %s, Label : %s' % (downloads, parts, label))
+                    logger.debug('Download : %s, Parts : %s, Label : %s' % (downloads, parts, label), __name__)
                 except:
-                    parts = 2
+                    parts = 1
 
                 label = items[i]['label']
 
@@ -113,10 +111,10 @@ class sources:
                 cm.append((control.lang(30504).encode('utf-8'), 'RunPlugin(%s?action=queueItem)' % sysaddon))
                 if (downloads == True and parts <= 1):
                     cm.append((control.lang(30505).encode('utf-8'), 'RunPlugin(%s?action=download&name=%s&image=%s&source=%s)' % (sysaddon, systitle, sysimage, syssource)))
-                cm.append((infoMenu, 'Action(Info)'))
-                cm.append((control.lang(30506).encode('utf-8'), 'RunPlugin(%s?action=refresh)' % sysaddon))
-                cm.append((control.lang(30507).encode('utf-8'), 'RunPlugin(%s?action=openSettings)' % sysaddon))
-                cm.append((control.lang(30508).encode('utf-8'), 'RunPlugin(%s?action=openPlaylist)' % sysaddon))
+                #cm.append((infoMenu, 'Action(Info)'))
+                #cm.append((control.lang(30506).encode('utf-8'), 'RunPlugin(%s?action=refresh)' % sysaddon))
+                #cm.append((control.lang(30507).encode('utf-8'), 'RunPlugin(%s?action=openSettings)' % sysaddon))
+                #cm.append((control.lang(30508).encode('utf-8'), 'RunPlugin(%s?action=openPlaylist)' % sysaddon))
                 item.setArt({'icon': thumb, 'thumb': thumb, 'poster': poster, 'tvshow.poster': poster, 'season.poster': poster, 'banner': banner, 'tvshow.banner': banner, 'season.banner': banner})
 
                 if not fanart == None: item.setProperty('Fanart_Image', fanart)
@@ -127,7 +125,8 @@ class sources:
                 control.addItem(handle=syshandle, url=sysurl, listitem=item, isFolder=False)
 
             control.directory(int(sys.argv[1]), cacheToDisc=True)
-        except:
+        except Exception as e:
+            logger.error(e.message)
             control.infoDialog(control.lang(30501).encode('utf-8'))
 
     def play(self, name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date, meta, url, select=None):
@@ -152,9 +151,12 @@ class sources:
 
             try :
                 if content == 'live':
+                    select = '2'
+                    title = name
                     meta = self.sources[0]['meta']
-                    select = 2
-            except:
+                    logger.debug('Content is live hence setting Auto-Play')
+            except Exception as e:
+                logger.error(e.message)
                 pass
 
             items = self.sourcesFilter()
@@ -190,7 +192,7 @@ class sources:
 
             return url
         except Exception as e:
-            logger.error(e)
+            logger.error(e.message)
             control.infoDialog(control.lang(30501).encode('utf-8'))
 
     def playItem(self, content, title, source):
@@ -292,7 +294,8 @@ class sources:
 
             raise Exception()
 
-        except:
+        except Exception as e:
+            logger.error(e.message)
             control.infoDialog(control.lang(30501).encode('utf-8'))
             pass
 
@@ -327,7 +330,7 @@ class sources:
 
         sourceDict = [i[0] for i in sourceDict if i[1] == 'true']
 
-        logger.debug('[%s] Content [%s] Source Dict : %s' % (self.__class__, content, sourceDict))
+        logger.debug('Content [%s] Source Dict : %s' % (content, sourceDict), __name__)
 
         if content == 'movie':
             title = cleantitle.normalize(title)
@@ -380,6 +383,8 @@ class sources:
                 pass
 
         self.progressDialog.close()
+
+        for i in range(0, len(self.sources)): self.sources[i].update({'content': content})
 
         return self.sources
 
@@ -523,88 +528,65 @@ class sources:
         try:
             dbcon = database.connect(self.sourceFile)
             dbcur = dbcon.cursor()
-            dbcur.execute("CREATE TABLE IF NOT EXISTS rel_src (""source TEXT, ""imdb_id TEXT, ""season TEXT, ""episode TEXT, ""hosts TEXT, ""added TEXT, ""UNIQUE(source, imdb_id, season, episode, hosts)"");")
+            dbcur.execute("CREATE TABLE IF NOT EXISTS rel_live (""source TEXT, ""imdb_id TEXT, ""season TEXT, ""episode TEXT, ""hosts TEXT, ""added TEXT, ""UNIQUE(source, imdb_id, season, episode, hosts)"");")
         except:
             pass
 
-        try:
-            sources = []
-            dbcur.execute("SELECT * FROM rel_src WHERE source = '%s' AND imdb_id = '%s' AND season = '%s'" % (source, name, 'live'))
-            for row in dbcur:
-                match = row
-                t1 = int(re.sub('[^0-9]', '', str(match[5])))
-                t2 = int(datetime.datetime.now().strftime("%Y%m%d%H%M"))
-                update = abs(t2 - t1) > 300
-                if update == False:
-                    logger.debug('[%s] Fetched sources from cache for [%s]'% (call.__class__, name))
+        retValue, sources = call.getLiveSource()
+
+        if retValue == 1:
+            try:
+                logger.debug('Updated file download from internet', __name__)
+                dbcur.execute("DELETE FROM rel_live WHERE source = '%s' AND season = '%s'" % (source, 'live'))
+                dbcon.commit()
+
+                idx = 0
+                for item in sources:
+                    item['name'] = cleantitle.live(item['name'])
+                    poster = self.getLivePoster(item['name'])
+                    if not poster == None :
+                        item['poster'] = poster
+
+                    dbcur.execute("INSERT INTO rel_live Values (?, ?, ?, ?, ?, ?)", (source, item['name'], 'live', str(idx), json.dumps(item), datetime.datetime.now().strftime("%Y-%m-%d %H:%M")))
+                    idx = idx + 1
+                    dbcon.commit()
+            except Exception as e:
+                logger.error(e.message)
+                pass
+        elif retValue == 0:
+            try:
+                sources = []
+                dbcur.execute("SELECT * FROM rel_live WHERE source = '%s' AND imdb_id = '%s' AND season = '%s'" % (source, name, 'live'))
+                for row in dbcur:
+                    match = row
+                    logger.debug('Fetched sources from cache for [%s]'% name, call.__class__)
                     sources = json.loads(match[4])
                     sources['content'] = 'live'
                     poster = sources['poster']
                     meta = {"poster":poster, "iconImage":poster, 'thumb': poster}
                     sources['meta'] = json.dumps(meta)
                     self.sources.append(sources)
-                else:
-                    raise Exception()
-            if update == False:
-                return self.sources
-        except:
-            logger.debug('[%s] Source from cache not found for [%s]'% (call.__class__, name))
-            pass
+                    return self.sources
+            except:
+                logger.debug('Source from cache not found for [%s]'% name, call.__class__)
+                pass
+
         try:
             sources = []
-            try:
-                # check if the source site needs to be refreshed
-                dbcur.execute("SELECT * FROM rel_src WHERE source = '%s' AND season = '%s'" % (source, 'live'))
-                match = dbcur.fetchone()
-                t1 = int(re.sub('[^0-9]', '', str(match[5])))
-                t2 = int(datetime.datetime.now().strftime("%Y%m%d%H%M"))
-                update = abs(t2 - t1) > 300
-            except:
-                update = True
-            if update == False:
-                sources == None
-                logger.debug('[%s] No Update required ' % (call.__class__))
+            if name == None or name == '' :
+                dbcur.execute("SELECT * FROM rel_live WHERE source = '%s' AND season = '%s'" % (source, 'live'))
+                for row in dbcur:
+                    match = row[4]
+                    self.sources.append(json.loads(match))
+                logger.debug('Fetched Live sources : %s' % len(self.sources), call.__class__)
             else :
-               logger.debug('[%s] Fetching Live source ' % (call.__class__))
-               sources = call.getLiveSource()
-
-               dbcur.execute("DELETE FROM rel_src WHERE source = '%s' AND season = '%s'" % (source, 'live'))
-               dbcon.commit()
-
-            if sources == None:
-                raise Exception('No Sources Found')
-                sources = []
-            else:
-                logger.debug('(%s) Fetched Live sources : %s' % (call.__class__, len(sources)))
-            idx = 0
-
-            for item in sources:
-                item['name'] = cleantitle.live(item['name'])
-                poster = self.getLivePoster(item['name'])
-                if not poster == None :
-                    item['poster'] = poster
-                dbcur.execute("INSERT INTO rel_src Values (?, ?, ?, ?, ?, ?)", (source, item['name'], 'live', str(idx), json.dumps(item), datetime.datetime.now().strftime("%Y-%m-%d %H:%M")))
-                dbcon.commit()
-                idx = idx + 1
-
-            try:
-                sources = []
-                if name == None or name == '' :
-                    dbcur.execute("SELECT * FROM rel_src WHERE source = '%s' AND season = '%s'" % (source, 'live'))
-                    for row in dbcur:
-                        match = row[4]
-                        self.sources.append(json.loads(match))
-                else :
-                    dbcur.execute("SELECT * FROM rel_src WHERE source = '%s' AND imdb_id = '%s' AND season = '%s'" % (source, name, 'live'))
-                    for row in dbcur:
-                        match = row
-                        sources = json.loads(match[4])
-                        sources['content'] = 'live'
-                        self.sources.append(sources)
-                return self.sources
-            except Exception as e:
-                logger.error('(%s) Exception processing posters from sources : %s' % (call.__class__, e.args))
-                pass
+                dbcur.execute("SELECT * FROM rel_live WHERE source = '%s' AND imdb_id = '%s' AND season = '%s'" % (source, name, 'live'))
+                for row in dbcur:
+                    match = row
+                    sources = json.loads(match[4])
+                    sources['content'] = 'live'
+                    self.sources.append(sources)
+            return self.sources
         except Exception as e:
             logger.error('(%s) Exception Live sources : %s' % (call.__class__, e.args))
             pass
@@ -652,12 +634,10 @@ class sources:
 
     def sourcesDialog(self, items):
         try:
-            sources = [{'label': '00 | [B]%s[/B]' % control.lang(30509).encode('utf-8').upper()}] + items
 
             labels = [i['label'] for i in items]
 
             select = control.selectDialog(labels)
-            if select == 0: return self.sourcesDirect()
             if select == -1: return 'close://'
 
             next = [y for x,y in enumerate(items) if x >= select]
@@ -736,7 +716,8 @@ class sources:
             try: progressDialog.close()
             except: pass
 
-        except:
+        except Exception as e:
+            logger.error(e.message)
             try: progressDialog.close()
             except: pass
 
@@ -780,56 +761,39 @@ class sources:
         except:
             pass
 
-    def clearSources(self):
-        try:
-            control.idle()
-
-            yes = control.yesnoDialog(control.lang(30510).encode('utf-8'), '', '')
-            if not yes: return
-
-            control.makeFile(control.dataPath)
-            dbcon = database.connect(control.sourcescacheFile)
-            dbcur = dbcon.cursor()
-            dbcur.execute("DROP TABLE IF EXISTS rel_src")
-            dbcur.execute("DROP TABLE IF EXISTS rel_logo")
-            dbcur.execute("VACUUM")
-            dbcon.commit()
-
-            control.infoDialog(control.lang(30511).encode('utf-8'))
-        except:
-            pass
-
     def sourcesFilter(self):
-        logger.debug('[%s] Calling sources.filter()' % self.__class__)
+        logger.debug('Calling sources.filter()', __name__)
         for i in range(len(self.sources)): self.sources[i]['source'] = self.sources[i]['source'].lower()
         self.sources = sorted(self.sources, key=lambda k: k['source'])
 
         random.shuffle(self.sources)
 
+        quality = control.setting('playback_quality')
+        if quality == '': quality = '0'
+
         filter = []
         filter += [i for i in self.sources if i['direct'] == True]
         filter += [i for i in self.sources if i['direct'] == False]
-        try:filter += [i for i in self.sources if i['content'] == 'live']
-        except:pass
 
         self.sources = filter
 
         filter = []
         for d in self.debridDict: filter += [dict(i.items() + [('debrid', d)]) for i in self.sources if i['source'].lower() in self.debridDict[d]]
-
-        for host in self.hostDict : filter += [i for i in self.sources if i['direct'] == False and i['source'] in host and 'debridonly' not in i]
+        for host in self.hostDict : filter += [i for i in self.sources if i['direct'] == False and i['source'] in host and 'debridonly' not in i and not i['content'] == 'live']
+        filter += [i for i in self.sources if i['direct'] == True and not i['content'] == 'live']
+        try:filter += [i for i in self.sources if i['content'] == 'live']
+        except:pass
         self.sources = filter
 
-
         filter = []
-        filter += [i for i in self.sources if i['quality'] == '1080p' and 'debrid' in i]
-        filter += [i for i in self.sources if i['quality'] == 'HD' and 'debrid' in i]
-        filter += [i for i in self.sources if i['quality'] == '1080p' and not 'debrid' in i]
-        filter += [i for i in self.sources if i['quality'] == 'HD' and not 'debrid' in i]
+        if quality == '0': filter += [i for i in self.sources if i['quality'] == '1080p' and 'debrid' in i]
+        if quality == '0': filter += [i for i in self.sources if i['quality'] == '1080p' and not 'debrid' in i]
+        if quality == '0' or quality == '1': filter += [i for i in self.sources if i['quality'] == 'HD' and 'debrid' in i]
+        if quality == '0' or quality == '1': filter += [i for i in self.sources if i['quality'] == 'HD' and not 'debrid' in i]
         filter += [i for i in self.sources if i['quality'] == 'SD' and not 'debrid' in i]
-        if len(filter) < 15: filter += [i for i in self.sources if i['quality'] == 'SCR']
-        if len(filter) < 15:filter += [i for i in self.sources if i['quality'] == 'CAM']
-        if len(filter) < 15:filter += [i for i in self.sources if i['quality'] == '']
+        if len(filter) < 25: filter += [i for i in self.sources if i['quality'] == 'SCR']
+        if len(filter) < 25:filter += [i for i in self.sources if i['quality'] == 'CAM']
+        if len(filter) < 25:filter += [i for i in self.sources if i['quality'] == '']
         self.sources = filter
 
         for i in range(len(self.sources)):
@@ -839,7 +803,6 @@ class sources:
             p = re.sub('v\d*$', '', p)
 
             q = self.sources[i]['quality']
-            logger.debug('%s %s %s' % (s, p, q))
 
             try: f = (' | '.join(['[I]%s [/I]' % info.strip() for info in self.sources[i]['info'].split('|')]))
             except: f = ''
@@ -851,7 +814,7 @@ class sources:
             else: label = '%02d | [B]%s[/B] | ' % (int(i+1), p)
 
             if q in ['1080p', 'HD']: label += '%s | %s | [B][I]%s [/I][/B]' % (s.rsplit('.', 1)[0], f, q)
-            elif q == 'SD': label += '%s | %s' % (s.rsplit('.', 1)[0], f)
+            #elif q == 'SD': label += '%s | %s' % (s.rsplit('.', 1)[0], f)
             else: label += '%s | %s | [I]%s [/I]' % (s.rsplit('.', 1)[0], f, q)
             label = label.replace('| 0 |', '|').replace(' | [I]0 [/I]', '')
             label = label.replace('[I]HEVC [/I]', 'HEVC')
@@ -871,6 +834,7 @@ class sources:
 
     def sourcesResolve(self, item):
         try:
+            logger.debug('selected url : %s' % item['url'])
             u = url = item['url']
             provider = item['provider'].lower()
 
@@ -883,7 +847,6 @@ class sources:
 
             source = __import__(provider, globals(), locals(), [], -1).source()
             u = url = source.resolve(url, self.resolverList)
-
             if url == False: raise Exception()
 
             if not d == '':
@@ -905,9 +868,18 @@ class sources:
             headers = urllib.quote_plus(headers).replace('%3D', '=') if ' ' in headers else headers
             headers = dict(urlparse.parse_qsl(headers))
 
+            if not type(url) is list:
+                if url.startswith('http') and '.m3u8' in url:
+                    result = client.request(url.split('|')[0], headers=headers, output='geturl', timeout='20')
+                    if result == None: raise Exception()
+
+                elif url.startswith('http'):
+                    result = client.request(url.split('|')[0], headers=headers, output='chunk', timeout='20')
+                    if result == None: raise Exception()
             self.url = url
             return url
-        except:
+        except Exception as e:
+            logger.error(e.message)
             return
 
     def getResolverList(self):

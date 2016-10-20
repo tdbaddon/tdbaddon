@@ -117,11 +117,10 @@ class source:
 
     def get_sources(self, url, hosthdDict, hostDict, locDict):
         sources = []
-        #control.log("rainierland-sources-0 @@@@@@@@@@@@@@@@@@@@@@@@@@@@ ")
-
         try:
             r = urlparse.urljoin(self.base_link, url)
-
+            #control.log("rainierland-sources-0 %s" % r)
+            headers= {'Referer':"http://rainierland.com/movie/the-nice-guys-2016.html"}
             result = client.request(r)
             #control.log("rainierland-sources-1 @@@@@@@@@@@@@@@@@@@@@@@@@@@@ %s" % result)
             r = client.parseDOM(result, 'div', attrs = {'class': 'screen fluid-width-video-wrapper'})[0]
@@ -130,7 +129,7 @@ class source:
             #control.log("rainierland-sources-3 @@@@@@@@@@@@@@@@@@@@@@@@@@@@ %s" % r)
             if len(r) > 0:
                 t = urlparse.urljoin(self.base_link, r[0])
-                r2 = client.request(t)
+                r2 = client.request(t, headers=headers)
                 #control.log("rainierland-sources-4 @@@@@@@@@@@@@@@@@@@@@@@@@@@@ %s" % r2)
                 r3 = re.compile('<source src="(.*?)"').findall(r2)
                 for i in r3:
@@ -155,7 +154,7 @@ class source:
             return sources
 
     def resolve(self, url):
-        control.log("rainierland-sources-0 @@@@@@@@@@@@@@@@@@@@@@@@@@@@ %s" % url)
+        #control.log("rainierland-sources-0 @@@@@@@@@@@@@@@@@@@@@@@@@@@@ %s" % url)
 
         try:
             if 'requiressl=yes' in url: url = url.replace('http://', 'https://')

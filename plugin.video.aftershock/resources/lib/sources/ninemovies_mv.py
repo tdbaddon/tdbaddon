@@ -31,28 +31,36 @@ class source:
     def __init__(self):
         self.domains = ['fmovies.to']
         self.base_link = 'http://fmovies.to'
-        self.hash_link = '/ajax/episode/info'
-        self.search_link = '/sitemap'
+        self.info_link = '/ajax/episode/info'
+        self.search_link = '/search?keyword=%s'
 
     def get_movie(self, imdb, title, year):
         try:
-            url = {'imdb': imdb, 'title': title, 'year': year}
-            url = urllib.urlencode(url)
+            t = cleantitle.movie(title)
+
+            q = urlparse.urljoin(self.base_link, self.search_link)
+            q = q % urllib.quote_plus(title)
+
+            r = client.request(q, error=True)
+            r = client.parseDOM(r, 'div', attrs = {'class': 'item'})
+
+            r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a')) for i in r]
+            r = [(i[0][0], i[1][-1]) for i in r if len(i[0]) > 0 and len(i[1]) > 0]
+            r = [i[0] for i in r if t == cleantitle.movie(i[1])]
+
+            for i in r[:4]:
+                try:
+                    m = client.request(urlparse.urljoin(self.base_link, i))
+                    m = re.sub('\s|<.+?>|</.+?>', '', m)
+                    m = re.findall('Release:(%s)' % year, m)[0]
+                    u = i ; break
+                except:
+                    pass
+
+            url = re.findall('(?://.+?|)(/.+)', u)[0]
+            url = client.replaceHTMLCodes(url)
+            url = url.encode('utf-8')
             return url
-        except:
-            return
-
-    def ninemovies_cache(self):
-        try:
-            url = urlparse.urljoin(self.base_link, self.search_link)
-
-            result = client.source(url)
-            result = re.findall('href="(.+?)">(.+?)<', result)
-            result = [(re.sub('http.+?//.+?/','/', i[0]), re.sub('&#\d*;','', i[1])) for i in result]
-            result = [(i[0].split('"')[0], re.findall('(.+?)\((\d{4})\)$', i[1].strip())) for i in result]
-            result = [(i[0], i[1][0][0].strip(), i[1][0][1]) for i in result if len(i[1]) > 0]
-
-            return result
         except:
             return
 
@@ -62,162 +70,90 @@ class source:
 
             if url == None: return sources
 
-            if not str(url).startswith('http'):
-                try:
-                    data = urlparse.parse_qs(url)
-                    data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
+            url = urlparse.urljoin(self.base_link, url)
 
-                    title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
+            try: url, episode = re.findall('(.+?)\?episode=(\d*)$', url)[0]
+            except: episode = None
 
-                    year = re.findall('(\d{4})', data['premiered'])[0] if 'tvshowtitle' in data else data['year']
+            result = client.request(url, output='extended')
 
-                    try: episode = data['episode']
-                    except: pass
+            r = result[0] ; cookie = result[4]
 
-                    query = {'keyword': title}
-                    query.update(self.__get_token(query))
-                    search_url = urlparse.urljoin(self.base_link, '/search')
-                    search_url = search_url + '?' + urllib.urlencode(query)
-
-                    result = client.source(search_url, safe=True)
-
-                    r = client.parseDOM(result, 'div', attrs = {'class': '[^"]*movie-list[^"]*'})[0]
-                    r = client.parseDOM(r, 'div', attrs = {'class': 'item'})
-                    r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', attrs = {'class': 'name'})) for i in r]
-                    r = [(i[0][0], i[1][0]) for i in r if len(i[0]) > 0 and  len(i[1]) > 0]
-                    r = [(re.sub('http.+?//.+?/','/', i[0]), re.sub('&#\d*;','', i[1])) for i in r]
-
-                    if 'season' in data:
-                        url = [(i[0], re.findall('(.+?) (\d*)$', i[1])) for i in r]
-                        url = [(i[0], i[1][0][0], i[1][0][1]) for i in url if len(i[1]) > 0]
-                        url = [i for i in url if cleantitle.get(title) == cleantitle.get(i[1])]
-                        url = [i for i in url if '%01d' % int(data['season']) == '%01d' % int(i[2])]
-                    else:
-                        url = [i for i in r if cleantitle.get(title) == cleantitle.get(i[1])]
-
-                    url = url[0][0]
-                    url = urlparse.urljoin(self.base_link, url)
-                except:
-                    url == self.base_link
-
-
-            try: url, episode = re.compile('(.+?)\?episode=(\d*)$').findall(url)[0]
-            except: pass
-
-            referer = url
-
-            xtoken = self.__get_xtoken()
-
-            if xtoken == None: raise Exception()
-
-            result = client.source(url, safe=True)
-
-
-            atr = [i for i in client.parseDOM(result, 'dd') if len(re.findall('(\d{4})', i)) > 0][-1]
-            if 'season' in data:
-                result = result if atr == year or atr == data['year'] else None
-            else:
-                result = result if atr == year else None
-
-
-            try: quality = client.parseDOM(result, 'span', attrs = {'class': 'quality'})[0].lower()
+            try: quality = client.parseDOM(r, 'span', attrs = {'class': 'quality'})[0].lower()
             except: quality = 'hd'
             if quality == 'cam' or quality == 'ts': quality = 'CAM'
             elif quality == 'hd' or 'hd ' in quality: quality = 'HD'
             else: quality = 'SD'
 
-            result = client.parseDOM(result, 'ul', attrs = {'id': 'servers'})
+            category = client.parseDOM(r, 'div', ret='data-id', attrs = {'id': '.+?'})[0]
 
-            servers = []
-            servers = client.parseDOM(result, 'li', attrs = {'data-type': 'direct'})
+            servers = client.parseDOM(r, 'ul', attrs = {'data-range-id': '0'})
             servers = zip(client.parseDOM(servers, 'a', ret='data-id'), client.parseDOM(servers, 'a'))
             servers = [(i[0], re.findall('(\d+)', i[1])) for i in servers]
             servers = [(i[0], ''.join(i[1][:1])) for i in servers]
 
-            try: servers = [i for i in servers if '%01d' % int(i[1]) == '%01d' % int(episode)]
-            except: pass
+            if not episode == None:
+                servers = [i for i in servers if '%01d' % int(i[1]) == '%01d' % int(episode)]
 
-            for s in servers[:3]:
+            for s in servers[:5]:
                 try:
-                    headers = {'X-Requested-With': 'XMLHttpRequest'}
+                    headers = {
+                        'X-Requested-With': 'XMLHttpRequest',
+                        'Referer': '%s/%s' % (url, s),
+                        'Cookie': cookie
+                    }
 
-                    url = urlparse.urljoin(self.base_link, self.hash_link)
+                    post = {'id': s[0], 'update': '0', 'film': category}
+                    post.update(self._token(post))
 
-                    query = {'id': s[0], 'update': '0', '_xtoken': xtoken}
-                    query.update(self.__get_token(query))
-                    url = url + '?' + urllib.urlencode(query)
+                    u = urlparse.urljoin(self.base_link, self.info_link)
+                    u += '?' + urllib.urlencode(post)
 
-                    result = client.source(url, headers=headers, referer=referer, safe=True)
-                    result = json.loads(result)
+                    r = client.request(u, headers=headers)
 
-                    query = result['params']
-                    query['mobile'] = '0'
-                    query.update(self.__get_token(query))
-                    grabber = result['grabber'] + '?' + urllib.urlencode(query)
+                    r = json.loads(r)
 
-                    result = client.source(grabber, headers=headers, referer=url, safe=True)
-                    result = json.loads(result)
+                    t = r['target']
 
-                    result = result['data']
-                    result = [i['file'] for i in result if 'file' in i]
+                    if 'openload' in t:
+                        sources.append({'source': 'openload.co', 'quality': quality, 'provider': 'Ninemovies', 'url': t, 'direct': False, 'debridonly': False})
 
-                    for i in result:
-                        try: sources.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'provider': 'Ninemovies', 'url': i, 'direct': True, 'debridonly': False})
+                    post = r['params']
+                    if not post: raise Exception()
+                    post['mobile'] = '0'
+                    post.update(self._token(post))
+
+                    headers['Referer'] = u
+
+                    g = r['grabber'] + '?' + urllib.urlencode(post)
+
+                    r = client.request(g, headers=headers)
+
+                    r = json.loads(r)['data']
+                    r = [i['file'] for i in r if 'file' in i]
+
+                    for i in r:
+                        try: sources.append({'source': 'gvideo', 'parts' : '1','quality': directstream.googletag(i)[0]['quality'], 'provider': 'Ninemovies', 'url': i, 'direct': True, 'debridonly': False})
                         except: pass
                 except:
+                    import traceback
+                    traceback.print_exc()
                     pass
 
-            if quality == 'CAM':
-                for i in sources: i['quality'] = 'CAM'
-
             return sources
         except:
+            import traceback
+            traceback.print_exc()
             return sources
-
 
     def resolve(self, url, resolverList):
-        try:
-            url = client.request(url, output='geturl')
-            if 'requiressl=yes' in url: url = url.replace('http://', 'https://')
-            else: url = url.replace('https://', 'http://')
-            return url
-        except:
-            return
+        return url
 
 
-    def __get_token(self, data):
+    def _token(self, data):
         n = 0
         for key in data:
             if not key.startswith('_'):
                 for i, c in enumerate(data[key]):
-                    n += ord(c) * (i + 123456 + len(data[key]))
+                    n += ord(c) * 64184 + len(data[key])
         return {'_token': hex(n)[2:]}
-
-    def __get_xtoken(self):
-        url = urlparse.urljoin(self.base_link, 'fghost?%s' % (random.random()))
-        html = client.source(url, safe=True)
-        k = self.__get_dict('k', html)
-        v = self.__get_dict('v', html)
-        if k and v:
-            data = {}
-            l = 0
-            while l < len(k):
-                for i in k:
-                    if k[i] == l:
-                        data[k[i]] = v[i]
-                        l = len(data)
-
-            token = ''.join([str(data[key]) for key in data])
-            rt = str(len(token))
-            s = urlparse.urlparse(self.base_link).hostname
-            for i, c in enumerate(token):
-                rt += '.' + c
-                try: nc = str(ord(s[i]))
-                except: nc = str(random.randint(0, 5))
-                rt += '.' + nc
-            return rt
-
-    def __get_dict(self, var, html):
-        match = re.search('\s+%s\s*=\s*({[^}]+})' % (var), html)
-        if match:
-            return eval(match.group(1))

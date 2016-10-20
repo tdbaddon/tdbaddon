@@ -95,7 +95,7 @@ def rdDict():
         result = cache.get(client.request, 24, url)
         hosts = json.loads(result)
         hosts = [i.lower() for i in hosts]
-        logger.debug('[%s] Debrid Dict : %s' %(__name__ , hosts))
+        #logger.debug('Debrid Dict : %s' % hosts, __name__  )
         return hosts
     except:
         return []

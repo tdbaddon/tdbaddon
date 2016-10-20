@@ -134,11 +134,28 @@ def EPIS(name,url,iconimage):
 def LINK(name,url,iconimage):
         link = OPEN_URL(url)
         try:
-                url = re.compile('<a href="(.*?)">Watch <cite>').findall(link)[0]
-                link = OPEN_URL(url)
+                request_url = re.compile('<a href="(.*?)">Watch <cite>').findall(link)[0]
+                link2 = OPEN_URL(request_url)
         except: pass
         try:
-                url = re.findall(r'type="application/x-shockwave-flash" src="(.*?)"', str(link), re.I|re.DOTALL)[0]
+                
+                try:
+                        final_url = re.findall(r'sources: \[ \{file: "(.*?)"', str(link2), re.I|re.DOTALL)[0]
+                except:
+                        pass
+                final_url = final_url.replace('../view.php?','view.php?')
+                final_url = final_url.replace('./view.php?','view.php?')
+                if final_url == '':
+                        try:
+                                final_url = re.findall(r'sources: \[ \{file: "(.*?)"', str(link2), re.I|re.DOTALL)[1]
+                        except:
+                                pass
+                if 'google' in final_url:
+                        final_url = final_url
+                else:
+                        if baseurl not in final_url:
+                                final_url = baseurl + '/' + final_url
+                '''url = re.findall(r'type="application/x-shockwave-flash" src="(.*?)"', str(link), re.I|re.DOTALL)[0]
                 vid_id = re.split(r'=', url, re.I)[1]
                 vid_id = re.split(r'&amp', vid_id, re.I)[0]
                 url = 'https://docs.google.com/get_video_info?docid=' + vid_id +'&authuser='
@@ -150,29 +167,28 @@ def LINK(name,url,iconimage):
                         try:
                                 url = re.findall(r'\|(.*?)\|', str(link), re.I|re.DOTALL)[-1]
                         except:
-                                url = re.findall(r'\|(.*?)\|', str(link), re.I|re.DOTALL)[0]
+                                url = re.findall(r'\|(.*?)\|', str(link), re.I|re.DOTALL)[0]'''
         except:
                 
-                try:
-                        url = re.findall(r'<source.*?src="(.*?)"', str(link), re.I|re.DOTALL)[0]
-                except:
-                        pass
-                link = link.replace('../view.php?','view.php?')
-                link = link.replace('./view.php?','view.php?')
-                if url == '':
+                final_url = re.findall(r'<source.*?src="(.*?)"', str(link), re.I|re.DOTALL)[0]
+                
+                final_url = final_url.replace('../view.php?','view.php?')
+                final_url = final_url.replace('./view.php?','view.php?')
+                if final_url == '':
                         try:
-                                url = re.findall(r'<source.*?src="(.*?)"', str(link), re.I|re.DOTALL)[1]
+                                final_url = re.findall(r'<source.*?src="(.*?)"', str(link), re.I|re.DOTALL)[1]
                         except:
                                 pass
-                if 'google' in url:
-                        url = url
+                if 'google' in final_url:
+                        final_url = final_url
                 else:
-                        if baseurl not in url:
-                                url = baseurl + '/' + url
+                        if baseurl not in final_url:
+                                final_url = baseurl + '/' + final_url
+                
         liz = xbmcgui.ListItem(name, iconImage="DefaultVideo.png", thumbnailImage=iconimage)
         liz.setInfo(type="Video", infoLabels={"Title": name, "Plot": description})
         liz.setProperty("IsPlayable","true")
-        liz.setPath(url)
+        liz.setPath(final_url)
         xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
 
 

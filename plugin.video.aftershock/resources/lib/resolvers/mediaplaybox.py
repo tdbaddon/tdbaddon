@@ -43,7 +43,7 @@ def resolve(url):
         try :url = client.parseDOM(result, "meta", attrs={"itemprop":"contentURL"}, ret="content")[0]
         except:
             pass
-        logger.debug('%s URL [%s]' % (__name__, url))
+        logger.debug('URL [%s]' % url, __name__)
         return url
     except:
         return

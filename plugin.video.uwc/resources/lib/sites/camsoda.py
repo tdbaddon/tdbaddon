@@ -38,11 +38,11 @@ def List(url):
     if utils.addon.getSetting("chaturbate") == "true":
         clean_database(False)
     try:
-        response = urllib2.urlopen(url)
+        response = utils.getHtml(url)
     except:
         utils.notify('Oh oh','It looks like this website is down.')
         return None
-    data = json.load(response)
+    data = json.loads(response)
     for camgirl in data['results']:
         name = camgirl['slug'] + " [" + camgirl['status'] + "]"
         videourl = "https://www.camsoda.com/api/v1/video/vtoken/" + camgirl['slug'] + "?username=guest_" + str(random.randrange(100, 55555))
@@ -70,12 +70,12 @@ def clean_database(showdialog=True):
 
 @utils.url_dispatcher.register('478', ['url', 'name'])
 def Playvid(url, name):
-    response = urllib2.urlopen(url)
-    data = json.load(response)
+    response = utils.getHtml(url)
+    data = json.loads(response)
     if "camhouse" in data['stream_name']:
        videourl = "https://camhouse.camsoda.com/" + data['app'] + "/mp4:" + data['stream_name'] + "_mjpeg/playlist.m3u8?token=" + data['token']
     else:
-       videourl = "https://" + data['edge_servers'][1] + "/" + data['app'] + "/mp4:" + data['stream_name'] + "_mjpeg/playlist.m3u8?token=" + data['token']
+       videourl = "https://" + data['edge_servers'][0] + "/" + data['app'] + "/mp4:" + data['stream_name'] + "_mjpeg/playlist.m3u8?token=" + data['token']
     iconimage = xbmc.getInfoImage("ListItem.Thumb")
     listitem = xbmcgui.ListItem(name, iconImage="DefaultVideo.png", thumbnailImage=iconimage)
     listitem.setInfo('video', {'Title': name, 'Genre': 'Porn'})

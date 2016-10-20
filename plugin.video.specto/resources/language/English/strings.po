@@ -1199,6 +1199,14 @@ msgctxt "#32415"
 msgid "No"
 msgstr ""
 
+msgctxt "#32511"
+msgid "An account already exists."
+msgstr ""
+
+msgctxt "#32512"
+msgid "Do you want to reset?"
+msgstr ""
+
 msgctxt "#33001"
 msgid "Authoriztaion..."
 msgstr ""

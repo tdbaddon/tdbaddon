@@ -1,3 +1,14 @@
+[B]Version 1.1.43[/B]
+Added: Remove single keywords from search list (contextmenu)
+Added: Amateur Cool and VPorn (thanks anton40)
+Fixed: Chaturbate next page
+Fixed: Pornhub categories
+Fixed: Freeomovie download
+Fixed: Camsoda (thanks hdgdl))
+Changed: Todayporn -> Bubbaporn
+Changed: Chaturbate playback (see Chaturbate tab in addon settings)
+
+
 [B]Version 1.1.42[/B]
 Fixed: Cam4 (thanks hdgdl)
 Changed: Switched to Urlresolver for Openload

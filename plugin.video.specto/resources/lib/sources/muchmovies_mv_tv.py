@@ -21,6 +21,7 @@
 # TODO: Check gvideo resolving
 
 import re,urllib,urlparse, json, hashlib
+import base64
 import random, string
 
 
@@ -42,8 +43,8 @@ class source:
         self.server_link = '/ajax/v2_get_episodes/%s'
         self.direct_link = '/ajax/v2_load_episode/%s'
         self.embed_link = '/ajax/load_embed/%s'
-        self.key = 'i6m49vd7shxkn985mhodk'
-        self.key2 = 'twz87wwxtp3dqiicks2dfyud213k6yg'
+        self.key = '87wwxtp3dqii'
+        self.key2 = '7bcq9826avrbi6m49vd7shxkn985mhod'
         self.key3 = '7bcq9826avrbi6m4'
 
         #http://123movies.to/ajax/suggest_search
@@ -207,16 +208,23 @@ class source:
 
                 episode_id= url.split('/')[-1]
                 key_gen = self.random_generator()
-                coookie = '%s%s%s=%s' % (self.key, episode_id, self.key2, key_gen)
-                hash_id = hashlib.md5(episode_id + key_gen + self.key3).hexdigest()
+                coookie = hashlib.md5(episode_id + self.key).hexdigest() + '=%s' %key_gen
+                a= episode_id + self.key2
+                b= key_gen
+                i=b[-1]
+                h=b[:-1]
+                b=i+h+i+h+i+h
+                hash_id = self.uncensored(a, b)
+                #hash_id = hashlib.md5(episode_id + key_gen + self.key3).hexdigest()
                 #print "2",coookie,headers['Referer'], episode_id
                 #http://123movies.ru/ajax/get_sources/487774/a8cf6807f4c2a1888f09700019b16841/2
 
-                request_url2 = self.base_link + '/ajax/get_sources/' + episode_id + '/' + hash_id + '/2'
+                request_url2 = self.base_link + '/ajax/v2_get_sources/' + episode_id + '?hash=' + urllib.quote(hash_id)
                 headers = {'Accept-Encoding': 'gzip, deflate, sdch', 'Cookie': coookie, 'Referer': headers['Referer']+ '\+' + coookie,
                            'user-agent': headers['User-Agent'], 'x-requested-with': 'XMLHttpRequest'}
                 result = requests.get(request_url2, headers=headers).text
                 print(">>>>>>>>",result)
+
                 result = result.replace('\\','')
                 #link = client.request(request_url2, headers=headers)
                 #print "3",url
@@ -255,5 +263,23 @@ class source:
             except:
                 return
 
-    def random_generator(self, size=6, chars=string.ascii_lowercase + string.digits):
+    def random_generator(self, size=16, chars=string.ascii_lowercase + string.digits):
         return ''.join(random.choice(chars) for x in range(size))
+
+    def uncensored(self, a, b):
+        n = -1
+        fuckme = []
+        justshow = []
+        while True:
+
+            if n == len(a) - 1:
+                break
+            n += 1
+
+            d = int(''.join(str(ord(c)) for c in a[n]))
+
+            e = int(''.join(str(ord(c)) for c in b[n]))
+            justshow.append(d + e)
+            fuckme.append(chr(d + e))
+        print("JUSTSHOW",justshow)
+        return base64.b64encode(''.join(fuckme))

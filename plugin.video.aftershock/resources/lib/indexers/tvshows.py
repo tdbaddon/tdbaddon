@@ -61,7 +61,8 @@ class tvshows:
             self.list = cache.get(self.get_shows, 168, url, provider, network)
             if idx == True: self.tvshowDirectory(self.list)
             return self.list
-        except:
+        except Exception as e:
+            logger.error(e.message)
             pass
 
     def get_shows(self, url, provider=None, network=None):
@@ -76,7 +77,8 @@ class tvshows:
                 self.worker()
                 self.network = ''
             return self.list
-        except:
+        except Exception as e:
+            logger.error(e.message)
             pass
 
     def predb(self, items):
@@ -341,7 +343,7 @@ class tvshows:
             studio = studio.encode('utf-8')
             if not studio == '0': self.list[i].update({'studio': studio})
 
- 
+
             try: genre = item['genres']
             except: genre = []
             try: genre = [x['name'] for x in genre]
@@ -474,23 +476,13 @@ class tvshows:
                 if isFolder == False:
                     cm.append((control.lang(30232).encode('utf-8'), 'RunPlugin(%s?action=queueItem)' % sysaddon))
 
-                #cm.append((control.lang(30214).encode('utf-8'), 'RunPlugin(%s?action=trailer&name=%s)' % (sysaddon, sysname)))
                 cm.append((control.lang(30233).encode('utf-8'), 'Action(Info)'))
 
                 if not action == 'tvSearch':
                     cm.append((control.lang(30234).encode('utf-8'), 'RunPlugin(%s?action=tvPlaycount&name=%s&year=%s&imdb=%s&tvdb=%s&query=7)' % (sysaddon, systitle, year, imdb, tvdb)))
                     cm.append((control.lang(30235).encode('utf-8'), 'RunPlugin(%s?action=tvPlaycount&name=%s&year=%s&imdb=%s&tvdb=%s&query=6)' % (sysaddon, systitle, year, imdb, tvdb)))
 
-                #if action == 'tvFavourites':
-                #    cm.append((control.lang(30238).encode('utf-8'), 'RunPlugin(%s?action=deleteFavourite&meta=%s&content=tvshows)' % (sysaddon, sysmeta)))
-                #elif action.startswith('tvSearch'):
-                #    cm.append((control.lang(30237).encode('utf-8'), 'RunPlugin(%s?action=addFavourite&meta=%s&query=0&content=tvshows)' % (sysaddon, sysmeta)))
-
-                #cm.append((control.lang(30239).encode('utf-8'), 'RunPlugin(%s?action=tvshowToLibrary&tvshowtitle=%s&year=%s&imdb=%s&tmdb=%s&tvdb=%s&tvrage=%s)' % (sysaddon, systitle, year, imdb, tmdb, tvdb, tvrage)))
-
-
                 cm.append((control.lang(30240).encode('utf-8'), 'RunPlugin(%s?action=addView&content=tvshows)' % sysaddon))
-
 
                 item = control.item(label=label, iconImage=poster, thumbnailImage=poster)
 

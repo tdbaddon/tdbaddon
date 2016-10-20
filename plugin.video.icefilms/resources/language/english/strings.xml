@@ -20,12 +20,6 @@
     <string id="30502">Default Play Action</string>
     <string id="30503">Enable Video Seeking - Fast Forward & Rewind</string>
     <string id="30504">    Buffer Delay (seconds)</string>
-    
-    <!-- ACCOUNTS -->
-    <string id="30250">Hide successful login notifications</string>
-    <string id="30220">RealDebrid account</string>
-    <string id="30221">    Choose Primary Link Automatically</string>
-    <string id="30222">    Reset Icefilms Real-Debrid authorization</string>    
 
     <!-- DOWNLOADS -->
     <string id="30300">Downloads folder:</string>

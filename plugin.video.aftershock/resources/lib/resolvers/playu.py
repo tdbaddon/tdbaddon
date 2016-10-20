@@ -27,7 +27,7 @@ def resolve(url):
     try:
         result = client.source(url)
         url = re.findall('file: "(.+?)"',result)[0]
-        logger.debug('%s URL [%s]' % (__name__, url))
+        logger.debug('URL [%s]' % url, __name__)
         return url
     except:
         return

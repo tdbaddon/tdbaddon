@@ -549,7 +549,7 @@ class episodes:
                 self.episodeDirectory(self.list, provider)
                 return self.list
         except Exception as e:
-            logger.error(e)
+            logger.error(e.message)
             control.infoDialog(control.lang(30516).encode('utf-8'))
             pass
 
@@ -617,16 +617,11 @@ class episodes:
                 url = '%s?action=play&name=%s&title=%s&year=%s&imdb=%s&tmdb=%s&tvdb=%s&tvrage=%s&season=%s&episode=%s&tvshowtitle=%s&alter=%s&date=%s&meta=%s&t=%s' % (sysaddon, episodename, episodetitle, year, imdb, tmdb, tvdb, tvrage, season, episode, systitle, alter, syspremiered, sysmeta, self.systime)
                 sysurl = urllib.quote_plus(url)
 
-                #if isFolder == True:
-                #    url = '%s?action=play&name=%s&title=%s&year=%s&imdb=%s&tmdb=%s&tvdb=%s&tvrage=%s&season=%s&episode=%s&tvshowtitle=%s&alter=%s&date=%s&meta=%s&provider=%s' % (sysaddon, episodename, episodetitle, year, imdb, tmdb, tvdb, tvrage, season, episode, systitle, alter, syspremiered, sysmeta, provider)
-
                 if sysaction == 'episodes':
                     url = '%s?action=episodes&tvshowtitle=%s&year=%s&imdb=%s&tmdb=%s&tvdb=%s&tvrage=%s&season=%s&episode=%s' % (sysaddon, systitle, year, imdb, tmdb, tvdb, tvrage, season, episode)
                     isFolder = True ; cacheToDisc = True
 
                 cm = []
-
-                cm.append((playbackMenu, 'RunPlugin(%s?action=alterSources&url=%s&meta=%s)' % (sysaddon, sysurl, sysmeta)))
 
                 if isFolder == False:
                     cm.append((control.lang(30261).encode('utf-8'), 'RunPlugin(%s?action=queueItem)' % sysaddon))
@@ -636,10 +631,11 @@ class episodes:
                 if multi == True:
                     cm.append((control.lang(30274).encode('utf-8'), 'ActivateWindow(Videos,%s?action=seasons&tvshowtitle=%s&year=%s&imdb=%s&tmdb=%s&tvdb=%s&tvrage=%s,return)' % (sysaddon, systitle, year, imdb, tmdb, tvdb, tvrage)))
 
+                cm.append((playbackMenu, 'RunPlugin(%s?action=alterSources&url=%s&meta=%s)' % (sysaddon, sysurl, sysmeta)))
+
                 cm.append((control.lang(30263).encode('utf-8'), 'RunPlugin(%s?action=episodePlaycount&imdb=%s&tvdb=%s&season=%s&episode=%s&query=7)' % (sysaddon, imdb, tvdb, season, episode)))
                 cm.append((control.lang(30264).encode('utf-8'), 'RunPlugin(%s?action=episodePlaycount&imdb=%s&tvdb=%s&season=%s&episode=%s&query=6)' % (sysaddon, imdb, tvdb, season, episode)))
 
-                #cm.append((control.lang(30268).encode('utf-8'), 'RunPlugin(%s?action=tvshowToLibrary&tvshowtitle=%s&year=%s&imdb=%s&tmdb=%s&tvdb=%s&tvrage=%s)' % (sysaddon, systitle, year, imdb, tmdb, tvdb, tvrage)))
 
                 cm.append((control.lang(30273).encode('utf-8'), 'RunPlugin(%s?action=addView&content=episodes)' % sysaddon))
 

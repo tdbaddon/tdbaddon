@@ -86,17 +86,20 @@ def get(function, timeout, *args, **table):
     except:
         pass
 
-def clear(table=None):
+def clear(table=None, cacheFile=None):
     try:
         control.idle()
 
         if table == None: table = ['rel_list', 'rel_lib']
         elif not type(table) == list: table = [table]
 
-        yes = control.yesnoDialog(control.lang(30401).encode('utf-8'), '', '')
-        if not yes: return
+        if cacheFile == None:
+            cacheFile = control.cacheFile
+        else :
+            yes = control.yesnoDialog(control.lang(30401).encode('utf-8'), '', '')
+            if not yes: return
 
-        dbcon = database.connect(control.cacheFile)
+        dbcon = database.connect(cacheFile)
         dbcur = dbcon.cursor()
 
         for t in table:

@@ -84,32 +84,6 @@ def insert(meta):
     except:
         return
 
-def clear(table=None):
-    try:
-        control.idle()
-
-        if table == None: table = ['meta']
-        elif not type(table) == list: table = [table]
-
-        yes = control.yesnoDialog(control.lang(30401).encode('utf-8'), '', '')
-        if not yes: return
-
-        dbcon = database.connect(control.cacheFile)
-        dbcur = dbcon.cursor()
-
-        for t in table:
-            try:
-                dbcur.execute("DROP TABLE IF EXISTS %s" % t)
-                dbcur.execute("VACUUM")
-                dbcon.commit()
-            except:
-                pass
-
-        control.infoDialog(control.lang(30402).encode('utf-8'))
-    except:
-        pass
-
-
 def insertImdb(items):
     try :
         control.makeFile(control.dataPath)

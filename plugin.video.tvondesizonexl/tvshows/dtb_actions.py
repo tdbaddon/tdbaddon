@@ -129,7 +129,7 @@ def refresh_cache(req_attrib, modelMap):
                   "Colors TV":
                   {"iconimage":"http://www.lyngsat.com/logo/tv/cc/colors_in.png|Referer=http://www.lyngsat.com/",
                    "channelType": "IND",
-                   "running_tvshows_url": "/colors-tv/"},
+                   "running_tvshows_url": "/color-tv/"},
                   "Sab TV":
                   {"iconimage":"http://www.lyngsat.com/logo/tv/ss/sony_sab_tv_in.png|Referer=http://www.lyngsat.com/",
                    "channelType": "IND",

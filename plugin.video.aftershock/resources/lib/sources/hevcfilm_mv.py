@@ -43,7 +43,7 @@ class source:
 
 
     def get_sources(self, url):
-        logger.debug('[%s] SOURCES URL %s' % (self.__class__, url))
+        logger.debug('SOURCES URL %s' % url, __name__)
         try:
             sources = []
 
@@ -99,10 +99,10 @@ class source:
                     host = client.replaceHTMLCodes(host)
                     host = host.encode('utf-8')
 
-                    sources.append({'source': host, 'quality': quality, 'provider': 'Hevcfilm', 'url': url, 'info': 'HEVC', 'direct': False, 'debridonly': True})
+                    sources.append({'source': host, 'quality': quality, 'parts' : '1','provider': 'Hevcfilm', 'url': url, 'info': 'HEVC', 'direct': False, 'debridonly': True})
                 except:
                     pass
-            logger.debug('[%s] SOURCES URL %s' % (self.__class__, url))
+            logger.debug('SOURCES URL %s' % url, __name__)
             return sources
         except:
             return sources

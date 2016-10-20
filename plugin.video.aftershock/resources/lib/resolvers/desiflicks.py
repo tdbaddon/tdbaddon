@@ -42,7 +42,7 @@ def resolve(url):
 
         url = url.replace('_ipod.mp4', '.flv')
         url = url.replace('preview','edit')
-        logger.debug('%s URL [%s]' % (__name__, url))
+        logger.debug('URL [%s]' % url, __name__)
         return url
     except:
         return

@@ -133,7 +133,7 @@ class source:
                     host = client.replaceHTMLCodes(host)
                     host = host.encode('utf-8')
 
-                    sources.append({'source': host, 'quality': quality, 'provider': 'crazy4AD', 'url': url, 'info': info, 'direct': False, 'debridonly': True})
+                    sources.append({'source': host, 'quality': quality, 'provider': 'crazy4AD', 'url': url, 'info': info,'parts':'1', 'direct': False, 'debridonly': True})
                 except:
                     pass
 

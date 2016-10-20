@@ -62,15 +62,14 @@ class source:
             return
 
     def get_sources(self, url):
-        logger.debug('%s SOURCES URL %s' % (self.__class__, url))
+        logger.debug('SOURCES URL %s' % url, __name__)
         try:
             sources = []
 
             if url == None: return sources
 
             result = client.source(url)
-            result = client.parseDOM(result, 'table', attrs = {'class': 'rows differ_download'})[0]
-            links = client.parseDOM(result, 'tr')
+            links = client.parseDOM(result, 'div', attrs = {'class': 'listed'})
 
             for link in links:
                 try: quality = client.parseDOM(link, 'span', attrs = {'class': 'quality_1'})[0].lower()
@@ -85,7 +84,7 @@ class source:
 
                 sources.append({'source': host, 'parts' : '1', 'quality': quality, 'provider': 'filmywap', 'url': url, 'direct': False, 'debridonly': False})
 
-            logger.debug('%s SOURCES [%s]' % (__name__,sources))
+            logger.debug('SOURCES [%s]' % sources, __name__)
             return sources
         except:
             return sources

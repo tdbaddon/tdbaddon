@@ -63,14 +63,15 @@ class movies:
         self.tmdb_image = 'http://image.tmdb.org/t/p/original'
         self.tmdb_poster = 'http://image.tmdb.org/t/p/w500'
 
-        self.search_link = 'http://api.themoviedb.org/3/search/movie?api_key=%s&query=%s'
+        #self.search_link = 'http://api.themoviedb.org/3/search/movie?api_key=%s&query=%s'
+        self.search_link = 'http://www.imdb.com/search/title?sort=release_date,desc&title=%s'
         self.language_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&num_votes=100,&production_status=released&languages=%s&count=40&start=1&sort=release_date,desc&start=1'
         self.genre_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&languages=%s&num_votes=100,&release_date=date[730],date[30]&genres=%s&sort=release_date,desc&count=40&start=1'
         self.year_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&languages=%s&num_votes=100,&production_status=released&year=%s,%s&sort=release_date,desc&count=40&start=1'
 
 
     def get(self, url, idx=True, provider=None, lang=None):
-        logger.debug('[%s] url [%s] provider [%s] lang [%s] ' % (self.__class__, url, provider, lang))
+        logger.debug('url [%s] provider [%s] lang [%s] ' % (url, provider, lang), self.__class__)
         try:
             try: u = urlparse.urlparse(url).netloc.lower()
             except: pass
@@ -85,7 +86,7 @@ class movies:
             if idx == True: self.movieDirectory(self.list, lang=lang)
             return self.list
         except Exception as e:
-            logger.error(e)
+            logger.error(e.message)
             pass
     def imdb_list(self, url):
         try:
@@ -295,8 +296,9 @@ class movies:
 
             if (self.query == None or self.query == ''): return
 
-            url = self.search_link % ('%s', urllib.quote_plus(self.query))
-            self.list = cache.get(self.tmdb_list, 0, url)
+            #url = self.search_link % ('%s', urllib.quote_plus(self.query))
+            url = self.search_link % (urllib.quote_plus(self.query))
+            self.list = cache.get(self.imdb_list, 0, url)
 
             self.worker()
             self.movieDirectory(self.list)
@@ -367,7 +369,6 @@ class movies:
         self.meta = []
         total = len(self.list)
         for i in range(0, total): self.list[i].update({'metacache': False})
-        self.list = metacache.fetchImdb(self.list)
         self.list = metacache.fetch(self.list, self.info_lang)
 
         itemsPerPage = 25
@@ -377,8 +378,6 @@ class movies:
                 if i <= total: threads.append(workers.Thread(self.super_info, i))
             [i.start() for i in threads]
             [i.join() for i in threads]
-
-        metacache.insertImdb(self.list)
 
         if len(self.meta) > 0: metacache.insert(self.meta)
 

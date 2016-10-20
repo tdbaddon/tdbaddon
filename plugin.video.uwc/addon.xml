@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="plugin.video.uwc"
        name="Ultimate Whitecream"
-       version="1.1.42"
+       version="1.1.43"
        provider-name="mortael">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
         <import addon="script.module.urlresolver"  version="3.0.12" />
+        <import addon="script.video.F4mProxy" version="2.5.7" />
     </requires>
     <extension point="xbmc.python.pluginsource"
                library="default.py">
@@ -15,7 +16,10 @@
         <platform>all</platform>
         <license>GPL 2.0</license>
         <summary lang="en">Watch [COLOR red][B]ADULT[/B][/COLOR] Movies with Ultimate WhiteCream</summary>
-        <description lang="en">Watch [COLOR red][B]ADULT[/B][/COLOR] Movies with Ultimate WhiteCream</description>
-		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>        
+        <description lang="en">Watch [COLOR red][B]ADULT[/B][/COLOR] Movies with Ultimate WhiteCream
+        
+For support, visit: [COLOR hotpink]http://bit.ly/uwc-support[/COLOR]</description>
+		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
+        <forum>http://bit.ly/uwc-support</forum>
     </extension>
 </addon>

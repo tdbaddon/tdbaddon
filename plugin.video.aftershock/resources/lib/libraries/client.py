@@ -31,7 +31,7 @@ def request(url, close=True, error=False, proxy=None, post=None, headers=None, m
             handlers += [urllib2.ProxyHandler({'http':'%s' % (proxy)}), urllib2.HTTPHandler]
             opener = urllib2.build_opener(*handlers)
             opener = urllib2.install_opener(opener)
-        if output == 'cookie' or not close == True:
+        if output == 'cookie' or output == 'extended' or not close == True:
             import cookielib
             cookies = cookielib.LWPCookieJar()
             handlers += [urllib2.HTTPHandler(), urllib2.HTTPSHandler(), urllib2.HTTPCookieProcessor(cookies)]
@@ -116,13 +116,15 @@ def request(url, close=True, error=False, proxy=None, post=None, headers=None, m
             if content < (2048 * 1024): return
             result = response.read(16 * 1024)
         elif output == 'extended':
+            response_headers = response.headers
+            response_code = str(response.code)
             try: cookie = '; '.join(['%s=%s' % (i.name, i.value) for i in cookies])
             except: pass
             try: cookie = cf
             except: pass
-            content = response.headers
             result = response.read(5242880)
-            return (result, headers, content, cookie)
+            if close == True: response.close()
+            return (result, response_code, response_headers, headers, cookie)
         elif output == 'geturl':
             result = response.geturl()
         else:
@@ -331,6 +333,7 @@ def getVideoID(url):
 
 def urlRewrite(url):
     urlReWriteDict = [{'host':'letwatch.php','url':'http://letwatch.us/embed-%s-650x400.html'},
+                      {'host':'lw.php','url':'http://letwatch.us/embed-%s-650x400.html'},
                       {'host':'playwire.php','url':'http://config.playwire.com/%s/player.json'},
                       {'host':'dailymotion.php','url':'http://www.dailymotion.com/embed/video/%s'},
                       {'host':'speedplay.php','url':'http://speedplay.me/embed-%s.html'},
@@ -340,9 +343,15 @@ def urlRewrite(url):
                       {'host':'idowatch.php','url':'http://idowatch.us/embed-%s.html'},
                       {'host':'playu.php','url':'http://playu.net/embed-%s-700x440.html'},
                       {'host':'nowvideo.php','url':'http://embed.nowvideo.sx/embed.php?v=%s&amp;wmode=direct&amp;autoplay=true&controls=false'},
+                      {'host':'nv.php','url':'http://embed.nowvideo.sx/embed.php?v=%s&amp;wmode=direct&amp;autoplay=true&controls=false'},
                       {'host':'openload.php','url':'https://openload.co/embed/%s/'},
                       {'host':'thevideo.php','url':'http://www.thevideo.me/embed-%s-650x400.html'},
-                      {'host':'vodlocker.php','url':'http://vodlocker.com/embed-%s-650x400.html'}]
+                      {'host':'vodlocker.php','url':'http://vodlocker.com/embed-%s-650x400.html'},
+                      {'host':'vidto.php','url':'http://vidto.me/embed-%s-640x360.html'},
+                      {'host':'vidzi.php','url':'http://vidzi.tv/embed-%s-640x360.html'},
+                      {'host':'vidgg.php','url':'http://www.vidgg.to/embed/?id=%s&amp;px=1'},
+                      {'host':'aurora.php','url':'http://www.auroravid.to/embed/?v=%s&amp;px=1'},
+                      {'host':'cloudtime.php','url':'http://www.cloudtime.to/embed/?v=%s&amp;px=1'}]
     try :
         videoID = getVideoID(url)
         for i in urlReWriteDict:

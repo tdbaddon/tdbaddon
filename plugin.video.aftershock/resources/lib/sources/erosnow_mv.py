@@ -34,8 +34,8 @@ class source:
         self.info_link = '/catalog/movie/%s/cc=US'
         self.login_link = 'https://erosnow.com/secured/dologin'
         self.now = datetime.datetime.now()
-        self.user = control.setting('eros_user')
-        self.password = control.setting('eros_pwd')
+        self.user = control.setting('eros.user')
+        self.password = control.setting('eros.pwd')
         self.list = []
 
     def get_movie(self, imdb, title, year):
@@ -67,7 +67,7 @@ class source:
             return
 
     def get_sources(self, url):
-        logger.debug('%s SOURCES URL %s' % (self.__class__, url))
+        logger.debug('SOURCES URL %s' % url, __name__)
         try:
             quality = ''
             sources = []
@@ -82,7 +82,7 @@ class source:
 
             result = json.loads(result)
 
-            logger.debug('%s SOURCES [%s]' % (__name__,sources))
+            logger.debug('SOURCES [%s]' % sources, __name__)
             return sources
         except:
             return sources
@@ -90,7 +90,8 @@ class source:
     def login(self):
         try :
             post = {'el':self.user, 'pw':self.password, 'mobile':'', 'callingcode':'', 'type':'json', 'fbid':''}
-            h = {'Referer':self.base_link_1}
+            h = {'Referer':self.base_link_1,
+                 'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'}
 
             result = client.source(self.login_link, post=urllib.urlencode(post), close=False)
 
@@ -101,7 +102,7 @@ class source:
             pass
 
     def resolve(self, url, resolverList):
-        logger.debug('%s ORIGINAL URL [%s]' % (__name__, url))
+        logger.debug('ORIGINAL URL [%s]' % url, __name__)
         try:
             post = {'el':self.user, 'pw':self.password, 'mobile':'', 'callingcode':'', 'type':'json', 'fbid':''}
             h = {'Referer':self.base_link}
@@ -111,7 +112,7 @@ class source:
             result = json.loads(result)
 
             t = result['success']
-            logger.debug('%s RESOLVED URL [%s]' % (__name__, url))
+            logger.debug('RESOLVED URL [%s]' % url, __name__)
             return [url]
         except:
             return False

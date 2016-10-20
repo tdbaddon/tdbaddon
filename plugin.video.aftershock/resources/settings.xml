@@ -13,11 +13,11 @@
 		<setting id="analytics.enabled" type="bool" label="Collect Analytics" visible="true" default="true" />
 	</category>
 	<category label="30830">
-		<setting id="playback_quality" type="enum" label="30831" values="1080p|720p|HQ|MQ|LQ" default="0" />
+		<setting id="playback_quality" type="enum" label="30831" values="1080p|720p|480p" default="0" />
 		<setting id="host_select" type="enum" label="30832" lvalues="30833|30834|30839" default="1"/>
 		<setting type="lsep" label="30843" />
 		<setting id="resume_playback" type="bool" label="30844" default="true" />
-		<setting id="playback_info" type="bool" label="30845" default="true" />
+		<setting id="playback_info" type="bool" label="30845" default="false" />
 	</category>
 
 	<category label="30862">
@@ -41,9 +41,11 @@
 		<setting id="desiplex" type="bool" label="DesiPlex" default="true" />
 		<setting id="json" type="bool" label="json" visible="false" default="true" />
 		<!--<setting id="uktvnow" type="bool" label="UKTVNow" visible="false" default="false" />-->
-		<setting id="dynns" type="bool" label="Dynns" visible="true" default="true" />
+		<setting id="dynns" type="bool" label="Dynns" visible="true" default="false" />
 		<setting id="hevcfilm" type="bool" label="HEVC" visible="false" default="true" />
 		<setting id="crazy4ad" type="bool" label="CRAZY4AD" visible="false" default="true" />
+		<setting id="primewire" type="bool" label="PrimeWire" visible="true" default="true" />
+		<setting id="cinefun" type="bool" label="CineFun" visible="true" default="true" />
 	</category>
 
 	<category label="30910">
@@ -51,13 +53,15 @@
 		<setting id="imdb_user" type="text" label="30912" default="" />
 		<setting type="lsep" label="30913" />
 		<setting id="hotstar_ip" type="text" label="30914" default="118.94.0.1" />
+		<setting type="lsep" label="EROS Now" />
+		<setting id="eros.user" type="text" label="30918" default="" />
+		<setting id="eros.pwd" type="text" option="hidden"  label="30919" default="" />
 		<setting type="lsep" label="RealDebrid" />
 		<setting id="realdebrid.auth" type="action" option="close" label="30915" action="RunPlugin(plugin://plugin.video.aftershock/?action=rdAuthorize)" />
 		<setting id="realdebrid.id" type="text" option="hidden" visible="false" label="" default="" />
 		<setting id="realdebrid.secret" type="text" option="hidden" visible="false" label="" default="" />
 		<setting id="realdebrid.token" type="text" option="hidden" visible="false" label="" default="" />
 		<setting id="realdebrid.refresh" type="text" option="hidden" visible="false" label="" default="" />
-
 		<setting type="lsep" label="Premiumize" />
 		<setting id="premiumize.user" type="text" label="30916" default="" />
 		<setting id="premiumize.pin" type="text" option="hidden" label="30917" default="" />

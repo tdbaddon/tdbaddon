@@ -40,7 +40,7 @@ def resolve(url):
             url = link.group(1)
         else :
             url = None
-        logger.debug('%s URL [%s]' % (__name__, url))
+        logger.debug('URL [%s]' % url, __name__)
         return url
     except:
         return

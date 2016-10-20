@@ -1,2 +1,8 @@
+[B]1.1.0[/B]
+- Added VOD Logos
+
+[B]1.0.1[/B]
+- Added Live Logos
+
 [B]1.0.0[/B]
 - Initial version

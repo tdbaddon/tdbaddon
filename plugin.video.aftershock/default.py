@@ -238,9 +238,5 @@ elif action == 'openSettings':
     control.openSettings(query)
 
 elif action == 'clearCache':
-    from resources.lib.libraries import cache
-    from resources.lib.libraries import metacache
-    from resources.lib import sources
-    cache.clear()
-    metacache.clear()
-    sources.sources().clearSources()
+    from resources.lib.indexers import navigator
+    navigator.navigator().clearCache(url)

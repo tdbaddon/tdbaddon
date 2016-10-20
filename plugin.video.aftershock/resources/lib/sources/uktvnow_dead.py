@@ -86,7 +86,7 @@ class source:
     def resolve(self, url, resolverList):
 
         try :
-            logger.debug('[%s] ORIGINAL URL [%s]' % (__name__, url))
+            logger.debug('ORIGINAL URL [%s]' % url, __name__)
             token = self.getAPIToken(self.user_agent_link)
             headers={'User-Agent':'USER-AGENT-UKTVNOW-APP-V2',
                      'Accept-Encoding' : 'gzip',
@@ -114,7 +114,7 @@ class source:
                 magic="1579547dfghuh,09458721242affde,45h4jggf5f6g,f5fg65jj46,eedcfa0489174392".split(',')
                 decryptor = pyaes.new(magic[1], pyaes.MODE_CBC, IV=magic[4])
                 url= decryptor.decrypt(url.decode("hex")).split('\0')[0]
-            logger.debug('[%s] RESOLVED URL [%s]' % (__name__, url))
+            logger.debug('RESOLVED URL [%s]' % url, __name__)
             return url
         except :
             return False

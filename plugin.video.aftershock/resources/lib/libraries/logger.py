@@ -18,9 +18,10 @@
 '''
 
 
-import os,xbmc, logging
+import os,xbmc, traceback
 
 from resources.lib.libraries import control
+import inspect
 
 LOGDEBUG = xbmc.LOGDEBUG
 LOGERROR = xbmc.LOGERROR
@@ -34,20 +35,36 @@ LOGWARNING = xbmc.LOGWARNING
 name = control.addonInfo('name')
 version = control.addonInfo('version')
 
-def debug(msg):
-    log(msg, level=LOGDEBUG)
+def debug(msg, caller=None):
+    func = inspect.currentframe().f_back.f_code
 
-def notice(msg):
-    log(msg, level=LOGNOTICE)
+    if caller is not None:
+        caller = "%s.%s()" % (caller, func.co_name)
+    log(msg, caller, level=LOGDEBUG)
 
-def warning(msg):
-    log(msg, level=LOGWARNING)
+def notice(msg, caller=None):
+    func = inspect.currentframe().f_back.f_code
 
-def error(msg):
+    if caller is not None:
+        caller = "%s.%s()" % (caller, func.co_name)
+    log(msg, caller, level=LOGNOTICE)
+
+def warning(msg, caller=None):
+    func = inspect.currentframe().f_back.f_code
+
+    if caller is not None:
+        caller = "%s.%s()" % (caller, func.co_name)
+    log(msg, caller, level=LOGWARNING)
+
+def error(msg, caller=None):
+    func = inspect.currentframe().f_back.f_code
+
+    if caller is not None:
+        caller = "%s.%s()" % (caller, func.co_name)
     if control.setting('debug') == 'true':
-        log(msg, level=LOGERROR)
+        log('%s\n%s' % (msg , traceback.format_exc()), caller, level=LOGERROR)
 
-def log(msg, level=LOGDEBUG):
+def log(msg, caller, level=LOGDEBUG):
     # override message level to force logging when addon logging turned on
     if control.setting('debug') == 'true' and level == LOGDEBUG:
         level = LOGNOTICE
@@ -56,7 +73,7 @@ def log(msg, level=LOGDEBUG):
         if isinstance(msg, unicode):
             msg = '%s (ENCODED)' % (msg.encode('utf-8'))
 
-        xbmc.log('%s (%s): %s' % (name, version, msg), level)
+        xbmc.log('[%s (%s)]: [%s] %s' % (name, version, caller, msg), level)
     except Exception as e:
         try: xbmc.log('Logging Failure: %s' % (e), level)
         except: pass  # just give up
