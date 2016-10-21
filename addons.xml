@@ -3819,6 +3819,24 @@ For support, visit: [COLOR hotpink]http://bit.ly/uwc-support[/COLOR]</descriptio
   </extension>
 </addon>
 
+<addon id="script.TDBspeedTEST"
+       name="TDB Speed Test"
+       version="1.00"
+       provider-name="TDB">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+  </requires>
+  <extension point="xbmc.python.script"
+             library="default.py">
+        <provides>executable</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Internet Speed Tester</summary>
+    <description lang="en">Internet Speed Tester</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
 <addon id="script.video.F4mProxy"
 	     name="F4mProxy"
 	     version="3.5.0"
