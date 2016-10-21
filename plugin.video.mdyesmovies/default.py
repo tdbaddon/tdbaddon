@@ -355,26 +355,52 @@ def MRESOLVE(name,url,iconimage):
         headers = {'Accept-Encoding':'gzip, deflate, sdch', 'Cookie': cookies, 'Referer': referer,
                    'User-Agent':User_Agent,'X-Requested-With':'XMLHttpRequest'}
         request_url2 = baseurl + '/ajax/get_sources/' + episode_id + '/' + hash_id + '.html'
-        final = s.get(request_url2, headers=headers).json()
-        res_quality = []
-        stream_url = []
-        quality = ''
-        if auto_play == 'true':
-                url = final['playlist'][0]['sources'][0]['file']
-        else:
-                match = final['playlist'][0]['sources']
-                for a in match:
-                        quality = '[B][I][COLOR indianred]%s[/COLOR][/I][/B]' %a['label']
-                        res_quality.append(quality)
-                        stream_url.append(a['file'])
-                if len(match) >1:
-                        dialog = xbmcgui.Dialog()
-                        ret = dialog.select('Select Stream Quality',res_quality)
-                        if ret == -1:
-                                return
-                        elif ret > -1:
-                                url = stream_url[ret]
-        url = url.replace('&amp;','&')
+        try:
+                final = s.get(request_url2, headers=headers).json()
+                res_quality = []
+                stream_url = []
+                quality = ''
+                if auto_play == 'true':
+                        url = final['playlist'][0]['sources'][0]['file']
+                else:
+                        match = final['playlist'][0]['sources']
+                        for a in match:
+                                quality = '[B][I][COLOR indianred]%s[/COLOR][/I][/B]' %a['label']
+                                res_quality.append(quality)
+                                stream_url.append(a['file'])
+                        if len(match) >1:
+                                dialog = xbmcgui.Dialog()
+                                ret = dialog.select('Select Stream Quality',res_quality)
+                                if ret == -1:
+                                        return
+                                elif ret > -1:
+                                        url = stream_url[ret]
+                        else:
+                                url = final['playlist'][0]['sources'][0]['file']
+        except:
+                final = s.get(request_url2, headers=headers).text
+                res_quality = []
+                stream_url = []
+                quality = ''
+                if auto_play == 'true':
+                        url = re.compile('"file":"(.*?)"').findall(final)[0]
+                else:
+                        match = re.compile('"file":"(.*?)","label":"(.*?)"').findall(final)
+                        for stream_url, label in match:
+                                if '.srt' not in stream_url:
+                                        quality = '[B][I][COLOR indianred]%s[/COLOR][/I][/B]' %label
+                                        res_quality.append(quality)
+                                        stream_url.append(stream_url)
+                        if len(match) >1:
+                                dialog = xbmcgui.Dialog()
+                                ret = dialog.select('Select Stream Quality',res_quality)
+                                if ret == -1:
+                                        return
+                                elif ret > -1:
+                                        url = stream_url[ret]
+                        else:
+                                url = re.compile('"file":"(.*?)"').findall(final)[0]
+        url = url.replace('&amp;','&').replace('\/','/')
         liz = xbmcgui.ListItem(name, iconImage='DefaultVideo.png', thumbnailImage=iconimage)
         liz.setInfo(type='Video', infoLabels={"Title": name})
         liz.setProperty("IsPlayable","true")
@@ -398,21 +424,51 @@ def TVRESOLVE(name,url,iconimage,description):
         res_quality = []
         stream_url = []
         quality = ''
-        if auto_play == 'true':
-                url = final['playlist'][0]['sources'][0]['file']
-        else:
-                match = final['playlist'][0]['sources']
-                for a in match:
-                        quality = '[B][I][COLOR indianred]%s[/COLOR][/I][/B]' %a['label']
-                        res_quality.append(quality)
-                        stream_url.append(a['file'])
-                if len(match) >1:
-                        dialog = xbmcgui.Dialog()
-                        ret = dialog.select('Select Stream Quality',res_quality)
-                        if ret == -1:
-                                return
-                        elif ret > -1:
-                                url = stream_url[ret]
+        try:
+                final = s.get(request_url2, headers=headers).json()
+                res_quality = []
+                stream_url = []
+                quality = ''
+                if auto_play == 'true':
+                        url = final['playlist'][0]['sources'][0]['file']
+                else:
+                        match = final['playlist'][0]['sources']
+                        for a in match:
+                                quality = '[B][I][COLOR indianred]%s[/COLOR][/I][/B]' %a['label']
+                                res_quality.append(quality)
+                                stream_url.append(a['file'])
+                        if len(match) >1:
+                                dialog = xbmcgui.Dialog()
+                                ret = dialog.select('Select Stream Quality',res_quality)
+                                if ret == -1:
+                                        return
+                                elif ret > -1:
+                                        url = stream_url[ret]
+                        else:
+                                url = final['playlist'][0]['sources'][0]['file']
+        except:
+                final = s.get(request_url2, headers=headers).text
+                res_quality = []
+                stream_url = []
+                quality = ''
+                if auto_play == 'true':
+                        url = re.compile('"file":"(.*?)"').findall(final)[0]
+                else:
+                        match = re.compile('"file":"(.*?)","label":"(.*?)"').findall(final)
+                        for stream_url, label in match:
+                                if '.srt' not in stream_url:
+                                        quality = '[B][I][COLOR indianred]%s[/COLOR][/I][/B]' %label
+                                        res_quality.append(quality)
+                                        stream_url.append(stream_url)
+                        if len(match) >1:
+                                dialog = xbmcgui.Dialog()
+                                ret = dialog.select('Select Stream Quality',res_quality)
+                                if ret == -1:
+                                        return
+                                elif ret > -1:
+                                        url = stream_url[ret]
+                        else:
+                                url = re.compile('"file":"(.*?)"').findall(final)[0]
         url = url.replace('&amp;','&')
         liz = xbmcgui.ListItem(name, iconImage='DefaultVideo.png', thumbnailImage=iconimage)
         liz.setInfo(type='Video', infoLabels={"Title": name})

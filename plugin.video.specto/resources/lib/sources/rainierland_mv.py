@@ -120,8 +120,8 @@ class source:
         try:
             r = urlparse.urljoin(self.base_link, url)
             #control.log("rainierland-sources-0 %s" % r)
-            headers= {'Referer':"http://rainierland.com/movie/the-nice-guys-2016.html"}
-            result = client.request(r)
+            headers= {'Referer':r}
+            result = client.request(r, headers=headers)
             #control.log("rainierland-sources-1 @@@@@@@@@@@@@@@@@@@@@@@@@@@@ %s" % result)
             r = client.parseDOM(result, 'div', attrs = {'class': 'screen fluid-width-video-wrapper'})[0]
             #control.log("rainierland-sources-2 @@@@@@@@@@@@@@@@@@@@@@@@@@@@ %s" % r)
@@ -143,7 +143,8 @@ class source:
                 for i in r4:
                     try:
                         url = resolvers.request(i)
-                        sources.append({'source': 'openload', 'quality': 'HQ', 'provider': 'Rainierland', 'url': url})
+                        if url != None:
+                            sources.append({'source': 'openload', 'quality': 'HQ', 'provider': 'Rainierland', 'url': url})
                     except:
                         pass
 

@@ -1,3 +1,9 @@
+[B]Version 2.8.18[/B]
+- Fixed the broken addon
+
+[B]Version 2.8.17[/B]
+- Fixed Dailymotion
+
 [B]Version 2.8.16[/B]
 - Fixed Desitvbox loading issue
 

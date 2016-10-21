@@ -427,6 +427,7 @@ def AddSports(url):
 #    addDir('IPTV Sports' ,'sss',46,'')
     
     addDir('IpBox sports Using TSDownloader and HLS' ,'mpegts',55,'')
+    addDir('Football Mania' ,'mpegts',86,'')
     #addDir('IpBox sports Using HLS ' ,'hls',55,'')
     addDir('PTC sports' ,'sss',51,'')
     addDir('Paktv sports' ,'sss',52,'')
@@ -1000,7 +1001,199 @@ def getIndianPakShowsCat():
     if len(ret)>0:
         ret=sorted(ret,key=lambda s: s[0].lower()   )
     return ret
+
+
+def getFootballPostData():
+    return eval(base64.b64decode("eydhcHBfdGFnJzonZm9vdGJhbGxfaGlnaGxpZ2h0X2hkJywnc3RvcmUnOidpdHVuZXMnLCdhcHBfdmVyc2lvbic6JzInLCAnYXBwX2FwaV9zZWNyZXRfa2V5JzonZm9vdGJhbGxfcHJvZHVjdGlvbl8xMl8zNF9AQCd9"))
+
+def getFootballData():
+    fname='footballdata.json'
+    fname=os.path.join(profile_path, fname)
+    try:
+        jsondata=getCacheData(fname,2*60*60)
+        if not jsondata==None:
+            return json.loads(base64.b64decode(jsondata))
+    except:
+        print 'file getting error'
+        traceback.print_exc(file=sys.stdout)
+
+        
+    post=getFootballPostData()
+    post = urllib.urlencode(post)
+    headers=[('User-Agent',base64.b64decode('TGl2ZSBGb290YmFsbCBvbiBUViAzLjAuMSAoaVBob25lOyBpUGhvbmUgT1MgOS4wLjI7IGVuX0dCKQ=='))]
+    link=getUrl(base64.b64decode('aHR0cDovL2dhbWVzZXJ2aWNlcy5yaW9tb3Rpcy5jb20vYXBpL2NvbmZpZy8='),post=post,headers=headers)
     
+    jsondata=None
+    try:
+        jsondata=json.loads(link)
+        storeCacheData(base64.b64encode(link),fname)
+    except:
+        print 'getFootballData file saving error'
+        traceback.print_exc(file=sys.stdout)
+    return jsondata    
+    
+    
+def getFootballComp():
+    ret=[]
+    try:
+
+        jsondata=getFootballData()
+        for channel in jsondata["competitions"]:
+            cname=channel["name"]
+            curl="CM,"+channel["id"]+',0'
+            cimage=channel["logo"]    
+            seq=channel["popular_point"]
+            ret.append((cname ,'manual', curl ,cimage,seq))  
+    except:
+        traceback.print_exc(file=sys.stdout)
+    if len(ret)>0:
+        ret=sorted(ret,key=lambda s: int(s[4])   )
+    return ret
+
+def AddFootballCats(url=None):
+    try:
+        addDir('Recent Football Highlights/Live Streams' ,'HL,0,0',87,'', False, True,isItFolder=True)
+        addDir('Recent Football Videos [Not All Working]' ,'VD,0,0',88,'', False, True,isItFolder=True)
+        channels=getFootballComp()
+        if len(channels)>0:
+            for cname,ctype,curl,imgurl,seq in channels:
+                cname=cname.encode('ascii', 'ignore').decode('ascii') 
+                addDir(Colored (cname,'blue') ,'',0,imgurl, False, True,isItFolder=True)		#name,url,mode,icon
+                addDir('   -Highlights/Live Streams' ,curl,87,imgurl, False, True,isItFolder=True)		#name,url,mode,icon
+                addDir('   -Videos' ,curl,88,imgurl, False, True,isItFolder=True)		#name,url,mode,icon
+    except: 
+        traceback.print_exc(file=sys.stdout)
+
+def getFootballVideos(url):
+    ret=[]
+    moreurl=None
+    try:
+        fbData=getFootballData()
+        post=getFootballPostData()
+        vtype,currentval,startindex=url.split(',')
+        post['total']=16
+        post['from_index']=startindex
+        
+        moreurl=vtype+','+currentval+","+str(int(startindex)+16)
+        if url.startswith("VD,"):        
+            urlnew=fbData["API_URLS"][base64.b64decode("R0VUX0xBU1RFU1RfVklERU8=")]
+        else:
+            urlnew=fbData["API_URLS"][base64.b64decode("R0VUX1ZJREVPX0JZX0NPTVBFVElUSU9OX0lE")]
+            post['competition_id']=currentval
+            
+        post = urllib.urlencode(post)
+        headers=[('User-Agent',base64.b64decode('TGl2ZSBGb290YmFsbCBvbiBUViAzLjAuMSAoaVBob25lOyBpUGhvbmUgT1MgOS4wLjI7IGVuX0dCKQ=='))]
+
+        jsondata=json.loads(getUrl(urlnew, post=post,headers=headers))
+        import datetime
+        
+    
+        for channel in jsondata["videos"]:
+            datenum=channel["date"]/1000
+            datenum=datetime.datetime.fromtimestamp(int(datenum) ).strftime('%Y-%m-%d')
+            cname=datenum+' '+channel["title"]
+            videourl=channel["video_link"][0]["media_url"]
+            videotype=channel["video_link"][0]["media_type"]
+            curl=videotype+','+base64.b64encode(videourl)
+            cimage=channel["thumbnail"]           
+            ret.append((cname ,'manual', curl ,cimage))  
+    except:
+        traceback.print_exc(file=sys.stdout)
+    return ret,moreurl
+
+def AddFootballVideos(url):
+    try:
+        channels,moreurl=getFootballVideos(url)
+        if len(channels)>0:
+            for cname,ctype,curl,imgurl in channels:
+                cname=cname.encode('ascii', 'ignore').decode('ascii') 
+                addDir(cname ,curl,91,imgurl, False, True,isItFolder=True)		#name,url,mode,icon
+        if moreurl:
+            addDir('Next Page' ,moreurl,mode,'', False, True,isItFolder=True)		#name,url,mode,icon
+    except: 
+        traceback.print_exc(file=sys.stdout)      
+        
+        
+def getFootballMatches(url):
+    ret=[]
+    moreurl=None
+    try:
+        fbData=getFootballData()
+        post=getFootballPostData()
+        vtype,currentval,startindex=url.split(',')
+        post['total']=16
+        post['from_index']=startindex
+        
+        moreurl=vtype+','+currentval+","+str(int(startindex)+16)
+        if url.startswith("HL,"):        
+            urlnew=fbData["API_URLS"][base64.b64decode("R0VUX0xBU1RFU1RfSElHSExJR0hU")]
+        else:
+            urlnew=fbData["API_URLS"][base64.b64decode("R0VUX0hJR0hMSUdIVF9CWV9DT01QRVRJVElPTl9JRA==")]
+            post['competition_id']=currentval
+            
+        post = urllib.urlencode(post)
+        headers=[('User-Agent',base64.b64decode('TGl2ZSBGb290YmFsbCBvbiBUViAzLjAuMSAoaVBob25lOyBpUGhvbmUgT1MgOS4wLjI7IGVuX0dCKQ=='))]
+
+        jsondata=json.loads(getUrl(urlnew, post=post,headers=headers))
+        import datetime
+        
+    
+        for channel in jsondata["matchs"]:
+            datenum=channel["date"]/1000
+            datenum=datetime.datetime.fromtimestamp(int(datenum) ).strftime('%Y-%m-%d')
+            namecol="green"
+            playtype=""
+            curl=base64.b64encode(json.dumps(channel))
+            if channel["is_live_streaming"]: 
+                namecol="blue"
+                playtype="live"
+                curl=channel["highlight"][0]["media_url"]
+            cname=Colored( datenum+' '+channel["home_team"]["name"]  + ' ' +str(channel["home_score"]) +'-' +str(channel["guest_score"] ) +' '+channel["guest_team"]["name"],namecol) +'\n' + Colored(channel["competition"]["name"],'red')
+            
+            cimage=channel["screenshot"]  
+            
+            ret.append((cname ,playtype, curl ,cimage))  
+    except:
+        traceback.print_exc(file=sys.stdout)
+    return ret,moreurl
+
+def AddFootballMatches(url):
+    try:
+        channels,moreurl=getFootballMatches(url)
+        if len(channels)>0:
+            for cname,ctype,curl,imgurl in channels:
+                cname=cname.encode('ascii', 'ignore').decode('ascii') 
+                if ctype=="live":
+                    addDir(cname ,"LIVE,"+base64.b64encode(curl),91,imgurl, False, True,isItFolder=False)		#name,url,mode,icon
+                else:
+                    addDir(cname ,curl,89,imgurl, False, True,isItFolder=True)		#name,url,mode,icon
+        if moreurl:
+            addDir('Next Page' ,moreurl,mode,'', False, True,isItFolder=True)		#name,url,mode,icon
+    except: 
+        traceback.print_exc(file=sys.stdout)        
+        
+def AddFootballMatcheHome(url):
+    try:
+        channel=json.loads(base64.b64decode(url))
+        videos=[]
+        for c in channel["highlight"]:
+            videos.append( (c["media_url"],c["media_type"]))
+        for c in channel["fullmatch"]:
+            videos.append( (c["media_url"],c["media_type"]))
+
+        #if 'is_live_streaming' in c and c['is_live_streaming']:
+        #    addDir(Colored('Play Live Stream NOW[notoworking]','red') ,"LIVE,"+base64.b64encode(videos[0]),91,'', False, True,isItFolder=False)
+
+        seen = set()
+        videos=[item for item in videos if item[0] not in seen and not seen.add(item[0])]
+        num=0
+        if len(videos)>0:
+            for curl,ctype in videos:
+                num+=1
+                addDir('video #'+str(num) + ' [%s]'%ctype,ctype+','+base64.b64encode(curl),91,'', False, True,isItFolder=False)
+    except: 
+        traceback.print_exc(file=sys.stdout)                
+        
 def AddIndianPakShowsCat(url=None):
     try:
         channels=getIndianPakShowsCat()
@@ -1084,6 +1277,7 @@ def AddIndianPakShowsEP(url):
                 addDir(cname ,curl,11 ,imgurl, False, True,isItFolder=False)		#name,url,mode,icon
     except: 
         traceback.print_exc(file=sys.stdout)
+
 
     
 def AddYuppSports(url=None):
@@ -2893,7 +3087,46 @@ def PlayYP(url):
         xbmc.executebuiltin("xbmc.PlayMedia("+finalUrl+")")
     else:
         PlayGen(base64.b64encode( finalUrl+'|User-Agent=Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36'))
+
+def getFootVideoUrl(ftype,url ):
+    if ftype in ["facebook","vidme","espn", "streamable"]:  
+        headers=[('User-Agent',base64.b64decode('TGl2ZSBGb290YmFsbCBvbiBUViAzLjAuMSAoaVBob25lOyBpUGhvbmUgT1MgOS4wLjI7IGVuX0dCKQ=='))]
+        htmlcontents=url
+        print 'ftype',ftype
+        if ftype not in ["espn"]:
+            htmlcontents=getUrl(url,headers=headers)
+        fbData=getFootballData()
+        post=getFootballPostData()
+        urlnew=fbData["API_URLS"]["PARSE_TOOL"]
+        post['content_html']=htmlcontents
+        post['video_type']=ftype
+        post = urllib.urlencode(post)
+        url=json.loads(getUrl(urlnew, post=post,headers=headers))["video_url"]
+    elif  ftype =="LIVE":
+        print 'do live'
         
+    return url
+    
+ 
+def PlayFootballVideo(url):
+    ftype,url = url.split(',')
+    url=base64.b64decode(url)
+
+    url=getFootVideoUrl(ftype,url)
+    if 'youtube.com' in url:
+        youtubecode=url.split('?v=')[1].split('&')[0]
+        uurl = 'plugin://plugin.video.youtube/?action=play_video&videoid=%s' % youtubecode
+        xbmc.executebuiltin("xbmc.PlayMedia("+uurl+")")
+    else:
+        url+='|User-Agent=AppleCoreMedia/1.0.0.13A452 (iPhone; U; CPU OS 9_0_2 like Mac OS X; en_gb)'
+
+        playlist = xbmc.PlayList(1)
+        playlist.clear()
+        listitem = xbmcgui.ListItem( label = str(name), iconImage = "DefaultVideo.png", thumbnailImage = xbmc.getInfoImage( "ListItem.Thumb" ) )
+        playlist.add(url,listitem)
+        xbmcPlayer = xbmc.Player()
+        xbmcPlayer.play(playlist)         
+
 
 def PlayGen(url,checkUrl=False, followredirect=False):
     url = base64.b64decode(url)
@@ -4289,12 +4522,18 @@ def getPTCUrl():
         print 'ptc file saving error'
         traceback.print_exc(file=sys.stdout)
     return jsondata
+    
 def clearCache():
 
     files=[]
     fname='paktvpage.json'
     fname=os.path.join(profile_path, fname)
-    files+=[fname]   
+    files+=[fname] 
+    
+    fname='footballdata.json'
+    fname=os.path.join(profile_path, fname)
+    files+=[fname] 
+    
     
     fname='zenga.json'
     fname=os.path.join(profile_path, fname)
@@ -4734,8 +4973,8 @@ def getPV2UserAgent(option):
         return getPv2Code();
 
 def getpv2stkey():
-    headers=[('User-Agent',base64.b64decode('UGFrJTIwVFYvMS4wIENGTmV0d29yay83NTguMi44IERhcndpbi8xNS4wLjA=')),('Authorization',base64.b64decode('QmFzaWMgWVcxMU9rQmtia0J1T0RRNQ=='))]
-    return getUrl(base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2tleXMvYXJhYmljdHZoZHYxcHAucGhw'),headers=headers)
+    headers=[('User-Agent',base64.b64decode('cDl4VE1nV2hFclpxZGlFWU1iV045bFVvd0xGMFdWM3I=')),('Authorization',base64.b64decode('QmFzaWMgWVcxMU9rQmtia0J1T0RRNQ=='))]
+    return getUrl(base64.b64decode('aHR0cHM6Ly9hcHAuZHluZG5zLnR2L3RvcC9wYWt0dmhkLnBocA=='),headers=headers)
     
 def getPV2Device(option):
     useragent=getpv2stkey()
@@ -4777,23 +5016,23 @@ def getPV2Url():
                     mainurl='aHR0cHM6Ly9hcHAuZHlubnMuY29tL2FwcF9wYW5lbG5ldy9vdXRwdXQucGhwL3BsYXlsaXN0P3R5cGU9eG1sJmRldmljZVNuPXBha2luZGlhaGRwYWlkMi42JnRva2VuPSVz'
             else: #soap xml
                 headers=[('User-Agent',base64.b64decode('dW1hci8xLjEgQ0ZOZXR3b3JrLzc1OC4wLjIgRGFyd2luLzE1LjAuMA=='))]
-                iphtml=getUrl(base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2tleXMvaXBfY2hlY2sucGhw'),headers=headers)
+                iphtml=getUrl(base64.b64decode('aHR0cHM6Ly9hcHAuZHluZG5zLnR2L2tleXMvaXBfY2hlY2sucGhw'),headers=headers)
                 ipaddrs=re.findall('Address: (.*)',iphtml)[0]
                 
-                headers=[('User-Agent',nm),('SOAPAction',base64.b64decode('aHR0cDovL2FwcC5keW5ucy5jb20vc2F2ZURldmljZUlkU2VydmljZS90bnM6ZGIuc2F2ZUlk')),('Content-Type','text/xml; charset=ISO-8859-1')]
+                #headers=[('User-Agent',nm),('SOAPAction',base64.b64decode('aHR0cDovL2FwcC5keW5ucy5jb20vc2F2ZURldmljZUlkU2VydmljZS90bnM6ZGIuc2F2ZUlk')),('Content-Type','text/xml; charset=ISO-8859-1')]
                 
-                xmldata=base64.b64decode("PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iSVNPLTg4NTktMSI/Pgo8U09BUC1FTlY6RW52ZWxvcGUgU09BUC1FTlY6ZW5jb2RpbmdTdHlsZT0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbmNvZGluZy8iIHhtbG5zOlNPQVAtRU5WPSJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy9zb2FwL2VudmVsb3BlLyIgeG1sbnM6eHNkPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYSIgeG1sbnM6eHNpPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYS1pbnN0YW5jZSIgeG1sbnM6U09BUC1FTkM9Imh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3NvYXAvZW5jb2RpbmcvIiB4bWxuczp0bnM9Imh0dHA6Ly9zY3JpcHRiYWtlci5jb20vc2F2ZURldmljZUlkU2VydmljZSI+CjxTT0FQLUVOVjpCb2R5Pgo8dG5zOmRiLnNhdmVJZCB4bWxuczp0bnM9Imh0dHA6Ly9hcHAuZHlubnMuY29tL3NhdmVEZXZpY2VJZFNlcnZpY2UiPgo8aWQgeHNpOnR5cGU9InhzZDpzdHJpbmciPiVzIEBkbkBuMDMzMTwvaWQ+CjxuYW1lIHhzaTp0eXBlPSJ4c2Q6c3RyaW5nIj4lczwvbmFtZT4KPC90bnM6ZGIuc2F2ZUlkPgo8L1NPQVAtRU5WOkJvZHk+CjwvU09BUC1FTlY6RW52ZWxvcGU+")%(ipaddrs,nm)
-                #if pvitr==1: print 1/0
-                try:
-                    getUrl(base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2FwaXNvYXAvaW5kZXgucGhw'),post=xmldata,headers=headers)
-                except: pass
+                #xmldata=base64.b64decode("PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iSVNPLTg4NTktMSI/Pgo8U09BUC1FTlY6RW52ZWxvcGUgU09BUC1FTlY6ZW5jb2RpbmdTdHlsZT0iaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvc29hcC9lbmNvZGluZy8iIHhtbG5zOlNPQVAtRU5WPSJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy9zb2FwL2VudmVsb3BlLyIgeG1sbnM6eHNkPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYSIgeG1sbnM6eHNpPSJodHRwOi8vd3d3LnczLm9yZy8yMDAxL1hNTFNjaGVtYS1pbnN0YW5jZSIgeG1sbnM6U09BUC1FTkM9Imh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3NvYXAvZW5jb2RpbmcvIiB4bWxuczp0bnM9Imh0dHA6Ly9zY3JpcHRiYWtlci5jb20vc2F2ZURldmljZUlkU2VydmljZSI+CjxTT0FQLUVOVjpCb2R5Pgo8dG5zOmRiLnNhdmVJZCB4bWxuczp0bnM9Imh0dHA6Ly9hcHAuZHlubnMuY29tL3NhdmVEZXZpY2VJZFNlcnZpY2UiPgo8aWQgeHNpOnR5cGU9InhzZDpzdHJpbmciPiVzIEBkbkBuMDMzMTwvaWQ+CjxuYW1lIHhzaTp0eXBlPSJ4c2Q6c3RyaW5nIj4lczwvbmFtZT4KPC90bnM6ZGIuc2F2ZUlkPgo8L1NPQVAtRU5WOkJvZHk+CjwvU09BUC1FTlY6RW52ZWxvcGU+")%(ipaddrs,nm)
+                
+                #try:
+                #    getUrl(base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2FwaXNvYXAvaW5kZXgucGhw'),post=xmldata,headers=headers)
+                #except: pass
                 
                 deviceid=getPV2Device(pvitr)
-                #if pvitr==1: print 1/0
+                if pvitr==1: deviceid="331"
                 if pvitr==3:                    
                     link=getUrl(base64.b64decode('aHR0cDovL3NoYW5pLm9mZnNob3JlcGFzdGViaW4uY29tL3B2Mkxhc3RXb3JraW5nLnhtbA==')).decode("base64")
                 else:
-                    mainurl=base64.b64encode(base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2FwcF9wYW5lbG5ldy9vdXRwdXQucGhwL3BsYXlsaXN0P3R5cGU9eG1sJmRldmljZVNuPSVz')%deviceid+'&token=%s')
+                    mainurl=base64.b64encode(base64.b64decode('aHR0cHM6Ly9hcHAuZHluZG5zLnR2L2FwcF9wYW5lbG5ldy9vdXRwdXQucGhwL3BsYXlsaXN0P3R5cGU9eG1sJmRldmljZVNuPSVz')%deviceid+'&token=%s')
                 
                 #else:
                 #    mainurl='aHR0cHM6Ly9hcHAuZHlubnMuY29tL2FwcF9wYW5lbG5ldy9vdXRwdXQucGhwL3BsYXlsaXN0P3R5cGU9eG1sJmRldmljZVNuPTEyMyZ0b2tlbj0lcw=='    
@@ -4845,7 +5084,7 @@ def getPV2PlayAuth():
     import base64
     import time
     
-    url=base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tLyVzLnBocD93bXNBdXRoU2lnbj0=')
+    url=base64.b64decode('aHR0cHM6Ly9hcHAuZHluZG5zLnR2LyVzLnBocD93bXNBdXRoU2lnbj0=')
 
     lastplay=getpv2stkey()
     filename=lastplay[:4]
@@ -4853,7 +5092,7 @@ def getPV2PlayAuth():
     timesegment = datetime.datetime.utcnow().strftime("%m/%d/%Y %H:%M:%S")
     validtime=lastplay[4]
     headers=[('User-Agent',base64.b64decode('UGFrJTIwVFYvMS4wIENGTmV0d29yay83NTguMC4yIERhcndpbi8xNS4wLjA='))]
-    ipstring=getUrl(base64.b64decode("aHR0cHM6Ly9hcHAuZHlubnMuY29tL2tleXMvaXBfY2hlY2sucGhw"),headers=headers)
+    ipstring=getUrl(base64.b64decode("aHR0cHM6Ly9hcHAuZHluZG5zLnR2L2tleXMvaXBfY2hlY2sucGhw"),headers=headers)
     ipadd=ipstring.split('Address: ')[1]
     s="%s%s%s%s"%(ipadd,base64.b64decode("bW5zZGtqc2Rza2o=")+lastplay[:10],timesegment ,validtime)
     print s
@@ -5689,12 +5928,30 @@ def PlayShowLink ( url, redirect=True ):
         listitem.setProperty('mimetype', 'video/x-msvideo')
         listitem.setProperty('IsPlayable', 'true')
         print 'playURL',playURL
-        try: 
-            import urlresolver  
-        except: 
-            print 'urlresolver err'
-            traceback.print_exc(file=sys.stdout)
-        stream_url = urlresolver.HostedMediaFile(playURL).resolve()
+        #try: 
+        #    import urlresolver  
+        #except: 
+        #    print 'urlresolver err'
+        #    traceback.print_exc(file=sys.stdout)
+        #stream_url = urlresolver.HostedMediaFile(playURL).resolve()
+        headers=[('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36')]
+        html=getUrl(playURL,headers=headers)
+        html = html.replace('\\', '')##
+
+        auto = re.findall('"auto"\s*:\s*.+?"url"\s*:\s*"(.+?)"', html)
+        qualities = re.findall('"(\d+?)"\s*:\s*.+?"url"\s*:\s*"(.+?)"', html)
+
+        if auto and not qualities:
+            newurl= auto[0]
+        else:
+            qualities = [(int(i[0]), i[1]) for i in qualities]
+            qualities = sorted(qualities, key=lambda x: x[0])[::-1]##
+
+            videoUrl = [i[1] for i in qualities]
+            newurl=videoUrl[0]
+
+        html=getUrl(newurl,headers=headers)
+        stream_url= re.findall( '(http.*)',html)[-1].split('#')[0]
         print stream_url
         playlist.add(stream_url,listitem)
         xbmcPlayer = xbmc.Player()
@@ -6471,14 +6728,28 @@ try:
     elif mode==85:
         print "Play url is "+url
         AddIndianPakShowsEP(url)  
-        
+    elif mode==86:
+        print "Play url is "+url
+        AddFootballCats(url)        
+    elif mode==87:
+        print "Play url is "+url
+        AddFootballMatches(url)       
+    elif mode==88:
+        print "Play url is "+url        
+        AddFootballVideos(url)
+    elif mode==89:
+        print "Play url is "+url
+        AddFootballMatcheHome(url)         
+    elif mode==91:
+        print "Play url is "+url
+        PlayFootballVideo(url)                
 except:
 
     print 'somethingwrong'
     traceback.print_exc(file=sys.stdout)
 
 
-if not ( (mode==3 or mode==4 or mode==9 or mode==11 or mode==15 or mode==21 or mode==22 or mode==27 or mode==33 or mode==35 or mode==37 or mode==40 or mode==42 or mode==45)  )  :
+if not ( (mode==3 or mode==4 or mode==9 or mode==11 or mode==15 or mode==21 or mode==22 or mode==27 or mode==33 or mode==35 or mode==37 or mode==40 or mode==42 or mode==45 or mode==91)  )  :
     if mode in [144,156]:
         xbmcplugin.endOfDirectory(int(sys.argv[1]),updateListing=True)
     else:

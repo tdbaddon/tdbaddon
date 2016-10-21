@@ -169,8 +169,8 @@ def SEARCH2():
         keyb = xbmc.Keyboard('', 'Search')
         keyb.doModal()
         if (keyb.isConfirmed()):
-                search = keyb.getText().replace(' ','+')
-                url = baseurl2+'/?s='+search
+                search = keyb.getText().replace(' ','%20')
+                url = baseurl2+'//search/'+search
                 link = OPEN_URL(url)
                 link = link.encode('ascii', 'ignore').decode('ascii')
                 INDEX2(url)

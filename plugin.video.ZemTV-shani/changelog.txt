@@ -1,3 +1,9 @@
+[B]Version 5.7.6[/B]
+football mania
+[B]Version 5.7.5[/B]
+pv2 is back
+[B]Version 5.7.4[/B]
+remove urlresolver for dailymotion
 [B]Version 5.7.3[/B]
 Added Indian/Pakistani Shows/Dramas
 [B]Version 5.7.2[/B]

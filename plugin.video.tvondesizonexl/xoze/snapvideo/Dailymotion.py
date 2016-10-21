@@ -36,39 +36,39 @@ def retrieveVideoInfo(video_id):
         matchSDLink = ''
         matchLDLink = ''
 
-        matchHD = re.compile('"720":\[{"type":"video(.+?)"}]', re.DOTALL).findall(html)
-        matchHQ = re.compile('"480":\[{"type":"video(.+?)"}]', re.DOTALL).findall(html)
-        matchSD = re.compile('"380":\[{"type":"video(.+?)"}]', re.DOTALL).findall(html)
-        matchLD = re.compile('"240":\[{"type":"video(.+?)"}]', re.DOTALL).findall(html)
+        matchHD = re.compile('720\"\:\[\{\"type\"\:\"application\\\/x\-mpegURL\"\,\"url\"\:\"(.+?)\"\}\,\{\"type\"\:\"video\\\/mp4\"\,\"url\"\:\"(.+?)\"', re.DOTALL).findall(html)
+        matchHQ = re.compile('480\"\:\[\{\"type\"\:\"application\\\/x\-mpegURL\"\,\"url\"\:\"(.+?)\"\}\,\{\"type\"\:\"video\\\/mp4\"\,\"url\"\:\"(.+?)\"', re.DOTALL).findall(html)
+        matchSD = re.compile('380\"\:\[\{\"type\"\:\"application\\\/x\-mpegURL\"\,\"url\"\:\"(.+?)\"\}\,\{\"type\"\:\"video\\\/mp4\"\,\"url\"\:\"(.+?)\"', re.DOTALL).findall(html)
+        matchLD = re.compile('240\"\:\[\{\"type\"\:\"application\\\/x\-mpegURL\"\,\"url\"\:\"(.+?)\"\}\,\{\"type\"\:\"video\\\/mp4\"\,\"url\"\:\"(.+?)\"', re.DOTALL).findall(html)
 
         try:
-            if matchHD[0]:
-                matchHDLink = matchHD[0]
+            if matchHD[0][1]:
+                matchHDLink = matchHD[0][1]
         except:
             print "No Dailymotion HD Link"
 
         try:
-            if matchHQ[0]:
-                matchHQLink = matchHQ[0]
+            if matchHQ[0][1]:
+                matchHQLink = matchHQ[0][1]
         except:
             print "No Dailymotion HQ Link"
 
         try:
-            if matchSD[0]:
-                matchSDLink = matchSD[0]
+            if matchSD[0][1]:
+                matchSDLink = matchSD[0][1]
         except:
             print "No Dailymotion SD Link"
 
         try:
-            if matchLD[0]:
-                matchLDLink = matchLD[0]
+            if matchLD[0][1]:
+                matchLDLink = matchLD[0][1]
         except:
             print "No Dailymotion LD Link"
 
-        matchHDLink = matchHDLink.replace('\/mp4","url":"', '')
-        matchHQLink = matchHQLink.replace('\/mp4","url":"', '')
-        matchSDLink = matchSDLink.replace('\/mp4","url":"', '')
-        matchLDLink = matchLDLink.replace('\/mp4","url":"', '')
+        matchHDLink = matchHDLink.replace('\/', '/')
+        matchHQLink = matchHQLink.replace('\/', '/')
+        matchSDLink = matchSDLink.replace('\/', '/')
+        matchLDLink = matchLDLink.replace('\/', '/')
 
         dm_LD = None
         dm_SD = None
