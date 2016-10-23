@@ -1,37 +1,41 @@
 ﻿#EXTM3U
 
 #EXTINF:0,Check Back Soon
-WWW.TCOMPUTERS.CA
+0
+----------------------------------------------------------------------------------------------------
 
 #EXTINF:0,Al Jazeera Balkan 
 0
 
 #EXTINF:0,Arena Sport 1 
-2
+http://185.59.220.134/arena1/mpegts
 
 #EXTINF:0,Arena Sport 2 
-0
+http://185.59.220.134/arena2/mpegts
 
 #EXTINF:0,Arena Sport 3 
-0
+http://185.59.220.134/arena3/mpegts
 
 #EXTINF:0,Arena Sport 4 
-0
+http://185.59.220.134/arena4/mpegts
 
 #EXTINF:0,Arena Sport 5 
-0
+http://185.59.220.134/arena5/mpegts
 
 #EXTINF:0,ATV
 rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
 
 #EXTINF:0,B92 
-0
+http://93.87.85.71/PLTV/88888888/224/3221226395/04.m3u8
+
+#EXTINF:0,B92 
+http://93.87.85.71/PLTV/88888888/224/3221226576/04.m3u8
 
 #EXTINF:0,Balkan TV
 0
 
 #EXTINF:0,Belle Amie TV
-http://92.60.224.62:3018/udp/231.1.3.1:5903
+0
 
 #EXTINF:0,BN Sat
 0
@@ -58,7 +62,7 @@ http://92.60.224.62:3018/udp/231.1.3.1:5903
 0
 
 #EXTINF:0,Happy 
-0
+http://93.87.85.71/PLTV/88888888/224/3221226574/04.m3u8
 
 #EXTINF:0,Hayat Folk 
 0
@@ -92,9 +96,6 @@ http://92.60.224.62:3018/udp/231.1.3.1:5903
 
 #EXTINF:0,Joj Plus
 0
-
-#EXTINF:0,Jug TV 
-rtmp://84.20.77.50:1935/live
 
 #EXTINF:0,Jug TV 
 http://84.20.77.50:554/live/rtmp.stream/playlist.m3u8
@@ -154,7 +155,7 @@ http://213.81.153.221:8080/nasa
 0
 
 #EXTINF:0,Prva TV 
-0
+http://185.59.220.134/prvatv/mpegts
 
 #EXTINF:0,RTC 
 0
@@ -178,10 +179,10 @@ http://213.81.153.221:8080/nasa
 0
 
 #EXTINF:0,RTS 2 
-0
+http://93.87.85.71/PLTV/88888888/224/3221226357/04.m3u8
 
 #EXTINF:0,RTS 3 
-0
+http://93.87.85.71/PLTV/88888888/224/3221226575/04.m3u8
 
 #EXTINF:0,RTV 1 
 0
@@ -199,7 +200,7 @@ http://92.53.27.201:10000/
 0
 
 #EXTINF:0,Studio B 
-0
+http://93.87.85.71/PLTV/88888888/224/3221226582/04.m3u8
 
 #EXTINF:0,STV1 
 0
@@ -207,8 +208,7 @@ http://92.53.27.201:10000/
 #EXTINF:0,STV2
 0
 
-#EXTINF:0,SuperSky
-rtmp://flash.supersky.ch:1935/live/supersky
+#EXTINF:0,TV Plus
 
 #EXTINF:0,Vesti 24
 mms://62.162.58.55/24vesti

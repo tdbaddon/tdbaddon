@@ -1,7 +1,8 @@
 ﻿#EXTM3U
 
 #EXTINF:0,Check Back Soon
-WWW.TCOMPUTERS.CA
+0
+----------------------------------------------------------------------------------------------------
 
 #EXTINF:0,4fun TV 
 0
@@ -10,46 +11,40 @@ WWW.TCOMPUTERS.CA
 rtmp://cdn4.stream360.pl:1935/CW24/transmisja_live
 
 #EXTINF:0,Adventure Tv
-http://198.16.76.122:8000/628/LCLDTIPOAUOEMAH0
+0
 
 #EXTINF:0,Ale Kino
-http://198.16.76.122:8000/615/LCLDTIPOAUOEMAH0
+0
 
 #EXTINF:0,Animal Planet
-http://198.16.76.122:8000/607/LCLDTIPOAUOEMAH0
+0
 
 #EXTINF:0,Asta TV
 0
 
 #EXTINF:0,ATM Rozrywka
-http://198.16.76.122:8000/510/LCLDTIPOAUOEMAH0
+0
 
 #EXTINF:0,AXN
-http://198.16.76.122:8000/493/LCLDTIPOAUOEMAH0
-
-#EXTINF:0,AXN
-http://198.16.76.122:8000/495/LCLDTIPOAUOEMAH0
-
-#EXTINF:0,AXN
-http://198.16.76.122:8000/515/LCLDTIPOAUOEMAH0
+0
 
 #EXTINF:0,AXN Spin
-http://198.16.76.122:8000/429/LCLDTIPOAUOEMAH0
+0
 
 #EXTINF:0,AXN White 
-http://198.16.76.122:8000/494/LCLDTIPOAUOEMAH0
+0
 
 #EXTINF:0,Canal + Film
-http://198.16.76.122:8000/610/LCLDTIPOAUOEMAH0
+0
 
 #EXTINF:0,Canal + Sport
-http://198.16.76.122:8000/552/LCLDTIPOAUOEMAH0
+0
 
 #EXTINF:0,Canal+
-http://198.16.76.122:8000/553/LCLDTIPOAUOEMAH0
+0
 
 #EXTINF:0,Canal+ Family
-http://198.16.76.122:8000/611/LCLDTIPOAUOEMAH0
+0
 
 #EXTINF:0,CE TV
 0
@@ -72,9 +67,6 @@ http://stream.smcloud.net/tv/eska_rock/eska_rock_360p/playlist.m3u8
 #EXTINF:0,Eska TV 
 http://stream.smcloud.net/tv/eskatv/eskatv_360p/playlist.m3u8
 
-#EXTINF:0,Eska TV 
-http://198.16.76.122:8000/560/LCLDTIPOAUOEMAH0
-
 #EXTINF:0,Eska Vox TV 
 http://s4w.deb1.scdn.smcloud.net/live/_definst_/vox2/chunklist_w1817328956.m3u8
 
@@ -85,13 +77,13 @@ http://s4w.deb1.scdn.smcloud.net/live/_definst_/vox2/chunklist_w1817328956.m3u8
 0
 
 #EXTINF:0,Kino 
-http://198.16.76.122:8000/436/LCLDTIPOAUOEMAH0
+0
 
 #EXTINF:0,Kino Polska Muzyka
-http://198.16.76.122:8000/442/LCLDTIPOAUOEMAH0
+0
 
 #EXTINF:0,Kino TV
-http://198.16.76.122:8000/760/LCLDTIPOAUOEMAH0
+0
 
 
 #EXTINF:0,Lech TV
@@ -131,25 +123,25 @@ http://ocko-live.service.cdn.cra.cz/playlist/live/ocko_gold/live_hq.m3u8
 http://stream.smcloud.net/live/polotv/index.m3u8
 
 #EXTINF:0,Polo TV
-http://198.16.76.122:8000/559/LCLDTIPOAUOEMAH0
+0
 
 #EXTINF:0,Polsat 
-http://198.16.76.122:8000/574/LCLDTIPOAUOEMAH0
+0
 
 #EXTINF:0,Polsat 
-http://198.16.76.122:8000/597/LCLDTIPOAUOEMAH0
+0
 
 #EXTINF:0,Polsat FIlm
-http://198.16.76.122:8000/596/LCLDTIPOAUOEMAH0
+0
 
 #EXTINF:0,Polsat Food
-http://198.16.76.122:8000/532/LCLDTIPOAUOEMAH0
+0
 
 #EXTINF:0,Polsat Sport 
-http://198.16.76.122:8000/592/LCLDTIPOAUOEMAH0
+0
 
 #EXTINF:0,Polsat News
-http://198.16.76.122:8000/599/LCLDTIPOAUOEMAH0
+0
 
 #EXTINF:0,Prima 
 0
@@ -209,37 +201,37 @@ mms://195.94.205.211/Trwam
 0
 
 #EXTINF:0,TVN 
-http://198.16.76.122:8000/556/LCLDTIPOAUOEMAH0
+0
 
 #EXTINF:0,TVN Style 
-http://198.16.76.122:8000/565/LCLDTIPOAUOEMAH0
+0
 
 #EXTINF:0,TVN Turbo 
-http://198.16.76.122:8000/564/LCLDTIPOAUOEMAH0
+0
 
 #EXTINF:0,TVP 
-http://198.16.76.122:8000/604/LCLDTIPOAUOEMAH0
+0
 
 #EXTINF:0,TVP 1 
-http://198.16.76.122:8000/571/LCLDTIPOAUOEMAH0
+0
 
 #EXTINF:0,TVP 2 
-http://198.16.76.122:8000/572/LCLDTIPOAUOEMAH0
+0
 
 #EXTINF:0,TVP 3
-http://198.16.76.122:8000/433/LCLDTIPOAUOEMAH0
+0
 
 #EXTINF:0,TVP Bialystok
-http://198.16.76.122:8000/447/LCLDTIPOAUOEMAH0
+0
 
 #EXTINF:0,TVP Historia 
-http://198.16.76.122:8000/450/LCLDTIPOAUOEMAH0
+0
 
 #EXTINF:0,TVP Info 
-http://198.16.76.122:8000/434/LCLDTIPOAUOEMAH0
+0
 
 #EXTINF:0,TVP Rozrywka 
-http://198.16.76.122:8000/584/LCLDTIPOAUOEMAH0
+0
 
 #EXTINF:0,TVS 
 0

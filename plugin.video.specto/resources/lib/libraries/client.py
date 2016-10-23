@@ -341,7 +341,7 @@ def googletag(url):
         return [{'quality': '1080p', 'url': url}]
     elif quality in ['22', '84', '136', '298', '120', '95', '247', '302', '45', '102']:
         return [{'quality': 'HD', 'url': url}]
-    elif quality in ['35', '44', '135', '244', '94']:
+    elif quality in ['35', '44', '135', '244', '94', '59']:
         return [{'quality': 'SD', 'url': url}]
     elif quality in ['18', '34', '43', '82', '100', '101', '134', '243', '93']:
         return [{'quality': 'SD', 'url': url}]

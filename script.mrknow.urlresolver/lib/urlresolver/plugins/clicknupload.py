@@ -49,7 +49,7 @@ class ClickNUploadResolver(UrlResolver):
             html = self.net.http_POST(web_url, data, headers=headers).content
             r = re.search('''class="downloadbtn"[^>]+onClick\s*=\s*\"window\.open\('([^']+)''', html)
             if r:
-                return r.group(1) + '|' + urllib.urlencode({'User-Agent': common.FF_USER_AGENT})
+                return r.group(1) + helpers.append_headers(headers)
 
             if tries > 0:
                 xbmc.sleep(1000)
@@ -59,4 +59,4 @@ class ClickNUploadResolver(UrlResolver):
         raise ResolverError('Unable to locate link')
 
     def get_url(self, host, media_id):
-        return 'https://cloud.mail.ru/public/%s' % media_id
+        return 'https://clicknupload.link/%s' % media_id

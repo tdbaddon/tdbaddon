@@ -18,6 +18,9 @@ http://www.support.tcomputers.ca/@videos/HowTo-ChangeAudioLanguage.mp4
 #EXTINF:0,Animal Planet 
 http://46.166.162.35:9090/load/b0922f3fa8aa/37.m3u8
 
+#EXTINF:0,Animal Planet 
+http://185.39.194.26:8000/53/LTNOXIBZS8ZTR4Y1
+
 #EXTINF:0,Biography Channel
 0
 
@@ -61,7 +64,7 @@ http://93.87.85.71/PLTV/88888888/224/3221226760/04.m3u8
 0
 
 #EXTINF:0,Discovery Turbo 
-http://151.80.61.70:9000/play/a00g
+0
 
 #EXTINF:0,Discovery World 
 0

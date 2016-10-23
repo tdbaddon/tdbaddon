@@ -445,7 +445,7 @@ def AddSports(url):
     #addDir(base64.b64decode('U3VwZXIgU3BvcnRz') ,'sss',34,'')
     addDir('My Sports' ,'sss',82,'')
     addDir('PV2 Sports' ,'zemsports',36,'')
-    addDir('Safe' ,'sss',72,'')
+    #addDir('Safe' ,'sss',72,'')
     addDir('TVPlayer [UK Geo Restricted]','sss',74,'https://assets.tvplayer.com/web/images/tvplayer-logo-white.png')
     addDir('StreamHD','sss',75,'http://www.streamhd.eu/images/logo.png')
     addDir('Mama HD','http://mamahd.com/',79,'http://mamahd.com/images/logo.png')

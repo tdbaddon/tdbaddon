@@ -23,8 +23,8 @@ from urlresolver.resolver import UrlResolver, ResolverError
 
 class VidMadResolver(UrlResolver):
     name = "vidmad.net"
-    domains = ["vidmad.net"]
-    pattern = '(?://|\.)(vidmad\.net)/(?:embed-)?([0-9a-zA-Z]+)'
+    domains = ["vidmad.net", "tamildrive.com"]
+    pattern = '(?://|\.)((?:vidmad|tamildrive)\.(?:net|com))/(?:embed-)?([0-9a-zA-Z]+)'
 
     def __init__(self):
         self.net = common.Net()
@@ -42,13 +42,15 @@ class VidMadResolver(UrlResolver):
         match = re.search('sources\s*:\s*\[(.*?)\]', html, re.DOTALL)
         if match:
             sources = eval(match.group(1).replace('file','"file"').replace('label','"label"'))
+            if 'label' not in sources[0]:
+                sources[0]['label']='HLS'
             sources = [(s['label'], s['file']) for s in sources]
             return helpers.pick_source(sources, self.get_setting('auto_pick') == 'true')
 
-        raise ResolverError('Unable to find vidmad video')
+        raise ResolverError('Unable to find %s video'%(host))
 
     def get_url(self, host, media_id):
-        return 'http://%s/embed-%s.html' % (host, media_id)
+        return self._default_get_url(host, media_id)
 
     @classmethod
     def get_settings_xml(cls):

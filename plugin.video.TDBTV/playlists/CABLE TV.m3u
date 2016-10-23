@@ -7,7 +7,7 @@ http://www.support.tcomputers.ca/@videos/HowTo-ChangeAudioLanguage.mp4
 0
 
 #EXTINF:0,A&E 
-http://198.16.76.122:8000/681/LCLDTIPOAUOEMAH0
+0
 
 #EXTINF:0,ABC 
 http://46.166.162.35:9090/load/b0922f3fa8aa/03.m3u8
@@ -102,11 +102,9 @@ http://198.179.31.197/live/3566.high.stream/playlist.m3u8
 #EXTINF:0,Comedy Central 
 http://46.166.162.35:9090/load/b0922f3fa8aa/14.m3u8
 
-#EXTINF:0,Comedy Central 
-http://151.80.61.70:9000/play/a00j
 
 #EXTINF:0,Comedy Central Extra
-http://151.80.61.70:9000/play/a00l
+0
 
 #EXTINF:0,Comedy Gold
 0
@@ -217,7 +215,7 @@ http://93.87.85.71/PLTV/88888888/224/3221226755/04.m3u8
 0
 
 #EXTINF:0,Global TV Vancouver 
-
+0
 
 #EXTINF:0,Great American Country 
 0
@@ -247,16 +245,16 @@ rtmp://hsn.mpl.miisolutions.net:1935/hsn-live01/_definst_/mp4:468p500kB31?b?b*t$
 0
 
 #EXTINF:0,ITV 1 
-http://151.80.61.70:9000/play/a00c
+0
 
 #EXTINF:0,ITV 2 
-http://151.80.61.70:9000/play/a00d
+0
 
 #EXTINF:0,ITV 3 
-http://151.80.61.70:9000/play/a00e
+0
 
 #EXTINF:0,ITV 4 
-http://151.80.61.70:9000/play/a00f
+0
 
 #EXTINF:0,Jim Jam 
 http://93.87.85.71/PLTV/88888888/224/3221226761/04.m3u8
@@ -304,7 +302,7 @@ http://1-fss27-s0.streamhoster.com/lv_ntv/_definst_/broadcast1/chunklist.m3u8
 0
 
 #EXTINF:0,OMNI 
-0
+a
 
 #EXTINF:0,OWN Network 
 0
@@ -331,10 +329,10 @@ http://llnw.live.qvc.simplestream.com/hera/remote/qvcuk_primary_sdi8/3/prog_inde
 http://46.166.162.35:9090/load/b0922f3fa8aa/28.m3u8
 
 #EXTINF:0,Sky 1 
-http://151.80.61.70:9000/play/a004
+0
 
 #EXTINF:0,Sky 2 
-http://151.80.61.70:9000/play/a00b
+0
 
 #EXTINF:0,Sky Arts 1 
 0
@@ -343,7 +341,7 @@ http://151.80.61.70:9000/play/a00b
 0
 
 #EXTINF:0,Sky Atlantic 
-http://151.80.61.70:9000/play/a00a
+0
 
 #EXTINF:0,Sky Living 
 0
@@ -415,7 +413,7 @@ http://46.166.162.35:9090/load/b0922f3fa8aa/17.m3u8
 0
 
 #EXTINF:0,WB 
-0
+a
 
 #EXTINF:0,WGN
 http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/index_350_av-p.m3u8?

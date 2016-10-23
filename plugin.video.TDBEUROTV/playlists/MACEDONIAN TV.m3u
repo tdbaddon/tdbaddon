@@ -1,7 +1,8 @@
 ﻿#EXTM3U
 
 #EXTINF:0,Check Back Soon
-WWW.TCOMPUTERS.CA
+0
+----------------------------------------------------------------------------------------------------
 
 #EXTINF:0,A1 Strumica 
 0
@@ -13,13 +14,7 @@ WWW.TCOMPUTERS.CA
 0
 
 #EXTINF:0,Alfa 
-http://37.187.158.217:8081/alfa/alfatv/chunks.m3u8
-
-#EXTINF:0,Alfa
-http://95.86.27.228/alfa/alfa.m3u8
-
-#EXTINF:0,Alfa
-rtmp://s5.alfaomega.tv:1935/alfaomega
+0
 
 #EXTINF:0,BTR 
 0
@@ -58,7 +53,7 @@ http://37.187.158.217:8081/kanal5/kanal5/playlist.m3u8
 0
 
 #EXTINF:0,Kanal 8
-rtsp://62.162.58.55/TVKanal8
+0
 
 #EXTINF:0,Mega TV Bitola
 0
@@ -67,13 +62,10 @@ rtsp://62.162.58.55/TVKanal8
 0
 
 #EXTINF:0,MPT 1 
-http://37.187.158.217:8081/mtv/mtv1/playlist.m3u8
-
-#EXTINF:0,MPT 1 
-http://95.86.27.228/mrt1/mrt1.m3u8
+0
 
 #EXTINF:0,MPT 2 
-http://live.tvmak.com/tv2/mrt2.m3u8
+0
 
 #EXTINF:0,MPT Sat 
 0
@@ -100,10 +92,10 @@ http://92.53.27.201:10000/
 0
 
 #EXTINF:0,Telma 
-http://37.187.158.217:8081/telma/tvtelma/playlist.m3u8
+http://37.187.158.217:8081/telma/telmatv/playlist.m3u8
 
 #EXTINF:0,TV 21
-http://live.tvmak.com/tv2/tv21.m3u8
+0
 
 #EXTINF:0,Ultra Tetovo
 0

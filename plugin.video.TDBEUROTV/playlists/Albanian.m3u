@@ -1,8 +1,8 @@
 ﻿#EXTM3U
 
 #EXTINF:0,Check Back Soon
-WWW.TCOMPUTERS.CA
-
+0
+----------------------------------------------------------------------------------------------------
 
 #EXTINF:0,A1 Report 
 0
@@ -16,11 +16,11 @@ WWW.TCOMPUTERS.CA
 #EXTINF:0,Al Jazeera Balkan 
 0
 
-#EXTINF:0,AlbTV Film 1
-http://live.tvmak.com/tv1/albfilmtv1.m3u8
+#EXTINF:0,AlbTV Film 
+0
 
-#EXTINF:0,AlbTV Film 2
-http://live.tvmak.com/tv2/albfilmtv2.m3u8
+#EXTINF:0,AlbTV Film 
+0
 
 #EXTINF:0,Alb Info
 0
@@ -28,17 +28,20 @@ http://live.tvmak.com/tv2/albfilmtv2.m3u8
 #EXTINF:0,Alb UK 
 rtmp://188.138.17.8:1935/albuk/albuk.stream
 
+#EXTINF:0,Alb UK 
+rtmp://188.138.17.8:1935/albuk
+
 #EXTINF:0,Albanian Screen
 0
 
 #EXTINF:0,Alsat M 
-http://live.tvmak.com/tv1/alsatm.m3u8
+0
 
 #EXTINF:0,Alpo Media
-http://live.tvmak.com/tv2/alpomedia.m3u8
+0
 
-#EXTINF:0,Appolon
-rtmp://95.107.200.140:1935/live
+#EXTINF:0,Appolon 
+0
 
 #EXTINF:0,ATV
 rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
@@ -53,25 +56,19 @@ rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
 0
 
 #EXTINF:0,Dasma
-http://live.tvmak.com/tv1/dasmatv.m3u8
+0
 
-#EXTINF:0,DiasporaTV
-http://live.tvmak.com/tv1/diasporatv.m3u8
+#EXTINF:0,Diaspora TV
+0
 
 #EXTINF:0,Drita TV
-http://live.tvmak.com/tv1/dritatv.m3u8
+0
 
 #EXTINF:0,Dukagjini
-http://live.tvmak.com/tv2/dukagjini.m3u8
-
-#EXTINF:0,Exo
-http://live.tvmak.com/tv2/lexo.m3u8
+0
 
 #EXTINF:0,Folk Plus 
 0
-
-#EXTINF:0,Jug TV 
-rtmp://84.20.77.50:1935/live
 
 #EXTINF:0,Jug TV 
 http://84.20.77.50:554/live/rtmp.stream/playlist.m3u8
@@ -88,11 +85,8 @@ http://84.20.77.50:554/live/rtmp.stream/playlist.m3u8
 #EXTINF:0,Klan Plus
 0
 
-#EXTINF:0,Koha TV 
-rtmp://server1.streaming.im:1935/live/koha
-
 #EXTINF:0,Koha TV
-http://live.tvmak.com/tv2/tvkoha.m3u8
+0
 
 #EXTINF:0,Kohavision
 0
@@ -101,10 +95,10 @@ http://live.tvmak.com/tv2/tvkoha.m3u8
 0
 
 #EXTINF:0,Kopliku TV 
-http://live.tvmak.com/tv2/tvkopliku.m3u8
+0
 
 #EXTINF:0,Kutia TV
-http://live.tvmak.com/tv2/kutia.m3u8
+0
 
 #EXTINF:0,News24
 0
@@ -116,10 +110,7 @@ http://live.tvmak.com/tv2/kutia.m3u8
 0
 
 #EXTINF:0,Rokum TV 
-rtmp://82.114.65.202:1935/live
-
-#EXTINF:0,Rokum TV 
-http://live.tvmak.com/tv1/rrokumtv.m3u8
+0
 
 #EXTINF:0,RTK1 
 0
@@ -130,8 +121,8 @@ http://live.tvmak.com/tv1/rrokumtv.m3u8
 #EXTINF:0,STV Folk 
 0
 
-#EXTINF:0,Supersonic TV
-rtmp://str103.setplex.net:1935/228
+#EXTINF:0,Supersonic TV 
+0
 
 #EXTINF:0,Top Channel
 0
@@ -140,37 +131,40 @@ rtmp://str103.setplex.net:1935/228
 0
 
 #EXTINF:0,TopestradaTV
-http://live.tvmak.com/tv2/topestradatv.m3u8
+0
 
 #EXTINF:0,Tring Tring
 0
 
+#EXTINF:0,Tv 
+0
+
 #EXTINF:0,TV Bessa
-http://live.tvmak.com/tv1/tvbesa.m3u8
+0
 
 #EXTINF:0,TV Kontakt
-http://live.tvmak.com/tv1/tvkontakt.m3u8
+0
 
 #EXTINF:0,Tv Opoja
-http://live.tvmak.com/tv2/tvopoja.m3u8
+0
 
 #EXTINF:0,TV Rozafa
-http://live.tvmak.com/tv1/tvrozafa.m3u8
+0
 
 #EXTINF:0,TV Shenja
-http://live.tvmak.com/tv1/tvshenja.m3u8
+0
 
 #EXTINF:0,TV Suno
-http://live.tvmak.com/tv2/tvsuno.m3u8
+0
 
-#EXTINF:TV.USA
-http://live.tvmak.com/tv1/usa.m3u8
+#EXTINF0:TV USA
+0
 
 #EXTINF:0,Vizion Plus 
 rtmp://live.vizionplus.tv/live//livestream3
 
 #EXTINF:0,Vizion Plus 
-http://live.tvmak.com/tv1/vizionplus.m3u8
+0
 
 #EXTINF:0,Zico TV
-http://live.tvmak.com/tv1/zicotv.m3u8
+0

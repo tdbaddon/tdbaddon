@@ -1,5 +1,8 @@
 ﻿#EXTM3U
 
+#EXTINF:0,Check Back Soon
+0
+----------------------------------------------------------------------------------------------------
 
 #EXTINF:0,4E TV 
 http://mail.tv4e.gr:1935/live/myStream.sdp/playlist.m3u8
@@ -7,17 +10,44 @@ http://mail.tv4e.gr:1935/live/myStream.sdp/playlist.m3u8
 #EXTINF:0,4E TV 
 http://82.192.84.30:554/live/myStream.sdp/playlist.m3u8
 
+#EXTINF:0,AB Channel
+rtmp://stream.greekelitetv.com:1935/ab_channel/ab_channel.stream
+
+#EXTINF:0,Action 24
+http://stream-12.vty.dailymotion.com/38/dm/1/x2p626q/live.isml/events(live-1477047530)/live-audio=64000-video=400000.m3u8
+
+#EXTINF:0,Action 24
+rtmp://stream.greekelitetv.com:1935/action_24/action_24.stream
+
+#EXTINF:0,Action 24
+mmsh://38.103.153.242/sport_plus
+
 #EXTINF:0,Aigaio 
-0
+http://193.92.37.235:1935/liveedge/live@720/master.m3u8
+
+#EXTINF:0,Aigaio 
+http://xaigaiotelevisionx.api.channel.livestream.com/3.0/playlist.m3u8
 
 #EXTINF:0,Alpha 
-0
+http://193.92.37.235:1935/liveedge/live@720/master.m3u8
+
+#EXTINF:0,Alpha 
+rtmp://stream2.svbllc.com:1935/alpha/alpha.stream
+
+#EXTINF:0,Alpha Cyprus
+mmsh://38.99.163.111:80/alpha?MSWMExt=.asf
 
 #EXTINF:0,Ant1 
-http://antennatv-lh.akamaihd.net/i/live_1@329667/master.m3u8
+http://137.74.171.115:1935/galanos/live/playlist.m3u8
+
+#EXTINF:0,Ant1 
+http://antglantennatv-lh.akamaihd.net/i/live_1@421307/master.m3u8
 
 #EXTINF:0,Ant1 Cyprus
-0
+mmsh://38.99.163.111:80/ant1?MSWMExt=.asf
+
+#EXTINF:0,Apeiro
+http://94.23.218.186:1935/galanos21/galanos21/playlist.m3u8
 
 EXTINF:0,Art
 https://raw.githubusercontent.com/free-greek-iptv/greek-iptv/master/m3u8/ART.m3u8
@@ -26,19 +56,25 @@ https://raw.githubusercontent.com/free-greek-iptv/greek-iptv/master/m3u8/ART.m3u
 http://www.astratv.gr:8090/hls/livestream.m3u8 
 
 #EXTINF:0,Axeloos TV
-0
+http://srv.viiideo.gr:1935/axeloos/live/playlist.m3u8
+
+#EXTINF:0,Bergina
+http://195.81.140.80:1935/live/VerginaStream1/playlist.m3u8
 
 #EXTINF:0,Best TV 
-0
+http://138.201.57.212:1935/best/myStream/playlist.m3u8
 
 #EXTINF:0,BlueSky TV 
-0
+rtmp://stream.greekelitetv.com:1935/bluesky/bluesky.stream
 
 #EXTINF:0,Boyah TV
 http://streamer-cache.grnet.gr/parliament/parltv.sdp/master.m3u8 
 
-#EXTINF:0,Capital
-https://raw.githubusercontent.com/free-greek-iptv/greek-iptv/master/m3u8/CAPITAL.m3u8
+#EXTINF:0,Cannali
+http://live.streams.ovh:1935/cannali/cannali/playlist.m3u8
+
+#EXTINF:0,Capital 
+0
 
 #EXTINF:0,Creta 
 rtmp://live.cretetv.gr/cretetv/myStream
@@ -52,6 +88,9 @@ rtmp://94.23.218.186:1935/cretatv/cretatv
 #EXTINF:0,Delta 
 mms://deltatv1.dyndns.org:1194
 
+#EXTINF:0,Delta 
+http://stream.ssh101.com:1935/live/8082/playlist.m3u8
+
 #EXTINF:0,Dion TV
 0
 
@@ -59,10 +98,19 @@ mms://deltatv1.dyndns.org:1194
 0
 
 #EXTINF:0,E TV 
-0
+https://57b1c3ae400ed.streamlock.net/live/epsilontv/master.m3u8
+
+#EXTINF:0,E TV 
+rtmp://stream.greekelitetv.com:1935/epsilon/epsilon.stream
+
+#EXTINF:0,E TV 
+mmsh://38.103.153.242:80/epsilon
 
 #EXTINF:0,Ellada TV 
 0
+
+#EXTINF:0,Ellinkos TV
+http://o98d0njv.blue.onyxservers.com/hls-live/livepkgr/_definst_/liveevent/EllinikosFM.m3u8
 
 #EXTINF:0,Ena TV 
 http://wpc.68fc.edgecastcdn.net/hls-live/2068FC/ena-channel-live/video/video.m3u8
@@ -71,13 +119,13 @@ http://wpc.68fc.edgecastcdn.net/hls-live/2068FC/ena-channel-live/video/video.m3u
 0
 
 #EXTINF:0,EPT 1 
-0
+mmsh://38.99.163.111:80/net?MSWMExt=.asf
 
 #EXTINF:0,EPT 2 
-0
+mmsh://38.99.163.111:80/ERT2?MSWMExt=.asf
 
 #EXTINF:0,EPT 3 
-0
+mmsh://38.99.163.111:80/ERTHD?MSWMExt=.asf
 
 #EXTINF:0,Extra 
 rtmp://213.16.167.186/live/mpegts_256.stream
@@ -85,17 +133,23 @@ rtmp://213.16.167.186/live/mpegts_256.stream
 #EXTINF:0,Extra 
 http://213.16.167.186:1935/live/mpegts_256.stream/playlist.m3u8
 
-#EXTINF:0,Extra 
-https://raw.githubusercontent.com/free-greek-iptv/greek-iptv/master/m3u8/EXTRA.CY.m3u8
-
 #EXTINF:0,FOS TV 
 0
 
+#EXTINF:0,Gatzoli TV
+rtmp://live.streams.ovh:1935/GATZOLITV/GATZOLITV
+
 #EXTINF:0,Greek Cinema 
-0
+http://xnaturatv1x.api.channel.livestream.com/3.0/playlist.m3u8
+
+#EXTINF:0,Canadian Hellenic TV
+http://stream.ssh101.com:1935/live/greektv/playlist.m3u8
 
 #EXTINF:0,Hellas TV 
-0
+http://176.9.123.140:1935/hellastv/_definst_/mp4:stream/master.m3u8
+
+#EXTINF:0,Hellas TV 
+http://freeview.fms.visionip.tv/live/tvnetwork-hellenictv-wnn-hsslive-25f-4x3-SDh/playlist.m3u8?PHPSESSID=8blpkkmbb990ekhc80gfht1cq3
 
 #EXTINF:0,Infinity Cinema 
 0
@@ -104,7 +158,10 @@ https://raw.githubusercontent.com/free-greek-iptv/greek-iptv/master/m3u8/EXTRA.C
 0
 
 #EXTINF:0,Kontra 
-https://raw.githubusercontent.com/free-greek-iptv/greek-iptv/master/m3u8/KONTRA.m3u8
+http://flashcloud.mediacdn.com/live/kontratv/.m3u8
+
+#EXTINF:0,Kontra 
+mmsh://38.103.153.242:80/kontra?MSWMExt=.asf
 
 #EXTINF:0,Kphth TV 
 http://live.cretetv.gr:1935/cretetv/myStream/playlist.m3u8
@@ -121,8 +178,8 @@ rtmp://live.cretetv.gr/cretetv/myStream live=1 timeout=10
 #EXTINF:0,Lepanto 
 0
 
-#EXTINF:0,M Channel
-http://stream.maktv.gr/i/live_1@332903/master.m3u8
+#EXTINF:0,M Channel 
+0
 
 #EXTINF:0,Mad Music Hits
 http://eradio.networksolutions.com.cy:1935/live/livestream/playlist.m3u8
@@ -130,20 +187,29 @@ http://eradio.networksolutions.com.cy:1935/live/livestream/playlist.m3u8
 #EXTINF:0,Mad TV 
 rtmp://144.76.2.213/live/livestream
 
-#EXTINF:0,Makedonia TV
-http://stream.maktv.gr/i/live_1@332903/master.m3u8
+#EXTINF:0,Mad TV Cyprus
+rtmp://eradio.networksolutions.com.cy/live/livestream
 
-#EXTINF:0,Makedonia TV
-https://raw.githubusercontent.com/free-greek-iptv/greek-iptv/master/m3u8/MAKEDONIA.m3u8
+#EXTINF:0,Magic TV
+http://94.23.218.186:1935/magictv/magictv/playlist.m3u8
+
+#EXTINF:0,Makedonia TV 
+0
 
 #EXTINF:0,Max
-0
+mmsh://38.103.153.242:80/maxtv?MSWMExt=.asf
 
 #EXTINF:0,Mega 
-0
+http://137.74.171.115:1935/galanos/live2/playlist.m3u8
+
+#EXTINF:0,Mega 
+rtmp://stream2.svbllc.com:1935/mega/mega.stream
+
+#EXTINF:0,Mega 
+rtmp://stream.greekelitetv.com:1935/mega/mega.stream
 
 #EXTINF:0,Mega Cyprus 
-https://raw.githubusercontent.com/free-greek-iptv/greek-iptv/master/m3u8/Mega.cy.m3u8
+rtmp://stream.greekelitetv.com:1935/mega_cyprus/mega_cyprus.stream
 
 #EXTINF:0,Messinia TV
 rtmp://176.9.123.140:1935/messinia/messinia
@@ -154,6 +220,8 @@ rtmp://176.9.123.140:1935/messinia/messinia
 #EXTINF:0,Nea TV 
 http://srv.viiideo.gr:1935/neatv/live/playlist.m3u8
 
+#EXTINF:0,NetV
+http://live.netvtoronto.com:1935/NetvToronto/NetvToronto/playlist.m3u8
 
 #EXTINF:0,Nerit 
 0
@@ -162,19 +230,19 @@ http://srv.viiideo.gr:1935/neatv/live/playlist.m3u8
 0
 
 #EXTINF:0,Omega TV 
-0
+http://stream2.omegatv.net/hls-live/livepkgr/_definst_/liveevent/omegatv.m3u8
 
 #EXTINF:0,OPT TV 
 0
 
+#EXTINF:0,Palmos TV
+http://138.201.25.26:1935/ellinikos-palmos/ellinikos-palmos/playlist.m3u8
+
 #EXTINF:0,R Channel 
-0
+rtmp://live.streams.ovh:1935/rchanneltv/rchanneltv
 
 #EXTINF:0,Rik Sat 
-http://cdnvideo.webvideocore.net/livenl/out_2xtqzyrq6gysc48ko0cs/index.m3u8
-
-#EXTINF:0,Rik Sat 
-https://raw.githubusercontent.com/free-greek-iptv/greek-iptv/master/m3u8/rik2.m3u8
+http://freeview.fms.visionip.tv/live/tvnetwork-hellenictv-riksat-hsslive-25f-4x3-SDh/playlist.m3u8?PHPSESSID=8blpkkmbb990ekhc80gfht1cq3
 
 #EXTINF:0,Samiaki TV 
 http://94.23.218.186:1935/samiaki/samiaki/playlist.m3u8
@@ -183,25 +251,55 @@ http://94.23.218.186:1935/samiaki/samiaki/playlist.m3u8
 0
 
 #EXTINF:0,Sigma Cyprus
-https://raw.githubusercontent.com/free-greek-iptv/greek-iptv/master/m3u8/SIGMA.m3u8
+http://81.21.47.74/hls/live.m3u8
 
 #EXTINF:0,Skai 
 http://iphone.skai.gr.edgesuite.net/iphone_iphone.m3u8
 
+#EXTINF:0,Skai 
+http://xsbcgrx.api.channel.livestream.com/3.0/playlist.m3u8
+
+#EXTINF:0,Skai 
+http://stream.ssh101.com:1935/live/skaichannel/playlist.m3u8
+
 #EXTINF:0,Star TV 
-0
+http://137.74.171.115:1935/galanos/live1/playlist.m3u8
+
+#EXTINF:0,Star TV 
+mmsh://38.99.163.111:80/star?MSWMExt=.asf
+
+#EXTINF:0,Star TV 
+http://stream-03.vty.dailymotion.com/01/dm/1/xqjey2/live.isml/events(live-1477109515)/live-audio=128000-video=700000.m3u8
+
+#EXTINF:0,START TV
+http://94.23.218.186:1935/StartMedia/StartMedia/playlist.m3u8
 
 #EXTINF:0,Syros TV 
-0
+http://176.9.123.140:1935/msg116s/msg116s/playlist.m3u8
+
+#EXTINF:0,Tilemousiki
+mmsh://wpso.com:200/music
+
+#EXTINF:0,Tilemousiki 2
+http://stream.ssh101.com:1935/live/greekmusic/playlist.m3u8
+
+#EXTINF:0,Tilesport
+rtmp://78.47.151.114/tilesport/movie1
 
 #EXTINF:0,Thraki Net TV
-0
+rtmp://hls.onestreaming.com:1935/live/thrakinettv
+
+#EXTINF:0,Tinos TV
+http://stream.ssh101.com:1935/live/tinostileorasi/playlist.m3u8
 
 #EXTINF:0,TRT 
 0
 
 #EXTINF:0,TV 100 
 http://178.62.176.153:1935/TV100/myStream/playlist.m3u8
+
+#EXTINF:0,WZRA Kids
+mmsh://wpso.com:200/kids
 
 #EXTINF:0,Zougla TV 
 http://zouglahd-f.akamaihd.net/i/zougla_1@56341/master.m3u8

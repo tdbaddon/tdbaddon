@@ -23,7 +23,7 @@ from urlresolver.resolver import UrlResolver, ResolverError
 
 class VidFileResolver(UrlResolver):
     name = "vidfile"
-    domains = ["vidfile.xyz",]
+    domains = ["vidfile.xyz"]
     pattern = '(?://|\.)(vidfile.xyz)/(?:embed-)?([0-9a-zA-Z]+)'
 
     def __init__(self):
@@ -53,4 +53,4 @@ class VidFileResolver(UrlResolver):
         raise ResolverError('Unable to find vidfile.xyz video')
 
     def get_url(self, host, media_id):
-        return 'http://%s/%s.html' % (host, media_id)
+        return self._default_get_url(host, media_id, 'http://{host}/{media_id}.html')

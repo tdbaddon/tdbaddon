@@ -2,19 +2,20 @@
 
 
 #EXTINF:0,Check Back Soon
-WWW.TCOMPUTERS.CA
+0
+----------------------------------------------------------------------------------------------------
 
 #EXTINF:0,Pink 1 
-http://92.60.224.62:3018/udp/232.171.194.22:4000
+http://93.87.85.71/PLTV/88888888/224/3221225872/04.m3u8
 
 #EXTINF:0,Pink 2 
-http://92.60.224.62:3018/udp/232.171.194.28:4000
+http://93.87.85.71/PLTV/88888888/224/3221225882/04.m3u8
 
 #EXTINF:0,Pink 3 
-http://92.60.224.62:3018/udp/232.171.194.1:4000
+http://93.87.85.71/PLTV/88888888/224/3221226573/04.m3u8
 
 #EXTINF:0,Pink Action 1 
-http://92.60.224.62:3018/udp/232.171.194.23:4000
+http://93.87.85.71/PLTV/88888888/224/3221225900/04.m3u8
 
 #EXTINF:0,Pink Action 2 
 0
@@ -23,37 +24,31 @@ http://92.60.224.62:3018/udp/232.171.194.23:4000
 0
 
 #EXTINF:0,Pink BH
-http://92.60.224.62:3018/udp/232.171.194.21:4000
+0
 
 #EXTINF:0,Pink Bravo
 0
 
 #EXTINF:0,Pink Classic 
-0
+http://93.87.85.71/PLTV/88888888/224/3221226581/04.m3u8
 
 #EXTINF:0,Pink Comedy 
-0
+http://93.87.85.71/PLTV/88888888/224/3221226578/04.m3u8
 
 #EXTINF:0,Pink Crime & Mystery 
-0
+http://93.87.85.71/PLTV/88888888/224/3221226787/04.m3u8
 
 #EXTINF:0,Pink Extra 
-http://92.60.224.62:3018/udp/232.171.194.20:4000
-
-#EXTINF:0,Pink Family 
-http://str108.setplex.net/fastv_2psh/PinkFamilyglobal_rly_greece_103/TDB.m3u8
-
-#EXTINF:0,Pink Family
-http://92.60.224.62:3018/udp/232.171.194.27:4000
+0
 
 #EXTINF:0,Pink Family 
 0
 
 #EXTINF:0,Pink Fashion 
-http://92.60.224.62:3018/udp/232.171.194.17:4000
+0
 
 #EXTINF:0,Pink Film 
-http://92.60.224.62:3018/udp/232.171.194.25:4000
+http://93.87.85.71/PLTV/88888888/224/3221226599/04.m3u8
 
 #EXTINF:0,Pink Folk 1
 0
@@ -62,31 +57,31 @@ http://92.60.224.62:3018/udp/232.171.194.25:4000
 0
 
 #EXTINF:0,Pink Hits
-http://92.60.224.62:3018/udp/232.171.194.34:4000
+0
 
 #EXTINF:0,Pink Hits 2
 0
 
 #EXTINF:0,Pink Horror 
-0
+http://93.87.85.71/PLTV/88888888/224/3221226579/04.m3u8
 
 #EXTINF:0,Pink Kids 
-http://92.60.224.62:3018/udp/232.171.194.30:4000
+0
 
 #EXTINF:0,Pink Koncert
 0
 
 #EXTINF:0,Pink Kuvar 
-0
+http://93.87.85.71/PLTV/88888888/224/3221226756/04.m3u8
 
 #EXTINF:0,Pink Live 
 0
 
 #EXTINF:0,Pink M 
-http://92.60.224.62:3018/udp/232.171.194.29:4000
+0
 
 #EXTINF:0,Pink Movies 1 
-http://92.60.224.62:3018/udp/232.171.194.24:4000
+http://93.87.85.71/PLTV/88888888/224/3221225901/04.m3u8
 
 #EXTINF:0,Pink Movies 2 
 0
@@ -95,10 +90,10 @@ http://92.60.224.62:3018/udp/232.171.194.24:4000
 0
 
 #EXTINF:0,Pink Music 1 
-http://92.60.224.62:3018/udp/232.171.194.26:4000
+0
 
 #EXTINF:0,Pink Music 2
-http://92.60.224.62:3018/udp/232.171.194.11:4000
+0
 
 #EXTINF:0,Pink Music 3 
 0
@@ -116,31 +111,31 @@ http://92.60.224.62:3018/udp/232.171.194.11:4000
 0
 
 #EXTINF:0,Pink Parada
-http://92.60.224.62:3018/udp/232.171.194.35:4000
+0
 
 #EXTINF:0,Pink Pedia 
-0
+http://93.87.85.71/PLTV/88888888/224/3221226577/04.m3u8
 
 #EXTINF:0,Pink Plus 
-http://92.60.224.62:3018/udp/232.171.194.19:4000
+0
 
 #EXTINF:0,Pink Premium 
-0
+http://93.87.85.71/PLTV/88888888/224/3221225891/04.m3u8
 
 #EXTINF:0,Pink Reality 
 0
 
 #EXTINF:0,Pink Romance
-0
+http://93.87.85.71/PLTV/88888888/224/3221226739/04.m3u8
 
 #EXTINF:0,Pink SciFi & Fantasy
-0
+http://93.87.85.71/PLTV/88888888/224/3221226752/04.m3u8
 
 #EXTINF:0,Pink Serije 
-0
+http://93.87.85.71/PLTV/88888888/224/3221226788/04.m3u8
 
 #EXTINF:0,Pink Show 
-0
+http://93.87.85.71/PLTV/88888888/224/3221226757/04.m3u8
 
 #EXTINF:0,Pink Soap 
 0
@@ -149,19 +144,19 @@ http://92.60.224.62:3018/udp/232.171.194.19:4000
 0
 
 #EXTINF:0,Pink Super Kids
-0
+http://93.87.85.71/PLTV/88888888/224/3221226666/04.m3u8
 
 #EXTINF:0,Pink Thriller
-0
+http://93.87.85.71/PLTV/88888888/224/3221226734/04.m3u8
 
 #EXTINF:0,Pink Western 
-0
+http://93.87.85.71/PLTV/88888888/224/3221226580/04.m3u8
 
 #EXTINF:0,Pink World 
 0
 
 #EXTINF:0,Pink World Cinema 
-0
+http://93.87.85.71/PLTV/88888888/224/3221226753/04.m3u8
 
 #EXTINF:0,Pink Zabava 
 0

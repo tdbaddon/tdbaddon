@@ -49,7 +49,7 @@ def request(url):
 
         try:
             z=False
-            hmf = urlresolver.HostedMediaFile(url,include_disabled=True, include_universal=False)
+            hmf = urlresolver.HostedMediaFile(url,include_disabled=False, include_universal=False)
             if hmf:
                 print 'yay! we can resolve this one'
                 z = hmf.resolve()
@@ -80,8 +80,8 @@ def info():
         'netloc': ['ok.ru']
     }, {
         'class': '',
-        'netloc': ['youwatch.com','www.flashx.tv', 'thevideobee.to','auroravid.to'],
-        'host': ['youwatch', 'flashx', 'thevideobee','auroravid'],
+        'netloc': ['youwatch.com','www.flashx.tv', 'thevideobee.to','auroravid.to', 'vshare.eu','shared.sx'],
+        'host': ['youwatch', 'flashx', 'thevideobee','auroravid','vshare', 'shared'],
         'quality': 'Low',
         'captcha': False,
         'a/c': False
@@ -94,8 +94,8 @@ def info():
         'a/c': False
     }, {
         'class': 'allmyvideos',
-        'netloc': ['allmyvideos.net'],
-        'host': ['Allmyvideos'],
+        'netloc': ['allmyvideos.net', 'nosvideo.com','www.divxstage.to','noslocker.com'],
+        'host': ['Allmyvideos','nosvideo', 'divxstage','noslocker'],
         'quality': 'Medium',
         'captcha': False,
         'a/c': False

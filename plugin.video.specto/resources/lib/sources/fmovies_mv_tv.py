@@ -92,9 +92,6 @@ class source:
 
         try:
             sources = []
-            return sources
-
-
 
             if url == None: return sources
 
@@ -284,7 +281,7 @@ class source:
         for key in data:
             if not key.startswith('_'):
                 for i, c in enumerate(data[key]):
-                    t = 14283
+                    t = 125612
                     n += ord(c) * t + len(data[key]) + i
         #print("NNN",n,data)
         return {'_token': hex(n)[2:]}
