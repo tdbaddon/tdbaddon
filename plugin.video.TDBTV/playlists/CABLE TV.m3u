@@ -102,6 +102,9 @@ http://198.179.31.197/live/3566.high.stream/playlist.m3u8
 #EXTINF:0,Comedy Central 
 http://46.166.162.35:9090/load/b0922f3fa8aa/14.m3u8
 
+#EXTINF:0,Comedy Central 
+http://216.31.255.235/hlsl/1/COMEDY/COMEDY.m3u8
+
 
 #EXTINF:0,Comedy Central Extra
 0
@@ -200,7 +203,7 @@ http://93.87.85.71/PLTV/88888888/224/3221226755/04.m3u8
 0
 
 #EXTINF:0,FXHD 
-0
+http://216.31.255.235/hlsl/4/FXX/FXX.m3u8
 
 #EXTINF:0,Game TV
 0

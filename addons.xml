@@ -547,6 +547,35 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
   </extension>
 </addon>
 
+<addon id="plugin.video.AznKodiAdult" name="AznKodiAdult" version="1.0.0" provider-name="AznKodi">
+    <requires>
+    </requires>
+    <extension point="xbmc.python.pluginsource"
+               library="default.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary>[COLOR red]Adult[/COLOR] TV and videos</summary>
+        <description>
+Internet [COLOR red]adult TV and videos [COLOR white]from various sources.
+
+[COLOR red][B]WARNING:[/B]
+[COLOR red]You must be[COLOR yellow] at least 18 years old[COLOR red] or[COLOR yellow] over the legal age where you live or use this addon[COLOR red] to watch adult contents.[/COLOR]
+		</description>
+		<disclaimer>
+[COLOR lime]The streaming media are found via website(s).
+[COLOR red]These streams do not represent my views or opinions in any way.[/COLOR]
+		</disclaimer>
+		<platform>all</platform>
+		<license>http://www.gnu.org/licenses/</license>
+		<forum></forum>
+		<website></website>
+		<email></email>
+		<mainsource>https://github.com/AznKodi/repository.AznKodi</mainsource>
+		<source></source>
+    </extension>
+</addon>
+
 <addon id="plugin.video.bbts" name="BBTS" version="0.1.6" provider-name="[COLOR yellowgreen]B[/COLOR][COLOR dodgerblue]B[/COLOR][COLOR white]T[/COLOR][COLOR orangered]S[/COLOR] IpTV">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -1000,6 +1029,33 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
   </extension>
 </addon>
 
+<addon id="plugin.video.exabytetv"
+       name="[COLOR cyan]Exabyte TV[/COLOR]"
+       version="1.2"
+       provider-name="Sahid CG Exabyte TV">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.beautifulsoup" version="3.2.1"/>
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.beautifulsoup4" />
+    <import addon="script.module.requests" />
+    <import addon="script.module.httplib2" />
+    <import addon="script.module.youtube.dl" optional="true"/>
+    <import addon="plugin.video.youtube" optional="true" />
+    <import addon="script.module.urlresolver" optional="true"/>
+    <import addon="script.module.simplejson" />
+	<import addon="script.module.livestreamer" optional="true"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="main.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>Exabyte TV addon para Kodi</summary>
+    <description>Exabyte TV</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
 <addon id="plugin.video.exodus" version="2.0.12" name="Exodus" provider-name="Exodus">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
@@ -1361,6 +1417,24 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
 		<language>en</language>
 		<email>ptom98@ptom.co.uk</email>
 	</extension>
+</addon>
+
+<addon id="plugin.video.livetvaddon" name="Si free live tv addon" version="1.0.0" provider-name="Si free live tv addon">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="addon.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Si free live tv addon.</summary>
+    <description lang="en">Si free live tv addon</description>
+    <disclaimer lang="en">Si free live tv addon.</disclaimer>
+    <language>en</language>
+    <platform>all</platform>
+    <website>Si free live tv addon</website>
+    <email>Si free live tv addon</email>
+  </extension>
 </addon>
 
 <addon id="plugin.video.lubetube"
@@ -2177,7 +2251,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="412"
+       version="413"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
