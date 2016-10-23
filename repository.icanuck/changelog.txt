@@ -1,0 +1,22 @@
+v.3.1.0
+* Changed Host to Offshoregit
+
+v.3.0.0
+* Changed Host to Assembla
+
+v.2.1.0 
+* Added Gotham Support
+
+v.2.0.0 
+* Updated for Helix
+* Changed Repo Name
+
+v.1.0.2
+* Changed Host to cloudforge
+
+v.1.0.1
+* Icon Updated
+
+v.1.0.0
+* Initial Release
+

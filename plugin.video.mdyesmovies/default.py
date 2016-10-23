@@ -1,4 +1,4 @@
-import hashlib,os,random,re,requests,shutil,string,sys,urllib
+import base64,hashlib,os,random,re,requests,shutil,string,sys,urllib
 import xbmc,xbmcaddon,xbmcgui,xbmcplugin,xbmcvfs
 from metahandler import metahandlers
 from addon.common.addon import Addon
@@ -334,6 +334,26 @@ key2 = '8qhfm9oyq1ux'
 key3 = 'ctiw4zlrn09tau7kqvc153uo'
 
 
+def uncensored(a,b):
+    n = -1
+    fuckme=[]
+    justshow=[]
+    while True:
+        
+        if n == len(a)-1:
+            break
+        n +=1
+       
+        addon.log(n)
+        d = int(''.join(str(ord(c)) for c in a[n]))
+      
+        e=int(''.join(str(ord(c)) for c in b[n]))
+        justshow.append(d+e)
+        fuckme.append(chr(d+e))
+    #print justshow    
+    return base64.b64encode(''.join(fuckme))
+
+
 def random_generator(size=6, chars=string.ascii_lowercase + string.digits):
     return ''.join(random.choice(chars) for x in range(size))
 
@@ -351,10 +371,17 @@ def MRESOLVE(name,url,iconimage):
         episode_id = re.findall(r'episode_id: "(.*?)"', str(link2), re.I|re.DOTALL)[0]
         key_gen = random_generator()
         cookies =  '%s%s%s=%s' % (key,episode_id,key2,key_gen)
-        hash_id = hashlib.md5(episode_id + key_gen + key3).hexdigest()
+        #hash_id = hashlib.md5(episode_id + key_gen + key3).hexdigest()
+        a = episode_id + key3
+        b = key_gen
+        i = b[-1]
+        h = b[:-1]
+        b = i+h+i+h+i+h+i+h+i+h+i+h+i+h+i+h+i+h
+        hash_id = uncensored(a, b)
+        request_url2 =  baseurl + '/ajax/v2_get_sources/' + episode_id + '?hash=' + urllib.quote(hash_id)
         headers = {'Accept-Encoding':'gzip, deflate, sdch', 'Cookie': cookies, 'Referer': referer,
                    'User-Agent':User_Agent,'X-Requested-With':'XMLHttpRequest'}
-        request_url2 = baseurl + '/ajax/get_sources/' + episode_id + '/' + hash_id + '.html'
+        #request_url2 = baseurl + '/ajax/v2_get_sources/' + episode_id + '/' + hash_id + '.html'
         try:
                 final = s.get(request_url2, headers=headers).json()
                 res_quality = []
@@ -419,13 +446,18 @@ def TVRESOLVE(name,url,iconimage,description):
         hash_id = hashlib.md5(episode_id + key_gen + key3).hexdigest()
         headers = {'Accept-Encoding':'gzip, deflate, sdch', 'Cookie': cookies, 'Referer': referer,
                    'User-Agent':User_Agent,'X-Requested-With':'XMLHttpRequest'}
-        request_url2 = baseurl + '/ajax/get_sources/' + episode_id + '/' + hash_id + '.html'
-        final = s.get(request_url2, headers=headers).json()
+        a = episode_id + key3
+        b = key_gen
+        i = b[-1]
+        h = b[:-1]
+        b = i+h+i+h+i+h+i+h+i+h+i+h+i+h+i+h+i+h
+        hash_id = uncensored(a, b)
+        request_url =  baseurl + '/ajax/v2_get_sources/' + episode_id + '?hash=' + urllib.quote(hash_id)
         res_quality = []
         stream_url = []
         quality = ''
         try:
-                final = s.get(request_url2, headers=headers).json()
+                final = s.get(request_url, headers=headers).json()
                 res_quality = []
                 stream_url = []
                 quality = ''
@@ -447,7 +479,7 @@ def TVRESOLVE(name,url,iconimage,description):
                         else:
                                 url = final['playlist'][0]['sources'][0]['file']
         except:
-                final = s.get(request_url2, headers=headers).text
+                final = s.get(request_url, headers=headers).text
                 res_quality = []
                 stream_url = []
                 quality = ''
@@ -469,7 +501,7 @@ def TVRESOLVE(name,url,iconimage,description):
                                         url = stream_url[ret]
                         else:
                                 url = re.compile('"file":"(.*?)"').findall(final)[0]
-        url = url.replace('&amp;','&')
+        url = url.replace('&amp;','&').replace('\/','/')
         liz = xbmcgui.ListItem(name, iconImage='DefaultVideo.png', thumbnailImage=iconimage)
         liz.setInfo(type='Video', infoLabels={"Title": name})
         liz.setProperty("IsPlayable","true")
