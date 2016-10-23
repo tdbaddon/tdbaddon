@@ -7,6 +7,12 @@ http://rtmp.one.by:1300/
 #EXTINF:0,1HD Music 
 rtmp://rtmp.one.by/HD/1muz
 
+#EXTINF:0,1HD Music 
+http://rtmp.one.by:1499
+
+#EXTINF:0,1HD Music 
+http://80.250.191.10:1935/live/hlsstream343/playlist.m3u8
+
 #EXTINF:0,AKA 
 0
 
@@ -14,13 +20,19 @@ rtmp://rtmp.one.by/HD/1muz
 0
 
 #EXTINF:0,Beatz TV 
-0
+http://rtmp.infomaniak.ch/livecast/beats_1/playlist.m3u8
 
 #EXTINF:0,BPM TV 
 0
 
+#EXTINF:0,Bridge TV
+http://151.80.61.70:9000/play/a00p
+
 #EXTINF:0,Capital TV 
 http://ooyalahd2-f.akamaihd.net/i/globalradio01_delivery@156521/master.m3u8
+
+#EXTINF:0,Cinestream TV
+http://68.71.42.179/live/livestream1/playlist.m3u8
 
 #EXTINF:0,Clubland
 0
@@ -34,14 +46,20 @@ http://cmctv.ios.internapcdn.net/cmctv_vitalstream_com/live_1/CMC-Mobile/CMC-Mob
 #EXTINF:0,City
 http://nodeb.gocaster.net:1935/CGL/_definst_/mp4:TODAYFM_TEST2/live.m3u8
 
+#EXTINF:0,City
+http://nodeb.gocaster.net:1935/CGL/_definst_/mp4%3aTODAYFM_TEST2/chunklist_w2057316901.m3u8
+
 #EXTINF:0,Dance TV 
 0
+
+#EXTINF:0,Dange TV
+http://151.80.61.70:9000/play/a00n
 
 #EXTINF:0,Deluxe Music 
 http://server55.livestreamingcdn.com:1935/tulixdemo/tulixdemo/chunklist.m3u8
 
 #EXTINF:0,Deluxe Music 
-http://198.16.76.122:8000/465/LCLDTIPOAUOEMAH0
+http://151.80.61.70:9000/play/a00v
 
 #EXTINF:0,Djing Animation 
 http://www.djing.com/tv/a-03.m3u8
@@ -61,6 +79,9 @@ http://www.djing.com/tv/i-05.m3u8
 #EXTINF:0,Djing Classics HD 
 http://www.iptvsaga.com/play/tv3/0090.m3u8
 
+#EXTINF:0,Djing Dancefloor
+http://www.djing.com/tv/dancefloor.m3u8
+
 #EXTINF:0,Djing Ibiza 
 http://www.djing.com/tv/d-03.m3u8
 
@@ -76,17 +97,26 @@ http://www.djing.com/tv/05.m3u8
 #EXTINF:0,Djing UnderGround 
 http://www.djing.com/tv/u-03.m3u8
 
+#EXTINF:0,Djing UnderGround
+http://www.djing.com/tv/underground.m3u8
+
 #EXTINF:0,Djing UnderGround HD 
 http://www.djing.com/tv/u-05.m3u8
 
 #EXTINF:0,Djing UnderGround HD 
 http://www.iptvsaga.com/play/tv3/0087.m3u8
 
+#EXTINF:0,Dot Dance
+http://live.dotdance.cdnvideo.ru/dotdance/dotdance.sdp/playlist.m3u8
+
 #EXTINF:0,Dream TV 
 http://212.224.108.80/S1/HLS_LIVE/dreamtv/1000/prog_index.m3u8
 
 #EXTINF:0,Dream TV
 http://www.iptvsaga.com/play/tv3/0069.m3u8
+
+#EXTINF:0,Dream TV
+http://live.netd.com.tr/S1/HLS_LIVE/dreamtv/1000/prog_index.m3u8
 
 #EXTINF:0,Electrosound TV
 rtmp://www.electrosound.tv/public/stream
@@ -95,7 +125,7 @@ rtmp://www.electrosound.tv/public/stream
 http://stream.smcloud.net/tv/best/best_360p/playlist.m3u8
 
 #EXTINF:0,Eska Best HD 
-0
+http://stream.smcloud.net/tv/best/best_720p/playlist.m3u8
 
 #EXTINF:0,Eska HipHop
 http://stream.smcloud.net/live/hiphoptv/playlist.m3u8
@@ -104,13 +134,19 @@ http://stream.smcloud.net/live/hiphoptv/playlist.m3u8
 http://stream.smcloud.net/tv/eska_party/eska_party_360p/playlist.m3u8
 
 #EXTINF:0,Eska Party HD 
-0
+http://stream.smcloud.net/tv/eska_party/eska_party_720p/playlist.m3u8
 
 #EXTINF:0,Eska Rock 
 http://stream.smcloud.net/tv/eska_rock/eska_rock_360p/playlist.m3u8
 
 #EXTINF:0,Eska Rock HD 
-0
+http://stream.smcloud.net/tv/eska_rock/eska_rock_720p/playlist.m3u8
+
+#EXTINF:0,Europa Plus TV
+http://151.80.61.70:9000/play/a00q
+
+#EXTINF:0,Go TV 
+http://stream007.gotv.at:1935/live/gotvlive_576p/chunklist_w588571373.m3u8
 
 #EXTINF:0,Gold TV 
 0
@@ -124,45 +160,66 @@ rtmp://tst.es.flash.glb.ipercast.net/tst.es-live/live
 #EXTINF:0,Ibiza on TV 
 0
 
+#EXTINF:0,Juce TV
+http://acaooyalahd2-lh.akamaihd.net/i/TBN03_delivery@186241/master.m3u8
+
 #EXTINF:0,Kiss TV
 rtmp://tst.es.flash.glb.ipercast.net/tst.es-live/live
+
+#EXTINF:0,Krone Hit TV
+http://bitcdn-kronehit-live.bitmovin.com/hls/1500k/bitcodin.m3u8
 
 #EXTINF:0,Mad Music TV
 http://144.76.2.213:1935/live/livestream/playlist.m3u8
 
-#EXTINF:0,Mezzo TV
-http://198.16.76.122:8000/275/LCLDTIPOAUOEMAH0
+#EXTINF:0,MCM TOP
+http://151.80.61.70:9000/play/a00s
+
+#EXTINF:0,MCM TOP
+http://151.80.61.70:9000/play/a00r
 
 #EXTINF:0,Mezzo TV
-http://198.16.76.122:8000/262/LCLDTIPOAUOEMAH0
+0
 
 
 #EXTINF:0,Miami TV Music 
 0
 
 #EXTINF:0,MTV 
-http://198.16.76.122:8000/653/LCLDTIPOAUOEMAH0
+http://151.80.61.70:9000/play/a006
 
 #EXTINF:0,MTV 
-http://198.16.76.122:8000/654/LCLDTIPOAUOEMAH0
-
-#EXTINF:0,MTV 
-http://198.16.76.122:8000/474/LCLDTIPOAUOEMAH0
+http://151.80.61.70:9000/play/a009
 
 #EXTINF:0,MTV Classic
 0
 
 #EXTINF:0,MTV Dance 
-http://198.16.76.122:8000/650/LCLDTIPOAUOEMAH0
+http://151.80.61.70:9000/play/a005
 
 #EXTINF:0,MTV Hits 
-http://198.16.76.122:8000/787/LCLDTIPOAUOEMAH0
+http://93.87.85.71/PLTV/88888888/224/3221226763/04.m3u8
+
+#EXTINF:0,MTV Hits 
+http://151.80.61.70:9000/play/a00u
+
+#EXTINF:0,MTV Hits 
+http://151.80.61.70:9000/play/a008
+
+#EXTINF:0,MTV Hits 
+http://185.44.75.91:7000/play/a00i
 
 #EXTINF:0,MTV Live 
-http://198.16.76.122:8000/91/LCLDTIPOAUOEMAH0
+0
 
 #EXTINF:0,MTV Rocks 
-http://198.16.76.122:8000/366/LCLDTIPOAUOEMAH0
+http://93.87.85.71/PLTV/88888888/224/3221226729/04.m3u8
+
+#EXTINF:0,MTV Rocks 
+http://151.80.61.70:9000/play/a00s
+
+#EXTINF:0,MTV Rocks 
+http://151.80.61.70:9000/play/a007
 
 #EXTINF:0,Much Music
 0
@@ -171,7 +228,10 @@ http://198.16.76.122:8000/366/LCLDTIPOAUOEMAH0
 http://s4w.deb1.scdn.smcloud.net/live/_definst_/vox2/chunklist_w1817328956.m3u8
 
 #EXTINF:0,MusicVoxTV 
-http://198.16.76.122:8000/630/LCLDTIPOAUOEMAH0
+http://stream.smcloud.net/tv/vox/vox_360p/playlist.m3u8
+
+#EXTINF:0,MusicVoxTV 
+http://stream.smcloud.net/tv/vox/vox_720p/playlist.m3u8
 
 #EXTINF:0,MusicVoxTV HD
 0
@@ -188,6 +248,15 @@ rtsp://5.196.138.6:1935/live/nrjbelgique_360p
 #EXTINF:0,NRJ HITS
 rtsp://5.196.138.6:1935/live/nrjbelgique_720p
 
+#EXTINF:0,NRJ HITS
+http://151.80.61.70:9000/play/a00o
+
+#EXTINF:0,NRJ HITS
+http://rtmp.infomaniak.ch:1935/livecast/energytv/playlist.m3u8
+
+#EXTINF:0,NRJ HITS
+rtmp://rtmp.infomaniak.ch:1935/livecast/energytv
+
 #EXTINF:1,Planet Pop 
 0
 
@@ -200,13 +269,19 @@ rtsp://5.196.138.6:1935/live/nrjbelgique_720p
 #EXTINF:0,Radio Monte Carlo 
 rtmp://fms.105.net/live/rmc1
 
+#EXTINF:0,Radio Monte Carlo 
+http://wow01.105.net:1935/live/rmc1/livestream.m3u8
+
 #EXTINF:0,Reggae Entertainment
 http://univ-i.akamaihd.net/hls/live/222631/HLS11/chunklist.m3u8
 
 #EXTINF:0,Reggae Entertainment
 http://68.71.42.179/live/livestream1/playlist.m3u8
 
-#EXTINF:0,Rock 66 
+#EXTINF:0,Retro
+rtmp://stream.mediawork.cz/retrotv/retrotvHQ1
+
+#EXTINF:,Rock 66 
 http://mediatv2.topix.it/24RockOne66
 
 #EXTINF:0,Si TV
@@ -222,40 +297,48 @@ http://hd.worldkast.com:1935/8436/8436/playlist.m3u8
 0
 
 #EXTINF:0,Vevo Country 
-http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch3/04/prog_index.m3u8
+0
 
 #EXTINF:0,Vevo Country HD 
-http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch3/06/prog_index.m3u8
-
-#EXTINF:0,Vevo Country HD
-http://www.iptvsaga.com/play/tv3/0004.m3u8
+0
 
 #EXTINF:0,Vevo Hits 
-http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch2/04/prog_index.m3u8
+0
 
 #EXTINF:0,Vevo Hits HD 
-http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch2/06/prog_index.m3u8
-
-#EXTINF:0,Vevo Hits HD
-http://www.iptvsaga.com/play/tv3/0005.m3u8
+0
 
 #EXTINF:0,Vevo Pop 
-http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/04/prog_index.m3u8
+0
 
 #EXTINF:0,Vevo Pop HD 
-http://vevoplaylist-live.hls.adaptive.level3.net/vevo/ch1/06/prog_index.m3u8
-
-#EXTINF:0,Vevo Pop HD
-http://www.iptvsaga.com/play/tv3/0006.m3u8
+0
 
 #EXTINF:0,VH1 
-http://198.16.76.122:8000/2/LCLDTIPOAUOEMAH0
+http://93.87.85.71/PLTV/88888888/224/3221226595/04.m3u8
 
 #EXTINF:0,VH1 Classics 
-http://198.16.76.122:8000/651/LCLDTIPOAUOEMAH0
+http://93.87.85.71/PLTV/88888888/224/3221226771/04.m3u8
+
+#EXTINF:0,VH1 Shuffle
+http://93.87.85.71/PLTV/88888888/224/3221226595/04.m3u8
+
+#EXTINF:0,Vibee TV
+http://46.101.21.42:8081/live/live2/playlist.m3u8
+
+#EXTINF:0,Viva TV
+http://151.80.61.70:9000/play/a00m
 
 #EXTINF:0,Virgin TV 
 rtmp://fms.105.net:1935/live/virgin2
 
 #EXTINF:0,Virgin TV 
 http://wow01.105.net/live/virgin1/.m3u8
+
+#EXTINF:0,Virgin TV 
+http://fms.105.net:1935/live/virgin1/playlist.m3u8
+
+#EXTINF:0,Virgin TV 
+http://wow01.105.net/live/virgin1/.m3u8
+
+

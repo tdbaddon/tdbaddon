@@ -2,19 +2,13 @@
 
 
 #EXTINF:0,ABC News 
-http://abclive.abcnews.com/i/abc_live4@136330/index_1200_av-b.m3u8?sd=10&b=1200&rebase=on
-
-#EXTINF:0,ABC News 
-http://abclive.abcnews.com/i/abc_live4@136330/index_800_av-b.m3u8
-
-#EXTINF:0,ABC News 
-http://live.tvplayerlatino.com/lista_remota/src3/abcnw.m3u8
+0
 
 #EXTINF:0,AlJazeera 
 0
 
 #EXTINF:0,BBC World News 
-http://198.16.76.122:8000/343/LCLDTIPOAUOEMAH0
+0
 
 #EXTINF:0,Bloomberg News 
 http://x4012c4000.edge.core-cdn.net/40000mb/live/4012hbbtv/bloomberg.ts
@@ -41,16 +35,13 @@ http://cdn3.videos.bloomberg.com/btv/us/master.m3u8
 http://cbsnews-linear.mdialog.com/video_assets/cbsnews.m3u8?api_key=563b80c1ae4ce359830f572d2496a947&iu=/8264/vaw-can/mobile_web/cbsnews_mobile
 
 #EXTINF:0,CCTV News 
-http://198.16.76.122:8000/731/LCLDTIPOAUOEMAH0
-
-#EXTINF:0,CNBC 
 0
 
-#EXTINF:0,CNN 
-http://149.255.152.110/cnn/index.m3u8
+#EXTINF:0,CNBC 
+http://93.87.85.71/PLTV/88888888/224/3221226774/04.m3u8
 
 #EXTINF:0,CNN 
-http://198.16.76.122:8000/314/LCLDTIPOAUOEMAH0
+http://185.44.75.91:7000/play/a018
 
 #EXTINF:0,CP24 
 0
@@ -59,7 +50,7 @@ http://198.16.76.122:8000/314/LCLDTIPOAUOEMAH0
 0
 
 #EXTINF:0,CSPAN 
-http://cspan1-lh.akamaihd.net/i/cspan1_1@304727/master.m3u8 
+0
 
 #EXTINF:0,CTV NEWS 
 http://ams-lp7.9c9media.com/hls-live/livepkgr/_definst_/liveNews/News28.m3u8 
@@ -68,7 +59,7 @@ http://ams-lp7.9c9media.com/hls-live/livepkgr/_definst_/liveNews/News28.m3u8
 http://ams-lp5.9c9media.com/hls-live/livepkgr/_definst_/liveNews/News48.m3u8 
 
 #EXTINF:0,DW 
-http://www.metafilegenerator.de/DWelle/tv-latinoamerica/ios/master.m3u8
+0
 
 #EXTINF:0,Euro News 
 rtsp://ewns-hls-b-stream.hexaglobe.net/rtpeuronewslive/en_vidan350_rtp.sdp?
@@ -78,9 +69,6 @@ http://fr-par-iphone-2.cdn.hexaglobe.net/streaming/euronews_ewns/ipad_en.m3u8
 
 #EXTINF:0,France 24 
 http://f24hls-i.akamaihd.net/hls/live/221192/F24_FR_LO_HLS/master.m3u8
-
-#EXTINF:0,France 24 
-http://198.16.76.122:8000/345/LCLDTIPOAUOEMAH0
 
 #EXTINF:0,Global News 
 0
@@ -103,9 +91,6 @@ http://web-cache.stream.ne.jp/www11/nhkworld-tv/global/222714/live.m3u8
 #EXTINF:0,NHK World 
 http://nhkwglobal-i.akamaihd.net/hls/live/222714/nhkwglobal/index_1180.m3u8
 
-#EXTINF:0,NHK World 
-http://198.16.76.122:8000/790/LCLDTIPOAUOEMAH0
-
 #EXTINF:0,Press TV 
 0
 
@@ -113,10 +98,7 @@ http://198.16.76.122:8000/790/LCLDTIPOAUOEMAH0
 0
 
 #EXTINF:0,RT News 
-http://198.16.76.122:8000/310/LCLDTIPOAUOEMAH0
-
-#EXTINF:0,RT News 
-http://198.16.76.122:8000/643/LCLDTIPOAUOEMAH0
+0
 
 #EXTINF:0,Sky News 
 0
@@ -130,5 +112,3 @@ http://www.iptvsaga.com/play/tv3/0031.m3u8
 #EXTINF:0,Weather Nation 
 http://cdnapi.kaltura.com/p/931702/sp/93170200/playManifest/entryId/1_oorxcge2/format/applehttp/protocol/http/uiConfId/28428751/a.m3u8
 
-#EXTINF:0,Weather Network 
-http://bcoveliveios-i.akamaihd.net/hls/live/207737/1942203455001/nat/master.m3u8

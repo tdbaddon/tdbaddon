@@ -1,7 +1,7 @@
 ﻿#EXTM3U
 
 #EXTINF:0,HOW TO CHANGE AUDIO LANGUAGE
-http://www.videos.tcomputers.ca/HowTo-ChangeAudioLanguage.mp4
+http://www.support.tcomputers.ca/@videos/HowTo-ChangeAudioLanguage.mp4
 --------------------------------------------------------------------------------------------------------
 #EXTINF:0,Check Back Soon
 0
@@ -66,11 +66,8 @@ http://46.166.162.35:9090/load/b0922f3fa8aa/44.m3u8
 #EXTINF:0,Eurosport 1 
 http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_1800.m3u8
 
-#EXTINF:0,Eurosport 1 
-http://198.16.76.122:8000/89/LCLDTIPOAUOEMAH0
-
 #EXTINF:0,Eurosport 2
-http://198.16.76.122:8000/344/LCLDTIPOAUOEMAH0
+0
 
 #EXTINF:0,Eurosport News 
 0
@@ -85,10 +82,10 @@ http://198.16.76.122:8000/344/LCLDTIPOAUOEMAH0
 0
 
 #EXTINF:0,Fight Network
-http://92.60.224.62:3018/udp/232.171.194.15:4000
+0
 
 #EXTINF:0,Fight Sports 
-0
+http://93.87.85.71/PLTV/88888888/224/3221226585/04.m3u8
 
 #EXTINF:0,Fox Sports 
 0
@@ -135,9 +132,6 @@ mms://100automoto.tv/100livesport
 #EXTINF:0,NBA TV 
 http://208.92.36.158/ipad/live/nba_ipad_1240.m3u8
 
-#EXTINF:0,NBA TV 
-http://46.166.162.35:9090/load/b0922f3fa8aa/47.m3u8
-
 #EXTINF:0,NBC Golf 
 http://tvegolf-i.Akamaihd.net/hls/live/218225/golfx/1896k/prog.m3u8|X-Forwarded-For=66.171.228.102
 
@@ -157,7 +151,7 @@ http://cdn.phoenix.intergi.com/21772/videos/3362254/video-sd.mp4?hosting_id=2177
 http://46.166.162.35:9090/load/b0922f3fa8aa/49.m3u8
 
 #EXTINF:0,NFL Now
-http://nflioslivesvg2-i.akamaihd.net/hls/live/221521/nflioslive/2015HackerNow_w99d9_g.m3u8
+0
 
 #EXTINF:0,NHL Network 
 0
@@ -166,60 +160,48 @@ http://nflioslivesvg2-i.akamaihd.net/hls/live/221521/nflioslive/2015HackerNow_w9
 0
 
 #EXTINF:0,Outdoor Channel 
-http://198.16.76.122:8000/306/LCLDTIPOAUOEMAH0
+0
 
 #EXTINF:0,PAC 12 Arizona 
-http://xrxs.net/video/live-p12ariz-1164.m3u8
+0
 
 #EXTINF:0,PAC 12 Arizona HD 
-http://xrxs.net/video/live-p12ariz-4728.m3u8
-
-#EXTINF:0,PAC 12 Arizona HD 
-http://pac12hd2-lh.akamaihd.net/i/p12ariz_delivery@132836/master.m3u8
+0
 
 #EXTINF:0,PAC 12 Bay Area 
-http://xrxs.net/video/live-p12baya-2328.m3u8
+0
 
 #EXTINF:0,PAC 12 Bay Area HD 
-http://xrxs.net/video/live-p12baya-4728.m3u8
-
-#EXTINF:0,PAC 12 Bay Area HD 
-http://pac12hd2-lh.akamaihd.net/i/p12baya_delivery@132837/master.m3u8
+0
 
 #EXTINF:0,PAC 12 LA 
-http://xrxs.net/video/live-p12losa-1164.m3u8
+0
 
 #EXTINF:0,PAC 12 LA HD 
-http://xrxs.net/video/live-p12losa-4728.m3u8
-
-#EXTINF:0,PAC 12 LA HD 
-http://pac12hd2-lh.akamaihd.net/i/p12losa_delivery@132838/master.m3u8
+0
 
 #EXTINF:0,PAC 12 Mountain 
-http://xrxs.net/video/live-p12moun-2328.m3u8
+0
 
 #EXTINF:0,PAC 12 Mountain HD
-http://pac12hd2-lh.akamaihd.net/i/p12moun_delivery@132839/master.m3u8
+0
 
 #EXTINF:0,PAC 12 National 
-http://xrxs.net/video/live-p12netw-1164.m3u8
+0
  
 #EXTINF:0,PAC 12 National HD 
-http://xrxs.net/video/live-p12netw-2328.m3u8
+0
 
 #EXTINF:0,PAC 12 Oregon 
-http://xrxs.net/video/live-p12oreg-1164.m3u8
+0
 
 #EXTINF:0,PAC 12 Oregon HD
-http://xrxs.net/video/live-p12oreg-4728.m3u8
-
-#EXTINF:0,PAC 12 Oregon HD
-http://pac12hd2-lh.akamaihd.net/i/p12oreg_delivery@132835/master.m3u8
+0
 
 #EXTINF:0,PAC 12 Washington 
 http://xrxs.net/video/live-p12wash-1164.m3u8
 
-#EXTINF:0,PAC 12 Washington 
+#EXTINF:0,PAC 12 Washington HD 
 http://xrxs.net/video/live-p12wash-4728.m3u8
  
 #EXTINF:0,PAC 12 Washington HD 
@@ -244,10 +226,10 @@ http://sacapunta.eltelon.com/channels/redbulltv/playlist.m3u8
 0
 
 #EXTINF:0,Setanta Sports 
-http://198.255.76.26:420/live/StreamTeam/GXnxmf7kSG/709.ts
+0
 
 #EXTINF:0,Sky Sports 1 
-http://grandiptv.myftp.org:8000/live/5grandiptv915/67863345/1338.ts
+0
 
 #EXTINF:0,Sky Sports 2 
 0
@@ -271,10 +253,7 @@ http://grandiptv.myftp.org:8000/live/5grandiptv915/67863345/1338.ts
 0
 
 #EXTINF:0,Sportsnet 360 
-http://46.166.162.35:9090/load/b0922f3fa8aa/58.m3u8
-
-#EXTINF:0,Sportsnet 360 
-http://46.166.162.35:9090/load/b0922f3fa8aa/58.mpegts
+0
 
 #EXTINF:0,Sportsnet East
 0
@@ -286,7 +265,10 @@ http://46.166.162.35:9090/load/b0922f3fa8aa/57.m3u8
 http://46.166.162.35:9090/load/b0922f3fa8aa/57.mpegts
 
 #EXTINF:0,Sportsnet Ontario 
-0
+http://46.166.162.35:9090/load/b0922f3fa8aa/60.mpegts
+
+#EXTINF:0,Sportsnet Ontario 
+http://93.115.28.124:9091/36494069:8a321c83a5ebef30a9a06a859130201e/60-.mpegts
 
 #EXTINF:0,Sportsnet Pacific 
 0
@@ -301,7 +283,7 @@ http://46.166.162.35:9090/load/b0922f3fa8aa/59.mpegts
 0
 
 #EXTINF:0,Trace Sports
-http://198.16.76.122:8000/639/LCLDTIPOAUOEMAH0
+http://93.87.85.71/PLTV/88888888/224/3221226672/04.m3u8
 
 #EXTINF:0,TSN 1 
 http://46.166.162.35:9090/load/b0922f3fa8aa/52.m3u8
@@ -325,10 +307,10 @@ http://46.166.162.35:9090/load/b0922f3fa8aa/56.m3u8
 0
 
 #EXTINF:0,Viasat Golf 
-http://198.16.76.122:8000/278/LCLDTIPOAUOEMAH0
+0
 
 #EXTINF:0,Viasat Sport 
-http://198.16.76.122:8000/98/LCLDTIPOAUOEMAH0
+0
 
 #EXTINF:0,VS Versus 
 http://208.92.36.158/ipad/live/nba_ipad_1240.m3u8

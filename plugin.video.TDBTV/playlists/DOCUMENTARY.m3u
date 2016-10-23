@@ -1,10 +1,10 @@
 ﻿#EXTM3U
 
 #EXTINF:0,HOW TO CHANGE AUDIO LANGUAGE
-http://www.videos.tcomputers.ca/HowTo-ChangeAudioLanguage.mp4
+http://www.support.tcomputers.ca/@videos/HowTo-ChangeAudioLanguage.mp4
 --------------------------------------------------------------------------------------------------------
 #EXTINF:0,Check Back Soon
-www.tcomputers.ca
+0
 
 #EXTINF:0,American Heros Channel 
 0
@@ -16,16 +16,7 @@ www.tcomputers.ca
 0
 
 #EXTINF:0,Animal Planet 
-http://80.80.160.168/live/1/live.m3u8
-
-#EXTINF:0,Animal Planet 
 http://46.166.162.35:9090/load/b0922f3fa8aa/37.m3u8
-
-#EXTINF:0,Animal Planet 
-http://198.16.76.122:8000/53/LCLDTIPOAUOEMAH0
-
-#EXTINF:0,Animal Planet 
-http://198.16.76.122:8000/263/LCLDTIPOAUOEMAH0
 
 #EXTINF:0,Biography Channel
 0
@@ -36,6 +27,9 @@ http://198.16.76.122:8000/263/LCLDTIPOAUOEMAH0
 #EXTINF:0,Cottage Life
 0
 
+#EXTINF:0,Da Vinci Learning
+http://93.87.85.71/PLTV/88888888/224/3221226760/04.m3u8
+
 #EXTINF:0,Destination America 
 0
 
@@ -43,7 +37,7 @@ http://198.16.76.122:8000/263/LCLDTIPOAUOEMAH0
 0
 
 #EXTINF:0,Discovery Channel
-http://198.16.76.122:8000/50/LCLDTIPOAUOEMAH0
+0
 
 #EXTINF:0,Discovery H&H
 0
@@ -58,7 +52,7 @@ http://198.16.76.122:8000/50/LCLDTIPOAUOEMAH0
 0
 
 #EXTINF:0,Discovery Science 
-http://198.16.76.122:8000/536/LCLDTIPOAUOEMAH0
+0
 
 #EXTINF:0,Discovery Shed
 0
@@ -67,7 +61,7 @@ http://198.16.76.122:8000/536/LCLDTIPOAUOEMAH0
 0
 
 #EXTINF:0,Discovery Turbo 
-0
+http://151.80.61.70:9000/play/a00g
 
 #EXTINF:0,Discovery World 
 0
@@ -85,22 +79,16 @@ http://198.16.76.122:8000/536/LCLDTIPOAUOEMAH0
 0
 
 #EXTINF:0,History Channel 
-http://198.16.76.122:8000/303/LCLDTIPOAUOEMAH0
+http://185.44.75.91:7000/play/a00m
 
 #EXTINF:0,History Channel 2
 http://46.166.162.35:9090/load/b0922f3fa8aa/36.m3u8
 
-#EXTINF:0,Investigation Discovery 
-http://www.q7t1.com:8000/live/sYKADDaJs2/SnoQc6v4hZ/1037.ts
-
 #EXTINF:0,Investigation Discovery
 http://46.166.162.35:9090/load/b0922f3fa8aa/41.m3u8
 
-#EXTINF:0,Investigation Discovery
-http://198.16.76.122:8000/508/LCLDTIPOAUOEMAH0
-
-#EXTINF:0,Nasa TV 
-http://nasatv-lh.akamaihd.net/i/NASA_101@319270/master.m3u8 
+#EXTINF:0,Landscape TV
+http://130.88.20.237:1235/monitor.flv
 
 #EXTINF:0,Nasa TV 
 http://iphone-streaming.ustream.tv/uhls/6540154/streams/live/iphone/playlist.m3u8
@@ -114,40 +102,8 @@ http://nasatv-lh.akamaihd.net/i/NASA_103@319271/master.m3u8
 #EXTINF:0,Nat Geo Wild 
 http://46.166.162.35:9090/load/b0922f3fa8aa/40.m3u8
 
-#EXTINF:0,Nat Geo Wild 
-http://198.16.76.122:8000/190/LCLDTIPOAUOEMAH0
-
-#EXTINF:0,Nat Geo Wild 
-http://198.16.76.122:8000/499/LCLDTIPOAUOEMAH0
-
-#EXTINF:0,Nat Geo Wild 
-http://198.16.76.122:8000/606/LCLDTIPOAUOEMAH0
-
-#EXTINF:0,Nat Geo Wild 
-http://198.16.76.122:8000/276/LCLDTIPOAUOEMAH0
-
-#EXTINF:0,Nat Geo Wild 
-http://198.16.76.122:8000/229/LCLDTIPOAUOEMAH0
-
 #EXTINF:0,National Geographic 
 http://46.166.162.35:9090/load/b0922f3fa8aa/39.m3u8
-
-#EXTINF:0,National Geographic 
-
-#EXTINF:0,National Geographic 
-http://198.16.76.122:8000/204/LCLDTIPOAUOEMAH0
-
-#EXTINF:0,National Geographic 
-http://198.16.76.122:8000/670/LCLDTIPOAUOEMAH0
-
-#EXTINF:0,National Geographic 
-http://198.16.76.122:8000/551/LCLDTIPOAUOEMAH0
-
-#EXTINF:0,National Geographic 
-http://198.16.76.122:8000/335/LCLDTIPOAUOEMAH0
-
-#EXTINF:0,National Geographic 
-http://198.16.76.122:8000/56/LCLDTIPOAUOEMAH0
 
 #EXTINF:0,Nova
 0
@@ -156,7 +112,7 @@ http://198.16.76.122:8000/56/LCLDTIPOAUOEMAH0
 0
 
 #EXTINF:0,RT News Documentary 
-0
+http://93.87.85.71/PLTV/88888888/224/3221226759/04.m3u8
 
 #EXTINF:0,Ted TV 
 0
@@ -165,19 +121,25 @@ http://198.16.76.122:8000/56/LCLDTIPOAUOEMAH0
 0
 
 #EXTINF:0,Travel Channel 
-http://198.16.76.122:8000/339/LCLDTIPOAUOEMAH0
+0
 
-#EXTINF:0,Travel Channel 
-http://198.16.76.122:8000/308/LCLDTIPOAUOEMAH0
+#EXTINF:0,Viasat Explorer
+http://93.87.85.71/PLTV/88888888/224/3221226593/04.m3u8
 
-#EXTINF:0,Viasat Explorer 
-http://198.16.76.122:8000/95/LCLDTIPOAUOEMAH0
+#EXTINF:0,Viasat Explorer
+http://185.44.75.91:7000/play/a019
 
 #EXTINF:0,Viasat History 
-http://198.16.76.122:8000/96/LCLDTIPOAUOEMAH0
+http://93.87.85.71/PLTV/88888888/224/3221226592/04.m3u8
+
+#EXTINF:0,Viasat History 
+http://185.44.75.91:7000/play/a00b
 
 #EXTINF:0,Viasat Nature 
-http://198.16.76.122:8000/97/LCLDTIPOAUOEMAH0
+http://185.44.75.91:7000/play/a00a
+
+#EXTINF:0,War Channel
+http://198.179.31.197/live/2954.high.stream/playlist.m3u8
 
 #EXTINF:0,World Travel Channel
 http://stream.taksimbilisim.com:1935/wtc/bant1/WTC.m3u8

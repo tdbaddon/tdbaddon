@@ -445,7 +445,7 @@ def AddSports(url):
     #addDir(base64.b64decode('U3VwZXIgU3BvcnRz') ,'sss',34,'')
     addDir('My Sports' ,'sss',82,'')
     addDir('PV2 Sports' ,'zemsports',36,'')
-    #addDir('Safe' ,'sss',72,'')
+    addDir('Safe' ,'sss',72,'')
     addDir('TVPlayer [UK Geo Restricted]','sss',74,'https://assets.tvplayer.com/web/images/tvplayer-logo-white.png')
     addDir('StreamHD','sss',75,'http://www.streamhd.eu/images/logo.png')
     addDir('Mama HD','http://mamahd.com/',79,'http://mamahd.com/images/logo.png')
@@ -4974,7 +4974,7 @@ def getPV2UserAgent(option):
 
 def getpv2stkey():
     headers=[('User-Agent',base64.b64decode('cDl4VE1nV2hFclpxZGlFWU1iV045bFVvd0xGMFdWM3I=')),('Authorization',base64.b64decode('QmFzaWMgWVcxMU9rQmtia0J1T0RRNQ=='))]
-    return getUrl(base64.b64decode('aHR0cHM6Ly9hcHAuZHluZG5zLnR2L3RvcC9wYWt0dmhkLnBocA=='),headers=headers)
+    return getUrl(base64.b64decode('aHR0cHM6Ly9hcHAuZHluZG5zLnR2L3RvcC9hcmFiaWN0dmhkdjFwLnBocA=='),headers=headers)
     
 def getPV2Device(option):
     useragent=getpv2stkey()
@@ -5028,7 +5028,7 @@ def getPV2Url():
                 #except: pass
                 
                 deviceid=getPV2Device(pvitr)
-                if pvitr==1: deviceid="331"
+                #if pvitr==1: deviceid="331"
                 if pvitr==3:                    
                     link=getUrl(base64.b64decode('aHR0cDovL3NoYW5pLm9mZnNob3JlcGFzdGViaW4uY29tL3B2Mkxhc3RXb3JraW5nLnhtbA==')).decode("base64")
                 else:
@@ -5765,7 +5765,8 @@ def AddShows(Fromurl):
 
     
 
-    match =re.findall('<div class="card">.*?<img src="(.*?)".*?<a href="(.*?)".*?>(.*?)<', linkfull, re.UNICODE|re.DOTALL)
+    match =re.findall('<div class=\"(?:teal)?.?card\">.*?<img src=\"(.*?)\".*?<a href=\"(.*?)\".*?>(.*?)<', linkfull, re.UNICODE|re.DOTALL)
+    print match
     #if len(match)==0:
     #    match =re.findall('<div class="thumbnail">\s*<a href="(.*?)".*\s*<img.*?.*?src="(.*?)".* alt="(.*?)"', link, re.UNICODE)
     h = HTMLParser.HTMLParser()

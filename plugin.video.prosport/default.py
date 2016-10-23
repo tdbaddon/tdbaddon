@@ -73,7 +73,7 @@ sd_streams = ['goindexsport','multi-sports.eu', 'watchnfl.live', 'streamhd.eu', 
 			'watchsportstv.boards.net', 'tv-link.in', 'klivetv.co', 'videosport.me', 'livesoccerg.com', 'zunox.hk', 'singidunum.', 
 			'zona4vip.com', 'ciscoweb.ml', 'streamendous.com','streamm.eu', 'sports-arena.net', 'stablelivestream.com', 
 			'iguide.to', 'sportsleague.me','kostatz.com', 'soccerpluslive.com', 'zunox', 'apkfifa.com','watchhdsports.xyz','lovelysports2016.ml',
-			'sports4u.live','tusalavip3.es.tl', 'neymargoals.com', 'crichd.sx']
+			'sports4u.live','tusalavip3.es.tl', 'neymargoals.com', 'crichd.sx', 'unitedstream.live','stream4us.info','freecast.xyz']
 
 def utc_to_local(utc_dt):
     timestamp = calendar.timegm(utc_dt.timetuple())
@@ -167,7 +167,6 @@ def Games(mode):
 	today_from = str(today.strftime('%Y-%m-%d'))+'T00:00:00.000-05:00'
 	today_to = str(today.strftime('%Y-%m-%d'))+'T23:59:00.000-05:00'
 	url = 'http://www.sbnation.com/sbn_scoreboard/ajax_leagues_and_events?ranges['+mode+'][from]='+today_from+'&ranges['+mode+'][until]='+today_to+'&_='+str(int(time.time()))
-	print url
 	js = GetJSON(url)
 	js = js['leagues'][mode]
 	if js:	
@@ -437,6 +436,9 @@ def DisplayLinks(links, orig_title):
 		elif url not in urls and 'streamboat.tv' in url:
 			addLink('Streamboat.tv', orig_title, url, mode="play")
 			urls.append(url)
+		elif url not in urls and '305sports.xyz' in url:
+			addLink('305sports.xyz', orig_title, url, mode="play")
+			urls.append(url)
 		elif url not in urls and 'nbastream.net' in url:
 			addLink('Nbastream.net', orig_title, url, mode="play")
 			urls.append(url)
@@ -541,6 +543,9 @@ def ParseLink(el, orig_title):
 		return url
 	elif 'streamsus.com' in el:
 		url = Streamsus(el)
+		return url
+	elif '305sports.xyz' in el:
+		url = Threesports()
 		return url
 	elif 'streamboat.tv' in el:
 		url = Streambot(el)
@@ -807,6 +812,15 @@ def Getmlb(url):
 	except:
 		return None
 
+def Threesports():
+	for i in range (1,5,1):
+		url = 'http://305sports.xyz/streams/stream-'+str(i)
+		link = Universal(url)
+		if link:
+			return link
+		else:
+			continue
+
 def Getanvato(url):
 	try:
 		if 'master' in url:
@@ -1056,13 +1070,13 @@ def Castalba(id, url):
 def Universal(url):
 	if 'zona4vip.com/live' in url:
 		url = url.replace('/live','')
-	if 'wiz1.net/ch' in url or 'live9.net' in url:
+	'''if 'wiz1.net/ch' in url or 'live9.net' in url:
 		this = GetURL(url, referer=url)
 		links = re.compile('src="(.+?)"').findall(str(this))
 		for link in links:
 			if 'sawlive' in link or 'xoomtv' in link:
 				lnk = sawresolve(link, url)
-				return lnk
+				return lnk'''
 	if 'sawlive' in url:
 		lnk = sawresolve(url, url)
 		return lnk
@@ -1096,6 +1110,10 @@ def Universal(url):
 		return link
 	if 'm3u8' in url:
 		return url
+	if 'adplus/adpluslive.html?id=/' in url:
+		url = url.replace('adplus/adpluslive.html?id=/','')
+	if 'http://www.nullrefer.com/?' in url:
+		url = url.replace('http://www.nullrefer.com/?','')
 	html = GetURL(url, referer=url)
 	if html and 'weplayer.pw' in html:
 		id = html.split("'text/javascript'>id='")[-1]
@@ -1155,17 +1173,12 @@ def Universal(url):
 		link = sostart(url)
 		return link
 	elif html and 'https://streamboat.tv/@' in html:
-			url = html.split('https://streamboat.tv/@')[-1].split('"')[0]
-			url = 'https://streamboat.tv/@'+url
-			url = Streambot(url)
-			return url
+		url = html.split('https://streamboat.tv/@')[-1].split('"')[0]
+		url = 'https://streamboat.tv/@'+url
+		url = Streambot(url)
+		return url
 	elif html and 'sawlive.tv' in html:
-		try:
-			link = re.findall('(http.+?sawlive.tv/embed/.+?")',html)[0]
-			link = url.replace('"','')
-		except:
-			link = re.findall("(http.+?sawlive.tv/embed/.+?')",html)[0]
-			link = url.replace("'","")
+		link = re.findall("src=[\"\'](http.+?sawlive.tv/embed/.+?)[\"\']",html)[0]
 		link = sawresolve(link, url)
 		return link
 	elif html and 'shidurlive.com' in html:
@@ -1174,7 +1187,7 @@ def Universal(url):
 		return link
 	elif html and ('.m3u8' in html or 'rtmp:' in html or '.f4m' in html):
 		html = urllib.unquote_plus(html)
-		links = re.findall("[file|source|hls|src][:|=]\s*[\"\'](.*?)[\"\']", html)
+		links = re.findall("[file|source|hls|src|stream1]\s*[:|=]\s*[\"\'](.*?)[\"\']", html)
 		for link in links:
 			if '.m3u8' in link or 'rtmp:' in link or 'f4m' in link:
 				link = link.replace('src=','')	
@@ -1209,10 +1222,10 @@ def sawresolve(query, referer):
 	try:
 		import js2py
 		import cfscrape
-		scraper = cfscrape.create_scraper()
 		header = {'Referer':  referer, 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36', 'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
 					'Accept-Language':'en-US,en;q=0.8,bg;q=0.6,it;q=0.4,ru;q=0.2,uk;q=0.2',
 					'Connection':'keep-alive', 'Host':urlparse.urlparse(query).netloc,'Upgrade-Insecure-Requests':'1'}
+		scraper = cfscrape.create_scraper()
 		decoded = scraper.get(query, headers=header).content
 		context = js2py.EvalJs()
 		context.execute('''pyimport jstools;
@@ -1243,7 +1256,7 @@ def sawresolve(query, referer):
 		src = common.parseDOM(result, 'iframe', ret='src')[-1]
 		src = src.replace("'","").replace('"','')
 		if src:
-			header = {'Referer':  referer, 'User-Agent': UA, 'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+			header = {'Referer':  referer, 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36', 'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
 					'Accept-Language':'en-US,en;q=0.8,bg;q=0.6,it;q=0.4,ru;q=0.2,uk;q=0.2',
 					'Connection':'keep-alive', 'Host':urlparse.urlparse(src).netloc,'Upgrade-Insecure-Requests':'1'}
 			scraper = cfscrape.create_scraper()
@@ -1310,7 +1323,6 @@ def castamp(id):
 	except:
 		return None
 	
-
 
 def p2pcast(id):
 	try:
@@ -1510,6 +1522,7 @@ def sostart(url):
 def getXrxsCookie():
 	try:
 		nhlcookie = GetURL("http://nhlkeys.ga/auth", output='cookie', timeout=5)
+		nhlcookie = nhlcookie.split(';')[0]
 		if not nhlcookie:
 			import requests
 			import random
@@ -1517,7 +1530,7 @@ def getXrxsCookie():
 			r = requests.post("https://"+random.choice(domains)+".proxysite.com/includes/process.php?action=update", data={'d':'http://nhlkeys.ga/auth'})
 			nhlcookie = re.findall('"attributeValue":"(.*?)"', r.text)[0]
 			nhlcookie = 'mediaAuth='+nhlcookie
-		return nhlcookie
+		return nhlcookie+'&User-Agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36'
 	except:
 		return None
 
