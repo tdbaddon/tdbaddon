@@ -2101,7 +2101,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBPORNO"
        name="TDB PORNO"
-       version="2.06"
+       version="207"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
