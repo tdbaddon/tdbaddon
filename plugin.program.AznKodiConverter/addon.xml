@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.program.AznKodiConverter" name="*AznKodi [COLOR cyan]M3U XML Converter[/COLOR]" version="1.0.0" provider-name="AznKodi">
+    <requires>
+    </requires>
+    <extension point="xbmc.python.pluginsource"
+               library="default.py">
+        <provides>executable</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary>M3U XML Converter</summary>
+        <description>
+Use this add-on to convert M3U to XML Playlist and vice versa.
+It will ignore XML with regex.
+
+Dùng add-on này để chuyển đổi M3U sang XML playlist và ngược lại.
+Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.		
+		</description>
+		<disclaimer></disclaimer>		
+		<platform>all</platform>
+		<license>http://www.gnu.org/licenses/</license>
+		<forum></forum>
+		<website></website>    
+		<email></email>
+		<mainsource>https://github.com/AznKodi/repository.AznKodi</mainsource>    
+		<source></source>	
+    </extension>
+</addon>

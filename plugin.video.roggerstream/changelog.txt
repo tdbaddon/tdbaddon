@@ -1,5 +1,0 @@
-Versao 1.0.0
-*Adicionada funcao PlayAll, onde os usuarios podem reproduzir canais ou links vod que não se encontram no addon
-
-
-

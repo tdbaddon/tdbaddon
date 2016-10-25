@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.video.EliteIptv" name="EliteTvIptv" version="2.1.2" provider-name="EliteTv">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">EliteTv</summary>
+    <description lang="en">if the channels kick you out or you get errors, then join the EliteTv facebook group for more support. https://www.facebook.com/groups/119598245142135/</description>
+    <platform>all</platform>
+  </extension>
+</addon>

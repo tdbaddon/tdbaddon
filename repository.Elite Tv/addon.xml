@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="repository.Elite Tv" name="Elite Tv" version="1.0" provider-name="Elite Tv">
+	<extension point="xbmc.addon.repository" name="Simple Kodi">
+		<info compressed="false">http://elitetv.comli.com/zips/addons.xml</info>
+		<checksum>http://elitetv.comli.com/zips/addons.xml.md5</checksum>
+		<datadir zip="true">http://elitetv.comli.com/zips/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Elite Tv Repository</summary>
+		<description>Elite Tv Wizard Repository</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+

@@ -3,7 +3,7 @@ import urllib2,json
 import xbmcvfs
 import requests,time
 import os,xbmc,xbmcaddon,xbmcgui,re
-addon = xbmcaddon.Addon('plugin.video.live.streamspro')
+addon = xbmcaddon.Addon('plugin.video.SimpleKore')
 profile = xbmc.translatePath(addon.getAddonInfo('profile').decode('utf-8'))
 cacheDir = os.path.join(profile, 'cachedir')
 clean_cache=os.path.join(cacheDir,'cleancacheafter1month')

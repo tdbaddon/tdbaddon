@@ -1,0 +1,10 @@
+<settings>
+  <category label="Add Path">
+    <setting label="Path to XML Source File" type="file"  id="xml_file" default="" /> 
+    <setting label="Path to M3U Source File" type="file"  id="m3u_file" default="" /> 
+    <setting type="sep" />	
+    <setting label="URL to Thumbnail for XML (Optional)" type="text"  id="thumb" default="" />
+    <setting type="sep" />	
+    <setting label="Path to Destination Folder" type="folder"  id="dest" default="" /> 		
+  </category>
+</settings>

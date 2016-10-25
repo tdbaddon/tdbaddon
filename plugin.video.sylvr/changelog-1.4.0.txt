@@ -1,0 +1,34 @@
+[B]Version 1.4.0[/B]
+- Huge release!
+- Proper-Fix for TV Guide Support
+- Proper-Fix for categories and stream loading
+- HUGE Speed increase! It now takes mere SECONDS to load categories and streams COMBINED
+- MTV (US) added from http://webtv.md/ - Its quality isnt great, But its always up.
+1 bug from v1.3.0 has been squashed - Going Back from a category no longer exits Sylvr
+No Bugs to Squash! :O
+
+[B]Version 1.3.0[/B]
+- Huge release!
+- Fixed TV Guide Support!
+- Speeds have been increased
+1 bug from v1.2.0 has been squashed - TV Guide Support is now fixed
+Bugs to Squash (1) - Going Back from a category exits Sylvr.
+
+[B]Version 1.2.0[/B]
+- Huge release!
+- Fixed Arconai.tv support!
+- Added ALL Arconai.tv 24/7 Channels & Cable Channels!
+- Added 24/7 Movie Channels!
+1 bug from v1.1.0 has been squashed - Some channels fail to load at all (403 error) is now fixed
+Bugs to Squash (2) - Going Back from a category exits Sylvr, TV Guide Support needs to be re-added.
+
+[B]Version 1.1.0[/B]
+- Huge release!
+- Added Arconai.tv support! - Only 24/7 channels are available for now
+- Completely re-written the behind-the-scenes code so that it doesnt take literally 15mins to load 16 24/7 arconai channel links
+- Some more streams are added but Sports has been temporarily removed until I find a better source than StreamHD.eu (Unreliable)
+- Almost every bug has been squashed!
+Bugs to Squash (3) - Going Back from a category exits Sylvr, Some channels fail to load at all (403 error), TV Guide Support needs to be re-added.
+
+[B]Version 1.0[/B]
+- Initial release

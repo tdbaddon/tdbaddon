@@ -1,0 +1,62 @@
+V2.1.2
+new settings
+
+V2.1.1
+new fanart and settings
+
+V2.1.0
+new settings
+
+V2.0.9
+new settings
+
+V2.0.8
+new account
+
+V2.0.7
+fixed some problems
+
+V2.0.6
+need to join facebook group
+
+V2.0.5
+new account
+
+V2.0.4
+added support info
+
+V2.0.3
+new update
+
+V2.0.2
+new update
+
+V2.0.1
+new update
+
+V2.0.0
+major update
+
+V1.2.3
+add new account
+
+V1.2.2
+add new account
+
+V1.2.1
+new account
+
+V1.2.0
+going back to accounts and now channels dont kick you out
+
+V1.1.9
+I am going back to one setting addon
+
+V1.1.6
+added new settings
+
+V1.1.0
+I integrated F4M Teste into the addon to improve the streams and I also added some fixes 
+
+V1.0.0
+First release
