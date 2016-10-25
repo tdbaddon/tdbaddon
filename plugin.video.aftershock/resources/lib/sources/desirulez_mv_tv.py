@@ -223,7 +223,6 @@ class source:
                         quality = ''
                         urls = []
                     quality = child.getText()
-                    logger.debug('QUALITY >>> %s' % quality)
                     if '720p HD' in quality:
                         quality = 'HD'
                     elif 'Scr' in quality :
@@ -232,7 +231,6 @@ class source:
                         quality = ''
                 elif (child.name =='a') and not child.getText() == 'registration':
                     urls.append(str(child['href']))
-                    logger.debug('CHILD >>> %s' % child.getText())
                     if quality == '' :
                         quality = child.getText()
                         if '720p HD' in quality:

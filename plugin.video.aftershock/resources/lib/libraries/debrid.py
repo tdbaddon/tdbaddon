@@ -180,6 +180,8 @@ def status():
 
 
 def resolver(url, debrid):
+    if '|' in url:
+        url = url.split('|')[0]
     u = url
     u = u.replace('filefactory.com/stream/', 'filefactory.com/file/')
 
@@ -209,7 +211,8 @@ def resolver(url, debrid):
 
         url = result['download']
         return url
-    except:
+    except Exception as e:
+        logger.error(e.message)
         pass
 
     try:

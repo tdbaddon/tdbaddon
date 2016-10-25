@@ -44,12 +44,10 @@ class TestingMovies(unittest.TestCase):
         sourceurl = call.get_sources(movieUrl)
         self.assertGreater(len(sourceurl), 0, 'No Sources found')
 
-    @unittest.skip("Working")
     def test_apnaview(self):
         call = apnaview_mv.source()
         self.source(call)
 
-    @unittest.skip("Working")
     def test_crazy4ad(self):
         self.imdb = 'tt5165344'
         self.title = 'Rustom'
@@ -61,12 +59,10 @@ class TestingMovies(unittest.TestCase):
         call = desihdmovies_mv.source()
         self.source(call)
 
-    @unittest.skip("Working")
     def test_desihit(self):
         call = desihit_mv.source()
         self.source(call)
 
-    @unittest.skip("Working")
     def test_ditto(self):
         self.imdb = 'tt3159708'
         self.title = 'Welcome Back'
@@ -74,7 +70,6 @@ class TestingMovies(unittest.TestCase):
         call = ditto_mv.source()
         self.source(call)
 
-    @unittest.skip("Working")
     def test_einthusan(self):
         call = einthusan_mv.source()
         self.source(call)
@@ -86,36 +81,29 @@ class TestingMovies(unittest.TestCase):
         call = erosnow_mv.source()
         self.source(call)
 
-    @unittest.skip("Working")
     def test_filmywap(self):
         call = filmywap_mv.source()
         self.source(call)
 
-    @unittest.skip("Working")
     def test_hdbuffer(self):
         call = hdbuffer_mv.source()
         self.source(call)
 
-    @unittest.skip("Working")
     def test_hevcfilm(self):
         call = hevcfilm_mv.source()
         self.source(call)
 
-    @unittest.skip("Working")
     def test_hindilinks4u(self):
         call = hindilinks4u_mv.source()
         self.source(call)
-    @unittest.skip("Working-Need improvement for the IP address handling")
     def test_hotstar(self):
         call = hotstar_mv.source()
         self.source(call)
 
-    @unittest.skip("Working")
     def test_ibollytv(self):
         call = ibollytv_mv.source()
         self.source(call)
 
-    @unittest.skip("Working")
     def test_movie25(self):
         call = movie25_mv.source()
         self.source(call)
@@ -142,12 +130,11 @@ class TestingMovies(unittest.TestCase):
         call = primewire_mv.source()
         self.source(call)
 
-    @unittest.skip("Working")
     def test_putlocker(self):
         call = putlocker_mv.source()
         self.source(call)
 
-    def test_putlocker(self):
+    def test_desirulez(self):
         call = desirulez_mv_tv.source()
         self.source(call)
 

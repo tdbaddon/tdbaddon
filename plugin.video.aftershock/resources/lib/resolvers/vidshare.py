@@ -34,13 +34,13 @@ def resolve(url):
         else:
             js = result
 
-
-        link = re.search('file\s*:\s*"([^"]+)', js)
+        link = re.search('file\s*:\s*[\'|"]([^\'|"]+)', js)
         if link:
             url = link.group(1)
         else :
             url = None
         logger.debug('URL [%s]' % url, __name__)
         return url
-    except:
+    except Exception as e:
+        logger.error(e.message)
         return

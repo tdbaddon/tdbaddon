@@ -105,6 +105,20 @@ metacacheFile = os.path.join(dataPath, 'meta.db')
 
 cacheFile = os.path.join(dataPath, 'cache.db')
 
+
+# estuary View Modes :
+# List          xbmc.executebuiltin('Container.SetViewMode(50)')
+# Poster        xbmc.executebuiltin('Container.SetViewMode(51)')
+# IconWall      xbmc.executebuiltin('Container.SetViewMode(52)')
+# Shift         xbmc.executebuiltin('Container.SetViewMode(53)')
+# InfoWall      xbmc.executebuiltin('Container.SetViewMode(54)')
+# WideList      xbmc.executebuiltin('Container.SetViewMode(55)')
+# SmallThumb    xbmc.executebuiltin('Container.SetViewMode(500)')
+# Banner        xbmc.executebuiltin('Container.SetViewMode(501)')
+# FanArt        xbmc.executebuiltin('Container.SetViewMode(502)')
+
+
+# Confluence
 # List          xbmc.executebuiltin('Container.SetViewMode(502)')
 # Big List      xbmc.executebuiltin('Container.SetViewMode(51)')
 # Thumbnails    xbmc.executebuiltin('Container.SetViewMode(500)')

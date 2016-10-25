@@ -42,34 +42,41 @@ def request(url, resolverList=None):
         r = '%s|%s' % (r.split('|')[0], urllib.urlencode(h))
 
         return r
-    except:
+    except Exception as e:
+        logger.error(e.message)
         pass
 
     # URLResolvers 3.0.0
+    logger.debug('Trying URL Resolver for %s' % url, __name__)
     u = url
     try:
         url = None
-
         hmf = urlresolver.HostedMediaFile(url=u, include_disabled=True, include_universal=False)
         if hmf.valid_url() == True: url = hmf.resolve()
         else: url = False
-    except:
+    except Exception as e:
+        logger.error(e.message)
         pass
 
+    logger.debug('Trying OLD URL Resolver for %s' % u, __name__)
+
     try:
-        if not url == None: raise Exception()
+        if not url == False: raise Exception()
 
         hmf = urlresolver.HostedMediaFile(url=u, include_disabled=True)
         hmf = hmf.get_resolvers(validated=True)
         hmf = [i for i in hmf if not i.isUniversal()][0]
         host, media_id = hmf.get_host_and_id(u)
         url = hmf.get_media_url(host, media_id)
-    except:
+    except Exception as e:
+        logger.error(e.message)
         pass
 
     # URL Resolver 2.10.12
+    logger.debug('Trying OLDEST URL Resolver for %s' % u, __name__)
+
     try:
-        if not url == None: raise Exception()
+        if not url == False: raise Exception()
 
         hmf = urlresolver.plugnplay.man.implementors(urlresolver.UrlResolver)
         hmf = [i for i in hmf if not '*' in i.domains]
@@ -78,7 +85,8 @@ def request(url, resolverList=None):
         hmf = [(i[0], i[0].valid_url(u, i[1][0]), i[1][0], i[1][1]) for i in hmf]
         hmf = [i for i in hmf if not i[1] == False][0]
         url = hmf[0].get_media_url(hmf[2], hmf[3])
-    except:
+    except Exception as e:
+        logger.error(e.message)
         pass
 
     try: headers = dict(urlparse.parse_qsl(url.rsplit('|', 1)[1]))
@@ -105,4 +113,5 @@ def info():
         , {'class': 'filmywap', 'host': ['storeinusa.com']}
         , {'class': 'ditto', 'host': ['dittotv.com']}
         , {'class': 'dynns', 'host': ['dynns.com']}
+        , {'class': 'dailymotion', 'host': ['dailymotion.com']}
     ]

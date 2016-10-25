@@ -5084,7 +5084,7 @@ def getPV2PlayAuth():
     import base64
     import time
     
-    url=base64.b64decode('aHR0cHM6Ly9hcHAuZHluZG5zLnR2LyVzLnBocD93bXNBdXRoU2lnbj0=')
+    url=base64.b64decode('aHR0cHM6Ly9hcHAuZHluZG5zLnR2L3RvcC8lcy5waHA/d21zQXV0aFNpZ249')
 
     lastplay=getpv2stkey()
     filename=lastplay[:4]
@@ -5094,7 +5094,7 @@ def getPV2PlayAuth():
     headers=[('User-Agent',base64.b64decode('UGFrJTIwVFYvMS4wIENGTmV0d29yay83NTguMC4yIERhcndpbi8xNS4wLjA='))]
     ipstring=getUrl(base64.b64decode("aHR0cHM6Ly9hcHAuZHluZG5zLnR2L2tleXMvaXBfY2hlY2sucGhw"),headers=headers)
     ipadd=ipstring.split('Address: ')[1]
-    s="%s%s%s%s"%(ipadd,base64.b64decode("bW5zZGtqc2Rza2o=")+lastplay[:10],timesegment ,validtime)
+    s="%s%s%s%s"%(ipadd,base64.b64decode("ZmZlNmJiZTRjZThjNzdiMWJjMTQ1ODhiMmZmMGNjMDA=")+lastplay[:10],timesegment ,validtime)
     print s
     print repr(hashlib.md5(s).hexdigest())
     dd=base64.b64decode("c2VydmVyX3RpbWU9JXMmaGFzaF92YWx1ZT0lcyZ2YWxpZG1pbnV0ZXM9JXM=")%(timesegment,base64.b64encode(hashlib.md5(s).hexdigest().lower()),validtime )

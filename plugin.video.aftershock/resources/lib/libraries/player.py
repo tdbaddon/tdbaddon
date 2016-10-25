@@ -48,7 +48,7 @@ class player(xbmc.Player):
 
         for i in range(0,len(url)):
             if len(url) > 1:
-                meta['title'] = '%s Part # %s' % (title, i+1)
+                meta['title'] = '%s Part # %s/%s' % (title, i+1, len(url))
             try:
                 iconImage = meta['iconImage']
             except:
