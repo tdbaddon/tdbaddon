@@ -28,8 +28,8 @@ from resources.lib.modules import debrid
 
 class source:
     def __init__(self):
-        self.domains = ['2ddl.io']
-        self.base_link = 'http://2ddl.io'
+        self.domains = ['scenedown.in']
+        self.base_link = 'http://scenedown.in'
         self.search_link = '/search/%s/feed/rss2/'
 
 
@@ -97,13 +97,15 @@ class source:
                 try:
                     t = client.parseDOM(post, 'title')[0]
 
+                    u = client.parseDOM(post, 'enclosure', ret='url', attrs={'type': 'video.+?'})
+                    if not u: raise Exception()
+
                     c = client.parseDOM(post, 'content.+?')[0]
 
-                    u = re.findall('<singlelink>(.+?)(?:<download>|$)', c.replace('\n', ''))[0]
-                    u = client.parseDOM(u, 'a', ret='href')
-
-                    s = re.findall('((?:\d+\.\d+|\d+\,\d+|\d+)\s*(?:GB|GiB|MB|MiB))', c)
+                    s = re.findall('((?:\d+\.\d+|\d+\,\d+|\d+) (?:GB|GiB|MB|MiB))', c)
                     s = s[0] if s else '0'
+
+                    u = client.parseDOM(c, 'a', ret='href')
 
                     items += [(t, i, s) for i in u]
                 except:
@@ -140,7 +142,7 @@ class source:
                     if '3d' in fmt: info.append('3D')
 
                     try:
-                        size = re.findall('((?:\d+\.\d+|\d+\,\d+|\d+)\s*(?:GB|GiB|MB|MiB))', item[2])[-1]
+                        size = re.findall('((?:\d+\.\d+|\d+\,\d+|\d+) (?:GB|GiB|MB|MiB))', item[2])[-1]
                         div = 1 if size.endswith(('GB', 'GiB')) else 1024
                         size = float(re.sub('[^0-9|/.|/,]', '', size))/div
                         size = '%.2f GB' % size
@@ -162,7 +164,7 @@ class source:
                     host = client.replaceHTMLCodes(host)
                     host = host.encode('utf-8')
 
-                    sources.append({'source': host, 'quality': quality, 'provider': 'twoDDL', 'url': url, 'info': info, 'direct': False, 'debridonly': True})
+                    sources.append({'source': host, 'quality': quality, 'provider': 'Scenedown', 'url': url, 'info': info, 'direct': False, 'debridonly': True})
                 except:
                     pass
 

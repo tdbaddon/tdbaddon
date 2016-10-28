@@ -1,3 +1,10 @@
+[B]2.0.13[/B]
+- Updated indexers
+- Added new providers
+- Updated existing providers
+- Added Polish translation
+- Added Portuguese translation
+
 [B]2.0.12[/B]
 - Fixed issue with Trakt Progress (hidden items)
 - Fixed issue with urlresolver's openload pair dialog

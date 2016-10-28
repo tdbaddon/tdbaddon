@@ -28,8 +28,8 @@ from resources.lib.modules import debrid
 
 class source:
     def __init__(self):
-        self.domains = ['2ddl.io']
-        self.base_link = 'http://2ddl.io'
+        self.domains = ['perfecthdmovies.pw']
+        self.base_link = 'http://www.perfecthdmovies.pw'
         self.search_link = '/search/%s/feed/rss2/'
 
 
@@ -97,15 +97,12 @@ class source:
                 try:
                     t = client.parseDOM(post, 'title')[0]
 
-                    c = client.parseDOM(post, 'content.+?')[0]
+                    u = post.split('Download%252BLinks.png', 1)[-1]
+                    u = client.parseDOM(u, 'div', attrs={'style': '.+?'})
+                    u = [re.findall('<a href="(.+?)"', i) for i in u]
+                    u = [i[0] for i in u if i]
 
-                    u = re.findall('<singlelink>(.+?)(?:<download>|$)', c.replace('\n', ''))[0]
-                    u = client.parseDOM(u, 'a', ret='href')
-
-                    s = re.findall('((?:\d+\.\d+|\d+\,\d+|\d+)\s*(?:GB|GiB|MB|MiB))', c)
-                    s = s[0] if s else '0'
-
-                    items += [(t, i, s) for i in u]
+                    items += [(t, i) for i in u]
                 except:
                     pass
 
@@ -128,6 +125,7 @@ class source:
 
                     if any(i.endswith(('subs', 'sub', 'dubbed', 'dub')) for i in fmt): raise Exception()
                     if any(i in ['extras'] for i in fmt): raise Exception()
+                    if 'hindi' in fmt and not 'dual' in fmt: raise Exception()
 
                     if '1080p' in fmt: quality = '1080p'
                     elif '720p' in fmt: quality = 'HD'
@@ -140,8 +138,8 @@ class source:
                     if '3d' in fmt: info.append('3D')
 
                     try:
-                        size = re.findall('((?:\d+\.\d+|\d+\,\d+|\d+)\s*(?:GB|GiB|MB|MiB))', item[2])[-1]
-                        div = 1 if size.endswith(('GB', 'GiB')) else 1024
+                        size = re.findall('((?:\d+\.\d+|\d+\,\d+|\d+)(?:Gb|mb))', name)[-1]
+                        div = 1 if size.endswith('Gb') else 1024
                         size = float(re.sub('[^0-9|/.|/,]', '', size))/div
                         size = '%.2f GB' % size
                         info.append(size)
@@ -162,7 +160,7 @@ class source:
                     host = client.replaceHTMLCodes(host)
                     host = host.encode('utf-8')
 
-                    sources.append({'source': host, 'quality': quality, 'provider': 'twoDDL', 'url': url, 'info': info, 'direct': False, 'debridonly': True})
+                    sources.append({'source': host, 'quality': quality, 'provider': 'Phdmovies', 'url': url, 'info': info, 'direct': False, 'debridonly': True})
                 except:
                     pass
 

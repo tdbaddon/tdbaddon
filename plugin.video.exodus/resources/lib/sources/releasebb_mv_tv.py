@@ -21,10 +21,11 @@
 
 import re,urllib,urlparse,json
 
+
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import debrid
-
+from resources.lib.modules import control
 
 class source:
     def __init__(self):
@@ -75,6 +76,7 @@ class source:
 
             if debrid.status() == False: raise Exception()
 
+
             data = urlparse.parse_qs(url)
             data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
 
@@ -122,7 +124,7 @@ class source:
 
                     t = re.sub('(\.|\(|\[|\s)(\d{4}|S\d*E\d*|S\d*|3D)(\.|\)|\]|\s|)(.+|)', '', name)
 
-                    if not cleantitle.get(t) == cleantitle.get(title): raise Exception()
+                    if not cleantitle.get(title) in cleantitle.get(t): raise Exception()
 
                     y = re.findall('[\.|\(|\[|\s](\d{4}|S\d*E\d*|S\d*)[\.|\)|\]|\s]', name)[-1].upper()
 

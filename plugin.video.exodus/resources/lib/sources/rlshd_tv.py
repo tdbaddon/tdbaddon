@@ -19,27 +19,18 @@
 '''
 
 
-
 import re,urllib,urlparse
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import debrid
 
+
 class source:
     def __init__(self):
-        self.domains = ['2ddl.io']
-        self.base_link = 'http://2ddl.io'
+        self.domains = ['rlshd.net']
+        self.base_link = 'https://www.rlshd.net'
         self.search_link = '/search/%s/feed/rss2/'
-
-
-    def movie(self, imdb, title, year):
-        try:
-            url = {'imdb': imdb, 'title': title, 'year': year}
-            url = urllib.urlencode(url)
-            return url
-        except:
-            return
 
 
     def tvshow(self, imdb, tvdb, tvshowtitle, year):
@@ -97,15 +88,8 @@ class source:
                 try:
                     t = client.parseDOM(post, 'title')[0]
 
-                    c = client.parseDOM(post, 'content.+?')[0]
-
-                    u = re.findall('<singlelink>(.+?)(?:<download>|$)', c.replace('\n', ''))[0]
-                    u = client.parseDOM(u, 'a', ret='href')
-
-                    s = re.findall('((?:\d+\.\d+|\d+\,\d+|\d+)\s*(?:GB|GiB|MB|MiB))', c)
-                    s = s[0] if s else '0'
-
-                    items += [(t, i, s) for i in u]
+                    u = client.parseDOM(post, 'enclosure', ret='url')
+                    items += [(t, i) for i in u]
                 except:
                     pass
 
@@ -140,8 +124,8 @@ class source:
                     if '3d' in fmt: info.append('3D')
 
                     try:
-                        size = re.findall('((?:\d+\.\d+|\d+\,\d+|\d+)\s*(?:GB|GiB|MB|MiB))', item[2])[-1]
-                        div = 1 if size.endswith(('GB', 'GiB')) else 1024
+                        size = re.findall('((?:\d+\.\d+|\d+\,\d+|\d+) [M|G]B)', name)[-1]
+                        div = 1 if size.endswith(' GB') else 1024
                         size = float(re.sub('[^0-9|/.|/,]', '', size))/div
                         size = '%.2f GB' % size
                         info.append(size)
@@ -162,12 +146,9 @@ class source:
                     host = client.replaceHTMLCodes(host)
                     host = host.encode('utf-8')
 
-                    sources.append({'source': host, 'quality': quality, 'provider': 'twoDDL', 'url': url, 'info': info, 'direct': False, 'debridonly': True})
+                    sources.append({'source': host, 'quality': quality, 'provider': 'Rlshd', 'url': url, 'info': info, 'direct': False, 'debridonly': True})
                 except:
                     pass
-
-            check = [i for i in sources if not i['quality'] == 'CAM']
-            if check: sources = check
 
             return sources
         except:

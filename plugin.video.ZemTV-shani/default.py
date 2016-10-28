@@ -445,6 +445,7 @@ def AddSports(url):
     #addDir(base64.b64decode('U3VwZXIgU3BvcnRz') ,'sss',34,'')
     addDir('My Sports' ,'sss',82,'')
     addDir('PV2 Sports' ,'zemsports',36,'')
+    addDir('Fast TV' ,'sss',92,'')
     #addDir('Safe' ,'sss',72,'')
     addDir('TVPlayer [UK Geo Restricted]','sss',74,'https://assets.tvplayer.com/web/images/tvplayer-logo-white.png')
     addDir('StreamHD','sss',75,'http://www.streamhd.eu/images/logo.png')
@@ -1006,6 +1007,54 @@ def getIndianPakShowsCat():
 def getFootballPostData():
     return eval(base64.b64decode("eydhcHBfdGFnJzonZm9vdGJhbGxfaGlnaGxpZ2h0X2hkJywnc3RvcmUnOidpdHVuZXMnLCdhcHBfdmVyc2lvbic6JzInLCAnYXBwX2FwaV9zZWNyZXRfa2V5JzonZm9vdGJhbGxfcHJvZHVjdGlvbl8xMl8zNF9AQCd9"))
 
+def getFastCats():
+    fname='FastCats.json'
+    fname=os.path.join(profile_path, fname)
+    try:
+        jsondata=getCacheData(fname,2*60*60)
+        if not jsondata==None:
+            return json.loads(base64.b64decode(jsondata))
+    except:
+        print 'file getting error'
+        traceback.print_exc(file=sys.stdout)
+
+    fastData=getFastData()
+    headers=[('User-Agent',base64.b64decode('RGFsdmlrLzEuNi4wIChMaW51eDsgVTsgQW5kcm9pZCA0LjQuMjsgU00tRzkwMEYgQnVpbGQvS09UNDlIKQ==')),('Authorization','Basic %s'%base64.b64encode(fastData["DATA"][0]["Password"]))]
+    link=getUrl(base64.b64decode('aHR0cDovL3N3aWZ0c3RyZWFtei5jb20vU3dpZnRTdHJlYW0vYXBpLnBocA=='),headers=headers)
+    
+    jsondata=None
+    try:
+        jsondata=json.loads(link)
+        storeCacheData(base64.b64encode(link),fname)
+    except:
+        print 'getFastData file saving error'
+        traceback.print_exc(file=sys.stdout)
+    return jsondata    
+    
+def getFastData():
+    fname='Fastdata.json'
+    fname=os.path.join(profile_path, fname)
+    try:
+        jsondata=getCacheData(fname,2*60*60)
+        if not jsondata==None:
+            return json.loads(base64.b64decode(jsondata))
+    except:
+        print 'file getting error'
+        traceback.print_exc(file=sys.stdout)
+
+        
+    headers=[('User-Agent',base64.b64decode('RGFsdmlrLzEuNi4wIChMaW51eDsgVTsgQW5kcm9pZCA0LjQuMjsgU00tRzkwMEYgQnVpbGQvS09UNDlIKQ==')),('Authorization',base64.b64decode('QmFzaWMgVTNkcFpuUlVaV002UUZOM2FXWjBWR1ZqUUE9PQ=='))]
+    link=getUrl(base64.b64decode('aHR0cDovL3N3aWZ0c3RyZWFtei5jb20vU3dpZnRTdHJlYW0vc3dpZnRkYXRhLnBocA=='),headers=headers)
+    
+    jsondata=None
+    try:
+        jsondata=json.loads(link)
+        storeCacheData(base64.b64encode(link),fname)
+    except:
+        print 'getFastData file saving error'
+        traceback.print_exc(file=sys.stdout)
+    return jsondata    
+    
 def getFootballData():
     fname='footballdata.json'
     fname=os.path.join(profile_path, fname)
@@ -1974,7 +2023,27 @@ def AddPITVSports(url=None):
             mm=11
         addDir(Colored(cname.capitalize(),'ZM') ,base64.b64encode(curl) ,mm ,imgurl, False, True,isItFolder=False)		#name,url,mode,icon
     return  
+
     
+
+def AddFastSport(url=None):   
+    if url=="sss":
+        cats='9'
+        isSports=True
+        addDir(Colored('>>Click here for All Categories<<'.capitalize(),'red') ,"fasttv",66 ,'', False, True,isItFolder=True)
+    else:
+        cats=url
+        isSports=False
+    for cname,ctype,curl,imgurl in getFastTVChannels(cats,sports=True):
+        cname=cname.encode('ascii', 'ignore').decode('ascii')
+        if ctype=='manual2':
+            mm=37
+        elif ctype=='manual3':
+            mm=45
+        else:
+            mm=11
+        addDir(Colored(cname.capitalize(),'ZM') ,base64.b64encode(curl) ,mm ,imgurl, False, True,isItFolder=False)		#name,url,mode,icon
+    return        
 def AddUniTVSports(url=None):   
 
     if url=="sss":
@@ -2025,6 +2094,11 @@ def ShowAllCategories(url):
     elif url=="pitv":
         cats=getPITVCats()
         cmode=71
+    elif url=="fasttv":
+        cats=[]
+        for p in getFastCats()["LIVETV"]:
+            cats.append((p["cid"],p["category_name"]))
+        cmode=92               
     for cname in cats:
         print cname
         if type(cname).__name__ == 'tuple':
@@ -3246,6 +3320,33 @@ def getMyTVChannels():
         traceback.print_exc(file=sys.stdout)
     return ret
     
+def getFastTVChannels(cat,sports=False):
+    ret=[]
+    try:
+        xmldata=getFastTVPage(cat)
+        print 'got getFastTVChannels'
+        for source in xmldata["LIVETV"]:
+            if 1==1:#source["categoryName"] in categories or (forSports):# and ('sport' in source["categoryName"].lower() or 'BarclaysPremierLeague' in source["categoryName"] )    ) :
+                ss=source
+                cname=ss["channel_title"]
+                if 'ebound.tv' in ss["channel_url"]:
+                    #print ss["channelLink"]
+                    curl='ebound2:'+ss["channel_url"].replace(':1935','')
+                else:
+                    curl='fast:'+ss["channel_url"]
+                cimage=ss["channel_thumbnail"]
+                if not cimage.startswith(''):
+                    cimage+=base64.b64decode('aHR0cDovL3N3aWZ0c3RyZWFtei5jb20vU3dpZnRTdHJlYW0vaW1hZ2VzL3RodW1icy8=')+cimage
+                
+                if len([i for i, x in enumerate(ret) if x[2] ==curl ])==0:                    
+                    ret.append((cname + (' fast' if not sports else ''),'manual', curl ,cimage))   
+        
+        if len(ret)>0:
+            ret=sorted(ret,key=lambda s: s[0].lower()   )
+    except:
+        traceback.print_exc(file=sys.stdout)
+    return ret
+    
 def getPakTVChannels(categories, forSports=False):
     ret=[]
     try:
@@ -3926,6 +4027,8 @@ def AddChannelsFromOthers(cctype,eboundMatches=[],progress=None):
     
     isZengaOff=selfAddon.getSetting( "isZengaOff" )
     
+    isFastOff=selfAddon.getSetting( "isFastOff" )
+    
     
     main_ch='(<section_name>Pakistani<\/section_name>.*?<\/section>)'
 #    v4link='aHR0cDovL3N0YWdpbmcuamVtdHYuY29tL3FhLnBocC8yXzIvZ3htbC9jaGFubmVsX2xpc3QvMQ=='
@@ -4096,6 +4199,8 @@ def AddChannelsFromOthers(cctype,eboundMatches=[],progress=None):
     UKTVGenCH=[]
     tvplayerChannels=None
     Zengagen=None
+    fastgen=None
+    
     if cctype==1:
         pg='pakistan'
         iptvgen="pakistani"
@@ -4106,7 +4211,7 @@ def AddChannelsFromOthers(cctype,eboundMatches=[],progress=None):
         CFgen="4"
         YPgen=base64.b64decode("aHR0cDovL3d3dy55dXBwdHYuY29tL3VyZHUtdHYuaHRtbA==")
         UKTVGenCat,UKTVGenCH=['religious','news','food'], ['masala tv', 'ary digital', 'ary zindagi','hum tv','drama','express ent.']
-
+        fastgen=['1','10']
     elif cctype==2:
         pg='indian'
         iptvgen="indian"
@@ -4118,9 +4223,11 @@ def AddChannelsFromOthers(cctype,eboundMatches=[],progress=None):
         UKTVGenCat,UKTVGenCH=['movies'],['zee tv','colors','sony tv hd', 'star plus hd', 'zee tv']
         tvplayerChannels=['sony sab','zing']
         Zengagen='ch'
+        fastgen=['2','8']
     else:
         pg='punjabi'
         CFgen="1314"
+        fastgen=['7']
         YPgen=base64.b64decode("aHR0cDovL3d3dy55dXBwdHYuY29tL3B1bmphYmktdHYuaHRtbA==")
         
     
@@ -4130,6 +4237,8 @@ def AddChannelsFromOthers(cctype,eboundMatches=[],progress=None):
     if isv7Off=='true': paktvgen=None
     if isv8Off=='true': unitvgen=None
     if isv9Off=='true': wtvgen=None
+    if isFastOff=='true': fastgen=None
+    
     if isdittoOff=='true': dittogen=None
     if isCFOff=='true': CFgen=None    
     if isIpBoxff=='true': ipBoxGen=None
@@ -4258,6 +4367,18 @@ def AddChannelsFromOthers(cctype,eboundMatches=[],progress=None):
                     match+=rematch
         except:
             traceback.print_exc(file=sys.stdout)
+            
+    if fastgen:
+        try:
+            
+            progress.update( 80, "", "Loading Fast Channels", "" )
+            for cat in fastgen:
+                rematch=getFastTVChannels(cat)
+                if len(rematch)>0:
+                    match+=rematch
+        except:
+            traceback.print_exc(file=sys.stdout)            
+            
 
     if tvplayerChannels:
         try:
@@ -4313,6 +4434,8 @@ def AddChannelsFromOthers(cctype,eboundMatches=[],progress=None):
                     cc='ffdc1111'
                 elif cname.lower().endswith(' zenga'):
                     cc='ffcc1111'
+                elif cname.lower().endswith(' fast'):
+                    cc='ffbb1111'
                 addDir(Colored(cname.capitalize(),cc) ,base64.b64encode(curl) ,mm ,imgurl, False, True,isItFolder=False)		#name,url,mode,icon
     return    
     
@@ -4586,13 +4709,31 @@ def clearCache():
     fname=os.path.join(profile_path, fname)
     files+=[fname]     
  
+ 
+
+ 
     fname='pitvpage.json'
     fname=os.path.join(profile_path, fname)
     files+=[fname]  
     for p in ['u','p','h']:
         fname='yptvpage_%s.json'%p
         fname=os.path.join(profile_path, fname)
-        files+=[fname]       
+        files+=[fname]  
+
+    
+        
+    try:
+        for p in getFastCats()["LIVETV"]:
+            fname='fast_%s_page.json'%p["cid"]
+            fname=os.path.join(profile_path, fname)
+            files+=[fname] 
+    except: pass
+        
+    fname='Fastdata.json'
+    fname=os.path.join(profile_path, fname)
+    files+=[fname]     
+     
+    
     
     for f in files:
         try:
@@ -4749,6 +4890,31 @@ def getMYTVPage():
         traceback.print_exc(file=sys.stdout)
     return jsondata
     
+
+    
+def getFastTVPage(cat):
+    fname='fast_%s_page.json'%cat
+    fname=os.path.join(profile_path, fname)
+    try:
+        jsondata=getCacheData(fname,3*60*60)
+        if not jsondata==None:
+            return json.loads(jsondata)
+    except:
+        print 'file getting error'
+        traceback.print_exc(file=sys.stdout)
+    
+    fastData=getFastData()   
+    headers=[('User-Agent','Dalvik/1.6.0 (Linux; U; Android 4.4.2; SM-G900F Build/KOT49H)'),('Authorization','Basic %s'%base64.b64encode(fastData["DATA"][0]["Password"]))]
+    jsondata=getUrl(base64.b64decode('aHR0cDovL3N3aWZ0c3RyZWFtei5jb20vU3dpZnRTdHJlYW0vYXBpLnBocD9jYXRfaWQ9JXM=')%cat,headers=headers)
+    jsondataobj=json.loads(jsondata)
+    try:
+        storeCacheData(jsondata,fname)
+    except:
+        print 'paktv file saving error'
+        traceback.print_exc(file=sys.stdout)
+    return jsondataobj
+        
+        
 def getPakTVPage():
 
     fname='paktvpage.json'
@@ -5288,6 +5454,49 @@ def playSports365(url,progress):
         ok = dialog.ok('XBMC', 'Updated files dyamically, Try to play again, just in case!')          
         print 'Updated files'
     return
+
+
+def getFastAuth(url):
+    print 'url',url
+    postUrl=None
+    fastData=getFastData()   
+    if fastData["DATA"][0]["HelloUrl"] in url or  fastData["DATA"][0]["HelloUrl1"]  in url:
+        postUrl=fastData["DATA"][0]["HelloLogin"]
+        auth='Basic %s'%base64.b64encode(fastData["DATA"][0]["PasswordHello"]) 
+    elif fastData["DATA"][0]["LiveTvUrl"] in url:
+        postUrl=fastData["DATA"][0]["LiveTvLogin"]
+        auth='Basic %s'%base64.b64encode(fastData["DATA"][0]["PasswordLiveTv"])
+    elif fastData["DATA"][0]["nexgtvUrl"] in url:
+        print 'processnextgtv'
+        postUrl=fastData["DATA"][0]["nexgtvToken"]
+        auth='Basic %s'%base64.b64encode(fastData["DATA"][0]["nexgtvPass"]) 
+    elif '.m3u8' not in url:
+        print 'skip auth'
+    else:
+        postUrl=fastData["DATA"][0]["loginUrl"]
+        auth='Basic %s'%base64.b64encode(fastData["DATA"][0]["Password"])   
+    
+    if postUrl:
+        headers=[('User-Agent','Dalvik/1.6.0 (Linux; U; Android 4.4.2; SM-G900F Build/KOT49H)'),('Authorization',auth)]
+        res=getUrl(postUrl,headers=headers)
+        s=list(res)
+        for i in range( (len(s)-59)/12):
+                ind=len(s)-59 + (12*(i))
+                if ind<len(s):
+                    print ind
+                    s[ind]=''
+        return ''.join(s)
+    return url
+    
+    
+    
+
+def PlayFastLink(url,progress=None):
+    urlnew=url+getFastAuth(url)+'|User-Agent=eMedia/1.0.0.'
+    listitem = xbmcgui.ListItem( label = str(name), iconImage = "DefaultVideo.png", thumbnailImage = xbmc.getInfoImage( "ListItem.Thumb" ) )
+    PlayGen(base64.b64encode(urlnew))
+    #tryplay( urlnew , listitem,keepactive=True, aliveobject =ws , pdialogue= progress)
+    
     
 def PlaySafeLink(url, recursive=False, usecode=None, progress=None):
 
@@ -5420,6 +5629,9 @@ def PlayOtherUrl ( url ):
         return    
     if "pv2:" in url:
         PlayPV2Link(url.split('pv2:')[1])
+        return 
+    if "fast:" in url:
+        PlayFastLink(url.split('fast:')[1],progress=progress)
         return 
     if "safe:" in url:
         PlaySafeLink(url.split('safe:')[1],progress=progress)
@@ -6743,7 +6955,10 @@ try:
         AddFootballMatcheHome(url)         
     elif mode==91:
         print "Play url is "+url
-        PlayFootballVideo(url)                
+        PlayFootballVideo(url)            
+    elif mode==92:
+        print "Play url is "+url
+        AddFastSport(url)           
 except:
 
     print 'somethingwrong'

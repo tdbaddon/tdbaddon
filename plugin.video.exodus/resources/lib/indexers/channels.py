@@ -137,8 +137,8 @@ class channels:
 
             poster = item['Poster']
             if poster == None or poster == '' or poster == 'N/A': poster = '0'
-            if not ('_SX' in poster or '_SY' in poster): poster = '0'
-            poster = re.sub('_SX\d*|_SY\d*|_CR\d+?,\d+?,\d+?,\d*','_SX500', poster)
+            if '/nopicture/' in poster: poster = '0'
+            poster = re.sub('(?:_SX|_SY|_UX|_UY|_CR|_AL)(?:\d+|_).+?\.', '_SX500.', poster)
             poster = poster.encode('utf-8')
 
             genre = item['Genre']
@@ -191,7 +191,7 @@ class channels:
             plot = client.replaceHTMLCodes(plot)
             plot = plot.encode('utf-8')
 
-            self.list.append({'title': title, 'originaltitle': title, 'year': year, 'genre': genre, 'duration': '0', 'rating': rating, 'votes': votes, 'mpaa': mpaa, 'director': director, 'writer': writer, 'cast': cast, 'plot': plot, 'code': imdb, 'imdb': imdb, 'tmdb': '0', 'poster': poster, 'channel': i[2], 'num': i[3]})
+            self.list.append({'title': title, 'originaltitle': title, 'year': year, 'genre': genre, 'rating': rating, 'votes': votes, 'mpaa': mpaa, 'director': director, 'writer': writer, 'cast': cast, 'plot': plot, 'imdb': imdb, 'poster': poster, 'channel': i[2], 'num': i[3]})
         except:
             pass
 
@@ -288,7 +288,6 @@ class channels:
                 pass
 
         control.content(syshandle, 'movies')
-        #control.do_block_check(False)
         control.directory(syshandle, cacheToDisc=True)
 
 

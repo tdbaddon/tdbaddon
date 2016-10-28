@@ -104,9 +104,9 @@ viewsFile = os.path.join(dataPath, 'views.db')
 
 bookmarksFile = os.path.join(dataPath, 'bookmarks.db')
 
-providercacheFile = os.path.join(dataPath, 'providers.8.db')
+providercacheFile = os.path.join(dataPath, 'providers.9.db')
 
-metacacheFile = os.path.join(dataPath, 'meta.db')
+metacacheFile = os.path.join(dataPath, 'meta.2.db')
 
 cacheFile = os.path.join(dataPath, 'cache.db')
 

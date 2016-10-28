@@ -29,7 +29,7 @@ from resources.lib.modules import directstream
 class source:
     def __init__(self):
         self.domains = ['movieshd.tv', 'movieshd.is', 'movieshd.watch', 'flixanity.is', 'flixanity.me']
-        self.base_link = 'http://www.flixanity.me'
+        self.base_link = 'http://flixanity.watch'
 
 
     def movie(self, imdb, title, year):
@@ -81,7 +81,7 @@ class source:
                 match = (title.translate(None, '\/:*?"\'<>|!,')).replace(' ', '-').replace('--', '-').lower()
 
                 if 'tvshowtitle' in data:
-                    url = '%s/show/%s/season/%01d/episode/%01d' % (self.base_link, match, int(data['season']), int(data['episode']))
+                    url = '%s/tv-show/%s/season/%01d/episode/%01d' % (self.base_link, match, int(data['season']), int(data['episode']))
                 else:
                     url = '%s/movie/%s' % (self.base_link, match)
 

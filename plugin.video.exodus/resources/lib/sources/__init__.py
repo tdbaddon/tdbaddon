@@ -153,7 +153,7 @@ class sources:
 
                 item = control.item(label=label)
 
-                item.setArt({'icon': thumb, 'thumb': thumb, 'poster': poster, 'tvshow.poster': poster, 'season.poster': poster, 'banner': banner, 'tvshow.banner': banner, 'season.banner': banner})
+                item.setArt({'icon': thumb, 'thumb': thumb, 'poster': poster, 'banner': banner})
 
                 if not fanart == None: item.setProperty('Fanart_Image', fanart)
 

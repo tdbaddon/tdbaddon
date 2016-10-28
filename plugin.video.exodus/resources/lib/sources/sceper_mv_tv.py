@@ -19,19 +19,17 @@
 '''
 
 
-import re,urllib,urlparse,base64
 
-from resources.lib.modules import control
+import re,urllib,urlparse
+
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import debrid
 
-
 class source:
     def __init__(self):
-        self.domains = ['crazy4tv.com', 'crazy4ad.in']
-        self.base_link = 'http://crazy4tv.com'
-        self.data_link = 'aHR0cHM6Ly9vZmZzaG9yZWdpdC5jb20vZXhvZHVzL2luZm8vY3Jhenk0YWQuZGI='
+        self.domains = ['sceper.ws']
+        self.base_link = 'http://sceper.ws'
         self.search_link = '/search/%s/feed/rss2/'
 
 
@@ -72,10 +70,10 @@ class source:
 
             if url == None: return sources
 
+            if debrid.status() == False: raise Exception()
+
             data = urlparse.parse_qs(url)
             data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
-
-            self.data_link = base64.b64decode(self.data_link)
 
             title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
 
@@ -87,22 +85,33 @@ class source:
             url = self.search_link % urllib.quote_plus(query)
             url = urlparse.urljoin(self.base_link, url)
 
-            try: exec(base64.b64decode(client.request(self.data_link)))
-            except: pass
-
-            if debrid.status() == False: raise Exception()
-
             r = client.request(url)
 
             posts = client.parseDOM(r, 'item')
 
-            hostDict = hostprDict + hostDict
+            hostDict = hostprDict
 
             items = []
 
             for post in posts:
                 try:
-                    items += zip(client.parseDOM(post, 'a', attrs={'target': '_blank'}), client.parseDOM(post, 'a', ret='href', attrs={'target': '_blank'}))
+                    t = client.parseDOM(post, 'title')[0]
+
+                    c = client.parseDOM(post, 'content.+?')[0]
+
+                    s = re.findall('((?:\d+\.\d+|\d+\,\d+|\d+) (?:GB|GiB|MB|MiB))', c)
+                    s = s[0] if s else '0'
+
+                    u = zip(client.parseDOM(c, 'a', ret='href'), client.parseDOM(c, 'a'))
+                    u = [(i[0], i[1], re.findall('PT(\d+)$', i[1])) for i in u]
+                    u = [(i[0], i[1]) for i in u if not i[2]]
+
+                    if 'tvshowtitle' in data:
+                         u = [([x for x in i[0].strip('//').split('/')][-1], i[0]) for i in u]
+                    else:
+                         u = [(t, i[0], s) for i in u]
+
+                    items += u
                 except:
                     pass
 
@@ -137,8 +146,8 @@ class source:
                     if '3d' in fmt: info.append('3D')
 
                     try:
-                        size = re.findall('((?:\d+\.\d+|\d+\,\d+|\d+) [M|G]B)', name)[-1]
-                        div = 1 if size.endswith(' GB') else 1024
+                        size = re.findall('((?:\d+\.\d+|\d+\,\d+|\d+) (?:GB|GiB|MB|MiB))', item[2])[-1]
+                        div = 1 if size.endswith(('GB', 'GiB')) else 1024
                         size = float(re.sub('[^0-9|/.|/,]', '', size))/div
                         size = '%.2f GB' % size
                         info.append(size)
@@ -150,6 +159,7 @@ class source:
                     info = ' | '.join(info)
 
                     url = item[1]
+                    if any(x in url for x in ['.rar', '.zip', '.iso']): raise Exception()
                     url = client.replaceHTMLCodes(url)
                     url = url.encode('utf-8')
 
@@ -158,9 +168,12 @@ class source:
                     host = client.replaceHTMLCodes(host)
                     host = host.encode('utf-8')
 
-                    sources.append({'source': host, 'quality': quality, 'provider': 'crazy4AD', 'url': url, 'info': info, 'direct': False, 'debridonly': True})
+                    sources.append({'source': host, 'quality': quality, 'provider': 'Sceper', 'url': url, 'info': info, 'direct': False, 'debridonly': True})
                 except:
                     pass
+
+            check = [i for i in sources if not i['quality'] == 'CAM']
+            if check: sources = check
 
             return sources
         except:

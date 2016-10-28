@@ -19,70 +19,47 @@
 '''
 
 
-import re,urllib,urlparse,json,base64
+import re,urllib,urlparse,random,json
 
+from resources.lib.modules import control
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
-from resources.lib.modules import cache
 from resources.lib.modules import directstream
 
 
 class source:
     def __init__(self):
         self.domains = ['hdmoviefree.org']
-        self.base_link = 'https://www.hdmoviefree.org'
-        self.search_link = 'aHR0cHM6Ly93d3cuZ29vZ2xlYXBpcy5jb20vY3VzdG9tc2VhcmNoL3YxZWxlbWVudD9rZXk9QUl6YVN5Q1ZBWGlVelJZc01MMVB2NlJ3U0cxZ3VubU1pa1R6UXFZJnJzej1maWx0ZXJlZF9jc2UmbnVtPTEwJmhsPWVuJmN4PTAwNDk5MjgxMTY0MjUzNzEzMzcwNzp3cGhoaWhsZmZncSZnb29nbGVob3N0PXd3dy5nb29nbGUuY29tJnE9JXM='
-        self.data_link = 'aHR0cHM6Ly9vZmZzaG9yZWdpdC5jb20vZXhvZHVzL2luZm8vbW92aWVmcmVlLmRlYg=='
+        self.base_link = 'http://www.hdmoviefree.org'
+        self.search_link = '/search/%s.html'
         self.server_link = '/ajax/loadsv/%s'
         self.episode_link = '/ajax/loadep/%s'
 
-
     def movie(self, imdb, title, year):
         try:
-            t = cleantitle.get(title)
+					
+			self.zen_url = []
+			cleanmovie = cleantitle.get(title)
+			query = urlparse.urljoin(self.base_link, self.search_link % title.replace(' ', '-').replace('.', '-'))
+			link = client.request(query)
+			r = client.parseDOM(link, 'div', attrs = {'class': '[^"]*slideposter[^"]*'})
+			r = [(client.parseDOM(i, 'a', ret='href'),client.parseDOM(i, 'img', ret='alt')) for i in r]
+			r = [(i[0][0], i[1][0]) for i in r if len(i[0]) > 0 and len(i[1]) > 0]
+			r = [i[0] for i in r if cleanmovie in cleantitle.get(i[1]) and year in i[1]][0]
+			url = r
 
-            q = '%s %s' % (title, year)
-            q = base64.b64decode(self.search_link) % urllib.quote_plus(q)
-
-            r = self.moviefree_mvcache(q)
-            r = [i for i in r if t == cleantitle.get(i[1]) and year == i[2]]
-            r = r[0][0]
-
-            url = urlparse.urljoin(self.base_link, r)
-            url = re.findall('(?://.+?|)(/.+)', url)[0]
-            url = url.encode('utf-8')
-            return url
+			url = client.replaceHTMLCodes(url)
+			url = "http://www.hdmoviefree.org/" + url
+			url = url.encode('utf-8')
+			return url
         except:
             return
-
-
-    def moviefree_mvcache(self, q):
-        try:
-            r = client.request(q)
-
-            self.data_link = base64.b64decode(self.data_link)
-
-            try: exec(base64.b64decode(client.request(self.data_link)))
-            except: pass
-
-            r = json.loads(r)['results']
-            r = [(i['url'], i['titleNoFormatting']) for i in r]
-            r = [(i[0], re.findall('(?:^Watch |)(.+?)(?: HD |)(\d{4})', i[1])) for i in r]
-            r = [(i[0], i[1][0][0], i[1][0][1]) for i in r if len(i[1]) > 0]
-            r = [i for i in r if not '/search/' in i[0]]
-
-            return r
-        except:
-            return
-
-
+			
     def sources(self, url, hostDict, hostprDict):
         try:
             sources = []
 
             if url == None: return sources
-
-            url = urlparse.urljoin(self.base_link, url)
 
             r = client.request(url)
 
@@ -111,7 +88,6 @@ class source:
 
                     r = client.request(url, post=post, headers=headers)
                     r = json.loads(r)
-
                     try: u = client.parseDOM(r['link']['embed'], 'iframe', ret='src')
                     except: u = r['link']['l']
 
@@ -124,7 +100,6 @@ class source:
             return sources
         except:
             return sources
-
 
     def resolve(self, url):
         try:

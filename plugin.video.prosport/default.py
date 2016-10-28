@@ -73,7 +73,7 @@ sd_streams = ['goindexsport','multi-sports.eu', 'watchnfl.live', 'streamhd.eu', 
 			'watchsportstv.boards.net', 'tv-link.in', 'klivetv.co', 'videosport.me', 'livesoccerg.com', 'zunox.hk', 'singidunum.', 
 			'zona4vip.com', 'ciscoweb.ml', 'streamendous.com','streamm.eu', 'sports-arena.net', 'stablelivestream.com', 
 			'iguide.to', 'sportsleague.me','kostatz.com', 'soccerpluslive.com', 'zunox', 'apkfifa.com','watchhdsports.xyz','lovelysports2016.ml',
-			'sports4u.live','tusalavip3.es.tl', 'neymargoals.com', 'crichd.sx', 'unitedstream.live','stream4us.info','freecast.xyz']
+			'sports4u.live','tusalavip3.es.tl', 'neymargoals.com', 'crichd.sx', 'unitedstream.live','stream4us.info','freecast.xyz','focustream.info']
 
 def utc_to_local(utc_dt):
     timestamp = calendar.timegm(utc_dt.timetuple())
@@ -628,15 +628,23 @@ def Archive(page, mode):
 	html = GetURL(url)
 	links = common.parseDOM(html, "a", attrs={"rel": "bookmark"}, ret="href")
 	titles = common.parseDOM(html, "a", attrs={"rel": "bookmark"}, ret="title")
+	print titles
 	if links:
 		del links[1::2]
 	for i, el in enumerate(links):
 		if '-nba-' in el or '-nfl-' in el:
 			title = common.parseDOM(html, "a", attrs={"href": el}, ret="title")[0]
-			title = title.split('/')[-1]+' - '+title.split('/')[len(title.split('/'))-2]
 			title = strip_non_ascii(title)
 			title = title.replace('&#8211;','').strip()
-			title = title.replace('[RU]','')
+			#title = title.replace('[RU]','')
+			titles = title.split('/')
+			week = ''
+			for tit in titles:
+				if len(tit)>25:
+					title = tit
+				if 'week' in tit or 'Week' in tit or 'WEEK' in tit:
+					week = tit
+			title = title + week
 			addDir(title, el, iconImg="", mode="playarchive")
 	uri = sys.argv[0] + '?mode=%s&page=%s' % (mode, str(int(page)+1))
 	item = xbmcgui.ListItem("next page...", iconImage='', thumbnailImage='')
@@ -1070,13 +1078,6 @@ def Castalba(id, url):
 def Universal(url):
 	if 'zona4vip.com/live' in url:
 		url = url.replace('/live','')
-	'''if 'wiz1.net/ch' in url or 'live9.net' in url:
-		this = GetURL(url, referer=url)
-		links = re.compile('src="(.+?)"').findall(str(this))
-		for link in links:
-			if 'sawlive' in link or 'xoomtv' in link:
-				lnk = sawresolve(link, url)
-				return lnk'''
 	if 'sawlive' in url:
 		lnk = sawresolve(url, url)
 		return lnk
@@ -1146,8 +1147,8 @@ def Universal(url):
 		id = html.split('<script type="text/javascript">channel="')[-1].split('";')[0]
 		link = castamp(id)
 		return link
-	elif html and '101livesportsvideos' in url and 'youtu' in html: 
-		url = re.findall('(youtu.+?\")',html)[0]
+	elif html and ('101livesportsvideos' in url or 'watchhdsports' in url) and 'youtu' in html: 
+		url = re.findall('(youtu.+?)"',html)[0]
 		link = GetYoutube(url)
 		return link
 	elif html and 'bro.adca.st' in html:

@@ -19,7 +19,7 @@
 '''
 
 
-import re,urllib,urlparse,json
+import re,urllib,urlparse,json,time
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
@@ -54,26 +54,89 @@ class source:
             url = re.findall('(?://.+?|)(/.+)', r)[0]
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
+            url = urlparse.urljoin(self.base_link, url)
+            url = url.replace('watching.html', '') 
+            if not 'watching.html' in url: url = url + 'watching.html'
+
             return url
         except:
             pass
 
 
+    def tvshow(self, imdb, tvdb, tvshowtitle, year):
+        try:
+            url = {'tvshowtitle': tvshowtitle, 'year': year}
+            url = urllib.urlencode(url)
+            return url
+        except:
+            return			
+
+
+    def episode(self, url, imdb, tvdb, title, premiered, season, episode):
+        try:
+			
+			data = urlparse.parse_qs(url)
+			data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
+			title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
+			title = cleantitle.getsearch(title)
+			cleanmovie = cleantitle.get(title)
+			data['season'], data['episode'] = season, episode
+			self.zen_url = []
+			seasoncheck = 'season+%s' % (int(data['season']))
+			seasonclean = 'season%s' % (int(data['season']))
+			episodecheck = 'episode ' + episode
+
+			query = 'http://xmovies8.tv/movies/search?s=%s+%s' % (urllib.quote_plus(title),seasoncheck)
+
+			slink = client.request(query)
+			r = client.parseDOM(slink, 'div', attrs = {'class': 'col-lg.+?'})
+			r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', ret='title')) for i in r]
+			r = [(i[0][0], i[1][0]) for i in r if len(i[0]) > 0 and len(i[1]) > 0]
+
+			r = [i[0] for i in r if cleanmovie in cleantitle.get(i[1]) and seasonclean in cleantitle.get(i[1])][0]
+
+			url = re.findall('(?://.+?|)(/.+)', r)[0]
+			url = client.replaceHTMLCodes(url)
+			url = url.encode('utf-8')
+			url = urlparse.urljoin(self.base_link, url)
+			url = url.replace('watching.html', '') 
+			if not 'watching.html' in url: url = url + 'watching.html'
+
+			url = client.request(url, output="geturl")
+			if not 'watching.html' in url: url = url + 'watching.html'
+			link = client.request(url)
+
+			for item in client.parseDOM(link, 'div', attrs = {'class': 'ep_link full'}):
+				match = re.compile('<a href="(.*?)" class="">(.*?)</a>').findall(item)
+				match2 = re.compile('<a href="(.*?)" class=".*?">(.*?)</a>').findall(item)
+				for url,episodes in match + match2:
+					episodes = episodes.lower()
+					if episodecheck == episodes:
+						if not "http:" in url:
+							url = "http:" + url
+							url = client.replaceHTMLCodes(url)
+							url = url.encode('utf-8')							
+
+							return url
+        except:
+            return
+
+
     def sources(self, url, hostDict, hostprDict):
         try:
             sources = []
-
+			
             if url == None: return sources
 
-            u = urlparse.urljoin(self.base_link, url)
-            r = u.replace('/watching.html', '') + '/watching.html'
+            r = url
 
             for i in range(5):
-                post = client.request(u)
+                post = client.request(r)
                 if not post == None: break
-
-            post = re.findall('movie=(\d+)', post)[0]
-            post = urllib.urlencode({'id': post, 'episode_id': '0', 'link_id': '0', 'from': 'v3'})
+            post = re.search("data\s*:\s*{\s*id:\s*(\d+),\s*episode_id:\s*(\d+),\s*link_id:\s*(\d+)", post)
+            if post:
+				show_id, ep_id, link_id = post.groups()
+				post = urllib.urlencode({'id': show_id, 'episode_id': ep_id, 'link_id': link_id, '_': int(time.time() * 1000)})
 
             headers = {
             'Accept-Formating': 'application/json, text/javascript',

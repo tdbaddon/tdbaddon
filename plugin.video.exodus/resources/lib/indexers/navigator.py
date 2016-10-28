@@ -134,7 +134,7 @@ class navigator:
         self.addDirectoryItem(32023, 'tvshows&url=rating', 'highly-rated.png', 'DefaultTVShows.png')
         self.addDirectoryItem(32019, 'tvshows&url=views', 'most-voted.png', 'DefaultTVShows.png')
         self.addDirectoryItem(32024, 'tvshows&url=airing', 'airing-today.png', 'DefaultTVShows.png')
-        self.addDirectoryItem(32025, 'tvshows&url=active', 'returning-tvshows.png', 'DefaultTVShows.png')
+        #self.addDirectoryItem(32025, 'tvshows&url=active', 'returning-tvshows.png', 'DefaultTVShows.png')
         self.addDirectoryItem(32026, 'tvshows&url=premiere', 'new-tvshows.png', 'DefaultTVShows.png')
         self.addDirectoryItem(32006, 'calendar&url=added', 'latest-episodes.png', 'DefaultRecentlyAddedEpisodes.png', queue=True)
         self.addDirectoryItem(32027, 'calendars', 'calendar.png', 'DefaultRecentlyAddedEpisodes.png')
@@ -243,7 +243,7 @@ class navigator:
 
             item = control.item(label=title)
             item.setInfo(type='Video', infoLabels = {'title': title})
-            item.setArt({'icon': poster, 'thumb': poster, 'poster': poster, 'tvshow.poster': poster, 'season.poster': poster, 'banner': banner, 'tvshow.banner': banner, 'season.banner': banner})
+            item.setArt({'icon': poster, 'thumb': poster, 'poster': poster, 'banner': banner})
             item.setProperty('Fanart_Image', fanart)
 
             control.addItem(handle=int(sys.argv[1]), url=url, listitem=item, isFolder=False)
@@ -287,7 +287,6 @@ class navigator:
 
 
     def endDirectory(self):
-        #control.do_block_check(False)
         control.directory(syshandle, cacheToDisc=True)
 
 

@@ -77,12 +77,12 @@ class source:
 
                 title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
 
-                imdb = data['imdb']
+                
 
                 match = (title.translate(None, '\/:*?"\'<>|!,')).replace(' ', '-').replace('--', '-').lower()
 
                 if 'tvshowtitle' in data:
-                    url = '%s/show/%s/season/%01d/episode/%01d' % (self.base_link, match, int(data['season']), int(data['episode']))
+                    url = '%s/tv-show/%s/season/%01d/episode/%01d' % (self.base_link, match, int(data['season']), int(data['episode']))
                 else:
                     url = '%s/movie/%s' % (self.base_link, match)
 
@@ -93,8 +93,7 @@ class source:
 
                 r = client.request(url, output='extended')
 
-                if not imdb in r[0]: raise Exception()
-
+               
             else:
                 url = urlparse.urljoin(self.base_link, url)
 
