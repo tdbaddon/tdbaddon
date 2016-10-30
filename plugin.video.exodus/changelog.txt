@@ -1,3 +1,6 @@
+[B]2.0.14[/B]
+- Tweaked metadata timeouts
+
 [B]2.0.13[/B]
 - Updated indexers
 - Added new providers

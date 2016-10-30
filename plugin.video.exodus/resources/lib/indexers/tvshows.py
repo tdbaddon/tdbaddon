@@ -926,8 +926,10 @@ class tvshows:
             fanart = fanart.encode('utf-8')
 
 
+            artmeta = True
             art = client.request(self.fanart_tv_art_link % tvdb, headers=self.fanart_tv_headers, timeout='10', error=True)
-            art = json.loads(art)
+            try: art = json.loads(art)
+            except: artmeta = False
 
             try:
                 poster2 = art['tvposter']
@@ -969,6 +971,8 @@ class tvshows:
             item = {'title': title, 'year': year, 'imdb': imdb, 'tvdb': tvdb, 'poster': poster, 'poster2': poster2, 'banner': banner, 'banner2': banner2, 'fanart': fanart, 'fanart2': fanart2, 'clearlogo': clearlogo, 'clearart': clearart, 'premiered': premiered, 'studio': studio, 'genre': genre, 'duration': duration, 'rating': rating, 'votes': votes, 'mpaa': mpaa, 'cast': cast, 'plot': plot}
             item = dict((k,v) for k, v in item.iteritems() if not v == '0')
             self.list[i].update(item)
+
+            if artmeta == False: raise Exception()
 
             meta = {'imdb': imdb, 'tvdb': tvdb, 'lang': self.lang, 'item': item}
             self.meta.append(meta)

@@ -18,7 +18,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
-# TODO: get Hosts Dict from urlresolver
+# TODO: get Hosts Dict from urlresolver2
 
 
 import re,urllib,urlparse,base64

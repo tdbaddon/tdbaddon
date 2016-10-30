@@ -136,7 +136,7 @@ class source:
 						url = movielink
 						url = client.replaceHTMLCodes(url)
 						url = url.encode('utf-8')							
-						sources.append({'source': 'cdn', 'quality': quality, 'provider': 'Fdl', 'url': url, 'direct': True, 'debridonly': False})
+						sources.append({'source': 'cdn', 'quality': quality, 'provider': 'Fdl', 'url': url, 'direct': False, 'debridonly': False})
 
 			sources = [i for i in sources if i['url'].split('?')[0].split('&')[0].split('|')[0].rsplit('.')[-1].replace('/', '').lower() in ['avi','mkv','mov','mp4','xvid','divx']]
 

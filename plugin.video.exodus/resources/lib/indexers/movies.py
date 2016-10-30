@@ -749,8 +749,10 @@ class movies:
             poster = poster.encode('utf-8')
 
 
+            artmeta = True
             art = client.request(self.fanart_tv_art_link % imdb, headers=self.fanart_tv_headers, timeout='10', error=True)
-            art = json.loads(art)
+            try: art = json.loads(art)
+            except: artmeta = False
 
             try:
                 poster2 = art['movieposter']
@@ -791,7 +793,9 @@ class movies:
                 clearart = '0'
 
 
-            if not self.lang == 'en':
+            try:
+                if self.lang == 'en': raise Exception()
+
                 url = self.trakt_lang_link % (imdb, self.lang)
 
                 item = trakt.getTrakt(url)
@@ -806,11 +810,15 @@ class movies:
                 if not (t == None or t == ''): plot = t
                 try: plot = plot.encode('utf-8')
                 except: pass
+            except:
+                pass
 
 
             item = {'title': title, 'year': year, 'imdb': imdb, 'poster': poster, 'poster2': poster2, 'banner': banner, 'fanart': fanart, 'clearlogo': clearlogo, 'clearart': clearart, 'premiered': premiered, 'genre': genre, 'duration': duration, 'rating': rating, 'votes': votes, 'mpaa': mpaa, 'director': director, 'writer': writer, 'cast': cast, 'plot': plot}
             item = dict((k,v) for k, v in item.iteritems() if not v == '0')
             self.list[i].update(item)
+
+            if artmeta == False: raise Exception()
 
             meta = {'imdb': imdb, 'tvdb': '0', 'lang': self.lang, 'item': item}
             self.meta.append(meta)

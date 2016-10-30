@@ -24,8 +24,10 @@ import sys,pkgutil,re,json,urllib,urlparse,datetime,time
 try: import xbmc
 except: pass
 
-try: import urlresolver
-except: pass
+try:
+    import urlresolver
+except:
+    import urlresolver9 as urlresolver
 
 try:
     from sqlite3 import dbapi2 as database

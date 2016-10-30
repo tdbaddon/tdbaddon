@@ -11,12 +11,12 @@ import json
 PLUGIN='plugin.video.EliteIptv'
 ADDON = xbmcaddon.Addon(id=PLUGIN)
 SETTINGS = xbmc.translatePath(os.path.join(ADDON.getAddonInfo('profile'),'settings.xml'))
-image='http://offsidestreams.com/'
+image='http://usemytv.com/'
 
 auth=ADDON.getSetting('authtoken')
 
 USER='[COLOR yellow]'+ADDON.getSetting('user')+'[/COLOR]'
-THESITE='offsidestreams.com'
+THESITE='usemytv.com'
 
 UA='XBMC'
 
@@ -59,7 +59,7 @@ if ADDON.getSetting('user')=='':
     else:
         EXIT()
     
-site='http://'+THESITE+'/live-tv/'
+site='http://'+THESITE+'/site/live-tv/'
 
 
 datapath = xbmc.translatePath(ADDON.getAddonInfo('profile'))
@@ -85,7 +85,7 @@ def KICKOUT():
 def LOGOUT():
     net.set_cookies(cookie_jar)
     html = net.http_GET(site).content
-    match=re.compile(' href="(.+?)">Log Out</a>').findall(html)[0]
+    match=re.compile('  href="(.+?)">Log Out</a>').findall(html)[0]
     net.set_cookies(cookie_jar)
     logout = net.http_GET(match.replace('#038;','')).content
     if 'You are now logged out' in logout:
@@ -98,23 +98,24 @@ def LOGOUT():
     
 
 def Login():
-    print '###############    LOGIN   #####################'
-    loginurl = 'http://'+ THESITE +'/login/login/'
+    print '###############    LOGIN TO usemytv   #####################'
+    loginurl = 'http://usemytv.com/site/wp-login.php'
     username = ADDON.getSetting('user')
     password = ADDON.getSetting('pass')
 
-    data     = {'password': password,
-                                            'email': username,
-                                            'action': 'go','return':'/channels/'}
-    headers  = {'Host':THESITE,
-                                            'Origin':'http://'+THESITE,
-                                            'Referer':'http://'+THESITE+'/channels/',
+    data     = {'pwd': password,
+                                            'log': username,
+                                            'wp-submit': 'Log In','redirect_to':'http://usemytv.com/site/wp-admin/','testcookie':'1'}
+    headers  = {'Host':'usemytv.com',
+                                            'Origin':'http://usemytv.com',
+                                            'Referer':'http://usemytv.com/site/wp-login.php',
                                             'User-Agent':'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.115 Safari/537.36',
                                             'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
                                             'Accept-Encoding':'gzip, deflate',
                                             'Accept-Language':'en-US,en;q=0.8',
                                             'Cache-Control':'max-age=0',
                                             'Connection':'keep-alive',
+                                            'Content-Length':'111',
                                                     'Content-Type':'application/x-www-form-urlencoded'}
     html = net.http_POST(loginurl, data, headers).content
     if 'Lost your password</a>' in html:
@@ -125,7 +126,7 @@ def Login():
         net.save_cookies(cookie_jar)
 
         net.set_cookies(cookie_jar)
-        a=net.http_GET('http://'+THESITE+'/api/matrix/channels',headers={'User-Agent' :UA}).content
+        a=net.http_GET('http://'+THESITE+'/site/api/matrix/channels',headers={'User-Agent' :UA}).content
         f = open(channeljs, mode='w')
         f.write(a)
         f.close()
@@ -162,7 +163,7 @@ def server():
         print 'LOCAL READ'
     except:
         net.set_cookies(cookie_jar)
-        a = net.http_GET('http://'+THESITE+'/MatrixUp/site/api/matrix/channels',headers={'User-Agent' :UA}).content
+        a = net.http_GET('http://'+THESITE+'/site/MatrixUp/site/api/matrix/channels',headers={'User-Agent' :UA}).content
     return a
 
 def cleanHex(text):
@@ -291,7 +292,7 @@ def PLAY_STREAM(name, url, iconimage, play, description):
     if sessionExpired():
         Login()
     net.set_cookies(cookie_jar)
-    stream_url= net.http_GET('http://'+THESITE+'/api/matrix/channel/%s'%url,headers={'User-Agent' :UA}).content
+    stream_url= net.http_GET('http://'+THESITE+'/site/api/matrix/channel/%s'%url,headers={'User-Agent' :UA}).content
     if stream_url=='':
         return Show_Down()
     liz = xbmcgui.ListItem(name, iconImage='DefaultVideo.png', thumbnailImage=iconimage)

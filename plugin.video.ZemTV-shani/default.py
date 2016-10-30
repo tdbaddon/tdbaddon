@@ -165,11 +165,28 @@ def getUrl(url, cookieJar=None,post=None, timeout=20, headers=None,jsonpost=Fals
     cookie_handler = urllib2.HTTPCookieProcessor(cookieJar)
     opener = urllib2.build_opener(cookie_handler, urllib2.HTTPBasicAuthHandler(), urllib2.HTTPHandler())
     #opener = urllib2.install_opener(opener)
+    header_in_page=None
+    if '|' in url:
+        url,header_in_page=url.split('|')
     req = urllib2.Request(url)
     req.add_header('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36')
     if headers:
         for h,hv in headers:
             req.add_header(h,hv)
+    if header_in_page:
+        header_in_page=header_in_page.split('&')
+        
+        for h in header_in_page:
+            if len(h.split('='))==2:
+                n,v=h.split('=')
+            else:
+                vals=h.split('=')
+                n=vals[0]
+                v='='.join(vals[1:])
+                #n,v=h.split('=')
+            #print n,v
+            req.add_header(n,v)
+            
     if jsonpost:
         req.add_header('Content-Type', 'application/json')
     response = opener.open(req,post,timeout=timeout)
@@ -3519,6 +3536,27 @@ def getIpBoxChannels(url,forSports=False, sort=True):
     try:
         for u in url:
             try:
+                fileheaders,playheaders=None,None
+                if '|' in u:
+                    u,fileheaders,playheaders=u.split('|')
+                    u=u+'|'+fileheaders
+                    header_in_page=playheaders.split('&')
+                    headers=[]
+                    for h in header_in_page:
+                        if len(h.split('='))==2:
+                            n,v=h.split('=')
+                        else:
+                            vals=h.split('=')
+                            n=vals[0]
+                            v='='.join(vals[1:])
+                            #n,v=h.split('=')
+                        print n,v
+                        if n=="User-Agent" and v.startswith('http'):
+                            v=getUrl(v)
+                            print v
+                        headers.append((n,v))
+                    playheaders=urllib.urlencode(headers)
+                #print 'playheaders',playheaders 
                 html=getUrl(u)
                 #print 'mmmmmmmmmmname',name
                 #print xmldata
@@ -3542,7 +3580,10 @@ def getIpBoxChannels(url,forSports=False, sort=True):
                             #curl='direct:'+ss[2].replace('.ts','.ts').replace('\r','')
                             #curl='direct:'+ss[2].replace('.ts','.m3u8').replace('\r','')
                             #curl='ipbox:'+ss[2].replace('\r','').replace('.ts','.ts')#+'|Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36'
-                            curl='ipbox:'+ss[2].replace('\r','').replace('.ts','.ts')+'|User-Agent=VLC/2.2.1 LibVLC/2.2.17&Icy-MetaData=1'
+                            if playheaders:
+                                curl='ipbox:'+ss[2].replace('\r','').replace('.ts','.ts')+'|'+playheaders
+                            else:
+                                curl='ipbox:'+ss[2].replace('\r','').replace('.ts','.ts')+'|User-Agent=VLC/2.2.1 LibVLC/2.2.17&Icy-MetaData=1'
                             ##curl='ipbox:'+ss[2].replace('\r','').replace('.ts','.m3u8')+'|User-Agent=VLC/2.2.1 LibVLC/2.2.17&Icy-MetaData=1'
                             #print 'iptv',curl
                             ret.append((cname +' Ipbox' ,'manual', curl ,''))   
@@ -5368,7 +5409,7 @@ def getiptvmac():
 
 def playipbox(finalUrl):
     print 'finalUrl',finalUrl
-    if '.ts' in finalUrl:
+    if '.ts' in finalUrl or '.mpegts' in finalUrl:
         finalUrl='plugin://plugin.video.f4mTester/?name=%s&url=%s&streamtype=TSDOWNLOADER'%(urllib.quote_plus(name),urllib.quote_plus(finalUrl))
     elif '.m3u8' in finalUrl:
         finalUrl='plugin://plugin.video.f4mTester/?name=%s&url=%s&streamtype=HLSRETRY'%(urllib.quote_plus(name),urllib.quote_plus(finalUrl))
