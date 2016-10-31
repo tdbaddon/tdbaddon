@@ -5,7 +5,7 @@
 ----------------------------------------------------------------------------------------------------
 
 #EXTINF:0,Al Jazeera Balkan 
-0
+http://93.87.85.71/PLTV/88888888/224/3221226663/04.m3u8
 
 #EXTINF:0,Arena Sport 1 
 http://185.59.220.134/arena1/mpegts
@@ -53,7 +53,7 @@ http://93.87.85.71/PLTV/88888888/224/3221226576/04.m3u8
 0
 
 #EXTINF:0,DUGA 
-0
+http://w10.streamgb.com:1935/dugaplus/dugaplus/playlist.m3u8
 
 #EXTINF:0,Elektrika TV
 0
@@ -71,7 +71,7 @@ http://93.87.85.71/PLTV/88888888/224/3221226574/04.m3u8
 0
 
 #EXTINF:0,Hayat Plus 
-0
+http://93.87.85.71/PLTV/88888888/224/3221226730/04.m3u8
 
 #EXTINF:0,Hayatovci
 0
@@ -114,6 +114,9 @@ http://95.128.236.80:1935/kaltura/smil:jugotontv.smil/playlist.m3u8
 
 #EXTINF:0,Kanal 21
 0
+
+#EXTINF:0,KCN 1
+http://93.87.85.71/PLTV/88888888/224/3221226732/04.m3u8
 
 #EXTINF:0,Konyha TV 
 0
@@ -197,7 +200,7 @@ http://213.81.153.221:8080/ruzinov
 http://92.53.27.201:10000/
 
 #EXTINF:0,SOS Kanal 
-0
+http://edge-de-01.maksnet.tv/soskanal/soskanal/playlist.m3u8
 
 #EXTINF:0,Studio B 
 http://93.87.85.71/PLTV/88888888/224/3221226582/04.m3u8

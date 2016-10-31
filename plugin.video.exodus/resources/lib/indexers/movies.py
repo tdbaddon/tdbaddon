@@ -641,8 +641,17 @@ class movies:
         self.fanart_tv_headers.update({'api-key': 'YTc2MGMyMTEzYTM1OTk5NzFiN2FjMWU0OWUzMTAyMGQ='.decode('base64')})
         if level == 1 and not fanart_tv_user == '':
             self.fanart_tv_headers.update({'client-key': fanart_tv_user})
-            try: fanart_tv_level = json.loads(client.request(self.fanart_tv_level_link, headers=self.fanart_tv_headers))['level']
-            except: pass
+            #try: fanart_tv_level = json.loads(client.request(self.fanart_tv_level_link, headers=self.fanart_tv_headers))['level']
+            #except: pass
+
+        self.tm_art_link = 'http://api.themoviedb.org/3/movie/%s/images?api_key='
+        self.tm_img_link = 'https://image.tmdb.org/t/p/w%s%s'
+
+        tm_user = control.setting('tm.user')
+        if tm_user == '':
+            self.tm_art_link += 'ZjVhMmIyZDc5NTUxOTBmYTczNWI2NzMwYTlmM2JhM2I='.decode('base64')
+        else:
+            self.tm_art_link += tm_user
 
         for i in range(0, total): self.list[i].update({'metacache': False})
         self.list = metacache.fetch(self.list, self.lang)
@@ -658,6 +667,9 @@ class movies:
 
         if fanart_tv_level == 'user':
             for i in self.list: i.update({'clearlogo': '0', 'clearart': '0'})
+
+        if not tm_user == '':
+            for i in self.list: i.update({'poster2': '0', 'fanart': '0'})
 
         self.list = [i for i in self.list if not i['imdb'] == '0']
 
@@ -754,6 +766,13 @@ class movies:
             try: art = json.loads(art)
             except: artmeta = False
 
+            art2meta = True
+            art2 = client.request(self.tm_art_link % imdb, timeout='10', error=True)
+            try: art2 = json.loads(art2)
+            except: art2meta = False
+            try: art2meta = False if 'status_code' in art2 and not art2['status_code'] == 34 else art2meta
+            except: pass
+
             try:
                 poster2 = art['movieposter']
                 poster2 = [x for x in poster2 if x.get('lang') == 'en'][::-1] + [x for x in poster2 if x.get('lang') == '00'][::-1]
@@ -762,12 +781,33 @@ class movies:
                 poster2 = '0'
 
             try:
+                poster3 = art2['posters']
+                poster3 = [x for x in poster3 if x.get('iso_639_1') == 'en'] + [x for x in poster3 if not x.get('iso_639_1') == 'en']
+                poster3 = [(x['width'], x['file_path']) for x in poster3]
+                poster3 = [(x[0], x[1]) if x[0] < 300 else ('300', x[1]) for x in poster3]
+                poster3 = self.tm_img_link % poster3[0]
+                poster3 = poster3.encode('utf-8')
+            except:
+                poster3 = '0'
+
+            try:
                 if 'moviebackground' in art: fanart = art['moviebackground']
                 else: fanart = art['moviethumb']
                 fanart = [x for x in fanart if x.get('lang') == 'en'][::-1] + [x for x in fanart if x.get('lang') == '00'][::-1]
                 fanart = fanart[0]['url'].encode('utf-8')
             except:
                 fanart = '0'
+
+            try:
+                fanart2 = art2['backdrops']
+                fanart2 = [x for x in fanart2 if x.get('iso_639_1') == 'en'] + [x for x in fanart2 if not x.get('iso_639_1') == 'en']
+                fanart2 = [x for x in fanart2 if x.get('width') == 1920] + [x for x in fanart2 if x.get('width') < 1920]
+                fanart2 = [(x['width'], x['file_path']) for x in fanart2]
+                fanart2 = [(x[0], x[1]) if x[0] < 1280 else ('1280', x[1]) for x in fanart2]
+                fanart2 = self.tm_img_link % fanart2[0]
+                fanart2 = fanart2.encode('utf-8')
+            except:
+                fanart2 = '0'
 
             try:
                 banner = art['moviebanner']
@@ -814,11 +854,11 @@ class movies:
                 pass
 
 
-            item = {'title': title, 'year': year, 'imdb': imdb, 'poster': poster, 'poster2': poster2, 'banner': banner, 'fanart': fanart, 'clearlogo': clearlogo, 'clearart': clearart, 'premiered': premiered, 'genre': genre, 'duration': duration, 'rating': rating, 'votes': votes, 'mpaa': mpaa, 'director': director, 'writer': writer, 'cast': cast, 'plot': plot}
+            item = {'title': title, 'year': year, 'imdb': imdb, 'poster': poster, 'poster2': poster2, 'poster3': poster3, 'banner': banner, 'fanart': fanart, 'fanart2': fanart2, 'clearlogo': clearlogo, 'clearart': clearart, 'premiered': premiered, 'genre': genre, 'duration': duration, 'rating': rating, 'votes': votes, 'mpaa': mpaa, 'director': director, 'writer': writer, 'cast': cast, 'plot': plot}
             item = dict((k,v) for k, v in item.iteritems() if not v == '0')
             self.list[i].update(item)
 
-            if artmeta == False: raise Exception()
+            if artmeta == False or art2meta == False: raise Exception()
 
             meta = {'imdb': imdb, 'tvdb': '0', 'lang': self.lang, 'item': item}
             self.meta.append(meta)
@@ -913,8 +953,10 @@ class movies:
 
                 art = {}
 
-                if 'poster2' in i and not i['poster2'] == '0':
-                    art.update({'icon': i['poster2'], 'thumb': i['poster2'], 'poster': i['poster2']})
+                if 'poster3' in i and not i['poster3'] == '0':
+                    art.update({'icon': i['poster3'], 'thumb': i['poster3'], 'poster': i['poster3']})
+                #elif 'poster2' in i and not i['poster2'] == '0':
+                    #art.update({'icon': i['poster2'], 'thumb': i['poster2'], 'poster': i['poster2']})
                 elif 'poster' in i and not i['poster'] == '0':
                     art.update({'icon': i['poster'], 'thumb': i['poster'], 'poster': i['poster']})
                 else:
@@ -922,8 +964,6 @@ class movies:
 
                 if 'banner' in i and not i['banner'] == '0':
                     art.update({'banner': i['banner']})
-                elif 'fanart' in i and not i['fanart'] == '0':
-                    art.update({'banner': i['fanart']})
                 else:
                     art.update({'banner': addonBanner})
 
@@ -933,7 +973,10 @@ class movies:
                 if 'clearart' in i and not i['clearart'] == '0':
                     art.update({'clearart': i['clearart']})
 
-                if settingFanart == 'true' and 'fanart' in i and not i['fanart'] == '0':
+
+                if settingFanart == 'true' and 'fanart2' in i and not i['fanart2'] == '0':
+                    item.setProperty('Fanart_Image', i['fanart2'])
+                elif settingFanart == 'true' and 'fanart' in i and not i['fanart'] == '0':
                     item.setProperty('Fanart_Image', i['fanart'])
                 elif not addonFanart == None:
                     item.setProperty('Fanart_Image', addonFanart)

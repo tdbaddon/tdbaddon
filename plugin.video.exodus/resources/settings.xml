@@ -87,6 +87,9 @@
 		<setting type="lsep" label="Become a VIP member for many benefits at: https://fanart.tv/vip" />
 		<setting id="fanart.tv.user" type="text" option="hidden" label="32309" default="" />
 		<setting type="sep" />
+		<setting type="lsep" label="TMDB" />
+		<setting id="tm.user" type="text" option="hidden" label="32309" default="" />
+		<setting type="sep" />
 		<setting type="lsep" label="Trakt" />
 		<setting id="trakt.user" type="action" label="32306" option="close" action="RunPlugin(plugin://plugin.video.exodus/?action=authTrakt)" />
 		<setting id="trakt.token" type="text" option="hidden" visible="false" label="" default="" />

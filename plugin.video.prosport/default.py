@@ -73,7 +73,8 @@ sd_streams = ['goindexsport','multi-sports.eu', 'watchnfl.live', 'streamhd.eu', 
 			'watchsportstv.boards.net', 'tv-link.in', 'klivetv.co', 'videosport.me', 'livesoccerg.com', 'zunox.hk', 'singidunum.', 
 			'zona4vip.com', 'ciscoweb.ml', 'streamendous.com','streamm.eu', 'sports-arena.net', 'stablelivestream.com', 
 			'iguide.to', 'sportsleague.me','kostatz.com', 'soccerpluslive.com', 'zunox', 'apkfifa.com','watchhdsports.xyz','lovelysports2016.ml',
-			'sports4u.live','tusalavip3.es.tl', 'neymargoals.com', 'crichd.sx', 'unitedstream.live','stream4us.info','freecast.xyz','focustream.info']
+			'sports4u.live','tusalavip3.es.tl', 'neymargoals.com', 'crichd.sx', 'unitedstream.live','stream4us.info','freecast.xyz','focustream.info',
+			's4power.club']
 
 def utc_to_local(utc_dt):
     timestamp = calendar.timegm(utc_dt.timetuple())
@@ -677,11 +678,10 @@ def PlayArchive(url):
 	html = GetURL(url)
 	html = html.split('>ENGLISH<')[-1]
 	links = common.parseDOM(html, "iframe", ret="src")
+	lnks = common.parseDOM(html, "a", ret="href")
+	links = links+lnks
 	for i, link in enumerate(links):
 		if 'mail.ru/vid' in link:
-			per = ''
-			if len(links)>1:
-				per = ' - '+str(i+1)
 			link = link.replace('https://videoapi.my.mail.ru/videos/embed/mail/','https://my.mail.ru/+/video/meta/')
 			link = link.replace('https://my.mail.ru/video/embed/','https://my.mail.ru/+/video/meta/')
 			link = link.replace('html','json')
@@ -696,7 +696,7 @@ def PlayArchive(url):
 				token = cookie.value
 			js = js['videos']
 			for el in js:
-				addDirectLink(el['key']+per, {'Title': orig_title}, 'https:'+el['url']+'|Cookie=video_key='+token)
+				addDirectLink(el['key'], {'Title': orig_title}, 'https:'+el['url']+'|Cookie=video_key='+token)
 				#addLink(el['key'], orig_title, el['url']+'|Cookie=video_key='+token, mode="play")
 	xbmcplugin.endOfDirectory(h, cacheToDisc=True)
 
@@ -1076,8 +1076,8 @@ def Castalba(id, url):
 
 
 def Universal(url):
-	if 'zona4vip.com/live' in url:
-		url = url.replace('/live','')
+	if 's4power.club' in url:
+		url = url.replace('s4zona','zona')
 	if 'sawlive' in url:
 		lnk = sawresolve(url, url)
 		return lnk
@@ -1151,7 +1151,7 @@ def Universal(url):
 		url = re.findall('(youtu.+?)"',html)[0]
 		link = GetYoutube(url)
 		return link
-	elif html and 'bro.adca.st' in html:
+	elif html and 'bro.adca.st' in html and 'broadcast/close.gif' not in html:
 		id = html.split("<script type='text/javascript'>id='")[-1].split("';")[0]
 		link = broadcast(id, url)
 		return link
@@ -1223,11 +1223,8 @@ def sawresolve(query, referer):
 	try:
 		import js2py
 		import cfscrape
-		header = {'Referer':  referer, 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36', 'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-					'Accept-Language':'en-US,en;q=0.8,bg;q=0.6,it;q=0.4,ru;q=0.2,uk;q=0.2',
-					'Connection':'keep-alive', 'Host':urlparse.urlparse(query).netloc,'Upgrade-Insecure-Requests':'1'}
 		scraper = cfscrape.create_scraper()
-		decoded = scraper.get(query, headers=header).content
+		decoded = scraper.get(query).content
 		context = js2py.EvalJs()
 		context.execute('''pyimport jstools;
            		var escape = jstools.escape;
@@ -1257,10 +1254,6 @@ def sawresolve(query, referer):
 		src = common.parseDOM(result, 'iframe', ret='src')[-1]
 		src = src.replace("'","").replace('"','')
 		if src:
-			header = {'Referer':  referer, 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36', 'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-					'Accept-Language':'en-US,en;q=0.8,bg;q=0.6,it;q=0.4,ru;q=0.2,uk;q=0.2',
-					'Connection':'keep-alive', 'Host':urlparse.urlparse(src).netloc,'Upgrade-Insecure-Requests':'1'}
-			scraper = cfscrape.create_scraper()
 			decoded = scraper.get(src, headers=header).content
 			swf = re.compile("SWFObject\('(.+?)'").findall(decoded)[0].replace(' ', '')
 			decoded = decoded.split("'uniform');")[-1].split("</script>")[0]

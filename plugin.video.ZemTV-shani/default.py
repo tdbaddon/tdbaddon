@@ -1065,7 +1065,7 @@ def getFastData():
     
     jsondata=None
     try:
-        jsondata=json.loads(link)
+        jsondata=json.loads(link.replace('\x0a',''))
         storeCacheData(base64.b64encode(link),fname)
     except:
         print 'getFastData file saving error'
@@ -3275,7 +3275,7 @@ def AddEnteries(name, type=None):
             #addDir(Colored('EboundServices Channels','EB',True) ,'ZEMTV' ,10,'', False, True,isItFolder=False)		#name,url,mode,icon
             try:
                 
-                ret_match=AddChannelsFromEbound();#AddChannels()
+                ret_match=getChannelsFromEbound();#AddChannels()
                 progress.update( 20, "", "Loading Yellow Channels", "" )
                 print 'ret_match',ret_match
             except:
@@ -4748,8 +4748,11 @@ def clearCache():
  
     fname='gtvpage.json'
     fname=os.path.join(profile_path, fname)
+    files+=[fname]   
+    
+    fname='povee.json'
+    fname=os.path.join(profile_path, fname)
     files+=[fname]     
- 
  
 
  
@@ -5723,13 +5726,22 @@ def PlayOtherUrl ( url ):
         if dag_url.startswith('rtmp'): dag_url+=' timeout=20'
         direct=True
     elif url=='etv':
-        req = urllib2.Request(base64.b64decode('aHR0cDovL20ubmV3czE4LmNvbS9saXZlLXR2L2V0di11cmR1'))
+        req = urllib2.Request(base64.b64decode('aHR0cDovL2VuZ2xpc2gucHJhZGVzaDE4LmNvbS9hamF4LXN0cmVhbWluZy5waHA/ZGV2aWNlPXdlYiZjaGFubmVsPWV0di11cmR1Jnc9MTAwJTI1Jmg9NTAw'))
         req.add_header('User-Agent', 'Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10')
         response = urllib2.urlopen(req)
         link=response.read()
-        curlpatth='<source src="(.*?)"'
+        curlpatth='<backup.*?(http.*?)\]?\]?>'
+        encdataurl=re.findall(curlpatth,link)[0]
+        encdata=getUrl(encdataurl)
+        
+        #from mixed swf
+        paragraph= base64.b64decode("UGFjayBteSBib3ggd2l0aCAjMTI1IGxpcXVvciBqdWdzLiBCTE9XWlkgTklHSFQtRlJVTVBTIFZFWCdEIEpBQ0sgUS4gSmFja2Rhd3MgbG92ZSBteSAzOCBiaWcgc3BoaW54IG9mICJxdWFydHoiLiAyKzI9NCwgQSBRVUlDSy1tb3ZlbWVudCBvZiB0aGUgZW5lbXkgd2lsbCBqZW9wYXJkaXplICM2OSBndW5ib2F0czsgZm9yc2FraW5nIG1vbmFzdGljIHRyYWRpdGlvbjogNDclIGpvdmlhbCBmcmlhcnMgZ2F2ZSB1cCB0aGVpciAqdm9jYXRpb24qIGZvciBhIHF1ZXN0aW9uYWJsZSBleGlzdGVuY2Ugb24gdGhlIChmbHlpbmcpIHRyYXBlemUgZWFybmluZyAkMC1yZXR1cm5zISBXRSBxdWlja2x5IFNFSVpFRCBUSEUgW0JMQUNLXSBBWExFICYgSlVTVCBTQVZFRCBJVCBGUk9NIEdPSU5HIFBBU1QgSElNLiBJcyAzPjU/IG9yIGlzIDU8Mz8gIGNvbnRhY3RAbmV0d29yazE4dGVjaC5jb21+L18=")
+        finalurl=''
+        for i in encdata.split(','):
+            finalurl+=paragraph[int(i)]
+        
         progress.update( 50, "", "Preparing url..", "" )
-        dag_url =re.findall(curlpatth,link)[0]
+        dag_url =finalurl
     elif 'dag1.asx' not in url and 'hdcast.org' not in url and '?securitytype=2' not in url and 'bernardotv.club' not in url and 'imob.dunyanews.tv' not in url:
         if '/play/' in url:
             code=base64.b64decode('MDAwNkRDODUz')+binascii.b2a_hex(os.urandom(2))[:3]
@@ -5809,128 +5821,82 @@ def PlayOtherUrl ( url ):
 #    print "playing stream name: " + str(name) 
     xbmc.Player(  ).play( final_url, listitem)    
 
-def AddChannelsFromEbound():
-    liveURL=base64.b64decode('aHR0cDovL2Vib3VuZHNlcnZpY2VzLmNvbS9pc3RyZWFtX2RlbW8ucGhw')
-    req = urllib2.Request(liveURL)
-    req.add_header('User-Agent','Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10')
-    response = urllib2.urlopen(req)
-    link=response.read()
-    response.close()
-    #	print link
-    #	match=re.compile('<param name="URL" value="(.+?)">').findall(link)
-    #	match=re.compile('<a href="(.+?)"').findall(link)
-    #	match=re.compile('onclick="playChannel\(\'(.*?)\'\);">(.*?)</a>').findall(link)
-    #	match =re.findall('onclick="playChannel\(\'(.*?)\'\);">(.*?)</a>', link, re.DOTALL|re.IGNORECASE)
-    #	match =re.findall('onclick="playChannel\(\'(.*?)\'\);".?>(.*?)</a>', link, re.DOTALL|re.IGNORECASE)
-    #	match =re.findall('<div class=\"post-title\"><a href=\"(.*?)\".*<b>(.*)<\/b><\/a>', link, re.IGNORECASE)
-    #	match =re.findall('<img src="(.*?)" alt=".*".+<\/a>\n*.+<div class="post-title"><a href="(.*?)".*<b>(.*)<\/b>', link, re.UNICODE)
+def getChannelsFromEbound():
+    fname='povee.json'
+    fname=os.path.join(profile_path, fname)
+    try:
+        jsondata=getCacheData(fname,2*60*60)#2 hours
+        if not jsondata==None:
+            return eval(base64.b64decode(jsondata))
+    except:
+        print 'file getting error'
+        traceback.print_exc(file=sys.stdout)
+        
+    data=getChannelsFromEboundInternal()
+    try:
+        if data and len(data)>0:
+            storeCacheData(base64.b64encode(str(data)),fname)
+    except:
+        print 'povee file saving error'
+        traceback.print_exc(file=sys.stdout)
+    return data
+    
+def getChannelsFromEboundInternal():
 
-    match =re.findall('<a href=".*?stream=(.*?)".*?src="(.*?)" (.)', link,re.M)
+    match=[]
+    pvhtml=getUrl('http://poovee.net/profile/poovee/1/')
+    reg='<div class=\"video-data\">\s*.*?href=\".*?\/video\/([0-9]*?)\/.*?title=\"(.*?)\"'
+    links=re.findall(reg,pvhtml)
+    for s in links:
+        if not (s[1].lower().startswith('office') or s[1].lower().startswith('povee')):
+            match.append((s[1],s[0],'povee','http://live.square7.ch/%s.png'%s[1].lower().replace(' ','')))        
 
-    #	print match
-    expressExists=False
-    expressCName='express'
-    arynewsAdded=False
+    #print 'main',str(match)     
+    if 1==2:# just to generate the static povee links
+        pvhtml=getUrl('http://live.square7.ch/eb.xml')
+        reg='<title>(.*?)<\/title>\s.*?doreg.*?\s.*\s.*\s.*\s.*?\/embed\/([0-9]*)\/.*\s.*\s<thumbnail>(.*?)<'
+        links=re.findall(reg,pvhtml)
+        match2=[]
+        for s in links:
+            if s[0].replace(' ','').lower() not in (i[0].replace(' ','').lower() for i in match):
+                match2.append((s[0],s[1],'povee',s[2])) 
+        print 'reg',str(match2)   
+    match+=[('HEALTH TV', '349', 'povee', 'http://live.square7.ch/htv.png'), ('ZAIQA TFC', '101576', 'povee', 'http://live.square7.ch/zaiqatfc.png'), ('A PLUS', '297', 'povee', 'http://live.square7.ch/aplus.png'), ('A TV', '399', 'povee', 'http://live.square7.ch/atv.png'), ('ARY DIGITAL', '220186', 'povee', 'http://live.square7.ch/arydigital.png'), ('ARY ZINDAGI', '220241', 'povee', 'http://live.square7.ch/aryzindagi.png'), ('DM DIGITAL', '373', 'povee', 'http://live.square7.ch/dmdigital.png'), ('DTV PLUS', '313', 'povee', 'http://live.square7.ch/dtvplus.png'), ('FILMASIA', '2324', 'povee', 'http://live.square7.ch/filmasia.png'), ('HUM TV ASIA', '307', 'povee', 'http://live.square7.ch/humtv.png'), ('ON TV', '13681', 'povee', 'http://live.square7.ch/ontv.png'), ('PLAY ENTERTAINMENT', '379', 'povee', 'http://live.square7.ch/playentertainment.png'), ('SEE TV HD', '187', 'povee', 'http://live.square7.ch/seetvhd.png'), ('STAR MAX', '2322', 'povee', 'http://live.square7.ch/starmax.png'), ('TIMES', '397', 'povee', 'http://live.square7.ch/times.png'), ('TV ONE', '363', 'povee', 'http://live.square7.ch/tvone.png'), ('VIBE', '383', 'povee', 'http://live.square7.ch/vibetv.png'), ('8XM HD', '51308', 'povee', 'http://live.square7.ch/8xmhd.png'), ('ANDAZ TV', '52166', 'povee', 'http://live.square7.ch/andaztv.png'), ('JALWA', '393', 'povee', 'http://live.square7.ch/jalwa.png'), ('92 NEWS HD', '239', 'povee', 'http://live.square7.ch/92newshd.png'), ('AAJ NEWS', '343', 'povee', 'http://live.square7.ch/aajnews.png'), ('ABB TAKK', '15410', 'povee', 'http://live.square7.ch/abbtakk.png'), ('ADALAT NEWS', '29416', 'povee', 'http://live.square7.ch/adalatnews.png'), ('CAPITAL TV', '335', 'povee', 'http://live.square7.ch/capitaltv.png'), ('CHANNEL 5', '337', 'povee', 'http://live.square7.ch/channel5.png'), ('DAWN NEWS', '323', 'povee', 'http://live.square7.ch/dawnnews.png'), ('DIN NEWS', '351', 'povee', 'http://live.square7.ch/dinnews.png'), ('DUNYA NEWS', '220156', 'povee', 'http://live.square7.ch/dunyanews.png'), ('JAAG', '208646', 'povee', 'http://live.square7.ch/jaag.png'), ('METRO 1 NEWS', '391', 'povee', 'http://live.square7.ch/metro1news.png'), ('NEO NEWS', '331', 'povee', 'http://live.square7.ch/neonews.png'), ('NEWS ONE', '385', 'povee', 'http://www.newsone.tv/wp-content/uploads/2016/01/cropped-logo-newsone.png'), ('RASSAI', '29904', 'povee', 'http://live.square7.ch/rassai.png'), ('ROYAL NEWS 24/7', '377', 'povee', 'http://live.square7.ch/royalnews247.png'), ('ROZE NEWS', '301', 'povee', 'http://live.square7.ch/rozenews.png'), ('SAMAA', '220149', 'povee', 'http://vignette2.wikia.nocookie.net/logopedia/images/1/12/Samaa_TV.png'), ('SUCH TV', '365', 'povee', 'http://live.square7.ch/suchtv.png'), ('WAQT NEWS', '353', 'povee', 'http://live.square7.ch/waqtnews.png'), ('MOVIES 24/7', '40774', 'povee', 'http://live.square7.ch/movies247.png'), ('APNA CHANNEL', '345', 'povee', 'http://live.square7.ch/apnachannel.png'), ('ARUJ', '104227', 'povee', 'http://live.square7.ch/aruj.png'), ('AVT KHYBER', '289', 'povee', 'http://live.square7.ch/avtkhyber.png'), ('AWAZ', '333', 'povee', 'http://live.square7.ch/awaz.png'), ('INDEPENDENT', '305', 'povee', 'http://live.square7.ch/independent.png'), ('K 21', '38158', 'povee', 'http://live.square7.ch/k21.png'), ('KAY 2', '291', 'povee', 'http://live.square7.ch/kay2.png'), ('KHYBER NEWS', '287', 'povee', 'http://live.square7.ch/khybernews.png'), ('MASHRIQ', '140409', 'povee', 'http://live.square7.ch/mashriq.png'), ('MEHRAN TV', '401', 'povee', 'http://live.square7.ch/mehrantv.png'), ('PASHTO 1', '293', 'povee', 'http://live.square7.ch/pashto1.png'), ('SHAMSHAD', '375', 'povee', 'http://live.square7.ch/shamshad.png'), ('SHARQ RADIO TV', '11892', 'povee', 'http://live.square7.ch/sharqradiotv.png'), ('SINDH TV', '163810', 'povee', 'http://live.square7.ch/sindhtv.png'), ('SINDH TV NEWS', '369', 'povee', 'http://live.square7.ch/sindhtvnews.png'), ('VSH NEWS', '361', 'povee', 'http://live.square7.ch/vshnews.png'), ('WASEB', '371', 'povee', 'http://live.square7.ch/waseb.png'), ('ZHWANDOON', '357', 'povee', 'http://live.square7.ch/zhwandoon.png'), ('ARY QTV', '220248', 'povee', 'http://live.square7.ch/aryqtv.png'), ('HADI TV 1', '49338', 'povee', 'http://live.square7.ch/haditv1.png'), ('MADANI CHANNEL', '387', 'povee', 'http://live.square7.ch/madanichannel.png'), ('QURAN TV MADINA', '27768', 'povee', 'http://live.square7.ch/qurantv.png'), ('QURAN TV MECCA', '303', 'povee', 'http://live.square7.ch/qurantv.png'), ('PAIGHAM', '381', 'povee', 'http://live.square7.ch/paigham.png'), ('PEACE TV URDU', '220131', 'povee', 'http://live.square7.ch/peacetvurdu.png'), ('RAAH TV', '395', 'povee', 'http://live.square7.ch/raahtv.png'), ('TEHZEEB TV', '231', 'povee', 'http://live.square7.ch/tehzeebtv.png'), ('ZINDAGI TV', '327', 'povee', 'http://live.square7.ch/zindagitv.png'), ('TEN SPORTS OFFICIAL', '32360', 'povee', 'http://live.square7.ch/tensports.png'), ('TEN SPORTS OFFICIAL SUB', '220289', 'povee', 'http://live.square7.ch/tensports.png')]
+             
+    if 1==2:# just to generate the static static links
+        pvhtml=getUrl('http://live.square7.ch/eb.xml')
+        reg='<title>(.*?)<\/title>\s<link>(http.*?eboundservice.*?)<.*\s<thumbnail>(.*?)<'
+        links=re.findall(reg,pvhtml)
+        match2=[]
+        for s in links:
+            if s[0].replace(' ','').lower() not in (i[0].replace(' ','').lower() for i in match):
+                match2.append((s[0],base64.b64encode(s[1]),'gen',s[2])) 
+        print 'static',str(match2)            
 
-    if not any('Express Tv' == x[0] for x in match):
-        match.append(('Express Tv','express','manual'))
-    if not any('Ary News' == x[0] for x in match):
-        match.append(('Ary News','arynews','manual'))
-    if not any('Ary Digital' == x[0] for x in match):
-        match.append(('Ary Digital','aryentertainment','manual'))
+    match+=[('HUM MASALA', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvbWFzYWxhdHYvcGxheWxpc3QubTN1OA==', 'gen', 'http://live.square7.ch/hummasala.png'), ('AAJ ENTERTAINMENT', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvYWFqZW50ZXJ0YWlubWVudC9wbGF5bGlzdC5tM3U4', 'gen', 'http://live.square7.ch/aajentertainment.png'), ('COLORS', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvY29sb3JzL3BsYXlsaXN0Lm0zdTg=', 'gen', 'http://live.square7.ch/colors.png'), ('EXPRESS ENTERTAINMENT', 'aHR0cDovL3N0cmVhbWVyNjEuZWJvdW5kc2VydmljZXMuY29tL21vYmlsZS9leHByZXNzZW50ZXJ0YWlubWVudC9wbGF5bGlzdC5tM3U4', 'gen', 'http://live.square7.ch/expressentertainment.png'), ('G1 TV', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvZzF0di9wbGF5bGlzdC5tM3U4', 'gen', 'http://live.square7.ch/g1tv.png'), ('GEO KAHANI', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvZ2Vva2FoYW5pL3BsYXlsaXN0Lm0zdTg=', 'gen', 'http://live.square7.ch/geokahani.png'), ('GEO TV', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvZ2VvZW50ZXJ0YWlubWVudC9wbGF5bGlzdC5tM3U4', 'gen', 'http://live.square7.ch/geoentertainment.png'), ('HBO', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvaGJvL3BsYXlsaXN0Lm0zdTg=', 'gen', 'http://live.square7.ch/hbo.png'), ('HUM SITARAY WORLD', 'aHR0cDovL3N0cmVhbWVyNjEuZWJvdW5kc2VydmljZXMuY29tL21vYmlsZS9odW0yL3BsYXlsaXN0Lm0zdTg=', 'gen', 'http://live.square7.ch/humsitaray.png'), ('PTV GLOBAL', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvcHR2Z2xvYmFsL3BsYXlsaXN0Lm0zdTg=', 'gen', 'http://live.square7.ch/ptvglobal.png'), ('STYLE 360', 'aHR0cDovL3N0cmVhbWVyNjEuZWJvdW5kc2VydmljZXMuY29tL21vYmlsZS9zdHlsZTM2MC9wbGF5bGlzdC5tM3U4', 'gen', 'http://live.square7.ch/style360.png'), ('ARY MUSIK', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvYXJ5bXVzaWsvcGxheWxpc3QubTN1OA==', 'gen', 'http://live.square7.ch/arymusik.png'), ('24 NEWS HD', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvY2hhbm5lbDI0cGsvcGxheWxpc3QubTN1OA==', 'gen', 'http://live.square7.ch/24newshd.png'), ('24 NEWS HD (2)', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvY2hhbm5lbDI0L3BsYXlsaXN0Lm0zdTg=', 'gen', 'http://live.square7.ch/24newshd.png'), ('CITY 42', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvY2l0eTQyL3BsYXlsaXN0Lm0zdTg=', 'gen', 'http://live.square7.ch/city42.png'), ('EXPRESS NEWS', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvZXhwcmVzcy9wbGF5bGlzdC5tM3U4', 'gen', 'http://live.square7.ch/expressnews.png'), ('GEO NEWS', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvZ2VvbmV3cy9wbGF5bGlzdC5tM3U4', 'gen', 'http://live.square7.ch/geonews.png'), ('GEO TEZ', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvZ2VvdGV6ei9wbGF5bGlzdC5tM3U4', 'gen', 'http://live.square7.ch/geotez.png'), ('MOVIES 24/7-iKID', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvaWtpZC9wbGF5bGlzdC5tM3U4', 'gen', 'http://live.square7.ch/movies247.png'), ('MOVIES 24/7-iMOVIE', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvbW92aWUvcGxheWxpc3QubTN1OA==', 'gen', 'http://live.square7.ch/movies247.png'), ('APNA NEWS', 'aHR0cDovL3N0cmVhbWVyNjEuZWJvdW5kc2VydmljZXMuY29tL21vYmlsZS9hcG5hbmV3cy9wbGF5bGlzdC5tM3U4', 'gen', 'http://live.square7.ch/apnanews.png'), ('GEO SUPER', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvZ2Vvc3VwZXIvcGxheWxpc3QubTN1OA==', 'gen', 'http://live.square7.ch/geosuper.png'), ('SPORTS', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvc3BvcnRzL3BsYXlsaXN0Lm0zdTg=', 'gen', 'http://live.square7.ch/sports.png'), ('TEN SPORTS LICENSED', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvdGVuc3BvcnRzX2xpY2Vuc2VkL2NodW5rcy5tM3U4', 'gen', 'http://live.square7.ch/tensports.png')]  
 
-    match.append(('Channel 92','channel92','manual'))##
-    match.append(('mecca','mecca','manual'))##
-    match.append(('madina','madina','manual'))##
-    match.append(('Peace Tv','peacetv','manual'))##
-
-    match.append(('Tehzeeb','tehzeeb','manual'))
-
-    #added fro #oooee
-    match.append(('Style 260','style360','manual'))
-    match.append(('Dtv','dtv','manual'))
-    match.append(('New Tv','alite','manual'))
-    match.append(('Awaz Tv','awaztv','manual'))
-    match.append(('Capital Tv','capitaltv','manual'))
-    match.append(('Aaj News','aajnews','manual'))
-    match.append(('Abb Takk','abbtakk','manual'))
-    match.append(('Channel 24','channel24pk','manual'))
-    match.append(('Vsh Channels','vsh','manual'))
-    match.append(('TV One','tvoneglobal','manual'))
-    match.append(('Paigham','paigham','manual'))
-    match.append(('Vibe Tv','nvibe','manual'))
-    match.append(('Times Tv','times','manual'))
-    match.append(('Minhaj Tv','minhaj','manual'))
-    match.append(('Jalwa','jalwa','manual'))
-    match.append(('Starmax','starmax','manual'))
-    match.append(('Hamdard','hamdard','manual'))
-    match.append(('Desi Channel','desichannel','manual'))
-    match.append(('PBN Music','pbnmusic','manual'))
-
-    if 1==2:
-        match.append(('Baby Tv','babytv','manual'))
-        match.append(('Star Gold','stargold','manual'))
-        match.append(('Ten Sports','tensports','manual'))
-        match.append(('Discovery','discovery','manual'))
-        match.append(('National Geographic','nationalgeographic','manual'))
-        match.append(('Geo Entertainment','geoentertainment','manual'))
-        match.append(('Geo News','geonews','manual'))
-        match.append(('Geo Super','geosuper','manual'))
-        match.append(('Bol News','bol','manual'))
-        match.append(('Capital News','capitaltv','manual'))
-        match.append(('Dawn News','dawn','manual'))##    
-
-    match.append(('Quran TV Urdu','aHR0cDovL2lzbDEuaXNsYW00cGVhY2UuY29tL1F1cmFuVXJkdVRW','gen'))
-    match.append(('Channel 24','cnRtcDovL2RzdHJlYW1vbmUuY29tOjE5MzUvbGl2ZS8gcGxheXBhdGg9Y2l0eTQyIHN3ZlVybD1odHRwOi8vZHN0cmVhbW9uZS5jb20vanAvandwbGF5ZXIuZmxhc2guc3dmIHBhZ2VVcmw9aHR0cDovL2RzdHJlYW1vbmUuY29tL2NpdHk0Mi9pZnJhbWUuaHRtbCB0aW1lb3V0PTIw','gen'))
-    match.append(('QTV','aHR0cDovLzE1OC42OS4yMjkuMzA6MTkzNS9BUllRVFYvbXlTdHJlYW0vcGxheWxpc3QubTN1OA==','gen'))
-    match.append(('SEE TV','cnRtcDovLzM2Nzc4OTg4Ni5yLm15Y2RuOTIubmV0LzM2Nzc4OTg4Ni9fZGVmaW5zdF8vIHBsYXlwYXRoPXNlZXR2IHN3ZlVybD1odHRwOi8vZHN0cmVhbW9uZS5jb20vanAvandwbGF5ZXIuZmxhc2guc3dmIHBhZ2VVcmw9aHR0cDovL2RzdHJlYW1vbmUuY29tL3NlZXR2L2lmcmFtZS5odG1sIHRpbWVvdXQ9MTA=','gen'))
-
-
-
-
-
-
+    match.append(('Quran TV Urdu','aHR0cDovL2lzbDEuaXNsYW00cGVhY2UuY29tL1F1cmFuVXJkdVRW','gen',''))
+    match.append(('Channel 24','cnRtcDovL2RzdHJlYW1vbmUuY29tOjE5MzUvbGl2ZS8gcGxheXBhdGg9Y2l0eTQyIHN3ZlVybD1odHRwOi8vZHN0cmVhbW9uZS5jb20vanAvandwbGF5ZXIuZmxhc2guc3dmIHBhZ2VVcmw9aHR0cDovL2RzdHJlYW1vbmUuY29tL2NpdHk0Mi9pZnJhbWUuaHRtbCB0aW1lb3V0PTIw','gen',''))
+    match.append(('QTV','aHR0cDovLzE1OC42OS4yMjkuMzA6MTkzNS9BUllRVFYvbXlTdHJlYW0vcGxheWxpc3QubTN1OA==','gen',''))
+    match.append(('SEE TV','cnRtcDovLzM2Nzc4OTg4Ni5yLm15Y2RuOTIubmV0LzM2Nzc4OTg4Ni9fZGVmaW5zdF8vIHBsYXlwYXRoPXNlZXR2IHN3ZlVybD1odHRwOi8vZHN0cmVhbW9uZS5jb20vanAvandwbGF5ZXIuZmxhc2guc3dmIHBhZ2VVcmw9aHR0cDovL2RzdHJlYW1vbmUuY29tL3NlZXR2L2lmcmFtZS5odG1sIHRpbWVvdXQ9MTA=','gen',''))
+ 
     match=sorted(match,key=lambda s: s[0].lower()   )
 
     #name,type,url,img
     ret_match=[]
     #h = HTMLParser.HTMLParser()
     for cname in match:
-        if cname[2]=='manual':
-            ret_match.append((cname[0].capitalize(),'ebmode:9' ,cname[1] , cname[2]))		#name,url,mode,icon
+        #if cname[2]=='manual':
+        #    ret_match.append((cname[0].capitalize(),'ebmode:9' ,cname[1] , cname[2]))		#name,url,mode,icon
+        if cname[2]=='povee':
+            ret_match.append((cname[0].capitalize(),'ebmode:93' ,cname[1] , cname[3]))		#name,url,mode,icon
         elif cname[2]=='gen':
-             ret_match.append((cname[0].capitalize(),'ebmode:33' ,cname[1] , cname[2]))		#name,url,mode,icon
-        else:
-             ret_match.append((cname[0].capitalize(),'ebmode:9' ,cname[0] , cname[1]))		#name,url,mode,icon
+             ret_match.append((cname[0].capitalize(),'ebmode:33' ,cname[1] , cname[3]))		#name,url,mode,icon
+        #else:
+        #     ret_match.append((cname[0].capitalize(),'ebmode:9' ,cname[0] , cname[1]))		#name,url,mode,icon
     return ret_match
             
-            
-            
-    #h = HTMLParser.HTMLParser()
-    for cname in match:
-        if cname[2]=='manual':
-            addDir(Colored(cname[0].capitalize(),'EB') ,cname[1] ,9,cname[2], False, True,isItFolder=False)		#name,url,mode,icon
-        elif cname[2]=='gen':
-            addDir(Colored(cname[0].capitalize(),'EB') ,cname[1] ,33,cname[2], False, True,isItFolder=False)		#name,url,mode,icon
-        else:
-            addDir(Colored(cname[0].capitalize(),'EB') ,cname[0] ,9,cname[1], False, True,isItFolder=False)		#name,url,mode,icon
-
-        if 1==2:
-            if cname[0]==expressCName:
-                expressExists=True
-            if cname[0]=='arynews':
-                arynewsAdded=True
-
-    if 1==2:			
-        if not expressExists:
-            addDir(Colored('Express Tv','EB') ,'express' ,9,'', False, True,isItFolder=False)		#name,url,mode,icon
-        if not arynewsAdded:
-            addDir(Colored('Ary News','EB') ,'arynews' ,9,'', False, True,isItFolder=False)		#name,url,mode,icon
-            addDir(Colored('Ary Digital','EB') ,'aryentertainment' ,9,'', False, True,isItFolder=False)		#name,url,mode,icon
-        addDir(Colored('Baby Tv','EB') ,'babytv' ,9,'', False, True,isItFolder=False)		#name,url,mode,icon
-        addDir(Colored('Star Gold','EB') ,'stargold' ,9,'', False, True,isItFolder=False)		#name,url,mode,icon
-        addDir(Colored('Ten Sports','EB') ,'tensports' ,9,'', False, True,isItFolder=False)		#name,url,mode,icon
-    return		
+   
 
 def Colored(text = '', colorid = '', isBold = False):
     if colorid == 'ZM':
@@ -6688,7 +6654,22 @@ def PlayCFLive(url):
     listitem = xbmcgui.ListItem( label = str(name), iconImage = "DefaultVideo.png", thumbnailImage = xbmc.getInfoImage( "ListItem.Thumb" ) )
     xbmc.Player(  ).play( playfile, listitem)
     return  
+    
+def PlayPoveeLink(url):
 
+    progress = xbmcgui.DialogProgress()
+    progress.create('Progress', 'Fetching Streaming Info')
+    progress.update( 10, "", "Finding links..", "" )
+    link=getUrl('http://poovee.net/embed/%s/?autoplay=0'%url)
+    progress.update( 50, "", "Finding links..", "" )
+    url=re.findall('videosrc :"(.*?)"' ,link)[0]
+    playfile =url+'|User-Agent=iPhone'
+    progress.update( 100, "", "Almost done..", "" )
+    progress.close()
+    listitem = xbmcgui.ListItem( label = str(name), iconImage = "DefaultVideo.png", thumbnailImage = xbmc.getInfoImage( "ListItem.Thumb" ) )
+    xbmc.Player(  ).play( playfile, listitem)
+    return
+    
 def PlayEboundFromIOS(url):
     if not url.startswith('http'):
         url='http://cdn.ebound.tv/tv/%s/playlist.m3u8'%url
@@ -6999,14 +6980,17 @@ try:
         PlayFootballVideo(url)            
     elif mode==92:
         print "Play url is "+url
-        AddFastSport(url)           
+        AddFastSport(url)  
+    elif mode==93:
+        print "Play url is "+url
+        PlayPoveeLink(url)           
 except:
 
     print 'somethingwrong'
     traceback.print_exc(file=sys.stdout)
 
 
-if not ( (mode==3 or mode==4 or mode==9 or mode==11 or mode==15 or mode==21 or mode==22 or mode==27 or mode==33 or mode==35 or mode==37 or mode==40 or mode==42 or mode==45 or mode==91)  )  :
+if not ( (mode==3 or mode==4 or mode==9 or mode==11 or mode==15 or mode==21 or mode==22 or mode==27 or mode==33 or mode==35 or mode==37 or mode==40 or mode==42 or mode==45 or mode==91 or mode==93)  )  :
     if mode in [144,156]:
         xbmcplugin.endOfDirectory(int(sys.argv[1]),updateListing=True)
     else:

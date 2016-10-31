@@ -1,3 +1,9 @@
+[B]Version 5.8.6[/B]
+etv fix
+[B]Version 5.8.5[/B]
+povee, more fixes, thanks to androjohn@tva
+[B]Version 5.8.4[/B]
+yellow channels from povee now, fix fast tv
 [B]Version 5.8.3[/B]
 some more support in ipbox
 [B]Version 5.8.2[/B]

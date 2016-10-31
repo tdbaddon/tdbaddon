@@ -14,7 +14,7 @@
 0
 
 #EXTINF:0,Al Jazeera Balkan 
-0
+http://93.87.85.71/PLTV/88888888/224/3221226663/04.m3u8
 
 #EXTINF:0,AlbTV Film 
 0
@@ -125,7 +125,7 @@ http://84.20.77.50:554/live/rtmp.stream/playlist.m3u8
 0
 
 #EXTINF:0,Top Channel
-0
+http://tvstream.tvtopsound.com:1935/live/ngrp:mpegts.stream_all/chunklist_w1960175513_b1248000.m3u8
 
 #EXTINF:0,Top Channel News
 0

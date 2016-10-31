@@ -67,8 +67,14 @@ rtsp://ewns-hls-b-stream.hexaglobe.net/rtpeuronewslive/en_vidan350_rtp.sdp?
 #EXTINF:0,Euro News 
 http://fr-par-iphone-2.cdn.hexaglobe.net/streaming/euronews_ewns/ipad_en.m3u8
 
+#EXTINF:0,Fox News
+0
+
 #EXTINF:0,France 24 
 http://f24hls-i.akamaihd.net/hls/live/221192/F24_FR_LO_HLS/master.m3u8
+
+#EXTINF:0,France 24 
+http://93.87.85.71/PLTV/88888888/224/3221226773/04.m3u8
 
 #EXTINF:0,Global News 
 0
@@ -86,9 +92,6 @@ http://f24hls-i.akamaihd.net/hls/live/221192/F24_FR_LO_HLS/master.m3u8
 0
 
 #EXTINF:0,NHK World 
-http://web-cache.stream.ne.jp/www11/nhkworld-tv/global/222714/live.m3u8
-
-#EXTINF:0,NHK World 
 http://nhkwglobal-i.akamaihd.net/hls/live/222714/nhkwglobal/index_1180.m3u8
 
 #EXTINF:0,Press TV 
@@ -98,7 +101,7 @@ http://nhkwglobal-i.akamaihd.net/hls/live/222714/nhkwglobal/index_1180.m3u8
 0
 
 #EXTINF:0,RT News 
-0
+http://93.87.85.71/PLTV/88888888/224/3221226772/04.m3u8
 
 #EXTINF:0,Sky News 
 0

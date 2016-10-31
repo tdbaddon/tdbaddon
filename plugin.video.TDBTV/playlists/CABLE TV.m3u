@@ -10,9 +10,6 @@ http://www.support.tcomputers.ca/@videos/HowTo-ChangeAudioLanguage.mp4
 0
 
 #EXTINF:0,ABC 
-http://46.166.162.35:9090/load/b0922f3fa8aa/03.m3u8
-
-#EXTINF:0,ABC 
 http://46.166.162.35:9090/load/b0922f3fa8aa/07.m3u8
 
 #EXTINF:0,ABC Family 
@@ -20,9 +17,6 @@ http://46.166.162.35:9090/load/b0922f3fa8aa/07.m3u8
 
 #EXTINF:0,Adult Swim TV
 http://adultswimhls-i.akamaihd.net/hls/live/238460/adultswim/main/1/master_Layer5.m3u8
-
-#EXTINF:0,AMC 
-http://46.166.162.35:9090/load/b0922f3fa8aa/04.m3u8
 
 #EXTINF:0,AMC 
 http://93.87.85.71/PLTV/88888888/224/3221226591/04.m3u8
@@ -58,7 +52,7 @@ http://93.87.85.71/PLTV/88888888/224/3221226588/04.m3u8
 0
 
 #EXTINF:0,Bravo 
-http://46.166.162.35:9090/load/b0922f3fa8aa/05.m3u8
+0
 
 #EXTINF:0,Cartoon Network 
 0
@@ -100,11 +94,7 @@ http://198.179.31.197/live/3566.high.stream/playlist.m3u8
 0
 
 #EXTINF:0,Comedy Central 
-http://46.166.162.35:9090/load/b0922f3fa8aa/14.m3u8
-
-#EXTINF:0,Comedy Central 
-http://216.31.255.235/hlsl/1/COMEDY/COMEDY.m3u8
-
+0
 
 #EXTINF:0,Comedy Central Extra
 0
@@ -143,7 +133,7 @@ http://216.31.255.235/hlsl/1/COMEDY/COMEDY.m3u8
 0
 
 #EXTINF:0,Disney Channel 
-http://185.44.75.91:7000/play/a00k
+0
 
 #EXTINF:0,Disney Junior 
 0
@@ -155,7 +145,7 @@ http://185.44.75.91:7000/play/a00k
 0
 
 #EXTINF:0,E! 
-http://46.166.162.35:9090/load/b0922f3fa8aa/06.m3u8
+0
 
 #EXTINF:0,E! 
 0
@@ -203,7 +193,7 @@ http://93.87.85.71/PLTV/88888888/224/3221226755/04.m3u8
 0
 
 #EXTINF:0,FXHD 
-http://216.31.255.235/hlsl/4/FXX/FXX.m3u8
+0
 
 #EXTINF:0,Game TV
 0
@@ -220,6 +210,9 @@ http://216.31.255.235/hlsl/4/FXX/FXX.m3u8
 #EXTINF:0,Global TV Vancouver 
 0
 
+#EXTINF:0,Golden Edge
+0
+
 #EXTINF:0,Great American Country 
 0
 
@@ -227,7 +220,7 @@ http://216.31.255.235/hlsl/4/FXX/FXX.m3u8
 0
 
 #EXTINF:0,Hallmark Channel 
-http://46.166.162.35:9090/load/b0922f3fa8aa/16.m3u8
+0
 
 #EXTINF:0,HGTV 
 0
@@ -269,7 +262,7 @@ rtmp://jtvmedia.jtv.com:1975/live playpath=live6 swfUrl=http://demandware.edgesu
 0
 
 #EXTINF:0,Lifetime Network 
-http://46.166.162.35:9090/load/b0922f3fa8aa/15.m3u8
+0
 
 #EXTINF:0,London Live 
 http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
@@ -284,7 +277,7 @@ http://bcoveliveios-i.akamaihd.net/hls/live/217434/3083279840001/master_900.m3u8
 http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/master.m3u8
 
 #EXTINF:0,NBC 
-http://46.166.162.35:9090/load/b0922f3fa8aa/01.m3u8
+0
 
 #EXTINF:0,Nick 
 0
@@ -328,8 +321,11 @@ http://llnw.live.qvc.simplestream.com/hera/remote/qvcuk_primary_sdi6/3/prog_inde
 #EXTINF:0,QVC 
 http://llnw.live.qvc.simplestream.com/hera/remote/qvcuk_primary_sdi8/3/prog_index.m3u8
 
+#EXTINF:0,Showcase 
+0
+
 #EXTINF:0,Showtime 
-http://46.166.162.35:9090/load/b0922f3fa8aa/28.m3u8
+0
 
 #EXTINF:0,Sky 1 
 0
@@ -359,13 +355,13 @@ http://46.166.162.35:9090/load/b0922f3fa8aa/28.m3u8
 0
 
 #EXTINF:0,Spike TV 
-http://46.166.162.35:9090/load/b0922f3fa8aa/12.m3u8
+0
 
 #EXTINF:0,Sundance Channel
 0
 
 #EXTINF:0,Syfy 
-http://46.166.162.35:9090/load/b0922f3fa8aa/11.m3u8
+0
 
 #EXTINF:0,TBS 
 0
@@ -374,10 +370,13 @@ http://46.166.162.35:9090/load/b0922f3fa8aa/11.m3u8
 0
 
 #EXTINF:0,TLC 
-http://46.166.162.35:9090/load/b0922f3fa8aa/18.m3u8
+0
 
 #EXTINF:0,TNT 
-http://46.166.162.35:9090/load/b0922f3fa8aa/10.m3u8
+0
+
+#EXTINF:0,TNT Series
+0
 
 #EXTINF:0,Toonami TV
 http://adultswimhls-i.akamaihd.net/hls/live/249295-b/adultswim_6/main/1/stream_Layer4.m3u8
@@ -407,7 +406,7 @@ http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/master.m3u8?b?b*t
 0
 
 #EXTINF:0,USA Network 
-http://46.166.162.35:9090/load/b0922f3fa8aa/17.m3u8
+0
 
 #EXTINF:0,Veria Living TV 
 0
@@ -434,7 +433,7 @@ http://wgntribune-lh.akamaihd.net/i/WGNPrimary_1@304622/index_350_av-p.m3u8?
 http://198.179.31.197/live/3107.high.stream/playlist.m3u8
 
 #EXTINF:0,World Fashion 
-http://btv-net.mediacdn.ru/TVB8/wfhd/playlist.m3u8
+0
 
 #EXTINF:0,World of Wine
 http://198.179.31.197/live/3164.high.stream/playlist.m3u8

@@ -5,13 +5,7 @@
 http://rtmp.one.by:1300/
 
 #EXTINF:0,1HD Music 
-rtmp://rtmp.one.by/HD/1muz
-
-#EXTINF:0,1HD Music 
 http://rtmp.one.by:1499
-
-#EXTINF:0,1HD Music 
-http://80.250.191.10:1935/live/hlsstream343/playlist.m3u8
 
 #EXTINF:0,AKA 
 0
@@ -38,7 +32,7 @@ http://68.71.42.179/live/livestream1/playlist.m3u8
 0
 
 #EXTINF:0,Clubbing TV 
-0
+http://stream01.yamgo.com/iPhone/HLS_TS/mptslive/clubbingtv-mobile.3gp.m3u8
 
 #EXTINF:0,CMC 
 http://cmctv.ios.internapcdn.net/cmctv_vitalstream_com/live_1/CMC-Mobile/CMC-Mobile.m3u8
@@ -61,6 +55,9 @@ http://server55.livestreamingcdn.com:1935/tulixdemo/tulixdemo/chunklist.m3u8
 #EXTINF:0,Djing Animation 
 http://www.djing.com/tv/a-03.m3u8
 
+#EXTINF:0,Djing Animation 
+http://www.djing.com/tv/animation.m3u8
+
 #EXTINF:0,Djing Animation HD 
 http://www.djing.com/tv/a-05.m3u8
 
@@ -70,11 +67,17 @@ http://www.iptvsaga.com/play/tv3/0088.m3u8
 #EXTINF:0,Djing Classics 
 http://www.djing.com/tv/i-03.m3u8
 
+#EXTINF:0,Djing Classics 
+http://www.djing.com/tv/classics.m3u8
+
 #EXTINF:0,Djing Classics HD 
 http://www.djing.com/tv/i-05.m3u8
 
 #EXTINF:0,Djing Classics HD 
 http://www.iptvsaga.com/play/tv3/0090.m3u8
+
+#EXTINF:0,Djing Dancefloor
+http://www.djing.com/tv/dancefloor.m3u8
 
 #EXTINF:0,Djing Dancefloor
 http://www.djing.com/tv/dancefloor.m3u8
@@ -91,8 +94,14 @@ http://www.iptvsaga.com/play/tv3/0086.m3u8
 #EXTINF:0,Djing TV 
 http://www.djing.com/tv/05.m3u8
 
+#EXTINF:0,Djing TV 
+http://www.djing.com/tv/live.m3u8
+
 #EXTINF:0,Djing UnderGround 
 http://www.djing.com/tv/u-03.m3u8
+
+#EXTINF:0,Djing UnderGround
+http://www.djing.com/tv/underground.m3u8
 
 #EXTINF:0,Djing UnderGround
 http://www.djing.com/tv/underground.m3u8
@@ -125,7 +134,7 @@ http://stream.smcloud.net/tv/best/best_360p/playlist.m3u8
 http://stream.smcloud.net/tv/best/best_720p/playlist.m3u8
 
 #EXTINF:0,Eska HipHop
-http://stream.smcloud.net/live/hiphoptv/playlist.m3u8
+0
 
 #EXTINF:0,Eska Party 
 http://stream.smcloud.net/tv/eska_party/eska_party_360p/playlist.m3u8
@@ -154,6 +163,9 @@ http://ooyalahd2-f.akamaihd.net/i/globalradio02_delivery@156522/master.m3u8
 #EXTINF:0,Hit TV
 rtmp://tst.es.flash.glb.ipercast.net/tst.es-live/live
 
+#EXTINF:0,Hit TV
+http://vs2.cdn.ott.otautv.kz/dtv/id13_KTR_SG--Hittv/03/plst.m3u8
+
 #EXTINF:0,Ibiza on TV 
 0
 
@@ -174,7 +186,6 @@ http://144.76.2.213:1935/live/livestream/playlist.m3u8
 
 #EXTINF:0,Mezzo TV
 0
-
 
 #EXTINF:0,Miami TV Music 
 0

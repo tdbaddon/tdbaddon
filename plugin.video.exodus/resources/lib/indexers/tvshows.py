@@ -746,8 +746,8 @@ class tvshows:
         self.fanart_tv_headers.update({'api-key': 'YTc2MGMyMTEzYTM1OTk5NzFiN2FjMWU0OWUzMTAyMGQ='.decode('base64')})
         if level == 1 and not fanart_tv_user == '':
             self.fanart_tv_headers.update({'client-key': fanart_tv_user})
-            try: fanart_tv_level = json.loads(client.request(self.fanart_tv_level_link, headers=self.fanart_tv_headers))['level']
-            except: pass
+            #try: fanart_tv_level = json.loads(client.request(self.fanart_tv_level_link, headers=self.fanart_tv_headers))['level']
+            #except: pass
 
         for i in range(0, total): self.list[i].update({'metacache': False})
         self.list = metacache.fetch(self.list, self.lang)
@@ -927,9 +927,9 @@ class tvshows:
 
 
             artmeta = True
-            art = client.request(self.fanart_tv_art_link % tvdb, headers=self.fanart_tv_headers, timeout='10', error=True)
-            try: art = json.loads(art)
-            except: artmeta = False
+            #art = client.request(self.fanart_tv_art_link % tvdb, headers=self.fanart_tv_headers, timeout='10', error=True)
+            #try: art = json.loads(art)
+            #except: artmeta = False
 
             try:
                 poster2 = art['tvposter']

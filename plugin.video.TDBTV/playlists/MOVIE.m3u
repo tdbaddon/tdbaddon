@@ -129,9 +129,6 @@ http://46.166.162.35:9090/load/b0922f3fa8aa/23.m3u8
 #EXTINF:0,Fox Movies 
 0
 
-#EXTINF:0,Golden Edge
-0
-
 #EXTINF:0,HBO 
 0
 
@@ -142,7 +139,7 @@ http://46.166.162.35:9090/load/b0922f3fa8aa/23.m3u8
 0
 
 #EXTINF:0,HBO East
-http://46.166.162.35:9090/load/b0922f3fa8aa/19.m3u8
+0
 
 #EXTINF:0,HBO East 2
 0
@@ -163,7 +160,7 @@ http://46.166.162.35:9090/load/b0922f3fa8aa/22.m3u8
 0
 
 #EXTINF:0,HBO Zone 
-http://46.166.162.35:9090/load/b0922f3fa8aa/21.m3u8
+0
 
 #EXTINF:0,HWD Hollywood 
 0
@@ -207,20 +204,17 @@ http://46.166.162.35:9090/load/b0922f3fa8aa/21.m3u8
 #EXTINF:0,Paramount Channel 
 0
 
-#EXTINF:0,SciFi Action Movies
-0
-
 #EXTINF:0,Showtime Beyond
 0
 
 #EXTINF:0,Showtime Extra
-http://46.166.162.35:9090/load/b0922f3fa8aa/26.m3u8
+0
 
 #EXTINF:0,Showtime Showcase
 0
 
 #EXTINF:0,Showtime West
-http://46.166.162.35:9090/load/b0922f3fa8aa/27.m3u8
+0
 
 #EXTINF:0,Silver Screen Classics
 0
@@ -277,7 +271,7 @@ http://46.166.162.35:9090/load/b0922f3fa8aa/32.m3u8
 http://46.166.162.35:9090/load/b0922f3fa8aa/33.m3u8
 
 #EXTINF:0,Starz East
-http://46.166.162.35:9090/load/b0922f3fa8aa/30.m3u8
+0
 
 #EXTINF:0,Starz Edge
 0
@@ -328,10 +322,10 @@ http://46.166.162.35:9090/load/b0922f3fa8aa/30.m3u8
 0
 
 #EXTINF:0,TV 1000 
-http://185.44.75.91:7000/play/a00j
+0
 
 #EXTINF:0,TV 1000 Action 
-http://185.44.75.91:7000/play/a016
+0
 
 #EXTINF:0,W Movies
 0
