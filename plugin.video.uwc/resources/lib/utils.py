@@ -22,7 +22,7 @@ __scriptname__ = "Ultimate Whitecream"
 __author__ = "mortael"
 __scriptid__ = "plugin.video.uwc"
 __credits__ = "mortael, Fr33m1nd, anton40, NothingGnome"
-__version__ = "1.1.43"
+__version__ = "1.1.44"
 
 import urllib
 import urllib2
@@ -438,9 +438,12 @@ def playvideo(videosource, name, download=None, url=None):
         datourl = chkmultivids(datourl)
         datourl = "http://datoporn.com/embed-" + datourl + ".html"
         datosrc = getHtml(datourl,'', openloadhdr)
-        datojs = re.compile("<script[^>]+>(eval[^<]+)</sc", re.DOTALL | re.IGNORECASE).findall(datosrc)
+        try:
+            datojs = re.compile("<script[^>]+>(eval[^<]+)</sc", re.DOTALL | re.IGNORECASE).findall(datosrc)
+            datoujs = unpack(datojs[0])
+        except:
+            datoujs = datosrc
         progress.update( 80, "", "Getting video file from Datoporn", "" )
-        datoujs = unpack(datojs[0])
         videourl = re.compile('file:"([^"]+mp4)"', re.DOTALL | re.IGNORECASE).findall(datoujs)
         videourl = videourl[0]
 

@@ -9,6 +9,12 @@
         <setting id="download_path" type="folder" source="video" label="Download Folder"  option="writeable" default=""/>
     </category>
     <category label="Chaturbate">
+        <setting type="sep" label="30110" />
+        <setting id="chatfemale" type="bool" label="30111" default="true" />
+        <setting id="chatmale" type="bool" label="30112" default="true" />
+        <setting id="chatcouple" type="bool" label="30113" default="true" />
+        <setting id="chattrans" type="bool" label="30114" default="true" />
+        <setting type="sep" label="" />
         <setting id="chatplay" type="enum" label="30100" lvalues="30101|30102|30103" default="0" />
         <setting type="sep" label="" />
         <setting type="lsep" label="F4mProxy is slightly better" />

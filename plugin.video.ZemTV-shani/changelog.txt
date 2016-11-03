@@ -1,3 +1,9 @@
+[B]Version 5.8.9[/B]
+Icon moved to offshorepastebin, thanks again androjohn@tva
+[B]Version 5.8.8[/B]
+Icon updated
+[B]Version 5.8.7[/B]
+UniTV Fixed
 [B]Version 5.8.6[/B]
 etv fix
 [B]Version 5.8.5[/B]

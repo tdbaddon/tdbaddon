@@ -47,16 +47,7 @@ DIRECT_CHANNELS = {"Awards & Concerts":{"iconimage":"Awards.jpg",
  
 LIVE_CHANNELS = {"9XM":{"iconimage":"http://www.lyngsat.com/logo/tv/num/9x_music.png|Referer=http://www.lyngsat.com/",
                         "channelType": "IND",
-                        "channelUrl": "http://d2ckk42trw29cy.cloudfront.net/9xmedia/ngrp:9xmusic_all/playlist.m3u8"},
-                 "9X Jalwa":{"iconimage":"http://www.lyngsat.com/logo/tv/num/9x_jalwa.png|Referer=http://www.lyngsat.com/",
-                             "channelType": "IND",
-                             "channelUrl": "http://dls96d52aauuo.cloudfront.net/9xmedia/ngrp:9xjalwa_all/playlist.m3u8"},
-                 "9x Tashan":{"iconimage":"http://www.lyngsat.com/logo/tv/num/9x_tashan.png|Referer=http://www.lyngsat.com/",
-                              "channelType": "IND",
-                              "channelUrl": "http://dhkvssi8he6y9.cloudfront.net/9xmedia/ngrp:9xtashan_all/playlist.m3u8"},
-                 "9x Jhakaas":{"iconimage":"http://www.lyngsat.com/logo/tv/num/9x_jhakaas.png|Referer=http://www.lyngsat.com/",
-                              "channelType": "IND",
-                              "channelUrl": "http://d20rca8w7x9af9.cloudfront.net/9xmedia/ngrp:9xjhakaas_all/playlist.m3u8"},
+                        "channelUrl": "http://ind28-lh.akamaihd.net/i/ind28_9xm@424619/master.m3u8"},
                  "IBN7": {"iconimage":"http://www.lyngsat.com/logo/tv/ii/ibn7.png|Referer=http://www.lyngsat.com/",
                           "channelType": "IND",
                           "channelUrl": "http://ibn7_hls-lh.akamaihd.net/i/ibn7_hls_n_1@174951/index_3_av-b.m3u8?sd=10&play-only=backup&rebase=on"},
@@ -74,7 +65,7 @@ LIVE_CHANNELS = {"9XM":{"iconimage":"http://www.lyngsat.com/logo/tv/num/9x_music
                               "channelUrl": "http://ndtv.live-s.cdn.bitgravity.com/cdn-live-b3/_definst_/ndtv/live/ndtvgoodtime.smil/playlist.m3u8"}
                  }
 
-BASE_WSITE_URL = base64.b64decode('aHR0cDovL3d3dy5kZXNpdHZib3gubWU=')
+BASE_WSITE_URL = base64.b64decode('aHR0cDovL3d3dy5kZXNpdHZib3gubmV0')
     
 def check_cache(req_attrib, modelMap):
     logging.getLogger().debug('DTB - Check cache ***********************')

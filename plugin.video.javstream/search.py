@@ -83,11 +83,14 @@ def getSearch():
     return items
     
 def addSearch(keyword):
-    dbcon=database.connect(dbFile)
-    dbcur=dbcon.cursor()
-    dbcur.execute("INSERT INTO search (search_term) VALUES (?)", (keyword,))
-    dbcon.commit()
-    dbcon.close()
+    try:
+        dbcon=database.connect(dbFile)
+        dbcur=dbcon.cursor()
+        dbcur.execute("INSERT INTO search (search_term) VALUES (?)", (keyword,))
+        dbcon.commit()
+        dbcon.close()
+    except:
+        pass
     
 def removeSearch(params):
     dbcon=database.connect(dbFile)

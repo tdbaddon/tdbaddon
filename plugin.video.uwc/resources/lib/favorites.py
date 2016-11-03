@@ -23,6 +23,9 @@ import xbmcplugin
 from resources.lib import utils
 from sites.chaturbate import clean_database as cleanchat
 from sites.cam4 import clean_database as cleancam4
+from sites.camsoda import clean_database as cleansoda
+from sites.naked import clean_database as cleannaked
+
 
 dialog = utils.dialog
 favoritesdb = utils.favoritesdb
@@ -43,6 +46,8 @@ def List():
     if utils.addon.getSetting("chaturbate") == "true":
         cleanchat(False)
         cleancam4(False)
+        cleansoda(False)
+        cleannaked(False)
     conn = sqlite3.connect(favoritesdb)
     conn.text_factory = str
     c = conn.cursor()

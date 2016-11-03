@@ -3,6 +3,8 @@
     <string id="30003">Auto-refresh Webcam images</string>
     <string id="30004">Paradisehill -> Play all parts (no download)</string>
     <string id="30005">Use video thumbnail for poster/fanart</string>
+    <string id="30006">Enabled</string>
+    <string id="30007">Disabled</string>
     <string id="30011">Select Sort method for Scenes</string>
     <string id="30012">Latest</string>
     <string id="30013">Top rated</string>
@@ -16,5 +18,9 @@
     <string id="30101">Direct</string>
     <string id="30102">F4mProxy</string>
     <string id="30103">RTMP</string>
-    
+    <string id="30110">Enable/Disable different sections</string>
+    <string id="30111">Female</string>
+    <string id="30112">Male</string>
+    <string id="30113">Couple</string>
+    <string id="30114">Trans</string>
 </strings>

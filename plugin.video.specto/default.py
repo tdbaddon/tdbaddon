@@ -267,6 +267,8 @@ elif action == 'calendar':
 elif action == 'tvWidget':
     from resources.lib.indexers import episodes
     episodes.episodes().widget()
+    #episodes.episodes().calendar(url)
+
 
 elif action == 'episodeFavourites':
     from resources.lib.indexers import episodes
@@ -385,4 +387,6 @@ elif action == 'clearSources':
     from resources.lib.sources import sources
     sources().clearSources()
 
-
+elif action == 'loguploader':
+    from resources.lib.libraries import loguploader
+    loguploader.Luguploader()

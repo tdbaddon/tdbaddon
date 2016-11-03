@@ -8,7 +8,7 @@
         <setting type="lsep" label="20005" />
         <setting id="proxy" type="bool" label="20004" default="false" />
         <setting type="lsep" label="20009" />
-        <setting id="timeout" type="number" label="20010" default="10" />
+        <setting id="timeout" type="number" label="20010" default="20" />
         <setting type="lsep" label="20007" />
         <setting id="vidview" type="number" label="20008" default="50" />
     </category>
@@ -37,22 +37,23 @@
         <setting id="40dinojav" type="bool" label="40012" default="true"/>
         <setting id="40dodova" type="bool" label="40006" default="true"/>
         <setting id="40dojav69" type="bool" label="40038" default="true" />
-        <setting id="40eropoi" type="bool" label="40027" default="true" />
-        <setting id="40freepornxxx" type="bool" label="40044" default="true"/>
+        <setting id="40freevideopornxxx" type="bool" label="40044" default="true"/>
+        <setting id="40freejav" type="bool" label="40063" default="true"/>
+        <setting id="40gaimup" type="bool" label="40069" default="false"/>
         <setting id="40gravuregirlz" type="bool" label="40046" default="true"/>
         <setting id="40hentaidream" type="bool" label="40007" default="true"/>
         <setting id="40hjav5278" type="bool" label="40041" default="true"/>
         <setting id="40idolportal" type="bool" label="40054" default="false" />
-        <setting id="40ikujav" type="bool" label="40016" default="false"/>
         <setting id="40ivhunter" type="bool" label="40002" default="false"/>
+        <setting id="40jav18" type="bool" label="40066" default="true"/>
         <setting id="40jav4k" type="bool" label="40020" default="true"/>
-        <setting id="40jav69" type="bool" label="40008" default="true"/>
         <setting id="40jav-720p" type="bool" label="40059" default="true" />
         <setting id="40jav720p" type="bool" label="40028" default="true" />
         <setting id="40javabc" type="bool" label="40033" default="true" />
         <setting id="40javbest" type="bool" label="40045" default="true" />
         <setting id="40javcuteonline" type="bool" label="40058" default="true" />
         <setting id="40javeu" type="bool" label="40023" default="true" />
+        <setting id="40javgo" type="bool" label="40068" default="true" />
         <setting id="40javhdfree" type="bool" label="40037" default="true" />
         <setting id="40javhdonline" type="bool" label="40003" default="true"/>
         <setting id="40javhdvideo" type="bool" label="40034" default="true" />
@@ -61,36 +62,31 @@
         <setting id="40javlabels" type="bool" label="40018" default="true"/>
         <setting id="40javleak" type="bool" label="40048" default="true"/>
         <setting id="40javlinks" type="bool" label="40005" default="true"/>
+        <setting id="40javocado" type="bool" label="40064" default="true"/>
         <setting id="40jav-onlines" type="bool" label="40022" default="true"/>
-        <setting id="40javportal" type="bool" label="40043" default="true"/>
         <setting id="40javseen" type="bool" label="40015" default="true"/>
         <setting id="40javsex" type="bool" label="40035" default="true" />
-        <setting id="40javshow" type="bool" label="40026" default="true" />
         <setting id="40javst" type="bool" label="40017" default="true"/>
-        <setting id="40javstream365" type="bool" label="40032" default="true" />
         <setting id="40javstreamclub" type="bool" label="40061" default="true" />
         <setting id="40jav-stream" type="bool" label="40014" default="true"/>
         <setting id="40javstreams" type="bool" label="40030" default="true" />
         <setting id="40javtubehd" type="bool" label="40051" default="true" />
         <setting id="40javtv" type="bool" label="40031" default="true" />
-        <setting id="40javwest" type="bool" label="40011" default="true"/>
-        <setting id="40javzab" type="bool" label="40050" default="true"/>
+        <setting id="40javus" type="bool" label="40067" default="true"/>
         <setting id="40jpav" type="bool" label="40040" default="true"/>
         <setting id="40jpidols" type="bool" label="40036" default="true" />
         <setting id="40kodporn" type="bool" label="40052" default="true" />
         <setting id="40koleksijav" type="bool" label="40060" default="true" />
-        <setting id="40korean720" type="bool" label="40029" default="true" />
-        <setting id="43planetjav" type="bool" label="40055" default="true" />
+        <setting id="40planetjav" type="bool" label="40055" default="true" />
+        <setting id="40popjav" type="bool" label="40065" default="true" />
 		<setting id="40sexloading" type="bool" label="40001" default="true"/>
         <setting id="40streamingjav" type="bool" label="40009" default="true"/>
         <setting id="40streamjavporn" type="bool" label="40057" default="true" />
-        <setting id="40terlarang" type="bool" label="40019" default="true"/>
         <setting id="40top1porn" type="bool" label="40013" default="true"/>
         <setting id="40tubebo" type="bool" label="40042" default="true"/>
-        <setting id="40phimsexjav" type="bool" label="40010" default="true"/>
 		<setting id="40watchjavonline" type="bool" label="40004" default="true"/>
+        <setting id="40xonline" type="bool" label="40062" default="true" />
         <setting id="40yebbun90" type="bool" label="40024" default="false" />
-        <setting id="40youjav" type="bool" label="40053" default="false" />
         <setting id="40youpornjav" type="bool" label="40025" default="true" />
         <setting id="40ytbsexclub" type="bool" label="40056" default="true" />
 	</category>
@@ -100,22 +96,23 @@
         <setting id="41dinojav" type="bool" label="40012" default="true"/>
         <setting id="41dodova" type="bool" label="40006" default="true"/>
         <setting id="41dojav69" type="bool" label="40038" default="true" />
-        <setting id="41eropoi" type="bool" label="40027" default="true" />
-        <setting id="41freepornxxx" type="bool" label="40044" default="true"/>
+        <setting id="41freevideopornxxx" type="bool" label="40044" default="true"/>
+        <setting id="41freejav" type="bool" label="40063" default="true"/>
+        <setting id="41gaimup" type="bool" label="40069" default="true"/>
         <setting id="41gravuregirlz" type="bool" label="40046" default="false"/>
         <setting id="41hentaidream" type="bool" label="40007" default="true"/>
         <setting id="41hjav5278" type="bool" label="40041" default="true"/>
         <setting id="41idolportal" type="bool" label="40054" default="false" />
-        <setting id="41ikujav" type="bool" label="40016" default="false"/>
         <setting id="41ivhunter" type="bool" label="40002" default="false"/>
+        <setting id="41jav18" type="bool" label="40066" default="true"/>
         <setting id="41jav4k" type="bool" label="40020" default="true"/>
-        <setting id="41jav69" type="bool" label="40008" default="true"/>
         <setting id="41jav-720p" type="bool" label="40059" default="false" />
-        <setting id="41jav720p" type="bool" label="40028" default="true" />
+        <setting id="41jav720p" type="bool" label="40028" default="false" />
         <setting id="41javabc" type="bool" label="40033" default="false" />
         <setting id="41javbest" type="bool" label="40045" default="false" />
         <setting id="41javcuteonline" type="bool" label="40058" default="true" />
         <setting id="41javeu" type="bool" label="40023" default="true" />
+        <setting id="41javgo" type="bool" label="40068" default="true" />
         <setting id="41javhdfree" type="bool" label="40037" default="true" />
         <setting id="41javhdonline" type="bool" label="40003" default="true"/>
         <setting id="41javhdvideo" type="bool" label="40034" default="false" />
@@ -124,36 +121,31 @@
         <setting id="41javlabels" type="bool" label="40018" default="true"/>
         <setting id="41javleak" type="bool" label="40048" default="true"/>
         <setting id="41javlinks" type="bool" label="40005" default="true"/>
+        <setting id="41javocado" type="bool" label="40064" default="false"/>
         <setting id="41jav-onlines" type="bool" label="40022" default="true"/>
-        <setting id="41javportal" type="bool" label="40043" default="true"/>
         <setting id="41javseen" type="bool" label="40015" default="true"/>
         <setting id="41javsex" type="bool" label="40035" default="false" />
-        <setting id="41javshow" type="bool" label="40026" default="true" />
         <setting id="41javst" type="bool" label="40017" default="false"/>
-        <setting id="41javstream365" type="bool" label="40032" default="true" />
         <setting id="41javstreamclub" type="bool" label="40061" default="true" />
         <setting id="41jav-stream" type="bool" label="40014" default="true"/>
         <setting id="41javstreams" type="bool" label="40030" default="false" />
         <setting id="41javtubehd" type="bool" label="40051" default="true" />
         <setting id="41javtv" type="bool" label="40031" default="false" />
-        <setting id="41javwest" type="bool" label="40011" default="true"/>
-        <setting id="41javzab" type="bool" label="40050" default="true"/>
+        <setting id="41javus" type="bool" label="40067" default="true"/>
         <setting id="41jpav" type="bool" label="40040" default="true"/>
-        <setting id="4jpidols" type="bool" label="40036" default="true" />
+        <setting id="41jpidols" type="bool" label="40036" default="true" />
         <setting id="41kodporn" type="bool" label="40052" default="false" />
         <setting id="41koleksijav" type="bool" label="40060" default="false" />
-        <setting id="41korean720" type="bool" label="40029" default="true" />
         <setting id="41planetjav" type="bool" label="40055" default="false" />
+        <setting id="41popjav" type="bool" label="40065" default="true" />
 		<setting id="41sexloading" type="bool" label="40001" default="true"/>
-        <setting id="41streamingjav" type="bool" label="40009" default="true"/>
+        <setting id="41streamjav" type="bool" label="40009" default="true"/>
         <setting id="41streamjavporn" type="bool" label="40057" default="false" />
-        <setting id="41terlarang" type="bool" label="40019" default="true"/>
-        <setting id="41top1porn" type="bool" label="40013" default="true"/>
+        <setting id="41top1porn" type="bool" label="40013" default="false"/>
         <setting id="41tubebo" type="bool" label="40042" default="false"/>
-        <setting id="41phimsexjav" type="bool" label="40010" default="true"/>
 		<setting id="41watchjavonline" type="bool" label="40004" default="true"/>
+        <setting id="41xonline" type="bool" label="40062" default="true" />
         <setting id="41yebbun90" type="bool" label="40024" default="false" />
-        <setting id="41youjav" type="bool" label="40053" default="true" />
         <setting id="41youpornjav" type="bool" label="40025" default="false" />
         <setting id="41ytbsexclub" type="bool" label="40056" default="true" />
 	</category>
@@ -163,22 +155,23 @@
 		<setting id="42dinojav" type="bool" label="40012" default="false"/>
         <setting id="42dodova" type="bool" label="40006" default="false"/>
         <setting id="42dojav69" type="bool" label="40038" default="false" />
-        <setting id="42eropoi" type="bool" label="40027" default="false" />
-        <setting id="42freepornxxx" type="bool" label="40044" default="false"/>
+        <setting id="42freevideopornxxx" type="bool" label="40044" default="false"/>
+        <setting id="42freejav" type="bool" label="40063" default="false"/>
+        <setting id="42gaimup" type="bool" label="40069" default="false"/>
         <setting id="42gravuregirlz" type="bool" label="40046" default="true"/>
         <setting id="42hentaidream" type="bool" label="40007" default="false"/>
         <setting id="42hjav5278" type="bool" label="40041" default="true"/>
         <setting id="42idolportal" type="bool" label="40054" default="true" />
-        <setting id="42ikujav" type="bool" label="40016" default="false"/>
         <setting id="42ivhunter" type="bool" label="40002" default="true"/>
+        <setting id="42jav18" type="bool" label="40066" default="false"/>
         <setting id="42jav4k" type="bool" label="40020" default="false"/>
-        <setting id="42jav69" type="bool" label="40008" default="false"/>
         <setting id="42jav-720p" type="bool" label="40059" default="false" />
         <setting id="42jav720p" type="bool" label="40028" default="false" />
         <setting id="42javabc" type="bool" label="40033" default="false" />
         <setting id="42javbest" type="bool" label="40045" default="false" />
         <setting id="42javcuteonline" type="bool" label="40058" default="false" />
         <setting id="42javeu" type="bool" label="40023" default="true" />
+        <setting id="42javgo" type="bool" label="40068" default="true" />
         <setting id="42javhdfree" type="bool" label="40037" default="false" />
         <setting id="42javhdonline" type="bool" label="40003" default="true"/>
         <setting id="42javhdvideo" type="bool" label="40034" default="false" />
@@ -187,36 +180,31 @@
         <setting id="42javlabels" type="bool" label="40018" default="false"/>
         <setting id="42javleak" type="bool" label="40048" default="false"/>
         <setting id="42javlinks" type="bool" label="40005" default="false"/>
+        <setting id="42javocado" type="bool" label="40064" default="false"/>
         <setting id="42jav-onlines" type="bool" label="40022" default="false"/>
-        <setting id="42javportal" type="bool" label="40043" default="true"/>
         <setting id="42javseen" type="bool" label="40015" default="false"/>
         <setting id="42javsex" type="bool" label="40035" default="false" />
-        <setting id="42javshow" type="bool" label="40026" default="false" />
         <setting id="42javst" type="bool" label="40017" default="false"/>
-        <setting id="42javstream365" type="bool" label="40032" default="false" />
         <setting id="42javstreamclub" type="bool" label="40061" default="true" />
         <setting id="42jav-stream" type="bool" label="40014" default="false"/>
         <setting id="42javstreams" type="bool" label="40030" default="false" />
         <setting id="42javtubehd" type="bool" label="40051" default="false" />
         <setting id="42javtv" type="bool" label="40031" default="false" />
-        <setting id="42javwest" type="bool" label="40011" default="false"/>
-        <setting id="42javzab" type="bool" label="40050" default="false"/>
+        <setting id="42javus" type="bool" label="40067" default="false"/>
         <setting id="42jpav" type="bool" label="40040" default="false"/>
         <setting id="42jpidols" type="bool" label="40036" default="true" />
         <setting id="42kodporn" type="bool" label="40052" default="false" />
         <setting id="42koleksijav" type="bool" label="40060" default="false" />
-        <setting id="42korean720" type="bool" label="40029" default="false" />
         <setting id="42planetjav" type="bool" label="40055" default="false" />
+        <setting id="42popjav" type="bool" label="40065" default="false" />
 		<setting id="42sexloading" type="bool" label="40001" default="false"/>
-        <setting id="42streamingjav" type="bool" label="40009" default="false"/>
+        <setting id="42streamjav" type="bool" label="40009" default="false"/>
         <setting id="42streamjavporn" type="bool" label="40057" default="false" />
-        <setting id="421terlarang" type="bool" label="40019" default="true"/>
         <setting id="42top1porn" type="bool" label="40013" default="false"/>
         <setting id="42tubebo" type="bool" label="40042" default="false"/>
-        <setting id="42phimsexjav" type="bool" label="40010" default="false"/>
 		<setting id="42watchjavonline" type="bool" label="40004" default="true"/>
+        <setting id="42xonline" type="bool" label="40062" default="false" />
         <setting id="42yebbun90" type="bool" label="40024" default="false" />
-        <setting id="42youjav" type="bool" label="40053" default="false" />
         <setting id="42youpornjav" type="bool" label="40025" default="false" />
         <setting id="42ytbsexclub" type="bool" label="40056" default="false" />
     </category>
@@ -226,22 +214,23 @@
         <setting id="43dinojav" type="bool" label="40012" default="true"/>
         <setting id="43dodova" type="bool" label="40006" default="true"/>
         <setting id="43dojav69" type="bool" label="40038" default="true" />
-        <setting id="43eropoi" type="bool" label="40027" default="true" />
-        <setting id="43freepornxxx" type="bool" label="40044" default="true"/>
+        <setting id="43freevideopornxxx" type="bool" label="40044" default="true"/>
+        <setting id="43freejav" type="bool" label="40063" default="true"/>
+        <setting id="43gaimup" type="bool" label="40069" default="true"/>
         <setting id="43gravuregirlz" type="bool" label="40046" default="true"/>
         <setting id="43hentaidream" type="bool" label="40007" default="true"/>
         <setting id="43hjav5278" type="bool" label="40041" default="true"/>
         <setting id="43idolportal" type="bool" label="40054" default="true" />
-        <setting id="43ikujav" type="bool" label="40016" default="true"/>
         <setting id="43ivhunter" type="bool" label="40002" default="true"/>
-        <setting id="431jav4k" type="bool" label="40020" default="true"/>
-        <setting id="43jav69" type="bool" label="40008" default="true"/>
+        <setting id="43jav18" type="bool" label="40066" default="true"/>
+        <setting id="43jav4k" type="bool" label="40020" default="true"/>
         <setting id="43jav-720p" type="bool" label="40059" default="true" />
         <setting id="43jav720p" type="bool" label="40028" default="true" />
         <setting id="43javabc" type="bool" label="40033" default="true" />
         <setting id="43javbest" type="bool" label="40045" default="true" />
         <setting id="43javcuteonline" type="bool" label="40058" default="true" />
         <setting id="43javeu" type="bool" label="40023" default="true" />
+        <setting id="43javgo" type="bool" label="40068" default="true" />
         <setting id="43javhdfree" type="bool" label="40037" default="true" />
         <setting id="43javhdonline" type="bool" label="40003" default="true"/>
         <setting id="43javhdvideo" type="bool" label="40034" default="true" />
@@ -250,36 +239,31 @@
         <setting id="43javlabels" type="bool" label="40018" default="true"/>
         <setting id="43javleak" type="bool" label="40048" default="true"/>
         <setting id="43javlinks" type="bool" label="40005" default="true"/>
+        <setting id="43javocado" type="bool" label="40064" default="true"/>
         <setting id="43jav-onlines" type="bool" label="40022" default="true"/>
-        <setting id="43javportal" type="bool" label="40043" default="true"/>
         <setting id="43javseen" type="bool" label="40015" default="true"/>
         <setting id="43javsex" type="bool" label="40035" default="true" />
-        <setting id="43javshow" type="bool" label="40026" default="true" />
         <setting id="43javst" type="bool" label="40017" default="true"/>
-        <setting id="43javstream365" type="bool" label="40032" default="true" />
         <setting id="43javstreamclub" type="bool" label="40061" default="true" />
         <setting id="43jav-stream" type="bool" label="40014" default="true"/>
         <setting id="43javstreams" type="bool" label="40030" default="true" />
         <setting id="43javtubehd" type="bool" label="40051" default="true" />
         <setting id="43javtv" type="bool" label="40031" default="true" />
-        <setting id="43javwest" type="bool" label="40011" default="true"/>
-        <setting id="43javzab" type="bool" label="40050" default="true"/>
+        <setting id="43javus" type="bool" label="40067" default="true"/>
         <setting id="43jpav" type="bool" label="40040" default="true"/>
         <setting id="43jpidols" type="bool" label="40036" default="true" />
         <setting id="43kodporn" type="bool" label="40052" default="true" />
         <setting id="41koleksijav" type="bool" label="40060" default="true" />
-        <setting id="43korean720" type="bool" label="40029" default="true" />
 		<setting id="43planetjav" type="bool" label="40055" default="true" />
+        <setting id="43popjav" type="bool" label="40065" default="true" />
         <setting id="43sexloading" type="bool" label="40001" default="true"/>
-        <setting id="43streamingjav" type="bool" label="40009" default="true"/>
+        <setting id="43streamjav" type="bool" label="40009" default="true"/>
         <setting id="43streamjavporn" type="bool" label="40057" default="true" />
-        <setting id="43terlarang" type="bool" label="40019" default="true"/>
         <setting id="43top1porn" type="bool" label="40013" default="true"/>
         <setting id="43tubebo" type="bool" label="40042" default="true"/>
-        <setting id="43phimsexjav" type="bool" label="40010" default="true"/>
 		<setting id="43watchjavonline" type="bool" label="40004" default="true"/>
+        <setting id="43xonline" type="bool" label="40062" default="true" />
         <setting id="43yebbun90" type="bool" label="40024" default="true" />
-        <setting id="43youjav" type="bool" label="40053" default="true" />
         <setting id="43youpornjav" type="bool" label="40025" default="true" />
         <setting id="43ytbsexclub" type="bool" label="40056" default="true" />
     </category>

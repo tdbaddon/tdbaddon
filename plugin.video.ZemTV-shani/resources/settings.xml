@@ -13,9 +13,9 @@
           <setting type="sep"/>
 		<setting label="32022" type="bool"   id="isYellowOff" default="false"/>
         <setting label="32026" type="bool"   id="isv3Off" default="false"/>
-        <setting label="32027" type="bool"   id="isv5Off" default="false"/>
+        <setting label="32027" type="bool"   id="isv5Off" default="true" enable="false"/>
         <setting label="32028" type="bool"   id="isv6Off" default="false"/>
-        <setting label="32029" type="bool"   id="isv7Off" default="false"/>        
+        <setting label="32029" type="bool"   id="isv7Off" default="true" enable="false"/>        
         <setting label="32030" type="bool"   id="isv8Off" default="false"/>    
         <setting label="32032" type="bool"   id="isdittoOff" default="false"/>    
         <setting label="32033" type="bool"   id="isCFOff" default="false"/>    

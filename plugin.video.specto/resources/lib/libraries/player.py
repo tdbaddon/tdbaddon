@@ -50,7 +50,6 @@ class player(xbmc.Player):
         except: pass
         item.setProperty('Video', 'true')
         item.setProperty('IsPlayable', 'true')
-        item.setProperty('IMDBNumber', imdb)
         control.player.play(url, item)
 
         for i in range(0, 240):

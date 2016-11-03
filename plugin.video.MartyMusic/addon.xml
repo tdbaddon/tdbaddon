@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="plugin.video.MartyMusic"
        name="Marty Music"
-       version="1.00"
+       version="1001"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>

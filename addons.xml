@@ -948,7 +948,7 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
     </extension>
 </addon>
 
-<addon id="plugin.video.EliteIptv" name="EliteTvIptv" version="2.1.3" provider-name="EliteTv">
+<addon id="plugin.video.EliteIptv" name="EliteTvIptv" version="2.1.4" provider-name="EliteTv">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
   </requires>
@@ -1434,7 +1434,7 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
 	</extension>
 </addon>
 
-<addon id="plugin.video.javstream" name="JAVStream" version="0.92" provider-name="ptom">
+<addon id="plugin.video.javstream" name="JAVStream" version="0.92.3" provider-name="ptom">
 	<extension point="xbmc.python.pluginsource" library="default.py">
 		<provides>video</provides>
 	</extension>
@@ -1445,6 +1445,25 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
 	<extension point="xbmc.addon.metadata">
 		<summary lang="en">JavStream</summary>
 		<description lang="en">[COLOR yellow]Jav Stream[/COLOR] - Bringing JAV to Kodi! For all your Japanese AV Idol and Gravure Idol needs! Pulling streams from the most popular JAV websites.</description>
+        <news>JAVStream v0.92.3(31st October 2016)
+- Fixed issue so status dialog reflects the correct amount of sites processed
+- Fixed issue stopping JAVHDFree, Jav-Stream, StreamJavPorn, JPIdols, StreamingJAV displaying results
+- Fixed bug which caused infinite loop if canceling a search
+- Fixed bug that stopped search results showing if term had already been searched for
+- Fixed bug that stopped sources list showing for some videos
+- Fixed issue from JAV4K from displaying results in search
+- Fixed Flashx playback (still needs 100%)
+- Fixed Kodi17 bug that would cause Source Search dialog to appear again over the playing video
+- Fixed error which caused translation to crash when over quota
+- Rewrote uncensored code for all providers to display more results
+- Rewrote video sources to be ordered by qualtiy first
+- Added Xonline, FreeJav, Javocado, Popjav, Jav18, JAVUS, JAVGo, GAIMUP
+- Added support for BigFile, vidto.me, RapidVideo, qwertycdn playback
+- Up'd default timeout from 10 seconds to 20 seconds
+- Removed EroPoi, JAV69, JavShow, IkuJAV, JAVStream365, JAVWest, JavZab, Korean720, PhimSexJav, Terlarng, YouJAV
+- Temprarily taken off JavPortal, fix in next update</news>
+        <forum>https://forums.tvaddons.ag/addon-releases/50629-jav-stream-japanese-xxx-adult-plugin-av-gravure-idol-streams.html</forum>
+        <website>http://www.ptom.co.uk</website>
 		<platform>all</platform>
 		<language>en</language>
 		<email>ptom98@gmail.com</email>
@@ -1535,7 +1554,7 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
 
 <addon id="plugin.video.MartyMusic"
        name="Marty Music"
-       version="1.00"
+       version="1001"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -2192,7 +2211,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2016.10.28.3" provider-name="mrknow" >
+<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2016.11.1.1" provider-name="mrknow" >
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.requests" version="1.0.0" />
@@ -2541,7 +2560,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.tvondesizonexl" name="TV on DESI ZONE" version="2.8.18"
+<addon id="plugin.video.tvondesizonexl" name="TV on DESI ZONE" version="2.8.20"
 	provider-name="ajdeveloped/jchirag">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
@@ -2671,7 +2690,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.uwc"
        name="Ultimate Whitecream"
-       version="1.1.43"
+       version="1.1.44"
        provider-name="mortael">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
@@ -2931,7 +2950,7 @@ For support, visit: [COLOR hotpink]http://bit.ly/uwc-support[/COLOR]</descriptio
 
 <addon id="plugin.video.ZemTV-shani"
        name="Zem"
-       version="5.8.6"
+       version="5.8.9"
        provider-name="shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -4041,7 +4060,7 @@ For support, visit: [COLOR hotpink]http://bit.ly/uwc-support[/COLOR]</descriptio
 	</extension>
 </addon>
 
-<addon id="script.mrknow.urlresolver" name="Mrknow URLResolver" version="2016.10.28.1" provider-name="mrknow" >
+<addon id="script.mrknow.urlresolver" name="Mrknow URLResolver" version="2016.11.1.2" provider-name="mrknow" >
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 	</requires>

@@ -136,7 +136,7 @@ def INDEXW():
 
 @utils.url_dispatcher.register('3')    
 def INDEXH():
-    utils.addDir('[COLOR hotpink]Hentaicraving[/COLOR]','http://www.hentaicraving.com/?genre=Uncensored',30,os.path.join(imgDir, 'hc.jpg'),'')
+    #utils.addDir('[COLOR hotpink]Hentaicraving[/COLOR]','http://www.hentaicraving.com/?genre=Uncensored',30,os.path.join(imgDir, 'hc.jpg'),'')
     utils.addDir('[COLOR hotpink]Hentaihaven[/COLOR]','http://hentaihaven.org/?sort=date',460,os.path.join(imgDir, 'hh.png'),'')
     xbmcplugin.endOfDirectory(utils.addon_handle, cacheToDisc=False)    
 

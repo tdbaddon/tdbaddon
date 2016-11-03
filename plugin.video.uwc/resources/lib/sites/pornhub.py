@@ -43,10 +43,14 @@ def List(url):
     except:
         utils.notify('Oh oh','It looks like this website is down.')
         return None
-    match = re.compile('<li class="videoblock.+?<a href="([^"]+)" title="([^"]+)".+?<var class="duration">([^<]+)<.*?data-mediumthumb="([^"]+)"', re.DOTALL).findall(listhtml)
-    for videopage, name, duration, img in match:
+    match = re.compile('<li class="videoblock.+?<a href="([^"]+)" title="([^"]+)".+?<var class="duration">([^<]+)</var>(.*?)</div.*?data-mediumthumb="([^"]+)"', re.DOTALL).findall(listhtml)
+    for videopage, name, duration, hd, img in match:
+        if hd.find('HD') > 0:
+            hd = " [COLOR orange]HD[/COLOR] "
+        else:
+            hd = " "            
         name = utils.cleantext(name)
-        name = name + " [COLOR deeppink]" + duration + "[/COLOR]"
+        name = name + hd + "[COLOR deeppink]" + duration + "[/COLOR]"
         utils.addDownLink(name, 'http://www.pornhub.com' + videopage, 392, img, '')
     try:
         nextp=re.compile('<li class="page_next"><a href="(.+?)" class="orangeButton">Next</a></li>', re.DOTALL).findall(listhtml)
@@ -82,8 +86,19 @@ def Categories(url):
 @utils.url_dispatcher.register('392', ['url', 'name'], ['download'])    
 def Playvid(url, name, download=None):
     html = utils.getHtml(url, '')
-    videourl = re.compile("var player_quality_.+? = '(.+?)'").findall(html)
-    videourl = videourl[-1]
+    match = re.compile(r"var player_quality_(\w+) = '([^']+)'", re.DOTALL | re.IGNORECASE).findall(html)
+    for quality, vidurl in match:
+        if '1080' in quality:
+            videourl = vidurl
+            break
+        elif '720' in quality:
+            videourl = vidurl
+            break
+        elif '480' in quality:
+            videourl = vidurl
+            break
+        else:
+            videourl = vidurl
     if download == 1:
         utils.downloadVideo(videourl, name)
     else:    

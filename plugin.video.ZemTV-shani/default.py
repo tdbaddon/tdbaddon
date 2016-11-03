@@ -454,11 +454,11 @@ def AddSports(url):
     addDir('Pi sports' ,'sss',71,'')
     addDir('Mona' ,'sss',68,'')
     addDir('Sport365.live' ,'sss',56,'http://s1.medianetworkinternational.com/images/icons/256x256px.png')
-    addDir('SmartCric.com (Live matches only)' ,'Live' ,14,'')
+    addDir('SmartCric.com (Live matches only)' ,'Live' ,14,'http://cdn.smartcric.com/images/logo.png')
     addDir('UKTVNow [Limited Channels]','sss' ,57,'http://www.uktvnow.net/images/uktvnow_logo.png')
     
 #    addDir('Flashtv.co (Live Channels)' ,'flashtv' ,31,'')
-    addDir('Willow.Tv (Subscription required, US Only or use VPN)' ,base64.b64decode('aHR0cDovL3d3dy53aWxsb3cudHYv') ,19,'')
+    addDir('Willow.Tv (Subscription required, US Only or use VPN)' ,base64.b64decode('aHR0cDovL3d3dy53aWxsb3cudHYv') ,19,'http://aimages.willow.tv/WillowLogoYT.png')
     #addDir(base64.b64decode('U3VwZXIgU3BvcnRz') ,'sss',34,'')
     addDir('My Sports' ,'sss',82,'')
     addDir('PV2 Sports' ,'zemsports',36,'')
@@ -716,6 +716,7 @@ def AddPv2Sports(url):
     for source in sources.findall('items'):
         if source.findtext('programCategory').lower() in url or source.findtext('programCategory') in url:
             cname=source.findtext('programTitle')
+            if cname.lower().startswith('high alert'): continue
             cid=source.findtext('programURL')
             cimage=source.findtext('programImage')
             seq=cname
@@ -3352,8 +3353,9 @@ def getFastTVChannels(cat,sports=False):
                 else:
                     curl='fast:'+ss["channel_url"]
                 cimage=ss["channel_thumbnail"]
-                if not cimage.startswith(''):
-                    cimage+=base64.b64decode('aHR0cDovL3N3aWZ0c3RyZWFtei5jb20vU3dpZnRTdHJlYW0vaW1hZ2VzL3RodW1icy8=')+cimage
+                
+                if not cimage.startswith('http'):
+                    cimage=base64.b64decode('aHR0cDovL3N3aWZ0c3RyZWFtei5jb20vU3dpZnRTdHJlYW0vaW1hZ2VzL3RodW1icy8=')+cimage
                 
                 if len([i for i, x in enumerate(ret) if x[2] ==curl ])==0:                    
                     ret.append((cname + (' fast' if not sports else ''),'manual', curl ,cimage))   
@@ -3649,6 +3651,7 @@ def getWTVChannels(categories, forSports=False):
 
                 ss=source
                 cname=ss["channelName"]
+                if cname.lower().startswith('ant man'): continue
                 #print cname
                 if 'ebound.tv' in ss["channelLink"]:
                     curl='ebound2:'+ss["channelLink"].replace(':1935','')
@@ -3656,7 +3659,8 @@ def getWTVChannels(categories, forSports=False):
                     curl='direct2:'+ss["channelLink"]
                     if ss["channelLink"].startswith('http'): curl+='|User-Agent=AppleCoreMedia/1.0.0.13A452 (iPhone; U; CPU OS 9_0_2 like Mac OS X; en_gb)' 
 
-                cimage=ss["categoryImageLink"]
+                #cimage=ss["categoryImageLink"]
+                cimage='http://shani.offshorepastebin.com/ZemLogos/%s.png'%cname.lower().replace(' ','')
                 
                 if len([i for i, x in enumerate(ret) if x[2] ==curl ])==0:                    
                     #print cname
@@ -3752,14 +3756,15 @@ def getUniTVChannels(categories, forSports=False):
 
                 ss=source
                 cname=ss["channelName"]
-                #print cname
+                #print ss
                 if 'ebound.tv' in ss["channelLink"]:
                     curl='ebound2:'+ss["channelLink"].replace(':1935','')
                     #print curl
                 else:
                     curl='direct2:'+ss["channelLink"]
                     if ss["channelLink"].startswith('http'): curl+='|User-Agent=AppleCoreMedia/1.0.0.13A452 (iPhone; U; CPU OS 9_0_2 like Mac OS X; en_gb)' 
-                cimage=ss["categoryImageLink"]
+                #cimage=ss["categoryImageLink"]
+                cimage='http://shani.offshorepastebin.com/ZemLogos/%s.png'%cname.lower().replace(' ','')
                 
                 if len([i for i, x in enumerate(ret) if x[2] ==curl ])==0:                    
                     #print cname
@@ -3990,7 +3995,8 @@ def getptcchannels(categories, forSports=False):
                         curl='ebound2:'+ss["url"].replace(':1935','')
                     else:
                         curl='ptc:'+ss["url"]
-                    cimage=ss["imgurl"]
+                    #cimage=ss["imgurl"]
+                    cimage='http://shani.offshorepastebin.com/ZemLogos/%s.png'%cname.lower().replace(' ','')
                     
                     if len([i for i, x in enumerate(ret) if x[2] ==curl  ])==0:                    
                         ret.append((cname +' v6' ,'manual', curl ,cimage))  
@@ -4182,34 +4188,34 @@ def AddChannelsFromOthers(cctype,eboundMatches=[],progress=None):
 
             match.append(('ETV Urdu','manual','etv',''))
             match.append(('Ary Zindagi (website)','manual',base64.b64decode('aHR0cDovL2xpdmUuYXJ5emluZGFnaS50di8='),base64.b64decode('aHR0cDovL3d3dy5hcnl6aW5kYWdpLnR2L3dwLWNvbnRlbnQvdXBsb2Fkcy8yMDE0LzEwL0ZpbmFsLWxvZ28tMi5naWY=')))
-            match.append(('Ary News (website)','manual',base64.b64decode('aHR0cDovL2xpdmUuYXJ5bmV3cy50di8='),base64.b64decode('aHR0cDovL2FyeW5ld3MudHYvZW4vd3AtY29udGVudC91cGxvYWRzLzIwMTQvMDYvZmluYWwuZ2lm')))
+            match.append(('Ary News (website)','manual',base64.b64decode('aHR0cDovL2xpdmUuYXJ5bmV3cy50di8='),'http://arynews.tv/en/wp-content/uploads/2016/10/arynewsfb-1.jpg'))
             match.append(('Ary Music (website)','manual',base64.b64decode('aHR0cDovL2xpdmUuYXJ5bXVzaWsudHYv'),base64.b64decode('aHR0cDovL2FyeW11c2lrLnR2L3dwLWNvbnRlbnQvdXBsb2Fkcy8yMDE0LzA4L2FyeW11c2lrLWxvZ28xLnBuZw==')))
             match.append(('Ary Digital (website)','manual',base64.b64decode('aHR0cDovL2xpdmUuYXJ5ZGlnaXRhbC50di8='),base64.b64decode('aHR0cDovL3d3dy5hcnlkaWdpdGFsLnR2L3dwLWNvbnRlbnQvdXBsb2Fkcy8yMDE0LzEyL2RpZ2l0YWwtbG9nby5naWY=')))
             match.append(('QTV (website)','manual',base64.b64decode('aHR0cDovL2xpdmUuYXJ5cXR2LnR2Lw=='),base64.b64decode('aHR0cDovL2FyeXF0di50di93cC1jb250ZW50L3VwbG9hZHMvMjAxNC8xMi9hcnktcXR2LTEtY29weS5qcGc=')))
             
-            match.append((base64.b64decode('RHVueWEgKHdlYnNpdGUp'),'manual',base64.b64decode('aHR0cDovL2ltb2IuZHVueWFuZXdzLnR2OjE5MzUvbGl2ZS9zbWlsOnN0cmVhbS5zbWlsL3BsYXlsaXN0Lm0zdTg='),''))
-            match.append((base64.b64decode('TmV3cyBvbmUgKHdlYnNpdGUp'),'manual','direct:'+base64.b64decode('aHR0cDovL2Nkbi5lYm91bmQudHYvdHYvbmV3c29uZS9wbGF5bGlzdC5tM3U4'),''))
+            match.append((base64.b64decode('RHVueWEgKHdlYnNpdGUp'),'manual',base64.b64decode('aHR0cDovL2ltb2IuZHVueWFuZXdzLnR2OjE5MzUvbGl2ZS9zbWlsOnN0cmVhbS5zbWlsL3BsYXlsaXN0Lm0zdTg='),'http://shani.offshorepastebin.com/ZemLogos/dunyanews.png'))
+            match.append((base64.b64decode('TmV3cyBvbmUgKHdlYnNpdGUp'),'manual','direct:'+base64.b64decode('aHR0cDovL2Nkbi5lYm91bmQudHYvdHYvbmV3c29uZS9wbGF5bGlzdC5tM3U4'),'http://shani.offshorepastebin.com/ZemLogos/newsone.png'))
 
-            match.append((base64.b64decode('V2FzZWViICh3ZWJzaXRlKQ=='),'manual','direct:'+base64.b64decode('aHR0cDovL2Nkbi5lYm91bmQudHYvdHYvd2FzZWIvcGxheWxpc3QubTN1OA=='),''))
+            match.append((base64.b64decode('V2FzZWViICh3ZWJzaXRlKQ=='),'manual','direct:'+base64.b64decode('aHR0cDovL2Nkbi5lYm91bmQudHYvdHYvd2FzZWIvcGxheWxpc3QubTN1OA=='),'http://shani.offshorepastebin.com/ZemLogos/waseb.png'))
 
            
             
             
-            match.append((base64.b64decode('Q2FwaXRhbCAod2Vic2l0ZSk='),'manual',base64.b64decode('ZWJvdW5kOmNhcGl0YWx0dg=='),''))
-            match.append((base64.b64decode('RGF3biBuZXdzICh3ZWJzaXRlKQ=='),'manual',base64.b64decode('ZWJvdW5kOmRhd24='),''))
-            match.append((base64.b64decode('Qm9sIHYy'),'manual',base64.b64decode('cHYyOkJvbCBOZXdz'),''))
-            match.append((base64.b64decode('R2VvIE5ld3MgdjI='),'manual',base64.b64decode('cHYyOkdlbyBOZXdz'),''))
-            match.append((base64.b64decode('R2VvIEVudGVydGFpbm1lbnQgdjI='),'manual',base64.b64decode('cHYyOkdlbyBFbnRlcnRhaW5tZW50'),''))
+            match.append((base64.b64decode('Q2FwaXRhbCAod2Vic2l0ZSk='),'manual',base64.b64decode('ZWJvdW5kOmNhcGl0YWx0dg=='),'http://shani.offshorepastebin.com/ZemLogos/capitalnews.png'))
+            match.append((base64.b64decode('RGF3biBuZXdzICh3ZWJzaXRlKQ=='),'manual',base64.b64decode('ZWJvdW5kOmRhd24='),'http://shani.offshorepastebin.com/ZemLogos/dunyanews.png'))
+            match.append((base64.b64decode('Qm9sIHYy'),'manual',base64.b64decode('cHYyOkJvbCBOZXdz'),'http://shani.offshorepastebin.com/ZemLogos/bol.png'))
+            match.append((base64.b64decode('R2VvIE5ld3MgdjI='),'manual',base64.b64decode('cHYyOkdlbyBOZXdz'),'http://shani.offshorepastebin.com/ZemLogos/geonews.png'))
+            match.append((base64.b64decode('R2VvIEVudGVydGFpbm1lbnQgdjI='),'manual',base64.b64decode('cHYyOkdlbyBFbnRlcnRhaW5tZW50'),'http://shani.offshorepastebin.com/ZemLogos/geoentertainment.png'))
                         
-            match.append((base64.b64decode('R2VvIEthaGFuaSB2Mg=='),'manual',base64.b64decode('cHYyOkdlbyBrYWhhbmk='),''))
-            match.append((base64.b64decode('R2VvIFRleiB2Mg=='),'manual',base64.b64decode('cHYyOkdlbyB0ZXp6'),''))
-            match.append((base64.b64decode('S1ROIHYy'),'manual',base64.b64decode('cHYyOktUTg=='),''))
-            match.append((base64.b64decode('S1ROIE5FV1MgdjI='),'manual',base64.b64decode('cHYyOktUTiBORVdT'),''))
+            match.append((base64.b64decode('R2VvIEthaGFuaSB2Mg=='),'manual',base64.b64decode('cHYyOkdlbyBrYWhhbmk='),'http://shani.offshorepastebin.com/ZemLogos/geokahani.png'))
+            match.append((base64.b64decode('R2VvIFRleiB2Mg=='),'manual',base64.b64decode('cHYyOkdlbyB0ZXp6'),'http://shani.offshorepastebin.com/ZemLogos/geotez.png'))
+            match.append((base64.b64decode('S1ROIHYy'),'manual',base64.b64decode('cHYyOktUTg=='),'http://shani.offshorepastebin.com/ZemLogos/ktn.png'))
+            match.append((base64.b64decode('S1ROIE5FV1MgdjI='),'manual',base64.b64decode('cHYyOktUTiBORVdT'),'http://shani.offshorepastebin.com/ZemLogos/ktnnews.png'))
             
-            match.append((base64.b64decode('S1ROIEVudC4gKHdlYnNpdGUp'),'manual','direct:'+"rtmp://103.24.96.74/ktn/ playpath=ktn swfUrl=http://ktntv.tv/wp-content/player/jwplayer.flash.swf pageUrl=http://www.ktntv.tv/ live=1",''))
-            match.append((base64.b64decode('S1ROIE5FV1MgKHdlYnNpdGUp'),'manual','direct:'+"rtmp://103.24.96.74/ktn/ playpath=ktnnews swfUrl=http://ktntv.tv/wp-content/player/jwplayer.flash.swf pageUrl=http://www.ktnnews.tv/ live=1",''))
-            match.append(('Makkah (youtube)','manual','direct:plugin://plugin.video.youtube/?action=play_video&videoid=%s' %'D8YHp37-tp0',''))
-            match.append(('Madina (youtube)','manual','direct:plugin://plugin.video.youtube/?action=play_video&videoid=%s' %'ArVmnth5jB4',''))
+            match.append((base64.b64decode('S1ROIEVudC4gKHdlYnNpdGUp'),'manual','direct:'+"rtmp://103.24.96.74/ktn/ playpath=ktn swfUrl=http://ktntv.tv/wp-content/player/jwplayer.flash.swf pageUrl=http://www.ktntv.tv/ live=1",'http://shani.offshorepastebin.com/ZemLogos/ktn.png'))
+            match.append((base64.b64decode('S1ROIE5FV1MgKHdlYnNpdGUp'),'manual','direct:'+"rtmp://103.24.96.74/ktn/ playpath=ktnnews swfUrl=http://ktntv.tv/wp-content/player/jwplayer.flash.swf pageUrl=http://www.ktnnews.tv/ live=1",'http://shani.offshorepastebin.com/ZemLogos/ktnnews.png'))
+            match.append(('Makkah (youtube)','manual','direct:plugin://plugin.video.youtube/?action=play_video&videoid=%s' %'D8YHp37-tp0','makkah.png'))
+            match.append(('Madina (youtube)','manual','direct:plugin://plugin.video.youtube/?action=play_video&videoid=%s' %'ArVmnth5jB4','madina.png'))
             
   
 
@@ -4301,7 +4307,10 @@ def AddChannelsFromOthers(cctype,eboundMatches=[],progress=None):
             for source in sources.findall('items'):
                 #print pg,source.findtext('programCategory').lower()
                 if pg == source.findtext('programCategory').lower():
+                    
                     cname=source.findtext('programTitle')
+                    
+                    if cname.lower().startswith('high alert'): continue
                     cid=source.findtext('programURL')
                     cimage=source.findtext('programImage')
 #                    addDir(cname ,base64.b64encode(cid),37,cimage, False, True,isItFolder=False)
@@ -5014,29 +5023,58 @@ def getUniTVPage():
     except:
         print 'file getting error'
         traceback.print_exc(file=sys.stdout)
-        
-    req = urllib2.Request( base64.b64decode('aHR0cDovL25ld2NtczZocHBhay5keW5kbnMudHYvQ01TNi9jbXMvWFZlci9nZXRDb250dFYxLTAucGhw') )      
-    req.add_header(base64.b64decode("VXNlci1BZ2VudA=="),base64.b64decode("VW5pdmVyc2FsJTIwU3BvcnRzJTIwSEQlMjBUVi8xLjAuMSBDRk5ldHdvcmsvNzU4LjAuMiBEYXJ3aW4vMTUuMC4w")) 
-    req.add_header(base64.b64decode("QXV0aG9yaXphdGlvbg=="),base64.b64decode("QmFzaWMgUTIxVE5qWlZjMlZTT2tOdFV6WTJWWE5sVWtCd1lYTlRkMDl5UkE9PQ==")) 
-    response = urllib2.urlopen(req)
-    link=response.read()
-    import rc
-    cryptor=rc.RNCryptor()
-    d=base64.b64decode(link)    
-    decrypted_data = cryptor.decrypt(d, base64.b64decode("Q21TNjZQQDNzU3cwcmQ3ODY="))
-    decrypted_data=json.loads(decrypted_data)
-    dataUrl=decrypted_data[0]["LiveLink"]
 
-    req = urllib2.Request( dataUrl)      
-    req.add_header(base64.b64decode("VXNlci1BZ2VudA=="),base64.b64decode("VW5pdmVyc2FsJTIwU3BvcnRzJTIwSEQlMjBUVi8xLjAuMSBDRk5ldHdvcmsvNzU4LjAuMiBEYXJ3aW4vMTUuMC4w")) 
-    req.add_header(base64.b64decode("QXV0aG9yaXphdGlvbg=="),base64.b64decode("QmFzaWMgUTIxVE5qWlZjMlZTT2tOdFV6WTJWWE5sVWtCd1lYTlRkMDl5UkE9PQ==")) 
-    response = urllib2.urlopen(req)
-    link=response.read()
 
-    d=base64.b64decode(link)    
-    decrypted_data = cryptor.decrypt(d, base64.b64decode("Q21TNjZQQDNzU3cwcmQ3ODY="))
-    #print decrypted_data
-    jsondata=json.loads(decrypted_data)
+
+    try:
+        req = urllib2.Request( base64.b64decode('aHR0cDovL25ld2NtczZocHBhay5keW5kbnMudHYvQ01TOC9jbXMvWFZlci9nZXRDb250dFYxLTAucGhw') )      
+        req.add_header(base64.b64decode("VXNlci1BZ2VudA=="),base64.b64decode("VW5pdmVyc2FsJTIwU3BvcnRzJTIwSEQlMjBUVi8xLjEgQ0ZOZXR3b3JrLzc1OC4wLjIgRGFyd2luLzE1LjAuMA==")) 
+        req.add_header(base64.b64decode("QXV0aG9yaXphdGlvbg=="),base64.b64decode("QmFzaWMgUTIxek9GVnpKSEk2UTIxek9GVnpKSEpBY0VGQVFIZHZja1E9")) 
+        response = urllib2.urlopen(req)
+        link=response.read()
+        import rc
+        cryptor=rc.RNCryptor()
+        d=base64.b64decode(link)    
+        decrypted_data = cryptor.decrypt(d, base64.b64decode("Q21TODhQQEBAc1N3MHJkNzg2"))
+        decrypted_data=json.loads(decrypted_data)
+        dataUrl=decrypted_data[0]["LiveLink"]
+
+        req = urllib2.Request( dataUrl)      
+        req.add_header(base64.b64decode("VXNlci1BZ2VudA=="),base64.b64decode("VW5pdmVyc2FsJTIwU3BvcnRzJTIwSEQlMjBUVi8xLjEgQ0ZOZXR3b3JrLzc1OC4wLjIgRGFyd2luLzE1LjAuMA==")) 
+        req.add_header(base64.b64decode("QXV0aG9yaXphdGlvbg=="),base64.b64decode("QmFzaWMgUTIxek9GVnpKSEk2UTIxek9GVnpKSEpBY0VGQVFIZHZja1E9")) 
+        response = urllib2.urlopen(req)
+        link=response.read()
+
+        d=base64.b64decode(link)    
+        decrypted_data = cryptor.decrypt(d, base64.b64decode("Q21TODhQQEBAc1N3MHJkNzg2"))
+        print decrypted_data
+        jsondata=json.loads(decrypted_data)
+    except:
+        traceback.print_exc(file=sys.stdout)
+        print 'trying different server'
+        req = urllib2.Request( base64.b64decode('aHR0cDovL3VuaXZlcnNhbHR2LmRkbnMubmV0L1VuaXZlcnNhbC1UVi1IRC9jbXMvWFZlci9nZXRDb250dFYxLTAucGhw') )      
+        req.add_header(base64.b64decode("VXNlci1BZ2VudA=="),base64.b64decode("VW5pdmVyc2FsVFZIRC8xLjAgQ0ZOZXR3b3JrLzc1OC4wLjIgRGFyd2luLzE1LjAuMA==")) 
+        req.add_header(base64.b64decode("QXV0aG9yaXphdGlvbg=="),base64.b64decode("QmFzaWMgYWpOMGRtVnljMkZzT21SeVFHY3diakZ2YzBBM09EWT0=")) 
+        response = urllib2.urlopen(req)
+        link=response.read()
+        import rc
+        cryptor=rc.RNCryptor()
+        d=base64.b64decode(link)    
+        decrypted_data = cryptor.decrypt(d, base64.b64decode("dGVsYzA5OVBAc3N3b3JkNzg2"))
+        decrypted_data=json.loads(decrypted_data)
+        dataUrl=decrypted_data[0]["LiveLink"]
+
+        req = urllib2.Request( dataUrl)      
+        req.add_header(base64.b64decode("VXNlci1BZ2VudA=="),base64.b64decode("VW5pdmVyc2FsVFZIRC8xLjAgQ0ZOZXR3b3JrLzc1OC4wLjIgRGFyd2luLzE1LjAuMA==")) 
+        req.add_header(base64.b64decode("QXV0aG9yaXphdGlvbg=="),base64.b64decode("QmFzaWMgYWpOMGRtVnljMkZzT21SeVFHY3diakZ2YzBBM09EWT0=")) 
+        response = urllib2.urlopen(req)
+        link=response.read()
+
+        d=base64.b64decode(link)    
+        decrypted_data = cryptor.decrypt(d, base64.b64decode("dGVsYzA5OVBAc3N3b3JkNzg2"))
+        print decrypted_data
+        jsondata=json.loads(decrypted_data)    
+    
     try:
         storeCacheData(jsondata,fname)
     except:
@@ -5848,12 +5886,17 @@ def getChannelsFromEboundInternal():
     reg='<div class=\"video-data\">\s*.*?href=\".*?\/video\/([0-9]*?)\/.*?title=\"(.*?)\"'
     links=re.findall(reg,pvhtml)
     for s in links:
-        if not (s[1].lower().startswith('office') or s[1].lower().startswith('povee')):
-            match.append((s[1],s[0],'povee','http://live.square7.ch/%s.png'%s[1].lower().replace(' ','')))        
+        if not (s[1].lower().startswith('office') or s[1].lower() in ['poovee','ary zindagai','qtv','see tv','samaa tv','mashriq tv','madani','jaag tv','hadi','dunya','dawn low','daily jeejal','channel 24']):
+            nm=s[1]
+            if 'Baharia' in nm: nm=nm.replace('Baharia','Bahria')
+            if 'Bahari' in nm: nm=nm.replace('Bahari','Bahria')
+            
+            
+            match.append((nm,s[0],'povee','http://shani.offshorepastebin.com/ZemLogos/%s.png'%nm.lower().replace(' ','')))        
 
     #print 'main',str(match)     
     if 1==2:# just to generate the static povee links
-        pvhtml=getUrl('http://live.square7.ch/eb.xml')
+        pvhtml=getUrl('http://shani.offshorepastebin.com/ZemLogos/eb.xml')
         reg='<title>(.*?)<\/title>\s.*?doreg.*?\s.*\s.*\s.*\s.*?\/embed\/([0-9]*)\/.*\s.*\s<thumbnail>(.*?)<'
         links=re.findall(reg,pvhtml)
         match2=[]
@@ -5861,10 +5904,10 @@ def getChannelsFromEboundInternal():
             if s[0].replace(' ','').lower() not in (i[0].replace(' ','').lower() for i in match):
                 match2.append((s[0],s[1],'povee',s[2])) 
         print 'reg',str(match2)   
-    match+=[('HEALTH TV', '349', 'povee', 'http://live.square7.ch/htv.png'), ('ZAIQA TFC', '101576', 'povee', 'http://live.square7.ch/zaiqatfc.png'), ('A PLUS', '297', 'povee', 'http://live.square7.ch/aplus.png'), ('A TV', '399', 'povee', 'http://live.square7.ch/atv.png'), ('ARY DIGITAL', '220186', 'povee', 'http://live.square7.ch/arydigital.png'), ('ARY ZINDAGI', '220241', 'povee', 'http://live.square7.ch/aryzindagi.png'), ('DM DIGITAL', '373', 'povee', 'http://live.square7.ch/dmdigital.png'), ('DTV PLUS', '313', 'povee', 'http://live.square7.ch/dtvplus.png'), ('FILMASIA', '2324', 'povee', 'http://live.square7.ch/filmasia.png'), ('HUM TV ASIA', '307', 'povee', 'http://live.square7.ch/humtv.png'), ('ON TV', '13681', 'povee', 'http://live.square7.ch/ontv.png'), ('PLAY ENTERTAINMENT', '379', 'povee', 'http://live.square7.ch/playentertainment.png'), ('SEE TV HD', '187', 'povee', 'http://live.square7.ch/seetvhd.png'), ('STAR MAX', '2322', 'povee', 'http://live.square7.ch/starmax.png'), ('TIMES', '397', 'povee', 'http://live.square7.ch/times.png'), ('TV ONE', '363', 'povee', 'http://live.square7.ch/tvone.png'), ('VIBE', '383', 'povee', 'http://live.square7.ch/vibetv.png'), ('8XM HD', '51308', 'povee', 'http://live.square7.ch/8xmhd.png'), ('ANDAZ TV', '52166', 'povee', 'http://live.square7.ch/andaztv.png'), ('JALWA', '393', 'povee', 'http://live.square7.ch/jalwa.png'), ('92 NEWS HD', '239', 'povee', 'http://live.square7.ch/92newshd.png'), ('AAJ NEWS', '343', 'povee', 'http://live.square7.ch/aajnews.png'), ('ABB TAKK', '15410', 'povee', 'http://live.square7.ch/abbtakk.png'), ('ADALAT NEWS', '29416', 'povee', 'http://live.square7.ch/adalatnews.png'), ('CAPITAL TV', '335', 'povee', 'http://live.square7.ch/capitaltv.png'), ('CHANNEL 5', '337', 'povee', 'http://live.square7.ch/channel5.png'), ('DAWN NEWS', '323', 'povee', 'http://live.square7.ch/dawnnews.png'), ('DIN NEWS', '351', 'povee', 'http://live.square7.ch/dinnews.png'), ('DUNYA NEWS', '220156', 'povee', 'http://live.square7.ch/dunyanews.png'), ('JAAG', '208646', 'povee', 'http://live.square7.ch/jaag.png'), ('METRO 1 NEWS', '391', 'povee', 'http://live.square7.ch/metro1news.png'), ('NEO NEWS', '331', 'povee', 'http://live.square7.ch/neonews.png'), ('NEWS ONE', '385', 'povee', 'http://www.newsone.tv/wp-content/uploads/2016/01/cropped-logo-newsone.png'), ('RASSAI', '29904', 'povee', 'http://live.square7.ch/rassai.png'), ('ROYAL NEWS 24/7', '377', 'povee', 'http://live.square7.ch/royalnews247.png'), ('ROZE NEWS', '301', 'povee', 'http://live.square7.ch/rozenews.png'), ('SAMAA', '220149', 'povee', 'http://vignette2.wikia.nocookie.net/logopedia/images/1/12/Samaa_TV.png'), ('SUCH TV', '365', 'povee', 'http://live.square7.ch/suchtv.png'), ('WAQT NEWS', '353', 'povee', 'http://live.square7.ch/waqtnews.png'), ('MOVIES 24/7', '40774', 'povee', 'http://live.square7.ch/movies247.png'), ('APNA CHANNEL', '345', 'povee', 'http://live.square7.ch/apnachannel.png'), ('ARUJ', '104227', 'povee', 'http://live.square7.ch/aruj.png'), ('AVT KHYBER', '289', 'povee', 'http://live.square7.ch/avtkhyber.png'), ('AWAZ', '333', 'povee', 'http://live.square7.ch/awaz.png'), ('INDEPENDENT', '305', 'povee', 'http://live.square7.ch/independent.png'), ('K 21', '38158', 'povee', 'http://live.square7.ch/k21.png'), ('KAY 2', '291', 'povee', 'http://live.square7.ch/kay2.png'), ('KHYBER NEWS', '287', 'povee', 'http://live.square7.ch/khybernews.png'), ('MASHRIQ', '140409', 'povee', 'http://live.square7.ch/mashriq.png'), ('MEHRAN TV', '401', 'povee', 'http://live.square7.ch/mehrantv.png'), ('PASHTO 1', '293', 'povee', 'http://live.square7.ch/pashto1.png'), ('SHAMSHAD', '375', 'povee', 'http://live.square7.ch/shamshad.png'), ('SHARQ RADIO TV', '11892', 'povee', 'http://live.square7.ch/sharqradiotv.png'), ('SINDH TV', '163810', 'povee', 'http://live.square7.ch/sindhtv.png'), ('SINDH TV NEWS', '369', 'povee', 'http://live.square7.ch/sindhtvnews.png'), ('VSH NEWS', '361', 'povee', 'http://live.square7.ch/vshnews.png'), ('WASEB', '371', 'povee', 'http://live.square7.ch/waseb.png'), ('ZHWANDOON', '357', 'povee', 'http://live.square7.ch/zhwandoon.png'), ('ARY QTV', '220248', 'povee', 'http://live.square7.ch/aryqtv.png'), ('HADI TV 1', '49338', 'povee', 'http://live.square7.ch/haditv1.png'), ('MADANI CHANNEL', '387', 'povee', 'http://live.square7.ch/madanichannel.png'), ('QURAN TV MADINA', '27768', 'povee', 'http://live.square7.ch/qurantv.png'), ('QURAN TV MECCA', '303', 'povee', 'http://live.square7.ch/qurantv.png'), ('PAIGHAM', '381', 'povee', 'http://live.square7.ch/paigham.png'), ('PEACE TV URDU', '220131', 'povee', 'http://live.square7.ch/peacetvurdu.png'), ('RAAH TV', '395', 'povee', 'http://live.square7.ch/raahtv.png'), ('TEHZEEB TV', '231', 'povee', 'http://live.square7.ch/tehzeebtv.png'), ('ZINDAGI TV', '327', 'povee', 'http://live.square7.ch/zindagitv.png'), ('TEN SPORTS OFFICIAL', '32360', 'povee', 'http://live.square7.ch/tensports.png'), ('TEN SPORTS OFFICIAL SUB', '220289', 'povee', 'http://live.square7.ch/tensports.png')]
+    match+=[('HEALTH TV', '349', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/htv.png'), ('ZAIQA TFC', '101576', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/zaiqatfc.png'), ('A PLUS', '297', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/aplus.png'), ('A TV', '399', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/atv.png'), ('ARY DIGITAL', '220186', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/arydigital.png'), ('ARY ZINDAGI', '220241', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/aryzindagi.png'), ('DM DIGITAL', '373', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/dmdigital.png'), ('DTV PLUS', '313', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/dtvplus.png'), ('FILMASIA', '2324', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/filmasia.png'), ('HUM TV ASIA', '307', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/humtv.png'), ('ON TV', '13681', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/ontv.png'), ('PLAY ENTERTAINMENT', '379', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/playentertainment.png'), ('SEE TV HD', '187', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/seetvhd.png'), ('STAR MAX', '2322', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/starmax.png'), ('TIMES', '397', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/times.png'), ('TV ONE', '363', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/tvone.png'), ('VIBE', '383', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/vibetv.png'), ('8XM HD', '51308', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/8xmhd.png'), ('ANDAZ TV', '52166', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/andaztv.png'), ('JALWA', '393', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/jalwa.png'), ('92 NEWS HD', '239', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/92newshd.png'), ('AAJ NEWS', '343', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/aajnews.png'), ('ABB TAKK', '15410', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/abbtakk.png'), ('ADALAT NEWS', '29416', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/adalatnews.png'), ('CAPITAL TV', '335', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/capitaltv.png'), ('CHANNEL 5', '337', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/channel5.png'), ('DAWN NEWS', '323', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/dawnnews.png'), ('DIN NEWS', '351', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/dinnews.png'), ('DUNYA NEWS', '220156', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/dunyanews.png'), ('JAAG', '208646', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/jaag.png'), ('METRO 1 NEWS', '391', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/metro1news.png'), ('NEO NEWS', '331', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/neonews.png'), ('NEWS ONE', '385', 'povee', 'http://www.newsone.tv/wp-content/uploads/2016/01/cropped-logo-newsone.png'), ('RASSAI', '29904', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/rassai.png'), ('ROYAL NEWS 24/7', '377', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/royalnews247.png'), ('ROZE NEWS', '301', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/rozenews.png'), ('SAMAA', '220149', 'povee', 'http://vignette2.wikia.nocookie.net/logopedia/images/1/12/Samaa_TV.png'), ('SUCH TV', '365', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/suchtv.png'), ('WAQT NEWS', '353', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/waqtnews.png'), ('MOVIES 24/7', '40774', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/movies247.png'), ('APNA CHANNEL', '345', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/apnachannel.png'), ('ARUJ', '104227', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/aruj.png'), ('AVT KHYBER', '289', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/avtkhyber.png'), ('AWAZ', '333', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/awaz.png'), ('INDEPENDENT', '305', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/independent.png'), ('K 21', '38158', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/k21.png'), ('KAY 2', '291', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/kay2.png'), ('KHYBER NEWS', '287', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/khybernews.png'), ('MASHRIQ', '140409', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/mashriq.png'), ('MEHRAN TV', '401', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/mehrantv.png'), ('PASHTO 1', '293', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/pashto1.png'), ('SHAMSHAD', '375', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/shamshad.png'), ('SHARQ RADIO TV', '11892', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/sharqradiotv.png'), ('SINDH TV', '163810', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/sindhtv.png'), ('SINDH TV NEWS', '369', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/sindhtvnews.png'), ('VSH NEWS', '361', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/vshnews.png'), ('WASEB', '371', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/waseb.png'), ('ZHWANDOON', '357', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/zhwandoon.png'), ('ARY QTV', '220248', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/aryqtv.png'), ('HADI TV 1', '49338', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/haditv1.png'), ('MADANI CHANNEL', '387', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/madanichannel.png'), ('QURAN TV MADINA', '27768', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/qurantv.png'), ('QURAN TV MECCA', '303', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/qurantv.png'), ('PAIGHAM', '381', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/paigham.png'), ('PEACE TV URDU', '220131', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/peacetvurdu.png'), ('RAAH TV', '395', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/raahtv.png'), ('TEHZEEB TV', '231', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/tehzeebtv.png'), ('ZINDAGI TV', '327', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/zindagitv.png'), ('TEN SPORTS OFFICIAL', '32360', 'povee', 'http://shani.offshorepastebin.com/ZemLogos/tensports.png')]   
              
     if 1==2:# just to generate the static static links
-        pvhtml=getUrl('http://live.square7.ch/eb.xml')
+        pvhtml=getUrl('http://shani.offshorepastebin.com/ZemLogos/eb.xml')
         reg='<title>(.*?)<\/title>\s<link>(http.*?eboundservice.*?)<.*\s<thumbnail>(.*?)<'
         links=re.findall(reg,pvhtml)
         match2=[]
@@ -5873,7 +5916,7 @@ def getChannelsFromEboundInternal():
                 match2.append((s[0],base64.b64encode(s[1]),'gen',s[2])) 
         print 'static',str(match2)            
 
-    match+=[('HUM MASALA', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvbWFzYWxhdHYvcGxheWxpc3QubTN1OA==', 'gen', 'http://live.square7.ch/hummasala.png'), ('AAJ ENTERTAINMENT', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvYWFqZW50ZXJ0YWlubWVudC9wbGF5bGlzdC5tM3U4', 'gen', 'http://live.square7.ch/aajentertainment.png'), ('COLORS', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvY29sb3JzL3BsYXlsaXN0Lm0zdTg=', 'gen', 'http://live.square7.ch/colors.png'), ('EXPRESS ENTERTAINMENT', 'aHR0cDovL3N0cmVhbWVyNjEuZWJvdW5kc2VydmljZXMuY29tL21vYmlsZS9leHByZXNzZW50ZXJ0YWlubWVudC9wbGF5bGlzdC5tM3U4', 'gen', 'http://live.square7.ch/expressentertainment.png'), ('G1 TV', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvZzF0di9wbGF5bGlzdC5tM3U4', 'gen', 'http://live.square7.ch/g1tv.png'), ('GEO KAHANI', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvZ2Vva2FoYW5pL3BsYXlsaXN0Lm0zdTg=', 'gen', 'http://live.square7.ch/geokahani.png'), ('GEO TV', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvZ2VvZW50ZXJ0YWlubWVudC9wbGF5bGlzdC5tM3U4', 'gen', 'http://live.square7.ch/geoentertainment.png'), ('HBO', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvaGJvL3BsYXlsaXN0Lm0zdTg=', 'gen', 'http://live.square7.ch/hbo.png'), ('HUM SITARAY WORLD', 'aHR0cDovL3N0cmVhbWVyNjEuZWJvdW5kc2VydmljZXMuY29tL21vYmlsZS9odW0yL3BsYXlsaXN0Lm0zdTg=', 'gen', 'http://live.square7.ch/humsitaray.png'), ('PTV GLOBAL', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvcHR2Z2xvYmFsL3BsYXlsaXN0Lm0zdTg=', 'gen', 'http://live.square7.ch/ptvglobal.png'), ('STYLE 360', 'aHR0cDovL3N0cmVhbWVyNjEuZWJvdW5kc2VydmljZXMuY29tL21vYmlsZS9zdHlsZTM2MC9wbGF5bGlzdC5tM3U4', 'gen', 'http://live.square7.ch/style360.png'), ('ARY MUSIK', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvYXJ5bXVzaWsvcGxheWxpc3QubTN1OA==', 'gen', 'http://live.square7.ch/arymusik.png'), ('24 NEWS HD', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvY2hhbm5lbDI0cGsvcGxheWxpc3QubTN1OA==', 'gen', 'http://live.square7.ch/24newshd.png'), ('24 NEWS HD (2)', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvY2hhbm5lbDI0L3BsYXlsaXN0Lm0zdTg=', 'gen', 'http://live.square7.ch/24newshd.png'), ('CITY 42', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvY2l0eTQyL3BsYXlsaXN0Lm0zdTg=', 'gen', 'http://live.square7.ch/city42.png'), ('EXPRESS NEWS', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvZXhwcmVzcy9wbGF5bGlzdC5tM3U4', 'gen', 'http://live.square7.ch/expressnews.png'), ('GEO NEWS', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvZ2VvbmV3cy9wbGF5bGlzdC5tM3U4', 'gen', 'http://live.square7.ch/geonews.png'), ('GEO TEZ', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvZ2VvdGV6ei9wbGF5bGlzdC5tM3U4', 'gen', 'http://live.square7.ch/geotez.png'), ('MOVIES 24/7-iKID', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvaWtpZC9wbGF5bGlzdC5tM3U4', 'gen', 'http://live.square7.ch/movies247.png'), ('MOVIES 24/7-iMOVIE', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvbW92aWUvcGxheWxpc3QubTN1OA==', 'gen', 'http://live.square7.ch/movies247.png'), ('APNA NEWS', 'aHR0cDovL3N0cmVhbWVyNjEuZWJvdW5kc2VydmljZXMuY29tL21vYmlsZS9hcG5hbmV3cy9wbGF5bGlzdC5tM3U4', 'gen', 'http://live.square7.ch/apnanews.png'), ('GEO SUPER', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvZ2Vvc3VwZXIvcGxheWxpc3QubTN1OA==', 'gen', 'http://live.square7.ch/geosuper.png'), ('SPORTS', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvc3BvcnRzL3BsYXlsaXN0Lm0zdTg=', 'gen', 'http://live.square7.ch/sports.png'), ('TEN SPORTS LICENSED', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvdGVuc3BvcnRzX2xpY2Vuc2VkL2NodW5rcy5tM3U4', 'gen', 'http://live.square7.ch/tensports.png')]  
+    match+=[('HUM MASALA', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvbWFzYWxhdHYvcGxheWxpc3QubTN1OA==', 'gen', 'http://shani.offshorepastebin.com/ZemLogos/hummasala.png'), ('AAJ ENTERTAINMENT', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvYWFqZW50ZXJ0YWlubWVudC9wbGF5bGlzdC5tM3U4', 'gen', 'http://shani.offshorepastebin.com/ZemLogos/aajentertainment.png'), ('COLORS', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvY29sb3JzL3BsYXlsaXN0Lm0zdTg=', 'gen', 'http://shani.offshorepastebin.com/ZemLogos/colors.png'), ('EXPRESS ENTERTAINMENT', 'aHR0cDovL3N0cmVhbWVyNjEuZWJvdW5kc2VydmljZXMuY29tL21vYmlsZS9leHByZXNzZW50ZXJ0YWlubWVudC9wbGF5bGlzdC5tM3U4', 'gen', 'http://shani.offshorepastebin.com/ZemLogos/expressentertainment.png'), ('G1 TV', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvZzF0di9wbGF5bGlzdC5tM3U4', 'gen', 'http://shani.offshorepastebin.com/ZemLogos/g1tv.png'), ('GEO KAHANI', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvZ2Vva2FoYW5pL3BsYXlsaXN0Lm0zdTg=', 'gen', 'http://shani.offshorepastebin.com/ZemLogos/geokahani.png'), ('GEO TV', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvZ2VvZW50ZXJ0YWlubWVudC9wbGF5bGlzdC5tM3U4', 'gen', 'http://shani.offshorepastebin.com/ZemLogos/geoentertainment.png'), ('HBO', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvaGJvL3BsYXlsaXN0Lm0zdTg=', 'gen', 'http://shani.offshorepastebin.com/ZemLogos/hbo.png'), ('HUM SITARAY WORLD', 'aHR0cDovL3N0cmVhbWVyNjEuZWJvdW5kc2VydmljZXMuY29tL21vYmlsZS9odW0yL3BsYXlsaXN0Lm0zdTg=', 'gen', 'http://shani.offshorepastebin.com/ZemLogos/humsitaray.png'), ('PTV GLOBAL', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvcHR2Z2xvYmFsL3BsYXlsaXN0Lm0zdTg=', 'gen', 'http://shani.offshorepastebin.com/ZemLogos/ptvglobal.png'), ('STYLE 360', 'aHR0cDovL3N0cmVhbWVyNjEuZWJvdW5kc2VydmljZXMuY29tL21vYmlsZS9zdHlsZTM2MC9wbGF5bGlzdC5tM3U4', 'gen', 'http://shani.offshorepastebin.com/ZemLogos/style360.png'), ('ARY MUSIK', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvYXJ5bXVzaWsvcGxheWxpc3QubTN1OA==', 'gen', 'http://shani.offshorepastebin.com/ZemLogos/arymusik.png'), ('24 NEWS HD', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvY2hhbm5lbDI0cGsvcGxheWxpc3QubTN1OA==', 'gen', 'http://shani.offshorepastebin.com/ZemLogos/24newshd.png'), ('24 NEWS HD (2)', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvY2hhbm5lbDI0L3BsYXlsaXN0Lm0zdTg=', 'gen', 'http://shani.offshorepastebin.com/ZemLogos/24newshd.png'), ('CITY 42', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvY2l0eTQyL3BsYXlsaXN0Lm0zdTg=', 'gen', 'http://shani.offshorepastebin.com/ZemLogos/city42.png'), ('EXPRESS NEWS', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvZXhwcmVzcy9wbGF5bGlzdC5tM3U4', 'gen', 'http://shani.offshorepastebin.com/ZemLogos/expressnews.png'), ('GEO NEWS', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvZ2VvbmV3cy9wbGF5bGlzdC5tM3U4', 'gen', 'http://shani.offshorepastebin.com/ZemLogos/geonews.png'), ('GEO TEZ', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvZ2VvdGV6ei9wbGF5bGlzdC5tM3U4', 'gen', 'http://shani.offshorepastebin.com/ZemLogos/geotez.png'), ('MOVIES 24/7-iKID', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvaWtpZC9wbGF5bGlzdC5tM3U4', 'gen', 'http://shani.offshorepastebin.com/ZemLogos/movies247.png'), ('MOVIES 24/7-iMOVIE', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvbW92aWUvcGxheWxpc3QubTN1OA==', 'gen', 'http://shani.offshorepastebin.com/ZemLogos/movies247.png'), ('APNA NEWS', 'aHR0cDovL3N0cmVhbWVyNjEuZWJvdW5kc2VydmljZXMuY29tL21vYmlsZS9hcG5hbmV3cy9wbGF5bGlzdC5tM3U4', 'gen', 'http://shani.offshorepastebin.com/ZemLogos/apnanews.png'), ('GEO SUPER', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvZ2Vvc3VwZXIvcGxheWxpc3QubTN1OA==', 'gen', 'http://shani.offshorepastebin.com/ZemLogos/geosuper.png'), ('SPORTS', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvc3BvcnRzL3BsYXlsaXN0Lm0zdTg=', 'gen', 'http://shani.offshorepastebin.com/ZemLogos/sports.png'),('Ten Sports', 'aHR0cDovL3N0cmVhbWVyMjcuZWJvdW5kc2VydmljZXMuY29tL3RlaGFtaW1la3lsMDAvdGVuc3BvcnRzL3BsYXlsaXN0Lm0zdTg=', 'gen', 'http://shani.offshorepastebin.com/ZemLogos/tensports.png')]  
 
     match.append(('Quran TV Urdu','aHR0cDovL2lzbDEuaXNsYW00cGVhY2UuY29tL1F1cmFuVXJkdVRW','gen',''))
     match.append(('Channel 24','cnRtcDovL2RzdHJlYW1vbmUuY29tOjE5MzUvbGl2ZS8gcGxheXBhdGg9Y2l0eTQyIHN3ZlVybD1odHRwOi8vZHN0cmVhbW9uZS5jb20vanAvandwbGF5ZXIuZmxhc2guc3dmIHBhZ2VVcmw9aHR0cDovL2RzdHJlYW1vbmUuY29tL2NpdHk0Mi9pZnJhbWUuaHRtbCB0aW1lb3V0PTIw','gen',''))
