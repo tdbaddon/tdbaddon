@@ -58,7 +58,7 @@ class tvshows:
 
     def get(self, url, idx=True, provider=None,network=None):
         try:
-            self.list = cache.get(self.get_shows, 168, url, provider, network)
+            self.list = cache.get(self.get_shows, 168, url, provider, network, table='rel_shows')
             if idx == True: self.tvshowDirectory(self.list)
             return self.list
         except Exception as e:

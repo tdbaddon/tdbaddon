@@ -133,17 +133,13 @@ class source:
                     r = [i['file'] for i in r if 'file' in i]
 
                     for i in r:
-                        try: sources.append({'source': 'gvideo', 'parts' : '1','quality': directstream.googletag(i)[0]['quality'], 'provider': 'Ninemovies', 'url': i, 'direct': True, 'debridonly': False})
+                        try: sources.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'provider': 'Ninemovies', 'url': i, 'direct': True, 'debridonly': False})
                         except: pass
                 except:
-                    import traceback
-                    traceback.print_exc()
                     pass
 
             return sources
         except:
-            import traceback
-            traceback.print_exc()
             return sources
 
     def resolve(self, url, resolverList):

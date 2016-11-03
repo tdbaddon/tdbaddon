@@ -49,14 +49,7 @@ class source:
             if generateJSON:
                 url = self.live_link
 
-                #result = client.source(url, headers=self.headers)
-                fileName = os.path.join(control.dataPath, 'ditto.html')
-                #file = open(fileName, "w")
-                #file.write(result)
-                file = open(fileName, "r")
-                result = file.read()
-                #result = result.decode('iso-8859-1').encode('utf-8')
-                #result = result.replace('\n','').replace('\t','')
+                result = client.request(url, headers=self.headers)
                 channels=re.findall('<div class="subpattern.*?\s*<a href="(.*?)" title="(.*?)".*?\s*<img src=".*?".*?\s*<img src="(.*?)"',result)
 
                 channelList = {}
@@ -67,20 +60,23 @@ class source:
                     if 'temple' in title.lower():
                         continue
                     url = self.channel_link % url
-                    poster = self.poster_link % str(logo)
-                    channelList[title] ={'icon':poster,'url':url,'provider':'ditto','source':'ditto','direct':'false', 'quality':'HD', 'enabled':'true'}
+                    icon = self.poster_link % str(logo)
+                    channelList[title] ={'icon':icon,'url':url,'provider':'ditto','source':'ditto','direct':False, 'quality':'HD', 'content':'live'}
 
                 filePath = os.path.join(control.dataPath, self.fileName)
                 with open(filePath, 'w') as outfile:
-                    json.dump(channelList, outfile)
+                    json.dump(channelList, outfile, sort_keys=True, indent=2)
 
             fileFetcher = FileFetcher(self.fileName,control.addon)
-            retValue = fileFetcher.fetchFile()
+            if control.setting('livelocal') == 'true':
+                retValue = 1
+            else :
+                retValue = fileFetcher.fetchFile()
             if retValue < 0 :
                 raise Exception()
 
             liveParser = LiveParser(self.fileName, control.addon)
-            self.list = liveParser.parseFile(decode=True)
+            self.list = liveParser.parseFile()
             return (retValue, self.list)
         except:
             import traceback

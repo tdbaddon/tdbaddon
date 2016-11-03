@@ -43,6 +43,7 @@ class sources:
     def __init__(self):
         self.resolverList = self.getResolverList()
         self.hostDict = self.getHostDict()
+        self.hostprDict = self.getHostPrDict()
         self.sources = []
         self.debridDict = debrid.debridDict()
         self.itemProperty = "%s.itemProperty" % control.addonInfo('name')
@@ -546,7 +547,8 @@ class sources:
                     poster = self.getLivePoster(item['name'])
                     if not poster == None :
                         item['poster'] = poster
-
+                    meta = {"poster":poster, "iconImage":poster, 'thumb': poster}
+                    item['meta'] = json.dumps(meta)
                     dbcur.execute("INSERT INTO rel_live Values (?, ?, ?, ?, ?, ?)", (source, item['name'], 'live', str(idx), json.dumps(item), datetime.datetime.now().strftime("%Y-%m-%d %H:%M")))
                     idx = idx + 1
                     dbcon.commit()
@@ -561,10 +563,6 @@ class sources:
                     match = row
                     logger.debug('Fetched sources from cache for [%s]'% name, call.__class__)
                     sources = json.loads(match[4])
-                    sources['content'] = 'live'
-                    poster = sources['poster']
-                    meta = {"poster":poster, "iconImage":poster, 'thumb': poster}
-                    sources['meta'] = json.dumps(meta)
                     self.sources.append(sources)
                     return self.sources
             except:
@@ -584,7 +582,6 @@ class sources:
                 for row in dbcur:
                     match = row
                     sources = json.loads(match[4])
-                    sources['content'] = 'live'
                     self.sources.append(sources)
             return self.sources
         except Exception as e:
@@ -763,19 +760,19 @@ class sources:
 
     def sourcesFilter(self):
         logger.debug('Calling sources.filter()', __name__)
+        logger.debug('ORIGINAL SOURCE COUNT : %s' % len(self.sources))
         for i in range(len(self.sources)): self.sources[i]['source'] = self.sources[i]['source'].lower()
         self.sources = sorted(self.sources, key=lambda k: k['source'])
-
-        random.shuffle(self.sources)
 
         quality = control.setting('playback_quality')
         if quality == '': quality = '0'
 
+        #set content
         filter = []
-        filter += [i for i in self.sources if i['direct'] == True]
-        filter += [i for i in self.sources if i['direct'] == False]
-
-        self.sources = filter
+        try:filter += [i for i in self.sources if i['content'] == 'live']
+        except:
+            filter += [dict(i.items() + [('content', '')]) for i in self.sources]
+            self.sources = filter
 
         filter = []
         #logger.debug(self.debridDict, __name__)
@@ -784,15 +781,19 @@ class sources:
         #self.hostDict = ['wholecloud.net', 'vidzi.tv', 'watchers.to', 'videoraj.to', 'mersalaayitten.co', 'gorillavid.in', 'cloudy.sx', 'noslocker.com', 'divxstage.to', 'desiflicks.com', 'yourupload.com', 'streamcloud.eu', 'videoweed.es', 'nowvideo.at', 'letwatch.to', 'clicknupload.me', 'xvidstage.com', 'playpanda.net', 'cloudy.ch', 'stagevu.com', 'videoapi.my.mail.ru', 'mp4upload.com', 'vshare.eu', 'exashare.com', 'watchvideo10.us', 'allmyvideos.net', 'apnasave.in', 'uploadx.org', 'tune.pk', 'xpressvids', 'daclips.in', 'videoraj.com', 'playwire.com', 'usersfiles.com', 'vidup.org', 'my.mail.ru', 'streamin.to', 'vidlox.tv', 'vidmad.net', 'vivo.sx', 'watchvideo.us', 'youwatch.org', 'www.playhd.fo', 'nosvideo.com', 'ok.ru', 'vimeo.com', 'rapidvideo.com', 'watchvideo4.us', 'speedplay3.pw', 'byzoo.org', 'zstream.to', 'playu.me', 'nowvideo.fo', 'vidgg.to', 'powerwatch.pw', 'watchvideo7.us', 'watchvideo8.us', 'vidspot.net', 'videorev.cc', 'thevideobee.to', 'api.video.mail.ru', 'watchvideo3.us', 'dailymotion.com', 'novamov.com', 'filepup.net', 'uptobox.com', 'fileweed.net', 'idowatch.us', 'watchvideo2.us', 'jetload.tv', 'vid.me', 'trollvid.net', 'googleusercontent.com', 'mp4edge.com', 'video.tt', 'weshare.me', 'streame.net', 'veoh.com', 'speedplay1.site', 'uploadc.com', 'movshare.net', 'letwatch.us', 'mp4engine.com', 'indavideo.hu', 'videohut.to', 'happystreams.net', 'userscloud.com', 'videoraj.eu', 'play44.net', 'get.google.com', 'openload.co', 'dittotv.com', 'nowvideo.li', 'teramixer.com', 'toltsd-fel.tk', 'docs.google.com', 'vidcrazy.net', 'odnoklassniki.ru', 'videoraj.ec', 'yucache.net', 'mail.ru', 'shared.sx', 'vidbull.com', 'promptfile.com', 'filehoot.com', 'shitmovie.com', 'tvlogy.to', 'bitvid.sx', 'drive.google.com', 'movdivx.com', 'allvid.ch', 'myvidstream.net', 'watchvideo6.us', 'vshare.io', 'fastplay.cc', 'clicknupload.link', 'grifthost.com', 'vidto.me', 'nowvideo.eu', 'uploadcrazy.net', 'chouhaa.info', 'upload.af', 'youtu.be', 'auroravid.to', 'videoraj.co', 'videoraj.ch', 'nowvideo.ec', 'megamp4.net', 'playedto.me', 'rutube.ru', 'speedplay.pw', 'speedvideo.net', 'idowatch.net', 'briskfile.com', 'auengine.com', 'hugefiles.net', 'watchvideo5.us', 'dynns.com', 'everplay.watchpass.net', 'videoraj.sx', 'videozoo.me', 'watchvideo9.us', 'vk.com', 'kingfiles.net', 'thevideo.me', 'cloudy.com', 'vkpass.com', 'nowvideo.sx', 'youtube.com', 'cloudzilla.to', 'daclips.com', 'mp4stream.com', 'mersalaayitten.com', 'vidfile.xyz', 'speedplay.xyz', 'movpod.net', 'clicknupload.com', 'nowvideo.co', 'divxstage.eu', 'playbb.me', 'nowvideo.ch', 'videowing.me', 'flashx.tv', 'plus.google.com', 'movpod.in', 'openload.io', 'facebook.com', 'uptostream.com', 'divxstage.net', 'estream.to', 'video44.net', 'youlol.biz', 'cloudy.eu', 'videowood.tv', 'uploadc.ch', 'watchonline.to', 'rapidvideo.ws', 'neodrive.co', 'castamp.com', 'tamildrive.com', 'easyvideo.me', 'cloudy.ec', 'www.playhd.video', 'tusfiles.net', 'googlevideo.com', 'speedplay.us', 'zalaa.com', 'cloudtime.to', 'vodlocker.com', 'storeinusa.com', 'playu.net', 'videoweed.com', 'fastplay.sx', 'googledrive.com', 'thevideos.tv', 'gorillavid.com', 'vidup.me', 'vidshare.us']
 
         for d in self.debridDict: filter += [dict(i.items() + [('debrid', d)]) for i in self.sources if i['source'].lower() in self.debridDict[d]]
-        for host in self.hostDict : filter += [i for i in self.sources if i['direct'] == False and i['source'] in host and 'debridonly' not in i and not i['content'] == 'live']
+        for host in self.hostDict : filter += [i for i in self.sources if i['source'] in host and not i['content'] == 'live' and 'debridonly' not in i and i['source'] not in self.hostprDict]
         filter += [i for i in self.sources if i['direct'] == True and not i['content'] == 'live']
         try:filter += [i for i in self.sources if i['content'] == 'live']
         except:pass
         self.sources = filter
 
+        logger.debug('FINAL SOURCE COUNT : %s' % len(self.sources))
+
+        random.shuffle(self.sources)
+
         filter = []
-        if quality == '0': filter += [i for i in self.sources if i['quality'] == '1080p' and 'debrid' in i]
-        if quality == '0': filter += [i for i in self.sources if i['quality'] == '1080p' and not 'debrid' in i]
+        if quality == '0' : filter += [i for i in self.sources if i['quality'] == '1080p' and 'debrid' in i]
+        if quality == '0' : filter += [i for i in self.sources if i['quality'] == '1080p' and not 'debrid' in i]
         if quality == '0' or quality == '1': filter += [i for i in self.sources if i['quality'] == 'HD' and 'debrid' in i]
         if quality == '0' or quality == '1': filter += [i for i in self.sources if i['quality'] == 'HD' and not 'debrid' in i]
         filter += [i for i in self.sources if i['quality'] == 'SD' and not 'debrid' in i]
@@ -800,6 +801,8 @@ class sources:
         if len(filter) < 25:filter += [i for i in self.sources if i['quality'] == 'CAM']
         if len(filter) < 25:filter += [i for i in self.sources if i['quality'] == '']
         self.sources = filter
+
+        logger.debug('ORIGINAL SOURCE COUNT : %s' % len(self.sources))
 
         for i in range(len(self.sources)):
 
@@ -869,8 +872,10 @@ class sources:
 
             try: headers = url.rsplit('|', 1)[1]
             except: headers = ''
-            headers = urllib.quote_plus(headers).replace('%3D', '=') if ' ' in headers else headers
+            headers = urllib.quote_plus(headers).replace('%3D', '=').replace('%26','&') if ' ' in headers else headers
             headers = dict(urlparse.parse_qsl(headers))
+
+            logger.debug('type[url] : %s HEADERS : %s' % (type(url), headers))
 
             if not type(url) is list:
                 if url.startswith('http') and '.m3u8' in url:
@@ -911,3 +916,7 @@ class sources:
         except:
             hostDict = []
         return hostDict
+
+    def getHostPrDict(self):
+        hostPrDict = ['dailymotion.com', 'openload.co']
+        return hostPrDict

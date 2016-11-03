@@ -35,7 +35,7 @@ class source:
         self.channel_link = 'https://cinefuntv.com/watchnow.php?content=%s'
         self.list = []
         self.fileName = 'cinefun.json'
-        self.headers=[('User-Agent',base64.b64decode('Q0ZVTlRWLzMuMSBDRk5ldHdvcmsvNzU4LjAuMiBEYXJ3aW4vMTUuMC4w'))]
+        self.headers={'User-Agent':base64.b64decode('Q0ZVTlRWLzMuMSBDRk5ldHdvcmsvNzU4LjAuMiBEYXJ3aW4vMTUuMC4w')}
 
     def getLiveSource(self, generateJSON=False):
         try :
@@ -46,14 +46,23 @@ class source:
                 channelList = {}
                 for channel in result:
                     title = channel['Title']
-                    channelList[title] ={'icon':channel['ThumbnailURL'],'url':channel['ContentId'],'provider':'cinefun','source':'cinefun','direct':'false', 'quality':'HD'}
+                    icon = channel['ThumbnailURL']
+                    if not channel['HLSURL'] == '' :
+                        cUrl = channel['HLSURL']
+                    else :
+                        cUrl = channel['ContentId']
+                    channelList[title] ={'icon':icon,'url':cUrl,'provider':'cinefun','source':'cinefun','direct':False, 'quality':'HD', 'content':'live'}
 
                 filePath = os.path.join(control.dataPath, self.fileName)
                 with open(filePath, 'w') as outfile:
-                    json.dump(channelList, outfile)
+                    json.dump(channelList, outfile, sort_keys=True, indent=2)
 
             fileFetcher = FileFetcher(self.fileName,control.addon)
-            retValue = fileFetcher.fetchFile()
+
+            if control.setting('livelocal') == 'true':
+                retValue = 1
+            else :
+                retValue = fileFetcher.fetchFile()
             if retValue < 0 :
                 raise Exception()
 
@@ -66,20 +75,37 @@ class source:
             pass
 
     def resolve(self, url, resolverList):
+        logger.debug('ORIGINAL URL [%s]' % url, __name__)
+        u = None
+        if 'http' in url :
+            #url = '%s|%s' % (url, 'User-Agent=Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10')
+            u = url = '%s&cthash=YFSAkfvXEeBIZF1PYLxHRDxGhMcFtGWDoivUrrq6ElF8aHL46z2WLFOsHVfNlJro|User-Agent=%s&Referer=%s' % (url, 'AppleCoreMedia/1.0.0.13A452 (iPhone; U; CPU OS 9_0_2 like Mac OS X; en_gb)', 'https://cinefuntv.com/watchnow.php')
+        else :
+            u = None
 
-        try :
-            logger.debug('ORIGINAL URL [%s]' % url, __name__)
-            headers = [('User-agent', 'Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10')]
-            result = client.source('https://cinefuntv.com/smtalnc/content.php?cmd=details&@&device=ios&version=0&contentid=%s&sid=&u=c3281930@trbvn.com' % url, headers=headers)
-            links = json.loads(result)
-            u = links[0]['HLSURL']
-            if u == '' :
-                u = links[0]['SamsungURL']
-            if u == '' :
-                u = links[0]['PanasonicURL']
-            url = "%s|%s" % (u, 'User-Agent=AppleCoreMedia/1.0.0.13A452 (iPhone; U; CPU OS 9_0_2 like Mac OS X; en_gb)')
-            logger.debug('RESOLVED URL [%s]' % url, __name__)
-            return [url]
-        except Exception as e:
-            logger.error(e)
-            return False
+        if u == None:
+            try :
+                headers = {'User-agent': 'Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10'}
+                result = client.request('https://cinefuntv.com/watchnow.php?content=%s' % url, headers=headers, allowredirect=False)
+                u =  re.findall('var cms_url = [\'"](.*?)[\'"]', result)[0]
+                u = '%s|%s' % (u, 'User-Agent=Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10')
+                url = u
+            except:
+                u = None
+
+        if u == None:
+            try :
+                headers = {'User-agent': 'CFUNTV/3.1 CFNetwork/758.0.2 Darwin/15.0.0'}
+                result = client.request('https://cinefuntv.com/smtalnc/content.php?cmd=details&@&device=ios&version=0&contentid=%s&sid=&u=c3281930@trbvn.com' % url, headers=headers)
+                links = json.loads(result)
+                u = links[0]['HLSURL']
+                if u == '' :
+                    u = links[0]['SamsungURL']
+                if u == '' :
+                    u = links[0]['PanasonicURL']
+                u = "%s|%s" % (u, 'User-Agent=AppleCoreMedia/1.0.0.13A452 (iPhone; U; CPU OS 9_0_2 like Mac OS X; en_gb)')
+                url = u
+            except:
+                u = None
+        logger.debug('RESOLVED URL [%s]' % url, __name__)
+        return url

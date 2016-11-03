@@ -80,11 +80,9 @@ class navigator:
             cache.clear()
         elif url == 'providers':
             from resources.lib.libraries import cache
-            cache.clear()
-            cache.clear(['rel_src'], control.sourcescacheFile)
+            cache.clear(['rel_src', 'rel_url'], control.sourcescacheFile)
         elif url == 'live' :
             from resources.lib.libraries import cache
-            cache.clear()
             control.delete('static.json')
             control.delete('ditto.json')
             control.delete('cinefun.json')
@@ -92,7 +90,6 @@ class navigator:
             cache.clear(['rel_live','rel_logo'], control.sourcescacheFile)
         elif url == 'meta':
             from resources.lib.libraries import cache
-            cache.clear()
             cache.clear(['meta', 'meta_imdb'], control.metacacheFile)
 
     def desiLangMovies(self):

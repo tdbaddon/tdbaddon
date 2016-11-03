@@ -19,7 +19,21 @@
 '''
 
 
-import random
+import random, client, urllib
+
+
+def request(url, check):
+    try:
+        result = client.request(url)
+        if check in str(result): return result.decode('iso-8859-1').encode('utf-8')
+
+        result = client.request(get() + urllib.quote_plus(url))
+        if check in str(result): return result.decode('iso-8859-1').encode('utf-8')
+
+        result = client.request(get() + urllib.quote_plus(url))
+        if check in str(result): return result.decode('iso-8859-1').encode('utf-8')
+    except:
+        return
 
 def get():
     return random.choice([

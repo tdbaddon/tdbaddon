@@ -21,31 +21,38 @@
 	</category>
 
 	<category label="30862">
-		<setting id="einthusan" type="bool" label="Einthusan" default="true" /> 
-		<setting id="ditto" type="bool" label="Ditto" default="true"/> 
-		<setting id="apnaview" type="bool" label="ApnaView" default="true" /> 
-		<setting id="hindilinks4u" type="bool" label="HindiLinks4U" default="true" /> 
-		<setting id="ninemovies" type="bool" label="NineMovies" default="false" /> 
-		<setting id="movie25" type="bool" label="Movie25" default="true" />
-		<setting id="onemovies" type="bool" label="OneMovies" default="true" />
-		<setting id="hotstar" type="bool" label="HotStar" default="true" /> 
-		<setting id="ibollytv" type="bool" label="iBollyTV" default="true" /> 
-		<setting id="desihit" type="bool" label="DesiHits" default="true" /> 
-		<setting id="desihdmovies" type="bool" label="DesiHDMovies" default="true" />
-		<setting id="hdbuffer" type="bool" label="HDBuffer" default="true" /> 
-		<setting id="filmywap" type="bool" label="FilmyWap" default="true" />
-		<setting id="putlocker" type="bool" label="PutLocker" default="true" />
-		<setting id="pubfilm" type="bool" label="PubFilm" default="true" />
-		<setting id="yodesi" type="bool" label="YoDesi" default="true"/>
-		<setting id="desirulez" type="bool" label="DesiRulez" default="true" />
-		<setting id="desiplex" type="bool" label="DesiPlex" default="true" />
-		<setting id="json" type="bool" label="json" visible="false" default="true" />
-		<!--<setting id="uktvnow" type="bool" label="UKTVNow" visible="false" default="false" />-->
-		<setting id="dynns" type="bool" label="Dynns" visible="true" default="false" />
-		<setting id="hevcfilm" type="bool" label="HEVC" visible="false" default="true" />
-		<setting id="crazy4ad" type="bool" label="CRAZY4AD" visible="false" default="true" />
-		<setting id="primewire" type="bool" label="PrimeWire" visible="true" default="true" />
+		<setting id="apnaview" type="bool" label="ApnaView" default="true" />
 		<setting id="cinefun" type="bool" label="CineFun" visible="true" default="true" />
+		<setting id="crazy4ad" type="bool" label="CRAZY4AD" visible="false" default="true" />
+		<setting id="desihdmovies" type="bool" label="DesiHDMovies" default="true" />
+		<setting id="desihit" type="bool" label="DesiHits" default="true" />
+		<setting id="desiplex" type="bool" label="DesiPlex" default="true" />
+		<setting id="desirulez" type="bool" label="DesiRulez" default="true" />
+		<setting id="ditto" type="bool" label="Ditto" default="true"/>
+		<setting id="dltube" type="bool" label="DLTube" default="true" />
+		<setting id="dynns" type="bool" label="Dynns" visible="true" default="false" />
+		<setting id="einthusan" type="bool" label="Einthusan" default="true" />
+		<setting id="filmywap" type="bool" label="FilmyWap" default="true" />
+		<setting id="hdbuffer" type="bool" label="HDBuffer" default="true" />
+		<setting id="hevcfilm" type="bool" label="HEVC" visible="false" default="true" />
+		<setting id="hindilinks4u" type="bool" label="HindiLinks4U" default="true" />
+		<setting id="hotstar" type="bool" label="HotStar" default="true" />
+		<setting id="ibollytv" type="bool" label="iBollyTV" default="true" />
+		<setting id="json" type="bool" label="json" visible="false" default="true" />
+		<setting id="miradetodo" type="bool" label="Miradetodo" default="true" />
+		<setting id="movie25" type="bool" label="Movie25" default="true" />
+		<setting id="movies14" type="bool" label="Movies14" default="true" />
+		<setting id="movieshd" type="bool" label="MoviesHD" default="true" />
+		<setting id="ninemovies" type="bool" label="NineMovies" default="false" />
+		<setting id="onemovies" type="bool" label="OneMovies" default="true" />
+		<setting id="primewire" type="bool" label="PrimeWire" visible="true" default="true" />
+		<setting id="pubfilm" type="bool" label="PubFilm" default="true" />
+		<setting id="putlocker" type="bool" label="PutLocker" default="true" />
+		<setting id="rlsmovies" type="bool" label="RLSMovies" default="true" />
+		<setting id="swift" type="bool" label="Swift" default="true" />
+		<!--<setting id="uktvnow" type="bool" label="UKTVNow" visible="false" default="false" />-->
+		<setting id="ymovies" type="bool" label="YMovies" default="true" />
+		<setting id="yodesi" type="bool" label="YoDesi" default="true"/>
 	</category>
 
 	<category label="30910">

@@ -24,6 +24,7 @@ import re,urllib,urlparse,base64
 from resources.lib.libraries import cleantitle
 from resources.lib.libraries import client
 from resources.lib.libraries import proxy
+from resources.lib.libraries import logger
 
 
 class source:
@@ -83,12 +84,14 @@ class source:
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
             return url
-        except:
+        except Exception as e:
+            logger.error(e.message)
             return
 
 
-    def get_sources(self, urlS):
+    def get_sources(self, url):
         try:
+            logger.debug('Test')
             sources = []
 
             if url == None: return sources
@@ -111,8 +114,11 @@ class source:
                     url = client.replaceHTMLCodes(url)
                     url = url.encode('utf-8')
 
+                    if url.startswith("//"):
+                        url = 'http:%s' % url
+
                     host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(url.strip().lower()).netloc)[0]
-                    if not host in hostDict: raise Exception()
+                    #if not host in hostDict: raise Exception()
                     host = client.replaceHTMLCodes(host)
                     host = host.encode('utf-8')
 

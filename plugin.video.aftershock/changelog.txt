@@ -1,10 +1,16 @@
+------------------------
+Aftershock v4.2.2 (03-Nov-2016)
+------------------------
+- [COLOR orange]NOTE: If you like the addon please consider making a donation to aftershockpy@gmail.com via paypal.[/COLOR]
+- Updated Providers
+- Added Providers
 
 ------------------------
 Aftershock v4.2.1 (24-Oct-2016)
 ------------------------
 - [COLOR orange]NOTE: If you like the addon please consider making a donation to aftershockpy@gmail.com via paypal.[/COLOR]
 - Updated Resolvers
-- Ficed Dailymotion Issue
+- Fixed Dailymotion Issue
 
 ------------------------
 Aftershock v4.2.0 (18-Oct-2016)

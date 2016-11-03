@@ -19,65 +19,119 @@
 '''
 
 
-import re,urllib,urlparse,json,base64
+import re,urllib,urlparse,hashlib,random,string,json,base64
 
 from resources.lib.libraries import cleantitle
-from resources.lib.libraries import directstream
 from resources.lib.libraries import client
-from resources.lib.libraries import logger
+from resources.lib.libraries import cache
+from resources.lib.libraries import directstream
+
 
 class source:
     def __init__(self):
         self.domains = ['123movies.to', '123movies.ru']
         self.base_link = 'http://123movies.ru'
+        self.search_link = '/ajax/suggest_search'
         self.info_link = '/ajax/movie_load_info/%s'
-        self.search2_link = '/movie/search/%s'
+        self.server_link = '/ajax/get_episodes/%s'
+        self.direct_link = '/ajax/v2_load_episode/'
+        self.embed_link = '/ajax/load_embed/'
+        self.key = 'i6m49vd7shxkn985mhodk'
+        self.key2 = 'twz87wwxtp3dqiicks2dfyud213k6yg'
+        self.key3 = '7bcq9826avrbi6m4'
 
 
     def get_movie(self, imdb, title, year):
         try:
-            t = cleantitle.movie(title)
+            t = cleantitle.get(title)
 
-            try:
-                query = self.search2_link % urllib.quote_plus(title)
-                query = urlparse.urljoin(self.base_link, query)
+            headers = {'X-Requested-With': 'XMLHttpRequest'}
 
-                result = client.request(query)
+            query = urllib.urlencode({'keyword': title})
 
-                r = client.parseDOM(result, 'div', attrs = {'class': 'ml-item'})
-                r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', ret='title')) for i in r]
-                r = [(i[0][0], i[1][-1]) for i in r if len(i[0]) > 0 and len(i[1]) > 0]
-                r = [(re.sub('http.+?//.+?/','', i[0]), i[1]) for i in r]
-                r = [('/'.join(i[0].split('/')[:2]), i[1]) for i in r]
-                r = [x for y,x in enumerate(r) if x not in r[:y]]
-                r = [i[0] for i in r if t == cleantitle.movie(i[1])]
+            url = urlparse.urljoin(self.base_link, self.search_link)
 
-                for i in r:
-                    url = self._info(i, year)
-                    if not url == None: return url
-            except:
-                pass
+            r = client.request(url, post=query, headers=headers)
 
+            r = json.loads(r)['content']
+            r = zip(client.parseDOM(r, 'a', ret='href', attrs = {'class': 'ss-title'}), client.parseDOM(r, 'a', attrs = {'class': 'ss-title'}))
+            r = [i[0] for i in r if cleantitle.get(t) == cleantitle.get(i[1])][:2]
+            r = [(i, re.findall('(\d+)', i)[-1]) for i in r]
+
+            for i in r:
+                try:
+                    y, q = cache.get(self.onemovies_info, 9000, i[1])
+                    if not y == year: raise Exception()
+                    return urlparse.urlparse(i[0]).path
+                except:
+                    pass
         except:
             return
 
-    def _info(self, url, year):
+
+    def tvshow(self, imdb, tvdb, tvshowtitle, year):
         try:
-            url = urlparse.urljoin(self.base_link, url)
-            url = urlparse.urlparse(url).path
-            url = client.replaceHTMLCodes(url)
-            url = url.encode('utf-8')
-
-            u = urlparse.urljoin(self.base_link, self.info_link)
-            u = u % re.findall('(\d+)', url)[-1]
-            u = client.request(u)
-            u = client.parseDOM(u, 'div', attrs = {'class': 'jt-info'})[0]
-            if year == u: return url
+            url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'year': year}
+            url = urllib.urlencode(url)
+            return url
         except:
             return
+
+
+    def episode(self, url, imdb, tvdb, title, premiered, season, episode):
+        try:
+            data = urlparse.parse_qs(url)
+            data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
+
+            t = cleantitle.get(data['tvshowtitle'])
+            year = re.findall('(\d{4})', premiered)[0]
+            years = [str(year), str(int(year)+1), str(int(year)-1)]
+            season = '%01d' % int(season)
+            episode = '%01d' % int(episode)
+
+            headers = {'X-Requested-With': 'XMLHttpRequest'}
+
+            query = urllib.urlencode({'keyword': '%s - Season %s' % (data['tvshowtitle'], season)})
+
+            url = urlparse.urljoin(self.base_link, self.search_link)
+
+            r = client.request(url, post=query, headers=headers)
+
+            r = json.loads(r)['content']
+            r = zip(client.parseDOM(r, 'a', ret='href', attrs = {'class': 'ss-title'}), client.parseDOM(r, 'a', attrs = {'class': 'ss-title'}))
+            r = [(i[0], re.findall('(.+?) - season (\d+)$', i[1].lower())) for i in r]
+            r = [(i[0], i[1][0][0], i[1][0][1]) for i in r if len(i[1]) > 0]
+            r = [i for i in r if t == cleantitle.get(i[1])]
+            r = [i[0] for i in r if season == '%01d' % int(i[2])][:2]
+            r = [(i, re.findall('(\d+)', i)[-1]) for i in r]
+
+            for i in r:
+                try:
+                    y, q = cache.get(self.onemovies_info, 9000, i[1])
+                    if not y in years: raise Exception()
+                    return urlparse.urlparse(i[0]).path + '?episode=%01d' % int(episode)
+                except:
+                    pass
+        except:
+            return
+
+
+    def onemovies_info(self, url):
+        try:
+            u = urlparse.urljoin(self.base_link, self.info_link)
+            u = client.request(u % url)
+
+            q = client.parseDOM(u, 'div', attrs = {'class': 'jtip-quality'})[0]
+
+            y = client.parseDOM(u, 'div', attrs = {'class': 'jt-info'})
+            y = [i.strip() for i in y if i.strip().isdigit() and len(i.strip()) == 4][0]
+
+            return (y, q)
+        except:
+            return
+
 
     def get_sources(self, url):
-        logger.debug('SOURCES URL %s' % url, __name__)
         try:
             sources = []
 
@@ -86,80 +140,103 @@ class source:
             url = urlparse.urljoin(self.base_link, url)
             url = referer = url.replace('/watching.html', '')
 
-            content = re.compile('(.+?)\?episode=\d*$').findall(url)
-            content = 'movie' if len(content) == 0 else 'episode'
+            try: url, episode = re.findall('(.+?)\?episode=(\d*)$', url)[0]
+            except: episode = None
 
-            try: url, episode = re.compile('(.+?)\?episode=(\d*)$').findall(url)[0]
-            except: pass
+            vid_id = re.findall('-(\d+)', url)[-1]
 
-            url = urlparse.urljoin(self.base_link, url) + '/watching.html'
-
-            result = client.request(url)
-            movie = client.parseDOM(result, 'div', ret='movie-id', attrs = {'id': 'media-player'})[0]
-            token = client.parseDOM(result, 'div', ret='player-token', attrs = {'id': 'media-player'})[0]
-
-            try: quality = client.parseDOM(result, 'span', attrs = {'class': 'quality'})[0].lower()
-            except: quality = 'hd'
+            quality = cache.get(self.onemovies_info, 9000, vid_id)[1].lower()
             if quality == 'cam' or quality == 'ts': quality = 'CAM'
             elif quality == 'hd': quality = 'HD'
             else: quality = 'SD'
 
-            url = '/ajax/get_episodes/%s/%s' % (movie, token)
-            url = urlparse.urljoin(self.base_link, url)
 
-            result = client.request(url)
+            try:
+                headers = {'X-Requested-With': 'XMLHttpRequest', 'Referer': url}
 
-            r = client.parseDOM(result, 'div', attrs = {'class': 'les-content'})
-            r = zip(client.parseDOM(r, 'a', ret='onclick'), client.parseDOM(r, 'a', ret='episode-id'), client.parseDOM(r, 'a'))
-            r = [(re.sub('[^0-9]', '', i[0].split(',')[0]), re.sub('[^0-9a-fA-F]', '', i[0].split(',')[-1]), i[1], ''.join(re.findall('(\d+)', i[2])[:1])) for i in r]
-            r = [(i[0], i[1], i[2], i[3]) for i in r]
+                u = urlparse.urljoin(self.base_link, self.server_link % vid_id)
 
-            if content == 'episode':
-                r = [i for i in r if i[3] == '%01d' % int(episode)]
-            else:
-                b = client.parseDOM(result, 'div', ret='data-episodes', attrs = {'id': 'server-backup'})
-                b = [re.findall('(.+?)-(.+)', i) for i in b]
-                r += [('99', i[0][1], i[0][0], '720') for i in b if len(i) > 0]
+                r = client.request(u, headers=headers)
 
+                r = client.parseDOM(r, 'div', attrs = {'class': 'les-content'})
+                r = zip(client.parseDOM(r, 'a', ret='onclick'), client.parseDOM(r, 'a'))
+                r = [(i[0], ''.join(re.findall('(\d+)', i[1])[:1])) for i in r]
 
-            direct_link = '/ajax/load_episode/%s/%s'
+                if not episode == None:
+                    r = [i[0] for i in r if '%01d' % int(i[1]) == episode]
+                else:
+                    r = [i[0] for i in r]
 
-            embed_link = '/ajax/load_embed/%s/%s'
+                r = [re.findall('(\d+),(\d+)', i) for i in r]
+                r = [i[0][:2] for i in r if len(i) > 0]
 
-            links = []
-            links += [{'source': 'gvideo', 'url': direct_link % (i[2], i[1]), 'direct': True} for i in r if 2 <= int(i[0]) <= 11]
-            links += [{'source': 'cdn', 'url': direct_link % (i[2], i[1]), 'direct': True} for i in r if i[0] == '99']
-            links += [{'source': 'openload.co', 'url': embed_link % (i[2], i[1]), 'direct': False} for i in r if i[0] == '14']
-            links += [{'source': 'videomega.tv', 'url': embed_link % (i[2], i[1]), 'direct': False} for i in r if i[0] == '13']
-            links += [{'source': 'videowood.tv', 'url': embed_link % (i[2], i[1]), 'direct': False} for i in r if i[0] == '12']
+                links = []
 
-            for i in links: sources.append({'source': i['source'], 'parts' : '1','quality': quality, 'provider': 'Onemovies', 'url': i['url'], 'direct': i['direct'], 'debridonly': False})
+                links += [{'source': 'gvideo', 'url': self.direct_link + i[1], 'direct': True} for i in r if 2 <= int(i[0]) <= 11]
+
+                links += [{'source': 'openload.co', 'url': self.embed_link + i[1], 'direct': False} for i in r if i[0] == '14']
+
+                links += [{'source': 'videowood.tv', 'url': self.embed_link + i[1], 'direct': False} for i in r if i[0] == '12']
+
+                head = '|' + urllib.urlencode(headers)
+
+                for i in links: sources.append({'source': i['source'], 'quality': quality, 'provider': 'Onemovies', 'url': urlparse.urljoin(self.base_link, i['url']) + head, 'direct': i['direct'], 'debridonly': False})
+            except:
+                pass
 
             return sources
         except:
             return sources
 
-    def resolve(self, url, resolverList=None):
-        logger.debug('ORIGINAL URL [%s]' % url, __name__)
-        try:
-            url = urlparse.urljoin(self.base_link, url)
-            result = client.request(url)
-        except:
-            pass
+
+    def resolve(self, url, resolverList):
+        try: headers = dict(urlparse.parse_qsl(url.rsplit('|', 1)[1]))
+        except: headers = None
+
+        link = url.split('|')[0]
 
         try:
-            url = re.compile('"?file"?\s*=\s*"(.+?)"\s+"?label"?\s*=\s*"(\d+)p?"').findall(result)
+            if not self.direct_link in link: raise Exception()
 
-            url = [(int(i[1]), i[0]) for i in url]
-            url = sorted(url, key=lambda k: k[0])
-            url = url[-1][1]
+            video_id = headers['Referer'].split('-')[-1].replace('/','')
 
-            try: u = client.request(url, output='headers', redirect=False)['Location']
-            except: u = client.request(url, output='geturl')
+            episode_id= link.split('/')[-1]
 
-            q = directstream.googletag(u)[0]['quality']
+            key_gen = ''.join(random.choice(string.ascii_lowercase + string.digits) for x in range(16))
 
-            url = u
+            ################# FIX FROM MUCKY DUCK & XUNITY TALK ################
+            key = '87wwxtp3dqii'
+            key2 = '7bcq9826avrbi6m49vd7shxkn985mhod'
+            coookie = hashlib.md5(episode_id + key).hexdigest() + '=%s' %key_gen
+            a= episode_id + key2
+            b= key_gen
+            i=b[-1]
+            h=b[:-1]
+            b=i+h+i+h+i+h
+            hash_id = uncensored(a, b)
+            ################# FIX FROM MUCKY DUCK & XUNITY TALK ################
+
+            url = self.base_link + '/ajax/v2_get_sources/' + episode_id + '?hash=' + urllib.quote(hash_id)
+
+            headers['Referer'] = headers['Referer']+ '\+' + coookie
+            headers['Cookie'] = coookie
+
+            result = client.request(url, headers=headers)
+            result = result.replace('\\','')
+
+            url = re.findall('"?file"?\s*:\s*"(.+?)"', result)
+            url = [directstream.googletag(i) for i in url]
+            url = [i[0] for i in url if len(i) > 0]
+
+            u = []
+            try: u += [[i for i in url if i['quality'] == '1080p'][0]]
+            except: pass
+            try: u += [[i for i in url if i['quality'] == 'HD'][0]]
+            except: pass
+            try: u += [[i for i in url if i['quality'] == 'SD'][0]]
+            except: pass
+
+            url = client.replaceHTMLCodes(u[0]['url'])
 
             if 'requiressl=yes' in url: url = url.replace('http://', 'https://')
             else: url = url.replace('https://', 'http://')
@@ -168,16 +245,31 @@ class source:
             pass
 
         try:
-            url = re.compile('file\s*=\s*"(.+?)"').findall(result)[0]
-            if self.base_link in url: raise Exception()
-            url = client.replaceHTMLCodes(url)
+            if not self.embed_link in link: raise Exception()
+
+            result = client.request(link, headers=headers)
+
+            url = json.loads(result)['embed_url']
             return url
         except:
             pass
 
-        try:
-            url = json.loads(result)['embed_url']
-            logger.debug('RESOLVED URL [%s]' % url, __name__)
-            return url
-        except:
-            pass
+
+
+def uncensored(a,b):
+    n = -1
+    fuckme=[]
+    justshow=[]
+    while True:
+
+        if n == len(a)-1:
+            break
+        n +=1
+
+        d = int(''.join(str(ord(c)) for c in a[n]))
+
+        e=int(''.join(str(ord(c)) for c in b[n]))
+        justshow.append(d+e)
+        fuckme.append(chr(d+e))
+
+    return base64.b64encode(''.join(fuckme))

@@ -29,26 +29,25 @@ from resources.lib.libraries.liveParser import  *
 
 class source:
     def __init__(self):
-        self.fileName = ''
+        self.fileName = 'static.json'
         self.list = []
 
     def getLiveSource(self, generateJSON=False):
         try :
-            logger.debug('json local : %s' % control.setting('livelocal'), __name__)
-            if control.setting('livelocal') == 'true':
-                self.filename = 'static_wip.json'
-            else :
-                self.fileName = 'static.json'
-
             fileFetcher = FileFetcher(self.fileName, control.addon)
-            retValue = fileFetcher.fetchFile()
+            if control.setting('livelocal') == 'true':
+                retValue = 1
+            else :
+                retValue = fileFetcher.fetchFile()
             if retValue < 0 :
                 raise Exception()
 
             liveParser = LiveParser(self.fileName, control.addon)
-            self.list = liveParser.parseFile(decode=True)
+            self.list = liveParser.parseFile()
+            logger.debug(self.list)
             return (retValue, self.list)
-        except:
+        except Exception as e:
+            logger.error(e)
             pass
 
     def resolve(self, url, resolverList):
