@@ -46,38 +46,29 @@ class source:
 			link = client.request(query)
 			r = client.parseDOM(link, 'div', attrs = {'class': 'ml-item'})
 			for links in r:
-				# print ("YMOVIES REQUEST", links)
-				url = client.parseDOM(links, 'a', ret='data-url')[0]
+				url = client.parseDOM(links, 'a', ret='href')[0]
 				title = client.parseDOM(links, 'a', ret='title')[0]
-				url = urlparse.urljoin(self.info_link, url)
+				# url = urlparse.urljoin(self.info_link, url)
 				infolink = client.request(url)
-				match_year = re.search('class="jt-info">(\d{4})<', infolink)
+				match_year = re.search('<strong>Release:</strong>\s+(\d{4})</p>', infolink)
 				match_year = match_year.group(1)
 				if year in match_year:
-					result = client.parseDOM(infolink, 'div', attrs = {'class': 'jtip-bottom'})
-					for items in result:
-						playurl = client.parseDOM(items, 'a', ret='href')[0]
-						playurl = playurl.encode('utf-8')
-						referer = "%s" % playurl
-						
-						mylink = client.request(referer)
-						i_d = re.findall(r'id: "(.*?)"', mylink, re.I|re.DOTALL)[0]
-						server = re.findall(r'server: "(.*?)"', mylink, re.I|re.DOTALL)[0]
-						type = re.findall(r'type: "(.*?)"', mylink, re.I|re.DOTALL)[0]
-						episode_id = re.findall(r'episode_id: "(.*?)"', mylink, re.I|re.DOTALL)[0]
-						# print ("YMOVIES REQUEST", episode_id)
-						token = self.__get_token()
-						# print ("YMOVIES TOKEN", token)
-						cookies = '%s%s%s=%s' % (self.key1, episode_id, self.key2,token)
-						# print ("YMOVIES cookies", cookies)
-						url_hash = urllib.quote(self.__uncensored(episode_id + self.key, token))
-						# print ("YMOVIES hash", url_hash)
-						url = urlparse.urljoin(self.base_link, self.playlist % (episode_id, url_hash))						
+					playurl = re.findall('<a class="mod-btn mod-btn-watch" href="([^"]+)"', infolink)[0]
+					playurl = playurl.encode('utf-8')
+					referer = "%s" % playurl
+					mylink = client.request(referer)
+					i_d = re.findall(r'id: "(.*?)"', mylink, re.I|re.DOTALL)[0]
+					server = re.findall(r'server: "(.*?)"', mylink, re.I|re.DOTALL)[0]
+					type = re.findall(r'type: "(.*?)"', mylink, re.I|re.DOTALL)[0]
+					episode_id = re.findall(r'episode_id: "(.*?)"', mylink, re.I|re.DOTALL)[0]
+					token = self.__get_token()
+					cookies = '%s%s%s=%s' % (self.key1, episode_id, self.key2,token)
+					url_hash = urllib.quote(self.__uncensored(episode_id + self.key, token))
+					url = urlparse.urljoin(self.base_link, self.playlist % (episode_id, url_hash))						
 						
 						
-						request_url = url
-						# print ("YMOVIES REQUEST", request_url)
-						self.super_url.append([request_url,cookies,referer])
+					request_url = url
+					self.super_url.append([request_url,cookies,referer])
 			return self.super_url
         except:
             return
@@ -116,18 +107,14 @@ class source:
 				title = title.encode('utf-8')
 				season_url = season_url.encode('utf-8')
 				title = cleantitle.get(title)
-				# print "YMOVIES check URLS %s %s %s %s" % (seasoncheck, season_url, cleanmovie, title)
 				if checktitle in title:
-						# print "YMOVIES PASSED %s" % (season_url) 
 						showlist.append(season_url)
 								
 			for seasonlist in showlist:	
-				# print ('YMOVIES TV' , seasonlist)
 				
 				mylink = client.request(seasonlist)
 				referer = re.findall(r'<a class="mod-btn mod-btn-watch" href="(.*?)" title="Watch movie">', mylink, re.I|re.DOTALL)[0]
 				
-				# print ('YMOVIES REFERER' , referer)
 				epurl = client.request(referer)
 				i_d = re.findall(r'id: "(.*?)"', epurl, re.I|re.DOTALL)[0]
 				server = re.findall(r'server: "(.*?)"', epurl, re.I|re.DOTALL)[0]
@@ -141,31 +128,22 @@ class source:
 				episodelink = client.request(request_url, headers=headers)
 				pattern = 'episodes-server-%s"(.+?)/ul>' % server
 				match = re.findall(pattern, episodelink, re.DOTALL)[0]
-				# print "YMOVIES EPISODELINK %s" % match
 				blocks = re.compile('<li(.+?)/li>',re.DOTALL).findall(match)
 				for fragment in blocks:
 					epnumber = re.findall('title="Episode\s+(\d+):', fragment)[0]
 					episode = "%02d" % (int(episode))
 					epnumber = "%02d" % (int(epnumber))
-					# print "EPISODE NUMBER %s %s" % (epnumber, episode)
 					if epnumber == episode:
 						epid = re.findall('id="episode-(\d+)"', fragment)[0]
 						episode_id = epid
-						# print "EPISODE NNUMBER Passed %s %s" % (epnumber, episode)
-						# print ("YMOVIES REQUEST", episode_id)
 						token = self.__get_token()
-						# print ("YMOVIES TOKEN", token)
 						cookies = '%s%s%s=%s' % (self.key1, episode_id, self.key2,token)
-						# print ("YMOVIES cookies", cookies)
 						url_hash = urllib.quote(self.__uncensored(episode_id + self.key, token))
-						# print ("YMOVIES hash", url_hash)
 						url = urlparse.urljoin(self.base_link, self.playlist % (episode_id, url_hash))						
 						
 						
 						request_url = url
-						# print ("YMOVIES REQUEST", request_url)
 						self.super_url.append([request_url,cookies,referer])
-						# print ("YMOVIES SELFURL", self.super_url)
 
 			return self.super_url
         except:
@@ -176,13 +154,11 @@ class source:
         try:
 			sources = []
 			for movielink,cookies,referer in url:
-				# print ("YMOVIES SOURCES", movielink, cookies, referer)
 				headers = {'Referer': referer,
 							   'User-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.89 Safari/537.36',
 							   'X-Requested-With':'XMLHttpRequest'}
 				result = client.request(movielink, headers=headers, cookie=cookies)
 				result = json.loads(result)
-				# print ("YMOVIES SOURCE PLAYLIST", result)
 				links = result['playlist'][0]['sources']
 				for item in links:
 					videoq = item['label']

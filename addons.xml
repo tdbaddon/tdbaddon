@@ -1092,11 +1092,12 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
   </extension>
 </addon>
 
-<addon id="plugin.video.exodus" version="2.0.17" name="Exodus" provider-name="Exodus">
+<addon id="plugin.video.exodus" version="2.0.18" name="Exodus" provider-name="Exodus">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="repository.exodus" version="1.0.0" />
 		<import addon="script.exodus.artwork" version="1.0.4" />
+		<import addon="script.exodus.metadata" version="1.0.0" />
 		<import addon="script.module.urlresolver" version="3.0.0" />
 		<import addon="script.module.metahandler" version="1.0.0" />
 	</requires>
@@ -1108,7 +1109,7 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
 		<description lang="en">Please visit www.tvaddons.ag for Exodus support and assistance! Kindly note that Exodus is not an official part of the media player you are running, and therefore not to be mentioned within official support channels, this addon has nothing to do with the media player itself, nor it’s intended use, it is simply a third party plugin which has been added to your system.</description>
 		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
 		<platform>all</platform>
-		<news>- Tweaked metadata</news>
+		<news>- Fixed issue with Trakt Progress (missing tv shows)[CR]- Tweaked metadata retrieval[CR]- Tweaked indexers[CR]- Updated providers</news>
 	</extension>
 </addon>
 
@@ -1590,7 +1591,7 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
   </extension>
 </addon>
 
-<addon id="plugin.video.mdm4u" name="M4U" version="1.1.6" provider-name="Mucky Duck">
+<addon id="plugin.video.mdm4u" name="M4U" version="1.1.7" provider-name="Mucky Duck">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.addon.common" />
@@ -2078,7 +2079,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
-<addon id="plugin.video.prosport" name="Pro Sport" version="0.70" provider-name="gerikss, podgod, iCanuck">
+<addon id="plugin.video.prosport" name="Pro Sport" version="0.73" provider-name="gerikss, podgod, iCanuck">
   <requires>
     <import addon="xbmc.python" version="2.1.0" />
      <import addon="script.module.requests" version="2.9.1" />
@@ -2844,35 +2845,6 @@ For support, visit: [COLOR hotpink]http://bit.ly/uwc-support[/COLOR]</descriptio
   </extension>
 </addon>
 
-<addon
-    id="plugin.video.xxtrucoxx"
-    name="XxTRUCOxX"
-    version="1.0.6"
-    provider-name="XxTRUCOxX">
-   <requires>
-     <import addon="xbmc.python" version="2.1.0"/>
-	 <import addon="script.module.urlresolver"  version="2.8.0"/>
-	 <import addon="script.module.addon.common" version="2.0.0" />
-	 <import addon="script.module.metahandler"  version="0.0.1"/>
-	 <import addon="script.common.plugin.cache"/>
-   </requires>
-   <extension point="xbmc.python.pluginsource" library="plugin.py" >
-	 <provides>video</provides>
-   </extension>
-   <extension point="xbmc.python.module" library="lib" />
-   <extension point="xbmc.addon.metadata">
-  <summary lang="en">Adult(18+) </summary>
-	 <description lang="pt"></description>
-	 <platform></platform>
-     <language></language>
-	 <license></license>
-	 <forum></forum>
-	 <website></website>
-	 <source></source>
-	 <email></email>
-   </extension>
-</addon>
-
 <addon id="plugin.video.yifymovies.hd" name="Yify Movies HD" version="1.8.0" provider-name="lambda">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0"/>
@@ -2950,7 +2922,7 @@ For support, visit: [COLOR hotpink]http://bit.ly/uwc-support[/COLOR]</descriptio
 
 <addon id="plugin.video.ZemTV-shani"
        name="Zem"
-       version="5.8.9"
+       version="5.9.0"
        provider-name="shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -4060,7 +4032,7 @@ For support, visit: [COLOR hotpink]http://bit.ly/uwc-support[/COLOR]</descriptio
 	</extension>
 </addon>
 
-<addon id="script.mrknow.urlresolver" name="Mrknow URLResolver" version="2016.11.1.2" provider-name="mrknow" >
+<addon id="script.mrknow.urlresolver" name="Mrknow URLResolver" version="2016.11.4.1" provider-name="mrknow" >
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 	</requires>

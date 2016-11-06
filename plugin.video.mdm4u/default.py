@@ -133,21 +133,21 @@ def EPIS(name,url,iconimage):
 
 def LINK(name,url,iconimage):
         link = OPEN_URL(url)
+        addon.log(url)
         try:
-                request_url = re.compile('<a href="(.*?)">Watch <cite>').findall(link)[0]
-                link2 = OPEN_URL(request_url)
+                request_url = re.findall('<h3 class="h3-detail"> <a  href="(.*?)">Watch <', str(link), re.I|re.DOTALL)[0]
+                link = OPEN_URL(request_url)
         except: pass
         try:
-                
                 try:
-                        final_url = re.findall(r'sources: \[ \{file: "(.*?)"', str(link2), re.I|re.DOTALL)[0]
+                        final_url = re.findall(r'sources: \[ \{file: "(.*?)"', str(link), re.I|re.DOTALL)[0]
                 except:
                         pass
                 final_url = final_url.replace('../view.php?','view.php?')
                 final_url = final_url.replace('./view.php?','view.php?')
                 if final_url == '':
                         try:
-                                final_url = re.findall(r'sources: \[ \{file: "(.*?)"', str(link2), re.I|re.DOTALL)[1]
+                                final_url = re.findall(r'sources: \[ \{file: "(.*?)"', str(link), re.I|re.DOTALL)[1]
                         except:
                                 pass
                 if 'google' in final_url:

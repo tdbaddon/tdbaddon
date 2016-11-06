@@ -74,7 +74,7 @@ sd_streams = ['goindexsport','multi-sports.eu', 'watchnfl.live', 'streamhd.eu', 
 			'zona4vip.com', 'ciscoweb.ml', 'streamendous.com','streamm.eu', 'sports-arena.net', 'stablelivestream.com', 
 			'iguide.to', 'sportsleague.me','kostatz.com', 'soccerpluslive.com', 'zunox', 'apkfifa.com','watchhdsports.xyz','lovelysports2016.ml',
 			'sports4u.live','tusalavip3.es.tl', 'neymargoals.com', 'crichd.sx', 'unitedstream.live','stream4us.info','freecast.xyz','focustream.info',
-			's4power.club']
+			's4power.club', 'footystreams.net']
 
 def utc_to_local(utc_dt):
     timestamp = calendar.timegm(utc_dt.timetuple())
@@ -83,7 +83,7 @@ def utc_to_local(utc_dt):
     return local_dt.replace(microsecond=utc_dt.microsecond)
 
 
-UA='Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'
+UA='Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36'
 
 def GetURL(url, referer=None, output=None, timeout=None, headers=None):
 	if 'streamm.eu' in url or 'sawlive' in url:
@@ -332,7 +332,7 @@ def getProStreams(ur, home, away):
 	links=[]
 	for submission in r.get_subreddit(ur+'streams').get_hot(limit=30):
 		if (home_l in submission.title.lower() and away_l in submission.title.lower()) or (home_f in submission.title.lower() and away_l in submission.title.lower()) or (home_l in submission.title.lower() and away_f in submission.title.lower()) or (home_f in submission.title.lower() and away_f in submission.title.lower()):
-			regex = re.compile(r'([-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?)',re.IGNORECASE)
+			regex = re.compile(r'(?i)\b((?:[a-z][\w-]+:(?:/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:\'".,<>?«»“”‘’]))',re.IGNORECASE)
 			link = re.findall(regex, submission.selftext.encode('utf-8'))
 			links = links + link
 			flat_comments = praw.helpers.flatten_tree(submission.comments)
@@ -347,18 +347,6 @@ def getProStreams(ur, home, away):
 				try:
 					link = re.findall(regex, comment.body.encode('utf-8'))
 					links = links + link
-					link = re.findall('(http://.+?:.+?\.m3u8)',comment.body.encode('utf-8'))
-					if link:
-						for ln in link:
-							links.append((ln,' '))
-					link = re.findall('(http://.+?:.+?\.m3u8)',comment.body.encode('utf-8'))
-					if link:
-						for ln in link:
-							links.append((ln,' '))
-					link = re.findall('(sop.*?\s|acestream.*?\s)',comment.body.encode('utf-8'))
-					if link:
-						for ln in link:
-							links.append((ln.replace('`','').strip(),' '))
 				except:
 					pass	
 	if links:
@@ -378,7 +366,7 @@ def getMyStreams(url, home):
 	r.config.api_request_delay = 0
 	submission = r.get_submission(submission_id=url)
 	links=[]
-	regex = re.compile(r'([-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?)',re.IGNORECASE)
+	regex = re.compile(r'(?i)\b((?:[a-z][\w-]+:(?:/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:\'".,<>?«»“”‘’]))',re.IGNORECASE)
 	link = re.findall(regex, submission.selftext.encode('utf-8'))
 	links = links + link
 	flat_comments = praw.helpers.flatten_tree(submission.comments)
@@ -393,14 +381,6 @@ def getMyStreams(url, home):
 		try:
 			link = re.findall(regex, comment.body.encode('utf-8'))
 			links = links + link
-			link = re.findall('(http://.+?:.+?\.m3u8)',comment.body.encode('utf-8'))
-			if link:
-				for ln in link:
-					links.append((ln,' '))
-			link = re.findall('(sop.*?\s|acestream.*?\s)',comment.body.encode('utf-8'))
-			if link:
-				for ln in link:
-					links.append((ln.replace('`','').strip(),' '))
 		except:
 			pass
 	if links:
@@ -421,6 +401,9 @@ def DisplayLinks(links, orig_title):
 			urls.append(url)
 		if url not in urls and 'iceballet' in url:
 			addLink('Iceballet', orig_title, url, mode="play")
+			urls.append(url)
+		if url not in urls and 'nbastreams.pw' in url:
+			addLink('nbastreams.pw', orig_title, url, mode="play")
 			urls.append(url)
 		elif url not in urls and '1apps.com' in url:
 			addLink('Oneapp', orig_title, url, mode="play")
@@ -513,8 +496,10 @@ def DisplayLinks(links, orig_title):
 		if show_tor=='true':
 			if url not in urls and'acestream://' in url:
 				addLink('Acestream', orig_title, url, mode="play")
+				urls.append(url)
 			if url not in urls and'sop://' in url:
 				addLink('Sopcast', orig_title, url, mode="play")
+				urls.append(url)
 			
 				
 	xbmcplugin.endOfDirectory(h, cacheToDisc=True)
@@ -538,6 +523,9 @@ def ParseLink(el, orig_title):
 		return url
 	elif 'freecast.in' in el:
 		url = Freecastin(el)
+		return url
+	elif 'nbastreams.pw' in el:
+		url = Nbastreamspw(el)
 		return url
 	elif '1apps.com' in el:
 		url = Oneapp(el)
@@ -629,7 +617,6 @@ def Archive(page, mode):
 	html = GetURL(url)
 	links = common.parseDOM(html, "a", attrs={"rel": "bookmark"}, ret="href")
 	titles = common.parseDOM(html, "a", attrs={"rel": "bookmark"}, ret="title")
-	print titles
 	if links:
 		del links[1::2]
 	for i, el in enumerate(links):
@@ -787,6 +774,7 @@ def GetStreamup(channel):
 
 def GetYoutube(url):
 	try:
+		url = url.replace('*','')
 		if ('channel' in url or 'user' in url) and 'live' in url:
 			html = GetURL(url)
 			videoId = html.split("'VIDEO_ID':")[-1].split('",')[0].replace('"','').replace(' ','')
@@ -853,24 +841,69 @@ def Getroom(url):
 		
 def Blabseal(url):
 	try:
-		html = GetURL(url)
-		block_content = common.parseDOM(html, "iframe", ret="src")[0]
-		link = GetYoutube(block_content)
-		return link
+		html = GetURL(url, referer=url)
+		link = common.parseDOM(html, "iframe", ret="src")[0]
+		link = url+link
+		html = GetURL(link, referer=link)
+		javasc = re.findall('(eval.*\))', html)[0]
+		import js2py
+		context = js2py.EvalJs()
+		if 'jwplayer' not in html:
+			context.execute('''pyimport jstools;
+           		var escape = jstools.escape;
+            	var unescape = jstools.unescape;
+            	var document = [];
+            	document.result = "";
+            	document.domain = "";
+            	document.write = function(markup){ document.result = document.result + markup };''')
+			context.swidth = '400'
+			context.sheight = '400'
+			context.document.domain = urlparse.urlparse(link).netloc
+			context.execute(javasc)
+			html = context.document.result
+			link = common.parseDOM(html, "iframe", ret="src")[0]
+			if 'youtu' in link:
+				lnk = GetYoutube(link)
+				return lnk
+			elif 'dailymotion.com/embed' in link:
+				lnk = Dailymotion(link)
+				return lnk
+		else:
+			jsplayers = '''var jwobject = [];
+            	jwobject.results = null;
+            	jwobject.setup = function(args) {jwobject.results = args};
+            	var jwplayer = function() {return jwobject};'''
+			context.execute(jsplayers)
+			context.execute(javasc)
+			return context.jwobject.results.file
 	except:
-		pass
+		return None
+		
+def Dailymotion(url):
 	try:
-		channel = 'asljkdfasdf'
-		link = GetStreamup(channel)
+		html = GetURL(url)
+		link = 	re.findall('stream_chromecast_url":"(.*?)"', html)[0].replace("\\", "")
+		link = GetURL(link, output='geturl')
 		return link
 	except:
 		return None
+	
 		
 def Torula(url):
 	try:
 		html = GetURL(url)
 		block_content = common.parseDOM(html, "input", attrs={"id": "vlc"}, ret="value")[0]
 		link = block_content
+		return link
+	except:
+		return None
+
+
+def Nbastreamspw(url):
+	try:
+		html = GetURL(url)
+		block_content = common.parseDOM(html, "iframe", ret="src")[0]
+		link = block_content.split('#')[-1]
 		return link
 	except:
 		return None
@@ -1090,6 +1123,9 @@ def Universal(url):
 	if 'youtu' in url:
 		link = GetYoutube(url)
 		return link
+	if 'dailymotion.com/embed' in url:
+		link = Dailymotion(url)
+		return link
 	if 'kostatz.com' in url:
 		url = 'http://admin1.ninacdn.com/iframe.php?c=peanutly&s=peanutly'
 	if 'iguide.to' in url:
@@ -1191,7 +1227,8 @@ def Universal(url):
 		links = re.findall("[file|source|hls|src|stream1]\s*[:|=]\s*[\"\'](.*?)[\"\']", html)
 		for link in links:
 			if '.m3u8' in link or 'rtmp:' in link or 'f4m' in link:
-				link = link.replace('src=','')	
+				link = link.replace('src=','')
+				link = link.replace('amp;','')	
 				if 'smotrimult' in link:
 					link = link+'|Referer='+url+'&Host='+urlparse.urlparse(link).netloc+'&Origin='+urlparse.urlparse(url).netloc+'&User-Agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.116 Safari/537.36'
 				elif 'widestream' in link:

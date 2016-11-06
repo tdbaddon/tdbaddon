@@ -49,6 +49,9 @@ class movies:
         self.systime = (self.datetime).strftime('%Y%m%d%H%M%S%f')
         self.trakt_user = control.setting('trakt.user').strip()
         self.imdb_user = control.setting('imdb.user').replace('ur', '')
+        self.tm_user = control.setting('tm.user')
+        self.fanart_tv_user = control.setting('fanart.tv.user')
+        self.user = str(control.setting('fanart.tv.user')) + str(control.setting('tm.user'))
         self.lang = control.apiLanguage()['trakt']
 
         self.search_link = 'http://api-v2launch.trakt.tv/search?type=movie&limit=20&page=1&query='
@@ -57,6 +60,8 @@ class movies:
         self.trakt_lang_link = 'http://api-v2launch.trakt.tv/movies/%s/translations/%s'
         self.fanart_tv_art_link = 'http://webservice.fanart.tv/v3/movies/%s'
         self.fanart_tv_level_link = 'http://webservice.fanart.tv/v3/level'
+        self.tm_art_link = 'http://api.themoviedb.org/3/movie/%s/images?api_key=' + self.tm_user
+        self.tm_img_link = 'https://image.tmdb.org/t/p/w%s%s'
 
         self.persons_link = 'http://www.imdb.com/search/name?count=100&name='
         self.personlist_link = 'http://www.imdb.com/search/name?count=100&gender=male,female'
@@ -635,26 +640,13 @@ class movies:
         self.meta = []
         total = len(self.list)
 
-        self.fanart_tv_headers = {}
-        fanart_tv_level = 'user'
-        fanart_tv_user = control.setting('fanart.tv.user')
-        self.fanart_tv_headers.update({'api-key': 'YTc2MGMyMTEzYTM1OTk5NzFiN2FjMWU0OWUzMTAyMGQ='.decode('base64')})
-        if level == 1 and not fanart_tv_user == '':
-            self.fanart_tv_headers.update({'client-key': fanart_tv_user})
-            #try: fanart_tv_level = json.loads(client.request(self.fanart_tv_level_link, headers=self.fanart_tv_headers))['level']
-            #except: pass
-
-        self.tm_art_link = 'http://api.themoviedb.org/3/movie/%s/images?api_key='
-        self.tm_img_link = 'https://image.tmdb.org/t/p/w%s%s'
-
-        tm_user = control.setting('tm.user')
-        if tm_user == '':
-            self.tm_art_link += 'ZjVhMmIyZDc5NTUxOTBmYTczNWI2NzMwYTlmM2JhM2I='.decode('base64')
-        else:
-            self.tm_art_link += tm_user
+        self.fanart_tv_headers = {'api-key': 'YTc2MGMyMTEzYTM1OTk5NzFiN2FjMWU0OWUzMTAyMGQ='.decode('base64')}
+        if not self.fanart_tv_user == '':
+            self.fanart_tv_headers.update({'client-key': self.fanart_tv_user})
 
         for i in range(0, total): self.list[i].update({'metacache': False})
-        self.list = metacache.fetch(self.list, self.lang)
+
+        self.list = metacache.fetch(self.list, self.lang, self.user)
 
         for r in range(0, total, 40):
             threads = []
@@ -663,15 +655,14 @@ class movies:
             [i.start() for i in threads]
             [i.join() for i in threads]
 
-            if len(self.meta) > 0: metacache.insert(self.meta)
-
-        if fanart_tv_level == 'user':
-            for i in self.list: i.update({'clearlogo': '0', 'clearart': '0'})
-
-        if not tm_user == '':
-            for i in self.list: i.update({'poster2': '0', 'fanart': '0'})
+            if self.meta: metacache.insert(self.meta)
 
         self.list = [i for i in self.list if not i['imdb'] == '0']
+
+        self.list = metacache.local(self.list, self.tm_img_link, 'poster3', 'fanart2')
+
+        if self.fanart_tv_user == '':
+            for i in self.list: i.update({'clearlogo': '0', 'clearart': '0'})
 
 
     def super_info(self, i):
@@ -766,13 +757,6 @@ class movies:
             try: art = json.loads(art)
             except: artmeta = False
 
-            art2meta = True
-            art2 = client.request(self.tm_art_link % imdb, timeout='10', error=True)
-            try: art2 = json.loads(art2)
-            except: art2meta = False
-            try: art2meta = False if 'status_code' in art2 and not art2['status_code'] == 34 else art2meta
-            except: pass
-
             try:
                 poster2 = art['movieposter']
                 poster2 = [x for x in poster2 if x.get('lang') == 'en'][::-1] + [x for x in poster2 if x.get('lang') == '00'][::-1]
@@ -781,33 +765,12 @@ class movies:
                 poster2 = '0'
 
             try:
-                poster3 = art2['posters']
-                poster3 = [x for x in poster3 if x.get('iso_639_1') == 'en'] + [x for x in poster3 if not x.get('iso_639_1') == 'en']
-                poster3 = [(x['width'], x['file_path']) for x in poster3]
-                poster3 = [(x[0], x[1]) if x[0] < 300 else ('300', x[1]) for x in poster3]
-                poster3 = self.tm_img_link % poster3[0]
-                poster3 = poster3.encode('utf-8')
-            except:
-                poster3 = '0'
-
-            try:
                 if 'moviebackground' in art: fanart = art['moviebackground']
                 else: fanart = art['moviethumb']
                 fanart = [x for x in fanart if x.get('lang') == 'en'][::-1] + [x for x in fanart if x.get('lang') == '00'][::-1]
                 fanart = fanart[0]['url'].encode('utf-8')
             except:
                 fanart = '0'
-
-            try:
-                fanart2 = art2['backdrops']
-                fanart2 = [x for x in fanart2 if x.get('iso_639_1') == 'en'] + [x for x in fanart2 if not x.get('iso_639_1') == 'en']
-                fanart2 = [x for x in fanart2 if x.get('width') == 1920] + [x for x in fanart2 if x.get('width') < 1920]
-                fanart2 = [(x['width'], x['file_path']) for x in fanart2]
-                fanart2 = [(x[0], x[1]) if x[0] < 1280 else ('1280', x[1]) for x in fanart2]
-                fanart2 = self.tm_img_link % fanart2[0]
-                fanart2 = fanart2.encode('utf-8')
-            except:
-                fanart2 = '0'
 
             try:
                 banner = art['moviebanner']
@@ -831,6 +794,36 @@ class movies:
                 clearart = clearart[0]['url'].encode('utf-8')
             except:
                 clearart = '0'
+
+
+            try:
+                if self.tm_user == '': raise Exception()
+
+                art2 = client.request(self.tm_art_link % imdb, timeout='10', error=True)
+                art2 = json.loads(art2)
+            except:
+                pass
+
+            try:
+                poster3 = art2['posters']
+                poster3 = [x for x in poster3 if x.get('iso_639_1') == 'en'] + [x for x in poster3 if not x.get('iso_639_1') == 'en']
+                poster3 = [(x['width'], x['file_path']) for x in poster3]
+                poster3 = [(x[0], x[1]) if x[0] < 300 else ('300', x[1]) for x in poster3]
+                poster3 = self.tm_img_link % poster3[0]
+                poster3 = poster3.encode('utf-8')
+            except:
+                poster3 = '0'
+
+            try:
+                fanart2 = art2['backdrops']
+                fanart2 = [x for x in fanart2 if x.get('iso_639_1') == 'en'] + [x for x in fanart2 if not x.get('iso_639_1') == 'en']
+                fanart2 = [x for x in fanart2 if x.get('width') == 1920] + [x for x in fanart2 if x.get('width') < 1920]
+                fanart2 = [(x['width'], x['file_path']) for x in fanart2]
+                fanart2 = [(x[0], x[1]) if x[0] < 1280 else ('1280', x[1]) for x in fanart2]
+                fanart2 = self.tm_img_link % fanart2[0]
+                fanart2 = fanart2.encode('utf-8')
+            except:
+                fanart2 = '0'
 
 
             try:
@@ -858,9 +851,9 @@ class movies:
             item = dict((k,v) for k, v in item.iteritems() if not v == '0')
             self.list[i].update(item)
 
-            if artmeta == False or art2meta == False: raise Exception()
+            if artmeta == False: raise Exception()
 
-            meta = {'imdb': imdb, 'tvdb': '0', 'lang': self.lang, 'item': item}
+            meta = {'imdb': imdb, 'tvdb': '0', 'lang': self.lang, 'user': self.user, 'item': item}
             self.meta.append(meta)
         except:
             pass
@@ -955,10 +948,10 @@ class movies:
 
                 if 'poster3' in i and not i['poster3'] == '0':
                     art.update({'icon': i['poster3'], 'thumb': i['poster3'], 'poster': i['poster3']})
-                #elif 'poster2' in i and not i['poster2'] == '0':
-                    #art.update({'icon': i['poster2'], 'thumb': i['poster2'], 'poster': i['poster2']})
                 elif 'poster' in i and not i['poster'] == '0':
                     art.update({'icon': i['poster'], 'thumb': i['poster'], 'poster': i['poster']})
+                elif 'poster2' in i and not i['poster2'] == '0':
+                    art.update({'icon': i['poster2'], 'thumb': i['poster2'], 'poster': i['poster2']})
                 else:
                     art.update({'icon': addonPoster, 'thumb': addonPoster, 'poster': addonPoster})
 

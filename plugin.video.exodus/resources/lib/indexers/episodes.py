@@ -801,8 +801,7 @@ class episodes:
                 if int(year) > int(self.datetime.strftime('%Y')): raise Exception()
 
                 imdb = item['show']['ids']['imdb']
-                if imdb == None or imdb == '': raise Exception()
-                imdb = 'tt' + re.sub('[^0-9]', '', str(imdb))
+                if imdb == None or imdb == '': imdb = '0'
                 imdb = imdb.encode('utf-8')
 
                 tvdb = item['show']['ids']['tvdb']

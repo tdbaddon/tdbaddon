@@ -87,7 +87,7 @@
 		<setting type="lsep" label="Become a VIP member for many benefits at: https://fanart.tv/vip" />
 		<setting id="fanart.tv.user" type="text" option="hidden" label="32309" default="" />
 		<setting type="sep" />
-		<setting type="lsep" label="TMDB" />
+		<setting type="lsep" label="TMDb" />
 		<setting id="tm.user" type="text" option="hidden" label="32309" default="" />
 		<setting type="sep" />
 		<setting type="lsep" label="Trakt" />

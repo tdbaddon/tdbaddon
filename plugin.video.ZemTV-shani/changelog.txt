@@ -1,3 +1,5 @@
+[B]Version 5.9.0[/B]
+add more logos
 [B]Version 5.8.9[/B]
 Icon moved to offshorepastebin, thanks again androjohn@tva
 [B]Version 5.8.8[/B]

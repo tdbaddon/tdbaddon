@@ -50,6 +50,8 @@ class tvshows:
         self.datetime = (datetime.datetime.utcnow() - datetime.timedelta(hours = 5))
         self.trakt_user = control.setting('trakt.user').strip()
         self.imdb_user = control.setting('imdb.user').replace('ur', '')
+        self.fanart_tv_user = control.setting('fanart.tv.user')
+        self.user = control.setting('fanart.tv.user') + str('')
         self.lang = control.apiLanguage()['tvdb']
 
         self.search_link = 'http://api-v2launch.trakt.tv/search?type=show&limit=20&page=1&query='
@@ -740,17 +742,13 @@ class tvshows:
         self.meta = []
         total = len(self.list)
 
-        self.fanart_tv_headers = {}
-        fanart_tv_level = 'user'
-        fanart_tv_user = control.setting('fanart.tv.user')
-        self.fanart_tv_headers.update({'api-key': 'YTc2MGMyMTEzYTM1OTk5NzFiN2FjMWU0OWUzMTAyMGQ='.decode('base64')})
-        if level == 1 and not fanart_tv_user == '':
-            self.fanart_tv_headers.update({'client-key': fanart_tv_user})
-            #try: fanart_tv_level = json.loads(client.request(self.fanart_tv_level_link, headers=self.fanart_tv_headers))['level']
-            #except: pass
+        self.fanart_tv_headers = {'api-key': 'YTc2MGMyMTEzYTM1OTk5NzFiN2FjMWU0OWUzMTAyMGQ='.decode('base64')}
+        if not self.fanart_tv_user == '':
+            self.fanart_tv_headers.update({'client-key': self.fanart_tv_user})
 
         for i in range(0, total): self.list[i].update({'metacache': False})
-        self.list = metacache.fetch(self.list, self.lang)
+
+        self.list = metacache.fetch(self.list, self.lang, self.user)
 
         for r in range(0, total, 40):
             threads = []
@@ -759,12 +757,12 @@ class tvshows:
             [i.start() for i in threads]
             [i.join() for i in threads]
 
-            if len(self.meta) > 0: metacache.insert(self.meta)
-
-        if fanart_tv_level == 'user':
-            for i in self.list: i.update({'poster2': '0', 'fanart2': '0', 'banner2': '0', 'clearlogo': '0', 'clearart': '0'})
+            if self.meta: metacache.insert(self.meta)
 
         self.list = [i for i in self.list if not i['tvdb'] == '0']
+
+        if self.fanart_tv_user == '':
+            for i in self.list: i.update({'clearlogo': '0', 'clearart': '0'})
 
 
     def super_info(self, i):
@@ -926,10 +924,15 @@ class tvshows:
             fanart = fanart.encode('utf-8')
 
 
-            artmeta = True
-            #art = client.request(self.fanart_tv_art_link % tvdb, headers=self.fanart_tv_headers, timeout='10', error=True)
-            #try: art = json.loads(art)
-            #except: artmeta = False
+            try:
+                artmeta = True
+                if self.fanart_tv_user == '': raise Exception()
+
+                art = client.request(self.fanart_tv_art_link % tvdb, headers=self.fanart_tv_headers, timeout='10', error=True)
+                try: art = json.loads(art)
+                except: artmeta = False
+            except:
+                pass
 
             try:
                 poster2 = art['tvposter']
@@ -974,7 +977,7 @@ class tvshows:
 
             if artmeta == False: raise Exception()
 
-            meta = {'imdb': imdb, 'tvdb': tvdb, 'lang': self.lang, 'item': item}
+            meta = {'imdb': imdb, 'tvdb': tvdb, 'lang': self.lang, 'user': self.user, 'item': item}
             self.meta.append(meta)
         except:
             pass
@@ -1055,17 +1058,17 @@ class tvshows:
 
                 art = {}
 
-                if 'poster2' in i and not i['poster2'] == '0':
-                    art.update({'icon': i['poster2'], 'thumb': i['poster2'], 'poster': i['poster2']})
-                elif 'poster' in i and not i['poster'] == '0':
+                if 'poster' in i and not i['poster'] == '0':
                     art.update({'icon': i['poster'], 'thumb': i['poster'], 'poster': i['poster']})
+                #elif 'poster2' in i and not i['poster2'] == '0':
+                    #art.update({'icon': i['poster2'], 'thumb': i['poster2'], 'poster': i['poster2']})
                 else:
                     art.update({'icon': addonPoster, 'thumb': addonPoster, 'poster': addonPoster})
 
-                if 'banner2' in i and not i['banner2'] == '0':
-                    art.update({'banner': i['banner2']})
-                elif 'banner' in i and not i['banner'] == '0':
+                if 'banner' in i and not i['banner'] == '0':
                     art.update({'banner': i['banner']})
+                #elif 'banner2' in i and not i['banner2'] == '0':
+                    #art.update({'banner': i['banner2']})
                 elif 'fanart' in i and not i['fanart'] == '0':
                     art.update({'banner': i['fanart']})
                 else:
@@ -1077,10 +1080,10 @@ class tvshows:
                 if 'clearart' in i and not i['clearart'] == '0':
                     art.update({'clearart': i['clearart']})
 
-                if settingFanart == 'true' and 'fanart2' in i and not i['fanart2'] == '0':
-                    item.setProperty('Fanart_Image', i['fanart2'])
-                elif settingFanart == 'true' and 'fanart' in i and not i['fanart'] == '0':
+                if settingFanart == 'true' and 'fanart' in i and not i['fanart'] == '0':
                     item.setProperty('Fanart_Image', i['fanart'])
+                #elif settingFanart == 'true' and 'fanart2' in i and not i['fanart2'] == '0':
+                    #item.setProperty('Fanart_Image', i['fanart2'])
                 elif not addonFanart == None:
                     item.setProperty('Fanart_Image', addonFanart)
 

@@ -22,6 +22,7 @@
 from resources.lib.modules import cleangenre
 from resources.lib.modules import control
 from resources.lib.modules import client
+from resources.lib.modules import metacache
 from resources.lib.modules import workers
 
 import sys,re,json,urllib,urlparse,datetime
@@ -40,6 +41,7 @@ class channels:
         self.uk_datetime = self.uk_datetime()
         self.systime = (self.uk_datetime).strftime('%Y%m%d%H%M%S%f')
         self.imdb_by_query = 'http://www.omdbapi.com/?t=%s&y=%s'
+        self.tm_img_link = 'https://image.tmdb.org/t/p/w%s%s'
 
         self.sky_now_link = 'http://epgservices.sky.com/5.1.1/api/2.0/channel/json/%s/now/nn/0'
         self.sky_programme_link = 'http://tv.sky.com/programme/channel/%s/%s/%s.json'
@@ -74,6 +76,8 @@ class channels:
         for i in range(0, len(self.items)): threads.append(workers.Thread(self.items_list, self.items[i]))
         [i.start() for i in threads]
         [i.join() for i in threads]
+
+        self.list = metacache.local(self.list, self.tm_img_link, 'poster2', 'fanart')
 
         try: self.list = sorted(self.list, key=lambda k: k['num'])
         except: pass
@@ -217,7 +221,7 @@ class channels:
 
         addonPoster, addonBanner = control.addonPoster(), control.addonBanner()
 
-        addonFanart = control.addonFanart()
+        addonFanart, settingFanart = control.addonFanart(), control.setting('fanart')
 
         try: isOld = False ; control.item().getArt('type')
         except: isOld = True
@@ -237,13 +241,6 @@ class channels:
                 sysname = urllib.quote_plus('%s (%s)' % (i['title'], i['year']))
                 systitle = urllib.quote_plus(i['title'])
                 imdb, year = i['imdb'], i['year']
-
-
-                poster, banner = i['poster'], i['poster']
-                if poster == '0': poster = addonPoster
-                if banner == '0' and poster == '0': banner = addonBanner
-                elif banner == '0': banner = poster
-
 
                 meta = dict((k,v) for k, v in i.iteritems() if not v == '0')
                 meta.update({'mediatype': 'movie'})
@@ -274,11 +271,23 @@ class channels:
 
                 item = control.item(label=label)
 
-                item.setArt({'icon': poster, 'thumb': poster, 'poster': poster, 'banner': banner})
+                art = {}
 
-                if not addonFanart == None:
+                if 'poster2' in i and not i['poster2'] == '0':
+                    art.update({'icon': i['poster2'], 'thumb': i['poster2'], 'poster': i['poster2']})
+                elif 'poster' in i and not i['poster'] == '0':
+                    art.update({'icon': i['poster'], 'thumb': i['poster'], 'poster': i['poster']})
+                else:
+                    art.update({'icon': addonPoster, 'thumb': addonPoster, 'poster': addonPoster})
+
+                art.update({'banner': addonBanner})
+
+                if settingFanart == 'true' and 'fanart' in i and not i['fanart'] == '0':
+                    item.setProperty('Fanart_Image', i['fanart'])
+                elif not addonFanart == None:
                     item.setProperty('Fanart_Image', addonFanart)
 
+                item.setArt(art)
                 item.addContextMenuItems(cm)
                 item.setProperty('IsPlayable', isPlayable)
                 item.setInfo(type='Video', infoLabels = meta)
