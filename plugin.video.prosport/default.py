@@ -441,6 +441,9 @@ def DisplayLinks(links, orig_title):
 		elif url not in urls and 'streamsarena.eu' in url:
 			addLink('Streamsarena.eu', orig_title, url, mode="play")
 			urls.append(url)
+		elif url not in urls and 'ustream.tv' in url:
+			addLink('Ustream.tv', orig_title, url, mode="play")
+			urls.append(url)
 		elif url not in urls and 'streamup.com' in url and 'm3u8' not in url:
 			addLink('Streamup.com', orig_title, url, mode="play")
 			urls.append(url)
@@ -506,6 +509,7 @@ def DisplayLinks(links, orig_title):
 	
 def ParseLink(el, orig_title):
 	#el = 'http'+el.split('http')[-1]
+	el = el.replace('www.www','www')
 	if 'caststreams' in el:
 		url = Caststreams(orig_title)
 		return url
@@ -535,6 +539,9 @@ def ParseLink(el, orig_title):
 		return url
 	elif '305sports.xyz' in el:
 		url = Threesports()
+		return url
+	elif 'ustream.tv' in el:
+		url = Ustream(el)
 		return url
 	elif 'streamboat.tv' in el:
 		url = Streambot(el)
@@ -841,8 +848,13 @@ def Getroom(url):
 		
 def Blabseal(url):
 	try:
+		url = GetURL(url, output='geturl')
+		if not url.endswith('/'):
+			url = url+'/'
 		html = GetURL(url, referer=url)
 		link = common.parseDOM(html, "iframe", ret="src")[0]
+		if link.startswith('/'):
+			link = link[1:]
 		link = url+link
 		html = GetURL(link, referer=link)
 		javasc = re.findall('(eval.*\))', html)[0]
@@ -862,11 +874,15 @@ def Blabseal(url):
 			context.execute(javasc)
 			html = context.document.result
 			link = common.parseDOM(html, "iframe", ret="src")[0]
+			print link
 			if 'youtu' in link:
 				lnk = GetYoutube(link)
 				return lnk
 			elif 'dailymotion.com/embed' in link:
 				lnk = Dailymotion(link)
+				return lnk
+			elif 'ustream.tv' in link:
+				lnk = Ustream(link)
 				return lnk
 		else:
 			jsplayers = '''var jwobject = [];
@@ -884,6 +900,14 @@ def Dailymotion(url):
 		html = GetURL(url)
 		link = 	re.findall('stream_chromecast_url":"(.*?)"', html)[0].replace("\\", "")
 		link = GetURL(link, output='geturl')
+		return link
+	except:
+		return None
+
+def Ustream(url):
+	try:
+		html = GetURL(url)
+		link = 	re.findall('"hls":"(.*?)"', html)[0].replace("\\", "")
 		return link
 	except:
 		return None
@@ -1125,6 +1149,9 @@ def Universal(url):
 		return link
 	if 'dailymotion.com/embed' in url:
 		link = Dailymotion(url)
+		return link
+	if 'ustream.tv' in url:
+		link = Ustream(url)
 		return link
 	if 'kostatz.com' in url:
 		url = 'http://admin1.ninacdn.com/iframe.php?c=peanutly&s=peanutly'

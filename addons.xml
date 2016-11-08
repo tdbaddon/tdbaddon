@@ -2079,7 +2079,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
-<addon id="plugin.video.prosport" name="Pro Sport" version="0.73" provider-name="gerikss, podgod, iCanuck">
+<addon id="plugin.video.prosport" name="Pro Sport" version="0.74" provider-name="gerikss, podgod, iCanuck">
   <requires>
     <import addon="xbmc.python" version="2.1.0" />
      <import addon="script.module.requests" version="2.9.1" />
@@ -2869,7 +2869,7 @@ For support, visit: [COLOR hotpink]http://bit.ly/uwc-support[/COLOR]</descriptio
 	</extension>
 </addon>
 
-<addon id="plugin.video.youtube" name="YouTube" version="5.3.0" provider-name="h0d3nt3uf3l, bromix">
+<addon id="plugin.video.youtube" name="YouTube" version="5.3.1" provider-name="jdf76, bromix">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0"/>
 	</requires>
@@ -2879,9 +2879,11 @@ For support, visit: [COLOR hotpink]http://bit.ly/uwc-support[/COLOR]</descriptio
 	<extension point="xbmc.addon.metadata">
         <news>
 - Added MPEG-DASH support for Kodi 17 w/ inputstream.mpd Add-on
-- Added optional Watch Later custom playlist to Settings -> Folders
+- Added optional History and Watch Later custom playlist to Settings -> Folders, or (My)Playlists context menu to set/remove
 - Added Maintenance section to Settings
 - Added 'Subtitle language(s) to download' selection to Settings -> General
+- API key set switching from Settings -> API (this will log you out)
+- Dual login only required if My Subscriptions folder is enabled at sign-in
         </news>
         <assets>
             <icon>icon.png</icon>
@@ -2922,7 +2924,7 @@ For support, visit: [COLOR hotpink]http://bit.ly/uwc-support[/COLOR]</descriptio
 
 <addon id="plugin.video.ZemTV-shani"
        name="Zem"
-       version="5.9.0"
+       version="5.9.2"
        provider-name="shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>

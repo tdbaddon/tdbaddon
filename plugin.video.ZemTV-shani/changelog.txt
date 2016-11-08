@@ -1,3 +1,7 @@
+[B]Version 5.9.2[/B]
+just bump
+[B]Version 5.9.1[/B]
+Added Icons, Thanks to jokstergfx@tva also option for overriding the thumbnail view id
 [B]Version 5.9.0[/B]
 add more logos
 [B]Version 5.8.9[/B]

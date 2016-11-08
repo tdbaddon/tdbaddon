@@ -13,7 +13,7 @@ import checkbad
 from time import time
 import base64
 
-    
+overridemode=None    
 try:
     from lxmlERRRORRRR import etree
     print("running with lxml.etree")
@@ -51,6 +51,8 @@ willowCommonUrl=''# this is where the common url will stay
 
 addonPath = xbmcaddon.Addon().getAddonInfo("path")
 addonversion =xbmcaddon.Addon().getAddonInfo("version")
+
+home = xbmc.translatePath(selfAddon.getAddonInfo('path').decode('utf-8'))
 
 
 WTVCOOKIEFILE='WTVCookieFile.lwp'
@@ -243,21 +245,21 @@ def DisplayChannelNames(url):
 	return
 
 def AddtypesForShows():
-	addDir('Latest Shows (ZemTv)' ,'Shows' ,2,'')
-	addDir('Latest Shows (Siasat.pk)' ,'http://www.siasat.pk/forum/forumdisplay.php?29-Daily-Talk-Shows' ,2,'')
-	addDir('All Programs and Talk Shows' ,'ProgTalkShows' ,2,'')
+	addDir('Latest Shows (ZemTv)' ,'Shows' ,2,os.path.join(home,'icons', 'ShowsfromZemTv.png'))
+	addDir('Latest Shows (Siasat.pk)' ,'http://www.siasat.pk/forum/forumdisplay.php?29-Daily-Talk-Shows' ,2,os.path.join(home,'icons','All Programs and Talk shows.png'))
+	addDir('All Programs and Talk Shows' ,'ProgTalkShows' ,2,os.path.join(home,'icons','All Programs and Talk shows.png'))
 
 def Addtypes():
-	addDir('Pakistani Political Shows' ,'PakLive' ,29,'')
-	addDir('Indian/Pakistani Shows/Dramas' ,'IndPakLive' ,83,'')    
-	addDir('Pakistani Live Channels' ,'PakLive' ,2,'')
-	addDir('Indian Live Channels' ,'IndianLive' ,2,'')
-	addDir('Punjabi Live Channels' ,'PunjabiLive' ,2,'')
-	addDir('Movies' ,'pv2',66,'')
-	addDir('Sports' ,'Live' ,13,'')
-	addDir('Settings' ,'Live' ,6,'',isItFolder=False)
-	addDir('Clear Cache' ,'Live' ,54,'',isItFolder=False)
-	addDir(Colored('Status Report', 'red') ,'live',7,'',isItFolder=False)
+	addDir('Pakistani Political Shows' ,'PakLive' ,29,os.path.join(home,'icons','Pakistani Political Shows.png'))
+	addDir('Indian/Pakistani Shows/Dramas' ,'IndPakLive' ,83,os.path.join(home,'icons','indpakshows.png') )   
+	addDir('Pakistani Live Channels' ,'PakLive' ,2,os.path.join(home,'icons','Pakistani Live Channels.png'))
+	addDir('Indian Live Channels' ,'IndianLive' ,2,os.path.join(home,'icons','Indian Live Channels.png'))
+	addDir('Punjabi Live Channels' ,'PunjabiLive' ,2,os.path.join(home,'icons','Punjabi Live Channels.png'))
+	addDir('Movies' ,'pv2',66,os.path.join(home,'icons','Movies.png'))
+	addDir('Sports' ,'Live' ,13,os.path.join(home,'icons','Sports.png'))
+	addDir('Settings' ,'Live' ,6,os.path.join(home,'icons','Settings.png'),isItFolder=False)
+	addDir('Clear Cache' ,'Live' ,54,os.path.join(home,'icons','Clear Cache.png'),isItFolder=False)
+	addDir(Colored('Status Report', 'red') ,'live',7,os.path.join(home,'icons','Settings.png'),isItFolder=False)
 	return
 
 def PlayFlashTv(url):
@@ -443,16 +445,16 @@ def AddSports(url):
     
 #    addDir('IPTV Sports' ,'sss',46,'')
     
-    addDir('IpBox sports Using TSDownloader and HLS' ,'mpegts',55,'')
-    addDir('Football Mania' ,'mpegts',86,'')
+    addDir('IpBox sports Using TSDownloader and HLS' ,'mpegts',55,os.path.join(home,'icons','Ipbox Sports.png'))
+    addDir('Football Mania' ,'mpegts',86,os.path.join(home,'icons','football.png'))
     #addDir('IpBox sports Using HLS ' ,'hls',55,'')
-    addDir('PTC sports' ,'sss',51,'')
-    addDir('Paktv sports' ,'sss',52,'')
-    addDir('UniTV sports' ,'sss',53,'')
-    addDir('WTV sports' ,'sss',62,'')
-    addDir('GTV sports' ,'sss',70,'')
-    addDir('Pi sports' ,'sss',71,'')
-    addDir('Mona' ,'sss',68,'')
+    addDir('PTC sports' ,'sss',51,os.path.join(home,'icons','PTC Sports.png'))
+    addDir('Paktv sports' ,'sss',52,os.path.join(home,'icons','PakTV sports.png'))
+    addDir('UniTV sports' ,'sss',53,os.path.join(home,'icons','UniTV Sports.png'))
+    addDir('WTV sports' ,'sss',62,os.path.join(home,'icons','WTV Sports.png'))
+    addDir('GTV sports' ,'sss',70,os.path.join(home,'icons','GTV Sports.png'))
+    addDir('Pi sports' ,'sss',71,os.path.join(home,'icons','Pi Sports.png'))
+    addDir('Mona' ,'sss',68,os.path.join(home,'icons','Mona.png'))
     addDir('Sport365.live' ,'sss',56,'http://s1.medianetworkinternational.com/images/icons/256x256px.png')
     addDir('SmartCric.com (Live matches only)' ,'Live' ,14,'http://cdn.smartcric.com/images/logo.png')
     addDir('UKTVNow [Limited Channels]','sss' ,57,'http://www.uktvnow.net/images/uktvnow_logo.png')
@@ -460,16 +462,16 @@ def AddSports(url):
 #    addDir('Flashtv.co (Live Channels)' ,'flashtv' ,31,'')
     addDir('Willow.Tv (Subscription required, US Only or use VPN)' ,base64.b64decode('aHR0cDovL3d3dy53aWxsb3cudHYv') ,19,'http://aimages.willow.tv/WillowLogoYT.png')
     #addDir(base64.b64decode('U3VwZXIgU3BvcnRz') ,'sss',34,'')
-    addDir('My Sports' ,'sss',82,'')
-    addDir('PV2 Sports' ,'zemsports',36,'')
-    addDir('Fast TV' ,'sss',92,'')
+    addDir('My Sports' ,'sss',82,os.path.join(home,'icons','Sports.png'))
+    addDir('PV2 Sports' ,'zemsports',36,os.path.join(home,'icons','PV2 Sports.png'))
+    addDir('Fast TV' ,'sss',92,os.path.join(home,'icons','Fast TV.png'))
     #addDir('Safe' ,'sss',72,'')
     addDir('TVPlayer [UK Geo Restricted]','sss',74,'https://assets.tvplayer.com/web/images/tvplayer-logo-white.png')
     addDir('StreamHD','sss',75,'http://www.streamhd.eu/images/logo.png')
     addDir('Mama HD','http://mamahd.com/',79,'http://mamahd.com/images/logo.png')
-    addDir('HDfree','sss',77,'')
-    addDir('inFinite Streams','sss',78,'')
-    addDir('Euro Streams','sss',81,'')
+    addDir('HDfree','sss',77,os.path.join(home,'icons','HDFree.png'))
+    addDir('inFinite Streams','sss',78,os.path.join(home,'icons','Infinite Streams.png'))
+    addDir('Euro Streams','sss',81,os.path.join(home,'icons','Euro Streams.png'))
 
     #addDir('Yupp Asia Cup','Live' ,60,'')
     #addDir('CricHD.tv (Live Channels)' ,'pope' ,26,'')
@@ -1491,13 +1493,14 @@ def getTVPlayerChannels(thesechannels=[]):
 
     headers=[('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36')]               
     mainhtml=getUrl('http://tvplayer.com/watch/bbcone',headers=headers)
-    cdata=re.findall('<li .*? class="online.*?free.*?\s*<a href="(.*?)" title="(.*?)".*?\s*<img.*?src="(.*?)',mainhtml)
+    cdata=re.findall('<li .*? class="online.*?free.*?\s*<a href="(.*?)" title="(.*?)".*?\s*<img.*?src="(.*?)"',mainhtml)
     ret=[]
     for cc in cdata:
         
         mm=11
         col='ZM'
         logo=cc[2]
+
         cname=cc[1]
         if 'Watch ' in cname:
             cname=cname.replace('Watch ','')
@@ -7037,7 +7040,40 @@ except:
 
     print 'somethingwrong'
     traceback.print_exc(file=sys.stdout)
+VIEW_MODES = {
+    'thumbnail': {
+        'skin.confluence': 500,
+        'skin.aeon.nox': 551,
+        'skin.confluence-vertical': 500,
+        'skin.jx720': 52,
+        'skin.pm3-hd': 53,
+        'skin.rapier': 50,
+        'skin.simplicity': 500,
+        'skin.slik': 53,
+        'skin.touched': 500,
+        'skin.transparency': 53,
+        'skin.xeebo': 55,
+    },
+}
 
+def get_view_mode_id( view_mode):
+    default_view_mode=selfAddon.getSetting( "usethisviewmode" )
+    if default_view_mode=="":
+        view_mode_ids = VIEW_MODES.get(view_mode.lower())
+        if view_mode_ids:
+            return view_mode_ids.get(xbmc.getSkinDir())
+    else:
+        return int(default_view_mode)
+    return None
+
+try:
+    if (not mode==None) and mode>1 and mode not in[55,61,67,56,14,57,19,20,21,22,23,24,79,75,76,78,81,2,51,52,53,62,70,71,81]:
+        view_mode_id = get_view_mode_id('thumbnail')
+        if overridemode: view_mode_id=overridemode
+        if view_mode_id is not None:
+            print 'view_mode_id',view_mode_id
+            xbmc.executebuiltin('Container.SetViewMode(%d)' % view_mode_id)
+except: traceback.print_exc(file=sys.stdout)
 
 if not ( (mode==3 or mode==4 or mode==9 or mode==11 or mode==15 or mode==21 or mode==22 or mode==27 or mode==33 or mode==35 or mode==37 or mode==40 or mode==42 or mode==45 or mode==91 or mode==93)  )  :
     if mode in [144,156]:
