@@ -340,9 +340,8 @@ class movies:
 
         try:
             q = dict(urlparse.parse_qsl(urlparse.urlsplit(url).query))
-            p = str(int(q['page']) + 1)
-            if p == '5': raise Exception()
-            q.update({'page': p})
+            if not int(q['limit']) == len(items): raise Exception()
+            q.update({'page': str(int(q['page']) + 1)})
             q = (urllib.urlencode(q)).replace('%2C', ',')
             next = url.replace('?' + urlparse.urlparse(url).query, '') + '?' + q
             next = next.encode('utf-8')

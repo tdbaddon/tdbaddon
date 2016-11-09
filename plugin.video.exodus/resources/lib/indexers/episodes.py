@@ -56,15 +56,13 @@ class seasons:
 
 
     def get(self, tvshowtitle, year, imdb, tvdb, idx=True):
+        if control.window.getProperty('PseudoTVRunning') == 'True':
+            return episodes().get(tvshowtitle, year, imdb, tvdb)
+
         if idx == True:
-            if control.setting('flatten.tvshows') == 'true' or control.window.getProperty('PseudoTVRunning') == 'True':
-                self.list = cache.get(self.tvdb_list, 1, tvshowtitle, year, imdb, tvdb, self.lang, '-1')
-                episodes().episodeDirectory(self.list)
-                return self.list
-            else:
-                self.list = cache.get(self.tvdb_list, 24, tvshowtitle, year, imdb, tvdb, self.lang)
-                self.seasonDirectory(self.list)
-                return self.list
+            self.list = cache.get(self.tvdb_list, 24, tvshowtitle, year, imdb, tvdb, self.lang)
+            self.seasonDirectory(self.list)
+            return self.list
         else:
             self.list = self.tvdb_list(tvshowtitle, year, imdb, tvdb, 'en')
             return self.list
@@ -534,7 +532,9 @@ class episodes:
     def get(self, tvshowtitle, year, imdb, tvdb, season=None, episode=None, idx=True):
         try:
             if idx == True:
-                if episode == None:
+                if season == None and episode == None:
+                    self.list = cache.get(seasons().tvdb_list, 1, tvshowtitle, year, imdb, tvdb, self.lang, '-1')
+                elif episode == None:
                     self.list = cache.get(seasons().tvdb_list, 1, tvshowtitle, year, imdb, tvdb, self.lang, season)
                 else:
                     self.list = cache.get(seasons().tvdb_list, 1, tvshowtitle, year, imdb, tvdb, self.lang, '-1')
@@ -1445,7 +1445,7 @@ class episodes:
                 art = {}
 
                 if 'poster' in i and not i['poster'] == '0':
-                    art.update({'poster': i['poster']})
+                    art.update({'poster': i['poster'], 'tvshow.poster': i['poster'], 'season.poster': i['poster']})
                 else:
                     art.update({'poster': addonPoster})
 

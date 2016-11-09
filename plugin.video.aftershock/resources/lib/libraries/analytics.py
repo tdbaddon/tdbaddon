@@ -35,10 +35,10 @@ def sendAnalytics(screenName):
         post = base64.urlsafe_b64decode("eyJ2IjoiMSIsInQiOiJzY3JlZW52aWV3IiwidGlkIjoiVUEtNzQ2Mzg0NjQtMSIsImFuIjoiQWZ0ZXJzaG9jay1Lb2RpIiwiYXYiOiIlcyIsImNpZCI6IiVzIiwiY2QiOiIlcyJ9") % (version, guid, screenName)
         post = urllib.urlencode(json.loads(post))
         client.request(url, post=post)
-        logger.debug('Sent Analytics for [%s]' % screenName, 'analytics.sendAnalytics')
+        logger.debug('Sent Analytics for [%s]' % screenName, __name__)
         return '1'
     except:
-        logger.debug('Analytics disabled for [%s]' % screenName, 'analytics.sendAnalytics')
+        logger.debug('Analytics disabled for [%s]' % screenName, __name__)
         return '1'
         pass
 

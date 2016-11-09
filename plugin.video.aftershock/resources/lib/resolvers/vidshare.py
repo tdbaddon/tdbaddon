@@ -42,5 +42,4 @@ def resolve(url):
         logger.debug('URL [%s]' % url, __name__)
         return url
     except Exception as e:
-        logger.error(e.message)
-        return
+        return False

@@ -143,6 +143,6 @@ class source:
 
 
     def resolve(self, url, resolverList):
-        return url
+        return False
 
 

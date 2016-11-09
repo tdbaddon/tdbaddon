@@ -29,8 +29,8 @@ from resources.lib.modules import directstream
 
 class source:
     def __init__(self):
-        self.domains = ['123movies.to', '123movies.ru', '123movies.is']
-        self.base_link = 'http://123movies.is'
+        self.domains = ['123movies.to', '123movies.ru', '123movies.is', '123movies.gs']
+        self.base_link = 'http://123movies.gs'
         self.search_link = '/ajax/suggest_search'
         self.info_link = '/ajax/movie_load_info/%s'
         self.server_link = '/ajax/get_episodes/%s'

@@ -29,6 +29,9 @@ class NoRedirection(urllib2.HTTPErrorProcessor):
         return response
     https_response = http_response
 
+def getDefaultUserAgent():
+    return 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36'
+
 def request(url, close=True, error=False, proxy=None, post=None, headers=None, mobile=False, referer=None, cookie=None, output='', timeout='30', debug=False, compression=False, limit=None, allowredirect=True):
     try:
         handlers = []
@@ -62,7 +65,7 @@ def request(url, close=True, error=False, proxy=None, post=None, headers=None, m
             pass
         elif not mobile == True:
             #headers['User-Agent'] = 'Mozilla/5.0 (compatible, MSIE 11, Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko'
-            headers['User-Agent'] = 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36'
+            headers['User-Agent'] = getDefaultUserAgent()
         else:
             headers['User-Agent'] = 'Apple-iPhone/701.341'
         if 'Referer' in headers:

@@ -15,6 +15,7 @@
 	<category label="30830">
 		<setting id="playback_quality" type="enum" label="30831" values="1080p|720p|480p" default="0" />
 		<setting id="host_select" type="enum" label="30832" lvalues="30833|30834|30839" default="1"/>
+		<setting id="live_host_select" type="enum" label="30836" lvalues="30833|30834|30839" default="2"/>
 		<setting type="lsep" label="30843" />
 		<setting id="resume_playback" type="bool" label="30844" default="true" />
 		<setting id="playback_info" type="bool" label="30845" default="false" />
@@ -22,6 +23,7 @@
 
 	<category label="30862">
 		<setting id="apnaview" type="bool" label="ApnaView" default="true" />
+		<setting id="badtameezdil" type="bool" label="Bad" default="false" />
 		<setting id="cinefun" type="bool" label="CineFun" visible="true" default="true" />
 		<setting id="crazy4ad" type="bool" label="CRAZY4AD" visible="false" default="true" />
 		<setting id="desihdmovies" type="bool" label="DesiHDMovies" default="true" />

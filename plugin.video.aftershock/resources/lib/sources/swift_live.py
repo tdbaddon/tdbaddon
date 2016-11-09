@@ -92,16 +92,20 @@ class source:
             auth='Basic %s'%base64.b64encode(result["DATA"][0]["Password"])
 
         if postUrl:
-            headers={'User-Agent':'Dalvik/1.6.0 (Linux; U; Android 4.4.2; SM-G900F Build/KOT49H)','Authorization':auth}
-            res=client.request(postUrl,headers=headers)
-            s=list(res)
-            for i in range( (len(s)-59)/12):
-                ind=len(s)-59 + (12*(i))
-                if ind<len(s):
-                    print ind
-                    s[ind]=''
-            return ''.join(s)
+            return cache.get(self.getSwiftAuthToken, 1, postUrl, auth)
         return url
+
+    def getSwiftAuthToken(self, postUrl, auth):
+        logger.debug("Generating new token", __name__)
+        headers={'User-Agent':'Dalvik/1.6.0 (Linux; U; Android 4.4.2; SM-G900F Build/KOT49H)','Authorization':auth}
+        res=client.request(postUrl,headers=headers)
+        s=list(res)
+        for i in range( (len(s)-59)/12):
+            ind=len(s)-59 + (12*(i))
+            if ind<len(s):
+                print ind
+                s[ind]=''
+        return ''.join(s)
 
     def getSwiftCache(self):
         url = self.live_link

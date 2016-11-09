@@ -26,7 +26,9 @@ from resources.lib.libraries import logger
 
 def resolve(url):
     try:
-        html = client.request(url)
+        disableAge = 'http://www.dailymotion.com/family_filter?enable=false&urlback=%s' % url
+        cookie = client.request(disableAge, output='cookie')
+        html = client.request(url, cookie=cookie)
 
         matchHDLink = ''
         matchHQLink = ''
@@ -93,7 +95,7 @@ def resolve(url):
 
         if final_url == None:
             raise Exception()
-        return "%s|Referer=%s" % (final_url, url)
+        return "%s|Cookie=%s" % (final_url, cookie)
     except Exception as e:
         logger.error(e.message)
-        return
+        return False

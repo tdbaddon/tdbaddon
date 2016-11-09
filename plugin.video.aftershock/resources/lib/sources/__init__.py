@@ -148,20 +148,20 @@ class sources:
 
             self.sources = self.getSources(name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date, meta)
 
-            select = control.setting('host_select') if select == None else select
-
-            try :
-                if content == 'live':
-                    select = '2'
-                    title = name
-                    meta = self.sources[0]['meta']
-                    logger.debug('Content is live hence setting Auto-Play')
-            except Exception as e:
-                logger.error(e.message)
-                pass
-
             items = self.sourcesFilter()
             if len(items) > 0:
+                select = control.setting('host_select') if select == None else select
+
+                try :
+                    if content == 'live':
+                        select = control.setting('live_host_select')
+                        select = '2' if len(items) == 1 else select
+                        title = name
+                        meta = self.sources[0]['meta']
+                        logger.debug('Content is live hence setting %s' % select, __name__)
+                except Exception as e:
+                    logger.error(e.message)
+                    pass
 
                 if select == '1' and 'plugin' in control.infoLabel('Container.PluginName'):
                     control.window.clearProperty(self.itemProperty)
@@ -274,6 +274,7 @@ class sources:
 
                     if self.url == None: raise Exception()
 
+
                     try: self.progressDialog.close()
                     except: pass
 
@@ -287,7 +288,6 @@ class sources:
 
                     return self.url
                 except:
-                    client.printException('')
                     pass
 
             try: self.progressDialog.close()
@@ -760,7 +760,7 @@ class sources:
 
     def sourcesFilter(self):
         logger.debug('Calling sources.filter()', __name__)
-        logger.debug('ORIGINAL SOURCE COUNT : %s' % len(self.sources))
+        logger.debug('ORIGINAL SOURCE COUNT : %s' % len(self.sources), __name__)
         for i in range(len(self.sources)): self.sources[i]['source'] = self.sources[i]['source'].lower()
         self.sources = sorted(self.sources, key=lambda k: k['source'])
 
@@ -780,14 +780,18 @@ class sources:
         #self.debridDict = {'premiumize': [], 'alldebrid': [], 'realdebrid': ['1fichier.com', 'alterupload.com', 'cjoint.net', 'desfichiers.com', 'dfichiers.com', 'megadl.fr', 'mesfichiers.org', 'piecejointe.net', 'pjointe.com', 'tenvoi.com', 'dl4free.com', '24uploading.com', '2shared.com', '4shared.com', 'alfafile.net', 'allmyvideos.net', 'anafile.com', 'catshare.net', 'cbs.com', 'clicknupload.me', 'clicknupload.com', 'clicknupload.link', 'cloudtime.to', 'divxstage.e', 'divxstage.to', 'dailymotion.com', 'datafile.com', 'datafilehost.com', 'datei.to', 'depfile.com', 'i-filez.com', 'dl.free.fr', 'easybytez.com', 'exashare.com', 'bojem3a.info', 'ajihezo.info', 'extmatrix.com', 'faststore.org', 'filefactory.com', 'fileflyer.com', 'fileover.net', 'filerio.com', 'filerio.in', 'filesabc.com', 'filesflash.com', 'filesflash.net', 'filesmonster.com', 'gigapeta.com', 'gigasize.com', 'gboxes.com', 'gulfup.com', 'hugefiles.net', 'hulkshare.com', 'keep2share.cc', 'k2s.cc', 'keep2s.cc', 'k2share.cc', 'kingfiles.net', 'load.to', 'mediafire.com', 'mega.co.nz', 'mega.nz', 'megashares.com', 'mightyupload.com', 'movshare.net', 'wholecloud.net', 'nitroflare.com', 'novamov.com', 'auroravid.to', 'nowdownload.e', 'nowdownload.ch', 'nowdownload.sx', 'nowdownload.ag', 'nowdownload.at', 'nowdownload.ec', 'nowdownload.li', 'nowdownload.to', 'nowvideo.e', 'nowvideo.ch', 'nowvideo.sx', 'nowvideo.ag', 'nowvideo.at', 'nowvideo.li', 'oboom.com', 'openload.co', 'openload.io', 'ozofiles.com', 'promptfile.com', 'sky.fm', 'radiotunes.com', 'rapidgator.net', 'rg.to', 'rarefile.net', 'redbunker.net', 'redtube.com', 'canalplus.fr', 'd8.tv', 'c8.fr', 'rockfile.e', 'rutube.r', 'salefiles.com', 'scribd.com', 'secureupload.e', 'sendspace.com', 'share-online.biz', 'solidfiles.com', 'soundcloud.com', 'streamin.to', 'thevideo.me', 'turbobit.net', 'tusfiles.net', 'ulozto.net', 'uloz.to', 'ulozto.sk', 'unibytes.com', 'uplea.com', 'upload.af', 'uploadable.ch', 'bigfile.to', 'uploadc.com', 'uploadc.ch', 'uploaded.net', 'uploaded.to', 'ul.to', 'uploading.com', 'uploadrocket.net', 'uploadx.org', 'upstore.net', 'uptobox.com', 'uptostream.com', 'userporn.com', 'userscloud.com', 'veevr.com', 'videoweed.es', 'bitvid.sx', 'vimeo.com', 'wipfiles.net', 'worldbytez.com', 'youporn.com', 'youtube.com', 'youwatch.org', 'chouhaa.info', 'sikafika.info', 'yunfile.com', 'filemarkets.com', '5xpan.com', 'dix3.com', 'zippyshare.com'], 'rpnet': []}
         #self.hostDict = ['wholecloud.net', 'vidzi.tv', 'watchers.to', 'videoraj.to', 'mersalaayitten.co', 'gorillavid.in', 'cloudy.sx', 'noslocker.com', 'divxstage.to', 'desiflicks.com', 'yourupload.com', 'streamcloud.eu', 'videoweed.es', 'nowvideo.at', 'letwatch.to', 'clicknupload.me', 'xvidstage.com', 'playpanda.net', 'cloudy.ch', 'stagevu.com', 'videoapi.my.mail.ru', 'mp4upload.com', 'vshare.eu', 'exashare.com', 'watchvideo10.us', 'allmyvideos.net', 'apnasave.in', 'uploadx.org', 'tune.pk', 'xpressvids', 'daclips.in', 'videoraj.com', 'playwire.com', 'usersfiles.com', 'vidup.org', 'my.mail.ru', 'streamin.to', 'vidlox.tv', 'vidmad.net', 'vivo.sx', 'watchvideo.us', 'youwatch.org', 'www.playhd.fo', 'nosvideo.com', 'ok.ru', 'vimeo.com', 'rapidvideo.com', 'watchvideo4.us', 'speedplay3.pw', 'byzoo.org', 'zstream.to', 'playu.me', 'nowvideo.fo', 'vidgg.to', 'powerwatch.pw', 'watchvideo7.us', 'watchvideo8.us', 'vidspot.net', 'videorev.cc', 'thevideobee.to', 'api.video.mail.ru', 'watchvideo3.us', 'dailymotion.com', 'novamov.com', 'filepup.net', 'uptobox.com', 'fileweed.net', 'idowatch.us', 'watchvideo2.us', 'jetload.tv', 'vid.me', 'trollvid.net', 'googleusercontent.com', 'mp4edge.com', 'video.tt', 'weshare.me', 'streame.net', 'veoh.com', 'speedplay1.site', 'uploadc.com', 'movshare.net', 'letwatch.us', 'mp4engine.com', 'indavideo.hu', 'videohut.to', 'happystreams.net', 'userscloud.com', 'videoraj.eu', 'play44.net', 'get.google.com', 'openload.co', 'dittotv.com', 'nowvideo.li', 'teramixer.com', 'toltsd-fel.tk', 'docs.google.com', 'vidcrazy.net', 'odnoklassniki.ru', 'videoraj.ec', 'yucache.net', 'mail.ru', 'shared.sx', 'vidbull.com', 'promptfile.com', 'filehoot.com', 'shitmovie.com', 'tvlogy.to', 'bitvid.sx', 'drive.google.com', 'movdivx.com', 'allvid.ch', 'myvidstream.net', 'watchvideo6.us', 'vshare.io', 'fastplay.cc', 'clicknupload.link', 'grifthost.com', 'vidto.me', 'nowvideo.eu', 'uploadcrazy.net', 'chouhaa.info', 'upload.af', 'youtu.be', 'auroravid.to', 'videoraj.co', 'videoraj.ch', 'nowvideo.ec', 'megamp4.net', 'playedto.me', 'rutube.ru', 'speedplay.pw', 'speedvideo.net', 'idowatch.net', 'briskfile.com', 'auengine.com', 'hugefiles.net', 'watchvideo5.us', 'dynns.com', 'everplay.watchpass.net', 'videoraj.sx', 'videozoo.me', 'watchvideo9.us', 'vk.com', 'kingfiles.net', 'thevideo.me', 'cloudy.com', 'vkpass.com', 'nowvideo.sx', 'youtube.com', 'cloudzilla.to', 'daclips.com', 'mp4stream.com', 'mersalaayitten.com', 'vidfile.xyz', 'speedplay.xyz', 'movpod.net', 'clicknupload.com', 'nowvideo.co', 'divxstage.eu', 'playbb.me', 'nowvideo.ch', 'videowing.me', 'flashx.tv', 'plus.google.com', 'movpod.in', 'openload.io', 'facebook.com', 'uptostream.com', 'divxstage.net', 'estream.to', 'video44.net', 'youlol.biz', 'cloudy.eu', 'videowood.tv', 'uploadc.ch', 'watchonline.to', 'rapidvideo.ws', 'neodrive.co', 'castamp.com', 'tamildrive.com', 'easyvideo.me', 'cloudy.ec', 'www.playhd.video', 'tusfiles.net', 'googlevideo.com', 'speedplay.us', 'zalaa.com', 'cloudtime.to', 'vodlocker.com', 'storeinusa.com', 'playu.net', 'videoweed.com', 'fastplay.sx', 'googledrive.com', 'thevideos.tv', 'gorillavid.com', 'vidup.me', 'vidshare.us']
 
-        for d in self.debridDict: filter += [dict(i.items() + [('debrid', d)]) for i in self.sources if i['source'].lower() in self.debridDict[d]]
-        for host in self.hostDict : filter += [i for i in self.sources if i['source'] in host and not i['content'] == 'live' and 'debridonly' not in i and i['source'] not in self.hostprDict]
+        if debrid.status() == True:
+            for d in self.debridDict: filter += [dict(i.items() + [('debrid', d)]) for i in self.sources if i['source'].lower() in self.debridDict[d]]
+            for host in self.hostDict : filter += [i for i in self.sources if i['source'] in host and not i['content'] == 'live' and 'debridonly' not in i and i['source'] not in self.hostprDict]
+        else :
+            for host in self.hostDict : filter += [i for i in self.sources if i['source'] in host and not i['content'] == 'live' and 'debridonly' not in i]
+
         filter += [i for i in self.sources if i['direct'] == True and not i['content'] == 'live']
         try:filter += [i for i in self.sources if i['content'] == 'live']
         except:pass
         self.sources = filter
 
-        logger.debug('FINAL SOURCE COUNT : %s' % len(self.sources))
+        logger.debug('FINAL SOURCE COUNT : %s' % len(self.sources), __name__)
 
         random.shuffle(self.sources)
 
@@ -802,7 +806,7 @@ class sources:
         if len(filter) < 25:filter += [i for i in self.sources if i['quality'] == '']
         self.sources = filter
 
-        logger.debug('ORIGINAL SOURCE COUNT : %s' % len(self.sources))
+        logger.debug('ORIGINAL SOURCE COUNT : %s' % len(self.sources), __name__)
 
         for i in range(len(self.sources)):
 
@@ -842,54 +846,39 @@ class sources:
 
     def sourcesResolve(self, item):
         try:
-            logger.debug('selected url : %s' % item['url'])
+            logger.debug('selected url : %s' % item['url'], __name__)
             u = url = item['url']
             provider = item['provider'].lower()
 
             d = item['debrid'] ; direct = item['direct']
 
-            if not provider.endswith(('_mv', '_tv', '_mv_tv')):
-                sourceDict = []
-                for package, name, is_pkg in pkgutil.walk_packages(__path__): sourceDict.append((name, is_pkg))
-                provider = [i[0] for i in sourceDict if i[1] == False and i[0].startswith(provider + '_')][0]
-
-            source = __import__(provider, globals(), locals(), [], -1).source()
-            u = url = source.resolve(url, self.resolverList)
-            if url == False: raise Exception()
-
             if not d == '':
-                if type(url) is list:
-                    for tUrl in url:
-                        tUrl = debrid.resolver(tUrl, d)
-                        url.append(tUrl)
-                else:
-                    url = debrid.resolver(url, d)
+                logger.debug('DEBRID : Resolving debrid', __name__)
+                u = debrid.resolve(url, d)
+                logger.debug('DEBRID u : %s' % u, __name__)
+
+            if d == '' or u == False :
+                logger.debug('Resolving through provider',__name__)
+                if not provider.endswith(('_mv', '_tv', '_mv_tv')):
+                    sourceDict = []
+                    for package, name, is_pkg in pkgutil.walk_packages(__path__): sourceDict.append((name, is_pkg))
+                    provider = [i[0] for i in sourceDict if i[1] == False and i[0].startswith(provider + '_')][0]
+
+                source = __import__(provider, globals(), locals(), [], -1).source()
+                u = source.resolve(url, self.resolverList)
+                logger.debug('Resolved through provider [%s]' % u ,__name__)
+                if u == False: raise Exception()
+
+            url = u
             try :
                 ext = url.split('?')[0].split('&')[0].split('|')[0].rsplit('.')[-1].replace('/', '').lower()
             except :
                 ext = None
             if ext == 'rar': raise Exception()
 
-            try: headers = url.rsplit('|', 1)[1]
-            except: headers = ''
-            headers = urllib.quote_plus(headers).replace('%3D', '=').replace('%26','&') if ' ' in headers else headers
-            headers = dict(urlparse.parse_qsl(headers))
-
-            logger.debug('type[url] : %s HEADERS : %s' % (type(url), headers))
-
-            if not type(url) is list:
-                if url.startswith('http') and '.m3u8' in url:
-                    result = client.request(url.split('|')[0], headers=headers, output='geturl', timeout='20')
-                    if result == None: raise Exception()
-
-                elif url.startswith('http'):
-                    result = client.request(url.split('|')[0], headers=headers, output='chunk', timeout='20')
-                    if result == None: raise Exception()
             self.url = url
-            return url
-        except Exception as e:
-            logger.error(e.message)
-            return
+        except:
+            self.url = None
 
     def getResolverList(self):
         try:

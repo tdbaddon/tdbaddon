@@ -94,6 +94,8 @@ class source:
                         result = client.source(self.info_link%videoID)
                         item = client.parseDOM(result, name="div", attrs={"style":"float:none;height:700px;margin-left:200px"})[0]
                         rUrl = re.compile('(SRC|src|data-config)=[\'|\"](.+?)[\'|\"]').findall(item)[0][1]
+                        if not rUrl.startswith('http:'):
+                            rUrl = '%s%s' % ('http:', rUrl)
                         urls[j] = rUrl
                     host = client.host(urls[0])
                     url = "##".join(urls)

@@ -1,3 +1,5 @@
+[B]Version 5.9.3[/B]
+youtube links in zem shows
 [B]Version 5.9.2[/B]
 just bump
 [B]Version 5.9.1[/B]

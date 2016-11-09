@@ -246,7 +246,7 @@ def DisplayChannelNames(url):
 
 def AddtypesForShows():
 	addDir('Latest Shows (ZemTv)' ,'Shows' ,2,os.path.join(home,'icons', 'ShowsfromZemTv.png'))
-	addDir('Latest Shows (Siasat.pk)' ,'http://www.siasat.pk/forum/forumdisplay.php?29-Daily-Talk-Shows' ,2,os.path.join(home,'icons','All Programs and Talk shows.png'))
+	addDir('Latest Shows (Siasat.pk)' ,'http://www.siasat.pk/forum/forumdisplay.php?29-Daily-Talk-Shows' ,2,os.path.join(home,'icons','Shows from Siasat.png'))
 	addDir('All Programs and Talk Shows' ,'ProgTalkShows' ,2,os.path.join(home,'icons','All Programs and Talk shows.png'))
 
 def Addtypes():
@@ -6169,7 +6169,7 @@ def PlayShowLink ( url, redirect=True ):
     defaultLinkType=0 #0 youtube,1 DM,2 tunepk
     defaultLinkType=selfAddon.getSetting( "DefaultVideoType" ) 
     #	print defaultLinkType
-    print "LT link is" + linkType
+    print "LT link is" ,linkType,defaultLinkType,redirect
     if defaultLinkType=="": defaultLinkType="0"
     # if linktype is not provided then use the defaultLinkType
 
@@ -6399,7 +6399,7 @@ def PlayShowLink ( url, redirect=True ):
     else:	#either its default or nothing selected
         line1 = "Playing Youtube Link"
         xbmc.executebuiltin('Notification(%s, %s, %d, %s)'%(__addonname__,line1, time, __icon__))
-        youtubecode= match =re.findall('<strong>Youtube<\/strong>.*?src=\".*?embed\/(.*?)\".*?<\/iframe>', link,re.DOTALL| re.IGNORECASE)
+        youtubecode= match =re.findall('<iframe.*?src=\".*?youtube.*?embed\/(.*?)\"', link,re.DOTALL| re.IGNORECASE)
         if len(youtubecode)==0:
             line1 = "Youtube link not found"
             xbmc.executebuiltin('Notification(%s, %s, %d, %s)'%(__addonname__,line1, time, __icon__))
@@ -6551,7 +6551,7 @@ def playtvplayerfallback(url):
     
 def ShowAllSources(url, loadedLink=None):
     global linkType
-    #	print 'show all sources',url
+    #print 'show all sources',url
     link=loadedLink
     if not loadedLink:
         req = urllib2.Request(url)
@@ -6561,7 +6561,7 @@ def ShowAllSources(url, loadedLink=None):
         response.close()
     available_source=[]
     playURL =re.findall('src=".*?(playwire).*?data-publisher-id="(.*?)"\s*data-video-id="(.*?)"', link)
-    #	print 'playURL',playURL
+    
     if not len(playURL)==0:
         available_source.append('Playwire Source')
 
@@ -6591,7 +6591,9 @@ def ShowAllSources(url, loadedLink=None):
     if not len(playURL)==0:
         available_source.append('Link Source')
 
-    playURL= match =re.findall('<strong>Youtube<\/strong>.*?src=\".*?embed\/(.*?)\?.*\".*?<\/iframe>', link,re.DOTALL| re.IGNORECASE)
+    
+    playURL= match =re.findall('<iframe.*?src=\".*?youtube.*?embed\/(.*?)\"', link,re.DOTALL| re.IGNORECASE)
+    #print 'playURL uyoutube',playURL
     if not len(playURL)==0:
         available_source.append('Youtube Source')
 

@@ -26,79 +26,57 @@ try :import urlresolver
 except:pass
 
 def request(url, resolverList=None):
-
+    u = url
+    url = False
     # Custom Resolvers
     try:
-        u = client.host(url)
+        host = client.host(u)
 
-        r = [i['class'] for i in info() if u in i['host']][0]
+        r = [i['class'] for i in info() if host in i['host']][0]
         r = __import__(r, globals(), locals(), [], -1)
-        r = r.resolve(url)
-        if not r:
+        url = r.resolve(u)
+        if url == False:
             raise Exception()
-        h = dict('')
-        h['User-Agent'] = client.agent()
-        h['Referer'] = url
-        r = '%s|%s' % (r.split('|')[0], urllib.urlencode(h))
-
-        return r
-    except Exception as e:
-        logger.error(e.message)
+    except:
         pass
 
     # URLResolvers 3.0.0
-    logger.debug('Trying URL Resolver for %s' % url, __name__)
-    u = url
     try:
-        url = None
+        if not url == False : raise Exception()
+        logger.debug('Trying URL Resolver for %s' % u, __name__)
+
         hmf = urlresolver.HostedMediaFile(url=u, include_disabled=True, include_universal=False)
         if hmf.valid_url() == True: url = hmf.resolve()
         else: url = False
-    except Exception as e:
-        logger.error(e.message)
+    except:
         pass
-
-    logger.debug('Trying OLD URL Resolver for %s' % u, __name__)
 
     try:
         if not url == False: raise Exception()
-
+        logger.debug('Trying OLD URL Resolver for %s' % u, __name__)
         hmf = urlresolver.HostedMediaFile(url=u, include_disabled=True)
         hmf = hmf.get_resolvers(validated=True)
         hmf = [i for i in hmf if not i.isUniversal()][0]
         host, media_id = hmf.get_host_and_id(u)
         url = hmf.get_media_url(host, media_id)
-    except Exception as e:
-        logger.error(e.message)
+    except:
         pass
 
-    # URL Resolver 2.10.12
-    logger.debug('Trying OLDEST URL Resolver for %s' % u, __name__)
-
-    try:
-        if not url == False: raise Exception()
-
-        hmf = urlresolver.plugnplay.man.implementors(urlresolver.UrlResolver)
-        hmf = [i for i in hmf if not '*' in i.domains]
-        hmf = [(i, i.get_host_and_id(u)) for i in hmf]
-        hmf = [i for i in hmf if not i[1] == False]
-        hmf = [(i[0], i[0].valid_url(u, i[1][0]), i[1][0], i[1][1]) for i in hmf]
-        hmf = [i for i in hmf if not i[1] == False][0]
-        url = hmf[0].get_media_url(hmf[2], hmf[3])
-    except Exception as e:
-        logger.error(e.message)
-        pass
-
-    try: headers = dict(urlparse.parse_qsl(url.rsplit('|', 1)[1]))
-    except: headers = dict('')
+    try: headers = url.rsplit('|', 1)[1]
+    except: headers = ''
+    headers = urllib.quote_plus(headers).replace('%3D', '=').replace('%26','&') if ' ' in headers else headers
+    headers = dict(urlparse.parse_qsl(headers))
 
     if url.startswith('http') and '.m3u8' in url:
         result = client.request(url.split('|')[0], headers=headers, output='geturl', timeout='20')
         if result == None: raise Exception()
 
     elif url.startswith('http'):
+
         result = client.request(url.split('|')[0], headers=headers, output='chunk', timeout='20')
-        if result == None: raise Exception()
+        if result == None:
+            logger.debug('Resolved %s but unable to play' % url, __name__)
+            raise Exception()
 
     return url
 

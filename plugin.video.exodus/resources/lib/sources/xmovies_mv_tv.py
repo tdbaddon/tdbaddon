@@ -28,8 +28,8 @@ from resources.lib.modules import directstream
 
 class source:
     def __init__(self):
-        self.domains = ['xmovies8.tv']
-        self.base_link = 'http://xmovies8.tv'
+        self.domains = ['xmovies8.tv', 'xmovies8.ru']
+        self.base_link = 'http://xmovies8.ru'
         self.search_link = '/movies/search?s=%s'
 
 
@@ -57,7 +57,6 @@ class source:
             url = urlparse.urljoin(self.base_link, url)
             url = url.replace('watching.html', '') 
             if not 'watching.html' in url: url = url + 'watching.html'
-
             return url
         except:
             pass
@@ -81,31 +80,27 @@ class source:
 			title = cleantitle.getsearch(title)
 			cleanmovie = cleantitle.get(title)
 			data['season'], data['episode'] = season, episode
-			self.zen_url = []
+
 			seasoncheck = 'season+%s' % (int(data['season']))
 			seasonclean = 'season%s' % (int(data['season']))
 			episodecheck = 'episode ' + episode
 
-			query = 'http://xmovies8.tv/movies/search?s=%s+%s' % (urllib.quote_plus(title),seasoncheck)
-
+			query = 'http://xmovies8.ru/movies/search?s=%s+%s' % (urllib.quote_plus(title),seasoncheck)
 			slink = client.request(query)
 			r = client.parseDOM(slink, 'div', attrs = {'class': 'col-lg.+?'})
 			r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', ret='title')) for i in r]
 			r = [(i[0][0], i[1][0]) for i in r if len(i[0]) > 0 and len(i[1]) > 0]
-
+          
 			r = [i[0] for i in r if cleanmovie in cleantitle.get(i[1]) and seasonclean in cleantitle.get(i[1])][0]
-
 			url = re.findall('(?://.+?|)(/.+)', r)[0]
 			url = client.replaceHTMLCodes(url)
 			url = url.encode('utf-8')
 			url = urlparse.urljoin(self.base_link, url)
 			url = url.replace('watching.html', '') 
 			if not 'watching.html' in url: url = url + 'watching.html'
-
 			url = client.request(url, output="geturl")
 			if not 'watching.html' in url: url = url + 'watching.html'
 			link = client.request(url)
-
 			for item in client.parseDOM(link, 'div', attrs = {'class': 'ep_link full'}):
 				match = re.compile('<a href="(.*?)" class="">(.*?)</a>').findall(item)
 				match2 = re.compile('<a href="(.*?)" class=".*?">(.*?)</a>').findall(item)
@@ -116,7 +111,6 @@ class source:
 							url = "http:" + url
 							url = client.replaceHTMLCodes(url)
 							url = url.encode('utf-8')							
-
 							return url
         except:
             return
@@ -127,9 +121,8 @@ class source:
             sources = []
 			
             if url == None: return sources
-
             r = url
-
+            referer = url
             for i in range(5):
                 post = client.request(r)
                 if not post == None: break
@@ -142,7 +135,7 @@ class source:
             'Accept-Formating': 'application/json, text/javascript',
             'X-Requested-With': 'XMLHttpRequest',
             'Server': 'cloudflare-nginx',
-            'Referer': r}
+            'Referer':referer}
 
             url = urlparse.urljoin(self.base_link, '/ajax/movie/load_episodes')
 
@@ -159,9 +152,10 @@ class source:
 
             for p in r:
                 try:
+                    				
                     play = urlparse.urljoin(self.base_link, '/ajax/movie/load_player_v2')
 
-                    post = urllib.urlencode({'id': p[0], 'quality': p[1]})
+                    post = urllib.urlencode({'id': p[0], 'quality': p[1], '_': int(time.time() * 1000)})
 
                     for i in range(5):
                         url = client.request(play, post=post, headers=headers)

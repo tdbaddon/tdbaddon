@@ -178,6 +178,27 @@ def status():
     except:
         return False
 
+def resolve(url, debrid):
+    if '|' in url:
+        url = url.split('|')[0]
+
+    u = url
+    if "##" in url:
+        u = url.split('##')
+
+    if type(u) is list:
+        try :
+            url = []
+            for item in u:
+                item = resolver(item, debrid)
+                if item == False:
+                    raise Exception()
+                url.append(item)
+        except:
+            return False
+    else:
+        url = resolver(url, debrid)
+    return url
 
 def resolver(url, debrid):
     if '|' in url:
@@ -211,8 +232,7 @@ def resolver(url, debrid):
 
         url = result['download']
         return url
-    except Exception as e:
-        logger.error(e.message)
+    except:
         pass
 
     try:
@@ -260,6 +280,7 @@ def resolver(url, debrid):
         url = result['links'][0]['generated']
         return url
     except:
-        return
+        return False
+
 
 

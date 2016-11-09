@@ -87,6 +87,8 @@ class source:
             url = 'http://cdn.einthusan.com/geturl/%s/hd/%s/' % (url, ip)
             url = client.request(url, referer=referer)
 
+            url = '%s|Referer=%s&User-Agent=%s' % (url, url, client.getDefaultUserAgent())
+
             sources.append({'source': 'einthusan', 'parts' : '1','quality': 'HD', 'provider': 'Einthusan', 'url': url,'direct':True})
             logger.debug('SOURCES [%s]' % sources, __name__)
             return sources
@@ -94,5 +96,4 @@ class source:
             return sources
 
     def resolve(self, url, resolverList):
-        #url =  '%s|%s' % (url, 'Referer=http://www.einthusan.com')
         return url

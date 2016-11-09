@@ -87,6 +87,7 @@ class navigator:
             control.delete('ditto.json')
             control.delete('cinefun.json')
             control.delete('dynns.json')
+            control.delete('swift.json')
             cache.clear(['rel_live','rel_logo'], control.sourcescacheFile)
         elif url == 'meta':
             from resources.lib.libraries import cache

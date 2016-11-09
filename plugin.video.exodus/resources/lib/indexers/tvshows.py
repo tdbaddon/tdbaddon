@@ -215,6 +215,7 @@ class tvshows:
         ('AMC', '/networks/20/amc'),
         ('AT-X', '/networks/167/at-x'),
         ('Adult Swim', '/networks/10/adult-swim'),
+        ('Amazon', '/webchannels/3/amazon'),
         ('Animal Planet', '/networks/92/animal-planet'),
         ('Audience', '/networks/31/audience-network'),
         ('BBC America', '/networks/15/bbc-america'),
@@ -228,11 +229,13 @@ class tvshows:
         ('CBS', '/networks/2/cbs'),
         ('CTV', '/networks/48/ctv'),
         ('CW', '/networks/5/the-cw'),
+        ('CW Seed', '/webchannels/13/cw-seed'),
         ('Cartoon Network', '/networks/11/cartoon-network'),
         ('Channel 4', '/networks/45/channel-4'),
         ('Channel 5', '/networks/135/channel-5'),
         ('Cinemax', '/networks/19/cinemax'),
         ('Comedy Central', '/networks/23/comedy-central'),
+        ('Crackle', '/webchannels/4/crackle'),
         ('Discovery Channel', '/networks/66/discovery-channel'),
         ('Discovery ID', '/networks/89/investigation-discovery'),
         ('Disney Channel', '/networks/78/disney-channel'),
@@ -357,9 +360,8 @@ class tvshows:
 
         try:
             q = dict(urlparse.parse_qsl(urlparse.urlsplit(url).query))
-            p = str(int(q['page']) + 1)
-            if p == '5': raise Exception()
-            q.update({'page': p})
+            if not int(q['limit']) == len(items): raise Exception()
+            q.update({'page': str(int(q['page']) + 1)})
             q = (urllib.urlencode(q)).replace('%2C', ',')
             next = url.replace('?' + urlparse.urlparse(url).query, '') + '?' + q
             next = next.encode('utf-8')
@@ -1001,6 +1003,8 @@ class tvshows:
 
         indicators = playcount.getTVShowIndicators(refresh=True) if action == 'tvshows' else playcount.getTVShowIndicators()
 
+        flatten = True if control.setting('flatten.tvshows') == 'true' else False
+
         watchedMenu = control.lang(32068).encode('utf-8') if trakt.getTraktIndicatorsInfo() == True else control.lang(32066).encode('utf-8')
 
         unwatchedMenu = control.lang(32069).encode('utf-8') if trakt.getTraktIndicatorsInfo() == True else control.lang(32067).encode('utf-8')
@@ -1036,7 +1040,11 @@ class tvshows:
                 except:
                     pass
 
-                url = '%s?action=seasons&tvshowtitle=%s&year=%s&imdb=%s&tvdb=%s' % (sysaddon, systitle, year, imdb, tvdb)
+
+                if flatten == True:
+                    url = '%s?action=episodes&tvshowtitle=%s&year=%s&imdb=%s&tvdb=%s' % (sysaddon, systitle, year, imdb, tvdb)
+                else:
+                    url = '%s?action=seasons&tvshowtitle=%s&year=%s&imdb=%s&tvdb=%s' % (sysaddon, systitle, year, imdb, tvdb)
 
 
                 cm = []

@@ -91,7 +91,7 @@ class source:
             else :
                 retValue = fileFetcher.fetchFile()
             liveParser = LiveParser(self.fileName, control.addon)
-            self.list = liveParser.parseFile(decode=False)
+            self.list = liveParser.parseFile()
 
             return (retValue, self.list)
         except:

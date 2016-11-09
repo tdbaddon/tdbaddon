@@ -1,4 +1,12 @@
 ========================
+2.0.0
+========================
++ Added Catch-Up TV section
++ Added 'About this add-on'
++ Minor fixes
++ Improved file structure
+
+========================
 1.1.0
 ========================
 + Added ability to choose stream source

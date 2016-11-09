@@ -3,6 +3,7 @@
 
 	<category label="General">
 		<setting id="list_all" type="bool" label="List All Possible Sources" default="false"/>
+
 	</category>
 	<category label="Preferred Sources">
 		<setting id="four_music" type="labelenum" label="4Music" values="Direct|TVPlayer|Off" default="Direct" />

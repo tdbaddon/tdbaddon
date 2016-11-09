@@ -21,6 +21,7 @@
 
 import re,urllib,urlparse,hashlib,random,string,json,base64
 
+from resources.lib.modules import control
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 
@@ -34,11 +35,12 @@ class source:
         self.key1 = base64.b64decode('eHdoMzhpZjM5dWN4')
         self.key2 = base64.b64decode('OHFoZm05b3lxMXV4')
         self.key = base64.b64decode('Y3RpdzR6bHJuMDl0YXU3a3F2YzE1M3Vv')
-		
+
+
     def movie(self, imdb, title, year):
-        self.super_url = []	
+        self.url = []	
         try:
-			self.super_url = []
+			self.url = []
 			title = cleantitle.getsearch(title)
 			cleanmovie = cleantitle.get(title)
 			query = "/search/%s.html" % (urllib.quote_plus(title))
@@ -65,11 +67,10 @@ class source:
 					cookies = '%s%s%s=%s' % (self.key1, episode_id, self.key2,token)
 					url_hash = urllib.quote(self.__uncensored(episode_id + self.key, token))
 					url = urlparse.urljoin(self.base_link, self.playlist % (episode_id, url_hash))						
-						
-						
+
 					request_url = url
-					self.super_url.append([request_url,cookies,referer])
-			return self.super_url
+					self.url.append([request_url,cookies,referer])
+			return self.url
         except:
             return
 			
@@ -82,8 +83,9 @@ class source:
         except:
             return			
 
+
     def episode(self, url, imdb, tvdb, title, premiered, season, episode):
-        self.super_url = []	
+        self.url = []	
         try:
 			headers = {}
 			data = urlparse.parse_qs(url)
@@ -95,7 +97,7 @@ class source:
 			data['season'], data['episode'] = season, episode
 			seasoncheck = "season%s" % season
 			checktitle = cleanmovie + seasoncheck
-			self.super_url = []
+			self.url = []
 			showlist = []
 			query = "/search/%s.html" % (urllib.quote_plus(title))
 			query = urlparse.urljoin(self.base_link, query)
@@ -113,7 +115,7 @@ class source:
 			for seasonlist in showlist:	
 				
 				mylink = client.request(seasonlist)
-				referer = re.findall(r'<a class="mod-btn mod-btn-watch" href="(.*?)" title="Watch movie">', mylink, re.I|re.DOTALL)[0]
+				referer = re.findall('<a class="mod-btn mod-btn-watch" href="([^"]+)"', mylink)[0]
 				
 				epurl = client.request(referer)
 				i_d = re.findall(r'id: "(.*?)"', epurl, re.I|re.DOTALL)[0]
@@ -140,16 +142,15 @@ class source:
 						cookies = '%s%s%s=%s' % (self.key1, episode_id, self.key2,token)
 						url_hash = urllib.quote(self.__uncensored(episode_id + self.key, token))
 						url = urlparse.urljoin(self.base_link, self.playlist % (episode_id, url_hash))						
-						
-						
-						request_url = url
-						self.super_url.append([request_url,cookies,referer])
 
-			return self.super_url
+						request_url = url
+						self.url.append([request_url,cookies,referer])
+
+			return self.url
         except:
             return		
-			
-			
+
+
     def sources(self, url, hostDict, hostprDict):
         try:
 			sources = []
@@ -175,10 +176,14 @@ class source:
 
 
     def resolve(self, url):
-        if 'requiressl=yes' in url: url = url.replace('http://', 'https://')
-        else: url = url.replace('https://', 'http://')
-        return url
-		
+        try:
+            url = client.request(url, output='geturl')
+            if 'requiressl=yes' in url: url = url.replace('http://', 'https://')
+            else: url = url.replace('https://', 'http://')
+            return url
+        except:
+            return
+
 
 
 ################### CREDITS FOR TKNORRIS for this FIXES ##############################

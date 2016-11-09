@@ -45,7 +45,7 @@ def resolve(url):
         logger.debug('URL [%s]' % url, __name__)
         return url
     except:
-        return
+        return False
 
 def getVideoID(url):
     try :

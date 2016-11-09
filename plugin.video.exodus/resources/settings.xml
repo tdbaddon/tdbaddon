@@ -44,16 +44,14 @@
 		<setting id="provider.genvideo" type="bool" label="Genvideo" default="true" />
 		<setting id="provider.gogoanime" type="bool" label="GoGoAnime" default="true" />
 		<setting id="provider.hevcfilm" type="bool" label="Hevcfilm" default="true" />
-		<setting id="provider.heydl" type="bool" label="Heydl" default="true" />
 		<setting id="provider.library" type="bool" label="Library" default="true" />
 		<setting id="provider.miradetodo" type="bool" label="MiraDeTodo" default="true" />
 		<setting id="provider.movie4k" type="bool" label="Movie4K" default="true" />
 		<setting id="provider.movie25" type="bool" label="Movie25" default="true" />
-		<setting id="provider.moviefree" type="bool" label="Moviefree" default="true" />
+		<setting id="provider.moviego" type="bool" label="Moviego" default="true" />
 		<setting id="provider.movies14" type="bool" label="Movies14" default="true" />
 		<setting id="provider.movieshd" type="bool" label="MoviesHD" default="true" />
 		<setting id="provider.moviesplanet" type="bool" label="Moviesplanet" default="true" />
-		<setting id="provider.mvzone" type="bool" label="Mvzone" default="true" />
 		<setting id="provider.myvideolink" type="bool" label="Myvideolink" default="true" />
 		<setting id="provider.onemovies" type="bool" label="Onemovies" default="true" />
 		<setting id="provider.onlinedizi" type="bool" label="Onlinedizi" default="true" />

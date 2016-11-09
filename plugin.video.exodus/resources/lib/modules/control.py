@@ -185,8 +185,6 @@ def moderator():
 
     if not infoLabel('Container.PluginName') in netloc: sys.exit()
 
-    if '.strm' in str(infoLabel('ListItem.FileName')): sys.exit()
-
 
 def metaFile():
     if condVisibility('System.HasAddon(script.exodus.metadata)'):

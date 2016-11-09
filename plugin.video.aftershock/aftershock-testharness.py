@@ -119,10 +119,21 @@ try :
     from resources.lib.indexers import movies
     from resources.lib.indexers import tvshows
     from resources.lib import sources
+    from resources.lib.libraries import debrid
+    from resources.lib.libraries import client
+    from resources.lib.resolvers import dailymotion
+    from resources.lib import resolvers
+    from resources.lib.sources import einthusan_mv
+    url = einthusan_mv.source().get_sources('9068')
+    result = client.request(url[0]['url'])
+    if result == None: raise Exception()
+    resolvers.request('http://playu.net/embed-azyk92idrbcj-700x440.html', None)
+    #debrid.resolver('http://www.dailymotion.com/embed/video/x50xm71', 'realdebrid')
+    debrid.resolve('http://www.dailymotion.com/video/x29cn4o', 'realdebrid')
     #tvshows.tvshows().get(url, provider=provider, network=name)
     # test search sources
     #source = sources().getSources(name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date, meta)
-    sources.sources().play(name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date, meta, url)
+    #sources.sources().play(name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date, meta, url)
     #from resources.lib.indexers import tvshows
     #tvshows.tvshows().get(url, provider=provider, network=name)
     from resources.lib.sources import filmywap_mv
@@ -133,16 +144,3 @@ except:
     import traceback
     traceback.print_exc()
     client.printException('aftershock-testharness')
-
-import unittest
-
-class TestingAftershock(unittest.TestCase):
-    def test_upper(self):
-        self.assertEqual('foo'.upper(), 'FOO')
-
-    def test_isupper(self):
-        self.assertTrue('FOO'.isupper())
-        self.assertFalse('Foo'.isupper())
-
-if __name__ == '__main__' :
-    unittest.main()

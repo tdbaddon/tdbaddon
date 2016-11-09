@@ -1,3 +1,11 @@
+Aftershock v4.2.3 (07-Nov-2016)
+------------------------
+- [COLOR orange]NOTE: If you like the addon please consider making a donation to aftershockpy@gmail.com via paypal.[/COLOR]
+- Updated Providers
+- Debrid Bug Fixes
+- Fixed Resolvers
+- Fixed Einthusan
+
 ------------------------
 Aftershock v4.2.2 (03-Nov-2016)
 ------------------------

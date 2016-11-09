@@ -25,7 +25,7 @@ from resources.lib.libraries import analytics
 
 params = dict(urlparse.parse_qsl(sys.argv[2].replace('?','')))
 
-logger.debug(params)
+logger.debug(params, __name__)
 
 try:
     action = params['action']
