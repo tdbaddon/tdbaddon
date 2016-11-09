@@ -129,6 +129,9 @@ http://46.166.162.35:9090/load/b0922f3fa8aa/39.m3u8
 #EXTINF:0,RT News Documentary 
 http://93.87.85.71/PLTV/88888888/224/3221226759/04.m3u8
 
+#EXTINF:0,RT News Documentary a
+http://rtcdn.api.visionip.tv/live/ASHTTP/rtcdn-rtcdn-doc-hsslive-25f-16x9-MB/playlist.m3u8
+
 #EXTINF:0,Ted TV 
 0
 

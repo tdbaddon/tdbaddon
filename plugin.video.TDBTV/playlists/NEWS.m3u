@@ -2,13 +2,16 @@
 
 
 #EXTINF:0,ABC News 
-0
+http://abclive.abcnews.com/i/abc_live4@136330/index_1200_av-b.m3u8?sd=10&b=1200&rebase=on
+
+#EXTINF:0,ABC News 
+http://abclive.abcnews.com/i/abc_live4@136330/index_1200_av-b.m3u8
 
 #EXTINF:0,AlJazeera 
 0
 
 #EXTINF:0,BBC World News 
-http://185.39.194.26:8000/343/LTNOXIBZS8ZTR4Y1
+0
 
 #EXTINF:0,Bloomberg News 
 http://x4012c4000.edge.core-cdn.net/40000mb/live/4012hbbtv/bloomberg.ts
@@ -38,10 +41,10 @@ http://cbsnews-linear.mdialog.com/video_assets/cbsnews.m3u8?api_key=563b80c1ae4c
 0
 
 #EXTINF:0,CNBC 
-http://93.87.85.71/PLTV/88888888/224/3221226774/04.m3u8
+0
 
 #EXTINF:0,CNN 
-0
+http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/amlst:sweetbcha1novD177L240P/playlist.m3u8
 
 #EXTINF:0,CP24 
 0
@@ -101,10 +104,10 @@ http://nhkwglobal-i.akamaihd.net/hls/live/222714/nhkwglobal/index_1180.m3u8
 0
 
 #EXTINF:0,RT News 
-http://93.87.85.71/PLTV/88888888/224/3221226772/04.m3u8
+http://rt-usa-live.hls.adaptive.level3.net/rt/usa/index.m3u8
 
 #EXTINF:0,Sky News 
-0
+http://premium.exabytetv.info/gc/110001110010110100001110011100011000-ExabyteTV/1623/exabytetv.m3u8
 
 #EXTINF:0,The Weather Channel 
 0
