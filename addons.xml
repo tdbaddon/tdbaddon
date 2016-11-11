@@ -948,20 +948,6 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
     </extension>
 </addon>
 
-<addon id="plugin.video.EliteIptv" name="EliteTvIptv" version="2.1.4" provider-name="EliteTv">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en">EliteTv</summary>
-    <description lang="en">if the channels kick you out or you get errors, then join the EliteTv facebook group for more support. https://www.facebook.com/groups/119598245142135/</description>
-    <platform>all</platform>
-  </extension>
-</addon>
-
 <addon id="plugin.video.eporner"
 	   name="Eporner"
 	   version="1.0.1"
@@ -1065,33 +1051,6 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
   </extension>
 </addon>
 
-<addon id="plugin.video.exabytetv"
-       name="[COLOR cyan]Exabyte TV[/COLOR]"
-       version="1.2"
-       provider-name="Sahid CG Exabyte TV">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="script.module.beautifulsoup" version="3.2.1"/>
-    <import addon="script.module.simple.downloader" version="0.9.4"/>
-    <import addon="script.module.beautifulsoup4" />
-    <import addon="script.module.requests" />
-    <import addon="script.module.httplib2" />
-    <import addon="script.module.youtube.dl" optional="true"/>
-    <import addon="plugin.video.youtube" optional="true" />
-    <import addon="script.module.urlresolver" optional="true"/>
-    <import addon="script.module.simplejson" />
-	<import addon="script.module.livestreamer" optional="true"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="main.py">
-    <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary>Exabyte TV addon para Kodi</summary>
-    <description>Exabyte TV</description>
-    <platform>all</platform>
-  </extension>
-</addon>
-
 <addon id="plugin.video.exodus" version="2.0.20" name="Exodus" provider-name="Exodus">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
@@ -1110,26 +1069,6 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
 		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
 		<platform>all</platform>
 		<news>- Updated indexers[CR]- Tweaked pagination of Trakt lists[CR]- Tweaked flatten of tv shows (for external addons and library)[CR]- Tweaked artwork of episode lists[CR]- Updated providers</news>
-	</extension>
-</addon>
-
-<addon id="plugin.video.eyecandyTV" name="[COLOR gold]E[/COLOR][COLOR ghostwhite]ye[COLOR gold]C[/COLOR]andy[/COLOR][COLOR gold]TV[/COLOR]" version="1.05" provider-name="eyecandy">
-	<requires>
-		<import addon="xbmc.python" version="2.1.0" />
-		<import addon="plugin.video.youtube" version="5.2.1" optional="true" />
-		<import addon="script.module.pyxbmct" version="1.1.4" />
-		<import addon="script.module.urlresolver" version="3.0.0"/>
-		<import addon="script.module.liveresolver" version="0.1.24"/>
-		<import addon="script.video.F4mProxy" version="2.2.3"/>
-	</requires>
-	<extension point="xbmc.python.pluginsource" library="default.py">
-		<provides>video</provides>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary lang="en">EyeCandyTV</summary>
-		<description lang="en">All Content is hosted by a third party on the WWW.</description>
-		<platform>all</platform>
-		<news>PUBLIC RELEASE, images update</news>
 	</extension>
 </addon>
 
@@ -1280,29 +1219,6 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
 
 </addon>
 
-<addon id="plugin.video.genesislazarus" name="Genesis Lazarus" version="4.8.5" provider-name="KodiMaster">
-	<requires>
-		<import addon="xbmc.python" version="2.1.0" />
-		<import addon="script.module.pyxbmct" version="1.1.4" />
-		<import addon="script.module.requests" version="1.0.0" />
-		<import addon="script.module.metahandler" optional="true" />
-		<import addon="plugin.video.youtube" optional="true" />
-	</requires>
-	<extension point="xbmc.python.pluginsource" library="default.py">
-		<provides>video</provides>
-	</extension>
-	<extension point="xbmc.service" library="service.py" start="startup" />
-	<extension point="xbmc.addon.metadata">
-		<summary lang="en">Genesis Lazarus - Genesis Has Risen</summary>
-		<description lang="en">Genesis Lazarus provides Genesis 4.8.5 with download availability again. All credit for the Genesis add-on goes to lambda. </description>
-		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
-		<forum></forum>
-		<source>https://offshoregit.com/lambda81/</source>
-		<website>https://offshoregit.com/lambda81/</website>
-		<platform>all</platform>
-	</extension>
-</addon>
-
 <addon id="plugin.video.hellenic.tv" name="Hellenic TV" version="3.5.5" provider-name="lambda">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0"/>
@@ -1350,26 +1266,6 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
     <website>www.hgtv.ca</website>
     <email></email>
     <source>https://github.com/learningit/Kodi-plugins-source</source>
-  </extension>
-</addon>
-
-<addon id="plugin.video.hulubox" name="HuluBox" version="1.0.11" provider-name="MetalKettle">
-  <requires>
-    <import addon="script.module.simplejson" version="3.3.0"/>
-    <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="script.module.t0mm0.common" version="2.0.0"/>
-    <import addon="plugin.video.youtube" version="3.0.0"/>
-    <import addon="script.module.urlresolver"  version="2.1.2"/>
-    <import addon="script.common.plugin.cache" version="2.5.2"/>
-    <import addon="script.module.metahandler" version="2.5.1"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en"></summary>
-    <description lang="en"></description>
-    <platform>all</platform>
   </extension>
 </addon>
 
@@ -1500,24 +1396,6 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
 		<language>en</language>
 		<email>ptom98@ptom.co.uk</email>
 	</extension>
-</addon>
-
-<addon id="plugin.video.livetvaddon" name="Si free live tv addon" version="1.0.0" provider-name="Si free live tv addon">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="addon.py">
-    <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en">Si free live tv addon.</summary>
-    <description lang="en">Si free live tv addon</description>
-    <disclaimer lang="en">Si free live tv addon.</disclaimer>
-    <language>en</language>
-    <platform>all</platform>
-    <website>Si free live tv addon</website>
-    <email>Si free live tv addon</email>
-  </extension>
 </addon>
 
 <addon id="plugin.video.lubetube"
@@ -1684,27 +1562,6 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
 	<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon or have any affiliation with the website owners</disclaimer>
     <platform>all</platform>
   </extension>
-</addon>
-
-<addon id="plugin.video.mediahub" name="[COLOR blue]M[/COLOR][COLOR white]edia Hub[/COLOR]" version="1.5" provider-name="sClarke">
-	<requires>
-		<import addon="xbmc.python" version="2.1.0" />
-		<import addon="plugin.video.youtube" version="5.2.1" optional="true" />
-		<import addon="script.module.pyxbmct" version="1.1.4" />
-		<import addon="script.module.urlresolver" version="3.0.0"/>
-		<import addon="script.module.liveresolver" version="0.1.24"/>
-		<import addon="script.video.F4mProxy" version="2.2.3"/>
-		<import addon="repository.xunitytalk" version="1.1.1"/>
-		<import addon="repository.filmkodi.com" version="2.1.0"/>
-	</requires>
-	<extension point="xbmc.python.pluginsource" library="default.py">
-		<provides>video</provides>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary lang="en">[COLOR blue]M[/COLOR][COLOR white]edia Hub[/COLOR]</summary>
-		<description lang="en">Bringing You A Host Of Content, Including - Live TV, Sports, TV Shows, Radio, Kids, Downloadable Movies.</description>
-		<platform>all</platform>
-	</extension>
 </addon>
 
 <addon id="plugin.video.metalvideo" name="Metalvideo" provider-name="willforde" version="2.0.1">
@@ -1874,52 +1731,6 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.nbaondemand" name="NBA On-demand" version="2.0.3" provider-name="lambda,enen92,jsergio">
-	<requires>
-		<import addon="xbmc.python" version="2.1.0"/>
-		<import addon="script.module.simplejson" optional="true"/>
-		<import addon="script.module.parsedom" optional="true"/>
-		<import addon="plugin.video.youtube" optional="true"/>
-	</requires>
-	<extension point="xbmc.python.pluginsource" library="default.py">
-		<provides>video</provides>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary lang="en">NBA on demand</summary>
-		<description lang="en">Visit TVADDONS.ag for support</description>
-		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
-		<forum>http://forums.tvaddons.ag/forums/148-lambda-s-xbmc-addons</forum>
-		<source>https://offshoregit.com/lambda81/lambda-addons</source>
-		<website>https://offshoregit.com/lambda81/</website>
-		<platform>all</platform>
-	</extension>
-</addon>
-
-<addon id="plugin.video.nbcsnliveextra" name="NBC Sports Live Extra" version="2016.2.3.2" provider-name="eracknaphobia">
-  <requires>
-   <import addon="xbmc.python" version="2.14.0"/>
-   <import addon="script.module.simplejson" version="3.3.0"/>
-   <import addon="script.module.httplib2" version="0.8.0"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="nbcsn.py">
-        <provides>video</provides>
-  </extension>
-
-  <extension point="xbmc.addon.metadata">
-    <platform>all</platform>
-    <summary lang="en">Watch NBCSN Live Extra</summary>
-    <description lang="en">NBC Sports Live Extra is a service that allows you to watch NBC Sports coverage of live events from NBC and NBCSports Network</description>
-    <disclaimer lang="en"></disclaimer>
-    <language>en</language>
-    <platform>all</platform>
-    <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
-    <forum>http://forum.kodi.tv/showthread.php?tid=207159</forum>
-    <website></website>
-    <email></email>
-    <source></source>
-  </extension>
-</addon>
-
 <addon id="plugin.video.nfl-teams" version="1.2.0" name="NFL Teams" provider-name="Tenzer">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
@@ -1942,29 +1753,6 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
     </extension>
 </addon>
 
-<addon id="plugin.video.nfl.com"
-       name="NFL.com"
-       version="0.0.5"
-       provider-name="divingmule">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="script.module.beautifulsoup" version="3.2.1"/>
-    <import addon="script.common.plugin.cache" version="2.5.4"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-    <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary>Videos from nfl.com.</summary>
-    <description>Video highlights from National Football League.com.</description>
-    <platform>all</platform>
-    <language>en</language>
-    <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
-    <source>https://github.com/divingmule/plugin.video.nfl.com</source>
-    <forum>http://forum.xbmc.org/showthread.php?tid=107256</forum>
-  </extension>
-</addon>
-
 <addon id="plugin.video.nhlondemand" name="NHL On-demand" version="2.0.3" provider-name="lambda,jsergio">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0"/>
@@ -1983,26 +1771,6 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 		<source>https://offshoregit.com/lambda81/lambda-addons</source>
 		<website>https://offshoregit.com/lambda81/</website>
 		<platform>all</platform>
-	</extension>
-</addon>
-
-<addon id="plugin.video.nhlstreams" name="NHL Streams" version="2.0.0" provider-name="iCanuck">
-	<requires>
-		<import addon="xbmc.python" version="2.1.0" />
-		<import addon="plugin.video.youtube" version="5.2.1" optional="true" />
-		<import addon="script.module.pyxbmct" version="1.1.4" />
-		<import addon="script.module.urlresolver" version="3.0.0"/>
-		<import addon="script.module.liveresolver" version="0.1.24"/>
-	</requires>
-	<extension point="xbmc.python.pluginsource" library="default.py">
-		<provides>video</provides>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary lang="en">NHL Streams</summary>
-		<description lang="en">NHL Streams</description>
-		<platform>all</platform>
-		<forum></forum>
-		<website></website>
 	</extension>
 </addon>
 
@@ -2040,21 +1808,6 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
     <description></description>
     <platform>all</platform>
   </extension>
-</addon>
-
-<addon id="plugin.video.pakindia" name="Pak India Live" version="0.5.1" provider-name="Mikey1234">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en">Pak India Live</summary>
-    <description lang="en">Watch All Your Favourite Live Tv From India Plus Uk Sports</description>
-    <platform>all</platform>
-  </extension>
-  <extension point="xbmc.service" library="service.py" start="login" />
 </addon>
 
 <addon id="plugin.video.phstreams" name="Phoenix" version="3.1.15" provider-name="tvaddons.ag">
@@ -2095,34 +1848,6 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.roggerstream"
-       name="Rogger Stream"
-       version="5.0.3"
-       provider-name="Rogger Stream">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="script.module.beautifulsoup" version="3.2.1"/>
-    <import addon="script.module.simple.downloader" version="0.9.4"/>
-    <import addon="script.module.beautifulsoup4" />
-    <import addon="script.module.requests" />
-    <import addon="script.module.httplib2" />
-    <import addon="script.module.youtube.dl" optional="true"/>
-    <import addon="plugin.video.youtube" optional="true" />
-    <import addon="script.module.urlresolver" optional="true"/>
-    <import addon="script.module.simplejson" />
-     <import addon="script.module.livestreamer" optional="true"/>
-     <import addon="script.module.pyamf" optional="true"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-    <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en">Lista de canais IPTV by Rogger</summary>
-    <description lang="en">Assista a vários canais transmitidos pela internet diretamente no Kodi</description>
-    <platform>all</platform>
-  </extension>
-</addon>
-
 <addon id="plugin.video.rt"
        name="Russia Today News"
        version="2.0.1"
@@ -2148,26 +1873,6 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<!--suppress ALL -->
-<addon id="plugin.video.salts" version="2.0.28" name="Stream All The Sources" provider-name="tknorris">
-    <requires>
-        <import addon="xbmc.python" version="2.1.0"/>
-        <import addon="script.module.urlresolver" version="2.2.0"/>
-        <import addon="script.module.myconnpy" version="1.1.6" />
-    </requires>
-    <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>video</provides>
-    </extension>
-     <extension point="xbmc.service" library="service.py" start="startup"/>
-    <extension point="xbmc.addon.metadata">
-        <summary>Stream video from many difference sources</summary>
-        <description>This addon uses trakt.tv for most show and movie meta data and uses a variety of websites for hoster sources</description>
-        <platform>all</platform>
-        <website>http://tvaddons.ag/</website>
-		<forum>http://forums.tvaddons.ag/forums/180-TKNORRIS-RELEASE-REPOSITORY</forum>
-	</extension>
-</addon>
-
 <addon id="plugin.video.skymashitvkids" name="SkymashiTV Kids" version="1.5" provider-name="SkymashiTV">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -2183,32 +1888,6 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
     <platform>all</platform>
     <facebook>https://www.facebook.com/groups/1555745284754323/</facebook>
     <website>http://skymashi.eu</website>
-  </extension>
-</addon>
-
-<addon id="plugin.video.smithsonian"
-       name="Smithsonian Channel"
-       version="3.0.1"
-       provider-name="t1m">
-  <requires>
-    <import addon="xbmc.python" version="2.20.0"/>
-    <import addon="script.module.t1mlib" version="1.0.14"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource"
-            library="default.py">
-        <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en">Smithsonian Channel Video Addon</summary>
-    <description lang="en">Play 1080 HD videos from the Smithsonian Channel.</description>
-    <disclaimer lang="en">Feel free to use this script. For information visit the wiki.</disclaimer>
-    <platform>all</platform>
-    <language>en</language>
-    <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
-    <forum>http://forum.kodi.tv/showthread.php?tid=214784</forum>
-    <website>www.smithsonianchannel.com</website>
-    <email></email>
-    <source>https://github.com/learningit/plugin.video.smithsonian/</source>
   </extension>
 </addon>
 
@@ -2261,20 +1940,6 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
     <description>Play videos of different sports streaming sites</description>
     <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
     <platform>all</platform>
-  </extension>
-</addon>
-
-<addon id="plugin.video.supercartoons" name="Super Cartoons" version="1.0.22" provider-name="spoyser">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary>Watch cartoons online</summary>
-    <description lang="en">Watch cartoons online, search by most popular, characters and studio</description>
-     <platform>all</platform>
   </extension>
 </addon>
 
@@ -2461,27 +2126,6 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.thaakillah"
-	name="WSOP"
-	version="1.0.8"
-	provider-name="tvaddons.ag">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-    <import addon="script.module.addon.common" version="2.0.0"/>
-    <import addon="plugin.video.youtube" version="5.0.0"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-    <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en">WSOP</summary>
-    <description lang="en">World Series of Poker</description>
-    <platform>all</platform>
-    <forum>http://forums.tvaddons.ag/forums/113-TVADDONS-AG-ADDON-REPOSITORY</forum>
-    <website>http://www.tvaddons.ag/</website>
-  </extension>
-</addon>
-
 <addon id="plugin.video.The-Music-Source"
        name="The Music Source"
        version="2.9.5"
@@ -2507,33 +2151,6 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
     <description>For the best in music this is the add-on you need.</description>
     <platform>all</platform>
   </extension>
-</addon>
-
-<addon id="plugin.video.tv4me"
-       name="TV4ME"
-       version="1.0.9"
-       provider-name="kinkin, art by Marquerite">
-    <requires>
-        <import addon="xbmc.python" version="2.1.0"/>
-        <import addon="script.module.t0mm0.common" version="1.1.0"/>
-        <import addon="script.module.requests" version="1.1.0"/>
-        <import addon="script.module.urlresolver" version="1.0.0"/>
-        <import addon="plugin.video.youtube"/>
-        <import addon="script.module.metahandler" version="2.4.0"/>
-    </requires>
-    <extension point="xbmc.python.pluginsource"
-               	library="default.py">
-        <provides>video</provides>
-    </extension>
-    <extension point="xbmc.service"
-             	library="service.py" start="startup">
-	</extension>
-    <extension point="xbmc.addon.metadata">
-        <platform>all</platform>
-        <summary>Stream your favourite TV shows from watch-tvseries.net</summary>
-        <description>Stream your favourite TV shows from watch-tvseries.net</description>
-    </extension>
-
 </addon>
 
 <addon id="plugin.video.tvo"
@@ -2743,26 +2360,6 @@ For support, visit: [COLOR hotpink]http://bit.ly/uwc-support[/COLOR]</descriptio
   </extension>
 </addon>
 
-<addon id="plugin.video.watch4free" name="Watch4[COLOR lime]free[/COLOR]" version="2.2.0" provider-name="SchisM">
- <requires>
-	<import addon="script.module.simplejson" version="3.3.0"/>
-	<import addon="xbmc.python" version="2.1.0"/>
-	<import addon="script.module.t0mm0.common" version="2.0.0"/>
-
-	<import addon="script.module.urlresolver"  version="2.1.2"/>
-	<import addon="script.common.plugin.cache" version="2.5.2"/>
-	<import addon="script.module.metahandler" version="2.5.1"/>
- </requires>
- <extension point="xbmc.python.pluginsource" library="default.py">
-	<provides>video</provides>
- </extension>
- <extension point="xbmc.addon.metadata">
-	<summary lang="en">Play huge selections of Movies and TV Shows</summary>
-	<description lang="en">Credits to MK for the base of the addon</description>
-	<platform>all</platform>
- </extension>
-</addon>
-
 <addon id="plugin.video.white.devil" name="[COLOR white]White Devil Streams[/COLOR]" version="1.0.1" provider-name="Biggy_Ozz">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
@@ -2851,30 +2448,6 @@ For support, visit: [COLOR hotpink]http://bit.ly/uwc-support[/COLOR]</descriptio
     <description lang="en">WWE Online (wweo.net) - The biggest WWE and Wrestling TV Show and videos Database. Watch WWE, TNA, UFC, FCW, ROH for free.</description>
     <platform>all</platform>
   </extension>
-</addon>
-
-<addon id="plugin.video.yifymovies.hd" name="Yify Movies HD" version="1.8.0" provider-name="lambda">
-	<requires>
-		<import addon="xbmc.python" version="2.1.0"/>
-		<import addon="script.module.metahandler" version="1.0.0"/>
-		<import addon="script.module.urlresolver" version="1.0.0"/>
-		<import addon="script.module.simplejson" version="2.0.10"/>
-		<import addon="script.common.plugin.cache" version="0.9.1"/>
-		<import addon="script.module.parsedom" version="0.9.1"/>
-		<import addon="plugin.video.youtube" version="2.9.2"/>
-	</requires>
-	<extension point="xbmc.python.pluginsource" library="default.py">
-		<provides>video</provides>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary lang="en">Watch a wide selection of movies from yify.tv</summary>
-		<description lang="en">Visit TVADDONS.ag for support</description>
-		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
-		<forum>http://forums.tvaddons.ag/forums/148-lambda-s-xbmc-addons</forum>
-		<source>https://offshoregit.com/lambda81/lambda-addons</source>
-		<website>https://offshoregit.com/lambda81/</website>
-		<platform>all</platform>
-	</extension>
 </addon>
 
 <addon id="plugin.video.youtube" name="YouTube" version="5.3.1" provider-name="jdf76, bromix">
@@ -2969,6 +2542,34 @@ For support, visit: [COLOR hotpink]http://bit.ly/uwc-support[/COLOR]</descriptio
 
 
   </extension>
+</addon>
+
+<addon id="plugin.video.zen" version="1.3.13" name=" Zen" provider-name="Zen">
+	<requires>
+		<import addon="xbmc.python" version="2.19.0" />
+		<import addon="script.zen.artwork" />
+		<import addon="script.module.urlresolver" version="3.0.0"/>
+		<import addon="script.module.metahandler" version="1.0.0" />
+		<import addon="script.module.requests" />
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="zen.py">
+		<provides>video</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">Zen Movies/TV Shows</summary>
+		<description lang="en">Watch Movies and TV Shows in High Definition and surround sound. Free providers might not work --- TO AUTHORIZE DEBRID LINKS USE THE URL RESOLVER Menu under TOOLS , AND ENABLE DEBRID SOURCES IN THE Providers SETTINGS --- </description>
+		<disclaimer lang="en">The Author does not host or share any content, nor is affiliated with the content providers.</disclaimer>
+		<platform>all</platform>
+		<website>http://schism-tv.net</website>
+		<news>Fix Onemovies - Removed Silly credits to Silly People, Update Providers, New Debrid Provider - TV Shows now using TVDB Api for Seasons and Episodes, this should fix missing episodelist - Fix Providers - Dailyrls Sncsrc and free hd providers - Added free provider - Module to retrieve adf.ly sh.st links - Fix Providers </news>
+        <assets>
+			<icon>icon.png</icon>
+			<fanart>fanart.jpg</fanart>
+			<screenshot>resources/screenshots/01.jpg</screenshot>
+			<screenshot>resources/screenshots/02.jpg</screenshot>
+			<screenshot>resources/screenshots/03.jpg</screenshot>
+        </assets>
+	</extension>
 </addon>
 
 <addon id="repo.natko1412" name="natko1412 repo" version="2.0.0" provider-name="natko1412">
@@ -4144,6 +3745,20 @@ For support, visit: [COLOR hotpink]http://bit.ly/uwc-support[/COLOR]</descriptio
     <forum></forum>
     <source></source>
   </extension>
+</addon>
+
+<addon id="script.zen.artwork" version="1.2.0" name="Zen Artwork" provider-name="Zen">
+	<requires>
+		<import addon="xbmc.python" version="2.19.0"/>
+	</requires>
+	<extension point="xbmc.python.script" library="default.py">
+		<provides>executable</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Themes for the Zen Addon</summary>
+		<description></description>
+		<platform>all</platform>
+	</extension>
 </addon>
 
 <addon id="skin.TDBTouched-K" version="1.07" name="TDB Touched Kodi" provider-name="TDB">
