@@ -1,5 +1,5 @@
 '''
-    WWE Online (wweo.org) XBMC Plugin
+    WWE Online (wweo.info) XBMC Plugin
     Copyright (C) 2013 XUNITYTALK.COM
 
     This program is free software: you can redistribute it and/or modify
@@ -26,9 +26,9 @@ import xbmc, xbmcaddon, xbmcplugin, xbmcgui,htmlcleaner
 from t0mm0.common.addon import Addon
 from t0mm0.common.net import Net
 
-BASEURL = 'http://wweo.org/'
-MEDIA_PAGE_REQ_URL = 'http://wweo.org/index.php'
-MEDIA_REQ_URL = 'http://wweo.org/gkplugins/plugins/plugins_player.php'
+BASEURL = 'http://wweo.info/'
+MEDIA_PAGE_REQ_URL = 'http://wweo.info/index.php'
+MEDIA_REQ_URL = 'http://wweo.info/gkplugins/plugins/plugins_player.php'
 
 showfilm = '1'
 itemsperpage = '15'
@@ -134,7 +134,7 @@ def GetPage(url, page):
 
             item_img = item.group(3)
             item_title = item.group(2)
-            if not 'wweo.org' in item.group(1):
+            if not 'wweo.info' in item.group(1):
             
                 addon.add_directory({'mode': 'GetLinks', 'url': item_url, 'title': item_title, 'img': item_img, 'type' : typ }, {'title': item_title}, img= item_img)
 

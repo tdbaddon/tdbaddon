@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 
-<addon id="plugin.video.ukturk" name="UK Turk Playlists" version="3.0.10" provider-name="MetalKettle">
+<addon id="plugin.video.ukturk" name="UK Turk Playlists" version="3.0.12" provider-name="MetalKettle">
 
   <requires>
 

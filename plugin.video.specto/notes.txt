@@ -1,0 +1,26 @@
+$(document).ready(function() {
+	var y = $("#lWmakZ8LPbx").text();
+	var x = $("#lWmakZ8LPb").text();
+	var s=[];for(var i=0;i<y.length;i++){var j=y.charCodeAt(i);if((j>=33)&&(j<=126)){s[i]=String.fromCharCode(33+((j+14)%94));}else{s[i]=String.fromCharCode(j);}}
+	var tmp=s.join("");
+	var str = tmp.substring(0, tmp.length - Funkcja_2()) + String.fromCharCode(tmp.slice(0 - Funkcja_2()).charCodeAt(0) + Funkcja_10()) + tmp.substring(tmp.length - Funkcja_2() + 1);
+	$("#streamurl").text(str);
+});
+function nWuEkcMO4z() {
+	return 2 + 1;
+}
+function Funkcja_2() {
+	return nWuEkcMO4z() + 1478210101 - 1478210097;
+	# 7
+}
+function Funkcja_10() {
+	return Funkcja_2() - Funkcja_100();
+	# 2
+}
+function Funkcja_100() {
+	return 5;
+}
+
+tmp.substring(0, tmp.length - Funkcja_2())
+ + String.fromCharCode(tmp.slice(0 - Funkcja_2()).charCodeAt(0) + Funkcja_10())
+  + tmp.substring(tmp.length - Funkcja_2() + 1);

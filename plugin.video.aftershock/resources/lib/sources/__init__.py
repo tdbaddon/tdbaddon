@@ -159,8 +159,7 @@ class sources:
                         title = name
                         meta = self.sources[0]['meta']
                         logger.debug('Content is live hence setting %s' % select, __name__)
-                except Exception as e:
-                    logger.error(e.message)
+                except:
                     pass
 
                 if select == '1' and 'plugin' in control.infoLabel('Container.PluginName'):
@@ -877,8 +876,10 @@ class sources:
             if ext == 'rar': raise Exception()
 
             self.url = url
+            return url
         except:
             self.url = None
+            return
 
     def getResolverList(self):
         try:

@@ -1,3 +1,8 @@
+Aftershock v4.2.4 (10-Nov-2016)
+------------------------
+- [COLOR orange]NOTE: If you like the addon please consider making a donation to aftershockpy@gmail.com via paypal.[/COLOR]
+- BugFix for Auto-Play Live TV
+
 Aftershock v4.2.3 (07-Nov-2016)
 ------------------------
 - [COLOR orange]NOTE: If you like the addon please consider making a donation to aftershockpy@gmail.com via paypal.[/COLOR]
