@@ -71,6 +71,8 @@ HDCASTCookie=os.path.join(profile_path, HDCASTCookie)
  
 mainurl=base64.b64decode('aHR0cDovL3d3dy56ZW10di5jb20vY2F0ZWdvcnkvcGFraXN0YW5pLw==')
 liveURL=base64.b64decode('aHR0cDovL3d3dy56ZW10di5jb20vbGl2ZS1wYWtpc3RhbmktbmV3cy1jaGFubmVscy8=')
+viralvideos=base64.b64decode('aHR0cDovL3d3dy56ZW10di5jb20vY2F0ZWdvcnkvdmlyYWwtdmlkZW9zLw==')
+
 
 tabURL =base64.b64decode('aHR0cDovL3d3dy5lYm91bmRzZXJ2aWNlcy5jb206ODg4OC91c2Vycy9yZXgvbV9saXZlLnBocD9hcHA9JXMmc3RyZWFtPSVz')
 DONOTCACHE=   selfAddon.getSetting( "donotcache" ) =="true"
@@ -245,22 +247,23 @@ def DisplayChannelNames(url):
 	return
 
 def AddtypesForShows():
-	addDir('Latest Shows (ZemTv)' ,'Shows' ,2,os.path.join(home,'icons', 'ShowsfromZemTv.png'))
-	addDir('Latest Shows (Siasat.pk)' ,'http://www.siasat.pk/forum/forumdisplay.php?29-Daily-Talk-Shows' ,2,os.path.join(home,'icons','Shows from Siasat.png'))
-	addDir('All Programs and Talk Shows' ,'ProgTalkShows' ,2,os.path.join(home,'icons','All Programs and Talk shows.png'))
+    addDir('Latest Shows (ZemTv)' ,'Shows' ,2,os.path.join(home,'icons', 'ShowsfromZemTv.png'))
+    addDir('Latest Shows (Siasat.pk)' ,'http://www.siasat.pk/forum/forumdisplay.php?29-Daily-Talk-Shows' ,2,os.path.join(home,'icons','Shows from Siasat.png'))
+    addDir('All Programs and Talk Shows' ,'ProgTalkShows' ,2,os.path.join(home,'icons','All Programs and Talk shows.png'))
+    addDir('Viral Videos (ZemTv)' ,'viralvideos' ,2,os.path.join(home,'icons', 'ShowsfromZemTv.png'))
 
 def Addtypes():
-	addDir('Pakistani Political Shows' ,'PakLive' ,29,os.path.join(home,'icons','Pakistani Political Shows.png'))
-	addDir('Indian/Pakistani Shows/Dramas' ,'IndPakLive' ,83,os.path.join(home,'icons','indpakshows.png') )   
-	addDir('Pakistani Live Channels' ,'PakLive' ,2,os.path.join(home,'icons','Pakistani Live Channels.png'))
-	addDir('Indian Live Channels' ,'IndianLive' ,2,os.path.join(home,'icons','Indian Live Channels.png'))
-	addDir('Punjabi Live Channels' ,'PunjabiLive' ,2,os.path.join(home,'icons','Punjabi Live Channels.png'))
-	addDir('Movies' ,'pv2',66,os.path.join(home,'icons','Movies.png'))
-	addDir('Sports' ,'Live' ,13,os.path.join(home,'icons','Sports.png'))
-	addDir('Settings' ,'Live' ,6,os.path.join(home,'icons','Settings.png'),isItFolder=False)
-	addDir('Clear Cache' ,'Live' ,54,os.path.join(home,'icons','Clear Cache.png'),isItFolder=False)
-	addDir(Colored('Status Report', 'red') ,'live',7,os.path.join(home,'icons','Settings.png'),isItFolder=False)
-	return
+    addDir('Pakistani Political Shows' ,'PakLive' ,29,os.path.join(home,'icons','Pakistani Political Shows.png'))
+    addDir('Indian/Pakistani Shows/Dramas' ,'IndPakLive' ,83,os.path.join(home,'icons','indpakshows.png') )   
+    addDir('Pakistani Live Channels' ,'PakLive' ,2,os.path.join(home,'icons','Pakistani Live Channels.png'))
+    addDir('Indian Live Channels' ,'IndianLive' ,2,os.path.join(home,'icons','Indian Live Channels.png'))
+    addDir('Punjabi Live Channels' ,'PunjabiLive' ,2,os.path.join(home,'icons','Punjabi Live Channels.png'))
+    addDir('Movies' ,'pv2',66,os.path.join(home,'icons','Movies.png'))
+    addDir('Sports' ,'Live' ,13,os.path.join(home,'icons','Sports.png'))
+    addDir('Settings' ,'Live' ,6,os.path.join(home,'icons','Settings.png'),isItFolder=False)
+    addDir('Clear Cache' ,'Live' ,54,os.path.join(home,'icons','Clear Cache.png'),isItFolder=False)
+    addDir(Colored('Status Report', 'red') ,'live',7,os.path.join(home,'icons','status report.png'),isItFolder=False)
+    return
 
 def PlayFlashTv(url):
 #    patt='(.*?)'
@@ -3257,6 +3260,8 @@ def AddEnteries(name, type=None):
 #	print "addenT"
     if type=='Shows':
         AddShows(mainurl)
+    elif type=='viralvideos':
+        AddShows(viralvideos)    
     elif '(Siasat.pk)' in name:
         AddShowsFromSiasat(url)
     elif type=='ProgTalkShows':
@@ -6019,7 +6024,8 @@ def AddShows(Fromurl):
         catid=re.findall("currentcat = (.*?);",linkfull)[0]
         Fromurl='http://www.zemtv.com/wp-content/themes/zemresponsive/loopHandler.php?pageNumber=%s&catNumber=%s'%(str(pageNumber),catid)
         linkfull=getUrl(Fromurl,cookieJar=CookieJar, headers=headers)
-
+    
+        
     #	print link
     #cloudflare.createCookie('http://www.movie25.ag/',Cookie_Jar,'Mozilla/5.0 (Windows NT 6.1; rv:14.0) Gecko/20100101 Firefox/14.0.1')
     #	print "addshows"
@@ -6052,7 +6058,8 @@ def AddShows(Fromurl):
         
     
     pageNumber=re.findall("pageNumber=(.*?)&",Fromurl)[0]
-    catid=re.findall("&catNumber=(.*?)",Fromurl)[0]
+    catid=re.findall("catNumber=(.*)",Fromurl)[0]
+    
     pageNumber=int(pageNumber)+1
     Fromurl='http://www.zemtv.com/wp-content/themes/zemresponsive/loopHandler.php?pageNumber=%s&catNumber=%s'%(str(pageNumber),catid)
     addDir('Next Page' ,Fromurl ,2,'',isItFolder=True)
@@ -6313,7 +6320,7 @@ def PlayShowLink ( url, redirect=True ):
         line1 = "Playing Tune.pk Link"
         xbmc.executebuiltin('Notification(%s, %s, %d, %s)'%(__addonname__,line1, time, __icon__))
     #		print "PlayLINK"
-        playURL= match =re.findall('src="(.*?(tune\.pk).*?)"', link)
+        playURL= match =re.findall('src=[\'"](.*?(tune\.pk).*?)[\'"]', link)
         if len(playURL)==0:
             line1 = "Link.pk link not found"
             xbmc.executebuiltin('Notification(%s, %s, %d, %s)'%(__addonname__,line1, time, __icon__))
@@ -6587,7 +6594,7 @@ def ShowAllSources(url, loadedLink=None):
     if not len(playURL)==0:
         available_source.append('Vidrail Source')
         
-    playURL= match =re.findall('src="(.*?(tune\.pk).*?)"', link)
+    playURL= match =re.findall('src=[\'"](.*?(tune\.pk).*?)[\'"]', link)
     if not len(playURL)==0:
         available_source.append('Link Source')
 
@@ -7068,8 +7075,10 @@ def get_view_mode_id( view_mode):
         return int(default_view_mode)
     return None
 
+playmode=[3,4,9,11,15,21,22,27,33,35,37,40,42,45,91,93]
+nonthumbview=[55,61,67,56,14,57,19,20,21,22,23,24,79,75,76,78,81,2,51,52,53,62,70,71,81,66]
 try:
-    if (not mode==None) and mode>1 and mode not in[55,61,67,56,14,57,19,20,21,22,23,24,79,75,76,78,81,2,51,52,53,62,70,71,81]:
+    if (not mode==None) and mode>1 and mode not in nonthumbview and mode not in playmode:
         view_mode_id = get_view_mode_id('thumbnail')
         if overridemode: view_mode_id=overridemode
         if view_mode_id is not None:
@@ -7077,8 +7086,11 @@ try:
             xbmc.executebuiltin('Container.SetViewMode(%d)' % view_mode_id)
 except: traceback.print_exc(file=sys.stdout)
 
-if not ( (mode==3 or mode==4 or mode==9 or mode==11 or mode==15 or mode==21 or mode==22 or mode==27 or mode==33 or mode==35 or mode==37 or mode==40 or mode==42 or mode==45 or mode==91 or mode==93)  )  :
+if not  (mode in  playmode )  :
     if mode in [144,156]:
         xbmcplugin.endOfDirectory(int(sys.argv[1]),updateListing=True)
     else:
         xbmcplugin.endOfDirectory(int(sys.argv[1]))
+
+        
+        

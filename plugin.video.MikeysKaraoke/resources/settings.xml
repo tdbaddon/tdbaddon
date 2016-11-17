@@ -1,6 +1,6 @@
 <settings>
 <category label="Mikey Karaoke Settings">
-    <setting id="font" type="text" label="Font Colour" default="blue"/>
+    <setting id="newfont" type="text" label="Font Colour" default="royalblue"/>
     <setting id="pop_time" type="text" label="For POP UP" default="2000-01-01 00:00:00" visible="false"/>
     <setting id="ga_time" type="text" label="GA Called" default="2000-01-01 00:00:00" visible="false"/>
     <setting id="visitor_ga" type="text" label="GA visitor" default="" visible="false"/>
@@ -10,6 +10,7 @@
 	<setting id="sfdownloads" type="folder" enable="!eq(-1,false)"/>
 	<setting id="previous_folder_path" type="bool" label="previous_folder_path" default="" visible="false"/>
 	<setting id="id" type="text" label="id number" default="0" visible="false"/>
+    <setting id="favs" type="text" label="Favorites" default="" visible="false" />
 </category> 
 <category label="Karaokanta Live">
 	<setting id="karaokantalive" type="bool" label="Enable" default="false"/>
@@ -17,7 +18,7 @@
     <setting id="karaokantalivepass" type="text" label="Password" default="" enable="!eq(-2,false)"/>
 </category> 	
     <category label="Auto-View">
-		<setting id="auto-view" type="bool" label="30600" default="false"/>
+		<setting id="auto-view" type="bool" label="30600" default="true"/>
 		<setting id="MAIN" type="number" label="30601" default="50" enable="!eq(-1,false)"/>
 		<setting id="A-Z" type="number" label="30602" default="50" enable="!eq(-2,false)"/>
 		<setting id="GENRE" type="number" label="30603" default="50" enable="!eq(-3,false)"/>	

@@ -74,7 +74,7 @@ sd_streams = ['goindexsport','multi-sports.eu', 'watchnfl.live', 'streamhd.eu', 
 			'zona4vip.com', 'ciscoweb.ml', 'streamendous.com','streamm.eu', 'sports-arena.net', 'stablelivestream.com', 
 			'iguide.to', 'sportsleague.me','kostatz.com', 'soccerpluslive.com', 'zunox', 'apkfifa.com','watchhdsports.xyz','lovelysports2016.ml',
 			'sports4u.live','tusalavip3.es.tl', 'neymargoals.com', 'crichd.sx', 'unitedstream.live','stream4us.info','freecast.xyz','focustream.info',
-			's4power.club', 'footystreams.net']
+			's4power.club', 'footystreams.net', 'topstream.es.tl', 'pushmycar.cf','zifootball.us']
 
 def utc_to_local(utc_dt):
     timestamp = calendar.timegm(utc_dt.timetuple())
@@ -502,9 +502,7 @@ def DisplayLinks(links, orig_title):
 				urls.append(url)
 			if url not in urls and'sop://' in url:
 				addLink('Sopcast', orig_title, url, mode="play")
-				urls.append(url)
-			
-				
+				urls.append(url)			
 	xbmcplugin.endOfDirectory(h, cacheToDisc=True)
 	
 def ParseLink(el, orig_title):
@@ -535,7 +533,7 @@ def ParseLink(el, orig_title):
 		url = Oneapp(el)
 		return url
 	elif 'streamsus.com' in el:
-		url = Streamsus(el)
+		url = Universal(el)
 		return url
 	elif '305sports.xyz' in el:
 		url = Threesports()
@@ -615,8 +613,8 @@ def strip_non_ascii(string):
     return ''.join(stripped)
 
 def Archive(page, mode):
-	if mode == 'mlbarch':
-		url = 'http://www.life2sport.com/category/basketbol/nba/page/'+str(page)
+	if mode == 'nhlarch':
+		url = 'http://www.life2sport.com/category/hockey/page/'+str(page)
 	if mode == 'nbaarch':
 		url = 'http://www.life2sport.com/category/basketbol/nba/page/'+str(page)
 	elif mode == 'nflarch':
@@ -627,7 +625,7 @@ def Archive(page, mode):
 	if links:
 		del links[1::2]
 	for i, el in enumerate(links):
-		if '-nba-' in el or '-nfl-' in el:
+		if '-nba-' in el or '-nfl-' in el or '-nhl-' in el:
 			title = common.parseDOM(html, "a", attrs={"href": el}, ret="title")[0]
 			title = strip_non_ascii(title)
 			title = title.replace('&#8211;','').strip()
@@ -646,26 +644,45 @@ def Archive(page, mode):
 	xbmcplugin.addDirectoryItem(h, uri, item, True)
 	xbmcplugin.endOfDirectory(h, cacheToDisc=True)
 	
-def Nhlarchive(page, mode):
-	url = 'http://rutube.ru/api/video/person/979571/?page='+str(page)+'&format=json'
-	json = GetJSON(url)
-	json = json['results']
+
+def Nhlarch():
+	addDir("[COLOR=FF00FF00][ Archive 1 ][/COLOR]", 'atl17@bk.ru', iconImg='https://upload.wikimedia.org/wikipedia/de/thumb/1/19/Logo-NHL.svg/2000px-Logo-NHL.svg.png', mode="nhlarchuser")
+	addDir("[COLOR=FF00FF00][ Archive 2 ][/COLOR]", 'andrei-bagin163@mail.ru', iconImg='https://upload.wikimedia.org/wikipedia/de/thumb/1/19/Logo-NHL.svg/2000px-Logo-NHL.svg.png', mode="nhlarchuser")
+	xbmcplugin.endOfDirectory(h)
+
+
+def Nhlarchive(url, page, mode):
+	page = int(page)-1
+	link = 'https://my.mail.ru/cgi-bin/my/ajax?user='+url+'&xemail=&ajax_call=1&func_name=video.get_list&mna=&mnb=&arg_type=album_items&arg_all=1&sort=default&arg_offset='+str(page)+'&arg_limit=20'
+	json = GetJSON(link)
+	json = json[2]['items']
 	for el in json:
-		title = el['title']
-		id = el['id']
-		img = el['thumbnail_url']
-		addLink(title, title, id, iconImg=img, mode="playnhlarchive")
-	uri = sys.argv[0] + '?mode=%s&page=%s' % (mode, str(int(page)+1))
+		title = el['Title']
+		videoUrl = el['MetaUrl']
+		img = el['UrlJpg']
+		if 'NHL' in title:
+			addDir(title, videoUrl, iconImg=img, mode="playnhlarchive")
+	uri = sys.argv[0] + '?mode=%s&page=%s&url=%s' % (mode, str(int(page)+10),url)
 	item = xbmcgui.ListItem("next page...", iconImage='', thumbnailImage='')
 	xbmcplugin.addDirectoryItem(h, uri, item, True)
 	xbmcplugin.endOfDirectory(h, cacheToDisc=True)
 
 def Playnhlarchive(url):
 	orig_title = xbmc.getInfoLabel('ListItem.Title')
-	url = 'http://rutube.ru/api/play/options/'+url+'?format=json'
-	json = GetJSON(url)
-	link = json['video_balancer']['m3u8']
-	Play(link, orig_title)
+	cookieJar = cookielib.CookieJar()
+	opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cookieJar), urllib2.HTTPHandler())
+	conn = urllib2.Request(url)
+	connection = opener.open(conn)
+	f = connection.read()
+	connection.close()
+	js = json.loads(f)
+	for cookie in cookieJar:
+		token = cookie.value
+	js = js['videos']
+	for el in js:
+		addDirectLink(el['key'], {'Title': orig_title}, 'http:'+el['url']+'|Cookie=video_key='+token)
+				#addLink(el['key'], orig_title, el['url']+'|Cookie=video_key='+token, mode="play")
+	xbmcplugin.endOfDirectory(h, cacheToDisc=True)
 	
 def PlayArchive(url):
 	orig_title = xbmc.getInfoLabel('ListItem.Title')
@@ -797,10 +814,10 @@ def GetYoutube(url):
 		
 def Torrent(url):
 	if 'sop://'in url:
-		url = urllib.quote(url)
+		url = urllib.quote(url.rstrip('`#$%^&*@!":;.,?[]{}+=-_<>'))
 		url='plugin://program.plexus/?mode=2&url=%s&name=%s'%(url,'Sopcast')
 	elif 'acestream://' in url or '.acelive' in url:
-		url = urllib.quote(url)
+		url = urllib.quote(url.rstrip('`#$%^&*@!":;.,?[]{}+=-_<>'))
 		url='plugin://program.plexus/?mode=1&url=%s&name=%s'%(url,'Acestream')
 	return url
 		
@@ -860,7 +877,15 @@ def Blabseal(url):
 		javasc = re.findall('(eval.*\))', html)[0]
 		import js2py
 		context = js2py.EvalJs()
-		if 'jwplayer' not in html:
+		if 'jwplayer' in html:
+			jsplayers = '''var jwobject = [];
+            	jwobject.results = null;
+            	jwobject.setup = function(args) {jwobject.results = args};
+            	var jwplayer = function() {return jwobject};'''
+			context.execute(jsplayers)
+			context.execute(javasc)
+			return context.jwobject.results.file
+		else:
 			context.execute('''pyimport jstools;
            		var escape = jstools.escape;
             	var unescape = jstools.unescape;
@@ -873,27 +898,26 @@ def Blabseal(url):
 			context.document.domain = urlparse.urlparse(link).netloc
 			context.execute(javasc)
 			html = context.document.result
-			link = common.parseDOM(html, "iframe", ret="src")[0]
-			print link
-			if 'youtu' in link:
-				lnk = GetYoutube(link)
-				return lnk
-			elif 'dailymotion.com/embed' in link:
-				lnk = Dailymotion(link)
-				return lnk
-			elif 'ustream.tv' in link:
-				lnk = Ustream(link)
-				return lnk
-		else:
-			jsplayers = '''var jwobject = [];
-            	jwobject.results = null;
-            	jwobject.setup = function(args) {jwobject.results = args};
-            	var jwplayer = function() {return jwobject};'''
-			context.execute(jsplayers)
-			context.execute(javasc)
-			return context.jwobject.results.file
+			if '<iframe' in html:
+				link = common.parseDOM(html, "iframe", ret="src")[0]
+				if 'youtu' in link:
+					lnk = GetYoutube(link)
+					return lnk
+				elif 'dailymotion.com/embed' in link:
+					lnk = Dailymotion(link)
+					return lnk
+				elif 'ustream.tv' in link:
+					lnk = Ustream(link)
+					return lnk
+			elif '<video' in html:
+				link = re.findall("src=[\"\'](.*?)[\"\']", html)[0]
+				if 'http' in link:
+					return link
+				elif link.startswith('/'):
+					return 'http://blabseal.com'+link
 	except:
-		return None
+		return None			
+			
 		
 def Dailymotion(url):
 	try:
@@ -973,6 +997,16 @@ def Streamsus(url):
 		block_content = common.parseDOM(html, "a", ret="href")[0]
 		if 'streamboat' in block_content:
 			link = Streambot(block_content)
+			return link
+	except:
+		pass
+	try:
+		html = GetURL(url)
+		link = re.findall("'file':(.*?)'", html)[0].replace("'","")
+		if 'm3u8' in link:
+			return link
+		elif 'youtu' in link:
+			link = GetYoutube(link)
 			return link
 	except:
 		return None
@@ -1184,7 +1218,7 @@ def Universal(url):
 		id = id.split("';")[0]
 		link = weplayer(id)
 		return link
-	if html and 'castalba.tv' in html:
+	elif html and 'castalba.tv' in html:
 		id = html.split('<script type="text/javascript"> id="')[-1]
 		id = id.split('";')[0]
 		link = Castalba(id, url)
@@ -1249,6 +1283,11 @@ def Universal(url):
 		link = re.findall("src='(http.+?shidurlive.com/embed/.+?)'",html)[0]
 		link = sawresolve(link, url)
 		return link
+	elif html and 'pushmycar.cf' in url and 'embed.js' in html and 'fid=' in html:
+		fid = html.split('fid="')[-1].split('";')[0]
+		link = 'http://wizhdsports.be/live/'+ fid +'.php'
+		link = Universal(link)
+		return link
 	elif html and ('.m3u8' in html or 'rtmp:' in html or '.f4m' in html):
 		html = urllib.unquote_plus(html)
 		links = re.findall("[file|source|hls|src|stream1]\s*[:|=]\s*[\"\'](.*?)[\"\']", html)
@@ -1265,6 +1304,8 @@ def Universal(url):
 		domain = urlparse.urlparse(url).netloc
 		scheme = urlparse.urlparse(url).scheme
 		urls = common.parseDOM(html, 'iframe', ret='src')
+		urls2 = common.parseDOM(html, 'frame', ret='SRC')
+		urls = urls+urls2
 		if urls:
 			for url in urls:
 				if '../../' in url:
@@ -1318,20 +1359,27 @@ def sawresolve(query, referer):
 		src = common.parseDOM(result, 'iframe', ret='src')[-1]
 		src = src.replace("'","").replace('"','')
 		if src:
-			decoded = scraper.get(src, headers=header).content
+			decoded = scraper.get(src).content
 			swf = re.compile("SWFObject\('(.+?)'").findall(decoded)[0].replace(' ', '')
-			decoded = decoded.split("'uniform');")[-1].split("</script>")[0]
+			scripts = decoded.split('javascript">')
+			for script in scripts:
+				script = script.split('</script>')[0]
+				if 'SWFObject' in script:
+					decoded = script
+					break
 			so = re.findall('(so.addVariable\(.*?\))', decoded)
 			for s in so:
 				o = s.replace("so.addVariable('", "var ").replace("',", " = ").replace(")","").replace("rtmp.tunneling","rtmptunneling")
+				decoded = decoded.replace(s, o)
+			so = re.findall('(so.addParam\(.*?\))', decoded)
+			for s in so:
+				o = s.replace("so.addParam('", "var ").replace("',", " = ").replace(")","")
 				decoded = decoded.replace(s, o)
 			context = js2py.EvalJs()
 			context.execute('''pyimport jstools;
            		var escape = jstools.escape;
             	var unescape = jstools.unescape;
-            	var document = [];
-            	document.result = "";
-            	document.write = function(markup){ document.result = document.result + markup };''')
+            	var SWFObject = function(){ };''')
 			context.execute(decoded)
 			try:
 				streamer = context.streamer
@@ -1714,7 +1762,8 @@ elif mode == 'soccer': Games(mode)
 elif mode == 'myreddit': MyReddits()
 elif mode == 'nbaarch': Archive(page, mode)
 elif mode == 'nflarch': Archive(page, mode)
-elif mode == 'nhlarch': Nhlarchive(page, mode)
+elif mode == 'nhlarch': Nhlarch()
+elif mode == 'nhlarchuser': Nhlarchive(url, page, mode)
 elif mode == 'xrnhlarch': Xrxsarch()
 elif mode == 'archive': Arch()
 elif mode == 'playarchive': PlayArchive(url)

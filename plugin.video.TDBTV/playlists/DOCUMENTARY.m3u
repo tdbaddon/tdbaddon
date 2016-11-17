@@ -1,8 +1,6 @@
 ﻿#EXTM3U
 
-#EXTINF:0,HOW TO CHANGE AUDIO LANGUAGE
-http://www.support.tcomputers.ca/@videos/HowTo-ChangeAudioLanguage.mp4
---------------------------------------------------------------------------------------------------------
+
 #EXTINF:0,Check Back Soon
 0
 
@@ -13,13 +11,10 @@ http://www.support.tcomputers.ca/@videos/HowTo-ChangeAudioLanguage.mp4
 0
 
 #EXTINF:0,Animal Atlas
-0
+http://latino-webtv.ml:8880/tpmariocs/CANAL373/PROFILE03.m3u8
 
 #EXTINF:0,Animal Planet 
 http://46.166.162.35:9090/load/b0922f3fa8aa/37.m3u8
-
-#EXTINF:0,Animal Planet 
-http://185.39.194.26:8000/53/LTNOXIBZS8ZTR4Y1
 
 #EXTINF:0,Axs
 0
@@ -34,7 +29,7 @@ http://185.39.194.26:8000/53/LTNOXIBZS8ZTR4Y1
 0
 
 #EXTINF:0,Da Vinci Learning
-http://93.87.85.71/PLTV/88888888/224/3221226760/04.m3u8
+0
 
 #EXTINF:0,Destination America 
 0
@@ -58,7 +53,7 @@ http://93.87.85.71/PLTV/88888888/224/3221226760/04.m3u8
 0
 
 #EXTINF:0,Discovery Science 
-0
+http://151.80.27.111:25461/live/jefferson1/123456/94.m3u8
 
 #EXTINF:0,Discovery Shed
 0
@@ -88,16 +83,10 @@ http://93.87.85.71/PLTV/88888888/224/3221226760/04.m3u8
 0
 
 #EXTINF:0,History Channel 2
-http://46.166.162.35:9090/load/b0922f3fa8aa/36.m3u8
-
-#EXTINF:0,History Channel 2
 http://fluvod1.giniko.com/all-documentaries/all-documentaries/tracks-5,6/index.m3u8
 
-#EXTINF:0,History Channel 2
-http://93.87.85.71/PLTV/88888888/224/3221226671/04.m3u8
-
 #EXTINF:0,Investigation Discovery
-http://46.166.162.35:9090/load/b0922f3fa8aa/41.m3u8
+0
 
 #EXTINF:0,Landscape TV
 http://130.88.20.237:1235/monitor.flv
@@ -118,18 +107,15 @@ http://iphone-streaming.ustream.tv/uhls/9408562/streams/live/iphone/playlist.m3u
 0
 
 #EXTINF:0,Nat Geo Wild 
-http://46.166.162.35:9090/load/b0922f3fa8aa/40.m3u8
+0
 
 #EXTINF:0,National Geographic 
-http://46.166.162.35:9090/load/b0922f3fa8aa/39.m3u8
+0
 
 #EXTINF:0,Planet Green 
 0
 
 #EXTINF:0,RT News Documentary 
-http://93.87.85.71/PLTV/88888888/224/3221226759/04.m3u8
-
-#EXTINF:0,RT News Documentary a
 http://rtcdn.api.visionip.tv/live/ASHTTP/rtcdn-rtcdn-doc-hsslive-25f-16x9-MB/playlist.m3u8
 
 #EXTINF:0,Ted TV 
@@ -142,16 +128,16 @@ http://rtcdn.api.visionip.tv/live/ASHTTP/rtcdn-rtcdn-doc-hsslive-25f-16x9-MB/pla
 0
 
 #EXTINF:0,Viasat Explorer
-http://93.87.85.71/PLTV/88888888/224/3221226593/04.m3u8
+0
 
 #EXTINF:0,Viasat History 
-http://93.87.85.71/PLTV/88888888/224/3221226592/04.m3u8
+0
 
 #EXTINF:0,Viasat Nature 
 0
 
 #EXTINF:0,War Channel
-http://198.179.31.197/live/2954.high.stream/playlist.m3u8
+0
 
 #EXTINF:0,World Travel Channel
 http://stream.taksimbilisim.com:1935/wtc/bant1/WTC.m3u8

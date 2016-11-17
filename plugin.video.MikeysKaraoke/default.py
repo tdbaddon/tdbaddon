@@ -22,7 +22,7 @@ ADDON = settings.addon()
 home = ADDON.getAddonInfo('path')
 sfdownloads= ADDON.getSetting('sfdownloads')
 datapath = xbmc.translatePath(ADDON.getAddonInfo('profile'))
-font=ADDON.getSetting('font').lower()
+newfont=ADDON.getSetting('newfont').lower()
 cookie_path = os.path.join(datapath, 'cookies')
 cookie_jar = os.path.join(cookie_path, "karaokantalive")
 
@@ -124,18 +124,18 @@ def CATEGORIES():
             dp.ok("Mikeys Karaoke","",'There is a New Database Update', 'Please Wait')
             Update()
             ADDON.setSetting('id',match[0])        
-        addDir('[COLOR '+font+']'+'Youtube[/COLOR] Karaoke','url',19,art+'Main/youtube.png','none',1)
-        addDir('[COLOR '+font+']'+'Sunfly[/COLOR] Karaoke','url',20,art+'Main/SUNFLY.png','none',1)
+        addDir('[COLOR '+newfont+']'+'Youtube[/COLOR] Karaoke','url',19,art+'Main/youtube.png','none',1)
+        addDir('[COLOR '+newfont+']'+'Sunfly[/COLOR] Karaoke','url',20,art+'Main/SUNFLY.png','none',1)
         if ADDON.getSetting('karaokantalive') =='true':
-            addDir('[COLOR '+font+']'+'Karaokanta[/COLOR] Karaoke','url',201,art+'Main/karaokantalive.png','none',1)
-        addDir('[COLOR '+font+']'+'Favourites[/COLOR]','url',2,art+'Main/SUNFLY.png','none',1)
+            addDir('[COLOR '+newfont+']'+'Karaokanta[/COLOR] Karaoke','url',201,art+'Main/karaokantalive.png','none',1)
+        addDir('[COLOR '+newfont+']'+'Favourites[/COLOR]','url',2,art+'Main/SUNFLY.png','none',1)
         setView('movies', 'MAIN')
 
 def karaokantaliveCATEGORIES():      
-        addDir('[COLOR '+font+']'+'Ultimas Novedades[/COLOR] Karaoke','http://www.karaokantalive.com/busqueda.php?n=1',202,'','none',1)
-        addDir('[COLOR '+font+']'+'Temas Exclusivos K-Live[/COLOR] Karaoke','http://www.karaokantalive.com/busqueda.php?n=2',202,'','none',1)
-        addDir('[COLOR '+font+']'+'Lo Mas Nuevo[/COLOR] Karaoke','http://www.karaokantalive.com/busqueda.php?n=3',202,'','none',1)
-        addDir('[COLOR '+font+']'+'Mis Favoritos[/COLOR] Karaoke','http://www.karaokantalive.com/favoritos.php',202,'','none',1)
+        addDir('[COLOR '+newfont+']'+'Ultimas Novedades[/COLOR] Karaoke','http://www.karaokantalive.com/busqueda.php?n=1',202,'','none',1)
+        addDir('[COLOR '+newfont+']'+'Temas Exclusivos K-Live[/COLOR] Karaoke','http://www.karaokantalive.com/busqueda.php?n=2',202,'','none',1)
+        addDir('[COLOR '+newfont+']'+'Lo Mas Nuevo[/COLOR] Karaoke','http://www.karaokantalive.com/busqueda.php?n=3',202,'','none',1)
+        addDir('[COLOR '+newfont+']'+'Mis Favoritos[/COLOR] Karaoke','http://www.karaokantalive.com/favoritos.php',202,'','none',1)
 
 
 def karaokanta_GET(name,url):      
@@ -159,25 +159,25 @@ def karaokanta_PLAY(name,url):
         
             
 def mikeyyoutube(url):
-        addDir('[COLOR '+font+']'+'Search[/COLOR]-[COLOR '+font+']'+'Y[/COLOR]outube Karaoke','url',3,art+'Main/Search.png','none',1)
+        addDir('[COLOR '+newfont+']'+'Search[/COLOR]-[COLOR '+newfont+']'+'Y[/COLOR]outube Karaoke','url',5003,art+'Main/Search.png','none',1)
         if ADDON.getSetting('downloads') == 'true':
-            addDir('[COLOR '+font+']'+'D[/COLOR]ownloads','url',15,art+'Main/favorites.png','',1)
-        addDir('[COLOR '+font+']'+'Most[/COLOR] Popular','http://www.sunflykaraoke.com/tracks?dir=asc&limit=200&order=popular',7,art+'AtoZ/P.png','none',1)
-        addDir('[COLOR '+font+']'+'L[/COLOR]atest','http://www.sunflykaraoke.com/tracks?dir=asc&limit=200&order=latestalbums',7,art+'AtoZ/L.png','none',1)
-        addDir('[COLOR '+font+']'+'Browse[/COLOR] Artist','http://www.lyricsmania.com/lyrics/%s.html',1,art+'Main/Artist.png','none',4)
-        addDir('[COLOR '+font+']'+'Browse[/COLOR] Tracks','http://www.sunflykaraoke.com/tracks/search/byletter/letter/%s/',1,art+'Main/Title.png','none',7)
-        addDir('[COLOR '+font+']'+'G[/COLOR]enre','http://www.sunflykaraoke.com/',8,art+'Main/Genre.png','none',1)
+            addDir('[COLOR '+newfont+']'+'D[/COLOR]ownloads','url',15,art+'Main/favorites.png','',1)
+        addDir('[COLOR '+newfont+']'+'Most[/COLOR] Popular','http://www.sunflykaraoke.com/tracks?dir=asc&limit=200&order=popular',7,art+'AtoZ/P.png','none',1)
+        addDir('[COLOR '+newfont+']'+'L[/COLOR]atest','http://www.sunflykaraoke.com/tracks?dir=asc&limit=200&order=latestalbums',7,art+'AtoZ/L.png','none',1)
+        addDir('[COLOR '+newfont+']'+'Browse[/COLOR] Artist','http://www.lyricsmania.com/lyrics/%s.html',1,art+'Main/Artist.png','none',4)
+        addDir('[COLOR '+newfont+']'+'Browse[/COLOR] Tracks','http://www.sunflykaraoke.com/tracks/search/byletter/letter/%s/',1,art+'Main/Title.png','none',7)
+        addDir('[COLOR '+newfont+']'+'G[/COLOR]enre','http://www.sunflykaraoke.com/',8,art+'Main/Genre.png','none',1)
         setView('movies', 'MAIN')
         
 def mikeysunfly(url):
-        addDir('[COLOR '+font+']'+'Search[/COLOR]-[COLOR '+font+']'+'X[/COLOR]unity Karaoke','url',16,art+'Main/Search.png','none',1)
+        addDir('[COLOR '+newfont+']'+'Search[/COLOR]-[COLOR '+newfont+']'+'X[/COLOR]unity Karaoke','url',5003,art+'Main/Search.png','none',1)
         if ADDON.getSetting('sfenable') == 'true':
-            addDir('[COLOR '+font+']'+'D[/COLOR]ownloads','url',31,art+'Main/favorites.png','',1)
-        addDir('[COLOR '+font+']'+'Search[/COLOR] By Number','url',25,art+'Main/Search.png','none',1)
-        addDir('[COLOR '+font+']'+'Browse[/COLOR] Artist','http://www.sunflykaraoke.com/',1,art+'Main/Artist.png','none',23)
-        addDir('[COLOR '+font+']'+'Browse[/COLOR] Tracks','http://www.sunflykaraoke.com/',1,art+'Main/Title.png','none',24)
-        addDir('[COLOR '+font+']'+'G[/COLOR]enre','http://www.sunflykaraoke.com/',32,art+'Main/Genre.png','none',1)
-        addDir('[COLOR '+font+']'+'D[/COLOR]ownload Database','http://www.sunflykaraoke.com/',103,'','none',1)
+            addDir('[COLOR '+newfont+']'+'D[/COLOR]ownloads','url',31,art+'Main/favorites.png','',1)
+        addDir('[COLOR '+newfont+']'+'Search[/COLOR] By Number','url',25,art+'Main/Search.png','none',1)
+        addDir('[COLOR '+newfont+']'+'Browse[/COLOR] Artist','http://www.sunflykaraoke.com/',1,art+'Main/Artist.png','none',23)
+        addDir('[COLOR '+newfont+']'+'Browse[/COLOR] Tracks','http://www.sunflykaraoke.com/',1,art+'Main/Title.png','none',24)
+        addDir('[COLOR '+newfont+']'+'G[/COLOR]enre','http://www.sunflykaraoke.com/',32,art+'Main/Genre.png','none',1)
+        addDir('[COLOR '+newfont+']'+'D[/COLOR]ownload Database','http://www.sunflykaraoke.com/',103,'','none',1)
         setView('movies', 'MAIN')
 
 def AtoZ(url,number,fanart):
@@ -186,10 +186,10 @@ def AtoZ(url,number,fanart):
         addDir('0-9',url%'0-9',number,"%s/KaraokeArt/AtoZ/%s.png"%(local.getAddonInfo("path"),'0-9'),fanart,1)
         for i in string.ascii_uppercase:
             addDir(i,url%i,number,"%s/KaraokeArt/AtoZ/%s.png"%(local.getAddonInfo("path"),i),fanart,1)
-            setView('movies', 'A-Z')
     else:
         for i in string.ascii_uppercase:
             addDir(i,url,number,"%s/KaraokeArt/AtoZ/%s.png"%(local.getAddonInfo("path"),i),fanart,1)
+    setView('movies', 'A-Z')
 
 def FAVOURITES(switch,name,iconimage,url):
     IMAGE = os.path.join(ADDON.getAddonInfo('path'), 'icon.jpg')
@@ -238,16 +238,40 @@ def Next_Page(link):
     return None 
 
 
+def FirstSearchDir(name):
+    if 'unity' in name:
+        mode=16
+        addDir('[COLOR '+newfont+']'+'Search[/COLOR]-[COLOR '+newfont+']'+'X[/COLOR]unity Karaoke','url',16,art+'Main/Search.png','none',1)
+
+    else:
+        mode=3
+        addDir('[COLOR '+newfont+']'+'Search[/COLOR]-[COLOR '+newfont+']'+'Y[/COLOR]outube Karaoke','url',3,art+'Main/Search.png','none',1)
+        
+    favs = ADDON.getSetting('favs').split(',')
+    for title in favs:
+        if len(title)>1:
+            addDir(title.title(),title.lower(),mode,art+'Main/Search.png','none',1)
     
-    
-def SEARCH(url):
+def SEARCH(search_entered):
         PAGE=1
-        keyboard = xbmc.Keyboard('', 'Search')
-        keyboard.doModal()
-        if keyboard.isConfirmed() and len(keyboard.getText())>0:
-           TXT='https://www.youtube.com/results?search_query=%s+karaoke&hl=en-GB&page='  % (keyboard.getText().replace(' ','+'))
-           html=OPEN_URL(TXT+str(PAGE))
-        else: return
+        favs = ADDON.getSetting('favs').split(',')
+        if 'url' in search_entered:
+            keyboard = xbmc.Keyboard('', 'Search')
+            keyboard.doModal()
+            if keyboard.isConfirmed() and len(keyboard.getText())>0:
+               search_entered = keyboard.getText()
+            else: return
+        
+        search_entered = search_entered.replace(',', '')
+
+        if len(search_entered) == 0:
+            return
+
+        TXT='https://www.youtube.com/results?search_query=%s+karaoke&hl=en-GB&page='  % (search_entered.replace(' ','+'))
+        html=OPEN_URL(TXT+str(PAGE))
+        if not search_entered in favs:
+            favs.append(search_entered)
+            ADDON.setSetting('favs', ','.join(favs))
         
         link=html.split('yt-lockup-title')
         
@@ -264,7 +288,7 @@ def SEARCH(url):
                         addLink(name,url.split('"')[0] ,iconimage,'')
             except:pass
    
-        addDir('[COLOR blue][B]Next Page >>[/B][/COLOR]',TXT,11,art+'nextpage.png','',PAGE)
+        addDir('[COLOR royalblue][B]Next Page >>[/B][/COLOR]',TXT,11,art+'nextpage.png','',PAGE)
         setView('movies', 'VIDEO')
         
                                                                                 
@@ -275,7 +299,7 @@ def ARTIST_INDEX(url, iconimage):
             url = 'http://www.lyricsmania.com'+url   
             name = str(name).replace("lyrics","")
             addDir(name,url,5,iconimage,art+'Main/Fanart_A.jpg',1)
-            setView('movies', 'DEFAULT')
+        setView('movies', 'DEFAULT')
 
 
 def ARTIST_SONG_INDEX(url,name):
@@ -290,7 +314,7 @@ def ARTIST_SONG_INDEX(url,name):
             name=name.encode('ascii','ignore')
             name = str(name).replace("&Agrave;","A").replace('&eacute;','e').replace('&ecirc;','e').replace('&egrave;','e').replace("&agrave;","A")
             addDir(name,'url',6,iconimage,fanart,1)
-            setView('tvshow', 'DEFAULT')
+        setView('tvshow', 'DEFAULT')
             
 
     
@@ -309,10 +333,10 @@ def TRACK_INDEX(url, iconimage):
                     if name not in uniques:
                         uniques.append(name)      
                         addDir(name,url,9,iconimage,art+'Main/Fanart_T.jpg',1)
-                setView('movies', 'DEFAULT')
+        setView('movies', 'DEFAULT')
         #try:
                 #url='http://www.sunflykaraoke.com'+str(nextpageurl)
-                #name= '[COLOR '+font+']'+'[B]Next Page >>[/B][/COLOR]'
+                #name= '[COLOR '+newfont+']'+'[B]Next Page >>[/B][/COLOR]'
                 #addDir(name,url,7,art+'next.png','none',1)    
                 #setView('movies', 'DEFAULT') 
         #except:
@@ -332,10 +356,10 @@ def GENRE_INDEX(name,url, iconimage):
                     uniques.append(name)      
     
                     addDir(name,url,9,iconimage,art+'Main/Fanart_G.jpg',1)
-            setView('movies', 'DEFAULT')
+        setView('movies', 'DEFAULT')
         #try:
                 #url='http://www.sunflykaraoke.com'+str(nextpageurl)
-                #name= '[COLOR '+font+']'+'[B]Next Page >>[/B][/COLOR]'
+                #name= '[COLOR '+newfont+']'+'[B]Next Page >>[/B][/COLOR]'
                 #addDir(name,url,7,art+'next.png','none',1)    
                 #setView('movies', 'DEFAULT') 
         #except:
@@ -356,11 +380,11 @@ def GENRE_INDEXSF(name,url, iconimage):
                 if name not in uniques:
                     uniques.append(name)      
 
-                    addDir('[COLOR '+font+']'+'%s[/COLOR] - %s'%(passto,url),name,34,iconimage,art+'Main/Fanart_G.jpg',1)
-            setView('movies', 'DEFAULT')
+                    addDir('[COLOR '+newfont+']'+'%s[/COLOR] - %s'%(passto,url),name,34,iconimage,art+'Main/Fanart_G.jpg',1)
+        setView('movies', 'DEFAULT')
         #try:
                 #url='http://www.sunflykaraoke.com'+str(nextpageurl)
-                #name= '[COLOR '+font+']'+'[B]Next Page >>[/B][/COLOR]'
+                #name= '[COLOR '+newfont+']'+'[B]Next Page >>[/B][/COLOR]'
                 #addDir(name,url,33,art+'next.png','none',1)    
                 #setView('movies', 'DEFAULT') 
         #except:
@@ -376,7 +400,7 @@ def SEARCH_GENRE(url,name):
     if not db: addLinkSF('[COLOR red]TRACK NOT AVAILABLE.[/COLOR]',url,'');return
     for sf,number,artist,track,icon,burl in db:
         if artist in name.split('-')[1].strip():
-            addLinkSF('[COLOR '+font+']'+'%s ~ [/COLOR]%s'%(artist,track),burl,icon,split=1)
+            addLinkSF('[COLOR '+newfont+']'+'%s ~ [/COLOR]%s'%(artist,track),burl,icon,split=1)
         
 def YOUTUBE_SONG_INDEX(name, url, iconimage, fanart):
         PAGE=1
@@ -397,7 +421,7 @@ def YOUTUBE_SONG_INDEX(name, url, iconimage, fanart):
                         addLink(name,url.split('"')[0] ,iconimage,'')
             except:pass
    
-        addDir('[COLOR blue][B]Next Page >>[/B][/COLOR]',url,11,art+'nextpage.png','',PAGE)
+        addDir('[COLOR royalblue][B]Next Page >>[/B][/COLOR]',url,11,art+'nextpage.png','',PAGE)
         setView('movies', 'VIDEO')
             
 def TITLE_ORDERS_YOUTUBE(name, url,fanart):
@@ -419,7 +443,7 @@ def TITLE_ORDERS_YOUTUBE(name, url,fanart):
                         addLink(name,url.split('"')[0] ,iconimage,'')
             except:pass
    
-        addDir('[COLOR blue][B]Next Page >>[/B][/COLOR]',url,11,art+'nextpage.png','',PAGE)
+        addDir('[COLOR royalblue][B]Next Page >>[/B][/COLOR]',url,11,art+'nextpage.png','',PAGE)
         setView('movies', 'VIDEO')
         
         
@@ -467,7 +491,7 @@ def nextpage(url,number):
                         addLink(name,url.split('"')[0] ,iconimage,'')
             except:pass
    
-        addDir('[COLOR blue][B]Next Page >>[/B][/COLOR]',URL,11,art+'nextpage.png','',PAGE)
+        addDir('[COLOR royalblue][B]Next Page >>[/B][/COLOR]',URL,11,art+'nextpage.png','',PAGE)
         setView('movies', 'VIDEO')
             
 def addFile(file):
@@ -545,25 +569,45 @@ def get_params():
         return param
         
 
-def Sunflysearch(url):
-    keyboard = xbmc.Keyboard('', '[COLOR grey3]Search by[/COLOR] [COLOR '+font+']'+'Artist[/COLOR] [COLOR grey3]or[/COLOR] [COLOR '+font+']'+'Track[/COLOR]')
-    keyboard.doModal()
-    if keyboard.isConfirmed():
-        db=GRABBER(4,'artist',keyboard.getText())
-        if not db: db=GRABBER(4,'artist',re.sub('\A(a|A|the|THE|The)\s','',keyboard.getText()))
-        if not db: db=GRABBER(4,'track',keyboard.getText())
-        if not db: db=GRABBER(4,'track',re.sub('\A(a|A|the|THE|The)\s','',keyboard.getText()))
+def Sunflysearch(search_entered):
+    search_entered = search_entered.replace(',', '')
+    favs = ADDON.getSetting('favs').split(',')
+    if 'url' in search_entered:
+        keyboard = xbmc.Keyboard('', '[COLOR grey3]Search by[/COLOR] [COLOR '+newfont+']'+'Artist[/COLOR] [COLOR grey3]or[/COLOR] [COLOR '+newfont+']'+'Track[/COLOR]')
+        keyboard.doModal()
+        if keyboard.isConfirmed():
+            search_entered=keyboard.getText()
+            db=GRABBER(4,'artist',search_entered)
+            if not db: db=GRABBER(4,'artist',re.sub('\A(a|A|the|THE|The)\s','',search_entered))
+            if not db: db=GRABBER(4,'track',search_entered)
+            if not db: db=GRABBER(4,'track',re.sub('\A(a|A|the|THE|The)\s','',search_entered))
+            if not db: addLinkSF('[COLOR red]TRACK NOT AVAILABLE.[/COLOR]',url,'');return
+            for sf,number,artist,track,icon,burl in db:
+                addLinkSF('[COLOR '+newfont+']'+'%s ~ [/COLOR]%s'%(artist,track),burl,icon)
+                
+         
+            if not search_entered in favs:
+                favs.append(search_entered)
+                ADDON.setSetting('favs', ','.join(favs))
+    
+    else:
+
+            
+        db=GRABBER(4,'artist',search_entered)
+        if not db: db=GRABBER(4,'artist',re.sub('\A(a|A|the|THE|The)\s','',search_entered))
+        if not db: db=GRABBER(4,'track',search_entered)
+        if not db: db=GRABBER(4,'track',re.sub('\A(a|A|the|THE|The)\s','',search_entered))
         if not db: addLinkSF('[COLOR red]TRACK NOT AVAILABLE.[/COLOR]',url,'');return
         for sf,number,artist,track,icon,burl in db:
-            addLinkSF('[COLOR '+font+']'+'%s ~ [/COLOR]%s'%(artist,track),burl,icon)
-    
-                
+            addLinkSF('[COLOR '+newfont+']'+'%s ~ [/COLOR]%s'%(artist,track),burl,icon)
+
+        
              
 def AZ_ARTIST_SEARCH(name):
     db=GRABBER(5,'artist',name)
     if not db: addLinkSF('[COLOR red]ARTIST NOT AVAILABLE.[/COLOR]',url,'');return
     for sf,number,artist,track,icon,burl in db:
-            addLinkSF('[COLOR '+font+']'+'%s ~ [/COLOR]%s'%(artist,track),burl,icon,split=1)
+            addLinkSF('[COLOR '+newfont+']'+'%s ~ [/COLOR]%s'%(artist,track),burl,icon,split=1)
     
 def SF_SEARCH(url):
     sunfly = 'SF'
@@ -573,14 +617,14 @@ def SF_SEARCH(url):
         db=GRABBER(4,'sunfly_name',keyboard.getText())
         if not db: addLinkSF('[COLOR red]DISC NOT AVAILABLE.[/COLOR]',url,'');return
         for sf,number,artist,track,icon,burl in db:
-            addLinkSF('[COLOR '+font+']'+'%s:-%s ~ [/COLOR]%s'%(sf,number,track),burl,icon,split=1)
+            addLinkSF('[COLOR '+newfont+']'+'%s:-%s ~ [/COLOR]%s'%(sf,number,track),burl,icon,split=1)
         
         
 def AZ_TRACK_SEARCH(name):
     db=GRABBER(5,'track',re.sub('\A(a|A|the|THE|The)\s','',name))
     if not db: addLinkSF('[COLOR red]TRACK NOT AVAILABLE.[/COLOR]',url,'');return
     for sf,number,artist,track,icon,burl in db:
-            addLinkSF('[COLOR '+font+']'+'%s ~ [/COLOR]%s'%(track,artist),burl,icon,split=0)    
+            addLinkSF('[COLOR '+newfont+']'+'%s ~ [/COLOR]%s'%(track,artist),burl,icon,split=0)    
 
 
 def karaokanta_LOGIN():
@@ -611,6 +655,10 @@ def addDir(name,url,mode,iconimage,fanart,number):
         liz=xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
         liz.setProperty( "Fanart_Image", fanart )
         liz.setInfo( type="Video", infoLabels={ "Title": name } )
+        menu=[]
+        if mode == 3 or mode==16 :
+            menu.append(('[COLOR orange]Remove Search[/COLOR]','XBMC.Container.Update(%s?mode=5002&name=%s&url=url)'% (sys.argv[0],name)))
+            liz.addContextMenuItems(items=menu, replaceItems=False)
         if (mode == 2000)or mode==103 or mode==203:
             if mode ==203:
                 liz.setProperty("IsPlayable","true")
@@ -641,7 +689,7 @@ def addLink(name,url,iconimage, fanart,showcontext=True):
             menu.append(('Add to YouTube Favorites','XBMC.RunPlugin(%s?fanart=%s&mode=13&iconimage=%s&url=%s&name=%s)' %(sys.argv[0],fanart,iconimage,url,name)))
     if ADDON.getSetting('downloads') == 'true':
         menu.append(('Download', 'XBMC.RunPlugin(%s)' % cmd))   
-    liz.addContextMenuItems(items=menu, replaceItems=True)
+    liz.addContextMenuItems(items=menu, replaceItems=False)
     ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=youtube,listitem=liz,isFolder=False)
     xbmcplugin.addSortMethod(int(sys.argv[1]), xbmcplugin.SORT_METHOD_LABEL)
 
@@ -669,7 +717,7 @@ def addLinkSF(name,url,iconimage,showcontext=True,split=None):
             menu.append(('[COLOR red]Remove[/COLOR] Xunity Karaoke from Favourites','XBMC.RunPlugin(%s?mode=2&iconimage=%s&url=%s&name=%s&switch=%s)' %(sys.argv[0],iconimage,url,name,'delete')))
         if ADDON.getSetting('sfenable') == 'true':
             menu.append(('Download', 'XBMC.Container.Update(%s?&mode=30&url=%s&name=%s&iconimage=%s&split=%s)' %(sys.argv[0],url,name,iconimage,split)))  
-        liz.addContextMenuItems(items=menu, replaceItems=True)
+        liz.addContextMenuItems(items=menu, replaceItems=False)
         xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=url,listitem=liz,isFolder=False)
         xbmcplugin.addSortMethod(int(sys.argv[1]), xbmcplugin.SORT_METHOD_LABEL)
 
@@ -849,5 +897,14 @@ elif mode==3000:
 
 elif mode==3001:
     PlayYouTube (name,url,iconimage)
-    
+
+elif mode == 5002:
+    favs = ADDON.getSetting('favs').split(",")
+    try:
+        favs.remove(name.lower())
+        ADDON.setSetting('favs', ",".join(favs))
+    except:pass
+
+elif mode == 5003:
+    FirstSearchDir(name)
 xbmcplugin.endOfDirectory(int(sys.argv[1]))

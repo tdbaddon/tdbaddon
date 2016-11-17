@@ -1433,7 +1433,7 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
 
 <addon id="plugin.video.MartyMusic"
        name="Marty Music"
-       version="1001"
+       version="1002"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -1617,7 +1617,7 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
   </extension>
 </addon>
 
-<addon id="plugin.video.MikeysKaraoke" name="Mikey's Karaoke" version="4.8.3" provider-name=".[COLOR blue]X[/COLOR]unity[COLOR blue]T[/COLOR]alk">
+<addon id="plugin.video.MikeysKaraoke" name="Mikey's Karaoke" version="4.8.5" provider-name=".[COLOR blue]X[/COLOR]unity[COLOR blue]T[/COLOR]alk">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.t0mm0.common" version="0.0.1"/>
@@ -1753,11 +1753,12 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
     </extension>
 </addon>
 
-<addon id="plugin.video.nhlondemand" name="NHL On-demand" version="2.0.3" provider-name="lambda,jsergio">
+<addon id="plugin.video.nhlondemand" name="NHL On-demand" version="2.0.4" provider-name="lambda,jsergio">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0"/>
 		<import addon="script.module.simplejson" optional="true"/>
 		<import addon="script.module.parsedom" optional="true"/>
+		<import addon="script.module.urlresolver" version="3.0.24"/>
 		<import addon="plugin.video.youtube" optional="true"/>
 	</requires>
 	<extension point="xbmc.python.pluginsource" library="default.py">
@@ -1832,7 +1833,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
-<addon id="plugin.video.prosport" name="Pro Sport" version="0.74" provider-name="gerikss, podgod, iCanuck">
+<addon id="plugin.video.prosport" name="Pro Sport" version="0.78" provider-name="gerikss, podgod, iCanuck">
   <requires>
     <import addon="xbmc.python" version="2.1.0" />
      <import addon="script.module.requests" version="2.9.1" />
@@ -1961,7 +1962,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBEUROTV"
        name="TDB EURO TV"
-       version="251"
+       version="252"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -1980,7 +1981,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBPORNO"
        name="TDB PORNO"
-       version="207"
+       version="208"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -1999,7 +2000,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBRADIO"
        name="TDB RADIO"
-       version="1000"
+       version="1001"
        provider-name="TDB">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -2030,7 +2031,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBSPANISHTV"
        name="TDB SPANISH TV"
-       version="1.49"
+       version="150"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -2049,7 +2050,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="416"
+       version="417"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -2069,7 +2070,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBTVSHOWS"
        name="TDB TV SHOWS"
-       version="1001"
+       version="1002"
        provider-name="TDB">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -2341,7 +2342,7 @@ For support, visit: [COLOR hotpink]http://bit.ly/uwc-support[/COLOR]</descriptio
 
 <addon
   id="plugin.video.videodevil"
-  version="1.7.143"
+  version="1.7.144"
   name="VideoDevil"
   provider-name="xbmc-adult">
   <requires>
@@ -2414,20 +2415,23 @@ For support, visit: [COLOR hotpink]http://bit.ly/uwc-support[/COLOR]</descriptio
 	</extension>
 </addon>
 
-<addon id="plugin.video.wweonline" name="WWE Online" version="0.1.8" provider-name="[COLOR blue]X[/COLOR]unity[COLOR blue]T[/COLOR]alk">
+<addon id="plugin.video.wwe-on-demand" name="[COLOR gold][B]WWE ON DEMAND[/B][/COLOR]" version="2.6" provider-name="@PBear90">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
-	<import addon="script.module.urlresolver" version="0.0.1"/>
-	<import addon="script.module.t0mm0.common" version="0.0.1"/>
-	<import addon="script.module.universal" version="0.0.1" />
+    <import addon="script.module.simplejson" version="3.3.0"/>
+    <import addon="script.module.urlresolver"  version="2.1.2"/>
+    <import addon="script.module.liveresolver" version="0.1.24"/>
+    <import addon="script.common.plugin.cache" version="2.5.2"/>
+
+    <import addon="script.module.metahandler" version="2.5.1"/>
+    <import addon="plugin.video.youtube" optional="true" />
   </requires>
-  <extension point="xbmc.python.pluginsource"
-            library="default.py">
+  <extension point="xbmc.python.pluginsource" library="default.py">
         <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary lang="en">WWE Online (wweo.net)</summary>
-    <description lang="en">WWE Online (wweo.net) - The biggest WWE and Wrestling TV Show and videos Database. Watch WWE, TNA, UFC, FCW, ROH for free.</description>
+    <summary lang="en">The Home Of WWE On Demand</summary>
+    <description lang="en">The Offical Home Of WWE On Demand</description>
     <platform>all</platform>
   </extension>
 </addon>
@@ -2450,7 +2454,7 @@ For support, visit: [COLOR hotpink]http://bit.ly/uwc-support[/COLOR]</descriptio
   </extension>
 </addon>
 
-<addon id="plugin.video.youtube" name="YouTube" version="5.3.1" provider-name="jdf76, bromix">
+<addon id="plugin.video.youtube" name="YouTube" version="5.3.3" provider-name="jdf76, bromix">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0"/>
 	</requires>
@@ -2465,6 +2469,7 @@ For support, visit: [COLOR hotpink]http://bit.ly/uwc-support[/COLOR]</descriptio
 - Added 'Subtitle language(s) to download' selection to Settings -> General
 - API key set switching from Settings -> API (this will log you out)
 - Dual login only required if My Subscriptions folder is enabled at sign-in
+- API Tweaking and Various other Updates
         </news>
         <assets>
             <icon>icon.png</icon>
@@ -2505,7 +2510,7 @@ For support, visit: [COLOR hotpink]http://bit.ly/uwc-support[/COLOR]</descriptio
 
 <addon id="plugin.video.ZemTV-shani"
        name="Zem"
-       version="5.9.3"
+       version="5.9.6"
        provider-name="shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -3243,7 +3248,7 @@ For support, visit: [COLOR hotpink]http://bit.ly/uwc-support[/COLOR]</descriptio
 	</extension>
 </addon>
 
-<addon id="repository.tdbaddon" name="TDB REPO" version="1.03" provider-name="TDB">
+<addon id="repository.tdbaddon" name="TDB REPO" version="104" provider-name="TDB">
 	<extension point="xbmc.addon.repository" name="TDB Addon Repository">
         <dir>
 	      <info compressed="false">http://github.com/tdbaddon/tdbaddon/raw/master/addons.xml</info>
@@ -3643,7 +3648,7 @@ For support, visit: [COLOR hotpink]http://bit.ly/uwc-support[/COLOR]</descriptio
 	</extension>
 </addon>
 
-<addon id="script.mrknow.urlresolver" name="Mrknow URLResolver" version="2016.11.4.1" provider-name="mrknow" >
+<addon id="script.mrknow.urlresolver" name="Mrknow URLResolver" version="2016.11.12.1" provider-name="mrknow" >
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 	</requires>
@@ -3684,7 +3689,7 @@ For support, visit: [COLOR hotpink]http://bit.ly/uwc-support[/COLOR]</descriptio
 
 <addon id="script.TDBspeedTEST"
        name="TDB Speed Test"
-       version="1.00"
+       version="101"
        provider-name="TDB">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -3721,7 +3726,7 @@ For support, visit: [COLOR hotpink]http://bit.ly/uwc-support[/COLOR]</descriptio
 </addon>
 
 <addon id="script.xbmcbackup"
-    name="TDB-Backup" version="10.07" provider-name="TDB">
+    name="TDB-Backup" version="1008" provider-name="TDB">
   <requires>
     <import addon="xbmc.python" version="2.19.0"/>
     <import addon="script.module.httplib2" version="0.8.0" />

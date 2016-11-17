@@ -16,8 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-import re
-import urllib2
+from lib import helpers
 from urlresolver9 import common
 from urlresolver9.resolver import UrlResolver, ResolverError
 
@@ -30,23 +29,8 @@ class YourUploadResolver(UrlResolver):
         self.net = common.Net()
 
     def get_media_url(self, host, media_id):
-        web_url = self.get_url(host, media_id)
-
-        headers = {
-            'User-Agent': common.IE_USER_AGENT,
-            'Referer': web_url
-        }
-
-        html = self.net.http_GET(web_url, headers=headers).content
-
-        r = re.search("file\s*:\s*'(.+?)'", html)
-        if r:
-            stream_url = r.group(1)
-            stream_url = urllib2.urlopen(urllib2.Request(stream_url, headers=headers)).geturl()
-
-            return stream_url
-        else:
-            raise ResolverError('no file located')
+        web_url = self.net.http_HEAD(self.get_url(host, media_id)).get_url()
+        return helpers.get_media_url(web_url, result_blacklist=None)
 
     def get_url(self, host, media_id):
         return 'http://www.yourupload.com/embed/%s' % media_id

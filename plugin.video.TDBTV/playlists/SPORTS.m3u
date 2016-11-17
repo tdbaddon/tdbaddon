@@ -1,8 +1,6 @@
 ﻿#EXTM3U
 
-#EXTINF:0,HOW TO CHANGE AUDIO LANGUAGE
-http://www.support.tcomputers.ca/@videos/HowTo-ChangeAudioLanguage.mp4
---------------------------------------------------------------------------------------------------------
+
 #EXTINF:0,Check Back Soon
 0
 
@@ -58,7 +56,7 @@ http://www.support.tcomputers.ca/@videos/HowTo-ChangeAudioLanguage.mp4
 0
 
 #EXTINF:0,ESPN 2
-http://46.166.162.35:9090/load/b0922f3fa8aa/44.m3u8
+0
 
 #EXTINF:0,ESPN News 
 0
@@ -67,7 +65,7 @@ http://46.166.162.35:9090/load/b0922f3fa8aa/44.m3u8
 http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_1800.m3u8
 
 #EXTINF:0,Eurosport 1 
-http://93.87.85.71/PLTV/88888888/224/3221226583/04.m3u8
+http://esioslive6-i.akamaihd.net/hls/live/202874/AL_P_ESP1_INTER_ENG/playlist_1800.m3u8
 
 #EXTINF:0,Eurosport 2
 0
@@ -88,7 +86,7 @@ http://93.87.85.71/PLTV/88888888/224/3221226583/04.m3u8
 0
 
 #EXTINF:0,Fight Sports 
-http://93.87.85.71/PLTV/88888888/224/3221226585/04.m3u8
+0
 
 #EXTINF:0,Fox Sports 
 0
@@ -121,7 +119,7 @@ http://fluvod1.giniko.com/all-hunting/all-hunting/tracks-5,6/index.m3u8
 mms://100automoto.tv/channel_mercedes
 
 #EXTINF:0,MLB 
-http://46.166.162.35:9090/load/b0922f3fa8aa/48.m3u8
+0
 
 #EXTINF:0,Motors TV 
 0
@@ -280,22 +278,22 @@ http://sacapunta.eltelon.com/channels/redbulltv/playlist.m3u8
 0
 
 #EXTINF:0,Trace Sports
-http://93.87.85.71/PLTV/88888888/224/3221226672/04.m3u8
+0
 
 #EXTINF:0,TSN 1 
-http://46.166.162.35:9090/load/b0922f3fa8aa/52.m3u8
+0
 
 #EXTINF:0,TSN 2 
 0
 
 #EXTINF:0,TSN 3 
-http://46.166.162.35:9090/load/b0922f3fa8aa/54.m3u8
+0
 
 #EXTINF:0,TSN 4 
-http://46.166.162.35:9090/load/b0922f3fa8aa/55.m3u8
+0
 
 #EXTINF:0,TSN 5 
-http://46.166.162.35:9090/load/b0922f3fa8aa/56.m3u8
+0
 
 #EXTINF:0,UFC TV 
 0

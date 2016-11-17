@@ -1,3 +1,9 @@
+[B]Version 5.9.6[/B]
+default icons
+[B]Version 5.9.5[/B]
+tune.pk url issues
+[B]Version 5.9.4[/B]
+icons and viralvideos from zem
 [B]Version 5.9.3[/B]
 youtube links in zem shows
 [B]Version 5.9.2[/B]

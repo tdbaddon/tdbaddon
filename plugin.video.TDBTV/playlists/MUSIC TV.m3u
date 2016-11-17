@@ -118,10 +118,10 @@ http://live.dotdance.cdnvideo.ru/dotdance/dotdance.sdp/playlist.m3u8
 #EXTINF:0,Dream TV 
 http://212.224.108.80/S1/HLS_LIVE/dreamtv/1000/prog_index.m3u8
 
-#EXTINF:0,Dream TV
+#EXTINF:0,Dream TV 
 http://www.iptvsaga.com/play/tv3/0069.m3u8
 
-#EXTINF:0,Dream TV
+#EXTINF:0,Dream TV 
 http://live.netd.com.tr/S1/HLS_LIVE/dreamtv/1000/prog_index.m3u8
 
 #EXTINF:0,Electrosound TV
@@ -132,6 +132,12 @@ http://stream.smcloud.net/tv/best/best_360p/playlist.m3u8
 
 #EXTINF:0,Eska Best HD 
 http://stream.smcloud.net/tv/best/best_720p/playlist.m3u8
+
+#EXTINF:0,Eska Go
+http://stream.smcloud.net/tv/vox/vox_360p/playlist.m3u8
+
+#EXTINF:0,Eska Go HD
+http://stream.smcloud.net/tv/vox/vox_720p/playlist.m3u8
 
 #EXTINF:0,Eska HipHop
 0
@@ -162,9 +168,6 @@ http://ooyalahd2-f.akamaihd.net/i/globalradio02_delivery@156522/master.m3u8
 
 #EXTINF:0,Hit TV
 rtmp://tst.es.flash.glb.ipercast.net/tst.es-live/live
-
-#EXTINF:0,Hit TV
-http://vs2.cdn.ott.otautv.kz/dtv/id13_KTR_SG--Hittv/03/plst.m3u8
 
 #EXTINF:0,Ibiza on TV 
 0
@@ -200,16 +203,16 @@ http://144.76.2.213:1935/live/livestream/playlist.m3u8
 0
 
 #EXTINF:0,MTV Hits 
-http://93.87.85.71/PLTV/88888888/224/3221226763/04.m3u8
+0
 
 #EXTINF:0,MTV Hits 
-0
+http://latino-webtv.ml:8880/tpmariocs/CANAL727/PROFILE03.m3u8
 
 #EXTINF:0,MTV Live 
-0
+http://latino-webtv.ml:8880/tpmariocs/CANAL701/PROFILE03.m3u8
 
 #EXTINF:0,MTV Rocks 
-http://93.87.85.71/PLTV/88888888/224/3221226729/04.m3u8
+0
 
 #EXTINF:0,Much Music
 0
@@ -217,13 +220,7 @@ http://93.87.85.71/PLTV/88888888/224/3221226729/04.m3u8
 #EXTINF:0,MusicVoxTV 
 http://s4w.deb1.scdn.smcloud.net/live/_definst_/vox2/chunklist_w1817328956.m3u8
 
-#EXTINF:0,MusicVoxTV 
-http://stream.smcloud.net/tv/vox/vox_360p/playlist.m3u8
-
-#EXTINF:0,MusicVoxTV 
-http://stream.smcloud.net/tv/vox/vox_720p/playlist.m3u8
-
-#EXTINF:0,MusicVoxTV HD
+#EXTINF:0,MusicVoxTV HD a
 0
 
 #EXTINF:0,Now Thats What I Call Music
@@ -255,9 +252,6 @@ rtmp://rtmp.infomaniak.ch:1935/livecast/energytv
 
 #EXTINF:0,Radio Monte Carlo 
 rtmp://fms.105.net/live/rmc1
-
-#EXTINF:0,Radio Monte Carlo 
-http://wow01.105.net:1935/live/rmc1/livestream.m3u8
 
 #EXTINF:0,Reggae Entertainment
 http://univ-i.akamaihd.net/hls/live/222631/HLS11/chunklist.m3u8
@@ -302,13 +296,13 @@ http://hd.worldkast.com:1935/8436/8436/playlist.m3u8
 0
 
 #EXTINF:0,VH1 
-http://93.87.85.71/PLTV/88888888/224/3221226595/04.m3u8
+http://latino-webtv.ml:8880/tpmariocs/CANAL703/PROFILE03.m3u8
 
 #EXTINF:0,VH1 Classics 
-http://93.87.85.71/PLTV/88888888/224/3221226771/04.m3u8
+http://latino-webtv.ml:8880/tpmariocs/CANAL728/PROFILE03.m3u8
 
 #EXTINF:0,VH1 Shuffle
-http://93.87.85.71/PLTV/88888888/224/3221226595/04.m3u8
+0
 
 #EXTINF:0,Vibee TV
 http://46.101.21.42:8081/live/live2/playlist.m3u8
@@ -317,15 +311,9 @@ http://46.101.21.42:8081/live/live2/playlist.m3u8
 0
 
 #EXTINF:0,Virgin TV 
-rtmp://fms.105.net:1935/live/virgin2
-
-#EXTINF:0,Virgin TV 
 http://wow01.105.net/live/virgin1/.m3u8
 
 #EXTINF:0,Virgin TV 
-http://fms.105.net:1935/live/virgin1/playlist.m3u8
-
-#EXTINF:0,Virgin TV 
-http://wow01.105.net/live/virgin1/.m3u8
+http://wow01.105.net/live/virgin2/.m3u8
 
 

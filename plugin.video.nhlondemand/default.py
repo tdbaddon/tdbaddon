@@ -20,6 +20,7 @@
 
 import urllib,urllib2,re,os,threading,datetime,time,base64,xbmc,xbmcplugin,xbmcgui,xbmcaddon,xbmcvfs,HTMLParser,array
 from operator import itemgetter
+from urlresolver.hmf import HostedMediaFile
 try:
     from sqlite3 import dbapi2 as database
 except:
@@ -489,7 +490,6 @@ class link:
         self.livetv_nhl = 'http://livetv.sx/en/videotourney/2'
         self.livetv_nba_teams = 'http://livetv.sx/en/leagueresults/3/'
         self.livetv_nhl_teams = 'http://livetv.sx/en/leagueresults/2/'
-        self.quality = getSetting("quality")
 
 class pages:
     def __init__(self):
@@ -536,7 +536,7 @@ class pages:
             result = result.decode('iso-8859-1').encode('utf-8')
             result = result.replace('\n','')
 
-            pages = re.compile('(<a href="/en/team/.+?">.+?</a>)').findall(result)
+            pages = re.compile('(<a href="/eng/team/.+?">.+?</a>)').findall(result)
         except:
             return
 
@@ -622,7 +622,7 @@ class videos:
                 name = name.encode('utf-8')
 
                 url = []
-                u = [('Full match record', ''), ('First Half', ' (1)'), ('Second Half', ' (2)'), ('First Period', ' (1)'), ('Second Period', ' (2)'), ('Third Period', ' (3)'), ('Fourth Period', ' (4)'), ('Highlights', ' (Highlights)')]
+                u = [('Full match record', ''), ('First Half', ' (1)'), ('Second Half', ' (2)'), ('First Period', ' (1)'), ('Second Period', ' (2)'), ('Third Period', ' (3)'), ('Fourth Period', ' (4)'), ('First Part', ' (1)'), ('Second Part', ' (2)'), ('Third Part', ' (3)'), ('Fourth Part', ' (4)'), ('Highlights', ' (Highlights)'), ('Long Highlights', ' (Long Highlights)')]
                 uDict, uList = dict(u), [i[0] for i in u]
                 u = re.compile('href="(.+?)">(.+?)<').findall(video)
                 u = [i for i in u if i[1] in uList]
@@ -675,23 +675,9 @@ class resolver:
         try:
             url = self.livetv(url)
             if url is None: raise Exception()
-            elif isinstance(url, list):
-                if getSetting("quality") == 'false' and len(url) > 1:
-                    mirrors = list()
-                    for i in url:
-                        mirrors.extend([str(i[0])])
-                    
-                    dialog = xbmcgui.Dialog()
-                    src = dialog.select('Choose a Resolution', mirrors)
-                    
-                    player().run(url[src][1])
-                    return url[src][1]
-                else:
-                    player().run(url[0][1])
-                    return url[0][1]
-            else: 
-                player().run(url)
-                return url
+
+            player().run(url)
+            return url
         except:
             index().infoDialog(language(30304).encode("utf-8"))
             return
@@ -700,92 +686,21 @@ class resolver:
         try:
             result = getUrl(url, timeout='30').result
             result = result.replace('\n','')
-
-            url = re.compile('(vk.com/.+?)"').findall(result)
-            url += re.compile('(youtube.com/embed/.+?)"').findall(result)
-            url += re.compile('(/video.nhl.com.+?playlist=.+?)"').findall(result)
-            url += re.compile('"file","(.+?)"').findall(result)
-            url += re.compile('(rutube.ru/play/embed/.+?)"').findall(result)
-            url += re.compile('(https?://videoapi.my.mail.ru/videos/embed/(inbox|mail)/(.+?)/_myvideo/(.+?).html)').findall(result)
-            url += re.compile('data-config="//(config.playwire.com/.+?/zeus.json)"').findall(result)
-            url = url[0]
-
-            if 'vk.com' in url: url = self.vk(url)
-            elif 'youtube.com' in url: url = self.youtube(url)
-            elif 'nhl.com' in url: url = self.nhl(url)
-            elif 'mail.ru' in url[0]: url = self.mail(url)
-            elif 'rutube.ru' in url: url = self.rutube(url)
-            elif 'playwire.com' in url: url = self.playwire(url)
-            return url
-        except:
-            return
             
-    def playwire(self, url):
-        try:
-            url = "http://%s" % url
-            result = getUrl(url).result
-            result = json.loads(result)['content']['media']['f4m']
-            result = getUrl(result).result
-            baseURL = common.parseDOM(result, "baseURL")[0]
-            media = common.parseDOM(result, "media", ret="url")[0]
-            url = '%s/%s' % (baseURL, media)
-            
-            return url
-        except:
-            return        
-
-    def vk(self, url):
-        try:
-            url = "http://%s" % url
-            result = getUrl(url).result
-            result = result.replace('\/', '/')
-
-            url = re.compile('\"url(.+?)\":\"(https?.+?)\"').findall(result)
-            urlDict = {}
-            for c in url:
-                urlDict.update({c[0]: c[1]})
+            try:
+                url = re.search("data-config\s*=\s*(?:\'|\")(.+?)(?:\'|\")", result).groups()[0]
+            except:    
+                url = common.parseDOM(result, "iframe", ret="src")[0]
                 
-            url = sorted(urlDict.items(), key=itemgetter(0), reverse=True)
-
+            if url.startswith("//livetv"): url = re.search("=(https?://.+)", url).groups()[0]
+            elif url.startswith("//"): url = 'http:%s' % url
+            
+            if 'video.nhl.com' in url: url = self.nhl(url)
+            else: url = HostedMediaFile(url=url).resolve()
             return url
         except:
             return
             
-    def rutube(self, url):
-        try:
-            url = 'http://%s' % url
-            result = getUrl(url).result
-
-            m3u8 = re.compile('video_balancer&quot;: {.*?&quot;m3u8&quot;: &quot;(.*?)&quot;}').findall(result)[0]
-            m3u8 = HTMLParser.HTMLParser().unescape(m3u8)
-            result = getUrl(m3u8).result
-            
-            url = re.compile('\n(.+?i=(.+?)_.+?)\n').findall(result)
-            url = url[::-1]
-            url = [sublist[::-1] for sublist in url]
-
-            return url
-        except:
-            return
-            
-    def mail(self, url):
-        try:
-            url = "http://videoapi.my.mail.ru/videos/%s/%s/_myvideo/%s.json?ver=0.2.60" % (url[1], url[2], url[3])
-            result = getUrl(url).result
-            cookie = getUrl(url, output='cookie').result
-            result = json.loads(result)['videos']
-            cookie = "|Cookie=%s" % urllib.quote(cookie)
-            
-            urlDict = {}
-            for c in result:
-                urlDict.update({c["key"]: "%s%s" % (c["url"], cookie)})
-                
-            url = sorted(urlDict.items(), key=itemgetter(0), reverse=True)
-            
-            return url
-        except:
-            return
-
     def nhl(self, url):
         try:
             url = url.split("playlist=")[-1]
@@ -795,13 +710,6 @@ class resolver:
             return url
         except:
             return
-
-    def youtube(self, url):
-        try:
-            url = url.split("?v=")[-1].split("/")[-1].split("?")[0]
-            url = 'plugin://plugin.video.youtube/?action=play_video&videoid=%s' % url
-            return url
-        except:
-            return
+            
 
 main()

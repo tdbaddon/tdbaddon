@@ -10,10 +10,7 @@
 #EXTINF:0,ASIAN XXX 
 0
 
-#EXTINF:0,ASK TV 1005
-0
-
-#EXTINF:0,ASK TV 1005
+#EXTINF:0,ASK TV 1005 
 0
 
 #EXTINF:0,BABE SPOTTING TV 
@@ -40,6 +37,12 @@ http://198.179.31.197/live/2984.high.stream/playlist.m3u8
 #EXTINF:0,BRAZZERS TV 
 http://185.39.194.26:8000/133/LTNOXIBZS8ZTR4Y1
 
+#EXTINF:0,BRAZZERS TV 
+http://93.87.85.71/PLTV/88888888/224/3221226769/04.m3u8
+
+#EXTINF:0,BRAZZERS TV 
+http://cdn0.4network.tv/master_49.m3u8
+
 #EXTINF:0,BUNGA BUNGA 
 0
 
@@ -54,6 +57,12 @@ rtmp://edge2.everyon.tv/etv2sb/phd10772
 
 #EXTINF:0,BUTGO 
 rtmp://edge2.everyon.tv:1935/etv2sb/phd10772
+
+#EXTINF:0,BUTGO 
+http://main2sb.everyon.tv:1935/etv2sb/pld10772/playlist.m3u8
+
+#EXTINF:0,BUTGO 
+http://main2sb.everyon.tv:1935/etv2sb/phd10772/playlist.m3u8
 
 #EXTINF:0,CANDY
 0
@@ -96,16 +105,10 @@ http://93.87.85.71/PLTV/88888888/224/3221226597/04.m3u8
 #EXTINF:0,FRENCHLOVER 
 0
 
-#EXTINF:0,FETISH WOMEN 10992
+#EXTINF:0,FETISH WOMEN 10992 
 0
 
-#EXTINF:0,FETISH WOMEN 10992
-0
-
-#EXTINF:0,FETISH WOMEN 10968
-0
-
-#EXTINF:0,FETISH WOMEN 10968
+#EXTINF:0,FETISH WOMEN 10968 
 0
 
 #EXTINF:0,GIRL TV 
@@ -136,7 +139,7 @@ http://198.179.31.197/live/2939.high.stream/playlist.m3u8
 0
 
 #EXTINF:0,HUSTLER TV 
-0
+http://93.87.85.71/PLTV/88888888/224/3221226750/04.m3u8
 
 #EXTINF:0,ILIVE 1
 0
@@ -144,29 +147,23 @@ http://198.179.31.197/live/2939.high.stream/playlist.m3u8
 #EXTINF:0,INGILTERE 
 0
 
-#EXTINF:0,J HOT GIRL 10059
-0
-
-#EXTINF:0,J HOT GIRL 10059
+#EXTINF:0,J HOT GIRL 10059 
 0
 
 #EXTINF:0,JASMIN TV 
 rtmp://109.71.162.112:1935/live/sd.jasminchannel.stream
 
-#EXTINF:0,JAV TV 1003
-0
-
-#EXTINF:0,JAV TV 1003
+#EXTINF:0,JAV TV 1003 
 0
 
 #EXTINF:0,JULES JORDAN
 0
 
-#EXTINF:0,LIVETING TV 10064
-0
+#EXTINF:0,LIVETING TV 
+http://main2sb.everyon.tv:1935/etv2sb/pld10062/HasBahCa.m3u8
 
-#EXTINF:0,LIVETING TV 10064
-0
+#EXTINF:0,LIVETING TV 
+http://main2sb.everyon.tv:1935/etv2sb/phd10062/HasBahCa.m3u8
 
 #EXTINF:0,MAX PRIME 
 0
@@ -195,22 +192,19 @@ http://198.179.31.197/live/3152.high.stream/playlist.m3u8
 #EXTINF:0,O LA LA 
 0
 
-#EXTINF:0,OHDEOK 942 10993
+#EXTINF:0,OHDEOK 942 10993 
 0
 
-#EXTINF:0,OHDEOK 942 10993
+#EXTINF:0,OKADAI 1003 
 0
 
-#EXTINF:0,OKADAI 1003
-0
+#EXTINF:0,OKADAI 
+http://main2sb.everyon.tv:1935/etv2sb/pld10499/HasBahCa.m3u8
 
-#EXTINF:0,OKADAI 1003
-0
+#EXTINF:0,OKADAI 
+http://main2sb.everyon.tv:1935/etv2sb/phd10499/HasBahCa.m3u8
 
-#EXTINF:0,PARADISE 1008
-0
-
-#EXTINF:0,PARADISE 1008
+#EXTINF:0,PARADISE 1008 
 0
 
 #EXTINF:0,PASSIE XXX 
@@ -221,6 +215,12 @@ rtmp://edge1.everyon.tv/etv1sb/pld10927
 
 #EXTINF:0,PENTHOUSE
 rtmp://edge1.everyon.tv/etv1sb/phd10927
+
+#EXTINF:0,PENTHOUSE 
+rtmp://main1sb.everyon.tv:1935/etv1sb/_definst_/pld10927
+
+#EXTINF:0,PENTHOUSE 
+rtmp://main1sb.everyon.tv:1935/etv1sb/_definst_/phd10927
 
 #EXTINF:0,PINK 
 rtmp://edge2.everyon.tv/etv2sb/pld10062
@@ -233,6 +233,18 @@ rtmp://edge2.everyon.tv/etv2sb/phd10062
 
 #EXTINF:0,PINKO TV 
 0
+
+#EXTINF:0,PLAYBOY 
+http://cdn0.4network.tv/master_1017.m3u8
+
+#EXTINF:0,PLAYBOY 
+http://151.80.27.111:25461/live/jefferson1/123456/62.m3u8
+
+#EXTINF:0,PLAYBOY 
+http://main1sb.everyon.tv:1935/etv1sb/pld10497/exabytetv.m3u8
+
+#EXTINF:0,PLAYBOY 
+http://main1sb.everyon.tv:1935/etv1sb/phd10497/exabytetv.m3u8
 
 #EXTINF:0,PLAYBOY SPICE 
 rtmp://edge2.everyon.tv/etv2sb/pld10499
@@ -253,21 +265,15 @@ rtmp://edge2.everyon.tv/etv2sb/phd10769
 0
 
 #EXTINF:0,PRIVATE 
-0
+http://93.87.85.71/PLTV/88888888/224/3221226770/04.m3u8
 
 #EXTINF:0,PURE MATURE
 0
 
-#EXTINF:0,RED ON 10060
+#EXTINF:0,RED ON 10060 
 0
 
-#EXTINF:0,RED ON 10060
-0
-
-#EXTINF:0,REDCAT 10991
-0
-
-#EXTINF:0,REDCAT 10991
+#EXTINF:0,REDCAT 10991 
 0
 
 #EXTINF:0,REDLIGHT PREMIUM 
@@ -294,10 +300,7 @@ rtmp://main2sb.everyon.tv:1935/etv2sb/pld10499
 #EXTINF:0,SEX PRIVE 
 0
 
-#EXTINF:0,SEX TV 10061
-0
-
-#EXTINF:0,SEX TV 10061
+#EXTINF:0,SEX TV 10061 
 0
 
 #EXTINF:0,SEX ZONE 
@@ -307,10 +310,10 @@ rtmp://main2sb.everyon.tv:1935/etv2sb/pld10499
 0
 
 #EXTINF:0,SEXTREME 
-0
+http://151.80.27.111:25461/live/jefferson1/123456/56.m3u8
 
 #EXTINF:0,SEXYHOT 
-0
+http://151.80.27.111:25461/live/jefferson1/123456/55.m3u8
 
 #EXTINF:0,STUDIO GIRLS
 http://198.179.31.197/live/3155.high.stream/playlist.m3u8
