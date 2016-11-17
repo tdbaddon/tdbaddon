@@ -2070,7 +2070,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBTVSHOWS"
        name="TDB TV SHOWS"
-       version="1002"
+       version="1003"
        provider-name="TDB">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
