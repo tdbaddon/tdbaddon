@@ -10,6 +10,7 @@ fanarts         = xbmc.translatePath(os.path.join('special://home/addons/' + add
 icon            = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
 searchicon      = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'search.jpg'))
 newicon         = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
+walloffameicon  = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'walloffame.png'))
 nextpage        = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'next.png'))
 baseurl         = 'http://pbear90repo.netai.net/addons/wweondemand/pbearmain.xml'
 ytpl            = 'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId='
@@ -20,7 +21,7 @@ ytplpg3         = '&maxResults=50&key=AIzaSyAd-YEOqZz9nXVzGtn3KWzYLbLaajhqIDA'
 adultpass       = selfAddon.getSetting('password')
 metaset         = selfAddon.getSetting('enable_meta')
 messagetext     = 'http://pbear90repo.netai.net/addons/wweondemand/info.xml'+'?%d=%s' % (random.randint(1, 10000), random.randint(1, 10000))
-messagetext2	= 'http://pbear90repo.netai.net/addons/wweondemand/info.xml'
+walloffame      = 'http://pbear90repo.netai.net/addons/wweondemand/walloff.xml'+'?%d=%s' % (random.randint(1, 10000), random.randint(1, 10000))
                                                                
 def GetMenu():
         popup()
@@ -30,8 +31,10 @@ def GetMenu():
                 data=re.compile('<title>(.+?)</title>.+?folder>(.+?)</folder>.+?thumbnail>(.+?)</thumbnail>.+?fanart>(.+?)</fanart>').findall(item)
                 for name,url,iconimage,fanart in data:
                         addDir(name,url,1,iconimage,fanart)
-        addDir('[B][COLOR gold]Search[/COLOR][/B]',url,5,searchicon,fanarts)
-        addDir('[B][COLOR gold]Whats New[/COLOR][/B]',url,6,newicon,fanarts)		
+        addDir('[B][COLOR silver]Wall Of Fame[/COLOR][/B]',url,7,walloffameicon,fanarts)
+        addDir('[B][COLOR gold]Whats New[/COLOR][/B]',url,6,newicon,fanarts)
+        addDir('[B][COLOR gold]Search[/COLOR][/B]',url,5,searchicon,fanarts)		
+
         xbmc.executebuiltin('Container.SetViewMode(500)')
 
 
@@ -44,7 +47,7 @@ def popup():
                 compfile = r.read()       
                 if compfile == message:pass
                 else:
-                        showText('[B][COLOR gold]WWE On Demand - News and Updates[/COLOR][/B]', message)
+                        showText('[B][COLOR gold]Whats New[/COLOR][/B]', message)
                         text_file = open(comparefile, "w")
                         text_file.write(message)
                         text_file.close()
@@ -53,7 +56,14 @@ def NEW():
         message=open_url2(messagetext)
         if len(message)>1:
                 path = xbmcaddon.Addon().getAddonInfo('path')
-                showText('[B][COLOR gold]WWE On Demand - News and Updates[/COLOR][/B]', message)
+                showText('[B][COLOR gold]Whats New[/COLOR][/B]', message)
+                quit()
+
+def WALLOFFAME():
+        message=open_url3(walloffame)
+        if len(message)>1:
+                path = xbmcaddon.Addon().getAddonInfo('path')
+                showText('[B][COLOR silver]Wall Of Fame[/COLOR][/B]', message)
                 quit()
 
 def GetContent(name,url,iconimage,fanart):
@@ -288,6 +298,13 @@ def open_url2(url):
         response.close()
         return link
 
+def open_url3(url):
+        req = urllib2.Request(url)
+        req.add_header('User-Agent', 'PBear90')
+        response = urllib2.urlopen(req)
+        link=response.read()
+        response.close()
+        return link
  
 def get_params():
         param=[]
@@ -392,6 +409,6 @@ elif mode==3:GETMULTI(name,url,iconimage)
 elif mode==4:PLAYSD(name,url,iconimage)
 elif mode==5:SEARCH()
 elif mode==6:NEW()
-
+elif mode==7:WALLOFFAME()
 
 xbmcplugin.endOfDirectory(int(sys.argv[1]))

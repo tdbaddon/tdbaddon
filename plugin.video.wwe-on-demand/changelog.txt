@@ -1,3 +1,6 @@
+v2.7
+- Wall Of Fame Is Now A Pop Up Menu
+
 v2.6
 - Added Whats New
 

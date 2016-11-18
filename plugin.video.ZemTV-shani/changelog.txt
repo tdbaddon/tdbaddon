@@ -1,3 +1,5 @@
+[B]Version 5.9.7[/B]
+notification is silent and pv2 retry is fixed
 [B]Version 5.9.6[/B]
 default icons
 [B]Version 5.9.5[/B]

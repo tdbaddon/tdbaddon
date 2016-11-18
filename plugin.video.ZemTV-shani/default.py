@@ -4806,7 +4806,7 @@ def clearCache():
         except: pass
 
     line1 = "Cache cleared."
-    xbmc.executebuiltin('Notification(%s, %s, %d, %s)'%(__addonname__,line1,3000  , __icon__))        
+    xbmc.executebuiltin('Notification(%s, %s, %d, %s)'%(__addonname__,line1,3000  , __icon__))
     
 def delfile(fname):
     try:
@@ -5496,7 +5496,7 @@ def PlayiptvLink(url):
     if urlToPlay=='':
         time = 5000  #in miliseconds
         line1 = "Failed to get the playable url"
-        xbmc.executebuiltin('Notification(%s, %s, %d, %s)'%(__addonname__,line1, time, __icon__))        
+        xbmcgui.Dialog().notification(__addonname__,line1, __icon__ , time, False)
     else:     
     #    print 'urlToPlay',urlToPlay
         listitem = xbmcgui.ListItem( label = str(name), iconImage = "DefaultVideo.png", thumbnailImage = xbmc.getInfoImage( "ListItem.Thumb" ) )
@@ -5665,7 +5665,8 @@ def PlayPV2Link(url):
 
     if not tryplay(urlToPlay, listitem):
         if '130.185.144.112' not in urlToPlay:
-            urlToPlay2='http://130.185.144.112:8081'+'/'.join(urlToPlay.split('/')[3:])          
+            urlToPlay2='http://130.185.144.112:8081/'+'/'.join(urlToPlay.split('/')[3:])          
+            print urlToPlay2
             if not tryplay(urlToPlay2, listitem):
                 return False
     
@@ -6148,9 +6149,6 @@ def AddChannels():
         addDir(Colored(h.unescape(cname[2].replace("Watch Now Watch ","").replace("Live, High Quality Streaming","").replace("Live &#8211; High Quality Streaming","").replace("Watch Now ","")) ,'ZM'),cname[0] ,4,cname[1],False,True,isItFolder=False)		
     return	
 
-	
-	
-
 def PlayShowLink ( url, redirect=True ): 
     global linkType
     #	url = tabURL.replace('%s',channelName);
@@ -6186,12 +6184,13 @@ def PlayShowLink ( url, redirect=True ):
     if linkType.upper()=="DM" or (linkType=="" and defaultLinkType=="0"):
     #		print "PlayDM"
         line1 = "Playing DM Link"
-        xbmc.executebuiltin('Notification(%s, %s, %d, %s)'%(__addonname__,line1,time  , __icon__))
+        xbmcgui.Dialog().notification(__addonname__,line1, __icon__ , time, False)
+        #showNotification(__addonname__,line1,time  , __icon__)
     #		print link
-        playURL= match =re.findall('src="((?:http)?.*?(dailymotion.com).*?)"',link)
+        playURL= match =re.findall('src=["\']((?:http)?.*?(dailymotion.com).*?)["\']',link)
         if len(playURL)==0:
             line1 = "Daily motion link not found"
-            xbmc.executebuiltin('Notification(%s, %s, %d, %s)'%(__addonname__,line1, time, __icon__))
+            xbmcgui.Dialog().notification(__addonname__,line1, __icon__ , time, False)
             if redirect: ShowAllSources(url,link)
             return 
         playURL=match[0][0]
@@ -6237,9 +6236,9 @@ def PlayShowLink ( url, redirect=True ):
         #src="(.*?(dailymotion).*?)"
     elif  linkType.upper()=="EBOUND"  or (linkType=="" and defaultLinkType=="3"):
         line1 = "Playing Ebound Link"
-        xbmc.executebuiltin('Notification(%s, %s, %d, %s)'%(__addonname__,line1, time, __icon__))
+        xbmcgui.Dialog().notification(__addonname__,line1, __icon__ , time, False)
     #		print "Eboundlink"
-        playURL= match =re.findall(' src=".*?ebound\\.tv.*?site=(.*?)&.*?date=(.*?)\\&', link)
+        playURL= match =re.findall(' src=["\'].*?ebound\\.tv.*?site=(.*?)&.*?date=(.*?)\\&', link)
         if len(playURL)>0:
             playURL=match[0]
             dt=playURL[1]
@@ -6260,11 +6259,12 @@ def PlayShowLink ( url, redirect=True ):
             strval =link;# match[0]
             stream_url=base64.b64decode('cnRtcDovL2Nkbi5lYm91bmQudHYvdm9kIHBsYXlwYXRoPW1wNDp2b2QvJXMvJXMgYXBwPXZvZD93bXNBdXRoU2lnbj0lcyBzd2Z1cmw9aHR0cDovL3d3dy5lYm91bmRzZXJ2aWNlcy5jb20vbGl2ZS92Ni9wbGF5ZXIuc3dmP2RvbWFpbj13d3cuemVtdHYuY29tJmNoYW5uZWw9JXMmY291bnRyeT1FVSBwYWdlVXJsPSVzIHRjVXJsPXJ0bXA6Ly9jZG4uZWJvdW5kLnR2L3ZvZD93bXNBdXRoU2lnbj0lcyBsaXZlPXRydWUgdGltZW91dD0xNQ==')%(dt,clip,strval,clip,urli,strval)
         else:
-            playURL=match=re.findall('src="(.*?(poovee\.net).*?)"', link)
+            playURL=match=re.findall('src=["\'](.*?(poovee\.net).*?)["\']', link)
             
             if len(playURL)==0:
                 line1 = "EBound/Povee link not found"
-                xbmc.executebuiltin('Notification(%s, %s, %d, %s)'%(__addonname__,line1, time, __icon__))
+                xbmcgui.Dialog().notification(__addonname__,line1, __icon__ , time, False)
+                
                 if redirect: ShowAllSources(url,link)
                 return 
             playURL=match[0][0]
@@ -6287,11 +6287,11 @@ def PlayShowLink ( url, redirect=True ):
         xbmcPlayer.play(playlist)
     elif  linkType.upper()=="VIDRAIL"  or (linkType=="" and defaultLinkType=="5"):
         line1 = "Playing Vidrail Link"
-        xbmc.executebuiltin('Notification(%s, %s, %d, %s)'%(__addonname__,line1, time, __icon__))
-        playURL= match =re.findall('src="(.*?(vidrail\.com).*?)"', link)
+        xbmcgui.Dialog().notification(__addonname__,line1, __icon__ , time, False)
+        playURL= match =re.findall('src=["\'](.*?(vidrail\.com).*?)["\']', link)
         if len(playURL)==0:
             line1 = "Vidrail link not found"
-            xbmc.executebuiltin('Notification(%s, %s, %d, %s)'%(__addonname__,line1, time, __icon__))
+            xbmcgui.Dialog().notification(__addonname__,line1, __icon__ , time, False)
             if redirect: ShowAllSources(url,link)
             return 
 
@@ -6301,7 +6301,7 @@ def PlayShowLink ( url, redirect=True ):
         playURL=re.findall(pat, link)
         if len(playURL)==0:
             line1 = "Vidrail link not found"
-            xbmc.executebuiltin('Notification(%s, %s, %d, %s)'%(__addonname__,line1, time, __icon__))
+            xbmcgui.Dialog().notification(__addonname__,line1, __icon__ , time, False)
             if redirect: ShowAllSources(url,link)
             return 
         stream_url=playURL[0]
@@ -6318,12 +6318,12 @@ def PlayShowLink ( url, redirect=True ):
         xbmcPlayer.play(playlist)
     elif  linkType.upper()=="LINK"  or (linkType=="" and defaultLinkType=="1"):
         line1 = "Playing Tune.pk Link"
-        xbmc.executebuiltin('Notification(%s, %s, %d, %s)'%(__addonname__,line1, time, __icon__))
+        xbmcgui.Dialog().notification(__addonname__,line1, __icon__ , time, False)
     #		print "PlayLINK"
         playURL= match =re.findall('src=[\'"](.*?(tune\.pk).*?)[\'"]', link)
         if len(playURL)==0:
             line1 = "Link.pk link not found"
-            xbmc.executebuiltin('Notification(%s, %s, %d, %s)'%(__addonname__,line1, time, __icon__))
+            xbmcgui.Dialog().notification(__addonname__,line1, __icon__ , time, False)
             if redirect: ShowAllSources(url,link)
             return 
 
@@ -6347,16 +6347,16 @@ def PlayShowLink ( url, redirect=True ):
         xbmcPlayer.play(playlist)
     elif  linkType.upper()=="PLAYWIRE"  or (linkType=="" and defaultLinkType=="2"):
         line1 = "Playing Playwire Link"
-        xbmc.executebuiltin('Notification(%s, %s, %d, %s)'%(__addonname__,line1, time, __icon__))
+        xbmcgui.Dialog().notification(__addonname__,line1, __icon__ , time, False)
     #		print "Playwire"
-        playURL =re.findall('src=".*?(playwire).*?data-publisher-id="(.*?)"\s*data-video-id="(.*?)"', link)
+        playURL =re.findall('src=["\'].*?(playwire).*?data-publisher-id="(.*?)"\s*data-video-id="(.*?)["\']', link)
         V=1
         if len(playURL)==0:
             playURL =re.findall('data-config="(.*?config.playwire.com.*?)"', link)
             V=2
         if len(playURL)==0:
             line1 = "Playwire link not found"
-            xbmc.executebuiltin('Notification(%s, %s, %d, %s)'%(__addonname__,line1, time, __icon__))
+            xbmcgui.Dialog().notification(__addonname__,line1, __icon__ , time, False)
             if redirect: ShowAllSources(url,link)
             return 
         if V==1:
@@ -6405,11 +6405,11 @@ def PlayShowLink ( url, redirect=True ):
         #bmcplugin.setResolvedUrl(int(sys.argv[1]), True, listitem)#src="(.*?(tune\.pk).*?)"
     else:	#either its default or nothing selected
         line1 = "Playing Youtube Link"
-        xbmc.executebuiltin('Notification(%s, %s, %d, %s)'%(__addonname__,line1, time, __icon__))
+        xbmcgui.Dialog().notification(__addonname__,line1, __icon__ , time, False)
         youtubecode= match =re.findall('<iframe.*?src=\".*?youtube.*?embed\/(.*?)\"', link,re.DOTALL| re.IGNORECASE)
         if len(youtubecode)==0:
             line1 = "Youtube link not found"
-            xbmc.executebuiltin('Notification(%s, %s, %d, %s)'%(__addonname__,line1, time, __icon__))
+            xbmcgui.Dialog().notification(__addonname__,line1, __icon__ , time, False)
             if redirect: ShowAllSources(url,link)
             return
         youtubecode=youtubecode[0]
@@ -6577,20 +6577,20 @@ def ShowAllSources(url, loadedLink=None):
     if not len(playURL)==0:
         available_source.append('Playwire Source')
 
-    playURL =re.findall('src="(.*?ebound\\.tv.*?)"', link)
+    playURL =re.findall('src=["\'](.*?ebound\\.tv.*?)["\']', link)
     #	print 'playURL',playURL
     if not len(playURL)==0:
         available_source.append('Ebound Source')		
     else:
-        playURL =re.findall('src="(.*?poovee\.net.*?)"', link)
+        playURL =re.findall('src=["\'](.*?poovee\.net.*?)["\']', link)
         if not len(playURL)==0:
             available_source.append('Ebound Source')		
         
-    playURL= match =re.findall('src="(.*?(dailymotion).*?)"',link)
+    playURL= match =re.findall('src=["\'](.*?(dailymotion).*?)["\']',link)
     if not len(playURL)==0:
         available_source.append('Daily Motion Source')
 
-    playURL= match =re.findall('src="(.*?(vidrail\.com).*?)"',link)
+    playURL= match =re.findall('src=["\'](.*?(vidrail\.com).*?)["\']',link)
     if not len(playURL)==0:
         available_source.append('Vidrail Source')
         

@@ -1,7 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <fonts>
 	<fontset id="Default" idloc="31390"> 
-	<!-- Normal Fonts -->
+	
 		<font>
 			<name>font10</name>
 			<filename>Arial.ttf</filename>
@@ -32,7 +31,7 @@
 			<filename>Arial.ttf</filename>
 			<size>30</size>
 		</font>
-	<!-- Title Fonts -->
+	
 		<font>
 			<name>font8_title</name>
 			<filename>DejaVuSans-Bold.ttf</filename>
@@ -73,11 +72,36 @@
 			<name>WeatherTemp</name>
 			<filename>DejaVuSans-Bold.ttf</filename>
 			<size>80</size>
+		</font>
+		<font>
+			<name>SkiaLight18</name>
+			<filename>Skia.ttf</filename>
+			<size>18</size>
+		</font>
+		<font>
+			<name>SkiaLight24</name>
+			<filename>Skia.ttf</filename>
+			<size>24</size>
+		</font>
+		<font>
+			<name>SkiaLightExtended34</name>
+			<filename>Skia.ttf</filename>
+			<size>34</size>
+		</font>
+		<font>
+			<name>Skia26</name>
+			<filename>Skia.ttf</filename>
+			<size>26</size>
+		</font>
+		<font>
+			<name>SkiaExtended40</name>
+			<filename>Skia.ttf</filename>
+			<size>40</size>
 		</font>
 	</fontset>
 
 	<fontset id="Arial" idloc="31391" unicode="true"> 
-	<!-- Normal Fonts -->
+	
 		<font>
 			<name>font10</name>
 			<filename>Arial.ttf</filename>
@@ -108,7 +132,7 @@
 			<filename>Arial.ttf</filename>
 			<size>30</size>
 		</font>
-	<!-- Title Fonts -->
+	
 		<font>
 			<name>font8_title</name>
 			<filename>Arial.ttf</filename>
@@ -157,6 +181,31 @@
 			<filename>Arial.ttf</filename>
 			<size>80</size>
 			<style>bold</style>
+		</font>
+		<font>
+			<name>SkiaLight18</name>
+			<filename>Arial.ttf</filename>
+			<size>18</size>
+		</font>
+		<font>
+			<name>SkiaLight24</name>
+			<filename>Arial.ttf</filename>
+			<size>24</size>
+		</font>
+		<font>
+			<name>SkiaLightExtended34</name>
+			<filename>Arial.ttf</filename>
+			<size>34</size>
+		</font>
+		<font>
+			<name>Skia26</name>
+			<filename>Arial.ttf</filename>
+			<size>26</size>
+		</font>
+		<font>
+			<name>SkiaExtended40</name>
+			<filename>Arial.ttf</filename>
+			<size>40</size>
 		</font>
 	</fontset>
 </fonts>
