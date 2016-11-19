@@ -1,25 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addons>
-<addon id="org.harddevelop.kodi.tv"
-	name="TV BOX"
-	version="0.0.9"
-	provider-name="bit" >
-	<requires>
-		<import addon="xbmc.python" version="2.1.0" />
-		<import addon="script.module.parsedom" version="0.9.1"/>
-	</requires>
-	<extension point="xbmc.python.pluginsource" library="addon.py">
-		<provides>video</provides>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<platform>all</platform>
-		<language>en</language>
-		<summary lang="en">TV BOX channels</summary>
-		<description lang="en">TV BOX channels client for browse and see online channels.</description>
-		<description lang="es">Cliente de canales TV BOX para navegar y ver canales online.</description>
-	</extension>
-</addon>
-
 <addon id="plugin.audio.dipremium" name="DI Premium" version="2.0" provider-name="NVTTeam">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -2050,7 +2030,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="418"
+       version="419"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
