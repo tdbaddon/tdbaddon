@@ -578,36 +578,6 @@ Internet [COLOR red]adult TV and videos [COLOR white]from various sources.
     </extension>
 </addon>
 
-<addon id="plugin.video.bbts" name="BBTS" version="0.1.6" provider-name="[COLOR yellowgreen]B[/COLOR][COLOR dodgerblue]B[/COLOR][COLOR white]T[/COLOR][COLOR orangered]S[/COLOR] IpTV">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="addon.py">
-        <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en">International TV and radio steams brought to you by - [COLOR yellowgreen]B[/COLOR][COLOR dodgerblue]B[/COLOR][COLOR white]T[/COLOR][COLOR orangered]S[/COLOR] The Source -</summary>
-	<summary lang="he">המקור -[COLOR yellowgreen] B[/COLOR][COLOR dodgerblue]B[/COLOR][COLOR white]T[/COLOR][COLOR orangered]S [/COLOR]- שידורי טלוויזיה ורדיו בינלאומי בחסות</summary>
-    <description lang="en">[COLOR yellowgreen]B[/COLOR][COLOR dodgerblue]B[/COLOR][COLOR white]T[/COLOR][COLOR orangered]S[/COLOR] video plugin is a collection of Live TV and Radio streams from around the world.
-
-[COLOR yellowgreen]B[/COLOR][COLOR dodgerblue]B[/COLOR][COLOR white]T[/COLOR][COLOR orangered]S[/COLOR] source is brought to you by the people and for the people. With your support, we will give back even more for all of us! Let's get started! Website :[COLOR blue][B]http://www.bbtsip.tv[/B][/COLOR]
-Plugin by @koderdude</description>
-    <description lang="he"> הוא אוסף של ערוצי טלוויזיה ורדיו [COLOR yellowgreen] B[/COLOR][COLOR dodgerblue]B[/COLOR][COLOR white]T[/COLOR][COLOR orangered]S [/COLOR]תוסף הוידאו
-בשידור חי מכל רחבי העולם.
-
-המקור הובא לכם על-ידי המשתמשים ולמען המשתמשים. עם התמיכה שלכם, אנו נחזיר בחזרה עוד יותר לכולנו! אז בואו נתחיל!
-
-לאתר אינטרנט:
-[COLOR blue][B]http://www.bbtsip.tv [/B][/COLOR]
-@koderdude תוסף על ידי</description>
-    <disclaimer lang="en">This add-on is maintained by the [COLOR yellowgreen]B[/COLOR][COLOR dodgerblue]B[/COLOR][COLOR white]T[/COLOR][COLOR orangered]S[/COLOR] community and our generator fetches indexs from multiple sources from around the web. We accept no responsibility for the following content, streams and or media. [COLOR yellowgreen]B[/COLOR][COLOR dodgerblue]B[/COLOR][COLOR white]T[/COLOR][COLOR orangered]S[/COLOR] does not host or stream any of the content displayed on this add-on.</disclaimer>
-	<disclaimer lang="he">תוסף זה מתוחזק על ידי קהילת והמחולל שלנו מביאים את האנידקסים ממקורות מרובים מרחבי האינטרנט.
-אנו לא מקבלים שום אחריות לתכנים הבאים, שידורים חיים או תוכן בכל צורה שלא יהיה.
-אנו לא מארחים או משדרים את התוכן שמוצג על-ידי התוסף.</disclaimer>
-    <platform>all</platform>
-  </extension>
-</addon>
-
 <addon id="plugin.video.BES-IPTV"
        name="BES-IPTV"
        version="3.1.8"
@@ -1011,6 +981,28 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
     </extension>
 </addon>
 
+<addon id="plugin.video.euronews.com" version="1.0.0" name="Euronews" provider-name="lambda">
+	<requires>
+		<import addon="xbmc.python" version="2.24.0" />
+		<import addon="script.module.lamlib" version="1.0.0" />
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="addon.py">
+		<provides>video</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">Euronews addon for Kodi</summary>
+		<description lang="en">Euronews, the most watched news channel in Europe, covers international news in various languages.[CR]With 400 journalists from more than 30 nationalities, Euronews offers a unique, independent and totally impartial perspective on world events.[CR]Available languages: English, French, German, Greek, Hungarian, Italian, Portuguese, Russian, Spanish, Turkish and Ukrainian</description>
+		<disclaimer lang="en">This addon is not published nor endorsed by euronews.com</disclaimer>
+		<license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
+		<source>https://github.com/lambda81/plugin.video.euronews.com</source>
+		<website>http://www.euronews.com/</website>
+		<platform>all</platform>
+		<language></language>
+		<forum></forum>
+		<email></email>
+	</extension>
+</addon>
+
 <addon id="plugin.video.Evolve" name="[COLOR red]E[/COLOR][COLOR white]volve[/COLOR]" version="0.0.4" provider-name="Team Evolve">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -1114,32 +1106,6 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
     </extension>
 </addon>
 
-<addon id="plugin.video.foodnetwork"
-       name="Food Network"
-       version="3.0.3"
-       provider-name="t1m">
-  <requires>
-    <import addon="xbmc.python" version="2.20.0"/>
-    <import addon="script.module.t1mlib" version="1.0.15"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource"
-            library="default.py">
-        <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en">Food Network Video Addon</summary>
-    <description lang="en">Play videos from the Food Network</description>
-    <disclaimer lang="en">Feel free to use this script. For information visit the wiki.</disclaimer>
-    <platform>all</platform>
-    <language>en</language>
-    <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
-    <forum>http://forum.kodi.tv/showthread.php?tid=224195</forum>
-    <website>www.foodnetwork.com</website>
-    <email></email>
-    <source>https://github.com/learningit/Kodi-plugins-source/tree/master/plugin.video.foodnetwork</source>
-  </extension>
-</addon>
-
 <addon id="plugin.video.footballreplays" name="Football Replays" version="1.2.9" provider-name=".[COLOR blue]X[/COLOR]unity[COLOR blue]T[/COLOR]alk">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -1221,32 +1187,6 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
 		<website>https://offshoregit.com/lambda81/</website>
 		<platform>all</platform>
 	</extension>
-</addon>
-
-<addon id="plugin.video.hgtv.canada"
-       name="HGTV Canada"
-       version="3.0.2"
-       provider-name="t1m">
-  <requires>
-    <import addon="xbmc.python" version="2.20.0"/>
-    <import addon="script.module.t1mlib" version="1.0.15"/>
-  </requires>
-  <extension point="xbmc.python.pluginsource"
-            library="default.py">
-        <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en">HGTV Canada Video Addon</summary>
-    <description lang="en">Play videos from the HGTV Canada Network</description>
-    <disclaimer lang="en">Feel free to use this script. For information visit the wiki.</disclaimer>
-    <platform>all</platform>
-    <language>en</language>
-    <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
-    <forum>http://forum.kodi.tv/showthread.php?tid=232755</forum>
-    <website>www.hgtv.ca</website>
-    <email></email>
-    <source>https://github.com/learningit/Kodi-plugins-source</source>
-  </extension>
 </addon>
 
 <addon id="plugin.video.icefilms"
@@ -1626,29 +1566,6 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
     <description></description>
     <platform>all</platform>
   </extension>
-</addon>
-
-<addon id="plugin.video.moviesaboutmusic"
-       name="MoviesAboutMusic.com"
-       version="1.1.1"
-       provider-name="RayW1986">
-    <requires>
-        <import addon="xbmc.python" version="2.1.0"/>
-		<import addon="script.module.urlresolver"  version="2.1.2"/>
-    </requires>
-    <extension point="xbmc.python.pluginsource"
-               	library="default.py">
-        <provides>video</provides>
-    </extension>
-    <extension point="xbmc.addon.metadata">
-        <platform>all</platform>
-        <summary>Watch videos from MoviesAboutMusic.com</summary>
-        <description>Watch documentaries and feature length movies from the MoviesAboutMusic.com website.
-
-		For help or more information please visit TVADDONS.ag</description>
-		<disclaimer lang="en">The author is not responsible for the media you find in this add-on.</disclaimer>
-    </extension>
-
 </addon>
 
 <addon id="plugin.video.MundoLatino"
@@ -3595,6 +3512,17 @@ For support, visit: [COLOR hotpink]http://bit.ly/uwc-support[/COLOR]</descriptio
 		<description>Themes for Aftershock are maintained separately to make distribution of the the addon itself easier/faster.</description>
 		<platform>all</platform>
 	</extension>
+</addon>
+
+<addon id="script.module.xbmcswift" name="xbmcswift" version="0.2.2" provider-name="Jonathan Beluch (jbel)">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+  </requires>
+  <extension point="xbmc.python.module" library="lib"/>
+  <extension point="xbmc.addon.metadata">
+    <platform>all</platform>
+    <source>https://github.com/jbeluch/xbmcswift</source>
+  </extension>
 </addon>
 
 <addon id="script.mrknow.urlresolver" name="Mrknow URLResolver" version="2016.11.12.1" provider-name="mrknow" >
