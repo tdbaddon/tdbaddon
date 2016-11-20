@@ -1,0 +1,16 @@
+1.0.3 (21-11-2016)
+- Slightly improved the regex pattern for constructor function.
+- Implemented a setting for toggling on/off BUP (backup) streams.
+- Implemented a resolver for ANT1 CY's stream.
+- Encrypted baseurl
+- Made default group localized.
+
+1.0.2 (20-11-2016)
+- Changed cachetodisk parameter to False.
+ > This will work-around a youtube bug which replaces list_item.
+
+1.0.1 (19-11-2016)
+- Various bug fixes for group switcher and url parameters
+
+1.0.0 (19-11-2016)
+- Initial Version

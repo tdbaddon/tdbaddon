@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.video.greek.tv" name="Greek TV" version="1.0.3" provider-name="Twilight0">
+    <requires>
+        <import addon="xbmc.python" version="2.19.0"/>
+        <import addon="plugin.video.youtube" version="5.2.1"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="addon.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <platform>all</platform>
+        <summary lang="en">Greek TV addon</summary>
+        <description lang="en">Greek TV is an addon trying to bring greek tv android app's concept and feel into Kodi. Helix+ compatible.</description>
+        <summary lang="el">Πρόσθετο Greek TV</summary>
+        <description lang="el">Το πρόσθετο Greek TV είναι μια μικροεφαρμογή για το Kodi που προσφέρει διεπαφή παρόμοια με την ομώνυμη εφαρμογή για Android. Ζωντανές ροές από όλη την Ελλάδα και τον κόσμο με ελληνικό περιεχόμενο. Συμβατή από εκδόσεις Helix και πάνω.</description>
+        <license>GNU GPL, version 2 or later</license>
+    </extension>
+</addon>

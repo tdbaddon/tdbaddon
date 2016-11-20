@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="repository.jizzplanet" version="1.0.0" name="Jizz Planet repository" provider-name="Cosmix, tvaddons.ag">
+	<extension point="xbmc.addon.repository" name="Jizz Planet repository">
+		<dir>
+			<info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
+			<checksum>https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml.md5</checksum>
+			<datadir zip="true">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/zips/</datadir>
+		</dir>
+		<info compressed="false">https://offshoregit.com/cosmixtv/jizzplanet/addons.xml</info>
+		<checksum>https://offshoregit.com/cosmixtv/jizzplanet/addons.xml.md5</checksum>
+		<datadir zip="true">https://offshoregit.com/cosmixtv/jizzplanet/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">Jizz Planet repository</summary>
+		<description lang="en">Jizz Planet repository</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+

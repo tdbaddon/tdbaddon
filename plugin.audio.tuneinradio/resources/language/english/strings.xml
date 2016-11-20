@@ -79,7 +79,7 @@
 	<string id="3007">'%s' exists in TuneIn.</string>
 	<string id="3008">Do you want to add it to your favourites?</string>
 	<string id="3009">Network error.</string>
-	<string id="3010">See xbmc.log for more information.</string>
+	<string id="3010">See kodi.log for more information.</string>
 	<string id="3011">TuneIn Radio error.</string>
 	<string id="3012">This stream does not exist in TuneIn.</string>
 	<string id="3013">Do you want to add it to your presets as a custom url?</string>

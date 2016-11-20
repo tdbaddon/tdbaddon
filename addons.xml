@@ -316,7 +316,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 	</extension>
 </addon>
 
-<addon id="plugin.audio.tuneinradio" name="TuneIn Radio" version="3.0.0" provider-name="brianhornsby">
+<addon id="plugin.audio.tuneinradio" name="TuneIn Radio" version="3.0.2" provider-name="brianhornsby">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0"/>
 		<import addon="script.module.simplejson" version="2.0.10"/>
@@ -328,10 +328,14 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 		<platform>all</platform>
 		<summary lang="bg">Радио TuneIn</summary>
 		<summary lang="en">TuneIn Radio</summary>
+		<summary lang="de">TuneIn Radio</summary>
 		<summary lang="es">TuneIn Radio</summary>
+		<summary lang="el">Ραδιόφωνο TuneIn</summary>
 		<description lang="bg">Радио TuneIn е безплатна услуга, която ви позволява да слушате всичко, независимо къде се намирате. Каквото желаете - музика, спорт или новини. Радио TuneIn предлага над 50 000 станции от които да избирате. Можете да намерите местните станции или да откриете нови станции от целия свят. Радио TuneIn ви отвежда точно където желаете да сте.</description>
 		<description lang="en">TuneIn Radio is a free service that lets you listen to anything in the world from wherever you are. Whether you want to hear music, sports, news or current events. TuneIn Radio offers over 50,000 stations for you to choose from. From finding local stations to discovering new stations from around the world, TuneIn Radio brings you to where you want to be.</description>
+		<description lang="de">TuneIn Radio ist ein kostenloser Service, mit dem Sie alles in der Welt, wo immer Sie sind, hören können. Ob Sie Musik, Sport, Nachrichten oder aktuelle Ereignisse hören wollen. TuneIn Radio hält über 50.000 Sender für Sie bereit. Von der Suche nach lokalen Sender, bis zum entdecken neue Sender aus der ganzen Welt. TuneIn Radio bringt Sie, wohin sie wollen.</description>
 		<description lang="es">TuneIn Radio es un servicio gratuito que te permite escuchar cualquier cosa del mundo desde donde te encuentres. Si deseas escuchar música, deportes, noticias o eventos actuales. TuneIn Radio ofrece más de 50,000 estaciones radiales para escoger, desde estaciones locales hasta descubrir nuevas estaciones alrededor del mundo, TuneIn Radio te lleva a donde tu quieras estar.</description>
+		<description lang="el">Το ραδιόφωνο TuneIn είναι μία δωρεάν υπηρεσία το οποίο σας επιτρέπει να ακούτε οποιοδήποτε σταθμό από όλο τον κόσμο, από όπου και αν βρίσκεστε. Ακόμη και αν θέλετε να ακούσετε μουσική, αθλητικά γεγονότα, ειδήσεις και άλλα γεγονότα, το ραδιόφωνο TuneIn προσφέρει πάνω από 50.000 σταθμούς για εσάς να διαλέξετε. Είτε θέλετε να ακούσετε τοπικούς σταθμούς είτε να ανακαλύψετε νέους από όλο τον κόσμο, το ραδιόφωνο TuneIn σας πηγαίνει όπου θελήσετε να βρεθείτε.</description>
 		<language></language>
 		<license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
 		<forum>http://forum.kodi.tv/showthread.php?tid=119315</forum>
@@ -444,6 +448,20 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 
 </addon>
 
+<addon id="plugin.program.TDBSPEEDTEST" name="TDB SPEED TEST" version="1000" provider-name="TDB">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>executable</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en"></summary>
+    <description lang="en">Accurate Internet speed-ping test results.</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
 <addon id="plugin.program.thechief" name="*[COLOR white]The Chief[/COLOR]" version="7.0.0" provider-name="[COLOR white]The Chief[/COLOR]">
   <requires>
 	<import addon="xbmc.python" version="2.1.0"/>
@@ -498,6 +516,40 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
     <description lang="en">Over 1,000 classic music videos from the 1980's and 1990's.</description>
      <platform>all</platform>
   </extension>
+</addon>
+
+<addon id="plugin.video.adulthideout" name="AdultHideout" version="0.6.1" provider-name="Vashiel">
+    <requires>
+    </requires>
+    <extension point="xbmc.python.pluginsource"
+               library="default.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary>[COLOR red]XXX[/COLOR] Porn videos</summary>
+        <description>
+Internet [COLOR red]XXX Porn Video[COLOR white] Streams.
+
+[COLOR red][B]WARNING:[/B]
+[COLOR red]Only for adults[/COLOR]
+
+[COLOR white]Github:
+https://github.com/Vashiel/repository.adulthideout
+
+Email:
+adulthideout@yandex.com[/COLOR]
+
+		</description>
+		<disclaimer>
+		</disclaimer>
+		<platform>all</platform>
+		<license>http://www.gnu.org/licenses/</license>
+		<forum></forum>
+		<website></website>
+		<email></email>
+		<mainsource>https://github.com/Vashiel/repository.adulthideout</mainsource>
+		<source></source>
+    </extension>
 </addon>
 
 <addon id="plugin.video.aftershock" name="Aftershock" version="4.2.4" provider-name="Aftershock">
@@ -1138,6 +1190,24 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
 
 </addon>
 
+<addon id="plugin.video.greek.tv" name="Greek TV" version="1.0.3" provider-name="Twilight0">
+    <requires>
+        <import addon="xbmc.python" version="2.19.0"/>
+        <import addon="plugin.video.youtube" version="5.2.1"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="addon.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <platform>all</platform>
+        <summary lang="en">Greek TV addon</summary>
+        <description lang="en">Greek TV is an addon trying to bring greek tv android app's concept and feel into Kodi. Helix+ compatible.</description>
+        <summary lang="el">Πρόσθετο Greek TV</summary>
+        <description lang="el">Το πρόσθετο Greek TV είναι μια μικροεφαρμογή για το Kodi που προσφέρει διεπαφή παρόμοια με την ομώνυμη εφαρμογή για Android. Ζωντανές ροές από όλη την Ελλάδα και τον κόσμο με ελληνικό περιεχόμενο. Συμβατή από εκδόσεις Helix και πάνω.</description>
+        <license>GNU GPL, version 2 or later</license>
+    </extension>
+</addon>
+
 <addon id="plugin.video.hellenic.tv" name="Hellenic TV" version="3.5.5" provider-name="lambda">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0"/>
@@ -1257,6 +1327,45 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
 		<platform>all</platform>
 		<language>en</language>
 		<email>ptom98@gmail.com</email>
+	</extension>
+</addon>
+
+<addon id="plugin.video.jfh" name="Just For Him" version="0.0.4" provider-name="oneil">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.urlresolver"  version="2.10.0"/>
+    <import addon="script.module.addon.common" version="2.0.0"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Watch XXX content from PerfectGirls; Just for Him.. 18+ only</summary>
+    <description lang="en">Watch XXX content from PerfectGirls; Just for Him.. 18+ only</description>
+    <disclaimer lang="en">You should be over 18 to install and use this addon. The original author neither hosts or stores any content, the original author has no affiliation with content hosts, it is the sole responsibility of the user to ensure they have permission to view any streams provided.</disclaimer>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.video.jizzplanet" name="Jizz Planet" version="1.0.0" provider-name="Cosmix, tvaddons.ag">
+	<requires>
+		<import addon="xbmc.python" version="2.1.0" />
+		<import addon="plugin.video.youtube" version="5.2.1" optional="true" />
+		<import addon="script.module.pyxbmct" version="1.1.4" />
+		<import addon="script.module.urlresolver" version="3.0.0"/>
+		<import addon="script.module.liveresolver" version="0.1.24"/>
+		<import addon="script.video.F4mProxy" version="2.2.3"/>
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="default.py">
+		<provides>video</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">Jizz Planet</summary>
+		<description lang="en">Jizz Planet - adult based playlists from sites all over the web.</description>
+		<platform>all</platform>
+		<forum></forum>
+		<website></website>
+		<news>- Initial version</news>
 	</extension>
 </addon>
 
@@ -2441,6 +2550,19 @@ For support, visit: [COLOR hotpink]http://bit.ly/uwc-support[/COLOR]</descriptio
 	</extension>
 </addon>
 
+<addon id="repository.adulthideout" name="AdultHideout REPO" version="1.0.1" provider-name="Vashiel">
+	<extension point="xbmc.addon.repository" name="AdultHideout Addon Repository">
+		<info compressed="false">https://github.com/Vashiel/repository.adulthideout/raw/master/addons.xml</info>
+		<checksum>https://github.com/Vashiel/repository.adulthideout/raw/master/addons.xml.md5</checksum>
+		<datadir zip="true">https://github.com/Vashiel/repository.adulthideout/raw/master/zips</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>AdultHideout Addon Repository</summary>
+		<description>First Try for a Adult Kodi Addon</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
 <addon id="repository.aftershock" name="Aftershock addons" version="2.0.1" provider-name="IDev">
 	<extension point="xbmc.addon.repository" name="Aftershock add-on repository">
 		<dir>
@@ -2735,6 +2857,24 @@ For support, visit: [COLOR hotpink]http://bit.ly/uwc-support[/COLOR]</descriptio
 		</extension>
 	</addon>
 
+<addon id="repository.jizzplanet" version="1.0.0" name="Jizz Planet repository" provider-name="Cosmix, tvaddons.ag">
+	<extension point="xbmc.addon.repository" name="Jizz Planet repository">
+		<dir>
+			<info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
+			<checksum>https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml.md5</checksum>
+			<datadir zip="true">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/zips/</datadir>
+		</dir>
+		<info compressed="false">https://offshoregit.com/cosmixtv/jizzplanet/addons.xml</info>
+		<checksum>https://offshoregit.com/cosmixtv/jizzplanet/addons.xml.md5</checksum>
+		<datadir zip="true">https://offshoregit.com/cosmixtv/jizzplanet/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">Jizz Planet repository</summary>
+		<description lang="en">Jizz Planet repository</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
 <addon id="repository.jsergio" name="jsergio repo" version="1.0.2" provider-name="jsergio">
 	<extension point="xbmc.addon.repository" name="jsergio repo">
         <dir>
@@ -2894,6 +3034,19 @@ For support, visit: [COLOR hotpink]http://bit.ly/uwc-support[/COLOR]</descriptio
 		<platform>all</platform>
 		<forum>https://forums.tvaddons.ag/live-sports-on-kodi/44271-nhl-streams.html#post349799</forum>
 		<website>https://www.tvaddons.ag/</website>
+	</extension>
+</addon>
+
+<addon id="repository.ninjasys" name="The [COLOR blue]Ninjasys[/COLOR] [COLOR red]repo[/COLOR] - [COLOR white]oneil[/COLOR]" version="1.0" provider-name="oneil">
+	<extension point="xbmc.addon.repository" name="The [COLOR blue]Ninjasys[/COLOR] [COLOR red]repo[/COLOR] - [COLOR white]oneil[/COLOR]">
+		<info compressed="false">http://r.ninjasys.uk/addons.xml</info>
+		<checksum>http://r.ninjasys.uk/addons.xml.md5</checksum>
+		<datadir zip="true">http://r.ninjasys.uk/zips</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>The [COLOR blue]Ninjasys[/COLOR] repo.</summary>
+		<description>The [COLOR blue]Ninjasys[/COLOR] repo, containing all of [COLOR white]oneil's[/COLOR] addons.</description>
+		<platform>all</platform>
 	</extension>
 </addon>
 
@@ -3194,6 +3347,25 @@ For support, visit: [COLOR hotpink]http://bit.ly/uwc-support[/COLOR]</descriptio
 		<platform>all</platform>
 	</extension>
 </addon>
+
+    <addon id="repository.thgiliwt" name="Thgiliwt Addon Repository" version="1.0.2" provider-name="Twilight0">
+        <extension point="xbmc.addon.repository" name="Thgiliwt Addon Repository">
+            <dir>
+                <info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
+                <checksum>https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml.md5</checksum>
+                <datadir zip="true">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/zips/</datadir>
+            </dir>
+            <info compressed="false">https://offshoregit.com/thgiliwt/_repo-thgiliwt/addons.xml</info>
+            <checksum>https://offshoregit.com/thgiliwt/_repo-thgiliwt/addons.xml.md5</checksum>
+            <datadir zip="true">https://offshoregit.com/thgiliwt/_repo-thgiliwt/</datadir>
+            <hashes>false</hashes>
+        </extension>
+        <extension point="xbmc.addon.metadata">
+            <summary>Repository for AliveGR and other add-ons</summary>
+            <description></description>
+            <platform>all</platform>
+        </extension>
+    </addon>
 
     <addon id="repository.ufo-repo" name="[COLOR lightgreen]UFO[/COLOR] Repository" version="0.1.5" provider-name="krAZ">
         <requires>
@@ -3496,6 +3668,24 @@ For support, visit: [COLOR hotpink]http://bit.ly/uwc-support[/COLOR]</descriptio
 	</extension>
 </addon>
 
+<addon id="repository.xxxecho" name="XXX ECHO Repository" version="1.01" provider-name="ECHO">
+	<extension point="xbmc.addon.repository" name="XXX ECHO Repository">
+	<dir>
+		<info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
+		<checksum>https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml.md5</checksum>
+		<datadir zip="true">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/zips/</datadir>
+	</dir>
+		<info compressed="false">https://raw.githubusercontent.com/echocoderkodi/repository.xxxecho/master/addons.xml</info>
+        <checksum>https://raw.githubusercontent.com/echocoderkodi/repository.xxxecho/master/addons.xml.md5</checksum>
+        <datadir zip="true">https://raw.githubusercontent.com/echocoderkodi/repository.xxxecho/master/zips/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>XXX Echo Repository</summary>
+		<description>The official XXX Echo repositroy.</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
 <addon id="repository.ytplugin" name="Youtube Addon Repo" version="1.0" provider-name="Jeffrey Frasure">
 	<extension point="xbmc.addon.repository" name="Youtube Addon Repository">
 		<info compressed="false">https://github.com/jdf76/repository/raw/master/addons.xml</info>
@@ -3523,7 +3713,7 @@ For support, visit: [COLOR hotpink]http://bit.ly/uwc-support[/COLOR]</descriptio
 	</extension>
 </addon>
 
-<addon id="script.1channel.themepak" version="0.0.3" name="1Channel Themepak" provider-name="tknorris">
+<addon id="script.1channel.themepak" version="0.0.6" name="1Channel Themepak" provider-name="tknorris">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
     </requires>
@@ -3596,24 +3786,6 @@ For support, visit: [COLOR hotpink]http://bit.ly/uwc-support[/COLOR]</descriptio
     <source></source>
     <forum></forum>
     <website></website>
-  </extension>
-</addon>
-
-<addon id="script.TDBspeedTEST"
-       name="TDB Speed Test"
-       version="1000"
-       provider-name="TDB">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-  </requires>
-  <extension point="xbmc.python.script"
-             library="default.py">
-        <provides>executable</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en">Internet Speed Tester</summary>
-    <description lang="en">Internet Speed Tester</description>
-    <platform>all</platform>
   </extension>
 </addon>
 

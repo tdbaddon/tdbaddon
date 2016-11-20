@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="repository.xxxecho" name="XXX ECHO Repository" version="1.01" provider-name="ECHO">
+	<extension point="xbmc.addon.repository" name="XXX ECHO Repository">
+	<dir>
+		<info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
+		<checksum>https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml.md5</checksum>
+		<datadir zip="true">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/zips/</datadir>
+	</dir>
+		<info compressed="false">https://raw.githubusercontent.com/echocoderkodi/repository.xxxecho/master/addons.xml</info>
+        <checksum>https://raw.githubusercontent.com/echocoderkodi/repository.xxxecho/master/addons.xml.md5</checksum>
+        <datadir zip="true">https://raw.githubusercontent.com/echocoderkodi/repository.xxxecho/master/zips/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>XXX Echo Repository</summary>
+		<description>The official XXX Echo repositroy.</description>
+		<platform>all</platform>
+	</extension>
+</addon>
