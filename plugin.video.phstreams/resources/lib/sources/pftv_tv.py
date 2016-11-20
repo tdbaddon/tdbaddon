@@ -29,8 +29,8 @@ from resources.lib.modules import proxy
 
 class source:
     def __init__(self):
-        self.domains = ['projectfreetv.im']
-        self.base_link = 'http://projectfreetv.im'
+        self.domains = ['projectfreetv.im', 'projectfreetv.at']
+        self.base_link = 'http://projectfreetv.at'
         self.search_link = '/watch-series/'
 
 
@@ -114,7 +114,7 @@ class source:
 
             r = proxy.request(url, 'add links')
 
-            links = client.parseDOM(r, 'tr')
+            links = re.compile('(<a .+?</a>)', re.MULTILINE|re.DOTALL).findall(r)
 
             for i in links:
                 try:

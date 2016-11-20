@@ -28,8 +28,8 @@ from resources.lib.modules import directstream
 
 class source:
     def __init__(self):
-        self.domains = ['gogoanimemobile.com', 'gogoanime.io']
-        self.base_link = 'http://gogoanimemobile.com'
+        self.domains = ['gogoanimemobile.com', 'gogoanimemobile.net', 'gogoanime.io']
+        self.base_link = 'http://gogoanimemobile.net'
         self.fullbase_link = 'http://gogoanime.io'
         self.search_link = '/search.html?keyword=%s'
         self.episode_link = '/%s-episode-%s'
@@ -105,12 +105,11 @@ class source:
 
             r = client.request(url, mobile=True)
 
-            r = client.parseDOM(r, 'div', attrs={'class': 'anime_video_body_watch'})
             r = client.parseDOM(r, 'iframe', ret='src')
 
             for u in r:
                 try:
-                    if not u.startswith('http'): raise Exception()
+                    if not u.startswith('http') and not 'vidstreaming' in u: raise Exception()
 
                     url = client.request(u)
                     url = client.parseDOM(url, 'source', ret='src')

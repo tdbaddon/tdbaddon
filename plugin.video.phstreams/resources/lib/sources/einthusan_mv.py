@@ -85,9 +85,15 @@ class source:
 
             referer = 'http://www.einthusan.com/movies/watch.php?id=%s' % url
 
+            agent = client.randomagent()
+
+            headers = {'User-Agent': agent, 'Referer': referer}
+
             url = 'http://cdn.einthusan.com/geturl/%s/hd/%s/' % (url, ip)
 
-            url = client.request(url, referer=referer)
+            url = client.request(url, headers=headers)
+
+            url +='|%s' % urllib.urlencode({'User-agent': agent})
 
             sources.append({'source': 'einthusan', 'quality': 'HD', 'provider': 'Einthusan', 'url': url, 'direct': True, 'debridonly': False})
             return sources

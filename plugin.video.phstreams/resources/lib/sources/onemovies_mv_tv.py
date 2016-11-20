@@ -19,7 +19,7 @@
 '''
 
 
-import re,urllib,urlparse,hashlib,random,string,json
+import re,urllib,urlparse,hashlib,random,string,json,base64
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
@@ -29,8 +29,8 @@ from resources.lib.modules import directstream
 
 class source:
     def __init__(self):
-        self.domains = ['123movies.to', '123movies.ru']
-        self.base_link = 'http://123movies.ru'
+        self.domains = ['123movies.to', '123movies.ru', '123movies.is', '123movies.gs']
+        self.base_link = 'http://123movies.gs'
         self.search_link = '/ajax/suggest_search'
         self.info_link = '/ajax/movie_load_info/%s'
         self.server_link = '/ajax/get_episodes/%s'
@@ -202,13 +202,21 @@ class source:
 
             episode_id= link.split('/')[-1]
 
-            key_gen = ''.join(random.choice(string.ascii_lowercase + string.digits) for x in range(6))
+            key_gen = ''.join(random.choice(string.ascii_lowercase + string.digits) for x in range(16))
 
-            coookie = '%s%s%s=%s' % (self.key, episode_id, self.key2, key_gen)
-
-            hash_id = hashlib.md5(episode_id + key_gen + self.key3).hexdigest()
-
-            url = self.base_link + '/ajax/get_sources/' + episode_id + '/' + hash_id + '/2'
+			################# FIX FROM MUCKY DUCK & XUNITY TALK ################												
+            key = '87wwxtp3dqii'
+            key2 = '7bcq9826avrbi6m49vd7shxkn985mhod'
+            coookie = hashlib.md5(episode_id + key).hexdigest() + '=%s' %key_gen
+            a= episode_id + key2
+            b= key_gen
+            i=b[-1]
+            h=b[:-1]
+            b=i+h+i+h+i+h
+            hash_id = uncensored(a, b)
+			################# FIX FROM MUCKY DUCK & XUNITY TALK ################                        
+						
+            url = self.base_link + '/ajax/v2_get_sources/' + episode_id + '?hash=' + urllib.quote(hash_id)
 
             headers['Referer'] = headers['Referer']+ '\+' + coookie
             headers['Cookie'] = coookie
@@ -246,4 +254,22 @@ class source:
         except:
             pass
 
+			
 
+def uncensored(a,b):
+    n = -1
+    fuckme=[]
+    justshow=[]
+    while True:
+        
+        if n == len(a)-1:
+            break
+        n +=1
+       
+        d = int(''.join(str(ord(c)) for c in a[n]))
+      
+        e=int(''.join(str(ord(c)) for c in b[n]))
+        justshow.append(d+e)
+        fuckme.append(chr(d+e))
+    
+    return base64.b64encode(''.join(fuckme))

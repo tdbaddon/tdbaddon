@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="repository.RenegadesTV" name="RenegadesTV Add-on repository" version="1.4" provider-name="RenegadesTV">
+	<extension point="xbmc.addon.repository" name="RenegadesTV Add-on repository">
+		<dir>
+			<info compressed="false">http://renegadestv.info/r3nautor3po/addons.xml</info>
+			<checksum>http://renegadestv.info/r3nautor3po/addons.xml.md5</checksum>
+			<datadir zip="true">http://renegadestv.info/r3nautor3po/</datadir>
+		</dir>		
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">Install Add-ons from RenegadesTV</summary>
+		<description lang="en">Download and install add-ons from RenegadesTV repository.</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+

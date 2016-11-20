@@ -30,9 +30,52 @@ import traceback
 import cookielib
 import base64
 
-from resources.lib.modules import client
-
 profile = functions_dir = xbmc.translatePath(xbmcaddon.Addon().getAddonInfo('profile').decode('utf-8'))
+
+try: from sqlite3 import dbapi2 as database
+except: from pysqlite2 import dbapi2 as database
+
+from resources.lib.modules import client
+from resources.lib.modules import control
+
+
+def fetch(regex):
+    try:
+        cacheFile = os.path.join(control.dataPath, 'regex.db')
+        dbcon = database.connect(cacheFile)
+        dbcur = dbcon.cursor()
+        dbcur.execute("SELECT * FROM regex WHERE regex = '%s'" % regex)
+        regex = dbcur.fetchone()[1]
+        return regex
+    except:
+        return
+
+
+def insert(data):
+    try:
+        control.makeFile(control.dataPath)
+        cacheFile = os.path.join(control.dataPath, 'regex.db')
+        dbcon = database.connect(cacheFile)
+        dbcur = dbcon.cursor()
+        dbcur.execute("CREATE TABLE IF NOT EXISTS regex (""regex TEXT, ""response TEXT, ""UNIQUE(regex)"");")
+        for i in data:
+            try: dbcur.execute("INSERT INTO regex Values (?, ?)", (i['regex'], i['response']))
+            except: pass
+        dbcon.commit()
+    except:
+        return
+
+
+def clear():
+    try:
+        cacheFile = os.path.join(control.dataPath, 'regex.db')
+        dbcon = database.connect(cacheFile)
+        dbcur = dbcon.cursor()
+        dbcur.execute("DROP TABLE IF EXISTS regex")
+        dbcur.execute("VACUUM")
+        dbcon.commit()
+    except:
+        pass
 
 
 def resolve(regex):
@@ -50,7 +93,7 @@ def resolve(regex):
         regexs = [(i['name'], i) for i in regexs]
         regexs = dict(regexs)
 
-        url = re.compile('(.+?)<regex>', re.MULTILINE|re.DOTALL).findall(regex)[0].strip()
+        url = regex.split('<regex>', 1)[0].strip()
         url = client.replaceHTMLCodes(url)
         url = url.encode('utf-8')
 
@@ -80,12 +123,12 @@ def resolve(regex):
                 except:
                     pass
 
-            return ('makelist', ln)
+            return ln
         except:
             pass
 
         if r[1] == True:
-            return ('link', r[0])
+            return r[0]
     except:
         return
 

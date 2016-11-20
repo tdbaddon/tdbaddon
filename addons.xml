@@ -80,33 +80,6 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 </addon>
 
-<addon id="plugin.audio.radiotunes.com"
-       name="RadioTunes"
-       version="3.0.1"
-       provider-name="qualisoft.dk - Tim C. Steinmetz">
-	<requires>
-		<import addon="xbmc.python" version="2.1.0"/>
-	</requires>
-	<extension point="xbmc.python.pluginsource" library="default.py">
-		<provides>audio</provides>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<platform>all</platform>
-		<language>en</language>
-		<license>GPL 2.0</license>
-   		<forum>http://forum.kodi.tv/showthread.php?tid=141942</forum>
-   		<source>https://github.com/Bitcrusher/Radiotunes-XBMC-plugin</source>
-   		<summary lang="en">RadioTunes</summary>
-		<description lang="en">
-			RadioTunes.com features a wide variety of high quality free streaming radio channels. Find your favorites among the best of each class - be it New Age, 80s, Smooth Jazz, New Age, Top40, Hip Hop, Oldies, 70s, Reggae, Lounge or many others inside.
-		</description>
-		<description lang="he">
-			RadioTunes.com כולל מגוון רחב של הזרמת ערוצי רדיו באיכות גבוהה. מצא את המועדף שלך בין הטובים ביותר - בין אם זה עידן חדש, שנות ה-80, ג'אז, Top40, היפ הופ, שירים ישנים, שנות ה-70, רגאיי, Lounge ורבים אחרים.
-		</description>
-		<language/>
-	</extension>
-</addon>
-
 <addon id="plugin.audio.radio_de" name="Radio" version="2.3.1" provider-name="Tristan Fischer (sphere@dersphere.de)">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
@@ -488,7 +461,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 </addon>
 
 <!--suppress ALL -->
-<addon id="plugin.video.1channel" version="2.5.72" name="1Channel" provider-name="Bstrdsmkr, tuxen, tknorris">
+<addon id="plugin.video.1channel" version="2.5.77" name="1Channel" provider-name="Bstrdsmkr, tuxen, tknorris">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
         <import addon="script.module.urlresolver" version="3.0"/>
@@ -1353,7 +1326,7 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
 
 <addon id="plugin.video.MartyMusic"
        name="Marty Music"
-       version="1003"
+       version="1002"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -1423,44 +1396,6 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
     <summary lang="en">Stream Movies From The niter.co WebSite</summary>
     <description lang="en">Stream Movies From The niter.co WebSite</description>
 	<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon or have any affiliation with the website owners.</disclaimer>
-    <platform>all</platform>
-  </extension>
-</addon>
-
-<addon id="plugin.video.mdpubfilm" name="PubFilm" version="1.0.8" provider-name="Mucky Duck">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-	<import addon="script.module.addon.common" />
-	<import addon="script.module.metahandler" version="2.5.1"/>
-	<import addon="script.module.requests" />
-	<import addon="repository.mdrepo" />
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en">Stream Movies And TV-Shows From pubfilm.com</summary>
-    <description lang="en">This Addon Will Delete Itself Unless You Have http://muckys.mediaportal4kodi.ml In File Manager. Stream Movies And TV-Shows From pubfilm.com</description>
-	<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon or have any affiliation with the website owners.</disclaimer>
-    <platform>all</platform>
-  </extension>
-</addon>
-
-<addon id="plugin.video.mdscenepeeper" name="Scene Peeper" version="1.0.6" provider-name="Mucky Duck">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-	<import addon="script.module.addon.common" />
-	<import addon="script.module.metahandler" version="2.5.1"/>
-	<import addon="script.module.requests" />
-	<import addon="repository.mdrepo" />
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en">Stream content From The layarkaca21.com WebSite</summary>
-    <description lang="en">Stream Content From layarkaca21.com WebSite. This Addon Will No Longer Work Unless You Have http://muckysmediaportal4kodi.ml In File Manager.</description>
-	<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon or have any affiliation with the website owners</disclaimer>
     <platform>all</platform>
   </extension>
 </addon>
@@ -1708,7 +1643,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.phstreams" name="Phoenix" version="3.1.15" provider-name="tvaddons.ag">
+<addon id="plugin.video.phstreams" name="Phoenix" version="3.1.16" provider-name="tvaddons.ag">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="plugin.video.youtube" version="5.2.1" optional="true" />
@@ -1726,7 +1661,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 		<platform>all</platform>
 		<forum>http://forums.tvaddons.ag/forums/220-PHOENIX-LIVE-STREAMS</forum>
 		<website>http://www.tvaddons.ag/</website>
-		<news>Updated scrapers[CR]Cosmetics</news>
+		<news>Updated indexers[CR]Updated scrapers[CR]Cosmetics</news>
 	</extension>
 </addon>
 
@@ -1789,7 +1724,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2016.11.11.1" provider-name="mrknow" >
+<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2016.11.18.3" provider-name="mrknow" >
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.requests" version="1.0.0" />
@@ -2539,45 +2474,6 @@ For support, visit: [COLOR hotpink]http://bit.ly/uwc-support[/COLOR]</descriptio
 	</extension>
 </addon>
 
-<addon id="repository.awesome" name="Awesome repo" version="0.0.1" provider-name="Awesome">
-	<extension point="xbmc.addon.repository" name="Awesome repo">
-		<info compressed="false">http://raw.github.com/AwesomeStreams/AwesomeStreams/master/addons.xml</info>
-		<checksum>http://raw.github.com/AwesomeStreams/AwesomeStreams/master/addons.xml.md5</checksum>
-		<datadir zip="true">http://raw.github.com/AwesomeStreams/AwesomeStreams/master</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>The Official Awesome repository</summary>
-		<description>This repository contains addons with live IPTV streams.</description>
-		<disclaimer>The owners and submitters to this repository do not host or distribute any of the content displayed by these addons nor do they have any affiliation with the content providers.</disclaimer>
-		<platform>all</platform>
-	</extension>
-</addon>
-
-<addon id="repository.bbtsip.tv" name="[COLOR yellowgreen]B[/COLOR][COLOR dodgerblue]B[/COLOR]T[COLOR orangered]S[/COLOR] - Repo" version="0.0.7" provider-name="BBTS">
-  <requires>
-    <import addon="xbmc.addon" version="12.0.0" />
-  </requires>
-    <extension point="xbmc.addon.repository" name="BBTS Repo">
-      <info compressed="false">http://repo.bbtsip.tv/repo/addons.xml</info>
-      <checksum>http://repo.bbtsip.tv/repo/addons.xml.md5</checksum>
-      <datadir zip="true">http://repo.bbtsip.tv/repo/addons/</datadir>
-      <hashes>true</hashes>
-    </extension>
-      <extension point="xbmc.addon.metadata">
-        <summary lang="en">The [COLOR yellowgreen]B[/COLOR][COLOR dodgerblue]B[/COLOR][COLOR white]T[/COLOR][COLOR orangered]S[/COLOR] Repository...</summary>
-		<summary lang="he">[COLOR yellowgreen]B[/COLOR][COLOR dodgerblue]B[/COLOR][COLOR white]T[/COLOR][COLOR orangered]S [/COLOR]מאגר ההרחבות של</summary>
-        <description lang="en">Download and install add-ons from the [COLOR yellowgreen]B[/COLOR][COLOR dodgerblue]B[/COLOR][COLOR white]T[/COLOR][COLOR orangered]S[/COLOR] Repository, Plugin by @koderdude.</description>
-		<description lang="he">[COLOR yellowgreen]B[/COLOR][COLOR dodgerblue]B[/COLOR][COLOR white]T[/COLOR][COLOR orangered]S [/COLOR]הורידו והתיקנו את הרחבות ממאגר
-תוסף על ידי koderdude@.</description>
-        <disclaimer lang="en">This Repository is maintained by the [COLOR yellowgreen]B[/COLOR][COLOR dodgerblue]B[/COLOR][COLOR white]T[/COLOR][COLOR orangered]S[/COLOR] community and our generator fetches indexs from multiple sources from around the web. We accept no responsibility for the following content, streams and or media. [COLOR yellowgreen]B[/COLOR][COLOR dodgerblue]B[/COLOR][COLOR white]T[/COLOR][COLOR orangered]S[/COLOR] does not host or stream any of the content displayed on this add-on.</disclaimer>
-		 <disclaimer lang="he">מאגר זה מתוחזק על ידי קהילת והמחולל שלנו מביאים את האנידקסים ממקורות מרובים מרחבי האינטרנט.
-אנו לא מקבלים שום אחריות לתכנים הבאים, שידורים חיים או תוכן בכל צורה שלא יהיה.
-אנו לא מארחים או משדרים את התוכן שמוצג על-ידי התוסף.</disclaimer>
-        <platform>all</platform>
-    <website>http://repo.bbtsip.tv/</website>
-  </extension>
-</addon>
-
 <addon id="repository.BES-IPTV" name="BES-IPTV Repository" version="1.0.2" provider-name="SaydinX,SimpleKodi">
 	<extension point="xbmc.addon.repository" name="BES-IPTV Repository">
 	<dir>
@@ -2592,6 +2488,21 @@ For support, visit: [COLOR hotpink]http://bit.ly/uwc-support[/COLOR]</descriptio
 	<extension point="xbmc.addon.metadata">
 		<summary>BES-IPTV, Albanian IPTV!</summary>
 		<description>BES-IPTV Repository by SimpleKodi,SaydinX</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="repository.bromix" name="Bromix Add-ons" version="1.2.2" provider-name="bromix">
+    <extension point="xbmc.addon.repository" name="Bromix Add-ons">
+		<info compressed="true">https://github.com/bromix/repository.bromix.storage/raw/master/addons.xml</info>
+		<checksum>https://github.com/bromix/repository.bromix.storage/raw/master/addons.xml.md5</checksum>
+		<datadir zip="true">https://raw.githubusercontent.com/bromix/repository.bromix.storage/master/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Bromix Add-ons</summary>
+		<summary lang="de">Bromix Add-ons</summary>
+		<description>Repository of add-ons by Bromix. Some add-ons are final and perhaps obtainable by the official repository of KODI. Add-ons in alpha and beta status are here to test exclusively and for testers to provide them with updates.</description>
+		<description lang="de">Repository an Add-ons von Bromix. Einige Add-Ons sind final und vielleicht durch das offizielle Repository von KODI erhältlich. Add-Ons in alpha- und beta-status sind hier ausschließlich zum Testen und um Tester mit Updates zu versorgen.</description>
 		<platform>all</platform>
 	</extension>
 </addon>
@@ -2651,6 +2562,25 @@ For support, visit: [COLOR hotpink]http://bit.ly/uwc-support[/COLOR]</descriptio
 		<summary>The Official DOKITV.NL repository</summary>
 		<description>This repository contains all Repositorys for KODI.</description>
 		<disclaimer>The owners and submitters to this repository do not host or distribute any of the content displayed by these addons nor do they have any affiliation with the content providers.</disclaimer>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="repository.eldorado" name="Eldorado's XBMC Addons" version="2.0.2" provider-name="eldorado">
+	<extension point="xbmc.addon.repository" name="Eldorado's XBMC Addon Repository">
+		<info compressed="false">http://raw.github.com/Eldorados/eldorado-xbmc-addons/master/addons.xml</info>
+		<checksum>http://raw.github.com/Eldorados/eldorado-xbmc-addons/master/addons.xml.md5</checksum>
+		<datadir zip="true">http://raw.github.com/Eldorados/eldorado-xbmc-addons/master/repo/</datadir>
+		<dir>
+			<info compressed="false">https://offshoregit.com/Eldorado/xbmc-addons/raw/master/addons.xml</info>
+			<checksum>https://offshoregit.com/Eldorado/xbmc-addons/raw/master/addons.xml.md5</checksum>
+			<datadir zip="true">https://offshoregit.com/Eldorado/xbmc-addons/raw/master/repo/</datadir>
+		</dir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Install Eldorado's Addons</summary>
+		<forum>http://forums.tvaddons.ag/forums/23-ELDORADO-S-XBMC-ADDONS</forum>
+		<description>Download and install addons by Eldorado</description>
 		<platform>all</platform>
 	</extension>
 </addon>
@@ -2724,6 +2654,19 @@ For support, visit: [COLOR hotpink]http://bit.ly/uwc-support[/COLOR]</descriptio
 		<description lang="pl">Wtyczki z nieoficjalnego, repozytorium polskiego mrknow.pl..</description>
 		<disclaimer lang="en">Repository has non-comercial nature. Created by enthusiasts, acting in good faith.</disclaimer>
 		<disclaimer lang="pl">Zawartość repozytorium ma charakter niekomercyjny, wtyczki tworzone przez pasjonatów, .</disclaimer>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="repository.googlecode.anarchintosh-projects" name="anarchintosh addons" version="1.0.1" provider-name="anarchintosh">
+	<extension point="xbmc.addon.repository" name="anarchintosh add-on repository">
+		<info compressed="false">http://anarchintosh-projects.googlecode.com/svn/addons/addons.xml</info>
+		<checksum>http://anarchintosh-projects.googlecode.com/svn/addons/addons.xml.md5</checksum>
+		<datadir zip="true">http://anarchintosh-projects.googlecode.com/svn/addons</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Install Addons from http://anarchintosh-projects.googlecode.com</summary>
+		<description>Download and install addons from anarchintosh repository.</description>
 		<platform>all</platform>
 	</extension>
 </addon>
@@ -2875,6 +2818,20 @@ For support, visit: [COLOR hotpink]http://bit.ly/uwc-support[/COLOR]</descriptio
     </extension>
 </addon>
 
+<addon id="repository.macedoniaondemand.xbmc-plugins" name="Macedonia On Demand Add-on Repository" version="1.0.0" provider-name="Viktor Mladenovski">
+	<extension point="xbmc.addon.repository" name="Macedonia On Demand Add-on Repository">
+		<info compressed="false">http://macedoniaondemand.googlecode.com/git/addons.xml</info>
+		<checksum>http://macedoniaondemand.googlecode.com/git/addons.xml.md5</checksum>
+		<datadir zip="false">http://macedoniaondemand.googlecode.com/git/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Install Add-ons from bluecop Macedonia On Demand Repository</summary>
+		<description>Video plug-ins for XBMC</description>
+		<disclaimer></disclaimer>
+		<platform>all</platform>
+	</extension>
+</addon>
+
 <addon id="repository.MatsBuilds" name="Goliaths Add-ons repository" version="1.0.10" provider-name="Goliath">
 	<extension point="xbmc.addon.repository" name="Goliaths Repository">
 	<dir>
@@ -2937,6 +2894,21 @@ For support, visit: [COLOR hotpink]http://bit.ly/uwc-support[/COLOR]</descriptio
 		<platform>all</platform>
 		<forum>https://forums.tvaddons.ag/live-sports-on-kodi/44271-nhl-streams.html#post349799</forum>
 		<website>https://www.tvaddons.ag/</website>
+	</extension>
+</addon>
+
+<addon id="repository.p2p-streams.xbmc" name="p2p-streams repository" version="1.0.4" provider-name="enen92 - fightnight">
+	<extension point="xbmc.addon.repository" name="p2p-streams Repository">
+		<info compressed="false">http://p2p-strm.googlecode.com/svn/addons/addons.xml</info>
+		<checksum>http://p2p-strm.googlecode.com/svn/addons/addons.xml.md5</checksum>
+		<datadir zip="true">http://p2p-strm.googlecode.com/svn/addons</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>p2p-streams repository</summary>
+   		<description lang="en">Install P2P-Streams addon for Kodi (SopCast and AceStream). Watch peer-to-peer streams in Kodi without the need for external players!</description>
+    		<description lang="pt">Instale o addon P2P-Streams para o Kodi (SopCast e AceStream). Assista a streams peer-to-peer no Kodi sem a necessidade de players externos!</description>
+		<disclaimer></disclaimer>
+		<platform>all</platform>
 	</extension>
 </addon>
 
@@ -3084,6 +3056,24 @@ For support, visit: [COLOR hotpink]http://bit.ly/uwc-support[/COLOR]</descriptio
 	</extension>
 </addon>
 
+<addon id="repository.simplycaz" name="Simply Caz Repo" version="1.0.1" provider-name="Simply Caz | CazWall.com">
+	<extension point="xbmc.addon.repository" name="Simply Caz Repo">
+		<info compressed="false">http://repo.cazwall.com/repofiles/Plugins/addons.xml</info>
+		<checksum>http://repo.cazwall.com/repofiles/Plugins/addons.xml.md5</checksum>
+		<datadir zip="true">http://repo.cazwall.com/repofiles/Plugins/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Simply Caz YouTube</summary>
+		<description>
+
+		 CazWall.com | Kodi, Tech and More! Please Subscribe to "Simply Caz" and "Caz Wallace" or follow me on Twitter/IG/Snapchat: @Caz_Wallace Facebook Page: Caz Wallace."Peace in Caribbean, Peace in the Middle East, to God be the Glory!"
+
+		</description>
+
+		<platform>all</platform>
+	</extension>
+</addon>
+
     <addon id="repository.skymashitv" name="SkymashiTV Repo" version="0.2" provider-name="Skymashi">
         <requires>
             <import addon="xbmc.addon" version="12.0.0"/>
@@ -3098,6 +3088,24 @@ For support, visit: [COLOR hotpink]http://bit.ly/uwc-support[/COLOR]</descriptio
             <summary>SkymashiTV Repository</summary>
             <description>SkymashiTV Repository for our Addons and Builds</description>
             <platform>all</platform>
+    </extension>
+</addon>
+
+<addon id="repository.spoyser"
+        name="spoysers XBMC Add-ons"
+        version="1.0.6"
+        provider-name="spoyser">
+    <extension point="xbmc.addon.repository"
+        name="spoysers XBMC Add-ons">
+        <info compressed="false">https://raw.github.com/spoyser/spoyser-repo/master/addons.xml</info>
+        <checksum>https://raw.github.com/spoyser/spoyser-repo/master/addons.xml.md5</checksum>
+        <datadir zip="true">https://raw.github.com/spoyser/spoyser-repo/master/zips/</datadir>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary>Install XBMC add-ons from the official spoyser repository</summary>
+        <description>Install XBMC add-ons from spoysers official repository</description>
+        <disclaimer></disclaimer>
+        <platform>all</platform>
     </extension>
 </addon>
 
@@ -3143,6 +3151,19 @@ For support, visit: [COLOR hotpink]http://bit.ly/uwc-support[/COLOR]</descriptio
 		<summary>Team Maniac Addons</summary>
 		<description>Team Maniac Installer</description>
 		<disclaimer></disclaimer>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="repository.the-one" name="The ONE's XBMC Addons Repository" version="1.2" provider-name="the-one">
+	<extension point="xbmc.addon.repository" name="the-one">
+		<info compressed="false">http://the-ones-xbmc-repo.googlecode.com/svn/addons.xml</info>
+		<checksum>http://the-ones-xbmc-repo.googlecode.com/svn/addons.xml.md5</checksum>
+		<datadir zip="true">http://the-ones-xbmc-repo.googlecode.com/svn/zips</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>XBMC Addons by The-ONE</summary>
+		<description>Download and install addons from The-ONE.......For OFFICIAL !! Support Visit XBMCHUB.COM</description>
 		<platform>all</platform>
 	</extension>
 </addon>
@@ -3500,6 +3521,20 @@ For support, visit: [COLOR hotpink]http://bit.ly/uwc-support[/COLOR]</descriptio
 		<disclaimer></disclaimer>
 		<platform>all</platform>
 	</extension>
+</addon>
+
+<addon id="script.1channel.themepak" version="0.0.3" name="1Channel Themepak" provider-name="tknorris">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0"/>
+    </requires>
+    <extension point="xbmc.python.script" library="default.py">
+        <provides>executable</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary>Themes for the 1Channel/PrimeWire Addon</summary>
+        <description>Themes for 1Channel are maintained separately to make distribution of the the addon itself easier/faster.</description>
+        <platform>all</platform>
+    </extension>
 </addon>
 
 <addon id="script.aftershock.artwork" version="1.1.0" name="Aftershock Artwork" provider-name="IDev">

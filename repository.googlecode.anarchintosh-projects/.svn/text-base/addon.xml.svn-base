@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="repository.googlecode.anarchintosh-projects" name="anarchintosh addons" version="1.0.0" provider-name="anarchintosh">
+	<extension point="xbmc.addon.repository" name="anarchintosh add-on repository">
+		<info compressed="false">http://anarchintosh-projects.googlecode.com/svn/addons/addons.xml</info>
+		<checksum></checksum>
+		<datadir zip="false">http://anarchintosh-projects.googlecode.com/svn/addons</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Install Addons from http://anarchintosh-projects.googlecode.com</summary>
+		<description>Download and install addons from anarchintosh repository.</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+

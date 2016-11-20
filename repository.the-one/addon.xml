@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="repository.the-one" name="The ONE's XBMC Addons Repository" version="1.2" provider-name="the-one">
+	<extension point="xbmc.addon.repository" name="the-one">
+		<info compressed="false">http://the-ones-xbmc-repo.googlecode.com/svn/addons.xml</info>
+		<checksum>http://the-ones-xbmc-repo.googlecode.com/svn/addons.xml.md5</checksum>
+		<datadir zip="true">http://the-ones-xbmc-repo.googlecode.com/svn/zips</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>XBMC Addons by The-ONE</summary>
+		<description>Download and install addons from The-ONE.......For OFFICIAL !! Support Visit XBMCHUB.COM</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+

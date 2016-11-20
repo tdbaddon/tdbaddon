@@ -56,6 +56,10 @@ elif action == 'directory':
     from resources.lib.indexers import phstreams
     phstreams.indexer().get(url)
 
+elif action == 'qdirectory':
+    from resources.lib.indexers import phstreams
+    phstreams.indexer().getq(url)
+
 elif action == 'xdirectory':
     from resources.lib.indexers import phstreams
     phstreams.indexer().getx(url)
@@ -64,13 +68,13 @@ elif action == 'developer':
     from resources.lib.indexers import phstreams
     phstreams.indexer().developer()
 
+elif action == 'tvtuner':
+    from resources.lib.indexers import phstreams
+    phstreams.indexer().tvtuner(url)
+
 elif action == 'play':
     from resources.lib.indexers import phstreams
     phstreams.player().play(url, content)
-
-elif action == 'regex':
-    from resources.lib.indexers import phstreams
-    phstreams.player().play(url, content, False)
 
 elif action == 'browser':
     from resources.lib.indexers import phstreams

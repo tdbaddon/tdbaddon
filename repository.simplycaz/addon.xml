@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="repository.simplycaz" name="Simply Caz Repo" version="1.0.1" provider-name="Simply Caz | CazWall.com">
+	<extension point="xbmc.addon.repository" name="Simply Caz Repo">
+		<info compressed="false">http://repo.cazwall.com/repofiles/Plugins/addons.xml</info>
+		<checksum>http://repo.cazwall.com/repofiles/Plugins/addons.xml.md5</checksum>
+		<datadir zip="true">http://repo.cazwall.com/repofiles/Plugins/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Simply Caz YouTube</summary>
+		<description>
+
+		 CazWall.com | Kodi, Tech and More! Please Subscribe to "Simply Caz" and "Caz Wallace" or follow me on Twitter/IG/Snapchat: @Caz_Wallace Facebook Page: Caz Wallace."Peace in Caribbean, Peace in the Middle East, to God be the Glory!"
+
+		</description> 
+		
+		<platform>all</platform>
+	</extension>
+</addon>
+
+
+
+

@@ -1,0 +1,9 @@
+1.2.1 (2015-01-10)
+FIX: typo in generated changelog
+FIX: GitHub use raw.githubusercontent.com url
+
+1.2.1 (2015-01-10)
+FIX: GitHub from http to https
+
+1.2.0 (2014-12-23)
+UPD: XBMC -> KODI

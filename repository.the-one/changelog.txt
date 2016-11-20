@@ -1,0 +1,8 @@
+[B]Version 1.0[/B]
+- Initial Release with Addon: Telly Nagari (tellynagari.com)
+
+[B]Version 1.1[/B]
+- Added Addon: Fun And Movies (funandmovies.com)
+
+[B]Version 1.2[/B]
+- Added Universal Toolkit
