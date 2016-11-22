@@ -8,19 +8,19 @@
 0
 
 #EXTINF:0,Al Jazeera Balkan 
-http://93.87.85.71/PLTV/88888888/224/3221226663/04.m3u8
+0
 
 #EXTINF:0,Alsat M 
 0
 
 #EXTINF:0,Alfa 
-0
+http://37.187.158.217:8081/alfa/tvalfa/playlist.m3u8
 
 #EXTINF:0,BTR 
 0
 
 #EXTINF:0,Cegrani Media
-http://93.87.85.71/PLTV/88888888/224/3221226670/04.m3u8
+0
 
 #EXTINF:0,ERA TV 
 0
@@ -94,6 +94,7 @@ http://92.53.27.201:10000/
 #EXTINF:0,Telma 
 http://37.187.158.217:8081/telma/telmatv/playlist.m3u8
 
+
 #EXTINF:0,TV 21
 0
 
@@ -126,6 +127,4 @@ mms://62.162.58.55/KameraStip
 #EXTINF:0,Veles Macedonia
 0
 
-#EXTINF:0,Zenska TV
-http://93.87.85.71/PLTV/88888888/224/3221226710/04.m3u8
 

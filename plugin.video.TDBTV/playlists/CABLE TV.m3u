@@ -38,7 +38,7 @@ http://adultswimhls-i.akamaihd.net/hls/live/238460/adultswim/main/1/master_Layer
 0
 
 #EXTINF:0,BBC Entertainment 
-http://latino-webtv.ml:8880/tpmariocs/CANAL253/PROFILE03.m3u8
+0
 
 #EXTINF:0,BBC Kids
 0
@@ -87,7 +87,7 @@ http://52.86.189.59:1935/live/news/chunklist.m3u8
 0
 
 #EXTINF:0,City TV Toronto 
-http://btflash-lh.akamaihd.net/i/BTTOFLASH_live@120219/master.m3u8
+0
 
 #EXTINF:0,City TV Vancouver 
 http://btflash-lh.akamaihd.net/i/BTVANFLASH_live@120224/master.m3u8
@@ -156,7 +156,7 @@ http://usaiptv.ddns.net:9090/load/0855ebd4f90b/377.mpegts
 0
 
 #EXTINF:0,E! 
-http://151.80.27.111:25461/live/jefferson1/123456/99.m3u8
+0
 
 #EXTINF:0,E2 
 0
@@ -372,7 +372,7 @@ http://usaiptv.ddns.net:9090/load/0855ebd4f90b/481.mpegts
 0
 
 #EXTINF:0,Syfy 
-http://localhd.tv:8081/live/moi/moi/1655.m3u8
+0
 
 #EXTINF:0,TBS 
 0

@@ -50,7 +50,7 @@ http://ss1.mk.checast.com:9000/bravo.mp3?1437243453002.mp3
 http://50.7.129.122:8497/;?1420340858258.mp3
 
 #EXTINF:0,Radio Fortuna Skopje 
-rtmp://off.net.mk/radio/fortuna.stream
+0
 
 #EXTINF:0,Radio Galaxy Kavadarci
 http://ss1.mk.checast.com:21130/live?1437244565079.aac 

@@ -38,7 +38,7 @@ http://vs2.streamcaster.net:1935/etvmarche_live/etvmarche/sansar.m3u8
 0
 
 #EXTINF:0,Extra TV 
-http://k3.usastreams.com:1935/canal42/canal42/live.m3u8
+0
 
 #EXTINF:0,Fano TV
 0
@@ -245,7 +245,7 @@ rtmp://wms.shared.streamshow.it/videobrescia/videobrescia
 http://wms.shared.streamshow.it:1935/videobrescia/videobrescia/live.m3u8
 
 #EXTINF:0,Videolina 
-rtmp://178.33.229.111/live/Videolina
+0
 
 #EXTINF:0,VideoRegione 
 0

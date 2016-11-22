@@ -14,7 +14,7 @@
 0
 
 #EXTINF:0,Al Jazeera Balkan 
-http://93.87.85.71/PLTV/88888888/224/3221226663/04.m3u8
+0
 
 #EXTINF:0,AlbTV Film 
 0
@@ -27,9 +27,6 @@ http://93.87.85.71/PLTV/88888888/224/3221226663/04.m3u8
 
 #EXTINF:0,Alb UK 
 rtmp://188.138.17.8:1935/albuk/albuk.stream
-
-#EXTINF:0,Alb UK 
-rtmp://188.138.17.8:1935/albuk
 
 #EXTINF:0,Albanian Screen
 0
