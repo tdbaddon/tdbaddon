@@ -1,6 +1,6 @@
 '''
     Ultimate Whitecream
-    Copyright (C) 2015 mortael
+    Copyright (C) 2015 Whitecream
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -78,9 +78,10 @@ def XTList(url, page=1):
     except:
         utils.notify('Oh oh','It looks like this website is down.')
         return None
-    match = re.compile('src="([^"]+?)" class="attachment.*?<a href="([^"]+)" title="([^"]+)".*?<div class="right">.<p>([^<]+)</p>', re.DOTALL | re.IGNORECASE).findall(listhtml)
+    match = re.compile(r'src="([^"]+?)" class="attachment.*?<a href="([^"]+)" title="([^"]+)".*?<div class="right">(.*?)</div>\s+</li>', re.DOTALL | re.IGNORECASE).findall(listhtml)
     for img, videopage, name, desc in match:
         name = utils.cleantext(name)
+        desc = utils.cleanhtml(desc)
         desc = utils.cleantext(desc)
         utils.addDownLink(name, videopage, 23, img, desc)
     if re.search('<link rel="next"', listhtml, re.DOTALL | re.IGNORECASE):

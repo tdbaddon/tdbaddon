@@ -1435,7 +1435,7 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
 
 <addon id="plugin.video.MartyMusic"
        name="Marty Music"
-       version="1002"
+       version="1003"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -1774,10 +1774,11 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
-<addon id="plugin.video.prosport" name="Pro Sport" version="0.78" provider-name="gerikss, podgod, iCanuck">
+<addon id="plugin.video.prosport" name="Pro Sport" version="0.79" provider-name="gerikss, podgod, iCanuck">
   <requires>
     <import addon="xbmc.python" version="2.1.0" />
      <import addon="script.module.requests" version="2.9.1" />
+     <import addon="script.module.urlresolver" version="3.0.24" />
   </requires>
   <extension point="xbmc.python.pluginsource" provides="video" library="default.py">
     <provides>video</provides>
@@ -2258,8 +2259,8 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.uwc"
        name="Ultimate Whitecream"
-       version="1.1.44"
-       provider-name="mortael">
+       version="1.1.45"
+       provider-name="Whitecream">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
         <import addon="script.module.urlresolver"  version="3.0.12" />
@@ -2275,7 +2276,8 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
         <summary lang="en">Watch [COLOR red][B]ADULT[/B][/COLOR] Movies with Ultimate WhiteCream</summary>
         <description lang="en">Watch [COLOR red][B]ADULT[/B][/COLOR] Movies with Ultimate WhiteCream
 
-For support, visit: [COLOR hotpink]http://bit.ly/uwc-support[/COLOR]</description>
+For support, visit: [COLOR hotpink]http://bit.ly/uwc-support[/COLOR]
+Follow us on twitter: [COLOR blue]Whitecream_UWC[/COLOR]</description>
 		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
         <forum>http://bit.ly/uwc-support</forum>
     </extension>
@@ -2395,7 +2397,7 @@ For support, visit: [COLOR hotpink]http://bit.ly/uwc-support[/COLOR]</descriptio
   </extension>
 </addon>
 
-<addon id="plugin.video.youtube" name="YouTube" version="5.3.3" provider-name="jdf76, bromix">
+<addon id="plugin.video.youtube" name="YouTube" version="5.3.4" provider-name="jdf76, bromix">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0"/>
 	</requires>
@@ -3384,7 +3386,7 @@ For support, visit: [COLOR hotpink]http://bit.ly/uwc-support[/COLOR]</descriptio
     </extension>
 </addon>
 
-<addon id="repository.whitecream" name="WhiteCream repo" version="2.0.1" provider-name="mortael">
+<addon id="repository.whitecream" name="WhiteCream repo" version="2.0.2" provider-name="Whitecream">
 	<extension point="xbmc.addon.repository" name="WhiteCream repo">
 		<dir>
 			<info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>

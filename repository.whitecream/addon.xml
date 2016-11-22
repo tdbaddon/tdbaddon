@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="repository.whitecream" name="WhiteCream repo" version="2.0.1" provider-name="mortael">
+<addon id="repository.whitecream" name="WhiteCream repo" version="2.0.2" provider-name="Whitecream">
 	<extension point="xbmc.addon.repository" name="WhiteCream repo">
 		<dir>
 			<info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>

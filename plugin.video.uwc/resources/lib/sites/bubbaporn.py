@@ -1,6 +1,6 @@
 '''
     Ultimate Whitecream
-    Copyright (C) 2015 mortael
+    Copyright (C) 2015 Whitecream
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -42,11 +42,10 @@ def TPList(url, page=1):
     except:
         utils.notify('Oh oh','It looks like this website is down.')
         return None
-    match = re.compile('prefix="([^"]+)[^<]+[^"]+"([^"]+)">([^<]+)<[^"]+[^>]+>([^\s]+)\s', re.DOTALL | re.IGNORECASE).findall(listhtml)
+    match = re.compile('src="([^"]+jpg)[^<]+[^"]+"([^"]+)">([^<]+)<[^"]+[^>]+>([^\s]+)\s', re.DOTALL | re.IGNORECASE).findall(listhtml)
     for thumb, videourl, name, duration in match:
         name = utils.cleantext(name)
         videourl = "http://www.bubbaporn.com" + videourl
-        thumb = thumb + "1.jpg"
         name = name + " [COLOR deeppink]" + duration + "[/COLOR]"
         utils.addDownLink(name, videourl, 92, thumb, '')
     if re.search('Next &raquo;</a>', listhtml, re.DOTALL | re.IGNORECASE):

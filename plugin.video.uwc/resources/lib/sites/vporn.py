@@ -1,6 +1,6 @@
 '''
     Ultimate Whitecream
-    Copyright (C) 2015 mortael
+    Copyright (C) 2015 Whitecream
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -63,9 +63,9 @@ def Playvid(url, name, download=None):
 @utils.url_dispatcher.register('503')
 def Categories():
     cathtml = utils.getHtml('https://www.vporn.com/', '')
-    match = re.compile('<li ><a href="(.+?)">(.+?)</a></li>').findall(cathtml)
+    match = re.compile('<li><a href="/cat/(.+?)"><img .*>(.+?)</a></li>').findall(cathtml)
     for catid, name in match[1:]:
-        catpage = "https://www.vporn.com/"+ catid
+        catpage = "https://www.vporn.com/cat/"+ catid
         utils.addDir(name, catpage, 501, '')
     xbmcplugin.endOfDirectory(utils.addon_handle)
     

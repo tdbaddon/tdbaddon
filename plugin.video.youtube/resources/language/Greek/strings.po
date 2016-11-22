@@ -114,7 +114,7 @@ msgstr "Επιτρέψτε τον οδηγό ρυθμίσεων"
 
 msgctxt "#30026"
 msgid "Override View"
-msgstr "Εναλλαγή Οθόνης"
+msgstr "Επιβολή τρόπου απεικόνισης"
 
 msgctxt "#30027"
 msgid "View: Default"
@@ -592,3 +592,7 @@ msgstr "Αποτυχία"
 msgctxt "#30577"
 msgid "Settings"
 msgstr "Ρυθμίσεις"
+
+msgctxt "#30578"
+msgid "Force SSL Certificate verification"
+msgstr ""

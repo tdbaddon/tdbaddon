@@ -1,3 +1,10 @@
+[B]Version 1.1.45[/B]
+Added: Xhamster (thanks hdgdl)
+Fixed: VPorn, Camsoda, Cam4, Naked, Xtheatre, Porntrex
+Fixed: Bubbaporn, Spankbang, HClips, ParadiseHill
+Removed: Streams, use Ultimate IPTV
+
+
 [B]Version 1.1.44[/B]
 Added: Option to enable/disable differen chaturbate sections
 Added: HD Playback for Pornhub
@@ -13,7 +20,7 @@ Added: Amateur Cool and VPorn (thanks anton40)
 Fixed: Chaturbate next page
 Fixed: Pornhub categories
 Fixed: Freeomovie download
-Fixed: Camsoda (thanks hdgdl))
+Fixed: Camsoda (thanks hdgdl)
 Changed: Todayporn -> Bubbaporn
 Changed: Chaturbate playback (see Chaturbate tab in addon settings)
 

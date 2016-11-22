@@ -1,6 +1,6 @@
 '''
     Ultimate Whitecream
-    Copyright (C) 2016 mortael
+    Copyright (C) 2016 Whitecream
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -51,12 +51,7 @@ def INDEX():
     download_path = addon.getSetting('download_path')
     if download_path != '' and os.path.exists(download_path):
         utils.addDir('[COLOR hotpink]Whitecream[/COLOR] [COLOR white]Download Folder[/COLOR]',download_path,4,os.path.join(rootDir, 'icon.png'),'')
-        
-    if not addon.getSetting('uwccounter') == 'true':
-        try:
-            counterpage = utils.getVideoLink('http://bit.ly/uwccounter','http://UWC-' + utils.__version__ + '.com')
-            addon.setSetting('uwccounter','true')
-        except: pass
+    utils.addDir('[COLOR white]Follow[/COLOR] [COLOR hotpink]Whitecream[/COLOR] [COLOR white]on Twitter:[/COLOR] [COLOR blue]@Whitecream_UWC[/COLOR]','','',os.path.join(rootDir, 'icon.png'),'', Folder=False)    
         
     xbmcplugin.endOfDirectory(utils.addon_handle, cacheToDisc=False)
 
@@ -121,7 +116,8 @@ def INDEXT():
     utils.addDir('[COLOR hotpink]Anybunny[/COLOR]','http://anybunny.com/',320,os.path.join(imgDir, 'anybunny.png'),'')    
     utils.addDir('[COLOR hotpink]SpankBang[/COLOR]','http://spankbang.com/new_videos/',440,os.path.join(imgDir, 'spankbang.png'),'')	
     utils.addDir('[COLOR hotpink]Amateur Cool[/COLOR]','http://www.amateurcool.com/most-recent/',490,os.path.join(imgDir, 'amateurcool.png'),'')	
-    utils.addDir('[COLOR hotpink]Vporn[/COLOR]','https://www.vporn.com/newest/',500,os.path.join(imgDir, 'vporn.png'),'')	
+    utils.addDir('[COLOR hotpink]Vporn[/COLOR]','https://www.vporn.com/newest/',500,os.path.join(imgDir, 'vporn.png'),'')
+    utils.addDir('[COLOR hotpink]xHamster[/COLOR]','https://xhamster.com/',505,os.path.join(imgDir, 'xhamster.png'),'')
     xbmcplugin.endOfDirectory(utils.addon_handle, cacheToDisc=False)
 
 @utils.url_dispatcher.register('7')    
@@ -131,7 +127,6 @@ def INDEXW():
     utils.addDir('[COLOR hotpink]Cam4[/COLOR] [COLOR white]- webcams[/COLOR]','http://www.cam4.com',280,os.path.join(imgDir, 'cam4.png'),'')    
     utils.addDir('[COLOR hotpink]Camsoda[/COLOR] [COLOR white]- webcams[/COLOR]','http://www.camsoda.com',475,os.path.join(imgDir, 'camsoda.png'),'')    
     utils.addDir('[COLOR hotpink]naked.com[/COLOR] [COLOR white]- webcams[/COLOR]','http://www.naked.com',480,os.path.join(imgDir, 'naked.png'),'')    
-    utils.addDir('[COLOR hotpink]Streams[/COLOR] [COLOR white]- beta[/COLOR]','',8,'','')
     xbmcplugin.endOfDirectory(utils.addon_handle, cacheToDisc=False)
 
 @utils.url_dispatcher.register('3')    
@@ -140,14 +135,6 @@ def INDEXH():
     utils.addDir('[COLOR hotpink]Hentaihaven[/COLOR]','http://hentaihaven.org/?sort=date',460,os.path.join(imgDir, 'hh.png'),'')
     xbmcplugin.endOfDirectory(utils.addon_handle, cacheToDisc=False)    
 
-@utils.url_dispatcher.register('8')    
-def STREAMS():
-    streamurl = 'http://bit.ly/uwcstreams'
-    streamlist = utils.getHtml(streamurl, '')
-    match = re.compile('#.+,(.+?)\n(.+?)\n').findall(streamlist)
-    for name, url in match:
-        utils.addDownLink(name, url, 9, '', '', True)
-    xbmcplugin.endOfDirectory(utils.addon_handle)
 
 @utils.url_dispatcher.register('5', ['page'])
 def ONELIST(page=1):

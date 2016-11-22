@@ -74,7 +74,7 @@ sd_streams = ['goindexsport','multi-sports.eu', 'watchnfl.live', 'streamhd.eu', 
 			'zona4vip.com', 'ciscoweb.ml', 'streamendous.com','streamm.eu', 'sports-arena.net', 'stablelivestream.com', 
 			'iguide.to', 'sportsleague.me','kostatz.com', 'soccerpluslive.com', 'zunox', 'apkfifa.com','watchhdsports.xyz','lovelysports2016.ml',
 			'sports4u.live','tusalavip3.es.tl', 'neymargoals.com', 'crichd.sx', 'unitedstream.live','stream4us.info','freecast.xyz','focustream.info',
-			's4power.club', 'footystreams.net', 'topstream.es.tl', 'pushmycar.cf','zifootball.us']
+			's4power.club', 'footystreams.net', 'topstream.es.tl', 'pushmycar.cf','zifootball.us','hehestreams.xyz/nba/games']
 
 def utc_to_local(utc_dt):
     timestamp = calendar.timegm(utc_dt.timetuple())
@@ -517,6 +517,9 @@ def ParseLink(el, orig_title):
 	elif 'blabseal.com' in el:
 		url = Blabseal(el)
 		return url
+	elif 'openload.co' in el:
+		url = Openload(el)
+		return url
 	elif 'iceballet' in el:
 		url = Universal(el)
 		return url
@@ -680,8 +683,7 @@ def Playnhlarchive(url):
 		token = cookie.value
 	js = js['videos']
 	for el in js:
-		addDirectLink(el['key'], {'Title': orig_title}, 'http:'+el['url']+'|Cookie=video_key='+token)
-				#addLink(el['key'], orig_title, el['url']+'|Cookie=video_key='+token, mode="play")
+		addDirectLink('mail.ru - '+el['key'], {'Title': orig_title}, 'http:'+el['url']+'|Cookie=video_key='+token)
 	xbmcplugin.endOfDirectory(h, cacheToDisc=True)
 	
 def PlayArchive(url):
@@ -707,8 +709,9 @@ def PlayArchive(url):
 				token = cookie.value
 			js = js['videos']
 			for el in js:
-				addDirectLink(el['key'], {'Title': orig_title}, 'https:'+el['url']+'|Cookie=video_key='+token)
-				#addLink(el['key'], orig_title, el['url']+'|Cookie=video_key='+token, mode="play")
+				addDirectLink('mail.ru - '+el['key'], {'Title': orig_title}, 'https:'+el['url']+'|Cookie=video_key='+token)
+		elif 'openload.co' in link:
+			addLink('openload', orig_title, link, mode="play")
 	xbmcplugin.endOfDirectory(h, cacheToDisc=True)
 
 def Xrxsarch():
@@ -831,6 +834,11 @@ def Getmlb(url):
 			return link
 	except:
 		return None
+		
+def Openload(url):
+	import urlresolver
+	media_url = urlresolver.resolve(url)
+	return media_url 
 
 def Threesports():
 	for i in range (1,5,1):
@@ -874,6 +882,12 @@ def Blabseal(url):
 			link = link[1:]
 		link = url+link
 		html = GetURL(link, referer=link)
+		if 'Clappr.Player' in html and 'm3u8' in html:
+			link = re.findall("source: '(.*?)'", html)[0]
+			if link.startswith('/'):
+					return 'http://blabseal.com'+link
+			else:
+				return link
 		javasc = re.findall('(eval.*\))', html)[0]
 		import js2py
 		context = js2py.EvalJs()
@@ -1297,8 +1311,8 @@ def Universal(url):
 				link = link.replace('amp;','')	
 				if 'smotrimult' in link:
 					link = link+'|Referer='+url+'&Host='+urlparse.urlparse(link).netloc+'&Origin='+urlparse.urlparse(url).netloc+'&User-Agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.116 Safari/537.36'
-				elif 'widestream' in link:
-					link = link+'|Referer='+url+'&X-Requested-With=ShockwaveFlash/23.0.0.166'
+				'''elif 'widestream' in link:
+					link = link+'|Referer='+url+'&X-Requested-With=ShockwaveFlash/23.0.0.166'''
 				return link
 	else:
 		domain = urlparse.urlparse(url).netloc

@@ -1,6 +1,6 @@
 '''
     Ultimate Whitecream
-    Copyright (C) 2016 mortael
+    Copyright (C) 2016 Whitecream
     Copyright (C) 2016 anton40
  
     This program is free software: you can redistribute it and/or modify

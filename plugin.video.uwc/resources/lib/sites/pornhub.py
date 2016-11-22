@@ -1,6 +1,6 @@
 '''
     Ultimate Whitecream
-    Copyright (C) 2015 mortael
+    Copyright (C) 2015 Whitecream
     Copyright (C) 2015 anton40
 
     This program is free software: you can redistribute it and/or modify
@@ -86,22 +86,12 @@ def Categories(url):
 @utils.url_dispatcher.register('392', ['url', 'name'], ['download'])    
 def Playvid(url, name, download=None):
     html = utils.getHtml(url, '')
-    match = re.compile(r"var player_quality_(\w+) = '([^']+)'", re.DOTALL | re.IGNORECASE).findall(html)
-    for quality, vidurl in match:
-        if '1080' in quality:
-            videourl = vidurl
-            break
-        elif '720' in quality:
-            videourl = vidurl
-            break
-        elif '480' in quality:
-            videourl = vidurl
-            break
-        else:
-            videourl = vidurl
+    match = re.compile(r"var player_quality_(\w+)p = '([^']+)'", re.DOTALL | re.IGNORECASE).findall(html)
+    match = sorted(match, key=lambda x: int(x[0]), reverse=True)
+    videourl = match[0][1]
     if download == 1:
         utils.downloadVideo(videourl, name)
-    else:    
+    else:
         iconimage = xbmc.getInfoImage("ListItem.Thumb")
         listitem = xbmcgui.ListItem(name, iconImage="DefaultVideo.png", thumbnailImage=iconimage)
         listitem.setInfo('video', {'Title': name, 'Genre': 'Porn'})

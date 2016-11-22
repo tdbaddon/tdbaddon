@@ -1,6 +1,6 @@
 '''
     Ultimate Whitecream
-    Copyright (C) 2015 mortael
+    Copyright (C) 2015 Whitecream
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -82,7 +82,7 @@ def PTCat(url):
     match = re.compile('<a href="/videos/([^"]+)".*?original="([^"]+)" title="([^"]+)"', re.DOTALL | re.IGNORECASE).findall(cathtml)
     for catid, img, name in match:
         img = "http://www.porntrex.com/" + img
-        catpage = "http://www.porntrex.com/videos/" + catid +" ?o=mr&page=1"
+        catpage = "http://www.porntrex.com/videos/" + catid +"?o=mr&page=1"
         utils.addDir(name, catpage, 51, img, 1)
     xbmcplugin.endOfDirectory(utils.addon_handle)
 

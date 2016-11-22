@@ -1,6 +1,6 @@
 '''
     Ultimate Whitecream
-    Copyright (C) 2016 mortael
+    Copyright (C) 2016 Whitecream
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -20,6 +20,7 @@ import re
 import os
 import sys
 import sqlite3
+import urllib
 
 import xbmc
 import xbmcplugin
@@ -82,9 +83,9 @@ def List(url, page=1):
 @utils.url_dispatcher.register('282', ['url', 'name'])
 def Playvid(url, name):
     listhtml = utils.getHtml(url, '', mobileagent)
-    match = re.compile("(http[^']+m3u8)", re.DOTALL | re.IGNORECASE).findall(listhtml)
+    match = re.compile('src="(http[^"]+m3u8)', re.DOTALL | re.IGNORECASE).findall(listhtml)
     if match:
-       videourl = match[0]
+       videourl = match[0] + "|User-Agent=" + urllib.quote_plus(mobileagent['User-Agent'])
        iconimage = xbmc.getInfoImage("ListItem.Thumb")
        listitem = xbmcgui.ListItem(name, iconImage="DefaultVideo.png", thumbnailImage=iconimage)
        listitem.setInfo('video', {'Title': name, 'Genre': 'Porn'})
