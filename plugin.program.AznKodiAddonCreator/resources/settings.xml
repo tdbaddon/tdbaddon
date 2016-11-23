@@ -1,0 +1,18 @@
+<settings>
+	<category label="[COLOR red][B]Add Paths[/B][/COLOR] - Please fill in [COLOR red][B]ALL[/B] [/COLOR]settings.">
+		<setting label="Name of plugin folder [COLOR red][B]NO SPECIAL EFFECTS ALLOWED[/B][/COLOR]" type="text"  id="name_of_plugin_folder" default="" />	
+		<setting label="Name of addon" type="text"  id="name_of_addon" default="" />
+		<setting label="Addon's version number. [COLOR red][B]Use numbers and dots[/B][/COLOR]" type="text"  id="addon_version_number" default="0.0.1" />		
+		<setting label="Name of provider" type="text"  id="provider-name" default="" />   
+		<setting label="Enter text for addon's summary" type="text"  id="sum_mary" default="" />	
+		<setting label="Enter text to describe addon" type="text"  id="desc" default="" />
+		<setting type="sep" />		
+		<setting label="Local path to addon's [COLOR red][B]icon.png[/B][/COLOR]" type="file"  id="addon_icon" default="" /> 	
+		<setting label="Local path to addon's [COLOR red][B]fanart.jpg[/B][/COLOR]" type="file"  id="addon_fanart" default="" />
+	</category>			
+	<category label="[COLOR red][B]Add URLs[/B][/COLOR] and destination">	
+		<setting label="M3U's URL for new addon [COLOR red][B](OPTIONAL)[/B][/COLOR]" type="text"  id="online_m3u" default="" />
+		<setting label="XML's URL for new addon [COLOR red][B](OPTIONAL)[/B][/COLOR]" type="text"  id="online_xml" default="" />		
+		<setting label="Destination for new addon.zip [COLOR red][B](OPTIONAL)[/B][/COLOR]" type="folder"  id="dst" default="" />				
+	</category>		
+</settings>

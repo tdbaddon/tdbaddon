@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.video.cuba-tv"
+       name="CUBA-TV"
+       version="0.0.8"
+       provider-name="Alex Lopez Rodriguez">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.beautifulsoup" version="3.2.1"/>
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.beautifulsoup4" />
+    <import addon="script.module.requests" />
+    <import addon="script.module.httplib2" />
+    <import addon="script.module.liveresolver" version="0.1.24" optional="true"/>
+    <import addon="script.module.youtube.dl" optional="true"/>
+    <import addon="plugin.video.youtube" version="5.2.1"/>
+    <import addon="script.module.urlresolver" version="3.0.23"/>
+    <import addon="script.module.simplejson" />    
+     <import addon="script.module.livestreamer" optional="true"/>
+     <import addon="script.module.pyamf" optional="true"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>JalexFILMS presenta CUBA-TV Creado por Alex Lopez Rodriguez Espero disfruten el contenido¡¡¡</summary>
+    <description>
+        Este Addon esta creado con el objetivo de llevar contenido a los cubanos que se encuentran fuera de la isla y a todos los latinos "la cultura cubana es de dominio publico no pertenece a ningun gobierno es del pueblo y para el pueblo"Saludos a todos¡¡¡
+    </description>
+    <platform>all</platform>
+  </extension>
+</addon>

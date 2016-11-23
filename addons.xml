@@ -370,6 +370,31 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 </addon>
 
+<addon id="plugin.program.AznKodiAddonCreator" name="*AznKodi [COLOR cyan]Add-on Creator[/COLOR]" version="1.0.0" provider-name="AznKodi">
+    <requires>
+    </requires>
+    <extension point="xbmc.python.pluginsource"
+               library="default.py">
+        <provides>executable</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary>XBMC/Kodi add-on creator</summary>
+        <description>
+Use this add-on creator to make your own favorite XBMC/Kodi addons to use with[COLOR red][B] m3u and/or xml playlists (NO REGEX)[/B][/COLOR]
+
+Dùng addon creator này để tạo ra các XBMC/Kodi addons theo sở thích dùng chung với[COLOR red][B] danh sách m3u và/hoặc xml (NO REGEX)[/B][/COLOR]
+		</description>
+		<disclaimer></disclaimer>
+		<platform>all</platform>
+		<license>http://www.gnu.org/licenses/</license>
+		<forum></forum>
+		<website></website>
+		<email></email>
+		<mainsource>https://github.com/AznKodi/repository.AznKodi</mainsource>
+		<source></source>
+    </extension>
+</addon>
+
 <addon id="plugin.program.AznKodiConverter" name="*AznKodi [COLOR cyan]M3U XML Converter[/COLOR]" version="1.0.0" provider-name="AznKodi">
     <requires>
     </requires>
@@ -395,6 +420,29 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 		<mainsource>https://github.com/AznKodi/repository.AznKodi</mainsource>
 		<source></source>
     </extension>
+</addon>
+
+<addon id="plugin.program.goodfellasmessages" version="1.1.2"
+       name="GoodFellas Messages" provider-name="The Goodfellas">
+  <requires>
+  	<import addon="xbmc.python" version="2.1.0"/>
+  	<import addon="script.module.addon.common" optional="true" />
+  </requires>
+  <extension point="xbmc.python.script" library="default.py">
+    <provides>executable</provides>
+  </extension>
+  <extension point="xbmc.service" library="service.py" start="startup">
+  </extension>
+  <extension point="xbmc.addon.metadata">
+  	<summary>GOODFELLAS NEWS</summary>
+  	<description>Goodfellas Messages</description>
+  	<disclaimer>We do not assume any responsibility for any problems this may cause plugin.</disclaimer>
+  	<language>en</language>
+  	<platform>all</platform>
+  	<website>http://www.teamgoodfellas.com</website>
+  	<source></source>
+  	<email>none</email>
+  </extension>
 </addon>
 
 <addon id="plugin.program.super.favourites" name="Super Favourites" version="2.0.39" provider-name="spoyser">
@@ -745,6 +793,33 @@ Internet [COLOR red]adult TV and videos [COLOR white]from various sources.
   </extension>
 </addon>
 
+<addon id="plugin.video.colombiatv"
+       name="ColombiaTV"
+       version="1.3.6"
+       provider-name="Wiiego">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0" />
+    <import addon="script.module.simplejson" />
+    <import addon="script.common.plugin.cache" version="2.5.1" />
+    <import addon="script.module.parsedom" version="2.5.1" />
+    <import addon="script.module.simple.downloader" version="0.9.4" />
+    <import addon="script.module.beautifulsoup" version="3.2.1"/>
+    <import addon="script.module.requests" />
+    <import addon="script.module.httplib2" />
+    <import addon="script.module.urlresolver" optional="true"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource"
+            library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <platform>all</platform>
+    <summary lang="en">ColombiaTV</summary>
+    <description lang="en">ColombiaTV is the best addon to watch the main TV Channels from Colombia</description>
+    <description lang="es">ColombiaTV es el mejor addon para ver los principales canales de Televisión de Colombia</description>
+  </extension>
+</addon>
+
 <addon id="plugin.video.concertarchive"
        name="Concert Archive"
        version="1.0.2"
@@ -793,6 +868,37 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
 
 		<platform>all</platform>
 	</extension>
+</addon>
+
+<addon id="plugin.video.cuba-tv"
+       name="CUBA-TV"
+       version="0.0.8"
+       provider-name="Alex Lopez Rodriguez">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.beautifulsoup" version="3.2.1"/>
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.beautifulsoup4" />
+    <import addon="script.module.requests" />
+    <import addon="script.module.httplib2" />
+    <import addon="script.module.liveresolver" version="0.1.24" optional="true"/>
+    <import addon="script.module.youtube.dl" optional="true"/>
+    <import addon="plugin.video.youtube" version="5.2.1"/>
+    <import addon="script.module.urlresolver" version="3.0.23"/>
+    <import addon="script.module.simplejson" />
+     <import addon="script.module.livestreamer" optional="true"/>
+     <import addon="script.module.pyamf" optional="true"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>JalexFILMS presenta CUBA-TV Creado por Alex Lopez Rodriguez Espero disfruten el contenido¡¡¡</summary>
+    <description>
+        Este Addon esta creado con el objetivo de llevar contenido a los cubanos que se encuentran fuera de la isla y a todos los latinos "la cultura cubana es de dominio publico no pertenece a ningun gobierno es del pueblo y para el pueblo"Saludos a todos¡¡¡
+    </description>
+    <platform>all</platform>
+  </extension>
 </addon>
 
 <addon id="plugin.video.dclip"
@@ -1188,6 +1294,39 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
 		<disclaimer lang="en">The author is not responsible for the media you find in this add-on.</disclaimer>
     </extension>
 
+</addon>
+
+<addon id="plugin.video.goodfellas"
+       name="GoodFellas 2.0"
+       version="2.0.1"
+       provider-name="goodfellas 2.0">
+   <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.beautifulsoup" version="3.2.1"/>
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.beautifulsoup4" />
+    <import addon="script.module.requests" />
+    <import addon="script.module.httplib2" />
+    <import addon="script.module.youtube.dl" optional="true"/>
+    <import addon="plugin.video.youtube" />
+    <import addon="script.module.urlresolver" optional="true"/>
+    <import addon="script.module.simplejson" />
+    <import addon="script.module.metahandler" version="2.5.1"/>
+    <import addon="repository.shani" version="2.8"/>
+	<import addon="plugin.video.f4mTester" optional="true"/>
+	<import addon="plugin.program.goodfellasmessages" optional="false"/>
+	<import addon="plugin.video.SportsDevil" optional="true"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Media content from the Internet</summary>
+    <description lang="en">We do not host or upload any video, films, media file, live streams (avi, mov, flv, mpg, mpeg, divx, dvd rip, mp3, mp4.
+	We have no control over the links on any site that we provide a link to. If you see any form of infringements, please contact appropriate media
+	file owners or host sites immediately.  </description>
+    <platform>all</platform>
+  </extension>
 </addon>
 
 <addon id="plugin.video.greek.tv" name="Greek TV" version="1.0.3" provider-name="Twilight0">
@@ -2012,23 +2151,24 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBTVSHOWS"
        name="TDB TV SHOWS"
-       version="1005"
+       version="1006"
        provider-name="TDB">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
-	<import addon="script.module.t0mm0.common" version="2.0.0"/>
     <import addon="script.module.beautifulsoup" version="3.2.1"/>
     <import addon="script.module.simple.downloader" version="0.9.4"/>
     <import addon="script.module.beautifulsoup4" />
-    <import addon="script.module.simple.downloader" version="0.9.4"/>
     <import addon="script.module.requests" />
-    <import addon="script.module.httplib2" />
+	<import addon="script.module.httplib2" />
     <import addon="script.module.youtube.dl" optional="true"/>
-    <import addon="plugin.video.youtube" version="3.0.0"/>
+    <import addon="plugin.video.youtube" />
+	<import addon="script.module.urlresolver" optional="true"/>
+	<import addon="script.module.simplejson" />
+	<import addon="script.module.metahandler" version="2.5.1"/>
+	<import addon="plugin.video.f4mTester" optional="true"/>
+	<import addon="script.module.t0mm0.common" version="2.0.0"/>
     <import addon="script.module.urlresolver" optional="true"/>
-    <import addon="script.module.simplejson" />
     <import addon="script.common.plugin.cache" version="2.5.2"/>
-    <import addon="script.module.metahandler" version="2.5.1"/>
 
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
@@ -2676,6 +2816,19 @@ Follow us on twitter: [COLOR blue]Whitecream_UWC[/COLOR]</description>
 	</extension>
 </addon>
 
+<addon id="repository.cuba-tv" name="Cuba-tv Addon Repository" version="0.0.1" provider-name="Alex Lopez Rodriguez">
+	<extension point="xbmc.addon.repository" name="Cuba-tv Addon Repository">
+            <info compressed="false">http://cuba-tv-kodi.org/repo/file/addons.xml</info>
+            <checksum>http://cuba-tv-kodi.org/repo/file/addons.xml.md5</checksum>
+            <datadir zip="true">http://cuba-tv-kodi.org/repo/file/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Repo CUBA-TV por JalexFILMS</summary>
+		<description>Instala la repo para mantenerte actualizado gracias por disfrutar el contenido de cuba-tv Alex Lopez Rodriguez y JalexFILMS te dan las gracias...</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
 <addon id="repository.dokinl" name="DOKITV.NL Repository" version="1.0.2" provider-name="DOKITV.NL">
 	<extension point="xbmc.addon.repository" name="DOKITV.NL Repository">
 		<info compressed="false">http://raw.github.com/doki1/dokitvnl/master/addons.xml</info>
@@ -2778,6 +2931,19 @@ Follow us on twitter: [COLOR blue]Whitecream_UWC[/COLOR]</description>
 		<description lang="pl">Wtyczki z nieoficjalnego, repozytorium polskiego mrknow.pl..</description>
 		<disclaimer lang="en">Repository has non-comercial nature. Created by enthusiasts, acting in good faith.</disclaimer>
 		<disclaimer lang="pl">Zawartość repozytorium ma charakter niekomercyjny, wtyczki tworzone przez pasjonatów, .</disclaimer>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="repository.goodfellas" name="GoodFellas" version="1.1" provider-name="GoodFellas">
+	<extension point="xbmc.addon.repository" name="Good Fellas">
+		<info compressed="false">http://www.goodfellasteam.com/Plugins/addons.xml</info>
+		<checksum>http://www.goodfellasteam.com/Plugins/addons.xml.md5</checksum>
+		<datadir zip="true">http://www.goodfellasteam.com/Plugins/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Welcome to the GoodFellas Repository where you will find all the Live Tv, Movies, and Documentaries</summary>
+		<description>The Best Live Tv and Movies addon</description>
 		<platform>all</platform>
 	</extension>
 </addon>
@@ -3383,6 +3549,19 @@ Follow us on twitter: [COLOR blue]Whitecream_UWC[/COLOR]</description>
 		<summary>The Official WhiteCream repository</summary>
 		<description>This repository contains addons that are for adults only. You may only view the contents of this repository if you are at least 18 years of age, or at least the age of majority in the jurisdiction where you reside or from which you access this content.</description>
 		<disclaimer>The owners and submitters to this repository do not host or distribute any of the content displayed by these addons nor do they have any affiliation with the content providers.</disclaimer>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="repository.wiiego" name="Wiiego's XBMC Addons" version="1.0.1" provider-name="wiiego">
+	<extension point="xbmc.addon.repository" name="Wiiego's XBMC Addons Repository">
+		<info compressed="false">https://github.com/diegofn/wiiego-xbmc-addons/raw/master/addons.xml</info>
+		<checksum>https://github.com/diegofn/wiiego-xbmc-addons/raw/master/addons.xml.md5</checksum>
+		<datadir zip="true">https://github.com/diegofn/wiiego-xbmc-addons/raw/master/repo/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Install Wiiego's Addons</summary>
+		<description>Download and install multimedia addons by Wiiego</description>
 		<platform>all</platform>
 	</extension>
 </addon>
@@ -4069,6 +4248,74 @@ Follow us on twitter: [COLOR blue]Whitecream_UWC[/COLOR]</description>
                 </info>
                 <checksum>
                 http://md5.superrepo.org/v7/.md5/jarvis/all/addons.xml.md5
+                </checksum>
+                <datadir zip="true">http://redirect.superrepo.org/v7/addons/</datadir>
+                <hashes>true</hashes>
+                </extension>
+                <extension point="xbmc.addon.metadata">
+                <summary>
+                Install add-ons from the SuperRepo All Repository
+                </summary>
+                <summary lang="nl">
+                Installeer add-ons uit de SuperRepo All Repository
+                </summary>
+                <summary lang="cz">Inštalácia add-ons zo SuperRepo All Repozitár</summary>
+                <summary lang="de">
+                Installation von Addons aus dem SuperRepo All Repository
+                </summary>
+                <summary lang="pt">Instale add-ons do SuperRepo All Repositório</summary>
+                <summary lang="br">Instale add-ons do SuperRepo All Repositório</summary>
+                <description>
+                Download and install add-ons for Kodi in the category "All" using SuperRepo.[CR][CR]By using SuperRepo repositories you will be able to take advantage of our serverside dependency checking, extensive file mirror service and many more.[CR]Visit our website at https://superrepo.org/ to browse the add-ons, create personal addon bundles and install whole bundles at once![CR][CR]
+                </description>
+                <description lang="nl">
+                Download and installeer add-ons voor Kodi in de categorie "All" via SuperRepo.[CR]Door SuperRepo te installeren kunt u profiteren van onze controle van add-ons en ons uitgebreide server netwerk. Bezoek onze website op https://superrepo.org om door de add-ons te bladeren, persoonlijke add-on bundels te maken en complete bundels in 1 keer te installeren![CR][CR]
+                </description>
+                <description lang="cz">
+                Preber a inštaluj add-ons do kategórie "All" z SuperRepo.org add-on repozitár.[CR][CR]Ak si našiel add-on ktorý je poškodený alebo nefunkčný, alebo chceš pridať nový add-on, potom prosím pozri na https://superrepo.org/[CR][CR]Repozitár je udržiavaný komunitou Kodi a za pomoci SuperRepo Wiki, a tento preberá add-ons z rôznych zdrojov. Vzhľadom na to, SuperRepo nenesie žiadnu zodpovednosť za služby poskytované týmito add-ons.[CR][CR]Rozšírený repozitár vyvinul Bart Otten[CR][CR]
+                </description>
+                <description lang="de">
+                Lade und installiere Addons der Kategorie "All" aus dem SuperRepo.org Addon Repository.[CR][CR]Möchtest du ein fehlerhaftes Addon melden oder ein neues Addon vorschlagen, kannst du dies über unsere Webseite http://superrepo.org tun.[CR][CR]Das Repository wird mit Hilfe des SuperRepo Wiki durch die Kodi Community gepflegt und durch unseren Generator aus mehreren Quellen zusammengestellt. Daher übernimmt SuperRepo keinerlei Verantwortung für diesen Service.[CR][CR]Der"eXtended Reposity Generator" wird durch Bart Otten entwickelt.[CR][CR]
+                </description>
+                <description lang="pt">
+                Baixe e instale o add-ons na categoria "All" do Repositório SuperRepo.org. [CR] [CR] Se você encontrar um add-on quebrado ou não funcionando, ou você gostaria de incluir um outro, por favor visite https://superrepo.org/ [CR] [CR]O repositório é mantida pela comunidade do Kodi usando o Wiki do SuperRepo e o nosso gerador de busca de add-ons múltiplas fontes. Portanto SuperRepo não aceita qualquer responsabilidade por esse serviço.[CR][CR]O Gerador Reposity eXtended é desenvolvido por Bart Otten[CR][CR]
+                </description>
+                <description lang="br">
+                Baixe e instale o add-ons na categoria "All" do Repositório SuperRepo.org. [CR] [CR] Se você encontrar um add-on quebrado ou não funcionando, ou você gostaria de incluir um outro, por favor visite https://superrepo.org/ [CR][CR]O repositório é mantida pela comunidade do Kodi usando o Wiki do SuperRepo e o nosso gerador de busca de add-ons múltiplas fontes. Portanto SuperRepo não aceita qualquer responsabilidade por esse serviço.[CR][CR]O Gerador Reposity eXtended é desenvolvido por Bart Otten[CR][CR]
+                </description>
+                <disclaimer>
+                The SuperRepo generator fetches addons from multiple sources. Therefore SuperRepo accepts no responsibility for included addons.[CR]
+                </disclaimer>
+                <disclaimer lang="nl">
+                De SuperRepo generator verzamelt addons van verschillende bronnen. Daarom accepteert SuperRepo geen enkele verantwoordelijkheid voor de ingevoegde addons.[CR]
+                </disclaimer>
+                <disclaimer lang="cz">
+                Repozitár je udržiavaný komunitou Kodi a za pomoci SuperRepo Wiki, a tento preberá addons z rôznych zdrojov. Vzhľadom na to, SuperRepo nenesie žiadnu zodpovednosť za služby poskytované týmito addons.[CR]
+                </disclaimer>
+                <disclaimer lang="de">
+                Das Repository wird durch die Kodi Community gepflegt und durch unseren Generator aus mehreren Quellen zusammengestellt. Daher übernimmt SuperRepo keinerlei Verantwortung für die enthaltenen Addons.[CR]
+                </disclaimer>
+                <disclaimer lang="pt">
+                O repositório é mantido pela comunidade comunidade do Kodi e o nosso gerador de busca de addons de múltiplas fontes. Portanto SuperRepo aceita não se responsabiliza por addons incluídos.[CR]
+                </disclaimer>
+                <disclaimer lang="br">
+                O repositório é mantido pela comunidade comunidade do Kodi e o nosso gerador de busca de addons de múltiplas fontes. Portanto SuperRepo aceita não se responsabiliza por addons incluídos.[CR]
+                </disclaimer>
+                <platform>all</platform>
+                <website>https://superrepo.org/</website>
+                </extension>
+                </addon>
+
+<addon id="superrepo.kodi.krypton.all" name="SuperRepo All [Krypton][v7]" version="0.7.04" provider-name="Bart Otten">
+                <requires>
+                <import addon="xbmc.addon" version="12.0.0"/>
+                </requires>
+                <extension point="xbmc.addon.repository" name="SuperRepo All [Krypton][v7]">
+                <info compressed="false">
+                http://xml.superrepo.org/v7/.xml/krypton/all/addons.xml
+                </info>
+                <checksum>
+                http://md5.superrepo.org/v7/.md5/krypton/all/addons.xml.md5
                 </checksum>
                 <datadir zip="true">http://redirect.superrepo.org/v7/addons/</datadir>
                 <hashes>true</hashes>
