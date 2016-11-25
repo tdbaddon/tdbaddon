@@ -1,3 +1,13 @@
+[B]Version 6.0.3[/B]
+fastv ua
+[B]Version 6.0.2[/B]
+removed extension
+[B]Version 6.0.1[/B]
+fasttv updated
+[B]Version 6.0.0[/B]
+my sports updated
+[B]Version 5.9.8[/B]
+fixed pv2 and fast etc
 [B]Version 5.9.7[/B]
 notification is silent and pv2 retry is fixed
 [B]Version 5.9.6[/B]

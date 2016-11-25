@@ -27,20 +27,20 @@ msgid "Show BUP (backup) streams"
 msgstr "Show BUP (backup) streams"
 
 msgctxt "#30004"
-msgid ""
-msgstr ""
+msgid "Enable Sort"
+msgstr "Enable Sort"
 
 msgctxt "#30005"
-msgid ""
-msgstr ""
+msgid "Group"
+msgstr "Group"
 
 msgctxt "#30006"
-msgid ""
-msgstr ""
+msgid "Title"
+msgstr "Title"
 
 msgctxt "#30007"
-msgid ""
-msgstr ""
+msgid "Sort Method"
+msgstr "Sort Method"
 
 msgctxt "#30008"
 msgid ""

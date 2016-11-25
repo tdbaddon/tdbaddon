@@ -18,7 +18,7 @@
         along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-import re, os, sys, base64
+import re, os, sys, base64, random
 import urlparse, urllib2, urllib
 import xbmcaddon, xbmcgui, xbmcplugin, xbmc
 from resources.lib import ordereddict
@@ -49,10 +49,31 @@ params = dict(urlparse.parse_qsl(sys.argv[2][1:]))
 action = params.get('action', None)
 
 
-def opener(url):
+def random_agent():
+
+    BR_VERS = [['%s.0' % i for i in xrange(18, 43)],
+               ['37.0.2062.103', '37.0.2062.120', '37.0.2062.124', '38.0.2125.101',
+                '38.0.2125.104', '38.0.2125.111', '39.0.2171.71', '39.0.2171.95',
+                '39.0.2171.99', '40.0.2214.93', '40.0.2214.111', '40.0.2214.115',
+                '42.0.2311.90', '42.0.2311.135', '42.0.2311.152', '43.0.2357.81',
+                '43.0.2357.124', '44.0.2403.155', '44.0.2403.157', '45.0.2454.101',
+                '45.0.2454.85', '46.0.2490.71', '46.0.2490.80', '46.0.2490.86',
+                '47.0.2526.73', '47.0.2526.80'], ['11.0']]
+    WIN_VERS = ['Windows NT 10.0', 'Windows NT 7.0', 'Windows NT 6.3', 'Windows NT 6.2', 'Windows NT 6.1',
+                'Windows NT 6.0', 'Windows NT 5.1', 'Windows NT 5.0']
+    FEATURES = ['; WOW64', '; Win64; IA64', '; Win64; x64', '']
+    RAND_UAS = ['Mozilla/5.0 ({win_ver}{feature}; rv:{br_ver}) Gecko/20100101 Firefox/{br_ver}',
+                'Mozilla/5.0 ({win_ver}{feature}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{br_ver} Safari/537.36',
+                'Mozilla/5.0 ({win_ver}{feature}; Trident/7.0; rv:{br_ver}) like Gecko']
+    index = random.randrange(len(RAND_UAS))
+    return RAND_UAS[index].format(win_ver=random.choice(WIN_VERS), feature=random.choice(FEATURES),
+                                  br_ver=random.choice(BR_VERS[index]))
+
+
+def opener(url, user_agent='Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3'):
 
     req = urllib2.Request(url)
-    req.add_header('User-Agent', 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
+    req.add_header('User-Agent', user_agent)
     response = urllib2.urlopen(req)
     result = response.read()
     response.close()
@@ -62,7 +83,7 @@ def opener(url):
 
 def ant1cy_resolver():
 
-    return opener('http://www.ant1iwo.com/ajax.aspx?m=Atcom.Sites.Ant1iwo.Modules.TokenGenerator&videoURL=http://l2.cloudskep.com/antl2/abr/playlist.m3u8')
+    return opener('http://www.ant1iwo.com/ajax.aspx?m=Atcom.Sites.Ant1iwo.Modules.TokenGenerator&videoURL=http://l2.cloudskep.com/antl2/abr/playlist.m3u8', random_agent())
 
 
 def constructor():
@@ -80,7 +101,7 @@ def constructor():
         title = title.strip()
 
         if title == 'ANT1 CY':
-            url = ant1cy_resolver() + '|User-Agent=' + urllib.quote_plus('Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3')
+            url = ant1cy_resolver() + '|User-Agent=' + urllib.quote_plus(random_agent())
 
         item_data = ({'title': title, 'icon': icon, 'group': group.decode('utf-8'), 'url': url})
         compiled_list.append(item_data)
@@ -209,277 +230,6 @@ def switcher():
         execute('Dialog.Close(busydialog)')
         xbmc.sleep(500)
         execute('Container.Refresh')
-    elif choices == 21:
-        addon.setSetting('group', (groups.pop(21)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
-    elif choices == 22:
-        addon.setSetting('group', (groups.pop(22)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
-    elif choices == 23:
-        addon.setSetting('group', (groups.pop(23)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
-    elif choices == 24:
-        addon.setSetting('group', (groups.pop(24)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
-    elif choices == 25:
-        addon.setSetting('group', (groups.pop(25)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
-    elif choices == 26:
-        addon.setSetting('group', (groups.pop(26)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
-    elif choices == 27:
-        addon.setSetting('group', (groups.pop(27)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
-    elif choices == 28:
-        addon.setSetting('group', (groups.pop(28)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
-    elif choices == 29:
-        addon.setSetting('group', (groups.pop(29)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
-    elif choices == 30:
-        addon.setSetting('group', (groups.pop(30)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
-    elif choices == 31:
-        addon.setSetting('group', (groups.pop(31)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
-    elif choices == 32:
-        addon.setSetting('group', (groups.pop(32)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
-    elif choices == 33:
-        addon.setSetting('group', (groups.pop(33)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
-    elif choices == 34:
-        addon.setSetting('group', (groups.pop(34)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
-    elif choices == 35:
-        addon.setSetting('group', (groups.pop(35)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
-    elif choices == 36:
-        addon.setSetting('group', (groups.pop(36)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
-    elif choices == 37:
-        addon.setSetting('group', (groups.pop(37)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
-    elif choices == 38:
-        addon.setSetting('group', (groups.pop(38)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
-    elif choices == 39:
-        addon.setSetting('group', (groups.pop(39)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
-    elif choices == 40:
-        addon.setSetting('group', (groups.pop(40)))
-        execute('Dialog.Close(busydialog)')
-        execute('Container.Refresh')
-    elif choices == 41:
-        addon.setSetting('group', (groups.pop(41)))
-        execute('Dialog.Close(busydialog)')
-        execute('Container.Refresh')
-    elif choices == 42:
-        addon.setSetting('group', (groups.pop(42)))
-        execute('Dialog.Close(busydialog)')
-        execute('Container.Refresh')
-    elif choices == 43:
-        addon.setSetting('group', (groups.pop(43)))
-        execute('Dialog.Close(busydialog)')
-        execute('Container.Refresh')
-    elif choices == 44:
-        addon.setSetting('group', (groups.pop(44)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
-    elif choices == 45:
-        addon.setSetting('group', (groups.pop(45)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
-    elif choices == 46:
-        addon.setSetting('group', (groups.pop(46)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
-    elif choices == 47:
-        addon.setSetting('group', (groups.pop(47)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
-    elif choices == 48:
-        addon.setSetting('group', (groups.pop(48)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
-    elif choices == 49:
-        addon.setSetting('group', (groups.pop(49)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
-    elif choices == 50:
-        addon.setSetting('group', (groups.pop(50)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
-    elif choices == 51:
-        addon.setSetting('group', (groups.pop(51)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
-    elif choices == 52:
-        addon.setSetting('group', (groups.pop(52)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
-    elif choices == 53:
-        addon.setSetting('group', (groups.pop(53)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
-    elif choices == 54:
-        addon.setSetting('group', (groups.pop(54)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
-    elif choices == 55:
-        addon.setSetting('group', (groups.pop(55)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
-    elif choices == 56:
-        addon.setSetting('group', (groups.pop(56)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
-    elif choices == 55:
-        addon.setSetting('group', (groups.pop(57)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
-    elif choices == 58:
-        addon.setSetting('group', (groups.pop(58)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
-    elif choices == 59:
-        addon.setSetting('group', (groups.pop(59)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
-    elif choices == 60:
-        addon.setSetting('group', (groups.pop(60)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
-    elif choices == 61:
-        addon.setSetting('group', (groups.pop(61)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
-    elif choices == 62:
-        addon.setSetting('group', (groups.pop(62)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
-    elif choices == 63:
-        addon.setSetting('group', (groups.pop(63)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
-    elif choices == 64:
-        addon.setSetting('group', (groups.pop(64)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
-    elif choices == 65:
-        addon.setSetting('group', (groups.pop(65)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
-    elif choices == 66:
-        addon.setSetting('group', (groups.pop(66)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
-    elif choices == 67:
-        addon.setSetting('group', (groups.pop(67)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
-    elif choices == 68:
-        addon.setSetting('group', (groups.pop(68)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
-    elif choices == 69:
-        addon.setSetting('group', (groups.pop(69)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
-    elif choices == 70:
-        addon.setSetting('group', (groups.pop(70)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
-    elif choices == 71:
-        addon.setSetting('group', (groups.pop(71)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
-    elif choices == 72:
-        addon.setSetting('group', (groups.pop(72)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
-    elif choices == 73:
-        addon.setSetting('group', (groups.pop(73)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
-    elif choices == 74:
-        addon.setSetting('group', (groups.pop(74)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
-    elif choices == 75:
-        addon.setSetting('group', (groups.pop(75)))
-        execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
-        execute('Container.Refresh')
     else:
         execute('Dialog.Close(busydialog)')
         dialog.notification(heading=addonname, message=localisedstr(30019), icon=addonicon, sound=False)
@@ -515,6 +265,13 @@ def list_items():
         if not constructor()[0] == []:
             filtered = [item for item in constructor()[0] if any(item['group'] == selected for selected in [addon.getSetting('group').decode('utf-8')])] if not addon.getSetting('group') == 'ΟΛΑ' else constructor()[0]
             items = root_menu + filtered
+            if addon.getSetting('sort') == 'true':
+                if addon.getSetting('method') == '0':
+                    items = root_menu + sorted(items[2:], key=lambda k: k['group'].lower())
+                elif addon.getSetting('method') == '1':
+                    items = root_menu + sorted(items[2:], key=lambda k: k['title'].lower())
+            else:
+                pass
         else:
             items = root_menu + null
             del items[1]

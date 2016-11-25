@@ -1,4 +1,4 @@
-import xbmc , xbmcaddon , xbmcgui , xbmcplugin , urllib , urllib2 , os , re , sys , urlresolver , random , glob
+import xbmc , xbmcaddon , xbmcgui , xbmcplugin , urllib , urllib2 , os , re , sys , urlresolver , random , glob , liveresolver
 from resources . libs . common_addon import Addon
 from resources . libs import net
 from metahandler import metahandlers
@@ -206,13 +206,13 @@ def KmmmkKKmk ( name , url , iconimage ) :
   quit ( )
  else :
   url = KmKmkKmk [ KKmkmkKm ]
-  if '.ts' in url :
-   url = 'plugin://plugin.video.f4mTester/?streamtype=TSDOWNLOADER&amp;name=' + name + '&amp;url=' + url
+  if liveresolver . isValid ( url ) == True : url = liveresolver . resolve ( url )
+  elif '.ts' in url : url = 'plugin://plugin.video.f4mTester/?streamtype=TSDOWNLOADER&amp;name=' + name + '&amp;url=' + url
   KmkKKKmkKKmKmkK = True
   KmkmkKmmkmkmkmmKmk = xbmcgui . ListItem ( name , iconImage = iconimage , thumbnailImage = iconimage ) ; KmkmkKmmkmkmkmmKmk . setInfo ( type = "Video" , infoLabels = { "Title" : name } )
   KmkKKKmkKKmKmkK = xbmcplugin . addDirectoryItem ( handle = int ( sys . argv [ 1 ] ) , url = url , listitem = KmkmkKmmkmkmkmmKmk )
-  xbmc . Player ( ) . play ( url , KmkmkKmmkmkmkmmKmk , False )
-  return KmkKKKmkKKmKmkK
+  KmkmkKmmkmkmkmmKmk . setPath ( url )
+  xbmcplugin . setResolvedUrl ( int ( sys . argv [ 1 ] ) , True , KmkmkKmmkmkmkmmKmk )
   if 100 - 100: KmkmkmmKK + i11IIiiIii - Kmmm + i11iIiiIii * mmk
 def I1i1iii ( url ) :
  I1i1iiI1 = iiIIIII1i1iI ( url )
@@ -264,16 +264,14 @@ def iIIIi1 ( url , name , iconimage ) :
     url = 'https://www.youtube.com/watch?v=' + KKmKKmkmmmkmmK
     I11 ( name , url , 3 , iconimage , II1 )
   else :
-   if '.ts' in url :
-    KmKmkKmk = 'plugin://plugin.video.f4mTester/?streamtype=TSDOWNLOADER&amp;name=' + name + '&amp;url=' + url
-   elif urlresolver . HostedMediaFile ( url ) . valid_url ( ) :
-    KmKmkKmk = urlresolver . HostedMediaFile ( url ) . resolve ( )
+   if urlresolver . HostedMediaFile ( url ) . valid_url ( ) : KmKmkKmk = urlresolver . HostedMediaFile ( url ) . resolve ( )
+   elif liveresolver . isValid ( url ) == True : KmKmkKmk = liveresolver . resolve ( url )
+   elif '.ts' in url : KmKmkKmk = 'plugin://plugin.video.f4mTester/?streamtype=TSDOWNLOADER&amp;name=' + name + '&amp;url=' + url
    else : KmKmkKmk = url
-   KmkKKKmkKKmKmkK = True
-   KmkmkKmmkmkmkmmKmk = xbmcgui . ListItem ( name , iconImage = iconimage , thumbnailImage = iconimage ) ; KmkmkKmmkmkmkmmKmk . setInfo ( type = "Video" , infoLabels = { "Title" : name } )
-   KmkKKKmkKKmKmkK = xbmcplugin . addDirectoryItem ( handle = int ( sys . argv [ 1 ] ) , url = url , listitem = KmkmkKmmkmkmkmmKmk )
-   xbmc . Player ( ) . play ( KmKmkKmk , KmkmkKmmkmkmkmmKmk , False )
-   return KmkKKKmkKKmKmkK
+   KmkmkKmmkmkmkmmKmk = xbmcgui . ListItem ( name , iconImage = iconimage , thumbnailImage = iconimage )
+   KmkmkKmmkmkmkmmKmk . setInfo ( type = "Video" , infoLabels = { "Title" : name } )
+   KmkmkKmmkmkmkmmKmk . setPath ( KmKmkKmk )
+   xbmcplugin . setResolvedUrl ( int ( sys . argv [ 1 ] ) , True , KmkmkKmmkmkmkmmKmk )
    if 98 - 98: iI11ii1i1I1 * iI11ii1i1I1 / iI11ii1i1I1 + mKKKmkmmkmkmmkm
    #################################################################################	   
 def ii111111I1iII ( ) :
@@ -373,7 +371,7 @@ def I11 ( name , url , mode , iconimage , fanart , description = '' ) :
  KmkmkKmmkmkmkmmKmk . setProperty ( 'fanart_image' , fanart )
  if not mode == 2 :
   KmkmkKmmkmkmkmmKmk . setInfo ( type = "Video" , infoLabels = { "Title" : name , 'plot' : description } )
-  if 42 - 42: i11iIiiIii
+  KmkmkKmmkmkmkmmKmk . setProperty ( "IsPlayable" , "true" )
   II1I = [ ]
   if not 'BL' in description :
    II1I . append ( ( '[COLOR white]Add to UK Turk Favourites[/COLOR]' , 'XBMC.RunPlugin(%s?mode=6&name=%s&url=%s&iconimage=%s)' % ( sys . argv [ 0 ] , name , url , iconimage ) ) )
@@ -382,7 +380,7 @@ def I11 ( name , url , mode , iconimage , fanart , description = '' ) :
   KmkmkKmmkmkmkmmKmk . addContextMenuItems ( items = II1I , replaceItems = True )
  KmkKKKmkKKmKmkK = xbmcplugin . addDirectoryItem ( handle = int ( sys . argv [ 1 ] ) , url = iii , listitem = KmkmkKmmkmkmkmmKmk , isFolder = False )
  return KmkKKKmkKKmKmkK
- if 33 - 33: iI11ii1i1I1 - KmkmkmmKK * Kmkm * mKm - i1iIIi1
+ if 42 - 42: i11iIiiIii
 def iI ( name , url , mode , iconimage , fanart , description = '' ) :
  iii = sys . argv [ 0 ] + "?url=" + urllib . quote_plus ( url ) + "&mode=" + str ( mode ) + "&name=" + urllib . quote_plus ( name ) + "&iconimage=" + urllib . quote_plus ( iconimage ) + "&description=" + urllib . quote_plus ( description )
  KmkKKKmkKKmKmkK = True
@@ -390,29 +388,29 @@ def iI ( name , url , mode , iconimage , fanart , description = '' ) :
  KmkmkKmmkmkmkmmKmk . setProperty ( 'fanart_image' , fanart )
  KmkKKKmkKKmKmkK = xbmcplugin . addDirectoryItem ( handle = int ( sys . argv [ 1 ] ) , url = iii , listitem = KmkmkKmmkmkmkmmKmk , isFolder = False )
  return KmkKKKmkKKmKmkK
- if 32 - 32: iiiii11iII1 / I1iII1iiII - mKm
+ if 33 - 33: iI11ii1i1I1 - KmkmkmmKK * Kmkm * mKm - i1iIIi1
 def IiIiiI ( name , url , mode , iconimage , itemcount , isFolder = False ) :
  if KKKmmk == 'true' :
   if not 'COLOR' in name :
-   mmkmkmmmKmkKm = name . partition ( '(' )
+   iiIiI = name . partition ( '(' )
+   mmkmkmmmKmkKm = ""
    mmkKmkKKKmkKmm = ""
-   iiIiI = ""
-   if len ( mmkmkmmmKmkKm ) > 0 :
-    mmkKmkKKKmkKmm = mmkmkmmmKmkKm [ 0 ]
-    iiIiI = mmkmkmmmKmkKm [ 2 ] . partition ( ')' )
    if len ( iiIiI ) > 0 :
-    iiIiI = iiIiI [ 0 ]
-   I1 = metahandlers . MetaData ( )
-   KKKmkmkKmkK = I1 . get_meta ( 'movie' , name = mmkKmkKKKmkKmm , year = iiIiI )
+    mmkmkmmmKmkKm = iiIiI [ 0 ]
+    mmkKmkKKKmkKmm = iiIiI [ 2 ] . partition ( ')' )
+   if len ( mmkKmkKKKmkKmm ) > 0 :
+    mmkKmkKKKmkKmm = mmkKmkKKKmkKmm [ 0 ]
+   iiIiII1 = metahandlers . MetaData ( )
+   KKKmkmkKmkK = iiIiII1 . get_meta ( 'movie' , name = mmkmkmmmKmkKm , year = mmkKmkKKKmkKmm )
    iii = sys . argv [ 0 ] + "?url=" + urllib . quote_plus ( url ) + "&site=" + str ( iiimKmmKKKmKm ) + "&mode=" + str ( mode ) + "&name=" + urllib . quote_plus ( name )
    KmkKKKmkKKmKmkK = True
    KmkmkKmmkmkmkmmKmk = xbmcgui . ListItem ( name , iconImage = KKKmkmkKmkK [ 'cover_url' ] , thumbnailImage = KKKmkmkKmkK [ 'cover_url' ] )
    KmkmkKmmkmkmkmmKmk . setInfo ( type = "Video" , infoLabels = KKKmkmkKmkK )
-   if 41 - 41: mmk - KmkmkmmKK - KmkmkmmKK
-   mKmkmkKKmKmkmk = [ ]
-   mKmkmkKKmKmkmk . append ( ( 'Movie Information' , 'XBMC.Action(Info)' ) )
-   mKmkmkKKmKmkmk . append ( ( '[COLOR white]Add to UK Turk Favourites[/COLOR]' , 'XBMC.RunPlugin(%s?mode=6&name=%s&url=%s&iconimage=%s)' % ( sys . argv [ 0 ] , name , url , KKKmkmkKmkK [ 'cover_url' ] ) ) )
-   KmkmkKmmkmkmkmmKmk . addContextMenuItems ( mKmkmkKKmKmkmk , replaceItems = True )
+   KmkmkKmmkmkmkmmKmk . setProperty ( "IsPlayable" , "true" )
+   i1Iii1i1I = [ ]
+   i1Iii1i1I . append ( ( 'Movie Information' , 'XBMC.Action(Info)' ) )
+   i1Iii1i1I . append ( ( '[COLOR white]Add to UK Turk Favourites[/COLOR]' , 'XBMC.RunPlugin(%s?mode=6&name=%s&url=%s&iconimage=%s)' % ( sys . argv [ 0 ] , name , url , KKKmkmkKmkK [ 'cover_url' ] ) ) )
+   KmkmkKmmkmkmkmmKmk . addContextMenuItems ( i1Iii1i1I , replaceItems = True )
    if not KKKmkmkKmkK [ 'backdrop_url' ] == '' : KmkmkKmmkmkmkmmKmk . setProperty ( 'fanart_image' , KKKmkmkKmkK [ 'backdrop_url' ] )
    else : KmkmkKmmkmkmkmmKmk . setProperty ( 'fanart_image' , II1 )
    KmkKKKmkKKmKmkK = xbmcplugin . addDirectoryItem ( handle = int ( sys . argv [ 1 ] ) , url = iii , listitem = KmkmkKmmkmkmkmmKmk , isFolder = isFolder , totalItems = itemcount )
@@ -423,44 +421,44 @@ def IiIiiI ( name , url , mode , iconimage , itemcount , isFolder = False ) :
   KmkmkKmmkmkmkmmKmk = xbmcgui . ListItem ( name , iconImage = iconimage , thumbnailImage = iconimage )
   KmkmkKmmkmkmkmmKmk . setInfo ( type = "Video" , infoLabels = { "Title" : name } )
   KmkmkKmmkmkmkmmKmk . setProperty ( 'fanart_image' , II1 )
-  if 40 - 40: IiiIII111ii * mmk + Kmmm % iI11ii1i1I1
+  KmkmkKmmkmkmkmmKmk . setProperty ( "IsPlayable" , "true" )
   II1I = [ ]
   II1I . append ( ( '[COLOR white]Add to UK Turk Favourites[/COLOR]' , 'XBMC.RunPlugin(%s?mode=6&name=%s&url=%s&iconimage=%s)' % ( sys . argv [ 0 ] , name , url , iconimage ) ) )
   KmkmkKmmkmkmkmmKmk . addContextMenuItems ( items = II1I , replaceItems = True )
   KmkKKKmkKKmKmkK = xbmcplugin . addDirectoryItem ( handle = int ( sys . argv [ 1 ] ) , url = iii , listitem = KmkmkKmmkmkmkmmKmk , isFolder = isFolder )
   return KmkKKKmkKKmKmkK
-  if 74 - 74: mmkmmmKmkKKmkK - i1iIIi1 + iiiii11iII1 + KmkmkmkmmmkK / i11I1IIiiIi
-def i1I1iI1iIi111i ( content , viewType ) :
+  if 91 - 91: iiIiIiIi + IiiIII111ii . Kmmm * iiIiIiIi + IiiIII111ii * i1iIIi1
+def KmkmkmkKKKKKm ( content , viewType ) :
  if content :
   xbmcplugin . setContent ( int ( sys . argv [ 1 ] ) , content )
  if KmmkKmm . getSetting ( 'auto-view' ) == 'true' :
   xbmc . executebuiltin ( "Container.SetViewMode(%s)" % KmmkKmm . getSetting ( viewType ) )
-  if 44 - 44: Kmkm % i11IiIiiIIIII + mKKKmkmmkmkmmkm
-KmkmkmkKKmmkmkmm = KmkmKmKKKmKK ( ) ; i1 = None ; mmkmKmKmkmkm = None ; I1I1I = None ; iiimKmmKKKmKm = None ; mKmkmkmKm = None
+  if 22 - 22: Kmkm + KmkmkmmKK . I1iII1iiII * iI11ii1i1I1 % i11iIiiIii * IiiIII111ii
+KmkmkmkKKmmkmkmm = KmkmKmKKKmKK ( ) ; i1 = None ; mmkmKmKmkmkm = None ; mmmkmkmkm = None ; iiimKmmKKKmKm = None ; mKmkmkmKm = None
 try : iiimKmmKKKmKm = urllib . unquote_plus ( KmkmkmkKKmmkmkmm [ "site" ] )
 except : pass
 try : i1 = urllib . unquote_plus ( KmkmkmkKKmmkmkmm [ "url" ] )
 except : pass
 try : mmkmKmKmkmkm = urllib . unquote_plus ( KmkmkmkKKmmkmkmm [ "name" ] )
 except : pass
-try : I1I1I = int ( KmkmkmkKKmmkmkmm [ "mode" ] )
+try : mmmkmkmkm = int ( KmkmkmkKKmmkmkmm [ "mode" ] )
 except : pass
 try : mKmkmkmKm = urllib . unquote_plus ( KmkmkmkKKmmkmkmm [ "iconimage" ] )
 except : pass
-if 95 - 95: i11IiIiiIIIII + mKm + iI11ii1i1I1 * I1iII1iiII % mmkmmmKmkKKmkK / i11IIiiIii
-if I1I1I == None or i1 == None or len ( i1 ) < 1 : Kmkmkm ( )
-elif I1I1I == 1 : KmkmmmkmK ( mmkmKmKmkmkm , i1 , mKmkmkmKm )
-elif I1I1I == 2 : ii111111I1iII ( )
-elif I1I1I == 3 : iIIIi1 ( i1 , mmkmKmKmkmkm , mKmkmkmKm )
-elif I1I1I == 4 : iI1Ii11111iIi ( )
-elif I1I1I == 5 : KmmmkKKmk ( mmkmKmKmkmkm , i1 , Kmkmkmmmmmmkmk )
-elif I1I1I == 6 : mKmk ( mmkmKmKmkmkm , i1 , mKmkmkmKm )
-elif I1I1I == 7 : GETFAVS ( i1 )
-elif I1I1I == 8 : ii11iIi1I ( mmkmKmKmkmkm , i1 , mKmkmkmKm )
-elif I1I1I == 9 : KKKmkKKKmkmkmm ( i1 )
-if 56 - 56: iI11ii1i1I1
-if 86 - 86: i11IiIiiIIIII % KmkmkmkmmmkK
+if 44 - 44: Kmkm % i11IiIiiIIIII + mKKKmkmmkmkmmkm
+if mmmkmkmkm == None or i1 == None or len ( i1 ) < 1 : Kmkmkm ( )
+elif mmmkmkmkm == 1 : KmkmmmkmK ( mmkmKmKmkmkm , i1 , mKmkmkmKm )
+elif mmmkmkmkm == 2 : ii111111I1iII ( )
+elif mmmkmkmkm == 3 : iIIIi1 ( i1 , mmkmKmKmkmkm , mKmkmkmKm )
+elif mmmkmkmkm == 4 : iI1Ii11111iIi ( )
+elif mmmkmkmkm == 5 : KmmmkKKmk ( mmkmKmKmkmkm , i1 , Kmkmkmmmmmmkmk )
+elif mmmkmkmkm == 6 : mKmk ( mmkmKmKmkmkm , i1 , mKmkmkmKm )
+elif mmmkmkmkm == 7 : GETFAVS ( i1 )
+elif mmmkmkmkm == 8 : ii11iIi1I ( mmkmKmKmkmkm , i1 , mKmkmkmKm )
+elif mmmkmkmkm == 9 : KKKmkKKKmkmkmm ( i1 )
+if 45 - 45: iI11ii1i1I1 / iI11ii1i1I1 + KmkmkmkmmmkK + mKKmKmmkmkm
+if 47 - 47: mKm + mKKmKmmkmkm
 xbmcplugin . endOfDirectory ( int ( sys . argv [ 1 ] ) )
-if 15 - 15: Kmkm * IiiIII111ii + i11iIiiIii
-if 6 - 6: mKKmKmmkmkm / i11iIiiIii + iI11ii1i1I1 * mmkmmmKmkKKmkK
+if 82 - 82: i11IiIiiIIIII . i11IIiiIii - I1iII1iiII - i11IIiiIii * i11IiIiiIIIII
+if 77 - 77: I1iII1iiII * IiI1I1
 # dd678faae9ac167bc83abf78e5cb2f3f0688d3a3

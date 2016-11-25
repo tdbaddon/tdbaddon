@@ -27,20 +27,20 @@ msgid "Show BUP (backup) streams"
 msgstr "Δείξε τις BUP (εφεδρικές) ροές"
 
 msgctxt "#30004"
-msgid ""
-msgstr ""
+msgid "Enable Sort"
+msgstr "Ενεργοποίησε την ταξινόμηση"
 
 msgctxt "#30005"
-msgid ""
-msgstr ""
+msgid "Group"
+msgstr "Ομάδα"
 
 msgctxt "#30006"
-msgid ""
-msgstr ""
+msgid "Title"
+msgstr "Τίτλο"
 
 msgctxt "#30007"
-msgid ""
-msgstr ""
+msgid "Sort Method"
+msgstr "Μεθοδος Ταξινόμησης"
 
 msgctxt "#30008"
 msgid ""

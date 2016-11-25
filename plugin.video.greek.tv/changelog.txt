@@ -1,3 +1,9 @@
+1.0.4 (25-11-2016)
+- Implemented two different sort methods for channels, by group & title
+  > By default they are off
+- Added random user agent function
+  > Particularly useful for ANT1 CY resolver
+
 1.0.3 (21-11-2016)
 - Slightly improved the regex pattern for constructor function.
 - Implemented a setting for toggling on/off BUP (backup) streams.

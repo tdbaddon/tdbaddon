@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.greek.tv" name="Greek TV" version="1.0.3" provider-name="Twilight0">
+<addon id="plugin.video.greek.tv" name="Greek TV" version="1.0.4" provider-name="Twilight0">
     <requires>
         <import addon="xbmc.python" version="2.19.0"/>
         <import addon="plugin.video.youtube" version="5.2.1"/>

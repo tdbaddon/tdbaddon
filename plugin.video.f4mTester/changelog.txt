@@ -60,3 +60,7 @@ callback params
 iconImage support
 [B]Version 2.6.6[/B]
 bump version
+[B]Version 2.6.8[/B]
+bump version
+[B]Version 2.6.9[/B]
+removed extension
