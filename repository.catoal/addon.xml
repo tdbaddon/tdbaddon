@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="repository.catoal" name="Catoal repository" version="1.0.0" provider-name="Catoal">
+<addon id="repository.catoal" name="Catoal repository" version="1.0.1" provider-name="Catoal">
 	<extension point="xbmc.addon.repository" name="Catoal Repository">
-		<info compressed="false">http://raw.github.com/catoalkodi/repository.catoal/master/addons.xml</info>
-		<checksum>http://raw.github.com/catoalkodi/repository.catoal/master/addons.xml.md5</checksum>
-		<datadir zip="true">http://raw.github.com/catoalkodi/repository.catoal/master/repo/</datadir>
+		<info compressed="false">http://catoal.esy.es/Addons/addons.xml</info>
+		<checksum>http://catoal.esy.es/Addons/addons.xml.md5</checksum>
+		<datadir zip="true">http://catoal.esy.es/Addons/</datadir>
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<summary>Catoal Addon</summary>
-		<description>Addon Description</description>
+		<description>Repositorio con todo lo necesario para instalar sin problemas Catoal.</description>
 		<disclaimer></disclaimer>
 		<platform>all</platform>
 	</extension>

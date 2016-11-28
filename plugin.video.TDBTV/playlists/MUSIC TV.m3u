@@ -298,8 +298,14 @@ http://hd.worldkast.com:1935/8436/8436/playlist.m3u8
 #EXTINF:0,VH1 
 http://latino-webtv.ml:8880/tpmariocs/CANAL703/PROFILE03.m3u8
 
+#EXTINF:0,VH1
+http://51.254.199.142:8000/live/malbertologi/fth4tyj46d654ue/4824.ts?id=vh_1
+
 #EXTINF:0,VH1 Classics 
 http://latino-webtv.ml:8880/tpmariocs/CANAL728/PROFILE03.m3u8
+
+#EXTINF:0,VH1 Classics 
+http://ott2.odessa.tv:7321/index.php?channel=415&key_ott=5f7690fd0bd330afafb91f331adc46dd
 
 #EXTINF:0,VH1 Shuffle
 0

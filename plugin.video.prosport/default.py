@@ -54,6 +54,7 @@ display_score = __addon__.getSetting('score')
 display_status = __addon__.getSetting('status')
 display_start_time = __addon__.getSetting('start_time')
 show_xrxs  = __addon__.getSetting('showxrxs')
+show_cast = __addon__.getSetting('showcast')
 display_pattern = __addon__.getSetting('pattern')
 username  = __addon__.getSetting('username')
 password = __addon__.getSetting('password')
@@ -327,6 +328,8 @@ def getProStreams(ur, home, away):
 	away_l = away.lower().split()[-1]
 	if 'nhl' in ur and show_xrxs=='true':
 		addDir('[ Xrxs ]', '', iconImg='', home=home_l, away=away_l, mode="xrxsstreams")
+	if 'nhl' in ur and show_cast=='true':
+		addLink('Caststreams', orig_title, 'caststreams', mode="play")
 	r = praw.Reddit(user_agent='xbmc pro sport addon')
 	r.config.api_request_delay = 0
 	links=[]
@@ -788,6 +791,49 @@ def Xrxs(home, away):
 					addDirectLink(title, {'Title': away+' @ '+home}, link+nhlcookie)
 	xbmcplugin.endOfDirectory(h, cacheToDisc=True)	
 
+def Caststreams(orig_title):
+	try:
+		orig_title = orig_title.replace('[COLOR=FF00FF00][B]','').replace('[/B][/COLOR]','')
+		home = orig_title.split('at')[0].split()[0]
+		away = orig_title.split('at')[-1].split()[0]
+		url = 'http://www.caststreams.com/api/login'
+		data = json.dumps({"email":"prosport4@testmail.com","password":"prosport","ipaddress":"desktop","androidId":"","deviceId":"","isGoogleLogin":0})
+		request = urllib2.Request(url, data)
+		request.add_header('Content-Type', 'application/json')
+		request.add_header('User-Agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36')
+		request.add_header('Referer', 'https://www.caststreams.com/app/')
+		response = urllib2.urlopen(request, timeout=5)
+		resp = response.read()
+		jsonDict = json.loads(resp)
+		token = jsonDict['token']
+		url = 'http://www.caststreams.com/api/feeds'
+		request = urllib2.Request(url)
+		request.add_header('Authorization', token)
+		request.add_header('User-Agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36')
+		request.add_header('Referer', 'https://www.caststreams.com/app/')
+		response = urllib2.urlopen(request, timeout=5)
+		resp = response.read()
+		jsonDict = json.loads(resp)
+		feeds = jsonDict['feeds']
+		for feed in feeds:
+			title = feed['nam'].lower().replace('ny', 'new')
+			if home.lower() in title.lower() and away.lower() in title.lower() and 'testing' not in title.lower():
+				channel = feed['url'][0]
+				url = 'http://www.caststreams.com/api/getGame?isjson=yes&rUrl='+channel
+				request = urllib2.Request(url)
+				request.add_header('Authorization', token)
+				request.add_header('User-Agent', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.98 Safari/537.36')
+				request.add_header('Referer', 'https://www.caststreams.com/app/')
+				response = urllib2.urlopen(request, timeout=5)
+				resp = response.read()
+				jsonDict = json.loads(resp)
+				link = jsonDict['link']
+				return link	
+			else:
+				continue
+	except:
+		return None
+
 
 def GetStreamup(channel):
 	try:
@@ -880,12 +926,12 @@ def Blabseal(url):
 		link = common.parseDOM(html, "iframe", ret="src")[0]
 		if link.startswith('/'):
 			link = link[1:]
-		link = url+link
+			link = url+link
 		html = GetURL(link, referer=link)
 		if 'Clappr.Player' in html and 'm3u8' in html:
-			link = re.findall("source: '(.*?)'", html)[0]
-			if link.startswith('/'):
-					return 'http://blabseal.com'+link
+			lnk = re.findall("source: '(.*?)'", html)[0]
+			if lnk.startswith('/'):
+					return urlparse.urlparse(link).scheme+'://'+urlparse.urlparse(link).netloc+lnk
 			else:
 				return link
 		javasc = re.findall('(eval.*\))', html)[0]
@@ -929,9 +975,8 @@ def Blabseal(url):
 					return link
 				elif link.startswith('/'):
 					return 'http://blabseal.com'+link
-	except:
-		return None			
-			
+	except:		
+		return None	
 		
 def Dailymotion(url):
 	try:

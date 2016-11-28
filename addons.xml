@@ -1908,7 +1908,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
-<addon id="plugin.video.prosport" name="Pro Sport" version="0.79" provider-name="gerikss, podgod, iCanuck">
+<addon id="plugin.video.prosport" name="Pro Sport" version="0.80" provider-name="gerikss, podgod, iCanuck">
   <requires>
     <import addon="xbmc.python" version="2.1.0" />
      <import addon="script.module.requests" version="2.9.1" />
@@ -2057,7 +2057,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBPORNO"
        name="TDB PORNO"
-       version="210"
+       version="211"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -2126,7 +2126,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBTV"
        name="TDB LIVE TV"
-       version="421"
+       version="422"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -2145,8 +2145,8 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 </addon>
 
 <addon id="plugin.video.TDBTVSHOWS"
-       name="TDB TV SHOWS"
-       version="1006"
+       name="TDB TV SHOWS PLUS"
+       version="1007"
        provider-name="TDB">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -2590,7 +2590,7 @@ Follow us on twitter: [COLOR blue]Whitecream_UWC[/COLOR]</description>
 
 <addon id="plugin.video.ZemTV-shani"
        name="Zem"
-       version="6.0.3"
+       version="6.0.5"
        provider-name="shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -2773,15 +2773,15 @@ Follow us on twitter: [COLOR blue]Whitecream_UWC[/COLOR]</description>
 	</extension>
 </addon>
 
-<addon id="repository.catoal" name="Catoal repository" version="1.0.0" provider-name="Catoal">
+<addon id="repository.catoal" name="Catoal repository" version="1.0.1" provider-name="Catoal">
 	<extension point="xbmc.addon.repository" name="Catoal Repository">
-		<info compressed="false">http://raw.github.com/catoalkodi/repository.catoal/master/addons.xml</info>
-		<checksum>http://raw.github.com/catoalkodi/repository.catoal/master/addons.xml.md5</checksum>
-		<datadir zip="true">http://raw.github.com/catoalkodi/repository.catoal/master/repo/</datadir>
+		<info compressed="false">http://catoal.esy.es/Addons/addons.xml</info>
+		<checksum>http://catoal.esy.es/Addons/addons.xml.md5</checksum>
+		<datadir zip="true">http://catoal.esy.es/Addons/</datadir>
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<summary>Catoal Addon</summary>
-		<description>Addon Description</description>
+		<description>Repositorio con todo lo necesario para instalar sin problemas Catoal.</description>
 		<disclaimer></disclaimer>
 		<platform>all</platform>
 	</extension>
