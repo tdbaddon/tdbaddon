@@ -43,7 +43,7 @@ msgctxt "#30007"
 msgid "Use MPEG-DASH"
 msgstr "Χρησιμοποίησε το MPEG-DASH"
 msgctxt "#30008"
-msgid "Configure MPEG-DASH InputStream Client"
+msgid "Configure inputstream.adaptive"
 msgstr "Ρύθμιση πελάτη MPEG-DASH Inputstream"
 
 msgctxt "#30009"
@@ -595,4 +595,8 @@ msgstr "Ρυθμίσεις"
 
 msgctxt "#30578"
 msgid "Force SSL Certificate verification"
+msgstr ""
+
+msgctxt "#30579"
+msgid "MPEG-DASH is enabled in the YouTube settings, however inputstream.adaptive appears to be disabled. Would you like to enable inputstream.adaptive now?"
 msgstr ""

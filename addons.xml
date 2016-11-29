@@ -1004,25 +1004,6 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
     </extension>
 </addon>
 
-<addon id="plugin.video.eporner"
-	   name="Eporner"
-	   version="1.0.1"
-	   provider-name="pcd">
-  <requires>
-        <import addon="script.module.youtube.dl" version="15.318.0"/>
-  </requires>
-
-  <extension point="xbmc.python.pluginsource"
-			 library="default.py">
-    	<provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary>Adult(18+) videos from eporner.com</summary>
-    <description>Adult(18+) videos from eporner.com</description>
-    <platform>all</platform>
-  </extension>
-</addon>
-
 <addon id="plugin.video.esa" name="ESA Videos" version="1.1.0" provider-name="Jose Antonio Montes (jamontes)">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
@@ -1345,6 +1326,21 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
 	</extension>
 </addon>
 
+<addon id="plugin.video.hotgoo"
+	   name="Hotgoo"
+	   version="1.0.2"
+	   provider-name=" ">
+  <extension point="xbmc.python.pluginsource"
+			 library="default.py">
+    	<provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>Adult(18+) videos from www.hotgoo.com</summary>
+    <description>Adult(18+) videos from www.hotgoo.com</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
 <addon id="plugin.video.icefilms"
        name="Icefilms"
        version="1.99.03"
@@ -1392,19 +1388,6 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
     <description lang="pl">Ipla to największa telewizja internetowa w Polsce. Swoim widzom oferuje transmisje w wysokiej jakości, największą w Polsce legalną bazę treści, w tym tysiące odcinków seriali, programów rozrywkowych i informacyjnych, koncerty i najważniejsze wydarzenia sportowe, a także ponad tysiąc filmów pełnometrażowych. Dostęp do zasobów telewizji ipla mają użytkownicy różnych urządzeń dzięki aplikacjom ipla specjalnie do nich przystosowanym.</description>
     <platform>all</platform>
   </extension>
-</addon>
-
-<addon id="plugin.video.jamo68" name="Jamo68" version="0.1" provider-name="ptom">
-	<extension point="xbmc.python.pluginsource" library="default.py">
-		<provides>video</provides>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary lang="en">Jamo68</summary>
-		<description lang="en">Jamo68 - Pulling JAV from jamo.tv and jav68.tv</description>
-		<platform>all</platform>
-		<language>en</language>
-		<email>ptom98@gmail.com</email>
-	</extension>
 </addon>
 
 <addon id="plugin.video.javstream" name="JAVStream" version="0.92.3" provider-name="ptom">
@@ -1496,6 +1479,21 @@ Turns your XBMC into an instant free on-demand media-center. Stream and download
   <extension point="xbmc.addon.metadata">
     <summary>Videos from Youtube Kontor </summary>
     <description>Adult(18+) Videos from Youtube Kontor</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.video.largecamtube"
+	   name="largecamtube"
+	   version="1.0.0"
+	   provider-name="pcd">
+  <extension point="xbmc.python.pluginsource"
+			 library="default.py">
+    	<provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>Adult(18+) videos from largecamtube.com</summary>
+    <description>Adult(18+) videos from largecamtube.com</description>
     <platform>all</platform>
   </extension>
 </addon>
@@ -1887,6 +1885,54 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
+<addon id="plugin.video.porncom"
+	     name="Porn.com (BETA)"
+	     version="1.00"
+	     provider-name="Echo Coder">
+  <requires>
+    <import addon="script.module.requests" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <platform>all</platform>
+    <summary lang="en">[COLOR ghostwhite]We're beyond epic - we're fucking legendary! Welcome to PORN.COM as you've never seen it before.[/COLOR] - [COLOR red]OVER 18 ONLY - Support is available on Twitter @echo_coding[/COLOR]</summary>
+    <description lang="en">[COLOR ghostwhite]We're beyond epic - we're fucking legendary! Welcome to PORN.COM as you've never seen it before. Everything you see here is absolutely FREE to watch. Our PORN.COM team works hard to keep you hard with constant, fresh porno vids posted on a DAILY basis! Instantly stream, or download among any of our 114,000+ porn videos! Shot in razor-sharp, crystal-clear High Definition, and not that pathetic grainy crap that passes off as "quality free porn movies" these days, it's time you found a real FREE porn site that values QUALITY just as much as quantity. We've beefed up our porno playground with brand new features that are light years ahead of the so-called competition. What are you into? Steamy sex pictures? Exclusive free porn videos? We offer tens of thousands of high-res pictures, full-length HD porn movies, our own comprehensive sexipedia of downloadable DVDs, popular featured pornstars, steamy XXX live cams and even a sex dating network! Come for the porn but stay for the sexperience! Bookmark us now![/COLOR]- [COLOR red]OVER 18 ONLY - Support is available on Twitter @echo_coding[/COLOR]</description>
+    <disclaimer lang="en"></disclaimer>
+    <language></language>
+    <platform>all</platform>
+    <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+    <forum>http://www.echocoder.com</forum>
+    <website>http://www.echocoder.com</website>
+    <email>echocoder@protonmail.com</email>
+  </extension>
+</addon>
+
+<addon id="plugin.video.pornhd"
+	     name="PornHD"
+	     version="1.00"
+	     provider-name="Echo Coder">
+  <requires>
+    <import addon="script.module.requests" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <platform>all</platform>
+    <summary lang="en">[COLOR deepskyblue]All Videos in HD. We Like Porn.[/COLOR] - [COLOR crimson]OVER 18 ONLY - Support is available on Twitter @echo_coding[/COLOR]</summary>
+    <description lang="en">[COLOR deepskyblue]PornHD picks up where other porn tubes fold - high definition porn. We are dedicated to showing you the best high quality porn videos the internet has to offer, completely free and so easy to use you will never want to go back to another tube site. With us you can get your porn fix in stunning quality, easily streamed to any device you own, from tablet to smartphone, big screen TV or high resolution computer display [/COLOR]- [COLOR crimson]OVER 18 ONLY - Support is available on Twitter @echo_coding[/COLOR]</description>
+    <disclaimer lang="en"></disclaimer>
+    <language></language>
+    <platform>all</platform>
+    <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+    <forum>http://www.echocoder.com</forum>
+    <website>http://www.echocoder.com</website>
+    <email>echocoder@protonmail.com</email>
+  </extension>
+</addon>
+
 <addon id="plugin.video.prosport" name="Pro Sport" version="0.80" provider-name="gerikss, podgod, iCanuck">
   <requires>
     <import addon="xbmc.python" version="2.1.0" />
@@ -2210,6 +2256,21 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
+<addon id="plugin.video.tube8" name="Tube8" version="2.1.10" provider-name="xbmc-adult">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="addon.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary>Stream adult videos from tube8.com</summary>
+        <description>Tube8.com features a variety of adult videos. This addon contains explicit adult material. You may only view this addon if you are at least 18 years of age, or at least the age of majority in the jurisdiction where you reside or from which you access this content. If you do not meet these requirements, then you do not have permission to use this addon.  All content is hosted by tube8.com.</description>
+        <disclaimer>The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
+        <platform>all</platform>
+    </extension>
+</addon>
+
 <addon id="plugin.video.tvo"
        name="TV Ontario"
        version="1.0.7"
@@ -2513,7 +2574,89 @@ Follow us on twitter: [COLOR blue]Whitecream_UWC[/COLOR]</description>
   </extension>
 </addon>
 
-<addon id="plugin.video.youtube" name="YouTube" version="5.3.4" provider-name="jdf76, bromix">
+<addon id="plugin.video.xhamster"
+	   name="Xhamster"
+	   version="1.0.4"
+	   provider-name="pcd">
+  <extension point="xbmc.python.pluginsource"
+			 library="default.py">
+    	<provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>Adult(18+) videos from Xhamster.com</summary>
+    <description>Adult(18+) videos from Xhamster.com</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.video.xnxxcom"
+	     name="XNXX.com"
+	     version="1.04"
+	     provider-name="Echo Coder">
+  <requires>
+    <import addon="script.module.requests" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <platform>all</platform>
+    <summary lang="en">OVER 18 ONLY - Support is available on Twitter @echo_coding</summary>
+    <description lang="en">OVER 18 ONLY - Support is available on Twitter @echo_coding</description>
+    <disclaimer lang="en"></disclaimer>
+    <language></language>
+    <platform>all</platform>
+    <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+    <forum>http://www.echocoder.com</forum>
+    <website>http://www.echocoder.com</website>
+    <email>echocoder@protonmail.com</email>
+  </extension>
+</addon>
+
+<addon id="plugin.video.you.jizz"
+       name="YouJizz.com"
+       version="1.0.12"
+       provider-name="xbmc-adult">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource"
+               library="default.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <platform>all</platform>
+        <license>GPL 2.0</license>
+        <summary lang="en">YouJizz.com</summary>
+        <description lang="en">****ADULT CONTENT***** Watch erotic and sexy videos from YouJizz.com</description>
+    </extension>
+</addon>
+
+<addon id="plugin.video.youporn"
+	     name="YouPorn"
+	     version="1.02"
+	     provider-name="Echo Coder">
+  <requires>
+    <import addon="script.module.requests" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <platform>all</platform>
+    <summary lang="en">OVER 18 ONLY - Support is available on Twitter @echo_coding</summary>
+    <description lang="en">OVER 18 ONLY - Support is available on Twitter @echo_coding</description>
+    <disclaimer lang="en"></disclaimer>
+    <language></language>
+    <platform>all</platform>
+    <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+    <forum>http://www.echocoder.com</forum>
+    <website>http://www.echocoder.com</website>
+    <email>echocoder@protonmail.com</email>
+  </extension>
+</addon>
+
+<addon id="plugin.video.youtube" name="YouTube" version="5.3.5" provider-name="jdf76, bromix">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0"/>
 	</requires>
@@ -2522,13 +2665,20 @@ Follow us on twitter: [COLOR blue]Whitecream_UWC[/COLOR]</description>
 	</extension>
 	<extension point="xbmc.addon.metadata">
         <news>
-- Added MPEG-DASH support for Kodi 17 w/ inputstream.mpd Add-on
-- Added optional History and Watch Later custom playlist to Settings -> Folders, or (My)Playlists context menu to set/remove
-- Added Maintenance section to Settings
-- Added 'Subtitle language(s) to download' selection to Settings -> General
-- API key set switching from Settings -> API (this will log you out)
-- Dual login only required if My Subscriptions folder is enabled at sign-in
-- API Tweaking and Various other Updates
+[add] MPEG-DASH support for Kodi 17 w/ inputstream.adaptive Add-on
+[add] optional History and Watch Later custom playlist to Settings -> Folders, or (My)Playlists context menu to set/remove
+[add] Maintenance section to Settings
+[add] 'Subtitle language(s) to download' selection to Settings -> General
+[add] 'Force SSL Certificate verification' to Settings -> Advanced
+[upd] API key set switching from Settings -> API (this will log you out)
+[upd] Dual login only required if My Subscriptions folder is enabled at sign-in
+[upd] setting content type from episodes, now videos
+[del] override view options
+[upd] Norwegian strings [torstehu]
+[upd] Greek strings [twilight0]
+[upd] Portuguese strings [Wanilton]
+[upd] Dutch strings [flemlion]
+[fix/upd] API tweaking and various other updates
         </news>
         <assets>
             <icon>icon.png</icon>
@@ -2706,6 +2856,19 @@ Follow us on twitter: [COLOR blue]Whitecream_UWC[/COLOR]</description>
 	</extension>
 </addon>
 
+<addon id="repository.AznKodi" name="AznKodi" version="1.0.0" provider-name="AznKodi">
+	<extension point="xbmc.addon.repository" name="VietKodi Addon Repository">
+		<info compressed="false">https://github.com/AznKodi/repository.AznKodi/raw/master/addons.xml</info>
+		<checksum>https://github.com/AznKodi/repository.AznKodi/raw/master/addons.xml.md5</checksum>
+		<datadir zip="true">https://github.com/AznKodi/repository.AznKodi/raw/master/zips</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>XBMC-Kodi Repo</summary>
+		<description>Repo for XBMC-Kodi</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
 <addon id="repository.BES-IPTV" name="BES-IPTV Repository" version="1.0.2" provider-name="SaydinX,SimpleKodi">
 	<extension point="xbmc.addon.repository" name="BES-IPTV Repository">
 	<dir>
@@ -2735,19 +2898,6 @@ Follow us on twitter: [COLOR blue]Whitecream_UWC[/COLOR]</description>
 		<summary lang="de">Bromix Add-ons</summary>
 		<description>Repository of add-ons by Bromix. Some add-ons are final and perhaps obtainable by the official repository of KODI. Add-ons in alpha and beta status are here to test exclusively and for testers to provide them with updates.</description>
 		<description lang="de">Repository an Add-ons von Bromix. Einige Add-Ons sind final und vielleicht durch das offizielle Repository von KODI erhältlich. Add-Ons in alpha- und beta-status sind hier ausschließlich zum Testen und um Tester mit Updates zu versorgen.</description>
-		<platform>all</platform>
-	</extension>
-</addon>
-
-<addon id="repository.bulldogstreams" name="Bulldog Streams Repository" version="1.1" provider-name="Bulldog Streams Dev Team">
-	<extension point="xbmc.addon.repository" name="Bulldog Streams Repository">
-		<info compressed="false">http://www.bulldogstreams.football/addon/addons.xml</info>
-		<checksum>http://www.bulldogstreams.football/addon/addons.xml.md5</checksum>
-		<datadir zip="true">http://www.bulldogstreams.football/addon/zips/</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>Install Bulldog Streams</summary>
-		<description>Home of Bulldog Streams</description>
 		<platform>all</platform>
 	</extension>
 </addon>
@@ -2793,20 +2943,6 @@ Follow us on twitter: [COLOR blue]Whitecream_UWC[/COLOR]</description>
 	<extension point="xbmc.addon.metadata">
 		<summary>Repo CUBA-TV por JalexFILMS</summary>
 		<description>Instala la repo para mantenerte actualizado gracias por disfrutar el contenido de cuba-tv Alex Lopez Rodriguez y JalexFILMS te dan las gracias...</description>
-		<platform>all</platform>
-	</extension>
-</addon>
-
-<addon id="repository.dokinl" name="DOKITV.NL Repository" version="1.0.2" provider-name="DOKITV.NL">
-	<extension point="xbmc.addon.repository" name="DOKITV.NL Repository">
-		<info compressed="false">http://raw.github.com/doki1/dokitvnl/master/addons.xml</info>
-		<checksum>http://raw.github.com/doki1/dokitvnl/master/addons.xml.md5</checksum>
-		<datadir zip="true">http://raw.github.com/doki1/dokitvnl/master</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>The Official DOKITV.NL repository</summary>
-		<description>This repository contains all Repositorys for KODI.</description>
-		<disclaimer>The owners and submitters to this repository do not host or distribute any of the content displayed by these addons nor do they have any affiliation with the content providers.</disclaimer>
 		<platform>all</platform>
 	</extension>
 </addon>
@@ -3179,6 +3315,19 @@ Follow us on twitter: [COLOR blue]Whitecream_UWC[/COLOR]</description>
    		<description lang="en">Install P2P-Streams addon for Kodi (SopCast and AceStream). Watch peer-to-peer streams in Kodi without the need for external players!</description>
     		<description lang="pt">Instale o addon P2P-Streams para o Kodi (SopCast e AceStream). Assista a streams peer-to-peer no Kodi sem a necessidade de players externos!</description>
 		<disclaimer></disclaimer>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="repository.pcdadult" name="PCD's Adult Repository" version="1.0.2" provider-name="pcd">
+	<extension point="xbmc.addon.repository" name="PCD's Adult Repository">
+		<info compressed="false">https://offshoregit.com/pcd/pcdadult-repo/addons.xml</info>
+		<checksum>https://offshoregit.com/pcd/pcdadult-repo/addons.xml.md5</checksum>
+		<datadir zip="true">https://offshoregit.com/pcd/pcdadult-repo/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Free adult (18+) video mediaitems from popular websites</summary>
+		<description>Free adult (18+) video mediaitems from popular websites</description>
 		<platform>all</platform>
 	</extension>
 </addon>
@@ -3815,21 +3964,6 @@ Follow us on twitter: [COLOR blue]Whitecream_UWC[/COLOR]</description>
 	</extension>
 </addon>
 
-<addon id="repository.xxxadultxbmc" name="AdultXBMC.com Add-on Repository" version="1.0.0" provider-name="adultxbmc.com">
-	<extension point="xbmc.addon.repository" name="AdultXBMC.com Add-on Repository">
-		<info compressed="false">https://offshoregit.com/adultxbmc/raw/master/addons.xml</info>
-		<checksum>https://offshoregit.com/adultxbmc/raw/master/addons.xml.md5</checksum>
-		<datadir zip="true">https://offshoregit.com/adultxbmc/raw/master/</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>Adult Content for Kodi from High Quality Sources Only</summary>
-		<description>Collection of Adult Addons for Kodi by Various Developers</description>
-		<platform>all</platform>
-                <forum>http://www.adultxbmc.com</forum>
-                <website>http://www.adultxbmc.com</website>
-	</extension>
-</addon>
-
 <addon id="repository.xxxecho" name="XXX ECHO Repository" version="1.01" provider-name="ECHO">
 	<extension point="xbmc.addon.repository" name="XXX ECHO Repository">
 	<dir>
@@ -4372,18 +4506,4 @@ Follow us on twitter: [COLOR blue]Whitecream_UWC[/COLOR]</description>
                 <website>https://superrepo.org/</website>
                 </extension>
                 </addon>
-
-<addon id="xxtrucoxx-repo" name="XxTRUCOxX repository" version="0.0.1" provider-name="XxTRUCOxX">
-	<extension point="xbmc.addon.repository" name="XxTRUCOxX Add-on Repository">
-		<info compressed="false">http://raw.github.com/AiWABR/xxtrucoxx-repo/master/addons.xml</info>
-		<checksum>http://raw.github.com/AiWABR/xxtrucoxx-repo/master/addons.xml.md5</checksum>
-		<datadir zip="true">http://raw.github.com/AiWABR/xxtrucoxx-repo/master/repo/</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>XxTRUCOxX Addon Repository</summary>
-		<description>Watch Porn Online</description>
-		<disclaimer></disclaimer>
-		<platform>all</platform>
-	</extension>
-</addon>
 </addons>

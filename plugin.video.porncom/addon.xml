@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.video.porncom" 
+	     name="Porn.com (BETA)" 
+	     version="1.00" 
+	     provider-name="Echo Coder">
+  <requires>
+    <import addon="script.module.requests" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <platform>all</platform>
+    <summary lang="en">[COLOR ghostwhite]We're beyond epic - we're fucking legendary! Welcome to PORN.COM as you've never seen it before.[/COLOR] - [COLOR red]OVER 18 ONLY - Support is available on Twitter @echo_coding[/COLOR]</summary>
+    <description lang="en">[COLOR ghostwhite]We're beyond epic - we're fucking legendary! Welcome to PORN.COM as you've never seen it before. Everything you see here is absolutely FREE to watch. Our PORN.COM team works hard to keep you hard with constant, fresh porno vids posted on a DAILY basis! Instantly stream, or download among any of our 114,000+ porn videos! Shot in razor-sharp, crystal-clear High Definition, and not that pathetic grainy crap that passes off as "quality free porn movies" these days, it's time you found a real FREE porn site that values QUALITY just as much as quantity. We've beefed up our porno playground with brand new features that are light years ahead of the so-called competition. What are you into? Steamy sex pictures? Exclusive free porn videos? We offer tens of thousands of high-res pictures, full-length HD porn movies, our own comprehensive sexipedia of downloadable DVDs, popular featured pornstars, steamy XXX live cams and even a sex dating network! Come for the porn but stay for the sexperience! Bookmark us now![/COLOR]- [COLOR red]OVER 18 ONLY - Support is available on Twitter @echo_coding[/COLOR]</description>
+    <disclaimer lang="en"></disclaimer>
+    <language></language>
+    <platform>all</platform>
+    <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+    <forum>http://www.echocoder.com</forum>
+    <website>http://www.echocoder.com</website>
+    <email>echocoder@protonmail.com</email>
+  </extension>
+</addon>
