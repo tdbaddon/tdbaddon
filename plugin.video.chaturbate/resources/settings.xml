@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<settings>
-<category label="Aufzeichnung">
-        <setting id="record_active" type="bool" label="Aufzeichnung aktiviert" default="false" enable="!eq(3,)"/>
-        <setting id="record_type" type="enum" label="Aufzeichnung erfolgt" values="einmalig|durchgehend" enable="eq(-1,false)"/>
-        <setting id="record_mode" type="enum" label="Aufzeichnung wird" values="angefügt|überschrieben"  enable="eq(-2,false)"/>
-        <setting id="record_folder" label="Aufnahmeverzeichnis" type="folder" source="folder" option="writeable"  enable="eq(-3,false)"/>
-</category>
-</settings>
