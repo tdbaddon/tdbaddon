@@ -1,8 +1,0 @@
-<settings>
-	<category label="[COLOR red][B]ADD PATHS[/B][/COLOR]">
-		<setting label="[B]URL to m3u playlist[/B]" type="text"  id="online_m3u" default="" />
-		<setting label="[B]Local path to m3u playlist[/B]" type="file"  id="local_m3u" default="" />	
-		<setting label="[COLOR red][B]URL to xml playlist[/B][/COLOR]" type="text"  id="online_xml" default="" />		
-		<setting label="[COLOR red][B]Local path to xml playlist[/B][/COLOR]" type="file"  id="local_xml" default="" />			
-	</category>
-</settings>
