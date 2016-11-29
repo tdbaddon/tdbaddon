@@ -26,6 +26,7 @@ try: from sqlite3 import dbapi2 as database
 except: from pysqlite2 import dbapi2 as database
 
 from resources.lib.modules import control
+from resources.lib.modules import cleantitle
 from resources.lib.modules import playcount
 
 
@@ -48,6 +49,7 @@ class player(xbmc.Player):
             self.season = '%01d' % int(season) if self.content == 'episode' else None
             self.episode = '%01d' % int(episode) if self.content == 'episode' else None
 
+            self.DBID = None
             self.imdb = imdb if not imdb == None else '0'
             self.tvdb = tvdb if not tvdb == None else '0'
             self.ids = {'imdb': self.imdb, 'tvdb': self.tvdb}
@@ -56,6 +58,7 @@ class player(xbmc.Player):
             self.offset = bookmarks().get(self.name, self.year)
 
             poster, thumb, meta = self.getMeta(meta)
+
             item = control.item(path=url)
             item.setArt({'icon': thumb, 'thumb': thumb, 'poster': poster, 'tvshow.poster': poster, 'season.poster': poster})
             item.setInfo(type='Video', infoLabels = meta)
@@ -83,8 +86,71 @@ class player(xbmc.Player):
 
             return (poster, thumb, meta)
         except:
-            poster, thumb, meta = '', '', {'title': self.name}
+            pass
+
+        try:
+            if not self.content == 'movie': raise Exception()
+
+            meta = control.jsonrpc('{"jsonrpc": "2.0", "method": "VideoLibrary.GetMovies", "params": {"filter":{"or": [{"field": "year", "operator": "is", "value": "%s"}, {"field": "year", "operator": "is", "value": "%s"}, {"field": "year", "operator": "is", "value": "%s"}]}, "properties" : ["title", "originaltitle", "year", "genre", "studio", "country", "runtime", "rating", "votes", "mpaa", "director", "writer", "plot", "plotoutline", "tagline", "thumbnail", "file"]}, "id": 1}' % (self.year, str(int(self.year)+1), str(int(self.year)-1)))
+            meta = unicode(meta, 'utf-8', errors='ignore')
+            meta = json.loads(meta)['result']['movies']
+
+            t = cleantitle.get(self.title)
+            meta = [i for i in meta if self.year == str(i['year']) and (t == cleantitle.get(i['title']) or t == cleantitle.get(i['originaltitle']))][0]
+
+            for k, v in meta.iteritems():
+                if type(v) == list:
+                    try: meta[k] = str(' / '.join([i.encode('utf-8') for i in v]))
+                    except: meta[k] = ''
+                else:
+                    try: meta[k] = str(v.encode('utf-8'))
+                    except: meta[k] = str(v)
+
+            if not 'plugin' in control.infoLabel('Container.PluginName'):
+                self.DBID = meta['movieid']
+
+            poster = thumb = meta['thumbnail']
+
             return (poster, thumb, meta)
+        except:
+            pass
+
+        try:
+            if not self.content == 'episode': raise Exception()
+
+            meta = control.jsonrpc('{"jsonrpc": "2.0", "method": "VideoLibrary.GetTVShows", "params": {"filter":{"or": [{"field": "year", "operator": "is", "value": "%s"}, {"field": "year", "operator": "is", "value": "%s"}, {"field": "year", "operator": "is", "value": "%s"}]}, "properties" : ["title", "year", "thumbnail", "file"]}, "id": 1}' % (self.year, str(int(self.year)+1), str(int(self.year)-1)))
+            meta = unicode(meta, 'utf-8', errors='ignore')
+            meta = json.loads(meta)['result']['tvshows']
+
+            t = cleantitle.get(self.title)
+            meta = [i for i in meta if self.year == str(i['year']) and t == cleantitle.get(i['title'])][0]
+
+            tvshowid = meta['tvshowid'] ; poster = meta['thumbnail']
+
+            meta = control.jsonrpc('{"jsonrpc": "2.0", "method": "VideoLibrary.GetEpisodes", "params":{ "tvshowid": %d, "filter":{"and": [{"field": "season", "operator": "is", "value": "%s"}, {"field": "episode", "operator": "is", "value": "%s"}]}, "properties": ["title", "season", "episode", "showtitle", "firstaired", "runtime", "rating", "director", "writer", "plot", "thumbnail", "file"]}, "id": 1}' % (tvshowid, self.season, self.episode))
+            meta = unicode(meta, 'utf-8', errors='ignore')
+            meta = json.loads(meta)['result']['episodes'][0]
+
+            for k, v in meta.iteritems():
+                if type(v) == list:
+                    try: meta[k] = str(' / '.join([i.encode('utf-8') for i in v]))
+                    except: meta[k] = ''
+                else:
+                    try: meta[k] = str(v.encode('utf-8'))
+                    except: meta[k] = str(v)
+
+            if not 'plugin' in control.infoLabel('Container.PluginName'):
+                self.DBID = meta['episodeid']
+
+            thumb = meta['thumbnail']
+
+            return (poster, thumb, meta)
+        except:
+            pass
+
+
+        poster, thumb, meta = '', '', {'title': self.name}
+        return (poster, thumb, meta)
 
 
     def keepPlaybackAlive(self):
@@ -165,6 +231,20 @@ class player(xbmc.Player):
         control.window.clearProperty(pname)
 
 
+    def libForPlayback(self):
+        try:
+            if self.DBID == None: raise Exception()
+
+            if self.content == 'movie':
+                rpc = '{"jsonrpc": "2.0", "method": "VideoLibrary.SetMovieDetails", "params": {"movieid" : %s, "playcount" : 1 }, "id": 1 }' % str(self.DBID)
+            elif self.content == 'episode':
+                rpc = '{"jsonrpc": "2.0", "method": "VideoLibrary.SetEpisodeDetails", "params": {"episodeid" : %s, "playcount" : 1 }, "id": 1 }' % str(self.DBID)
+
+            control.jsonrpc(rpc) ; control.refresh()
+        except:
+            pass
+
+
     def idleForPlayback(self):
         for i in range(0, 200):
             if control.condVisibility('Window.IsActive(busydialog)') == 1: control.idle()
@@ -184,6 +264,7 @@ class player(xbmc.Player):
 
 
     def onPlayBackEnded(self):
+        self.libForPlayback()
         self.onPlayBackStopped()
 
 

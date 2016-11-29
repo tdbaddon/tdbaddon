@@ -1134,15 +1134,19 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
 	</extension>
 </addon>
 
-<addon id="plugin.video.Evolve" name="[COLOR red]E[/COLOR][COLOR white]volve[/COLOR]" version="0.0.4" provider-name="Team Evolve">
+<addon id="plugin.video.Evolve" name="[COLOR red]E[/COLOR][COLOR white]volve[/COLOR]" version="0.0.7" provider-name="Team Evolve">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.simplejson" version="3.3.0"/>
     <import addon="script.module.urlresolver"  version="2.1.2"/>
     <import addon="script.module.liveresolver" version="0.1.24"/>
     <import addon="script.common.plugin.cache" version="2.5.2"/>
+    <import addon="repository.metalkettle" version="1.7.1"/>
+    <import addon="repository.shani" version="2.9"/>
+    <import addon="repository.unofficialsportsdevil" version="1.0.0"/>
     <import addon="script.module.metahandler" version="2.5.1"/>
     <import addon="plugin.video.youtube" optional="true" />
+
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
         <provides>video</provides>
@@ -1154,7 +1158,7 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
   </extension>
 </addon>
 
-<addon id="plugin.video.exodus" version="2.0.20" name="Exodus" provider-name="Exodus">
+<addon id="plugin.video.exodus" version="2.0.21" name="Exodus" provider-name="Exodus">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="repository.exodus" version="1.0.0" />
@@ -1171,7 +1175,7 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
 		<description lang="en">Please visit www.tvaddons.ag for Exodus support and assistance! Kindly note that Exodus is not an official part of the media player you are running, and therefore not to be mentioned within official support channels, this addon has nothing to do with the media player itself, nor it’s intended use, it is simply a third party plugin which has been added to your system.</description>
 		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
 		<platform>all</platform>
-		<news>- Updated indexers[CR]- Tweaked pagination of Trakt lists[CR]- Tweaked flatten of tv shows (for external addons and library)[CR]- Tweaked artwork of episode lists[CR]- Updated providers</news>
+		<news>- Tweaked metadata and playback[CR]- Updated existing providers[CR]- Removed dead providers[CR]- Added new providers</news>
 	</extension>
 </addon>
 
@@ -1324,7 +1328,7 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
   </extension>
 </addon>
 
-<addon id="plugin.video.greek.tv" name="Greek TV" version="1.0.4" provider-name="Twilight0">
+<addon id="plugin.video.greek.tv" name="Greek TV" version="1.0.5" provider-name="Twilight0">
     <requires>
         <import addon="xbmc.python" version="2.19.0"/>
         <import addon="plugin.video.youtube" version="5.2.1"/>
@@ -1996,9 +2000,9 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon
   id="plugin.video.SportsDevil"
-  version="ZNL2016.2016.2016.05.16.NL1"
+  version="2016.11.20"
   name="SportsDevil"
-  provider-name="MaxMustermann, Al101, Hubbab3, Sattekop">
+  provider-name="SportsDevil">
   <requires>
    <import addon="xbmc.python" version="2.14.0"/>
    <import addon="script.module.simplejson" />
@@ -2038,7 +2042,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBEUROTV"
        name="TDB EURO TV"
-       version="254"
+       version="255"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
@@ -3129,7 +3133,7 @@ Follow us on twitter: [COLOR blue]Whitecream_UWC[/COLOR]</description>
 	</extension>
 </addon>
 
-<addon id="repository.MatsBuilds" name="Goliaths Add-ons repository" version="1.0.10" provider-name="Goliath">
+<addon id="repository.MatsBuilds" name="Goliaths Add-ons repository" version="1.0.15" provider-name="Goliath">
 	<extension point="xbmc.addon.repository" name="Goliaths Repository">
 	<dir>
 		<info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
@@ -3521,6 +3525,37 @@ Follow us on twitter: [COLOR blue]Whitecream_UWC[/COLOR]</description>
             <description>Download and install addons from KrAz!</description>
             <platform>all</platform>
     </extension>
+</addon>
+
+<addon id="repository.unofficialsportsdevil" name="Unofficial SportsDevil Repository" version="1.0.0" provider-name="unofficialsportsdevil">
+ <extension point="xbmc.addon.repository" name="Unofficial SportsDevil Repository">
+  <dir>
+   <info compressed="false">
+    https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml
+   </info>
+   <checksum>
+    https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml.md5
+   </checksum>
+   <datadir zip="true">
+    https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/zips/
+   </datadir>
+  </dir>
+  <info compressed="false">
+   https://offshoregit.com/unofficialsportsdevil/addons.xml
+  </info>
+  <checksum>
+   https://offshoregit.com/unofficialsportsdevil/addons.xml.md5
+  </checksum>
+  <datadir zip="true">https://offshoregit.com/unofficialsportsdevil/</datadir>
+ </extension>
+ <extension point="xbmc.addon.metadata">
+  <summary>Unofficial SportsDevil Updates for Kodi</summary>
+  <description>Unofficial SportsDevil Updates for Kodi</description>
+  <platform>all</platform>
+  <forum>
+   https://forums.tvaddons.ag/sportsdevil-addon-for-kodi/
+  </forum>
+ </extension>
 </addon>
 
 <addon id="repository.whitecream" name="WhiteCream repo" version="2.0.2" provider-name="Whitecream">

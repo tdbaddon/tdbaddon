@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <settings>
+	<setting label="Addon Layout" type="labelenum" id="layout" values="Listers|Category" default="Listers"/>
 	<setting id="enable_meta" type="bool" label="Enable Metadata" default="True"/>
-	<setting id="password" type="text"label="Adult Password" default="" option="hidden" visible="true"/>		
+	<setting id="password" type="text"label="Adult Password" default="" option="hidden" visible="true"/>
+	<setting id="pos" type="text"label="pos" default="" visible="false" option="hidden" />
+	<setting id="tv" type="text"label="tv" default=" " option="hidden" visible="false"/>
+		
+		
 </settings>

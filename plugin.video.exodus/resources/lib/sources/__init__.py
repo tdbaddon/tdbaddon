@@ -81,7 +81,8 @@ class sources:
             if url == None:
                 return self.errorForSources()
 
-            meta = json.loads(meta)
+            try: meta = json.loads(meta)
+            except: pass
 
             from resources.lib.modules.player import player
             player().run(title, year, season, episode, imdb, tvdb, url, meta)

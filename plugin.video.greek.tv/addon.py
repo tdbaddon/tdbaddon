@@ -19,9 +19,9 @@
 """
 
 import re, os, sys, base64, random
-import urlparse, urllib2, urllib
+import urlparse, urllib #, urllib2
 import xbmcaddon, xbmcgui, xbmcplugin, xbmc
-from resources.lib import ordereddict
+from resources.lib import ordereddict, client
 
 addon = xbmcaddon.Addon()
 localisedstr = addon.getLocalizedString
@@ -70,20 +70,20 @@ def random_agent():
                                   br_ver=random.choice(BR_VERS[index]))
 
 
-def opener(url, user_agent='Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3'):
-
-    req = urllib2.Request(url)
-    req.add_header('User-Agent', user_agent)
-    response = urllib2.urlopen(req)
-    result = response.read()
-    response.close()
-
-    return result
+# def opener(url, user_agent='Mozilla/5.0 (Windows; U; Windows NT 5.1; en-GB; rv:1.9.0.3) Gecko/2008092417 Firefox/3.0.3'):
+#
+#     req = urllib2.Request(url)
+#     req.add_header('User-Agent', user_agent)
+#     response = urllib2.urlopen(req)
+#     result = response.read()
+#     response.close()
+#
+#     return result
 
 
 def ant1cy_resolver():
 
-    return opener('http://www.ant1iwo.com/ajax.aspx?m=Atcom.Sites.Ant1iwo.Modules.TokenGenerator&videoURL=http://l2.cloudskep.com/antl2/abr/playlist.m3u8', random_agent())
+    return client.request('http://www.ant1iwo.com/ajax.aspx?m=Atcom.Sites.Ant1iwo.Modules.TokenGenerator&videoURL=http://l2.cloudskep.com/antl2/abr/playlist.m3u8')
 
 
 def constructor():
@@ -91,7 +91,7 @@ def constructor():
     compiled_list = []
     groups = []
 
-    text = opener(decode('aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2ZyZWUtZ3JlZWstaXB0di9ncmVlay1pcHR2L21hc3Rlci9hbmRyb2lkLm0zdQ=='))
+    text = client.request('https://raw.githubusercontent.com/free-greek-iptv/greek-iptv/master/android.m3u')
 
     result = text.replace('\r\n', '\n')
     items = re.compile('group-title="(.*?)".*?tvg-logo="(.*?)",(.*?)$\n(.*?)$', re.U + re.M).findall(result)
@@ -101,7 +101,7 @@ def constructor():
         title = title.strip()
 
         if title == 'ANT1 CY':
-            url = ant1cy_resolver() + '|User-Agent=' + urllib.quote_plus(random_agent())
+            url = ant1cy_resolver()
 
         item_data = ({'title': title, 'icon': icon, 'group': group.decode('utf-8'), 'url': url})
         compiled_list.append(item_data)
@@ -247,7 +247,7 @@ def list_items():
         }
         ,
         {
-            'title': localisedstr(30015).format(localisedstr(30016) if addon.getSetting('group') == 'ΟΛΑ'.decode('utf-8') else addon.getSetting('group').decode('utf-8')),
+            'title': localisedstr(30015).format(localisedstr(30016) if addon.getSetting('group') == 'ΟΛΑ' else addon.getSetting('group').decode('utf-8')),
             'icon': join(addonmedia, 'switcher.png'),
             'url': '{0}?action={1}'.format(addon_url, 'switcher')
         }
@@ -257,7 +257,7 @@ def list_items():
         {
             'title': localisedstr(30013),
             'icon': join(addonmedia, 'null.png'),
-            'url': addon_url
+            'url': '{0}?action={1}'.format(addon_url, 'null')
         }
     ]
 
@@ -289,7 +289,7 @@ def list_items():
         _url_ = '{0}?action=play&url={1}'.format(addon_url, item['url'])
         if item['url'].startswith('https://www.youtube.com/watch?v='):
             _url_ = item['url'].replace('https://www.youtube.com/watch?v=', 'plugin://plugin.video.youtube/play/?video_id=')
-        if item['url'].endswith(('switcher','settings')):
+        if item['url'].endswith(('switcher','settings','null')):
             list_item.setProperty('IsPlayable', 'false')
             _url_ = item['url']
         isFolder = False

@@ -1,3 +1,9 @@
+[B]2.0.21[/B]
+- Tweaked metadata and playback
+- Updated existing providers
+- Removed dead providers
+- Added new providers
+
 [B]2.0.20[/B]
 - Updated indexers
 - Tweaked pagination of Trakt lists

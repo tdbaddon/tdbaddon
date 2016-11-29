@@ -1,3 +1,6 @@
+1.0.5 (28-11-2016)
+- Added client module & replaced the simple opener function
+
 1.0.4 (25-11-2016)
 - Implemented two different sort methods for channels, by group & title
   > By default they are off

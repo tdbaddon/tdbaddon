@@ -29,7 +29,7 @@ from resources.lib.modules import directstream
 
 class source:
     def __init__(self):
-        self.domains = ['putlocker.systems', 'putlocker-movies.tv', 'putlocker.yt', 'cartoonhd.website']
+        self.domains = ['putlocker.systems', 'putlocker-movies.tv', 'putlocker.yt', 'cartoonhd.website', 'cartoonhd.online']
         self.base_link = 'http://cartoonhd.website'
 
 
@@ -77,14 +77,11 @@ class source:
 
                 title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
 
-                
-
-                match = (title.translate(None, '\/:*?"\'<>|!,')).replace(' ', '-').replace('--', '-').lower()
 
                 if 'tvshowtitle' in data:
-                    url = '%s/tv-show/%s/season/%01d/episode/%01d' % (self.base_link, match, int(data['season']), int(data['episode']))
+                    url = '%s/tv-show/%s/season/%01d/episode/%01d' % (self.base_link, cleantitle.geturl(title), int(data['season']), int(data['episode']))
                 else:
-                    url = '%s/movie/%s' % (self.base_link, match)
+                    url = '%s/movie/%s' % (self.base_link, cleantitle.geturl(title))
 
                 result = client.request(url, limit='5')
                 result = client.parseDOM(result, 'title')[0]
@@ -114,7 +111,8 @@ class source:
             headers['Referer'] = url
 
 
-            u = '/ajax/nembeds.php'
+            u = '/ajax/tnembeds.php'
+            self.base_link = client.request(self.base_link, output='geturl')
             u = urlparse.urljoin(self.base_link, u)
 
             action = 'getEpisodeEmb' if '/episode/' in url else 'getMovieEmb'
@@ -140,8 +138,6 @@ class source:
                 except: pass
 
             links += [{'source': 'openload.co', 'quality': 'SD', 'url': i, 'direct': False} for i in r if 'openload.co' in i]
-
-            #links += [{'source': 'videomega.tv', 'quality': 'SD', 'url': i, 'direct': False} for i in r if 'videomega.tv' in i]
 
 
             for i in links: sources.append({'source': i['source'], 'quality': i['quality'], 'provider': 'Putlocker', 'url': i['url'], 'direct': i['direct'], 'debridonly': False})

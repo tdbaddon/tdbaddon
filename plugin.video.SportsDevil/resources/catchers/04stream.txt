@@ -9,12 +9,17 @@ item_info_build=%sfirstrowas.co
 
 item_info_name=file
 item_info_from=pageUrl
-item_info_convert=getInfo('%s','.*?\W(\w+\.stream[^&'"]+).*','@REFERER@')
+item_info_convert=getInfo('%s','.*?\W(\w+\.stream[^&'"]*).*','@REFERER@')
 item_info_build=%s
 
-item_info_name=r1
+item_info_name=h
 item_info_from=pageUrl
-item_info_convert=getInfo('%s','.*?var\s*\w+\s*=\s*\"(:\d+)\".*?srp=\d+&srp=(\d+).*','@REFERER@','p1|srp')
+item_info_convert=getInfo('%s','.*?\Wreturn\s*"(\?[^&'"]+).*','@REFERER@')
+item_info_build=%s
+
+item_info_name=srp
+item_info_from=pageUrl
+item_info_convert=getInfo('%s','.*?srp=\d+&srp=(\d+).*','@REFERER@')
 item_info_build=%s
 
 item_info_name=s1
@@ -37,5 +42,5 @@ item_info_from=rtmp_2 || rtmp_1
 item_info_build=%s
 
 item_info_name=url
-item_info_from=rtmp+' playPath='+file+' swfUrl=http://thecdn.04stream.com/p/ooolo1.swf flashver=WIN\2021,0,0,216 timeout=15 live=1 pageUrl='+pageUrl
+item_info_from=rtmp+' playPath='+file+h+' swfUrl=http://thecdn.04stream.com/p/ooolo1.swf flashver=WIN\2023,0,0,207 timeout=10 live=1 pageUrl='+pageUrl
 item_info_build=%s

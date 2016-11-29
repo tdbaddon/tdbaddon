@@ -30,40 +30,31 @@ class source:
     def __init__(self):
         self.domains = ['pelispedia.tv']
         self.base_link = 'http://www.pelispedia.tv'
-        self.search_link = 'aHR0cDovL2FwaS5zd2lmdHlwZS5jb20vYXBpL3YxL3B1YmxpYy9lbmdpbmVzL3NlYXJjaD9lbmdpbmVfa2V5PU5oVHpYZ2hCV2Z3MVdGbXVVOTRRJnE9JXM='
+        self.moviesearch_link = '/pelicula/%s/'
+        self.tvsearch_link = '/serie/%s/'
 
 
     def movie(self, imdb, title, year):
         try:
-            t = cleantitle.get(title)
+            url = self.moviesearch_link % cleantitle.geturl(title)
 
-            query = '%s %s' % (title, year)
-            query = base64.b64decode(self.search_link) % urllib.quote_plus(query)
+            r = urlparse.urljoin(self.base_link, url)
+            r = client.request(r, limit='1')
+            r = client.parseDOM(r, 'title')
 
-            result = client.request(query)
-            result = json.loads(result)['records']['page']
+            if not r:
+                url = 'http://www.imdb.com/title/%s' % imdb
+                url = client.request(url, headers={'Accept-Language':'es-ES'})
+                url = client.parseDOM(url, 'title')[0]
+                url = re.sub('(?:\(|\s)\d{4}.+', '', url).strip()
+                url = cleantitle.normalize(url.encode("utf-8"))
+                url = self.moviesearch_link % cleantitle.geturl(url)
 
-            result = [(i['url'], i['title']) for i in result]
-            result = [(i[0], re.findall('(?:^Ver |)(.+?)(?: HD |)\((\d{4})', i[1])) for i in result]
-            result = [(i[0], i[1][0][0], i[1][0][1]) for i in result if len(i[1]) > 0]
+                r = urlparse.urljoin(self.base_link, url)
+                r = client.request(r, limit='1')
+                r = client.parseDOM(r, 'title')
 
-            r = [i for i in result if t == cleantitle.get(i[1]) and year == i[2]]
-
-            if len(r) == 0:
-                t = 'http://www.imdb.com/title/%s' % imdb
-                t = client.request(t, headers={'Accept-Language':'es-ES'})
-                t = client.parseDOM(t, 'title')[0]
-                t = re.sub('(?:\(|\s)\d{4}.+', '', t).strip()
-                t = cleantitle.get(t)
-
-                r = [i for i in result if t == cleantitle.get(i[1]) and year == i[2]]
-
-            try: url = re.findall('//.+?(/.+)', r[0][0])[0]
-            except: url = r[0][0]
-            try: url = re.findall('(/.+?/.+?/)', url)[0]
-            except: pass
-            url = client.replaceHTMLCodes(url)
-            url = url.encode('utf-8')
+            if not year in r[0]: raise Exception()
 
             return url
         except:
@@ -72,36 +63,25 @@ class source:
 
     def tvshow(self, imdb, tvdb, tvshowtitle, year):
         try:
-            t = cleantitle.get(tvshowtitle)
+            url = self.tvsearch_link % cleantitle.geturl(tvshowtitle)
 
-            query = '%s %s' % (tvshowtitle, year)
-            query = base64.b64decode(self.search_link) % urllib.quote_plus(query)
+            r = urlparse.urljoin(self.base_link, url)
+            r = client.request(r, limit='1')
+            r = client.parseDOM(r, 'title')
 
-            result = client.request(query)
-            result = json.loads(result)['records']['page']
+            if not r:
+                url = 'http://www.imdb.com/title/%s' % imdb
+                url = client.request(url, headers={'Accept-Language':'es-ES'})
+                url = client.parseDOM(url, 'title')[0]
+                url = re.sub('\((?:.+?|)\d{4}.+', '', url).strip()
+                url = cleantitle.normalize(url.encode("utf-8"))
+                url = self.tvsearch_link % cleantitle.geturl(url)
 
-            result = [(i['url'], i['title']) for i in result]
-            result = [(i[0], re.findall('(?:^Ver Serie|^Ver |)(.+?)(?: HD |)\((\d{4})', i[1])) for i in result]
-            result = [(i[0], i[1][0][0], i[1][0][1]) for i in result if len(i[1]) > 0]
-            result = [i for i in result if '/serie/' in i[0]]
+                r = urlparse.urljoin(self.base_link, url)
+                r = client.request(r, limit='1')
+                r = client.parseDOM(r, 'title')
 
-            r = [i for i in result if t == cleantitle.get(i[1]) and year == i[2]]
-
-            if len(r) == 0:
-                t = 'http://www.imdb.com/title/%s' % imdb
-                t = client.request(t, headers={'Accept-Language':'es-ES'})
-                t = client.parseDOM(t, 'title')[0]
-                t = re.sub('\((?:.+?|)\d{4}.+', '', t).strip()
-                t = cleantitle.get(t)
-
-                r = [i for i in result if t == cleantitle.get(i[1]) and year == i[2]]
-
-            try: url = re.findall('//.+?(/.+)', r[0][0])[0]
-            except: url = r[0][0]
-            try: url = re.findall('(/.+?/.+?/)', url)[0]
-            except: pass
-            url = client.replaceHTMLCodes(url)
-            url = url.encode('utf-8')
+            if not year in r[0]: raise Exception()
 
             return url
         except:
@@ -109,13 +89,13 @@ class source:
 
 
     def episode(self, url, imdb, tvdb, title, premiered, season, episode):
-        if url == None: return
+        try:
+            if url == None: return
 
-        url = [i for i in url.split('/') if not i == ''][-1]
-        url = '/pelicula/%s-season-%01d-episode-%01d/' % (url, int(season), int(episode))
-        url = client.replaceHTMLCodes(url)
-        url = url.encode('utf-8')
-        return url
+            url = '/pelicula/%s-season-%01d-episode-%01d/' % (url.strip('/').split('/')[-1], int(season), int(episode))
+            return url 
+        except:
+            return
 
 
     def sources(self, url, hostDict, hostprDict):
