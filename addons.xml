@@ -997,7 +997,7 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
 	</extension>
 </addon>
 
-<addon id="plugin.video.Evolve" name="[COLOR red]E[/COLOR][COLOR white]volve[/COLOR]" version="0.0.7" provider-name="Team Evolve">
+<addon id="plugin.video.Evolve" name="[COLOR red]E[/COLOR][COLOR white]volve[/COLOR]" version="0.0.8" provider-name="Team Evolve">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.simplejson" version="3.3.0"/>
@@ -1006,7 +1006,7 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
     <import addon="script.common.plugin.cache" version="2.5.2"/>
     <import addon="repository.metalkettle" version="1.7.1"/>
     <import addon="repository.shani" version="2.9"/>
-    <import addon="repository.unofficialsportsdevil" version="1.0.0"/>
+
     <import addon="script.module.metahandler" version="2.5.1"/>
     <import addon="plugin.video.youtube" optional="true" />
 
@@ -2676,7 +2676,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
-<addon id="repository.MatsBuilds" name="Goliaths Add-ons repository" version="1.0.15" provider-name="Goliath">
+<addon id="repository.MatsBuilds" name="Goliaths Add-ons repository" version="1.0.16" provider-name="Goliath">
 	<extension point="xbmc.addon.repository" name="Goliaths Repository">
 	<dir>
 		<info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>

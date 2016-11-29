@@ -8,8 +8,8 @@ if 64 - 64: i11iIiiIii
 VVeve = 'plugin.video.Evolve'
 VeevVee = Addon ( VVeve , sys . argv )
 VevVevVVevVevVev = xbmcaddon . Addon ( id = VVeve )
-iiiii = xbmc . translatePath ( os . path . join ( 'special://home/addons/' + VVeve , 'fanart.jpg' ) )
-eeeevVV = xbmc . translatePath ( os . path . join ( 'special://home/addons/' + VVeve , 'fanart.jpg' ) )
+iiiii = xbmc . translatePath ( os . path . join ( 'special://home/addons/' + VVeve , 'fanart.png' ) )
+eeeevVV = xbmc . translatePath ( os . path . join ( 'special://home/addons/' + VVeve , 'fanart.png' ) )
 II1 = xbmc . translatePath ( os . path . join ( 'special://home/addons/' + VVeve , 'icon.png' ) )
 Veveveeeeeevev = xbmc . translatePath ( os . path . join ( 'special://home/addons/' + VVeve + '/resources/art' , 'next.png' ) )
 I1IiiI = 'http://matsbuilds.uk/Evolvesnewmenu/mainmenu.xml'
