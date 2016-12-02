@@ -50,21 +50,11 @@ def unpack(source):
 
 def _filterargs(source):
     """Juice from a source file the four args needed by decoder."""
-    argsregex = (r".*'(.*)'\.split")
+    argsregex = (r"}\('(.*)', *(\d+), *(\d+), *'(.*)'\.")
     args = re.search(argsregex, source, re.DOTALL).groups()
-    ar2 = (r".*?'([\xa1-\xff].*}\);)")
-    args2 = re.search(ar2, source, re.DOTALL).groups()
-    modp = r'a\+(\d+)'
-    mod = int(re.compile(modp).findall(source)[0])
-    
-    reg = ur'[\xa1-\xff]+'
-    ints = re.findall(reg, args2[0], re.DOTALL)
-    t = []
-    for i in ints:
-        t.append(ord(i[-1])-mod)
-    
+
     try:
-        return args2[0], args[0].split('|'), max(t)+1, len(args[0].split('|'))
+        return args[0], args[3].split('|'), int(args[1]), int(args[2])
     except ValueError:
         raise UnpackingError('Corrupted p.a.c.k.e.r. data.')
 

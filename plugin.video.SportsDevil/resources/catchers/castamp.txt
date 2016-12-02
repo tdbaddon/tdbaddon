@@ -4,7 +4,6 @@ item_info_build=CastAMP - %s
 
 item_info_name=pageUrl
 item_info_from=@PARAM1@
-item_info_convert=replace('%s',' ','')
 item_info_build=http://castamp.com/embed.php?c=%s&vwidth=640&vheight=380
 
 item_info_name=tmp
@@ -14,7 +13,7 @@ item_info_build=%s
 
 item_info_name=rtmp
 item_info_from=pageUrl
-item_info_convert=getInfo('%s','.*(?![^"']+50.7.118.3)(rtmp:[^"']+)','@REFERER@')
+item_info_convert=getInfo('%s','.*(rtmp:[^"']+)','@REFERER@')
 item_info_build=%s
 
 item_info_name=url

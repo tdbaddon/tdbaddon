@@ -200,50 +200,35 @@ def decodeRawUnicode(src):
     except:
         return src
     
-def simpleToken(url):
-    import requests,zlib
-    time = common.getSetting(url+'_time')
-    s = requests.Session()
-    if time:
-        s.headers.update({'If-Modified-Since' : time})
-    s.headers.update({'User-Agent' : 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36'})
-    s.headers.update({'Referer' : url})
-    r = s.get(url)
-    if r.status_code == 304:
-        return common.getSetting(url+'_token')
-    elif r.status_code == 200:
-        content = zlib.decompress(r.content[8:])
-        if 'tv-msn' in url:
-            token = re.findall(r"lengths.param1.(\w+)", content)[0][:16]
-        else:
-            token = re.findall("TokenResponse (\w+)", content)[0][:16]
-        common.setSetting(url+'_token',token)
-        common.setSetting(url+'_time',r.headers['Last-Modified'])
-        return token
-    
 def resolve(src):
     try:
         parsed_link = urlparse.urlsplit(src)
         tmp_host = parsed_link.netloc.split(':')
-        if 'streamlive.to' in tmp_host[0]:
-            servers = ['184.173.85.91']
-                       #'80.82.78.4'
-                       #'89.248.168.57'
-                       #'93.174.93.230'
-
-                       #'184.173.85.91'
-                       #'62.210.139.136'
+        if tmp_host[0] == 'watch4.streamlive.to':
+            servers = ['80.82.78.4',
+                       #'93.174.93.230',
+                       '95.211.210.69',
+                       '95.211.196.5',
+                       '184.173.85.91',
+                       '85.17.31.102',
+                       '169.54.85.69']
+            import random
+            tmp_host[0] = random.choice(servers)
+        elif tmp_host[0] == 'watch3.streamlive.to':
+            servers = ['80.82.78.4',
+                       '95.211.210.69',
+                       '184.173.85.91',
+                       '85.17.31.102',
+                       '95.211.196.5']
             import random
             tmp_host[0] = random.choice(servers)
         elif tmp_host[0] == 'xlive.sportstream365.com':
-            servers = [ '93.189.57.254',
-                        '93.189.62.10',
-                        '185.49.70.58',
-                        '46.28.205.96',
-                        '178.17.168.90',
-                        '185.28.190.69',
-                        '85.114.135.215',
-                        '94.242.254.211']
+            servers = ['93.189.57.254',
+                       '185.28.190.158',
+                       '178.175.132.210',
+                       '178.17.168.90',
+                       '185.56.137.178',
+                       '94.242.254.72']
             import random
             tmp_host[0] = random.choice(servers)
         elif tmp_host[0] == 'live.pub.stream':

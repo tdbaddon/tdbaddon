@@ -43,9 +43,9 @@ from resources.lib.resolvers import zstream
 
 class source:
     def __init__(self):
-        self.base_link = 'https://www.iwatchonline.lol'
+        self.base_link = 'https://www.iwatchonline.cr'
         self.link_1 = 'https://www.iwatchonline.lol'
-        self.link_2 = 'https://www.iwatchonline.video'
+        self.link_2 = 'https://www.iwatchonline.eu'
         self.link_3 = 'https://www.iwatchonline.cr'
         self.search_link = '/advance-search'
         self.show_link = '/tv-shows/%s'
@@ -159,7 +159,7 @@ class source:
                     host = host.encode('utf-8')
 
                     if '>Cam<' in i or '>TS<' in i: quality = 'CAM'
-                    elif '>HD<' in i and host in hosthdDict: quality = 'HD'
+                    #elif '>HD<' in i and host in hostDict: quality = 'HD'
                     else: quality = 'SD'
 
                     #if quality == 'HD' and not host in hosthdDict: raise Exception()
@@ -167,7 +167,6 @@ class source:
 
                     if '>3D<' in i: info = '3D'
                     else: info = ''
-                    #control.log('### host:%s q:%s' % (host,quality))
 
                     url = re.compile('href=[\'|\"|\s|\<]*(.+?)[\'|\"|\s|\>]').findall(i)[0]
                     url = client.replaceHTMLCodes(url)
@@ -179,8 +178,10 @@ class source:
 
 
                     url = url.encode('utf-8')
-                    #control.log('########  IWATCH LINK url:%s  host:%s q:%s' % (url,host,quality))
-                    mylinks.append({'source': host, 'quality': quality, 'url': url})
+                    control.log('########  IWATCH LINK url:%s  host:%s q:%s' % (url,host,quality))
+                    self.sources.append(
+                        {'source': host, 'quality': quality, 'provider': 'Iwatchonline', 'url': url})
+
 
                 except:
                     pass
@@ -188,13 +189,13 @@ class source:
             #for i in mylinks:
             #    control.log(">>>>>>>>>>>>>>> ONE IWACH LINKS %s" % (i))
 
-            threads = []
-            for i in mylinks: threads.append(workers.Thread(self.check, i, headers, cookie,hostDict,hosthdDict))
-            [i.start() for i in threads]
-            for i in range(0, 10 * 2):
-                is_alive = [x.is_alive() for x in threads]
-                if all(x == False for x in is_alive): break
-                time.sleep(0.5)
+            #threads = []
+            #for i in mylinks: threads.append(workers.Thread(self.check, i, headers, cookie,hostDict,hosthdDict))
+            #[i.start() for i in threads]
+            #for i in range(0, 10 * 2):
+            #    is_alive = [x.is_alive() for x in threads]
+            #    if all(x == False for x in is_alive): break
+            #    time.sleep(0.5)
 
             return self.sources
 
@@ -206,16 +207,19 @@ class source:
             url = client.replaceHTMLCodes(i['url'])
             r = client.request(url, headers=headers, cookie=cookie, output='headers')
             url = r['Refresh'].replace('0;url=','')
+            control.log('#%s'% url)
             host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(url.strip().lower()).netloc)[0]
-            if not host in myhostDict:
-                #control.log('movie25 HOST; %s' % host)
-                raise Exception()
-            self.sources.append({'source': i['source'], 'quality': i['quality'], 'provider': 'Iwatchonline', 'url': url})
+
+            if host in myhostDict:
+                self.sources.append({'source': i['source'], 'quality': i['quality'], 'provider': 'Iwatchonline', 'url': url})
         except:
             pass
 
     def resolve(self, url):
         try:
+            r = client.request(url, output='headers')
+            url = r['Refresh'].replace('0;url=','')
+            #control.log('#%s'% url)
             url = resolvers.request(url)
             return url
         except:

@@ -15,7 +15,6 @@ def findJS(data):
     jscript = regexUtils.findall(data, regex)
     if jscript:
         jscript = filter(lambda x: x[1].find('twitter') == -1, jscript)
-        jscript = filter(lambda x: x[1].find('pushpublish') == -1, jscript)
         return jscript
     
     return None
@@ -28,11 +27,6 @@ def findPHP(data, streamId):
         return re.sub(r"\'\+\s*(?:[fc]*id|ch)\s*\+\'", "%s" % streamId,php[0])
     
     regex = "document.write\('.*?src=['\"]*(.*?(?:f*id|ch)\s*\+'\.html*).*?['\" ]*.*?\)"
-    html = regexUtils.findall(data, regex)
-    if html:
-        return re.sub(r"\'\+\s*(?:f*id|ch)\s*\+\'", "%s" % streamId,html[0])
-    
-    regex = "document.write\('.*?src=\"(.*?(?:f*id|ch)[^\"]+)\".*?['\" ]*.*?\)"
     html = regexUtils.findall(data, regex)
     if html:
         return re.sub(r"\'\+\s*(?:f*id|ch)\s*\+\'", "%s" % streamId,html[0])
@@ -162,18 +156,6 @@ def findContentRefreshLink(page, data):
     links = regexUtils.findall(data, regex)
     if links:
         return urlparse.urljoin(urllib.unquote(page), links[0]).strip()
-    
-    #cr**hd.com
-    regex = '<a\s*href="([^"]+)"\s*title="[^"]*"><img\s*(?:src="[^"]+"\s*height="\d+"\s*width="\d+"\s*longdesc="[^"]+"|class="aligncenter"\s*alt="[^"]*"\s*title="[^"]*"\s*src="[^"]*"\s*width="\d\d\d"\s*height="\d\d\d")'
-    links = regexUtils.findall(data, regex)
-    if links:
-        return urlparse.urljoin(urllib.unquote(page), links[0]).strip()
-    
-    #spo***live.com
-    regex = '<a\s*href="([^"]+)"\s*title=""><img\s*data-scalestrategy="crop"\s*width="\d\d\d"\s*height="\d\d\d"'
-    links = regexUtils.findall(data, regex)
-    if links:
-        return urlparse.urljoin(urllib.unquote(page), links[0]).strip()
 
     return None
 
@@ -197,7 +179,7 @@ def findVideoFrameLink(page, data):
     if not frames:
         return None
     
-    iframes = regexUtils.findall(data, "((?:frame|FRAME)(?![^>]*cbox\.ws)(?![^>]*Publi)(?![^>]*dailymotion)(?![^>]*guide\.)(?![^>]*chat\d*\.\w+)(?![^>]*ad122m)(?![^>]*adshell)(?![^>]*capacanal)(?![^>]*waframedia)(?![^>]*banner)(?![^>]*maxtags)(?![^>]*s/a1\.php)(?![^>]*right-sidebar)[^>]*\s(?:height|HEIGHT)\s*=\s*[\"']*([\%\d]+)(?:px)?[\"']*[^>]*>)")
+    iframes = regexUtils.findall(data, "(frame(?![^>]*cbox\.ws)(?![^>]*Publi)(?![^>]*dailymotion)(?![^>]*guide\.)(?![^>]*chat\d*\.\w+)(?![^>]*ad122m)(?![^>]*adshell)(?![^>]*capacanal)(?![^>]*waframedia)(?![^>]*Beba.tv/embed)(?![^>]*maxtags)(?![^>]*s/a1\.php)(?![^>]*right-sidebar)[^>]*\sheight\s*=\s*[\"']*([\%\d]+)(?:px)?[\"']*[^>]*>)")
 
     if iframes:
         for iframe in iframes:
@@ -206,7 +188,7 @@ def findVideoFrameLink(page, data):
             else:
                 height = int(iframe[1])
             if height > minheight:
-                m = regexUtils.findall(iframe[0], "[\"'\s](?:width|WIDTH)\s*=\s*[\"']*(\d+[%]*)(?:px)?[\"']*")
+                m = regexUtils.findall(iframe[0], "[\"'\s]width\s*=\s*[\"']*(\d+[%]*)(?:px)?[\"']*")
                 if m:
                     if m[0] == '100%':
                         width = minwidth+1
@@ -239,17 +221,12 @@ def findVideoFrameLink(page, data):
     if m:
         return urlparse.urljoin(urllib.unquote(page), m[0]).strip()
     
-    m = regexUtils.findall(data, r'playStream\(\'iframe\',\s*\'[^\']*(https*:[^\']+)\'\)')
+    m = regexUtils.findall(data, r'playStream\(\'iframe\', \'[^\']*(https*:[^\']+)\'\)')
     if m:
         return urlparse.urljoin(urllib.unquote(page), m[0]).strip()
     
     #sportsh**tv
     m = regexUtils.findall(data, r'<iframe\s*src="(stream[^"]+)"\s*allowfullscreen>')
-    if m:
-        return urlparse.urljoin(urllib.unquote(page), m[0]).strip()
-
-    #stre***d
-    m = regexUtils.findall(data, r'<iframe\s*class="embed[^"]+"\s*name="video[^"]+"\s*src="([^"]+)"')
     if m:
         return urlparse.urljoin(urllib.unquote(page), m[0]).strip()
 
