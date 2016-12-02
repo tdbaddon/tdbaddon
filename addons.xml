@@ -344,32 +344,6 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 	</extension>
 </addon>
 
-<addon id="plugin.program.advancedsettings"
-       name="Easy Advanced Settings"
-       version="0.8.8"
-       provider-name="kinkin">
-    <requires>
-        <import addon="xbmc.python" version="2.1.0"/>
-    </requires>
-    <extension point="xbmc.python.pluginsource"
-               	library="default.py">
-        <provides>video executable</provides>
-    </extension>
-    <extension point="xbmc.addon.metadata">
-        <platform>all</platform>
-        <summary>Create, view, edit and delete your advancedsettings.xml file in a user-friendly gui</summary>
-        <description>All settings follow the xbmc.org wiki[CR][CR]With this tool you can create your advanced settings directly from XBMC[CR][CR]If you don't know what a setting does, don't enable it!</description>
-        <platform>all</platform>
-        <language>en</language>
-        <license>GNU GENERAL PUBLIC LICENSE</license>
-        <forum></forum>
-        <website></website>
-        <source></source>
-        <email></email>
-    </extension>
-
-</addon>
-
 <addon id="plugin.program.AznKodiConverter" name="*AznKodi [COLOR cyan]M3U XML Converter[/COLOR]" version="1.0.0" provider-name="AznKodi">
     <requires>
     </requires>
@@ -395,6 +369,34 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 		<mainsource>https://github.com/AznKodi/repository.AznKodi</mainsource>
 		<source></source>
     </extension>
+</addon>
+
+<addon id="plugin.program.echowizard"
+	     name="[COLOR lime]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
+	     version="1.33"
+	     provider-name="Echo Coder">
+  <requires>
+  	<import addon="xbmc.python" version="2.1.0"/>
+	<import addon="plugin.video.youtube"  optional="true"/>
+	<import addon="script.module.requests" version="2.9.1"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>executable</provides>
+  </extension>
+  <extension point="xbmc.service" library="service.py" start="startup">
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <platform>all</platform>
+    <summary lang="en">[COLOR lime]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]</summary>
+    <description lang="en">ECHO Wizard.</description>
+    <disclaimer lang="en"></disclaimer>
+    <language></language>
+    <platform>all</platform>
+    <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+    <forum>http://www.echocoder.com</forum>
+    <website>http://www.echocoder.com</website>
+    <email>echocoder@protonmail.com</email>
+  </extension>
 </addon>
 
 <addon id="plugin.program.goodfellasmessages" version="1.1.2"
@@ -1910,6 +1912,24 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
+<addon id="plugin.video.tinklepad" name="TinklePad" version="1.1.9" provider-name="jsergio">
+	<requires>
+		<import addon="xbmc.python" version="2.1.0"/>
+		<import addon="script.module.metahandler" version="1.0.0"/>
+		<import addon="script.module.urlresolver" version="3.0.22"/>
+		<import addon="plugin.video.youtube" version="5.2.1"/>
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="default.py">
+		<provides>video</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">Watch a wide selection of movies from tinklepad.is</summary>
+		<description lang="en">Big thanks to Lambda for his foundation code and use of Exodus for the Latest HD section and Jokstergfx for the artwork!</description>
+		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
+		<platform>all</platform>
+	</extension>
+</addon>
+
 <addon id="plugin.video.tvo"
        name="TV Ontario"
        version="1.0.7"
@@ -2272,20 +2292,6 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 </extension>
 </addon>
 
-<addon id="repository.addonscriptorde-beta" name="AddonScriptorDE's Testing Repo" version="1.0.1" provider-name="AddonScriptorDE">
-	<extension point="xbmc.addon.repository" name="AddonScriptorDE's Testing Repo">
-		<info compressed="false">http://addonscriptorde-beta-repo.googlecode.com/svn/trunk/addons.xml</info>
-		<checksum>http://addonscriptorde-beta-repo.googlecode.com/svn/trunk/addons.xml.md5</checksum>
-		<datadir zip="false">http://addonscriptorde-beta-repo.googlecode.com/svn/trunk/</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>Add-ons and updates that are not (yet) available via the xbmc.org repo</summary>
-		<description>Add-ons and updates that are not (yet) available via the xbmc.org repo</description>
-		<disclaimer></disclaimer>
-		<platform>all</platform>
-	</extension>
-</addon>
-
 <addon id="repository.aftershock" name="Aftershock addons" version="2.0.1" provider-name="IDev">
 	<extension point="xbmc.addon.repository" name="Aftershock add-on repository">
 		<dir>
@@ -2337,35 +2343,6 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
-<addon id="repository.bromix" name="Bromix Add-ons" version="1.2.2" provider-name="bromix">
-    <extension point="xbmc.addon.repository" name="Bromix Add-ons">
-		<info compressed="true">https://github.com/bromix/repository.bromix.storage/raw/master/addons.xml</info>
-		<checksum>https://github.com/bromix/repository.bromix.storage/raw/master/addons.xml.md5</checksum>
-		<datadir zip="true">https://raw.githubusercontent.com/bromix/repository.bromix.storage/master/</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>Bromix Add-ons</summary>
-		<summary lang="de">Bromix Add-ons</summary>
-		<description>Repository of add-ons by Bromix. Some add-ons are final and perhaps obtainable by the official repository of KODI. Add-ons in alpha and beta status are here to test exclusively and for testers to provide them with updates.</description>
-		<description lang="de">Repository an Add-ons von Bromix. Einige Add-Ons sind final und vielleicht durch das offizielle Repository von KODI erhältlich. Add-Ons in alpha- und beta-status sind hier ausschließlich zum Testen und um Tester mit Updates zu versorgen.</description>
-		<platform>all</platform>
-	</extension>
-</addon>
-
-<addon id="repository.catoal" name="Catoal repository" version="1.0.1" provider-name="Catoal">
-	<extension point="xbmc.addon.repository" name="Catoal Repository">
-		<info compressed="false">http://catoal.esy.es/Addons/addons.xml</info>
-		<checksum>http://catoal.esy.es/Addons/addons.xml.md5</checksum>
-		<datadir zip="true">http://catoal.esy.es/Addons/</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>Catoal Addon</summary>
-		<description>Repositorio con todo lo necesario para instalar sin problemas Catoal.</description>
-		<disclaimer></disclaimer>
-		<platform>all</platform>
-	</extension>
-</addon>
-
 <addon id="repository.communityrepo" name="[COLOR orange][B]The Community Repository[/B][/COLOR]" version="9.3" provider-name="The @CommunityRepo Team">
 	<extension point="xbmc.addon.repository" name="The Community Repository">
 	<dir>
@@ -2393,6 +2370,24 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	<extension point="xbmc.addon.metadata">
 		<summary>Repo CUBA-TV por JalexFILMS</summary>
 		<description>Instala la repo para mantenerte actualizado gracias por disfrutar el contenido de cuba-tv Alex Lopez Rodriguez y JalexFILMS te dan las gracias...</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="repository.echo" name="[COLOR lime]ECHO[/COLOR] [COLOR white]Repository[/COLOR]" version="1.03" provider-name="ECHO">
+	<extension point="xbmc.addon.repository" name="ECHO Repository">
+	<dir>
+		<info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
+		<checksum>https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml.md5</checksum>
+		<datadir zip="true">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/zips/</datadir>
+	</dir>
+		<info compressed="false">https://raw.githubusercontent.com/echocoderkodi/repository.echo/master/addons.xml</info>
+        <checksum>https://raw.githubusercontent.com/echocoderkodi/repository.echo/master/addons.xml.md5</checksum>
+        <datadir zip="true">https://raw.githubusercontent.com/echocoderkodi/repository.echo/master/zips/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Echo Repository</summary>
+		<description>The official Echo repositroy.</description>
 		<platform>all</platform>
 	</extension>
 </addon>
@@ -2498,19 +2493,6 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	<extension point="xbmc.addon.metadata">
 		<summary>Welcome to the GoodFellas Repository where you will find all the Live Tv, Movies, and Documentaries</summary>
 		<description>The Best Live Tv and Movies addon</description>
-		<platform>all</platform>
-	</extension>
-</addon>
-
-<addon id="repository.googlecode.anarchintosh-projects" name="anarchintosh addons" version="1.0.1" provider-name="anarchintosh">
-	<extension point="xbmc.addon.repository" name="anarchintosh add-on repository">
-		<info compressed="false">http://anarchintosh-projects.googlecode.com/svn/addons/addons.xml</info>
-		<checksum>http://anarchintosh-projects.googlecode.com/svn/addons/addons.xml.md5</checksum>
-		<datadir zip="true">http://anarchintosh-projects.googlecode.com/svn/addons</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>Install Addons from http://anarchintosh-projects.googlecode.com</summary>
-		<description>Download and install addons from anarchintosh repository.</description>
 		<platform>all</platform>
 	</extension>
 </addon>
@@ -2627,55 +2609,6 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
-<addon id="repository.lambda" name="lambda Add-on repository" version="1.1.0" provider-name="lambda">
-	<extension point="xbmc.addon.repository" name="lambda Add-on repository">
-		<dir>
-			<info compressed="false">http://raw.github.com/lambda81/lambda-repo/master/addons.xml</info>
-			<checksum>http://raw.github.com/lambda81/lambda-repo/master/addons.xml.md5</checksum>
-			<datadir zip="true">http://raw.github.com/lambda81/lambda-repo/master/</datadir>
-		</dir>
-		<info compressed="false">https://offshoregit.com/lambda81/lambda-repo/addons.xml</info>
-		<checksum>https://offshoregit.com/lambda81/lambda-repo/addons.xml.md5</checksum>
-		<datadir zip="true">https://offshoregit.com/lambda81/lambda-repo/</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary lang="en">Install Add-ons from lambda</summary>
-		<description lang="en">Download and install add-ons from lambda repository.</description>
-		<platform>all</platform>
-	</extension>
-</addon>
-
-    <addon id="repository.legends" name=".[COLOR blue]L[/COLOR][COLOR white]egends[/COLOR]-repo" version="1.0.0" provider-name="Dragon">
-        <requires>
-            <import addon="xbmc.addon" version="12.0.0"/>
-        </requires>
-        <extension point="xbmc.addon.repository" name=".[COLOR blue]L[/COLOR][COLOR white]egends[/COLOR]-repo">
-            <info compressed="false">http://4legends.co.uk/Legends/addons.xml</info>
-            <checksum>http://legends.x10.mx/repo/addons.xml.md5</checksum>
-            <datadir zip="true">http://4legends.co.uk/Legends/</datadir>
-            <hashes>false</hashes>
-        </extension>
-        <extension point="xbmc.addon.metadata">
-            <summary>We Fly High and NEVER Fall....</summary>
-            <description>Only The Best</description>
-            <platform>all</platform>
-    </extension>
-</addon>
-
-<addon id="repository.macedoniaondemand.xbmc-plugins" name="Macedonia On Demand Add-on Repository" version="1.0.0" provider-name="Viktor Mladenovski">
-	<extension point="xbmc.addon.repository" name="Macedonia On Demand Add-on Repository">
-		<info compressed="false">http://macedoniaondemand.googlecode.com/git/addons.xml</info>
-		<checksum>http://macedoniaondemand.googlecode.com/git/addons.xml.md5</checksum>
-		<datadir zip="false">http://macedoniaondemand.googlecode.com/git/</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>Install Add-ons from bluecop Macedonia On Demand Repository</summary>
-		<description>Video plug-ins for XBMC</description>
-		<disclaimer></disclaimer>
-		<platform>all</platform>
-	</extension>
-</addon>
-
 <addon id="repository.MatsBuilds" name="Goliaths Add-ons repository" version="1.0.17" provider-name="Goliath">
 	<extension point="xbmc.addon.repository" name="Goliaths Repository">
 	<dir>
@@ -2720,21 +2653,6 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 		<platform>all</platform>
 		<forum>https://forums.tvaddons.ag/live-sports-on-kodi/44271-nhl-streams.html#post349799</forum>
 		<website>https://www.tvaddons.ag/</website>
-	</extension>
-</addon>
-
-<addon id="repository.p2p-streams.xbmc" name="p2p-streams repository" version="1.0.4" provider-name="enen92 - fightnight">
-	<extension point="xbmc.addon.repository" name="p2p-streams Repository">
-		<info compressed="false">http://p2p-strm.googlecode.com/svn/addons/addons.xml</info>
-		<checksum>http://p2p-strm.googlecode.com/svn/addons/addons.xml.md5</checksum>
-		<datadir zip="true">http://p2p-strm.googlecode.com/svn/addons</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>p2p-streams repository</summary>
-   		<description lang="en">Install P2P-Streams addon for Kodi (SopCast and AceStream). Watch peer-to-peer streams in Kodi without the need for external players!</description>
-    		<description lang="pt">Instale o addon P2P-Streams para o Kodi (SopCast e AceStream). Assista a streams peer-to-peer no Kodi sem a necessidade de players externos!</description>
-		<disclaimer></disclaimer>
-		<platform>all</platform>
 	</extension>
 </addon>
 
@@ -2784,21 +2702,6 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
-<addon id="repository.RenegadesTV" name="RenegadesTV Add-on repository" version="1.4" provider-name="RenegadesTV">
-	<extension point="xbmc.addon.repository" name="RenegadesTV Add-on repository">
-		<dir>
-			<info compressed="false">http://renegadestv.info/r3nautor3po/addons.xml</info>
-			<checksum>http://renegadestv.info/r3nautor3po/addons.xml.md5</checksum>
-			<datadir zip="true">http://renegadestv.info/r3nautor3po/</datadir>
-		</dir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary lang="en">Install Add-ons from RenegadesTV</summary>
-		<description lang="en">Download and install add-ons from RenegadesTV repository.</description>
-		<platform>all</platform>
-	</extension>
-</addon>
-
 <addon id="repository.riostv" name="Mauricio repository" version="0.0.2" provider-name="Mauricio">
 	<extension point="xbmc.addon.repository" name="Mauricio Add-on Repository">
 		<info compressed="false">http://raw.github.com/xmbcrios/riostv/master/addons.xml</info>
@@ -2813,18 +2716,21 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
-<addon id="repository.schismtv.official" name="[COLOR orange][B]SchisM TV[/B][/COLOR] Builds Repository" version="1.0" provider-name="SchisM">
-    <extension point="xbmc.addon.repository" name="schism tv repository">
-        <info compressed="false">http://github.com/schismtv/officialrepo/raw/master/addons.xml</info>
-        <checksum>http://github.com/schismtv/officialrepo/raw/master/addons.xml.md5</checksum>
-        <datadir zip="true">http://github.com/schismtv/officialrepo/raw/master/zips/</datadir>
-    </extension>
-    <extension point="xbmc.addon.metadata">
-        <summary>This is used FOR BUILDS ONLY</summary>
-        <description>BUILDS ONLY FROM SCHISM TV - THIS REPO CONTAINS UPDATES FOR THE SCHISM TV BUILDS
-        </description>
-        <platform>all</platform>
-    </extension>
+<addon id="repository.seppius" name="Seppius XBMC Add-ons" version="1.0.1" provider-name="seppius">
+	<extension point="xbmc.addon.repository" name="Seppius XBMC Add-ons">
+		<info compressed="false">https://github.com/seppius-xbmc-repo/ru/raw/master/addons.xml</info>
+		<checksum>https://github.com/seppius-xbmc-repo/ru/raw/master/addons.xml.md5</checksum>
+		<datadir zip="true">https://github.com/seppius-xbmc-repo/ru/raw/master/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Install Add-ons from RUS Add-on Repository</summary>
+		<summary lang="ru">Дополнения и репозитории пользователей форума XBMC.ru</summary>
+		<description>Russian plug-ins and repository installer for XBMC</description>
+		<description lang="ru">Загружайте и устанавливайте плагины и репозитории разработчиков форума XBMC.ru.[CR]Если вы обнаружили нерабочее дополнение, сообщите об этом разработчикам плагина в разделе форума "Помощь по плагинам".</description>
+		<disclaimer lang="en">Team XBMC did not make all the add-ons on this repository and are not responsible for their content</disclaimer>
+		<disclaimer lang="ru">Разработчики XBMC не являются авторами этих дополнений и не несут ответственность за их содержимое.</disclaimer>
+		<platform>all</platform>
+	</extension>
 </addon>
 
 <addon id="repository.shani" name="Shanis Addon Repository" version="2.9" provider-name="Shani">
@@ -2916,19 +2822,6 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
     </extension>
 </addon>
 
-<addon id="repository.t1m.addons" name="t1m Add-on Repository" version="1.0.4" provider-name="t1m">
-	<extension point="xbmc.addon.repository" name="Offical t1m Add-on Repository">
-		<info compressed="true">https://raw.github.com/learningit/repository.t1m.addons/master/addons.xml</info>
-		<checksum>https://raw.github.com/learningit/repository.t1m.addons/master/addons.xml.md5</checksum>
-		<datadir zip="true">https://raw.github.com/learningit/repository.t1m.addons/master/</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>Install  add-ons from github.com/learningit</summary>
-		<description>Releases of my t1m addons - some may be under development</description>
-		<platform>all</platform>
-	</extension>
-</addon>
-
 <addon id="repository.tdbaddon" name="TDB REPO" version="1000" provider-name="TDB">
 	<extension point="xbmc.addon.repository" name="TDB Addon Repository">
         <dir>
@@ -2977,19 +2870,6 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 		<summary>Team Maniac Addons</summary>
 		<description>Team Maniac Installer</description>
 		<disclaimer></disclaimer>
-		<platform>all</platform>
-	</extension>
-</addon>
-
-<addon id="repository.the-one" name="The ONE's XBMC Addons Repository" version="1.2" provider-name="the-one">
-	<extension point="xbmc.addon.repository" name="the-one">
-		<info compressed="false">http://the-ones-xbmc-repo.googlecode.com/svn/addons.xml</info>
-		<checksum>http://the-ones-xbmc-repo.googlecode.com/svn/addons.xml.md5</checksum>
-		<datadir zip="true">http://the-ones-xbmc-repo.googlecode.com/svn/zips</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>XBMC Addons by The-ONE</summary>
-		<description>Download and install addons from The-ONE.......For OFFICIAL !! Support Visit XBMCHUB.COM</description>
 		<platform>all</platform>
 	</extension>
 </addon>
@@ -3097,19 +2977,6 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	<extension point="xbmc.addon.metadata">
 		<summary>Install Wiiego's Addons</summary>
 		<description>Download and install multimedia addons by Wiiego</description>
-		<platform>all</platform>
-	</extension>
-</addon>
-
-<addon id="repository.wolf-team" name="Wolf-Team official Repo" version="2.0" provider-name="WolfTeam">
-	<extension point="xbmc.addon.repository" name="Wolf-Team official Repo">
-		<info compressed="false">https://raw.github.com/EquipoWolf/wolfteam/master/addons.xml</info>
-		<checksum>https://raw.github.com/EquipoWolf/wolfteam/master/addons.xml.md5</checksum>
-		<datadir zip="true">https://raw.github.com/EquipoWolf/wolfteam/master</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>Wolf-Team official Repo</summary>
-		<description>Instala los Addons de Wolf, repositorio creado por KodiMexico https://kodimexico.wordpress.com</description>
 		<platform>all</platform>
 	</extension>
 </addon>
@@ -3346,20 +3213,6 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	<extension point="xbmc.addon.metadata">
 		<summary>Install Kodis Youtube Addons</summary>
                 <description>Download and install addons from the Kodi Youtube group. This plugin is not official from Google.</description>
-		<platform>all</platform>
-	</extension>
-</addon>
-
-<addon id="rogger.repository" name="rogger repository" version="0.0.2" provider-name="rogger2">
-	<extension point="xbmc.addon.repository" name="rogger Add-on Repository">
-		<info compressed="false">http://raw.github.com/rogger2/rogger.repository/master/addons.xml</info>
-		<checksum>http://raw.github.com/rogger2/rogger.repository/master/addons.xml.md5</checksum>
-		<datadir zip="true">http://raw.github.com/rogger2/rogger.repository/master/repo/</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>rogger Addon</summary>
-		<description>Addon Description</description>
-		<disclaimer></disclaimer>
 		<platform>all</platform>
 	</extension>
 </addon>

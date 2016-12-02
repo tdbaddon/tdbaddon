@@ -1,0 +1,117 @@
+[COLOR lime]1.32: 21st November 2016[/COLOR]
+[COLOR white][B]- Quick fix to get ECHO online.[/B][/COLOR]
+
+[COLOR lime]1.32: 17th November 2016[/COLOR]
+[COLOR white][B]- Support for code locked builds added to community section.[/B][/COLOR]
+
+[COLOR lime]1.31: 14th November 2016[/COLOR]
+[COLOR white][B]- Fix to community builds loading. (No longer stuck)[/B][/COLOR]
+[COLOR white][B]- Thumbnail removal added to auto clean on launch (Oversight)[/B][/COLOR]
+[COLOR white][B]- Faster cache removal on launch for auto clean.[/B][/COLOR]
+
+[COLOR lime]1.30: 4th November 2016[/COLOR]
+[COLOR white][B]- Fix GitHub issues for some users.[/B][/COLOR]
+
+[COLOR lime]1.29: 2nd November 2016[/COLOR]
+[COLOR white][B]- Order by downloads added(Credit to MK).[/B][/COLOR]
+[COLOR white][B]- Fix missing repository icon in installer.[/B][/COLOR]
+[COLOR white][B]- Stop installer opening in Krypton.[/B][/COLOR]
+
+[COLOR lime]1.28: 31st October 2016[/COLOR]
+[COLOR white][B]- Repositories added to Addon installer.[/B][/COLOR]
+[COLOR white][B]- Minor code fixes.[/B][/COLOR]
+
+[COLOR lime]1.27: 30th October 2016[/COLOR]
+[COLOR white][B]- Addon installer improvments.[/B][/COLOR]
+
+[COLOR lime]1.26: 29th October 2016[/COLOR]
+[COLOR white][B]- Edit source URL for dead links.[/B][/COLOR]
+
+[COLOR lime]1.25: 29th October 2016[/COLOR]
+[COLOR white][B]- Addon installer descriptions added.[/B][/COLOR]
+[COLOR white][B]- Addon statistics added.[/B][/COLOR]
+
+[COLOR lime]1.24: 28th October 2016[/COLOR]
+[COLOR white][B]- Update to the addon installer.[/B][/COLOR]
+
+[COLOR lime]1.23: 26th October 2016[/COLOR]
+[COLOR white][B]- Move to GitHub.[/B][/COLOR]
+
+[COLOR lime]1.22: 26th October 2016[/COLOR]
+[COLOR white][B]- Auto updater added.[/B][/COLOR]
+
+[COLOR lime]1.21: 25th October 2016[/COLOR]
+[COLOR white][B]- Installer parental controls added.[/B][/COLOR]
+
+[COLOR lime]1.20: 22nd October 2016[/COLOR]
+[COLOR white][B]- Installer fix.[/B][/COLOR]
+
+[COLOR lime]1.19: 22nd October 2016[/COLOR]
+[COLOR white][B]- Installer updated.[/B][/COLOR]
+[COLOR white][B]- TV Guide fix method added.[/B][/COLOR]
+
+[COLOR lime]1.18: 19th October 2016[/COLOR]
+[COLOR white][B]- Sports Devil fix.[/B][/COLOR]
+[COLOR white][B]- Addon installer updated.[/B][/COLOR]
+
+[COLOR lime]1.17: 15th October 2016[/COLOR]
+[COLOR white][B]- Update force close method.[/B][/COLOR]
+
+[COLOR lime]1.16: 15th October 2016[/COLOR]
+[COLOR white][B]- Change server location.[/B][/COLOR]
+
+[COLOR lime]1.15: 11th October 2016[/COLOR]
+[COLOR white][B]- Fix issue with converting special paths during backups.[/B][/COLOR]
+
+[COLOR lime]1.14: 10th October 2016[/COLOR]
+[COLOR white][B]- Fix XXX in addon installer.[/B][/COLOR]
+
+[COLOR lime]1.13: 10th October 2016[/COLOR]
+[COLOR white][B]- Extras added for protected builds.[/B][/COLOR]
+
+[COLOR lime]1.12: 9th October 2016[/COLOR]
+[COLOR white][B]- Convert to special fixed.[/B][/COLOR]
+[COLOR white][B]- Force close for update added.[/B][/COLOR]
+[COLOR white][B]- Skip favs on certain builds added.[/B][/COLOR]
+
+[COLOR lime]1.11: 4th October 2016[/COLOR]
+[COLOR white][B]- Log uploader fixed (Thanks Ben).[/B][/COLOR]
+[COLOR white][B]- Added error viewer.[/B][/COLOR]
+[COLOR white][B]- Added XXX section to Addon Installer.[/B][/COLOR]
+
+[COLOR lime]1.10: 3rd October 2016[/COLOR]
+[COLOR white][B]- Fix to addon installer.[/B][/COLOR]
+
+[COLOR lime]1.09: 3rd October 2016[/COLOR]
+[COLOR white][B]- Download counters added back to wizard.[/B][/COLOR]
+
+[COLOR lime]1.08: 2nd October 2016[/COLOR]
+[COLOR white][B]- Changes to the addon installer and fixes to broken repo/source check.[/B][/COLOR]
+
+[COLOR lime]1.07: 1st October 2016[/COLOR]
+[COLOR white][B]- Improvments to loading times and general speed.[/B][/COLOR]
+
+[COLOR lime]1.06: 30th September 2016[/COLOR]
+[COLOR white][B]- More ECHO bug fixes.[/B][/COLOR]
+
+[COLOR lime]1.05: 30th September 2016[/COLOR]
+[COLOR white][B]- More ECHO bug fixes.[/B][/COLOR]
+
+[COLOR lime]1.04: 30th September 2016[/COLOR]
+[COLOR white][B]- ECHO bug fixes.[/B][/COLOR]
+
+[COLOR lime]1.03: 29th September 2016[/COLOR]
+[COLOR white][B]- Migration to Echo server.[/B][/COLOR]
+
+[COLOR lime]1.02: 26th September 2016[/COLOR]
+[COLOR white][B]- YouTube channel added.[/B][/COLOR]
+[COLOR white][B]- Main menu layout change.[/B][/COLOR]
+
+[COLOR lime]1.01: 25th September 2016[/COLOR]
+[COLOR white][B]- Fix missing icons.[/B][/COLOR]
+[COLOR white][B]- Fix for Apple TV cache size in maintenance.[/B][/COLOR]
+[COLOR white][B]- Fix for Android clear cache.[/B][/COLOR]
+[COLOR white][B]- XXX password removed.[/B][/COLOR]
+
+[COLOR lime]1.00: 21st September 2016[/COLOR]
+[COLOR white][B]- Initial Fork from TDB Wizard.[/B][/COLOR]

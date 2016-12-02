@@ -1,0 +1,10 @@
+Hello fellow developers.
+
+TDB Wizard is not encrypted at all and the code used is on display for you all to see.
+
+I will NEVER encrypt this addon, and encourage all wanting to learn to look at the code and take what you need to progress your skills.
+I do not have any issue with my code being used in other addons If it helps you, this is what Kodi is about to me.
+
+All I would ask is that you credit the developers who have helped with a simple CREDITS.txt file.
+
+Please enjoy my addon and I hope it helps you!
