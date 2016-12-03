@@ -1,3 +1,9 @@
+Aftershock v4.2.5 (02-Dec-2016)
+------------------------
+- [COLOR orange]NOTE: If you like the addon please consider making a donation to aftershockpy@gmail.com via paypal.[/COLOR]
+- Metadata Updates
+- Code Cosmetics
+
 Aftershock v4.2.4 (10-Nov-2016)
 ------------------------
 - [COLOR orange]NOTE: If you like the addon please consider making a donation to aftershockpy@gmail.com via paypal.[/COLOR]

@@ -331,10 +331,10 @@ class Main:
         if m_type == 'video':
             liz.setProperty('IsPlayable','true')
 
-        if title.startswith('p2pcast'):
+        if title.startswith('castflash'):
             try:
                 liz.setMimeType('application/vnd.apple.mpegurl')
-                #liz.setContentLookup(False)
+                liz.setContentLookup(False)
             except:
                 common.showError('Update Kodi to 16+ to view this stream')
                 return None

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.greek.tv" name="Greek TV" version="1.0.5" provider-name="Twilight0">
+<addon id="plugin.video.greek.tv" name="Greek TV" version="1.0.5.2" provider-name="Thgiliwt">
     <requires>
         <import addon="xbmc.python" version="2.19.0"/>
         <import addon="plugin.video.youtube" version="5.2.1"/>
@@ -14,5 +14,23 @@
         <summary lang="el">Πρόσθετο Greek TV</summary>
         <description lang="el">Το πρόσθετο Greek TV είναι μια μικροεφαρμογή για το Kodi που προσφέρει διεπαφή παρόμοια με την ομώνυμη εφαρμογή για Android. Ζωντανές ροές από όλη την Ελλάδα και τον κόσμο με ελληνικό περιεχόμενο. Συμβατή από εκδόσεις Helix και πάνω.</description>
         <license>GNU GPL, version 2 or later</license>
+        <website>https://play.google.com/store/apps/details?id=com.cstalking.greektv</website>
+        <forum>https://forums.tvaddons.ag/addon-releases/51983-greek-tv-bringing-concept-feel-androids-greek-tv-kodi.html</forum>
     </extension>
+    <news>
+1.0.5.2 (02-12-2016)
+- More fixes in addon.xml
+
+1.0.5.1 (29-11-2016)
+- Minor changes in addon.xml
+
+1.0.5 (28-11-2016)
+- Added client module and replaced the simple opener function
+
+1.0.4 (25-11-2016)
+- Implemented two different sort methods for channels, by group and title
+  > By default they are off
+- Added random user agent function
+  > Particularly useful for ANT1 CY resolver
+    </news>
 </addon>

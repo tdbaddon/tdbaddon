@@ -25,6 +25,7 @@ from resources.lib.libraries import cleantitle
 from resources.lib.libraries import logger
 from resources.lib.libraries import pyaes
 from resources.lib.libraries import control
+from resources.lib.libraries import cache
 from resources.lib.libraries.fileFetcher import *
 from resources.lib.libraries.liveParser import *
 
@@ -38,7 +39,7 @@ class source:
                         'Accept-Language':'en-US,en;q=0.5',
                         'Accept-Encoding':'gzip, deflate',
                         'Connection':'keep-alive',
-                        'User-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:43.0) Gecko/20100101 Firefox/43.0' ,
+                        'User-Agent': cache.get(client.randomagent, 1) ,
                         'Referer':'http://www.dittotv.com/livetv'}
         self.list = []
         self.fileName = 'ditto.json'
@@ -86,7 +87,7 @@ class source:
     def resolve(self, url, resolverList):
         try :
             logger.debug('ORIGINAL URL [%s]' % url, __name__)
-            result = client.source(url, headers=self.headers)
+            result = client.request(url, headers=self.headers)
             playdata='window.pl_data = (\{.*?"key":.*?\}\})'
             result=re.findall(playdata, result)[0]
             try :

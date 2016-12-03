@@ -27,11 +27,11 @@ def resolve(url):
         rUrl = None
         hdUrl = None
         try :
-            result = client.source(url)
+            result = client.request(url)
             rUrl = client.parseDOM(result, name="source", ret="src")[0]
             videoId = getVideoID(rUrl)
             rUrl = 'http://www.apnasave.in/media/player/config_embed.php?vkey=%s' % videoId
-            result = client.source(rUrl)
+            result = client.request(rUrl)
 
             try :
                 hdUrl = client.parseDOM(result, name="hd")[0]

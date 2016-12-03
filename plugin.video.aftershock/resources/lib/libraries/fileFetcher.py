@@ -97,7 +97,7 @@ class FileFetcher(object):
                 else:
                     f = open(tmpFile, 'wb')
                     logger.debug('file is on the internet: %s' % self.fileUrl, __name__)
-                    data = client.source(self.fileUrl)
+                    data = client.request(self.fileUrl)
                     #logger.debug(data, __name__)
                     #tmpData = urllib2.urlopen(self.fileUrl)
                     #data = tmpData.read()

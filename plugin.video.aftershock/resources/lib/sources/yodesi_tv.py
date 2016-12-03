@@ -37,10 +37,58 @@ class source:
 
         self.list = []
 
+    def get_networks(self, logoBaseURL):
+        listItems = []
+        provider = 'yodesi_tv'
+        listItems.append({'provider':provider, 'name':90200, 'image': logoBaseURL+'star_plus_hk.png', 'action': 'tvshows', 'url':'star-plus'})
+        listItems.append({'provider':provider, 'name':90201, 'image': logoBaseURL+'zee_tv_in.png', 'action': 'tvshows', 'url':'zee-tv'})
+        listItems.append({'provider':provider, 'name':90203, 'image': logoBaseURL+'sony_set.png', 'action': 'tvshows', 'url':'sony-tv'})
+        listItems.append({'provider':provider, 'name':90205, 'image': logoBaseURL+'life_ok_in.png', 'action': 'tvshows', 'url':'life-ok'})
+        listItems.append({'provider':provider, 'name':90207, 'image': logoBaseURL+'star_jalsha.png', 'action': 'tvshows', 'url':'star-jalsha'})
+        listItems.append({'provider':provider, 'name':90208, 'image': logoBaseURL+'colors_in.png', 'action': 'tvshows', 'url':'colors'})
+        listItems.append({'provider':provider, 'name':90209, 'image': logoBaseURL+'sony_sab_tv_in.png', 'action': 'tvshows', 'url':'sab-tv'})
+        listItems.append({'provider':provider, 'name':90210, 'image': logoBaseURL+'star_pravah.png', 'action': 'tvshows', 'url':'star-pravah'})
+        listItems.append({'provider':provider, 'name':90212, 'image': logoBaseURL+'mtv_us.png', 'action': 'tvshows', 'url':'mtv-india'})
+        listItems.append({'provider':provider, 'name':90213, 'image': logoBaseURL+'channel_v_in.png', 'action': 'tvshows', 'url':'category/channel-v'})
+        listItems.append({'provider':provider, 'name':90214, 'image': logoBaseURL+'bindass_in.png', 'action': 'tvshows', 'url':'bindass-tv'})
+        listItems.append({'provider':provider, 'name':90220, 'image': logoBaseURL+'and_tv_in.png', 'action': 'tvshows', 'url':'tv-and-tv'})
+        return listItems
+
     def get_shows(self, name, url):
-        try :
-            return
+        try:
+            result = ''
+            shows = []
+            links = [self.base_link_1, self.base_link_2, self.base_link_3]
+            for base_link in links:
+                try:
+                    result = client.request('%s/%s' % (base_link,url))
+                except: result = ''
+                if 'tab_container' in result: break
+
+            rawResult = result.decode('iso-8859-1').encode('utf-8')
+            rawResult = rawResult.replace('\n','').replace('\t','').replace('\r','')
+
+            rawResult = client.parseDOM(rawResult, "div", attrs = {"id" : "tab-0-title-1"})[0]
+            result = client.parseDOM(rawResult, "div", attrs = {"class" : "one_fourth  "})
+            result += client.parseDOM(rawResult, "div", attrs = {"class" : "one_fourth  column-last "})
+
+            for item in result:
+                title = ''
+                url = ''
+                title = client.parseDOM(item, "p", attrs = {"class":"small-title"})[0]
+                url = client.parseDOM(item, "a", ret="href")[0]
+
+                title = client.parseDOM(title, "a")[0]
+                title = client.replaceHTMLCodes(title)
+
+                poster = client.parseDOM(item, "img", ret="src")[0]
+
+                if 'concert' in title.lower():
+                    continue
+                shows.append({'name':title, 'channel':name, 'title':title, 'url':url, 'poster': poster, 'banner': poster, 'fanart': poster, 'next': '0', 'tvrage':'0','year':'0','duration':'0','provider':'yodesi_tv'})
+            return shows
         except:
+            client.printException('')
             return
 
     def get_show(self, tvshowurl, imdb, tvdb, tvshowtitle, year):
@@ -49,9 +97,49 @@ class source:
 
     def get_episodes(self, title, url):
         try :
-            return
+            try :
+                season = title.lower()
+                season = re.compile('[0-9]+').findall(season)[0]
+                #season = season.replace('season ', '')
+            except :
+                import traceback
+                traceback.print_exc()
+                season = '0'
+            episodes = []
+
+            tvshowurl = url
+            rawResult = client.request(url)
+            rawResult = rawResult.decode('iso-8859-1').encode('utf-8')
+            rawResult = rawResult.replace('\n','').replace('\t','').replace('\r','')
+
+            result = client.parseDOM(rawResult, "article")
+
+            for item in result:
+                if "promo" in item or '(Day' in item:
+                    continue
+                item = client.parseDOM(item, "h2")[0]
+                name = client.parseDOM(item, "a", ret = "title")
+                if type(name) is list:
+                    name = name[0]
+                url = client.parseDOM(item, "a", ret="href")
+                if type(url) is list:
+                    url = url[0]
+                if "Online" not in name: continue
+                name = name.replace(title, '')
+                try :name = re.compile('Season [\d{1}|\d{2}](\w.+\d{4})').findall(name)[0]
+                except:pass
+                name = re.compile('([\d{1}|\d{2}]\w.+\d{4})').findall(name)[0]
+                name = name.strip()
+                episodes.append({'season' : season, 'tvshowtitle':title, 'title':name, 'name':name,'url' : url, 'provider':'yodesi_tv', 'tvshowurl':tvshowurl})
+
+            next = client.parseDOM(rawResult, "nav")
+            next = client.parseDOM(next, "a", attrs={"class":"next page-numbers"}, ret="href")[0]
+            episodes[0].update({'next':next})
+
+            return episodes
         except:
-            return
+            return episodes
+
 
     def get_episode(self, url, ep_url, imdb, tvdb, title, date, season, episode):
         query = '%s %s' % (imdb, title)
@@ -70,7 +158,7 @@ class source:
 
             links = [self.base_link_1, self.base_link_2, self.base_link_3]
             for base_link in links:
-                try: result = client.source(base_link + '/' + url)
+                try: result = client.request(base_link + '/' + url)
                 except: result = ''
                 if 'item' in result: break
 
@@ -91,7 +179,7 @@ class source:
                     urls = client.parseDOM(items[i], "a", ret="href")
                     for j in range(0,len(urls)):
                         videoID = getVideoID(urls[j])
-                        result = client.source(self.info_link%videoID)
+                        result = client.request(self.info_link%videoID)
                         item = client.parseDOM(result, name="div", attrs={"style":"float:none;height:700px;margin-left:200px"})[0]
                         rUrl = re.compile('(SRC|src|data-config)=[\'|\"](.+?)[\'|\"]').findall(item)[0][1]
                         if not rUrl.startswith('http:'):

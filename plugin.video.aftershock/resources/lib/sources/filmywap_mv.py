@@ -42,7 +42,7 @@ class source:
                 query = '%s %s' % (title, year)
                 query = base64.b64decode(self.search_link) % urllib.quote_plus(query)
 
-                result = client.source(query)
+                result = client.request(query)
                 result = json.loads(result)['results']
                 r = [(i['url'], i['titleNoFormatting']) for i in result]
                 r = [(i[0], re.compile('(.+?) [\d{4}|(\d{4})]').findall(i[1])) for i in r]
@@ -69,7 +69,7 @@ class source:
             if url == None: return sources
 
             #result = base64.b64decode("ICAgICAgPC9kaXY+DQogICAgICAgIDwvdGJvZHk+DQogICAgICA8L3RhYmxlPg0KICAgIAkgICAgDQogICAgPC9kaXY+DQoNCiAgICAgICAgICAgIA0KCTxkaXYgY2xhc3M9InRpdGxlIj5Eb3dubG9hZCBGdWxsIE1vdmllIEluOjwvZGl2Pg0KCQkJPGR0Pg0KICAgIDx0YWJsZSBjbGFzcz0icm93cyBkaWZmZXJfZG93bmxvYWQiIGNlbGxwYWRkaW5nPSIwIiBjZWxsc3BhY2luZz0iMCI+DQogICAgICAgIDx0Ym9keT4NCiAgICAgICAgCQkJCQkJPHRyPg0KCQkJCQkJPHRkPjxzcGFuIGNsYXNzPSJsZWZ0LWRlc2lnbiI+PC9zcGFuPg0KCQkJCQkJCQ0KCQkJCQkJCTxhIGhyZWY9Imh0dHA6Ly9wbS5pbnN1cmFuY2ViYW5rLm9yZy9kb3dubG9hZC5waHA/c29uZ19pZD0xNzQ5JnVybF9pZD0zNDM0MSI+DQoJCQkJCQkJCURvd25sb2FkIDxzcGFuIGNsYXNzPSJxdWFsaXR5XzEiPjNHUDwvc3Bhbj4NCgkJCQkJCQk8L2E+IA0KCQkJCQkJCTxzbWFsbD4NCgkJCQkJCQkJPHNwYW4gc3R5bGU9ImNvbG9yOmdyZWVuO2ZvbnQtc2l6ZToxMHB4OyI+KCAyNzIuNjggTUIpPC9zcGFuPg0KCQkJCQkJCTwvc21hbGw+DQoJCQkJCQk8L3RkPg0KCQkJCQk8L3RyPg0KCQkJCQkJCQk8dHI+DQoJCQkJCQk8dGQ+PHNwYW4gY2xhc3M9ImxlZnQtZGVzaWduIj48L3NwYW4+DQoJCQkJCQkJDQoJCQkJCQkJPGEgaHJlZj0iaHR0cDovL3BtLmluc3VyYW5jZWJhbmsub3JnL2Rvd25sb2FkLnBocD9zb25nX2lkPTE3NDkmdXJsX2lkPTM0MzM2Ij4NCgkJCQkJCQkJRG93bmxvYWQgPHNwYW4gY2xhc3M9InF1YWxpdHlfMSI+TVA0PC9zcGFuPg0KCQkJCQkJCTwvYT4gDQoJCQkJCQkJPHNtYWxsPg0KCQkJCQkJCQk8c3BhbiBzdHlsZT0iY29sb3I6Z3JlZW47Zm9udC1zaXplOjEwcHg7Ij4oIDQyNi4xNiBNQik8L3NwYW4+DQoJCQkJCQkJPC9zbWFsbD4NCgkJCQkJCTwvdGQ+DQoJCQkJCTwvdHI+DQoJCQkJCQkJCTx0cj4NCgkJCQkJCTx0ZD48c3BhbiBjbGFzcz0ibGVmdC1kZXNpZ24iPjwvc3Bhbj4NCgkJCQkJCQkNCgkJCQkJCQk8YSBocmVmPSJodHRwOi8vcG0uaW5zdXJhbmNlYmFuay5vcmcvZG93bmxvYWQucGhwP3NvbmdfaWQ9MTc0OSZ1cmxfaWQ9MzQzMzAiPg0KCQkJCQkJCQlEb3dubG9hZCA8c3BhbiBjbGFzcz0icXVhbGl0eV8xIj5NcDQgKDM2MHApPC9zcGFuPg0KCQkJCQkJCTwvYT4gDQoJCQkJCQkJPHNtYWxsPg0KCQkJCQkJCQk8c3BhbiBzdHlsZT0iY29sb3I6Z3JlZW47Zm9udC1zaXplOjEwcHg7Ij4oIDg0NS41NCBNQik8L3NwYW4+DQoJCQkJCQkJPC9zbWFsbD4NCgkJCQkJCTwvdGQ+DQoJCQkJCTwvdHI+DQoJCQkJCQkJCTx0cj4NCgkJCQkJCTx0ZD48c3BhbiBjbGFzcz0ibGVmdC1kZXNpZ24iPjwvc3Bhbj4NCgkJCQkJCQkNCgkJCQkJCQk8YSBocmVmPSJodHRwOi8vcG0uaW5zdXJhbmNlYmFuay5vcmcvZG93bmxvYWQucGhwP3NvbmdfaWQ9MTc0OSZ1cmxfaWQ9MzQzMjQiPg0KCQkJCQkJCQlEb3dubG9hZCA8c3BhbiBjbGFzcz0icXVhbGl0eV8xIj5NcDQgKDcyMHApPC9zcGFuPg0KCQkJCQkJCTwvYT4gDQoJCQkJCQkJPHNtYWxsPg0KCQkJCQkJCQk8c3BhbiBzdHlsZT0iY29sb3I6Z3JlZW47Zm9udC1zaXplOjEwcHg7Ij4oIDEuMDggR0IpPC9zcGFuPg0KCQkJCQkJCTwvc21hbGw+DQoJCQkJCQk8L3RkPg0KCQkJCQk8L3RyPg0KCQkJCQkJPHRyPg0KCQkJCTx0ZD4NCgkJCQkJCQkJCTwvdGQ+DQoJCQk8L3RyPg0KCQkJCQkJDQoJCQkJPHRyPg0KCQkJPHRkIGNsYXNzPSJuZXh0LW1vdmllIj4JDQoJCQkJPGEgaHJlZj0iLzE3NDlwL0Rvd25sb2FkLVZpZGVvLWluLXBhcnRzUHJlbS1SYXRhbi1EaGFuLVBheW8tMjAxNS1IRHMtRFZEUmlwLS0uaHRtIj4NCgkJCQkJRG93bmxvYWQgTW92aWUgaW50byBQYXJ0cw0KCQkJCTwvYT4NCgkJCTwvdGQ+DQoJCTwvdHI+DQoJCQkJPHRyPg0KCQkJPHRkPgkNCgkJCQkJCQk8L3RkPg0KCQk8L3RyPg0KICAgICAgICA8L3Rib2R5Pg0KCTwvdGFibGU+")
-            result = client.source(url)
+            result = client.request(url)
             #links = client.parseDOM(result, 'div', attrs = {'class': 'listed'})
 
             result = result.replace('\n','').replace('\t','').replace('\r','')

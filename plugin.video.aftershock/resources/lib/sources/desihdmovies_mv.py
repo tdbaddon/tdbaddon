@@ -38,7 +38,7 @@ class source:
             query = self.search_link % (urllib.quote_plus(query))
             query = urlparse.urljoin(self.base_link, query)
 
-            result = client.source(query)
+            result = client.request(query)
 
             result = result.decode('iso-8859-1').encode('utf-8')
 
@@ -70,7 +70,7 @@ class source:
 
             url = urlparse.urljoin(self.base_link, url)
 
-            try: result = client.source(url, referer=self.base_link)
+            try: result = client.request(url, referer=self.base_link)
             except: result = ''
 
             result = result.decode('iso-8859-1').encode('utf-8')

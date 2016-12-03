@@ -446,7 +446,7 @@ class sources:
         meta = json.loads(meta)
 
         try :
-            if season == '0' and episode == '0':
+            if season == '0' or episode == '0':
                 imdb = meta['tvshowtitle']
                 episode = meta['title']
             try:

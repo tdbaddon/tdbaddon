@@ -158,7 +158,7 @@ elif action == 'artwork':
 elif action == 'liveEPGNavigator':
     from resources.lib.libraries import control
     analytics.sendAnalytics('%s-EPG' % action)
-    control.dialog.ok(control.addonInfo('name'), "Comming Soon")
+    control.dialog.ok(control.addonInfo('name'), "Please make a donation to aftershockpy@gmail.com via PayPal to get access !!")
 
 elif action == 'tvshows':
     from resources.lib.indexers import tvshows

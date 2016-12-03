@@ -69,7 +69,7 @@ class source:
         try :
             links = [self.base_link_1, self.base_link_1, self.base_link_1]
             for base_link in links:
-                try: result = client.source(base_link + url)
+                try: result = client.request(base_link + url)
                 except:
                     result = ''
 
@@ -131,7 +131,7 @@ class source:
             query = self.search_link % (urllib.quote_plus(query))
             query = urlparse.urljoin(self.base_link, query)
 
-            result = client.source(query)
+            result = client.request(query)
 
             result = result.decode('iso-8859-1').encode('utf-8')
             result = client.parseDOM(result, "item")
@@ -159,7 +159,7 @@ class source:
 
             if url == None: return sources
 
-            try: result = client.source(self.movie_link % (self.base_link_1, url))
+            try: result = client.request(self.movie_link % (self.base_link_1, url))
             except: result = ''
 
             result = result.decode('iso-8859-1').encode('utf-8')

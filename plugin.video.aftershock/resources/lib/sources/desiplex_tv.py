@@ -59,7 +59,7 @@ class source:
 
             links = [self.base_link_1, self.base_link_2, self.base_link_3]
             for base_link in links:
-                try: result = client.source(base_link + '/' + url)
+                try: result = client.request(base_link + '/' + url)
                 except: result = ''
                 if 'item' in result: break
 
@@ -81,7 +81,7 @@ class source:
                     urls = client.parseDOM(items[i], "a", ret="href")
                     for j in range(0,len(urls)):
                         videoID = getVideoID(urls[j])
-                        result = client.source(self.info_link%videoID)
+                        result = client.request(self.info_link%videoID)
                         item = BeautifulSoup.BeautifulSoup(result, parseOnlyThese=BeautifulSoup.SoupStrainer("iframe"))
                         for links in item:
                             rUrl = links["src"]

@@ -125,32 +125,23 @@ class navigator:
     def desiTV(self):
         listItems = []
         logoBaseURL=control.logoPath() + "\\"
-        provider = 'desirulez_mv_tv'
-        listItems.append({'provider':provider, 'name':90200, 'image': logoBaseURL+'star_plus_hk.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=42'})
-        listItems.append({'provider':provider, 'name':90201, 'image': logoBaseURL+'zee_tv_in.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=73'})
-        listItems.append({'provider':provider, 'name':90203, 'image': logoBaseURL+'sony_set.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=63'})
-        listItems.append({'provider':provider, 'name':90205, 'image': logoBaseURL+'life_ok_in.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=1375'})
-        listItems.append({'provider':provider, 'name':90206, 'image': logoBaseURL+'sahara_one_in.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=134'})
-        listItems.append({'provider':provider, 'name':90207, 'image': logoBaseURL+'star_jalsha.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=667'})
-        listItems.append({'provider':provider, 'name':90208, 'image': logoBaseURL+'colors_in.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=176'})
-        listItems.append({'provider':provider, 'name':90209, 'image': logoBaseURL+'sony_sab_tv_in.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=254'})
-        listItems.append({'provider':provider, 'name':90210, 'image': logoBaseURL+'star_pravah.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=1138'})
-        listItems.append({'provider':provider, 'name':90212, 'image': logoBaseURL+'mtv_us.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=339'})
-        listItems.append({'provider':provider, 'name':90213, 'image': logoBaseURL+'channel_v_in.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=633'})
-        listItems.append({'provider':provider, 'name':90214, 'image': logoBaseURL+'bindass_in.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=504'})
-        listItems.append({'provider':provider, 'name':90215, 'image': logoBaseURL+'utv_stars.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=1274'})
-        listItems.append({'provider':provider, 'name':90218, 'image': logoBaseURL+'hungama.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=472'})
-        listItems.append({'provider':provider, 'name':90219, 'image': logoBaseURL+'cartoon_network_global.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=509'})
-        listItems.append({'provider':provider, 'name':90220, 'image': logoBaseURL+'and_tv_in.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=3138'})
-        listItems.append({'provider':provider, 'name':90222, 'image': logoBaseURL+'colors_in_bangla.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=2117'})
-        listItems.append({'provider':provider, 'name':90223, 'image': logoBaseURL+'zee_zindagi_in.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=2679'})
-        listItems.append({'provider':provider, 'name':90224, 'image': logoBaseURL+'big_magic_in.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=1887'})
-        listItems.append({'provider':provider, 'name':90225, 'image': logoBaseURL+'colors_in_marathi.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=2369'})
-        listItems.append({'provider':provider, 'name':90226, 'image': logoBaseURL+'maa_tv.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=3165'})
-        listItems.append({'provider':provider, 'name':90227, 'image': logoBaseURL+'zee_marathi.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=1299'})
-        listItems.append({'provider':provider, 'name':90228, 'image': logoBaseURL+'zee_bangla.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=676'})
-        listItems.append({'provider':provider, 'name':90229, 'image': logoBaseURL+'zoom_tv_in.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=1876'})
-        listItems.append({'provider':provider, 'name':90230, 'image': logoBaseURL+'star_vijay.png', 'action': 'tvshows', 'url':'forumdisplay.php?f=1609'})
+
+        provider = control.setting('tvshow.provider')
+
+        if not provider == None:
+            for i in ('_mv_tv', '_tv'):
+                try:
+                    tProvider = provider + i
+                    call = __import__('resources.lib.sources.%s' % tProvider, globals(), locals(), ['source'], -1).source()
+                    listItems = call.get_networks(logoBaseURL)
+                    if len(listItems) > 0 :
+                        break
+                except Exception as e:
+                    logger.error(e)
+                    pass
+        else:
+            from resources.lib.sources import desirulez_mv_tv
+            listItems = desirulez_mv_tv.source().get_networks(logoBaseURL)
         listItems.sort()
 
         for item in listItems:

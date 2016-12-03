@@ -48,11 +48,11 @@ class source:
 
                 url = urlparse.urljoin(self.base_link,self.ip_check)
 
-                result = client.source(url, headers=self.headers)
+                result = client.request(url, headers=self.headers)
                 self.ipAddress = re.findall('Address: (.*)',result)[0]
 
                 headers={'User-Agent':base64.b64decode('cDl4VE1nV2hFclpxZGlFWU1iV045bFVvd0xGMFdWM3I='), 'Authorization':base64.b64decode('QmFzaWMgWVcxMU9rQmtia0J1T0RRNQ==')}
-                userAgent = client.source(base64.b64decode('aHR0cHM6Ly9hcHAuZHluZG5zLnR2L3RvcC9hcmFiaWN0dmhkdjFwLnBocA=='),headers=headers)
+                userAgent = client.request(base64.b64decode('aHR0cHM6Ly9hcHAuZHluZG5zLnR2L3RvcC9hcmFiaWN0dmhkdjFwLnBocA=='),headers=headers)
                 self.deviceId = userAgent.split('.')[-1]
 
                 TIME = time.time()
@@ -65,7 +65,7 @@ class source:
 
                 url = 'https://app.dyndns.tv/app_panelnew/output.php/playlist?type=xml&deviceSn=%s&token=%s' % (self.deviceId, token)
 
-                result = client.source(url, headers=headers)
+                result = client.request(url, headers=headers)
 
                 result = client.parseDOM(result, "items")
 
@@ -127,17 +127,17 @@ class source:
         if option == 0:
             headers={'User-Agent':cache.get(self.getDeviceID, 8),
                      'Authorization':base64.b64decode('QmFzaWMgWVcxMU9rQmtia0J1T0RRNQ==')}
-            return client.source('https://app.dynns.com/keys/pakindiahdv2ff.php',headers=headers)
+            return client.request('https://app.dynns.com/keys/pakindiahdv2ff.php',headers=headers)
         elif option==1:
             headers={'User-Agent':base64.b64decode('UGFrJTIwVFYvMS4wIENGTmV0d29yay83NTguMi44IERhcndpbi8xNS4wLjA='),
                      'Authorization':base64.b64decode('QmFzaWMgWVcxMU9rQmtia0J1T0RRNQ==')}
-            useragent = client.source(base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2tleXMvYXJhYmljdHZoZHYxcC5waHA='),headers=headers)
+            useragent = client.request(base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2tleXMvYXJhYmljdHZoZHYxcC5waHA='),headers=headers)
         elif option == -1:
             return cache.get(self.getDeviceID, 8)
         else:
             headers={'User-Agent':cache.get(self.getDeviceID, 8),
                      'Authorization':base64.b64decode('QmFzaWMgWVcxMU9rQmtia0J1T0RRNQ==')}
-            useragent = client.source(base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2tleXMvYXJhYmljdHZoZHYxZmYucGhw'),headers=headers)
+            useragent = client.request(base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2tleXMvYXJhYmljdHZoZHYxZmYucGhw'),headers=headers)
         logger.debug('UserAgent : %s' % useragent, __name__)
         return useragent.split('.')[-1]
 
@@ -145,7 +145,7 @@ class source:
         url=base64.b64decode('aHR0cHM6Ly9hcHAuZHluZG5zLnR2L3RvcC8lcy5waHA/d21zQXV0aFNpZ249')
         try:
             headers={'User-Agent':base64.b64decode('cDl4VE1nV2hFclpxZGlFWU1iV045bFVvd0xGMFdWM3I='), 'Authorization':base64.b64decode('QmFzaWMgWVcxMU9rQmtia0J1T0RRNQ==')}
-            userAgent = client.source(base64.b64decode('aHR0cHM6Ly9hcHAuZHluZG5zLnR2L3RvcC9hcmFiaWN0dmhkdjFwLnBocA=='),headers=headers)
+            userAgent = client.request(base64.b64decode('aHR0cHM6Ly9hcHAuZHluZG5zLnR2L3RvcC9hcmFiaWN0dmhkdjFwLnBocA=='),headers=headers)
             self.deviceId = userAgent.split('.')[-1]
             filename = userAgent[:4]
 

@@ -42,7 +42,7 @@ class source:
             query = self.search_link % (urllib.quote_plus(query))
             query = urlparse.urljoin(self.base_link, query)
 
-            result = client.source(query)
+            result = client.request(query)
 
             result = result.decode('iso-8859-1').encode('utf-8')
             result = client.parseDOM(result, "item")
@@ -68,7 +68,7 @@ class source:
 
             if url == None: return sources
 
-            try: result = client.source(url)
+            try: result = client.request(url)
             except: result = ''
 
             result = result.decode('iso-8859-1').encode('utf-8')
@@ -92,7 +92,7 @@ class source:
 
                         for j in range(0, len(urls)):
                             try :
-                                item = client.source(urls[j], mobile=True)
+                                item = client.request(urls[j], mobile=True)
                                 item = client.parseDOM(item, "td")[0]
                                 item = re.compile('(SRC|src|data-config)=\"(.+?)\"').findall(item)[0][1]
                                 urls[j] = item

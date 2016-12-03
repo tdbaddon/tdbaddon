@@ -55,7 +55,7 @@ class source:
             query = self.search_link % (query)
             query = urlparse.urljoin(self.base_link % 'search', query)
 
-            result = client.source(query, headers=self.headers)
+            result = client.request(query, headers=self.headers)
 
             result = result.decode('iso-8859-1').encode('utf-8')
             result = json.loads(result)
@@ -83,7 +83,7 @@ class source:
 
             if url == None: return sources
 
-            try: result = client.source(url, headers=self.headers)
+            try: result = client.request(url, headers=self.headers)
             except: result = ''
 
             result = json.loads(result)
@@ -91,10 +91,10 @@ class source:
             try :
                 url = result['resultObj']['src']
                 url = url.replace('http://','https://').replace('/z/','/i/').replace('manifest.f4m', 'master.m3u8').replace('2000,_STAR.','2000,3000,4500,_STAR.')
-                cookie = client.source(url, headers=self.headers, output='cookie')
-                result = client.source(url, headers=self.headers, cookie=cookie)
+                cookie = client.request(url, headers=self.headers, output='cookie')
+                result = client.request(url, headers=self.headers, cookie=cookie)
 
-                abc = client.source(url, headers=self.headers, output='extended', close=False)
+                abc = client.request(url, headers=self.headers, output='extended', close=False)
 
                 match = re.compile("BANDWIDTH=[0-9]+,RESOLUTION=[0-9]+x(.+?),[^\n]*\n([^\n]*)\n").findall(result)
                 if match:

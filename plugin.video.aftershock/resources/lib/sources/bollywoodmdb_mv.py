@@ -45,7 +45,7 @@ class source:
 
         links = [self.base_link, self.base_link, self.base_link]
         for base_link in links:
-            try: result = client.source(base_link + url)
+            try: result = client.request(base_link + url)
             except:
                 result = ''
             if 'row move-data' in result: break

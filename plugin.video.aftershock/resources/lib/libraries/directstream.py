@@ -67,7 +67,7 @@ def google(url):
             result = sum([googletag(i) for i in result], [])
 
         elif netloc == 'plus':
-            result = client.source(url, headers={'User-Agent': client.agent()})
+            result = client.request(url, headers={'User-Agent': client.agent()})
 
             id = (urlparse.urlparse(url).path).split('/')[-1]
             result = result.replace('\r','').replace('\n','').replace('\t','')

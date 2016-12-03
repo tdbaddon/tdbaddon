@@ -62,7 +62,7 @@ class source:
 
         links = [self.base_link, self.base_link, self.base_link]
         for base_link in links:
-            try: result = client.source(base_link + url)
+            try: result = client.request(base_link + url)
             except:
                 result = ''
 
@@ -126,7 +126,7 @@ class source:
             query = self.search_link % (urllib.quote_plus(query))
             query = urlparse.urljoin(self.base_link, query)
 
-            result = client.source(query)
+            result = client.request(query)
 
             result = result.decode('iso-8859-1').encode('utf-8')
             result = client.parseDOM(result, "div", attrs={"class":"tab-content mt20"})[0]
@@ -155,7 +155,7 @@ class source:
 
             if url == None: return self.sources
 
-            try: result = client.source(url)
+            try: result = client.request(url)
             except: result = ''
 
             result = result.decode('iso-8859-1').encode('utf-8')
@@ -204,7 +204,7 @@ class source:
             urls = client.parseDOM(item, "td", attrs={"class":"col-md-7"})[0]
             urls = client.parseDOM(urls, "a", ret="href")
             for i in range(0, len(urls)):
-                item = client.source(urls[i], mobile=False)
+                item = client.request(urls[i], mobile=False)
                 item = item.replace('\n','').replace('\t','')
                 item = client.parseDOM(item, "div", attrs={"class":"embed-responsive embed-responsive-16by9"})[0]
                 item = re.compile('(SRC|src|data-config)=[\'|\"](.+?)[\'|\"]').findall(item)[0][1]

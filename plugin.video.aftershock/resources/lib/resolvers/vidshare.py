@@ -26,7 +26,7 @@ from resources.lib.libraries import logger
 
 def resolve(url):
     try:
-        result = client.source(url)
+        result = client.request(url)
 
         packed = re.search('(eval\(function.*?)\s*</script>', result, re.DOTALL)
         if packed:

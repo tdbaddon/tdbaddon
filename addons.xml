@@ -543,7 +543,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
   </extension>
 </addon>
 
-<addon id="plugin.video.aftershock" name="Aftershock" version="4.2.4" provider-name="Aftershock">
+<addon id="plugin.video.aftershock" name="Aftershock" version="4.2.5" provider-name="Aftershock">
     <requires>
         <import addon="xbmc.python" version="2.19.0"/>
         <import addon="repository.aftershock" version="2.0.1"/>
@@ -1173,7 +1173,7 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
   </extension>
 </addon>
 
-<addon id="plugin.video.greek.tv" name="Greek TV" version="1.0.5" provider-name="Twilight0">
+<addon id="plugin.video.greek.tv" name="Greek TV" version="1.0.5.2" provider-name="Thgiliwt">
     <requires>
         <import addon="xbmc.python" version="2.19.0"/>
         <import addon="plugin.video.youtube" version="5.2.1"/>
@@ -1188,7 +1188,25 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
         <summary lang="el">Πρόσθετο Greek TV</summary>
         <description lang="el">Το πρόσθετο Greek TV είναι μια μικροεφαρμογή για το Kodi που προσφέρει διεπαφή παρόμοια με την ομώνυμη εφαρμογή για Android. Ζωντανές ροές από όλη την Ελλάδα και τον κόσμο με ελληνικό περιεχόμενο. Συμβατή από εκδόσεις Helix και πάνω.</description>
         <license>GNU GPL, version 2 or later</license>
+        <website>https://play.google.com/store/apps/details?id=com.cstalking.greektv</website>
+        <forum>https://forums.tvaddons.ag/addon-releases/51983-greek-tv-bringing-concept-feel-androids-greek-tv-kodi.html</forum>
     </extension>
+    <news>
+1.0.5.2 (02-12-2016)
+- More fixes in addon.xml
+
+1.0.5.1 (29-11-2016)
+- Minor changes in addon.xml
+
+1.0.5 (28-11-2016)
+- Added client module and replaced the simple opener function
+
+1.0.4 (25-11-2016)
+- Implemented two different sort methods for channels, by group and title
+  > By default they are off
+- Added random user agent function
+  > Particularly useful for ANT1 CY resolver
+    </news>
 </addon>
 
 <addon id="plugin.video.hellenic.tv" name="Hellenic TV" version="3.5.5" provider-name="lambda">
@@ -1696,9 +1714,9 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon
   id="plugin.video.SportsDevil"
-  version="ZNL2016.2016.2016.05.16.NL1"
+  version="2016.11.20"
   name="SportsDevil"
-  provider-name="MaxMustermann, Al101, Hubbab3, Sattekop">
+  provider-name="SportsDevil">
   <requires>
    <import addon="xbmc.python" version="2.14.0"/>
    <import addon="script.module.simplejson" />
@@ -1827,7 +1845,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBTVSHOWS"
        name="TDB TV SHOWS PLUS"
-       version="1007"
+       version="1008"
        provider-name="TDB">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -1845,6 +1863,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	<import addon="script.module.t0mm0.common" version="2.0.0"/>
     <import addon="script.module.urlresolver" optional="true"/>
     <import addon="script.common.plugin.cache" version="2.5.2"/>
+	<import addon="plugin.video.SportsDevil" version="2016.11.20"/>
 
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
@@ -2030,7 +2049,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 </addon>
 
 
-<addon id="plugin.video.ukturk" name="UK Turk Playlists" version="3.0.14" provider-name="MetalKettle">
+<addon id="plugin.video.ukturk" name="UK Turk Playlists" version="3.0.15" provider-name="MetalKettle">
 
   <requires>
 
@@ -2215,7 +2234,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.ZemTV-shani"
        name="Zem"
-       version="6.0.5"
+       version="6.0.6"
        provider-name="shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>

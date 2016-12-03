@@ -71,7 +71,7 @@ class source:
                      'Host':'app.uktvnow.net'}
             post= urllib.urlencode({'username':self.username})
             url = urlparse.urljoin(self.base_link, self.channel_link)
-            channels = client.source(url,post=post, headers=headers, compression=True)
+            channels = client.request(url,post=post, headers=headers, compression=True)
             channels = channels.replace('\/','/')
             channellist=re.compile('"pk_id":"(.+?)","channel_name":"(.+?)","img":"(.+?)","http_stream":"(.+?)","rtmp_stream":"(.+?)","cat_id":"(.+?)"').findall(channels)
             filter = []
@@ -92,7 +92,7 @@ class source:
                      'Accept-Encoding' : 'gzip',
                      'app-token':token}
             post = urllib.urlencode({'User-Agent':'USER-AGENT-UKTVNOW-APP-V2','app-token':token})
-            result = client.source(self.token_link+self.user_agent_link, post=post, headers=headers, compression=True)
+            result = client.request(self.token_link+self.user_agent_link, post=post, headers=headers, compression=True)
             result = re.compile('"msg":{".+?":"(.+?)"}}').findall(result)[0]
             magic="1579547dfghuh,09458721242affde,45h4jggf5f6g,f5fg65jj46,eedcfa0489174392".split(',')
             from resources.lib.libraries import pyaes
@@ -107,7 +107,7 @@ class source:
             post = urllib.urlencode({'useragent':userAgent,
                                      'username':self.username, 'channel_id':url, 'version':'5.7'})
 
-            result = client.source(self.token_link+self.valid_link, post=post, headers=headers, compression=True)
+            result = client.request(self.token_link+self.valid_link, post=post, headers=headers, compression=True)
             result=re.compile('"channel_name":"(.+?)","img":".+?","http_stream":"(.+?)","rtmp_stream":"(.+?)"').findall(result)
             for name, httpstream, rtmpstream in result:
                 url = httpstream

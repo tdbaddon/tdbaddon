@@ -25,7 +25,7 @@ from resources.lib.libraries import logger
 
 def resolve(url):
     try:
-        result = client.source(url)
+        result = client.request(url)
         dek = EnkDekoder.dekode(result)
 
         if not dek == None:

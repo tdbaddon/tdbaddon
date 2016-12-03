@@ -26,7 +26,7 @@ from resources.lib.libraries import logger
 def resolve(url):
     try:
         url = 'http://playu.net/embed-%s.html' % str(getVideoID(url))
-        result = client.source(url)
+        result = client.request(url)
         url = re.findall('file: "(.+?)"',result)[0]
         logger.debug('URL [%s]' % url, __name__)
         return url

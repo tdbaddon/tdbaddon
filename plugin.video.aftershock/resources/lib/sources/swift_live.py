@@ -109,7 +109,7 @@ class source:
 
     def getSwiftCache(self):
         url = self.live_link
-        result = client.source(url, headers=self.headers)
+        result = client.request(url, headers=self.headers)
         result = json.loads(result.replace('\x0a',''))
         return result
 

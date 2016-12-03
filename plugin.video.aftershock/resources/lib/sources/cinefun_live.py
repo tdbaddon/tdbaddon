@@ -19,7 +19,7 @@
 '''
 
 
-import urlparse, re, os, binascii, base64, time
+import urlparse, re, os, binascii, base64, time, urllib
 from resources.lib.libraries import client
 from resources.lib.libraries import logger
 from resources.lib.libraries import cleantitle
@@ -41,7 +41,7 @@ class source:
         try :
             if generateJSON:
                 url = self.live_link
-                result = client.source(url, headers=self.headers)
+                result = client.request(url, headers=self.headers)
                 result = json.loads(result)
                 channelList = {}
                 for channel in result:
@@ -79,10 +79,12 @@ class source:
         u = None
 
         try :
-            headers = {'User-agent': 'Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10'}
-            result = client.request('https://cinefuntv.com/watchnow.php?content=%s' % url, headers=headers, allowredirect=False)
+            #headers = {'User-agent': 'Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10'}
+            agent = cache.get(client.randomagent, 1)
+            headers = {'User-agent': agent}
+            result = client.request('https://cinefuntv.com/watchnow.php?content=%s' % url, headers=headers, redirect=False)
             u =  re.findall('var cms_url = [\'"](.*?)[\'"]', result)[0]
-            u = '%s|%s' % (u, 'User-Agent=Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10')
+            u += '|%s' % urllib.urlencode({'User-agent': agent})
             url = u
         except:
             u = None
@@ -97,7 +99,7 @@ class source:
                     u = links[0]['SamsungURL']
                 if u == '' :
                     u = links[0]['PanasonicURL']
-                u = "%s|%s" % (u, 'User-Agent=AppleCoreMedia/1.0.0.13A452 (iPhone; U; CPU OS 9_0_2 like Mac OS X; en_gb)')
+                u += "|%s" % urllib.urlencode({'User-Agent':'AppleCoreMedia/1.0.0.13A452 (iPhone; U; CPU OS 9_0_2 like Mac OS X; en_gb)'})
                 url = u
             except:
                 u = None

@@ -42,7 +42,7 @@ class source:
             query = self.search_str_link % (urllib.quote_plus(query))
             query = urlparse.urljoin(self.base_link, query)
 
-            result = client.source(query)
+            result = client.request(query)
 
             result = result.decode('iso-8859-1').encode('utf-8')
             result = result.split("\n")
@@ -50,7 +50,7 @@ class source:
             searchString = result[0]
             query = self.search_link % urllib.quote_plus(searchString)
             query = urlparse.urljoin(self.base_link, query)
-            result = client.source(query)
+            result = client.request(query)
 
             result = result.decode('iso-8859-1').encode('utf-8')
             result = client.parseDOM(result, "div", attrs={"id":"content"})[0]
@@ -86,7 +86,7 @@ class source:
 
             rUrl = url
 
-            try: result = client.source(url, referer=rUrl)
+            try: result = client.request(url, referer=rUrl)
             except: result = ''
 
             result = result.decode('iso-8859-1').encode('utf-8')

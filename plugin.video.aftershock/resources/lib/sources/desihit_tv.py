@@ -40,7 +40,7 @@ class source:
         post = urllib.urlencode({'action': 'td_ajax_search', 'td_string':query})
         url = urlparse.urljoin(self.base_link, self.search_link)
         headers = {'Content-Type':'application/x-www-form-urlencoded'}
-        result = client.source(url, post=post, referer=self.base_link, headers=headers)
+        result = client.request(url, post=post, referer=self.base_link, headers=headers)
         result = result.decode('iso-8859-1').encode('utf-8')
         result = result.replace('\n','').replace('\t','')
 
@@ -62,7 +62,7 @@ class source:
 
             url = urlparse.urljoin(self.base_link, url)
 
-            try: result = client.source(url)
+            try: result = client.request(url)
             except: result = ''
 
             result = result.decode('iso-8859-1').encode('utf-8')

@@ -556,7 +556,10 @@ class episodes:
     def super_info(self, items):
         try :
             for i in range(0, len(items)):
-                self.list[i].update({'season':'0', 'episode':'0','imdb':'0', 'tmdb':'0', 'tvdb':'0', 'tvrage':'0', 'year':'0', 'alter':'0','poster':'0', 'banner':'0', 'fanart':'0', 'thumb':'0', 'premiered':'0', 'duration':'30'})
+
+                try : season = items[i]['season']
+                except : season = '0'
+                self.list[i].update({'season':season, 'episode':'0','imdb':'0', 'tmdb':'0', 'tvdb':'0', 'tvrage':'0', 'year':'0', 'alter':'0','poster':'0', 'banner':'0', 'fanart':'0', 'thumb':'0', 'premiered':'0', 'duration':'30'})
             return self.list
         except:
             pass

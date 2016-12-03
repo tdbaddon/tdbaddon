@@ -67,7 +67,7 @@ class source:
 
         links = [self.base_link, self.base_link, self.base_link]
         for base_link in links:
-            try: result = client.source(base_link + url)
+            try: result = client.request(base_link + url)
             except:
                 result = ''
             if 'row movie-list' in result: break
@@ -129,7 +129,7 @@ class source:
             query = self.search_link % (urllib.quote_plus(query))
             query = urlparse.urljoin(self.base_link, query)
 
-            result = client.source(query)
+            result = client.request(query)
 
             result = result.decode('iso-8859-1').encode('utf-8')
             result = client.parseDOM(result, "div", attrs={"class":"movie"})
@@ -156,7 +156,7 @@ class source:
 
             url = '%s%s' % (self.base_link, url)
 
-            try: result = client.source(url)
+            try: result = client.request(url)
             except: result = ''
 
             result = result.decode('iso-8859-1').encode('utf-8')
@@ -193,10 +193,10 @@ class source:
             urls = client.parseDOM(item, "td")[1]
             urls = client.parseDOM(urls, "a", ret="href")
             for i in range(0, len(urls)):
-                uResult = client.source(urls[i], mobile=False)
+                uResult = client.request(urls[i], mobile=False)
                 uResult = uResult.replace('\n','').replace('\t','')
                 if 'Could not connect to mysql! Please check your database' in uResult:
-                    uResult = client.source(urls[i], mobile=True)
+                    uResult = client.request(urls[i], mobile=True)
 
                 item = client.parseDOM(uResult, "div", attrs={"class":"videoplayer"})[0]
                 item = re.compile('(SRC|src|data-config)=[\'|\"](.+?)[\'|\"]').findall(item)[0][1]

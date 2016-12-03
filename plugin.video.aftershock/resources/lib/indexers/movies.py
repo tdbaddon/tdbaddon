@@ -72,6 +72,7 @@ class movies:
 
     def get(self, url, idx=True, provider=None, lang=None):
         logger.debug('url [%s] provider [%s] lang [%s] ' % (url, provider, lang), self.__class__)
+        self.lang = lang
         try:
             try: u = urlparse.urlparse(url).netloc.lower()
             except: pass
@@ -472,22 +473,28 @@ class movies:
             plot = plot.encode('utf-8')
             if not plot == '0': self.list[i].update({'plot': plot})
 
-            studio = self.list[i]['studio']
+            try : poster = item['Poster']
+            except : pass
+            if poster == None or poster == '' or poster == 'N/A': poster = '0'
+            poster = client.replaceHTMLCodes(poster)
+            poster = poster.encode('utf-8')
+            if not poster == '0': self.list[i].update({'poster': poster})
 
+            studio = self.list[i]['studio']
 
             url = self.trakt_info_link % imdb
 
             item = trakt.getTrakt(url)
             item = json.loads(item)
 
-            poster = '0'
-            try: poster = item['images']['poster']['medium']
-            except: pass
-            if poster == None or not '/posters/' in poster: poster = '0'
-            poster = poster.rsplit('?', 1)[0]
-            if poster == '0': poster = self.list[i]['poster']
-            poster = poster.encode('utf-8')
-            if not poster == '0': self.list[i].update({'poster': poster})
+            if poster == '0':
+                try: poster = item['images']['poster']['medium']
+                except: pass
+                if poster == None or not '/posters/' in poster: poster = '0'
+                poster = poster.rsplit('?', 1)[0]
+                if poster == '0': poster = self.list[i]['poster']
+                poster = poster.encode('utf-8')
+                if not poster == '0': self.list[i].update({'poster': poster})
 
             banner = '0'
             try: banner = item['images']['banner']['full']
@@ -533,7 +540,7 @@ class movies:
         for i in items:
             try:
                 label = '%s (%s)' % (i['title'], i['year'])
-                imdb,tmdb, title, year = i['imdb'], i['tmdb'],i['originaltitle'], i['year']
+                imdb,tmdb, title, year = i['imdb'], i['tmdb'],i['title'], i['year']
                 sysname = urllib.quote_plus('%s (%s)' % (title, year))
                 systitle = urllib.quote_plus(title)
 

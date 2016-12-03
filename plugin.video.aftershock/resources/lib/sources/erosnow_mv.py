@@ -47,7 +47,7 @@ class source:
             query = self.search_link % (urllib.quote_plus(query))
             query = urlparse.urljoin(self.base_link,query)
 
-            result = client.source(query)
+            result = client.request(query)
 
             result = result.decode('iso-8859-1').encode('utf-8')
             result = json.loads(result)
@@ -77,7 +77,7 @@ class source:
             self.login()
             #url = urlparse.urljoin(self.base_link_1, url)
             url = 'http://erosnow.com/profiles/1000218?platform=2&q=auto'
-            try: result = client.source(url)
+            try: result = client.request(url)
             except: result = ''
 
             result = json.loads(result)
@@ -93,7 +93,7 @@ class source:
             h = {'Referer':self.base_link_1,
                  'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8'}
 
-            result = client.source(self.login_link, post=urllib.urlencode(post), close=False)
+            result = client.request(self.login_link, post=urllib.urlencode(post), close=False)
 
             result = json.loads(result)
 
@@ -107,7 +107,7 @@ class source:
             post = {'el':self.user, 'pw':self.password, 'mobile':'', 'callingcode':'', 'type':'json', 'fbid':''}
             h = {'Referer':self.base_link}
 
-            result = client.source(self.login_link, post=urllib.urlencode(post))
+            result = client.request(self.login_link, post=urllib.urlencode(post))
 
             result = json.loads(result)
 

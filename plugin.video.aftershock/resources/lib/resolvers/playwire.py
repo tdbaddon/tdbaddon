@@ -25,7 +25,7 @@ from resources.lib.libraries import logger
 
 def resolve(url):
     try:
-        result = client.source(url)
+        result = client.request(url)
         data = json.loads(result)
         try :
             publisherId = data['publisherId']
@@ -37,7 +37,7 @@ def resolve(url):
             videoId = data['settings']['videoId']
 
         url ='https://config.playwire.com/videos/v2/%s/player.json' % str(videoId)
-        result = client.source(url)
+        result = client.request(url)
         data = json.loads(result)
 
         src = data['src']

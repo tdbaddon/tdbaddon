@@ -84,10 +84,16 @@ class source:
 
             referer = 'http://www.einthusan.com/movies/watch.php?id=%s' % url
 
-            url = 'http://cdn.einthusan.com/geturl/%s/hd/%s/' % (url, ip)
-            url = client.request(url, referer=referer)
+            agent = client.randomagent()
 
-            url = '%s|Referer=%s&User-Agent=%s' % (url, url, client.getDefaultUserAgent())
+            headers = {'User-Agent': agent, 'Referer': referer}
+
+            url = 'http://cdn.einthusan.com/geturl/%s/hd/%s/' % (url, ip)
+            url = client.request(url, headers=headers)
+
+            url +='|%s' % urllib.urlencode({'User-agent': agent})
+
+            #url = '%s|Referer=%s&User-Agent=%s' % (url, url, client.getDefaultUserAgent())
 
             sources.append({'source': 'einthusan', 'parts' : '1','quality': 'HD', 'provider': 'Einthusan', 'url': url,'direct':True})
             logger.debug('SOURCES [%s]' % sources, __name__)

@@ -43,7 +43,7 @@ class source:
             query = self.search_link % (urllib.quote_plus(query))
             query = urlparse.urljoin(self.base_link,query)
 
-            result = client.source(query)
+            result = client.request(query)
 
             result = result.decode('iso-8859-1').encode('utf-8')
 
@@ -71,7 +71,7 @@ class source:
             if url == None: return sources
 
             oUrl = urlparse.urljoin(self.base_link_1, url)
-            try: result = client.source(oUrl)
+            try: result = client.request(oUrl)
             except: result = ''
 
             csrf = client.parseDOM(result, "meta", attrs={"name":"csrf-token"}, ret="content")[0]

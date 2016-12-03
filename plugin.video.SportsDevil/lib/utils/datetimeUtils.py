@@ -20,7 +20,7 @@ def convDateUtil(timestring, newfrmt='default', in_zone='UTC'):
         local_tzinfo = gettz(locale_timezone['result']['value'])
         if local_tzinfo == None:
             raise ValueError()
-    except ValueError:
+    except ValueError, KeyError:
         from dateutil.tz import tzlocal
         local_tzinfo = tzlocal()
     if newfrmt == 'default':
@@ -249,7 +249,7 @@ def datetimeoffset(date, offsetStr):
 
 
 def getUnixTimestamp():
-    return int(time.time())
+    return str(int(time.time()))
 
 
 def utcToGmt(date):

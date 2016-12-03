@@ -19,7 +19,7 @@
 """
 
 import re, os, sys, base64, random
-import urlparse, urllib #, urllib2
+import urlparse
 import xbmcaddon, xbmcgui, xbmcplugin, xbmc
 from resources.lib import ordereddict, client
 
