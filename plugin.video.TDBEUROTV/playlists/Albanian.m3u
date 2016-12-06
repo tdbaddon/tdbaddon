@@ -31,17 +31,11 @@ rtmp://188.138.17.8:1935/albuk/albuk.stream
 #EXTINF:0,Albanian Screen
 0
 
-#EXTINF:0,Alsat M 
-0
-
 #EXTINF:0,Alpo Media
 0
 
 #EXTINF:0,Appolon 
 0
-
-#EXTINF:0,ATV
-rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
 
 #EXTINF:0,BangBang 
 0

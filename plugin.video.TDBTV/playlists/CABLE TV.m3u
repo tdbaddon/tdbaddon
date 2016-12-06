@@ -53,7 +53,7 @@ http://adultswimhls-i.akamaihd.net/hls/live/238460/adultswim/main/1/master_Layer
 0
 
 #EXTINF:0,Cartoon Network 
-0
+http://d1hya96e2cm7qi.cloudfront.net/Live/_definst_/amlst:sweetbcha1novD28L240P/playlist.m3u8
 
 #EXTINF:0,CBC TV Toronto
 http://usaiptv.ddns.net:9090/load/0855ebd4f90b/1547.mpegts
@@ -186,16 +186,13 @@ http://usaiptv.ddns.net:9090/load/0855ebd4f90b/377.mpegts
 0
 
 #EXTINF:0,Fox Crime 
-0
+http://89.163.140.122:86/live/freetv/user5428/129.ts|User-Agent=Lavf/56.15.102 
 
 #EXTINF:0,Fox Life 
 0
 
 #EXTINF:0,Fox TV 
-0
-
-#EXTINF:0,Fox TV
-0
+http://89.163.140.122:86/live/freetv/user5428/130.ts|User-Agent=Lavf/56.15.102 
 
 #EXTINF:0,FX 
 0
@@ -396,7 +393,7 @@ http://adultswimhls-i.akamaihd.net/hls/live/249295-b/adultswim_6/main/1/stream_L
 0
 
 #EXTINF:0,Tru TV 
-0
+http://dwun498y9o8lf.cloudfront.net:80/coder5/coder.channels.channel2/hls/5/playlist.m3u8
 
 #EXTINF:0,TSC 
 http://tscstreaming-lh.akamaihd.net/i/TSCLiveStreaming_1@91031/master.m3u8?b?b*t$ 

@@ -107,13 +107,16 @@ http://iphone-streaming.ustream.tv/uhls/17074538/streams/live/iphone/playlist.m3
 0
 
 #EXTINF:0,National Geographic 
-0
+http://89.163.140.122:86/live/freetv/user5428/116.ts|User-Agent=Lavf/56.15.102 
 
 #EXTINF:0,Planet Green 
 0
 
 #EXTINF:0,RT News Documentary 
 http://rtcdn.api.visionip.tv/live/ASHTTP/rtcdn-rtcdn-doc-hsslive-25f-16x9-MB/playlist.m3u8
+
+#EXTINF:0,RT News Documentary 
+http://89.163.140.122:86/live/freetv/user5428/49.ts|User-Agent=Lavf/56.15.102 
 
 #EXTINF:0,Ted TV 
 0

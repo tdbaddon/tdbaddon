@@ -18,7 +18,7 @@ http://mellotvnew.tulix.tv/live/smil:mellotv.smil/master.m3u8
 0
 
 #EXTINF:0,Cinemax 
-0
+http://89.163.140.122:86/live/freetv/user5428/137.ts|User-Agent=Lavf/56.15.102 
 
 #EXTINF:0,Cinemax 5 StarMax
 0
@@ -33,7 +33,7 @@ http://mellotvnew.tulix.tv/live/smil:mellotv.smil/master.m3u8
 0
 
 #EXTINF:0,CineStar Premiere 1 
-0
+http://89.163.140.122:86/live/freetv/user5428/136.ts|User-Agent=Lavf/56.15.102 
 
 #EXTINF:0,CineStar Premiere 2
 0
@@ -131,8 +131,11 @@ http://mellotvnew.tulix.tv/live/smil:mellotv.smil/master.m3u8
 #EXTINF:0,HBO 
 0
 
+#EXTINF:0,HBO 2
+http://89.163.140.122:86/live/freetv/user5428/124.ts|User-Agent=Lavf/56.15.102 
+
 #EXTINF:0,HBO Adria 
-0
+http://89.163.140.122:86/live/freetv/user5428/125.ts|User-Agent=Lavf/56.15.102 
 
 #EXTINF:0,HBO Comedy 
 0

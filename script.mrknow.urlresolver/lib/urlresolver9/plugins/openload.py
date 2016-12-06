@@ -88,7 +88,26 @@ class OpenLoadResolver(UrlResolver):
 
         n = re.findall('<span id="(.*?)">(.*?)</span>', html)
         print "y",n
-        y = n[0][1]
+        id = n[0][1]
+
+        def parseInt(sin):
+            m = re.search(r'^(\d+)[.,]?\d*?', str(sin))
+            return int(m.groups()[-1]) if m and not callable(sin) else None
+
+        #id = '0311103128141621815820119150520011012136101190210112156191831907609106180800810519060010720506202080101111807006144060791010518090141001810619090141071804600099170791110218177170930612518146081221612200162201241516319'
+        firstTwoChars = parseInt(id[0:2])
+        num = 2;
+        txt = ''
+        while num < len(id):
+            print "NUM", num
+            txt += chr(parseInt(id[num:num + 3]) - firstTwoChars * parseInt(id[num + 3:num + 3 + 2]))
+            print "NUM", txt
+
+            num += 5
+
+        #alina = 'https://openload.co/stream/' + txt;
+        return txt
+
         #magic = ord(y[-1])
         #y = "	".join(y.split(chr(magic - 1)))
         #y = chr(magic - 1).join(y.split(y[-1]))
@@ -116,7 +135,9 @@ class OpenLoadResolver(UrlResolver):
             except:
                 pass
 
-        print encdata
+        print "AAAAA",encdata
+
+        exit()
         encnumbers = re.findall('return(.*?);', encdata, re.DOTALL)
         print encnumbers
 

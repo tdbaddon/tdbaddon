@@ -32,7 +32,7 @@ http://37.187.158.217:8081/alfa/tvalfa/playlist.m3u8
 0
 
 #EXTINF:0,Iris 
-0
+mmsh://62.162.58.55/TVIris
 
 #EXTINF:0,K1 Veles
 0
@@ -62,10 +62,10 @@ http://37.187.158.217:8081/kanal5/kanal5/playlist.m3u8
 0
 
 #EXTINF:0,MPT 1 
-0
+http://streamer54.interspace.mk:8081/mrt/mrt1-sat/playlist.m3u8
 
 #EXTINF:0,MPT 2 
-0
+http://streamer54.interspace.mk:8081/mrt/mrt2-sat/playlist.m3u8
 
 #EXTINF:0,MPT Sat 
 0
@@ -75,6 +75,9 @@ http://37.187.158.217:8081/kanal5/kanal5/playlist.m3u8
 
 #EXTINF:0,Nasha TV 
 0
+
+#EXTINF:0,Nova TV
+http://makedonija-novatv-player.spectar.tv:1935/makedonija-tv/_definst_/novatv/chunklist.m3u8
 
 #EXTINF:0,Ohrid 02
 0
@@ -97,6 +100,9 @@ http://37.187.158.217:8081/telma/telmatv/playlist.m3u8
 
 #EXTINF:0,TV 21
 0
+
+#EXTINF:0,TV+ Kumanovo
+http://141.136.14.18/kanal1/kanal1_1500/index.m3u8
 
 #EXTINF:0,Ultra Tetovo
 0

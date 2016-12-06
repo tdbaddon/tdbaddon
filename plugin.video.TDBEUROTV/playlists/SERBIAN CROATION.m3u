@@ -1,4 +1,4 @@
-﻿#EXTM3U
+﻿ #EXTM3U
 
 #EXTINF:0,Check Back Soon
 0
@@ -7,11 +7,14 @@
 #EXTINF:0,Al Jazeera Balkan 
 0
 
+#EXTINF:0,Alsat M 
+http://89.163.140.122:86/live/freetv/user5428/157.ts|User-Agent=Lavf/56.15.102 
+
 #EXTINF:0,Arena Sport 1 
-0
+http://89.163.140.122:86/live/freetv/user5428/140.ts|User-Agent=Lavf/56.15.102
 
 #EXTINF:0,Arena Sport 2 
-0
+http://89.163.140.122:86/live/freetv/user5428/139.ts|User-Agent=Lavf/56.15.102 
 
 #EXTINF:0,Arena Sport 3 
 0
@@ -25,17 +28,26 @@ http://185.59.220.134/arena5/mpegts
 #EXTINF:0,ATV
 rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
 
+#EXTINF:0,ATV
+http://89.163.140.122:86/live/freetv/user5428/138.ts|User-Agent=Lavf/56.15.102 
+
 #EXTINF:0,B92 
-0
+http://89.163.140.122:86/live/freetv/user5428/8.ts|User-Agent=Lavf/56.15.102
 
 #EXTINF:0,Balkan TV
-0
+http://89.163.140.122:86/live/freetv/user5428/9.ts|User-Agent=Lavf/56.15.102
 
 #EXTINF:0,Belle Amie TV
 0
 
+#EXTINF:0,BN Music
+http://89.163.140.122:86/live/freetv/user5428/148.ts|User-Agent=Lavf/56.15.102 
+
 #EXTINF:0,BN Sat
-0
+http://89.163.140.122:86/live/freetv/user5428/155.ts|User-Agent=Lavf/56.15.102 
+
+#EXTINF:0,Bosna TV
+http://89.163.140.122:86/live/freetv/user5428/13.ts|User-Agent=Lavf/56.15.102 
 
 #EXTINF:0,CETV 
 0
@@ -43,11 +55,17 @@ rtmp://195.228.75.97/atvliveedge/_definst_/atvstream_2_aac
 #EXTINF:0,CMC 
 0
 
+#EXTINF:0,DM
+http://89.163.140.122:86/live/freetv/user5428/154.ts|User-Agent=Lavf/56.15.102 
+
 #EXTINF:0,DMC
 0
 
 #EXTINF:0,DM SAT 
 0
+
+#EXTINF:0,DOMA
+http://89.163.140.122:86/live/freetv/user5428/147.ts|User-Agent=Lavf/56.15.102 
 
 #EXTINF:0,DUGA 
 http://w10.streamgb.com:1935/dugaplus/dugaplus/playlist.m3u8
@@ -55,11 +73,26 @@ http://w10.streamgb.com:1935/dugaplus/dugaplus/playlist.m3u8
 #EXTINF:0,Elektrika TV
 0
 
+#EXTINF:0,Eurosport 1
+http://89.163.140.122:86/live/freetv/user5428/135.ts|User-Agent=Lavf/56.15.102 
+
+#EXTINF:0,Eurosport 2
+http://89.163.140.122:86/live/freetv/user5428/134.ts|User-Agent=Lavf/56.15.102
+
 #EXTINF:0,Grand 
-0
+http://89.163.140.122:86/live/freetv/user5428/128.ts|User-Agent=Lavf/56.15.102 
+
+#EXTINF:0,Face
+http://89.163.140.122:86/live/freetv/user5428/146.ts|User-Agent=Lavf/56.15.102 
+
+#EXTINF:0,Folk TV Bujrum
+http://89.163.140.122:86/live/freetv/user5428/132.ts|User-Agent=Lavf/56.15.102
 
 #EXTINF:0,Happy 
-0
+http://89.163.140.122:86/live/freetv/user5428/127.ts|User-Agent=Lavf/56.15.102 
+
+#EXTINF:0,Hayat 
+http://89.163.140.122:86/live/freetv/user5428/126.ts|User-Agent=Lavf/56.15.102 
 
 #EXTINF:0,Hayat Folk 
 0
@@ -68,10 +101,10 @@ http://w10.streamgb.com:1935/dugaplus/dugaplus/playlist.m3u8
 0
 
 #EXTINF:0,Hayat Plus 
-0
+http://89.163.140.122:86/live/freetv/user5428/152.ts|User-Agent=Lavf/56.15.102
 
 #EXTINF:0,Hayatovci
-0
+http://89.163.140.122:86/live/freetv/user5428/151.ts|User-Agent=Lavf/56.15.102 
 
 #EXTINF:0,Hema TV 
 0
@@ -80,13 +113,16 @@ http://w10.streamgb.com:1935/dugaplus/dugaplus/playlist.m3u8
 0
 
 #EXTINF:0,HRT 1 
-0
+http://89.163.140.122:86/live/freetv/user5428/123.ts|User-Agent=Lavf/56.15.102
 
 #EXTINF:0,HRT 2 
-0
+http://89.163.140.122:86/live/freetv/user5428/122.ts|User-Agent=Lavf/56.15.102 
 
 #EXTINF:0,HRT 3 
-0
+http://89.163.140.122:86/live/freetv/user5428/121.ts|User-Agent=Lavf/56.15.102 
+
+#EXTINF:0,HRT 4
+http://89.163.140.122:86/live/freetv/user5428/120.ts|User-Agent=Lavf/56.15.102
 
 #EXTINF:0,Joj
 http://n21.joj.sk/hls/joj-540.m3u8
@@ -115,6 +151,9 @@ http://n21.joj.sk/hls/jojplus-540.m3u8
 #EXTINF:0,KCN 1
 0
 
+#EXTINF:0,KlasikTV
+http://89.163.140.122:86/live/freetv/user5428/144.ts|User-Agent=Lavf/56.15.102 
+
 #EXTINF:0,Konyha TV 
 0
 
@@ -139,32 +178,47 @@ http://213.81.153.221:8080/nasa
 #EXTINF:0,News24
 0
 
+#EXTINF:0,Nickeldeon
+http://89.163.140.122:86/live/freetv/user5428/114.ts|User-Agent=Lavf/56.15.102 
+
 #EXTINF:0,Nova TV
-0
+http://89.163.140.122:86/live/freetv/user5428/113.ts|User-Agent=Lavf/56.15.102 
+
+#EXTINF:0,Nova TV
+http://89.163.140.122:86/live/freetv/user5428/112.ts|User-Agent=Lavf/56.15.102 
 
 #EXTINF:0,Novosadska TV 
 0
 
 #EXTINF:0,OBN 
-0
+http://89.163.140.122:86/live/freetv/user5428/111.ts|User-Agent=Lavf/56.15.102 
+
+#EXTINF:0,OTV Valentino
+http://89.163.140.122:86/live/freetv/user5428/109.ts|User-Agent=Lavf/56.15.102 
 
 #EXTINF:0,Palma Plus 
-0
+http://89.163.140.122:86/live/freetv/user5428/143.ts|User-Agent=Lavf/56.15.102 
 
 #EXTINF:0,Planet TV
 0
 
 #EXTINF:0,Prva TV 
-0
+http://89.163.140.122:86/live/freetv/user5428/92.ts|User-Agent=Lavf/56.15.102
+
+#EXTINF:0,Prva TV 
+http://89.163.140.122:86/live/freetv/user5428/95.ts|User-Agent=Lavf/56.15.102 
 
 #EXTINF:0,RTC 
 0
 
 #EXTINF:0,RTCG Sat 
-0
+http://89.163.140.122:86/live/freetv/user5428/91.ts|User-Agent=Lavf/56.15.102 
 
 #EXTINF:0,RTL
-0
+http://89.163.140.122:86/live/freetv/user5428/90.ts|User-Agent=Lavf/56.15.102
+
+#EXTINF:0,RTL
+http://89.163.140.122:86/live/freetv/user5428/119.ts|User-Agent=Lavf/56.15.102 
 
 #EXTINF:0,RTL 2 
 0
@@ -176,10 +230,10 @@ http://213.81.153.221:8080/nasa
 0
 
 #EXTINF:0,RTS 1 
-0
+http://89.163.140.122:86/live/freetv/user5428/89.ts|User-Agent=Lavf/56.15.102
 
 #EXTINF:0,RTS 2 
-0
+http://89.163.140.122:86/live/freetv/user5428/88.ts|User-Agent=Lavf/56.15.102 
 
 #EXTINF:0,RTS 3 
 0
@@ -209,6 +263,9 @@ http://edge-de-01.maksnet.tv/soskanal/soskanal/playlist.m3u8
 0
 
 #EXTINF:0,TV Plus
+
+#EXTINF:0,TV Sehara
+http://89.163.140.122:86/live/freetv/user5428/133.ts|User-Agent=Lavf/56.15.102 
 
 #EXTINF:0,Vesti 24
 mms://62.162.58.55/24vesti
