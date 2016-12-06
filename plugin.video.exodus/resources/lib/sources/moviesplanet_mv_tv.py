@@ -172,9 +172,7 @@ class source:
             result = client.request(url)
 
             try:
-                url = re.compile('sources\s*:\s*\[(.*?)\]', re.DOTALL).findall(result)[0]
-                url = re.compile('''['"]*file['"]*\s*:\s*['"]*([^'"]+).*?['"]*label['"]*\s*:\s*['"]*[^'"]+''', re.DOTALL).findall(url)
-
+                url = re.findall('src\s*=\s*(?:\'|\")(http.+?)(?:\'|\")', result)
                 for i in url:
                     try: links.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'url': i})
                     except: pass
@@ -183,8 +181,8 @@ class source:
 
             try:
                 url = client.parseDOM(result, 'source', ret='src')
-                url += re.findall('src:\s*\'(.*?)\'', result)
-
+                url += re.findall('src\s*:\s*\'(.*?)\'', result)
+                url = [i for i in url if '://' in i]
                 links.append({'source': 'cdn', 'quality': 'HD', 'url': url[0]})
             except:
                 pass

@@ -28,10 +28,10 @@ from resources.lib.modules import proxy
 
 class source:
     def __init__(self):
-        self.domains = ['movie25.ph', 'movie25.hk', 'tinklepad.is']
-        self.base_link = 'http://tinklepad.is'
-        #self.search_link = 'http://tinklepad.is/ad_search.php?q=%s&year_from=%s&year_to=%s&section=2&ad_search=Search'
-        self.search_link = 'http://tinklepad.is/search.php?q=%s'
+        self.domains = ['movie25.ph', 'movie25.hk', 'tinklepad.is', 'tinklepad.ag']
+        self.base_link = 'http://tinklepad.ag'
+        #self.search_link = 'http://tinklepad.ag/ad_search.php?q=%s&year_from=%s&year_to=%s&section=2&ad_search=Search'
+        self.search_link = 'http://tinklepad.ag/search.php?q=%s'
 
 
     def movie(self, imdb, title, year):
@@ -42,8 +42,7 @@ class source:
             query = self.search_link % urllib.quote_plus(cleantitle.query(title))
             query = urlparse.urljoin(self.base_link, query)
 
-            result = str(proxy.request(query, 'movie_table'))
-            if 'page=2' in result or 'page%3D2' in result: result += str(proxy.request(query + '&page=2', 'movie_table'))
+            result = client.request(query, post=urllib.urlencode({'chts': 'Click Here to Continue'}))
 
             result = client.parseDOM(result, 'div', attrs = {'class': 'movie_table'})
 

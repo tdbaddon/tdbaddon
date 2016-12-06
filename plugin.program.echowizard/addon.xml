@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="plugin.program.echowizard" 
-	     name="[COLOR lime]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]" 
-	     version="1.33"
+	     name="[COLOR yellowgreen]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]" 
+	     version="1.34"
 	     provider-name="Echo Coder">
   <requires>
   	<import addon="xbmc.python" version="2.1.0"/>
@@ -15,7 +15,7 @@
   </extension> 
   <extension point="xbmc.addon.metadata">
     <platform>all</platform>
-    <summary lang="en">[COLOR lime]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]</summary>
+    <summary lang="en">[COLOR yellowgreen]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]</summary>
     <description lang="en">ECHO Wizard.</description>
     <disclaimer lang="en"></disclaimer>
     <language></language>

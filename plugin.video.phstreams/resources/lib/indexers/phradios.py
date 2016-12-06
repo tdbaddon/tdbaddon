@@ -104,7 +104,7 @@ def radio181fm():
             name = client.replaceHTMLCodes(name)
             name = name.encode('utf-8')
 
-            url = item.split('<')[0].replace(':', '/').replace('///', '://')
+            url = item.split('<')[0].replace('///', '://')
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
 
@@ -229,12 +229,12 @@ def endDirectory():
 
 def radioResolve(url):
     url = radio1fmResolve(url)
+    url = client.request(url, output='geturl')
     title = control.infoLabel('ListItem.Label')
     image = control.infoLabel('ListItem.Icon')
     meta = {'title': title, 'album': title, 'artist': title, 'comment': title}
     item = control.item(path=url, iconImage=image, thumbnailImage=image)
-    try: item.setArt({'icon': image})
-    except: pass
+    item.setArt({'icon': image})
     item.setInfo(type='Music', infoLabels = meta)
     control.player.play(url, item)
 

@@ -61,7 +61,7 @@ import extras
 #					VERIABLES NEEDED
 #######################################################################
 
-AddonTitle          ="[COLOR lime]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
+AddonTitle          ="[COLOR yellowgreen]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
 AddonData           = xbmc.translatePath('special://userdata/addon_data')
 USERDATA            =  xbmc.translatePath(os.path.join('special://home/userdata',''))
 addon_id            = 'plugin.program.echowizard'
@@ -100,6 +100,7 @@ SpeedTest           = BASEURL + base64.b64decode(b'c3BlZWR0ZXN0L3NwZWVkdGVzdC50e
 AdvancedSettings    = BASEURL + base64.b64decode(b'YWR2YW5jZWRzZXR0aW5ncy93aXphcmRfcmVsLnR4dA==')
 KeymapsURL          = BASEURL + base64.b64decode(b'a2V5bWFwcy93aXphcmRfcmVsLnR4dA==')
 APKS                = BASEURL + base64.b64decode(b'a29kaS9hcGtzL2Fwa2xpc3QudHh0')
+APKS_INSTALLER      = BASEURL + base64.b64decode(b'YWRkb25zL2Fwa3MudHh0')
 AND_APKS            = BASEURL + base64.b64decode(b'YW5kcm9pZC9hcGtzL2xpc3QudHh0')
 WINDOWS             = BASEURL + base64.b64decode(b'a29kaS93aW5kb3dzL2xpc3QudHh0')
 OSX                 = BASEURL + base64.b64decode(b'a29kaS9vc3gvbGlzdC50eHQ=')
@@ -120,6 +121,7 @@ KRYPTON_URL         = BASEURL + base64.b64decode(b"YnVpbGRzL3dpemFyZF9yZWxfa3J5c
 youtubelink         = base64.b64decode(b"cGx1Z2luOi8vcGx1Z2luLnZpZGVvLnlvdXR1YmUvcGxheS8/dmlkZW9faWQ9")
 FANRIFFIC_URL_NEW   = base64.b64decode(b'aHR0cDovL2ZhbnJpZmZpYy5jb20vd2l6d2l6L3Bob29leXRoZW1lcy50eHQ=')
 FANRIFFIC_URL_OLD   = base64.b64decode(b'aHR0cDovL2ZhbnJpZmZpYy5jb20vd2l6d2l6L3Bob29leXRoZW1lc29sZC50eHQ=')
+FANRIFFIC_KRYPTON   = base64.b64decode(b'aHR0cDovL2ZhbnJpZmZpYy5jb20vd2l6d2l6L2tyeXB0b250aGVtZXMudHh0')
 
 #######################################################################
 #					ECHO WIZARD ICONS
@@ -129,36 +131,36 @@ FANART              = xbmc.translatePath(os.path.join('special://home/addons/' +
 ICON                = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
 ART                 = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id + '/resources/art/'))
 ECHOICON            = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
-WIZARDICON          = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/wizard.png'))
-ADVANCED_SET_ICON   = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/advanced_settings.png'))
-APK_ICON            = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/apk.png'))
-BACKUP_ICON         = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/backup.png'))
-COMMUNITY_ICON      = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/community.png'))
-SETTINGS_ICON       = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/settings.png'))
-SPEEDTEST_ICON      = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/speed_test.png'))
-SPMC_ICON           = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/SPMC.png'))
-SUPPORT_ICON        = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/support.png'))
-SYSTEM_INFO_ICON    = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/system_info.png'))
-TMP_ICON            = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/TMP_FILES.png'))
-TOOLS_ICON          = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/tools.png'))
-VIP_ICON            = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/VIP.png'))
-LIB_ICON            = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/lib.png'))
-YOUTUBE_ICON        = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/youtube.png'))
-SEARCH_ICON         = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/search.png'))
-GUEST_ICON          = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/guest.png'))
-SERVER_ICON         = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/server.png'))
-BUILD_ICON          = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/build.png'))
-KODI_ICON           = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/kodi.png'))
-KODI_FANART         = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/kodi_fanart.png'))
-SPMC_ICON           = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/SPMC.png'))
-SPMC_FANART         = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/SPMC_fanart.png'))
-UPDATE_ICON         = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/update.png'))
-EXTRAS_ICON         = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/extras.png'))
-SPORTS_ICON         = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/sports.png'))
-ERROR_ICON          = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/error.png'))
-STATS_ICON          = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/stats.png'))
-TWITTER_ICON        = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/twitter.png'))
-KEYMAPS_ICON        = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/keymaps.png'))
+WIZARDICON          = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
+ADVANCED_SET_ICON   = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
+APK_ICON            = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
+BACKUP_ICON         = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
+COMMUNITY_ICON      = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
+SETTINGS_ICON       = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
+SPEEDTEST_ICON      = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
+SPMC_ICON           = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
+SUPPORT_ICON        = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
+SYSTEM_INFO_ICON    = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
+TMP_ICON            = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
+TOOLS_ICON          = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
+VIP_ICON            = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
+LIB_ICON            = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
+YOUTUBE_ICON        = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
+SEARCH_ICON         = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
+GUEST_ICON          = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
+SERVER_ICON         = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
+BUILD_ICON          = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
+KODI_ICON           = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
+KODI_FANART         = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
+SPMC_ICON           = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
+SPMC_FANART         = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
+UPDATE_ICON         = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
+EXTRAS_ICON         = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
+SPORTS_ICON         = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
+ERROR_ICON          = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
+STATS_ICON          = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
+TWITTER_ICON        = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
+KEYMAPS_ICON        = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
 
 #######################################################################
 #					ECHO VERSION CHECKERS
@@ -184,10 +186,12 @@ urlopen = MyOpener().open
 #			CREATE SETTINGS XML IF IT DOES NOT EXIST
 #######################################################################
 
-if not os.path.isfile(ECHO_SETTINGS):
-	if not os.path.exists(ADDON_DATA):
-		os.makedirs(ADDON_DATA)
-	shutil.copyfile(DEFAULT_SETTINGS, ECHO_SETTINGS)
+try:
+	if not os.path.isfile(ECHO_SETTINGS):
+		if not os.path.exists(ADDON_DATA):
+			os.makedirs(ADDON_DATA)
+		shutil.copyfile(DEFAULT_SETTINGS, ECHO_SETTINGS)
+except: pass
 
 #######################################################################
 #						CREATE PATH FOR BACKUPS
@@ -273,9 +277,9 @@ def INDEX():
 				for newversion,fresh in match:
 					LATEST_VERSION = newversion
 					if CURRENT_VERSION < LATEST_VERSION:
-						CURRENT_VERSION_CODE = '[COLOR lightblue]' + CURRENT_VERSION + '[/COLOR]'
+						CURRENT_VERSION_CODE = '[COLOR yellowgreen]' + CURRENT_VERSION + '[/COLOR]'
 					else:
-						CURRENT_VERSION_CODE = '[COLOR lightblue]' + CURRENT_VERSION + '[/COLOR]'
+						CURRENT_VERSION_CODE = '[COLOR yellowgreen]' + CURRENT_VERSION + '[/COLOR]'
 		except:
 			CURRENT_BUILD = "[COLOR lightskyblue]ERROR[/COLOR]"
 			CURRENT_VERSION_CODE = "[COLOR lightskyblue]ERROR[/COLOR]"
@@ -311,37 +315,36 @@ def INDEX():
 	#######################################################################
 
 	if offline == 0:
-		Common.addItem('[COLOR ghostwhite][B]STATUS: [/B][/COLOR]' + str(current_status),BASEURL,106,ICON,FANART,'')
-		#Common.addItem('[COLOR ghostwhite][B]CHECK FOR UPDATES[/B][/COLOR]',BASEURL,162,ICON,FANART,'')
 		Common.addItem('[COLOR ghostwhite][B]LATEST NEWS[/B][/COLOR]',BASEURL,106,ICON,FANART,'')
 		#if yt_error == 0:
-			#Common.addItem('[COLOR ghostwhite][B]LATEST VIDEO: [/COLOR][COLOR lightblue]' + item["name"] + '[/B][/COLOR]',item["url"],95,item["iconimage"],FANART,'')
+			#Common.addItem('[COLOR ghostwhite][B]LATEST VIDEO: [/COLOR][COLOR yellowgreen]' + item["name"] + '[/B][/COLOR]',item["url"],95,item["iconimage"],FANART,'')
 		Common.addDir('[COLOR ghostwhite][B]ALL OFFICIAL ECHO YOUTUBE VIDEOS[/B][/COLOR]',BASEURL,60,YOUTUBE_ICON,FANART,'')
-		Common.addItem('[COLOR ghostwhite][B]YOUTUBE: [/B][/COLOR][COLOR lightblue][B]echocoder.co.uk/youtube[/B][/COLOR]',BASEURL,4,BUILD_ICON,FANART,'')
-		Common.addItem('[COLOR ghostwhite][B]TWITTER: [/B][/COLOR][COLOR lightblue][B]@ECHO_CODING[/B][/COLOR]',BASEURL,4,BUILD_ICON,FANART,'')
+		Common.addItem('[COLOR ghostwhite][B]YOUTUBE: [/B][/COLOR][COLOR yellowgreen][B]echocoder.com/youtube[/B][/COLOR]',BASEURL,4,BUILD_ICON,FANART,'')
+		Common.addItem('[COLOR ghostwhite][B]TWITTER: [/B][/COLOR][COLOR yellowgreen][B]@ECHO_CODING[/B][/COLOR]',BASEURL,4,BUILD_ICON,FANART,'')
+		Common.addItem('[COLOR yellowgreen][B]CHECK FOR UPDATES[/B][/COLOR]',BASEURL,165,ICON,FANART,'')
 		if pleasecheck == 1:
-			Common.addItem("[COLOR white][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
-			Common.addItem('[COLOR ghostwhite][B]CURRENT BUILD: [/B][/COLOR][COLOR lightblue][B]' + CURRENT_BUILD + '[/B][/COLOR]',BASEURL,4,BUILD_ICON,FANART,'')
+			Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
+			Common.addItem('[COLOR ghostwhite][B]CURRENT BUILD: [/B][/COLOR][COLOR yellowgreen][B]' + CURRENT_BUILD + '[/B][/COLOR]',BASEURL,4,BUILD_ICON,FANART,'')
 			Common.addItem('[COLOR ghostwhite][B]YOUR VERSION: [/B][/COLOR][B]' + CURRENT_VERSION_CODE + '[/B]',BASEURL,4,BUILD_ICON,FANART,'')
-			Common.addItem('[COLOR ghostwhite][B]LATEST VERSION: [/B][/COLOR][COLOR lightblue][B]' + LATEST_VERSION + '[/B][/COLOR]',BASEURL,4,BUILD_ICON,FANART,'')
+			Common.addItem('[COLOR ghostwhite][B]LATEST VERSION: [/B][/COLOR][COLOR yellowgreen][B]' + LATEST_VERSION + '[/B][/COLOR]',BASEURL,4,BUILD_ICON,FANART,'')
 			try:
 				if LATEST_VERSION > CURRENT_VERSION:
 					if "ERROR" not in CURRENT_VERSION_CODE:
 						Common.addItem('[COLOR ghostwhite][B]CLICK TO UPDATE ' + CURRENT_BUILD.upper() + ' NOW![/B][/COLOR]',BASEURL,33,UPDATE_ICON,FANART,'')
 				else:
-					Common.addItem('[COLOR ghostwhite][B]' + CURRENT_BUILD.upper() + ' IS UP TO DATE![/B][/COLOR]',BASEURL,4,UPDATE_ICON,FANART,'')
+					Common.addItem('[COLOR yellowgreen][B]' + CURRENT_BUILD.upper() + ' IS UP TO DATE![/B][/COLOR]',BASEURL,4,UPDATE_ICON,FANART,'')
 			except:
 				Common.addItem('[COLOR ghostwhite][B]ERROR RETRIEVING INFORMATION[/B][/COLOR]',BASEURL,4,UPDATE_ICON,FANART,'')
 		else:
 			if os.path.isfile(COMMUNITY_BUILD):
-				Common.addDir('[COLOR slategrey][B]CURRENT BUILD: [/COLOR][COLOR lightblue][B]COMMUNITY BUILD INSTALLED[/COLOR][/B]',BASEURL,88,BUILD_ICON,FANART,'')
+				Common.addDir('[COLOR slategrey][B]CURRENT BUILD: [/COLOR][COLOR yellowgreen][B]COMMUNITY BUILD INSTALLED[/COLOR][/B]',BASEURL,88,BUILD_ICON,FANART,'')
 	if offline == 0:
-		Common.addItem("[COLOR white][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
+		Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
 		Common.addDir('[COLOR ghostwhite][B]ECHO BUILDS[/B][/COLOR]',BASEURL,50,BUILD_ICON,FANART,'')
 		Common.addDir('[COLOR ghostwhite][B]ECHO ADDON INSTALLER[/B][/COLOR]',BASEURL,121,ICON,FANART,'')
 		Common.addDir('[COLOR ghostwhite][B]FANRIFFIC THEMES[/B][/COLOR]',BASEURL,144,ICON,FANART,'')
 		Common.addDir('[COLOR ghostwhite][B]COMMUNITY BUILDS[/B][/COLOR]',BASEURL,87,COMMUNITY_ICON,FANART,'')
-		Common.addItem("[COLOR white][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
+		Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
 	Common.addDir('[COLOR ghostwhite][B]BACKUP [COLOR white]|[/COLOR] RESTORE[/B][/COLOR]',BASEURL,8,BACKUP_ICON,FANART,'')
 	Common.addDir('[COLOR ghostwhite][B]MAINTENANCE TOOLS[/COLOR][/B]',BASEURL,5,TOOLS_ICON,ART+'maintwall.jpg','')
 	if offline == 0:
@@ -349,17 +352,17 @@ def INDEX():
 		Common.addDir('[COLOR ghostwhite][B]ADVANCED SETTINGS[/B][/COLOR]',BASEURL,30,ADVANCED_SET_ICON,FANART,'')	
 		Common.addDir('[COLOR ghostwhite][B]CUSTOM KEYMAPS[/B][/COLOR]',BASEURL,129,KEYMAPS_ICON,FANART,'')	
 		Common.addDir('[COLOR ghostwhite][B]SPEED TEST[/B][/COLOR]',BASEURL,16,SPEEDTEST_ICON,FANART,'')
-		Common.addItem("[COLOR white][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
+		Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
 		Common.addDir('[COLOR ghostwhite][B]ANDROID APKS[/B][/COLOR]',BASEURL,149,TOOLS_ICON,FANART,'')
 		Common.addDir('[COLOR ghostwhite][B]MUST HAVE KODI PROGRAMS & TOOLS[/B][/COLOR]',BASEURL,46,TOOLS_ICON,FANART,'')
 		Common.addDir('[COLOR ghostwhite][B]LATEST KODI INSTALLATION FILES[/B][/COLOR]',BASEURL,28,APK_ICON,FANART,'')
 		Common.addDir('[COLOR ghostwhite][B]LATEST KODI LIBRTMP FILES[/B][/COLOR]',BASEURL,29,LIB_ICON,FANART,'')
-		Common.addItem("[COLOR white][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
+		Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
 		Common.addDir('[COLOR ghostwhite][B]ESSENTIAL DEVELOPER TWITTER DETAILS[/B][/COLOR]',BASEURL,84,TWITTER_ICON,FANART,'')
 		Common.addDir('[COLOR ghostwhite][B]THE DAYS SPORT LISTINGS[/B][/COLOR]',BASEURL,47,SPORTS_ICON,FANART,'')
 	Common.addDir('[COLOR ghostwhite][B]SYSTEM INFORMATION[/B][/COLOR]',BASEURL,163,SYSTEM_INFO_ICON,FANART,'')
 	if offline == 0:
-		Common.addItem("[COLOR white][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
+		Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
 		Common.addItem('[COLOR ghostwhite][B]HOW TO GET SUPPORT[/B][/COLOR]',BASEURL,79,SUPPORT_ICON,FANART,'')
 	Common.addItem('[COLOR ghostwhite][B]ECHO WIZARD CREDITS[/B][/COLOR]',BASEURL,81,SEARCH_ICON,FANART,'')
 	Common.addItem('[COLOR ghostwhite][B]VIEW WIZARD CHANGELOG[/B][/COLOR]',BASEURL,80,SEARCH_ICON,FANART,'')
@@ -401,6 +404,7 @@ def BUILDMENU():
 		match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?ersion="(.+?)".+?escription="(.+?)".+?resh="(.+?)".+?ash="(.+?)".+?outube="(.+?)".+?kin="(.+?)"').findall(link)
 		dis_links = len(match)
 		for name,url,iconimage,fanart,version,desc,fresh,hash,youtube,skin in match:
+			skin = 'null'
 			i = i + 1
 			dis_count = str(i)
 			progress = 100 * int(i)/int(dis_links)
@@ -426,6 +430,7 @@ def BUILDMENU():
 			match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?ersion="(.+?)".+?escription="(.+?)".+?resh="(.+?)".+?ash="(.+?)".+?outube="(.+?)".+?kin="(.+?)"').findall(link)
 			dis_links = len(match)
 			for name,url,iconimage,fanart,version,desc,fresh,hash,youtube,skin in match:
+				skin = 'null'
 				i = i + 1
 				dis_count = str(i)
 				progress = 100 * int(i)/int(dis_links)
@@ -457,21 +462,21 @@ def get_size(start_path):
 def convertSize(size):
    import math
    if (size == 0):
-       return '[COLOR lime][B]0 MB[/COLOR][/B]'
+       return '[COLOR yellowgreen][B]0 MB[/COLOR][/B]'
    size_name = ("B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB")
    i = int(math.floor(math.log(size,1024)))
    p = math.pow(1024,i)
    s = round(size/p,2)
    if size_name[i] == "B":
-        return '[COLOR lime][B]%s %s' % (s,size_name[i]) + '[/COLOR][/B]'
+        return '[COLOR yellowgreen][B]%s %s' % (s,size_name[i]) + '[/COLOR][/B]'
    if size_name[i] == "KB":
-        return '[COLOR lime][B]%s %s' % (s,size_name[i]) + '[/COLOR][/B]'
+        return '[COLOR yellowgreen][B]%s %s' % (s,size_name[i]) + '[/COLOR][/B]'
    if size_name[i] == "GB":
         return '[COLOR red][B]%s %s' % (s,size_name[i]) + '[/COLOR][/B]'
    if size_name[i] == "TB":
         return '[COLOR red][B]%s %s' % (s,size_name[i]) + '[/COLOR][/B]'
    if s < 50:
-        return '[COLOR lime][B]%s %s' % (s,size_name[i]) + '[/COLOR][/B]'
+        return '[COLOR yellowgreen][B]%s %s' % (s,size_name[i]) + '[/COLOR][/B]'
    if s >= 50:
         if s < 100:
             return '[COLOR orange][B]%s %s' % (s,size_name[i]) + '[/COLOR][/B]'
@@ -481,19 +486,19 @@ def convertSize(size):
 def convertSizeInstall(size):
    import math
    if (size == 0):
-       return '[COLOR lime][B]0 MB[/COLOR][/B]'
+       return '[COLOR yellowgreen][B]0 MB[/COLOR][/B]'
    size_name = ("B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB")
    i = int(math.floor(math.log(size,1024)))
    p = math.pow(1024,i)
    s = round(size/p,2)
    if size_name[i] == "B":
-        return '[COLOR lime][B]%s %s' % (s,size_name[i]) + '[/COLOR][/B]'
+        return '[COLOR yellowgreen][B]%s %s' % (s,size_name[i]) + '[/COLOR][/B]'
    if size_name[i] == "KB":
-        return '[COLOR lime][B]%s %s' % (s,size_name[i]) + '[/COLOR][/B]'
+        return '[COLOR yellowgreen][B]%s %s' % (s,size_name[i]) + '[/COLOR][/B]'
    if size_name[i] == "TB":
         return '[COLOR red][B]%s %s' % (s,size_name[i]) + '[/COLOR][/B]'
    if s < 1000:
-        return '[COLOR lime][B]%s %s' % (s,size_name[i]) + '[/COLOR][/B]'
+        return '[COLOR yellowgreen][B]%s %s' % (s,size_name[i]) + '[/COLOR][/B]'
    if s >= 1000:
         if s < 1500:
             return '[COLOR orange][B]%s %s' % (s,size_name[i]) + '[/COLOR][/B]'
@@ -552,15 +557,15 @@ def MAINTENANCE_MENU():
 	if startup_clean == "false":
 		startup_onoff = "[COLOR red][B]OFF[/COLOR][/B]"
 	else:
-		startup_onoff = "[COLOR lime][B]ON[/COLOR][/B]"
+		startup_onoff = "[COLOR yellowgreen][B]ON[/COLOR][/B]"
 	if weekly_clean == "0":
 		weekly_onoff = "[COLOR red][B]OFF[/COLOR][/B]"
 	else:
-		weekly_onoff = "[COLOR lime][B]ON[/COLOR][/B]"
+		weekly_onoff = "[COLOR yellowgreen][B]ON[/COLOR][/B]"
 	if sizecheck_clean == "false":
 		sizecheck_onoff = "[COLOR red][B]OFF[/COLOR][/B]"
 	else:
-		sizecheck_onoff = "[COLOR lime][B]ON[/COLOR][/B]"
+		sizecheck_onoff = "[COLOR yellowgreen][B]ON[/COLOR][/B]"
 
 	cachePath = os.path.join(xbmc.translatePath('special://home'), 'cache')
 	tempPath = os.path.join(xbmc.translatePath('special://home'), 'temp')
@@ -592,7 +597,7 @@ def MAINTENANCE_MENU():
 							i = i + 1
 	
 	if i == 0:
-		ERRORS_IN_LOG = "[COLOR lime][B]0 ERRORS FOUND IN LOG[/B][/COLOR]"
+		ERRORS_IN_LOG = "[COLOR yellowgreen][B]0 ERRORS FOUND IN LOG[/B][/COLOR]"
 	else:
 		ERRORS_IN_LOG = "[COLOR red][B]" + str(i) + " ERRORS FOUND IN LOG[/B][/COLOR]"
 
@@ -708,50 +713,93 @@ def ADVANCEDSETTINGS():
 
 def FANRIFFIC_THEMES():
 
-	i=0
-	dp.create(AddonTitle,"[COLOR blue]We are getting the list of themes from the fanriffic server.[/COLOR]",'[COLOR yellow]Please Wait...[/COLOR]','')	
-	dp.update(0)
-	namelist=[]
-	urllist=[]
-	countlist=[]
-	iconlist=[]
-	fanartlist=[]
-	link = Common.OPEN_URL(FANRIFFIC_URL_NEW).replace('\n','').replace('\r','')
-	link2 = Common.OPEN_URL(FANRIFFIC_URL_OLD).replace('\n','').replace('\r','')
-	match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?escription="(.+?)"').findall(link)
-	match2 = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?escription="(.+?)"').findall(link2)
-	dis_links1 = len(match)
-	dis_links2 = len(match2)
-	dis_links  = dis_links1 + dis_links2
-	for name,url,iconimage,fanart,description in match:
-		name = "[COLOR white][B]" + name + "[/B][/COLOR]"
-		i = i + 1
-		dis_count = str(i)
-		progress = 100 * int(i)/int(dis_links)
-		dp.update(progress,"Getting details from theme " + str(dis_count) + " of " + str(dis_links),"[COLOR white][B]FOUND - [/B] " + name + "[/COLOR]")
-		namelist.append(name)
-		urllist.append(url)
-		countlist.append(str(Common.count_fanriffic(name)))    
-		iconlist.append(iconimage)
-		fanartlist.append(fanart)
-		combinedlists = list(zip(countlist,namelist,urllist,iconlist,fanartlist))
-	for name,url,iconimage,fanart,description in match2:
-		name = "[COLOR white][B]" + name + "[/B][/COLOR]"
-		i = i + 1
-		dis_count = str(i)
-		progress = 100 * int(i)/int(dis_links)
-		dp.update(progress,"Getting details from theme " + str(dis_count) + " of " + str(dis_links),"[COLOR white][B]FOUND - [/B] " + name + "[/COLOR]")
-		namelist.append(name)
-		urllist.append(url)
-		countlist.append(str(Common.count_fanriffic(name)))    
-		iconlist.append(iconimage)
-		fanartlist.append(fanart)
-		combinedlists = list(zip(countlist,namelist,urllist,iconlist,fanartlist))
-	tup = sorted(combinedlists, key=lambda x: int(x[0]),reverse=True)
-	dp.close()
-	for count,name,url,iconimage,fanart in tup:
-		bname = " | [COLOR white] This Week:[/COLOR][COLOR lightskyblue][B] " + count + "[/B][/COLOR]"
-		Common.addItem(name + bname,url,145,iconimage,iconimage,description="")
+	xbmc_version=xbmc.getInfoLabel("System.BuildVersion")
+	version=float(xbmc_version[:4])
+	codename = "Decline"
+
+	if version >= 16.0 and version <= 16.9:
+		codename = 'Jarvis'
+	if version >= 17.0 and version <= 17.9:
+		codename = 'Krypton'
+	
+	if codename == "Jarvis":
+		i=0
+		dp.create(AddonTitle,"[COLOR blue]We are getting the list of themes from the fanriffic server.[/COLOR]",'[COLOR yellow]Please Wait...[/COLOR]','')	
+		dp.update(0)
+		namelist=[]
+		urllist=[]
+		countlist=[]
+		iconlist=[]
+		fanartlist=[]
+		link = Common.OPEN_URL(FANRIFFIC_URL_NEW).replace('\n','').replace('\r','')
+		link2 = Common.OPEN_URL(FANRIFFIC_URL_OLD).replace('\n','').replace('\r','')
+		match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?escription="(.+?)"').findall(link)
+		match2 = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?escription="(.+?)"').findall(link2)
+		dis_links1 = len(match)
+		dis_links2 = len(match2)
+		dis_links  = dis_links1 + dis_links2
+		for name,url,iconimage,fanart,description in match:
+			name = "[COLOR white][B]" + name + "[/B][/COLOR]"
+			i = i + 1
+			dis_count = str(i)
+			progress = 100 * int(i)/int(dis_links)
+			dp.update(progress,"Getting details from theme " + str(dis_count) + " of " + str(dis_links),"[COLOR white][B]FOUND - [/B] " + name + "[/COLOR]")
+			namelist.append(name)
+			urllist.append(url)
+			countlist.append(str(Common.count_fanriffic(name)))    
+			iconlist.append(iconimage)
+			fanartlist.append(fanart)
+			combinedlists = list(zip(countlist,namelist,urllist,iconlist,fanartlist))
+		for name,url,iconimage,fanart,description in match2:
+			name = "[COLOR white][B]" + name + "[/B][/COLOR]"
+			i = i + 1
+			dis_count = str(i)
+			progress = 100 * int(i)/int(dis_links)
+			dp.update(progress,"Getting details from theme " + str(dis_count) + " of " + str(dis_links),"[COLOR white][B]FOUND - [/B] " + name + "[/COLOR]")
+			namelist.append(name)
+			urllist.append(url)
+			countlist.append(str(Common.count_fanriffic(name)))    
+			iconlist.append(iconimage)
+			fanartlist.append(fanart)
+			combinedlists = list(zip(countlist,namelist,urllist,iconlist,fanartlist))
+		tup = sorted(combinedlists, key=lambda x: int(x[0]),reverse=True)
+		dp.close()
+		for count,name,url,iconimage,fanart in tup:
+			bname = " | [COLOR white] This Week:[/COLOR][COLOR lightskyblue][B] " + count + "[/B][/COLOR]"
+			Common.addItem(name + bname,url,145,iconimage,iconimage,description="")
+
+	elif codename == "Krypton":
+		i=0
+		dp.create(AddonTitle,"[COLOR blue]We are getting the list of themes from the fanriffic server.[/COLOR]",'[COLOR yellow]Please Wait...[/COLOR]','')	
+		dp.update(0)
+		namelist=[]
+		urllist=[]
+		countlist=[]
+		iconlist=[]
+		fanartlist=[]
+		link = Common.OPEN_URL(FANRIFFIC_KRYPTON).replace('\n','').replace('\r','')
+		match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?escription="(.+?)"').findall(link)
+		dis_links = len(match)
+		for name,url,iconimage,fanart,description in match:
+			name = "[COLOR white][B]" + name + "[/B][/COLOR]"
+			i = i + 1
+			dis_count = str(i)
+			progress = 100 * int(i)/int(dis_links)
+			dp.update(progress,"Getting details from theme " + str(dis_count) + " of " + str(dis_links),"[COLOR white][B]FOUND - [/B] " + name + "[/COLOR]")
+			namelist.append(name)
+			urllist.append(url)
+			countlist.append(str(Common.count_fanriffic(name)))    
+			iconlist.append(iconimage)
+			fanartlist.append(fanart)
+			combinedlists = list(zip(countlist,namelist,urllist,iconlist,fanartlist))
+		tup = sorted(combinedlists, key=lambda x: int(x[0]),reverse=True)
+		dp.close()
+		for count,name,url,iconimage,fanart in tup:
+			bname = " | [COLOR white] This Week:[/COLOR][COLOR lightskyblue][B] " + count + "[/B][/COLOR]"
+			Common.addItem(name + bname,url,145,iconimage,iconimage,description="")
+	else:
+		dialog.ok(AddonTitle,'[COLOR white]Sorry there are no supported themes for your version of Kodi.')
+        quit()
 
 	xbmc.executebuiltin('Container.SetViewMode(50)')
 
@@ -844,11 +892,11 @@ def ACCOUNT():
 	s.connect(("8.8.8.8", 80))
 
 	if check=="true":
-		a = "[COLOR lime]Yes[/COLOR]"
+		a = "[COLOR yellowgreen]Yes[/COLOR]"
 	else:
 		a = "[COLOR lightskyblue]No[/COLOR]"
 
-	Common.addItem('[COLOR ghostwhite]Version: [/COLOR][COLOR lime]%s' % version + " " + codename + "[/COLOR]",BASEURL,200,SYSTEM_INFO_ICON,FANART,'')
+	Common.addItem('[COLOR ghostwhite]Version: [/COLOR][COLOR yellowgreen]%s' % version + " " + codename + "[/COLOR]",BASEURL,200,SYSTEM_INFO_ICON,FANART,'')
 	Common.addItem('[COLOR ghostwhite]Check For Updates: [/COLOR]' + a,BASEURL,200,SYSTEM_INFO_ICON,FANART,'')
 	Common.addItem('[COLOR ghostwhite]Local IP: [/COLOR][COLOR white]' + s.getsockname()[0] + '[/COLOR]',BASEURL,200,SYSTEM_INFO_ICON,FANART,'')
 	Common.addItem('[COLOR ghostwhite]External IP: [/COLOR][COLOR white]' + m.group(0) + '[/COLOR]',BASEURL,200,SYSTEM_INFO_ICON,FANART,'')
@@ -901,7 +949,7 @@ def LATEST_WINDOWS():
 	else:
 		link = Common.OPEN_URL(WINDOWS).replace('\n','').replace('\r','')
 		match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?ersion="(.+?)"').findall(link)
-		Common.addItem('[COLOR lightskyblue][B]EXE Will Be Donwloaded to [COLOR lime]special://Downloads[/COLOR] You Will Need To Manually Install From There[/B][/COLOR]',BASEURL,79,APK_ICON,FANART,'')
+		Common.addItem('[COLOR lightskyblue][B]EXE Will Be Donwloaded to [COLOR yellowgreen]special://Downloads[/COLOR] You Will Need To Manually Install From There[/B][/COLOR]',BASEURL,79,APK_ICON,FANART,'')
 		Common.addItem('[COLOR white]-----------------------------------------------------------[/COLOR]',BASEURL,79,APK_ICON,FANART,'')
 		for name,url,iconimage,fanart,description in match:
 			Common.addItem(name,url,89,KODI_ICON,KODI_FANART,description)
@@ -921,7 +969,7 @@ def LATEST_OSX():
 	else:
 		link = Common.OPEN_URL(OSX).replace('\n','').replace('\r','')
 		match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?ersion="(.+?)"').findall(link)
-		Common.addItem('[COLOR lightskyblue][B].dmg Will Be Donwloaded to [COLOR lime]special://Downloads[/COLOR] You Will Need To Manually Install From There[/B][/COLOR]',BASEURL,79,APK_ICON,FANART,'')
+		Common.addItem('[COLOR lightskyblue][B].dmg Will Be Donwloaded to [COLOR yellowgreen]special://Downloads[/COLOR] You Will Need To Manually Install From There[/B][/COLOR]',BASEURL,79,APK_ICON,FANART,'')
 		Common.addItem('[COLOR white]-----------------------------------------------------------[/COLOR]',BASEURL,79,APK_ICON,FANART,'')
 		for name,url,iconimage,fanart,description in match:
 			Common.addItem(name,url,89,KODI_ICON,KODI_FANART,description)
@@ -941,7 +989,7 @@ def LATEST_IOS():
 	else:
 		link = Common.OPEN_URL(IOS).replace('\n','').replace('\r','')
 		match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?ersion="(.+?)"').findall(link)
-		Common.addItem('[COLOR lightskyblue][B].deb Will Be Donwloaded to [COLOR lime]special://Downloads[/COLOR] You Will Need To Manually Install From There[/B][/COLOR]',BASEURL,79,APK_ICON,FANART,'')
+		Common.addItem('[COLOR lightskyblue][B].deb Will Be Donwloaded to [COLOR yellowgreen]special://Downloads[/COLOR] You Will Need To Manually Install From There[/B][/COLOR]',BASEURL,79,APK_ICON,FANART,'')
 		Common.addItem('[COLOR white]-----------------------------------------------------------[/COLOR]',BASEURL,79,APK_ICON,FANART,'')
 		for name,url,iconimage,fanart,description in match:
 			Common.addItem(name,url,89,KODI_ICON,KODI_FANART,description)
@@ -961,14 +1009,56 @@ def LATEST_ANDROID():
 	else:
 		link = Common.OPEN_URL(APKS).replace('\n','').replace('\r','')
 		match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?ersion="(.+?)"').findall(link)
-		Common.addItem('[COLOR lightskyblue][B]APKS Will Be Donwloaded to [COLOR lime]/sdcard/Downloads[/COLOR] You Will Need To Manually Install From There[/B][/COLOR]',BASEURL,79,APK_ICON,FANART,'')
+		Common.addItem('[COLOR lightskyblue][B]APKS Will Be Donwloaded to [COLOR yellowgreen]/sdcard/Downloads[/COLOR] You Will Need To Manually Install From There[/B][/COLOR]',BASEURL,79,APK_ICON,FANART,'')
 		Common.addItem('[COLOR white]-----------------------------------------------------------[/COLOR]',BASEURL,79,APK_ICON,FANART,'')
-		Common.addDir('[COLOR lime]CLICK FOR THE LATEST SIGNED KODI/SPMC APKS WITH UP TO DATE LIB FILE INCLUDED IN APK[/COLOR]',BASEURL,32,APK_ICON,FANART,'')
+		Common.addDir('[COLOR yellowgreen]CLICK FOR THE LATEST SIGNED KODI/SPMC APKS WITH UP TO DATE LIB FILE INCLUDED IN APK[/COLOR]',BASEURL,32,APK_ICON,FANART,'')
 		for name,url,iconimage,fanart,description in match:
 			Common.addItem(name,url,91,iconimage,fanart,description)
 
 	xbmc.executebuiltin('Container.SetViewMode(50)')
-			
+
+#######################################################################
+#					INSTALLER LIST
+#######################################################################
+
+def INSTALLER_APKS():
+
+	#FOR ADDON INSTALLER
+	if not xbmc.getCondVisibility('system.platform.android'):
+		dialog = xbmcgui.Dialog()
+		dialog.ok(AddonTitle + " - Android", "[B][COLOR white]Sorry, this function is only available for Android devices[/COLOR][/B]",'[COLOR white]Thank you for using ECHO Wizard[/COLOR]')
+		sys.exit(1)
+	else:
+		dp.create(AddonTitle,"[COLOR blue]We are getting the addons from our server.[/COLOR]",'','')	
+		i=0
+		namelist=[]
+		countlist=[]
+		iconlist=[]
+		fanartlist=[]
+		urllist=[]
+		link = Common.OPEN_URL(APKS_INSTALLER).replace('\n','').replace('\r','')
+		dp.update(0)
+		match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)"').findall(link)
+		dis_links = len(match)
+		for name,url,iconimage,fanart in match:
+			i = i + 1
+			dis_count = str(i)
+			progress = 100 * int(i)/int(dis_links)
+			dp.update(progress,"Filtering pack " + str(dis_count) + " of " + str(dis_links),"[COLOR grey][B]Found " + name + "[/B][/COLOR]")
+			namelist.append(name)
+			countlist.append(str(Common.count_addons_week(name)))
+			iconlist.append(iconimage)
+			fanartlist.append(fanart)
+			urllist.append(url)
+			combinedlists = list(zip(countlist,namelist,iconlist,fanartlist,urllist))
+		tup = sorted(combinedlists, key=lambda x: int(x[0]),reverse=True)
+		for count,name,iconimage,fanart,url in tup:
+			url2 = name + "#!" + url
+			bname = " | [COLOR white] This Week:[/COLOR][COLOR lightskyblue][B] " + count + "[/B][/COLOR]"
+			Common.addItem("[COLOR white][B]" + name + " - NOT INSTALLED[/B][/COLOR]" + bname,url2,171,iconimage,fanart,description="None")
+
+		xbmc.executebuiltin('Container.SetViewMode(50)')
+
 #######################################################################
 #					GETS THE LATEST SIGNED APKS LIST
 #######################################################################
@@ -977,7 +1067,7 @@ def LATESTAPKSWITHLIB():
 
 	link = Common.OPEN_URL(APKSLIB).replace('\n','').replace('\r','')
 	match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?ersion="(.+?)"').findall(link)
-	Common.addItem('[COLOR lightskyblue][B]APKS Will Be Donwloaded to [COLOR lime]/sdcard/Downloads[/COLOR] You Will Need To Manually Install From There[/B][/COLOR]',BASEURL,79,APK_ICON,FANART,'')
+	Common.addItem('[COLOR lightskyblue][B]APKS Will Be Donwloaded to [COLOR yellowgreen]/sdcard/Downloads[/COLOR] You Will Need To Manually Install From There[/B][/COLOR]',BASEURL,79,APK_ICON,FANART,'')
 	Common.addItem('[COLOR white]-----------------------------------------------------------[/COLOR]',BASEURL,79,APK_ICON,FANART,'')
 	for name,url,iconimage,fanart,description in match:
 		Common.addDir(name,url,91,iconimage,fanart,description)
@@ -992,7 +1082,7 @@ def DOWNLOADLIB():
 
 	link = Common.OPEN_URL(LIB).replace('\n','').replace('\r','')
 	match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?ersion="(.+?)"').findall(link)
-	Common.addItem('[COLOR lightskyblue][B]Lib Files Will Be Donwloaded to [COLOR lime]the Kodi special directory[/COLOR] You Will Need To Manually Install From There. The Windows Lib File will Auto Install[/B][/COLOR]',BASEURL,79,LIB_ICON,FANART,'')
+	Common.addItem('[COLOR lightskyblue][B]Lib Files Will Be Donwloaded to [COLOR yellowgreen]the Kodi special directory[/COLOR] You Will Need To Manually Install From There. The Windows Lib File will Auto Install[/B][/COLOR]',BASEURL,79,LIB_ICON,FANART,'')
 	Common.addItem('[COLOR white]-----------------------------------------------------------[/COLOR]',BASEURL,79,LIB_ICON,FANART,'')
 	for name,url,iconimage,fanart,description in match:
 		Common.addDir(name,url,94,LIB_ICON,fanart,description)
@@ -1012,7 +1102,7 @@ def ANDROID_APKS():
 	else:
 		link = Common.OPEN_URL(AND_APKS).replace('\n','').replace('\r','')
 		match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)"').findall(link)
-		Common.addItem('[COLOR lightskyblue][B]APKS Will Be Donwloaded to [COLOR lime]/sdcard/Downloads[/COLOR][/B][/COLOR]',BASEURL,79,APK_ICON,FANART,'')
+		Common.addItem('[COLOR lightskyblue][B]APKS Will Be Donwloaded to [COLOR yellowgreen]/sdcard/Downloads[/COLOR][/B][/COLOR]',BASEURL,79,APK_ICON,FANART,'')
 		Common.addItem('[COLOR dodgerblue][B]THIS LIST IS MAINTAINED BY @VULCAN_TDB [/B][/COLOR]',BASEURL,79,APK_ICON,FANART,'')
 		Common.addItem('[COLOR dodgerblue][B]CONTACT HIM ON TWITTER WITH REQUESTS[/B][/COLOR]',BASEURL,79,APK_ICON,FANART,'')
 		Common.addItem('[COLOR white]-----------------------------------------------------------[/COLOR]',BASEURL,79,APK_ICON,FANART,'')
@@ -1140,47 +1230,16 @@ def AUTO_UPDATER(name):
 		dialog.ok(AddonTitle,'[COLOR red][B]Error: It appears you do not currently have an active internet connection. This will cause false positives in the test. Please try again with an active internet connection.[/B][/COLOR]')
 		sys.exit(0)
 
-	dp.create(AddonTitle,"Checking for repository updates",'', 'Please Wait...')	
-	dp.update(0)
-	a=open(GET_REPO_VERSION).read()
-	b=a.replace('\n',' ').replace('\r',' ')
-	match=re.compile('name=".+?".+?version="(.+?)".+?provider-name=".+?">').findall(str(b))
-	for item in match:
-		dp.update(25)
-		new_version = float(item) + 0.01
-		url = BASE_REPO_UPDATE + str(new_version) + '.zip'
-		result = requests.get(url)
-		if "Not Found" not in result.content:
-			found = 1
-			dp.update(75)
-			path = xbmc.translatePath(os.path.join('special://home/addons','packages'))
-			if not os.path.exists(path):
-				os.makedirs(path)
-			lib=os.path.join(path, 'repoupdate.zip')
-			try: os.remove(lib)
-			except: pass
-			dp.update(100)
-			dp.update(0,"","Downloading Update Please Wait","")
-			import downloader
-			downloader.download(url, lib, dp)
-			addonfolder = xbmc.translatePath(os.path.join('special://','home/addons'))
-			dp.update(0,"","Extracting Update Please Wait","")
-			import extract
-			extract.all(lib,addonfolder,dp)
-			try: os.remove(lib)
-			except: pass
-			xbmc.executebuiltin("UpdateLocalAddons")
-			xbmc.executebuiltin("UpdateAddonRepos")
-			dialog.ok(AddonTitle,"ECHO repository was updated to " + str(new_version) + ', you may need to restart the addon for changes to take effect')
-
-	if os.path.exists(XXX_REPO):
-		dp.update(50,"Checking for XXX repository updates")
-		a=open(GET_XXX_VERSION).read()
+	try:
+		dp.create(AddonTitle,"Checking for repository updates",'', 'Please Wait...')	
+		dp.update(0)
+		a=open(GET_REPO_VERSION).read()
 		b=a.replace('\n',' ').replace('\r',' ')
 		match=re.compile('name=".+?".+?version="(.+?)".+?provider-name=".+?">').findall(str(b))
 		for item in match:
+			dp.update(25)
 			new_version = float(item) + 0.01
-			url = BASE_XXX_UPDATE + str(new_version) + '.zip'
+			url = BASE_REPO_UPDATE + str(new_version) + '.zip'
 			result = requests.get(url)
 			if "Not Found" not in result.content:
 				found = 1
@@ -1203,47 +1262,83 @@ def AUTO_UPDATER(name):
 				except: pass
 				xbmc.executebuiltin("UpdateLocalAddons")
 				xbmc.executebuiltin("UpdateAddonRepos")
-				dialog.ok(AddonTitle,"ECHO XXX repository was updated to " + str(new_version) + ', you may need to restart the addon for changes to take effect')
+				dialog.ok(AddonTitle,"ECHO repository was updated to " + str(new_version) + ', you may need to restart the addon for changes to take effect')
 
-	dp.update(75,"Checking for addon updates")
-	a=open(GET_VERSION).read()
-	b=a.replace('\n',' ').replace('\r',' ')
-	match=re.compile('name=".+?".+?version="(.+?)".+?provider-name=".+?">').findall(str(b))
-	for item in match:
-		new_version = float(item) + 0.01
-		url = BASE_UPDATE + str(new_version) + '.zip'
-		result = requests.get(url)
-		if "Not Found" not in result.content:
-			found = 1
-			dp.update(75)
-			path = xbmc.translatePath(os.path.join('special://home/addons','packages'))
-			if not os.path.exists(path):
-				os.makedirs(path)
-			lib=os.path.join(path, 'wizupdate.zip')
-			try: os.remove(lib)
-			except: pass
-			dp.update(100)
-			dp.update(0,"","Downloading Update Please Wait","")
-			import downloader
-			downloader.download(url, lib, dp)
-			addonfolder = xbmc.translatePath(os.path.join('special://','home/addons'))
-			dp.update(0,"","Extracting Update Please Wait","")
-			import extract
-			extract.all(lib,addonfolder,dp)
-			try: os.remove(lib)
-			except: pass
-			xbmc.executebuiltin("UpdateLocalAddons")
-			xbmc.executebuiltin("UpdateAddonRepos")
-			dp.update(100)
-			dp.close
-			dialog.ok(AddonTitle,"ECHO Wizard was updated to " + str(new_version) + ', you may need to restart the addon for changes to take effect')
-	
+		if os.path.exists(XXX_REPO):
+			dp.update(50,"Checking for XXX repository updates")
+			a=open(GET_XXX_VERSION).read()
+			b=a.replace('\n',' ').replace('\r',' ')
+			match=re.compile('name=".+?".+?version="(.+?)".+?provider-name=".+?">').findall(str(b))
+			for item in match:
+				new_version = float(item) + 0.01
+				url = BASE_XXX_UPDATE + str(new_version) + '.zip'
+				result = requests.get(url)
+				if "Not Found" not in result.content:
+					found = 1
+					dp.update(75)
+					path = xbmc.translatePath(os.path.join('special://home/addons','packages'))
+					if not os.path.exists(path):
+						os.makedirs(path)
+					lib=os.path.join(path, 'repoupdate.zip')
+					try: os.remove(lib)
+					except: pass
+					dp.update(100)
+					dp.update(0,"","Downloading Update Please Wait","")
+					import downloader
+					downloader.download(url, lib, dp)
+					addonfolder = xbmc.translatePath(os.path.join('special://','home/addons'))
+					dp.update(0,"","Extracting Update Please Wait","")
+					import extract
+					extract.all(lib,addonfolder,dp)
+					try: os.remove(lib)
+					except: pass
+					xbmc.executebuiltin("UpdateLocalAddons")
+					xbmc.executebuiltin("UpdateAddonRepos")
+					dialog.ok(AddonTitle,"ECHO XXX repository was updated to " + str(new_version) + ', you may need to restart the addon for changes to take effect')
+
+		dp.update(75,"Checking for addon updates")
+		a=open(GET_VERSION).read()
+		b=a.replace('\n',' ').replace('\r',' ')
+		match=re.compile('name=".+?".+?version="(.+?)".+?provider-name=".+?">').findall(str(b))
+		for item in match:
+			new_version = float(item) + 0.01
+			url = BASE_UPDATE + str(new_version) + '.zip'
+			result = requests.get(url)
+			if "Not Found" not in result.content:
+				found = 1
+				dp.update(75)
+				path = xbmc.translatePath(os.path.join('special://home/addons','packages'))
+				if not os.path.exists(path):
+					os.makedirs(path)
+				lib=os.path.join(path, 'wizupdate.zip')
+				try: os.remove(lib)
+				except: pass
+				dp.update(100)
+				dp.update(0,"","Downloading Update Please Wait","")
+				import downloader
+				downloader.download(url, lib, dp)
+				addonfolder = xbmc.translatePath(os.path.join('special://','home/addons'))
+				dp.update(0,"","Extracting Update Please Wait","")
+				import extract
+				extract.all(lib,addonfolder,dp)
+				try: os.remove(lib)
+				except: pass
+				xbmc.executebuiltin("UpdateLocalAddons")
+				xbmc.executebuiltin("UpdateAddonRepos")
+				dp.update(100)
+				dp.close
+				dialog.ok(AddonTitle,"ECHO Wizard was updated to " + str(new_version) + ', you may need to restart the addon for changes to take effect')
+	except:
+		dialog.ok(AddonTitle,'Sorry! We encountered an error whilst checking for updates. You can make Kodi force check the repository for updates as an alternative if you wish.')
+		quit()
+
 	if dp.iscanceled():
 		dp.close()
 	else:
 		if found == 0:
 			if not name == "no dialog":
 				dialog.ok(AddonTitle,"There are no updates at this time.")
+				quit()
 
 #######################################################################
 #					PLAY VIDEO FUNCTION
@@ -1725,5 +1820,14 @@ elif mode==163:
 
 elif mode==164:
 		get_addons.GET_REPO(name,url)
+
+elif mode==165:
+		AUTO_UPDATER("dialog")
+
+elif mode==170:
+		INSTALLER_APKS()
+
+elif mode==171:
+        installer.INSTALLAPK_INSTALLER(name,url,description)
 
 xbmcplugin.endOfDirectory(int(sys.argv[1]))

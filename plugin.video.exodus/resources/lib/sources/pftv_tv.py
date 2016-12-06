@@ -147,9 +147,19 @@ class source:
             r = proxy.request(url, 'nofollow')
 
             url = client.parseDOM(r, 'a', ret='href', attrs = {'rel': 'nofollow'})
-            url = [i for i in url if not urlparse.urlparse(self.base_link).netloc in i]
+            url = [i for i in url if 'aff_id' in i][0]
+            url = urlparse.urljoin(self.base_link, url)
+            url = client.replaceHTMLCodes(url)
+            try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['u'][0]
+            except: pass
+            try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['q'][0]
+            except: pass
 
-            url = client.replaceHTMLCodes(url[0])
+            r = proxy.request(url, 'url=')
+
+            url = client.parseDOM(r, 'meta', ret='content')[-1]
+            url = url.split('url=', 1)[-1]
+            url = client.replaceHTMLCodes(url)
             try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['u'][0]
             except: pass
             try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['q'][0]

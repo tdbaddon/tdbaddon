@@ -253,13 +253,13 @@ class indexer:
                 reghash = str(reghash.hexdigest())
 
                 item = item.replace('\r','').replace('\n','').replace('\t','').replace('&nbsp;','')
+                item = re.sub('<regex>.+?</regex>','', item)
                 item = re.sub('<sublink></sublink>|<sublink\s+name=(?:\'|\").*?(?:\'|\")></sublink>','', item)
                 item = re.sub('<link></link>','', item)
 
-                name = item.split('<meta>')[0].split('<regex>')[0]
+                name = re.sub('<meta>.+?</meta>','', item)
                 try: name = re.findall('<title>(.+?)</title>', name)[0]
                 except: name = re.findall('<name>(.+?)</name>', name)[0]
-                if '<meta>' in name: raise Exception()
 
                 try: date = re.findall('<date>(.+?)</date>', item)[0]
                 except: date = ''
@@ -267,11 +267,9 @@ class indexer:
 
                 try: image2 = re.findall('<thumbnail>(.+?)</thumbnail>', item)[0]
                 except: image2 = image
-                if not str(image2).lower().startswith('http'): image2 = '0'
 
                 try: fanart2 = re.findall('<fanart>(.+?)</fanart>', item)[0]
                 except: fanart2 = fanart
-                if not str(fanart2).lower().startswith('http'): fanart2 = '0'
 
                 try: meta = re.findall('<meta>(.+?)</meta>', item)[0]
                 except: meta = '0'
@@ -301,6 +299,9 @@ class indexer:
 
                 try: content = re.findall('<content>(.+?)</content>', meta)[0]
                 except: content = '0'
+                if content == '0': 
+                    try: content = re.findall('<content>(.+?)</content>', item)[0]
+                    except: content = '0'
                 if not content == '0': content += 's'
 
                 if 'tvshow' in content and not url.strip().endswith('.xml'):
@@ -622,14 +623,17 @@ class indexer:
                     cm.append((control.lang(30708).encode('utf-8'), 'XBMC.Action(Info)'))
 
                 if content == 'movies':
-                    try: dfile = '%s (%s)' % (data['title'], data['year'])
+                    try: dfile = '%s (%s)' % (i['title'], i['year'])
                     except: dfile = name
                     try: cm.append((control.lang(30722).encode('utf-8'), 'RunPlugin(%s?action=addDownload&name=%s&url=%s&image=%s)' % (sysaddon, urllib.quote_plus(dfile), urllib.quote_plus(i['url']), urllib.quote_plus(poster))))
                     except: pass
                 elif content == 'episodes':
-                    try: dfile = '%s S%02dE%02d' % (data['tvshowtitle'], int(data['season']), int(data['episode']))
+                    try: dfile = '%s S%02dE%02d' % (i['tvshowtitle'], int(i['season']), int(i['episode']))
                     except: dfile = name
                     try: cm.append((control.lang(30722).encode('utf-8'), 'RunPlugin(%s?action=addDownload&name=%s&url=%s&image=%s)' % (sysaddon, urllib.quote_plus(dfile), urllib.quote_plus(i['url']), urllib.quote_plus(poster))))
+                    except: pass
+                elif content == 'songs':
+                    try: cm.append((control.lang(30722).encode('utf-8'), 'RunPlugin(%s?action=addDownload&name=%s&url=%s&image=%s)' % (sysaddon, urllib.quote_plus(name), urllib.quote_plus(i['url']), urllib.quote_plus(poster))))
                     except: pass
 
                 if mode == 'movies':
@@ -804,34 +808,15 @@ class resolver:
 
             direct = False
 
-            presetDict = ['movie4k_mv', 'movie25_mv', 'pftv_tv', 'primewire_mv_tv', 'watchfree_mv_tv', 'watchseries_tv']
-
-            if not preset == 'searchsd': presetDict += ['afdah_mv', 'dayt_mv', 'dizigold_tv', 'genvideo_mv', 'miradetodo_mv', 'moviego_mv', 'movies14_mv', 'movieshd_mv_tv', 'onemovies_mv_tv', 'onlinedizi_tv', 'pelispedia_mv_tv', 'pubfilm_mv_tv', 'putlocker_mv_tv', 'sezonlukdizi_tv', 'tunemovie_mv', 'watch32_mv', 'xmovies_mv_tv', 'ymovies_mv_tv']
+            quality = 'HD' if not preset == 'searchsd' else 'SD'
 
             from resources.lib.sources import sources
 
-            dialog = None
-            dialog = control.progressDialog
-            dialog.create(control.addonInfo('name'), control.lang(30726).encode('utf-8'))
-            dialog.update(0)
+            u = sources().getSources(title, year, imdb, tvdb, season, episode, tvshowtitle, premiered, quality)
 
-            try: dialog.update(0, control.lang(30726).encode('utf-8'), control.lang(30731).encode('utf-8'))
-            except: pass
-
-            u = sources().getSources(title, year, imdb, tvdb, season, episode, tvshowtitle, premiered, presetDict=presetDict, progress=False, timeout=20)
-
-            try: dialog.update(50, control.lang(30726).encode('utf-8'), control.lang(30731).encode('utf-8'))
-            except: pass
-
-            u = sources().sourcesDirect(u, progress=False)
-
-            if not u == None:
-                try: dialog.close()
-                except: pass
-                return u
+            if not u == None: return u
         except:
-            try: dialog.close()
-            except: pass
+            pass
 
         try:
             from resources.lib.sources import sources
@@ -839,25 +824,11 @@ class resolver:
             u = sources().getURISource(url)
 
             if not u == False: direct = False
-            if u == None or u == False or u == []: raise Exception()
+            if u == None or u == False: raise Exception()
 
-            dialog = None
-            dialog = control.progressDialog
-            dialog.create(control.addonInfo('name'), control.lang(30726).encode('utf-8'))
-            dialog.update(0)
-
-            try: dialog.update(50, control.lang(30726).encode('utf-8'), control.lang(30731).encode('utf-8'))
-            except: pass
-
-            u = sources().sourcesDirect(u, progress=False)
-
-            if not u == None:
-                try: dialog.close()
-                except: pass
-                return u
+            return u
         except:
-            try: dialog.close()
-            except: pass
+            pass
 
         try:
             if not '.google.com' in url: raise Exception()

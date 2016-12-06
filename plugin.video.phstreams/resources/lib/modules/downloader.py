@@ -102,7 +102,7 @@ def addDownload(name, url, image, provider=None):
 
         ext = os.path.splitext(urlparse.urlparse(u).path)[1][1:].lower()
         if ext == 'm3u8': raise Exception()
-        if not ext in ['mp4', 'mkv', 'flv', 'avi', 'mpg']: ext = 'mp4'
+        if not ext in ['mp4', 'm4a', 'mp3', 'aac', 'mkv', 'flv', 'avi', 'mpg']: ext = 'mp4'
         dest = name + '.' + ext
 
         req = urllib2.Request(u, headers=headers)
@@ -242,10 +242,11 @@ class downloadThread(threading.Thread):
             except: headers = dict('')
 
             ext = os.path.splitext(urlparse.urlparse(url).path)[1][1:].lower()
-            if not ext in ['mp4', 'mkv', 'flv', 'avi', 'mpg']: ext = 'mp4'
 
             hdlr = re.compile('.+? ([(]\d{4}[)]|S\d*E\d*)$').findall(self.name)
             if len(hdlr) == 0: self.content = 'Uncategorised'
+
+            if ext in ['m4a', 'mp3', 'aac']: self.content = 'Music'
 
             hdlr = re.compile('.+? (S\d*E\d*)$').findall(self.name)
             if len(hdlr) > 0: self.content = 'TVShows'
@@ -253,16 +254,15 @@ class downloadThread(threading.Thread):
             hdlr = re.compile('.+? [(](\d{4})[)]$').findall(self.name)
             if len(hdlr) > 0: self.content = 'Movies'
 
-
             if self.content == 'Movies':
-                dest = os.path.join(downloadPath, 'Movies')
+                dest = os.path.join(downloadPath, self.content)
                 control.makeFile(dest)
                 dest = os.path.join(dest, sysname)
                 control.makeFile(dest)
 
             elif self.content == 'TVShows':
                 d = re.compile('(.+?) S(\d*)E(\d*)$').findall(sysname)[0]
-                dest = os.path.join(downloadPath, 'TVShows')
+                dest = os.path.join(downloadPath, self.content)
                 control.makeFile(dest)
                 dest = os.path.join(dest, d[0])
                 control.makeFile(dest)
@@ -270,9 +270,11 @@ class downloadThread(threading.Thread):
                 control.makeFile(dest)
 
             else:
-                dest = os.path.join(downloadPath, 'Uncategorised')
+                dest = os.path.join(downloadPath, self.content)
                 control.makeFile(dest)
 
+
+            if not ext in ['mp4', 'm4a', 'mp3', 'aac', 'mkv', 'flv', 'avi', 'mpg']: ext = 'mp4'
 
             dest = os.path.join(dest, sysname + '.' + ext)
 

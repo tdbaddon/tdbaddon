@@ -64,8 +64,14 @@ def check_path():
 			plugintools.open_settings_dialog()
 			sys.exit(0)
 	if not os.path.exists(USB):
-		os.makedirs(USB)
-		
+		try:
+			os.makedirs(USB)
+		except:
+			dialog = xbmcgui.Dialog()
+			dialog.ok(AddonTitle, "Invalid path selected for your backups. The directory specified does not exist or is not writable.")
+			plugintools.open_settings_dialog()
+			sys.exit(0)
+
 def _get_keyboard( default="", heading="", hidden=False ):
     """ shows a keyboard and returns a value """
     keyboard = xbmc.Keyboard( default, heading, hidden )

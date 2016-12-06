@@ -211,9 +211,11 @@ def KmKm ( item , url , iconimage ) :
  elif len ( Ii1i1 ) > 1 :
   mmkmKmKmkmkm = re . compile ( '<title>(.+?)</title>' ) . findall ( item ) [ 0 ]
   iconimage = re . compile ( '<thumbnail>(.+?)</thumbnail>' ) . findall ( item ) [ 0 ]
+  if iconimage == 'ImageHere' : iconimage = KKmmmkK
+  print iconimage
   if '.ts' in url : ii11i1 ( mmkmKmKmkmkm , url , 16 , iconimage , II1 , description = '' )
   elif 'movies' in KmmkmmKmmkm :
-   i1I1ii ( mmkmKmKmkmkm , url , 2 , iconimage , int ( KKKmmk ) , isFolder = False )
+   i1I1ii ( mmkmKmKmkmkm , url , 3 , iconimage , int ( KKKmmk ) , isFolder = False )
   else : II111iiii ( mmkmKmKmkmkm , url , 3 , iconimage , II1 )
   if 61 - 61: i1I1ii1II1iII
 def I1i1iii ( url ) :
@@ -316,12 +318,12 @@ def mmKKKmkmkKmm ( ) :
   except : pass
   if 84 - 84: Kmkmk . i11iIiiIii . Kmkmk * IiIi1Iii1I1 - i1iIIIiI1I
 def ii ( name , url , iconimage ) :
+ KKmmmkK = iconimage
  KmkmmkmKKKmKm = [ ]
  II1I1iiiI1Ii1I = [ ]
  KmkKKKmkK = [ ]
  mmkmKmk = mmmkmk ( url )
  iiiiIiI = re . compile ( '<title>' + re . escape ( name ) + '</title>(.+?)</item>' , re . DOTALL ) . findall ( mmkmKmk ) [ 0 ]
- iconimage = re . compile ( '<thumbnail>(.+?)</thumbnail>' ) . findall ( iiiiIiI ) [ 0 ]
  Ii1i1 = [ ]
  if '<link>' in iiiiIiI :
   I1KKKmkmkKmkK = re . compile ( '<link>(.+?)</link>' ) . findall ( iiiiIiI )

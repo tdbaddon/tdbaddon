@@ -53,6 +53,8 @@ def query10(title):
     title = title.replace('\'', '').replace(':','').replace('.','').replace(' ','-').lower()
     return title
 
+
+
 def normalize(title):
     try:
         try: return title.decode('ascii').encode("utf-8")

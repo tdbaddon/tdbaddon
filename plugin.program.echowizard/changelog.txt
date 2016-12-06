@@ -1,4 +1,7 @@
-[COLOR lime]1.32: 21st November 2016[/COLOR]
+[COLOR lime]1.34: 4th December 2016[/COLOR]
+[COLOR white][B]- Changes to ECHOs base.[/B][/COLOR]
+
+[COLOR lime]1.33: 21st November 2016[/COLOR]
 [COLOR white][B]- Quick fix to get ECHO online.[/B][/COLOR]
 
 [COLOR lime]1.32: 17th November 2016[/COLOR]

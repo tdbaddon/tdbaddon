@@ -41,35 +41,28 @@ class source:
         try:
             if (self.user == '' or self.password == ''): raise Exception()
 
-            headers = {'X-Requested-With': 'XMLHttpRequest'}
+            t = cleantitle.get(title)
 
-            url = urlparse.urljoin(self.base_link, self.search_link)
+            h = {'X-Requested-With': 'XMLHttpRequest'}
 
-            post = {'q': title.rsplit(':', 1)[0], 'limit': '10', 'timestamp': int(time.time() * 1000), 'verifiedCheck': ''}
-            post = urllib.urlencode(post)
+            u = urlparse.urljoin(self.base_link, self.search_link)
 
-            r = client.request(url, post=post, headers=headers)
+            p = {'q': title.rsplit(':', 1)[0], 'limit': '10', 'timestamp': int(time.time() * 1000), 'verifiedCheck': ''}
+            p = urllib.urlencode(p)
+
+            r = client.request(u, post=p, headers=h)
             r = json.loads(r)
 
-            title = cleantitle.get(title)
-
-            r = [i for i in r if i['meta'].strip().split(' ')[0].lower() == 'movie']
-            r = [i for i in r if title == cleantitle.get(i['title'])][:2]
-
-            if len(r) > 1:
-                r = [(i, urlparse.urljoin(self.base_link, i['permalink'])) for i in r]
-                r = [(i[0], str(client.request(i[1]))) for i in r]
-                r = [(i[0], re.findall('/(tt\d+)', i[1])) for i in r]
-                r = [i[0] for i in r if len(i[1]) > 0 and imdb == i[1][0]]
-
-            r = r[0]['permalink']
-
-            atr = urlparse.urljoin(self.base_link, r)
-            atr = client.request(atr)
-            atr = client.parseDOM(atr, 'p')
-            atr = [i for i in atr if 'Released:' in i][0]
-            atr = client.parseDOM(atr, 'a')[0]
-            if not atr == year: raise Exception()
+            r = [i for i in r if i['meta'].strip().split()[0].lower() == 'movie']
+            r = [i['permalink'] for i in r if t == cleantitle.get(i['title'])][:2]
+            r = [(i, urlparse.urljoin(self.base_link, i)) for i in r]
+            r = [(i[0], client.request(i[1])) for i in r]
+            r = [(i[0], i[1]) for i in r if not i[1] == None]
+            r = [(i[0], re.sub('\s|<.+?>|</.+?>', '', i[1])) for i in r]
+            r = [(i[0], re.findall('eleased:(\d{4})', i[1])) for i in r]
+            r = [(i[0], i[1][0]) for i in r if i[1]]
+            r = [i for i in r if year in i[1]]
+            r = r[0][0]
 
             url = re.findall('(?://.+?|)(/.+)', r)[0]
             url = client.replaceHTMLCodes(url)
@@ -83,36 +76,28 @@ class source:
         try:
             if (self.user == '' or self.password == ''): raise Exception()
 
-            headers = {'X-Requested-With': 'XMLHttpRequest'}
+            t = cleantitle.get(tvshowtitle)
 
-            url = urlparse.urljoin(self.base_link, self.search_link)
+            h = {'X-Requested-With': 'XMLHttpRequest'}
 
-            post = {'q': tvshowtitle.rsplit(':', 1)[0], 'limit': '10', 'timestamp': int(time.time() * 1000), 'verifiedCheck': ''}
-            post = urllib.urlencode(post)
+            u = urlparse.urljoin(self.base_link, self.search_link)
 
-            r = client.request(url, post=post, headers=headers)
+            p = {'q': tvshowtitle.rsplit(':', 1)[0], 'limit': '10', 'timestamp': int(time.time() * 1000), 'verifiedCheck': ''}
+            p = urllib.urlencode(p)
+
+            r = client.request(u, post=p, headers=h)
             r = json.loads(r)
 
-            tvshowtitle = cleantitle.get(tvshowtitle)
-
-            r = [i for i in r if i['meta'].strip().split(' ')[0].lower() == 'tv']
-            r = [i for i in r if tvshowtitle == cleantitle.get(i['title'])][:2]
-
-            if len(r) > 1:
-                r = [(i, urlparse.urljoin(self.base_link, i['permalink'])) for i in r]
-                r = [(i[0], str(client.request(i[1]))) for i in r]
-                r = [(i[0], re.findall('/(tt\d+)', i[1])) for i in r]
-                r = [i[0] for i in r if len(i[1]) > 0 and imdb == i[1][0]]
-
-            r = r[0]['permalink']
-
-            atr = urlparse.urljoin(self.base_link, r)
-            atr = client.request(atr)
-            atr = client.parseDOM(atr, 'p')
-            atr = [i for i in atr if 'Published:' in i][0]
-            atr = client.parseDOM(atr, 'a')[0]
-            atr = re.findall('(\d{4})', atr)[0]
-            if not atr == year: raise Exception()
+            r = [i for i in r if i['meta'].strip().split()[0].lower() == 'tv']
+            r = [i['permalink'] for i in r if t == cleantitle.get(i['title'])][:2]
+            r = [(i, urlparse.urljoin(self.base_link, i)) for i in r]
+            r = [(i[0], client.request(i[1])) for i in r]
+            r = [(i[0], i[1]) for i in r if not i[1] == None]
+            r = [(i[0], re.sub('\s|<.+?>|</.+?>', '', i[1])) for i in r]
+            r = [(i[0], re.findall('eleased:(\d{4})', i[1])) for i in r]
+            r = [(i[0], i[1][0]) for i in r if i[1]]
+            r = [i for i in r if year in i[1]]
+            r = r[0][0]
 
             url = re.findall('(?://.+?|)(/.+)', r)[0]
             url = client.replaceHTMLCodes(url)
@@ -187,9 +172,7 @@ class source:
             result = client.request(url)
 
             try:
-                url = re.compile('sources\s*:\s*\[(.*?)\]', re.DOTALL).findall(result)[0]
-                url = re.compile('''['"]*file['"]*\s*:\s*['"]*([^'"]+).*?['"]*label['"]*\s*:\s*['"]*[^'"]+''', re.DOTALL).findall(url)
-
+                url = re.findall('src\s*=\s*(?:\'|\")(http.+?)(?:\'|\")', result)
                 for i in url:
                     try: links.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'url': i})
                     except: pass
@@ -198,8 +181,8 @@ class source:
 
             try:
                 url = client.parseDOM(result, 'source', ret='src')
-                url += re.findall('src:\s*\'(.*?)\'', result)
-
+                url += re.findall('src\s*:\s*\'(.*?)\'', result)
+                url = [i for i in url if '://' in i]
                 links.append({'source': 'cdn', 'quality': 'HD', 'url': url[0]})
             except:
                 pass

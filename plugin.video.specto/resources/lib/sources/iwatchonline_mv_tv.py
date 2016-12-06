@@ -44,9 +44,6 @@ from resources.lib.resolvers import zstream
 class source:
     def __init__(self):
         self.base_link = 'https://www.iwatchonline.cr'
-        self.link_1 = 'https://www.iwatchonline.lol'
-        self.link_2 = 'https://www.iwatchonline.eu'
-        self.link_3 = 'https://www.iwatchonline.cr'
         self.search_link = '/advance-search'
         self.show_link = '/tv-shows/%s'
         self.episode_link = '/episode/%s-s%02de%02d'
@@ -57,15 +54,12 @@ class source:
             query = self.search_link
             post = {'searchquery': title, 'searchin': '1'}
             post = urllib.urlencode(post)
-
-
             result = ''
-            links = [self.link_1, self.link_3]
-            for base_link in links:
-                headers = {"Content-Type":"application/x-www-form-urlencoded", "Referer":urlparse.urljoin(base_link, query)}
-                result = client.request(urlparse.urljoin(base_link, query), post=post, headers=headers)
-                if 'widget search-page' in str(result): break
 
+            headers = {"Content-Type":"application/x-www-form-urlencoded", "Referer":urlparse.urljoin(self.base_link, query)}
+            result = client.request(urlparse.urljoin(self.base_link, query), post=post, headers=headers)
+            #if 'widget search-page' in str(result): break
+            print("R",result)
             result = client.parseDOM(result, 'div', attrs = {'class': 'widget search-page'})[0]
             result = client.parseDOM(result, 'td')
 
@@ -81,7 +75,8 @@ class source:
             url = urlparse.urlparse(url).path
             url = url.encode('utf-8')
             return url
-        except:
+        except Exception as e:
+            control.log("ERR iwatch %s" % e)
             return
 
     def get_show(self, imdb, tvdb, tvshowtitle, year):
@@ -135,13 +130,8 @@ class source:
             if url == None: return self.sources
 
             result = ''
-            links = [self.link_1, self.link_3]
-            for base_link in links:
-                headers = {"Referer":urlparse.urljoin(base_link, url)}
-                result, headers, content, cookie = client.request(urlparse.urljoin(base_link, url), output='extended', headers=headers)
-                myref=urlparse.urljoin(base_link, url)
-                #control.log('### %s' % result)
-                if 'original-title' in str(result): break
+            headers = {"Referer":urlparse.urljoin(self.base_link, url)}
+            result, headers, content, cookie = client.request(urlparse.urljoin(self.base_link, url), output='extended', headers=headers)
 
             links = client.parseDOM(result, 'tr', attrs = {'id': 'pt.+?'})
 
@@ -199,7 +189,9 @@ class source:
 
             return self.sources
 
-        except:
+
+        except Exception as e:
+            control.log("ERR iwatch %s" % e)
             return self.sources
 
     def check(self, i, headers, cookie, myhostDict, myhosthdDict):

@@ -19,59 +19,51 @@
 '''
 
 
-import re,urllib,urlparse,base64
+import re,urllib,urlparse,json
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import directstream
+from resources.lib.modules import trakt
+from resources.lib.modules import tvmaze
 
 
 class source:
     def __init__(self):
         self.domains = ['gogoanimemobile.com', 'gogoanimemobile.net', 'gogoanime.io']
-        self.base_link = 'http://gogoanimemobile.net'
-        self.fullbase_link = 'http://gogoanime.io'
+        self.base_link = 'http://ww1.gogoanime.io'
         self.search_link = '/search.html?keyword=%s'
         self.episode_link = '/%s-episode-%s'
 
 
     def tvshow(self, imdb, tvdb, tvshowtitle, year):
         try:
-            meta = 'http://www.imdb.com/title/%s/' % imdb
-            meta = client.request(meta)
+            r = 'search/tvdb/%s?type=show&extended=full' % tvdb
+            r = json.loads(trakt.getTrakt(r))
+            if not r: return '0'
 
-            genre = re.findall('href\s*=\s*[\'|\"](.+?)[\'|\"]', meta)
-            genre = [i for i in genre if '/genre/' in i]
-            genre = [i.split('/genre/')[-1].split('?')[0].lower() for i in genre]
-            if not 'animation' in genre: raise Exception()
+            d = r[0]['show']['genres']
+            if not ('anime' in d or 'animation' in d): return '0'
 
-            t = [tvshowtitle.strip()]
+            tv_maze = tvmaze.tvMaze()
+            tvshowtitle = tv_maze.showLookup('thetvdb', tvdb)
+            tvshowtitle = tvshowtitle['name']
 
-            t2 = client.parseDOM(meta, 'title')
-            if t2: t += [re.sub('\((?:.+?|)\d{4}.+', '', t2[0]).strip()]
+            t = cleantitle.get(tvshowtitle)
 
-            t3 = client.parseDOM(meta, 'div', attrs = {'class': 'originalTitle'})
-            if t3: t += [re.sub('<.+?>|\(.+?\)', '', t3[0]).strip()]
+            q = urlparse.urljoin(self.base_link, self.search_link)
+            q = q % urllib.quote_plus(tvshowtitle)
 
-            t = [x for y,x in enumerate(t) if x not in t[:y]][:2]
+            r = client.request(q)
 
-            for title in t:
-                try:
-                    q = urlparse.urljoin(self.base_link, self.search_link)
-                    q = q % urllib.quote_plus(title)
+            r = client.parseDOM(r, 'ul', attrs={'class': 'items'})
+            r = client.parseDOM(r, 'li')
+            r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', ret='title'), re.findall('\d{4}', i)) for i in r]
+            r = [(i[0][0], i[1][0], i[2][-1]) for i in r if i[0] and i[1] and i[2]]
+            r = [i for i in r if t == cleantitle.get(i[1]) and year == i[2]]
+            r = r[0][0]
 
-                    r = client.request(q, mobile=True)
-
-                    r = client.parseDOM(r, 'div', attrs={'class': 'last_episodes.+?'})
-                    r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', ret='title'), re.findall('\d{4}', i)) for i in r]
-                    r = [(i[0][0], i[1][0], i[2][-1]) for i in r if len(i[0]) > 0 and len(i[1]) > 0 and len(i[2]) > 0]
-                    r = [i for i in r if cleantitle.get(title) == cleantitle.get(i[1]) and year == i[2]]
-
-                    if r: url = r[0][0] ; break
-                except:
-                    pass
-
-            url = re.findall('(?://.+?|)(/.+)', url)[0]
+            url = re.findall('(?://.+?|)(/.+)', r)[0]
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
             return url
@@ -83,12 +75,10 @@ class source:
         try:
             if url == None: return
 
-            num = base64.b64decode('aHR0cDovL3RoZXR2ZGIuY29tL2FwaS8xRDYyRjJGOTAwMzBDNDQ0L3Nlcmllcy8lcy9kZWZhdWx0LyUwMWQvJTAxZA==')
-            num = num % (tvdb, int(season), int(episode))
-            num = client.request(num)
-            num = client.parseDOM(num, 'absolute_number')[0]
+            tv_maze = tvmaze.tvMaze()
+            num = tv_maze.episodeAbsoluteNumber(tvdb, int(season), int(episode))
 
-            url = [i for i in url.split('/') if not i == ''][-1]
+            url = [i for i in url.strip('/').split('/')][-1]
             url = self.episode_link % (url, num)
             return url
         except:
@@ -103,7 +93,7 @@ class source:
 
             url = urlparse.urljoin(self.base_link, url)
 
-            r = client.request(url, mobile=True)
+            r = client.request(url)
 
             r = client.parseDOM(r, 'iframe', ret='src')
 

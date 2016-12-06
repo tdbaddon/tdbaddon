@@ -658,6 +658,24 @@ def INSTALLAPK(name,url,description):
 	dialog.ok(AddonTitle, "Launching the APK to be installed" , "Follow the install process to complete.")
 	xbmc.executebuiltin('StartAndroidActivity("","android.intent.action.VIEW","application/vnd.android.package-archive","file:' + lib + '")' )
 
+def INSTALLAPK_INSTALLER(name,url,description):
+	dialog = xbmcgui.Dialog()
+	name,url = url.split('#!')
+	dialog.ok(AddonTitle, str(name))
+
+	add_download = Common.add_one_addons_week(name)
+
+	path = xbmc.translatePath(os.path.join('/storage/emulated/0/Download',''))
+	dp = xbmcgui.DialogProgress()
+	dp.create(AddonTitle,"","",'APK: ' + name)
+	new_name = name.replace(' ','')
+	lib=os.path.join(path, name+'.apk')
+	downloader.download(url, lib, dp)
+	dialog = xbmcgui.Dialog()
+
+	dialog.ok(AddonTitle, "Launching the APK to be installed" , "Follow the install process to complete.")
+	xbmc.executebuiltin('StartAndroidActivity("","android.intent.action.VIEW","application/vnd.android.package-archive","file:' + lib + '")' )
+
 def INSTALLEXE(name,url,description):
 
 	if "NULL" in url:

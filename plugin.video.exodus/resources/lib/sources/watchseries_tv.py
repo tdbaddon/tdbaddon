@@ -19,7 +19,7 @@
 '''
 
 
-import re,urllib,urlparse,json,base64,hashlib
+import re,urllib,urlparse,json,base64,hashlib,time
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
@@ -35,6 +35,16 @@ class source:
 
 
     def request(self, url):
+        try:
+            r = self.request_call(url)
+            if r == None: time.sleep(1) ; r = self.request_call(url)
+            if r == None: time.sleep(1) ; r = self.request_call(url)
+            return r
+        except:
+            return
+
+
+    def request_call(self, url):
         try:
             if not url.startswith('/'): url = '/' + url
             if not url.startswith('/json'): url = '/json' + url
@@ -88,6 +98,7 @@ class source:
             if url == None: return
 
             result = self.request(url)
+
             result = result[0]['episodes'].values()
 
             for i, v in enumerate(result):

@@ -29,7 +29,6 @@
 	</category>
 	<category label="32345">
 		<setting id="provider.afdah" type="bool" label="Afdah" default="true" />
-		<setting id="provider.bcinema" type="bool" label="Bcinema" default="true" />
 		<setting id="provider.bmoviez" type="bool" label="Bmoviez" default="true" />
 		<setting id="provider.crazy" type="bool" label="Crazy" default="true" />
 		<setting id="provider.dailyrls" type="bool" label="Dailyrls" default="true" />
@@ -73,6 +72,7 @@
 		<setting id="provider.scenedown" type="bool" label="Scenedown" default="true" />
 		<setting id="provider.sceper" type="bool" label="Sceper" default="true" />
 		<setting id="provider.sezonlukdizi" type="bool" label="Sezonlukdizi" default="true" />
+		<setting id="provider.sockshare" type="bool" label="Sockshare" default="true" />
 		<setting id="provider.streamlord" type="bool" label="Streamlord" default="true" />
 		<setting id="provider.tinydl" type="bool" label="Tinydl" default="true" />
 		<setting id="provider.torba" type="bool" label="Torba" default="true" />

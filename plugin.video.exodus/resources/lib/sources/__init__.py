@@ -285,12 +285,10 @@ class sources:
             pass
 
 
-    def getSources(self, title, year, imdb, tvdb, season, episode, tvshowtitle, premiered, presetDict=[], timeout=30):
+    def getSources(self, title, year, imdb, tvdb, season, episode, tvshowtitle, premiered, timeout=30):
         sourceDict = []
         for package, name, is_pkg in pkgutil.walk_packages(__path__): sourceDict.append((name, is_pkg))
         sourceDict = [i[0] for i in sourceDict if i[1] == False]
-
-        if not presetDict == []: sourceDict = [i for i in presetDict if i in sourceDict]
 
         content = 'movie' if tvshowtitle == None else 'episode'
 
@@ -334,6 +332,7 @@ class sources:
         string2 = control.lang(32405).encode('utf-8')
         string3 = control.lang(32406).encode('utf-8')
 
+
         for i in range(0, timeout * 2):
             try:
                 if xbmc.abortRequested == True: return sys.exit()
@@ -360,6 +359,36 @@ class sources:
                 time.sleep(0.5)
             except:
                 pass
+
+
+        for i in range(0, 30 * 2):
+            try:
+                if xbmc.abortRequested == True: return sys.exit()
+
+                try: info = [sourceLabel[int(re.sub('[^0-9]', '', str(x.getName()))) - 1] for x in threads if x.is_alive() == True]
+                except: info = []
+
+
+                try:
+                    if progressDialog.iscanceled(): break
+                    string4 = string1 % str(int(i * 0.5) + timeout)
+                    if len(info) > 5: string5 = string3 % str(len(info))
+                    else: string5 = string3 % str(info).translate(None, "[]'")
+                    progressDialog.update(int((100 / float(len(threads))) * len([x for x in threads if x.is_alive() == False])), str(string4), str(string5))
+                except:
+                    string4 = string2 % str(int(i * 0.5) + timeout)
+                    if len(info) > 5: string5 = string3 % str(len(info))
+                    else: string5 = str(info).translate(None, "[]'")
+                    progressDialog.update(int((100 / float(len(threads))) * len([x for x in threads if x.is_alive() == False])), str(string4), str(string5))
+
+
+                is_alive = [x.is_alive() for x in threads]
+                if all(x == False for x in is_alive): break
+                if self.sources: break
+                time.sleep(0.5)
+            except:
+                pass
+
 
         try: progressDialog.close()
         except: pass
@@ -485,34 +514,6 @@ class sources:
             dbcur.execute("DELETE FROM rel_src WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, imdb, season, episode))
             dbcur.execute("INSERT INTO rel_src Values (?, ?, ?, ?, ?, ?)", (source, imdb, season, episode, json.dumps(sources), datetime.datetime.now().strftime("%Y-%m-%d %H:%M")))
             dbcon.commit()
-        except:
-            pass
-
-
-    def getURISource(self, url):
-        try:
-            sourceDict = []
-            for package, name, is_pkg in pkgutil.walk_packages(__path__): sourceDict.append((name, is_pkg))
-            sourceDict = [i[0] for i in sourceDict if i[1] == False]
-            sourceDict = [(i, __import__(i, globals(), locals(), [], -1).source()) for i in sourceDict]
-
-            domain = (urlparse.urlparse(url).netloc).lower()
-
-            domains = [(i[0], i[1].domains) for i in sourceDict]
-            domains = [i[0] for i in domains if any(x in domain for x in i[1])]
-
-            if len(domains) == 0: return False
-
-            call = [i[1] for i in sourceDict if i[0] == domains[0]][0]
-
-            self.sources = call.sources(url, self.hostDict, self.hostprDict)
-
-            for i in range(len(self.sources)):
-                try: self.sources[i]['autoplay'] = True
-                except: pass
-
-            self.sources = self.sourcesFilter()
-            return self.sources
         except:
             pass
 
@@ -644,7 +645,7 @@ class sources:
             source = __import__(provider, globals(), locals(), [], -1).source()
             u = url = source.resolve(url)
 
-            if url == None: raise Exception()
+            if url == None or not '://' in str(url): raise Exception()
 
 
             if not d == '':

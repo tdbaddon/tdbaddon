@@ -83,7 +83,7 @@ class source:
     def get_sources(self, url, hosthdDict, hostDict, locDict):
         sources = []
         try:
-            control.log("one-url-0 %s" % url)
+            #control.log("one-url-0 %s" % url)
 
             if url == None: return sources
 
@@ -93,7 +93,7 @@ class source:
                 #control.log("# DATA %s" % data)
 
                 title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
-                control.log("one-date-TITLE %s" % title)
+                #control.log("one-date-TITLE %s" % title)
                 sezon = data['season']
                 episode = data['episode']
                 year = re.findall('(\d{4})', data['premiered'])[0] if 'tvshowtitle' in data else data['year']
@@ -102,7 +102,7 @@ class source:
                 query = urlparse.urljoin(self.base_link, query)
 
                 result = client.request(query)
-                control.log("one-date-0 %s" % year)
+                #control.log("one-date-0 %s" % year)
                 tvshowtitle = cleantitle.tv(title)
                 years = ['%s' % str(year), '%s' % str(int(year) + 1), '%s' % str(int(year) - 1)]
 
@@ -134,7 +134,7 @@ class source:
                 url = url.encode('utf-8')
 
             ref = urlparse.urljoin(self.base_link, url)
-            control.log("one-sources-0 %s" % ref)
+            #control.log("one-sources-0 %s" % ref)
             headers= {'Referer':ref, "User-Agent":"Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:50.0) Gecko/20100101 Firefox/50.0"}
             result, headers, content, cookie = client.request(ref,headers=headers, output='extended')
             r = re.compile('id:.(\d+),\s.*episode_id:.(\d+),\s.*link_id:.(\d+)', ).findall(result)
@@ -154,7 +154,7 @@ class source:
                 for i in r2:
                     try:
                         t = urlparse.urljoin(self.base_link,self.load_player % (i[0][0], i[0][1], self.now_milliseconds()))
-                        control.log("sources-7 %s @ %s " % ((t), i[1]))
+                        #control.log("sources-7 %s @ %s " % ((t), i[1]))
                         r3 = client.request(t, headers=headers)
                         r4 = json.loads(r3)
                         #control.log("sources-8 %s @ " % (r4))
@@ -164,7 +164,7 @@ class source:
                                 #control.log("sources-GV %s @ " % (r4))
                                 r5 = client.request(r4['playlist'], headers=headers)
                                 for link in json.loads(r5)['playlist'][0]['sources']:
-                                    control.log("sources-LINK %s @ " % (link))
+                                    #control.log("sources-LINK %s @ " % (link))
                                     #ala['playlist'][0]['sources'][-1]['file']
                                     sources.append({'source': 'gvideo', 'quality': client.googletag(link['file'])[0]['quality'],
                                                 'provider': 'OneMovies', 'url': link['file']})
