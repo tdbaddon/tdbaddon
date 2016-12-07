@@ -3361,7 +3361,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="script.video.F4mProxy"
 	     name="F4mProxy"
-	     version="3.5.0"
+	     version="3269"
 	     provider-name="Shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0" />
@@ -3371,6 +3371,8 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
     <extension point="xbmc.python.pluginsource" library="addon.py">
 		<provides>executable</provides>
   </extension>
+
+
 
   <extension point="xbmc.addon.metadata">
     <platform>all</platform>
