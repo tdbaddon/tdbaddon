@@ -3361,7 +3361,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="script.video.F4mProxy"
 	     name="F4mProxy"
-	     version="2.7.0"
+	     version="3.5.1"
 	     provider-name="Shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0" />
