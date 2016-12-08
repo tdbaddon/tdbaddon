@@ -85,8 +85,7 @@ class UpdateResult(object):
         self.package_name = package
         self.running_version = running
         if release_date:
-            self.release_date = datetime.strptime(release_date,
-                                                  '%Y-%m-%dT%H:%M:%S')
+            self.release_date = None
         else:
             self.release_date = None
 

@@ -19,33 +19,20 @@
 
 
 import urlparse,sys,re
+
 params = dict(urlparse.parse_qsl(sys.argv[2].replace('?','')))
 
+action = params.get('action')
 
-try:
-    action = params['action']
-except:
-    action = None
-try:
-    content = params['content']
-except:
-    content = None
-try:
-    name = params['name']
-except:
-    name = None
-try:
-    url = params['url']
-except:
-    url = None
-try:
-    image = params['image']
-except:
-    image = None
-try:
-    fanart = params['fanart']
-except:
-    fanart = None
+content = params.get('content')
+
+name = params.get('name')
+
+url = params.get('url')
+
+image = params.get('image')
+
+fanart = params.get('fanart')
 
 
 if action == None:
@@ -72,6 +59,10 @@ elif action == 'tvtuner':
     from resources.lib.indexers import phstreams
     phstreams.indexer().tvtuner(url)
 
+elif 'youtube' in str(action):
+    from resources.lib.indexers import phstreams
+    phstreams.indexer().youtube(url, action)
+
 elif action == 'play':
     from resources.lib.indexers import phstreams
     phstreams.player().play(url, content)
@@ -91,6 +82,10 @@ elif action == 'addSearch':
 elif action == 'delSearch':
     from resources.lib.indexers import phstreams
     phstreams.indexer().delSearch()
+
+elif action == 'queueItem':
+    from resources.lib.modules import control
+    control.queueItem()
 
 elif action == 'openSettings':
     from resources.lib.modules import control

@@ -27,7 +27,7 @@ import installer
 #######################################################################
 #					VERIABLES NEEDED
 #######################################################################
-AddonTitle="[COLOR lime]echo[/COLOR] [COLOR white]Wizard[/COLOR]"
+AddonTitle="[COLOR lime]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
 addon_id = 'plugin.program.echowizard'
 ADDON = xbmcaddon.Addon(id=addon_id)
 skin         =  xbmc.getSkinDir()
@@ -272,8 +272,7 @@ def SPORTS_DEVIL_FIX():
 	if not os.path.exists(path):
 		os.makedirs(path)
 
-		
-	url = ('https://github.com/echocoderkodi/echo.addon.installer/raw/master/dependencies/script.module.pydevd-3.4.1.zip')
+	url = ('http://www.echocoder.com/addons/Plugins/dependencies/script.module.pydevd-3.4.1.zip')
 	dp = xbmcgui.DialogProgress()
 	dp.create(AddonTitle,"","","Installing Dependencies")
 	lib=os.path.join(path, 'addon.zip')
@@ -288,7 +287,7 @@ def SPORTS_DEVIL_FIX():
 	time.sleep(2)
 	dp.update(0,"","Extracting Zip Please Wait","")
 	extract.all(lib,addonfolder,dp)
-	url = ('https://github.com/echocoderkodi/echo.addon.installer/raw/master/addons/Plugins/plugin.video.SportsDevil.zip')
+	url = ('http://www.echocoder.com/addons/Plugins/plugin.video.SportsDevil.zip')
 	dp = xbmcgui.DialogProgress()
 	dp.create(AddonTitle,"","","Installing Sports Devil")
 	lib=os.path.join(path, 'addon.zip')
@@ -310,7 +309,7 @@ def SPORTS_DEVIL_FIX():
 	xbmc.executebuiltin("UpdateAddonRepos")
 	xbmc.executebuiltin("UpdateLocalAddons")	
 
-	dialog.ok(AddonTitle,"[COLOR white]The Sportd Devil plugin should now be fixed and working correctly. If you have any issues please turn AUTO UPDATE OFF on Sports Devil and run this fix again.[/COLOR]")
+	dialog.ok(AddonTitle,"[COLOR white]The Sports Devil plugin should now be fixed and working correctly. If you have any issues please turn AUTO UPDATE OFF on Sports Devil and run this fix again.[/COLOR]")
 	sys.exit(0)
 
 def REMOVE_GUIDE():

@@ -54,6 +54,7 @@ def COMMUNITY():
 	dp.update(0)
 	namelist=[]
 	urllist=[]
+	hiddenlist=[]
 	countlist=[]
 	deslist=[]
 	iconlist=[]
@@ -70,16 +71,19 @@ def COMMUNITY():
 		description = str(developer + "," + hidden)
 		namelist.append(name)
 		urllist.append(url)
+		hiddenlist.append(hidden)
 		countlist.append(str(Common.community_dev_week(developer)))   
 		deslist.append(description)		
 		iconlist.append(iconimage)
 		fanartlist.append(fanart)
-		combinedlists = list(zip(countlist,namelist,urllist,deslist,iconlist,fanartlist))
+		combinedlists = list(zip(countlist,namelist,urllist,hiddenlist,deslist,iconlist,fanartlist))
 	tup = sorted(combinedlists, key=lambda x: int(x[0]),reverse=True)
 	dp.close()
 	rank = 1
-	for count,name,url,description,iconimage,fanart in tup:
+	for count,name,url,hidden,description,iconimage,fanart in tup:
 		developer = str(name.replace('[COLOR white][B]','').replace('[/B][/COLOR]','').replace('[/B][/COLOR]','').replace(' BUILDS',''))
+		if hidden != "false":
+			url = hidden + "," + url
 		if rank == 1:
 			bname = " | [COLOR gold] This Week:[/COLOR][COLOR gold] " + count + "[/B][/COLOR]"
 			Common.addDir("[B][COLOR gold]1st - " + developer + "[/COLOR]"  + bname,url,93,iconimage,fanart,description)
@@ -96,9 +100,26 @@ def COMMUNITY():
 		else:
 			bname = " | [COLOR grey] This Week:[/COLOR][COLOR grey][B] " + count + "[/B][/COLOR]"
 			Common.addDir("[COLOR grey]" + developer + "[/COLOR]"  + bname,url,93,iconimage,fanart,description)
+	
 	Common.addItem('[B][COLOR lightskyblue]HOW TO ADD YOUR BUILDS TO THE LIST[/COLOR][/B]',BASEURL,17,COMMUNITY_ICON,FANART,'')
 
 def SHOWCOMMUNITYBUILDS(name, url, description):
+
+	if "," in url:
+		passed = 0
+
+		hidden,url = url.split(",")
+		
+		vq = Common._get_keyboard( heading="Please Enter Your Password" )
+		if ( not vq ): return False, 0
+		title = vq
+
+		if title==hidden:
+			passed = 1
+
+		if passed == 0:
+			dialog.ok(AddonTitle, "Sorry the password entered was not found.",'[COLOR smokewhite]Thank you for using ECHO Wizard[/COLOR]')
+			sys.exit(0)
 
 	xbmc_version=xbmc.getInfoLabel("System.BuildVersion")
 	version=float(xbmc_version[:4])
@@ -128,13 +149,13 @@ def SHOWCOMMUNITYBUILDS(name, url, description):
 	desca = description
 	developer = desca.split(',')[0]
 	hidden = desca.split(',')[1]
-	found = 0
+	a = 0
+	b = 0
 
 	link = Common.OPEN_URL(url).replace('\n','').replace('\r','')
 	match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)"').findall(link)
 	dis_links = len(match)
 	for name,url,iconimage,fanart in match:
-		found = 1
 		i = i + 1
 		dis_count = str(i)
 		progress = 100 * int(i)/int(dis_links)
@@ -153,6 +174,7 @@ def SHOWCOMMUNITYBUILDS(name, url, description):
 	for count,name,url,description,iconimage,fanart in tup:
 		if codename == "Jarvis":
 			if not "krypton" in name.lower():
+				b = b + 1
 				if "skip" in name.lower():
 					name=name.replace('skip','')
 					Common.addItem(name,url,999,iconimage,fanart,description)
@@ -161,112 +183,28 @@ def SHOWCOMMUNITYBUILDS(name, url, description):
 					Common.addDir(name + bname,url,97,iconimage,fanart,description)
 		if codename == "Krypton":
 			if "krypton" in name.lower():
+				a = a + 1
 				if "skip" in name.lower():
 					name=name.replace('skip','')
 					Common.addItem(name,url,999,iconimage,fanart,description)
 				else:
 					bname = "- [COLOR white]Downloads:[/COLOR] [COLOR lightskyblue][B]" + count + "[/B][/COLOR]"
 					Common.addDir(name + bname,url,97,iconimage,fanart,description)
+	
+	if codename == "Krypton":
+		if a == 0:
+			dialog.ok(AddonTitle, "[COLOR white]Sorry, no Krypton builds were found![/COLOR]")
+			sys,exit(1)
 
-	if found == 0:
-		link = Common.OPEN_URL(url).replace('\n','').replace('\r','')
-		match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?kin="(.+?)"').findall(link)
-		dis_links = len(match)
-		for name,url,iconimage,fanart,skin in match:
-			i = i + 1
-			dis_count = str(i)
-			progress = 100 * int(i)/int(dis_links)
-			dp.update(progress,"Getting details for developer " + str(dis_count) + " of " + str(dis_links),'',"[COLOR white][B]FOUND - [/B] " + name + "[/COLOR]")
-			description = skin + "," + developer
-			name = "[COLOR ghostwhite][B]" + name + "[/B][/COLOR]"
-			namelist.append(name)
-			urllist.append(url)
-			countlist.append(str(Common.count_community(name)))   
-			deslist.append(description)
-			iconlist.append(iconimage)
-			fanartlist.append(fanart)
-			combinedlists = list(zip(countlist,namelist,urllist,deslist,iconlist,fanartlist))
-		tup = sorted(combinedlists, key=lambda x: int(x[0]),reverse=True)
-		for count,name,url,description,iconimage,fanart in tup:
-			if codename == "Jarvis":
-				if not "krypton" in name.lower():
-					if "skip" in name.lower():
-						name=name.replace('skip','')
-						Common.addItem(name,url,999,iconimage,fanart,description)
-					else:
-						bname = "- [COLOR white]Downloads:[/COLOR] [COLOR lightskyblue][B]" + count + "[/B][/COLOR]"
-						Common.addDir(name + bname,url,97,iconimage,fanart,description)
-			if codename == "Krypton":
-				if "krypton" in name.lower():
-					if "skip" in name.lower():
-						name=name.replace('skip','')
-						Common.addItem(name,url,999,iconimage,fanart,description)
-					else:
-						bname = "- [COLOR white]Downloads:[/COLOR] [COLOR lightskyblue][B]" + count + "[/B][/COLOR]"
-						Common.addDir(name + bname,url,97,iconimage,fanart,description)
+	if codename == "Jarvis":
+		if b == 0:
+			dialog.ok(AddonTitle, "[COLOR white]Sorry, no Jarvis builds were found![/COLOR]")
+			sys,exit(1)
 
 	try:
 		f = open(COM_NOTICE,mode='r'); msg = f.read(); f.close()
 		Common.TextBoxesPlain("%s" % msg)
 	except: pass
-
-def PROTECTED_FOLDER():
-
-	link = Common.OPEN_URL(Protected_List+str(page_number)+".txt").replace('\n','').replace('\r','')
-	match = re.compile('name="(.+?)".+?rl="(.+?)".+?rotected="(.+?)".+?mg="(.+?)".+?anart="(.+?)"').findall(link)
-	for name,url,hidden,iconimage,fanart in match:
-		developer1 = str(name.replace('[COLOR white][B]',''))
-		developer2 = str(developer1.replace('[/B][/COLOR]',''))
-		developer = developer2.replace(' BUILDS','')
-		description = str(developer + "," + hidden)
-		bname = " | [COLOR white] Week:[/COLOR][COLOR lightskyblue][B] " + str(Common.community_dev_week(developer)) + "[/B][/COLOR]"
-		Common.addDir("[COLOR ghostwhite]" + name + "[/COLOR]" +  bname,url,143,iconimage,fanart,description)
-	
-	link = Common.OPEN_URL(Protected_List+"s.txt").replace('\n','').replace('\r','')
-	match = re.compile('pages="(.+?)').findall(link)
-	for total_pages in match:
-		pages = int(total_pages)
-		if page_number < pages:
-			description = str(page_number + 1)
-			Common.addItem('[COLOR ghostwhite]----------------------------------------------------[/COLOR]',BASEURL,17,COMMUNITY_ICON,FANART,'')
-			Common.addDir('[COLOR dodgerblue][B]--------> Next Page (' + str(page_number) + ' of ' + str(pages) + ')[/COLOR][/B]',BASEURL,142,COMMUNITY_ICON,FANART,description)
-			Common.addItem('[B][COLOR lightskyblue]There are ' + str(pages) + ' pages of community builds.[/COLOR][/B]',BASEURL,17,COMMUNITY_ICON,FANART,'')
-		else:
-			Common.addItem('[B][COLOR lightskyblue]HOW TO ADD YOUR BUILDS TO THE LIST[/COLOR][/B]',BASEURL,17,COMMUNITY_ICON,FANART,'')
-
-def NEXT_PAGE_PROTECTED(page_num):
-
-	page_number = int(page_num)
-	link = Common.OPEN_URL(Protected_List+str(page_num)+".txt").replace('\n','').replace('\r','')
-	match = re.compile('name="(.+?)".+?rl="(.+?)".+?rotected="(.+?)".+?mg="(.+?)".+?anart="(.+?)"').findall(link)
-	for name,url,hidden,iconimage,fanart in match:
-		developer1 = str(name.replace('[COLOR white][B]',''))
-		developer2 = str(developer1.replace('[/B][/COLOR]',''))
-		developer = developer2.replace(' BUILDS','')
-		description = str(developer + "," + hidden)
-		bname = " | [COLOR white] Week:[/COLOR][COLOR lightskyblue][B] " + str(Common.community_dev_week(developer)) + "[/B][/COLOR]"
-		Common.addDir("[COLOR ghostwhite]" + name + "[/COLOR]" + bname,url,143,iconimage,fanart,description)
-
-	link = Common.OPEN_URL(Protected_List+"s.txt").replace('\n','').replace('\r','')
-	match = re.compile('pages="(.+?)').findall(link)
-	for total_pages in match:
-		pages = int(total_pages)
-		if page_number < pages:
-			if page_number > 1:
-				Common.addItem('[COLOR ghostwhite]----------------------------------------------------[/COLOR]',BASEURL,17,COMMUNITY_ICON,FANART,'')
-				description = str(page_number + 1)
-				Common.addDir('[COLOR dodgerblue][B]--------> Next Page (' + str(page_number) + ' of ' + str(pages) + ')[/COLOR][/B]',BASEURL,141,COMMUNITY_ICON,FANART,description)
-				description = str(page_number - 1)
-				Common.addDir('[COLOR dodgerblue][B]<-------- Previous Page (' + str(page_number) + ' of ' + str(pages) + ')  <----[/COLOR][/B]',BASEURL,142,COMMUNITY_ICON,FANART,description)
-			else:
-				Common.addItem('[COLOR ghostwhite]----------------------------------------------------[/COLOR]',BASEURL,17,COMMUNITY_ICON,FANART,'')
-				description = str(page_number + 1)
-				Common.addDir('[COLOR dodgerblue][B]--------> Next Page (' + str(page_number) + ' of ' + str(pages) + ')[/COLOR][/B]',BASEURL,141,COMMUNITY_ICON,FANART,description)
-				Common.addItem('[B][COLOR lightskyblue]There are ' + str(pages) + ' pages of community builds.[/COLOR][/B]',BASEURL,17,COMMUNITY_ICON,FANART,'')
-		else:
-			description = str(page_number - 1)
-			Common.addDir('[COLOR dodgerblue][B]<-------- Previous Page (' + str(page_number) + ' of ' + str(pages) + ')  <----[/COLOR][/B]',BASEURL,142,COMMUNITY_ICON,FANART,description)
-			Common.addItem('[B][COLOR lightskyblue]HOW TO ADD YOUR BUILDS TO THE LIST[/COLOR][/B]',BASEURL,17,COMMUNITY_ICON,FANART,'')
 
 def SHOWPROTECTEDBUILDS(name, url, description):
 
@@ -300,24 +238,13 @@ def SHOWPROTECTEDBUILDS(name, url, description):
 		dialog.ok(AddonTitle, "Sorry the password entered was not found.",'[COLOR smokewhite]Thank you for using ECHO Wizard[/COLOR]')
 		sys.exit(0)
 
-	found = 0
 	link = Common.OPEN_URL(url).replace('\n','').replace('\r','')
-	match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?kin="(.+?)"').findall(link)
-	for name,url,iconimage,fanart,skin in match:
-		found = 1
-		description = skin + "," + developer
+	match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)"').findall(link)
+	for name,url,iconimage,fanart in match:
+		description = "null" + "," + developer
 		name = "[COLOR ghostwhite][B]" + name + "[/B][/COLOR]"
 		bname = "- [COLOR white]Downloads:[/COLOR] [COLOR lightskyblue][B]" + str(Common.count_community(name)) + "[/B][/COLOR]"
 		Common.addDir(name + bname,url,97,iconimage,fanart,description)
-	if found == 0:
-		link = Common.OPEN_URL(url).replace('\n','').replace('\r','')
-		match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)"').findall(link)
-		for name,url,iconimage,fanart in match:
-			found = 1
-			description = "null" + "," + developer
-			name = "[COLOR ghostwhite][B]" + name + "[/B][/COLOR]"
-			bname = "- [COLOR white]Downloads:[/COLOR] [COLOR lightskyblue][B]" + str(Common.count_community(name)) + "[/B][/COLOR]"
-			Common.addDir(name + bname,url,97,iconimage,fanart,description)
 
 	try:
 		f = open(COM_NOTICE,mode='r'); msg = f.read(); f.close()

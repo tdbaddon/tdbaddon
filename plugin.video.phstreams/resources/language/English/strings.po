@@ -94,6 +94,10 @@ msgctxt "#30722"
 msgid "Download item"
 msgstr ""
 
+msgctxt "#30723"
+msgid "Queue item"
+msgstr ""
+
 msgctxt "#30725"
 msgid "Add-on settings"
 msgstr ""

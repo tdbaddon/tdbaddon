@@ -26,10 +26,12 @@ except: from pysqlite2 import dbapi2 as database
 
 from resources.lib.modules import cache
 from resources.lib.modules import metacache
-from resources.lib.modules import control
 from resources.lib.modules import client
+from resources.lib.modules import control
 from resources.lib.modules import regex
+from resources.lib.modules import trailer
 from resources.lib.modules import workers
+from resources.lib.modules import youtube
 from resources.lib.modules import views
 
 
@@ -44,6 +46,7 @@ class indexer:
             regex.clear()
             url = 'http://phoenixtv.offshorepastebin.com/main/main.xml'
             self.list = self.phoenix_list(url)
+            for i in self.list: i.update({'content': 'addons'})
             self.addDirectory(self.list)
             return self.list
         except:
@@ -88,7 +91,34 @@ class indexer:
             url = os.path.join(control.dataPath, 'testings.xml')
             f = control.openFile(url) ; result = f.read() ; f.close()
             self.list = self.phoenix_list('', result=result)
+            for i in self.list: i.update({'content': 'videos'})
             self.addDirectory(self.list)
+            return self.list
+        except:
+            pass
+
+
+    def youtube(self, url, action):
+        try:
+            key = trailer.trailer().key_link.split('=', 1)[-1]
+
+            if 'PlaylistTuner' in action:
+                self.list = cache.get(youtube.youtube(key=key).playlist, 1, url)
+            elif 'Playlist' in action:
+                self.list = cache.get(youtube.youtube(key=key).playlist, 1, url, True)
+            elif 'ChannelTuner' in action:
+                self.list = cache.get(youtube.youtube(key=key).videos, 1, url)
+            elif 'Channel' in action:
+                self.list = cache.get(youtube.youtube(key=key).videos, 1, url, True)
+
+            if 'Tuner' in action:
+                for i in self.list: i.update({'name': i['title'], 'poster': i['image'], 'action': 'plugin', 'folder': False})
+                if 'Tuner2' in action: self.list = sorted(self.list, key=lambda x: random.random())
+                self.addDirectory(self.list, queue=True)
+            else:
+                for i in self.list: i.update({'name': i['title'], 'poster': i['image'], 'nextaction': action, 'action': 'play', 'folder': False})
+                self.addDirectory(self.list)
+
             return self.list
         except:
             pass
@@ -204,7 +234,8 @@ class indexer:
                 except:
                     pass
 
-            self.addDirectory(self.list, mode=False)
+            for i in self.list: i.update({'content': 'videos'})
+            self.addDirectory(self.list)
         except:
             pass
 
@@ -438,6 +469,8 @@ class indexer:
             duration = item['Runtime']
             if duration == None or duration == '' or duration == 'N/A': duration = '0'
             duration = re.sub('[^0-9]', '', str(duration))
+            try: duration = str(int(duration) * 60)
+            except: pass
             duration = duration.encode('utf-8')
             if not duration == '0': self.list[i].update({'duration': duration})
 
@@ -541,6 +574,8 @@ class indexer:
             try: duration = str(item['runtime'])
             except: duration = '0'
             if duration == '' or duration == None: duration = '0'
+            try: duration = str(int(duration) * 60)
+            except: pass
             duration = duration.encode('utf-8')
             if not duration == '0': self.list[i].update({'duration': duration})
 
@@ -560,7 +595,7 @@ class indexer:
             pass
 
 
-    def addDirectory(self, items, mode=True, queue=False):
+    def addDirectory(self, items, queue=False):
         if items == None or len(items) == 0: return
 
         sysaddon = sys.argv[0]
@@ -573,13 +608,13 @@ class indexer:
         try: devmode = True if 'testings.xml' in control.listDir(control.dataPath)[1] else False
         except: devmode = False
 
-        if mode == True: mode = [i['content'] for i in items if 'content' in i]
-        else: mode = []
+        mode = [i['content'] for i in items if 'content' in i]
         if 'movies' in mode: mode = 'movies'
         elif 'tvshows' in mode: mode = 'tvshows'
         elif 'seasons' in mode: mode = 'seasons'
         elif 'episodes' in mode: mode = 'episodes'
-        else: mode = None
+        elif 'addons' in mode: mode = 'addons'
+        else: mode = 'videos'
 
         for i in items:
             try:
@@ -610,8 +645,6 @@ class indexer:
                 folder = i['folder'] if 'folder' in i else True
 
                 meta = dict((k,v) for k, v in i.iteritems() if not v == '0')
-                try: meta.update({'duration': str(int(meta['duration']) * 60)})
-                except: pass
 
                 cm = []
 
@@ -621,6 +654,9 @@ class indexer:
 
                 if content in ['movies', 'tvshows', 'seasons', 'episodes']:
                     cm.append((control.lang(30708).encode('utf-8'), 'XBMC.Action(Info)'))
+
+                if (folder == False and not '|regex=' in str(i.get('url'))) or (folder == True and content in ['tvshows', 'seasons']):
+                    cm.append((control.lang(30723).encode('utf-8'), 'RunPlugin(%s?action=queueItem)' % sysaddon))
 
                 if content == 'movies':
                     try: dfile = '%s (%s)' % (i['title'], i['year'])
@@ -660,19 +696,34 @@ class indexer:
                 elif not addonFanart == None:
                     item.setProperty('Fanart_Image', addonFanart)
 
-                item.setInfo(type='Video', infoLabels = meta)
-                item.addContextMenuItems(cm)
-                if queue == False: control.addItem(handle=int(sys.argv[1]), url=url, listitem=item, isFolder=folder)
-                else: playlist.add(url=url, listitem=item)
+                if queue == False:
+                    item.setInfo(type='Video', infoLabels = meta)
+                    item.addContextMenuItems(cm)
+                    control.addItem(handle=int(sys.argv[1]), url=url, listitem=item, isFolder=folder)
+                else:
+                    item.setInfo(type='Video', infoLabels = meta)
+                    playlist.add(url=url, listitem=item)
             except:
                 pass
 
         if not queue == False:
             return control.player.play(playlist)
 
+        try:
+            i = items[0]
+            if i['next'] == '': raise Exception()
+            url = '%s?action=%s&url=%s' % (sysaddon, i['nextaction'], urllib.quote_plus(i['next']))
+            item = control.item(label=control.lang(30500).encode('utf-8'))
+            item.setArt({'addonPoster': addonPoster, 'thumb': addonPoster, 'poster': addonPoster, 'tvshow.poster': addonPoster, 'season.poster': addonPoster, 'banner': addonPoster, 'tvshow.banner': addonPoster, 'season.banner': addonPoster})
+            item.setProperty('addonFanart_Image', addonFanart)
+            control.addItem(handle=int(sys.argv[1]), url=url, listitem=item, isFolder=True)
+        except:
+            pass
+
         if not mode == None: control.content(int(sys.argv[1]), mode)
         control.directory(int(sys.argv[1]), cacheToDisc=True)
-        if not mode == None: views.setView(mode)
+        if mode in ['movies', 'tvshows', 'seasons', 'episodes']:
+            views.setView(mode, {'skin.estuary': 55})
 
 
 

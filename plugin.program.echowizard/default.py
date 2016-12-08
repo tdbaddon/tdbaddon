@@ -797,9 +797,10 @@ def FANRIFFIC_THEMES():
 		for count,name,url,iconimage,fanart in tup:
 			bname = " | [COLOR white] This Week:[/COLOR][COLOR lightskyblue][B] " + count + "[/B][/COLOR]"
 			Common.addItem(name + bname,url,145,iconimage,iconimage,description="")
-	else:
-		dialog.ok(AddonTitle,'[COLOR white]Sorry there are no supported themes for your version of Kodi.')
-        quit()
+
+	#if codename == "Decline":
+	#	dialog.ok(AddonTitle,'[COLOR white]Sorry there are no supported themes for your version of Kodi.')
+    #   quit()
 
 	xbmc.executebuiltin('Container.SetViewMode(50)')
 

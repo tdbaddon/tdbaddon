@@ -1,3 +1,14 @@
+[COLOR lime]1.37: 7th December 2016[/COLOR]
+[COLOR white][B]- Extra support for password protected builds.[/B][/COLOR]
+
+[COLOR lime]1.36: 7th December 2016[/COLOR]
+[COLOR white][B]- Fixed no Jarvis builds found.[/B][/COLOR]
+
+[COLOR lime]1.35: 7th December 2016[/COLOR]
+[COLOR white][B]- Fanriffic Krypton list fixed.[/B][/COLOR]
+[COLOR white][B]- Fixed empty community lists in Krypton.[/B][/COLOR]
+[COLOR white][B]- Fixed Sports Devil fix.[/B][/COLOR]
+
 [COLOR lime]1.34: 4th December 2016[/COLOR]
 [COLOR white][B]- Changes to ECHOs base.[/B][/COLOR]
 

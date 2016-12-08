@@ -55,6 +55,7 @@ display_status = __addon__.getSetting('status')
 display_start_time = __addon__.getSetting('start_time')
 show_xrxs  = __addon__.getSetting('showxrxs')
 show_cast = __addon__.getSetting('showcast')
+show_hdsports = __addon__.getSetting('hdsports')
 display_pattern = __addon__.getSetting('pattern')
 username  = __addon__.getSetting('username')
 password = __addon__.getSetting('password')
@@ -68,6 +69,7 @@ logos ={'nba':'http://bethub.org/wp-content/uploads/2015/09/NBA_Logo_.png',
 'mlb':'http://content.sportslogos.net/logos/4/490/full/1986.gif',
 'soccer':'http://images.clipartpanda.com/soccer-ball-clipart-soccer-ball-clip-art-4.png'}
 
+
 sd_streams = ['goindexsport','multi-sports.eu', 'watchnfl.live', 'streamhd.eu', 'vines.tn', 'apollofm.website',
 			'giostreams.eu','watch-sportstv.boards.net', 'hdstream4u.com', 'stream24k.com', 'wizhdsports.com', 'antenasport.com', 
 			'sportsnewsupdated.com', 'watchnba.tv', 'feedredsoccer.at.ua', 'jugandoes.com', 'wiz1.net', 'bosscast.net', 
@@ -75,7 +77,7 @@ sd_streams = ['goindexsport','multi-sports.eu', 'watchnfl.live', 'streamhd.eu', 
 			'zona4vip.com', 'ciscoweb.ml', 'streamendous.com','streamm.eu', 'sports-arena.net', 'stablelivestream.com', 
 			'iguide.to', 'sportsleague.me','kostatz.com', 'soccerpluslive.com', 'zunox', 'apkfifa.com','watchhdsports.xyz','lovelysports2016.ml',
 			'sports4u.live','tusalavip3.es.tl', 'neymargoals.com', 'crichd.sx', 'unitedstream.live','stream4us.info','freecast.xyz','focustream.info',
-			's4power.club', 'footystreams.net', 'topstream.es.tl', 'pushmycar.cf','zifootball.us','hehestreams.xyz/nba/games']
+			's4power.club', 'footystreams.net', 'topstream.es.tl', 'pushmycar.cf','zifootball.us','hehestreams.xyz/nba/games','likhadito.com']
 
 def utc_to_local(utc_dt):
     timestamp = calendar.timegm(utc_dt.timetuple())
@@ -330,6 +332,10 @@ def getProStreams(ur, home, away):
 		addDir('[ Xrxs ]', '', iconImg='', home=home_l, away=away_l, mode="xrxsstreams")
 	if 'nhl' in ur and show_cast=='true':
 		addLink('Caststreams', orig_title, 'caststreams', mode="play")
+	'''if 'nba' in ur and show_hdsports=='true':
+		addDir('[ HDSports ]', '', iconImg='', home=home_l, away=away_l, mode="nba_hdsports")
+	if 'nfl' in ur and show_hdsports=='true':
+		addDir('[ HDSports ]', '', iconImg='', home=home_l, away=away_l, mode="nfl_hdsports")'''
 	r = praw.Reddit(user_agent='xbmc pro sport addon')
 	r.config.api_request_delay = 0
 	links=[]
@@ -644,7 +650,7 @@ def Archive(page, mode):
 				if 'week' in tit or 'Week' in tit or 'WEEK' in tit:
 					week = tit
 			title = title + week
-			addDir(title, el, iconImg="", mode="playarchive")
+			addDir(title, el, iconImg=logos[mode[0:3]], mode="playarchive")
 	uri = sys.argv[0] + '?mode=%s&page=%s' % (mode, str(int(page)+1))
 	item = xbmcgui.ListItem("next page...", iconImage='', thumbnailImage='')
 	xbmcplugin.addDirectoryItem(h, uri, item, True)
@@ -789,6 +795,102 @@ def Xrxs(home, away):
 				elif 'NATIONAL' in link:
 					title = re.findall('(NATIONAL.+?\.m3u8)',link)[0].replace('.m3u8','')
 					addDirectLink(title, {'Title': away+' @ '+home}, link+nhlcookie)
+	xbmcplugin.endOfDirectory(h, cacheToDisc=True)
+	
+def HdsportsOld(home, away, mode):
+	abbr_nba = {"ATL":"Atlanta Hawks","BKN":"Brooklyn Nets","BOS":"Boston Celtics","CHA":"Charlotte Hornets","CHI":"Chicago Bulls",
+		"CLE":"Cleveland Cavaliers","DAL":"Dallas Mavericks","DEN":"Denver Nuggets","DET":"Detroit Pistons","GSW":"Golden State Warriors",
+		"HOU":"Houston Rockets","IND":"Indiana Pacers","LAC":"Los Angeles Clippers","LAL":"Los Angeles Lakers","MEM":"Memphis Grizzlies",
+		"MIA":"Miami Heat","MIL":"Milwaukee Bucks","MIN":"Minnesota Timberwolves","NOP":"New Orleans Pelicans","NYK":"New York Knicks",
+		"OKC":"Oklahoma City Thunder","ORL":"Orlando Magic","PHI":"Philadelphia 76ers","PHX":"Phoenix Suns","POR":"Portland Trail Blazers",
+		"SAC":"Sacramento Kings","SAS":"San Antonio Spurs","TOR":"Toronto Raptors","UTA":"Utah Jazz","WAS":"Washington Wizards"}
+
+	abbr_nfl = {"ARI": "Arizona Cardinals","ATL": "Atlanta Falcons","BAL": "Baltimore Ravens","BUF": "Buffalo Bills","CAR": "Carolina Panthers",
+			"CHI": "Chicago Bears", "CIN": "Cincinnati Bengals","CLE": "Cleveland Browns","DAL": "Dallas Cowboys","DEN": "Denver Broncos",
+			"DET": "Detroit Lions", "GB": "Green Bay Packers", "HOU": "Houston Texans", "IND": "Indianapolis Colts","JAX": "Jacksonville Jaguars",
+			"KC": "Kansas City Chiefs","MIA": "Miami Dolphins","MIN": "Minnesota Vikings","NE": "New England Patriots", "NO": "New Orleans Saints",
+			"NYG": "New York Giants","NYJ": "New York Jets","OAK": "Oakland Raiders","PHI": "Philadelphia Eagles","PIT": "Pittsburgh Steelers",
+			"SD": "San Diego Chargers","SEA": "Seattle Seahawks","SF": "San Francisco 49ers","LA": "Los Angeles Rams","TB": "Tampa Bay Buccaneers",
+			"TEN": "Tennessee Titans","WAS": "Washington Redskins"}
+	import hashlib
+	data = {}
+	data['login_hash'] = hashlib.sha256("mlbstreams".encode() + "reddit".encode()).hexdigest()
+	url = "http://kodi.hdsports.ca/login.php"
+	import requests
+	s = requests.Session()
+	r = s.post(url, data, timeout=5)
+	r = s.get("http://kodi.hdsports.ca/listings.php?cat="+mode.split('_')[-1],timeout=5)
+	data = r.json()
+	print data
+	cookie = "|"+data['headers']
+	data = data['data']
+	for d in data:
+		title = d[0]
+		ab = title.split('vs')
+		for a in ab:
+			a = a.strip()
+			if 'nba' in mode:
+				title = title.replace(a, abbr_nba[a])
+			if 'nfl' in mode and 'redzone' not in title.lower():
+				title = title.replace(a, abbr_nfl[a])
+		if home.lower() in title.lower() and away.lower() in title.lower():
+			streams = d[3].replace("\\","")
+			if 'Home feed' in streams:
+				hm = re.findall('Home feed","(.+?)"',streams)[0]
+				addDirectLink("Home feed", {'Title': away+' @ '+home}, hm+cookie)
+			if 'Away feed' in streams:
+				av = re.findall('Away feed","(.+?)"',streams)[0]
+				addDirectLink("Away feed", {'Title': away+' @ '+home}, av+cookie)
+			if 'Condensed feed' in streams:
+				cf = re.findall('Condensed feed","(.+?)"',streams)[0]
+				addDirectLink("Condensed feed", {'Title': away+' @ '+home}, cf+cookie)
+			if 'National feed' in streams:
+				cf = re.findall('National feed","(.+?)"',streams)[0]
+				addDirectLink("National feed", {'Title': away+' @ '+home}, cf+cookie)
+			if 'Not Started' in d[1]:
+				addDirectLink("Links appear 5 minutes before the game", {'Title': ''}, '')
+	xbmcplugin.endOfDirectory(h, cacheToDisc=True)
+	
+def Hdsports(home, away, mode):
+	abbr_nba = {"ATL":"Atlanta Hawks","BKN":"Brooklyn Nets","BOS":"Boston Celtics","CHA":"Charlotte Hornets","CHI":"Chicago Bulls",
+		"CLE":"Cleveland Cavaliers","DAL":"Dallas Mavericks","DEN":"Denver Nuggets","DET":"Detroit Pistons","GSW":"Golden State Warriors",
+		"HOU":"Houston Rockets","IND":"Indiana Pacers","LAC":"Los Angeles Clippers","LAL":"Los Angeles Lakers","MEM":"Memphis Grizzlies",
+		"MIA":"Miami Heat","MIL":"Milwaukee Bucks","MIN":"Minnesota Timberwolves","NOP":"New Orleans Pelicans","NYK":"New York Knicks",
+		"OKC":"Oklahoma City Thunder","ORL":"Orlando Magic","PHI":"Philadelphia 76ers","PHX":"Phoenix Suns","POR":"Portland Trail Blazers",
+		"SAC":"Sacramento Kings","SAS":"San Antonio Spurs","TOR":"Toronto Raptors","UTA":"Utah Jazz","WAS":"Washington Wizards"}
+
+	abbr_nfl = {"ARI": "Arizona Cardinals","ATL": "Atlanta Falcons","BAL": "Baltimore Ravens","BUF": "Buffalo Bills","CAR": "Carolina Panthers",
+			"CHI": "Chicago Bears", "CIN": "Cincinnati Bengals","CLE": "Cleveland Browns","DAL": "Dallas Cowboys","DEN": "Denver Broncos",
+			"DET": "Detroit Lions", "GB": "Green Bay Packers", "HOU": "Houston Texans", "IND": "Indianapolis Colts","JAX": "Jacksonville Jaguars",
+			"KC": "Kansas City Chiefs","MIA": "Miami Dolphins","MIN": "Minnesota Vikings","NE": "New England Patriots", "NO": "New Orleans Saints",
+			"NYG": "New York Giants","NYJ": "New York Jets","OAK": "Oakland Raiders","PHI": "Philadelphia Eagles","PIT": "Pittsburgh Steelers",
+			"SD": "San Diego Chargers","SEA": "Seattle Seahawks","SF": "San Francisco 49ers","LA": "Los Angeles Rams","TB": "Tampa Bay Buccaneers",
+			"TEN": "Tennessee Titans","WAS": "Washington Redskins"}
+	url = "http://www.hdsports.ca/live/scores/?q=all"
+	import requests
+	s = requests.Session()
+	r = s.get(url, timeout=5)
+	data = r.json()
+	data = data[mode.replace('hdsports', 'results')]
+	cookie = '|Cookie=hd_auth%3D31c9acc163b9fcf6dbb38d1339eacb47%3B+hd_token%3Dcc2b091b6a061601b0152f8cab36a8ba%3B&User-Agent=Mozilla%2F5.0+%28Windows+NT+10.0%3B+WOW64%29+AppleWebKit%2F537.36+%28KHTML%2C+like+Gecko%29+Chrome%2F51.0.2704.106+Safari%2F537.36'
+	for d in data:
+		title = d[0]
+		ab = title.split('-')
+		ab.pop()
+		for a in ab:
+			a = a.strip()
+			if 'nba' in mode:
+				title = title.replace(a, abbr_nba[a])
+			if 'nfl' in mode and 'redzone' not in title.lower():
+				title = title.replace(a, abbr_nfl[a])
+		if home.lower() in title.lower() and away.lower() in title.lower() and 'nba' in mode:
+			url = 'http://kodi.hdsports.ca/watch.m3u8?cat=nba&game_id='+d[0]+'&feed=HOME'
+			addDirectLink("Home feed", {'Title': away+' @ '+home}, url+cookie)
+			url = 'http://kodi.hdsports.ca/watch.m3u8?cat=nba&game_id='+d[0]+'&feed=AWAY'
+			addDirectLink("Away feed", {'Title': away+' @ '+home}, url+cookie)
+		if home.lower() in title.lower() and away.lower() in title.lower() and 'nfl' in mode:
+			url = 'http://kodi.hdsports.ca/watch.m3u8?cat=nfl&game_id='+d[0]+'&feed=NATIONAL'
+			addDirectLink("National feed", {'Title': away+' @ '+home}, url+cookie)
 	xbmcplugin.endOfDirectory(h, cacheToDisc=True)	
 
 def Caststreams(orig_title):
@@ -919,6 +1021,7 @@ def Getroom(url):
 		
 def Blabseal(url):
 	try:
+		return 'http://philpastrami.tk/serve/hd.m3u8'
 		url = GetURL(url, output='geturl')
 		if not url.endswith('/'):
 			url = url+'/'
@@ -930,8 +1033,8 @@ def Blabseal(url):
 		html = GetURL(link, referer=link)
 		if 'Clappr.Player' in html and 'm3u8' in html:
 			lnk = re.findall("source: '(.*?)'", html)[0]
-			if lnk.startswith('/'):
-					return urlparse.urlparse(link).scheme+'://'+urlparse.urlparse(link).netloc+lnk
+			if 'http' not in lnk:
+				return link+lnk		
 			else:
 				return link
 		javasc = re.findall('(eval.*\))', html)[0]
@@ -1349,15 +1452,16 @@ def Universal(url):
 		return link
 	elif html and ('.m3u8' in html or 'rtmp:' in html or '.f4m' in html):
 		html = urllib.unquote_plus(html)
-		links = re.findall("[file|source|hls|src|stream1]\s*[:|=]\s*[\"\'](.*?)[\"\']", html)
+		links = re.findall("[file|source|hls|src|stream1|videoLink]\s*[:|=]\s*[\"\'](.*?)[\"\']", html)
 		for link in links:
 			if '.m3u8' in link or 'rtmp:' in link or 'f4m' in link:
 				link = link.replace('src=','')
 				link = link.replace('amp;','')	
 				if 'smotrimult' in link:
 					link = link+'|Referer='+url+'&Host='+urlparse.urlparse(link).netloc+'&Origin='+urlparse.urlparse(url).netloc+'&User-Agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.116 Safari/537.36'
-				'''elif 'widestream' in link:
-					link = link+'|Referer='+url+'&X-Requested-With=ShockwaveFlash/23.0.0.166'''
+				if 'livesport.pw' in link:
+					cookie = GetURL(url, output='cookie')
+					link = link+'|Referer='+url+'&Cookie='+cookie.split(';')[0]+'&User-Agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.116 Safari/537.36'
 				return link
 	else:
 		domain = urlparse.urlparse(url).netloc
@@ -1520,15 +1624,15 @@ def broadcast(id, ur):
 		url = 'http://bro.adca.st/stream.php?id=' + id + '&width=640&height=480'
 		ur = ur.replace('wizhdsports.be','wizhdsports.to')
 		source = GetURL(url, referer=ur)
-		curl = re.findall('curl = "(.*?)"', source)[0]
+		curl = re.findall('trap = "(.*?)"', source)[0]
 		m3u8 = base64.b64decode(curl)
-		url2 = 'http://bro.adca.st/getToken.php'    
+		url2 = 'http://bro.adca.st/fckymom.php'    
 		headers2 = {'User-Agent': 'Mozilla/5.0 (X11 Linux i686 rv:42.0) Gecko/20100101 Firefox/42.0 Iceweasel/42.0', 'Referer': url, 'X-Requested-With': 'XMLHttpRequest'}
 		source2 = getUrl(url2, header = headers2)
-		token = re.findall('"token":"(.*?)"', source2)[0]
+		token = re.findall('"rumba":"(.*?)"', source2)[0]
 		return m3u8 + token + '|Referer=http://cdn.bro.adca.st/jwplayer.flash.swf&User-Agent=Mozilla/5.0 (X11 Linux i686 rv:42.0) Gecko/20100101 Firefox/42.0 Iceweasel/42.0'
 	except:
-		return None	
+		return None
 
 def p2pcast2(url):
 	try:
@@ -1604,29 +1708,9 @@ def hdcast(link, url):
 
 def cast4u(id):
 	try:
-		url = 'http://www.cast4u.tv/embedp4u.php?v='+id
-		page = url
+		url = 'http://www.cast4u.tv/embedp4u.php?v='+id+'&vw=620&vh=490'
 		result = GetURL(url, referer=url)
-		result= result.replace('","','').replace('["','').replace('"]','').replace('.join("")',' ').replace(r'\/','/')
-		vars = re.findall('var (.+?)\s*=\s*(.+?);',result)
-		inners = re.findall('id=(.+?)>([^<]+)<',result)
-		inners = dict(inners)
-		js = re.findall('srcs*=s*(?:\'|\")(.+?player\.js(?:.+?|))(?:\'|\")',result)[0]
-		js = GetURL(js, referer=url)
-		token = re.findall('securetoken: ([^\n]+)',result)[0]
-		token = re.findall('var\s+%s\s*=\s*(?:\'|\")(.+?)(?:\'|\")' % token, js)[-1]
-		for i in range (100):
-			for v in vars:
-				result = result.replace('  + %s'%v[0],v[1])
-		for x in inners.keys():
-			result = result.replace('  + document.getElementById("%s").innerHTML'%x,inners[x])
-		fs = re.findall('function (.+?)\(\)\s*\{\s*return\(([^\n]+)',result)
-		url = re.findall('file:(.+?)\s*\}',result)[0]
-		for f in fs:
-			url = url.replace('%s()'%f[0],f[1])
-		url = url.replace(');','').split(" + '/' + ")
-		streamer, file = url[0].replace('rtmpe','rtmp').strip(), url[1]
-		url=streamer + '/ playpath=' + file + ' swfUrl=http://www.hdcast.info/myplayer/jwplayer.flash.swf flashver=WI/2020,0,0,286 live=1 timeout=20 token=' + token + ' pageUrl=' + page
+		url = re.findall('file: "(.+?)"',result)[0]
 		return url
 	except:
 		return None
@@ -1830,7 +1914,7 @@ elif mode == 'playnhlarchive': Playnhlarchive(url)
 elif mode == 'xrxsday': Xrxsday(url)
 elif mode == 'xrxsgame': Xrxsgame(url, home)
 elif mode == 'prostreams': getProStreams(url, home, away)
-elif mode == 'hehestreams': Hehestreams(home, away)
+elif 'hdsports' in mode: Hdsports(home, away, mode)
 elif mode == 'xrxsstreams': Xrxs(home, away)
 elif mode == 'mystreams': getMyStreams(url, home)
 elif mode == 'play': Play(url, orig_title)
