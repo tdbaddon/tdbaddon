@@ -1,3 +1,9 @@
+[COLOR lime]1.38: 8th December 2016[/COLOR]
+[COLOR white][B]- Password indicator added to protected builds.[/B][/COLOR]
+[COLOR white][B]- Changes to main menu list.[/B][/COLOR]
+[COLOR white][B]- Changes to descriptions and summery.[/B][/COLOR]
+[COLOR white][B]- Indicator added for no official Krypton build support for ECHO builds.[/B][/COLOR]
+
 [COLOR lime]1.37: 7th December 2016[/COLOR]
 [COLOR white][B]- Extra support for password protected builds.[/B][/COLOR]
 

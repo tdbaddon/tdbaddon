@@ -244,7 +244,7 @@ def INSTALL(name,url,description):
 		dialog = xbmcgui.Dialog()
 		downloader.download(url, lib, dp)
 		addonfolder = xbmc.translatePath(os.path.join('special://','home'))
-	dp.update(0,"","Extracting Zip Please Wait","")
+	dp.update(0,"Extracting Zip Please Wait"," "," ")
 	unzip(lib,addonfolder,dp)
 	try:
 		os.remove(lib)
@@ -329,6 +329,8 @@ def INSTALL_COMMUNITY(name,url,description):
 	KODIV        =  float(xbmc.getInfoLabel("System.BuildVersion")[:4])
 	skinswapped = 0
 	
+	raw_name = name.split('-')[0]
+
 	if not "skin." in skin_used:
 		skin_used = "NULL"
 
@@ -447,14 +449,17 @@ def INSTALL_COMMUNITY(name,url,description):
 	if not os.path.exists(path):
 		os.makedirs(path)
 	buildname = name
+	raw_name_string = str(raw_name)
+	raw_name = 	raw_name_string.replace('[B]','').replace('[/B]','')
 	dp = xbmcgui.DialogProgress()
-	dp.create(AddonTitle,"Please wait while we get everything ready to","download the " + buildname + " build.","[B]Build: [/B]" + buildname)
+	dp.create(AddonTitle,"Please wait while we get everything ready to","download the " + raw_name + " build."," ")
 	buildname = "build"
 	lib=os.path.join(path, buildname+'.zip')
 	try:
 		os.remove(lib)
 	except: pass
 	dialog = xbmcgui.Dialog()
+	dp.update(0,"","","[B]Build: [/B]" + raw_name)
 	downloader.download(url, lib, dp)
 	addonfolder = xbmc.translatePath(os.path.join('special://','home'))
 	dp.update(0,"","Extracting Zip File","")
@@ -560,7 +565,7 @@ def INSTALL_FANRIFFIC(name,url,description):
 
 	downloader.download(url, lib, dp)
 	addonfolder = xbmc.translatePath(os.path.join('special://','home'))
-	dp.update(0,"","Extracting Zip Please Wait","")
+	dp.update(0,"Extracting Zip Please Wait",""," ")
 	unzip(lib,addonfolder,dp)
 	add_download = Common.add_one_fanriffic(buildname)
 	dialog = xbmcgui.Dialog()
@@ -589,7 +594,7 @@ def INSTALL_ADVANCED(name,url,description):
 
 	addonfolder = xbmc.translatePath(os.path.join('special://','home'))
 	time.sleep(2)
-	dp.update(0,"","Extracting Zip Please Wait","")
+	dp.update(0,"Extracting Zip Please Wait",""," ")
 	unzip(lib,addonfolder,dp)
 	time.sleep(1)
 	try:
@@ -630,7 +635,7 @@ def INSTALL_KEYMAP(name,url,description):
 	downloader.download(url, lib, dp)
 	addonfolder = xbmc.translatePath(os.path.join('special://','home'))
 	time.sleep(2)
-	dp.update(0,"","Extracting Zip Please Wait","")
+	dp.update(0,"Extracting Zip Please Wait",""," ")
 	unzip(lib,addonfolder,dp)
 	time.sleep(1)
 	add_download = Common.add_one_advanced(name)
@@ -799,7 +804,7 @@ def unzip(_in, _out, dp):
 				dp.close()
 			
 			try:
-				dp.update(int(update),'','','[COLOR dodgerblue][B]' + str(item.filename) + '[/B][/COLOR]')
+				dp.update(int(update),'','[COLOR dodgerblue][B]' + str(item.filename) + '[/B][/COLOR]')
 				__in.extract(item, _out)
 			
 			except Exception, e:

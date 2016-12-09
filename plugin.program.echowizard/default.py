@@ -306,10 +306,6 @@ def INDEX():
 		#	yt_error = 1
 		#	pass
 
-
-		link = Common.OPEN_URL('http://pastebin.com/raw/FN3iNJe6').replace('\n','').replace('\r','')
-		current_status = re.compile('status="(.+?)"').findall(link)[0]
-		
 	#######################################################################
 	#				MAIN MENU LIST
 	#######################################################################
@@ -340,10 +336,10 @@ def INDEX():
 				Common.addDir('[COLOR slategrey][B]CURRENT BUILD: [/COLOR][COLOR yellowgreen][B]COMMUNITY BUILD INSTALLED[/COLOR][/B]',BASEURL,88,BUILD_ICON,FANART,'')
 	if offline == 0:
 		Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
-		Common.addDir('[COLOR ghostwhite][B]ECHO BUILDS[/B][/COLOR]',BASEURL,50,BUILD_ICON,FANART,'')
+		Common.addDir('[COLOR ghostwhite][B]OFFICIAL ECHO BUILDS[/B][/COLOR]',BASEURL,50,BUILD_ICON,FANART,'')
+		Common.addDir('[COLOR ghostwhite][B]COMMUNITY BUILDS[/B][/COLOR]',BASEURL,87,COMMUNITY_ICON,FANART,'')
 		Common.addDir('[COLOR ghostwhite][B]ECHO ADDON INSTALLER[/B][/COLOR]',BASEURL,121,ICON,FANART,'')
 		Common.addDir('[COLOR ghostwhite][B]FANRIFFIC THEMES[/B][/COLOR]',BASEURL,144,ICON,FANART,'')
-		Common.addDir('[COLOR ghostwhite][B]COMMUNITY BUILDS[/B][/COLOR]',BASEURL,87,COMMUNITY_ICON,FANART,'')
 		Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
 	Common.addDir('[COLOR ghostwhite][B]BACKUP [COLOR white]|[/COLOR] RESTORE[/B][/COLOR]',BASEURL,8,BACKUP_ICON,FANART,'')
 	Common.addDir('[COLOR ghostwhite][B]MAINTENANCE TOOLS[/COLOR][/B]',BASEURL,5,TOOLS_ICON,ART+'maintwall.jpg','')
@@ -390,9 +386,11 @@ def BUILDMENU():
 
 	if version >= 16.0 and version <= 16.9:
 		codename = 'Jarvis'
-	if version >= 17.0 and version <= 17.9:
-		codename = 'Krypton'
 	
+	if codename != "Jarvis":
+		dialog.ok(AddonTitle, "Sorry we are unable to process your request","[COLOR lightskyblue][I][B]Error: ECHO does not support this version of Kodi.[/COLOR][/I][/B]","[I]Your are running: [COLOR lightsteelblue][B]Kodi " + codename + " Version:[COLOR ghostwhite] %s" % version + "[/COLOR][/I][/B][/COLOR]")
+		return
+
 	if codename == "Jarvis":
 		namelist=[]
 		urllist=[]
@@ -423,29 +421,6 @@ def BUILDMENU():
 		for count,name,url,description,iconimage,fanart in tup:
 			bname = " | [COLOR white] This Week:[/COLOR][COLOR lightskyblue][B] " + count + "[/B][/COLOR]"
 			Common.addDir(name + bname,url,83,iconimage,fanart,description)
-
-	if codename == "Krypton":
-		try:
-			link = Common.OPEN_URL(KRYPTON_URL).replace('\n','').replace('\r','')
-			match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?ersion="(.+?)".+?escription="(.+?)".+?resh="(.+?)".+?ash="(.+?)".+?outube="(.+?)".+?kin="(.+?)"').findall(link)
-			dis_links = len(match)
-			for name,url,iconimage,fanart,version,desc,fresh,hash,youtube,skin in match:
-				skin = 'null'
-				i = i + 1
-				dis_count = str(i)
-				progress = 100 * int(i)/int(dis_links)
-				dp.update(progress,"Getting details from build " + str(dis_count) + " of " + str(dis_links),"[COLOR white][B]FOUND - [/B] " + name + "[/COLOR]")
-				id=youtubelink+youtube
-				description = str(desc + "," + hash + "," + fresh + "," + id + "," + skin)
-				bname = " | [COLOR white] Week:[/COLOR][COLOR lightskyblue][B] " + str(Common.count(name)) + "[/B][/COLOR]"
-				Common.addDir(name + bname,url,83,iconimage,fanart,description)
-			dp.close()
-		except:
-			dialog.ok(AddonTitle, "[COLOR red][B]We have encountered an error whilst trying to connect to the ECHO servers. Some functionality in the wizard may be off line but most things like maintenance should still work.[/B][/COLOR]")
-			sys.exit(0)
-
-	if codename == "Decline":
-		dialog.ok(AddonTitle, "Sorry we are unable to process your request","[COLOR lightskyblue][I][B]Error: ECHO does not support this version of Kodi.[/COLOR][/I][/B]","[I]Your are running: [COLOR lightsteelblue][B]Kodi " + codename + " Version:[COLOR ghostwhite] %s" % version + "[/COLOR][/I][/B][/COLOR]")
 
 #######################################################################
 #						MAINTENANCE MENU
