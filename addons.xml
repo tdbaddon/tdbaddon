@@ -1374,7 +1374,7 @@ For DMCA Reports, please send message to our FB page.
 
 <addon id="plugin.video.MartyMusic"
        name="Marty Music"
-       version="1003"
+       version="1004"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
