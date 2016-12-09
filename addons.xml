@@ -1881,7 +1881,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 </addon>
 
 <addon id="plugin.video.TDBTV"
-       name="TDB TV"
+       name="TDB LIVE TV"
        version="1000"
        provider-name="TDB">
   <requires>
