@@ -1085,10 +1085,10 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
 
 </addon>
 
-<addon id="plugin.video.f4mTester" version="2.6.9" name="f4mTester" provider-name="Shani">
+<addon id="plugin.video.f4mTester" version="2.7.1" name="f4mTester" provider-name="Shani">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
-        <import addon="script.video.F4mProxy" version="2.6.9"/>
+        <import addon="script.video.F4mProxy" version="2.7.1"/>
     </requires>
     <extension point="xbmc.python.pluginsource" library="default.py">
         <provides>video</provides>
@@ -3372,7 +3372,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="script.video.F4mProxy"
 	     name="F4mProxy"
-	     version="3.5.1"
+	     version="3.5.1a"
 	     provider-name="Shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0" />

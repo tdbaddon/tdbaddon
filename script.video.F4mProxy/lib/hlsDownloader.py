@@ -486,6 +486,8 @@ def downloadInternal(url,file,maxbitrate=0,stopEvent=None):
         elif variant:
             variants.append((line, variant))
             variant = None
+    print 'variants',variants
+    if len(variants)==0: url=redirurl
     if len(variants) == 1:
         url = urlparse.urljoin(redirurl, variants[0][0])
     elif len(variants) >= 2:
