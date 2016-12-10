@@ -1,4 +1,4 @@
 import xbmcaddon
 
-MainBase = 'http://www.tvshows.tcomputers.ca/@TDBTVSHOWS/TDBTVSHOWS-HOME.txt'
+MainBase = 'http://www.kgroup.tcomputers.ca/@TDBTVMOVIESPLUS/TDBTVMOVIEPLUS-HOME.txt'
 addon = xbmcaddon.Addon('plugin.video.TDBTVSHOWS')

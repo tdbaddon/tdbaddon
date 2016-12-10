@@ -1912,8 +1912,8 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 </addon>
 
 <addon id="plugin.video.TDBTVSHOWS"
-       name="TDB TV SHOWS PLUS"
-       version="1008"
+       name="TDB TV MOVIES PLUS"
+       version="1009"
        provider-name="TDB">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
