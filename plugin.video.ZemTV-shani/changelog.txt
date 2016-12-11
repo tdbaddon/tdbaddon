@@ -1,3 +1,5 @@
+[B]Version 6.0.7[/B]
+pv2 back now
 [B]Version 6.0.6[/B]
 fast urls
 [B]Version 6.0.5[/B]

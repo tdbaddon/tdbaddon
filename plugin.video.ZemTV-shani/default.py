@@ -5262,8 +5262,8 @@ def getPV2UserAgent(option):
         return getPv2Code();
 
 def getpv2stkey():
-    headers=[('User-Agent',base64.b64decode('cDl4VE1nV2hFclpxZGlFWU1iV045bFVvd0xGMFdWM3I=')),('Authorization',base64.b64decode('QmFzaWMgWVcxMU9rQmtia0J1T0RRNQ=='))]
-    return getUrl(base64.b64decode('aHR0cHM6Ly9hcHAuZHluZG5zLnR2L3RvcC9hcmFiaWN0dmhkdjFwLnBocA=='),headers=headers)
+    headers=[('User-Agent',base64.b64decode('cDl4VE1nV2hFclpxZGlFWU1iV045bFVvd0xGMFdWM3I=')),('Authorization',base64.b64decode('QmFzaWMgWVcxMVpHbHNZbUZ5T21waGJuVm5aWEp0WVc0PQ=='))]
+    return getUrl(base64.b64decode('aHR0cHM6Ly93d3cuYm94dHZoZC5jb20vdG9wL3Bha2luZGlhdjJwLnBocA=='),headers=headers)
     
 def getPV2Device(option):
     useragent=getpv2stkey()
@@ -5305,8 +5305,8 @@ def getPV2Url():
                     mainurl='aHR0cHM6Ly9hcHAuZHlubnMuY29tL2FwcF9wYW5lbG5ldy9vdXRwdXQucGhwL3BsYXlsaXN0P3R5cGU9eG1sJmRldmljZVNuPXBha2luZGlhaGRwYWlkMi42JnRva2VuPSVz'
             else: #soap xml
                 headers=[('User-Agent',base64.b64decode('dW1hci8xLjEgQ0ZOZXR3b3JrLzc1OC4wLjIgRGFyd2luLzE1LjAuMA=='))]
-                iphtml=getUrl(base64.b64decode('aHR0cHM6Ly9hcHAuZHluZG5zLnR2L2tleXMvaXBfY2hlY2sucGhw'),headers=headers)
-                ipaddrs=re.findall('Address: (.*)',iphtml)[0]
+                #iphtml=getUrl(base64.b64decode('aHR0cHM6Ly9hcHAuZHluZG5zLnR2L2tleXMvaXBfY2hlY2sucGhw'),headers=headers)
+                #   ipaddrs=re.findall('Address: (.*)',iphtml)[0]
                 
                 #headers=[('User-Agent',nm),('SOAPAction',base64.b64decode('aHR0cDovL2FwcC5keW5ucy5jb20vc2F2ZURldmljZUlkU2VydmljZS90bnM6ZGIuc2F2ZUlk')),('Content-Type','text/xml; charset=ISO-8859-1')]
                 
@@ -5321,7 +5321,7 @@ def getPV2Url():
                 if pvitr==3:                    
                     link=getUrl(base64.b64decode('aHR0cDovL3NoYW5pLm9mZnNob3JlcGFzdGViaW4uY29tL3B2Mkxhc3RXb3JraW5nLnhtbA==')).decode("base64")
                 else:
-                    mainurl=base64.b64encode(base64.b64decode('aHR0cHM6Ly9hcHAuZHluZG5zLnR2L2FwcF9wYW5lbG5ldy9vdXRwdXQucGhwL3BsYXlsaXN0P3R5cGU9eG1sJmRldmljZVNuPSVz')%deviceid+'&token=%s')
+                    mainurl=base64.b64encode(base64.b64decode('aHR0cHM6Ly9hcHAuZHluZG5zLnR2L2FwcHMvb3V0cHV0LnBocC9wbGF5bGlzdD90eXBlPXhtbCZkZXZpY2VTbj0lcw==')%deviceid)
                 
                 #else:
                 #    mainurl='aHR0cHM6Ly9hcHAuZHlubnMuY29tL2FwcF9wYW5lbG5ldy9vdXRwdXQucGhwL3BsYXlsaXN0P3R5cGU9eG1sJmRldmljZVNuPTEyMyZ0b2tlbj0lcw=='    
@@ -5334,8 +5334,8 @@ def getPV2Url():
                     #req = urllib2.Request( base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2FwcF9wYW5lbG5ldy9vdXRwdXQucGhwL3BsYXlsaXN0P3R5cGU9eG1sJmRldmljZVNuPXBha2luZGlhaGRwYWlkMi42JnRva2VuPSVz')  %token)      
                     #req = urllib2.Request( base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2FwcF9wYW5lbG5ldy9vdXRwdXQucGhwL3BsYXlsaXN0P3R5cGU9eG1sJmRldmljZVNuPTI0NCZ0b2tlbj0lcw==')  %token)    
                     
-                    req = urllib2.Request( base64.b64decode(mainurl)  %(token))    
-                    req.add_header('Authorization', base64.b64decode('QmFzaWMgWVdSdGFXNDZRV3hzWVdneFFBPT0=')) 
+                    req = urllib2.Request( base64.b64decode(mainurl))#  %(token))    
+                    req.add_header('Authorization', base64.b64decode('QmFzaWMgWVdSdGFXNUFZWE5rWmpwaGMyUm1jWGRsY25SNQ==')) 
                     req.add_header(base64.b64decode("VXNlci1BZ2VudA=="),getPV2UserAgent(pv2option)) 
                     #req.add_header(base64.b64decode("VXNlci1BZ2VudA=="),base64.b64decode("QkVCNDNDOENDNUU5NDVFOTk4QjI3MjM4MDFFQjk0RkY=")) 
                     response = urllib2.urlopen(req)
@@ -5381,16 +5381,14 @@ def getPV2PlayAuth():
     timesegment = datetime.datetime.utcnow().strftime("%m/%d/%Y %H:%M:%S")
     validtime=lastplay[4]
     headers=[('User-Agent',base64.b64decode('UGFrJTIwVFYvMS4wIENGTmV0d29yay83NTguMC4yIERhcndpbi8xNS4wLjA='))]
-    ipstring=getUrl(base64.b64decode("aHR0cHM6Ly9hcHAuZHluZG5zLnR2L2tleXMvaXBfY2hlY2sucGhw"),headers=headers)
+    ipstring=getUrl(base64.b64decode("aHR0cHM6Ly9hcHAuZHluZG5zLnR2L3RvcC9pcF9jaGVjay5waHA="),headers=headers)
     ipadd=ipstring.split('Address: ')[1]
-    s="%s%s%s%s"%(ipadd,base64.b64decode("ZmZlNmJiZTRjZThjNzdiMWJjMTQ1ODhiMmZmMGNjMDA=")+lastplay[:10],timesegment ,validtime)
-    print s
-    print repr(hashlib.md5(s).hexdigest())
+    s="%s%s%s%s"%(ipadd,base64.b64decode("dHVtYmluamlhamF5bmFqYW5h")+lastplay[:10],timesegment ,validtime)
     dd=base64.b64decode("c2VydmVyX3RpbWU9JXMmaGFzaF92YWx1ZT0lcyZ2YWxpZG1pbnV0ZXM9JXM=")%(timesegment,base64.b64encode(hashlib.md5(s).hexdigest().lower()),validtime )
-    print dd
+##    print dd
     url=(url%filename)+base64.b64encode(dd)
-    headers=[('User-Agent',getPv2Code())]
-    print repr(url)
+    headers=[('User-Agent',getPv2Code()),('Authorization',base64.b64decode('QmFzaWMgWW05emMyZGliM056T21kdmIyUm5aMjl2WkE9PQ=='))]
+##    print repr(url)
     res=getUrl(url,headers=headers)
 
     s=list(res)

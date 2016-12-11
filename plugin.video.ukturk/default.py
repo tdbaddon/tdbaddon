@@ -530,12 +530,6 @@ def i1 ( name , url , mode , iconimage , fanart , description = '' ) :
  if KmkKmkKKmkKmkKmk . getSetting ( 'fav' ) == 'yes' : I1II1 . append ( ( '[COLOR red]Remove from UK Turk Favourites[/COLOR]' , 'XBMC.RunPlugin(%s?mode=14&name=%s&url=%s&iconimage=%s)' % ( sys . argv [ 0 ] , name , url , iconimage ) ) )
  if KmkKmkKKmkKmkKmk . getSetting ( 'fav' ) == 'no' : I1II1 . append ( ( '[COLOR white]Add to UK Turk Favourites[/COLOR]' , 'XBMC.RunPlugin(%s?mode=12&name=%s&url=%s&iconimage=%s)' % ( sys . argv [ 0 ] , name , url , iconimage ) ) )
  mmkKmmkmk . addContextMenuItems ( I1II1 , replaceItems = False )
- if 'youtube.com/channel/' in url :
-  IImmkKmmkmKmkmKKmkmk = 'plugin://plugin.video.youtube/channel/' + description + '/'
- if 'youtube.com/user/' in url :
-  IImmkKmmkmKmkmKKmkmk = 'plugin://plugin.video.youtube/user/' + description + '/'
- if 'youtube.com/playlist?' in url :
-  IImmkKmmkmKmkmKKmkmk = 'plugin://plugin.video.youtube/playlist/' + description + '/'
  if 'plugin://' in url :
   IImmkKmmkmKmkmKKmkmk = url
  mmkKIiI1i = xbmcplugin . addDirectoryItem ( handle = int ( sys . argv [ 1 ] ) , url = IImmkKmmkmKmkmKKmkmk , listitem = mmkKmmkmk , isFolder = True )

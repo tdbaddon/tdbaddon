@@ -1,6 +1,6 @@
 """
-    urlresolver XBMC Addon
-    Copyright (C) 2015 tknorris
+    Kodi urlresolver plugin
+    Copyright (C) 2016 script.module.urlresolver
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -15,34 +15,18 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import re
-from urlresolver9 import common
+
+from lib import helpers
 from urlresolver9.resolver import UrlResolver, ResolverError
 
-class FilehootResolver(UrlResolver):
-    name = "filehoot"
-    domains = ['filehoot.com']
-    pattern = '(?://|\.)(filehoot\.com)/(?:embed-)?([0-9a-z]+)'
 
-    def __init__(self):
-        self.net = common.Net()
+class VideocloudResolver(UrlResolver):
+    name = 'videocloud.co'
+    domains = ['videocloud.co']
+    pattern = '(?://|\.)(videocloud\.co)/(?:embed-)?([0-9a-zA-Z]+)'
 
     def get_media_url(self, host, media_id):
-        headers = {'User-Agent': common.FF_USER_AGENT}
-
-        web_url = self.get_url(host, media_id)
-
-        html = self.net.http_GET(web_url, headers=headers).content
-
-        if '404 Not Found' in html:
-            raise ResolverError('The requested video was not found.')
-
-        url = helpers.scrape_sources(html)
-
-        if url:
-            return url[0][1] + helpers.append_headers(headers)
-
-        raise ResolverError('No video link found.')
+        return helpers.get_media_url(self.get_url(host, media_id))
 
     def get_url(self, host, media_id):
         return self._default_get_url(host, media_id)

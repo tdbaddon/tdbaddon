@@ -31,7 +31,7 @@ from resources.lib import resolvers
 
 class source:
     def __init__(self):
-        self.base_link = 'http://www.filmxy.cc/'
+        self.base_link = 'http://kissanime.io/'
         #self.base_link = client.source(self.base_link, output='geturl')
         self.search_link = '/wp-admin/admin-ajax.php'
         self.movie_list = '/720p-1080p-bluray-movies-list/'

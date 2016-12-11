@@ -92,6 +92,7 @@ class source:
 
         try:
             sources = []
+            myts = str(((int(time.time())/3600)*3600))
 
             if url == None: return sources
 
@@ -134,30 +135,14 @@ class source:
                         print("END",url)
                     else:
                         url = [i for i in r if cleantitle.get(title) in cleantitle.get(i[1])]
-                    print("r1", cleantitle.get(title),url,r)
+                    #print("r1", cleantitle.get(title),url,r)
 
 
-
-                    """
-                    r = cache.get(self.fmovies_cache, 120)
-
-                    if 'season' in data:
-                        url = [(i[0], re.findall('(.+?) (\d*)$', i[1]), i[2]) for i in r]
-                        url = [(i[0], i[1][0][0], i[1][0][1], i[2]) for i in url if len(i[1]) > 0]
-                        url = [i for i in url if cleantitle.get(title) == cleantitle.get(i[1])]
-                        url = [i for i in url if i[3] == year] + [i for i in url if i[3] == data['year']]
-                        url = [i for i in url if '%01d' % int(data['season']) == '%01d' % int(i[2])]
-                    else:
-                        url = [i for i in r if cleantitle.get(title) == cleantitle.get(i[1]) and i[2] == year]
-
-                    """
                     url = url[0][0]
-                    #print("r", url)
 
                     url = urlparse.urljoin(self.base_link, url)
-                    #print("r2", url)
                     r2 = url.split('.')[-1]
-                    print("r2", r2)
+                    #print("r2", r2)
 
 
                 except:
@@ -168,13 +153,22 @@ class source:
             except: pass
 
             referer = url
-            #xtoken = self.__get_xtoken()
-
             result = client.request(url, limit='0')
-            result, headers, content, cookie = client.request(url, limit='0', output='extended')
+            result, headers, content, cookie1 = client.request(url, limit='0', output='extended')
+            #http://fmovies.to/user/ajax/menu-bar?ts=1481367600&_=1623
+            #Cookie:"__cfduid=d3e825f4e60935fb63188dccb8206b16b1481368143;
+            # session=88aca375fa71b2005ea33dd8b540c80bb7aa2b9f; user-info=null;
+            # MarketGidStorage=%7B%220%22%3A%7B%22svspr%22%3A%22%22%2C%22svsds%22%3A3%2C%22TejndEEDj%22%3A%22MTQ4MTM2ODE0NzM0NzQ4NTMyOTAx%22%7D%2C%22C48532%22%3A%7B%22page%22%3A1%2C%22time%22%3A1481368147359%7D%2C%22C77945%22%3A%7B%22page%22%3A1%2C%22time%22%3A1481368147998%7D%2C%22C77947%22%3A%7B%22page%22%3A1%2C%22time%22%3A1481368148109%7D%7D"
+            print("r22", cookie1)
 
-            #xtoken = self.__get_xtoken()
-            print("r22", result)
+            hash_url = urlparse.urljoin(self.base_link, '/user/ajax/menu-bar')
+            # int(time.time())
+            query = {'ts': myts}
+            query.update(self.__get_token(query))
+            hash_url = hash_url + '?' + urllib.urlencode(query)
+            r1, headers, content, cookie2 = client.request(hash_url, limit='0', output='extended', cookie=cookie1)
+            print("r22", cookie2)
+
 
             alina = client.parseDOM(result, 'title')[0]
             print( re.findall('(\d{4})', alina))
@@ -185,7 +179,7 @@ class source:
             else:
                 result = result if year in atr else None
 
-            print("r3",result)
+            #print("r3",result)
 
             try: quality = client.parseDOM(result, 'span', attrs = {'class': 'quality'})[0].lower()
             except: quality = 'hd'
@@ -208,15 +202,23 @@ class source:
 
             for s in servers[:4]:
                 try:
+                    #1481295600
                     #http://fmovies.to/ajax/episode/info?_token=31f2ab5&id=1r12ww&update=0&film=286l
+
+                    #http://fmovies.to/ajax/episode/info?
+                    # ts=1481367600&_=2334&id=902kxx&update=0
+                    #
+                    #
                     headers = {'X-Requested-With': 'XMLHttpRequest'}
                     time.sleep(0.2)
                     hash_url = urlparse.urljoin(self.base_link, self.hash_link)
-                    query = {'id': s[0], 'update': '0', 'film': r2}
+                    query = {'ts': myts, 'id': s[0], 'update': '0'}
+
                     query.update(self.__get_token(query))
                     hash_url = hash_url + '?' + urllib.urlencode(query)
+                    print "HASH URL", hash_url
                     headers['Referer'] = urlparse.urljoin(url, s[0])
-                    headers['Cookie'] = cookie
+                    headers['Cookie'] = cookie1 + ';' + cookie2 + ';user-info=null; MarketGidStorage=%7B%220%22%3A%7B%22svspr%22%3A%22%22%2C%22svsds%22%3A3%2C%22TejndEEDj%22%3A%22MTQ4MTM2ODE0NzM0NzQ4NTMyOTAx%22%7D%2C%22C48532%22%3A%7B%22page%22%3A1%2C%22time%22%3A1481368147359%7D%2C%22C77945%22%3A%7B%22page%22%3A1%2C%22time%22%3A1481368147998%7D%2C%22C77947%22%3A%7B%22page%22%3A1%2C%22time%22%3A1481368148109%7D%7D'
                     result = client.request(hash_url, headers=headers, limit='0')
                     print("r101 result",result,headers)
 

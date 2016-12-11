@@ -17,40 +17,51 @@
 """
 import re
 import urllib
-from lib import helpers
-from lib import captcha_lib
 from urlresolver9 import common
 from urlresolver9.resolver import UrlResolver, ResolverError
 
-MAX_TRIES = 3
 
-class FileWeedResolver(UrlResolver):
-    name = "FileWeed"
-    domains = ["fileweed.net"]
-    pattern = '(?://|\.)(fileweed\.net)/(?:embed-)?([0-9a-zA-Z/-]+)'
+
+class TudouResolver(UrlResolver):
+    name = 'Tudou'
+    domains = ['tudou.com']
+    pattern = '(?://|\.)(tudou\.com)/programs/view/([0-9a-zA-Z]+)'
+
 
     def __init__(self):
         self.net = common.Net()
 
+
     def get_media_url(self, host, media_id):
         web_url = self.get_url(host, media_id)
-        headers = {'User-Agent': common.FF_USER_AGENT, 'Referer': web_url}
-        html = self.net.http_GET(web_url, headers=headers).content
-        tries = 0
-        while tries < MAX_TRIES:
-            data = helpers.get_hidden(html, index=1)
-            data.update(captcha_lib.do_captcha(html))
-            common.log_utils.log_debug(data)
-            html = self.net.http_POST(web_url, data, headers=headers).content
 
-            if 'downloadbtn222' in html:
-                r = re.search('class="downloadbtn222".*?href="([^"]+)', html, re.I | re.DOTALL)
-                if r:
-                    return r.group(1) + helpers.append_headers({'User-Agent': common.IE_USER_AGENT})
+        html = self.net.http_GET(web_url).content
 
-            tries = tries + 1
+        swf = re.findall('(http.+?\.swf)', html)[0]
+        sid = re.findall('areaCode\s*:\s*"(\d+)', html)[0]
+        oid = re.findall('"k"\s*:\s*(\d+)', html)[0]
+
+        f_url = 'http://v2.tudou.com/f?id=%s&sid=%s&hd=3&sj=1' % (oid, sid)
+        headers = {'User-Agent': common.FF_USER_AGENT, 'Referer': swf}
+
+        html = self.net.http_GET(f_url, headers=headers).content
+
+        url = re.findall('>(http.+?)<', html)[0]
+        url = url.replace('&amp;', '&')
+
+        video = self.net.http_HEAD(url, headers=headers).get_headers()
+        video = [i for i in video if 'video' in i]
+
+        if not video:
+            raise ResolverError('File not found')
+
+        url += '|%s' % urllib.urlencode(headers)
+        return url
 
         raise ResolverError('Unable to locate link')
-    
+
+
     def get_url(self, host, media_id):
-        return self._default_get_url(host, media_id, template='https://{host}/{media_id}')
+        return 'http://www.tudou.com/programs/view/%s/' % media_id
+
+

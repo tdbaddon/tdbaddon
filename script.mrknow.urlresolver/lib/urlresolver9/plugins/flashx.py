@@ -26,7 +26,7 @@ from urlresolver9.resolver import UrlResolver, ResolverError
 class FlashxResolver(UrlResolver):
     name = "flashx"
     domains = ["flashx.tv"]
-    pattern = '(?://|\.)(flashx\.tv)/(?:embed-|dl\?|embed.php\?c=)?([0-9a-zA-Z/]+)'
+    pattern = '(?://|\.)(flashx\.tv)/(?:embed-|dl\?|embed.php\?c=)?([0-9a-zA-Z/-]+)'
 
     def __init__(self):
         self.net = common.Net()

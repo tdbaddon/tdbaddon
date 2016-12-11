@@ -1,9 +1,6 @@
 """
-    OVERALL CREDIT TO:
-        t0mm0, Eldorado, VOINAGE, BSTRDMKR, tknorris, smokdpi, TheHighway
-
-    urlresolver XBMC Addon
-    Copyright (C) 2011 t0mm0
+    Kodi urlresolver plugin
+    Copyright (C) 2016  tknorris
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,18 +16,17 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-import re
 from lib import helpers
-from urlresolver9 import common
 from urlresolver9.resolver import UrlResolver, ResolverError
 
-class VidloxResolver(UrlResolver):
-    name = "vidlox"
-    domains = ['vidlox.tv']
-    pattern = '(?://|\.)(vidlox\.tv)/(?:embed-|)([0-9a-zA-Z]+)'
+
+class VodmineResolver(UrlResolver):
+    name = 'Vodmine'
+    domains = ['vodmine.com']
+    pattern = '(?://|\.)(vodmine\.com)/(?:video|embed)/([0-9a-zA-Z]+)'
 
     def get_media_url(self, host, media_id):
-        return helpers.get_media_url(self.get_url(host, media_id), result_blacklist=['dl'])
+        return helpers.get_media_url(self.get_url(host, media_id))
 
     def get_url(self, host, media_id):
-        return self._default_get_url(host, media_id, 'http://{host}/{media_id}')
+        return 'http://vodmine.com/embed/%s' % media_id
