@@ -18,8 +18,9 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
-import re,urllib,urlparse,json,base64,time
-
+import re,urllib,urlparse
+import json, time, random, string
+import base64, hashlib
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import cache
@@ -28,40 +29,95 @@ from resources.lib.modules import directstream
 
 class source:
     def __init__(self):
-        self.domains = ['movieshd.tv', 'movieshd.is', 'movieshd.watch', 'flixanity.is', 'flixanity.me']
-        self.base_link = 'http://flixanity.watch'
+        testurl = "http://flixanity.watch"
+        self.base_link = "http://flixanity.watch"
+        self.social_lock = 'evokjaqbb8'
+        self.search_link = '/api/v1/cautare/' + self.social_lock
 
 
     def movie(self, imdb, title, year):
         try:
-            url = {'imdb': imdb, 'title': title, 'year': year}
-            url = urllib.urlencode(url)
+            tk = cache.get(self.movieshd_token, 8)
+            set = self.movieshd_set()
+            rt = self.movieshd_rt(tk + set)
+            sl = self.movieshd_sl()
+            tm = int(time.time() * 1000)
+
+            headers = {'X-Requested-With': 'XMLHttpRequest'}
+
+            url = urlparse.urljoin(self.base_link, self.search_link)
+
+            post = {'q': title.lower(), 'limit': '100', 'timestamp': tm, 'verifiedCheck': tk, 'set': set, 'rt': rt, 'sl': sl}
+            post = urllib.urlencode(post)
+			
+            r = client.request(url, post=post, headers=headers)
+            r = json.loads(r)
+
+            t = cleantitle.get(title)
+
+            r = [i for i in r if 'year' in i and 'meta' in i]
+            r = [(i['permalink'], i['title'], str(i['year']), i['meta'].lower()) for i in r]
+            r = [i for i in r if 'movie' in i[3]]
+            r = [i[0] for i in r if t == cleantitle.get(i[1]) and year == i[2]][0]
+            # print ("CARTOONHD MOVIE", r)
+            url = r.encode('utf-8')
+            if not "http" in url: url = urlparse.urljoin(self.base_link, url)
+            url = client.request(url, output='geturl')
             return url
         except:
             return
-
 
     def tvshow(self, imdb, tvdb, tvshowtitle, year):
         try:
-            url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'year': year}
-            url = urllib.urlencode(url)
+            tk = cache.get(self.movieshd_token, 8)
+
+            set = self.movieshd_set()
+            rt = self.movieshd_rt(tk + set)
+            sl = self.movieshd_sl()
+
+            tm = int(time.time() * 1000)
+
+            headers = {'X-Requested-With': 'XMLHttpRequest'}
+
+
+            url = urlparse.urljoin(self.base_link, self.search_link)
+
+            post = {'q': tvshowtitle.lower(), 'limit': '20', 'timestamp': tm, 'verifiedCheck': tk, 'set': set, 'rt': rt, 'sl': sl}
+            post = urllib.urlencode(post)
+
+            r = client.request(url, post=post, headers=headers)
+            r = json.loads(r)
+            # print ("CARTOONHD r1", r)
+            t = cleantitle.get(tvshowtitle)
+
+            r = [i for i in r if 'year' in i and 'meta' in i]
+            r = [(i['permalink'], i['title'], str(i['year']), i['meta'].lower()) for i in r]
+            r = [i for i in r if 'tv' in i[3]]
+            r = [i[0] for i in r if t == cleantitle.get(i[1]) and year == i[2]][0]
+
+            url = re.findall('(?://.+?|)(/.+)', r)[0]
+           
+            url = client.replaceHTMLCodes(url)
+            url = url.encode('utf-8')
+           
             return url
         except:
             return
-
 
     def episode(self, url, imdb, tvdb, title, premiered, season, episode):
         try:
             if url == None: return
-
-            url = urlparse.parse_qs(url)
-            url = dict([(i, url[i][0]) if url[i] else (i, '') for i in url])
-            url['title'], url['premiered'], url['season'], url['episode'] = title, premiered, season, episode
-            url = urllib.urlencode(url)
+            print ("FLIXANITY r2", url)
+            if not "http" in url: url = urlparse.urljoin(self.base_link, url)
+            url = client.request(url, output='geturl')
+            url = '%s/season/%01d/episode/%01d' % (url, int(season), int(episode))
+            print ("FLIXANITY r3",  url )
+            # url = re.findall('(?://.+?|)(/.+)', r)[0]
+            # url = client.replaceHTMLCodes(url)
+            url = url.encode('utf-8')
             return url
         except:
             return
-
 
     def sources(self, url, hostDict, hostprDict):
         try:
@@ -69,35 +125,9 @@ class source:
 
             if url == None: return sources
 
-            if not str(url).startswith('http'):
-
-                data = urlparse.parse_qs(url)
-                data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
-
-                title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
-
-                imdb = data['imdb']
-
-                match = (title.translate(None, '\/:*?"\'<>|!,')).replace(' ', '-').replace('--', '-').lower()
-
-                if 'tvshowtitle' in data:
-                    url = '%s/tv-show/%s/season/%01d/episode/%01d' % (self.base_link, match, int(data['season']), int(data['episode']))
-                else:
-                    url = '%s/movie/%s' % (self.base_link, match)
-
-                result = client.request(url, limit='5')
-                result = client.parseDOM(result, 'title')[0]
-
-                if '%TITLE%' in result: raise Exception()
-
-                r = client.request(url, output='extended')
-
-                if not imdb in r[0]: raise Exception()
-
-            else:
-                url = urlparse.urljoin(self.base_link, url)
-
-                r = client.request(url, output='extended')
+            # url = urlparse.urljoin(self.base_link, url)
+            if not "http" in url: url = urlparse.urljoin(self.base_link, url)
+            r = client.request(url, output='extended')
 
 
             cookie = r[4] ; headers = r[3] ; result = r[0]
@@ -156,6 +186,34 @@ class source:
 
 
     def resolve(self, url):
-        return url
+
+            if 'requiressl=yes' in url: url = url.replace('http://', 'https://')
+            else: url = url.replace('https://', 'http://')
+            return url
 
 
+    def movieshd_token(self):
+        try:
+            token = client.request(self.base_link)
+            token = re.findall("var\s+tok\s*=\s*'([^']+)", token)[0]
+            return token
+        except:
+            return
+
+
+    def movieshd_set(self):
+        return ''.join([random.choice(string.ascii_letters) for _ in xrange(25)])
+
+    def movieshd_sl(self):
+        return hashlib.md5(base64.encodestring('0A6ru35yyi5yn4THYpJqy0X82tE95btV')+self.social_lock).hexdigest()
+
+
+    def movieshd_rt(self, s, shift=13):
+        s2 = ''
+        for c in s:
+            limit = 122 if c in string.ascii_lowercase else 90
+            new_code = ord(c) + shift
+            if new_code > limit:
+                new_code -= 26
+            s2 += chr(new_code)
+        return s2

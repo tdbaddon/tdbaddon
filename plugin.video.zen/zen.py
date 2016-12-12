@@ -362,9 +362,17 @@ elif action == 'restorewatchlist':
 				dialog.ok('Restore Watchlist','No item found: Please select your zipfile location in the addon settings','','')
 				xbmc.executebuiltin('RunPlugin(%s?action=openSettings&query=5.0)' % sys.argv[0])
 				
+elif action == 'movielist':
+    from resources.lib.indexers import navigator
+    navigator.navigator().mymovies()	
+
+elif action == 'tvlist':
+    from resources.lib.indexers import navigator
+    navigator.navigator().mytv()		
 				
-				
-				
+elif action == 'lists_navigator':
+    from resources.lib.indexers import navigator
+    navigator.navigator().lists_navigator()				
 				
 				
 				

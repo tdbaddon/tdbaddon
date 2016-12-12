@@ -50,7 +50,9 @@ class tvshows:
         self.trakt_user = control.setting('trakt.user').strip()
         self.imdb_user = control.setting('imdb.user').replace('ur', '')
         self.lang = control.apiLanguage()['tvdb']
-        self.tmdb_key = base64.b64decode('ZjdmNTE3NzU4NzdlMGJiNjcwMzUyMDk1MmIzYzc4NDA=')
+        self.tmdb_key = control.setting('tmdb_apikey')
+        if self.tmdb_key == '' or self.tmdb_key == None: self.tmdb_key = base64.b64decode('ZjdmNTE3NzU4NzdlMGJiNjcwMzUyMDk1MmIzYzc4NDA=')
+
         self.tmdb_lang = 'en'
         self.datetime = (datetime.datetime.utcnow() - datetime.timedelta(hours = 5))
         self.today_date = (self.datetime).strftime('%Y-%m-%d')
@@ -87,9 +89,30 @@ class tvshows:
 
         self.network_link = 'http://api.themoviedb.org/3/discover/tv?api_key=%s&with_networks=%s&page=1' % (self.tmdb_key, '%s')
         self.year_link = 'http://api.themoviedb.org/3/discover/movie?&api_key=%s&year=%s&primary_release_date.lte=date[0]&page=1'
-        self.tmdbcustomlist_link = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbtvlist_link, self.tmdb_key)
-     
 
+
+        self.tmdbtvlist1_link = control.setting('tmdb.tvlist_id1')		
+        self.tmdbtvlist2_link = control.setting('tmdb.tvlist_id2')		
+        self.tmdbtvlist3_link = control.setting('tmdb.tvlist_id3')		
+        self.tmdbtvlist4_link = control.setting('tmdb.tvlist_id4')		
+        self.tmdbtvlist5_link = control.setting('tmdb.tvlist_id5')		
+        self.tmdbtvlist6_link = control.setting('tmdb.tvlist_id6')		
+        self.tmdbtvlist7_link = control.setting('tmdb.tvlist_id7')		
+        self.tmdbtvlist8_link = control.setting('tmdb.tvlist_id8')		
+        self.tmdbtvlist9_link = control.setting('tmdb.tvlist_id9')		
+        self.tmdbtvlist10_link = control.setting('tmdb.tvlist_id10')	
+
+		
+        self.mycustomlist1_link = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbtvlist1_link, self.tmdb_key)
+        self.mycustomlist2_link = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbtvlist2_link, self.tmdb_key)
+        self.mycustomlist3_link = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbtvlist3_link, self.tmdb_key)
+        self.mycustomlist4_link = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbtvlist4_link, self.tmdb_key)
+        self.mycustomlist5_link = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbtvlist5_link, self.tmdb_key)
+        self.mycustomlist6_link = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbtvlist6_link, self.tmdb_key)
+        self.mycustomlist7_link = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbtvlist7_link, self.tmdb_key)
+        self.mycustomlist8_link = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbtvlist8_link, self.tmdb_key)
+        self.mycustomlist9_link = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbtvlist9_link, self.tmdb_key)
+        self.mycustomlist10_link = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbtvlist10_link, self.tmdb_key)
 
     def get(self, url, idx=True):
         try:

@@ -30,7 +30,7 @@ class source:
         self.domains = ['mvgee.com']
         self.base_link = 'http://mvgee.com'
         self.search_link = '/search?q=%s+%s'
-        self.api_link = 'http://mvgee.com/api/pl/%s'
+        self.api_link = 'http://mvgee.com/io/1.0/stream?imdbId=%s&season=%s&provider=%s&name=%s'
 		
 
 
@@ -56,7 +56,7 @@ class source:
 				value = value.encode('utf-8')
 				if checktitle == cleantitle.get(value):
 					if not self.base_link in url: url = urlparse.urljoin(self.base_link, url)
-					# print ("MVGEE PASSED", url)
+					print ("MVGEE PASSED", url)
 					return url
 					
         except:
@@ -69,20 +69,23 @@ class source:
 			sources = []
 			if url == None: return sources
 			link = client.request(url)
-			data_id = re.findall('data-id="([^"]+)"',link)[0]
-			api_link = self.api_link % data_id
-			html = client.request(api_link)
-			result = json.loads(html)
-			response = result['pl']['sources']
-			for items in response:
-				href = items['src'].encode('utf-8')
-				label = items['label'].encode('utf-8')
-				if "720" in label: quality = "HD"
-				elif "1080" in label: quality = "1080p"
-				else: quality = "SD"
-				# print ("MVGEE SOURCES", label, href)
-
-				sources.append({'source': 'gvideo', 'quality': quality, 'provider': 'Moviegee', 'url': url, 'direct': True, 'debridonly': False})
+			data_id = re.compile('{"imdbId":"(.+?)","season":(\d+),"provider":"(.+?)","name":"(.+?)"}').findall(link)
+			for imdbid,s_id,provider_id,name_id in data_id:
+				print ("MVGEE SOURCES", imdbid,s_id,provider_id,name_id)
+				api_link = self.api_link % (imdbid,s_id,provider_id,name_id)
+				print ("MVGEE api_link", api_link)
+				html = client.request(api_link)
+				result = json.loads(html)
+				response = result['streams']
+				for items in response:
+					href = items['src'].encode('utf-8')
+					label = items['label'].encode('utf-8')
+					if "720" in label: quality = "HD"
+					elif "1080" in label: quality = "1080p"
+					else: quality = "SD"
+					# print ("MVGEE SOURCES", label, href)
+					href = href.replace(" ","")
+					sources.append({'source': 'gvideo', 'quality': quality, 'provider': 'Moviegee', 'url': href, 'direct': True, 'debridonly': False})
 			return sources
         except:
             return sources

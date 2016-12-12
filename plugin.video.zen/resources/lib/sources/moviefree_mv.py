@@ -19,95 +19,123 @@
 '''
 
 
+import re,urllib,urlparse,json,base64
 
-import re,urllib,urlparse,random,json
-from resources.lib.modules import control
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import directstream
+from resources.lib.modules.common import  random_agent
+import requests
+from BeautifulSoup import BeautifulSoup
+
+
 class source:
     def __init__(self):
-        self.domains = ['hdmoviefree.org']
-
-        self.base_link = 'http://www.hdmoviefree.org'
+        self.domains = ['http://moviefree.to']
+        self.base_link = 'http://moviefree.to'
         self.search_link = '/search/%s.html'
-        self.server_link = '/ajax/loadsv/%s'
-        self.episode_link = '/ajax/loadep/%s'
+
 
     def movie(self, imdb, title, year):
+        self.zen_url = []
         try:
-					
-			self.zen_url = []
-			cleanmovie = cleantitle.get(title)
-			query = urlparse.urljoin(self.base_link, self.search_link % title.replace(' ', '-').replace('.', '-'))
-			# print("HDMFREE r1", query)
-			link = client.request(query)
-			r = client.parseDOM(link, 'div', attrs = {'class': '[^"]*slideposter[^"]*'})
-			r = [(client.parseDOM(i, 'a', ret='href'),client.parseDOM(i, 'img', ret='alt')) for i in r]
-			r = [(i[0][0], i[1][0]) for i in r if len(i[0]) > 0 and len(i[1]) > 0]
-			r = [i[0] for i in r if cleanmovie in cleantitle.get(i[1]) and year in i[1]][0]
-			url = r
-			url = client.replaceHTMLCodes(url)
-			url = "http://www.hdmoviefree.org/" + url
-			url = url.encode('utf-8')
+            headers = {'User-Agent': random_agent()}	
+            self.zen_url = []
+            cleanmovie = cleantitle.get(title)
+            title = cleantitle.getsearch(title)
 			
-			return url
+            query = "%s+%s" % (urllib.quote_plus(title),year)
+            query = self.search_link %query
+            query = urlparse.urljoin(self.base_link, query)
+            # print ("MOViEFREE query", query)
+            html = BeautifulSoup(requests.get(query, headers=headers, timeout=15).content)
+            
+            containers = html.findAll('div', attrs={'class': 'ml-item'})
+            for container in containers:
+                # print ("MOViEFREE container", container)
+                r_href = container.findAll('a')[0]["href"]
+                r_href = r_href.encode('utf-8')
+               
+                r_title =container.findAll('a')[0]["title"]
+               
+                r_title = r_title.encode('utf-8')
+                # print ("MOViEFREE TITLES", r_title, r_href)
+                if cleanmovie == cleantitle.get(r_title):
+						redirect = requests.get(r_href, headers=headers, timeout=30).text
+						r_year = re.findall('<strong>Release:</strong>\s*(\d+)</p>', redirect)[0]
+						if r_year == year:
+							# print ("MOViEFREE PLAY URL", r_href)
+							url = r_href
+            return url
         except:
-            return
-			
+            return	
+
+
     def sources(self, url, hostDict, hostprDict):
         try:
             sources = []
-			# print ("HDMFREE INITIALIZED", url)
+
             if url == None: return sources
 
-           
+            referer = url
 
-            r = client.request(url)
+            for i in range(3):
+                u = requests.get(referer).text
+                if not u == None: break
 
-            data_id = client.parseDOM(r, 'img', ret='data-id')[0]
-            data_name = client.parseDOM(r, 'img', ret='data-name')[0]
 
-            headers = {'X-Requested-With': 'XMLHttpRequest', 'Referer': url}
+            links = []
 
-            post = {'id': data_id, 'n': data_name}
-            post = urllib.urlencode(post)
+            try:
 
-            url = self.server_link % data_id
-            url = urlparse.urljoin(self.base_link, url)
 
-            r = client.request(url, post=post, headers=headers)
+                    headers = {'User-Agent': random_agent(), 'X-Requested-With': 'XMLHttpRequest', 'Referer': referer}
 
-            links = client.parseDOM(r, 'a', ret='data-id')
+                    url = urlparse.urljoin(self.base_link, '/ip.file/swf/plugins/ipplugins.php')
 
-            for link in links:
-                try:
-                    url = self.episode_link % link
-                    url = urlparse.urljoin(self.base_link, url)
+                    iframe = re.compile('<a data-film="(.+?)" data-name="(.+?)" data-server="(.+?)"').findall(u)
+                    for p1, p2, p3 in iframe:
+						try:
+							post = {'ipplugins': '1', 'ip_film': p1, 'ip_name': p2 , 'ip_server': p3}
+							# post = urllib.urlencode(post)
+							# print ("MOVIEFREE URL", post)
 
-                    post = {'epid': link}
-                    post = urllib.urlencode(post)
+							for i in range(3):
+								req = requests.post(url, data=post, headers=headers).content
+							# print ("MOVIEFREE req1", req)
 
-                    r = client.request(url, post=post, headers=headers)
-                    r = json.loads(r)
-                    try: u = client.parseDOM(r['link']['embed'], 'iframe', ret='src')
-                    except: u = r['link']['l']
+							result = json.loads(req)
+							token = result['s'].encode('utf-8')
+							server = result['v'].encode('utf-8')
+		  
+							# print ("MOVIEFREE server", token,server)
+							
+							url = urlparse.urljoin(self.base_link, '/ip.file/swf/ipplayer/ipplayer.php')
 
-                    for i in u:
-                        try: sources.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'provider': 'Moviefree', 'url': i, 'direct': True, 'debridonly': False})
-                        except: pass
-                except:
-                    pass
+							post = {'u': token, 'w': '100%', 'h': '500' , 's': server, 'n':'0'}
+							req_player = requests.post(url, data=post, headers=headers).content
+							# print ("MOVIEFREE req_player", req_player)
+							result = json.loads(req_player)['data']
+							result = [i['files'] for i in result]
+
+							for i in result:
+								try: sources.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'provider': 'Moviefree', 'url': i, 'direct': True, 'debridonly': False})
+								except: pass
+						except:
+							pass
+            except:
+                pass
 
             return sources
         except:
             return sources
 
+
     def resolve(self, url):
-        try:
-            url = client.request(url, output='geturl')
+
             if 'requiressl=yes' in url: url = url.replace('http://', 'https://')
             else: url = url.replace('https://', 'http://')
             return url
-        except:
-            return
+
+
+

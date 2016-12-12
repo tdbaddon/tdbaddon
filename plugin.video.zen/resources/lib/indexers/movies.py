@@ -33,6 +33,8 @@ from resources.lib.modules import playcount
 from resources.lib.modules import workers
 from resources.lib.modules import views
 from resources.lib.modules import favourites
+
+
 class movies:
     def __init__(self):
         self.list = []
@@ -40,7 +42,11 @@ class movies:
         self.tmdb_link = 'http://api.themoviedb.org'
         self.trakt_link = 'http://api-v2launch.trakt.tv'
         self.imdb_link = 'http://www.imdb.com'
-        self.tmdb_key = base64.b64decode('ZjdmNTE3NzU4NzdlMGJiNjcwMzUyMDk1MmIzYzc4NDA=')
+		
+        self.tmdb_key = control.setting('tmdb_apikey')
+        if self.tmdb_key == '' or self.tmdb_key == None: self.tmdb_key = base64.b64decode('ZjdmNTE3NzU4NzdlMGJiNjcwMzUyMDk1MmIzYzc4NDA=')
+		
+        
         self.datetime = (datetime.datetime.utcnow() - datetime.timedelta(hours = 5))
         self.systime = (self.datetime).strftime('%Y%m%d%H%M%S%f')
         self.trakt_user = re.sub('[^a-z0-9]', '-', control.setting('trakt.user').strip().lower())
@@ -52,7 +58,16 @@ class movies:
         self.tmdb_info_link = 'http://api.themoviedb.org/3/movie/%s?api_key=%s&language=%s&append_to_response=credits,releases,external_ids' % ('%s', self.tmdb_key, self.tmdb_lang)
         self.imdb_by_query = 'http://www.omdbapi.com/?t=%s&y=%s'
         self.imdbinfo = 'http://www.omdbapi.com/?i=%s&plot=short&r=json'
-        self.tmdbmovielist_link = control.setting('tmdb.movielist')		
+        self.tmdbmovielist1_link = control.setting('tmdb.movielist_id1')		
+        self.tmdbmovielist2_link = control.setting('tmdb.movielist_id2')		
+        self.tmdbmovielist3_link = control.setting('tmdb.movielist_id3')		
+        self.tmdbmovielist4_link = control.setting('tmdb.movielist_id4')		
+        self.tmdbmovielist5_link = control.setting('tmdb.movielist_id5')		
+        self.tmdbmovielist6_link = control.setting('tmdb.movielist_id6')		
+        self.tmdbmovielist7_link = control.setting('tmdb.movielist_id7')		
+        self.tmdbmovielist8_link = control.setting('tmdb.movielist_id8')		
+        self.tmdbmovielist9_link = control.setting('tmdb.movielist_id9')		
+        self.tmdbmovielist10_link = control.setting('tmdb.movielist_id10')		
 		
         self.tmdb_image = 'http://image.tmdb.org/t/p/original'
         self.tmdb_poster = 'http://image.tmdb.org/t/p/w500'
@@ -63,9 +78,7 @@ class movies:
         self.personlist_link = 'http://api.themoviedb.org/3/person/popular?&api_key=%s&page=%s' % (self.tmdb_key, '%s')
         self.genres_link = 'http://api.themoviedb.org/3/genre/movie/list?api_key=%s&language=%s' % (self.tmdb_key, self.tmdb_lang)
         self.certifications_link = 'http://api.themoviedb.org/3/certification/movie/list?&api_key=%s' % self.tmdb_key
-
         self.popular2_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&languages=en&num_votes=1000,&production_status=released&groups=top_1000&sort=moviemeter,asc&count=40&start=1'
-
         self.search_link = 'http://api.themoviedb.org/3/search/movie?&api_key=%s&query=%s'
         self.popular_link = 'http://api.themoviedb.org/3/movie/popular?api_key=%s&page=1'
         self.views_link = 'http://api.themoviedb.org/3/movie/top_rated?&language=it&api_key=%s&page=1'
@@ -82,10 +95,19 @@ class movies:
 
         self.tmdbmarvel_link = 'http://api.themoviedb.org/3/list/11332?api_key=%s' % (self.tmdb_key)
         self.tmdboscars_link = 'http://api.themoviedb.org/3/list/11334?api_key=%s' % (self.tmdb_key)
-        self.mycustomlist_link = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist_link, self.tmdb_key)
         self.tmdbdisney_link = 'http://api.themoviedb.org/3/list/11338?api_key=%s' % (self.tmdb_key)
 
 		
+        self.mycustomlist1_link = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist1_link, self.tmdb_key)
+        self.mycustomlist2_link = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist2_link, self.tmdb_key)
+        self.mycustomlist3_link = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist3_link, self.tmdb_key)
+        self.mycustomlist4_link = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist4_link, self.tmdb_key)
+        self.mycustomlist5_link = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist5_link, self.tmdb_key)
+        self.mycustomlist6_link = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist6_link, self.tmdb_key)
+        self.mycustomlist7_link = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist7_link, self.tmdb_key)
+        self.mycustomlist8_link = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist8_link, self.tmdb_key)
+        self.mycustomlist9_link = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist9_link, self.tmdb_key)
+        self.mycustomlist10_link = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist10_link, self.tmdb_key)
 		
 		
         # self.traktlists_link = 'http://api-v2launch.trakt.tv/users/%s/lists' % self.trakt_user

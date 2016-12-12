@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 '''
-    
-    
+    Exodus Add-on
+    Copyright (C) 2016 Exodus
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -18,7 +18,6 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
-
 import re,urllib,urlparse,random
 
 from resources.lib.modules import cleantitle
@@ -33,7 +32,7 @@ class source:
 
 
     def movie(self, imdb, title, year):
-        self.zen_url = []	
+        self.super_url = []	
         try:
             query = self.search_link % (urllib.quote_plus(title))
             query = urlparse.urljoin(self.base_link, query)

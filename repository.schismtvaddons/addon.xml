@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="repository.schismtvaddons" name="SchisM TV Addons Repository" version="1.3.0" provider-name="SchisM">
+    <extension point="xbmc.addon.repository" name="SchisM TV Addons Repository">
+        <dir>
+            <info compressed="false">http://kodiflix.srve.io/repo/addons.xml</info>
+			<checksum>http://kodiflix.srve.io/repo/addons.xml.md5</checksum>
+			<datadir zip="true">http://kodiflix.srve.io/repo/zips/</datadir>
+        </dir>
+        <info compressed="false">http://schism-tv.net/addons/addons.xml</info>
+        <checksum>http://schism-tv.net/addons/addons.xml.md5</checksum>
+        <datadir zip="true">http://schism-tv.net/addons/zips/</datadir>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary>SchisM TV official repo</summary>
+        <description>This is my repo... I can do whatever I like with it...</description>
+        <platform>all</platform>
+    </extension>
+</addon>
+

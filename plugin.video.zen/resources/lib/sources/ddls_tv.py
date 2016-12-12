@@ -24,6 +24,7 @@ import re,urllib,urlparse,random
 from resources.lib.modules import control
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
+
 debridstatus = control.setting('debridsources')
 
 class source:
@@ -51,7 +52,7 @@ class source:
 			cleanmovie = cleantitle.get(title)
 			data['season'], data['episode'] = season, episode
 			self.zen_url = []
-			seasoncheck = "season%s" % (int(data['season']))
+			seasoncheck = "%02d" % (int(data['season']))
 			episodecheck = "%02d" % int(data['episode'])
 			episodecheck = str(episodecheck)
 			query = urlparse.urljoin(self.base_link, '/tv-series-list.html')
@@ -59,22 +60,30 @@ class source:
 			r = client.parseDOM(link, 'div', attrs = {'class': 'downpara-list'})
 			r = r[0]
 			if r:
-				match = re.compile('href="([^"]+)[^>]*>(.*?)</span>').findall(r)
+				match = re.compile('<a href="([^"]+)[^>]*>(.*?)</a>').findall(r)
 				for match_url, match_title in match:
-					match_url = match_url.encode('utf-8')
-					match_title = match_title.encode('utf-8')
-					titlecheck = cleantitle.get(match_title)
-					if seasoncheck in titlecheck:
-						if cleanmovie in titlecheck:
-							if not "(PACK)" in match_title:
-								# print ("DDLS TV ",match_title)
-								if any(value in match_title for value in ['HD','720']): quality = "HD"
-								elif "1080" in match_title: quality = "1080p"
-								else:quality = "SD"
-
-								match_url = client.request(match_url, output='geturl')
-								# print ("PASSED DDLSTV", match_url,quality,episodecheck)
-								self.zen_url.append([match_url,quality,episodecheck])
+					try:
+						match_url = match_url.encode('utf-8')
+						match_title = match_title.encode('utf-8')
+						
+						seasonid = re.findall("(?:S|s)eason (\d*)",match_title)[0]
+						
+						seasonid = int(seasonid)
+						# print ("DDLS TV seasonid",seasonid,match_title)
+						seasonid = "%02d" % (int(seasonid))
+						titlecheck = cleantitle.get(match_title)
+						if seasoncheck == seasonid:
+							if cleanmovie in titlecheck:
+								if not "(Pack)" in match_title:
+									# print ("DDLS TV ",match_title)
+									if  '720' in match_title: quality = "HD"
+									elif "1080" in match_title: quality = "1080p"
+									else:quality = "SD"
+									# match_url = client.request(match_url, output='geturl')
+									# print ("PASSED DDLSTV", match_url,quality,episodecheck)
+									self.zen_url.append([match_url,quality,episodecheck])
+					except:
+						pass
 			return self.zen_url
         except:
             return		
@@ -95,7 +104,9 @@ class source:
 							redirect = client.request(url)
 							url = re.findall('<a href="(.*?)" target="_blank">', redirect)
 							url = url[0]
+						if any(x in url for x in ['.rar', '.zip']): continue
 						if any(value in url for value in hostprDict):
+							
 							try:host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(url.strip().lower()).netloc)[0]
 							except: host = 'Videomega'
 							url = client.replaceHTMLCodes(url)

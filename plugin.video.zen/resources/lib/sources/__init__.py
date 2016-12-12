@@ -27,7 +27,7 @@ from resources.lib.modules import client
 from resources.lib.modules import debrid
 from resources.lib.modules import workers
 from resources.lib.modules import unshorten
-
+debridstatus = control.setting('debridsources')
 
 try: from sqlite3 import dbapi2 as database
 except: from pysqlite2 import dbapi2 as database
@@ -38,7 +38,8 @@ except: pass
 try: import xbmc
 except: pass
 
-_shst_regex = r'sh\.st'
+_shst_regex = ['sh.st','viid.me']
+
 class sources:
     def __init__(self):
         self.getConstants()
@@ -644,14 +645,15 @@ class sources:
             u = url = source.resolve(url)
 
             if url == None: raise Exception()
+            if any(value in url for value in _shst_regex): u = unshorten._unshorten_shst(url)
 
-            if re.search(_shst_regex, url, re.IGNORECASE): u = unshorten._unshorten_shst(url)
             # if not d == '':
                 # url = debrid.resolver(url, d)
 
             if not direct == True:
 
-				hmf = urlresolver.HostedMediaFile(url=u, include_disabled=True, include_universal=True)
+				if not debridstatus == 'true': hmf = urlresolver.HostedMediaFile(url=u, include_disabled=True, include_universal=False)
+				else: hmf = urlresolver.HostedMediaFile(url=u, include_disabled=True, include_universal=True)
 				if hmf.valid_url() == True: url = hmf.resolve()
 					
 

@@ -30,7 +30,7 @@ debridstatus = control.setting('debridsources')
 class source:
     def __init__(self):
         self.domains = ['2ddl.io']
-        self.base_link = 'http://2ddl.io'
+        self.base_link = 'http://2ddl.me'
         self.search_link = '/search/%s/feed/rss2/'
 
 

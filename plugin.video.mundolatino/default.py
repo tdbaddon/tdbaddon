@@ -96,7 +96,7 @@ else: FAV = []
 
 
 
-SOURCES = [{"url": "http://tvultimate.mx/mundolatino/tv/master1.php", "fanart": "http://tvultimate.mx/mundolatino/tv/fanart.jpg"}]
+SOURCES = [{"url": "http://tvultimate.mx/mundolatino/tv/master2.php", "fanart": "http://tvultimate.mx/mundolatino/tv/fanart/fanart.jpg"}]
 
 
 
@@ -1062,7 +1062,7 @@ def getRegexParsed(regexs, url,cookieJar=None,forCookieJarOnly=False,recursiveCa
                             urllib2.install_opener(opener)
                             
                         
-                        req.add_header('User-Agent', 'plugin.video.MundoLatino')
+                        req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 6.1; rv:14.0) Gecko/20100101 Firefox/14.0.1')
                         proxytouse=None
 
                         if 'referer' in m:
@@ -1500,7 +1500,7 @@ def get_ferrari_url(page_data):
 def get_dag_url(page_data):
 #    print 'get_dag_url',page_data
     if page_data.startswith('http://dag.total-stream.net'):
-        headers=[('User-Agent','plugin.video.MundoLatino')]
+        headers=[('User-Agent','Verismo-BlackUI_(2.4.7.5.8.0.34)')]
         page_data=getUrl(page_data,headers=headers);
 
     if '127.0.0.1' in page_data:
@@ -1891,7 +1891,7 @@ def getUrl(url, cookieJar=None,post=None, timeout=20, headers=None, noredir=Fals
         opener = urllib2.build_opener(cookie_handler, urllib2.HTTPBasicAuthHandler(), urllib2.HTTPHandler())
     #opener = urllib2.install_opener(opener)
     req = urllib2.Request(url)
-    req.add_header('User-Agent','plugin.video.MundoLatino')
+    req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 6.1; rv:14.0) Gecko/20100101 Firefox/14.0.1')
     if headers:
         for h,hv in headers:
             req.add_header(h,hv)

@@ -39,38 +39,36 @@ class source:
 			link = client.request(query)
 			r = client.parseDOM(link, 'div', attrs = {'class': 'ml-item'})
 			for links in r:
-				# print ("YMOVIES REQUEST", links)
-				url = client.parseDOM(links, 'a', ret='data-url')[0]
+				print ("YMOVIES REQUEST", links)
+				url = client.parseDOM(links, 'a', ret='href')[0]
 				title = client.parseDOM(links, 'a', ret='title')[0]
-				url = urlparse.urljoin(self.info_link, url)
+				# url = urlparse.urljoin(self.info_link, url)
 				infolink = client.request(url)
-				match_year = re.search('class="jt-info">(\d{4})<', infolink)
+				print ("YMOVIES REQUEST", url)
+				match_year = re.search('<strong>Release:</strong>\s+(\d{4})</p>', infolink)
 				match_year = match_year.group(1)
 				if year in match_year:
-					result = client.parseDOM(infolink, 'div', attrs = {'class': 'jtip-bottom'})
-					for items in result:
-						playurl = client.parseDOM(items, 'a', ret='href')[0]
-						playurl = playurl.encode('utf-8')
-						referer = "%s" % playurl
-						
-						mylink = client.request(referer)
-						i_d = re.findall(r'id: "(.*?)"', mylink, re.I|re.DOTALL)[0]
-						server = re.findall(r'server: "(.*?)"', mylink, re.I|re.DOTALL)[0]
-						type = re.findall(r'type: "(.*?)"', mylink, re.I|re.DOTALL)[0]
-						episode_id = re.findall(r'episode_id: "(.*?)"', mylink, re.I|re.DOTALL)[0]
-						# print ("YMOVIES REQUEST", episode_id)
-						token = self.__get_token()
-						# print ("YMOVIES TOKEN", token)
-						cookies = '%s%s%s=%s' % (self.key1, episode_id, self.key2,token)
-						# print ("YMOVIES cookies", cookies)
-						url_hash = urllib.quote(self.__uncensored(episode_id + self.key, token))
-						# print ("YMOVIES hash", url_hash)
-						url = urlparse.urljoin(self.base_link, self.playlist % (episode_id, url_hash))						
+					playurl = re.findall('<a class="mod-btn mod-btn-watch" href="([^"]+)"', infolink)[0]
+					playurl = playurl.encode('utf-8')
+					referer = "%s" % playurl
+					mylink = client.request(referer)
+					i_d = re.findall(r'id: "(.*?)"', mylink, re.I|re.DOTALL)[0]
+					server = re.findall(r'server: "(.*?)"', mylink, re.I|re.DOTALL)[0]
+					type = re.findall(r'type: "(.*?)"', mylink, re.I|re.DOTALL)[0]
+					episode_id = re.findall(r'episode_id: "(.*?)"', mylink, re.I|re.DOTALL)[0]
+					print ("YMOVIES REQUEST", episode_id)
+					token = self.__get_token()
+					print ("YMOVIES TOKEN", token)
+					cookies = '%s%s%s=%s' % (self.key1, episode_id, self.key2,token)
+					print ("YMOVIES cookies", cookies)
+					url_hash = urllib.quote(self.__uncensored(episode_id + self.key, token))
+					print ("YMOVIES hash", url_hash)
+					url = urlparse.urljoin(self.base_link, self.playlist % (episode_id, url_hash))						
 						
 						
-						request_url = url
-						# print ("YMOVIES REQUEST", request_url)
-						self.zen_url.append([request_url,cookies,referer])
+					request_url = url
+					print ("YMOVIES FINAL URL", request_url)
+					self.zen_url.append([request_url,cookies,referer])
 			return self.zen_url
         except:
             return
@@ -118,7 +116,7 @@ class source:
 				# print ('YMOVIES TV' , seasonlist)
 				
 				mylink = client.request(seasonlist)
-				referer = re.findall(r'<a class="mod-btn mod-btn-watch" href="(.*?)" title="Watch movie">', mylink, re.I|re.DOTALL)[0]
+				referer = re.findall('<a class="mod-btn mod-btn-watch" href="([^"]+)"', mylink)[0]
 				
 				# print ('YMOVIES REFERER' , referer)
 				epurl = client.request(referer)
@@ -192,13 +190,14 @@ class source:
 
 
     def resolve(self, url):
-        if 'requiressl=yes' in url: url = url.replace('http://', 'https://')
-        else: url = url.replace('https://', 'http://')
-        return url
+        try:
+            url = client.request(url, output='geturl')
+            if 'requiressl=yes' in url: url = url.replace('http://', 'https://')
+            else: url = url.replace('https://', 'http://')
+            return url
+        except:
+            return
 		
-
-
-################### CREDITS FOR TKNORRIS for this FIXES ##############################
 		
     def __get_token(self):
         return ''.join(random.sample(string.digits + string.ascii_lowercase, 6))

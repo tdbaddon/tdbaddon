@@ -22,7 +22,7 @@ from resources.lib.modules import directstream
 class source:
     def __init__(self):
         self.domains = ['watchoverhere.tv']
-        self.base_link = 'http://watchoverhere.tv'
+        self.base_link = 'http://oneclickmovies.tv'
         self.search_link = '/ajax/search.php?q=%s'		
 		
     def movie(self, imdb, title, year):
@@ -40,15 +40,15 @@ class source:
 				infotitle = items['title'].encode('utf-8')
 				if cleanmovie == cleantitle.get(infotitle):
 					result = client.request(href)
-					checkimdb = re.findall(r'DataIMDB\(\["([^"]+)"\]\)', result)[0]
+					checkimdb = re.findall(r'IMDB\(\["([^"]+)"\]\)', result)[0]
 					checkimdb = checkimdb.replace('"','')
 					# print ("watchover REQUEST", href, infotitle, checkimdb)
 					if checkimdb == imdb:
-						iframe = re.findall('href="/play.php?([^"]+)', result)
+						iframe = re.findall('SRC="/play.php?([^"]+)', result)
 						# print ("watchover IFRAME", iframe)
 						for frames in iframe:
 							# print ("watchover redirect", frames)
-							redirect = re.findall('&url=(.*?)&domain=', frames)[0]
+							redirect = re.findall('&url=(.+?)&domain=', frames)[0]
 							redirect  = str(redirect)
 							# print ("watchover redirect", redirect)
 							vid_url = base64.b64decode(redirect)
@@ -93,17 +93,17 @@ class source:
 				infotitle = items['title'].encode('utf-8')
 				if cleanmovie == cleantitle.get(infotitle):
 					result = client.request(href)
-					checkimdb = re.findall(r'DataIMDB\(\["([^"]+)"\]\)', result)[0]
+					checkimdb = re.findall(r'IMDB\(\["([^"]+)"\]\)', result)[0]
 					checkimdb = checkimdb.replace('"','')
 					# print ("watchover REQUEST", href, infotitle, checkimdb)
 					if checkimdb == imdb:
 						ep_page = href + ep_query
 						ep_links = client.request(ep_page)
-						iframe = re.findall('href="/play.php?([^"]+)', ep_links)
+						iframe = re.findall('SRC="/play.php?([^"]+)', ep_links)
 						# print ("watchover IFRAME", iframe)
 						for frames in iframe:
 							# print ("watchover redirect", frames)
-							redirect = re.findall('&url=(.*?)&domain=', frames)[0]
+							redirect = re.findall('&url=(.+?)&domain=', frames)[0]
 							redirect  = str(redirect)
 							# print ("watchover redirect", redirect)
 							vid_url = base64.b64decode(redirect)
@@ -119,9 +119,9 @@ class source:
 			sources = []
 			for links in self.zen_url:
 				# print ("YMOVIES SOURCES", movielink, cookies, referer)
-				if self.base_link in links:
+
 					result = client.request(links)
-					match = re.compile("file:\s*'(.*?)',.+?abel:'(.*?)',", re.DOTALL).findall(result)
+					match = re.compile("file:\s*'(.*?)',.+?abel:\s*'(.*?)',", re.DOTALL).findall(result)
 					for url,quality in match: 
 						# print ("WATCHOVER SOURCES", url)
 						if "1080" in quality: quality = "1080p"
@@ -130,21 +130,7 @@ class source:
 						url = client.replaceHTMLCodes(url)
 						url = url.encode('utf-8')
 						sources.append({'source': 'gvideo', 'quality': quality, 'provider': 'Watchover', 'url': url, 'direct': True, 'debridonly': False})
-				else:
-					url = links
-					try:host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(url.strip().lower()).netloc)[0]
-					except: host = 'Openload'
-					
-					else: quality = "SD"								
-					url = client.replaceHTMLCodes(url)
-					url = url.encode('utf-8')														
-					host = client.replaceHTMLCodes(host)
-					host = host.encode('utf-8')										
-
-					
-					url = client.replaceHTMLCodes(url)
-					url = url.encode('utf-8')
-					sources.append({'source': host, 'quality': quality, 'provider': 'Watchover', 'url': url, 'direct': False, 'debridonly': False})					
+				
 			return sources
         except:
             return sources
@@ -153,36 +139,4 @@ class source:
     def resolve(self, url):
 
         return url
-		
-
-
-################### CREDITS FOR TKNORRIS for this FIXES ##############################
-		
-    def __get_token(self):
-        return ''.join(random.sample(string.digits + string.ascii_lowercase, 6))
-    
-    def __uncensored(self, a, b):
-        c = ''
-        i = 0
-        for i, d in enumerate(a):
-            e = b[i % len(b) - 1]
-            d = int(self.__jav(d) + self.__jav(e))
-            c += chr(d)
-    
-        return base64.b64encode(c)
-    
-    def __jav(self, a):
-        b = str(a)
-        code = ord(b[0])
-        if 0xD800 <= code and code <= 0xDBFF:
-            c = code
-            if len(b) == 1:
-                return code
-            d = ord(b[1])
-            return ((c - 0xD800) * 0x400) + (d - 0xDC00) + 0x10000
-    
-        if 0xDC00 <= code and code <= 0xDFFF:
-            return code
-        return code
-		
-		
+	
