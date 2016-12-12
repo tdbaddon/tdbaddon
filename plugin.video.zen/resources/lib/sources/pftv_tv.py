@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 
 '''
-    zen Add-on
-    Copyright (C) 2016 zen
-
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -29,8 +26,8 @@ from resources.lib.modules import proxy
 
 class source:
     def __init__(self):
-        self.domains = ['projectfreetv.im']
-        self.base_link = 'http://projectfreetv.im'
+        self.domains = ['projectfreetv.im', 'projectfreetv.at']
+        self.base_link = 'http://projectfreetv.at'
         self.search_link = '/watch-series/'
 
 
@@ -114,7 +111,7 @@ class source:
 
             r = proxy.request(url, 'add links')
 
-            links = client.parseDOM(r, 'tr')
+            links = re.compile('(<a .+?</a>)', re.MULTILINE|re.DOTALL).findall(r)
 
             for i in links:
                 try:
@@ -147,9 +144,19 @@ class source:
             r = proxy.request(url, 'nofollow')
 
             url = client.parseDOM(r, 'a', ret='href', attrs = {'rel': 'nofollow'})
-            url = [i for i in url if not urlparse.urlparse(self.base_link).netloc in i]
+            url = [i for i in url if 'aff_id' in i][0]
+            url = urlparse.urljoin(self.base_link, url)
+            url = client.replaceHTMLCodes(url)
+            try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['u'][0]
+            except: pass
+            try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['q'][0]
+            except: pass
 
-            url = client.replaceHTMLCodes(url[0])
+            r = proxy.request(url, 'url=')
+
+            url = client.parseDOM(r, 'meta', ret='content')[-1]
+            url = url.split('url=', 1)[-1]
+            url = client.replaceHTMLCodes(url)
             try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['u'][0]
             except: pass
             try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['q'][0]

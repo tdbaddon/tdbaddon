@@ -68,6 +68,7 @@
 		<setting id="provider.pftv" type="bool" label="Pftv" default="true" />
 		<setting id="provider.watchepisodes" type="bool" label="Watchepisodes" default="true" />
 		<setting id="provider.sezonlukdizi" type="bool" label="Sezonlukdizi" default="true" />
+		<setting id="provider.solar" type="bool" label="Solar" default="true" />
 
 		
 		<setting type="lsep" label="Anime - Cartoons" />		

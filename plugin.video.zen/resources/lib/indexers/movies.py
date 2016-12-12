@@ -96,6 +96,7 @@ class movies:
         self.tmdbmarvel_link = 'http://api.themoviedb.org/3/list/11332?api_key=%s' % (self.tmdb_key)
         self.tmdboscars_link = 'http://api.themoviedb.org/3/list/11334?api_key=%s' % (self.tmdb_key)
         self.tmdbdisney_link = 'http://api.themoviedb.org/3/list/11338?api_key=%s' % (self.tmdb_key)
+        self.tmdbxmas_link = 'http://api.themoviedb.org/3/list/12944?api_key=%s' % (self.tmdb_key)
 
 		
         self.mycustomlist1_link = 'http://api.themoviedb.org/3/list/%s?api_key=%s' % (self.tmdbmovielist1_link, self.tmdb_key)
