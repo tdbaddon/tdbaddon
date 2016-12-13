@@ -28,16 +28,25 @@ from resources.lib.libraries.liveParser import *
 class source:
     def __init__(self):
         self.base_link = 'http://swiftstreamz.com'
-        self.live_link = 'http://swiftstreamz.com/SwiftStream/swiftdata.php'
+        self.live_link = base64.b64decode('aHR0cDovL3N3aWZ0c3RyZWFtei5jb20vU3dpZnRTdHJlYW0vc3dpZnRkYXRhLnBocA==')
         self.list = []
         self.fileName = 'swift.json'
-        self.headers={'User-Agent':base64.b64decode('RGFsdmlrLzEuNi4wIChMaW51eDsgVTsgQW5kcm9pZCA0LjQuMjsgU00tRzkwMEYgQnVpbGQvS09UNDlIKQ=='),
-                      'Authorization':base64.b64decode('QmFzaWMgVTNkcFpuUlVaV002UUZOM2FXWjBWR1ZqUUE9PQ==')}
+        self.filePath = os.path.join(control.dataPath, self.fileName)
+        self.headers={'Authorization':base64.b64decode('QmFzaWMgVTNkcFpuUlVaV002UUZOM2FXWjBWR1ZqUUE9PQ==')}
 
-    def getLiveSource(self, generateJSON=False):
+    def removeJSON(self, name):
+        control.delete(self.fileName)
+        return 0
+
+    def getLiveSource(self):
         try :
+            generateJSON = cache.get(self.removeJSON, 168, __name__, table='live_cache')
+            if not os.path.exists(self.filePath):
+                generateJSON = 1
+
             if generateJSON:
-                result = cache.get(self.getSwiftCache, 600000)
+                logger.debug('Generating %s JSON' % __name__, __name__)
+                result = cache.get(self.getSwiftCache, 600000, table='live_cache')
 
                 password = base64.b64encode(result["DATA"][0]["Password"])
                 headers = {'User-Agent':'Dalvik/1.6.0 (Linux; U; Android 4.4.2; SM-G900F Build/KOT49H)',
@@ -50,6 +59,9 @@ class source:
                 channelList = {}
                 for channel in result:
                     title = channel['channel_title']
+                    title = cleantitle.live(title)
+                    if title == 'SKIP':
+                        continue
                     icon = channel['channel_thumbnail']
                     if not icon.startswith('http'):
                         icon = 'http://swiftstreamz.com/SwiftStream/images/thumbs/%s' % icon
@@ -60,31 +72,38 @@ class source:
                 with open(filePath, 'w') as outfile:
                     json.dump(channelList, outfile, sort_keys=True, indent=2)
 
-            fileFetcher = FileFetcher(self.fileName,control.addon)
-            if control.setting('livelocal') == 'true':
-                retValue = 1
-            else :
-                retValue = fileFetcher.fetchFile()
-            if retValue < 0 :
-                raise Exception()
-
             liveParser = LiveParser(self.fileName, control.addon)
-            self.list = liveParser.parseFile()
-            return (retValue, self.list)
+            self.list = liveParser.parseFile(decode=False)
+            return (generateJSON, self.list)
         except:
             pass
 
+    def getSwiftUserAgent(self):
+        import random,string
+        s=eval(base64.b64decode("Wyc0LjQnLCc0LjQuNCcsJzUuMCcsJzUuMS4xJywnNi4wJywnNi4wLjEnLCc3LjAnLCc3LjEuMSdd"))
+
+        usagents=base64.b64decode('RGFsdmlrLzEuNi4wIChMaW51eDsgVTsgQW5kcm9pZCAlczsgJXMgQnVpbGQvJXM=)')%(random.choice(s),''.join(random.SystemRandom().choice(string.ascii_uppercase) for _ in range(8)),''.join(random.SystemRandom().choice(string.ascii_uppercase) for _ in range(6)) )
+        return usagents
+
+    def getSwiftPlayUserAgent(self):
+        result = cache.get(self.getSwiftCache, 600000, table='live_cache')
+        usagents = result["DATA"][0]["Agent"]
+        return usagents
+
     def getSwiftAuth(self, url):
-        result = cache.get(self.getSwiftCache, 600000)
-        if result["DATA"][0]["HelloUrl"] in url or  result["DATA"][0]["HelloUrl1"]  in url:
+        stripping=True
+        result = cache.get(self.getSwiftCache, 600000, table='live_cache')
+        if result["DATA"][0]["HelloUrl"] in url or result["DATA"][0]["HelloUrl1"] in url:
             postUrl=result["DATA"][0]["HelloLogin"]
             auth='Basic %s'%base64.b64encode(result["DATA"][0]["PasswordHello"])
+            stripping=False
         elif result["DATA"][0]["LiveTvUrl"] in url:
             postUrl=result["DATA"][0]["LiveTvLogin"]
             auth='Basic %s'%base64.b64encode(result["DATA"][0]["PasswordLiveTv"])
         elif result["DATA"][0]["nexgtvUrl"] in url:
             postUrl=result["DATA"][0]["nexgtvToken"]
             auth='Basic %s'%base64.b64encode(result["DATA"][0]["nexgtvPass"])
+            stripping=False
         elif '.m3u8' not in url:
             print 'skip auth'
         else:
@@ -92,29 +111,32 @@ class source:
             auth='Basic %s'%base64.b64encode(result["DATA"][0]["Password"])
 
         if postUrl:
-            return cache.get(self.getSwiftAuthToken, 1, postUrl, auth)
+            return cache.get(self.getSwiftAuthToken, 1, postUrl, auth, stripping, table='live_cache')
         return url
 
-    def getSwiftAuthToken(self, postUrl, auth):
+    def getSwiftAuthToken(self, postUrl, auth, stripping):
         logger.debug("Generating new token", __name__)
-        headers={'User-Agent':'Dalvik/1.6.0 (Linux; U; Android 4.4.2; SM-G900F Build/KOT49H)','Authorization':auth}
-        res=client.request(postUrl,headers=headers)
+        headers={'User-Agent':self.getSwiftUserAgent(),'Authorization':auth}
+        res=client.request(postUrl,headers=headers, redirect=False)
         s=list(res)
-        for i in range( (len(s)-59)/12):
-            ind=len(s)-59 + (12*(i))
-            if ind<len(s):
-                print ind
-                s[ind]=''
-        return ''.join(s)
+        if stripping:
+            for i in range( (len(s)-59)/12):
+                ind=len(s)-59 + (12*(i))
+                if ind<len(s):
+                    print ind
+                    s[ind]=''
+        ret= ''.join(s)
+        return '?'+ret.split('?')[1]
 
     def getSwiftCache(self):
         url = self.live_link
+        self.headers['User-Agent'] = self.getSwiftUserAgent()
         result = client.request(url, headers=self.headers)
         result = json.loads(result.replace('\x0a',''))
         return result
 
     def resolve(self, url, resolverList):
         logger.debug('ORIGINAL URL [%s]' % url, __name__)
-        url = '%s%s|%s' % (url, self.getSwiftAuth(url),'User-Agent=eMedia/1.0.0.')
+        url = '%s%s|User-Agent=%s' % (url, self.getSwiftAuth(url),self.getSwiftPlayUserAgent())
         logger.debug('RESOLVED URL [%s]' % url, __name__)
         return url

@@ -30,26 +30,36 @@ from resources.lib.libraries.liveParser import *
 
 class source:
     def __init__(self):
-        self.base_link = 'https://app.dynns.com'
+        self.base_link = 'https://cinefuntv.com'
         self.live_link = 'https://cinefuntv.com/smtalnc/content.php?cmd=content&categoryid=6&device=ios&version=0&key=CYxPIVE9ae'
         self.channel_link = 'https://cinefuntv.com/watchnow.php?content=%s'
         self.list = []
         self.fileName = 'cinefun.json'
+        self.filePath = os.path.join(control.dataPath, self.fileName)
         self.headers={'User-Agent':base64.b64decode('Q0ZVTlRWLzMuMSBDRk5ldHdvcmsvNzU4LjAuMiBEYXJ3aW4vMTUuMC4w')}
 
-    def getLiveSource(self, generateJSON=False):
+    def removeJSON(self, name):
+        control.delete(self.fileName)
+        return 0
+
+    def getLiveSource(self):
         try :
+            generateJSON = cache.get(self.removeJSON, 168, __name__, table='live_cache')
+            if not os.path.exists(self.filePath):
+                generateJSON = 1
+
             if generateJSON:
+                logger.debug('Generating %s JSON' % __name__, __name__)
                 url = self.live_link
                 result = client.request(url, headers=self.headers)
                 result = json.loads(result)
                 channelList = {}
                 for channel in result:
                     title = channel['Title']
+                    title = cleantitle.live(title)
+                    if title == 'SKIP':
+                        continue
                     icon = channel['ThumbnailURL']
-                    #if not channel['HLSURL'] == '' :
-                    #    cUrl = channel['HLSURL']
-                    #else :
                     cUrl = channel['ContentId']
                     channelList[title] ={'icon':icon,'url':cUrl,'provider':'cinefun','source':'cinefun','direct':False, 'quality':'HD', 'content':'live'}
 
@@ -57,18 +67,9 @@ class source:
                 with open(filePath, 'w') as outfile:
                     json.dump(channelList, outfile, sort_keys=True, indent=2)
 
-            fileFetcher = FileFetcher(self.fileName,control.addon)
-
-            if control.setting('livelocal') == 'true':
-                retValue = 1
-            else :
-                retValue = fileFetcher.fetchFile()
-            if retValue < 0 :
-                raise Exception()
-
             liveParser = LiveParser(self.fileName, control.addon)
-            self.list = liveParser.parseFile()
-            return (retValue, self.list)
+            self.list = liveParser.parseFile(decode=False)
+            return (generateJSON, self.list)
         except:
             import traceback
             traceback.print_exc()
@@ -78,6 +79,7 @@ class source:
         logger.debug('ORIGINAL URL [%s]' % url, __name__)
         u = None
 
+        '''
         try :
             #headers = {'User-agent': 'Mozilla/5.0(iPad; U; CPU iPhone OS 3_2 like Mac OS X; en-us) AppleWebKit/531.21.10 (KHTML, like Gecko) Version/4.0.4 Mobile/7B314 Safari/531.21.10'}
             agent = cache.get(client.randomagent, 1)
@@ -88,11 +90,12 @@ class source:
             url = u
         except:
             u = None
+        '''
 
         if u == None:
             try :
-                headers = {'User-agent': 'CFUNTV/3.1 CFNetwork/758.0.2 Darwin/15.0.0'}
-                result = client.request('https://cinefuntv.com/smtalnc/content.php?cmd=details&@&device=ios&version=0&contentid=%s&sid=&u=c3281930@trbvn.com' % url, headers=headers)
+                headers = {'User-agent': base64.b64decode('Q0ZVTlRWLzMuMSBDRk5ldHdvcmsvNzU4LjAuMiBEYXJ3aW4vMTUuMC4w')}
+                result = client.request(base64.b64decode('aHR0cHM6Ly9jaW5lZnVudHYuY29tL3NtdGFsbmMvY29udGVudC5waHA/Y21kPWRldGFpbHMmQCZkZXZpY2U9aW9zJnZlcnNpb249MCZjb250ZW50aWQ9JXMmc2lkPSZ1PWMzMjgxOTMwQHRyYnZuLmNvbQ==')%url, headers=headers, redirect=False)
                 links = json.loads(result)
                 u = links[0]['HLSURL']
                 if u == '' :
@@ -102,6 +105,6 @@ class source:
                 u += "|%s" % urllib.urlencode({'User-Agent':'AppleCoreMedia/1.0.0.13A452 (iPhone; U; CPU OS 9_0_2 like Mac OS X; en_gb)'})
                 url = u
             except:
-                u = None
+                url = None
         logger.debug('RESOLVED URL [%s]' % url, __name__)
         return url

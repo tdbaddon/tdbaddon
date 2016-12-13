@@ -44,10 +44,8 @@ class source:
 
             liveParser = LiveParser(self.fileName, control.addon)
             self.list = liveParser.parseFile()
-            logger.debug(self.list)
             return (retValue, self.list)
-        except Exception as e:
-            logger.error(e)
+        except :
             pass
 
     def resolve(self, url, resolverList):

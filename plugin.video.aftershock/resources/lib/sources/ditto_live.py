@@ -34,51 +34,51 @@ class source:
         self.base_link = 'http://www.dittotv.com'
         self.live_link = 'http://origin.dittotv.com/livetv/all/0'
         self.channel_link = 'http://origin.dittotv.com%s'
-        self.poster_link = 'http://dittotv2.streamark.netdna-cdn.com/vod_images/optimized/livetv/%s.jpg'
         self.headers = {'Accept':'text/html,application/xhtml+xml,q=0.9,image/jxr,*/*',
                         'Accept-Language':'en-US,en;q=0.5',
                         'Accept-Encoding':'gzip, deflate',
                         'Connection':'keep-alive',
-                        'User-Agent': cache.get(client.randomagent, 1) ,
+                        'User-Agent': cache.get(client.randomagent, 1, table='live_cache') ,
                         'Referer':'http://www.dittotv.com/livetv'}
         self.list = []
         self.fileName = 'ditto.json'
+        self.filePath = os.path.join(control.dataPath, self.fileName)
 
-    def getLiveSource(self, generateJSON=False):
+    def removeJSON(self, name):
+        control.delete(self.fileName)
+        return 0
+
+    def getLiveSource(self):
         try :
+            generateJSON = cache.get(self.removeJSON, 168, __name__, table='live_cache')
+            if not os.path.exists(self.filePath):
+                generateJSON = 1
 
             if generateJSON:
+                logger.debug('Generating %s JSON' % __name__, __name__)
                 url = self.live_link
 
                 result = client.request(url, headers=self.headers)
                 channels=re.findall('<div class="subpattern.*?\s*<a href="(.*?)" title="(.*?)".*?\s*<img src=".*?".*?\s*<img src="(.*?)"',result)
 
                 channelList = {}
-                for url, title, logo in channels:
+                for url, title, icon in channels:
                     title = title.replace("&amp;","And")
                     title = cleantitle.live(title)
-                    title = title.title()
+                    if title == 'SKIP':
+                        continue
                     if 'temple' in title.lower():
                         continue
                     url = self.channel_link % url
-                    icon = self.poster_link % str(logo)
                     channelList[title] ={'icon':icon,'url':url,'provider':'ditto','source':'ditto','direct':False, 'quality':'HD', 'content':'live'}
 
                 filePath = os.path.join(control.dataPath, self.fileName)
                 with open(filePath, 'w') as outfile:
                     json.dump(channelList, outfile, sort_keys=True, indent=2)
 
-            fileFetcher = FileFetcher(self.fileName,control.addon)
-            if control.setting('livelocal') == 'true':
-                retValue = 1
-            else :
-                retValue = fileFetcher.fetchFile()
-            if retValue < 0 :
-                raise Exception()
-
             liveParser = LiveParser(self.fileName, control.addon)
-            self.list = liveParser.parseFile()
-            return (retValue, self.list)
+            self.list = liveParser.parseFile(decode=False)
+            return (generateJSON, self.list)
         except:
             import traceback
             traceback.print_exc()

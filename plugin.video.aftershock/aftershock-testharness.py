@@ -23,7 +23,14 @@ try :
     params = {'action': 'tvshows', 'url': 'forumdisplay.php?f=176', 'name': 'Colors TV', 'provider': 'desirulez_mv_tv'}
     params = {'tmdb': '0', 'name': 'Dear Life (2016)', 'title': 'Dear Life', 'meta': '{"rating": "8.8", "votes": "12,001", "code": "tt5946128", "cast": [["Shah Rukh Khan", ""], ["Alia Bhatt", ""], ["Angad Bedi", ""], ["Kunal Kapoor", ""]], "plot": "This is the story of Kaira, a budding cinematographer in search of perfect life. A chance encounter with Jug, an unconventional thinker, helps her gain new perspective about life. She discovers that happiness is all about finding comfort in life\'s imperfections.", "mpaa": "UNRATED", "title": "Dear Zindagi", "originaltitle": "Dear Life", "poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BZWQzYWI3ZGMtYzgyYy00OWZkLWEwODYtNGNiMTZhODBkNzUyL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyNjY1MTg4Mzc@._V1_UY98_SX500_AL_.jpg", "next": "http://www.imdb.com/search/title?title_type=feature,tv_movie&num_votes=100,&production_status=released&languages=hi&count=40&start=1&start=1&sort=release_date,desc&page=2&ref_=adv_nxt", "director": "Gauri Shinde", "writer": "Gauri Shinde", "imdb": "tt5946128", "premiered": "2016-11-25", "year": "2016", "duration": "9060", "genre": "Drama / Romance", "trailer": "plugin://plugin.video.aftershock/?action=trailer&name=Dear+Life+%282016%29", "metacache": false}', 'imdb': 'tt5946128', 't': '20161130010806547000', 'year': '2016', 'action': 'play'}
     params = {'action': 'movies', 'url': 'http://www.imdb.com/search/title?title_type=feature,tv_movie&num_votes=100,&production_status=released&languages=hi&count=40&start=1&sort=release_date,desc&start=1'}
+    params = {'action': 'play', 'content': 'live', 'name': 'ABP NEWS'}
 
+    params = {'action': 'play', 'content': 'live', 'name': '& PICTURE HD'}
+    params = {'tmdb': '0', 'episode': '0', 'name': '12th December 2016', 'title': '12th December 2016', 'tvdb': '0', 'season': '10', 'tvshowtitle': 'Bigg Boss 10', 'date': '0', 'meta': '{"tvshowurl": "forums/3994-Bigg-Boss-10", "title": "12th December 2016", "url": "threads/987786-Bigg-Boss-10-12th-December-2016-Watch-Online?s=cc583847a54ad97a7ef547a9da3fcf8f", "season": "10", "tvshowtitle": "Bigg Boss 10", "next": "forums/3994-Bigg-Boss-10/page2?s=cc583847a54ad97a7ef547a9da3fcf8f", "provider": "desirulez_mv_tv", "duration": "1800", "trailer": "plugin://plugin.video.aftershock/?action=trailer&name=Bigg+Boss+10", "name": "12th December 2016"}', 'imdb': '0', 't': '20161212203135593000', 'year': '0', 'action': 'play', 'tvrage': '0', 'alter': '0'}
+    params = {'tmdb': '0', 'episode': '0', 'name': '10th December 2016', 'title': '10th December 2016', 'tvdb': '0', 'season': '9', 'tvshowtitle': 'Jhalak Dikhhla Jaa Season 9', 'date': '0', 'meta': '{"tvshowurl": "forums/4034-Jhalak-Dikhhla-Jaa-Season-9", "title": "10th December 2016", "url": "threads/986369-Jhalak-Dikhhla-Jaa-Season-9-10th-December-2016-Watch-Online?s=584dc5e1564eed456f2a25be7f86e6ea", "season": "9", "tvshowtitle": "Jhalak Dikhhla Jaa Season 9", "next": "forums/4034-Jhalak-Dikhhla-Jaa-Season-9/page2?s=584dc5e1564eed456f2a25be7f86e6ea", "provider": "desirulez_mv_tv", "duration": "1800", "trailer": "plugin://plugin.video.aftershock/?action=trailer&name=Jhalak+Dikhhla+Jaa+Season+9", "name": "10th December 2016"}', 'imdb': '0', 't': '20161213000802688000', 'year': '0', 'action': 'play', 'tvrage': '0', 'alter': '0'}
+
+
+    select = None
 
     try:
         action = params['action']
@@ -128,6 +135,10 @@ try :
     from resources.lib.resolvers import dailymotion
     from resources.lib import resolvers
     from resources.lib.sources import einthusan_mv
+
+
+    from resources.lib.sources import sources
+    sources().play(name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date, meta, url, select)
     #url = einthusan_mv.source().get_sources('9068')
     #result = client.request(url[0]['url'])
     #if result == None: raise Exception()
@@ -137,9 +148,9 @@ try :
     #tvshows.tvshows().get(url, provider=provider, network=name)
     # test search sources
     #source = sources().getSources(name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date, meta)
-    from resources.lib.indexers import movies
-    idx = True
-    movies.movies().get(url, idx, provider, lang)
+    #from resources.lib.indexers import movies
+    #idx = True
+    #movies.movies().get(url, idx, provider, lang)
     #sources.sources().play(name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date, meta, url)
     #from resources.lib.indexers import tvshows
     #tvshows.tvshows().get(url, provider=provider, network=name)
@@ -150,6 +161,27 @@ try :
     #season = 'Bigg Boss Season 9'.lower()
     #season = re.compile('[0-9]+').findall(season)[0]
     #print season
+
+    from resources.lib.indexers import livetv
+    #livetv.channels().get()
+
+    from resources.lib.sources import cinefun_live
+    #cinefun_live.source().resolve("95616", None)
+
+    from resources.lib.sources import iptv_live
+    #iptv_live.source().getLiveSource(True)
+
+    from resources.lib.libraries import control
+    #control.delete('*.json')
+
+    from resources.lib.sources import swift_live
+    #swift_live.source().resolve('http://163.172.142.242:8081/swiftiptv/9xjalwa/playlist.m3u8', None)
+
+    from resources.lib.libraries import cleantitle
+    print cleantitle.live('COLORS TV HD ( ENTERTAINMENT )')
+    print cleantitle.live('COLORS TV INDIA')
+    print cleantitle.live('COLORS TV APAC')
+    print cleantitle.live('COLORS TV (LOCAL TIME)')
 
 
 except:

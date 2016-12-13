@@ -42,7 +42,7 @@ def resolve(url):
 
         src = data['src']
         video_info = re.compile('config.playwire.com/(.+?)/videos/v2/(.+?)/manifest.f4m').findall(src)[0]
-        url = 'http://cdn.phoenix.intergi.com/' + video_info[0] + '/videos/' + video_info[1] + '/video-sd.mp4?hosting_id=' + video_info[0]
+        url = 'http://cdn.phoenix.intergi.com/' + video_info[0] + '/videos/' + video_info[1] + '/video-mobile.mp4?hosting_id=' + video_info[0]
         '''
         try :
             publisherId = data['publisherId']

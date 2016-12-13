@@ -51,9 +51,9 @@ class channels:
             alter=None
             date=None
             meta=None
-            sourceList = cache.get(sources().getSources, 72, name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date, meta)
+            sourceList = cache.get(sources().getSources, 72, name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date, meta, table='live_cache')
 
-            sourceList = dict((cleantitle.live(item['name']),item) for item in sourceList).values()
+            sourceList = dict((item['name'],item) for item in sourceList).values()
 
             self.list.extend(sourceList)
             self.list = sorted(self.list, key=lambda k: k['name'])
@@ -114,4 +114,4 @@ class channels:
 
         control.content(int(sys.argv[1]), 'video')
         control.directory(int(sys.argv[1]), cacheToDisc=False)
-        views.setView('movies', {'skin.confluence': 500})
+        views.setView('movies', {'skin.confluence': control.viewMode['list']})

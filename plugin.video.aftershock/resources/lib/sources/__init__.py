@@ -91,12 +91,9 @@ class sources:
             if control.setting('fanart') == 'true' and not fanart == '0': pass
             else: fanart = control.addonFanart()
 
-            sysimage = urllib.quote_plus(poster.encode('utf-8'))
-
             for i in range(len(items)):
                 try :
                     parts = int(items[i]['parts'])
-                    logger.debug('Download : %s, Parts : %s, Label : %s' % (downloads, parts, label), __name__)
                 except:
                     parts = 1
 
@@ -110,12 +107,10 @@ class sources:
 
                 cm = []
                 cm.append((control.lang(30504).encode('utf-8'), 'RunPlugin(%s?action=queueItem)' % sysaddon))
-                if (downloads == True and parts <= 1):
-                    cm.append((control.lang(30505).encode('utf-8'), 'RunPlugin(%s?action=download&name=%s&image=%s&source=%s)' % (sysaddon, systitle, sysimage, syssource)))
-                #cm.append((infoMenu, 'Action(Info)'))
-                #cm.append((control.lang(30506).encode('utf-8'), 'RunPlugin(%s?action=refresh)' % sysaddon))
-                #cm.append((control.lang(30507).encode('utf-8'), 'RunPlugin(%s?action=openSettings)' % sysaddon))
-                #cm.append((control.lang(30508).encode('utf-8'), 'RunPlugin(%s?action=openPlaylist)' % sysaddon))
+                if content != 'live':
+                    if downloads == True and parts <= 1:
+                        sysimage = urllib.quote_plus(poster.encode('utf-8'))
+                        cm.append((control.lang(30505).encode('utf-8'), 'RunPlugin(%s?action=download&name=%s&image=%s&source=%s)' % (sysaddon, systitle, sysimage, syssource)))
                 item.setArt({'icon': thumb, 'thumb': thumb, 'poster': poster, 'tvshow.poster': poster, 'season.poster': poster, 'banner': banner, 'tvshow.banner': banner, 'season.banner': banner})
 
                 if not fanart == None: item.setProperty('Fanart_Image', fanart)
@@ -150,15 +145,18 @@ class sources:
 
             items = self.sourcesFilter()
             if len(items) > 0:
-                select = control.setting('host_select') if select == None else select
+
 
                 try :
                     if content == 'live':
-                        select = control.setting('live_host_select')
+                        if select == None:
+                            select = control.setting('live_host_select')
                         select = '2' if len(items) == 1 else select
                         title = name
                         meta = self.sources[0]['meta']
                         logger.debug('Content is live hence setting %s' % select, __name__)
+                    else:
+                        select = control.setting('host_select') if select == None else select
                 except:
                     pass
 
@@ -341,6 +339,7 @@ class sources:
 
             for source in sourceDict: threads.append(workers.Thread(self.getEpisodeSource, title, year, imdb, tvdb, season, episode, tvshowtitle, date, re.sub('_mv_tv$|_mv$|_tv$', '', source), __import__(source, globals(), locals(), [], -1).source(), meta))
         elif content == 'live':
+            self.getLivePoster('9X JALWA')
             for source in sourceDict:threads.append(workers.Thread(self.getLiveSource,channelName, re.sub('_live$', '', source), __import__(source, globals(), locals(), [], -1).source()))
 
 
@@ -523,7 +522,6 @@ class sources:
             client.printException('sources.getEpisodeSource')
             pass
 
-
     def getLiveSource(self, name, source, call):
         try:
             dbcon = database.connect(self.sourceFile)
@@ -532,7 +530,11 @@ class sources:
         except:
             pass
 
-        retValue, sources = call.getLiveSource()
+        if name == None:
+            retValue, sources = call.getLiveSource()
+        else:
+            name = name.upper()
+            retValue = 0
 
         if retValue == 1:
             try:
@@ -542,12 +544,15 @@ class sources:
 
                 idx = 0
                 for item in sources:
-                    item['name'] = cleantitle.live(item['name'])
                     poster = self.getLivePoster(item['name'])
                     if not poster == None :
                         item['poster'] = poster
+                    else:
+                        item['poster'] = '0'
                     meta = {"poster":poster, "iconImage":poster, 'thumb': poster}
                     item['meta'] = json.dumps(meta)
+                    if '||' in item['name']:
+                        item['name'] = item['name'].split('||')[0]
                     dbcur.execute("INSERT INTO rel_live Values (?, ?, ?, ?, ?, ?)", (source, item['name'], 'live', str(idx), json.dumps(item), datetime.datetime.now().strftime("%Y-%m-%d %H:%M")))
                     idx = idx + 1
                     dbcon.commit()
@@ -563,7 +568,7 @@ class sources:
                     logger.debug('Fetched sources from cache for [%s]'% name, call.__class__)
                     sources = json.loads(match[4])
                     self.sources.append(sources)
-                    return self.sources
+                return self.sources
             except:
                 logger.debug('Source from cache not found for [%s]'% name, call.__class__)
                 pass
@@ -584,6 +589,7 @@ class sources:
                     self.sources.append(sources)
             return self.sources
         except Exception as e:
+
             logger.error('(%s) Exception Live sources : %s' % (call.__class__, e.args))
             pass
     def getLivePoster(self, source):
@@ -610,7 +616,7 @@ class sources:
             if update == True:
                 from resources.lib.sources import live_logo
 
-                postersList = cache.get(live_logo.source().getLivePosters, 200)
+                postersList = cache.get(live_logo.source().getLivePosters, 200, table='live_cache')
                 try :
                     poster_url = postersList[source]
                 except:
@@ -846,8 +852,10 @@ class sources:
     def sourcesResolve(self, item):
         try:
             logger.debug('selected url : %s' % item['url'], __name__)
+            logger.debug('selected item : %s' % item, __name__)
             u = url = item['url']
             provider = item['provider'].lower()
+
 
             d = item['debrid'] ; direct = item['direct']
 
@@ -865,6 +873,14 @@ class sources:
 
                 source = __import__(provider, globals(), locals(), [], -1).source()
                 u = source.resolve(url, self.resolverList)
+                if 'plugin.video.f4mTester' in u:
+                    try :
+                        title = item['name']
+                        title = urllib.quote_plus(title.encode('utf-8'))
+                        iconImage = item['poster']
+                    except:
+                        pass
+                    u += '&name=%s&iconImage=%s' % (title, iconImage)
                 logger.debug('Resolved through provider [%s]' % u ,__name__)
                 if u == False: raise Exception()
 

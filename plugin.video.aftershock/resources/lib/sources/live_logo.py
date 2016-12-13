@@ -65,7 +65,7 @@ class source:
                     self.list[channel] = posterUrl
                 else :
                     self.list[channel] = os.path.join(artPath, posterUrl)
-                print self.list[channel]
+                #print self.list[channel]
             return self.list
         except:
             import traceback

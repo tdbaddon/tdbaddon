@@ -24,7 +24,7 @@
 
 	<category label="30862">
 		<setting id="apnaview" type="bool" label="ApnaView" default="true" />
-		<setting id="badtameezdil" type="bool" label="Bad" default="false" />
+		<setting id="badtameezdil" type="bool" label="Bad" default="true" />
 		<setting id="cinefun" type="bool" label="CineFun" visible="true" default="true" />
 		<setting id="crazy4ad" type="bool" label="CRAZY4AD" visible="false" default="true" />
 		<setting id="desihdmovies" type="bool" label="DesiHDMovies" default="true" />
@@ -42,6 +42,7 @@
 		<setting id="hotstar" type="bool" label="HotStar" default="true" />
 		<setting id="ibollytv" type="bool" label="iBollyTV" default="true" />
 		<setting id="json" type="bool" label="json" visible="false" default="true" />
+		<setting id="iptv" type="bool" label="IPTV" visible="false" default="true" />
 		<setting id="miradetodo" type="bool" label="Miradetodo" default="true" />
 		<setting id="movie25" type="bool" label="Movie25" default="true" />
 		<setting id="movies14" type="bool" label="Movies14" default="true" />

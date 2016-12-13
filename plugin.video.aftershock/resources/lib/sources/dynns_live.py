@@ -40,12 +40,20 @@ class source:
         self.deviceId = None
         self.ipAddress = None
         self.fileName = 'dynns.json'
+        self.filePath = os.path.join(control.dataPath, self.fileName)
 
-    def getLiveSource(self, generateJSON=False):
+    def removeJSON(self, name):
+        control.delete(self.fileName)
+        return 0
+
+    def getLiveSource(self):
         try :
+            generateJSON = cache.get(self.removeJSON, 168, __name__, table='live_cache')
+            if not os.path.exists(self.filePath):
+                generateJSON = 1
 
             if generateJSON:
-
+                logger.debug('Generating %s JSON' % __name__, __name__)
                 url = urlparse.urljoin(self.base_link,self.ip_check)
 
                 result = client.request(url, headers=self.headers)
@@ -61,7 +69,7 @@ class source:
                 token=base64.b64encode(base64.b64decode('JXNAMm5kMkAlcw==') % (str(first),second))
 
                 headers = {'Authorization': base64.b64decode('QmFzaWMgWVdSdGFXNDZRV3hzWVdneFFBPT0='),
-                           base64.b64decode("VXNlci1BZ2VudA=="):cache.get(self.getDeviceID, 600000)}
+                           base64.b64decode("VXNlci1BZ2VudA=="):cache.get(self.getDeviceID, 600000, table='live_cache')}
 
                 url = 'https://app.dyndns.tv/app_panelnew/output.php/playlist?type=xml&deviceSn=%s&token=%s' % (self.deviceId, token)
 
@@ -76,7 +84,8 @@ class source:
                     if category == 'Indian':
                         title = client.parseDOM(channel,"programTitle")[0]
                         title = cleantitle.live(title)
-                        title = title.title()
+                        if title == 'SKIP':
+                            continue
                         poster = client.parseDOM(channel, "programImage")[0]
                         url = client.parseDOM(channel, "programURL")[0]
                         channelList[title] ={'icon':poster,'url':url,'provider':'dynns','source':'dynns','direct':False, 'quality':'HD'}
@@ -85,18 +94,12 @@ class source:
                 with open(filePath, 'w') as outfile:
                     json.dump(channelList, outfile, sort_keys=True, indent=2)
 
-            fileFetcher = FileFetcher(self.fileName,control.addon)
-            if control.setting('livelocal') == 'true':
-                retValue = 1
-            else :
-                retValue = fileFetcher.fetchFile()
             liveParser = LiveParser(self.fileName, control.addon)
-            self.list = liveParser.parseFile()
+            self.list = liveParser.parseFile(decode=False)
 
-            return (retValue, self.list)
+            return (generateJSON, self.list)
         except:
-            import traceback
-            traceback.print_exc()
+
             pass
 
     def resolve(self, url, resolverList):
@@ -125,7 +128,7 @@ class source:
     def getUserAgent(self, option):
         useragent=''
         if option == 0:
-            headers={'User-Agent':cache.get(self.getDeviceID, 8),
+            headers={'User-Agent':cache.get(self.getDeviceID, 8, table='live_cache'),
                      'Authorization':base64.b64decode('QmFzaWMgWVcxMU9rQmtia0J1T0RRNQ==')}
             return client.request('https://app.dynns.com/keys/pakindiahdv2ff.php',headers=headers)
         elif option==1:
@@ -133,9 +136,9 @@ class source:
                      'Authorization':base64.b64decode('QmFzaWMgWVcxMU9rQmtia0J1T0RRNQ==')}
             useragent = client.request(base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2tleXMvYXJhYmljdHZoZHYxcC5waHA='),headers=headers)
         elif option == -1:
-            return cache.get(self.getDeviceID, 8)
+            return cache.get(self.getDeviceID, 8, table='live_cache')
         else:
-            headers={'User-Agent':cache.get(self.getDeviceID, 8),
+            headers={'User-Agent':cache.get(self.getDeviceID, 8, table='live_cache'),
                      'Authorization':base64.b64decode('QmFzaWMgWVcxMU9rQmtia0J1T0RRNQ==')}
             useragent = client.request(base64.b64decode('aHR0cHM6Ly9hcHAuZHlubnMuY29tL2tleXMvYXJhYmljdHZoZHYxZmYucGhw'),headers=headers)
         logger.debug('UserAgent : %s' % useragent, __name__)
@@ -162,7 +165,7 @@ class source:
             dd=base64.b64decode("c2VydmVyX3RpbWU9JXMmaGFzaF92YWx1ZT0lcyZ2YWxpZG1pbnV0ZXM9JXM=")%(timesegment,base64.b64encode(hashlib.md5(s).hexdigest().lower()),validtime )
             url=(url%filename)+base64.b64encode(dd)
 
-            headers={'User-Agent':cache.get(self.getDeviceID, 600000)}
+            headers={'User-Agent':cache.get(self.getDeviceID, 600000, table='live_cache')}
             res = client.request(url, headers=headers)
             s=list(res)
             for i in range( (len(s)-59)/12):

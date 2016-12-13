@@ -29,6 +29,7 @@ class LiveParser(object):
 
     def parseFile(self, decode=True):
         try :
+            logger.debug(self.filePath, __name__)
             filename = open(self.filePath)
             result = filename.read()
             filename.close()
@@ -49,14 +50,17 @@ class LiveParser(object):
                 try : quality = channelObj['quality']
                 except : quality = 'HD'
                 if not enabled == 'false':
-                    channelName = cleantitle.live(channel).title()
+                    channelName = channel.upper()
                     try :
                         if channelObj['direct'] == 'true': channelObj['direct'] = True
                         else : channelObj['direct'] = False
                     except:
                         channelObj['direct'] = True
 
-                    liveList.append({'name':channelName, 'poster':channelObj['icon'],'url':channelObj['url'],'provider':channelObj['provider'],'source':channelObj['provider'],'direct':channelObj['direct'], 'quality':quality})
+                    try : source = channelObj['source']
+                    except: source = channelObj['provider']
+
+                    liveList.append({'name':channelName, 'poster':channelObj['icon'],'url':channelObj['url'],'provider':channelObj['provider'],'source':source,'direct':channelObj['direct'], 'quality':quality})
             return liveList
-        except:
+        except :
             pass

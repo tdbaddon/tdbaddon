@@ -83,12 +83,9 @@ class navigator:
             cache.clear(['rel_src', 'rel_url'], control.sourcescacheFile)
         elif url == 'live' :
             from resources.lib.libraries import cache
-            control.delete('static.json')
-            control.delete('ditto.json')
-            control.delete('cinefun.json')
-            control.delete('dynns.json')
-            control.delete('swift.json')
+            control.deleteAll('.json')
             cache.clear(['rel_live','rel_logo'], control.sourcescacheFile)
+            cache.clear(['live_cache'])
         elif url == 'meta':
             from resources.lib.libraries import cache
             cache.clear(['meta', 'meta_imdb'], control.metacacheFile)

@@ -180,6 +180,7 @@ class source:
                     for j in range(0,len(urls)):
                         videoID = getVideoID(urls[j])
                         result = client.request(self.info_link%videoID)
+                        result = result.decode('iso-8859-1').encode('utf-8')
                         item = client.parseDOM(result, name="div", attrs={"style":"float:none;height:700px;margin-left:200px"})[0]
                         rUrl = re.compile('(SRC|src|data-config)=[\'|\"](.+?)[\'|\"]').findall(item)[0][1]
                         if not rUrl.startswith('http:'):
@@ -189,7 +190,8 @@ class source:
                     url = "##".join(urls)
                     sources.append({'source':host, 'parts': str(len(urls)), 'quality':quality,'provider':'YoDesi','url':url, 'direct':False})
                     urls = []
-                except:
+                except Exception as e:
+                    logger.error(e)
                     pass
             logger.debug('SOURCES [%s]' % sources, __name__)
             return sources

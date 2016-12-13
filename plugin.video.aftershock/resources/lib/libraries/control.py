@@ -127,6 +127,7 @@ cacheFile = os.path.join(dataPath, 'cache.db')
 # Media info    xbmc.executebuiltin('Container.SetViewMode(504)')
 # Media info 2  xbmc.executebuiltin('Container.SetViewMode(503)')
 # Media info 3  xbmc.executebuiltin('Container.SetViewMode(515)')
+
 viewMode = {'list':502, 'biglist':51, 'thumbnails':500, 'posterwrap':501, 'fanart':508, 'mediainfo1':504,'mediainfo2':503, 'mediainfo3':515}
 
 def artwork():
@@ -229,6 +230,17 @@ def delete(fileName):
         filePath = os.path.join(dataPath, fileName)
         if xbmcvfs.exists(filePath):
             xbmcvfs.delete(filePath)
+        return '1'
+    except:
+        return '1'
+
+def deleteAll(extn):
+    try :
+        dirs, files = xbmcvfs.listdir(dataPath)
+        for file in files:
+            if extn in file:
+                filePath = os.path.join(dataPath, file)
+                xbmcvfs.delete(filePath)
         return '1'
     except:
         return '1'

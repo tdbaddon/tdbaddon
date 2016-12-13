@@ -2080,7 +2080,7 @@ def AddPITVSports(url=None):
 
 def AddFastSport(url=None):   
     if url=="sss":
-        cats='9'
+        cats='10'
         isSports=True
         addDir(Colored('>>Click here for All Categories<<'.capitalize(),'red') ,"fasttv",66 ,'', False, True,isItFolder=True)
     else:
@@ -4298,7 +4298,7 @@ def AddChannelsFromOthers(cctype,eboundMatches=[],progress=None):
         CFgen="4"
         YPgen=base64.b64decode("aHR0cDovL3d3dy55dXBwdHYuY29tL3VyZHUtdHYuaHRtbA==")
         UKTVGenCat,UKTVGenCH=['religious','news','food'], ['masala tv', 'ary digital', 'ary zindagi','hum tv','drama','express ent.']
-        fastgen=['1','10']
+        fastgen=['1','11']
     elif cctype==2:
         pg='indian'
         iptvgen="indian"
@@ -4825,6 +4825,9 @@ def clearCache():
     fname='Fastdata.json'
     fname=os.path.join(profile_path, fname)
     files+=[fname]     
+    fname='FastCats.json'
+    fname=os.path.join(profile_path, fname)
+    files+=[fname]        
      
     
     
