@@ -692,7 +692,7 @@ class resolver:
             except:    
                 url = common.parseDOM(result, "iframe", ret="src")[0]
                 
-            if url.startswith("//livetv"): url = re.search("=(https?://.+)", url).groups()[0]
+            if '=http' in url: url = re.search("=(https?://.+)", url).groups()[0]
             elif url.startswith("//"): url = 'http:%s' % url
             
             if 'video.nhl.com' in url: url = self.nhl(url)

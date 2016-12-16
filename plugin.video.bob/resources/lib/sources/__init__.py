@@ -194,7 +194,7 @@ class sources:
             except:
                 continue
             if resolved_url and (
-                resolved_url.startswith("plugin;//") or sources().check_playable(resolved_url) is not None):
+                resolved_url.startswith("plugin://") or sources().check_playable(resolved_url) is not None):
                 url = resolved_url
                 return url
 
@@ -210,7 +210,7 @@ class sources:
             except:
                 continue
             if resolved_url and (
-                        resolved_url.startswith("plugin;//") or sources().check_playable(resolved_url) is not None):
+                        resolved_url.startswith("plugin://") or sources().check_playable(resolved_url) is not None):
                 url = resolved_url
                 return url
 
@@ -286,7 +286,7 @@ class sources:
                     except:
                         continue
                     if resolved_url and (
-                                resolved_url.startswith("plugin;//") or sources().check_playable(
+                                resolved_url.startswith("plugin://") or sources().check_playable(
                                 resolved_url) is not None):
                         url = resolved_url
                         return url
@@ -303,7 +303,7 @@ class sources:
                     except:
                         continue
                     if resolved_url and (
-                                resolved_url.startswith("plugin;//") or sources().check_playable(
+                                resolved_url.startswith("plugin://") or sources().check_playable(
                                 resolved_url) is not None):
                         url = resolved_url
                         return url

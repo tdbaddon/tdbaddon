@@ -30,14 +30,17 @@ class source:
     def movie(self, imdb, title, year):
 		try:
 			self.url = []
-			headers = {'User-Agent': random_agent()}
+			headers = {'Accept-Language': 'en-US,en;q=0.5', 'User-Agent': random_agent()}
 			title = cleantitle.getsearch(title)
 			cleanmovie = cleantitle.get(title)
 			query = self.search_link % (urllib.quote_plus(title),year)
 			query = urlparse.urljoin(self.base_link, query)
+			# print("CMOVIES query", query)
 			link =rq.get(query, headers=headers, timeout=10).text
+			# print("CMOVIES url", link)
 			r = client.parseDOM(link, 'div', attrs = {'class': 'ml-item'})
 			for links in r:
+				# print("CMOVIES LINKS", links)
 				pageurl = client.parseDOM(links, 'a', ret='href')[0]
 				info = client.parseDOM(links, 'a', ret='rel')[0]
 				title = client.parseDOM(links, 'a', ret='title')[0]
@@ -65,7 +68,7 @@ class source:
 								self.url.append([vidlinks,referer])
 							except:
 								pass
-			print("CMOVIES PASSED LINKS", self.url)
+			# print("CMOVIES PASSED LINKS", self.url)
 			return self.url
 		except:
 			return self.url
@@ -82,7 +85,7 @@ class source:
     def episode(self, url, imdb, tvdb, title, premiered, season, episode):
 		try:
 			self.url = []
-			headers = {'User-Agent': random_agent()}
+			headers = {'Accept-Language': 'en-US,en;q=0.5', 'User-Agent': random_agent()}
 			data = urlparse.parse_qs(url)
 			data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
 			title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
@@ -129,7 +132,7 @@ class source:
 			sources = []
 			for movielink,referer in self.url:
 				try:
-					headers = {'User-Agent': random_agent()}
+					headers = {'Accept-Language': 'en-US,en;q=0.5', 'User-Agent': random_agent()}
 					referer = referer
 					pages = rq.get(movielink, headers=headers, timeout=10).text
 					scripts = re.findall('hash\s*:\s*"([^"]+)', pages)[0]
@@ -140,7 +143,7 @@ class source:
 						cookie = '%s=%s' % (key, token)	
 						stream_url = self.stream_link % (scripts, hashlib.md5('!@#$%^&*(' + token).hexdigest())
 						# print("CMOVIES PLAYABLE LINKS", stream_url)
-						headers = {'Referer': referer, 'User-Agent': random_agent(), 'Cookie': cookie}
+						headers = {'Accept-Language': 'en-US,en;q=0.5', 'Referer': referer, 'User-Agent': random_agent(), 'Cookie': cookie}
 						req = rq.get(stream_url, headers=headers, timeout=5).json()
 						playlist = req['playlist'][0]['sources']
 						for item in playlist:

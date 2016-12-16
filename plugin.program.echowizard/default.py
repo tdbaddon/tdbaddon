@@ -112,6 +112,7 @@ CONTACTS            = BASEURL + base64.b64decode(b'b3RoZXIvY29udGFjdGxpc3QudHh0'
 SUPPORT             = BASEURL + base64.b64decode(b'b3RoZXIvc3VwcG9ydC50eHQ=')
 CREDITS             = BASEURL + base64.b64decode(b'Y3JlZGl0cy93aXphcmQudHh0')
 NEWS                = BASEURL + base64.b64decode(b'b3RoZXIvbmV3cy50eHQ=')
+DONATIONS_URL       = BASEURL + base64.b64decode(b'b3RoZXIvZG9uYXRpb25zLnR4dA==')
 SERVER_CHECKER      = BASEURL + base64.b64decode(b'ZG93bi50eHQ=')
 SERVER_CHECK        = BASEURL + base64.b64decode(b'Y2hlY2tlci50eHQ=')
 ADD_COMMUNITY       = BASEURL + base64.b64decode(b'b3RoZXIvYWRkX2NvbW11bml0eS50eHQ=')
@@ -312,11 +313,12 @@ def INDEX():
 
 	if offline == 0:
 		Common.addItem('[COLOR ghostwhite][B]LATEST NEWS[/B][/COLOR]',BASEURL,106,ICON,FANART,'')
+		Common.addItem('[COLOR ghostwhite][B]DONATIONS: [COLOR yellowgreen]paypal.me/echocoder[/COLOR][/B][/COLOR]',BASEURL,172,ICON,FANART,'')
 		#if yt_error == 0:
 			#Common.addItem('[COLOR ghostwhite][B]LATEST VIDEO: [/COLOR][COLOR yellowgreen]' + item["name"] + '[/B][/COLOR]',item["url"],95,item["iconimage"],FANART,'')
-		Common.addDir('[COLOR ghostwhite][B]ALL OFFICIAL ECHO YOUTUBE VIDEOS[/B][/COLOR]',BASEURL,60,YOUTUBE_ICON,FANART,'')
 		Common.addItem('[COLOR ghostwhite][B]YOUTUBE: [/B][/COLOR][COLOR yellowgreen][B]echocoder.com/youtube[/B][/COLOR]',BASEURL,4,BUILD_ICON,FANART,'')
 		Common.addItem('[COLOR ghostwhite][B]TWITTER: [/B][/COLOR][COLOR yellowgreen][B]@ECHO_CODING[/B][/COLOR]',BASEURL,4,BUILD_ICON,FANART,'')
+		Common.addDir('[COLOR ghostwhite][B]ALL OFFICIAL ECHO YOUTUBE VIDEOS[/B][/COLOR]',BASEURL,60,YOUTUBE_ICON,FANART,'')
 		Common.addItem('[COLOR yellowgreen][B]CHECK FOR UPDATES[/B][/COLOR]',BASEURL,165,ICON,FANART,'')
 		if pleasecheck == 1:
 			Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
@@ -1147,6 +1149,15 @@ def LATEST_NEWS():
 	Common.TextBoxesPlain("%s" % f.text)
 
 #######################################################################
+#					ECHO DONATIONS
+#######################################################################
+
+def DONATIONS_LINK():
+
+	f = requests.get(DONATIONS_URL)
+	Common.TextBoxesPlain("%s" % f.text)
+
+#######################################################################
 #					ECHO WIZARD CREDITS
 #######################################################################
 
@@ -1805,5 +1816,8 @@ elif mode==170:
 
 elif mode==171:
         installer.INSTALLAPK_INSTALLER(name,url,description)
+
+elif mode==172:
+		DONATIONS_LINK()
 
 xbmcplugin.endOfDirectory(int(sys.argv[1]))

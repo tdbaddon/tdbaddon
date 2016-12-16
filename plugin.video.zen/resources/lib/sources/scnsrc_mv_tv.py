@@ -25,6 +25,10 @@ from resources.lib.modules import control
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 debridstatus = control.setting('debridsources')
+from resources.lib.modules.common import  random_agent
+import requests
+from BeautifulSoup import BeautifulSoup
+
 class source:
     def __init__(self):
         self.domains = ['scnsrc.me']
@@ -35,25 +39,31 @@ class source:
     def movie(self, imdb, title, year):
         self.zen_url = []
         try:
-			if not debridstatus == 'true': raise Exception()			
-			self.zen_url = []
-			title = cleantitle.getsearch(title)
-			cleanmovie = cleantitle.get(title)
-			query = self.search_link % (urllib.quote_plus(title),year)
-			query = urlparse.urljoin(self.base_link, query)
-			query = query + "&x=0&y=0"
-			link = client.request(query)
-			r = client.parseDOM(link, 'div', attrs = {'class': 'post'})
-			for item in r:
-				match = re.compile('<a href="(.*?)" rel="bookmark" title="(.*?)">').findall(item)
-				for url,title in match:
-					title = cleantitle.get(title)
-					if year in title:
-						if cleanmovie in title:
-						
-							self.zen_url.append([url,title])
-							print "SCNSRC MOVIES %s %s" % (title , url)
-			return self.zen_url
+            if not debridstatus == 'true': raise Exception()			
+            self.zen_url = []
+           
+            cleanmovie = cleantitle.get(title)
+            title = cleantitle.getsearch(title)
+            query = self.search_link % (urllib.quote_plus(title),year)
+            query = urlparse.urljoin(self.base_link, query)
+            query = query + "&x=0&y=0"
+            headers = {'User-Agent': random_agent()}
+            html = BeautifulSoup(requests.get(query, headers=headers, timeout=30).content)
+           
+            result = html.findAll('div', attrs={'class': 'post'})
+
+            for r in result:
+				r_href = r.findAll('a')[0]["href"]
+				r_href = r_href.encode('utf-8')
+                # print ("MOVIEXK r2", r_href)
+				r_title = r.findAll('a')[0]["title"]
+                # print ("MOVIEXK r3", r_title)
+				r_title = r_title.encode('utf-8')			
+				if year in r_title:
+					if cleanmovie in cleantitle.get(r_title):
+						self.zen_url.append([r_href,r_title])
+						# print "SCNSRC MOVIES %s %s" % (r_title , r_href)
+            return self.zen_url
         except:
             return
 			
@@ -69,33 +79,37 @@ class source:
     def episode(self, url, imdb, tvdb, title, premiered, season, episode):
         self.zen_url = []
         try:
-			if not debridstatus == 'true': raise Exception()
-			data = urlparse.parse_qs(url)
-			data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
-			title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
-			title = cleantitle.getsearch(title)
-			cleanmovie = cleantitle.get(title)
-			data['season'], data['episode'] = season, episode
+            if not debridstatus == 'true': raise Exception()
+            data = urlparse.parse_qs(url)
+            data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
+            title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
 			
-			episodecheck = 'S%02dE%02d' % (int(data['season']), int(data['episode']))
-			episodecheck = str(episodecheck).lower()
-			query = 'S%02dE%02d' % (int(data['season']), int(data['episode']))
-			query = self.search_link % (urllib.quote_plus(title),query)
-			query = urlparse.urljoin(self.base_link, query)
-			query = query + "&x=0&y=0"	
+            cleanmovie = cleantitle.get(title)
+            title = cleantitle.getsearch(title)
+            data['season'], data['episode'] = season, episode
 			
-			link = client.request(query)
-			r = client.parseDOM(link, 'div', attrs = {'class': 'post'})
-			for item in r:
-				match = re.compile('<a href="(.*?)" rel="bookmark" title="(.*?)">').findall(item)
-				for url,title in match:
-					title = cleantitle.get(title)
-					if cleanmovie in title:
-						if episodecheck in title:
-							self.zen_url.append([url,title])
-							# print "SCNSRC MOVIES %s %s" % (title , url)
-							
-			return self.zen_url
+            episodecheck = 'S%02dE%02d' % (int(data['season']), int(data['episode']))
+            episodecheck = str(episodecheck).lower()
+            query = 'S%02dE%02d' % (int(data['season']), int(data['episode']))
+            query = self.search_link % (urllib.quote_plus(title),query)
+            query = urlparse.urljoin(self.base_link, query)
+            query = query + "&x=0&y=0"	
+            headers = {'User-Agent': random_agent()}
+            html = BeautifulSoup(requests.get(query, headers=headers, timeout=30).content)
+           
+            result = html.findAll('div', attrs={'class': 'post'})
+
+            for r in result:
+				r_href = r.findAll('a')[0]["href"]
+				r_href = r_href.encode('utf-8')
+                # print ("MOVIEXK r2", r_href)
+				r_title = r.findAll('a')[0]["title"]
+                # print ("MOVIEXK r3", r_title)
+				r_title = r_title.encode('utf-8')			
+				if episodecheck in r_title.lower():
+					if cleanmovie in cleantitle.get(r_title):
+						self.zen_url.append([r_href,r_title])
+            return self.zen_url
         except:
             return			
 			
@@ -104,12 +118,14 @@ class source:
         try:
 			sources = []
 			for movielink,title in self.zen_url:
-				mylink = client.request(movielink)
-				r = client.parseDOM(mylink, 'div', attrs = {'class': 'comm_content'})[:3]
-				for links in r:
-					
-					movielinks = client.parseDOM(links, 'a', ret='href')		
-					for url in movielinks:
+
+				headers = {'User-Agent': random_agent()}
+				html = BeautifulSoup(requests.get(movielink, headers=headers, timeout=15).content)
+				result = html.findAll('div', attrs={'class': 'comm_content'})[:3]
+				for r in result:
+					r_href = r.findAll('a')
+					for items in r_href:
+						url = items['href'].encode('utf-8')
 						if "1080" in url: quality = "1080p"
 						elif "720" in url: quality = "HD"
 						else: quality = "SD"
