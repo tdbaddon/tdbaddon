@@ -104,6 +104,8 @@ libcacheFile = os.path.join(dataPath, 'library.db')
 metacacheFile = os.path.join(dataPath, 'meta.db')
 
 cacheFile = os.path.join(dataPath, 'cache.db')
+userFile = 'https://offshoregit.com/vineegu/aftershock-repo/guides/user.db'
+#userFile = os.path.join(dataPath, 'user.db')
 
 
 # estuary View Modes :
@@ -252,3 +254,7 @@ def resetSettings(forceReset, version):
         return '1'
     except:
         return '1'
+
+INVALID = -1
+EXPIRED = 0
+VALID = 1

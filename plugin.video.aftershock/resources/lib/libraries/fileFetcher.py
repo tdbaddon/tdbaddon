@@ -46,6 +46,7 @@ class FileFetcher(object):
 
     TYPE_DEFAULT = 1
     TYPE_REMOTE = 2
+    TYPE_LOCAL_COPY = 3
 
     basePath = control.dataPath
     filePath = ''
@@ -61,6 +62,7 @@ class FileFetcher(object):
             self.fileType = self.TYPE_REMOTE
             self.fileUrl = fileName
             self.filePath = os.path.join(self.basePath, fileName.split('/')[-1])
+            self.fileName = fileName.split('/')[-1]
         else:
             self.fileType = self.TYPE_DEFAULT
             self.fileUrl = MAIN_URL + fileName
@@ -90,7 +92,7 @@ class FileFetcher(object):
 
             if fetch:
                 tmpFile = os.path.join(self.basePath, self.fileName + '_tmp')
-                if self.fileType == self.TYPE_REMOTE:
+                if self.fileType == self.TYPE_LOCAL_COPY:
                     logger.debug('file is in remote location: %s' % self.fileUrl,__name__)
                     if not xbmcvfs.copy(self.fileUrl, tmpFile):
                         logger.error('Remote file couldn\'t be copied: %s' % self.fileUrl)
@@ -98,11 +100,6 @@ class FileFetcher(object):
                     f = open(tmpFile, 'wb')
                     logger.debug('file is on the internet: %s' % self.fileUrl, __name__)
                     data = client.request(self.fileUrl)
-                    #logger.debug(data, __name__)
-                    #tmpData = urllib2.urlopen(self.fileUrl)
-                    #data = tmpData.read()
-                    #if tmpData.info().get('content-encoding') == 'gzip':
-                    #    data = zlib.decompress(data, zlib.MAX_WBITS + 16)
                     f.write(data)
                     f.close()
                 logger.debug('file %s size %s' % (self.fileName, os.path.getsize(tmpFile)), __name__)

@@ -22,8 +22,8 @@ import re,sys,urllib2,HTMLParser, time, urlparse, gzip, StringIO, cookielib, url
 
 import control
 import traceback
-from resources.lib.libraries import cache
-from resources.lib.libraries import workers
+import cache
+import workers
 
 def randomagent():
     BR_VERS = [
@@ -381,7 +381,7 @@ def replaceHTMLCodes(txt):
 
 def getVideoID(url):
     try :
-        return re.compile('(id|url|v|si|sim|data-config|file)=(.+?)/').findall(url + '/')[0][1]
+        return re.compile('(id|url|v|si|sim|data-config|file)=(.+?)##').findall(url + '##')[0][1]
     except:
         return
 

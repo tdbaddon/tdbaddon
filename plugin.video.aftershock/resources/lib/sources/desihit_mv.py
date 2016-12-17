@@ -53,24 +53,12 @@ class source:
             result = client.request(query)
 
             result = result.decode('iso-8859-1').encode('utf-8')
-            result = client.parseDOM(result, "div", attrs={"id":"content"})[0]
-            result = client.parseDOM(result, "table")[0]
-            result = client.parseDOM(result, "tr")
-
-            title = cleantitle.movie(searchString)
-
-            for item in result:
-                item = client.parseDOM(item, "td", attrs={"width":"89%"})[0]
-                searchTitle = client.parseDOM(item, "a")[0]
-                searchTitle = cleantitle.movie(searchTitle)
-                if title == searchTitle:
-                    url = client.parseDOM(item, "a", ret="href")[0]
-                    url = re.compile("movieId=(.+?)&").findall(url)[0]
-                    break
+            url = re.compile('movie_id]\s=>\s(\d+)').findall(result)[0]
             if url == None or url == '':
                 raise Exception()
             return url
-        except:
+        except Exception as e:
+            logger.error(e)
             return
 
     def get_sources(self, url):

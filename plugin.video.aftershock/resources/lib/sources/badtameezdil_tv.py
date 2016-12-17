@@ -82,13 +82,18 @@ class source:
 
             result = client.parseDOM(result, "div", attrs={"class":"single-post-video"})[0]
 
-            url = re.compile('(data-config)=[\'|\"](.+?)[\'|\"]').findall(result)[0][1]
+            parts = client.parseDOM(result, "script", ret="data-config")
+            for i in range(0, len(parts)):
+                if parts[i].startswith('//'):
+                    parts[i]='http:%s'%parts[i]
 
-            if url.startswith('//'):
-                url='http:%s'%url
-            host = client.host(url)
+            host = client.host(parts[0])
 
-            sources.append({'source':host, 'parts': '1', 'quality':quality,'provider':'BadtameezDil','url':url, 'direct':False})
+            if len(parts) > 1 :
+                url = "##".join(parts)
+            else :
+                url = parts[0]
+            sources.append({'source':host, 'parts': len(parts), 'quality':quality,'provider':'BadtameezDil','url':"##".join(parts), 'direct':False})
             logger.debug('SOURCES [%s]' % sources, __name__)
             return sources
         except:
@@ -96,12 +101,19 @@ class source:
 
     def resolve(self, url, resolverList):
         try:
-            logger.debug('ORIGINAL URL [%s]' % url, __name__)
+            tUrl = url.split('##')
+            if len(tUrl) > 0:
+                url = tUrl
+            else :
+                url = urlparse.urlparse(url).path
 
-            r = resolvers.request(url, resolverList)
-            if not r :
-                raise Exception()
-            url = r
+            links = []
+            for item in url:
+                r = resolvers.request(item, resolverList)
+                if not r :
+                    raise Exception()
+                links.append(r)
+            url = links
             logger.debug('RESOLVED URL [%s]' % url, __name__)
             return url
         except:

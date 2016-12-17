@@ -66,7 +66,7 @@ class source:
             except: result = ''
 
             result = result.decode('iso-8859-1').encode('utf-8')
-            result = result.replace('\n','').replace('\t','')
+            result = result.replace('\n','').replace('\t','').replace('\r','')
 
             result = client.parseDOM(result, "div", attrs={"class":"td-post-content td-pb-padding-side"})[0]
             result = client.parseDOM(result, "p", attrs={"style":"text-align: center;"})

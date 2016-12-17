@@ -20,7 +20,7 @@
 
 import os,xbmc, traceback
 
-from resources.lib.libraries import control
+import control
 import inspect
 
 LOGDEBUG = xbmc.LOGDEBUG

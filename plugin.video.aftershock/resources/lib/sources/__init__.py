@@ -523,6 +523,11 @@ class sources:
             pass
 
     def getLiveSource(self, name, source, call):
+        from resources.lib.libraries import user
+        valid, url = user.validateUser(control.setting('user.email'))
+        if valid <= 0:
+            return
+
         try:
             dbcon = database.connect(self.sourceFile)
             dbcur = dbcon.cursor()
@@ -530,11 +535,11 @@ class sources:
         except:
             pass
 
-        if name == None:
-            retValue, sources = call.getLiveSource()
-        else:
-            name = name.upper()
-            retValue = 0
+        logger.debug('Calling getLiveSource for %s' % call, __name__)
+        retValue = 0
+        retValue, sources = call.getLiveSource()
+        logger.debug('Finished getLiveSource for %s' % call, __name__)
+        if not name == None : name = name.upper()
 
         if retValue == 1:
             try:
@@ -559,7 +564,7 @@ class sources:
             except Exception as e:
                 logger.error(e.message)
                 pass
-        elif retValue == 0:
+        elif retValue == 0 and name != None:
             try:
                 sources = []
                 dbcur.execute("SELECT * FROM rel_live WHERE source = '%s' AND imdb_id = '%s' AND season = '%s'" % (source, name, 'live'))
@@ -589,7 +594,6 @@ class sources:
                     self.sources.append(sources)
             return self.sources
         except Exception as e:
-
             logger.error('(%s) Exception Live sources : %s' % (call.__class__, e.args))
             pass
     def getLivePoster(self, source):
@@ -806,9 +810,9 @@ class sources:
         if quality == '0' or quality == '1': filter += [i for i in self.sources if i['quality'] == 'HD' and 'debrid' in i]
         if quality == '0' or quality == '1': filter += [i for i in self.sources if i['quality'] == 'HD' and not 'debrid' in i]
         filter += [i for i in self.sources if i['quality'] == 'SD' and not 'debrid' in i]
-        if len(filter) < 25: filter += [i for i in self.sources if i['quality'] == 'SCR']
-        if len(filter) < 25:filter += [i for i in self.sources if i['quality'] == 'CAM']
-        if len(filter) < 25:filter += [i for i in self.sources if i['quality'] == '']
+        if len(filter) < 35: filter += [i for i in self.sources if i['quality'] == 'SCR']
+        if len(filter) < 35:filter += [i for i in self.sources if i['quality'] == 'CAM']
+        if len(filter) < 35:filter += [i for i in self.sources if i['quality'] == '']
         self.sources = filter
 
         logger.debug('ORIGINAL SOURCE COUNT : %s' % len(self.sources), __name__)

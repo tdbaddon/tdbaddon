@@ -94,6 +94,8 @@ class source:
 
                     url = [{'url': i[0], 'quality': '1080p'} for i in result if '1080' in i[1]]
                     url += [{'url': i[0], 'quality': 'HD'} for i in result if '720' in i[1]]
+                    url += [{'url': i[0], 'quality': 'SD'} for i in result if '480' in i[1]]
+                    url += [{'url': i[0], 'quality': 'SCR'} for i in result if '360' in i[1]]
 
                     for i in url:
                         sources.append({'source': 'gvideo', 'parts' : '1','quality': i['quality'], 'provider': 'Pubfilm', 'url': i['url'], 'direct': True, 'debridonly': False})

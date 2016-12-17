@@ -12,6 +12,7 @@
 		<setting id="debug" type="bool" label="Debug" default="false" />
 		<setting id="livelocal" type="text" label="livelocal" visible="false" default="false" />
 		<setting id="analytics.enabled" type="bool" label="30807" visible="true" default="true" />
+		<setting id="user.email" type="text" label="30808" visible="true" default="" />
 	</category>
 	<category label="30830">
 		<setting id="playback_quality" type="enum" label="30831" values="1080p|720p|480p" default="0" />
@@ -31,6 +32,7 @@
 		<setting id="desihit" type="bool" label="DesiHits" default="true" />
 		<setting id="desiplex" type="bool" label="DesiPlex" default="true" />
 		<setting id="desirulez" type="bool" label="DesiRulez" default="true" />
+		<setting id="desitashan" type="bool" label="DesiTashan" default="true" />
 		<setting id="ditto" type="bool" label="Ditto" default="true"/>
 		<setting id="dltube" type="bool" label="DLTube" default="true" />
 		<setting id="dynns" type="bool" label="Dynns" visible="true" default="false" />

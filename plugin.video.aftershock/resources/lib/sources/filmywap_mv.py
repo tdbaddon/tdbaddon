@@ -74,31 +74,34 @@ class source:
 
             result = result.replace('\n','').replace('\t','').replace('\r','')
 
-            result = re.compile('Download Full Movie In:(.+?)Download Movie into Parts').findall(result)
-            links = client.parseDOM(result, name="td")
-            if len(links) == 0:
-                links = client.parseDOM(result, name="div", attrs={'class':'listed'})
+            result = client.parseDOM(result, "div", attrs={"id":"main"})[0]
 
+            #result = re.compile('Download Full Movie In:(.+?)Download Movie into Parts').findall(result)
+            #result = re.compile('Download Full Movie In:(.+?)Download Movie into Parts').findall(result)[0]
+            result = re.compile('Download Full Movie In:</div>(.+?)<div class=\"next-movie\">').findall(result)[0]
+            #result = client.parseDOM(result, name="div", attrs={"class":"head"})[0]
+            #links = client.parseDOM(result, name="div")
+            #if len(links) == 0:
+            #    links = client.parseDOM(result, name="div", attrs={'class':'listed'})
 
-            for link in links:
-                try: quality = client.parseDOM(link, 'span', attrs = {'class': 'quality_1'})[0].lower()
+            quality = client.parseDOM(result, "a")
+            links = client.parseDOM(result, "a", ret="href")
+
+            links = dict(zip(quality, links))
+            for key in links:
+                if not 'quality_1' in key:
+                    continue
+                try: quality = client.parseDOM(key, 'span', attrs = {'class': 'quality_1'})[0].lower()
                 except: quality = 'hd'
                 if quality == 'ts': quality = 'CAM'
                 elif '360p' in quality : quality = 'SD'
                 elif '720p' in quality : quality = 'HD'
                 else: quality = 'SD'
 
-                url = client.parseDOM(link, 'a', ret="href")[0]
-                info = ''
-                try :
-                    info = client.parseDOM(link, 'small')[0]
-                    info = re.compile('\((.+?)\)').findall(info)[0]
-                    info = info.strip()
-                except :
-                    pass
+                url = links[key]
                 host = client.host(url)
 
-                sources.append({'source': host, 'parts' : '1', 'quality': quality, 'provider': 'filmywap', 'info' : info, 'url': url, 'direct': False, 'debridonly': False})
+                sources.append({'source': host, 'parts' : '1', 'quality': quality, 'provider': 'filmywap', 'url': url, 'direct': False, 'debridonly': False})
 
             logger.debug('SOURCES [%s]' % sources, __name__)
             return sources

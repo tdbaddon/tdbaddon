@@ -72,7 +72,7 @@ class source:
 
                     reg = '#EXTINF:-1,(Yupp|in):(.*)\s(.*)'
 
-                    result = client.request(link)
+                    result = client.request(link, timeout=5)
                     if result == None :
                         continue
                     result = result.replace('\r', '')
@@ -92,10 +92,12 @@ class source:
                 with open(filePath, 'w') as outfile:
                     json.dump(channelList, outfile, sort_keys=True, indent=2)
 
-            liveParser = LiveParser(self.fileName, control.addon)
-            self.list = liveParser.parseFile(decode=False)
+                liveParser = LiveParser(self.fileName, control.addon)
+                self.list = liveParser.parseFile(decode=False)
             return (generateJSON, self.list)
         except Exception as e:
+            import traceback
+            traceback.print_exc()
             logger.error(e)
             pass
 

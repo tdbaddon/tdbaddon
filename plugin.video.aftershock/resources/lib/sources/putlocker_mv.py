@@ -22,6 +22,7 @@
 import re,urllib,urlparse,base64, time, json
 
 from resources.lib.libraries import client
+from resources.lib.libraries import cleantitle
 from resources.lib.libraries import logger
 from resources.lib.libraries import directstream
 
@@ -51,13 +52,13 @@ class source:
                 data = urlparse.parse_qs(url)
                 data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
 
-                title = data['title']
+                title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
 
-                imdb = data['imdb']
 
-                match = (title.translate(None, '\/:*?"\'<>|!,')).replace(' ', '-').replace('--', '-').lower()
-
-                url = '%s/movie/%s' % (self.base_link, match)
+                if 'tvshowtitle' in data:
+                    url = '%s/tv-show/%s/season/%01d/episode/%01d' % (self.base_link, cleantitle.geturl(title), int(data['season']), int(data['episode']))
+                else:
+                    url = '%s/movie/%s' % (self.base_link, cleantitle.geturl(title))
 
                 result = client.request(url, limit='5')
                 result = client.parseDOM(result, 'title')[0]
@@ -66,11 +67,8 @@ class source:
 
                 r = client.request(url, output='extended')
 
-                if not imdb in r[0]: raise Exception()
-
 
             else:
-
                 url = urlparse.urljoin(self.base_link, url)
 
                 r = client.request(url, output='extended')
@@ -90,7 +88,8 @@ class source:
             headers['Referer'] = url
 
 
-            u = '/ajax/nembeds.php'
+            u = '/ajax/tnembeds.php'
+            self.base_link = client.request(self.base_link, output='geturl')
             u = urlparse.urljoin(self.base_link, u)
 
             action = 'getEpisodeEmb' if '/episode/' in url else 'getMovieEmb'
@@ -115,13 +114,15 @@ class source:
                 try: links += [{'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'url': i, 'direct': True}]
                 except: pass
 
-            links += [{'source': 'openload.co', 'parts' : '1','quality': 'SD', 'url': i, 'direct': False} for i in r if 'openload.co' in i]
+            links += [{'source': 'openload.co', 'quality': 'SD', 'url': i, 'direct': False} for i in r if 'openload.co' in i]
+
 
             for i in links: sources.append({'source': i['source'], 'quality': i['quality'], 'provider': 'Putlocker', 'url': i['url'], 'direct': i['direct'], 'debridonly': False})
 
             logger.debug('SOURCES [%s]' % sources, __name__)
             return sources
-        except:
+        except Exception as e:
+            logger.error(e)
             return sources
 
     def resolve(self, url, resolverList=None):

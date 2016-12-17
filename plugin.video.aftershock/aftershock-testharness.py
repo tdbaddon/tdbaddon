@@ -29,6 +29,11 @@ try :
     params = {'tmdb': '0', 'episode': '0', 'name': '12th December 2016', 'title': '12th December 2016', 'tvdb': '0', 'season': '10', 'tvshowtitle': 'Bigg Boss 10', 'date': '0', 'meta': '{"tvshowurl": "forums/3994-Bigg-Boss-10", "title": "12th December 2016", "url": "threads/987786-Bigg-Boss-10-12th-December-2016-Watch-Online?s=cc583847a54ad97a7ef547a9da3fcf8f", "season": "10", "tvshowtitle": "Bigg Boss 10", "next": "forums/3994-Bigg-Boss-10/page2?s=cc583847a54ad97a7ef547a9da3fcf8f", "provider": "desirulez_mv_tv", "duration": "1800", "trailer": "plugin://plugin.video.aftershock/?action=trailer&name=Bigg+Boss+10", "name": "12th December 2016"}', 'imdb': '0', 't': '20161212203135593000', 'year': '0', 'action': 'play', 'tvrage': '0', 'alter': '0'}
     params = {'tmdb': '0', 'episode': '0', 'name': '10th December 2016', 'title': '10th December 2016', 'tvdb': '0', 'season': '9', 'tvshowtitle': 'Jhalak Dikhhla Jaa Season 9', 'date': '0', 'meta': '{"tvshowurl": "forums/4034-Jhalak-Dikhhla-Jaa-Season-9", "title": "10th December 2016", "url": "threads/986369-Jhalak-Dikhhla-Jaa-Season-9-10th-December-2016-Watch-Online?s=584dc5e1564eed456f2a25be7f86e6ea", "season": "9", "tvshowtitle": "Jhalak Dikhhla Jaa Season 9", "next": "forums/4034-Jhalak-Dikhhla-Jaa-Season-9/page2?s=584dc5e1564eed456f2a25be7f86e6ea", "provider": "desirulez_mv_tv", "duration": "1800", "trailer": "plugin://plugin.video.aftershock/?action=trailer&name=Jhalak+Dikhhla+Jaa+Season+9", "name": "10th December 2016"}', 'imdb': '0', 't': '20161213000802688000', 'year': '0', 'action': 'play', 'tvrage': '0', 'alter': '0'}
 
+    # desihit
+    params = {'tmdb': '0', 'episode': '0', 'name': '15th December 2016', 'title': '15th December 2016', 'tvdb': '0', 'season': '10', 'tvshowtitle': 'Bigg Boss 10', 'date': '0', 'meta': '{"tvshowurl": "forums/3994-Bigg-Boss-10", "title": "15th December 2016", "url": "threads/989694-Bigg-Boss-10-15th-December-2016-Watch-Online?s=b4f2b23f90f0fbf473f679887a785b0b", "season": "10", "tvshowtitle": "Bigg Boss 10", "next": "forums/3994-Bigg-Boss-10/page2?s=b4f2b23f90f0fbf473f679887a785b0b", "provider": "desirulez_mv_tv", "duration": "1800", "trailer": "plugin://plugin.video.aftershock/?action=trailer&name=Bigg+Boss+10", "name": "15th December 2016"}', 'imdb': '0', 't': '20161216013558647000', 'year': '0', 'action': 'play', 'tvrage': '0', 'alter': '0'}
+    #params = {'tmdb': '0', 'episode': '0', 'name': '15th December 2016', 'title': '15th December 2016', 'tvdb': '0', 'season': '0', 'tvshowtitle': 'Yeh Rishta Kya Kehlata Hai', 'date': '0', 'meta': '{"tvshowurl": "forums/3943-Yeh-Rishta-Kya-Kehlata-Hai", "title": "15th December 2016", "url": "threads/989675-Yeh-Rishta-Kya-Kehlata-Hai-15th-December-2016-Watch-Online?s=b4f2b23f90f0fbf473f679887a785b0b", "tvshowtitle": "Yeh Rishta Kya Kehlata Hai", "next": "forums/3943-Yeh-Rishta-Kya-Kehlata-Hai/page2?s=b4f2b23f90f0fbf473f679887a785b0b", "provider": "desirulez_mv_tv", "duration": "1800", "trailer": "plugin://plugin.video.aftershock/?action=trailer&name=Yeh+Rishta+Kya+Kehlata+Hai", "name": "15th December 2016"}', 'imdb': '0', 't': '20161216014224647000', 'year': '0', 'action': 'play', 'tvrage': '0', 'alter': '0'}
+    params = {'tmdb': '0', 'episode': '0', 'name': '11th December 2016', 'title': '11th December 2016', 'tvdb': '0', 'season': '5', 'tvshowtitle': 'Koffee With Karan Season 5 (Star World)', 'date': '0', 'meta': '{"name": "11th December 2016", "title": "11th December 2016", "url": "threads/986992-Koffee-With-Karan-Season-5-11th-December-2016-Watch-Online?s=b9f8288314dd3a877ab603c37d41a779", "season": "5", "tvshowtitle": "Koffee With Karan Season 5 (Star World)", "provider": "desirulez_mv_tv", "duration": "1800", "trailer": "plugin://plugin.video.aftershock/?action=trailer&name=Koffee+With+Karan+Season+5+%28Star+World%29", "tvshowurl": "forums/4480-Koffee-With-Karan-Season-5-Star-World"}', 'imdb': '0', 't': '20161216020518662000', 'year': '0', 'action': 'play', 'tvrage': '0', 'alter': '0'}
+
 
     select = None
 
@@ -136,34 +141,44 @@ try :
     from resources.lib import resolvers
     from resources.lib.sources import einthusan_mv
 
+    from resources.lib.libraries import user
+
+    '''
+    user.registerUser('Charanjit Singh', 'finetouchconstructions@yahoo.com', 730)
+    user.registerUser('Charanjit Singh', 'charanjeet3usa@yahoo.com', 730)
+    user.registerUser('Bhaumik Modi', 'klu_9bk@yahoo.com')
+    user.registerUser('Nick Vachani', 'tollandtnpk@gmail.com')
+    user.registerUser('Anil Jakkaladki', 'anilkuj@yahoo.com')
+    user.registerUser('Abhinav Halen', 'ab_hal@hotmail.com')
+    user.registerUser('Sougata Deb', 'sdeb7381@gmail.com')
+    user.registerUser('Vineet Gupta', 'vineetg@gmail.com', 3650)
+    '''
+    valid, url = user.validateUser('vineetg@gmail.com')
+
 
     from resources.lib.sources import sources
     sources().play(name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date, meta, url, select)
-    #url = einthusan_mv.source().get_sources('9068')
-    #result = client.request(url[0]['url'])
-    #if result == None: raise Exception()
-    #resolvers.request('http://playu.net/embed-azyk92idrbcj-700x440.html', None)
-    #debrid.resolver('http://www.dailymotion.com/embed/video/x50xm71', 'realdebrid')
-    #debrid.resolve('http://www.dailymotion.com/video/x29cn4o', 'realdebrid')
-    #tvshows.tvshows().get(url, provider=provider, network=name)
-    # test search sources
-    #source = sources().getSources(name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date, meta)
-    #from resources.lib.indexers import movies
-    #idx = True
+
     #movies.movies().get(url, idx, provider, lang)
+
     #sources.sources().play(name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date, meta, url)
-    #from resources.lib.indexers import tvshows
+
+    from resources.lib.indexers import tvshows
     #tvshows.tvshows().get(url, provider=provider, network=name)
     #episodes.episodes().get('Bigg Boss', year, imdb, tmdb, tvdb, tvrage, provider='yodesi_tv', url='http://www.yodesi.net/category/colors/bigg-boss-season-10/')
     #from resources.lib.sources import filmywap_mv
     #filmywap_mv.source().get_sources('abc')
 
-    #season = 'Bigg Boss Season 9'.lower()
-    #season = re.compile('[0-9]+').findall(season)[0]
-    #print season
+    from resources.lib.sources import badtameezdil_tv
+    url = 'http://badtameezdil.net/watch-video-bigg-boss-10-14th-december-2016-full-episode-60/'
+    badtameezdil_tv.source().get_sources(url)
+    from resources.lib.sources import dynns_live
+    #dynns_live.source().getLiveSource()
+    url = 'http://live1.dyndns.tv:8081/maid/lamhe/playlist.m3u8'
+    dynns_live.source().resolve(url, None)
 
     from resources.lib.indexers import livetv
-    #livetv.channels().get()
+    livetv.channels().get()
 
     from resources.lib.sources import cinefun_live
     #cinefun_live.source().resolve("95616", None)

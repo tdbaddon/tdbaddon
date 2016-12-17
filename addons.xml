@@ -564,7 +564,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
   </extension>
 </addon>
 
-<addon id="plugin.video.aftershock" name="Aftershock" version="4.2.6" provider-name="Aftershock">
+<addon id="plugin.video.aftershock" name="Aftershock" version="4.3.0" provider-name="Aftershock">
     <requires>
         <import addon="xbmc.python" version="2.19.0"/>
         <import addon="repository.aftershock" version="2.0.1"/>
@@ -572,10 +572,12 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
         <import addon="script.module.urlresolver"  version="3.0.21"/>
 		<import addon="script.module.metahandler"  version="1.0.0"/>
 		<import addon="script.module.beautifulsoup" version="3.2.1"/>
+        <import addon="script.aftershocknow.guide" version="1.1.0"/>
     </requires>
     <extension point="xbmc.python.pluginsource" library="default.py">
         <provides>video</provides>
     </extension>
+    <extension point="xbmc.python.module" library="resources" />
     <extension point="xbmc.addon.metadata">
     <summary lang="en">Watch Hindi Movies &amp; TV Shows</summary>
     <description lang="en">Addon to browse and play a wide selection of Desi Movies, TV Shows and Live Streams. The author doesn't have any affiliation with the content providers nor uploads any content to the providers.</description>
@@ -1172,7 +1174,7 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
     </extension>
 </addon>
 
-<addon id="plugin.video.freeview" name="Freeview" version="2.0.0" provider-name="RayW1986">
+<addon id="plugin.video.freeview" name="Freeview" version="2.0.1" provider-name="RayW1986">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
 		<import addon="script.module.liveresolver"  version="0.1.28"/>
@@ -3381,6 +3383,29 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 		<summary>Themes for the Aftershock Addon</summary>
 		<description>Themes for Aftershock are maintained separately to make distribution of the the addon itself easier/faster.</description>
 		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="script.aftershocknow.guide" name="Aftershock Now" version="1.1.0" provider-name="IDev">
+	<requires>
+		<import addon="xbmc.python" version="2.19.0"/>
+		<import addon="script.module.simplejson" version="3.3.0"/>
+		<import addon="plugin.video.aftershock" version="4.2.6.4"/>
+	</requires>
+	<extension point="xbmc.python.script" library="addon.py">
+            <provides>executable</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+
+		<description lang="en">The AftershockNow Guide provides an EPG for the AftershockNow addon.</description>
+
+		<disclaimer lang="en">The AftershockNow Guide is based on the FTV Guide by rayw1986 and bluezed which is based on the original TV Guide addon by twinther.</disclaimer>
+		<language></language>
+		<platform>all</platform>
+		<license>GPLv2</license>
+        <forum></forum>
+        <website>http://www.facebook.com/aftershockpy</website>
+		<email>aftershockpy@gmail.com</email>
 	</extension>
 </addon>
 

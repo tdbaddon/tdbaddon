@@ -21,29 +21,29 @@ def getChannels():
 		addLink('Al Jazeera | TVPlayer','146',2,logos_tvp+'146.png')
 		addLink('Al Jazeera | FilmOn','https://www.filmon.com/tv/al-jazeera',1,logos_tvp+'146.png')
 		addLink('BBC Alba | TVPlayer','236',2,logos_tvp+'236.png')
-		addLink('BBC Alba | BBC iPlayer','http://vs-hls-uk-live.edgesuite.net/pool_1/live/bbc_alba/bbc_alba.isml/bbc_alba-pa3%3d96000-video%3d1604000.norewind.m3u8',1,logos_tvp+'236.png')
-		addLink('BBC Four HD | BBC iPlayer','http://vs-hls-uk-live.edgesuite.net/pool_33/live/bbc_four_hd/bbc_four_hd.isml/bbc_four_hd-pa4%3d128000-video%3d5070000.m3u8',1,logos_tvp+'110.png')
+		addLink('BBC Alba | BBC iPlayer','http://vs-hls-uk-live.edgesuite.net/pool_1/live/bbc_alba/bbc_alba.isml/bbc_alba-pa3%3d96000-video%3d1604032.norewind.m3u8',1,logos_tvp+'236.png')
+		addLink('BBC Four HD | BBC iPlayer','http://vs-hls-uk-live.akamaized.net/pool_33/live/bbc_four_hd/bbc_four_hd.isml/bbc_four_hd-pa4%3d128000-video%3d5070016.m3u8',1,logos_tvp+'110.png')
 		addLink('BBC Four | TVPlayer','110',2,logos_tvp+'110.png')
 		addLink('BBC Four | FilmOn','https://www.filmon.com/tv/cbeebiesbbc-four',1,logos_tvp+'110.png')
-		addLink('BBC News HD | BBC iPlayer','http://vs-hls-uk-live.edgesuite.net/pool_34/live/bbc_news_channel_hd/bbc_news_channel_hd.isml/bbc_news_channel_hd-pa4%3d128000-video%3d5070000.m3u8',1,logos_tvp+'111.png')
+		addLink('BBC News HD | BBC iPlayer','http://vs-hls-uk-live.edgesuite.net/pool_34/live/bbc_news_channel_hd/bbc_news_channel_hd.isml/bbc_news_channel_hd-pa4%3d128000-video%3d5070016.m3u8',1,logos_tvp+'111.png')
 		addLink('BBC News | TVPlayer','111',2,logos_tvp+'111.png')
 		addLink('BBC News | FilmOn','https://www.filmon.com/tv/bbc-news',1,logos_tvp+'111.png')
-		addLink('BBC One HD | BBC iPlayer','http://vs-hls-uk-live.edgesuite.net/pool_30/live/bbc_one_hd/bbc_one_hd.isml/bbc_one_hd-pa4%3d128000-video%3d5070000.m3u8',1,logos_tvp+'89.png')
+		addLink('BBC One HD | BBC iPlayer','http://vs-hls-uk-live.akamaized.net/pool_30/live/bbc_one_hd/bbc_one_hd.isml/bbc_one_hd-pa4%3d128000-video%3d5070016.m3u8',1,logos_tvp+'89.png')
 		addLink('BBC One | TVPlayer','89',2,logos_tvp+'89.png')
 		addLink('BBC One | FilmOn','https://www.filmon.com/tv/bbc-one',1,logos_tvp+'89.png')
-		addLink('BBC One Northern Ireland | BBC iPlayer','http://vs-hls-uk-live.edgesuite.net/pool_4/live/bbc_one_northern_ireland_hd/bbc_one_northern_ireland_hd.isml/bbc_one_northern_ireland_hd-pa4%3d128000-video%3d5070000.m3u8',1,logos_tvp+'89.png')
+		addLink('BBC One Northern Ireland | BBC iPlayer','http://vs-hls-uk-live.edgesuite.net/pool_4/live/bbc_one_northern_ireland_hd/bbc_one_northern_ireland_hd.isml/bbc_one_northern_ireland_hd-pa4%3d128000-video%3d5070016.m3u8',1,logos_tvp+'89.png')
 		addLink('BBC One Northern Ireland | FilmOn','https://www.filmon.com/tv/bbc-1-north-ireland',1,logos_tvp+'89.png')
-		addLink('BBC One Scotland | BBC iPlayer','http://vs-hls-uk-live.edgesuite.net/pool_5/live/bbc_one_scotland_hd/bbc_one_scotland_hd.isml/bbc_one_scotland_hd-pa4%3d128000-video%3d5070000.m3u8',1,logos_tvp+'89.png')
+		addLink('BBC One Scotland | BBC iPlayer','http://vs-hls-uk-live.edgesuite.net/pool_5/live/bbc_one_scotland_hd/bbc_one_scotland_hd.isml/bbc_one_scotland_hd-pa4%3d128000-video%3d5070016.m3u8',1,logos_tvp+'89.png')
 		addLink('BBC One Scotland | FilmOn','https://www.filmon.com/tv/bbc-1-scotland',1,logos_tvp+'89.png')
-		addLink('BBC One Wales | BBC iPlayer','http://vs-hls-uk-live.edgesuite.net/pool_3/live/bbc_one_wales_hd/bbc_one_wales_hd.isml/bbc_one_wales_hd-pa4%3d128000-video%3d5070000.m3u8',1,logos_tvp+'89.png')
+		addLink('BBC One Wales | BBC iPlayer','http://vs-hls-uk-live.edgesuite.net/pool_3/live/bbc_one_wales_hd/bbc_one_wales_hd.isml/bbc_one_wales_hd-pa4%3d128000-video%3d5070016.m3u8',1,logos_tvp+'89.png')
 		addLink('BBC One Wales | FilmOn','https://www.filmon.com/tv/bbc-1-wales',1,logos_tvp+'89.png')
-		addLink('BBC Two Northern Ireland | BBC iPlayer','http://vs-hls-uk-live.edgesuite.net/pool_5/live/bbc_two_northern_ireland_digital/bbc_two_northern_ireland_digital.isml/bbc_two_northern_ireland_digital-pa3%3d96000-video%3d1604000.norewind.m3u8',1,logos_tvp+'90.png')
-		addLink('BBC Two Scotland | BBC iPlayer','http://vs-hls-uk-live.edgesuite.net/pool_5/live/bbc_two_scotland/bbc_two_scotland.isml/bbc_two_scotland-pa3%3d96000-video%3d1604000.norewind.m3u8',1,logos_tvp+'90.png')
-		addLink('BBC Two Wales | BBC iPlayer','http://vs-hls-uk-live.edgesuite.net/pool_5/live/bbc_two_wales_digital/bbc_two_wales_digital.isml/bbc_two_wales_digital-pa3%3d96000-video%3d1604000.norewind.m3u8',1,logos_tvp+'90.png')
-		addLink('BBC Parliament | BBC iPlayer','http://vs-hls-uk-live.edgesuite.net/pool_1/live/bbc_parliament/bbc_parliament.isml/bbc_parliament-pa3%3d96000-video%3d1604000.norewind.m3u8',1,logos_tvp+'345.png')
+		addLink('BBC Two Northern Ireland | BBC iPlayer','http://vs-hls-uk-live.edgesuite.net/pool_5/live/bbc_two_northern_ireland_digital/bbc_two_northern_ireland_digital.isml/bbc_two_northern_ireland_digital-pa3%3d96000-video%3d1604032.norewind.m3u8',1,logos_tvp+'90.png')
+		addLink('BBC Two Scotland | BBC iPlayer','http://vs-hls-uk-live.edgesuite.net/pool_5/live/bbc_two_scotland/bbc_two_scotland.isml/bbc_two_scotland-pa3%3d96000-video%3d1604032.norewind.m3u8',1,logos_tvp+'90.png')
+		addLink('BBC Two Wales | BBC iPlayer','http://vs-hls-uk-live.edgesuite.net/pool_5/live/bbc_two_wales_digital/bbc_two_wales_digital.isml/bbc_two_wales_digital-pa3%3d96000-video%3d1604032.norewind.m3u8',1,logos_tvp+'90.png')
+		addLink('BBC Parliament | BBC iPlayer','http://vs-hls-uk-live.edgesuite.net/pool_1/live/bbc_parliament/bbc_parliament.isml/bbc_parliament-pa3%3d96000-video%3d1604032.norewind.m3u8',1,logos_tvp+'345.png')
 		addLink('BBC Parliament | TVPlayer','345',2,logos_tvp+'345.png')
 		addLink('BBC Parliament | FilmOn','https://www.filmon.com/tv/bbc-parliament',1,logos_tvp+'345.png')
-		addLink('BBC Two HD | BBC iPlayer','http://vs-hls-uk-live.edgesuite.net/pool_31/live/bbc_two_hd/bbc_two_hd.isml/bbc_two_hd-pa4%3d128000-video%3d5070000.m3u8',1,logos_tvp+'90.png')
+		addLink('BBC Two HD | BBC iPlayer','http://vs-hls-uk-live.edgesuite.net/pool_31/live/bbc_two_hd/bbc_two_hd.isml/bbc_two_hd-pa4%3d128000-video%3d5070016.m3u8',1,logos_tvp+'90.png')
 		addLink('BBC Two | TVPlayer','90',2,logos_tvp+'90.png')
 		addLink('BBC Two | FilmOn','https://www.filmon.com/tv/bbc-two',1,logos_tvp+'90.png')
 		addLink('Bloomberg | TVPlayer','514',2,logos_tvp+'514.png')
@@ -56,10 +56,10 @@ def getChannels():
 		addLink('Box Upfront | TVPlayer','158',2,logos_tvp+'158.png')
 		addLink('Capital TV | Direct','http://ooyalahd2-f.akamaihd.net/i/globalradio01_delivery@156521/index_656_av-p.m3u8?sd=10&rebase=on',1,logos_tvp+'157.png')
 		addLink('Capital TV | TVPlayer','157',2,logos_tvp+'157.png')
-		addLink('CBBC HD | BBC iPlayer','http://vs-hls-uk-live.edgesuite.net/pool_1/live/cbbc_hd/cbbc_hd.isml/cbbc_hd-pa4%3d128000-video%3d5070000.m3u8',1,logos_tvp+'113.png')
+		addLink('CBBC HD | BBC iPlayer','http://vs-hls-uk-live.edgesuite.net/pool_1/live/cbbc_hd/cbbc_hd.isml/cbbc_hd-pa4%3d128000-video%3d5070016.m3u8',1,logos_tvp+'113.png')
 		addLink('CBBC | TVPlayer','113',2,logos_tvp+'113.png')
 		addLink('CBBC | FilmOn','https://www.filmon.com/tv/cbbc',1,logos_tvp+'113.png')
-		addLink('CBeebies HD | BBC iPlayer','http://vs-hls-uk-live.edgesuite.net/pool_2/live/cbeebies_hd/cbeebies_hd.isml/cbeebies_hd-pa4%3d128000-video%3d5070000.m3u8',1,logos_tvp+'114.png')
+		addLink('CBeebies HD | BBC iPlayer','http://vs-hls-uk-live.edgesuite.net/pool_2/live/cbeebies_hd/cbeebies_hd.isml/cbeebies_hd-pa4%3d128000-video%3d5070016.m3u8',1,logos_tvp+'114.png')
 		addLink('CBeebies | TVPlayer','114',2,logos_tvp+'114.png')
 		addLink('CBeebies | FilmOn','https://www.filmon.com/tv/cbeebies',1,logos_tvp+'114.png')
 		addLink('CBS Action | FilmOn','https://www.filmon.com/tv/cbs-action',1,logos+'cbsaction.png')
@@ -134,7 +134,7 @@ def getChannels():
 		addLink('QVC | TVPlayer','247',2,logos_tvp+'247.png')
 		addLink('Really | TVPlayer','306',2,logos_tvp+'306.png')
 		addLink('Really | FilmOn','http://www.filmon.tv/tv/really',1,logos_tvp+'306.png')
-		addLink('S4C | BBC iPlayer','http://vs-hls-uk-live.edgesuite.net/pool_9/live/s4cpbs/s4cpbs.isml/s4cpbs-pa3%3d96000-video%3d1604000.norewind.m3u8',1,logos_tvp+'251.png')
+		addLink('S4C | BBC iPlayer','http://vs-hls-uk-live.edgesuite.net/pool_9/live/s4cpbs/s4cpbs.isml/s4cpbs-pa3%3d96000-video%3d1604032.norewind.m3u8',1,logos_tvp+'251.png')
 		addLink('S4C | TVPlayer','251',2,logos_tvp+'251.png')
 		addLink('Sky News | YouTube','https://www.youtube.com/watch?v=y60wDzZt8yg',1,logos+'skynews.png')
 		addLink('Tiny Pop | FilmOn','https://www.filmon.com/tv/tiny-pop',1,logos+'tinypop.png')
@@ -167,51 +167,51 @@ def getChannels():
 		
 		#BBC ALBA
 		if selfAddon.getSetting('bbc_alba') == 'TVPlayer': addLink('BBC Alba','236',2,logos_tvp+'236.png')
-		if selfAddon.getSetting('bbc_alba') == 'BBC iPlayer': addLink('BBC Alba','http://vs-hls-uk-live.edgesuite.net/pool_1/live/bbc_alba/bbc_alba.isml/bbc_alba-pa3%3d96000-video%3d1604000.norewind.m3u8',1,logos_tvp+'236.png')
+		if selfAddon.getSetting('bbc_alba') == 'BBC iPlayer': addLink('BBC Alba','http://vs-hls-uk-live.edgesuite.net/pool_1/live/bbc_alba/bbc_alba.isml/bbc_alba-pa3%3d96000-video%3d1604032.norewind.m3u8',1,logos_tvp+'236.png')
 		
 		#BBC Four
-		if selfAddon.getSetting('bbc_four') == 'BBC iPlayer': addLink('BBC Four HD','http://vs-hls-uk-live.edgesuite.net/pool_33/live/bbc_four_hd/bbc_four_hd.isml/bbc_four_hd-pa4%3d128000-video%3d5070000.m3u8',1,logos_tvp+'110.png')
+		if selfAddon.getSetting('bbc_four') == 'BBC iPlayer': addLink('BBC Four HD','http://vs-hls-uk-live.akamaized.net/pool_33/live/bbc_four_hd/bbc_four_hd.isml/bbc_four_hd-pa4%3d128000-video%3d5070016.m3u8',1,logos_tvp+'110.png')
 		if selfAddon.getSetting('bbc_four') == 'TVPlayer': addLink('BBC Four','110',2,logos_tvp+'110.png')
 		if selfAddon.getSetting('bbc_four') == 'FilmOn': addLink('BBC Four','https://www.filmon.com/tv/cbeebiesbbc-four',1,logos_tvp+'110.png')
 		
 		#BBC News
-		if selfAddon.getSetting('bbc_news') == 'BBC iPlayer': addLink('BBC News HD','http://vs-hls-uk-live.edgesuite.net/pool_34/live/bbc_news_channel_hd/bbc_news_channel_hd.isml/bbc_news_channel_hd-pa4%3d128000-video%3d5070000.m3u8',1,logos_tvp+'111.png')
+		if selfAddon.getSetting('bbc_news') == 'BBC iPlayer': addLink('BBC News HD','http://vs-hls-uk-live.edgesuite.net/pool_34/live/bbc_news_channel_hd/bbc_news_channel_hd.isml/bbc_news_channel_hd-pa4%3d128000-video%3d5070016.m3u8',1,logos_tvp+'111.png')
 		if selfAddon.getSetting('bbc_news') == 'TVPlayer': addLink('BBC News','111',2,logos_tvp+'111.png')
 		if selfAddon.getSetting('bbc_news') == 'FilmOn': addLink('BBC News','https://www.filmon.com/tv/bbc-news',1,logos_tvp+'111.png')
 		
 		#BBC One
-		if selfAddon.getSetting('bbc_one') == 'BBC iPlayer': addLink('BBC One HD','http://vs-hls-uk-live.edgesuite.net/pool_30/live/bbc_one_hd/bbc_one_hd.isml/bbc_one_hd-pa4%3d128000-video%3d5070000.m3u8',1,logos_tvp+'89.png')
+		if selfAddon.getSetting('bbc_one') == 'BBC iPlayer': addLink('BBC One HD','http://vs-hls-uk-live.akamaized.net/pool_30/live/bbc_one_hd/bbc_one_hd.isml/bbc_one_hd-pa4%3d128000-video%3d5070016.m3u8',1,logos_tvp+'89.png')
 		if selfAddon.getSetting('bbc_one') == 'TVPlayer': addLink('BBC One','89',2,logos_tvp+'89.png')
 		if selfAddon.getSetting('bbc_one') == 'FilmOn': addLink('BBC One','https://www.filmon.com/tv/bbc-one',1,logos_tvp+'89.png')
 		
 		#BBC One Northern Ireland
-		if selfAddon.getSetting('bbc_one_ni') == 'BBC iPlayer': addLink('BBC One Northern Ireland','http://vs-hls-uk-live.edgesuite.net/pool_4/live/bbc_one_northern_ireland_hd/bbc_one_northern_ireland_hd.isml/bbc_one_northern_ireland_hd-pa4%3d128000-video%3d5070000.m3u8',1,logos_tvp+'89.png')
+		if selfAddon.getSetting('bbc_one_ni') == 'BBC iPlayer': addLink('BBC One Northern Ireland','http://vs-hls-uk-live.edgesuite.net/pool_4/live/bbc_one_northern_ireland_hd/bbc_one_northern_ireland_hd.isml/bbc_one_northern_ireland_hd-pa4%3d128000-video%3d5070016.m3u8',1,logos_tvp+'89.png')
 		if selfAddon.getSetting('bbc_one_ni') == 'FilmOn': addLink('BBC One Northern Ireland','https://www.filmon.com/tv/bbc-1-north-ireland',1,logos_tvp+'89.png')
 		
 		#BBC Scotland
-		if selfAddon.getSetting('bbc_one_scotland') == 'BBC iPlayer': addLink('BBC One Scotland','http://vs-hls-uk-live.edgesuite.net/pool_5/live/bbc_one_scotland_hd/bbc_one_scotland_hd.isml/bbc_one_scotland_hd-pa4%3d128000-video%3d5070000.m3u8',1,logos_tvp+'89.png')
+		if selfAddon.getSetting('bbc_one_scotland') == 'BBC iPlayer': addLink('BBC One Scotland','http://vs-hls-uk-live.edgesuite.net/pool_5/live/bbc_one_scotland_hd/bbc_one_scotland_hd.isml/bbc_one_scotland_hd-pa4%3d128000-video%3d5070016.m3u8',1,logos_tvp+'89.png')
 		if selfAddon.getSetting('bbc_one_scotland') == 'FilmOn': addLink('BBC Scotland','https://www.filmon.com/tv/bbc-1-scotland',1,logos_tvp+'89.png')
 		
 		#BBC One Wales
-		if selfAddon.getSetting('bbc_one_wales') == 'BBC iPlayer': addLink('BBC One Wales','http://vs-hls-uk-live.edgesuite.net/pool_3/live/bbc_one_wales_hd/bbc_one_wales_hd.isml/bbc_one_wales_hd-pa4%3d128000-video%3d5070000.m3u8',1,logos_tvp+'89.png')
+		if selfAddon.getSetting('bbc_one_wales') == 'BBC iPlayer': addLink('BBC One Wales','http://vs-hls-uk-live.edgesuite.net/pool_3/live/bbc_one_wales_hd/bbc_one_wales_hd.isml/bbc_one_wales_hd-pa4%3d128000-video%3d5070016.m3u8',1,logos_tvp+'89.png')
 		if selfAddon.getSetting('bbc_one_wales') == 'FilmOn': addLink('BBC One Wales','https://www.filmon.com/tv/bbc-1-wales',1,logos_tvp+'89.png')
 		
 		#BBC Two Northern Ireland
-		if selfAddon.getSetting('bbc_two_ni') == 'BBC iPlayer': addLink('BBC Two Northern Ireland','http://vs-hls-uk-live.edgesuite.net/pool_5/live/bbc_two_northern_ireland_digital/bbc_two_northern_ireland_digital.isml/bbc_two_northern_ireland_digital-pa3%3d96000-video%3d1604000.norewind.m3u8',1,logos_tvp+'90.png')
+		if selfAddon.getSetting('bbc_two_ni') == 'BBC iPlayer': addLink('BBC Two Northern Ireland','http://vs-hls-uk-live.edgesuite.net/pool_5/live/bbc_two_northern_ireland_digital/bbc_two_northern_ireland_digital.isml/bbc_two_northern_ireland_digital-pa3%3d96000-video%3d1604032.norewind.m3u8',1,logos_tvp+'90.png')
 		
 		#BBC Two Scotland
-		if selfAddon.getSetting('bbc_two_scotland') == 'BBC iPlayer': addLink('BBC Two Scotland','http://vs-hls-uk-live.edgesuite.net/pool_5/live/bbc_two_scotland/bbc_two_scotland.isml/bbc_two_scotland-pa3%3d96000-video%3d1604000.norewind.m3u8',1,logos_tvp+'90.png')
+		if selfAddon.getSetting('bbc_two_scotland') == 'BBC iPlayer': addLink('BBC Two Scotland','http://vs-hls-uk-live.edgesuite.net/pool_5/live/bbc_two_scotland/bbc_two_scotland.isml/bbc_two_scotland-pa3%3d96000-video%3d1604032.norewind.m3u8',1,logos_tvp+'90.png')
 		
 		#BBC Two Wales
-		if selfAddon.getSetting('bbc_two_wales') == 'BBC iPlayer': addLink('BBC Two Wales','http://vs-hls-uk-live.edgesuite.net/pool_5/live/bbc_two_wales_digital/bbc_two_wales_digital.isml/bbc_two_wales_digital-pa3%3d96000-video%3d1604000.norewind.m3u8',1,logos_tvp+'90.png')
+		if selfAddon.getSetting('bbc_two_wales') == 'BBC iPlayer': addLink('BBC Two Wales','http://vs-hls-uk-live.edgesuite.net/pool_5/live/bbc_two_wales_digital/bbc_two_wales_digital.isml/bbc_two_wales_digital-pa3%3d96000-video%3d1604032.norewind.m3u8',1,logos_tvp+'90.png')
 		
 		#BBC Parliament
-		if selfAddon.getSetting('bbc_par') == 'BBC iPlayer': addLink('BBC Parliament','http://vs-hls-uk-live.edgesuite.net/pool_1/live/bbc_parliament/bbc_parliament.isml/bbc_parliament-pa3%3d96000-video%3d1604000.norewind.m3u8',1,logos_tvp+'345.png')
+		if selfAddon.getSetting('bbc_par') == 'BBC iPlayer': addLink('BBC Parliament','http://vs-hls-uk-live.edgesuite.net/pool_1/live/bbc_parliament/bbc_parliament.isml/bbc_parliament-pa3%3d96000-video%3d1604032.norewind.m3u8',1,logos_tvp+'345.png')
 		if selfAddon.getSetting('bbc_par') == 'TVPlayer': addLink('BBC Parliament','345',2,logos_tvp+'345.png')
 		if selfAddon.getSetting('bbc_par') == 'FilmOn': addLink('BBC Parliament','https://www.filmon.com/tv/bbc-parliament',1,logos_tvp+'345.png')
 		
 		#BBC Two
-		if selfAddon.getSetting('bbc_two') == 'BBC iPlayer': addLink('BBC Two HD','http://vs-hls-uk-live.edgesuite.net/pool_31/live/bbc_two_hd/bbc_two_hd.isml/bbc_two_hd-pa4%3d128000-video%3d5070000.m3u8',1,logos_tvp+'90.png')
+		if selfAddon.getSetting('bbc_two') == 'BBC iPlayer': addLink('BBC Two HD','http://vs-hls-uk-live.edgesuite.net/pool_31/live/bbc_two_hd/bbc_two_hd.isml/bbc_two_hd-pa4%3d128000-video%3d5070016.m3u8',1,logos_tvp+'90.png')
 		if selfAddon.getSetting('bbc_two') == 'TVPlayer': addLink('BBC Two','90',2,logos_tvp+'90.png')
 		if selfAddon.getSetting('bbc_two') == 'FilmOn': addLink('BBC Two','https://www.filmon.com/tv/bbc-two',1,logos_tvp+'90.png')
 		
@@ -239,12 +239,12 @@ def getChannels():
 		if selfAddon.getSetting('capital') == 'TVPlayer': addLink('Capital TV','157',2,logos_tvp+'157.png')
 		
 		#CBBC
-		if selfAddon.getSetting('cbbc') == 'BBC iPlayer': addLink('CBBC HD','http://vs-hls-uk-live.edgesuite.net/pool_1/live/cbbc_hd/cbbc_hd.isml/cbbc_hd-pa4%3d128000-video%3d5070000.m3u8',1,logos_tvp+'113.png')
+		if selfAddon.getSetting('cbbc') == 'BBC iPlayer': addLink('CBBC HD','http://vs-hls-uk-live.edgesuite.net/pool_1/live/cbbc_hd/cbbc_hd.isml/cbbc_hd-pa4%3d128000-video%3d5070016.m3u8',1,logos_tvp+'113.png')
 		if selfAddon.getSetting('cbbc') == 'TVPlayer': addLink('CBBC','113',2,logos_tvp+'113.png')
 		if selfAddon.getSetting('cbbc') == 'FilmOn': addLink('CBBC','https://www.filmon.com/tv/cbbc',1,logos_tvp+'113.png')
 		
 		#CBeebies
-		if selfAddon.getSetting('cbeebies') == 'BBC iPlayer': addLink('CBeebies HD','http://vs-hls-uk-live.edgesuite.net/pool_2/live/cbeebies_hd/cbeebies_hd.isml/cbeebies_hd-pa4%3d128000-video%3d5070000.m3u8',1,logos_tvp+'114.png')
+		if selfAddon.getSetting('cbeebies') == 'BBC iPlayer': addLink('CBeebies HD','http://vs-hls-uk-live.edgesuite.net/pool_2/live/cbeebies_hd/cbeebies_hd.isml/cbeebies_hd-pa4%3d128000-video%3d5070016.m3u8',1,logos_tvp+'114.png')
 		if selfAddon.getSetting('cbeebies') == 'TVPlayer': addLink('CBeebies','114',2,logos_tvp+'114.png')
 		if selfAddon.getSetting('cbeebies') == 'FilmOn': addLink('CBeebies','https://www.filmon.com/tv/cbeebies',1,logos_tvp+'114.png')
 		
@@ -427,7 +427,7 @@ def getChannels():
 		if selfAddon.getSetting('really') == 'FilmOn': addLink('Really','http://www.filmon.tv/tv/really',1,logos_tvp+'306.png')
 		
 		#S4C
-		if selfAddon.getSetting('s4c') == 'BBC iPlayer': addLink('S4C','http://vs-hls-uk-live.edgesuite.net/pool_9/live/s4cpbs/s4cpbs.isml/s4cpbs-pa3%3d96000-video%3d1604000.norewind.m3u8',1,logos_tvp+'251.png')
+		if selfAddon.getSetting('s4c') == 'BBC iPlayer': addLink('S4C','http://vs-hls-uk-live.edgesuite.net/pool_9/live/s4cpbs/s4cpbs.isml/s4cpbs-pa3%3d96000-video%3d1604032.norewind.m3u8',1,logos_tvp+'251.png')
 		if selfAddon.getSetting('s4c') == 'TVPlayer': addLink('S4C','251',2,logos_tvp+'251.png')
 		
 		#Sky News

@@ -29,8 +29,8 @@ from resources.lib.libraries import logger
 class source:
     def __init__(self):
         self.domains = ['movie25.ph', 'movie25.hk', 'tinklepad.is']
-        self.base_link = 'http://tinklepad.is'
-        self.search_link = 'http://tinklepad.is/search.php?q=%s'
+        self.base_link = 'http://tinklepad.ag'
+        self.search_link = 'http://tinklepad.ag/search.php?q=%s'
 
     def request(self, url, check):
         try:
@@ -47,26 +47,41 @@ class source:
 
     def get_movie(self, imdb, title, year):
         try:
-            query = self.search_link % urllib.quote_plus(title)
+            query = self.search_link % urllib.quote_plus(cleantitle.query(title))
             query = urlparse.urljoin(self.base_link, query)
 
-            result = self.request(query, 'movie_table')
+            result = client.request(query, post=urllib.urlencode({'chts': 'Click Here to Continue'}))
+
             result = client.parseDOM(result, 'div', attrs = {'class': 'movie_table'})
 
-            title = cleantitle.movie(title)
+            title = cleantitle.get(title)
             years = ['(%s)' % str(year), '(%s)' % str(int(year)+1), '(%s)' % str(int(year)-1)]
 
             result = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'img', ret='alt')) for i in result]
             result = [(i[0][0], i[1][0]) for i in result if len(i[0]) > 0 and len(i[1]) > 0]
             result = [i for i in result if any(x in i[1] for x in years)]
-            result = [i[0] for i in result if title == cleantitle.movie(i[1])][0]
 
-            url = client.replaceHTMLCodes(result)
-            try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['q'][0]
+            try: result = [(urlparse.parse_qs(urlparse.urlparse(i[0]).query)['q'][0], i[1]) for i in result]
             except: pass
-            try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['u'][0]
+            try: result = [(urlparse.parse_qs(urlparse.urlparse(i[0]).query)['u'][0], i[1]) for i in result]
             except: pass
-            url = urlparse.urlparse(url).path
+            try: result = [(urlparse.urlparse(i[0]).path, i[1]) for i in result]
+            except: pass
+
+            match = [i[0] for i in result if title == cleantitle.get(i[1]) and '(%s)' % str(year) in i[1]]
+
+            match2 = [i[0] for i in result]
+            match2 = [x for y,x in enumerate(match2) if x not in match2[:y]]
+            if match2 == []: return
+
+            for i in match2[:5]:
+                try:
+                    if len(match) > 0: url = match[0] ; break
+                    result = proxy.request(urlparse.urljoin(self.base_link, i), 'link_name')
+                    if imdb in str(result): url = i ; break
+                except:
+                    pass
+
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
             return url
@@ -82,7 +97,7 @@ class source:
 
             url = urlparse.urljoin(self.base_link, url)
 
-            result = self.request(url, 'Links - Quality')
+            result = proxy.request(url, 'Links - Quality')
             result = result.replace('\n','')
 
             quality = re.compile('>Links - Quality(.+?)<').findall(result)[0]
@@ -111,10 +126,10 @@ class source:
                     host = client.replaceHTMLCodes(host)
                     host = host.encode('utf-8')
 
-                    sources.append({'source': host, 'parts' : '1','quality': quality, 'provider': 'Movie25', 'url': url, 'direct': False, 'debridonly': False})
+                    sources.append({'source': host, 'quality': quality, 'provider': 'Movie25', 'url': url, 'direct': False, 'debridonly': False})
                 except:
                     pass
-            logger.debug('SOURCES [%s]' % sources, __name__)
+
             return sources
         except:
             return sources

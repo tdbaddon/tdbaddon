@@ -72,10 +72,12 @@ class source:
                 with open(filePath, 'w') as outfile:
                     json.dump(channelList, outfile, sort_keys=True, indent=2)
 
-            liveParser = LiveParser(self.fileName, control.addon)
-            self.list = liveParser.parseFile(decode=False)
+                liveParser = LiveParser(self.fileName, control.addon)
+                self.list = liveParser.parseFile(decode=False)
             return (generateJSON, self.list)
         except:
+            import traceback
+            traceback.print_exc()
             pass
 
     def getSwiftUserAgent(self):

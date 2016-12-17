@@ -1,4 +1,9 @@
 ========================
+2.0.1
+========================
++ Fixed streams for BBC iPlayer service
+
+========================
 2.0.0
 ========================
 + Added Catch-Up TV section
@@ -18,7 +23,7 @@
 ========================
 1.0.1
 ========================
-+ Fix for player changes via SimpleStreams.
++ Fix for player changes via SimpleStreams
 
 ========================
 1.0.0

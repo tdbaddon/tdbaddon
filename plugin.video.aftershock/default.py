@@ -157,14 +157,12 @@ elif action == 'artwork':
 
 elif action == 'liveEPGNavigator':
     from resources.lib.libraries import control
+    from resources.lib.libraries import user
     analytics.sendAnalytics('%s-EPG' % action)
-    try :
-        tmpAddon = control.addon('script.aftershocknow.guide')
+    email = control.setting('user.email')
+    valid, url = user.validateUser(email, True)
+    if valid > 0:
         xbmc.executebuiltin("RunAddon(script.aftershocknow.guide)")
-    except:
-        import traceback
-        traceback.print_exc()
-        control.dialog.ok(control.addonInfo('name'), "Please make a $5 donation to aftershockpy@gmail.com via PayPal to get access !!")
 
 elif action == 'tvshows':
     from resources.lib.indexers import tvshows

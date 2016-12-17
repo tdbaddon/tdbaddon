@@ -25,6 +25,7 @@ from resources.lib.libraries import control
 from resources.lib.libraries import views
 from resources.lib.libraries import logger
 from resources.lib.libraries import analytics
+from resources.lib.libraries import user
 
 artPath = control.artPath() ; addonFanart = control.addonFanart()
 
@@ -51,7 +52,10 @@ class navigator:
     def root(self):
 
         self.addDirectoryItem(30860, 'movieLangNavigator', 'movies.png','DefaultMovies.png')
-        self.addDirectoryItem(90114, 'desiLiveNavigator', 'tv-live.png','DefaultMovies.png')
+        email = control.setting('user.email')
+        valid, url = user.validateUser(email, False)
+        if valid >= 0:
+            self.addDirectoryItem(90114, 'desiLiveNavigator', 'tv-live.png','DefaultMovies.png')
         self.addDirectoryItem(90115, 'liveEPGNavigator', 'tv-epg.png','DefaultMovies.png')
         self.addDirectoryItem(30861, 'desiTVNavigator', 'tv-vod.png','DefaultMovies.png')
 
@@ -117,7 +121,9 @@ class navigator:
 
     def desiLiveTV(self):
         from resources.lib.indexers import livetv
-        livetv.channels.get()
+        email = control.setting('user.email')
+        if user.validateUser(email, True):
+            livetv.channels.get()
 
     def desiTV(self):
         listItems = []

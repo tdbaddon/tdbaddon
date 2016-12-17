@@ -38,6 +38,15 @@ def live(title):
         title = tmpTitle
     return title
 
+def geturl(title):
+    if title == None: return
+    title = title.lower()
+    title = title.translate(None, ':*?"\'\.<>|&!,')
+    title = title.replace('/', '-')
+    title = title.replace(' ', '-')
+    title = title.replace('--', '-')
+    return title
+
 def get(title):
     if title == None: return
     title = re.sub('&#(\d+);', '', title)

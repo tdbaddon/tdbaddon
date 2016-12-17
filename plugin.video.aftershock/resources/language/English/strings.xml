@@ -24,6 +24,7 @@
     <string id="30272">Episode Information</string>
     <string id="30273">Set Episodes view</string>
     <string id="30274">Browse Seasons</string>
+    <string id="30275">User Email</string>
 
     <string id="30306">Aftershock cache cleared</string>
     <string id="30308">No stream available</string>
@@ -69,6 +70,7 @@
     <string id="30805">Main menu</string>
     <string id="30806">TV Show Provider</string>
     <string id="30807">Collect Analytics</string>
+    <string id="30808">EPG User Email</string>
     <string id="30830">Playback</string>
     <string id="30831">Max Quality</string>
     <string id="30832">Host selection</string>

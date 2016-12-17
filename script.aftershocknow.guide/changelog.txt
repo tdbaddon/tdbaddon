@@ -1,0 +1,9 @@
+--------------------------
+AftershockNow Guide - 1.1.0
+--------------------------
+Integration with Aftershock
+
+--------------------------
+AftershockNow Guide - 0.0.1
+--------------------------
++ Initial Release

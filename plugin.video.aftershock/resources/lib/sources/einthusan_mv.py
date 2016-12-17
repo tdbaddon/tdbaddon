@@ -38,8 +38,8 @@ class source:
             lang = 'http://www.imdb.com/title/%s/' % imdb
             lang = client.request(lang)
             lang = re.findall('href\s*=\s*[\'|\"](.+?)[\'|\"]', lang)
-            lang = [i for i in lang if 'languages=' in i]
-            lang = [i.split('languages=')[-1].split('&')[0].lower() for i in lang]
+            lang = [i for i in lang if 'language=' in i]
+            lang = [i.split('language=')[-1].split('&')[0].lower() for i in lang]
             lang = [i for i in lang if any(x == i for x in langMap.keys())]
             lang = langMap[lang[0]]
 

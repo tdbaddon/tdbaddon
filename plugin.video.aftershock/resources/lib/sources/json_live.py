@@ -21,6 +21,7 @@
 
 import datetime, base64, os, json
 from resources.lib.libraries import client
+from resources.lib.libraries import cache
 from resources.lib.libraries import control
 from resources.lib.libraries import logger
 from resources.lib.libraries import cleantitle
@@ -30,22 +31,35 @@ from resources.lib.libraries.liveParser import  *
 class source:
     def __init__(self):
         self.fileName = 'static.json'
+        self.filePath = os.path.join(control.dataPath, self.fileName)
         self.list = []
+
+    def removeJSON(self, name):
+        control.delete(self.fileName)
+        return 0
 
     def getLiveSource(self, generateJSON=False):
         try :
-            fileFetcher = FileFetcher(self.fileName, control.addon)
-            if control.setting('livelocal') == 'true':
-                retValue = 1
-            else :
-                retValue = fileFetcher.fetchFile()
-            if retValue < 0 :
-                raise Exception()
+            retValue = 0
+            generateJSON = cache.get(self.removeJSON, 168, __name__, table='live_cache')
+            if not os.path.exists(self.filePath):
+                generateJSON = 1
 
-            liveParser = LiveParser(self.fileName, control.addon)
-            self.list = liveParser.parseFile()
+            if generateJSON:
+                fileFetcher = FileFetcher(self.fileName, control.addon)
+                if control.setting('livelocal') == 'true':
+                    retValue = 1
+                else :
+                    retValue = fileFetcher.fetchFile()
+                if retValue < 0 :
+                    raise Exception()
+
+                liveParser = LiveParser(self.fileName, control.addon)
+                self.list = liveParser.parseFile()
             return (retValue, self.list)
         except :
+            import traceback
+            traceback.print_exc()
             pass
 
     def resolve(self, url, resolverList):

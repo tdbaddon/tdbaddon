@@ -35,6 +35,7 @@ class source:
         try:
             self.base_link = self.base_link
             query = '%s %s' % (title, year)
+            query = '%s' % (title)
             query = self.search_link % (urllib.quote_plus(query))
             query = urlparse.urljoin(self.base_link, query)
 

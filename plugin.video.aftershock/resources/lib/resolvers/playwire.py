@@ -42,7 +42,36 @@ def resolve(url):
 
         src = data['src']
         video_info = re.compile('config.playwire.com/(.+?)/videos/v2/(.+?)/manifest.f4m').findall(src)[0]
-        url = 'http://cdn.phoenix.intergi.com/' + video_info[0] + '/videos/' + video_info[1] + '/video-mobile.mp4?hosting_id=' + video_info[0]
+        # try best url
+        #url = 'https://config.playwire.com/' + video_info[0] + '/videos/v2/' + video_info[1] + '/abr-non-hd.m3u8'
+        #logger.debug('PLAYWIRE HD URL : %s ' % url)
+        #try :
+        #    result = client.request(url, output='geturl', timeout=10)
+        #    if result == None:
+        #        raise Exception()
+        #except:
+        #    pass
+        # try sd url
+
+        result = None
+        if result == None:
+            url = 'http://cdn.phoenix.intergi.com/' + video_info[0] + '/videos/' + video_info[1] + '/video-sd.mp4?hosting_id=' + video_info[0]
+            try :
+                result = client.request(url, output='chunk', timeout=10)
+                if result == None:
+                    raise Exception()
+            except:
+                pass
+
+        if result == None:
+            # try mobile url
+            url = 'http://cdn.phoenix.intergi.com/' + video_info[0] + '/videos/' + video_info[1] + '/video-mobile.mp4?hosting_id=' + video_info[0]
+            try :
+                result = client.request(url, output='chunk', timeout=10)
+                if test == None:
+                    raise Exception()
+            except:
+                pass
         '''
         try :
             publisherId = data['publisherId']
