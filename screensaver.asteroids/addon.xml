@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<addon
+  id="screensaver.asteroids"
+  version="1000"
+  name="Asteroids"
+  provider-name="spiff">
+  <requires>
+    <c-pluff version="0.1"/>
+  </requires>
+  <extension
+    point="xbmc.ui.screensaver"
+    library_linux="screensaver.asteroids.so"
+    library_windx="screensaver.asteroids.dll"
+    library_osx="screensaver.asteroids.dylib"/>
+  <extension point="xbmc.addon.metadata">
+    <summary>Asteroids screensaver</summary>
+    <description>Asteroids screensaver</description>
+    <platform>linux osx windx</platform>
+  </extension>
+</addon>

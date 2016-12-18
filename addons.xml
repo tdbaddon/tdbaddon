@@ -1019,27 +1019,6 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
 	</extension>
 </addon>
 
-<addon id="plugin.video.euronews_com" name="euronews.com" version="2.0.5" provider-name="AddonScriptorDE">
-    <requires>
-        <import addon="xbmc.python" version="2.1.0"/>
-    </requires>
-    <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>video</provides>
-    </extension>
-    <extension point="xbmc.addon.metadata">
-        <platform>all</platform>
-        <summary lang="en">Livestream and latest news videos from euronews.com | Available languages: English, Greek, French, German, Italian, Spanish, Portuguese, Polish, Russian, Ukrainian, Turkish, Arabic and Persian</summary>
-        <language></language>
-        <description lang="en">Livestream and latest news videos from euronews.com | Available languages: English, Greek, French, German, Italian, Spanish, Portuguese, Polish, Russian, Ukrainian, Turkish, Arabic and Persian</description>
-        <disclaimer lang="en">Some parts of this addon may not be legal in your country of residence - please check with your local laws before installing.</disclaimer>
-        <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
-        <source>https://github.com/AddonScriptorDE/plugin.video.euronews_com</source>
-        <forum>http://forum.xbmc.org/showthread.php?tid=157182</forum>
-        <email>AddonScriptorDE at yahoo dot de</email>
-        <website>http://www.euronews.com</website>
-    </extension>
-</addon>
-
 <addon id="plugin.video.Evolve" name="[COLOR red]E[/COLOR][COLOR white]volve[/COLOR]" version="0.0.9" provider-name="Team Evolve">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -3390,6 +3369,26 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
                 <description>Download and install addons from the Kodi Youtube group. This plugin is not official from Google.</description>
 		<platform>all</platform>
 	</extension>
+</addon>
+
+<addon
+  id="screensaver.asteroids"
+  version="1000"
+  name="Asteroids"
+  provider-name="spiff">
+  <requires>
+    <c-pluff version="0.1"/>
+  </requires>
+  <extension
+    point="xbmc.ui.screensaver"
+    library_linux="screensaver.asteroids.so"
+    library_windx="screensaver.asteroids.dll"
+    library_osx="screensaver.asteroids.dylib"/>
+  <extension point="xbmc.addon.metadata">
+    <summary>Asteroids screensaver</summary>
+    <description>Asteroids screensaver</description>
+    <platform>linux osx windx</platform>
+  </extension>
 </addon>
 
 <addon id="script.1channel.themepak" version="0.0.6" name="1Channel Themepak" provider-name="tknorris">
