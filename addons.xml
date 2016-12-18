@@ -444,8 +444,8 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 </addon>
 
 <addon id="plugin.program.super.favourites"
-       name="TDB SUPER FAVOURITES"
-       version="3000"
+       name="TDB SUPER FAVS"
+       version="3001"
        provider-name="TDB">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -3418,11 +3418,11 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
-<addon id="script.aftershocknow.guide" name="Aftershock Now" version="1.1.0" provider-name="IDev">
+<addon id="script.aftershocknow.guide" name="Aftershock Now" version="1.1.1" provider-name="IDev">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0"/>
 		<import addon="script.module.simplejson" version="3.3.0"/>
-		<import addon="plugin.video.aftershock" version="4.2.6.4"/>
+		<import addon="plugin.video.aftershock" version="4.3.0" optional="true"/>
 	</requires>
 	<extension point="xbmc.python.script" library="addon.py">
             <provides>executable</provides>

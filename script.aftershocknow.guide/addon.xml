@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="script.aftershocknow.guide" name="Aftershock Now" version="1.1.0" provider-name="IDev">
+<addon id="script.aftershocknow.guide" name="Aftershock Now" version="1.1.1" provider-name="IDev">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0"/>
 		<import addon="script.module.simplejson" version="3.3.0"/>
-		<import addon="plugin.video.aftershock" version="4.2.6.4"/>
+		<import addon="plugin.video.aftershock" version="4.3.0" optional="true"/>
 	</requires>
 	<extension point="xbmc.python.script" library="addon.py">
             <provides>executable</provides>
