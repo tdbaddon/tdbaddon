@@ -60,24 +60,13 @@ class source:
 
             r = client.request(url, headers=h, output='extended')
 
-            try:
-                u = client.parseDOM(r[0], 'form', ret='action', attrs = {'method': 'post'})[-1]
-                u = urlparse.urljoin(self.base_link, u)
-
-                p = zip(client.parseDOM(r[0], 'input', ret='name', attrs = {'type': 'hidden'}), client.parseDOM(r[0], 'input', ret='value', attrs = {'type': 'hidden'}))
-                p = urllib.urlencode(dict(p))
-
-                r = client.request(u, post=p, cookie=r[4], headers=h, output='extended')
-            except:
-                pass
-
-            r = r[0]
-
-            s = re.findall('"imdbId"\s*:\s*"(.+?)"\s*,\s*"season"\s*:\s*(\d+)\s*,\s*"provider"\s*:\s*"(.+?)"\s*,\s*"name"\s*:\s*"(.+?)"', r)
+            s = client.parseDOM(r[0], 'ul', attrs = {'class': 'episodes'})
+            s = client.parseDOM(s, 'a', ret='data.+?')
+            s = [client.replaceHTMLCodes(i).replace(':', '=').replace(',', '&').replace('"', '').strip('{').strip('}') for i in s]
 
             for u in s:
                 try:
-                    url = '/io/1.0/stream?imdbId=%s&season=%s&provider=%s&name=%s' % (u[0], u[1], u[2], u[3])
+                    url = '/io/1.0/stream?%s' % u
                     url = urlparse.urljoin(self.base_link, url)
 
                     r = client.request(url)
@@ -97,12 +86,6 @@ class source:
 
 
     def resolve(self, url):
-        try:
-            url = client.request(url, output='geturl')
-            if 'requiressl=yes' in url: url = url.replace('http://', 'https://')
-            else: url = url.replace('https://', 'http://')
-            return url
-        except:
-            return
+        return directstream.googlepass(url)
 
 

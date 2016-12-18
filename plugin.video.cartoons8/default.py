@@ -136,8 +136,9 @@ def AZ(url,name):
     
 def GETPLAYLINK(name,url,iconimage):
         link = open_url(url)
-        try: stream_url = re.compile('<a href="(.+?)" target="_blank"').findall(link)[-1]
-        except:
+        if '9cartoon.me' in url:
+                stream_url = re.compile('<a href="(.+?)" target="_blank"').findall(link)[-1]
+        else:
                 holderpage=re.compile('<iframe src="(.+?)" scrolling="no" frameborder="0" width="1008" height="640" allowfullscreen="true"></iframe>').findall(link)[0]
                 link = open_url(holderpage)
                 stream_url = re.compile('<a href="(.+?)" target="_blank"').findall(link)[-1]

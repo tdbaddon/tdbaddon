@@ -1,3416 +1,2574 @@
-#
-#       Copyright (C) 2014-
-#       Sean Poyser (seanpoyser@gmail.com)
-#
-#  This Program is free software; you can redistribute it and/or modify
-#  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation; either version 2, or (at your option)
-#  any later version.
-#
-#  This Program is distributed in the hope that it will be useful,
-#  but WITHOUT ANY WARRANTY; without even the implied warranty of
-#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-#  GNU General Public License for more details.
-#
-#  You should have received a copy of the GNU General Public License
-#  along with XBMC; see the file COPYING.  If not, write to
-#  the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
-#  http://www.gnu.org/copyleft/gpl.html
-#
-
-import xbmc
-import xbmcaddon
+# -*- coding: utf-8 -*-
+import urllib
+import urllib2
+import datetime
+import re
+import os
+import base64
 import xbmcplugin
 import xbmcgui
-import os
-
-import urllib
-import re
-
-import quicknet
-import player
-import favourite
-import history
-import utils
-import cache
-import sfile
-import parameters
-
-
-ADDONID  = utils.ADDONID
-ADDON    = utils.ADDON
-HOME     = utils.HOME
-ROOT     = utils.ROOT
-PROFILE  = utils.PROFILE
-VERSION  = utils.VERSION
-ICON     = utils.ICON
-
-
-FANART   = utils.FANART
-SEARCH   = utils.SEARCH
-BLANK    = 'NULL'
-
-GETTEXT  = utils.GETTEXT
-TITLE    = utils.TITLE
-FRODO    = utils.FRODO
-GOTHAM   = utils.GOTHAM
-HELIX    = utils.HELIX
-
-FILENAME      = utils.FILENAME
-FOLDERCFG     = utils.FOLDERCFG
-
-
-PLAYMEDIA_MODE      = utils.PLAYMEDIA_MODE
-ACTIVATEWINDOW_MODE = utils.ACTIVATEWINDOW_MODE
-RUNPLUGIN_MODE      = utils.RUNPLUGIN_MODE
-ACTION_MODE         = utils.ACTION_MODE
-
-MANUAL_CMD = 'SF_MANUAL_CMD_'
-
-DISPLAYNAME = utils.DISPLAYNAME
-
-# -----Addon Modes ----- #
-_IGNORE                = -10
-_MAIN                  = -2
-_SUPERSEARCH           = 0  #also in capture.py
-_SUPERSEARCHDEF        = 10 #also in capture.py
-_EXTSEARCH             = 25 #used to trigger new Super Search from outside of addon
-_SEPARATOR             = 50
-_SETTINGS              = 100
-_VIEWTYPE              = 150
-_ADDTOXBMC             = 200
-_ADDTOSF               = 250
-_COPYTOSF              = 275
-_XBMC                  = 300
-_FOLDER                = utils._FOLDER
-_NEWFOLDER             = 500
-_PLAYMEDIA             = 600
-_ACTIVATEWINDOW        = 650
-_ACTIVATEWINDOW_XBMC   = 660
-_ACTIVATESEARCH        = 675
-_REMOVEFOLDER          = 700
-_REMOVEFAVE            = 800
-_RENAMEFOLDER          = 900
-_RENAMEFAVE            = 1000
-_THUMBFAVE             = 1500
-_THUMBFOLDER           = 1600
-_PLAYBACKMODE          = 1700
-_EDITTERM              = 1900
-_EDITFOLDER            = 2000
-_EDITFAVE              = 2100
-_SECURE                = 2200
-_UNSECURE              = 2300
-_PLAYLIST              = 2400
-_COLOURFOLDER          = 2500
-_COLOURFAVE            = 2600
-_RECOMMEND_KEY         = 2700 #also in capture.py
-_RECOMMEND_KEY_A       = 2710
-_RECOMMEND_IMDB        = 2800
-_PLAYTRAILER           = 2900
-_EDITSEARCH            = 3000
-_IMPORT                = 3100
-_IPLAY                 = 3200
-_PLAYLISTFILE          = 3300 
-_PLAYLISTITEM          = 3400 
-_PLAYLISTBROWSE        = 3500
-_DELETEPLAYLIST        = 3600
-_COPY_PLAY_TO_SF       = 3700
-_COPY_PLAY_TO_SF_ITEM  = 3800
-_PLAYPLAYLIST          = 3900
-_URLPLAYLIST           = 4000
-_HISTORYSHOW           = 4100
-_HISTORYADD            = 4200
-_HISTORYREMOVE         = 4300
-_MANUAL                = 4400
-_CUT                   = 4500
-_COPY                  = 4600
-_PASTE                 = 4700
-_CUTFOLDER             = 4800
-_COPYFOLDER            = 4900
-_PASTEFOLDER           = 5000
-_IEXPLORE              = 5100
-_PLAY_FILE             = 5200
-_PLAY_FOLDER           = 5300
-_PLAY_SUPER_FOLDER     = 5400
-_PLAY_SUPER_FOLDER_EXT = 5450
-
-
-# --------------------- Addon Settings --------------------- #
-SHOWNEW               = ADDON.getSetting('SHOWNEW')               == 'true'
-SHOWIMPORT            = ADDON.getSetting('SHOWIMPORT')            == 'true'
-SHOWSEP               = ADDON.getSetting('SHOWSEP')               == 'true'
-SHOWSS                = ADDON.getSetting('SHOWSS')                == 'true'
-CONTEXTSS             = ADDON.getSetting('CONTEXTSS')             == 'true'
-SHOW_FANART           = ADDON.getSetting('SHOW_FANART')           == 'true'
-SHOWRECOMMEND         = ADDON.getSetting('SHOWRECOMMEND')         == 'true'
-PLAY_PLAYLISTS        = ADDON.getSetting('PLAY_PLAYLISTS')        == 'true'
-METARECOMMEND         = ADDON.getSetting('METARECOMMEND')         == 'true'
-SYNOPSRECOMMEND       = ADDON.getSetting('SYNOPSRECOMMEND')       == 'true'
-RECOMMENDAUTO         = ADDON.getSetting('RECOMMENDFIRST')        == 'true'
-CONTEXTRECOMMEND      = ADDON.getSetting('CONTEXTRECOMMEND')      == 'true'
-REMOTE                = ADDON.getSetting('REMOTE')                == 'true'
-SHOWIPLAY             = ADDON.getSetting('SHOWIPLAY')             == 'true'
-SHOWIHISTORY          = ADDON.getSetting('SHOWREMEMBER')          == 'true'
-SHOWIEXPLORE          = ADDON.getSetting('SHOWIEXPLORE')          == 'true'
-COPY_PLAYLISTS        = ADDON.getSetting('COPY_PLAYLISTS')        == 'true'
-ALLOW_PLAYLIST_DELETE = ADDON.getSetting('ALLOW_PLAYLIST_DELETE') == 'true'
-DISABLEMOVIEVIEW      = ADDON.getSetting('DISABLEMOVIEVIEW')      == 'true'
-DEBUG                 = ADDON.getSetting('DEBUG')                 == 'true'
-DLG_MENU              = ADDON.getSetting('CONTEXT_STYLE')         == '1'
-DEFAULT_FANART        = ADDON.getSetting('DEFAULT_FANART')
-
-SHOWXBMC              = utils.SHOWXBMC
-INHERIT               = utils.INHERIT
-ALPHA_SORT            = utils.ALPHA_SORT
-LABEL_NUMERIC         = utils.LABEL_NUMERIC
-
-TMDB_API_KEY='302783d0fefc7b8a97ab7cc7f42a2cde'
-
-try:    VIEWTYPE = int(ADDON.getSetting('VIEWTYPE'))
-except: VIEWTYPE = 0
-
-ART_LANDSCAPE = int(ADDON.getSetting('ART_LANDSCAPE'))
-ART_BANNER    = int(ADDON.getSetting('ART_BANNER'))
-ART_POSTER    = int(ADDON.getSetting('ART_POSTER'))
-
-
-CONTENTTYPE = ADDON.getSetting('CONTENTTYPE')
-
-CONTENTTYPES = {}
-CONTENTTYPES[GETTEXT(35029)] = 'files'
-CONTENTTYPES[GETTEXT(35030)] = 'songs'
-CONTENTTYPES[GETTEXT(35031)] = 'artists'
-CONTENTTYPES[GETTEXT(35032)] = 'albums'
-CONTENTTYPES[GETTEXT(35033)] = 'movies'
-CONTENTTYPES[GETTEXT(35034)] = 'tvshows'
-CONTENTTYPES[GETTEXT(35035)] = 'episodes'
-CONTENTTYPES[GETTEXT(35036)] = 'musicvideos'
-CONTENTTYPES[GETTEXT(35037)] = ''
-
-
-if ADDON.getSetting('SHOW_STARTUP_TXT') == 'true':
-    utils.DialogOK(ADDON.getSetting('STARTUP_TXT'))
-    ADDON.setSetting('SHOW_STARTUP_TXT', 'false')
-
-
-if REMOTE:
-    LOCATION = len(ADDON.getSetting('LOCATION')) > 0
-else:
-    LOCATION = False
-
-if DEFAULT_FANART == '1':
-    FANART = ADDON.getSetting('DEFAULT_IMAGE')
-
-if DEFAULT_FANART == '2':
-    FANART = BLANK
-
-CONTENTMODE   = False
-ISEARCH_EMPTY = '__iSearch__'
-
-NUMBER_SEP = utils.NUMBER_SEP
-# ---------------------------------------------------------- #
-
-utils.CheckVersion()
-
-
-global nItem
-nItem = 0
-
-global separator
-separator = False
-
-global currentFolder
-currentFolder = PROFILE
-
-global addingMainItems
-addingMainItems = False
-
-
-def main():
-    global addingMainItems
-    addingMainItems = True
-
-    addMainItems()
- 
-    addingMainItems = False
-    parseFolder(PROFILE)
-
-
-def setViewType():
-    view = utils.getViewType()
-    if view == None:
-        return False
-
-    ADDON.setSetting('VIEWTYPE', str(view))
-    return True
-
-
-def addSuperSearch():
-    global separator
-
-    if not SHOWSS:
-        return
-
-    separator = False        
-    addDir(GETTEXT(30054), _SUPERSEARCH, thumbnail=SEARCH, isFolder=True, infolabels={'plot':GETTEXT(30195)})
-    separator = True
-
-
-def addNewFolderItem(path):
-    global currentFolder
-
-    currentFolder = path
-
-    global separator
-    if SHOWNEW:
-        separator = False
-        addDir(GETTEXT(30004), _NEWFOLDER, path=path, thumbnail=ICON, isFolder=False, infolabels={'plot':GETTEXT(30199)})
-        separator = True
-
-
-def addSeparatorItem(menu=None):
-    global separator
-    separator = False        
-    if SHOWSEP:
-        addDir('', _SEPARATOR, thumbnail=BLANK, isFolder=False, menu=menu)
-
-
-def populatePasteMenu(menu):
-    global currentFolder
-
-    type = xbmcgui.Window(10000).getProperty('SF_TYPE').lower()
-
-    if len(type) == 0:
-        return
-
-    if type == 'capture':
-        menu.append((GETTEXT(30258), 'XBMC.RunPlugin(%s?mode=%d&paste=%s)' % (sys.argv[0], _PASTE, urllib.quote_plus(currentFolder))))
-        return
-
-    folder = 'folder' in type
-    cut    = 'cut'    in type
-
-    src = xbmcgui.Window(10000).getProperty('SF_FOLDER')
-
-    if folder:
-        if cut and currentFolder == xbmcgui.Window(10000).getProperty('SF_FILE'):
-            return
-        menu.append((GETTEXT(30182), 'XBMC.RunPlugin(%s?mode=%d&paste=%s)' % (sys.argv[0], _PASTEFOLDER, urllib.quote_plus(currentFolder))))
-        return
-
-    if src == currentFolder:
-        return
-
-    menu.append((GETTEXT(30179), 'XBMC.RunPlugin(%s?mode=%d&paste=%s)' % (sys.argv[0], _PASTE, urllib.quote_plus(currentFolder))))
-
-
-def addGlobalMenuItem(menu, item, ignore, label, thumbnail, u, keyword, fanart, meta):
-    if mode == _FOLDER or mode == _MAIN or mode == _XBMC:
-        populatePasteMenu(menu)        
-            
-    if not ignore:
-        try:    addFavouriteMenuItem(menu, label, thumbnail, u, keyword, fanart, meta)
-        except: pass
-
-    if mode != _XBMC:
-        cmd = '%s?mode=%d' % (sys.argv[0], _XBMC)
-        label = GETTEXT(30040) % DISPLAYNAME
-        menu.append((label, 'XBMC.Container.Update(%s)' % cmd))
-
-        if mode == _FOLDER or mode == _MAIN:
-            path = thepath
-            if path == '':
-                path = PROFILE
-            menu.append((GETTEXT(30004), 'XBMC.RunPlugin(%s?mode=%d&path=%s)' % (sys.argv[0], _NEWFOLDER, urllib.quote_plus(path))))
-
-            menu.append((GETTEXT(30166), 'XBMC.RunPlugin(%s?mode=%d&path=%s)' % (sys.argv[0], _MANUAL, urllib.quote_plus(path))))
-
-    menu.append((GETTEXT(30204), 'XBMC.RunPlugin(%s?mode=%d)' % (sys.argv[0], _VIEWTYPE)))
-
-    menu.append((GETTEXT(30005), 'XBMC.RunPlugin(%s?mode=%d)' % (sys.argv[0], _SETTINGS)))
-
-    addon = utils.findAddon(item)
-
-    if addon == None or addon == ADDONID:
-        return
-
-    label = utils.getSettingsLabel(addon)
-        
-    menu.append((label, 'XBMC.RunPlugin(%s?mode=%d&addon=%s)' % (sys.argv[0], _SETTINGS, urllib.quote_plus(addon))))
-
-
-def addFavouriteMenuItem(menu, name, thumb, cmd, keyword, fanart, meta):
-    if mode == _XBMC:
-        return
-
-    if len(name) < 1:
-        return
-
-    #add iRecommend context menu item
-    if mode is not _SUPERSEARCH and not addingMainItems:
-        label = removeNumeric(name)
-        if utils.ADDON.getSetting('STRIPNUMBERS') == 'true':
-            label  = utils.Clean(label)
-            prefix = GETTEXT(30268)
-
-            if label.startswith(prefix):
-                label = label[len(prefix):]
-
-        if CONTEXTSS:
-            menu.append((GETTEXT(30054), 'XBMC.Container.Update(%s?mode=%d&keyword=%s&image=%s&fanart=%s)' % (sys.argv[0], _SUPERSEARCH, urllib.quote_plus(label), urllib.quote_plus(thumb), urllib.quote_plus(fanart))))
-
-        if CONTEXTRECOMMEND:
-            menu.append((GETTEXT(30088), 'XBMC.Container.Update(%s?mode=%d&keyword=%s&image=%s&fanart=%s)' % (sys.argv[0], _RECOMMEND_KEY, urllib.quote_plus(label), urllib.quote_plus(thumb), urllib.quote_plus(fanart))))
-
-    label = GETTEXT(30006) % DISPLAYNAME
-    menu.append((label, 'XBMC.RunPlugin(%s?mode=%d&name=%s&thumb=%s&cmd=%s&keyword=%s)' % (sys.argv[0], _ADDTOXBMC, urllib.quote_plus(name), urllib.quote_plus(thumb), urllib.quote_plus(cmd), urllib.quote_plus(keyword))))
-
-    try:    meta = urllib.quote_plus(utils.convertDictToURL(meta))
-    except: meta = ''
-
-    if not addableToSF():
-        return
-
-    menu.append((GETTEXT(30047), 'XBMC.RunPlugin(%s?mode=%d&name=%s&thumb=%s&cmd=%s&keyword=%s&meta=%s)' % (sys.argv[0], _ADDTOSF, urllib.quote_plus(name), urllib.quote_plus(thumb), urllib.quote_plus(cmd), urllib.quote_plus(keyword), meta)))
-
-    fave    = convertSFToFave(name, thumb, cmd,  keyword)
-    fave[2] = favourite.updateSFOption(fave[2], 'meta', meta)
-
-    menu.append((GETTEXT(30209), 'XBMC.RunPlugin(%s?mode=%d&name=%s&thumb=%s&cmd=%s&fanart=%s&meta=%s)' % (sys.argv[0], _COPYTOSF, urllib.quote_plus(fave[0]), urllib.quote_plus(fave[1]), urllib.quote_plus(fave[2]), urllib.quote_plus(fanart), meta)))
-
-
-def addableToSF():
-    if mode == _SUPERSEARCH:
-        return True
-    if mode == _HISTORYSHOW:
-        return True
-    if mode == _RECOMMEND_KEY:
-        return True
-    if mode == _RECOMMEND_IMDB:
-        return True
-    if mode == _RECOMMEND_KEY_A:
-        return True
-    return False
-
-
-def removeNumeric(text):
-    if not LABEL_NUMERIC:
-        return text
-
-    root = text.split(NUMBER_SEP, 1)[0]
-    if root.startswith('['):
-        root = root.rsplit(']', 1)[0] + ']'
-    else:
-        root = ''
-        
-    return root + text.split(NUMBER_SEP, 1)[-1]
-
-
-def convertSFToFave(name, thumb, cmd, keyword):
-    p = utils.get_params(cmd.replace('?', '&'))
-
-    name = removeNumeric(name)
-
-    try: 
-        mode = int(p['mode'])
-        if mode == _FOLDER:
-            label = urllib.unquote_plus(p['label'])
-            path  = urllib.unquote_plus(p['path'])
-            path  = utils.convertToHome(path)            
-
-            label = removeNumeric(label)
-
-            cmd = '%s?label=%s&mode=%d&path=%s' % (sys.argv[0], label, _FOLDER, urllib.quote_plus(path))
-    except:
-        mode = _IGNORE
-
-    cmd = '"%s"' % cmd   
-    
-    folder    = mode == _FOLDER
-    search    = mode == _SUPERSEARCH
-    edit      = mode == _EDITTERM
-    activate  = mode == _ACTIVATESEARCH
-    activateW = mode == _ACTIVATEWINDOW
-    recommend = mode == _RECOMMEND_KEY or mode == _RECOMMEND_IMDB
-    iPlay     = mode == _IPLAY
-    history   = mode == _HISTORYSHOW
-    playSF    = mode == _PLAY_SUPER_FOLDER
-    isSF      = cmd.startswith('"plugin://%s' % ADDONID)
-
-    isCached = False
-    if activateW:
-        isCached = utils.DialogYesNo(GETTEXT(30207))
-
-    try:    fanart = urllib.unquote_plus(p['fanart'])
-    except: fanart = ''
-
-    if activate:
-        cmd = urllib.unquote_plus(p['cmd'])
-    elif isCached or playSF:
-        cmd = 'PlayMedia(%s)' % cmd
-    elif isSF:
-        cmd = cmd.replace('+', '%20')
-        cmd = 'ActivateWindow(%d,%s,return)' % (utils.getCurrentWindowId(), cmd)
-        if activateW:
-            cmd = cmd.replace('mode=%d' % _ACTIVATEWINDOW, 'mode=%d' % _ACTIVATEWINDOW_XBMC) 
-    else:
-        fanart = ''
-        cmd    = 'PlayMedia(%s)' % cmd
-
-    if search:
-        name = GETTEXT(30054)
-
-    if edit:
-        name = GETTEXT(30054)
-        cmd  = cmd.replace('&mode=%d' % _EDITTERM, '&mode=%d' % _SUPERSEARCH)
-
-    if recommend:
-        name = GETTEXT(30088)
-
-    if search and ('keyword' not in cmd):
-        find    = '&mode=%d' % _SUPERSEARCH
-        replace = '%s&keyword=%s' % (find, ISEARCH_EMPTY)
-
-        cmd = cmd.replace(find, replace)
-        if not cmd.lower().endswith(',return)'):
-            cmd = cmd[:-1] + ',return)'
-
-    if folder:
-        thumbnail, fanart = utils.getFolderThumb(path)
-        #cmd = favourite.addFanart(cmd, fanart)
-
-    cmd = favourite.addFanart(cmd, fanart)
-
-    keyword = urllib.unquote_plus(keyword)
-    if len(keyword) > 0:
-        name += ' - %s' % keyword
-   
-    fave = [name, thumb, cmd]
-    return fave
-
-
-def addToSF(name, thumb, cmd,  keyword, meta):
-    text   = GETTEXT(30019)
-    folder = utils.GetSFFolder(text)
-
-    if not folder:
-        return False
-
-    fave    = convertSFToFave(name, thumb, cmd,  keyword)
-    fave[2] = favourite.updateSFOption(fave[2], 'meta', urllib.quote_plus(meta))
-
-    file = os.path.join(folder, FILENAME)
-
-    #if it is already in there don't add again
-    if favourite.findFave(file, fave[2])[0]:
-        return False    
-    
-    return addToFile(fave, file)
-
-
-
-def addToFile(fave, file):
-    cmd  = fave[2]
-
-    #if it is already in there don't add again
-    if favourite.findFave(file, cmd)[0]:
-        return False    
-
-    faves = favourite.getFavourites(file, validate=False)
-
-    faves.append(fave)
-
-    favourite.writeFavourites(file, faves)
-
-    return True
-
-
-def addToXBMC(name, thumb, cmd,  keyword):
-    fave = convertSFToFave(name, thumb, cmd,  keyword)
-    file = os.path.join('special://profile', FILENAME)
-    
-    return addToFile(fave, file)
-
-   
-def refresh():
-    xbmc.executebuiltin('Container.Refresh')
-
-
-def removeAutoplay(path):
-    cfg  = os.path.join(path, FOLDERCFG)
-    parameters.clearParam('AUTOPLAY', cfg)
-
-    refresh()
-
-
-def addAutoplay(path):
-    cfg  = os.path.join(path, FOLDERCFG)
-    parameters.setParam('AUTOPLAY', 'True', cfg)
-
-    refresh()
-
-
-def showXBMCFolder():
-    global currentFolder
-    currentFolder = 'special://profile'
-    file = os.path.join(currentFolder, FILENAME)
-    parseFile(file)
-
-
-def parseFile(file, sortorder=0, label_numeric=None, index=0):
-    if sortorder == 0:
-        sortorder = 1 if ALPHA_SORT else 2
-
-    global separator
-    faves = favourite.getFavourites(file)
-
-    if label_numeric == None:
-        label_numeric = LABEL_NUMERIC
-
-    text = GETTEXT(30099) % DISPLAYNAME if mode == _XBMC else GETTEXT(30068)
-
-    if sortorder == 1: #ALPHA_SORT:
-         faves = sorted(faves, key=lambda x: utils.CleanForSort(x))
-
-    for fave in faves:
-        label  = fave[0]
-        thumb  = fave[1]
-        cmd    = fave[2]
-        fanart = favourite.getFanart(cmd)
-        desc   = favourite.getOption(cmd, 'desc')
-        meta   = favourite.getOption(cmd, 'meta')
-
-        manualUnset = MANUAL_CMD in cmd
-
-        infolabel = utils.convertURLToDict(meta)
-        if len(desc) > 0:
-            infolabel['plot'] = urllib.unquote(desc)
-
-        menu  = []
-        menu.append((text, 'XBMC.RunPlugin(%s?mode=%d&file=%s&cmd=%s&name=%s&thumb=%s)' % (sys.argv[0], _EDITFAVE, urllib.quote_plus(file), urllib.quote_plus(cmd), urllib.quote_plus(label), urllib.quote_plus(thumb))))
-
-
-        if not PLAY_PLAYLISTS:
-            import playlist
-            if playlist.isPlaylist(cmd):
-                menu.append((GETTEXT(30084), 'XBMC.RunPlugin(%s?mode=%d&file=%s&cmd=%s)' % (sys.argv[0], _PLAYLIST, urllib.quote_plus(file), urllib.quote_plus(cmd))))
-
-        menu.append((GETTEXT(30178), 'XBMC.RunPlugin(%s?mode=%d&file=%s&cmd=%s)' % (sys.argv[0], _COPY, urllib.quote_plus(file), urllib.quote_plus(cmd))))
-        #menu.append((GETTEXT(30177), 'XBMC.RunPlugin(%s?mode=%d&file=%s&cmd=%s)' % (sys.argv[0], _CUT, urllib.quote_plus(file),  urllib.quote_plus(cmd))))
-
-        type     = _ACTIVATEWINDOW
-        isFolder = True
-
-        if manualUnset:
-            type     = _IGNORE
-            isFolder = False
-        elif 'playmedia(' in cmd.lower():
-            type     = _PLAYMEDIA
-            isFolder = False
-
-        label, index = utils.addPrefixToLabel(index, label, label_numeric)
-
-        path = checkForSuperFolderLink(cmd)
-
-        if path:    
-            addDir(label, _FOLDER, path=path, thumbnail=thumb, isFolder=True, menu=menu, fanart=fanart, infolabels=infolabel)
-        else:           
-            addDir(label, type, cmd=cmd, thumbnail=thumb, isFolder=isFolder, menu=menu, fanart=fanart, infolabels=infolabel)
-
-    separator = len(faves) > 0
-
-
-def checkForSuperFolderLink(cmd):
-    try:
-        if not cmd.startswith('ActivateWindow'):
-            return None
-
-        if 'plugin://plugin.program.super.favourites' not in cmd:
-            return None
-
-        params = utils.get_params(cmd)
-
-        mode = int(params['mode'])
-
-        if mode <> _FOLDER:
-            return None
-
-        if 'path' in params:
-            path = params['path'].replace('\\', '/')
-            if path.replace('\\', '/').startswith(PROFILE):
-                return path
-
-        if 'folder' in params:
-            folder = params['folder'].replace('\\', '/')
-            folder = os.path.join(PROFILE, folder)
-            return folder
-
-    except:
-        pass
-
-    return None
-
-
-def addMainItems():
-    if mode != _MAIN:
-        return
-
-    global separator
-
-    addSuperSearch()
-
-    if SHOWIEXPLORE:
-        separator = False
-        folder    = 'DefaultFolder.png'
-        addDir(GETTEXT(30225), _IEXPLORE, thumbnail=folder, isFolder=True, infolabels={'plot':GETTEXT(30227)})
-        separator = True
-
-
-    if SHOWIPLAY:
-        separator = False
-
-        thumbnail = 'DefaultVideoPlaylists.png'
-        fanart    = ''
-
-        label = GETTEXT(30146) % DISPLAYNAME
-        addDir(label, _IPLAY, thumbnail=thumbnail, isFolder=True, fanart=fanart, infolabels={'plot':GETTEXT(30196)})
-        separator = True
-
-    addNewFolderItem(PROFILE)
-
-
-    if SHOWXBMC:
-        separator = False
-
-        thumbnail, fanart = utils.getFolderThumb(PROFILE, True)
-
-        label = GETTEXT(30040) % DISPLAYNAME
-        addDir(label, _XBMC, thumbnail=thumbnail, isFolder=True, fanart=fanart, infolabels={'plot':GETTEXT(30197)})
-        separator = True
-
-
-    if SHOWIMPORT and LOCATION:
-        separator = False
-
-        thumbnail = 'DefaultFile.png'
-        fanart    = ''
-
-        addDir(GETTEXT(30125), _IMPORT, thumbnail=thumbnail, isFolder=False, fanart=fanart, infolabels={'plot':GETTEXT(30198)})
-        separator = True 
-
-
-def playSuperFolder(path, id):
-    if not path:
-        path = PROFILE
-
-    import locking
-    if not locking.unlock(path):
-        return
-
-    file  = os.path.join(path, FILENAME)
-    faves = favourite.getFavourites(file)
-
-    if ALPHA_SORT:
-         faves = sorted(faves, key=lambda x: utils.CleanForSort(x))
-
-    items = []
-
-    for fave in faves:
-        label  = fave[0]
-        thumb  = fave[1]
-        cmd    = fave[2]
-
+import xbmcaddon
+import xbmcvfs
+import traceback
+import cookielib
+from BeautifulSoup import BeautifulStoneSoup, BeautifulSoup, BeautifulSOAP
+try:
+    import json
+except:
+    import simplejson as json
+import SimpleDownloader as downloader
+import time
+import requests
+import _Edit
+	
+resolve_url=['180upload.com', 'allmyvideos.net', 'bestreams.net', 'clicknupload.com', 'cloudzilla.to', 'movshare.net', 'novamov.com', 'nowvideo.sx', 'videoweed.es', 'daclips.in', 'datemule.com', 'fastvideo.in', 'faststream.in', 'filehoot.com', 'filenuke.com', 'sharesix.com', 'docs.google.com', 'plus.google.com', 'picasaweb.google.com', 'gorillavid.com', 'gorillavid.in', 'grifthost.com', 'hugefiles.net', 'ipithos.to', 'ishared.eu', 'kingfiles.net', 'mail.ru', 'my.mail.ru', 'videoapi.my.mail.ru', 'mightyupload.com', 'mooshare.biz', 'movdivx.com', 'movpod.net', 'movpod.in', 'movreel.com', 'mrfile.me', 'nosvideo.com', 'openload.io', 'played.to', 'bitshare.com', 'filefactory.com', 'k2s.cc', 'oboom.com', 'rapidgator.net', 'uploaded.net', 'primeshare.tv', 'bitshare.com', 'filefactory.com', 'k2s.cc', 'oboom.com', 'rapidgator.net', 'uploaded.net', 'sharerepo.com', 'stagevu.com', 'streamcloud.eu', 'streamin.to', 'thefile.me', 'thevideo.me', 'tusfiles.net', 'uploadc.com', 'zalaa.com', 'uploadrocket.net', 'uptobox.com', 'v-vids.com', 'veehd.com', 'vidbull.com', 'videomega.tv', 'vidplay.net', 'vidspot.net', 'vidto.me', 'vidzi.tv', 'vimeo.com', 'vk.com', 'vodlocker.com', 'xfileload.com', 'xvidstage.com', 'zettahost.tv']
+g_ignoreSetResolved=['plugin.video.dramasonline','plugin.video.f4mTester','plugin.video.shahidmbcnet','plugin.video.SportsDevil','plugin.stream.vaughnlive.tv','plugin.video.ZemTV-shani']
+
+class NoRedirection(urllib2.HTTPErrorProcessor):
+   def http_response(self, request, response):
+       return response
+   https_response = http_response
+       
+addon = _Edit.addon
+addon_version = addon.getAddonInfo('version')
+profile = xbmc.translatePath(addon.getAddonInfo('profile').decode('utf-8'))
+home = xbmc.translatePath(addon.getAddonInfo('path').decode('utf-8'))
+favorites = os.path.join(profile, 'favorites')
+history = os.path.join(profile, 'history')
+
+REV = os.path.join(profile, 'list_revision')
+icon = os.path.join(home, 'icon.png')
+FANART = os.path.join(home, 'fanart.jpg')
+source_file = os.path.join(profile, 'source_file')
+functions_dir = profile
+
+downloader = downloader.SimpleDownloader()
+debug = addon.getSetting('debug')
+if os.path.exists(favorites)==True:
+    FAV = open(favorites).read()
+else: FAV = []
+if os.path.exists(source_file)==True:
+    SOURCES = open(source_file).read()
+else: SOURCES = []
+
+
+def addon_log(string):
+    if debug == 'true':
+        xbmc.log("[addon.live.SimpleKore Lists-%s]: %s" %(addon_version, string))
+
+
+def makeRequest(url, headers=None):
         try:
-            cmd = re.compile('"(.+?)"').search(cmd).group(1)
-            cmd = favourite.removeSFOptions(cmd)
-            items.append([label, cmd, thumb])
-        except:
-            pass
+            if headers is None:
+                headers = {'User-agent' : 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:19.0) Gecko/20100101 Firefox/19.0'}
+            req = urllib2.Request(url,None,headers)
+            response = urllib2.urlopen(req)
+            data = response.read()
+            response.close()
+            return data
+        except urllib2.URLError, e:
+            addon_log('URL: '+url)
+            if hasattr(e, 'code'):
+                addon_log('We failed with error code - %s.' % e.code)
+                xbmc.executebuiltin("XBMC.Notification(SimpleKore,We failed with error code - "+str(e.code)+",10000,"+icon+")")
+            elif hasattr(e, 'reason'):
+                addon_log('We failed to reach a server.')
+                addon_log('Reason: %s' %e.reason)
+                xbmc.executebuiltin("XBMC.Notification(SimpleKore,We failed to reach a server. - "+str(e.reason)+",10000,"+icon+")")
+
+				
+def SKindex():
+    addon_log("SKindex")
+
+    getData(_Edit.MainBase,'')
+    xbmcplugin.endOfDirectory(int(sys.argv[1]))
+		
+	
+def getSources():
+        if os.path.exists(favorites) == True:
+            addDir('Favorites','url',4,os.path.join(home, 'resources', 'favorite.png'),FANART,'','','','')
+        if addon.getSetting("browse_xml_database") == "true":
+            addDir('XML Database','http://xbmcplus.xb.funpic.de/www-data/filesystem/',15,icon,FANART,'','','','')
+        if addon.getSetting("browse_community") == "true":
+            addDir('Community Files','community_files',16,icon,FANART,'','','','')
+        if os.path.exists(history) == True:
+            addDir('Search History','history',25,os.path.join(home, 'resources', 'favorite.png'),FANART,'','','','')
+        if addon.getSetting("searchyt") == "true":
+            addDir('Search:Youtube','youtube',25,icon,FANART,'','','','')
+        if addon.getSetting("searchDM") == "true":
+            addDir('Search:dailymotion','dmotion',25,icon,FANART,'','','','')
+        if addon.getSetting("PulsarM") == "true":
+            addDir('Pulsar:IMDB','IMDBidplay',27,icon,FANART,'','','','')            
+        if os.path.exists(source_file)==True:
+            sources = json.loads(open(source_file,"r").read())
+            #print 'sources',sources
+            if len(sources) > 1:
+                for i in sources:
+                    ## for pre 1.0.8 sources
+                    if isinstance(i, list):
+                        addDir(i[0].encode('utf-8'),i[1].encode('utf-8'),1,icon,FANART,'','','','','source')
+                    else:
+                        thumb = icon
+                        fanart = FANART
+                        desc = ''
+                        date = ''
+                        credits = ''
+                        genre = ''
+                        if i.has_key('thumbnail'):
+                            thumb = i['thumbnail']
+                        if i.has_key('fanart'):
+                            fanart = i['fanart']
+                        if i.has_key('description'):
+                            desc = i['description']
+                        if i.has_key('date'):
+                            date = i['date']
+                        if i.has_key('genre'):
+                            genre = i['genre']
+                        if i.has_key('credits'):
+                            credits = i['credits']
+                        addDir(i['title'].encode('utf-8'),i['url'].encode('utf-8'),1,thumb,fanart,desc,genre,date,credits,'source')
 
-    utils.log('Play Super Folder - Items')
-    utils.log(items)
-
-    utils.playItems(items, id)
-
-
-def playFolder(folder):
-    if sfile.isfile(folder):
-         folder = sfile.getfolder(folder)
-
-    files = utils.parseFolder(folder, subfolders=False)
-
-    items = []
-    for file in files:
-        items.append([file[0], file[1]])
-
-    utils.playItems(items)
-
-
-def playFile(filename): 
-    #cmd = 'PlayMedia(%s)' % path
-    #xbmc.executebuiltin(cmd)
-
-    items = [[sfile.getfilename(filename), filename]]
-    utils.playItems(items)
-  
-
-def iExplore(path=None):
-    file   = 'DefaultMovies.png'
-    folder = 'DefaultFolder.png'
-
-    if not path: 
-        path = xbmcgui.Dialog().browse(3, GETTEXT(30226), 'files', '', False, False) 
-
-    try:    items = utils.parseFolder(path)
-    except: items = []
-
-    index = 0
-
-    for item in items:
-        label  = item[0]
-        url    = item[1].replace('\\', '/')
-        isFile = item[2]
-
-        title = label
-        label, index = utils.addPrefixToLabel(index, label)
-
-        menu = []
-            
-        if isFile:
-            menu.append((GETTEXT(30230), 'XBMC.RunPlugin(%s?mode=%d&path=%s)' % (sys.argv[0], _PLAY_FOLDER, urllib.quote_plus(url))))
-            menu.append((GETTEXT(30047), 'XBMC.RunPlugin(%s?mode=%d&path=%s&label=%s&thumb=%s)' % (sys.argv[0], _COPY_PLAY_TO_SF_ITEM, urllib.quote_plus(url), urllib.quote_plus(title), urllib.quote_plus(file))))
-            addDir(label, _PLAY_FILE, path=url, thumbnail=file, isFolder=False, menu=menu, infolabels={'plot':GETTEXT(30229) % title})
-        else:
-            menu.append((GETTEXT(30231), 'XBMC.RunPlugin(%s?mode=%d&path=%s)' % (sys.argv[0], _PLAY_FOLDER, urllib.quote_plus(url))))
-            menu.append((GETTEXT(30047), 'XBMC.RunPlugin(%s?mode=%d&path=%s&label=%s&thumb=%s)' % (sys.argv[0], _COPY_PLAY_TO_SF, urllib.quote_plus(url), urllib.quote_plus(title), urllib.quote_plus(folder))))
-            addDir(label, _IEXPLORE, path=url, thumbnail=folder, isFolder=True, menu=menu, infolabels={'plot':GETTEXT(30228) % title})
- 
-
-def parseFolder(folder):
-    global separator
-    global currentFolder
-
-    currentFolder = folder
-
-    try:    current, dirs, files = sfile.walk(folder)
-    except: return
-   
-    dirs = sorted(dirs, key=str.lower)
-
-    folderConfig  = os.path.join(folder,  FOLDERCFG)
-    folderConfig  = parameters.getParams(folderConfig)
-    label_numeric = parameters.getParam('NUMERICAL', folderConfig)
-    sortorder     = parameters.getParam('SORT',      folderConfig)
-
-    if label_numeric:
-        label_numeric = label_numeric.lower() == 'true'
-    else:
-        label_numeric = LABEL_NUMERIC
-
-    try:    sortorder = int(sortorder)
-    except: sortorder = 0
-
-    index = 0
-
-    for dir in dirs:
-        path = os.path.join(current, dir)
-
-        folderConfig = os.path.join(path, FOLDERCFG)
-
-        visible = 'true' if DEBUG else parameters.getParam('VISIBLE', folderConfig)
-        if visible and visible.lower() == 'false':
-            continue
-
-        folderConfig = parameters.getParams(folderConfig)
-
-        lock      = parameters.getParam('LOCK',     folderConfig)
-        colour    = parameters.getParam('COLOUR',   folderConfig)
-        desc      = parameters.getParam('DESC',     folderConfig)
-        autoplay  = parameters.getParam('AUTOPLAY', folderConfig)
-        meta      = parameters.getParam('META',     folderConfig)
-
-        infolabel = utils.convertURLToDict(meta)
-        if desc:
-            infolabel = {'plot':desc}
-    
-        menu = []
-
-        menu.append((GETTEXT(30067), 'XBMC.RunPlugin(%s?mode=%d&path=%s&name=%s)' % (sys.argv[0], _EDITFOLDER, urllib.quote_plus(path), urllib.quote_plus(dir))))
-
-        if autoplay:
-            menu.append((GETTEXT(30235), 'XBMC.Container.Update(%s?mode=%d&path=%s)' % (sys.argv[0], _FOLDER, urllib.quote_plus(path))))
-        else:
-            menu.append((GETTEXT(30232), 'XBMC.RunPlugin(%s?mode=%d&path=%s)' % (sys.argv[0], _PLAY_SUPER_FOLDER, urllib.quote_plus(path))))
-
-        #if lock: #lock is now on Edit Super Folder menu
-        #    menu.append((GETTEXT(30077), 'XBMC.RunPlugin(%s?mode=%d&path=%s&name=%s)' % (sys.argv[0], _UNSECURE, urllib.quote_plus(path), urllib.quote_plus(dir))))
-        #else:
-        #    menu.append((GETTEXT(30076), 'XBMC.RunPlugin(%s?mode=%d&path=%s&name=%s)' % (sys.argv[0], _SECURE,   urllib.quote_plus(path), urllib.quote_plus(dir))))
-
-        thumbnail, fanart = utils.getFolderThumb(path)       
-
-        if not lock:
-            menu.append((GETTEXT(30181), 'XBMC.RunPlugin(%s?mode=%d&path=%s)' % (sys.argv[0], _COPYFOLDER, urllib.quote_plus(path))))
-            #menu.append((GETTEXT(30180), 'XBMC.RunPlugin(%s?mode=%d&path=%s)' % (sys.argv[0], _CUTFOLDER,  urllib.quote_plus(path))))        
-
-        if label_numeric:
-            prefix, index = utils.getPrefix(index)
-            dir = prefix + dir       
-
-        if colour and colour.lower() <> 'none':
-            dir = '[COLOR %s]%s[/COLOR]' % (colour, dir)
-        
-        mode       = _PLAY_SUPER_FOLDER if autoplay else _FOLDER
-        isFolder   = not autoplay
-        isPlayable = not isFolder
-        
-        addDir(dir, mode, path=path, thumbnail=thumbnail, isFolder=isFolder, menu=menu, fanart=fanart, infolabels=infolabel, isPlayable=isPlayable)
-
-    if len(dirs) > 0:
-        separator = True
-
-    file = os.path.join(folder, FILENAME)
-
-    parseFile(file, sortorder, label_numeric, index)
-
-
-def getColour():
-    filename = os.path.join(HOME, 'resources', 'colours', 'Color.xml')
-
-    if not sfile.exists(filename):
-        return None
-
-    menu = [[GETTEXT(30087), 'SF_RESET']]
-
-    f = sfile.readlines(filename)
-    for line in f:
-        if 'name' in line:
-            name = line.split('"')[1]            
-            menu.append(['[COLOR %s]%s[/COLOR]' % (name, name), name])
-
-    if len(menu) < 2:
-        return None
-
-    import menus
-    if DLG_MENU:
-        option = menus.selectMenu(GETTEXT(30086), menu)
-    else:
-        option = menus.showMenu(ADDONID, menu)
-
-
-    #option = menus.selectMenu(GETTEXT(30086), menu)
-                 
-    if option < 0:
-        return None
-
-    return option
-
-
-
-def getImage():
-    root  = HOME.split(os.sep, 1)[0] + os.sep    
-    image = xbmcgui.Dialog().browse(2,GETTEXT(30044), 'files', '', False, False, root)
-    
-    if image and image != root:
-        return image
-
-    return None
-
-
-def getSkinImage():
-    image = ''
-
-    skin = xbmc.getSkinDir().lower()
-    icon = os.path.join(HOME, 'resources', skin, 'icons')
-
-    items = ['Super Favourite']
-
-    if sfile.exists(icon):
-        f = sfile.file(icon, 'r')
-        for line in f:
-            items.append(line.strip())
-        f.close()
-
-        if (len(items) > 1) and utils.DialogYesNo(GETTEXT(30046)):
-            import imagebrowser
-            return imagebrowser.getImage(ADDONID, items)
-
-    return getImage()
-
-
-def removeFanartFolder(path):
-    folderConfig = os.path.join(path, FOLDERCFG)
-    parameters.setParam('FANART', '', folderConfig)
-    return True
-
-
-def removeThumbFolder(path):
-    folderConfig = os.path.join(path, FOLDERCFG)
-    parameters.setParam('ICON', '', folderConfig)
-    return True
-
-
-def fanartFolder(path,image=None):
-    if not image:
-        image = getImage()
-
-    if not image:
-        return False
-    
-    image = utils.convertToHome(image)
-
-    folderConfig = os.path.join(path, FOLDERCFG)
-    parameters.setParam('FANART', image, folderConfig)
-    return True
-
-
-def thumbFolder(path, image=None):
-    if not image:
-       image = getImage()
-
-    if not image:
-        return False
-
-    folderConfig = os.path.join(path, FOLDERCFG)
-    parameters.setParam('ICON', utils.convertToHome(image), folderConfig)
-    return True
-
-
-def removeMetaFave(file, cmd):
-    return pasteMetaFave(file, cmd, '')
-
-
-def pasteMetaFave(file, cmd, meta_clip):
-    fave, index, nFaves = favourite.findFave(file, cmd)
-    if not fave:
-        return False
-
-    fave[2] = favourite.updateSFOption(cmd, 'meta', urllib.quote_plus(meta_clip))
-
-    favourite.updateFave(file, fave)
-    return True
-
-
-def removeThumbFave(file, cmd):
-    fave, index, nFaves = favourite.findFave(file, cmd)
-
-    if len(fave[1]) < 1:
-        return False
-
-    fave[1] = ''
-
-    favourite.updateFave(file, fave)
-    return True
-
-
-def removeFanartFave(file, cmd):
-    fave, index, nFaves = favourite.findFave(file, cmd)
-
-    fave[2] = favourite.updateSFOption(cmd, 'fanart', '')
-
-
-    favourite.updateFave(file, fave)
-    return True
-
-
-def fanartFave(file, cmd, image=None):
-    if not image:
-        image = getImage()
-
-    if not image:
-        return False
-
-    fave, index, nFaves = favourite.findFave(file, cmd)
-
-    fave[2] = favourite.addFanart(fave[2], image)
-
-    return favourite.updateFave(file, fave)
-
-
-def thumbFave(file, cmd, image=None):
-    if not image:
-        image = getImage()
-
-    if not image:
-        return False
-
-    fave, index, nFaves = favourite.findFave(file, cmd)
-    fave[1] = image
-
-    return favourite.updateFave(file, fave)
-
-
-def getFolder(title):
-    return utils.GetFolder(title)
-
-
-def createNewFolder(current):
-    text = utils.fileSystemSafe(utils.GetText(GETTEXT(30013)))
-    if not text:
-        return False
-
-    folder = os.path.join(current, text)
-    if sfile.exists(folder):
-        utils.DialogOK('', GETTEXT(30014) % text)
-        return False
-
-    sfile.makedirs(folder)
-    return True
-
-
-def changePlaybackMode(file, cmd):
-    OPTION = 'mode'
-
-    try:    mode = int(favourite.getOption(cmd, OPTION))
-    except: mode = 0
-
-    playMedia      = GETTEXT(30142)
-    activateWindow = GETTEXT(30143)
-    runPlugin      = GETTEXT(30144)
-
-    if mode == PLAYMEDIA_MODE:
-        playMedia = '[COLOR selected]%s[/COLOR]' % playMedia
-
-    if mode == ACTIVATEWINDOW_MODE:
-        activateWindow = '[COLOR selected]%s[/COLOR]' % activateWindow
-
-    if mode == RUNPLUGIN_MODE:
-        runPlugin = '[COLOR selected]%s[/COLOR]' % runPlugin
-
-    options = []
-    options.append([playMedia,      PLAYMEDIA_MODE])
-    options.append([activateWindow, ACTIVATEWINDOW_MODE])
-    options.append([runPlugin,      RUNPLUGIN_MODE])
-
-    import menus
-    if DLG_MENU:
-        option = menus.selectMenu(GETTEXT(30052), options)
-    else:
-        option = menus.showMenu(ADDONID, options)
-
-    if option == mode:
-        return False
-
-    if option == -1:
-        return False
-
-    fave, index, nFaves = favourite.findFave(file, cmd)
-
-    if len(fave[2]) < 1:
-        return False
-
-    fave[2] = favourite.updateSFOption(fave[2], OPTION, option)
-
-    favourite.updateFave(file, fave)
-    return True
-    
-
-
-def editFolder(path, name):
-    cfg       = os.path.join(path, FOLDERCFG)
-    cfg       = parameters.getParams(cfg)
-
-    thumb     = parameters.getParam('ICON',     cfg)
-    fanart    = parameters.getParam('FANART',   cfg)
-    lock      = parameters.getParam('LOCK',     cfg)
-    autoplay  = parameters.getParam('AUTOPLAY', cfg)
-    sortorder = parameters.getParam('SORT',     cfg)
-    meta      = parameters.getParam('META',     cfg)
-
-    hasThumb  = thumb  and len(thumb)  > 0
-    hasFanart = fanart and len(fanart) > 0
-    hasMeta   = meta   and len(meta)   > 0
-
-    REMOVE       = 0
-    RENAME       = 1
-    CHOOSETHUMB  = 2
-    PASTETHUMB   = 3
-    CHOOSEFANART = 4
-    PASTEFANART  = 5
-    REMOVETHUMB  = 6
-    REMOVEFANART = 7
-    EDITDESC     = 8
-    PASTEDESC    = 9
-    COLOUR       = 10
-    LOCK         = 11
-    AUTOPLAY     = 12
-    SORTORDER    = 13
-    PASTEMETA    = 14
-    REMOVEMETA   = 15
-
-    DESC_MENU   = 100
-    META_MENU   = 101
-    THUMB_MENU  = 102
-    FANART_MENU = 103
-
-    import clipboard
-    thumb_clip  = clipboard.getThumb()
-    fanart_clip = clipboard.getFanart()
-    desc_clip   = clipboard.getDesc()
-    meta_clip   = clipboard.getMeta()
-
-    # --------- Build Menu -----------
-    options = []
-
-    options.append([GETTEXT(30011), REMOVE])
-    options.append([GETTEXT(30012), RENAME])
-
-    #lock/unlock
-    label = GETTEXT(30077) if lock else GETTEXT(30076) 
-    options.append([label, LOCK])
-
-    #autoplay
-    label = GETTEXT(30234) if autoplay else GETTEXT(30233)
-    options.append([label, AUTOPLAY])
-
-    #sortorder
-    options.append([GETTEXT(30237), SORTORDER])
- 
-
-    #description
-    if len(desc_clip) > 0:
-        options.append([GETTEXT(30264), DESC_MENU])
-    else:
-        options.append([GETTEXT(30194), EDITDESC])
-
-
-    #meta
-    if hasMeta and len(meta_clip) > 0:
-        options.append([GETTEXT(30265), META_MENU])
-    else: 
-        if (hasMeta):
-            options.append([GETTEXT(30263), REMOVEMETA])
-        if len(meta_clip) > 0:
-            options.append([GETTEXT(30262), PASTEMETA])
-
-
-    #thumb
-    if hasThumb or len(thumb_clip) > 0:
-        options.append([GETTEXT(30266), THUMB_MENU])
-    else:
-        options.append([GETTEXT(30043), CHOOSETHUMB])
-
-
-    #fanart
-    if hasFanart or len(fanart_clip) > 0:
-        options.append([GETTEXT(30267), FANART_MENU])
-    else:
-        options.append([GETTEXT(30107), CHOOSEFANART])
-
-
-    options.append([GETTEXT(30085), COLOUR])
-
-
-    # --------- Get Choice -----------
-    import menus
-    if DLG_MENU:
-        option = menus.selectMenu(name, options)
-    else:
-        option = menus.showMenu(ADDONID, options)
-    options = []
-
-
-    # --------- Handle Further Menus -----------
-    if option == DESC_MENU:
-        options.append([GETTEXT(30194), EDITDESC])
-        options.append([GETTEXT(30212), PASTEDESC])
-
-
-    if option == META_MENU:
-        options.append([GETTEXT(30263), REMOVEMETA])
-        options.append([GETTEXT(30262), PASTEMETA])
-
-
-    if option == THUMB_MENU:
-        options.append([GETTEXT(30043), CHOOSETHUMB])
-        if len(thumb_clip) > 0:
-            options.append([GETTEXT(30210), PASTETHUMB])
-        if hasThumb:
-            options.append([GETTEXT(30097), REMOVETHUMB])
-
-
-    if option == FANART_MENU:
-        options.append([GETTEXT(30107), CHOOSEFANART])
-        if len(fanart_clip) > 0:
-            options.append([GETTEXT(30211), PASTEFANART])
-        if hasFanart:
-            options.append([GETTEXT(30108), REMOVEFANART])
-
-
-    # --------- Get Choice from 2nd Menu if Necessary-----------
-    if len(options) > 0:
-        if DLG_MENU:
-            option = menus.selectMenu(name, options)
-        else:
-            option = menus.showMenu(ADDONID, options)
-
-
-    # --------- Handle Choice -----------
-    if option == REMOVE:
-        return removeFolder(path)
-
-    if option == RENAME:
-        return renameFolder(path)
-
-    if option == EDITDESC:
-        return editFolderDescription(path, name)
-
-    if option == PASTEDESC:
-        return editFolderDescription(path, name, desc_clip)
-
-    if option == CHOOSETHUMB:
-        return thumbFolder(path)
-
-    if option == PASTETHUMB:
-        return thumbFolder(path, thumb_clip)
-
-    if option == CHOOSEFANART:
-        return fanartFolder(path)
-
-    if option == PASTEFANART:
-        return fanartFolder(path, fanart_clip)
-
-    if option == REMOVETHUMB:
-        return removeThumbFolder(path)
-
-    if option == REMOVEFANART:
-        return removeFanartFolder(path)
-
-    if option == COLOUR:
-        return colourFolder(path)
-
-    if option == LOCK:
-        import locking
-        dir = sfile.getfilename(path)
-        if lock:
-            locking.remove(path, name)
-        else:
-            locking.add(path, name)
-        refresh()
-
-    if option == AUTOPLAY:
-        if autoplay:
-            removeAutoplay(path)
-        else:
-            addAutoplay(path)
-
-    if option == SORTORDER:
-        setFolderSortOrder(path, sortorder)
-
-    if option == REMOVEMETA:
-        return removeMetaFolder(path)
-
-    if option == PASTEMETA:
-        return pasteMetaFolder(path, meta_clip)
-
-
-    return False
-
-
-def setFolderSortOrder(path, current):
-    try:    current = int(current)
-    except: current = 0
-
-    config = GETTEXT(30238) # 0
-    alpha  = GETTEXT(30239) # 1
-    manual = GETTEXT(30240) # 2
-
-    if current == 0:
-        config = '[COLOR selected]%s[/COLOR]' % config
-
-    if current == 1:
-        alpha = '[COLOR selected]%s[/COLOR]' % alpha
-
-    if current == 2:
-        manual = '[COLOR selected]%s[/COLOR]' % manual
-
-    options = []
-    options.append([config, 0])
-    options.append([alpha,  1])
-    options.append([manual, 2])
-
-    import menus
-    if DLG_MENU:
-        option = menus.selectMenu(GETTEXT(30237), options)
-    else:
-        option = menus.showMenu(ADDONID, options)
-
-    if option == current:
-        return False
-
-    if option == -1:
-        return False
-
-    cfg = os.path.join(path, FOLDERCFG)
-
-    parameters.setParam('SORT', option, cfg)
-    
-
-def editFave(file, cmd, name, thumb):
-    # this method really needs refactoring!
-    global itemIndex
-
-    fanart    = favourite.getFanart(cmd)
-    hasThumb  = len(thumb)  > 0
-    hasFanart = len(fanart) > 0
-    hasMode   = cmd.startswith('PlayMedia')
-    hasMeta   = len(favourite.getOption(cmd, 'meta')) > 0
-
-    UP           = 0
-    DOWN         = 1
-    COPY         = 2
-    MOVE         = 3
-    REMOVE       = 4
-    RENAME       = 5
-    EDITDESC     = 6
-    PASTEDESC    = 7
-    CHOOSETHUMB  = 8
-    PASTETHUMB   = 9
-    CHOOSEFANART = 10
-    PASTEFANART  = 11
-    REMOVETHUMB  = 12
-    REMOVEFANART = 13
-    COLOUR       = 14
-    PLAYBACKMODE = 15
-    MANUALEDIT   = 16
-    REMOVEMETA   = 17
-    PASTEMETA    = 18
-
-    DESC_MENU   = 100
-    META_MENU   = 101
-    THUMB_MENU  = 102
-    FANART_MENU = 103
-
-    import clipboard
-    thumb_clip  = clipboard.getThumb()
-    fanart_clip = clipboard.getFanart()
-    desc_clip   = clipboard.getDesc()
-    meta_clip   = clipboard.getMeta()
-
-
-    path = sfile.getfolder(file)
-    cfg  = os.path.join(path, FOLDERCFG)
-
-    try:    sortorder = int(parameters.getParam('SORT', cfg))
-    except: sortorder = 0
-
-    if sortorder == 0:
-        sortorder = 1 if ALPHA_SORT else 2
-
-    # --------- Build Menu -----------
-    options = []
-
-    if sortorder == 2:
-        options.append([GETTEXT(30041), UP])
-        options.append([GETTEXT(30042), DOWN])
-
-    options.append([GETTEXT(30007), COPY])
-    options.append([GETTEXT(30008), MOVE])
-    options.append([GETTEXT(30009), REMOVE])
-    options.append([GETTEXT(30010), RENAME])
-
-    #description
-    if len(desc_clip) > 0:
-        options.append([GETTEXT(30264), DESC_MENU])
-    else:
-        options.append([GETTEXT(30194), EDITDESC])
-
-
-    #meta
-    if hasMeta and len(meta_clip) > 0:
-        options.append([GETTEXT(30265), META_MENU])
-    else: 
-        if (hasMeta):
-            options.append([GETTEXT(30263), REMOVEMETA])
-        if len(meta_clip) > 0:
-            options.append([GETTEXT(30262), PASTEMETA])
-
-
-    #thumb
-    if hasThumb or len(thumb_clip) > 0:
-        options.append([GETTEXT(30266), THUMB_MENU])
-    else:
-        options.append([GETTEXT(30043), CHOOSETHUMB])
-
-    
-    #fanart
-    if hasFanart or len(fanart_clip) > 0:
-        options.append([GETTEXT(30267), FANART_MENU])
-    else:
-        options.append([GETTEXT(30107), CHOOSEFANART])
-
-
-    options.append([GETTEXT(30085), COLOUR])
-
-    if hasMode:
-        options.append([GETTEXT(30052), PLAYBACKMODE])
-
-    options.append([GETTEXT(30168), MANUALEDIT])
-
-
-    # --------- Get Choice -----------
-    import menus
-    if DLG_MENU:
-        option = menus.selectMenu(name, options)
-    else:
-        option = menus.showMenu(ADDONID, options)
-    options = []
-
-
-    # --------- Handle Further Menus -----------
-    if option == DESC_MENU:
-        options.append([GETTEXT(30194), EDITDESC])
-        options.append([GETTEXT(30212), PASTEDESC])
-
-    if option == META_MENU:
-        options.append([GETTEXT(30263), REMOVEMETA])
-        options.append([GETTEXT(30262), PASTEMETA])
-
-    if option == THUMB_MENU:
-        options.append([GETTEXT(30043), CHOOSETHUMB])
-        if len(thumb_clip) > 0:
-            options.append([GETTEXT(30210), PASTETHUMB])
-        if hasThumb:
-            options.append([GETTEXT(30097), REMOVETHUMB])
-
-    if option == FANART_MENU:
-        options.append([GETTEXT(30107), CHOOSEFANART])
-        if len(fanart_clip) > 0:
-            options.append([GETTEXT(30211), PASTEFANART])
-        if hasFanart:
-            options.append([GETTEXT(30108), REMOVEFANART])
-
-
-    # --------- Get Choice from 2nd Menu if Necessary-----------
-    if len(options) > 0:
-        if DLG_MENU:
-            option = menus.selectMenu(name, options)
-        else:
-            option = menus.showMenu(ADDONID, options)
-
-
-    # --------- Handle Choice -----------
-    if option == UP:
-        itemIndex = -1
-        return favourite.shiftFave(file, cmd, up=True)
-
-    if option == DOWN:
-        itemIndex = -1
-        return favourite.shiftFave(file, cmd, up=False)
-
-    if option == COPY:
-        return copyFave(file, cmd)
-
-    if option == MOVE:
-        return moveFave(file, cmd)
-
-    if option == REMOVE:
-        return favourite.removeFave(file, cmd)
-
-    if option == RENAME:
-        return renameFave(file, cmd)
-
-    if option == EDITDESC:
-        return editDescription(file, cmd, name)
-
-    if option == PASTEDESC:
-        return editDescription(file, cmd, name, desc_clip)
-
-    if option == CHOOSETHUMB:
-        return thumbFave(file, cmd)
-
-    if option == PASTETHUMB:
-        return thumbFave(file, cmd, thumb_clip)
-
-    if option == CHOOSEFANART:
-        return fanartFave(file, cmd)
-
-    if option == PASTEFANART:
-        return fanartFave(file, cmd, fanart_clip)
-
-    if option == REMOVETHUMB:
-        return removeThumbFave(file, cmd)
-
-    if option == REMOVEFANART:
-        return removeFanartFave(file, cmd)
-
-    if option == COLOUR:
-        return colourFave(file, cmd)
-
-    if option == PLAYBACKMODE:
-        return changePlaybackMode(file, cmd)
-
-    if option == MANUALEDIT:
-        return manualEdit(file, cmd, name, thumb)
-
-    if option == REMOVEMETA:
-        return removeMetaFave(file, cmd)
-
-    if option == PASTEMETA:
-        return pasteMetaFave(file, cmd, meta_clip)
-
-    return False
-
-
-def removeMetaFolder(path):
-    cfg  = os.path.join(path, FOLDERCFG)
-    parameters.clearParam('META', cfg)
-    return True
-
-
-def pasteMetaFolder(path, meta):
-    cfg  = os.path.join(path, FOLDERCFG)
-    parameters.setParam('META', urllib.quote(meta), cfg)
-    return True
-
-
-def editFolderDescription(path, name, desc=None):
-    cfg  = os.path.join(path, FOLDERCFG)
-
-    if desc == None:
-        desc = parameters.getParam('DESC', cfg)
-        desc = utils.GetText(name, text=desc, hidden=False, allowEmpty=True)
-
-    if desc == None:
-        return False
-
-    parameters.setParam('DESC', desc, cfg)
-
-    return True
-
-
-def editDescription(file, cmd, name, desc=None):
-    fave, index, nFaves = favourite.findFave(file, cmd)
-    if not fave:
-        return False
-
-    if desc == None:
-        desc = favourite.getOption(cmd, 'desc')
-        desc = urllib.unquote(desc)
-        desc = utils.GetText(name, text=desc, hidden=False, allowEmpty=True)
-
-    if desc == None:
-        return False
-
-    fave[2] = favourite.updateSFOption(cmd, 'desc', urllib.quote(desc))
-
-    favourite.updateFave(file, fave)
-    return True
-
-
-def manualEdit(file, _cmd, name='', thumb='', editName=True):
-    cmd = _cmd
-    if editName:
-        name = utils.GetText(GETTEXT(30021), name, allowEmpty=True)
-
-        if name == None:
-            return False
-
-    type = manualType(name, cmd)
-    if type < 0:
-        return False
-
-    windowID    = '-1'
-    originalID  = ''
-    if type == ACTIVATEWINDOW_MODE:
-        windowID, originalID = getWindowID(cmd, name)
-            
-    if windowID == '0':
-        return False
-
-    newCmd = ''
-
-    manualUnset = MANUAL_CMD in cmd
-
-    title = GETTEXT(30170) % name
-
-    sfOptions = ''
-    prefix    = ''
- 
-    if manualUnset:
-        newCmd = utils.GetText(title, '', allowEmpty=True)
-    else:
-        if type == ACTION_MODE:
-            cmd = cmd.split('ExecuteBuiltin("', 1)[-1]
-            cmd = cmd.rsplit('")')[0]
-        else:
-            cmd = cmd.split('(', 1)[-1].rsplit(')', 1)[0] #split only on very outer brackets
-
-        if _cmd.lower().startswith('activatewindow'):
-            if cmd == originalID:
-                cmd = ''
             else:
-                cmd = cmd.split(',', 1)[-1].strip()  
-
-        if cmd.endswith(',return'):
-            cmd = cmd[:-7]
-
-        if cmd.startswith('&quot;'):
-            cmd = cmd[6]
-        if cmd.endswith('&quot;'):
-            cmd = cmd[:-6]
-        if cmd.startswith('"'):
-            cmd = cmd[1:]
-        if cmd.endswith('"'):
-            cmd = cmd[:-1]
-
-        if cmd.lower() == 'return':
-            cmd = ''
-
-        cmd = cmd.replace('"', '')
-
-        if '?sf_options' in cmd:
-            prefix = '?sf_options'
-            cmd, sfOptions = cmd.split(prefix)            
-
-        elif '&sf_options' in cmd:
-            prefix = '&sf_options'
-            cmd, sfOptions = cmd.split(prefix)
-
-        newCmd = utils.GetText(title, cmd, allowEmpty=True)
-
-    if newCmd == None:
-        return False
-
-    if len(prefix) > 0 and len(sfOptions) > 0:
-        newCmd += prefix + sfOptions
-
-    newCmd = buildManualFave(type, newCmd, windowID)
-
-    fave = []
-    fave.append(name)
-    fave.append(thumb)
-    fave.append(newCmd)
-
-    return favourite.replaceFave(file, fave, _cmd)
+                if len(sources) == 1:
+                    if isinstance(sources[0], list):
+                        getData(sources[0][1].encode('utf-8'),FANART)
+                    else:
+                        getData(sources[0]['url'], sources[0]['fanart'])
 
 
-def buildManualFave(type, cmd, windowID='-1'):   
-    if type == ACTIVATEWINDOW_MODE:
-        if cmd:
-            return 'ActivateWindow(%s,"%s",return)' % (windowID, cmd) 
+def addSource(url=None):
+        if url is None:
+            if not addon.getSetting("new_file_source") == "":
+               source_url = addon.getSetting('new_file_source').decode('utf-8')
+            elif not addon.getSetting("new_url_source") == "":
+               source_url = addon.getSetting('new_url_source').decode('utf-8')
         else:
-            return 'ActivateWindow(%s,return)' % (windowID) 
-
-    if len(cmd) == 0:
-        return getDefaultManualCmd()
-
-    if type == PLAYMEDIA_MODE:
-        return 'PlayMedia("%s")' % cmd
-
-    elif type == RUNPLUGIN_MODE:
-        cmd = cmd.replace(',', '","')
-        return 'RunScript("%s")' % cmd
-
-    elif type == ACTION_MODE:
-        return 'ExecuteBuiltin("%s")' % cmd
-
-
-    return getDefaultManualCmd()
-
-
-def getWindowID(cmd, name):
-    try:
-        originalID = re.compile('activatewindow\((.+?),').search(cmd.lower()).group(1)
-    except:
-        try:    originalID = re.compile('activatewindow\((.+?)\)').search(cmd.lower()).group(1)
-        except: originalID = ''
-
-    try:
-        if len(name) > 0:
-            title = GETTEXT(30175) % name
-        else:
-            title = GETTEXT(30176)
-
-        windowID = utils.GetText(title, originalID )
-
-        if windowID:
-            return windowID, originalID
-    except:
-        pass
-
-    return '0', originalID
-
-
-def colourise(cmd, type, action):
-    if cmd.lower().startswith(type):
-        action = '[COLOR selected]%s[/COLOR]' % action
-
-    return action
-
-
-def manualType(name, cmd):
-    title          = GETTEXT(30169) % name
-    playMedia      = colourise(cmd, 'playmedia',      GETTEXT(30172))
-    activateWindow = colourise(cmd, 'activatewindow', GETTEXT(30173))
-    runScript      = colourise(cmd, 'runscript',      GETTEXT(30174))
-    action         = colourise(cmd, 'executebuiltin', GETTEXT(30193))
-
-    options = []
-    options.append([playMedia,      PLAYMEDIA_MODE])
-    options.append([activateWindow, ACTIVATEWINDOW_MODE])
-    options.append([runScript,      RUNPLUGIN_MODE])
-    options.append([action,         ACTION_MODE])
-
-    import menus
-    option = menus.selectMenu(title, options)
-    #if DLG_MENU:
-    #    option = menus.selectMenu(title, options)
-    #else:
-    #    option = menus.showMenu(ADDONID, options)
-
-    return option
-
-
-def manualAdd(folder):
-    name = utils.GetText(GETTEXT(30021), '', allowEmpty=True)
-
-    if name == None:
-        return False
-
-    cmd   = getDefaultManualCmd()
-    thumb = ''
-
-    file  = os.path.join(folder, FILENAME)
-    return manualEdit(file, cmd, name, thumb, editName=False)
-
-
-def getDefaultManualCmd():
-    id = int(ADDON.getSetting('MANUAL_ID'))
-    ADDON.setSetting('MANUAL_ID', str(id+1))
-
-    return MANUAL_CMD + str(id)
-
-
-def editSearch(file, cmd, name, thumb):
-    global itemIndex
-
-    fanart    = favourite.getFanart(cmd)
-    hasThumb  = len(thumb) > 0
-    hasFanart = len(fanart) > 0
-
-    UP           = 0
-    DOWN         = 1
-    RENAME       = 2
-    CHOOSETHUMB  = 3
-    PASTETHUMB   = 4
-    CHOOSEFANART = 5
-    PASTEFANART  = 6
-    REMOVETHUMB  = 7
-    REMOVEFANART = 8
-    COLOUR       = 9
-
-    thumb_clip  = xbmcgui.Window(10000).getProperty('SF_THUMB')
-    fanart_clip = xbmcgui.Window(10000).getProperty('SF_FANART')
-
-    options = []
-
-
-    if not ALPHA_SORT:
-        options.append([GETTEXT(30041), UP])
-        options.append([GETTEXT(30042), DOWN])
-
-    options.append([GETTEXT(30010), RENAME])
-
-    #thumb
-    options.append([GETTEXT(30043), CHOOSETHUMB])
-
-    if len(thumb_clip) > 0:
-        options.append([GETTEXT(30210), PASTETHUMB])
-
-    if hasThumb:
-        options.append([GETTEXT(30097), REMOVETHUMB])
-
-
-    #fanart
-    options.append([GETTEXT(30107), CHOOSEFANART])
-
-    if len(fanart_clip) > 0:
-        options.append([GETTEXT(30211), PASTEFANART])    
-
-    if hasFanart:
-        options.append([GETTEXT(30108), REMOVEFANART])
-
-    options.append([GETTEXT(30085), COLOUR])
-
-    import menus
-    if DLG_MENU:
-        option = menus.selectMenu(name, options)
-    else:
-        option = menus.showMenu(ADDONID, options)
-
-    if option == UP:
-        itemIndex = -1
-        return favourite.shiftFave(file, cmd, up=True)
-
-    if option == DOWN:
-        itemIndex = -1
-        return favourite.shiftFave(file, cmd, up=False)
-
-    if option == RENAME:
-        return renameFave(file, cmd)
-
-    if option == CHOOSETHUMB:
-        return thumbFave(file, cmd)
-
-    if option == PASTETHUMB:
-        return thumbFave(file, cmd, thumb_clip)
-
-    if option == REMOVETHUMB:
-        return removeThumbFave(file, cmd)
-
-    if option == CHOOSEFANART:
-        return fanartFave(file, cmd)
-
-    if option == PASTEFANART:
-        return fanartFave(file, cmd, fanart_clip)
-
-    if option == REMOVEFANART:
-        return removeFanartFave(file, cmd)
-
-    if option == COLOUR:
-        return colourFave(file, cmd)
-
-    return False
-
-
-def renameFolder(path):
-    label = path.rsplit(os.sep, 1)[-1]
-    title = label
-
-    try:    text  = utils.fileSystemSafe(utils.GetText(GETTEXT(30015) % title, label))
-    except: title = utils.fix(title)
-
-    if not text:
-        return False
-
-    root = path.rsplit(os.sep, 1)[0]
-    newName = os.path.join(root, text)
-
-    sfile.rename(path, newName)
-
-    return True
-
-
-def colourFolder(path):
-    colour = getColour()
-
-    if not colour:
-        return False
-
-    cfg  = os.path.join(path, FOLDERCFG)
-
-    if colour == 'SF_RESET':
-        parameters.clearParam('COLOUR', cfg)
-    else:
-        parameters.setParam('COLOUR', colour, cfg)
-
-    return True
-
-
-def removeFolder(path):
-    label = path.rsplit(os.sep, 1)[-1]
-    label = utils.fix(label)
-    if not utils.DialogYesNo(GETTEXT(30016) % label, GETTEXT(30017), GETTEXT(30018)):
-        return False
-
-    sfile.rmtree(path)
-    return True
-
-
-def moveFave(file, cmd):
-    if not copyFave(file, cmd, move=True):
-        return False
-
-    return favourite.removeFave(file, cmd)
-
-
-def copyFave(file, cmd, move=False):
-    copy, index, nFaves = favourite.findFave(file, cmd)
-    if not copy:
-        return False
-
-    text = GETTEXT(30020) if move else GETTEXT(30019)
-
-    folder = getFolder(text)
-    if not folder:
-        return False
-  
-    file  = os.path.join(folder, FILENAME)
-    return favourite.copyFave(file, copy)
-
-
-def renameFave(file, cmd):
-    fave, index, nFaves = favourite.findFave(file, cmd)
-    if not fave:
-        return False
-
-    newName = utils.GetText(GETTEXT(30021), text=fave[0], allowEmpty=True)
-
-    if newName == None:
-        return False
-
-    return favourite.renameFave(file, cmd, newName)
-
-
-def decolourize(text):
-    text = re.sub('\[COLOR (.+?)\]', '', text)
-    text = re.sub('\[/COLOR\]',      '', text)
-    return text
-
-
-def colourFave(file, cmd):
-    colour = getColour()
-
-    if not colour:
-        return False
-
-    copy = []
-    faves = favourite.getFavourites(file)
-    for fave in faves:
-        if favourite.equals(fave[2], cmd):
-            fave[0]   = decolourize(fave[0])
-            if colour != 'SF_RESET': 
-                fave[0] = '[COLOR %s]%s[/COLOR]' % (colour, fave[0])
-
-        copy.append(fave)
-
-    favourite.writeFavourites(file, copy)
-
-    return True
-
-
-def getTVDB(imdb):
-    try:
-        import json
-
-        if not imdb.endswith('?'):
-            imdb = imdb + '?'
-
-        url  = 'http://api.themoviedb.org/3/find/%sapi_key=57983e31fb435df4df77afb854740ea9&external_source=imdb_id' % imdb
-        html = quicknet.getURL(url, maxSec=5*86400, agent='Firefox')
-        jsn  = json.loads(html)  
-
-        thumbnail = BLANK
-        fanart    = FANART
-
-        movies = jsn['movie_results']
-        tvs    = jsn['tv_results']
-
-        source = None
-        if len(movies) > 0:
-            source = movies[0]
-        elif len(tvs) > 0:
-            source = tvs[0]
-
-        if source:
-            try:    thumbnail = 'http://image.tmdb.org/t/p/w342' + source['poster_path']
-            except: pass
-
-            try:    fanart = 'http://image.tmdb.org/t/p/w780' + source['backdrop_path']
-            except: pass
-
-        return thumbnail,  fanart
-
-    except:
-        pass
-
-    return BLANK, FANART
-
-
-def getMeta(grabber, name, type, year=None, season=None, episode=None, imdb=None):
-    infoLabels = {}
-
-    if not imdb:
-        imdb = ''
-
-    imdb = imdb.replace('/?', '')
-
-    if year=='':
-        year = None
-
-    if year == None:
-        try:    year = re.search('\s*\((\d\d\d\d)\)',name).group(1)
-        except: year = None
-
-    if year is not None:
-        name = name.replace(' ('+year+')','').replace('('+year+')','')
-        
-    if 'movie' in type:
-        meta = grabber.get_meta('movie', name, imdb, None, year, overlay=6)
-
-        meta['trailer_url'] = '%s?mode=%d&path=%s' % (sys.argv[0], _PLAYTRAILER,  meta['trailer_url'])
-
-        infoLabels = {'rating': meta['rating'],'trailer': meta['trailer_url'],'duration': meta['duration'],'genre': meta['genre'],'mpaa':"rated %s"%meta['mpaa'],'plot': meta['plot'],'title': meta['title'],'writer': meta['writer'],'cover_url': meta['cover_url'],'director': meta['director'],'castandrole': meta['cast'],'fanart': meta['backdrop_url'],'tmdb_id': meta['tmdb_id'],'year': meta['year']}
-
-    elif 'tvshow' in type:
-        meta = grabber.get_episode_meta(name, imdb, season, episode)
-        infoLabels = {'rating': meta['rating'],'genre': meta['genre'],'mpaa':"rated %s"%meta['mpaa'],'plot': meta['plot'],'title': meta['title'],'cover_url': meta['cover_url'],'fanart': meta['backdrop_url'],'Episode': meta['episode'],'Aired': meta['premiered']}
-
-    return infoLabels
-
-
-def getMovieMenu(infolabels, menu=None):    
-    if not menu:
-        menu = []
-
-    if len(infolabels) == 0:
-        return menu
-
-    menu.append((GETTEXT(30090), 'Action(Info)'))
-
-    try:
-        if 'trailer' in infolabels and len(infolabels['trailer']) > 0:   
-            menu.append((GETTEXT(30091), 'XBMC.RunPlugin(%s)' % infolabels['trailer']))
-    except:
-        pass
-
-    return menu
-
-
-def hasIMDBRecommendations(imdb):
-    url  = 'http://imdb.com/title/%s' % imdb
-    html = quicknet.getURL(url, maxSec=86400, agent='Firefox')
-
-    items = re.compile('<div class="rec_details".+?<a href="/title/(.+?)/?ref_=tt_rec_tt"><b>(.+?)</b></a>.+?<div class="rec-outline">(.+?)</p>').findall(html)
-
-    return len(items) > 0
-
-
-def getMetaGrabber():
-    if METARECOMMEND:
-        try:
-            from metahandler import metahandlers
-            return metahandlers.MetaData(tmdb_api_key=TMDB_API_KEY)
-        except:
-            pass
-    return None
-
-
-def recommendIMDB(imdb, keyword, fallback=True):   
-    grabber = getMetaGrabber()
-
-    url  = 'http://imdb.com/title/%s' % imdb
-    html = quicknet.getURL(url, maxSec=86400, agent='Firefox')
-
-    items = re.compile('<div class="rec_details".+?<a href="/title/(.+?)/?ref_=tt_rec_tt"><b>(.+?)</b></a>.+?<div class="rec-outline">(.+?)</p>').findall(html)
-
-    if len(items) == 0 and fallback:
-        return recommendKey(keyword, RECOMMENDAUTO)
-
-    count = 0
-
-    infolabels = {}
-
-    for item in items:
-        imdb      = item[0]
-        name      = item[1]
-
-        thumbnail = BLANK
-        fanart    = FANART
-
-        if grabber:           
-            infolabels = getMeta(grabber, '', 'movie', year=None, imdb=imdb)
-            thumbnail  = infolabels['cover_url']
-            fanart     = infolabels['fanart']           
-
-        try:
-            outline = utils.RemoveTags(item[2]).strip() if grabber else None
-            if outline:
-                if ('plot' not in infolabels) or (not infolabels['plot']):
-                    infolabels['plot'] = outline
-                if SYNOPSRECOMMEND:
-                    name += ' - [I]%s[/I]' % utils.unescape(utils.fix(infolabels['plot']))
-
-            menu = getMovieMenu(infolabels)
-            getHistoryItem(menu, name, thumbnail, fanart, infolabels, False)
-
-            label, count = utils.addPrefixToLabel(count, name)
-
-            addDir(label, _SUPERSEARCH, thumbnail=thumbnail, isFolder=True, menu=menu, fanart=fanart, keyword=name, imdb=imdb, infolabels=infolabels, totalItems=len(items))
-
-        except:
-            pass
-
-    return count
-
-    
-def recommendKey(keyword, autoRecommend):
-    grabber = getMetaGrabber()
-
-    url  = 'http://m.imdb.com/find?q=%s' % urllib.quote(keyword)
-    html = quicknet.getURL(url, maxSec=86400, agent='Apple-iPhone/')
-
-    items = re.compile('<div class="title">.+?<a href="/title/(.+?)/">(.+?)</a>(.+?)</div>').findall(html)
-
-    infolabels = {}
-
-    index = 0
-
-    for item in items:
-        imdb = item[0]
-        name = item[1]
-
-        if autoRecommend:
-            autoRecommend = hasIMDBRecommendations(imdb)
-
-        if 'video game' in item[2].lower():
-            continue
-
-        label = name + ' ' + item[2].strip()
-
-        thumbnail = BLANK
-        fanart    = FANART
-
-        if grabber:
-            infolabels = getMeta(grabber, name, 'movie', year=None, imdb=imdb)
-            thumbnail  = infolabels['cover_url']
-            fanart     = infolabels['fanart'] 
-
-            if SYNOPSRECOMMEND: 
-                if ('plot' in infolabels) and (infolabels['plot']):
-                    label += ' - [I]%s[/I]' % utils.unescape(infolabels ['plot'])
-
-        menu = getMovieMenu(infolabels)
-        getHistoryItem(menu, name, thumbnail, fanart, infolabels, False)
-
-        label, index = utils.addPrefixToLabel(index, label)
-
-        if autoRecommend:
-            autoRecommend = False
-            addDir(label, _RECOMMEND_KEY_A,  thumbnail=thumbnail, isFolder=True, menu=menu, fanart=fanart, keyword=name, infolabels=infolabels)
-            if recommendIMDB(imdb, keyword, fallback=False) > 0:
-                return
-        else:
-            addDir(label, _SUPERSEARCH, thumbnail=thumbnail, isFolder=True, menu=menu, fanart=fanart, keyword=name, imdb=imdb, infolabels=infolabels, totalItems=len(items))
-    
-
-def editSearchTerm(_keyword):
-    keyword = utils.GetText(GETTEXT(30057), _keyword)
-
-    if (not keyword) or len(keyword) < 1:
-        keyword = _keyword
-
-    winID = xbmcgui.getCurrentWindowId()
-    cmd   = 'ActivateWindow(%d,"%s?mode=%d&keyword=%s")' % (winID, sys.argv[0], _SUPERSEARCH, urllib.quote_plus(keyword))
-    activateWindowCommand(cmd)   
-
-
-def externalSearch():
-    xbmcplugin.endOfDirectory(int(sys.argv[1])) 
-
-    keyword = ''
-
-    kb = xbmc.Keyboard(keyword, GETTEXT(30054))
-    kb.doModal()
-    if kb.isConfirmed():
-        keyword = kb.getText()
-
-        cmd = '%s?mode=%d&keyword=%s' % (sys.argv[0], _SUPERSEARCH, urllib.quote_plus(keyword))
-        xbmc.executebuiltin('XBMC.Container.Refresh(%s)' % cmd)
-
-
-def iHistoryBrowse():
-    items = history.browse()
-    items = sorted(items, key=lambda x: x[0].lower())
-
-    index = 0
-
-    for item in items:
-        label  = item[0]
-        thumb  = item[1]
-        fanart = favourite.getFanart(item[2])
-        meta   = favourite.getOption(item[2], 'meta')
-
-        menu = []
-
-        menu.append((GETTEXT(30165) % label, 'XBMC.RunPlugin(%s?mode=%d&name=%s)' % (sys.argv[0], _HISTORYREMOVE, urllib.quote_plus(label))))
-
-        infolabels = utils.convertURLToDict(meta)
-        if not 'plot' in infolabels:
-            infolabels['plot'] = GETTEXT(30200) % label
-
-        text, index = utils.addPrefixToLabel(index, label)
-
-        addDir(text, _SUPERSEARCH, thumbnail=thumb, isFolder=True, fanart=fanart, keyword=label, menu=menu, infolabels=infolabels)
-
-    return False
-
-
-def iHistoryAdd(keyword, image, fanart, meta):
-    return history.add(keyword, image, fanart, meta)
-
-
-def iHistoryRemove(name):
-    return history.remove(name)
-
-
-def iPlay():
-    #add browse item
-    #addDir(GETTEXT(30148), _PLAYLISTBROWSE, thumbnail='DefaultMusicPlaylists.png', isFolder=False) 
-
-    import playlist
-
-    nItems = 0
-
-    folder = os.path.join(ROOT, 'PL')
-    sfile.makedirs(folder)
-
-    #parse SF folder   
-    nItems += addPlaylistItems(playlist.parseFolder(folder), 'DefaultMusicVideos.png', delete=True)
-
-    #parse SF list 
-    file = os.path.join(folder, FILENAME)
-
-    playlists = favourite.getFavourites(file, validate=False)
-    items = []
-    for playlist in playlists:
-        name  = playlist[0]
-        thumb = playlist[1]
-        cmd   = playlist[2]
-        items.append([cmd, name, thumb])
-
-    nItems += addPlaylistItems(items, delete=True)
-
-    #parse Kodi folders    
-    folder  = 'special://profile/playlists'
-    nItems += addPlaylistItems(playlist.parseFolder(os.path.join(folder, 'video')), 'DefaultMovies.png',      delete=ALLOW_PLAYLIST_DELETE)
-    nItems += addPlaylistItems(playlist.parseFolder(os.path.join(folder, 'music')), 'DefaultMusicSongs.png',  delete=ALLOW_PLAYLIST_DELETE)
-    nItems += addPlaylistItems(playlist.parseFolder(os.path.join(folder, 'mixed')), 'DefaultMusicVideos.png', delete=ALLOW_PLAYLIST_DELETE)
-
-    return nItems > 0
-
-
-def addPlaylistItems(items, thumbnail='DefaultMovies.png', delete=False):
-    for item in items:
-        path  = item[0]
-        title = item[1]
-        if len(item) > 2:
-            thumbnail = item[2]
-
-        menu = []
-
-        #browse
-        cmd = '%s?mode=%d' % (sys.argv[0], _PLAYLISTBROWSE)
-        #menu.append((GETTEXT(30148), 'XBMC.Container.Update(%s)' % cmd))
-        menu.append((GETTEXT(30148), 'XBMC.RunPlugin(%s)' % cmd))
-
-        #browse for URL
-        cmd = '%s?mode=%d' % (sys.argv[0], _URLPLAYLIST)
-        #menu.append((GETTEXT(30153), 'XBMC.Container.Update(%s)' % cmd))
-        menu.append((GETTEXT(30153), 'XBMC.RunPlugin(%s)' % cmd))
-
-        #menu.append((GETTEXT(30084), 'XBMC.PlayMedia(%s)' % path))
-        menu.append((GETTEXT(30084), 'XBMC.RunPlugin(%s?mode=%d&cmd=%s)' % (sys.argv[0], _PLAYLIST, urllib.quote_plus(path))))
-
-        if delete:
-            menu.append((GETTEXT(30150), 'XBMC.RunPlugin(%s?mode=%d&path=%s)' % (sys.argv[0], _DELETEPLAYLIST, urllib.quote_plus(path))))
-
-        menu.append((GETTEXT(30047), 'XBMC.RunPlugin(%s?mode=%d&path=%s&label=%s&thumb=%s)' % (sys.argv[0], _COPY_PLAY_TO_SF, urllib.quote_plus(path), urllib.quote_plus(title), urllib.quote_plus(thumbnail))))
-        
-
-        addDir(title, _PLAYLISTFILE, path=path, thumbnail=thumbnail, menu=menu) 
-
-    return len(items)
-
-
-def iPlaylistDelete(path):
-    #delete from SF list of Playlists
-    folder    = os.path.join(ROOT, 'PL')
-    file      = os.path.join(folder, FILENAME)
-    playlists = favourite.getFavourites(file, validate=False)
-    updated   = []
-
-    for playlist in playlists:
-        if playlist[2] != path:
-            updated.append(playlist)
-
-    if len(updated) < len(playlists):
-        favourite.writeFavourites(file, updated)
-        return True
-
-    if sfile.exists(path):
-        utils.DeleteFile(path)
-        return True
-
-    return False
-
-
-def iPlaylistItem(path, title='', thumb='DefaultMovies.png'):
-    #if currently in program menu play directly
-    if xbmcgui.getCurrentWindowId() == 10001:        
-        liz = xbmcgui.ListItem(title, iconImage=thumb, thumbnailImage=thumb)
-        pl = xbmc.PlayList(xbmc.PLAYLIST_VIDEO)
-        pl.clear()
-        pl.add(path, liz)
-        xbmc.Player().play(pl)
-        return
-
-    item = xbmcgui.ListItem(path=path)
-    xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, item)
-
-
-def iPlaylistURL(url):
-    try:    html = quicknet.getURL(url, maxSec=600, tidy=False)
-    except: html = ''
-    
-    nItems = addItems(html.split('\n'))
-
-    if nItems == 0:
-        utils.DialogOK(GETTEXT(30155), url)
-        return False
-
-    return True
-
-
-def iPlaylistFile(path):    
-    if not sfile.exists(path):
-        return iPlaylistURL(path)
-
-    playlist = sfile.readlines(path)
-
-    return addItems(playlist)
-
-
-def addItems(playList): 
-    import playlist
-    items = playlist.parse(playList)
-
-    nItem = len(items)
-
-    for item in items:
-        menu  = []
-        title = item[0]
-        path  = item[1]
-
-        isAudio = title.lower().endswith('.mp3')
-        if isAudio:
-            title = title.replace('.mp3', '')
-            thumb = ICON #'DefaultAudio.png'
-        else:
-            thumb = ICON #'DefaultFile.png'
-
-        title = utils.unescape(title).strip()
-
-        menu.append((GETTEXT(30047), 'XBMC.RunPlugin(%s?mode=%d&path=%s&label=%s&thumb=%s)' % (sys.argv[0], _COPY_PLAY_TO_SF_ITEM, urllib.quote_plus(path), urllib.quote_plus(title), urllib.quote_plus(thumb))))
-
-        isPlayable = xbmcgui.getCurrentWindowId() != 10001
-
-        addDir(title, _PLAYLISTITEM, path=path, thumbnail=thumb, isFolder=False, menu=menu, totalItems=nItem, isPlayable=isPlayable)
-
-
-    return nItem > 0
-        
-
-def iPlaylistURLBrowse():
-    valid = False
-    text  = 'http://'
-
-    while not valid:
-        text = utils.GetText(GETTEXT(30153), text)
-
-        if not text:
-            return False
-
-        if text == 'http://':
+            source_url = url
+        if source_url == '' or source_url is None:
             return
+        addon_log('Adding New Source: '+source_url.encode('utf-8'))
 
-        try:    html = quicknet.getURL(text, maxSec=0, tidy=False)
-        except: html = ''
+        media_info = None
+        #print 'source_url',source_url
+        data = getSoup(source_url)
+        print 'source_url',source_url
+        if isinstance(data,BeautifulSOAP):
+            if data.find('channels_info'):
+                media_info = data.channels_info
+            elif data.find('items_info'):
+                media_info = data.items_info
+        if media_info:
+            source_media = {}
+            source_media['url'] = source_url
+            try: source_media['title'] = media_info.title.string
+            except: pass
+            try: source_media['thumbnail'] = media_info.thumbnail.string
+            except: pass
+            try: source_media['fanart'] = media_info.fanart.string
+            except: pass
+            try: source_media['genre'] = media_info.genre.string
+            except: pass
+            try: source_media['description'] = media_info.description.string
+            except: pass
+            try: source_media['date'] = media_info.date.string
+            except: pass
+            try: source_media['credits'] = media_info.credits.string
+            except: pass
+        else:
+            if '/' in source_url:
+                nameStr = source_url.split('/')[-1].split('.')[0]
+            if '\\' in source_url:
+                nameStr = source_url.split('\\')[-1].split('.')[0]
+            if '%' in nameStr:
+                nameStr = urllib.unquote_plus(nameStr)
+            keyboard = xbmc.Keyboard(nameStr,'Displayed Name, Rename?')
+            keyboard.doModal()
+            if (keyboard.isConfirmed() == False):
+                return
+            newStr = keyboard.getText()
+            if len(newStr) == 0:
+                return
+            source_media = {}
+            source_media['title'] = newStr
+            source_media['url'] = source_url
+            source_media['fanart'] = fanart
 
-        items = parse(html.split('\n'))
-        valid = len(items) > 0
-
-        if not valid:
-            utils.DialogOK(GETTEXT(30155), text)
-        
-    name = utils.GetText(GETTEXT(30156))
-
-    if not name:
-        return False
-
-    if COPY_PLAYLISTS:
-        name += '.m3u'
-        file  = os.path.join(ROOT, 'PL', name)
-        f = sfile.file(file, 'w')
-        f.write(html)
-        f.close()
-        return True
-
-    cmd   = text
-    thumb = 'DefaultFile.png'
-    addPlaylistToSF(name, cmd, thumb) 
-
-    return True
-
-
-def iPlaylistBrowse():
-    import playlist
-    playlist = playlist.getPlaylist()
-
-    if not playlist:
-        return False
-
-    folder = os.path.join(ROOT, 'PL')
-    sfile.makedirs(folder)
-
-    if COPY_PLAYLISTS:
-        try:
-            import shutil
-            shutil.copy(playlist , folder)
-            return True
-        except:
-            return False
-    
-    name  = playlist.rsplit(os.sep, 1)[-1].rsplit('.', 1)[0]
-    cmd   = playlist
-    thumb = 'DefaultMovies.png'
-
-    return addPlaylistToSF(name, cmd, thumb)
-
-
-def addPlaylistToSF(name, cmd, thumb):
-    folder = os.path.join(ROOT, 'PL')
-    sfile.makedirs(folder)
-
-    file  = os.path.join(folder, FILENAME)
-
-    cmd = utils.convertToHome(cmd)
-
-    if favourite.findFave(file, cmd)[0]:
-        return False
-
-    playlist = [name, thumb, cmd]
-
-    playlists = favourite.getFavourites(file, validate=False)
-    playlists.append(playlist)
-    favourite.writeFavourites(file, playlists)
-
-    return True
+        if os.path.exists(source_file)==False:
+            source_list = []
+            source_list.append(source_media)
+            b = open(source_file,"w")
+            b.write(json.dumps(source_list))
+            b.close()
+        else:
+            sources = json.loads(open(source_file,"r").read())
+            sources.append(source_media)
+            b = open(source_file,"w")
+            b.write(json.dumps(sources))
+            b.close()
+        addon.setSetting('new_url_source', "")
+        addon.setSetting('new_file_source', "")
+        xbmc.executebuiltin("XBMC.Notification(SimpleKore,New source added.,5000,"+icon+")")
+        if not url is None:
+            if 'xbmcplus.xb.funpic.de' in url:
+                xbmc.executebuiltin("XBMC.Container.Update(%s?mode=14,replace)" %sys.argv[0])
+            elif 'community-links' in url:
+                xbmc.executebuiltin("XBMC.Container.Update(%s?mode=10,replace)" %sys.argv[0])
+        else: addon.openSettings()
 
 
-def copyPlayToSF(cmd, title, thumb, playMedia):
-    folder = utils.GetFolder(title)
-    if not folder:
-        return
+def rmSource(name):
+        sources = json.loads(open(source_file,"r").read())
+        for index in range(len(sources)):
+            if isinstance(sources[index], list):
+                if sources[index][0] == name:
+                    del sources[index]
+                    b = open(source_file,"w")
+                    b.write(json.dumps(sources))
+                    b.close()
+                    break
+            else:
+                if sources[index]['title'] == name:
+                    del sources[index]
+                    b = open(source_file,"w")
+                    b.write(json.dumps(sources))
+                    b.close()
+                    break
+        xbmc.executebuiltin("XBMC.Container.Refresh")
 
-    copy = ['', '', '']
 
-    copy[0] = title
-    copy[1] = thumb
 
-    if playMedia:
-        copy[2] = 'PlayMedia("%s")' % path
+def get_xml_database(url, browse=False):
+        if url is None:
+            url = 'http://xbmcplus.xb.funpic.de/www-data/filesystem/'
+        soup = BeautifulSoup(makeRequest(url), convertEntities=BeautifulSoup.HTML_ENTITIES)
+        for i in soup('a'):
+            href = i['href']
+            if not href.startswith('?'):
+                name = i.string
+                if name not in ['Parent Directory', 'recycle_bin/']:
+                    if href.endswith('/'):
+                        if browse:
+                            addDir(name,url+href,15,icon,fanart,'','','')
+                        else:
+                            addDir(name,url+href,14,icon,fanart,'','','')
+                    elif href.endswith('.xml'):
+                        if browse:
+                            addDir(name,url+href,1,icon,fanart,'','','','','download')
+                        else:
+                            if os.path.exists(source_file)==True:
+                                if name in SOURCES:
+                                    addDir(name+' (in use)',url+href,11,icon,fanart,'','','','','download')
+                                else:
+                                    addDir(name,url+href,11,icon,fanart,'','','','','download')
+                            else:
+                                addDir(name,url+href,11,icon,fanart,'','','','','download')
+
+
+def getCommunitySources(browse=False):
+        url = 'http://community-links.googlecode.com/svn/trunk/'
+        soup = BeautifulSoup(makeRequest(url), convertEntities=BeautifulSoup.HTML_ENTITIES)
+        files = soup('ul')[0]('li')[1:]
+        for i in files:
+            name = i('a')[0]['href']
+            if browse:
+                addDir(name,url+name,1,icon,fanart,'','','','','download')
+            else:
+                addDir(name,url+name,11,icon,fanart,'','','','','download')
+
+
+def getSoup(url,data=None):
+        print 'getsoup',url,data
+        if url.startswith('http://') or url.startswith('https://'):
+            data = makeRequest(url)
+            if re.search("#EXTM3U",data) or 'm3u' in url: 
+                print 'found m3u data',data
+                return data
+                
+        elif data == None:
+            if xbmcvfs.exists(url):
+                if url.startswith("smb://") or url.startswith("nfs://"):
+                    copy = xbmcvfs.copy(url, os.path.join(profile, 'temp', 'sorce_temp.txt'))
+                    if copy:
+                        data = open(os.path.join(profile, 'temp', 'sorce_temp.txt'), "r").read()
+                        xbmcvfs.delete(os.path.join(profile, 'temp', 'sorce_temp.txt'))
+                    else:
+                        addon_log("failed to copy from smb:")
+                else:
+                    data = open(url, 'r').read()
+                    if re.match("#EXTM3U",data)or 'm3u' in url: 
+                        print 'found m3u data',data
+                        return data
+            else:
+                addon_log("Soup Data not found!")
+                return
+        return BeautifulSOAP(data, convertEntities=BeautifulStoneSoup.XML_ENTITIES)
+
+
+def getData(url,fanart):
+    print 'url-getData',url
+    SetViewLayout = "List"
+     
+    soup = getSoup(url)
+    #print type(soup)
+    if isinstance(soup,BeautifulSOAP):
+        if len(soup('layoutype')) > 0:
+            SetViewLayout = "Thumbnail"		    
+
+        if len(soup('channels')) > 0:
+            channels = soup('channel')
+            for channel in channels:
+#                print channel
+
+                linkedUrl=''
+                lcount=0
+                try:
+                    linkedUrl =  channel('externallink')[0].string
+                    lcount=len(channel('externallink'))
+                except: pass
+                #print 'linkedUrl',linkedUrl,lcount
+                if lcount>1: linkedUrl=''
+
+                name = channel('name')[0].string
+                thumbnail = channel('thumbnail')[0].string
+                if thumbnail == None:
+                    thumbnail = ''
+
+                try:
+                    if not channel('fanart'):
+                        if addon.getSetting('use_thumb') == "true":
+                            fanArt = thumbnail
+                        else:
+                            fanArt = fanart
+                    else:
+                        fanArt = channel('fanart')[0].string
+                    if fanArt == None:
+                        raise
+                except:
+                    fanArt = fanart
+
+                try:
+                    desc = channel('info')[0].string
+                    if desc == None:
+                        raise
+                except:
+                    desc = ''
+
+                try:
+                    genre = channel('genre')[0].string
+                    if genre == None:
+                        raise
+                except:
+                    genre = ''
+
+                try:
+                    date = channel('date')[0].string
+                    if date == None:
+                        raise
+                except:
+                    date = ''
+
+                try:
+                    credits = channel('credits')[0].string
+                    if credits == None:
+                        raise
+                except:
+                    credits = ''
+
+                try:
+                    if linkedUrl=='':
+                        addDir(name.encode('utf-8', 'ignore'),url.encode('utf-8'),2,thumbnail,fanArt,desc,genre,date,credits,True)
+                    else:
+                        #print linkedUrl
+                        addDir(name.encode('utf-8'),linkedUrl.encode('utf-8'),1,thumbnail,fanArt,desc,genre,date,None,'source')
+                except:
+                    addon_log('There was a problem adding directory from getData(): '+name.encode('utf-8', 'ignore'))
+        else:
+            addon_log('No Channels: getItems')
+            getItems(soup('item'),fanart)
     else:
-        copy[2] = 'ActivateWindow(10025,"%s",return)' % cmd
+        parse_m3u(soup)
 
-    file = os.path.join(folder, FILENAME)
-    favourite.copyFave(file, copy)
+    if SetViewLayout == "Thumbnail":
+       SetViewThumbnail()
+
+	
+	
+# borrow from https://github.com/enen92/P2P-Streams-XBMC/blob/master/plugin.video.p2p-streams/resources/core/livestreams.py
+# This will not go through the getItems functions ( means you must have ready to play url, no regex)
+def parse_m3u(data):
+    content = data.rstrip()
+    match = re.compile(r'#EXTINF:(.+?),(.*?)[\n\r]+([^\n]+)').findall(content)
+    total = len(match)
+    print 'total m3u links',total
+    for other,channel_name,stream_url in match:
+        if 'tvg-logo' in other:
+            thumbnail = re_me(other,'tvg-logo=[\'"](.*?)[\'"]')
+            if thumbnail:
+                if thumbnail.startswith('http'):
+                    thumbnail = thumbnail
+                
+                elif not addon.getSetting('logo-folderPath') == "":
+                    logo_url = addon.getSetting('logo-folderPath')
+                    thumbnail = logo_url + thumbnail
+
+                else:
+                    thumbnail = thumbnail
+            #else:
+            
+        else:
+            thumbnail = ''
+        if 'type' in other:
+            mode_type = re_me(other,'type=[\'"](.*?)[\'"]')
+            if mode_type == 'yt-dl':
+                stream_url = stream_url +"&mode=18"
+            elif mode_type == 'regex':
+                url = stream_url.split('&regexs=')
+                #print url[0] getSoup(url,data=None)
+                regexs = parse_regex(getSoup('',data=url[1]))
+                
+                addLink(url[0], channel_name,thumbnail,'','','','','',None,regexs,total)
+                continue
+        addLink(stream_url, channel_name,thumbnail,'','','','','',None,'',total)
+		
+    xbmc.executebuiltin("Container.SetViewMode(50)")
+	
+def getChannelItems(name,url,fanart):
+        soup = getSoup(url)
+        channel_list = soup.find('channel', attrs={'name' : name.decode('utf-8')})
+        items = channel_list('item')
+        try:
+            fanArt = channel_list('fanart')[0].string
+            if fanArt == None:
+                raise
+        except:
+            fanArt = fanart
+        for channel in channel_list('subchannel'):
+            name = channel('name')[0].string
+            try:
+                thumbnail = channel('thumbnail')[0].string
+                if thumbnail == None:
+                    raise
+            except:
+                thumbnail = ''
+            try:
+                if not channel('fanart'):
+                    if addon.getSetting('use_thumb') == "true":
+                        fanArt = thumbnail
+                else:
+                    fanArt = channel('fanart')[0].string
+                if fanArt == None:
+                    raise
+            except:
+                pass
+            try:
+                desc = channel('info')[0].string
+                if desc == None:
+                    raise
+            except:
+                desc = ''
+
+            try:
+                genre = channel('genre')[0].string
+                if genre == None:
+                    raise
+            except:
+                genre = ''
+
+            try:
+                date = channel('date')[0].string
+                if date == None:
+                    raise
+            except:
+                date = ''
+
+            try:
+                credits = channel('credits')[0].string
+                if credits == None:
+                    raise
+            except:
+                credits = ''
+
+            try:
+                addDir(name.encode('utf-8', 'ignore'),url.encode('utf-8'),3,thumbnail,fanArt,desc,genre,credits,date)
+            except:
+                addon_log('There was a problem adding directory - '+name.encode('utf-8', 'ignore'))
+        getItems(items,fanArt)
 
 
-def shortenText(text, length):
-    text = utils.fix(text)
-    text = text.strip()
+def getSubChannelItems(name,url,fanart):
+        soup = getSoup(url)
+        channel_list = soup.find('subchannel', attrs={'name' : name.decode('utf-8')})
+        items = channel_list('subitem')
+        getItems(items,fanart)
 
-    if len(text) <= length:
-        return text
-
-    short = ''
-    for c in text:
-        short += c
-        if len(short) == length:
-            break
-
-    short += '...'
-    return short
-
-
-def getHistoryItem(menu, keyword, image, fanart, meta, refresh):
-    #NOTE the SF@V is to workaround a bug in XBMC where the string is erroneously converted to lowercase when the menu item triggers
+#hakamac
+def GetSublinks(name,url,iconimage,fanart):
+    List=[]; ListU=[]; c=0
+    all_videos = regex_get_all(url, 'sublink:', '#')
+    for a in all_videos:
+        vurl = a.replace('sublink:','').replace('#','')
+        #print vurl, name,iconimage,
+        if len(vurl) > 10:
+           c=c+1; List.append(name+ ' Source ['+str(c)+']'); ListU.append(vurl)
  
-    refresh = 'true' if refresh else 'false'
+    if c==1:
+        try:
+            #print 'play 1   Name:' + name + '   url:' + ListU[0] + '     ' + str(c)
+            liz=xbmcgui.ListItem(name, iconImage=iconimage,thumbnailImage=iconimage); liz.setInfo( type="Video", infoLabels={ "Title": name } )
+            ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=ListU[0],listitem=liz)
+            xbmc.Player().play(urlsolver(ListU[0]), liz)
+        except:
+            pass
+    else:
+         dialog=xbmcgui.Dialog()
+         rNo=dialog.select('SimpleKore Select A Source', List)
+         if rNo>=0:
+             rName=name
+             rURL=str(ListU[rNo])
+             #print 'Sublinks   Name:' + name + '   url:' + rURL
+             try:
+                 liz=xbmcgui.ListItem(name, iconImage=iconimage,thumbnailImage=iconimage); liz.setInfo( type="Video", infoLabels={ "Title": name } )
+                 ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=rURL,listitem=liz)
+                 xbmc.Player().play(urlsolver(rURL), liz)
+             except:
+                 pass
 
-    historyItem = None
-    if SHOWIHISTORY and not history.contains(keyword):
-        label = GETTEXT(30164) % shortenText(keyword, 10)
-        historyItem = (label, 'RunPlugin(%s?mode=%d&keyword=%s&meta=%s&image=%s&fanart=%s&refresh=%s)' % (sys.argv[0], _HISTORYADD, urllib.quote_plus(keyword), urllib.quote_plus(utils.convertDictToURL(meta)), urllib.quote_plus(image), urllib.quote_plus(fanart), refresh))
-        menu.append(historyItem)
+				
+def SearchChannels():
+#hakamac code
+    KeyboardMessage = 'Name of channel show or movie'
+    Searchkey = ''
+    keyboard = xbmc.Keyboard(Searchkey, KeyboardMessage)
+    keyboard.doModal()
+    if keyboard.isConfirmed():
+       Searchkey = keyboard.getText().replace('\n','').strip()
+       if len(Searchkey) == 0: 
+          xbmcgui.Dialog().ok('RobinHood', 'Nothing Entered')
+          return	   
+    
+    Searchkey = Searchkey.lower()
+    List=[]
+    List.append(_Edit.MainBase)
+    PassedUrls = 0
+    FoundChannel = 1 
+    ReadChannel = 0
+    FoundMatch = 0
+    progress = xbmcgui.DialogProgress()
+    progress.create('SimpleKore Searching Please wait',' ')
+	
+    while FoundChannel <> ReadChannel:
+        BaseSearch = List[ReadChannel].strip()
+        print 'read this one from file list (' + str(ReadChannel) + ')'  
+        ReadChannel = ReadChannel + 1
 
-    return historyItem
+        PageSource = ''
+        try:
+            PageSource = net.http_GET(BaseSearch).content
+            PageSource = PageSource.encode('ascii', 'ignore').decode('ascii')
+            #time.sleep(1)
+        except: 
+            pass
+		
+        if len(PageSource) < 10:
+            PageSource = ''
+            PassedUrls = PassedUrls + 1
+            print '*** PASSED ****' + BaseSearch + '  ************* Total Passed Urls: ' + str(PassedUrls)
+            time.sleep(.5)
+ 
+        percent = int( ( ReadChannel / 300) * 100) 
+        message = '     Pages Read: '+str(ReadChannel)+'        Matches Found: ' + str(FoundMatch)
+        progress.update(percent,"", message, "" )
+
+        if progress.iscanceled():
+           return
+ 		
+        if len(PageSource) > 10:
+            all_links = regex_get_all(PageSource, '<channel>', '</channel>')
+            for a in all_links:
+                vurl = regex_from_to(a, '<externallink>', '</externallink>')
+                #name = regex_from_to(a, '<name>', '</name>')
+                #print name + '    ' + vurl
+                if len(vurl) > 5:
+                   FoundChannel = FoundChannel + 1
+                   List.append(vurl)
+                   #print 'Found Channel: '+ str(FoundChannel) +' : '+ vurl 
+
+            all_items = regex_get_all(PageSource, '<item>', '</item>')
+            for a in all_items:
+                vurl = regex_from_to(a, '<link>', '</link>')
+                name = regex_from_to(a, '<title>', '</title>')
+                TestName = '  ' + name.lower() + '  '
+                #print 'Testing:' + TestName + '  ' + Searchkey
+                if len(vurl) > 5 and TestName.find(Searchkey) > 0:
+                    FoundMatch = FoundMatch + 1
+                    fanart = ''
+                    thumbnail = regex_from_to(a, '<thumbnail>', '</thumbnail>')
+                    fanart = regex_from_to(a, '<fanart>', '</fanart>')
+                    if len(fanart) < 5:
+                       fanart = icon
+                    if vurl.find('sublink') > 0:
+                        addDir(name,vurl,30,thumbnail,fanart,'','','','')
+                    else: 
+                        addLink(str(vurl),name,thumbnail,fanart,'','','',True,None,'',1)
+						
+    
+    progress.close()
+    xbmc.executebuiltin("Container.SetViewMode(50)")
+	
+def Search_m3u(data,Searchkey):
+    content = data.rstrip()
+    match = re.compile(r'#EXTINF:(.+?),(.*?)[\n\r]+([^\n]+)').findall(content)
+    total = len(match)
+    print 'total m3u links',total
+    for other,channel_name,stream_url in match:
+        if 'tvg-logo' in other:
+            thumbnail = re_me(other,'tvg-logo=[\'"](.*?)[\'"]')
+            if thumbnail:
+                if thumbnail.startswith('http'):
+                    thumbnail = thumbnail
+                
+                elif not addon.getSetting('logo-folderPath') == "":
+                    logo_url = addon.getSetting('logo-folderPath')
+                    thumbnail = logo_url + thumbnail
+
+                else:
+                    thumbnail = thumbnail
+            #else:
+            
+        else:
+            thumbnail = ''
+        if 'type' in other:
+            mode_type = re_me(other,'type=[\'"](.*?)[\'"]')
+            if mode_type == 'yt-dl':
+                stream_url = stream_url +"&mode=18"
+            elif mode_type == 'regex':
+                url = stream_url.split('&regexs=')
+                #print url[0] getSoup(url,data=None)
+                regexs = parse_regex(getSoup('',data=url[1]))
+                
+                addLink(url[0], channel_name,thumbnail,'','','','','',None,regexs,total)
+                continue
+        addLink(stream_url, channel_name,thumbnail,'','','','','',None,'',total)
+
+def FindFirstPattern(text,pattern):
+    result = ""
+    try:    
+        matches = re.findall(pattern,text, flags=re.DOTALL)
+        result = matches[0]
+    except:
+        result = ""
+
+    return result
+	
+def regex_get_all(text, start_with, end_with):
+    r = re.findall("(?i)(" + start_with + "[\S\s]+?" + end_with + ")", text)
+    return r				
+
+def regex_from_to(text, from_string, to_string, excluding=True):
+    if excluding:
+	   try: r = re.search("(?i)" + from_string + "([\S\s]+?)" + to_string, text).group(1)
+	   except: r = ''
+    else:
+       try: r = re.search("(?i)(" + from_string + "[\S\s]+?" + to_string + ")", text).group(1)
+       except: r = ''
+    return r
+
+def getItems(items,fanart):
+        total = len(items)
+        print 'START GET ITEMS *****'
+        addon_log('Total Items: %s' %total)
+        for item in items:
+            isXMLSource=False
+            isJsonrpc = False
+            try:
+                name = item('title')[0].string
+                if name is None:
+                    name = 'unknown?'
+            except:
+                addon_log('Name Error')
+                name = ''
+
+
+            try:
+                if item('epg'):
+                    if item.epg_url:
+                        addon_log('Get EPG Regex')
+                        epg_url = item.epg_url.string
+                        epg_regex = item.epg_regex.string
+                        epg_name = get_epg(epg_url, epg_regex)
+                        if epg_name:
+                            name += ' - ' + epg_name
+                    elif item('epg')[0].string > 1:
+                        name += getepg(item('epg')[0].string)
+                else:
+                    pass
+            except:
+                addon_log('EPG Error')
+            try:
+                url = []
+                if len(item('link')) >0:
+#                    print 'item link', item('link')
+                    for i in item('link'):
+                        if not i.string == None:
+                            url.append(i.string)
+                    
+                elif len(item('sportsdevil')) >0:
+                    for i in item('sportsdevil'):
+                        if not i.string == None:
+                            sportsdevil = 'plugin://plugin.video.SportsDevil/?mode=1&amp;item=catcher%3dstreams%26url=' +i.string
+                            referer = item('referer')[0].string
+                            if referer:
+                                #print 'referer found'
+                                sportsdevil = sportsdevil + '%26referer=' +referer
+                            url.append(sportsdevil)
+                elif len(item('p2p')) >0:
+                    for i in item('p2p'):
+                        if not i.string == None:
+                            if 'sop://' in i:
+                                sop = 'plugin://plugin.video.p2p-streams/?url='+i.string +'&amp;mode=2&amp;' + 'name='+name 
+                                url.append(sop) 
+                            else:
+                                p2p='plugin://plugin.video.p2p-streams/?url='+i.string +'&amp;mode=1&amp;' + 'name='+name 
+                                url.append(p2p)
+                elif len(item('vaughn')) >0:
+                    for i in item('vaughn'):
+                        if not i.string == None:
+                            vaughn = 'plugin://plugin.stream.vaughnlive.tv/?mode=PlayLiveStream&amp;channel='+i.string
+                            url.append(vaughn)
+                elif len(item('ilive')) >0:
+                    for i in item('ilive'):
+                        if not i.string == None:
+                            if not 'http' in i.string:
+                                ilive = 'plugin://plugin.video.tbh.ilive/?url=http://www.streamlive.to/view/'+i.string+'&amp;link=99&amp;mode=iLivePlay'
+                            else:
+                                ilive = 'plugin://plugin.video.tbh.ilive/?url='+i.string+'&amp;link=99&amp;mode=iLivePlay'
+                elif len(item('yt-dl')) >0:
+                    for i in item('yt-dl'):
+                        if not i.string == None:
+                            ytdl = i.string + '&mode=18'
+                            url.append(ytdl)
+                elif len(item('utube')) >0:
+                    for i in item('utube'):
+                        if not i.string == None:
+                            if len(i.string) == 11:
+                                utube = 'plugin://plugin.video.youtube/play/?video_id='+ i.string 
+                            elif i.string.startswith('PL') and not '&order=' in i.string :
+                                utube = 'plugin://plugin.video.youtube/play/?&order=default&playlist_id=' + i.string
+                            else:
+                                utube = 'plugin://plugin.video.youtube/play/?playlist_id=' + i.string 
+                    url.append(utube)
+                elif len(item('imdb')) >0:
+                    for i in item('imdb'):
+                        if not i.string == None:
+                            if addon.getSetting('genesisorpulsar') == '0':
+                                imdb = 'plugin://plugin.video.genesis/?action=play&imdb='+i.string
+                            else:
+                                imdb = 'plugin://plugin.video.pulsar/movie/tt'+i.string+'/play'
+                            url.append(imdb)                      
+                elif len(item('f4m')) >0:
+                        for i in item('f4m'):
+                            if not i.string == None:
+                                if '.f4m' in i.string:
+                                    f4m = 'plugin://plugin.video.f4mTester/?url='+urllib.quote_plus(i.string)
+                                elif '.m3u8' in i.string:
+                                    f4m = 'plugin://plugin.video.f4mTester/?url='+urllib.quote_plus(i.string)+'&amp;streamtype=HLS'
+                                    
+                                else:
+                                    f4m = 'plugin://plugin.video.f4mTester/?url='+urllib.quote_plus(i.string)+'&amp;streamtype=SIMPLE'
+                        url.append(f4m)
+                elif len(item('ftv')) >0:
+                    for i in item('ftv'):
+                        if not i.string == None:
+                            ftv = 'plugin://plugin.video.F.T.V/?name='+urllib.quote(name) +'&url=' +i.string +'&mode=125&ch_fanart=na'
+                        url.append(ftv)                        
+                if len(url) < 1:
+                    raise
+            except:
+                addon_log('Error <link> element, Passing:'+name.encode('utf-8', 'ignore'))
+                continue
+                
+            isXMLSource=False
+
+            try:
+                isXMLSource = item('externallink')[0].string
+            except: pass
+            
+            if isXMLSource:
+                ext_url=[isXMLSource]
+                isXMLSource=True
+            else:
+                isXMLSource=False
+            try:
+                isJsonrpc = item('jsonrpc')[0].string
+            except: pass
+            if isJsonrpc:
+                ext_url=[isJsonrpc]
+                isJsonrpc=True
+            else:
+                isJsonrpc=False            
+            try:
+                thumbnail = item('thumbnail')[0].string
+                if thumbnail == None:
+                    raise
+            except:
+                thumbnail = ''
+            try:
+                if not item('fanart'):
+                    if addon.getSetting('use_thumb') == "true":
+                        fanArt = thumbnail
+                    else:
+                        fanArt = fanart
+                else:
+                    fanArt = item('fanart')[0].string
+                if fanArt == None:
+                    raise
+            except:
+                fanArt = fanart
+            try:
+                desc = item('info')[0].string
+                if desc == None:
+                    raise
+            except:
+                desc = ''
+
+            try:
+                genre = item('genre')[0].string
+                if genre == None:
+                    raise
+            except:
+                genre = ''
+
+            try:
+                date = item('date')[0].string
+                if date == None:
+                    raise
+            except:
+                date = ''
+
+            regexs = None
+            if item('regex'):
+                try:
+                    reg_item = item('regex')
+                    regexs = parse_regex(reg_item)
+                except:
+                    pass            
+           
+            try:
+                if len(url) > 1:
+                    
+                    alt = 0
+                    playlist = []
+                    for i in url:
+                    	if addon.getSetting('ask_playlist_items') == 'true':
+	                        if regexs:
+	                            playlist.append(i+'&regexs='+regexs)
+	                        elif  any(x in i for x in resolve_url) and  i.startswith('http'):
+	                            playlist.append(i+'&mode=19')                            
+                        else:
+                            playlist.append(i)
+                    if addon.getSetting('add_playlist') == "false":                    
+                            for i in url:
+                                alt += 1
+                                print 'ADDLINK 1'
+                                addLink(i,'%s) %s' %(alt, name.encode('utf-8', 'ignore')),thumbnail,fanArt,desc,genre,date,True,playlist,regexs,total)                            
+                    else:
+                        addLink('', name.encode('utf-8', 'ignore'),thumbnail,fanArt,desc,genre,date,True,playlist,regexs,total)
+                else:
+                    if isXMLSource:
+                    	addDir(name.encode('utf-8'),ext_url[0].encode('utf-8'),1,thumbnail,fanart,desc,genre,date,None,'source')
+                    elif isJsonrpc:
+                        addDir(name.encode('utf-8'),ext_url[0],53,thumbnail,fanart,desc,genre,date,None,'source')
+                    elif url[0].find('sublink') > 0:
+                        addDir(name.encode('utf-8'),url[0],30,thumbnail,fanart,'','','','')
+                        #addDir(name.encode('utf-8'),url[0],30,thumbnail,fanart,desc,genre,date,'sublink')				
+                    else: 
+                        addLink(url[0],name.encode('utf-8', 'ignore'),thumbnail,fanArt,desc,genre,date,True,None,regexs,total)
+
+                    #print 'success'
+            except:
+                addon_log('There was a problem adding item - '+name.encode('utf-8', 'ignore'))
+        print 'FINISH GET ITEMS *****'      
+
+def parse_regex(reg_item):
+                try:
+                    regexs = {}
+                    for i in reg_item:
+                        regexs[i('name')[0].string] = {}
+                        #regexs[i('name')[0].string]['expre'] = i('expres')[0].string
+                        try:
+                            regexs[i('name')[0].string]['expre'] = i('expres')[0].string
+                            if not regexs[i('name')[0].string]['expre']:
+                                regexs[i('name')[0].string]['expre']=''
+                        except:
+                            addon_log("Regex: -- No Referer --")
+                        regexs[i('name')[0].string]['page'] = i('page')[0].string
+                        try:
+                            regexs[i('name')[0].string]['refer'] = i('referer')[0].string
+                        except:
+                            addon_log("Regex: -- No Referer --")
+                        try:
+                            regexs[i('name')[0].string]['connection'] = i('connection')[0].string
+                        except:
+                            addon_log("Regex: -- No connection --")
+
+                        try:
+                            regexs[i('name')[0].string]['notplayable'] = i('notplayable')[0].string
+                        except:
+                            addon_log("Regex: -- No notplayable --")
+                            
+                        try:
+                            regexs[i('name')[0].string]['noredirect'] = i('noredirect')[0].string
+                        except:
+                            addon_log("Regex: -- No noredirect --")
+                        try:
+                            regexs[i('name')[0].string]['origin'] = i('origin')[0].string
+                        except:
+                            addon_log("Regex: -- No origin --")
+                        try:
+                            regexs[i('name')[0].string]['includeheaders'] = i('includeheaders')[0].string
+                        except:
+                            addon_log("Regex: -- No includeheaders --")                            
+                            
+                        try:
+                            regexs[i('name')[0].string]['x-req'] = i('x-req')[0].string
+                        except:
+                            addon_log("Regex: -- No x-req --")
+                        try:
+                            regexs[i('name')[0].string]['x-forward'] = i('x-forward')[0].string
+                        except:
+                            addon_log("Regex: -- No x-forward --")
+
+                        try:
+                            regexs[i('name')[0].string]['agent'] = i('agent')[0].string
+                        except:
+                            addon_log("Regex: -- No User Agent --")
+                        try:
+                            regexs[i('name')[0].string]['post'] = i('post')[0].string
+                        except:
+                            addon_log("Regex: -- Not a post")
+                        try:
+                            regexs[i('name')[0].string]['rawpost'] = i('rawpost')[0].string
+                        except:
+                            addon_log("Regex: -- Not a rawpost")
+                        try:
+                            regexs[i('name')[0].string]['htmlunescape'] = i('htmlunescape')[0].string
+                        except:
+                            addon_log("Regex: -- Not a htmlunescape")
+
+
+                        try:
+                            regexs[i('name')[0].string]['readcookieonly'] = i('readcookieonly')[0].string
+                        except:
+                            addon_log("Regex: -- Not a readCookieOnly")
+                        #print i
+                        try:
+                            regexs[i('name')[0].string]['cookiejar'] = i('cookiejar')[0].string
+                            if not regexs[i('name')[0].string]['cookiejar']:
+                                regexs[i('name')[0].string]['cookiejar']=''
+                        except:
+                            addon_log("Regex: -- Not a cookieJar")							
+                        try:
+                            regexs[i('name')[0].string]['setcookie'] = i('setcookie')[0].string
+                        except:
+                            addon_log("Regex: -- Not a setcookie")
+                        try:
+                            regexs[i('name')[0].string]['appendcookie'] = i('appendcookie')[0].string
+                        except:
+                            addon_log("Regex: -- Not a appendcookie")
+                                                    
+                        try:
+                            regexs[i('name')[0].string]['ignorecache'] = i('ignorecache')[0].string
+                        except:
+                            addon_log("Regex: -- no ignorecache")
+                        #try:
+                        #    regexs[i('name')[0].string]['ignorecache'] = i('ignorecache')[0].string
+                        #except:
+                        #    addon_log("Regex: -- no ignorecache")			
+
+                    regexs = urllib.quote(repr(regexs))
+                    return regexs
+                    #print regexs
+                except:
+                    regexs = None
+                    addon_log('regex Error: '+name.encode('utf-8', 'ignore'))
+#copies from lamda's implementation
+def get_ustream(url):
+    try:
+        for i in range(1, 51):
+            result = getUrl(url)
+            if "EXT-X-STREAM-INF" in result: return url
+            if not "EXTM3U" in result: return
+            xbmc.sleep(2000)
+        return
+    except:
+        return
+        
+ 
+def getRegexParsed(regexs, url,cookieJar=None,forCookieJarOnly=False,recursiveCall=False,cachedPages={}, rawPost=False, cookie_jar_file=None):#0,1,2 = URL, regexOnly, CookieJarOnly
+        if not recursiveCall:
+            regexs = eval(urllib.unquote(regexs))
+        #cachedPages = {}
+        #print 'url',url
+        doRegexs = re.compile('\$doregex\[([^\]]*)\]').findall(url)
+        #print 'doRegexs',doRegexs,regexs
+        setresolved=True
+              
+ 
+
+
+        for k in doRegexs:
+            if k in regexs:
+                #print 'processing ' ,k
+                m = regexs[k]
+                #print m
+                cookieJarParam=False
+
+
+                if  'cookiejar' in m: # so either create or reuse existing jar
+                    #print 'cookiejar exists',m['cookiejar']
+                    cookieJarParam=m['cookiejar']
+                    if  '$doregex' in cookieJarParam:
+                        cookieJar=getRegexParsed(regexs, m['cookiejar'],cookieJar,True, True,cachedPages)
+                        cookieJarParam=True
+                    else:
+                        cookieJarParam=True
+                #print 'm[cookiejar]',m['cookiejar'],cookieJar
+                if cookieJarParam:
+                    if cookieJar==None:
+                        #print 'create cookie jar'
+                        cookie_jar_file=None
+                        if 'open[' in m['cookiejar']:
+                            cookie_jar_file=m['cookiejar'].split('open[')[1].split(']')[0]
+                            
+                        cookieJar=getCookieJar(cookie_jar_file)
+                        if cookie_jar_file:
+                            saveCookieJar(cookieJar,cookie_jar_file)
+                        #import cookielib
+                        #cookieJar = cookielib.LWPCookieJar()
+                        #print 'cookieJar new',cookieJar
+                    elif 'save[' in m['cookiejar']:
+                        cookie_jar_file=m['cookiejar'].split('save[')[1].split(']')[0]
+                        complete_path=os.path.join(profile,cookie_jar_file)
+                        print 'complete_path',complete_path
+                        saveCookieJar(cookieJar,cookie_jar_file)
+                        
+ 
+                if  m['page'] and '$doregex' in m['page']:
+                    m['page']=getRegexParsed(regexs, m['page'],cookieJar,recursiveCall=True,cachedPages=cachedPages)
+
+                if 'setcookie' in m and m['setcookie'] and '$doregex' in m['setcookie']:
+                    m['setcookie']=getRegexParsed(regexs, m['setcookie'],cookieJar,recursiveCall=True,cachedPages=cachedPages)
+                if 'appendcookie' in m and m['appendcookie'] and '$doregex' in m['appendcookie']:
+                    m['appendcookie']=getRegexParsed(regexs, m['appendcookie'],cookieJar,recursiveCall=True,cachedPages=cachedPages)
+
+                 
+                if  'post' in m and '$doregex' in m['post']:
+                    m['post']=getRegexParsed(regexs, m['post'],cookieJar,recursiveCall=True,cachedPages=cachedPages)
+                    print 'post is now',m['post']
+
+                if  'rawpost' in m and '$doregex' in m['rawpost']:
+                    m['rawpost']=getRegexParsed(regexs, m['rawpost'],cookieJar,recursiveCall=True,cachedPages=cachedPages,rawPost=True)
+                    #print 'rawpost is now',m['rawpost']
+  
+                if 'rawpost' in m and '$epoctime$' in m['rawpost']:
+                    m['rawpost']=m['rawpost'].replace('$epoctime$',getEpocTime())
+  
+                if 'rawpost' in m and '$epoctime2$' in m['rawpost']:
+                    m['rawpost']=m['rawpost'].replace('$epoctime2$',getEpocTime2())
+
+  
+                link=''
+                if m['page'] and m['page'] in cachedPages and not 'ignorecache' in m and forCookieJarOnly==False :
+                    link = cachedPages[m['page']]
+                else:
+                    if m['page'] and  not m['page']=='' and  m['page'].startswith('http'):
+                        if '$epoctime$' in m['page']:
+                            m['page']=m['page'].replace('$epoctime$',getEpocTime())
+                        if '$epoctime2$' in m['page']:
+                            m['page']=m['page'].replace('$epoctime2$',getEpocTime2())
+
+                        #print 'Ingoring Cache',m['page']
+                        page_split=m['page'].split('|')
+                        pageUrl=page_split[0]
+                        header_in_page=None
+                        if len(page_split)>1:
+                            header_in_page=page_split[1]
+                        req = urllib2.Request(pageUrl)
+                        req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 6.1; rv:14.0) Gecko/20100101 Firefox/14.0.1')
+                        if 'refer' in m:
+                            req.add_header('Referer', m['refer'])
+                        if 'agent' in m:
+                            req.add_header('User-agent', m['agent'])
+                        if 'x-req' in m:
+                            req.add_header('X-Requested-With', m['x-req'])
+                        if 'x-forward' in m:
+                            req.add_header('X-Forwarded-For', m['x-forward'])
+                        if 'setcookie' in m:
+                            print 'adding cookie',m['setcookie']
+                            req.add_header('Cookie', m['setcookie'])
+                        if 'appendcookie' in m:
+                            print 'appending cookie to cookiejar',m['appendcookie']
+                            cookiestoApend=m['appendcookie']
+                            cookiestoApend=cookiestoApend.split(';')
+                            for h in cookiestoApend:
+                                n,v=h.split('=')
+                                w,n= n.split(':')
+                                ck = cookielib.Cookie(version=0, name=n, value=v, port=None, port_specified=False, domain=w, domain_specified=False, domain_initial_dot=False, path='/', path_specified=True, secure=False, expires=None, discard=True, comment=None, comment_url=None, rest={'HttpOnly': None}, rfc2109=False)
+                                cookieJar.set_cookie(ck)
+
+                                
+
+                            
+                        if 'origin' in m:
+                            req.add_header('Origin', m['origin'])
+                        if header_in_page:
+                            header_in_page=header_in_page.split('&')
+                            for h in header_in_page:
+                                n,v=h.split('=')
+                                req.add_header(n,v)
+
+
+                        if not cookieJar==None:
+                            #print 'cookieJarVal',cookieJar
+                            cookie_handler = urllib2.HTTPCookieProcessor(cookieJar)
+                            opener = urllib2.build_opener(cookie_handler, urllib2.HTTPBasicAuthHandler(), urllib2.HTTPHandler())
+                            opener = urllib2.install_opener(opener)
+                            if 'noredirect' in m:
+                                opener2 = urllib2.build_opener(NoRedirection)
+                                opener = urllib2.install_opener(opener2)
+                                
+                        if 'connection' in m:
+                            print '..........................connection//////.',m['connection']
+                            from keepalive import HTTPHandler
+                            keepalive_handler = HTTPHandler()
+                            opener = urllib2.build_opener(keepalive_handler)
+                            urllib2.install_opener(opener)
+                            
+                        #print 'after cookie jar'
+                        post=None
+
+                        if 'post' in m:
+                            postData=m['post']
+                            if '$LiveStreamRecaptcha' in postData:
+                                (captcha_challenge,catpcha_word)=processRecaptcha(m['page'])
+                                if captcha_challenge:
+                                    postData+='recaptcha_challenge_field:'+captcha_challenge+',recaptcha_response_field:'+catpcha_word
+                            splitpost=postData.split(',');
+                            post={}
+                            for p in splitpost:
+                                n=p.split(':')[0];
+                                v=p.split(':')[1];
+                                post[n]=v
+                            post = urllib.urlencode(post)
+
+                        if 'rawpost' in m:
+                            post=m['rawpost']
+                            if '$LiveStreamRecaptcha' in post:
+                                (captcha_challenge,catpcha_word)=processRecaptcha(m['page'])
+                                if captcha_challenge:
+                                   post+='&recaptcha_challenge_field='+captcha_challenge+'&recaptcha_response_field='+catpcha_word
+
+
+                            
+
+                        if post:
+                            response = urllib2.urlopen(req,post)
+                        else:
+                            response = urllib2.urlopen(req)
+
+                        link = response.read()
+                        link=javascriptUnEscape(link)
+                        #print link This just print whole webpage in LOG
+                        if 'includeheaders' in m:
+                            link+=str(response.headers.get('Set-Cookie'))
+
+                        response.close()
+                        cachedPages[m['page']] = link
+                        #print link
+                        #print 'store link for',m['page'],forCookieJarOnly
+                        
+                        if forCookieJarOnly:
+                            return cookieJar# do nothing
+                    elif m['page'] and  not m['page'].startswith('http'):
+                        if m['page'].startswith('$pyFunction:'):
+                            val=doEval(m['page'].split('$pyFunction:')[1],'',cookieJar )
+                            if forCookieJarOnly:
+                                return cookieJar# do nothing
+                            link=val
+                        else:
+                            link=m['page']
+                if '$pyFunction:playmedia(' in m['expre'] or 'ActivateWindow'  in m['expre']   or  any(x in url for x in g_ignoreSetResolved):
+                    setresolved=False
+                if  '$doregex' in m['expre']:
+                    m['expre']=getRegexParsed(regexs, m['expre'],cookieJar,recursiveCall=True,cachedPages=cachedPages)
+                    
+                
+                if not m['expre']=='':
+                    print 'doing it ',m['expre']
+                    if '$LiveStreamCaptcha' in m['expre']:
+                        val=askCaptcha(m,link,cookieJar)
+                        #print 'url and val',url,val
+                        url = url.replace("$doregex[" + k + "]", val)
+                    elif m['expre'].startswith('$pyFunction:'):
+                        #print 'expeeeeeeeeeeeeeeeeeee',m['expre']
+                        val=doEval(m['expre'].split('$pyFunction:')[1],link,cookieJar )
+                        if 'ActivateWindow' in m['expre']: return 
+                        print 'still hre'
+                        print 'url k val',url,k,val
+
+                        url = url.replace("$doregex[" + k + "]", val)
+                    else:
+                        if not link=='':
+                            reg = re.compile(m['expre']).search(link)
+                            val=''
+                            try:
+                                val=reg.group(1).strip()
+                            except: traceback.print_exc()
+                        else:
+                            val=m['expre']
+                        if rawPost:
+                            print 'rawpost'
+                            val=urllib.quote_plus(val)
+                        if 'htmlunescape' in m:
+                            #val=urllib.unquote_plus(val)
+                            import HTMLParser
+                            val=HTMLParser.HTMLParser().unescape(val)                     
+                        url = url.replace("$doregex[" + k + "]", val)
+                        #return val
+                else:           
+                    url = url.replace("$doregex[" + k + "]",'')
+        if '$epoctime$' in url:
+            url=url.replace('$epoctime$',getEpocTime())
+        if '$epoctime2$' in url:
+            url=url.replace('$epoctime2$',getEpocTime2())
+
+        if '$GUID$' in url:
+            import uuid
+            url=url.replace('$GUID$',str(uuid.uuid1()).upper())
+        if '$get_cookies$' in url:
+            url=url.replace('$get_cookies$',getCookiesString(cookieJar))   
+
+        if recursiveCall: return url
+        print 'final url',url
+        if url=="": 
+        	return
+        else:
+        	return url,setresolved
 
             
-def superSearch(keyword='', image=SEARCH, fanart=FANART, imdb='', meta={}):
-    if len(keyword) < 0:
-        kb = xbmc.Keyboard(keyword, GETTEXT(30054))
-        kb.doModal()
-        if kb.isConfirmed():
-            keyword = kb.getText()
-
-            if len(keyword) < 1:
-                keyword = ISEARCH_EMPTY
-
-            if len(keyword) > -1:
-                mode = _SUPERSEARCH
-                cmd  = '%s?mode=%d&keyword=%s&image=%s&fanart=%s' % (sys.argv[0], mode, urllib.quote_plus(keyword), image, fanart)
-                xbmc.executebuiltin('XBMC.Container.Update(%s)' % cmd)
-                return
-
-    if len(keyword) < 0:
-        return
-
-    if keyword == ISEARCH_EMPTY:
-        keyword = ''
-
-    if not SHOW_FANART:
-        fanart = BLANK
-
-    keyword = keyword.split(' - [I]', 1)[0]
-    
-    if keyword.startswith('tt'): #assume IMDB number
-        url  = 'http://m.imdb.com/title/%s/' % keyword
-        html = quicknet.getURL(url)
-
-        try:
-            keyword = re.compile('<meta property=\'og:title\' content="(.+?)"').search(html).group(1)
-            keyword = utils.Clean(keyword)
-            keyword = utils.unescape(keyword)
-            keyword = utils.fix(keyword)
-        except:
-            pass
-      
-    editItem = (GETTEXT(30057), 'XBMC.Container.Update(%s?mode=%d&keyword=%s)' % (sys.argv[0], _EDITTERM, keyword))
-
-    menu = []    
-    menu.append(editItem)
-
-    infolabels = {}
-
-    grabber = getMetaGrabber()
-
-    if grabber and len(imdb) > 0:  
-        imdb = imdb.replace('/?', '')      
-        infolabels = getMeta(grabber, '', 'movie', year=None, imdb=imdb)
-        getMovieMenu(infolabels, menu)
-    else:
-        infolabels = meta
-
-    historyItem = getHistoryItem(menu, keyword, image, fanart, infolabels, True)
-    
-    addDir(GETTEXT(30066) % keyword.strip(), _EDITTERM, thumbnail=image, isFolder=True, menu=menu, fanart=fanart, keyword=keyword, imdb=imdb, infolabels=infolabels)
-
-    #reset menu
-    menu = []
-    menu.append(editItem)
-    if historyItem:
-        menu.append(historyItem)
-
-    addSeparatorItem(menu)
-
-    index = 0
-
-    if SHOWIHISTORY and history.exists():
-        #reset menu
-        menu = []
-        menu.append(editItem)
-
-        if historyItem:
-            menu.append(historyItem)
-
-        label, index = utils.addPrefixToLabel(index, GETTEXT(30163))
-
-        addDir(label, _HISTORYSHOW, thumbnail=SEARCH, isFolder=True, menu=menu, infolabels={'plot':GETTEXT(30201)})
-
-    if SHOWRECOMMEND and len(keyword) > 0:
-        #reset menu
-        menu = []
-        menu.append(editItem)
-        if historyItem:
-            menu.append(historyItem)
-        getMovieMenu(infolabels, menu)
-
-        label, index = utils.addPrefixToLabel(index, GETTEXT(30088))
-
-        if len(imdb) > 0:            
-            addDir(label, _RECOMMEND_IMDB, thumbnail=image, isFolder=True, menu=menu, fanart=fanart, keyword=keyword, imdb=imdb, infolabels={'plot':GETTEXT(30202) % (keyword, imdb.replace('/?', ''))})
-        elif RECOMMENDAUTO:
-            addDir(label, _RECOMMEND_KEY,  thumbnail=image, isFolder=True, menu=menu, fanart=fanart, keyword=keyword, infolabels={'plot':GETTEXT(30215) % keyword})
-        else:
-            addDir(label, _RECOMMEND_KEY,  thumbnail=image, isFolder=True, menu=menu, fanart=fanart, keyword=keyword, infolabels={'plot':GETTEXT(30205) % keyword})
         
-    keyword = urllib.quote_plus(keyword.replace('&', ''))  
+def getmd5(t):
+    import hashlib
+    h=hashlib.md5()
+    h.update(t)
+    return h.hexdigest()
 
-    file  = os.path.join(ROOT, 'S', FILENAME)
-   
-    faves = favourite.getFavourites(file, superSearch=True)
+def decrypt_vaughnlive(encrypted):
+    retVal=""
+    for val in encrypted.split(':'):
+        retVal+=chr(int(val.replace("0m0",""))/84/5)
+    return retVal
 
-    if len(faves) == 0:
-        #try shipped search file
-        file = os.path.join(HOME, 'resources', 'search', FILENAME)
-        faves = favourite.getFavourites(file) 
-
-    if ALPHA_SORT:
-         faves = sorted(faves, key=lambda x: utils.CleanForSort(x))
-
-    for fave in faves:
-        label = fave[0]
-        thumb = fave[1]
-        cmd   = fave[2]
-
-        cmd   = cmd.replace('[%SF%]',  keyword)
-        cmd   = cmd.replace('[%SF+%]', keyword.replace('+', '%2b'))
-
-        fan = fanart
-        if SHOW_FANART:
-            fan = favourite.getFanart(cmd)
-            if len(fan) == 0:
-                fan = fanart
-
-        menu = []
-
-        menu.append((GETTEXT(30103), 'XBMC.RunPlugin(%s?mode=%d&file=%s&cmd=%s&name=%s&thumb=%s)' % (sys.argv[0], _EDITSEARCH, urllib.quote_plus(file), urllib.quote_plus(cmd), urllib.quote_plus(label), urllib.quote_plus(thumb))))
-
-        menu.append(editItem)
-
-        if historyItem:
-            menu.append(historyItem)
-
-        #special fix for GlobalSearch, use local launcher (globalsearch.py) to bypass keyboard
-        cmd = cmd.replace('script.globalsearch', os.path.join(HOME, 'globalsearch.py'))
-
-        infolabel = {'plot':GETTEXT(30206) % (label, urllib.unquote_plus(keyword))}
-
-        label, index = utils.addPrefixToLabel(index, label)
-
-        addDir(label, _ACTIVATESEARCH, cmd=cmd, thumbnail=thumb, isFolder=True, menu=menu, fanart=fan, keyword=keyword, infolabels=infolabel)
-    
-    return True
-
-
-def playCommand(originalCmd):
-    player.playCommand(originalCmd, contentMode)
-
-
-def activateWindowCommand(cmd):
-    player.activateWindowCommand(cmd)
-
-
-def addArtwork(setting, thumbnail, fanart):
-    if setting == 0:
-        return ''
-
-    if setting == 1:
-        return thumbnail
-
-    if setting == 2:
-        return fanart
-
+def playmedia(media_url):
+    try:
+        import  CustomPlayer
+        player = CustomPlayer.MyXBMCPlayer()
+        listitem = xbmcgui.ListItem( label = str(name), iconImage = "DefaultVideo.png", thumbnailImage = xbmc.getInfoImage( "ListItem.Thumb" ), path=media_url )
+        player.play( media_url,listitem)
+        xbmc.sleep(1000)
+        while player.is_active:
+            xbmc.sleep(200)
+    except:
+        traceback.print_exc()
     return ''
     
+        
+def get_saw_rtmp(page_value, referer=None):
+    if referer:
+        referer=[('Referer',referer)]
+    if page_value.startswith("http"):
+        page_url=page_value
+        page_value= getUrl(page_value,headers=referer)
+
+    str_pattern="(eval\(function\(p,a,c,k,e,(?:r|d).*)"
+
+    reg_res=re.compile(str_pattern).findall(page_value)
+    r=""
+    if reg_res and len(reg_res)>0:
+        for v in reg_res:
+            r1=get_unpacked(v)
+            r2=re_me(r1,'\'(.*?)\'')
+            if 'unescape' in r1:
+                r1=urllib.unquote(r2)
+            r+=r1+'\n'
+        print 'final value is ',r
+        
+        page_url=re_me(r,'src="(.*?)"')
+        
+        page_value= getUrl(page_url,headers=referer)
+
+    #print page_value
+
+    rtmp=re_me(page_value,'streamer\'.*?\'(.*?)\'\)')
+    playpath=re_me(page_value,'file\',\s\'(.*?)\'')
+
     
-def addDir(label, mode, index=-1, path = '', cmd = '', thumbnail='', isFolder=True, menu=None, fanart=FANART, keyword='', imdb='', infolabels={}, totalItems=0, isPlayable=False):
-    global separator
-   
-    u  = sys.argv[0]
+    return rtmp+' playpath='+playpath +' pageUrl='+page_url
+    
+def get_leton_rtmp(page_value, referer=None):
+    if referer:
+        referer=[('Referer',referer)]
+    if page_value.startswith("http"):
+        page_value= getUrl(page_value,headers=referer)
+    str_pattern="var a = (.*?);\s*var b = (.*?);\s*var c = (.*?);\s*var d = (.*?);\s*var f = (.*?);\s*var v_part = '(.*?)';"
+    reg_res=re.compile(str_pattern).findall(page_value)[0] 
 
-    u += '?label='
+    a,b,c,d,f,v=(reg_res)
+    f=int(f)
+    a=int(a)/f
+    b=int(b)/f
+    c=int(c)/f
+    d=int(d)/f
 
-    try:    
-        u += urllib.quote_plus(label)
+    ret= 'rtmp://' + str(a) + '.' + str(b) + '.' + str(c) + '.' + str(d) + v;
+    return ret
+
+def createM3uForDash(url,useragent=None):
+    str='#EXTM3U'
+    str+='\n#EXT-X-STREAM-INF:PROGRAM-ID=1,BANDWIDTH=361816'
+    str+='\n'+url+'&bytes=0-200000'#+'|User-Agent='+useragent
+    source_file = os.path.join(profile, 'testfile.m3u')
+    str+='\n'
+    SaveToFile(source_file,str)
+    #return 'C:/Users/shani/Downloads/test.m3u8'
+    return source_file
+
+def SaveToFile(file_name,page_data,append=False):
+    if append:
+        f = open(file_name, 'a')
+        f.write(page_data)
+        f.close()        
+    else:
+        f=open(file_name,'wb')
+        f.write(page_data)
+        f.close()
+        return ''
+    
+def LoadFile(file_name):
+	f=open(file_name,'rb')
+	d=f.read()
+	f.close()
+	return d
+    
+def get_packed_iphonetv_url(page_data):
+	import re,base64,urllib; 
+	s=page_data
+	while 'geh(' in s:
+		if s.startswith('lol('): s=s[5:-1]    
+#		print 's is ',s
+		s=re.compile('"(.*?)"').findall(s)[0]; 
+		s=  base64.b64decode(s); 
+		s=urllib.unquote(s); 
+	print s
+	return s
+
+def get_ferrari_url(page_data):
+    print 'get_dag_url2',page_data
+    page_data2=getUrl(page_data);
+    patt='(http.*)'
+    import uuid
+    playback=str(uuid.uuid1()).upper()
+    links=re.compile(patt).findall(page_data2)
+    headers=[('X-Playback-Session-Id',playback)]
+    for l in links:
+        try:
+                page_datatemp=getUrl(l,headers=headers);
+                    
+        except: pass
+    
+    return page_data+'|&X-Playback-Session-Id='+playback
+
+    
+def get_dag_url(page_data):
+    print 'get_dag_url',page_data
+    if page_data.startswith('http://dag.total-stream.net'):
+        headers=[('User-Agent','Verismo-BlackUI_(2.4.7.5.8.0.34)')]
+        page_data=getUrl(page_data,headers=headers);
+
+    if '127.0.0.1' in page_data:
+        return revist_dag(page_data)
+    elif re_me(page_data, 'wmsAuthSign%3D([^%&]+)') != '':
+        final_url = re_me(page_data, '&ver_t=([^&]+)&') + '?wmsAuthSign=' + re_me(page_data, 'wmsAuthSign%3D([^%&]+)') + '==/mp4:' + re_me(page_data, '\\?y=([^&]+)&')
+    else:
+        final_url = re_me(page_data, 'href="([^"]+)"[^"]+$')
+        if len(final_url)==0:
+            final_url=page_data
+    final_url = final_url.replace(' ', '%20')
+    return final_url
+
+def re_me(data, re_patten):
+    match = ''
+    m = re.search(re_patten, data)
+    if m != None:
+        match = m.group(1)
+    else:
+        match = ''
+    return match
+
+def revist_dag(page_data):
+    final_url = ''
+    if '127.0.0.1' in page_data:
+        final_url = re_me(page_data, '&ver_t=([^&]+)&') + ' live=true timeout=15 playpath=' + re_me(page_data, '\\?y=([a-zA-Z0-9-_\\.@]+)')
+        
+    if re_me(page_data, 'token=([^&]+)&') != '':
+        final_url = final_url + '?token=' + re_me(page_data, 'token=([^&]+)&')
+    elif re_me(page_data, 'wmsAuthSign%3D([^%&]+)') != '':
+        final_url = re_me(page_data, '&ver_t=([^&]+)&') + '?wmsAuthSign=' + re_me(page_data, 'wmsAuthSign%3D([^%&]+)') + '==/mp4:' + re_me(page_data, '\\?y=([^&]+)&')
+    else:
+        final_url = re_me(page_data, 'HREF="([^"]+)"')
+
+    if 'dag1.asx' in final_url:
+        return get_dag_url(final_url)
+
+    if 'devinlivefs.fplive.net' not in final_url:
+        final_url = final_url.replace('devinlive', 'flive')
+    if 'permlivefs.fplive.net' not in final_url:
+        final_url = final_url.replace('permlive', 'flive')
+    return final_url
+
+
+def get_unwise( str_eval):
+    page_value=""
+    try:        
+        ss="w,i,s,e=("+str_eval+')' 
+        exec (ss)
+        page_value=unwise_func(w,i,s,e)
+    except: traceback.print_exc(file=sys.stdout)
+    #print 'unpacked',page_value
+    return page_value
+    
+def unwise_func( w, i, s, e):
+    lIll = 0;
+    ll1I = 0;
+    Il1l = 0;
+    ll1l = [];
+    l1lI = [];
+    while True:
+        if (lIll < 5):
+            l1lI.append(w[lIll])
+        elif (lIll < len(w)):
+            ll1l.append(w[lIll]);
+        lIll+=1;
+        if (ll1I < 5):
+            l1lI.append(i[ll1I])
+        elif (ll1I < len(i)):
+            ll1l.append(i[ll1I])
+        ll1I+=1;
+        if (Il1l < 5):
+            l1lI.append(s[Il1l])
+        elif (Il1l < len(s)):
+            ll1l.append(s[Il1l]);
+        Il1l+=1;
+        if (len(w) + len(i) + len(s) + len(e) == len(ll1l) + len(l1lI) + len(e)):
+            break;
+        
+    lI1l = ''.join(ll1l)#.join('');
+    I1lI = ''.join(l1lI)#.join('');
+    ll1I = 0;
+    l1ll = [];
+    for lIll in range(0,len(ll1l),2):
+        #print 'array i',lIll,len(ll1l)
+        ll11 = -1;
+        if ( ord(I1lI[ll1I]) % 2):
+            ll11 = 1;
+        #print 'val is ', lI1l[lIll: lIll+2]
+        l1ll.append(chr(    int(lI1l[lIll: lIll+2], 36) - ll11));
+        ll1I+=1;
+        if (ll1I >= len(l1lI)):
+            ll1I = 0;
+    ret=''.join(l1ll)
+    if 'eval(function(w,i,s,e)' in ret:
+        print 'STILL GOing'
+        ret=re.compile('eval\(function\(w,i,s,e\).*}\((.*?)\)').findall(ret)[0] 
+        return get_unwise(ret)
+    else:
+        print 'FINISHED'
+        return ret
+    
+def get_unpacked( page_value, regex_for_text='', iterations=1, total_iteration=1):
+    try:        
+        reg_data=None
+        if page_value.startswith("http"):
+            page_value= getUrl(page_value)
+        print 'page_value',page_value
+        if regex_for_text and len(regex_for_text)>0:
+            page_value=re.compile(regex_for_text).findall(page_value)[0] #get the js variable
+        
+        page_value=unpack(page_value,iterations,total_iteration)
+    except: traceback.print_exc(file=sys.stdout)
+    print 'unpacked',page_value
+    if 'sav1live.tv' in page_value:
+        page_value=page_value.replace('sav1live.tv','sawlive.tv') #quick fix some bug somewhere
+        print 'sav1 unpacked',page_value
+    return page_value
+
+def unpack(sJavascript,iteration=1, totaliterations=2  ):
+    print 'iteration',iteration
+    if sJavascript.startswith('var _0xcb8a='):
+        aSplit=sJavascript.split('var _0xcb8a=')
+        ss="myarray="+aSplit[1].split("eval(")[0]
+        exec(ss)
+        a1=62
+        c1=int(aSplit[1].split(",62,")[1].split(',')[0])
+        p1=myarray[0]
+        k1=myarray[3]
+        with open('temp file'+str(iteration)+'.js', "wb") as filewriter:
+            filewriter.write(str(k1))
+        #aa=1/0
+    else:
+
+        aSplit = sJavascript.split("rn p}('")
+        print aSplit
+        
+        p1,a1,c1,k1=('','0','0','')
+     
+        ss="p1,a1,c1,k1=('"+aSplit[1].split(".spli")[0]+')' 
+        exec(ss)
+    k1=k1.split('|')
+    aSplit = aSplit[1].split("))'")
+#    print ' p array is ',len(aSplit)
+#   print len(aSplit )
+
+    #p=str(aSplit[0]+'))')#.replace("\\","")#.replace('\\\\','\\')
+
+    #print aSplit[1]
+    #aSplit = aSplit[1].split(",")
+    #print aSplit[0] 
+    #a = int(aSplit[1])
+    #c = int(aSplit[2])
+    #k = aSplit[3].split(".")[0].replace("'", '').split('|')
+    #a=int(a)
+    #c=int(c)
+    
+    #p=p.replace('\\', '')
+#    print 'p val is ',p[0:100],'............',p[-100:],len(p)
+#    print 'p1 val is ',p1[0:100],'............',p1[-100:],len(p1)
+    
+    #print a,a1
+    #print c,a1
+    #print 'k val is ',k[-10:],len(k)
+#    print 'k1 val is ',k1[-10:],len(k1)
+    e = ''
+    d = ''#32823
+
+    #sUnpacked = str(__unpack(p, a, c, k, e, d))
+    sUnpacked1 = str(__unpack(p1, a1, c1, k1, e, d,iteration))
+    
+    #print sUnpacked[:200]+'....'+sUnpacked[-100:], len(sUnpacked)
+#    print sUnpacked1[:200]+'....'+sUnpacked1[-100:], len(sUnpacked1)
+    
+    #exec('sUnpacked1="'+sUnpacked1+'"')
+    if iteration>=totaliterations:
+#        print 'final res',sUnpacked1[:200]+'....'+sUnpacked1[-100:], len(sUnpacked1)
+        return sUnpacked1#.replace('\\\\', '\\')
+    else:
+#        print 'final res for this iteration is',iteration
+        return unpack(sUnpacked1,iteration+1)#.replace('\\', ''),iteration)#.replace('\\', '');#unpack(sUnpacked.replace('\\', ''))
+
+def __unpack(p, a, c, k, e, d, iteration,v=1):
+
+    #with open('before file'+str(iteration)+'.js', "wb") as filewriter:
+    #    filewriter.write(str(p))
+    while (c >= 1):
+        c = c -1
+        if (k[c]):
+            aa=str(__itoaNew(c, a))
+            if v==1:
+                p=re.sub('\\b' + aa +'\\b', k[c], p)# THIS IS Bloody slow!
+            else:
+                p=findAndReplaceWord(p,aa,k[c])
+
+            #p=findAndReplaceWord(p,aa,k[c])
+
+            
+    #with open('after file'+str(iteration)+'.js', "wb") as filewriter:
+    #    filewriter.write(str(p))
+    return p
+
+#
+#function equalavent to re.sub('\\b' + aa +'\\b', k[c], p)
+def findAndReplaceWord(source_str, word_to_find,replace_with):
+    splits=None
+    splits=source_str.split(word_to_find)
+    if len(splits)>1:
+        new_string=[]
+        current_index=0
+        for current_split in splits:
+            #print 'here',i
+            new_string.append(current_split)
+            val=word_to_find#by default assume it was wrong to split
+
+            #if its first one and item is blank then check next item is valid or not
+            if current_index==len(splits)-1:
+                val='' # last one nothing to append normally
+            else:
+                if len(current_split)==0: #if blank check next one with current split value
+                    if ( len(splits[current_index+1])==0 and word_to_find[0].lower() not in 'abcdefghijklmnopqrstuvwxyz1234567890_') or (len(splits[current_index+1])>0  and splits[current_index+1][0].lower() not in 'abcdefghijklmnopqrstuvwxyz1234567890_'):# first just just check next
+                        val=replace_with
+                #not blank, then check current endvalue and next first value
+                else:
+                    if (splits[current_index][-1].lower() not in 'abcdefghijklmnopqrstuvwxyz1234567890_') and (( len(splits[current_index+1])==0 and word_to_find[0].lower() not in 'abcdefghijklmnopqrstuvwxyz1234567890_') or (len(splits[current_index+1])>0  and splits[current_index+1][0].lower() not in 'abcdefghijklmnopqrstuvwxyz1234567890_')):# first just just check next
+                        val=replace_with
+                        
+            new_string.append(val)
+            current_index+=1
+        #aaaa=1/0
+        source_str=''.join(new_string)
+    return source_str        
+
+def __itoa(num, radix):
+#    print 'num red',num, radix
+    result = ""
+    if num==0: return '0'
+    while num > 0:
+        result = "0123456789abcdefghijklmnopqrstuvwxyz"[num % radix] + result
+        num /= radix
+    return result
+	
+def __itoaNew(cc, a):
+    aa="" if cc < a else __itoaNew(int(cc / a),a) 
+    cc = (cc % a)
+    bb=chr(cc + 29) if cc> 35 else str(__itoa(cc,36))
+    return aa+bb
+
+
+def getCookiesString(cookieJar):
+    try:
+        cookieString=""
+        for index, cookie in enumerate(cookieJar):
+            cookieString+=cookie.name + "=" + cookie.value +";"
+    except: pass
+    #print 'cookieString',cookieString
+    return cookieString
+
+
+def saveCookieJar(cookieJar,COOKIEFILE):
+	try:
+		complete_path=os.path.join(profile,COOKIEFILE)
+		cookieJar.save(complete_path,ignore_discard=True)
+	except: pass
+
+def getCookieJar(COOKIEFILE):
+
+	cookieJar=None
+	if COOKIEFILE:
+		try:
+			complete_path=os.path.join(profile,COOKIEFILE)
+			cookieJar = cookielib.LWPCookieJar()
+			cookieJar.load(complete_path,ignore_discard=True)
+		except: 
+			cookieJar=None
+	
+	if not cookieJar:
+		cookieJar = cookielib.LWPCookieJar()
+	
+	return cookieJar
+    
+def doEval(fun_call,page_data,Cookie_Jar):
+    ret_val=''
+    if functions_dir not in sys.path:
+        sys.path.append(functions_dir)
+    
+    print fun_call
+    try:
+        py_file='import '+fun_call.split('.')[0]
+        print py_file,sys.path
+        exec( py_file)
+        print 'done'
     except:
-        label = utils.fix(label)
-        u += urllib.quote_plus(label)
+        print 'error in import'
+        traceback.print_exc(file=sys.stdout)
+    print 'ret_val='+fun_call
+    exec ('ret_val='+fun_call)
+    print ret_val
+    #exec('ret_val=1+1')
+    return str(ret_val)
+    
+def processRecaptcha(url):
+	html_text=getUrl(url)
+	recapChallenge=""
+	solution=""
+	cap_reg="<script.*?src=\"(.*?recap.*?)\""
+	match =re.findall(cap_reg, html_text)
+	captcha=False
+	captcha_reload_response_chall=None
+	solution=None
+	
+	if match and len(match)>0: #new shiny captcha!
+		captcha_url=match[0]
+		captcha=True
+		
+		cap_chall_reg='challenge.*?\'(.*?)\''
+		cap_image_reg='\'(.*?)\''
+		captcha_script=getUrl(captcha_url)
+		recapChallenge=re.findall(cap_chall_reg, captcha_script)[0]
+		captcha_reload='http://www.google.com/recaptcha/api/reload?c=';
+		captcha_k=captcha_url.split('k=')[1]
+		captcha_reload+=recapChallenge+'&k='+captcha_k+'&captcha_k=1&type=image&lang=en-GB'
+		captcha_reload_js=getUrl(captcha_reload)
+		captcha_reload_response_chall=re.findall(cap_image_reg, captcha_reload_js)[0]
+		captcha_image_url='http://www.google.com/recaptcha/api/image?c='+captcha_reload_response_chall
+		if not captcha_image_url.startswith("http"):
+			captcha_image_url='http://www.google.com/recaptcha/api/'+captcha_image_url
+		import random
+		n=random.randrange(100,1000,5)
+		local_captcha = os.path.join(profile,str(n) +"captcha.img" )
+		localFile = open(local_captcha, "wb")
+		localFile.write(getUrl(captcha_image_url))
+		localFile.close()
+		solver = InputWindow(captcha=local_captcha)
+		solution = solver.get()
+		os.remove(local_captcha)
+	return captcha_reload_response_chall ,solution
 
-    u += '&mode='  + str(mode)
+def getUrl(url, cookieJar=None,post=None, timeout=20, headers=None):
 
-    if index > -1:
-        u += '&index=' + str(index)
 
-    if len(path) > 0:
-        u += '&path=' + urllib.quote_plus(path)
+	cookie_handler = urllib2.HTTPCookieProcessor(cookieJar)
+	opener = urllib2.build_opener(cookie_handler, urllib2.HTTPBasicAuthHandler(), urllib2.HTTPHandler())
+	#opener = urllib2.install_opener(opener)
+	req = urllib2.Request(url)
+	req.add_header('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/33.0.1750.154 Safari/537.36')
+	if headers:
+		for h,hv in headers:
+			req.add_header(h,hv)
 
-    if len(cmd) > 0:
-        u += '&cmd=' + urllib.quote_plus(cmd)
+	response = opener.open(req,post,timeout=timeout)
+	link=response.read()
+	response.close()
+	return link;
 
-    if len(keyword) > 0:
-        u += '&keyword=' + urllib.quote_plus(keyword) 
+def get_decode(str,reg=None):
+	if reg:
+		str=re.findall(reg, str)[0]
+	s1 = urllib.unquote(str[0: len(str)-1]);
+	t = '';
+	for i in range( len(s1)):
+		t += chr(ord(s1[i]) - s1[len(s1)-1]);
+	t=urllib.unquote(t)
+	print t
+	return t
 
-    if not imdb:
-        try:    imdb = infolabels['imdbnumber']
-        except: imdb = ''
-    if len(imdb) > 0:
-        u += '&imdb=' + urllib.quote_plus(imdb)
+def javascriptUnEscape(str):
+	js=re.findall('unescape\(\'(.*?)\'',str)
+	print 'js',js
+	if (not js==None) and len(js)>0:
+		for j in js:
+			#print urllib.unquote(j)
+			str=str.replace(j ,urllib.unquote(j))
+	return str
 
-    if len(thumbnail) > 0:
-        u += '&image=' + urllib.quote_plus(thumbnail)
-    if len(fanart) > 0:
-        u += '&fanart=' + urllib.quote_plus(fanart)
+iid=0
+def askCaptcha(m,html_page, cookieJar):
+    global iid
+    iid+=1
+    expre= m['expre']
+    page_url = m['page']
+    captcha_regex=re.compile('\$LiveStreamCaptcha\[([^\]]*)\]').findall(expre)[0]
 
-    if CONTENTMODE:
-        u += '&contentMode=true'
+    captcha_url=re.compile(captcha_regex).findall(html_page)[0]
+    print expre,captcha_regex,captcha_url
+    if not captcha_url.startswith("http"):
+        page_='http://'+"".join(page_url.split('/')[2:3])
+        if captcha_url.startswith("/"):
+            captcha_url=page_+captcha_url
+        else:
+            captcha_url=page_+'/'+captcha_url
+    
+    local_captcha = os.path.join(profile, str(iid)+"captcha.jpg" )
+    localFile = open(local_captcha, "wb")
+    print ' c capurl',captcha_url
+    req = urllib2.Request(captcha_url)
+    req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 6.1; rv:14.0) Gecko/20100101 Firefox/14.0.1')
+    if 'refer' in m:
+        req.add_header('Referer', m['refer'])
+    if 'agent' in m:
+        req.add_header('User-agent', m['agent'])
+    if 'setcookie' in m:
+        print 'adding cookie',m['setcookie']
+        req.add_header('Cookie', m['setcookie'])
+        
+    #cookie_handler = urllib2.HTTPCookieProcessor(cookieJar)
+    #opener = urllib2.build_opener(cookie_handler, urllib2.HTTPBasicAuthHandler(), urllib2.HTTPHandler())
+    #opener = urllib2.install_opener(opener)
+    urllib2.urlopen(req)
+    response = urllib2.urlopen(req)
+
+    localFile.write(response.read())
+    response.close()
+    localFile.close()
+    solver = InputWindow(captcha=local_captcha)
+    solution = solver.get()
+    return solution
+    
+class InputWindow(xbmcgui.WindowDialog):
+    def __init__(self, *args, **kwargs):
+        self.cptloc = kwargs.get('captcha')
+        self.img = xbmcgui.ControlImage(335,30,624,60,self.cptloc)
+        self.addControl(self.img)
+        self.kbd = xbmc.Keyboard()
+
+    def get(self):
+        self.show()
+        time.sleep(2)        
+        self.kbd.doModal()
+        if (self.kbd.isConfirmed()):
+            text = self.kbd.getText()
+            self.close()
+            return text
+        self.close()
+        return False
+    
+def getEpocTime():
+    import time
+    return str(int(time.time()*1000))
+
+def getEpocTime2():
+    import time
+    return str(int(time.time()))
+
+def get_params():
+        param=[]
+        paramstring=sys.argv[2]
+        if len(paramstring)>=2:
+            params=sys.argv[2]
+            cleanedparams=params.replace('?','')
+            if (params[len(params)-1]=='/'):
+                params=params[0:len(params)-2]
+            pairsofparams=cleanedparams.split('&')
+            param={}
+            for i in range(len(pairsofparams)):
+                splitparams={}
+                splitparams=pairsofparams[i].split('=')
+                if (len(splitparams))==2:
+                    param[splitparams[0]]=splitparams[1]
+        return param
+
+
+def getFavorites():
+        items = json.loads(open(favorites).read())
+        total = len(items)
+        for i in items:
+            name = i[0]
+            url = i[1]
+            iconimage = i[2]
+            try:
+                fanArt = i[3]
+                if fanArt == None:
+                    raise
+            except:
+                if addon.getSetting('use_thumb') == "true":
+                    fanArt = iconimage
+                else:
+                    fanArt = fanart
+            try: playlist = i[5]
+            except: playlist = None
+            try: regexs = i[6]
+            except: regexs = None
+
+            if i[4] == 0:
+                addLink(url,name,iconimage,fanArt,'','','','fav',playlist,regexs,total)
+            else:
+                addDir(name,url,i[4],iconimage,fanart,'','','','','fav')
+
+
+def addFavorite(name,url,iconimage,fanart,mode,playlist=None,regexs=None):
+        favList = []
+        if not os.path.exists(favorites + 'txt'):
+            os.makedirs(favorites + 'txt')
+        if not os.path.exists(history):
+            os.makedirs(history)
+        try:
+            # seems that after
+            name = name.encode('utf-8', 'ignore')
+        except:
+            pass
+        if os.path.exists(favorites)==False:
+            addon_log('Making Favorites File')
+            favList.append((name,url,iconimage,fanart,mode,playlist,regexs))
+            a = open(favorites, "w")
+            a.write(json.dumps(favList))
+            a.close()
+        else:
+            addon_log('Appending Favorites')
+            a = open(favorites).read()
+            data = json.loads(a)
+            data.append((name,url,iconimage,fanart,mode))
+            b = open(favorites, "w")
+            b.write(json.dumps(data))
+            b.close()
+
+
+def rmFavorite(name):
+        data = json.loads(open(favorites).read())
+        for index in range(len(data)):
+            if data[index][0]==name:
+                del data[index]
+                b = open(favorites, "w")
+                b.write(json.dumps(data))
+                b.close()
+                break
+        xbmc.executebuiltin("XBMC.Container.Refresh")
+
+def urlsolver(url):
+    if addon.getSetting('Updatecommonresolvers') == 'true':
+        l = os.path.join(home,'genesisresolvers.py')
+        if xbmcvfs.exists(l):
+            os.remove(l)
+
+        genesis_url = 'https://raw.githubusercontent.com/lambda81/lambda-addons/master/plugin.video.genesis/commonresolvers.py'
+        th= urllib.urlretrieve(genesis_url,l)
+        addon.setSetting('Updatecommonresolvers', 'false')
+    try:
+        import genesisresolvers
+    except Exception:
+        xbmc.executebuiltin("XBMC.Notification(SimpleKore,Please enable Update Commonresolvers to Play in Settings. - ,10000)")
+
+    resolved=genesisresolvers.get(url).result
+    if url == resolved or resolved is None:
+        #import
+        xbmc.executebuiltin("XBMC.Notification(SimpleKore,Using Urlresolver module.. - ,5000)")
+        import urlresolver
+        host = urlresolver.HostedMediaFile(url)
+        if host:
+            resolver = urlresolver.resolve(url)
+            resolved = resolver
+    if resolved :
+        if isinstance(resolved,list):
+            for k in resolved:
+                quality = addon.getSetting('quality')
+                if k['quality'] == 'HD'  :
+                    resolver = k['url']
+                    break
+                elif k['quality'] == 'SD' :
+                    resolver = k['url']
+                elif k['quality'] == '1080p' and addon.getSetting('1080pquality') == 'true' :
+                    resolver = k['url']
+                    break
+        else:
+            resolver = resolved
+    return resolver
+def play_playlist(name, mu_playlist):
+        import urlparse
+        if addon.getSetting('ask_playlist_items') == 'true':
+            names = []
+            for i in mu_playlist:
+                d_name=urlparse.urlparse(i).netloc
+                if d_name == '':
+                    names.append(name)
+                else:
+                    names.append(d_name)
+            dialog = xbmcgui.Dialog()
+            index = dialog.select('Choose a video source', names)
+            if index >= 0:
+                if "&mode=19" in mu_playlist[index]:
+                    xbmc.Player().play(urlsolver(mu_playlist[index].replace('&mode=19','')))
+                elif "$doregex" in mu_playlist[index] :
+
+                    sepate = mu_playlist[index].split('&regexs=')
+
+                    url,setresolved = getRegexParsed(sepate[1], sepate[0])
+                    xbmc.Player().play(url)
+                else:
+                    url = mu_playlist[index]
+                    xbmc.Player().play(url)
+        else:
+            playlist = xbmc.PlayList(1) # 1 means video
+            playlist.clear()
+            item = 0
+            for i in mu_playlist:
+                item += 1
+                info = xbmcgui.ListItem('%s) %s' %(str(item),name))
+                playlist.add(i, info)
+                xbmc.executebuiltin('playlist.playoffset(video,0)')
+
+
+def download_file(name, url):
+        if addon.getSetting('save_location') == "":
+            xbmc.executebuiltin("XBMC.Notification('SimpleKore','Choose a location to save files.',15000,"+icon+")")
+            addon.openSettings()
+        params = {'url': url, 'download_path': addon.getSetting('save_location')}
+        downloader.download(name, params)
+        dialog = xbmcgui.Dialog()
+        ret = dialog.yesno('SimpleKore', 'Do you want to add this file as a source?')
+        if ret:
+            addSource(os.path.join(addon.getSetting('save_location'), name))
+
+
+def addDir(name,url,mode,iconimage,fanart,description,genre,date,credits,showcontext=False):
+        
+        u=sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+"&fanart="+urllib.quote_plus(fanart)
+        ok=True
+        if date == '':
+            date = None
+        else:
+            description += '\n\nDate: %s' %date
+        liz=xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
+        liz.setInfo(type="Video", infoLabels={ "Title": name, "Plot": description, "Genre": genre, "dateadded": date, "credits": credits })
+        liz.setProperty("Fanart_Image", fanart)
+        if showcontext:
+            contextMenu = []
+            if showcontext == 'source':
+                if name in str(SOURCES):
+                    contextMenu.append(('Remove from Sources','XBMC.RunPlugin(%s?mode=8&name=%s)' %(sys.argv[0], urllib.quote_plus(name))))
+            elif showcontext == 'download':
+                contextMenu.append(('Download','XBMC.RunPlugin(%s?url=%s&mode=9&name=%s)'
+                                    %(sys.argv[0], urllib.quote_plus(url), urllib.quote_plus(name))))
+            elif showcontext == 'fav':
+                contextMenu.append(('Remove from Add-on Favorites','XBMC.RunPlugin(%s?mode=6&name=%s)'
+                                    %(sys.argv[0], urllib.quote_plus(name))))
+									
+            if not name in FAV:
+                contextMenu.append(('Add to Add-on Favorites','XBMC.RunPlugin(%s?mode=5&name=%s&url=%s&iconimage=%s&fanart=%s&fav_mode=%s)'
+                         %(sys.argv[0], urllib.quote_plus(name), urllib.quote_plus(url), urllib.quote_plus(iconimage), urllib.quote_plus(fanart), mode)))
+            liz.addContextMenuItems(contextMenu)
+        ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True)
+
+        return ok
+def ytdl_download(url,title,media_type='video'):
+    # play in xbmc while playing go back to contextMenu(c) to "!!Download!!"
+    # Trial yasceen: seperate |User-Agent=
+    import youtubedl
+    if not url == '':
+        if media_type== 'audio':
+            youtubedl.single_YD(url,download=True,audio=True)
+        else:
+            youtubedl.single_YD(url,download=True)   
+    elif xbmc.Player().isPlaying() == True :
+        import YDStreamExtractor
+        if YDStreamExtractor.isDownloading() == True:
+
+            YDStreamExtractor.manageDownloads()
+        else:
+            xbmc_url = xbmc.Player().getPlayingFile()
+
+            xbmc_url = xbmc_url.split('|User-Agent=')[0]
+            info = {'url':xbmc_url,'title':title,'media_type':media_type}
+            youtubedl.single_YD('',download=True,dl_info=info)    
+    else:
+        xbmc.executebuiltin("XBMC.Notification(DOWNLOAD,First Play [COLOR yellow]WHILE playing download[/COLOR] ,10000)")
  
-    u += '&content_type=' + urllib.quote_plus(launchMode)
+def search(site_name,search_term=None):
+    thumbnail=''
+    if os.path.exists(history) == False or addon.getSetting('clearseachhistory')=='true':
+        SaveToFile(history,'')
+        addon.setSetting("clearseachhistory","false")
+    if site_name == 'history' :
+        content = LoadFile(history)
+        match = re.compile('(.+?):(.*?)(?:\r|\n)').findall(content)
 
-    if not menu:
-        menu = []   
+        for name,search_term in match:
+            if 'plugin://' in search_term:
+                addLink(search_term, name,thumbnail,'','','','','',None,'',total=int(len(match)))
+            else:
+                addDir(name+':'+search_term,name,26,icon,FANART,'','','','')
+    if not search_term:    
+        keyboard = xbmc.Keyboard('','Enter Search Term')
+        keyboard.doModal()
+        if (keyboard.isConfirmed() == False):
+            return
+        search_term = keyboard.getText()
+        if len(search_term) == 0:
+            return        
+    search_term = search_term.replace(' ','+')
+    search_term = search_term.encode('utf-8')
+    if 'youtube' in site_name:
+        #youtube = youtube#Lana Del Rey
+        import _ytplist
 
-    if len(thumbnail) == 0:
-        thumbnail = BLANK
+        search_res = {}
+        search_res = _ytplist.YoUTube('searchYT',youtube=search_term,max_page=4,nosave='nosave')
+        total = len(search_res)
+        for item in search_res:
+            try:
+                name = search_res[item]['title']
+                date= search_res[item]['date']
+                try:
+                    description = search_res[item]['desc']
+                except Exception:
+                    description = 'UNAVAIABLE'
+
+                url = 'plugin://plugin.video.youtube/play/?video_id=' + search_res[item]['url']
+                thumbnail ='http://img.youtube.com/vi/'+search_res[item]['url']+'/0.jpg'
+                addLink(url, name,thumbnail,'','','','','',None,'',total)
+            except Exception:
+            	addon_log( 'This item is ignored::')
+        page_data = site_name +':'+ search_term + '\n'
+        SaveToFile(os.path.join(profile,'history'),page_data,append=True)
+    elif 'dmotion' in site_name:
+        urlMain = "https://api.dailymotion.com" 
+        #youtube = youtube#Lana Del Rey
+        import _DMsearch
+        familyFilter = str(addon.getSetting('familyFilter'))
+        _DMsearch.listVideos(urlMain+"/videos?fields=description,duration,id,owner.username,taken_time,thumbnail_large_url,title,views_total&search="+search_term+"&sort=relevance&limit=100&family_filter="+familyFilter+"&localization=en_EN&page=1")
+    
+        page_data = site_name +':'+ search_term+ '\n'
+        SaveToFile(os.path.join(profile,'history'),page_data,append=True)        
+    elif 'IMDBidplay' in site_name:
+        urlMain = "http://www.omdbapi.com/?t=" 
+        url= urlMain+search_term
+
+        headers = dict({'User-Agent':'Mozilla/5.0 (Windows NT 6.3; rv:33.0) Gecko/20100101 Firefox/33.0','Referer': 'http://joker.org/','Accept-Encoding':'gzip, deflate','Content-Type': 'application/json;charset=utf-8','Accept': 'application/json, text/plain, */*'})
+    
+        r=requests.get(url,headers=headers)
+        data = r.json()
+        res = data['Response']
+        if res == 'True':
+            imdbID = data['imdbID']
+            name= data['Title'] + data['Released']
+            dialog = xbmcgui.Dialog()
+            ret = dialog.yesno('Check Movie Title', 'PLAY :: %s ?'%name)
+            if ret:
+                url = 'plugin://plugin.video.pulsar/movie/'+imdbID+'/play'
+                page_data = name +':'+ url+ '\n'
+                SaveToFile(history,page_data,append=True)
+                return url
+        else:
+            xbmc.executebuiltin("XBMC.Notification(SimpleKore,No IMDB match found ,7000,"+icon+")")
+## Lunatixz PseudoTV feature
+def ascii(string):
+    if isinstance(string, basestring):
+        if isinstance(string, unicode):
+           string = string.encode('ascii', 'ignore')
+    return string
+def uni(string, encoding = 'utf-8'):
+    if isinstance(string, basestring):
+        if not isinstance(string, unicode):
+            string = unicode(string, encoding, 'ignore')
+    return string
+def removeNonAscii(s): return "".join(filter(lambda x: ord(x)<128, s))
+
+def sendJSON( command):
+    data = ''
+    try:
+        data = xbmc.executeJSONRPC(uni(command))
+    except UnicodeEncodeError:
+        data = xbmc.executeJSONRPC(ascii(command))
+
+    return uni(data)
+
+#hakamac thanks Roman_V_M
+def SetViewThumbnail():
+    skin_used = xbmc.getSkinDir()
+    if skin_used == 'skin.confluence':
+        xbmc.executebuiltin('Container.SetViewMode(500)')
+    elif skin_used == 'skin.aeon.nox':
+        xbmc.executebuiltin('Container.SetViewMode(511)') 
+    else:
+        xbmc.executebuiltin('Container.SetViewMode(500)')
+	
+	
+def pluginquerybyJSON(url):
+    json_query = uni('{"jsonrpc":"2.0","method":"Files.GetDirectory","params":{"directory":"%s","media":"video","properties":["thumbnail","title","year","dateadded","fanart","rating","season","episode","studio"]},"id":1}') %url
+
+    json_folder_detail = json.loads(sendJSON(json_query))
+    for i in json_folder_detail['result']['files'] :
+        url = i['file']
+        name = removeNonAscii(i['label'])
+        thumbnail = removeNonAscii(i['thumbnail'])
+        try:
+            fanart = removeNonAscii(i['fanart'])
+        except Exception:
+            fanart = ''
+        try:
+            date = i['year']
+        except Exception:
+            date = ''
+        try:
+            episode = i['episode']
+            season = i['season']
+            if episode == -1 or season == -1:
+                description = ''
+            else:
+                description = '[COLOR yellow] S' + str(season)+'[/COLOR][COLOR hotpink] E' + str(episode) +'[/COLOR]'
+        except Exception:
+            description = ''
+        try:
+            studio = i['studio']
+            if studio:
+                description += '\n Studio:[COLOR steelblue] ' + studio[0] + '[/COLOR]'
+        except Exception:
+            studio = ''
+
+        if i['filetype'] == 'file':
+            addLink(url,name,thumbnail,fanart,description,'',date,'',None,'',total=len(json_folder_detail['result']['files']))
+            #xbmc.executebuiltin("Container.SetViewMode(500)")
+
+        else:
+            addDir(name,url,53,thumbnail,fanart,description,'',date,'')
+            #xbmc.executebuiltin("Container.SetViewMode(500)")
+
+def addLink(url,name,iconimage,fanart,description,genre,date,showcontext,playlist,regexs,total,setCookie=""):
+        #print 'url,name',url,name
+        contextMenu =[]
+        try:
+            name = name.encode('utf-8')
+        except: pass
+        ok = True
        
-    label = label.replace('&apos;', '\'')
-
-    #sanity check on empty [COLOR] block
-    if label.startswith('[COLOR ]'):
-        label = label.split('[COLOR ]', 1)[-1]
-        if label.endswith('[/COLOR]'):
-            label = label.rsplit('[/COLOR]', 1)[0]
-
-    liz = xbmcgui.ListItem(label, iconImage=thumbnail, thumbnailImage=thumbnail)
-
-    if isPlayable:
-        liz.setProperty('IsPlayable', 'true')
-
-
-    if infolabels and len(infolabels) > 0:
-        liz.setInfo(type='Video', infoLabels=infolabels)
+        if regexs: 
+            mode = '17'
+           
+            contextMenu.append(('[COLOR white]!!Download Currently Playing!![/COLOR]','XBMC.RunPlugin(%s?url=%s&mode=21&name=%s)'
+                                    %(sys.argv[0], urllib.quote_plus(url), urllib.quote_plus(name))))           
+        elif  any(x in url for x in resolve_url) and  url.startswith('http'):
+            mode = '19'
+          
+            contextMenu.append(('[COLOR white]!!Download Currently Playing!![/COLOR]','XBMC.RunPlugin(%s?url=%s&mode=21&name=%s)'
+                                    %(sys.argv[0], urllib.quote_plus(url), urllib.quote_plus(name))))           
+        elif url.endswith('&mode=18'):
+            url=url.replace('&mode=18','')
+            mode = '18' 
+          
+            contextMenu.append(('[COLOR white]!!Download!![/COLOR]','XBMC.RunPlugin(%s?url=%s&mode=23&name=%s)'
+                                    %(sys.argv[0], urllib.quote_plus(url), urllib.quote_plus(name)))) 
+            if addon.getSetting('dlaudioonly') == 'true':
+                contextMenu.append(('!!Download [COLOR seablue]Audio!![/COLOR]','XBMC.RunPlugin(%s?url=%s&mode=24&name=%s)'
+                                        %(sys.argv[0], urllib.quote_plus(url), urllib.quote_plus(name))))                                     
+        elif url.startswith('magnet:?xt=') or '.torrent' in url:
+          
+            if '&' in url and not '&amp;' in url :
+                url = url.replace('&','&amp;')
+            url = 'plugin://plugin.video.pulsar/play?uri=' + url
+            mode = '12'
+                     
+        else: 
+            mode = '12'
+      
+            contextMenu.append(('[COLOR white]!!Download Currently Playing!![/COLOR]','XBMC.RunPlugin(%s?url=%s&mode=21&name=%s)'
+                                    %(sys.argv[0], urllib.quote_plus(url), urllib.quote_plus(name))))           
+        u=sys.argv[0]+"?"
+        play_list = False
+      
+        if playlist:
+            if addon.getSetting('add_playlist') == "false":
+                u += "url="+urllib.quote_plus(url)+"&mode="+mode
+            else:
+                u += "mode=13&name=%s&playlist=%s" %(urllib.quote_plus(name), urllib.quote_plus(str(playlist).replace(',','||')))
+                name = name + '[COLOR magenta] (' + str(len(playlist)) + ' items )[/COLOR]'
+                play_list = True
+        else:
+            u += "url="+urllib.quote_plus(url)+"&mode="+mode
+        if regexs:
+            u += "&regexs="+regexs
+        if not setCookie == '':
+            u += "&setCookie="+urllib.quote_plus(setCookie)
+  
+        if date == '':
+            date = None
+        else:
+            description += '\n\nDate: %s' %date
+        liz=xbmcgui.ListItem(name, iconImage="DefaultVideo.png", thumbnailImage=iconimage)
+        liz.setInfo(type="Video", infoLabels={ "Title": name, "Plot": description, "Genre": genre, "dateadded": date })
+        liz.setProperty("Fanart_Image", fanart)
         
-    if len(fanart) == 0:
-        fanart = FANART
+        if (not play_list) and not any(x in url for x in g_ignoreSetResolved):#  (not url.startswith('plugin://plugin.video.f4mTester')):
+            if regexs:
+                if '$pyFunction:playmedia(' not in urllib.unquote_plus(regexs) and 'notplayable' not in urllib.unquote_plus(regexs)  :
+                    #print 'setting isplayable',url, urllib.unquote_plus(regexs),url
+                    liz.setProperty('IsPlayable', 'true')
+            else:
+                liz.setProperty('IsPlayable', 'true')
+        else:
+            addon_log( 'NOT setting isplayable'+url)
+       
+        if showcontext:
+            contextMenu = []
+            if showcontext == 'fav':
+                contextMenu.append(
+                    ('Remove from Add-on Favorites','XBMC.RunPlugin(%s?mode=6&name=%s)'
+                     %(sys.argv[0], urllib.quote_plus(name)))
+                     )
+            elif not name in FAV:
+                fav_params = (
+                    '%s?mode=5&name=%s&url=%s&iconimage=%s&fanart=%s&fav_mode=0'
+                    %(sys.argv[0], urllib.quote_plus(name), urllib.quote_plus(url), urllib.quote_plus(iconimage), urllib.quote_plus(fanart))
+                    )
+                if playlist:
+                    fav_params += 'playlist='+urllib.quote_plus(str(playlist).replace(',','||'))
+                if regexs:
+                    fav_params += "&regexs="+regexs
+                contextMenu.append(('Add to Add-on Favorites','XBMC.RunPlugin(%s)' %fav_params))
+            liz.addContextMenuItems(contextMenu)
+       
+        if not playlist is None:
+            if addon.getSetting('add_playlist') == "false":
+                playlist_name = name.split(') ')[1]
+                contextMenu_ = [
+                    ('Play '+playlist_name+' PlayList','XBMC.RunPlugin(%s?mode=13&name=%s&playlist=%s)'
+                     %(sys.argv[0], urllib.quote_plus(playlist_name), urllib.quote_plus(str(playlist).replace(',','||'))))
+                     ]
+                liz.addContextMenuItems(contextMenu_)
+        #print 'adding',name
+ #       print url,totalitems
+        ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,totalItems=total)
+        #print 'added',name
+        return ok
 
-    if fanart != BLANK and SHOW_FANART:
-        liz.setProperty('Fanart_Image', fanart)
-
-    if hasattr(liz, 'setArt'):
-        art = {}
-        art['landscape'] = addArtwork(ART_LANDSCAPE, thumbnail, fanart)
-        art['banner']    = addArtwork(ART_BANNER,    thumbnail, fanart)
-        art['poster']    = addArtwork(ART_POSTER,    thumbnail, fanart)
-        
-        if len(art) > 0:
-            liz.setArt(art) 
-
-    #this property can be accessed in a skin via: $INFO[ListItem.Property(Super_Favourites_Folder)]
-    #or in Python via: xbmc.getInfoLabel('ListItem.Property(Super_Favourites_Folder)')
-    liz.setProperty('Super_Favourites_Folder', removeNumeric(theFolder))
-
-
-    #special case
-    if mode == _XBMC:
-        menu.append((GETTEXT(30043), 'XBMC.RunPlugin(%s?mode=%d&path=%s)' % (sys.argv[0], _THUMBFOLDER, urllib.quote_plus(PROFILE))))
-
-    ignoreFave = False
-    if mode == _NEWFOLDER:
-        ignoreFave = True
-    elif (mode == _EDITTERM) or (mode == _ACTIVATESEARCH):
-        ignoreFave = len(keyword) == 0
-
-    addGlobalMenuItem(menu, cmd, ignoreFave, label, thumbnail, u, keyword, fanart, infolabels)
-
-    if separator:
-        addSeparatorItem()
-
-    global nItem
-
-    _menu = menu
-    menu = []
-    for m in _menu:
-        menu.append((m[0], m[1].replace('/?', '/?index=%d&' % nItem)))
-    nItem += 1
-
-    liz.addContextMenuItems(menu, replaceItems=True)
-
-    xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]), url=u, listitem=liz, isFolder=isFolder, totalItems=totalItems)
-
-
-## --------------------------------------------------------------------------------------------------------------------------   
-
-params = utils.get_params(sys.argv[2])
-
-
-doRefresh   = False
-doEnd       = True
-inWindow    = utils.inWindow()
-cacheToDisc = False
-handle      = int(sys.argv[1])
+def playsetresolved(url,name,iconimage,setresolved=True):
+    if setresolved:
+        liz = xbmcgui.ListItem(name, iconImage=iconimage)
+        liz.setInfo(type='Video', infoLabels={'Title':name})
+        liz.setProperty("IsPlayable","true")
+        liz.setPath(str(url))
+        xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, liz)
+    else:
+        xbmc.executebuiltin('XBMC.RunPlugin('+url+')')      
 
 
-theFolder = ''
-thepath   = ''
+## Thanks to daschacka, an epg scraper for http://i.teleboy.ch/programm/station_select.php
+##  http://forum.xbmc.org/post.php?p=936228&postcount=1076
+def getepg(link):
+        url=urllib.urlopen(link)
+        source=url.read()
+        url.close()
+        source2 = source.split("Jetzt")
+        source3 = source2[1].split('programm/detail.php?const_id=')
+        sourceuhrzeit = source3[1].split('<br /><a href="/')
+        nowtime = sourceuhrzeit[0][40:len(sourceuhrzeit[0])]
+        sourcetitle = source3[2].split("</a></p></div>")
+        nowtitle = sourcetitle[0][17:len(sourcetitle[0])]
+        nowtitle = nowtitle.encode('utf-8')
+        return "  - "+nowtitle+" - "+nowtime
 
 
-try:    mode = int(params['mode']) if inWindow else -10
-except: mode = _MAIN
-
-try:    cmd = params['cmd']
-except: cmd = None
-
-
-#----------------------------------------------------------------
-if mode == _ACTIVATEWINDOW:
-    #if cmd is a SF cmd then pull out params from cmd and use them
-    inSF = xbmc.getInfoLabel('Container.FolderName') == TITLE
-    isSF = 'plugin://%s' % ADDONID in cmd
-    if inSF and isSF:
-        cmd    = re.compile('"(.+?)"').search(cmd).group(1)
-        params = utils.get_params(cmd)
-
-        try:    mode = int(params['mode'])
-        except: mode = _MAIN
-
-        try:    cmd = params['cmd']
-        except: cmd = None
-#----------------------------------------------------------------
-
-global itemIndex
-try:    itemIndex = int(params['index'])
-except: itemIndex = -1
+def get_epg(url, regex):
+        data = makeRequest(url)
+        try:
+            item = re.findall(regex, data)[0]
+            return item
+        except:
+            addon_log('regex failed')
+            addon_log(regex)
+            return
 
 
-try:    file = params['file']
-except: file = None
+xbmcplugin.setContent(int(sys.argv[1]), 'movies')
 
-
-try:    path = params['path']
-except: path = None
-
-try:    name = params['name']
-except: name = ''
-
-try:    label = params['label']
-except: label = ''
-
-try:    folder = params['folder']
-except: folder = ''
-
-try:    content = params['content']
-except: content = ''
-
-try:    contentMode = params['contentMode'].lower() == 'true'
-except: contentMode = False
-
-
-#which menu was SF launched from
-try:    launchMode = params['content_type']
-except: launchMode = ''
-
-
-contentType = CONTENTTYPE
-#convert visible (in settings) string to a string that Kodi recognises
-if contentType in CONTENTTYPES:
-    contentType = CONTENTTYPES[contentType]
-else:
-    contentType = ''
-
-
-if len(content) > 0:   
-    mode   = _IGNORE
-    folder = content
-    try:
-        path = xbmc.getInfoLabel('Skin.String(%s.Path)' % folder)
-
-        if len(path) > 0:
-            folder = ''
-            plugin = re.compile('.+?"(.+?)"').search(path).group(1)
-
-            prams = get_params(plugin)
-
-            try:    folder = prams['folder']
-            except: pass
-
-            if len(folder) == 0:
-                mode = _FOLDER
-                path = PROFILE
-
-    except Exception, e:
-        pass
-
-    SHOWNEW     = False
-    SHOWXBMC    = False
-    SHOWSEP     = False
-    CONTENTMODE = True
-
-
-if len(folder) > 0:
-    if mode == _MAIN:    
-        mode = _FOLDER
-
-    path = os.path.join(PROFILE, folder)
-
-
-if not inWindow:
-    handle = -1
- 
-
-isHome = False
-try:    
-    if cmd.startswith('HOME:'):
-        cmd    = cmd.split(':', 1)[-1]
-        isHome = True
-except: 
+try:
+    xbmcplugin.addSortMethod(int(sys.argv[1]), xbmcplugin.SORT_METHOD_UNSORTED)
+except:
+    pass
+try:
+    xbmcplugin.addSortMethod(int(sys.argv[1]), xbmcplugin.SORT_METHOD_LABEL)
+except:
+    pass
+try:
+    xbmcplugin.addSortMethod(int(sys.argv[1]), xbmcplugin.SORT_METHOD_DATE)
+except:
+    pass
+try:
+    xbmcplugin.addSortMethod(int(sys.argv[1]), xbmcplugin.SORT_METHOD_GENRE)
+except:
     pass
 
+params=get_params()
 
-utils.log('------------------ Launch Parameters ------------------')
-utils.log(sys.argv[2])
-utils.log(sys.argv)
-utils.log('mode        = %d' % mode)
-utils.log('cmd         = %s' % cmd)
-utils.log('folder      = %s' % folder)
-utils.log('params      = %s' % params)
-utils.log('launchMode  = %s' % launchMode)
-utils.log('contentType = %s' % contentType)
-utils.log('viewType    = %s' % VIEWTYPE)
-utils.log('isHome      = %s' % str(isHome))
-utils.log('inWindow    = %s' % str(inWindow))
-utils.log('itemIndex   = %s' % str(itemIndex))
-utils.log('-------------------------------------------------------')
+url=None
+name=None
+mode=None
+playlist=None
+iconimage=None
+fanart=FANART
+playlist=None
+fav_mode=None
+regexs=None
 
+try:
+    url=urllib.unquote_plus(params["url"]).decode('utf-8')
+except:
+    pass
+try:
+    name=urllib.unquote_plus(params["name"])
+except:
+    pass
+try:
+    iconimage=urllib.unquote_plus(params["iconimage"])
+except:
+    pass
+try:
+    fanart=urllib.unquote_plus(params["fanart"])
+except:
+    pass
+try:
+    mode=int(params["mode"])
+except:
+    pass
+try:
+    playlist=eval(urllib.unquote_plus(params["playlist"]).replace('||',','))
+except:
+    pass
+try:
+    fav_mode=int(params["fav_mode"])
+except:
+    pass
+try:
+    regexs=params["regexs"]
+except:
+    pass
 
-if mode == _PLAYMEDIA:
-    if not contentMode:
-        mode = _IGNORE
-        playCommand(cmd)
+addon_log("Mode: "+str(mode))
+if not url is None:
+    addon_log("URL: "+str(url.encode('utf-8')))
+addon_log("Name: "+str(name))
 
- 
-elif mode == _ACTIVATEWINDOW:
-    if not contentMode and not isHome:
-        mode  = _IGNORE
-        doEnd = False
-        playCommand(cmd)
+if mode==None:
+    addon_log("Index")
+    SKindex()	
 
+elif mode==1:
+    addon_log("getData")
+    getData(url,fanart)
+    xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
-elif mode  == _ACTIVATEWINDOW_XBMC:
-    mode  = _IGNORE
+elif mode==2:
+    addon_log("getChannelItems")
+    getChannelItems(name,url,fanart)
+    xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
-    import playlist
-    if PLAY_PLAYLISTS and playlist.isPlaylist(cmd):        
-        playCommand(cmd)
+elif mode==3:
+    addon_log("getSubChannelItems")
+    getSubChannelItems(name,url,fanart)
+    xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
-        #Container.Update removes current item from history to stop looping
-        update = '%s' % (sys.argv[0])
-        update = 'Container.Update(%s,replace)' % update
+elif mode==4:
+    addon_log("getFavorites")
+    getFavorites()
+    xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
-        xbmc.executebuiltin(update)
-
-        xbmc.executebuiltin('Dialog.Close(busydialog)') #Isengard fix
-        xbmc.executebuiltin('ActivateWindow(Home)')
-    else:
-        script = os.path.join(HOME, 'cmdLauncher.py')
-        cmd    = 'AlarmClock(%s,RunScript(%s,%s),%d,True)' % ('SF_CMDLAUNCHER', script, cmd, 0)
-        xbmc.executebuiltin(cmd)
-
-
-
-elif mode == _PLAYLIST:
-    import playlist
-    playlist.play(cmd)
-
-
-if mode == _ACTIVATESEARCH:
-    doEnd = False
-    #if FRODO or GOTHAM:
-    playCommand(cmd)
-
-
-elif mode == _XBMC:
-    showXBMCFolder()
-    xbmc.executebuiltin('Container.Update')
-
-
-elif mode == _FOLDER:
-    thepath   = path
-    theFolder = label
-
-    import locking
-    if locking.unlock(thepath):
-        if mode != _MAIN:
-            addNewFolderItem(thepath)
-        parseFolder(thepath)
-    else:
-        pass
-        #Reset to main somehow!!!
-
-
-elif mode == _REMOVEFOLDER:
-    doRefresh = removeFolder(path)
-
-
-elif mode == _RENAMEFOLDER:
-    doRefresh = renameFolder(path)
-    
-
-elif mode == _EDITFOLDER:
-    import locking
-    if locking.unlock(path):
-        doRefresh = editFolder(path, name)
-
-
-elif mode == _EDITFAVE:
-    try:    thumb = params['thumb']
-    except: thumb = 'null'
-    doRefresh = editFave(file, cmd, name, thumb)
-
-
-elif mode == _EDITSEARCH:
-    try:    thumb = params['thumb']
-    except: thumb = 'null'
-    doRefresh = editSearch(file, cmd, name, thumb)
-
-
-elif mode == _NEWFOLDER:
-    doRefresh = createNewFolder(path)
-
-
-elif mode == _CUT:
-    import clipboard
-    doRefresh = clipboard.cutCopy(file, cmd, cut=True)
-
-
-elif mode == _COPY:
-    import clipboard
-    doRefresh = clipboard.cutCopy(file, cmd, cut=False)
-
-
-elif mode == _PASTE:
-    import clipboard
-    try:    folder = params['paste']
-    except: folder
-    doRefresh = clipboard.paste(folder)
-
-
-elif mode == _CUTFOLDER:
-    import clipboard
-    doRefresh = clipboard.cutCopyFolder(path, cut=True)
-
-
-elif mode == _COPYFOLDER:
-    import clipboard
-    doRefresh = clipboard.cutCopyFolder(path, cut=False)
-
-
-elif mode == _PASTEFOLDER:
-    import clipboard
-    try:    folder = params['paste']
-    except: folder
-    doRefresh = clipboard.pasteFolder(folder, sys.argv[0])
-
-
-elif mode == _REMOVEFAVE:
-    doRefresh = removeFave(file, cmd)
-
-
-elif mode == _RENAMEFAVE:
-    doRefresh = renameFave(file, cmd)
-
-
-elif mode == _ADDTOXBMC:
-    thumb   = params['thumb']
-    keyword = params['keyword']
-    addToXBMC(name, thumb, cmd, keyword)
-
-
-elif mode == _ADDTOSF:
-    thumb   = params['thumb']
-    keyword = params['keyword']
-    meta    = params['meta']
-    addToSF(name, thumb, cmd, keyword, meta)
-
-
-elif mode == _COPYTOSF:
-    thumb  = params['thumb']
-    fanart = params['fanart']
-
-    try:    meta = utils.convertURLToDict(urllib.quote_plus(params['meta']))
-    except: meta = {}
-    
-    try:    desc =  meta['plot']
-    except: desc = ''
-
-    import clipboard
-    clipboard.setPasteProperties(thumb, fanart, desc, name, cmd, meta)
-
-
-elif mode == _THUMBFAVE:
-    doRefresh = thumbFave(file, cmd)
-
-
-elif mode == _THUMBFOLDER:
-    doRefresh = thumbFolder(path)
-
-
-elif mode == _PLAYBACKMODE:
-    doRefresh = changePlaybackMode(file, cmd)
-
-
-elif mode == _SETTINGS:
-    try :
-        addonID = params['addon']
-        utils.openSettings(addonID)
+elif mode==5:
+    addon_log("addFavorite")
+    try:
+        name = name.split('\\ ')[1]
     except:
-        utils.openSettings(ADDONID)
-        doRefresh = True
-
-
-elif mode == _SEPARATOR:
-    pass
-
-
-elif mode == _EXTSEARCH:
-    externalSearch()
-
-
-elif mode == _SUPERSEARCH:
-    try:    keyword = params['keyword']
-    except: keyword = ''
-
-    try:    imdb = params['imdb']
-    except: imdb = ''
-
-    try:    image = params['image']
-    except: image = BLANK
-
-    try:    fanart = params['fanart']
-    except: fanart = BLANK
-
-    try:    meta = utils.convertURLToDict(urllib.quote_plus(params['meta']))
-    except: meta = {}
-
-    superSearch(keyword, image, fanart, imdb, meta)
-
-    if len(imdb) > 0:
-        contentType = 'movies'
-
-
-elif mode == _EDITTERM:
-    try:    keyword = params['keyword']
-    except: keyword = ''
-    editSearchTerm(keyword)
-    cacheToDisc=True
-    xbmc.sleep(250)
-    doEnd = False
-
-
-elif mode == _SECURE:
-    import locking
-    doRefresh = locking.add(path, name)
-
-
-elif mode == _UNSECURE:
-    import locking
-    doRefresh = locking.remove(path, name)
-
-elif mode == _IMPORT:
-    import importer
-    importer.doImport()
-    #doRefresh = True
-
-
-elif mode == _RECOMMEND_KEY or mode == _RECOMMEND_KEY_A:
-    try:    keyword = params['keyword']
-    except: keyword = ''
-
-    cacheToDisc = True
-    doEnd       = True
-    contentType = 'movies'
-
-    if mode == _RECOMMEND_KEY:
-        recommendKey(keyword, RECOMMENDAUTO)
-    else:
-        recommendKey(keyword, False)        
-
-
-elif mode == _RECOMMEND_IMDB:
-    try:    imdb = params['imdb']
-    except: imdb = ''
-
-    try:    keyword = params['keyword']
-    except: keyword = ''
-
+        pass
     try:
-        if ADDON.getSetting('CACHERECOMMEND') != 'true':
-            callback = params['callback']
+        name = name.split('  - ')[0]
+    except:
+        pass
+    addFavorite(name,url,iconimage,fanart,fav_mode)
 
-        cacheToDisc = True
-        doEnd       = True
-        contentType = 'movies'
+elif mode==6:
+    addon_log("rmFavorite")
+    try:
+        name = name.split('\\ ')[1]
+    except:
+        pass
+    try:
+        name = name.split('  - ')[0]
+    except:
+        pass
+    rmFavorite(name)
 
-        recommendIMDB(imdb, keyword)
+elif mode==7:
+    addon_log("addSource")
+    addSource(url)
 
-    except Exception, e:
-        winID = xbmcgui.getCurrentWindowId()
-        cmd   = '%s?mode=%d&keyword=%s&imdb=%s&callback=%s' % (sys.argv[0], _RECOMMEND_IMDB, urllib.quote_plus(keyword), urllib.quote_plus(imdb), 'callback')
-        xbmc.executebuiltin('Container.Refresh(%s)' % cmd)
+elif mode==8:
+    addon_log("rmSource")
+    rmSource(name)
 
-        cacheToDisc = False
-        doEnd       = False
+elif mode==9:
+    addon_log("download_file")
+    download_file(name, url)
 
+elif mode==10:
+    addon_log("getCommunitySources")
+    getCommunitySources()
 
-elif mode == _PLAYTRAILER:
-    import yt    
-    if not yt.PlayVideo(path):
-        utils.DialogOK(GETTEXT(30092))
+elif mode==11:
+    addon_log("addSource")
+    addSource(url)
 
-
-elif mode == _IPLAY:
-    iPlay()
-
-
-elif mode == _PLAYLISTFILE:
-    iPlaylistFile(path)
-
-
-elif mode == _PLAYLISTITEM:
-    try:    image = params['image']
-    except: image = BLANK
-
-    iPlaylistItem(path, label, image)
-
-
-elif mode == _PLAYLISTBROWSE:
-    doRefresh = iPlaylistBrowse()
-
-
-elif mode == _DELETEPLAYLIST:
-    doRefresh = iPlaylistDelete(path)
-
-
-elif mode == _COPY_PLAY_TO_SF:
-    doRefresh = False
-    thumb     = params['thumb']
-    copyPlayToSF(path, label, thumb, playMedia=False)
-
-
-elif mode == _COPY_PLAY_TO_SF_ITEM:
-    doRefresh = False
-    thumb     = params['thumb']
-    copyPlayToSF(path, label, thumb, playMedia=True)
-
-
-elif mode == _URLPLAYLIST:
-    doRefresh = iPlaylistURLBrowse()
-
-
-elif mode == _HISTORYSHOW:
-    doRefresh = iHistoryBrowse()
-
-
-elif mode == _HISTORYADD:
-    try:    keyword = params['keyword']
-    except: keyword = ''
-
-    try:    image = params['image']
-    except: image = BLANK
-
-    try:    fanart = params['fanart']
-    except: fanart = FANART
-
-    try:    meta    = params['meta']
-    except: meta = ''
-
-    #image  = image.replace('SF@V', '/')
-    #fanart = fanart.replace('SF@V', '/')
-
-    doRefresh = iHistoryAdd(keyword, image, fanart, meta)
-
-elif mode == _HISTORYREMOVE:
-    doRefresh = iHistoryRemove(name)
-
-
-elif mode == _MANUAL:
-    doRefresh = manualAdd(path)
-
-
-elif mode == _VIEWTYPE:
-    doRefresh = setViewType()
-
-elif mode == _IEXPLORE:
-    cacheToDisc = True
-    iExplore(path)
-
-
-elif mode == _PLAY_FILE:
-    playFile(path)
-
-
-elif mode == _PLAY_FOLDER:
-    playFolder(path)
-
-
-elif mode == _PLAY_SUPER_FOLDER_EXT:
-    playSuperFolder(path, id=-1)
-    #now remove this item from history to prevent looping
-    cmd = 'XBMC.Container.Update(%s?mode=%d,replace)' % (sys.argv[0], _MAIN)
-    xbmc.executebuiltin(cmd)
-    doEnd = True
-
-
-elif mode == _PLAY_SUPER_FOLDER:
-    playSuperFolder(path, id=int(sys.argv[1]))
-    
-    
-elif mode == _MAIN:
-    main()
-
-
-else:
-    #do nothing
-    nItem = 1
-
-
-#make sure at least 1 line is showing to allow context menu to be displayed
-if nItem < 1:
-    if mode == _IPLAY:
-        menu = []
-
-        #browse
-        cmd  = '%s?mode=%d' % (sys.argv[0], _PLAYLISTBROWSE)
-        menu.append((GETTEXT(30148), 'XBMC.Container.Update(%s)' % cmd))
-
-        #browse for URL
-        cmd = '%s?mode=%d' % (sys.argv[0], _URLPLAYLIST)
-        menu.append((GETTEXT(30153), 'XBMC.Container.Update(%s)' % cmd))
-
-        addDir('', _SEPARATOR, thumbnail=BLANK, isFolder=False, menu=menu)
+elif mode==12:
+    addon_log("setResolvedUrl")
+    if not url.startswith("plugin://plugin") or not any(x in url for x in g_ignoreSetResolved):#not url.startswith("plugin://plugin.video.f4mTester") :
+        item = xbmcgui.ListItem(path=url)
+        xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, item)
     else:
-        addDir('', _SEPARATOR, thumbnail=BLANK, isFolder=False)
+        print 'Not setting setResolvedUrl'
+        xbmc.executebuiltin('XBMC.RunPlugin('+url+')')
 
 
-if doRefresh:
-    refresh()
-    if xbmc.getCondVisibility('system.getbool(filelists.showparentdiritems)') == 1:
-        itemIndex += 1
+elif mode==13:
+    addon_log("play_playlist")
+    play_playlist(name, playlist)
 
-    import selector
-    selector.select(itemIndex)
+elif mode==14:
+    addon_log("get_xml_database")
+    get_xml_database(url)
+    xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
-if doEnd:
-    if len(contentType) > 0:
-        xbmcplugin.setContent(handle, contentType)
+elif mode==15:
+    addon_log("browse_xml_database")
+    get_xml_database(url, True)
+    xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
-    if handle > -1:
-        xbmcplugin.endOfDirectory(handle, cacheToDisc=cacheToDisc)
+elif mode==16:
+    addon_log("browse_community")
+    getCommunitySources(True)
+    xbmcplugin.endOfDirectory(int(sys.argv[1]))
 
-    if VIEWTYPE > 0:        
-        xbmc.executebuiltin('Container.SetViewMode(%d)' % VIEWTYPE)
-
-
-if mode == _PLAYMEDIA:
-    xbmc.sleep(250)
-    playCommand(cmd)
-
-
-#elif mode == _ACTIVATESEARCH:
-    #if FRODO or GOTHAM:
-    #    pass
-    #else:
-    #xbmc.sleep(250)
-    #playCommand(cmd)
-
-
-elif mode == _ACTIVATEWINDOW:
-    if len(launchMode) == 0:
-        script = os.path.join(HOME, 'cmdLauncher.py')
-        cmd    = 'AlarmClock(%s,RunScript(%s,%s),%d,True)' % ('SF_CMDLAUNCHER', script, cmd.replace('"', ''), 0)
-        xbmc.executebuiltin(cmd)
+elif mode==17:
+    addon_log("getRegexParsed")
+    url,setresolved = getRegexParsed(regexs, url)
+    if url:
+        playsetresolved(url,name,iconimage,setresolved)
     else:
-        xbmc.sleep(250)
-        playCommand(cmd)
+        xbmc.executebuiltin("XBMC.Notification(SimpleKore ,Failed to extract regex. - "+"this"+",4000,"+icon+")")
+elif mode==18:
+    addon_log("youtubedl")
+    try:
+        import youtubedl
+    except Exception:
+        xbmc.executebuiltin("XBMC.Notification(SimpleKore,Please [COLOR yellow]install the Youtube Addon[/COLOR] module ,10000,"")")
+    stream_url=youtubedl.single_YD(url)
+    playsetresolved(stream_url,name,iconimage)
+elif mode==19:
+	addon_log("Genesiscommonresolvers")
+	playsetresolved (urlsolver(url),name,iconimage,True)	
+
+elif mode==21:
+    addon_log("download current file using youtube-dl service")
+    ytdl_download('',name,'video')
+elif mode==23:
+    addon_log("get info then download")
+    ytdl_download(url,name,'video') 
+elif mode==24:
+    addon_log("Audio only youtube download")
+    ytdl_download(url,name,'audio')
+elif mode==25:
+    addon_log("YouTube/DMotion")
+    search(url)
+    xbmcplugin.endOfDirectory(int(sys.argv[1]))
+elif mode==26:
+    addon_log("YouTube/DMotion From Search History")
+    name = name.split(':')
+    search(url,search_term=name[1])
+    xbmcplugin.endOfDirectory(int(sys.argv[1]))
+elif mode==27:
+    addon_log("Using IMDB id to play in Pulsar")
+    pulsarIMDB=search(url)
+    xbmc.Player().play(pulsarIMDB) 
+elif mode==30:
+    GetSublinks(name,url,iconimage,fanart)
+	
+elif mode==40:
+    SearchChannels()
+    SetViewThumbnail()
+    xbmcplugin.endOfDirectory(int(sys.argv[1]))
+	
+elif mode==53:
+    addon_log("Requesting JSON-RPC Items")
+    pluginquerybyJSON(url)
+    xbmcplugin.endOfDirectory(int(sys.argv[1]))

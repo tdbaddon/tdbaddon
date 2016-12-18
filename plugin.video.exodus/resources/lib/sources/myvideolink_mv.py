@@ -28,8 +28,8 @@ from resources.lib.modules import debrid
 
 class source:
     def __init__(self):
-        self.domains = ['newmyvideolink.xyz', 'beta.myvideolinks.xyz', 'videolinks.ga']
-        self.base_link = 'http://videolinks.ga'
+        self.domains = ['newmyvideolink.xyz', 'beta.myvideolinks.xyz', 'videolinks.ga', 'myvideolinks.ga']
+        self.base_link = 'http://myvideolinks.ga'
         self.search_link = '/search/%s/feed/rss2/'
 
 
@@ -75,13 +75,15 @@ class source:
                 try:
                     t = client.parseDOM(post, 'title')[0]
 
-                    c = client.parseDOM(post, 'content.+?')[0]
+                    c = client.parseDOM(post, 'content.+?')
 
                     u = client.parseDOM(c, 'ul')
                     u = client.parseDOM(u, 'a', ret='href')
 
-                    s = re.findall('((?:\d+\.\d+|\d+\,\d+|\d+) (?:GB|GiB|MB|MiB))', c)
-                    s = s[0] if s else '0'
+                    u += client.parseDOM(post, 'enclosure', ret='url')
+
+                    try: s = re.findall('((?:\d+\.\d+|\d+\,\d+|\d+) (?:GB|GiB|MB|MiB))', c[0])[0]
+                    except: s = '0'
 
                     items += [(t, i, s) for i in u]
                 except:

@@ -1121,7 +1121,7 @@ class tvshows:
 
         control.content(syshandle, 'tvshows')
         control.directory(syshandle, cacheToDisc=True)
-        views.setView('tvshows', {'skin.confluence': 500})
+        views.setView('tvshows', {'skin.estuary': 55, 'skin.confluence': 500})
 
 
     def addDirectory(self, items, queue=False):
@@ -1163,6 +1163,7 @@ class tvshows:
             except:
                 pass
 
+        control.content(syshandle, 'addons')
         control.directory(syshandle, cacheToDisc=True)
 
 

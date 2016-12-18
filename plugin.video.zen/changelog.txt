@@ -1,3 +1,6 @@
+[B]1.4.30[/B]
+- Update Providers
+
 [B]1.4.28[/B]
 - Update Providers + Scnsrc
 

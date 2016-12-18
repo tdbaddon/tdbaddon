@@ -116,12 +116,6 @@ class source:
 
 
     def resolve(self, url):
-        try:
-            url = client.request(url, output='geturl')
-            if 'requiressl=yes' in url: url = url.replace('http://', 'https://')
-            else: url = url.replace('https://', 'http://')
-            return url
-        except:
-            return
+        return directstream.googlepass(url)
 
 

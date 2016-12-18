@@ -237,9 +237,7 @@ class source:
             except: pass
 
             url = client.replaceHTMLCodes(u[0]['url'])
-
-            if 'requiressl=yes' in url: url = url.replace('http://', 'https://')
-            else: url = url.replace('https://', 'http://')
+            url = directstream.googlepass(url)
             return url
         except:
             pass

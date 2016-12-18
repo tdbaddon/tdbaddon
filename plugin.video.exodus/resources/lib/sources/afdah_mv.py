@@ -23,6 +23,7 @@ import re,urllib,urlparse,random
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
+from resources.lib.modules import directstream
 
 
 class source:
@@ -66,7 +67,9 @@ class source:
 
             headers = {'X-Requested-With': 'XMLHttpRequest'}
 
-            post = urlparse.parse_qs(urlparse.urlparse(referer).query).values()[0][0]
+            try: post = urlparse.parse_qs(urlparse.urlparse(referer).query).values()[0][0]
+            except: post = referer.strip('/').split('/')[-1].strip('watch_').rsplit('#')[0].rsplit('.')[0]
+
             post = urllib.urlencode({'v': post})
 
             url = urlparse.urljoin(self.base_link, '/video_info/iframe')
@@ -88,12 +91,6 @@ class source:
 
 
     def resolve(self, url):
-        try:
-            url = client.request(url, output='geturl')
-            if 'requiressl=yes' in url: url = url.replace('http://', 'https://')
-            else: url = url.replace('https://', 'http://')
-            return url
-        except:
-            return
+        return directstream.googlepass(url)
 
 

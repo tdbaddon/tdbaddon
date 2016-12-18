@@ -19,7 +19,7 @@
 '''
 
 
-import re,urllib,urlparse,base64
+import re,urllib,urlparse,json
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
@@ -30,47 +30,49 @@ class source:
     def __init__(self):
         self.domains = ['movie25.ph', 'movie25.hk', 'tinklepad.is', 'tinklepad.ag']
         self.base_link = 'http://tinklepad.ag'
-        #self.search_link = 'http://tinklepad.ag/ad_search.php?q=%s&year_from=%s&year_to=%s&section=2&ad_search=Search'
         self.search_link = 'http://tinklepad.ag/search.php?q=%s'
+        self.search_link_2 = 'aHR0cHM6Ly93d3cuZ29vZ2xlYXBpcy5jb20vY3VzdG9tc2VhcmNoL3YxZWxlbWVudD9rZXk9QUl6YVN5Q1ZBWGlVelJZc01MMVB2NlJ3U0cxZ3VubU1pa1R6UXFZJnJzej1maWx0ZXJlZF9jc2UmbnVtPTEwJmhsPWVuJmN4PTAwODQ5Mjc2ODA5NjE4MzM5MDAwMzowdWd1c2phYm5scSZnb29nbGVob3N0PXd3dy5nb29nbGUuY29tJnE9JXM='
 
 
     def movie(self, imdb, title, year):
         try:
-            #query = self.search_link % (urllib.quote_plus(cleantitle.query(title)), str(int(year)-1), str(int(year)+1))
-            #query = urlparse.urljoin(self.base_link, query)
+            q = self.search_link % urllib.quote_plus(cleantitle.query(title))
+            q = urlparse.urljoin(self.base_link, q)
 
-            query = self.search_link % urllib.quote_plus(cleantitle.query(title))
-            query = urlparse.urljoin(self.base_link, query)
+            r = client.request(q, output='extended')
 
-            result = client.request(query, post=urllib.urlencode({'chts': 'Click Here to Continue'}))
+            p = zip(client.parseDOM(r[0], 'input', ret='id'), client.parseDOM(r[0], 'input', ret='value'))
+            p = urllib.urlencode(dict(p))
 
-            result = client.parseDOM(result, 'div', attrs = {'class': 'movie_table'})
+            r = client.request(q, post=p, headers=r[3], cookie=r[4])
 
-            title = cleantitle.get(title)
+            r = client.parseDOM(r, 'div', attrs = {'class': 'movie_table'})
+
+            t = cleantitle.get(title)
             years = ['(%s)' % str(year), '(%s)' % str(int(year)+1), '(%s)' % str(int(year)-1)]
 
-            result = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'img', ret='alt')) for i in result]
-            result = [(i[0][0], i[1][0]) for i in result if len(i[0]) > 0 and len(i[1]) > 0]
-            result = [i for i in result if any(x in i[1] for x in years)]
+            r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'img', ret='alt')) for i in r]
+            r = [(i[0][0], i[1][0]) for i in r if len(i[0]) > 0 and len(i[1]) > 0]
+            r = [i for i in r if any(x in i[1] for x in years)]
 
-            try: result = [(urlparse.parse_qs(urlparse.urlparse(i[0]).query)['q'][0], i[1]) for i in result]
+            try: r = [(urlparse.parse_qs(urlparse.urlparse(i[0]).query)['q'][0], i[1]) for i in r]
             except: pass
-            try: result = [(urlparse.parse_qs(urlparse.urlparse(i[0]).query)['u'][0], i[1]) for i in result]
+            try: r = [(urlparse.parse_qs(urlparse.urlparse(i[0]).query)['u'][0], i[1]) for i in r]
             except: pass
-            try: result = [(urlparse.urlparse(i[0]).path, i[1]) for i in result]
+            try: r = [(urlparse.urlparse(i[0]).path, i[1]) for i in r]
             except: pass
 
-            match = [i[0] for i in result if title == cleantitle.get(i[1]) and '(%s)' % str(year) in i[1]]
+            match = [i[0] for i in r if t == cleantitle.get(i[1]) and '(%s)' % str(year) in i[1]]
 
-            match2 = [i[0] for i in result]
+            match2 = [i[0] for i in r]
             match2 = [x for y,x in enumerate(match2) if x not in match2[:y]]
             if match2 == []: return
 
             for i in match2[:5]:
                 try:
                     if len(match) > 0: url = match[0] ; break
-                    result = proxy.request(urlparse.urljoin(self.base_link, i), 'link_name')
-                    if imdb in str(result): url = i ; break
+                    r = proxy.request(urlparse.urljoin(self.base_link, i), 'link_name')
+                    if imdb in str(r): url = i ; break
                 except:
                     pass
 
@@ -78,7 +80,40 @@ class source:
             url = url.encode('utf-8')
             return url
         except:
-            return
+            pass
+
+        try:
+            q = self.search_link_2.decode('base64') % urllib.quote_plus(title)
+            r = client.request(q)
+            r = json.loads(r)['results']
+            r = [(i['url'], i['titleNoFormatting']) for i in r]
+            r = [(i[0], re.findall('(?:^Watch |)(.+? \(\d{4}\))', i[1])) for i in r]
+            r = [(urlparse.urljoin(self.base_link, i[0]), i[1][0]) for i in r if i[1]]
+
+            t = cleantitle.get(title)
+            years = ['(%s)' % str(year), '(%s)' % str(int(year)+1), '(%s)' % str(int(year)-1)]
+
+            r = [i for i in r if any(x in i[1] for x in years)]
+
+            match = [i[0] for i in r if t == cleantitle.get(i[1]) and '(%s)' % str(year) in i[1]]
+
+            match2 = [i[0] for i in r]
+            match2 = [x for y,x in enumerate(match2) if x not in match2[:y]]
+            if match2 == []: return
+
+            for i in match2[:5]:
+                try:
+                    if len(match) > 0: url = match[0] ; break
+                    r = proxy.request(urlparse.urljoin(self.base_link, i), 'link_name')
+                    if imdb in str(r): url = i ; break
+                except:
+                    pass
+
+            url = client.replaceHTMLCodes(url)
+            url = url.encode('utf-8')
+            return url
+        except:
+            pass
 
 
     def sources(self, url, hostDict, hostprDict):
@@ -109,7 +144,7 @@ class source:
                     try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['q'][0]
                     except: pass
                     url = urlparse.urlparse(url).query
-                    url = base64.b64decode(url)
+                    url = url.decode('base64')
                     url = re.findall('((?:http|https)://.+?/.+?)(?:&|$)', url)[0]
                     url = client.replaceHTMLCodes(url)
                     url = url.encode('utf-8')

@@ -497,7 +497,7 @@ class seasons:
 
         control.content(syshandle, 'seasons')
         control.directory(syshandle, cacheToDisc=True)
-        views.setView('seasons', {'skin.confluence': 500})
+        views.setView('seasons', {'skin.estuary': 55, 'skin.confluence': 500})
 
 
 class episodes:
@@ -1481,7 +1481,7 @@ class episodes:
 
         control.content(syshandle, 'episodes')
         control.directory(syshandle, cacheToDisc=True)
-        views.setView('episodes', {'skin.confluence': 504})
+        views.setView('episodes', {'skin.estuary': 55, 'skin.confluence': 504})
 
 
     def addDirectory(self, items, queue=False):
@@ -1523,6 +1523,7 @@ class episodes:
             except:
                 pass
 
+        control.content(syshandle, 'addons')
         control.directory(syshandle, cacheToDisc=True)
 
 

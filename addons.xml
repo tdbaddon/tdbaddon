@@ -443,67 +443,35 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
   </extension>
 </addon>
 
-<addon id="plugin.program.super.favourites" name="Super Favourites" version="2.0.39" provider-name="spoyser">
-  <requires>
-    <import addon="xbmc.python" version="2.14.0"/>
-	<import addon="script.module.metahandler" optional="true" />
-  </requires>
-
-
-  <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>video audio image executable</provides>
-  </extension>
-
-
-  <extension point="xbmc.service" library="service.py" start="startup" />
-
-
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en">Put all your favourites bits of all your favourites addons into one easy to use addon.</summary>
-    <description lang="en">Super Favourites is a better way of managing your Kodi Favourites.[CR][CR]Virtually any menu item within Kodi can be added to Super Favourites, even from addons that don't normally provide this feature.[CR][CR]Super Favourites allows you to better manage your Kodi favourites, including the creation of sub-folders, into which your Kodi favourites can then be copied or moved into.[CR][CR]This allows you to create you own custom addon with just the best bits of your favourite addons. Search your favourite addons, play your favourite music, read your favourite comic strips, select your favourite playlists, browse your favourite movies, listen to your favourite radio stations, watch your favourite cartoons, the possibilities are endless, all from within one easy to use addon.</description>
-    <platform>all</platform>
-    <language>en</language>
-    <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
-    <forum>http://forum.xbmc.org/showthread.php?tid=192662</forum>
-    <website></website>
-    <source>https://github.com/spoyser/spoyser-repo/tree/master/plugin.program.super.favourites</source>
-    <email>seanpoyser at gmail.com</email>
-  </extension>
-
-
-  <extension point="kodi.context.item">
-    <menu id="kodi.core.main">
-
-      <item library="capture.py">
-        <label>30002</label>
-        <visible>!IsEmpty(Window(10000).Property(SF_STD_CONTEXTMENU_ENABLED)) + !StringCompare(Container.PluginName,plugin.program.super.favourites)</visible>
-      </item>
-
-      <item library="menu_addtofaves.py">
-        <label>30047</label>
-        <visible>!IsEmpty(Window(10000).Property(SF_STD_ADDTOFAVES_ENABLED)) + !StringCompare(Container.PluginName,plugin.program.super.favourites)</visible>
-      </item>
-
-      <item library="menu_download.py">
-        <label>30259</label>
-        <visible>!IsEmpty(Window(10000).Property(SF_STD_DOWNLOAD_ENABLED)) + Player.IsInternetStream</visible>
-      </item>
-
-    </menu>
-  </extension>
-
-</addon>
-
-<addon id="plugin.program.TDBSPEEDTEST" name="TDB SPEED TEST" version="1000" provider-name="TDB">
+<addon id="plugin.program.super.favourites"
+       name="TDB SUPER FAVOURITES"
+       version="3000"
+       provider-name="TDB">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.beautifulsoup" version="3.2.1"/>
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.beautifulsoup4" />
+    <import addon="script.module.requests" />
+	<import addon="script.module.httplib2" />
+    <import addon="script.module.youtube.dl" optional="true"/>
+    <import addon="plugin.video.youtube" />
+	<import addon="script.module.urlresolver" optional="true"/>
+	<import addon="script.module.simplejson" />
+	<import addon="script.module.metahandler" version="2.5.1"/>
+	<import addon="plugin.video.f4mTester" optional="true"/>
+	<import addon="script.module.t0mm0.common" version="2.0.0"/>
+    <import addon="script.module.urlresolver" optional="true"/>
+    <import addon="script.common.plugin.cache" version="2.5.2"/>
+
+
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
-        <provides>executable</provides>
+    <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
     <summary lang="en"></summary>
-    <description lang="en">Accurate Internet speed-ping test results.</description>
+    <description lang="en"></description>
     <platform>all</platform>
   </extension>
 </addon>
@@ -648,7 +616,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 	</extension>
 </addon>
 
-<addon id="plugin.video.cartoons8" name="Cartoons8" version="1.0.19" provider-name="MetalKettle">
+<addon id="plugin.video.cartoons8" name="Cartoons8" version="1.0.20" provider-name="MetalKettle">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.t0mm0.common" version="2.0.0"/>
@@ -1051,6 +1019,27 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
 	</extension>
 </addon>
 
+<addon id="plugin.video.euronews_com" name="euronews.com" version="2.0.5" provider-name="AddonScriptorDE">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <platform>all</platform>
+        <summary lang="en">Livestream and latest news videos from euronews.com | Available languages: English, Greek, French, German, Italian, Spanish, Portuguese, Polish, Russian, Ukrainian, Turkish, Arabic and Persian</summary>
+        <language></language>
+        <description lang="en">Livestream and latest news videos from euronews.com | Available languages: English, Greek, French, German, Italian, Spanish, Portuguese, Polish, Russian, Ukrainian, Turkish, Arabic and Persian</description>
+        <disclaimer lang="en">Some parts of this addon may not be legal in your country of residence - please check with your local laws before installing.</disclaimer>
+        <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+        <source>https://github.com/AddonScriptorDE/plugin.video.euronews_com</source>
+        <forum>http://forum.xbmc.org/showthread.php?tid=157182</forum>
+        <email>AddonScriptorDE at yahoo dot de</email>
+        <website>http://www.euronews.com</website>
+    </extension>
+</addon>
+
 <addon id="plugin.video.Evolve" name="[COLOR red]E[/COLOR][COLOR white]volve[/COLOR]" version="0.0.9" provider-name="Team Evolve">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -1075,7 +1064,7 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
   </extension>
 </addon>
 
-<addon id="plugin.video.exodus" version="2.0.22" name="Exodus" provider-name="Exodus">
+<addon id="plugin.video.exodus" version="2.0.23" name="Exodus" provider-name="Exodus">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="repository.exodus" version="1.0.0" />
@@ -1092,7 +1081,7 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
 		<description lang="en">Please visit www.tvaddons.ag for Exodus support and assistance! Kindly note that Exodus is not an official part of the media player you are running, and therefore not to be mentioned within official support channels, this addon has nothing to do with the media player itself, nor it’s intended use, it is simply a third party plugin which has been added to your system.</description>
 		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
 		<platform>all</platform>
-		<news>- Tweaked provider retrieval[CR]- Tweaked stream resolving[CR]- Updated existing providers[CR]- Removed dead providers[CR]- Added new providers</news>
+		<news>- Tweaked indexers[CR]- Updated existing providers[CR]- Removed dead providers[CR]- Added new providers</news>
 	</extension>
 </addon>
 
@@ -1522,31 +1511,39 @@ For DMCA Reports, please send message to our FB page.
 
 <addon id="plugin.video.mic"
        name="Made In Canada IPTV"
-       version="1.0"
+       version="2.0"
        provider-name="TheKrazy0ne">
-  <requires>
+   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
-	<import addon="script.module.t0mm0.common" version="2.0.0"/>
     <import addon="script.module.beautifulsoup" version="3.2.1"/>
     <import addon="script.module.simple.downloader" version="0.9.4"/>
     <import addon="script.module.beautifulsoup4" />
-    <import addon="script.module.simple.downloader" version="0.9.4"/>
     <import addon="script.module.requests" />
     <import addon="script.module.httplib2" />
+    <import addon="script.module.liveresolver" version="0.1.24" optional="true"/>
     <import addon="script.module.youtube.dl" optional="true"/>
-    <import addon="plugin.video.youtube" version="3.0.0"/>
+    <import addon="plugin.video.youtube" optional="true" />
     <import addon="script.module.urlresolver" optional="true"/>
     <import addon="script.module.simplejson" />
-    <import addon="script.common.plugin.cache" version="2.5.2"/>
-    <import addon="script.module.metahandler" version="2.5.1"/>
-
+     <import addon="script.module.livestreamer" optional="true"/>
+     <import addon="script.module.pyamf" optional="true"/>
   </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
+    <extension point="xbmc.python.pluginsource" library="default.py">
     <provides>video</provides>
   </extension>
   <extension point="xbmc.addon.metadata">
-    <summary lang="en">Free Canadaian IPTV</summary>
-    <description lang="en">Follow @TheKrazy0ne on Twitter to report any channel issues...</description>
+    <summary lang="en">Free Canadian IPTV</summary>
+    <description>
+        Follow @TheKrazy0ne (Note that is a zero) on twitter.
+			**DISCLAIMER**
+        1. MiC DOES NOT HOST ANY OF THE STREAMS FOUND WITHIN THIS ADDON
+        2. ALL STREAMS FOUND WITHING THIS ADDON ARE FOUND FREELY ON THE INTERNET
+        3. WE ACCEPT NO RESPONSIBILITY FOR THE USE OF THIS ADDON
+        4. THIS ADDON IS AND ALWAYS WILL BE FREE!!
+        5. IF YOU PAID FOR THIS ADDON, ASK FOR YOUR MONEY BACK!!!
+        6. ENJOY THE STREAMS WITHIN..... CHEERS!
+
+    </description>
     <platform>all</platform>
   </extension>
 </addon>
@@ -1692,7 +1689,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.phstreams" name="Phoenix" version="3.1.18" provider-name="tvaddons.ag">
+<addon id="plugin.video.phstreams" name="Phoenix" version="3.1.19" provider-name="tvaddons.ag">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="plugin.video.youtube" version="5.2.1" optional="true" />
@@ -1710,7 +1707,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 		<platform>all</platform>
 		<forum>http://forums.tvaddons.ag/forums/220-PHOENIX-LIVE-STREAMS</forum>
 		<website>http://www.tvaddons.ag/</website>
-		<news>Updated indexers[CR]Updated modules[CR]Cosmetics</news>
+		<news>Updated indexers[CR]Updated modules[CR]Updated providers[CR]Cosmetics</news>
 	</extension>
 </addon>
 
@@ -2231,7 +2228,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
-<addon id="plugin.video.wwe-on-demand" name="[COLOR gold]WWE ON DEMAND[/COLOR]" version="2.7" provider-name="@PBear90">
+<addon id="plugin.video.wwe-on-demand" name="[COLOR gold][B]WWE On Demand[/B][/COLOR]" version="2.9.0" provider-name="@PBear90">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.simplejson" version="3.3.0"/>
@@ -2354,7 +2351,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.zen" version="1.4.29" name=" Zen" provider-name="Zen">
+<addon id="plugin.video.zen" version="1.4.30" name=" Zen" provider-name="Zen">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="script.zen.artwork" />
@@ -2372,7 +2369,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 		<disclaimer lang="en">The Author does not host or share any content, nor is affiliated with the content providers.</disclaimer>
 		<platform>all</platform>
 		<website>http://schism-tv.net</website>
-		<news>Update Scnsrc</news>
+		<news>Update Providers</news>
         <assets>
 			<icon>icon.png</icon>
 			<fanart>fanart.jpg</fanart>
@@ -2452,16 +2449,16 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
-<addon id="repository.communityrepo" name="[COLOR orange][B]The Community Repository[/B][/COLOR]" version="9.3" provider-name="The @CommunityRepo Team">
+<addon id="repository.communityrepo" name="[COLOR orange][B]The Community Repository[/B][/COLOR]" version="9.4" provider-name="The @CommunityRepo Team">
 	<extension point="xbmc.addon.repository" name="The Community Repository">
 	<dir>
 		<info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
 		<checksum>https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml.md5</checksum>
 		<datadir zip="true">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/zips/</datadir>
 	</dir>
-		<info compressed="false">http://allsorts.kodi-pirates.tv/ComRepo/RepoPlugins/addons.xml</info>
-		<checksum>http://allsorts.kodi-pirates.tv/ComRepo/RepoPlugins/addons.xml.md5</checksum>
-		<datadir zip="true">http://allsorts.kodi-pirates.tv/ComRepo/RepoPlugins/</datadir>
+		<info compressed="false">http://thecommunityrepo.netai.net/RepoPlugins/addons.xml</info>
+		<checksum>http://thecommunityrepo.netai.net/RepoPlugins/addons.xml.md5</checksum>
+		<datadir zip="true">http://thecommunityrepo.netai.net/RepoPlugins/</datadir>
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<summary>@communityrepo Repository</summary>
@@ -2718,6 +2715,23 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
+    <addon id="repository.koditips" name="KodiTips.com Repository" version="1.0.0" provider-name="KodiTips.com">
+        <requires>
+            <import addon="xbmc.addon" version="12.0.0"/>
+        </requires>
+        <extension point="xbmc.addon.repository" name="KodiTips.com Repository">
+            <info compressed="false">https://raw.githubusercontent.com/koditips/repo/master/_repo/addons.xml</info>
+            <checksum>https://raw.githubusercontent.com/koditips/repo/master/_repo/addons.xml.md5</checksum>
+            <datadir zip="true">https://raw.githubusercontent.com/koditips/repo/master/_repo/</datadir>
+            <hashes>false</hashes>
+        </extension>
+        <extension point="xbmc.addon.metadata">
+            <summary>KodiTips.com Repo</summary>
+            <description>Visit KodiTips.com for the latest Kodi tips, tricks, news and information.</description>
+            <platform>all</platform>
+    </extension>
+</addon>
+
 <addon id="repository.livetvSerbia" name="Live TV Serbia Repository" version="1.1" provider-name="livetvSerbia">
 	<extension point="xbmc.addon.repository" name="Live TV Serbia Repository">
 
@@ -2762,6 +2776,24 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 		<summary>Mucky Ducks Repo</summary>
 		<description>Download And Install Addons Developed By Mucky Duck And Various Other Developers </description>
 		<disclaimer>The owners and submitters to this repository do not host or distribute any of the content displayed by these addons nor do they have any affiliation with the content providers.</disclaimer>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="repository.metalkettle" name="MetalKettles Addon Repository" version="1.7.1" provider-name="MetalKettle">
+	<extension point="xbmc.addon.repository" name="MetalKettles Addon Repository">
+	<dir>
+		<info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
+		<checksum>https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml.md5</checksum>
+		<datadir zip="true">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/zips/</datadir>
+	</dir>
+		<info compressed="false">http://offshoregit.com/metalkettle/addons.xml</info>
+		<checksum>http://offshoregit.com/metalkettle/addons.xml.md5</checksum>
+		<datadir zip="true">http://offshoregit.com/metalkettle/zips/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Install my Addons</summary>
+		<description>Download and install addons from MetalKettle</description>
 		<platform>all</platform>
 	</extension>
 </addon>

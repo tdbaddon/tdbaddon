@@ -440,7 +440,7 @@ class sources:
         try:
             sources = []
             sources = call.sources(url, self.hostDict, self.hostprDict)
-            if sources == None: raise Exception()
+            if sources == None or sources == []: raise Exception()
             self.sources.extend(sources)
             dbcur.execute("DELETE FROM rel_src WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, imdb, '', ''))
             dbcur.execute("INSERT INTO rel_src Values (?, ?, ?, ?, ?, ?)", (source, imdb, '', '', json.dumps(sources), datetime.datetime.now().strftime("%Y-%m-%d %H:%M")))
@@ -509,7 +509,7 @@ class sources:
         try:
             sources = []
             sources = call.sources(ep_url, self.hostDict, self.hostprDict)
-            if sources == None: raise Exception()
+            if sources == None or sources == []: raise Exception()
             self.sources.extend(sources)
             dbcur.execute("DELETE FROM rel_src WHERE source = '%s' AND imdb_id = '%s' AND season = '%s' AND episode = '%s'" % (source, imdb, season, episode))
             dbcur.execute("INSERT INTO rel_src Values (?, ?, ?, ?, ?, ?)", (source, imdb, season, episode, json.dumps(sources), datetime.datetime.now().strftime("%Y-%m-%d %H:%M")))

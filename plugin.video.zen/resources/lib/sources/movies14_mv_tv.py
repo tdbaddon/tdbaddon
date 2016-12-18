@@ -30,7 +30,7 @@ class source:
         self.domains = ['hdmovie14.net']
         self.base_link = 'http://hdmovie14.net'
         self.search_link = '/search?key=%s+%s'
-        self.tvsearch_link = '/watch/%s-%s-season-%s/%s'
+        self.tvsearch_link = '/watch/%s-%s-season-%s'
 
     def movie(self, imdb, title, year):
         self.url = []	
@@ -75,16 +75,17 @@ class source:
         try:
             data = urlparse.parse_qs(url)
             data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
-
-            year = re.findall('(\d{4})', premiered)[0]
-            if int(year) >= 2016: raise Exception()
-
+            episode = '%01d' % (int(season))
+            year = data['year']
+            
+            
             url = re.sub('[^A-Za-z0-9]', '-', data['tvshowtitle']).lower()
-            url = self.tvsearch_link % (url, data['year'], '%01d' % int(season), '%01d' % int(episode))
+            url = self.tvsearch_link % (url, year, '%01d' % int(season))
 
             r = urlparse.urljoin(self.base_link, url)
             r = client.request(r, output='geturl')
-            if not data['year'] in r: raise Exception()
+            url = r + "/" + episode
+            # if not data['year'] in r: raise Exception()
 
             return url
         except:

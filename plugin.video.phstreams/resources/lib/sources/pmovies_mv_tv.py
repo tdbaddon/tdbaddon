@@ -31,7 +31,7 @@ class source:
     def __init__(self):
         self.domains = ['pmovies.to', 'watch5s.to', 'cmovieshd.com']
         self.base_link = 'http://watch5s.to'
-        self.base_link_2 = 'http://cmovieshd.com'
+        self.random_link = ['pmovies.to', 'watch5s.to', 'cmovieshd.com']
         self.info_link = '/ajax/movie_qtip/%s'
 
 
@@ -72,7 +72,11 @@ class source:
 
             if url == None: return sources
 
-            base_link = random.choice([self.base_link, self.base_link_2])
+            choice = random.choice(self.random_link)
+            base_link = 'http://%s' % choice
+            strm_link = 'http://streaming.%s' % choice
+
+            headers = {'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'}
 
             if not str(url).startswith('http'):
 
@@ -94,14 +98,13 @@ class source:
                 url = urlparse.urljoin(base_link, url)
                 referer = url
 
-                r = client.request(url, output='geturl')
+                r = client.request(url, headers=headers, output='geturl')
                 if not '/watch' in r: raise Exception()
 
-                r = client.request(url)
+                r = client.request(url, headers=headers)
 
                 y = re.findall('Release\s*:\s*.+?\s*(\d{4})', r)[0]
                 if not year == y: raise Exception()
-
             else:
                 try: url, episode = re.findall('(.+?)\?episode=(\d*)$', url)[0]
                 except: episode = None
@@ -109,6 +112,8 @@ class source:
                 url = urlparse.urljoin(base_link, url)
                 url = re.sub('/watch$', '', url.strip('/')) + '/watch/'
                 referer = url
+
+                r = client.request(url, headers=headers)
 
 
             r = client.parseDOM(r, 'div', attrs = {'class': 'les-content'})
@@ -124,16 +129,16 @@ class source:
 
             for u in r:
                 try:
-                    p = client.request(u, referer=referer, timeout='10')
+                    p = client.request(u, headers=headers, referer=referer, timeout='10')
                     p = re.findall('hash\s*:\s*"([^"]+)', p)[0]
                     t = ''.join(random.sample(string.digits + string.ascii_uppercase + string.ascii_lowercase, 16))
                     k = hashlib.md5('(*&^%$#@!' + p[46:58]).hexdigest()
                     s = hashlib.md5('!@#$%^&*(' + t).hexdigest()
 	
-                    stream = 'http://streaming.pmovies.to/videoplayback/%s?key=%s' % (p, s)
+                    stream = '%s/videoplayback/%s?key=%s' % (strm_link, p, s)
                     cookie = '%s=%s' % (k, t)
 
-                    u = client.request(stream, referer=u, cookie=cookie, timeout='10')
+                    u = client.request(stream, headers=headers, referer=u, cookie=cookie, timeout='10')
                     u = json.loads(u)['playlist'][0]['sources']
                     u = [i['file'] for i in u if 'file' in i]
 
@@ -149,12 +154,6 @@ class source:
 
 
     def resolve(self, url):
-        try:
-            url = client.request(url, output='geturl')
-            if 'requiressl=yes' in url: url = url.replace('http://', 'https://')
-            else: url = url.replace('https://', 'http://')
-            return url
-        except:
-            return
+        return directstream.googlepass(url)
 
 

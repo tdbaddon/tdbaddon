@@ -910,23 +910,6 @@ class resolver:
         except:
             pass
 
-        try:
-            try: headers = dict(urlparse.parse_qsl(url.rsplit('|', 1)[1]))
-            except: headers = dict('')
-            if not url.startswith('http'): raise Exception()
-            result = client.request(url.split('|')[0], headers=headers, output='headers', timeout='20')
-            if 'Content-Type' in result and not 'html' in result['Content-Type']: raise Exception()
-
-            import liveresolver
-
-            if liveresolver.isValid(url) == False: raise Exception()
-
-            direct = False ; u = liveresolver.resolve(url)
-
-            if not u == None: return u
-        except:
-            pass
-
         if direct == True: return url
 
 

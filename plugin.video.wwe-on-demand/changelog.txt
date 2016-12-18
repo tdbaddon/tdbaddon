@@ -1,3 +1,9 @@
+v2.9
+- Sportsdevil Fix
+
+v2.8
+- Bugs and Fixes
+
 v2.7
 - Wall Of Fame Is Now A Pop Up Menu
 

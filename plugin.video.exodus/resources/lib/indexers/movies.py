@@ -1000,7 +1000,7 @@ class movies:
 
         control.content(syshandle, 'movies')
         control.directory(syshandle, cacheToDisc=True)
-        views.setView('movies', {'skin.confluence': 500})
+        views.setView('movies', {'skin.estuary': 55, 'skin.confluence': 500})
 
 
     def addDirectory(self, items, queue=False):
@@ -1042,6 +1042,7 @@ class movies:
             except:
                 pass
 
+        control.content(syshandle, 'addons')
         control.directory(syshandle, cacheToDisc=True)
 
 
