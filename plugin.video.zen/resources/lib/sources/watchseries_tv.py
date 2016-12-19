@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Exodus Add-on
-    Copyright (C) 2016 Exodus
-
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -19,74 +16,52 @@
 '''
 
 
-import re,urllib,urlparse,json,base64,hashlib,time
+import re,urllib,urlparse,json
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
+from resources.lib.modules import proxy
 
 
 class source:
     def __init__(self):
-        self.domains = ['watchseries.ag']
-        self.base_link = 'aHR0cDovL3dzLm1n'
-        self.hash_link = 'MzI4aiUlR3VTKiVzZkEyNDMxNDJmbyMyMyUl'
-        self.search_link = 'L2pzb24vc2VhcmNoLyVz'
-        self.agent_link = 'V1MgTW9iaWxl'
-
-
-    def request(self, url):
-        try:
-            r = self.request_call(url)
-            if r == None: time.sleep(1) ; r = self.request_call(url)
-            if r == None: time.sleep(1) ; r = self.request_call(url)
-            return r
-        except:
-            return
-
-
-    def request_call(self, url):
-        try:
-            if not url.startswith('/'): url = '/' + url
-            if not url.startswith('/json'): url = '/json' + url
-
-            hash = hashlib.md5()
-            hash.update(base64.b64decode(self.hash_link) % url)
-
-            url = urlparse.urljoin(base64.b64decode(self.base_link), hash.hexdigest() + url)
-
-            result = client.request(url, headers={'User-Agent': base64.b64decode(self.agent_link)})
-            result = json.loads(result)['results'].values()
-            return result
-        except:
-            return
+        self.domains = ['onwatchseries.to']
+        self.base_link = 'http://onwatchseries.to'
+        self.search_link = 'http://onwatchseries.to/show/search-shows-json'
+        self.search_link_2 = 'http://onwatchseries.to/search/%s'
 
 
     def tvshow(self, imdb, tvdb, tvshowtitle, year):
         try:
-            query = base64.b64decode(self.search_link) % urllib.quote_plus(cleantitle.query(tvshowtitle))
+            t = cleantitle.get(tvshowtitle)
 
-            result = self.request(query)
+            q = urllib.quote_plus(cleantitle.query(tvshowtitle))
+            p = urllib.urlencode({'term': q})
+            h = {'X-Requested-With': 'XMLHttpRequest'}
 
-            tvshowtitle = cleantitle.get(tvshowtitle)
-            years = ['%s' % str(year), '%s' % str(int(year)+1), '%s' % str(int(year)-1)]
+            r = client.request(self.search_link, post=p, headers=h)
+            try: r = json.loads(r)
+            except: r = None
 
-            result = [i for i in result if any(x in str(i['year']) for x in years)]
+            if r:
+                r = [(i['seo_url'], i['value'], i['label']) for i in r if 'value' in i and 'label' in i and 'seo_url' in i]
+            else:
+                r = proxy.request(self.search_link_2 % q, '/search/')
+                r = client.parseDOM(r, 'div', attrs = {'valign': '.+?'})
+                r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', ret='title'), client.parseDOM(i, 'a')) for i in r]
+                r = [(i[0][0], i[1][0], i[2][0]) for i in r if i[0] and i[1] and i[2]]
 
-            match = [i['href'] for i in result if tvshowtitle == cleantitle.get(i['name'])]
-            match = [i['href'] for i in result if tvshowtitle == cleantitle.get(i['name']) and str(year) == str(i['year'])]
+            r = [(i[0], i[1], re.findall('(\d{4})', i[2])) for i in r]
+            r = [(i[0], i[1], i[2][-1]) for i in r if i[2]]
+            r = [i for i in r if t == cleantitle.get(i[1]) and year == i[2]]
 
-            match2 = [i['href'] for i in result]
-            match2 = [x for y,x in enumerate(match2) if x not in match2[:y]]
-            if match2 == []: return
+            url = r[0][0]
+            try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['u'][0]
+            except: pass
+            try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['q'][0]
+            except: pass
 
-            for i in match2[:5]:
-                try:
-                    if len(match) > 0: url = match[0] ; break
-                    if imdb in str(self.request(i)[0]['imdb']): url = i ; break
-                except:
-                    pass
-
-            url = '/' + url.split('/json/')[-1]
+            url = url.strip('/').split('/')[-1]
             url = url.encode('utf-8')
             return url
         except:
@@ -97,27 +72,31 @@ class source:
         try:
             if url == None: return
 
-            result = self.request(url)
+            url = '%s/serie/%s' % (self.base_link, url)
 
-            result = result[0]['episodes'].values()
+            r = proxy.request(url, 'fa-link')
+            r = client.parseDOM(r, 'li', attrs = {'itemprop': 'episode'})
 
-            for i, v in enumerate(result):
-                try: result[i] = v.values()
-                except: pass
+            t = cleantitle.get(title)
 
-            result = [i for i in result if type(i) == list]
-            result = sum(result, [])
-            result = [i for i in result if i['hasLinks'] == True]
+            r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'span', attrs = {'itemprop': 'name'}), re.compile('(\d{4}-\d{2}-\d{2})').findall(i)) for i in r]
+            r = [(i[0], i[1][0].split('&nbsp;')[-1], i[2]) for i in r if i[1]] + [(i[0], None, i[2]) for i in r if not i[1]]
+            r = [(i[0], i[1], i[2][0]) for i in r if i[2]] + [(i[0], i[1], None) for i in r if not i[2]]
+            r = [(i[0][0], i[1], i[2]) for i in r if i[0]]
 
-            title = cleantitle.get(title)
-            premiered = re.compile('(\d{4})-(\d{2})-(\d{2})').findall(premiered)[0]
-            premiered = '%s/%s/%s' % (premiered[2], premiered[1], premiered[0])
+            url = [i for i in r if t == cleantitle.get(i[1]) and premiered == i[2]][:1]
+            if not url: url = [i for i in r if t == cleantitle.get(i[1])]
+            if len(url) > 1 or not url: url = [i for i in r if premiered == i[2]]
+            if len(url) > 1 or not url: raise Exception() 
 
-            url = [i for i in result if title == cleantitle.get(i['name']) and premiered == i['release']][:1]
-            if len(url) == 0: url = [i for i in result if premiered == i['release']]
-            if len(url) == 0 or len(url) > 1: url = [i for i in result if '_s%01d_e%01d' % (int(season), int(episode)) in i['url']]
+            url = client.replaceHTMLCodes(url[0][0])
+            try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['u'][0]
+            except: pass
+            try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['q'][0]
+            except: pass
 
-            url = '/' + url[0]['url'].split('/json/')[-1]
+            url = re.findall('(?://.+?|)(/.+)', url)[0]
+            url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
             return url
         except:
@@ -130,19 +109,29 @@ class source:
 
             if url == None: return sources
 
-            result = self.request(url)
+            url = urlparse.urljoin(self.base_link, url)
 
-            links = result[0]['links']
-            links = [i['url'] for i in links if i['lang'] == 'English']
+            r = proxy.request(url, 'fa-link')
+
+            links = client.parseDOM(r, 'a', ret='href', attrs = {'target': '.+?'})
+            links = [x for y,x in enumerate(links) if x not in links[:y]]
 
             for i in links:
                 try:
-                    host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(i.strip().lower()).netloc)[0]
+                    url = i
+                    try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['u'][0]
+                    except: pass
+                    try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['q'][0]
+                    except: pass
+                    url = urlparse.parse_qs(urlparse.urlparse(url).query)['r'][0]
+                    url = url.decode('base64')
+                    url = client.replaceHTMLCodes(url)
+                    url = url.encode('utf-8')
+
+                    host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(url.strip().lower()).netloc)[0]
                     if not host in hostDict: raise Exception()
                     host = client.replaceHTMLCodes(host)
                     host = host.encode('utf-8')
-
-                    url = i.encode('utf-8')
 
                     sources.append({'source': host, 'quality': 'SD', 'provider': 'Watchseries', 'url': url, 'direct': False, 'debridonly': False})
                 except:

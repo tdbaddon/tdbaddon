@@ -1,3 +1,9 @@
+[B]1.4.32[/B]
+- Hotfix Providers and customize settings
+
+[B]1.4.31[/B]
+- Added Ability to customize base url for major scrapers
+
 [B]1.4.30[/B]
 - Update Providers
 

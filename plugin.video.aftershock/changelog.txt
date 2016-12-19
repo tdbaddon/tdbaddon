@@ -1,4 +1,4 @@
-Aftershock v4.2.7 (16-Dec-2016)
+Aftershock v4.3.1 (18-Dec-2016)
 ------------------------
 - [COLOR orange]NOTE: If you like the addon please consider making a donation to aftershockpy@gmail.com via paypal.[/COLOR]
 - Updated LIVE TV Providers

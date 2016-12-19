@@ -443,6 +443,20 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
   </extension>
 </addon>
 
+<addon id="plugin.program.SpeedTester.net" name="SpeedTester.net" version="1.0.2" provider-name="Twilight0">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>executable</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">SpeedTester.net</summary>
+    <description lang="en">SpeedTester.net will give you accurate Internet speed-ping test results.</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
 <addon id="plugin.program.super.favourites"
        name="TDB SUPER FAVS"
        version="3001"
@@ -532,7 +546,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
   </extension>
 </addon>
 
-<addon id="plugin.video.aftershock" name="Aftershock" version="4.3.0" provider-name="Aftershock">
+<addon id="plugin.video.aftershock" name="Aftershock" version="4.3.1" provider-name="Aftershock">
     <requires>
         <import addon="xbmc.python" version="2.19.0"/>
         <import addon="repository.aftershock" version="2.0.1"/>
@@ -540,7 +554,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
         <import addon="script.module.urlresolver"  version="3.0.21"/>
 		<import addon="script.module.metahandler"  version="1.0.0"/>
 		<import addon="script.module.beautifulsoup" version="3.2.1"/>
-        <import addon="script.aftershocknow.guide" version="1.1.0"/>
+        <import addon="script.aftershocknow.guide" version="1.1.1"/>
     </requires>
     <extension point="xbmc.python.pluginsource" library="default.py">
         <provides>video</provides>
@@ -1707,6 +1721,25 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
+<addon id="plugin.video.raspfree" name="Rasp IPTV" version="1.0" provider-name="RaspTV">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="addon.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Visit us at https://www.rasp.tv</summary>
+    <description lang="en">Free IPTV Channel Lists Maintained by https://www.rasp.tv</description>
+    <disclaimer lang="en">We are not responsible for anything that happens.</disclaimer>
+    <language>en</language>
+    <platform>all</platform>
+    <license>MIT</license>
+    <forum></forum>
+    <source></source>
+  </extension>
+</addon>
+
 <addon id="plugin.video.rt"
        name="Russia Today News"
        version="2.0.1"
@@ -2330,7 +2363,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.zen" version="1.4.30" name=" Zen" provider-name="Zen">
+<addon id="plugin.video.zen" version="1.4.32" name=" Zen" provider-name="Zen">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="script.zen.artwork" />
@@ -2348,7 +2381,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 		<disclaimer lang="en">The Author does not host or share any content, nor is affiliated with the content providers.</disclaimer>
 		<platform>all</platform>
 		<website>http://schism-tv.net</website>
-		<news>Update Providers</news>
+		<news>Update Providers - Ability to customize Base Url for major Scrapers</news>
         <assets>
 			<icon>icon.png</icon>
 			<fanart>fanart.jpg</fanart>
@@ -3391,6 +3424,42 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
+<addon
+  id="screensaver.pingpong"
+  version="1000"
+  name="Ping Pong"
+  provider-name="spiff">
+  <requires>
+    <c-pluff version="0.1"/>
+  </requires>
+  <extension
+    point="xbmc.ui.screensaver"
+    library_windows="screensaver.pingpong.dll"/>
+  <extension point="xbmc.addon.metadata">
+    <summary>Ping Pong screensaver</summary>
+    <description>Ping Pong screensaver</description>
+    <platform>windows</platform>
+  </extension>
+</addon>
+
+<addon
+  id="screensaver.shadertoy"
+  version="1000"
+  name="Shadertoy Screensavers"
+  provider-name="afedchin">
+  <requires>
+    <c-pluff version="0.1"/>
+  </requires>
+  <extension
+    point="xbmc.ui.screensaver"
+    library_windx="screensaver.shadertoy.dll"/>
+  <extension point="xbmc.addon.metadata">
+    <summary>Random screensavers from Shadertoy</summary>
+    <description>Random screensavers from Shadertoy</description>
+    <platform>windx</platform>
+  </extension>
+</addon>
+
 <addon id="script.1channel.themepak" version="0.0.6" name="1Channel Themepak" provider-name="tknorris">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
@@ -3417,11 +3486,11 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
-<addon id="script.aftershocknow.guide" name="Aftershock Now" version="1.1.1" provider-name="IDev">
+<addon id="script.aftershocknow.guide" name="Aftershock Now" version="1.1.3" provider-name="IDev">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0"/>
 		<import addon="script.module.simplejson" version="3.3.0"/>
-		<import addon="plugin.video.aftershock" version="4.3.0" optional="true"/>
+		<import addon="plugin.video.aftershock" version="4.2.4" optional="true"/>
 	</requires>
 	<extension point="xbmc.python.script" library="addon.py">
             <provides>executable</provides>

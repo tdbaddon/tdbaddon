@@ -105,6 +105,12 @@ class StreamsService(object):
                     stream = str(stream.replace("<channel>", channel.title.replace(" ","%20")))
                 if label == channel.title:
                     matches.append((id, label, stream))
+                    break
+                else :
+                    label = label.upper()
+                    channel.title = channel.title.upper()
+                    if (channel.title in label) or (label in channel.title):
+                        matches.append((id, label, stream))
 
         if len(matches) == 1:
             return matches[0][2]

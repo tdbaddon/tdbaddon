@@ -62,7 +62,7 @@
                     <info>ListItem.Icon</info>
                 </control>
                 <control type="label">
-                    <posx>100</posx>
+                    <posx>0</posx>
                     <posy>140</posy>
                     <width>200</width>
                     <height>40</height>
@@ -89,7 +89,7 @@
                     <info>ListItem.Icon</info>
                 </control>
                 <control type="label">
-                    <posx>100</posx>
+                    <posx>0</posx>
                     <posy>140</posy>
                     <width>180</width>
                     <height>40</height>

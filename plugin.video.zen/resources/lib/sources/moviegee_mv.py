@@ -23,7 +23,7 @@
 import re,urllib,urlparse,random,json
 from resources.lib.modules import control
 from resources.lib.modules import cleantitle
-from resources.lib.modules import client
+from resources.lib.modules import client, directstream
 
 class source:
     def __init__(self):
@@ -66,36 +66,40 @@ class source:
 			
     def sources(self, url, hostDict, hostprDict):
         try:
-			sources = []
-			if url == None: return sources
-			link = client.request(url)
-			data_id = re.compile('{"imdbId":"(.+?)","season":(\d+),"provider":"(.+?)","name":"(.+?)"}').findall(link)
-			for imdbid,s_id,provider_id,name_id in data_id:
-				print ("MVGEE SOURCES", imdbid,s_id,provider_id,name_id)
-				api_link = self.api_link % (imdbid,s_id,provider_id,name_id)
-				print ("MVGEE api_link", api_link)
-				html = client.request(api_link)
-				result = json.loads(html)
-				response = result['streams']
-				for items in response:
-					href = items['src'].encode('utf-8')
-					label = items['label'].encode('utf-8')
-					if "720" in label: quality = "HD"
-					elif "1080" in label: quality = "1080p"
-					else: quality = "SD"
-					# print ("MVGEE SOURCES", label, href)
-					href = href.replace(" ","")
-					sources.append({'source': 'gvideo', 'quality': quality, 'provider': 'Moviegee', 'url': href, 'direct': True, 'debridonly': False})
-			return sources
+            sources = []
+
+            if url == None: return sources
+            h = {'User-Agent': client.agent()}
+
+            r = client.request(url, headers=h, output='extended')
+
+            s = client.parseDOM(r[0], 'ul', attrs = {'class': 'episodes'})
+            s = client.parseDOM(s, 'a', ret='data.+?')
+            s = [client.replaceHTMLCodes(i).replace(':', '=').replace(',', '&').replace('"', '').strip('{').strip('}') for i in s]
+
+            for u in s:
+                try:
+                    url = '/io/1.0/stream?%s' % u
+                    url = urlparse.urljoin(self.base_link, url)
+
+                    r = client.request(url)
+                    r = json.loads(r)
+
+                    url = [i['src'] for i in r['streams']]
+
+                    for i in url:
+                        try: sources.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'provider': 'Moviegee', 'url': i, 'direct': True, 'debridonly': False})
+                        except: pass
+                except:
+                    pass
+
+            return sources
         except:
             return sources
 
 
+
     def resolve(self, url):
-        try:
-            url = client.request(url, output='geturl')
             if 'requiressl=yes' in url: url = url.replace('http://', 'https://')
             else: url = url.replace('https://', 'http://')
             return url
-        except:
-            return

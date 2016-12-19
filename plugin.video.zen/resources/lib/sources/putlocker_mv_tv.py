@@ -26,11 +26,12 @@ from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import cache
 from resources.lib.modules import directstream
+from resources.lib.modules import control
 
 
 class source:
     def __init__(self):
-        self.base_link = "http://cartoonhd.com"
+        self.base_link = control.setting('putlocker_base')
         self.social_lock = 'evokjaqbb8'
         self.search_link = '/api/v2/cautare/' + self.social_lock
 

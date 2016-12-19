@@ -443,7 +443,7 @@ msgstr ""
 #empty strings from id 30621 to 30699
 
 msgctxt "#30700"
-msgid "Multiple addons provide this channels.[CR]Choose one to watch the stream."
+msgid "Multiple addons provide this channel.[CR]Choose one to watch the stream."
 msgstr ""
 
 #empty strings from id 30701 to 30799

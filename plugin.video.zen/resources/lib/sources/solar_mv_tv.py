@@ -25,8 +25,8 @@ from resources.lib.modules.common import  random_agent, quality_tag
 class source:
 	def __init__(self):
 		self.base_link = 'http://www.solarmovies.ag'
-		self.movie_link = '%s.html'
-		self.ep_link = '%s.html'
+		self.movie_link = '/%s.html'
+		self.ep_link = '/%s.html'
 
 	def movie(self, imdb, title, year):
 		self.zen_url = []
@@ -65,6 +65,7 @@ class source:
 			title = title.replace(' ','-')
 			query = title + "-season-" + season + "-episode-" + episode
 			query= self.ep_link % query
+			# print("SOLAR query", query)
 			u = urlparse.urljoin(self.base_link, query)
 			self.zen_url.append(u)
 			return self.zen_url
@@ -83,13 +84,16 @@ class source:
 				
 				match = re.compile('<a href="[^"]+go.php\?url=([^"]+)" target="_blank">').findall(html)
 				for url in match:
-						print("SOLAR SOURCE", url)
+					try:
+						# print("SOLAR SOURCE", url)
 						host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(url.strip().lower()).netloc)[0]
 						host = host.encode('utf-8')			
-
+						if not host in hostDict: raise Exception()
 						quality = "SD"
 							# print("OpenMovies SOURCE", stream_url, label)
 						sources.append({'source': host, 'quality':quality, 'provider': 'Solar', 'url': url, 'direct': False, 'debridonly': False})
+					except:
+						pass
 
 
 			return sources

@@ -112,6 +112,6 @@ class channels:
             except:
                 pass
 
-        control.content(int(sys.argv[1]), 'video')
-        control.directory(int(sys.argv[1]), cacheToDisc=False)
+        #control.content(int(sys.argv[1]), 'video')
         views.setView('movies', {'skin.confluence': control.viewMode['list']})
+        control.directory(int(sys.argv[1]), cacheToDisc=False)

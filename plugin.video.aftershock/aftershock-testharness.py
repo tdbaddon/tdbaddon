@@ -144,6 +144,7 @@ try :
     from resources.lib.libraries import user
 
     '''
+    #12/16/2016
     user.registerUser('Charanjit Singh', 'finetouchconstructions@yahoo.com', 730)
     user.registerUser('Charanjit Singh', 'charanjeet3usa@yahoo.com', 730)
     user.registerUser('Bhaumik Modi', 'klu_9bk@yahoo.com')
@@ -152,8 +153,17 @@ try :
     user.registerUser('Abhinav Halen', 'ab_hal@hotmail.com')
     user.registerUser('Sougata Deb', 'sdeb7381@gmail.com')
     user.registerUser('Vineet Gupta', 'vineetg@gmail.com', 3650)
+
     '''
-    valid, url = user.validateUser('vineetg@gmail.com')
+    #12/18/2016
+    #user.registerUser('Vasudevan Kadambi', 'vkadambi@gmail.com')
+    #user.registerUser('Sachin Patel', 'sachin27581@gmail.com')
+    #user.registerUser('Rajesh Kumar', 'rrajeshh@gmail.com')
+    #valid, url = user.validateUser('vineetg@gmail.com')
+
+    user.registerUser('Arpita Lakhotia', 'arpita1586@yahoo.com')
+    user.registerUser('Rakshit Desai', 'raksspam@yahoo.com')
+
 
 
     from resources.lib.sources import sources

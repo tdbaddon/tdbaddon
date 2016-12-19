@@ -25,12 +25,12 @@ from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import cache
 from resources.lib.modules import directstream
-
+from resources.lib.modules import control
 
 class source:
     def __init__(self):
         testurl = "http://flixanity.watch"
-        self.base_link = "http://flixanity.watch"
+        self.base_link = control.setting('movieshd_base')
         self.social_lock = 'evokjaqbb8'
         self.search_link = '/api/v1/cautare/' + self.social_lock
 
