@@ -80,6 +80,29 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 </addon>
 
+<addon id="plugin.audio.nrjradio" version="1.0.2" name="NRJ Radio" provider-name="lambda">
+	<requires>
+		<import addon="xbmc.python" version="2.24.0" />
+		<import addon="script.module.lamlib" version="1.0.0" />
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="addon.py">
+		<provides>audio</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">NRJ Radio addon for Kodi</summary>
+		<description lang="en">Hit music only!</description>
+		<disclaimer lang="en">This addon is not published nor endorsed by nrj.fr</disclaimer>
+		<license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
+		<source>https://github.com/lambda81/plugin.audio.nrjradio</source>
+		<website>http://www.nrj.fr/webradios/</website>
+		<news>- Fixed issue with streams</news>
+		<platform>all</platform>
+		<language></language>
+		<forum></forum>
+		<email></email>
+	</extension>
+</addon>
+
 <addon id="plugin.audio.radio_de" name="Radio" version="2.3.1" provider-name="Tristan Fischer (sphere@dersphere.de)">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
@@ -1423,12 +1446,13 @@ For DMCA Reports, please send message to our FB page.
   </extension>
 </addon>
 
-<addon id="plugin.video.mdm4u" name="M4U" version="1.1.7" provider-name="Mucky Duck">
+<addon id="plugin.video.mdm4u" name="M4U" version="1.1.8" provider-name="Mucky Duck">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.addon.common" />
 	<import addon="script.module.metahandler" version="2.5.1"/>
 	<import addon="script.module.requests" />
+	<import addon="script.module.muckys.common"/>
 	<import addon="repository.mdrepo" />
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
@@ -3506,6 +3530,38 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
         <forum></forum>
         <website>http://www.facebook.com/aftershockpy</website>
 		<email>aftershockpy@gmail.com</email>
+	</extension>
+</addon>
+
+<addon id="script.module.lamlib" name="lambda Library Routines" version="1.0.0" provider-name="lambda">
+	<requires>
+		<import addon="xbmc.python" version="2.24.0"/>
+	</requires>
+	<extension point="xbmc.python.module" library="lib" />
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">Helper module</summary>
+		<description lang="en">Helper module for all kind of stuff</description>
+		<platform>all</platform>
+		<license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
+		<source>https://github.com/lambda81/script.module.lamlib</source>
+	</extension>
+</addon>
+
+<addon id="script.module.muckys.common" name="Muckys Common Libraries" version="1.0.0" provider-name="Mucky Duck">
+	<requires>
+		<import addon="xbmc.python" version="2.1.0" />
+	</requires>
+	<extension point="xbmc.python.module" library="lib" />
+	<extension point="xbmc.addon.metadata">
+		<platform>all</platform>
+		<summary lang="en">Collection of modules used by Mucky Ducks Addons</summary>
+		<description lang="en">Collection of modules used by Mucky Ducks Addons
+beautifulsoup4 v4.5.1 from https://pypi.python.org/pypi/beautifulsoup4
+cfscrape 1.6.8 from https://github.com/Anorov/cloudflare-scrape
+Js2Py v0.40 from https://github.com/PiotrDabkowski/Js2Py
+jsbeautifier v1.6.4 from https://pypi.python.org/pypi/jsbeautifier
+six v1.10.0 from https://pypi.python.org/pypi/six</description>
+		<license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
 	</extension>
 </addon>
 

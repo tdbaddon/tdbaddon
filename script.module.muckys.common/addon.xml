@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="script.module.muckys.common" name="Muckys Common Libraries" version="1.0.0" provider-name="Mucky Duck">
+	<requires>
+		<import addon="xbmc.python" version="2.1.0" />
+	</requires>
+	<extension point="xbmc.python.module" library="lib" />
+	<extension point="xbmc.addon.metadata">
+		<platform>all</platform>
+		<summary lang="en">Collection of modules used by Mucky Ducks Addons</summary>
+		<description lang="en">Collection of modules used by Mucky Ducks Addons
+beautifulsoup4 v4.5.1 from https://pypi.python.org/pypi/beautifulsoup4
+cfscrape 1.6.8 from https://github.com/Anorov/cloudflare-scrape
+Js2Py v0.40 from https://github.com/PiotrDabkowski/Js2Py
+jsbeautifier v1.6.4 from https://pypi.python.org/pypi/jsbeautifier
+six v1.10.0 from https://pypi.python.org/pypi/six</description>
+		<license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+	</extension>
+</addon>

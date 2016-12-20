@@ -1,0 +1,9 @@
+######## v1.0.0 ########
+
+- Initial Release
+- Added beautifulsoup4 v4.5.1 from https://pypi.python.org/pypi/beautifulsoup4
+- Added jsbeautifier v1.6.4 from https://pypi.python.org/pypi/jsbeautifier
+- Added cfscrape 1.6.8 from https://github.com/Anorov/cloudflare-scrape
+- Added Js2Py v0.40 from https://github.com/PiotrDabkowski/Js2Py
+- Added six v1.10.0 from https://pypi.python.org/pypi/six
+

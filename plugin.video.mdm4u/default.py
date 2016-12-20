@@ -2,6 +2,7 @@ import sys,urllib,re,xbmcplugin,xbmcgui,xbmc,xbmcaddon,os,xbmcvfs,shutil
 import requests
 from addon.common.addon import Addon
 from metahandler import metahandlers
+from bs4 import BeautifulSoup as bs
 
 #M4U Add-on Created By Mucky Duck (3/2016)
 
@@ -133,9 +134,18 @@ def EPIS(name,url,iconimage):
 
 def LINK(name,url,iconimage):
         link = OPEN_URL(url)
-        addon.log(url)
-        try:
+        
+        '''try:
                 request_url = re.findall('<h3 class="h3-detail"> <a  href="(.*?)">Watch <', str(link), re.I|re.DOTALL)[0]
+                link = OPEN_URL(request_url)
+        except: pass'''
+        try:
+                soup = bs(link, "html.parser")
+                a = soup.find('h3',class_='h3-detail')
+                b = a.find('a', href=True)
+                addon.log('#############################b='+str(b))
+                request_url = str(b["href"])
+                addon.log('#############################b2='+str(b["href"]))
                 link = OPEN_URL(request_url)
         except: pass
         try:
