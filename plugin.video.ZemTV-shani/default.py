@@ -1047,7 +1047,10 @@ def getFastCats():
     
     jsondata=None
     try:
-        jsondata=json.loads(link)
+        try:
+            jsondata=json.loads(link)
+        except:
+            jsondata=json.loads(link.split(']}')[0]+']}')
         storeCacheData(base64.b64encode(link),fname)
     except:
         print 'getFastData file saving error'
@@ -3578,6 +3581,10 @@ def getIpBoxChannels(url,forSports=False, sort=True):
                 if '|' in u:
                     u,fileheaders,playheaders=u.split('|')
                     u=u+'|'+fileheaders
+                    if '[gettext]' in u:
+                        print 'in gettext',u
+                        u=getUrl(u.replace('[gettext]',''))
+                        
                     header_in_page=playheaders.split('&')
                     headers=[]
                     for h in header_in_page:
@@ -5002,7 +5009,10 @@ def getFastTVPage(cat):
     fastData=getFastData()   
     headers=[('User-Agent',getFastUA()),('Authorization','Basic %s'%base64.b64encode(fastData["DATA"][0]["Password"]))]
     jsondata=getUrl(base64.b64decode('aHR0cDovL3N3aWZ0c3RyZWFtei5jb20vU3dpZnRTdHJlYW0vYXBpLnBocD9jYXRfaWQ9JXM=')%cat,headers=headers)
-    jsondataobj=json.loads(jsondata)
+    try:
+        jsondataobj=json.loads(jsondata)
+    except: 
+        jsondataobj=json.loads(jsondata.split(']}')[0]+']}')
     try:
         storeCacheData(jsondata,fname)
     except:

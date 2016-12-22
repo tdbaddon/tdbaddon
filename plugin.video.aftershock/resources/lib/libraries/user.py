@@ -23,11 +23,15 @@ import re,hashlib,time, base64
 from fileFetcher import *
 import control
 import cache
+import client
 
 try:
     from sqlite3 import dbapi2 as database
 except:
     from pysqlite2 import dbapi2 as database
+
+INVALID_MESSAGE_URL = 'https://offshoregit.com/vineegu/aftershock-repo/invalid.txt'
+EXPIRED_MESSAGE_URL = 'https://offshoregit.com/vineegu/aftershock-repo/expired.txt'
 
 def validateUser(emailAddress=None, showRegisteration=False):
     try:
@@ -35,22 +39,29 @@ def validateUser(emailAddress=None, showRegisteration=False):
         if (emailAddress == None or emailAddress == ''):
             emailAddress = control.setting('user.email')
         if (emailAddress == None or emailAddress == '') and showRegisteration:
-            control.dialog.ok(control.addonInfo('name'), "User not registered. Please provide the email address used to make the donation")
+            control.dialog.ok(control.addonInfo('name'), "[COLOR red]User not registered.[/COLOR] [CR]Please provide the email address used to make the donation")
             t = control.lang(30275).encode('utf-8')
             k = control.keyboard('', t) ; k.doModal()
             emailAddress = k.getText() if k.isConfirmed() else None
         elif (emailAddress == None or emailAddress == ''):
             return (control.INVALID, url)
 
+        logger.debug('Validating User : %s' % emailAddress, __name__)
         valid = cache.get(validate, 168, emailAddress, table='live_cache')
-        if valid <= 0 :
+        if valid == None:
+            result = client.request(INVALID_MESSAGE_URL)
+            control.dialog.ok(control.addonInfo('name'), result)
+            control.setSetting('user.email', '')
+            return (control.INVALID, '')
+        elif valid <= 0 :
             return valid, ''
         url = base64.b64decode('aHR0cHM6Ly9vZmZzaG9yZWdpdC5jb20vdmluZWVndS9hZnRlcnNob2NrLXJlcG8vZ3VpZGVzLw==')
         return (valid, url)
 
     except Exception as e:
         logger.error(e)
-        control.dialog.ok(control.addonInfo('name'), "User not registered. Please make a donation (min. $5) to aftershockpy@gmail.com via PayPal to get access !!")
+        result = client.request(INVALID_MESSAGE_URL)
+        control.dialog.ok(control.addonInfo('name'), result)
         control.setSetting('user.email', '')
         return (control.INVALID, url)
 
@@ -70,14 +81,18 @@ def validate(emailAddress):
 
     dbcur.execute("SELECT * FROM af_users WHERE email = '%s'" % (emailMd5))
     match = dbcur.fetchone()
-
     userName = match[0]
     t1 = int(match[3])
     t2 = int(time.time())
     expired = t1 - t2
     expiredDays = expired / (3600 * 24)
-    if expired < 0 :
-        control.dialog.ok(control.addonInfo('name'), "Your access has expired. Please make a donation (min. $5) to aftershockpy@gmail.com via PayPal to get access !!")
+    if expired < 0:
+        try:
+            result = client.request(EXPIRED_MESSAGE_URL)
+        except:
+            import traceback
+            traceback.print_exc()
+        control.dialog.ok(control.addonInfo('name'), result)
         return control.EXPIRED
     else:
         if control.setting('user.email') == '':

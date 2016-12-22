@@ -1,5 +1,5 @@
-# Addon Name: LiveLite
-# Addon id: plugin.video.LiveLite
+# Addon Name: Greek TV
+# Addon id: plugin.video.greek.tv
 # Addon Provider: Thgiliwt
 msgid ""
 msgstr ""
@@ -43,12 +43,12 @@ msgid "Sort Method"
 msgstr "Μεθοδος Ταξινόμησης"
 
 msgctxt "#30008"
-msgid ""
-msgstr ""
+msgid "Use non-http m3u playlist mirror"
+msgstr "Χρήση ανασφαλούς συνδέσμου της λίστας m3u"
 
 msgctxt "#30009"
-msgid ""
-msgstr ""
+msgid "Use setting below in case addon fails to download playlist"
+msgstr "Κάνε χρήση της παρακάτω ρύθμισης σε περίπτωση αποτυχίας φόρτωσης της m3u λίστας"
 
 msgctxt "#30010"
 msgid ""
@@ -71,8 +71,8 @@ msgid ""
 msgstr ""
 
 msgctxt "#30015"
-msgid "Group switcher, current group '{0}'"
-msgstr "Εναλλάκτης ομάδων, τρέχουσα ομάδα '{0}'"
+msgid "Group '{0}'"
+msgstr "Ομάδα '{0}'"
 
 msgctxt "#30016"
 msgid "ALL"

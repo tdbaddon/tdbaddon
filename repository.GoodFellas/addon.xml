@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="repository.goodfellas" name="GoodFellas" version="1.1" provider-name="GoodFellas">
+<addon id="repository.goodfellas" name="GoodFellas" version="1.5" provider-name="GoodFellas">
 	<extension point="xbmc.addon.repository" name="Good Fellas">
 		<info compressed="false">http://www.goodfellasteam.com/Plugins/addons.xml</info>
 		<checksum>http://www.goodfellasteam.com/Plugins/addons.xml.md5</checksum>

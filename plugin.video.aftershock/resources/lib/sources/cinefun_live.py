@@ -56,7 +56,9 @@ class source:
                 channelList = {}
                 for channel in result:
                     title = channel['Title']
-                    title = cleantitle.live(title)
+                    from resources.lib.libraries import livemeta
+                    names = cache.get(livemeta.source().getLiveNames, 200, table='live_cache')
+                    title = cleantitle.live(title, names)
                     if title == 'SKIP':
                         continue
                     icon = channel['ThumbnailURL']

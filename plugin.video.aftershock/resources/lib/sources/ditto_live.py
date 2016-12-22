@@ -64,7 +64,9 @@ class source:
                 channelList = {}
                 for url, title, icon in channels:
                     title = title.replace("&amp;","And")
-                    title = cleantitle.live(title)
+                    from resources.lib.libraries import livemeta
+                    names = cache.get(livemeta.source().getLiveNames, 200, table='live_cache')
+                    title = cleantitle.live(title, names)
                     if title == 'SKIP':
                         continue
                     if 'temple' in title.lower():

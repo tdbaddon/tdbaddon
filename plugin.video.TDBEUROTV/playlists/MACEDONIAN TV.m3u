@@ -14,7 +14,7 @@
 0
 
 #EXTINF:0,Alfa 
-http://37.187.158.217:8081/alfa/tvalfa/playlist.m3u8
+0
 
 #EXTINF:0,BTR 
 0
@@ -36,6 +36,9 @@ mmsh://62.162.58.55/TVIris
 
 #EXTINF:0,K1 Veles
 0
+
+#EXTINF:0,K3 Kumanovo
+http://141.136.14.18/kanal1/kanal1_1500/index.m3u8
 
 #EXTINF:0,Kanal 3 
 0
@@ -89,20 +92,16 @@ http://51.255.92.232:1935/sitel/siteI/playlist.m3u8
 0
 
 #EXTINF:0,Sonce TV 
-http://92.53.27.201:10000/
+0
 
 #EXTINF:0,Sutel TV 
 0
 
 #EXTINF:0,Telma 
-http://37.187.158.217:8081/telma/telmatv/playlist.m3u8
-
+0
 
 #EXTINF:0,TV 21
 0
-
-#EXTINF:0,TV+ Kumanovo
-http://141.136.14.18/kanal1/kanal1_1500/index.m3u8
 
 #EXTINF:0,Ultra Tetovo
 0

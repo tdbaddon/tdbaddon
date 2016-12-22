@@ -40,7 +40,7 @@ http://89.163.140.122:86/live/freetv/user5428/9.ts|User-Agent=Lavf/56.15.102
 #EXTINF:0,Belle Amie TV
 0
 
-#EXTINF:0,BN Music
+#EXTINF:0,BN Sat
 http://89.163.140.122:86/live/freetv/user5428/148.ts|User-Agent=Lavf/56.15.102 
 
 #EXTINF:0,BN Sat
@@ -49,23 +49,20 @@ http://89.163.140.122:86/live/freetv/user5428/155.ts|User-Agent=Lavf/56.15.102
 #EXTINF:0,Bosna TV
 http://89.163.140.122:86/live/freetv/user5428/13.ts|User-Agent=Lavf/56.15.102 
 
+#EXTINF:0,Bujrum TV
+http://89.163.140.122:86/live/freetv/user5428/132.ts|User-Agent=Lavf/56.15.102
+
 #EXTINF:0,CETV 
 0
 
 #EXTINF:0,CMC 
 0
 
-#EXTINF:0,DM
-http://89.163.140.122:86/live/freetv/user5428/154.ts|User-Agent=Lavf/56.15.102 
-
 #EXTINF:0,DMC
 0
 
 #EXTINF:0,DM SAT 
-0
-
-#EXTINF:0,DOMA
-http://89.163.140.122:86/live/freetv/user5428/147.ts|User-Agent=Lavf/56.15.102 
+http://89.163.140.122:86/live/freetv/user5428/154.ts|User-Agent=Lavf/56.15.102 
 
 #EXTINF:0,DUGA 
 http://w10.streamgb.com:1935/dugaplus/dugaplus/playlist.m3u8
@@ -73,20 +70,11 @@ http://w10.streamgb.com:1935/dugaplus/dugaplus/playlist.m3u8
 #EXTINF:0,Elektrika TV
 0
 
-#EXTINF:0,Eurosport 1
-http://89.163.140.122:86/live/freetv/user5428/135.ts|User-Agent=Lavf/56.15.102 
-
-#EXTINF:0,Eurosport 2
-http://89.163.140.122:86/live/freetv/user5428/134.ts|User-Agent=Lavf/56.15.102
-
 #EXTINF:0,Grand 
 http://89.163.140.122:86/live/freetv/user5428/128.ts|User-Agent=Lavf/56.15.102 
 
 #EXTINF:0,Face
 http://89.163.140.122:86/live/freetv/user5428/146.ts|User-Agent=Lavf/56.15.102 
-
-#EXTINF:0,Folk TV Bujrum
-http://89.163.140.122:86/live/freetv/user5428/132.ts|User-Agent=Lavf/56.15.102
 
 #EXTINF:0,Happy 
 http://89.163.140.122:86/live/freetv/user5428/127.ts|User-Agent=Lavf/56.15.102 
@@ -151,7 +139,7 @@ http://n21.joj.sk/hls/jojplus-540.m3u8
 #EXTINF:0,KCN 1
 0
 
-#EXTINF:0,KlasikTV
+#EXTINF:0,Klasik TV
 http://89.163.140.122:86/live/freetv/user5428/144.ts|User-Agent=Lavf/56.15.102 
 
 #EXTINF:0,Konyha TV 
@@ -248,7 +236,7 @@ http://89.163.140.122:86/live/freetv/user5428/88.ts|User-Agent=Lavf/56.15.102
 0
 
 #EXTINF:0,Sonce TV 
-http://92.53.27.201:10000/
+0
 
 #EXTINF:0,SOS Kanal 
 http://edge-de-01.maksnet.tv/soskanal/soskanal/playlist.m3u8

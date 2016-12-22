@@ -244,3 +244,22 @@ elif action == 'openSettings':
 elif action == 'clearCache':
     from resources.lib.indexers import navigator
     navigator.navigator().clearCache(url)
+
+elif action == 'startLiveProxy':
+    try :
+        import os
+        from resources.lib.libraries import control
+
+        libPath = os.path.join(control.addonInfo('path'), 'resources', 'lib', 'libraries')
+        serverPath = os.path.join(libPath, 'localproxy.py')
+        try:
+            import requests
+            requests.get('http://127.0.0.1:29000/version')
+            proxyIsRunning = True
+        except:
+            proxyIsRunning = False
+        if not proxyIsRunning:
+            xbmc.executebuiltin('RunScript(' + serverPath + ')')
+    except:
+        import traceback
+        traceback.print_exc()

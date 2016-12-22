@@ -60,27 +60,52 @@ class source:
                 self.base_link = json.loads(result)
                 '''
                 channelList = {}
-                result = client.request(self.base_location)
+                if control.setting('livelocal') == 'true' :
+                    self.base_location = os.path.join(control.dataPath, 'iptv_base.local')
+                    file = open(self.base_location)
+                    result = file.read()
+                    file.close()
+                else:
+                    result = client.request(self.base_location)
+
                 self.base_link = json.loads(result)
                 for item in self.base_link:
                     try:
+                        enabled = item['enabled']
+                        if enabled == "false" :
+                            logger.debug('Skipping %s' % item['link'], __name__)
+                            continue
                         type = item['source']
                         link = item['link']
+                        regex = item['regex']
                         headers = link.rsplit('|', 1)[1]
                         link = link.rsplit('|', 1)[0]
                     except: headers = None
 
-                    reg = '#EXTINF:-1,(Yupp|in):(.*)\s(.*)'
+                    '''
+                    if control.setting('livelocal') == 'true' :
+                        self.base_location = os.path.join(control.dataPath, 'test_base.local')
+                        file = open(self.base_location)
+                        result = file.read()
+                        file.close()
+                    else:
+                        result = client.request(link, timeout=5)
+                    '''
 
+                    logger.debug('Fetching %s' % link, __name__)
                     result = client.request(link, timeout=5)
+
                     if result == None :
                         continue
+
                     result = result.replace('\r', '')
 
-                    result = re.findall(reg, result, re.IGNORECASE)
+                    result = re.findall(regex, result, re.IGNORECASE)
 
                     for source, title, cUrl in result:
-                        title = cleantitle.live(title)
+                        from resources.lib.libraries import livemeta
+                        names = cache.get(livemeta.source().getLiveNames, 200, table='live_cache')
+                        title = cleantitle.live(title, names)
                         if title == 'SKIP':
                             continue
                         if not headers == None:

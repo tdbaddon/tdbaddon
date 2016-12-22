@@ -91,7 +91,10 @@ def constructor():
     compiled_list = []
     groups = []
 
-    text = client.request('https://raw.githubusercontent.com/free-greek-iptv/greek-iptv/master/android.m3u')
+    if addon.getSetting('mirror') == 'true':
+        text = client.request('http://tv.x-mad.com/android.m3u')
+    else:
+        text = client.request('https://raw.githubusercontent.com/free-greek-iptv/greek-iptv/master/android.m3u')
 
     result = text.replace('\r\n', '\n')
     items = re.compile('group-title="(.*?)".*?tvg-logo="(.*?)",(.*?)$\n(.*?)$', re.U + re.M).findall(result)
@@ -109,7 +112,7 @@ def constructor():
 
     trimmed_groups = list(ordereddict.OrderedDict.fromkeys(groups))
 
-    alt_strings = ['BUP']
+    alt_strings = [' BUP']
 
     compiled_list_no_bup = [item for item in compiled_list if not any(alt in item['title'] for alt in alt_strings)]
 
@@ -128,107 +131,107 @@ def switcher():
     if choices == 0:
         addon.setSetting('group', 'ΟΛΑ'.decode('utf-8'))
         execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
+        xbmc.sleep(200)
         execute('Container.Refresh')
     elif choices == 1:
         addon.setSetting('group', (groups.pop(1)))
         execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
+        xbmc.sleep(200)
         execute('Container.Refresh')
     elif choices == 2:
         addon.setSetting('group', (groups.pop(2)))
         execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
+        xbmc.sleep(200)
         execute('Container.Refresh')
     elif choices == 3:
         addon.setSetting('group', (groups.pop(3)))
         execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
+        xbmc.sleep(200)
         execute('Container.Refresh')
     elif choices == 4:
         addon.setSetting('group', (groups.pop(4)))
         execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
+        xbmc.sleep(200)
         execute('Container.Refresh')
     elif choices == 5:
         addon.setSetting('group', (groups.pop(5)))
         execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
+        xbmc.sleep(200)
         execute('Container.Refresh')
     elif choices == 6:
         addon.setSetting('group', (groups.pop(6)))
         execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
+        xbmc.sleep(200)
         execute('Container.Refresh')
     elif choices == 7:
         addon.setSetting('group', (groups.pop(7)))
         execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
+        xbmc.sleep(200)
         execute('Container.Refresh')
     elif choices == 8:
         addon.setSetting('group', (groups.pop(8)))
         execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
+        xbmc.sleep(200)
         execute('Container.Refresh')
     elif choices == 9:
         addon.setSetting('group', (groups.pop(9)))
         execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
+        xbmc.sleep(200)
         execute('Container.Refresh')
     elif choices == 10:
         addon.setSetting('group', (groups.pop(10)))
         execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
+        xbmc.sleep(200)
         execute('Container.Refresh')
     elif choices == 11:
         addon.setSetting('group', (groups.pop(11)))
         execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
+        xbmc.sleep(200)
         execute('Container.Refresh')
     elif choices == 12:
         addon.setSetting('group', (groups.pop(12)))
         execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
+        xbmc.sleep(200)
         execute('Container.Refresh')
     elif choices == 13:
         addon.setSetting('group', (groups.pop(13)))
         execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
+        xbmc.sleep(200)
         execute('Container.Refresh')
     elif choices == 14:
         addon.setSetting('group', (groups.pop(14)))
         execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
+        xbmc.sleep(200)
         execute('Container.Refresh')
     elif choices == 15:
         addon.setSetting('group', (groups.pop(15)))
         execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
+        xbmc.sleep(200)
         execute('Container.Refresh')
     elif choices == 16:
         addon.setSetting('group', (groups.pop(16)))
         execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
+        xbmc.sleep(200)
         execute('Container.Refresh')
     elif choices == 17:
         addon.setSetting('group', (groups.pop(17)))
         execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
+        xbmc.sleep(200)
         execute('Container.Refresh')
     elif choices == 18:
         addon.setSetting('group', (groups.pop(18)))
         execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
+        xbmc.sleep(200)
         execute('Container.Refresh')
     elif choices == 19:
         addon.setSetting('group', (groups.pop(19)))
         execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
+        xbmc.sleep(200)
         execute('Container.Refresh')
     elif choices == 20:
         addon.setSetting('group', (groups.pop(20)))
         execute('Dialog.Close(busydialog)')
-        xbmc.sleep(500)
+        xbmc.sleep(200)
         execute('Container.Refresh')
     else:
         execute('Dialog.Close(busydialog)')

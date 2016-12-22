@@ -111,6 +111,8 @@ class FileFetcher(object):
                     logger.debug('file %s was downloaded' % self.filePath, __name__)
                 else:
                     retVal = self.FETCH_ERROR
+            else:
+                logger.debug('not fetching : %s' % self.fileUrl,__name__)
         except:
             import traceback
             traceback.print_exc()

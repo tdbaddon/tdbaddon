@@ -88,6 +88,7 @@ class navigator:
         elif url == 'live' :
             from resources.lib.libraries import cache
             control.deleteAll('.json')
+            control.delete('user.db')
             cache.clear(['rel_live','rel_logo'], control.sourcescacheFile)
             cache.clear(['live_cache'])
         elif url == 'meta':

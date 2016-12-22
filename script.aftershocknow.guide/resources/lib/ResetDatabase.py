@@ -32,12 +32,13 @@ import xbmcaddon
 def deleteDB():
     try:
         xbmc.log("[script.aftershocknow.guide] Deleting database...", xbmc.LOGDEBUG)
-        dbPath = xbmc.translatePath(xbmcaddon.Addon(id = 'script.aftershocknow.guide').getAddonInfo('profile'))
-        dbPath = os.path.join(dbPath, 'source.db')
+        basePath = xbmc.translatePath(xbmcaddon.Addon(id = 'script.aftershocknow.guide').getAddonInfo('profile'))
 
-        delete_file(dbPath)
+        for db in ['source.db','cache.db','user.db']:
+            dbPath = os.path.join(basePath, db)
+            delete_file(dbPath)
 
-        passed = not os.path.exists(dbPath)
+        passed = not os.path.exists(os.path.join(basePath, 'source.db'))
 
         if passed:
             xbmc.log("[script.aftershocknow.guide] Deleting database...PASSED", xbmc.LOGDEBUG)

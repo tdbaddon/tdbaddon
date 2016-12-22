@@ -26,12 +26,13 @@ from resources.lib.modules import client
 from resources.lib.modules import cache
 from resources.lib.modules import directstream
 from resources.lib.modules import control
-
+custom_url = control.setting('onemovies_custom')
 
 class source:
     def __init__(self):
         self.domains = ['123movies.to', '123movies.ru']
-        self.base_link = control.setting('onemovies_base')
+        if custom_url == 'true': self.base_link = control.setting('onemovies_base')
+        else: self.base_link = 'http://123movies.gs'
         self.search_link = '/ajax/suggest_search'
         self.info_link = '/ajax/movie_load_info/%s'
         self.server_link = '/ajax/get_episodes/%s'

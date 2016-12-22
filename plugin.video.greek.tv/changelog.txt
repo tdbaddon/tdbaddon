@@ -1,3 +1,7 @@
+1.0.6 (20-12-2016)
+- Added a non-https mirror option
+  > Hourly updates
+
 1.0.5.2 (02-12-2016)
 - More fixes in addon.xml
 

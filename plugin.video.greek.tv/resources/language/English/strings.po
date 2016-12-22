@@ -43,12 +43,12 @@ msgid "Sort Method"
 msgstr "Sort Method"
 
 msgctxt "#30008"
-msgid ""
-msgstr ""
+msgid "Use non-http m3u playlist mirror"
+msgstr "Use non-http m3u playlist mirror"
 
 msgctxt "#30009"
-msgid ""
-msgstr ""
+msgid "Use setting below in case addon fails to download playlist"
+msgstr "Use setting below in case addon fails to download playlist"
 
 msgctxt "#30010"
 msgid ""
@@ -71,8 +71,8 @@ msgid ""
 msgstr ""
 
 msgctxt "#30015"
-msgid "Group switcher, current group '{0}'"
-msgstr "Group switcher, current group '{0}'"
+msgid "Group '{0}'"
+msgstr "Group '{0}'"
 
 msgctxt "#30016"
 msgid "ALL"

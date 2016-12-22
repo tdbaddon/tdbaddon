@@ -18,7 +18,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
-
+import re
 from resources.lib.libraries import client
 from resources.lib.libraries import logger
 from resources.lib.libraries import cache
@@ -55,11 +55,15 @@ class source:
                 url = 'http://swiftstreamz.com/SwiftStream/api.php?cat_id=2' #2,8
 
                 result = client.request(url, headers=headers)
-                result = json.loads(result)['LIVETV']
+
+                result = re.compile("{\"LIVETV\":(.+?)}{\"LIVETV\"").findall(result)
+                result = json.loads(result[0])
                 channelList = {}
                 for channel in result:
                     title = channel['channel_title']
-                    title = cleantitle.live(title)
+                    from resources.lib.libraries import livemeta
+                    names = cache.get(livemeta.source().getLiveNames, 200, table='live_cache')
+                    title = cleantitle.live(title, names)
                     if title == 'SKIP':
                         continue
                     icon = channel['channel_thumbnail']
@@ -76,8 +80,6 @@ class source:
                 self.list = liveParser.parseFile(decode=False)
             return (generateJSON, self.list)
         except:
-            import traceback
-            traceback.print_exc()
             pass
 
     def getSwiftUserAgent(self):
@@ -113,7 +115,7 @@ class source:
             auth='Basic %s'%base64.b64encode(result["DATA"][0]["Password"])
 
         if postUrl:
-            return cache.get(self.getSwiftAuthToken, 1, postUrl, auth, stripping, table='live_cache')
+            return self.getSwiftAuthToken(postUrl, auth, stripping)
         return url
 
     def getSwiftAuthToken(self, postUrl, auth, stripping):

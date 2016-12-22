@@ -18,8 +18,15 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
-
-import sys,pkgutil,re,json,urllib,urlparse,datetime,time, random
+import datetime
+import json
+import pkgutil
+import random
+import re
+import sys
+import time
+import urllib
+import urlparse
 
 try: import xbmc
 except: pass
@@ -596,6 +603,7 @@ class sources:
         except Exception as e:
             logger.error('(%s) Exception Live sources : %s' % (call.__class__, e.args))
             pass
+
     def getLivePoster(self, source):
         try:
             dbcon = database.connect(self.sourceFile)
@@ -618,9 +626,9 @@ class sources:
                 update = True
 
             if update == True:
-                from resources.lib.sources import live_logo
+                from resources.lib.sources import livemeta
 
-                postersList = cache.get(live_logo.source().getLivePosters, 200, table='live_cache')
+                postersList = cache.get(livemeta.source().getLivePosters, 200, table='live_cache')
                 try :
                     poster_url = postersList[source]
                 except:
