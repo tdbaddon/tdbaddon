@@ -25,7 +25,6 @@ from resources.lib.libraries import control
 from resources.lib.libraries import views
 from resources.lib.libraries import logger
 from resources.lib.libraries import analytics
-from resources.lib.libraries import user
 
 artPath = control.artPath() ; addonFanart = control.addonFanart()
 
@@ -52,11 +51,6 @@ class navigator:
     def root(self):
 
         self.addDirectoryItem(30860, 'movieLangNavigator', 'movies.png','DefaultMovies.png')
-        email = control.setting('user.email')
-        valid, url = user.validateUser(email, False)
-        if valid >= 0:
-            self.addDirectoryItem(90114, 'desiLiveNavigator', 'tv-live.png','DefaultMovies.png')
-        self.addDirectoryItem(90115, 'liveEPGNavigator', 'tv-epg.png','DefaultMovies.png')
         self.addDirectoryItem(30861, 'desiTVNavigator', 'tv-vod.png','DefaultMovies.png')
 
         self.addDirectoryItem(90116, 'openSettings&query=0.0', 'settings.png', 'DefaultMovies.png')
@@ -75,7 +69,6 @@ class navigator:
         if url == None:
             self.addDirectoryItem(90124, 'clearCache&url=main', 'clearcache.png','DefaultMovies.png')
             self.addDirectoryItem(90125, 'clearCache&url=providers', 'clearcache.png','DefaultMovies.png')
-            self.addDirectoryItem(90126, 'clearCache&url=live', 'clearcache.png','DefaultMovies.png')
             self.addDirectoryItem(90127, 'clearCache&url=meta', 'clearcache.png','DefaultMovies.png')
 
             self.endDirectory(viewMode='list')
@@ -85,12 +78,6 @@ class navigator:
         elif url == 'providers':
             from resources.lib.libraries import cache
             cache.clear(['rel_src', 'rel_url'], control.sourcescacheFile)
-        elif url == 'live' :
-            from resources.lib.libraries import cache
-            control.deleteAll('.json')
-            control.delete('user.db')
-            cache.clear(['rel_live','rel_logo'], control.sourcescacheFile)
-            cache.clear(['live_cache'])
         elif url == 'meta':
             from resources.lib.libraries import cache
             cache.clear(['meta', 'meta_imdb'], control.metacacheFile)
@@ -119,12 +106,6 @@ class navigator:
             index_provider = 'hdbuffer'
             self.addDirectoryItem(90108, 'movies&url=HD&provider=%s_mv&lang=%s' % (index_provider, lang), 'dvd2hd.png', 'DefaultMovies.png')
         self.endDirectory()
-
-    def desiLiveTV(self):
-        from resources.lib.indexers import livetv
-        email = control.setting('user.email')
-        if user.validateUser(email, True):
-            livetv.channels.get()
 
     def desiTV(self):
         listItems = []

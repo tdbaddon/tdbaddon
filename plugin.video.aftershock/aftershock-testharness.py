@@ -25,7 +25,7 @@ try :
     params = {'action': 'movies', 'url': 'http://www.imdb.com/search/title?title_type=feature,tv_movie&num_votes=100,&production_status=released&languages=hi&count=40&start=1&sort=release_date,desc&start=1'}
     params = {'action': 'play', 'content': 'live', 'name': 'ABP NEWS'}
 
-    params = {'action': 'play', 'content': 'live', 'name': '& PICTURE HD'}
+    params = {'action': 'play', 'content': 'live', 'name': '& PICTURES HD'}
     #params = {'tmdb': '0', 'episode': '0', 'name': '12th December 2016', 'title': '12th December 2016', 'tvdb': '0', 'season': '10', 'tvshowtitle': 'Bigg Boss 10', 'date': '0', 'meta': '{"tvshowurl": "forums/3994-Bigg-Boss-10", "title": "12th December 2016", "url": "threads/987786-Bigg-Boss-10-12th-December-2016-Watch-Online?s=cc583847a54ad97a7ef547a9da3fcf8f", "season": "10", "tvshowtitle": "Bigg Boss 10", "next": "forums/3994-Bigg-Boss-10/page2?s=cc583847a54ad97a7ef547a9da3fcf8f", "provider": "desirulez_mv_tv", "duration": "1800", "trailer": "plugin://plugin.video.aftershock/?action=trailer&name=Bigg+Boss+10", "name": "12th December 2016"}', 'imdb': '0', 't': '20161212203135593000', 'year': '0', 'action': 'play', 'tvrage': '0', 'alter': '0'}
     #params = {'tmdb': '0', 'episode': '0', 'name': '10th December 2016', 'title': '10th December 2016', 'tvdb': '0', 'season': '9', 'tvshowtitle': 'Jhalak Dikhhla Jaa Season 9', 'date': '0', 'meta': '{"tvshowurl": "forums/4034-Jhalak-Dikhhla-Jaa-Season-9", "title": "10th December 2016", "url": "threads/986369-Jhalak-Dikhhla-Jaa-Season-9-10th-December-2016-Watch-Online?s=584dc5e1564eed456f2a25be7f86e6ea", "season": "9", "tvshowtitle": "Jhalak Dikhhla Jaa Season 9", "next": "forums/4034-Jhalak-Dikhhla-Jaa-Season-9/page2?s=584dc5e1564eed456f2a25be7f86e6ea", "provider": "desirulez_mv_tv", "duration": "1800", "trailer": "plugin://plugin.video.aftershock/?action=trailer&name=Jhalak+Dikhhla+Jaa+Season+9", "name": "10th December 2016"}', 'imdb': '0', 't': '20161213000802688000', 'year': '0', 'action': 'play', 'tvrage': '0', 'alter': '0'}
 
@@ -152,12 +152,11 @@ try :
     print result
     '''
 
-
     from resources.lib.libraries import livemeta
     #livemeta.source().getLiveNames()
 
     from resources.lib.sources import sources
-    #sources().play(name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date, meta, url, select)
+    sources().play(name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date, meta, url, select)
 
     #movies.movies().get(url, idx, provider, lang)
 

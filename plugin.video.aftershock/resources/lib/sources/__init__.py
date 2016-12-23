@@ -114,10 +114,9 @@ class sources:
 
                 cm = []
                 cm.append((control.lang(30504).encode('utf-8'), 'RunPlugin(%s?action=queueItem)' % sysaddon))
-                if content != 'live':
-                    if downloads == True and parts <= 1:
-                        sysimage = urllib.quote_plus(poster.encode('utf-8'))
-                        cm.append((control.lang(30505).encode('utf-8'), 'RunPlugin(%s?action=download&name=%s&image=%s&source=%s)' % (sysaddon, systitle, sysimage, syssource)))
+                if downloads == True and parts <= 1:
+                    sysimage = urllib.quote_plus(poster.encode('utf-8'))
+                    cm.append((control.lang(30505).encode('utf-8'), 'RunPlugin(%s?action=download&name=%s&image=%s&source=%s)' % (sysaddon, systitle, sysimage, syssource)))
                 item.setArt({'icon': thumb, 'thumb': thumb, 'poster': poster, 'tvshow.poster': poster, 'season.poster': poster, 'banner': banner, 'tvshow.banner': banner, 'season.banner': banner})
 
                 if not fanart == None: item.setProperty('Fanart_Image', fanart)
@@ -143,10 +142,7 @@ class sources:
             if imdb == '0': imdb = '0000000'
             imdb = 'tt' + re.sub('[^0-9]', '', str(imdb))
 
-            if title == None and tvshowtitle == None :
-                content = 'live'
-            else :
-                content = 'movie' if tvshowtitle == None else 'episode'
+            content = 'movie' if tvshowtitle == None else 'episode'
 
             self.sources = self.getSources(name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date, meta)
 
@@ -155,15 +151,7 @@ class sources:
 
 
                 try :
-                    if content == 'live':
-                        if select == None:
-                            select = control.setting('live_host_select')
-                        select = '2' if len(items) == 1 else select
-                        title = name
-                        meta = self.sources[0]['meta']
-                        logger.debug('Content is live hence setting %s' % select, __name__)
-                    else:
-                        select = control.setting('host_select') if select == None else select
+                    select = control.setting('host_select') if select == None else select
                 except:
                     pass
 
@@ -310,10 +298,7 @@ class sources:
         for package, name, is_pkg in pkgutil.walk_packages(__path__): sourceDict.append((name, is_pkg))
         sourceDict = [i[0] for i in sourceDict if i[1] == False]
 
-        if tvshowtitle == None and title == None:
-            content = 'live'
-        else:
-            content = 'movie' if tvshowtitle == None else 'episode'
+        content = 'movie' if tvshowtitle == None else 'episode'
 
         if content == 'movie':
             sourceDict = [i for i in sourceDict if i.endswith(('_mv', '_mv_tv'))]
@@ -322,10 +307,6 @@ class sources:
         elif content == 'episode':
             sourceDict = [i for i in sourceDict if i.endswith(('_tv', '_mv_tv'))]
             try: sourceDict = [(i, control.setting(re.sub('_mv_tv$|_mv$|_tv$', '', i))) for i in sourceDict]
-            except: sourceDict = [(i, 'true') for i in sourceDict]
-        elif content == 'live':
-            sourceDict = [i for i in sourceDict if i.endswith('_live')]
-            try: sourceDict = [(i, control.setting(re.sub('_live$', '', i))) for i in sourceDict]
             except: sourceDict = [(i, 'true') for i in sourceDict]
 
         threads = []
@@ -345,10 +326,6 @@ class sources:
             season, episode = alterepisode.alterepisode().get(imdb, tmdb, tvdb, tvrage, season, episode, alter, title, date)
 
             for source in sourceDict: threads.append(workers.Thread(self.getEpisodeSource, title, year, imdb, tvdb, season, episode, tvshowtitle, date, re.sub('_mv_tv$|_mv$|_tv$', '', source), __import__(source, globals(), locals(), [], -1).source(), meta))
-        elif content == 'live':
-            self.getLivePoster('9X JALWA')
-            for source in sourceDict:threads.append(workers.Thread(self.getLiveSource,channelName, re.sub('_live$', '', source), __import__(source, globals(), locals(), [], -1).source()))
-
 
         try: timeout = int(control.setting('sources_timeout_40'))
         except: timeout = 40
@@ -527,123 +504,6 @@ class sources:
                 pass
         except:
             client.printException('sources.getEpisodeSource')
-            pass
-
-    def getLiveSource(self, name, source, call):
-        from resources.lib.libraries import user
-        valid, url = user.validateUser(control.setting('user.email'))
-        if valid <= 0:
-            return
-
-        try:
-            dbcon = database.connect(self.sourceFile)
-            dbcur = dbcon.cursor()
-            dbcur.execute("CREATE TABLE IF NOT EXISTS rel_live (""source TEXT, ""imdb_id TEXT, ""season TEXT, ""episode TEXT, ""hosts TEXT, ""added TEXT, ""UNIQUE(source, imdb_id, season, episode, hosts)"");")
-        except:
-            pass
-
-        logger.debug('Calling getLiveSource for %s' % call, __name__)
-        retValue = 0
-        retValue, sources = call.getLiveSource()
-        logger.debug('Finished getLiveSource for %s' % call, __name__)
-        if not name == None : name = name.upper()
-
-        if retValue == 1:
-            try:
-                logger.debug('Updated file download from internet', __name__)
-                dbcur.execute("DELETE FROM rel_live WHERE source = '%s' AND season = '%s'" % (source, 'live'))
-                dbcon.commit()
-
-                idx = 0
-                for item in sources:
-                    poster = self.getLivePoster(item['name'])
-                    if not poster == None :
-                        item['poster'] = poster
-                    else:
-                        item['poster'] = '0'
-                    meta = {"poster":poster, "iconImage":poster, 'thumb': poster}
-                    item['meta'] = json.dumps(meta)
-                    if '||' in item['name']:
-                        item['name'] = item['name'].split('||')[0]
-                    dbcur.execute("INSERT INTO rel_live Values (?, ?, ?, ?, ?, ?)", (source, item['name'], 'live', str(idx), json.dumps(item), datetime.datetime.now().strftime("%Y-%m-%d %H:%M")))
-                    idx = idx + 1
-                    dbcon.commit()
-            except Exception as e:
-                logger.error(e.message)
-                pass
-        elif retValue == 0 and name != None:
-            try:
-                sources = []
-                dbcur.execute("SELECT * FROM rel_live WHERE source = '%s' AND imdb_id = '%s' AND season = '%s'" % (source, name, 'live'))
-                for row in dbcur:
-                    match = row
-                    logger.debug('Fetched sources from cache for [%s]'% name, call.__class__)
-                    sources = json.loads(match[4])
-                    self.sources.append(sources)
-                return self.sources
-            except:
-                logger.debug('Source from cache not found for [%s]'% name, call.__class__)
-                pass
-
-        try:
-            sources = []
-            if name == None or name == '' :
-                dbcur.execute("SELECT * FROM rel_live WHERE source = '%s' AND season = '%s'" % (source, 'live'))
-                for row in dbcur:
-                    match = row[4]
-                    self.sources.append(json.loads(match))
-                logger.debug('Fetched Live sources : %s' % len(self.sources), call.__class__)
-            else :
-                dbcur.execute("SELECT * FROM rel_live WHERE source = '%s' AND imdb_id = '%s' AND season = '%s'" % (source, name, 'live'))
-                for row in dbcur:
-                    match = row
-                    sources = json.loads(match[4])
-                    self.sources.append(sources)
-            return self.sources
-        except Exception as e:
-            logger.error('(%s) Exception Live sources : %s' % (call.__class__, e.args))
-            pass
-
-    def getLivePoster(self, source):
-        try:
-            dbcon = database.connect(self.sourceFile)
-            dbcur = dbcon.cursor()
-            dbcur.execute("CREATE TABLE IF NOT EXISTS rel_logo (""source TEXT, ""poster_url TEXT, ""added TEXT, ""UNIQUE(source, poster_url)"");")
-        except:
-            pass
-
-        try:
-            logo = []
-            try:
-                # check if the source site needs to be refreshed
-                dbcur.execute("SELECT * FROM rel_logo WHERE source = '%s'" % (source))
-                match = dbcur.fetchone()
-                poster_url = match[1]
-                t1 = int(re.sub('[^0-9]', '', str(match[2])))
-                t2 = int(datetime.datetime.now().strftime("%Y%m%d%H%M"))
-                update = abs(t2 - t1) > 1000
-            except:
-                update = True
-
-            if update == True:
-                from resources.lib.sources import livemeta
-
-                postersList = cache.get(livemeta.source().getLivePosters, 200, table='live_cache')
-                try :
-                    poster_url = postersList[source]
-                except:
-                    poster_url = None
-                if not poster_url == None:
-                    try :
-                        dbcur.execute("DELETE FROM rel_logo WHERE source = '%s'" % (source))
-                        dbcur.execute("INSERT INTO rel_logo Values (?, ?, ?)", (source, poster_url, datetime.datetime.now().strftime("%Y-%m-%d %H:%M")))
-                        dbcon.commit()
-                    except:
-                        pass
-
-            return poster_url
-
-        except:
             pass
 
     def sourcesDialog(self, items):
