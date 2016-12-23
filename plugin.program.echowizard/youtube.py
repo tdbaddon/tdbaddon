@@ -20,7 +20,7 @@ import re
 import common as Common
 import search
 
-AddonTitle="[COLOR lime]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
+AddonTitle="[COLOR yellowgreen]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
 addon_id = 'plugin.program.echowizard'
 ADDON = xbmcaddon.Addon(id=addon_id)
 FANART = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id , 'resources/art/youtube.jpg'))

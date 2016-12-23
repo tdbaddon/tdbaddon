@@ -31,7 +31,7 @@ ADDON_ID   = 'plugin.program.echowizard'
 ADDON      =  xbmcaddon.Addon(id=ADDON_ID)
 HOME       =  ADDON.getAddonInfo('path')
 addon_name="Speed Test"
-AddonTitle="[COLOR lime]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
+AddonTitle="[COLOR yellowgreen]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
 
 max_Bps = 0.0
 currently_downloaded_bytes = 0.0

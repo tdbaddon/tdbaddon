@@ -417,7 +417,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 
 <addon id="plugin.program.echowizard"
 	     name="[COLOR yellowgreen]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
-	     version="1.39"
+	     version="1.41"
 	     provider-name="Echo Coder">
   <requires>
   	<import addon="xbmc.python" version="2.1.0"/>

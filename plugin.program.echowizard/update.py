@@ -32,7 +32,7 @@ class MyOpener(FancyURLopener):
 myopener = MyOpener()
 urlretrieve = MyOpener().retrieve
 urlopen = MyOpener().open
-AddonTitle="[COLOR lime]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
+AddonTitle="[COLOR yellowgreen]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
 USERDATA     =  xbmc.translatePath(os.path.join('special://home/userdata',''))
 ECHO_VERSION  =  os.path.join(USERDATA,'echo_build.txt')
 BASEURL = base64.b64decode(b"aHR0cDovL2VjaG9jb2Rlci5jb20v")

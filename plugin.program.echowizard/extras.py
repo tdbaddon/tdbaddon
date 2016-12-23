@@ -27,7 +27,7 @@ import installer
 #######################################################################
 #					VERIABLES NEEDED
 #######################################################################
-AddonTitle="[COLOR lime]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
+AddonTitle="[COLOR yellowgreen]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
 addon_id = 'plugin.program.echowizard'
 ADDON = xbmcaddon.Addon(id=addon_id)
 skin         =  xbmc.getSkinDir()
@@ -62,7 +62,7 @@ def EXTRAS_MENU():
 
 	if os.path.isfile(INTRO_ENABLE) or os.path.isfile(INTRO_DISABLE):
  		if os.path.isfile(INTRO_ENABLE):
- 			INTRO_VID = "[COLOR lime][B]ENABLED[/COLOR][/B]"
+ 			INTRO_VID = "[COLOR yellowgreen][B]ENABLED[/COLOR][/B]"
 			match = 1
  		else:
  			INTRO_VID = "[COLOR lightskyblue][B]DISABLED[/COLOR][/B]"
@@ -71,14 +71,14 @@ def EXTRAS_MENU():
 	if match == 0:
 		if os.path.isfile(ECHO_INTRO_ENABLE) or os.path.isfile(ECHO_INTRO_DISABLE):
 			if os.path.isfile(INTRO_ENABLE):
-				INTRO_VID = "[COLOR lime][B]ENABLED[/COLOR][/B]"
+				INTRO_VID = "[COLOR yellowgreen][B]ENABLED[/COLOR][/B]"
 			else:
 				INTRO_VID = "[COLOR lightskyblue][B]DISABLED[/COLOR][/B]"
 		else:
 			INTRO_VID = "[COLOR ghostwhite][B]NOT APPLICABLE[/COLOR][/B]"
 
  	if os.path.isfile(PLAYER_CORE):
- 		PLAYER_CORE_EN_DIS = "[COLOR lime][B]ENABLED[/COLOR][/B]"
+ 		PLAYER_CORE_EN_DIS = "[COLOR yellowgreen][B]ENABLED[/COLOR][/B]"
  	else:
  		PLAYER_CORE_EN_DIS = "[COLOR lightskyblue][B]DISABLED[/COLOR][/B]"
 
@@ -244,7 +244,7 @@ def SPORTS_DEVIL_FIX():
 	REPO_FOLDER = xbmc.translatePath(os.path.join('special://home/addons','repository.echo'))
 	path = xbmc.translatePath(os.path.join('special://home/addons','packages'))
 
-	choice = xbmcgui.Dialog().yesno(AddonTitle,'This option will remove all traces of Sports Devil (If Installed) and install a clean version along with the ECHO Repo.','Would you like to continue?',yeslabel='[B][COLOR lime]YES[/COLOR][/B]',nolabel='[B][COLOR lightskyblue]NO[/COLOR][/B]')
+	choice = xbmcgui.Dialog().yesno(AddonTitle,'This option will remove all traces of Sports Devil (If Installed) and install a clean version along with the ECHO Repo.','Would you like to continue?',yeslabel='[B][COLOR yellowgreen]YES[/COLOR][/B]',nolabel='[B][COLOR lightskyblue]NO[/COLOR][/B]')
 	if choice == 0:
 		sys.exit(1)
 	dialog = xbmcgui.Dialog()
@@ -319,7 +319,7 @@ def REMOVE_GUIDE():
 			shutil.rmtree(GUIDE)
 			os.rmdir(GUIDE)
 		except: pass
-	choice = xbmcgui.Dialog().yesno(AddonTitle,'[COLOR white]All traces of the ECHO TV Guide settings have been removed. Would you like to launch the guide now?[/COLOR]',yeslabel='[B][COLOR lime]YES[/COLOR][/B]',nolabel='[B][COLOR lightskyblue]NO[/COLOR][/B]')
+	choice = xbmcgui.Dialog().yesno(AddonTitle,'[COLOR white]All traces of the ECHO TV Guide settings have been removed. Would you like to launch the guide now?[/COLOR]',yeslabel='[B][COLOR yellowgreen]YES[/COLOR][/B]',nolabel='[B][COLOR lightskyblue]NO[/COLOR][/B]')
 	if choice == 1:
 		RUN = "RunAddon(plugin.program.echotvguide)"
 		xbmc.executebuiltin(RUN)

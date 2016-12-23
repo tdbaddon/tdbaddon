@@ -22,7 +22,7 @@ import youtube as YOU
 
 addon_id = 'plugin.program.echowizard'
 ADDON = xbmcaddon.Addon(id=addon_id)
-AddonTitle="[COLOR lime]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
+AddonTitle="[COLOR yellowgreen]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
 FANART = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id , 'fanart.jpg'))
 ICON = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
 YOUTUBE_ICON = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/youtube.png'))
@@ -114,7 +114,7 @@ def BUILDS():
 		
 def COMMUNITY():
 
-	choice = xbmcgui.Dialog().yesno(AddonTitle,'This search will scan all of our community builds. Depending on how many builds there are and the speed of your internet this search may take a minute or two. ','[COLOR dodgerblue][B]Do you wish to continue?[/B][/COLOR]', yeslabel='[B][COLOR lime]YES[/COLOR][/B]',nolabel='[B][COLOR red]NO[/COLOR][/B]')
+	choice = xbmcgui.Dialog().yesno(AddonTitle,'This search will scan all of our community builds. Depending on how many builds there are and the speed of your internet this search may take a minute or two. ','[COLOR dodgerblue][B]Do you wish to continue?[/B][/COLOR]', yeslabel='[B][COLOR yellowgreen]YES[/COLOR][/B]',nolabel='[B][COLOR red]NO[/COLOR][/B]')
 	if choice == 0: 
 		sys.exit(0)
 

@@ -24,7 +24,7 @@ import time
 addon_id = 'plugin.program.echowizard'
 ADDON = xbmcaddon.Addon(id=addon_id)
 AddonID='plugin.program.echowizard'
-AddonTitle="[COLOR lime]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
+AddonTitle="[COLOR yellowgreen]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
 HOME         =  xbmc.translatePath('special://home/')
 dialog       =  xbmcgui.Dialog()
 BASEURL = base64.b64decode(b'aHR0cDovL2VjaG9jb2Rlci5jb20v')
@@ -656,7 +656,7 @@ def killxbmc():
         except: pass
         try: os.system('killall -9 Kodi')
         except: pass
-        dialog.ok("[COLOR=red][B]WARNING  !!![/COLOR][/B]", "If you\'re seeing this message it means the force close", "was unsuccessful. Please force close XBMC/Kodi [COLOR=lime]DO NOT[/COLOR] exit cleanly via the menu.",'')
+        dialog.ok("[COLOR=red][B]WARNING  !!![/COLOR][/B]", "If you\'re seeing this message it means the force close", "was unsuccessful. Please force close XBMC/Kodi [COLOR=yellowgreen]DO NOT[/COLOR] exit cleanly via the menu.",'')
     elif myplatform == 'linux': #Linux
         print "############   try linux force close  #################"
         try: os._exit(1)
@@ -669,7 +669,7 @@ def killxbmc():
         except: pass
         try: os.system('killall -9 kodi.bin')
         except: pass
-        dialog.ok("[COLOR=red][B]WARNING  !!![/COLOR][/B]", "If you\'re seeing this message it means the force close", "was unsuccessful. Please force close XBMC/Kodi [COLOR=lime]DO NOT[/COLOR] exit cleanly via the menu.",'')
+        dialog.ok("[COLOR=red][B]WARNING  !!![/COLOR][/B]", "If you\'re seeing this message it means the force close", "was unsuccessful. Please force close XBMC/Kodi [COLOR=yellowgreen]DO NOT[/COLOR] exit cleanly via the menu.",'')
     elif myplatform == 'android': # Android  
         print "############   try android force close  #################"
         try: os._exit(1)
@@ -698,7 +698,7 @@ def killxbmc():
         except: pass
         try: os.system('adb shell am force-stop com.jesusboxmedia')
         except: pass 
-        dialog.ok("[COLOR=red][B]WARNING  !!![/COLOR][/B]", "Your system has been detected as Android, you ", "[COLOR=yellow][B]MUST[/COLOR][/B] force close XBMC/Kodi. [COLOR=lime]DO NOT[/COLOR] exit cleanly via the menu.","Pulling the power cable is the simplest method to force close.")
+        dialog.ok("[COLOR=red][B]WARNING  !!![/COLOR][/B]", "Your system has been detected as Android, you ", "[COLOR=yellow][B]MUST[/COLOR][/B] force close XBMC/Kodi. [COLOR=yellowgreen]DO NOT[/COLOR] exit cleanly via the menu.","Pulling the power cable is the simplest method to force close.")
     elif myplatform == 'windows': # Windows
         print "############   try windows force close  #################"
         try: os._exit(1)
@@ -719,7 +719,7 @@ def killxbmc():
             os.system('@ECHO off')
             os.system('TASKKILL /im XBMC.exe /f')
         except: pass
-        dialog.ok("[COLOR=red][B]WARNING  !!![/COLOR][/B]", "If you\'re seeing this message it means the force close", "was unsuccessful. Please force close XBMC/Kodi [COLOR=lime]DO NOT[/COLOR] exit cleanly via the menu.","Use task manager and NOT ALT F4")
+        dialog.ok("[COLOR=red][B]WARNING  !!![/COLOR][/B]", "If you\'re seeing this message it means the force close", "was unsuccessful. Please force close XBMC/Kodi [COLOR=yellowgreen]DO NOT[/COLOR] exit cleanly via the menu.","Use task manager and NOT ALT F4")
     else: #ATV
         print "############   try atv force close  #################"
         try: os._exit(1)
@@ -731,7 +731,7 @@ def killxbmc():
         except: pass
         try: os.system('sudo initctl stop xbmc')
         except: pass
-        dialog.ok("[COLOR=red][B]WARNING  !!![/COLOR][/B]", "If you\'re seeing this message it means the force close", "was unsuccessful. Please force close XBMC/Kodi [COLOR=lime]DO NOT[/COLOR] exit via the menu.","Your platform could not be detected so just pull the power cable.")    
+        dialog.ok("[COLOR=red][B]WARNING  !!![/COLOR][/B]", "If you\'re seeing this message it means the force close", "was unsuccessful. Please force close XBMC/Kodi [COLOR=yellowgreen]DO NOT[/COLOR] exit via the menu.","Your platform could not be detected so just pull the power cable.")    
 
 
 def KillKodi():
@@ -745,7 +745,7 @@ def KillKodi():
         except: pass
         try: os.system('killall -9 Kodi')
         except: pass
-        dialog.ok("[COLOR=red][B]WARNING  !!![/COLOR][/B]", "If you\'re seeing this message it means the force close", "was unsuccessful. Please force close XBMC/Kodi [COLOR=lime]DO NOT[/COLOR] exit cleanly via the menu.",'')
+        dialog.ok("[COLOR=red][B]WARNING  !!![/COLOR][/B]", "If you\'re seeing this message it means the force close", "was unsuccessful. Please force close XBMC/Kodi [COLOR=yellowgreen]DO NOT[/COLOR] exit cleanly via the menu.",'')
     elif myplatform == 'linux': #Linux
         print "############   try linux force close  #################"
         try: os._exit(1)
@@ -758,7 +758,7 @@ def KillKodi():
         except: pass
         try: os.system('killall -9 kodi.bin')
         except: pass
-        dialog.ok("[COLOR=red][B]WARNING  !!![/COLOR][/B]", "If you\'re seeing this message it means the force close", "was unsuccessful. Please force close XBMC/Kodi [COLOR=lime]DO NOT[/COLOR] exit cleanly via the menu.",'')
+        dialog.ok("[COLOR=red][B]WARNING  !!![/COLOR][/B]", "If you\'re seeing this message it means the force close", "was unsuccessful. Please force close XBMC/Kodi [COLOR=yellowgreen]DO NOT[/COLOR] exit cleanly via the menu.",'')
     elif myplatform == 'android': # Android  
         print "############   try android force close  #################"
         try: os._exit(1)
@@ -787,7 +787,7 @@ def KillKodi():
         except: pass
         try: os.system('adb shell am force-stop com.jesusboxmedia')
         except: pass 
-        dialog.ok("[COLOR=red][B]WARNING  !!![/COLOR][/B]", "Your system has been detected as Android, you ", "[COLOR=yellow][B]MUST[/COLOR][/B] force close XBMC/Kodi. [COLOR=lime]DO NOT[/COLOR] exit cleanly via the menu.","Pulling the power cable is the simplest method to force close.")
+        dialog.ok("[COLOR=red][B]WARNING  !!![/COLOR][/B]", "Your system has been detected as Android, you ", "[COLOR=yellow][B]MUST[/COLOR][/B] force close XBMC/Kodi. [COLOR=yellowgreen]DO NOT[/COLOR] exit cleanly via the menu.","Pulling the power cable is the simplest method to force close.")
     elif myplatform == 'windows': # Windows
         print "############   try windows force close  #################"
         try: os._exit(1)
@@ -808,7 +808,7 @@ def KillKodi():
             os.system('@ECHO off')
             os.system('TASKKILL /im XBMC.exe /f')
         except: pass
-        dialog.ok("[COLOR=red][B]WARNING  !!![/COLOR][/B]", "If you\'re seeing this message it means the force close", "was unsuccessful. Please force close XBMC/Kodi [COLOR=lime]DO NOT[/COLOR] exit cleanly via the menu.","Use task manager and NOT ALT F4")
+        dialog.ok("[COLOR=red][B]WARNING  !!![/COLOR][/B]", "If you\'re seeing this message it means the force close", "was unsuccessful. Please force close XBMC/Kodi [COLOR=yellowgreen]DO NOT[/COLOR] exit cleanly via the menu.","Use task manager and NOT ALT F4")
     else: #ATV
         print "############   try atv force close  #################"
         try: os._exit(1)
@@ -820,4 +820,4 @@ def KillKodi():
         except: pass
         try: os.system('sudo initctl stop xbmc')
         except: pass
-        dialog.ok("[COLOR=red][B]WARNING  !!![/COLOR][/B]", "If you\'re seeing this message it means the force close", "was unsuccessful. Please force close XBMC/Kodi [COLOR=lime]DO NOT[/COLOR] exit via the menu.","Your platform could not be detected so just pull the power cable.")    
+        dialog.ok("[COLOR=red][B]WARNING  !!![/COLOR][/B]", "If you\'re seeing this message it means the force close", "was unsuccessful. Please force close XBMC/Kodi [COLOR=yellowgreen]DO NOT[/COLOR] exit via the menu.","Your platform could not be detected so just pull the power cable.")    

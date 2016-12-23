@@ -316,8 +316,7 @@ def INDEX():
 		Common.addItem('[COLOR ghostwhite][B]DONATIONS: [COLOR yellowgreen]paypal.me/echocoder[/COLOR][/B][/COLOR]',BASEURL,172,ICON,FANART,'')
 		#if yt_error == 0:
 			#Common.addItem('[COLOR ghostwhite][B]LATEST VIDEO: [/COLOR][COLOR yellowgreen]' + item["name"] + '[/B][/COLOR]',item["url"],95,item["iconimage"],FANART,'')
-		Common.addItem('[COLOR ghostwhite][B]YOUTUBE: [/B][/COLOR][COLOR yellowgreen][B]echocoder.com/youtube[/B][/COLOR]',BASEURL,4,BUILD_ICON,FANART,'')
-		Common.addItem('[COLOR ghostwhite][B]TWITTER: [/B][/COLOR][COLOR yellowgreen][B]@ECHO_CODING[/B][/COLOR]',BASEURL,4,BUILD_ICON,FANART,'')
+		Common.addItem('[COLOR ghostwhite][B]TWITTER: [/B][/COLOR][COLOR yellowgreen][B]@ECHOCODER[/B][/COLOR]',BASEURL,4,BUILD_ICON,FANART,'')
 		Common.addDir('[COLOR ghostwhite][B]ALL OFFICIAL ECHO YOUTUBE VIDEOS[/B][/COLOR]',BASEURL,60,YOUTUBE_ICON,FANART,'')
 		Common.addItem('[COLOR yellowgreen][B]CHECK FOR UPDATES[/B][/COLOR]',BASEURL,165,ICON,FANART,'')
 		if pleasecheck == 1:
@@ -1819,5 +1818,21 @@ elif mode==171:
 
 elif mode==172:
 		DONATIONS_LINK()
+
+elif mode==173:
+		get_addons.FINISH()
+
+elif mode==174:
+		dp.create(AddonTitle)
+		dp.update(0, "Updating installed addons, please wait.")
+		xbmc.executebuiltin("UpdateAddonRepos")
+		xbmc.executebuiltin("UpdateLocalAddons")
+		time.sleep(5)
+		dp.close()
+		dialog.ok(AddonTitle, "All local addons have been updated. Thank you for using ECHO Wizard!")
+		sys.exit(0)
+
+elif mode==175:
+		get_addons.MENU_MAIN()
 
 xbmcplugin.endOfDirectory(int(sys.argv[1]))

@@ -78,18 +78,18 @@ def Check():
 		DEMONSTRATORZ =  BASEURL + base64.b64decode(b"YnVpbGRzL2RlbW9uc3RyYXRvcnovd2l6YXJkX3JlbF9qYXJ2aXMudHh0")
 		GUIDE =  BASEURL + base64.b64decode(b"Z3VpZGUvZ3VpZGUuemlw")
 
-	RepoStatus = "[COLOR lime]ONLINE[/COLOR]"
-	ForumStatus = "[COLOR lime]ONLINE[/COLOR]"
-	CommunityStatus = "[COLOR lime]ONLINE[/COLOR]"
-	TDBStatus = "[COLOR lime]ONLINE[/COLOR]"
-	LeeTVStatus = "[COLOR lime]ONLINE[/COLOR]"
-	DoneRightStatus = "[COLOR lime]ONLINE[/COLOR]"
-	KodiHeavenStatus = "[COLOR lime]ONLINE[/COLOR]"
-	MysticStatus = "[COLOR lime]ONLINE[/COLOR]"
-	KiddoStatus = "[COLOR lime]ONLINE[/COLOR]"
-	VulcanStatus = "[COLOR lime]ONLINE[/COLOR]"
-	DemonstratorzStatus = "[COLOR lime]ONLINE[/COLOR]"
-	GuideStatus = "[COLOR lime]ONLINE[/COLOR]"
+	RepoStatus = "[COLOR yellowgreen]ONLINE[/COLOR]"
+	ForumStatus = "[COLOR yellowgreen]ONLINE[/COLOR]"
+	CommunityStatus = "[COLOR yellowgreen]ONLINE[/COLOR]"
+	TDBStatus = "[COLOR yellowgreen]ONLINE[/COLOR]"
+	LeeTVStatus = "[COLOR yellowgreen]ONLINE[/COLOR]"
+	DoneRightStatus = "[COLOR yellowgreen]ONLINE[/COLOR]"
+	KodiHeavenStatus = "[COLOR yellowgreen]ONLINE[/COLOR]"
+	MysticStatus = "[COLOR yellowgreen]ONLINE[/COLOR]"
+	KiddoStatus = "[COLOR yellowgreen]ONLINE[/COLOR]"
+	VulcanStatus = "[COLOR yellowgreen]ONLINE[/COLOR]"
+	DemonstratorzStatus = "[COLOR yellowgreen]ONLINE[/COLOR]"
+	GuideStatus = "[COLOR yellowgreen]ONLINE[/COLOR]"
 
 	dialog = xbmcgui.Dialog()
 

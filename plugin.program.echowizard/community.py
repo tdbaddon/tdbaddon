@@ -31,8 +31,8 @@ FANART = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id , '
 ICON = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
 ADDON = xbmcaddon.Addon(id=addon_id)
 dp               =  xbmcgui.DialogProgress()
-AddonTitle="[COLOR lime]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
-MaintTitle="[COLOR lime]ECHO[/COLOR] [COLOR white]Maintenance Tools[/COLOR]"
+AddonTitle="[COLOR yellowgreen]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
+MaintTitle="[COLOR yellowgreen]ECHO[/COLOR] [COLOR white]Maintenance Tools[/COLOR]"
 BASEURL = base64.b64decode(b'aHR0cDovL2VjaG9jb2Rlci5jb20v')
 key = base64.b64encode(plugintools.get_setting("beta"))
 COMMUNITY_ICON = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/community.png'))

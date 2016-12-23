@@ -27,7 +27,7 @@ import urllib,urllib2
 
 dialog           = xbmcgui.Dialog()
 dp               =  xbmcgui.DialogProgress()
-AddonTitle       ="[COLOR lime]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
+AddonTitle       ="[COLOR yellowgreen]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
 addon_id         = 'plugin.program.echowizard'
 FANART           = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'fanart.jpg'))
 ICON             = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/installer.png'))
@@ -75,6 +75,15 @@ def MENU():
 		dialog.ok(AddonTitle,'The ECHO Addon Installer is only supported on Kodi 16 Jarvis.','The installer will now exit.')
 		sys.exit(0)
 
+	total = ""
+	total_count = Common.count_addons_week(total)
+	Common.addDir("[COLOR white][B]" + str(total_count) + " [/COLOR][COLOR yellowgreen]Addons Downloaded This Week[/B][/COLOR]",BASEURL,121,ALL_ICON,FANART,description='all')
+	Common.addDir("[COLOR yellowgreen][B]############################################################################[/B][/COLOR]",BASEURL,121,ALL_ICON,FANART,description='all')
+	Common.addDir("[COLOR dodgerblue][B]UPDATE INSTALLED ADDONS[/B][/COLOR]",BASEURL,174,ALL_ICON,FANART,'')
+	Common.addDir("[COLOR white][B]ENTER THE ECHO ADDON INSTALLER[/B][/COLOR]",BASEURL,175,ALL_ICON,FANART,'')
+
+def MENU_MAIN():
+
 	if os.path.exists(PARENTAL_FILE):
 		vq = Common._get_keyboard( heading="Please Enter Your Password" )
 		if ( not vq ): 
@@ -92,10 +101,8 @@ def MENU():
 					dialog.ok(AddonTitle,"Sorry, the password you entered was incorrect.")
 					quit()
 
-	total = ""
-	total_count = Common.count_addons_week(total)
+	dialog.ok(AddonTitle, "[COLOR white][B]After installing ANY addons via the installer please click the UPDATE INSTALLED ADDONS option to ensure the newly installed addons appear in Kodi.[/B][/COLOR]")
 
-	Common.addDir("[COLOR yellowgreen][B]" + str(total_count) + " Addons Downloaded This Week[/B][/COLOR]",BASEURL,150,ALL_ICON,FANART,description='all')
 	Common.addDir("[COLOR white][B]All Addons[/B][/COLOR]",BASEURL,150,ALL_ICON,FANART,description='all')
 	Common.addDir("[COLOR white][B]Repositories[/B][/COLOR]",BASEURL,150,REPO_ICON,FANART,description='repos')
 	Common.addDir("[COLOR white][B]Top 14 downloaded addons this week[/B][/COLOR]",BASEURL,150,TOP_ICON,FANART,description='top')
@@ -114,7 +121,7 @@ def MENU():
 	if not os.path.exists(PARENTAL_FILE):
 		Common.addDir("[COLOR orangered][B]PARENTAL CONTROLS - [COLOR red]OFF[/COLOR][/B][/COLOR]","url",159,PC_ICON,FANART,'')
 	else:
-		Common.addDir("[COLOR orangered][B]PARENTAL CONTROLS - [COLOR lime]ON[/COLOR][/B][/COLOR]","url",159,PC_ICON,FANART,'')
+		Common.addDir("[COLOR orangered][B]PARENTAL CONTROLS - [COLOR yellowgreen]ON[/COLOR][/B][/COLOR]","url",159,PC_ICON,FANART,'')
 
 	xbmc.executebuiltin('Container.SetViewMode(50)')
 
@@ -605,21 +612,11 @@ def GET_MULTI(name,url):
 		dp.create(AddonTitle,"[COLOR blue]Adding the download to the counters[/COLOR]",'[COLOR yellow]Please Wait...[/COLOR]',' ')	
 		dp.update(0,'','',' ')
 		add_download = Common.add_one_addons_week(base_name)
-		dp.update(50,"[COLOR blue]Updating installed addons.[/COLOR]")
-		xbmc.executebuiltin("UpdateAddonRepos")
-		dp.update(75,"[COLOR blue]Updating installed repositories.[/COLOR]")
-		xbmc.executebuiltin("UpdateLocalAddons")
-		dp.update(100,"[COLOR blue]Finishing up.[/COLOR]")
-		dp.close()
+		dp.close
 
 		if "pack" not in base_name.lower():
-			choice = xbmcgui.Dialog().yesno(AddonTitle, "[COLOR white]" + base_name + " successfully installed![/COLOR]","[COLOR orange]Would you like to launch " + base_name + " now?[/COLOR]","" ,yeslabel='[B][COLOR green]YES[/COLOR][/B]',nolabel='[B][COLOR lightskyblue]NO[/COLOR][/B]')
-			if choice == 1:
-				RUN = "RunAddon(" + addon_path + ")"
-				xbmc.executebuiltin(RUN)
-				quit()
-			else:
-				quit()
+			xbmcgui.Dialog().ok(AddonTitle, "[COLOR white]" + base_name + " successfully installed![/COLOR]","[COLOR red][B]You must UPDATE INSTALLED ADDONS at the beginning of the installer for Kodi to show this addon as installed![/COLOR][/B]")
+			quit()
 		else:
 			PATH = xbmc.translatePath(os.path.join(ADDON_DATA,addon_path + '.txt'))
 			if not os.path.exists(PATH):
@@ -746,20 +743,10 @@ def GET_PAID(name,url):
 		dp.create(AddonTitle,"[COLOR blue]Adding the download to the counters[/COLOR]",'[COLOR yellow]Please Wait...[/COLOR]',' ')	
 		dp.update(0,'','',' ')
 		add_download = Common.add_one_addons_week(base_name)
-		dp.update(50,"[COLOR blue]Updating installed addons.[/COLOR]")
-		xbmc.executebuiltin("UpdateAddonRepos")
-		dp.update(75,"[COLOR blue]Updating installed repositories.[/COLOR]")
-		xbmc.executebuiltin("UpdateLocalAddons")
-		dp.update(100,"[COLOR blue]Finishing up.[/COLOR]")
 		dp.close()
 
-		choice = xbmcgui.Dialog().yesno(AddonTitle, "[COLOR white]" + base_name + " successfully installed![/COLOR]","[COLOR orange]Would you like to launch " + base_name + " now?[/COLOR]","" ,yeslabel='[B][COLOR green]YES[/COLOR][/B]',nolabel='[B][COLOR lightskyblue]NO[/COLOR][/B]')
-		if choice == 1:
-			RUN = "RunAddon(" + addon_path + ")"
-			xbmc.executebuiltin(RUN)
-			quit()
-		else:
-			quit()
+		xbmcgui.Dialog().ok(AddonTitle, "[COLOR white]" + base_name + " successfully installed![/COLOR]","[COLOR red][B]You must UPDATE INSTALLED ADDONS at the beginning of the installer for Kodi to show this addon as installed![/COLOR][/B]")
+		quit()
 	else:
 		quit()
 
@@ -843,14 +830,9 @@ def GET_REPO(name,url):
 		dp.create(AddonTitle,"[COLOR blue]Adding the download to the counters[/COLOR]",'[COLOR yellow]Please Wait...[/COLOR]',' ')	
 		dp.update(0,'','',' ')
 		add_download = Common.add_one_addons_week(base_name)
-		dp.update(50,"[COLOR blue]Updating installed addons.[/COLOR]")
-		xbmc.executebuiltin("UpdateAddonRepos")
-		dp.update(75,"[COLOR blue]Updating installed repositories.[/COLOR]")
-		xbmc.executebuiltin("UpdateLocalAddons")
-		dp.update(100,"[COLOR blue]Finishing up.[/COLOR]")
 		dp.close()
 
-		dialog.ok(AddonTitle,"The " + base_name + " repository has been successfully installed.")
+		xbmcgui.Dialog().ok(AddonTitle, "[COLOR white]" + base_name + " successfully installed![/COLOR]","[COLOR red][B]You must UPDATE INSTALLED ADDONS at the beginning of the installer for Kodi to show this addon as installed![/COLOR][/B]")
 		quit()
 	else: quit()
 
@@ -955,9 +937,9 @@ def PARENTAL_CONTROLS():
 			for current_pin in file:
 				password = base64.b64decode(current_pin)
 				found = 1
-				Common.addDir("[COLOR blue][B]PARENTAL CONTROLS - [/COLOR][COLOR lime]ON[/B][/COLOR]","url",999,ICON,FANART,'')
+				Common.addDir("[COLOR blue][B]PARENTAL CONTROLS - [/COLOR][COLOR yellowgreen]ON[/B][/COLOR]","url",999,ICON,FANART,'')
 				Common.addDir("[COLOR yellow][B]Current Password - [/COLOR][COLOR orangered]" + str(password) + "[/B][/COLOR]","url",999,ICON,FANART,'')
-				Common.addDir("[COLOR lime][B]Change Password[/B][/COLOR]","url",160,ICON,FANART,'')
+				Common.addDir("[COLOR yellowgreen][B]Change Password[/B][/COLOR]","url",160,ICON,FANART,'')
 				Common.addDir("[COLOR red][B]Disable Password[/B][/COLOR]","url",161,ICON,FANART,'')
 
 	if found == 0:

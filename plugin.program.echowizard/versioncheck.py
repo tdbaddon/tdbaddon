@@ -16,7 +16,7 @@
 """
 import xbmc, xbmcaddon, xbmcgui, xbmcplugin,os,base64,sys,xbmcvfs
 
-AddonTitle="[COLOR lime]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
+AddonTitle="[COLOR yellowgreen]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
 dialog=xbmcgui.Dialog()
 
 #---------------------------------------------------------------------------------------------------
@@ -71,9 +71,9 @@ def BUILD_Version():
 		dialog.ok(AddonTitle, "[COLOR smokewhite][B]Which should I choose? - Jarvis or Krypton?![/B][/COLOR]","Your system is running : Kodi Version %s" % version + " " + codename, "Sorry no builds can be inatalled on this system! Please update your Kodi installation to 16 Jarvis or 17 Krypton to use a ECHO Build.")
     if version >= 16.0 and version <= 16.9:
 		codename = 'Jarvis'
-		dialog.ok(AddonTitle, "[COLOR smokewhite]Which should I choose? [/COLOR][COLOR white]- Jarvis or Krypton?[/COLOR]","Your system is running : Kodi Version %s" % version + " " + codename, "You should install a [B][COLOR lime]Jarvis[/B][/COLOR] build on this system!")
+		dialog.ok(AddonTitle, "[COLOR smokewhite]Which should I choose? [/COLOR][COLOR white]- Jarvis or Krypton?[/COLOR]","Your system is running : Kodi Version %s" % version + " " + codename, "You should install a [B][COLOR yellowgreen]Jarvis[/B][/COLOR] build on this system!")
     if version >= 17.0 and version <= 17.9:
 		codename = 'Krypton'
-		dialog.ok(AddonTitle, "[COLOR smokewhite]Which should I choose? - Jarvis or Krypton?[/COLOR]","Your system is running : Kodi Version %s" % version + " " + codename, "You should install a [B][COLOR lime]Krypton[/B][/COLOR] build on this system!")
+		dialog.ok(AddonTitle, "[COLOR smokewhite]Which should I choose? - Jarvis or Krypton?[/COLOR]","Your system is running : Kodi Version %s" % version + " " + codename, "You should install a [B][COLOR yellowgreen]Krypton[/B][/COLOR] build on this system!")
 
 #---------------------------------------------------------------------------------------------------

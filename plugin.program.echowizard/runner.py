@@ -32,7 +32,7 @@ REPO     =  xbmc.translatePath(os.path.join('special://home/addons','repository.
 WIZARD     =  xbmc.translatePath(os.path.join('special://home/addons','plugin.program.echowizard'))
 GUIDE     =  xbmc.translatePath(os.path.join('special://home/addons','plugin.program.echotvguide'))
 dialog = xbmcgui.Dialog()
-AddonTitle="[COLOR lime]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
+AddonTitle="[COLOR yellowgreen]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
 
 def check():
 

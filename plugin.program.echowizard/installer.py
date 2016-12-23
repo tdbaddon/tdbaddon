@@ -27,7 +27,7 @@ import hashlib
 import skinSwitch
 import backuprestore
 
-AddonTitle   ="[COLOR lime]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
+AddonTitle   ="[COLOR yellowgreen]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
 USERDATA     =  xbmc.translatePath(os.path.join('special://home/userdata',''))
 ECHO_VERSION =  os.path.join(USERDATA,'echo_build.txt')
 skin         =  xbmc.getSkinDir()
@@ -71,7 +71,7 @@ def INSTALL(name,url,description):
 		skin_used = "NULL"
 
 	if not "null" in notice.lower():
-		choice = xbmcgui.Dialog().yesno(AddonTitle, notice,'[COLOR smokewhite]Do you wish to download this build?[/COLOR]','',yeslabel='[B][COLOR lime]YES[/COLOR][/B]',nolabel='[B][COLOR lightskyblue]NO[/COLOR][/B]')
+		choice = xbmcgui.Dialog().yesno(AddonTitle, notice,'[COLOR smokewhite]Do you wish to download this build?[/COLOR]','',yeslabel='[B][COLOR yellowgreen]YES[/COLOR][/B]',nolabel='[B][COLOR lightskyblue]NO[/COLOR][/B]')
 		if choice == 0:
 			sys.exit(1)
 
@@ -136,7 +136,7 @@ def INSTALL(name,url,description):
 			if found_trakt == 1:
 				found_a = 0
 				dialog = xbmcgui.Dialog()
-				choice = dialog.select('[COLOR lightskyblue][B]TRAKT AND RD SETTINGS DETECTED[/B][/COLOR]', ['[COLOR lime][B]Yes, Keep Trakt & Real Debrid Settings[/B][/COLOR]','[COLOR lightskyblue][B]No, Remove My Settings[/B][/COLOR]'])
+				choice = dialog.select('[COLOR lightskyblue][B]TRAKT AND RD SETTINGS DETECTED[/B][/COLOR]', ['[COLOR yellowgreen][B]Yes, Keep Trakt & Real Debrid Settings[/B][/COLOR]','[COLOR lightskyblue][B]No, Remove My Settings[/B][/COLOR]'])
 				if choice == 0:
 					keep_trakt_rd = 1
 					found_a = 1
@@ -156,7 +156,7 @@ def INSTALL(name,url,description):
 			if found_favourites == 1 and found_trakt == 1:
 				found_c = 0
 				dialog = xbmcgui.Dialog()
-				choice = dialog.select('[COLOR lightskyblue][B]TRAKT, RD & FAVOURITES DETECTED[/B][/COLOR]', ['[COLOR lightskyblue][B]KEEP BOTH RD, TRAKT & FAVOURITES[/B][/COLOR]','[COLOR lime][B]Only Keep Trakt & Real Debrid Settings[/B][/COLOR]','[COLOR lime][B]Only Keep Kodi Favourites[/B][/COLOR]','[COLOR lightskyblue][B]Remove All Settings & Favourites[/B][/COLOR]'])
+				choice = dialog.select('[COLOR lightskyblue][B]TRAKT, RD & FAVOURITES DETECTED[/B][/COLOR]', ['[COLOR lightskyblue][B]KEEP BOTH RD, TRAKT & FAVOURITES[/B][/COLOR]','[COLOR yellowgreen][B]Only Keep Trakt & Real Debrid Settings[/B][/COLOR]','[COLOR yellowgreen][B]Only Keep Kodi Favourites[/B][/COLOR]','[COLOR lightskyblue][B]Remove All Settings & Favourites[/B][/COLOR]'])
 				if choice == 0:
 					keep_trakt_rd = 1
 					keep_kodi_favs = 1
@@ -179,7 +179,7 @@ def INSTALL(name,url,description):
 			if found_favourites == 1 and found_trakt == 0:
 				found_b = 0
 				dialog = xbmcgui.Dialog()
-				choice = dialog.select('[COLOR lightskyblue][B]KODI FAVOURITES DETECTED[/B][/COLOR]', ['[COLOR lime][B]Yes, Keep Favourites[/B][/COLOR]','[COLOR lightskyblue][B]No Use The Builds Favourites[/B][/COLOR]'])
+				choice = dialog.select('[COLOR lightskyblue][B]KODI FAVOURITES DETECTED[/B][/COLOR]', ['[COLOR yellowgreen][B]Yes, Keep Favourites[/B][/COLOR]','[COLOR lightskyblue][B]No Use The Builds Favourites[/B][/COLOR]'])
 				if choice == 0:
 					found_b = 1
 					keep_kodi_favs = 1
@@ -192,7 +192,7 @@ def INSTALL(name,url,description):
 			if found_favourites == 0 and found_trakt == 1:
 				found_a = 0
 				dialog = xbmcgui.Dialog()
-				choice = dialog.select('[COLOR lightskyblue][B]TRAKT AND RD SETTINGS DETECTED[/B][/COLOR]', ['[COLOR lime][B]Yes, Keep Trakt & Real Debrid Settings[/B][/COLOR]','[COLOR lightskyblue][B]No, Remove My Settings[/B][/COLOR]'])
+				choice = dialog.select('[COLOR lightskyblue][B]TRAKT AND RD SETTINGS DETECTED[/B][/COLOR]', ['[COLOR yellowgreen][B]Yes, Keep Trakt & Real Debrid Settings[/B][/COLOR]','[COLOR lightskyblue][B]No, Remove My Settings[/B][/COLOR]'])
 				if choice == 0:
 					keep_trakt_rd = 1
 					found_a = 1
@@ -230,7 +230,7 @@ def INSTALL(name,url,description):
 			dp.update(0,"","Checking Zip File Integrity","Please Wait..")
 			hash = hashlib.md5(open(lib, 'rb').read()).hexdigest()		
 			if hash.lower() != description.lower():
-				choice = xbmcgui.Dialog().yesno(AddonTitle, 'Error: Unfortunatly the ZIP file hash does not match.','The file has therefore been flagged as corrupt.','Would you like to download the file again?',nolabel='[B][COLOR lightskyblue]NO[/COLOR][/B]',yeslabel='[B][COLOR lime]YES[/COLOR][/B]')
+				choice = xbmcgui.Dialog().yesno(AddonTitle, 'Error: Unfortunatly the ZIP file hash does not match.','The file has therefore been flagged as corrupt.','Would you like to download the file again?',nolabel='[B][COLOR lightskyblue]NO[/COLOR][/B]',yeslabel='[B][COLOR yellowgreen]YES[/COLOR][/B]')
 				if choice == 0:
 					try:
 						os.remove(lib)
@@ -394,7 +394,7 @@ def INSTALL_COMMUNITY(name,url,description):
 	if found_favourites == 1 and found_trakt == 1:
 		found_c = 0
 		dialog = xbmcgui.Dialog()
-		choice = dialog.select('[COLOR lightskyblue][B]TRAKT, RD & FAVOURITES DETECTED[/B][/COLOR]', ['[COLOR lightskyblue][B]KEEP BOTH RD, TRAKT & FAVOURITES[/B][/COLOR]','[COLOR lime][B]Only Keep Trakt & Real Debrid Settings[/B][/COLOR]','[COLOR lime][B]Only Keep Kodi Favourites[/B][/COLOR]','[COLOR lightskyblue][B]Remove All Settings & Favourites[/B][/COLOR]'])
+		choice = dialog.select('[COLOR lightskyblue][B]TRAKT, RD & FAVOURITES DETECTED[/B][/COLOR]', ['[COLOR lightskyblue][B]KEEP BOTH RD, TRAKT & FAVOURITES[/B][/COLOR]','[COLOR yellowgreen][B]Only Keep Trakt & Real Debrid Settings[/B][/COLOR]','[COLOR yellowgreen][B]Only Keep Kodi Favourites[/B][/COLOR]','[COLOR lightskyblue][B]Remove All Settings & Favourites[/B][/COLOR]'])
 		if choice == 0:
 			keep_trakt_rd = 1
 			keep_kodi_favs = 1
@@ -417,7 +417,7 @@ def INSTALL_COMMUNITY(name,url,description):
 	if found_favourites == 1 and found_trakt == 0:
 		found_b = 0
 		dialog = xbmcgui.Dialog()
-		choice = dialog.select('[COLOR lightskyblue][B]KODI FAVOURITES DETECTED[/B][/COLOR]', ['[COLOR lime][B]Yes, Keep Favourites[/B][/COLOR]','[COLOR lightskyblue][B]No Use The Builds Favourites[/B][/COLOR]'])
+		choice = dialog.select('[COLOR lightskyblue][B]KODI FAVOURITES DETECTED[/B][/COLOR]', ['[COLOR yellowgreen][B]Yes, Keep Favourites[/B][/COLOR]','[COLOR lightskyblue][B]No Use The Builds Favourites[/B][/COLOR]'])
 		if choice == 0:
 			found_b = 1
 			keep_kodi_favs = 1
@@ -430,7 +430,7 @@ def INSTALL_COMMUNITY(name,url,description):
 	if found_favourites == 0 and found_trakt == 1:
 		found_a = 0
 		dialog = xbmcgui.Dialog()
-		choice = dialog.select('[COLOR lightskyblue][B]TRAKT AND RD SETTINGS DETECTED[/B][/COLOR]', ['[COLOR lime][B]Yes, Keep Trakt & Real Debrid Settings[/B][/COLOR]','[COLOR lightskyblue][B]No, Remove My Settings[/B][/COLOR]'])
+		choice = dialog.select('[COLOR lightskyblue][B]TRAKT AND RD SETTINGS DETECTED[/B][/COLOR]', ['[COLOR yellowgreen][B]Yes, Keep Trakt & Real Debrid Settings[/B][/COLOR]','[COLOR lightskyblue][B]No, Remove My Settings[/B][/COLOR]'])
 		if choice == 0:
 			keep_trakt_rd = 1
 			found_a = 1
@@ -547,7 +547,7 @@ def INSTALL_FANRIFFIC(name,url,description):
 	buildname,download_nums = name.split('|')
 	buildname = buildname.replace("[/COLOR] ","[/COLOR]")
 
-	choice = xbmcgui.Dialog().yesno(AddonTitle, '[COLOR white]Do you wish to download the ' + buildname + ' theme?[/COLOR]','',yeslabel='[B][COLOR lime]YES[/COLOR][/B]',nolabel='[B][COLOR lightskyblue]NO[/COLOR][/B]')
+	choice = xbmcgui.Dialog().yesno(AddonTitle, '[COLOR white]Do you wish to download the ' + buildname + ' theme?[/COLOR]','',yeslabel='[B][COLOR yellowgreen]YES[/COLOR][/B]',nolabel='[B][COLOR lightskyblue]NO[/COLOR][/B]')
 	if choice == 0:
 		sys.exit(1)
 

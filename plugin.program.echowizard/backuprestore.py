@@ -37,7 +37,7 @@ from shutil import copyfile
 base = base64.b64decode(b"aHR0cDovL2VjaG9jb2Rlci5jb20v")
 BASEURL = base64.b64decode(b'aHR0cDovL2VjaG9jb2Rlci5jb20v')
 dp           =  xbmcgui.DialogProgress()
-AddonTitle="[COLOR lime]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
+AddonTitle="[COLOR yellowgreen]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
 AddonID ='plugin.program.echowizard'
 selfAddon = xbmcaddon.Addon(id=AddonID)
 backupfull = selfAddon.getSetting('backup_database')
@@ -270,7 +270,7 @@ def ARCHIVE_CB(sourcefile, destfile, message_header, message1, message2, message
             try:
                 for_progress.append(file) 
                 progress = len(for_progress) / float(N_ITEM) * 100  
-                dp.update(int(progress),"Backing Up",'[COLOR lime]%s[/COLOR]'%file, '')
+                dp.update(int(progress),"Backing Up",'[COLOR yellowgreen]%s[/COLOR]'%file, '')
                 fn = os.path.join(base, file)
                 zipobj.write(fn, fn[rootlen:]) 
             except: pass			

@@ -7,7 +7,7 @@ I reached out too many people for some help and can honestly say to this day tha
 
 Schism
 KodiTips
-BigSam (BigSams Wizard helped me impliment the View Log feature)
+BigSam (BigSams Wizard helped me impyellowgreennt the View Log feature)
 ComRepo and Lambada (The speedtest and download dialog was learned from there functions)
 
 If you feel I have missed you please contact me on twitter @TDBWizard

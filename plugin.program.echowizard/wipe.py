@@ -32,8 +32,8 @@ AddonData = xbmc.translatePath('special://userdata/addon_data')
 addon_id = 'plugin.program.echowizard'
 ADDON = xbmcaddon.Addon(id=addon_id)
 AddonID='plugin.program.echowizard'
-AddonTitle="[COLOR lime]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
-MaintTitle="[COLOR lime]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
+AddonTitle="[COLOR yellowgreen]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
+MaintTitle="[COLOR yellowgreen]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
 dialog       =  xbmcgui.Dialog()
 HOME         =  xbmc.translatePath('special://home/')
 dp           =  xbmcgui.DialogProgress()
