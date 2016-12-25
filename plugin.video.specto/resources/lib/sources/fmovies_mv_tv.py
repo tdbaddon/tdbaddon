@@ -29,7 +29,7 @@ from resources.lib.libraries import client
 
 class source:
     def __init__(self):
-        self.base_link = 'http://fmovies.to/'
+        self.base_link = 'http://fmovies.se/'
         self.search_link = '/sitemap'
         self.search_link2 = 'http://fmovies.to/ajax/film/search?sort=year%3Adesc&funny=1&keyword=%s'
         self.hash_link = '/ajax/episode/info'

@@ -21,7 +21,7 @@ from urlresolver9.resolver import UrlResolver, ResolverError
 class PutLoadResolver(UrlResolver):
     name = "putload.tv"
     domains = ["putload.tv", "youlolx.site", "shitmovie.com"]
-    pattern = '(?://|\.)(?:putload\.tv|youlolx\.site|shitmovie\.com)/(?:embed-)?([0-9a-zA-Z]+)'
+    pattern = '(?://|\.)(putload\.tv|youlolx\.site|shitmovie\.com)/(?:embed-)?([0-9a-zA-Z]+)'
 
     def get_media_url(self, host, media_id):
         return helpers.get_media_url(self.get_url(host, media_id))

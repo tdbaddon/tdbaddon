@@ -20,6 +20,7 @@
 """
 
 import re
+from lib import jsunpack
 from urlresolver9 import common
 from urlresolver9.resolver import UrlResolver, ResolverError
 

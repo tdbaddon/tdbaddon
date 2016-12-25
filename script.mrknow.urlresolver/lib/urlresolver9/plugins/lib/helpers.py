@@ -25,19 +25,13 @@ from urlresolver9.resolver import ResolverError
 
 def get_hidden(html, form_id=None, index=None, include_submit=True):
     hidden = {}
-
-    # remove comments
-    r = re.compile('<!--.*?(?!//)--!*>', re.IGNORECASE + re.DOTALL + re.MULTILINE)
-    m = r.findall(html)
-    if m:
-        for comment in m:
-            html = html.replace(comment, '')
-
     if form_id:
         pattern = '''<form [^>]*id\s*=\s*['"]?%s['"]?[^>]*>(.*?)</form>''' % (form_id)
     else:
         pattern = '''<form[^>]*>(.*?)</form>'''
-        
+
+    html = cleanse_html(html)
+
     for i, form in enumerate(re.finditer(pattern, html, re.DOTALL | re.I)):
         if index is None or i == index:
             for field in re.finditer('''<input [^>]*type=['"]?hidden['"]?[^>]*>''', form.group(1)):
@@ -67,13 +61,13 @@ def pick_source(sources, auto_pick=None):
         if auto_pick:
             return sources[0][1]
         else:
-            result = xbmcgui.Dialog().select('Choose the link', [source[0] if source[0] else 'Uknown' for source in sources])
+            result = xbmcgui.Dialog().select(common.i18n('choose_the_link'), [source[0] if source[0] else 'Uknown' for source in sources])
             if result == -1:
-                raise ResolverError('No link selected')
+                raise ResolverError(common.i18n('no_link_selected'))
             else:
                 return sources[result][1]
     else:
-        raise ResolverError('No Video Link Found')
+        raise ResolverError(common.i18n('no_video_link'))
 
 def append_headers(headers):
     return '|%s' % '&'.join(['%s=%s' % (key, urllib.quote_plus(headers[key])) for key in headers])

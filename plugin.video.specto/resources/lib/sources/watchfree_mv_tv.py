@@ -186,6 +186,7 @@ class source:
                 try:
                     url = client.parseDOM(i, 'a', ret='href')
                     url = [x for x in url if 'gtfo' in x][-1]
+                    print "URL", url
                     try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['u'][0]
                     except: pass
                     try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['q'][0]
@@ -196,6 +197,7 @@ class source:
                     url = url.encode('utf-8')
 
                     host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(url.strip().lower()).netloc)[0]
+                    print "Host", host
                     if not host in hostDict: raise Exception()
                     host = client.replaceHTMLCodes(host)
                     host = host.encode('utf-8')

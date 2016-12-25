@@ -29,7 +29,7 @@ from urlresolver9.resolver import UrlResolver, ResolverError
 class MailRuResolver(UrlResolver):
     name = "mail.ru"
     domains = ['mail.ru', 'my.mail.ru', 'videoapi.my.mail.ru', 'api.video.mail.ru']
-    pattern = '(?://|\.)(mail\.ru)/.+?/(inbox|mail)/(.+?)/.+?/(\d*)\.html'
+    pattern = '(?://|\.)(mail\.ru)/.+?/(?:embed/|)(inbox|mail|embed)/(?:(.+?)/.+?/)?(\d+)'
 
     def __init__(self):
         self.net = common.Net()
