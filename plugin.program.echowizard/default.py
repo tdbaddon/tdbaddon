@@ -312,6 +312,7 @@ def INDEX():
 	#######################################################################
 
 	if offline == 0:
+		Common.addItem('[COLOR red][B]VIEW ALL ERRORS IN LOG FILE[/B][/COLOR]',BASEURL,155,ERROR_ICON,FANART,'')
 		Common.addItem('[COLOR ghostwhite][B]LATEST NEWS[/B][/COLOR]',BASEURL,106,ICON,FANART,'')
 		Common.addItem('[COLOR ghostwhite][B]DONATIONS: [COLOR yellowgreen]paypal.me/echocoder[/COLOR][/B][/COLOR]',BASEURL,172,ICON,FANART,'')
 		#if yt_error == 0:
@@ -356,7 +357,6 @@ def INDEX():
 		Common.addDir('[COLOR ghostwhite][B]LATEST KODI LIBRTMP FILES[/B][/COLOR]',BASEURL,29,LIB_ICON,FANART,'')
 		Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
 		Common.addDir('[COLOR ghostwhite][B]ESSENTIAL DEVELOPER TWITTER DETAILS[/B][/COLOR]',BASEURL,84,TWITTER_ICON,FANART,'')
-		Common.addDir('[COLOR ghostwhite][B]THE DAYS SPORT LISTINGS[/B][/COLOR]',BASEURL,47,SPORTS_ICON,FANART,'')
 	Common.addDir('[COLOR ghostwhite][B]SYSTEM INFORMATION[/B][/COLOR]',BASEURL,163,SYSTEM_INFO_ICON,FANART,'')
 	if offline == 0:
 		Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
@@ -806,7 +806,7 @@ def BACKUPMENU():
 	Common.addItem('[COLOR white]Backup RD & Trakt Settings[/COLOR]','url',103,BACKUP_ICON,FANART,'')
 	Common.addItem('[COLOR white]Backup ECHO TV Guide Settings[/COLOR]','url',107,BACKUP_ICON,FANART,'')
 	Common.addItem('[COLOR lightskyblue][B]RESTORE OPTIONS[/B][/COLOR]','url',22,BACKUP_ICON,FANART,'')	
-	Common.addDir('[COLOR white]Restore A Full Backup[/COLOR]','url',71,BACKUP_ICON,FANART,'')
+	Common.addDir('[COLOR white]Restore A Backup - (Full/Builds)[/COLOR]','url',71,BACKUP_ICON,FANART,'')
 	Common.addDir('[COLOR white]Restore Addon Data[/COLOR]','url',71,BACKUP_ICON,FANART,'')
 	Common.addDir('[COLOR white]Restore RD & Trakt Settings[/COLOR]','url',104,BACKUP_ICON,FANART,'')
 	Common.addDir('[COLOR white]Restore ECHO TV Guide Settings[/COLOR]','url',71,BACKUP_ICON,FANART,'')

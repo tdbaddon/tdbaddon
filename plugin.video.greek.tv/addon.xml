@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.greek.tv" name="Greek TV" version="1.0.6" provider-name="Thgiliwt">
+<addon id="plugin.video.greek.tv" name="Greek TV" version="1.0.7" provider-name="Thgiliwt">
     <requires>
         <import addon="xbmc.python" version="2.19.0"/>
         <import addon="plugin.video.youtube" version="5.2.1"/>
@@ -18,6 +18,9 @@
         <forum>https://forums.tvaddons.ag/addon-releases/51983-greek-tv-bringing-concept-feel-androids-greek-tv-kodi.html</forum>
     </extension>
     <news>
+1.0.7 (26-12-2016)
+- Code cosmetics
+
 1.0.6 (20-12-2016)
 - Added a non-https mirror option
 

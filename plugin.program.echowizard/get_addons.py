@@ -66,7 +66,7 @@ def MENU():
 	version=float(xbmc_version[:4])
 	codename = "Decline"
 	
-	if version >= 16.0 and version <= 16.9:
+	if version >= 14.0 and version <= 16.9:
 		codename = 'Jarvis'
 	if version >= 17.0 and version <= 17.9:
 		codename = 'Krypton'
@@ -535,25 +535,6 @@ def GET_MULTI(name,url):
 	elif choice == 3:
 		Common.Write_Addon_Review(addon_path)
 	elif choice == 1:
-		if "footballrepeat" in addon_path.lower():
-			SOURCES     =  xbmc.translatePath(os.path.join('special://home/userdata','sources.xml'))
-			if "archive.org/download/back2basicsrepo" not in open(SOURCES).read():
-				choice = xbmcgui.Dialog().yesno(AddonTitle, "[COLOR white]" + base_name + " requires their source to be included in the file manager. We have detected that it is not currently listed in the file manager. Would you like us to automatically add it now? If you press NO installation will be cancelled.[/COLOR]", yeslabel='[B][COLOR green]YES[/COLOR][/B]',nolabel='[B][COLOR lightskyblue]NO[/COLOR][/B]')
-				if choice == 1:
-					OLD = '<files>\n        <default pathversion="1"></default>'
-					NEW = '<files>\n		<default pathversion="1"></default>\n		<source>\n			<name>Backtobasics</name>\n			<path pathversion="1">http://archive.org/download/back2basicsrepo/</path>\n			<allowsharing>true</allowsharing>\n		</source>'
-					a=open(SOURCES).read()
-					b=a.replace(OLD, NEW)
-					f= open((SOURCES), mode='w')
-					f.write(str(b))
-					f.close()
-				else:
-					quit()
-
-			if "archive.org/download/back2basicsrepo" not in open(SOURCES).read():
-				dialog.ok(AddonTitle, '[COLOR white]Sorry, there was an error writing the source to the file manager. We are unable to install Football Repeat at this time.[/COLOR]')
-				quit()
-
 		get_dep = 1
 		get_addon = 1
 		if get_dep == 1:
@@ -580,8 +561,8 @@ def GET_MULTI(name,url):
 							INSTALL(install_name,url)
 						i=i+1
 			except:
-				dialog.ok(AddonTitle,"There was an error installing " + install_name + " please report this to @echo_coding on Twitter")
-				quit()	
+				dialog.ok(AddonTitle,"There was an error installing " + install_name + " please report this to @EchoCoder on Twitter")
+				pass	
 		if get_addon == 1:
 			try:
 				streamurl=[]
@@ -607,8 +588,8 @@ def GET_MULTI(name,url):
 								INSTALL(install_name,url)
 						i=i+1
 			except:
-				dialog.ok(AddonTitle,"There was an error installing " + install_name + " please report this to @echo_coding on Twitter")
-				quit()
+				dialog.ok(AddonTitle,"There was an error installing " + install_name + " please report this to @EchoCoder on Twitter")
+				pass
 		dp.create(AddonTitle,"[COLOR blue]Adding the download to the counters[/COLOR]",'[COLOR yellow]Please Wait...[/COLOR]',' ')	
 		dp.update(0,'','',' ')
 		add_download = Common.add_one_addons_week(base_name)
@@ -708,7 +689,7 @@ def GET_PAID(name,url):
 								INSTALL(install_name,url)
 							i=i+1
 				except:
-					dialog.ok(AddonTitle,"There was an error installing " + install_name + " please report this to @echo_coding on Twitter")
+					dialog.ok(AddonTitle,"There was an error installing " + install_name + " please report this to @EchoCoder on Twitter")
 					quit()
 			if get_addon == 1:
 				try:
@@ -735,7 +716,7 @@ def GET_PAID(name,url):
 									INSTALL(install_name,url)
 							i=i+1
 				except:
-					dialog.ok(AddonTitle,"There was an error installing " + install_name + " please report this to @echo_coding on Twitter")
+					dialog.ok(AddonTitle,"There was an error installing " + install_name + " please report this to @EchoCoder on Twitter")
 					quit()
 		else:
 			quit()
@@ -825,7 +806,7 @@ def GET_REPO(name,url):
 							INSTALL(install_name,url)
 					i=i+1
 		except:
-			dialog.ok(AddonTitle,"There was an error installing " + install_name + " please report this to @echo_coding on Twitter")
+			dialog.ok(AddonTitle,"There was an error installing " + install_name + " please report this to @EchoCoder on Twitter")
 			quit()
 		dp.create(AddonTitle,"[COLOR blue]Adding the download to the counters[/COLOR]",'[COLOR yellow]Please Wait...[/COLOR]',' ')	
 		dp.update(0,'','',' ')

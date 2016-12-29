@@ -1,3 +1,7 @@
+[b]1.5.1[/b]
+- code changes and server fixes to hopefully take care of the problem with blank lists
+- favourites code change. Favourites will now update to current links, so no need to re-add channels when they go down. Add your favs here and they will always be up to date. Useful as well when linking to TV Guides.
+- server status fix to include new servers
 [b]1.5.0[/b]
 - server update, better TV Guide integration (thanks Shiny)
 [b]1.4.9[/b]

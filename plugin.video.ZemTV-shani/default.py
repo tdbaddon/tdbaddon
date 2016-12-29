@@ -3593,6 +3593,10 @@ def getIpBoxChannels(url,forSports=False, sort=True):
                     if '[gettext]' in u:
                         print 'in gettext',u
                         u=getUrl(u.replace('[gettext]',''))
+                        if ' ' in u or '>' in u:
+                            u=u.replace(' ','%20')
+                            u=u.replace('>','%3E')
+                            u=u.replace('<','%3C')
                         
                     header_in_page=playheaders.split('&')
                     headers=[]
@@ -3634,10 +3638,15 @@ def getIpBoxChannels(url,forSports=False, sort=True):
                             #curl='direct:'+ss[2].replace('.ts','.ts').replace('\r','')
                             #curl='direct:'+ss[2].replace('.ts','.m3u8').replace('\r','')
                             #curl='ipbox:'+ss[2].replace('\r','').replace('.ts','.ts')#+'|Mozilla/5.0 (Windows NT 6.1 WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36'
+                            urlmedia=ss[2]
+                            if ' ' in urlmedia or '>' in urlmedia:
+                                urlmedia=urlmedia.replace(' ','%20')
+                                urlmedia=urlmedia.replace('>','%3E')
+                                urlmedia=urlmedia.replace('<','%3C')
                             if playheaders:
-                                curl='ipbox:'+ss[2].replace('\r','').replace('.ts','.ts')+'|'+playheaders
+                                curl='ipbox:'+urlmedia.replace('\r','')+'|'+playheaders
                             else:
-                                curl='ipbox:'+ss[2].replace('\r','').replace('.ts','.ts')+'|User-Agent=VLC/2.3.1 LibVLC/2.2.17&Icy-MetaData=1'
+                                curl='ipbox:'+urlmedia.replace('\r','')+'|User-Agent=VLC/2.3.1 LibVLC/2.2.17&Icy-MetaData=1'
                             ##curl='ipbox:'+ss[2].replace('\r','').replace('.ts','.m3u8')+'|User-Agent=VLC/2.2.1 LibVLC/2.2.17&Icy-MetaData=1'
                             #print 'iptv',curl
                             ret.append((cname +' Ipbox' ,'manual', curl ,''))   

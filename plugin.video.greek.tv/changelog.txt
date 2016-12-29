@@ -1,3 +1,6 @@
+1.0.7 (26-12-2016)
+- Code cosmetics
+
 1.0.6 (20-12-2016)
 - Added a non-https mirror option
   > Hourly updates

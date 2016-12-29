@@ -272,7 +272,7 @@ def SPORTS_DEVIL_FIX():
 	if not os.path.exists(path):
 		os.makedirs(path)
 
-	url = ('http://www.echocoder.com/addons/Plugins/dependencies/script.module.pydevd-3.4.1.zip')
+	url = ('http://www.echocoder.com/addons/Plugins/dependencies/script.module.pydevd-4.4.0.zip')
 	dp = xbmcgui.DialogProgress()
 	dp.create(AddonTitle,"","","Installing Dependencies")
 	lib=os.path.join(path, 'addon.zip')

@@ -89,19 +89,11 @@ def read_file(file):
 		
 
 def make_request():
-	try:
-		for server in shuffle(CCLOUDTV_SRV_URL):
+	for server in shuffle(CCLOUDTV_SRV_URL):
 			conn = GetHttpStatusAndData(server)
 			if conn['valid']:
 				links = conn['data'].encode('utf-8')
 				return links
-	except e:
-		if hasattr(e, 'code'):
-			print 'We failed with error code - %s.' % e.code	
-		if hasattr(e, 'reason'):
-			print 'We failed to reach a server.'
-			print 'Reason: ', e.reason
-	print 'All cCloud TV servers seem to be down. Please try again in a few minutes.'
 	return None
 
 			
@@ -716,7 +708,7 @@ def online_status():
                 status = status.decode('ascii', 'ignore')
         except:
                 status = status.decode('utf-8','ignore')
-    status = status.replace('&amp;','').replace("			</tr><tr>","").replace("			<th scope='row'> www.ccld.io </th>","").replace("			<th scope='row'> www.ccloudtv.org </th>","").replace("			<th scope='row'> Kodi Server 1 </th>","").replace("			<th scope='row'> Kodi Server 2 </th>","").replace("			<th scope='row'> Kodi Server 3 </th>","").replace("			<th scope='row'> Kodi Server 4 </th>","").replace("			<th scope='row'> Kodi Server 5 </th>","").replace("			<th scope='row'> Kodi Server 6 </th>","").replace("			<th scope='row'> Kodi Server 7 </th>","").replace("			<th scope='row'> Kodi Server 8 </th>","").replace("			<th scope='row'> Kodi Server 9 </th>","").replace("			<th scope='row'> Kodi Server 10 </th>","").replace("			<th scope='row'> Plex Server 1 </th>","").replace("			<th scope='row'> Plex Server 2 </th>","").replace("			<th scope='row'> Plex Server 3 </th>","").replace("			<td><span id='","").replace("' class='Online'> Online </span></td>"," = [COLOR green]Online[/COLOR]").replace("' class='Offline'> Offline </span></td>"," = [COLOR red]Offline[/COLOR]").replace("	</table></center>","").replace("			</tr></tbody>","").replace("		<thead>","").replace("			<tr>","").replace("			<th scope='col'>Server Type</th>","Scroll down to check the current status of our servers. ").replace("			<th scope='col'>Status</th>","").replace("			</tr>","").replace("		</thead>","").replace("		<tbody><tr>","[COLOR royalblue][B]Server Type  -  Status[/B][/COLOR]").replace("cCloud TV Status</caption>","[B]cCloud TV Status[/B]").replace("","").replace("","").replace("			<th scope='row'> Roku Server 1 </th>","").replace("			<th scope='row'> Roku Server 2 </th>","").replace("			<th scope='row'> Roku Server 3 </th>","").replace("			<th scope='row'> Roku Server 4 </th>","").replace("			<th scope='row'> Roku Server 5 </th>","")
+    status = status.replace('&amp;','').replace("			</tr><tr>","").replace("			<th scope='row'> www.ccld.io </th>","").replace("			<th scope='row'> www.ccloudtv.org </th>","").replace("			<th scope='row'> Kodi Server 1 </th>","").replace("			<th scope='row'> Kodi Server 2 </th>","").replace("			<th scope='row'> Kodi Server 3 </th>","").replace("			<th scope='row'> Kodi Server 4 </th>","").replace("			<th scope='row'> Kodi Server 5 </th>","").replace("			<th scope='row'> Kodi Server 6 </th>","").replace("			<th scope='row'> Kodi Server 7 </th>","").replace("			<th scope='row'> Kodi Server 8 </th>","").replace("			<th scope='row'> Kodi Server 9 </th>","").replace("			<th scope='row'> Kodi Server 10 </th>","").replace("			<th scope='row'> Plex Server 1 </th>","").replace("			<th scope='row'> Plex Server 2 </th>","").replace("			<th scope='row'> Plex Server 3 </th>","").replace("			<td><span id='","").replace("' class='Online'> Online </span></td>"," = [COLOR green]Online[/COLOR]").replace("' class='Offline'> Offline </span></td>"," = [COLOR red]Offline[/COLOR]").replace("	</table></center>","").replace("			</tr></tbody>","").replace("		<thead>","").replace("			<tr>","").replace("			<th scope='col'>Server Type</th>","Scroll down to check the current status of our servers. ").replace("			<th scope='col'>Status</th>","").replace("			</tr>","").replace("		</thead>","").replace("		<tbody><tr>","[COLOR royalblue][B]Server Type  -  Status[/B][/COLOR]").replace("cCloud TV Status</caption>","[B]cCloud TV Status[/B]").replace("","").replace("","").replace("			<th scope='row'> Roku Server 1 </th>","").replace("			<th scope='row'> Roku Server 2 </th>","").replace("			<th scope='row'> Roku Server 3 </th>","").replace("			<th scope='row'> Roku Server 4 </th>","").replace("			<th scope='row'> Roku Server 5 </th>","").replace("			<th scope='row'> Roku Server 6 </th>","").replace("			<th scope='row'> Roku Server 7 </th>","").replace("			<th scope='row'> Roku Server 8 </th>","").replace("			<th scope='row'> Roku Server 9 </th>","").replace("			<th scope='row'> Roku Server 10 </th>","")
     text = status
     showText('[COLOR royalblue][B]***Online Status***[/B][/COLOR]', text)
 
@@ -884,11 +876,14 @@ def play_video(url):
 			#print 'RedirectorURL: ' + str(url)
 		except:
 			pass
+
 			
 	media_url = url
 	item = xbmcgui.ListItem(name, path = media_url)
 	xbmcplugin.setResolvedUrl(int(sys.argv[1]), True, item)
 	return
+	play_video(url)
+	
 	
 def get_params():
 	param = []
@@ -907,10 +902,14 @@ def get_params():
 				param[splitparams[0]] = splitparams[1]
 	return param
 
-exec("import re;import base64");exec((lambda p,y:(lambda o,b,f:re.sub(o,b,f))(r"([0-9a-f]+)",lambda m:p(m,y),ou812("MTEgPSAnNicuMSgnMCcpLjEoJzAnKS4xKCcwJykuMSgnMCcpCjEwID0gJzInLjEoJzAnKS4xKCcwJykuMSgnMCcpLjEoJzAnKQpmID0gJzUnLjEoJzAnKS4xKCcwJykuMSgnMCcpLjEoJzAnKQoxNCA9ICc5Jy4xKCcwJykuMSgnMCcpLjEoJzAnKS4xKCcwJykKZSA9ICdhJy4xKCcwJykuMSgnMCcpLjEoJzAnKS4xKCcwJykKMTMgPSAnNycuMSgnMCcpLjEoJzAnKS4xKCcwJykuMSgnMCcpCjEyID0gJzgnLjEoJzAnKS4xKCcwJykuMSgnMCcpLjEoJzAnKQoxNiA9ICc0Jy4xKCcwJykuMSgnMCcpLjEoJzAnKS4xKCcwJykKMTUgPSAnMycuMSgnMCcpLjEoJzAnKS4xKCcwJykuMSgnMCcpCmQgPSAnYicuMSgnMCcpLjEoJzAnKS4xKCcwJykuMSgnMCcpCgpjID0gWzExLDEwLGYsMTQsZSwxMywxMiwxNiwxNSxkXQ==")))(lambda a,b:b[int("0x"+a.group(1),16)],"base64|decode|V1ZWb1UwMUhUa1ZpTTFwTlRUSmtNVmRVU1RSa2JWWklWMVJHVkZaRk5VcFdSRXBUVjJ4U2JsQlVNRDA9|V1ZWb1UwMUhUa1ZpTTFwTlRUSmtNVmRVU1RSa2JIQlhWMnhrVWxkSFVrMVZNV2hQVmtkR1FsQlVNRDA9|V1ZWb1UwMUhUa1ZpTTFwTlRUSmtNVmRVU1RSa2JWSkpWR3RhVGsxSVFsSmFSV1JoVkcxT2JsQlVNRDA9|V1ZWb1UwMUhUa1ZpTTFwTlRUSmtNVmRVU1RSa2JGcFdaVWR3VGxKRldrOVdSRUkwWW14R00xQlVNRDA9|V1ZWb1UwMUhUa1ZpTTFwTlRUSmtNVmRVU1RSa2JFNUdWbTFHVDFadVFURlpWbFozWWtaYU0xQlVNRDA9|V1ZWb1UwMUhUa1ZpTTFwTlRUSmtNVmRVU1RSa2JVcHpWMjV3YWxZd05YVlhWRXBPVGxkV1VsQlVNRDA9|V1ZWb1UwMUhUa1ZpTTFwTlRUSmtNVmRVU1RSa2JWWkdaVVZTVUZaR1NrZFdiWGhIVFd4a1VsQlVNRDA9|V1ZWb1UwMUhUa1ZpTTFwTlRUSmtNVmRVU1RSa2JVWjFWbXM1VlZaVVZuVmFSRXAzVlZVeFFsQlVNRDA9|V1ZWb1UwMUhUa1ZpTTFwTlRUSmtNVmRVU1RSa2JIQklZMFZPV2xaRldqRmFSM0J6VTBkV2JsQlVNRDA9|V1ZWb1UwMUhUa1ZpTTFwTlRUSmtNVmRVU1RSa2JWWkhVbTVrVTJFelFsbFhha3B6WW0xR2JsQlVNRDA9|CCLOUDTV_SRV_URL|List10|List5|List3|List2|List1|List7|List6|List4|List9|List8".split("|")))####################################################################################################
+
+exec("import re;import base64");exec((lambda p,y:(lambda o,b,f:re.sub(o,b,f))(r"([0-9a-f]+)",lambda m:p(m,y),ou812("MTIgPSAnNz09Jy44KCc5JykuOCgnOScpLjgoJzknKS44KCc5JykKMTEgPSAnNj09Jy44KCc5JykuOCgnOScpLjgoJzknKS44KCc5JykKMTAgPSAnYicuOCgnOScpLjgoJzknKS44KCc5JykuOCgnOScpCjE2ID0gJzAnLjgoJzknKS44KCc5JykuOCgnOScpLjgoJzknKQoxNSA9ICcxJy44KCc5JykuOCgnOScpLjgoJzknKS44KCc5JykKMTQgPSAnYScuOCgnOScpLjgoJzknKS44KCc5JykuOCgnOScpCjEzID0gJzInLjgoJzknKS44KCc5JykuOCgnOScpLjgoJzknKQpmID0gJzU9PScuOCgnOScpLjgoJzknKS44KCc5JykuOCgnOScpCmUgPSAnND09Jy44KCc5JykuOCgnOScpLjgoJzknKS44KCc5JykKZCA9ICczPT0nLjgoJzknKS44KCc5JykuOCgnOScpLjgoJzknKQoKYyA9IFsxMiwxMSwxMCwxNiwxNSwxNCwxMyxmLGUsZF0=")))(lambda a,b:b[int("0x"+a.group(1),16)],"V1ZWb1UwMUhUa2xVVkZwTlpWUnNOVmRXYUdwa1ZtOTVZa1JDYUZOR1duQmFSbWhQWWtkT2RGUnVXbWxpYkVweldXMDFVbVJXYTNsUFdGSk5UV3RhZWxkc2FHNWxSVFZWV2pOc1RWWXpVakpYYTJSellXeHNOVTlXYUdsTmJtZDVWMnhvUzJOSFNuUldXRnBwVmpCYU5scEZaRmRsVlhkNVpVaENhazB4U2paVVJFb3daR3h3U0dFelZtdFRSMmQz|V1ZWb1UwMUhUa2xVVkZwTlpWUnNOVmRXYUdwa1ZtOTVZa1JDYUZOR1duQmFSbWhQWWtkT2RGUnVXbWxpYkVweldXMDFVbVJXYTNsUFdGSk5UVVZhZWxkc2FHNWxSVFZWV2pOc1RWWXdOWEZaYTJNMVRWWndSRTlYUmxwWFJrcHZXVzB3TVdGRmQzbE5WMmhxVFRGS2Mxa3lhelZqTWtaWlZHcENhbVZVYkhsWmFrcFRZMFY0ZFZWcVVtdFJWREE1|V1ZWb1UwMUhUa2xVVkZwTlpWUnNOVmRXYUdwa1ZtOTVZa1JDYUZOR1duQmFSbWhQWWtkT2RGUnVXbWxpYkVweldXMDFVbVJXYTNsUFdGSk5UV3RhZWxkc2FHNWxSVFZWV2pOc1RWWXpVakpYYTJSelltMUdXVlZZV2xWV01GcDFXVzB4VjAxSFNqVlBXRkphVjBVMGQxZHNhRXBrYlVwSVlraHdhMU5GTVRKWlZFazFZVEpHVkU1VVFteFRSa1U1|V1ZWb1UwMUhUa2xVVkZwTlpWUnNOVmRXYUdwa1ZtOTVZa1JDYUZOR1duQmFSbWhQWWtkT2RGUnVXbWxpYkVweldXMDFVbVJXYTNsUFdGSk5UV3RhY0ZkVVNsSmxSVEZ4VkZSQ1RsWkZiRFpVYTAwMVUxZFdXRk51YkdoV01VWXlXV3hrUjJWdFVraFdibXhOVFc1b2QxbDZUbE5sYTNkNVpFaGFZVkl5ZERGYVJXaHZUVUU5UFE9PQ|V1ZWb1UwMUhUa2xVVkZwTlpWUnNOVmRXYUdwa1ZtOTVZa1JDYUZOR1duQmFSbWhQWWtkT2RGUnVXbWxpYkVweldXMDFVbVJXYTNsUFdGSk5UV3h3YjFkWE1VdE9WbkJJVDFjMWFWWXhXbkZYVmswMVUyeHJlVlp1VWxwV2VsSXlXV3hrUjJWdFVraFdibXhOVFc1b2QxbDZUbE5sYTNkNVpFaGFZVkl5ZERGYVJXaHZUVUU5UFE9PQ|V1ZWb1UwMUhUa2xVVkZwTlpWUnNOVmRXYUdwa1ZtOTVZa1JDYUZOR1duQmFSbWhQWWtkT2RGUnVXbWxpYkVweldXMDFVbVJXYTNsUFdGSk5UVVJHYjFsNlRsTmlSMDV5V2tkb2ExSjZiRFZVUkVKM1pHMUZlVlp1YkUxTmFrWnZXWHBPVTJKSFRuQlBXRTVvVjBVMGQxa3phelZqYlVsNVZXNUNUV0pzU1RCYVJVVTVVRkU5UFE9PQ|V1ZWb1UwMUhUa2xVVkZwTlpWUnNOVmRXYUdwa1ZtOTVZa1JDYUZOR1duQmFSbWhQWWtkT2RGUnVXbWxpYkVweldXMDFVbVJXYTNsUFdGSk5UVzVDZDFsc1kzaE9WMFowVW01U1RtRlViRVJaVm1oTFlUSktXRkp1VmsxTmFrWnZXWHBPVTJKSFRuQlBXRTVvVjBVMGQxa3phelZqYlVsNVZXNUNUV0pzU1RCYVJVVTVVRkU5UFE9PQ|V1ZWb1UwMUhUa2xVVkZwTlpWUnNOVmRXYUdwa1ZtOTVZa1JDYUZOR1duQmFSbWhQWWtkT2RGUnVXbWxpYkVweldXMDFVbVJXYTNsUFdGSk5UVzVDZDFsc1kzaE9WMFowVW01U1RsVjZiRVpYVm1oTFlrWndTRlpxU21oV00yUXlXV3hrUjJWdFVraFdibXhOVFc1b2QxbDZUbE5sYTNkNVpFaGFZVkl5ZERGYVJXaHZUVUU5UFE9PQ|decode|base64|V1ZWb1UwMUhUa2xVVkZwTlpWUnNOVmRXYUdwa1ZtOTVZa1JDYUZOR1duQmFSbWhQWWtkT2RGUnVXbWxpYkVweldXMDFVbVJXYTNsUFdGSk5UV3R3YjFkV2FFdGpSMDE1WVVjNVRVMUhVakpaVkU1V1pHMUtXRkp1Y0d0U01WbzFWRVJLTkdOSFRYcFZibkJOVFc1U01sZHJaSEprVjFKSllVUkJQUT09|V1ZWb1UwMUhUa2xVVkZwTlpWUnNOVmRXYUdwa1ZtOTVZa1JDYUZOR1duQmFSbWhQWWtkT2RGUnVXbWxpYkVweldXMDFVbVJXYTNsUFdGSk5UVEJhTUZwWE5XNWtiRlY2Vlcxb2FtRXphREpaTWpGU1pHMUtXRkp1Y0d0U01WbzFWRVJLTkdOSFRYcFZibkJOVFc1U01sZHJaSEprVjFKSllVUkJQUT09|CCLOUDTV_SRV_URL|List10|List9|List8|List3|List2|List1|List7|List6|List5|List4".split("|")))
+
+####################################################################################################
 ####################################################################################################
 # Gets the data and tests for a valid M3U since a 200 response code can still lead to an empty file 
 # or a different page but not our listing
+
 def GetHttpStatusAndData(url):
 
 	resp = {}
@@ -1003,19 +1002,25 @@ def addFavorite(name,url,iconimage,fanart,mode,playlist=None,regexs=None):
         except:
             pass
         if os.path.exists(favorites)==False:
-            addon_log('Making Favorites File')
-            favList.append((name,url,iconimage,fanart,mode,playlist,regexs))
-            a = open(favorites, "w")
-            a.write(json.dumps(favList))
-            a.close()
+			addon_log('Making Favorites File')
+			url="plugin://plugin.video.ccloudtv/?name="+name
+			favList.append((name,url,iconimage,fanart,mode,playlist,regexs))
+			a = open(favorites, "w")
+			a.write(json.dumps(favList))
+			a.close()
+			dialog = xbmcgui.Dialog()
+			dialog.notification('cCloud TV', 'Favourite Added',xbmcgui.NOTIFICATION_INFO, 2000)
         else:
-            addon_log('Appending Favorites')
-            a = open(favorites).read()
-            data = json.loads(a)
-            data.append((name,url,iconimage,fanart,mode))
-            b = open(favorites, "w")
-            b.write(json.dumps(data))
-            b.close()
+			addon_log('Appending Favorites')
+			a = open(favorites).read()
+			data = json.loads(a)
+			url="plugin://plugin.video.ccloudtv/?name="+name
+			data.append((name,url,iconimage,fanart,mode))
+			b = open(favorites, "w")
+			b.write(json.dumps(data))
+			b.close()
+			dialog = xbmcgui.Dialog()
+			dialog.notification('cCloud TV', 'Favourite Added',xbmcgui.NOTIFICATION_INFO, 2000)
 		
 
 def getFavorites():
@@ -1029,6 +1034,7 @@ def getFavorites():
 			items = json.loads(open(favorites).read())
 			total = len(items)
 			for i in items:
+				mode=0 ###
 				name = i[0]
 				url = i[1]
 				iconimage = i[2]
@@ -1047,7 +1053,7 @@ def getFavorites():
 				except: regexs = None
 
 				if i[4] == 1:
-					addLink(name,url,i[4],iconimage,fanart,'fav')
+					addLink(name,url,0,iconimage,fanart,'fav')###
 				else:
 					addDir(name,url,i[4],iconimage,fanart,'fav')
 
@@ -1059,8 +1065,10 @@ def rmFavorite(name):
                 b = open(favorites, "w")
                 b.write(json.dumps(data))
                 b.close()
+                dialog = xbmcgui.Dialog()
+                dialog.notification('cCloud TV', 'Favourite Removed',xbmcgui.NOTIFICATION_INFO, 2000)
                 break
-        xbmc.executebuiltin("XBMC.Container.Refresh")	
+        xbmc.executebuiltin("XBMC.Container.Refresh")    
 
 params = get_params()
 url = None
@@ -1130,6 +1138,7 @@ if mode == 0:
 				play_video(url)
 			except:
 				pass
+
 				
 
 if mode == None or url == None or len(url) < 1:

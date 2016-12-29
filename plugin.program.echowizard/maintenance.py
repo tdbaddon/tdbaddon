@@ -28,7 +28,7 @@ import os
 import installer
 import plugintools
 
-AddonTitle="[COLOR lime]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
+AddonTitle="[COLOR yellowgreen]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
 addon_id = 'plugin.program.echowizard'
 thumbnailPath = xbmc.translatePath('special://userdata/Thumbnails');
 cachePath = os.path.join(xbmc.translatePath('special://home'), 'cache')
@@ -38,10 +38,10 @@ mediaPath = os.path.join(addonPath, 'resources/art')
 ADDONS = os.path.join(os.path.join(xbmc.translatePath('special://home'), 'addons'))
 FANART              = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id , 'fanart.jpg'))
 databasePath = xbmc.translatePath('special://userdata/Database')
-SYSTEM_INFO_ICON    = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'resources/art/system_info.png'))
+ICON    = xbmc.translatePath(os.path.join('special://home/addons/' + addon_id, 'icon.png'))
 USERDATA = xbmc.translatePath('special://userdata/')
 AddonData = xbmc.translatePath('special://userdata/addon_data')
-MaintTitle="[COLOR lime]ECHO[/COLOR] [COLOR white]Maintenance Tools[/COLOR]"
+MaintTitle="[COLOR yellowgreen]ECHO[/COLOR] [COLOR white]Maintenance Tools[/COLOR]"
 EXCLUDES     = ['plugin.program.echowizard','repository.echocoder','script.module.requests','temp','kodi.log','kodi.log.old','spmc.log','spmc.log.old','dbmc.log','dbmc.log.old']
 dp = xbmcgui.DialogProgress()
 Windows = xbmc.translatePath('special://home')
@@ -272,28 +272,28 @@ def GET_ADDON_STATS():
 	i=0
 	for item in os.listdir(ADDONS):
 		i=i+1
-	Common.addItem('[COLOR white]Total Addons = [/COLOR][COLOR dodgerblue]' + str(i) + '[/COLOR]',BASEURL,666,SYSTEM_INFO_ICON,FANART,'')
+	Common.addItem('[COLOR white]Total Addons = [/COLOR][COLOR yellowgreen]' + str(i) + '[/COLOR]',BASEURL,666,ICON,FANART,'')
 
 	dp.update(10,'[COLOR white]Counting the installed video addons.[/COLOR]')
 	i=0
 	for item in os.listdir(ADDONS):
 		if "video" in item.lower():
 			i=i+1
-	Common.addItem('[COLOR white]Video Addons = [/COLOR][COLOR dodgerblue]' + str(i) + '[/COLOR]',BASEURL,666,SYSTEM_INFO_ICON,FANART,'')
+	Common.addItem('[COLOR white]Video Addons = [/COLOR][COLOR yellowgreen]' + str(i) + '[/COLOR]',BASEURL,666,ICON,FANART,'')
 
 	dp.update(20,'[COLOR white]Counting the installed program addons.[/COLOR]')
 	i=0
 	for item in os.listdir(ADDONS):
 		if "program" in item.lower():
 			i=i+1
-	Common.addItem('[COLOR white]Program Addons = [/COLOR][COLOR dodgerblue]' + str(i) + '[/COLOR]',BASEURL,666,SYSTEM_INFO_ICON,FANART,'')
+	Common.addItem('[COLOR white]Program Addons = [/COLOR][COLOR yellowgreen]' + str(i) + '[/COLOR]',BASEURL,666,ICON,FANART,'')
 
 	dp.update(30,'[COLOR white]Counting the installed music addons.[/COLOR]')
 	i=0
 	for item in os.listdir(ADDONS):
 		if "music" in item.lower():
 			i=i+1
-	Common.addItem('[COLOR white]Music Addons = [/COLOR][COLOR dodgerblue]' + str(i) + '[/COLOR]',BASEURL,666,SYSTEM_INFO_ICON,FANART,'')
+	Common.addItem('[COLOR white]Music Addons = [/COLOR][COLOR yellowgreen]' + str(i) + '[/COLOR]',BASEURL,666,ICON,FANART,'')
 
 	dp.update(40,'[COLOR white]Counting the installed image addons.[/COLOR]')
 	i=0
@@ -301,21 +301,21 @@ def GET_ADDON_STATS():
 
 		if "image" in item.lower():
 			i=i+1
-	Common.addItem('[COLOR white]Picture Addons = [/COLOR][COLOR dodgerblue]' + str(i) + '[/COLOR]',BASEURL,666,SYSTEM_INFO_ICON,FANART,'')
+	Common.addItem('[COLOR white]Picture Addons = [/COLOR][COLOR yellowgreen]' + str(i) + '[/COLOR]',BASEURL,666,ICON,FANART,'')
 
 	dp.update(50,'[COLOR white]Counting the installed scripts.[/COLOR]')
 	i=0
 	for item in os.listdir(ADDONS):
 		if "script" in item.lower():
 			i=i+1
-	Common.addItem('[COLOR white]Scripts = [/COLOR][COLOR dodgerblue]' + str(i) + '[/COLOR]',BASEURL,666,'','','')
+	Common.addItem('[COLOR white]Scripts = [/COLOR][COLOR yellowgreen]' + str(i) + '[/COLOR]',BASEURL,666,ICON,FANART,'')
 
 	dp.update(55,'[COLOR white]Counting the installed skins.[/COLOR]')
 	i=0
 	for item in os.listdir(ADDONS):
 		if "skin" in item.lower():
 			i=i+1
-	Common.addItem('[COLOR white]Skins = [/COLOR][COLOR dodgerblue]' + str(i) + '[/COLOR]',BASEURL,666,'','','')
+	Common.addItem('[COLOR white]Skins = [/COLOR][COLOR yellowgreen]' + str(i) + '[/COLOR]',BASEURL,666,ICON,FANART,'')
 
 
 	dp.update(60,'[COLOR white]Counting the installed repositories.[/COLOR]')
@@ -325,7 +325,7 @@ def GET_ADDON_STATS():
 		for name in dirs:
 			if "repo" in name.lower():
 				i=i+1
-	Common.addItem('[COLOR white]Repositories = [/COLOR][COLOR dodgerblue]' + str(i) + '[/COLOR]',BASEURL,666,'','','')
+	Common.addItem('[COLOR white]Repositories = [/COLOR][COLOR yellowgreen]' + str(i) + '[/COLOR]',BASEURL,666,ICON,FANART,'')
 
 	xbmc_version=xbmc.getInfoLabel("System.BuildVersion")
 	version=float(xbmc_version[:4])
@@ -358,19 +358,18 @@ def GET_ADDON_STATS():
 
 	dp.update(90,'[COLOR white]Getting your update preferences.[/COLOR]')
 	if check=="true":
-		a = "[COLOR lime]Yes[/COLOR]"
+		a = "[COLOR yellowgreen]Yes[/COLOR]"
 	else:
 		a = "[COLOR lightskyblue]No[/COLOR]"
 	if check_build=="true":
-		b = "[COLOR lime]Yes[/COLOR]"
+		b = "[COLOR yellowgreen]Yes[/COLOR]"
 	else:
 		b = "[COLOR lightskyblue]No[/COLOR]"
-	Common.addItem('[COLOR blue]-------------------[/COLOR]',BASEURL,200,SYSTEM_INFO_ICON,FANART,'')
-	Common.addItem('[COLOR ghostwhite]Version: [/COLOR][COLOR lime]%s' % version + " " + codename + "[/COLOR]",BASEURL,200,SYSTEM_INFO_ICON,FANART,'')
-	Common.addItem('[COLOR ghostwhite]Check For Updates on Start: [/COLOR]' + a,BASEURL,200,SYSTEM_INFO_ICON,FANART,'')
-	Common.addItem('[COLOR ghostwhite]Check For Build Updates on Kodi launch: [/COLOR]' + b,BASEURL,200,SYSTEM_INFO_ICON,FANART,'')
-	Common.addItem('[COLOR ghostwhite]Local IP: [/COLOR][COLOR white]' + s.getsockname()[0] + '[/COLOR]',BASEURL,200,SYSTEM_INFO_ICON,FANART,'')
-	Common.addItem('[COLOR ghostwhite]External IP: [/COLOR][COLOR white]' + m.group(0) + '[/COLOR]',BASEURL,200,SYSTEM_INFO_ICON,FANART,'')
+	Common.addItem('[COLOR ghostwhite]Version: [/COLOR][COLOR yellowgreen]%s' % version + " " + codename + "[/COLOR]",BASEURL,200,ICON,FANART,'')
+	Common.addItem('[COLOR ghostwhite]Check For Updates on Start: [/COLOR]' + a,BASEURL,200,ICON,FANART,'')
+	Common.addItem('[COLOR ghostwhite]Check For Build Updates on Kodi launch: [/COLOR]' + b,BASEURL,200,ICON,FANART,'')
+	Common.addItem('[COLOR ghostwhite]Local IP: [/COLOR][COLOR yellowgreen]' + s.getsockname()[0] + '[/COLOR]',BASEURL,200,ICON,FANART,'')
+	Common.addItem('[COLOR ghostwhite]External IP: [/COLOR][COLOR yellowgreen]' + m.group(0) + '[/COLOR]',BASEURL,200,ICON,FANART,'')
 
 	dp.update(100)
 	dp.close()
@@ -403,7 +402,7 @@ def CHECK_BROKEN_SOURCES():
 		name=re.compile('<name>(.+?)</name>').findall(item)[0]
 		checker=re.compile('<path pathversion="1">(.+?)</path>').findall(item)[0]
 		if "http" in str(checker):
-			dp.update(0,"","[COLOR dodgerblue][B]Checking: " + name + "[/B][/COLOR]", "")
+			dp.update(0,"","[COLOR yellowgreen][B]Checking: " + name + "[/B][/COLOR]", "")
 			try:
 				checkme = requests.get(checker)
 			except:
@@ -504,9 +503,9 @@ def CHECK_BROKEN_SOURCES():
 				dp.close()
 				sys.exit()
 
-			dp.update(0,"","","[COLOR lime][B]Alive: " + str(passed) + "[/B][/COLOR][COLOR red][B]        Dead: " + str(counter) + "[/B][/COLOR]")
+			dp.update(0,"","","[COLOR yellowgreen][B]Alive: " + str(passed) + "[/B][/COLOR][COLOR red][B]        Dead: " + str(counter) + "[/B][/COLOR]")
 
-	dialog.ok(AddonTitle,'[COLOR white]We have checked your sources and found:[/COLOR]', '[COLOR lime][B]WORKING SOURCES: ' + str(passed) + ' [/B][/COLOR]','[COLOR red][B]DEAD SOURCES: ' + str(counter) + ' [/B][/COLOR]')
+	dialog.ok(AddonTitle,'[COLOR white]We have checked your sources and found:[/COLOR]', '[COLOR yellowgreen][B]WORKING SOURCES: ' + str(passed) + ' [/B][/COLOR]','[COLOR red][B]DEAD SOURCES: ' + str(counter) + ' [/B][/COLOR]')
 
 def CHECK_BROKEN_REPOS():
 
@@ -522,7 +521,7 @@ def CHECK_BROKEN_REPOS():
 	passed = 0
 	failed = 0
 	HOME =  xbmc.translatePath('special://home/addons/')
-	dp.update(0,"[COLOR dodgerblue][B]We are currently checking:[/B][/COLOR]",'',"[COLOR lime][B]Alive: 0[/B][/COLOR][COLOR red][B]        Dead: 0[/B][/COLOR]")
+	dp.update(0,"[COLOR yellowgreen][B]We are currently checking:[/B][/COLOR]",'',"[COLOR yellowgreen][B]Alive: 0[/B][/COLOR][COLOR red][B]        Dead: 0[/B][/COLOR]")
 	url = HOME
 	for root, dirs, files in os.walk(url):
 		for file in files:
@@ -531,7 +530,7 @@ def CHECK_BROKEN_REPOS():
 				if "info compressed=" in str(a):
 					match = re.compile('<info compressed="false">(.+?)</info>').findall(a)
 					for checker in match:
-						dp.update(0,"","[COLOR dodgerblue][B]" + checker + "[/B][/COLOR]", "")
+						dp.update(0,"","[COLOR yellowgreen][B]" + checker + "[/B][/COLOR]", "")
 						try:
 							Common.OPEN_URL_NORMAL(checker)
 							passed = passed + 1
@@ -557,7 +556,7 @@ def CHECK_BROKEN_REPOS():
 										default_path = xbmc.translatePath("special://home/addons/")
 										file_path = xbmc.translatePath(file)
 										full_path = default_path + repo_id
-										choice = xbmcgui.Dialog().yesno(AddonTitle,"[COLOR white]The [/COLOR][COLOR dodgerblue]" + repo_name + "[/COLOR] [COLOR white] appears to be broken. We attempted to connect to the repo but it was unsuccessful.[/COLOR]",'[COLOR red]To remove this repository please click YES[/COLOR]',yeslabel='[B][COLOR lime]YES[/COLOR][/B]',nolabel='[B][COLOR lightskyblue]NO[/COLOR][/B]')
+										choice = xbmcgui.Dialog().yesno(AddonTitle,"[COLOR white]The [/COLOR][COLOR yellowgreen]" + repo_name + "[/COLOR] [COLOR white] appears to be broken. We attempted to connect to the repo but it was unsuccessful.[/COLOR]",'[COLOR red]To remove this repository please click YES[/COLOR]',yeslabel='[B][COLOR yellowgreen]YES[/COLOR][/B]',nolabel='[B][COLOR lightskyblue]NO[/COLOR][/B]')
 										if choice == 1:
 											try:
 												shutil.rmtree(full_path)
@@ -573,7 +572,7 @@ def CHECK_BROKEN_REPOS():
 									default_path = xbmc.translatePath("special://home/addons/")
 									file_path = xbmc.translatePath(file)
 									full_path = default_path + repo_id
-									choice = xbmcgui.Dialog().yesno(AddonTitle,"[COLOR white]The [/COLOR][COLOR dodgerblue]" + repo_name + "[/COLOR] [COLOR white] appears to be broken. We attempted to connect to the repo but it was unsuccessful.[/COLOR]",'[COLOR red]To remove this repository please click YES[/COLOR]',yeslabel='[B][COLOR lime]YES[/COLOR][/B]',nolabel='[B][COLOR lightskyblue]NO[/COLOR][/B]')
+									choice = xbmcgui.Dialog().yesno(AddonTitle,"[COLOR white]The [/COLOR][COLOR yellowgreen]" + repo_name + "[/COLOR] [COLOR white] appears to be broken. We attempted to connect to the repo but it was unsuccessful.[/COLOR]",'[COLOR red]To remove this repository please click YES[/COLOR]',yeslabel='[B][COLOR yellowgreen]YES[/COLOR][/B]',nolabel='[B][COLOR lightskyblue]NO[/COLOR][/B]')
 									if choice == 1:
 										try:
 											shutil.rmtree(full_path)
@@ -585,9 +584,9 @@ def CHECK_BROKEN_REPOS():
 							dialog.ok(AddonTitle, 'The repository check was cancelled')
 							dp.close()
 							sys.exit()
-						dp.update(0,"","","[COLOR lime][B]Alive: " + str(passed) + "[/B][/COLOR][COLOR red][B]        Dead: " + str(failed) + "[/B][/COLOR]")
+						dp.update(0,"","","[COLOR yellowgreen][B]Alive: " + str(passed) + "[/B][/COLOR][COLOR red][B]        Dead: " + str(failed) + "[/B][/COLOR]")
 						
-	dialog.ok(AddonTitle,'[COLOR white]We have checked your repositories and found:[/COLOR]', '[COLOR lime][B]WORKING SOURCES: ' + str(passed) + ' [/B][/COLOR]','[COLOR red][B]DEAD SOURCES: ' + str(failed) + ' [/B][/COLOR]')
+	dialog.ok(AddonTitle,'[COLOR white]We have checked your repositories and found:[/COLOR]', '[COLOR yellowgreen][B]WORKING SOURCES: ' + str(passed) + ' [/B][/COLOR]','[COLOR red][B]DEAD SOURCES: ' + str(failed) + ' [/B][/COLOR]')
 
 #######################################################################
 #						Delete Packages
@@ -630,7 +629,7 @@ def Fix_Special(url):
     for root, dirs, files in os.walk(url):
         for file in files:
             if file.endswith(".xml"):
-                 dp.update(0,"Fixing","[COLOR dodgerblue]" + file + "[/COLOR]", "Please wait.....")
+                 dp.update(0,"Fixing","[COLOR yellowgreen]" + file + "[/COLOR]", "Please wait.....")
                  a=open((os.path.join(root, file))).read()
                  b=a.replace(HOME, 'special://home/')
                  f= open((os.path.join(root, file)), mode='w')

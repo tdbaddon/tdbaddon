@@ -417,11 +417,10 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 
 <addon id="plugin.program.echowizard"
 	     name="[COLOR yellowgreen]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
-	     version="1.41"
+	     version="1.42"
 	     provider-name="Echo Coder">
   <requires>
   	<import addon="xbmc.python" version="2.1.0"/>
-	<import addon="plugin.video.youtube"  optional="true"/>
 	<import addon="script.module.requests" version="2.9.1"/>
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
@@ -431,7 +430,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
   </extension>
   <extension point="xbmc.addon.metadata">
     <platform>all</platform>
-    <summary lang="en">[COLOR white]Twitter: @[/COLOR][COLOR yellowgreen]echo_coding[/COLOR]</summary>
+    <summary lang="en">[COLOR white]Twitter: @[/COLOR][COLOR yellowgreen]EchoCoder[/COLOR]</summary>
     <description lang="en">[COLOR white]ECHO Wizard is a swiss army knife tool for Kodi. It gives you conrol over everything you need in one place. For support please contact @[/COLOR][COLOR yellowgreen]echo_coding[/COLOR][COLOR white] on twitter.[/COLOR]</description>
     <disclaimer lang="en"></disclaimer>
     <language></language>
@@ -569,7 +568,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
   </extension>
 </addon>
 
-<addon id="plugin.video.aftershock" name="Aftershock" version="4.4.1" provider-name="Aftershock">
+<addon id="plugin.video.aftershock" name="Aftershock" version="4.4.2" provider-name="Aftershock">
     <requires>
         <import addon="xbmc.python" version="2.19.0"/>
         <import addon="repository.aftershock" version="2.0.1"/>
@@ -585,10 +584,10 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
     <extension point="xbmc.addon.metadata">
     <summary lang="en">Watch Hindi Movies &amp; TV Shows</summary>
     <description lang="en">Addon to browse and play a wide selection of Desi Movies, TV Shows and Live Streams. The author doesn't have any affiliation with the content providers nor uploads any content to the providers.</description>
-    <disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
+    <disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content providers.</disclaimer>
     <platform>all</platform>
-    <forum>https://forums.tvaddons.ag/addon-releases/41405-aftershock-video-addon-indian-movies-tv.html</forum>
-	<website>https://forums.tvaddons.ag/addon-releases/41405-aftershock-video-addon-indian-movies-tv.html</website>
+    <forum>http://www.facebook.com/aftershockpy</forum>
+	<website>http://www.facebook.com/aftershockpy</website>
   </extension>
 </addon>
 
@@ -714,7 +713,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 
 <addon id="plugin.video.ccloudtv"
        name="cCloud TV"
-       version="1.5.0"
+       version="1.5.1"
        provider-name="podgod, Coder Alpha">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -1229,7 +1228,7 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
   </extension>
 </addon>
 
-<addon id="plugin.video.greek.tv" name="Greek TV" version="1.0.6" provider-name="Thgiliwt">
+<addon id="plugin.video.greek.tv" name="Greek TV" version="1.0.7" provider-name="Thgiliwt">
     <requires>
         <import addon="xbmc.python" version="2.19.0"/>
         <import addon="plugin.video.youtube" version="5.2.1"/>
@@ -1248,6 +1247,9 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
         <forum>https://forums.tvaddons.ag/addon-releases/51983-greek-tv-bringing-concept-feel-androids-greek-tv-kodi.html</forum>
     </extension>
     <news>
+1.0.7 (26-12-2016)
+- Code cosmetics
+
 1.0.6 (20-12-2016)
 - Added a non-https mirror option
 
@@ -1319,6 +1321,37 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
 
 Turns your XBMC into an instant free on-demand media-center. Stream and download to your library DVD and HD720p quality videos. Browse and search the library of over 77,000 videos with metadata and posters. Never experience the frustration of dead video links!</description>
     </extension>
+</addon>
+
+<addon
+  id="plugin.video.imdb.trailers"
+  version="2.1.0"
+  name="IMDb Trailers"
+  provider-name="queeup, gujal">
+  <requires>
+    <import addon="xbmc.python"
+            version="2.1.0"/>
+	<import addon="script.module.simplejson"
+			version="2.0.10"/>
+	<import addon="script.common.plugin.cache"
+			version="2.5.5"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource"
+             library="addon.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>IMDb Trailers video add-on</summary>
+    <summary lang="tr">IMDb Fragmanları video eklentisi</summary>
+    <description>Watch movie trailers available on IMDb.</description>
+    <description lang="tr">IMDb'de bulunan film fragmanlarını izle.</description>
+    <language>en</language>
+    <platform>all</platform>
+    <license>WTFPL</license>
+    <forum></forum>
+    <website>http://www.imdb.com/</website>
+    <source>https://github.com/queeup/plugin.video.imdb.trailers</source>
+  </extension>
 </addon>
 
 <addon id="plugin.video.ipla.pl"
@@ -1763,6 +1796,26 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
     <license>MIT</license>
     <forum></forum>
     <source></source>
+  </extension>
+</addon>
+
+<addon id="plugin.video.real-movies" name="[COLOR red]Real-Movies[/COLOR]" version="1.0" provider-name="Kodi Mad Man">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.simplejson" version="3.3.0"/>
+    <import addon="script.module.urlresolver"  version="2.1.2"/>
+    <import addon="script.module.liveresolver" version="0.1.24"/>
+    <import addon="script.common.plugin.cache" version="2.5.2"/>
+    <import addon="script.module.metahandler" version="2.5.1"/>
+    <import addon="plugin.video.youtube" optional="true" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Real-Movies by @kodi_mad</summary>
+    <description lang="en">Movies to watch works without real-debrid. But more reliable with real-debrid</description>
+    <platform>all</platform>
   </extension>
 </addon>
 
@@ -2358,7 +2411,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.ZemTV-shani"
        name="Zem"
-       version="6.1.1"
+       version="6.1.2"
        provider-name="shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -3384,8 +3437,8 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
-<addon id="repository.xbmchub" name="TVADDONS.ag Addon Repository" version="1.0.6" provider-name="tvaddons.ag">
-	<extension point="xbmc.addon.repository" name="TVADDONS.ag Addon Repository">
+<addon id="repository.xbmchub" name="TVADDONS.AG Add-on Repository" version="1.0.7" provider-name="tvaddons.ag">
+	<extension point="xbmc.addon.repository" name="TVADDONS.AG Add-on Repository">
 	<dir>
 		<info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
 		<checksum>https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml.md5</checksum>
@@ -3396,11 +3449,14 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 		<datadir zip="true">https://offshoregit.com/xbmchub/xbmc-hub-repo/raw/master/</datadir>
 	</extension>
 	<extension point="xbmc.addon.metadata">
-		<summary>The Best Third Party Addons for Kodi, Brought to you by TVADDONS.ag</summary>
-		<description>The Best Third Party Addons for Kodi, Brought to you by TVADDONS.ag</description>
+		<summary>Unofficial Kodi Addons from TVADDONS.AG</summary>
+		<description>Download and install unofficial Kodi add-ons from the TVADDONS.AG add-on repository. Please visit www.tvaddons.ag for addon support.
+
+Kodi is a registered trademark of the XBMC Foundation. We are not connected to or in any other way affiliated with Kodi, Team Kodi, or the XBMC Foundation.</description>
+         <disclaimer>TVADDONS.AG did not make all the add-ons in this repository and is not responsible for their content.</disclaimer>
 		<platform>all</platform>
-                <forum>http://forums.tvaddons.ag/forums/113-TVADDONS-AG-ADDON-REPOSITORY</forum>
-                <website>http://www.tvaddons.ag/</website>
+                <forum>https://forums.tvaddons.ag</forum>
+                <website>https://www.tvaddons.ag</website>
 	</extension>
 </addon>
 

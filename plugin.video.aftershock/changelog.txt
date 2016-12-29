@@ -1,3 +1,8 @@
+Aftershock v4.4.2 (27-Dec-2016)
+------------------------
+- [COLOR orange]NOTE: If you like the addon please consider making a donation to aftershockpy@gmail.com via paypal.[/COLOR]
+- Version Bump
+
 Aftershock v4.4.0 (22-Dec-2016)
 ------------------------
 - [COLOR orange]NOTE: If you like the addon please consider making a donation to aftershockpy@gmail.com via paypal.[/COLOR]
