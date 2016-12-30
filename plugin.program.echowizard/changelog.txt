@@ -1,3 +1,9 @@
+[COLOR yellowgreen]1.43: 30th December 2016[/COLOR]
+[COLOR white][B]- Prepare for new year.[/B][/COLOR]
+
+[COLOR yellowgreen]1.42: 24th December 2016[/COLOR]
+[COLOR white][B]- Menu layout change.[/B][/COLOR]
+
 [COLOR yellowgreen]1.41: 22nd December 2016[/COLOR]
 [COLOR white][B]- Fix corrupt images.[/B][/COLOR]
 

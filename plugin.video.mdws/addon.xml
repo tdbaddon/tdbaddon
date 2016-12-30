@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<addon id="plugin.video.mdws" version="1.0.9" name="MD.Watchseries" provider-name="Mucky Duck">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0"/>
+        <import addon="script.module.urlresolver"  version="2.1.2"/>
+		<import addon="script.module.t0mm0.common" version="2.0.0"/>
+		<import addon="repository.mdrepo"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary>Enjoy Your Favourite Shows Online From Watchseries</summary>
+        <description>Watch TV Series From One Of The Best Sites On The Web Brought To You By Mucky Duck</description>
+        <platform>all</platform>
+    </extension>
+</addon>

@@ -28,6 +28,7 @@ from resources.lib.modules import directstream
 
 class source:
     def __init__(self):
+        self.language = ['en']
         self.domains = ['movieshd.tv', 'movieshd.is', 'movieshd.watch', 'flixanity.is', 'flixanity.me']
         self.base_link = 'http://flixanity.watch'
 
@@ -136,19 +137,9 @@ class source:
             r = str(json.loads(r))
             r = client.parseDOM(r, 'iframe', ret='.+?') + client.parseDOM(r, 'IFRAME', ret='.+?')
 
-
-            links = []
-
             for i in r:
-                try: links += [{'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'url': i, 'direct': True}]
+                try: sources.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'provider': 'MoviesHD', 'url': i, 'direct': True, 'debridonly': False})
                 except: pass
-
-            links += [{'source': 'openload.co', 'quality': 'SD', 'url': i, 'direct': False} for i in r if 'openload.co' in i]
-
-            #links += [{'source': 'videomega.tv', 'quality': 'SD', 'url': i, 'direct': False} for i in r if 'videomega.tv' in i]
-
-
-            for i in links: sources.append({'source': i['source'], 'quality': i['quality'], 'provider': 'MoviesHD', 'url': i['url'], 'direct': i['direct'], 'debridonly': False})
 
             return sources
         except:
@@ -156,6 +147,6 @@ class source:
 
 
     def resolve(self, url):
-        return url
+        return directstream.googlepass(url)
 
 

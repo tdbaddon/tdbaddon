@@ -29,6 +29,7 @@ from resources.lib.modules import debrid
 
 class source:
     def __init__(self):
+        self.language = ['en']
         self.domains = ['directdownload.tv']
         self.base_link = 'http://directdownload.tv'
         self.search_link = 'L2FwaT9rZXk9NEIwQkI4NjJGMjRDOEEyOSZxdWFsaXR5W109SERUViZxdWFsaXR5W109RFZEUklQJnF1YWxpdHlbXT03MjBQJnF1YWxpdHlbXT1XRUJETCZxdWFsaXR5W109V0VCREwxMDgwUCZxdWFsaXR5W109MTA4MFAtWDI2NSZsaW1pdD0yMCZrZXl3b3JkPQ=='

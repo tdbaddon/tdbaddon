@@ -1,9 +1,13 @@
+[B]2.0.24[/B]
+- Updated existing providers
+- Removed dead providers
+- Added new providers
+
 [B]2.0.23[/B]
 - Tweaked indexers
 - Updated existing providers
 - Removed dead providers
 - Added new providers
-
 
 [B]2.0.22[/B]
 - Tweaked provider retrieval

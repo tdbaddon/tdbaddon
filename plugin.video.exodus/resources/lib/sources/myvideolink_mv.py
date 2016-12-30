@@ -28,8 +28,9 @@ from resources.lib.modules import debrid
 
 class source:
     def __init__(self):
-        self.domains = ['newmyvideolink.xyz', 'beta.myvideolinks.xyz', 'videolinks.ga', 'myvideolinks.ga']
-        self.base_link = 'http://myvideolinks.ga'
+        self.language = ['en']
+        self.domains = ['newmyvideolink.xyz', 'beta.myvideolinks.xyz', 'videolinks.ga', 'myvideolinks.ga', 'ezfile.xyz']
+        self.base_link = 'http://ezfile.xyz'
         self.search_link = '/search/%s/feed/rss2/'
 
 

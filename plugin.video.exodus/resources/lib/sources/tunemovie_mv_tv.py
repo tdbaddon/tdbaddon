@@ -28,6 +28,7 @@ from resources.lib.modules import directstream
 
 class source:
     def __init__(self):
+        self.language = ['en']
         self.domains = ['tunemovies.to', 'tunemovie.tv']
         self.base_link = 'http://tunemovies.to'
         self.search_link = '/search/%s.html'
@@ -56,17 +57,59 @@ class source:
             return
 
 
+    def tvshow(self, imdb, tvdb, tvshowtitle, year):
+        try:
+            url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'year': year}
+            url = urllib.urlencode(url)
+            return url
+        except:
+            return
+
+
+    def episode(self, url, imdb, tvdb, title, premiered, season, episode):
+        try:
+            data = urlparse.parse_qs(url)
+            data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
+
+            url = '%s/watch/%s-season-%01d-%s.html' % (self.base_link, cleantitle.geturl(data['tvshowtitle']), int(season), str((int(data['year']) + int(season)) - 1))
+            url = client.request(url, output='geturl')
+            if url == None: raise Exception()
+
+            url = re.findall('(?://.+?|)(/.+)', url)[0]
+            url += '?episode=%01d' % int(episode)
+            url = client.replaceHTMLCodes(url)
+            url = url.encode('utf-8')
+            return url
+        except:
+            return
+
+
     def sources(self, url, hostDict, hostprDict):
         try:
             sources = []
 
             if url == None: return sources
 
-            referer = urlparse.urljoin(self.base_link, url)
+            url = urlparse.urljoin(self.base_link, url)
+
+            try: url, episode = re.findall('(.+?)\?episode=(\d*)$', url)[0]
+            except: episode = None
+
+            headers = {'X-Requested-With': 'XMLHttpRequest', 'Referer': url}
 
             for i in range(3):
-                result = client.request(referer)
+                result = client.request(url)
                 if not result == None: break
+
+            if not episode == None:
+                mid = client.parseDOM(result, 'input', ret='value', attrs = {'name': 'phimid'})[0]
+                url = urlparse.urljoin(self.base_link, '/ajax.php')
+                post = {'ipos_server': 1, 'phimid': mid, 'keyurl': episode}
+                post = urllib.urlencode(post)
+
+                for i in range(3):
+                    result = client.request(url, post=post, headers=headers, timeout='10')
+                    if not result == None: break
 
             r = client.parseDOM(result, 'div', attrs = {'class': '[^"]*server_line[^"]*'})
 
@@ -77,8 +120,6 @@ class source:
                     host = client.parseDOM(u, 'p', attrs = {'class': 'server_servername'})[0]
                     host = host.strip().lower().split(' ')[-1]
 
-                    headers = {'X-Requested-With': 'XMLHttpRequest', 'Referer': referer}
-
                     url = urlparse.urljoin(self.base_link, '/ip.temp/swf/plugins/ipplugins.php')
 
                     p1 = client.parseDOM(u, 'a', ret='data-film')[0]
@@ -87,10 +128,10 @@ class source:
                     post = {'ipplugins': 1, 'ip_film': p1, 'ip_server': p2, 'ip_name': p3}
                     post = urllib.urlencode(post)
 
-                    if not host in ['google', 'putlocker']: raise Exception()
+                    if not host in ['google', 'putlocker', 'megashare']: raise Exception()
 
                     for i in range(3):
-                        result = client.request(url, post=post, headers=headers)
+                        result = client.request(url, post=post, headers=headers, timeout='10')
                         if not result == None: break
 
                     result = json.loads(result)['s']
@@ -104,12 +145,20 @@ class source:
                         result = client.request(url, post=post, headers=headers)
                         if not result == None: break
 
-                    result = json.loads(result)['data']
-                    result = [i['files'] for i in result]
+                    url = json.loads(result)['data']
 
-                    for i in result:
-                        try: sources.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'provider': 'Tunemovie', 'url': i, 'direct': True, 'debridonly': False})
-                        except: pass
+                    if type(url) is list:
+                        url = [i['files'] for i in url]
+                        for i in url:
+                            try: sources.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'provider': 'Tunemovie', 'url': i, 'direct': True, 'debridonly': False})
+                            except: pass
+
+                    else:
+                        url = client.request(url)
+                        url = client.parseDOM(url, 'source', ret='src', attrs = {'type': 'video.+?'})[0]
+                        url += '|%s' % urllib.urlencode({'User-agent': client.randomagent()})
+                        sources.append({'source': 'cdn', 'quality': 'HD', 'provider': 'Tunemovie', 'url': url, 'direct': False, 'debridonly': False})
+
                 except:
                     pass
 

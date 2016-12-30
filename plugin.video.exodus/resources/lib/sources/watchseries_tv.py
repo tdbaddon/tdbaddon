@@ -27,6 +27,7 @@ from resources.lib.modules import client
 
 class source:
     def __init__(self):
+        self.language = ['en']
         self.domains = ['watchseries.ag']
         self.base_link = 'aHR0cDovL3dzLm1n'
         self.hash_link = 'MzI4aiUlR3VTKiVzZkEyNDMxNDJmbyMyMyUl'

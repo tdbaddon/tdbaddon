@@ -63,6 +63,9 @@ TMP_TRAKT     =  xbmc.translatePath(os.path.join(HOME,'tmp_trakt'))
 TRAKT_MARKER =  xbmc.translatePath(os.path.join(TMP_TRAKT,'marker.xml'))
 backup_zip = xbmc.translatePath(os.path.join(TMP_TRAKT,'Restore_RD_Trakt_Settings.zip'))
 
+if str(my_date) == "2017-01-01":
+	dialog.ok(AddonTitle, "[COLOR white]Echo Coder would like to wish you a [COLOR red][B]HAPPY NEW YEAR![/B][/COLOR] Enjoy your day and have a drink for me.[/COLOR]")
+
 try:
     response = Common.OPEN_URL_NORMAL(GoogleOne)
 except:

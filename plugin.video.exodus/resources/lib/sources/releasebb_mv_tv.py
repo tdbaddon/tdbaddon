@@ -29,6 +29,7 @@ from resources.lib.modules import control
 
 class source:
     def __init__(self):
+        self.language = ['en']
         self.domains = ['rlsbb.com']
         self.base_link = 'http://rlsbb.com'
         self.search_base_link = 'http://search.rlsbb.com'

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <addon id="plugin.program.echowizard" 
 	     name="[COLOR yellowgreen]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]" 
-	     version="1.42"
+	     version="1.43"
 	     provider-name="Echo Coder">
   <requires>
   	<import addon="xbmc.python" version="2.1.0"/>
@@ -20,8 +20,7 @@
     <language></language>
     <platform>all</platform>
     <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
-    <forum>http://www.echocoder.com</forum>
-    <website>http://www.echocoder.com</website>
+    <website>http://echocoder.com/repo</website>
     <email>echocoder@protonmail.com</email>
   </extension>
 </addon>

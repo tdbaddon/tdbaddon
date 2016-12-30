@@ -28,6 +28,7 @@ from resources.lib.modules import debrid
 
 class source:
     def __init__(self):
+        self.language = ['en']
         self.domains = ['perfecthdmovies.pw']
         self.base_link = 'http://www.perfecthdmovies.pw'
         self.search_link = '/search/%s/feed/rss2/'

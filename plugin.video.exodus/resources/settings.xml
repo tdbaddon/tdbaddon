@@ -45,10 +45,10 @@
 		<setting id="provider.hevcfilm" type="bool" label="Hevcfilm" default="true" />
 		<setting id="provider.library" type="bool" label="Library" default="true" />
 		<setting id="provider.miradetodo" type="bool" label="MiraDeTodo" default="true" />
-		<setting id="provider.movie4k" type="bool" label="Movie4K" default="true" />
 		<setting id="provider.movie25" type="bool" label="Movie25" default="true" />
+		<setting id="provider.movie4k" type="bool" label="Movie4K" default="true" />
+		<setting id="provider.moviefree" type="bool" label="Moviefree" default="true" />
 		<setting id="provider.moviegee" type="bool" label="Moviegee" default="true" />
-		<setting id="provider.moviego" type="bool" label="Moviego" default="true" />
 		<setting id="provider.movies14" type="bool" label="Movies14" default="true" />
 		<setting id="provider.movieshd" type="bool" label="MoviesHD" default="true" />
 		<setting id="provider.moviesplanet" type="bool" label="Moviesplanet" default="true" />
@@ -56,32 +56,35 @@
 		<setting id="provider.myvideolink" type="bool" label="Myvideolink" default="true" />
 		<setting id="provider.onemovies" type="bool" label="Onemovies" default="true" />
 		<setting id="provider.onlinedizi" type="bool" label="Onlinedizi" default="true" />
+		<setting id="provider.onlinemovies" type="bool" label="Onlinemovies" default="true" />
 		<setting id="provider.onseries" type="bool" label="ONseries" default="true" />
+		<setting id="provider.openmovies" type="bool" label="Openmovies" default="true" />
 		<setting id="provider.ororo" type="bool" label="Ororo" default="true" />
 		<setting id="provider.pelispedia" type="bool" label="Pelispedia" default="true" />
 		<setting id="provider.phdmovies" type="bool" label="Phdmovies" default="true" />
 		<setting id="provider.pmovies" type="bool" label="Pmovies" default="true" />
 		<setting id="provider.primewire" type="bool" label="Primewire" default="true" />
 		<setting id="provider.pubfilm" type="bool" label="Pubfilm" default="true" />
-		<setting id="provider.putlocker" type="bool" label="Putlocker" default="true" />
 		<setting id="provider.putlockerz" type="bool" label="Putlockerz" default="true" />
-		<setting id="provider.putmovie" type="bool" label="Putmovie" default="true" />
+		<setting id="provider.putlocker" type="bool" label="Putlocker" default="true" />
 		<setting id="provider.releasebb" type="bool" label="releaseBB" default="true" />
 		<setting id="provider.rlshd" type="bool" label="Rlshd" default="true" />
 		<setting id="provider.rlsmovies" type="bool" label="Rlsmovies" default="true" />
 		<setting id="provider.scenedown" type="bool" label="Scenedown" default="true" />
 		<setting id="provider.sceper" type="bool" label="Sceper" default="true" />
 		<setting id="provider.sezonlukdizi" type="bool" label="Sezonlukdizi" default="true" />
-		<setting id="provider.sockshare" type="bool" label="Sockshare" default="true" />
 		<setting id="provider.streamlord" type="bool" label="Streamlord" default="true" />
 		<setting id="provider.tinydl" type="bool" label="Tinydl" default="true" />
 		<setting id="provider.torba" type="bool" label="Torba" default="true" />
 		<setting id="provider.tunemovie" type="bool" label="Tunemovie" default="true" />
+		<setting id="provider.tvbmoviez" type="bool" label="Tvbmoviez" default="true" />
 		<setting id="provider.twoddl" type="bool" label="twoDDL" default="true" />
 		<setting id="provider.watch32" type="bool" label="Watch32" default="true" />
 		<setting id="provider.watchfree" type="bool" label="Watchfree" default="true" />
+		<setting id="provider.watchhd" type="bool" label="WatchHD" default="true" />
 		<setting id="provider.watchseries" type="bool" label="Watchseries" default="true" />
 		<setting id="provider.wmo" type="bool" label="WMO" default="true" />
+		<setting id="provider.wrzcraft" type="bool" label="Wrzcraft" default="true" />
 		<setting id="provider.xmovies" type="bool" label="Xmovies" default="true" />
 		<setting id="provider.ymovies" type="bool" label="Ymovies" default="true" />
 	</category>

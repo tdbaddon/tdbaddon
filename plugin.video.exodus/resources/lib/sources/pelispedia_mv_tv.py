@@ -28,6 +28,7 @@ from resources.lib.modules import directstream
 
 class source:
     def __init__(self):
+        self.language = ['en']
         self.domains = ['pelispedia.tv']
         self.base_link = 'http://www.pelispedia.tv'
         self.moviesearch_link = '/pelicula/%s/'

@@ -29,6 +29,7 @@ from resources.lib.modules import directstream
 
 class source:
     def __init__(self):
+        self.language = ['en']
         self.domains = ['pubfilmno1.com', 'pubfilm.com', 'pidtv.com']
         self.base_link = 'http://pidtv.com'
         self.moviesearch_link = '/%s-%s-full-hd-pidtv-free.html'

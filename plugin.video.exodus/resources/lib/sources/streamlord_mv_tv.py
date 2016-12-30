@@ -28,6 +28,7 @@ from resources.lib.modules import client
 
 class source:
     def __init__(self):
+        self.language = ['en']
         self.domains = ['streamlord.com']
         self.base_link = 'http://www.streamlord.com'
         self.search_link = '/search2.php'

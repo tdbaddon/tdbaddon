@@ -30,6 +30,7 @@ from resources.lib.modules import tvmaze
 
 class source:
     def __init__(self):
+        self.language = ['en']
         self.domains = ['gogoanimemobile.com', 'gogoanimemobile.net', 'gogoanime.io']
         self.base_link = 'http://ww1.gogoanime.io'
         self.search_link = '/search.html?keyword=%s'

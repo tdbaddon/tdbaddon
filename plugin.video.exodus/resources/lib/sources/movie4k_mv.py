@@ -28,6 +28,7 @@ from resources.lib.modules import proxy
 
 class source:
     def __init__(self):
+        self.language = ['en']
         self.domains = ['movie4k.to']
         self.base_link = 'http://movie4k.to'
         self.search_link = '/movies.php?list=search&search=%s'
@@ -35,41 +36,48 @@ class source:
 
     def movie(self, imdb, title, year):
         try:
-            query = self.search_link % imdb
-            query = urlparse.urljoin(self.base_link, query)
+            t = cleantitle.get(title)
+            y = ['%s' % str(year), '%s' % str(int(year)+1), '%s' % str(int(year)-1), '0']
 
-            r = proxy.request(query, 'flag')
+            q = self.search_link % urllib.quote_plus(cleantitle.query(title))
+            q = urlparse.urljoin(self.base_link, q)
+
+            r = proxy.request(q, 'flag')
             r = client.parseDOM(r, 'TR', attrs = {'id': 'coverPreview.+?'})
+            r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a'), client.parseDOM(i, 'div', attrs = {'style': '.+?'}), client.parseDOM(i, 'img', ret='src')) for i in r]
+            r = [(i[0][0].strip(), i[1][0].strip(), i[2], i[3]) for i in r if i[0] and i[1] and i[3]]
+            r = [(i[0], i[1], [x for x in i[2] if x.isdigit() and len(x) == 4], i[3]) for i in r]
+            r = [(i[0], i[1], i[2][0] if i[2] else '0', i[3]) for i in r]
+            r = [i for i in r if any('us_flag_' in x for x in i[3])]
+            r = [(i[0], i[1], i[2], [re.findall('(\d+)', x) for x in i[3] if 'smileys' in x]) for i in r]
+            r = [(i[0], i[1], i[2], [x[0] for x in i[3] if x]) for i in r]
+            r = [(i[0], i[1], i[2], int(i[3][0]) if i[3] else 0) for i in r]
+            r = sorted(r, key=lambda x: x[3])[::-1]
+            r = [(i[0], i[1], i[2], re.findall('\((.+?)\)$', i[1])) for i in r]
+            r = [(i[0], i[1], i[2]) for i in r if not i[3]]
+            r = [i for i in r if i[2] in y]
 
-            r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'img', ret='src')) for i in r]
-            r = [i for i in r if any('us_flag_' in x for x in i[1])]
+            r = [(proxy.parse(i[0]), i[1], i[2]) for i in r]
 
-            if len(r) > 0:
-                r = [i for i in r if any('5.gif' in x for x in i[1])]
-                r = [i[0][0] for i in r if len(i[0]) > 0][0]
+            match = [i[0] for i in r if t == cleantitle.get(i[1]) and year == i[2]]
 
-            else:
-                query = self.search_link % urllib.quote_plus(title)
-                query = urlparse.urljoin(self.base_link, query)
+            match2 = [i[0] for i in r]
+            match2 = [x for y,x in enumerate(match2) if x not in match2[:y]]
+            if match2 == []: return
 
-                r = proxy.request(query, 'flag')
-                r = client.parseDOM(r, 'TR', attrs = {'id': 'coverPreview.+?'})
+            for i in match2[:5]:
+                try:
+                    if match: url = match[0] ; break
+                    r = proxy.request(urlparse.urljoin(self.base_link, i), 'tablemoviesindex2')
+                    r = re.findall('(tt\d+)', r)
+                    if imdb in r: url = i ; break
+                except:
+                    pass
 
-                r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'img', ret='src'), client.parseDOM(i, 'div', attrs = {'style': '.+?'}), client.parseDOM(i, 'a')) for i in r]
-                r = [i for i in r if len(i[0]) > 0 and len(i[3]) > 0]
-                r = [i for i in r if cleantitle.get(title) == cleantitle.get(i[3][0])]
-                r = [i for i in r if any('us_flag_' in x for x in i[1])]
-                r = [i for i in r if any('5.gif' in x for x in i[1])]
-                r = [i for i in r if any(year in x for x in i[2])]
-                r = [i[0][0] for i in r if len(i[0]) > 0][0]
-
-            url = client.replaceHTMLCodes(r)
-            try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['u'][0]
-            except: pass
-            try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['q'][0]
-            except: pass
             url = urlparse.urljoin(self.base_link, url)
+
             url = re.findall('(?://.+?|)(/.+)', url)[0]
+            url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
             return url
         except:
@@ -97,15 +105,10 @@ class source:
                     host = host.split()[0].rsplit('.', 1)[0].strip().lower()
                     host = [x[1] for x in locDict if host == x[0]][0]
                     if not host in hostDict: raise Exception()
-                    host = client.replaceHTMLCodes(host)
                     host = host.encode('utf-8')
 
                     url = client.parseDOM(i, 'a', ret='href')[0]
-                    url = client.replaceHTMLCodes(url)
-                    try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['u'][0]
-                    except: pass
-                    try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['q'][0]
-                    except: pass
+                    url = proxy.parse(url)
                     url = urlparse.urljoin(self.base_link, url)
                     url = url.encode('utf-8')
 
@@ -129,11 +132,8 @@ class source:
             try: url += [client.parseDOM(r, 'iframe', ret='src')[0]]
             except: pass
 
-            url = client.replaceHTMLCodes(url[0])
-            try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['u'][0]
-            except: pass
-            try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['q'][0]
-            except: pass
+            url = url[0]
+            url = proxy.parse(url)
             url = url.encode('utf-8')
 
             return url

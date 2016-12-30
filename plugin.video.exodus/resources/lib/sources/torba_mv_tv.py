@@ -29,6 +29,7 @@ from resources.lib.modules import workers
 
 class source:
     def __init__(self):
+        self.language = ['en']
         self.domains = ['torba.se']
         self.base_link = 'http://torba.se'
         self.search_mv_link = '/movies/autocomplete?order=relevance&title=%s'

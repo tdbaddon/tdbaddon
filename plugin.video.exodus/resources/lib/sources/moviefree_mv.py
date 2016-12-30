@@ -28,9 +28,10 @@ from resources.lib.modules import directstream
 
 class source:
     def __init__(self):
-        self.domains = ['putmv.com']
-        self.base_link = 'http://putmv.com'
-        self.search_link = '/watch/%s-%s.html'
+        self.language = ['en']
+        self.domains = ['moviefree.to']
+        self.base_link = 'http://moviefree.to'
+        self.search_link = '/watch/%s-%s-online.html'
 
 
     def movie(self, imdb, title, year):
@@ -40,7 +41,7 @@ class source:
 
             r = client.request(url, limit='1')
             r = client.parseDOM(r, 'title')[0]
-            if not year in r: raise Exception()
+            if r == '': raise Exception()
 
             url = re.findall('(?://.+?|)(/.+)', url)[0]
             url = client.replaceHTMLCodes(url)
@@ -87,11 +88,11 @@ class source:
                     except: url = [r['data']]
 
                     for i in url:
-                        try: sources.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'provider': 'Putmovie', 'url': i, 'direct': True, 'debridonly': False})
+                        try: sources.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'provider': 'Moviefree', 'url': i, 'direct': True, 'debridonly': False})
                         except: pass
 
                     if 'openload' in url[0]:
-                        sources.append({'source': 'openload.co', 'quality': 'HD', 'provider': 'Putmovie', 'url': i, 'direct': False, 'debridonly': False})
+                        sources.append({'source': 'openload.co', 'quality': 'HD', 'provider': 'Moviefree', 'url': i, 'direct': False, 'debridonly': False})
                 except:
                     pass
 

@@ -417,7 +417,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 
 <addon id="plugin.program.echowizard"
 	     name="[COLOR yellowgreen]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
-	     version="1.42"
+	     version="1.43"
 	     provider-name="Echo Coder">
   <requires>
   	<import addon="xbmc.python" version="2.1.0"/>
@@ -436,8 +436,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
     <language></language>
     <platform>all</platform>
     <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
-    <forum>http://www.echocoder.com</forum>
-    <website>http://www.echocoder.com</website>
+    <website>http://echocoder.com/repo</website>
     <email>echocoder@protonmail.com</email>
   </extension>
 </addon>
@@ -1078,7 +1077,7 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
   </extension>
 </addon>
 
-<addon id="plugin.video.exodus" version="2.0.23" name="Exodus" provider-name="Exodus">
+<addon id="plugin.video.exodus" version="2.0.24" name="Exodus" provider-name="Exodus">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="repository.exodus" version="1.0.0" />
@@ -1095,7 +1094,7 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
 		<description lang="en">Please visit www.tvaddons.ag for Exodus support and assistance! Kindly note that Exodus is not an official part of the media player you are running, and therefore not to be mentioned within official support channels, this addon has nothing to do with the media player itself, nor it’s intended use, it is simply a third party plugin which has been added to your system.</description>
 		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
 		<platform>all</platform>
-		<news>- Tweaked indexers[CR]- Updated existing providers[CR]- Removed dead providers[CR]- Added new providers</news>
+		<news>- Updated existing providers[CR]- Removed dead providers[CR]- Added new providers</news>
 	</extension>
 </addon>
 
@@ -1518,6 +1517,23 @@ For DMCA Reports, please send message to our FB page.
 	<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon or have any affiliation with the website owners.</disclaimer>
     <platform>all</platform>
   </extension>
+</addon>
+
+<addon id="plugin.video.mdws" version="1.0.9" name="MD.Watchseries" provider-name="Mucky Duck">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0"/>
+        <import addon="script.module.urlresolver"  version="2.1.2"/>
+		<import addon="script.module.t0mm0.common" version="2.0.0"/>
+		<import addon="repository.mdrepo"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary>Enjoy Your Favourite Shows Online From Watchseries</summary>
+        <description>Watch TV Series From One Of The Best Sites On The Web Brought To You By Mucky Duck</description>
+        <platform>all</platform>
+    </extension>
 </addon>
 
 <addon id="plugin.video.mdyesmovies" name="Yes Movies" version="1.0.2" provider-name="Mucky Duck">

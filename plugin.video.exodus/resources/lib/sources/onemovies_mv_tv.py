@@ -29,32 +29,58 @@ from resources.lib.modules import directstream
 
 class source:
     def __init__(self):
-        self.domains = ['123movies.to', '123movies.ru', '123movies.is', '123movies.gs']
-        self.base_link = 'http://123movies.gs'
+        self.language = ['en']
+        self.domains = ['123movies.to', '123movies.ru', '123movies.is', '123movies.gs', '123-movie.ru', '123movies-proxy.ru', '123movies.moscow', '123movies.msk.ru', '123movies.msk.ru', '123movies.unblckd.me']
+        self.base_link = 'http://123movies.is'
+        self.base_link_2 = 'http://123movies.msk.ru'
         self.search_link = '/ajax/suggest_search'
+        self.search_link_2 = '/movie/search/%s'
         self.info_link = '/ajax/movie_load_info/%s'
         self.server_link = '/ajax/get_episodes/%s'
         self.direct_link = '/ajax/v2_load_episode/'
         self.embed_link = '/ajax/load_embed/'
-        self.key = 'i6m49vd7shxkn985mhodk'
-        self.key2 = 'twz87wwxtp3dqiicks2dfyud213k6yg'
-        self.key3 = '7bcq9826avrbi6m4'
+
+
+    def request(self, url, headers, post):
+        try:
+            r = client.request(url, headers=headers, post=post)
+            if r == None: return r
+
+            if 'internetmatters.org' in r:
+                url = re.findall('(?://.+?|)(/.+)', url)[0]
+                url = urlparse.urljoin(self.base_link_2, url)
+                r = client.request(url, headers=headers, post=post)
+
+            return r
+        except:
+            return
 
 
     def movie(self, imdb, title, year):
         try:
             t = cleantitle.get(title)
 
-            headers = {'X-Requested-With': 'XMLHttpRequest'}
+            q = self.search_link_2 % (urllib.quote_plus(cleantitle.query(title)))
+            q = urlparse.urljoin(self.base_link, q)
 
-            query = urllib.urlencode({'keyword': title})
+            h = {'X-Requested-With': 'XMLHttpRequest'}
+            u = urlparse.urljoin(self.base_link, self.search_link)
+            p = urllib.urlencode({'keyword': title})
 
-            url = urlparse.urljoin(self.base_link, self.search_link)
+            r = self.request(u, headers=h, post=p)
 
-            r = client.request(url, post=query, headers=headers)
+            try: r = json.loads(r)
+            except: r = None
 
-            r = json.loads(r)['content']
-            r = zip(client.parseDOM(r, 'a', ret='href', attrs = {'class': 'ss-title'}), client.parseDOM(r, 'a', attrs = {'class': 'ss-title'}))
+            if r == None:
+                r = self.request(q, headers=None, post=None)
+                r = client.parseDOM(r, 'div', attrs = {'class': 'ml-item'})
+                r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', ret='title')) for i in r]
+                r = [(i[0][0], i[1][0]) for i in r if i[0] and i[1]]
+            else:
+                r = r['content']
+                r = zip(client.parseDOM(r, 'a', ret='href', attrs = {'class': 'ss-title'}), client.parseDOM(r, 'a', attrs = {'class': 'ss-title'}))
+
             r = [i[0] for i in r if cleantitle.get(t) == cleantitle.get(i[1])][:2]
             r = [(i, re.findall('(\d+)', i)[-1]) for i in r]
 
@@ -89,16 +115,27 @@ class source:
             season = '%01d' % int(season)
             episode = '%01d' % int(episode)
 
-            headers = {'X-Requested-With': 'XMLHttpRequest'}
+            q = self.search_link_2 % (urllib.quote_plus('%s - Season %s' % (data['tvshowtitle'], season)))
+            q = urlparse.urljoin(self.base_link, q)
 
-            query = urllib.urlencode({'keyword': '%s - Season %s' % (data['tvshowtitle'], season)})
+            h = {'X-Requested-With': 'XMLHttpRequest'}
+            u = urlparse.urljoin(self.base_link, self.search_link)
+            p = urllib.urlencode({'keyword': '%s - Season %s' % (data['tvshowtitle'], season)})
 
-            url = urlparse.urljoin(self.base_link, self.search_link)
+            r = self.request(u, headers=h, post=p)
 
-            r = client.request(url, post=query, headers=headers)
+            try: r = json.loads(r)
+            except: r = None
 
-            r = json.loads(r)['content']
-            r = zip(client.parseDOM(r, 'a', ret='href', attrs = {'class': 'ss-title'}), client.parseDOM(r, 'a', attrs = {'class': 'ss-title'}))
+            if r == None:
+                r = self.request(q, headers=None, post=None)
+                r = client.parseDOM(r, 'div', attrs = {'class': 'ml-item'})
+                r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', ret='title')) for i in r]
+                r = [(i[0][0], i[1][0]) for i in r if i[0] and i[1]]
+            else:
+                r = r['content']
+                r = zip(client.parseDOM(r, 'a', ret='href', attrs = {'class': 'ss-title'}), client.parseDOM(r, 'a', attrs = {'class': 'ss-title'}))
+
             r = [(i[0], re.findall('(.+?) - season (\d+)$', i[1].lower())) for i in r]
             r = [(i[0], i[1][0][0], i[1][0][1]) for i in r if len(i[1]) > 0]
             r = [i for i in r if t == cleantitle.get(i[1])]
@@ -119,7 +156,7 @@ class source:
     def onemovies_info(self, url):
         try:
             u = urlparse.urljoin(self.base_link, self.info_link)
-            u = client.request(u % url)
+            u = self.request(u % url, headers=None, post=None)
 
             q = client.parseDOM(u, 'div', attrs = {'class': 'jtip-quality'})[0]
 
@@ -156,7 +193,7 @@ class source:
 
                 u = urlparse.urljoin(self.base_link, self.server_link % vid_id)
 
-                r = client.request(u, headers=headers)
+                r = self.request(u, headers=headers, post=None)
 
                 r = client.parseDOM(r, 'div', attrs = {'class': 'les-content'})
                 r = zip(client.parseDOM(r, 'a', ret='onclick'), client.parseDOM(r, 'a'))
@@ -200,28 +237,23 @@ class source:
 
             video_id = headers['Referer'].split('-')[-1].replace('/','')
 
-            episode_id= link.split('/')[-1]
+            episode_id = link.split('/')[-1]
 
-            key_gen = ''.join(random.choice(string.ascii_lowercase + string.digits) for x in range(16))
+            key = '87wwxtp3dqii' ; key2 = '7bcq9826avrbi6m49vd7shxkn985mhod'
 
-			################# FIX FROM MUCKY DUCK & XUNITY TALK ################												
-            key = '87wwxtp3dqii'
-            key2 = '7bcq9826avrbi6m49vd7shxkn985mhod'
-            coookie = hashlib.md5(episode_id + key).hexdigest() + '=%s' %key_gen
-            a= episode_id + key2
-            b= key_gen
-            i=b[-1]
-            h=b[:-1]
-            b=i+h+i+h+i+h
+            h = ''.join(random.choice(string.ascii_lowercase + string.digits) for x in range(16))
+
+            a = episode_id + key2 ; b = h[-1]+h[:-1]+h[-1]+h[:-1]+h[-1]+h[:-1]
             hash_id = uncensored(a, b)
-			################# FIX FROM MUCKY DUCK & XUNITY TALK ################                        
-						
+
+            cookie = hashlib.md5(episode_id + key).hexdigest() + '=%s' % h
+
             url = self.base_link + '/ajax/v2_get_sources/' + episode_id + '?hash=' + urllib.quote(hash_id)
 
-            headers['Referer'] = headers['Referer']+ '\+' + coookie
-            headers['Cookie'] = coookie
+            headers['Referer'] = headers['Referer']+ '\+' + cookie
+            headers['Cookie'] = cookie
 
-            result = client.request(url, headers=headers)
+            result = self.request(url, headers=headers, post=None)
             result = result.replace('\\','')
 
             url = re.findall('"?file"?\s*:\s*"(.+?)"', result)
@@ -245,29 +277,26 @@ class source:
         try:
             if not self.embed_link in link: raise Exception()
 
-            result = client.request(link, headers=headers)
+            result = self.request(link, headers=headers, post=None)
 
             url = json.loads(result)['embed_url']
             return url
         except:
             pass
 
-			
 
 def uncensored(a,b):
     n = -1
-    fuckme=[]
-    justshow=[]
+    x=[]
+    z=[]
     while True:
-        
         if n == len(a)-1:
             break
         n +=1
-       
         d = int(''.join(str(ord(c)) for c in a[n]))
-      
         e=int(''.join(str(ord(c)) for c in b[n]))
-        justshow.append(d+e)
-        fuckme.append(chr(d+e))
-    
-    return base64.b64encode(''.join(fuckme))
+        z.append(d+e)
+        x.append(chr(d+e))
+    return base64.b64encode(''.join(x))
+
+

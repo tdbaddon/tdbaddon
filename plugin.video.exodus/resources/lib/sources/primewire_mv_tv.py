@@ -28,6 +28,7 @@ from resources.lib.modules import proxy
 
 class source:
     def __init__(self):
+        self.language = ['en']
         self.domains = ['primewire.ag']
         self.base_link = 'http://www.primewire.ag'
         self.key_link = '/index.php?search'
@@ -56,14 +57,7 @@ class source:
             result = [(i[0][0], i[1][0]) for i in result if len(i[0]) > 0 and len(i[1]) > 0]
             result = [i for i in result if any(x in i[1] for x in years)]
 
-            r = []
-            for i in result:
-                u = i[0]
-                try: u = urlparse.parse_qs(urlparse.urlparse(u).query)['u'][0]
-                except: pass
-                try: u = urlparse.parse_qs(urlparse.urlparse(u).query)['q'][0]
-                except: pass
-                r += [(u, i[1])]
+            r = [(proxy.parse(i[0]), i[1]) for i in result]
 
             match = [i[0] for i in r if title == cleantitle.get(i[1]) and '(%s)' % str(year) in i[1]]
 
@@ -75,7 +69,8 @@ class source:
                 try:
                     if len(match) > 0: url = match[0] ; break
                     r = proxy.request(urlparse.urljoin(self.base_link, i), 'choose_tabs')
-                    if imdb in str(r): url = i ; break
+                    r = re.findall('(tt\d+)', r)
+                    if imdb in r: url = i ; break
                 except:
                     pass
 
@@ -108,14 +103,7 @@ class source:
             result = [(i[0][0], i[1][0]) for i in result if len(i[0]) > 0 and len(i[1]) > 0]
             result = [i for i in result if any(x in i[1] for x in years)]
 
-            r = []
-            for i in result:
-                u = i[0]
-                try: u = urlparse.parse_qs(urlparse.urlparse(u).query)['u'][0]
-                except: pass
-                try: u = urlparse.parse_qs(urlparse.urlparse(u).query)['q'][0]
-                except: pass
-                r += [(u, i[1])]
+            r = [(proxy.parse(i[0]), i[1]) for i in result]
 
             match = [i[0] for i in r if tvshowtitle == cleantitle.get(i[1]) and '(%s)' % str(year) in i[1]]
 
@@ -127,7 +115,8 @@ class source:
                 try:
                     if len(match) > 0: url = match[0] ; break
                     r = proxy.request(urlparse.urljoin(self.base_link, i), 'tv_episode_item')
-                    if imdb in str(r): url = i ; break
+                    r = re.findall('(tt\d+)', r)
+                    if imdb in r: url = i ; break
                 except:
                     pass
 
@@ -160,10 +149,7 @@ class source:
             if len(url) == 0 or len(url) > 1: url = [i for i in result if 'season-%01d-episode-%01d' % (int(season), int(episode)) in i[0]]
 
             url = client.replaceHTMLCodes(url[0][0])
-            try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['u'][0]
-            except: pass
-            try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['q'][0]
-            except: pass
+            url = proxy.parse(url)
             url = re.findall('(?://.+?|)(/.+)', url)[0]
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
@@ -187,10 +173,7 @@ class source:
             for i in links:
                 try:
                     url = client.parseDOM(i, 'a', ret='href')[0]
-                    try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['u'][0]
-                    except: pass
-                    try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['q'][0]
-                    except: pass
+                    url = proxy.parse(url)
                     url = urlparse.parse_qs(urlparse.urlparse(url).query)['url'][0]
                     url = base64.b64decode(url)
                     url = client.replaceHTMLCodes(url)
@@ -198,7 +181,6 @@ class source:
 
                     host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(url.strip().lower()).netloc)[0]
                     if not host in hostDict: raise Exception()
-                    host = client.replaceHTMLCodes(host)
                     host = host.encode('utf-8')
 
                     quality = client.parseDOM(i, 'span', ret='class')[0]
