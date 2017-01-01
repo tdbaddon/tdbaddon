@@ -18,7 +18,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
-import re,urllib,urlparse,random
+import re,json,urllib,urlparse
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
@@ -27,6 +27,7 @@ from resources.lib.modules import directstream
 
 class source:
     def __init__(self):
+        self.language = ['en']
         self.domains = ['watch32hd.co']
         self.base_link = 'https://watch32hd.co'
         self.search_link = '/results?q=%s'
@@ -35,12 +36,12 @@ class source:
     def movie(self, imdb, title, year):
         self.super_url = []	
         try:
-            query = self.search_link % (urllib.quote_plus(title))
-            query = urlparse.urljoin(self.base_link, query)
+            q = self.search_link % (urllib.quote_plus(title))
+            q = urlparse.urljoin(self.base_link, q)
 
             t = cleantitle.get(title)
 
-            r = client.request(query)
+            r = client.request(q)
 
             r = client.parseDOM(r, 'div', attrs = {'class': 'cell_container'})
             r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', ret='title')) for i in r]
@@ -65,23 +66,22 @@ class source:
 
             referer = urlparse.urljoin(self.base_link, url)
 
-            headers = {'X-Requested-With': 'XMLHttpRequest'}
+            h = {'X-Requested-With': 'XMLHttpRequest'}
 
-            post = urlparse.parse_qs(urlparse.urlparse(referer).query).values()[0][0]
+            try: post = urlparse.parse_qs(urlparse.urlparse(referer).query).values()[0][0]
+            except: post = referer.strip('/').split('/')[-1].split('watch_', 1)[-1].rsplit('#')[0].rsplit('.')[0]
+
             post = urllib.urlencode({'v': post})
 
             url = urlparse.urljoin(self.base_link, '/video_info/iframe')
 
-            r = client.request(url, post=post, headers=headers, referer=referer)
+            r = client.request(url, post=post, headers=h, referer=url)
+            r = json.loads(r).values()
+            r = [urllib.unquote(i.split('url=')[-1])  for i in r]
 
-            r = re.findall('"(\d+)"\s*:\s*"([^"]+)', r)
-            r = [(urllib.unquote(i[1].split('url=')[-1]), i[0])  for i in r]
-
-            links = [(i[0], '1080p') for i in r if int(i[1]) >= 1080]
-            links += [(i[0], 'HD') for i in r if 720 <= int(i[1]) < 1080]
-            links += [(i[0], 'SD') for i in r if 480 <= int(i[1]) < 720]
-
-            for i in links: sources.append({'source': 'gvideo', 'quality': i[1], 'provider': 'Watch32', 'url': i[0], 'direct': True, 'debridonly': False})
+            for i in r:
+                try: sources.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'provider': 'Watch32', 'url': i, 'direct': True, 'debridonly': False})
+                except: pass
 
             return sources
         except:

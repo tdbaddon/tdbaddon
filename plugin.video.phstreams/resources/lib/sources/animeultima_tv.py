@@ -28,6 +28,7 @@ from resources.lib.modules import tvmaze
 
 class source:
     def __init__(self):
+        self.language = ['en']
         self.domains = ['animeultima.io']
         self.base_link = 'http://www.animeultima.io'
         self.search_link = '/search.html?searchquery=%s'

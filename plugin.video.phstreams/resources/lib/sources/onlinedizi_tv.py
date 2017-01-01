@@ -29,6 +29,7 @@ from resources.lib.modules import directstream
 
 class source:
     def __init__(self):
+        self.language = ['en']
         self.domains = ['onlinedizi.co']
         self.base_link = 'http://onlinedizi.co'
 
@@ -102,12 +103,11 @@ class source:
             except:
                 url = client.request(result)
                 url = urllib.unquote_plus(url.decode('string-escape'))
-
                 frame = client.parseDOM(url, 'iframe', ret='src')
-
                 if len(frame) > 0: url = [client.request(frame[-1], output='geturl')]
                 else: url = re.compile('"(.+?)"').findall(url)
-                url = [i for i in url if 'ok.ru' in i or 'vk.com' in i or 'openload.co' in i][0]
+                url = [i for i in url if 'ok.ru' in i or 'vk.com' in i or 'openload.io' in i or 'openload.co' in i or 'oload.tv' in i][0]
+                url = url.replace('openload.io', 'openload.co').replace('oload.tv', 'openload.co')
 
             try: url = 'http://ok.ru/video/%s' % urlparse.parse_qs(urlparse.urlparse(url).query)['mid'][0]
             except: pass

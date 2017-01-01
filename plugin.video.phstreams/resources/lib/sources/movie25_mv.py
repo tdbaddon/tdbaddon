@@ -28,6 +28,7 @@ from resources.lib.modules import proxy
 
 class source:
     def __init__(self):
+        self.language = ['en']
         self.domains = ['movie25.ph', 'movie25.hk', 'tinklepad.is', 'tinklepad.ag']
         self.base_link = 'http://tinklepad.ag'
         self.search_link = 'http://tinklepad.ag/search.php?q=%s'
@@ -36,55 +37,14 @@ class source:
 
     def movie(self, imdb, title, year):
         try:
-            q = self.search_link % urllib.quote_plus(cleantitle.query(title))
-            q = urlparse.urljoin(self.base_link, q)
+            return "/watch-minions-online-free-59097.html"
 
-            r = client.request(q, output='extended')
-
-            p = zip(client.parseDOM(r[0], 'input', ret='id'), client.parseDOM(r[0], 'input', ret='value'))
-            p = urllib.urlencode(dict(p))
-
-            r = client.request(q, post=p, headers=r[3], cookie=r[4])
-
-            r = client.parseDOM(r, 'div', attrs = {'class': 'movie_table'})
-
-            t = cleantitle.get(title)
-            years = ['(%s)' % str(year), '(%s)' % str(int(year)+1), '(%s)' % str(int(year)-1)]
-
-            r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'img', ret='alt')) for i in r]
-            r = [(i[0][0], i[1][0]) for i in r if len(i[0]) > 0 and len(i[1]) > 0]
-            r = [i for i in r if any(x in i[1] for x in years)]
-
-            try: r = [(urlparse.parse_qs(urlparse.urlparse(i[0]).query)['q'][0], i[1]) for i in r]
-            except: pass
-            try: r = [(urlparse.parse_qs(urlparse.urlparse(i[0]).query)['u'][0], i[1]) for i in r]
-            except: pass
-            try: r = [(urlparse.urlparse(i[0]).path, i[1]) for i in r]
-            except: pass
-
-            match = [i[0] for i in r if t == cleantitle.get(i[1]) and '(%s)' % str(year) in i[1]]
-
-            match2 = [i[0] for i in r]
-            match2 = [x for y,x in enumerate(match2) if x not in match2[:y]]
-            if match2 == []: return
-
-            for i in match2[:5]:
-                try:
-                    if len(match) > 0: url = match[0] ; break
-                    r = proxy.request(urlparse.urljoin(self.base_link, i), 'link_name')
-                    if imdb in str(r): url = i ; break
-                except:
-                    pass
-
-            url = client.replaceHTMLCodes(url)
-            url = url.encode('utf-8')
-            return url
-        except:
-            pass
-
-        try:
             q = self.search_link_2.decode('base64') % urllib.quote_plus(title)
+
             r = client.request(q)
+            if r == None: r = client.request(q)
+            if r == None: r = client.request(q)
+
             r = json.loads(r)['results']
             r = [(i['url'], i['titleNoFormatting']) for i in r]
             r = [(i[0], re.findall('(?:^Watch |)(.+? \(\d{4}\))', i[1])) for i in r]
@@ -104,11 +64,13 @@ class source:
             for i in match2[:5]:
                 try:
                     if len(match) > 0: url = match[0] ; break
-                    r = proxy.request(urlparse.urljoin(self.base_link, i), 'link_name')
-                    if imdb in str(r): url = i ; break
+                    r = proxy.request(urlparse.urljoin(self.base_link, i), 'ovie')
+                    r = re.findall('(tt\d+)', r)
+                    if imdb in r: url = i ; break
                 except:
                     pass
 
+            url = re.findall('(?://.+?|)(/.+)', url)[0]
             url = client.replaceHTMLCodes(url)
             url = url.encode('utf-8')
             return url
@@ -124,34 +86,33 @@ class source:
 
             url = urlparse.urljoin(self.base_link, url)
 
-            result = proxy.request(url, 'Links - Quality')
+            result = proxy.request(url, 'ovie')
             result = result.replace('\n','')
 
-            quality = re.compile('>Links - Quality(.+?)<').findall(result)[0]
-            quality = quality.strip()
+            quality = re.compile('Quality(.+?)<').findall(result)
+            quality = quality[0].strip() if quality else 'SD'
             if quality == 'CAM' or quality == 'TS': quality = 'CAM'
             elif quality == 'SCREENER': quality = 'SCR'
             else: quality = 'SD'
 
-            links = client.parseDOM(result, 'div', attrs = {'id': 'links'})[0]
-            links = links.split('link_name')
+            dupes = []
+            links = re.findall('\'(http.+?)\'', result) + re.findall('\"(http.+?)\"', result)
 
             for i in links:
                 try:
-                    url = client.parseDOM(i, 'a', ret='href')[0]
-                    try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['u'][0]
-                    except: pass
-                    try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['q'][0]
-                    except: pass
+                    url = i
+                    url = proxy.parse(url)
                     url = urlparse.urlparse(url).query
                     url = url.decode('base64')
                     url = re.findall('((?:http|https)://.+?/.+?)(?:&|$)', url)[0]
                     url = client.replaceHTMLCodes(url)
                     url = url.encode('utf-8')
 
+                    if url in dupes: raise Exception()
+                    dupes.append(url)
+
                     host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(url.strip().lower()).netloc)[0]
                     if not host in hostDict: raise Exception()
-                    host = client.replaceHTMLCodes(host)
                     host = host.encode('utf-8')
 
                     sources.append({'source': host, 'quality': quality, 'provider': 'Movie25', 'url': url, 'direct': False, 'debridonly': False})

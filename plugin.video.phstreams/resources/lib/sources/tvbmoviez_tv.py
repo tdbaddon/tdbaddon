@@ -19,18 +19,18 @@
 '''
 
 
+
 import re,urllib,urlparse
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import debrid
 
-
 class source:
     def __init__(self):
         self.language = ['en']
-        self.domains = ['rlshd.net']
-        self.base_link = 'https://www.rlshd.net'
+        self.domains = ['best-moviez.ws']
+        self.base_link = 'http://www.best-moviez.ws'
         self.search_link = '/search/%s/feed/rss2/'
 
 
@@ -81,7 +81,7 @@ class source:
 
             posts = client.parseDOM(r, 'item')
 
-            hostDict = hostprDict + hostDict
+            hostDict = hostprDict
 
             items = []
 
@@ -89,8 +89,16 @@ class source:
                 try:
                     t = client.parseDOM(post, 'title')[0]
 
-                    u = client.parseDOM(post, 'enclosure', ret='url')
-                    items += [(t, i) for i in u]
+                    c = client.parseDOM(post, 'content.+?')[0]
+
+                    s = re.findall('((?:\d+\.\d+|\d+\,\d+|\d+) (?:GB|GiB|MB|MiB))', c)
+                    s = s[0] if s else '0'
+
+                    u = zip(client.parseDOM(c, 'a', ret='href'), client.parseDOM(c, 'a'))
+
+                    u = [(i[1], i[0], s) for i in u]
+
+                    items += u
                 except:
                     pass
 
@@ -125,8 +133,8 @@ class source:
                     if '3d' in fmt: info.append('3D')
 
                     try:
-                        size = re.findall('((?:\d+\.\d+|\d+\,\d+|\d+) [M|G]B)', name)[-1]
-                        div = 1 if size.endswith(' GB') else 1024
+                        size = re.findall('((?:\d+\.\d+|\d+\,\d+|\d+) (?:GB|GiB|MB|MiB))', item[2])[-1]
+                        div = 1 if size.endswith(('GB', 'GiB')) else 1024
                         size = float(re.sub('[^0-9|/.|/,]', '', size))/div
                         size = '%.2f GB' % size
                         info.append(size)
@@ -147,7 +155,7 @@ class source:
                     host = client.replaceHTMLCodes(host)
                     host = host.encode('utf-8')
 
-                    sources.append({'source': host, 'quality': quality, 'provider': 'Rlshd', 'url': url, 'info': info, 'direct': False, 'debridonly': True})
+                    sources.append({'source': host, 'quality': quality, 'provider': 'Tvbmoviez', 'url': url, 'info': info, 'direct': False, 'debridonly': True})
                 except:
                     pass
 

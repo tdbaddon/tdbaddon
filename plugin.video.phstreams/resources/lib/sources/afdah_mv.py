@@ -19,7 +19,7 @@
 '''
 
 
-import re,urllib,urlparse,random
+import re,json,urllib,urlparse
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
@@ -28,6 +28,7 @@ from resources.lib.modules import directstream
 
 class source:
     def __init__(self):
+        self.language = ['en']
         self.domains = ['fmovie.co', 'afdah.org', 'xmovies8.org', 'putlockerhd.co']
         self.base_link = 'https://fmovie.co'
         self.search_link = '/results?q=%s'
@@ -65,25 +66,22 @@ class source:
 
             referer = urlparse.urljoin(self.base_link, url)
 
-            headers = {'X-Requested-With': 'XMLHttpRequest'}
+            h = {'X-Requested-With': 'XMLHttpRequest'}
 
             try: post = urlparse.parse_qs(urlparse.urlparse(referer).query).values()[0][0]
-            except: post = referer.strip('/').split('/')[-1].strip('watch_').rsplit('#')[0].rsplit('.')[0]
+            except: post = referer.strip('/').split('/')[-1].split('watch_', 1)[-1].rsplit('#')[0].rsplit('.')[0]
 
             post = urllib.urlencode({'v': post})
 
             url = urlparse.urljoin(self.base_link, '/video_info/iframe')
 
-            r = client.request(url, post=post, headers=headers, referer=referer)
+            r = client.request(url, post=post, headers=h, referer=url)
+            r = json.loads(r).values()
+            r = [urllib.unquote(i.split('url=')[-1])  for i in r]
 
-            r = re.findall('"(\d+)"\s*:\s*"([^"]+)', r)
-            r = [(urllib.unquote(i[1].split('url=')[-1]), i[0])  for i in r]
-
-            links = [(i[0], '1080p') for i in r if int(i[1]) >= 1080]
-            links += [(i[0], 'HD') for i in r if 720 <= int(i[1]) < 1080]
-            links += [(i[0], 'SD') for i in r if 480 <= int(i[1]) < 720]
-
-            for i in links: sources.append({'source': 'gvideo', 'quality': i[1], 'provider': 'Afdah', 'url': i[0], 'direct': True, 'debridonly': False})
+            for i in r:
+                try: sources.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'provider': 'Afdah', 'url': i, 'direct': True, 'debridonly': False})
+                except: pass
 
             return sources
         except:

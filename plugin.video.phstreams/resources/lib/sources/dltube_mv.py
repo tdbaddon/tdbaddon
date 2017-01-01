@@ -28,6 +28,7 @@ from resources.lib.modules import debrid
 
 class source:
     def __init__(self):
+        self.language = ['en']
         self.domains = ['mydownloadtube.com']
         self.base_link = 'http://www.mydownloadtube.com'
         self.search_link = '/search/search_val?language=English%20-%20UK&term='

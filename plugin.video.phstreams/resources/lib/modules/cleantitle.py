@@ -21,6 +21,8 @@
 
 import re,unicodedata
 
+from resources.lib.modules import client
+
 
 def get(title):
     if title == None: return
@@ -64,7 +66,7 @@ def getsearch(title):
 
 def query(title):
     if title == None: return
-    title = title.replace('\'', '').rsplit(':', 1)[0]
+    title = title.replace('\'', '').rsplit(':', 1)[0].rsplit(' -', 1)[0].replace('-', ' ')
     return title
 
 
@@ -76,4 +78,17 @@ def normalize(title):
         return str( ''.join(c for c in unicodedata.normalize('NFKD', unicode( title.decode('utf-8') )) if unicodedata.category(c) != 'Mn') )
     except:
         return title
+
+
+def local(title, imdb, lang):
+    try:
+        t = 'http://www.imdb.com/title/%s' % imdb
+        t = client.request(t, headers={'Accept-Language': lang})
+        t = client.parseDOM(t, 'title')[0]
+        t = re.sub('\((?:.+?|)\d{4}.+', '', t).strip()
+        t = normalize(t.encode("utf-8")) 
+        return t
+    except:
+        return title
+
 

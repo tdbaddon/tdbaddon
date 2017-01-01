@@ -18,8 +18,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
-
-import re,urllib,urlparse,json
+import re,urllib,urlparse
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
@@ -28,8 +27,9 @@ from resources.lib.modules import directstream
 
 class source:
     def __init__(self):
-        self.domains = ['sockshare.biz']
-        self.base_link = 'http://sockshare.biz'
+        self.language = ['en']
+        self.domains = ['openloadmovies.net']
+        self.base_link = 'http://openloadmovies.net'
 
 
     def movie(self, imdb, title, year):
@@ -74,58 +74,49 @@ class source:
                 data = urlparse.parse_qs(url)
                 data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
 
-                title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
-
                 if 'tvshowtitle' in data:
-                    y =  str((int(data['year']) + int(data['season'])) - 1)
-                    url = '/watch/%s-s%02d-%s-online.html' % (cleantitle.geturl(title), int(data['season']), y)
-                    episode = '%01d' % int(data['episode'])
-                else:
-                    url = '/watch/%s-%s-online.html' % (cleantitle.geturl(title), data['year'])
-                    year = data['year']
-                    episode = None
+                    url = '%s/episodes/%s-%01dx%01d/' % (self.base_link, cleantitle.geturl(data['tvshowtitle']), int(data['season']), int(data['episode']))
+                    year = re.findall('(\d{4})', data['premiered'])[0]
 
+                    url = client.request(url, output='geturl')
+                    if url == None: raise Exception()
+
+                    r = client.request(url)
+
+                    y = client.parseDOM(r, 'span', attrs = {'class': 'date'})[0]
+                    y = re.findall('(\d{4})', y)[0]
+                    if not y == year: raise Exception()
+
+                else:
+                    url = '%s/movies/%s-%s/' % (self.base_link, cleantitle.geturl(data['title']), data['year'])
+
+                    url = client.request(url, output='geturl')
+                    if url == None: raise Exception()
+
+                    r = client.request(url)
+
+            else:
                 url = urlparse.urljoin(self.base_link, url)
 
-                r = client.request(url, output='geturl')
+                r = client.request(url)
 
-                if 'error.html' in r: raise Exception()
-            else:
-                try: url, episode = re.findall('(.+?)\?episode=(\d*)$', url)[0]
-                except: episode = None
-                try: episode = '%01d' % int(data['episode'])
-                except: pass
 
-            r = client.request(url)
+            r = re.findall('file\s*:\s*(?:\"|\')(.+?)(?:\"|\')\s*,.+?label\s*:\s*(?:\"|\')(.+?)(?:\"|\')', r)
 
-            h = {'User-Agent': client.agent(), 'X-Requested-With': 'XMLHttpRequest'}
+            for i in r:
+                try:
+                    if '1080' in i[1]: quality = '1080p'
+                    elif '720' in i[1]: quality = 'HD'
+                    else: raise Exception()
 
-            ip = client.parseDOM(r, 'input', ret='value', attrs = {'name': 'phimid'})[0]
-            ep = episode if not episode == None else '1'
+                    url = i[0].replace('\/', '/')
+                    url = client.replaceHTMLCodes(url)
+                    if not '.php' in i[0]: raise Exception()
+                    url = url.encode('utf-8')
 
-            p = {'ip_film': ip, 'ip_name': ep, 'ipplugins': '1', 'ip_server': '11'}
-            p = urllib.urlencode(p)
-
-            u = '/ip.file/swf/plugins/ipplugins.php'
-            u = urlparse.urljoin(self.base_link, u)
-
-            r = client.request(u, post=p, headers=h, referer=url)
-            r = json.loads(r)
-
-            u = '/ip.file/swf/ipplayer/ipplayer.php'
-            u = urlparse.urljoin(self.base_link, u)
-
-            p = {'u': r['s'], 's': r['v'], 'w': '100%', 'h': '360', 'n':'0'}
-            p = urllib.urlencode(p)
-
-            r = client.request(u, post=p, headers=h, referer=url)
-            r = json.loads(r)['data']
-
-            u = [i['files'] for i in r if 'files' in i]
-
-            for i in u:
-                try: sources.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'provider': 'Sockshare', 'url': i, 'direct': True, 'debridonly': False})
-                except: pass
+                    sources.append({'source': 'gvideo', 'quality': quality, 'provider': 'Openmovies', 'url': url, 'direct': True, 'debridonly': False})
+                except:
+                    pass
 
             return sources
         except:

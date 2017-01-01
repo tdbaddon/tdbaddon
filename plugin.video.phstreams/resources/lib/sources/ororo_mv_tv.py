@@ -28,6 +28,7 @@ from resources.lib.modules import client
 
 class source:
     def __init__(self):
+        self.language = ['en']
         self.domains = ['ororo.tv']
         self.base_link = 'https://ororo.tv'
         self.moviesearch_link = '/api/v2/movies'

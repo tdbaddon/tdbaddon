@@ -28,6 +28,7 @@ from resources.lib.modules import debrid
 
 class source:
     def __init__(self):
+        self.language = ['en']
         self.domains = ['scenedown.in']
         self.base_link = 'http://scenedown.in'
         self.search_link = '/search/%s/feed/rss2/'

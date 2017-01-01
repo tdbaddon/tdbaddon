@@ -28,6 +28,7 @@ from resources.lib.modules import proxy
 
 class source:
     def __init__(self):
+        self.language = ['en']
         self.domains = ['onwatchseries.to']
         self.base_link = 'http://onwatchseries.to'
         self.search_link = 'http://onwatchseries.to/show/search-shows-json'
@@ -59,10 +60,7 @@ class source:
             r = [i for i in r if t == cleantitle.get(i[1]) and year == i[2]]
 
             url = r[0][0]
-            try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['u'][0]
-            except: pass
-            try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['q'][0]
-            except: pass
+            url = proxy.parse(url)
 
             url = url.strip('/').split('/')[-1]
             url = url.encode('utf-8')
@@ -92,11 +90,8 @@ class source:
             if len(url) > 1 or not url: url = [i for i in r if premiered == i[2]]
             if len(url) > 1 or not url: raise Exception() 
 
-            url = client.replaceHTMLCodes(url[0][0])
-            try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['u'][0]
-            except: pass
-            try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['q'][0]
-            except: pass
+            url = url[0][0]
+            url = proxy.parse(url)
 
             url = re.findall('(?://.+?|)(/.+)', url)[0]
             url = client.replaceHTMLCodes(url)
@@ -122,10 +117,7 @@ class source:
             for i in links:
                 try:
                     url = i
-                    try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['u'][0]
-                    except: pass
-                    try: url = urlparse.parse_qs(urlparse.urlparse(url).query)['q'][0]
-                    except: pass
+                    url = proxy.parse(url)
                     url = urlparse.parse_qs(urlparse.urlparse(url).query)['r'][0]
                     url = url.decode('base64')
                     url = client.replaceHTMLCodes(url)
@@ -133,7 +125,6 @@ class source:
 
                     host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(url.strip().lower()).netloc)[0]
                     if not host in hostDict: raise Exception()
-                    host = client.replaceHTMLCodes(host)
                     host = host.encode('utf-8')
 
                     sources.append({'source': host, 'quality': 'SD', 'provider': 'ONseries', 'url': url, 'direct': False, 'debridonly': False})

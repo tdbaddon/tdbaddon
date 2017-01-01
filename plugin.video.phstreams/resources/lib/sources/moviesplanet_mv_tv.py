@@ -30,6 +30,7 @@ from resources.lib.modules import directstream
 
 class source:
     def __init__(self):
+        self.language = ['en']
         self.domains = ['moviesplanet.is']
         self.base_link = 'http://www.moviesplanet.is'
         self.search_link = '/ajax/search.php'

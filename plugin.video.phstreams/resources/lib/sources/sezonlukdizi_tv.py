@@ -29,6 +29,7 @@ from resources.lib.modules import directstream
 
 class source:
     def __init__(self):
+        self.language = ['en']
         self.domains = ['sezonlukdizi.com']
         self.base_link = 'http://sezonlukdizi.com'
         self.search_link = '/js/dizi.js'

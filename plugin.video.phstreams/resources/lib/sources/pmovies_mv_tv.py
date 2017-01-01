@@ -29,6 +29,7 @@ from resources.lib.modules import directstream
 
 class source:
     def __init__(self):
+        self.language = ['en']
         self.domains = ['pmovies.to', 'watch5s.to', 'cmovieshd.com']
         self.base_link = 'http://watch5s.to'
         self.random_link = ['pmovies.to', 'watch5s.to', 'cmovieshd.com']
@@ -98,13 +99,12 @@ class source:
                 url = urlparse.urljoin(base_link, url)
                 referer = url
 
-                r = client.request(url, headers=headers, output='geturl')
-                if not '/watch' in r: raise Exception()
-
                 r = client.request(url, headers=headers)
 
                 y = re.findall('Release\s*:\s*.+?\s*(\d{4})', r)[0]
+
                 if not year == y: raise Exception()
+                raise Exception()
             else:
                 try: url, episode = re.findall('(.+?)\?episode=(\d*)$', url)[0]
                 except: episode = None

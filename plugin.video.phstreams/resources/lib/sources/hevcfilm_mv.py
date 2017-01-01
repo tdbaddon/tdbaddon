@@ -28,8 +28,9 @@ from resources.lib.modules import debrid
 
 class source:
     def __init__(self):
+        self.language = ['en']
         self.domains = ['hevcbluray.com']
-        self.base_link = 'https://hevcbluray.com'
+        self.base_link = 'http://hevcbluray.com'
         self.search_link = '/?s=%s'
 
 

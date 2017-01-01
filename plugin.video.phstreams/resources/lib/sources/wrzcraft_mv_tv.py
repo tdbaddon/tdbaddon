@@ -19,19 +19,28 @@
 '''
 
 
+
 import re,urllib,urlparse
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import debrid
 
-
 class source:
     def __init__(self):
         self.language = ['en']
-        self.domains = ['rlshd.net']
-        self.base_link = 'https://www.rlshd.net'
+        self.domains = ['wrzcraft.net']
+        self.base_link = 'http://wrzcraft.net'
         self.search_link = '/search/%s/feed/rss2/'
+
+
+    def movie(self, imdb, title, year):
+        try:
+            url = {'imdb': imdb, 'title': title, 'year': year}
+            url = urllib.urlencode(url)
+            return url
+        except:
+            return
 
 
     def tvshow(self, imdb, tvdb, tvshowtitle, year):
@@ -90,7 +99,14 @@ class source:
                     t = client.parseDOM(post, 'title')[0]
 
                     u = client.parseDOM(post, 'enclosure', ret='url')
-                    items += [(t, i) for i in u]
+                    u = [i for i in u if not 'openload' in i]
+
+                    if 'tvshowtitle' in data:
+                         u = [(re.sub('(720p|1080p)', '', t) + ' ' + [x for x in i.strip('//').split('/')][-1], i) for i in u]
+                    else:
+                         u = [(t, i) for i in u]
+
+                    items += u
                 except:
                     pass
 
@@ -100,7 +116,6 @@ class source:
                     name = client.replaceHTMLCodes(name)
 
                     t = re.sub('(\.|\(|\[|\s)(\d{4}|S\d*E\d*|S\d*|3D)(\.|\)|\]|\s|)(.+|)', '', name)
-
                     if not cleantitle.get(t) == cleantitle.get(title): raise Exception()
 
                     y = re.findall('[\.|\(|\[|\s](\d{4}|S\d*E\d*|S\d*)[\.|\)|\]|\s]', name)[-1].upper()
@@ -125,8 +140,8 @@ class source:
                     if '3d' in fmt: info.append('3D')
 
                     try:
-                        size = re.findall('((?:\d+\.\d+|\d+\,\d+|\d+) [M|G]B)', name)[-1]
-                        div = 1 if size.endswith(' GB') else 1024
+                        size = re.findall('((?:\d+\.\d+|\d+\,\d+|\d+) (?:GB|GiB|MB|MiB))', item[2])[-1]
+                        div = 1 if size.endswith(('GB', 'GiB')) else 1024
                         size = float(re.sub('[^0-9|/.|/,]', '', size))/div
                         size = '%.2f GB' % size
                         info.append(size)
@@ -147,9 +162,12 @@ class source:
                     host = client.replaceHTMLCodes(host)
                     host = host.encode('utf-8')
 
-                    sources.append({'source': host, 'quality': quality, 'provider': 'Rlshd', 'url': url, 'info': info, 'direct': False, 'debridonly': True})
+                    sources.append({'source': host, 'quality': quality, 'provider': 'Wrzcraft', 'url': url, 'info': info, 'direct': False, 'debridonly': True})
                 except:
                     pass
+
+            check = [i for i in sources if not i['quality'] == 'CAM']
+            if check: sources = check
 
             return sources
         except:

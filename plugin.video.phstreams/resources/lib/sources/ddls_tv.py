@@ -29,6 +29,7 @@ from resources.lib.modules import debrid
 
 class source:
     def __init__(self):
+        self.language = ['en']
         self.domains = ['ddlseries.net']
         self.base_link = 'http://www.ddlseries.net'
         self.search_link = '/?s=%s'
