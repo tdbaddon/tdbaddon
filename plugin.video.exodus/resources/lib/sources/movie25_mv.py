@@ -37,11 +37,10 @@ class source:
 
     def movie(self, imdb, title, year):
         try:
-            return "/watch-minions-online-free-59097.html"
-
             q = self.search_link_2.decode('base64') % urllib.quote_plus(title)
 
             r = client.request(q)
+            if r == None: r = client.request(q)
             if r == None: r = client.request(q)
             if r == None: r = client.request(q)
 

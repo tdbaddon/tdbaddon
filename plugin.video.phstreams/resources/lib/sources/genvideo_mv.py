@@ -31,30 +31,19 @@ class source:
         self.language = ['en']
         self.domains = ['genvideos.org', 'genvideos.com']
         self.base_link = 'http://genvideos.com'
-        self.search_link = '/results?q=%s'
+        self.search_link = '/watch_%s_%s.html'
 
 
     def movie(self, imdb, title, year):
         try:
-            q = self.search_link % (urllib.quote_plus(title))
-            q = urlparse.urljoin(self.base_link, q)
+            url = self.search_link % (cleantitle.geturl(title).replace('-', '_'), year)
+            url = urlparse.urljoin(self.base_link, url)
 
-            t = cleantitle.get(title)
-            a = client.randomagent() ; h = {'User-agent': a}
+            r = client.request(url, limit='2')
+            r = client.parseDOM(r, 'meta', ret='content', attrs = {'property': 'og:title'})[0]
+            if not year in r: raise Exception()
 
-            r = client.request(q, headers=h, output='cookie')
-            r = client.request('http://genvideos.com/av', headers=h, cookie=r, output='cookie')
-            r = client.request(q, headers=h, cookie=r, referer=q)
-
-            r = client.parseDOM(r, 'div', attrs = {'class': 'cell_container'})
-            r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', ret='title')) for i in r]
-            r = [(i[0][0], i[1][0]) for i in r if len(i[0]) > 0 and len(i[1]) > 0]
-            r = [(i[0], re.findall('(.+?) \((\d{4})', i[1])) for i in r]
-            r = [(i[0], i[1][0][0], i[1][0][1]) for i in r if len(i[1]) > 0]
-            r = [i[0] for i in r if t == cleantitle.get(i[1]) and year == i[2]][0]
-
-            url = re.findall('(?://.+?|)(/.+)', r)[0]
-            url = client.replaceHTMLCodes(url)
+            url = re.findall('(?://.+?|)(/.+)', url)[0]
             url = url.encode('utf-8')
             return url
         except:

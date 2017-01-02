@@ -18,6 +18,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
+
 import re,json,urllib,urlparse
 
 from resources.lib.modules import cleantitle
@@ -30,28 +31,19 @@ class source:
         self.language = ['en']
         self.domains = ['watch32hd.co']
         self.base_link = 'https://watch32hd.co'
-        self.search_link = '/results?q=%s'
+        self.search_link = '/watch?v=%s_%s'
 
 
     def movie(self, imdb, title, year):
-        self.super_url = []	
         try:
-            q = self.search_link % (urllib.quote_plus(title))
-            q = urlparse.urljoin(self.base_link, q)
+            url = self.search_link % (cleantitle.geturl(title).replace('-', '_'), year)
+            url = urlparse.urljoin(self.base_link, url)
 
-            t = cleantitle.get(title)
+            r = client.request(url, limit='2')
+            r = client.parseDOM(r, 'meta', ret='content', attrs = {'property': 'og:title'})[0]
+            if not year in r: raise Exception()
 
-            r = client.request(q)
-
-            r = client.parseDOM(r, 'div', attrs = {'class': 'cell_container'})
-            r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', ret='title')) for i in r]
-            r = [(i[0][0], i[1][0]) for i in r if len(i[0]) > 0 and len(i[1]) > 0]
-            r = [(i[0], re.findall('(.+?) \((\d{4})', i[1])) for i in r]
-            r = [(i[0], i[1][0][0], i[1][0][1]) for i in r if len(i[1]) > 0]
-            r = [i[0] for i in r if t == cleantitle.get(i[1]) and year == i[2]][0]
-
-            url = re.findall('(?://.+?|)(/.+)', r)[0]
-            url = client.replaceHTMLCodes(url)
+            url = re.findall('(?://.+?|)(/.+)', url)[0]
             url = url.encode('utf-8')
             return url
         except:
