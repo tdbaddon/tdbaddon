@@ -35,18 +35,18 @@ class source:
 			cleanmovie = cleantitle.get(title)
 			query = self.search_link % (urllib.quote_plus(title),year)
 			query = urlparse.urljoin(self.base_link, query)
-			# print("CMOVIES query", query)
+			print("CMOVIES query", query)
 			link =rq.get(query, headers=headers, timeout=10).text
-			# print("CMOVIES url", link)
+			print("CMOVIES url", link)
 			r = client.parseDOM(link, 'div', attrs = {'class': 'ml-item'})
 			for links in r:
-				# print("CMOVIES LINKS", links)
+				print("CMOVIES LINKS", links)
 				pageurl = client.parseDOM(links, 'a', ret='href')[0]
 				info = client.parseDOM(links, 'a', ret='rel')[0]
 				title = client.parseDOM(links, 'a', ret='title')[0]
 				info = info.encode('utf-8')
 				title = title.encode('utf-8')
-				# print("CMOVIES LINKS", pageurl,info,title)
+				print("CMOVIES LINKS", pageurl,info,title)
 				if cleanmovie in cleantitle.get(title):
 					infolink = rq.get(info, headers=headers, timeout=5).text
 					match_year = re.search('class="jt-info">(\d{4})<', infolink)
@@ -64,7 +64,7 @@ class source:
 							try:
 								vidlinks = client.parseDOM(item, 'a', ret='href')[0]
 								vidlinks = vidlinks.encode('utf-8')
-								# print('CMOVIES SERVER LINKS',vidlinks)
+								print('CMOVIES SERVER LINKS',vidlinks)
 								self.url.append([vidlinks,referer])
 							except:
 								pass

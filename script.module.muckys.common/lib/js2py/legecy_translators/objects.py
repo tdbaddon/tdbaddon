@@ -24,7 +24,7 @@ def is_empty_object(n, last):
         return False
     # seems to be but can be empty code
     last = last.strip()
-    markers = {')', ';',}
+    markers = [')', ';']
     if not last or last[-1] in markers:
         return False
     return True
@@ -73,9 +73,9 @@ def is_object(n, last):
 def is_array(last):
     #it can be prop getter
     last = last.strip()
-    if any(endswith_keyword(last, e) for e in {'return', 'new', 'void', 'throw', 'typeof', 'in',  'instanceof'}):
+    if any(endswith_keyword(last, e) for e in ['return', 'new', 'void', 'throw', 'typeof', 'in',  'instanceof']):
         return True
-    markers = {')', ']'}
+    markers = [')', ']']
     return not last or  not (last[-1] in markers or last[-1] in IDENTIFIER_PART)
 
 def remove_objects(code, count=1):

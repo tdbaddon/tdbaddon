@@ -17,6 +17,12 @@
 		<setting id="enable_pastebin" type="bool" label="30505" default="false"/>
 		<setting id="enable_ubuntu" type="bool" label="30506" default="false"/>
 	</category>
+	<category label="MAINTENANCE OPTIONS">
+		<setting type="lsep" label="Checks Cache Size, Packages Size, etc"/>
+		<setting id="maint_check_folders" type="bool" label="Enable Folder Size Monitoring For Maintenance Section?" default="true"/>	
+		<setting type="lsep" label="Checks Kodis Log Files for Errors."/>
+		<setting id="maint_check_log" type="bool" label="Auto Check Logs for Errors When Entering Maintenance?" default="true"/>	
+	</category>
 	<category label="AUTO CLEAN OPTIONS">
 		<setting type="lsep" label="Launch Time Options"/>
 		<setting id="acstartup" type="bool" label="Clear on Kodi Launch" default="false"/>	

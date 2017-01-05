@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-from .jsregexp import Exec
+from jsregexp import Exec
 import re
 DIGS = set('0123456789')
-WHITE = u"\u0009\u000A\u000B\u000C\u000D\u0020\u00A0\u1680\u180E\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u2028\u2029\u202F\u205F\u3000\uFEFF"
+
 
 def replacement_template(rep, source, span, npar):
     """Takes the replacement template and some info about the match and returns filled template
@@ -51,12 +51,12 @@ def replacement_template(rep, source, span, npar):
 class StringPrototype:
     def toString():
         if this.Class!='String':
-            raise this.MakeError('TypeError', 'String.prototype.toString is not generic')
+            raise this.Js(TypeError)('String.prototype.toString is not generic')
         return this.value
 
     def valueOf():
         if this.Class!='String':
-            raise this.MakeError('TypeError', 'String.prototype.valueOf is not generic')
+            raise this.Js(TypeError)('String.prototype.valueOf is not generic')
         return this.value
 
     def charAt(pos):
@@ -184,8 +184,7 @@ class StringPrototype:
         if func:
             args = (match,) +  pars + (span[1], string)
             # convert all types to JS
-            this_ = this
-            args = tuple([this_.Js(x) for x in args])
+            args = tuple([this.Js(x) for x in args])
             res += replaceValue(*args).to_string().value
         else:
             res += replacement_template(replaceValue, s, span, pars)
@@ -290,7 +289,7 @@ class StringPrototype:
 
     def trim():
         this.cok()
-        return this.Js(this.to_string().value.strip(WHITE))
+        return this.Js(this.to_string().value.strip())
 
 
 
@@ -299,7 +298,7 @@ def SplitMatch(s, q, R):
     # s is Py String to match, q is the py int match start and R is Js RegExp or String.
     if R.Class=='RegExp':
         res = R.match(s, q)
-        return (None, ()) if res is None else (res.span()[1], res.groups())
+        return (None, ()) if res is None else (q+res.span()[1], res.groups())
     # R is just a string
     if s[q:].startswith(R.value):
         return q+len(R.value), ()

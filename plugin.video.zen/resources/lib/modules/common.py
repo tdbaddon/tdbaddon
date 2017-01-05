@@ -44,12 +44,12 @@ def replaceHTMLCodes(txt):
 	
 	
 def quality_tag(txt):
-	if txt in ['1080', '1080p','1080P']:
+	if any(value in txt for value in ['1080', '1080p','1080P']):
 		quality = "1080p"
-		return quality
-	elif txt in ['720', '720p','720P']:
+		
+	elif any(value in txt for value in ['720', '720p','720P']):
 		quality = "HD"
-		return quality
+		
 	else: 
 		quality = "SD"
-		return quality	
+	return quality	

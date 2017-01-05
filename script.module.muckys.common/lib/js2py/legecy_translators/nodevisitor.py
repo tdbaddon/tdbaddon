@@ -206,9 +206,9 @@ class NodeVisitor:
         res = filter(lambda x: x, res)
         if is_internal(res[0]):
             out = res[0]
-        elif res[0][0] in {'#', '@'}:
+        elif res[0][0] in ['#', '@']:
             out = '('+trans(REPL[res[0]][1:-1])+')'
-        elif is_valid_lval(res[0]) or res[0] in {'this', 'false', 'true', 'null'}:
+        elif is_valid_lval(res[0]) or res[0] in ['this', 'false', 'true', 'null']:
             out = 'var.get('+res[0].__repr__()+')'
         else:
             if is_reserved(res[0]):

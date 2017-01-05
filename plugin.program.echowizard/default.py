@@ -39,23 +39,21 @@ import requests
 #######################################################################
 #					LOCAL .PY DEPENDANCIES
 #######################################################################
-import get_addons
-import youtube
-import search
-import uploadlog
-import runner
-import community
-import installer
-import update
-import parameters
-import maintenance
-import plugintools
-import backuprestore
-import speedtest
-import common as Common
-import wipe
-import versioncheck
-import extras
+from resources.lib.modules import get_addons
+from resources.lib.modules import uploadlog
+from resources.lib.modules import runner
+from resources.lib.modules import community
+from resources.lib.modules import installer
+from resources.lib.modules import update
+from resources.lib.modules import parameters
+from resources.lib.modules import maintenance
+from resources.lib.modules import plugintools
+from resources.lib.modules import backuprestore
+from resources.lib.modules import speedtest
+from resources.lib.modules import common as Common
+from resources.lib.modules import wipe
+from resources.lib.modules import versioncheck
+from resources.lib.modules import extras
 
 #######################################################################
 #					VERIABLES NEEDED
@@ -69,7 +67,7 @@ ADDON               = xbmcaddon.Addon(id=addon_id)
 CHANGELOG           =  xbmc.translatePath(os.path.join('special://home/addons/' + addon_id,'changelog.txt'))
 WIZARD_VERSION      =  xbmc.translatePath(os.path.join('special://home/addons/' + addon_id,'version.txt'))
 RESOURCES           =  xbmc.translatePath(os.path.join('special://home/addons/' + addon_id,'resources'))
-NOTICE              =  xbmc.translatePath(os.path.join('special://home/addons/' + addon_id,'README/NOTICE.txt'))
+NOTICE              =  xbmc.translatePath(os.path.join('special://home/addons/' + addon_id,'resources/NOTICE.txt'))
 DEFAULT_SETTINGS    =  xbmc.translatePath(os.path.join('special://home/addons/' + addon_id,'resources/settings_default.xml'))
 ADDON_DATA          =  xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id))
 ECHO_SETTINGS       =  xbmc.translatePath(os.path.join('special://home/userdata/addon_data/' + addon_id,'settings.xml'))
@@ -187,12 +185,8 @@ urlopen = MyOpener().open
 #			CREATE SETTINGS XML IF IT DOES NOT EXIST
 #######################################################################
 
-try:
-	if not os.path.isfile(ECHO_SETTINGS):
-		if not os.path.exists(ADDON_DATA):
-			os.makedirs(ADDON_DATA)
-		shutil.copyfile(DEFAULT_SETTINGS, ECHO_SETTINGS)
-except: pass
+if not os.path.isfile(ECHO_SETTINGS):
+	plugintools.open_settings_dialog()
 
 #######################################################################
 #						CREATE PATH FOR BACKUPS
@@ -222,13 +216,6 @@ def INDEX():
 	runner.check()
 
 	#######################################################################
-	#			CALL AUTO UPDATER
-	#######################################################################
-
-	#if check_addon == "true":
-	#	AUTO_UPDATER("no dialog")
-
-	#######################################################################
 	#				CHECK IF THE SERVERS ARE DOWN OR UP
 	#######################################################################
 
@@ -253,8 +240,8 @@ def INDEX():
 			#Information for ECHO Wizard OTA updates.
 			if os.path.exists(ECHO_VERSION):
 				VERSIONCHECK = ECHO_VERSION
-				FIND_URL = BASEURL + base64.b64decode(b'YnVpbGRzL3dpemFyZC91cGRhdGVfd2l6LnR4dA==')
-				checkurl = BASEURL + base64.b64decode(b'YnVpbGRzL3dpemFyZC92ZXJzaW9uX2NoZWNrLnR4dA==')
+				FIND_URL = BASEURL + base64.b64decode(b'YnVpbGRzL3VwZGF0ZV93aXoudHh0')
+				checkurl = BASEURL + base64.b64decode(b'YnVpbGRzL3ZlcnNpb25fY2hlY2sudHh0')
 				pleasecheck = 1
 			
 		except:
@@ -286,40 +273,18 @@ def INDEX():
 			CURRENT_VERSION_CODE = "[COLOR lightskyblue]ERROR[/COLOR]"
 			LATEST_VERSION = "[COLOR lightskyblue]ERROR[/COLOR]"
 
-		#try:
-		#	link = Common.OPEN_URL(ECHO_CHANNEL)
-		#	patron = "<video>(.*?)</video>"
-		#	videos = re.findall(patron,link,re.DOTALL)
-
-		#	items = []
-		#	got = 0
-		#	yt_error = 0
-		#	for video in videos:
-		#		if got == 0:
-		#			item = {}
-		#			item["name"] = Common.find_single_match(video,"<name>([^<]+)</name>")
-		#			item["url"] = base64.b64decode(b"cGx1Z2luOi8vcGx1Z2luLnZpZGVvLnlvdXR1YmUvP2FjdGlvbj1wbGF5X3ZpZGVvJnZpZGVvaWQ9")+Common.find_single_match(video,"<id>([^<]+)</id>")
-		#			item["author"] = Common.find_single_match(video,"<author>([^<]+)</author>")
-		#			item["iconimage"] = Common.find_single_match(video,"<iconimage>([^<]+)</iconimage>")
-		#			item["date"] = Common.find_single_match(video,"<date>([^<]+)</date>")
-		#			got = 1
-		#except:
-		#	yt_error = 1
-		#	pass
 
 	#######################################################################
 	#				MAIN MENU LIST
 	#######################################################################
+	kodi_name = Common.GET_KODI_VERSION()
 
 	if offline == 0:
 		Common.addItem('[COLOR red][B]VIEW ALL ERRORS IN LOG FILE[/B][/COLOR]',BASEURL,155,ERROR_ICON,FANART,'')
 		Common.addItem('[COLOR ghostwhite][B]LATEST NEWS[/B][/COLOR]',BASEURL,106,ICON,FANART,'')
 		Common.addItem('[COLOR ghostwhite][B]DONATIONS: [COLOR yellowgreen]paypal.me/echocoder[/COLOR][/B][/COLOR]',BASEURL,172,ICON,FANART,'')
-		#if yt_error == 0:
-			#Common.addItem('[COLOR ghostwhite][B]LATEST VIDEO: [/COLOR][COLOR yellowgreen]' + item["name"] + '[/B][/COLOR]',item["url"],95,item["iconimage"],FANART,'')
 		Common.addItem('[COLOR ghostwhite][B]TWITTER: [/B][/COLOR][COLOR yellowgreen][B]@ECHOCODER[/B][/COLOR]',BASEURL,4,BUILD_ICON,FANART,'')
 		Common.addDir('[COLOR ghostwhite][B]ALL OFFICIAL ECHO YOUTUBE VIDEOS[/B][/COLOR]',BASEURL,60,YOUTUBE_ICON,FANART,'')
-		Common.addItem('[COLOR yellowgreen][B]CHECK FOR UPDATES[/B][/COLOR]',BASEURL,165,ICON,FANART,'')
 		if pleasecheck == 1:
 			Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
 			Common.addItem('[COLOR ghostwhite][B]CURRENT BUILD: [/B][/COLOR][COLOR yellowgreen][B]' + CURRENT_BUILD + '[/B][/COLOR]',BASEURL,4,BUILD_ICON,FANART,'')
@@ -340,7 +305,8 @@ def INDEX():
 		Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
 		Common.addDir('[COLOR ghostwhite][B]OFFICIAL ECHO BUILDS[/B][/COLOR]',BASEURL,50,BUILD_ICON,FANART,'')
 		Common.addDir('[COLOR ghostwhite][B]COMMUNITY BUILDS[/B][/COLOR]',BASEURL,87,COMMUNITY_ICON,FANART,'')
-		Common.addDir('[COLOR ghostwhite][B]ECHO ADDON INSTALLER[/B][/COLOR]',BASEURL,121,ICON,FANART,'')
+		if kodi_name == "Jarvis":
+			Common.addDir('[COLOR ghostwhite][B]ECHO ADDON INSTALLER[/B][/COLOR]',BASEURL,121,ICON,FANART,'')
 		Common.addDir('[COLOR ghostwhite][B]FANRIFFIC THEMES[/B][/COLOR]',BASEURL,144,ICON,FANART,'')
 		Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
 	Common.addDir('[COLOR ghostwhite][B]BACKUP [COLOR white]|[/COLOR] RESTORE[/B][/COLOR]',BASEURL,8,BACKUP_ICON,FANART,'')
@@ -361,7 +327,6 @@ def INDEX():
 	if offline == 0:
 		Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
 		Common.addItem('[COLOR ghostwhite][B]HOW TO GET SUPPORT[/B][/COLOR]',BASEURL,79,SUPPORT_ICON,FANART,'')
-	Common.addItem('[COLOR ghostwhite][B]ECHO WIZARD CREDITS[/B][/COLOR]',BASEURL,81,SEARCH_ICON,FANART,'')
 	Common.addItem('[COLOR ghostwhite][B]VIEW WIZARD CHANGELOG[/B][/COLOR]',BASEURL,80,SEARCH_ICON,FANART,'')
 	Common.addItem('[COLOR ghostwhite][B]VIEW LOG FILE[/B][/COLOR]',BASEURL,82,ERROR_ICON,FANART,'')
 	Common.addItem('[COLOR ghostwhite][B]VIEW THE LAST ERROR IN LOG FILE[/B][/COLOR]',BASEURL,154,ERROR_ICON,FANART,'')
@@ -369,7 +334,13 @@ def INDEX():
 	Common.addItem('[COLOR ghostwhite][B]UPLOAD LOG FILE[/B][/COLOR]','url',36,TOOLS_ICON,FANART,'')
 	Common.addItem('[COLOR ghostwhite][B]ECHO WIZARD SETTINGS[/B][/COLOR]',BASEURL,9,SETTINGS_ICON,FANART,'')
 
-	xbmc.executebuiltin('Container.SetViewMode(50)')
+	kodi_name = Common.GET_KODI_VERSION()
+
+	if kodi_name == "Jarvis":
+		command = '"Container.SetViewMode(50)"'
+	elif kodi_name == "Krypton":
+		command = '"Container.SetViewMode(55)"'
+	else: command = '"Container.SetViewMode(50)"'
 
 #######################################################################
 #					TDB WIZARD BUILD MENU
@@ -387,9 +358,12 @@ def BUILDMENU():
 
 	if version >= 16.0 and version <= 16.9:
 		codename = 'Jarvis'
+	elif version >= 17.0 and version <= 17.9:
+		codename = 'Krypton'
+	else: codename = "Decline"
 	
-	if codename != "Jarvis":
-		dialog.ok(AddonTitle, "Sorry we are unable to process your request","[COLOR lightskyblue][I][B]Error: ECHO does not support this version of Kodi.[/COLOR][/I][/B]","[I]Your are running: [COLOR lightsteelblue][B]Kodi " + codename + " Version:[COLOR ghostwhite] %s" % version + "[/COLOR][/I][/B][/COLOR]")
+	if codename == "Decline":
+		dialog.ok(AddonTitle, "Sorry we are unable to process your request","[COLOR lightskyblue][I][B]Error: ECHO does not support this version of Kodi.[/COLOR][/I][/B]")
 		return
 
 	if codename == "Jarvis":
@@ -400,9 +374,9 @@ def BUILDMENU():
 		iconlist=[]
 		fanartlist=[]
 		link = Common.OPEN_URL(JARVIS_URL).replace('\n','').replace('\r','')
-		match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?ersion="(.+?)".+?escription="(.+?)".+?resh="(.+?)".+?ash="(.+?)".+?outube="(.+?)".+?kin="(.+?)"').findall(link)
+		match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?ersion="(.+?)".+?escription="(.+?)".+?resh="(.+?)".+?ash="(.+?)".+?outube="(.+?)"').findall(link)
 		dis_links = len(match)
-		for name,url,iconimage,fanart,version,desc,fresh,hash,youtube,skin in match:
+		for name,url,iconimage,fanart,version,desc,fresh,hash,youtube in match:
 			skin = 'null'
 			i = i + 1
 			dis_count = str(i)
@@ -422,6 +396,40 @@ def BUILDMENU():
 		for count,name,url,description,iconimage,fanart in tup:
 			bname = " | [COLOR white] This Week:[/COLOR][COLOR lightskyblue][B] " + count + "[/B][/COLOR]"
 			Common.addDir(name + bname,url,83,iconimage,fanart,description)
+
+	if codename == "Krypton":
+		namelist=[]
+		urllist=[]
+		deslist=[]
+		countlist=[]
+		iconlist=[]
+		fanartlist=[]
+		link = Common.OPEN_URL(KRYPTON_URL).replace('\n','').replace('\r','')
+		match = re.compile('name="(.+?)".+?rl="(.+?)".+?mg="(.+?)".+?anart="(.+?)".+?ersion="(.+?)".+?escription="(.+?)".+?resh="(.+?)".+?ash="(.+?)".+?outube="(.+?)"').findall(link)
+		dis_links = len(match)
+		for name,url,iconimage,fanart,version,desc,fresh,hash,youtube in match:
+			skin = 'null'
+			i = i + 1
+			dis_count = str(i)
+			progress = 100 * int(i)/int(dis_links)
+			dp.update(progress,"Getting details from build " + str(dis_count) + " of " + str(dis_links),"[COLOR white][B]FOUND - [/B] " + name + "[/COLOR]")
+			id=youtubelink+youtube
+			description = str(desc + "," + hash + "," + fresh + "," + id + "," + skin)
+			namelist.append(name)
+			urllist.append(url)
+			deslist.append(description)
+			countlist.append(str(Common.count(name)))     
+			iconlist.append(iconimage)
+			fanartlist.append(fanart)
+			combinedlists = list(zip(countlist,namelist,urllist,deslist,iconlist,fanartlist))
+		tup = sorted(combinedlists, key=lambda x: int(x[0]),reverse=True)
+		dp.close()
+		for count,name,url,description,iconimage,fanart in tup:
+			bname = " | [COLOR white] This Week:[/COLOR][COLOR lightskyblue][B] " + count + "[/B][/COLOR]"
+			Common.addDir(name + bname,url,83,iconimage,fanart,description)
+
+	view_mode = SET_VIEW("list")
+	xbmc.executebuiltin(view_mode)
 
 #######################################################################
 #						MAINTENANCE MENU
@@ -483,6 +491,9 @@ def convertSizeInstall(size):
 
 def MAINTENANCE_MENU():
 
+	check_folders = plugintools.get_setting("maint_check_folders")
+	check_log     = plugintools.get_setting("maint_check_log")
+
 	HOME          =  xbmc.translatePath('special://home/')
 	PACKAGES      =  xbmc.translatePath(os.path.join('special://home/addons','packages'))
 	THUMBS        =  xbmc.translatePath(os.path.join('special://home/userdata','Thumbnails'))
@@ -490,41 +501,42 @@ def MAINTENANCE_MENU():
 	TEMP_FOLDER   =  xbmc.translatePath(os.path.join('special://','temp'))
 	CACHE         =  "NULL"
 
-	if os.path.exists(CACHE_FOLDER):
-		CACHE = CACHE_FOLDER
+	if check_folders == "true":
+		if os.path.exists(CACHE_FOLDER):
+			CACHE = CACHE_FOLDER
 
-	if os.path.exists(TEMP_FOLDER):
-		CACHE = TEMP_FOLDER
+		if os.path.exists(TEMP_FOLDER):
+			CACHE = TEMP_FOLDER
 
-	if not os.path.exists(PACKAGES):
-		os.makedirs(PACKAGES)
+		if not os.path.exists(PACKAGES):
+			os.makedirs(PACKAGES)
 
-	if CACHE == "NULL":
-		try:
-			PACKAGES_SIZE_BYTE = get_size(PACKAGES)
-			THUMB_SIZE_BYTE    = get_size(THUMBS)
-		except: pass
-	else:
-		try:
-			CACHE_SIZE_BYTE    = get_size(CACHE)
-			PACKAGES_SIZE_BYTE = get_size(PACKAGES)
-			THUMB_SIZE_BYTE    = get_size(THUMBS)
-		except: pass
-	
-	if CACHE == "NULL":
-		try:
-			PACKAGES_SIZE = convertSize(PACKAGES_SIZE_BYTE)
-			THUMB_SIZE    = convertSize(THUMB_SIZE_BYTE)
-		except: pass
-	else:
-		try:
-			CACHE_SIZE    = convertSize(CACHE_SIZE_BYTE)
-			PACKAGES_SIZE = convertSize(PACKAGES_SIZE_BYTE)
-			THUMB_SIZE    = convertSize(THUMB_SIZE_BYTE)
-		except: pass
-	
-	if CACHE == "NULL":
-		CACHE_SIZE    =  "[COLOR red][B]ERROR READING CACHE[/B][/COLOR]"
+		if CACHE == "NULL":
+			try:
+				PACKAGES_SIZE_BYTE = get_size(PACKAGES)
+				THUMB_SIZE_BYTE    = get_size(THUMBS)
+			except: pass
+		else:
+			try:
+				CACHE_SIZE_BYTE    = get_size(CACHE)
+				PACKAGES_SIZE_BYTE = get_size(PACKAGES)
+				THUMB_SIZE_BYTE    = get_size(THUMBS)
+			except: pass
+		
+		if CACHE == "NULL":
+			try:
+				PACKAGES_SIZE = convertSize(PACKAGES_SIZE_BYTE)
+				THUMB_SIZE    = convertSize(THUMB_SIZE_BYTE)
+			except: pass
+		else:
+			try:
+				CACHE_SIZE    = convertSize(CACHE_SIZE_BYTE)
+				PACKAGES_SIZE = convertSize(PACKAGES_SIZE_BYTE)
+				THUMB_SIZE    = convertSize(THUMB_SIZE_BYTE)
+			except: pass
+		
+		if CACHE == "NULL":
+			CACHE_SIZE    =  "[COLOR red][B]ERROR READING CACHE[/B][/COLOR]"
 
 	startup_clean = plugintools.get_setting("acstartup")
 	weekly_clean = plugintools.get_setting("clearday")
@@ -543,62 +555,67 @@ def MAINTENANCE_MENU():
 	else:
 		sizecheck_onoff = "[COLOR yellowgreen][B]ON[/COLOR][/B]"
 
-	cachePath = os.path.join(xbmc.translatePath('special://home'), 'cache')
-	tempPath = os.path.join(xbmc.translatePath('special://home'), 'temp')
-	WindowsCache = xbmc.translatePath('special://home')
-	i = 0
+	if check_log == "true":
 
-	if os.path.exists(tempPath):
-		for root, dirs, files in os.walk(tempPath,topdown=True):
-			dirs[:] = [d for d in dirs]
-			for name in files:
-				if ".old.log" not in name.lower():
-					if ".log" in name.lower():
-						a=open((os.path.join(root, name))).read()	
-						b=a.replace('\n','NEW_L').replace('\r','NEW_R')
-						match = re.compile('EXCEPTION Thrown(.+?)End of Python script error report').findall(b)
-						for checker in match:
-							i = i + 1
+		cachePath = os.path.join(xbmc.translatePath('special://home'), 'cache')
+		tempPath = os.path.join(xbmc.translatePath('special://home'), 'temp')
+		WindowsCache = xbmc.translatePath('special://home')
+		i = 0
 
-	if os.path.exists(WindowsCache):
-		for root, dirs, files in os.walk(WindowsCache,topdown=True):
-			dirs[:] = [d for d in dirs]
-			for name in files:
-				if ".old.log" not in name.lower():
-					if ".log" in name.lower():
-						a=open((os.path.join(root, name))).read()	
-						b=a.replace('\n','NEW_L').replace('\r','NEW_R')
-						match = re.compile('EXCEPTION Thrown(.+?)End of Python script error report').findall(b)
-						for checker in match:
-							i = i + 1
-	
-	if i == 0:
-		ERRORS_IN_LOG = "[COLOR yellowgreen][B]0 ERRORS FOUND IN LOG[/B][/COLOR]"
-	else:
-		ERRORS_IN_LOG = "[COLOR red][B]" + str(i) + " ERRORS FOUND IN LOG[/B][/COLOR]"
+		if os.path.exists(tempPath):
+			for root, dirs, files in os.walk(tempPath,topdown=True):
+				dirs[:] = [d for d in dirs]
+				for name in files:
+					if ".old.log" not in name.lower():
+						if ".log" in name.lower():
+							a=open((os.path.join(root, name))).read()	
+							b=a.replace('\n','NEW_L').replace('\r','NEW_R')
+							match = re.compile('EXCEPTION Thrown(.+?)End of Python script error report').findall(b)
+							for checker in match:
+								i = i + 1
+
+		if os.path.exists(WindowsCache):
+			for root, dirs, files in os.walk(WindowsCache,topdown=True):
+				dirs[:] = [d for d in dirs]
+				for name in files:
+					if ".old.log" not in name.lower():
+						if ".log" in name.lower():
+							a=open((os.path.join(root, name))).read()	
+							b=a.replace('\n','NEW_L').replace('\r','NEW_R')
+							match = re.compile('EXCEPTION Thrown(.+?)End of Python script error report').findall(b)
+							for checker in match:
+								i = i + 1
+		
+		if i == 0:
+			ERRORS_IN_LOG = "[COLOR yellowgreen][B]0 ERRORS FOUND IN LOG[/B][/COLOR]"
+		else:
+			ERRORS_IN_LOG = "[COLOR red][B]" + str(i) + " ERRORS FOUND IN LOG[/B][/COLOR]"
 
 	Common.addDir('[COLOR blue][B]CLICK FOR SYSTEM INFORMATION (ADDONS, IP, ETC)[/B][/COLOR]',BASEURL,163,SYSTEM_INFO_ICON,FANART,'')
-	try:
-		Common.addItem("[COLOR white][B]CACHE SIZE IS [/B][/COLOR]" + str(CACHE_SIZE),BASEURL,79,ICON,FANART,'')
-	except: 		
-		Common.addItem("[COLOR white][B]ERROR GETTING CACHE SIZE[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
-	try:
-		Common.addItem("[COLOR white][B]PACKAGES SIZE IS [/B][/COLOR]" + str(PACKAGES_SIZE),BASEURL,79,ICON,FANART,'')
-	except:
-		Common.addItem("[COLOR white][B]ERROR GETTING PACKAGES SIZE[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
-	try:
-		Common.addItem("[COLOR white][B]THUMBNAIL SIZE IS [/B][/COLOR]" + str(THUMB_SIZE),BASEURL,79,ICON,FANART,'')
-	except:
-		Common.addItem("[COLOR white][B]ERROR GETTING THUMBNAIL SIZE[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
+	if check_folders == "true":
+		try:
+			Common.addItem("[COLOR white][B]CACHE SIZE IS [/B][/COLOR]" + str(CACHE_SIZE),BASEURL,79,ICON,FANART,'')
+		except: 		
+			Common.addItem("[COLOR white][B]ERROR GETTING CACHE SIZE[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
+		try:
+			Common.addItem("[COLOR white][B]PACKAGES SIZE IS [/B][/COLOR]" + str(PACKAGES_SIZE),BASEURL,79,ICON,FANART,'')
+		except:
+			Common.addItem("[COLOR white][B]ERROR GETTING PACKAGES SIZE[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
+		try:
+			Common.addItem("[COLOR white][B]THUMBNAIL SIZE IS [/B][/COLOR]" + str(THUMB_SIZE),BASEURL,79,ICON,FANART,'')
+		except:
+			Common.addItem("[COLOR white][B]ERROR GETTING THUMBNAIL SIZE[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
 	Common.addItem("[COLOR white][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
 	Common.addItem('[COLOR lightskyblue][B]WEEKLY AUTO CLEAN - [/B][/COLOR]' + weekly_onoff,BASEURL,113,TOOLS_ICON,FANART,'')
 	Common.addItem('[COLOR lightskyblue][B]AUTO CLEAN ON KODI LAUNCH - [/B][/COLOR]' + startup_onoff,BASEURL,112,TOOLS_ICON,FANART,'')
 	Common.addItem("[COLOR lightskyblue][B]SETUP AUTO CLEAR AT SPECIFIC MB - [/B][/COLOR]" + sizecheck_onoff,BASEURL,9,ICON,FANART,'')
 	Common.addItem("[COLOR white][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
-	Common.addItem(ERRORS_IN_LOG,BASEURL,154,ERROR_ICON,FANART,'')
+	if check_log == "true":
+		Common.addItem(ERRORS_IN_LOG,BASEURL,154,ERROR_ICON,FANART,'')
 	Common.addItem('[COLOR lightskyblue][B]VIEW LOG FILE[/B][/COLOR]',BASEURL,82,ERROR_ICON,FANART,'')
 	Common.addItem('[COLOR lightskyblue][B]VIEW THE LAST ERROR IN LOG FILE[/B][/COLOR]',BASEURL,154,ERROR_ICON,FANART,'')
-	Common.addItem('[COLOR lightskyblue][B]VIEW ALL ' + str(i) + ' ERROR IN LOG FILE[/B][/COLOR]',BASEURL,155,ERROR_ICON,FANART,'')
+	if check_log == "true":
+		Common.addItem('[COLOR lightskyblue][B]VIEW ALL ' + str(i) + ' ERROR IN LOG FILE[/B][/COLOR]',BASEURL,155,ERROR_ICON,FANART,'')
 	Common.addItem('[COLOR lightskyblue][B]UPLOAD LOG FILE[/B][/COLOR]','url',36,TOOLS_ICON,FANART,'')
 	Common.addItem("[COLOR white][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
 	Common.addItem('[COLOR white]Auto Clean Device[/COLOR]','url',31,TOOLS_ICON,FANART,'')
@@ -621,7 +638,8 @@ def MAINTENANCE_MENU():
 	Common.addItem('[COLOR white]Force Close Kodi[/COLOR]','url',86,TOOLS_ICON,FANART,'')
 	Common.addDir('[B][COLOR red]SYSTEM RESET(CAUTION)[/COLOR][/B]','url',6,TOOLS_ICON,FANART,'')
 
-	xbmc.executebuiltin('Container.SetViewMode(50)')
+	view_mode = SET_VIEW("list")
+	xbmc.executebuiltin(view_mode)
 	
 #######################################################################
 #		KEYMAPS MENU for keymap.xml FILES
@@ -651,7 +669,8 @@ def KEYMAPS():
 		bname = " - [COLOR lightskyblue][COLOR white]This Week - [/COLOR][B]" + count + "[/B][/COLOR]"
 		Common.addItem(name + bname,url,130,ADVANCED_SET_ICON,FANART,description)
 
-	xbmc.executebuiltin('Container.SetViewMode(50)')
+	view_mode = SET_VIEW("list")
+	xbmc.executebuiltin(view_mode)
 
 #######################################################################
 #		ADVANCED SETTINGS MENU for advancedsettings.xml FILES
@@ -681,7 +700,8 @@ def ADVANCEDSETTINGS():
 		bname = " - [COLOR lightskyblue][COLOR white]This Week - [/COLOR][B]" + count + "[/B][/COLOR]"
 		Common.addItem(name + bname,url,98,ADVANCED_SET_ICON,FANART,description)
 
-	xbmc.executebuiltin('Container.SetViewMode(50)')
+	view_mode = SET_VIEW("list")
+	xbmc.executebuiltin(view_mode)
 
 #######################################################################
 #				GET FANRIFFIC THEMES SKINS
@@ -778,7 +798,8 @@ def FANRIFFIC_THEMES():
 	#	dialog.ok(AddonTitle,'[COLOR white]Sorry there are no supported themes for your version of Kodi.')
     #   quit()
 
-	xbmc.executebuiltin('Container.SetViewMode(50)')
+	view_mode = SET_VIEW("list")
+	xbmc.executebuiltin(view_mode)
 
 #######################################################################
 #						SPEEDTEST LIST
@@ -791,7 +812,8 @@ def SPEEDTEST():
 	for name,url,iconimage,fanart,description in match:
 		Common.addItem('[COLOR ghostwhite]' + name + " | " + description + '[/COLOR]',url,15,SPEEDTEST_ICON,ART+'speedfanart.jpg','')
 
-	xbmc.executebuiltin('Container.SetViewMode(50)')
+	view_mode = SET_VIEW("list")
+	xbmc.executebuiltin(view_mode)
 
 #######################################################################
 #						BACKUP MENU MENU
@@ -815,7 +837,8 @@ def BACKUPMENU():
 	Common.addItem('[COLOR white]Delete All Backups[/COLOR]','url',73,BACKUP_ICON,FANART,'')
 	Common.addItem('[COLOR white]Select Backup Location[/COLOR]','url',9,BACKUP_ICON,FANART,'')
 
-	xbmc.executebuiltin('Container.SetViewMode(50)')
+	view_mode = SET_VIEW("list")
+	xbmc.executebuiltin(view_mode)
 
 #######################################################################
 #					LATEST SPORTS LISTINGS
@@ -830,7 +853,8 @@ def SPORT_LISTINGS():
 		Common.addItem('[COLOR white][B]'+image+' '+'[/COLOR][/B]- [COLOR white]'+game+' [/COLOR]','','',ICON,FANART,'')
 		Common.addItem('[COLOR ghostwhite]Watch '+name+'[/COLOR]','','',ICON,FANART,'')
 
-	xbmc.executebuiltin('Container.SetViewMode(50)')
+	view_mode = SET_VIEW("list")
+	xbmc.executebuiltin(view_mode)
 
 #######################################################################
 #		DISPLAYS USER INFO LIKE IP ADDRESS ETC
@@ -878,7 +902,8 @@ def ACCOUNT():
 	Common.addItem('[COLOR ghostwhite]Local IP: [/COLOR][COLOR white]' + s.getsockname()[0] + '[/COLOR]',BASEURL,200,SYSTEM_INFO_ICON,FANART,'')
 	Common.addItem('[COLOR ghostwhite]External IP: [/COLOR][COLOR white]' + m.group(0) + '[/COLOR]',BASEURL,200,SYSTEM_INFO_ICON,FANART,'')
 
-	xbmc.executebuiltin('Container.SetViewMode(50)')
+	view_mode = SET_VIEW("list")
+	xbmc.executebuiltin(view_mode)
 
 #######################################################################
 #		MUST HAVE KODI PROGRAMS AND TOOLS MENU
@@ -891,7 +916,8 @@ def KODI_TOOLS():
 	for name,url,iconimage,fanart,description in match:
 		Common.addItem(name,url,89,KODI_ICON,KODI_FANART,description)
 
-	xbmc.executebuiltin('Container.SetViewMode(50)')
+	view_mode = SET_VIEW("list")
+	xbmc.executebuiltin(view_mode)
 
 #######################################################################
 #		LIST OF LATEST KODI INSTALLATION FILES
@@ -911,7 +937,8 @@ def LATEST_LIST():
 	if xbmc.getCondVisibility('system.platform.android'):
 		LATEST_ANDROID()
 
-	xbmc.executebuiltin('Container.SetViewMode(50)')
+	view_mode = SET_VIEW("list")
+	xbmc.executebuiltin(view_mode)
 
 #######################################################################
 #					GETS THE WINDOWS LIST
@@ -931,7 +958,8 @@ def LATEST_WINDOWS():
 		for name,url,iconimage,fanart,description in match:
 			Common.addItem(name,url,89,KODI_ICON,KODI_FANART,description)
 
-	xbmc.executebuiltin('Container.SetViewMode(50)')
+	view_mode = SET_VIEW("list")
+	xbmc.executebuiltin(view_mode)
 
 #######################################################################
 #					GETS THE OSX LIST
@@ -951,8 +979,9 @@ def LATEST_OSX():
 		for name,url,iconimage,fanart,description in match:
 			Common.addItem(name,url,89,KODI_ICON,KODI_FANART,description)
 
-	xbmc.executebuiltin('Container.SetViewMode(50)')
-			
+	view_mode = SET_VIEW("list")
+	xbmc.executebuiltin(view_mode)
+	
 #######################################################################
 #					GETS THE IOS LIST
 #######################################################################
@@ -971,7 +1000,8 @@ def LATEST_IOS():
 		for name,url,iconimage,fanart,description in match:
 			Common.addItem(name,url,89,KODI_ICON,KODI_FANART,description)
 
-	xbmc.executebuiltin('Container.SetViewMode(50)')
+	view_mode = SET_VIEW("list")
+	xbmc.executebuiltin(view_mode)
 
 #######################################################################
 #					GETS THE ANDROID LIST
@@ -992,7 +1022,8 @@ def LATEST_ANDROID():
 		for name,url,iconimage,fanart,description in match:
 			Common.addItem(name,url,91,iconimage,fanart,description)
 
-	xbmc.executebuiltin('Container.SetViewMode(50)')
+	view_mode = SET_VIEW("list")
+	xbmc.executebuiltin(view_mode)
 
 #######################################################################
 #					INSTALLER LIST
@@ -1034,8 +1065,9 @@ def INSTALLER_APKS():
 			bname = " | [COLOR white] This Week:[/COLOR][COLOR lightskyblue][B] " + count + "[/B][/COLOR]"
 			Common.addItem("[COLOR white][B]" + name + " - NOT INSTALLED[/B][/COLOR]" + bname,url2,171,iconimage,fanart,description="None")
 
-		xbmc.executebuiltin('Container.SetViewMode(50)')
-
+		view_mode = SET_VIEW("list")
+		xbmc.executebuiltin(view_mode)
+	
 #######################################################################
 #					GETS THE LATEST SIGNED APKS LIST
 #######################################################################
@@ -1049,7 +1081,8 @@ def LATESTAPKSWITHLIB():
 	for name,url,iconimage,fanart,description in match:
 		Common.addDir(name,url,91,iconimage,fanart,description)
 
-	xbmc.executebuiltin('Container.SetViewMode(50)')
+	view_mode = SET_VIEW("list")
+	xbmc.executebuiltin(view_mode)
 
 #######################################################################
 #					GETS THE LIBRTMP FILES LIST
@@ -1064,7 +1097,8 @@ def DOWNLOADLIB():
 	for name,url,iconimage,fanart,description in match:
 		Common.addDir(name,url,94,LIB_ICON,fanart,description)
 
-	xbmc.executebuiltin('Container.SetViewMode(50)')
+	view_mode = SET_VIEW("list")
+	xbmc.executebuiltin(view_mode)
 
 #######################################################################
 #					ANDROID APKS
@@ -1086,7 +1120,8 @@ def ANDROID_APKS():
 		for name,url,iconimage,fanart in match:
 			Common.addItem(name,url,91,iconimage,fanart,'')
 
-	xbmc.executebuiltin('Container.SetViewMode(50)')
+	view_mode = SET_VIEW("list")
+	xbmc.executebuiltin(view_mode)
 
 #######################################################################
 #					ESSENTIAL CONTACTS LIST
@@ -1109,7 +1144,37 @@ def KODI_CONTACTS():
 		else:
 			Common.addDir(item["name"] + '[COLOR white]@[/COLOR][COLOR white]' + item["url"] + '[/COLOR]',BASEURL,102,ICON,FANART,item["description"])
 
-	xbmc.executebuiltin('Container.SetViewMode(50)')
+	view_mode = SET_VIEW("list")
+	xbmc.executebuiltin(view_mode)
+
+#######################################################################
+#					SET VIEW
+#######################################################################
+
+def SET_VIEW(name):
+
+	kodi_name = Common.GET_KODI_VERSION()
+
+	if name == "list":
+		if kodi_name == "Jarvis":
+			command = '"Container.SetViewMode(50)"'
+		elif kodi_name == "Krypton":
+			command = '"Container.SetViewMode(55)"'
+		else: command = '"Container.SetViewMode(50)"'
+	elif name == "thumbs":
+		if kodi_name == "Jarvis":
+			command = '"Container.SetViewMode(500)"'
+		elif kodi_name == "Krypton":
+			command = '"Container.SetViewMode(52)"'
+		else: command = '"Container.SetViewMode(500)"'
+	else:
+		if kodi_name == "Jarvis":
+			command = '"Container.SetViewMode(50)"'
+		elif kodi_name == "Krypton":
+			command = '"Container.SetViewMode(55)"'
+		else: command = '"Container.SetViewMode(50)"'
+		
+	return command
 
 #######################################################################
 #					VIEW CHANGELOG

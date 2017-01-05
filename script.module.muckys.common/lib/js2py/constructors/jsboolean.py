@@ -1,4 +1,4 @@
-from ..base import *
+from js2py.base import *
 
 BooleanPrototype.define_own_property('constructor', {'value': Boolean,
                                                      'enumerable': False,

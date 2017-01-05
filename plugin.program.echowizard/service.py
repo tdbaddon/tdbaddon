@@ -18,21 +18,21 @@ import xbmc, xbmcaddon, xbmcgui, xbmcplugin,os,base64,sys,xbmcvfs
 import urllib2,urllib
 import shutil
 import zipfile
-import extract
-import downloader
-import maintenance
-import installer
+from resources.lib.modules import extract
+from resources.lib.modules import downloader
+from resources.lib.modules import maintenance
+from resources.lib.modules import installer
 import re
-import backuprestore
+from resources.lib.modules import backuprestore
 import time
-import common as Common
-import wipe
-import runner
-import plugintools
+from resources.lib.modules import common as Common
+from resources.lib.modules import wipe
+from resources.lib.modules import runner
+from resources.lib.modules import plugintools
 from random import randint
 from datetime import date
 import calendar
-import acdays
+from resources.lib.modules import acdays
 
 my_date = date.today()
 today = calendar.day_name[my_date.weekday()]
@@ -63,9 +63,6 @@ TMP_TRAKT     =  xbmc.translatePath(os.path.join(HOME,'tmp_trakt'))
 TRAKT_MARKER =  xbmc.translatePath(os.path.join(TMP_TRAKT,'marker.xml'))
 backup_zip = xbmc.translatePath(os.path.join(TMP_TRAKT,'Restore_RD_Trakt_Settings.zip'))
 
-if str(my_date) == "2017-01-01":
-	dialog.ok(AddonTitle, "[COLOR white]Echo Coder would like to wish you a [COLOR red][B]HAPPY NEW YEAR![/B][/COLOR] Enjoy your day and have a drink for me.[/COLOR]")
-
 try:
     response = Common.OPEN_URL_NORMAL(GoogleOne)
 except:
@@ -84,8 +81,8 @@ pleasecheck = 0
 #Information for ECHO Wizard OTA updates.
 if os.path.exists(ECHO_VERSION):
 	VERSIONCHECK = ECHO_VERSION
-	FIND_URL = BASEURL + base64.b64decode(b'YnVpbGRzL3dpemFyZC91cGRhdGVfd2l6LnR4dA==')
-	checkurl = BASEURL + base64.b64decode(b'YnVpbGRzL3dpemFyZC92ZXJzaW9uX2NoZWNrLnR4dA==')
+	FIND_URL = BASEURL + base64.b64decode(b'YnVpbGRzL3VwZGF0ZV93aXoudHh0')
+	checkurl = BASEURL + base64.b64decode(b'YnVpbGRzL3ZlcnNpb25fY2hlY2sudHh0')
 	pleasecheck = 1
 
 if nointernet == 0 and pleasecheck == 1:

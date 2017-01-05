@@ -44,17 +44,13 @@
 		<setting id="movieshd_base"  type="text" label=" - Base Url" default="http://flixanity.watch" visible="!eq(-1,false)" />
 
 		<setting id="provider.onemovies" type="bool" label="Onemovies" default="true" />
-		<setting id="onemovies_custom"  type="bool" label=" - Enable Custom Url" default="false" />
-		<setting id="onemovies_base"  type="text" label=" - Base Url" default="http://123movies.gs" visible="!eq(-1,false)" />
+		<setting id="provider.hevcfilm" type="bool" label="Hevcfilm" default="true" />
 
 		<setting id="provider.openmovies" type="bool" label="Openmovies" default="true" />
-		<setting id="provider.bcinema" type="bool" label="Bcinema" default="true" />
 		<setting id="provider.wonline" type="bool" label="Wonline" default="true" />
 		<setting id="provider.onlinemovies" type="bool" label="Onlinemovies" default="true" />
-		<setting id="provider.sockshare" type="bool" label="Sockshare" default="true" />
 		<setting id="provider.moviezone" type="bool" label="Moviezone" default="true" />
 		<setting id="provider.putmovie" type="bool" label="Putmovie" default="true" />
-		<setting id="provider.moviefree" type="bool" label="Moviefree" default="true" />
 		<setting id="provider.watch5s" type="bool" label="Watch5s" default="true" />
 		<setting id="provider.moviegee" type="bool" label="Moviegee" default="true" />
 		<setting id="provider.watchover" type="bool" label="Watchover" default="true" />
@@ -69,7 +65,6 @@
 		<setting id="provider.afdah" type="bool" label="Afdah" default="true" />
 		<setting id="provider.miradetodo" type="bool" label="Miradetodo" default="true" />
 		<setting id="provider.xmovies" type="bool" label="Xmovies" default="true" />
-		<setting id="provider.moviego" type="bool" label="Moviego" default="true" />
 		<setting id="provider.watchseries" type="bool" label="Watchseries" default="true" />
 		<setting id="provider.onlinedizi" type="bool" label="Onlinedizi" default="true" />
 		<setting id="provider.watchfree" type="bool" label="Watchfree" default="true" />
@@ -79,6 +74,7 @@
 		<setting id="provider.sezonlukdizi" type="bool" label="Sezonlukdizi" default="true" />
 		<setting id="provider.solar" type="bool" label="Solar" default="true" />
 		<setting id="provider.putlockerz" type="bool" label="Putlockerz" default="true" />
+		<setting id="provider.moviefree" type="bool" label="Moviefree" default="true" />
 
 		
 		<setting type="lsep" label="Anime - Cartoons" />		
@@ -87,6 +83,7 @@
 		<setting id="provider.watchcartoon" type="bool" label="Watchcartoon" default="true" />
 
 		<setting type="lsep" label="Debrid Providers" />
+		<setting id="provider.myvideolink" type="bool" label="Myvideolink" default="true" />
 		<setting id="provider.wrzcraft" type="bool" label="Wrzcraft" default="true" />
 		<setting id="provider.allrls" type="bool" label="Allrls" default="true" />
 		<setting id="provider.crazy" type="bool" label="Crazy" default="true" />
@@ -94,8 +91,6 @@
 		<setting id="provider.ddlvalley" type="bool" label="DDLvalley" default="true" />
 		<setting id="provider.directdl" type="bool" label="Directdl" default="true" />
 		<setting id="provider.dltube" type="bool" label="Dltube" default="true" />
-		<setting id="provider.hevcfilm" type="bool" label="Hevcfilm" default="true" />
-		<setting id="provider.myvideolink" type="bool" label="Myvideolink" default="true" />
 		<setting id="provider.phdmovies" type="bool" label="Phdmovies" default="true" />
 		<setting id="provider.releasebb" type="bool" label="releaseBB" default="true" />
 		<setting id="provider.rlsbbonline" type="bool" label="Rlsbbonline" default="true" />

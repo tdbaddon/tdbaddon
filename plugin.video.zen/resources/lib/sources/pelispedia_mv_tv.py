@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Exodus Add-on
-    Copyright (C) 2016 Exodus
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -28,6 +26,7 @@ from resources.lib.modules import directstream
 
 class source:
     def __init__(self):
+        self.language = ['en']
         self.domains = ['pelispedia.tv']
         self.base_link = 'http://www.pelispedia.tv'
         self.moviesearch_link = '/pelicula/%s/'

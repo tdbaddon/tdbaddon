@@ -1,4 +1,4 @@
-from ..base import *
+from js2py.base import *
 
 RegExpPrototype.define_own_property('constructor', {'value': RegExp,
                                                      'enumerable': False,

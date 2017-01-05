@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Exodus Add-on
-    Copyright (C) 2016 Exodus
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -23,10 +21,12 @@ import re,urllib,urlparse,json
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
+from resources.lib.modules import directstream
 
 
 class source:
     def __init__(self):
+        self.language = ['en']
         self.domains = ['miradetodo.net']
         self.base_link = 'http://miradetodo.net'
         self.search_link = '/?s=%s'
@@ -39,10 +39,10 @@ class source:
             t = client.parseDOM(t, 'title')[0]
             t = re.sub('(?:\(|\s)\d{4}.+', '', t).strip()
 
-            query = self.search_link % urllib.quote_plus(t)
-            query = urlparse.urljoin(self.base_link, query)
+            q = self.search_link % urllib.quote_plus(t)
+            q = urlparse.urljoin(self.base_link, q)
 
-            r = client.request(query)
+            r = client.request(q)
 
             r = client.parseDOM(r, 'div', attrs = {'class': 'item'})
             r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'span', attrs = {'class': 'tt'}), client.parseDOM(i, 'span', attrs = {'class': 'year'})) for i in r]
@@ -71,10 +71,10 @@ class source:
             f = [re.findall('(?:\"|\')(http.+?miradetodo\..+?)(?:\"|\')', i) for i in f]
             f = [i[0] for i in f if len(i) > 0]
 
+
             dupes = []
 
             for u in f:
-
                 try:
                     sid = urlparse.parse_qs(urlparse.urlparse(u).query)['id'][0]
 
@@ -83,21 +83,17 @@ class source:
 
                     headers = {'X-Requested-With': 'XMLHttpRequest', 'Referer': u}
 
-                    post = urllib.urlencode({'link': sid})
+                    url = client.request(u, timeout='10', headers=headers)
+                    url = client.parseDOM(url, 'a', ret='href')
+                    url = [i for i in url if '.php' in i][0]
+                    url = 'http:' + url if url.startswith('//') else url
+                    url = client.request(url, timeout='10', headers=headers, referer=u)
 
-                    url = urlparse.urljoin(self.base_link, '/stream/plugins/gkpluginsphp.php')
-                    url = client.request(url, post=post, headers=headers)
-                    url = json.loads(url)['link']
-
-                    if type(url) is list:
-                        url = [{'url': i['link'], 'quality': '1080p'} for i in url if '1080' in i['label']] + [{'url': i['link'], 'quality': 'HD'} for i in url if '720' in i['label']]
-                    else:
-                        url = [{'url': url, 'quality': 'HD'}]
-
-                    url = [i for i in url if any(x in i['url'] for x in ['google', 'blogspot'])]
+                    url = re.findall('file\s*:\s*"(.+?)"', url)
 
                     for i in url:
-                        sources.append({'source': 'gvideo', 'quality': i['quality'], 'provider': 'MiraDeTodo', 'url': i['url'], 'direct': True, 'debridonly': False})
+                        try: sources.append({'source': 'gvideo', 'quality': directstream.googletag(i)[0]['quality'], 'provider': 'MiraDeTodo', 'url': i, 'direct': True, 'debridonly': False})
+                        except: pass
                 except:
                     pass
 
@@ -107,12 +103,6 @@ class source:
 
 
     def resolve(self, url):
-        try:
-            url = client.request(url, output='geturl')
-            if 'requiressl=yes' in url: url = url.replace('http://', 'https://')
-            else: url = url.replace('https://', 'http://')
-            return url
-        except:
-            return
+        return directstream.googlepass(url)
 
 

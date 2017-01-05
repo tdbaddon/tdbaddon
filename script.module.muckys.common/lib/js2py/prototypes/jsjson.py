@@ -1,14 +1,6 @@
 import json
 from js2py.base import Js
 indent = ''
-# python 3 support
-import six
-if six.PY3:
-    basestring = str
-    long = int
-    xrange = range
-    unicode = str
-
 
 def parse(text):
     reviver = arguments[1]
@@ -43,7 +35,7 @@ def stringify(value, replacer, space):
                 elif v._type()=='String':
                     item = v
                 elif v.is_object():
-                    if v.Class in {'String', 'Number'}:
+                    if v.Class in ['String', 'Number']:
                         item = v.to_string()
                 if not item.is_undefined() and item.value not in property_list:
                     property_list.append(item.value)
@@ -66,7 +58,7 @@ def stringify(value, replacer, space):
 def Str(key, holder, replacer_function, property_list, gap, stack, space):
     value = holder[key]
     if value.is_object():
-        to_json = value.get('toJSON')
+        to_json = value.get('to_json')
         if to_json.is_callable():
             value = to_json.call(value, (key,))
     if not replacer_function.is_undefined():
@@ -167,8 +159,12 @@ def Quote(string):
 
 
 def to_js(this, d):
+    
     if isinstance(d, dict):
-        return this.Js({k:this.Js(v) for k, v in six.iteritems(d)})
+        a = {}
+        for k,v in d.iteritems():
+            a[k] = this.Js(v)
+        return this.Js(a)
     return this.Js(d)
 
 

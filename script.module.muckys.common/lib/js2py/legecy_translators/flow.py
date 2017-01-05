@@ -77,7 +77,7 @@ def do_statement(source, start):
     # start is the fist position after initial start that is not a white space or \n
     if not start < len(source): #if finished parsing return None
         return None, start
-    if any(startswith_keyword(source[start:], e) for e in {'case', 'default'}):
+    if any(startswith_keyword(source[start:], e) for e in ['case', 'default']):
         return None, start
     rest = source[start:]
     for key, meth in KEYWORD_METHODS.iteritems():  # check for statements that are uniquely defined by their keywords

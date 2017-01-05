@@ -1,3 +1,9 @@
+[COLOR yellowgreen]1.45: 3rd January 2017[/COLOR]
+[COLOR white][B]- Added Krypton build support for ECHO builds.[/B][/COLOR]
+
+[COLOR yellowgreen]1.44: 2nd January 2017[/COLOR]
+[COLOR white][B]- First release for Krypton stability.[/B][/COLOR]
+
 [COLOR yellowgreen]1.43: 30th December 2016[/COLOR]
 [COLOR white][B]- Prepare for new year.[/B][/COLOR]
 

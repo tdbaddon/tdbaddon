@@ -1787,15 +1787,25 @@ def playHDCast(url, mainref, altref=None):
         result=getUrl(embedUrl, headers=headers, cookieJar=cookieJar)
 
         if not broadcast:# in result:
-            if 'blockscript=' in result: #ok captcha here
+            print 'in not broad', embedUrl,result
+            if 'blockscript=' in result or 'name="blockscript"' in result: #ok captcha here
                 try:
                     tries=0
-                    while 'blockscript=' in result and tries<2:
+                    while ('blockscript=' in result  or 'name="blockscript"' in result) and tries<2:
+                        print 'in while'
                         tries+=1
                         xval=re.findall('name="x" value="(.*?)"',result)[0]
                         urlval=re.findall('name="url" value="(.*?)"',result)[0]
                         blocscriptval=re.findall('name="blockscript" value="(.*?)"',result)[0]
-                        imageurl=re.findall('<td nowrap><img src="(.*?)"',result)[0].replace('&amp;','&')             
+                        
+                        #imageurl=re.findall('<td nowrap><img src="(.*?)"',result)[0].replace('&amp;','&')        
+                        scriptype='sci'
+                        try:
+                            scriptype=re.findall('script=(.*?)&',result)[0]
+                        except: pass
+                        
+                        imageurl='http://hdcast.org/blockscript/detector.php?blockscript=%s&x=%s'%(scriptype,urllib.quote_plus(xval))
+                        
                         if not imageurl.startswith('http'):
                             imageurl='http://hdcast.org'+imageurl
                         headersforimage=[('Referer',embedUrl),('Origin','http://hdcast.org'),('User-Agent',agent)]     
@@ -3199,7 +3209,7 @@ def playMYTV(url):
     jsondata=getUrl(base64.b64decode('aHR0cDovL21lZGlhb25zcG9ydC5kZS90di9zcG9ydGlvcy9hcGkucGhwP2NoYW5uZWxfaWQ9JXM=')%url,headers=headers)
     jsondata=json.loads(jsondata)
     
-    PlayGen(base64.b64encode( jsondata["LIVETV"][0]["channel_url"]+'|AppleCoreMedia/1.0.0.13A452 (iPhone; U; CPU OS 9_0_2 like Mac OS X; en_gb)'))
+    PlayGen(base64.b64encode( jsondata["LIVETV"][0]["channel_url"]+'|User-Agent=AppleCoreMedia/1.0.0.13A452 (iPhone; U; CPU OS 9_0_2 like Mac OS X; en_gb)'))
         
 
         
@@ -3366,7 +3376,7 @@ def getMyTVChannels():
             
             cname=ss["channel_title"]
             curl='mytv:'+ss["id"]#+'|User-Agent=AppleCoreMedia/1.0.0.13A452 (iPhone; U; CPU OS 9_0_2 like Mac OS X; en_gb)'
-            cimage='http://www.readerwill.com/sport/images/thumbs/'+ss["channel_thumbnail"]
+            cimage='http://mediaonsport.de/tv/sportios/images/'+ss["channel_thumbnail"]
             
             
             if len([i for i, x in enumerate(ret) if x[2] ==curl ])==0:                    

@@ -34,7 +34,7 @@ debridstatus = control.setting('debridsources')
 class source:
     def __init__(self):
         self.domains = ['myvideolink.xyz']
-        self.base_link = 'http://myvideolinks.ga'
+        self.base_link = 'http://ezfile.xyz'
         self.search_link = '/?s=%s+%s'
         self.ep_link = '/?s=%s'
 

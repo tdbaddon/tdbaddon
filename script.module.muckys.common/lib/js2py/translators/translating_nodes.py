@@ -1,13 +1,7 @@
 from __future__ import unicode_literals
-from .pyjsparserdata import *
-from .friendly_nodes import *
+from pyjsparserdata import *
+from friendly_nodes import *
 import random
-import six
-
-if six.PY3:
-    from functools import reduce
-    xrange = range
-    unicode = str
 # number of characters above which expression will be split to multiple lines in order to avoid python parser stack overflow
 # still experimental so I suggest to set it to 400 in order to avoid common errors
 # set it to smaller value only if you have problems with parser stack overflow
@@ -78,7 +72,7 @@ class ContextStack:
 
     def get_code(self):
         code = 'var.registers([%s])\n' % ', '.join(repr(e) for e in self.to_register)
-        for name, func_code in six.iteritems(self.to_define):
+        for name, func_code in self.to_define.iteritems():
             code += func_code
         return code
 
@@ -110,7 +104,7 @@ def to_key(literal_or_identifier):
             return unicode(k)
 
 def trans(ele, standard=False):
-    """Translates esprima syntax tree to python by delegating to appropriate translating node"""
+    """Translates esprima syntax tree to python by delegating to appriopriate translating node"""
     try:
         node = globals().get(ele['type'])
         if not node:
@@ -252,7 +246,7 @@ def Property(type, kind, key, computed, value, method, shorthand):
 def UnaryExpression(type, operator, argument, prefix):
     a = trans(argument, standard=True) # unary involve some complex operations so we cant use line shorteners here
     if operator=='delete':
-        if argument['type'] in {'Identifier', 'MemberExpression'}:
+        if argument['type'] in ['Identifier', 'MemberExpression']:
             # means that operation is valid
             return js_delete(a)
         return 'PyJsComma(%s, Js(True))' % a   # otherwise not valid, just perform expression and return true.
@@ -296,7 +290,7 @@ def AssignmentExpression(type, operator, left, right):
             return far_left + '.put(%s, %s)' % (prop, trans(right))
     else:
         raise SyntaxError('Invalid left hand side in assignment!')
-six
+
 @limited
 def SequenceExpression(type, expressions):
     return reduce(js_comma, (trans(e) for e in expressions))
@@ -466,7 +460,7 @@ def TryStatement(type, block, handler, handlers, guardedHandlers, finalizer):
     # complicated catch statement...
     if handler:
         identifier = handler['param']['name']
-        holder = 'PyJsHolder_%s_%d'%(to_hex(identifier), random.randrange(1e8))
+        holder = 'PyJsHolder_%s_%d'%(identifier.encode('hex'), random.randrange(1e8))
         identifier = repr(identifier)
         result += 'except PyJsException as PyJsTempException:\n'
         # fill in except ( catch ) block and remember to recover holder variable to its previous state
@@ -546,13 +540,13 @@ def FunctionDeclaration(type, id, params, defaults, body, generator, expression)
         if is_valid_py_name(v):
             used_vars.append(v)
         else: # invalid arg in python, for example $, replace with alternatice arg
-            used_vars.append('PyJsArg_%s_' % to_hex(v))
+            used_vars.append('PyJsArg_%s_' % v.encode('hex'))
     header = '@Js\n'
     header+= 'def %s(%sthis, arguments, var=var):\n' % (PyName, ', '.join(used_vars) +(', ' if vars else ''))
     # transfer names from Py scope to Js scope
     arg_map = dict(zip(vars, used_vars))
     arg_map.update({'this':'this', 'arguments':'arguments'})
-    arg_conv = 'var = Scope({%s}, var)\n' % ', '.join(repr(k)+':'+v for k,v in six.iteritems(arg_map))
+    arg_conv = 'var = Scope({%s}, var)\n' % ', '.join(repr(k)+':'+v for k,v in arg_map.iteritems())
     # and finally set the name of the function to its real name:
     footer = '%s.func_name = %s\n' % (PyName, repr(JsName))
     footer+= 'var.put(%s, %s)\n' % (repr(JsName), PyName)
@@ -592,10 +586,11 @@ def FunctionExpression(type, id, params, defaults, body, generator, expression):
     # check whether args are valid python names:
     used_vars = []
     for v in vars:
-        if is_valid_py_name(v):
+        try:
+            compile(v, 'a','exec')  # valid
             used_vars.append(v)
-        else: # invalid arg in python, for example $, replace with alternatice arg
-            used_vars.append('PyJsArg_%s_' % to_hex(v))
+        except: # invalid arg in python, for example $, replace with alternatice arg
+            used_vars.append('PyJsArg_%s_' % v.encode('hex'))
     header = '@Js\n'
     header+= 'def %s(%sthis, arguments, var=var):\n' % (PyName, ', '.join(used_vars) +(', ' if vars else ''))
     # transfer names from Py scope to Js scope
@@ -604,7 +599,7 @@ def FunctionExpression(type, id, params, defaults, body, generator, expression):
     if id: # make self available from inside...
         if id['name'] not in arg_map:
             arg_map[id['name']] = PyName
-    arg_conv = 'var = Scope({%s}, var)\n' % ', '.join(repr(k)+':'+v for k,v in six.iteritems(arg_map))
+    arg_conv = 'var = Scope({%s}, var)\n' % ', '.join(repr(k)+':'+v for k,v in arg_map.iteritems())
     # and finally set the name of the function to its real name:
     footer = '%s._set_name(%s)\n' % (PyName, repr(JsName))
     whole_code = header + indent(arg_conv+code) + footer
@@ -630,12 +625,12 @@ if __name__=='__main__':
         with codecs.open("esp.js", "r", "utf-8") as f:
             c = f.read()
 
-    print('Started')
+    print 'Started'
     t = time.time()
     res = trans(pyjsparser.PyJsParser().parse(c))
     dt = time.time() - t+ 0.000000001
-    print('Translated everyting in', round(dt,5), 'seconds.')
-    print('Thats %d characters per second' % int(len(c)/dt))
+    print 'Translated everyting in', round(dt,5), 'seconds.'
+    print 'Thats %d characters per second' % int(len(c)/dt)
     with open('res.py', 'w') as f:
         f.write(res)
 

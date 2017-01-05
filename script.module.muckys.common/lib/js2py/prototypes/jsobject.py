@@ -4,8 +4,7 @@ class ObjectPrototype:
         return '[object %s]'%this.Class
 
     def valueOf():
-        return this.to_object()
-
+        return this
 
     def toLocaleString():
         return this.callprop('toString')

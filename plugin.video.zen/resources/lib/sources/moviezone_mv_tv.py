@@ -24,7 +24,7 @@ class source:
         self.domains = ['moviezone.ch']
 
         self.base_link = 'http://moviezone.ch'
-        self.search_link = '/?s=%s+%s'
+        self.movie_link = '/%s/'
         self.ep_link = '/episode/%s/'
 		
     def movie(self, imdb, title, year):
@@ -32,21 +32,10 @@ class source:
 		try:
 			self.zen_url = []
 			title = cleantitle.getsearch(title)
-			cleanmovie = cleantitle.get(title)
-			query = self.search_link % (urllib.quote_plus(title),year)
+			title = title.replace(' ','-')
+			query = self.movie_link % (title)
 			query = urlparse.urljoin(self.base_link, query)
-			link = client.request(query)
-			r = client.parseDOM(link, 'div', attrs = {'class': 'boxinfo'})
-			for links in r:
-				url = client.parseDOM(links, 'a', ret='href')[0]
-				info = client.parseDOM(links, 'span', attrs = {'class': 'tt'})[0]
-				url = url.encode('utf-8')
-				info = info.encode('utf-8')
-				# print("MOVIEZONE LINKS", url,info)
-				if year in info:
-					if cleanmovie == cleantitle.get(info):
-					 
-						self.zen_url.append(url)
+			self.zen_url.append(query)
 			# print("MOVIEZONE PASSED LINKS", self.zen_url)
 			return self.zen_url
 		except:

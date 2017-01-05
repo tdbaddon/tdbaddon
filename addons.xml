@@ -417,7 +417,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 
 <addon id="plugin.program.echowizard"
 	     name="[COLOR yellowgreen]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
-	     version="1.43"
+	     version="1.45"
 	     provider-name="Echo Coder">
   <requires>
   	<import addon="xbmc.python" version="2.1.0"/>
@@ -1536,7 +1536,7 @@ For DMCA Reports, please send message to our FB page.
     </extension>
 </addon>
 
-<addon id="plugin.video.mdyesmovies" name="Yes Movies" version="1.0.2" provider-name="Mucky Duck">
+<addon id="plugin.video.mdyesmovies" name="Yes Movies" version="1.0.3" provider-name="Mucky Duck">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.addon.common" />
@@ -2252,7 +2252,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 </addon>
 
 
-<addon id="plugin.video.ukturk" name="UK Turk Playlists" version="3.0.18" provider-name="MetalKettle">
+<addon id="plugin.video.ukturk" name="UK Turk Playlists" version="3.0.21" provider-name="MetalKettle">
 
   <requires>
 
@@ -2274,6 +2274,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
     <import addon="script.module.liveresolver" version="0.1.24"/>
 
+    <import addon="repository.xbmchub" version="1.0.0"/>
 
   </requires>
 
@@ -2356,7 +2357,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.wweonline" name="WWE Online" version="0.1.9" provider-name="[COLOR blue]X[/COLOR]unity[COLOR blue]T[/COLOR]alk">
+<addon id="plugin.video.wweonline" name="WWE Online" version="0.2.0" provider-name="[COLOR blue]X[/COLOR]unity[COLOR blue]T[/COLOR]alk">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.urlresolver" version="0.0.1"/>
@@ -2427,7 +2428,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.ZemTV-shani"
        name="Zem"
-       version="6.1.2"
+       version="6.1.3"
        provider-name="shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -2458,7 +2459,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.zen" version="1.4.33" name=" Zen" provider-name="Zen">
+<addon id="plugin.video.zen" version="1.5.0" name=" Zen" provider-name="Zen">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="script.zen.artwork" />
@@ -2476,7 +2477,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 		<disclaimer lang="en">The Author does not host or share any content, nor is affiliated with the content providers.</disclaimer>
 		<platform>all</platform>
 		<website>http://schism-tv.net</website>
-		<news>Tweaked Custom Urls - Update Providers - Ability to customize Base Url for major Scrapers</news>
+		<news>Update Providers - Tweaked Custom Urls - Update Providers - Ability to customize Base Url for major Scrapers</news>
         <assets>
 			<icon>icon.png</icon>
 			<fanart>fanart.jpg</fanart>
@@ -2996,23 +2997,6 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
         <description>This is my repo... I can do whatever I like with it...</description>
         <platform>all</platform>
     </extension>
-</addon>
-
-<addon id="repository.seppius" name="Seppius XBMC Add-ons" version="1.0.1" provider-name="seppius">
-	<extension point="xbmc.addon.repository" name="Seppius XBMC Add-ons">
-		<info compressed="false">https://github.com/seppius-xbmc-repo/ru/raw/master/addons.xml</info>
-		<checksum>https://github.com/seppius-xbmc-repo/ru/raw/master/addons.xml.md5</checksum>
-		<datadir zip="true">https://github.com/seppius-xbmc-repo/ru/raw/master/</datadir>
-	</extension>
-	<extension point="xbmc.addon.metadata">
-		<summary>Install Add-ons from RUS Add-on Repository</summary>
-		<summary lang="ru">Дополнения и репозитории пользователей форума XBMC.ru</summary>
-		<description>Russian plug-ins and repository installer for XBMC</description>
-		<description lang="ru">Загружайте и устанавливайте плагины и репозитории разработчиков форума XBMC.ru.[CR]Если вы обнаружили нерабочее дополнение, сообщите об этом разработчикам плагина в разделе форума "Помощь по плагинам".</description>
-		<disclaimer lang="en">Team XBMC did not make all the add-ons on this repository and are not responsible for their content</disclaimer>
-		<disclaimer lang="ru">Разработчики XBMC не являются авторами этих дополнений и не несут ответственность за их содержимое.</disclaimer>
-		<platform>all</platform>
-	</extension>
 </addon>
 
 <addon id="repository.shani" name="Shanis Addon Repository" version="2.9" provider-name="Shani">
@@ -3621,7 +3605,7 @@ Kodi is a registered trademark of the XBMC Foundation. We are not connected to o
 	</extension>
 </addon>
 
-<addon id="script.module.muckys.common" name="Muckys Common Libraries" version="1.0.0" provider-name="Mucky Duck">
+<addon id="script.module.muckys.common" name="Muckys Common Libraries" version="1.0.3" provider-name="Mucky Duck">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 	</requires>
@@ -3630,11 +3614,15 @@ Kodi is a registered trademark of the XBMC Foundation. We are not connected to o
 		<platform>all</platform>
 		<summary lang="en">Collection of modules used by Mucky Ducks Addons</summary>
 		<description lang="en">Collection of modules used by Mucky Ducks Addons
-beautifulsoup4 v4.5.1 from https://pypi.python.org/pypi/beautifulsoup4
-cfscrape 1.6.8 from https://github.com/Anorov/cloudflare-scrape
-Js2Py v0.40 from https://github.com/PiotrDabkowski/Js2Py
-jsbeautifier v1.6.4 from https://pypi.python.org/pypi/jsbeautifier
-six v1.10.0 from https://pypi.python.org/pypi/six</description>
+beautifulsoup4 v4.5.1 from https://pypi.python.org/pypi/beautifulsoup4:
+cfscrape 1.6.8 from https://github.com/Anorov/cloudflare-scrape:
+Js2Py v0.40 from https://github.com/PiotrDabkowski/Js2Py:
+jsbeautifier v1.6.4 from https://pypi.python.org/pypi/jsbeautifier:
+jsunpack from urlresolver:
+md_request a simple script for making requests:
+six v1.10.0 from https://pypi.python.org/pypi/six:
+unshortenit v0.3.0 from https://github.com/jkehler/unshortenit
+		</description>
 		<license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
 	</extension>
 </addon>

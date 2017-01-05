@@ -1,5 +1,4 @@
-from ..base import *
-import six
+from js2py.base import *
 
 #todo Double check everything is OK
 
@@ -18,12 +17,11 @@ def object_constructor():
         if val.TYPE=='Object':
             #Implementation dependent, but my will simply return :)
             return val
-        elif val.TYPE in {'Number', 'String', 'Boolean'}:
+        elif val.TYPE in ['Number', 'String', 'Boolean']:
             return val.to_object()
     return PyJsObject(prototype=ObjectPrototype)
 
 Object.create = object_constructor
-Object.own['length']['value'] = Js(1)
 
 
 class ObjectMethods:
@@ -47,10 +45,7 @@ class ObjectMethods:
             raise MakeError('TypeError', 'Object prototype may only be an Object or null')
         temp = PyJsObject(prototype=(None if obj.is_null() else obj))
         if len(arguments)>1 and not arguments[1].is_undefined():
-            if six.PY2:
-                ObjectMethods.defineProperties.__func__(temp, arguments[1])
-            else:
-                ObjectMethods.defineProperties(temp, arguments[1])
+            ObjectMethods.defineProperties.__func__(temp, arguments[1])
         return temp
 
     def defineProperty(obj, prop, attrs):
@@ -125,7 +120,7 @@ class ObjectMethods:
     def keys(obj):
         if not obj.is_object():
             raise MakeError('TypeError', 'Object.keys called on non-object')
-        return [e for e,d in six.iteritems(obj.own) if d.get('enumerable')]
+        return [e for e,d in obj.own.iteritems() if d.get('enumerable')]
 
 
 # add methods attached to Object constructor

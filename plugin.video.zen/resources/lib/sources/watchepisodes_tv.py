@@ -11,7 +11,7 @@ from resources.lib.modules import cleantitle
 
 class source:
     def __init__(self):
-        self.base_link = 'http://www.watch-episodes.co'
+        self.base_link = 'http://www.watchepisodes3.com'
         self.search_link = '/search/ajax_search?q=%s'
 
 

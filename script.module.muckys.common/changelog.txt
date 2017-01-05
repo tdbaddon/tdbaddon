@@ -1,3 +1,17 @@
+######## v1.0.3 ########
+
+- more work done to md_request
+
+######## v1.0.2 ########
+
+- Added unshortenit v0.3.0 from https://github.com/jkehler/unshortenit
+- Added md_request a simple script for making requests
+- added jsunpack from urlresolver which is a modified script from jsbeautifier
+
+######## v1.0.1 ########
+
+- Made some changes to Js2Py to get it working on android
+
 ######## v1.0.0 ########
 
 - Initial Release

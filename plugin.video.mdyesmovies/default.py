@@ -19,7 +19,7 @@ auto_play = addon.get_setting('autoplay')
 show_tv = selfAddon.getSetting('enable_shows')
 show_mov = selfAddon.getSetting('enable_movies')
 metaget = metahandlers.MetaData()
-baseurl = 'http://yesmovies.to'
+baseurl = 'https://yesmovies.to'
 s = requests.session()
 
 

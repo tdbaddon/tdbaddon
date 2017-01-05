@@ -46,5 +46,5 @@ def Eval(code):
 
 
 def executor(code):
-    exec(code, globals())
+    exec code in globals()
 

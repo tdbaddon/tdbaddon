@@ -1,8 +1,4 @@
-from ..base import *
-# python 3 support
-import six
-if six.PY3:
-    unichr = chr
+from js2py.base import *
 
 @Js
 def fromCharCode():

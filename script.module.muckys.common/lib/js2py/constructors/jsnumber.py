@@ -1,4 +1,4 @@
-from ..base import *
+from js2py.base import *
 
 
 CONSTS = {'prototype': NumberPrototype,

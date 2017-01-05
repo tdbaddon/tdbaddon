@@ -5,9 +5,9 @@ from utils import *
 
 INLINE_NAME = 'PyJsLvalInline%d_'
 INLINE_COUNT = 0
-PRE_EXP_STARTS = {'return', 'new', 'void', 'throw', 'typeof', 'in',  'instanceof'}
-PRE_ALLOWED = IDENTIFIER_PART.union({';', '{', '}', ']', ')', ':'})
-INCREMENTS = {'++', '--'}
+PRE_EXP_STARTS = ['return', 'new', 'void', 'throw', 'typeof', 'in',  'instanceof']
+PRE_ALLOWED = IDENTIFIER_PART.union([';', '{', '}', ']', ')', ':'])
+INCREMENTS = ['++', '--']
 
 def reset_inline_count():
     global INLINE_COUNT

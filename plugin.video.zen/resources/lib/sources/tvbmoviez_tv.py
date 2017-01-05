@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 
 '''
-    zen Add-on
-    Copyright (C) 2016 zen
-
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -19,193 +16,154 @@
 '''
 
 
-import re,urllib,urlparse,random
+
+import re,urllib,urlparse
 
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
+from resources.lib.modules import debrid
 from resources.lib.modules import control
 debridstatus = control.setting('debridsources')
 # if not debridstatus == 'true': raise Exception()
-
-
 class source:
     def __init__(self):
-        self.domains = ['tvbestmovies.wz']
-        self.base_link = 'rlsarchive.com'
-        self.search_link = '/?s=%s'
+        self.language = ['en']
+        self.domains = ['best-moviez.ws']
+        self.base_link = 'http://www.best-moviez.ws'
+        self.search_link = '/search/%s/feed/rss2/'
+
 
     def tvshow(self, imdb, tvdb, tvshowtitle, year):
         try:
-            url = {'tvshowtitle': tvshowtitle, 'year': year}
+            url = {'imdb': imdb, 'tvdb': tvdb, 'tvshowtitle': tvshowtitle, 'year': year}
             url = urllib.urlencode(url)
             return url
         except:
-            return			
+            return
+
 
     def episode(self, url, imdb, tvdb, title, premiered, season, episode):
-        self.zen_url = []	
         try:
-			if not debridstatus == 'true': raise Exception()
-			data = urlparse.parse_qs(url)
-			data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
-			title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
-			data['season'], data['episode'] = season, episode
-			self.zen_url = []
-			title = cleantitle.getsearch(title)
-			cleanmovie = cleantitle.get(title)
-			episodecheck = 'S%02dE%02d' % (int(data['season']), int(data['episode']))
-			episodecheck = str(episodecheck)
-			episodecheck = episodecheck.lower()
-			query = '%s+S%02dE%02d' % (urllib.quote_plus(title), int(data['season']), int(data['episode']))
-			movielink = "http://www.best-moviez.ws/?s=" + str(query)
-			link = client.request(movielink)
-			match = re.compile('<h1 class="entry-title"><a href="(.+?)" rel="bookmark">(.+?)</a></h1>').findall(link)
-			for movielink,title2 in match:
-				title = cleantitle.get(title2)
-				if cleanmovie in title:
-					if episodecheck in title: self.zen_url.append([movielink,title])
-			return self.zen_url
+            if url == None: return
+
+            url = urlparse.parse_qs(url)
+            url = dict([(i, url[i][0]) if url[i] else (i, '') for i in url])
+            url['title'], url['premiered'], url['season'], url['episode'] = title, premiered, season, episode
+            url = urllib.urlencode(url)
+            return url
         except:
-            return 
+            return
 
 
     def sources(self, url, hostDict, hostprDict):
         try:
-			sources = []
-			for movielink,title in self.zen_url:
-				mylink = client.request(movielink)
-				if "1080" in title: quality = "1080p"
-				elif "720" in title: quality = "HD"				
-				else: quality = "SD"			
-				for item in parse_dom(mylink, 'div', {'class': 'entry-content'}):
-					match = re.compile('<a href="(.+?)">(.+?)</a>').findall(item)
-					for url,title in match:
-						myurl = str(url)
-						if not any(value in myurl for value in ['sendspace','imagebam','imgserve','histat','crazy4tv','facebook','.rar', 'subscene','.jpg','.RAR',  'postimage', 'safelinking','linx.2ddl.ag','upload.so','.zip', 'go4up','imdb']):
-							if not any(value in title for value in ['sendspace','imagebam','imgserve','histat','crazy4tv','facebook','.rar', 'subscene','.jpg','.RAR',  'postimage', 'safelinking','linx.2ddl.ag','upload.so','.zip', 'go4up','imdb']):
+            sources = []
 
-								
-								url = client.replaceHTMLCodes(url)
-								url = url.encode('utf-8')															
-								try:host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(url.strip().lower()).netloc)[0]
-								except: host = 'Videomega'
-								host = client.replaceHTMLCodes(host)
-								host = host.encode('utf-8')							
-								sources.append({'source': host, 'quality': quality, 'provider': 'Tvbmoviez', 'url': url, 'direct': False, 'debridonly': True})
+            if url == None: return sources
+            if not debridstatus == 'true': raise Exception()
+           
 
-			return sources
+            data = urlparse.parse_qs(url)
+            data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
+
+            title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
+
+            hdlr = 'S%02dE%02d' % (int(data['season']), int(data['episode'])) if 'tvshowtitle' in data else data['year']
+
+            query = '%s S%02dE%02d' % (data['tvshowtitle'], int(data['season']), int(data['episode'])) if 'tvshowtitle' in data else '%s %s' % (data['title'], data['year'])
+            query = re.sub('(\\\|/| -|:|;|\*|\?|"|\'|<|>|\|)', ' ', query)
+
+            url = self.search_link % urllib.quote_plus(query)
+            url = urlparse.urljoin(self.base_link, url)
+
+            r = client.request(url)
+
+            posts = client.parseDOM(r, 'item')
+
+            hostDict = hostprDict
+
+            items = []
+
+            for post in posts:
+                try:
+                    t = client.parseDOM(post, 'title')[0]
+
+                    c = client.parseDOM(post, 'content.+?')[0]
+
+                    s = re.findall('((?:\d+\.\d+|\d+\,\d+|\d+) (?:GB|GiB|MB|MiB))', c)
+                    s = s[0] if s else '0'
+
+                    u = zip(client.parseDOM(c, 'a', ret='href'), client.parseDOM(c, 'a'))
+
+                    u = [(i[1], i[0], s) for i in u]
+
+                    items += u
+                except:
+                    pass
+
+            for item in items:
+                try:
+                    name = item[0]
+                    name = client.replaceHTMLCodes(name)
+
+                    t = re.sub('(\.|\(|\[|\s)(\d{4}|S\d*E\d*|S\d*|3D)(\.|\)|\]|\s|)(.+|)', '', name)
+
+                    if not cleantitle.get(t) == cleantitle.get(title): raise Exception()
+
+                    y = re.findall('[\.|\(|\[|\s](\d{4}|S\d*E\d*|S\d*)[\.|\)|\]|\s]', name)[-1].upper()
+
+                    if not y == hdlr: raise Exception()
+
+                    fmt = re.sub('(.+)(\.|\(|\[|\s)(\d{4}|S\d*E\d*|S\d*)(\.|\)|\]|\s)', '', name.upper())
+                    fmt = re.split('\.|\(|\)|\[|\]|\s|\-', fmt)
+                    fmt = [i.lower() for i in fmt]
+
+                    if any(i.endswith(('subs', 'sub', 'dubbed', 'dub')) for i in fmt): raise Exception()
+                    if any(i in ['extras'] for i in fmt): raise Exception()
+
+                    if '1080p' in fmt: quality = '1080p'
+                    elif '720p' in fmt: quality = 'HD'
+                    else: quality = 'SD'
+                    if any(i in ['dvdscr', 'r5', 'r6'] for i in fmt): quality = 'SCR'
+                    elif any(i in ['camrip', 'tsrip', 'hdcam', 'hdts', 'dvdcam', 'dvdts', 'cam', 'telesync', 'ts'] for i in fmt): quality = 'CAM'
+
+                    info = []
+
+                    if '3d' in fmt: info.append('3D')
+
+                    try:
+                        size = re.findall('((?:\d+\.\d+|\d+\,\d+|\d+) (?:GB|GiB|MB|MiB))', item[2])[-1]
+                        div = 1 if size.endswith(('GB', 'GiB')) else 1024
+                        size = float(re.sub('[^0-9|/.|/,]', '', size))/div
+                        size = '%.2f GB' % size
+                        info.append(size)
+                    except:
+                        pass
+
+                    if any(i in ['hevc', 'h265', 'x265'] for i in fmt): info.append('HEVC')
+
+                    info = ' | '.join(info)
+
+                    url = item[1]
+                    if any(x in url for x in ['.rar', '.zip', '.iso']): raise Exception()
+                    url = client.replaceHTMLCodes(url)
+                    url = url.encode('utf-8')
+
+                    host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(url.strip().lower()).netloc)[0]
+                    if not host in hostDict: raise Exception()
+                    host = client.replaceHTMLCodes(host)
+                    host = host.encode('utf-8')
+
+                    sources.append({'source': host, 'quality': quality, 'provider': 'Tvbmoviez', 'url': url, 'info': info, 'direct': False, 'debridonly': True})
+                except:
+                    pass
+
+            return sources
         except:
             return sources
 
 
     def resolve(self, url):
+        return url
 
-            return url
-
-def _getDOMContent(html, name, match, ret):
-    end_str = "</%s" % (name)
-    start_str = '<%s' % (name)
-
-    start = html.find(match)
-    end = html.find(end_str, start)
-    pos = html.find(start_str, start + 1)
-
-    while pos < end and pos != -1:  # Ignore too early </endstr> return
-        tend = html.find(end_str, end + len(end_str))
-        if tend != -1:
-            end = tend
-        pos = html.find(start_str, pos + 1)
-
-    if start == -1 and end == -1:
-        result = ''
-    elif start > -1 and end > -1:
-        result = html[start + len(match):end]
-    elif end > -1:
-        result = html[:end]
-    elif start > -1:
-        result = html[start + len(match):]
-    else:
-        result = ''
-
-    if ret:
-        endstr = html[end:html.find(">", html.find(end_str)) + 1]
-        result = match + result + endstr
-
-    return result
-
-def _getDOMAttributes(match, name, ret):
-    pattern = '''<%s[^>]* %s\s*=\s*(?:(['"])(.*?)\\1|([^'"].*?)(?:>|\s))''' % (name, ret)
-    results = re.findall(pattern, match, re.I | re.M | re.S)
-    return [result[1] if result[1] else result[2] for result in results]
-
-def _getDOMElements(item, name, attrs):
-    if not attrs:
-        pattern = '(<%s(?: [^>]*>|/?>))' % (name)
-        this_list = re.findall(pattern, item, re.M | re.S | re.I)
-    else:
-        last_list = None
-        for key in attrs:
-            pattern = '''(<%s [^>]*%s=['"]%s['"][^>]*>)''' % (name, key, attrs[key])
-            this_list = re.findall(pattern, item, re.M | re. S | re.I)
-            if not this_list and ' ' not in attrs[key]:
-                pattern = '''(<%s [^>]*%s=%s[^>]*>)''' % (name, key, attrs[key])
-                this_list = re.findall(pattern, item, re.M | re. S | re.I)
-    
-            if last_list is None:
-                last_list = this_list
-            else:
-                last_list = [item for item in this_list if item in last_list]
-        this_list = last_list
-    
-    return this_list
-
-def parse_dom(html, name='', attrs=None, ret=False):
-    if attrs is None: attrs = {}
-    if isinstance(html, str):
-        try:
-            html = [html.decode("utf-8")]  # Replace with chardet thingy
-        except:
-            print "none"
-            try:
-                html = [html.decode("utf-8", "replace")]
-            except:
-                
-                html = [html]
-    elif isinstance(html, unicode):
-        html = [html]
-    elif not isinstance(html, list):
-        
-        return ''
-
-    if not name.strip():
-        
-        return ''
-    
-    if not isinstance(attrs, dict):
-        
-        return ''
-
-    ret_lst = []
-    for item in html:
-        for match in re.findall('(<[^>]*\n[^>]*>)', item):
-            item = item.replace(match, match.replace('\n', ' ').replace('\r', ' '))
-
-        lst = _getDOMElements(item, name, attrs)
-
-        if isinstance(ret, str):
-            lst2 = []
-            for match in lst:
-                lst2 += _getDOMAttributes(match, name, ret)
-            lst = lst2
-        else:
-            lst2 = []
-            for match in lst:
-                temp = _getDOMContent(item, name, match, ret).strip()
-                item = item[item.find(temp, item.find(match)):]
-                lst2.append(temp)
-            lst = lst2
-        ret_lst += lst
-
-    # log_utils.log("Done: " + repr(ret_lst), xbmc.LOGDEBUG)
-    return ret_lst
 
