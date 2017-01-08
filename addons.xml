@@ -417,7 +417,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 
 <addon id="plugin.program.echowizard"
 	     name="[COLOR yellowgreen]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
-	     version="1.45"
+	     version="1.47"
 	     provider-name="Echo Coder">
   <requires>
   	<import addon="xbmc.python" version="2.1.0"/>
@@ -438,6 +438,16 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
     <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
     <website>http://echocoder.com/repo</website>
     <email>echocoder@protonmail.com</email>
+    <assets>
+        <icon>icon.png</icon>
+        <fanart>fanart.jpg</fanart>
+        <screenshot>resources/art/screenshots/screenshot-1.png</screenshot>
+        <screenshot>resources/art/screenshots/screenshot-2.png</screenshot>
+        <screenshot>resources/art/screenshots/screenshot-3.png</screenshot>
+        <screenshot>resources/art/screenshots/screenshot-4.png</screenshot>
+        <screenshot>resources/art/screenshots/screenshot-5.png</screenshot>
+        <screenshot>resources/art/screenshots/screenshot-6.png</screenshot>
+    </assets>
   </extension>
 </addon>
 
@@ -1053,7 +1063,7 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
 	</extension>
 </addon>
 
-<addon id="plugin.video.Evolve" name="[COLOR red]E[/COLOR][COLOR white]volve[/COLOR]" version="0.0.9" provider-name="Team Evolve">
+<addon id="plugin.video.Evolve" name="[COLOR red]E[/COLOR][COLOR white]volve[/COLOR]" version="0.0.11" provider-name="Team Evolve">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.simplejson" version="0.0.1"/>
@@ -1194,6 +1204,25 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
 
 </addon>
 
+<addon id="plugin.video.futvER" version="0.0.7" name="F U TV" provider-name="@MrEntertainRepo">
+    <requires>
+        <import addon="xbmc.python" version="2.1.0"/>
+        <import addon="script.module.TheYid.common" version="0.1.1"/>
+        <import addon="script.module.urlresolver"  version="2.0.9"/>
+    </requires>
+    <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+    </extension>
+    <extension point="xbmc.addon.metadata">
+        <summary>Series</summary>
+        <description>for more info please go to www.entertainmentrepo.com</description>
+        <platform>all</platform>
+	 <forum>http://entertainmentrepo.com/</forum>
+	 <website>http://entertainmentrepo.com/</website>
+        <disclaimer lang="en">All the movies on this website are hosted on the third party sites and uploaded by other people. We are not responsible for any content that hosted on on the third-party sites. If you have any legal issues please contact appropriate video owners hosters.</disclaimer>
+    </extension>
+</addon>
+
 <addon id="plugin.video.goodfellas"
        name="GoodFellas 2.0"
        version="2.0.1"
@@ -1227,7 +1256,7 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
   </extension>
 </addon>
 
-<addon id="plugin.video.greek.tv" name="Greek TV" version="1.0.7" provider-name="Thgiliwt">
+<addon id="plugin.video.greek.tv" name="Greek TV" version="1.0.8" provider-name="Thgiliwt">
     <requires>
         <import addon="xbmc.python" version="2.19.0"/>
         <import addon="plugin.video.youtube" version="5.2.1"/>
@@ -1246,6 +1275,9 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
         <forum>https://forums.tvaddons.ag/addon-releases/51983-greek-tv-bringing-concept-feel-androids-greek-tv-kodi.html</forum>
     </extension>
     <news>
+1.0.8 (07-01-2017)
+- Fixed switcher behaviour when cancelling.
+
 1.0.7 (26-12-2016)
 - Code cosmetics
 
@@ -1480,12 +1512,11 @@ For DMCA Reports, please send message to our FB page.
   </extension>
 </addon>
 
-<addon id="plugin.video.mdm4u" name="M4U" version="1.1.8" provider-name="Mucky Duck">
+<addon id="plugin.video.mdm4u" name="M4U" version="1.1.9" provider-name="Mucky Duck">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.addon.common" />
 	<import addon="script.module.metahandler" version="2.5.1"/>
-	<import addon="script.module.requests" />
 	<import addon="script.module.muckys.common"/>
 	<import addon="repository.mdrepo" />
   </requires>
@@ -1661,37 +1692,6 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.musicman"
-       name="Musicman"
-       version="1.0"
-       provider-name="kane2931">
-  <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
-	<import addon="script.module.t0mm0.common" version="2.0.0"/>
-    <import addon="script.module.beautifulsoup" version="3.2.1"/>
-    <import addon="script.module.simple.downloader" version="0.9.4"/>
-    <import addon="script.module.beautifulsoup4" />
-    <import addon="script.module.simple.downloader" version="0.9.4"/>
-    <import addon="script.module.requests" />
-    <import addon="script.module.httplib2" />
-    <import addon="script.module.youtube.dl" optional="true"/>
-    <import addon="plugin.video.youtube" version="3.0.0"/>
-    <import addon="script.module.urlresolver" optional="true"/>
-    <import addon="script.module.simplejson" />
-    <import addon="script.common.plugin.cache" version="2.5.2"/>
-    <import addon="script.module.metahandler" version="2.5.1"/>
-
-  </requires>
-  <extension point="xbmc.python.pluginsource" library="default.py">
-    <provides>video</provides>
-  </extension>
-  <extension point="xbmc.addon.metadata">
-    <summary lang="en">Live Music TV</summary>
-    <description lang="en">Music Videos TV from all around the world.</description>
-    <platform>all</platform>
-  </extension>
-</addon>
-
 <addon id="plugin.video.nfl-teams" version="1.2.0" name="NFL Teams" provider-name="Tenzer">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
@@ -1754,6 +1754,34 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
     <platform>all</platform>
     <forum>n/a</forum>
     <website>n/a</website>
+  </extension>
+</addon>
+
+<addon id="plugin.video.paragon" name="[COLOR gold] Paragon [/COLOR]" version="1.1" provider-name="Paragon">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+	<import addon="script.module.t0mm0.common" version="2.0.0"/>
+    <import addon="script.module.beautifulsoup" version="3.2.1"/>
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.beautifulsoup4" />
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.requests" />
+    <import addon="script.module.httplib2" />
+    <import addon="script.module.youtube.dl" optional="true"/>
+    <import addon="plugin.video.youtube" version="3.0.0"/>
+	<import addon="script.module.urlresolver" />
+	<import addon="script.module.liveresolver" />
+    <import addon="script.module.simplejson" />
+    <import addon="script.common.plugin.cache" version="2.5.2"/>
+    <import addon="script.module.metahandler" version="2.5.1"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Paragon add-on</summary>
+    <description lang="en">[I]The Paragon add-on[/I]</description>
+    <platform>all</platform>
   </extension>
 </addon>
 
@@ -1926,6 +1954,57 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
     <summary></summary>
     <description></description>
     <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.video.streamarmy" name="^[COLOR lime]STR[/COLOR][COLOR brown]EAM [/COLOR][COLOR lime]AR[/COLOR][COLOR brown]MY[/COLOR]^" version="1.0.5" provider-name="Stream Army">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.simplejson" version="3.3.0"/>
+    <import addon="script.module.urlresolver"  version="2.1.2"/>
+    <import addon="script.module.liveresolver" version="0.1.24"/>
+    <import addon="script.common.plugin.cache" version="2.5.2"/>    <import addon="script.module.metahandler" version="2.5.1"/>
+    <import addon="plugin.video.youtube" version="5.3.2" optional="false" />
+  <import addon="plugin.video.f4mTester" version="2.2.4" optional="false" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">The Home Of Stream Army Add-on  Stream Army Addon Fully Loaded With Great Playlists</summary>
+    <description lang="en">@Nemzzy668  / @_MANC_ / @DoomsdayPr3p / Silent Partner</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="plugin.video.supremacy"
+       name="Supremacy"
+       version="1.1"
+       provider-name="supremacy">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+	<import addon="script.module.t0mm0.common" version="2.0.0"/>
+    <import addon="script.module.beautifulsoup" version="3.2.1"/>
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.beautifulsoup4" />
+    <import addon="script.module.simple.downloader" version="0.9.4"/>
+    <import addon="script.module.requests" />
+    <import addon="script.module.httplib2" />
+    <import addon="script.module.youtube.dl" optional="true"/>
+    <import addon="plugin.video.youtube" version="3.0.0"/>
+    <import addon="script.module.urlresolver" optional="true"/>
+    <import addon="script.module.simplejson" />
+    <import addon="script.common.plugin.cache" version="2.5.2"/>
+    <import addon="script.module.metahandler" version="2.5.1"/>
+
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">video addon for supremacy</summary>
+    <description lang="en">supremacy</description>
     <platform>all</platform>
   </extension>
 </addon>
@@ -2428,7 +2507,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.ZemTV-shani"
        name="Zem"
-       version="6.1.3"
+       version="6.1.4"
        provider-name="shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -2459,7 +2538,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.zen" version="1.5.0" name=" Zen" provider-name="Zen">
+<addon id="plugin.video.zen" version="1.5.3" name=" Zen" provider-name="Zen">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="script.zen.artwork" />
@@ -2477,7 +2556,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 		<disclaimer lang="en">The Author does not host or share any content, nor is affiliated with the content providers.</disclaimer>
 		<platform>all</platform>
 		<website>http://schism-tv.net</website>
-		<news>Update Providers - Tweaked Custom Urls - Update Providers - Ability to customize Base Url for major Scrapers</news>
+		<news>Alluc account now uses username and password instead API KEY - Fix Episodes Metadata - Update Providers - Tweaked Custom Urls - Update Providers - Ability to customize Base Url for major Scrapers</news>
         <assets>
 			<icon>icon.png</icon>
 			<fanart>fanart.jpg</fanart>
@@ -3088,6 +3167,32 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
     </extension>
 </addon>
 
+<addon id="repository.StreamArmy" name="Stream Army" version="1.0" provider-name="Nemzzy / MancSteven / DoomsdayPrep / Silent Partner">
+	<extension point="xbmc.addon.repository" name="Stream Army">
+		<info compressed="false">http://www.streamarmy.uk/Plugins/addons.xml</info>
+		<checksum>http://www.streamarmy.uk/Plugins/addons.xml.md5</checksum>
+		<datadir zip="true">http://www.streamarmy.uk/Plugins/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Stream Army Repo</summary>
+		<description>Repo For Stream Army, Who Streams Wins bought to you by @Nemzzy668 /  @_MANC_  / @DoomsdayPr3p / Silent Partner</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="repository.streamteam" name="[COLOR indigo]Streamteam[/COLOR]" version="1.3.0" provider-name="Streamteam">
+<extension point="xbmc.addon.repository" name="[COLOR indigo]Streamteam[/COLOR]">
+		<info compressed="false">http://repo.streamteam.space/plugins/addons.xml</info>
+		<checksum>http://repo.streamteam.space/plugins/addons.xml.md5</checksum>
+		<datadir zip="true">http://repo.streamteam.space/plugins/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>The Streamteam Repository v1.3.0</summary>
+		<description>The Streamteam Repository v1.3.0 - The Streamteam Repository contains various add-ons from various developers. More add-ons are in progress, please watch for updates!</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
 <addon id="repository.tdbaddon" name="TDB REPO" version="1000" provider-name="TDB">
 	<extension point="xbmc.addon.repository" name="TDB Addon Repository">
         <dir>
@@ -3605,7 +3710,7 @@ Kodi is a registered trademark of the XBMC Foundation. We are not connected to o
 	</extension>
 </addon>
 
-<addon id="script.module.muckys.common" name="Muckys Common Libraries" version="1.0.3" provider-name="Mucky Duck">
+<addon id="script.module.muckys.common" name="Muckys Common Libraries" version="1.0.7" provider-name="Mucky Duck">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 	</requires>
@@ -3614,14 +3719,17 @@ Kodi is a registered trademark of the XBMC Foundation. We are not connected to o
 		<platform>all</platform>
 		<summary lang="en">Collection of modules used by Mucky Ducks Addons</summary>
 		<description lang="en">Collection of modules used by Mucky Ducks Addons
-beautifulsoup4 v4.5.1 from https://pypi.python.org/pypi/beautifulsoup4:
+beautifulsoup3 v3.2.1 from https://www.crummy.com/software/BeautifulSoup :
+beautifulsoup4 v4.5.1 from https://www.crummy.com/software/BeautifulSoup :
 cfscrape 1.6.8 from https://github.com/Anorov/cloudflare-scrape:
-Js2Py v0.40 from https://github.com/PiotrDabkowski/Js2Py:
-jsbeautifier v1.6.4 from https://pypi.python.org/pypi/jsbeautifier:
-jsunpack from urlresolver:
-md_request a simple script for making requests:
-six v1.10.0 from https://pypi.python.org/pypi/six:
-unshortenit v0.3.0 from https://github.com/jkehler/unshortenit
+incapsula-cracker v0.1.3 from https://github.com/ziplokk1/incapsula-cracker :
+Js2Py v0.40 from https://github.com/PiotrDabkowski/Js2Py :
+jsbeautifier v1.6.4 from https://pypi.python.org/pypi/jsbeautifier :
+jsunpack from urlresolver :
+md_request a simple script for making web requests :
+requests v2.12.4 from https://github.com/kennethreitz/requests :
+six v1.10.0 from https://pypi.python.org/pypi/six :
+unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
 		</description>
 		<license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
 	</extension>

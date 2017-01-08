@@ -1,3 +1,13 @@
+[B]1.5.3[/B]
+Alluc account now uses username and password instead API KEY
+
+[B]1.5.2[/B]
+- New Providers
+
+[B]1.5.1[/B]
+- Update/fix providers
+- Fix Episodes Metadata
+
 [B]1.5.0[/B]
 - Update/fix providers
 

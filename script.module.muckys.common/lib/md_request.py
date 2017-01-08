@@ -1,5 +1,7 @@
+# -*- coding: utf-8 -*- 
+
 #
-#      Copyright (C) 2017 Mucky Duck (class sucuri Derived from Lambda's)
+#      Copyright (C) 2017 Mucky Duck (class sucuri Derived from Lambda's client module)
 #
 #   This program is free software: you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -15,12 +17,15 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
-import base64,cfscrape,re,requests
+import base64,cfscrape,re
+from incapsula import crack
 
 
-User_Agent = 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36'
+User_Agent = 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.4; en-US; rv:1.9.2.2) Gecko/20100316 Firefox/3.6.2"'
 scraper = cfscrape.create_scraper()
-s = requests.session()
+
+
+
 
 class sucuri:
 
@@ -56,37 +61,31 @@ class sucuri:
 
 
 
-def open_url(url, headers=None):
+def open_url(url, method='get', headers=None, params=None, data=None, redirects=True, verify=True):
 
         if headers == None:
+
                 headers = {}
                 headers['User-Agent'] = User_Agent
 
-        link = scraper.get(url, headers=headers)
+        link = getattr(scraper,method)(url, headers=headers, params=params, data=data, allow_redirects=redirects, verify=verify)
 
-        if link.headers['Server'] == 'Sucuri/Cloudproxy':
-                su = sucuri().get(link.content)
+        try:
+                if link.headers['Server'] == 'Sucuri/Cloudproxy':
 
-                headers['Cookie'] = su
-                link = scraper.get(url+'/', headers=headers)
+                        su = sucuri().get(link.content)
+                        headers['Cookie'] = su
 
-        return link
+                        if not url[-1] == '/':
+                                url = '%s/' %url
 
+                        link = getattr(scraper,method)(url, headers=headers, params=params, data=data, allow_redirects=redirects, verify=verify)
+        except:
+                pass
 
+        if '_Incapsula_' in link.content:
 
-
-def open_url2(url,header=None):
-
-        if headers == None:
-                headers = {}
-                headers['User-Agent'] = User_Agent
-
-        link = scraper.post(url, headers=headers)
-
-        if link.headers['Server'] == 'Sucuri/Cloudproxy':
-                su = sucuri().get(link.content)
-
-                headers['Cookie'] = su
-                link = scraper.post(url+'/', headers=headers)
+                link = getattr(scraper,method)(url, headers=headers, params=params, data=data, allow_redirects=redirects, verify=verify)
+                link = crack(scraper, link)
 
         return link

@@ -131,12 +131,12 @@ def switcher():
     if choices == 0:
         addon.setSetting('group', 'ΟΛΑ'.decode('utf-8'))
         execute('Dialog.Close(busydialog)')
-        xbmc.sleep(200)
+        xbmc.sleep(50)
         execute('Container.Refresh')
-    elif choices <= len(groups):
+    elif choices <= len(groups) and not choices == -1:
         addon.setSetting('group', (groups.pop(choices)))
         execute('Dialog.Close(busydialog)')
-        xbmc.sleep(200)
+        xbmc.sleep(50)
         execute('Container.Refresh')
     else:
         execute('Dialog.Close(busydialog)')

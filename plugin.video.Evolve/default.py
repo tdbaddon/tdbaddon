@@ -8,8 +8,8 @@ if 64 - 64: i11iIiiIii
 VVeve = 'plugin.video.Evolve'
 VeevVee = Addon ( VVeve , sys . argv )
 VevVevVVevVevVev = xbmcaddon . Addon ( id = VVeve )
-iiiii = xbmc . translatePath ( os . path . join ( 'special://home/addons/' + VVeve , 'fanart.png' ) )
-eeeevVV = xbmc . translatePath ( os . path . join ( 'special://home/addons/' + VVeve , 'fanart.png' ) )
+iiiii = xbmc . translatePath ( os . path . join ( 'special://home/addons/' + VVeve , 'fanart.jpg' ) )
+eeeevVV = xbmc . translatePath ( os . path . join ( 'special://home/addons/' + VVeve , 'fanart.jpg' ) )
 II1 = xbmc . translatePath ( os . path . join ( 'special://home/addons/' + VVeve , 'icon.png' ) )
 Veveveeeeeevev = xbmc . translatePath ( os . path . join ( 'special://home/addons/' + VVeve + '/resources/art' , 'next.png' ) )
 I1IiiI = 'http://matsbuilds.uk/Evolvesnewmenu/mainmenu.xml'
@@ -33,7 +33,7 @@ def IiII ( ) :
     i1eVVeeevevVevV ( eevev , VeeveVeveee , 1 , eeveVeVeveve , iiiii )
  else :
   VeveeevVVev = I1i1iiI1 ( IIi1IiiiI1Ii )
-  iiIIIII1i1iI = re . compile ( 'alt="\[DIR\]"></td><td><a href="(.+?)">.+?</a>' ) . findall ( VeveeevVVev )
+  iiIIIII1i1iI = re . compile ( '&nbsp;</td><td><a href="(.+?)">' ) . findall ( VeveeevVVev ) [ 1 : ] [ : - 1 ]
   for i1111 in iiIIIII1i1iI :
    eevev = i1111 . replace ( '/' , '' ) . replace ( '%20' , ' ' ) . split ( '-' ) [ 1 ]
    i11 = 'Evolve ' + eevev
@@ -48,7 +48,7 @@ def IiII ( ) :
 def I111I11 ( name , url , iconimage , fanart ) :
  fanart = iconimage
  VeveeevVVev = I1i1iiI1 ( url )
- iiIIIII1i1iI = re . compile ( '</td><td><a href="(.+?)">.+?</a>' ) . findall ( VeveeevVVev )
+ iiIIIII1i1iI = re . compile ( '&nbsp;</td><td><a href="(.+?)">' ) . findall ( VeveeevVVev )
  for VevVevevVee in iiIIIII1i1iI :
   if 'xml' in VevVevevVee :
    name = VevVevevVee . replace ( '.xml' , '' ) . replace ( '%20' , ' ' )

@@ -1,3 +1,6 @@
+1.0.8 (07-01-2017)
+- Fixed switcher behaviour when cancelling.
+
 1.0.7 (26-12-2016)
 - Code cosmetics
 

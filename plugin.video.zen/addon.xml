@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.zen" version="1.5.0" name=" Zen" provider-name="Zen">
+<addon id="plugin.video.zen" version="1.5.3" name=" Zen" provider-name="Zen">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="script.zen.artwork" />
@@ -17,7 +17,7 @@
 		<disclaimer lang="en">The Author does not host or share any content, nor is affiliated with the content providers.</disclaimer>
 		<platform>all</platform>
 		<website>http://schism-tv.net</website>
-		<news>Update Providers - Tweaked Custom Urls - Update Providers - Ability to customize Base Url for major Scrapers</news>
+		<news>Alluc account now uses username and password instead API KEY - Fix Episodes Metadata - Update Providers - Tweaked Custom Urls - Update Providers - Ability to customize Base Url for major Scrapers</news>
         <assets>
 			<icon>icon.png</icon>
 			<fanart>fanart.jpg</fanart>

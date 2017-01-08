@@ -874,6 +874,7 @@ def viewErrors():
 							sys.exit(0)
 	if got_log == 0:
 		dialog.ok(MaintTitle,'Sorry we could not find a log file on your system')
+		quit()
 
 def viewLogFile():
 	kodilog = xbmc.translatePath('special://logpath/kodi.log')

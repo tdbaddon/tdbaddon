@@ -294,7 +294,7 @@ class seasons:
 
                 if thumb == '0': thumb = poster
 
-                self.list.append({'season': season, 'tvshowtitle': tvshowtitle, 'label': label, 'year': year, 'premiered': premiered, 'status': status, 'studio': studio, 'genre': genre, 'duration': duration, 'rating': rating, 'votes': votes, 'mpaa': mpaa, 'cast': cast, 'plot': plot, 'code': imdb, 'imdb': imdb, 'tmdb': '0', 'tvdb': tvdb, 'poster': poster, 'banner': banner, 'fanart': fanart, 'thumb': thumb})
+                self.list.append({'season': season, 'tvshowtitle': tvshowtitle, 'label': label, 'original_year': year, 'year': premiered, 'premiered': premiered, 'status': status, 'studio': studio, 'genre': genre, 'duration': duration, 'rating': rating, 'votes': votes, 'mpaa': mpaa, 'cast': cast, 'plot': plot, 'code': imdb, 'imdb': imdb, 'tmdb': '0', 'tvdb': tvdb, 'poster': poster, 'banner': banner, 'fanart': fanart, 'thumb': thumb})
                 
             except:
                 pass
@@ -376,7 +376,7 @@ class seasons:
                 try: episodeplot = episodeplot.encode('utf-8')
                 except: pass
 
-                self.list.append({'title': title, 'label': label, 'season': season, 'episode': episode, 'tvshowtitle': tvshowtitle, 'year': year, 'premiered': premiered, 'status': status, 'studio': studio, 'genre': genre, 'duration': duration, 'rating': rating, 'votes': votes, 'mpaa': mpaa, 'director': director, 'writer': writer, 'cast': cast, 'plot': episodeplot, 'code': imdb, 'imdb': imdb, 'tmdb': '0', 'tvdb': tvdb, 'poster': poster, 'banner': banner, 'fanart': fanart, 'thumb': thumb})
+                self.list.append({'title': title, 'label': label, 'season': season, 'episode': episode, 'tvshowtitle': tvshowtitle, 'original_year': year, 'year': premiered, 'premiered': premiered, 'status': status, 'studio': studio, 'genre': genre, 'duration': duration, 'rating': rating, 'votes': votes, 'mpaa': mpaa, 'director': director, 'writer': writer, 'cast': cast, 'plot': episodeplot, 'code': imdb, 'imdb': imdb, 'tmdb': '0', 'tvdb': tvdb, 'poster': poster, 'banner': banner, 'fanart': fanart, 'thumb': thumb})
             except:
                 pass
 
@@ -421,7 +421,7 @@ class seasons:
                 systitle = sysname = urllib.quote_plus(i['tvshowtitle'])
                 sysimage = urllib.quote_plus(i['thumb'])
 
-                imdb, tvdb, year, season = i['imdb'], i['tvdb'], i['year'], i['season']
+                imdb, tvdb, year, season = i['imdb'], i['tvdb'], i['original_year'], i['season']
 
 
                 poster, banner, fanart, thumb = i['poster'], i['banner'], i['fanart'], i['thumb']
@@ -1231,7 +1231,7 @@ class episodes:
                 if multi == True:
                     label = '%s - %s' % (i['tvshowtitle'], label)
                 if int(re.sub('[^0-9]', '', str(date_premiered))) > int(re.sub('[^0-9]', '', str(self.today_date))):  label = '[I]%s[/I]' % label
-                imdb, tvdb, year, season, episode = i['imdb'], i['tvdb'], i['year'], i['season'], i['episode']
+                imdb, tvdb, year, season, episode = i['imdb'], i['tvdb'], i['original_year'], i['season'], i['episode']
 
                 systitle = urllib.quote_plus(i['title'])
                 systvshowtitle = urllib.quote_plus(i['tvshowtitle'])

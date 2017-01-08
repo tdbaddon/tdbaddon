@@ -94,7 +94,7 @@ class source:
             r = [i for i in r if 'year' in i and 'meta' in i]
             r = [(i['permalink'], i['title'], str(i['year']), i['meta'].lower()) for i in r]
             r = [i for i in r if 'tv' in i[3]]
-            r = [i[0] for i in r if t == cleantitle.get(i[1]) and year == i[2]][0]
+            r = [i[0] for i in r if t == cleantitle.get(i[1])][0]
 
             url = re.findall('(?://.+?|)(/.+)', r)[0]
            

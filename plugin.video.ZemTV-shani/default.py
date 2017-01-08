@@ -722,7 +722,8 @@ def AddPv2Sports(url):
         if source.findtext('programCategory').lower() in url or source.findtext('programCategory') in url:
             cname=source.findtext('programTitle')
             if cname.lower().startswith('high alert'): continue
-            cid=source.findtext('programURL')
+            #cid=source.findtext('programURL')# change from programURL
+            cid=source.findtext('programID')
             cimage=source.findtext('programImage')
             seq=cname
             if isMovies:
@@ -3400,7 +3401,7 @@ def getFastTVChannels(cat,sports=False, catname=None):
         if catname:
             cat=fastCatIDByName(catname)
         xmldata=getFastTVPage(cat)
-        print 'got getFastTVChannels'
+        #print 'got getFastTVChannels',xmldata
         for source in xmldata["LIVETV"]:
             if 1==1:#source["categoryName"] in categories or (forSports):# and ('sport' in source["categoryName"].lower() or 'BarclaysPremierLeague' in source["categoryName"] )    ) :
                 ss=source
@@ -3409,7 +3410,8 @@ def getFastTVChannels(cat,sports=False, catname=None):
                     #print ss["channelLink"]
                     curl='ebound2:'+ss["channel_url"].replace(':1935','')
                 else:
-                    curl='fast:'+ss["channel_url"]
+                    #curl='fast:'+ss["channel_url"]
+                    curl='fast:'+str(cat)+'='+str(ss["id"])
                 cimage=ss["channel_thumbnail"]
                 
                 if not cimage.startswith('http'):
@@ -3716,8 +3718,8 @@ def getWTVChannels(categories, forSports=False, desi=True):
     ret=[]
     try:
         xmldata=getWTVPage()
-        print xmldata
-        print categories
+        #print xmldata
+        #print categories
         for source in xmldata:#Cricket#
             print source["categoryName"] in categories
             if source["categoryName"].strip().lower() in categories or source["categoryName"].strip() in categories or (forSports and ('sport' in source["categoryName"].lower() or 'barclayspremierleague' in source["categoryName"].lower() )    ) :
@@ -4063,7 +4065,9 @@ def getptcchannels(categories, forSports=False,desi=True):
     try:
         import iptv
         xmldata=getPTCUrl()
+        
         for source in xmldata["channelsCategories"]:
+            
             if source["categoryName"].strip() in categories or source["categoryName"] in categories or (forSports):# and ('sport' in source["categoryName"].lower() or 'BarclaysPremierLeague' in source["categoryName"] )    ) :
                 for ss in source["channels"]:
                     cname=ss["name"]
@@ -4075,12 +4079,13 @@ def getptcchannels(categories, forSports=False,desi=True):
                     #cimage=ss["imgurl"]
                     cimage='http://shani.offshorepastebin.com/ZemLogos/%s.png'%cname.lower().replace(' ','')
                     
-                    if len([i for i, x in enumerate(ret) if x[2] ==curl  ])==0:                    
+                    if len([i for i, x in enumerate(ret) if x[2] ==curl and x[0].lower()==cname.lower() +(' v6' if desi else '')  ])==0:                    
                         ret.append((cname +(' v6' if desi else '') ,'manual', curl ,cimage))  
         if len(ret)>0:
             ret=sorted(ret,key=lambda s: s[0].lower() )                        
     except:
         traceback.print_exc(file=sys.stdout)
+
     return ret
 
     
@@ -4388,7 +4393,8 @@ def AddChannelsFromOthers(cctype,eboundMatches=[],progress=None):
                     cname=source.findtext('programTitle')
                     
                     if cname.lower().startswith('high alert'): continue
-                    cid=source.findtext('programURL')
+                    #cid=source.findtext('programURL')# change from programURL
+                    cid=source.findtext('programID')
                     cimage=source.findtext('programImage')
 #                    addDir(cname ,base64.b64encode(cid),37,cimage, False, True,isItFolder=False)
                     match.append((cname +' v3' ,'manual2', cid ,cimage))
@@ -4738,11 +4744,13 @@ def getPTCUrl():
     maindata=json.loads(link)
     print maindata
     decodeddata=maindata["Secret"]
-    decodeddata='JCQkJIklu'.join(decodeddata.split('JCQkJIklu')[:-1])+'JCQkJIklu'
-    print decodeddata
-    data=base64.b64decode(decodeddata)
+    #decodeddata='JCQkJIklu'.join(decodeddata.split('JCQkJIklu')[:-1])+'JCQkJIklu'
+    #print decodeddata
+    #data=base64.b64decode(decodeddata)
     #decodeddata=decodeddata.replace('nbUioPLk6nbviOP0kjgfreWEur','')
-    #decodeddata=decodeddata+'='*(len(decodeddata) % 4)
+    decodeddata=decodeddata+'='*(len(decodeddata) % 4)
+    data=base64.b64decode(decodeddata)
+    #print data
     #data=''
     try:
         #data=base64.b64decode(decodeddata)
@@ -5364,7 +5372,7 @@ def getPV2Url():
                 if pvitr==3:                    
                     link=getUrl(base64.b64decode('aHR0cDovL3NoYW5pLm9mZnNob3JlcGFzdGViaW4uY29tL3B2Mkxhc3RXb3JraW5nLnhtbA==')).decode("base64")
                 else:
-                    mainurl=base64.b64encode(base64.b64decode('aHR0cHM6Ly9hcHAuZHluZG5zLnR2L2FwcHMvb3V0cHV0LnBocC9wbGF5bGlzdD90eXBlPXhtbCZkZXZpY2VTbj0lcw==')%deviceid)
+                    mainurl=base64.b64encode(base64.b64decode('aHR0cHM6Ly9hcHMuc3l0ZXMubmV0L2FwcHMvb3V0cHV0LnBocC9wbGF5bGlzdD90eXBlPXhtbCZkZXZpY2VTbj0lcw==')%deviceid)
                 
                 #else:
                 #    mainurl='aHR0cHM6Ly9hcHAuZHlubnMuY29tL2FwcF9wYW5lbG5ldy9vdXRwdXQucGhwL3BsYXlsaXN0P3R5cGU9eG1sJmRldmljZVNuPTEyMyZ0b2tlbj0lcw=='    
@@ -5416,15 +5424,16 @@ def getPV2PlayAuth():
     import base64
     import time
     
-    url=base64.b64decode('aHR0cHM6Ly9hcHAuZHluZG5zLnR2L3RvcC8lcy5waHA/d21zQXV0aFNpZ249')
+    url=base64.b64decode('aHR0cHM6Ly9hcHMuc3l0ZXMubmV0L3RvcC8lcy5waHA/d21zQXV0aFNpZ249')
 
     lastplay=getpv2stkey()
     filename=lastplay[:4]
     import datetime  ,hashlib
     timesegment = datetime.datetime.utcnow().strftime("%m/%d/%Y %H:%M:%S")
     validtime=lastplay[4]
-    headers=[('User-Agent',base64.b64decode('UGFrJTIwVFYvMS4wIENGTmV0d29yay83NTguMC4yIERhcndpbi8xNS4wLjA='))]
-    ipstring=getUrl(base64.b64decode("aHR0cHM6Ly9hcHAuZHluZG5zLnR2L3RvcC9pcF9jaGVjay5waHA="),headers=headers)
+    headers=[('User-Agent',base64.b64decode('UGFrJTIwVFYvMS4wIENGTmV0d29yay84MDguMi4xNiBEYXJ3aW4vMTYuMy4w'))]
+    
+    ipstring=getUrl(base64.b64decode("aHR0cHM6Ly9hcHMuc3l0ZXMubmV0L3RvcC9pcF9jaGVjay5waHA="),headers=headers)
     ipadd=ipstring.split('Address: ')[1]
     s="%s%s%s%s"%(ipadd,base64.b64decode("dHVtYmluamlhamF5bmFqYW5h")+lastplay[:10],timesegment ,validtime)
     dd=base64.b64decode("c2VydmVyX3RpbWU9JXMmaGFzaF92YWx1ZT0lcyZ2YWxpZG1pbnV0ZXM9JXM=")%(timesegment,base64.b64encode(hashlib.md5(s).hexdigest().lower()),validtime )
@@ -5664,6 +5673,17 @@ def getFastPlayUA():
     return fastData["DATA"][0]["Agent"]
 
 def PlayFastLink(url,progress=None):
+    if 1==1:#not mode==37:
+        print url
+        cat,url=url.split('=')
+        xmldata=getFastTVPage(cat)
+        #print 'got getFastTVChannels',xmldata
+        for ss in xmldata["LIVETV"]:
+            if ss["id"]==url:
+                url=ss["channel_url"]
+                break
+        
+      
     urlnew=url+getFastAuth(url)+'|User-Agent='+getFastPlayUA()
     listitem = xbmcgui.ListItem( label = str(name), iconImage = "DefaultVideo.png", thumbnailImage = xbmc.getInfoImage( "ListItem.Thumb" ) )
     PlayGen(base64.b64encode(urlnew))
@@ -5723,9 +5743,11 @@ def safeFinishedTest(dur):
      
 def PlayPV2Link(url):
 
-    if not mode==37:
+    if 1==1:#not mode==37:
         xmldata=getPV2Url()
-        urlToPlay=re.findall(url+'..programTitle.*?programURL\\>(.*?)\\<',xmldata)[0]
+        url=base64.b64decode(url)
+
+        urlToPlay=re.findall('>'+url+'</programID>.*?programURL\\>(.*?)\\<',xmldata)[0]
     else:
         urlToPlay=base64.b64decode(url)
 

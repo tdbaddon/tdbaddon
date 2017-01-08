@@ -78,7 +78,7 @@ class source:
 				print ("WATCHEPISODES SOURCES", url)
 				r = html.findAll('div', attrs={'class': 'site'})
 				for container in r:
-					if count > 50: break
+					if count > 100: break
 					try:
 						count += 1
 						r_url = container.findAll('a')[0]['data-actuallink'].encode('utf-8')

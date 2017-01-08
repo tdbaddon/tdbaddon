@@ -1,3 +1,9 @@
+[COLOR yellowgreen]1.47: 6th January 2017[/COLOR]
+[COLOR white][B]- Fix issues in addon installer.[/B][/COLOR]
+
+[COLOR yellowgreen]1.46: 6th January 2017[/COLOR]
+[COLOR white][B]- BETA implimentation of the ECHO Addon Installer for Krypton.[/B][/COLOR]
+
 [COLOR yellowgreen]1.45: 3rd January 2017[/COLOR]
 [COLOR white][B]- Added Krypton build support for ECHO builds.[/B][/COLOR]
 

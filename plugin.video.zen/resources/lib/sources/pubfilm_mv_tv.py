@@ -74,7 +74,7 @@ class source:
             data = urlparse.parse_qs(url)
             data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
 
-            year = re.findall('(\d{4})', premiered)[0]
+            year = data['year']
             season = '%01d' % int(season) ; episode = '%01d' % int(episode)
             tvshowtitle = '%s %s: Season %s' % (data['tvshowtitle'], year, season)
 

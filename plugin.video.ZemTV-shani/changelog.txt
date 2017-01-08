@@ -1,3 +1,5 @@
+[B]Version 6.1.4[/B]
+pv2 fixes and using channel id to ease fav. problems
 [B]Version 6.1.3[/B]
 few bug fixes
 [B]Version 6.1.2[/B]

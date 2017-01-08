@@ -22,7 +22,8 @@ import requests
 from BeautifulSoup import BeautifulSoup
 alluc_debrid = control.setting('alluc_debrid')
 alluc_status = control.setting('enable_alluc')
-alluc_key = control.setting('alluc_api')
+alluc_user = control.setting('alluc_username')
+alluc_pw = control.setting('alluc_password')
 max_items = int(control.setting('alluc_max_results'))
 host_string = 'host%3Arapidgator.net%2Cuploaded.net%2Cfilefactory.com'
 max_result_string = '&count=%s' % max_items
@@ -30,21 +31,21 @@ max_result_string = '&count=%s' % max_items
 class source:
     def __init__(self):
         self.base_link = 'https://www.alluc.ee'
-        if alluc_debrid == 'true': self.api_link = 'http://www.alluc.ee/api/search/download/?apikey=%s&query=%s' 
-        else: self.api_link = 'http://www.alluc.ee/api/search/stream/?apikey=%s&query=%s'  
+        if alluc_debrid == 'true': self.api_link = 'http://www.alluc.ee/api/search/download/?user=%s&password=%s&query=%s' 
+        else: self.api_link = 'http://www.alluc.ee/api/search/stream/?user=%s&password=%s&query=%s'  
 
 		
     def movie(self, imdb, title, year):
         self.zen_url = []	
         try:
             if not alluc_status == 'true': raise Exception()
-            print ("ALLUC STARTED" , alluc_key, max_items)
+            print ("ALLUC STARTED" , alluc_user, alluc_pw, max_items)
             headers = {'User-Agent': random_agent()}
             search_title = cleantitle.getsearch(title)
             cleanmovie = cleantitle.get(title) + year
             query = "%s+%s" % (urllib.quote_plus(search_title),year)
             print ("ALLUC r1", query)
-            query =  self.api_link % (alluc_key, query)
+            query =  self.api_link % (alluc_user, alluc_pw, query)
             if alluc_debrid == 'true': query =	query + max_result_string
             else: query = query + '+%23newlinks' + max_result_string
             print ("ALLUC r2", query)
@@ -90,7 +91,7 @@ class source:
             cleanmovie = cleantitle.get(title) + ep_check
             query = "%s+%s" % (urllib.quote_plus(search_title),ep_check)
             print ("ALLUC r1", query)
-            query =  self.api_link % (alluc_key, query)
+            query =  self.api_link % (alluc_user, alluc_pw, query)
             if alluc_debrid == 'true': query = query + max_result_string
             else: query = query + '+%23newlinks' + max_result_string
             print ("ALLUC r2", query)
@@ -117,8 +118,9 @@ class source:
 				elif "720" in quality: quality = "HD"
 				else: quality = "SD"
 				try:host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(url.strip().lower()).netloc)[0]
-				except: host = 'Videomega'
+				except: host = 'alluc'
 				print ("ALLUC SOURCES", url, quality)
+				# if not host in hostDict: continue
 				if alluc_debrid == 'true': sources.append({'source': host, 'quality': quality, 'provider': 'Alluc', 'url': url, 'direct': False, 'debridonly': True})
 				else: sources.append({'source': host, 'quality': quality, 'provider': 'Alluc', 'url': url, 'direct': False, 'debridonly': False})
 			return sources

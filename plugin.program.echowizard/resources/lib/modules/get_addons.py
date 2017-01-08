@@ -65,20 +65,12 @@ def MENU():
 	xbmc_version=xbmc.getInfoLabel("System.BuildVersion")
 	version=float(xbmc_version[:4])
 	codename = "Decline"
-	
-	if version >= 14.0 and version <= 16.9:
-		codename = 'Jarvis'
-	if version >= 17.0 and version <= 17.9:
-		codename = 'Krypton'
-
-	if codename != 'Jarvis':
-		dialog.ok(AddonTitle,'The ECHO Addon Installer is only supported on Kodi 16 Jarvis.','The installer will now exit.')
-		sys.exit(0)
 
 	total = ""
 	total_count = Common.count_addons_week(total)
 	Common.addDir("[COLOR white][B]" + str(total_count) + " [/COLOR][COLOR yellowgreen]Addons Downloaded This Week[/B][/COLOR]",BASEURL,121,ALL_ICON,FANART,description='all')
 	Common.addDir("[COLOR yellowgreen][B]############################################################################[/B][/COLOR]",BASEURL,121,ALL_ICON,FANART,description='all')
+	
 	Common.addDir("[COLOR dodgerblue][B]UPDATE INSTALLED ADDONS[/B][/COLOR]",BASEURL,174,ALL_ICON,FANART,'')
 	Common.addDir("[COLOR white][B]ENTER THE ECHO ADDON INSTALLER[/B][/COLOR]",BASEURL,175,ALL_ICON,FANART,'')
 
@@ -101,8 +93,10 @@ def MENU_MAIN():
 					dialog.ok(AddonTitle,"Sorry, the password you entered was incorrect.")
 					quit()
 
-	dialog.ok(AddonTitle, "[COLOR white][B]After installing ANY addons via the installer please click the UPDATE INSTALLED ADDONS option to ensure the newly installed addons appear in Kodi.[/B][/COLOR]")
-
+	total = ""
+	total_count = Common.count_addons_week(total)
+	Common.addDir("[COLOR yellowgreen][B]" + str(total_count) + " Addons Downloaded This Week[/B][/COLOR]",BASEURL,121,ALL_ICON,FANART,description='all')
+	Common.addDir("[COLOR yellowgreen][B]############################################################################[/B][/COLOR]",BASEURL,121,ALL_ICON,FANART,description='all')
 	Common.addDir("[COLOR white][B]All Addons[/B][/COLOR]",BASEURL,150,ALL_ICON,FANART,description='all')
 	Common.addDir("[COLOR white][B]Repositories[/B][/COLOR]",BASEURL,150,REPO_ICON,FANART,description='repos')
 	Common.addDir("[COLOR white][B]Top 14 downloaded addons this week[/B][/COLOR]",BASEURL,150,TOP_ICON,FANART,description='top')
@@ -112,8 +106,6 @@ def MENU_MAIN():
 	Common.addDir("[COLOR white][B]Music Addons[/B][/COLOR]",BASEURL,150,MUSIC_ICON,FANART,description='audio')
 	Common.addDir("[COLOR white][B]Picture Addons[/B][/COLOR]",BASEURL,150,PICTURE_ICON,FANART,description='image')
 	Common.addDir("[COLOR white][B]Adult (XXX) Addons[/B][/COLOR]",BASEURL,150,XXX_ICON,FANART,description='xxx')
-	Common.addDir("[COLOR grey][B]Packs[/B][/COLOR]",BASEURL,150,PACKS_ICON,FANART,description='packs')
-	Common.addDir("[COLOR grey][B]Dependencies[/B][/COLOR]",BASEURL,150,DEP_ICON,FANART,description='dep')
 	Common.addDir("[COLOR yellowgreen][B][I]Subscription Based Services (e.g IPTV,VPN,TV GUIDES).[/I][/B][/COLOR]",BASEURL,150,PAID_ICON,FANART,description='paid')
 	Common.addDir("[COLOR dodgerblue][B]Report A Broken Addon[/B][/COLOR]",BASEURL,152,SUPPORT_ICON,FANART,'')
 	Common.addDir("[COLOR dodgerblue][B]How To Get an Addon Added[/B][/COLOR]",BASEURL,153,SUPPORT_ICON,FANART,'')
@@ -123,7 +115,13 @@ def MENU_MAIN():
 	else:
 		Common.addDir("[COLOR orangered][B]PARENTAL CONTROLS - [COLOR yellowgreen]ON[/COLOR][/B][/COLOR]","url",159,PC_ICON,FANART,'')
 
-	xbmc.executebuiltin('Container.SetViewMode(50)')
+	kodi_name = Common.GET_KODI_VERSION()
+
+	if kodi_name == "Jarvis":
+		xbmc.executebuiltin("Container.SetViewMode(50)")
+	elif kodi_name == "Krypton":
+		xbmc.executebuiltin("Container.SetViewMode(55)")
+	else: xbmc.executebuiltin("Container.SetViewMode(50)")
 
 def GET_LIST(description):
 
@@ -176,54 +174,9 @@ def GET_LIST(description):
 			except:
 				bname = "Unknown"
 			if not os.path.exists(REPO):
-				Common.addDir("[COLOR white][B]" + name + " - NOT INSTALLED[/B][/COLOR]" + bname,url2,164,iconimage,fanart,'')
+				Common.addDir("[COLOR white][B]" + name + " - NOT INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
 			else:
-				Common.addDir("[COLOR lightskyblue][B]" + name + " - INSTALLED[/B][/COLOR]" + bname,url2,164,iconimage,fanart,'')
-
-	elif matcher == "packs":
-		namelist=[]
-		countlist=[]
-		iconlist=[]
-		fanartlist=[]
-		addonlist=[]
-		repolist=[]
-		url = PACKS_LIST
-		url2 = PACKS_LIST
-		link = open_url(url)
-		dp.update(0)
-		match= re.compile('<item>(.+?)</item>').findall(link)
-		dis_links = len(match)
-		for item in sorted(match):
-			if '<link>' in item:
-				links=re.compile('<link>(.+?)</link>').findall(item)
-				i = i + 1
-				dis_count = str(i)
-				progress = 100 * int(i)/int(dis_links)
-				if len(links)>1:
-					name=re.compile('<title>(.+?)</title>').findall(item)[0]
-					dp.update(progress,"Filtering pack " + str(dis_count) + " of " + str(dis_links),"[COLOR grey][B]Found " + name + "[/B][/COLOR]")
-					addon_path=re.compile('<addon_path>(.+?)</addon_path>').findall(item)[0]
-					repo_path=re.compile('<repo_path>(.+?)</repo_path>').findall(item)[0]
-					iconimage=re.compile('<iconimage>(.+?)</iconimage>').findall(item)[0]
-					fanart=re.compile('<fanart>(.+?)</fanart>').findall(item)[0]     
-					namelist.append(name)
-					countlist.append(str(Common.count_addons_week(name)))
-					iconlist.append(iconimage)
-					fanartlist.append(fanart)
-					addonlist.append(addon_path)
-					repolist.append(repo_path)
-					combinedlists = list(zip(countlist,namelist,iconlist,fanartlist,addonlist,repolist))
-		tup = sorted(combinedlists, key=lambda x: int(x[0]),reverse=True)
-		for count,name,iconimage,fanart,addon_path,repo_path in tup:
-			ADDON  =  xbmc.translatePath(os.path.join('special://home/addons',addon_path))
-			REPO   =  xbmc.translatePath(os.path.join('special://home/addons',repo_path))
-			url2 = addon_path + "," + repo_path + "," + name  + "," + url
-			bname = " | [COLOR white] This Week:[/COLOR][COLOR lightskyblue][B] " + count + "[/B][/COLOR]"
-			CHECK_PATH = xbmc.translatePath(os.path.join(ADDON_DATA,addon_path + '.txt'))
-			if not os.path.exists(CHECK_PATH):
-				Common.addDir("[COLOR white][B]" + name + " - NOT INSTALLED[/B][/COLOR]" + bname,url2,151,iconimage,fanart,'')
-			else:
-				Common.addDir("[COLOR lightskyblue][B]" + name + " - INSTALLED[/B][/COLOR]" + bname,url2,151,iconimage,fanart,'')
+				Common.addDir("[COLOR lightskyblue][B]" + name + " - INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
 
 	elif matcher == "top":
 		namelist=[]
@@ -269,29 +222,29 @@ def GET_LIST(description):
 				if check == 1:
 					bname = " | [COLOR gold][B] This Week:[/COLOR][COLOR gold] " + count + "[/B][/COLOR]"
 					if not os.path.exists(ADDON):
-						Common.addDir("[COLOR gold][B]1st - " + name + " - NOT INSTALLED[/B][/COLOR]" + bname,url2,151,iconimage,fanart,'')
+						Common.addDir("[COLOR gold][B]1st - " + name + " - NOT INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
 					else:
-						Common.addDir("[COLOR gold][B]1st - " + name + " - INSTALLED[/B][/COLOR]" + bname,url2,151,iconimage,fanart,'')
+						Common.addDir("[COLOR gold][B]1st - " + name + " - INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
 				elif check == 2:
 					bname = " | [COLOR ghostwhite][B] This Week:[/COLOR][COLOR ghostwhite] " + count + "[/B][/COLOR]"
 					if not os.path.exists(ADDON):
-						Common.addDir("[COLOR ghostwhite][B]2nd - " + name + " - NOT INSTALLED[/B][/COLOR]" + bname,url2,151,iconimage,fanart,'')
+						Common.addDir("[COLOR ghostwhite][B]2nd - " + name + " - NOT INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
 					else:
-						Common.addDir("[COLOR ghostwhite][B]2nd - " + name + " - INSTALLED[/B][/COLOR]" + bname,url2,151,iconimage,fanart,'')
+						Common.addDir("[COLOR ghostwhite][B]2nd - " + name + " - INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
 				elif check == 3:
 					bname = " | [COLOR orange][B] This Week:[/COLOR][COLOR gold] " + count + "[/B][/COLOR]"
 					if not os.path.exists(ADDON):
-						Common.addDir("[COLOR orange][B]3rd - " + name + " - NOT INSTALLED[/B][/COLOR]" + bname,url2,151,iconimage,fanart,'')
+						Common.addDir("[COLOR orange][B]3rd - " + name + " - NOT INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
 						Common.addItem("[COLOR grey]----------------------------------[/COLOR]",url2,999,iconimage,fanart,'')
 					else:
-						Common.addDir("[COLOR orange][B]3rd - " + name + " - INSTALLED[/B][/COLOR]" + bname,url2,151,iconimage,fanart,'')
+						Common.addDir("[COLOR orange][B]3rd - " + name + " - INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
 						Common.addItem("[COLOR grey]----------------------------------[/COLOR]",url2,999,iconimage,fanart,'')
 				else:
 					bname = " | [COLOR grey] This Week:[/COLOR][COLOR lightskyblue][B] " + count + "[/B][/COLOR]"
 					if not os.path.exists(ADDON):
-						Common.addDir("[COLOR grey][B]" + name + " - NOT INSTALLED[/B][/COLOR]" + bname,url2,151,iconimage,fanart,'')
+						Common.addDir("[COLOR grey][B]" + name + " - NOT INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
 					else:
-						Common.addDir("[COLOR lightskyblue][B]" + name + " - INSTALLED[/B][/COLOR]" + bname,url2,151,iconimage,fanart,'')
+						Common.addDir("[COLOR lightskyblue][B]" + name + " - INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
 			check = check + 1
 	elif matcher == "paid":
 		namelist=[]
@@ -336,55 +289,9 @@ def GET_LIST(description):
 			except:
 				bname = "Unknown"
 			if not os.path.exists(ADDON):
-				Common.addDir("[COLOR white][B]" + name + " - NOT INSTALLED[/B][/COLOR]" + bname,url2,156,iconimage,fanart,'')
+				Common.addDir("[COLOR white][B]" + name + " - NOT INSTALLED[/B][/COLOR]" + bname,url2+",paid",176,iconimage,fanart,'')
 			else:
-				Common.addDir("[COLOR lightskyblue][B]" + name + " - INSTALLED[/B][/COLOR]" + bname,url2,156,iconimage,fanart,'')
-	elif matcher == "dep":
-		namelist=[]
-		countlist=[]
-		iconlist=[]
-		fanartlist=[]
-		addonlist=[]
-		repolist=[]
-		url = DEP_LIST
-		url2 = DEP_LIST
-		link = open_url(url)
-		dp.update(0)
-		match= re.compile('<item>(.+?)</item>').findall(link)
-		dis_links = len(match)	
-		for item in sorted(match):
-			if '<link>' in item:
-				links=re.compile('<link>(.+?)</link>').findall(item)
-				i = i + 1
-				dis_count = str(i)
-				progress = 100 * int(i)/int(dis_links)
-				if len(links)>1:
-					name=re.compile('<title>(.+?)</title>').findall(item)[0]
-					dp.update(progress,"Filtering dependency " + str(dis_count) + " of " + str(dis_links),"[COLOR grey][B]Found " + name + "[/B][/COLOR]")
-					iconimage=re.compile('<iconimage>(.+?)</iconimage>').findall(item)[0]
-					fanart=re.compile('<fanart>(.+?)</fanart>').findall(item)[0]     
-					repo_path = "nothing"
-					addon_path = str(name)
-					namelist.append(name)
-					countlist.append(str(Common.count_addons_week(name)))
-					iconlist.append(iconimage)
-					fanartlist.append(fanart)
-					addonlist.append(addon_path)
-					repolist.append(repo_path)
-					combinedlists = list(zip(countlist,namelist,iconlist,fanartlist,addonlist,repolist))
-		tup = sorted(combinedlists, key=lambda x: int(x[0]),reverse=True)
-		for count,name,iconimage,fanart,addon_path,repo_path in tup:
-			ADDON  =  xbmc.translatePath(os.path.join('special://home/addons',addon_path))
-			REPO   =  xbmc.translatePath(os.path.join('special://home/addons',repo_path))
-			url2 = addon_path + "," + repo_path + "," + name  + "," + url
-			try:
-				bname = " | [COLOR white] This Week:[/COLOR][COLOR lightskyblue][B] " + count + "[/B][/COLOR]"
-			except:
-				bname = "Unknown"
-			if not os.path.exists(ADDON):
-				Common.addDir("[COLOR white][B]" + name + " - NOT INSTALLED[/B][/COLOR]" + bname,url2,151,iconimage,fanart,'')
-			else:
-				Common.addDir("[COLOR lightskyblue][B]" + name + " - INSTALLED[/B][/COLOR]" + bname,url2,151,iconimage,fanart,'')
+				Common.addDir("[COLOR lightskyblue][B]" + name + " - INSTALLED[/B][/COLOR]" + bname,url2+",paid",176,iconimage,fanart,'')
 	else:
 		url = ADDON_LIST
 		url2 = ADDON_LIST
@@ -431,110 +338,112 @@ def GET_LIST(description):
 			if matcher == "xxx":
 				if matcher in name.lower():
 					if not os.path.exists(ADDON):
-						Common.addDir("[COLOR white][B]" + name + " - NOT INSTALLED[/B][/COLOR]" + bname,url2,151,iconimage,fanart,'')
+						Common.addDir("[COLOR white][B]" + name + " - NOT INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
 					else:
-						Common.addDir("[COLOR lightskyblue][B]" + name + " - INSTALLED[/B][/COLOR]" + bname,url2,151,iconimage,fanart,'')
+						Common.addDir("[COLOR lightskyblue][B]" + name + " - INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
 
 			elif matcher != "all":
 				if matcher in addon_path:
 					if not os.path.exists(ADDON):
-							Common.addDir("[COLOR white][B]" + name + " - NOT INSTALLED[/B][/COLOR]" + bname,url2,151,iconimage,fanart,'')
+							Common.addDir("[COLOR white][B]" + name + " - NOT INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
 					else:
-							Common.addDir("[COLOR lightskyblue][B]" + name + " - INSTALLED[/B][/COLOR]" + bname,url2,151,iconimage,fanart,'')
+							Common.addDir("[COLOR lightskyblue][B]" + name + " - INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
 			else:
 				if not os.path.exists(ADDON):
-					Common.addDir("[COLOR white][B]" + name + " - NOT INSTALLED[/B][/COLOR]" + bname,url2,151,iconimage,fanart,'')
+					Common.addDir("[COLOR white][B]" + name + " - NOT INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
 				else:
-					Common.addDir("[COLOR lightskyblue][B]" + name + " - INSTALLED[/B][/COLOR]" + bname,url2,151,iconimage,fanart,'')
+					Common.addDir("[COLOR lightskyblue][B]" + name + " - INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
 
-	if matcher == "dep":
-		xbmc.executebuiltin('Container.SetViewMode(50)')
-	elif matcher == "top":
-		xbmc.executebuiltin('Container.SetViewMode(50)')
-	elif matcher == "repos":
-		xbmc.executebuiltin('Container.SetViewMode(50)')
-	else:
-		xbmc.executebuiltin('Container.SetViewMode(500)')
+	kodi_name = Common.GET_KODI_VERSION()
+
+	if kodi_name == "Jarvis":
+		xbmc.executebuiltin("Container.SetViewMode(50)")
+	elif kodi_name == "Krypton":
+		xbmc.executebuiltin("Container.SetViewMode(55)")
+	else: xbmc.executebuiltin("Container.SetViewMode(50)")
+
+def ADDON_DECIDE(name,url):
+
+	urla  = url
+	paid_mark = "null"
+	try:
+		addon_path,repo_path,base_name,url,paid_mark   = urla.split(',')
+	except:
+		try:
+			addon_path,repo_path,base_name,url   = urla.split(',')
+		except: repo_path,base_name,url   = urla.split(',')
+	
+	try:
+		ADDON  =  xbmc.translatePath(os.path.join('special://home/addons',addon_path))
+		if not os.path.exists(ADDON):
+			Common.addItem("[COLOR white][B]Install Addon[/B][/COLOR]",urla+",install_me",151,ICON,FANART,'')
+		else:
+			Common.addItem("[COLOR white][B]Uninstall Addon[/B][/COLOR]",urla+",uninstall_me",151,ICON,FANART,'')
+		if paid_mark == "paid":
+			Common.addItem("[COLOR white][B]Addon Information[/B][/COLOR]",urla+",paid_info",151,ICON,FANART,'')
+		else:
+			Common.addItem("[COLOR white][B]Addon Information[/B][/COLOR]",urla+",info_me",151,ICON,FANART,'')
+		Common.addDir("[COLOR white][B]Read Addon Reviews[/B][/COLOR]",urla+",readreview_me",151,ICON,FANART,'')
+		Common.addItem("[COLOR white][B]Leave Review[/B][/COLOR]",urla+",leavereview_me",151,ICON,FANART,'')
+	except:
+		ADDON  =  xbmc.translatePath(os.path.join('special://home/addons',repo_path))
+		if not os.path.exists(ADDON):
+			Common.addItem("[COLOR white][B]Install Repository[/B][/COLOR]",urla+",install_me",164,ICON,FANART,'')
+		else:
+			Common.addItem("[COLOR white][B]Uninstall Repository[/B][/COLOR]",urla+",uninstall_me",164,ICON,FANART,'')
+		Common.addItem("[COLOR white][B]Repository Information[/B][/COLOR]",urla+",info_me",164,ICON,FANART,'')
+		Common.addDir("[COLOR white][B]Read Repository Reviews[/B][/COLOR]",urla+",readreview_me",164,ICON,FANART,'')
+		Common.addItem("[COLOR white][B]Leave Review[/B][/COLOR]",urla+",leavereview_me",164,ICON,FANART,'')
 
 def GET_MULTI(name,url):
 	
+	kodi_name = Common.GET_KODI_VERSION()
 	urla  = url
-	addon_path,repo_path,base_name,url   = urla.split(',')
+	try:
+		addon_path,repo_path,base_name,url,marker   = urla.split(',')
+	except: addon_path,repo_path,base_name,url,disre,marker   = urla.split(',')
 	get_url = url
 	service_url = BASEURL + base64.b64decode(b'YXBpL2FwaV9hZGRvbl9yZXZpZXcucGhwP2FjdGlvbj1jb3VudCZidWlsZD0=') + base64.b64encode(addon_path)
 	body = urllib2.urlopen(service_url).read()
 
-	if 'pack' in base_name.lower():
-		PATH = xbmc.translatePath(os.path.join(ADDON_DATA,addon_path + '.txt'))
-		if os.path.exists(PATH):
+	ADDON  =  xbmc.translatePath(os.path.join('special://home/addons',addon_path))
 
-			choice = dialog.select("[COLOR red][B]Please select an option[/B][/COLOR]", ['[COLOR lightskyblue][B]Uninstall Pack[/B][/COLOR]','[COLOR lightskyblue][B]Pack Information[/B][/COLOR]','[COLOR lightskyblue][B]Read Reviews ('+body+' )[/B][/COLOR]','[COLOR lightskyblue][B]Leave Review[/B][/COLOR]'])
-
-			if choice == 1:
-				url = DESC + addon_path + ".txt"
-				content = open_url_desc(url)
-				string = str(content)
-				if string == "None":
-					dialog.ok(AddonTitle,"Sorry, there was an error getting the requested information.")
-					quit()
-				TextBoxes("%s" % string)
-				quit()
-			elif choice == 2:
-				Common.List_Addon_Review(addon_path)
-			elif choice == 3:
-				Common.Write_Addon_Review(addon_path)
-			elif choice == 0:
-				try:
-					os.remove(PATH)
-				except: pass
-				dialog.ok(AddonTitle,"[COLOR white]" + base_name + " has been successfully removed from your system![/COLOR]")
-				quit()
-			else:
-				quit()
-	else:
-		ADDON  =  xbmc.translatePath(os.path.join('special://home/addons',addon_path))
-		if os.path.exists(ADDON):
-			choice = dialog.select("[COLOR red][B]Please select an option[/B][/COLOR]", ['[COLOR lightskyblue][B]Uninstall Addon[/B][/COLOR]','[COLOR lightskyblue][B]Addon Information[/B][/COLOR]','[COLOR lightskyblue][B]Read Reviews ('+body+' )[/B][/COLOR]','[COLOR lightskyblue][B]Leave Review[/B][/COLOR]'])
-
-			if choice == 1:
-				url = DESC + addon_path + ".txt"
-				content = open_url_desc(url)
-				string = str(content)
-				if string == "None":
-					dialog.ok(AddonTitle,"Sorry, there was an error getting the requested information.")
-					quit()
-				TextBoxes("%s" % string)
-				quit()
-			elif choice == 2:
-				Common.List_Addon_Review(addon_path)
-			elif choice == 3:
-				Common.Write_Addon_Review(addon_path)
-			elif choice == 0:
-				try:
-					shutil.rmtree(ADDON)
-					shutil.rmtree(REPO)
-				except: pass
-				dialog.ok(AddonTitle,"[COLOR white]" + base_name + " has been successfully removed from your system![/COLOR]")
-				quit()
-			else:
-				quit()
-
-	choice = dialog.select("[COLOR red][B]Please select an option[/B][/COLOR]", ['[COLOR lightskyblue][B]Addon Information[/B][/COLOR]','[COLOR lightskyblue][B]Install Addon[/B][/COLOR]','[COLOR lightskyblue][B]Read Reviews ('+body+' )[/B][/COLOR]','[COLOR lightskyblue][B]Leave Review[/B][/COLOR]'])
-
-	if choice == 0:
+	if marker == "info_me":
 		url = DESC + addon_path + ".txt"
 		content = open_url_desc(url)
 		string = str(content)
 		if string == "None":
 			dialog.ok(AddonTitle,"Sorry, there was an error getting the requested information.")
-			quit()
 		TextBoxes("%s" % string)
-		quit()
-	elif choice == 2:
+	elif marker == "paid_info":
+		url = PAID_DESC + addon_path + ".txt"
+		content = open_url_desc(url)
+		string = str(content)
+		if string == "None":
+			dialog.ok(AddonTitle,"Sorry, there was an error getting the requested information.")
+		TextBoxes("%s" % string)
+	elif marker == "readreview_me":
 		Common.List_Addon_Review(addon_path)
-	elif choice == 3:
+	elif marker == "leavereview_me":
 		Common.Write_Addon_Review(addon_path)
-	elif choice == 1:
+	elif marker == "uninstall_me":
+		dp.create(AddonTitle,"[COLOR blue]Removing addon....[/COLOR]",'[COLOR yellow]Please Wait...[/COLOR]',' ')	
+		dp.update(0,'','',' ')
+		try:
+			shutil.rmtree(ADDON)
+			shutil.rmtree(REPO)
+		except: pass
+		if kodi_name == "Krypton":
+			DISABLE_DATABASE_ADDON(addon_path)
+		time.sleep(2)
+		xbmc.executebuiltin("UpdateLocalAddons")
+		time.sleep(2)
+		xbmc.executebuiltin("UpdateAddonRepos")
+		time.sleep(2)
+		dp.close()
+		dialog.ok(AddonTitle,"[COLOR white]" + base_name + " has been successfully removed from your system![/COLOR]")
+		xbmc.executebuiltin("Container.Refresh")
+	elif marker == "install_me":
 		get_dep = 1
 		get_addon = 1
 		if get_dep == 1:
@@ -559,230 +468,11 @@ def GET_MULTI(name,url):
 							url = str(sturl)
 							install_name = str("[COLOR lightskyblue][B]" + caption + "[/B][/COLOR]")
 							INSTALL(install_name,url)
+							if kodi_name == "Krypton":
+								ADD_DATABASE_ADDON(caption,"")
 						i=i+1
-			except:
-				dialog.ok(AddonTitle,"There was an error installing " + install_name + " please report this to @EchoCoder on Twitter")
-				pass	
+			except: pass
 		if get_addon == 1:
-			try:
-				streamurl=[]
-				streamname=[]
-				streamicon=[]
-				link=open_url(get_url)
-				urls=re.compile('<title>'+re.escape(base_name)+'</title>(.+?)</item>',re.DOTALL).findall(link)[0]
-				links=re.compile('<link>(.+?)</link>').findall(urls)
-				iconimage=re.compile('<iconimage>(.+?)</iconimage>').findall(urls)[0]
-				i=1
-				for sturl in links:
-					sturl2=sturl
-					if '(' in sturl:
-						sturl=sturl.split('(')[0]
-						caption=str(sturl2.split('(')[1].replace(')',''))
-						streamurl.append(sturl)
-						streamname.append(caption)
-						ADDON  =  xbmc.translatePath(os.path.join('special://home/addons/',str(caption)))
-						if not "http" in caption:
-							if not os.path.exists(ADDON):
-								url = str(sturl)
-								install_name = str("[COLOR lightskyblue][B]" + caption + "[/B][/COLOR]")
-								INSTALL(install_name,url)
-						i=i+1
-			except:
-				dialog.ok(AddonTitle,"There was an error installing " + install_name + " please report this to @EchoCoder on Twitter")
-				pass
-		dp.create(AddonTitle,"[COLOR blue]Adding the download to the counters[/COLOR]",'[COLOR yellow]Please Wait...[/COLOR]',' ')	
-		dp.update(0,'','',' ')
-		add_download = Common.add_one_addons_week(base_name)
-		dp.close
-
-		if "pack" not in base_name.lower():
-			xbmcgui.Dialog().ok(AddonTitle, "[COLOR white]" + base_name + " successfully installed![/COLOR]","[COLOR red][B]You must UPDATE INSTALLED ADDONS at the beginning of the installer for Kodi to show this addon as installed![/COLOR][/B]")
-			quit()
-		else:
-			PATH = xbmc.translatePath(os.path.join(ADDON_DATA,addon_path + '.txt'))
-			if not os.path.exists(PATH):
-				if not os.path.exists(ADDON_DATA):
-					os.makedirs(ADDON_DATA)
-				open(PATH, 'w')
-			xbmcgui.Dialog().ok(AddonTitle, "[COLOR white]" + base_name + " successfully installed![/COLOR]")
-			quit()
-	else:
-		quit()
-
-def GET_PAID(name,url):
-	
-	urla  = url
-	addon_path,repo_path,base_name,url   = urla.split(',')
-	get_url = url
-
-	service_url = BASEURL + base64.b64decode(b'YXBpL2FwaV9hZGRvbl9yZXZpZXcucGhwP2FjdGlvbj1jb3VudCZidWlsZD0=') + base64.b64encode(addon_path)
-	body = urllib2.urlopen(service_url).read()
-
-	ADDON  =  xbmc.translatePath(os.path.join('special://home/addons',addon_path))
-	if os.path.exists(ADDON):
-		choice = dialog.select("[COLOR red][B]Please select an option[/B][/COLOR]", ['[COLOR lightskyblue][B]Uninstall Addon[/B][/COLOR]','[COLOR lightskyblue][B]Addon Information[/B][/COLOR]','[COLOR lightskyblue][B]Read Reviews ('+body+' )[/B][/COLOR]','[COLOR lightskyblue][B]Leave Review[/B][/COLOR]'])
-
-		if choice == 1:
-			url = DESC + addon_path + ".txt"
-			content = open_url_desc(url)
-			string = str(content)
-			if string == "None":
-				dialog.ok(AddonTitle,"Sorry, there was an error getting the requested information.")
-				quit()
-			TextBoxes("%s" % string)
-			quit()
-		elif choice == 2:
-			Common.List_Addon_Review(addon_path)
-		elif choice == 3:
-			Common.Write_Addon_Review(addon_path)
-		elif choice == 0:
-			try:
-				shutil.rmtree(ADDON)
-				shutil.rmtree(REPO)
-			except: pass
-			dialog.ok(AddonTitle,"[COLOR white]" + base_name + " has been successfully removed from your system![/COLOR]")
-			quit()
-		else:
-			quit()
-
-	choice = dialog.select("[COLOR red][B]Please select an option[/B][/COLOR]", ['[COLOR lightskyblue][B]Addon Information[/B][/COLOR]','[COLOR lightskyblue][B]Download Addon[/B][/COLOR]','[COLOR lightskyblue][B]Read Reviews ('+body+' )[/B][/COLOR]','[COLOR lightskyblue][B]Leave Review[/B][/COLOR]'])
-
-	if choice == 0:
-		url = PAID_DESC + addon_path + ".txt"
-		content = open_url_desc(url)
-		string = str(content)
-		if string == "None":
-			dialog.ok(AddonTitle,"Sorry, there was an error getting the requested information.")
-			quit()
-		TextBoxes("%s" % string)
-		quit()
-	elif choice == 2:
-		Common.List_Addon_Review(addon_path)
-	elif choice == 3:
-		Common.Write_Addon_Review(addon_path)
-	elif choice == 1:
-		choice = 1
-		get_dep = 1
-		get_addon = 1
-		if choice == 1:
-			if get_dep == 1:
-				try:
-					streamurl=[]
-					streamname=[]
-					streamicon=[]
-					link=open_url(DEPENDENCIES)
-					urls=re.compile('<title>'+re.escape("Dependencies")+'</title>(.+?)</item>',re.DOTALL).findall(link)[0]
-					iconimage=re.compile('<iconimage>(.+?)</iconimage>').findall(urls)[0]
-					links=re.compile('<link>(.+?)</link>').findall(urls)
-					i=1
-					for sturl in links:
-						sturl2=sturl
-						if '(' in sturl:
-							sturl=sturl.split('(')[0]
-							caption=str(sturl2.split('(')[1].replace(')',''))
-							streamurl.append(sturl)
-							streamname.append(caption)
-							ADDON  =  xbmc.translatePath(os.path.join('special://home/addons/',str(caption)))
-							if not os.path.exists(ADDON):
-								url = str(sturl)
-								install_name = str("[COLOR lightskyblue][B]" + caption + "[/B][/COLOR]")
-								INSTALL(install_name,url)
-							i=i+1
-				except:
-					dialog.ok(AddonTitle,"There was an error installing " + install_name + " please report this to @EchoCoder on Twitter")
-					quit()
-			if get_addon == 1:
-				try:
-					streamurl=[]
-					streamname=[]
-					streamicon=[]
-					link=open_url(get_url)
-					urls=re.compile('<title>'+re.escape(base_name)+'</title>(.+?)</item>',re.DOTALL).findall(link)[0]
-					links=re.compile('<link>(.+?)</link>').findall(urls)
-					iconimage=re.compile('<iconimage>(.+?)</iconimage>').findall(urls)[0]
-					i=1
-					for sturl in links:
-						sturl2=sturl
-						if '(' in sturl:
-							sturl=sturl.split('(')[0]
-							caption=str(sturl2.split('(')[1].replace(')',''))
-							streamurl.append(sturl)
-							streamname.append(caption)
-							ADDON  =  xbmc.translatePath(os.path.join('special://home/addons/',str(caption)))
-							if not "http" in caption:
-								if not os.path.exists(ADDON):
-									url = str(sturl)
-									install_name = str("[COLOR lightskyblue][B]" + caption + "[/B][/COLOR]")
-									INSTALL(install_name,url)
-							i=i+1
-				except:
-					dialog.ok(AddonTitle,"There was an error installing " + install_name + " please report this to @EchoCoder on Twitter")
-					quit()
-		else:
-			quit()
-
-		dp.create(AddonTitle,"[COLOR blue]Adding the download to the counters[/COLOR]",'[COLOR yellow]Please Wait...[/COLOR]',' ')	
-		dp.update(0,'','',' ')
-		add_download = Common.add_one_addons_week(base_name)
-		dp.close()
-
-		xbmcgui.Dialog().ok(AddonTitle, "[COLOR white]" + base_name + " successfully installed![/COLOR]","[COLOR red][B]You must UPDATE INSTALLED ADDONS at the beginning of the installer for Kodi to show this addon as installed![/COLOR][/B]")
-		quit()
-	else:
-		quit()
-
-def GET_REPO(name,url):
-	
-	urla  = url
-	repo_path,base_name,url   = urla.split(',')
-	get_url = url
-
-	service_url = BASEURL + base64.b64decode(b'YXBpL2FwaV9hZGRvbl9yZXZpZXcucGhwP2FjdGlvbj1jb3VudCZidWlsZD0=') + base64.b64encode(repo_path)
-	body = urllib2.urlopen(service_url).read()
-
-	REPO  =  xbmc.translatePath(os.path.join('special://home/addons',repo_path))
-	if os.path.exists(REPO):
-		choice = dialog.select("[COLOR red][B]Please select an option[/B][/COLOR]", ['[COLOR lightskyblue][B]Uninstall Repository[/B][/COLOR]','[COLOR lightskyblue][B]Repository Information[/B][/COLOR]','[COLOR lightskyblue][B]Read Reviews ('+body+' )[/B][/COLOR]','[COLOR lightskyblue][B]Leave Review[/B][/COLOR]'])
-
-		if choice == 1:
-			url = DESC + repo_path + ".txt"
-			content = open_url_desc(url)
-			string = str(content)
-			if string == "None":
-				dialog.ok(AddonTitle,"Sorry, there was an error getting the requested information.")
-				quit()
-			TextBoxes("%s" % string)
-			quit()
-		elif choice == 2:
-			Common.List_Addon_Review(repo_path)
-		elif choice == 3:
-			Common.Write_Addon_Review(repo_path)
-		elif choice == 0:
-			try:
-				shutil.rmtree(REPO)
-			except: pass
-			dialog.ok(AddonTitle,"[COLOR white]" + base_name + " has been successfully removed from your system![/COLOR]")
-			quit()
-		else:
-			quit()
-
-	choice = dialog.select("[COLOR red][B]Please select an option[/B][/COLOR]", ['[COLOR lightskyblue][B]Repository Information[/B][/COLOR]','[COLOR lightskyblue][B]Install Repository[/B][/COLOR]','[COLOR lightskyblue][B]Read Reviews ('+body+' )[/B][/COLOR]','[COLOR lightskyblue][B]Leave Review[/B][/COLOR]'])
-
-	if choice == 0:
-		url = DESC + repo_path + ".txt"
-		content = open_url_desc(url)
-		string = str(content)
-		if string == "None":
-			dialog.ok(AddonTitle,"Sorry, there was an error getting the requested information.")
-			quit()
-		TextBoxes("%s" % string)
-		quit()
-	elif choice == 2:
-		Common.List_Addon_Review(repo_path)
-	elif choice == 3:
-		Common.Write_Addon_Review(repo_path)
-	elif choice == 1:
-		try:
 			streamurl=[]
 			streamname=[]
 			streamicon=[]
@@ -792,6 +482,106 @@ def GET_REPO(name,url):
 			iconimage=re.compile('<iconimage>(.+?)</iconimage>').findall(urls)[0]
 			i=1
 			for sturl in links:
+				try:
+					sturl2=sturl
+					if '(' in sturl:
+						sturl=sturl.split('(')[0]
+						caption=str(sturl2.split('(')[1].replace(')',''))
+						streamurl.append(sturl)
+						streamname.append(caption)
+						ADDON2  =  xbmc.translatePath(os.path.join('special://home/addons/',str(caption)))
+						if not "http" in caption:
+							if not os.path.exists(ADDON2):
+								url = str(sturl)
+								install_name = str("[COLOR lightskyblue][B]" + caption + "[/B][/COLOR]")
+								INSTALL(install_name,url)
+								if kodi_name == "Krypton":
+									if "repo" in caption.lower():
+										ADD_DATABASE_ADDON(repo_path,"")
+										ADD_DATABASE_REPO(repo_path)
+									else:
+										ADD_DATABASE_ADDON(str(caption),repo_path)
+								i=i+1
+				except:
+					try:
+						shutil.rmtree(ADDON)
+						shutil.rmtree(REPO)
+					except: pass
+					time.sleep(2)
+					xbmc.executebuiltin("UpdateLocalAddons")
+					time.sleep(2)
+					xbmc.executebuiltin("UpdateAddonRepos")
+					time.sleep(2)
+					dialog.ok(AddonTitle,"There was an error installing " + install_name + " please report this to @EchoCoder on Twitter")
+					xbmc.executebuiltin("Container.Refresh")
+					quit()	
+		dp.create(AddonTitle,"[COLOR blue]Adding the download to the counters[/COLOR]",'[COLOR yellow]Please Wait...[/COLOR]',' ')	
+		dp.update(0,'','',' ')
+		add_download = Common.add_one_addons_week(base_name)
+		dp.update(50,'Refreshing kodi addons to finish the installation process.','',' ')
+		time.sleep(2)
+		xbmc.executebuiltin("UpdateLocalAddons")
+		time.sleep(2)
+		xbmc.executebuiltin("UpdateAddonRepos")
+		time.sleep(2)
+		xbmc.executebuiltin("Container.Refresh")
+		dp.close
+
+		xbmcgui.Dialog().ok(AddonTitle, "[COLOR white]" + base_name + " successfully installed![/COLOR]")
+
+def GET_REPO(name,url):
+	
+	kodi_name = Common.GET_KODI_VERSION()
+
+	urla  = url
+	repo_path,base_name,url,marker   = urla.split(',')
+	get_url = url
+
+	service_url = BASEURL + base64.b64decode(b'YXBpL2FwaV9hZGRvbl9yZXZpZXcucGhwP2FjdGlvbj1jb3VudCZidWlsZD0=') + base64.b64encode(repo_path)
+	body = urllib2.urlopen(service_url).read()
+
+	REPO  =  xbmc.translatePath(os.path.join('special://home/addons',repo_path))
+
+	if marker == "info_me":
+		url = DESC + repo_path + ".txt"
+		content = open_url_desc(url)
+		string = str(content)
+		if string == "None":
+			dialog.ok(AddonTitle,"Sorry, there was an error getting the requested information.")
+			quit()
+		TextBoxes("%s" % string)
+	elif marker == "readreview_me":
+		Common.List_Addon_Review(repo_path)
+	elif marker == "leavereview_me":
+		Common.Write_Addon_Review(repo_path)
+	elif marker == "uninstall_me":
+		dp.create(AddonTitle,"[COLOR blue]Removing addon....[/COLOR]",'[COLOR yellow]Please Wait...[/COLOR]',' ')	
+		dp.update(0,'','',' ')
+		try:
+			shutil.rmtree(REPO)
+		except: pass
+		if kodi_name == "Krypton":
+			DISABLE_DATABASE_ADDON(repo_path)
+		time.sleep(2)
+		xbmc.executebuiltin("UpdateLocalAddons")
+		time.sleep(2)
+		xbmc.executebuiltin("UpdateAddonRepos")
+		time.sleep(2)
+		dp.close()
+		dialog.ok(AddonTitle,"[COLOR white]" + base_name + " has been successfully removed from your system![/COLOR]")
+		xbmc.executebuiltin("Container.Refresh")
+
+	elif marker == "install_me":
+		streamurl=[]
+		streamname=[]
+		streamicon=[]
+		link=open_url(get_url)
+		urls=re.compile('<title>'+re.escape(base_name)+'</title>(.+?)</item>',re.DOTALL).findall(link)[0]
+		links=re.compile('<link>(.+?)</link>').findall(urls)
+		iconimage=re.compile('<iconimage>(.+?)</iconimage>').findall(urls)[0]
+		i=1
+		for sturl in links:
+			try:
 				sturl2=sturl
 				if '(' in sturl:
 					sturl=sturl.split('(')[0]
@@ -804,18 +594,101 @@ def GET_REPO(name,url):
 							url = str(sturl)
 							install_name = str("[COLOR lightskyblue][B]" + caption + "[/B][/COLOR]")
 							INSTALL(install_name,url)
+							if kodi_name == "Krypton":
+								ADD_DATABASE_ADDON(repo_path,"")
+								ADD_DATABASE_REPO(repo_path)
 					i=i+1
-		except:
-			dialog.ok(AddonTitle,"There was an error installing " + install_name + " please report this to @EchoCoder on Twitter")
-			quit()
+			except:
+				time.sleep(2)
+				xbmc.executebuiltin("UpdateLocalAddons")
+				time.sleep(2)
+				xbmc.executebuiltin("UpdateAddonRepos")
+				time.sleep(2)
+				dialog.ok(AddonTitle,"There was an error installing " + install_name + " please report this to @EchoCoder on Twitter")
+				xbmc.executebuiltin("Container.Refresh")
+				quit()	
 		dp.create(AddonTitle,"[COLOR blue]Adding the download to the counters[/COLOR]",'[COLOR yellow]Please Wait...[/COLOR]',' ')	
 		dp.update(0,'','',' ')
 		add_download = Common.add_one_addons_week(base_name)
+
+		time.sleep(2)
+		xbmc.executebuiltin("UpdateLocalAddons")
+		time.sleep(2)
+		xbmc.executebuiltin("UpdateAddonRepos")
+		time.sleep(2)
+		xbmc.executebuiltin("Container.Refresh")
+
 		dp.close()
 
-		xbmcgui.Dialog().ok(AddonTitle, "[COLOR white]" + base_name + " successfully installed![/COLOR]","[COLOR red][B]You must UPDATE INSTALLED ADDONS at the beginning of the installer for Kodi to show this addon as installed![/COLOR][/B]")
-		quit()
-	else: quit()
+		xbmcgui.Dialog().ok(AddonTitle, "[COLOR white]" + base_name + " successfully installed![/COLOR]")
+
+def ADD_DATABASE_ADDON(name,url):
+
+	Enabled = 1
+	AddonID = name
+	Origen = url
+
+	import datetime
+	installDate = str(datetime.datetime.now())[:-7]
+ 
+	import sqlite3
+	DB_Path = xbmc.translatePath(os.path.join('special://home/userdata/', 'Database/Addons26.db'))
+ 
+	conn = sqlite3.connect(DB_Path)
+	cursor = conn.cursor()
+ 
+	try:
+		q = """ INSERT INTO installed(addonID,enabled, installDate, origin) VALUES(?, ?, ?, ?) """
+		cursor.execute(q, (str(AddonID), str(Enabled), str(installDate), str(Origen)))
+		conn.commit()
+	except:
+		q = """ UPDATE installed SET enabled= ? WHERE addonID = ? """
+		cursor.execute(q, (str(Enabled), str(AddonID)))
+		conn.commit()
+		pass
+	
+def ADD_DATABASE_REPO(name):
+
+	try:
+		Repo_Path = xbmc.translatePath(os.path.join('special://home/addons/', name + '/addon.xml'))
+		a=open(Repo_Path).read()
+		b=a.replace('\n',' ').replace('\r',' ')
+		match=re.compile('version="(.+?)".+?<checksum>(.+?)</checksum>').findall(str(b))
+		for version,checksum in match:
+			checksum_id = open_url(checksum)
+			AddonID = name
+			version_id = version
+
+		import datetime
+		installDate = str(datetime.datetime.now())[:-7]
+	
+		import sqlite3
+		DB_Path = xbmc.translatePath(os.path.join('special://home/userdata/', 'Database/Addons26.db'))
+	 
+		conn = sqlite3.connect(DB_Path)
+		cursor = conn.cursor()
+	 
+		q = """ INSERT INTO repo(addonID,checksum, lastcheck, version) VALUES(?, ?, ?, ?) """
+		cursor.execute(q, (str(AddonID), str(checksum_id), str(installDate), str(version_id)))
+		conn.commit()
+	except: pass
+	
+def DISABLE_DATABASE_ADDON(name):
+
+	Enabled = 0
+	AddonID = name
+
+	import sqlite3
+	DB_Path = xbmc.translatePath(os.path.join('special://home/userdata/', 'Database/Addons26.db'))
+ 
+	conn = sqlite3.connect(DB_Path)
+	cursor = conn.cursor()
+ 
+	try:
+		q = """ UPDATE installed SET enabled= ? WHERE addonID = ? """
+		cursor.execute(q, (str(Enabled), str(AddonID)))
+		conn.commit()
+	except: pass
 
 def INSTALL(name, url):
 

@@ -305,8 +305,7 @@ def INDEX():
 		Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
 		Common.addDir('[COLOR ghostwhite][B]OFFICIAL ECHO BUILDS[/B][/COLOR]',BASEURL,50,BUILD_ICON,FANART,'')
 		Common.addDir('[COLOR ghostwhite][B]COMMUNITY BUILDS[/B][/COLOR]',BASEURL,87,COMMUNITY_ICON,FANART,'')
-		if kodi_name == "Jarvis":
-			Common.addDir('[COLOR ghostwhite][B]ECHO ADDON INSTALLER[/B][/COLOR]',BASEURL,121,ICON,FANART,'')
+		Common.addDir('[COLOR ghostwhite][B]ECHO ADDON INSTALLER[/B][/COLOR]',BASEURL,121,ICON,FANART,'')
 		Common.addDir('[COLOR ghostwhite][B]FANRIFFIC THEMES[/B][/COLOR]',BASEURL,144,ICON,FANART,'')
 		Common.addItem("[COLOR yellowgreen][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
 	Common.addDir('[COLOR ghostwhite][B]BACKUP [COLOR white]|[/COLOR] RESTORE[/B][/COLOR]',BASEURL,8,BACKUP_ICON,FANART,'')
@@ -337,10 +336,10 @@ def INDEX():
 	kodi_name = Common.GET_KODI_VERSION()
 
 	if kodi_name == "Jarvis":
-		command = '"Container.SetViewMode(50)"'
+		xbmc.executebuiltin("Container.SetViewMode(50)")
 	elif kodi_name == "Krypton":
-		command = '"Container.SetViewMode(55)"'
-	else: command = '"Container.SetViewMode(50)"'
+		xbmc.executebuiltin("Container.SetViewMode(55)")
+	else: xbmc.executebuiltin("Container.SetViewMode(50)")
 
 #######################################################################
 #					TDB WIZARD BUILD MENU
@@ -1756,7 +1755,7 @@ elif mode==120:
 		xbmc.executebuiltin("Container.Refresh")
 
 elif mode==121:
-		get_addons.MENU()
+		get_addons.MENU_MAIN()
 
 elif mode==122:
 		get_addons.GET_SINGLE(name,url)
@@ -1899,5 +1898,8 @@ elif mode==174:
 
 elif mode==175:
 		get_addons.MENU_MAIN()
+	
+elif mode==176:
+		get_addons.ADDON_DECIDE(name,url)
 
 xbmcplugin.endOfDirectory(int(sys.argv[1]))

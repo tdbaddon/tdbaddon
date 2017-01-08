@@ -22,12 +22,21 @@ from resources.lib.modules import client
 from resources.lib.modules import cache
 from resources.lib.modules import directstream
 
+import requests
+from BeautifulSoup import BeautifulSoup
+from resources.lib.modules.common import random_agent
+from resources.lib.modules import control
+custom_url = control.setting('onemovies_custom')
 
 class source:
     def __init__(self):
         self.language = ['en']
         self.domains = ['123movies.to', '123movies.ru', '123movies.is', '123movies.gs', '123-movie.ru', '123movies-proxy.ru', '123movies.moscow', '123movies.msk.ru', '123movies.msk.ru', '123movies.unblckd.me']
-        self.base_link = 'http://123movies.is'
+
+        if custom_url == 'true': self.base_link = control.setting('onemovies_base')
+        else: self.base_link = 'http://123movies.gs'
+
+
         self.base_link_2 = 'http://123movies.msk.ru'
         self.search_link = '/ajax/suggest_search'
         self.search_link_2 = '/movie/search/%s'
@@ -54,39 +63,39 @@ class source:
 
     def movie(self, imdb, title, year):
         try:
-            t = cleantitle.get(title)
 
-            q = self.search_link_2 % (urllib.quote_plus(cleantitle.query(title)))
-            q = urlparse.urljoin(self.base_link, q)
 
-            h = {'X-Requested-With': 'XMLHttpRequest'}
-            u = urlparse.urljoin(self.base_link, self.search_link)
-            p = urllib.urlencode({'keyword': title})
+            cleaned_title = cleantitle.get(title)
+            title = cleantitle.getsearch(title)
+                      
+            q = self.search_link_2 % (urllib.quote_plus(title))
+            r = urlparse.urljoin(self.base_link, q)
 
-            r = self.request(u, headers=h, post=p)
+            print ("ONEMOVIES EPISODES", r)
+           
+            headers = {'User-Agent': random_agent()}
+            html = BeautifulSoup(requests.get(r, headers=headers, timeout=20).content)
+            containers = html.findAll('div', attrs={'class': 'ml-item'})
+            for result in containers:
+               
+                links = result.findAll('a')
 
-            try: r = json.loads(r)
-            except: r = None
-
-            if r == None:
-                r = self.request(q, headers=None, post=None)
-                r = client.parseDOM(r, 'div', attrs = {'class': 'ml-item'})
-                r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', ret='title')) for i in r]
-                r = [(i[0][0], i[1][0]) for i in r if i[0] and i[1]]
-            else:
-                r = r['content']
-                r = zip(client.parseDOM(r, 'a', ret='href', attrs = {'class': 'ss-title'}), client.parseDOM(r, 'a', attrs = {'class': 'ss-title'}))
-
-            r = [i[0] for i in r if cleantitle.get(t) == cleantitle.get(i[1])][:2]
-            r = [(i, re.findall('(\d+)', i)[-1]) for i in r]
-
-            for i in r:
-                try:
-                    y, q = cache.get(self.onemovies_info, 9000, i[1])
-                    if not y == year: raise Exception()
-                    return urlparse.urlparse(i[0]).path
-                except:
-                    pass
+                for link in links:
+                    link_title = str(link['title'])
+                   
+                    href = str(link['href'])
+                    info = str(link['data-url'])
+                    # print("ONEMOVIES", link_title, href, info)
+                    if cleantitle.get(link_title) == cleaned_title:
+                        
+                        html = requests.get(info, headers=headers).content
+                        pattern = '<div class="jt-info">%s</div>' % year
+                        match = re.findall(pattern, html)
+                        if match:
+							
+							url = client.replaceHTMLCodes(href)
+							print("ONEMOVIES MATCH", url)
+							return url
         except:
             return
 
@@ -104,47 +113,33 @@ class source:
         try:
             data = urlparse.parse_qs(url)
             data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
+            title = cleantitle.getsearch(data['tvshowtitle'])
 
-            t = cleantitle.get(data['tvshowtitle'])
-            year = re.findall('(\d{4})', premiered)[0]
-            years = [str(year), str(int(year)+1), str(int(year)-1)]
             season = '%01d' % int(season)
             episode = '%01d' % int(episode)
+            query = (urllib.quote_plus(title)) + "+season+" + season
+            q = self.search_link_2 % (query)
+            r = urlparse.urljoin(self.base_link, q)
 
-            q = self.search_link_2 % (urllib.quote_plus('%s - Season %s' % (data['tvshowtitle'], season)))
-            q = urlparse.urljoin(self.base_link, q)
+            print ("ONEMOVIES EPISODES", r)
+            checkseason = cleantitle.get(title) + "season" + season
+            headers = {'User-Agent': random_agent()}
+            html = BeautifulSoup(requests.get(r, headers=headers, timeout=20).content)
+            containers = html.findAll('div', attrs={'class': 'ml-item'})
+            for result in containers:
+               
+                links = result.findAll('a')
 
-            h = {'X-Requested-With': 'XMLHttpRequest'}
-            u = urlparse.urljoin(self.base_link, self.search_link)
-            p = urllib.urlencode({'keyword': '%s - Season %s' % (data['tvshowtitle'], season)})
+                for link in links:
+                    link_title = str(link['title'])
+                    href = str(link['href'])
+                    href = client.replaceHTMLCodes(href)
+                    if cleantitle.get(link_title) == checkseason:
+                        ep_id = '?episode=%01d' % int(episode)
+                        url = href + ep_id
+                        # print("ONEMOVIES Passed", href)
+                        return url
 
-            r = self.request(u, headers=h, post=p)
-
-            try: r = json.loads(r)
-            except: r = None
-
-            if r == None:
-                r = self.request(q, headers=None, post=None)
-                r = client.parseDOM(r, 'div', attrs = {'class': 'ml-item'})
-                r = [(client.parseDOM(i, 'a', ret='href'), client.parseDOM(i, 'a', ret='title')) for i in r]
-                r = [(i[0][0], i[1][0]) for i in r if i[0] and i[1]]
-            else:
-                r = r['content']
-                r = zip(client.parseDOM(r, 'a', ret='href', attrs = {'class': 'ss-title'}), client.parseDOM(r, 'a', attrs = {'class': 'ss-title'}))
-
-            r = [(i[0], re.findall('(.+?) - season (\d+)$', i[1].lower())) for i in r]
-            r = [(i[0], i[1][0][0], i[1][0][1]) for i in r if len(i[1]) > 0]
-            r = [i for i in r if t == cleantitle.get(i[1])]
-            r = [i[0] for i in r if season == '%01d' % int(i[2])][:2]
-            r = [(i, re.findall('(\d+)', i)[-1]) for i in r]
-
-            for i in r:
-                try:
-                    y, q = cache.get(self.onemovies_info, 9000, i[1])
-                    if not y in years: raise Exception()
-                    return urlparse.urlparse(i[0]).path + '?episode=%01d' % int(episode)
-                except:
-                    pass
         except:
             return
 
@@ -169,20 +164,29 @@ class source:
             sources = []
 
             if url == None: return sources
-
-            url = urlparse.urljoin(self.base_link, url)
+            if not "http:" in url: url = urlparse.urljoin(self.base_link, url)
+			
             url = referer = url.replace('/watching.html', '')
 
             try: url, episode = re.findall('(.+?)\?episode=(\d*)$', url)[0]
             except: episode = None
-
             vid_id = re.findall('-(\d+)', url)[-1]
+			
+            print("ONEMOVIES SOURCES URL", url)
+           
+            headers = {'User-Agent': random_agent()}
+            html = requests.get(url, headers=headers).content
 
-            quality = cache.get(self.onemovies_info, 9000, vid_id)[1].lower()
-            if quality == 'cam' or quality == 'ts': quality = 'CAM'
-            elif quality == 'hd': quality = 'HD'
-            else: quality = 'SD'
 
+            quality = re.findall('<span class="quality">(.+?)</span>', html)[0]
+            quality = str(quality)
+            if quality == '1080':
+                quality = '1080p'
+            elif quality.lower() == 'hd':
+                quality = 'HD'
+            else:
+                quality = 'SD'
+            print("ONEMOVIES quality URL", quality)
 
             try:
                 headers = {'X-Requested-With': 'XMLHttpRequest', 'Referer': url}

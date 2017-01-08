@@ -28,22 +28,32 @@
 	<category id="general" label="Accounts">
 		<setting type="lsep" label="Alluc" />
 		<setting id="enable_alluc" type="bool" label="Enable Alluc Sources" default="false" />
-		<setting id="alluc_api"  type="text" label="Api Key" default="" visible="!eq(-1,false)" />
-		<setting id="alluc_debrid" type="bool" label="Enable Alluc Debrid Sources" visible="!eq(-2,false)" />
-		<setting id="alluc_max_results" type="slider" label="Max Results for Search" default="50" range="5,200" option="int" visible="!eq(-3,false)" />
+		<setting type="lsep" label="NOTE: Username and Password are Case Sensitive" />
+		<setting id="alluc_username"  type="text" label="Username" default="" visible="!eq(-1,false)" />
+		<setting id="alluc_password"  type="text" label="Password" default="" visible="!eq(-2,false)" />
+		
+		<setting id="alluc_debrid" type="bool" label="Enable Alluc Debrid Sources" visible="!eq(-3,false)" />
+		<setting id="alluc_max_results" type="slider" label="Max Results for Search" default="100" range="5,200" option="int" visible="!eq(-4,false)" />
 	</category>
+	
+	
+	
 	<category label="32345">
 		<setting id="debridsources" type="bool" label="Enable Debrid Providers" default="false" />
 		<setting type="lsep" label="Free Providers" />
+
 		<setting id="provider.putlocker" type="bool" label="Putlocker" default="true" />
-		<setting id="putlocker_custom"  type="bool" label=" - Enable Custom Url" default="false" />
+		<setting id="putlocker_custom"  type="bool" label=" - Enable Custom Url" default="false" visible="!eq(-1,false)" />
 		<setting id="putlocker_base"  type="text" label=" - Base Url" default="http://cartoonhd.online" visible="!eq(-1,false)" />
 
 		<setting id="provider.movieshd" type="bool" label="Movieshd" default="true" />
-		<setting id="movieshd_custom"  type="bool" label=" - Enable Custom Url" default="false" />
+		<setting id="movieshd_custom"  type="bool" label=" - Enable Custom Url" default="false" visible="!eq(-1,false)" />
 		<setting id="movieshd_base"  type="text" label=" - Base Url" default="http://flixanity.watch" visible="!eq(-1,false)" />
 
 		<setting id="provider.onemovies" type="bool" label="Onemovies" default="true" />
+		<setting id="onemovies_custom"  type="bool" label=" - Enable Custom Url" default="false" visible="!eq(-1,false)" />
+		<setting id="onemovies_base"  type="text" label=" - Base Url" default="http://123movies.gs" visible="!eq(-1,false)" />
+		
 		<setting id="provider.hevcfilm" type="bool" label="Hevcfilm" default="true" />
 
 		<setting id="provider.openmovies" type="bool" label="Openmovies" default="true" />
@@ -75,6 +85,7 @@
 		<setting id="provider.solar" type="bool" label="Solar" default="true" />
 		<setting id="provider.putlockerz" type="bool" label="Putlockerz" default="true" />
 		<setting id="provider.moviefree" type="bool" label="Moviefree" default="true" />
+		<setting id="provider.vidics" type="bool" label="Vidics" default="true" />
 
 		
 		<setting type="lsep" label="Anime - Cartoons" />		

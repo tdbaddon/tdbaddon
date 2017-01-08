@@ -1,10 +1,16 @@
-import sys,urllib,re,xbmcplugin,xbmcgui,xbmc,xbmcaddon,os,xbmcvfs,shutil
-import requests
+# -*- coding: utf-8 -*-
+
+import xbmc,xbmcaddon,xbmcgui,xbmcplugin,xbmcvfs
+import os,re,shutil,sys,urllib
+
 from addon.common.addon import Addon
 from metahandler import metahandlers
 from bs4 import BeautifulSoup as bs
+from md_request import open_url
+
 
 #M4U Add-on Created By Mucky Duck (3/2016)
+
 
 User_Agent = 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.89 Safari/537.36'
 addon_id='plugin.video.mdm4u'
@@ -22,6 +28,10 @@ baseurl = 'http://m4ufree.info'
 
 
 def CAT():
+
+        reload(sys)
+        sys.setdefaultencoding("utf-8")
+
         addDir('[B][COLOR white]LATEST ADDED[/COLOR][/B]',baseurl+'/newadd',1,icon,fanart,'')
         addDir('[B][COLOR white]MOST VIEWED[/COLOR][/B]',baseurl+'/top-view',1,icon,fanart,'')
         addDir('[B][COLOR white]HOT MOVIES[/COLOR][/B]',baseurl,1,icon,fanart,'')
@@ -45,7 +55,7 @@ def TV():
 
 
 def INDEX(url):
-        link = OPEN_URL(url)
+        link = open_url(url).text
         all_videos = regex_get_all(link, '"item"', 'clear:both')
         items = len(all_videos)
         for a in all_videos:
@@ -81,7 +91,7 @@ def INDEX(url):
 
 
 def INDEX2(url):
-        link = OPEN_URL(url)
+        link = open_url(url).text
         all_videos = regex_get_all(link, '"item"', 'clear:both')
         items = len(all_videos)
         for a in all_videos:
@@ -119,7 +129,7 @@ def INDEX2(url):
 def EPIS(name,url,iconimage):
         if iconimage == None:
                 iconimage = icon
-        link = OPEN_URL(url)
+        link = open_url(url).text
         match=re.compile('<a itemprop="target" href="(.*?)"><.*?class="episode".*?>(.*?)</button></a>').findall(link) 
         items = len(match)
         for url,name2 in match:
@@ -133,7 +143,7 @@ def EPIS(name,url,iconimage):
 
 
 def LINK(name,url,iconimage):
-        link = OPEN_URL(url)
+        link = open_url(url).content
         
         '''try:
                 request_url = re.findall('<h3 class="h3-detail"> <a  href="(.*?)">Watch <', str(link), re.I|re.DOTALL)[0]
@@ -143,10 +153,8 @@ def LINK(name,url,iconimage):
                 soup = bs(link, "html.parser")
                 a = soup.find('h3',class_='h3-detail')
                 b = a.find('a', href=True)
-                addon.log('#############################b='+str(b))
                 request_url = str(b["href"])
-                addon.log('#############################b2='+str(b["href"]))
-                link = OPEN_URL(request_url)
+                link = open_url(request_url).content
         except: pass
         try:
                 try:
@@ -169,7 +177,7 @@ def LINK(name,url,iconimage):
                 vid_id = re.split(r'=', url, re.I)[1]
                 vid_id = re.split(r'&amp', vid_id, re.I)[0]
                 url = 'https://docs.google.com/get_video_info?docid=' + vid_id +'&authuser='
-                link = OPEN_URL(url)
+                link = open_url(url).text
                 link = urllib.unquote(link)
                 link = link.encode('ascii', 'ignore').decode('ascii')
                 url = re.findall(r'\|(.*?)\|', str(link), re.I|re.DOTALL)[0]
@@ -227,7 +235,7 @@ def SEARCHT():
 
 
 def GENRE(url):
-        link = OPEN_URL(url)
+        link = open_url(url).text
         match=re.compile('<li> <a href="(.*?)" title="All movies.*?">(.*?)</a></li>').findall(link) 
         for url,name in match:
                 if '/movie-' in url:
@@ -237,7 +245,7 @@ def GENRE(url):
 
 
 def YEAR(url):
-        link = OPEN_URL(url)
+        link = open_url(url).text
         match=re.compile('<li> <a href="(.*?)" title="All movies.*?">(.*?)</a></li>').findall(link) 
         for url,name in match:
                 if '/year-' in url:
@@ -247,7 +255,7 @@ def YEAR(url):
 
 
 def TVGENRE(url):
-        link = OPEN_URL(url)
+        link = open_url(url).text
         match=re.compile('<li> <a href="(.*?)" title="All TVshow.*?">(.*?)</a></li>').findall(link) 
         for url,name in match:
                 if '/tvshow-' in url:
@@ -418,18 +426,6 @@ def addLink(name,url,mode,iconimage,fanart,description=''):
         liz.setProperty('fanart_image', fanart)
         ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=url,listitem=liz,isFolder=False)
         return ok
-
-
-
-
-def OPEN_URL(url):
-        headers = {}
-        headers['User-Agent'] = User_Agent
-        link = requests.get(url, headers=headers, allow_redirects=False).text
-        link = link.encode('ascii', 'ignore').decode('ascii')
-        return link
-
-
 
 
 
