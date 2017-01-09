@@ -1,3 +1,9 @@
+######## v1.0.8 ########
+
+- Added md_view a simple script for adding views
+- Added md_tools a script with common methods in the Mucky Duck addons 
+- Added the Addon script from the common module
+
 ######## v1.0.7 ########
 
 - Fixed a decode error with incapsula on android devices

@@ -37,21 +37,21 @@ class source:
 
         self.list = []
 
-    def get_networks(self, logoBaseURL):
+    def get_networks(self):
         listItems = []
         provider = 'yodesi_tv'
-        listItems.append({'provider':provider, 'name':90200, 'image': logoBaseURL+'star_plus_hk.png', 'action': 'tvshows', 'url':'star-plus'})
-        listItems.append({'provider':provider, 'name':90201, 'image': logoBaseURL+'zee_tv_in.png', 'action': 'tvshows', 'url':'zee-tv'})
-        listItems.append({'provider':provider, 'name':90203, 'image': logoBaseURL+'sony_set.png', 'action': 'tvshows', 'url':'sony-tv'})
-        listItems.append({'provider':provider, 'name':90205, 'image': logoBaseURL+'life_ok_in.png', 'action': 'tvshows', 'url':'life-ok'})
-        listItems.append({'provider':provider, 'name':90207, 'image': logoBaseURL+'star_jalsha.png', 'action': 'tvshows', 'url':'star-jalsha'})
-        listItems.append({'provider':provider, 'name':90208, 'image': logoBaseURL+'colors_in.png', 'action': 'tvshows', 'url':'colors'})
-        listItems.append({'provider':provider, 'name':90209, 'image': logoBaseURL+'sony_sab_tv_in.png', 'action': 'tvshows', 'url':'sab-tv'})
-        listItems.append({'provider':provider, 'name':90210, 'image': logoBaseURL+'star_pravah.png', 'action': 'tvshows', 'url':'star-pravah'})
-        listItems.append({'provider':provider, 'name':90212, 'image': logoBaseURL+'mtv_us.png', 'action': 'tvshows', 'url':'mtv-india'})
-        listItems.append({'provider':provider, 'name':90213, 'image': logoBaseURL+'channel_v_in.png', 'action': 'tvshows', 'url':'category/channel-v'})
-        listItems.append({'provider':provider, 'name':90214, 'image': logoBaseURL+'bindass_in.png', 'action': 'tvshows', 'url':'bindass-tv'})
-        listItems.append({'provider':provider, 'name':90220, 'image': logoBaseURL+'and_tv_in.png', 'action': 'tvshows', 'url':'tv-and-tv'})
+        listItems.append({'provider':provider, 'name':90200, 'image': 'star_plus_hk.png', 'action': 'tvshows', 'url':'star-plus'})
+        listItems.append({'provider':provider, 'name':90201, 'image': 'zee_tv_in.png', 'action': 'tvshows', 'url':'zee-tv'})
+        listItems.append({'provider':provider, 'name':90203, 'image': 'sony_set.png', 'action': 'tvshows', 'url':'sony-tv'})
+        listItems.append({'provider':provider, 'name':90205, 'image': 'life_ok_in.png', 'action': 'tvshows', 'url':'life-ok'})
+        listItems.append({'provider':provider, 'name':90207, 'image': 'star_jalsha.png', 'action': 'tvshows', 'url':'star-jalsha'})
+        listItems.append({'provider':provider, 'name':90208, 'image': 'colors_in.png', 'action': 'tvshows', 'url':'colors'})
+        listItems.append({'provider':provider, 'name':90209, 'image': 'sony_sab_tv_in.png', 'action': 'tvshows', 'url':'sab-tv'})
+        listItems.append({'provider':provider, 'name':90210, 'image': 'star_pravah.png', 'action': 'tvshows', 'url':'star-pravah'})
+        listItems.append({'provider':provider, 'name':90212, 'image': 'mtv_us.png', 'action': 'tvshows', 'url':'mtv-india'})
+        listItems.append({'provider':provider, 'name':90213, 'image': 'channel_v_in.png', 'action': 'tvshows', 'url':'category/channel-v'})
+        listItems.append({'provider':provider, 'name':90214, 'image': 'bindass_in.png', 'action': 'tvshows', 'url':'bindass-tv'})
+        listItems.append({'provider':provider, 'name':90220, 'image': 'and_tv_in.png', 'action': 'tvshows', 'url':'tv-and-tv'})
         return listItems
 
     def get_shows(self, name, url):

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="script.module.muckys.common" name="Muckys Common Libraries" version="1.0.7" provider-name="Mucky Duck">
+<addon id="script.module.muckys.common" name="Muckys Common Libraries" version="1.0.8" provider-name="Mucky Duck">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 	</requires>
@@ -16,6 +16,8 @@ Js2Py v0.40 from https://github.com/PiotrDabkowski/Js2Py :
 jsbeautifier v1.6.4 from https://pypi.python.org/pypi/jsbeautifier :
 jsunpack from urlresolver :
 md_request a simple script for making web requests :
+md_tools a script with common methods in the Mucky Duck addons :
+md_view a simple script for adding views
 requests v2.12.4 from https://github.com/kennethreitz/requests :
 six v1.10.0 from https://pypi.python.org/pypi/six :
 unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :

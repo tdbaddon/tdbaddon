@@ -28,7 +28,7 @@ from resources.lib.libraries import logger
 
 class source:
     def __init__(self):
-        self.base_link_1 = 'http://www.hindilinks4u.to'
+        self.base_link_1 = 'https://www.hindilinks4u.to'
         self.base_link_2 = self.base_link_1
         self.search_link = '/feed/?s=%s&submit=Search'
         self.info_link = ''

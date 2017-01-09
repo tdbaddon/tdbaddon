@@ -1,3 +1,6 @@
+[B]1.5.4[/B]
+- new Providers
+
 [B]1.5.3[/B]
 Alluc account now uses username and password instead API KEY
 

@@ -417,7 +417,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 
 <addon id="plugin.program.echowizard"
 	     name="[COLOR yellowgreen]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
-	     version="1.47"
+	     version="1.48"
 	     provider-name="Echo Coder">
   <requires>
   	<import addon="xbmc.python" version="2.1.0"/>
@@ -577,25 +577,25 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
   </extension>
 </addon>
 
-<addon id="plugin.video.aftershock" name="Aftershock" version="4.4.2" provider-name="Aftershock">
+<addon id="plugin.video.aftershock" name="Aftershock" version="4.5.0" provider-name="Aftershock">
     <requires>
         <import addon="xbmc.python" version="2.19.0"/>
         <import addon="repository.aftershock" version="2.0.1"/>
-        <import addon="script.aftershock.artwork" version="1.1.0"/>
+        <import addon="script.aftershock.artwork" version="1.3.0"/>
         <import addon="script.module.urlresolver"  version="3.0.21"/>
 		<import addon="script.module.metahandler"  version="1.0.0"/>
 		<import addon="script.module.beautifulsoup" version="3.2.1"/>
+        <import addon="script.aftershocknow.guide" version="1.0.0" optional="true"/>
     </requires>
     <extension point="xbmc.python.pluginsource" library="default.py">
         <provides>video</provides>
     </extension>
-    <extension point="xbmc.python.module" library="resources" />
     <extension point="xbmc.addon.metadata">
     <summary lang="en">Watch Hindi Movies &amp; TV Shows</summary>
     <description lang="en">Addon to browse and play a wide selection of Desi Movies, TV Shows and Live Streams. The author doesn't have any affiliation with the content providers nor uploads any content to the providers.</description>
-    <disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content providers.</disclaimer>
+    <disclaimer lang="en">The content provided in this application is available free on public domain. We do not host any content. We are just providing the way to stream and all content is the copyright of their owner. The author does not have any affiliation with the content providers.</disclaimer>
     <platform>all</platform>
-    <forum>http://www.facebook.com/aftershockpy</forum>
+    <forum>https://forums.tvaddons.ag/addon-releases/41405-aftershock-video-addon-indian-movies-tv.html</forum>
 	<website>http://www.facebook.com/aftershockpy</website>
   </extension>
 </addon>
@@ -781,28 +781,6 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
     <description lang="en">ColombiaTV is the best addon to watch the main TV Channels from Colombia</description>
     <description lang="es">ColombiaTV es el mejor addon para ver los principales canales de Televisión de Colombia</description>
   </extension>
-</addon>
-
-<addon id="plugin.video.concertarchive"
-       name="Concert Archive"
-       version="1.0.2"
-       provider-name="Kinkin, art by Marquerite">
-    <requires>
-        <import addon="xbmc.python" version="2.1.0"/>
-        <import addon="script.module.t0mm0.common" version="1.1.0"/>
-        <import addon="plugin.video.youtube"/>
-    </requires>
-    <extension point="xbmc.python.pluginsource"
-               	library="default.py">
-        <provides>video audio</provides>
-    </extension>
-    <extension point="xbmc.addon.metadata">
-        <platform>all</platform>
-        <summary>Great archive of concert videos and audio bootlegs</summary>
-        <description>Find classic concert videos from concertsvideos.com and bandsvideos.com.
-Plus stream or download from over 70,000 live audio bootlegs from www.archive.org</description>
-    </extension>
-
 </addon>
 
 <addon id="plugin.video.croatia_od" name="Croatia On Demand" version="1.9.5" provider-name="natko1412">
@@ -1327,7 +1305,7 @@ Plus stream or download from over 70,000 live audio bootlegs from www.archive.or
 
 <addon id="plugin.video.icefilms"
        name="Icefilms"
-       version="1.99.03"
+       version="1.99.10"
        provider-name="Eldorado">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
@@ -1807,7 +1785,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
-<addon id="plugin.video.prosport" name="Pro Sport" version="0.81" provider-name="gerikss, podgod, iCanuck">
+<addon id="plugin.video.prosport" name="Pro Sport" version="0.82" provider-name="gerikss, podgod, iCanuck">
   <requires>
     <import addon="xbmc.python" version="2.1.0" />
      <import addon="script.module.requests" version="2.9.1" />
@@ -1958,15 +1936,16 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.streamarmy" name="^[COLOR lime]STR[/COLOR][COLOR brown]EAM [/COLOR][COLOR lime]AR[/COLOR][COLOR brown]MY[/COLOR]^" version="1.0.5" provider-name="Stream Army">
+<addon id="plugin.video.streamarmy" name="^[COLOR lime]STR[/COLOR][COLOR brown]EAM [/COLOR][COLOR lime]AR[/COLOR][COLOR brown]MY[/COLOR]^" version="1.0.6" provider-name="Stream Army">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.simplejson" version="3.3.0"/>
-    <import addon="script.module.urlresolver"  version="2.1.2"/>
-    <import addon="script.module.liveresolver" version="0.1.24"/>
-    <import addon="script.common.plugin.cache" version="2.5.2"/>    <import addon="script.module.metahandler" version="2.5.1"/>
-    <import addon="plugin.video.youtube" version="5.3.2" optional="false" />
-  <import addon="plugin.video.f4mTester" version="2.2.4" optional="false" />
+    <import addon="script.module.urlresolver"  version="3.0.26"/>
+    <import addon="script.module.liveresolver" version="0.1.48"/>
+    <import addon="script.common.plugin.cache" version="2.5.8"/>
+  <import addon="script.module.metahandler" version="2.9.1"/>
+    <import addon="plugin.video.youtube" version="5.3.6" optional="false" />
+  <import addon="plugin.video.f4mTester" version="2.7.1" optional="false" />
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
         <provides>video</provides>
@@ -2231,6 +2210,32 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
+<addon id="plugin.video.totaltv"
+	name=" [COLOR yellow]Total[/COLOR] TV"
+	version="1.2.0"
+	provider-name="SchisM">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.beautifulsoup" version="3.2.1"/>
+    <import addon="script.module.urlresolver" version="2.10.12" />
+    <import addon="script.module.metahandler" />
+    <import addon="script.module.axel.downloader" version="0.2.0" optional="true"/>
+	<import addon="script.module.t0mm0.common" version="2.0.0"/>
+    <import addon="script.module.pyxbmct" version="1.1.4" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary>Watch your favourite TV Shows!</summary>
+        <description>Watch your favourites TV Shows! Credits goes to natko</description>
+
+    <platform>all</platform>
+    <forum></forum>
+
+  </extension>
+</addon>
+
 <addon id="plugin.video.tvo"
        name="TV Ontario"
        version="1.0.7"
@@ -2373,26 +2378,6 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
   </extension>
 
-</addon>
-
-<addon id="plugin.video.ustvcc"
-       name="Ustvcc"
-       version="0.1.8"
-       provider-name="humla">
-    <requires>
-        <import addon="xbmc.python" version="2.1.0"/>
-        <import addon="script.module.t0mm0.common" version="1.1.0"/>
-        <import addon="script.module.metahandler" version="1.0.0"/>
-    </requires>
-    <extension point="xbmc.python.pluginsource"
-               library="default.py">
-        <provides>video</provides>
-    </extension>
-    <extension point="xbmc.addon.metadata">
-        <platform>all</platform>
-        <summary>Watch US TV series </summary>
-        <description>Watch US TV series from ustv.cc</description>
-    </extension>
 </addon>
 
 <addon id="plugin.video.white.devil" name="[COLOR white]White Devil Streams[/COLOR]" version="1.0.1" provider-name="Biggy_Ozz">
@@ -2538,7 +2523,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.zen" version="1.5.3" name=" Zen" provider-name="Zen">
+<addon id="plugin.video.zen" version="1.5.4" name=" Zen" provider-name="Zen">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="script.zen.artwork" />
@@ -3661,7 +3646,7 @@ Kodi is a registered trademark of the XBMC Foundation. We are not connected to o
     </extension>
 </addon>
 
-<addon id="script.aftershock.artwork" version="1.1.0" name="Aftershock Artwork" provider-name="IDev">
+<addon id="script.aftershock.artwork" version="1.3.0" name="Aftershock Artwork" provider-name="IDev">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0"/>
 	</requires>
@@ -3673,7 +3658,7 @@ Kodi is a registered trademark of the XBMC Foundation. We are not connected to o
 	</extension>
 </addon>
 
-<addon id="script.aftershocknow.guide" name="Aftershock Now" version="1.1.5" provider-name="IDev">
+<addon id="script.aftershocknow.guide" name="Aftershock Now" version="1.2.0" provider-name="IDev">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0"/>
 		<import addon="script.module.simplejson" version="3.3.0"/>
@@ -3710,7 +3695,7 @@ Kodi is a registered trademark of the XBMC Foundation. We are not connected to o
 	</extension>
 </addon>
 
-<addon id="script.module.muckys.common" name="Muckys Common Libraries" version="1.0.7" provider-name="Mucky Duck">
+<addon id="script.module.muckys.common" name="Muckys Common Libraries" version="1.0.8" provider-name="Mucky Duck">
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 	</requires>
@@ -3727,6 +3712,8 @@ Js2Py v0.40 from https://github.com/PiotrDabkowski/Js2Py :
 jsbeautifier v1.6.4 from https://pypi.python.org/pypi/jsbeautifier :
 jsunpack from urlresolver :
 md_request a simple script for making web requests :
+md_tools a script with common methods in the Mucky Duck addons :
+md_view a simple script for adding views
 requests v2.12.4 from https://github.com/kennethreitz/requests :
 six v1.10.0 from https://pypi.python.org/pypi/six :
 unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :

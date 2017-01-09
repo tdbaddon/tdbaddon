@@ -416,7 +416,7 @@ def ContainerStartup():
          if not meta_pack_locaton.endswith("/"):
              meta_pack_locaton = meta_pack_locaton + "/"
      else:
-         meta_pack_locaton = containers['url_2shared']
+         meta_pack_locaton = containers['url_offshore']
                             
      if not meta_installed:
 
@@ -460,11 +460,11 @@ def Zip_DL_and_Install(url, filename, installtype, work_folder, mc, local_instal
         #define the path to save it to
         filepath=os.path.normpath(os.path.join(work_folder, filename, ''))
 
-        #link = url + filename
+        link = url + filename
         
         #2Shared download
-        import resolvers
-        link = resolvers.SHARED2_HANDLER(url)
+        #import resolvers
+        #link = resolvers.SHARED2_HANDLER(url)
 
         filepath_exists=xbmcvfs.exists(filepath)
          
@@ -500,12 +500,12 @@ def create_meta_pack():
     
     A2Z=[chr(i) for i in xrange(ord('A'), ord('Z')+1)]
     
-    addon.log('### GETTING MOVIE METADATA FOR ALL *MUSIC* ENTRIES')
-    MOVIEINDEX(iceurl + 'music/a-z/1')
+    #addon.log('### GETTING MOVIE METADATA FOR ALL *MUSIC* ENTRIES')
+    #MOVIEINDEX(iceurl + 'music/a-z/1')
     addon.log('### GETTING MOVIE METADATA FOR ALL *STANDUP* ENTRIES')
     MOVIEINDEX(iceurl + 'standup/a-z/1')
-    addon.log('### GETTING MOVIE METADATA FOR ALL *OTHER* ENTRIES')
-    MOVIEINDEX(iceurl + 'other/a-z/1')
+    #addon.log('### GETTING MOVIE METADATA FOR ALL *OTHER* ENTRIES')
+    #MOVIEINDEX(iceurl + 'other/a-z/1')
     addon.log('### GETTING MOVIE METADATA FOR ALL ENTRIES ON: '+'1')
     MOVIEINDEX(iceurl + 'movies/a-z/1')
     for theletter in A2Z:
@@ -1773,6 +1773,23 @@ def GetURL(url, params = None, referrer = ICEFILMS_REFERRER, use_cookie = False,
     addon.log_debug('cookie: ' + repr(use_cookie))
     addon.log_debug('save_cookie: ' + repr(save_cookie))
 
+    if addon.get_setting('proxy_enable') == 'true':
+        proxy = 'http://' + addon.get_setting('proxy') + ':' + addon.get_setting('proxy_port')
+        proxy_handler = urllib2.ProxyHandler({'http': proxy})
+        username = addon.get_setting('proxy_user')
+        password = addon.get_setting('proxy_pass')
+        if username <> '' and password <> '':
+            print 'Using authenticated proxy: %s' % proxy
+            password_mgr = urllib2.HTTPPasswordMgrWithDefaultRealm()
+            password_mgr.add_password(None, proxy, username, password)
+            proxy_auth_handler = urllib2.ProxyBasicAuthHandler(password_mgr)
+            opener = urllib2.build_opener(proxy_handler, proxy_auth_handler)
+        else:
+            print 'Using proxy: %s' % proxy
+            opener = urllib2.build_opener(proxy_handler)
+        
+        urllib2.install_opener(opener)
+        
     headers = {
         'Referer': referrer,
         'Accept': ACCEPT,

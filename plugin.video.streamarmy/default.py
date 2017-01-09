@@ -19,6 +19,7 @@ ytplpg1         = 'https://www.googleapis.com/youtube/v3/playlistItems?pageToken
 ytplpg2         = '&part=snippet&playlistId='
 ytplpg3         = '&maxResults=50&key=AIzaSyCebQaY3SIk6VlFNzDlYy4nqNva9c9N4CI'
 adultpass       = selfAddon.getSetting('password')
+conpass         = selfAddon.getSetting('Conspiracy Password')
 metaset         = selfAddon.getSetting('enable_meta')
 messagetext     = 'http://streamarmy.uk/Main/update.txt'
 RUNNER          = base64.b64decode(b'aHR0cDovL2dldGFmbGl4LnVzL2FkZG9uL3lvdXR1YmUucGhw')
@@ -123,6 +124,31 @@ def GetContent(name,url,iconimage,fanart):
                 if (keyb.isConfirmed()):
                     passw = keyb.getText()
                 if passw <> adultpass:
+                    quit()
+            else:quit()
+
+        if 'con>yes</con' in link:
+            if conpass == '':
+                dialog = xbmcgui.Dialog()
+                ret = dialog.yesno('Conspiracy Content', 'You have opted to show Conspiracy content','','Due to the Nature of Content ,Please set a password to prevent accidental access','Cancel','OK')
+                if ret == 1:
+                    keyb = xbmc.Keyboard('', 'Set Password')
+                    keyb.doModal()
+                if (keyb.isConfirmed()):
+                    passwo = keyb.getText()
+                    selfAddon.setSetting('Conspiracy Password',passwo)
+                else:quit()
+                    
+        if 'con>yes</con' in link:
+            if conpass <> '':
+                dialog = xbmcgui.Dialog()
+                ret = dialog.yesno('Conspiracy Content', 'Please enter the password you set','to continue','','Cancel','OK')
+                if ret == 1:    
+                    keyb = xbmc.Keyboard('', 'Enter Password')
+                    keyb.doModal()
+                if (keyb.isConfirmed()):
+                    passwo = keyb.getText()
+                if passwo <> conpass:
                     quit()
             else:quit()
 

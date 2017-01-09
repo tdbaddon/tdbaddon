@@ -115,7 +115,10 @@ try:
     provider = params['provider']
 except:
     provider = None
-
+try:
+    genre = params['genre']
+except:
+    genre = None
 try:
     lang = params['lang']
 except:
@@ -133,6 +136,18 @@ elif action == 'movieLangNavigator':
     from resources.lib.indexers import movies
     movies.movies().languages()
 
+elif action == 'movieLangHome':
+    from resources.lib.indexers import movies
+    movies.movies().home(lang=lang)
+
+elif action == 'movieLangGenre':
+    from resources.lib.indexers import movies
+    movies.movies().genres(lang=lang)
+
+elif action == 'movieLangYears':
+    from resources.lib.indexers import movies
+    movies.movies().years(lang=lang)
+
 elif action == 'movies':
     from resources.lib.indexers import movies
     analytics.sendAnalytics('%s-%s' % (action, lang))
@@ -146,9 +161,21 @@ elif action == 'desiTVNavigator':
     from resources.lib.indexers import navigator
     navigator.navigator().desiTV()
 
+elif action == 'desiLiveNavigator':
+    from resources.lib.indexers import navigator
+    navigator.navigator().desiLiveTV(url)
+    #from resources.lib.indexers import livetv
+    #analytics.sendAnalytics('%s-LIVE' % action)
+    #livetv.channels().get(url)
+
 elif action == 'artwork':
     from resources.lib.modules import control
     control.artwork()
+
+elif action == 'liveEPGNavigator':
+    from resources.lib.libraries import control
+    analytics.sendAnalytics('%s-EPG' % action)
+    xbmc.executebuiltin("RunAddon(script.aftershocknow.guide)")
 
 elif action == 'tvshows':
     from resources.lib.indexers import tvshows
@@ -230,3 +257,22 @@ elif action == 'openSettings':
 elif action == 'clearCache':
     from resources.lib.indexers import navigator
     navigator.navigator().clearCache(url)
+
+elif action == 'startLiveProxy':
+    try :
+        import os
+        from resources.lib.libraries import control
+
+        libPath = os.path.join(control.addonInfo('path'), 'resources', 'lib', 'libraries')
+        serverPath = os.path.join(libPath, 'localproxy.py')
+        try:
+            import requests
+            requests.get('http://127.0.0.1:29000/version')
+            proxyIsRunning = True
+        except:
+            proxyIsRunning = False
+        if not proxyIsRunning:
+            xbmc.executebuiltin('RunScript(' + serverPath + ')')
+    except:
+        import traceback
+        traceback.print_exc()

@@ -39,60 +39,70 @@ class source:
 
         self.star_plus_link = 'forumdisplay.php?f=42'
         self.zee_tv_link = 'forumdisplay.php?f=73'
-        self.set_link = 'forumdisplay.php?f=63'
+        self.sony_link = 'forumdisplay.php?f=63'
         self.life_ok_link = 'forumdisplay.php?f=1375'
-        self.sahara_one_link = 'forumdisplay.php?f=134'
-        self.star_jalsha_link = 'forumdisplay.php?f=667'
         self.colors_link = 'forumdisplay.php?f=176'
         self.sony_sab_link = 'forumdisplay.php?f=254'
-        self.star_pravah_link = 'forumdisplay.php?f=1138'
-        self.mtv_india_link = 'forumdisplay.php?f=339'
-        self.channel_v_link = 'forumdisplay.php?f=633'
-        self.utv_bindass_link = 'forumdisplay.php?f=504'
-        self.utv_stars_link = 'forumdisplay.php?f=1274'
-        self.hungama_link = 'forumdisplay.php?f=472'
-        self.cartoon_network_link = 'forumdisplay.php?f=509'
+        self.star_jalsha_link = 'forumdisplay.php?f=667'
+        self.sahara_one_link = 'forumdisplay.php?f=134'
         self.and_tv_link = 'forumdisplay.php?f=3138'
-        self.colors_bangla_link = 'forumdisplay.php?f=2117'
-        self.zee_zindagi_link = 'forumdisplay.php?f=2679'
+        self.star_pravah_link = 'forumdisplay.php?f=1138'
+        self.sony_pal_link = 'forumdisplay.php?f=2757'
+        self.mtv_india_link = 'forumdisplay.php?f=339'
+        self.utv_bindass_link = 'forumdisplay.php?f=504'
+        self.channel_v_link = 'forumdisplay.php?f=633'
+        self.utv_stars_link = 'forumdisplay.php?f=1274'
         self.big_magic_link = 'forumdisplay.php?f=1887'
-        self.colors_marathi_link = 'forumdisplay.php?f=2369'
-        self.maa_link = 'forumdisplay.php?f=3165'
         self.zee_marathi_link = 'forumdisplay.php?f=1299'
         self.zee_bangla = 'forumdisplay.php?f=676'
-        self.zoom_link = 'forumdisplay.php?f=1876'
         self.star_vijay_link = 'forumdisplay.php?f=1609'
+        self.zoom_link = 'forumdisplay.php?f=1876'
+        self.zing_link = 'forumdisplay.php?f=2624'
+        self.zee_yuva_link = 'forumdisplay.php?f=4229'
+        self.colors_marathi_link = 'forumdisplay.php?f=2369'
+        self.colors_bangla_link = 'forumdisplay.php?f=2117'
+        self.maa_link = 'forumdisplay.php?f=3165'
+
+        self.hungama_link = 'forumdisplay.php?f=472'
+        self.cartoon_network_link = 'forumdisplay.php?f=509'
+
+        self.zee_zindagi_link = 'forumdisplay.php?f=2679'
 
         self.list = []
 
-    def get_networks(self, logoBaseURL):
+    def get_networks(self):
         listItems = []
         provider = 'desirulez_mv_tv'
-        listItems.append({'provider':provider, 'name':90200, 'image': logoBaseURL+'star_plus_hk.png', 'action': 'tvshows', 'url':self.star_plus_link})
-        listItems.append({'provider':provider, 'name':90201, 'image': logoBaseURL+'zee_tv_in.png', 'action': 'tvshows', 'url':self.zee_tv_link})
-        listItems.append({'provider':provider, 'name':90203, 'image': logoBaseURL+'sony_set.png', 'action': 'tvshows', 'url':self.set_link})
-        listItems.append({'provider':provider, 'name':90205, 'image': logoBaseURL+'life_ok_in.png', 'action': 'tvshows', 'url':self.life_ok_link})
-        listItems.append({'provider':provider, 'name':90206, 'image': logoBaseURL+'sahara_one_in.png', 'action': 'tvshows', 'url':self.sahara_one_link})
-        listItems.append({'provider':provider, 'name':90207, 'image': logoBaseURL+'star_jalsha.png', 'action': 'tvshows', 'url':self.star_jalsha_link})
-        listItems.append({'provider':provider, 'name':90208, 'image': logoBaseURL+'colors_in.png', 'action': 'tvshows', 'url':self.colors_link})
-        listItems.append({'provider':provider, 'name':90209, 'image': logoBaseURL+'sony_sab_tv_in.png', 'action': 'tvshows', 'url':self.sony_sab_link})
-        listItems.append({'provider':provider, 'name':90210, 'image': logoBaseURL+'star_pravah.png', 'action': 'tvshows', 'url':self.star_pravah_link})
-        listItems.append({'provider':provider, 'name':90212, 'image': logoBaseURL+'mtv_us.png', 'action': 'tvshows', 'url':self.mtv_india_link})
-        listItems.append({'provider':provider, 'name':90213, 'image': logoBaseURL+'channel_v_in.png', 'action': 'tvshows', 'url':self.channel_v_link})
-        listItems.append({'provider':provider, 'name':90214, 'image': logoBaseURL+'bindass_in.png', 'action': 'tvshows', 'url':self.utv_bindass_link})
-        listItems.append({'provider':provider, 'name':90215, 'image': logoBaseURL+'utv_stars.png', 'action': 'tvshows', 'url':self.utv_stars_link})
-        listItems.append({'provider':provider, 'name':90218, 'image': logoBaseURL+'hungama.png', 'action': 'tvshows', 'url':self.hungama_link})
-        listItems.append({'provider':provider, 'name':90219, 'image': logoBaseURL+'cartoon_network_global.png', 'action': 'tvshows', 'url':self.cartoon_network_link})
-        listItems.append({'provider':provider, 'name':90220, 'image': logoBaseURL+'and_tv_in.png', 'action': 'tvshows', 'url':self.and_tv_link})
-        listItems.append({'provider':provider, 'name':90222, 'image': logoBaseURL+'colors_in_bangla.png', 'action': 'tvshows', 'url':self.colors_bangla_link})
-        listItems.append({'provider':provider, 'name':90223, 'image': logoBaseURL+'zee_zindagi_in.png', 'action': 'tvshows', 'url':self.zee_zindagi_link})
-        listItems.append({'provider':provider, 'name':90224, 'image': logoBaseURL+'big_magic_in.png', 'action': 'tvshows', 'url':self.big_magic_link})
-        listItems.append({'provider':provider, 'name':90225, 'image': logoBaseURL+'colors_in_marathi.png', 'action': 'tvshows', 'url':self.colors_marathi_link})
-        listItems.append({'provider':provider, 'name':90226, 'image': logoBaseURL+'maa_tv.png', 'action': 'tvshows', 'url':self.maa_link})
-        listItems.append({'provider':provider, 'name':90227, 'image': logoBaseURL+'zee_marathi.png', 'action': 'tvshows', 'url':self.zee_marathi_link})
-        listItems.append({'provider':provider, 'name':90228, 'image': logoBaseURL+'zee_bangla.png', 'action': 'tvshows', 'url':self.zee_bangla})
-        listItems.append({'provider':provider, 'name':90229, 'image': logoBaseURL+'zoom_tv_in.png', 'action': 'tvshows', 'url':self.zoom_link})
-        listItems.append({'provider':provider, 'name':90230, 'image': logoBaseURL+'star_vijay.png', 'action': 'tvshows', 'url':self.star_vijay_link})
+        listItems.append({'provider':provider, 'name':90200, 'image': 'star_plus_hk.png', 'action': 'tvshows', 'url':self.star_plus_link})
+        listItems.append({'provider':provider, 'name':90201, 'image': 'zee_tv_in.png', 'action': 'tvshows', 'url':self.zee_tv_link})
+        listItems.append({'provider':provider, 'name':90203, 'image': 'sony_set.png', 'action': 'tvshows', 'url':self.sony_link})
+        listItems.append({'provider':provider, 'name':90205, 'image': 'life_ok_in.png', 'action': 'tvshows', 'url':self.life_ok_link})
+        listItems.append({'provider':provider, 'name':90206, 'image': 'sahara_one_in.png', 'action': 'tvshows', 'url':self.sahara_one_link})
+        listItems.append({'provider':provider, 'name':90207, 'image': 'star_jalsha.png', 'action': 'tvshows', 'url':self.star_jalsha_link})
+        listItems.append({'provider':provider, 'name':90208, 'image': 'colors_in.png', 'action': 'tvshows', 'url':self.colors_link})
+        listItems.append({'provider':provider, 'name':90209, 'image': 'sony_sab_tv_in.png', 'action': 'tvshows', 'url':self.sony_sab_link})
+        listItems.append({'provider':provider, 'name':90210, 'image': 'star_pravah.png', 'action': 'tvshows', 'url':self.star_pravah_link})
+        listItems.append({'provider':provider, 'name':90212, 'image': 'mtv_us.png', 'action': 'tvshows', 'url':self.mtv_india_link})
+        listItems.append({'provider':provider, 'name':90213, 'image': 'channel_v_in.png', 'action': 'tvshows', 'url':self.channel_v_link})
+        listItems.append({'provider':provider, 'name':90214, 'image': 'bindass_in.png', 'action': 'tvshows', 'url':self.utv_bindass_link})
+        listItems.append({'provider':provider, 'name':90215, 'image': 'utv_stars.png', 'action': 'tvshows', 'url':self.utv_stars_link})
+        listItems.append({'provider':provider, 'name':90218, 'image': 'hungama.png', 'action': 'tvshows', 'url':self.hungama_link})
+        listItems.append({'provider':provider, 'name':90219, 'image': 'cartoon_network_global.png', 'action': 'tvshows', 'url':self.cartoon_network_link})
+        listItems.append({'provider':provider, 'name':90220, 'image': 'and_tv_in.png', 'action': 'tvshows', 'url':self.and_tv_link})
+        listItems.append({'provider':provider, 'name':90222, 'image': 'colors_in_bangla.png', 'action': 'tvshows', 'url':self.colors_bangla_link})
+        listItems.append({'provider':provider, 'name':90223, 'image': 'zee_zindagi_in.png', 'action': 'tvshows', 'url':self.zee_zindagi_link})
+        listItems.append({'provider':provider, 'name':90224, 'image': 'big_magic_in.png', 'action': 'tvshows', 'url':self.big_magic_link})
+        listItems.append({'provider':provider, 'name':90225, 'image': 'colors_in_marathi.png', 'action': 'tvshows', 'url':self.colors_marathi_link})
+        listItems.append({'provider':provider, 'name':90226, 'image': 'maa_tv.png', 'action': 'tvshows', 'url':self.maa_link})
+        listItems.append({'provider':provider, 'name':90227, 'image': 'zee_marathi.png', 'action': 'tvshows', 'url':self.zee_marathi_link})
+        listItems.append({'provider':provider, 'name':90228, 'image': 'zee_bangla.png', 'action': 'tvshows', 'url':self.zee_bangla})
+        listItems.append({'provider':provider, 'name':90229, 'image': 'zoom_tv_in.png', 'action': 'tvshows', 'url':self.zoom_link})
+        listItems.append({'provider':provider, 'name':90230, 'image': 'star_vijay.png', 'action': 'tvshows', 'url':self.star_vijay_link})
+
+        listItems.append({'provider':provider, 'name':90231, 'image': 'sony_pal_in.png', 'action': 'tvshows', 'url':self.sony_pal_link})
+        listItems.append({'provider':provider, 'name':90232, 'image': 'zee_zing.png', 'action': 'tvshows', 'url':self.zing_link})
+        listItems.append({'provider':provider, 'name':90233, 'image': 'zee_yuva_in.png', 'action': 'tvshows', 'url':self.zee_yuva_link})
+
         return listItems
     def get_movie(self, imdb, title, year):
         try :

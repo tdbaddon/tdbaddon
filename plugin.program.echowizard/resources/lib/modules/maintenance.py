@@ -813,6 +813,80 @@ def view_LastError():
 	if got_log == 0:
 		dialog.ok(MaintTitle,'Sorry we could not find a log file on your system')
 
+def grab_Log(file=False, old=False):
+	LOG = xbmc.translatePath('special://logpath/')
+	finalfile   = 0
+	logfilepath = os.listdir(LOG)
+	logsfound   = []
+
+	for item in logfilepath:
+		if old == True and item.endswith('.old.log'): logsfound.append(os.path.join(LOG, item))
+		elif old == False and item.endswith('.log') and not item.endswith('.old.log'): logsfound.append(os.path.join(LOG, item))
+
+	if len(logsfound) > 0:
+		logsfound.sort(key=lambda f: os.path.getmtime(f))
+		if file == True: return logsfound[-1]
+		else:
+			filename    = open(logsfound[-1], 'r')
+			logtext     = filename.read()
+			filename.close()
+			return logtext
+	else: 
+		return False
+
+def errorList(file):
+	errors = []
+	a=open(file).read()
+	b=a.replace('\n','NEW_L').replace('\r','NEW_R')
+	match = re.compile('EXCEPTION Thrown(.+?)End of Python script error report').findall(b)
+	for item in match:
+		errors.append(item)
+	return errors
+
+def view_LastError():
+	curr = grab_Log(True, False)
+	old = grab_Log(True, True)
+	errors = []; error1 = []; error2 = [];
+	if not old == False: 
+		error2 = errorList(old)
+		if len(error2) > 0: 
+			for item in error2: errors.append(item)
+	if not curr == False: 
+		error1 = errorList(curr)
+		if len(error1) > 0: 
+			for item in error1: errors.append(item)
+	if len(errors) > 0:
+		msg = "[B][COLOR red]THE LAST ERROR YOU ENCOUNTERED WAS:[/B][/COLOR]\n\n%s" % (str(errors[-1]).replace('NEW_L','\n').replace('NEW_R','\r'))
+		Common.TextBoxesPlain(msg)
+	else: 
+		dialog.ok(MaintTitle,'Great news! We did not find any errors in your log.')
+
+def view_Errors():
+	curr = grab_Log(True, False)
+	old = grab_Log(True, True)
+	errors = []; error1 = []; error2 = [];
+	if old == False and curr == False:
+		dialog.ok(MaintTitle, 'Sorry we where unable to find a log file.')
+	if not curr == False: 
+		error1 = errorList(curr)
+	if not old == False: 
+		error2 = errorList(old)
+	
+	
+	if len(error2) > 0: 
+		for item in error2: errors = [item] + errors
+	if len(error1) > 0: 
+		for item in error1: errors = [item] + errors
+
+	if len(errors) > 0:
+		i = 0; string = ''
+		for item in errors:
+			i += 1
+			string += "[B][COLOR red]ERROR NUMBER %s[/B][/COLOR]\n\n%s\n" % (str(i), item)
+		Common.TextBoxesPlain(string.replace('NEW_L','\n').replace('NEW_R','\r'))
+	else:
+		dialog.ok(MaintTitle,'Great news! We did not find any errors in your log.')
+
 def viewErrors():
 
 	cachePath = os.path.join(xbmc.translatePath('special://home'), 'cache')

@@ -556,35 +556,13 @@ def MAINTENANCE_MENU():
 
 	if check_log == "true":
 
-		cachePath = os.path.join(xbmc.translatePath('special://home'), 'cache')
-		tempPath = os.path.join(xbmc.translatePath('special://home'), 'temp')
-		WindowsCache = xbmc.translatePath('special://home')
-		i = 0
-
-		if os.path.exists(tempPath):
-			for root, dirs, files in os.walk(tempPath,topdown=True):
-				dirs[:] = [d for d in dirs]
-				for name in files:
-					if ".old.log" not in name.lower():
-						if ".log" in name.lower():
-							a=open((os.path.join(root, name))).read()	
-							b=a.replace('\n','NEW_L').replace('\r','NEW_R')
-							match = re.compile('EXCEPTION Thrown(.+?)End of Python script error report').findall(b)
-							for checker in match:
-								i = i + 1
-
-		if os.path.exists(WindowsCache):
-			for root, dirs, files in os.walk(WindowsCache,topdown=True):
-				dirs[:] = [d for d in dirs]
-				for name in files:
-					if ".old.log" not in name.lower():
-						if ".log" in name.lower():
-							a=open((os.path.join(root, name))).read()	
-							b=a.replace('\n','NEW_L').replace('\r','NEW_R')
-							match = re.compile('EXCEPTION Thrown(.+?)End of Python script error report').findall(b)
-							for checker in match:
-								i = i + 1
-		
+		curr = maintenance.grab_Log(True, False)
+		old = maintenance.grab_Log(True, True)
+		errors1 = []; errors2 = []
+		if not curr == False: errors1 = maintenance.errorList(curr)
+		if not old == False: errors2 = maintenance.errorList(old)
+		i = len(errors1) + len(errors2)
+        
 		if i == 0:
 			ERRORS_IN_LOG = "[COLOR yellowgreen][B]0 ERRORS FOUND IN LOG[/B][/COLOR]"
 		else:
@@ -610,7 +588,7 @@ def MAINTENANCE_MENU():
 	Common.addItem("[COLOR lightskyblue][B]SETUP AUTO CLEAR AT SPECIFIC MB - [/B][/COLOR]" + sizecheck_onoff,BASEURL,9,ICON,FANART,'')
 	Common.addItem("[COLOR white][B]--------------------------[/B][/COLOR]",BASEURL,79,ICON,FANART,'')
 	if check_log == "true":
-		Common.addItem(ERRORS_IN_LOG,BASEURL,154,ERROR_ICON,FANART,'')
+		Common.addItem(ERRORS_IN_LOG,BASEURL,155,ERROR_ICON,FANART,'')
 	Common.addItem('[COLOR lightskyblue][B]VIEW LOG FILE[/B][/COLOR]',BASEURL,82,ERROR_ICON,FANART,'')
 	Common.addItem('[COLOR lightskyblue][B]VIEW THE LAST ERROR IN LOG FILE[/B][/COLOR]',BASEURL,154,ERROR_ICON,FANART,'')
 	if check_log == "true":
@@ -1901,5 +1879,11 @@ elif mode==175:
 	
 elif mode==176:
 		get_addons.ADDON_DECIDE(name,url)
+		
+elif mode==177:
+		get_addons.FILE_MANAGER_SOURCES(name,url,description)
+
+elif mode==178:
+		get_addons.WRITE_SOURCE_TO_FILE_MANAGER(name,url)
 
 xbmcplugin.endOfDirectory(int(sys.argv[1]))

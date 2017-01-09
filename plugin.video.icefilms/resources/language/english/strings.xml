@@ -1,8 +1,12 @@
 <strings>
     <!-- GENERAL -->
     <string id="30100">Icefilms Site URL</string>
-    <string id="30103">Flatten TV Shows with single seasons</string>
-    <string id="30106">Stack Multi-Part Sources</string>
+    <string id="30101">Enable Proxy</string>
+    <string id="30102">        Proxy IP</string>
+    <string id="30103">        Port</string>
+    <string id="30104">        User Name</string>
+    <string id="30105">        Password</string>
+    <string id="30106">Flatten TV Shows with single seasons</string>
     <string id="30108">Number of search results per page</string>
     <string id="30109">Hide Recently Added & Popularity tags in Movie and TV Show listings</string>
 

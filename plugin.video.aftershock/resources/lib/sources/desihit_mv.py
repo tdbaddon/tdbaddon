@@ -53,7 +53,8 @@ class source:
             result = client.request(query)
 
             result = result.decode('iso-8859-1').encode('utf-8')
-            url = re.compile('movie_id]\s=>\s(\d+)').findall(result)[0]
+            #url = re.compile('movie_id]\s=>\s(\d+)').findall(result)[0]
+            url = re.compile('movieId=(\d+)').findall(result)[0]
             if url == None or url == '':
                 raise Exception()
             return url

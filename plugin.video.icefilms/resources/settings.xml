@@ -1,8 +1,14 @@
 <settings>
    <category label="General">
        <setting id="icefilms-url" type="text" label="30100" default="http://www.icefilms.info/" />
-       <setting id="flatten-single-season" type="bool" label="30103" default="true"/>
-       <setting id="stack-multi-part" type="bool" label="30106" default="false" />      
+       <setting type="sep" />
+        <setting id="proxy_enable" type="bool" label="30101" default="false"/>
+        <setting id="proxy" type="text" label="30102" default="" enable="!eq(-1,false)"/>
+        <setting id="proxy_port" type="text" label="30103" default="" enable="!eq(-2,false)"/>
+        <setting id="proxy_user" type="text" label="30104" default="" enable="!eq(-3,false)"/>
+        <setting id="proxy_pass" type="text" label="30105" default="" enable="!eq(-4,false)"/>
+       <setting type="sep" />
+       <setting id="flatten-single-season" type="bool" label="30106" default="true"/>
        <setting id="search-results" type="number" label="30108" default="25"/>
        <setting id="hide-tags" type="bool" label="30109" default="false"/>
    </category>
@@ -59,7 +65,7 @@
 		<setting id="db_import" type="action" label="Import data into Icefilms DB" enable="true" action="RunPlugin(plugin://plugin.video.icefilms/?mode=import_db)"/>
 	</category>   
    <category label="Auto-View">
-	<setting id="auto-view" type="bool" label="30400" default="false"/>
+	<setting id="auto-view" type="bool" label="30400" default="true"/>
 	<setting id="movies-view" type="number" label="30401" default="503" enable="!eq(-1,false)"/>
 	<setting id="tvshows-view" type="number" label="30402" default="503" enable="!eq(-2,false)"/>
 	<setting id="seasons-view" type="number" label="30403" default="504" enable="!eq(-3,false)"/>	

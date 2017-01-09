@@ -55,6 +55,7 @@ DEPENDENCIES     = BASEURL + base64.b64decode(b'YWRkb25zL2RlcGVuZGVuY2llc19saXN0
 REPO_LIST        = BASEURL + base64.b64decode(b'YWRkb25zL3JlcG9zLnhtbA==')
 PASSWD           = BASEURL + base64.b64decode(b'b3RoZXIvYWR1bHRwYXNzLnR4dA==')
 PACKS_LIST       = BASEURL + base64.b64decode(b'YWRkb25zL2FkZG9uX3BhY2tzLnhtbA==')
+SOURCES_URL      = BASEURL + base64.b64decode(b'YWRkb25zL3NvdXJjZXMueG1s')
 DEP_LIST         = BASEURL + base64.b64decode(b'YWRkb25zL2RlcHMueG1s')
 PAID_DESC        = BASEURL + base64.b64decode(b'YWRkb25zL3BhaWRfZGVzY3JpcHRpb25zLw==')
 DESC             = BASEURL + base64.b64decode(b'YWRkb25zL2Rlc2NyaXB0aW9ucy8=')
@@ -99,6 +100,7 @@ def MENU_MAIN():
 	Common.addDir("[COLOR yellowgreen][B]############################################################################[/B][/COLOR]",BASEURL,121,ALL_ICON,FANART,description='all')
 	Common.addDir("[COLOR white][B]All Addons[/B][/COLOR]",BASEURL,150,ALL_ICON,FANART,description='all')
 	Common.addDir("[COLOR white][B]Repositories[/B][/COLOR]",BASEURL,150,REPO_ICON,FANART,description='repos')
+	Common.addDir("[COLOR white][B]File Manager Sources[/B][/COLOR]",BASEURL,177,REPO_ICON,FANART,description='')
 	Common.addDir("[COLOR white][B]Top 14 downloaded addons this week[/B][/COLOR]",BASEURL,150,TOP_ICON,FANART,description='top')
 	Common.addDir("[COLOR white][B]APK Addons[/B][/COLOR]",BASEURL,170,XXX_ICON,FANART,description='Null')
 	Common.addDir("[COLOR white][B]Video Addons[/B][/COLOR]",BASEURL,150,VIDEO_ICON,FANART,description='video')
@@ -621,6 +623,75 @@ def GET_REPO(name,url):
 		dp.close()
 
 		xbmcgui.Dialog().ok(AddonTitle, "[COLOR white]" + base_name + " successfully installed![/COLOR]")
+
+def FILE_MANAGER_SOURCES(name,url,description):
+	
+	SOURCES     =  xbmc.translatePath(os.path.join('special://home/userdata','sources.xml'))
+
+	if not os.path.isfile(SOURCES):
+		f = open(SOURCES,'w')
+		f.write('<sources>\n    <files>\n        <default pathversion="1"></default>\n    </files>\n</sources>')
+		f.close()
+	i=0
+	link = open_url(SOURCES_URL)
+	match= re.compile('<item>(.+?)</item>').findall(link)
+	for item in match:
+
+		title=re.compile('<title>(.+?)</title>').findall(item)[0]
+		source=re.compile('<source>(.+?)</source>').findall(item)[0]
+		
+		if str(source) not in open(SOURCES).read():
+			url = title + '|SPLIT|' + source
+			Common.addItem('[COLOR white]' + title + 's Source[/COLOR]',url,178,ICON,FANART,"")
+			i = i + 1
+	
+	if i == 0:
+		Common.addItem('[COLOR white]All of the sources we have are already in your File Manager.[/COLOR]','url',999,ICON,FANART,"")
+
+def WRITE_SOURCE_TO_FILE_MANAGER(name,url):
+
+	SOURCES     =  xbmc.translatePath(os.path.join('special://home/userdata','sources.xml'))
+
+	name,source = url.split('|SPLIT|')
+
+	choice = xbmcgui.Dialog().yesno(AddonTitle, "[COLOR white]Write the following to your File Manager?[/COLOR]","[COLOR white]Name:[/COLOR][COLOR dodgerblue][B]" + name + "[/B][/COLOR]","[COLOR white]Source:[/COLOR][COLOR dodgerblue][B]" + source + "[/B][/COLOR]", yeslabel='[B][COLOR green]YES[/COLOR][/B]',nolabel='[B][COLOR red]NO[/COLOR][/B]')
+	if choice == 1:
+		try:
+			OLD = '<files>\n		<default pathversion="1"></default>'
+			NEW = '<files>\n		<default pathversion="1"></default>\n		<source>\n			<name>'+name+'</name>\n			<path pathversion="1">'+source+'</path>\n			<allowsharing>true</allowsharing>\n		</source>'
+			a=open(SOURCES).read()
+			b=a.replace(OLD, NEW)
+			f= open((SOURCES), mode='w')
+			f.write(str(b))
+			f.close()
+		except:	
+			dialog.ok(AddonTitle, '[COLOR white]Sorry, there was an error writing the source to the file manager.[/COLOR]')
+			quit()
+	else:
+		quit()
+
+	if not source in open(SOURCES).read():
+		try:
+			OLD = '<files>\n        <default pathversion="1"></default>'
+			NEW = '<files>\n        <default pathversion="1"></default>\n		<source>\n			<name>'+name+'</name>\n			<path pathversion="1">'+source+'</path>\n			<allowsharing>true</allowsharing>\n		</source>'
+			a=open(SOURCES).read()
+			b=a.replace(OLD, NEW)
+			f= open((SOURCES), mode='w')
+			f.write(str(b))
+			f.close()
+		except:	
+			dialog.ok(AddonTitle, '[COLOR white]Sorry, there was an error writing the source to the file manager.[/COLOR]')
+			quit()
+			
+	if not source in open(SOURCES).read():
+		dialog.ok(AddonTitle, '[COLOR white]Sorry, there was an error writing the source to the file manager.[/COLOR]')
+		quit()
+	
+	xbmc.executebuiltin("RereshSources")
+
+	dialog.ok(AddonTitle, '[COLOR white]The ' + name + ' source has been written to your File Manager.', '[COLOR red][B]The Source will NOT SHOW in the File Manager until Kodi has been restarted. [/B][/COLOR]', 'Thank you for using ECHO Wizard.[/COLOR]')
+
+	xbmc.executebuiltin("Container.Refresh") 
 
 def ADD_DATABASE_ADDON(name,url):
 

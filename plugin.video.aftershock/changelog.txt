@@ -1,3 +1,13 @@
+Aftershock v4.5.0 (08-Jan-2017)
+------------------------
+- [COLOR orange]NOTE: Donations for this addon gracefully accepted at http://paypal.me/aftershockpy/10USD[/COLOR]
+- Added Genre, Year, Featured, In Theaters, Popular to Movies section
+- Live TV & EPG Support added back
+- Added Live TV Genre & Categories
+- Code Cleanup / Cosmetics
+- Updated Providers
+- Updated Live Providers (Swift / DYDNS)
+
 Aftershock v4.4.2 (27-Dec-2016)
 ------------------------
 - [COLOR orange]NOTE: If you like the addon please consider making a donation to aftershockpy@gmail.com via paypal.[/COLOR]

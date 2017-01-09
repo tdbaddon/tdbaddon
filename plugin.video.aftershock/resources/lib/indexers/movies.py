@@ -37,7 +37,7 @@ class movies:
     def __init__(self):
         self.list = []
         self.languagesList = [
-            ('Hindi ', 'hi'),
+            ('Hindi', 'hi'),
             ('Tamil', 'ta'),
             ('Telugu', 'te'),
             ('Marathi', 'mr'),
@@ -66,6 +66,8 @@ class movies:
         #self.search_link = 'http://api.themoviedb.org/3/search/movie?api_key=%s&query=%s'
         self.search_link = 'http://www.imdb.com/search/title?sort=release_date,desc&title=%s'
         self.language_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&num_votes=100,&production_status=released&languages=%s&count=40&start=1&sort=release_date,desc&start=1'
+        self.featured_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&languages=%s&num_votes=1000,&production_status=released&release_date=date[365],date[60]&sort=moviemeter,asc&count=40&start=1'
+        self.popular_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&languages=%s&num_votes=1000,&production_status=released&groups=top_1000&sort=moviemeter,asc&count=40&start=1'
         self.genre_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&languages=%s&num_votes=100,&release_date=date[730],date[30]&genres=%s&sort=release_date,desc&count=40&start=1'
         self.year_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&languages=%s&num_votes=100,&production_status=released&year=%s,%s&sort=release_date,desc&count=40&start=1'
 
@@ -307,6 +309,15 @@ class movies:
         except:
             return
 
+    def home(self, lang=None):
+        self.list.append({'name': 90109, 'image': 'genre.png', 'action': 'movieLangGenre&lang=%s' % lang})
+        self.list.append({'name': 90110, 'image': 'year.png', 'action': 'movieLangYears&lang=%s' % lang})
+        self.list.append({'name': 90103, 'url': self.language_link % lang, 'image': 'theater.png', 'action': 'movies'})
+        self.list.append({'name': 90104, 'url': self.featured_link % lang, 'image': 'featured.png', 'action': 'movies'})
+        self.list.append({'name': 90105, 'url': self.popular_link % lang, 'image': 'popular.png', 'action': 'movies'})
+
+        self.addDirectory(self.list, 'thumbnails')
+
     def genres(self, lang=None):
         genres = [
             ('Action', 'action'),
@@ -320,49 +331,27 @@ class movies:
             ('Fantasy', 'fantasy'),
             ('History', 'history'),
             ('Horror', 'horror'),
-            ('Music ', 'music'),
             ('Musical', 'musical'),
             ('Mystery', 'mystery'),
             ('Romance', 'romance'),
             ('Science Fiction', 'sci_fi'),
             ('Sport', 'sport'),
-            ('Thriller', 'thriller'),
-            ('War', 'war'),
-            ('Western', 'western')
+            ('Thriller', 'thriller')
         ]
 
-        for i in genres: self.list.append({'name': i[0], 'url': self.genre_link % (lang, i[1]), 'image': 'genre.png', 'action': 'movies', 'lang':lang})
+        for i in genres: self.list.append({'name': i[0], 'url': self.genre_link % (lang, i[1]), 'image': '%s.png' % i[1], 'action': 'movies&lang=%s' % lang})
         self.addDirectory(self.list)
         return self.list
 
-    def genres_old(self, lang=None):
-        try:
-            self.list = []
-            provider = '%s_mv' % control.setting('idx_provider')
-            call = __import__('resources.lib.sources.%s' % provider, globals(), locals(), ['source'], -1).source()
-            genres = call.genres
-            url = call.genre_url
-            keys = genres.keys()
-            for i in keys:
-                self.list.append({'name':i, 'image':i[:3].lower()+'.png', 'action':'movies&provider=%s&lang=%s' % (provider, lang), 'url':url % (lang, genres[i])})
-            self.list.sort()
-            self.addDirectory(self.list)
-            return self.list
-        except:
-            return
-
     def years(self, lang=None):
         year = (self.datetime.strftime('%Y'))
-        provider = '%s_mv' % control.setting('idx_provider')
-        call = __import__('resources.lib.sources.%s' % provider, globals(), locals(), ['source'], -1).source()
-        year_url = call.years_url
-        for i in range(int(year)-0, int(year)-50, -1): self.list.append({'name': str(i), 'url': year_url % (lang, str(i)), 'image': str(i)+'.png', 'action': 'movies&provider=%s&lang=%s' % (provider, lang)})
+        for i in range(int(year)-0, int(year)-50, -1): self.list.append({'name': str(i), 'url': self.year_link % (lang, str(i), str(i)), 'image': 'year.png', 'action': 'movies&lang=%s' % lang})
         self.addDirectory(self.list)
         return self.list
 
     def languages(self):
         self.list.append({'name':30201, 'url':'movieSearch', 'image':'search.png', 'action':'movieSearch'})
-        for i in self.languagesList: self.list.append({'name': str(i[0]), 'url': self.language_link % i[1], 'image': 'language.png', 'action': 'movies', 'lang':str(i[0])})
+        for i in self.languagesList: self.list.append({'name': str(i[0]), 'image': 'language.png', 'action': 'movieLangHome&lang=%s' % (str(i[1]))})
         self.addDirectory(self.list)
         return self.list
 
@@ -518,7 +507,9 @@ class movies:
             pass
 
     def movieDirectory(self, items, lang=None):
-        if items == None or len(items) == 0: return
+        if items == None or len(items) == 0:
+            control.infoDialog(control.lang(30518).encode('utf-8'))
+            return
 
         isPlayable = 'true' if not 'plugin' in control.infoLabel('Container.PluginName') else 'false'
 
@@ -536,6 +527,7 @@ class movies:
             metaget = metahandlers.MetaData(tmdb_api_key=self.tmdb_key, preparezip=False)
         except:
             pass
+
 
         for i in items:
             try:
@@ -616,7 +608,7 @@ class movies:
         views.setView('movies', {'skin.confluence': control.viewMode['thumbnails']})
         control.directory(int(sys.argv[1]), cacheToDisc=cacheToDisc)
 
-    def addDirectory(self, items):
+    def addDirectory(self, items, viewMode='list'):
         if items == None or len(items) == 0: return
         sysaddon = sys.argv[0]
         addonFanart = control.addonFanart()
@@ -644,5 +636,5 @@ class movies:
                 control.addItem(handle=int(sys.argv[1]), url=url, listitem=item, isFolder=True)
             except:
                 pass
-        views.setView('movies', {'skin.confluence': control.viewMode['list']})
+        views.setView('movies', {'skin.confluence': control.viewMode[viewMode]})
         control.directory(int(sys.argv[1]), cacheToDisc=True)

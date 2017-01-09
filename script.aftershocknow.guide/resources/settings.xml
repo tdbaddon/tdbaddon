@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <settings>
 	<category label="30101">
-        <setting id="xmltv.interval" label="30128" type="enum" default="2" lvalues="30129|30130" />
+        <setting id="xmltv.interval" label="30128" type="enum" default="3" lvalues="30129|30130|30131|30132" />
 	</category>
 	
 	

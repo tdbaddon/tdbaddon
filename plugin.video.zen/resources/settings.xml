@@ -55,6 +55,7 @@
 		<setting id="onemovies_base"  type="text" label=" - Base Url" default="http://123movies.gs" visible="!eq(-1,false)" />
 		
 		<setting id="provider.hevcfilm" type="bool" label="Hevcfilm" default="true" />
+		<setting id="provider.afmovies" type="bool" label="Afmovies" default="true" />
 
 		<setting id="provider.openmovies" type="bool" label="Openmovies" default="true" />
 		<setting id="provider.wonline" type="bool" label="Wonline" default="true" />

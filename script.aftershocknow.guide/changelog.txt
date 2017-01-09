@@ -1,4 +1,9 @@
 --------------------------
+AftershockNow Guide - 1.2.0
+--------------------------
+Removed User Registration
+
+--------------------------
 AftershockNow Guide - 1.1.5
 --------------------------
 BugFix - Channel match

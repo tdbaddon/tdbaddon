@@ -28,13 +28,12 @@ import os
 import urllib2
 import datetime
 import zlib
+import base64
 
-from lib.libraries import user
 if xbmc.getCondVisibility('System.HasAddon(plugin.video.aftershock)'):
-    aftershock = xbmcaddon.Addon('plugin.video.aftershock')
-    valid, MAIN_URL = user.validateUser(aftershock.getSetting('user.email'))
+    MAIN_URL = base64.b64decode('aHR0cHM6Ly9vZmZzaG9yZWdpdC5jb20vdmluZWVndS9hZnRlcnNob2NrLXJlcG8vZ3VpZGVzLw==')
 else:
-    MAIN_URL = ''
+    MAIN_URL = base64.b64decode('aHR0cHM6Ly9vZmZzaG9yZWdpdC5jb20vdmluZWVndS9hZnRlcnNob2NrLXJlcG8vZ3VpZGVzLw==')
 
 class FileFetcher(object):
     INTERVAL_ALWAYS = 0

@@ -32,7 +32,7 @@ def rdAuthorize():
         CLIENT_ID = 'XNFZQ4OO3VUOY'
         USER_AGENT = 'Kodi Aftershock/4.0'
 
-        if not '' in credentials()['realdebrid'].values():
+        if not '' in credentials()['rd'].values():
             if control.yesnoDialog(control.lang(32531).encode('utf-8'), control.lang(32532).encode('utf-8'), '', 'RealDebrid'):
                 control.setSetting(id='realdebrid.id', value='')
                 control.setSetting(id='realdebrid.secret', value='')
@@ -90,7 +90,7 @@ def rdAuthorize():
 
 def rdDict():
     try:
-        if '' in credentials()['realdebrid'].values(): raise Exception()
+        if '' in credentials()['rd'].values(): raise Exception()
         url = 'https://api.real-debrid.com/rest/1.0/hosts/domains'
         result = cache.get(client.request, 24, url)
         hosts = json.loads(result)
@@ -103,8 +103,8 @@ def rdDict():
 
 def pzDict():
     try:
-        if '' in credentials()['premiumize'].values(): raise Exception()
-        user, password = credentials()['premiumize']['user'], credentials()['premiumize']['pass']
+        if '' in credentials()['pz'].values(): raise Exception()
+        user, password = credentials()['pz']['user'], credentials()['pz']['pass']
         url = 'http://api.premiumize.me/pm-api/v1.php?method=hosterlist&params[login]=%s&params[pass]=%s' % (user, password)
         result = cache.get(client.request, 24, url)
         hosts = json.loads(result)['result']['hosterlist']
@@ -116,7 +116,7 @@ def pzDict():
 
 def adDict():
     try:
-        if '' in credentials()['alldebrid'].values(): raise Exception()
+        if '' in credentials()['ad'].values(): raise Exception()
         url = 'http://alldebrid.com/api.php?action=get_host'
         result = cache.get(client.request, 24, url)
         hosts = json.loads('[%s]' % result)
@@ -128,7 +128,7 @@ def adDict():
 
 def rpDict():
     try:
-        if '' in credentials()['rpnet'].values(): raise Exception()
+        if '' in credentials()['rp'].values(): raise Exception()
         url = 'http://premium.rpnet.biz/hoster2.json'
         result = cache.get(client.request, 24, url)
         result = json.loads(result)
@@ -141,30 +141,30 @@ def rpDict():
 
 def debridDict():
     return {
-    'realdebrid': rdDict(),
-    'premiumize': pzDict(),
-    'alldebrid': adDict(),
-    'rpnet': rpDict()
+    'rd': rdDict(),
+    'pz': pzDict(),
+    'ad': adDict(),
+    'rp': rpDict()
     }
 
 
 def credentials():
     return {
-        'realdebrid': {
+        'rd': {
         'id': control.setting('realdebrid.id'),
         'secret': control.setting('realdebrid.secret'),
         'token': control.setting('realdebrid.token'),
         'refresh': control.setting('realdebrid.refresh')
     },
-        'premiumize': {
+        'pz': {
         'user': control.setting('premiumize.user'),
         'pass': control.setting('premiumize.pin')
     },
-        'alldebrid': {
+        'ad': {
         'user': control.setting('alldebrid.user'),
         'pass': control.setting('alldebrid.pass')
     },
-        'rpnet': {
+        'rp': {
         'user': control.setting('rpnet.user'),
         'pass': control.setting('rpnet.api')
     }}
@@ -207,10 +207,10 @@ def resolver(url, debrid):
     u = u.replace('filefactory.com/stream/', 'filefactory.com/file/')
 
     try:
-        if not debrid == 'realdebrid' and not debrid == True: raise Exception()
+        if not debrid == 'rd' and not debrid == True: raise Exception()
 
-        if '' in credentials()['realdebrid'].values(): raise Exception()
-        id, secret, token, refresh = credentials()['realdebrid']['id'], credentials()['realdebrid']['secret'], credentials()['realdebrid']['token'], credentials()['realdebrid']['refresh']
+        if '' in credentials()['rd'].values(): raise Exception()
+        id, secret, token, refresh = credentials()['rd']['id'], credentials()['rd']['secret'], credentials()['rd']['token'], credentials()['rd']['refresh']
 
         USER_AGENT = 'Kodi Aftershock/4.0'
 
@@ -236,10 +236,10 @@ def resolver(url, debrid):
         pass
 
     try:
-        if not debrid == 'premiumize' and not debrid == True: raise Exception()
+        if not debrid == 'pz' and not debrid == True: raise Exception()
 
-        if '' in credentials()['premiumize'].values(): raise Exception()
-        user, password = credentials()['premiumize']['user'], credentials()['premiumize']['pass']
+        if '' in credentials()['pz'].values(): raise Exception()
+        user, password = credentials()['pz']['user'], credentials()['pz']['pass']
 
         url = 'http://api.premiumize.me/pm-api/v1.php?method=directdownloadlink&params[login]=%s&params[pass]=%s&params[link]=%s' % (user, password, urllib.quote_plus(u))
         result = client.request(url, close=False)
@@ -249,10 +249,10 @@ def resolver(url, debrid):
         pass
 
     try:
-        if not debrid == 'alldebrid' and not debrid == True: raise Exception()
+        if not debrid == 'ad' and not debrid == True: raise Exception()
 
-        if '' in credentials()['alldebrid'].values(): raise Exception()
-        user, password = credentials()['alldebrid']['user'], credentials()['alldebrid']['pass']
+        if '' in credentials()['ad'].values(): raise Exception()
+        user, password = credentials()['ad']['user'], credentials()['ad']['pass']
 
         login_data = urllib.urlencode({'action': 'login', 'login_login': user, 'login_password': password})
         login_link = 'http://alldebrid.com/register/?%s' % login_data
@@ -268,10 +268,10 @@ def resolver(url, debrid):
         pass
 
     try:
-        if not debrid == 'rpnet' and not debrid == True: raise Exception()
+        if not debrid == 'rp' and not debrid == True: raise Exception()
 
-        if '' in credentials()['rpnet'].values(): raise Exception()
-        user, password = credentials()['rpnet']['user'], credentials()['rpnet']['pass']
+        if '' in credentials()['rp'].values(): raise Exception()
+        user, password = credentials()['rp']['user'], credentials()['rp']['pass']
 
         login_data = urllib.urlencode({'username': user, 'password': password, 'action': 'generate', 'links': u})
         login_link = 'http://premium.rpnet.biz/client_api.php?%s' % login_data
