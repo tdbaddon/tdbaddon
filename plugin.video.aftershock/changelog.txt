@@ -1,3 +1,12 @@
+Aftershock v4.5.1 (11-Jan-2017)
+--------------------------------
+- Code cosmetics
+- Performance improvements
+- Fixed Fanart issue for Movies
+- Updated Live TV Resolvers
+- Added ChangeLog button to homescreen
+- Added exclusive Tamil Providers
+
 Aftershock v4.5.0 (08-Jan-2017)
 ------------------------
 - [COLOR orange]NOTE: Donations for this addon gracefully accepted at http://paypal.me/aftershockpy/10USD[/COLOR]

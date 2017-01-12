@@ -3,6 +3,7 @@ sys.argv = ['plugin.video.aftershock', '1']
 
 from resources.lib.libraries import logger
 from resources.lib.sources import apnaview_mv
+from resources.lib.sources import bmoviez_mv
 from resources.lib.sources import crazy4ad_mv
 from resources.lib.sources import desihdmovies_mv
 from resources.lib.sources import desihit_mv
@@ -27,8 +28,12 @@ from resources.lib.sources import dltube_mv
 from resources.lib.sources import miradetodo_mv
 from resources.lib.sources import movies14_mv
 from resources.lib.sources import movieshd_mv
+from resources.lib.sources import watchfree_mv
 from resources.lib.sources import rlsmovies_mv
 from resources.lib.sources import ymovies_mv
+from resources.lib.sources import tamilgun_mv
+from resources.lib.sources import rajtamil_mv
+from resources.lib.sources import tamilyogi_mv
 
 from resources.lib.sources import json_live
 from resources.lib.sources import ditto_live
@@ -54,6 +59,20 @@ class TestingMovies(unittest.TestCase):
 
     def test_apnaview(self):
         call = apnaview_mv.source()
+        self.source(call)
+
+    def test_bmoviez(self):
+        self.imdb = 'tt5165344'
+        self.title = 'Rustom'
+        self.year = '2016'
+        call = bmoviez_mv.source()
+        self.source(call)
+
+    def test_watchfree(self):
+        self.imdb = 'tt5165344'
+        self.title = 'Rustom'
+        self.year = '2016'
+        call = watchfree_mv.source()
         self.source(call)
 
     def test_crazy4ad(self):
@@ -179,6 +198,27 @@ class TestingMovies(unittest.TestCase):
         call = ymovies_mv.source()
         self.source(call)
 
+    def test_tamilgun_mv(self):
+        self.title = 'Tharkappu'
+        self.imdb = None
+        self.year = '2016'
+        call = tamilgun_mv.source()
+        self.source(call)
+
+    def test_rajtamil_mv(self):
+        self.title = 'Tharkappu'
+        self.imdb = None
+        self.year = '2016'
+        call = rajtamil_mv.source()
+        self.source(call)
+
+    def test_tamilyogi_mv(self):
+        self.title = 'Tharkappu'
+        self.imdb = None
+        self.year = '2016'
+        call = tamilyogi_mv.source()
+        self.source(call)
+
 class TestingLive(unittest.TestCase):
     def test_getLiveSources(self):
         from resources.lib.sources import sources
@@ -199,9 +239,16 @@ class TestingLive(unittest.TestCase):
                                           alter, date, meta)
 
     def source(self, call, generateJSON):
+        from resources.lib.indexers import livetv
+        livetv.sources().getLiveGenre()
         sourceurl = call.getLiveSource()
         self.assertGreater(len(sourceurl), 0, 'No Sources found')
         return
+
+    def test_dydnsResolve(self):
+        from resources.lib.sources import dynns_live
+        url = dynns_live.source().resolve('http://live1.zapto.org:8081/hostone/lamhe/playlist.m3u8', None)
+        self.assertIsNotNone(url, 'DYNDNS Unable to resolve')
 
     def test_json(self):
         call = json_live.source()

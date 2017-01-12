@@ -46,13 +46,14 @@ def AerTV(link):
 		return "https://offshoregit.com/Shiny/data/plugin.video.sylvr/assets/no-aertv.mp4"
 
 def Arconai(link):
-	req = urllib2.Request("http://45.62.245.50/arconai.php?u="+link, None, useragent)
+	req = urllib2.Request("https://www.arconaitv.me/"+link, None, useragent)
 	try:
 		html = urllib2.urlopen(req).read()
+		link = re.search(r'source src="(.*)" ', html).group(1)
 	except urllib2.HTTPError, e:
-		xbmc.log(html)
+		#xbmc.log(html)
 		xbmc.log(str(e))
-	return html
+	return link
 	
 def UTV():
 	req = urllib2.Request("http://player.utv.ie/live/", None, useragent)

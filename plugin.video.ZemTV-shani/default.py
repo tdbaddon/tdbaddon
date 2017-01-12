@@ -468,6 +468,7 @@ def AddSports(url):
     addDir('My Sports' ,'sss',82,os.path.join(home,'icons','Sports.png'))
     addDir('PV2 Sports' ,'zemsports',36,os.path.join(home,'icons','PV2 Sports.png'))
     addDir('Fast TV' ,'sss',92,os.path.join(home,'icons','Fast TV.png'))
+    addDir('NetTV' ,'sss',94,os.path.join(home,'icons','Nettv.png'))
     #addDir('Safe' ,'sss',72,'')
     addDir('TVPlayer [UK Geo Restricted]','sss',74,'https://assets.tvplayer.com/web/images/tvplayer-logo-white.png')
     addDir('StreamHD','sss',75,'http://www.streamhd.eu/images/logo.png')
@@ -1094,6 +1095,34 @@ def getFastData():
         print 'getFastData file saving error'
         traceback.print_exc(file=sys.stdout)
     return jsondata    
+    
+
+def getNetworkTVData():
+    fname='Networkdata.json'
+    fname=os.path.join(profile_path, fname)
+    try:
+        jsondata=getCacheData(fname,2*60*60)
+        if not jsondata==None:
+            return json.loads(base64.b64decode(jsondata))
+    except:
+        print 'file getting error'
+        traceback.print_exc(file=sys.stdout)
+
+    headers=[('application-id',base64.b64decode('QUYxMkY0N0YtMEM5Qy0zQkMxLUZGNkYtNzkzNUUwQzBDQzAw')),('secret-key',base64.b64decode('MTAzQ0JFNkYtNEYyMi0yRTlCLUZGQzEtMjVCRUNEM0QyRjAw')),('application-type','REST')]
+    link=getUrl(base64.b64decode('aHR0cHM6Ly9hcGkuYmFja2VuZGxlc3MuY29tL3YxL2RhdGEvQXBwQ29uZmlnQWxwaGE='),headers=headers)
+    jsondata=None
+    try:
+        jsondata=json.loads(link.replace('\x0a',''))
+        storeCacheData(base64.b64encode(link),fname)
+    except:
+        print 'getFastData file saving error'
+        traceback.print_exc(file=sys.stdout)
+    return jsondata    
+
+
+
+    
+    
     
 def getFootballData():
     fname='footballdata.json'
@@ -2090,9 +2119,29 @@ def AddPITVSports(url=None):
         addDir(Colored(cname.capitalize(),'ZM') ,base64.b64encode(curl) ,mm ,imgurl, False, True,isItFolder=False)		#name,url,mode,icon
     return  
 
-    
 
+def AddNetworkTVSports(url=None):  
+
+    if url=="sss":
+        cats=[NetworkTVCatIDByName("Sports")]
+        isSports=True
+        addDir(Colored('>>Click here for All Categories<<'.capitalize(),'red') ,"networktv",66 ,'', False, True,isItFolder=True)
+    else:
+        cats=[url]
+        isSports=False
+    for cname,ctype,curl,imgurl in getNetworkTVChannels(cats,sports=True):
+        cname=cname.encode('ascii', 'ignore').decode('ascii')
+        if ctype=='manual2':
+            mm=37
+        elif ctype=='manual3':
+            mm=45
+        else:
+            mm=11
+        addDir(Colored(cname.capitalize(),'ZM') ,base64.b64encode(curl) ,mm ,imgurl, False, True,isItFolder=False)		#name,url,mode,icon
+    return        
+    
 def AddFastSport(url=None):   
+    clist=[]
     if url=="sss":
         cats=fastCatIDByName('SPORTS TV')
         isSports=True
@@ -2160,6 +2209,9 @@ def ShowAllCategories(url):
     elif url=="pitv":
         cats=getPITVCats()
         cmode=71
+    elif url=="networktv":
+        cats=getNetworkTVCats()
+        cmode=94
     elif url=="fasttv":
         cats=[]
         for p in getFastCats()["LIVETV"]:
@@ -3394,7 +3446,51 @@ def fastCatIDByName(catname, findin=False):
         if p["category_name"].lower()== catname.lower() or (findin and catname.lower() in p["category_name"].lower()):
             return p["cid"]
     return retId
+
+def getNetworkTVCats():
+    retval=[]
+    for c in getNetworkTVPage()["cats"]:
+        retval.append((c["cat_id"],c["cat_name"]))
+    return retval#
+    
+def NetworkTVCatIDByName(catname, findin=False):
+    retId=''
+    for p in getNetworkTVPage()["cats"]:
+        if p["cat_name"].lower()== catname.lower() or (findin and catname.lower() in p["cat_name"].lower()):
+            return p["cat_id"]
+    return retId
+    
+def getNetworkTVChannels(cat=None,sports=False, country=None):
+    ret=[]
+    try:
+        xmldata=getNetworkTVPage()
+   
+            
+        print 'got getNetworkTVPage',cat,xmldata
+        for source in xmldata["channels"]:
+            print source["cat_id"] 
+            if (cat==None or source["cat_id"] in cat) and (country ==None or  source["country_name"] in country):#source["categoryName"] in categories or (forSports):# and ('sport' in source["categoryName"].lower() or 'BarclaysPremierLeague' in source["categoryName"] )    ) :
+                
+                ss=source
+                cname=ss["chname"]
+                if 'ebound.tv' in ss["streamurl"]:
+                    #print ss["channelLink"]
+                    curl='ebound2:'+ss["streamurl"].replace(':1935','')
+                else:
+                    #curl='networktv:'+ss["streamurl"]
+                    curl='networktv:'+str(ss["streamid"])
+                cimage=ss["logo"]
+                
+                if len([i for i, x in enumerate(ret) if x[2] ==curl ])==0:                    
+                    ret.append((cname + (' NetTV' if not sports else ''),'manual', curl ,cimage))   
         
+        if len(ret)>0:
+            ret=sorted(ret,key=lambda s: s[0].lower()   )
+    except:
+        traceback.print_exc(file=sys.stdout)
+    print ret
+    return ret
+    
 def getFastTVChannels(cat,sports=False, catname=None):
     ret=[]
     try:
@@ -4157,7 +4253,7 @@ def AddChannelsFromOthers(cctype,eboundMatches=[],progress=None):
     isZengaOff=selfAddon.getSetting( "isZengaOff" )
     
     isFastOff=selfAddon.getSetting( "isFastOff" )
-    
+    isNetworkTVOff=selfAddon.getSetting( "isNetworkTVOff" )
     
     main_ch='(<section_name>Pakistani<\/section_name>.*?<\/section>)'
 #    v4link='aHR0cDovL3N0YWdpbmcuamVtdHYuY29tL3FhLnBocC8yXzIvZ3htbC9jaGFubmVsX2xpc3QvMQ=='
@@ -4329,7 +4425,7 @@ def AddChannelsFromOthers(cctype,eboundMatches=[],progress=None):
     tvplayerChannels=None
     Zengagen=None
     fastgen=None
-    
+    nettvgen=None
     if cctype==1:
         pg='pakistan'
         iptvgen="pakistani"
@@ -4341,6 +4437,7 @@ def AddChannelsFromOthers(cctype,eboundMatches=[],progress=None):
         YPgen=base64.b64decode("aHR0cDovL3d3dy55dXBwdHYuY29tL3VyZHUtdHYuaHRtbA==")
         UKTVGenCat,UKTVGenCH=['religious','news','food'], ['masala tv', 'ary digital', 'ary zindagi','hum tv','drama','express ent.']
         fastgen=['PAKISTANI TV','ISLAMIC TV']
+        nettvgen=["Pakistani"]
     elif cctype==2:
         pg='indian'
         iptvgen="indian"
@@ -4353,6 +4450,7 @@ def AddChannelsFromOthers(cctype,eboundMatches=[],progress=None):
         tvplayerChannels=['sony sab','zing']
         Zengagen='ch'
         fastgen=['INDIAN TV','SOUTH INDIAN']
+        nettvgen=["Indian"]
     else:
         pg='punjabi'
         CFgen="1314"
@@ -4367,6 +4465,8 @@ def AddChannelsFromOthers(cctype,eboundMatches=[],progress=None):
     if isv8Off=='true': unitvgen=None
     if isv9Off=='true': wtvgen=None
     if isFastOff=='true': fastgen=None
+    if isNetworkTVOff=='true': nettvgen=None
+    
     
     if isdittoOff=='true': dittogen=None
     if isCFOff=='true': CFgen=None    
@@ -4510,9 +4610,18 @@ def AddChannelsFromOthers(cctype,eboundMatches=[],progress=None):
                 if len(rematch)>0:
                     match+=rematch
         except:
-            traceback.print_exc(file=sys.stdout)            
+            traceback.print_exc(file=sys.stdout)  
             
-
+    if nettvgen:
+        try:
+            progress.update( 83, "", "Loading Network TV Channels", "" )
+            rematch=getNetworkTVChannels(cat=None,sports=False,country=nettvgen)
+            if len(rematch)>0:
+                match+=rematch
+        except:
+            traceback.print_exc(file=sys.stdout)    
+            
+            
     if tvplayerChannels:
         try:
             
@@ -4569,6 +4678,8 @@ def AddChannelsFromOthers(cctype,eboundMatches=[],progress=None):
                     cc='ffcc1111'
                 elif cname.lower().endswith(' fast'):
                     cc='ffbb1111'
+                elif cname.lower().endswith(' nettv'):
+                    cc='ff991111'
                 addDir(Colored(cname.capitalize(),cc) ,base64.b64encode(curl) ,mm ,imgurl, False, True,isItFolder=False)		#name,url,mode,icon
     return    
     
@@ -4847,7 +4958,15 @@ def clearCache():
     fname='povee.json'
     fname=os.path.join(profile_path, fname)
     files+=[fname]     
- 
+    
+    fname='network_page.json'
+    fname=os.path.join(profile_path, fname)
+    files+=[fname]     
+    
+    fname='Networkdata.json'
+    fname=os.path.join(profile_path, fname)
+    files+=[fname]
+  
 
  
     fname='pitvpage.json'
@@ -5032,6 +5151,86 @@ def getMYTVPage():
     return jsondata
     
 
+#aHR0cDovL2xpdmVuZXR0di54eXov    
+def getNetworkTVPage():
+    fname='network_page.json'
+    fname=os.path.join(profile_path, fname)
+    try:
+        jsondata=getCacheData(fname,3*60*60)
+        if not jsondata==None:
+            return json.loads(jsondata)
+    except:
+        print 'file getting error'
+        traceback.print_exc(file=sys.stdout)
+    
+    netData=getNetworkTVData()["data"][0]
+    print netData
+    baseurl=netData["YnVueWFkaV9wYXRhX25hdnVh"]
+    baseurl=baseurl[1:].decode("base64")+"bGl2ZTMubmV0dHYv".decode("base64")
+    headers=[('User-Agent',getFastUA()),('Authorization','Basic %s'%base64.b64decode("YUdWc2JHOU5SanBHZFdOcmIyWm0=")),('Referer','http://localhost')]
+    post={'check':'1','user_id':'556274','version':'23'}
+    post = urllib.urlencode(post)
+    jsondata=getUrl(baseurl,post=post,headers=headers)
+    jsondata=json.loads(jsondata)
+
+    chlist="eY2hhbm5lbHNfbGlzdA=="
+    cid="rY19pZA=="
+    cname="ZY19uYW1l"
+    steamlist="Qc3RyZWFtX2xpc3Q="
+    streamid="cc3RyZWFtX2lk"
+    streamurl="Bc3RyZWFtX3VybA=="
+    token= "AdG9rZW4="
+    logo="abG9nb191cmw="
+    channels={"channels":[],"cats":[]}
+    tokentype={}
+    channels["cats"]=jsondata["categories_list"]
+    for chmain in jsondata[chlist]:
+        v=0
+        single=False
+        if len(chmain[steamlist])<=1:
+            single=True
+        for chlist in chmain[steamlist]:
+            v+=1
+            tt=chlist[token][:-1].decode("base64")
+
+            if tt in tokentype:
+                tokentype[tt]+=1
+            else:
+                tokentype[tt]=1
+                
+            #["24","25","28","29","30","31","32"]==29
+            if tt not in ['5','33','18','0',"24","25","28","29","30","31","32"]: continue
+            #if tt not in ["35","34"]: continue
+            channels["channels"].append( {
+            'cid': chmain[cid][:-1].decode("base64") ,
+            'chname': chmain[cname ][:-1].decode("base64"), #+ ("" if single else " "+str(v)),
+            'streamid': chlist[streamid ][:-1].decode("base64") ,
+            'streamurl': chlist[streamurl ][1:].decode("base64") ,
+            'token': chlist[token][:-1].decode("base64"),
+            'logo': chmain[logo][1:].decode("base64"),
+            'quality':chlist['quality'],
+            'referer':chlist['referer'],
+            'user_agent':chlist['user_agent'],
+            'player_user_agent':chlist['player_user_agent'],
+            'player_referer':chlist['player_referer']  ,  
+            'cat_id':chmain['cat_id']  ,
+            'country_id':chmain['country_id']  ,
+            'status':chmain['status']  ,
+            'cat_name':chmain['cat_name']  ,
+            'country_name':chmain['country_name']  
+            }   )
+            
+    #print tokentype
+    #import operator
+    #print sorted(tokentype.items(), key=operator.itemgetter(1))
+    #[('36', 2), ('11', 3), ('20', 3), ('14', 9), ('4', 19), ('6', 19), ('30', 24), ('9', 38), ('34', 42), ('19', 44), ('5', 58), ('29', 99), ('0', 108), ('18', 115), ('33', 390)]
+    try:
+        storeCacheData(json.dumps(channels),fname)
+    except:
+        print 'networktv file saving error'
+        traceback.print_exc(file=sys.stdout)
+    return channels
+    
     
 def getFastTVPage(cat):
     fname='fast_%s_page.json'%cat
@@ -5663,7 +5862,7 @@ def getFastAuth(url):
                         print ind
                         s[ind]=''
         ret= ''.join(s)
-        return '?'+ret.split('?')[1]
+        return url+'?'+ret.split('?')[1]
     return url
     
     
@@ -5672,6 +5871,164 @@ def getFastPlayUA():
     fastData=getFastData()   
     return fastData["DATA"][0]["Agent"]
 
+def getNetworkTVStringExtra(response):
+        response = response.strip();
+        builder  = list(response);
+        ilen = len(builder) -1
+        del builder[ilen - 33+1];
+        del builder[ilen - 42+2];
+        del builder[ilen - 51+3];
+        del builder[ilen - 58+4];
+        return "".join(builder)
+def getNetworkTVHash (value):
+    import time
+    k=str( value^ int(time.time()))
+    rval=""
+    for i in range(len(k)):
+        rval+=str(k[i])+str(i)
+    return rval
+
+        
+def PlayNetworkTVLink(url,progress=None):
+    if 1==1:#not mode==37:
+        print url
+        #cat,url=url.split('=')
+        xmldata=getNetworkTVPage()
+        #print 'got getFastTVChannels',xmldata
+        for ss in xmldata["channels"]:
+            if ss["streamid"]==url:
+                url=ss
+                break
+    print url
+    token=url["token"]
+    finalurl=""
+
+    #['33','18','0','29']         
+    if token=="0":
+        finalurl=url["streamurl"]
+    elif token=="33":
+        netData=getNetworkTVData()["data"][0]        
+        posturl=netData["ZmFtYW50YXJhbmFfdGF0aTAw"][1:].decode("base64")
+        auth=netData["dGVydHRleWFj"][1:].decode("base64")
+        ref=url["referer"]
+        authua=url["user_agent"]
+        
+        headers=[('Authorization',auth)]
+        if ref and len(ref)>0:
+            headers.append(('Referer',ref))
+        if authua and len(authua)>0:
+            headers.append(('User-Agent',authua))     
+        else:
+            headers.append(('User-Agent',base64.b64decode('RGFsdmlrLzEuNi4wIChMaW51eDsgVTsgQW5kcm9pZCA0LjIuMjsgU29ueSBYcGVyaWEgVGFibGV0IFogLSA0LjIuMiAtIEFQSSAxNyAtIDE5MjB4MTIwMCBCdWlsZC9KRFEzOUUp')))
+            
+        
+        authdata=getNetworkTVStringExtra(getUrl(posturl,headers=headers))
+        defplayua=base64.b64decode('RGFsdmlrLzEuNi4wIChMaW51eDsgVTsgQW5kcm9pZCA0LjIuMjsgU29ueSBYcGVyaWEgVGFibGV0IFogLSA0LjIuMiAtIEFQSSAxNyAtIDE5MjB4MTIwMCBCdWlsZC9KRFEzOUUp')
+        playua=url["player_user_agent"]
+        if playua and len(playua)>0:
+            defplayua=playua
+        finalurl=url["streamurl"]+authdata+"|User-Agent="+defplayua
+    elif token=="18":
+        netData=getNetworkTVData()["data"][0]        
+        posturl=url["streamurl"]
+        ref=url["referer"]
+        authua=url["user_agent"]
+        
+        headers=[]
+        if ref and len(ref)>0:
+            headers.append(('Referer',ref))
+        if authua and len(authua)>0:
+            headers.append(('User-Agent',authua))     
+        else:
+            headers.append(('User-Agent',base64.b64decode('RGFsdmlrLzEuNi4wIChMaW51eDsgVTsgQW5kcm9pZCA0LjIuMjsgU29ueSBYcGVyaWEgVGFibGV0IFogLSA0LjIuMiAtIEFQSSAxNyAtIDE5MjB4MTIwMCBCdWlsZC9KRFEzOUUp')))
+            
+        rethtml=getUrl(posturl,headers=headers)
+        playurl=re.findall( "((http|https):[^\" ]+m3u8[^\" ]*)", rethtml)[-1]
+        
+        #if len(playurl)==0:
+        #    playurl=re.findall( "http.*?m3u8.*)", rethtml)
+        print playurl
+        defplayua=base64.b64decode('RGFsdmlrLzEuNi4wIChMaW51eDsgVTsgQW5kcm9pZCA0LjIuMjsgU29ueSBYcGVyaWEgVGFibGV0IFogLSA0LjIuMiAtIEFQSSAxNyAtIDE5MjB4MTIwMCBCdWlsZC9KRFEzOUUp')
+        playua=url["player_user_agent"]
+        print playua
+        if playua and len(playua)>0:
+            defplayua=playua
+        finalurl=playurl[0].split('\'')[0]+"|User-Agent="+defplayua
+
+    elif token in ["24","25","28","29","30","31","32"]:
+        mapping={"24":   ["YW1pX2NoYmlz","TWVuX2Nob2Jpc18w","",0],
+                "25":["aXRob2toZW5pX3BhaHMw","QmVuX3BhaGlz","",0],
+                "28":["Y29udGFkb3JfYWhpczAw","YXRhaXNfaW5p","Ym9ldHNhX3Nla2VuZ19yYXN0YV9hdGFpczAw","dWt1cWFxd2FfY2hhYmlfYXRhaGlz"],
+                "29": ["YmVsaXJ0ZWNfb250aXMw","c2F5YV9kb25v","Y2hlaWxlYWRoIF9DZWFuZ2FsX29udGlz","cGFyb2xfaGFsX2NoYWJpX29uYXRpczAw"],
+                "30": ["cG9udHNvX3Rlc3Mw","bXdlbnRlcnR5","Y2hlaWxlYWRoX29yX3RlZXMw","c2lmcmVfY296bWVfQW5haHRhcmlfdGVz"],
+                "31": ["bmFic2FuYV9pa2l0czAw","dGVydDFfaW5p","bmdhZGVrcmlwX3Jhc3RhX2lrYXRpczAw","ZGVzenlmcm93YW5pZV9rbHVjel9pa2F0aXMw"],
+                "32": ["bWFya2llcmlzX2J0aXMw","dGVydHR3X2Ji","dWt1c3VzYV91a3ViaGFsYV9iYXRlczAw","dHNoaXJvbG9sb19rZV9iYXRpczAw"]
+                }
+        tokenLinkKey,tokenCredsKey,decryptorLinkKey,decryptorKeyKey=mapping[token]
+
+        netData=getNetworkTVData()["data"][0]   
+        
+        tokenLink=netData[tokenLinkKey][1:].decode("base64")
+        tokenCreds=netData[tokenCredsKey][1:].decode("base64")
+        decryptorLink=netData[decryptorLinkKey][1:].decode("base64")
+        print netData[decryptorKeyKey]
+        decryptorKey=0
+        if not decryptorKeyKey==0:
+            decryptorKey=int(netData[decryptorKeyKey][1:].decode("base64"))
+        print 'decryptorKey',decryptorKey
+        bp=netData["YnVueWFkaV9wYXRhX25hdnVh"][1:].decode("base64")
+        print 'bp',bp
+        posturl=url["streamurl"]
+        ref=url["referer"]
+        authua=url["user_agent"]
+        
+        headers=[]
+        if ref and len(ref)>0:
+            headers.append(('Referer',ref))
+        if authua and len(authua)>0:
+            headers.append(('User-Agent',authua))     
+        else:
+            headers.append(('User-Agent',base64.b64decode('RGFsdmlrLzEuNi4wIChMaW51eDsgVTsgQW5kcm9pZCA0LjIuMjsgU29ueSBYcGVyaWEgVGFibGV0IFogLSA0LjIuMiAtIEFQSSAxNyAtIDE5MjB4MTIwMCBCdWlsZC9KRFEzOUUp')))
+        if tokenCreds and len(tokenCreds)>0:
+            headers.append(('Authorization',tokenCreds))
+
+        authhtml=getUrl(tokenLink,headers=headers)
+        headers=[]
+        print netData["TW9vbl9oaWsx"]
+        x1auth=int(netData["TW9vbl9oaWsx"][1:].decode("base64"))
+        c1auth=netData["amFnX3Ryb3JfYXR0X2Vu"][1:].decode("base64")
+        headers.append(('Authorization',c1auth))
+        hashval=getNetworkTVHash(x1auth if decryptorKey == 0 else decryptorKey)
+        headers.append(('Modified',hashval))
+        if not (decryptorLink and len(decryptorLink)>0):
+            decryptorLink=bp+ "decrypt.nettv/"
+        jsondata={'stream_url':url["streamurl"],'token':int(token),'response_body':authhtml}
+        post={'data':json.dumps(jsondata)}
+        post = urllib.urlencode(post)
+        htmldata=getUrl(decryptorLink,headers=headers,post=post)
+        
+        playurl=json.loads(htmldata)["stream_url"]
+        
+        #if len(playurl)==0:
+        #    playurl=re.findall( "http.*?m3u8.*)", rethtml)
+        print playurl
+        defplayua=base64.b64decode('RGFsdmlrLzEuNi4wIChMaW51eDsgVTsgQW5kcm9pZCA0LjIuMjsgU29ueSBYcGVyaWEgVGFibGV0IFogLSA0LjIuMiAtIEFQSSAxNyAtIDE5MjB4MTIwMCBCdWlsZC9KRFEzOUUp')
+        playua=url["player_user_agent"]
+        print playua
+        if playua and len(playua)>0:
+            defplayua=playua
+        finalurl=playurl.split('\'')[0]+"|User-Agent="+defplayua
+    else:
+        finalurl=""
+    print "finalurl",finalurl
+    urlnew=finalurl
+    listitem = xbmcgui.ListItem( label = str(name), iconImage = "DefaultVideo.png", thumbnailImage = xbmc.getInfoImage( "ListItem.Thumb" ) )
+    PlayGen(base64.b64encode(urlnew))
+    #tryplay( urlnew , listitem,keepactive=True, aliveobject =ws , pdialogue= progress)
+    
+    
+    
+    
 def PlayFastLink(url,progress=None):
     if 1==1:#not mode==37:
         print url
@@ -5684,7 +6041,7 @@ def PlayFastLink(url,progress=None):
                 break
         
       
-    urlnew=url+getFastAuth(url)+'|User-Agent='+getFastPlayUA()
+    urlnew=getFastAuth(url)+'|User-Agent='+getFastPlayUA()
     listitem = xbmcgui.ListItem( label = str(name), iconImage = "DefaultVideo.png", thumbnailImage = xbmc.getInfoImage( "ListItem.Thumb" ) )
     PlayGen(base64.b64encode(urlnew))
     #tryplay( urlnew , listitem,keepactive=True, aliveobject =ws , pdialogue= progress)
@@ -5828,6 +6185,11 @@ def PlayOtherUrl ( url ):
     if "fast:" in url:
         PlayFastLink(url.split('fast:')[1],progress=progress)
         return 
+
+    if "networktv:" in url:
+        PlayNetworkTVLink(url.split('networktv:')[1],progress=progress)
+        return         
+        
     if "safe:" in url:
         PlaySafeLink(url.split('safe:')[1],progress=progress)
         return        
@@ -6908,7 +7270,7 @@ try:
 except:
     pass
 
-
+print params
 args = cgi.parse_qs(sys.argv[2][1:])
 linkType=''
 try:
@@ -7145,6 +7507,9 @@ try:
     elif mode==93:
         print "Play url is "+url
         PlayPoveeLink(url)           
+    elif mode==94:
+        print "Play url is "+url
+        AddNetworkTVSports(url)       
 except:
 
     print 'somethingwrong'
@@ -7176,7 +7541,7 @@ def get_view_mode_id( view_mode):
     return None
 
 playmode=[3,4,9,11,15,21,22,27,33,35,37,40,42,45,91,93]
-nonthumbview=[55,61,67,56,14,57,19,20,21,22,23,24,79,75,76,78,81,2,51,52,53,62,70,71,81,66]
+nonthumbview=[55,61,67,56,14,57,19,20,21,22,23,24,79,75,76,78,81,2,51,52,53,62,70,71,81,66,94]
 try:
     if (not mode==None) and mode>1 and mode not in nonthumbview and mode not in playmode:
         view_mode_id = get_view_mode_id('thumbnail')

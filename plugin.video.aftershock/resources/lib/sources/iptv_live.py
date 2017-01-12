@@ -103,9 +103,9 @@ class source:
                     result = re.findall(regex, result, re.IGNORECASE)
 
                     for source, title, cUrl in result:
-                        from resources.lib.libraries import livemeta
-                        names = cache.get(livemeta.source().getLiveNames, 200, table='live_cache')
-                        title = cleantitle.live(title, names)
+                        #from resources.lib.libraries import livemeta
+                        #names = cache.get(livemeta.source().getLiveNames, 200, table='live_cache')
+                        title = cleantitle.live(title)
                         if title == 'SKIP':
                             continue
                         if not headers == None:

@@ -49,9 +49,7 @@ class navigator:
 
         self.addDirectoryItem(90116, 'openSettings&query=0.0', 'settings.png', 'DefaultMovies.png')
         self.addDirectoryItem(90117, 'clearCache', 'clearcache.png', 'DefaultMovies.png')
-
-        self.endDirectory()
-
+        self.addDirectoryItem(30864, 'changelog', 'changelog.png', 'DefaultMovies.png')
 
         from resources.lib.libraries import cache
         from resources.lib.libraries import changelog
@@ -59,6 +57,8 @@ class navigator:
         cache.get(self.donation, 600000000, control.addonInfo('version'), table='changelog')
         #cache.get(control.resetSettings, 600000000, 'true', control.addonInfo('version'), table='changelog')
         cache.get(analytics.sendAnalytics, 600000000, ("Installed-%s" % control.addonInfo('version')), table='changelog')
+
+        self.endDirectory()
 
     def donation(self, version):
         control.okDialog("Donations for this addon [Aftershock v%s] gracefully accepted at" % version, "", "http://paypal.me/aftershockpy/10USD")
@@ -163,6 +163,6 @@ class navigator:
         if not addonFanart == None: item.setProperty('Fanart_Image', addonFanart)
         control.addItem(handle=int(sys.argv[1]), url=url, listitem=item, isFolder=isFolder)
 
-    def endDirectory(self, cacheToDisc=True, viewMode='thumbnails'):
+    def endDirectory(self, cacheToDisc=False, viewMode='thumbnails'):
         views.setView('movies', {'skin.confluence': control.viewMode[viewMode]})
         control.directory(int(sys.argv[1]), cacheToDisc=cacheToDisc)

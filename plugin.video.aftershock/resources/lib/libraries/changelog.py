@@ -16,31 +16,25 @@
 '''
 
 def get(version):
-    try:
-        import xbmc,xbmcgui,xbmcaddon,xbmcvfs
+    import xbmc,xbmcgui,xbmcaddon,xbmcvfs,os
+    addonInfo = xbmcaddon.Addon().getAddonInfo
+    addonPath = xbmc.translatePath(addonInfo('path'))
+    changelogfile = os.path.join(addonPath, 'changelog.txt')
+    r = open(changelogfile)
+    text = r.read()
 
-        f = xbmcvfs.File(xbmcaddon.Addon().getAddonInfo('changelog'))
-        text = f.read() ; f.close()
-
-        label = '%s - %s' % (xbmc.getLocalizedString(24054), xbmcaddon.Addon().getAddonInfo('name'))
-
-        id = 10147
-
-        xbmc.executebuiltin('ActivateWindow(%d)' % id)
-        xbmc.sleep(100)
-
-        win = xbmcgui.Window(id)
-
-        retry = 50
-        while (retry > 0):
-            try:
-                xbmc.sleep(10)
-                win.getControl(1).setLabel(label)
-                win.getControl(5).setText(text)
-                retry = 0
-            except:
-                retry -= 1
-
-        return '1'
-    except:
-        return '1'
+    id = 10147
+    xbmc.executebuiltin('ActivateWindow(%d)' % id)
+    xbmc.sleep(500)
+    win = xbmcgui.Window(id)
+    retry = 50
+    while (retry > 0):
+        try:
+            xbmc.sleep(10)
+            retry -= 1
+            win.getControl(1).setLabel('Aftershock version: %s' %(xbmcaddon.Addon().getAddonInfo('version')))
+            win.getControl(5).setText(text)
+            return 1
+        except:
+            pass
+    return 1

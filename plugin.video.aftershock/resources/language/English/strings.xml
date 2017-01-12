@@ -88,6 +88,7 @@
     <string id="30861">TV</string>
     <string id="30862">Providers</string>
     <string id="30863">Enable Hyper-Threading (Only for powerful machines)</string>
+    <string id="30864">ChangeLog</string>
 
     <string id="30910">Accounts</string>
     <string id="30911">IMDB</string>
@@ -161,5 +162,6 @@
     <string id="90231">Sony Pal</string>
     <string id="90232">Zing</string>
     <string id="90233">Zee Yuva</string>
+    <string id="90234">Awards &amp; Concerts</string>
 
 </strings>

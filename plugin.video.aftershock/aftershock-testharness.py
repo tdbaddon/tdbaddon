@@ -34,8 +34,9 @@ try :
     #params = {'tmdb': '0', 'episode': '0', 'name': '15th December 2016', 'title': '15th December 2016', 'tvdb': '0', 'season': '10', 'tvshowtitle': 'Bigg Boss 10', 'date': '0', 'meta': '{"tvshowurl": "forums/3994-Bigg-Boss-10", "title": "15th December 2016", "url": "threads/989694-Bigg-Boss-10-15th-December-2016-Watch-Online?s=b4f2b23f90f0fbf473f679887a785b0b", "season": "10", "tvshowtitle": "Bigg Boss 10", "next": "forums/3994-Bigg-Boss-10/page2?s=b4f2b23f90f0fbf473f679887a785b0b", "provider": "desirulez_mv_tv", "duration": "1800", "trailer": "plugin://plugin.video.aftershock/?action=trailer&name=Bigg+Boss+10", "name": "15th December 2016"}', 'imdb': '0', 't': '20161216013558647000', 'year': '0', 'action': 'play', 'tvrage': '0', 'alter': '0'}
     #params = {'tmdb': '0', 'episode': '0', 'name': '15th December 2016', 'title': '15th December 2016', 'tvdb': '0', 'season': '0', 'tvshowtitle': 'Yeh Rishta Kya Kehlata Hai', 'date': '0', 'meta': '{"tvshowurl": "forums/3943-Yeh-Rishta-Kya-Kehlata-Hai", "title": "15th December 2016", "url": "threads/989675-Yeh-Rishta-Kya-Kehlata-Hai-15th-December-2016-Watch-Online?s=b4f2b23f90f0fbf473f679887a785b0b", "tvshowtitle": "Yeh Rishta Kya Kehlata Hai", "next": "forums/3943-Yeh-Rishta-Kya-Kehlata-Hai/page2?s=b4f2b23f90f0fbf473f679887a785b0b", "provider": "desirulez_mv_tv", "duration": "1800", "trailer": "plugin://plugin.video.aftershock/?action=trailer&name=Yeh+Rishta+Kya+Kehlata+Hai", "name": "15th December 2016"}', 'imdb': '0', 't': '20161216014224647000', 'year': '0', 'action': 'play', 'tvrage': '0', 'alter': '0'}
     #params = {'tmdb': '0', 'episode': '0', 'name': '11th December 2016', 'title': '11th December 2016', 'tvdb': '0', 'season': '5', 'tvshowtitle': 'Koffee With Karan Season 5 (Star World)', 'date': '0', 'meta': '{"name": "11th December 2016", "title": "11th December 2016", "url": "threads/986992-Koffee-With-Karan-Season-5-11th-December-2016-Watch-Online?s=b9f8288314dd3a877ab603c37d41a779", "season": "5", "tvshowtitle": "Koffee With Karan Season 5 (Star World)", "provider": "desirulez_mv_tv", "duration": "1800", "trailer": "plugin://plugin.video.aftershock/?action=trailer&name=Koffee+With+Karan+Season+5+%28Star+World%29", "tvshowurl": "forums/4480-Koffee-With-Karan-Season-5-Star-World"}', 'imdb': '0', 't': '20161216020518662000', 'year': '0', 'action': 'play', 'tvrage': '0', 'alter': '0'}
-
-
+    params = {'action': 'tvshows', 'url': 'forumdisplay.php?f=36', 'name': 'Awards ', 'provider': 'desirulez_mv_tv'}
+    params = {'tmdb': '0', 'name': 'Awards ', 'tvdb': '0', 'tvshowtitle': 'awards', 'year': '0', 'url': 'forumdisplay.php?f=36', 'imdb': '0', 'provider': 'desirulez_mv_tv', 'action': 'episodes', 'tvrage': '0'}
+    params = {'action': 'movies', 'url': 'http://www.imdb.com/search/title?title_type=feature,tv_movie&num_votes=100,&production_status=released&languages=hi&count=40&start=1&sort=release_date,desc&start=1'}
     select = None
 
     try:
@@ -144,6 +145,7 @@ try :
 
     from resources.lib.libraries import user
 
+    movies.movies().get(url, lang=lang)
 
     '''
     result = '#EXTINF:-1,|VIP|HINDI:ZOOM\nhttp://live.softiptv.com:9900/live/525/525/17682.m3u8\n#EXTINF:-1,|VIP|HINDI:ZeeTv HD INddia\nhttp://live.softiptv.com:9900/live/525/525/17683.m3u8\n#EXTINF:-1,|VIP|HINDI:Zee Action\nnhttp://live.softiptv.com:9900/live/525/525/17684.m3u8'
@@ -154,6 +156,10 @@ try :
     '''
 
     from resources.lib.indexers import navigator
+    episodes.episodes().get(tvshowtitle, year, imdb, tmdb, tvdb, tvrage, season, episode, provider=provider, url=url)
+
+    tvshows.tvshows().get(url, provider=provider, network=name)
+
     navigator.navigator().desiLiveTV(None)
     navigator.navigator().desiLiveTV(url)
     #from resources.lib.sources import swift_live

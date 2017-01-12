@@ -37,6 +37,7 @@ class source:
         self.info_link = ''
         self.now = datetime.datetime.now()
 
+        self.awards_link = 'forumdisplay.php?f=36'
         self.star_plus_link = 'forumdisplay.php?f=42'
         self.zee_tv_link = 'forumdisplay.php?f=73'
         self.sony_link = 'forumdisplay.php?f=63'
@@ -102,6 +103,8 @@ class source:
         listItems.append({'provider':provider, 'name':90231, 'image': 'sony_pal_in.png', 'action': 'tvshows', 'url':self.sony_pal_link})
         listItems.append({'provider':provider, 'name':90232, 'image': 'zee_zing.png', 'action': 'tvshows', 'url':self.zing_link})
         listItems.append({'provider':provider, 'name':90233, 'image': 'zee_yuva_in.png', 'action': 'tvshows', 'url':self.zee_yuva_link})
+        url = 'episodes&tvshowtitle=awards&year=0&imdb=0&tmdb=0&tvdb=0&tvrage=0'
+        listItems.append({'provider':provider, 'name':90234, 'image': 'awards_in.png', 'action': url, 'url':self.awards_link})
 
         return listItems
     def get_movie(self, imdb, title, year):
@@ -204,7 +207,8 @@ class source:
                     url = url[0]
                 if "Online" not in name: continue
                 name = name.replace(title, '')
-                name = re.compile('([\d{1}|\d{2}]\w.+\d{4})').findall(name)[0]
+                if not title == 'awards'  :
+                    name = re.compile('([\d{1}|\d{2}]\w.+\d{4})').findall(name)[0]
                 name = name.strip()
                 try :
                     season = title.lower()

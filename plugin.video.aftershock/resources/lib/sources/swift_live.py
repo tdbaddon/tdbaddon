@@ -47,11 +47,11 @@ class source:
             if generateJSON:
                 logger.debug('Generating %s JSON' % __name__, __name__)
 
-                #result = cache.get(self.getSwiftCache, 600000, table='live_cache')
+                result = cache.get(self.getSwiftCache, 600000, table='live_cache')
 
-                #password = base64.b64encode(result["DATA"][0]["Password"])
-                #headers = {'User-Agent':'Dalvik/1.6.0 (Linux; U; Android 4.4.2; SM-G900F Build/KOT49H)',
-                #           'Authorization': 'Basic %s' % password}
+                password = base64.b64encode(result["DATA"][0]["Password"])
+                headers = {'User-Agent':'Dalvik/1.6.0 (Linux; U; Android 4.4.2; SM-G900F Build/KOT49H)',
+                           'Authorization': 'Basic %s' % password}
 
                 headers = {'User-Agent':'Dalvik/1.6.0 (Linux; U; Android 4.4.2; SM-G900F Build/KOT49H)'}
 
@@ -61,7 +61,7 @@ class source:
                 items = json.loads(result)['LIVETV']
 
                 self.channelList = {}
-                categories = ['INDIAN TV']
+                categories = ['INDIAN TV', 'SOUTH INDIAN','PUNJABI TV']
                 for item in items:
                     if item['category_name'] in categories:
                         url = '%s?cat_id=%s' % (category_url, item['cid'])
@@ -91,9 +91,9 @@ class source:
             result = json.loads(result)["LIVETV"]
         for channel in result:
             title = channel['channel_title']
-            from resources.lib.libraries import livemeta
-            names = cache.get(livemeta.source().getLiveNames, 200, table='live_cache')
-            title = cleantitle.live(title, names)
+            #from resources.lib.libraries import livemeta
+            #names = cache.get(livemeta.source().getLiveNames, 200, table='live_cache')
+            title = cleantitle.live(title)
             if title == 'SKIP':
                 continue
             icon = channel['channel_thumbnail']

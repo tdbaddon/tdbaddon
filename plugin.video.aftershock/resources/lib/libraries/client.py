@@ -78,7 +78,8 @@ def request(url, close=True, redirect=True, error=False, proxy=None, post=None, 
             pass
         elif not mobile == True:
             #headers['User-Agent'] = 'Mozilla/5.0 (compatible, MSIE 11, Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko'
-            headers['User-Agent'] = getDefaultUserAgent()
+            #headers['User-Agent'] = getDefaultUserAgent()
+            headers['User-Agent'] = cache.get(randomagent, 1)
         else:
             headers['User-Agent'] = 'Apple-iPhone/701.341'
         if 'Referer' in headers:

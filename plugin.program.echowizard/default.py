@@ -186,7 +186,9 @@ urlopen = MyOpener().open
 #######################################################################
 
 if not os.path.isfile(ECHO_SETTINGS):
-	plugintools.open_settings_dialog()
+	if not os.path.exists(ADDON_DATA):
+		os.makedirs(ADDON_DATA)
+	shutil.copyfile(DEFAULT_SETTINGS, ECHO_SETTINGS)
 
 #######################################################################
 #						CREATE PATH FOR BACKUPS
@@ -1878,7 +1880,7 @@ elif mode==175:
 		get_addons.MENU_MAIN()
 	
 elif mode==176:
-		get_addons.ADDON_DECIDE(name,url)
+		get_addons.ADDON_DECIDE(name,url,iconimage,fanart)
 		
 elif mode==177:
 		get_addons.FILE_MANAGER_SOURCES(name,url,description)

@@ -628,16 +628,18 @@ class sources:
             pass
 
         try:
-            dbcur.execute("CREATE TABLE IF NOT EXISTS live_meta (""name TEXT, ""genre TEXT, ""lang TEXT, ""icon TEXT, ""added TEXT, ""UNIQUE(name, genre, lang)"");")
+            dbcur.execute("CREATE TABLE IF NOT EXISTS live_meta (""name TEXT, ""genre TEXT, ""lang TEXT, ""icon TEXT, ""alt_names TEXT, ""added TEXT, ""UNIQUE(name, genre, lang)"");")
         except:
             pass
 
         try :
             from resources.lib.libraries import livemeta
+            # Look at moving this into the live_meta table and patch cleantitle to live meta table
+            #names = cache.get(livemeta.source().getLiveNames, 200, table='live_cache')
             meta = livemeta.source().getLiveMeta()
 
             for item in meta:
-                dbcur.execute("INSERT INTO live_meta Values (?, ?, ?, ?, ?)", (item['name'], item['genre'], item['lang'], item['icon'], datetime.datetime.now().strftime("%Y-%m-%d %H:%M")))
+                dbcur.execute("INSERT INTO live_meta Values (?, ?, ?, ?, ?, ?)", (item['name'], item['genre'], item['lang'], item['icon'], item['alt_names'], datetime.datetime.now().strftime("%Y-%m-%d %H:%M")))
 
             dbcon.commit()
         except:

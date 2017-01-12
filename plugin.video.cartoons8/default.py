@@ -93,7 +93,7 @@ def GETGENRES(url,iconimage):
         for url, name in match:
                 if 'genre' in url:
                         url=url+'?page=1'
-                        addDir(name,url,7,iconimage,fanart)
+                        addDir(name,url,7,iconimage,iconimage)
 
 def GETGENREMOVIES(url):
 	url2=url
@@ -101,14 +101,14 @@ def GETGENREMOVIES(url):
         match=re.compile('<img src="(.+?)">.+?<a href="(.+?)" title="(.+?)">',re.DOTALL).findall(link)[3:]
         for iconimage, url, name  in match:
                 iconimage=iconimage+"|User-Agent=Mozilla/5.0 (Windows NT 6.1; rv:32.0) Gecko/20100101 Firefox/32.0&Cookie=%s"%getCookiesString()
-                addDir(name,url,2,iconimage,fanart)
+                addDir(name,url,2,iconimage,iconimage)
 	try:
                 pagenum = url2.split('?page=')[1]
                 genre = url2.split('?page=')[0]
                 curpage = int(pagenum)
                 nextpage = curpage + 1
                 nextpageurl = genre+'?page='+str(nextpage)
-                addDir('Next >> Page '+str(nextpage),nextpageurl,7,icon,fanart)
+                addDir('Next >> Page '+str(nextpage),nextpageurl,7,icon,icon)
         except: pass
 
 def GETFULL(url,name):
@@ -116,7 +116,7 @@ def GETFULL(url,name):
         match=re.compile('<li class="first-char"><a  href="(.+?)">(.+?)</a></li>').findall(link)
         for url, name in match:
                 url=url+'&page=1'
-                addDir(name,url,11,iconimage,fanart)
+                addDir(name,url,11,iconimage,iconimage)
               
 def AZ(url,name):
         link = open_url(url)
@@ -125,19 +125,21 @@ def AZ(url,name):
         for iconimage, murl, name in match:
                 iconimage=iconimage+"|User-Agent=Mozilla/5.0 (Windows NT 6.1; rv:32.0) Gecko/20100101 Firefox/32.0&Cookie=%s"%getCookiesString()
                 name = cleanHex(name)
-                addDir(name,murl,2,iconimage,fanart)
+                addDir(name,murl,2,iconimage,iconimage)
         try:
                 pagenum = url.split('&page=')
                 curpage = int(pagenum[1])
                 nextpage = curpage + 1
                 nextpageurl = pagenum[0]+'&page='+str(nextpage)
-                addDir('Next >> Page '+str(nextpage),nextpageurl,11,icon,fanart)
+                addDir('Next >> Page '+str(nextpage),nextpageurl,11,iconimage,iconimage)
         except: pass
     
 def GETPLAYLINK(name,url,iconimage):
         link = open_url(url)
         if '9cartoon.me' in url:
-                stream_url = re.compile('<a href="(.+?)" target="_blank"').findall(link)[-1]
+                holderpage = re.compile('<iframe src="(.+?)" scrolling').findall(link)[0]
+                link = open_url(holderpage)
+                stream_url = re.compile('<source src="(.+?)" type="video/mp4">').findall(link)[0]
         else:
                 holderpage=re.compile('<iframe src="(.+?)" scrolling="no" frameborder="0" width="1008" height="640" allowfullscreen="true"></iframe>').findall(link)[0]
                 link = open_url(holderpage)
@@ -148,7 +150,7 @@ def PLAYLINK(name,url,iconimage):
         ok=True
         liz=xbmcgui.ListItem(name, iconImage=iconimage,thumbnailImage=iconimage); liz.setInfo( type="Video", infoLabels={ "Title": name } )
         ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=url,listitem=liz)
-        xbmc.Player ().play(url+"|User-Agent=Mozilla/5.0 (Windows NT 6.1; rv:32.0) Gecko/20100101 Firefox/32.0&Cookie=%s"%getCookiesString(), liz, False)
+        xbmc.Player ().play(url, liz, False)#+"|User-Agent=Mozilla/5.0 (Windows NT 6.1; rv:32.0) Gecko/20100101 Firefox/32.0&Cookie=%s"%getCookiesString(), liz, False)
 
 def get_params():
         param=[]

@@ -30,47 +30,6 @@ class source:
         self.fileName = None
         self.list = {}
 
-    def getLivePosters(self):
-        try :
-            logger.debug('logos local : %s' % control.setting('livelocal'), __name__)
-            artPath = control.logoPath()
-
-            if control.setting('livelocal') == 'true':
-                self.fileName = 'live-logos-new.local'
-            else :
-                self.fileName = 'live-logos-new.json'
-                fileFetcher = FileFetcher(self.fileName, control.addon)
-
-                retValue = fileFetcher.fetchFile()
-                if retValue < 0 :
-                    raise Exception()
-
-            filePath = os.path.join(control.dataPath, self.fileName)
-            file = open(filePath)
-            result = file.read()
-            file.close()
-
-            result = base64.urlsafe_b64decode(result)
-
-            channels = json.loads(result)
-
-            channelNames = channels.keys()
-            channelNames.sort()
-
-            for channel in channelNames:
-                channelObj = channels[channel]
-                posterUrl = channelObj['iconimage']
-                if not channelObj['enabled'] == 'false' and posterUrl.startswith('http://'):
-                    self.list[channel] = posterUrl
-                else :
-                    self.list[channel] = os.path.join(artPath, posterUrl)
-                #print self.list[channel]
-            return self.list
-        except:
-            import traceback
-            traceback.print_exc()
-            pass
-
     def getLiveMeta(self):
         try :
             self.list = []

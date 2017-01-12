@@ -238,9 +238,12 @@ class source:
                     query['mobile'] = '0'
                     query.update(self.__get_token(query))
                     grabber = result['grabber'] + '?' + urllib.urlencode(query)
+                    print "GRABERRRRR", grabber
+                    if not grabber.startswith('http'):
+                        grabber = 'http:'+grabber
 
                     result = client.request(grabber, headers=headers, referer=url, limit='0')
-                    print("r112",result)
+                    print("ZZZZ r112",result)
 
                     result = json.loads(result)
 
@@ -278,35 +281,38 @@ class source:
             return
 
 
-    def __get_token(self, OOOO0O00000O000O0):
-        OO000OO0OO00OO000 = 0
-        for O0OO0OOO0O0OO0O00 in OOOO0O00000O000O0:
-            OOOOOOO0OO00O000O = list(range(0, 256))
-            if not O0OO0OOO0O0OO0O00.startswith('_'):
-                O0O000O000O00OOO0 = 0
-                OO0OO00OOOO00O000 = 0
-                for O0OO00O0O00O0OOO0 in range(0, 256):
-                    O0O000O000O00OOO0 = (O0O000O000O00OOO0 + OOOOOOO0OO00O000O[O0OO00O0O00O0OOO0] + ord(
-                        O0OO0OOO0O0OO0O00[O0OO00O0O00O0OOO0 % len(O0OO0OOO0O0OO0O00)])) % 256
-                    O0O0OO0000O0O0O00 = OOOOOOO0OO00O000O[O0OO00O0O00O0OOO0]
-                    OOOOOOO0OO00O000O[O0OO00O0O00O0OOO0] = OOOOOOO0OO00O000O[O0O000O000O00OOO0]
-                    OOOOOOO0OO00O000O[O0O000O000O00OOO0] = O0O0OO0000O0O0O00
-                O0O000O000O00OOO0 = 0
-                for O0OOO00000O000OO0 in range(0, len(OOOO0O00000O000O0[O0OO0OOO0O0OO0O00])):
-                    O0OO00O0O00O0OOO0 = O0OOO00000O000OO0 + 1  # line:15
-                    O0O000O000O00OOO0 = (O0O000O000O00OOO0 + OOOOOOO0OO00O000O[O0OO00O0O00O0OOO0]) % (256)
-                    O0O0OO0000O0O0O00 = OOOOOOO0OO00O000O[O0OO00O0O00O0OOO0]
-                    OOOOOOO0OO00O000O[O0OO00O0O00O0OOO0] = OOOOOOO0OO00O000O[O0O000O000O00OOO0]
-                    OOOOOOO0OO00O000O[O0O000O000O00OOO0] = O0O0OO0000O0O0O00
-                    OO0OO00OOOO00O000 += ord(OOOO0O00000O000O0[O0OO0OOO0O0OO0O00][O0OOO00000O000OO0]) ^ (
-                                                                                                            OOOOOOO0OO00O000O[
-                                                                                                                (
-                                                                                                                    OOOOOOO0OO00O000O[
-                                                                                                                        O0OO00O0O00O0OOO0] +
-                                                                                                                    OOOOOOO0OO00O000O[
-                                                                                                                        O0O000O000O00OOO0]) % 256]) + O0OOO00000O000OO0
-                OO000OO0OO00OO000 += OO0OO00OOOO00O000
-        return {'_': str(OO000OO0OO00OO000)}
+    def __get_token(self, data):
+        index1 = 0
+        for index2 in data:
+            i = list(range(0, 256))
+            if not index2.startswith('_'):
+                n = 0
+                index4 = 0
+                for s in range(0, 256):
+                    n = (n + i[s] +
+                         ord(index2[s % len(index2)])) % 256
+                    r = i[s]
+                    i[s] = i[n]
+                    i[n] = r
+                n = 0
+                for index8 in range(0, len(data[index2])):
+                    s = index8 + 1  # line:15
+                    n = (n + i[s]) % (256)
+                    r = i[s]
+                    i[s] = i[n]
+                    i[n] = r
+                    index4 += ord(data[index2][index8]) ^ (i[(i[s] +i[n]) % 256]) * index8 + index8
+                index1 += index4
+        return {'_': str(index1)}
+
+    """
+    n = (n + i[s] +
+        t
+            [rW.P(+(Jl + JR))]
+            (rW.A(s, t[rW[lL](+(Jl + uL))]))) % (SL + nL - 0),
+                r = i[s],
+                i[s] = i[n],
+    """
 
     def __get_xtoken(self):
         url = urlparse.urljoin(self.base_link, 'fghost?%s' % (random.random()))

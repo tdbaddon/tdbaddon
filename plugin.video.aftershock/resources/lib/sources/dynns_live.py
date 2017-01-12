@@ -83,9 +83,9 @@ class source:
                     category = client.parseDOM(channel, "programCategory")[0]
                     if category == 'Indian':
                         title = client.parseDOM(channel,"programTitle")[0]
-                        from resources.lib.libraries import livemeta
-                        names = cache.get(livemeta.source().getLiveNames, 200, table='live_cache')
-                        title = cleantitle.live(title, names)
+                        #from resources.lib.libraries import livemeta
+                        #names = cache.get(livemeta.source().getLiveNames, 200, table='live_cache')
+                        title = cleantitle.live(title)
                         if title == 'SKIP':
                             continue
                         poster = client.parseDOM(channel, "programImage")[0]
@@ -149,7 +149,7 @@ class source:
             validtime=userAgent[4]
 
             headers = {'User-Agent':base64.b64decode('UGFrJTIwVFYvMS4wIENGTmV0d29yay84MDguMi4xNiBEYXJ3aW4vMTYuMy4w')}
-            ipstring = client.request(base64.b64decode("aHR0cHM6Ly9hcHAuZHluZG5zLnR2L3RvcC9pcF9jaGVjay5waHA="), headers=headers)
+            ipstring = client.request(base64.b64decode("aHR0cHM6Ly9hcHMuc3l0ZXMubmV0L3RvcC9pcF9jaGVjay5waHA="), headers=headers)
             ipadd=ipstring.split('Address: ')[1]
 
             s="%s%s%s%s"%(ipadd,base64.b64decode("dHVtYmluamlhamF5bmFqYW5h")+userAgent[:10],timesegment ,validtime)

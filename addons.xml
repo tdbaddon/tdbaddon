@@ -417,7 +417,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 
 <addon id="plugin.program.echowizard"
 	     name="[COLOR yellowgreen]ECHO[/COLOR] [COLOR white]Wizard[/COLOR]"
-	     version="1.48"
+	     version="1.49"
 	     provider-name="Echo Coder">
   <requires>
   	<import addon="xbmc.python" version="2.1.0"/>
@@ -577,7 +577,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
   </extension>
 </addon>
 
-<addon id="plugin.video.aftershock" name="Aftershock" version="4.5.0" provider-name="Aftershock">
+<addon id="plugin.video.aftershock" name="Aftershock" version="4.5.1" provider-name="Aftershock">
     <requires>
         <import addon="xbmc.python" version="2.19.0"/>
         <import addon="repository.aftershock" version="2.0.1"/>
@@ -585,7 +585,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
         <import addon="script.module.urlresolver"  version="3.0.21"/>
 		<import addon="script.module.metahandler"  version="1.0.0"/>
 		<import addon="script.module.beautifulsoup" version="3.2.1"/>
-        <import addon="script.aftershocknow.guide" version="1.0.0" optional="true"/>
+        <import addon="script.aftershocknow.guide" version="1.0.0"/>
     </requires>
     <extension point="xbmc.python.pluginsource" library="default.py">
         <provides>video</provides>
@@ -660,7 +660,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 	</extension>
 </addon>
 
-<addon id="plugin.video.cartoons8" name="Cartoons8" version="1.0.20" provider-name="MetalKettle">
+<addon id="plugin.video.cartoons8" name="Cartoons8" version="1.0.21" provider-name="MetalKettle">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.t0mm0.common" version="2.0.0"/>
@@ -1604,7 +1604,7 @@ For DMCA Reports, please send message to our FB page.
   </extension>
 </addon>
 
-<addon id="plugin.video.metalvideo" name="Metalvideo" provider-name="willforde" version="2.0.1">
+<addon id="plugin.video.metalvideo" name="Metalvideo" provider-name="willforde" version="2.0.2">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0"/>
 		<import addon="script.module.xbmcutil" version="3.0.0"/>
@@ -1710,11 +1710,12 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.nfl-teams" version="1.2.0" name="NFL Teams" provider-name="Tenzer">
+<addon id="plugin.video.nfl-teams" version="1.3.1" name="NFL Teams" provider-name="Tenzer">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
         <import addon="xbmc.addon" version="12.0.0"/>
         <import addon="script.module.requests" version="2.3.0"/>
+        <import addon="script.common.plugin.cache" version="2.5.6"/>
     </requires>
     <extension point="xbmc.python.pluginsource" library="addon.py">
         <provides>video</provides>
@@ -1924,7 +1925,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2016.12.24.1" provider-name="mrknow" >
+<addon id="plugin.video.specto" name="Specto - ... Fork"  version="2017.01.10.1" provider-name="mrknow" >
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 		<import addon="script.module.requests" version="1.0.0" />
@@ -2028,7 +2029,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.sylvr" name="Sylvr" version="1.4.0" provider-name="ImReallyShiny">
+<addon id="plugin.video.sylvr" name="Sylvr" version="1.5.0" provider-name="ImReallyShiny">
     <requires>
         <import addon="xbmc.python" version="2.1.0"/>
 		<import addon="script.module.liveresolver"  version="0.1.28"/>
@@ -2532,7 +2533,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.ZemTV-shani"
        name="Zem"
-       version="6.1.4"
+       version="6.1.7"
        provider-name="shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -2661,7 +2662,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
-<addon id="repository.communityrepo" name="[COLOR orange][B]The Community Repository[/B][/COLOR]" version="9.8" provider-name="The @CommunityRepo Team">
+<addon id="repository.communityrepo" name="[COLOR orange][B]The Community Repository[/B][/COLOR]" version="9.9.0" provider-name="The @CommunityRepo Team">
 	<extension point="xbmc.addon.repository" name="The Community Repository">
 	<dir>
 		<info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
@@ -3205,15 +3206,15 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
-<addon id="repository.streamteam" name="[COLOR indigo]Streamteam[/COLOR]" version="1.3.0" provider-name="Streamteam">
+<addon id="repository.streamteam" name="[COLOR indigo]Streamteam[/COLOR]" version="1.4" provider-name="Streamteam">
 <extension point="xbmc.addon.repository" name="[COLOR indigo]Streamteam[/COLOR]">
 		<info compressed="false">http://repo.streamteam.space/plugins/addons.xml</info>
 		<checksum>http://repo.streamteam.space/plugins/addons.xml.md5</checksum>
 		<datadir zip="true">http://repo.streamteam.space/plugins/</datadir>
 	</extension>
 	<extension point="xbmc.addon.metadata">
-		<summary>The Streamteam Repository v1.3.0</summary>
-		<description>The Streamteam Repository v1.3.0 - The Streamteam Repository contains various add-ons from various developers. More add-ons are in progress, please watch for updates!</description>
+		<summary>The Streamteam Repository v1.4</summary>
+		<description>The Streamteam Repository v1.4 - The Streamteam Repository contains various add-ons from various developers. More add-ons are in progress, please watch for updates!</description>
 		<platform>all</platform>
 	</extension>
 </addon>
@@ -3686,7 +3687,7 @@ Kodi is a registered trademark of the XBMC Foundation. We are not connected to o
     </extension>
 </addon>
 
-<addon id="script.aftershock.artwork" version="1.3.0" name="Aftershock Artwork" provider-name="IDev">
+<addon id="script.aftershock.artwork" version="1.3.2" name="Aftershock Artwork" provider-name="IDev">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0"/>
 	</requires>
@@ -3773,7 +3774,7 @@ unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
   </extension>
 </addon>
 
-<addon id="script.mrknow.urlresolver" name="Mrknow URLResolver" version="2016.12.24.1" provider-name="mrknow" >
+<addon id="script.mrknow.urlresolver" name="Mrknow URLResolver" version="2017.01.10.1" provider-name="mrknow" >
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
 	</requires>

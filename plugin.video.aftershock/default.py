@@ -258,6 +258,10 @@ elif action == 'clearCache':
     from resources.lib.indexers import navigator
     navigator.navigator().clearCache(url)
 
+elif action == 'changelog':
+    from resources.lib.libraries import changelog
+    changelog.get('1')
+
 elif action == 'startLiveProxy':
     try :
         import os

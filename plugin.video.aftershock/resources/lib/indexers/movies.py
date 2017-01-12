@@ -62,6 +62,9 @@ class movies:
         self.imdb_by_query = 'http://www.omdbapi.com/?t=%s&y=%s'
         self.tmdb_image = 'http://image.tmdb.org/t/p/original'
         self.tmdb_poster = 'http://image.tmdb.org/t/p/w500'
+        self.tm_art_link = 'http://api.themoviedb.org/3/movie/%s/images?api_key=%s' % ('%s',self.tmdb_key)
+        self.tm_img_link = 'https://image.tmdb.org/t/p/w%s%s'
+
 
         #self.search_link = 'http://api.themoviedb.org/3/search/movie?api_key=%s&query=%s'
         self.search_link = 'http://www.imdb.com/search/title?sort=release_date,desc&title=%s'
@@ -462,22 +465,56 @@ class movies:
             plot = plot.encode('utf-8')
             if not plot == '0': self.list[i].update({'plot': plot})
 
-            try : poster = item['Poster']
-            except : pass
+            #try : poster = item['Poster']
+            #except : pass
+            #if poster == None or poster == '' or poster == 'N/A': poster = '0'
+            #poster = client.replaceHTMLCodes(poster)
+            #poster = poster.encode('utf-8')
+            #if not poster == '0': self.list[i].update({'poster': poster})
+
+            poster = item['Poster']
             if poster == None or poster == '' or poster == 'N/A': poster = '0'
-            poster = client.replaceHTMLCodes(poster)
+            if '/nopicture/' in poster: poster = '0'
+            poster = re.sub('(?:_SX|_SY|_UX|_UY|_CR|_AL)(?:\d+|_).+?\.', '_SX500.', poster)
+            if 'poster' in self.list[i] and poster == '0': poster = self.list[i]['poster']
             poster = poster.encode('utf-8')
             if not poster == '0': self.list[i].update({'poster': poster})
+
+            try:
+                art2 = client.request(self.tm_art_link % imdb, timeout='10', error=True)
+                art2 = json.loads(art2)
+            except:
+                pass
+
+            try :
+                tmdb = art2['id']
+                self.list[i].update({'tmdb':tmdb})
+            except :
+                tmdb = 0
+
+            try:
+                fanart = art2['backdrops']
+                #fanart = [x for x in fanart if x.get('iso_639_1') == 'en'] + [x for x in fanart if not x.get('iso_639_1') == 'en']
+                fanart = [x for x in fanart if x.get('width') == 1920] + [x for x in fanart if x.get('width') < 1920]
+                fanart = [(x['width'], x['file_path']) for x in fanart]
+                fanart = [(x[0], x[1]) if x[0] < 1280 else ('1280', x[1]) for x in fanart]
+                fanart = self.tm_img_link % fanart[0]
+                fanart = fanart.encode('utf-8')
+                if not fanart == '0': self.list[i].update({'fanart': fanart})
+            except:
+                import traceback
+                traceback.print_exc()
+                fanart = '0'
 
             studio = self.list[i]['studio']
 
             url = self.trakt_info_link % imdb
 
-            item = trakt.getTrakt(url)
-            item = json.loads(item)
+            art3 = trakt.getTrakt(url)
+            art3 = json.loads(art3)
 
             if poster == '0':
-                try: poster = item['images']['poster']['medium']
+                try: poster = art3['images']['poster']['medium']
                 except: pass
                 if poster == None or not '/posters/' in poster: poster = '0'
                 poster = poster.rsplit('?', 1)[0]
@@ -486,23 +523,23 @@ class movies:
                 if not poster == '0': self.list[i].update({'poster': poster})
 
             banner = '0'
-            try: banner = item['images']['banner']['full']
+            try: banner = art3['images']['banner']['full']
             except: pass
             if banner == None or not '/banners/' in banner: banner = '0'
             banner = banner.rsplit('?', 1)[0]
             banner = banner.encode('utf-8')
             if not banner == '0': self.list[i].update({'banner': banner})
 
-            fanart = '0'
-            try: fanart = item['images']['fanart']['full']
-            except: pass
-            if fanart == None or not '/fanarts/' in fanart: fanart = '0'
-            fanart = fanart.rsplit('?', 1)[0]
-            if fanart == '0': poster = self.list[i]['fanart']
-            fanart = fanart.encode('utf-8')
-            if not fanart == '0': self.list[i].update({'fanart': fanart})
+            if fanart == '0':
+                try: fanart = item['images']['fanart']['full']
+                except: pass
+                if fanart == None or not '/fanarts/' in fanart: fanart = '0'
+                fanart = fanart.rsplit('?', 1)[0]
+                if fanart == '0': poster = self.list[i]['fanart']
+                fanart = fanart.encode('utf-8')
+                if not fanart == '0': self.list[i].update({'fanart': fanart})
 
-            self.meta.append({'imdb': imdb, 'tmdb': '0', 'tvdb': '0', 'lang': self.lang, 'item': {'title': title, 'year': year, 'code': imdb, 'imdb': imdb, 'tmdb': '0', 'poster': poster, 'banner': banner, 'fanart': fanart, 'premiered': premiered, 'studio': studio, 'genre': genre, 'duration': duration, 'rating': rating, 'votes': votes, 'mpaa': mpaa, 'director': director, 'writer': writer, 'cast': cast, 'plot': plot}})
+            self.meta.append({'imdb': imdb, 'tmdb': tmdb, 'tvdb': '0', 'lang': self.lang, 'item': {'title': title, 'year': year, 'code': imdb, 'imdb': imdb, 'tmdb': '0', 'poster': poster, 'banner': banner, 'fanart': fanart, 'premiered': premiered, 'studio': studio, 'genre': genre, 'duration': duration, 'rating': rating, 'votes': votes, 'mpaa': mpaa, 'director': director, 'writer': writer, 'cast': cast, 'plot': plot}})
         except:
             pass
 
@@ -541,7 +578,7 @@ class movies:
                 if banner == '0' and poster == '0': banner = addonBanner
                 elif banner == '0': banner = poster
 
-
+                logger.debug('Title : %s poster : %s banner : %s fanart : %s' % (i['title'], poster, banner, fanart), __name__ )
                 meta = dict((k,v) for k, v in i.iteritems() if not v == '0')
                 meta.update({'trailer': '%s?action=trailer&name=%s' % (sysaddon, sysname)})
                 if i['duration'] == '0': meta.update({'duration': '120'})

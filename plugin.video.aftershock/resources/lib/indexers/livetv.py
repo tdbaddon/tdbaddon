@@ -60,7 +60,8 @@ class channels:
                 meta={'genre':url}
 
 
-                sourceList = cache.get(sources().getSources, 72, name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date, meta, table='live_cache')
+                #sourceList = cache.get(sources().getSources, 72, name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date, meta, table='live_cache')
+                sourceList = sources().getSources(name, title, year, imdb, tmdb, tvdb, tvrage, season, episode, tvshowtitle, alter, date, meta)
                 sourceList = dict((item['name'],item) for item in sourceList).values()
 
                 self.list.extend(sourceList)

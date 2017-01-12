@@ -1,3 +1,9 @@
+[B]Version 6.1.7[/B]
+Nettv small bug
+[B]Version 6.1.6[/B]
+Nettv small fix
+[B]Version 6.1.5[/B]
+new source Nettv
 [B]Version 6.1.4[/B]
 pv2 fixes and using channel id to ease fav. problems
 [B]Version 6.1.3[/B]

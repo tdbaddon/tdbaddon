@@ -23,7 +23,9 @@
         <setting label="32035" type="bool"   id="isYPOff" default="false"/>    
         <setting label="32036" type="bool"   id="isUKTVOff" default="false"/>    
         <setting label="32037" type="bool"   id="isv9Off" default="True"/>    
-        <setting label="32038" type="bool"   id="isFastOff" default="false"/>    
+        <setting label="32038" type="bool"   id="isFastOff" default="false"/>   
+        <setting label="32040" type="bool"   id="isNetworkTVOff" default="false"/>   
+        
           <setting type="sep"/>
                   <setting label="32031" type="bool"   id="donotcache" default="false"/>    
           <setting type="sep"/>

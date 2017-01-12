@@ -33,6 +33,11 @@ try:
     ctx.verify_mode = ssl.CERT_NONE
 except:
     pass
+
+try:
+    compat_chr = unichr  # Python 2
+except NameError:
+    compat_chr = chr
 #urllib2.urlopen("https://your-test-server.local", context=ctx)
 
 class OpenLoadResolver(UrlResolver):
@@ -104,33 +109,23 @@ class OpenLoadResolver(UrlResolver):
 
         n = re.findall('<span id="(.*?)">(.*?)</span>', html)
         print "y",n
-        id = n[0][1]
+        ol_id = n[0][1]
+        print ol_id
 
         def parseInt(sin):
             m = re.search(r'^(\d+)[.,]?\d*?', str(sin))
             return int(m.groups()[-1]) if m and not callable(sin) else None
 
-        #id = '0311103128141621815820119150520011012136101190210112156191831907609106180800810519060010720506202080101111807006144060791010518090141001810619090141071804600099170791110218177170930612518146081221612200162201241516319'
-        firstTwoChars = parseInt(id[0:2])
-        num = 2;
+        first_three_chars = int(float(ol_id[0:][:3]))
+        fifth_char = int(float(ol_id[3:5]))
+        num = 5;
         txt = ''
-        while num < len(id):
-            #print "NUM", num
-            txt += chr(parseInt(id[num:num + 3]) - firstTwoChars * parseInt(id[num + 3:num + 3 + 2]))
-            #print "NUM", txt
-
+        while num < len(ol_id):
+            txt += compat_chr(int(float(ol_id[num:][:3])) + first_three_chars - fifth_char * int(float(ol_id[num + 3:][:2])))
             num += 5
 
-        #alina = 'https://openload.co/stream/' + txt;
         return txt
 
-        #magic = ord(y[-1])
-        #y = "	".join(y.split(chr(magic - 1)))
-        #y = chr(magic - 1).join(y.split(y[-1]))
-        #y = chr(magic).join(y.split("	"))
-        #enc_data = y
-        #print enc_data
-        #enc_data = HTMLParser().unescape(enc_data)
         enc_data = HTMLParser().unescape(y)
 
         res = []

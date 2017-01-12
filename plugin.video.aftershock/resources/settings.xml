@@ -26,6 +26,7 @@
 	<category label="30862">
 		<setting id="apnaview" type="bool" label="ApnaView" default="true" />
 		<setting id="badtameezdil" type="bool" label="Bad" default="true" />
+		<setting id="bmoviez" type="bool" label="BMoviez" default="true" />
 		<setting id="cinefun" type="bool" label="CineFun" visible="true" default="true" />
 		<setting id="crazy4ad" type="bool" label="CRAZY4AD" visible="false" default="true" />
 		<setting id="desihdmovies" type="bool" label="DesiHDMovies" default="true" />
@@ -56,6 +57,10 @@
 		<setting id="putlocker" type="bool" label="PutLocker" default="true" />
 		<setting id="rlsmovies" type="bool" label="RLSMovies" default="true" />
 		<setting id="swift" type="bool" label="Swift" default="true" />
+		<setting id="rajtamil" type="bool" label="RajTamil" default="true" />
+		<setting id="tamilgun" type="bool" label="TamilGun" default="true" />
+		<setting id="tamilyogi" type="bool" label="TamilYogi" default="true" />
+		<setting id="watchfree" type="bool" label="WatchFree" default="true" />
 		<!--<setting id="uktvnow" type="bool" label="UKTVNow" visible="false" default="false" />-->
 		<setting id="ymovies" type="bool" label="YMovies" default="true" />
 		<setting id="yodesi" type="bool" label="YoDesi" default="true"/>

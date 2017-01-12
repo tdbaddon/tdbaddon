@@ -1,13 +1,13 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="repository.streamteam" name="[COLOR indigo]Streamteam[/COLOR]" version="1.3.0" provider-name="Streamteam">
+<?xml version="1.0" encoding="UTF-8"?>
+<addon id="repository.streamteam" name="[COLOR indigo]Streamteam[/COLOR]" version="1.4" provider-name="Streamteam">
 <extension point="xbmc.addon.repository" name="[COLOR indigo]Streamteam[/COLOR]">
 		<info compressed="false">http://repo.streamteam.space/plugins/addons.xml</info>
 		<checksum>http://repo.streamteam.space/plugins/addons.xml.md5</checksum>
 		<datadir zip="true">http://repo.streamteam.space/plugins/</datadir>
 	</extension>
 	<extension point="xbmc.addon.metadata">
-		<summary>The Streamteam Repository v1.3.0</summary>
-		<description>The Streamteam Repository v1.3.0 - The Streamteam Repository contains various add-ons from various developers. More add-ons are in progress, please watch for updates!</description>
+		<summary>The Streamteam Repository v1.4</summary>
+		<description>The Streamteam Repository v1.4 - The Streamteam Repository contains various add-ons from various developers. More add-ons are in progress, please watch for updates!</description>
 		<platform>all</platform>
 	</extension>
 </addon>

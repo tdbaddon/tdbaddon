@@ -237,10 +237,10 @@ def GET_LIST(description):
 					bname = " | [COLOR orange][B] This Week:[/COLOR][COLOR gold] " + count + "[/B][/COLOR]"
 					if not os.path.exists(ADDON):
 						Common.addDir("[COLOR orange][B]3rd - " + name + " - NOT INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
-						Common.addItem("[COLOR grey]----------------------------------[/COLOR]",url2,999,iconimage,fanart,'')
+						Common.addItem("[COLOR grey]----------------------------------[/COLOR]",url2,999,ICON,FANART,'')
 					else:
 						Common.addDir("[COLOR orange][B]3rd - " + name + " - INSTALLED[/B][/COLOR]" + bname,url2,176,iconimage,fanart,'')
-						Common.addItem("[COLOR grey]----------------------------------[/COLOR]",url2,999,iconimage,fanart,'')
+						Common.addItem("[COLOR grey]----------------------------------[/COLOR]",url2,999,ICON,FANART,'')
 				else:
 					bname = " | [COLOR grey] This Week:[/COLOR][COLOR lightskyblue][B] " + count + "[/B][/COLOR]"
 					if not os.path.exists(ADDON):
@@ -364,7 +364,7 @@ def GET_LIST(description):
 		xbmc.executebuiltin("Container.SetViewMode(55)")
 	else: xbmc.executebuiltin("Container.SetViewMode(50)")
 
-def ADDON_DECIDE(name,url):
+def ADDON_DECIDE(name,url,iconimage,fanart):
 
 	urla  = url
 	paid_mark = "null"
@@ -378,24 +378,24 @@ def ADDON_DECIDE(name,url):
 	try:
 		ADDON  =  xbmc.translatePath(os.path.join('special://home/addons',addon_path))
 		if not os.path.exists(ADDON):
-			Common.addItem("[COLOR white][B]Install Addon[/B][/COLOR]",urla+",install_me",151,ICON,FANART,'')
+			Common.addItem("[COLOR white][B]Install Addon[/B][/COLOR]",urla+",install_me",151,iconimage,fanart,'')
 		else:
-			Common.addItem("[COLOR white][B]Uninstall Addon[/B][/COLOR]",urla+",uninstall_me",151,ICON,FANART,'')
+			Common.addItem("[COLOR white][B]Uninstall Addon[/B][/COLOR]",urla+",uninstall_me",151,iconimage,fanart,'')
 		if paid_mark == "paid":
-			Common.addItem("[COLOR white][B]Addon Information[/B][/COLOR]",urla+",paid_info",151,ICON,FANART,'')
+			Common.addItem("[COLOR white][B]Addon Information[/B][/COLOR]",urla+",paid_info",151,iconimage,fanart,'')
 		else:
-			Common.addItem("[COLOR white][B]Addon Information[/B][/COLOR]",urla+",info_me",151,ICON,FANART,'')
-		Common.addDir("[COLOR white][B]Read Addon Reviews[/B][/COLOR]",urla+",readreview_me",151,ICON,FANART,'')
-		Common.addItem("[COLOR white][B]Leave Review[/B][/COLOR]",urla+",leavereview_me",151,ICON,FANART,'')
+			Common.addItem("[COLOR white][B]Addon Information[/B][/COLOR]",urla+",info_me",151,iconimage,fanart,'')
+		Common.addDir("[COLOR white][B]Read Addon Reviews[/B][/COLOR]",urla+",readreview_me",151,iconimage,fanart,'')
+		Common.addItem("[COLOR white][B]Leave Review[/B][/COLOR]",urla+",leavereview_me",151,iconimage,fanart,'')
 	except:
 		ADDON  =  xbmc.translatePath(os.path.join('special://home/addons',repo_path))
 		if not os.path.exists(ADDON):
-			Common.addItem("[COLOR white][B]Install Repository[/B][/COLOR]",urla+",install_me",164,ICON,FANART,'')
+			Common.addItem("[COLOR white][B]Install Repository[/B][/COLOR]",urla+",install_me",164,iconimage,fanart,'')
 		else:
-			Common.addItem("[COLOR white][B]Uninstall Repository[/B][/COLOR]",urla+",uninstall_me",164,ICON,FANART,'')
-		Common.addItem("[COLOR white][B]Repository Information[/B][/COLOR]",urla+",info_me",164,ICON,FANART,'')
-		Common.addDir("[COLOR white][B]Read Repository Reviews[/B][/COLOR]",urla+",readreview_me",164,ICON,FANART,'')
-		Common.addItem("[COLOR white][B]Leave Review[/B][/COLOR]",urla+",leavereview_me",164,ICON,FANART,'')
+			Common.addItem("[COLOR white][B]Uninstall Repository[/B][/COLOR]",urla+",uninstall_me",164,iconimage,fanart,'')
+		Common.addItem("[COLOR white][B]Repository Information[/B][/COLOR]",urla+",info_me",164,iconimage,fanart,'')
+		Common.addDir("[COLOR white][B]Read Repository Reviews[/B][/COLOR]",urla+",readreview_me",164,iconimage,fanart,'')
+		Common.addItem("[COLOR white][B]Leave Review[/B][/COLOR]",urla+",leavereview_me",164,iconimage,fanart,'')
 
 def GET_MULTI(name,url):
 	

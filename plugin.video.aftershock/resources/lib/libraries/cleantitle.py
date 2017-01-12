@@ -20,6 +20,12 @@
 
 import re,unicodedata
 
+from resources.lib.libraries import control
+try:
+    from sqlite3 import dbapi2 as database
+except:
+    from pysqlite2 import dbapi2 as database
+
 def movie(title):
     title = re.sub('\n|([[].+?[]])|([(].+?[)])|\s(vs|v[.])\s|(:|;|-|"|,|\'|\_|\.|\?)|\s', '', title).lower()
     return title
@@ -28,15 +34,26 @@ def tv(title):
     title = re.sub('\n|\s(|[(])(UK|US|AU|\d{4})(|[)])$|\s(vs|v[.])\s|(:|;|-|"|,|\'|\_|\.|\?)|\s', '', title).lower()
     return title
 
-def live(title, names=None):
+def normalizeLiveName(name):
+    try:
+        dbcon = database.connect(control.sourcescacheFile)
+        dbcur = dbcon.cursor()
+        dbcur.execute("SELECT name FROM live_meta WHERE alt_names like '%" + name.upper() + "%'")
+        match = dbcur.fetchone()
+        normalizeName = match[0]
+        if normalizeName == '':
+            normalizeName = name
+        return normalizeName
+    except:
+        import traceback
+        traceback.print_exc()
+        return name
+
+def live(title):
     title = title.upper()
     title = title.strip()
     title = re.sub('\n|\s(|[(]|[(]\s)(UK|APAC|EUR0PE|LOCAL TIME|INDIA|ENTERTAINMENT|EU|IN|USA|\d{4})(|[)]|\s[)])$|\s(vs|v[.])\s|(:|;|-|"|,|\'|\_|\.|\?)', '', title)
-    try : tmpTitle = names[title]
-    except: tmpTitle = None
-    if not tmpTitle == None:
-        title = tmpTitle
-    return title
+    return normalizeLiveName(title)
 
 def geturl(title):
     if title == None: return
