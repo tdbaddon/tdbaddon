@@ -245,6 +245,7 @@ elif action == 'clearQueue':
     xbmc.executebuiltin('Container.Refresh')
 elif action == "addToFavorites":
     from resources.lib.modules import favs
+    xbmc.log(repr(params))
     fav_type = params['type']
     fav_link = params['link']
     fav_poster = params['poster']

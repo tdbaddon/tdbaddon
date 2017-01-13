@@ -16,7 +16,7 @@ def add_favorite(name, fav_type, link, poster, fanart):
         dbcur = dbcon.cursor()
         dbcur.execute(
             "CREATE TABLE IF NOT EXISTS %s (""name TEXT, ""fav_type TEXT, ""link TEXT, ""poster TEXT, ""fanart TEXT, ""UNIQUE(name, fav_type)"");" % table)
-        dbcur.execute("INSERT INTO %s Values (?, ?, ?, ?, ?)" % table, (name, fav_type, link, poster, fanart))
+        dbcur.execute("INSERT INTO %s Values (?, ?, ?, ?, ?)" % table, (name.encode(), fav_type, link, poster, fanart))
         dbcon.commit()
         return True
     except:

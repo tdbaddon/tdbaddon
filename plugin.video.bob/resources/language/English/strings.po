@@ -111,7 +111,7 @@ msgid "Download item"
 msgstr ""
 
 msgctxt "#30723"
-msgid "Credits"
+msgid "Other"
 msgstr ""
 
 msgctxt "#30724"
@@ -247,7 +247,7 @@ msgid "You can choose whether or not to install[CR]the relevant repos."
 msgstr ""
 
 msgctxt "#30765"
-msgid "We recommend installing the relevant repos[CR]to ensure your addons auto-update."
+msgid "We recommend installing the relevant repos[CR]to ensure your addons auto-update_host_file."
 msgstr ""
 
 msgctxt "#30766"
@@ -267,7 +267,7 @@ msgid "Please wait..."
 msgstr ""
 
 msgctxt "#30808"
-msgid "Checking login details and update files"
+msgid "Checking login details and update_host_file files"
 msgstr ""
 
 msgctxt "#30825"
@@ -391,7 +391,7 @@ msgid "Error"
 msgstr ""
 
 msgctxt "#30966"
-msgid "Sorry there was an error trying to retrieve the latest test version, the developer may be working on pushing a new update."
+msgid "Sorry there was an error trying to retrieve the latest test version, the developer may be working on pushing a new update_host_file."
 msgstr ""
 
 msgctxt "#30967"
@@ -423,7 +423,7 @@ msgid "UNABLE TO INSTALL REPO"
 msgstr ""
 
 msgctxt "#30974"
-msgid "Sorry there was an error trying to install this repository, please let the team at noobsandnerds.com know so they can update the Add-on Portal. Thank you."
+msgid "Sorry there was an error trying to install this repository, please let the team at noobsandnerds.com know so they can update_host_file the Add-on Portal. Thank you."
 msgstr ""
 
 msgctxt "#30975"
@@ -431,7 +431,7 @@ msgid "UPDATE AVAILABLE"
 msgstr ""
 
 msgctxt "#30976"
-msgid "The noobsandnerds Add-on Portal is showing a newer version of [COLOR=gold]%s[/COLOR] is available. Would you like to update to version: [COLOR=dodgerblue]%s[/COLOR]"
+msgid "The noobsandnerds Add-on Portal is showing a newer version of [COLOR=gold]%s[/COLOR] is available. Would you like to update_host_file to version: [COLOR=dodgerblue]%s[/COLOR]"
 msgstr ""
 
 msgctxt "#30977"
@@ -456,4 +456,8 @@ msgstr ""
 
 msgctxt "#32503"
 msgid "Resume"
+msgstr ""
+
+msgctxt "#32504"
+msgid "Enable My Bob custom name"
 msgstr ""

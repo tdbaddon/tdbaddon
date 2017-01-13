@@ -72,25 +72,26 @@ class Indexer:
             self.list = self.bob_list(url)
             from resources.lib.modules import favs
             you = "My"
-            try:
-                HOME = xbmc.translatePath('special://home')
-                if xbmc.getInfoLabel('System.ProfileName') != "Master user":
-                    you = xbmc.getInfoLabel('System.ProfileName')
-                elif xbmc.getCondVisibility('System.Platform.Windows') == True or xbmc.getCondVisibility(
-                        'System.Platform.OSX') == True:
-                    if "Users\\" in HOME:
-                        proyou = str(HOME).split("Users\\")
-                        preyou = str(proyou[1]).split("\\")
-                        you = preyou[0]
-                    else:
-                        you = "My"
-                if "[COLOR" in you:
-                    name = re.findall("\[COLOR=.+?\](.+?)\[/COLOR\]", you)[0]
-                    you = re.sub("(\[COLOR=.+?\])(.+?)(\[/COLOR\])", '\\1{0}\\3'.format(name.capitalize() + "'s"), you)
-                elif you != "My":
-                    you = you.capitalize() + "'s"
-            except:
-                pass
+            if control.setting('my_bob_name') == 'true':
+                try:
+                    HOME = xbmc.translatePath('special://home')
+                    if xbmc.getInfoLabel('System.ProfileName') != "Master user":
+                        you = xbmc.getInfoLabel('System.ProfileName')
+                    elif xbmc.getCondVisibility('System.Platform.Windows') == True or xbmc.getCondVisibility(
+                            'System.Platform.OSX') == True:
+                        if "Users\\" in HOME:
+                            proyou = str(HOME).split("Users\\")
+                            preyou = str(proyou[1]).split("\\")
+                            you = preyou[0]
+                        else:
+                            you = "My"
+                    if "[COLOR" in you:
+                        name = re.findall("\[COLOR=.+?\](.+?)\[/COLOR\]", you)[0]
+                        you = re.sub("(\[COLOR=.+?\])(.+?)(\[/COLOR\])", '\\1{0}\\3'.format(name.capitalize() + "'s"), you)
+                    elif you != "My":
+                        you = you.capitalize() + "'s"
+                except:
+                    pass
             name ='%s Bob' % you
             self.list.insert(0, {'name': name, 'url': url, 'action': 'getfavorites', 'folder': True,
                                  'poster': "http://norestrictions.club/norestrictions.club/main/icons/my_bob.jpg"})
@@ -180,7 +181,7 @@ class Indexer:
             [i.start() for i in threads]
             [i.join() for i in threads]
 
-            self.list = [i for i in self.list if url.lower() in i['name'].lower()]
+            self.list = [i for i in self.list if url.lower() in i['name'].lower().translate(None, '\/:*?"\'<>|!,')]
 
             for i in self.list:
                 try:
@@ -193,6 +194,58 @@ class Indexer:
                     pass
 
             self.add_directory(self.list, mode=False)
+        except:
+            pass
+
+    def get_xml(self, url):
+        import xbmc
+        import xbmcaddon
+        import xbmcvfs
+        try:
+            from sqlite3 import dbapi2 as database
+        except:
+            from pysqlite2 import dbapi2 as database
+        import os
+        import requests
+        xbmcvfs.mkdir(xbmc.translatePath(xbmcaddon.Addon("plugin.video.bob").getAddonInfo('profile')))
+        cache_location = os.path.join(
+                xbmc.translatePath(xbmcaddon.Addon("plugin.video.bob").getAddonInfo('profile')).decode('utf-8'),
+                'url_cache.db')
+        request = requests.get(url)
+        try:
+            last_modified = request.headers['Last-Modified']
+        except:
+            last_modified = ""
+        try:
+            dbcon = database.connect(cache_location)
+            dbcur = dbcon.cursor()
+            try:
+                dbcur.execute("SELECT * FROM version")
+                match = dbcur.fetchone()
+            except:
+                dbcur.execute("CREATE TABLE version (""version TEXT)")
+                dbcur.execute("INSERT INTO version Values ('0.5.4')")
+                dbcon.commit()
+            dbcur.execute(
+                    "CREATE TABLE IF NOT EXISTS xml (url TEXT, xml TEXT, last_modified Text, UNIQUE(url, last_modified));")
+            try:
+                dbcur.execute(
+                        "SELECT * FROM xml WHERE last_modified = '%s' and url = '%s'" % (last_modified, url))
+                match = dbcur.fetchone()
+                if match:
+                    if match[2] == last_modified:
+                        return match[1]
+            except:
+                pass
+
+            xml = request.content
+            try:
+                dbcur.execute("DELETE FROM xml WHERE last_modified = '%s' and url = '%s'" % (last_modified, url))
+                dbcur.execute("INSERT INTO xml Values (?, ?, ?)", (url, xml, last_modified))
+                dbcon.commit()
+            except:
+                pass
+            return xml
         except:
             pass
 
@@ -211,6 +264,18 @@ class Indexer:
                     raise Exception()
                 from resources.lib.sources import sports
                 xml = sports.get_acesoplisting()
+                return self.getx(xml)
+            except:
+                pass
+
+            try:
+                if not "sport_nhl_games" in url:
+                    raise Exception()
+                from resources.lib.sources import sports
+                game_date = url.replace("sport_nhl_games(", "")[:-1]
+                if "sport" in game_date:
+                    game_date = ""
+                xml = sports.get_nhl_games(game_date)
                 return self.getx(xml)
             except:
                 pass
@@ -250,7 +315,8 @@ class Indexer:
 
             original_url = url
             if result is None:
-                result = cache.get(client.request, 0.1, url)
+                result = self.get_xml(url)
+                #result = cache.get(client.request, 0.1, url)
 
             if result.strip().startswith('#EXTM3U') and '#EXTINF' in result:
                 result = re.compile('#EXTINF:.+?\,(.+?)\n(.+?)\n', re.MULTILINE | re.DOTALL).findall(result)
@@ -724,25 +790,26 @@ class Indexer:
             return
 
         you = "My"
-        try:
-            HOME = xbmc.translatePath('special://home')
-            if xbmc.getInfoLabel('System.ProfileName') != "Master user":
-                you = xbmc.getInfoLabel('System.ProfileName')
-            elif xbmc.getCondVisibility('System.Platform.Windows') == True or xbmc.getCondVisibility(
-                    'System.Platform.OSX') == True:
-                if "Users\\" in HOME:
-                    proyou = str(HOME).split("Users\\")
-                    preyou = str(proyou[1]).split("\\")
-                    you = preyou[0]
-                else:
-                    you = "My"
-            if "[COLOR" in you:
-                name = re.findall("\[COLOR=.+?\](.+?)\[/COLOR\]", you)[0]
-                you = re.sub("(\[COLOR=.+?\])(.+?)(\[/COLOR\])", '\\1{0}\\3'.format(name.capitalize() + "'s"), you)
-            elif you != "My":
-                you = you.capitalize() + "'s"
-        except:
-            pass
+        if control.setting('my_bob_name') == 'true':
+            try:
+                HOME = xbmc.translatePath('special://home')
+                if xbmc.getInfoLabel('System.ProfileName') != "Master user":
+                    you = xbmc.getInfoLabel('System.ProfileName')
+                elif xbmc.getCondVisibility('System.Platform.Windows') == True or xbmc.getCondVisibility(
+                        'System.Platform.OSX') == True:
+                    if "Users\\" in HOME:
+                        proyou = str(HOME).split("Users\\")
+                        preyou = str(proyou[1]).split("\\")
+                        you = preyou[0]
+                    else:
+                        you = "My"
+                if "[COLOR" in you:
+                    name = re.findall("\[COLOR=.+?\](.+?)\[/COLOR\]", you)[0]
+                    you = re.sub("(\[COLOR=.+?\])(.+?)(\[/COLOR\])", '\\1{0}\\3'.format(name.capitalize() + "'s"), you)
+                elif you != "My":
+                    you = you.capitalize() + "'s"
+            except:
+                pass
         fave_name = '%s Bob' % you
 
         system_addon = sys.argv[0]
@@ -845,14 +912,18 @@ class Indexer:
                         dfile = '%s S%02dE%02d' % (data['tvshowtitle'], int(data['season']), int(data['episode']))
                     except:
                         dfile = name
-
+                if not mode:
+                    if content == 'movies':
+                        mode = "movies"
+                    elif content == 'tvshows':
+                        mode = "tvshows"
                 if mode == 'movies':
                     cm.append(
                         (control.lang(30711).encode('utf-8'),
                          'RunPlugin(%s?action=addView&content=movies)' % system_addon))
                     cm.append(('Add to %s' % fave_name,
                                'RunPlugin(%s?action=addToFavorites&name=%s&type=movie&link=%s&poster=%s&fanart=%s)' % (
-                                   system_addon, name, i['url'], poster, fanart)))
+                                   system_addon, urllib.quote(name), urllib.quote(i['url']), poster, fanart)))
                 elif mode == 'tvshows':
                     cm.append((control.lang(30712).encode('utf-8'),
                                'RunPlugin(%s?action=addView&content=tvshows)' % system_addon))
@@ -914,10 +985,10 @@ class Indexer:
                     fav_type = i["content"].replace("-favs", "")
                     cm.append(('Remove From %s' % fave_name,
                                'RunPlugin(%s?action=removeFromFavorites&name=%s&type=%s&link=%s)' % (
-                                   system_addon, name, fav_type, i['url'])))
+                                   system_addon, urllib.quote(name), urllib.quote(fav_type), urllib.quote(i['url']))))
                     cm.append(('Move Favorite',
                                'RunPlugin(%s?action=MoveFavorite&name=%s&type=%s&link=%s)' % (
-                                   system_addon, name, fav_type, i['url'])))
+                                   system_addon, urllib.quote(name), urllib.quote(fav_type), urllib.quote(i['url']))))
 
                 if content in ["movies", "episodes"]:
                     imdb = Indexer.bob_get_tag_content(i["url"], 'imdb', '0')

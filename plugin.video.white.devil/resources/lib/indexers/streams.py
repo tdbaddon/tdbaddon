@@ -1,13 +1,3 @@
-'''
-    Whit Devil Streams Add-on
-    Copyright (C) 2016 Hd Streams
-
-    This program is free software: no need to steal our content
-    you can send us as msg @ https://www.facebook.com/groups/102660050086738/
-    and ask to use our content in your addon
-'''
-
-
 import os,re,sys,urllib,urlparse,json,base64
 
 from resources.lib.modules import cache
@@ -26,7 +16,7 @@ class indexer:
 
     def root(self):
         try:
-            url = 'http://kodimaniacs.com/HdStreams.xml'
+            url = 'http://brettusbuilds.com/.WHITE%20DEVIL/MAIN%20INDEX.XML'
             self.list = self.streams_list(url)
             self.addDirectory(self.list)
             return self.list
@@ -86,7 +76,7 @@ class indexer:
 
     def addSearch(self, url=None):
         try:
-            link = ''
+            link = 'http://brettusbuilds.com/.WHITE%20DEVIL/SEARCH/SEARCH.XML'
 
             if (url == None or url == ''):
                 keyboard = control.keyboard('', control.lang(30702).encode('utf-8'))

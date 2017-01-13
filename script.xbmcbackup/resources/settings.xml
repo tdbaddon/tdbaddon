@@ -16,11 +16,11 @@
 	<category id="selection" label="30012">
 		<setting id="backup_addons" type="bool" label="30030" default="true" />
 		<setting id="backup_addon_data" type="bool" label="30031" default="true" />
-		<setting id="backup_database" type="bool" label="30032" default="false" />
+		<setting id="backup_database" type="bool" label="30032" default="true" />
 		<setting id="backup_playlists" type="bool" label="30033" default="false" />
 		<setting id="backup_profiles" type="bool" label="30080" default="false" />
 		<setting id="backup_thumbnails" type="bool" label="30034" default="false" />
-		<setting id="backup_config" type="bool" label="30035" default="false" />
+		<setting id="backup_config" type="bool" label="30035" default="true" />
 		<setting id="custom_dir_1_enable" type="bool" label="30036" default="false" />
 		<setting id="backup_custom_dir_1" type="folder" label="30018" default="" visible="eq(-1,true)"/>
 		<setting id="custom_dir_2_enable" type="bool" label="30037" default="false" />

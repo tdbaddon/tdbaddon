@@ -109,7 +109,7 @@ def getRegexParsed(regexs, url,cookieJar=None,forCookieJarOnly=False,recursiveCa
                 #print m
                 cookieJarParam=False
                 if  'cookiejar' in m: # so either create or reuse existing jar
-                    #print 'cookiejar exists',m['cookiejar']
+                    #print 'cookiejar host_in_host_file',m['cookiejar']
                     cookieJarParam=m['cookiejar']
                     if  '$doregex' in cookieJarParam:
                         cookieJar=getRegexParsed(regexs, m['cookiejar'],cookieJar,True, True,cachedPages)

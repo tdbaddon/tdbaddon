@@ -1,4 +1,5 @@
 import time
+from datetime import datetime
 
 import requests
 from BeautifulSoup import BeautifulSoup
@@ -148,8 +149,8 @@ def get_hockey_recaps(page):
           "</item>\n\n"
 
     recaps_json = requests.get(
-        "http://search-api.svc.nhl.com/svc/search/v2/nhl_global_en/tag/content/gameRecap?page={0}&sort=new&type=video&hl=false&expand=image.cuts.640x360,image.cuts.1136x640".format(
-            page)).json()
+            "http://search-api.svc.nhl.com/svc/search/v2/nhl_global_en/tag/content/gameRecap?page={0}&sort=new&type=video&hl=false&expand=image.cuts.640x360,image.cuts.1136x640".format(
+                    page)).json()
     for doc in recaps_json['docs']:
         referer = "{0}?tag=content&tagValue=gameRecap".format(doc['url'])
         asset_id = doc['asset_id']
@@ -180,7 +181,6 @@ def get_hockey_recaps(page):
                 if width >= max_width:
                     max_width = width
                     selected_url = video_info["url"]
-        print selected_url
         xml += "<item>\n" \
                "\t<title>{0}</title>\n" \
                "\t<link>{1}</link>\n" \
@@ -194,3 +194,84 @@ def get_hockey_recaps(page):
            "</dir>\n".format(int(page) + 1)
 
     return xml
+
+
+def get_nhl_games(epg_date=""):
+    import xbmc
+    import string
+    if epg_date == "":
+        epg_date = datetime.now().strftime("%Y-%m-%d")
+    xml = ""
+    epgurl = "http://statsapi.web.nhl.com/api/v1/schedule?startDate=%s&endDate=%s&expand=schedule.teams,schedule.game.content.media.epg" \
+             % (epg_date, epg_date)
+    content = requests.get(epgurl).json()
+    if not "totalItems" in content or content['totalItems'] <= 0 or not "dates" in content or len(
+            content["dates"]) == 0:
+        return xml
+    for game_date in content["dates"]:
+        if game_date["totalItems"] > 0:
+            xml+= "\n" \
+                       "<item>\n" \
+                       "\t<title>[COLORred]%s NHL Schedule in 5000k[/COLOR]</title>\n" \
+                       "\t<link></link>\n" \
+                       "\t<thumbnail>https://upload.wikimedia.org/wikipedia/en/thumb/e/e4/NHL_Logo_former.svg/996px-NHL_Logo_former.svg.png</thumbnail>\n" \
+                       "\t<fanart>http://i.imgur.com/HI05fqX.jpg</fanart>\n" \
+                       "</item>\n" % (datetime.strptime(game_date["date"], "%Y-%m-%d").strftime("%A, %b %d"))
+            for game in game_date["games"]:
+                xml += "\n" \
+                       "<item>\n" \
+                       "\t<title>[COLORred]| [COLORorange]%s [COLORred]|[/COLOR]</title>\n" \
+                       "\t<link></link>\n" \
+                       "\t<thumbnail>https://upload.wikimedia.org/wikipedia/en/thumb/e/e4/NHL_Logo_former.svg/996px-NHL_Logo_former.svg.png</thumbnail>\n" \
+                       "\t<fanart>http://i.imgur.com/HI05fqX.jpg</fanart>\n" \
+                       "</item>\n" % (datetime.strptime(game["gameDate"], "%Y-%m-%dT%H:%M:%SZ").strftime("%H:%M EST"))
+                home = game['teams']['home']['team']['abbreviation']
+                away = game['teams']['away']['team']['abbreviation']
+                title = "[COLORgray]%s vs. %s[/COLOR]" % (home.encode(), away.encode())
+                image = "https://upload.wikimedia.org/wikipedia/en/thumb/e/e4/NHL_Logo_former.svg/996px-NHL_Logo_former.svg.png"
+                for stream in game["content"]["media"]["epg"]:
+                    if stream["title"] == "Recap":
+                        try:
+                            image = stream['items'][0]['image']['cuts']['640x360']['src']
+                        except:
+                            pass
+                for stream in game["content"]["media"]["epg"]:
+                    if stream["title"] == "NHLTV":
+                        xml += "\n" \
+                               "<item>\n" \
+                               "\t<title>%s</title>\n" \
+                               "\t<link></link>\n" \
+                               "\t<thumbnail></thumbnail>\n" \
+                               "\t<fanart>http://i.imgur.com/HI05fqX.jpg</fanart>\n" \
+                               "</item>\n" % (title)
+                        for item in stream['items']:
+                            game_title = item["mediaFeedType"].lower()
+                            if game_title not in ["home", "away"]:
+                                continue
+                            feed_id = item["mediaPlaybackId"]
+                            import random, string
+                            seed = ''.join(
+                                    random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _
+                                    in range(241))
+                            content_url = "http://mf.svc.nhl.com/m3u8/%s/%s%s" % (epg_date, feed_id, 'l3c')
+                            try:
+                                request = requests.get(content_url)
+                                if request.status_code < 400:
+                                    play_url = request.content
+                                else:
+                                    play_url = ""
+                                    game_title += " NOT PLAYING YET"
+                            except:
+                                continue
+                            if not play_url is "" and not requests.request('HEAD',play_url,cookies = {'mediaAuth': seed}).status_code < 400:
+                                play_url = play_url.replace('l3c', 'akc')
+                            game_xml = "<item>\n" \
+                                       "\t<title>{0}</title>\n" \
+                                       "\t<link>{1}</link>\n" \
+                                       "\t<thumbnail>{2}</thumbnail>\n" \
+                                       "\t<fanart>http://i.imgur.com/HI05fqX.jpg</fanart>\n" \
+                                       "</item>\n".format(game_title, play_url, image)
+                            xml += game_xml
+            return xml
+        else:
+            return ""
