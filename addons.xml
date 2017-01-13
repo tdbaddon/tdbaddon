@@ -1065,7 +1065,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
   </extension>
 </addon>
 
-<addon id="plugin.video.exodus" version="2.0.26" name="Exodus" provider-name="Exodus">
+<addon id="plugin.video.exodus" version="3.0.0" name="Exodus" provider-name="Exodus">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="repository.exodus" version="1.0.0" />
@@ -1082,7 +1082,14 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
 		<description lang="en">Please visit www.tvaddons.ag for Exodus support and assistance! Kindly note that Exodus is not an official part of the media player you are running, and therefore not to be mentioned within official support channels, this addon has nothing to do with the media player itself, nor it’s intended use, it is simply a third party plugin which has been added to your system.</description>
 		<disclaimer lang="en">The author does not host or distribute any of the content displayed by this addon. The author does not have any affiliation with the content provider.</disclaimer>
 		<platform>all</platform>
-		<news>- Updated providers</news>
+		<assets>
+			<icon>icon.png</icon>
+			<fanart>fanart.jpg</fanart>
+			<screenshot>resources/screenshots/screenshot-01.jpg</screenshot>
+			<screenshot>resources/screenshots/screenshot-02.jpg</screenshot>
+			<screenshot>resources/screenshots/screenshot-03.jpg</screenshot>
+		</assets>
+		<news>- Re-work of provider retrieval[CR]- Re-work of stream directories[CR]- Re-work of stream resolving[CR]- Fixed issues with various modules[CR]- Added option for localized providers[CR]- Added German providers (Viper4k)[CR]- Updated existing providers[CR]- Removed dead providers[CR]- Added new providers</news>
 	</extension>
 </addon>
 
@@ -3172,24 +3179,6 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
             <summary>SkymashiTV Repository</summary>
             <description>SkymashiTV Repository for our Addons and Builds</description>
             <platform>all</platform>
-    </extension>
-</addon>
-
-<addon id="repository.spoyser"
-        name="spoysers XBMC Add-ons"
-        version="1.0.6"
-        provider-name="spoyser">
-    <extension point="xbmc.addon.repository"
-        name="spoysers XBMC Add-ons">
-        <info compressed="false">https://raw.github.com/spoyser/spoyser-repo/master/addons.xml</info>
-        <checksum>https://raw.github.com/spoyser/spoyser-repo/master/addons.xml.md5</checksum>
-        <datadir zip="true">https://raw.github.com/spoyser/spoyser-repo/master/zips/</datadir>
-    </extension>
-    <extension point="xbmc.addon.metadata">
-        <summary>Install XBMC add-ons from the official spoyser repository</summary>
-        <description>Install XBMC add-ons from spoysers official repository</description>
-        <disclaimer></disclaimer>
-        <platform>all</platform>
     </extension>
 </addon>
 

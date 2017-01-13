@@ -481,7 +481,7 @@ class tvshows:
                 url = url.replace('date[%s]' % i, (self.datetime - datetime.timedelta(days = int(i))).strftime('%Y-%m-%d'))
 
             def imdb_watchlist_id(url):
-                return client.parseDOM(client.request(url).decode('iso-8859-1').encode('utf-8'), 'meta', ret='content', attrs = {'property': 'pageId'})[0]
+                return client.parseDOM(client.request(url), 'meta', ret='content', attrs = {'property': 'pageId'})[0]
 
             if url == self.imdbwatchlist_link:
                 url = cache.get(imdb_watchlist_id, 8640, url)
@@ -494,7 +494,6 @@ class tvshows:
             result = client.request(url)
 
             result = result.replace('\n','')
-            result = result.decode('iso-8859-1').encode('utf-8')
 
             items = client.parseDOM(result, 'div', attrs = {'class': 'lister-item mode-advanced'})
             items += client.parseDOM(result, 'div', attrs = {'class': 'list_item.+?'})
@@ -574,7 +573,6 @@ class tvshows:
     def imdb_person_list(self, url):
         try:
             result = client.request(url)
-            result = result.decode('iso-8859-1').encode('utf-8')
             items = client.parseDOM(result, 'tr', attrs = {'class': '.+? detailed'})
         except:
             return
@@ -607,7 +605,6 @@ class tvshows:
     def imdb_user_list(self, url):
         try:
             result = client.request(url)
-            result = result.decode('iso-8859-1').encode('utf-8')
             items = client.parseDOM(result, 'div', attrs = {'class': 'list_name'})
         except:
             pass

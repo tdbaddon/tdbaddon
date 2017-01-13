@@ -292,6 +292,14 @@ msgctxt "#32072"
 msgid "Refresh"
 msgstr "Rafraîchir"
 
+msgctxt "#32073"
+msgid "[B]HELP[/B] : www.tvaddons.ag"
+msgstr "[B]AIDE[/B] : www.tvaddons.ag"
+
+msgctxt "#32074"
+msgid "[B]HELP[/B]"
+msgstr "[B]AIDE[/B]"
+
 msgctxt "#32301"
 msgid "Enabled"
 msgstr "Activé"
@@ -527,6 +535,10 @@ msgstr "Les Sous-Titres Peuvent Êtres Indisponibles ou Désynchronisés."
 msgctxt "#32359"
 msgid "In that case use your own subtitles."
 msgstr "Dans ce Cas Utilisez vos Propre Sous-Titres"
+
+msgctxt "#32360"
+msgid "Providers Language"
+msgstr "Langue des sources"
 
 msgctxt "#32401"
 msgid "No stream available"

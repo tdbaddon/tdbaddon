@@ -292,6 +292,14 @@ msgctxt "#32072"
 msgid "Refresh"
 msgstr "Освежи"
 
+msgctxt "#32073"
+msgid "[B]HELP[/B] : www.tvaddons.ag"
+msgstr "[B]ПОМОЋ[/B] : www.tvaddons.ag"
+
+msgctxt "#32074"
+msgid "[B]HELP[/B]"
+msgstr "[B]ПОМОЋ[/B]"
+
 msgctxt "#32301"
 msgid "Enabled"
 msgstr "Омогућено"
@@ -354,7 +362,7 @@ msgstr "Trakt"
 
 msgctxt "#32316"
 msgid "Info Language"
-msgstr "Језик информација"
+msgstr "Језик на информација"
 
 msgctxt "#32317"
 msgid "Flatten TV seasons"
@@ -527,6 +535,10 @@ msgstr "Титлови могу да буду недоступни или неу
 msgctxt "#32359"
 msgid "In that case use your own subtitles."
 msgstr "У том случају користите сопствене титлове."
+
+msgctxt "#32360"
+msgid "Providers Language"
+msgstr "Језик на добављаче"
 
 msgctxt "#32401"
 msgid "No stream available"

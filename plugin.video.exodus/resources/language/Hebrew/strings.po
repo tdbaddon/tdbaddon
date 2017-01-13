@@ -292,6 +292,14 @@ msgctxt "#32072"
 msgid "Refresh"
 msgstr "רענון "
 
+msgctxt "#32073"
+msgid "[B]HELP[/B] : www.tvaddons.ag"
+msgstr ": www.tvaddons.ag [B]עזרה[/B] "
+
+msgctxt "#32074"
+msgid "[B]HELP[/B]"
+msgstr "[B]עזרה[/B] "
+
 msgctxt "#32301"
 msgid "Enabled"
 msgstr "מאופשר "
@@ -527,6 +535,10 @@ msgstr "יתכן שהכתוביות לא יהיו זמינות או שלא יה�
 msgctxt "#32359"
 msgid "In that case use your own subtitles."
 msgstr "במקרה שכזה מוטב להשתמש בכתוביות שסופקו על ידך."
+
+msgctxt "#32360"
+msgid "Providers Language"
+msgstr "שפת ספקים"
 
 msgctxt "#32401"
 msgid "No stream available"

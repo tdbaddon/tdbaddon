@@ -20,7 +20,7 @@
 
 
 import re,sys,json,time,xbmc
-import hashlib,os,zlib,base64,codecs,xmlrpclib
+import hashlib,urllib,os,zlib,base64,codecs,xmlrpclib
 
 try: from sqlite3 import dbapi2 as database
 except: from pysqlite2 import dbapi2 as database
@@ -45,7 +45,8 @@ class player(xbmc.Player):
             self.content = 'movie' if season == None or episode == None else 'episode'
 
             self.title = title ; self.year = year
-            self.name = '%s (%s)' % (title, year) if self.content == 'movie' else '%s S%02dE%02d' % (title, int(season), int(episode))
+            self.name = urllib.quote_plus(title) + urllib.quote_plus(' (%s)' % year) if self.content == 'movie' else urllib.quote_plus(title) + urllib.quote_plus(' S%02dE%02d' % (int(season), int(episode)))
+            self.name = urllib.unquote_plus(self.name)
             self.season = '%01d' % int(season) if self.content == 'episode' else None
             self.episode = '%01d' % int(episode) if self.content == 'episode' else None
 

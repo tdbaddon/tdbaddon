@@ -292,6 +292,14 @@ msgctxt "#32072"
 msgid "Refresh"
 msgstr ""
 
+msgctxt "#32073"
+msgid "[B]HELP[/B] : www.tvaddons.ag"
+msgstr ""
+
+msgctxt "#32074"
+msgid "[B]HELP[/B]"
+msgstr ""
+
 msgctxt "#32301"
 msgid "Enabled"
 msgstr ""
@@ -526,6 +534,10 @@ msgstr ""
 
 msgctxt "#32359"
 msgid "In that case use your own subtitles."
+msgstr ""
+
+msgctxt "#32360"
+msgid "Providers Language"
 msgstr ""
 
 msgctxt "#32401"

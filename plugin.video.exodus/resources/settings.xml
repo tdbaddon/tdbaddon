@@ -8,12 +8,13 @@
 		<setting id="indicators.alt" type="enum" label="32313" lvalues="32314|32315" default="1" visible="!eq(-1,)" />
 		<setting id="indicators" type="enum" label="32313" lvalues="32314" default="0" visible="eq(-2,)" />
 		<setting id="api.language" type="select" label="32316" values="AUTO|Bulgarian|Chinese|Croatian|Czech|Danish|Dutch|English|Finnish|French|German|Greek|Hebrew|Hungarian|Italian|Japanese|Korean|Norwegian|Polish|Portuguese|Romanian|Russian|Serbian|Slovak|Slovenian|Spanish|Swedish|Thai|Turkish|Ukrainian" default="AUTO" />
+		<setting id="providers.language" type="select" label="32360" values="English|German|All" default="English" />
 		<setting id="flatten.tvshows" type="bool" label="32317" default="false" />
 		<setting id="fanart" type="bool" label="32318" default="true" />
 		<setting type="lsep" label="32319" />
 		<setting id="movie.widget" type="enum" label="32320" lvalues="32302|32321|32322|32323|32324" default="1" />
-		<setting id="tv.widget.alt" type="enum" label="32325" lvalues="32302|32326|32327|32328" default="2" visible="!eq(-8,)+eq(-7,1)" />
-		<setting id="tv.widget" type="enum" label="32325" lvalues="32302|32326" default="1" visible="eq(-9,)|eq(-8,0)" />
+		<setting id="tv.widget.alt" type="enum" label="32325" lvalues="32302|32326|32327|32328" default="2" visible="!eq(-9,)+eq(-8,1)" />
+		<setting id="tv.widget" type="enum" label="32325" lvalues="32302|32326" default="1" visible="eq(-10,)|eq(-9,0)" />
 		<setting id="lists.widget" type="enum" label="32329" lvalues="32302|32301" default="1" />
 	</category>
 	<category label="32330">
@@ -28,65 +29,82 @@
 		<setting id="bookmarks" type="bool" label="32344" default="true" />
 	</category>
 	<category label="32345">
-		<setting id="provider.afdah" type="bool" label="Afdah" default="true" />
-		<setting id="provider.animeultima" type="bool" label="Animeultima" default="true" />
-		<setting id="provider.bmoviez" type="bool" label="Bmoviez" default="true" />
-		<setting id="provider.crazy" type="bool" label="Crazy" default="true" />
-		<setting id="provider.dailyrls" type="bool" label="Dailyrls" default="true" />
-		<setting id="provider.dayt" type="bool" label="Dayt" default="true" />
-		<setting id="provider.ddls" type="bool" label="Ddls" default="true" />
-		<setting id="provider.ddlvalley" type="bool" label="DDLvalley" default="true" />
-		<setting id="provider.directdl" type="bool" label="DirectDL" default="true" />
-		<setting id="provider.dizigold" type="bool" label="Dizigold" default="true" />
-		<setting id="provider.dltube" type="bool" label="DLTube" default="true" />
-		<setting id="provider.einthusan" type="bool" label="Einthusan" default="true" />
-		<setting id="provider.genvideo" type="bool" label="Genvideo" default="true" />
-		<setting id="provider.gogoanime" type="bool" label="GoGoAnime" default="true" />
-		<setting id="provider.hevcfilm" type="bool" label="Hevcfilm" default="true" />
-		<setting id="provider.library" type="bool" label="Library" default="true" />
-		<setting id="provider.miradetodo" type="bool" label="MiraDeTodo" default="true" />
-		<setting id="provider.movie25" type="bool" label="Movie25" default="true" />
-		<setting id="provider.movie4k" type="bool" label="Movie4K" default="true" />
-		<setting id="provider.moviefree" type="bool" label="Moviefree" default="true" />
-		<setting id="provider.moviegee" type="bool" label="Moviegee" default="true" />
-		<setting id="provider.movies14" type="bool" label="Movies14" default="true" />
-		<setting id="provider.movieshd" type="bool" label="MoviesHD" default="true" />
-		<setting id="provider.moviesplanet" type="bool" label="Moviesplanet" default="true" />
-		<setting id="provider.moviexk" type="bool" label="Moviexk" default="true" />
-		<setting id="provider.myvideolink" type="bool" label="Myvideolink" default="true" />
-		<setting id="provider.onemovies" type="bool" label="Onemovies" default="true" />
-		<setting id="provider.onlinedizi" type="bool" label="Onlinedizi" default="true" />
-		<setting id="provider.onlinemovies" type="bool" label="Onlinemovies" default="true" />
-		<setting id="provider.onseries" type="bool" label="ONseries" default="true" />
-		<setting id="provider.openmovies" type="bool" label="Openmovies" default="true" />
-		<setting id="provider.ororo" type="bool" label="Ororo" default="true" />
-		<setting id="provider.pelispedia" type="bool" label="Pelispedia" default="true" />
-		<setting id="provider.phdmovies" type="bool" label="Phdmovies" default="true" />
-		<setting id="provider.pmovies" type="bool" label="Pmovies" default="true" />
-		<setting id="provider.primewire" type="bool" label="Primewire" default="true" />
-		<setting id="provider.pubfilm" type="bool" label="Pubfilm" default="true" />
-		<setting id="provider.putlockerz" type="bool" label="Putlockerz" default="true" />
-		<setting id="provider.putlocker" type="bool" label="Putlocker" default="true" />
-		<setting id="provider.releasebb" type="bool" label="releaseBB" default="true" />
-		<setting id="provider.rlshd" type="bool" label="Rlshd" default="true" />
-		<setting id="provider.rlsmovies" type="bool" label="Rlsmovies" default="true" />
-		<setting id="provider.scenedown" type="bool" label="Scenedown" default="true" />
-		<setting id="provider.sceper" type="bool" label="Sceper" default="true" />
-		<setting id="provider.sezonlukdizi" type="bool" label="Sezonlukdizi" default="true" />
-		<setting id="provider.streamlord" type="bool" label="Streamlord" default="true" />
-		<setting id="provider.tinydl" type="bool" label="Tinydl" default="true" />
-		<setting id="provider.torba" type="bool" label="Torba" default="true" />
-		<setting id="provider.tunemovie" type="bool" label="Tunemovie" default="true" />
-		<setting id="provider.tvbmoviez" type="bool" label="Tvbmoviez" default="true" />
-		<setting id="provider.twoddl" type="bool" label="twoDDL" default="true" />
-		<setting id="provider.watch32" type="bool" label="Watch32" default="true" />
-		<setting id="provider.watchfree" type="bool" label="Watchfree" default="true" />
-		<setting id="provider.watchhd" type="bool" label="WatchHD" default="true" />
-		<setting id="provider.watchseries" type="bool" label="Watchseries" default="true" />
-		<setting id="provider.wmo" type="bool" label="WMO" default="true" />
-		<setting id="provider.wrzcraft" type="bool" label="Wrzcraft" default="true" />
-		<setting id="provider.xmovies" type="bool" label="Xmovies" default="true" />
-		<setting id="provider.ymovies" type="bool" label="Ymovies" default="true" />
+		<setting id="provider.afdah" type="bool" label="AFDAH" default="true" />
+		<setting id="provider.animeultima" type="bool" label="ANIMEULTIMA" default="true" />
+		<setting id="provider.bmoviez" type="bool" label="BMOVIEZ" default="true" />
+		<setting id="provider.crazy" type="bool" label="CRAZY" default="true" />
+		<setting id="provider.dailyrls" type="bool" label="DAILYRLS" default="true" />
+		<setting id="provider.dayt" type="bool" label="DAYT" default="true" />
+		<setting id="provider.ddls" type="bool" label="DDLS" default="true" />
+		<setting id="provider.ddlvalley" type="bool" label="DDLVALLEY" default="true" />
+		<setting id="provider.directdl" type="bool" label="DIRECTDL" default="true" />
+		<setting id="provider.dizigold" type="bool" label="DIZIGOLD" default="true" />
+		<setting id="provider.dltube" type="bool" label="DLTUBE" default="true" />
+		<setting id="provider.einthusan" type="bool" label="EINTHUSAN" default="true" />
+		<setting id="provider.genvideo" type="bool" label="GENVIDEO" default="true" />
+		<setting id="provider.gogoanime" type="bool" label="GOGOANIME" default="true" />
+		<setting id="provider.hevcfilm" type="bool" label="HEVCFILM" default="true" />
+		<setting id="provider.library" type="bool" label="LIBRARY" default="true" />
+		<setting id="provider.miradetodo" type="bool" label="MIRADETODO" default="true" />
+		<setting id="provider.movie25" type="bool" label="MOVIE25" default="true" />
+		<setting id="provider.movie4k" type="bool" label="MOVIE4K" default="true" />
+		<setting id="provider.moviebiz" type="bool" label="MOVIEBIZ" default="true" />
+		<setting id="provider.moviefree" type="bool" label="MOVIEFREE" default="true" />
+		<setting id="provider.moviegee" type="bool" label="MOVIEGEE" default="true" />
+		<setting id="provider.movies14" type="bool" label="MOVIES14" default="true" />
+		<setting id="provider.movieshd" type="bool" label="MOVIESHD" default="true" />
+		<setting id="provider.moviesplanet" type="bool" label="MOVIESPLANET" default="true" />
+		<setting id="provider.moviexk" type="bool" label="MOVIEXK" default="true" />
+		<setting id="provider.myvideolink" type="bool" label="MYVIDEOLINK" default="true" />
+		<setting id="provider.onemovies" type="bool" label="ONEMOVIES" default="true" />
+		<setting id="provider.onlinedizi" type="bool" label="ONLINEDIZI" default="true" />
+		<setting id="provider.onlinemovies" type="bool" label="ONLINEMOVIES" default="true" />
+		<setting id="provider.onseries" type="bool" label="ONSERIES" default="true" />
+		<setting id="provider.openmovies" type="bool" label="OPENMOVIES" default="true" />
+		<setting id="provider.ororo" type="bool" label="ORORO" default="true" />
+		<setting id="provider.pelispedia" type="bool" label="PELISPEDIA" default="true" />
+		<setting id="provider.phdmovies" type="bool" label="PHDMOVIES" default="true" />
+		<setting id="provider.pmovies" type="bool" label="PMOVIES" default="true" />
+		<setting id="provider.primewire" type="bool" label="PRIMEWIRE" default="true" />
+		<setting id="provider.pubfilm" type="bool" label="PUBFILM" default="true" />
+		<setting id="provider.putlocker" type="bool" label="PUTLOCKER" default="true" />
+		<setting id="provider.putlockerz" type="bool" label="PUTLOCKERZ" default="true" />
+		<setting id="provider.releasebb" type="bool" label="RELEASEBB" default="true" />
+		<setting id="provider.rlsbb" type="bool" label="RLSBB" default="true" />
+		<setting id="provider.rlshd" type="bool" label="RLSHD" default="true" />
+		<setting id="provider.rlsmovies" type="bool" label="RLSMOVIES" default="true" />
+		<setting id="provider.scenedown" type="bool" label="SCENEDOWN" default="true" />
+		<setting id="provider.sceper" type="bool" label="SCEPER" default="true" />
+		<setting id="provider.sezonlukdizi" type="bool" label="SEZONLUKDIZI" default="true" />
+		<setting id="provider.streamlord" type="bool" label="STREAMLORD" default="true" />
+		<setting id="provider.tinydl" type="bool" label="TINYDL" default="true" />
+		<setting id="provider.torba" type="bool" label="TORBA" default="true" />
+		<setting id="provider.tunemovie" type="bool" label="TUNEMOVIE" default="true" />
+		<setting id="provider.tvbmoviez" type="bool" label="TVBMOVIEZ" default="true" />
+		<setting id="provider.twoddl" type="bool" label="TWODDL" default="true" />
+		<setting id="provider.watch32" type="bool" label="WATCH32" default="true" />
+		<setting id="provider.watchfree" type="bool" label="WATCHFREE" default="true" />
+		<setting id="provider.watchhd" type="bool" label="WATCHHD" default="true" />
+		<setting id="provider.watchseries" type="bool" label="WATCHSERIES" default="true" />
+		<setting id="provider.wrzcraft" type="bool" label="WRZCRAFT" default="true" />
+		<setting id="provider.xmovies" type="bool" label="XMOVIES" default="true" />
+		<setting id="provider.ymovies" type="bool" label="YMOVIES" default="true" />
+		<setting label="German" type="lsep" />
+		<setting id="provider.1kino" type="bool" label="1KINO" default="true" />
+		<setting id="provider.bs" type="bool" label="BS" default="true" />
+		<setting id="provider.cine" type="bool" label="CINE" default="true" />
+		<setting id="provider.ddl" type="bool" label="DDL" default="true" />
+		<setting id="provider.filmpalast" type="bool" label="FILMPALAST" default="true" />
+		<setting id="provider.hdfilme" type="bool" label="HDFILME" default="true" />
+		<setting id="provider.iload" type="bool" label="ILOAD" default="true" />
+		<setting id="provider.kinox" type="bool" label="KINOX" default="true" />
+		<setting id="provider.meinkino" type="bool" label="MEINKINO" default="true" />
+		<setting id="provider.serienstream" type="bool" label="SERIENSTREAM" default="true" />
+		<setting id="provider.streamdream" type="bool" label="STREAMDREAM" default="true" />
+		<setting id="provider.streamkiste" type="bool" label="STREAMKISTE" default="true" />
+		<setting id="provider.tata" type="bool" label="TATA" default="true" />
+		<setting id="provider.video4k" type="bool" label="VIDEO4K" default="true" />
+		<setting id="provider.view4u" type="bool" label="VIEW4U" default="true" />
 	</category>
 	<category label="32346">
 		<setting type="lsep" label="FANART.TV" />

@@ -446,7 +446,7 @@ class movies:
                 url = url.replace('date[%s]' % i, (self.datetime - datetime.timedelta(days = int(i))).strftime('%Y-%m-%d'))
 
             def imdb_watchlist_id(url):
-                return client.parseDOM(client.request(url).decode('iso-8859-1').encode('utf-8'), 'meta', ret='content', attrs = {'property': 'pageId'})[0]
+                return client.parseDOM(client.request(url), 'meta', ret='content', attrs = {'property': 'pageId'})[0]
 
             if url == self.imdbwatchlist_link:
                 url = cache.get(imdb_watchlist_id, 8640, url)
@@ -459,7 +459,6 @@ class movies:
             result = client.request(url)
 
             result = result.replace('\n','')
-            result = result.decode('iso-8859-1').encode('utf-8')
 
             items = client.parseDOM(result, 'div', attrs = {'class': 'lister-item mode-advanced'})
             items += client.parseDOM(result, 'div', attrs = {'class': 'list_item.+?'})
@@ -577,7 +576,6 @@ class movies:
     def imdb_person_list(self, url):
         try:
             result = client.request(url)
-            result = result.decode('iso-8859-1').encode('utf-8')
             items = client.parseDOM(result, 'tr', attrs = {'class': '.+? detailed'})
         except:
             return
@@ -610,7 +608,6 @@ class movies:
     def imdb_user_list(self, url):
         try:
             result = client.request(url)
-            result = result.decode('iso-8859-1').encode('utf-8')
             items = client.parseDOM(result, 'div', attrs = {'class': 'list_name'})
         except:
             pass
@@ -834,14 +831,14 @@ class movies:
                 item = json.loads(item)[0]
 
                 t = item['title']
-                if not (t == None or t == ''): title = t
-                try: title = title.encode('utf-8')
-                except: pass
+                if not (t == None or t == ''):
+                    try: title = t.encode('utf-8')
+                    except: pass
 
                 t = item['overview']
-                if not (t == None or t == ''): plot = t
-                try: plot = plot.encode('utf-8')
-                except: pass
+                if not (t == None or t == ''):
+                    try: plot = t.encode('utf-8')
+                    except: pass
             except:
                 pass
 

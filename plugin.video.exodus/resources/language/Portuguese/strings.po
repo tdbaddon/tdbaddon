@@ -293,6 +293,14 @@ msgctxt "#32072"
 msgid "Refresh"
 msgstr "Actualizar"
 
+msgctxt "#32073"
+msgid "[B]HELP[/B] : www.tvaddons.ag"
+msgstr "[B]AJUDA[/B] : www.tvaddons.ag"
+
+msgctxt "#32074"
+msgid "[B]HELP[/B]"
+msgstr "[B]AJUDA[/B]"
+
 msgctxt "#32301"
 msgid "Enabled"
 msgstr "Ativo"
@@ -355,7 +363,7 @@ msgstr "Trakt"
 
 msgctxt "#32316"
 msgid "Info Language"
-msgstr "Informação da Língua"
+msgstr "Linguagem de Informação"
 
 msgctxt "#32317"
 msgid "Flatten TV seasons"
@@ -528,6 +536,10 @@ msgstr "As Legendas poderão estar indisponíveis ou fora de sincronismo."
 msgctxt "#32359"
 msgid "In that case use your own subtitles."
 msgstr "Nessa situação utilize as suas próprias legendas."
+
+msgctxt "#32360"
+msgid "Providers Language"
+msgstr "Linguagem de Serviços"
 
 msgctxt "#32401"
 msgid "No stream available"

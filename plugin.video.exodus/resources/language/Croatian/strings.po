@@ -292,6 +292,14 @@ msgctxt "#32072"
 msgid "Refresh"
 msgstr "Osvježi"
 
+msgctxt "#32073"
+msgid "[B]HELP[/B] : www.tvaddons.ag"
+msgstr "[B]POMOĆ[/B] : www.tvaddons.ag"
+
+msgctxt "#32074"
+msgid "[B]HELP[/B]"
+msgstr "[B]POMOĆ[/B]"
+
 msgctxt "#32301"
 msgid "Enabled"
 msgstr "Omogućeno"
@@ -527,6 +535,10 @@ msgstr "Podnapisi mogu biti nedostupni ili neusklađeni."
 msgctxt "#32359"
 msgid "In that case use your own subtitles."
 msgstr "U tom slučaju rabite svoje podnapise."
+
+msgctxt "#32360"
+msgid "Providers Language"
+msgstr "Jezik izvora"
 
 msgctxt "#32401"
 msgid "No stream available"

@@ -86,7 +86,8 @@ def local(title, imdb, lang):
         t = client.request(t, headers={'Accept-Language': lang})
         t = client.parseDOM(t, 'title')[0]
         t = re.sub('\((?:.+?|)\d{4}.+', '', t).strip()
-        t = normalize(t.encode("utf-8")) 
+        t = client.replaceHTMLCodes(t)
+        t = t.encode('utf-8')
         return t
     except:
         return title

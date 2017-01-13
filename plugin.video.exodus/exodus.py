@@ -114,6 +114,10 @@ elif action == 'clearCache':
     from resources.lib.indexers import navigator
     navigator.navigator().clearCache()
 
+elif action == 'infoCheck':
+    from resources.lib.indexers import navigator
+    navigator.navigator().infoCheck('')
+
 elif action == 'movies':
     from resources.lib.indexers import movies
     movies.movies().get(url)
@@ -272,29 +276,29 @@ elif action == 'rdAuthorize':
 
 elif action == 'download':
     import json
-    from resources.lib.sources import sources
+    from resources.lib.modules import sources
     from resources.lib.modules import downloader
-    try: downloader.download(name, image, sources().sourcesResolve(json.loads(source)[0], True))
+    try: downloader.download(name, image, sources.sources().sourcesResolve(json.loads(source)[0], True))
     except: pass
 
 elif action == 'play':
-    from resources.lib.sources import sources
-    sources().play(title, year, imdb, tvdb, season, episode, tvshowtitle, premiered, meta, select)
+    from resources.lib.modules import sources
+    sources.sources().play(title, year, imdb, tvdb, season, episode, tvshowtitle, premiered, meta, select)
 
 elif action == 'addItem':
-    from resources.lib.sources import sources
-    sources().addItem(title)
+    from resources.lib.modules import sources
+    sources.sources().addItem(title)
 
 elif action == 'playItem':
-    from resources.lib.sources import sources
-    sources().playItem(title, source)
+    from resources.lib.modules import sources
+    sources.sources().playItem(title, source)
 
 elif action == 'alterSources':
-    from resources.lib.sources import sources
-    sources().alterSources(url, meta)
+    from resources.lib.modules import sources
+    sources.sources().alterSources(url, meta)
 
 elif action == 'clearSources':
-    from resources.lib.sources import sources
-    sources().clearSources()
+    from resources.lib.modules import sources
+    sources.sources().clearSources()
 
 
