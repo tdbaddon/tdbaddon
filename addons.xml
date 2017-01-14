@@ -2087,7 +2087,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.TDBM3U"
        name="TDB M3U"
-       version="1000"
+       version="1001"
        provider-name="TDB">
 <requires>
 <import addon="xbmc.python" version="2.1.0"/>
