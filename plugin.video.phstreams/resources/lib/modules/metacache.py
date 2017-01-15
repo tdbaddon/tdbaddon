@@ -36,6 +36,8 @@ def fetch(items, lang):
         dbcon = database.connect(metacacheFile)
         dbcur = dbcon.cursor()
     except:
+        try: dbcon.close()
+        except: pass
         return items
 
     for i in range(0, len(items)):
@@ -61,17 +63,43 @@ def fetch(items, lang):
         except:
             pass
 
+    try: dbcon.close()
+    except: pass
+
     return items
 
 
 def insert(meta):
     try:
+        if not meta: return
         control.makeFile(control.dataPath)
         metacacheFile = os.path.join(control.dataPath, 'meta.5.db')
+
         dbcon = database.connect(metacacheFile)
         dbcur = dbcon.cursor()
         dbcur.execute("CREATE TABLE IF NOT EXISTS meta (""imdb TEXT, ""tmdb TEXT, ""tvdb TEXT, ""lang TEXT, ""item TEXT, ""time TEXT, ""UNIQUE(imdb, tmdb, tvdb, lang)"");")
         t = int(time.time())
+        r = False
+        for m in meta:
+            try:
+                i = repr(m['item'])
+                try: dbcur.execute("DELETE * FROM meta WHERE (imdb = '%s' and lang = '%s' and not imdb = '0') or (tmdb = '%s' and lang = '%s' and not tmdb = '0') or (tvdb = '%s' and lang = '%s' and not tvdb = '0')" % (m['imdb'], m['lang'], m['tmdb'], m['lang'], m['tvdb'], m['lang']))
+                except: pass
+                try: dbcur.execute("INSERT INTO meta Values (?, ?, ?, ?, ?, ?)", (m['imdb'], m['tmdb'], m['tvdb'], m['lang'], i, t))
+                except: r = True ; break
+            except:
+                pass
+        dbcon.commit()
+        dbcon.close()
+
+        if r == False: return
+
+        control.deleteFile(metacacheFile)
+        dbcon = database.connect(metacacheFile)
+        dbcur = dbcon.cursor()
+        dbcur.execute("CREATE TABLE IF NOT EXISTS meta (""imdb TEXT, ""tmdb TEXT, ""tvdb TEXT, ""lang TEXT, ""item TEXT, ""time TEXT, ""UNIQUE(imdb, tmdb, tvdb, lang)"");")
+        t = int(time.time())
+        r = False
         for m in meta:
             try:
                 i = repr(m['item'])
@@ -80,8 +108,9 @@ def insert(meta):
                 dbcur.execute("INSERT INTO meta Values (?, ?, ?, ?, ?, ?)", (m['imdb'], m['tmdb'], m['tvdb'], m['lang'], i, t))
             except:
                 pass
-
         dbcon.commit()
+        dbcon.close()
     except:
         return
+
 

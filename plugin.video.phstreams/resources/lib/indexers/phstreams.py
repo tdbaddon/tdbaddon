@@ -255,8 +255,6 @@ class indexer:
 
             result = str(result)
 
-            result = self.account_filter(result)
-
             info = result.split('<item>')[0].split('<dir>')[0]
 
             try: vip = re.findall('<poster>(.+?)</poster>', info)[0]
@@ -376,16 +374,6 @@ class indexer:
         regex.insert(self.hash)
 
         return self.list
-
-
-    def account_filter(self, result):
-        if (control.setting('ustvnow_email') == '' or control.setting('ustvnow_pass') == ''):
-            result = re.sub('http(?:s|)://(?:www\.|)ustvnow\.com/.+?<','<', result)
-
-        if (control.setting('streamlive_user') == '' or control.setting('streamlive_pass') == ''):
-            result = re.sub('http(?:s|)://(?:www\.|)streamlive\.to/.+?<','<', result)
-
-        return result
 
 
     def worker(self):
@@ -861,18 +849,18 @@ class resolver:
 
             quality = 'HD' if not preset == 'searchsd' else 'SD'
 
-            from resources.lib.sources import sources
+            from resources.lib.modules import sources
 
-            u = sources().getSources(title, year, imdb, tvdb, season, episode, tvshowtitle, premiered, quality)
+            u = sources.sources().getSources(title, year, imdb, tvdb, season, episode, tvshowtitle, premiered, quality)
 
             if not u == None: return u
         except:
             pass
 
         try:
-            from resources.lib.sources import sources
+            from resources.lib.modules import sources
 
-            u = sources().getURISource(url)
+            u = sources.sources().getURISource(url)
 
             if not u == False: direct = False
             if u == None or u == False: raise Exception()

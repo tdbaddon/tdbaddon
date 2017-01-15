@@ -37,4 +37,9 @@
         <!-- <setting label="32023" type="select" id="defualtSSSBitRate"  default="1300" values="Maximum (Highest Quality)|500|650|900|1300|1900|2700"/>-->
                                               
      </category>
+     	<category label="TVPlayer Login">
+		<setting id="tvpusername" type="text" label="Username" default=""/>
+ 		<setting id="tvppwd" type="text" label="Password" default=""/>
+
+	</category>
 </settings>

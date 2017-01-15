@@ -330,15 +330,13 @@ class indexer:
         try:
             url = urlparse.urljoin(self.cartoons_link, url)
 
-            result = client.request(url)
+            u = client.request(url)
+            u = client.parseDOM(u, 'div', attrs = {'id': 'player'})[0]
+            u = client.parseDOM(u, 'iframe', ret='src')[0]
+            u = client.request(u, referer=url)
+            u = client.parseDOM(u, 'source', ret='src', attrs = {'type': 'video.+?'})[0]
 
-            result = client.parseDOM(result, 'div', attrs = {'id': 'divDownload'})[0]
-
-            url = client.parseDOM(result, 'a', ret='href')[-1]
-            url = client.replaceHTMLCodes(url)
-            url = url.encode('utf-8')
-
-            return url
+            return u
         except:
             pass
 

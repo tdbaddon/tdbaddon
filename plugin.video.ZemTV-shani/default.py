@@ -68,6 +68,9 @@ YPLoginFile=os.path.join(profile_path, YPLoginFile)
 HDCASTCookie='HDCastCookieFile.lwp'
 HDCASTCookie=os.path.join(profile_path, HDCASTCookie)
 
+TVPCOOKIEFILE='TVPCookieFile.lwp'
+TVPCOOKIEFILE=os.path.join(profile_path, TVPCOOKIEFILE)
+
  
 mainurl=base64.b64decode('aHR0cDovL3d3dy56ZW10di5jb20vY2F0ZWdvcnkvcGFraXN0YW5pLw==')
 liveURL=base64.b64decode('aHR0cDovL3d3dy56ZW10di5jb20vbGl2ZS1wYWtpc3RhbmktbmV3cy1jaGFubmVscy8=')
@@ -877,9 +880,10 @@ def AddSports365Channels(url=None, recursive=False):
     forced=False
     try:
 
-        addDir(Colored("All times in local timezone.",'red') ,"" ,0,"", False, True,isItFolder=False)		#name,url,mode,icon
-        addDir(Colored("Update parser file.",'blue')+Colored("\nRemember to Visit their site sport365.live if stops play!.",'red') ,"sss" ,80,"", False, True,isItFolder=False)		#name,url,mode,icon
+        addDir(Colored("All times in local timezone.",'blue') ,"" ,0,"", False, True,isItFolder=False)		#name,url,mode,icon
+        addDir(Colored("Update parser file.",'blue') ,"sss" ,80,"", False, True,isItFolder=False)		#name,url,mode,icon
         addDir(Colored("Refresh listing",'blue') ,"sss" ,156,"", False, True,isItFolder=True)		#name,url,mode,icon
+        addDir(Colored("Stopped playing after 2 minutes???????",'red') ,"sss" ,95,"", False, True,isItFolder=True)		#name,url,mode,icon
         import live365
         forced=not live365.isvalid()        
         videos=live365.getLinks()
@@ -1101,7 +1105,7 @@ def getNetworkTVData():
     fname='Networkdata.json'
     fname=os.path.join(profile_path, fname)
     try:
-        jsondata=getCacheData(fname,2*60*60)
+        jsondata=getCacheData(fname,30*60)
         if not jsondata==None:
             return json.loads(base64.b64decode(jsondata))
     except:
@@ -1561,6 +1565,7 @@ def getTVPlayerChannels(thesechannels=[]):
     return ret
         
 def AddTVPlayerChannels(url, thesechannels=[]):
+    addDir('Some channels requires free login, enter in the settings.' ,'' ,'','', False, True,isItFolder=False)
     for ch in sorted(getTVPlayerChannels(thesechannels),key=lambda s: s[0].lower() ) :
         addDir(ch[0] ,ch[1] ,ch[2],ch[3], False, True,isItFolder=False)
 
@@ -4853,13 +4858,18 @@ def getPTCUrl():
     response = urllib2.urlopen(req)
     link=response.read()
     maindata=json.loads(link)
-    print maindata
+    #print maindata
     decodeddata=maindata["Secret"]
     #decodeddata='JCQkJIklu'.join(decodeddata.split('JCQkJIklu')[:-1])+'JCQkJIklu'
     #print decodeddata
     #data=base64.b64decode(decodeddata)
     #decodeddata=decodeddata.replace('nbUioPLk6nbviOP0kjgfreWEur','')
-    decodeddata=decodeddata+'='*(len(decodeddata) % 4)
+    #print len(decodeddata)
+    if (len(decodeddata) % 4)>0:
+        #decodeddata+=('='*(4-(len(decodeddata) % 4)))
+        decodeddata=decodeddata[:-int(len(decodeddata) % 4)]
+    #print len(decodeddata)
+    #print decodeddata
     data=base64.b64decode(decodeddata)
     #print data
     #data=''
@@ -5167,8 +5177,10 @@ def getNetworkTVPage():
     print netData
     baseurl=netData["YnVueWFkaV9wYXRhX25hdnVh"]
     baseurl=baseurl[1:].decode("base64")+"bGl2ZTMubmV0dHYv".decode("base64")
+    import random,math
+    uid=int(math.floor(random.random()*50000) )
     headers=[('User-Agent',getFastUA()),('Authorization','Basic %s'%base64.b64decode("YUdWc2JHOU5SanBHZFdOcmIyWm0=")),('Referer','http://localhost')]
-    post={'check':'1','user_id':'556274','version':'23'}
+    post={'check':'1','user_id':str(uid),'version':'23'}
     post = urllib.urlencode(post)
     jsondata=getUrl(baseurl,post=post,headers=headers)
     jsondata=json.loads(jsondata)
@@ -6948,11 +6960,11 @@ def playzenga(url,progress):
 
     playurl=''
     try:
-
+        progress.update( 30, "", "getting links", "" )
         headers=[('Referer','http://ada.zengatv.com/'),('User-Agent','Mozilla/5.0 (iPhone; CPU iPhone OS 9_0_2 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Mobile/13A452 (5215161440)')]
         
         jsfile=getUrl(base64.b64decode('aHR0cDovL2FkYS56ZW5nYXR2LmNvbS9jb250cm9sbGVycy9MaXZlUGxheWVyQ29udHJvbGxlci5qcw=='),headers=headers)
-        reg= "var dvrid.*?\s.*?\"(http.*)\s"
+        reg= "var dvrid.*?\s.*?\"(http.*)\"\s"
         
         churl=re.findall(reg,jsfile)[0]
         churl=churl.replace('" + dvrid + "',url)
@@ -6962,13 +6974,79 @@ def playzenga(url,progress):
         m3uurl=re.findall(reg,xmlfile)[0]
         
         playurl=m3uurl+'|User-Agent=Mozilla/5.0 (iPhone; CPU iPhone OS 9_0_2 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Mobile/13A452 (5215161440)&Referer=http://ada.zengatv.com/'
-        
+        try:
+            import urlparse
+            m3u8res=getUrl(playurl)
+            m38uurl=re.findall('#EXT-X-STREAM-INF.*\n(.*)',m3u8res)[-1]
+            suburl=urlparse.urljoin(m3uurl,m38uurl)
+            progress.update( 40, "", "skipping Ads", "" )
+            subdata=getUrl(suburl+'|User-Agent=Mozilla/5.0 (iPhone; CPU iPhone OS 9_0_2 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Mobile/13A452 (5215161440)&Referer=http://ada.zengatv.com/')
+            playurl=suburl+'|User-Agent=Mozilla/5.0 (iPhone; CPU iPhone OS 9_0_2 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Mobile/13A452 (5215161440)&Referer=http://ada.zengatv.com/'
+            print subdata
+            lnum=0
+            if 1==1:
+                for tsurl in re.findall('#EXTINF.*\n(.*)',subdata):
+                    subtsurl=urlparse.urljoin(suburl,tsurl)
+                    lnum+=1
+                    progress.update( 40+(10*lnum), "", "skipping Ads", "" )
+                    getUrl(subtsurl+'|User-Agent=Mozilla/5.0 (iPhone; CPU iPhone OS 9_0_2 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Mobile/13A452 (5215161440)&Referer=http://ada.zengatv.com/')
+            progress.update( 95, "", "alomost finished", "" )    
+        except:
+            print 'error avoiding ad'
+            print traceback.print_exc(file=sys.stdout)
+        #downloadm3u8(playurl)
     except: 
         traceback.print_exc(file=sys.stdout)
         playurl=''
     progress.close()
     xbmc.Player().play( playurl, listitem)
         
+
+
+def getTVPCookieJar(updatedUName=False):
+    cookieJar=None
+    print 'updatedUName',updatedUName
+    try:
+        cookieJar = cookielib.LWPCookieJar()
+        if not updatedUName:
+            cookieJar.load(TVPCOOKIEFILE,ignore_discard=True)
+    except: 
+        cookieJar=None
+
+    if not cookieJar:
+        cookieJar = cookielib.LWPCookieJar()
+    return cookieJar
+    
+def performTVPLogin():
+    cookieJar = cookielib.LWPCookieJar()
+    try:
+        
+        url="https://tvplayer.com/account"
+        username=selfAddon.getSetting( "tvpusername" ) 
+        if username=="": return False,cookieJar
+        pwd=selfAddon.getSetting( "tvppwd" ) 
+        lasstusername=selfAddon.getSetting( "lasttvpusername" )
+        lasstpwd=selfAddon.getSetting( "lasttvppwd" )         
+        cookieJar=getTVPCookieJar(lasstusername!=username or lasstpwd!= pwd)
+        mainpage = getUrl(url,cookieJar=cookieJar)
+        
+
+        if '>Login</a>' in mainpage:
+            token   = urllib.unquote(re.findall('name="token" value="(.*?)"' ,mainpage)[0])
+            print 'LOGIN NOW'
+            url="https://tvplayer.com/account/login"
+            headers=[('Referer',"https://tvplayer.com/account/login"),('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36'),('Origin','https://tvplayer.com')]           
+            post = {'email':username,'password':pwd,'token':token}
+            post = urllib.urlencode(post)
+            mainpage = getUrl(url,cookieJar=cookieJar,post=post,headers=headers )
+            cookieJar.save (TVPCOOKIEFILE,ignore_discard=True)
+            selfAddon.setSetting( id="lasttvpusername" ,value=username)
+            selfAddon.setSetting( id="lasttvppwd" ,value=pwd)
+        
+        return not '>Login</a>' in mainpage,cookieJar
+    except: 
+            traceback.print_exc(file=sys.stdout)
+    return False,cookieJar
     
 def playtvplayer(url):
     import re,urllib,json
@@ -6976,17 +7054,21 @@ def playtvplayer(url):
 
     playurl=''
     try:
-        watchHtml=getUrl(url)
+        loginstatus,cj=performTVPLogin()
+        watchHtml=getUrl(url, cookieJar=cj)
         channelid=re.findall('resourceId = "(.*?)"' ,watchHtml)[0]
         validate=re.findall('var validate = "(.*?)"' ,watchHtml)[0]
-       
-        cj = cookielib.LWPCookieJar()
-        data = urllib.urlencode({'service':'1','platform':'website','token':'null','validate':validate ,'id' : channelid})
+        token='null'
+        try:
+            token=re.findall('var token = "(.*?)"' ,watchHtml)[0]
+        except: pass
+        #cj = cookielib.LWPCookieJar()
+        data = urllib.urlencode({'service':'1','platform':'website','token':token,'validate':validate ,'id' : channelid})
         headers=[('Referer','http://tvplayer.com/watch/'),('Origin','http://tvplayer.com'),('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36')]
         retjson=getUrl("http://api.tvplayer.com/api/v2/stream/live",post=data, headers=headers,cookieJar=cj);
         jsondata=json.loads(retjson)
     #    print cj
-        cj = cookielib.LWPCookieJar()
+        #cj = cookielib.LWPCookieJar()
         playurl1=jsondata["tvplayer"]["response"]["stream"]
         m3utext=getUrl(playurl1, headers=headers,cookieJar=cj);
         #playurl1=re.findall('(http.*)',m3utext)[-1]
@@ -7509,7 +7591,11 @@ try:
         PlayPoveeLink(url)           
     elif mode==94:
         print "Play url is "+url
-        AddNetworkTVSports(url)       
+        AddNetworkTVSports(url)  
+    elif mode==95:
+        print "Play url is "+url
+        dialog = xbmcgui.Dialog()
+        ok = dialog.ok('PLEASE SAVE ME!!!!', 'If it stops playing after 2 minutes please oh please remember that you must visit their site and play a video/click on live links.\nYou can use any devices/mobile to visit their site http;//sport365.live, just make sure you are connected to the same network.')          
 except:
 
     print 'somethingwrong'
@@ -7540,7 +7626,7 @@ def get_view_mode_id( view_mode):
         return int(default_view_mode)
     return None
 
-playmode=[3,4,9,11,15,21,22,27,33,35,37,40,42,45,91,93]
+playmode=[3,4,9,11,15,21,22,27,33,35,37,40,42,45,91,93,95]
 nonthumbview=[55,61,67,56,14,57,19,20,21,22,23,24,79,75,76,78,81,2,51,52,53,62,70,71,81,66,94]
 try:
     if (not mode==None) and mode>1 and mode not in nonthumbview and mode not in playmode:
