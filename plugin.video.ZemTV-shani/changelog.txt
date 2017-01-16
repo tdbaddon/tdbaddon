@@ -1,3 +1,5 @@
+[B]Version 6.1.9[/B]
+Nettv user agent fix
 [B]Version 6.1.8[/B]
 Support for login in TVPlayer section
 [B]Version 6.1.7[/B]

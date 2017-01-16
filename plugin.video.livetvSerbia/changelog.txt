@@ -1,3 +1,6 @@
+V1.1.1
+- Fix
+  
 V1.1.0
 - Bulgaria ITPV now can open without ChromeLauncher addon
   And you can watch on android

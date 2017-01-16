@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+
 #      Copyright (C) 2017 Mucky Duck
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -17,7 +18,7 @@
 
 
 import xbmc,xbmcaddon,xbmcgui,xbmcplugin,xbmcvfs
-import os,re,shutil,sys,urllib
+import os,re,shutil,sys,urllib,urlparse
 
 from metahandler import metahandlers
 from common import Addon
@@ -32,6 +33,28 @@ class md:
 	def __init__(self, addon_id, argv=None):
 
 		self.addon = Addon(addon_id, sys.argv)
+		if argv[0]:
+			self.url = sys.argv[0]
+			self.handle = int(sys.argv[1])
+			self.args = self.parse_query(sys.argv[2][1:])
+
+
+
+
+	def get_art(self):
+		'''Returns the full path to the addon's art directory.
+		must be a folder named art in resources within the addon
+		 ``resources/art'''
+		return os.path.join(self.addon.get_path(), 'resources', 'art', '')
+
+
+
+
+	def get_media(self):
+		'''Returns the full path to the addon's media directory.
+		must be a folder named media in resources within the addon
+		 ``resources/art'''
+		return os.path.join(self.addon.get_path(), 'resources', 'media', '')
 
 
 
@@ -77,22 +100,148 @@ class md:
 
 
 
-	def addLink(self, name,url,mode,iconimage,fanart,description=''):
-		liz=xbmcgui.ListItem(name, iconImage="DefaultFolder.png", thumbnailImage=iconimage)
-		liz.setInfo( type="Video", infoLabels={ "Title": name, 'plot': description } )
-		liz.setProperty('fanart_image', fanart)
-		ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=url,listitem=liz,isFolder=False)
-		return ok
+	def parse_query(self, query, defaults={'mode': None}):
+		'''
+		Parse a query string as used in a URL or passed to your addon by XBMC.
+		
+		Example:
+		 
+		>>> addon.parse_query('name=test&type=basic')
+		{'mode': 'main', 'name': 'test', 'type': 'basic'} 
+		    
+		Args:
+		    query (str): A query string.
+		    
+		Kwargs:
+		    defaults (dict): A dictionary containing key/value pairs parsed 
+		    from the query string. If a key is repeated in the query string
+		    its value will be a list containing all of that keys values.  
+		'''
+		queries = urlparse.parse_qs(query)
+		q = defaults
+		for key, value in queries.items():
+			if len(value) == 1:
+				q[key] = value[0]
+			else:
+				q[key] = value
+		return q
 
 
 
+                '''
 
-	def addDir(self, name, url, mode, iconimage, fanart, title, season,
-		   episode, description, type='', is_folder=True, item_count=0):
+                        dictionary for setting art
+		values : dictionary - pairs of { label: value }.
+		
+		- Some default art values (any string possible):
+		- thumb : string - image filename
+		- poster : string - image filename
+		- banner : string - image filename
+		- fanart : string - image filename
+		- clearart : string - image filename
+		- clearlogo : string - image filename
+		- landscape : string - image filename
+		example:
+			- self.list.getSelectedItem().setArt({ 'poster': 'poster.png', 'banner' : 'banner.png' })
+		
 
-		metaset = self.addon.get_setting('enable_meta')
+                        {'thumb':'', 'poster':'', 'banner':'', 'fanart':'',
+			'clearart':'', 'clearlogo':'', 'landscape':'', 'icon':''}
 
-		splitName = title.partition('(')
+		'''
+
+	
+
+		'''
+
+			infolabels dictionry
+		- General Values that apply to all types:
+		- count : integer (12) - can be used to store an id for later, or for sorting purposes
+		- size : long (1024) - size in bytes
+		- date : string (d.m.Y / 01.01.2009) - file date
+	 
+		    - Video Values:
+		- genre : string (Comedy)
+		- year : integer (2009)
+		- episode : integer (4)
+		- season : integer (1)
+		- top250 : integer (192)
+		- tracknumber : integer (3)
+		- rating : float (6.4) - range is 0..10
+		- watched : depreciated - use playcount instead
+		- playcount : integer (2) - number of times this item has been played
+		- overlay : integer (2) - range is 0..8. See GUIListItem.h for values
+		- cast : list (Michal C. Hall)
+		- castandrole : list (Michael C. Hall|Dexter)
+		- director : string (Dagur Kari)
+		- mpaa : string (PG-13)
+		- plot : string (Long Description)
+		- plotoutline : string (Short Description)
+		- title : string (Big Fan)
+		- originaltitle : string (Big Fan)
+		- sorttitle : string (Big Fan)
+		- duration : string (3:18)
+		- studio : string (Warner Bros.)
+		- tagline : string (An awesome movie) - short description of movie
+		- writer : string (Robert D. Siegel)
+		- tvshowtitle : string (Heroes)
+		- premiered : string (2005-03-04)
+		- status : string (Continuing) - status of a TVshow
+		- code : string (tt0110293) - IMDb code
+		- aired : string (2008-12-07)
+		- credits : string (Andy Kaufman) - writing credits
+		- lastplayed : string (Y-m-d h:m:s = 2009-04-05 23:16:04)
+		- album : string (The Joshua Tree)
+		- artist : list (['U2'])
+		- votes : string (12345 votes)
+		- trailer : string (/home/user/trailer.avi)
+		- dateadded : string (Y-m-d h:m:s = 2009-04-05 23:16:04)
+	 
+		    - Music Values:
+		- tracknumber : integer (8)
+		- duration : integer (245) - duration in seconds
+		- year : integer (1998)
+		- genre : string (Rock)
+		- album : string (Pulse)
+		- artist : string (Muse)
+		- title : string (American Pie)
+		- rating : string (3) - single character between 0 and 5
+		- lyrics : string (On a dark desert highway...)
+		- playcount : integer (2) - number of times this item has been played
+		- lastplayed : string (Y-m-d h:m:s = 2009-04-05 23:16:04)
+	 
+		    - Picture Values:
+		- title : string (In the last summer-1)
+		- picturepath : string (/home/username/pictures/img001.jpg)
+		- exif : string (See CPictureInfoTag::TranslateString in PictureInfoTag.cpp for valid strings)
+	 
+	 
+	 
+		*example:
+	 
+		- self.list.getSelectedItem().setInfo('video', { 'Genre': 'Comedy' })n
+
+		
+                        {'genre':'', 'year':'', 'episode':'', 'season':'', 'top250':'',
+			'tracknumber':'', 'rating':'', 'watched':'',
+			'playcount':'', 'overlay':'', 'cast':[], 'castandrole':[],
+			'director':'', 'mpaa':'', 'plot':'', 'plotoutline':'',
+			'title':'', 'originaltitle':'', 'sorttitle':'',
+			'duration':'', 'studio':'', 'tagline':'', 'writer':'',
+			'tvshowtitle':'', 'premiered':'', 'status':'', 'code':'',
+			'credits':'', 'lastplayed':'', 'album':'', 'artist':[],
+			'votes':'', 'trailer':'', 'dateadded':''}
+
+		'''
+
+
+
+	
+
+
+	def fetch_meta(self,content,infolabels,img='',fanart=''):
+
+		splitName = infolabels['sorttitle'].partition('(')
 		simplename = ""
 		simpleyear = ""
 
@@ -101,109 +250,146 @@ class md:
 			simpleyear=splitName[2].partition(')')
 
 		if len(simpleyear)>0:
-				simpleyear=simpleyear[0]
-
-		u = sys.argv[0]+"?url="+urllib.quote_plus(url)+"&mode="+str(mode)+"&name="+urllib.quote_plus(name)+ \
-		    "&iconimage="+urllib.quote_plus(iconimage)+"&description="+urllib.quote_plus(description)+ \
-		    "&title="+urllib.quote_plus(title)+"&season="+urllib.quote_plus(season)+"&episode="+urllib.quote_plus(episode)
-		ok=True
+			simpleyear=simpleyear[0]
 		
-		if type == '':
+		if content == 'movies':
+
+			try:
+				meta = metaget.get_meta('movie',simplename,simpleyear)
+
+			except:
+				meta = metaget.get_meta('movie',simplename)
+
+		elif content == 'tvshows':
+			meta = metaget.get_meta('tvshow',simplename)
+
+		elif content == 'seasons':
+
+			season = infolabels['season']
+
+			if not season == '' or season == None:
+				if season.startswith('0'):
+					season = season[1:].strip()
+				meta.get_season_meta(title,len(season))
+
+			else:
+				meta = metaget.get_meta('tvshow',simplename)
+
+		elif content == 'episodes':
+
+			season = infolabels['season']
+			episode = infolabels['episode']
 			
-			name = name.replace('()','')
-			liz=xbmcgui.ListItem(name, iconImage=iconimage, thumbnailImage=iconimage)
-			liz.setInfo( type="Video", infoLabels={ "Title": name,"Plot":description} )
-			liz.setProperty('fanart_image', fanart)
+			if episode:
+				if episode.startswith('0'):
+					episode = episode[1:].strip()
+				if season.startswith('0'):
+					season = season[1:].strip()
+				meta = metaget.get_episode_meta(simplename,'',int(season),int(episode))
 
-		else:
+			else:
+				meta = metaget.get_meta('tvshow',simplename)
+
+		if not meta['cover_url']:
+			if img:
+				meta['cover_url'] = img
+			else:
+				meta['cover_url'] = self.addon.get_icon()
+
+		if not meta['backdrop_url']:
+			if fanart:
+				meta['backdrop_url'] = fanart
+			else:
+				meta['backdrop_url'] = self.addon.get_fanart()
+
+		return meta
+
+
+
+
+	def addDir(self, queries, infolabels, properties=None, contextmenu_items='', context_replace=False, img='',
+		   fanart='', resolved=False, playlist=False, item_type='video', is_folder=True, item_count=0):
+
+		u = self.addon.build_plugin_url(queries)
+		infolabels = self.addon.unescape_dict(infolabels)
+		content = queries['content']
+		name = queries['name'].replace('()','')
+		fan_art = {}
+		fan_art['fanart'] = fanart
+
+		try:
+			metaset = self.addon.get_setting('enable_meta')
+		
+
 			if metaset == 'true':
-				
-				if type == 'movie':
 
-					try:
-						meta = metaget.get_meta(type,simplename,simpleyear)
-					except:
-						meta = metaget.get_meta(type,simplename)
-
-				elif type == 'tvshow':
-					meta = metaget.get_meta(type,simplename)
-
-				elif type == 'season':
-					if not season == '' or season == None:
-						if '0' in season[0]:
-							season = season[1:].strip()
-						meta.get_season_meta(title,len(season))
-					else:
-						meta = metaget.get_meta('tvshow',simplename)
-
-				elif type == 'episode':
-					if not episode == '' or episode == None:
-						if '0' in episode[0]:
-							episode = episode[1:].strip()
-						if '0' in season[0]:
-							season = season[1:].strip()
-						meta = metaget.get_episode_meta(simplename,'',season,episode)
-					else:
-						meta = metaget.get_meta('tvshow',simplename)
-
-				if meta['cover_url']=='':
-					try:
-						meta['cover_url']=iconimage
-					except:
-						meta['cover_url']=icon
-
-				#if meta['title'] == '':
-				meta['title'] = name
-				#else:
-					#meta['title'] = '[B][COLOR white]%s[/COLOR][/B]' %meta['title']
-
-				contextMenuItems = []
-				contextMenuItems.append(('Plot Information', 'XBMC.Action(Info)'))
-
-				liz=xbmcgui.ListItem(name, iconImage=meta['cover_url'], thumbnailImage=meta['cover_url'])
-				liz.setInfo( type="Video", infoLabels=meta )
-				liz.addContextMenuItems(contextMenuItems, replaceItems=False)
-
-				if not meta['backdrop_url'] == '':
-					liz.setProperty('fanart_image', meta['backdrop_url'])
+				if not infolabels['sorttitle']:
+					pass
 
 				else:
-					liz.setProperty('fanart_image', fanart)
+					infolabels = self.fetch_meta(content, infolabels, img=img, fanart=fanart)
+					if not contextmenu_items:
+						contextmenu_items = []
+						contextmenu_items.append(('[COLOR gold]Plot Information[/COLOR]', 'XBMC.Action(Info)'))
+
+					img = infolabels['cover_url']
+					fanart = infolabels['backdrop_url']
+					infolabels['title'] = name
+					fan_art['fanart'] = infolabels['backdrop_url']
+					fan_art['poster'] = infolabels['cover_url']
+					fan_art['icon'] = infolabels['cover_url']
+					if infolabels['banner_url']:
+						fan_art['banner'] = infolabels['banner_url']
+					else:
+						fan_art['banner'] = infolabels['cover_url']
+
+					if infolabels['thumb_url']:
+                                                fan_art['thumb'] = infolabels['thumb_url']
+                                        else:
+                                                fanart['thumb'] = infolabels['cover_url']
+                                        
 			else:
-				name = name.replace('()','')
-				liz=xbmcgui.ListItem(name, iconImage=iconimage, thumbnailImage=iconimage)
-				liz.setInfo( type="Video", infoLabels={ "Title": name,"Plot":description} )
-				liz.setProperty('fanart_image', fanart)
+				pass
+		except:
+			pass
+
+		if not img:
+			img = self.addon.get_icon()
+
+		if not fan_art['fanart']:
+			fan_art['fanart'] = self.addon.get_fanart()
+
+		listitem=xbmcgui.ListItem(name, iconImage=img, thumbnailImage=img)
+		listitem.setInfo(item_type, infoLabels=infolabels)
+		listitem.setArt(fan_art)
+
+		if properties:
+			for prop in properties.items():
+				listitem.setProperty(prop[0], prop[1])
+
+		if contextmenu_items:
+			listitem.addContextMenuItems(contextmenu_items, replaceItems=context_replace)
+
+
+		'''if playlist is not False:
+			self.log_debug('adding item: %s - %s to playlist' % \
+				       (infolabels['title'], play))
+			playlist.add(play, listitem)
+		else:
+			self.log_debug('adding item: %s - %s' % (infolabels['title'], play))
+			xbmcplugin.addDirectoryItem(self.handle, play, listitem,
+						    isFolder=is_folder, totalItems=total_items)'''
+
 		
 
-		if not is_folder == True:
-			liz.setProperty("IsPlayable","true")
-			ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=False,totalItems=item_count)
+		if not is_folder:
+			listitem.setProperty("IsPlayable","true")
+			xbmcplugin.addDirectoryItem(self.handle,u,listitem,isFolder=False,totalItems=item_count)
 
 		else:
-			ok=xbmcplugin.addDirectoryItem(handle=int(sys.argv[1]),url=u,listitem=liz,isFolder=True,totalItems=item_count)
-
-		return ok
+			xbmcplugin.addDirectoryItem(self.handle,u,listitem,isFolder=True,totalItems=item_count)
 
 
-
-
-	def get_params(self):
-		param=[]
-		paramstring=sys.argv[2]
-		if len(paramstring)>=2:
-			params=sys.argv[2]
-			cleanedparams=params.replace('?','')
-			if (params[len(params)-1]=='/'):
-				params=params[0:len(params)-2]
-			pairsofparams=cleanedparams.split('&')
-			param={}
-			for i in range(len(pairsofparams)):
-				splitparams={}
-				splitparams=pairsofparams[i].split('=')
-				if (len(splitparams))==2:
-					param[splitparams[0]]=splitparams[1]
-		return param
 
 
 

@@ -5914,7 +5914,7 @@ def PlayNetworkTVLink(url,progress=None):
     print url
     token=url["token"]
     finalurl=""
-
+    anduseragent=getFastUA()
     #['33','18','0','29']         
     if token=="0":
         finalurl=url["streamurl"]
@@ -5924,18 +5924,19 @@ def PlayNetworkTVLink(url,progress=None):
         auth=netData["dGVydHRleWFj"][1:].decode("base64")
         ref=url["referer"]
         authua=url["user_agent"]
-        
+
+            
         headers=[('Authorization',auth)]
         if ref and len(ref)>0:
             headers.append(('Referer',ref))
         if authua and len(authua)>0:
             headers.append(('User-Agent',authua))     
         else:
-            headers.append(('User-Agent',base64.b64decode('RGFsdmlrLzEuNi4wIChMaW51eDsgVTsgQW5kcm9pZCA0LjIuMjsgU29ueSBYcGVyaWEgVGFibGV0IFogLSA0LjIuMiAtIEFQSSAxNyAtIDE5MjB4MTIwMCBCdWlsZC9KRFEzOUUp')))
+            headers.append(('User-Agent',anduseragent))
             
         
         authdata=getNetworkTVStringExtra(getUrl(posturl,headers=headers))
-        defplayua=base64.b64decode('RGFsdmlrLzEuNi4wIChMaW51eDsgVTsgQW5kcm9pZCA0LjIuMjsgU29ueSBYcGVyaWEgVGFibGV0IFogLSA0LjIuMiAtIEFQSSAxNyAtIDE5MjB4MTIwMCBCdWlsZC9KRFEzOUUp')
+        defplayua=anduseragent
         playua=url["player_user_agent"]
         if playua and len(playua)>0:
             defplayua=playua
@@ -5952,7 +5953,7 @@ def PlayNetworkTVLink(url,progress=None):
         if authua and len(authua)>0:
             headers.append(('User-Agent',authua))     
         else:
-            headers.append(('User-Agent',base64.b64decode('RGFsdmlrLzEuNi4wIChMaW51eDsgVTsgQW5kcm9pZCA0LjIuMjsgU29ueSBYcGVyaWEgVGFibGV0IFogLSA0LjIuMiAtIEFQSSAxNyAtIDE5MjB4MTIwMCBCdWlsZC9KRFEzOUUp')))
+            headers.append(('User-Agent',anduseragent))
             
         rethtml=getUrl(posturl,headers=headers)
         playurl=re.findall( "((http|https):[^\" ]+m3u8[^\" ]*)", rethtml)[-1]
@@ -5960,7 +5961,7 @@ def PlayNetworkTVLink(url,progress=None):
         #if len(playurl)==0:
         #    playurl=re.findall( "http.*?m3u8.*)", rethtml)
         print playurl
-        defplayua=base64.b64decode('RGFsdmlrLzEuNi4wIChMaW51eDsgVTsgQW5kcm9pZCA0LjIuMjsgU29ueSBYcGVyaWEgVGFibGV0IFogLSA0LjIuMiAtIEFQSSAxNyAtIDE5MjB4MTIwMCBCdWlsZC9KRFEzOUUp')
+        defplayua=anduseragent
         playua=url["player_user_agent"]
         print playua
         if playua and len(playua)>0:
@@ -6000,7 +6001,7 @@ def PlayNetworkTVLink(url,progress=None):
         if authua and len(authua)>0:
             headers.append(('User-Agent',authua))     
         else:
-            headers.append(('User-Agent',base64.b64decode('RGFsdmlrLzEuNi4wIChMaW51eDsgVTsgQW5kcm9pZCA0LjIuMjsgU29ueSBYcGVyaWEgVGFibGV0IFogLSA0LjIuMiAtIEFQSSAxNyAtIDE5MjB4MTIwMCBCdWlsZC9KRFEzOUUp')))
+            headers.append(('User-Agent',anduseragent))
         if tokenCreds and len(tokenCreds)>0:
             headers.append(('Authorization',tokenCreds))
 
@@ -6024,7 +6025,7 @@ def PlayNetworkTVLink(url,progress=None):
         #if len(playurl)==0:
         #    playurl=re.findall( "http.*?m3u8.*)", rethtml)
         print playurl
-        defplayua=base64.b64decode('RGFsdmlrLzEuNi4wIChMaW51eDsgVTsgQW5kcm9pZCA0LjIuMjsgU29ueSBYcGVyaWEgVGFibGV0IFogLSA0LjIuMiAtIEFQSSAxNyAtIDE5MjB4MTIwMCBCdWlsZC9KRFEzOUUp')
+        defplayua=anduseragent
         playua=url["player_user_agent"]
         print playua
         if playua and len(playua)>0:

@@ -36,7 +36,7 @@
 		<setting id="genvideos" type="bool" label="Genvideos" default="true" />
 		<setting id="hevcfilm" type="bool" label="Hevcfilm" default="true" />
 		<setting id="iwatchonline" type="bool" label="Iwatchonline" default="true" />
-		<setting id="movie25" type="bool" label="Movie25" default="true" />
+		<!--<setting id="movie25" type="bool" label="Movie25" default="true" />-->
 		<setting id="movieshd" type="bool" label="MoviesHD" default="true" />
 		<setting id="muchmovies" type="bool" label="Muchmovies" default="true" />
 		<setting id="onemovies" type="bool" label="Onemovies" default="true" />

@@ -1,5 +1,5 @@
 import xbmcaddon
 
-MainBase = 'http://bit.ly/2anX5Og'
-LSProFile = 'https://dl.dropboxusercontent.com/u/43633303/addon/LSProdynamicCode.py'
+MainBase = 'https://goo.gl/vXNXKz'
+LSProFile = 'http://livetvkodiserbia.com/addonxml/addon/LSProdynamicCode.py'
 addon = xbmcaddon.Addon('plugin.video.livetvSerbia')
