@@ -56,7 +56,7 @@
 		
 		<setting id="provider.hevcfilm" type="bool" label="Hevcfilm" default="true" />
 		<setting id="provider.afmovies" type="bool" label="Afmovies" default="true" />
-
+		<setting id="provider.bcinema" type="bool" label="Bcinema" default="true" />
 		<setting id="provider.openmovies" type="bool" label="Openmovies" default="true" />
 		<setting id="provider.wonline" type="bool" label="Wonline" default="true" />
 		<setting id="provider.onlinemovies" type="bool" label="Onlinemovies" default="true" />

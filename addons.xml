@@ -1241,7 +1241,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
   </extension>
 </addon>
 
-<addon id="plugin.video.greek.tv" name="Greek TV" version="1.0.8" provider-name="Thgiliwt">
+<addon id="plugin.video.greek.tv" name="Greek TV" version="1.0.9" provider-name="Thgiliwt">
     <requires>
         <import addon="xbmc.python" version="2.19.0"/>
         <import addon="plugin.video.youtube" version="5.2.1"/>
@@ -1260,6 +1260,9 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
         <forum>https://forums.tvaddons.ag/addon-releases/51983-greek-tv-bringing-concept-feel-androids-greek-tv-kodi.html</forum>
     </extension>
     <news>
+1.0.9 (17-01-2017)
+- Base64-ed the lists
+
 1.0.8 (07-01-2017)
 - Fixed switcher behaviour when cancelling.
 
@@ -2580,7 +2583,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.ZemTV-shani"
        name="Zem"
-       version="6.1.9"
+       version="6.2.0"
        provider-name="shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -2611,7 +2614,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.zen" version="1.5.4" name=" Zen" provider-name="Zen">
+<addon id="plugin.video.zen" version="1.5.6" name=" Zen" provider-name="Zen">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="script.zen.artwork" />
@@ -2629,7 +2632,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 		<disclaimer lang="en">The Author does not host or share any content, nor is affiliated with the content providers.</disclaimer>
 		<platform>all</platform>
 		<website>http://schism-tv.net</website>
-		<news>Alluc account now uses username and password instead API KEY - Fix Episodes Metadata - Update Providers - Tweaked Custom Urls - Update Providers - Ability to customize Base Url for major Scrapers</news>
+		<news>Update providers - Alluc account now uses username and password instead API KEY - Fix Episodes Metadata - Update Providers - Tweaked Custom Urls - Update Providers - Ability to customize Base Url for major Scrapers</news>
         <assets>
 			<icon>icon.png</icon>
 			<fanart>fanart.jpg</fanart>

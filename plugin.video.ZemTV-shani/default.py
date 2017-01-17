@@ -2311,7 +2311,8 @@ def AddWillSportsOldSeries(url):
             res=response.read()
 
 #        print repr(res[:100])
-        res=res.split('Handle_WLSeriesDetailsObj(')[1][:-2]
+        res=res.split('Handle_WLSeriesDetailsObj(')[1][:-1]
+        print 'res',res
         serieses = json.loads(res)
   
         response.close()
@@ -2341,7 +2342,7 @@ def AddWillSportsOldSeriesMatches(url):
             res=response.read()
 
 #        print repr(res[:100])
-        res=res.split('Handle_WLSeriesDetailsObj(')[1][:-2]
+        res=res.split('Handle_WLSeriesDetailsObj(')[1][:-1]
         serieses = json.loads(res)
   
         response.close()
@@ -2427,13 +2428,17 @@ def performWillowLogin():
 
         if 'Login/Register' in mainpage:
             print 'LOGIN NOW'
-            url=base64.b64decode('aHR0cHM6Ly93d3cud2lsbG93LnR2L0V2ZW50TWdtdC9Vc2VyTWdtdC9Mb2dpbi5hc3A=')
-            headers=[('Referer',"https://www.willow.tv/EventMgmt/UserMgmt/Login.asp"),('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36'),('Origin','https://www.willow.tv')]                      
-            post = {'Email':willow_username,'Password':willow_pwd,'LoginFormSubmit':'true'}
+            loginurl=base64.b64decode('aHR0cHM6Ly93aWxsb3cudHYvbG9naW4=')
+            loginpage = getUrl(loginurl,cookieJar=cookieJar)
+            token=re.findall('name="csrf_token".*?value=["\'](.*?)["\']',loginpage)[0]
+            
+            headers=[('Referer',loginurl),('User-Agent','Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.116 Safari/537.36'),('Origin','https://www.willow.tv')]                      
+            post = {'login':willow_username,'password':willow_pwd,'submit':'Sign In','csrf_token':token}
             post = urllib.urlencode(post)
-            mainpage = getUrl(url,cookieJar=cookieJar,post=post,headers=headers )
+            mainpage = getUrl(loginurl,cookieJar=cookieJar,post=post,headers=headers )
             cookieJar.save (WTVCOOKIEFILE,ignore_discard=True)
             selfAddon.setSetting( id="lastSuccessLogin" ,value=willow_username)
+            mainpage = getUrl(url,cookieJar=cookieJar)
         
         return not 'Login/Register' in mainpage,cookieJar
     except: 
@@ -2624,6 +2629,7 @@ def getMatchUrl(matchid):
                     userid=s.split('value=\'')[1].split('%')[0]
 #            print 'userid',userid
             calltype='Live'
+            priority=''
             if mode==21:
                 WLlive=True
 #                print 'matchid',matchid
@@ -2631,6 +2637,7 @@ def getMatchUrl(matchid):
                 st='LiveMatch'
                 url=base64.b64decode('aHR0cDovL3d3dy53aWxsb3cudHYvRXZlbnRNZ210LyVzVVJMLmFzcD9taWQ9JXM=')%(st,matchid)
                 pat='secureurl":"(.*?)".*?priority":%s,'%source_sectionid    
+                priority=source_sectionid
                 calltype='Live'                
             else:
                 if ':' in matchid:
@@ -2638,12 +2645,14 @@ def getMatchUrl(matchid):
                     st='Replay'
                     url=base64.b64decode('aHR0cHM6Ly93d3cud2lsbG93LnR2L0V2ZW50TWdtdC9SZXBsYXlVUkwuYXNwP21pZD0lcyZ1c2VySWQ9JXM=')%(matchid,userid)
                     pat='secureurl":"(.*?)".*?priority":%s,'%source_sectionid    
+                    priority=source_sectionid
                     calltype='RecordOne'     
                 else:
                     returnParts=True
                     st='Replay'
                     url=base64.b64decode('aHR0cHM6Ly93d3cud2lsbG93LnR2L0V2ZW50TWdtdC9SZXBsYXlVUkwuYXNwP21pZD0lcyZ1c2VySWQ9JXM=')%(matchid,userid)
                     pat='"priority":(.+?),"title":"(.*?)",'
+                    priority=""
                     calltype='RecordAll' 
             
             videoPage = getUrl(url,cookieJar=cookieJar)    
@@ -2654,13 +2663,25 @@ def getMatchUrl(matchid):
 #            print videoPage
 #            print pat
             if calltype=='Live' or calltype=='RecordOne':
-                videoPage='},\n{'.join(videoPage.split("},{"))
-                final_url=re.findall(pat,videoPage)[0]
+                #videoPage='},\n{'.join(videoPage.split("},{"))
+                jdata=json.loads(videoPage)
+                for dd in jdata["replay"]:
+                    for d in dd:
+                        if int(d["priority"])==int(priority):
+                            final_url=d["secureurl"]
+                            break;
+                print pat,videoPage
+                #final_url=re.findall(pat,videoPage)[0]
             else:
-                final_url=re.findall(pat,videoPage)
+                #final_url=re.findall(pat,videoPage)
                 final_url2=''
-                for u in final_url:
-                    final_url2+='#'+str(u[0]) +' ' +u[1].replace(',','')+'='+u[0]+','
+                #for u in final_url:
+                jdata=json.loads(videoPage)
+                print jdata
+                for dd in jdata["replay"]:
+                    for d in dd:
+                        print d
+                        final_url2+='#'+str(d["priority"]) +' ' +d["title"].replace(',','')+'='+str(d["priority"])+','
                 final_url=final_url2[:-1]
   
             final_url= urllib2.unquote(final_url)  
@@ -2916,6 +2937,7 @@ def AddWillowCric(url):
         addDir(Colored('Live Games','EB',True) ,'' ,-1,'', False, True,isItFolder=False)		#name,url,mode,icon
 #        print 'matches',matches
         loginworked,cookieJar= performWillowLogin();
+        liveadded=False
         for game in matches["result"]:
             if game["islive"]==1:
                 match_name=game["mname"]
@@ -2933,7 +2955,9 @@ def AddWillowCric(url):
                     if "roku" in videos:
                         for video in videos["roku"]["URL"]:
                             addDir(Colored('Source %s %s '%(str(video["priority"]), video["player"]),'ZM',True) +entry_name ,match_id+':'+str(video["priority"]),21,'', False, True,isItFolder=False)		#name,url,mode,icon
-
+                            liveadded=True
+        if not liveadded:
+            addDir(Colored('     ----No Live Games----','red',True) ,'' ,-1,'', False, True,isItFolder=False)		#name,url,mode,icon
                 
                 
         addDir(Colored('Recently Finished Games','EB',True) ,'' ,-1,'', False, True,isItFolder=False)		#name,url,mode,icon

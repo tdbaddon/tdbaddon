@@ -92,9 +92,9 @@ def constructor():
     groups = []
 
     if addon.getSetting('mirror') == 'true':
-        text = client.request('http://tv.x-mad.com/android.m3u')
+        text = client.request(decode('aHR0cDovL3R2LngtbWFkLmNvbS9hbmRyb2lkLm0zdQ=='))
     else:
-        text = client.request('https://raw.githubusercontent.com/free-greek-iptv/greek-iptv/master/android.m3u')
+        text = client.request(decode('aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL2ZyZWUtZ3JlZWstaXB0di9ncmVlay1pcHR2L21hc3Rlci9hbmRyb2lkLm0zdQ=='))
 
     result = text.replace('\r\n', '\n')
     items = re.compile('group-title="(.*?)".*?tvg-logo="(.*?)",(.*?)$\n(.*?)$', re.U + re.M).findall(result)
@@ -103,7 +103,7 @@ def constructor():
 
         title = title.strip()
 
-        if title == 'ANT1 CY':
+        if 'cloudskep.com/antl2' in url:
             url = ant1cy_resolver()
 
         item_data = ({'title': title, 'icon': icon, 'group': group.decode('utf-8'), 'url': url})
@@ -114,12 +114,12 @@ def constructor():
 
     alt_strings = [' BUP']
 
-    compiled_list_no_bup = [item for item in compiled_list if not any(alt in item['title'] for alt in alt_strings)]
+    no_bup = [item for item in compiled_list if not any(alt in item['title'] for alt in alt_strings)]
 
     if addon.getSetting('show-bup') == 'true':
         return compiled_list, trimmed_groups
     else:
-        return compiled_list_no_bup, trimmed_groups
+        return no_bup, trimmed_groups
 
 
 def switcher():

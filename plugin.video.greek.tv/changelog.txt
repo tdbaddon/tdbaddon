@@ -1,3 +1,7 @@
+1.0.9 (17-01-2017)
+- Base64-ed the lists
+- Minor fixes
+
 1.0.8 (07-01-2017)
 - Fixed switcher behaviour when cancelling.
 

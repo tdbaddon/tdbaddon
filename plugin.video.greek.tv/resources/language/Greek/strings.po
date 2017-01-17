@@ -43,8 +43,8 @@ msgid "Sort Method"
 msgstr "Μεθοδος Ταξινόμησης"
 
 msgctxt "#30008"
-msgid "Use non-http m3u playlist mirror"
-msgstr "Χρήση ανασφαλούς συνδέσμου της λίστας m3u"
+msgid "Use non-https m3u playlist mirror"
+msgstr "Χρήση μη-https συνδέσμου της λίστας m3u"
 
 msgctxt "#30009"
 msgid "Use setting below in case addon fails to download playlist"

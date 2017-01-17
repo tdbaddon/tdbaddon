@@ -32,8 +32,8 @@ class source:
         testurl = "http://flixanity.watch"
         if custom_url == 'true': self.base_link = control.setting('movieshd_base')
         else: self.base_link = 'http://flixanity.watch'
-        self.social_lock = 'evokjaqbb8'
-        self.search_link = '/api/v1/cautare/' + self.social_lock
+        self.social_lock = '0A6ru35yevokjaqbb8'
+        self.search_link = '/api/v1/' + self.social_lock
 
 
     def movie(self, imdb, title, year):

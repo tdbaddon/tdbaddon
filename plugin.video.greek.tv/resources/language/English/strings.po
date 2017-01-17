@@ -43,8 +43,8 @@ msgid "Sort Method"
 msgstr "Sort Method"
 
 msgctxt "#30008"
-msgid "Use non-http m3u playlist mirror"
-msgstr "Use non-http m3u playlist mirror"
+msgid "Use non-https m3u playlist mirror"
+msgstr "Use non-https m3u playlist mirror"
 
 msgctxt "#30009"
 msgid "Use setting below in case addon fails to download playlist"
