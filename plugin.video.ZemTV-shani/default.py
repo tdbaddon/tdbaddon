@@ -472,6 +472,7 @@ def AddSports(url):
     addDir('PV2 Sports' ,'zemsports',36,os.path.join(home,'icons','PV2 Sports.png'))
     addDir('Fast TV' ,'sss',92,os.path.join(home,'icons','Fast TV.png'))
     addDir('NetTV' ,'sss',94,os.path.join(home,'icons','Nettv.png'))
+    addDir('Slow TV' ,'sss',96,os.path.join(home,'icons','slowtv.png'))
     #addDir('Safe' ,'sss',72,'')
     addDir('TVPlayer [UK Geo Restricted]','sss',74,'https://assets.tvplayer.com/web/images/tvplayer-logo-white.png')
     addDir('StreamHD','sss',75,'http://www.streamhd.eu/images/logo.png')
@@ -1072,7 +1073,7 @@ def getFastUA():
     usagents=base64.b64decode('RGFsdmlrLzEuNi4wIChMaW51eDsgVTsgQW5kcm9pZCAlczsgJXMgQnVpbGQvJXM=)')%(random.choice(s),''.join(random.SystemRandom().choice(string.ascii_uppercase) for _ in range(8)),''.join(random.SystemRandom().choice(string.ascii_uppercase) for _ in range(6)) )
     #usagents=base64.b64decode('Mozilla/5.0 (Linux; U; Android 4.%s.%s; Galaxy Nexus Build/JDQ39) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30')
     return usagents
-    
+
 def getFastData():
     fname='Fastdata.json'
     fname=os.path.join(profile_path, fname)
@@ -1099,6 +1100,35 @@ def getFastData():
         print 'getFastData file saving error'
         traceback.print_exc(file=sys.stdout)
     return jsondata    
+
+def getNetworkTVData2():
+    fname='Networkdata2.json'
+    fname=os.path.join(profile_path, fname)
+    try:
+        jsondata=getCacheData(fname,2*60*60)
+        if not jsondata==None:
+            return json.loads(base64.b64decode(jsondata))
+    except:
+        print 'file getting error'
+        traceback.print_exc(file=sys.stdout)
+
+    usagents=getFastUA()
+    
+    #ua = random.choice(usagents)
+
+    headers=[('User-Agent',usagents),('Authorization',base64.b64decode('QmFzaWMgVTI5c2FXUlRkSEpsWVcxNk9rQWhVMjlzYVdSVGRISmxZVzE2SVVBPQ=='))]
+    link=getUrl(base64.b64decode('aHR0cDovL3NvbGlkc3RyZWFtei5jb20vc29saWRkYXRhLnBocA=='),headers=headers, post='')
+    
+    jsondata=None
+    try:
+        print link
+        li=link[:2]+link[3:]
+        jsondata=json.loads(base64.b64decode(li))
+        storeCacheData(base64.b64encode(link),fname)
+    except:
+        print 'getNetworkTVData2 file saving error'
+        traceback.print_exc(file=sys.stdout)
+    return jsondata     
     
 
 def getNetworkTVData():
@@ -2125,6 +2155,26 @@ def AddPITVSports(url=None):
     return  
 
 
+def AddNetworkTVSports2(url=None):  
+
+    if url=="sss":
+        cats=[NetworkTVCatIDByName2("Sports", findin=True)]
+        isSports=True
+        addDir(Colored('>>Click here for All Categories<<'.capitalize(),'red') ,"networktv2",66 ,'', False, True,isItFolder=True)
+    else:
+        cats=[url]
+        isSports=False
+    for cname,ctype,curl,imgurl in getNetworkTVChannels2(cats,sports=True):
+        cname=cname.encode('ascii', 'ignore').decode('ascii')
+        if ctype=='manual2':
+            mm=37
+        elif ctype=='manual3':
+            mm=45
+        else:
+            mm=11
+        addDir(Colored(cname.capitalize(),'ZM') ,base64.b64encode(curl) ,mm ,imgurl, False, True,isItFolder=False)		#name,url,mode,icon
+    return       
+    
 def AddNetworkTVSports(url=None):  
 
     if url=="sss":
@@ -2217,6 +2267,9 @@ def ShowAllCategories(url):
     elif url=="networktv":
         cats=getNetworkTVCats()
         cmode=94
+    elif url=="networktv2":
+        cats=getNetworkTVCats2()
+        cmode=96
     elif url=="fasttv":
         cats=[]
         for p in getFastCats()["LIVETV"]:
@@ -2664,12 +2717,22 @@ def getMatchUrl(matchid):
 #            print pat
             if calltype=='Live' or calltype=='RecordOne':
                 #videoPage='},\n{'.join(videoPage.split("},{"))
+                print videoPage
                 jdata=json.loads(videoPage)
-                for dd in jdata["replay"]:
-                    for d in dd:
+                
+                if calltype=='Live':
+                    for d in jdata["roku"]["URL"]:
                         if int(d["priority"])==int(priority):
                             final_url=d["secureurl"]
                             break;
+                
+                else:
+                
+                    for dd in jdata["replay"]:
+                        for d in dd:
+                            if int(d["priority"])==int(priority):
+                                final_url=d["secureurl"]
+                                break;
                 print pat,videoPage
                 #final_url=re.findall(pat,videoPage)[0]
             else:
@@ -3482,12 +3545,59 @@ def getNetworkTVCats():
         retval.append((c["cat_id"],c["cat_name"]))
     return retval#
     
+def getNetworkTVCats2():
+    retval=[]
+    for c in getNetworkTVPage2()["categories"]["live"]:
+        retval.append((c["category_id"],c["category_name"]))
+    return retval#
+
+def NetworkTVCatIDByName2(catname, findin=False):
+    retId=''
+    for p in getNetworkTVPage2()["categories"]["live"]:
+        print 'p is',p
+        if p["category_name"].lower()== catname.lower() or (findin and catname.lower() in p["category_name"].lower()):
+            return p["category_id"]
+    return retId
+    
 def NetworkTVCatIDByName(catname, findin=False):
     retId=''
     for p in getNetworkTVPage()["cats"]:
         if p["cat_name"].lower()== catname.lower() or (findin and catname.lower() in p["cat_name"].lower()):
             return p["cat_id"]
     return retId
+
+def getNetworkTVChannels2(cat=None,sports=False, liveflag="1", streamtype="live"):
+    ret=[]
+    try:
+        xmldata=getNetworkTVPage2()
+   
+            
+        print 'got getNetworkTVPage2',cat,xmldata
+        for source in xmldata["available_channels"]:
+            #print 'ss',source
+            source=xmldata["available_channels"][source]
+            #print 'ss',source
+            if (cat==None or source["category_id"] in cat):# and (country ==None or  source["country_name"] in country):#source["categoryName"] in categories or (forSports):# and ('sport' in source["categoryName"].lower() or 'BarclaysPremierLeague' in source["categoryName"] )    ) :
+                if source["live"]==liveflag and streamtype==source["stream_type"]:
+                    ss=source
+                    cname=ss["name"]
+                    if 1==2:# 'ebound.tv' in ss["streamurl"]:
+                        #print ss["channelLink"]
+                        curl='ebound2:'+ss["streamurl"].replace(':1935','')
+                    else:
+                        #curl='networktv:'+ss["streamurl"]
+                        curl='networktv2:'+str(ss["stream_id"])
+                    cimage=ss["stream_icon"]
+                    
+                    if 1==1:#len([i for i, x in enumerate(ret) if x[0] ==cname + (' SlowTV' if not sports else '') ])==0:                    
+                        ret.append((cname + (' SlowTV' if not sports else ''),'manual', curl ,cimage))   
+        
+        if len(ret)>0:
+            ret=sorted(ret,key=lambda s: s[0].lower()   )
+    except:
+        traceback.print_exc(file=sys.stdout)
+    print ret
+    return ret
     
 def getNetworkTVChannels(cat=None,sports=False, country=None):
     ret=[]
@@ -4996,11 +5106,19 @@ def clearCache():
     fname='network_page.json'
     fname=os.path.join(profile_path, fname)
     files+=[fname]     
+
+    fname='network_page2.json'
+    fname=os.path.join(profile_path, fname)
+    files+=[fname]     
     
     fname='Networkdata.json'
     fname=os.path.join(profile_path, fname)
     files+=[fname]
-  
+
+    fname='Networkdata2.json'
+    fname=os.path.join(profile_path, fname)
+    files+=[fname]
+    
 
  
     fname='pitvpage.json'
@@ -5183,6 +5301,33 @@ def getMYTVPage():
         print 'paktv file saving error'
         traceback.print_exc(file=sys.stdout)
     return jsondata
+
+#aHR0cDovL3NvbGlkc3RyZWFtei5jb20vc29saWRzdHJlYW16MS4wLmFwaw==    
+def getNetworkTVPage2():
+    fname='network_page2.json'
+    fname=os.path.join(profile_path, fname)
+    try:
+        jsondata=getCacheData(fname,3*60*60)
+        if not jsondata==None:
+            return json.loads(jsondata)
+    except:
+        print 'file getting error'
+        traceback.print_exc(file=sys.stdout)
+    
+    netData=getNetworkTVData2()["DATA"][0]
+    
+    url=netData["MainURL"]+ "/panel_api.php?mode=live&username=" + netData["Username"] + "&password=" + netData["Password"]
+    ua=netData["UserAgent"]
+    
+    try:
+        headers=[('User-Agent',getFastUA()),('Authorization','Basic %s'%base64.b64decode("Yldad01qVTFOek5BWkhOcFlYa3VZMjl0WDJkbGJ6RTBPbE4xY0dWeU1USXo="))]
+        jsondata=json.loads(getUrl(url,headers=headers))
+        storeCacheData(json.dumps(jsondata),fname)
+    except:
+        print 'getNetworkTVPage2 file saving error'
+        traceback.print_exc(file=sys.stdout)
+    return jsondata
+
     
 
 #aHR0cDovL2xpdmVuZXR0di54eXov    
@@ -5924,7 +6069,35 @@ def getNetworkTVHash (value):
         rval+=str(k[i])+str(i)
     return rval
 
-        
+   
+def PlayNetworkTVLink2(url,progress=None):
+    if 1==2:#not mode==37:
+        print url
+        ##cat,url=url.split('=')
+        #xmldata=getNetworkTVPage2()
+        ##print 'got getFastTVChannels',xmldata
+        #for ss in xmldata["channels"]:
+        #    if ss["streamid"]==url:
+        #        url=ss
+        #        break
+    print 'xxxxxxxxxxxxxxxxxxxxx',url
+    
+    pagedata=getNetworkTVPage2()
+    username=pagedata["user_info"]["username"]
+    pwd=pagedata["user_info"]["password"]
+    server=pagedata["server_info"]["url"]
+    port=pagedata["server_info"]["port"]
+    finalurl= "http://" + server + ":" + port + "/live/" + username + "/" + pwd + "/" + url + ".ts"
+    
+    netData=getNetworkTVData2()["DATA"][0]
+    ua=netData["UserAgent"]
+    
+    urlnew=finalurl+"|User-Agent="+ua
+    print urlnew
+    listitem = xbmcgui.ListItem( label = str(name), iconImage = "DefaultVideo.png", thumbnailImage = xbmc.getInfoImage( "ListItem.Thumb" ) )
+    PlayGen(base64.b64encode(urlnew))
+    #tryplay( urlnew , listitem,keepactive=True, aliveobject =ws , pdialogue= progress)
+
 def PlayNetworkTVLink(url,progress=None):
     if 1==1:#not mode==37:
         print url
@@ -6225,7 +6398,11 @@ def PlayOtherUrl ( url ):
 
     if "networktv:" in url:
         PlayNetworkTVLink(url.split('networktv:')[1],progress=progress)
-        return         
+        return    
+    if "networktv2:" in url:
+        PlayNetworkTVLink2(url.split('networktv2:')[1],progress=progress)
+        return    
+
         
     if "safe:" in url:
         PlaySafeLink(url.split('safe:')[1],progress=progress)
@@ -7621,6 +7798,9 @@ try:
         print "Play url is "+url
         dialog = xbmcgui.Dialog()
         ok = dialog.ok('PLEASE SAVE ME!!!!', 'If it stops playing after 2 minutes please oh please remember that you must visit their site and play a video/click on live links.\nYou can use any devices/mobile to visit their site http;//sport365.live, just make sure you are connected to the same network.')          
+    elif mode==96:
+        print "Play url is "+url
+        AddNetworkTVSports2(url)  
 except:
 
     print 'somethingwrong'

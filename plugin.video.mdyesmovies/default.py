@@ -226,16 +226,16 @@ def EPIS(url,iconimage,show_title):
         if iconimage == '' or iconimage == None:
                 iconimage = icon
         headers = {'User-Agent':User_Agent}
-        link = s.get(url, headers=headers).content
+        link = s.get(url, headers=headers,verify=False).content
         referer = re.findall(r'<a class="mod-btn mod-btn-watch" href="(.*?)" title="Watch movie">', str(link), re.I|re.DOTALL)[0]
-        link2 = s.get(referer, headers=headers).content
+        link2 = s.get(referer, headers=headers,verify=False).content
         i_d = re.findall(r'id: "(.*?)"', str(link2), re.I|re.DOTALL)[0]
         server = re.findall(r'server: "(.*?)"', str(link2), re.I|re.DOTALL)[0]
         type = re.findall(r'type: "(.*?)"', str(link2), re.I|re.DOTALL)[0]
         episode_id = re.findall(r'episode_id: "(.*?)"', str(link2), re.I|re.DOTALL)[0]
         request_url = baseurl + '/ajax/v3_movie_get_episodes/' + i_d + '/' + server + '/' + episode_id + '/' + type + '.html'
         headers.update({'Accept-Encoding':'gzip, deflate, sdch', 'Referer': referer, 'x-requested-with':'XMLHttpRequest'})
-        link3 = s.get(request_url, headers=headers).text
+        link3 = s.get(request_url, headers=headers,verify=False).text
         all_links = regex_get_all(link3, '"episodes-server-%s"' %server, '</ul>')
         all_videos = regex_get_all(str(all_links), '<li', '</li>')
         items = len(all_videos)
@@ -334,24 +334,29 @@ key2 = '8qhfm9oyq1ux'
 key3 = 'ctiw4zlrn09tau7kqvc153uo'
 
 
-def uncensored(a,b):
-    n = -1
-    fuckme=[]
-    justshow=[]
-    while True:
-        
-        if n == len(a)-1:
-            break
-        n +=1
-       
-        addon.log(n)
-        d = int(''.join(str(ord(c)) for c in a[n]))
-      
-        e=int(''.join(str(ord(c)) for c in b[n]))
-        justshow.append(d+e)
-        fuckme.append(chr(d+e))
-    #print justshow    
-    return base64.b64encode(''.join(fuckme))
+def __jav( a):
+        b = str(a)
+        code = ord(b[0])
+        if 0xD800 <= code and code <= 0xDBFF:
+            c = code
+            if len(b) == 1:
+                return code
+            d = ord(b[1])
+            return ((c - 0xD800) * 0x400) + (d - 0xDC00) + 0x10000
+
+        if 0xDC00 <= code and code <= 0xDFFF:
+            return code
+        return code
+
+def __uncensored( a, b):
+        c = ''
+        i = 0
+        for i, d in enumerate(a):
+            e = b[i % len(b) - 1]
+            d = int(__jav(d) + __jav(e))
+            c += chr(d)
+
+        return base64.b64encode(c)
 
 
 def random_generator(size=6, chars=string.ascii_lowercase + string.digits):
@@ -362,28 +367,35 @@ def random_generator(size=6, chars=string.ascii_lowercase + string.digits):
 
 def MRESOLVE(name,url,iconimage):
         headers = {'User-Agent':User_Agent}
-        link = s.get(url, headers=headers).content
+        link = s.get(url, headers=headers,verify=False).content
         referer = re.findall(r'<a class="mod-btn mod-btn-watch" href="(.*?)" title="Watch movie">', str(link), re.I|re.DOTALL)[0]
-        link2 = s.get(referer, headers=headers).content
+        link2 = s.get(referer, headers=headers,verify=False).content
         i_d = re.findall(r'id: "(.*?)"', str(link2), re.I|re.DOTALL)[0]
         server = re.findall(r'server: "(.*?)"', str(link2), re.I|re.DOTALL)[0]
         type = re.findall(r'type: "(.*?)"', str(link2), re.I|re.DOTALL)[0]
         episode_id = re.findall(r'episode_id: "(.*?)"', str(link2), re.I|re.DOTALL)[0]
         key_gen = random_generator()
-        cookies =  '%s%s%s=%s' % (key,episode_id,key2,key_gen)
-        #hash_id = hashlib.md5(episode_id + key_gen + key3).hexdigest()
-        a = episode_id + key3
-        b = key_gen
-        i = b[-1]
-        h = b[:-1]
-        b = i+h+i+h+i+h+i+h+i+h+i+h+i+h+i+h+i+h
-        hash_id = uncensored(a, b)
-        request_url2 =  baseurl + '/ajax/v2_get_sources/' + episode_id + '?hash=' + urllib.quote(hash_id)
-        headers = {'Accept-Encoding':'gzip, deflate, sdch', 'Cookie': cookies, 'Referer': referer,
+
+        getc = re.findall(r'<img title=.*?src="(.*?)"', str(link2), re.I|re.DOTALL)[0]
+        headers = {'Accept': 'image/webp,image/*,*/*;q=0.8', 'Accept-Encoding':'gzip, deflate, sdch, br',
+                   'Accept-Language': 'en-US,en;q=0.8', 'Referer': referer, 'User-Agent':User_Agent}
+        cookie = s.get(getc,headers=headers,verify=False).cookies.get_dict()
+        for i in cookie:
+                cookie =  i + '=' + cookie[i]
+        #coookie = hashlib.md5(key + episode_id + key2).hexdigest() + '=%s' %key_gen
+        coookie = key + episode_id + key2 + '=%s' %key_gen
+        cookie = '%s; %s' %(cookie,coookie)
+        a= episode_id + key3
+        b= key_gen
+        hash_id = __uncensored(a, b)
+        hash_id = urllib.quote(hash_id).encode('utf8')
+
+        request_url2 =  baseurl + '/ajax/v2_get_sources/' + episode_id + '?hash=' + hash_id
+        headers = {'Accept-Encoding':'gzip, deflate, sdch', 'Cookie': cookie, 'Referer': referer,
                    'User-Agent':User_Agent,'X-Requested-With':'XMLHttpRequest'}
         #request_url2 = baseurl + '/ajax/v2_get_sources/' + episode_id + '/' + hash_id + '.html'
         try:
-                final = s.get(request_url2, headers=headers).json()
+                final = s.get(request_url2, headers=headers,verify=False).json()
                 res_quality = []
                 stream_url = []
                 quality = ''
@@ -405,7 +417,7 @@ def MRESOLVE(name,url,iconimage):
                         else:
                                 url = final['playlist'][0]['sources'][0]['file']
         except:
-                final = s.get(request_url2, headers=headers).text
+                final = s.get(request_url2, headers=headers,verify=False).text
                 res_quality = []
                 stream_url = []
                 quality = ''
@@ -439,25 +451,34 @@ def MRESOLVE(name,url,iconimage):
 
 
 def TVRESOLVE(name,url,iconimage,description):
+        headers = {'User-Agent':User_Agent}
         referer = url.split('|')[0]
         episode_id = url.split('|')[1]
         key_gen = random_generator()
-        cookies =  '%s%s%s=%s' % (key,episode_id,key2,key_gen)
-        hash_id = hashlib.md5(episode_id + key_gen + key3).hexdigest()
-        headers = {'Accept-Encoding':'gzip, deflate, sdch', 'Cookie': cookies, 'Referer': referer,
-                   'User-Agent':User_Agent,'X-Requested-With':'XMLHttpRequest'}
+        link = s.get(referer, headers=headers,verify=False).content
+        getc = re.findall(r'<img title=.*?src="(.*?)"', str(link), re.I|re.DOTALL)[0]
+        headers = {'Accept': 'image/webp,image/*,*/*;q=0.8', 'Accept-Encoding':'gzip, deflate, sdch, br',
+                   'Accept-Language': 'en-US,en;q=0.8', 'Referer': referer, 'User-Agent':User_Agent}
+        cookie = s.get(getc,headers=headers,verify=False).cookies.get_dict()
+        for i in cookie:
+                cookie =  i + '=' + cookie[i]
+        addon.log('#######################################url= '+str(url))
+        #coookie = hashlib.md5(episode_id + key).hexdigest() + '=%s' %key_gen
+        coookie = key + episode_id + key2 + '=%s' %key_gen
+        cookie = '%s; %s' %(cookie,coookie)
         a = episode_id + key3
         b = key_gen
-        i = b[-1]
-        h = b[:-1]
-        b = i+h+i+h+i+h+i+h+i+h+i+h+i+h+i+h+i+h
-        hash_id = uncensored(a, b)
+        hash_id = __uncensored(a, b)
+        hash_id = urllib.quote(hash_id).encode('utf8')
+        addon.log('#######################################cookie= '+str(cookie))
+        headers = {'Accept-Encoding':'gzip, deflate, sdch', 'Cookie': cookie, 'Referer': referer,
+                   'User-Agent':User_Agent,'X-Requested-With':'XMLHttpRequest'}
         request_url =  baseurl + '/ajax/v2_get_sources/' + episode_id + '?hash=' + urllib.quote(hash_id)
         res_quality = []
         stream_url = []
         quality = ''
         try:
-                final = s.get(request_url, headers=headers).json()
+                final = s.get(request_url, headers=headers,verify=False).json()
                 res_quality = []
                 stream_url = []
                 quality = ''
@@ -479,7 +500,7 @@ def TVRESOLVE(name,url,iconimage,description):
                         else:
                                 url = final['playlist'][0]['sources'][0]['file']
         except:
-                final = s.get(request_url, headers=headers).text
+                final = s.get(request_url, headers=headers,verify=False).text
                 res_quality = []
                 stream_url = []
                 quality = ''
@@ -707,7 +728,7 @@ def OPEN_URL(url):
                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
                'Referer': url, 'Accept-Encoding': 'gzip, deflate, sdch', 'Accept-Language': 'en-US,en;q=0.8'}
     headers['User-Agent'] = User_Agent
-    link = s.get(url, headers=headers).text
+    link = s.get(url, headers=headers,verify=False).text
     return link
 
 

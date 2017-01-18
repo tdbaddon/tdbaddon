@@ -1595,7 +1595,7 @@ For DMCA Reports, please send message to our FB page.
     </extension>
 </addon>
 
-<addon id="plugin.video.mdyesmovies" name="Yes Movies" version="1.0.3" provider-name="Mucky Duck">
+<addon id="plugin.video.mdyesmovies" name="Yes Movies" version="1.0.4" provider-name="Mucky Duck">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
 	<import addon="script.module.addon.common" />
@@ -2583,7 +2583,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 
 <addon id="plugin.video.ZemTV-shani"
        name="Zem"
-       version="6.2.0"
+       version="6.2.2"
        provider-name="shani">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
