@@ -43,11 +43,9 @@ def normalizeLiveName(name):
         normalizeName = match[0]
         if normalizeName == '':
             normalizeName = name
-        return normalizeName
+        return normalizeName.strip()
     except:
-        import traceback
-        traceback.print_exc()
-        return name
+        return name.strip()
 
 def live(title):
     title = title.upper()

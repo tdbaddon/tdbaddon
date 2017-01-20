@@ -57,6 +57,7 @@
 		<setting id="putlocker" type="bool" label="PutLocker" default="true" />
 		<setting id="rlsmovies" type="bool" label="RLSMovies" default="true" />
 		<setting id="swift" type="bool" label="Swift" default="true" />
+		<setting id="solid" type="bool" label="Solid" default="true" />
 		<setting id="rajtamil" type="bool" label="RajTamil" default="true" />
 		<setting id="tamilgun" type="bool" label="TamilGun" default="true" />
 		<setting id="tamilyogi" type="bool" label="TamilYogi" default="true" />

@@ -64,7 +64,7 @@ tvlist9 = control.setting('tmdb.tvlist_name9')
 tvlist10 = control.setting('tmdb.tvlist_name10')		
 class navigator:
     def root(self):
-        self.addDirectoryItem('Merry Christmas!', 'movies&url=tmdbxmas', 'xmas.png', 'DefaultMovies.png')
+        # self.addDirectoryItem('Merry Christmas!', 'movies&url=tmdbxmas', 'xmas.png', 'DefaultMovies.png')
  
         self.addDirectoryItem(32001, 'movieNavigator', 'movies.png', 'DefaultMovies.png')
         self.addDirectoryItem(32002, 'tvNavigator', 'channels.png', 'DefaultTVShows.png')

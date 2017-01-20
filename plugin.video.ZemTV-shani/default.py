@@ -1070,7 +1070,7 @@ def getFastUA():
 
     #usagents=base64.b64decode('RGFsdmlrLzEuNi4wIChMaW51eDsgVTsgQW5kcm9pZCAlcy4lcy4lczsgJXMgQnVpbGQvJXMp')%(str(random.choice(range(3,6))),str(random.choice(range(3,6))),str(random.choice(range(3,6))),''.join(random.SystemRandom().choice(string.ascii_uppercase) for _ in range(8)),''.join(random.SystemRandom().choice(string.ascii_uppercase) for _ in range(6)) )
     #keep following me :p
-    usagents=base64.b64decode('RGFsdmlrLzEuNi4wIChMaW51eDsgVTsgQW5kcm9pZCAlczsgJXMgQnVpbGQvJXM=)')%(random.choice(s),''.join(random.SystemRandom().choice(string.ascii_uppercase) for _ in range(8)),''.join(random.SystemRandom().choice(string.ascii_uppercase) for _ in range(6)) )
+    usagents=base64.b64decode('RGFsdmlrLzEuNi4wIChMaW51eDsgVTsgQW5kcm9pZCAlczsgJXMgJXMp')%(random.choice(s),''.join(random.SystemRandom().choice(string.ascii_letters) for _ in range(int(random.random()*10))),''.join(random.SystemRandom().choice(string.ascii_letters) for _ in range(int(random.random()*15))) )
     #usagents=base64.b64decode('Mozilla/5.0 (Linux; U; Android 4.%s.%s; Galaxy Nexus Build/JDQ39) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30')
     return usagents
 
@@ -1105,7 +1105,7 @@ def getNetworkTVData2():
     fname='Networkdata2.json'
     fname=os.path.join(profile_path, fname)
     try:
-        jsondata=getCacheData(fname,2*60*60)
+        jsondata=getCacheData(fname,30*60)
         if not jsondata==None:
             return json.loads(base64.b64decode(jsondata))
     except:
@@ -1124,7 +1124,7 @@ def getNetworkTVData2():
         print link
         li=link[:2]+link[3:]
         jsondata=json.loads(base64.b64decode(li))
-        storeCacheData(base64.b64encode(link),fname)
+        storeCacheData(li,fname)
     except:
         print 'getNetworkTVData2 file saving error'
         traceback.print_exc(file=sys.stdout)
@@ -5307,7 +5307,7 @@ def getNetworkTVPage2():
     fname='network_page2.json'
     fname=os.path.join(profile_path, fname)
     try:
-        jsondata=getCacheData(fname,3*60*60)
+        jsondata=getCacheData(fname,30*60)
         if not jsondata==None:
             return json.loads(jsondata)
     except:
@@ -5348,7 +5348,10 @@ def getNetworkTVPage():
     baseurl=baseurl[1:].decode("base64")+"bGl2ZTMubmV0dHYv".decode("base64")
     import random,math
     uid=int(math.floor(random.random()*50000) )
-    headers=[('User-Agent',getFastUA()),('Authorization','Basic %s'%base64.b64decode("YUdWc2JHOU5SanBHZFdOcmIyWm0=")),('Referer','http://localhost')]
+    auth = netData["amFnX3Ryb3JfYXR0X2Vu"][1:].decode("base64") 
+    ref = netData["SXNpc2VrZWxvX3Nlc2lzdGltdV95ZXppbm9tYm9sbzAw"][1:].decode("base64")
+                
+    headers=[('User-Agent',getFastUA()),('Authorization',auth),('Referer',ref)]
     post={'check':'1','user_id':str(uid),'version':'23'}
     post = urllib.urlencode(post)
     jsondata=getUrl(baseurl,post=post,headers=headers)
@@ -5752,7 +5755,7 @@ def getPV2Url():
                 if pvitr==3:                    
                     link=getUrl(base64.b64decode('aHR0cDovL3NoYW5pLm9mZnNob3JlcGFzdGViaW4uY29tL3B2Mkxhc3RXb3JraW5nLnhtbA==')).decode("base64")
                 else:
-                    mainurl=base64.b64encode(base64.b64decode('aHR0cHM6Ly9hcHMuc3l0ZXMubmV0L2FwcHMvb3V0cHV0LnBocC9wbGF5bGlzdD90eXBlPXhtbCZkZXZpY2VTbj0lcw==')%deviceid)
+                    mainurl=base64.b64encode(base64.b64decode('aHR0cHM6Ly9hcHMuZHlubnMuY29tL2FwcHMvb3V0cHV0LnBocC9wbGF5bGlzdD90eXBlPXhtbCZkZXZpY2VTbj0lcw==')%deviceid)
                 
                 #else:
                 #    mainurl='aHR0cHM6Ly9hcHAuZHlubnMuY29tL2FwcF9wYW5lbG5ldy9vdXRwdXQucGhwL3BsYXlsaXN0P3R5cGU9eG1sJmRldmljZVNuPTEyMyZ0b2tlbj0lcw=='    
@@ -5804,7 +5807,7 @@ def getPV2PlayAuth():
     import base64
     import time
     
-    url=base64.b64decode('aHR0cHM6Ly9hcHMuc3l0ZXMubmV0L3RvcC8lcy5waHA/d21zQXV0aFNpZ249')
+    url=base64.b64decode('aHR0cHM6Ly9hcHMuZHlubnMuY29tL3RvcC8lcy5waHA/d21zQXV0aFNpZ249')
 
     lastplay=getpv2stkey()
     filename=lastplay[:4]
@@ -5813,7 +5816,7 @@ def getPV2PlayAuth():
     validtime=lastplay[4]
     headers=[('User-Agent',base64.b64decode('UGFrJTIwVFYvMS4wIENGTmV0d29yay84MDguMi4xNiBEYXJ3aW4vMTYuMy4w'))]
     
-    ipstring=getUrl(base64.b64decode("aHR0cHM6Ly9hcHMuc3l0ZXMubmV0L3RvcC9pcF9jaGVjay5waHA="),headers=headers)
+    ipstring=getUrl(base64.b64decode("aHR0cHM6Ly9hcHMuZHlubnMuY29tL3RvcC9pcF9jaGVjay5waHA="),headers=headers)
     ipadd=ipstring.split('Address: ')[1]
     s="%s%s%s%s"%(ipadd,base64.b64decode("dHVtYmluamlhamF5bmFqYW5h")+lastplay[:10],timesegment ,validtime)
     dd=base64.b64decode("c2VydmVyX3RpbWU9JXMmaGFzaF92YWx1ZT0lcyZ2YWxpZG1pbnV0ZXM9JXM=")%(timesegment,base64.b64encode(hashlib.md5(s).hexdigest().lower()),validtime )

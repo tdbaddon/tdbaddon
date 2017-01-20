@@ -18,57 +18,77 @@ import re,urllib,urlparse,hashlib,random,string,json,base64
 from resources.lib.modules import control
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
+import requests
+s = requests.session()
+
 class source:
     def __init__(self):
         self.domains = ['yesmovies.to']
-        self.base_link = 'http://yesmovies.to'
-        self.info_link = 'http://yesmovies.to/'
+        self.base_link = 'https://yesmovies.to'
+        self.info_link = 'https://yesmovies.to/'
         self.playlist = '/ajax/v2_get_sources/%s.html?hash=%s'
-        self.key1 = base64.b64decode('eHdoMzhpZjM5dWN4')
-        self.key2 = base64.b64decode('OHFoZm05b3lxMXV4')
-        self.key = base64.b64decode('Y3RpdzR6bHJuMDl0YXU3a3F2YzE1M3Vv')
+        self.key3 = 'ctiw4zlrn09tau7kqvc153uo'	
+        self.key2 = '8qhfm9oyq1ux'
+        self.key = 'xwh38if39ucx'
+        self.session = requests.Session()
 		
     def movie(self, imdb, title, year):
         self.zen_url = []	
         try:
 			self.zen_url = []
-			title = cleantitle.getsearch(title)
+			
 			cleanmovie = cleantitle.get(title)
+			title = cleantitle.getsearch(title)
 			query = "/search/%s.html" % (urllib.quote_plus(title))
 			query = urlparse.urljoin(self.base_link, query)
 			link = client.request(query)
 			r = client.parseDOM(link, 'div', attrs = {'class': 'ml-item'})
 			for links in r:
-				print ("YMOVIES REQUEST", links)
+				# print ("YMOVIES links", links)
 				url = client.parseDOM(links, 'a', ret='href')[0]
-				title = client.parseDOM(links, 'a', ret='title')[0]
-				# url = urlparse.urljoin(self.info_link, url)
+				r_title = client.parseDOM(links, 'a', ret='title')[0]
+				r_title = r_title.encode('utf-8')
+				if not cleanmovie == cleantitle.get(r_title): continue
 				infolink = client.request(url)
-				print ("YMOVIES REQUEST", url)
-				match_year = re.search('<strong>Release:</strong>\s+(\d{4})</p>', infolink)
+				# print ("YMOVIES REQUEST", url)
+				match_year = re.search('<strong>Release:</strong>\s*(\d{4})</p>', infolink)
 				match_year = match_year.group(1)
+				# print ("YMOVIES match_year", match_year)
 				if year in match_year:
+					
 					playurl = re.findall('<a class="mod-btn mod-btn-watch" href="([^"]+)"', infolink)[0]
 					playurl = playurl.encode('utf-8')
 					referer = "%s" % playurl
-					mylink = client.request(referer)
-					i_d = re.findall(r'id: "(.*?)"', mylink, re.I|re.DOTALL)[0]
-					server = re.findall(r'server: "(.*?)"', mylink, re.I|re.DOTALL)[0]
-					type = re.findall(r'type: "(.*?)"', mylink, re.I|re.DOTALL)[0]
-					episode_id = re.findall(r'episode_id: "(.*?)"', mylink, re.I|re.DOTALL)[0]
-					print ("YMOVIES REQUEST", episode_id)
+					# print ("YMOVIES MATCH FOUND", referer)
+					
+					
+					headers ={'User-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.89 Safari/537.36'}
+					epurl = s.get(referer, headers=headers,verify=False).content
+					i_d = re.findall(r'id: "(.*?)"', epurl, re.I|re.DOTALL)[0]
+					server = re.findall(r'server: "(.*?)"', epurl, re.I|re.DOTALL)[0]
+					type = re.findall(r'type: "(.*?)"', epurl, re.I|re.DOTALL)[0]
+					episode_id = re.findall(r'episode_id: "(.*?)"', epurl, re.I|re.DOTALL)[0]
+					
+# ################### COOKIE ###################									   
+					headers_cookie = {'Accept': 'image/webp,image/*,*/*;q=0.8', 'Accept-Encoding':'gzip, deflate, sdch, br',
+							   'Accept-Language': 'en-US,en;q=0.8', 'Referer': referer, 'User-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.89 Safari/537.36'}	
+					getc = re.findall(r'<img title=.*?src="(.*?)"' , str(epurl), re.I|re.DOTALL)[0]
+					# print ("YMOVIES MOVIES COOKIE getc", getc, headers_cookie)
+					cookie = s.get(getc,headers=headers_cookie).cookies.get_dict()
+					# print ("YMOVIES MOVIES COOKIE" , cookie)
+					for i in cookie: cookie =  i + '=' + cookie[i]				
+# ################### COOKIE HERE ###################							
+					
+# ################### AUTH HERE ###################
 					token = self.__get_token()
-					print ("YMOVIES TOKEN", token)
-					cookies = '%s%s%s=%s' % (self.key1, episode_id, self.key2,token)
-					print ("YMOVIES cookies", cookies)
-					url_hash = urllib.quote(self.__uncensored(episode_id + self.key, token))
-					print ("YMOVIES hash", url_hash)
-					url = urlparse.urljoin(self.base_link, self.playlist % (episode_id, url_hash))						
-						
-						
-					request_url = url
-					print ("YMOVIES FINAL URL", request_url)
-					self.zen_url.append([request_url,cookies,referer])
+					coookie = self.key + episode_id + self.key2 + '=%s' % token
+					cookie = '%s; %s' %(cookie,coookie)
+					a = episode_id + self.key3
+					b = token
+					hash_id = self.__uncensored(a, b)
+					hash_id = urllib.quote(hash_id).encode('utf8')
+					request_url =  self.base_link + '/ajax/v2_get_sources/' + episode_id + '?hash=' + urllib.quote(hash_id)		
+					self.zen_url.append([request_url,cookie,referer])
 			return self.zen_url
         except:
             return
@@ -114,12 +134,12 @@ class source:
 								
 			for seasonlist in showlist:	
 				# print ('YMOVIES TV' , seasonlist)
-				
+				headers ={'User-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.89 Safari/537.36'}
 				mylink = client.request(seasonlist)
 				referer = re.findall('<a class="mod-btn mod-btn-watch" href="([^"]+)"', mylink)[0]
 				
 				# print ('YMOVIES REFERER' , referer)
-				epurl = client.request(referer)
+				epurl = s.get(referer, headers=headers,verify=False).content
 				i_d = re.findall(r'id: "(.*?)"', epurl, re.I|re.DOTALL)[0]
 				server = re.findall(r'server: "(.*?)"', epurl, re.I|re.DOTALL)[0]
 				type = re.findall(r'type: "(.*?)"', epurl, re.I|re.DOTALL)[0]
@@ -128,6 +148,19 @@ class source:
 				headers = {'Referer': referer,
 							   'User-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.89 Safari/537.36',
 							   'X-Requested-With':'XMLHttpRequest'}
+							   
+							   
+							   
+# ################### COOKIE ###################									   
+				headers_cookie = {'Accept': 'image/webp,image/*,*/*;q=0.8', 'Accept-Encoding':'gzip, deflate, sdch, br',
+						   'Accept-Language': 'en-US,en;q=0.8', 'Referer': referer, 'User-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.89 Safari/537.36'}	
+				getc = re.findall(r'<img title=.*?src="(.*?)"' , str(epurl), re.I|re.DOTALL)[0]
+				# print ("YMOVIES COOKIE getc", getc, headers_cookie)
+				cookie = get_cookie(getc,referer,self.session)
+				# print ("YMOVIES COOKIE" , cookie)
+				for i in cookie: cookie =  i + '=' + cookie[i]				
+# ################### COOKIE HERE ###################						
+				
 				
 				episodelink = client.request(request_url, headers=headers)
 				pattern = 'episodes-server-%s"(.+?)/ul>' % server
@@ -144,18 +177,20 @@ class source:
 						episode_id = epid
 						# print "EPISODE NNUMBER Passed %s %s" % (epnumber, episode)
 						# print ("YMOVIES REQUEST", episode_id)
+						
+# ################### AUTH HERE ###################
 						token = self.__get_token()
-						# print ("YMOVIES TOKEN", token)
-						cookies = '%s%s%s=%s' % (self.key1, episode_id, self.key2,token)
-						# print ("YMOVIES cookies", cookies)
-						url_hash = urllib.quote(self.__uncensored(episode_id + self.key, token))
-						# print ("YMOVIES hash", url_hash)
-						url = urlparse.urljoin(self.base_link, self.playlist % (episode_id, url_hash))						
+						coookie = self.key + episode_id + self.key2 + '=%s' % token
 						
+						cookie = '%s; %s' %(cookie,coookie)
+						a = episode_id + self.key3
+						b = token
+						hash_id = self.__uncensored(a, b)
+						hash_id = urllib.quote(hash_id).encode('utf8')
 						
-						request_url = url
+						request_url =  self.base_link + '/ajax/v2_get_sources/' + episode_id + '?hash=' + urllib.quote(hash_id)						
 						# print ("YMOVIES REQUEST", request_url)
-						self.zen_url.append([request_url,cookies,referer])
+						self.zen_url.append([request_url,cookie,referer])
 						# print ("YMOVIES SELFURL", self.zen_url)
 
 			return self.zen_url
@@ -166,12 +201,12 @@ class source:
     def sources(self, url, hostDict, hostprDict):
         try:
 			sources = []
-			for movielink,cookies,referer in self.zen_url:
+			for movielink,cookie,referer in self.zen_url:
 				# print ("YMOVIES SOURCES", movielink, cookies, referer)
 				headers = {'Referer': referer,
 							   'User-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.89 Safari/537.36',
 							   'X-Requested-With':'XMLHttpRequest'}
-				result = client.request(movielink, headers=headers, cookie=cookies)
+				result = client.request(movielink, headers=headers, cookie=cookie)
 				result = json.loads(result)
 				# print ("YMOVIES SOURCE PLAYLIST", result)
 				links = result['playlist'][0]['sources']
@@ -227,3 +262,16 @@ class source:
         return code
 		
 		
+def get_cookie(url, referer, session):
+    headers = {'Accept'         : 'image/webp,image/*,*/*;q=0.8',
+               'Accept-Encoding': 'gzip, deflate, sdch, br',
+               'Accept-Language': 'en-US,en;q=0.8',
+               'Referer'        : referer,
+               'User-Agent'     : 'Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.116 Safari/537.36'
+               }
+    request = session.get(url, headers=headers)
+    cookie = request.cookies.get_dict()
+    newcookie = ""
+    for i in cookie:
+        newcookie = i + '=' + cookie[i]
+    return newcookie

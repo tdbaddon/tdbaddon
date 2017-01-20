@@ -25,39 +25,51 @@ from resources.lib.modules import control
 from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 debridstatus = control.setting('debridsources')
+from resources.lib.modules.common import  random_agent, quality_tag
+from BeautifulSoup import BeautifulSoup
+
 class source:
     def __init__(self):
         self.domains = ['wrzcraft.net']
         self.base_link = 'http://wrzcraft.net'
-        self.search_link = '/?s=%s+%s'
-
-
+        self.search_link = '/search/%s+%s/feed/rss2/'
+			
     def movie(self, imdb, title, year):
-        self.zen_url = []
-        try:
+		self.zen_url = []
+		try:
 			if not debridstatus == 'true': raise Exception()			
-			self.zen_url = []
-			# print ("DAILYRLS INIT")
 			title = cleantitle.getsearch(title)
 			cleanmovie = cleantitle.get(title)
 			query = self.search_link % (urllib.quote_plus(title),year)
 			query = urlparse.urljoin(self.base_link, query)
-			# print ("DAILYRLS query", query)
-			link = client.request(query)
-			r = client.parseDOM(link, 'div', attrs = {'class': 'posttitle'})
-			for item in r:
-				href = client.parseDOM(item, 'a', ret = 'href')[0]
-				item_title = client.parseDOM(item, 'a', ret = 'title')[0]
-				href = href.encode('utf-8')
-				item_title = item_title.encode('utf-8')
-				# print ("DAILYRLS item", item_title,href)				
-				if year in item_title:
-					if cleanmovie in cleantitle.get(item_title):
-						self.zen_url.append([href,item_title])
-						# print "DAILYRLS MOVIES %s %s" % (item_title , href)
+			print ("WRZCRAFT QUERY", query)
+			r = client.request(query)
+			posts = client.parseDOM(r, 'item')	
+			items = []
+			for post in posts:
+				try:
+					t = client.parseDOM(post, 'title')[0]
+					t = t.encode('utf-8')
+					if not cleanmovie in cleantitle.get(t) and year in t: continue
+					c = client.parseDOM(post, 'content.+?')[0]
+					u = client.parseDOM(c, 'p')
+					u = [client.parseDOM(i, 'a', ret='href') for i in u]
+					u = [i[0] for i in u if len(i) == 1]
+					if not u: raise Exception()
+
+					u = [(t, i) for i in u]
+
+					self.zen_url += u
+					# self.zen_url.append([links,t])
+					
+				except:
+					pass
+			print ("WRZCRAFT PASSED", self.zen_url)		
 			return self.zen_url
-        except:
-            return
+
+		except:
+			return	
+			
 			
 			
     def tvshow(self, imdb, tvdb, tvshowtitle, year):
@@ -79,23 +91,30 @@ class source:
 			cleanmovie = cleantitle.get(title)
 			data['season'], data['episode'] = season, episode
 			episodecheck = 'S%02dE%02d' % (int(data['season']), int(data['episode']))
-			episodecheck = str(episodecheck).lower()
+			episodecheck = episodecheck.lower()
 			query = 'S%02dE%02d' % (int(data['season']), int(data['episode']))
 			query = self.search_link % (urllib.quote_plus(title),query)
-			mylink = urlparse.urljoin(self.base_link, query)
-			link = client.request(mylink)
-			r = client.parseDOM(link, 'div', attrs = {'class': 'posttitle'})
-			for item in r:
-				href = client.parseDOM(item, 'a', ret = 'href')[0]
-				item_title = client.parseDOM(item, 'a', ret = 'title')[0]
-				href = href.encode('utf-8')
-				item_title = item_title.encode('utf-8')
-				if cleanmovie in cleantitle.get(item_title):
-					if episodecheck in cleantitle.get(item_title):
-						item_title = item_title + "=episode"
-						self.zen_url.append([href,item_title])
-						# print "DAILYRLS TV SHOWS %s %s" % (item_title , href)
-							
+			query = urlparse.urljoin(self.base_link, query)
+			print ("WRZCRAFT SHOW", query)		
+			
+			r = client.request(query)
+			posts = client.parseDOM(r, 'item')	
+			for post in posts:
+				try:
+					t = client.parseDOM(post, 'title')[0]
+					t = t.encode('utf-8')
+					if not cleanmovie in cleantitle.get(t) and episodecheck in t.lower(): continue
+					c = client.parseDOM(post, 'content.+?')[0]
+					u = client.parseDOM(c, 'p')
+					u = [client.parseDOM(i, 'a', ret='href') for i in u]
+					u = [i[0] for i in u if len(i) == 1]
+					if not u: raise Exception()
+					u = [(t, i) for i in u]
+					self.zen_url += u
+
+				except:
+					pass
+			print ("WRZCRAFT PASSED", self.zen_url)		
 			return self.zen_url
         except:
             return			
@@ -104,29 +123,21 @@ class source:
     def sources(self, url, hostDict, hostprDict):
         try:
 			sources = []
-			for movielink,title in self.zen_url:
-				mylink = client.request(movielink)
-				match = re.compile('<a href="([^"]+)" rel="nofollow"').findall(mylink)
-				for url in match:
-					if "=episode" in title:
-						if "1080" in url: quality = "1080p"
-						elif "720" in url: quality = "HD"
-						else: quality = "SD"
-						info = ''
-						if "hevc" in url.lower(): info = "HEVC"
-					else:
-						if "1080" in title: quality = "1080p"
-						elif "720" in title: quality = "HD"
-						else: quality = "SD"
-						info = ''
-						if "hevc" in title.lower(): info = "HEVC"					
-					if not any(value in url for value in ['sample','uploadkadeh','wordpress','crazy4tv','imdb.com','youtube','userboard','kumpulbagi','mexashare','myvideolink.xyz', 'myvideolinks.xyz' , 'costaction', 'crazydl','.rar', '.RAR', 'ul.to', 'safelinking','linx.2ddl.ag','upload.so','.zip', 'go4up', 'adf.ly','.jpg','.jpeg']):
-						if any(value in url for value in hostprDict):
-								try:host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(url.strip().lower()).netloc)[0]
-								except: host = 'Videomega'
-								url = client.replaceHTMLCodes(url)
-								url = url.encode('utf-8')
-								sources.append({'source': host, 'quality': quality, 'provider': 'Wrzcraft', 'url': url, 'info': info,'direct': False, 'debridonly': True})
+			for title,url in self.zen_url:
+				quality = "SD"
+				quality = quality_tag(title)
+				if "1080p" in url.lower(): quality = "1080p"
+				elif "720p" in url.lower(): quality = "HD"
+
+				
+				info = ''
+				if "hevc" in title.lower(): info = "HEVC"					
+				if any(value in url for value in hostprDict):
+					try:host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(url.strip().lower()).netloc)[0]
+					except: host = 'Videomega'
+					url = client.replaceHTMLCodes(url)
+					url = url.encode('utf-8')
+					sources.append({'source': host, 'quality': quality, 'provider': 'Wrzcraft', 'url': url, 'info': info,'direct': False, 'debridonly': True})
 			return sources
         except:
             return sources

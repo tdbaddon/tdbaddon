@@ -1,5 +1,18 @@
+Aftershock v4.5.3
+--------------------------------
+- [COLOR orange]NOTE: Donations for this addon gracefully accepted at http://paypal.me/aftershockpy/10USD[/COLOR]
+- Optimized Live TV Resolvers
+- Updated Live TV Providers
+
+Aftershock v4.5.2
+--------------------------------
+- [COLOR orange]NOTE: Donations for this addon gracefully accepted at http://paypal.me/aftershockpy/10USD[/COLOR]
+- Optimized Live TV Names Filtering / Matching
+- Added new Live TV Source
+
 Aftershock v4.5.1 (11-Jan-2017)
 --------------------------------
+- [COLOR orange]NOTE: Donations for this addon gracefully accepted at http://paypal.me/aftershockpy/10USD[/COLOR]
 - Code cosmetics
 - Performance improvements
 - Fixed Fanart issue for Movies

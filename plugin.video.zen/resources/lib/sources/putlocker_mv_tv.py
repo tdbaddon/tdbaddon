@@ -27,12 +27,12 @@ from resources.lib.modules import client
 from resources.lib.modules import cache
 from resources.lib.modules import directstream
 from resources.lib.modules import control
-custom_url = control.setting('putlocker_custom')
 
 class source:
     def __init__(self):
-        if custom_url == 'true': self.base_link = control.setting('putlocker_base')
-        else: self.base_link = 'http://cartoonhd.online'
+        self.base_link = control.setting('putlocker_base')
+        if self.base_link == '' or self.base_link == None: self.base_link = 'http://cartoonhd.online'
+		
         self.social_lock = '0A6ru35yevokjaqbb8'
         self.search_link = '/api/v2/' + self.social_lock
 

@@ -1,4 +1,10 @@
-######## v1.0.9 ########
+######## v1.1.0 ########
+ 
+ - Added the changes Metal_Kettle made to the empty values in the incapsula module which was stopping it working on python 2.6
+ - Changed the now_in_seconds function in the incapsula module as .total_seconds() does not exist in python 2.6
+ - More work done to md_tools
+
+ ######## v1.0.9 ########
  
  - More work done to md_tools  
 

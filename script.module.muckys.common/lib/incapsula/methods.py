@@ -20,7 +20,7 @@ with open(_nav_fp, 'r') as f:
 def load_plugin_extensions(plugins):
     _extensions = []
     for k, v in plugins.items():
-        logger.debug('calculating plugin_extension key={}'.format(k))
+        #logger.debug('calculating plugin_extension key={0}'.format(k))
         if not isinstance(v, dict):
             continue
         filename = v.get('filename')
@@ -31,15 +31,15 @@ def load_plugin_extensions(plugins):
             extension = filename.split('.')[-1]
             if extension not in _extensions:
                 _extensions.append(extension)
-    return [urllib.quote('plugin_ext={}'.format(x)) for x in _extensions]
+    return [urllib.quote('plugin_ext={0}'.format(x)) for x in _extensions]
 
 
 def load_plugin(plugins):
     for k, v in plugins.items():
-        logger.debug('calculating plugin key={}'.format(k))
+        #logger.debug('calculating plugin key={0}'.format(k))
         if '.' in v.get('filename', ''):
             filename, extension = v['filename'].split('.')
-            return urllib.quote('plugin={}'.format(extension))
+            return urllib.quote('plugin={0}'.format(extension))
 
 
 def load_config(conf=None):
@@ -114,14 +114,28 @@ def create_cookie(name, value, seconds, url):
     return cookie
 
 
+
+def timedelta_total_seconds(timedelta):
+    return (
+        timedelta.microseconds + 0.0 +
+        (timedelta.seconds + timedelta.days * 24 * 3600) * 10 ** 6) / 10 ** 6
+
+
+
 def now_in_seconds():
-    return (datetime.datetime.now() - datetime.datetime(1970, 1, 1)).total_seconds()
+    return (timedelta_total_seconds(datetime.datetime.now() - datetime.datetime(1970, 1, 1)))
+
+
+
+#def now_in_seconds():  #.total_seconds() does not exist in python 2.6 
+    #return (datetime.datetime.now() - datetime.datetime(1970, 1, 1)).total_seconds()
+
 
 
 def get_resources(code, url):
     scheme, host = urlparse.urlsplit(url)[:2]
     resources = re.findall('(/_Incapsula_Resource.*?)\"', code)
-    logger.debug('resources found: {}'.format(resources))
+    #logger.debug('resources found: {}'.format(resources))
     return [scheme + '://' + host + r for r in resources]
 
 

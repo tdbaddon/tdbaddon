@@ -93,9 +93,9 @@ class source:
             title = channel['channel_title']
             #from resources.lib.libraries import livemeta
             #names = cache.get(livemeta.source().getLiveNames, 200, table='live_cache')
-            title = cleantitle.live(title)
-            if title == 'SKIP':
-                continue
+            #title = cleantitle.live(title)
+            #if title == 'SKIP':
+            #    continue
             icon = channel['channel_thumbnail']
             if not icon.startswith('http'):
                 icon = 'http://swiftstreamz.com/SwiftStream/images/thumbs/%s' % icon
@@ -162,5 +162,6 @@ class source:
     def resolve(self, url, resolverList):
         logger.debug('ORIGINAL URL [%s]' % url, __name__)
         url = '%s%s|User-Agent=%s' % (url, self.getSwiftAuth(url),self.getSwiftPlayUserAgent())
+        result = client.validateUrl(url)
         logger.debug('RESOLVED URL [%s]' % url, __name__)
         return url

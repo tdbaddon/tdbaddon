@@ -188,6 +188,17 @@ def request(url, close=True, redirect=True, error=False, proxy=None, post=None, 
     except:
         return
 
+def validateUrl(url):
+    try: headers = url.rsplit('|', 1)[1]
+    except: headers = ''
+    headers = urllib.quote_plus(headers).replace('%3D', '=').replace('%26','&') if ' ' in headers else headers
+    headers = dict(urlparse.parse_qsl(headers))
+
+    if url.startswith('http') and '.m3u8' in url:
+        result = request(url.split('|')[0], headers=headers, output='geturl', timeout='20')
+        if result == None: raise Exception()
+    return result
+
 class cfcookie:
     def __init__(self):
         self.cookie = None

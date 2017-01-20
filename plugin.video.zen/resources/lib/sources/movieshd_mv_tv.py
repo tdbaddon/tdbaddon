@@ -26,12 +26,12 @@ from resources.lib.modules import client
 from resources.lib.modules import cache
 from resources.lib.modules import directstream
 from resources.lib.modules import control
-custom_url = control.setting('movieshd_custom')
+
 class source:
     def __init__(self):
         testurl = "http://flixanity.watch"
-        if custom_url == 'true': self.base_link = control.setting('movieshd_base')
-        else: self.base_link = 'http://flixanity.watch'
+        self.base_link = control.setting('movieshd_base')
+        if self.base_link == '' or self.base_link == None: self.base_link = 'http://flixanity.watch'
         self.social_lock = '0A6ru35yevokjaqbb8'
         self.search_link = '/api/v1/' + self.social_lock
 

@@ -33,7 +33,9 @@ from resources.lib import resolvers
 class source:
     def __init__(self):
         self.base_link = 'http://cartoonhd.online'
-        self.social_lock = 'evokjaqbb8'
+        #self.social_lock = 'evokjaqbb8'
+        self.social_lock = '0A6ru35yevokjaqbb8'
+        #http://cartoonhd.online/api/v2/0A6ru35yevokjaqbb8
         self.search_link = '/api/v2/cautare/' + self.social_lock
 
 

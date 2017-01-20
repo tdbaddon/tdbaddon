@@ -18,6 +18,8 @@
 import os, base64
 import control, json, cleantitle, logger
 
+from resources.lib.libraries import cleantitle
+
 
 class LiveParser(object):
     filePath = ''
@@ -45,6 +47,13 @@ class LiveParser(object):
             liveList = []
             for channel in channelNames:
                 channelObj = channels[channel]
+                if '||' in channel:
+                    channel = channel.split('||')[0]
+
+                cleanChannelName = cleantitle.live(channel)
+                if cleanChannelName == 'SKIP':
+                    continue
+
                 try : enabled = channelObj['enabled']
                 except : enabled = 'true'
                 try : quality = channelObj['quality']
@@ -60,7 +69,7 @@ class LiveParser(object):
                     try : source = channelObj['source']
                     except: source = channelObj['provider']
 
-                    liveList.append({'name':channelName, 'poster':channelObj['icon'],'url':channelObj['url'],'provider':channelObj['provider'],'source':source,'direct':channelObj['direct'], 'quality':quality})
+                    liveList.append({'name':cleanChannelName, 'originalName': channelName, 'poster':channelObj['icon'],'url':channelObj['url'],'provider':channelObj['provider'],'source':source,'direct':channelObj['direct'], 'quality':quality})
             return liveList
         except :
             pass

@@ -56,11 +56,9 @@ class source:
                 channelList = {}
                 for channel in result:
                     title = channel['Title']
-                    #from resources.lib.libraries import livemeta
-                    #names = cache.get(livemeta.source().getLiveNames, 200, table='live_cache')
-                    title = cleantitle.live(title)
-                    if title == 'SKIP':
-                        continue
+                    #title = cleantitle.live(title)
+                    #if title == 'SKIP':
+                    #    continue
                     icon = channel['ThumbnailURL']
                     cUrl = channel['ContentId']
                     channelList[title] ={'icon':icon,'url':cUrl,'provider':'cinefun','source':'cinefun','direct':False, 'quality':'HD', 'content':'live'}
@@ -108,5 +106,6 @@ class source:
                 url = u
             except:
                 url = None
+        result = client.validateUrl(url)
         logger.debug('RESOLVED URL [%s]' % url, __name__)
         return url

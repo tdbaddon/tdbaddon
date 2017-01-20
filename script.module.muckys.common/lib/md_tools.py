@@ -94,6 +94,34 @@ class md:
 
 
 
+	def add_fav(self, name, url, iconimage='', fanart=''):
+
+	    favs = self.addon.get_setting('favs').split(",")
+
+	    if title in favs:
+		    addon.show_small_popup("[COLOR white][B]%s[/B][/COLOR]" %addon_name, "%s already in favorites." %title, image=img)
+	    else:
+		    favs.append(title)
+		    selfAddon.setSetting('favs', ",".join(favs))
+		    addon.show_small_popup("[COLOR white][B]%s[/B][/COLOR]" %addon_name, "%s added to favorites." %title, image=img)
+	    xbmc.executebuiltin('Container.Refresh')
+
+
+
+
+	def remove_fav(self, name, url, iconimage='', fanart=''):
+	    favs = selfAddon.getSetting('favs').split(",")
+	    if title not in favs:
+		    addon.show_small_popup("[COLOR white][B]%s[/B][/COLOR]" %addon_name, "%s not in favorites." %title, image=img)
+	    else:
+		    favs.remove(title)
+		    selfAddon.setSetting('favs', ",".join(favs))
+		    addon.show_small_popup("[COLOR white][B]%s[/B][/COLOR]" %addon_name, "%s removed from favorites." %title, image=img)
+	    xbmc.executebuiltin('Container.Refresh')
+
+
+
+
 	def User_Agent(self):
 		return 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.89 Safari/537.36'
 
@@ -128,9 +156,9 @@ class md:
 
 
 
-                '''
+		'''
 
-                        dictionary for setting art
+			dictionary for setting art
 		values : dictionary - pairs of { label: value }.
 		
 		- Some default art values (any string possible):
@@ -145,7 +173,7 @@ class md:
 			- self.list.getSelectedItem().setArt({ 'poster': 'poster.png', 'banner' : 'banner.png' })
 		
 
-                        {'thumb':'', 'poster':'', 'banner':'', 'fanart':'',
+			{'thumb':'', 'poster':'', 'banner':'', 'fanart':'',
 			'clearart':'', 'clearlogo':'', 'landscape':'', 'icon':''}
 
 		'''
@@ -154,7 +182,7 @@ class md:
 
 		'''
 
-			infolabels dictionry
+			infolabels dictionary
 		- General Values that apply to all types:
 		- count : integer (12) - can be used to store an id for later, or for sorting purposes
 		- size : long (1024) - size in bytes
@@ -222,7 +250,7 @@ class md:
 		- self.list.getSelectedItem().setInfo('video', { 'Genre': 'Comedy' })n
 
 		
-                        {'genre':'', 'year':'', 'episode':'', 'season':'', 'top250':'',
+			{'genre':'', 'year':'', 'episode':'', 'season':'', 'top250':'',
 			'tracknumber':'', 'rating':'', 'watched':'',
 			'playcount':'', 'overlay':'', 'cast':[], 'castandrole':[],
 			'director':'', 'mpaa':'', 'plot':'', 'plotoutline':'',
@@ -239,101 +267,118 @@ class md:
 	
 
 
-	def fetch_meta(self,content,infolabels,img='',fanart=''):
+	def fetch_meta(self, content, infolabels, fan_art={}):
 
-		splitName = infolabels['sorttitle'].partition('(')
-		simplename = ""
-		simpleyear = ""
+                if 'year' in infolabels:
+                        year = infolabels['year']
+                else:
+                        year = ''
+                if 'code' in infolabels:
+                        code = infolabels['code']
+                else:
+                        code = ''
+                if 'season' in infolabels:
+                        season = infolabels['season']
+                else:
+                        season = ''
+                if 'episode' in infolabels:
+                        episode = infolabels['episode']
+                else:
+                        episode = ''
+
+                if season.startswith('0'):
+                        season = season[1:].strip()
+
+                if episode.startswith('0'):
+                        episode = episode[1:].strip()
+
+                splitName = infolabels['sorttitle'].partition('(')
+		simplename = ''
+		simpleyear = ''
 
 		if len(splitName)>0:
 			simplename=splitName[0]
 			simpleyear=splitName[2].partition(')')
+		else:
+                        simplename = infolabels['sorttitle']
 
 		if len(simpleyear)>0:
 			simpleyear=simpleyear[0]
+
+		if simpleyear == '':
+                        simpleyear = year
+
+                simpleyear = re.sub('\D', '', simpleyear) 
 		
 		if content == 'movies':
 
-			try:
-				meta = metaget.get_meta('movie',simplename,simpleyear)
-
-			except:
-				meta = metaget.get_meta('movie',simplename)
+			meta = metaget.get_meta('movie', simplename, year=simpleyear, imdb_id=code)
 
 		elif content == 'tvshows':
-			meta = metaget.get_meta('tvshow',simplename)
 
-		elif content == 'seasons':
+                        meta = metaget.get_meta('tvshow',simplename, year=simpleyear, imdb_id=code)
 
-			season = infolabels['season']
+                elif content == 'seasons':
 
-			if not season == '' or season == None:
-				if season.startswith('0'):
-					season = season[1:].strip()
-				meta.get_season_meta(title,len(season))
+			if season:
+				
+				meta.get_seasons(simplename,code,season)
 
 			else:
-				meta = metaget.get_meta('tvshow',simplename)
+				meta = metaget.get_meta('tvshow',simplename, year=simpleyear, imdb_id=code)
 
 		elif content == 'episodes':
 
-			season = infolabels['season']
-			episode = infolabels['episode']
-			
 			if episode:
-				if episode.startswith('0'):
-					episode = episode[1:].strip()
-				if season.startswith('0'):
-					season = season[1:].strip()
-				meta = metaget.get_episode_meta(simplename,'',int(season),int(episode))
+
+				meta = metaget.get_episode_meta(simplename,code,int(season),int(episode))
 
 			else:
-				meta = metaget.get_meta('tvshow',simplename)
+				meta = metaget.get_meta('tvshow',simplename, year=simpleyear, imdb_id=code)
 
 		if not meta['cover_url']:
-			if img:
-				meta['cover_url'] = img
-			else:
-				meta['cover_url'] = self.addon.get_icon()
+			meta['cover_url'] = fan_art['icon']
 
 		if not meta['backdrop_url']:
-			if fanart:
-				meta['backdrop_url'] = fanart
-			else:
-				meta['backdrop_url'] = self.addon.get_fanart()
+			meta['backdrop_url'] = fan_art['fanart']
 
 		return meta
 
 
 
 
-	def addDir(self, queries, infolabels, properties=None, contextmenu_items='', context_replace=False, img='',
-		   fanart='', resolved=False, playlist=False, item_type='video', is_folder=True, item_count=0):
+	def addDir(self, queries, infolabels={}, fan_art={}, properties=None, contextmenu_items='',
+                   context_replace=False, playlist=False, item_type='video', stream_info='',
+                   is_folder=True, is_playable=True, item_count=0):
 
-		u = self.addon.build_plugin_url(queries)
-		infolabels = self.addon.unescape_dict(infolabels)
-		content = queries['content']
+                play = self.addon.build_plugin_url(queries)
+                infolabels = self.addon.unescape_dict(infolabels)
 		name = queries['name'].replace('()','')
-		fan_art = {}
-		fan_art['fanart'] = fanart
 
-		try:
+		if 'content' in queries:
+                        content = queries['content']
+
+                if 'icon' not in fan_art:
+			fan_art['icon'] = self.addon.get_icon()
+
+		if 'fanart' not in fan_art:
+			fan_art['fanart'] = self.addon.get_fanart()
+
+                try:
 			metaset = self.addon.get_setting('enable_meta')
 		
 
 			if metaset == 'true':
 
-				if not infolabels['sorttitle']:
+				if 'sorttitle' not in infolabels:
 					pass
 
 				else:
-					infolabels = self.fetch_meta(content, infolabels, img=img, fanart=fanart)
+					infolabels = self.fetch_meta(content, infolabels, fan_art)
 					if not contextmenu_items:
 						contextmenu_items = []
 						contextmenu_items.append(('[COLOR gold]Plot Information[/COLOR]', 'XBMC.Action(Info)'))
 
-					img = infolabels['cover_url']
-					fanart = infolabels['backdrop_url']
 					infolabels['title'] = name
 					fan_art['fanart'] = infolabels['backdrop_url']
 					fan_art['poster'] = infolabels['cover_url']
@@ -344,51 +389,39 @@ class md:
 						fan_art['banner'] = infolabels['cover_url']
 
 					if infolabels['thumb_url']:
-                                                fan_art['thumb'] = infolabels['thumb_url']
-                                        else:
-                                                fanart['thumb'] = infolabels['cover_url']
-                                        
+						fan_art['thumb'] = infolabels['thumb_url']
+					else:
+						fanart['thumb'] = infolabels['cover_url']
+					
 			else:
 				pass
 		except:
 			pass
 
-		if not img:
-			img = self.addon.get_icon()
-
-		if not fan_art['fanart']:
-			fan_art['fanart'] = self.addon.get_fanart()
-
-		listitem=xbmcgui.ListItem(name, iconImage=img, thumbnailImage=img)
+		listitem=xbmcgui.ListItem(name, iconImage=fan_art['icon'], thumbnailImage=fan_art['icon']) #listItem iconimage and thumbnail no longer needed after kodi 15. setArt does it for you.
 		listitem.setInfo(item_type, infoLabels=infolabels)
 		listitem.setArt(fan_art)
 
-		if properties:
+		if not is_folder:
+                        if is_playable and item_type=='video':
+                                listitem.setProperty("IsPlayable","true")
+                                listitem.addStreamInfo(item_type, stream_info)
+
+                if properties:
 			for prop in properties.items():
 				listitem.setProperty(prop[0], prop[1])
 
 		if contextmenu_items:
 			listitem.addContextMenuItems(contextmenu_items, replaceItems=context_replace)
 
-
-		'''if playlist is not False:
-			self.log_debug('adding item: %s - %s to playlist' % \
-				       (infolabels['title'], play))
+		if playlist is not False:
+			self.addon.log_debug('adding item: %s - %s to playlist' % \
+				       (name, play))
 			playlist.add(play, listitem)
 		else:
-			self.log_debug('adding item: %s - %s' % (infolabels['title'], play))
+			self.addon.log_debug('adding item: %s - %s' % (name, play))
 			xbmcplugin.addDirectoryItem(self.handle, play, listitem,
-						    isFolder=is_folder, totalItems=total_items)'''
-
-		
-
-		if not is_folder:
-			listitem.setProperty("IsPlayable","true")
-			xbmcplugin.addDirectoryItem(self.handle,u,listitem,isFolder=False,totalItems=item_count)
-
-		else:
-			xbmcplugin.addDirectoryItem(self.handle,u,listitem,isFolder=True,totalItems=item_count)
-
+						    isFolder=is_folder, totalItems=item_count)
 
 
 

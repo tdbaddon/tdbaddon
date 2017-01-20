@@ -22,13 +22,15 @@ from resources.lib.modules import cleantitle
 from resources.lib.modules import client
 from resources.lib.modules import control
 debridstatus = control.setting('debridsources')
-# if not debridstatus == 'true': raise Exception()
+from BeautifulSoup import BeautifulSoup
+from resources.lib.modules.common import  random_agent, quality_tag
+import requests
 
 class source:
     def __init__(self):
         self.domains = ['tinydl.com']
-        self.base_link = 'tinydl.com'
-        self.search_link = '/?s=%s'
+        self.base_link = 'http://myddl.org'
+        self.search_link = '/?s=%s+%s'
 
 
     def movie(self, imdb, title, year):
@@ -36,21 +38,25 @@ class source:
         try:
 			if not debridstatus == 'true': raise Exception()
 			self.zen_url = []
-			title = cleantitle.getsearch(title)
+			headers = {'Accept-Language': 'en-US,en;q=0.5', 'User-Agent': random_agent()}
+
 			cleanmovie = cleantitle.get(title)
-			query = "http://tinydl.com/?s=%s+%s" % (urllib.quote_plus(title),year)
-			link = client.request(query, timeout="10")
-			match = re.compile('<h2 class="title"><a href="(.+?)" rel="bookmark" title="(.+?)">').findall(link)
-			for movielink,title2 in match:
-				title = cleantitle.get(title2)
-				if cleanmovie in title:
-					if year in title:
-						if "1080" in title: quality = "1080p"
-						elif "720" in title: quality = "HD"				
-						else: quality = "SD"							
-									
-							
-						self.zen_url.append([movielink,quality])
+			title = cleantitle.getsearch(title)
+			query = self.search_link % (urllib.quote_plus(title), ep_search)
+			query = urlparse.urljoin(self.base_link, query)
+			html = BeautifulSoup(requests.get(query, headers=headers, timeout=10).content)
+			containers = html.findAll('h2', attrs={'class': 'title'})
+			for result in containers:
+				
+				r_title = result.findAll('a')[0]
+				r_title = r_title.string
+				r_href = result.findAll('a')[0]["href"]
+				r_href = r_href.encode('utf-8')
+				r_title = r_title.encode('utf-8')
+				
+				if cleanmovie in cleantitle.get(r_title) and year in r_title:
+					self.zen_url.append([r_href,r_title])
+
 			
 			return self.zen_url
 
@@ -70,31 +76,34 @@ class source:
         self.zen_url = []	
         try:
 			if not debridstatus == 'true': raise Exception()
+			self.zen_url = []
+			headers = {'Accept-Language': 'en-US,en;q=0.5', 'User-Agent': random_agent()}
 			data = urlparse.parse_qs(url)
 			data = dict([(i, data[i][0]) if data[i] else (i, '') for i in data])
 			title = data['tvshowtitle'] if 'tvshowtitle' in data else data['title']
-			data['season'], data['episode'] = season, episode
-			self.zen_url = []
-			title = cleantitle.getsearch(title)
+			
 			cleanmovie = cleantitle.get(title)
-			episodecheck = 'S%02dE%02d' % (int(data['season']), int(data['episode']))
-			episodecheck = str(episodecheck)
-			episodecheck = episodecheck.lower()
-			query = '%s+S%02dE%02d' % (urllib.quote_plus(title), int(data['season']), int(data['episode']))
-			movielink = "http://tinydl.com/?s=" + str(query)
-			link = client.request(movielink,timeout="10")
-			match = re.compile('<h2 class="title"><a href="(.+?)" rel="bookmark" title="(.+?)">').findall(link)
-			for movielink,title2 in match:
-				# print "TINYDL FOUND SHOW %s %s" % (movielink,title2)
-				title = cleantitle.get(title2)
-				if cleanmovie in title:
-					if episodecheck in title:
-						if "1080" in title: quality = "1080p"
-						elif "720" in title: quality = "HD"				
-						else: quality = "SD"							
-						# print "TINYDL PASSED SHOW %s %s" % (movielink,quality)		
-							
-						self.zen_url.append([movielink,quality])
+			data['season'], data['episode'] = season, episode
+			ep_search = 'S%02dE%02d' % (int(data['season']), int(data['episode']))
+			episodecheck = str(ep_search).lower()
+			query = self.search_link % (urllib.quote_plus(title), ep_search)
+			query = urlparse.urljoin(self.base_link, query)
+			
+			html = BeautifulSoup(requests.get(query, headers=headers, timeout=10).content)
+			
+			containers = html.findAll('h2', attrs={'class': 'title'})
+			
+			for result in containers:
+				
+				r_title = result.findAll('a')[0]
+				r_title = r_title.string
+				r_href = result.findAll('a')[0]["href"]
+				r_href = r_href.encode('utf-8')
+				r_title = r_title.encode('utf-8')
+				
+				if cleanmovie in cleantitle.get(r_title) and episodecheck in cleantitle.get(r_title):
+					self.zen_url.append([r_href,r_title])
+
 			
 			return self.zen_url
 
@@ -106,15 +115,14 @@ class source:
     def sources(self, url, hostDict, hostprDict):
         try:
 			sources = []
-			count = 0
 			for movielink,quality in self.zen_url:
+					quality = quality_tag(quality)
 					request = client.request(movielink,timeout="5")
-					match = re.compile('<a href="(.+?)" rel="external nofollow"').findall(request)
+					match = re.compile('<a href="(.+?)" rel=".+?" data-wpel-link="external"').findall(request)
 					for url in match:
 						url = client.replaceHTMLCodes(url)
 						url = url.encode('utf-8')
-						if not any(value in url for value in ['imagebam','imgserve','movielog','histat','crazy4tv','facebook','.rar', 'subscene','.jpg','.RAR', 'postimage', 'safelinking','linx.2ddl.ag','upload.so','.zip', 'go4up','imdb']):
-							if any(value in url for value in hostprDict):
+						if any(value in url for value in hostprDict):
 								try:host = re.findall('([\w]+[.][\w]+)$', urlparse.urlparse(url.strip().lower()).netloc)[0]
 								except: host = 'Videomega'
 								sources.append({'source': host, 'quality': quality, 'provider': 'Tinydl', 'url': url, 'direct': False, 'debridonly': True})

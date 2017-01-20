@@ -40,6 +40,7 @@ from resources.lib.sources import ditto_live
 from resources.lib.sources import dynns_live
 from resources.lib.sources import cinefun_live
 from resources.lib.sources import swift_live
+from resources.lib.sources import solid_live
 from resources.lib.sources import iptv_live
 
 
@@ -48,6 +49,7 @@ class TestingMovies(unittest.TestCase):
         self.imdb = 'tt3595298'
         self.title = 'Prem Ratan Dhan Payo'
         self.year = '2015'
+
 
     def source(self, call):
         movieUrl = call.get_movie(self.imdb, self.title, self.year)
@@ -245,6 +247,12 @@ class TestingLive(unittest.TestCase):
         self.assertGreater(len(sourceurl), 0, 'No Sources found')
         return
 
+    def test_iptv(self):
+        url = ''
+        regex = ''
+        from resources.lib.sources import iptv_live
+        iptv_live.source().getLiveSource()
+
     def test_dydnsResolve(self):
         from resources.lib.sources import dynns_live
         url = dynns_live.source().resolve('http://live1.zapto.org:8081/hostone/lamhe/playlist.m3u8', None)
@@ -282,6 +290,10 @@ class TestingLive(unittest.TestCase):
         call = swift_live.source()
         self.source(call, True)
 
+    def test_solidGenerateJSON(self):
+        call = solid_live.source()
+        self.source(call, True)
+
     def test_iptvGenerateJSON(self):
         call = iptv_live.source()
         self.source(call, True)
@@ -307,7 +319,17 @@ class TestingLive(unittest.TestCase):
                 "provider": "swift", "quality": "HD"}
         sources().sourcesResolve(item)
 
-
+class TestingMobDro(unittest.TestCase):
+    def test_mobdro(self):
+        from resources.lib.libraries import client
+        import urllib
+        c_url = "https://api.mobdro.sx/streambot/v4/show"
+        c_headers = {"User-Agent":"Mobdro/5.0", "Referer":"api.mobdro.sx"}
+        #c_data = {'data':params.get("url"),'parental':0,'languages':'[]','alphabetical':0,'token':'XNZSGC]FSUQ]YP]D','signature':'1083937564'}
+        c_data = {'data':'channels','parental':0,'languages':'[]','alphabetical':0,'token':'eL63ZMq6R5oDFpv0sWtEEV/HFsOZincIGJWYkORbrXI:1446481208:mobdro_api'}
+        c_data = urllib.urlencode(c_data)
+        result = client.request(c_url, headers=c_headers, post=c_data)
+        print result
 
 if __name__ == '__main__' :
     unittest.main()

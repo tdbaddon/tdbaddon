@@ -36,7 +36,8 @@ class source:
     def __init__(self):
         self.base_link = 'http://flixanity.watch'
         self.sitemap = '/sitemap.xml'
-        self.social_lock = 'evokjaqbb8'
+
+        self.social_lock = '0A6ru35yevokjaqbb8'
         self.search_link = '/api/v1/cautare/'+ self.social_lock
 
 

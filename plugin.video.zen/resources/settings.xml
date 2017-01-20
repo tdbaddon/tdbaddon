@@ -43,16 +43,13 @@
 		<setting type="lsep" label="Free Providers" />
 
 		<setting id="provider.putlocker" type="bool" label="Putlocker" default="true" />
-		<setting id="putlocker_custom"  type="bool" label=" - Enable Custom Url" default="false" visible="!eq(-1,false)" />
 		<setting id="putlocker_base"  type="text" label=" - Base Url" default="http://cartoonhd.online" visible="!eq(-1,false)" />
 
 		<setting id="provider.movieshd" type="bool" label="Movieshd" default="true" />
-		<setting id="movieshd_custom"  type="bool" label=" - Enable Custom Url" default="false" visible="!eq(-1,false)" />
 		<setting id="movieshd_base"  type="text" label=" - Base Url" default="http://flixanity.watch" visible="!eq(-1,false)" />
 
 		<setting id="provider.onemovies" type="bool" label="Onemovies" default="true" />
-		<setting id="onemovies_custom"  type="bool" label=" - Enable Custom Url" default="false" visible="!eq(-1,false)" />
-		<setting id="onemovies_base"  type="text" label=" - Base Url" default="http://123movies.gs" visible="!eq(-1,false)" />
+		<setting id="onemovies_base"  type="text" label=" - Base Url" default="https://123movies.is" visible="!eq(-1,false)" />
 		
 		<setting id="provider.hevcfilm" type="bool" label="Hevcfilm" default="true" />
 		<setting id="provider.afmovies" type="bool" label="Afmovies" default="true" />
@@ -84,7 +81,6 @@
 		<setting id="provider.watchepisodes" type="bool" label="Watchepisodes" default="true" />
 		<setting id="provider.sezonlukdizi" type="bool" label="Sezonlukdizi" default="true" />
 		<setting id="provider.solar" type="bool" label="Solar" default="true" />
-		<setting id="provider.putlockerz" type="bool" label="Putlockerz" default="true" />
 		<setting id="provider.moviefree" type="bool" label="Moviefree" default="true" />
 		<setting id="provider.vidics" type="bool" label="Vidics" default="true" />
 
@@ -114,11 +110,10 @@
 		<setting id="provider.scenedown" type="bool" label="Scenedown" default="true" />
 		<setting id="provider.twoddl" type="bool" label="twoDDL" default="true" />
 		<setting id="provider.threemovies" type="bool" label="Threemovies" default="true" />
-		<setting id="provider.tvscenedown" type="bool" label="Tvscenedown" default="true" />
 		<setting id="provider.tinydl" type="bool" label="Tinydl" default="true" />
 		<setting id="provider.bmoviez" type="bool" label="Bmoviez" default="true" />
-		<setting id="provider.tvbmoviez" type="bool" label="Tvbmoviez" default="true" />
 		<setting id="provider.ddls" type="bool" label="Ddls" default="true" />		
+		<setting id="provider.rlslog" type="bool" label="Rlslog" default="true" />		
 	</category>
 	<category label="32347">
 		<setting id="downloads" type="bool" label="32348" default="false" />

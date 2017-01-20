@@ -66,9 +66,9 @@ class source:
                     title = title.replace("&amp;","And")
                     #from resources.lib.libraries import livemeta
                     #names = cache.get(livemeta.source().getLiveNames, 200, table='live_cache')
-                    title = cleantitle.live(title)
-                    if title == 'SKIP':
-                        continue
+                    #title = cleantitle.live(title)
+                    #if title == 'SKIP':
+                    #    continue
                     if 'temple' in title.lower():
                         continue
                     url = self.channel_link % url
@@ -104,6 +104,7 @@ class source:
             except:link = client.parseDOM(result, "source", attrs={"type":"application/x-mpegurl"}, ret="src")[0]
             logger.debug('URL : [%s]' % link, __name__)
             url = '%s|Referer=%s' % (link.strip(), url)
+            result = client.validateUrl(url)
             logger.debug('RESOLVED URL [%s]' % url, __name__)
             return url
         except :

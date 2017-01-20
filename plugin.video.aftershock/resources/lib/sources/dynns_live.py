@@ -58,7 +58,7 @@ class source:
                 userAgent = self.getUserAgent()
                 deviceid = userAgent.split('.')[-1]
 
-                url = base64.b64decode("aHR0cHM6Ly9hcHMuc3l0ZXMubmV0L3RvcC9pcF9jaGVjay5waHA=")
+                url = base64.b64decode("aHR0cHM6Ly9hcHMuZHlubnMuY29tL3RvcC9pcF9jaGVjay5waHA=")
 
                 result = client.request(url, headers=self.headers)
                 self.ipAddress = re.findall('Address: (.*)',result)[0]
@@ -71,7 +71,7 @@ class source:
                 headers = {'Authorization': base64.b64decode('QmFzaWMgWVdSdGFXNUFZWE5rWmpwaGMyUm1jWGRsY25SNQ=='),
                            base64.b64decode("VXNlci1BZ2VudA=="):cache.get(self.getDeviceID, 600000, table='live_cache')}
 
-                url = base64.b64decode('aHR0cHM6Ly9hcHMuc3l0ZXMubmV0L2FwcHMvb3V0cHV0LnBocC9wbGF5bGlzdD90eXBlPXhtbCZkZXZpY2VTbj0lcw==') % deviceid
+                url = base64.b64decode('aHR0cHM6Ly9hcHMuZHlubnMuY29tL2FwcHMvb3V0cHV0LnBocC9wbGF5bGlzdD90eXBlPXhtbCZkZXZpY2VTbj0lcw==') % deviceid
 
                 result = client.request(url, headers=headers)
 
@@ -85,9 +85,9 @@ class source:
                         title = client.parseDOM(channel,"programTitle")[0]
                         #from resources.lib.libraries import livemeta
                         #names = cache.get(livemeta.source().getLiveNames, 200, table='live_cache')
-                        title = cleantitle.live(title)
-                        if title == 'SKIP':
-                            continue
+                        #title = cleantitle.live(title)
+                        #if title == 'SKIP':
+                        #    continue
                         poster = client.parseDOM(channel, "programImage")[0]
                         url = client.parseDOM(channel, "programURL")[0]
                         channelList[title] ={'icon':poster,'url':url,'provider':'dynns','source':'dynns','direct':False, 'quality':'HD'}
@@ -116,6 +116,7 @@ class source:
             import random
             useragent='User-Agent=AppleCoreMedia/1.0.0.%s (%s; U; CPU OS %s like Mac OS X; en_gb)'%(random.choice(['13G35','13G36','14A403','14A456','14B72','14B150']),random.choice(['iPhone','iPad','iPod']),random.choice(['9.3.4','9.3.5','10.0.2','10.1','10.1.1']))
             url+=useragent
+            result = client.validateUrl(url)
             logger.debug('RESOLVED URL [%s]' % url, __name__)
             return url
         except Exception as e:
@@ -138,7 +139,7 @@ class source:
         return useragent
 
     def getAuthToken(self):
-        url=base64.b64decode('aHR0cHM6Ly9hcHMuc3l0ZXMubmV0L3RvcC8lcy5waHA/d21zQXV0aFNpZ249')
+        url=base64.b64decode('aHR0cHM6Ly9hcHMuZHlubnMuY29tL3RvcC8lcy5waHA/d21zQXV0aFNpZ249')
         try:
             userAgent = self.getUserAgent()
             logger.debug('Final UserAgent : %s' % userAgent, __name__)
@@ -149,7 +150,7 @@ class source:
             validtime=userAgent[4]
 
             headers = {'User-Agent':base64.b64decode('UGFrJTIwVFYvMS4wIENGTmV0d29yay84MDguMi4xNiBEYXJ3aW4vMTYuMy4w')}
-            ipstring = client.request(base64.b64decode("aHR0cHM6Ly9hcHMuc3l0ZXMubmV0L3RvcC9pcF9jaGVjay5waHA="), headers=headers)
+            ipstring = client.request(base64.b64decode("aHR0cHM6Ly9hcHMuZHlubnMuY29tL3RvcC9pcF9jaGVjay5waHA="), headers=headers)
             ipadd=ipstring.split('Address: ')[1]
 
             s="%s%s%s%s"%(ipadd,base64.b64decode("dHVtYmluamlhamF5bmFqYW5h")+userAgent[:10],timesegment ,validtime)

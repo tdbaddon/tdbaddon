@@ -63,4 +63,5 @@ class source:
             pass
 
     def resolve(self, url, resolverList):
+        result = client.validateUrl(url)
         return url

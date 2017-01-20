@@ -13,17 +13,17 @@ logger = logging.getLogger('incapsula')
 def _load_encapsula_resource(sess, response):
     timing = []
     start = now_in_seconds()
-    timing.append('s:{}'.format(now_in_seconds() - start))
+    timing.append('s:{0}'.format(now_in_seconds() - start))
 
     code = get_obfuscated_code(response.content)
     parsed = parse_obfuscated_code(code)
     resource1, resource2 = get_resources(parsed, response.url)[1:]
     sess.get(resource1)
 
-    timing.append('c:{}'.format(now_in_seconds() - start))
+    timing.append('c:{0}'.format(now_in_seconds() - start))
     time.sleep(0.02)  # simulate page refresh time
-    timing.append('r:{}'.format(now_in_seconds() - start))
-    sess.get(resource2 + urllib.quote('complete ({})'.format(",".join(timing))))
+    timing.append('r:{0}'.format(now_in_seconds() - start))
+    sess.get(resource2 + urllib.quote('complete ({0})'.format(",".join(timing))))
 
 
 def crack(sess, response):
@@ -50,14 +50,14 @@ def crack(sess, response):
     set_incap_cookie(sess, response)
     # populate first round cookies
     scheme, host = urlparse.urlsplit(response.url)[:2]
-    logger.debug('scheme={} host={}'.format(scheme, host))
+    #logger.debug('scheme={} host={}'.format(scheme, host))
     # Check if the host is in pre-configured incapsula endpoints
     # If it is, use the pre-configured endpoint to get the obfuscated code,
     # otherwise use the default resource
     if host in endpoints:
         params = endpoints.get(host, {'SWKMTFSR': '1', 'e': random.random()})
         url_params = urllib.urlencode(params)
-        logger.debug('url_params={}'.format(url_params))
+        #logger.debug('url_params={}'.format(url_params))
         r = sess.get('{scheme}://{host}/_IncapsulaResource?{url_params}'.format(scheme=scheme, host=host, url_params=url_params), headers={'Referer': response.url})
         _load_encapsula_resource(sess, r)
     else:

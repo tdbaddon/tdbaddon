@@ -1,3 +1,9 @@
+[B]1.6.2[/B]
+- Updates , fixes on major providers
+
+[B]1.6.0[/B]
+- Checked, fixed , rewrite, and improvements to all the scrapers and calls
+
 [B]1.5.5[/B]
 - Update/fix providers and broken calls
 

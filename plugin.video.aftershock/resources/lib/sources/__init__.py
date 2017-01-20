@@ -580,11 +580,11 @@ class sources:
                 dbcur.execute("SELECT * FROM rel_live WHERE source = '%s' AND imdb_id = '%s' AND season = '%s'" % (source, name, 'live'))
                 for row in dbcur:
                     match = row
-                    logger.debug('Fetched sources from cache for [%s]'% name, call.__class__)
                     sources = json.loads(match[4])
                     try :sources['meta'] = json.loads(sources['meta'])
                     except:pass
                     self.sources.append(sources)
+                logger.debug('Fetched sources from cache for [%s]'% name, call.__class__)
                 return self.sources
             except:
                 logger.debug('Source from cache not found for [%s]'% name, call.__class__)
