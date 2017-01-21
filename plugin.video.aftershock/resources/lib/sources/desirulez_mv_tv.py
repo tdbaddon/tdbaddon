@@ -140,6 +140,8 @@ class source:
             for base_link in links:
                 try:
                     result = client.request('%s/%s' % (base_link,url))
+                    if result == None:
+                        raise Exception()
                 except: result = ''
                 if 'forumtitle' in result: break
 
@@ -189,7 +191,11 @@ class source:
             for base_link in links:
                 try:
                     result = client.request(base_link + '/' + url)
-                except: result = ''
+                    if result == None:
+                        raise Exception()
+                except:
+                    result = ''
+
                 if 'threadtitle' in result: break
 
             rawResult = result.decode('iso-8859-1').encode('utf-8')
@@ -241,7 +247,10 @@ class source:
             result = ''
             links = [self.base_link_1, self.base_link_2, self.base_link_3]
             for base_link in links:
-                try: result = client.request(base_link + '/' + url)
+                try:
+                    result = client.request(base_link + '/' + url)
+                    if result == None:
+                        raise Exception()
                 except: result = ''
                 if 'blockquote' in result: break
 

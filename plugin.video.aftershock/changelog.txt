@@ -1,3 +1,8 @@
+Aftershock v4.5.4
+--------------------------------
+- [COLOR orange]NOTE: Donations for this addon gracefully accepted at http://paypal.me/aftershockpy/10USD[/COLOR]
+- Updated -TV-VOD - TV Shows / Episodes Indexer
+
 Aftershock v4.5.3
 --------------------------------
 - [COLOR orange]NOTE: Donations for this addon gracefully accepted at http://paypal.me/aftershockpy/10USD[/COLOR]

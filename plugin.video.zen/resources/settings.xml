@@ -83,7 +83,7 @@
 		<setting id="provider.solar" type="bool" label="Solar" default="true" />
 		<setting id="provider.moviefree" type="bool" label="Moviefree" default="true" />
 		<setting id="provider.vidics" type="bool" label="Vidics" default="true" />
-
+		<setting id="provider.bobby" type="bool" label="Bobby" default="true" />		
 		
 		<setting type="lsep" label="Anime - Cartoons" />		
 		<setting id="provider.animetoon" type="bool" label="Animetoon" default="true" />

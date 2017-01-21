@@ -80,7 +80,7 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 
 </addon>
 
-<addon id="plugin.audio.nrjradio" version="1.0.2" name="NRJ Radio" provider-name="lambda">
+<addon id="plugin.audio.nrjradio" version="1.1.0" name="NRJ Radio" provider-name="lambda">
 	<requires>
 		<import addon="xbmc.python" version="2.24.0" />
 		<import addon="script.module.lamlib" version="1.0.0" />
@@ -95,7 +95,14 @@ Quality of the sound is (128k AAC, 320k MP3), hear the difference for yourself.
 		<license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
 		<source>https://github.com/lambda81/plugin.audio.nrjradio</source>
 		<website>http://www.nrj.fr/webradios/</website>
-		<news>- Fixed issue with streams</news>
+		<news>- Tweaked sections[CR]- Fixed issue with streams[CR]- Added add-on screenshots</news>
+		<assets>
+			<icon>icon.png</icon>
+			<fanart>fanart.jpg</fanart>
+			<screenshot>resources/screenshots/screenshot-01.jpg</screenshot>
+			<screenshot>resources/screenshots/screenshot-02.jpg</screenshot>
+			<screenshot>resources/screenshots/screenshot-03.jpg</screenshot>
+		</assets>
 		<platform>all</platform>
 		<language></language>
 		<forum></forum>
@@ -577,7 +584,7 @@ Add-on này sẽ bỏ qua và không chuyển đổi XML dùng regex.
   </extension>
 </addon>
 
-<addon id="plugin.video.aftershock" name="Aftershock" version="4.5.3" provider-name="Aftershock">
+<addon id="plugin.video.aftershock" name="Aftershock" version="4.5.4" provider-name="Aftershock">
     <requires>
         <import addon="xbmc.python" version="2.19.0"/>
         <import addon="repository.aftershock" version="2.0.1"/>
@@ -1942,6 +1949,28 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
+<addon id="plugin.video.specialistss" version="1.4" name="[COLOR lime][B]Specialist[/B][/COLOR][COLOR orange] [B]Super[/B][/COLOR] [COLOR lime][B]Streams[/B][/COLOR]" provider-name="James Hagans">
+	<requires>
+		<import addon="xbmc.python" version="2.1.0" />
+		<import addon="plugin.video.youtube" version="5.2.1" optional="true" />
+		<import addon="script.module.pyxbmct" version="1.1.4" />
+		<import addon="script.module.urlresolver" version="3.0.0"/>
+		<import addon="script.module.liveresolver" version="0.1.24"/>
+		<import addon="script.video.F4mProxy" version="2.2.3"/>
+		<import addon="repository.movies" version="1.1"/>
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="default.py">
+		<provides>video</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en">Specialist Super Streams addon.</summary>
+		<description lang="en">Specialist Super Streams will be the go to place for all your iptv streams, movies, tv shows. and more. Big Thanks to Ozzy for all his hard work</description>
+		<platform>all</platform>
+		<forum>Specialist Super Streams can be found on facbook at https://www.facebook.com/groups/thespecialistwizard/</forum>
+		<website>Find us on facebook.</website>
+	</extension>
+</addon>
+
 <addon id="plugin.video.specto" name="Specto - ... Fork"  version="2017.01.20.1" provider-name="mrknow" >
 	<requires>
 		<import addon="xbmc.python" version="2.1.0" />
@@ -2013,6 +2042,28 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
     <description lang="en">@Nemzzy668  / @_MANC_ / @DoomsdayPr3p / Silent Partner</description>
     <platform>all</platform>
   </extension>
+</addon>
+
+<addon id="plugin.video.streamhub" name="[B][COLOR red]Stream Hub[/COLOR][/B]" version="1.2" provider-name="sClarke">
+	<requires>
+		<import addon="xbmc.python" version="2.1.0" />
+		<import addon="plugin.video.youtube" version="5.2.1" optional="true" />
+		<import addon="script.module.pyxbmct" version="1.1.4" />
+		<import addon="script.module.urlresolver" version="3.0.0"/>
+		<import addon="script.module.liveresolver" version="0.1.24"/>
+		<import addon="script.video.F4mProxy" version="2.2.3"/>
+        <import addon="script.streamhub.artwork" version="1.0.0" />
+        <import addon="script.streamhub.metadata" version="1.0.0" />
+        <import addon="script.module.streamhub" versio="1.0.0"/>
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="default.py">
+		<provides>video</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="en"></summary>
+		<description lang="en">StreamHub - All Content feautured in this Addon is freely Available on the Internet - Making use of Already Written Code and Writing our Own - Credit to Exodus for Movies/TV Show Scrapers and Phoenix for the Addon's Base Code</description>
+		<platform>all</platform>
+	</extension>
 </addon>
 
 <addon id="plugin.video.supremacy"
@@ -2228,9 +2279,9 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.ted.talks" name="TED Talks" version="4.2.9" provider-name="rwparris2, moreginger">
+<addon id="plugin.video.ted.talks" name="TED Talks" version="4.2.10" provider-name="rwparris2, moreginger">
   <requires>
-    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="xbmc.python" version="2.24.0"/>
     <import addon="script.module.elementtree" version="1.2.7"/>
     <import addon="script.module.parsedom" version="0.9.1"/>
   </requires>
@@ -2241,13 +2292,13 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
     <!-- There are subtitles on TED in many languages,
     and this plugin is (partially) internationalized in several,
     but it seems better to claim the one we are sure of for now. -->
-    <language>en</language>
-    <summary lang="en">Watch talks from TED.com, a site dedicated to 'Ideas Worth Spreading'</summary>
-    <summary lang="hu">Beszédek megtekintése a TED.com-ról</summary>
-    <summary lang="pt">Veja debates de TED.com, um site dedicado a 'Ideias com Valor'</summary>
-    <description lang="en">TED is a small nonprofit devoted to Ideas Worth Spreading. It started out (in 1984) as a conference bringing together people from three worlds: Technology, Entertainment, Design. Since then its scope has become ever broader.</description>
-    <description lang="hu">TED egy kicsi non-profit szervezet aminek célpontjában az Ötlet áll amit érdemes megosztani. A webhely kezdete 1984-re nyúlik vissza egy konferenciára ami 3 külön világot hozott össze: Technológia, Szórakozás, Tervezés. Azóta a kör csak bővült.</description>
-    <description lang="pt">TED é uma organização sem fins lucrativos dedicada a 'Ideias com Valor'. Foi iniciada em 1984 como uma conferência que pretendia juntar pessoas de três mundos: Tecnologia, Entretenimento e Design. Desde ai tornou-se muito mais abrangente.</description>
+    <language>en_GB</language>
+    <summary lang="en_GB">Watch talks from TED.com, a site dedicated to 'Ideas Worth Spreading'</summary>
+    <summary lang="hu_HU">Beszédek megtekintése a TED.com-ról</summary>
+    <summary lang="pt_PT">Veja debates de TED.com, um site dedicado a 'Ideias com Valor'</summary>
+    <description lang="en_GB">TED is a small nonprofit devoted to Ideas Worth Spreading. It started out (in 1984) as a conference bringing together people from three worlds: Technology, Entertainment, Design. Since then its scope has become ever broader.</description>
+    <description lang="hu_HU">TED egy kicsi non-profit szervezet aminek célpontjában az Ötlet áll amit érdemes megosztani. A webhely kezdete 1984-re nyúlik vissza egy konferenciára ami 3 külön világot hozott össze: Technológia, Szórakozás, Tervezés. Azóta a kör csak bővült.</description>
+    <description lang="pt_PT">TED é uma organização sem fins lucrativos dedicada a 'Ideias com Valor'. Foi iniciada em 1984 como uma conferência que pretendia juntar pessoas de três mundos: Tecnologia, Entretenimento e Design. Desde ai tornou-se muito mais abrangente.</description>
     <platform>all</platform>
     <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
     <forum>http://forum.xbmc.org/showthread.php?tid=36866</forum>
@@ -2614,7 +2665,7 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
   </extension>
 </addon>
 
-<addon id="plugin.video.zen" version="1.6.3" name=" Zen" provider-name="Zen">
+<addon id="plugin.video.zen" version="1.6.5" name=" Zen" provider-name="Zen">
 	<requires>
 		<import addon="xbmc.python" version="2.19.0" />
 		<import addon="script.zen.artwork" />
@@ -3061,6 +3112,23 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
+<addon id="repository.movies" name="[COLOR lime][B]Specialist[/B][/COLOR][COLOR orange] [B]Super[/B][/COLOR] [COLOR lime][B]Streams[/B][/COLOR]" version="1.4" provider-name="a">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+	<import addon="script.module.addon.common" />
+	<import addon="script.module.requests" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>repository</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en"></summary>
+    <description lang="en"></description>
+	<disclaimer lang="en"></disclaimer>
+    <platform>all</platform>
+  </extension>
+</addon>
+
 <addon id="repository.nhlstreams" name="[COLOR red]NHL Streams[/COLOR] Repo" version="1.0.0" provider-name="iCanuck">
 	<extension point="xbmc.addon.repository" name="NHL Streams Repository">
        <info>https://raw.githubusercontent.com/iCanuck/NHLstreams/master/zips/addons.xml</info>
@@ -3238,6 +3306,24 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 	</extension>
 </addon>
 
+<addon id="repository.streamhub" name="[B][COLOR red]Stream Hub[/COLOR][/B]" version="1.0" provider-name="sClarke">
+	<extension point="xbmc.addon.repository" name="StreamHub Repository">
+	<dir>
+		<info compressed="false">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml</info>
+		<checksum>https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/addons.xml.md5</checksum>
+		<datadir zip="true">https://offshoregit.com/tvaresolvers/tva-common-repository/raw/master/zips/</datadir>
+	</dir>
+		<info compressed="false">http://mkodi.co.uk/streamhub/repofiles/addons.xml</info>
+		<checksum>http://mkodi.co.uk/streamhub/repofiles/addons.xml.md5</checksum>
+		<datadir zip="true">http://mkodi.co.uk/streamhub/repofiles/Zips</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>MediaHub Repo</summary>
+		<description>Bringing you the MediaHub Addons.</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
 <addon id="repository.streamteam" name="[COLOR indigo]Streamteam[/COLOR]" version="1.4" provider-name="Streamteam">
 <extension point="xbmc.addon.repository" name="[COLOR indigo]Streamteam[/COLOR]">
 		<info compressed="false">http://repo.streamteam.space/plugins/addons.xml</info>
@@ -3313,6 +3399,19 @@ CANALES RETRASMITIDOS POR INTERNET Y OTRAS PLATAFORMAS,MUNDO LATINO NO ES RESPON
 		<summary>thec0de Repo</summary>
 		<description>Download and Install The BEST Add-Ons for Kodi out there!</description>
 		<disclaimer>I made none of these - Just repost from Kodi Forums - Use at your own discretion. I am not responsible for what you do with this stuff.</disclaimer>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="repository.thespecialist" name="The specialist repository" version="1.1" provider-name="James Hagans">
+	<extension point="xbmc.addon.repository" name="The specialist repository">
+		<info compressed="false">http://thespecialist.xyz/repo/files/addons.xml</info>
+		<checksum>http://thespecialist.xyz/repo/files/addons.xml.md5</checksum>
+		<datadir zip="true">http://thespecialist.xyz/repo/files/</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary></summary>
+		<description></description>
 		<platform>all</platform>
 	</extension>
 </addon>
@@ -3814,6 +3913,24 @@ unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
     </extension>
 </addon>
 
+<addon id="script.module.streamhub" name="[B][COLOR red]Stream Hub[/COLOR][/B]" version="1.2" provider-name="sClarke">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+	<import addon="script.module.addon.common" />
+	<import addon="script.module.requests" />
+	<import addon="script.module.urlresolver" />
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>all</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Dependency Addon for StreamHub</summary>
+    <description lang="en">Dependency Addon for StreamHub</description>
+	<disclaimer lang="en">Dependency Addon for StreamHub</disclaimer>
+    <platform>all</platform>
+  </extension>
+</addon>
+
 <addon id="script.module.xbmcswift" name="xbmcswift" version="0.2.2" provider-name="Jonathan Beluch (jbel)">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
@@ -3862,6 +3979,30 @@ unshortenit v0.3.0 from https://github.com/jkehler/unshortenit :
     <forum></forum>
     <website></website>
   </extension>
+</addon>
+
+<addon id="script.streamhub.artwork" version="1.0.0" name="Streamhub Artwork" provider-name="sClarke">
+	<requires>
+		<import addon="xbmc.python" version="2.19.0"/>
+	</requires>
+	<extension point="xbmc.python.module" library="lib" />
+	<extension point="xbmc.addon.metadata">
+		<summary>Themes for the StreamHub Addon</summary>
+		<description>Themes for StreamHub are maintained separately to make distribution of the the addon itself easier/faster.</description>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="script.streamhub.metadata" version="1.0.0" name="StreamHub Metadata" provider-name="sClarke">
+	<requires>
+		<import addon="xbmc.python" version="2.19.0"/>
+	</requires>
+	<extension point="xbmc.python.module" library="lib" />
+	<extension point="xbmc.addon.metadata">
+		<summary>Metadata for the StreamHub Addon</summary>
+		<description>Metadata for StreamHub are maintained separately to make distribution of the the addon itself easier/faster.</description>
+		<platform>all</platform>
+	</extension>
 </addon>
 
 <addon id="script.video.F4mProxy"

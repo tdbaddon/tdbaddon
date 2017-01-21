@@ -37,6 +37,7 @@ try :
     params = {'action': 'tvshows', 'url': 'forumdisplay.php?f=36', 'name': 'Awards ', 'provider': 'desirulez_mv_tv'}
     params = {'tmdb': '0', 'name': 'Awards ', 'tvdb': '0', 'tvshowtitle': 'awards', 'year': '0', 'url': 'forumdisplay.php?f=36', 'imdb': '0', 'provider': 'desirulez_mv_tv', 'action': 'episodes', 'tvrage': '0'}
     params = {'action': 'movies', 'url': 'http://www.imdb.com/search/title?title_type=feature,tv_movie&num_votes=100,&production_status=released&languages=hi&count=40&start=1&sort=release_date,desc&start=1'}
+    params = {'tmdb': '0', 'tvdb': '0', 'tvshowtitle': 'Bigg Boss 10', 'year': '2016', 'url': 'forums/3994-Bigg-Boss-10', 'imdb': '0', 'provider': 'desirulez_mv_tv', 'action': 'episodes', 'tvrage': '0'}
     select = None
 
     try:
@@ -145,7 +146,7 @@ try :
 
     from resources.lib.libraries import user
 
-    movies.movies().get(url, lang=lang)
+    #movies.movies().get(url, lang=lang)
 
     '''
     result = '#EXTINF:-1,|VIP|HINDI:ZOOM\nhttp://live.softiptv.com:9900/live/525/525/17682.m3u8\n#EXTINF:-1,|VIP|HINDI:ZeeTv HD INddia\nhttp://live.softiptv.com:9900/live/525/525/17683.m3u8\n#EXTINF:-1,|VIP|HINDI:Zee Action\nnhttp://live.softiptv.com:9900/live/525/525/17684.m3u8'
